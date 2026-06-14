@@ -1,8 +1,0 @@
-{
-  "name": "sub_100D1980",
-  "mangled_name": "sub_100D1980",
-  "address": "0x100D1980",
-  "size_bytes": 90,
-  "signature": "int __stdcall(int *a1, int a2, void *Buffer, int Offset, size_t ElementCount)",
-  "decompiled_c": "int __stdcall sub_100D1980(int *a1, int a2, void *Buffer, int Offset, size_t ElementCount)\n{\n  int v5; // eax\n  int result; // eax\n  int v7; // eax\n\n  if ( fseek(*(FILE **)(a2 + 12), Offset, 0) )\n  {\n    v5 = *a1;\n    *(_DWORD *)(v5 + 20) = 65;\n    (*(void (__stdcall **)(int *))v5)(a1);\n  }\n  result = sub_100E5E7C(Buffer, 1u, ElementCount, *(FILE **)(a2 + 12));\n  if ( result != ElementCount )\n  {\n    v7 = *a1;\n    *(_DWORD *)(v7 + 20) = 64;\n    return (*(int (__stdcall **)(int *))v7)(a1);\n  }\n  return result;\n}\n"
-}

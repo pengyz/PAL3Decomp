@@ -1,8 +1,0 @@
-{
-  "name": "sub_1008FA09",
-  "mangled_name": "sub_1008FA09",
-  "address": "0x1008FA09",
-  "size_bytes": 37,
-  "signature": "int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "int __thiscall sub_1008FA09(_DWORD *this, int a2)\n{\n  int v2; // edx\n  unsigned int i; // esi\n  int result; // eax\n\n  v2 = 0;\n  for ( i = 0; i < 7; ++i )\n  {\n    result = *(this + i);\n    while ( result )\n    {\n      *(_DWORD *)(a2 + 4 * v2) = result;\n      result = *(_DWORD *)(result + 32);\n      ++v2;\n    }\n  }\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbVisNode::~gbVisNode(void)",
-  "mangled_name": "??1gbVisNode@@UAE@XZ",
-  "address": "0x100049C0",
-  "size_bytes": 108,
-  "signature": "void __thiscall(void **this)",
-  "decompiled_c": "void __thiscall gbVisNode::~gbVisNode(void **this)\n{\n  *this = &gbVisNode::`vftable';\n  operator delete(*(this + 7));\n  *this = &gbNBTreeNode::`vftable';\n  gbChain1D::~gbChain1D((gbChain1D *)(this + 3));\n  gbChain1DNode::~gbChain1DNode((gbChain1DNode *)this);\n}\n"
-}

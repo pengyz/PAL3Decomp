@@ -1,8 +1,0 @@
-{
-  "name": "gbPrintFont::SetFontColor(uchar,uchar,uchar)",
-  "mangled_name": "?SetFontColor@gbPrintFont@@QAEXEEE@Z",
-  "address": "0x10004340",
-  "size_bytes": 90,
-  "signature": "void __thiscall(gbPrintFont *this, char a2, char a3, unsigned __int8 a4)",
-  "decompiled_c": "void __thiscall gbPrintFont::SetFontColor(gbPrintFont *this, char a2, char a3, unsigned __int8 a4)\n{\n  int v4; // [esp+0h] [ebp-4h]\n\n  if ( gbColorQuad::ColorQuadFmt )\n  {\n    BYTE2(v4) = a4;\n    BYTE1(v4) = a3;\n    LOBYTE(v4) = a2;\n  }\n  else\n  {\n    BYTE2(v4) = a2;\n    BYTE1(v4) = a3;\n    LOBYTE(v4) = a4;\n  }\n  HIBYTE(v4) = -1;\n  *((_DWORD *)this + 11) = v4;\n}\n"
-}

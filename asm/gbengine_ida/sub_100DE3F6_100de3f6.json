@@ -1,8 +1,0 @@
-{
-  "name": "sub_100DE3F6",
-  "mangled_name": "sub_100DE3F6",
-  "address": "0x100DE3F6",
-  "size_bytes": 107,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "int __thiscall sub_100DE3F6(int this)\n{\n  unsigned int i; // eax\n  int v3; // edi\n  int result; // eax\n\n  sub_100DDE63((_DWORD *)this, (_DWORD *)(this + 80), (unsigned int *)(this + 76));\n  for ( i = 0; i < *(_DWORD *)(this + 56); ++i )\n  {\n    *(_DWORD *)(*(_DWORD *)(this + 48) + 4 * i) = i;\n    *(_DWORD *)(*(_DWORD *)(this + 64) + 4 * i) = *(_DWORD *)(*(_DWORD *)(this + 60) + 4 * i);\n  }\n  sub_1009A72C(sub_100DDDD0, *(int **)(this + 48), *(_DWORD *)(this + 56), this);\n  v3 = 0;\n  if ( !*(_DWORD *)(this + 56) )\n    return 1;\n  while ( 1 )\n  {\n    result = sub_100DDF7E(this, *(_DWORD *)(*(_DWORD *)(this + 48) + 4 * v3));\n    if ( result < 0 )\n      break;\n    if ( !result )\n      return 0;\n    if ( (unsigned int)++v3 >= *(_DWORD *)(this + 56) )\n      return 1;\n  }\n  return result;\n}\n"
-}

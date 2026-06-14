@@ -1,8 +1,0 @@
-{
-  "name": "__fseek_lk",
-  "mangled_name": "__fseek_lk",
-  "address": "0x100E6129",
-  "size_bytes": 141,
-  "signature": "int __cdecl(_DWORD *a1, int Offset, unsigned int Origin)",
-  "decompiled_c": "int __cdecl _fseek_lk(_DWORD *a1, int Offset, unsigned int Origin)\n{\n  int v3; // eax\n  int v4; // edi\n  int v5; // eax\n\n  v3 = a1[3];\n  if ( (v3 & 0x83) != 0 && (v4 = Origin, Origin <= 2) )\n  {\n    LOBYTE(v3) = v3 & 0xEF;\n    a1[3] = v3;\n    if ( Origin == 1 )\n    {\n      Offset += _ftell_lk(a1);\n      v4 = 0;\n    }\n    _flush(a1);\n    v5 = a1[3];\n    if ( (v5 & 0x80u) == 0 )\n    {\n      if ( (v5 & 1) != 0 && (v5 & 8) != 0 && (v5 & 0x400) == 0 )\n        a1[6] = 512;\n    }\n    else\n    {\n      LOBYTE(v5) = v5 & 0xFC;\n      a1[3] = v5;\n    }\n    return (_lseek(a1[4], Offset, v4) != -1) - 1;\n  }\n  else\n  {\n    *_errno() = 22;\n    return -1;\n  }\n}\n"
-}

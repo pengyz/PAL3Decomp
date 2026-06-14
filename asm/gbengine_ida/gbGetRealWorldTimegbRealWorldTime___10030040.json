@@ -1,8 +1,0 @@
-{
-  "name": "gbGetRealWorldTime(gbRealWorldTime *)",
-  "mangled_name": "?gbGetRealWorldTime@@YAXPAUgbRealWorldTime@@@Z",
-  "address": "0x10030040",
-  "size_bytes": 125,
-  "signature": "void __cdecl(struct gbRealWorldTime *a1)",
-  "decompiled_c": "void __cdecl gbGetRealWorldTime(struct gbRealWorldTime *a1)\n{\n  int wDayOfWeek; // edx\n  WORD wHour; // cx\n  int wMilliseconds; // edx\n  WORD wMinute; // cx\n  int wMonth; // edx\n  WORD wSecond; // cx\n  int wYear; // edx\n  struct _SYSTEMTIME SystemTime; // [esp+0h] [ebp-14h] BYREF\n\n  GetLocalTime(&SystemTime);\n  wDayOfWeek = SystemTime.wDayOfWeek;\n  *((_DWORD *)a1 + 3) = SystemTime.wDay;\n  wHour = SystemTime.wHour;\n  *((_DWORD *)a1 + 2) = wDayOfWeek;\n  wMilliseconds = SystemTime.wMilliseconds;\n  *((_DWORD *)a1 + 4) = wHour;\n  wMinute = SystemTime.wMinute;\n  *((_DWORD *)a1 + 7) = wMilliseconds;\n  wMonth = SystemTime.wMonth;\n  *((_DWORD *)a1 + 5) = wMinute;\n  wSecond = SystemTime.wSecond;\n  *((_DWORD *)a1 + 1) = wMonth;\n  wYear = SystemTime.wYear;\n  *((_DWORD *)a1 + 6) = wSecond;\n  *(_DWORD *)a1 = wYear;\n}\n"
-}

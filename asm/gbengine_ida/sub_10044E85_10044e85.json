@@ -1,8 +1,0 @@
-{
-  "name": "sub_10044E85",
-  "mangled_name": "sub_10044E85",
-  "address": "0x10044E85",
-  "size_bytes": 114,
-  "signature": "void __thiscall(_DWORD *this, int a2, int a3, int a4)",
-  "decompiled_c": "void __thiscall sub_10044E85(_DWORD *this, int a2, int a3, int a4)\n{\n  _DWORD *v4; // eax\n  _DWORD *i; // edx\n  int v7; // edi\n\n  v4 = (_DWORD *)(*(this + 8) + a3 * *(this + 25) + a2 * *(this + 24));\n  for ( i = &v4[2 * *(this + 26)]; v4 < i; a4 += 16 )\n  {\n    *(_DWORD *)a4 = *v4;\n    v7 = v4[1];\n    *(float *)(a4 + 12) = 1.0;\n    *(_DWORD *)(a4 + 4) = v7;\n    *(float *)(a4 + 8) = 1.0;\n    v4 += 2;\n  }\n  if ( *(this + 6) )\n    sub_1003C954((int)this, a4 - 16 * *(this + 26));\n  if ( *(this + 4) )\n    sub_1003CBEB(this, a4 - 16 * *(this + 26));\n}\n"
-}

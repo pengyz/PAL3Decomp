@@ -1,8 +1,0 @@
-{
-  "name": "sub_100DBF48",
-  "mangled_name": "sub_100DBF48",
-  "address": "0x100DBF48",
-  "size_bytes": 94,
-  "signature": "int __usercall@<eax>(int result@<eax>)",
-  "decompiled_c": "int __usercall sub_100DBF48@<eax>(int result@<eax>)\n{\n  _WORD *v1; // ecx\n  int v2; // edx\n  _WORD *v3; // ecx\n  int v4; // edx\n  _WORD *v5; // ecx\n  int v6; // edx\n\n  v1 = (_WORD *)(result + 140);\n  v2 = 286;\n  do\n  {\n    *v1 = 0;\n    v1 += 2;\n    --v2;\n  }\n  while ( v2 );\n  v3 = (_WORD *)(result + 2432);\n  v4 = 30;\n  do\n  {\n    *v3 = 0;\n    v3 += 2;\n    --v4;\n  }\n  while ( v4 );\n  v5 = (_WORD *)(result + 2676);\n  v6 = 19;\n  do\n  {\n    *v5 = 0;\n    v5 += 2;\n    --v6;\n  }\n  while ( v6 );\n  *(_DWORD *)(result + 5796) = 0;\n  *(_DWORD *)(result + 5792) = 0;\n  *(_DWORD *)(result + 5800) = 0;\n  *(_DWORD *)(result + 5784) = 0;\n  *(_WORD *)(result + 1164) = 1;\n  return result;\n}\n"
-}

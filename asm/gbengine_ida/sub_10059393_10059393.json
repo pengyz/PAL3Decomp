@@ -1,8 +1,0 @@
-{
-  "name": "sub_10059393",
-  "mangled_name": "sub_10059393",
-  "address": "0x10059393",
-  "size_bytes": 137,
-  "signature": "int __thiscall(_DWORD *this, _DWORD *a2)",
-  "decompiled_c": "int __thiscall sub_10059393(_DWORD *this, _DWORD *a2)\n{\n  _DWORD *v2; // esi\n  int v3; // edi\n  int v5; // eax\n  int v7; // eax\n\n  v2 = a2;\n  v3 = 0;\n  if ( !a2 )\n    return v3;\n  do\n  {\n    if ( v2[1] != 1 )\n      break;\n    v5 = sub_10059393(v2[2]);\n    v2 = (_DWORD *)v2[3];\n    v3 += v5;\n  }\n  while ( v2 );\n  if ( !v2 )\n    return v3;\n  switch ( v2[1] )\n  {\n    case 6:\n      v7 = sub_10059393(v2[6]);\n      break;\n    case 8:\n      v7 = v2[5] * sub_10059393(v2[4]);\n      break;\n    case 9:\n      v7 = v2[6] * v2[7];\n      break;\n    case 0xB:\n      v7 = sub_10059393(v2[8]);\n      break;\n    default:\n      sub_10058E0F(this, 0, 0, \"internal error: unknown node\");\n      return 0;\n  }\n  return v3 + v7;\n}\n"
-}

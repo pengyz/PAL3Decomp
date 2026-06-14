@@ -1,8 +1,0 @@
-{
-  "name": "___init_time",
-  "mangled_name": "___init_time",
-  "address": "0x100EE40C",
-  "size_bytes": 145,
-  "signature": "int()",
-  "decompiled_c": "int __init_time()\n{\n  void *v0; // eax\n  void *v1; // esi\n\n  if ( dword_10166D7C )\n  {\n    v0 = calloc(1u, 0xACu);\n    v1 = v0;\n    if ( !v0 )\n      return 1;\n    if ( _get_lc_time(v0) )\n    {\n      _free_lc_time(v1);\n      free(v1);\n      return 1;\n    }\n    off_1012B4A4[0] = (char *)v1;\n    _free_lc_time(dword_10166EB4);\n    free(dword_10166EB4);\n    dword_10166EB4 = v1;\n  }\n  else\n  {\n    off_1012B4A4[0] = (char *)off_1012B4A8;\n    _free_lc_time(dword_10166EB4);\n    free(dword_10166EB4);\n    dword_10166EB4 = 0;\n  }\n  return 0;\n}\n"
-}

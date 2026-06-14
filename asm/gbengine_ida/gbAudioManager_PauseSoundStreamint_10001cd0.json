@@ -1,8 +1,0 @@
-{
-  "name": "gbAudioManager::PauseSoundStream(int)",
-  "mangled_name": "?PauseSoundStream@gbAudioManager@@QAEXH@Z",
-  "address": "0x10001CD0",
-  "size_bytes": 23,
-  "signature": "void __thiscall(gbAudioManager *this, int a2)",
-  "decompiled_c": "void __thiscall gbAudioManager::PauseSoundStream(gbAudioManager *this, int a2)\n{\n  int v2; // eax\n\n  v2 = *((_DWORD *)this + a2);\n  if ( v2 )\n    AIL_pause_stream(v2, 1);\n}\n"
-}

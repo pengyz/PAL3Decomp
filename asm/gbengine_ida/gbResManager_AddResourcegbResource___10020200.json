@@ -1,8 +1,0 @@
-{
-  "name": "gbResManager::AddResource(gbResource *)",
-  "mangled_name": "?AddResource@gbResManager@@QAEXPAVgbResource@@@Z",
-  "address": "0x10020200",
-  "size_bytes": 116,
-  "signature": "void __thiscall(gbResManager *this, struct gbResource *a2)",
-  "decompiled_c": "void __thiscall gbResManager::AddResource(gbResManager *this, struct gbResource *a2)\n{\n  int v3; // eax\n  int v4; // eax\n  void *v5; // eax\n  int v6; // ecx\n  void *v7; // ebp\n\n  *((_DWORD *)a2 + 5) = this;\n  v3 = *((_DWORD *)this + 1);\n  if ( *((_DWORD *)this + 2) == v3 )\n  {\n    v4 = 2 * v3;\n    if ( !v4 )\n      v4 = 16;\n    if ( v4 > *((_DWORD *)this + 1) )\n    {\n      *((_DWORD *)this + 1) = v4;\n      v5 = malloc(4 * v4);\n      v6 = *((_DWORD *)this + 2);\n      v7 = v5;\n      if ( v6 )\n        qmemcpy(v5, *(const void **)this, 4 * v6);\n      if ( *(_DWORD *)this )\n        free(*(void **)this);\n      *(_DWORD *)this = v7;\n    }\n  }\n  *(_DWORD *)(*(_DWORD *)this + 4 * (*((_DWORD *)this + 2))++) = a2;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_100973DD",
-  "mangled_name": "sub_100973DD",
-  "address": "0x100973DD",
-  "size_bytes": 226,
-  "signature": "void __stdcall(int *__attribute__((__org_typedef(jmp_buf))) Buf, unsigned int a2, unsigned int a3)",
-  "decompiled_c": "void __stdcall sub_100973DD(jmp_buf Buf, unsigned int a2, unsigned int a3)\n{\n  int *__attribute__((__org_typedef(jmp_buf))) v3; // esi\n  int v4; // eax\n  unsigned int v5; // edi\n\n  v3 = Buf;\n  v4 = Buf[22];\n  if ( (v4 & 1) == 0 )\n    sub_10078BD5(Buf, (int)\"Missing IHDR before sRGB\");\n  if ( (v4 & 4) != 0 )\n  {\n    sub_10078BF3((int)Buf, (int)\"Invalid sRGB after IDAT\");\n    goto LABEL_5;\n  }\n  if ( (v4 & 2) != 0 )\n  {\n    sub_10078BF3((int)Buf, (int)\"Out of place sRGB chunk\");\n  }\n  else if ( a2 && (*(_BYTE *)(a2 + 9) & 8) != 0 )\n  {\n    sub_10078BF3((int)Buf, (int)\"Duplicate sRGB chunk\");\n    goto LABEL_5;\n  }\n  if ( a3 != 1 )\n  {\n    sub_10078BF3((int)v3, (int)\"Incorrect sRGB chunk length\");\nLABEL_5:\n    sub_10096F18(v3, a3);\n    return;\n  }\n  sub_1009664F(v3, (_BYTE *)&Buf + 3, 1);\n  if ( !sub_10096F18(v3, 0) )\n  {\n    v5 = HIBYTE(Buf);\n    if ( HIBYTE(Buf) < 4u )\n    {\n      if ( (*(_BYTE *)(a2 + 8) & 1) != 0 && fabs(*((float *)v3 + 76) * 100000.0 + 0.5 - 45455.0) > 500.0 )\n        sub_10078BF3((int)v3, (int)\"Ignoring incorrect gAMA value when sRGB is also present\");\n      sub_10078E84((int)v3, __SPAIR64__(v5, a2));\n    }\n    else\n    {\n      sub_10078BF3((int)v3, (int)\"Unknown sRGB intent\");\n    }\n  }\n}\n"
-}

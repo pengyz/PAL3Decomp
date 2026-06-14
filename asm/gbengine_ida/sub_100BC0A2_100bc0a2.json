@@ -1,8 +1,0 @@
-{
-  "name": "sub_100BC0A2",
-  "mangled_name": "sub_100BC0A2",
-  "address": "0x100BC0A2",
-  "size_bytes": 311,
-  "signature": "int __thiscall(_DWORD *this, char *Block, size_t Size, int a4, _DWORD *a5)",
-  "decompiled_c": "int __thiscall sub_100BC0A2(_DWORD *this, char *Block, size_t Size, int a4, _DWORD *a5)\n{\n  unsigned int v5; // edi\n  _DWORD *v6; // esi\n  int i; // eax\n  char **v9; // ebx\n  char *v10; // eax\n  char *v11; // ecx\n  char ***v12; // ecx\n\n  v5 = Size;\n  v6 = this;\n  if ( Size && !Block )\n    return -2147467259;\n  if ( Size == -1 )\n  {\n    Size = strlen(Block) + 1;\n    v5 = Size;\n  }\n  if ( (a4 & 1) == 0 )\n    a4 |= 2u;\n  if ( (a4 & 2) != 0 )\n  {\n    for ( i = v6[2]; i; i = *(_DWORD *)(i + 16) )\n    {\n      if ( (*(_BYTE *)(i + 8) & 2) != 0 && v5 == *(_DWORD *)(i + 4) )\n      {\n        if ( !memcmp(Block, *(const void **)i, v5) )\n        {\n          if ( a5 )\n            *a5 = *(_DWORD *)(i + 12);\n          if ( (a4 & 1) != 0 && (a4 & 8) != 0 )\n            operator delete(Block);\n          return 0;\n        }\n        v5 = Size;\n        v6 = this;\n      }\n    }\n  }\n  v9 = (char **)operator new(0x14u);\n  if ( !v9 )\n    return -2147024882;\n  if ( (a4 & 1) != 0 )\n  {\n    *v9 = Block;\n  }\n  else\n  {\n    v10 = (char *)operator new(v5);\n    *v9 = v10;\n    if ( !v10 )\n    {\n      operator delete(v9);\n      return -2147024882;\n    }\n    qmemcpy(v10, Block, v5);\n    v5 = Size;\n    v6 = this;\n  }\n  if ( (a4 & 4) == 0 )\n    v6[1] = (v6[1] + 3) & 0xFFFFFFFC;\n  v11 = (char *)v6[1];\n  v9[2] = (char *)a4;\n  v9[4] = 0;\n  v9[3] = v11;\n  v9[1] = (char *)v5;\n  v12 = (char ***)v6[3];\n  v6[1] += v5;\n  *v12 = v9;\n  v6[3] = v9 + 4;\n  if ( a5 )\n    *a5 = v9[3];\n  return 0;\n}\n"
-}

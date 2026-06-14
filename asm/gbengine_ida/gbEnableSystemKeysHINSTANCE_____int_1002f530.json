@@ -1,8 +1,0 @@
-{
-  "name": "gbEnableSystemKeys(HINSTANCE__ *,int)",
-  "mangled_name": "?gbEnableSystemKeys@@YAXPAUHINSTANCE__@@H@Z",
-  "address": "0x1002F530",
-  "size_bytes": 193,
-  "signature": "void __cdecl(HINSTANCE hmod, int a2)",
-  "decompiled_c": "void __cdecl gbEnableSystemKeys(HINSTANCE hmod, int a2)\n{\n  _BYTE pvParam[4]; // [esp+0h] [ebp-98h] BYREF\n  struct _OSVERSIONINFOA VersionInformation; // [esp+4h] [ebp-94h] BYREF\n\n  VersionInformation.dwOSVersionInfoSize = 148;\n  GetVersionExA(&VersionInformation);\n  if ( VersionInformation.dwPlatformId == 2 )\n  {\n    if ( VersionInformation.dwMajorVersion >= 4 )\n    {\n      if ( a2 )\n      {\n        if ( hhk )\n        {\n          UnhookWindowsHookEx(hhk);\n          hhk = 0;\n        }\n      }\n      else\n      {\n        hhk = SetWindowsHookExA(13, fn, hmod, 0);\n      }\n    }\n  }\n  else if ( VersionInformation.dwPlatformId == 1 && VersionInformation.dwMajorVersion >= 4 )\n  {\n    if ( a2 )\n      SystemParametersInfoA(0x61u, 0, pvParam, 0);\n    else\n      SystemParametersInfoA(0x61u, 1u, pvParam, 0);\n  }\n}\n"
-}

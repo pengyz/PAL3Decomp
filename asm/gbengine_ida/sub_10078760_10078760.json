@@ -1,8 +1,0 @@
-{
-  "name": "sub_10078760",
-  "mangled_name": "sub_10078760",
-  "address": "0x10078760",
-  "size_bytes": 126,
-  "signature": "int __stdcall(int *a1)",
-  "decompiled_c": "int __stdcall sub_10078760(int *a1)\n{\n  int v1; // ecx\n  int v2; // eax\n  int v3; // eax\n\n  if ( a1[105] || sub_100782B0(a1) )\n  {\n    v1 = a1[111];\n    v2 = *(_DWORD *)(v1 + 20);\n    if ( a1[105] == v2 + 208 )\n    {\n      v3 = *a1;\n      *(_DWORD *)(v3 + 20) = 98;\n      *(_DWORD *)(v3 + 24) = *(_DWORD *)(v1 + 20);\n      (*(void (__stdcall **)(int *, int))(v3 + 4))(a1, 3);\n      a1[105] = 0;\nLABEL_5:\n      *(_DWORD *)(a1[111] + 20) = ((unsigned __int8)*(_DWORD *)(a1[111] + 20) + 1) & 7;\n      return 1;\n    }\n    if ( (*(int (__stdcall **)(int *, int))(a1[6] + 20))(a1, v2) )\n      goto LABEL_5;\n  }\n  return 0;\n}\n"
-}

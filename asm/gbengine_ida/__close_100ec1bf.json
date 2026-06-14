@@ -1,8 +1,0 @@
-{
-  "name": "__close",
-  "mangled_name": "__close",
-  "address": "0x100EC1BF",
-  "size_bytes": 93,
-  "signature": "int __cdecl(int FileHandle)",
-  "decompiled_c": "int __cdecl _close(int FileHandle)\n{\n  int v1; // edi\n\n  if ( FileHandle < uNumber && (*(_BYTE *)(dword_10167400[FileHandle >> 5] + 36 * (FileHandle & 0x1F) + 4) & 1) != 0 )\n  {\n    _lock_fhandle(FileHandle);\n    v1 = _close_lk(FileHandle);\n    _unlock_fhandle(FileHandle);\n    return v1;\n  }\n  else\n  {\n    *_errno() = 9;\n    *__doserrno() = 0;\n    return -1;\n  }\n}\n"
-}

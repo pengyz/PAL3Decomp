@@ -1,8 +1,0 @@
-{
-  "name": "gbAudioManager::SetListenerPosition(gbVec3D const &)",
-  "mangled_name": "?SetListenerPosition@gbAudioManager@@QAEXABUgbVec3D@@@Z",
-  "address": "0x10001D20",
-  "size_bytes": 62,
-  "signature": "void __thiscall(gbAudioManager *this, const struct gbVec3D *a2)",
-  "decompiled_c": "void __thiscall gbAudioManager::SetListenerPosition(gbAudioManager *this, const struct gbVec3D *a2)\n{\n  float v2; // [esp+0h] [ebp-4h]\n\n  *((_DWORD *)this + 55) = *(_DWORD *)a2;\n  *((_DWORD *)this + 56) = *((_DWORD *)a2 + 1);\n  *((_DWORD *)this + 57) = *((_DWORD *)a2 + 2);\n  v2 = -*((float *)a2 + 2);\n  AIL_set_3D_position(*((_DWORD *)this + 54), *(_DWORD *)a2, *((_DWORD *)a2 + 1), LODWORD(v2));\n}\n"
-}

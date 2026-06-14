@@ -1,8 +1,0 @@
-{
-  "name": "sub_10049526",
-  "mangled_name": "sub_10049526",
-  "address": "0x10049526",
-  "size_bytes": 162,
-  "signature": "float *__stdcall(float *a1, float *a2, float *a3, float *a4)",
-  "decompiled_c": "float *__stdcall sub_10049526(float *a1, float *a2, float *a3, float *a4)\n{\n  double v4; // st7\n  double v5; // st6\n  float v7; // [esp+1Ch] [ebp+Ch]\n\n  v4 = *a2 * *a3 + a2[1] * a3[1] + a3[2] * a2[2];\n  v5 = v4 - (*a2 * *a4 + a4[2] * a2[2] + a2[1] * a4[1]);\n  if ( v5 == 0.0 )\n    return 0;\n  v7 = (v4 + a2[3]) / v5;\n  if ( !_finite(v7) )\n    return 0;\n  *a1 = (*a4 - *a3) * v7 + *a3;\n  a1[1] = (a4[1] - a3[1]) * v7 + a3[1];\n  a1[2] = (a4[2] - a3[2]) * v7 + a3[2];\n  return a1;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_100F11F5",
-  "mangled_name": "sub_100F11F5",
-  "address": "0x100F11F5",
-  "size_bytes": 17,
-  "signature": "LONG (__stdcall *())(struct _EXCEPTION_POINTERS *ExceptionInfo)",
-  "decompiled_c": "LONG (__stdcall *sub_100F11F5())(struct _EXCEPTION_POINTERS *ExceptionInfo)\n{\n  LONG (__stdcall *result)(struct _EXCEPTION_POINTERS *); // eax\n\n  result = SetUnhandledExceptionFilter(__CxxUnhandledExceptionFilter);\n  lpfn = result;\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_10094C60",
-  "mangled_name": "sub_10094C60",
-  "address": "0x10094C60",
-  "size_bytes": 56,
-  "signature": "void __stdcall(struct gbRenderInfoObj *a1)",
-  "decompiled_c": "void __stdcall sub_10094C60(struct gbRenderInfoObj *a1)\n{\n  signed int i; // esi\n  gbVisNode *v2; // ecx\n\n  for ( i = 1; i >= 0; --i )\n    sub_10094B80((int *)a1, i);\n  sub_100D1910(a1, *((_DWORD *)a1 + 1), 84);\n  *((_DWORD *)a1 + 1) = 0;\n  gbVisNode::RenderShadowVolume(v2, a1);\n}\n"
-}

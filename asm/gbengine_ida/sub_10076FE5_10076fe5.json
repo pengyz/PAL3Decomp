@@ -1,8 +1,0 @@
-{
-  "name": "sub_10076FE5",
-  "mangled_name": "sub_10076FE5",
-  "address": "0x10076FE5",
-  "size_bytes": 176,
-  "signature": "int()",
-  "decompiled_c": "int sub_10076FE5()\n{\n  struct _SYSTEM_INFO SystemInfo; // [esp+4h] [ebp-34h] BYREF\n  BYTE Data[4]; // [esp+28h] [ebp-10h] BYREF\n  DWORD Type; // [esp+2Ch] [ebp-Ch] BYREF\n  DWORD cbData; // [esp+30h] [ebp-8h] BYREF\n  HKEY phkResult; // [esp+34h] [ebp-4h] BYREF\n\n  if ( !RegOpenKeyA(HKEY_LOCAL_MACHINE, \"Software\\\\Microsoft\\\\Direct3D\", &phkResult) )\n  {\n    cbData = 4;\n    if ( !RegQueryValueExA(phkResult, \"DisableMMX\", 0, &Type, Data, &cbData) && Type == 4 && *(_DWORD *)Data )\n    {\n      RegCloseKey(phkResult);\n      dword_10126790 = 0;\n      return 0;\n    }\n    RegCloseKey(phkResult);\n  }\n  if ( dword_10126790 < 0 )\n  {\n    dword_10126790 = 0;\n    GetSystemInfo(&SystemInfo);\n    if ( !SystemInfo.wProcessorArchitecture && SystemInfo.wProcessorLevel >= 5u )\n    {\n      if ( sub_10076FC0() )\n      {\n        _m_empty();\n        dword_10126790 = 1;\n      }\n    }\n  }\n  return dword_10126790;\n}\n"
-}

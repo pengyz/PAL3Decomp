@@ -1,8 +1,0 @@
-{
-  "name": "sub_100CAF91",
-  "mangled_name": "sub_100CAF91",
-  "address": "0x100CAF91",
-  "size_bytes": 122,
-  "signature": "int __thiscall(unsigned int *this)",
-  "decompiled_c": "int __thiscall sub_100CAF91(unsigned int *this)\n{\n  int result; // eax\n  _DWORD v3[4]; // [esp+8h] [ebp-10h] BYREF\n\n  result = (*(int (__thiscall **)(unsigned int *, _DWORD, _DWORD *, _DWORD, _DWORD, _DWORD))(*this + 108))(\n             this,\n             *(this + 55),\n             v3,\n             *(_DWORD *)(*(this + 56) + 12),\n             0,\n             0);\n  if ( result >= 0 )\n  {\n    result = sub_100CAB4A(\n               this,\n               7,\n               v3,\n               *(_DWORD **)(*(this + 56) + 8),\n               *(_DWORD *)(*(this + 56) + 12),\n               *(_DWORD *)(*(this + 56) + 4),\n               0,\n               0);\n    if ( result >= 0 )\n    {\n      result = sub_100C9674(\n                 this,\n                 5,\n                 *(_DWORD **)(*(this + 56) + 16),\n                 *(_DWORD *)(*(this + 56) + 12),\n                 v3,\n                 *(_DWORD **)(*(this + 56) + 8),\n                 0,\n                 *(_DWORD *)(*(this + 56) + 12),\n                 0,\n                 0,\n                 0);\n      if ( result >= 0 )\n        return 0;\n    }\n  }\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbBaseMesh::SetMeshTexDir(char *)",
-  "mangled_name": "?SetMeshTexDir@gbBaseMesh@@SAXPAD@Z",
-  "address": "0x1000EB00",
-  "size_bytes": 85,
-  "signature": "void __cdecl(char *a1)",
-  "decompiled_c": "void __cdecl gbBaseMesh::SetMeshTexDir(char *a1)\n{\n  if ( a1 )\n    strcpy((char *)&gbBaseMesh::TextureDir, a1);\n  else\n    strcpy((char *)&gbBaseMesh::TextureDir, byte_101390C4);\n}\n"
-}

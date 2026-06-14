@@ -1,8 +1,0 @@
-{
-  "name": "gbAudioManager::DetachSampleHandle(gbSound2DNode *)",
-  "mangled_name": "?DetachSampleHandle@gbAudioManager@@QAEXPAVgbSound2DNode@@@Z",
-  "address": "0x10001B00",
-  "size_bytes": 61,
-  "signature": "void __thiscall(gbAudioManager *this, struct gbSound2DNode *a2)",
-  "decompiled_c": "void __thiscall gbAudioManager::DetachSampleHandle(gbAudioManager *this, struct gbSound2DNode *a2)\n{\n  struct gbSound2DNode **v2; // esi\n  int v3; // ebp\n\n  v2 = (struct gbSound2DNode **)((char *)this + 152);\n  v3 = 4;\n  do\n  {\n    if ( *v2 == a2 )\n    {\n      AIL_end_sample(*((_DWORD *)a2 + 1));\n      *((_DWORD *)a2 + 1) = 0;\n      *v2 = 0;\n    }\n    v2 += 3;\n    --v3;\n  }\n  while ( v3 );\n}\n"
-}

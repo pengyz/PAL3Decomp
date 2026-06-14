@@ -1,8 +1,0 @@
-{
-  "name": "ctranexit",
-  "mangled_name": "ctranexit",
-  "address": "0x100EFC03",
-  "size_bytes": 7,
-  "signature": "int __usercall@<eax>(int a1@<ebp>)",
-  "decompiled_c": "int __usercall ctranexit@<eax>(int a1@<ebp>)\n{\n  *(_BYTE *)(a1 - 712) &= ~1u;\n  return cintrinexit();\n}\n"
-}

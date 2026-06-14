@@ -1,8 +1,0 @@
-{
-  "name": "sub_1005BC4D",
-  "mangled_name": "sub_1005BC4D",
-  "address": "0x1005BC4D",
-  "size_bytes": 344,
-  "signature": "_DWORD *__thiscall(_DWORD *this, _DWORD *a2)",
-  "decompiled_c": "_DWORD *__thiscall sub_1005BC4D(_DWORD *this, _DWORD *a2)\n{\n  _DWORD *v3; // eax\n  unsigned int v4; // eax\n  _DWORD *v5; // esi\n  int v6; // eax\n  int v7; // eax\n  int v8; // eax\n  int v11; // [esp+18h] [ebp+8h]\n\n  if ( !a2 )\n    return 0;\n  if ( a2[1] != 15 )\n    return 0;\n  v3 = (_DWORD *)a2[12];\n  if ( !v3 || a2[13] < 4u )\n    return 0;\n  v4 = *v3 & 0xFFFF0000;\n  switch ( v4 )\n  {\n    case 0x7FFE0000u:\n      v11 = 28;\n      break;\n    case 0x7FFF0000u:\n      v11 = 27;\n      break;\n    case 0xFFFE0000:\n      v11 = 26;\n      break;\n    case 0xFFFF0000:\n      v11 = 25;\n      break;\n    default:\n      return 0;\n  }\n  if ( sub_1007E198(80, (LPVOID)0x10) )\n    v5 = (_DWORD *)sub_1007EBDE(0, 0, 0, 0, 1, a2 + 4);\n  else\n    v5 = 0;\n  if ( v5 )\n  {\n    v6 = sub_1007E198(36, (LPVOID)0x10) ? sub_1007E8B4(3, v11, 1, 1, 512) : 0;\n    v5[4] = v6;\n    if ( v6 )\n    {\n      v7 = sub_1007E198(64, (LPVOID)0x10) ? sub_1007EDA2(5, a2[12], a2[13], a2 + 4) : 0;\n      v5[8] = v7;\n      if ( v7 )\n      {\n        v8 = sub_1007E198(20, (LPVOID)0x10) ? sub_1007E301(v5[8], 0, \"Value\") : 0;\n        if ( v8 )\n        {\n          v5[8] = v8;\n          sub_10059D80(this, v5);\n          return v5;\n        }\n      }\n    }\n  }\n  return 0;\n}\n"
-}

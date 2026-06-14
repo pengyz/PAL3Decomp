@@ -1,8 +1,0 @@
-{
-  "name": "gbEffectMgr::RegisterVertexFormat(char const *,gbVertexElement *)",
-  "mangled_name": "?RegisterVertexFormat@gbEffectMgr@@QAEPAUIDirect3DVertexDeclaration9@@PBDPAUgbVertexElement@@@Z",
-  "address": "0x1001D5E0",
-  "size_bytes": 232,
-  "signature": "struct IDirect3DVertexDeclaration9 *__thiscall(gbEffectMgr *this, const char *a2, struct gbVertexElement *a3)",
-  "decompiled_c": "struct IDirect3DVertexDeclaration9 *__thiscall gbEffectMgr::RegisterVertexFormat(\n        gbEffectMgr *this,\n        const char *a2,\n        struct gbVertexElement *a3)\n{\n  int v4; // edi\n  const char *v5; // edx\n\n  v4 = 0;\n  if ( *((int *)this + 519) <= 0 )\n  {\nLABEL_5:\n    if ( (*(int (__stdcall **)(_DWORD, struct gbVertexElement *, struct gbVertexElement **))(**(_DWORD **)(*((_DWORD *)this + 3) + 1816)\n                                                                                           + 344))(\n           *(_DWORD *)(*((_DWORD *)this + 3) + 1816),\n           a3,\n           &a3) < 0 )\n    {\n      return 0;\n    }\n    else\n    {\n      *((_DWORD *)this + 8 * *((_DWORD *)this + 519) + 14) = a3;\n      strcpy((char *)this + 32 * (*((_DWORD *)this + 519))++ + 28, a2);\n      return (struct IDirect3DVertexDeclaration9 *)a3;\n    }\n  }\n  else\n  {\n    v5 = (char *)this + 28;\n    while ( strcmp(v5, a2) )\n    {\n      ++v4;\n      v5 += 32;\n      if ( v4 >= *((_DWORD *)this + 519) )\n        goto LABEL_5;\n    }\n    return (struct IDirect3DVertexDeclaration9 *)*((_DWORD *)this + 8 * v4 + 14);\n  }\n}\n"
-}

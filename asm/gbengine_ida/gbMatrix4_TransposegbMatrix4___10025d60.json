@@ -1,8 +1,0 @@
-{
-  "name": "gbMatrix4::Transpose(gbMatrix4 *)",
-  "mangled_name": "?Transpose@gbMatrix4@@QBEXPAU1@@Z",
-  "address": "0x10025D60",
-  "size_bytes": 44,
-  "signature": "void __thiscall(gbMatrix4 *this, struct gbMatrix4 *a2)",
-  "decompiled_c": "void __thiscall gbMatrix4::Transpose(gbMatrix4 *this, struct gbMatrix4 *a2)\n{\n  int v3; // edi\n  gbMatrix4 *v4; // edx\n  int v5; // esi\n  int v6; // ebx\n\n  v3 = 4;\n  do\n  {\n    v4 = this;\n    v5 = 4;\n    do\n    {\n      v6 = *(_DWORD *)v4;\n      v4 = (gbMatrix4 *)((char *)v4 + 16);\n      *(_DWORD *)a2 = v6;\n      a2 = (struct gbMatrix4 *)((char *)a2 + 4);\n      --v5;\n    }\n    while ( v5 );\n    this = (gbMatrix4 *)((char *)this + 4);\n    --v3;\n  }\n  while ( v3 );\n}\n"
-}

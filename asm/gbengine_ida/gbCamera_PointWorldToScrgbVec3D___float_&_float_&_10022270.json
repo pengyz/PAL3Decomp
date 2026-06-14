@@ -1,8 +1,0 @@
-{
-  "name": "gbCamera::PointWorldToScr(gbVec3D *,float &,float &)",
-  "mangled_name": "?PointWorldToScr@gbCamera@@QAEXPAUgbVec3D@@AAM1@Z",
-  "address": "0x10022270",
-  "size_bytes": 80,
-  "signature": "void __thiscall(gbCamera *this, struct gbVec3D *a2, float *a3, float *a4)",
-  "decompiled_c": "void __thiscall gbCamera::PointWorldToScr(gbCamera *this, struct gbVec3D *a2, float *a3, float *a4)\n{\n  _DWORD v5[3]; // [esp+4h] [ebp-Ch] BYREF\n\n  memset(v5, 0, sizeof(v5));\n  gbMatrix4::Transform((gbCamera *)((char *)this + 148), a2, (struct gbVec3D *)v5);\n  gbCamera::PointEyeToScr(this, (struct gbVec3D *)v5, a3, a4);\n}\n"
-}

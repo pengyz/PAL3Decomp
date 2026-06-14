@@ -1,8 +1,0 @@
-{
-  "name": "gbGeomNode::ReplaceTexture(char const *)",
-  "mangled_name": "?ReplaceTexture@gbGeomNode@@QAEXPBD@Z",
-  "address": "0x10011840",
-  "size_bytes": 58,
-  "signature": "void __thiscall(gbGeomNode *this, char *a2)",
-  "decompiled_c": "void __thiscall gbGeomNode::ReplaceTexture(gbGeomNode *this, char *a2)\n{\n  gbBaseMesh *mesh; // ecx\n  struct gbChain1DNode *pHead; // ecx\n\n  mesh = this->mesh;\n  if ( mesh )\n    gbBaseMesh::ReplaceTexture(mesh, a2);\n  pHead = this->children.pHead;\n  for ( this->children.pIterator = pHead; pHead; this->children.pIterator = pHead )\n  {\n    gbGeomNode::ReplaceTexture((gbGeomNode *)pHead, a2);\n    pHead = this->children.pIterator->pNext;\n  }\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbGetOSUserName(char *,int)",
-  "mangled_name": "?gbGetOSUserName@@YAHPADH@Z",
-  "address": "0x1002F670",
-  "size_bytes": 21,
-  "signature": "DWORD __cdecl(LPSTR lpBuffer, DWORD pcbBuffer)",
-  "decompiled_c": "DWORD __cdecl gbGetOSUserName(LPSTR lpBuffer, DWORD pcbBuffer)\n{\n  GetUserNameA(lpBuffer, &pcbBuffer);\n  return pcbBuffer;\n}\n"
-}

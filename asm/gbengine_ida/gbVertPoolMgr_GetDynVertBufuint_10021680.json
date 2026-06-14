@@ -1,8 +1,0 @@
-{
-  "name": "gbVertPoolMgr::GetDynVertBuf(uint)",
-  "mangled_name": "?GetDynVertBuf@gbVertPoolMgr@@QAEPAVgbDynVertBuf@@I@Z",
-  "address": "0x10021680",
-  "size_bytes": 121,
-  "signature": "struct gbDynVertBuf *__thiscall(gbVertPoolMgr *this, unsigned int a2)",
-  "decompiled_c": "struct gbDynVertBuf *__thiscall gbVertPoolMgr::GetDynVertBuf(gbVertPoolMgr *this, unsigned int a2)\n{\n  int v3; // esi\n  char *v4; // edx\n  _DWORD *v5; // eax\n  int v6; // eax\n  _DWORD *v7; // ecx\n\n  v3 = 0;\n  v4 = (char *)this + 784;\n  v5 = (_DWORD *)((char *)this + 784);\n  while ( *v5 != a2 )\n  {\n    ++v3;\n    ++v5;\n    if ( v3 >= 32 )\n    {\n      v6 = 0;\n      v7 = (_DWORD *)((char *)this + 784);\n      while ( *v7 )\n      {\n        ++v6;\n        ++v7;\n        if ( v6 >= 32 )\n        {\n          v3 = -1;\n          goto LABEL_8;\n        }\n      }\n      *(_DWORD *)&v4[4 * v6] = a2;\n      v3 = v6;\n      break;\n    }\n  }\nLABEL_8:\n  if ( !*((_DWORD *)this + v3 + 164) )\n  {\n    *((_DWORD *)this + v3 + 164) = (*(int (__thiscall **)(_DWORD, unsigned int, _DWORD))(**((_DWORD **)this + 392) + 24))(\n                                     *((_DWORD *)this + 392),\n                                     a2,\n                                     *((_DWORD *)this + 390));\n    gbDynVertBuf::pGfxMgr = (gbGfxManager_D3D *)*((_DWORD *)this + 392);\n  }\n  return (struct gbDynVertBuf *)*((_DWORD *)this + v3 + 164);\n}\n"
-}

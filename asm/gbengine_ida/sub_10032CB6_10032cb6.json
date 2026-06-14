@@ -1,8 +1,0 @@
-{
-  "name": "sub_10032CB6",
-  "mangled_name": "sub_10032CB6",
-  "address": "0x10032CB6",
-  "size_bytes": 38,
-  "signature": "int *__stdcall(int a1)",
-  "decompiled_c": "int *__stdcall sub_10032CB6(int a1)\n{\n  int *result; // eax\n\n  result = dword_100F5B98;\n  if ( off_10120B78 <= dword_100F5B98 )\n    return dword_100F5B70;\n  while ( a1 != *result )\n  {\n    result += 9;\n    if ( result >= off_10120B78 )\n      return dword_100F5B70;\n  }\n  return result;\n}\n"
-}

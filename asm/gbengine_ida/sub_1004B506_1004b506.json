@@ -1,8 +1,0 @@
-{
-  "name": "sub_1004B506",
-  "mangled_name": "sub_1004B506",
-  "address": "0x1004B506",
-  "size_bytes": 11,
-  "signature": "void __thiscall(int this)",
-  "decompiled_c": "void __thiscall sub_1004B506(int this)\n{\n  const void *v2; // eax\n\n  if ( *(_DWORD *)this != -1 )\n  {\n    v2 = *(const void **)(this + 8);\n    if ( v2 )\n    {\n      UnmapViewOfFile(v2);\n      *(_DWORD *)(this + 8) = 0;\n      *(_DWORD *)(this + 12) = 0;\n    }\n    if ( *(_DWORD *)(this + 4) != -1 )\n    {\n      CloseHandle(*(HANDLE *)(this + 4));\n      *(_DWORD *)(this + 4) = -1;\n    }\n    if ( *(_DWORD *)this != -1 )\n    {\n      CloseHandle(*(HANDLE *)this);\n      *(_DWORD *)this = -1;\n    }\n  }\n}\n"
-}

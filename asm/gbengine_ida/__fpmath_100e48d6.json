@@ -1,8 +1,0 @@
-{
-  "name": "__fpmath",
-  "mangled_name": "__fpmath",
-  "address": "0x100E48D6",
-  "size_bytes": 23,
-  "signature": "int()",
-  "decompiled_c": "int _fpmath()\n{\n  int result; // eax\n\n  _cfltcvt_init();\n  dword_10166C60 = _ms_p5_mp_test_fdiv();\n  result = _setdefaultprecision();\n  __asm { fnclex }\n  return result;\n}\n"
-}

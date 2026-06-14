@@ -1,8 +1,0 @@
-{
-  "name": "sub_1009A16E",
-  "mangled_name": "sub_1009A16E",
-  "address": "0x1009A16E",
-  "size_bytes": 84,
-  "signature": "int __thiscall(void *this, int a2, int a3, int a4)",
-  "decompiled_c": "int __thiscall sub_1009A16E(void *this, int a2, int a3, int a4)\n{\n  _DWORD *v5; // eax\n  _DWORD *v6; // esi\n\n  v5 = (_DWORD *)sub_1009987F(116);\n  if ( v5 )\n    v6 = sub_1009955C(v5);\n  else\n    v6 = 0;\n  if ( !v6 )\n    return -1;\n  if ( sub_100998C0((char *)v6, a2, a3, a4, 0) < 0 )\n  {\n    sub_1007F859(v6, 1);\n    return -1;\n  }\n  return sub_1009A004((int)this, v6);\n}\n"
-}

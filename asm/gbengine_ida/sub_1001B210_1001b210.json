@@ -1,8 +1,0 @@
-{
-  "name": "sub_1001B210",
-  "mangled_name": "sub_1001B210",
-  "address": "0x1001B210",
-  "size_bytes": 156,
-  "signature": "int __thiscall(int this, int a2)",
-  "decompiled_c": "int __thiscall sub_1001B210(int this, int a2)\n{\n  char *v2; // ecx\n  int result; // eax\n  int v4; // edi\n  __int16 v5; // dx\n  _BYTE v6[512]; // [esp+Ch] [ebp-600h] BYREF\n  char v7; // [esp+20Ch] [ebp-400h] BYREF\n\n  if ( !*(_DWORD *)(this + 1620) )\n    return (*(int (__stdcall **)(_DWORD, _DWORD, int))(**(_DWORD **)(this + 1816) + 88))(\n             *(_DWORD *)(this + 1816),\n             0,\n             a2);\n  (*(void (__stdcall **)(_DWORD, _DWORD, _BYTE *))(**(_DWORD **)(this + 1816) + 88))(*(_DWORD *)(this + 1816), 0, v6);\n  v2 = &v7;\n  result = a2 + 1024;\n  v4 = 256;\n  do\n  {\n    LOBYTE(v5) = 0;\n    result += 2;\n    HIBYTE(v5) = *(v2 - 512);\n    v2 += 2;\n    *(_WORD *)(result - 1026) = v5;\n    LOBYTE(v5) = 0;\n    HIBYTE(v5) = *(v2 - 2);\n    *(_WORD *)(result - 514) = v5;\n    LOBYTE(v5) = 0;\n    HIBYTE(v5) = v6[result - a2 - 2];\n    --v4;\n    *(_WORD *)(result - 2) = v5;\n  }\n  while ( v4 );\n  return result;\n}\n"
-}

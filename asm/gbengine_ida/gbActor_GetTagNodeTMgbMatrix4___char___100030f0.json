@@ -1,8 +1,0 @@
-{
-  "name": "gbActor::GetTagNodeTM(gbMatrix4 *,char *)",
-  "mangled_name": "?GetTagNodeTM@gbActor@@QAEHPAUgbMatrix4@@PAD@Z",
-  "address": "0x100030F0",
-  "size_bytes": 85,
-  "signature": "int __thiscall(gbActor *this, struct gbMatrix4 *a2, char *a3)",
-  "decompiled_c": "int __thiscall gbActor::GetTagNodeTM(gbActor *this, struct gbMatrix4 *a2, char *a3)\n{\n  unsigned int v4; // eax\n  int v5; // esi\n  int v6; // ecx\n  _DWORD *v7; // edi\n  _DWORD *i; // edx\n\n  v4 = gbCrc32Compute(a3);\n  v5 = *((_DWORD *)this + 27);\n  v6 = 0;\n  if ( v5 <= 0 )\n    return 0;\n  v7 = (_DWORD *)*((_DWORD *)this + 26);\n  for ( i = v7; *i != v4; i += 33 )\n  {\n    if ( ++v6 >= v5 )\n      return 0;\n  }\n  qmemcpy(a2, &v7[33 * v6 + 1], 0x40u);\n  return 1;\n}\n"
-}

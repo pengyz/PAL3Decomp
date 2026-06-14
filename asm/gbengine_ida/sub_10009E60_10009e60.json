@@ -1,8 +1,0 @@
-{
-  "name": "sub_10009E60",
-  "mangled_name": "sub_10009E60",
-  "address": "0x10009E60",
-  "size_bytes": 55,
-  "signature": "int __thiscall(int *this, int a2)",
-  "decompiled_c": "int __thiscall sub_10009E60(int *this, int a2)\n{\n  int v3; // esi\n  int result; // eax\n\n  v3 = *(_DWORD *)(*(this + 23) + 4 * a2);\n  result = *(this + 26);\n  if ( v3 != result )\n  {\n    sub_1000A100(*(_DWORD *)(*(this + 23) + 4 * a2));\n    *(this + 26) = v3;\n    result = sub_10002A70(this, v3);\n    if ( result )\n      return sub_1000A570(result);\n  }\n  return result;\n}\n"
-}

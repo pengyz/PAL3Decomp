@@ -1,8 +1,0 @@
-{
-  "name": "sub_100CDEA0",
-  "mangled_name": "sub_100CDEA0",
-  "address": "0x100CDEA0",
-  "size_bytes": 95,
-  "signature": "int __stdcall(int a1)",
-  "decompiled_c": "int __stdcall sub_100CDEA0(int a1)\n{\n  int (__stdcall **v1)(int *); // eax\n  int (__stdcall **v2)(int, int, _DWORD); // edx\n  void *v3; // edi\n  int result; // eax\n  int v5; // ecx\n\n  v1 = (int (__stdcall **)(int *))(**(int (__stdcall ***)(int, int, int))(a1 + 4))(a1, 1, 64);\n  v2 = *(int (__stdcall ***)(int, int, _DWORD))(a1 + 4);\n  *v1 = sub_100CDC60;\n  *(_DWORD *)(a1 + 448) = v1;\n  v1 += 11;\n  *v1 = 0;\n  v1[1] = 0;\n  v1[2] = 0;\n  v1[3] = 0;\n  v3 = (void *)(*v2)(a1, 1, *(_DWORD *)(a1 + 36) << 8);\n  result = *(_DWORD *)(a1 + 36);\n  *(_DWORD *)(a1 + 164) = v3;\n  if ( result > 0 )\n  {\n    v5 = (result & 0xFFFFFF) << 6;\n    memset(v3, 0xFFu, 4 * v5);\n    return -1;\n  }\n  return result;\n}\n"
-}

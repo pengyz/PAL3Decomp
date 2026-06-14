@@ -115,13 +115,8 @@ docs/superpowers/
 !original/*.bin
 !original/*.xml
 
-# PAL3.exe IDA export data (generated, regenerate with pal3_master_pipeline.py)
-asm/pal3/*.json
-!asm/pal3/_export_summary.json
-!asm/pal3/call_graph.json
-
-# gbengine IDA alias files (generated, regenerable)
-asm/gbengine_ida/*_alias.json
+# IDA export data (all regenerable from IDB)
+asm/
 
 # VC6 RTM compiler tracked via Git LFS (override global *.exe/*.dll rules)
 !tools/compilers/**
@@ -129,9 +124,6 @@ asm/gbengine_ida/*_alias.json
 # Do NOT manually edit these — improve IDA annotations instead
 include/pal3/gen/
 src/pal3/
-
-# Decomp JSON (regenerable from IDA export)
-asm/pal3/decomp/
 
 # IDA databases (regenerable from pipeline: master_pipeline + apply_annotations)
 *.i64
@@ -147,8 +139,11 @@ include/pal3/globals.h
 # Pipeline snapshots (large compile output, regenerable)
 pipeline/snapshots/data/
 
-# Build output log (regenerable)
+# Build output logs (regenerable)
 build_output.txt
+_compile_errors.txt
+test_fnptr.log
+script_ran.txt
 
 # AIDE project state (local tool state)
 .project/audit.log
@@ -158,6 +153,7 @@ build_output.txt
 # Temp analysis scripts
 analyze*.py
 tmp_*.py
+tmp_*.txt
 _tmp_plugin/
 
 pipeline.toml

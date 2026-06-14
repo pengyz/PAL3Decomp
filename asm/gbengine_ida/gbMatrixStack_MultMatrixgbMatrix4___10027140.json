@@ -1,8 +1,0 @@
-{
-  "name": "gbMatrixStack::MultMatrix(gbMatrix4 *)",
-  "mangled_name": "?MultMatrix@gbMatrixStack@@QAEXPAUgbMatrix4@@@Z",
-  "address": "0x10027140",
-  "size_bytes": 145,
-  "signature": "void __thiscall(gbMatrixStack *this, struct gbMatrix4 *a2)",
-  "decompiled_c": "void __thiscall gbMatrixStack::MultMatrix(gbMatrixStack *this, struct gbMatrix4 *a2)\n{\n  struct gbMatrix4 *v2; // ebx\n  _BYTE *v3; // esi\n  int v4; // eax\n  float *v5; // edi\n  float *v6; // eax\n  int v7; // ebp\n  float *v8; // edx\n  float *v9; // ecx\n  int v10; // esi\n  double v11; // st7\n  int i; // [esp+10h] [ebp-48h]\n  _BYTE v14[64]; // [esp+18h] [ebp-40h] BYREF\n  int v15; // [esp+5Ch] [ebp+4h]\n\n  v2 = a2;\n  v3 = (_BYTE *)(*(_DWORD *)this + (*((_DWORD *)this + 2) << 6));\n  v4 = v3 - (_BYTE *)a2;\n  v15 = 4;\n  qmemcpy(v14, v3, sizeof(v14));\n  for ( i = v4; ; v4 = i )\n  {\n    v5 = (float *)v14;\n    v6 = (float *)((char *)v2 + v4);\n    v7 = 4;\n    do\n    {\n      *v6 = 0.0;\n      v8 = (float *)v2;\n      v9 = v5;\n      v10 = 4;\n      do\n      {\n        v11 = *v8 * *v9;\n        v9 += 4;\n        ++v8;\n        --v10;\n        *v6 = v11 + *v6;\n      }\n      while ( v10 );\n      ++v6;\n      ++v5;\n      --v7;\n    }\n    while ( v7 );\n    v2 = (struct gbMatrix4 *)((char *)v2 + 16);\n    if ( !--v15 )\n      break;\n  }\n  *((_DWORD *)this + 3) = 0;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_1008F99B",
-  "mangled_name": "sub_1008F99B",
-  "address": "0x1008F99B",
-  "size_bytes": 60,
-  "signature": "unsigned int __stdcall(_BYTE *a1)",
-  "decompiled_c": "unsigned int __stdcall sub_1008F99B(_BYTE *a1)\n{\n  _BYTE *v1; // esi\n  unsigned int v2; // edi\n  char v3; // al\n\n  v1 = a1;\n  v2 = 0;\n  if ( !a1 )\n    return 0;\n  v3 = *a1;\n  if ( !*a1 )\n    return 0;\n  do\n  {\n    v2 = toupper(v3) + 19 * v2;\n    v3 = *++v1;\n  }\n  while ( *v1 );\n  return v2 % 7;\n}\n"
-}

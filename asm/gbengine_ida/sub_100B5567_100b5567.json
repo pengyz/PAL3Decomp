@@ -1,8 +1,0 @@
-{
-  "name": "sub_100B5567",
-  "mangled_name": "sub_100B5567",
-  "address": "0x100B5567",
-  "size_bytes": 184,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "int __thiscall sub_100B5567(int this)\n{\n  int v1; // eax\n  int v3; // eax\n\n  v1 = *(_DWORD *)(this + 192);\n  *(_DWORD *)(this + 232) = v1;\n  switch ( v1 )\n  {\n    case -65024:\n      *(_DWORD *)(this + 108) |= 0x2000002u;\n      *(_DWORD *)(this + 112) |= 5u;\n      *(_DWORD *)(this + 44) = 12;\n      break;\n    case -65022:\n      *(_BYTE *)(this + 111) |= 0xA4u;\n      *(_DWORD *)(this + 112) |= 0x10u;\n      *(_DWORD *)(this + 44) = 28;\n      *(_DWORD *)(this + 192) = -65023;\n      break;\n    case -64769:\n      *(_BYTE *)(this + 111) |= 0x20u;\n      *(_DWORD *)(this + 112) |= 0x10u;\n      *(_DWORD *)(this + 44) = 32;\n      *(_DWORD *)(this + 96) = 2048;\n      break;\n    default:\n      sub_1009DBA6(this, 0, 0, \"internal error: no profile exists for this pixel shader version\");\n      return -2147467259;\n  }\n  v3 = *(_DWORD *)(this + 44);\n  *(_DWORD *)(this + 108) |= 0x1000A1u;\n  *(_DWORD *)(this + 392) = v3;\n  *(_DWORD *)(this + 40) = 2;\n  *(_DWORD *)(this + 68) = 10;\n  *(_DWORD *)(this + 56) = 0x2000;\n  *(_DWORD *)(this + 72) = 4;\n  *(_DWORD *)(this + 76) = 16;\n  *(_DWORD *)(this + 100) = 1;\n  return 0;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_100658FE",
-  "mangled_name": "sub_100658FE",
-  "address": "0x100658FE",
-  "size_bytes": 163,
-  "signature": "int __stdcall(_DWORD *a1, const char *a2)",
-  "decompiled_c": "int __stdcall sub_100658FE(_DWORD *a1, const char *a2)\n{\n  _DWORD *v2; // edi\n  _DWORD *v3; // ecx\n  const char *v4; // ecx\n  bool v5; // zf\n  unsigned int v7; // [esp+4h] [ebp-4h]\n\n  v7 = 0;\n  if ( a1[36] )\n  {\n    v2 = (_DWORD *)(a1[37] + 32);\n    while ( 1 )\n    {\n      v3 = (_DWORD *)(a1[8] + *v2);\n      if ( !*v3 )\n        break;\n      v4 = (const char *)(v3 + 1);\n      if ( !v4 )\n        break;\n      if ( a2 )\n      {\n        v5 = strcmp(v4, a2) == 0;\n        goto LABEL_8;\n      }\nLABEL_9:\n      ++v7;\n      v2 += 43;\n      if ( v7 >= a1[36] )\n        goto LABEL_10;\n    }\n    v5 = a2 == 0;\nLABEL_8:\n    if ( v5 )\n      goto LABEL_10;\n    goto LABEL_9;\n  }\nLABEL_10:\n  if ( a1[36] == v7 )\n    return 0;\n  else\n    return ~(a1[37] + 172 * v7);\n}\n"
-}

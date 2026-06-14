@@ -1,8 +1,0 @@
-{
-  "name": "sub_10004CB0",
-  "mangled_name": "sub_10004CB0",
-  "address": "0x10004CB0",
-  "size_bytes": 84,
-  "signature": "gbRenderEffect *__thiscall(gbRenderEffect *this, char a2)",
-  "decompiled_c": "gbRenderEffect *__thiscall sub_10004CB0(gbRenderEffect *this, char a2)\n{\n  if ( (a2 & 2) != 0 )\n  {\n    `eh vector destructor iterator'(\n      (char *)this,\n      0x44u,\n      *((_DWORD *)this - 1),\n      (void (__thiscall *)(void *))gbRenderEffect::~gbRenderEffect);\n    if ( (a2 & 1) != 0 )\n      operator delete((char *)this - 4);\n    return (gbRenderEffect *)((char *)this - 4);\n  }\n  else\n  {\n    gbRenderEffect::~gbRenderEffect(this);\n    if ( (a2 & 1) != 0 )\n      operator delete(this);\n    return this;\n  }\n}\n"
-}

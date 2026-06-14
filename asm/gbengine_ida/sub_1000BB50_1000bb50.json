@@ -1,8 +1,0 @@
-{
-  "name": "sub_1000BB50",
-  "mangled_name": "sub_1000BB50",
-  "address": "0x1000BB50",
-  "size_bytes": 252,
-  "signature": "void __thiscall(gbChain1DNode *this)",
-  "decompiled_c": "void __thiscall sub_1000BB50(gbChain1DNode *this)\n{\n  int v2; // ebx\n  int v3; // edi\n  int v4; // eax\n  void (__thiscall ***v5)(_DWORD, _DWORD); // ecx\n  void *v6; // edi\n  void (__thiscall ***v7)(_DWORD, int); // ecx\n\n  this->__vftable = &off_100F5570;\n  v2 = 0;\n  if ( *((int *)this + 89) > 0 )\n  {\n    v3 = 0;\n    do\n    {\n      if ( *(_DWORD *)(v3 + *((_DWORD *)this + 88) + 4) )\n        free(*(void **)(v3 + *((_DWORD *)this + 88) + 4));\n      ++v2;\n      v3 += 48;\n    }\n    while ( v2 < *((_DWORD *)this + 89) );\n  }\n  if ( *((_DWORD *)this + 88) )\n    operator delete(*((void **)this + 88));\n  v4 = *((_DWORD *)this + 87);\n  switch ( v4 )\n  {\n    case 1:\n      v5 = (void (__thiscall ***)(_DWORD, _DWORD))*((_DWORD *)this + 90);\n      if ( v5 )\n        (**v5)(v5, *((_DWORD *)this + 87));\n      break;\n    case 2:\n      v6 = (void *)*((_DWORD *)this + 90);\n      if ( v6 )\n      {\n        gbSound3DNode::~gbSound3DNode(*((gbSound3DNode **)this + 90));\n        operator delete(v6);\n      }\n      break;\n    case 3:\n      v7 = (void (__thiscall ***)(_DWORD, int))*((_DWORD *)this + 90);\n      if ( v7 )\n        (**v7)(v7, 1);\n      break;\n  }\n  this->__vftable = &gbNBTreeNode::`vftable';\n  gbChain1D::~gbChain1D((gbChain1D *)((char *)this + 12));\n  gbChain1DNode::~gbChain1DNode(this);\n}\n"
-}

@@ -84,9 +84,9 @@ def cmd_config():
 def cmd_clean():
     """Clean all previously generated files in gen/ directories."""
     import shutil
+    from pipeline.config import PROJECT_ROOT as _PR
     gen_dirs = [
-        cfg.output_headers,           # include/pal3/gen/
-        cfg.output_src / "gen",       # src/pal3/gen/
+        _PR / "pal3" / "src",  # pal3/src/
     ]
     for d in gen_dirs:
         if d.exists():

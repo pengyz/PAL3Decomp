@@ -1,8 +1,0 @@
-{
-  "name": "sub_100ADF98",
-  "mangled_name": "sub_100ADF98",
-  "address": "0x100ADF98",
-  "size_bytes": 159,
-  "signature": "int __thiscall(_DWORD *this)",
-  "decompiled_c": "int __thiscall sub_100ADF98(_DWORD *this)\n{\n  unsigned int i; // ebx\n  int v3; // esi\n  int v4; // esi\n  unsigned int j; // ecx\n  int v6; // esi\n  int v7; // edx\n\n  for ( i = 0; i < *(this + 158); ++i )\n  {\n    v3 = *(_DWORD *)(4 * i + *(this + 155));\n    qmemcpy(*(void **)(*(_DWORD *)(*(this + 6) + 4 * i) + 8), *(const void **)(v3 + 8), 4 * *(_DWORD *)(v3 + 4));\n    v4 = *(_DWORD *)(4 * i + *(this + 155));\n    qmemcpy(*(void **)(*(_DWORD *)(*(this + 6) + 4 * i) + 16), *(const void **)(v4 + 16), 4 * *(_DWORD *)(v4 + 12));\n  }\n  for ( j = 0; j < *(this + 157); *(_DWORD *)(v6 + 56) = v7 )\n  {\n    v6 = *(_DWORD *)(*(this + 5) + 4 * j);\n    v7 = *(_DWORD *)(*(_DWORD *)(*(this + 156) + 4 * j++) + 56);\n  }\n  return 0;\n}\n"
-}

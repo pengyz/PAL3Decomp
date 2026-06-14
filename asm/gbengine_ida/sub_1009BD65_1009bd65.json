@@ -1,8 +1,0 @@
-{
-  "name": "sub_1009BD65",
-  "mangled_name": "sub_1009BD65",
-  "address": "0x1009BD65",
-  "size_bytes": 76,
-  "signature": "int __thiscall(_DWORD *this, _DWORD *a2, _DWORD *a3, int a4)",
-  "decompiled_c": "int __thiscall sub_1009BD65(_DWORD *this, _DWORD *a2, _DWORD *a3, int a4)\n{\n  int result; // eax\n  unsigned int v5; // edi\n\n  result = a4;\n  if ( a2[14] != a4 )\n  {\n    a2[14] = a4;\n    ++*a3;\n    v5 = 0;\n    if ( a2[5] )\n    {\n      while ( 1 )\n      {\n        result = sub_1009BD65(*(_DWORD *)(*(this + 6) + 4 * *(_DWORD *)(a2[6] + 4 * v5++)), a3, result);\n        if ( v5 >= a2[5] )\n          break;\n        result = a4;\n      }\n    }\n  }\n  return result;\n}\n"
-}

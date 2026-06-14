@@ -1,8 +1,0 @@
-{
-  "name": "gbChain1D::DelNodeFromChain(gbChain1DNode *)",
-  "mangled_name": "?DelNodeFromChain@gbChain1D@@QAEXPAVgbChain1DNode@@@Z",
-  "address": "0x1002EB90",
-  "size_bytes": 112,
-  "signature": "void __thiscall(struct gbChain1DNode **this, struct gbChain1DNode *a2)",
-  "decompiled_c": "void __thiscall gbChain1D::DelNodeFromChain(struct gbChain1DNode **this, struct gbChain1DNode *a2)\n{\n  struct gbChain1DNode *v2; // edx\n  int v3; // eax\n  int v4; // eax\n  struct gbChain1DNode *v5; // eax\n\n  v2 = *this;\n  if ( a2 == *this )\n  {\n    if ( a2 == *(this + 1) )\n    {\n      v3 = (int)*(this + 2);\n      *(this + 1) = 0;\n      v4 = v3 - 1;\n      *this = 0;\n    }\n    else\n    {\n      *this = (struct gbChain1DNode *)*((_DWORD *)a2 + 1);\n      v4 = (int)*(this + 2) - 1;\n    }\n    *(this + 2) = (struct gbChain1DNode *)v4;\n  }\n  else\n  {\n    v5 = (struct gbChain1DNode *)*((_DWORD *)v2 + 1);\n    if ( v5 )\n    {\n      while ( v5 != a2 )\n      {\n        v2 = v5;\n        v5 = (struct gbChain1DNode *)*((_DWORD *)v5 + 1);\n        if ( !v5 )\n        {\n          *(this + 2) = (struct gbChain1DNode *)((char *)*(this + 2) - 1);\n          return;\n        }\n      }\n      if ( a2 == *(this + 1) )\n        *(this + 1) = v2;\n      *((_DWORD *)v2 + 1) = *((_DWORD *)a2 + 1);\n    }\n    *(this + 2) = (struct gbChain1DNode *)((char *)*(this + 2) - 1);\n  }\n}\n"
-}

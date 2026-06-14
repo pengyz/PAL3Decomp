@@ -1,8 +1,0 @@
-{
-  "name": "sub_10069E9C",
-  "mangled_name": "sub_10069E9C",
-  "address": "0x10069E9C",
-  "size_bytes": 163,
-  "signature": "int __stdcall(int a1, const char *a2, int *a3)",
-  "decompiled_c": "int __stdcall sub_10069E9C(int a1, const char *a2, int *a3)\n{\n  bool v4; // zf\n  int result; // eax\n  int v6; // eax\n  __int16 v7; // [esp+14h] [ebp+8h]\n\n  v4 = *(_DWORD *)(a1 + 60) == 0;\n  v7 = *(_WORD *)(a1 + 66);\n  if ( v4 )\n  {\n    if ( !a3 )\n      goto LABEL_4;\n    if ( !a2 )\n    {\n      *(_WORD *)(a1 + 66) = 0;\n      goto LABEL_11;\n    }\n    v6 = sub_10065803((_DWORD *)a1, a2, 1);\n    if ( v6 )\n    {\n      for ( *(_WORD *)(a1 + 66) = *(_WORD *)(v6 + 4) + 1; ; ++*(_WORD *)(a1 + 66) )\n      {\nLABEL_11:\n        if ( (unsigned int)*(unsigned __int16 *)(a1 + 66) >= *(_DWORD *)(a1 + 144) )\n        {\n          *a3 = 0;\n          result = 1;\n          goto LABEL_13;\n        }\n        if ( (*(int (__stdcall **)(int, _DWORD))(*(_DWORD *)a1 + 244))(a1, 0) >= 0 )\n          break;\n      }\n      *a3 = ~(*(_DWORD *)(a1 + 148) + 172 * *(unsigned __int16 *)(a1 + 66));\n      result = 0;\n    }\n    else\n    {\nLABEL_4:\n      result = -2005530516;\n    }\n  }\n  else\n  {\n    result = -2005530516;\n  }\nLABEL_13:\n  *(_WORD *)(a1 + 66) = v7;\n  return result;\n}\n"
-}

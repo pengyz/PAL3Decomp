@@ -1,8 +1,0 @@
-{
-  "name": "sub_1005419A",
-  "mangled_name": "sub_1005419A",
-  "address": "0x1005419A",
-  "size_bytes": 111,
-  "signature": "int __stdcall(_DWORD *a1, const char *a2, const char *a3)",
-  "decompiled_c": "int __stdcall sub_1005419A(_DWORD *a1, const char *a2, const char *a3)\n{\n  int result; // eax\n  int i; // edi\n  bool v5; // zf\n  const char *v6; // esi\n\n  result = sub_100531C0(a1, a2);\n  if ( result )\n  {\n    for ( i = *(_DWORD *)(result + 44); ; i = *(_DWORD *)(i + 44) )\n    {\n      if ( !i )\n        return 0;\n      if ( a3 )\n      {\n        v6 = *(const char **)(i + 32);\n        if ( !v6 )\n          continue;\n        v5 = strcmp(a3, v6) == 0;\n      }\n      else\n      {\n        v5 = *(_DWORD *)(i + 32) == 0;\n      }\n      if ( v5 )\n        return ~i;\n    }\n  }\n  return result;\n}\n"
-}

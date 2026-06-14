@@ -1,8 +1,0 @@
-{
-  "name": "unknown_libname_26",
-  "mangled_name": "unknown_libname_26",
-  "address": "0x100F0A74",
-  "size_bytes": 181,
-  "signature": "int __usercall __spoils<ecx,st0>@<eax>(double a1@<st1>, double a2@<st0>)",
-  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\nint __usercall __spoils<ecx,st0> unknown_libname_26@<eax>(double a1@<st1>, double a2@<st0>)\n{\n  int result; // eax\n  char v3; // dl\n  _BYTE v4[20]; // [esp+0h] [ebp-34h]\n  int v5; // [esp+14h] [ebp-20h]\n  __int128 v6; // [esp+18h] [ebp-1Ch]\n\n  *(double *)&v6 = a1;\n  *(double *)v4 = a2;\n  if ( (*(_DWORD *)&v4[6] & 0x7FFF0000) != 0 )\n    return unknown_libname_25(0, *(__int128 *)v4, *(int *)&v4[16], v5, v6);\n  result = *(_DWORD *)&v4[4] | *(_DWORD *)v4;\n  if ( a2 != 0.0 )\n  {\n    *(double *)&v4[12] = a2;\n    v3 = 2;\n    if ( (WORD4(v6) & 0x7FFFu) <= 0x7FBE )\n    {\n      v3 = 3;\n      *(double *)&v6 = a1 * dbl_1012B2B4;\n    }\n    *(double *)v4 = a2 * dbl_1012B2B4;\n    return unknown_libname_25(v3, *(__int128 *)v4, HIDWORD(*(unsigned __int64 *)&a2), v5, v6);\n  }\n  return result;\n}\n"
-}

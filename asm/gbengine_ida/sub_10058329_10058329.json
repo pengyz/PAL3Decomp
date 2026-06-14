@@ -1,8 +1,0 @@
-{
-  "name": "sub_10058329",
-  "mangled_name": "sub_10058329",
-  "address": "0x10058329",
-  "size_bytes": 87,
-  "signature": "void *__thiscall(_DWORD *this)",
-  "decompiled_c": "void *__thiscall sub_10058329(_DWORD *this)\n{\n  _DWORD *v2; // ecx\n  _DWORD *v3; // ecx\n  _DWORD *v4; // edi\n\n  v2 = (_DWORD *)*(this + 12);\n  if ( v2 )\n  {\n    sub_100559CE(v2, 1);\n    *(this + 12) = 0;\n  }\n  v3 = (_DWORD *)*(this + 11);\n  if ( v3 )\n  {\n    sub_1005796D(v3, 1);\n    *(this + 11) = 0;\n  }\n  while ( *(this + 13) )\n  {\n    v4 = (_DWORD *)*(this + 13);\n    *(this + 13) = v4[13];\n    v4[13] = 0;\n    sub_10058329(v4);\n    operator delete(v4);\n  }\n  return sub_10054F46(this);\n}\n"
-}

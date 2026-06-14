@@ -1,8 +1,0 @@
-{
-  "name": "gbChain2D::DelNodeFromChain(gbChain2DNode *)",
-  "mangled_name": "?DelNodeFromChain@gbChain2D@@QAEXPAVgbChain2DNode@@@Z",
-  "address": "0x1002ECB0",
-  "size_bytes": 119,
-  "signature": "void __thiscall(gbChain2D *this, struct gbChain2DNode *a2)",
-  "decompiled_c": "void __thiscall gbChain2D::DelNodeFromChain(gbChain2D *this, struct gbChain2DNode *a2)\n{\n  struct gbChain2DNode *v2; // edx\n  int v3; // eax\n  int v4; // eax\n  int v5; // eax\n  int v6; // eax\n\n  v2 = (struct gbChain2DNode *)*((_DWORD *)this + 1);\n  if ( a2 == *(struct gbChain2DNode **)this )\n  {\n    if ( a2 == v2 )\n    {\n      v3 = *((_DWORD *)this + 3);\n      *((_DWORD *)this + 1) = 0;\n      v4 = v3 - 1;\n      *(_DWORD *)this = 0;\n    }\n    else\n    {\n      v5 = *((_DWORD *)a2 + 2);\n      *(_DWORD *)this = v5;\n      *(_DWORD *)(v5 + 4) = 0;\n      v4 = *((_DWORD *)this + 3) - 1;\n    }\n    *((_DWORD *)this + 3) = v4;\n  }\n  else\n  {\n    if ( a2 == v2 )\n    {\n      v6 = *((_DWORD *)a2 + 1);\n      *((_DWORD *)this + 1) = v6;\n      *(_DWORD *)(v6 + 8) = 0;\n    }\n    else\n    {\n      *(_DWORD *)(*((_DWORD *)a2 + 1) + 8) = *((_DWORD *)a2 + 2);\n      *(_DWORD *)(*((_DWORD *)a2 + 2) + 4) = *((_DWORD *)a2 + 1);\n    }\n    --*((_DWORD *)this + 3);\n  }\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_100601A3",
-  "mangled_name": "sub_100601A3",
-  "address": "0x100601A3",
-  "size_bytes": 140,
-  "signature": "int __userpurge@<eax>(_DWORD *a1@<ecx>, double a2@<st1>, double a3@<st0>, unsigned int a4, _DWORD *a5)",
-  "decompiled_c": "int __userpurge sub_100601A3@<eax>(_DWORD *a1@<ecx>, double a2@<st1>, double a3@<st0>, unsigned int a4, _DWORD *a5)\n{\n  int v5; // esi\n\n  v5 = a4;\n  if ( a4 )\n  {\n    if ( sub_1005FF3C(a1, a2, a3, a5, &a4) >= 0 )\n    {\n      if ( a4 && a4 <= 4 )\n      {\n        if ( sub_1007E198(36, (LPVOID)0x10) )\n          return sub_1007E8B4(1, *(_DWORD *)(v5 + 20), 1, a4, 0);\n      }\n      else\n      {\n        sub_10058D70((int)a1, (int)(a1 + 8), 3052, \"vector dimension must be between 1 and %u\", 4);\n      }\n    }\n    else\n    {\n      sub_10058D70((int)a1, (int)(a1 + 8), 3060, \"vector dimension must be a literal scalar expression\");\n    }\n  }\n  return 0;\n}\n"
-}

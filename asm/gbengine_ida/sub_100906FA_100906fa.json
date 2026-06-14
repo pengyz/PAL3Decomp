@@ -1,8 +1,0 @@
-{
-  "name": "sub_100906FA",
-  "mangled_name": "sub_100906FA",
-  "address": "0x100906FA",
-  "size_bytes": 126,
-  "signature": "int __thiscall(int this, int a2)",
-  "decompiled_c": "int __thiscall sub_100906FA(int this, int a2)\n{\n  unsigned int v3; // ebp\n  unsigned int v4; // eax\n  void *v5; // eax\n  void *v7; // [esp+Ch] [ebp+4h]\n\n  v3 = *(_DWORD *)(this + 96);\n  v4 = a2 + *(_DWORD *)(this + 92);\n  if ( v4 > v3 )\n  {\n    if ( !v3 )\n      v3 = 256;\n    if ( v4 > v3 )\n    {\n      do\n        v3 *= 2;\n      while ( a2 + *(_DWORD *)(this + 92) > v3 );\n    }\n    v5 = (void *)operator new(4 * v3);\n    v7 = v5;\n    if ( !v5 )\n      return -2147024882;\n    qmemcpy(v5, *(const void **)(this + 88), 4 * *(_DWORD *)(this + 92));\n    operator delete(*(void **)(this + 88));\n    *(_DWORD *)(this + 88) = v7;\n    *(_DWORD *)(this + 96) = v3;\n  }\n  return 0;\n}\n"
-}

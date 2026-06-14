@@ -1,8 +1,0 @@
-{
-  "name": "sub_1004DC09",
-  "mangled_name": "sub_1004DC09",
-  "address": "0x1004DC09",
-  "size_bytes": 60,
-  "signature": "int __thiscall(unsigned int **this, unsigned int *a2, _DWORD *a3)",
-  "decompiled_c": "int __thiscall sub_1004DC09(unsigned int **this, unsigned int *a2, _DWORD *a3)\n{\n  unsigned int *i; // eax\n  unsigned int v4; // ecx\n  unsigned int v5; // eax\n\n  for ( i = *(this + 154); i[27]; i = (unsigned int *)i[27] )\n    ;\n  if ( a2 )\n    *a2 = *i;\n  if ( a3 )\n  {\n    v4 = i[1];\n    v5 = *i;\n    if ( v4 < v5 )\n      *a3 = 0;\n    else\n      *a3 = v4 - v5;\n  }\n  return 0;\n}\n"
-}

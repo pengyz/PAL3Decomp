@@ -1,8 +1,0 @@
-{
-  "name": "gbVertexPool::OnLostDevice(void)",
-  "mangled_name": "?OnLostDevice@gbVertexPool@@UAEHXZ",
-  "address": "0x10018500",
-  "size_bytes": 30,
-  "signature": "int __thiscall(gbVertexPool *this)",
-  "decompiled_c": "int __thiscall gbVertexPool::OnLostDevice(gbVertexPool *this)\n{\n  int v2; // eax\n\n  v2 = *((_DWORD *)this + 15);\n  if ( v2 )\n  {\n    (*(void (__stdcall **)(int))(*(_DWORD *)v2 + 8))(v2);\n    *((_DWORD *)this + 15) = 0;\n  }\n  return 1;\n}\n"
-}

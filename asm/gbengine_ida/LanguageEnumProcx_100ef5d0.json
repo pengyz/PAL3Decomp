@@ -1,8 +1,0 @@
-{
-  "name": "LanguageEnumProc(x)",
-  "mangled_name": "_LanguageEnumProc@4",
-  "address": "0x100EF5D0",
-  "size_bytes": 189,
-  "signature": "BOOL __stdcall(LPSTR a1)",
-  "decompiled_c": "BOOL __stdcall LanguageEnumProc(LPSTR a1)\n{\n  int v1; // esi\n  int v2; // eax\n  int v4; // eax\n  char String2[120]; // [esp+4h] [ebp-78h] BYREF\n\n  v1 = LcidFromHexString(a1);\n  v2 = -(dword_10166F00 != 0);\n  LOWORD(v2) = v2 & 0xF002;\n  if ( !dword_10166F14(v1, v2 + 4097, String2, 120) )\n  {\n    dword_10166F0C = 0;\n    return 1;\n  }\n  if ( _strcmpi(dword_10166F04, String2) )\n  {\n    if ( dword_10166F00 || !MaxCount || _strnicmp(dword_10166F04, String2, MaxCount) )\n      return ((unsigned int)~dword_10166F0C >> 2) & 1;\n    v4 = TestDefaultLanguage(v1, 0);\n  }\n  else\n  {\n    if ( dword_10166F00 )\n    {\nLABEL_11:\n      dword_10166F0C |= 4u;\n      dword_10166F10 = v1;\n      Locale = v1;\n      return ((unsigned int)~dword_10166F0C >> 2) & 1;\n    }\n    v4 = TestDefaultLanguage(v1, 1);\n  }\n  if ( v4 )\n    goto LABEL_11;\n  return ((unsigned int)~dword_10166F0C >> 2) & 1;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbTexture_D3D::UpdateTexture(int,int,int,int,gbPixelFmtType,void *)",
-  "mangled_name": "?UpdateTexture@gbTexture_D3D@@UAEXHHHHW4gbPixelFmtType@@PAX@Z",
-  "address": "0x1001BEA0",
-  "size_bytes": 219,
-  "signature": "int __thiscall(_DWORD *this, gbPixelFormat *a2, int a3, int a4, int a5, int a6, unsigned __int8 *a7)",
-  "decompiled_c": "int __thiscall gbTexture_D3D::UpdateTexture(\n        _DWORD *this,\n        gbPixelFormat *a2,\n        int a3,\n        int a4,\n        int a5,\n        int a6,\n        unsigned __int8 *a7)\n{\n  int v7; // ebx\n  int v8; // esi\n  int result; // eax\n  int v10; // esi\n  int v11; // edi\n  _DWORD v14[2]; // [esp+18h] [ebp-44h] BYREF\n  _DWORD v15[4]; // [esp+20h] [ebp-3Ch] BYREF\n  _BYTE v16[4]; // [esp+30h] [ebp-2Ch] BYREF\n  int v17; // [esp+34h] [ebp-28h]\n  int v18; // [esp+64h] [ebp+8h]\n\n  v15[0] = a2;\n  v7 = *(this + 21);\n  v15[2] = (char *)a2 + a4;\n  v15[1] = a3;\n  v15[3] = a5 + a3;\n  v8 = dword_10140DB8;\n  v18 = v7;\n  result = (*(int (__stdcall **)(int, _DWORD, _DWORD *, _DWORD *, _DWORD))(*(_DWORD *)v7 + 76))(v7, 0, v14, v15, 0);\n  if ( result >= 0 )\n  {\n    gbPixelFormat::Init(a6);\n    v10 = 0;\n    v11 = a4 * (v17 / 8);\n    if ( a5 > 0 )\n    {\n      do\n      {\n        gbPixelFormat::Convert(\n          (gbPixelFormat *)(this + 9),\n          a7,\n          (struct gbPixelFormat *)v16,\n          (unsigned __int8 *)(v14[1] + v10 * v14[0]),\n          a4);\n        ++v10;\n        a7 += v11;\n      }\n      while ( v10 < a5 );\n      v7 = v18;\n    }\n    return (*(int (__stdcall **)(int, _DWORD))(*(_DWORD *)v7 + 80))(v7, 0);\n  }\n  else\n  {\n    *(_DWORD *)(v8 + 2248) = result;\n  }\n  return result;\n}\n"
-}

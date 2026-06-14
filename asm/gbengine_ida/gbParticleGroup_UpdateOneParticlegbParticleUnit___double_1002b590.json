@@ -1,8 +1,0 @@
-{
-  "name": "gbParticleGroup::UpdateOneParticle(gbParticleUnit *,double)",
-  "mangled_name": "?UpdateOneParticle@gbParticleGroup@@AAEHPAUgbParticleUnit@@N@Z",
-  "address": "0x1002B590",
-  "size_bytes": 264,
-  "signature": "int __thiscall(gbParticleGroup *this, struct gbParticleUnit *a2, double a3)",
-  "decompiled_c": "int __thiscall gbParticleGroup::UpdateOneParticle(gbParticleGroup *this, struct gbParticleUnit *a2, double a3)\n{\n  double v5; // st7\n  __int64 v7; // rax\n  double v8; // st6\n  float v9; // [esp+0h] [ebp-18h]\n  float v10; // [esp+4h] [ebp-14h]\n  float v11; // [esp+8h] [ebp-10h]\n  float v12; // [esp+1Ch] [ebp+4h]\n  float v13; // [esp+1Ch] [ebp+4h]\n  float v14; // [esp+20h] [ebp+8h]\n\n  v5 = a3 + *((double *)a2 + 1);\n  *((double *)a2 + 1) = v5;\n  if ( v5 >= *((float *)a2 + 4) )\n    return 0;\n  v12 = v5 / *((float *)a2 + 4);\n  v7 = (__int64)((double)*(int *)(*((_DWORD *)this + 30) + 352) * v12);\n  *((_DWORD *)a2 + 5) = v7;\n  if ( (int)v7 >= *(_DWORD *)(*((_DWORD *)this + 30) + 352) )\n    *((_DWORD *)a2 + 5) = 0;\n  v14 = a3;\n  gbPartGroupParam::ComputeAirResist(*((gbPartGroupParam **)this + 30), a2, v14);\n  gbPartGroupParam::ComputeParticleParam(*((gbPartGroupParam **)this + 30), a2, v12, v14);\n  v9 = v14 * *((float *)a2 + 7);\n  v10 = v14 * *((float *)a2 + 8);\n  v11 = v14 * *((float *)a2 + 9);\n  v8 = *(float *)(*((_DWORD *)this + 30) + 36) * v14;\n  v13 = v8;\n  *((float *)a2 + 8) = *((float *)a2 + 8) - v13;\n  *((float *)a2 + 13) = v9 + *((float *)a2 + 13);\n  *((float *)a2 + 14) = v10 - v14 * v8 * 0.5 + *((float *)a2 + 14);\n  *((float *)a2 + 15) = v11 + *((float *)a2 + 15);\n  return 1;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_10033437",
-  "mangled_name": "sub_10033437",
-  "address": "0x10033437",
-  "size_bytes": 42,
-  "signature": "int __stdcall(int a1, int a2, int a3, int (__thiscall *a4)(int))",
-  "decompiled_c": "int __stdcall sub_10033437(int a1, int a2, int a3, int (__thiscall *a4)(int))\n{\n  int v4; // edi\n  int result; // eax\n  int v6; // esi\n\n  v4 = a3 * a2 + a1;\n  result = a3 - 1;\n  if ( a3 - 1 >= 0 )\n  {\n    v6 = a3;\n    do\n    {\n      v4 -= a2;\n      result = a4(v4);\n      --v6;\n    }\n    while ( v6 );\n  }\n  return result;\n}\n"
-}

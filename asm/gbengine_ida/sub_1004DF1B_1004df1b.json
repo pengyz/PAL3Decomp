@@ -1,8 +1,0 @@
-{
-  "name": "sub_1004DF1B",
-  "mangled_name": "sub_1004DF1B",
-  "address": "0x1004DF1B",
-  "size_bytes": 226,
-  "signature": "int __thiscall(unsigned int **this)",
-  "decompiled_c": "int __thiscall sub_1004DF1B(unsigned int **this)\n{\n  unsigned int *v2; // ecx\n  char *v3; // esi\n  _BYTE *v4; // edx\n  _BYTE *v5; // eax\n  unsigned int v6; // ebx\n  char v7; // cl\n  unsigned int v8; // ebx\n  char ArgList[256]; // [esp+8h] [ebp-104h] BYREF\n  unsigned int v11; // [esp+108h] [ebp-4h]\n\n  v2 = *(this + 155);\n  v3 = (char *)*v2;\n  sub_1004C6DF(v2);\n  if ( *(this + 20) )\n  {\n    while ( (unsigned int)v3 < **(this + 155) && (*v3 == 32 || *v3 == 9) )\n      ++v3;\n    v11 = 0;\n    v4 = v3 + 2;\n    v5 = v3 + 1;\n    while ( 1 )\n    {\n      v6 = **(this + 155);\n      if ( (unsigned int)v3 >= v6 )\n      {\nLABEL_21:\n        ArgList[v11] = 0;\n        sub_1004CB83(this + 6, (int)(this + 158), 0, \"error: %s\", ArgList);\n        *(this + 18) = (unsigned int *)1;\n        *(this + 17) = (unsigned int *)1;\n        return 0;\n      }\n      v7 = *v3;\n      if ( *v3 != 92 )\n        break;\n      if ( (unsigned int)v5 < v6 && *v5 == 10 )\n      {\n        v3 += 2;\n        v5 += 2;\n        v4 += 2;\n      }\n      else\n      {\n        if ( (unsigned int)v4 >= v6 || *v5 != 13 || *v4 != 10 )\n          break;\n        v3 += 3;\n        v5 += 3;\n        v4 += 3;\n      }\nLABEL_20:\n      if ( v11 >= 0xFF )\n        goto LABEL_21;\n    }\n    if ( v7 != 13 )\n    {\n      v8 = v11++;\n      ArgList[v8] = v7;\n    }\n    ++v3;\n    ++v5;\n    ++v4;\n    goto LABEL_20;\n  }\n  return 0;\n}\n"
-}

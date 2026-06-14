@@ -1,8 +1,0 @@
-{
-  "name": "sub_10004960",
-  "mangled_name": "sub_10004960",
-  "address": "0x10004960",
-  "size_bytes": 84,
-  "signature": "gbBaseMesh *__thiscall(gbBaseMesh *this, char a2)",
-  "decompiled_c": "gbBaseMesh *__thiscall sub_10004960(gbBaseMesh *this, char a2)\n{\n  if ( (a2 & 2) != 0 )\n  {\n    `eh vector destructor iterator'(\n      (char *)this,\n      0x78u,\n      *((_DWORD *)this - 1),\n      (void (__thiscall *)(void *))gbBaseMesh::~gbBaseMesh);\n    if ( (a2 & 1) != 0 )\n      operator delete((char *)this - 4);\n    return (gbBaseMesh *)((char *)this - 4);\n  }\n  else\n  {\n    gbBaseMesh::~gbBaseMesh((void **)this);\n    if ( (a2 & 1) != 0 )\n      operator delete(this);\n    return this;\n  }\n}\n"
-}

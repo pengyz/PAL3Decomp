@@ -1,8 +1,0 @@
-{
-  "name": "gbNBTreeNode::AddChildOnHead(gbNBTreeNode *)",
-  "mangled_name": "?AddChildOnHead@gbNBTreeNode@@QAEXPAV1@@Z",
-  "address": "0x10004520",
-  "size_bytes": 25,
-  "signature": "void __thiscall(gbNBTreeNode *this, struct gbNBTreeNode *a2)",
-  "decompiled_c": "void __thiscall gbNBTreeNode::AddChildOnHead(gbNBTreeNode *this, struct gbNBTreeNode *a2)\n{\n  gbChain1D::AddNodeOnHead((gbNBTreeNode *)((char *)this + 12), a2);\n  *((_DWORD *)a2 + 2) = this;\n}\n"
-}

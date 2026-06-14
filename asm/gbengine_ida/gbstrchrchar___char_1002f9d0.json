@@ -1,8 +1,0 @@
-{
-  "name": "gbstrchr(char *,char)",
-  "mangled_name": "?gbstrchr@@YAPADPADD@Z",
-  "address": "0x1002F9D0",
-  "size_bytes": 37,
-  "signature": "char *__cdecl(char *a1, char a2)",
-  "decompiled_c": "char *__cdecl gbstrchr(char *a1, char a2)\n{\n  char *result; // eax\n  char i; // cl\n\n  result = a1;\n  for ( i = *a1; i; ++result )\n  {\n    if ( (unsigned __int8)i <= 0x7Fu )\n    {\n      if ( i == a2 )\n        return result;\n    }\n    else\n    {\n      ++result;\n    }\n    i = result[1];\n  }\n  return 0;\n}\n"
-}

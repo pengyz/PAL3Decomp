@@ -1,8 +1,0 @@
-{
-  "name": "gbMatrixStack::Translate(float,float,float)",
-  "mangled_name": "?Translate@gbMatrixStack@@QAEXMMM@Z",
-  "address": "0x100274B0",
-  "size_bytes": 112,
-  "signature": "void __thiscall(gbMatrixStack *this, float a2, float a3, float a4)",
-  "decompiled_c": "void __thiscall gbMatrixStack::Translate(gbMatrixStack *this, float a2, float a3, float a4)\n{\n  float *v4; // eax\n\n  v4 = (float *)(*(_DWORD *)this + (*((_DWORD *)this + 2) << 6));\n  v4[12] = a3 * v4[4] + a4 * v4[8] + a2 * *v4 + v4[12];\n  v4[13] = a2 * v4[1] + a3 * v4[5] + a4 * v4[9] + v4[13];\n  v4[14] = a2 * v4[2] + a3 * v4[6] + a4 * v4[10] + v4[14];\n  *((_DWORD *)this + 3) = 0;\n}\n"
-}

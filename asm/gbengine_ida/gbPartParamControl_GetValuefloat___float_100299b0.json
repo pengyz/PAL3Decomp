@@ -1,8 +1,0 @@
-{
-  "name": "gbPartParamControl::GetValue(float *,float)",
-  "mangled_name": "?GetValue@gbPartParamControl@@QAEXPAMM@Z",
-  "address": "0x100299B0",
-  "size_bytes": 252,
-  "signature": "void __thiscall(gbPartParamControl *this, float *a2, float a3)",
-  "decompiled_c": "void __thiscall gbPartParamControl::GetValue(gbPartParamControl *this, float *a2, float a3)\n{\n  int v3; // edx\n  float *i; // esi\n  double v5; // st7\n\n  if ( a3 > (double)*((float *)this + 236) )\n  {\n    v3 = 1;\n    for ( i = (float *)((char *)this + 956); a3 >= (double)*i; i += 3 )\n    {\n      if ( ++v3 > 100 )\n      {\n        *a2 = *((float *)this + 537);\n        a2[1] = *((float *)this + 840);\n        a2[2] = *((float *)this + 1143);\n        return;\n      }\n    }\n    v5 = (a3 - *((float *)this + 3 * v3 + 233)) / (*((float *)this + 3 * v3 + 236) - *((float *)this + 3 * v3 + 233));\n    *a2 = (1.0 - v5) * *((float *)this + 3 * v3 + 234) + v5 * *((float *)this + 3 * v3 + 237);\n    a2[1] = (1.0 - v5) * *((float *)this + 3 * v3 + 537) + v5 * *((float *)this + 3 * v3 + 540);\n    a2[2] = (1.0 - v5) * *((float *)this + 3 * v3 + 840) + v5 * *((float *)this + 3 * v3 + 843);\n  }\n  else\n  {\n    *a2 = *((float *)this + 237);\n    a2[1] = *((float *)this + 540);\n    a2[2] = *((float *)this + 843);\n  }\n}\n"
-}

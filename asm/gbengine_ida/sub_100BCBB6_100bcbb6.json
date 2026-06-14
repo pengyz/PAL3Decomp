@@ -1,8 +1,0 @@
-{
-  "name": "sub_100BCBB6",
-  "mangled_name": "sub_100BCBB6",
-  "address": "0x100BCBB6",
-  "size_bytes": 68,
-  "signature": "int __stdcall(int a1, _DWORD *a2, int a3)",
-  "decompiled_c": "int __stdcall sub_100BCBB6(int a1, _DWORD *a2, int a3)\n{\n  unsigned int v3; // edi\n  bool v4; // zf\n\n  if ( a2[9] != a3 )\n  {\n    v3 = 0;\n    v4 = a2[5] == 0;\n    a2[9] = a3;\n    if ( !v4 )\n    {\n      do\n        sub_100BCBB6(a1, *(_DWORD *)(a1 + 4 * *(_DWORD *)(a2[6] + 4 * v3++)), a3);\n      while ( v3 < a2[5] );\n    }\n  }\n  return 0;\n}\n"
-}

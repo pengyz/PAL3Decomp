@@ -1,8 +1,0 @@
-{
-  "name": "gbRandFloat(float,float)",
-  "mangled_name": "?gbRandFloat@@YAMMM@Z",
-  "address": "0x10027620",
-  "size_bytes": 72,
-  "signature": "double __cdecl(float a1, float a2)",
-  "decompiled_c": "double __cdecl gbRandFloat(float a1, float a2)\n{\n  dword_1014ADC4 = 214013 * dword_1014ADC4 + 2531011;\n  return (double)((dword_1014ADC4 >> 16) & 0x7FFF) * (a2 - a1) * 0.000030518509 + a1;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbGfxManager_D3D::Present(void)",
-  "mangled_name": "?Present@gbGfxManager_D3D@@UAEXXZ",
-  "address": "0x10018F00",
-  "size_bytes": 57,
-  "signature": "int __thiscall(gbGfxManager_D3D *this)",
-  "decompiled_c": "int __thiscall gbGfxManager_D3D::Present(gbGfxManager_D3D *this)\n{\n  int result; // eax\n\n  (*(void (__stdcall **)(_DWORD))(**((_DWORD **)this + 454) + 168))(*((_DWORD *)this + 454));\n  result = (*(int (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD))(**((_DWORD **)this + 454) + 68))(\n             *((_DWORD *)this + 454),\n             0,\n             0,\n             0,\n             0);\n  if ( result == -2005530520 )\n    *((_DWORD *)this + 563) = 1;\n  return result;\n}\n"
-}

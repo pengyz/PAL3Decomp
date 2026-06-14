@@ -1,8 +1,0 @@
-{
-  "name": "CompareFunction",
-  "mangled_name": "CompareFunction",
-  "address": "0x10014F10",
-  "size_bytes": 47,
-  "signature": "int __cdecl(float *a1, float *a2)",
-  "decompiled_c": "int __cdecl CompareFunction(float *a1, float *a2)\n{\n  if ( a1[1] <= (double)a2[1] )\n    return a1[1] < (double)a2[1];\n  else\n    return -1;\n}\n"
-}

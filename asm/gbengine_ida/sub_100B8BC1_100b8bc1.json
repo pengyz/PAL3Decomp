@@ -1,8 +1,0 @@
-{
-  "name": "sub_100B8BC1",
-  "mangled_name": "sub_100B8BC1",
-  "address": "0x100B8BC1",
-  "size_bytes": 52,
-  "signature": "int __stdcall(int a1, _DWORD *a2, _DWORD *a3)",
-  "decompiled_c": "int __stdcall sub_100B8BC1(int a1, _DWORD *a2, _DWORD *a3)\n{\n  int v3; // eax\n\n  if ( (unsigned __int16)*(_DWORD *)(a1 + 104) == 0xFFFF )\n  {\n    *a3 = 0;\n    v3 = *(unsigned __int16 *)(a1 + 106);\n  }\n  else\n  {\n    *a3 = 1;\n    v3 = *(_DWORD *)(a1 + 12);\n  }\n  *a2 = v3;\n  return 0;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_1009DE0E",
-  "mangled_name": "sub_1009DE0E",
-  "address": "0x1009DE0E",
-  "size_bytes": 42,
-  "signature": "int __stdcall(unsigned int a1, unsigned int a2, int a3)",
-  "decompiled_c": "int __stdcall sub_1009DE0E(unsigned int a1, unsigned int a2, int a3)\n{\n  int result; // eax\n\n  result = sub_1009DCA0(a3, a1, a2);\n  if ( !result )\n  {\n    if ( a2 <= a1 )\n      return a2 < a1;\n    else\n      return -1;\n  }\n  return result;\n}\n"
-}

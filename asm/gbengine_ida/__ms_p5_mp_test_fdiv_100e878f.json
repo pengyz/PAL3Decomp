@@ -1,8 +1,0 @@
-{
-  "name": "__ms_p5_mp_test_fdiv",
-  "mangled_name": "__ms_p5_mp_test_fdiv",
-  "address": "0x100E878F",
-  "size_bytes": 41,
-  "signature": "int()",
-  "decompiled_c": "int _ms_p5_mp_test_fdiv()\n{\n  HMODULE ModuleHandleA; // eax\n  BOOL (__stdcall *IsProcessorFeaturePresent)(DWORD); // eax\n\n  ModuleHandleA = GetModuleHandleA(\"KERNEL32\");\n  if ( ModuleHandleA\n    && (IsProcessorFeaturePresent = (BOOL (__stdcall *)(DWORD))GetProcAddress(\n                                                                 ModuleHandleA,\n                                                                 \"IsProcessorFeaturePresent\")) != 0 )\n  {\n    return IsProcessorFeaturePresent(0);\n  }\n  else\n  {\n    return _ms_p5_test_fdiv();\n  }\n}\n"
-}

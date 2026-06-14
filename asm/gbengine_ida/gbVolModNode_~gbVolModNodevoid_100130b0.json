@@ -1,8 +1,0 @@
-{
-  "name": "gbVolModNode::~gbVolModNode(void)",
-  "mangled_name": "??1gbVolModNode@@UAE@XZ",
-  "address": "0x100130B0",
-  "size_bytes": 137,
-  "signature": "void __thiscall(gbVolModNode *this)",
-  "decompiled_c": "void __thiscall gbVolModNode::~gbVolModNode(gbVolModNode *this)\n{\n  gbRefObject *v2; // ecx\n\n  *(_DWORD *)this = &gbVolModNode::`vftable';\n  v2 = (gbRefObject *)*((_DWORD *)this + 54);\n  if ( v2 )\n    gbRefObject::Release(v2);\n  *(_DWORD *)this = &gbVisNode::`vftable';\n  operator delete(*((void **)this + 7));\n  *(_DWORD *)this = &gbNBTreeNode::`vftable';\n  gbChain1D::~gbChain1D((gbVolModNode *)((char *)this + 12));\n  gbChain1DNode::~gbChain1DNode(this);\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_10079954",
-  "mangled_name": "sub_10079954",
-  "address": "0x10079954",
-  "size_bytes": 79,
-  "signature": "int __stdcall(int a1, unsigned __int8 a2, int a3)",
-  "decompiled_c": "int __stdcall sub_10079954(int a1, unsigned __int8 a2, int a3)\n{\n  int result; // eax\n  char v4; // cl\n\n  result = a1;\n  *(_BYTE *)(a1 + 97) |= 0x80u;\n  *(_WORD *)(a1 + 286) = a2;\n  if ( a3 == 1 )\n    *(_BYTE *)(a1 + 92) |= 0x80u;\n  else\n    *(_BYTE *)(a1 + 92) &= ~0x80u;\n  v4 = *(_BYTE *)(a1 + 278);\n  if ( v4 == 2 )\n    *(_BYTE *)(a1 + 283) = 4;\n  if ( !v4 && *(_BYTE *)(a1 + 279) >= 8u )\n    *(_BYTE *)(a1 + 283) = 2;\n  return result;\n}\n"
-}

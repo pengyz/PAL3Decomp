@@ -1,8 +1,0 @@
-{
-  "name": "gbVec3D::Inverse(void)",
-  "mangled_name": "?Inverse@gbVec3D@@QAEXXZ",
-  "address": "0x100020D0",
-  "size_bytes": 23,
-  "signature": "void __thiscall(gbVec3D *this)",
-  "decompiled_c": "void __thiscall gbVec3D::Inverse(gbVec3D *this)\n{\n  *(float *)this = -*(float *)this;\n  *((float *)this + 1) = -*((float *)this + 1);\n  *((float *)this + 2) = -*((float *)this + 2);\n}\n"
-}

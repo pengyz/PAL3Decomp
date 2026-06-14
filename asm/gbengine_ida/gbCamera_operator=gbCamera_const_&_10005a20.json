@@ -1,8 +1,0 @@
-{
-  "name": "gbCamera::operator=(gbCamera const &)",
-  "mangled_name": "??4gbCamera@@QAEAAV0@ABV0@@Z",
-  "address": "0x10005A20",
-  "size_bytes": 243,
-  "signature": "_DWORD *__thiscall(_DWORD *this, char *a2)",
-  "decompiled_c": "_DWORD *__thiscall gbCamera::operator=(_DWORD *this, char *a2)\n{\n  _DWORD *v3; // eax\n  int v4; // ecx\n  int v5; // esi\n  _DWORD *v6; // eax\n  int v7; // ecx\n\n  *this = *(_DWORD *)a2;\n  *(this + 1) = *((_DWORD *)a2 + 1);\n  *(this + 2) = *((_DWORD *)a2 + 2);\n  *(this + 3) = *((_DWORD *)a2 + 3);\n  *(this + 4) = *((_DWORD *)a2 + 4);\n  *(this + 5) = *((_DWORD *)a2 + 5);\n  v3 = this + 12;\n  qmemcpy(this + 6, a2 + 24, 0x18u);\n  v4 = 24;\n  v5 = a2 - (char *)this;\n  do\n  {\n    *v3 = *(_DWORD *)((char *)v3 + v5);\n    ++v3;\n    --v4;\n  }\n  while ( v4 );\n  *(this + 36) = *((_DWORD *)a2 + 36);\n  gbMatrix4::operator=(a2 + 148);\n  gbMatrix4::operator=(a2 + 212);\n  v6 = this + 69;\n  v7 = 16;\n  do\n  {\n    *v6 = *(_DWORD *)((char *)v6 + v5);\n    ++v6;\n    --v7;\n  }\n  while ( v7 );\n  *(this + 85) = *((_DWORD *)a2 + 85);\n  *(this + 86) = *((_DWORD *)a2 + 86);\n  *(this + 87) = *((_DWORD *)a2 + 87);\n  *(this + 88) = *((_DWORD *)a2 + 88);\n  *(this + 89) = *((_DWORD *)a2 + 89);\n  *(this + 90) = *((_DWORD *)a2 + 90);\n  *(this + 91) = *((_DWORD *)a2 + 91);\n  *(this + 92) = *((_DWORD *)a2 + 92);\n  *(this + 93) = *((_DWORD *)a2 + 93);\n  return this;\n}\n"
-}

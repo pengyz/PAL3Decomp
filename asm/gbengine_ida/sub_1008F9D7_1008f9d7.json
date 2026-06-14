@@ -1,8 +1,0 @@
-{
-  "name": "sub_1008F9D7",
-  "mangled_name": "sub_1008F9D7",
-  "address": "0x1008F9D7",
-  "size_bytes": 50,
-  "signature": "int __thiscall(_DWORD *this, CHAR *lpString2)",
-  "decompiled_c": "int __thiscall sub_1008F9D7(_DWORD *this, CHAR *lpString2)\n{\n  int i; // esi\n\n  for ( i = *(this + sub_1008F99B(lpString2)); ; i = *(_DWORD *)(i + 32) )\n  {\n    if ( !i )\n      return 0;\n    if ( !lstrcmpiA(*(LPCSTR *)i, lpString2) )\n      break;\n  }\n  return i;\n}\n"
-}

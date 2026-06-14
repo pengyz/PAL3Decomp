@@ -1,8 +1,0 @@
-{
-  "name": "sub_100346E3",
-  "mangled_name": "sub_100346E3",
-  "address": "0x100346E3",
-  "size_bytes": 89,
-  "signature": "void __thiscall(int this)",
-  "decompiled_c": "void __thiscall sub_100346E3(int this)\n{\n  void *v2; // edi\n  void *v3; // esi\n\n  if ( *(_DWORD *)(this + 4) && *(_DWORD *)(this + 56) )\n    operator delete(*(void **)(this + 4));\n  if ( *(_DWORD *)(this + 8) && *(_DWORD *)(this + 60) )\n    operator delete(*(void **)(this + 8));\n  v2 = *(void **)(this + 76);\n  if ( v2 )\n  {\n    sub_100346E3(*(_DWORD *)(this + 76));\n    operator delete(v2);\n  }\n  v3 = *(void **)(this + 80);\n  if ( v3 )\n  {\n    sub_100346E3(v3);\n    operator delete(v3);\n  }\n}\n"
-}

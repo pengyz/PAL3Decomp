@@ -1,8 +1,0 @@
-{
-  "name": "sub_10049E7D",
-  "mangled_name": "sub_10049E7D",
-  "address": "0x10049E7D",
-  "size_bytes": 188,
-  "signature": "float *__stdcall(float *a1, float *a2, float *a3)",
-  "decompiled_c": "float *__stdcall sub_10049E7D(float *a1, float *a2, float *a3)\n{\n  double v3; // st5\n  double v4; // st6\n  double v5; // st7\n  bool v6; // zf\n  float *result; // eax\n  double v8; // st7\n  float v9; // [esp+8h] [ebp-4h]\n\n  v3 = *a2 * a3[1] + a2[1] * a3[5] + a2[2] * a3[9] + a3[13];\n  v4 = *a2 * a3[2] + a2[1] * a3[6] + a2[2] * a3[10] + a3[14];\n  v5 = *a2 * a3[3] + a2[1] * a3[7] + a2[2] * a3[11] + a3[15];\n  *a1 = *a2 * *a3 + a2[1] * a3[4] + a2[2] * a3[8] + a3[12];\n  a1[1] = v3;\n  a1[2] = v4;\n  v9 = v5;\n  v6 = !sub_10046BF4(v9, 1.0);\n  result = a1;\n  if ( v6 )\n  {\n    v8 = 1.0 / v9;\n    *a1 = v8 * *a1;\n    a1[1] = v8 * a1[1];\n    a1[2] = v8 * a1[2];\n  }\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_10001B40",
-  "mangled_name": "sub_10001B40",
-  "address": "0x10001B40",
-  "size_bytes": 44,
-  "signature": "int __stdcall(int a1)",
-  "decompiled_c": "int __stdcall sub_10001B40(int a1)\n{\n  int result; // eax\n  _DWORD *i; // ecx\n\n  result = 0;\n  for ( i = (_DWORD *)dword_1012B980; *i != a1; ++i )\n  {\n    if ( ++result >= 3 )\n      return result;\n  }\n  *(_DWORD *)(dword_1012B980 + 4 * result + 12) = 2;\n  return result;\n}\n"
-}

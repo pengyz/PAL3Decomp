@@ -1,8 +1,0 @@
-{
-  "name": "sub_1009A8F8",
-  "mangled_name": "sub_1009A8F8",
-  "address": "0x1009A8F8",
-  "size_bytes": 96,
-  "signature": "int __thiscall(void **this, const char *a2)",
-  "decompiled_c": "int __thiscall sub_1009A8F8(void **this, const char *a2)\n{\n  char *v2; // ebx\n  unsigned int v4; // kr00_4\n\n  v2 = 0;\n  if ( a2 )\n  {\n    v4 = strlen(a2);\n    v2 = (char *)operator new(v4 + 1);\n    if ( !v2 )\n      return -2147024882;\n    qmemcpy(v2, a2, v4 + 1);\n  }\n  operator delete(*(this + 50));\n  *(this + 50) = v2;\n  return 0;\n}\n"
-}

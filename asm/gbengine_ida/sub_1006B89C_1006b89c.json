@@ -1,8 +1,0 @@
-{
-  "name": "sub_1006B89C",
-  "mangled_name": "sub_1006B89C",
-  "address": "0x1006B89C",
-  "size_bytes": 51,
-  "signature": "void *__thiscall(_DWORD *this)",
-  "decompiled_c": "void *__thiscall sub_1006B89C(_DWORD *this)\n{\n  _DWORD *v2; // ecx\n  void *result; // eax\n  _DWORD *v4; // ecx\n\n  v2 = (_DWORD *)*(this + 4);\n  if ( v2 )\n  {\n    result = sub_1006A74A(v2, 3);\n    *(this + 4) = 0;\n  }\n  while ( *(this + 5) )\n  {\n    v4 = (_DWORD *)*(this + 5);\n    *(this + 5) = v4[5];\n    v4[5] = 0;\n    result = sub_10064AD3(v4, 1);\n  }\n  return result;\n}\n"
-}

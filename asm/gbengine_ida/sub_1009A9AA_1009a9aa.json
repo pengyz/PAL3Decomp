@@ -1,8 +1,0 @@
-{
-  "name": "sub_1009A9AA",
-  "mangled_name": "sub_1009A9AA",
-  "address": "0x1009A9AA",
-  "size_bytes": 93,
-  "signature": "int __thiscall(_DWORD *this)",
-  "decompiled_c": "int __thiscall sub_1009A9AA(_DWORD *this)\n{\n  unsigned int v2; // edi\n  int i; // ebx\n  int v4; // eax\n  _WORD *v5; // ecx\n  int v6; // ecx\n\n  v2 = 0;\n  for ( i = 0; v2 < *(this + 3); ++v2 )\n  {\n    v4 = *(this + 6);\n    v5 = *(_WORD **)(v4 + 4 * v2);\n    if ( (v5[1] & 0xFFF0) != 0 )\n      *(_DWORD *)(v4 + 4 * i++) = v5;\n    else\n      sub_1007F859(v5, 1);\n  }\n  v6 = *(this + 3);\n  if ( i == v6 )\n    return 1;\n  memset((void *)(*(this + 6) + 4 * i), 0, 4 * ((unsigned int)(4 * (v6 - i)) >> 2));\n  *(this + 3) = i;\n  return 0;\n}\n"
-}

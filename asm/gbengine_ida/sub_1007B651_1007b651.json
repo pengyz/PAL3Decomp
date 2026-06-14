@@ -1,8 +1,0 @@
-{
-  "name": "sub_1007B651",
-  "mangled_name": "sub_1007B651",
-  "address": "0x1007B651",
-  "size_bytes": 48,
-  "signature": "int __usercall@<eax>(float *a1@<eax>, float *a2@<ecx>)",
-  "decompiled_c": "int __usercall sub_1007B651@<eax>(float *a1@<eax>, float *a2@<ecx>)\n{\n  int v2; // edx\n  double v3; // st7\n\n  v2 = 16;\n  do\n  {\n    v3 = a1[3] * *a1;\n    a1 += 4;\n    *a2 = v3;\n    a2 += 4;\n    --v2;\n    *(a2 - 3) = *(a1 - 3) * *(a1 - 1);\n    *(a2 - 2) = *(a1 - 2) * *(a1 - 1);\n    *(a2 - 1) = *(a1 - 1);\n  }\n  while ( v2 );\n  return 0;\n}\n"
-}

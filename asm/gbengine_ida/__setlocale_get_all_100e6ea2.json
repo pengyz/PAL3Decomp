@@ -1,8 +1,0 @@
-{
-  "name": "__setlocale_get_all",
-  "mangled_name": "__setlocale_get_all",
-  "address": "0x100E6EA2",
-  "size_bytes": 185,
-  "signature": "char *()",
-  "decompiled_c": "char *_setlocale_get_all()\n{\n  char *v0; // eax\n  int v1; // ebp\n  int *v2; // esi\n  const char **v3; // ebx\n  const char *v5; // [esp-Ch] [ebp-1Ch]\n\n  v0 = Destination;\n  v1 = 1;\n  if ( !Destination )\n  {\n    v0 = (char *)malloc(0x351u);\n    Destination = v0;\n  }\n  *v0 = 0;\n  _strcats(Destination, 3);\n  v2 = &off_10129F70;\n  v3 = (const char **)&off_10129F70;\n  do\n  {\n    strcat(Destination, \";\");\n    v5 = (const char *)v2[3];\n    v2 += 3;\n    if ( strcmp(*v3, v5) )\n      v1 = 0;\n    v3 = (const char **)v2;\n    _strcats(Destination, 3);\n  }\n  while ( (int)v2 < (int)&off_10129FA0 );\n  if ( !v1 )\n    return Destination;\n  free(Destination);\n  Destination = 0;\n  return (char *)off_10129F7C;\n}\n"
-}

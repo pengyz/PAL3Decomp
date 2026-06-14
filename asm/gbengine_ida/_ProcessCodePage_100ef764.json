@@ -1,8 +1,0 @@
-{
-  "name": "_ProcessCodePage",
-  "mangled_name": "_ProcessCodePage",
-  "address": "0x100EF764",
-  "size_bytes": 102,
-  "signature": "int __cdecl(char *String)",
-  "decompiled_c": "int __cdecl ProcessCodePage(char *String)\n{\n  const char *v1; // esi\n  int result; // eax\n  _BYTE v3[8]; // [esp+4h] [ebp-8h] BYREF\n\n  v1 = String;\n  if ( String && *String && strcmp(String, \"ACP\") )\n  {\n    if ( strcmp(String, \"OCP\") )\n      return atol(v1);\n    result = dword_10166F14(dword_10166F10, 11, v3, 8);\n  }\n  else\n  {\n    result = dword_10166F14(dword_10166F10, 4100, v3, 8);\n  }\n  if ( !result )\n    return result;\n  v1 = v3;\n  return atol(v1);\n}\n"
-}

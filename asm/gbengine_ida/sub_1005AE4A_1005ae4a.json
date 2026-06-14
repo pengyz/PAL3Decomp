@@ -1,8 +1,0 @@
-{
-  "name": "sub_1005AE4A",
-  "mangled_name": "sub_1005AE4A",
-  "address": "0x1005AE4A",
-  "size_bytes": 175,
-  "signature": "int __thiscall(int *this, int a2, _DWORD *a3)",
-  "decompiled_c": "int __thiscall sub_1005AE4A(int *this, int a2, _DWORD *a3)\n{\n  int v3; // esi\n  int v5; // ebx\n\n  v3 = *(_DWORD *)(a2 + 16);\n  if ( (v3 & 0x200) != 0 )\n    sub_10059176(this, (int)a3, 1);\n  if ( a3 && a3[1] == 9 && a3[4] == 2 )\n  {\n    if ( (v3 & 0xC00) == 0 )\n      v3 |= *(_DWORD *)(*(this + 1) + 56);\n    if ( (v3 & 0xC00) == 0 )\n    {\n      v5 = *this;\n      if ( (v5 & 8) != 0 )\n      {\n        LOWORD(v3) = v3 | 0x400;\n      }\n      else if ( (v5 & 0x10) != 0 )\n      {\n        LOWORD(v3) = v3 | 0x800;\n      }\n    }\n    if ( (v3 & 0x400) != 0 )\n      a3[8] = a3[8] & 0xFFFFF3FF | 0x400;\n    if ( (v3 & 0x800) != 0 )\n      a3[8] = a3[8] & 0xFFFFF3FF | 0x800;\n    return 0;\n  }\n  if ( (v3 & 0xC00) == 0 )\n    return 0;\n  sub_10058D70((int)this, (int)(this + 8), 3077, \"non-matrix types cannot be declared 'row_major' or 'column_major'\");\n  return -2147467259;\n}\n"
-}

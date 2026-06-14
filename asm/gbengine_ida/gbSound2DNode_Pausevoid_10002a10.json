@@ -1,8 +1,0 @@
-{
-  "name": "gbSound2DNode::Pause(void)",
-  "mangled_name": "?Pause@gbSound2DNode@@QAEXXZ",
-  "address": "0x10002A10",
-  "size_bytes": 24,
-  "signature": "void __thiscall(gbSound2DNode *this)",
-  "decompiled_c": "void __thiscall gbSound2DNode::Pause(gbSound2DNode *this)\n{\n  if ( gbSound2DNode::pAudioMgr )\n  {\n    if ( *((_DWORD *)this + 1) )\n      AIL_stop_sample(*((_DWORD *)this + 1));\n  }\n}\n"
-}

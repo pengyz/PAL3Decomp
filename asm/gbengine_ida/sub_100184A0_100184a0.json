@@ -1,8 +1,0 @@
-{
-  "name": "sub_100184A0",
-  "mangled_name": "sub_100184A0",
-  "address": "0x100184A0",
-  "size_bytes": 94,
-  "signature": "void __thiscall(gbDynVertBuf *this)",
-  "decompiled_c": "void __thiscall sub_100184A0(gbDynVertBuf *this)\n{\n  int v2; // eax\n\n  *(_DWORD *)this = &off_100F569C;\n  v2 = *((_DWORD *)this + 15);\n  if ( v2 )\n  {\n    (*(void (__stdcall **)(int))(*(_DWORD *)v2 + 8))(v2);\n    *((_DWORD *)this + 15) = 0;\n  }\n  gbDynVertBuf::~gbDynVertBuf(this);\n}\n"
-}

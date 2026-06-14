@@ -1,8 +1,0 @@
-{
-  "name": "sub_10072371",
-  "mangled_name": "sub_10072371",
-  "address": "0x10072371",
-  "size_bytes": 159,
-  "signature": "int __stdcall(int *a1, unsigned int a2, int *a3, unsigned int a4)",
-  "decompiled_c": "int __stdcall sub_10072371(int *a1, unsigned int a2, int *a3, unsigned int a4)\n{\n  int v5; // eax\n  _DWORD *v6; // ecx\n  int v7; // edi\n  int v8; // edx\n  int v9; // edx\n  int v10; // [esp+Ch] [ebp+Ch]\n\n  if ( !a3 )\n    return -2005530516;\n  v5 = sub_100714A6(a1, a2, 1u, 0);\n  if ( !v5 || a4 != -1 && *(_DWORD *)(v5 + 28) > a4 )\n    return -2005530516;\n  v6 = *(_DWORD **)(a1[39] + 4 * *(unsigned __int16 *)(v5 + 4));\n  v7 = v6[14];\n  if ( v7 )\n    v8 = *(_DWORD *)(a1[14] + 8);\n  else\n    v8 = a1[8];\n  v10 = v8;\n  if ( v7 )\n    v9 = *(_DWORD *)(a1[14] + 8);\n  else\n    v9 = a1[8];\n  return sub_1006AF65(\n           a1,\n           (int *)(v9 + *(_DWORD *)(v5 + 8) + v6[9]),\n           (int *)(v10 + *(_DWORD *)(v5 + 12) + v6[10]),\n           a3,\n           v7,\n           *(_DWORD *)(v5 + 24) != -1);\n}\n"
-}

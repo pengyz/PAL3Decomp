@@ -1,8 +1,0 @@
-{
-  "name": "sub_100643D0",
-  "mangled_name": "sub_100643D0",
-  "address": "0x100643D0",
-  "size_bytes": 262,
-  "signature": "int __thiscall(int this, unsigned int a2)",
-  "decompiled_c": "int __thiscall sub_100643D0(int this, unsigned int a2)\n{\n  int *v3; // esi\n  int v4; // eax\n  int v5; // esi\n  unsigned int v6; // ecx\n  int v7; // eax\n  char *v8; // edx\n  bool v9; // cf\n  _BYTE v11[520]; // [esp+Ch] [ebp-414h] BYREF\n  _DWORD v12[130]; // [esp+214h] [ebp-20Ch] BYREF\n  int v13; // [esp+41Ch] [ebp-4h] BYREF\n\n  v13 = 0;\n  if ( !a2 )\n  {\n    v3 = (int *)(this + 220);\n    v4 = *(_DWORD *)(this + 220);\n    if ( v4 )\n      (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v4 + 4))(*(_DWORD *)(this + 220));\n    v13 = *v3;\nLABEL_11:\n    v5 = (*(int (__stdcall **)(_DWORD, int))(**(_DWORD **)(this + 12) + 348))(*(_DWORD *)(this + 12), v13);\n    goto LABEL_12;\n  }\n  v5 = sub_1007D411(a2, v11, &a2);\n  if ( v5 < 0 )\n    goto LABEL_12;\n  if ( a2 >= 0x41 )\n  {\n    v5 = -2147467259;\n    goto LABEL_12;\n  }\n  v6 = 0;\n  if ( a2 )\n  {\n    do\n    {\n      v7 = 2 * v6;\n      v8 = (char *)&v12[2 * v6] + 2;\n      *((_WORD *)v8 - 1) = 0;\n      *(_WORD *)v8 = 12 * v6;\n      v8[2] = 2;\n      v8[3] = 0;\n      BYTE2(v12[v7 + 1]) = v11[8 * v6];\n      LOBYTE(v8) = v11[8 * v6++ + 4];\n      v9 = v6 < a2;\n      HIBYTE(v12[v7 + 1]) = (_BYTE)v8;\n    }\n    while ( v9 );\n  }\n  v12[2 * v6] = 255;\n  v12[2 * v6 + 1] = 17;\n  v5 = (*(int (__stdcall **)(_DWORD, _DWORD *, int *))(**(_DWORD **)(this + 12) + 344))(\n         *(_DWORD *)(this + 12),\n         v12,\n         &v13);\n  if ( v5 >= 0 )\n    goto LABEL_11;\nLABEL_12:\n  if ( v13 )\n    (*(void (__stdcall **)(int))(*(_DWORD *)v13 + 8))(v13);\n  return v5;\n}\n"
-}

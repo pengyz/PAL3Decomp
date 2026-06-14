@@ -1,8 +1,0 @@
-{
-  "name": "sub_1006A795",
-  "mangled_name": "sub_1006A795",
-  "address": "0x1006A795",
-  "size_bytes": 75,
-  "signature": "int *__thiscall(int *Block, char a2)",
-  "decompiled_c": "int *__thiscall sub_1006A795(int *Block, char a2)\n{\n  if ( (a2 & 2) != 0 )\n  {\n    sub_10033437((int)Block, 24, *(Block - 1), (int (__thiscall *)(int))sub_10064BCA);\n    if ( (a2 & 1) != 0 )\n      operator delete(Block - 1);\n    return Block - 1;\n  }\n  else\n  {\n    sub_10064BCA(Block);\n    if ( (a2 & 1) != 0 )\n      operator delete(Block);\n    return Block;\n  }\n}\n"
-}

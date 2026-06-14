@@ -1,8 +1,0 @@
-{
-  "name": "sub_100940F0",
-  "mangled_name": "sub_100940F0",
-  "address": "0x100940F0",
-  "size_bytes": 183,
-  "signature": "int __stdcall(int *a1)",
-  "decompiled_c": "int __stdcall sub_100940F0(int *a1)\n{\n  _DWORD *v1; // edi\n  int v3; // ebx\n  int v4; // eax\n  int v5; // eax\n  int v6; // eax\n  int v7; // eax\n\n  v1 = (_DWORD *)a1[110];\n  if ( v1[5] )\n    return 2;\n  v3 = (*(int (__stdcall **)(int *))(a1[111] + 4))(a1);\n  if ( v3 == 1 )\n  {\n    if ( v1[6] )\n    {\n      sub_10093CA0(a1);\n      v1[6] = 0;\n      return 1;\n    }\n    if ( !v1[4] )\n    {\n      v7 = *a1;\n      *(_DWORD *)(v7 + 20) = 35;\n      (*(void (__stdcall **)(int *))v7)(a1);\n    }\n    sub_100940B0((int)a1);\n  }\n  else if ( v3 == 2 )\n  {\n    v4 = v1[6];\n    v1[5] = 1;\n    if ( v4 )\n    {\n      if ( *(_DWORD *)(a1[111] + 16) )\n      {\n        v5 = *a1;\n        *(_DWORD *)(v5 + 20) = 59;\n        (*(void (__stdcall **)(int *))v5)(a1);\n        return v3;\n      }\n    }\n    else\n    {\n      v6 = a1[37];\n      if ( a1[39] > v6 )\n      {\n        a1[39] = v6;\n        return v3;\n      }\n    }\n  }\n  return v3;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "CPK::ReadChar(CPKFile *)",
-  "mangled_name": "?ReadChar@CPK@@QAEHPAVCPKFile@@@Z",
-  "address": "0x1002D350",
-  "size_bytes": 39,
-  "signature": "int __thiscall(CPK *this, struct CPKFile *a2)",
-  "decompiled_c": "int __thiscall CPK::ReadChar(CPK *this, struct CPKFile *a2)\n{\n  unsigned int v2; // edx\n  int result; // eax\n\n  v2 = *((_DWORD *)a2 + 10);\n  if ( v2 >= *((_DWORD *)a2 + 9) )\n    return -1;\n  result = *(unsigned __int8 *)(*((_DWORD *)a2 + 8) + v2);\n  *((_DWORD *)a2 + 10) = v2 + 1;\n  return result;\n}\n"
-}

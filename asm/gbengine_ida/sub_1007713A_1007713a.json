@@ -1,8 +1,0 @@
-{
-  "name": "sub_1007713A",
-  "mangled_name": "sub_1007713A",
-  "address": "0x1007713A",
-  "size_bytes": 257,
-  "signature": "int __stdcall(DWORD Type)",
-  "decompiled_c": "int __stdcall sub_1007713A(DWORD Type)\n{\n  DWORD v2; // [esp+Ch] [ebp-4h] BYREF\n\n  sub_10034646();\n  if ( Type )\n  {\n    if ( dword_10126794 == 0xFFFF )\n    {\n      dword_10126794 = 0;\n      qmemcpy(&off_10121498, off_101215C0, 0x124u);\n      sub_1007B542(&off_10121498);\n      if ( !sub_10034519((BYTE *)4, \"DisablePSGP\", (BYTE *)&Type, 4u) )\n        Type = 0;\n      if ( sub_10034519((BYTE *)4, \"DisableD3DXPSGP\", (BYTE *)&v2, 4u) )\n        Type = v2;\n      if ( Type != 1 )\n      {\n        if ( Type == 2 || !IsProcessorFeaturePresent(7u) )\n        {\n          if ( (sub_10077095() & 8) != 0 )\n          {\n            sub_10094F78(&off_10121498);\n            dword_10126794 = 2;\n          }\n          else if ( IsProcessorFeaturePresent(6u) )\n          {\n            sub_10094E00(&off_10121498);\n            dword_10126794 = 3;\n          }\n        }\n        else\n        {\n          sub_100951CA(&off_10121498);\n          dword_10126794 = 1;\n        }\n      }\n    }\n  }\n  else\n  {\n    dword_10126794 = 0xFFFF;\n    qmemcpy(&off_10121498, off_101215C0, 0x124u);\n  }\n  return dword_10126794;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_10064AEF",
-  "mangled_name": "sub_10064AEF",
-  "address": "0x10064AEF",
-  "size_bytes": 100,
-  "signature": "_WORD *__thiscall(_WORD *this)",
-  "decompiled_c": "_WORD *__thiscall sub_10064AEF(_WORD *this)\n{\n  _WORD *result; // eax\n  char *v2; // esi\n  _WORD *v3; // edi\n  _WORD *v4; // edx\n  unsigned int i; // ebx\n  int v6; // [esp+Ch] [ebp-4h]\n\n  result = this;\n  *(this + 29) = -1;\n  *(_DWORD *)this = 0;\n  *((_DWORD *)this + 2) = 0;\n  *((_DWORD *)this + 3) = 0;\n  *((_DWORD *)this + 1) = 0;\n  *(this + 24) = 0;\n  *(this + 25) = 0;\n  *(this + 26) = 0;\n  *(this + 28) = 0;\n  *(this + 27) = 0;\n  v2 = (char *)(this + 20);\n  v3 = this + 12;\n  v4 = this + 10;\n  v6 = 2;\n  do\n  {\n    *v4 = -1;\n    for ( i = 0; i < 4; ++i )\n    {\n      v2[i] = 0;\n      *v3++ = 0;\n    }\n    ++v4;\n    v2 += 4;\n    --v6;\n  }\n  while ( v6 );\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbStaticChain::NewOneNode(void)",
-  "mangled_name": "?NewOneNode@gbStaticChain@@QAEPAUgbStaticChainNode@@XZ",
-  "address": "0x1002F8C0",
-  "size_bytes": 56,
-  "signature": "struct gbStaticChainNode *__thiscall(gbStaticChain *this)",
-  "decompiled_c": "struct gbStaticChainNode *__thiscall gbStaticChain::NewOneNode(gbStaticChain *this)\n{\n  struct gbStaticChainNode *result; // eax\n  _DWORD *v2; // edx\n  int v3; // edx\n  _DWORD *v4; // edx\n  int v5; // edx\n\n  result = (struct gbStaticChainNode *)*((_DWORD *)this + 1);\n  if ( result )\n  {\n    v2 = (_DWORD *)*((_DWORD *)result + 1);\n    *((_DWORD *)this + 1) = v2;\n    if ( v2 )\n      *v2 = 0;\n    v3 = *((_DWORD *)this + 2);\n    *(_DWORD *)result = 0;\n    *((_DWORD *)result + 1) = v3;\n    v4 = (_DWORD *)*((_DWORD *)this + 2);\n    if ( v4 )\n      *v4 = result;\n    v5 = *((_DWORD *)this + 6);\n    *((_DWORD *)this + 2) = result;\n    *((_DWORD *)this + 6) = v5 + 1;\n  }\n  return result;\n}\n"
-}

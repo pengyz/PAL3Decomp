@@ -1,8 +1,0 @@
-{
-  "name": "sub_1007985F",
-  "mangled_name": "sub_1007985F",
-  "address": "0x1007985F",
-  "size_bytes": 54,
-  "signature": "int __stdcall(int a1, int a2, _DWORD *a3, _DWORD *a4)",
-  "decompiled_c": "int __stdcall sub_1007985F(int a1, int a2, _DWORD *a3, _DWORD *a4)\n{\n  if ( !a1 || !a2 || (*(_BYTE *)(a2 + 8) & 8) == 0 || !a3 )\n    return 0;\n  *a3 = *(_DWORD *)(a2 + 16);\n  *a4 = *(unsigned __int16 *)(a2 + 20);\n  return 8;\n}\n"
-}

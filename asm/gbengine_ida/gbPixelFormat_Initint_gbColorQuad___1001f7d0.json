@@ -1,8 +1,0 @@
-{
-  "name": "gbPixelFormat::Init(int,gbColorQuad *)",
-  "mangled_name": "?Init@gbPixelFormat@@QAEXHPAUgbColorQuad@@@Z",
-  "address": "0x1001F7D0",
-  "size_bytes": 68,
-  "signature": "void __thiscall(gbPixelFormat *this, int a2, struct gbColorQuad *a3)",
-  "decompiled_c": "void __thiscall gbPixelFormat::Init(gbPixelFormat *this, int a2, struct gbColorQuad *a3)\n{\n  struct gbColorQuad *v4; // eax\n\n  *((_DWORD *)this + 1) = a2;\n  v4 = (struct gbColorQuad *)malloc(4 * (1 << a2));\n  *((_DWORD *)this + 2) = v4;\n  qmemcpy(v4, a3, 4 * ((unsigned int)(4 * (1 << a2)) >> 2));\n  *(_DWORD *)this = 6;\n}\n"
-}

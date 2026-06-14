@@ -1,8 +1,0 @@
-{
-  "name": "sub_10064CF9",
-  "mangled_name": "sub_10064CF9",
-  "address": "0x10064CF9",
-  "size_bytes": 81,
-  "signature": "void __thiscall(_DWORD **this, int a2)",
-  "decompiled_c": "void __thiscall sub_10064CF9(_DWORD **this, int a2)\n{\n  int v3; // ebp\n  int v4; // eax\n\n  sub_10034576(1);\n  v3 = **(this + 3);\n  v4 = (*(int (__stdcall **)(_DWORD, int))(**(_DWORD **)(a2 + 8) + 12))(*(_DWORD *)(a2 + 8), a2 + 4);\n  if ( (*(int (__stdcall **)(_DWORD, int))(v3 + 364))(*(this + 3), v4) < 0 )\n  {\n    sub_10034576(0);\n    *(_DWORD *)(a2 + 4) = 0;\n    *(_DWORD *)(a2 + 20) &= 0xFFFFFFFC;\n  }\n  else\n  {\n    sub_10034576(0);\n    *(_DWORD *)(a2 + 20) |= 2u;\n  }\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbStaticMesh::~gbStaticMesh(void)",
-  "mangled_name": "??1gbStaticMesh@@UAE@XZ",
-  "address": "0x10015660",
-  "size_bytes": 143,
-  "signature": "void __thiscall(gbStaticMesh *this)",
-  "decompiled_c": "void __thiscall gbStaticMesh::~gbStaticMesh(gbStaticMesh *this)\n{\n  struct gbVertexBubble *v2; // eax\n\n  *(_DWORD *)this = &gbStaticMesh::`vftable';\n  v2 = (struct gbVertexBubble *)*((_DWORD *)this + 30);\n  if ( v2 )\n    gbVertPoolMgr::DelVertexBubble(*(gbVertPoolMgr **)(*((_DWORD *)this + 29) + 196), v2);\n  if ( *((_DWORD *)this + 31) )\n    gbVertPoolMgr::DelVertexBubble(\n      *(gbVertPoolMgr **)(*((_DWORD *)this + 29) + 196),\n      *((struct gbVertexBubble **)this + 31));\n  if ( *((_DWORD *)this + 32) )\n    gbVertPoolMgr::DelIndexBubble(\n      *(gbVertPoolMgr **)(*((_DWORD *)this + 29) + 196),\n      *((struct gbIndexBubble **)this + 32));\n  gbBaseMesh::~gbBaseMesh((void **)this);\n}\n"
-}

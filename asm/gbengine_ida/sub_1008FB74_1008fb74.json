@@ -1,8 +1,0 @@
-{
-  "name": "sub_1008FB74",
-  "mangled_name": "sub_1008FB74",
-  "address": "0x1008FB74",
-  "size_bytes": 53,
-  "signature": "int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "int __thiscall sub_1008FB74(_DWORD *this, int a2)\n{\n  int result; // eax\n\n  result = a2;\n  if ( !a2 )\n  {\n    if ( !*(this + 19) )\n    {\n      sub_1004CB83((_DWORD *)*this, (int)(this + 4), 0, \"internal error: production failed\");\n      *(this + 19) = 1;\n    }\n    *(this + 20) = 1;\n    return 0;\n  }\n  return result;\n}\n"
-}

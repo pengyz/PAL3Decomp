@@ -1,8 +1,0 @@
-{
-  "name": "gbActor::GotoAction(char *,float,float)",
-  "mangled_name": "?GotoAction@gbActor@@QAEXPADMM@Z",
-  "address": "0x10002E00",
-  "size_bytes": 67,
-  "signature": "void __thiscall(gbActor *this, char *a2, float a3, float a4)",
-  "decompiled_c": "void __thiscall gbActor::GotoAction(gbActor *this, char *a2, float a3, float a4)\n{\n  unsigned int v5; // eax\n\n  v5 = gbCrc32Compute(a2);\n  gbActor::GotoAction(this, v5, 2, (__int64)(a3 * 4800.0), (__int64)(a4 * 4800.0), 0x6F766572u);\n}\n"
-}

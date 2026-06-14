@@ -1,8 +1,0 @@
-{
-  "name": "gbOBBox::GetCenter(void)",
-  "mangled_name": "?GetCenter@gbOBBox@@QBE?AUgbVec3D@@XZ",
-  "address": "0x10027C00",
-  "size_bytes": 56,
-  "signature": "float *__thiscall(float *this, float *a2)",
-  "decompiled_c": "float *__thiscall gbOBBox::GetCenter(float *this, float *a2)\n{\n  float v3; // [esp+4h] [ebp-8h]\n  float v4; // [esp+8h] [ebp-4h]\n\n  v3 = *(this + 13);\n  v4 = *(this + 14);\n  *a2 = *(this + 12);\n  a2[1] = v3;\n  a2[2] = v4;\n  return a2;\n}\n"
-}

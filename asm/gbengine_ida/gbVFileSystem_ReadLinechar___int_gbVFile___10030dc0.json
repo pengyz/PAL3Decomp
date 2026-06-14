@@ -1,8 +1,0 @@
-{
-  "name": "gbVFileSystem::ReadLine(char *,int,gbVFile *)",
-  "mangled_name": "?ReadLine@gbVFileSystem@@QAEPADPADHPAVgbVFile@@@Z",
-  "address": "0x10030DC0",
-  "size_bytes": 193,
-  "signature": "char *__thiscall(gbVFileSystem *this, char *Buffer, int MaxCount, struct gbVFile *a4)",
-  "decompiled_c": "char *__thiscall gbVFileSystem::ReadLine(gbVFileSystem *this, char *Buffer, int MaxCount, struct gbVFile *a4)\n{\n  int v4; // eax\n  struct CPKFile *v5; // eax\n  char *result; // eax\n  int v7; // ecx\n\n  v4 = *((_DWORD *)this + 3);\n  if ( v4 == 1 )\n  {\n    if ( a4 )\n      v5 = (struct gbVFile *)((char *)a4 + 272);\n    else\n      v5 = 0;\n    return CPK::ReadLine((gbVFileSystem *)((char *)this + 24), Buffer, MaxCount, v5);\n  }\n  else if ( v4 )\n  {\n    if ( v4 != 2 )\n      return 0;\n    v7 = 0;\n    if ( MaxCount - 1 <= 0 )\n      return 0;\n    result = Buffer;\n    do\n    {\n      if ( (unsigned int)(*((_DWORD *)a4 + 67) - *((_DWORD *)a4 + 1)) >= *((_DWORD *)a4 + 2) )\n        break;\n      Buffer[v7] = *(_BYTE *)(*((_DWORD *)a4 + 67))++;\n      if ( Buffer[v7] == 10 && v7 >= 1 && Buffer[v7 - 1] == 13 )\n        break;\n      ++v7;\n    }\n    while ( v7 < MaxCount - 1 );\n    if ( v7 > 0 )\n      Buffer[v7] = 0;\n    else\n      return 0;\n  }\n  else\n  {\n    return fgets(Buffer, MaxCount, *((FILE **)a4 + 1));\n  }\n  return result;\n}\n"
-}

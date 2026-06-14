@@ -1,8 +1,0 @@
-{
-  "name": "gbGeomNode::SetAnimLoop(int)",
-  "mangled_name": "?SetAnimLoop@gbGeomNode@@QAEXH@Z",
-  "address": "0x10011740",
-  "size_bytes": 63,
-  "signature": "void __thiscall(gbGeomNode *this, int a2)",
-  "decompiled_c": "void __thiscall gbGeomNode::SetAnimLoop(gbGeomNode *this, int a2)\n{\n  int v3; // esi\n  gbGeomNode *v4; // eax\n\n  v3 = 0;\n  this->animLoop = a2;\n  for ( this->loopPast = 0; v3 < this->children.nCount; ++v3 )\n  {\n    v4 = (gbGeomNode *)gbChain1D::operator[]((int *)&this->children, v3);\n    gbGeomNode::SetAnimLoop(v4, a2);\n  }\n}\n"
-}

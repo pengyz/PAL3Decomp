@@ -1,8 +1,0 @@
-{
-  "name": "fFEXPH",
-  "mangled_name": "fFEXPH",
-  "address": "0x100EFAE8",
-  "size_bytes": 49,
-  "signature": "void __usercall(char a1@<ch>, int a2@<ebp>)",
-  "decompiled_c": "void __usercall fFEXPH(char a1@<ch>, int a2@<ebp>)\n{\n  _ffexpm1(a1, a2);\n  if ( (*(_BYTE *)(a2 - 159) & 1) != 0 )\n    ExpHypCopyInv();\n  _rttosnpop();\n}\n"
-}

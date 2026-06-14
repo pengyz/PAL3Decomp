@@ -1,8 +1,0 @@
-{
-  "name": "sub_1000DE30",
-  "mangled_name": "sub_1000DE30",
-  "address": "0x1000DE30",
-  "size_bytes": 87,
-  "signature": "gbParticleEffect *__thiscall(gbParticleEffect *this, char a2)",
-  "decompiled_c": "gbParticleEffect *__thiscall sub_1000DE30(gbParticleEffect *this, char a2)\n{\n  if ( (a2 & 2) != 0 )\n  {\n    `eh vector destructor iterator'(\n      (char *)this,\n      0x160u,\n      *((_DWORD *)this - 1),\n      (void (__thiscall *)(void *))gbParticleEffect::~gbParticleEffect);\n    if ( (a2 & 1) != 0 )\n      operator delete((char *)this - 4);\n    return (gbParticleEffect *)((char *)this - 4);\n  }\n  else\n  {\n    gbParticleEffect::~gbParticleEffect(this);\n    if ( (a2 & 1) != 0 )\n      operator delete(this);\n    return this;\n  }\n}\n"
-}

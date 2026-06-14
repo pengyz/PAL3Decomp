@@ -1,8 +1,0 @@
-{
-  "name": "_clock",
-  "mangled_name": "_clock",
-  "address": "0x100E5E04",
-  "size_bytes": 67,
-  "signature": "clock_t __cdecl()",
-  "decompiled_c": "clock_t __cdecl clock()\n{\n  struct _FILETIME SystemTimeAsFileTime; // [esp+4h] [ebp-8h] BYREF\n\n  GetSystemTimeAsFileTime(&SystemTimeAsFileTime);\n  return (SystemTimeAsFileTime.dwLowDateTime\n        + ((unsigned __int64)SystemTimeAsFileTime.dwHighDateTime << 32)\n        - qword_10166C68)\n       / 0x2710;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_10050C0B",
-  "mangled_name": "sub_10050C0B",
-  "address": "0x10050C0B",
-  "size_bytes": 110,
-  "signature": "int __thiscall(int this, const char *a2, unsigned int a3, void **a4, int a5)",
-  "decompiled_c": "int __thiscall sub_10050C0B(int this, const char *a2, unsigned int a3, void **a4, int a5)\n{\n  _DWORD *v6; // eax\n  _DWORD *v7; // eax\n  int result; // eax\n\n  v6 = (_DWORD *)operator new(0x70u);\n  if ( v6 )\n    v7 = sub_1004D8A8(v6);\n  else\n    v7 = 0;\n  *(_DWORD *)(this + 616) = v7;\n  if ( !v7 )\n    return -2147024882;\n  result = sub_1004DAF9((int)v7, a2, a3, (const char *)this, (const char *)(this + 24));\n  if ( result >= 0 )\n  {\n    result = sub_1005008F((char *)this, a4);\n    if ( result >= 0 )\n    {\n      *(_DWORD *)(this + 620) = *(_DWORD *)(this + 616);\n      *(_DWORD *)(this + 624) = a5;\n      return 0;\n    }\n  }\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_10003A70",
-  "mangled_name": "sub_10003A70",
-  "address": "0x10003A70",
-  "size_bytes": 83,
-  "signature": "char *__thiscall(char *this, char a2)",
-  "decompiled_c": "char *__thiscall sub_10003A70(char *this, char a2)\n{\n  if ( (a2 & 2) != 0 )\n  {\n    `eh vector destructor iterator'(\n      this,\n      0xCu,\n      *((_DWORD *)this - 1),\n      (void (__thiscall *)(void *))gbChain2DNode::~gbChain2DNode);\n    if ( (a2 & 1) != 0 )\n      operator delete(this - 4);\n    return this - 4;\n  }\n  else\n  {\n    *(_DWORD *)this = &gbChain2DNode::`vftable';\n    if ( (a2 & 1) != 0 )\n      operator delete(this);\n    return this;\n  }\n}\n"
-}

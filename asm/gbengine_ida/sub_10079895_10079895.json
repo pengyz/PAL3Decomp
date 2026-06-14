@@ -1,8 +1,0 @@
-{
-  "name": "sub_10079895",
-  "mangled_name": "sub_10079895",
-  "address": "0x10079895",
-  "size_bytes": 105,
-  "signature": "int __stdcall(int a1, int a2, _DWORD *a3, _DWORD *a4, _DWORD *a5)",
-  "decompiled_c": "int __stdcall sub_10079895(int a1, int a2, _DWORD *a3, _DWORD *a4, _DWORD *a5)\n{\n  int result; // eax\n\n  result = 0;\n  if ( a1 && a2 && (*(_BYTE *)(a2 + 8) & 0x10) != 0 )\n  {\n    if ( *(_BYTE *)(a2 + 25) == 3 )\n    {\n      if ( a3 )\n      {\n        *a3 = *(_DWORD *)(a2 + 48);\n        result = 16;\n      }\n      if ( a5 )\n        *a5 = a2 + 52;\n    }\n    else\n    {\n      if ( a5 )\n      {\n        *a5 = a2 + 52;\n        result = 16;\n      }\n      if ( a3 )\n        *a3 = 0;\n    }\n    if ( a4 )\n    {\n      *a4 = *(unsigned __int16 *)(a2 + 22);\n      return result | 0x10;\n    }\n  }\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "__allshl",
-  "mangled_name": "__allshl",
-  "address": "0x100F2250",
-  "size_bytes": 31,
-  "signature": "int __usercall@<eax>(__int64 a1@<edx:eax>, unsigned __int8 a2@<cl>)",
-  "decompiled_c": "int __usercall _allshl@<eax>(__int64 a1@<edx:eax>, unsigned __int8 a2@<cl>)\n{\n  __int64 v2; // rax\n\n  if ( a2 >= 0x40u )\n  {\n    LODWORD(v2) = 0;\n  }\n  else if ( a2 >= 0x20u )\n  {\n    LODWORD(v2) = 0;\n  }\n  else\n  {\n    return a1 << (a2 & 0x1F);\n  }\n  return v2;\n}\n"
-}

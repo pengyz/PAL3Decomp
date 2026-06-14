@@ -1,8 +1,0 @@
-{
-  "name": "sub_10079760",
-  "mangled_name": "sub_10079760",
-  "address": "0x10079760",
-  "size_bytes": 46,
-  "signature": "int __stdcall(int a1, int a2, _DWORD *a3)",
-  "decompiled_c": "int __stdcall sub_10079760(int a1, int a2, _DWORD *a3)\n{\n  int result; // eax\n\n  if ( !a1 )\n    return 0;\n  if ( !a2 )\n    return 0;\n  result = 2048;\n  if ( (*(_DWORD *)(a2 + 8) & 0x800) == 0 || !a3 )\n    return 0;\n  *a3 = *(unsigned __int8 *)(a2 + 44);\n  return result;\n}\n"
-}

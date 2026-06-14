@@ -1,8 +1,0 @@
-{
-  "name": "sub_1009664F",
-  "mangled_name": "sub_1009664F",
-  "address": "0x1009664F",
-  "size_bytes": 23,
-  "signature": "int *__attribute__((__org_typedef(jmp_buf))) __stdcall(int *__attribute__((__org_typedef(jmp_buf))) Buf, _BYTE *a2, int a3)",
-  "decompiled_c": "jmp_buf __stdcall sub_1009664F(jmp_buf Buf, _BYTE *a2, int a3)\n{\n  int *__attribute__((__org_typedef(jmp_buf))) result; // eax\n\n  sub_1007B03A(Buf, (int)a2, a3);\n  result = Buf;\n  if ( (Buf[67] & 0x20) == 0 )\n  {\n    if ( (*((_BYTE *)Buf + 93) & 8) != 0 )\n      return result;\n    goto LABEL_5;\n  }\n  if ( (Buf[23] & 0x300) != 0x300 )\n  {\nLABEL_5:\n    result = (int *)sub_10095632(Buf[64], a2, a3);\n    Buf[64] = (int)result;\n  }\n  return result;\n}\n"
-}

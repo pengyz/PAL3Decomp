@@ -1,8 +1,0 @@
-{
-  "name": "_atof",
-  "mangled_name": "_atof",
-  "address": "0x100E51F1",
-  "size_bytes": 87,
-  "signature": "double __cdecl(const char *String)",
-  "decompiled_c": "double __cdecl atof(const char *String)\n{\n  _BYTE v4[24]; // [esp+4h] [ebp-18h] BYREF\n\n  while ( (int)SrcSizeInBytes <= 1\n        ? *((_BYTE *)off_1012A140 + 2 * *(unsigned __int8 *)String) & 8\n        : _isctype(*(unsigned __int8 *)String, 8) )\n    ++String;\n  strlen(String);\n  return *(double *)(_fltin2(v4, String) + 16);\n}\n"
-}

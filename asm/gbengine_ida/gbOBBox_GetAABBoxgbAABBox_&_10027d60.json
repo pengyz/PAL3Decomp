@@ -1,8 +1,0 @@
-{
-  "name": "gbOBBox::GetAABBox(gbAABBox &)",
-  "mangled_name": "?GetAABBox@gbOBBox@@QAEXAAUgbAABBox@@@Z",
-  "address": "0x10027D60",
-  "size_bytes": 86,
-  "signature": "void __thiscall(gbOBBox *this, struct gbAABBox *a2)",
-  "decompiled_c": "void __thiscall gbOBBox::GetAABBox(gbOBBox *this, struct gbAABBox *a2)\n{\n  *(float *)a2 = *((float *)this + 16) * -0.5;\n  *((float *)a2 + 1) = *((float *)this + 17) * -0.5;\n  *((float *)a2 + 2) = *((float *)this + 18) * -0.5;\n  *((float *)a2 + 3) = *((float *)this + 16) * 0.5;\n  *((float *)a2 + 4) = *((float *)this + 17) * 0.5;\n  *((float *)a2 + 5) = *((float *)this + 18) * 0.5;\n  gbAABBox::Transform(a2, this);\n}\n"
-}

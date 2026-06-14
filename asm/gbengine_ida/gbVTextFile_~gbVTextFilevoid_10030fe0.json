@@ -1,8 +1,0 @@
-{
-  "name": "gbVTextFile::~gbVTextFile(void)",
-  "mangled_name": "??1gbVTextFile@@QAE@XZ",
-  "address": "0x10030FE0",
-  "size_bytes": 104,
-  "signature": "void __thiscall(gbVTextFile *this)",
-  "decompiled_c": "void __thiscall gbVTextFile::~gbVTextFile(gbVTextFile *this)\n{\n  int v1; // esi\n  int v2; // eax\n\n  v1 = *((_DWORD *)this + 256);\n  v2 = *((_DWORD *)g_pVFileSys + 3);\n  if ( v2 == 1 )\n  {\n    if ( v1 )\n      CPK::Close((gbVFileSystem *)((char *)g_pVFileSys + 24), (struct CPKFile *)(v1 + 272));\n    else\n      CPK::Close((gbVFileSystem *)((char *)g_pVFileSys + 24), 0);\n  }\n  else if ( v2 )\n  {\n    if ( v2 == 2 )\n    {\n      free(*(void **)(v1 + 4));\n      *(_DWORD *)v1 = 0;\n    }\n  }\n  else\n  {\n    fclose(*(FILE **)(v1 + 4));\n    *(_DWORD *)v1 = 0;\n  }\n}\n"
-}

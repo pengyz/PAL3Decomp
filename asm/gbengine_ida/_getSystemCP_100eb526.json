@@ -1,8 +1,0 @@
-{
-  "name": "_getSystemCP",
-  "mangled_name": "_getSystemCP",
-  "address": "0x100EB526",
-  "size_bytes": 74,
-  "signature": "UINT __cdecl(UINT a1)",
-  "decompiled_c": "UINT __cdecl getSystemCP(UINT a1)\n{\n  UINT result; // eax\n\n  result = a1;\n  dword_10166D60 = 0;\n  switch ( a1 )\n  {\n    case 0xFFFFFFFE:\n      dword_10166D60 = 1;\n      return GetOEMCP();\n    case 0xFFFFFFFD:\n      dword_10166D60 = 1;\n      return GetACP();\n    case 0xFFFFFFFC:\n      dword_10166D60 = 1;\n      return dword_10166D80;\n  }\n  return result;\n}\n"
-}

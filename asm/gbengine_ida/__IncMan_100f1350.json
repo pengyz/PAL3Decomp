@@ -1,8 +1,0 @@
-{
-  "name": "__IncMan",
-  "mangled_name": "__IncMan",
-  "address": "0x100F1350",
-  "size_bytes": 86,
-  "signature": "int __cdecl(int a1, int a2)",
-  "decompiled_c": "int __cdecl _IncMan(int a1, int a2)\n{\n  int result; // eax\n  int v3; // esi\n  _DWORD *v4; // edi\n\n  result = __addl(*(_DWORD *)(a1 + 4 * (a2 / 32)), 1 << (31 - a2 % 32), a1 + 4 * (a2 / 32));\n  v3 = a2 / 32 - 1;\n  if ( v3 >= 0 )\n  {\n    v4 = (_DWORD *)(a1 + 4 * v3);\n    do\n    {\n      if ( !result )\n        break;\n      result = __addl(*v4, 1, v4);\n      --v3;\n      --v4;\n    }\n    while ( v3 >= 0 );\n  }\n  return result;\n}\n"
-}

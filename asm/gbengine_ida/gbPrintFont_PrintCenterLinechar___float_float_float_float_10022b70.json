@@ -1,8 +1,0 @@
-{
-  "name": "gbPrintFont::PrintCenterLine(char *,float,float,float,float)",
-  "mangled_name": "?PrintCenterLine@gbPrintFont@@QAEXPADMMMM@Z",
-  "address": "0x10022B70",
-  "size_bytes": 123,
-  "signature": "void __thiscall(gbPrintFont *this, char *a2, float a3, float a4, float a5, float a6)",
-  "decompiled_c": "void __thiscall gbPrintFont::PrintCenterLine(gbPrintFont *this, char *a2, float a3, float a4, float a5, float a6)\n{\n  double v7; // st7\n  unsigned int v8; // kr04_4\n  float v9; // [esp+0h] [ebp-18h]\n  float v10; // [esp+4h] [ebp-14h]\n\n  v7 = a6 - a4 - *((float *)this + 13);\n  v8 = strlen(a2) + 1;\n  v10 = v7 * 0.5 + a4;\n  v9 = (a5 - a3 - (double)(int)(v8 - 1) * *((float *)this + 12) * 0.5 - (double)(int)(v8 - 2) * *((float *)this + 14))\n     * 0.5\n     + a3;\n  (*(void (__thiscall **)(gbPrintFont *, char *, _DWORD, _DWORD, int, int))(*(_DWORD *)this + 16))(\n    this,\n    a2,\n    LODWORD(v9),\n    LODWORD(v10),\n    1176256512,\n    1176256512);\n}\n"
-}

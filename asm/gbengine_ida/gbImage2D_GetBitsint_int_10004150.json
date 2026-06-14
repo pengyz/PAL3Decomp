@@ -1,8 +1,0 @@
-{
-  "name": "gbImage2D::GetBits(int,int)",
-  "mangled_name": "?GetBits@gbImage2D@@QAEPAEHH@Z",
-  "address": "0x10004150",
-  "size_bytes": 44,
-  "signature": "unsigned __int8 *__thiscall(gbImage2D *this, int a2, int a3)",
-  "decompiled_c": "unsigned __int8 *__thiscall gbImage2D::GetBits(gbImage2D *this, int a2, int a3)\n{\n  return (unsigned __int8 *)(*((_DWORD *)this + 46) + *((_DWORD *)this + 45) * (a2 + a3 * *((_DWORD *)this + 32)) / 8);\n}\n"
-}

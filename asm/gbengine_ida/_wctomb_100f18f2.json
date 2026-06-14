@@ -1,8 +1,0 @@
-{
-  "name": "_wctomb",
-  "mangled_name": "_wctomb",
-  "address": "0x100F18F2",
-  "size_bytes": 89,
-  "signature": "int __cdecl(char *MbCh, wchar_t WCh)",
-  "decompiled_c": "int __cdecl wctomb(char *MbCh, wchar_t WCh)\n{\n  int v2; // ebx\n  int WCha; // [esp+18h] [ebp+Ch]\n\n  InterlockedIncrement(&Addend);\n  v2 = 0;\n  if ( dword_10168774 )\n  {\n    InterlockedDecrement(&Addend);\n    _lock(19);\n    v2 = 1;\n  }\n  WCha = _wctomb_lk(MbCh, WCh);\n  if ( v2 )\n    _unlock(19);\n  else\n    InterlockedDecrement(&Addend);\n  return WCha;\n}\n"
-}

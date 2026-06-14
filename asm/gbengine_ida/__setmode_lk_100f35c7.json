@@ -1,8 +1,0 @@
-{
-  "name": "__setmode_lk",
-  "mangled_name": "__setmode_lk",
-  "address": "0x100F35C7",
-  "size_bytes": 97,
-  "signature": "int __cdecl(int a1, int a2)",
-  "decompiled_c": "int __cdecl _setmode_lk(int a1, int a2)\n{\n  char *v2; // edx\n  char v3; // cl\n  char v4; // cl\n  int v5; // eax\n\n  v2 = (char *)(dword_10167400[a1 >> 5] + 36 * (a1 & 0x1F) + 4);\n  v3 = *v2;\n  if ( a2 == 0x8000 )\n  {\n    v4 = v3 & 0x7F;\nLABEL_5:\n    v5 = -(*v2 < 0);\n    *v2 = v4;\n    LOWORD(v5) = v5 & 0xC000;\n    return v5 + 0x8000;\n  }\n  if ( a2 == 0x4000 )\n  {\n    v4 = v3 | 0x80;\n    goto LABEL_5;\n  }\n  *_errno() = 22;\n  return -1;\n}\n"
-}

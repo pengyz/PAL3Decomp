@@ -1,8 +1,0 @@
-{
-  "name": "gbUIRect::Init(char *,float,float,float,float,gbGfxManager *)",
-  "mangled_name": "?Init@gbUIRect@@QAEXPADMMMMPAVgbGfxManager@@@Z",
-  "address": "0x10022700",
-  "size_bytes": 71,
-  "signature": "void __thiscall(gbUIRect *this, char *a2, float a3, float a4, float a5, float a6, struct gbGfxManager *a7)",
-  "decompiled_c": "void __thiscall gbUIRect::Init(\n        gbUIRect *this,\n        char *a2,\n        float a3,\n        float a4,\n        float a5,\n        float a6,\n        struct gbGfxManager *a7)\n{\n  gbTexture *v8; // eax\n\n  *((_DWORD *)this + 1) = a7;\n  v8 = (gbTexture *)(*(int (__thiscall **)(struct gbGfxManager *, char *))(*(_DWORD *)a7 + 8))(a7, a2);\n  *(_DWORD *)this = v8;\n  gbTexture::LoadTexture(v8, 1);\n  *((float *)this + 2) = a3;\n  *((float *)this + 3) = a4;\n  *((float *)this + 4) = a5 - a3;\n  *((float *)this + 5) = a6 - a4;\n}\n"
-}

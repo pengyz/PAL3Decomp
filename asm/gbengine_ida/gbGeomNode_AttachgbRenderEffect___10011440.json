@@ -1,8 +1,0 @@
-{
-  "name": "gbGeomNode::Attach(gbRenderEffect *)",
-  "mangled_name": "?Attach@gbGeomNode@@UAEHPAVgbRenderEffect@@@Z",
-  "address": "0x10011440",
-  "size_bytes": 32,
-  "signature": "int __thiscall(gbGeomNode *this, struct gbRenderEffect *a2)",
-  "decompiled_c": "int __thiscall gbGeomNode::Attach(gbGeomNode *this, struct gbRenderEffect *a2)\n{\n  (*((void (__thiscall **)(gbGeomNode *, struct gbRenderEffect *))this->__vftable + 3))(this, a2);\n  gbVisNode::Attach((gbVisNode *)this, a2);\n  return 1;\n}\n"
-}

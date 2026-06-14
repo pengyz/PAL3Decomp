@@ -1,8 +1,0 @@
-{
-  "name": "sub_1000DED0",
-  "mangled_name": "sub_1000DED0",
-  "address": "0x1000DED0",
-  "size_bytes": 67,
-  "signature": "int __cdecl(char *String, char a2)",
-  "decompiled_c": "int __cdecl sub_1000DED0(char *String, char a2)\n{\n  char v2; // cl\n  int v3; // eax\n  int result; // eax\n  float v5; // [esp+0h] [ebp-4h]\n\n  v2 = a2;\n  v5 = 0.0;\n  if ( a2 > 125 )\n  {\n    v5 = atof(String);\n    v2 = 126;\n  }\n  v3 = dword_10137BB4;\n  *(float *)&dword_10137BB8[dword_10137BB4] = v5;\n  byte_10138BB8[v3] = v2;\n  result = v3 + 1;\n  dword_10137BB4 = result;\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_10080F66",
-  "mangled_name": "sub_10080F66",
-  "address": "0x10080F66",
-  "size_bytes": 62,
-  "signature": "void __thiscall(int this)",
-  "decompiled_c": "void __thiscall sub_10080F66(int this)\n{\n  void (__thiscall ***v2)(_DWORD, int); // ecx\n\n  v2 = *(void (__thiscall ****)(_DWORD, int))(this + 8);\n  if ( v2 )\n    (**v2)(v2, 1);\n  operator delete(*(void **)(this + 24));\n  operator delete(*(void **)(this + 128));\n  operator delete(*(void **)(this + 136));\n  operator delete(*(void **)(this + 144));\n}\n"
-}

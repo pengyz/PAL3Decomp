@@ -1,8 +1,0 @@
-{
-  "name": "gbSound2DNode::~gbSound2DNode(void)",
-  "mangled_name": "??1gbSound2DNode@@QAE@XZ",
-  "address": "0x100028F0",
-  "size_bytes": 66,
-  "signature": "void __thiscall(gbSound2DNode *this)",
-  "decompiled_c": "void __thiscall gbSound2DNode::~gbSound2DNode(gbSound2DNode *this)\n{\n  if ( *((_DWORD *)this + 1) )\n    gbAudioManager::DetachSampleHandle(gbSound2DNode::pAudioMgr, this);\n  if ( *(_DWORD *)this )\n  {\n    if ( gbSound2DNode::pAudioMgr )\n    {\n      if ( *((_DWORD *)this + 1) )\n        AIL_end_sample(*((_DWORD *)this + 1));\n    }\n    gbAudioManager::DeleteSoundData(gbSound2DNode::pAudioMgr, *(struct gbSoundData **)this);\n  }\n}\n"
-}

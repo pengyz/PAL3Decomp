@@ -1,8 +1,0 @@
-{
-  "name": "sub_100A6723",
-  "mangled_name": "sub_100A6723",
-  "address": "0x100A6723",
-  "size_bytes": 39,
-  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
-  "decompiled_c": "int __thiscall sub_100A6723(_DWORD *this, int a2, int a3)\n{\n  int v3; // eax\n  int result; // eax\n\n  v3 = *(_DWORD *)(*(_DWORD *)(*(this + 5) + 4 * a3) + 20);\n  if ( v3 == -1 )\n    return 0;\n  result = sub_100A650A(this, a2, v3, 0);\n  if ( result >= 0 )\n    return 0;\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_10060157",
-  "mangled_name": "sub_10060157",
-  "address": "0x10060157",
-  "size_bytes": 76,
-  "signature": "int __userpurge@<eax>(int a1@<ecx>, double a2@<st1>, double a3@<st0>, int a4, int a5)",
-  "decompiled_c": "int __userpurge sub_10060157@<eax>(int a1@<ecx>, double a2@<st1>, double a3@<st0>, int a4, int a5)\n{\n  int v6; // esi\n  int result; // eax\n\n  if ( sub_1007E198(20, (LPVOID)0x10) )\n    v6 = sub_1007E301(a5, 0, \"Ids\");\n  else\n    v6 = 0;\n  if ( !v6 )\n    return 0;\n  result = sub_1005FF91(a1, a2, a3, a4, v6);\n  *(_DWORD *)(v6 + 8) = 0;\n  return result;\n}\n"
-}

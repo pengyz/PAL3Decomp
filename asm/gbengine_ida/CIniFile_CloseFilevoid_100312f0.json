@@ -1,8 +1,0 @@
-{
-  "name": "CIniFile::CloseFile(void)",
-  "mangled_name": "?CloseFile@CIniFile@@QAEXXZ",
-  "address": "0x100312F0",
-  "size_bytes": 32,
-  "signature": "void __thiscall(void ***this)",
-  "decompiled_c": "void __thiscall CIniFile::CloseFile(void ***this)\n{\n  gbVFileSystem::CloseFile(g_pVFileSys, *this);\n  *this = 0;\n  *(this + 1) = (void **)-1;\n}\n"
-}

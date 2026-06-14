@@ -1,8 +1,0 @@
-{
-  "name": "sub_1001EAC0",
-  "mangled_name": "sub_1001EAC0",
-  "address": "0x1001EAC0",
-  "size_bytes": 183,
-  "signature": "void __thiscall(int this)",
-  "decompiled_c": "void __thiscall sub_1001EAC0(int this)\n{\n  char *v2; // eax\n  int v3; // edi\n  char *v4; // ebp\n  char *v5; // eax\n  int v6; // ecx\n  char *v7; // ecx\n  void *v8; // ecx\n\n  if ( *(_DWORD *)(this + 188) )\n  {\n    v2 = (char *)malloc(3 * *(_DWORD *)(this + 132) * *(_DWORD *)(this + 128));\n    v3 = 0;\n    v4 = v2;\n    if ( *(_DWORD *)(this + 132) * *(_DWORD *)(this + 128) > 0 )\n    {\n      v5 = v2 + 2;\n      do\n      {\n        v5 += 3;\n        v6 = *(unsigned __int8 *)(*(_DWORD *)(this + 184) + v3++);\n        v7 = (char *)(*(_DWORD *)(this + 188) + 4 * v6);\n        *(v5 - 5) = *v7;\n        *(v5 - 4) = v7[1];\n        *(v5 - 3) = v7[2];\n      }\n      while ( v3 < *(_DWORD *)(this + 132) * *(_DWORD *)(this + 128) );\n    }\n    free(*(void **)(this + 184));\n    v8 = *(void **)(this + 188);\n    *(_DWORD *)(this + 184) = v4;\n    free(v8);\n    *(_DWORD *)(this + 188) = 0;\n    *(_DWORD *)(this + 180) = 24;\n  }\n}\n"
-}

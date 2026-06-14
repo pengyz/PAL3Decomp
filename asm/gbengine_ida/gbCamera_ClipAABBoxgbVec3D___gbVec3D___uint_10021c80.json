@@ -1,8 +1,0 @@
-{
-  "name": "gbCamera::ClipAABBox(gbVec3D *,gbVec3D *,uint)",
-  "mangled_name": "?ClipAABBox@gbCamera@@QAEIPAUgbVec3D@@0I@Z",
-  "address": "0x10021C80",
-  "size_bytes": 253,
-  "signature": "unsigned int __thiscall(gbCamera *this, struct gbVec3D *a2, struct gbVec3D *a3, unsigned int a4)",
-  "decompiled_c": "unsigned int __thiscall gbCamera::ClipAABBox(gbCamera *this, struct gbVec3D *a2, struct gbVec3D *a3, unsigned int a4)\n{\n  int v4; // ebx\n  int v5; // edi\n  int v6; // edx\n  float *v7; // ecx\n  double v9; // st7\n  unsigned __int8 v10; // c0\n  unsigned __int8 v11; // c3\n  double v13; // st6\n  unsigned __int8 v14; // c0\n  unsigned __int8 v15; // c3\n  double v17; // st5\n  unsigned __int8 v18; // c0\n  unsigned __int8 v19; // c3\n  char v21; // c0\n\n  v4 = *((_DWORD *)this + 36);\n  v5 = 0;\n  v6 = 1;\n  if ( v4 <= 0 )\n    return a4;\n  v7 = (float *)((char *)this + 52);\n  while ( (v6 & a4) != 0 )\n  {\nLABEL_13:\n    ++v5;\n    v7 += 4;\n    v6 *= 2;\n    if ( v5 >= v4 )\n      return a4;\n  }\n  v9 = *(float *)a3;\n  if ( !(v10 | v11) )\n    v9 = -v9;\n  v13 = *((float *)a3 + 1);\n  if ( !(v14 | v15) )\n    v13 = -v13;\n  v17 = *((float *)a3 + 2);\n  if ( !(v18 | v19) )\n    v17 = -v17;\n  if ( (v17 + *((float *)a2 + 2)) * v7[1] + (v13 + *((float *)a2 + 1)) * *v7 + (v9 + *(float *)a2) * *(v7 - 1) + v7[2] >= 0.0 )\n  {\n    a4 |= v6;\n    goto LABEL_13;\n  }\n  if ( !v21 )\n    goto LABEL_13;\n  return 0x80000000;\n}\n"
-}

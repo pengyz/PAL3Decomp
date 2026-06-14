@@ -1,8 +1,0 @@
-{
-  "name": "sub_1001C3C0",
-  "mangled_name": "sub_1001C3C0",
-  "address": "0x1001C3C0",
-  "size_bytes": 146,
-  "signature": "_DWORD *__thiscall(_DWORD *this, int a2, int a3, int a4)",
-  "decompiled_c": "_DWORD *__thiscall sub_1001C3C0(_DWORD *this, int a2, int a3, int a4)\n{\n  int v5; // eax\n  void *v6; // eax\n\n  gbVertexPool::gbVertexPool(this, a2, a3, a4);\n  v5 = 0;\n  *this = &off_100F5758;\n  if ( a2 )\n  {\n    if ( a2 == 1 )\n    {\n      v5 = 520;\n    }\n    else if ( a2 == 2 )\n    {\n      v6 = malloc(a4 * *(this + 6));\n      goto LABEL_5;\n    }\n  }\n  v6 = (void *)sub_1001B0E0((int)gbVertexPool::pGfxMgr, a3, a4 * *(this + 6), v5);\nLABEL_5:\n  *(this + 3) = v6;\n  return this;\n}\n"
-}

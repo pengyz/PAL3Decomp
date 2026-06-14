@@ -1,8 +1,0 @@
-{
-  "name": "_fclose",
-  "mangled_name": "_fclose",
-  "address": "0x100E5C22",
-  "size_bytes": 49,
-  "signature": "int __cdecl(FILE *Stream)",
-  "decompiled_c": "int __cdecl fclose(FILE *Stream)\n{\n  int v1; // edi\n\n  v1 = -1;\n  if ( (Stream->_flag & 0x40) != 0 )\n  {\n    Stream->_flag = 0;\n  }\n  else\n  {\n    _lock_file(Stream);\n    v1 = _fclose_lk(Stream);\n    _unlock_file(Stream);\n  }\n  return v1;\n}\n"
-}

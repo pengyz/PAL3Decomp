@@ -1,8 +1,0 @@
-{
-  "name": "sub_1007E3CC",
-  "mangled_name": "sub_1007E3CC",
-  "address": "0x1007E3CC",
-  "size_bytes": 75,
-  "signature": "BOOL __thiscall(int this, int *a2)",
-  "decompiled_c": "BOOL __thiscall sub_1007E3CC(int this, int *a2)\n{\n  return sub_1007E277((_DWORD *)this, (int)a2)\n      && *(_DWORD *)(this + 16) == a2[4]\n      && *(_DWORD *)(this + 20) == a2[5]\n      && sub_1007E28D(*(int (__thiscall ****)(_DWORD, int))(this + 8), a2[2])\n      && sub_1007E28D(*(int (__thiscall ****)(_DWORD, int))(this + 12), a2[3]) != 0;\n}\n"
-}

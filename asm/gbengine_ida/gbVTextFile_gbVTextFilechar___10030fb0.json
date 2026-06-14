@@ -1,8 +1,0 @@
-{
-  "name": "gbVTextFile::gbVTextFile(char *)",
-  "mangled_name": "??0gbVTextFile@@QAE@PAD@Z",
-  "address": "0x10030FB0",
-  "size_bytes": 36,
-  "signature": "gbVTextFile *__thiscall(gbVTextFile *this, char *a2)",
-  "decompiled_c": "gbVTextFile *__thiscall gbVTextFile::gbVTextFile(gbVTextFile *this, char *a2)\n{\n  *((_DWORD *)this + 256) = gbVFileSystem::OpenFile(g_pVFileSys, a2, 0x401u);\n  return this;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_1006B9AB",
-  "mangled_name": "sub_1006B9AB",
-  "address": "0x1006B9AB",
-  "size_bytes": 107,
-  "signature": "void __thiscall(void *this)",
-  "decompiled_c": "void __thiscall sub_1006B9AB(void *this)\n{\n  int *v2; // ecx\n  int v3; // eax\n  _DWORD *v4; // edi\n\n  v2 = (int *)*((_DWORD *)this + 5);\n  if ( v2 )\n  {\n    sub_1006AFB7(v2, 3);\n    *((_DWORD *)this + 5) = 0;\n  }\n  v3 = *(_DWORD *)this;\n  if ( (!*(_DWORD *)this || v3 == 2 || v3 == 4 || v3 > 5 && v3 <= 10) && *((_DWORD *)this + 3) )\n  {\n    operator delete(*((void **)this + 3));\n    *((_DWORD *)this + 3) = 0;\n  }\n  while ( *((_DWORD *)this + 6) )\n  {\n    v4 = (_DWORD *)*((_DWORD *)this + 6);\n    *((_DWORD *)this + 6) = v4[6];\n    v4[6] = 0;\n    sub_1006B9AB(v4);\n    operator delete(v4);\n  }\n}\n"
-}

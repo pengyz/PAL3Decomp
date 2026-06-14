@@ -1,8 +1,0 @@
-{
-  "name": "gbRenderEffect::operator=(gbRenderEffect const &)",
-  "mangled_name": "??4gbRenderEffect@@QAEAAV0@ABV0@@Z",
-  "address": "0x10004C50",
-  "size_bytes": 82,
-  "signature": "_DWORD *__thiscall(_DWORD *this, char *a2)",
-  "decompiled_c": "_DWORD *__thiscall gbRenderEffect::operator=(_DWORD *this, char *a2)\n{\n  _DWORD *result; // eax\n  int v3; // esi\n  _DWORD *v4; // edx\n  int v5; // ecx\n\n  result = this;\n  v3 = 8;\n  *(this + 1) = *((_DWORD *)a2 + 1);\n  *(this + 2) = *((_DWORD *)a2 + 2);\n  *(this + 3) = *((_DWORD *)a2 + 3);\n  *(this + 4) = *((_DWORD *)a2 + 4);\n  *(this + 5) = *((_DWORD *)a2 + 5);\n  *(this + 6) = *((_DWORD *)a2 + 6);\n  *(this + 7) = *((_DWORD *)a2 + 7);\n  *(this + 8) = *((_DWORD *)a2 + 8);\n  v4 = this + 9;\n  v5 = a2 - (char *)this;\n  do\n  {\n    *v4 = *(_DWORD *)((char *)v4 + v5);\n    ++v4;\n    --v3;\n  }\n  while ( v3 );\n  return result;\n}\n"
-}

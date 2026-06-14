@@ -1,8 +1,0 @@
-{
-  "name": "sub_10096F18",
-  "mangled_name": "sub_10096F18",
-  "address": "0x10096F18",
-  "size_bytes": 133,
-  "signature": "int __stdcall(int *__attribute__((__org_typedef(jmp_buf))) Buf, unsigned int a2)",
-  "decompiled_c": "int __stdcall sub_10096F18(jmp_buf Buf, unsigned int a2)\n{\n  unsigned int i; // edi\n\n  for ( i = Buf[40]; a2 > i; a2 -= i )\n    sub_1009664F(Buf, (_BYTE *)Buf[39], Buf[40]);\n  if ( a2 )\n    sub_1009664F(Buf, (_BYTE *)Buf[39], a2);\n  if ( !sub_10096666(Buf) )\n    return 0;\n  if ( ((Buf[67] & 0x20) == 0 || (*((_BYTE *)Buf + 93) & 2) != 0)\n    && ((Buf[67] & 0x20) != 0 || (*((_BYTE *)Buf + 93) & 4) == 0) )\n  {\n    sub_10078C0A(Buf, \"CRC error\");\n  }\n  sub_10078C2E((int)Buf, \"CRC error\");\n  return 1;\n}\n"
-}

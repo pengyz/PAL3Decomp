@@ -1,8 +1,0 @@
-{
-  "name": "gbstricmp(char const *,char const *)",
-  "mangled_name": "?gbstricmp@@YAHPBD0@Z",
-  "address": "0x1002FB90",
-  "size_bytes": 206,
-  "signature": "int __cdecl(char *a1, char *a2)",
-  "decompiled_c": "int __cdecl gbstricmp(char *a1, char *a2)\n{\n  char *v2; // eax\n  char v3; // cl\n  int v4; // edx\n  char v5; // cl\n  char v6; // cl\n  char *v7; // eax\n  char v8; // cl\n  int v9; // edx\n  char v10; // cl\n  char v11; // cl\n  char v13[2048]; // [esp+8h] [ebp-1000h] BYREF\n  char v14[2048]; // [esp+808h] [ebp-800h] BYREF\n\n  v2 = v14;\n  v3 = *a1;\n  if ( *a1 )\n  {\n    v4 = a1 - v14;\n    do\n    {\n      if ( v3 < 65 || (v5 = v2[v4], v5 > 90) )\n        v6 = v2[v4];\n      else\n        v6 = v5 + 32;\n      *v2 = v6;\n      v3 = (v2++)[v4 + 1];\n    }\n    while ( v3 );\n  }\n  *v2 = 0;\n  v7 = v13;\n  v8 = *a2;\n  if ( *a2 )\n  {\n    v9 = a2 - v13;\n    do\n    {\n      if ( v8 < 65 || (v10 = v7[v9], v10 > 90) )\n        v11 = v7[v9];\n      else\n        v11 = v10 + 32;\n      *v7 = v11;\n      v8 = (v7++)[v9 + 1];\n    }\n    while ( v8 );\n  }\n  *v7 = 0;\n  return strcmp(v14, v13);\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_10034776",
-  "mangled_name": "sub_10034776",
-  "address": "0x10034776",
-  "size_bytes": 46,
-  "signature": "double __stdcall(unsigned int a1)",
-  "decompiled_c": "double __stdcall sub_10034776(unsigned int a1)\n{\n  unsigned __int16 v1; // dx\n\n  LOBYTE(v1) = 0;\n  HIBYTE(v1) = BYTE2(a1);\n  return COERCE_FLOAT(HIBYTE(a1) + v1 + (((a1 << 16) + (a1 & 0xFF00)) << 8));\n}\n"
-}

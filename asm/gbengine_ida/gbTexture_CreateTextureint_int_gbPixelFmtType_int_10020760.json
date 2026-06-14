@@ -1,8 +1,0 @@
-{
-  "name": "gbTexture::CreateTexture(int,int,gbPixelFmtType,int)",
-  "mangled_name": "?CreateTexture@gbTexture@@QAEXHHW4gbPixelFmtType@@H@Z",
-  "address": "0x10020760",
-  "size_bytes": 102,
-  "signature": "void __thiscall(void *this, int a2, int a3, int a4, int a5)",
-  "decompiled_c": "void __thiscall gbTexture::CreateTexture(void *this, int a2, int a3, int a4, int a5)\n{\n  void *v6; // edi\n  _DWORD v7[11]; // [esp+10h] [ebp-2Ch] BYREF\n\n  gbPixelFormat::Init((gbPixelFormat *)v7, 1u);\n  v6 = malloc(a3 * a2 * v7[1] / 8);\n  (*(void (__thiscall **)(void *, int, int, int, int, _DWORD, void *))(*(_DWORD *)this + 4))(\n    this,\n    a2,\n    a3,\n    a4,\n    a5,\n    v7[0],\n    v6);\n  free(v6);\n}\n"
-}

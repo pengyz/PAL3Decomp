@@ -1,8 +1,0 @@
-{
-  "name": "gbGfxManager::OffsetZBuffer(int)",
-  "mangled_name": "?OffsetZBuffer@gbGfxManager@@QAEXH@Z",
-  "address": "0x1001E2C0",
-  "size_bytes": 36,
-  "signature": "void __thiscall(gbGfxManager *this, int a2)",
-  "decompiled_c": "void __thiscall gbGfxManager::OffsetZBuffer(gbGfxManager *this, int a2)\n{\n  if ( a2 != *((_DWORD *)this + 105) )\n  {\n    *((_DWORD *)this + 105) = a2;\n    *(_DWORD *)(*((_DWORD *)this + 53) + 12) = 0;\n  }\n}\n"
-}

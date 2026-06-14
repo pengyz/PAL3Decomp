@@ -1,8 +1,0 @@
-{
-  "name": "gbAnimNodeGroup::SetPriority(int)",
-  "mangled_name": "?SetPriority@gbAnimNodeGroup@@QAEXH@Z",
-  "address": "0x1000C900",
-  "size_bytes": 85,
-  "signature": "void __thiscall(gbAnimNodeGroup *this, int a2)",
-  "decompiled_c": "void __thiscall gbAnimNodeGroup::SetPriority(gbAnimNodeGroup *this, int a2)\n{\n  int v2; // edi\n  int v3; // eax\n  int i; // esi\n\n  v2 = *(_DWORD *)this;\n  if ( *(_DWORD *)this )\n  {\n    v3 = *(_DWORD *)(v2 + 348);\n    if ( v3 == 3 || v3 == 1 )\n      gbVisNode::SetRenderPriority(*(gbVisNode **)(v2 + 360), a2);\n    for ( i = 0; i < *(_DWORD *)(v2 + 20); ++i )\n    {\n      gbChain1D::operator[](i);\n      sub_1000C360(a2);\n    }\n  }\n}\n"
-}

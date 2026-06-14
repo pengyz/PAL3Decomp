@@ -1,8 +1,0 @@
-{
-  "name": "sub_1005FF3C",
-  "mangled_name": "sub_1005FF3C",
-  "address": "0x1005FF3C",
-  "size_bytes": 85,
-  "signature": "int __userpurge@<eax>(_DWORD *a1@<ecx>, double a2@<st1>, double a3@<st0>, _DWORD *a4, _DWORD *a5)",
-  "decompiled_c": "int __userpurge sub_1005FF3C@<eax>(_DWORD *a1@<ecx>, double a2@<st1>, double a3@<st0>, _DWORD *a4, _DWORD *a5)\n{\n  _DWORD *v5; // eax\n  _DWORD *v6; // edx\n  int v7; // eax\n  int v8; // edx\n  int result; // eax\n\n  v5 = sub_1005FDFA(a1, a2, a3, a4);\n  v6 = v5;\n  if ( !v5 )\n    return -2147467259;\n  v7 = v5[4];\n  if ( !v7 || *(_DWORD *)(v7 + 4) != 9 || !sub_10059302(v6[4]) )\n    return -2147467259;\n  result = sub_1005C0C5(a5, (double *)(*(_DWORD *)(*(_DWORD *)(v8 + 32) + 8) + 16), v8 + 48);\n  if ( result >= 0 )\n    return 0;\n  return result;\n}\n"
-}

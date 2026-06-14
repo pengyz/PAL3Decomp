@@ -1,8 +1,0 @@
-{
-  "name": "gbVFileSystem::FindItem(char const *)",
-  "mangled_name": "?FindItem@gbVFileSystem@@QAEHPBD@Z",
-  "address": "0x10030E90",
-  "size_bytes": 103,
-  "signature": "int __thiscall(gbVFileSystem *this, char *a2)",
-  "decompiled_c": "int __thiscall gbVFileSystem::FindItem(gbVFileSystem *this, char *a2)\n{\n  int v3; // ebx\n  int v4; // edi\n  int v5; // esi\n  int v6; // eax\n\n  v3 = 0;\n  v4 = *((_DWORD *)this + 5);\n  if ( v4 < 0 )\n    return -1;\n  while ( 1 )\n  {\n    v5 = (v4 + v3) / 2;\n    v6 = gbstricmp(a2, (char *)(320 * v5 + *((_DWORD *)this + 2) + 12));\n    if ( !v6 )\n      break;\n    if ( v6 >= 0 )\n      v3 = v5 + 1;\n    else\n      v4 = v5 - 1;\n    if ( v3 > v4 )\n      return -1;\n  }\n  if ( v3 <= v4 )\n    return (v4 + v3) / 2;\n  else\n    return -1;\n}\n"
-}

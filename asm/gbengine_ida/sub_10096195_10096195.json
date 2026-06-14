@@ -1,8 +1,0 @@
-{
-  "name": "sub_10096195",
-  "mangled_name": "sub_10096195",
-  "address": "0x10096195",
-  "size_bytes": 61,
-  "signature": "int __stdcall(_DWORD *a1)",
-  "decompiled_c": "int __stdcall sub_10096195(_DWORD *a1)\n{\n  int v1; // eax\n\n  if ( !a1 )\n    return -2;\n  v1 = a1[7];\n  if ( !v1 || !a1[9] )\n    return -2;\n  if ( *(_DWORD *)(v1 + 20) )\n    sub_100DDBD2(*(_DWORD *)(v1 + 20), a1);\n  ((void (__stdcall *)(_DWORD, _DWORD))a1[9])(a1[10], a1[7]);\n  a1[7] = 0;\n  return 0;\n}\n"
-}

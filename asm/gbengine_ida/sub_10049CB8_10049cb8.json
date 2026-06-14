@@ -1,8 +1,0 @@
-{
-  "name": "sub_10049CB8",
-  "mangled_name": "sub_10049CB8",
-  "address": "0x10049CB8",
-  "size_bytes": 152,
-  "signature": "float *__stdcall(float *a1, int a2, float *a3, int a4, float *a5, int a6)",
-  "decompiled_c": "float *__stdcall sub_10049CB8(float *a1, int a2, float *a3, int a4, float *a5, int a6)\n{\n  float *v6; // esi\n  int v7; // edi\n  float *v9; // ecx\n  double v11; // st7\n  int v12; // edx\n  double v13; // st7\n  float v15; // [esp+14h] [ebp-10h]\n  float v16; // [esp+18h] [ebp-Ch]\n  float v17; // [esp+2Ch] [ebp+8h]\n\n  v6 = a1;\n  v7 = a6;\n  if ( a6 )\n  {\n    v9 = a5;\n    do\n    {\n      v15 = v9[4] * a3[1] + *a3 * *v9 + v9[12];\n      v16 = v9[1] * *a3 + v9[5] * a3[1] + v9[13];\n      v11 = v9[3] * *a3 + v9[7] * a3[1] + v9[15];\n      *v6 = v15;\n      v6[1] = v16;\n      v17 = v11;\n      if ( !sub_10046BF4(v17, 1.0) )\n      {\n        v13 = 1.0 / v17;\n        *v6 = v13 * *v6;\n        v6[1] = v13 * v6[1];\n      }\n      a3 = (float *)(a4 + v12);\n      v6 = (float *)((char *)v6 + a2);\n      --v7;\n    }\n    while ( v7 );\n  }\n  return a1;\n}\n"
-}

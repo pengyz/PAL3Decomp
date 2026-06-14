@@ -1,8 +1,0 @@
-{
-  "name": "std::ios_base::~ios_base(void)",
-  "mangled_name": "??1ios_base@std@@UAE@XZ",
-  "address": "0x100095A0",
-  "size_bytes": 137,
-  "signature": "void __thiscall(std::ios_base *this)",
-  "decompiled_c": "void __thiscall std::ios_base::~ios_base(std::ios_base *this)\n{\n  int i; // edi\n  int v3; // eax\n  void *v4; // ebx\n\n  *(_DWORD *)this = &off_100F550C;\n  for ( i = 0; i < *((_DWORD *)this + 25); ++i )\n  {\n    v3 = *((_DWORD *)this + 23);\n    v4 = *(void **)(v3 + 4 * i);\n    if ( v4 )\n    {\n      sub_1000A570(*(_DWORD *)(v3 + 4 * i));\n      operator delete(v4);\n    }\n  }\n  if ( *((_DWORD *)this + 23) )\n    free(*((void **)this + 23));\n  gbResource::~gbResource(this);\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbPartEmitter::~gbPartEmitter(void)",
-  "mangled_name": "??1gbPartEmitter@@QAE@XZ",
-  "address": "0x1000D940",
-  "size_bytes": 11,
-  "signature": "void __thiscall(gbPartEmitter *this)",
-  "decompiled_c": "void __thiscall gbPartEmitter::~gbPartEmitter(gbPartEmitter *this)\n{\n  void **v1; // ecx\n  void **v2; // esi\n\n  v1 = (void **)((char *)this + 204);\n  v2 = v1;\n  if ( *v1 )\n  {\n    operator delete(*v1);\n    *v2 = 0;\n  }\n  if ( v2[1] )\n  {\n    operator delete(v2[1]);\n    v2[1] = 0;\n  }\n}\n"
-}

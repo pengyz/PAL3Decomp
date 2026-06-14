@@ -1,8 +1,0 @@
-{
-  "name": "gbRay::IsColOBB_H(gbOBBox &)",
-  "mangled_name": "?IsColOBB_H@gbRay@@QAEHAAUgbOBBox@@@Z",
-  "address": "0x10028260",
-  "size_bytes": 248,
-  "signature": "int __thiscall(gbRay *this, struct gbOBBox *a2)",
-  "decompiled_c": "int __thiscall gbRay::IsColOBB_H(gbRay *this, struct gbOBBox *a2)\n{\n  double v3; // st7\n  double v4; // st6\n  double v5; // st7\n  double v6; // st6\n  double v7; // st6\n  float v9; // [esp+Ch] [ebp-78h]\n  float v10; // [esp+Ch] [ebp-78h]\n  float v11; // [esp+10h] [ebp-74h]\n  float v12; // [esp+10h] [ebp-74h]\n  _DWORD v13[3]; // [esp+14h] [ebp-70h] BYREF\n  _DWORD v14[3]; // [esp+20h] [ebp-64h] BYREF\n  float v15[6]; // [esp+2Ch] [ebp-58h] BYREF\n  _BYTE v16[64]; // [esp+44h] [ebp-40h] BYREF\n\n  memset(v13, 0, sizeof(v13));\n  memset(v14, 0, sizeof(v14));\n  gbMatrix4::gbMatrix4((gbMatrix4 *)v16);\n  gbMatrix4::Invert(a2, (struct gbMatrix4 *)v16);\n  gbMatrix4::Transform((gbMatrix4 *)v16, this, (struct gbVec3D *)v13);\n  gbMatrix4::Rotate((gbMatrix4 *)v16, (gbRay *)((char *)this + 12), (struct gbVec3D *)v14);\n  v3 = *((float *)a2 + 16) * -0.5;\n  v9 = *((float *)a2 + 17) * -0.5;\n  v4 = *((float *)a2 + 18) * -0.5;\n  v15[1] = v9;\n  v11 = v4;\n  v15[0] = v3;\n  v5 = *((float *)a2 + 16) * 0.5;\n  v6 = *((float *)a2 + 17) * 0.5;\n  v15[2] = v11;\n  v10 = v6;\n  v7 = *((float *)a2 + 18) * 0.5;\n  v15[4] = v10;\n  v12 = v7;\n  v15[3] = v5;\n  v15[5] = v12;\n  return gbRay::IsColAABB((gbRay *)v13, (struct gbAABBox *)v15);\n}\n"
-}

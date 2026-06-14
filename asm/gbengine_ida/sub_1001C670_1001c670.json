@@ -1,8 +1,0 @@
-{
-  "name": "sub_1001C670",
-  "mangled_name": "sub_1001C670",
-  "address": "0x1001C670",
-  "size_bytes": 258,
-  "signature": "int __thiscall(_DWORD *this, int a2, _DWORD *a3)",
-  "decompiled_c": "int __thiscall sub_1001C670(_DWORD *this, int a2, _DWORD *a3)\n{\n  gbGfxManager_D3D *v5; // edi\n  int v6; // ebx\n  int v7; // ebp\n  int v8; // eax\n  int v10; // [esp+1Ch] [ebp-Ch]\n  int v12; // [esp+24h] [ebp-4h]\n  int v13; // [esp+30h] [ebp+8h]\n\n  v5 = gbVertexPool::pGfxMgr;\n  v6 = *((_DWORD *)gbVertexPool::pGfxMgr + 454);\n  v12 = sub_10020890(a3[3], a3[4]);\n  switch ( a3[3] )\n  {\n    case 1:\n      v13 = 4;\n      break;\n    case 2:\n      v13 = 6;\n      break;\n    case 3:\n      v13 = 5;\n      break;\n    case 4:\n      v13 = 2;\n      break;\n    case 5:\n      v13 = 3;\n      break;\n    default:\n      v13 = 1;\n      break;\n  }\n  v7 = *(this + 3);\n  v8 = *(_DWORD *)(a3[2] + 16);\n  v10 = v8;\n  if ( *((_DWORD *)v5 + 570) != v7 )\n  {\n    (*(void (__stdcall **)(int, _DWORD, int, _DWORD, _DWORD))(*(_DWORD *)v6 + 400))(v6, 0, v7, 0, *(this + 6));\n    v8 = v10;\n    *((_DWORD *)v5 + 570) = v7;\n  }\n  if ( *((_DWORD *)v5 + 571) != v8 )\n  {\n    (*(void (__stdcall **)(int, int))(*(_DWORD *)v6 + 416))(v6, v8);\n    *((_DWORD *)v5 + 571) = v10;\n  }\n  return (*(int (__stdcall **)(int, int, _DWORD, _DWORD, int, _DWORD, int))(*(_DWORD *)v6 + 328))(\n           v6,\n           v13,\n           *(_DWORD *)(a2 + 12),\n           a3[7],\n           a3[8] - a3[7] + 1,\n           a3[6],\n           v12);\n}\n"
-}

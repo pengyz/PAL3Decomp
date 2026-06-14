@@ -1,8 +1,0 @@
-{
-  "name": "gbMatrix4::LeftScale(float,float,float)",
-  "mangled_name": "?LeftScale@gbMatrix4@@QAEXMMM@Z",
-  "address": "0x10026210",
-  "size_bytes": 91,
-  "signature": "void __thiscall(gbMatrix4 *this, float a2, float a3, float a4)",
-  "decompiled_c": "void __thiscall gbMatrix4::LeftScale(gbMatrix4 *this, float a2, float a3, float a4)\n{\n  *(float *)this = a2 * *(float *)this;\n  *((float *)this + 1) = a2 * *((float *)this + 1);\n  *((float *)this + 2) = a2 * *((float *)this + 2);\n  *((float *)this + 4) = a3 * *((float *)this + 4);\n  *((float *)this + 5) = a3 * *((float *)this + 5);\n  *((float *)this + 6) = a3 * *((float *)this + 6);\n  *((float *)this + 8) = a4 * *((float *)this + 8);\n  *((float *)this + 9) = a4 * *((float *)this + 9);\n  *((float *)this + 10) = a4 * *((float *)this + 10);\n}\n"
-}

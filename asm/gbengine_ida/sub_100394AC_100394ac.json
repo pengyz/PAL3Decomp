@@ -1,8 +1,0 @@
-{
-  "name": "sub_100394AC",
-  "mangled_name": "sub_100394AC",
-  "address": "0x100394AC",
-  "size_bytes": 234,
-  "signature": "int __userpurge@<eax>(unsigned int a1@<edi>, unsigned int a2@<esi>, int a3)",
-  "decompiled_c": "int __userpurge sub_100394AC@<eax>(unsigned int a1@<edi>, unsigned int a2@<esi>, int a3)\n{\n  int result; // eax\n  int v4; // ecx\n  int v5; // eax\n  int v6; // edx\n  double v7; // st7\n  int v8; // [esp+0h] [ebp-1Ch]\n  float v9; // [esp+10h] [ebp-Ch]\n  float v10; // [esp+14h] [ebp-8h]\n  unsigned int i; // [esp+18h] [ebp-4h]\n\n  result = operator new(16 * a1);\n  v4 = result;\n  if ( result )\n  {\n    v8 = result;\n    for ( i = 0; i < a1; *(float *)(v4 - 4) = 1.0 - v7 )\n    {\n      v9 = (double)a2 / (double)a1;\n      v10 = ((double)i + 0.5) * v9 + 0.5;\n      v5 = (int)v10;\n      v6 = v5 - 1;\n      v7 = (double)v5 + 1.0 - v10;\n      if ( v5 - 1 < 0 )\n        v6 = a3 != 0 ? a2 - 1 : 0;\n      if ( v5 >= a2 )\n        v5 = a3 == 0 ? a2 - 1 : 0;\n      *(float *)(v4 + 4) = v7;\n      *(_DWORD *)v4 = v6;\n      *(_DWORD *)(v4 + 8) = v5;\n      v4 += 16;\n      ++i;\n    }\n    return v8;\n  }\n  return result;\n}\n"
-}

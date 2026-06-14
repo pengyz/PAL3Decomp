@@ -1,8 +1,0 @@
-{
-  "name": "gbPartGroupParam::~gbPartGroupParam(void)",
-  "mangled_name": "??1gbPartGroupParam@@QAE@XZ",
-  "address": "0x1002A7A0",
-  "size_bytes": 67,
-  "signature": "void __thiscall(gbPartGroupParam *this)",
-  "decompiled_c": "void __thiscall gbPartGroupParam::~gbPartGroupParam(gbPartGroupParam *this)\n{\n  int v2; // edi\n  gbRefObject *v3; // ecx\n  gbRefObject **v4; // ebx\n\n  v2 = 0;\n  v3 = (gbRefObject *)*((_DWORD *)this + 4687);\n  if ( v3 )\n  {\n    gbRefObject::Release(v3);\n    *((_DWORD *)this + 4687) = 0;\n  }\n  if ( *((int *)this + 4686) > 0 )\n  {\n    v4 = (gbRefObject **)((char *)this + 18680);\n    do\n    {\n      gbRefObject::Release(*v4);\n      ++v2;\n      ++v4;\n    }\n    while ( v2 < *((_DWORD *)this + 4686) );\n  }\n}\n"
-}

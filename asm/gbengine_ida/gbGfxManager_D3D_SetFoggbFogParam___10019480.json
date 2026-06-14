@@ -1,8 +1,0 @@
-{
-  "name": "gbGfxManager_D3D::SetFog(gbFogParam *)",
-  "mangled_name": "?SetFog@gbGfxManager_D3D@@UAEXPAUgbFogParam@@@Z",
-  "address": "0x10019480",
-  "size_bytes": 99,
-  "signature": "void __thiscall(gbGfxManager *this, struct gbFogParam *a2)",
-  "decompiled_c": "void __thiscall gbGfxManager_D3D::SetFog(gbGfxManager *this, struct gbFogParam *a2)\n{\n  gbGfxManager::SetFog(this, a2);\n  if ( a2 )\n    (*(void (__stdcall **)(_DWORD, int, _DWORD))(**((_DWORD **)this + 454) + 228))(\n      *((_DWORD *)this + 454),\n      34,\n      (__int64)(*((float *)a2 + 1) * 255.0)\n    | (((unsigned int)(__int64)(*((float *)a2 + 2) * 255.0) | ((unsigned int)(__int64)(*((float *)a2 + 3) * 255.0) << 8)) << 8));\n}\n"
-}

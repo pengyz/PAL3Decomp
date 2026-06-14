@@ -1,8 +1,0 @@
-{
-  "name": "gbSceneGraph::~gbSceneGraph(void)",
-  "mangled_name": "??1gbSceneGraph@@QAE@XZ",
-  "address": "0x10014C60",
-  "size_bytes": 101,
-  "signature": "void __thiscall(gbSceneGraph *this)",
-  "decompiled_c": "void __thiscall gbSceneGraph::~gbSceneGraph(gbSceneGraph *this)\n{\n  void *v2; // edi\n  void (__thiscall ***v3)(_DWORD, int); // ecx\n  void *v4; // edi\n  void *v5; // ecx\n\n  v2 = (void *)*((_DWORD *)this + 2);\n  if ( v2 )\n  {\n    sub_10014650(*((_DWORD *)this + 2));\n    operator delete(v2);\n  }\n  v3 = (void (__thiscall ***)(_DWORD, int))*((_DWORD *)this + 3);\n  if ( v3 )\n    (**v3)(v3, 1);\n  v4 = (void *)*((_DWORD *)this + 4810);\n  if ( v4 )\n  {\n    sub_1000ECC0(*((_DWORD *)this + 4810));\n    operator delete(v4);\n  }\n  gbRefObject::Release(*((gbRefObject **)this + 4808));\n  v5 = *(void **)this;\n  *((_DWORD *)this + 4807) = 0;\n  free(v5);\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_1000DE90",
-  "mangled_name": "sub_1000DE90",
-  "address": "0x1000DE90",
-  "size_bytes": 53,
-  "signature": "int __cdecl(char *String, char a2)",
-  "decompiled_c": "int __cdecl sub_1000DE90(char *String, char a2)\n{\n  char v2; // dl\n  int result; // eax\n  int v4; // ecx\n\n  v2 = a2;\n  result = 0;\n  if ( a2 > 125 )\n  {\n    result = atoi(String);\n    v2 = 127;\n  }\n  v4 = dword_10137BB4;\n  dword_10137BB8[dword_10137BB4] = result;\n  byte_10138BB8[v4] = v2;\n  dword_10137BB4 = v4 + 1;\n  return result;\n}\n"
-}

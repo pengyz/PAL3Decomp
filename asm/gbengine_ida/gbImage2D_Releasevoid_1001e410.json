@@ -1,8 +1,0 @@
-{
-  "name": "gbImage2D::Release(void)",
-  "mangled_name": "?Release@gbImage2D@@QAEXXZ",
-  "address": "0x1001E410",
-  "size_bytes": 89,
-  "signature": "void __thiscall(gbImage2D *this)",
-  "decompiled_c": "// Alternative name is '??1gbImage2D@@QAE@XZ'\nvoid __thiscall gbImage2D::Release(gbImage2D *this)\n{\n  void *v2; // eax\n\n  v2 = (void *)*((_DWORD *)this + 46);\n  *((_DWORD *)this + 45) = 0;\n  *((_DWORD *)this + 33) = 0;\n  *((_DWORD *)this + 32) = 0;\n  if ( v2 )\n  {\n    free(v2);\n    *((_DWORD *)this + 46) = 0;\n  }\n  if ( *((_DWORD *)this + 47) )\n  {\n    free(*((void **)this + 47));\n    *((_DWORD *)this + 47) = 0;\n    *((_DWORD *)this + 48) = 0;\n  }\n  *((_BYTE *)this + 199) = 0;\n}\n"
-}

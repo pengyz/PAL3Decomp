@@ -1,8 +1,0 @@
-{
-  "name": "sub_100941B0",
-  "mangled_name": "sub_100941B0",
-  "address": "0x100941B0",
-  "size_bytes": 67,
-  "signature": "int __stdcall(int a1)",
-  "decompiled_c": "int __stdcall sub_100941B0(int a1)\n{\n  int (__stdcall **v1)(int *); // eax\n  int result; // eax\n\n  v1 = *(int (__stdcall ***)(int *))(a1 + 440);\n  *v1 = sub_100940F0;\n  v1[4] = 0;\n  v1[5] = 0;\n  v1[6] = (int (__stdcall *)(int *))1;\n  (*(void (__stdcall **)(int))(*(_DWORD *)a1 + 16))(a1);\n  result = (**(int (__stdcall ***)(int))(a1 + 444))(a1);\n  *(_DWORD *)(a1 + 164) = 0;\n  return result;\n}\n"
-}

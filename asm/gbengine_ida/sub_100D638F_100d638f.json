@@ -1,8 +1,0 @@
-{
-  "name": "sub_100D638F",
-  "mangled_name": "sub_100D638F",
-  "address": "0x100D638F",
-  "size_bytes": 192,
-  "signature": "__m128 *__stdcall(__m128 *a1, int a2, int a3, int a4)",
-  "decompiled_c": "__m128 *__stdcall sub_100D638F(__m128 *a1, int a2, int a3, int a4)\n{\n  __m128 v4; // xmm7\n  __m128 v5; // xmm0\n  __m128 v6; // xmm0\n  __m128 v7; // xmm2\n  __m128 v9; // xmm1\n  __m128 v10; // xmm2\n  __m128 v11; // xmm3\n  __m128 v12; // xmm4\n  __m128 v13; // xmm5\n  __m128 v14; // xmm0\n  __m128 v15; // xmm1\n  __m128 v16; // [esp+0h] [ebp-10h]\n\n  v4 = _mm_loadh_ps((const double *)(a2 + 8));\n  v5 = _mm_loadh_ps((const double *)(a3 + 8));\n  v6 = _mm_shuffle_ps(v5, v5, 57);\n  v7 = _mm_loadh_ps((const double *)(a4 + 8));\n  v9 = _mm_mul_ps(v6, v7);\n  v10 = _mm_shuffle_ps(v7, v7, 78);\n  v11 = _mm_mul_ps(v6, v10);\n  v16 = _mm_mul_ps(v6, _mm_shuffle_ps(v10, v10, 57));\n  v12 = _mm_sub_ps(_mm_shuffle_ps(v11, v11, 57), _mm_shuffle_ps(v9, v9, 78));\n  v13 = _mm_shuffle_ps(v9, v9, 57);\n  v14 = _mm_shuffle_ps(v4, v4, 57);\n  v15 = _mm_shuffle_ps(v14, v14, 57);\n  *a1 = _mm_xor_ps(\n          _mm_add_ps(\n            _mm_add_ps(_mm_mul_ps(v14, v12), _mm_mul_ps(v15, _mm_sub_ps(_mm_shuffle_ps(v16, v16, 78), v16))),\n            _mm_mul_ps(_mm_shuffle_ps(v15, v15, 57), _mm_sub_ps(v11, v13))),\n          (__m128)xmmword_10128660);\n  return a1;\n}\n"
-}

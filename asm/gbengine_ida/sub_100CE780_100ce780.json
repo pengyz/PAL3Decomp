@@ -1,8 +1,0 @@
-{
-  "name": "sub_100CE780",
-  "mangled_name": "sub_100CE780",
-  "address": "0x100CE780",
-  "size_bytes": 127,
-  "signature": "int __stdcall(int a1, int a2, char **a3, int *a4)",
-  "decompiled_c": "int __stdcall sub_100CE780(int a1, int a2, char **a3, int *a4)\n{\n  int v4; // ebx\n  int result; // eax\n  int v6; // esi\n  char *v7; // edx\n  _BYTE *v8; // eax\n  unsigned int v9; // ebp\n  _BYTE *i; // edi\n  char v11; // cl\n  _BYTE *v12; // eax\n\n  v4 = *a4;\n  result = *(_DWORD *)(a1 + 316);\n  v6 = 0;\n  if ( result > 0 )\n  {\n    do\n    {\n      v7 = *a3;\n      v8 = *(_BYTE **)(v4 + 4 * v6);\n      v9 = *(_DWORD *)(a1 + 112);\n      for ( i = &v8[v9]; v8 < i; v8 = v12 + 1 )\n      {\n        v11 = *v7++;\n        *v8 = v11;\n        v12 = v8 + 1;\n        *v12 = v11;\n      }\n      sub_10095490(v4, v6, v4, v6 + 1, 1, v9);\n      result = a1;\n      v6 += 2;\n      ++a3;\n    }\n    while ( v6 < *(_DWORD *)(a1 + 316) );\n  }\n  return result;\n}\n"
-}

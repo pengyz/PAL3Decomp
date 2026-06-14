@@ -1,8 +1,0 @@
-{
-  "name": "__fload",
-  "mangled_name": "__fload",
-  "address": "0x100EFD6E",
-  "size_bytes": 60,
-  "signature": "double __cdecl(double a1)",
-  "decompiled_c": "double __cdecl _fload(double a1)\n{\n  double v2; // [esp+6h] [ebp-Ah]\n\n  if ( (HIWORD(a1) & 0x7FF0) != 0x7FF0 )\n    return a1;\n  HIDWORD(v2) = *(_QWORD *)&a1 >> 21;\n  LODWORD(v2) = LODWORD(a1);\n  return v2;\n}\n"
-}

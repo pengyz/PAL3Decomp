@@ -1,8 +1,0 @@
-{
-  "name": "sub_10064B53",
-  "mangled_name": "sub_10064B53",
-  "address": "0x10064B53",
-  "size_bytes": 87,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "int __thiscall sub_10064B53(int this)\n{\n  int v2; // eax\n  int v3; // ecx\n  size_t v4; // eax\n  int v5; // ebx\n  bool v6; // cf\n  int v7; // edi\n  int v8; // eax\n\n  v2 = (*(_DWORD *)(this + 8) & 1) + 2 * (*(_DWORD *)(this + 8) >> 1);\n  v3 = *(unsigned __int16 *)(this + 48);\n  *(_DWORD *)(this + 16) = v2;\n  v4 = v2 + 2 * v3;\n  v5 = 0;\n  v6 = *(_DWORD *)(this + 12) < v4;\n  *(_DWORD *)(this + 8) = v4;\n  if ( v6 )\n  {\n    v7 = operator new(v4);\n    if ( v7 )\n    {\n      if ( *(_DWORD *)this )\n      {\n        operator delete(*(void **)this);\n        *(_DWORD *)this = 0;\n      }\n      v8 = *(_DWORD *)(this + 8);\n      *(_DWORD *)this = v7;\n      *(_DWORD *)(this + 12) = v8;\n    }\n    else\n    {\n      return -2147024882;\n    }\n  }\n  return v5;\n}\n"
-}

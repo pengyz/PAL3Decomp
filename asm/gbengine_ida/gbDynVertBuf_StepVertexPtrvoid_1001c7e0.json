@@ -1,8 +1,0 @@
-{
-  "name": "gbDynVertBuf::StepVertexPtr(void)",
-  "mangled_name": "?StepVertexPtr@gbDynVertBuf@@QAEXXZ",
-  "address": "0x1001C7E0",
-  "size_bytes": 126,
-  "signature": "void __thiscall(gbDynVertBuf *this)",
-  "decompiled_c": "void __thiscall gbDynVertBuf::StepVertexPtr(gbDynVertBuf *this)\n{\n  int v1; // eax\n\n  v1 = *((_DWORD *)this + 3);\n  if ( (v1 & 1) != 0 )\n    *((_DWORD *)this + 7) += *((_DWORD *)this + 4);\n  if ( (v1 & 2) != 0 )\n    *((_DWORD *)this + 8) += *((_DWORD *)this + 4);\n  if ( (v1 & 4) != 0 )\n    *((_DWORD *)this + 9) += *((_DWORD *)this + 4);\n  if ( (v1 & 8) != 0 )\n    *((_DWORD *)this + 10) += *((_DWORD *)this + 4);\n  if ( (v1 & 0x10) != 0 )\n    *((_DWORD *)this + 11) += *((_DWORD *)this + 4);\n  if ( (v1 & 0x20) != 0 )\n    *((_DWORD *)this + 12) += *((_DWORD *)this + 4);\n  if ( (v1 & 0x40) != 0 )\n    *((_DWORD *)this + 13) += *((_DWORD *)this + 4);\n  if ( (v1 & 0x80u) != 0 )\n    *((_DWORD *)this + 14) += *((_DWORD *)this + 4);\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_100CF8E0",
-  "mangled_name": "sub_100CF8E0",
-  "address": "0x100CF8E0",
-  "size_bytes": 132,
-  "signature": "int __stdcall(int a1, int a2, int a3, int *a4, int a5)",
-  "decompiled_c": "int __stdcall sub_100CF8E0(int a1, int a2, int a3, int *a4, int a5)\n{\n  int v5; // ebp\n  int v6; // edi\n  int result; // eax\n  int v8; // edx\n  int v9; // esi\n  _BYTE *v10; // eax\n  _BYTE *v11; // ecx\n  bool v12; // zf\n  int v13; // [esp+8h] [ebp-4h]\n  int v14; // [esp+10h] [ebp+4h]\n  int v15; // [esp+20h] [ebp+14h]\n\n  v5 = *(_DWORD *)(a1 + 36);\n  v6 = *(_DWORD *)(a1 + 112);\n  result = a5 - 1;\n  v13 = v6;\n  if ( a5 - 1 >= 0 )\n  {\n    v8 = 4 * a3;\n    v14 = a5;\n    do\n    {\n      v9 = 0;\n      if ( v5 > 0 )\n      {\n        v15 = *a4;\n        do\n        {\n          v10 = *(_BYTE **)(v8 + *(_DWORD *)(a2 + 4 * v9));\n          v11 = (_BYTE *)(v9 + v15);\n          if ( v6 )\n          {\n            do\n            {\n              *v11 = *v10++;\n              v11 += v5;\n              --v6;\n            }\n            while ( v6 );\n            v6 = v13;\n          }\n          ++v9;\n        }\n        while ( v9 < v5 );\n      }\n      v8 += 4;\n      result = v14 - 1;\n      v12 = v14 == 1;\n      ++a4;\n      --v14;\n    }\n    while ( !v12 );\n  }\n  return result;\n}\n"
-}

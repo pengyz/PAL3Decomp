@@ -1,8 +1,0 @@
-{
-  "name": "sub_10095588",
-  "mangled_name": "sub_10095588",
-  "address": "0x10095588",
-  "size_bytes": 55,
-  "signature": "void *__stdcall(int *__attribute__((__org_typedef(jmp_buf))) Buf, size_t Size)",
-  "decompiled_c": "void *__stdcall sub_10095588(jmp_buf Buf, size_t Size)\n{\n  void *result; // eax\n\n  if ( !Buf || !Size )\n    return 0;\n  result = malloc(Size);\n  if ( !result )\n    sub_10078BD5(Buf, (int)\"Out of Memory\");\n  return result;\n}\n"
-}

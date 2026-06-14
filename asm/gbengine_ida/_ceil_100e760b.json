@@ -1,8 +1,0 @@
-{
-  "name": "_ceil",
-  "mangled_name": "_ceil",
-  "address": "0x100E760B",
-  "size_bytes": 207,
-  "signature": "double __cdecl(double X)",
-  "decompiled_c": "double __cdecl ceil(double X)\n{\n  double result; // st7\n  int v2; // ebx\n  int v3; // eax\n  int v4; // [esp+10h] [ebp-14h]\n\n  result = X;\n  v2 = _ctrlfp(dword_10129FB0, 0xFFFF);\n  if ( (HIWORD(X) & 0x7FF0) == 0x7FF0 )\n  {\n    v3 = _sptype(LODWORD(X), HIDWORD(X));\n    if ( v3 > 0 )\n    {\n      if ( v3 <= 2 )\n      {\n        _ctrlfp(v2, 0xFFFF);\n        return X;\n      }\n      if ( v3 == 3 )\n      {\n        _handle_qnan1(v4, 12, X, v2);\n        return X;\n      }\n    }\n    _except1(\n      8u,\n      12,\n      SLODWORD(X),\n      SHIDWORD(X),\n      COERCE_UNSIGNED_INT64(X + 1.0),\n      HIDWORD(COERCE_UNSIGNED_INT64(X + 1.0)),\n      v2);\n    return X;\n  }\n  else\n  {\n    _frnd(X);\n    _ctrlfp(v2, 0xFFFF);\n  }\n  return result;\n}\n"
-}

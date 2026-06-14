@@ -1,8 +1,0 @@
-{
-  "name": "sub_1004C738",
-  "mangled_name": "sub_1004C738",
-  "address": "0x1004C738",
-  "size_bytes": 393,
-  "signature": "int __thiscall(unsigned int *this, char *a2, double *a3)",
-  "decompiled_c": "int __thiscall sub_1004C738(unsigned int *this, char *a2, double *a3)\n{\n  char *i; // ebx\n  unsigned int v5; // eax\n  _BYTE *v6; // esi\n  void *v7; // esp\n  char v9[12]; // [esp+0h] [ebp-10h] BYREF\n  int v10; // [esp+Ch] [ebp-4h]\n\n  v10 = 0;\n  i = a2;\n  if ( (unsigned int)a2 < *(this + 1) && isdigit(*a2) )\n  {\n    do\n      ++i;\n    while ( (unsigned int)i < *(this + 1) && isdigit(*i) );\n    v5 = *(this + 1);\n    if ( (unsigned int)i < v5 && *i == 46 )\n    {\n      if ( (unsigned int)++i < v5 )\n      {\n        do\n        {\n          if ( !isdigit(*i) )\n            break;\n          ++i;\n        }\n        while ( (unsigned int)i < *(this + 1) );\n      }\n    }\n    else\n    {\n      v10 = 1;\n    }\n  }\n  else\n  {\n    if ( (unsigned int)(a2 + 1) >= *(this + 1) || *a2 != 46 || !isdigit(a2[1]) )\n      return 0;\n    for ( i = a2 + 2; (unsigned int)i < *(this + 1) && isdigit(*i); ++i )\n      ;\n  }\n  v6 = i + 1;\n  if ( (unsigned int)(i + 1) < *(this + 1) && tolower(*i) == 101 && isdigit((char)*v6) )\n  {\n    for ( i += 2; (unsigned int)i < *(this + 1) && isdigit(*i); ++i )\n      ;\n    goto LABEL_37;\n  }\n  if ( (unsigned int)(i + 2) < *(this + 1) && tolower(*i) == 101 && *v6 == 45 && isdigit(i[2]) )\n  {\n    for ( i += 3; (unsigned int)i < *(this + 1) && isdigit(*i); ++i )\n      ;\n    goto LABEL_37;\n  }\n  if ( v10 )\n    return 0;\nLABEL_37:\n  if ( a3 )\n  {\n    v10 = i - a2;\n    v7 = alloca(i - a2 + 1);\n    qmemcpy(v9, a2, i - a2);\n    v9[i - a2] = 0;\n    *a3 = atof(v9);\n  }\n  return i - a2;\n}\n"
-}

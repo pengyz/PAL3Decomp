@@ -1,8 +1,0 @@
-{
-  "name": "sub_10095530",
-  "mangled_name": "sub_10095530",
-  "address": "0x10095530",
-  "size_bytes": 68,
-  "signature": "void *__stdcall(int a1)",
-  "decompiled_c": "void *__stdcall sub_10095530(int a1)\n{\n  size_t v1; // esi\n  void *v2; // edx\n\n  if ( a1 == 2 )\n  {\n    v1 = 64;\n  }\n  else\n  {\n    if ( a1 != 1 )\n      return 0;\n    v1 = 412;\n  }\n  v2 = malloc(v1);\n  if ( v2 )\n    memset(v2, 0, v1);\n  return v2;\n}\n"
-}

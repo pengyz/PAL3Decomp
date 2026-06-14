@@ -1,8 +1,0 @@
-{
-  "name": "gbVolumeModifier::gbVolumeModifier(gbVolumeModifier const &)",
-  "mangled_name": "??0gbVolumeModifier@@QAE@ABV0@@Z",
-  "address": "0x10005300",
-  "size_bytes": 21,
-  "signature": "gbVolumeModifier *__thiscall(gbVolumeModifier *this, const struct gbVolumeModifier *a2)",
-  "decompiled_c": "gbVolumeModifier *__thiscall gbVolumeModifier::gbVolumeModifier(\n        gbVolumeModifier *this,\n        const struct gbVolumeModifier *a2)\n{\n  int v3; // edx\n\n  v3 = *((_DWORD *)a2 + 1);\n  *(_DWORD *)this = &gbVolumeModifier::`vftable';\n  *((_DWORD *)this + 1) = v3;\n  return this;\n}\n"
-}

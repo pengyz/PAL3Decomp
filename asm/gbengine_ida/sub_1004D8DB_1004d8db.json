@@ -1,8 +1,0 @@
-{
-  "name": "sub_1004D8DB",
-  "mangled_name": "sub_1004D8DB",
-  "address": "0x1004D8DB",
-  "size_bytes": 85,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "int __thiscall sub_1004D8DB(int this)\n{\n  _DWORD *v2; // ecx\n  void *v3; // edi\n  int v4; // eax\n\n  v2 = *(_DWORD **)(this + 56);\n  if ( v2 )\n    sub_1004D88C(v2, 1);\n  v3 = *(void **)(this + 108);\n  if ( v3 )\n  {\n    sub_1004D8DB(*(_DWORD *)(this + 108));\n    operator delete(v3);\n  }\n  v4 = *(_DWORD *)(this + 88);\n  if ( v4 && *(_DWORD *)(this + 100) )\n    (*(void (__stdcall **)(int, _DWORD))(*(_DWORD *)v4 + 4))(v4, *(_DWORD *)(this + 100));\n  Concurrency::details::UMSFreeVirtualProcessorRoot::InitialThreadParam::~InitialThreadParam((HGDIOBJ *)(this + 76));\n  sub_1004B506(this + 60);\n  return nullsub_5(this);\n}\n"
-}

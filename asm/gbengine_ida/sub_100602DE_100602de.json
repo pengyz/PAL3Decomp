@@ -1,8 +1,0 @@
-{
-  "name": "sub_100602DE",
-  "mangled_name": "sub_100602DE",
-  "address": "0x100602DE",
-  "size_bytes": 127,
-  "signature": "int __userpurge@<eax>(_DWORD *a1@<ecx>, double a2@<st1>, double a3@<st0>, int a4, _DWORD *a5)",
-  "decompiled_c": "int __userpurge sub_100602DE@<eax>(_DWORD *a1@<ecx>, double a2@<st1>, double a3@<st0>, int a4, _DWORD *a5)\n{\n  int v6; // eax\n  int *v8; // ecx\n  int v9; // edx\n\n  if ( sub_1005FF3C(a1, a2, a3, a5, &a5) < 0 )\n  {\n    sub_10058D70((int)a1, 0, 3058, \"array dimensions must be literal scalar expressions\");\n    return 0;\n  }\n  if ( sub_1007E198(24, (LPVOID)0x10) )\n    v6 = sub_1007E838(0, a5);\n  else\n    v6 = 0;\n  if ( !v6 )\n    return 0;\n  v8 = &a4;\n  if ( a4 )\n  {\n    do\n    {\n      v9 = *v8;\n      if ( *(_DWORD *)(*v8 + 4) != 8 )\n        break;\n      v8 = (int *)(v9 + 16);\n    }\n    while ( *(_DWORD *)(v9 + 16) );\n  }\n  *(_DWORD *)(v6 + 16) = *v8;\n  *v8 = v6;\n  return a4;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_10053E15",
-  "mangled_name": "sub_10053E15",
-  "address": "0x10053E15",
-  "size_bytes": 70,
-  "signature": "int __stdcall(int a1, int a2, int a3)",
-  "decompiled_c": "int __stdcall sub_10053E15(int a1, int a2, int a3)\n{\n  int v3; // esi\n  int v4; // eax\n  _DWORD *v5; // edx\n\n  v3 = 0;\n  if ( !a3 )\n    return -2005530516;\n  v4 = sub_1005323C(a2);\n  if ( !v4 )\n    return -2005530516;\n  *v5 = 0;\n  v5[1] = 0;\n  v5[2] = 0;\n  v5[3] = 0;\n  *v5 = *(_DWORD *)(v4 + 32);\n  v5[1] = *(_DWORD *)(v4 + 36);\n  v5[2] = 0;\n  v5[3] = 0;\n  return v3;\n}\n"
-}

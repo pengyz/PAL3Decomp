@@ -1,8 +1,0 @@
-{
-  "name": "_GetLcidFromLangCountry",
-  "mangled_name": "_GetLcidFromLangCountry",
-  "address": "0x100EF2EF",
-  "size_bytes": 135,
-  "signature": "int()",
-  "decompiled_c": "int GetLcidFromLangCountry()\n{\n  size_t v0; // eax\n  int result; // eax\n\n  dword_10166F00 = strlen(dword_10166F04) == 3;\n  v0 = strlen(String1);\n  Locale = 0;\n  dword_10166EF8 = v0 == 3;\n  if ( dword_10166F00 )\n    MaxCount = 2;\n  else\n    MaxCount = GetPrimaryLen(dword_10166F04);\n  EnumSystemLocalesA(LangCountryEnumProc, 1u);\n  result = dword_10166F0C;\n  if ( (dword_10166F0C & 0x100) == 0 || (dword_10166F0C & 0x200) == 0 || (dword_10166F0C & 7) == 0 )\n    dword_10166F0C = 0;\n  return result;\n}\n"
-}

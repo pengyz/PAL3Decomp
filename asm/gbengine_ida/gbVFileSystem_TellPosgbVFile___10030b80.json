@@ -1,8 +1,0 @@
-{
-  "name": "gbVFileSystem::TellPos(gbVFile *)",
-  "mangled_name": "?TellPos@gbVFileSystem@@QAEJPAVgbVFile@@@Z",
-  "address": "0x10030B80",
-  "size_bytes": 87,
-  "signature": "int __thiscall(gbVFileSystem *this, struct gbVFile *a2)",
-  "decompiled_c": "int __thiscall gbVFileSystem::TellPos(gbVFileSystem *this, struct gbVFile *a2)\n{\n  int v2; // eax\n\n  v2 = *((_DWORD *)this + 3);\n  if ( v2 == 1 )\n  {\n    if ( a2 )\n      return *((_DWORD *)a2 + 78);\n    else\n      return MEMORY[0x28];\n  }\n  else if ( v2 )\n  {\n    if ( v2 == 2 )\n      return *((_DWORD *)a2 + 67) - *((_DWORD *)a2 + 1);\n    else\n      return -1;\n  }\n  else\n  {\n    return ftell(*((FILE **)a2 + 1));\n  }\n}\n"
-}

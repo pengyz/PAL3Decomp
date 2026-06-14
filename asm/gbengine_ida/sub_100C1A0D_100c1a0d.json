@@ -1,8 +1,0 @@
-{
-  "name": "sub_100C1A0D",
-  "mangled_name": "sub_100C1A0D",
-  "address": "0x100C1A0D",
-  "size_bytes": 217,
-  "signature": "int __userpurge@<eax>(_DWORD *a1@<edi>, _DWORD *a2, _DWORD *a3)",
-  "decompiled_c": "int __userpurge sub_100C1A0D@<eax>(_DWORD *a1@<edi>, _DWORD *a2, _DWORD *a3)\n{\n  _DWORD *v3; // ebx\n  int v4; // esi\n  int v5; // eax\n  unsigned int v6; // eax\n  int v7; // esi\n  int v8; // eax\n  _DWORD *v9; // ebx\n  unsigned int v11; // [esp+10h] [ebp-Ch]\n  int v12; // [esp+14h] [ebp-8h]\n  unsigned int i; // [esp+18h] [ebp-4h]\n\n  v3 = a2;\n  if ( a2[12] != -1 )\n  {\nLABEL_12:\n    *a3 = v3[12];\n    return 0;\n  }\n  v4 = *(_DWORD *)(a1[4] + 4 * a2[1]);\n  v5 = sub_1009A0BC(a1, *(_DWORD *)v4, *(_DWORD *)(v4 + 4) | 0x40040, -1, 4);\n  v12 = v5;\n  if ( v5 != -1 )\n  {\n    if ( (*(_BYTE *)(v4 + 5) & 8) == 0 )\n      **(_DWORD **)(a1[4] + 4 * v5) = \"i\";\n    v6 = 0;\n    v11 = a1[2];\n    for ( i = 0; i < v11; ++i )\n    {\n      v7 = *(_DWORD *)(a1[5] + 4 * v6);\n      if ( *(_DWORD *)(v7 + 4) == v3[1] && *(_DWORD *)(v7 + 92) == v3[23] && *(_DWORD *)(v7 + 8) == -1 )\n      {\n        v8 = sub_1009A113(a1, v12, *(_DWORD *)(v7 + 96), 0, *(double *)(v7 + 32));\n        *(_DWORD *)(v7 + 48) = v8;\n        if ( v8 == -1 )\n          return -2147024882;\n        v9 = *(_DWORD **)(a1[5] + 4 * v8);\n        sub_10099D1E(v9, (_DWORD *)v7);\n        v9[27] = 4 * v9[24];\n        v3 = a2;\n      }\n      v6 = i + 1;\n    }\n    goto LABEL_12;\n  }\n  return -2147024882;\n}\n"
-}

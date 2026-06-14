@@ -1,8 +1,0 @@
-{
-  "name": "gbGeomNode::GetOBBox(gbOBBox *)",
-  "mangled_name": "?GetOBBox@gbGeomNode@@QAEPAUgbOBBox@@PAU2@@Z",
-  "address": "0x1000FDE0",
-  "size_bytes": 214,
-  "signature": "struct gbOBBox *__thiscall(gbGeomNode *this, struct gbOBBox *a2)",
-  "decompiled_c": "struct gbOBBox *__thiscall gbGeomNode::GetOBBox(gbGeomNode *this, struct gbOBBox *a2)\n{\n  float *mesh; // eax\n  double v3; // st7\n  double v4; // st6\n  double v5; // st7\n  _BYTE v7[12]; // [esp+Ch] [ebp-18h]\n  float v8; // [esp+10h] [ebp-14h]\n  float v9; // [esp+14h] [ebp-10h]\n  struct gbVec3D v10; // [esp+18h] [ebp-Ch] BYREF\n\n  qmemcpy(a2, &this->worldTransform, 0x40u);\n  mesh = (float *)this->mesh;\n  if ( mesh )\n  {\n    v3 = mesh[25] - mesh[22];\n    v8 = mesh[26] - mesh[23];\n    v4 = mesh[27] - mesh[24];\n    a2->extent.y = v8;\n    v9 = v4;\n    a2->extent.x = v3;\n    a2->extent.z = v9;\n    v5 = mesh[22] + mesh[25];\n    v10.y = mesh[26] + mesh[23];\n    v10.z = mesh[27] + mesh[24];\n    *(float *)v7 = v5 * 0.5;\n    *(float *)&v7[4] = v10.y * 0.5;\n    *(float *)&v7[8] = v10.z * 0.5;\n    v10 = *(struct gbVec3D *)v7;\n    gbMatrix4::LeftTranslate(&a2->matrix, &v10);\n  }\n  else\n  {\n    a2->extent.z = 0.0;\n    a2->extent.y = 0.0;\n    a2->extent.x = 0.0;\n  }\n  return a2;\n}\n"
-}

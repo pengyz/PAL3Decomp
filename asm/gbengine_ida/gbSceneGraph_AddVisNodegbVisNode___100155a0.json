@@ -1,8 +1,0 @@
-{
-  "name": "gbSceneGraph::AddVisNode(gbVisNode *)",
-  "mangled_name": "?AddVisNode@gbSceneGraph@@QAEXPAVgbVisNode@@@Z",
-  "address": "0x100155A0",
-  "size_bytes": 39,
-  "signature": "void __thiscall(gbSceneGraph *this, struct gbVisNode *a2)",
-  "decompiled_c": "void __thiscall gbSceneGraph::AddVisNode(gbSceneGraph *this, struct gbVisNode *a2)\n{\n  int v2; // edi\n\n  v2 = *((_DWORD *)this + 3);\n  gbChain1D::AddNodeOnTail((gbChain1D *)(v2 + 12), a2);\n  *((_DWORD *)a2 + 2) = v2;\n  sub_100147D0(a2);\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_1006E7EF",
-  "mangled_name": "sub_1006E7EF",
-  "address": "0x1006E7EF",
-  "size_bytes": 177,
-  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
-  "decompiled_c": "int __thiscall sub_1006E7EF(_DWORD *this, int a2, int a3)\n{\n  _DWORD *v3; // edi\n  _DWORD *v4; // eax\n  _DWORD *v5; // esi\n  _DWORD *v6; // eax\n  int v8; // eax\n  int v10; // [esp+Ch] [ebp-4h]\n\n  v3 = 0;\n  v10 = 0;\n  v4 = (_DWORD *)operator new(0x1Cu);\n  if ( v4 )\n    v5 = sub_10067E71(v4);\n  else\n    v5 = 0;\n  if ( !v5 )\n    return -2147024882;\n  v6 = (_DWORD *)operator new(0xCu);\n  if ( v6 )\n  {\n    v3 = v6 + 1;\n    *v6 = 1;\n    sub_10033415((int)(v6 + 1), 8, 1, (int (__thiscall *)(int))sub_10068128);\n  }\n  if ( v3 )\n  {\n    v8 = a3;\n    if ( a3 )\n    {\n      (*(void (__stdcall **)(int))(*(_DWORD *)a3 + 4))(a3);\n      v8 = a3;\n    }\n    v3[1] = v8;\n    *v3 = 16;\n    v5[1] = a2;\n    *v5 = 14;\n    v5[4] = 1;\n    v5[5] = v3;\n    *(_DWORD *)(*(this + 54) + 24) = v5;\n    *(this + 54) = v5;\n  }\n  else\n  {\n    v10 = -2147024882;\n    sub_1006CB97(v5, 1);\n  }\n  return v10;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_100B3627",
-  "mangled_name": "sub_100B3627",
-  "address": "0x100B3627",
-  "size_bytes": 197,
-  "signature": "int __thiscall(char *this)",
-  "decompiled_c": "int __thiscall sub_100B3627(char *this)\n{\n  unsigned int i; // edi\n  void *v3; // ecx\n  unsigned int j; // edi\n  void *v5; // ecx\n  void **v6; // edi\n  int v7; // ebx\n  void *v9; // [esp-4h] [ebp-14h]\n\n  v9 = (void *)*((_DWORD *)this + 121);\n  *(_DWORD *)this = &off_1010B638;\n  operator delete(v9);\n  operator delete(*((void **)this + 122));\n  if ( *((_DWORD *)this + 155) )\n  {\n    for ( i = 0; i < *((_DWORD *)this + 158); ++i )\n    {\n      v3 = *(void **)(*((_DWORD *)this + 155) + 4 * i);\n      if ( v3 )\n        sub_1007F859(v3, 1);\n    }\n  }\n  if ( *((_DWORD *)this + 156) )\n  {\n    for ( j = 0; j < *((_DWORD *)this + 157); ++j )\n    {\n      v5 = *(void **)(*((_DWORD *)this + 156) + 4 * j);\n      if ( v5 )\n        sub_10080CFB(v5, 1);\n    }\n  }\n  v6 = (void **)(this + 636);\n  v7 = 16;\n  do\n  {\n    if ( *v6 )\n      sub_1007F859(*v6, 1);\n    *v6++ = 0;\n    --v7;\n  }\n  while ( v7 );\n  operator delete(*((void **)this + 155));\n  operator delete(*((void **)this + 156));\n  return sub_100C4539(this);\n}\n"
-}

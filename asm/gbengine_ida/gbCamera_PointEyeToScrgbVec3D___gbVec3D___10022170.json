@@ -1,8 +1,0 @@
-{
-  "name": "gbCamera::PointEyeToScr(gbVec3D *,gbVec3D *)",
-  "mangled_name": "?PointEyeToScr@gbCamera@@QAEXPAUgbVec3D@@0@Z",
-  "address": "0x10022170",
-  "size_bytes": 217,
-  "signature": "void __thiscall(gbCamera *this, struct gbVec3D *a2, struct gbVec3D *a3)",
-  "decompiled_c": "void __thiscall gbCamera::PointEyeToScr(gbCamera *this, struct gbVec3D *a2, struct gbVec3D *a3)\n{\n  long double v4; // st7\n  struct gbVec3D *v5; // eax\n  long double v6; // rt0\n  long double v7; // st6\n  double v8; // st7\n  double v9; // st7\n  float v10; // [esp+4h] [ebp+4h]\n  float v11; // [esp+4h] [ebp+4h]\n\n  if ( -*((float *)this + 4) < *((float *)a2 + 2) || -*((float *)this + 5) > *((float *)a2 + 2) )\n  {\n    *(_DWORD *)a3 = 1203982336;\n  }\n  else\n  {\n    if ( *(float *)this == 0.0 )\n    {\n      v9 = *((float *)this + 1);\n      v5 = a3;\n      v11 = (double)*((int *)this + 9) * v9 / (double)*((int *)this + 8);\n      *(float *)a3 = *(float *)a3 / v9;\n      *((float *)a3 + 1) = *((float *)a3 + 1) / v11;\n      v8 = (-*((float *)a3 + 2) - *((float *)this + 4)) / (*((float *)this + 5) - *((float *)this + 4));\n    }\n    else\n    {\n      v4 = *(float *)this * 0.0087266462;\n      v5 = a3;\n      v6 = sin(v4);\n      v7 = cos(v4);\n      v10 = (double)*((int *)this + 9) * (v6 / v7) / (double)*((int *)this + 8);\n      *(float *)a3 = -(*(float *)a2 / *((float *)a2 + 2)) / (v6 / v7);\n      *((float *)a3 + 1) = -(*((float *)a2 + 1) / *((float *)a2 + 2)) / v10;\n      v8 = (-*((float *)a2 + 2) - *((float *)this + 4)) / (*((float *)this + 5) - *((float *)this + 4));\n    }\n    *((float *)v5 + 2) = v8;\n  }\n}\n"
-}

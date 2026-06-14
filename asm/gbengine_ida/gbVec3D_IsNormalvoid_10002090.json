@@ -1,8 +1,0 @@
-{
-  "name": "gbVec3D::IsNormal(void)",
-  "mangled_name": "?IsNormal@gbVec3D@@QAEHXZ",
-  "address": "0x10002090",
-  "size_bytes": 60,
-  "signature": "BOOL __thiscall(gbVec3D *this)",
-  "decompiled_c": "BOOL __thiscall gbVec3D::IsNormal(gbVec3D *this)\n{\n  return fabs(\n           *(float *)this * *(float *)this\n         + *((float *)this + 1) * *((float *)this + 1)\n         + *((float *)this + 2) * *((float *)this + 2)\n         - 1.0) < 0.0049999999;\n}\n"
-}

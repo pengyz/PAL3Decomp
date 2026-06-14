@@ -1,8 +1,0 @@
-{
-  "name": "sub_100DCDAF",
-  "mangled_name": "sub_100DCDAF",
-  "address": "0x100DCDAF",
-  "size_bytes": 87,
-  "signature": "int __usercall@<eax>(int result@<eax>)",
-  "decompiled_c": "int __usercall sub_100DCDAF@<eax>(int result@<eax>)\n{\n  int v1; // ecx\n\n  v1 = *(_DWORD *)(result + 5812);\n  if ( v1 > 8 )\n  {\n    *(_BYTE *)(*(_DWORD *)(result + 8) + (*(_DWORD *)(result + 20))++) = *(_BYTE *)(result + 5808);\n    *(_BYTE *)(*(_DWORD *)(result + 20) + *(_DWORD *)(result + 8)) = *(_BYTE *)(result + 5809);\nLABEL_5:\n    ++*(_DWORD *)(result + 20);\n    goto LABEL_6;\n  }\n  if ( v1 > 0 )\n  {\n    *(_BYTE *)(*(_DWORD *)(result + 8) + *(_DWORD *)(result + 20)) = *(_BYTE *)(result + 5808);\n    goto LABEL_5;\n  }\nLABEL_6:\n  *(_WORD *)(result + 5808) = 0;\n  *(_DWORD *)(result + 5812) = 0;\n  return result;\n}\n"
-}

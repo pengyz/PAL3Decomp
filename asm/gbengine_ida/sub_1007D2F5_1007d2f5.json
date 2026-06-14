@@ -1,8 +1,0 @@
-{
-  "name": "sub_1007D2F5",
-  "mangled_name": "sub_1007D2F5",
-  "address": "0x1007D2F5",
-  "size_bytes": 55,
-  "signature": "int __stdcall(int a1, float *a2, int a3)",
-  "decompiled_c": "int __stdcall sub_1007D2F5(int a1, float *a2, int a3)\n{\n  int result; // eax\n  float v4[64]; // [esp+0h] [ebp-100h] BYREF\n\n  result = sub_1007B651(a2, v4);\n  if ( result >= 0 )\n  {\n    result = sub_1007CDD9(a1, COERCE_FLOAT(v4), a3);\n    if ( result >= 0 )\n      return 0;\n  }\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_10076877",
-  "mangled_name": "sub_10076877",
-  "address": "0x10076877",
-  "size_bytes": 39,
-  "signature": "int __thiscall(_DWORD *this, size_t Size)",
-  "decompiled_c": "int __thiscall sub_10076877(_DWORD *this, size_t Size)\n{\n  int v3; // eax\n\n  v3 = operator new(Size);\n  *(this + 3) = v3;\n  if ( !v3 )\n    return -2147024882;\n  *(this + 2) = Size;\n  return 0;\n}\n"
-}

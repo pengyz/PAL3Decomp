@@ -1,8 +1,0 @@
-{
-  "name": "sub_100DDD21",
-  "mangled_name": "sub_100DDD21",
-  "address": "0x100DDD21",
-  "size_bytes": 103,
-  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
-  "decompiled_c": "int __thiscall sub_100DDD21(_DWORD *this, int a2, int a3)\n{\n  int v3; // eax\n  _DWORD *v4; // edx\n  int result; // eax\n  int v6; // esi\n  int v7; // eax\n  int v8; // edx\n\n  v3 = *(this + 1);\n  v4 = *(_DWORD **)(*(_DWORD *)(v3 + 20) + 4 * a3);\n  result = *(_DWORD *)(*(_DWORD *)(v3 + 16) + 4 * v4[1]);\n  v6 = a2;\n  if ( (*(_BYTE *)(result + 4) & 0x20) == 0 && v4[22] )\n  {\n    v7 = *(this + 9);\n    if ( v7 )\n    {\n      *(_DWORD *)(v7 + 4 * (*(_DWORD *)(*(this + 7) + 4 * a2) + *(_DWORD *)(*(this + 8) + 4 * a2))) = a3;\n      v6 = a2;\n    }\n    result = *(this + 7) + 4 * v6;\n    ++*(_DWORD *)result;\n  }\n  v8 = v4[5];\n  if ( v8 != -1 )\n    return sub_100DDCAF(this, v6, v8);\n  return result;\n}\n"
-}

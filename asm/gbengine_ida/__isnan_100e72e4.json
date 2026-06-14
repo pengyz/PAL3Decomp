@@ -1,8 +1,0 @@
-{
-  "name": "__isnan",
-  "mangled_name": "__isnan",
-  "address": "0x100E72E4",
-  "size_bytes": 46,
-  "signature": "int __cdecl(double X)",
-  "decompiled_c": "int __cdecl _isnan(double X)\n{\n  return (HIWORD(X) & 0x7FF8) == 0x7FF0 && ((HIDWORD(X) & 0x7FFFF) != 0 || LODWORD(X)) || (HIWORD(X) & 0x7FF8) == 0x7FF8;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_1008EF22",
-  "mangled_name": "sub_1008EF22",
-  "address": "0x1008EF22",
-  "size_bytes": 255,
-  "signature": "int __thiscall(_DWORD *this, unsigned int a2)",
-  "decompiled_c": "int __thiscall sub_1008EF22(_DWORD *this, unsigned int a2)\n{\n  unsigned int v4; // edi\n  unsigned int *v5; // eax\n  unsigned int *v6; // ebx\n  unsigned int v7; // ecx\n  _DWORD *v8; // eax\n  int v9; // ecx\n  int v10; // [esp+4h] [ebp-4h]\n  unsigned int i; // [esp+4h] [ebp-4h]\n\n  if ( *(_DWORD *)(a2 + 4) != 13 )\n    return 0;\n  v4 = *(_DWORD *)(a2 + 20) * *(_DWORD *)(a2 + 24);\n  v5 = (unsigned int *)operator new(4 * v4);\n  v6 = v5;\n  if ( v5 )\n  {\n    v10 = sub_1007F982(v5, v4);\n    if ( v10 >= 0 )\n    {\n      v10 = sub_1008D50A((int)this, __SPAIR64__((unsigned int)v6, a2), 0);\n      if ( v10 >= 0 )\n      {\n        v10 = sub_100814AC(this, a2, v4 & 0xFFFFF | 0x10000000, (int)v6, v6, 0);\n        if ( v10 >= 0 )\n        {\n          for ( i = 0; i < v4; ++i )\n          {\n            v7 = v6[i];\n            v8 = (_DWORD *)*(this + 2);\n            if ( v7 >= v8[2] )\n              v9 = 0;\n            else\n              v9 = *(_DWORD *)(v8[5] + 4 * v7);\n            if ( v9 )\n              *(_DWORD *)(v9 + 4) = v8[33];\n          }\n          v10 = sub_10083B25(this, *(_DWORD **)(a2 + 16), v6, *(_DWORD *)(*(this + 2) + 132), 1, 1, 0, 0);\n        }\n      }\n    }\n  }\n  else\n  {\n    v10 = -2147024882;\n  }\n  operator delete(v6);\n  if ( *(this + 19) )\n    return -2147467259;\n  return v10;\n}\n"
-}

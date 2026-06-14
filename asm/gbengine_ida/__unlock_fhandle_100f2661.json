@@ -1,8 +1,0 @@
-{
-  "name": "__unlock_fhandle",
-  "mangled_name": "__unlock_fhandle",
-  "address": "0x100F2661",
-  "size_bytes": 34,
-  "signature": "void __cdecl(int a1)",
-  "decompiled_c": "void __cdecl _unlock_fhandle(int a1)\n{\n  LeaveCriticalSection((LPCRITICAL_SECTION)(dword_10167400[a1 >> 5] + 36 * (a1 & 0x1F) + 12));\n}\n"
-}

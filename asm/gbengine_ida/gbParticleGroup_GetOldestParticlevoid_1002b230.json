@@ -1,8 +1,0 @@
-{
-  "name": "gbParticleGroup::GetOldestParticle(void)",
-  "mangled_name": "?GetOldestParticle@gbParticleGroup@@AAEPAUgbParticleUnit@@XZ",
-  "address": "0x1002B230",
-  "size_bytes": 105,
-  "signature": "struct gbParticleUnit *__thiscall(gbParticleGroup *this)",
-  "decompiled_c": "struct gbParticleUnit *__thiscall gbParticleGroup::GetOldestParticle(gbParticleGroup *this)\n{\n  double v1; // st7\n  int v2; // edi\n  int v3; // edx\n  int v4; // ebx\n  double *v5; // esi\n  int v7; // [esp+8h] [ebp-4h]\n\n  v1 = -1.0;\n  v2 = *((_DWORD *)this + 34);\n  v3 = 0;\n  if ( v2 <= 0 )\n    return (struct gbParticleUnit *)(*((_DWORD *)this + 32) + 88 * v7);\n  v4 = v7;\n  v5 = (double *)(*((_DWORD *)this + 32) + 8);\n  do\n  {\n    if ( v1 < *v5 )\n    {\n      v1 = *v5;\n      v4 = v3;\n    }\n    ++v3;\n    v5 += 11;\n  }\n  while ( v3 < v2 );\n  return (struct gbParticleUnit *)(*((_DWORD *)this + 32) + 88 * v4);\n}\n"
-}

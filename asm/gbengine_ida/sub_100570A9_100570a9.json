@@ -1,8 +1,0 @@
-{
-  "name": "sub_100570A9",
-  "mangled_name": "sub_100570A9",
-  "address": "0x100570A9",
-  "size_bytes": 137,
-  "signature": "int __stdcall(int *a1, unsigned int a2, int a3)",
-  "decompiled_c": "int __stdcall sub_100570A9(int *a1, unsigned int a2, int a3)\n{\n  int v3; // edi\n  _DWORD *v4; // eax\n  _DWORD *v5; // ecx\n  BOOL v6; // esi\n  int v7; // eax\n  int v8; // ecx\n  int v9; // ecx\n  int v10; // ecx\n\n  v3 = 0;\n  v4 = (_DWORD *)sub_10055C8B(a1, a2, 1);\n  if ( !v4 )\n    return -2005530516;\n  v5 = (_DWORD *)(v4[6] + a1[209] + *(_DWORD *)(v4[1] + 64));\n  if ( v5[4] )\n  {\n    if ( v4[4] == -1 )\n      return -2005530516;\n  }\n  v6 = a3 != 0;\n  if ( v5[1] >= 4u || v5[5] != 1 || v5[6] != 1 )\n    return -2005530516;\n  v7 = *(_DWORD *)(v4[7] + 8);\n  v8 = *(_DWORD *)(v7 + 16);\n  if ( !v8 || (v9 = v8 - 1) == 0 || (v10 = v9 - 1) == 0 )\n  {\n    *(_DWORD *)(v7 + 24) = v6;\n    return v3;\n  }\n  if ( v10 != 1 )\n    return -2005530516;\n  *(double *)(v7 + 24) = (double)v6;\n  return v3;\n}\n"
-}

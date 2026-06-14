@@ -1,8 +1,0 @@
-{
-  "name": "gbActor::UnlockAction(char *)",
-  "mangled_name": "?UnlockAction@gbActor@@QAEXPAD@Z",
-  "address": "0x10003050",
-  "size_bytes": 64,
-  "signature": "void __thiscall(gbActor *this, char *a2)",
-  "decompiled_c": "void __thiscall gbActor::UnlockAction(gbActor *this, char *a2)\n{\n  unsigned int v3; // eax\n  int v4; // esi\n  int v5; // ecx\n  int v6; // edi\n  _DWORD *i; // edx\n\n  v3 = gbCrc32Compute(a2);\n  v4 = *((_DWORD *)this + 25);\n  v5 = 0;\n  if ( v4 > 0 )\n  {\n    v6 = *((_DWORD *)this + 24);\n    for ( i = (_DWORD *)(v6 + 4); *i != v3; i += 9 )\n    {\n      if ( ++v5 >= v4 )\n        return;\n    }\n    *(_DWORD *)(v6 + 36 * v5) = 2;\n  }\n}\n"
-}

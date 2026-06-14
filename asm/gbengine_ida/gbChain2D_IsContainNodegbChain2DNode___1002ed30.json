@@ -1,8 +1,0 @@
-{
-  "name": "gbChain2D::IsContainNode(gbChain2DNode *)",
-  "mangled_name": "?IsContainNode@gbChain2D@@QAE_NPAVgbChain2DNode@@@Z",
-  "address": "0x1002ED30",
-  "size_bytes": 31,
-  "signature": "char __thiscall(struct gbChain2DNode **this, struct gbChain2DNode *a2)",
-  "decompiled_c": "char __thiscall gbChain2D::IsContainNode(struct gbChain2DNode **this, struct gbChain2DNode *a2)\n{\n  struct gbChain2DNode *v2; // eax\n\n  v2 = *this;\n  if ( !*this )\n    return 0;\n  while ( v2 != a2 )\n  {\n    v2 = (struct gbChain2DNode *)*((_DWORD *)v2 + 2);\n    if ( !v2 )\n      return 0;\n  }\n  return 1;\n}\n"
-}

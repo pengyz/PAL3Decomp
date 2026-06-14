@@ -1,8 +1,0 @@
-{
-  "name": "sub_100948A0",
-  "mangled_name": "sub_100948A0",
-  "address": "0x100948A0",
-  "size_bytes": 150,
-  "signature": "int __userpurge@<eax>(int a1@<esi>, int a2, int a3)",
-  "decompiled_c": "int __userpurge sub_100948A0@<eax>(int a1@<esi>, int a2, int a3)\n{\n  int result; // eax\n  int v4; // ebx\n  int v5; // ebp\n  int v6; // edi\n  int v7; // ecx\n  int v8; // ebx\n  int v9; // [esp+Ch] [ebp-4h]\n\n  result = *(_DWORD *)(a1 + 16);\n  v4 = *(_DWORD *)(a1 + 8) << 7;\n  v5 = v4 * *(_DWORD *)(a1 + 24);\n  v6 = 0;\n  v9 = v4;\n  if ( result > 0 )\n  {\n    while ( 1 )\n    {\n      result -= v6;\n      if ( *(_DWORD *)(a1 + 20) < result )\n        result = *(_DWORD *)(a1 + 20);\n      v7 = v6 + *(_DWORD *)(a1 + 24);\n      if ( result >= *(_DWORD *)(a1 + 28) - v7 )\n        result = *(_DWORD *)(a1 + 28) - v7;\n      if ( result >= *(_DWORD *)(a1 + 4) - v7 )\n        result = *(_DWORD *)(a1 + 4) - v7;\n      if ( result <= 0 )\n        break;\n      v8 = v4 * result;\n      if ( a3 )\n        (*(void (__stdcall **)(int, int, _DWORD, int, int))(a1 + 52))(\n          a2,\n          a1 + 48,\n          *(_DWORD *)(*(_DWORD *)a1 + 4 * v6),\n          v5,\n          v8);\n      else\n        (*(void (__stdcall **)(int, int, _DWORD, int, int))(a1 + 48))(\n          a2,\n          a1 + 48,\n          *(_DWORD *)(*(_DWORD *)a1 + 4 * v6),\n          v5,\n          v8);\n      result = *(_DWORD *)(a1 + 16);\n      v6 += *(_DWORD *)(a1 + 20);\n      v5 += v8;\n      if ( v6 >= result )\n        break;\n      v4 = v9;\n    }\n  }\n  return result;\n}\n"
-}

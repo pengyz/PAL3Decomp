@@ -1,8 +1,0 @@
-{
-  "name": "sub_10048D3D",
-  "mangled_name": "sub_10048D3D",
-  "address": "0x10048D3D",
-  "size_bytes": 92,
-  "signature": "float *__stdcall(float *a1, int a2, float a3)",
-  "decompiled_c": "float *__stdcall sub_10048D3D(float *a1, int a2, float a3)\n{\n  float v5[3]; // [esp+0h] [ebp-14h] BYREF\n  float *v6; // [esp+10h] [ebp-4h]\n  float v7; // [esp+1Ch] [ebp+8h]\n  float v8; // [esp+20h] [ebp+Ch]\n\n  sub_10047007((int)v5, a2);\n  v6 = a1 + 3;\n  v7 = a3 * 0.5;\n  *v6 = cos(v7);\n  v8 = sin(v7);\n  *a1 = v5[0] * v8;\n  a1[1] = v5[1] * v8;\n  a1[2] = v5[2] * v8;\n  return a1;\n}\n"
-}

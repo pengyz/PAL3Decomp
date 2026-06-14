@@ -1,8 +1,0 @@
-{
-  "name": "gbResource::~gbResource(void)",
-  "mangled_name": "??1gbResource@@UAE@XZ",
-  "address": "0x100200D0",
-  "size_bytes": 191,
-  "signature": "void __thiscall(gbResource *this)",
-  "decompiled_c": "void __thiscall gbResource::~gbResource(gbResource *this)\n{\n  gbResource *v1; // edi\n  int v2; // ebx\n  int v3; // ecx\n  int v4; // eax\n  gbResource **v5; // edx\n  int v6; // esi\n  int v7; // eax\n  void *v8; // eax\n  int v9; // ecx\n  void *v10; // ebp\n  int v12; // [esp+10h] [ebp-4h]\n\n  v1 = this;\n  v2 = *((_DWORD *)this + 5);\n  *(_DWORD *)this = &gbResource::`vftable';\n  if ( v2 )\n  {\n    v3 = *(_DWORD *)(v2 + 8);\n    v4 = 0;\n    if ( v3 > 0 )\n    {\n      v5 = *(gbResource ***)v2;\n      while ( *v5 != v1 )\n      {\n        ++v4;\n        ++v5;\n        if ( v4 >= v3 )\n          goto LABEL_18;\n      }\n      v6 = v3 - 1;\n      *((_DWORD *)v1 + 5) = 0;\n      v12 = v3 - 1;\n      if ( v3 - 1 > v4 )\n        *(_DWORD *)(*(_DWORD *)v2 + 4 * v4) = *(_DWORD *)(*(_DWORD *)v2 + 4 * v3 - 4);\n      v7 = v3 - 1;\n      if ( v3 == 1 )\n        v7 = 16;\n      if ( v7 > *(_DWORD *)(v2 + 4) )\n      {\n        *(_DWORD *)(v2 + 4) = v7;\n        v8 = malloc(4 * v7);\n        v9 = *(_DWORD *)(v2 + 8);\n        v10 = v8;\n        if ( v9 )\n        {\n          qmemcpy(v8, *(const void **)v2, 4 * v9);\n          v1 = this;\n          v6 = v12;\n        }\n        if ( *(_DWORD *)v2 )\n          free(*(void **)v2);\n        *(_DWORD *)v2 = v10;\n      }\n      *(_DWORD *)(v2 + 8) = v6;\n    }\n  }\nLABEL_18:\n  if ( *((_DWORD *)v1 + 2) )\n    free(*((void **)v1 + 2));\n  gbRefObject::~gbRefObject(v1);\n}\n"
-}

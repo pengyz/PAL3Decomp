@@ -1,8 +1,0 @@
-{
-  "name": "gbActor::SetSunDirection(gbVec3D *)",
-  "mangled_name": "?SetSunDirection@gbActor@@SAXPAUgbVec3D@@@Z",
-  "address": "0x10003150",
-  "size_bytes": 39,
-  "signature": "void __cdecl(struct gbVec3D *a1)",
-  "decompiled_c": "void __cdecl gbActor::SetSunDirection(struct gbVec3D *a1)\n{\n  dword_1012B990 = *(_DWORD *)a1;\n  dword_1012B994 = *((_DWORD *)a1 + 1);\n  dword_1012B998 = *((_DWORD *)a1 + 2);\n  gbVec3D::Normalize((gbVec3D *)&dword_1012B990);\n}\n"
-}

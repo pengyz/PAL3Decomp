@@ -1,8 +1,0 @@
-{
-  "name": "CIniFile::ReadLine(char const *,int *)",
-  "mangled_name": "?ReadLine@CIniFile@@QAEHPBDPAH@Z",
-  "address": "0x10031560",
-  "size_bytes": 75,
-  "signature": "int __thiscall(struct gbVFile **this, char *a2, int *a3)",
-  "decompiled_c": "int __thiscall CIniFile::ReadLine(struct gbVFile **this, char *a2, int *a3)\n{\n  int result; // eax\n  char String[256]; // [esp+0h] [ebp-100h] BYREF\n\n  result = CIniFile::ReadLine(this, a2, String, 256);\n  if ( result )\n  {\n    *a3 = atoi(String);\n    return 1;\n  }\n  return result;\n}\n"
-}

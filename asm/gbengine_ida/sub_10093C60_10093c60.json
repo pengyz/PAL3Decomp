@@ -1,8 +1,0 @@
-{
-  "name": "sub_10093C60",
-  "mangled_name": "sub_10093C60",
-  "address": "0x10093C60",
-  "size_bytes": 50,
-  "signature": "_DWORD *__stdcall(int a1)",
-  "decompiled_c": "_DWORD *__stdcall sub_10093C60(int a1)\n{\n  int (__stdcall **v1)(int *); // eax\n\n  v1 = (int (__stdcall **)(int *))(**(int (__stdcall ***)(int, int, int))(a1 + 4))(a1, 1, 28);\n  *(_DWORD *)(a1 + 424) = v1;\n  *v1 = sub_10093B00;\n  v1[1] = sub_10093C30;\n  v1[2] = 0;\n  return sub_10093960((int *)a1);\n}\n"
-}

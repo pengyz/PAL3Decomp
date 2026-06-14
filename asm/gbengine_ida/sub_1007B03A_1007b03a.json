@@ -1,8 +1,0 @@
-{
-  "name": "sub_1007B03A",
-  "mangled_name": "sub_1007B03A",
-  "address": "0x1007B03A",
-  "size_bytes": 41,
-  "signature": "int __stdcall(int *__attribute__((__org_typedef(jmp_buf))) Buf, int a2, int a3)",
-  "decompiled_c": "int __stdcall sub_1007B03A(jmp_buf Buf, int a2, int a3)\n{\n  int (__cdecl *v3)(int *__attribute__((__org_typedef(jmp_buf))), int, int); // eax\n\n  v3 = (int (__cdecl *)(int *__attribute__((__org_typedef(jmp_buf))), int, int))Buf[20];\n  if ( !v3 )\n    sub_10078BD5(Buf, (int)\"Call to NULL read function\");\n  return v3(Buf, a2, a3);\n}\n"
-}

@@ -105,8 +105,8 @@ class Config:
         self.annotations_dir = PROJECT_ROOT / paths.get('annotations', 'data/annotations')
         self.pdb_dir = PROJECT_ROOT / paths.get('pdb', 'data/pdb')
         self.decomp_dir = PROJECT_ROOT / paths.get('decomp', 'asm/pal3/decomp')
-        self.output_src = PROJECT_ROOT / paths.get('output_src', 'src/pal3')
-        self.output_headers = PROJECT_ROOT / paths.get('output_headers', 'include/pal3/gen')
+        self.output_src = PROJECT_ROOT / paths.get('output_src', 'pal3/src')
+        self.output_headers = PROJECT_ROOT / paths.get('output_headers', 'pal3/src')
 
         # Validate paths exist
         warnings = []

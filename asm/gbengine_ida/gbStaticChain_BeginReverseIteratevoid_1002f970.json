@@ -1,8 +1,0 @@
-{
-  "name": "gbStaticChain::BeginReverseIterate(void)",
-  "mangled_name": "?BeginReverseIterate@gbStaticChain@@QAEPAUgbStaticChainNode@@XZ",
-  "address": "0x1002F970",
-  "size_bytes": 26,
-  "signature": "struct gbStaticChainNode *__thiscall(gbStaticChain *this)",
-  "decompiled_c": "struct gbStaticChainNode *__thiscall gbStaticChain::BeginReverseIterate(gbStaticChain *this)\n{\n  struct gbStaticChainNode *result; // eax\n  struct gbStaticChainNode *v2; // edx\n\n  result = (struct gbStaticChainNode *)*((_DWORD *)this + 2);\n  if ( result )\n  {\n    do\n    {\n      v2 = result;\n      result = (struct gbStaticChainNode *)*((_DWORD *)result + 1);\n    }\n    while ( result );\n    *((_DWORD *)this + 3) = v2;\n    return v2;\n  }\n  else\n  {\n    *((_DWORD *)this + 3) = 0;\n  }\n  return result;\n}\n"
-}

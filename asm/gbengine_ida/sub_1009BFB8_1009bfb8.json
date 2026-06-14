@@ -1,8 +1,0 @@
-{
-  "name": "sub_1009BFB8",
-  "mangled_name": "sub_1009BFB8",
-  "address": "0x1009BFB8",
-  "size_bytes": 90,
-  "signature": "int __thiscall(int *this, int a2, int a3, int a4, int a5)",
-  "decompiled_c": "int __thiscall sub_1009BFB8(int *this, int a2, int a3, int a4, int a5)\n{\n  int v5; // esi\n  int v6; // eax\n  int v7; // eax\n\n  v5 = a2 + 4 * (a4 + 4 * a3);\n  if ( *(_DWORD *)v5 == -1 )\n  {\n    v6 = *(_DWORD *)(4 * a5 + *(this + 5));\n    if ( *(_DWORD *)(v6 + 12) == -1 )\n    {\n      *(_DWORD *)(v6 + 12) = a3;\n      *(_DWORD *)(*(_DWORD *)(4 * a5 + *(this + 5)) + 16) = a4;\n      v7 = a5;\n    }\n    else\n    {\n      v7 = sub_1009A113(this, *(this + 30), a3, a4, *(double *)(v6 + 32));\n    }\n    *(_DWORD *)v5 = v7;\n  }\n  return *(_DWORD *)v5;\n}\n"
-}

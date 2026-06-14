@@ -1,8 +1,0 @@
-{
-  "name": "gbActor::RenderShadowVolume(gbRenderInfoObj *)",
-  "mangled_name": "?RenderShadowVolume@gbActor@@UAEXPAUgbRenderInfoObj@@@Z",
-  "address": "0x100031C0",
-  "size_bytes": 61,
-  "signature": "void __thiscall(gbActor *this, struct gbRenderInfoObj *a2)",
-  "decompiled_c": "void __thiscall gbActor::RenderShadowVolume(gbActor *this, struct gbRenderInfoObj *a2)\n{\n  gbMatrixStack *v2; // esi\n\n  v2 = (gbMatrixStack *)*((_DWORD *)gbVisNode::pGfxMgr + 54);\n  gbMatrixStack::Push(v2);\n  gbMatrixStack::LoadMatrix(v2, (struct gbRenderInfoObj *)((char *)a2 + 32));\n  (*(void (__thiscall **)(_DWORD, gbActor *, struct gbRenderInfoObj *))(**((_DWORD **)this + 22) + 24))(\n    *((_DWORD *)this + 22),\n    this,\n    a2);\n  gbMatrixStack::Pop(v2);\n}\n"
-}

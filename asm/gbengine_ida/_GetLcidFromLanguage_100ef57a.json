@@ -1,8 +1,0 @@
-{
-  "name": "_GetLcidFromLanguage",
-  "mangled_name": "_GetLcidFromLanguage",
-  "address": "0x100EF57A",
-  "size_bytes": 86,
-  "signature": "BOOL()",
-  "decompiled_c": "BOOL GetLcidFromLanguage()\n{\n  size_t v0; // eax\n  BOOL result; // eax\n\n  v0 = strlen(dword_10166F04);\n  dword_10166F00 = v0 == 3;\n  if ( v0 == 3 )\n    MaxCount = 2;\n  else\n    MaxCount = GetPrimaryLen(dword_10166F04);\n  result = EnumSystemLocalesA(LanguageEnumProc, 1u);\n  if ( (dword_10166F0C & 4) == 0 )\n    dword_10166F0C = 0;\n  return result;\n}\n"
-}

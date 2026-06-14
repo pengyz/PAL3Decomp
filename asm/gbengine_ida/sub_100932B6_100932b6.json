@@ -1,8 +1,0 @@
-{
-  "name": "sub_100932B6",
-  "mangled_name": "sub_100932B6",
-  "address": "0x100932B6",
-  "size_bytes": 84,
-  "signature": "int __stdcall(int a1, int a2, int a3)",
-  "decompiled_c": "int __stdcall sub_100932B6(int a1, int a2, int a3)\n{\n  unsigned int v3; // esi\n  void *v4; // ebx\n  int v5; // esi\n\n  v3 = 16 * a2;\n  v4 = (void *)operator new(16 * a2);\n  if ( v4 )\n  {\n    memset(v4, 0, v3);\n    v5 = sub_100BC0A2(v4, v3, 6, a3);\n  }\n  else\n  {\n    v5 = -2147024882;\n  }\n  operator delete(v4);\n  return v5;\n}\n"
-}

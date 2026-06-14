@@ -1,8 +1,0 @@
-{
-  "name": "___sbh_heap_init",
-  "mangled_name": "___sbh_heap_init",
-  "address": "0x100E8DB5",
-  "size_bytes": 62,
-  "signature": "int()",
-  "decompiled_c": "int __sbh_heap_init()\n{\n  int result; // eax\n\n  result = (int)HeapAlloc(hHeap, 0, 0x140u);\n  lpMem = (LPVOID)result;\n  if ( result )\n  {\n    dword_10168754 = 0;\n    dword_10168758 = 0;\n    dword_10168750 = result;\n    dword_10168748 = 16;\n    return 1;\n  }\n  return result;\n}\n"
-}

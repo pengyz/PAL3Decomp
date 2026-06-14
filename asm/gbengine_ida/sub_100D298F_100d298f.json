@@ -1,8 +1,0 @@
-{
-  "name": "sub_100D298F",
-  "mangled_name": "sub_100D298F",
-  "address": "0x100D298F",
-  "size_bytes": 73,
-  "signature": "__m128 *__stdcall(__m128 *a1, __m128 *a2, __m128 *a3, __m128 *a4, unsigned int a5, unsigned int a6)",
-  "decompiled_c": "__m128 *__stdcall sub_100D298F(__m128 *a1, __m128 *a2, __m128 *a3, __m128 *a4, unsigned int a5, unsigned int a6)\n{\n  *a1 = _mm_add_ps(\n          _mm_add_ps(_mm_mul_ps(_mm_sub_ps(*a3, *a2), _mm_shuffle_ps((__m128)a5, (__m128)a5, 0)), *a2),\n          _mm_mul_ps(_mm_sub_ps(*a4, *a2), _mm_shuffle_ps((__m128)a6, (__m128)a6, 0)));\n  return a1;\n}\n"
-}

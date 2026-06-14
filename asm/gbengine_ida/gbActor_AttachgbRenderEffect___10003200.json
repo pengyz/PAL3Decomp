@@ -1,8 +1,0 @@
-{
-  "name": "gbActor::Attach(gbRenderEffect *)",
-  "mangled_name": "?Attach@gbActor@@UAEHPAVgbRenderEffect@@@Z",
-  "address": "0x10003200",
-  "size_bytes": 81,
-  "signature": "int __thiscall(gbActor *this, struct gbRenderEffect *a2)",
-  "decompiled_c": "int __thiscall gbActor::Attach(gbActor *this, struct gbRenderEffect *a2)\n{\n  struct gbAABBox *v3; // eax\n\n  v3 = (struct gbAABBox *)(*(int (__thiscall **)(_DWORD))(**((_DWORD **)this + 22) + 36))(*((_DWORD *)this + 22));\n  if ( gbGfxManager::ClipBoundVolume(gbVisNode::pGfxMgr, v3) )\n    return 0;\n  (*(void (__thiscall **)(_DWORD, gbActor *, struct gbRenderEffect *))(**((_DWORD **)this + 22) + 40))(\n    *((_DWORD *)this + 22),\n    this,\n    a2);\n  if ( *((_DWORD *)this + 16) )\n    gbSceneGraph::NewShadowVolume(*((gbSceneGraph **)gbVisNode::pGfxMgr + 112), this);\n  return 1;\n}\n"
-}

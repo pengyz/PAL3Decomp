@@ -1,8 +1,0 @@
-{
-  "name": "CPK::ReadLine(char *,int,CPKFile *)",
-  "mangled_name": "?ReadLine@CPK@@QAEPADPADHPAVCPKFile@@@Z",
-  "address": "0x1002D380",
-  "size_bytes": 101,
-  "signature": "char *__thiscall(CPK *this, char *a2, int a3, struct CPKFile *a4)",
-  "decompiled_c": "char *__thiscall CPK::ReadLine(CPK *this, char *a2, int a3, struct CPKFile *a4)\n{\n  int v4; // ecx\n  unsigned int v5; // edi\n\n  v4 = 0;\n  if ( a3 - 1 <= 0 )\n    return 0;\n  do\n  {\n    v5 = *((_DWORD *)a4 + 10);\n    if ( v5 >= *((_DWORD *)a4 + 9) )\n      break;\n    a2[v4] = *(_BYTE *)(*((_DWORD *)a4 + 8) + v5);\n    ++*((_DWORD *)a4 + 10);\n    if ( a2[v4] == 10 && v4 >= 1 && a2[v4 - 1] == 13 )\n      break;\n    ++v4;\n  }\n  while ( v4 < a3 - 1 );\n  if ( v4 <= 0 )\n    return 0;\n  a2[v4] = 0;\n  return a2;\n}\n"
-}

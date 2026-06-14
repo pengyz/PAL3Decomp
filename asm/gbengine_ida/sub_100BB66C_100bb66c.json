@@ -1,8 +1,0 @@
-{
-  "name": "sub_100BB66C",
-  "mangled_name": "sub_100BB66C",
-  "address": "0x100BB66C",
-  "size_bytes": 146,
-  "signature": "int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "int __thiscall sub_100BB66C(_DWORD *this, int a2)\n{\n  int v2; // eax\n\n  v2 = *(_DWORD *)(*(_DWORD *)(*(this + 4) + 4 * *(_DWORD *)(a2 + 4)) + 4);\n  if ( (v2 & 0x100) != 0 )\n    return sub_100C797E(1);\n  if ( (v2 & 0x200) != 0 && (v2 & 0x80u) != 0 )\n    return sub_100C797E(7);\n  if ( (v2 & 0x200) != 0 )\n    return sub_100C797E(2);\n  if ( (v2 & 0x10) != 0 )\n    return sub_100C797E(3);\n  if ( (v2 & 0x20) != 0 )\n    return sub_100C797E(4);\n  if ( (v2 & 1) != 0 && (v2 & 2) != 0 )\n    return sub_100C797E(5);\n  if ( (v2 & 2) != 0 && (v2 & 4) != 0 )\n    return sub_100C797E(6);\n  return -2147467259;\n}\n"
-}

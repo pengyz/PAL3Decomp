@@ -1,8 +1,0 @@
-{
-  "name": "BEZIER::BEZIER(gbVec3D *)",
-  "mangled_name": "??0BEZIER@@QAE@PAUgbVec3D@@@Z",
-  "address": "0x100241E0",
-  "size_bytes": 50,
-  "signature": "BEZIER *__thiscall(BEZIER *this, struct gbVec3D *a2)",
-  "decompiled_c": "BEZIER *__thiscall BEZIER::BEZIER(BEZIER *this, struct gbVec3D *a2)\n{\n  BEZIER *result; // eax\n  int v3; // edx\n  char *v4; // edi\n  _DWORD *v5; // ecx\n\n  result = this;\n  v3 = 4;\n  v4 = (char *)this + 16;\n  v5 = (_DWORD *)((char *)this + 16);\n  do\n  {\n    *v5 = 0;\n    v5[1] = 0;\n    v5[2] = 0;\n    v5 += 3;\n    --v3;\n  }\n  while ( v3 );\n  qmemcpy(v4, a2, 0x30u);\n  *((_BYTE *)result + 64) = 1;\n  return result;\n}\n"
-}

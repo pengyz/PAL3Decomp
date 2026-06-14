@@ -1,8 +1,0 @@
-{
-  "name": "gbActor::GetBoundSphere(gbSphere *)",
-  "mangled_name": "?GetBoundSphere@gbActor@@UAEXPAUgbSphere@@@Z",
-  "address": "0x10003550",
-  "size_bytes": 37,
-  "signature": "void __thiscall(gbActor *this, struct gbSphere *a2)",
-  "decompiled_c": "void __thiscall gbActor::GetBoundSphere(gbActor *this, struct gbSphere *a2)\n{\n  _DWORD *v2; // eax\n\n  v2 = (_DWORD *)(*(int (__thiscall **)(_DWORD))(**((_DWORD **)this + 22) + 32))(*((_DWORD *)this + 22));\n  *(_DWORD *)a2 = *v2;\n  *((_DWORD *)a2 + 1) = v2[1];\n  *((_DWORD *)a2 + 2) = v2[2];\n  *((_DWORD *)a2 + 3) = v2[3];\n}\n"
-}

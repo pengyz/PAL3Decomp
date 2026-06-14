@@ -1,8 +1,0 @@
-{
-  "name": "sub_10064C6B",
-  "mangled_name": "sub_10064C6B",
-  "address": "0x10064C6B",
-  "size_bytes": 142,
-  "signature": "int __thiscall(_DWORD *this, _DWORD *a2, int a3, _DWORD *a4)",
-  "decompiled_c": "int __thiscall sub_10064C6B(_DWORD *this, _DWORD *a2, int a3, _DWORD *a4)\n{\n  a2[8] = 4;\n  a2[12] = 0;\n  a2[2] = 0;\n  a2[3] = 0;\n  if ( a3 && *a4 + 1 <= (unsigned int)(*(int (__stdcall **)(int))(*(_DWORD *)a3 + 16))(a3) )\n    a2[9] = *(_DWORD *)((*(int (__stdcall **)(int))(*(_DWORD *)a3 + 12))(a3) + 4 * *a4);\n  ++*a4;\n  if ( a3 && *a4 + 1 <= (unsigned int)(*(int (__stdcall **)(int))(*(_DWORD *)a3 + 16))(a3) )\n    a2[10] = *(_DWORD *)((*(int (__stdcall **)(int))(*(_DWORD *)a3 + 12))(a3) + 4 * *a4);\n  ++*a4;\n  if ( a3 && (unsigned int)(*(int (__stdcall **)(int))(*(_DWORD *)a3 + 16))(a3) < *a4 )\n    return -2147467259;\n  ++*(this + 38);\n  return 0;\n}\n"
-}

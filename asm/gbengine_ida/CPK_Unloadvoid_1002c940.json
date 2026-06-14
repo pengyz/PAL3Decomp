@@ -1,8 +1,0 @@
-{
-  "name": "CPK::Unload(void)",
-  "mangled_name": "?Unload@CPK@@QAE_NXZ",
-  "address": "0x1002C940",
-  "size_bytes": 158,
-  "signature": "char __thiscall(CPK *this)",
-  "decompiled_c": "char __thiscall CPK::Unload(CPK *this)\n{\n  int *v2; // eax\n  int v3; // ecx\n  int v4; // edx\n\n  if ( !*((_BYTE *)this + 917672) )\n    return 0;\n  if ( *((_DWORD *)this + 1) == 2 )\n    sub_1002DB00(*((HANDLE *)this + 229420));\n  sub_1002DBD0(*((HANDLE *)this + 229419));\n  memset((char *)this + 8, 0, 0x80u);\n  memset((char *)this + 136, 0, 0xE0000u);\n  *((_DWORD *)this + 229419) = -1;\n  *((_DWORD *)this + 229420) = -1;\n  *((_BYTE *)this + 917672) = 0;\n  memset((char *)this + 917684, 0, 0x104u);\n  *((_DWORD *)this + 229486) = 0;\n  v2 = (int *)((char *)this + 917640);\n  v3 = 8;\n  do\n  {\n    v4 = *v2++;\n    --v3;\n    *(_BYTE *)(v4 + 272) = 0;\n  }\n  while ( v3 );\n  return 1;\n}\n"
-}

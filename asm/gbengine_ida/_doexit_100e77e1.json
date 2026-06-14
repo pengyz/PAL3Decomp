@@ -1,8 +1,0 @@
-{
-  "name": "_doexit",
-  "mangled_name": "_doexit",
-  "address": "0x100E77E1",
-  "size_bytes": 163,
-  "signature": "int __cdecl(UINT uExitCode, int a2, int a3)",
-  "decompiled_c": "int __cdecl doexit(UINT uExitCode, int a2, int a3)\n{\n  HANDLE CurrentProcess; // eax\n  void (**v4)(void); // esi\n\n  _lockexit();\n  if ( dword_10166CD0 == 1 )\n  {\n    CurrentProcess = GetCurrentProcess();\n    TerminateProcess(CurrentProcess, uExitCode);\n  }\n  dword_10166CCC = 1;\n  byte_10166CC8 = a3;\n  if ( !a2 )\n  {\n    if ( dword_10168770 )\n    {\n      v4 = (void (**)(void))(dword_1016876C - 4);\n      if ( dword_1016876C - 4 >= (unsigned int)dword_10168770 )\n      {\n        do\n        {\n          if ( *v4 )\n            (*v4)();\n          --v4;\n        }\n        while ( v4 >= dword_10168770 );\n      }\n    }\n    _initterm(&dword_1011F068, &dword_1011F074);\n  }\n  _initterm(&dword_1011F078, &dword_1011F080);\n  if ( !a3 )\n  {\n    dword_10166CD0 = 1;\n    ExitProcess(uExitCode);\n  }\n  return _unlockexit();\n}\n"
-}

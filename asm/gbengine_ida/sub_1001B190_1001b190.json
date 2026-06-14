@@ -1,8 +1,0 @@
-{
-  "name": "sub_1001B190",
-  "mangled_name": "sub_1001B190",
-  "address": "0x1001B190",
-  "size_bytes": 114,
-  "signature": "int __thiscall(_DWORD **this, _DWORD *a2)",
-  "decompiled_c": "int __thiscall sub_1001B190(_DWORD **this, _DWORD *a2)\n{\n  int v4; // eax\n  int v5; // ecx\n  int v6; // edx\n  _BYTE v7[88]; // [esp+4h] [ebp-130h] BYREF\n  int v8; // [esp+5Ch] [ebp-D8h]\n  int v9; // [esp+60h] [ebp-D4h]\n  int v10; // [esp+9Ch] [ebp-98h]\n\n  if ( (*(int (__stdcall **)(_DWORD, _BYTE *))(**(this + 454) + 28))(*(this + 454), v7) < 0 )\n    return 0;\n  v4 = v10;\n  v5 = v8;\n  v6 = v9;\n  *a2 = 1;\n  a2[2] = v4;\n  a2[3] = v5;\n  a2[4] = v6;\n  a2[1] = (unsigned int)(*(int (__stdcall **)(_DWORD))(**(this + 454) + 16))(*(this + 454)) >> 20;\n  return 1;\n}\n"
-}

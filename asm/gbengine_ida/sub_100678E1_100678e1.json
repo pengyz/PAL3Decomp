@@ -1,8 +1,0 @@
-{
-  "name": "sub_100678E1",
-  "mangled_name": "sub_100678E1",
-  "address": "0x100678E1",
-  "size_bytes": 48,
-  "signature": "int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "int __thiscall sub_100678E1(_DWORD *this, int a2)\n{\n  int v3; // eax\n\n  if ( a2 )\n    (*(void (__stdcall **)(int))(*(_DWORD *)a2 + 4))(a2);\n  v3 = *(this + 2);\n  if ( v3 )\n  {\n    (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v3 + 8))(*(this + 2));\n    *(this + 2) = 0;\n  }\n  *(this + 2) = a2;\n  *(this + 1) = a2;\n  return 0;\n}\n"
-}

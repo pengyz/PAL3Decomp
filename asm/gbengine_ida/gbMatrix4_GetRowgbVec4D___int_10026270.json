@@ -1,8 +1,0 @@
-{
-  "name": "gbMatrix4::GetRow(gbVec4D *,int)",
-  "mangled_name": "?GetRow@gbMatrix4@@QBEPAUgbVec4D@@PAU2@H@Z",
-  "address": "0x10026270",
-  "size_bytes": 38,
-  "signature": "struct gbVec4D *__thiscall(gbMatrix4 *this, struct gbVec4D *a2, int a3)",
-  "decompiled_c": "struct gbVec4D *__thiscall gbMatrix4::GetRow(gbMatrix4 *this, struct gbVec4D *a2, int a3)\n{\n  _DWORD *v3; // ecx\n\n  v3 = (_DWORD *)((char *)this + 16 * a3);\n  *(_DWORD *)a2 = *v3;\n  *((_DWORD *)a2 + 1) = v3[1];\n  *((_DWORD *)a2 + 2) = v3[2];\n  *((_DWORD *)a2 + 3) = v3[3];\n  return a2;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbGfxManager::GetAmbientLight(void)",
-  "mangled_name": "?GetAmbientLight@gbGfxManager@@QAE?AUgbColorFlt@@XZ",
-  "address": "0x10004FC0",
-  "size_bytes": 39,
-  "signature": "_DWORD *__thiscall(_DWORD *this, _DWORD *a2)",
-  "decompiled_c": "_DWORD *__thiscall gbGfxManager::GetAmbientLight(_DWORD *this, _DWORD *a2)\n{\n  _DWORD *v3; // ecx\n\n  v3 = this + 107;\n  *a2 = *v3;\n  a2[1] = v3[1];\n  a2[2] = v3[2];\n  a2[3] = v3[3];\n  return a2;\n}\n"
-}

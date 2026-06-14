@@ -1,8 +1,0 @@
-{
-  "name": "__mbtowc_lk",
-  "mangled_name": "__mbtowc_lk",
-  "address": "0x100F217C",
-  "size_bytes": 201,
-  "signature": "unsigned int __cdecl(LPWSTR lpWideCharStr, unsigned __int8 *lpMultiByteStr, unsigned int a3)",
-  "decompiled_c": "unsigned int __cdecl _mbtowc_lk(LPWSTR lpWideCharStr, unsigned __int8 *lpMultiByteStr, unsigned int a3)\n{\n  unsigned __int8 v3; // al\n  unsigned int result; // eax\n  bool v5; // zf\n\n  if ( !lpMultiByteStr || !a3 )\n    return 0;\n  v3 = *lpMultiByteStr;\n  if ( !*lpMultiByteStr )\n  {\n    if ( lpWideCharStr )\n      *lpWideCharStr = 0;\n    return 0;\n  }\n  if ( !dword_10166D70 )\n  {\n    if ( lpWideCharStr )\n      *lpWideCharStr = v3;\n    return 1;\n  }\n  if ( *((char *)off_1012A140 + 2 * v3 + 1) >= 0 )\n  {\n    if ( MultiByteToWideChar(dword_10166D80, 9u, (LPCCH)lpMultiByteStr, 1, lpWideCharStr, lpWideCharStr != 0) )\n      return 1;\n    goto LABEL_18;\n  }\n  result = SrcSizeInBytes;\n  if ( (int)SrcSizeInBytes > 1 )\n  {\n    if ( (int)a3 >= (int)SrcSizeInBytes )\n    {\n      v5 = MultiByteToWideChar(\n             dword_10166D80,\n             9u,\n             (LPCCH)lpMultiByteStr,\n             SrcSizeInBytes,\n             lpWideCharStr,\n             lpWideCharStr != 0) == 0;\n      result = SrcSizeInBytes;\n      if ( !v5 )\n        return result;\n      goto LABEL_16;\n    }\nLABEL_18:\n    *_errno() = 42;\n    return -1;\n  }\nLABEL_16:\n  if ( a3 < result || !lpMultiByteStr[1] )\n    goto LABEL_18;\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbSound3DNode::Stop(void)",
-  "mangled_name": "?Stop@gbSound3DNode@@QAEXXZ",
-  "address": "0x10002810",
-  "size_bytes": 24,
-  "signature": "void __thiscall(gbSound3DNode *this)",
-  "decompiled_c": "void __thiscall gbSound3DNode::Stop(gbSound3DNode *this)\n{\n  if ( gbSound3DNode::pAudioMgr )\n  {\n    if ( *((_DWORD *)this + 1) )\n      AIL_stop_3D_sample(*((_DWORD *)this + 1));\n  }\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_10043F86",
-  "mangled_name": "sub_10043F86",
-  "address": "0x10043F86",
-  "size_bytes": 248,
-  "signature": "void __thiscall(_DWORD *this, int a2, int a3, float *a4)",
-  "decompiled_c": "void __thiscall sub_10043F86(_DWORD *this, int a2, int a3, float *a4)\n{\n  _DWORD *v5; // esi\n  double v7; // st7\n  double v8; // st6\n  _DWORD *v9; // [esp+14h] [ebp+8h]\n\n  v5 = (_DWORD *)(*(this + 8) + a3 * *(this + 25) + a2 * *(this + 24));\n  v9 = &v5[2 * *(this + 26)];\n  if ( v5 < v9 )\n  {\n    v7 = 0.000015259022;\n    do\n    {\n      *a4 = (double)(unsigned __int16)*v5 * v7;\n      a4[1] = (double)(unsigned __int16)HIWORD(*v5) * v7;\n      v7 = 0.000015259022;\n      v8 = (double)(unsigned __int16)v5[1];\n      v5 += 2;\n      a4 += 4;\n      *(a4 - 2) = v8 * 0.000015259022;\n      *(a4 - 1) = (double)*((unsigned __int16 *)v5 - 1) * 0.000015259022;\n    }\n    while ( v5 < v9 );\n  }\n  if ( *(this + 6) )\n    sub_1003C954((int)this, (unsigned int)&a4[-4 * *(this + 26)]);\n  if ( *(this + 4) )\n    sub_1003CBEB(this, (unsigned int)&a4[-4 * *(this + 26)]);\n}\n"
-}

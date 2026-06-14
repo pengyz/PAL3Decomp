@@ -1,8 +1,0 @@
-{
-  "name": "gbCamera::GetRayToScreen(float,float,gbRay *)",
-  "mangled_name": "?GetRayToScreen@gbCamera@@QAEXMMPAUgbRay@@@Z",
-  "address": "0x100222C0",
-  "size_bytes": 268,
-  "signature": "void __thiscall(gbCamera *this, float a2, float a3, struct gbRay *a4)",
-  "decompiled_c": "void __thiscall gbCamera::GetRayToScreen(gbCamera *this, float a2, float a3, struct gbRay *a4)\n{\n  double v5; // st7\n  double v6; // st7\n  double v7; // st6\n  gbMatrix4 *v8; // esi\n  float v9; // [esp+8h] [ebp-20h] BYREF\n  float v10; // [esp+Ch] [ebp-1Ch] BYREF\n  float v11; // [esp+10h] [ebp-18h] BYREF\n  float v12; // [esp+14h] [ebp-14h]\n  float v13; // [esp+18h] [ebp-10h]\n  float v14; // [esp+1Ch] [ebp-Ch] BYREF\n  float v15; // [esp+20h] [ebp-8h]\n  float v16; // [esp+24h] [ebp-4h]\n\n  v14 = 0.0;\n  v5 = *(float *)this;\n  v15 = 0.0;\n  v16 = 0.0;\n  v11 = 0.0;\n  v12 = 0.0;\n  v13 = 0.0;\n  if ( v5 == 0.0 )\n  {\n    v6 = *((float *)this + 1);\n    v7 = (double)*((int *)this + 9);\n    v14 = 0.0;\n    v15 = 0.0;\n    v16 = -1.0;\n    v10 = v7 * v6 / (double)*((int *)this + 8);\n    v11 = v6 * a2;\n    v12 = v10 * a3;\n    v13 = -*((float *)this + 4);\n  }\n  else\n  {\n    gbCamera::GetViewSizeOnNearPlane(this, &v9, &v10);\n    v11 = 0.0;\n    v12 = 0.0;\n    v13 = 0.0;\n    v14 = v9 * a2;\n    v15 = v10 * a3;\n    v16 = -*((float *)this + 4);\n  }\n  v8 = (gbCamera *)((char *)this + 212);\n  gbMatrix4::Transform(v8, (const struct gbVec3D *)&v11, a4);\n  gbMatrix4::Rotate(v8, (const struct gbVec3D *)&v14, (struct gbRay *)((char *)a4 + 12));\n  gbVec3D::Normalize((struct gbRay *)((char *)a4 + 12));\n}\n"
-}

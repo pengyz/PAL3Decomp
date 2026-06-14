@@ -1,8 +1,0 @@
-{
-  "name": "sub_100CF570",
-  "mangled_name": "sub_100CF570",
-  "address": "0x100CF570",
-  "size_bytes": 202,
-  "signature": "int __usercall@<eax>(int a1@<eax>)",
-  "decompiled_c": "int __usercall sub_100CF570@<eax>(int a1@<eax>)\n{\n  _DWORD *v2; // edi\n  int v3; // eax\n  int (__stdcall **v4)(int, int, int); // ecx\n  int v5; // eax\n  int (__stdcall **v6)(int, int, int); // edx\n  int v7; // eax\n  int *v8; // ecx\n  int result; // eax\n  int v10; // ebp\n  int v11; // ebx\n  int v12; // esi\n  int v13; // edx\n  int v14; // [esp+30h] [ebp-8h]\n  int v15; // [esp+30h] [ebp-8h]\n  int v16; // [esp+34h] [ebp-4h]\n\n  v2 = *(_DWORD **)(a1 + 460);\n  v3 = (**(int (__stdcall ***)(int, int, int))(a1 + 4))(a1, 1, 1024);\n  v4 = *(int (__stdcall ***)(int, int, int))(a1 + 4);\n  v2[2] = v3;\n  v5 = (*v4)(a1, 1, 1024);\n  v6 = *(int (__stdcall ***)(int, int, int))(a1 + 4);\n  v2[3] = v5;\n  v2[4] = (*v6)(a1, 1, 1024);\n  v7 = (**(int (__stdcall ***)(int, int, int))(a1 + 4))(a1, 1, 1024);\n  v8 = (int *)v2[3];\n  v2[5] = v7;\n  v14 = v7;\n  v16 = v2[4] - (_DWORD)v8;\n  result = v2[2] - (_DWORD)v8;\n  v10 = 5990656;\n  v11 = -14831872;\n  v12 = -11728000;\n  v13 = 2919680;\n  v15 = v14 - (_DWORD)v8;\n  do\n  {\n    *(int *)((char *)v8 + result) = v12 >> 16;\n    *v8 = v11 >> 16;\n    *(int *)((char *)v8 + v16) = v10;\n    *(int *)((char *)v8 + v15) = v13;\n    v13 -= 22554;\n    v12 += 91881;\n    v11 += 116130;\n    v10 -= 46802;\n    ++v8;\n  }\n  while ( v13 >= -2831590 );\n  return result;\n}\n"
-}

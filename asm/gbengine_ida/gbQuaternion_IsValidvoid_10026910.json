@@ -1,8 +1,0 @@
-{
-  "name": "gbQuaternion::IsValid(void)",
-  "mangled_name": "?IsValid@gbQuaternion@@QBE?B_NXZ",
-  "address": "0x10026910",
-  "size_bytes": 109,
-  "signature": "bool __thiscall(gbQuaternion *this)",
-  "decompiled_c": "bool __thiscall gbQuaternion::IsValid(gbQuaternion *this)\n{\n  if ( !this )\n    return 0;\n  if ( *(float *)this * *(float *)this < 0.0 )\n    return 0;\n  if ( *((float *)this + 1) * *((float *)this + 1) < 0.0 )\n    return 0;\n  if ( *((float *)this + 2) * *((float *)this + 2) >= 0.0 )\n    return *((float *)this + 3) * *((float *)this + 3) >= 0.0;\n  return 0;\n}\n"
-}

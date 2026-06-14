@@ -1,8 +1,0 @@
-{
-  "name": "sub_1006420D",
-  "mangled_name": "sub_1006420D",
-  "address": "0x1006420D",
-  "size_bytes": 172,
-  "signature": "int __userpurge@<eax>(int a1@<ecx>, double a2@<st1>, double a3@<st0>, int a4, int a5, _DWORD *a6)",
-  "decompiled_c": "int __userpurge sub_1006420D@<eax>(int a1@<ecx>, double a2@<st1>, double a3@<st0>, int a4, int a5, _DWORD *a6)\n{\n  int result; // eax\n\n  if ( !a6 )\n    return -2005530516;\n  *a6 = 0;\n  *(_DWORD *)a1 = a5;\n  *(_DWORD *)(a1 + 4) = a4;\n  *(_DWORD *)(a1 + 8) = 0;\n  *(_DWORD *)(a1 + 16) = 0;\n  *(_DWORD *)(a1 + 20) = 0;\n  *(_DWORD *)(a1 + 24) = 0;\n  *(_DWORD *)(a1 + 28) = 0;\n  *(_DWORD *)(a1 + 64) = 0;\n  *(_DWORD *)(a1 + 68) = 0;\n  *(_DWORD *)(a1 + 72) = 1;\n  *(_DWORD *)(a1 + 76) = 0;\n  *(_DWORD *)(a1 + 80) = 0;\n  *(_DWORD *)(a1 + 84) = 0;\n  *(_DWORD *)(a1 + 88) = 0;\n  dword_10165838 = a1;\n  result = sub_1004DB9A(*(_DWORD **)(a1 + 4), 1);\n  if ( result >= 0 )\n  {\n    sub_10058E96((_DWORD *)a1, 0, 0);\n    if ( sub_10062F51(a2, a3) )\n      *(_DWORD *)(a1 + 64) = 1;\n    result = sub_1005100C(*(int ***)(a1 + 4));\n    if ( result >= 0 )\n    {\n      if ( !*(_DWORD *)(a1 + 64) )\n      {\n        *a6 = *(_DWORD *)(*(_DWORD *)(a1 + 8) + 8);\n        *(_DWORD *)(*(_DWORD *)(a1 + 8) + 8) = 0;\n      }\n      return *(_DWORD *)(a1 + 64) != 0 ? 0x80004005 : 0;\n    }\n  }\n  return result;\n}\n"
-}

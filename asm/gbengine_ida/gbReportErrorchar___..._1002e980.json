@@ -1,8 +1,0 @@
-{
-  "name": "gbReportError(char *,...)",
-  "mangled_name": "?gbReportError@@YAXPADZZ",
-  "address": "0x1002E980",
-  "size_bytes": 79,
-  "signature": "void(char *Format, ...)",
-  "decompiled_c": "void gbReportError(char *Format, ...)\n{\n  FILE *v1; // eax\n  FILE *v2; // esi\n  va_list ArgList; // [esp+Ch] [ebp+8h] BYREF\n\n  va_start(ArgList, Format);\n  vsprintf(byte_1015C774, Format, ArgList);\n  byte_1015CB74 = 1;\n  v1 = fopen(aEnginelogTxt, Mode);\n  v2 = v1;\n  if ( v1 )\n  {\n    fprintf(v1, \"%s\\n\", byte_1015C774);\n    fclose(v2);\n  }\n}\n"
-}

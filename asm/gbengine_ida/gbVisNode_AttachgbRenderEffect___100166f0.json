@@ -1,8 +1,0 @@
-{
-  "name": "gbVisNode::Attach(gbRenderEffect *)",
-  "mangled_name": "?Attach@gbVisNode@@UAEHPAVgbRenderEffect@@@Z",
-  "address": "0x100166F0",
-  "size_bytes": 64,
-  "signature": "int __thiscall(gbVisNode *this, struct gbRenderEffect *a2)",
-  "decompiled_c": "int __thiscall gbVisNode::Attach(gbVisNode *this, struct gbRenderEffect *a2)\n{\n  int v3; // edi\n  int v4; // ecx\n\n  v3 = 0;\n  v4 = *((_DWORD *)this + 3);\n  *((_DWORD *)this + 6) = v4;\n  if ( !v4 )\n    return 0;\n  do\n  {\n    if ( (*(int (__thiscall **)(int, struct gbRenderEffect *))(*(_DWORD *)v4 + 16))(v4, a2) )\n      v3 = 1;\n    v4 = *(_DWORD *)(*((_DWORD *)this + 6) + 4);\n    *((_DWORD *)this + 6) = v4;\n  }\n  while ( v4 );\n  return v3;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbSceneGraph::NewOneRenderObj(gbVisNode *)",
-  "mangled_name": "?NewOneRenderObj@gbSceneGraph@@QAEPAUgbRenderInfoObj@@PAVgbVisNode@@@Z",
-  "address": "0x10014D10",
-  "size_bytes": 83,
-  "signature": "struct gbRenderInfoObj *__thiscall(gbSceneGraph *this, struct gbVisNode *a2)",
-  "decompiled_c": "struct gbRenderInfoObj *__thiscall gbSceneGraph::NewOneRenderObj(gbSceneGraph *this, struct gbVisNode *a2)\n{\n  _DWORD *v3; // ebx\n\n  v3 = (_DWORD *)(*(_DWORD *)this + 112 * *((_DWORD *)this + 1));\n  *v3 = a2;\n  v3[5] = *((_DWORD *)a2 + 13);\n  qmemcpy(v3 + 8, gbMatrixStack::GetTop(*(gbMatrixStack **)(*((_DWORD *)this + 4806) + 216)), 0x40u);\n  ++*((_DWORD *)this + 1);\n  return (struct gbRenderInfoObj *)v3;\n}\n"
-}

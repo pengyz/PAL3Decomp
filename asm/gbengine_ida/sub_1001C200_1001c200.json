@@ -1,8 +1,0 @@
-{
-  "name": "sub_1001C200",
-  "mangled_name": "sub_1001C200",
-  "address": "0x1001C200",
-  "size_bytes": 195,
-  "signature": "_DWORD *__thiscall(_DWORD *this, int a2, int a3, int a4)",
-  "decompiled_c": "_DWORD *__thiscall sub_1001C200(_DWORD *this, int a2, int a3, int a4)\n{\n  int v4; // ebp\n  int v7; // eax\n  gbGfxManager_D3D *v9; // [esp+30h] [ebp+8h]\n\n  v4 = a4;\n  gbIndexPool::gbIndexPool(this, a2, a3, a4);\n  *this = &off_100F574C;\n  v9 = gbVertexPool::pGfxMgr;\n  if ( a2 )\n  {\n    if ( a2 == 1 )\n    {\n      a4 = 520;\n    }\n    else if ( a2 == 2 )\n    {\n      *(this + 4) = malloc(a4 * a3);\n      return this;\n    }\n  }\n  else\n  {\n    a4 = 0;\n  }\n  v7 = (*(int (__stdcall **)(_DWORD, int, int, int, int, _DWORD *, _DWORD))(**((_DWORD **)gbVertexPool::pGfxMgr + 454)\n                                                                          + 108))(\n         *((_DWORD *)gbVertexPool::pGfxMgr + 454),\n         v4 * a3,\n         a4,\n         (a3 != 2) + 101,\n         1,\n         this + 4,\n         0);\n  if ( v7 < 0 )\n    *((_DWORD *)v9 + 562) = v7;\n  return this;\n}\n"
-}

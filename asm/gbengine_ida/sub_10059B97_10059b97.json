@@ -1,8 +1,0 @@
-{
-  "name": "sub_10059B97",
-  "mangled_name": "sub_10059B97",
-  "address": "0x10059B97",
-  "size_bytes": 92,
-  "signature": "int __stdcall(double *a1, double *a2, int a3)",
-  "decompiled_c": "int __stdcall sub_10059B97(double *a1, double *a2, int a3)\n{\n  double v4; // st7\n  double v5; // st7\n\n  if ( *(_DWORD *)a2 )\n  {\n    switch ( *(_DWORD *)a2 )\n    {\n      case 1:\n        v4 = (double)*((int *)a2 + 2);\n        break;\n      case 2:\n        v4 = (double)*((unsigned int *)a2 + 2);\n        break;\n      case 3:\n        v4 = a2[1];\n        break;\n      default:\n        return -2147467259;\n    }\n    *a1 = v4;\n  }\n  else\n  {\n    if ( *((_DWORD *)a2 + 2) )\n      v5 = 1.0;\n    else\n      v5 = 0.0;\n    *a1 = v5;\n  }\n  return 0;\n}\n"
-}

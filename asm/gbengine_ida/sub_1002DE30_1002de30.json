@@ -1,8 +1,0 @@
-{
-  "name": "sub_1002DE30",
-  "mangled_name": "sub_1002DE30",
-  "address": "0x1002DE30",
-  "size_bytes": 215,
-  "signature": "void __thiscall(HANDLE *this)",
-  "decompiled_c": "void __thiscall sub_1002DE30(HANDLE *this)\n{\n  void **v2; // esi\n  int v3; // ebx\n  int v4; // edi\n  size_t *v5; // ebx\n  char *v6; // esi\n  int i; // edi\n\n  if ( *this == HANDLE_FLAG_PROTECT_FROM_CLOSE )\n  {\n    v2 = this + 5;\n    v3 = 5;\n    do\n    {\n      v4 = 8;\n      do\n      {\n        if ( *((_BYTE *)v2 + 20) )\n          free(*v2);\n        v2 += 6;\n        --v4;\n      }\n      while ( v4 );\n      --v3;\n    }\n    while ( v3 );\n  }\n  else if ( *this == HANDLE_FLAG_PROTECT_FROM_CLOSE|HANDLE_FLAG_INHERIT )\n  {\n    if ( !HeapDestroy(*(this + 2)) )\n      sub_1002E850(0x10u, aErrorCeCannotD_0, (char)aDProjectGbengi_1);\n    *(this + 2) = 0;\n  }\n  else if ( *this == (HANDLE)5 )\n  {\n    VirtualFree(*(this + 4), 0, 0x8000u);\n  }\n  if ( *this == HANDLE_FLAG_PROTECT_FROM_CLOSE )\n  {\n    gbLogInfo(aMemoryUsageByM);\n    v5 = &Size;\n    v6 = (char *)(this + 9);\n    do\n    {\n      for ( i = 0; i < 8; ++i )\n      {\n        if ( v6[6] )\n          gbLogInfo(\"%luk-%d, max usage : %lu  use time : %lu\", *v5 >> 10, i, *((_DWORD *)v6 - 1), *(_DWORD *)v6);\n        v6 += 24;\n      }\n      ++v5;\n    }\n    while ( (int)v5 < (int)&dword_10120724 );\n  }\n}\n"
-}

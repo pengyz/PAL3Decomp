@@ -1,8 +1,0 @@
-{
-  "name": "__strdup",
-  "mangled_name": "__strdup",
-  "address": "0x100E6B16",
-  "size_bytes": 43,
-  "signature": "char *__cdecl(const char *Source)",
-  "decompiled_c": "char *__cdecl _strdup(const char *Source)\n{\n  size_t v1; // eax\n  char *v2; // eax\n\n  if ( Source && (v1 = strlen(Source), (v2 = (char *)malloc(v1 + 1)) != 0) )\n    return strcpy(v2, Source);\n  else\n    return 0;\n}\n"
-}

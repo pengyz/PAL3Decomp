@@ -1,8 +1,0 @@
-{
-  "name": "sub_1008131C",
-  "mangled_name": "sub_1008131C",
-  "address": "0x1008131C",
-  "size_bytes": 127,
-  "signature": "int __thiscall(_DWORD *this, int a2, double *a3)",
-  "decompiled_c": "int __thiscall sub_1008131C(_DWORD *this, int a2, double *a3)\n{\n  int v3; // esi\n  double *v4; // eax\n  double v5; // st7\n  int result; // eax\n  double X[2]; // [esp+Ch] [ebp-10h] BYREF\n\n  v3 = *(_DWORD *)(*(_DWORD *)(*(this + 2) + 20) + 4 * a2);\n  if ( *(char *)v3 >= 0 )\n  {\n    result = sub_1007FCC7((int)this, a2, X);\n    if ( result < 0 )\n      return result;\n    if ( X[0] == X[1] && _finite(X[0]) )\n    {\n      v4 = a3;\n      if ( a3 )\n      {\n        v5 = X[0];\n        goto LABEL_10;\n      }\n      return 0;\n    }\n  }\n  else if ( _finite(*(double *)(v3 + 32)) )\n  {\n    v4 = a3;\n    if ( a3 )\n    {\n      v5 = *(double *)(v3 + 32);\nLABEL_10:\n      *v4 = v5;\n      return 0;\n    }\n    return 0;\n  }\n  return -2147467259;\n}\n"
-}

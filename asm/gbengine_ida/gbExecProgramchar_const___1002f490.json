@@ -1,8 +1,0 @@
-{
-  "name": "gbExecProgram(char const *)",
-  "mangled_name": "?gbExecProgram@@YAHPBD@Z",
-  "address": "0x1002F490",
-  "size_bytes": 150,
-  "signature": "BOOL __cdecl(LPCSTR lpFileName)",
-  "decompiled_c": "BOOL __cdecl gbExecProgram(LPCSTR lpFileName)\n{\n  LPSTR FilePart; // [esp+Ch] [ebp-158h] BYREF\n  struct _STARTUPINFOA StartupInfo; // [esp+10h] [ebp-154h] BYREF\n  struct _PROCESS_INFORMATION ProcessInformation; // [esp+54h] [ebp-110h] BYREF\n  CHAR Buffer[256]; // [esp+64h] [ebp-100h] BYREF\n\n  memset(&StartupInfo, 0, sizeof(StartupInfo));\n  StartupInfo.cb = 68;\n  memset(&StartupInfo.lpReserved, 0, 12);\n  StartupInfo.lpReserved2 = 0;\n  StartupInfo.cbReserved2 = 0;\n  if ( !GetFullPathNameA(lpFileName, 0x100u, Buffer, &FilePart) )\n    return 1;\n  if ( FilePart )\n    *FilePart = 0;\n  return CreateProcessA(lpFileName, 0, 0, 0, 0, 0x20u, 0, Buffer, &StartupInfo, &ProcessInformation);\n}\n"
-}

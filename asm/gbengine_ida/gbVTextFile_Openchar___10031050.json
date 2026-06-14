@@ -1,8 +1,0 @@
-{
-  "name": "gbVTextFile::Open(char *)",
-  "mangled_name": "?Open@gbVTextFile@@QAEXPAD@Z",
-  "address": "0x10031050",
-  "size_bytes": 142,
-  "signature": "void __thiscall(gbVTextFile *this, char *a2)",
-  "decompiled_c": "void __thiscall gbVTextFile::Open(gbVTextFile *this, char *a2)\n{\n  int v3; // esi\n  int v4; // eax\n\n  v3 = *((_DWORD *)this + 256);\n  if ( v3 )\n  {\n    v4 = *((_DWORD *)g_pVFileSys + 3);\n    if ( v4 == 1 )\n    {\n      CPK::Close((gbVFileSystem *)((char *)g_pVFileSys + 24), (struct CPKFile *)(v3 + 272));\nLABEL_9:\n      *((_DWORD *)this + 256) = 0;\n      goto LABEL_10;\n    }\n    if ( v4 )\n    {\n      if ( v4 != 2 )\n        goto LABEL_9;\n      free(*(void **)(v3 + 4));\n    }\n    else\n    {\n      fclose(*(FILE **)(v3 + 4));\n    }\n    *(_DWORD *)v3 = 0;\n    goto LABEL_9;\n  }\nLABEL_10:\n  *((_DWORD *)this + 256) = gbVFileSystem::OpenFile(g_pVFileSys, a2, 0x401u);\n}\n"
-}

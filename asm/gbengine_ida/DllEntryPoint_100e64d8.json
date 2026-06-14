@@ -1,8 +1,0 @@
-{
-  "name": "DllEntryPoint",
-  "mangled_name": "DllEntryPoint",
-  "address": "0x100E64D8",
-  "size_bytes": 157,
-  "signature": "BOOL __stdcall(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)",
-  "decompiled_c": "BOOL __stdcall DllEntryPoint(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)\n{\n  bool v4; // zf\n  BOOL v6; // eax\n  BOOL fdwReasona; // [esp+18h] [ebp+Ch]\n\n  if ( fdwReason )\n  {\n    if ( fdwReason != 1 && fdwReason != 2 )\n      goto LABEL_10;\n    if ( dword_10168780 && !dword_10168780(hinstDLL, fdwReason, lpReserved) )\n      return 0;\n    v4 = _CRT_INIT((int)hinstDLL, fdwReason, (int)lpReserved) == 0;\n  }\n  else\n  {\n    v4 = dword_10166C70 == 0;\n  }\n  if ( v4 )\n    return 0;\nLABEL_10:\n  v6 = DllMain(hinstDLL, fdwReason, lpReserved);\n  fdwReasona = v6;\n  if ( fdwReason != 1 )\n  {\nLABEL_13:\n    if ( !fdwReason || fdwReason == 3 )\n    {\n      if ( !_CRT_INIT((int)hinstDLL, fdwReason, (int)lpReserved) )\n        fdwReasona = 0;\n      if ( fdwReasona )\n      {\n        if ( dword_10168780 )\n          return dword_10168780(hinstDLL, fdwReason, lpReserved);\n      }\n    }\n    return fdwReasona;\n  }\n  if ( !v6 )\n  {\n    _CRT_INIT((int)hinstDLL, 0, (int)lpReserved);\n    goto LABEL_13;\n  }\n  return fdwReasona;\n}\n"
-}

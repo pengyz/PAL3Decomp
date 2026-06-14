@@ -1,8 +1,0 @@
-{
-  "name": "gbMatrixStack::LoadIdentity(void)",
-  "mangled_name": "?LoadIdentity@gbMatrixStack@@QAEXXZ",
-  "address": "0x100270D0",
-  "size_bytes": 51,
-  "signature": "void __thiscall(gbMatrixStack *this)",
-  "decompiled_c": "void __thiscall gbMatrixStack::LoadIdentity(gbMatrixStack *this)\n{\n  _DWORD *v1; // edx\n\n  v1 = (_DWORD *)(*(_DWORD *)this + (*((_DWORD *)this + 2) << 6));\n  memset(v1, 0, 0x40u);\n  v1[15] = 1065353216;\n  v1[10] = 1065353216;\n  v1[5] = 1065353216;\n  *v1 = 1065353216;\n  *((_DWORD *)this + 3) = 0;\n}\n"
-}

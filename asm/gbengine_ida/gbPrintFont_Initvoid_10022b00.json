@@ -1,8 +1,0 @@
-{
-  "name": "gbPrintFont::Init(void)",
-  "mangled_name": "?Init@gbPrintFont@@UAEHXZ",
-  "address": "0x10022B00",
-  "size_bytes": 63,
-  "signature": "int __thiscall(gbPrintFont *this)",
-  "decompiled_c": "int __thiscall gbPrintFont::Init(gbPrintFont *this)\n{\n  *((_DWORD *)this + 17) = gbEffectMgr::NewRenderEffect(*((gbEffectMgr **)dword_1014ADC0 + 50), aGfxscriptFontG, 0);\n  *((_DWORD *)this + 18) = gbEffectMgr::NewRenderEffect(*((gbEffectMgr **)dword_1014ADC0 + 50), aGfxscriptFont1, 0);\n  return 1;\n}\n"
-}

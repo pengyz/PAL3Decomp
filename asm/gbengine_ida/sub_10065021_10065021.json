@@ -1,8 +1,0 @@
-{
-  "name": "sub_10065021",
-  "mangled_name": "sub_10065021",
-  "address": "0x10065021",
-  "size_bytes": 90,
-  "signature": "signed int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "signed int __thiscall sub_10065021(_DWORD *this, int a2)\n{\n  int v2; // eax\n  _DWORD *v3; // edx\n  _BYTE *v4; // esi\n  signed int result; // eax\n\n  v2 = *(this + 8);\n  v3 = (_DWORD *)(v2 + a2);\n  v4 = (_BYTE *)(v2 + a2 + 4);\n  result = v2 + *(this + 7) < (unsigned int)v4 ? 0x80004005 : 0;\n  if ( result >= 0 )\n  {\n    if ( *v3 < 2u )\n    {\n      return -2147467259;\n    }\n    else\n    {\n      result = sub_10064FDC(this, a2);\n      if ( result >= 0 )\n      {\n        while ( *v4 )\n        {\n          if ( *v4 == 46 || *v4 == 64 || *v4 == 91 || *v4 == 93 )\n            return -2147467259;\n          ++v4;\n        }\n      }\n    }\n  }\n  return result;\n}\n"
-}

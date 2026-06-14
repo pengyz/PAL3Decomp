@@ -1,8 +1,0 @@
-{
-  "name": "gbCamera::PointWorldToEye(gbVec3D *,gbVec3D *)",
-  "mangled_name": "?PointWorldToEye@gbCamera@@QAEXPAUgbVec3D@@0@Z",
-  "address": "0x10022030",
-  "size_bytes": 24,
-  "signature": "void __thiscall(gbCamera *this, struct gbVec3D *a2, struct gbVec3D *a3)",
-  "decompiled_c": "void __thiscall gbCamera::PointWorldToEye(gbCamera *this, struct gbVec3D *a2, struct gbVec3D *a3)\n{\n  gbMatrix4::Transform((gbCamera *)((char *)this + 148), a2, a3);\n}\n"
-}

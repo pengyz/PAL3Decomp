@@ -1,8 +1,0 @@
-{
-  "name": "gbVec3D::operator+=(gbVec3D const &)",
-  "mangled_name": "??YgbVec3D@@QAEXABU0@@Z",
-  "address": "0x10003930",
-  "size_bytes": 31,
-  "signature": "float *__thiscall(float *this, float *a2)",
-  "decompiled_c": "// Alternative name is '??YgbColorFlt@@QAEXABU0@@Z'\nfloat *__thiscall gbVec3D::operator+=(float *this, float *a2)\n{\n  *this = *a2 + *this;\n  *(this + 1) = a2[1] + *(this + 1);\n  *(this + 2) = a2[2] + *(this + 2);\n  return a2;\n}\n"
-}

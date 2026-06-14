@@ -1,8 +1,0 @@
-{
-  "name": "sub_10047A83",
-  "mangled_name": "sub_10047A83",
-  "address": "0x10047A83",
-  "size_bytes": 202,
-  "signature": "double __stdcall(float *a1)",
-  "decompiled_c": "double __stdcall sub_10047A83(float *a1)\n{\n  double v2; // st7\n  double v3; // st6\n  double v4; // st5\n  double v5; // st4\n  double v6; // st3\n  float v8; // [esp+8h] [ebp+8h]\n\n  v2 = a1[10] * a1[15] - a1[14] * a1[11];\n  v3 = a1[15] * a1[9] - a1[13] * a1[11];\n  v4 = a1[14] * a1[9] - a1[10] * a1[13];\n  v5 = a1[8] * a1[15] - a1[12] * a1[11];\n  v6 = a1[14] * a1[8] - a1[12] * a1[10];\n  v8 = a1[8] * a1[13] - a1[12] * a1[9];\n  return (v2 * a1[5] - v3 * a1[6] + v4 * a1[7]) * *a1\n       - (v2 * a1[4] - v5 * a1[6] + v6 * a1[7]) * a1[1]\n       + (v3 * a1[4] - v5 * a1[5] + v8 * a1[7]) * a1[2]\n       - (v4 * a1[4] - v6 * a1[5] + v8 * a1[6]) * a1[3];\n}\n"
-}

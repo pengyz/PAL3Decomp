@@ -1,8 +1,0 @@
-{
-  "name": "gbVisNode::gbVisNode(gbVisNode const &)",
-  "mangled_name": "??0gbVisNode@@QAE@ABV0@@Z",
-  "address": "0x10004A60",
-  "size_bytes": 138,
-  "signature": "gbVisNode *__thiscall(gbVisNode *this, const struct gbVisNode *a2)",
-  "decompiled_c": "gbVisNode *__thiscall gbVisNode::gbVisNode(gbVisNode *this, const struct gbVisNode *a2)\n{\n  gbVisNode *result; // eax\n  int v3; // ecx\n  int v4; // ecx\n\n  result = this;\n  v3 = *((_DWORD *)a2 + 1);\n  *(_DWORD *)result = &gbChain1DNode::`vftable';\n  *((_DWORD *)result + 1) = v3;\n  *((_DWORD *)result + 2) = *((_DWORD *)a2 + 2);\n  *((_DWORD *)result + 3) = *((_DWORD *)a2 + 3);\n  *((_DWORD *)result + 4) = *((_DWORD *)a2 + 4);\n  *((_DWORD *)result + 5) = *((_DWORD *)a2 + 5);\n  v4 = *((_DWORD *)a2 + 6);\n  *(_DWORD *)result = &gbNBTreeNode::`vftable';\n  *((_DWORD *)result + 6) = v4;\n  qmemcpy((char *)result + 28, (char *)a2 + 28, 0x3Cu);\n  *(_DWORD *)result = &gbVisNode::`vftable';\n  return result;\n}\n"
-}

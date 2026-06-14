@@ -1,8 +1,0 @@
-{
-  "name": "gbVec3D::operator==(gbVec3D const &)",
-  "mangled_name": "??8gbVec3D@@QAE_NABU0@@Z",
-  "address": "0x10001FC0",
-  "size_bytes": 78,
-  "signature": "BOOL __thiscall(float *this, float *a2)",
-  "decompiled_c": "BOOL __thiscall gbVec3D::operator==(float *this, float *a2)\n{\n  return fabs(*this - *a2) < 0.0049999999\n      && fabs(*(this + 1) - a2[1]) < 0.0049999999\n      && fabs(*(this + 2) - a2[2]) < 0.0049999999;\n}\n"
-}

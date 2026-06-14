@@ -1,8 +1,0 @@
-{
-  "name": "sub_10064FDC",
-  "mangled_name": "sub_10064FDC",
-  "address": "0x10064FDC",
-  "size_bytes": 69,
-  "signature": "unsigned int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "unsigned int __thiscall sub_10064FDC(_DWORD *this, int a2)\n{\n  int v2; // edx\n  unsigned int v3; // ebx\n  unsigned int result; // eax\n  int v5; // edi\n  unsigned int v6; // edx\n\n  v2 = *(this + 8);\n  v3 = *(this + 7) + v2;\n  result = v3 < v2 + a2 + 4 ? 0x80004005 : 0;\n  if ( v3 >= v2 + a2 + 4 )\n  {\n    v5 = *(_DWORD *)(v2 + a2);\n    if ( v5 )\n    {\n      v6 = a2 + 4 + v5 + v2;\n      result = v3 < v6 ? 0x80004005 : 0;\n      if ( v3 >= v6 )\n      {\n        if ( *(_BYTE *)(v6 - 1) )\n          return -2147467259;\n      }\n    }\n  }\n  return result;\n}\n"
-}

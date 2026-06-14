@@ -1,8 +1,0 @@
-{
-  "name": "sub_10023760",
-  "mangled_name": "sub_10023760",
-  "address": "0x10023760",
-  "size_bytes": 97,
-  "signature": "void __thiscall(void **this)",
-  "decompiled_c": "void __thiscall sub_10023760(void **this)\n{\n  int v2; // edi\n  gbRefObject **v3; // ebx\n\n  free(*(this + 41));\n  free(*(this + 39));\n  v2 = 0;\n  if ( (int)*(this + 19) > 0 )\n  {\n    v3 = (gbRefObject **)(this + 21);\n    do\n    {\n      gbRefObject::Release(*v3);\n      ++v2;\n      ++v3;\n    }\n    while ( v2 < (int)*(this + 19) );\n  }\n  free(*(this + 20));\n  free(*(this + 38));\n  gbPrintFont::Release((gbPrintFont *)this);\n}\n"
-}

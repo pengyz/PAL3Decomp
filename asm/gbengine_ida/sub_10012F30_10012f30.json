@@ -1,8 +1,0 @@
-{
-  "name": "sub_10012F30",
-  "mangled_name": "sub_10012F30",
-  "address": "0x10012F30",
-  "size_bytes": 199,
-  "signature": "unsigned __int8 *__cdecl(float *a1, unsigned __int8 *a2)",
-  "decompiled_c": "unsigned __int8 *__cdecl sub_10012F30(float *a1, unsigned __int8 *a2)\n{\n  unsigned __int8 *result; // eax\n  int v3; // [esp+8h] [ebp+8h]\n\n  result = a2;\n  if ( gbColorQuad::ColorQuadFmt )\n  {\n    *a1 = (double)*a2 * 0.0039215689;\n    a1[1] = (double)a2[1] * 0.0039215689;\n    v3 = a2[2];\n  }\n  else\n  {\n    *a1 = (double)a2[2] * 0.0039215689;\n    a1[1] = (double)a2[1] * 0.0039215689;\n    v3 = *a2;\n  }\n  a1[2] = (double)v3 * 0.0039215689;\n  a1[3] = (double)result[3] * 0.0039215689;\n  return result;\n}\n"
-}

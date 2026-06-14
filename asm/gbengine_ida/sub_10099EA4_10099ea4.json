@@ -1,8 +1,0 @@
-{
-  "name": "sub_10099EA4",
-  "mangled_name": "sub_10099EA4",
-  "address": "0x10099EA4",
-  "size_bytes": 352,
-  "signature": "int __thiscall(int this, long double *a2)",
-  "decompiled_c": "int __thiscall sub_10099EA4(int this, long double *a2)\n{\n  int v3; // eax\n  char *v4; // edx\n  int result; // eax\n  char *v6; // [esp+8h] [ebp-8h]\n  int v7; // [esp+Ch] [ebp-4h]\n\n  v3 = *(_DWORD *)(this + 32);\n  if ( *(_DWORD *)(this + 8) == v3 )\n  {\n    if ( v3 )\n      v7 = 2 * v3;\n    else\n      v7 = 1024;\n    v4 = (char *)operator new(4 * v7);\n    v6 = v4;\n    if ( !v4 )\n    {\n      if ( a2 )\n        sub_10080CFB(a2, 1);\n      return -1;\n    }\n    qmemcpy(v4, *(const void **)(this + 20), 4 * *(_DWORD *)(this + 8));\n    memset(&v4[4 * *(_DWORD *)(this + 8)], 0, 4 * (v7 - *(_DWORD *)(this + 8)));\n    operator delete(*(void **)(this + 20));\n    *(_DWORD *)(this + 20) = v6;\n    *(_DWORD *)(this + 32) = v7;\n  }\n  if ( a2\n    && (*(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this + 16) + 4 * *((_DWORD *)a2 + 1)) + 5) & 1) != 0\n    && *((_DWORD *)a2 + 2) == -1 )\n  {\n    *(_BYTE *)a2 |= 0xA0u;\n    if ( 0.0 == a2[4] || 1.0 == a2[4] )\n      *(_DWORD *)a2 |= 1u;\n    if ( fabs(a2[4] - (double)(int)(__int64)a2[4]) < 0.000001 )\n      *(_DWORD *)a2 |= 2u;\n    if ( a2[4] >= 0.0 )\n      *(_DWORD *)a2 |= 4u;\n    if ( a2[4] <= 0.0 )\n      *(_DWORD *)a2 |= 8u;\n    if ( fabs(a2[4]) <= 1.0 )\n      *(_DWORD *)a2 |= 0x10u;\n  }\n  *(_DWORD *)(*(_DWORD *)(this + 20) + 4 * *(_DWORD *)(this + 8)) = a2;\n  result = *(_DWORD *)(this + 8);\n  *(_DWORD *)(this + 8) = result + 1;\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbGfxManager::GetDeltaTick(void)",
-  "mangled_name": "?GetDeltaTick@gbGfxManager@@QAEIXZ",
-  "address": "0x1001DAF0",
-  "size_bytes": 27,
-  "signature": "unsigned int __thiscall(gbGfxManager *this)",
-  "decompiled_c": "unsigned int __thiscall gbGfxManager::GetDeltaTick(gbGfxManager *this)\n{\n  unsigned int result; // eax\n\n  result = *((_DWORD *)this + 129) - *((_DWORD *)this + 128);\n  if ( result > 0x1F4 )\n    return 100;\n  return result;\n}\n"
-}

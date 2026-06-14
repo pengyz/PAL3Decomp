@@ -1,8 +1,0 @@
-{
-  "name": "sub_1004D473",
-  "mangled_name": "sub_1004D473",
-  "address": "0x1004D473",
-  "size_bytes": 63,
-  "signature": "char *__thiscall(_DWORD *this, _BYTE *a2, int *a3)",
-  "decompiled_c": "char *__thiscall sub_1004D473(_DWORD *this, _BYTE *a2, int *a3)\n{\n  char *v4; // eax\n  _BYTE *v5; // esi\n\n  if ( (unsigned int)a2 < *(this + 1)\n    && *a2 == 39\n    && (v4 = sub_1004D1D9((int)this, a2 + 1, a3)) != 0\n    && (v5 = &a2[(_DWORD)v4 + 1], (unsigned int)v5 < *(this + 1))\n    && *v5 == 39 )\n  {\n    return v4 + 2;\n  }\n  else\n  {\n    return 0;\n  }\n}\n"
-}

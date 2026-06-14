@@ -1,8 +1,0 @@
-{
-  "name": "sub_10005F30",
-  "mangled_name": "sub_10005F30",
-  "address": "0x10005F30",
-  "size_bytes": 80,
-  "signature": "void __thiscall(gbRefObject **this)",
-  "decompiled_c": "void __thiscall sub_10005F30(gbRefObject **this)\n{\n  gbRefObject *v2; // ecx\n  int v3; // ebx\n  gbRefObject **v4; // esi\n\n  v2 = *(this + 34);\n  if ( v2 )\n  {\n    gbRefObject::Release(v2);\n    *(this + 34) = 0;\n  }\n  v3 = 0;\n  if ( (int)*(this + 33) > 0 )\n  {\n    v4 = this + 17;\n    do\n    {\n      if ( *v4 )\n      {\n        gbRefObject::Release(*v4);\n        *v4 = 0;\n      }\n      ++v3;\n      ++v4;\n    }\n    while ( v3 < (int)*(this + 33) );\n  }\n}\n"
-}

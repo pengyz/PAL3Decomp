@@ -1,8 +1,0 @@
-{
-  "name": "CPK::IsDir(ulong)",
-  "mangled_name": "?IsDir@CPK@@AAE_NK@Z",
-  "address": "0x1002D840",
-  "size_bytes": 137,
-  "signature": "char __thiscall(CPK *this, unsigned int a2)",
-  "decompiled_c": "char __thiscall CPK::IsDir(CPK *this, unsigned int a2)\n{\n  unsigned int v2; // ebp\n  int v4; // edi\n  int v5; // esi\n  int v6; // eax\n  unsigned int v7; // ebx\n  int v8; // edx\n\n  v2 = a2;\n  if ( !a2 )\n    return 1;\n  v4 = *((_DWORD *)this + 10);\n  v5 = 0;\n  if ( v4 )\n  {\n    do\n    {\n      v6 = v5 + (v4 - v5) / 2;\n      v7 = *((_DWORD *)this + 7 * v6 + 34);\n      if ( v2 == v7 )\n      {\n        v8 = *((_DWORD *)this + 7 * v6 + 35);\n        if ( (v8 & 1) != 0 && (v8 & 0x10) == 0 )\n          return (*((_DWORD *)this + 7 * v6 + 35) & 2) != 0;\n        v2 = a2;\n      }\n      if ( v4 == v5 + 1 )\n        break;\n      if ( v2 < v7 )\n        v4 = v5 + (v4 - v5) / 2;\n      else\n        v5 += (v4 - v5) / 2;\n    }\n    while ( v4 != v5 );\n  }\n  v6 = -1;\n  return (*((_DWORD *)this + 7 * v6 + 35) & 2) != 0;\n}\n"
-}

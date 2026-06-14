@@ -1,8 +1,0 @@
-{
-  "name": "_fgetc",
-  "mangled_name": "_fgetc",
-  "address": "0x100E60CC",
-  "size_bytes": 49,
-  "signature": "int __cdecl(FILE *Stream)",
-  "decompiled_c": "int __cdecl fgetc(FILE *Stream)\n{\n  int v2; // edi\n\n  _lock_file(Stream);\n  if ( --Stream->_cnt < 0 )\n    v2 = _filbuf(Stream);\n  else\n    v2 = *(unsigned __int8 *)Stream->_ptr++;\n  _unlock_file(Stream);\n  return v2;\n}\n"
-}

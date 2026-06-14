@@ -1,8 +1,0 @@
-{
-  "name": "sub_100DDE21",
-  "mangled_name": "sub_100DDE21",
-  "address": "0x100DDE21",
-  "size_bytes": 66,
-  "signature": "void __stdcall(int *a1, unsigned int *a2)",
-  "decompiled_c": "void __stdcall sub_100DDE21(int *a1, unsigned int *a2)\n{\n  unsigned int v2; // ecx\n  int i; // edx\n  int v4; // eax\n\n  if ( *a2 > 1 )\n  {\n    sub_1009A72C((int (__stdcall *)(int, int, int))sub_100DDE0B, a1, *a2, 0);\n    v2 = 1;\n    for ( i = 1; v2 < *a2; ++v2 )\n    {\n      v4 = a1[v2];\n      if ( v4 != a1[v2 - 1] )\n        a1[i++] = v4;\n    }\n    *a2 = i;\n  }\n}\n"
-}

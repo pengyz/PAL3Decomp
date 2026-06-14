@@ -1,8 +1,0 @@
-{
-  "name": "__alloca_probe",
-  "mangled_name": "__alloca_probe",
-  "address": "0x100E4F80",
-  "size_bytes": 47,
-  "signature": "void __usercall(unsigned int a1@<eax>, char a2)",
-  "decompiled_c": "void __usercall _alloca_probe(unsigned int a1@<eax>, char a2)\n{\n  char *i; // ecx\n\n  for ( i = &a2; a1 >= 0x1000; a1 -= 4096 )\n    i -= 4096;\n  __asm { retn }\n}\n"
-}

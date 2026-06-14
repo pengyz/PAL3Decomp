@@ -1,8 +1,0 @@
-{
-  "name": "gbChain2D::AddNode(gbChain2DNode *)",
-  "mangled_name": "?AddNode@gbChain2D@@QAEXPAVgbChain2DNode@@@Z",
-  "address": "0x1002EC70",
-  "size_bytes": 54,
-  "signature": "void __thiscall(gbChain2D *this, struct gbChain2DNode *a2)",
-  "decompiled_c": "void __thiscall gbChain2D::AddNode(gbChain2D *this, struct gbChain2DNode *a2)\n{\n  int v2; // edx\n\n  *((_DWORD *)a2 + 2) = 0;\n  *((_DWORD *)a2 + 1) = 0;\n  v2 = *((_DWORD *)this + 1);\n  if ( v2 )\n  {\n    *(_DWORD *)(v2 + 8) = a2;\n    *((_DWORD *)a2 + 1) = *((_DWORD *)this + 1);\n    *((_DWORD *)this + 1) = a2;\n  }\n  else\n  {\n    *((_DWORD *)this + 1) = a2;\n    *(_DWORD *)this = a2;\n  }\n  ++*((_DWORD *)this + 3);\n}\n"
-}

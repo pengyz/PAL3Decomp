@@ -1,8 +1,0 @@
-{
-  "name": "gbTexture_D3D::GetByte(int,int)",
-  "mangled_name": "?GetByte@gbTexture_D3D@@QAEEHH@Z",
-  "address": "0x1001C170",
-  "size_bytes": 144,
-  "signature": "char __thiscall(gbTexture_D3D *this, int a2, int a3)",
-  "decompiled_c": "char __thiscall gbTexture_D3D::GetByte(gbTexture_D3D *this, int a2, int a3)\n{\n  char v4; // bl\n  int v5; // eax\n  _DWORD v7[2]; // [esp+20h] [ebp-28h] BYREF\n  _BYTE v8[28]; // [esp+28h] [ebp-20h] BYREF\n  int v9; // [esp+44h] [ebp-4h]\n\n  v4 = 0;\n  v5 = *((_DWORD *)this + 21);\n  if ( v5 )\n  {\n    if ( (*(int (__stdcall **)(int, _DWORD, _BYTE *))(*(_DWORD *)v5 + 68))(v5, 0, v8) )\n      return 0;\n    if ( a2 < 0\n      || a2 >= v9\n      || (*(int (__stdcall **)(_DWORD, _DWORD, _DWORD *, _DWORD, int))(**((_DWORD **)this + 21) + 76))(\n           *((_DWORD *)this + 21),\n           0,\n           v7,\n           0,\n           16)\n      || a3 < 0\n      || a3 >= v7[0] )\n    {\n      return 0;\n    }\n    v4 = *(_BYTE *)(v7[1] + a2 * v7[0] + a3);\n    (*(void (__stdcall **)(_DWORD, _DWORD))(**((_DWORD **)this + 21) + 80))(*((_DWORD *)this + 21), 0);\n  }\n  return v4;\n}\n"
-}

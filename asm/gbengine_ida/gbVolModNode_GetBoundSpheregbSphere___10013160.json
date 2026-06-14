@@ -1,8 +1,0 @@
-{
-  "name": "gbVolModNode::GetBoundSphere(gbSphere *)",
-  "mangled_name": "?GetBoundSphere@gbVolModNode@@UAEXPAUgbSphere@@@Z",
-  "address": "0x10013160",
-  "size_bytes": 42,
-  "signature": "void __thiscall(gbVolModNode *this, struct gbSphere *a2)",
-  "decompiled_c": "void __thiscall gbVolModNode::GetBoundSphere(gbVolModNode *this, struct gbSphere *a2)\n{\n  _DWORD *v3; // eax\n\n  v3 = (_DWORD *)(*(int (__thiscall **)(_DWORD))(**((_DWORD **)this + 54) + 8))(*((_DWORD *)this + 54));\n  *(_DWORD *)a2 = *v3;\n  gbMatrix4::Transform(\n    (gbVolModNode *)((char *)this + 88),\n    (const struct gbVec3D *)(v3 + 1),\n    (struct gbSphere *)((char *)a2 + 4));\n}\n"
-}

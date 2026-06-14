@@ -1,8 +1,0 @@
-{
-  "name": "gbPlane::IsColOBB(gbOBBox &)",
-  "mangled_name": "?IsColOBB@gbPlane@@QAEHAAUgbOBBox@@@Z",
-  "address": "0x10028EB0",
-  "size_bytes": 203,
-  "signature": "BOOL __thiscall(gbPlane *this, struct gbOBBox *a2)",
-  "decompiled_c": "BOOL __thiscall gbPlane::IsColOBB(gbPlane *this, struct gbOBBox *a2)\n{\n  double v3; // st7\n  float v5; // [esp+0h] [ebp-2Ch]\n  float v6[4]; // [esp+4h] [ebp-28h] BYREF\n  float v7[6]; // [esp+14h] [ebp-18h] BYREF\n  float v8; // [esp+30h] [ebp+4h]\n\n  v6[3] = *((float *)this + 3);\n  v6[0] = *((float *)a2 + 1) * *((float *)this + 1)\n        + *((float *)a2 + 2) * *((float *)this + 2)\n        + *(float *)a2 * *(float *)this;\n  v6[1] = *((float *)a2 + 5) * *((float *)this + 1)\n        + *((float *)a2 + 6) * *((float *)this + 2)\n        + *(float *)this * *((float *)a2 + 4);\n  v6[2] = *((float *)a2 + 9) * *((float *)this + 1)\n        + *((float *)a2 + 10) * *((float *)this + 2)\n        + *((float *)a2 + 8) * *(float *)this;\n  v3 = *((float *)a2 + 16) * 0.5;\n  v7[0] = *((float *)a2 + 12) - v3;\n  v8 = *((float *)a2 + 17) * 0.5;\n  v7[1] = *((float *)a2 + 13) - v8;\n  v5 = *((float *)a2 + 18) * 0.5;\n  v7[2] = *((float *)a2 + 14) - v5;\n  v7[3] = v3 + *((float *)a2 + 12);\n  v7[4] = v8 + *((float *)a2 + 13);\n  v7[5] = v5 + *((float *)a2 + 14);\n  return gbPlane::IsColAABB((gbPlane *)v6, (struct gbAABBox *)v7);\n}\n"
-}

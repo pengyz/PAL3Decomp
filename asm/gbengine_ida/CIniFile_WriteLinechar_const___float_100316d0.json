@@ -1,8 +1,0 @@
-{
-  "name": "CIniFile::WriteLine(char const *,float)",
-  "mangled_name": "?WriteLine@CIniFile@@QAEXPBDM@Z",
-  "address": "0x100316D0",
-  "size_bytes": 37,
-  "signature": "void __thiscall(CIniFile *this, const char *a2, float a3)",
-  "decompiled_c": "void __thiscall CIniFile::WriteLine(CIniFile *this, const char *a2, float a3)\n{\n  fprintf(*(FILE *const *)(*(_DWORD *)this + 4), \"%s=%f\\n\", a2, a3);\n}\n"
-}

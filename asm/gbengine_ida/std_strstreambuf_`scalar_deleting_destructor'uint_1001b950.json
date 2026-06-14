@@ -1,8 +1,0 @@
-{
-  "name": "std::strstreambuf::`scalar deleting destructor'(uint)",
-  "mangled_name": "??_Gstrstreambuf@std@@UAEPAXI@Z",
-  "address": "0x1001B950",
-  "size_bytes": 30,
-  "signature": "std::strstreambuf *__thiscall(std::strstreambuf *this, char a2)",
-  "decompiled_c": "std::strstreambuf *__thiscall std::strstreambuf::`scalar deleting destructor'(std::strstreambuf *this, char a2)\n{\n  std::strstreambuf::~strstreambuf(this);\n  if ( (a2 & 1) != 0 )\n    operator delete(this);\n  return this;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_10012EC0",
-  "mangled_name": "sub_10012EC0",
-  "address": "0x10012EC0",
-  "size_bytes": 106,
-  "signature": "double __thiscall(_DWORD *this)",
-  "decompiled_c": "double __thiscall sub_10012EC0(_DWORD *this)\n{\n  double result; // st7\n  float *v2; // edx\n  int v3; // esi\n  _DWORD *v4; // esi\n  int v5; // ecx\n  int v6; // edi\n  int v7; // edx\n  float *v8; // ecx\n\n  result = -3.4028235e38;\n  if ( (int)*(this + 33) > 0 )\n  {\n    v2 = (float *)*(this + 32);\n    v3 = *(this + 33);\n    do\n    {\n      if ( result < *v2 )\n        result = *v2;\n      ++v2;\n      --v3;\n    }\n    while ( v3 );\n  }\n  v4 = (_DWORD *)*(this + 34);\n  if ( v4 )\n  {\n    v5 = *(this + 17);\n    if ( v5 > 0 )\n    {\n      v6 = v5;\n      do\n      {\n        if ( (int)v4[1] > 0 )\n        {\n          v7 = v4[1];\n          v8 = (float *)(*v4 + 68);\n          do\n          {\n            if ( result < *v8 )\n              result = *v8;\n            v8 += 18;\n            --v7;\n          }\n          while ( v7 );\n        }\n        v4 += 2;\n        --v6;\n      }\n      while ( v6 );\n    }\n  }\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_1005979B",
-  "mangled_name": "sub_1005979B",
-  "address": "0x1005979B",
-  "size_bytes": 200,
-  "signature": "int __thiscall(_DWORD *this, int a2, unsigned int a3, _DWORD *a4)",
-  "decompiled_c": "int __thiscall sub_1005979B(_DWORD *this, int a2, unsigned int a3, _DWORD *a4)\n{\n  int v4; // esi\n  unsigned int v7; // ecx\n  unsigned int v8; // eax\n  int v10; // ecx\n  int v11; // ecx\n  int v12; // ecx\n\n  v4 = a2;\n  if ( !a2 )\n    return -2147467259;\n  while ( 1 )\n  {\n    switch ( *(_DWORD *)(v4 + 4) )\n    {\n      case 1:\n        v8 = sub_10059393(this, *(_DWORD **)(v4 + 8));\n        if ( a3 >= v8 )\n        {\n          v4 = *(_DWORD *)(v4 + 12);\n          a3 -= v8;\n        }\n        else\n        {\n          v4 = *(_DWORD *)(v4 + 8);\n        }\n        goto LABEL_14;\n      case 6:\n        v4 = *(_DWORD *)(v4 + 24);\n        goto LABEL_14;\n      case 8:\n        v4 = *(_DWORD *)(v4 + 16);\n        v7 = sub_10059393(this, (_DWORD *)v4);\n        if ( !v7 )\n          return -2147467259;\n        a3 %= v7;\n        goto LABEL_14;\n    }\n    if ( *(_DWORD *)(v4 + 4) == 9 )\n      break;\n    if ( *(_DWORD *)(v4 + 4) != 11 )\n    {\n      sub_10058E0F(this, 0, 0, \"internal error: unknown node\");\n      return 0;\n    }\n    v4 = *(_DWORD *)(v4 + 32);\nLABEL_14:\n    if ( !v4 )\n      return -2147467259;\n  }\n  v10 = *(_DWORD *)(v4 + 16);\n  if ( v10 && (v11 = v10 - 1) != 0 && (v12 = v11 - 1) != 0 )\n  {\n    if ( v12 == 1 )\n      a4[4] = 3;\n  }\n  else\n  {\n    a4[4] = 0;\n  }\n  a4[5] = *(_DWORD *)(v4 + 20);\n  a4[6] = 1;\n  a4[7] = 1;\n  a4[8] = *(_DWORD *)(v4 + 32) & 0x200;\n  return 0;\n}\n"
-}

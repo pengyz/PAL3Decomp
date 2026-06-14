@@ -1,8 +1,0 @@
-{
-  "name": "std::ios_base::`scalar deleting destructor'(uint)",
-  "mangled_name": "??_Gios_base@std@@UAEPAXI@Z",
-  "address": "0x10009580",
-  "size_bytes": 30,
-  "signature": "std::ios_base *__thiscall(std::ios_base *this, char a2)",
-  "decompiled_c": "std::ios_base *__thiscall std::ios_base::`scalar deleting destructor'(std::ios_base *this, char a2)\n{\n  std::ios_base::~ios_base(this);\n  if ( (a2 & 1) != 0 )\n    operator delete(this);\n  return this;\n}\n"
-}

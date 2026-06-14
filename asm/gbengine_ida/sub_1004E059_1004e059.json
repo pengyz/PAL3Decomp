@@ -1,8 +1,0 @@
-{
-  "name": "sub_1004E059",
-  "mangled_name": "sub_1004E059",
-  "address": "0x1004E059",
-  "size_bytes": 121,
-  "signature": "int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "int __thiscall sub_1004E059(_DWORD *this, int a2)\n{\n  _DWORD *v3; // eax\n  BOOL v5; // ecx\n\n  v3 = *(_DWORD **)(*(this + 154) + 56);\n  if ( !v3 )\n  {\n    sub_1004CB83(this + 6, (int)(this + 158), 1508, \"unexpected #elif\");\nLABEL_5:\n    *(this + 17) = 1;\n    return -2147467259;\n  }\n  if ( v3[2] )\n  {\n    sub_1004CB83(this + 6, (int)(this + 158), 1513, \"unexpected #elif following #else\");\n    goto LABEL_5;\n  }\n  v5 = a2 && !*v3 && v3[1];\n  *(this + 21) = v5;\n  if ( a2 )\n    *v3 = 1;\n  return 0;\n}\n"
-}

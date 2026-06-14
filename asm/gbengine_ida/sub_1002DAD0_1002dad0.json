@@ -1,8 +1,0 @@
-{
-  "name": "sub_1002DAD0",
-  "mangled_name": "sub_1002DAD0",
-  "address": "0x1002DAD0",
-  "size_bytes": 46,
-  "signature": "HANDLE __cdecl(HANDLE hFile, LPSECURITY_ATTRIBUTES lpFileMappingAttributes, DWORD flProtect, DWORD dwMaximumSizeLow, LPCSTR lpName)",
-  "decompiled_c": "HANDLE __cdecl sub_1002DAD0(\n        HANDLE hFile,\n        LPSECURITY_ATTRIBUTES lpFileMappingAttributes,\n        DWORD flProtect,\n        DWORD dwMaximumSizeLow,\n        LPCSTR lpName)\n{\n  if ( dword_10120654 == 4 )\n    return CreateFileMappingA(hFile, lpFileMappingAttributes, flProtect, 0, dwMaximumSizeLow, lpName);\n  else\n    return 0;\n}\n"
-}

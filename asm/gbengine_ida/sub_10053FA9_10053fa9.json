@@ -1,8 +1,0 @@
-{
-  "name": "sub_10053FA9",
-  "mangled_name": "sub_10053FA9",
-  "address": "0x10053FA9",
-  "size_bytes": 98,
-  "signature": "int __stdcall(_DWORD *a1, const char *a2, unsigned int a3)",
-  "decompiled_c": "int __stdcall sub_10053FA9(_DWORD *a1, const char *a2, unsigned int a3)\n{\n  int v3; // eax\n  _DWORD *v4; // eax\n  unsigned int v5; // ecx\n  int v6; // eax\n  int v7; // eax\n  unsigned int v8; // edx\n\n  if ( !a2 )\n    return 0;\n  v3 = sub_100530B3(a1, a2);\n  if ( v3 )\n  {\n    v4 = *(_DWORD **)(v3 + 4);\n    v5 = v4[10];\nLABEL_4:\n    v6 = v4[12];\n    goto LABEL_9;\n  }\n  v4 = (_DWORD *)sub_100531C0(a1, a2);\n  if ( v4 )\n  {\n    v5 = v4[9];\n    goto LABEL_4;\n  }\n  v7 = sub_1005323C((int)a2);\n  if ( !v7 )\n    return 0;\n  v5 = *(_DWORD *)(v7 + 36);\n  v6 = *(_DWORD *)(v7 + 40);\nLABEL_9:\n  v8 = a3;\n  if ( a3 >= v5 )\n    return 0;\n  while ( ++v8 < v5 )\n    v6 = *(_DWORD *)(v6 + 52);\n  return ~v6;\n}\n"
-}

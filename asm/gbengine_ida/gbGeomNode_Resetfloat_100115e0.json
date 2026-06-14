@@ -1,8 +1,0 @@
-{
-  "name": "gbGeomNode::Reset(float)",
-  "mangled_name": "?Reset@gbGeomNode@@UAEXM@Z",
-  "address": "0x100115E0",
-  "size_bytes": 110,
-  "signature": "void __thiscall(gbGeomNode *this, float a2)",
-  "decompiled_c": "void __thiscall gbGeomNode::Reset(gbGeomNode *this, float a2)\n{\n  double v2; // st7\n\n  if ( a2 >= 0.0 )\n  {\n    this->currentTime = a2;\n  }\n  else\n  {\n    v2 = this->animMaxTime * 0.99000001;\n    this->currentTime = v2;\n    if ( v2 < 0.0 )\n    {\n      this->currentTime = 0.0;\n      this->loopPast = 0;\n      gbVisNode::Reset((gbVisNode *)this, a2);\n      return;\n    }\n  }\n  this->loopPast = 0;\n  gbVisNode::Reset((gbVisNode *)this, a2);\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_1005A140",
-  "mangled_name": "sub_1005A140",
-  "address": "0x1005A140",
-  "size_bytes": 245,
-  "signature": "int __thiscall(void *this, _DWORD *a2, _DWORD *a3)",
-  "decompiled_c": "int __thiscall sub_1005A140(void *this, _DWORD *a2, _DWORD *a3)\n{\n  const char *v4; // ebx\n  unsigned int v5; // kr00_4\n  unsigned int v6; // kr04_4\n  char *v7; // eax\n  char *v8; // esi\n  char Buffer[16]; // [esp+Ch] [ebp-14h] BYREF\n  void *v11; // [esp+1Ch] [ebp-4h]\n  int v12; // [esp+28h] [ebp+8h]\n  int v13; // [esp+2Ch] [ebp+Ch]\n\n  v11 = this;\n  if ( !a2 || a2[1] != 3 || a2[4] != 2 || !a3 || a3[1] != 3 || a3[4] != 9 )\n    return 0;\n  v12 = sub_1007E198(48, (LPVOID)0x10) ? sub_1007E4FD(a3 + 4) : 0;\n  if ( !v12 )\n    return 0;\n  v4 = (const char *)a3[6];\n  v13 = a2[6];\n  _snprintf(Buffer, 0x10u, \"%u\", v13);\n  Buffer[15] = 0;\n  v5 = strlen(Buffer);\n  v6 = strlen(v4);\n  v7 = (char *)sub_1007E198(v6 + v5 + 1, (LPVOID)1);\n  v8 = v7;\n  if ( !v7 )\n    return 0;\n  _snprintf(v7, v6 + v5 + 1, \"%u%s\", v13, v4);\n  v8[v6 + v5] = 0;\n  *(_DWORD *)(v12 + 24) = v8;\n  return v12;\n}\n"
-}

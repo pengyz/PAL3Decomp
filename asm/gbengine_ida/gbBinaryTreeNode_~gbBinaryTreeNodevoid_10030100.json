@@ -1,8 +1,0 @@
-{
-  "name": "gbBinaryTreeNode::~gbBinaryTreeNode(void)",
-  "mangled_name": "??1gbBinaryTreeNode@@UAE@XZ",
-  "address": "0x10030100",
-  "size_bytes": 47,
-  "signature": "void __thiscall(gbBinaryTreeNode *this)",
-  "decompiled_c": "void __thiscall gbBinaryTreeNode::~gbBinaryTreeNode(gbBinaryTreeNode *this)\n{\n  void (__thiscall ***v2)(_DWORD, int); // ecx\n  void (__thiscall ***v3)(_DWORD, int); // ecx\n\n  v2 = (void (__thiscall ***)(_DWORD, int))*((_DWORD *)this + 2);\n  *(_DWORD *)this = &gbBinaryTreeNode::`vftable';\n  if ( v2 )\n    (**v2)(v2, 1);\n  v3 = (void (__thiscall ***)(_DWORD, int))*((_DWORD *)this + 3);\n  if ( v3 )\n    (**v3)(v3, 1);\n  *((_DWORD *)this + 3) = 0;\n  *((_DWORD *)this + 2) = 0;\n}\n"
-}

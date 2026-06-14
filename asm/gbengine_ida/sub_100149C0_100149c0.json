@@ -1,8 +1,0 @@
-{
-  "name": "sub_100149C0",
-  "mangled_name": "sub_100149C0",
-  "address": "0x100149C0",
-  "size_bytes": 195,
-  "signature": "int __cdecl(int a1, int *a2, gbCamera *a3, int a4, unsigned int a5)",
-  "decompiled_c": "int __cdecl sub_100149C0(int a1, int *a2, gbCamera *a3, int a4, unsigned int a5)\n{\n  int result; // eax\n  unsigned int v6; // ebp\n  int v8; // ebx\n  _DWORD *v9; // esi\n  int v10; // ecx\n  int *v11; // esi\n  struct gbVec3D v12; // [esp+10h] [ebp-Ch] BYREF\n  int v13; // [esp+24h] [ebp+8h]\n\n  v12.x = *(float *)(a4 + 24) + *(float *)(a4 + 20);\n  v12.y = v12.x;\n  v12.z = v12.x;\n  result = gbCamera::ClipAABBox(a3, (struct gbVec3D *)(a4 + 8), &v12, a5);\n  v6 = result;\n  if ( result >= 0 )\n  {\n    if ( result == 63 )\n    {\n      v8 = 8;\n      *(_DWORD *)(a1 + 4 * *a2) = a4;\n      v9 = (_DWORD *)(a4 + 32);\n      ++*a2;\n      do\n      {\n        result = *v9;\n        if ( *v9 )\n          result = sub_10014A90(a1, a2, *v9);\n        ++v9;\n        --v8;\n      }\n      while ( v8 );\n    }\n    else\n    {\n      v10 = *a2;\n      v13 = 8;\n      *(_DWORD *)(a1 + 4 * v10) = a4;\n      v11 = (int *)(a4 + 32);\n      ++*a2;\n      do\n      {\n        if ( *v11 )\n          sub_100149C0(a1, (int)a2, a3, *v11, v6);\n        ++v11;\n        result = --v13;\n      }\n      while ( v13 );\n    }\n  }\n  return result;\n}\n"
-}

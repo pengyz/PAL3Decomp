@@ -1,8 +1,0 @@
-{
-  "name": "sub_100560D5",
-  "mangled_name": "sub_100560D5",
-  "address": "0x100560D5",
-  "size_bytes": 106,
-  "signature": "int __stdcall(int *a1, unsigned int a2, const char **a3, unsigned int a4)",
-  "decompiled_c": "int __stdcall sub_100560D5(int *a1, unsigned int a2, const char **a3, unsigned int a4)\n{\n  _DWORD *v5; // eax\n\n  if ( a4 && !a3 )\n    return -2005530516;\n  v5 = (_DWORD *)sub_10055C8B(a1, a2, 1);\n  if ( v5 && (a4 == -1 || v5[5] <= a4) )\n    return sub_10054D4E(a1, (int *)(v5[6] + a1[209] + *(_DWORD *)(v5[1] + 64)), v5[7], a3, (_DWORD *)(v5[4] != -1));\n  else\n    return -2005530516;\n}\n"
-}

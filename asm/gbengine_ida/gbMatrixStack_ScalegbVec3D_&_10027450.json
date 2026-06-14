@@ -1,8 +1,0 @@
-{
-  "name": "gbMatrixStack::Scale(gbVec3D &)",
-  "mangled_name": "?Scale@gbMatrixStack@@QAEXAAUgbVec3D@@@Z",
-  "address": "0x10027450",
-  "size_bytes": 96,
-  "signature": "void __thiscall(gbMatrixStack *this, struct gbVec3D *a2)",
-  "decompiled_c": "void __thiscall gbMatrixStack::Scale(gbMatrixStack *this, struct gbVec3D *a2)\n{\n  double v2; // st7\n  double v3; // st6\n  double v4; // st5\n  float *v5; // eax\n\n  v2 = *((float *)a2 + 2);\n  v3 = *((float *)a2 + 1);\n  v4 = *(float *)a2;\n  v5 = (float *)(*(_DWORD *)this + (*((_DWORD *)this + 2) << 6));\n  *v5 = v4 * *v5;\n  v5[1] = v4 * v5[1];\n  v5[2] = v4 * v5[2];\n  v5[4] = v3 * v5[4];\n  v5[5] = v3 * v5[5];\n  v5[6] = v3 * v5[6];\n  v5[8] = v2 * v5[8];\n  v5[9] = v2 * v5[9];\n  v5[10] = v2 * v5[10];\n  *((_DWORD *)this + 3) = 0;\n}\n"
-}

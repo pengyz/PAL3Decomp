@@ -1,8 +1,0 @@
-{
-  "name": "gbSound2DNode::IsPlaying(void)",
-  "mangled_name": "?IsPlaying@gbSound2DNode@@QAE_NXZ",
-  "address": "0x100029F0",
-  "size_bytes": 28,
-  "signature": "bool __thiscall(gbSound2DNode *this)",
-  "decompiled_c": "bool __thiscall gbSound2DNode::IsPlaying(gbSound2DNode *this)\n{\n  return *((_DWORD *)this + 1) && AIL_sample_status(*((_DWORD *)this + 1)) == 4;\n}\n"
-}

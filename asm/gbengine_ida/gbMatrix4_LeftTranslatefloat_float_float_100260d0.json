@@ -1,8 +1,0 @@
-{
-  "name": "gbMatrix4::LeftTranslate(float,float,float)",
-  "mangled_name": "?LeftTranslate@gbMatrix4@@QAEXMMM@Z",
-  "address": "0x100260D0",
-  "size_bytes": 95,
-  "signature": "void __thiscall(gbMatrix4 *this, float a2, float a3, float a4)",
-  "decompiled_c": "void __thiscall gbMatrix4::LeftTranslate(gbMatrix4 *this, float a2, float a3, float a4)\n{\n  *((float *)this + 12) = a3 * *((float *)this + 4)\n                        + a4 * *((float *)this + 8)\n                        + a2 * *(float *)this\n                        + *((float *)this + 12);\n  *((float *)this + 13) = a2 * *((float *)this + 1)\n                        + a3 * *((float *)this + 5)\n                        + a4 * *((float *)this + 9)\n                        + *((float *)this + 13);\n  *((float *)this + 14) = a2 * *((float *)this + 2)\n                        + a3 * *((float *)this + 6)\n                        + a4 * *((float *)this + 10)\n                        + *((float *)this + 14);\n}\n"
-}

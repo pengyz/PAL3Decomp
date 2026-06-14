@@ -1,8 +1,0 @@
-{
-  "name": "sub_100955FF",
-  "mangled_name": "sub_100955FF",
-  "address": "0x100955FF",
-  "size_bytes": 51,
-  "signature": "char *__userpurge@<eax>(int a1@<ebx>, int a2, char *a3, char a4, unsigned int a5)",
-  "decompiled_c": "char *__userpurge sub_100955FF@<eax>(int a1@<ebx>, int a2, char *a3, char a4, unsigned int a5)\n{\n  int v5; // eax\n\n  LOBYTE(a1) = a4;\n  BYTE1(a1) = a4;\n  v5 = a1 << 16;\n  LOWORD(v5) = a1;\n  memset32(a3, v5, a5 >> 2);\n  memset(&a3[4 * (a5 >> 2)], a4, a5 & 3);\n  return a3;\n}\n"
-}

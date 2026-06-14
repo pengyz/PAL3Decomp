@@ -1,8 +1,0 @@
-{
-  "name": "__commit",
-  "mangled_name": "__commit",
-  "address": "0x100F2683",
-  "size_bytes": 147,
-  "signature": "int __cdecl(int FileHandle)",
-  "decompiled_c": "int __cdecl _commit(int FileHandle)\n{\n  int *v1; // edi\n  int v2; // esi\n  void *osfhandle; // eax\n  DWORD LastError; // esi\n\n  if ( FileHandle < uNumber )\n  {\n    v1 = &dword_10167400[FileHandle >> 5];\n    v2 = 36 * (FileHandle & 0x1F);\n    if ( (*(_BYTE *)(*v1 + v2 + 4) & 1) != 0 )\n    {\n      _lock_fhandle(FileHandle);\n      if ( (*(_BYTE *)(*v1 + v2 + 4) & 1) != 0 )\n      {\n        osfhandle = (void *)_get_osfhandle(FileHandle);\n        if ( FlushFileBuffers(osfhandle) )\n          LastError = 0;\n        else\n          LastError = GetLastError();\n        if ( !LastError )\n          goto LABEL_10;\n        *__doserrno() = LastError;\n      }\n      *_errno() = 9;\n      LastError = -1;\nLABEL_10:\n      _unlock_fhandle(FileHandle);\n      return LastError;\n    }\n  }\n  *_errno() = 9;\n  return -1;\n}\n"
-}

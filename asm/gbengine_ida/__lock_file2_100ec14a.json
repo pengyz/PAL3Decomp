@@ -1,8 +1,0 @@
-{
-  "name": "__lock_file2",
-  "mangled_name": "__lock_file2",
-  "address": "0x100EC14A",
-  "size_bytes": 35,
-  "signature": "void __cdecl(int a1, int a2)",
-  "decompiled_c": "void __cdecl _lock_file2(int a1, int a2)\n{\n  if ( a1 >= 20 )\n    EnterCriticalSection((LPCRITICAL_SECTION)(a2 + 32));\n  else\n    _lock(a1 + 28);\n}\n"
-}

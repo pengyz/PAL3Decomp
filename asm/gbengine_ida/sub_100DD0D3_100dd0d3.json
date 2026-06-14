@@ -1,8 +1,0 @@
-{
-  "name": "sub_100DD0D3",
-  "mangled_name": "sub_100DD0D3",
-  "address": "0x100DD0D3",
-  "size_bytes": 90,
-  "signature": "int __usercall@<eax>(int a1@<eax>)",
-  "decompiled_c": "int __usercall sub_100DD0D3@<eax>(int a1@<eax>)\n{\n  int result; // eax\n\n  sub_100DC210(a1 + 140, *(_DWORD *)(a1 + 2836), (_WORD *)a1);\n  sub_100DC210(a1 + 2432, *(_DWORD *)(a1 + 2848), (_WORD *)a1);\n  sub_100DCEF0((_DWORD *)a1, (int *)(a1 + 2856));\n  for ( result = 18; result >= 3; --result )\n  {\n    if ( *(_WORD *)(a1 + 4 * (unsigned __int8)byte_1010F1D4[result] + 2678) )\n      break;\n  }\n  *(_DWORD *)(a1 + 5792) += 3 * result + 17;\n  return result;\n}\n"
-}

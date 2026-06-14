@@ -1,8 +1,0 @@
-{
-  "name": "sub_10078DA0",
-  "mangled_name": "sub_10078DA0",
-  "address": "0x10078DA0",
-  "size_bytes": 161,
-  "signature": "void __stdcall(int a1, int a2, unsigned int a3, int a4, char a5, char a6, char a7, char a8, char a9)",
-  "decompiled_c": "void __stdcall sub_10078DA0(int a1, int a2, unsigned int a3, int a4, char a5, char a6, char a7, char a8, char a9)\n{\n  unsigned __int8 v9; // al\n\n  if ( a1 && a2 )\n  {\n    *(_BYTE *)(a2 + 26) = a8;\n    *(_DWORD *)(a2 + 4) = a4;\n    *(_BYTE *)(a2 + 27) = a9;\n    *(_DWORD *)a2 = a3;\n    *(_BYTE *)(a2 + 24) = a5;\n    *(_BYTE *)(a2 + 25) = a6;\n    *(_BYTE *)(a2 + 28) = a7;\n    if ( a6 == 3 || (a6 & 2) == 0 )\n      *(_BYTE *)(a2 + 29) = 1;\n    else\n      *(_BYTE *)(a2 + 29) = 3;\n    if ( (a6 & 4) != 0 )\n      ++*(_BYTE *)(a2 + 29);\n    v9 = a5 * *(_BYTE *)(a2 + 29);\n    *(_BYTE *)(a2 + 30) = v9;\n    if ( a3 <= 0x7FFFFFFFu / ((v9 + 7) >> 3) )\n    {\n      *(_DWORD *)(a2 + 12) = (a3 * v9 + 7) >> 3;\n    }\n    else\n    {\n      sub_10078BF3(a1, (int)\"Width too large to process image data; rowbytes will overflow.\");\n      *(_DWORD *)(a2 + 12) = 0;\n    }\n  }\n}\n"
-}

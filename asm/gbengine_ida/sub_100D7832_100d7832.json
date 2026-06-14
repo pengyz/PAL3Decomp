@@ -1,8 +1,0 @@
-{
-  "name": "sub_100D7832",
-  "mangled_name": "sub_100D7832",
-  "address": "0x100D7832",
-  "size_bytes": 68,
-  "signature": "int __stdcall(__m64 *a1, __m64 *a2, _DWORD *a3)",
-  "decompiled_c": "int __stdcall sub_100D7832(__m64 *a1, __m64 *a2, _DWORD *a3)\n{\n  __m64 v3; // mm0\n  __m64 v4; // mm0\n  int result; // eax\n\n  v3 = a1[1];\n  if ( a2 )\n  {\n    a2->m64_u64 = a1->m64_u64;\n    a2[1].m64_i32[0] = _mm_cvtsi64_si32(v3);\n  }\n  v4 = _m_punpckhdq(v3, v3);\n  if ( a3 )\n  {\n    result = sub_100E2C00();\n    *a3 = _mm_cvtsi64_si32(_m_pfmul(v4, (__m64)0x4000000040000000LL));\n  }\n  _m_femms();\n  return result;\n}\n"
-}

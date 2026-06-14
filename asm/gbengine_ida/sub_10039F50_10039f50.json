@@ -1,8 +1,0 @@
-{
-  "name": "sub_10039F50",
-  "mangled_name": "sub_10039F50",
-  "address": "0x10039F50",
-  "size_bytes": 76,
-  "signature": "void **__thiscall(void **Block, char a2)",
-  "decompiled_c": "void **__thiscall sub_10039F50(void **Block, char a2)\n{\n  if ( (a2 & 2) != 0 )\n  {\n    sub_10033437(\n      (int)Block,\n      12,\n      (int)*(Block - 1),\n      (int (__thiscall *)(int))Concurrency::SchedulerPolicy::~SchedulerPolicy);\n    if ( (a2 & 1) != 0 )\n      operator delete(Block - 1);\n    return Block - 1;\n  }\n  else\n  {\n    operator delete(*Block);\n    if ( (a2 & 1) != 0 )\n      operator delete(Block);\n    return Block;\n  }\n}\n"
-}

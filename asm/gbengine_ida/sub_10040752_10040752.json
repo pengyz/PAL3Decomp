@@ -1,8 +1,0 @@
-{
-  "name": "sub_10040752",
-  "mangled_name": "sub_10040752",
-  "address": "0x10040752",
-  "size_bytes": 197,
-  "signature": "int __thiscall(float **this, int a2, int a3, int a4)",
-  "decompiled_c": "int __thiscall sub_10040752(float **this, int a2, int a3, int a4)\n{\n  int result; // eax\n  _BYTE *v6; // ecx\n  float *v7; // edi\n  float *v8; // edx\n  char v9; // bl\n  double v10; // st6\n  double v11; // st5\n  double v12; // st4\n  double v13; // st2\n  double v14; // st3\n  unsigned int v15; // [esp+10h] [ebp+8h]\n  float v16; // [esp+14h] [ebp+Ch]\n  unsigned int v17; // [esp+18h] [ebp+10h]\n\n  if ( *(this + 21) )\n    result = sub_1003B774(this, a4);\n  else\n    result = a4;\n  if ( *(this + 4) )\n    result = sub_1003C9C1(this, result);\n  v6 = (char *)*(this + 8) + a3 * (_DWORD)*(this + 25) + a2 * (_DWORD)*(this + 24);\n  v15 = 0;\n  if ( *(this + 26) )\n  {\n    v7 = (float *)(result + 8);\n    do\n    {\n      v8 = *(this + 14);\n      v9 = 0;\n      v17 = 0;\n      v16 = 3.4028235e38;\n      do\n      {\n        v10 = *(v7 - 1) - v8[1];\n        v11 = *v7 - v8[2];\n        v12 = v7[1] - v8[3];\n        v13 = *(v7 - 2) - *v8;\n        v14 = v12 * v12 + v11 * v11 + v10 * v10 + v13 * v13;\n        if ( v14 < v16 )\n        {\n          v9 = v17;\n          v16 = v14;\n        }\n        ++v17;\n        v8 += 4;\n      }\n      while ( v17 < 0x100 );\n      *v6++ = v9;\n      result = ++v15;\n      v7 += 4;\n    }\n    while ( v15 < (unsigned int)*(this + 26) );\n  }\n  return result;\n}\n"
-}

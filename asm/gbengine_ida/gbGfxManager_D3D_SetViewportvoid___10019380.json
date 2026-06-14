@@ -1,8 +1,0 @@
-{
-  "name": "gbGfxManager_D3D::SetViewport(void *)",
-  "mangled_name": "?SetViewport@gbGfxManager_D3D@@UAEXPAX@Z",
-  "address": "0x10019380",
-  "size_bytes": 95,
-  "signature": "int __thiscall(gbGfxManager_D3D *this, _DWORD *a2)",
-  "decompiled_c": "int __thiscall gbGfxManager_D3D::SetViewport(gbGfxManager_D3D *this, _DWORD *a2)\n{\n  int v2; // edx\n  int v3; // eax\n  _DWORD v5[6]; // [esp+8h] [ebp-18h] BYREF\n\n  v2 = *((_DWORD *)this + 454);\n  qmemcpy((char *)this + 452, a2, 0x18u);\n  v5[0] = *a2;\n  v5[1] = a2[1];\n  v5[2] = a2[2];\n  v5[3] = a2[3];\n  v3 = a2[4];\n  v5[5] = a2[5];\n  v5[4] = v3;\n  return (*(int (__stdcall **)(int, _DWORD *))(*(_DWORD *)v2 + 188))(v2, v5);\n}\n"
-}

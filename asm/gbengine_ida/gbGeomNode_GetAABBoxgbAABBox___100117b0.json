@@ -1,8 +1,0 @@
-{
-  "name": "gbGeomNode::GetAABBox(gbAABBox *)",
-  "mangled_name": "?GetAABBox@gbGeomNode@@UAEHPAUgbAABBox@@@Z",
-  "address": "0x100117B0",
-  "size_bytes": 39,
-  "signature": "int __thiscall(gbGeomNode *this, struct gbAABBox *a2)",
-  "decompiled_c": "int __thiscall gbGeomNode::GetAABBox(gbGeomNode *this, struct gbAABBox *a2)\n{\n  int result; // eax\n  const void *v3; // esi\n\n  result = (int)this->mesh;\n  if ( result )\n  {\n    v3 = (const void *)(result + 88);\n    qmemcpy(a2, v3, sizeof(struct gbAABBox));\n    return 1;\n  }\n  return result;\n}\n"
-}

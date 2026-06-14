@@ -1,8 +1,0 @@
-{
-  "name": "sub_100D1B39",
-  "mangled_name": "sub_100D1B39",
-  "address": "0x100D1B39",
-  "size_bytes": 154,
-  "signature": "float *__stdcall(float *a1, float *a2)",
-  "decompiled_c": "float *__stdcall sub_100D1B39(float *a1, float *a2)\n{\n  float v2; // xmm1_4\n  float v3; // xmm2_4\n  float v4; // xmm3_4\n  float v5; // xmm4_4\n  float v6; // xmm6_4\n  float v7; // xmm5_4\n\n  v2 = a2[1];\n  v3 = a2[2];\n  v4 = a2[3];\n  v5 = (float)((float)(*a2 * *a2) + (float)(v2 * v2)) + (float)((float)(v3 * v3) + (float)(v4 * v4));\n  v6 = 1.0 / fsqrt(v5);\n  v7 = (float)((float)(*(float *)&dword_10128320 - (float)(v5 * (float)(v6 * v6))) * *(float *)&dword_10128310) * v6;\n  *a1 = *a2 * v7;\n  a1[1] = v2 * v7;\n  a1[2] = v3 * v7;\n  a1[3] = v4 * v7;\n  return a1;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_10099DEC",
-  "mangled_name": "sub_10099DEC",
-  "address": "0x10099DEC",
-  "size_bytes": 184,
-  "signature": "int __thiscall(int this, void *Block)",
-  "decompiled_c": "int __thiscall sub_10099DEC(int this, void *Block)\n{\n  int v3; // eax\n  char *v4; // edx\n  int result; // eax\n  char *v6; // [esp+4h] [ebp-8h]\n  int v7; // [esp+8h] [ebp-4h]\n\n  v3 = *(_DWORD *)(this + 28);\n  if ( *(_DWORD *)(this + 4) != v3 )\n    goto LABEL_10;\n  if ( v3 )\n    v7 = 2 * v3;\n  else\n    v7 = 16;\n  v4 = (char *)operator new(4 * v7);\n  v6 = v4;\n  if ( v4 )\n  {\n    qmemcpy(v4, *(const void **)(this + 16), 4 * *(_DWORD *)(this + 4));\n    memset(&v4[4 * *(_DWORD *)(this + 4)], 0, 4 * (v7 - *(_DWORD *)(this + 4)));\n    operator delete(*(void **)(this + 16));\n    *(_DWORD *)(this + 28) = v7;\n    *(_DWORD *)(this + 16) = v6;\nLABEL_10:\n    *(_DWORD *)(*(_DWORD *)(this + 16) + 4 * *(_DWORD *)(this + 4)) = Block;\n    result = *(_DWORD *)(this + 4);\n    *(_DWORD *)(this + 4) = result + 1;\n    return result;\n  }\n  if ( Block )\n    sub_10099DD0(Block, 1);\n  return -1;\n}\n"
-}

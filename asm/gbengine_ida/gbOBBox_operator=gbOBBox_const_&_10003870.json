@@ -1,8 +1,0 @@
-{
-  "name": "gbOBBox::operator=(gbOBBox const &)",
-  "mangled_name": "??4gbOBBox@@QAEAAU0@ABU0@@Z",
-  "address": "0x10003870",
-  "size_bytes": 39,
-  "signature": "_DWORD *__thiscall(_DWORD *this, _DWORD *a2)",
-  "decompiled_c": "_DWORD *__thiscall gbOBBox::operator=(_DWORD *this, _DWORD *a2)\n{\n  gbMatrix4::operator=(a2);\n  *(this + 16) = a2[16];\n  *(this + 17) = a2[17];\n  *(this + 18) = a2[18];\n  return this;\n}\n"
-}

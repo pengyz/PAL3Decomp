@@ -1,8 +1,0 @@
-{
-  "name": "gbParticleEffect::UpdateInternal(void)",
-  "mangled_name": "?UpdateInternal@gbParticleEffect@@QAEXXZ",
-  "address": "0x1002C0D0",
-  "size_bytes": 129,
-  "signature": "void __thiscall(gbParticleEffect *this)",
-  "decompiled_c": "void __thiscall gbParticleEffect::UpdateInternal(gbParticleEffect *this)\n{\n  const struct gbMatrix4 *WorldMatrix; // eax\n  int v3; // edi\n  int v4; // ebx\n\n  if ( *((double *)this + 34) > 0.0 )\n  {\n    WorldMatrix = gbGfxManager::GetWorldMatrix((gbMatrixStack **)dword_101379A8);\n    gbMatrix4::operator=((_DWORD *)this + 71, (int)WorldMatrix);\n    v3 = 0;\n    if ( *((int *)this + 38) > 0 )\n    {\n      v4 = 0;\n      do\n      {\n        gbParticleGroup::Update((gbParticleGroup *)(v4 + *((_DWORD *)this + 41)), *((double *)this + 34));\n        ++v3;\n        v4 += 144;\n      }\n      while ( v3 < *((_DWORD *)this + 38) );\n    }\n    *((_DWORD *)this + 68) = 0;\n    *((_DWORD *)this + 69) = 0;\n  }\n}\n"
-}

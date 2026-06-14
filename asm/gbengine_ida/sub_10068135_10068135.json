@@ -1,8 +1,0 @@
-{
-  "name": "sub_10068135",
-  "mangled_name": "sub_10068135",
-  "address": "0x10068135",
-  "size_bytes": 46,
-  "signature": "int __thiscall(int *this)",
-  "decompiled_c": "int __thiscall sub_10068135(int *this)\n{\n  int result; // eax\n\n  result = *this;\n  if ( *this == 4 || *this > 4 && (result <= 9 || result == 15 || result == 16) )\n  {\n    result = *(this + 1);\n    if ( result )\n    {\n      result = (*(int (__stdcall **)(_DWORD))(*(_DWORD *)result + 8))(*(this + 1));\n      *(this + 1) = 0;\n    }\n  }\n  return result;\n}\n"
-}

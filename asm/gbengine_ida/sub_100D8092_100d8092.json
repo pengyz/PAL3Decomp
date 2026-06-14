@@ -1,8 +1,0 @@
-{
-  "name": "sub_100D8092",
-  "mangled_name": "sub_100D8092",
-  "address": "0x100D8092",
-  "size_bytes": 167,
-  "signature": "__m64 *__stdcall(__m64 *a1, __m64 *a2)",
-  "decompiled_c": "__m64 *__stdcall sub_100D8092(__m64 *a1, __m64 *a2)\n{\n  __m64 *result; // eax\n  __m64 m64_u64; // mm1\n  __m64 v4; // mm2\n  __m64 v5; // mm0\n  __m64 v6; // mm3\n  __m64 v7; // mm4\n  __m64 v8; // mm3\n  unsigned int v9; // [esp+0h] [ebp-Ch]\n\n  _m_femms();\n  result = a1;\n  m64_u64 = (__m64)a2->m64_u64;\n  v4 = a2[1];\n  v5 = _m_punpckhdq(v4, v4);\n  if ( !_mm_cvtsi64_si32(_m_pfcmpge(v5, (__m64)0x3F8000003F800000LL)) )\n  {\n    sub_100E2C00();\n    v9 = _mm_cvtsi64_si32(v5);\n    sub_100E32E0();\n    result = a1;\n    m64_u64 = (__m64)a2->m64_u64;\n    v4 = a2[1];\n    if ( _mm_cvtsi64_si32(_m_pfcmpge(_m_pand(v5, (__m64)0x7FFFFFFF7FFFFFFFLL), (__m64)0x3400000034000000LL)) )\n    {\n      v6 = _mm_cvtsi32_si64(v9);\n      v7 = _m_pfrcp(v5);\n      v8 = _m_pfmul(_m_punpckldq(v6, v6), _m_pfrcpit2(_m_pfrcpit1(v5, v7), v7));\n      m64_u64 = _m_pfmul(m64_u64, v8);\n      v4 = _m_pfmul(v4, v8);\n    }\n  }\n  result->m64_u64 = (unsigned __int64)m64_u64;\n  result[1].m64_u64 = (unsigned __int64)_m_pand(v4, (__m64)0xFFFFFFFFLL);\n  _m_femms();\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbVolModNode::Attach(gbRenderEffect *)",
-  "mangled_name": "?Attach@gbVolModNode@@UAEHPAVgbRenderEffect@@@Z",
-  "address": "0x10013190",
-  "size_bytes": 90,
-  "signature": "int __thiscall(gbVolModNode *this, struct gbRenderEffect *a2)",
-  "decompiled_c": "int __thiscall gbVolModNode::Attach(gbVolModNode *this, struct gbRenderEffect *a2)\n{\n  const struct gbMatrix4 *Top; // eax\n\n  gbVisNode::Attach(this, a2);\n  gbMatrix4::operator=((char *)this + 88);\n  Top = gbMatrixStack::GetTop(*((gbMatrixStack **)gbVisNode::pGfxMgr + 54));\n  gbMatrix4::RightMultiply((gbVolModNode *)((char *)this + 152), Top);\n  (*(void (__thiscall **)(_DWORD, gbVolModNode *))(**((_DWORD **)this + 54) + 16))(*((_DWORD *)this + 54), this);\n  gbSceneGraph::AddVolModNode(gbVisNode::pSceneGraph, this);\n  return 1;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbActor::gbActor(gbActor const &)",
-  "mangled_name": "??0gbActor@@QAE@ABV0@@Z",
-  "address": "0x100050D0",
-  "size_bytes": 186,
-  "signature": "gbActor *__thiscall(gbActor *this, const struct gbActor *a2)",
-  "decompiled_c": "gbActor *__thiscall gbActor::gbActor(gbActor *this, const struct gbActor *a2)\n{\n  gbActor *result; // eax\n  int v3; // ecx\n  int v4; // ecx\n\n  result = this;\n  v3 = *((_DWORD *)a2 + 1);\n  *(_DWORD *)result = &gbChain1DNode::`vftable';\n  *((_DWORD *)result + 1) = v3;\n  *((_DWORD *)result + 2) = *((_DWORD *)a2 + 2);\n  *((_DWORD *)result + 3) = *((_DWORD *)a2 + 3);\n  *((_DWORD *)result + 4) = *((_DWORD *)a2 + 4);\n  *((_DWORD *)result + 5) = *((_DWORD *)a2 + 5);\n  v4 = *((_DWORD *)a2 + 6);\n  *(_DWORD *)result = &gbNBTreeNode::`vftable';\n  *((_DWORD *)result + 6) = v4;\n  qmemcpy((char *)result + 28, (char *)a2 + 28, 0x3Cu);\n  *(_DWORD *)result = &gbVisNode::`vftable';\n  *((_DWORD *)result + 22) = *((_DWORD *)a2 + 22);\n  *((_DWORD *)result + 23) = *((_DWORD *)a2 + 23);\n  *((_DWORD *)result + 24) = *((_DWORD *)a2 + 24);\n  *((_DWORD *)result + 25) = *((_DWORD *)a2 + 25);\n  *((_DWORD *)result + 26) = *((_DWORD *)a2 + 26);\n  *((_DWORD *)result + 27) = *((_DWORD *)a2 + 27);\n  *((_DWORD *)result + 28) = *((_DWORD *)a2 + 28);\n  *(_DWORD *)result = &gbActor::`vftable';\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbInitDispSetting(void)",
-  "mangled_name": "?gbInitDispSetting@@YAXXZ",
-  "address": "0x1002F0B0",
-  "size_bytes": 179,
-  "signature": "void __cdecl()",
-  "decompiled_c": "void __cdecl gbInitDispSetting()\n{\n  BOOL v0; // ebx\n  DWORD v1; // edi\n  FILE *v2; // esi\n  int *v3; // eax\n  DEVMODEA DevMode; // [esp+10h] [ebp-9Ch] BYREF\n\n  v0 = EnumDisplaySettingsA(0, 0, &DevMode);\n  v1 = 0;\n  v2 = fopen(aDispOglTxt, aWt);\n  if ( v0 )\n  {\n    do\n    {\n      v3 = &dword_1015CB88[5 * dword_1015D358];\n      *v3 = DevMode.dmPelsWidth;\n      v3[1] = DevMode.dmPelsHeight;\n      v3[2] = DevMode.dmBitsPerPel;\n      v3[3] = DevMode.dmDisplayFrequency;\n      if ( v2 )\n        fprintf(v2, \"w=%d,h=%d,bpp=%d,freq=%d\\n\", *v3, v3[1], v3[2], DevMode.dmDisplayFrequency);\n    }\n    while ( EnumDisplaySettingsA(0, v1++, &DevMode) );\n  }\n  if ( v2 )\n    fclose(v2);\n}\n"
-}

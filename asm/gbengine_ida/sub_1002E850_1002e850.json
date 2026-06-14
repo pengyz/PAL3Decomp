@@ -1,8 +1,0 @@
-{
-  "name": "sub_1002E850",
-  "mangled_name": "sub_1002E850",
-  "address": "0x1002E850",
-  "size_bytes": 158,
-  "signature": "int(UINT uType, char *Format, ...)",
-  "decompiled_c": "int sub_1002E850(UINT uType, char *Format, ...)\n{\n  DWORD LastError; // esi\n  CHAR Buffer[4]; // [esp+4h] [ebp-1004h] BYREF\n  CHAR Text[4096]; // [esp+8h] [ebp-1000h] BYREF\n  va_list va; // [esp+1014h] [ebp+Ch] BYREF\n\n  va_start(va, Format);\n  *(_DWORD *)Buffer = 0;\n  LastError = GetLastError();\n  vsprintf(Text, Format, va);\n  FormatMessageA(0x1300u, 0, LastError, 0x400u, Buffer, 0, 0);\n  sprintf(Text, \"%s\\nSystem Error Code : %lu\\nError Message : %s\", Text, LastError, *(const char **)Buffer);\n  LocalFree(*(HLOCAL *)Buffer);\n  return MessageBoxA(0, Text, aError_0, uType);\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbResManager::gbResManager(gbResManager const &)",
-  "mangled_name": "??0gbResManager@@QAE@ABV0@@Z",
-  "address": "0x100052A0",
-  "size_bytes": 79,
-  "signature": "gbResManager *__thiscall(gbResManager *this, const struct gbResManager *a2)",
-  "decompiled_c": "// Alternative name is '??0gbActorMgr@@QAE@ABV0@@Z'\ngbResManager *__thiscall gbResManager::gbResManager(gbResManager *this, const struct gbResManager *a2)\n{\n  int v3; // eax\n  int v4; // ecx\n\n  v3 = *((_DWORD *)a2 + 1);\n  *((_DWORD *)this + 1) = v3;\n  *((_DWORD *)this + 2) = *((_DWORD *)a2 + 2);\n  if ( v3 )\n    *(_DWORD *)this = malloc(4 * v3);\n  else\n    *(_DWORD *)this = 0;\n  v4 = *((_DWORD *)this + 2);\n  if ( v4 )\n    qmemcpy(*(void **)this, *(const void **)a2, 4 * v4);\n  return this;\n}\n"
-}

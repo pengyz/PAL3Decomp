@@ -1,8 +1,0 @@
-{
-  "name": "gbAudioManager::~gbAudioManager(void)",
-  "mangled_name": "??1gbAudioManager@@QAE@XZ",
-  "address": "0x10001440",
-  "size_bytes": 193,
-  "signature": "void __thiscall(gbAudioManager *this)",
-  "decompiled_c": "void __thiscall gbAudioManager::~gbAudioManager(gbAudioManager *this)\n{\n  _DWORD *v1; // esi\n  int v2; // edi\n  int v3; // edi\n  _DWORD *v4; // esi\n  gbAudioManager *v5; // esi\n  int v6; // edi\n\n  dword_1012B980 = 0;\n  gbSound3DNode::pAudioMgr = 0;\n  gbSound2DNode::pAudioMgr = 0;\n  v1 = (_DWORD *)((char *)this + 36);\n  v2 = 10;\n  do\n  {\n    AIL_stop_3D_sample(*v1);\n    AIL_release_3D_sample_handle(*v1);\n    v1 += 3;\n    --v2;\n  }\n  while ( v2 );\n  v3 = 4;\n  v4 = (_DWORD *)((char *)this + 156);\n  do\n  {\n    AIL_stop_sample(*v4);\n    AIL_release_sample_handle(*v4);\n    v4 += 3;\n    --v3;\n  }\n  while ( v3 );\n  v5 = this;\n  v6 = 3;\n  do\n  {\n    if ( *(_DWORD *)v5 )\n      AIL_close_stream(*(_DWORD *)v5);\n    v5 = (gbAudioManager *)((char *)v5 + 4);\n    --v6;\n  }\n  while ( v6 );\n  AIL_close_3D_listener(*((_DWORD *)this + 54));\n  AIL_close_3D_provider(*((_DWORD *)this + 7));\n  AIL_close_digital_driver(*((_DWORD *)this + 6));\n  AIL_shutdown();\n  gbResManager::~gbResManager((gbAudioManager *)((char *)this + 232));\n}\n"
-}

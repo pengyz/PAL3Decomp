@@ -1,8 +1,0 @@
-{
-  "name": "sub_100DDDD0",
-  "mangled_name": "sub_100DDDD0",
-  "address": "0x100DDDD0",
-  "size_bytes": 59,
-  "signature": "int __stdcall(int a1, int a2, int a3)",
-  "decompiled_c": "int __stdcall sub_100DDDD0(int a1, int a2, int a3)\n{\n  int v3; // eax\n  unsigned int v4; // edx\n  int v5; // ecx\n  unsigned int v6; // eax\n  unsigned int v7; // esi\n  unsigned int v8; // ecx\n\n  v3 = *(_DWORD *)(a3 + 60);\n  v4 = *(_DWORD *)(v3 + 4 * a1);\n  v5 = *(_DWORD *)(a3 + 44);\n  v6 = *(_DWORD *)(v3 + 4 * a2);\n  v7 = *(_DWORD *)(v5 + 4 * v4);\n  v8 = *(_DWORD *)(v5 + 4 * v6);\n  if ( v7 > v8 )\n    return -1;\n  if ( v7 < v8 )\n    return 1;\n  if ( v6 > v4 )\n    return -1;\n  return v6 < v4;\n}\n"
-}

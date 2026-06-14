@@ -1,8 +1,0 @@
-{
-  "name": "gbAudioManager::SetListenerOrientation(gbVec3D &,gbVec3D &)",
-  "mangled_name": "?SetListenerOrientation@gbAudioManager@@QAEXAAUgbVec3D@@0@Z",
-  "address": "0x10001D60",
-  "size_bytes": 56,
-  "signature": "void __thiscall(gbAudioManager *this, struct gbVec3D *a2, struct gbVec3D *a3)",
-  "decompiled_c": "void __thiscall gbAudioManager::SetListenerOrientation(gbAudioManager *this, struct gbVec3D *a2, struct gbVec3D *a3)\n{\n  float v3; // [esp+0h] [ebp-10h]\n  float v4; // [esp+Ch] [ebp-4h]\n\n  v4 = -*((float *)a3 + 2);\n  v3 = -*((float *)a2 + 2);\n  AIL_set_3D_orientation(\n    *((_DWORD *)this + 54),\n    *(_DWORD *)a2,\n    *((_DWORD *)a2 + 1),\n    LODWORD(v3),\n    *(_DWORD *)a3,\n    *((_DWORD *)a3 + 1),\n    LODWORD(v4));\n}\n"
-}

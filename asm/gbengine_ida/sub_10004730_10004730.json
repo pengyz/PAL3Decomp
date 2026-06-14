@@ -1,8 +1,0 @@
-{
-  "name": "sub_10004730",
-  "mangled_name": "sub_10004730",
-  "address": "0x10004730",
-  "size_bytes": 84,
-  "signature": "char *__thiscall(char *this, char a2)",
-  "decompiled_c": "char *__thiscall sub_10004730(char *this, char a2)\n{\n  if ( (a2 & 2) != 0 )\n  {\n    `eh vector destructor iterator'(\n      this,\n      0x10u,\n      *((_DWORD *)this - 1),\n      (void (__thiscall *)(void *))gbBinaryTreeNode::~gbBinaryTreeNode);\n    if ( (a2 & 1) != 0 )\n      operator delete(this - 4);\n    return this - 4;\n  }\n  else\n  {\n    gbBinaryTreeNode::~gbBinaryTreeNode((gbBinaryTreeNode *)this);\n    if ( (a2 & 1) != 0 )\n      operator delete(this);\n    return this;\n  }\n}\n"
-}

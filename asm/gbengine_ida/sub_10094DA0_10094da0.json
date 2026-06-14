@@ -1,8 +1,0 @@
-{
-  "name": "sub_10094DA0",
-  "mangled_name": "sub_10094DA0",
-  "address": "0x10094DA0",
-  "size_bytes": 30,
-  "signature": "int __stdcall(int a1)",
-  "decompiled_c": "int __stdcall sub_10094DA0(int a1)\n{\n  int result; // eax\n\n  result = *(_DWORD *)(a1 + 4);\n  if ( result )\n    result = (*(int (__stdcall **)(int))(result + 40))(a1);\n  *(_DWORD *)(a1 + 4) = 0;\n  *(_DWORD *)(a1 + 20) = 0;\n  return result;\n}\n"
-}

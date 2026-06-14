@@ -1,8 +1,0 @@
-{
-  "name": "sub_1006022F",
-  "mangled_name": "sub_1006022F",
-  "address": "0x1006022F",
-  "size_bytes": 175,
-  "signature": "int __userpurge@<eax>(_DWORD *a1@<ecx>, double a2@<st1>, double a3@<st0>, unsigned int a4, _DWORD *a5, _DWORD *a6)",
-  "decompiled_c": "int __userpurge sub_1006022F@<eax>(\n        _DWORD *a1@<ecx>,\n        double a2@<st1>,\n        double a3@<st0>,\n        unsigned int a4,\n        _DWORD *a5,\n        _DWORD *a6)\n{\n  int v6; // edi\n\n  v6 = a4;\n  if ( a4 )\n  {\n    if ( sub_1005FF3C(a1, a2, a3, a5, &a5) < 0 || sub_1005FF3C(a1, a2, a3, a6, &a4) < 0 )\n    {\n      sub_10058D70((int)a1, (int)(a1 + 8), 3061, \"matrix dimensions must be literal scalar expressions\");\n    }\n    else if ( a5 && (unsigned int)a5 <= 4 && a4 && a4 <= 4 )\n    {\n      if ( sub_1007E198(36, (LPVOID)0x10) )\n        return sub_1007E8B4(2, *(_DWORD *)(v6 + 20), a5, a4, 0);\n    }\n    else\n    {\n      sub_10058D70((int)a1, (int)(a1 + 8), 3053, \"matrix dimensions must be between 1 and %u\", 4);\n    }\n  }\n  return 0;\n}\n"
-}

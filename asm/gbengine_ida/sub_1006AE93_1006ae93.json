@@ -1,8 +1,0 @@
-{
-  "name": "sub_1006AE93",
-  "mangled_name": "sub_1006AE93",
-  "address": "0x1006AE93",
-  "size_bytes": 98,
-  "signature": "int __stdcall(_DWORD *a1, const char *a2, unsigned int a3)",
-  "decompiled_c": "int __stdcall sub_1006AE93(_DWORD *a1, const char *a2, unsigned int a3)\n{\n  int v3; // eax\n  unsigned int v4; // ecx\n  int v5; // eax\n  int v6; // eax\n  _DWORD *v7; // ecx\n  unsigned int v8; // ecx\n\n  if ( !a2 )\n    return 0;\n  v3 = sub_1006511D(a1, a2, 10);\n  if ( v3 )\n  {\n    v4 = *(_DWORD *)(v3 + 48);\n    v5 = *(_DWORD *)(v3 + 52);\n  }\n  else\n  {\n    v6 = sub_10065803(a1, a2, 10);\n    if ( !v6 )\n    {\n      v6 = sub_100657C5(v7, (int)a2, 10);\n      if ( !v6 )\n        return 0;\n    }\n    v4 = *(_DWORD *)(v6 + 36);\n    v5 = *(_DWORD *)(v6 + 40);\n  }\n  if ( a3 >= v4 )\n    return 0;\n  if ( a3 )\n  {\n    v8 = a3;\n    do\n    {\n      --v8;\n      v5 = *(_DWORD *)(v5 + 52);\n    }\n    while ( v8 );\n  }\n  return ~v5;\n}\n"
-}

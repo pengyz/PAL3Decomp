@@ -1,8 +1,0 @@
-{
-  "name": "sub_1006B104",
-  "mangled_name": "sub_1006B104",
-  "address": "0x1006B104",
-  "size_bytes": 129,
-  "signature": "int __thiscall(_DWORD *this, int a2, int a3, int a4, int a5, int a6)",
-  "decompiled_c": "int __thiscall sub_1006B104(_DWORD *this, int a2, int a3, int a4, int a5, int a6)\n{\n  int v6; // eax\n  int v7; // edi\n  int v8; // eax\n  int v9; // ecx\n  int v10; // eax\n  int v12; // [esp+8h] [ebp-4h] BYREF\n\n  v6 = *(this + 39) + 4 * *(unsigned __int16 *)(a2 + 4);\n  if ( *(_DWORD *)(*(_DWORD *)v6 + 56) )\n    v7 = *(_DWORD *)(*(this + 14) + 8);\n  else\n    v7 = *(this + 8);\n  v12 = v7 + *(_DWORD *)(a2 + 8) + *(_DWORD *)(*(_DWORD *)v6 + 36);\n  v8 = *(_DWORD *)v6;\n  if ( *(_DWORD *)(v8 + 56) )\n    v9 = *(_DWORD *)(*(this + 14) + 8);\n  else\n    v9 = *(this + 8);\n  a2 = v9 + *(_DWORD *)(a2 + 12) + *(_DWORD *)(v8 + 40);\n  if ( a5 )\n    v10 = *(_DWORD *)(a6 + 12);\n  else\n    v10 = 0;\n  return sub_10068BC0(&v12, &a2, &a3, a5, v10, &a4);\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbCamera::PointDevToScr(int *,int *,float,float)",
-  "mangled_name": "?PointDevToScr@gbCamera@@QAEXPAH0MM@Z",
-  "address": "0x10022440",
-  "size_bytes": 67,
-  "signature": "void __thiscall(gbCamera *this, int *a2, int *a3, float a4, float a5)",
-  "decompiled_c": "void __thiscall gbCamera::PointDevToScr(gbCamera *this, int *a2, int *a3, float a4, float a5)\n{\n  *a2 = (__int64)((a4 + 1.0) * *((float *)this + 2) * 0.5);\n  *a3 = (__int64)((a5 + 1.0) * *((float *)this + 3) * 0.5);\n}\n"
-}

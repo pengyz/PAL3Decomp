@@ -1,8 +1,0 @@
-{
-  "name": "sub_1000B070",
-  "mangled_name": "sub_1000B070",
-  "address": "0x1000B070",
-  "size_bytes": 163,
-  "signature": "float *()",
-  "decompiled_c": "float *sub_1000B070()\n{\n  _DWORD *v0; // eax\n  int v1; // ecx\n  _DWORD *v2; // edx\n  int v3; // edi\n  int v4; // esi\n  float *result; // eax\n  double v6; // st7\n  long double v7; // st7\n  long double v8; // st6\n  long double v9; // st6\n  int v10; // [esp+0h] [ebp-4h]\n  float v11; // [esp+0h] [ebp-4h]\n\n  v0 = (_DWORD *)operator new(0xBFFF4u);\n  v1 = 0;\n  if ( v0 )\n  {\n    v2 = v0 + 2;\n    v3 = 0xFFFF;\n    do\n    {\n      *(v2 - 2) = 0;\n      *(v2 - 1) = 0;\n      *v2 = 0;\n      v2 += 3;\n      --v3;\n    }\n    while ( v3 );\n  }\n  else\n  {\n    v0 = 0;\n  }\n  dword_101379AC = v0;\n  v4 = 0;\n  do\n  {\n    result = (float *)((char *)dword_101379AC + v4);\n    v6 = (double)(2 * SBYTE1(v1));\n    v4 += 12;\n    v10 = (unsigned __int8)v1++;\n    v7 = v6 * 3.1415927 * 0.0039215689;\n    v8 = (double)v10 * 0.012319972;\n    v11 = v8;\n    v9 = sin(v8);\n    *result = cos(v7) * v9;\n    result[1] = sin(v7) * v9;\n    result[2] = cos(v11);\n  }\n  while ( v4 < 786420 );\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbCamera::Update(double)",
-  "mangled_name": "?Update@gbCamera@@QAEXN@Z",
-  "address": "0x10022590",
-  "size_bytes": 83,
-  "signature": "void __thiscall(gbCamera *this, double a2)",
-  "decompiled_c": "void __thiscall gbCamera::Update(gbCamera *this, double a2)\n{\n  int v3; // esi\n  void (__thiscall **v4)(int, _DWORD, _DWORD); // edx\n\n  v3 = *((_DWORD *)this + *((_DWORD *)this + 85) + 69);\n  v4 = *(void (__thiscall ***)(int, _DWORD, _DWORD))v3;\n  *(double *)(v3 + 16) = a2 + *(double *)(v3 + 16);\n  (*v4)(v3, LODWORD(a2), HIDWORD(a2));\n  if ( *(double *)(v3 + 24) >= 0.0 && *(double *)(v3 + 16) > *(double *)(v3 + 24) )\n    --*((_DWORD *)this + 85);\n}\n"
-}

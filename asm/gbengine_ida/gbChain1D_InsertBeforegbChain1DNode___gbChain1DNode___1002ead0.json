@@ -1,8 +1,0 @@
-{
-  "name": "gbChain1D::InsertBefore(gbChain1DNode *,gbChain1DNode *)",
-  "mangled_name": "?InsertBefore@gbChain1D@@QAEXPAVgbChain1DNode@@0@Z",
-  "address": "0x1002EAD0",
-  "size_bytes": 112,
-  "signature": "void __thiscall(struct gbChain1DNode **this, struct gbChain1DNode *a2, struct gbChain1DNode *a3)",
-  "decompiled_c": "void __thiscall gbChain1D::InsertBefore(\n        struct gbChain1DNode **this,\n        struct gbChain1DNode *a2,\n        struct gbChain1DNode *a3)\n{\n  int v3; // edx\n  struct gbChain1DNode *v4; // edx\n  struct gbChain1DNode *i; // eax\n\n  if ( a3 )\n  {\n    v4 = *this;\n    if ( *this == a3 )\n    {\n      *this = a2;\n      *((_DWORD *)a2 + 1) = a3;\n    }\n    else\n    {\n      for ( i = (struct gbChain1DNode *)*((_DWORD *)v4 + 1); i != a3; i = (struct gbChain1DNode *)*((_DWORD *)i + 1) )\n        v4 = i;\n      *((_DWORD *)v4 + 1) = a2;\n      *((_DWORD *)a2 + 1) = a3;\n      *(this + 2) = (struct gbChain1DNode *)((char *)*(this + 2) + 1);\n    }\n  }\n  else\n  {\n    *((_DWORD *)a2 + 1) = 0;\n    v3 = (int)*(this + 1);\n    if ( v3 )\n    {\n      *(_DWORD *)(v3 + 4) = a2;\n      *(this + 1) = a2;\n    }\n    else\n    {\n      *(this + 1) = a2;\n      *this = a2;\n    }\n    *(this + 2) = (struct gbChain1DNode *)((char *)*(this + 2) + 1);\n  }\n}\n"
-}

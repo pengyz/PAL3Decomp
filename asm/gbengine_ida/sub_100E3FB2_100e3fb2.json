@@ -1,8 +1,0 @@
-{
-  "name": "sub_100E3FB2",
-  "mangled_name": "sub_100E3FB2",
-  "address": "0x100E3FB2",
-  "size_bytes": 121,
-  "signature": "int __stdcall(_DWORD *a1, unsigned int *a2, _DWORD *a3, int a4, int a5)",
-  "decompiled_c": "int __stdcall sub_100E3FB2(_DWORD *a1, unsigned int *a2, _DWORD *a3, int a4, int a5)\n{\n  unsigned int *v6; // eax\n  int v8; // eax\n  int v9; // ebx\n  unsigned int v10; // [esp+4h] [ebp-4h] BYREF\n  unsigned int *v11; // [esp+20h] [ebp+18h]\n\n  v10 = 0;\n  v6 = (unsigned int *)(*(int (__stdcall **)(_DWORD, int, int))(a5 + 32))(*(_DWORD *)(a5 + 40), 19, 4);\n  v11 = v6;\n  if ( !v6 )\n    return -4;\n  v8 = sub_100E3C33(a2, a1, 0x13u, 0x13u, 0, 0, a3, a4, &v10, v6);\n  v9 = v8;\n  if ( v8 == -3 )\n  {\n    *(_DWORD *)(a5 + 24) = \"oversubscribed dynamic bit lengths tree\";\n  }\n  else if ( v8 == -5 || !*a2 )\n  {\n    *(_DWORD *)(a5 + 24) = \"incomplete dynamic bit lengths tree\";\n    v9 = -3;\n  }\n  (*(void (__stdcall **)(_DWORD, unsigned int *))(a5 + 36))(*(_DWORD *)(a5 + 40), v11);\n  return v9;\n}\n"
-}

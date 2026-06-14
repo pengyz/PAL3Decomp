@@ -1,8 +1,0 @@
-{
-  "name": "gbSound3DNode::Play(void)",
-  "mangled_name": "?Play@gbSound3DNode@@QAEXXZ",
-  "address": "0x10002760",
-  "size_bytes": 174,
-  "signature": "void __thiscall(gbSound3DNode *this)",
-  "decompiled_c": "void __thiscall gbSound3DNode::Play(gbSound3DNode *this)\n{\n  int v2; // edi\n  float v3; // [esp+0h] [ebp-Ch]\n\n  if ( gbSound3DNode::pAudioMgr && gbAudioManager::CanBeHeard(gbSound3DNode::pAudioMgr, this) )\n  {\n    if ( !*((_DWORD *)this + 1) )\n      gbAudioManager::AttachSampleHandle(gbSound3DNode::pAudioMgr, this);\n    v2 = *((_DWORD *)this + 1);\n    AIL_set_3D_sample_volume(v2, (__int64)(*((float *)gbSound3DNode::pAudioMgr + 51) * *((float *)this + 12) * 127.0));\n    v3 = -*((float *)this + 4);\n    AIL_set_3D_position(v2, *((_DWORD *)this + 2), *((_DWORD *)this + 3), LODWORD(v3));\n    AIL_set_3D_sample_distances(v2, *((_DWORD *)this + 15), *((_DWORD *)this + 14));\n    AIL_set_3D_sample_loop_count(v2, *((_DWORD *)this + 13));\n    AIL_set_3D_velocity(v2, 0, 0, 0, 1065353216);\n    AIL_auto_update_3D_position(v2, 0);\n    AIL_start_3D_sample(v2);\n  }\n}\n"
-}

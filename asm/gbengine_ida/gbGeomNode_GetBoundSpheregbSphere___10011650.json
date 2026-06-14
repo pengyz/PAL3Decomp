@@ -1,8 +1,0 @@
-{
-  "name": "gbGeomNode::GetBoundSphere(gbSphere *)",
-  "mangled_name": "?GetBoundSphere@gbGeomNode@@UAEXPAUgbSphere@@@Z",
-  "address": "0x10011650",
-  "size_bytes": 228,
-  "signature": "void __thiscall(gbGeomNode *this, struct gbSphere *a2)",
-  "decompiled_c": "void __thiscall gbGeomNode::GetBoundSphere(gbGeomNode *this, struct gbSphere *a2)\n{\n  float *mesh; // eax\n  double v4; // st7\n  _BYTE v5[12]; // [esp+4h] [ebp-24h]\n  gbVec3D v6; // [esp+10h] [ebp-18h] BYREF\n  struct gbVec3D v7; // [esp+1Ch] [ebp-Ch] BYREF\n\n  mesh = (float *)this->mesh;\n  if ( mesh )\n  {\n    v4 = mesh[22] + mesh[25];\n    v6.y = mesh[26] + mesh[23];\n    v6.z = mesh[27] + mesh[24];\n    *(float *)v5 = v4 * 0.5;\n    *(float *)&v5[4] = v6.y * 0.5;\n    *(float *)&v5[8] = v6.z * 0.5;\n    v7 = *(struct gbVec3D *)v5;\n    *(float *)v5 = mesh[25] - mesh[22];\n    *(float *)&v5[4] = mesh[26] - mesh[23];\n    *(float *)&v5[8] = mesh[27] - mesh[24];\n    v6 = *(gbVec3D *)v5;\n    a2->center.x = gbVec3D::Length(&v6) * 0.5;\n    gbMatrix4::Transform(&this->worldTransform, &v7, (struct gbVec3D *)&a2->center.y);\n  }\n  else\n  {\n    a2->center.x = 0.0;\n    a2->radius = 0.0;\n    a2->center.z = 0.0;\n    a2->center.y = 0.0;\n  }\n}\n"
-}

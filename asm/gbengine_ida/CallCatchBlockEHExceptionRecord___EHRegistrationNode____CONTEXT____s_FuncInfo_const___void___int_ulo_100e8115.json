@@ -1,8 +1,0 @@
-{
-  "name": "CallCatchBlock(EHExceptionRecord *,EHRegistrationNode *,_CONTEXT *,_s_FuncInfo const *,void *,int,ulong)",
-  "mangled_name": "?CallCatchBlock@@YAPAXPAUEHExceptionRecord@@PAUEHRegistrationNode@@PAU_CONTEXT@@PBU_s_FuncInfo@@PAXHK@Z",
-  "address": "0x100E8115",
-  "size_bytes": 283,
-  "signature": "void *__cdecl(struct EHExceptionRecord *a1, struct EHRegistrationNode *a2, struct _CONTEXT *a3, const struct _s_FuncInfo *a4, void *a5, int a6, unsigned int a7)",
-  "decompiled_c": "void *__cdecl CallCatchBlock(\n        struct EHExceptionRecord *a1,\n        struct EHRegistrationNode *a2,\n        struct _CONTEXT *a3,\n        const struct _s_FuncInfo *a4,\n        void *a5,\n        int a6,\n        unsigned int a7)\n{\n  char v8; // al\n  void *v9; // [esp+Ch] [ebp-2Ch]\n  __ehstate_t state; // [esp+10h] [ebp-28h]\n  int v11; // [esp+18h] [ebp-20h]\n  int v12; // [esp+1Ch] [ebp-1Ch]\n\n  state = a2[-1].state;\n  v12 = *(_DWORD *)(_getptd() + 108);\n  v11 = *(_DWORD *)(_getptd() + 112);\n  *(_DWORD *)(_getptd() + 108) = a1;\n  *(_DWORD *)(_getptd() + 112) = a3;\n  v9 = _CallCatchBlock2(a2, a4, a5, a6, a7);\n  a2[-1].state = state;\n  *(_DWORD *)(_getptd() + 108) = v12;\n  *(_DWORD *)(_getptd() + 112) = v11;\n  if ( a1->ExceptionCode == -529697949 && a1->NumberParameters == 3 && a1->params.magicNumber == 429065504 && v9 )\n  {\n    v8 = _abnormal_termination();\n    unknown_libname_8(a1, v8);\n  }\n  return v9;\n}\n"
-}

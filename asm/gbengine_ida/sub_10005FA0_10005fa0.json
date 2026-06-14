@@ -1,8 +1,0 @@
-{
-  "name": "sub_10005FA0",
-  "mangled_name": "sub_10005FA0",
-  "address": "0x10005FA0",
-  "size_bytes": 240,
-  "signature": "void __thiscall(void **this)",
-  "decompiled_c": "void __thiscall sub_10005FA0(void **this)\n{\n  int v2; // ebp\n  int v3; // ebx\n  char *v4; // esi\n  struct gbVertexBubble *v5; // esi\n\n  if ( *(this + 6) )\n    operator delete(*(this + 6));\n  if ( *(this + 7) )\n    operator delete(*(this + 7));\n  if ( *(this + 8) )\n    operator delete(*(this + 8));\n  if ( *(this + 9) )\n  {\n    v2 = 0;\n    if ( (int)*(this + 10) > 0 )\n    {\n      v3 = 0;\n      do\n      {\n        v4 = (char *)*(this + 9) + v3;\n        free(*((void **)v4 + 289));\n        gbVertPoolMgr::DelIndexBubble(*((gbVertPoolMgr **)dword_1012B99C + 49), *((struct gbIndexBubble **)v4 + 291));\n        gbVertPoolMgr::DelVertexBubble(*((gbVertPoolMgr **)dword_1012B99C + 49), *((struct gbVertexBubble **)v4 + 292));\n        if ( *((_DWORD *)v4 + 293) )\n          gbVertPoolMgr::DelIndexBubble(*((gbVertPoolMgr **)dword_1012B99C + 49), *((struct gbIndexBubble **)v4 + 293));\n        v5 = (struct gbVertexBubble *)*((_DWORD *)v4 + 294);\n        if ( v5 )\n          gbVertPoolMgr::DelVertexBubble(*((gbVertPoolMgr **)dword_1012B99C + 49), v5);\n        ++v2;\n        v3 += 1180;\n      }\n      while ( v2 < (int)*(this + 10) );\n    }\n    operator delete(*(this + 9));\n  }\n}\n"
-}

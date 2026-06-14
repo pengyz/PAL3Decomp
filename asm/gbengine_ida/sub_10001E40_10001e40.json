@@ -1,8 +1,0 @@
-{
-  "name": "sub_10001E40",
-  "mangled_name": "sub_10001E40",
-  "address": "0x10001E40",
-  "size_bytes": 191,
-  "signature": "int __thiscall(gbResource *this, char *a2)",
-  "decompiled_c": "int __thiscall sub_10001E40(gbResource *this, char *a2)\n{\n  int v3; // ebp\n  int v4; // eax\n  int v5; // esi\n  int v7; // eax\n  int v8; // eax\n  _BYTE v9[36]; // [esp+10h] [ebp-24h] BYREF\n\n  v3 = AIL_file_size(a2);\n  v4 = AIL_file_read(a2, 0);\n  v5 = v4;\n  if ( !v4 )\n  {\n    gbReportError(\"read sound file(%s) error\", a2);\n    return 0;\n  }\n  v7 = AIL_file_type(v4, v3) - 1;\n  if ( v7 )\n  {\n    v8 = v7 - 1;\n    if ( v8 )\n    {\n      if ( v8 != 11 )\n      {\n        AIL_mem_free_lock(v5);\n        return 0;\n      }\n      AIL_decompress_ASI(v5, v3, a2, (char *)this + 24, 0, 0);\n      AIL_mem_free_lock(v5);\n    }\n    else\n    {\n      AIL_WAV_info(v5, v9);\n      AIL_decompress_ADPCM(v9, (char *)this + 24, 0);\n      AIL_mem_free_lock(v5);\n    }\n  }\n  else\n  {\n    *((_DWORD *)this + 6) = v5;\n  }\n  gbResource::SetName((void **)this, a2);\n  return 1;\n}\n"
-}

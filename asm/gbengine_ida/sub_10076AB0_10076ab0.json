@@ -1,8 +1,0 @@
-{
-  "name": "sub_10076AB0",
-  "mangled_name": "sub_10076AB0",
-  "address": "0x10076AB0",
-  "size_bytes": 213,
-  "signature": "int __stdcall(int a1)",
-  "decompiled_c": "int __stdcall sub_10076AB0(int a1)\n{\n  int v2; // ecx\n  void (__stdcall **v3)(int); // eax\n  int v4; // eax\n  int v5; // ecx\n  int v6; // edx\n  int v7; // eax\n  int v8; // eax\n\n  if ( *(_DWORD *)(a1 + 20) == 202 )\n  {\n    sub_10093C60(a1);\n    if ( *(_DWORD *)(a1 + 64) )\n    {\n      *(_DWORD *)(a1 + 20) = 207;\n      return 1;\n    }\n    *(_DWORD *)(a1 + 20) = 203;\n  }\n  v2 = *(_DWORD *)(a1 + 20);\n  if ( v2 == 203 )\n  {\n    if ( *(_DWORD *)(*(_DWORD *)(a1 + 440) + 16) )\n    {\n      while ( 1 )\n      {\n        v3 = *(void (__stdcall ***)(int))(a1 + 8);\n        if ( v3 )\n          (*v3)(a1);\n        v4 = (**(int (__stdcall ***)(int))(a1 + 440))(a1);\n        if ( !v4 )\n          return 0;\n        if ( v4 == 2 )\n          goto LABEL_17;\n        v5 = *(_DWORD *)(a1 + 8);\n        if ( v5 && (v4 == 3 || v4 == 1) )\n        {\n          v6 = *(_DWORD *)(v5 + 4) + 1;\n          *(_DWORD *)(v5 + 4) = v6;\n          v7 = *(_DWORD *)(v5 + 8);\n          if ( v6 >= v7 )\n            *(_DWORD *)(v5 + 8) = v7 + *(_DWORD *)(a1 + 324);\n        }\n      }\n    }\n    else\n    {\nLABEL_17:\n      *(_DWORD *)(a1 + 156) = *(_DWORD *)(a1 + 148);\n      return sub_100769B0((int *)a1);\n    }\n  }\n  else\n  {\n    if ( v2 != 204 )\n    {\n      v8 = *(_DWORD *)a1;\n      *(_DWORD *)(v8 + 20) = 20;\n      *(_DWORD *)(v8 + 24) = v2;\n      (*(void (__stdcall **)(int))v8)(a1);\n    }\n    return sub_100769B0((int *)a1);\n  }\n}\n"
-}

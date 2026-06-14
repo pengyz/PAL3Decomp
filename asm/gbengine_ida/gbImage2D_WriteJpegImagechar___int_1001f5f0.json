@@ -1,8 +1,0 @@
-{
-  "name": "gbImage2D::WriteJpegImage(char *,int)",
-  "mangled_name": "?WriteJpegImage@gbImage2D@@QAEXPADH@Z",
-  "address": "0x1001F5F0",
-  "size_bytes": 193,
-  "signature": "void __thiscall(gbImage2D *this, char *a2, int a3)",
-  "decompiled_c": "void __thiscall gbImage2D::WriteJpegImage(gbImage2D *this, char *a2, int a3)\n{\n  int v4; // eax\n  _DWORD v5[12]; // [esp+Ch] [ebp-4E68h] BYREF\n  int v6; // [esp+3Ch] [ebp-4E38h]\n  int v7; // [esp+40h] [ebp-4E34h]\n  int v8; // [esp+44h] [ebp-4E30h]\n  int v9; // [esp+48h] [ebp-4E2Ch]\n  int v10; // [esp+5Ch] [ebp-4E18h]\n\n  if ( !ijlInit(v5) && *((_DWORD *)this + 45) == 24 )\n  {\n    v4 = *((_DWORD *)this + 32);\n    v6 = *((_DWORD *)this + 33);\n    v5[3] = -v6;\n    v5[1] = *((_DWORD *)this + 46);\n    v5[2] = v4;\n    v5[4] = ((3 * v4 + 3) & 0xFFFFFFFC) - 3 * v4;\n    v5[11] = v4;\n    v5[5] = 3;\n    v5[6] = 2;\n    v5[8] = a2;\n    v7 = 3;\n    v8 = 3;\n    v9 = 1;\n    v10 = a3;\n    if ( !ijlWrite(v5, 8) )\n      ijlFree(v5);\n  }\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "_fix_grouping",
-  "mangled_name": "_fix_grouping",
-  "address": "0x100EEB50",
-  "size_bytes": 55,
-  "signature": "char __cdecl(char *a1)",
-  "decompiled_c": "char __cdecl fix_grouping(char *a1)\n{\n  char *v1; // ecx\n  char result; // al\n  char *v3; // eax\n\n  v1 = a1;\n  for ( result = *a1; *v1; result = *v1 )\n  {\n    if ( result < 48 || result > 57 )\n    {\n      if ( result == 59 )\n      {\n        v3 = v1;\n        do\n        {\n          *v3 = v3[1];\n          ++v3;\n        }\n        while ( *v3 );\n        continue;\n      }\n    }\n    else\n    {\n      *v1 = result - 48;\n    }\n    ++v1;\n  }\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbActor::~gbActor(void)",
-  "mangled_name": "??1gbActor@@UAE@XZ",
-  "address": "0x10002C20",
-  "size_bytes": 162,
-  "signature": "void __thiscall(gbActor *this)",
-  "decompiled_c": "void __thiscall gbActor::~gbActor(gbActor *this)\n{\n  *(_DWORD *)this = &gbActor::`vftable';\n  gbRefObject::Release(*((gbRefObject **)this + 22));\n  if ( *((_DWORD *)this + 24) )\n    operator delete(*((void **)this + 24));\n  if ( *((_DWORD *)this + 26) )\n    operator delete(*((void **)this + 26));\n  *(_DWORD *)this = &gbVisNode::`vftable';\n  operator delete(*((void **)this + 7));\n  *(_DWORD *)this = &gbNBTreeNode::`vftable';\n  gbChain1D::~gbChain1D((gbActor *)((char *)this + 12));\n  gbChain1DNode::~gbChain1DNode(this);\n}\n"
-}

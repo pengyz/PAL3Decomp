@@ -1,8 +1,0 @@
-{
-  "name": "sub_10018BD0",
-  "mangled_name": "sub_10018BD0",
-  "address": "0x10018BD0",
-  "size_bytes": 242,
-  "signature": "void __thiscall(gbGfxManager *this)",
-  "decompiled_c": "void __thiscall sub_10018BD0(gbGfxManager *this)\n{\n  void **v2; // ebp\n  void *v3; // edi\n  int v4; // eax\n\n  *(_DWORD *)this = &off_100F56B4;\n  v2 = (void **)((char *)this + 1624);\n  gbResManager::CleanAllResource((int ***)this + 406);\n  sub_1001DE70(this);\n  v3 = (void *)*((_DWORD *)this + 50);\n  if ( v3 )\n  {\n    gbResManager::~gbResManager(*((void ***)this + 50));\n    operator delete(v3);\n  }\n  if ( *((_DWORD *)this + 454) )\n  {\n    (*(void (__stdcall **)(_DWORD))(**((_DWORD **)this + 564) + 8))(*((_DWORD *)this + 564));\n    (*(void (__stdcall **)(_DWORD))(**((_DWORD **)this + 454) + 8))(*((_DWORD *)this + 454));\n    *((_DWORD *)this + 454) = 0;\n  }\n  if ( *((_DWORD *)this + 47) )\n    DestroyWindow(*((HWND *)this + 46));\n  v4 = *((_DWORD *)this + 453);\n  if ( v4 )\n  {\n    (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v4 + 8))(*((_DWORD *)this + 453));\n    *((_DWORD *)this + 453) = 0;\n  }\n  dword_1013BDF0 = 0;\n  gbResManager::~gbResManager(v2);\n  sub_10017110((_DWORD *)this + 380);\n  gbGfxManager::~gbGfxManager(this);\n}\n"
-}

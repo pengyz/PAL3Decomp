@@ -1,8 +1,0 @@
-{
-  "name": "_write_multi_char",
-  "mangled_name": "_write_multi_char",
-  "address": "0x100EA182",
-  "size_bytes": 49,
-  "signature": "_DWORD *__cdecl(int a1, _DWORD *a2, FILE *File, _DWORD *a4)",
-  "decompiled_c": "_DWORD *__cdecl write_multi_char(int a1, _DWORD *a2, FILE *File, _DWORD *a4)\n{\n  _DWORD *result; // eax\n  _DWORD *i; // edi\n\n  result = a2;\n  for ( i = (_DWORD *)((char *)a2 - 1); (int)result > 0; i = (_DWORD *)((char *)i - 1) )\n  {\n    result = write_char(a1, File, a4);\n    if ( *a4 == -1 )\n      break;\n    result = i;\n  }\n  return result;\n}\n"
-}

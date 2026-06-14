@@ -1,8 +1,0 @@
-{
-  "name": "sub_100147D0",
-  "mangled_name": "sub_100147D0",
-  "address": "0x100147D0",
-  "size_bytes": 154,
-  "signature": "int __thiscall(int *this, int *a2)",
-  "decompiled_c": "int __thiscall sub_100147D0(int *this, int *a2)\n{\n  int v3; // eax\n  int v4; // eax\n  int v5; // ecx\n  int result; // eax\n  float v7[4]; // [esp+8h] [ebp-10h] BYREF\n\n  v3 = *a2;\n  memset(&v7[1], 0, 12);\n  (*(void (__thiscall **)(int *, float *))(v3 + 28))(a2, v7);\n  if ( v7[0] > 0.0 )\n  {\n    v4 = sub_10014660(this, v7, *this);\n    a2[17] = v4;\n    a2[19] = 0;\n    a2[18] = 0;\n    v5 = *(_DWORD *)(v4 + 64);\n    if ( v5 )\n    {\n      a2[19] = v5;\n      *(_DWORD *)(*(_DWORD *)(v4 + 64) + 72) = a2;\n    }\n    *(_DWORD *)(v4 + 64) = a2;\n  }\n  result = a2[3];\n  for ( a2[6] = result; result; a2[6] = result )\n  {\n    sub_100147D0(result);\n    result = *(_DWORD *)(a2[6] + 4);\n  }\n  return result;\n}\n"
-}

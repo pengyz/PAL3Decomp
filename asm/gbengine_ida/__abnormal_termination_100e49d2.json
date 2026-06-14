@@ -1,8 +1,0 @@
-{
-  "name": "__abnormal_termination",
-  "mangled_name": "__abnormal_termination",
-  "address": "0x100E49D2",
-  "size_bytes": 35,
-  "signature": "int __cdecl()",
-  "decompiled_c": "int __cdecl _abnormal_termination()\n{\n  int result; // eax\n  struct _EXCEPTION_REGISTRATION_RECORD *ExceptionList; // ecx\n\n  result = 0;\n  ExceptionList = NtCurrentTeb()->NtTib.ExceptionList;\n  if ( (int (__cdecl *)(int, int, int, _DWORD *))ExceptionList->Handler == _unwind_handler )\n    return ExceptionList[1].Next == (struct _EXCEPTION_REGISTRATION_RECORD *)*((_DWORD *)ExceptionList[1].Handler + 3);\n  return result;\n}\n"
-}

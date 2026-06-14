@@ -1,8 +1,0 @@
-{
-  "name": "__fFEXP",
-  "mangled_name": "__fFEXP",
-  "address": "0x100EB901",
-  "size_bytes": 69,
-  "signature": "void __usercall(__int16 a1@<cx>, int a2@<ebp>, double a3@<st0>)",
-  "decompiled_c": "void __usercall _fFEXP(__int16 a1@<cx>, int a2@<ebp>, double a3@<st0>)\n{\n  double v3; // st7\n\n  *(_BYTE *)(a2 - 144) = -2;\n  HIBYTE(a1) = 0;\n  v3 = a3 * 1.442695040888963407;\n  _ffexpm1(a1);\n  if ( (*(_BYTE *)(a2 - 159) & 1) != 0 && dword_10166C60 == 1 )\n    unknown_libname_22(v3);\n  _rttosnpop();\n}\n"
-}

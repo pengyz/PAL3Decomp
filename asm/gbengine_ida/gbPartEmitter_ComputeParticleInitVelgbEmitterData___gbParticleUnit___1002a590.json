@@ -1,8 +1,0 @@
-{
-  "name": "gbPartEmitter::ComputeParticleInitVel(gbEmitterData *,gbParticleUnit *)",
-  "mangled_name": "?ComputeParticleInitVel@gbPartEmitter@@QAEXPAUgbEmitterData@@PAUgbParticleUnit@@@Z",
-  "address": "0x1002A590",
-  "size_bytes": 137,
-  "signature": "void __userpurge(gbPartEmitter *this@<ecx>, double a2@<st0>, struct gbEmitterData *a3, struct gbParticleUnit *a4)",
-  "decompiled_c": "void __userpurge gbPartEmitter::ComputeParticleInitVel(\n        gbPartEmitter *this@<ecx>,\n        double a2@<st0>,\n        struct gbEmitterData *a3,\n        struct gbParticleUnit *a4)\n{\n  double v6; // st7\n  double v7; // st7\n  double v8; // st7\n  float v9; // [esp+0h] [ebp-14h]\n  float v10; // [esp+0h] [ebp-14h]\n  float v11; // [esp+0h] [ebp-14h]\n  float v12; // [esp+18h] [ebp+4h]\n\n  gbRandFloat(*((float *)a3 + 4), *((float *)a3 + 3));\n  v12 = a2;\n  v6 = -*((float *)this + 19);\n  v9 = v6;\n  gbRandFloat(v9, *((float *)this + 19));\n  *((float *)a4 + 7) = v6 + v12 * *(float *)a3;\n  v7 = -*((float *)this + 20);\n  v10 = v7;\n  gbRandFloat(v10, *((float *)this + 20));\n  *((float *)a4 + 8) = v7 + v12 * *((float *)a3 + 1);\n  v8 = -*((float *)this + 21);\n  v11 = v8;\n  gbRandFloat(v11, *((float *)this + 21));\n  *((float *)a4 + 9) = v8 + v12 * *((float *)a3 + 2);\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbMatrix4::SetAxisAngle(gbVec3D *,float)",
-  "mangled_name": "?SetAxisAngle@gbMatrix4@@QAEXPAUgbVec3D@@M@Z",
-  "address": "0x100259D0",
-  "size_bytes": 73,
-  "signature": "void __thiscall(gbMatrix4 *this, struct gbVec3D *a2, float a3)",
-  "decompiled_c": "void __thiscall gbMatrix4::SetAxisAngle(gbMatrix4 *this, struct gbVec3D *a2, float a3)\n{\n  long double v3; // st7\n  long double v4; // st7\n  float v5[4]; // [esp+0h] [ebp-10h] BYREF\n\n  v3 = a3 * 0.5 * 0.017453292;\n  v5[3] = cos(v3);\n  v4 = sin(v3);\n  v5[0] = v4 * *(float *)a2;\n  v5[1] = v4 * *((float *)a2 + 1);\n  v5[2] = v4 * *((float *)a2 + 2);\n  gbQuaternion::GetMatrix((gbQuaternion *)v5, this);\n}\n"
-}

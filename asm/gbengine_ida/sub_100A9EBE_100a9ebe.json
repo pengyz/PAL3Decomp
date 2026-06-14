@@ -1,8 +1,0 @@
-{
-  "name": "sub_100A9EBE",
-  "mangled_name": "sub_100A9EBE",
-  "address": "0x100A9EBE",
-  "size_bytes": 176,
-  "signature": "int __thiscall(_DWORD *this)",
-  "decompiled_c": "int __thiscall sub_100A9EBE(_DWORD *this)\n{\n  int v1; // edx\n  int v2; // eax\n  unsigned int v3; // eax\n\n  v1 = *(this + 48);\n  v2 = *(this + 27);\n  *(this + 12) = 0;\n  *(this + 28) |= 4u;\n  v3 = v2 & 0xF4C76954 | 0xB38968A;\n  *(this + 58) = v1;\n  *(this + 10) = 2;\n  *(this + 11) = 24;\n  *(this + 14) = 8;\n  *(this + 18) = 1;\n  *(this + 25) = 64;\n  *(this + 27) = v3;\n  if ( (unsigned __int16)v1 == 260 )\n  {\n    *(this + 20) = 0;\n    *(this + 15) = 6;\n    *(this + 17) = 8;\n    *(this + 19) = 6;\n    *(this + 27) = v3 & 0xFFB897CB | 0x6810;\n  }\n  else\n  {\n    *(this + 15) = 4;\n    *(this + 17) = 6;\n    *(this + 19) = 4;\n    *(this + 20) = 2;\n    *(this + 27) = v3 & 0xFFFE97FF | (((unsigned __int16)v1 == 257) << 16) | 0x10460014;\n  }\n  return 0;\n}\n"
-}

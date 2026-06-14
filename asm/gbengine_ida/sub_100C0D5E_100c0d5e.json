@@ -1,8 +1,0 @@
-{
-  "name": "sub_100C0D5E",
-  "mangled_name": "sub_100C0D5E",
-  "address": "0x100C0D5E",
-  "size_bytes": 180,
-  "signature": "int __fastcall(int a1)",
-  "decompiled_c": "int __fastcall sub_100C0D5E(int a1)\n{\n  unsigned int *v1; // ebx\n  unsigned int v2; // eax\n  _DWORD *v3; // edx\n  int v4; // edi\n  int v5; // ecx\n  int v7; // [esp+Ch] [ebp-18h]\n  int v8; // [esp+10h] [ebp-14h]\n  int v9; // [esp+14h] [ebp-10h]\n  unsigned int v10; // [esp+18h] [ebp-Ch]\n  _DWORD *v11; // [esp+1Ch] [ebp-8h]\n  _DWORD *v12; // [esp+20h] [ebp-4h]\n\n  v1 = *(unsigned int **)(a1 + 224);\n  v2 = *v1 & 0xFFFFF;\n  v7 = a1;\n  v10 = 0;\n  if ( v2 )\n  {\n    v3 = (_DWORD *)v1[2];\n    v4 = *(_DWORD *)(a1 + 20);\n    v11 = &v3[v2];\n    v12 = &v3[2 * v2];\n    while ( 1 )\n    {\n      v8 = *(_DWORD *)(v4 + 4 * *v3);\n      v9 = *(_DWORD *)(v4 + 4 * *v12);\n      if ( *v3 != *v11 )\n        return 1;\n      v5 = *(_DWORD *)(v9 + 56);\n      if ( v5 != *v3 && (v5 == -1 || v5 != *(_DWORD *)(v8 + 56)) )\n        return 1;\n      if ( (*(_DWORD *)(v9 + 60) ^ 0x80000) != *(_DWORD *)(v8 + 60) )\n        return 1;\n      ++v10;\n      ++v12;\n      ++v11;\n      ++v3;\n      if ( v10 >= v2 )\n      {\n        a1 = v7;\n        goto LABEL_10;\n      }\n    }\n  }\n  else\n  {\nLABEL_10:\n    *v1 = *v1 & 0xFFFFF | 0xF0000000;\n    *(_DWORD *)(*(_DWORD *)(a1 + 224) + 4) = v2;\n    return 0;\n  }\n}\n"
-}

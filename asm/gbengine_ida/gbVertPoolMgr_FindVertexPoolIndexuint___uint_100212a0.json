@@ -1,8 +1,0 @@
-{
-  "name": "gbVertPoolMgr::FindVertexPoolIndex(uint *,uint)",
-  "mangled_name": "?FindVertexPoolIndex@gbVertPoolMgr@@AAEHPAII@Z",
-  "address": "0x100212A0",
-  "size_bytes": 58,
-  "signature": "int __thiscall(gbVertPoolMgr *this, unsigned int *a2, unsigned int a3)",
-  "decompiled_c": "int __thiscall gbVertPoolMgr::FindVertexPoolIndex(gbVertPoolMgr *this, unsigned int *a2, unsigned int a3)\n{\n  int result; // eax\n  unsigned int *i; // ecx\n  unsigned int *j; // ecx\n\n  result = 0;\n  for ( i = a2; *i != a3; ++i )\n  {\n    if ( ++result >= 32 )\n    {\n      result = 0;\n      for ( j = a2; *j; ++j )\n      {\n        if ( ++result >= 32 )\n          return -1;\n      }\n      a2[result] = a3;\n      return result;\n    }\n  }\n  return result;\n}\n"
-}

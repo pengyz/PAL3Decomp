@@ -1,8 +1,0 @@
-{
-  "name": "gbSceneGraph::DelVisNode(gbVisNode *)",
-  "mangled_name": "?DelVisNode@gbSceneGraph@@QAEXPAVgbVisNode@@@Z",
-  "address": "0x100155D0",
-  "size_bytes": 42,
-  "signature": "void __thiscall(gbSceneGraph *this, struct gbVisNode *a2)",
-  "decompiled_c": "void __thiscall gbSceneGraph::DelVisNode(gbSceneGraph *this, struct gbVisNode *a2)\n{\n  sub_10014870(a2);\n  sub_100148E0(*((_DWORD *)this + 2));\n  gbChain1D::DelNodeFromChain((gbChain1D *)(*((_DWORD *)a2 + 2) + 12), a2);\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "__rmtmp",
-  "mangled_name": "__rmtmp",
-  "address": "0x100F1142",
-  "size_bytes": 109,
-  "signature": "int __cdecl()",
-  "decompiled_c": "int __cdecl _rmtmp()\n{\n  int v0; // edi\n  int i; // esi\n  int v2; // eax\n\n  v0 = 0;\n  _lock(2);\n  for ( i = 0; i < (int)Count; ++i )\n  {\n    if ( *(_DWORD *)(dword_10167504 + 4 * i) )\n    {\n      _lock_file2(i, *(_DWORD *)(dword_10167504 + 4 * i));\n      v2 = *(_DWORD *)(dword_10167504 + 4 * i);\n      if ( (*(_BYTE *)(v2 + 12) & 0x83) != 0 && *(_DWORD *)(v2 + 28) )\n      {\n        _fclose_lk(*(_DWORD *)(dword_10167504 + 4 * i));\n        ++v0;\n      }\n      _unlock_file2(i, *(_DWORD *)(dword_10167504 + 4 * i));\n    }\n  }\n  _unlock(2);\n  return v0;\n}\n"
-}

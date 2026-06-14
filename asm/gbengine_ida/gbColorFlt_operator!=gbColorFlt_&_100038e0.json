@@ -1,8 +1,0 @@
-{
-  "name": "gbColorFlt::operator!=(gbColorFlt &)",
-  "mangled_name": "??9gbColorFlt@@QAEHAAU0@@Z",
-  "address": "0x100038E0",
-  "size_bytes": 67,
-  "signature": "BOOL __thiscall(float *this, float *a2)",
-  "decompiled_c": "BOOL __thiscall gbColorFlt::operator!=(float *this, float *a2)\n{\n  return *this != *a2 || *(this + 1) != a2[1] || *(this + 2) != a2[2] || *(this + 3) != a2[3];\n}\n"
-}

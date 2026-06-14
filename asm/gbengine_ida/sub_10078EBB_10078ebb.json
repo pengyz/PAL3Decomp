@@ -1,8 +1,0 @@
-{
-  "name": "sub_10078EBB",
-  "mangled_name": "sub_10078EBB",
-  "address": "0x10078EBB",
-  "size_bytes": 73,
-  "signature": "void __stdcall(int a1, int a2, int a3, int a4, int a5)",
-  "decompiled_c": "void __stdcall sub_10078EBB(int a1, int a2, int a3, int a4, int a5)\n{\n  if ( a1 && a2 )\n  {\n    if ( a3 )\n      *(_DWORD *)(a2 + 48) = a3;\n    if ( a5 )\n    {\n      *(_DWORD *)(a2 + 52) = *(_DWORD *)a5;\n      *(_DWORD *)(a2 + 56) = *(_DWORD *)(a5 + 4);\n      *(_WORD *)(a2 + 60) = *(_WORD *)(a5 + 8);\n      if ( !a4 )\n        LOWORD(a4) = 1;\n    }\n    *(_DWORD *)(a2 + 8) |= 0x10u;\n    *(_WORD *)(a2 + 22) = a4;\n  }\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "___init_monetary",
-  "mangled_name": "___init_monetary",
-  "address": "0x100EEB87",
-  "size_bytes": 203,
-  "signature": "int()",
-  "decompiled_c": "int __init_monetary()\n{\n  _DWORD *v0; // eax\n  _DWORD *v1; // esi\n\n  if ( dword_10166D74 )\n  {\n    v0 = calloc(1u, 0x30u);\n    v1 = v0;\n    if ( !v0 )\n      return 1;\n    if ( _get_lc_lconv(v0) )\n    {\n      _free_lc_lconv(v1);\n      free(v1);\n      return 1;\n    }\n    *v1 = *off_1012B590;\n    v1[1] = off_1012B590[1];\n    v1[2] = off_1012B590[2];\n    off_1012B590 = (int (**)[2])v1;\n    _free_lc_lconv(dword_10166EC4);\n    free(dword_10166EC4);\n    dword_10166EC4 = v1;\n  }\n  else\n  {\n    off_1012B560 = *off_1012B590;\n    off_1012B564[0] = (int *)off_1012B590[1];\n    off_1012B568[0] = (int *)off_1012B590[2];\n    off_1012B590 = &off_1012B560;\n    _free_lc_lconv(dword_10166EC4);\n    free(dword_10166EC4);\n    dword_10166EC4 = 0;\n  }\n  return 0;\n}\n"
-}

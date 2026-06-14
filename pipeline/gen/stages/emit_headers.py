@@ -23,6 +23,7 @@ from collections import defaultdict
 from pathlib import Path
 
 from pipeline.gen.stages.scope_tree import ScopeTree
+from pipeline.gen.stages.collect import get_class_dir
 
 # Module-level cache for _scalar_dtor detection (populated lazily)
 _scalar_dtor_classes = None
@@ -55,7 +56,7 @@ PROJECT_ROOT = PIPELINE_ROOT.parent
 ANNOTATIONS_DIR = PROJECT_ROOT / "data" / "annotations"
 IDA_STRUCTS_FILE = PROJECT_ROOT / "asm" / "pal3" / "ida_structs.json"
 DECOMP_DIR = PROJECT_ROOT / "asm" / "pal3" / "decomp"
-OUTPUT_DIR = PROJECT_ROOT / "include" / "pal3" / "gen"
+OUTPUT_DIR = PROJECT_ROOT / "pal3" / "src"
 OVERRIDES_DIR = PROJECT_ROOT / "include" / "pal3" / "overrides"
 
 
@@ -1339,7 +1340,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     # is ClassName_SimpleName.
                     _inner = mtype.strip()
                     _flat = '%s_%s' % (cls_name, _inner)
-                    if (OUTPUT_DIR / ('%s.h' % _flat)).exists():
+                    if (OUTPUT_DIR / ('%s.h' % _flat)).exists() or any((OUTPUT_DIR / d / ('%s.h' % _flat)).exists() for d in ('', 'Misc', 'Combat', 'UI', 'Effect', 'Scene', 'Role', 'GameBase', 'Render', 'Data', 'MiniGame', 'Script')):
                         mtype = _flat
                 member_size = _emit_member(m, off, mname, mtype)
                 start_off = off + member_size
@@ -1746,11 +1747,14 @@ def main():
                     content = generate_header(cls_name, ann_struct, methods,
                         classes_with_headers, enum_names, template_expr=_tpl_expr,
                         colliding_enums=colliding_enums_for(cls_name, enum_names, enum_by_lower, embedded_enums))
-                    output_path = OUTPUT_DIR / ("%s.h" % _sanitize_filename(_tpl_expr))
+                    _tpl_subdir = get_class_dir(cls_name)
+                    _tpl_subdir_path = OUTPUT_DIR / _tpl_subdir
+                    _tpl_subdir_path.mkdir(parents=True, exist_ok=True)
+                    output_path = _tpl_subdir_path / ("%s.h" % _sanitize_filename(_tpl_expr))
                     with open(output_path, 'w', encoding='utf-8') as f:
                         f.write(content)
                     generated += 1
-                    _fallback = OUTPUT_DIR / ("%s.h" % _sanitize_filename(cls_name))
+                    _fallback = _tpl_subdir_path / ("%s.h" % _sanitize_filename(cls_name))
                     if not _fallback.exists():
                         with open(_fallback, 'w', encoding='utf-8') as f:
                             f.write('#pragma once\n')
@@ -1822,7 +1826,10 @@ def main():
                                   nested_methods=_nested_type_methods,
                                   scope_node=_root,
                                   template_param_count=_tpl_param_count.get(cls_name, 0))
-        output_path = OUTPUT_DIR / ("%s.h" % _sanitize_filename(cls_name))
+        _subdir = get_class_dir(cls_name)
+        _subdir_path = OUTPUT_DIR / _subdir
+        _subdir_path.mkdir(parents=True, exist_ok=True)
+        output_path = _subdir_path / ("%s.h" % _sanitize_filename(cls_name))
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(content)
         generated += 1
@@ -1899,7 +1906,7 @@ def main():
 
     # Clean stale headers: remove .h files for classes now in SKIP_CLASSES
     stale_removed = 0
-    for hf in OUTPUT_DIR.glob("*.h"):
+    for hf in OUTPUT_DIR.rglob("*.h"):
         stem = hf.stem
         if should_skip_class(stem) and stem not in enum_names:
             hf.unlink()

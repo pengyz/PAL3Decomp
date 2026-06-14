@@ -1,8 +1,0 @@
-{
-  "name": "_fseek",
-  "mangled_name": "_fseek",
-  "address": "0x100E60FD",
-  "size_bytes": 44,
-  "signature": "int __cdecl(FILE *Stream, int Offset, int Origin)",
-  "decompiled_c": "int __cdecl fseek(FILE *Stream, int Offset, int Origin)\n{\n  int v3; // esi\n\n  _lock_file(Stream);\n  v3 = _fseek_lk((int)Stream, Offset, Origin);\n  _unlock_file(Stream);\n  return v3;\n}\n"
-}

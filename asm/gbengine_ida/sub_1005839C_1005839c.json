@@ -1,8 +1,0 @@
-{
-  "name": "sub_1005839C",
-  "mangled_name": "sub_1005839C",
-  "address": "0x1005839C",
-  "size_bytes": 194,
-  "signature": "int __thiscall(char *this)",
-  "decompiled_c": "int __thiscall sub_1005839C(char *this)\n{\n  bool v2; // zf\n  _DWORD *v3; // edi\n  _DWORD *v4; // ecx\n  _DWORD *v5; // ecx\n  _DWORD *v6; // ecx\n  _DWORD *v7; // ecx\n  _DWORD *v8; // ecx\n\n  v2 = *((_DWORD *)this + 200) == 0;\n  *(_DWORD *)this = &off_100FD6D0;\n  if ( !v2 )\n    *((_DWORD *)this + 200) = 0;\n  v3 = this + 840;\n  v4 = (_DWORD *)*((_DWORD *)this + 210);\n  if ( v4 )\n  {\n    sub_10058380(v4, 1);\n    *v3 = 0;\n  }\n  v5 = (_DWORD *)*((_DWORD *)this + 211);\n  if ( v5 )\n  {\n    sub_100559CE(v5, 1);\n    *((_DWORD *)this + 211) = 0;\n  }\n  v6 = (_DWORD *)*((_DWORD *)this + 212);\n  if ( v6 )\n  {\n    sub_10055057(v6, 1);\n    *((_DWORD *)this + 212) = 0;\n  }\n  v7 = (_DWORD *)*((_DWORD *)this + 213);\n  if ( v7 )\n  {\n    sub_10051196(v7, 1);\n    *((_DWORD *)this + 213) = 0;\n  }\n  v8 = (_DWORD *)*((_DWORD *)this + 214);\n  if ( v8 )\n  {\n    sub_100510D6(v8, 1);\n    *((_DWORD *)this + 214) = 0;\n  }\n  if ( *((_DWORD *)this + 207) )\n  {\n    operator delete(*((void **)this + 207));\n    *((_DWORD *)this + 207) = 0;\n  }\n  if ( *((_DWORD *)this + 209) )\n  {\n    operator delete(*((void **)this + 209));\n    *((_DWORD *)this + 209) = 0;\n  }\n  nullsub_5(this + 704);\n  return sub_1004F890((int)(this + 16));\n}\n"
-}

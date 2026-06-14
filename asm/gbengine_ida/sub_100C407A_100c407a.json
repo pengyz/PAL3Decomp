@@ -1,8 +1,0 @@
-{
-  "name": "sub_100C407A",
-  "mangled_name": "sub_100C407A",
-  "address": "0x100C407A",
-  "size_bytes": 115,
-  "signature": "int __thiscall(unsigned int *this)",
-  "decompiled_c": "int __thiscall sub_100C407A(unsigned int *this)\n{\n  int v2; // edi\n  int v3; // ebp\n  unsigned int v4; // edx\n  unsigned int v5; // eax\n  int v6; // ecx\n  int v7; // ebx\n  _DWORD *v8; // ecx\n  int result; // eax\n\n  v2 = *(this + 90);\n  v3 = 0;\n  if ( !v2 )\n    return 0;\n  v4 = *(this + 63);\n  v5 = *(this + 60);\n  if ( v4 >= v5 || *(this + 51) )\n    return 0;\n  v6 = *(this + 56);\n  v7 = 0;\n  if ( v6 )\n  {\n    v8 = *(_DWORD **)(v6 + 60);\n    if ( v8 )\n    {\n      if ( v8[1] == 13 )\n      {\n        v7 = v8[16];\n        v3 = v8[17];\n      }\n    }\n  }\n  result = (*(int (__stdcall **)(int, int, int, unsigned int, unsigned int))(*(_DWORD *)v2 + 16))(\n             v2,\n             v7,\n             v3,\n             *(this + 59) + 4 * v4,\n             v5 - v4);\n  *(this + 63) = *(this + 60);\n  return result;\n}\n"
-}

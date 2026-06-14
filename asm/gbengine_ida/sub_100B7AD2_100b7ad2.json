@@ -1,8 +1,0 @@
-{
-  "name": "sub_100B7AD2",
-  "mangled_name": "sub_100B7AD2",
-  "address": "0x100B7AD2",
-  "size_bytes": 244,
-  "signature": "int __thiscall(int *this)",
-  "decompiled_c": "int __thiscall sub_100B7AD2(int *this)\n{\n  _DWORD *v3; // eax\n  char *v4; // esi\n  int v5; // ebx\n  unsigned int i; // eax\n  int v7; // eax\n\n  if ( *(_DWORD *)*(this + 56) != 1342177282 )\n    return 1;\n  v3 = (_DWORD *)sub_1009987F(116);\n  if ( v3 )\n    v4 = (char *)sub_1009955C(v3);\n  else\n    v4 = 0;\n  if ( !v4 )\n    return -2147024882;\n  v5 = sub_100998C0(v4, -257949694, 6, 1, 0);\n  if ( v5 >= 0 )\n  {\n    v5 = sub_1009958F(v4, *(this + 56));\n    if ( v5 >= 0 )\n    {\n      **((_DWORD **)v4 + 4) = **(_DWORD **)(*(this + 56) + 16);\n      for ( i = 0; i < 0x10; i += 4 )\n        *(_DWORD *)(i + *((_DWORD *)v4 + 2)) = *(_DWORD *)(i + *(_DWORD *)(*(this + 56) + 8));\n      v7 = sub_1009A113(this, *(this + 30), 0, 0, 0.0);\n      if ( v7 == -1 )\n        return -2147024882;\n      *(_DWORD *)(*((_DWORD *)v4 + 2) + 16) = v7;\n      *(_DWORD *)(*((_DWORD *)v4 + 2) + 20) = v7;\n      if ( sub_100B7895(this, v4) )\n        v5 = 1;\n      else\n        v5 = sub_10099AEC((char *)*(this + 56), (int)v4);\n    }\n  }\n  sub_1007F859(v4, 1);\n  return v5;\n}\n"
-}

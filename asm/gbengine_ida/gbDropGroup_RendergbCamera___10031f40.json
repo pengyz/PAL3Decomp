@@ -1,8 +1,0 @@
-{
-  "name": "gbDropGroup::Render(gbCamera *)",
-  "mangled_name": "?Render@gbDropGroup@@QAEXPAVgbCamera@@@Z",
-  "address": "0x10031F40",
-  "size_bytes": 146,
-  "signature": "void __thiscall(gbDropGroup *this, struct gbCamera *a2)",
-  "decompiled_c": "void __thiscall gbDropGroup::Render(gbDropGroup *this, struct gbCamera *a2)\n{\n  double v3; // st7\n  float v4; // [esp+Ch] [ebp-Ch]\n  double v5; // [esp+10h] [ebp-8h]\n\n  v5 = g_CurrentTime;\n  v3 = g_CurrentTime - *((double *)this + 7);\n  v4 = v3;\n  if ( v3 > 0.2 )\n    v4 = 0.2;\n  gbDropGroup::CreateUnit(this, v4, a2);\n  (*(void (__thiscall **)(gbDropGroup *, float))(*(_DWORD *)this + 4))(this, COERCE_FLOAT(LODWORD(v4)));\n  if ( *((_DWORD *)this + 3) )\n    (*(void (__thiscall **)(gbDropGroup *))(*(_DWORD *)this + 8))(this);\n  *((double *)this + 7) = v5;\n}\n"
-}

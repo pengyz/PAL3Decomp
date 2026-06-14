@@ -1,8 +1,0 @@
-{
-  "name": "ExFilterRethrow(_EXCEPTION_POINTERS *)",
-  "mangled_name": "?ExFilterRethrow@@YAHPAU_EXCEPTION_POINTERS@@@Z",
-  "address": "0x100E8230",
-  "size_bytes": 42,
-  "signature": "BOOL __cdecl(struct _EXCEPTION_POINTERS *a1)",
-  "decompiled_c": "BOOL __cdecl ExFilterRethrow(struct _EXCEPTION_POINTERS *a1)\n{\n  PEXCEPTION_RECORD ExceptionRecord; // eax\n\n  ExceptionRecord = a1->ExceptionRecord;\n  return a1->ExceptionRecord->ExceptionCode == -529697949\n      && ExceptionRecord->NumberParameters == 3\n      && ExceptionRecord->ExceptionInformation[0] == 429065504\n      && !ExceptionRecord->ExceptionInformation[2];\n}\n"
-}

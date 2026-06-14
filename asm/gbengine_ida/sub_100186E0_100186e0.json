@@ -1,8 +1,0 @@
-{
-  "name": "sub_100186E0",
-  "mangled_name": "sub_100186E0",
-  "address": "0x100186E0",
-  "size_bytes": 251,
-  "signature": "int __thiscall(int this, int a2, gbRenderEffect *a3, struct gbTextureArray *a4)",
-  "decompiled_c": "int __thiscall sub_100186E0(int this, int a2, gbRenderEffect *a3, struct gbTextureArray *a4)\n{\n  gbGfxManager_D3D *v6; // edi\n  int v7; // ebp\n  int v8; // eax\n  int result; // eax\n  int v10; // edi\n  int v11; // [esp+14h] [ebp+4h]\n  struct gbTextureArray *v12; // [esp+1Ch] [ebp+Ch]\n\n  v6 = gbDynVertBuf::pGfxMgr;\n  *((_DWORD *)gbDynVertBuf::pGfxMgr + 130) += *(_DWORD *)(a2 + 16) / 3;\n  *((_DWORD *)gbDynVertBuf::pGfxMgr + 131) += *(_DWORD *)(this + 24);\n  (*(void (__stdcall **)(_DWORD))(**(_DWORD **)(this + 60) + 48))(*(_DWORD *)(this + 60));\n  (*(void (__thiscall **)(gbGfxManager_D3D *))(*(_DWORD *)v6 + 60))(v6);\n  gbGfxManager_D3D::SetTexture(v6, a4);\n  v7 = sub_10020890(*(_DWORD *)(a2 + 12), *(_DWORD *)(a2 + 16));\n  v8 = sub_1001C550(*(_DWORD *)(a2 + 12));\n  v11 = v8;\n  if ( *(_DWORD *)(*((_DWORD *)v6 + 50) + 2084) )\n  {\n    sub_10018650((_DWORD *)this, v8, v7, a2);\n    result = *(_DWORD *)(this + 24) + *(_DWORD *)(this + 20);\n    *(_DWORD *)(this + 20) = result;\n  }\n  else\n  {\n    v10 = 0;\n    v12 = gbRenderEffect::Begin(a3);\n    if ( (int)v12 > 0 )\n    {\n      do\n      {\n        gbRenderEffect::Pass(a3, v10);\n        sub_10018650((_DWORD *)this, v11, v7, a2);\n        ++v10;\n      }\n      while ( v10 < (int)v12 );\n    }\n    gbRenderEffect::End(a3);\n    result = *(_DWORD *)(this + 24) + *(_DWORD *)(this + 20);\n    *(_DWORD *)(this + 20) = result;\n  }\n  return result;\n}\n"
-}

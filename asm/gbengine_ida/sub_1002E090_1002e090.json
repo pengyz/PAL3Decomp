@@ -1,8 +1,0 @@
-{
-  "name": "sub_1002E090",
-  "mangled_name": "sub_1002E090",
-  "address": "0x1002E090",
-  "size_bytes": 260,
-  "signature": "BOOL __thiscall(HANDLE *this, LPVOID lpMem, SIZE_T dwSize)",
-  "decompiled_c": "BOOL __thiscall sub_1002E090(HANDLE *this, LPVOID lpMem, SIZE_T dwSize)\n{\n  BOOL v3; // esi\n  int v5; // edi\n  LPVOID *v6; // ebp\n  int v7; // eax\n  LPVOID *v8; // edx\n  char *v9; // eax\n  DWORD v10; // eax\n  BOOL v11; // eax\n\n  v3 = 0;\n  switch ( (unsigned int)*this )\n  {\n    case 1u:\n      free(lpMem);\n      return 1;\n    case 2u:\n      v5 = 0;\n      v6 = this + 5;\n      break;\n    case 3u:\n      v10 = 1;\n      if ( *((_BYTE *)this + 4) == 1 )\n        v10 = 5;\n      v11 = HeapFree(*(this + 2), v10, lpMem);\n      goto LABEL_15;\n    case 5u:\n      v11 = VirtualFree(*(this + 4), dwSize, 0x4000u);\nLABEL_15:\n      v3 = v11;\n      if ( !v11 )\n        goto LABEL_16;\n      return v3;\n    default:\nLABEL_16:\n      sub_1002E850(0x10u, aErrorCeCannotF_0, (char)aDProjectGbengi_1);\n      return v3;\n  }\n  while ( 2 )\n  {\n    v7 = 0;\n    v8 = v6;\n    do\n    {\n      if ( !*v8 )\n        break;\n      if ( *v8 == lpMem )\n      {\n        v9 = (char *)(this + 48 * v5 + 6 * v7);\n        v9[41] = 0;\n        *((_DWORD *)v9 + 7) = 0;\n        return 1;\n      }\n      ++v7;\n      v8 += 6;\n    }\n    while ( v7 < 8 );\n    ++v5;\n    v6 += 48;\n    if ( v5 < 5 )\n      continue;\n    break;\n  }\n  free(lpMem);\n  return 1;\n}\n"
-}

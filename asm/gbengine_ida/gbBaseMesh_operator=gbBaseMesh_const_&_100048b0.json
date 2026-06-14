@@ -1,8 +1,0 @@
-{
-  "name": "gbBaseMesh::operator=(gbBaseMesh const &)",
-  "mangled_name": "??4gbBaseMesh@@QAEAAV0@ABV0@@Z",
-  "address": "0x100048B0",
-  "size_bytes": 174,
-  "signature": "char *__thiscall(char *this, char *a2)",
-  "decompiled_c": "char *__thiscall gbBaseMesh::operator=(char *this, char *a2)\n{\n  char *result; // eax\n  _BYTE *v3; // esi\n\n  result = this;\n  *((_DWORD *)this + 1) = *((_DWORD *)a2 + 1);\n  *((_DWORD *)this + 2) = *((_DWORD *)a2 + 2);\n  *((_DWORD *)this + 3) = *((_DWORD *)a2 + 3);\n  *((_DWORD *)this + 4) = *((_DWORD *)a2 + 4);\n  *((_DWORD *)this + 5) = *((_DWORD *)a2 + 5);\n  *((_DWORD *)this + 6) = *((_DWORD *)a2 + 6);\n  v3 = this + 28;\n  do\n  {\n    *v3 = v3[a2 - this];\n    ++v3;\n  }\n  while ( (unsigned int)&v3[-28 - (_DWORD)this] < 0x20 );\n  *((_DWORD *)this + 15) = *((_DWORD *)a2 + 15);\n  *((_DWORD *)this + 16) = *((_DWORD *)a2 + 16);\n  *((_DWORD *)this + 17) = *((_DWORD *)a2 + 17);\n  *((_DWORD *)this + 18) = *((_DWORD *)a2 + 18);\n  *((_DWORD *)this + 19) = *((_DWORD *)a2 + 19);\n  *((_DWORD *)this + 20) = *((_DWORD *)a2 + 20);\n  *((_DWORD *)this + 21) = *((_DWORD *)a2 + 21);\n  *((_DWORD *)this + 22) = *((_DWORD *)a2 + 22);\n  *((_DWORD *)this + 23) = *((_DWORD *)a2 + 23);\n  *((_DWORD *)this + 24) = *((_DWORD *)a2 + 24);\n  *((_DWORD *)this + 25) = *((_DWORD *)a2 + 25);\n  *((_DWORD *)this + 26) = *((_DWORD *)a2 + 26);\n  *((_DWORD *)this + 27) = *((_DWORD *)a2 + 27);\n  *((_DWORD *)this + 28) = *((_DWORD *)a2 + 28);\n  *((_DWORD *)this + 29) = *((_DWORD *)a2 + 29);\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbChain2D::~gbChain2D(void)",
-  "mangled_name": "??1gbChain2D@@QAE@XZ",
-  "address": "0x1002EC50",
-  "size_bytes": 28,
-  "signature": "void __thiscall(gbChain2D *this)",
-  "decompiled_c": "void __thiscall gbChain2D::~gbChain2D(gbChain2D *this)\n{\n  int v1; // ecx\n  int v2; // esi\n\n  v1 = *(_DWORD *)this;\n  if ( v1 )\n  {\n    do\n    {\n      v2 = *(_DWORD *)(v1 + 8);\n      if ( v1 )\n        (**(void (__thiscall ***)(int, int))v1)(v1, 1);\n      v1 = v2;\n    }\n    while ( v2 );\n  }\n}\n"
-}

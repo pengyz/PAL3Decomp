@@ -1,8 +1,0 @@
-{
-  "name": "CPK::InitCrcTable(void)",
-  "mangled_name": "?InitCrcTable@CPK@@CAXXZ",
-  "address": "0x1002C3E0",
-  "size_bytes": 71,
-  "signature": "void __cdecl()",
-  "decompiled_c": "void __cdecl CPK::InitCrcTable()\n{\n  int v0; // edx\n  unsigned int **v1; // ecx\n  int v2; // esi\n  int v3; // eax\n\n  if ( !byte_1014B60C )\n  {\n    v0 = 0;\n    v1 = &CPK::CrcTable;\n    do\n    {\n      v2 = 8;\n      v3 = v0 << 24;\n      do\n      {\n        if ( v3 >= 0 )\n          v3 *= 2;\n        else\n          v3 = (2 * v3) ^ 0x4C11DB7;\n        --v2;\n      }\n      while ( v2 );\n      *v1++ = (unsigned int *)v3;\n      ++v0;\n    }\n    while ( (int)v1 < (int)&byte_1014B60C );\n    byte_1014B60C = 1;\n  }\n}\n"
-}

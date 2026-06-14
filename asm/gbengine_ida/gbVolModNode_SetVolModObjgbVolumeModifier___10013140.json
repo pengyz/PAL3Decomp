@@ -1,8 +1,0 @@
-{
-  "name": "gbVolModNode::SetVolModObj(gbVolumeModifier *)",
-  "mangled_name": "?SetVolModObj@gbVolModNode@@QAEXPAVgbVolumeModifier@@@Z",
-  "address": "0x10013140",
-  "size_bytes": 20,
-  "signature": "void __thiscall(gbVolModNode *this, struct gbVolumeModifier *a2)",
-  "decompiled_c": "void __thiscall gbVolModNode::SetVolModObj(gbVolModNode *this, struct gbVolumeModifier *a2)\n{\n  ++*((_DWORD *)a2 + 1);\n  *((_DWORD *)this + 54) = a2;\n}\n"
-}

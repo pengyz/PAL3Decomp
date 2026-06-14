@@ -1,8 +1,0 @@
-{
-  "name": "sub_100C4539",
-  "mangled_name": "sub_100C4539",
-  "address": "0x100C4539",
-  "size_bytes": 86,
-  "signature": "void __thiscall(int this)",
-  "decompiled_c": "void __thiscall sub_100C4539(int this)\n{\n  int v2; // eax\n  void *v3; // [esp-4h] [ebp-Ch]\n\n  v3 = *(void **)(this + 236);\n  *(_DWORD *)this = &off_1010E918;\n  operator delete(v3);\n  operator delete(*(void **)(this + 260));\n  v2 = *(_DWORD *)(this + 360);\n  if ( v2 )\n  {\n    (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v2 + 8))(*(_DWORD *)(this + 360));\n    *(_DWORD *)(this + 360) = 0;\n  }\n  sub_10091517((_DWORD *)(this + 396));\n  sub_10091517((_DWORD *)(this + 364));\n  sub_1009A8D3((_DWORD *)this);\n}\n"
-}

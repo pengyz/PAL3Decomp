@@ -1,8 +1,0 @@
-{
-  "name": "sub_1000A630",
-  "mangled_name": "sub_1000A630",
-  "address": "0x1000A630",
-  "size_bytes": 184,
-  "signature": "int __thiscall(unsigned int *this, _DWORD *a2, unsigned int a3, int a4)",
-  "decompiled_c": "int __thiscall sub_1000A630(unsigned int *this, _DWORD *a2, unsigned int a3, int a4)\n{\n  unsigned int v4; // edi\n  int v5; // esi\n  int v6; // ebp\n  unsigned int v7; // edx\n  int v9; // esi\n  int v10; // ebx\n  _DWORD *v11; // edi\n  unsigned int v12; // eax\n  unsigned int v13; // [esp+14h] [ebp+8h]\n  _DWORD *v14; // [esp+18h] [ebp+Ch]\n\n  v4 = *(this + 97);\n  v5 = a4 - a3;\n  v6 = 0;\n  v13 = a3 % v4;\n  v7 = v5 + v13;\n  if ( v5 + v13 >= v4 )\n  {\n    *a2 = 1870030194;\n    v6 = 1;\n  }\n  if ( !*(this + 98) )\n    return v6;\n  if ( !*(this + 109) )\n    return 0;\n  v9 = 0;\n  v10 = 0;\n  v14 = &a2[v6];\n  while ( 1 )\n  {\n    v11 = (_DWORD *)(*(this + 109) + 24 * v9);\n    v12 = *v11 + v10 * *(this + 97);\n    if ( v12 > v7 )\n      break;\n    if ( v12 > v13 )\n    {\n      ++v6;\n      *v14++ = v11[5];\n    }\n    if ( ++v9 == *(this + 98) )\n    {\n      v9 = 0;\n      if ( ++v10 * *(this + 97) > v7 )\n        break;\n    }\n  }\n  return v6;\n}\n"
-}

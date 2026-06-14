@@ -1,8 +1,0 @@
-{
-  "name": "gbResource::SetName(char const *)",
-  "mangled_name": "?SetName@gbResource@@QAEXPBD@Z",
-  "address": "0x10020040",
-  "size_bytes": 143,
-  "signature": "void __thiscall(void **this, char *a2)",
-  "decompiled_c": "void __thiscall gbResource::SetName(void **this, char *a2)\n{\n  size_t v3; // ecx\n  char *v4; // edx\n\n  if ( *(this + 2) )\n    free(*(this + 2));\n  if ( a2 && *a2 )\n  {\n    if ( strlen(a2) + 1 <= 0x10 )\n      v3 = 16;\n    else\n      v3 = strlen(a2) + 1;\n    v4 = (char *)malloc(v3);\n    *(this + 2) = v4;\n    strcpy(v4, a2);\n    *(this + 3) = (void *)gbCrc32Compute(a2);\n  }\n  else\n  {\n    *(this + 2) = 0;\n    *(this + 3) = 0;\n  }\n}\n"
-}

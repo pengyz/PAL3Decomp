@@ -1,8 +1,0 @@
-{
-  "name": "sub_1001C360",
-  "mangled_name": "sub_1001C360",
-  "address": "0x1001C360",
-  "size_bytes": 77,
-  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
-  "decompiled_c": "int __thiscall sub_1001C360(_DWORD *this, int a2, int a3)\n{\n  int v4; // eax\n\n  if ( *(this + 2) == 2 )\n    return *(this + 4) + a2 * *(this + 3);\n  v4 = (*(int (__stdcall **)(_DWORD, int, int, int *, int))(*(_DWORD *)*(this + 4) + 44))(\n         *(this + 4),\n         a2 * *(this + 3),\n         a3 * *(this + 3),\n         &a2,\n         2048);\n  return v4 < 0 ? 0 : a2;\n}\n"
-}

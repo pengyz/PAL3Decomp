@@ -1,8 +1,0 @@
-{
-  "name": "sub_1007D32C",
-  "mangled_name": "sub_1007D32C",
-  "address": "0x1007D32C",
-  "size_bytes": 229,
-  "signature": "int __stdcall(_DWORD *a1, int a2, _DWORD *a3, _DWORD *a4)",
-  "decompiled_c": "int __stdcall sub_1007D32C(_DWORD *a1, int a2, _DWORD *a3, _DWORD *a4)\n{\n  _DWORD *v4; // ebx\n  unsigned int v6; // eax\n  unsigned int *i; // ecx\n  unsigned int v8; // eax\n  int v9; // esi\n  unsigned int v10; // eax\n\n  if ( a3 )\n    *a3 = 0;\n  v4 = a4;\n  if ( a4 )\n    *a4 = 0;\n  if ( !a1 )\n    return -2005530516;\n  v6 = *a1 & 0xFFFF0000;\n  if ( v6 != 1180172288 && v6 != 1415053312 && v6 != 2147352576 && v6 != 2147418112 && v6 != -131072 && v6 != -65536 )\n    return -2005529767;\n  for ( i = a1 + 1; ; ++i )\n  {\n    v8 = *i;\n    if ( (*i & 0x80000000) != 0 )\n      goto LABEL_31;\n    v9 = (unsigned __int16)*i;\n    if ( v9 == 0xFFFF )\n      return 1;\n    if ( v9 == 65534 )\n      break;\n    if ( (unsigned __int16)*a1 >= 0x200u )\n    {\n      v10 = HIBYTE(v8) & 0xF;\nLABEL_28:\n      i += v10;\n      goto LABEL_31;\n    }\n    if ( v9 == 81 )\n      i += 5;\nLABEL_31:\n    v4 = a4;\n  }\n  v10 = HIWORD(v8) & 0x7FFF;\n  if ( v10 <= 1 || a2 != i[1] )\n    goto LABEL_28;\n  if ( a3 )\n    *a3 = i + 2;\n  if ( v4 )\n    *v4 = 4 * v10 - 4;\n  return 0;\n}\n"
-}

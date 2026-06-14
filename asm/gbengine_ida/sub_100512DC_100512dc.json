@@ -1,8 +1,0 @@
-{
-  "name": "sub_100512DC",
-  "mangled_name": "sub_100512DC",
-  "address": "0x100512DC",
-  "size_bytes": 80,
-  "signature": "int __thiscall(_DWORD *this, const char *a2, _DWORD *a3)",
-  "decompiled_c": "int __thiscall sub_100512DC(_DWORD *this, const char *a2, _DWORD *a3)\n{\n  int result; // eax\n  unsigned int v5; // [esp+8h] [ebp-4h] BYREF\n\n  v5 = 0;\n  if ( a2 )\n    v5 = strlen(a2) + 1;\n  result = sub_10051227(this, &v5, 4u, a3);\n  if ( result >= 0 )\n  {\n    if ( a2 )\n      return sub_10051227(this, a2, v5, 0);\n  }\n  return result;\n}\n"
-}

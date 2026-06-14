@@ -1,8 +1,0 @@
-{
-  "name": "gbRay::operator=(gbRay const &)",
-  "mangled_name": "??4gbRay@@QAEAAU0@ABU0@@Z",
-  "address": "0x1000D3C0",
-  "size_bytes": 43,
-  "signature": "_DWORD *__thiscall(_DWORD *this, _DWORD *a2)",
-  "decompiled_c": "// Alternative name is '??4gbAABBox@@QAEAAU0@ABU0@@Z'\n// Alternative name is '??4gbEmitterSquare@@QAEAAU0@ABU0@@Z'\n_DWORD *__thiscall gbRay::operator=(_DWORD *this, _DWORD *a2)\n{\n  *this = *a2;\n  *(this + 1) = a2[1];\n  *(this + 2) = a2[2];\n  *(this + 3) = a2[3];\n  *(this + 4) = a2[4];\n  *(this + 5) = a2[5];\n  return this;\n}\n"
-}

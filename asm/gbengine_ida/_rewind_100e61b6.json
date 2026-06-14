@@ -1,8 +1,0 @@
-{
-  "name": "_rewind",
-  "mangled_name": "_rewind",
-  "address": "0x100E61B6",
-  "size_bytes": 100,
-  "signature": "void __cdecl(FILE *Stream)",
-  "decompiled_c": "void __cdecl rewind(FILE *Stream)\n{\n  int file; // edi\n  int *v2; // eax\n  int flag; // eax\n\n  file = Stream->_file;\n  _lock_file(Stream);\n  _flush(Stream);\n  Stream->_flag &= 0xFFFFFFCF;\n  if ( file == -1 )\n    v2 = dword_1012A8C0;\n  else\n    v2 = (int *)(dword_10167400[file >> 5] + 36 * (file & 0x1F));\n  *((_BYTE *)v2 + 4) &= ~2u;\n  flag = Stream->_flag;\n  if ( (flag & 0x80u) != 0 )\n  {\n    LOBYTE(flag) = flag & 0xFC;\n    Stream->_flag = flag;\n  }\n  _lseek(file, 0, 0);\n  _unlock_file(Stream);\n}\n"
-}

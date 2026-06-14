@@ -1,8 +1,0 @@
-{
-  "name": "terminate(void)",
-  "mangled_name": "?terminate@@YAXXZ",
-  "address": "0x100E8688",
-  "size_bytes": 97,
-  "signature": "void __cdecl __noreturn()",
-  "decompiled_c": "void __cdecl __noreturn terminate()\n{\n  _DWORD *v0; // eax\n\n  if ( _getptd()[24] )\n  {\n    v0 = _getptd();\n    ((void (*)(void))v0[24])();\n  }\n  abort();\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_1002DC20",
-  "mangled_name": "sub_1002DC20",
-  "address": "0x1002DC20",
-  "size_bytes": 59,
-  "signature": "char __cdecl(LPCSTR lpFileName)",
-  "decompiled_c": "char __cdecl sub_1002DC20(LPCSTR lpFileName)\n{\n  HANDLE FileA; // eax\n\n  if ( dword_10120654 != 4 )\n    return 0;\n  FileA = CreateFileA(lpFileName, 0x80000000, 1u, 0, 3u, 0x10000080u, 0);\n  if ( FileA == (HANDLE)-1 )\n    return 0;\n  CloseHandle(FileA);\n  return 1;\n}\n"
-}

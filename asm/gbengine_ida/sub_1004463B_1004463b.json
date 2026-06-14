@@ -1,8 +1,0 @@
-{
-  "name": "sub_1004463B",
-  "mangled_name": "sub_1004463B",
-  "address": "0x1004463B",
-  "size_bytes": 209,
-  "signature": "void __thiscall(_DWORD *this, int a2, int a3, float *a4)",
-  "decompiled_c": "void __thiscall sub_1004463B(_DWORD *this, int a2, int a3, float *a4)\n{\n  _BYTE *v6; // eax\n  char v7; // dl\n  _BYTE *i; // [esp+10h] [ebp+8h]\n  int v9; // [esp+18h] [ebp+10h]\n\n  v6 = (_BYTE *)(*(this + 8) + a3 * *(this + 25) + a2 * *(this + 24));\n  for ( i = &v6[2 * *(this + 26)]; v6 < i; *(a4 - 1) = (double)v9 * 0.015873017 )\n  {\n    v7 = ((char)(8 * (*(unsigned __int16 *)v6 >> 5)) >> 3) + ((char)(8 * (*(unsigned __int16 *)v6 >> 5)) >> 3 == 0xF0);\n    *a4 = (double)(char)(((char)(8 * *v6) >> 3) + ((char)(8 * *v6) >> 3 == 0xF0)) * 0.06666667;\n    a4 += 4;\n    *(a4 - 3) = (double)v7 * 0.06666667;\n    *(a4 - 2) = 1.0;\n    v9 = *(_WORD *)v6 >> 10;\n    v6 += 2;\n  }\n  if ( *(this + 6) )\n    sub_1003C954((int)this, (unsigned int)&a4[-4 * *(this + 26)]);\n  if ( *(this + 4) )\n    sub_1003CBEB(this, (unsigned int)&a4[-4 * *(this + 26)]);\n}\n"
-}

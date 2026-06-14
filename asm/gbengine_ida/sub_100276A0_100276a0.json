@@ -1,8 +1,0 @@
-{
-  "name": "sub_100276A0",
-  "mangled_name": "sub_100276A0",
-  "address": "0x100276A0",
-  "size_bytes": 100,
-  "signature": "int __cdecl(float a1)",
-  "decompiled_c": "int __cdecl sub_100276A0(float a1)\n{\n  double v2; // st7\n  char v3; // c0\n  int result; // eax\n  int v5; // [esp+0h] [ebp-4h]\n  int v6; // [esp+0h] [ebp-4h]\n\n  v2 = a1;\n  if ( v3 )\n  {\n    v5 = (__int64)v2;\n    result = v5 - 1;\n    if ( (double)v5 - a1 > 0.5 )\n      return (__int64)v2;\n  }\n  else\n  {\n    v6 = (__int64)v2;\n    result = v6 + 1;\n    if ( a1 - (double)v6 < 0.5 )\n      return (__int64)v2;\n  }\n  return result;\n}\n"
-}

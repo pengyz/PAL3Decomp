@@ -1,8 +1,0 @@
-{
-  "name": "sub_10018410",
-  "mangled_name": "sub_10018410",
-  "address": "0x10018410",
-  "size_bytes": 111,
-  "signature": "gbDynVertBuf *__thiscall(gbDynVertBuf *this, unsigned int a2, int a3)",
-  "decompiled_c": "gbDynVertBuf *__thiscall sub_10018410(gbDynVertBuf *this, unsigned int a2, int a3)\n{\n  int v4; // eax\n  int v5; // edx\n\n  gbDynVertBuf::gbDynVertBuf(this, a2, a3);\n  v4 = *((_DWORD *)this + 3);\n  v5 = *((_DWORD *)this + 2) * *((_DWORD *)this + 4);\n  *(_DWORD *)this = &off_100F569C;\n  *((_DWORD *)this + 15) = sub_1001B0E0(v4, v5, 520);\n  return this;\n}\n"
-}

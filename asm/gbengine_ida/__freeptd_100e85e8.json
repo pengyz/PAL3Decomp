@@ -1,8 +1,0 @@
-{
-  "name": "__freeptd",
-  "mangled_name": "__freeptd",
-  "address": "0x100E85E8",
-  "size_bytes": 160,
-  "signature": "DWORD __cdecl(void **Block)",
-  "decompiled_c": "DWORD __cdecl _freeptd(void **Block)\n{\n  DWORD result; // eax\n  void **Value; // esi\n\n  result = dwTlsIndex;\n  if ( dwTlsIndex != -1 )\n  {\n    Value = Block;\n    if ( Block || (Value = (void **)TlsGetValue(dwTlsIndex)) != 0 )\n    {\n      if ( Value[9] )\n        free(Value[9]);\n      if ( Value[10] )\n        free(Value[10]);\n      if ( Value[12] )\n        free(Value[12]);\n      if ( Value[14] )\n        free(Value[14]);\n      if ( Value[16] )\n        free(Value[16]);\n      if ( Value[17] )\n        free(Value[17]);\n      if ( Value[20] != dword_1012B3E8 )\n        free(Value[20]);\n      free(Value);\n    }\n    return TlsSetValue(dwTlsIndex, 0);\n  }\n  return result;\n}\n"
-}

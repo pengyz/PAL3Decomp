@@ -1,8 +1,0 @@
-{
-  "name": "sub_1009D7EE",
-  "mangled_name": "sub_1009D7EE",
-  "address": "0x1009D7EE",
-  "size_bytes": 139,
-  "signature": "int __thiscall(_DWORD *this, int a2, int a3, int a4)",
-  "decompiled_c": "int __thiscall sub_1009D7EE(_DWORD *this, int a2, int a3, int a4)\n{\n  int v4; // ebx\n  int v7; // eax\n  _DWORD *v8; // esi\n  int v9; // ecx\n  int v10; // eax\n  int v11; // ecx\n  int result; // eax\n  int v13; // esi\n\n  v4 = a3;\n  while ( 1 )\n  {\n    v7 = *(_DWORD *)(*(this + 6) + 4 * v4);\n    v8 = *(_DWORD **)(*(this + 5) + 4 * a2);\n    if ( a4 && (*(_BYTE *)(*(_DWORD *)(*(this + 4) + 4 * v8[1]) + 4) & 2) != 0 )\n    {\n      v9 = *(_DWORD *)(v7 + 24);\n      if ( v9 )\n      {\n        *(_DWORD *)(v9 + 4 * *(_DWORD *)(v7 + 20)) = v8[17];\n        v4 = a3;\n      }\n      ++*(_DWORD *)(v7 + 20);\n      v10 = *(_DWORD *)(*(this + 6) + 4 * v8[17]);\n      v11 = *(_DWORD *)(v10 + 32);\n      if ( v11 )\n        *(_DWORD *)(v11 + 4 * *(_DWORD *)(v10 + 28)) = v4;\n      ++*(_DWORD *)(v10 + 28);\n    }\n    result = v8[2];\n    if ( result != -1 )\n      result = sub_1009D7EE(result, v4, 1);\n    v13 = v8[5];\n    if ( v13 == -1 )\n      break;\n    a4 = 1;\n    a2 = v13;\n  }\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbMatrix4::SetAxisAngle(gbAxis,float)",
-  "mangled_name": "?SetAxisAngle@gbMatrix4@@QAEXW4gbAxis@@M@Z",
-  "address": "0x100259A0",
-  "size_bytes": 37,
-  "signature": "int __thiscall(_DWORD *this, int a2, float a3)",
-  "decompiled_c": "int __thiscall gbMatrix4::SetAxisAngle(_DWORD *this, int a2, float a3)\n{\n  long double v3; // st7\n  int v5; // [esp+0h] [ebp-8h]\n  float v6; // [esp+4h] [ebp-4h]\n\n  v3 = a3 * 0.017453292;\n  v6 = sin(v3);\n  *(float *)&v5 = cos(v3);\n  return gbMatrix4::SetAxisAngle(this, a2, v5, v6);\n}\n"
-}

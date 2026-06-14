@@ -1,8 +1,0 @@
-{
-  "name": "sub_1009D3A7",
-  "mangled_name": "sub_1009D3A7",
-  "address": "0x1009D3A7",
-  "size_bytes": 90,
-  "signature": "_DWORD *__thiscall(_DWORD *this, int a2, unsigned int a3)",
-  "decompiled_c": "_DWORD *__thiscall sub_1009D3A7(_DWORD *this, int a2, unsigned int a3)\n{\n  int v4; // edx\n  _DWORD *result; // eax\n  int v6; // edi\n  _DWORD *v7; // edx\n\n  while ( 1 )\n  {\n    v4 = *(this + 5);\n    result = *(_DWORD **)(v4 + 4 * a2);\n    v6 = result[14];\n    if ( v6 != -1 )\n      result = *(_DWORD **)(v4 + 4 * v6);\n    v7 = *(_DWORD **)(*(this + 4) + 4 * result[1]);\n    if ( result[20] > a3 )\n      result[20] = a3;\n    if ( result[21] < a3 )\n      result[21] = a3;\n    ++result[22];\n    if ( result[2] == -1 )\n      break;\n    if ( v7[10] > a3 )\n      v7[10] = a3;\n    if ( v7[11] < a3 )\n      v7[11] = a3;\n    ++v7[12];\n    a2 = result[2];\n  }\n  return result;\n}\n"
-}

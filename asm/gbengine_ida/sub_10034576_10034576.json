@@ -1,8 +1,0 @@
-{
-  "name": "sub_10034576",
-  "mangled_name": "sub_10034576",
-  "address": "0x10034576",
-  "size_bytes": 208,
-  "signature": "void __stdcall(int a1)",
-  "decompiled_c": "void __stdcall sub_10034576(int a1)\n{\n  HMODULE LibraryA; // eax\n  HMODULE v2; // eax\n\n  if ( !DebugSetMute && !DebugSetMute_0 )\n  {\n    if ( GetModuleHandleA(\"d3d9.dll\") )\n    {\n      LibraryA = LoadLibraryA(\"d3d9.dll\");\n      if ( LibraryA )\n        DebugSetMute = (int (__cdecl *)(_DWORD))GetProcAddress(LibraryA, \"DebugSetMute\");\n    }\n    if ( GetModuleHandleA(\"d3d9d.dll\") )\n    {\n      v2 = LoadLibraryA(\"d3d9d.dll\");\n      if ( v2 )\n        DebugSetMute_0 = (int (__cdecl *)(_DWORD))GetProcAddress(v2, \"DebugSetMute\");\n    }\n  }\n  if ( dword_10120B7C != -1 )\n  {\nLABEL_14:\n    if ( dword_10120B7C )\n      return;\n    goto LABEL_15;\n  }\n  if ( !sub_10034519((BYTE *)4, \"D3DXDoNotMute\", (BYTE *)&dword_10120B7C, 4u) )\n    dword_10120B7C = 0;\n  if ( dword_10120B7C )\n  {\n    dword_10120B7C = 1;\n    goto LABEL_14;\n  }\nLABEL_15:\n  if ( DebugSetMute )\n    DebugSetMute(a1);\n  if ( DebugSetMute_0 )\n    DebugSetMute_0(a1);\n}\n"
-}

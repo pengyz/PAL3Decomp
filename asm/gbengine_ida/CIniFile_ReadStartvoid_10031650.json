@@ -1,8 +1,0 @@
-{
-  "name": "CIniFile::ReadStart(void)",
-  "mangled_name": "?ReadStart@CIniFile@@QAEXXZ",
-  "address": "0x10031650",
-  "size_bytes": 19,
-  "signature": "void __thiscall(struct gbVFile **this)",
-  "decompiled_c": "void __thiscall CIniFile::ReadStart(struct gbVFile **this)\n{\n  gbVFileSystem::Seek(g_pVFileSys, *this, 0, 1);\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbStaticChain::GetOldestNode(void)",
-  "mangled_name": "?GetOldestNode@gbStaticChain@@QAEPAUgbStaticChainNode@@XZ",
-  "address": "0x1002F9B0",
-  "size_bytes": 19,
-  "signature": "struct gbStaticChainNode *__thiscall(gbStaticChain *this)",
-  "decompiled_c": "struct gbStaticChainNode *__thiscall gbStaticChain::GetOldestNode(gbStaticChain *this)\n{\n  struct gbStaticChainNode *result; // eax\n  struct gbStaticChainNode *v2; // ecx\n\n  result = (struct gbStaticChainNode *)*((_DWORD *)this + 2);\n  if ( result )\n  {\n    do\n    {\n      v2 = result;\n      result = (struct gbStaticChainNode *)*((_DWORD *)result + 1);\n    }\n    while ( result );\n    return v2;\n  }\n  return result;\n}\n"
-}

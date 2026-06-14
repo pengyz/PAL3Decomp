@@ -1,8 +1,0 @@
-{
-  "name": "sub_1007E198",
-  "mangled_name": "sub_1007E198",
-  "address": "0x1007E198",
-  "size_bytes": 197,
-  "signature": "int __thiscall(_DWORD *this, int a2, LPVOID lpAddress)",
-  "decompiled_c": "int __thiscall sub_1007E198(_DWORD *this, int a2, LPVOID lpAddress)\n{\n  int v4; // edx\n  int v5; // ecx\n  unsigned int v6; // edi\n  unsigned int v7; // eax\n  SIZE_T v8; // ebx\n  int v9; // eax\n  unsigned int v11; // ecx\n  _DWORD *lpAddressa; // [esp+18h] [ebp+Ch]\n\n  v4 = *(this + 2);\n  v5 = ~((int)lpAddress - 1);\n  v6 = a2 + (v5 & ((unsigned int)lpAddress + v4 - 1));\n  if ( v6 <= *(this + 4) )\n  {\n    v11 = *(this + 3);\n    if ( v6 <= v11 )\n      goto LABEL_9;\n    v8 = ~(*(this + 1) - 1) & (*(this + 1) + v6 - 1);\n    if ( VirtualAlloc((LPVOID)(v11 + *this), v8 - v11, 0x1000u, 4u) )\n    {\nLABEL_8:\n      *(this + 3) = v8;\nLABEL_9:\n      v9 = *this - a2;\n      *(this + 2) = v6;\n      return v6 + v9;\n    }\n  }\n  else\n  {\n    v7 = *(this + 5);\n    v6 = a2 + (v5 & ((unsigned int)lpAddress + 3));\n    *(this + 4) = v7;\n    if ( v6 > v7 )\n    {\n      do\n        v7 *= 2;\n      while ( v6 > v7 );\n      *(this + 4) = v7;\n    }\n    lpAddressa = VirtualAlloc(0, *(this + 4), 0x2000u, 4u);\n    if ( lpAddressa )\n    {\n      v8 = ~(*(this + 1) - 1) & (*(this + 1) + v6 - 1);\n      if ( VirtualAlloc(lpAddressa, v8, 0x1000u, 4u) )\n      {\n        *lpAddressa = *this;\n        *this = lpAddressa;\n        goto LABEL_8;\n      }\n    }\n  }\n  return 0;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "__fflush_lk",
-  "mangled_name": "__fflush_lk",
-  "address": "0x100EC2CA",
-  "size_bytes": 46,
-  "signature": "int __cdecl(int a1)",
-  "decompiled_c": "int __cdecl _fflush_lk(int a1)\n{\n  if ( _flush(a1) )\n    return -1;\n  if ( (*(_BYTE *)(a1 + 13) & 0x40) != 0 )\n    return -(_commit(*(_DWORD *)(a1 + 16)) != 0);\n  return 0;\n}\n"
-}

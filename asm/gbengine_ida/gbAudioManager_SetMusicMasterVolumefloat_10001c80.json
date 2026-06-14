@@ -1,8 +1,0 @@
-{
-  "name": "gbAudioManager::SetMusicMasterVolume(float)",
-  "mangled_name": "?SetMusicMasterVolume@gbAudioManager@@QAEXM@Z",
-  "address": "0x10001C80",
-  "size_bytes": 67,
-  "signature": "void __thiscall(gbAudioManager *this, float a2)",
-  "decompiled_c": "void __thiscall gbAudioManager::SetMusicMasterVolume(gbAudioManager *this, float a2)\n{\n  gbAudioManager *v3; // edi\n  int v4; // ebp\n\n  *((float *)this + 53) = a2;\n  v3 = this;\n  v4 = 3;\n  do\n  {\n    if ( *(_DWORD *)v3 )\n      AIL_set_stream_volume(*(_DWORD *)v3, (__int64)(*((float *)this + 53) * 127.0));\n    v3 = (gbAudioManager *)((char *)v3 + 4);\n    --v4;\n  }\n  while ( v4 );\n}\n"
-}

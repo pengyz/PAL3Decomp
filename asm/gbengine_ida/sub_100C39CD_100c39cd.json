@@ -1,8 +1,0 @@
-{
-  "name": "sub_100C39CD",
-  "mangled_name": "sub_100C39CD",
-  "address": "0x100C39CD",
-  "size_bytes": 68,
-  "signature": "int __thiscall(_DWORD *this, int a2, unsigned int *a3, _DWORD *a4)",
-  "decompiled_c": "int __thiscall sub_100C39CD(_DWORD *this, int a2, unsigned int *a3, _DWORD *a4)\n{\n  unsigned int v4; // eax\n\n  *a4 = 1;\n  v4 = *(_DWORD *)(a2 + 12);\n  *a3 = v4;\n  if ( v4 < *(this + 10) )\n    return 0;\n  sub_1009DBA6((int)this, *(_DWORD *)(*(this + 56) + 60), 4506, \"maximum input register index exceeded\");\n  return -2147467259;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_1009E5E8",
-  "mangled_name": "sub_1009E5E8",
-  "address": "0x1009E5E8",
-  "size_bytes": 90,
-  "signature": "unsigned int __thiscall(_DWORD *this, int a2, unsigned int a3)",
-  "decompiled_c": "unsigned int __thiscall sub_1009E5E8(_DWORD *this, int a2, unsigned int a3)\n{\n  unsigned int result; // eax\n  _DWORD *v6; // esi\n\n  for ( result = a3; result; result = v6[20] )\n  {\n    if ( a2 != -1 && *(_DWORD *)(*(_DWORD *)(*(this + 5) + 4 * a2) + 56) != -1 )\n      a2 = *(_DWORD *)(*(_DWORD *)(*(this + 5) + 4 * a2) + 56);\n    v6 = *(_DWORD **)(*(this + 5) + 4 * a2);\n    if ( v6[20] < result )\n      v6[20] = result;\n    result = v6[2];\n    if ( result != -1 )\n      result = sub_1009E5E8(result, v6[20]);\n    a2 = v6[5];\n    if ( a2 == -1 )\n      break;\n  }\n  return result;\n}\n"
-}

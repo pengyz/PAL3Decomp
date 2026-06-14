@@ -1,8 +1,0 @@
-{
-  "name": "sub_1004DAF9",
-  "mangled_name": "sub_1004DAF9",
-  "address": "0x1004DAF9",
-  "size_bytes": 57,
-  "signature": "int __thiscall(int this, const char *a2, unsigned int a3, const char *a4, const char *a5)",
-  "decompiled_c": "int __thiscall sub_1004DAF9(int this, const char *a2, unsigned int a3, const char *a4, const char *a5)\n{\n  int result; // eax\n\n  if ( a3 && !a2 )\n    return -2005530516;\n  *(_DWORD *)(this + 100) = a2;\n  *(_DWORD *)(this + 104) = a3;\n  result = sub_1004C677((const char **)this, a2, a3, 0, (const char *)1, a4, a5);\n  if ( result >= 0 )\n    return 0;\n  return result;\n}\n"
-}

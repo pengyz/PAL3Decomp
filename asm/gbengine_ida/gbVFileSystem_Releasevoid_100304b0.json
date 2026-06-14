@@ -1,8 +1,0 @@
-{
-  "name": "gbVFileSystem::Release(void)",
-  "mangled_name": "?Release@gbVFileSystem@@QAEXXZ",
-  "address": "0x100304B0",
-  "size_bytes": 92,
-  "signature": "void __thiscall(void **this)",
-  "decompiled_c": "void __thiscall gbVFileSystem::Release(void **this)\n{\n  char *v2; // eax\n  char *v3; // edi\n  FILE *v4; // eax\n\n  if ( *(this + 1) )\n    free(*(this + 1));\n  v2 = (char *)*(this + 2);\n  if ( v2 )\n  {\n    v3 = v2 - 4;\n    `eh vector destructor iterator'(v2, 0x140u, *((_DWORD *)v2 - 1), (void (__thiscall *)(void *))gbVFile::~gbVFile);\n    operator delete(v3);\n  }\n  v4 = (FILE *)*(this + 4);\n  *this = 0;\n  if ( v4 )\n    fclose(v4);\n  CPK::Unload((CPK *)(this + 6));\n}\n"
-}

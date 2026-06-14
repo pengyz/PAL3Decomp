@@ -1,8 +1,0 @@
-{
-  "name": "sub_10009100",
-  "mangled_name": "sub_10009100",
-  "address": "0x10009100",
-  "size_bytes": 261,
-  "signature": "int __thiscall(int *this, int a2, _DWORD *a3, int a4)",
-  "decompiled_c": "int __thiscall sub_10009100(int *this, int a2, _DWORD *a3, int a4)\n{\n  int v5; // eax\n  int v6; // ebx\n  int v7; // edi\n  int v8; // eax\n  int v9; // esi\n  char *v10; // eax\n  char *v11; // ebx\n  int result; // eax\n  int v13; // [esp+Ch] [ebp+4h]\n  int v14; // [esp+14h] [ebp+Ch]\n\n  v5 = *(this + 33);\n  if ( a4 < v5 )\n    return *(this + 33);\n  v6 = 0;\n  v14 = 0;\n  if ( v5 <= 0 )\n    return *(this + 33);\n  v13 = a2 - (_DWORD)a3;\n  do\n  {\n    v7 = *(_DWORD *)(*(this + 31) + 4 * v6);\n    if ( !*(_DWORD *)(v7 + 324) )\n    {\n      sub_10007600(*(_DWORD *)(*(this + 31) + 4 * v6));\n      v8 = sub_10002A70(this, v7);\n      v9 = v8;\n      if ( v8 )\n      {\n        v10 = *(char **)(v8 + 324);\n        if ( v10 )\n        {\n          v11 = v10 - 4;\n          `eh vector destructor iterator'(v10, 0x50u, *((_DWORD *)v10 - 1), (void (__thiscall *)(void *))sub_10007320);\n          operator delete(v11);\n          v6 = v14;\n          *(_DWORD *)(v9 + 324) = 0;\n        }\n        if ( *(_DWORD *)(v9 + 332) )\n        {\n          operator delete(*(void **)(v9 + 332));\n          *(_DWORD *)(v9 + 332) = 0;\n        }\n        *(_DWORD *)(v9 + 336) = 0;\n        *(_DWORD *)(v9 + 320) = 0;\n      }\n    }\n    ++v6;\n    *(_DWORD *)((char *)a3 + v13) = gbCrc32Compute((const char *)v7);\n    *a3 = *(_DWORD *)(v7 + 328);\n    result = *(this + 33);\n    v14 = v6;\n    ++a3;\n  }\n  while ( v6 < result );\n  return result;\n}\n"
-}

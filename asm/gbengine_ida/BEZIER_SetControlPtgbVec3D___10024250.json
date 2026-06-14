@@ -1,8 +1,0 @@
-{
-  "name": "BEZIER::SetControlPt(gbVec3D *)",
-  "mangled_name": "?SetControlPt@BEZIER@@QAEXPAUgbVec3D@@@Z",
-  "address": "0x10024250",
-  "size_bytes": 27,
-  "signature": "void __thiscall(BEZIER *this, struct gbVec3D *a2)",
-  "decompiled_c": "void __thiscall BEZIER::SetControlPt(BEZIER *this, struct gbVec3D *a2)\n{\n  qmemcpy((char *)this + 16, a2, 0x30u);\n  *((_BYTE *)this + 64) = 1;\n}\n"
-}

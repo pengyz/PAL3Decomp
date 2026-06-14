@@ -1,8 +1,0 @@
-{
-  "name": "sub_10078B30",
-  "mangled_name": "sub_10078B30",
-  "address": "0x10078B30",
-  "size_bytes": 137,
-  "signature": "_BYTE *__thiscall(_BYTE *this, int a2, const void *a3)",
-  "decompiled_c": "_BYTE *__thiscall sub_10078B30(_BYTE *this, int a2, const void *a3)\n{\n  _BYTE *result; // eax\n  int i; // esi\n  int v5; // edx\n  _BYTE *v6; // eax\n  _BYTE *v7; // eax\n\n  result = 0;\n  for ( i = 0; i < 4; ++i )\n  {\n    v5 = *(unsigned __int8 *)(a2 + i + 268);\n    if ( v5 < 41 || v5 > 122 || v5 > 90 && v5 < 97 )\n    {\n      *(this + (_DWORD)result) = 91;\n      v6 = result + 1;\n      *(this + (_DWORD)v6++) = byte_10105E98[(v5 >> 4) & 0xF];\n      *(this + (_DWORD)v6) = byte_10105E98[v5 & 0xF];\n      result = v6 + 1;\n      *(this + (_DWORD)result) = 93;\n    }\n    else\n    {\n      *(this + (_DWORD)result) = v5;\n    }\n    ++result;\n  }\n  if ( a3 )\n  {\n    *(this + (_DWORD)result) = 58;\n    v7 = result + 1;\n    *(this + (_DWORD)v7) = 32;\n    result = this + (_DWORD)v7 + 1;\n    qmemcpy(result, a3, 0x40u);\n    result[63] = 0;\n  }\n  else\n  {\n    *(this + (_DWORD)result) = 0;\n  }\n  return result;\n}\n"
-}

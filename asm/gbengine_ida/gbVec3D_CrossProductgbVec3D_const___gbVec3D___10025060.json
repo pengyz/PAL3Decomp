@@ -1,8 +1,0 @@
-{
-  "name": "gbVec3D::CrossProduct(gbVec3D const *,gbVec3D *)",
-  "mangled_name": "?CrossProduct@gbVec3D@@QBEXPBU1@PAU1@@Z",
-  "address": "0x10025060",
-  "size_bytes": 57,
-  "signature": "void __thiscall(gbVec3D *this, const struct gbVec3D *a2, struct gbVec3D *a3)",
-  "decompiled_c": "void __thiscall gbVec3D::CrossProduct(gbVec3D *this, const struct gbVec3D *a2, struct gbVec3D *a3)\n{\n  *(float *)a3 = *((float *)this + 1) * *((float *)a2 + 2) - *((float *)a2 + 1) * *((float *)this + 2);\n  *((float *)a3 + 1) = *(float *)a2 * *((float *)this + 2) - *(float *)this * *((float *)a2 + 2);\n  *((float *)a3 + 2) = *((float *)a2 + 1) * *(float *)this - *(float *)a2 * *((float *)this + 1);\n}\n"
-}

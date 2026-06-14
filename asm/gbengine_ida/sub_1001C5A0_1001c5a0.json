@@ -1,8 +1,0 @@
-{
-  "name": "sub_1001C5A0",
-  "mangled_name": "sub_1001C5A0",
-  "address": "0x1001C5A0",
-  "size_bytes": 197,
-  "signature": "void __stdcall(int a1, _DWORD *a2, gbRenderEffect *a3, struct gbTextureArray *a4)",
-  "decompiled_c": "void __stdcall sub_1001C5A0(int a1, _DWORD *a2, gbRenderEffect *a3, struct gbTextureArray *a4)\n{\n  gbGfxManager_D3D *v4; // esi\n  gbRenderEffect *v5; // ebx\n  int i; // esi\n\n  *((_DWORD *)gbVertexPool::pGfxMgr + 130) += a2[4] / 3;\n  *((_DWORD *)gbVertexPool::pGfxMgr + 131) += a2[8] - a2[7] + 1;\n  v4 = gbVertexPool::pGfxMgr;\n  (*(void (__thiscall **)(gbGfxManager_D3D *))(*(_DWORD *)gbVertexPool::pGfxMgr + 60))(gbVertexPool::pGfxMgr);\n  gbGfxManager_D3D::SetTexture(v4, a4);\n  if ( *(_DWORD *)(*((_DWORD *)v4 + 50) + 2084) )\n  {\n    sub_1001C670(a1, a2);\n  }\n  else\n  {\n    v5 = gbRenderEffect::Begin(a3);\n    for ( i = 0; i < (int)v5; ++i )\n    {\n      gbRenderEffect::Pass(a3, i);\n      sub_1001C670(a1, a2);\n    }\n    gbRenderEffect::End(a3);\n  }\n}\n"
-}

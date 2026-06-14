@@ -1,8 +1,0 @@
-{
-  "name": "sub_1002E820",
-  "mangled_name": "sub_1002E820",
-  "address": "0x1002E820",
-  "size_bytes": 44,
-  "signature": "int(char *Format, ...)",
-  "decompiled_c": "int sub_1002E820(char *Format, ...)\n{\n  va_list va; // [esp+8h] [ebp+8h] BYREF\n\n  va_start(va, Format);\n  vsprintf(Buffer, Format, va);\n  return MessageBoxA(0, Buffer, aMessage, 0);\n}\n"
-}

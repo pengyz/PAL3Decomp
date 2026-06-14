@@ -1,8 +1,0 @@
-{
-  "name": "sub_1004EE84",
-  "mangled_name": "sub_1004EE84",
-  "address": "0x1004EE84",
-  "size_bytes": 112,
-  "signature": "int __thiscall(char *this, char *a2)",
-  "decompiled_c": "int __thiscall sub_1004EE84(char *this, char *a2)\n{\n  const char ***v2; // eax\n  const char **v3; // ecx\n  int v4; // edx\n  const char **v5; // ecx\n\n  v2 = (const char ***)(this + 4 * sub_1004E9C5(a2) + 108);\n  if ( *v2 )\n  {\n    do\n    {\n      v3 = *v2;\n      v4 = strcmp(a2, **v2);\n      if ( v4 < 0 )\n        break;\n      if ( !v4 )\n      {\n        v5 = *v2;\n        *v2 = (const char **)(*v2)[3];\n        v5[3] = 0;\n        sub_1004EE2C(v5, 1);\n        return 0;\n      }\n      v2 = (const char ***)(v3 + 3);\n    }\n    while ( v3[3] );\n  }\n  return 0;\n}\n"
-}

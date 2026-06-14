@@ -46,59 +46,16 @@ endif()
 # topo.dll — 数学库
 # ========================================================================
 message(STATUS "Configuring topo.dll")
-file(GLOB TOPO_SOURCES "src/topo/*.cpp" "src/topo/*.c")
-
-if(TOPO_SOURCES)
-    add_library(topo SHARED ${TOPO_SOURCES})
-    target_include_directories(topo PUBLIC include)
-    set_target_properties(topo PROPERTIES OUTPUT_NAME "topo" PREFIX "" SUFFIX ".dll")
-    target_compile_options(topo PRIVATE ${TOPO_GBENGINE_COMPILE_FLAGS} /Zp4)
-    target_link_libraries(topo "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/LIBCMT.LIB" kernel32.lib)
-    if(MSVC_VERSION EQUAL 1200)
-        set_target_properties(topo PROPERTIES
-            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/lib/topo.def\" /MAP:\"${CMAKE_BINARY_DIR}/topo.map\"")
-    else()
-        set_target_properties(topo PROPERTIES
-            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/lib/topo.def\" /SAFESEH:NO /MAP:\"${CMAKE_BINARY_DIR}/topo.map\"")
-        target_link_libraries(topo vcruntime.lib ucrt.lib)
-        target_link_options(topo PRIVATE /FORCE:MULTIPLE)
-    endif()
-endif()
+add_subdirectory(topo)
 
 # ========================================================================
 # gbengine.dll — 引擎核心 (depends on topo)
 # ========================================================================
 message(STATUS "Configuring gbengine.dll")
-file(GLOB_RECURSE GBENGINE_SOURCES "src/gbengine/*.cpp" "src/gbengine/*.c")
-
-if(GBENGINE_SOURCES)
-    add_library(gbengine SHARED ${GBENGINE_SOURCES})
-    target_include_directories(gbengine PUBLIC include "${CMAKE_SOURCE_DIR}/tools/vc6/Include")
-    set_target_properties(gbengine PROPERTIES OUTPUT_NAME "gbengine" PREFIX "" SUFFIX ".dll")
-    target_link_libraries(gbengine
-        topo
-        ${PLATFORM_LIBS}
-        "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/LIBCMT.LIB"
-        "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/d3d9.lib"
-        "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/d3dx9.lib"
-        "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/dinput8.lib"
-        "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/mss32.lib"
-        "${CMAKE_SOURCE_DIR}/lib/ijl15.lib"
-    )
-    target_compile_options(gbengine PRIVATE ${TOPO_GBENGINE_COMPILE_FLAGS})
-    if(MSVC_VERSION EQUAL 1200)
-        set_target_properties(gbengine PROPERTIES
-            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/src/gbengine/gbengine.def\" /BASE:0x10000000 /MAP:\"${CMAKE_BINARY_DIR}/gbengine.map\"")
-    else()
-        set_target_properties(gbengine PROPERTIES
-            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/src/gbengine/gbengine.def\" /BASE:0x10000000 /SAFESEH:NO /MAP:\"${CMAKE_BINARY_DIR}/gbengine.map\"")
-        target_link_libraries(gbengine vcruntime.lib ucrt.lib)
-        target_link_options(gbengine PRIVATE /FORCE:MULTIPLE)
-    endif()
-endif()
+add_subdirectory(gbengine)
 
 # ========================================================================
 # PAL3.exe — 游戏逻辑 (depends on gbengine)
 # ========================================================================
 message(STATUS "Configuring PAL3.exe")
-add_subdirectory(src/pal3)
+add_subdirectory(pal3)

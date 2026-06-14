@@ -1,8 +1,0 @@
-{
-  "name": "sub_100DDCAF",
-  "mangled_name": "sub_100DDCAF",
-  "address": "0x100DDCAF",
-  "size_bytes": 114,
-  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
-  "decompiled_c": "int __thiscall sub_100DDCAF(_DWORD *this, int a2, int a3)\n{\n  int v4; // esi\n  _DWORD *v5; // eax\n  int v6; // edi\n  int result; // eax\n\n  v4 = a2;\n  while ( 1 )\n  {\n    while ( 1 )\n    {\n      v5 = *(_DWORD **)(*(_DWORD *)(*(this + 1) + 20) + 4 * a3);\n      if ( v5[14] == -1 )\n        break;\n      a3 = v5[14];\n    }\n    v5[12] = -1;\n    v6 = v5[1];\n    v5[28] = v4;\n    if ( (*(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*(this + 1) + 16) + 4 * v6) + 4) & 0x10) == 0 )\n    {\n      if ( *(this + 4) )\n      {\n        *(_DWORD *)(*(this + 4) + 4 * (*(_DWORD *)(*(this + 2) + 4 * v4) + *(_DWORD *)(*(this + 3) + 4 * v4))) = a3;\n        v4 = a2;\n      }\n      ++*(_DWORD *)(*(this + 2) + 4 * v4);\n    }\n    result = v5[2];\n    if ( result == -1 )\n      break;\n    a3 = result;\n  }\n  return result;\n}\n"
-}

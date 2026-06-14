@@ -1,8 +1,0 @@
-{
-  "name": "ProfileBegin(char *)",
-  "mangled_name": "?ProfileBegin@@YAXPAD@Z",
-  "address": "0x10031780",
-  "size_bytes": 258,
-  "signature": "void __cdecl(char *a1)",
-  "decompiled_c": "void __cdecl ProfileBegin(char *a1)\n{\n  unsigned int v1; // edi\n  const char *v2; // ebp\n  int v3; // esi\n  int v4; // ecx\n\n  v1 = 0;\n  v2 = (const char *)dword_1015D3BC;\n  while ( *(v2 - 12) == 1 )\n  {\n    if ( !strcmp(v2, a1) )\n    {\n      v3 = 71 * v1;\n      v4 = dword_1015D3B8[71 * v1] + 1;\n      dword_1015D3B8[v3] = v4;\n      dword_1015D3B4[v3] = dword_1015D3B4[71 * v1] + 1;\n      flt_1015D4BC[71 * v1] = sub_1002E900(v4);\n      return;\n    }\n    v2 += 284;\n    ++v1;\n    if ( (int)v2 >= (int)dword_10160B34 )\n      return;\n  }\n  if ( v1 < 0x32 )\n  {\n    strcpy((char *)&dword_1015D3BC[71 * v1], a1);\n    byte_1015D3B0[284 * v1] = 1;\n    dword_1015D3B8[71 * v1] = 1;\n    dword_1015D3B4[71 * v1] = 1;\n    dword_1015D4C0[71 * v1] = 0;\n    flt_1015D4BC[71 * v1] = sub_1002E900(0);\n    dword_1015D4C4[71 * v1] = 0;\n  }\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_100642E6",
-  "mangled_name": "sub_100642E6",
-  "address": "0x100642E6",
-  "size_bytes": 75,
-  "signature": "int __stdcall(int a1, int a2, _DWORD *a3, unsigned int a4)",
-  "decompiled_c": "int __stdcall sub_100642E6(int a1, int a2, _DWORD *a3, unsigned int a4)\n{\n  int v4; // esi\n  int v5; // edi\n  _DWORD *i; // ebx\n  int result; // eax\n\n  v4 = 0;\n  if ( !a4 )\n    return 0;\n  v5 = a1;\n  for ( i = a3; ; ++i )\n  {\n    a1 = 0;\n    if ( *i )\n      a1 = -1;\n    result = (*(int (__stdcall **)(int, int, int *, int))(*(_DWORD *)v5 + 392))(v5, v4 + a2, &a1, 1);\n    if ( result < 0 )\n      break;\n    if ( ++v4 >= a4 )\n      return 0;\n  }\n  return result;\n}\n"
-}

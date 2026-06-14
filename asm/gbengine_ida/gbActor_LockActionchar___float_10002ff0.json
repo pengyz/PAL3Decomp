@@ -1,8 +1,0 @@
-{
-  "name": "gbActor::LockAction(char *,float)",
-  "mangled_name": "?LockAction@gbActor@@QAEXPADM@Z",
-  "address": "0x10002FF0",
-  "size_bytes": 81,
-  "signature": "void __thiscall(gbActor *this, char *a2, float a3)",
-  "decompiled_c": "void __thiscall gbActor::LockAction(gbActor *this, char *a2, float a3)\n{\n  unsigned int v4; // eax\n  int v5; // esi\n  int v6; // ecx\n  int v7; // ebx\n  _DWORD *i; // edx\n  int v9; // eax\n\n  v4 = gbCrc32Compute(a2);\n  v5 = *((_DWORD *)this + 25);\n  v6 = 0;\n  if ( v5 > 0 )\n  {\n    v7 = *((_DWORD *)this + 24);\n    for ( i = (_DWORD *)(v7 + 4); *i != v4; i += 9 )\n    {\n      if ( ++v6 >= v5 )\n        return;\n    }\n    v9 = 36 * v6;\n    *(_DWORD *)(v7 + v9) = 3;\n    *(float *)(*((_DWORD *)this + 24) + v9 + 8) = a3;\n  }\n}\n"
-}

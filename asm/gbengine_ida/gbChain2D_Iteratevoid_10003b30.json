@@ -1,8 +1,0 @@
-{
-  "name": "gbChain2D::Iterate(void)",
-  "mangled_name": "?Iterate@gbChain2D@@QAEPAVgbChain2DNode@@XZ",
-  "address": "0x10003B30",
-  "size_bytes": 27,
-  "signature": "struct gbChain2DNode *__thiscall(gbChain2D *this)",
-  "decompiled_c": "struct gbChain2DNode *__thiscall gbChain2D::Iterate(gbChain2D *this)\n{\n  struct gbChain2DNode *result; // eax\n\n  if ( *((_DWORD *)this + 2) )\n    result = *(struct gbChain2DNode **)(*((_DWORD *)this + 4) + 4);\n  else\n    result = *(struct gbChain2DNode **)(*((_DWORD *)this + 4) + 8);\n  *((_DWORD *)this + 4) = result;\n  return result;\n}\n"
-}

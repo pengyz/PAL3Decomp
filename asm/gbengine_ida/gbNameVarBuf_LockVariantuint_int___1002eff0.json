@@ -1,8 +1,0 @@
-{
-  "name": "gbNameVarBuf::LockVariant(uint,int *)",
-  "mangled_name": "?LockVariant@gbNameVarBuf@@QAEPAXIPAH@Z",
-  "address": "0x1002EFF0",
-  "size_bytes": 92,
-  "signature": "int __thiscall(gbNameVarBuf *this, unsigned int a2, int *a3)",
-  "decompiled_c": "int __thiscall gbNameVarBuf::LockVariant(gbNameVarBuf *this, unsigned int a2, int *a3)\n{\n  int v3; // esi\n  int v4; // eax\n  _DWORD *v5; // edi\n  _DWORD *i; // edx\n\n  v3 = *((_DWORD *)this + 5);\n  v4 = 0;\n  if ( v3 <= 0 )\n    return 0;\n  v5 = (_DWORD *)*((_DWORD *)this + 3);\n  for ( i = v5; *i != a2; i += 4 )\n  {\n    if ( ++v4 >= v3 )\n      return 0;\n  }\n  *((_DWORD *)this + 6) = 1;\n  if ( a3 )\n    *a3 = v5[4 * v4 + 1] * v5[4 * v4 + 3];\n  return *(_DWORD *)this + *(_DWORD *)(16 * v4 + *((_DWORD *)this + 3) + 8);\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "__lseek_lk",
-  "mangled_name": "__lseek_lk",
-  "address": "0x100ED00A",
-  "size_bytes": 115,
-  "signature": "DWORD __cdecl(int FileHandle, LONG lDistanceToMove, DWORD dwMoveMethod)",
-  "decompiled_c": "DWORD __cdecl _lseek_lk(int FileHandle, LONG lDistanceToMove, DWORD dwMoveMethod)\n{\n  void *osfhandle; // eax\n  DWORD v4; // edi\n  DWORD LastError; // eax\n\n  osfhandle = (void *)_get_osfhandle(FileHandle);\n  if ( osfhandle == (void *)-1 )\n  {\n    *_errno() = 9;\n    return -1;\n  }\n  v4 = SetFilePointer(osfhandle, lDistanceToMove, 0, dwMoveMethod);\n  if ( v4 == -1 )\n    LastError = GetLastError();\n  else\n    LastError = 0;\n  if ( LastError )\n  {\n    _dosmaperr(LastError);\n    return -1;\n  }\n  *(_BYTE *)(dword_10167400[FileHandle >> 5] + 36 * (FileHandle & 0x1F) + 4) &= ~2u;\n  return v4;\n}\n"
-}

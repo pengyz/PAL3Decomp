@@ -1,8 +1,0 @@
-{
-  "name": "sub_10013CE0",
-  "mangled_name": "sub_10013CE0",
-  "address": "0x10013CE0",
-  "size_bytes": 266,
-  "signature": "int __thiscall(int this, struct gbVFile *a2, int a3)",
-  "decompiled_c": "int __thiscall sub_10013CE0(int this, struct gbVFile *a2, int a3)\n{\n  void *v4; // eax\n  int v5; // ecx\n  int v6; // eax\n  double v7; // st7\n  double v8; // st6\n  float v9; // ecx\n  double v11; // st7\n  double v12; // st6\n  float v13; // edx\n  _BYTE Buffer[8]; // [esp+8h] [ebp-Ch] BYREF\n  float v15; // [esp+10h] [ebp-4h]\n\n  gbVFileSystem::Read(g_pVFileSys, Buffer, 0xCu, a2);\n  gbVFileSystem::Read(g_pVFileSys, (void *)(this + 120), 0x594u, a2);\n  v4 = malloc(8 * *(_DWORD *)(this + 144) * *(_DWORD *)(this + 140));\n  v5 = *(_DWORD *)(this + 140);\n  *(_DWORD *)(this + 1548) = v4;\n  v6 = 0;\n  if ( *(_DWORD *)(this + 144) * v5 > 0 )\n  {\n    do\n    {\n      ++v6;\n      *(_DWORD *)(*(_DWORD *)(this + 1548) + 8 * v6 - 8) = 0;\n      *(_DWORD *)(*(_DWORD *)(this + 1548) + 8 * v6 - 4) = 0;\n    }\n    while ( v6 < *(_DWORD *)(this + 144) * *(_DWORD *)(this + 140) );\n  }\n  sub_10013940(this, *(float *)(this + 148), 1092616192);\n  sub_10013A30(this);\n  v7 = *(float *)(this + 148) * -0.5;\n  v8 = *(float *)(this + 152) * -0.5;\n  *(_DWORD *)(this + 92) = 0;\n  v15 = v8;\n  v9 = v15;\n  *(float *)(this + 88) = v7;\n  *(float *)(this + 96) = v9;\n  v11 = *(float *)(this + 148) * 0.5;\n  v12 = *(float *)(this + 152) * 0.5;\n  *(_DWORD *)(this + 104) = 1036831949;\n  v15 = v12;\n  v13 = v15;\n  *(float *)(this + 100) = v11;\n  *(float *)(this + 108) = v13;\n  return 1;\n}\n"
-}

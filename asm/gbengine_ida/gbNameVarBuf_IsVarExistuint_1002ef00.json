@@ -1,8 +1,0 @@
-{
-  "name": "gbNameVarBuf::IsVarExist(uint)",
-  "mangled_name": "?IsVarExist@gbNameVarBuf@@QAEHI@Z",
-  "address": "0x1002EF00",
-  "size_bytes": 44,
-  "signature": "int __thiscall(gbNameVarBuf *this, unsigned int a2)",
-  "decompiled_c": "int __thiscall gbNameVarBuf::IsVarExist(gbNameVarBuf *this, unsigned int a2)\n{\n  int v2; // edx\n  int v3; // eax\n  _DWORD *i; // ecx\n\n  v2 = *((_DWORD *)this + 5);\n  v3 = 0;\n  if ( v2 <= 0 )\n    return 0;\n  for ( i = (_DWORD *)*((_DWORD *)this + 3); *i != a2; i += 4 )\n  {\n    if ( ++v3 >= v2 )\n      return 0;\n  }\n  return 1;\n}\n"
-}

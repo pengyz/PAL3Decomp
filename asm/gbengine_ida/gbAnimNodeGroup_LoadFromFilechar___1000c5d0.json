@@ -1,8 +1,0 @@
-{
-  "name": "gbAnimNodeGroup::LoadFromFile(char *)",
-  "mangled_name": "?LoadFromFile@gbAnimNodeGroup@@QAEXPAD@Z",
-  "address": "0x1000C5D0",
-  "size_bytes": 307,
-  "signature": "void __thiscall(gbAnimNodeGroup *this, char *Source)",
-  "decompiled_c": "void __thiscall gbAnimNodeGroup::LoadFromFile(gbAnimNodeGroup *this, char *Source)\n{\n  const char *v3; // esi\n  struct gbVFile *v4; // edi\n  _DWORD *v5; // eax\n  _DWORD *v6; // esi\n  _DWORD *v7; // ecx\n\n  v3 = Source;\n  *((_DWORD *)this + 11) = 0;\n  v4 = gbVFileSystem::OpenFile(g_pVFileSys, v3, 0x201u);\n  if ( v4 )\n  {\n    gbVfgetdir(v3, dword_101379B4, 0x100u);\n    gbVFileSystem::Read(g_pVFileSys, &Source, 4u, v4);\n    gbVFileSystem::Read(g_pVFileSys, (char *)this + 28, 4u, v4);\n    gbVFileSystem::Read(g_pVFileSys, (char *)this + 32, 4u, v4);\n    gbVFileSystem::Read(g_pVFileSys, (char *)this + 36, 4u, v4);\n    v5 = operator new(0x178u);\n    v6 = v5;\n    if ( v5 )\n    {\n      *v5 = &gbChain1DNode::`vftable';\n      gbChain1D::gbChain1D((gbChain1D *)(v5 + 3));\n      v6[2] = 0;\n      *v6 = &off_100F5570;\n      *((_BYTE *)v6 + 28) = 0;\n      *((_BYTE *)v6 + 92) = 0;\n      v6[87] = 0;\n      v6[88] = 0;\n      v6[89] = 0;\n      v6[90] = 0;\n      v6[93] = 1;\n      v7 = v6;\n    }\n    else\n    {\n      v7 = 0;\n    }\n    *(_DWORD *)this = v7;\n    sub_1000BC50(v4);\n    gbVFileSystem::CloseFile(g_pVFileSys, v4);\n  }\n}\n"
-}

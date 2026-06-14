@@ -1,8 +1,0 @@
-{
-  "name": "gbCrc32Compute(char const *)",
-  "mangled_name": "?gbCrc32Compute@@YAIPBD@Z",
-  "address": "0x100277E0",
-  "size_bytes": 118,
-  "signature": "int __cdecl(const char *a1)",
-  "decompiled_c": "int __cdecl gbCrc32Compute(const char *a1)\n{\n  const char *v2; // ecx\n  int v3; // esi\n  unsigned __int16 v4; // dx\n  unsigned __int8 v5; // dl\n  unsigned int i; // eax\n\n  if ( !*a1 )\n    return 0;\n  v2 = a1 + 1;\n  v3 = *(unsigned __int8 *)a1 << 24;\n  if ( a1[1] )\n  {\n    v3 |= *(unsigned __int8 *)v2 << 16;\n    v2 = a1 + 2;\n    if ( a1[2] )\n    {\n      LOBYTE(v4) = 0;\n      HIBYTE(v4) = a1[2];\n      v3 |= v4;\n      v2 = a1 + 3;\n      if ( a1[3] )\n      {\n        v3 |= *((unsigned __int8 *)a1 + 3);\n        v2 = a1 + 4;\n      }\n    }\n  }\n  v5 = *v2;\n  for ( i = ~v3; v5; ++v2 )\n  {\n    i = dword_1014ADC8[HIBYTE(i)] ^ (v5 | (i << 8));\n    v5 = v2[1];\n  }\n  return ~i;\n}\n"
-}

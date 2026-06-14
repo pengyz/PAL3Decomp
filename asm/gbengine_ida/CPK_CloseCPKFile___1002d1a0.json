@@ -1,8 +1,0 @@
-{
-  "name": "CPK::Close(CPKFile *)",
-  "mangled_name": "?Close@CPK@@QAE_NPAVCPKFile@@@Z",
-  "address": "0x1002D1A0",
-  "size_bytes": 207,
-  "signature": "char __thiscall(CPK *this, struct CPKFile *a2)",
-  "decompiled_c": "char __thiscall CPK::Close(CPK *this, struct CPKFile *a2)\n{\n  if ( *((_DWORD *)this + 1) == 2 )\n  {\n    if ( !*((_DWORD *)a2 + 4) )\n    {\n      sub_1002E850(0x10u, aErrorCeInvalid, (char)aDProjectGbengi);\n      return 0;\n    }\n    if ( (unsigned __int8)sub_1002DB50(*((LPCVOID *)a2 + 4)) != 1 )\n    {\n      sub_1002E850(0x10u, aErrorCeCannotU, (char)aDProjectGbengi);\n      *(_BYTE *)a2 = 0;\n      return 0;\n    }\n    if ( *((_BYTE *)a2 + 28) && *((_DWORD *)a2 + 9) )\n    {\n      if ( (byte_10167011 & 1) == 0 )\n      {\n        byte_10167011 |= 1u;\n        sub_1002DCF0(2, 1);\n        atexit(unknown_libname_2);\n      }\n      sub_1002E090(*((LPVOID *)a2 + 8), *((_DWORD *)a2 + 9));\n    }\n  }\n  *(_BYTE *)a2 = 0;\n  --*((_DWORD *)this + 229486);\n  return 1;\n}\n"
-}

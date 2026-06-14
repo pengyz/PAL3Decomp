@@ -1,8 +1,0 @@
-{
-  "name": "_atexit",
-  "mangled_name": "_atexit",
-  "address": "0x100E53CE",
-  "size_bytes": 18,
-  "signature": "int __cdecl(void (__cdecl *Func)())",
-  "decompiled_c": "int __cdecl atexit(void (__cdecl *Func)())\n{\n  return (_onexit((_onexit_t)Func) != 0) - 1;\n}\n"
-}

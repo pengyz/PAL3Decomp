@@ -1,8 +1,0 @@
-{
-  "name": "gbPrintFont::~gbPrintFont(void)",
-  "mangled_name": "??1gbPrintFont@@QAE@XZ",
-  "address": "0x10022AC0",
-  "size_bytes": 50,
-  "signature": "void __thiscall(gbPrintFont *this)",
-  "decompiled_c": "void __thiscall gbPrintFont::~gbPrintFont(gbPrintFont *this)\n{\n  void *v2; // eax\n\n  v2 = (void *)*((_DWORD *)this + 8);\n  *(_DWORD *)this = &off_100F5844;\n  free(v2);\n  free(*((void **)this + 5));\n  free(*((void **)this + 2));\n  free(*((void **)this + 1));\n}\n"
-}

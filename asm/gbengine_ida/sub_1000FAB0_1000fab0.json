@@ -1,8 +1,0 @@
-{
-  "name": "sub_1000FAB0",
-  "mangled_name": "sub_1000FAB0",
-  "address": "0x1000FAB0",
-  "size_bytes": 173,
-  "signature": "void __thiscall(_DWORD *this, struct gbVFile *Buffer)",
-  "decompiled_c": "void __thiscall sub_1000FAB0(_DWORD *this, struct gbVFile *Buffer)\n{\n  struct gbVFile *v2; // ebx\n  int *v4; // edi\n  int v5; // eax\n  int v6; // ecx\n  void *v7; // eax\n  size_t v8; // ecx\n  int i; // eax\n  float v10; // [esp+Ch] [ebp-4h]\n\n  v2 = Buffer;\n  v4 = this + 4;\n  gbVFileSystem::Read(g_pVFileSys, this + 4, 4u, Buffer);\n  if ( *v4 > 0 )\n  {\n    gbVFileSystem::Read(g_pVFileSys, &Buffer, 1u, v2);\n    v5 = *v4;\n    v6 = (unsigned __int8)Buffer;\n    *(this + 2) = 44;\n    *(this + 3) = v6;\n    v7 = malloc(44 * v5);\n    v8 = *v4 * *(this + 2);\n    *(this + 1) = v7;\n    gbVFileSystem::Read(g_pVFileSys, v7, v8, v2);\n    if ( *v4 )\n    {\n      v10 = *(float *)*(this + 1);\n      for ( i = 0; i < *v4; ++i )\n        *(float *)(i * *(this + 2) + *(this + 1)) = *(float *)(i * *(this + 2) + *(this + 1)) - v10;\n    }\n  }\n}\n"
-}

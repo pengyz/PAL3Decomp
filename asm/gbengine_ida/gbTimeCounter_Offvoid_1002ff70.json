@@ -1,8 +1,0 @@
-{
-  "name": "gbTimeCounter::Off(void)",
-  "mangled_name": "?Off@gbTimeCounter@@QAENXZ",
-  "address": "0x1002FF70",
-  "size_bytes": 135,
-  "signature": "double __thiscall(gbTimeCounter *this)",
-  "decompiled_c": "double __thiscall gbTimeCounter::Off(gbTimeCounter *this)\n{\n  double HighPart; // st7\n  LARGE_INTEGER PerformanceCount; // [esp+4h] [ebp-8h] BYREF\n\n  if ( *(double *)this < 0.0 )\n    return 0.0;\n  if ( dword_1015D398 )\n  {\n    QueryPerformanceCounter(&PerformanceCount);\n    HighPart = (double)PerformanceCount.HighPart;\n    PerformanceCount.HighPart = 0;\n    *((double *)this + 1) = (HighPart * 4294967295.0 + (double)PerformanceCount.LowPart) / dbl_1015D390;\n  }\n  else\n  {\n    PerformanceCount.LowPart = clock();\n    *((double *)this + 1) = (double)(int)PerformanceCount.LowPart * 0.001;\n  }\n  return *((double *)this + 1) - *(double *)this;\n}\n"
-}

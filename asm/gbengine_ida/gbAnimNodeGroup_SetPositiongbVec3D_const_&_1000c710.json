@@ -1,8 +1,0 @@
-{
-  "name": "gbAnimNodeGroup::SetPosition(gbVec3D const &)",
-  "mangled_name": "?SetPosition@gbAnimNodeGroup@@QAEXABUgbVec3D@@@Z",
-  "address": "0x1000C710",
-  "size_bytes": 36,
-  "signature": "void __thiscall(gbAnimNodeGroup *this, const struct gbVec3D *a2)",
-  "decompiled_c": "void __thiscall gbAnimNodeGroup::SetPosition(gbAnimNodeGroup *this, const struct gbVec3D *a2)\n{\n  gbMatrix4::LoadIdentity((gbAnimNodeGroup *)((char *)this + 52));\n  *((_DWORD *)this + 25) = *(_DWORD *)a2;\n  *((_DWORD *)this + 26) = *((_DWORD *)a2 + 1);\n  *((_DWORD *)this + 27) = *((_DWORD *)a2 + 2);\n}\n"
-}

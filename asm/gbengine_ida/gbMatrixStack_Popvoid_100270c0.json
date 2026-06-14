@@ -1,8 +1,0 @@
-{
-  "name": "gbMatrixStack::Pop(void)",
-  "mangled_name": "?Pop@gbMatrixStack@@QAEXXZ",
-  "address": "0x100270C0",
-  "size_bytes": 15,
-  "signature": "void __thiscall(gbMatrixStack *this)",
-  "decompiled_c": "void __thiscall gbMatrixStack::Pop(gbMatrixStack *this)\n{\n  int v1; // eax\n\n  v1 = *((_DWORD *)this + 2);\n  *((_DWORD *)this + 3) = 0;\n  *((_DWORD *)this + 2) = v1 - 1;\n}\n"
-}

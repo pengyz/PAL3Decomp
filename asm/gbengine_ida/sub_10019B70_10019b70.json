@@ -1,8 +1,0 @@
-{
-  "name": "sub_10019B70",
-  "mangled_name": "sub_10019B70",
-  "address": "0x10019B70",
-  "size_bytes": 232,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "int __thiscall sub_10019B70(int this)\n{\n  CArrayList *v2; // eax\n  CArrayList **v3; // ecx\n  int v4; // eax\n  int v5; // edx\n  int v6; // edi\n\n  v2 = *(CArrayList **)(this + 1812);\n  v3 = (CArrayList **)(this + 1520);\n  *v3 = v2;\n  if ( *(_DWORD *)(this + 44) )\n  {\n    v4 = *(_DWORD *)(this + 24);\n    *(_DWORD *)(this + 1532) = *(_DWORD *)(this + 20);\n    v5 = *(_DWORD *)(this + 28);\n    *(_DWORD *)(this + 1536) = v4;\n    if ( v5 == 16 )\n      *(_DWORD *)(this + 1540) = 5;\n    else\n      *(_DWORD *)(this + 1540) = 8;\n    *(_DWORD *)(this + 1544) = 0;\n    *(_DWORD *)(this + 1548) = 16;\n    *(_DWORD *)(this + 1552) = 0;\n    *(_BYTE *)(this + 1556) = 1;\n  }\n  else\n  {\n    if ( *(_DWORD *)(this + 28) == 16 )\n      *(_DWORD *)(this + 1540) = 5;\n    else\n      *(_DWORD *)(this + 1540) = 8;\n    *(_DWORD *)(this + 1548) = 16;\n    *(_DWORD *)(this + 1544) = 0;\n    *(_DWORD *)(this + 1552) = 0;\n    *(_BYTE *)(this + 1556) = 1;\n    *(_BYTE *)(this + 1558) = 1;\n  }\n  *(_DWORD *)(this + 1528) = sub_10019B00;\n  v6 = sub_100172F0(v3);\n  if ( v6 >= 0 )\n    return 0;\n  (*(void (__stdcall **)(_DWORD))(**(_DWORD **)(this + 1812) + 8))(*(_DWORD *)(this + 1812));\n  *(_DWORD *)(this + 1812) = 0;\n  return sub_1001AD80(v6, 2);\n}\n"
-}

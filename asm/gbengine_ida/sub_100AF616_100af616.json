@@ -1,8 +1,0 @@
-{
-  "name": "sub_100AF616",
-  "mangled_name": "sub_100AF616",
-  "address": "0x100AF616",
-  "size_bytes": 82,
-  "signature": "int __thiscall(_DWORD *this, _DWORD *a2)",
-  "decompiled_c": "int __thiscall sub_100AF616(_DWORD *this, _DWORD *a2)\n{\n  unsigned int v4; // ebx\n  int v5; // edi\n  _DWORD *i; // esi\n  int v7; // [esp+8h] [ebp+4h]\n\n  if ( a2[10] != 1 )\n    return 1;\n  v7 = 0;\n  v4 = a2[5];\n  if ( !v4 )\n    return 0;\n  v5 = *(this + 6);\n  for ( i = (_DWORD *)a2[6]; !sub_100AF616(*(_DWORD *)(v5 + 4 * *i)); ++i )\n  {\n    if ( ++v7 >= v4 )\n      return 0;\n  }\n  return 1;\n}\n"
-}

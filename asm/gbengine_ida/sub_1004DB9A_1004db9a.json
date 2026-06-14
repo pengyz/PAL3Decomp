@@ -1,8 +1,0 @@
-{
-  "name": "sub_1004DB9A",
-  "mangled_name": "sub_1004DB9A",
-  "address": "0x1004DB9A",
-  "size_bytes": 68,
-  "signature": "int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "int __thiscall sub_1004DB9A(_DWORD *this, int a2)\n{\n  _DWORD *v3; // eax\n\n  v3 = (_DWORD *)operator new(0xCu);\n  if ( v3 )\n  {\n    v3[1] = 0;\n    *v3 = a2;\n    v3[2] = 1;\n  }\n  else\n  {\n    v3 = 0;\n  }\n  if ( !v3 )\n    return -2147024882;\n  v3[1] = *(this + 26);\n  *(this + 26) = v3;\n  *(this + 166) = a2;\n  return 0;\n}\n"
-}

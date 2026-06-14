@@ -1,8 +1,0 @@
-{
-  "name": "sub_100ADEB8",
-  "mangled_name": "sub_100ADEB8",
-  "address": "0x100ADEB8",
-  "size_bytes": 224,
-  "signature": "int __thiscall(_DWORD *this)",
-  "decompiled_c": "int __thiscall sub_100ADEB8(_DWORD *this)\n{\n  int v2; // ebx\n  int v3; // eax\n  int v4; // edi\n  bool v5; // zf\n  _DWORD *v6; // eax\n  _DWORD *v7; // eax\n  char *v8; // ecx\n  int v9; // edi\n  int v10; // eax\n  int v11; // eax\n  double *v12; // ecx\n\n  v2 = 0;\n  *(this + 155) = operator new(4 * *(this + 3));\n  v3 = operator new(4 * *(this + 2));\n  v4 = 0;\n  v5 = *(this + 3) == 0;\n  *(this + 156) = v3;\n  if ( !v5 )\n  {\n    do\n    {\n      v6 = (_DWORD *)sub_1009987F(116);\n      v7 = v6 ? sub_1009955C(v6) : 0;\n      *(_DWORD *)(*(this + 155) + 4 * v4) = v7;\n      v8 = *(char **)(*(this + 155) + 4 * v4);\n      if ( !v8 )\n        return -2147024882;\n      v2 = sub_10099AEC(v8, *(_DWORD *)(*(this + 6) + 4 * v4));\n      if ( v2 < 0 )\n        return v2;\n    }\n    while ( (unsigned int)++v4 < *(this + 3) );\n  }\n  v9 = 0;\n  if ( *(this + 2) )\n  {\n    do\n    {\n      v10 = sub_10099D69(120);\n      v11 = v10 ? sub_100DDC05(v10) : 0;\n      *(_DWORD *)(*(this + 156) + 4 * v9) = v11;\n      v12 = *(double **)(*(this + 156) + 4 * v9);\n      if ( !v12 )\n        return -2147024882;\n      v2 = sub_10099C6D(v12, *(_DWORD *)(*(this + 5) + 4 * v9));\n      if ( v2 < 0 )\n        return v2;\n    }\n    while ( (unsigned int)++v9 < *(this + 2) );\n  }\n  *(this + 158) = *(this + 3);\n  *(this + 157) = *(this + 2);\n  return v2;\n}\n"
-}

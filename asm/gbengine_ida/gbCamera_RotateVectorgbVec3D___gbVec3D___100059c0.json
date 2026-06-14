@@ -1,8 +1,0 @@
-{
-  "name": "gbCamera::RotateVector(gbVec3D *,gbVec3D *)",
-  "mangled_name": "?RotateVector@gbCamera@@QAEXPAUgbVec3D@@0@Z",
-  "address": "0x100059C0",
-  "size_bytes": 24,
-  "signature": "void __thiscall(gbCamera *this, struct gbVec3D *a2, struct gbVec3D *a3)",
-  "decompiled_c": "void __thiscall gbCamera::RotateVector(gbCamera *this, struct gbVec3D *a2, struct gbVec3D *a3)\n{\n  gbMatrix4::Rotate((gbCamera *)((char *)this + 212), a2, a3);\n}\n"
-}

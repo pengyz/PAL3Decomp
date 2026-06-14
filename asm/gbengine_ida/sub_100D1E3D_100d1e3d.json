@@ -1,8 +1,0 @@
-{
-  "name": "sub_100D1E3D",
-  "mangled_name": "sub_100D1E3D",
-  "address": "0x100D1E3D",
-  "size_bytes": 62,
-  "signature": "__m128 *__stdcall(__m128 *a1, unsigned int *a2, __m128 *a3)",
-  "decompiled_c": "__m128 *__stdcall sub_100D1E3D(__m128 *a1, unsigned int *a2, __m128 *a3)\n{\n  *a1 = _mm_add_ps(\n          _mm_add_ps(_mm_mul_ps(_mm_shuffle_ps((__m128)*a2, (__m128)*a2, 0), *a3), a3[3]),\n          _mm_mul_ps(_mm_shuffle_ps((__m128)a2[1], (__m128)a2[1], 0), a3[1]));\n  return a1;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "fn",
-  "mangled_name": "fn",
-  "address": "0x1002F600",
-  "size_bytes": 106,
-  "signature": "LRESULT __stdcall(int code, WPARAM wParam, int *lParam)",
-  "decompiled_c": "LRESULT __stdcall fn(int code, WPARAM wParam, int *lParam)\n{\n  SHORT AsyncKeyState; // ax\n  int v4; // ecx\n  int v5; // eax\n\n  if ( !code\n    && ((AsyncKeyState = GetAsyncKeyState(17), v4 = *lParam, v5 = AsyncKeyState >> 15, *lParam == 27) && v5\n     || v4 == 9 && (lParam[2] & 0x20) != 0\n     || v4 == 27 && (lParam[2] & 0x20) != 0\n     || v4 == 91\n     || v4 == 92) )\n  {\n    return 1;\n  }\n  else\n  {\n    return CallNextHookEx(hhk, code, wParam, (LPARAM)lParam);\n  }\n}\n"
-}

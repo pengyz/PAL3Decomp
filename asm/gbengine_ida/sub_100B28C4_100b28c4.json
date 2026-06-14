@@ -1,8 +1,0 @@
-{
-  "name": "sub_100B28C4",
-  "mangled_name": "sub_100B28C4",
-  "address": "0x100B28C4",
-  "size_bytes": 66,
-  "signature": "int __thiscall(_DWORD *this, int a2, unsigned int *a3, int *a4)",
-  "decompiled_c": "int __thiscall sub_100B28C4(_DWORD *this, int a2, unsigned int *a3, int *a4)\n{\n  int v4; // eax\n  unsigned int v5; // edx\n  int v6; // esi\n  bool v7; // cf\n\n  v4 = *(_DWORD *)(a2 + 104);\n  v5 = *(unsigned __int8 *)(a2 + 105);\n  *a3 = v5;\n  v6 = 1;\n  if ( (unsigned __int8)v4 == 1 )\n  {\n    v7 = v5 < *(this + 10);\n  }\n  else\n  {\n    v6 = 3;\n    if ( (unsigned __int8)v4 != 3 )\n      return -2147467259;\n    v7 = v5 < *(this + 15);\n  }\n  if ( v7 )\n  {\n    *a4 = v6;\n    return 0;\n  }\n  return -2147467259;\n}\n"
-}

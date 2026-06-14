@@ -1,8 +1,0 @@
-{
-  "name": "_write_string",
-  "mangled_name": "_write_string",
-  "address": "0x100EA1B3",
-  "size_bytes": 56,
-  "signature": "_DWORD *__cdecl(char *a1, _DWORD *a2, FILE *File, _DWORD *a4)",
-  "decompiled_c": "_DWORD *__cdecl write_string(char *a1, _DWORD *a2, FILE *File, _DWORD *a4)\n{\n  _DWORD *result; // eax\n  _DWORD *i; // ebx\n  int v7; // eax\n\n  result = a2;\n  for ( i = (_DWORD *)((char *)a2 - 1); (int)result > 0; i = (_DWORD *)((char *)i - 1) )\n  {\n    v7 = *a1++;\n    result = write_char(v7, File, a4);\n    if ( *a4 == -1 )\n      break;\n    result = i;\n  }\n  return result;\n}\n"
-}

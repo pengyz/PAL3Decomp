@@ -1,8 +1,0 @@
-{
-  "name": "gbRenderEffect::Compare(gbRenderEffect *)",
-  "mangled_name": "?Compare@gbRenderEffect@@QAEHPAV1@@Z",
-  "address": "0x1001CFE0",
-  "size_bytes": 32,
-  "signature": "int __thiscall(gbRenderEffect *this, struct gbRenderEffect *a2)",
-  "decompiled_c": "int __thiscall gbRenderEffect::Compare(gbRenderEffect *this, struct gbRenderEffect *a2)\n{\n  unsigned int v2; // eax\n  unsigned int v3; // ecx\n\n  v2 = *((_DWORD *)this + 6);\n  v3 = *((_DWORD *)a2 + 6);\n  if ( v2 >= v3 )\n    return v2 != v3;\n  else\n    return -1;\n}\n"
-}

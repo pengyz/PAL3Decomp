@@ -1,8 +1,0 @@
-{
-  "name": "sub_10080ACD",
-  "mangled_name": "sub_10080ACD",
-  "address": "0x10080ACD",
-  "size_bytes": 276,
-  "signature": "int __thiscall(_DWORD *this, const char *a2)",
-  "decompiled_c": "int __thiscall sub_10080ACD(_DWORD *this, const char *a2)\n{\n  int v3; // eax\n  _DWORD *v4; // edi\n  int v5; // edi\n  int v6; // eax\n  unsigned int v7; // ecx\n  _DWORD v9[3]; // [esp+4h] [ebp-18h] BYREF\n  int v10; // [esp+10h] [ebp-Ch]\n  int i; // [esp+14h] [ebp-8h]\n  unsigned int v12; // [esp+18h] [ebp-4h]\n\n  v10 = 0;\n  v12 = -1;\n  v3 = *(this + 1);\n  if ( !v3 || *(_DWORD *)(v3 + 4) != 4 )\n    return 0;\n  for ( i = *(_DWORD *)(v3 + 28); i; i = *(_DWORD *)(i + 12) )\n  {\n    v4 = *(_DWORD **)(i + 8);\n    if ( v4 )\n    {\n      if ( v4[1] == 6 && v4[4] == 2 && !strcmp(*(const char **)(v4[5] + 24), a2) )\n      {\n        v5 = v4[6];\n        if ( *(_DWORD *)(v5 + 60) )\n        {\n          if ( (*(_BYTE *)(v5 + 24) & 2) == 0 )\n          {\n            v6 = *(_DWORD *)(v5 + 28);\n            v7 = 0;\n            if ( v6 )\n            {\n              if ( sub_1007D864(*(const char **)(v6 + 24), 0, v9) < 0 )\n                v7 = -1;\n              else\n                v7 = v9[1];\n            }\n            if ( ((v7 & 0xFFFF0000) == 0 || (v7 & 0xFFFF0000) == (*(this + 4) & 0xFFFF0000))\n              && (!(_WORD)v7 || (unsigned __int16)v7 == (unsigned __int16)*(this + 4))\n              && (v12 == -1 || v7 > v12) )\n            {\n              v10 = v5;\n              v12 = v7;\n            }\n          }\n        }\n      }\n    }\n  }\n  return v10;\n}\n"
-}

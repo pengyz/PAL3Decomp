@@ -1,8 +1,0 @@
-{
-  "name": "sub_10055023",
-  "mangled_name": "sub_10055023",
-  "address": "0x10055023",
-  "size_bytes": 52,
-  "signature": "void *__thiscall(_DWORD *this)",
-  "decompiled_c": "void *__thiscall sub_10055023(_DWORD *this)\n{\n  _DWORD *v2; // edi\n\n  while ( *(this + 10) )\n  {\n    v2 = (_DWORD *)*(this + 10);\n    *(this + 10) = v2[10];\n    v2[10] = 0;\n    sub_10055023(v2);\n    operator delete(v2);\n  }\n  return sub_10054F46(this);\n}\n"
-}

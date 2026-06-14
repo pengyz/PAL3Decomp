@@ -1,8 +1,0 @@
-{
-  "name": "sub_100490E9",
-  "mangled_name": "sub_100490E9",
-  "address": "0x100490E9",
-  "size_bytes": 123,
-  "signature": "float *__stdcall(float *a1, float *a2)",
-  "decompiled_c": "float *__stdcall sub_100490E9(float *a1, float *a2)\n{\n  long double v3; // st7\n  bool v4; // zf\n  float *result; // eax\n  double v6; // st7\n  float v7; // [esp+Ch] [ebp-4h]\n  float v8; // [esp+1Ch] [ebp+Ch]\n\n  if ( a2[3] >= 1.0 )\n  {\n    result = a1;\n    goto LABEL_5;\n  }\n  v3 = acos(a2[3]);\n  v7 = sin(v3);\n  v4 = !sub_10046BF4(v7, 0.0);\n  result = a1;\n  if ( !v4 )\n  {\nLABEL_5:\n    *result = *a2;\n    result[1] = a2[1];\n    result[2] = a2[2];\n    goto LABEL_6;\n  }\n  v8 = v3;\n  v6 = v8 / v7;\n  *a1 = v6 * *a2;\n  a1[1] = v6 * a2[1];\n  a1[2] = v6 * a2[2];\nLABEL_6:\n  result[3] = 0.0;\n  return result;\n}\n"
-}

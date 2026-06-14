@@ -1,8 +1,0 @@
-{
-  "name": "sub_100465B3",
-  "mangled_name": "sub_100465B3",
-  "address": "0x100465B3",
-  "size_bytes": 72,
-  "signature": "double *__stdcall(unsigned int a1, _DWORD *a2, double *a3)",
-  "decompiled_c": "double *__stdcall sub_100465B3(unsigned int a1, _DWORD *a2, double *a3)\n{\n  unsigned int v3; // eax\n  double v4; // st7\n  double v5; // st7\n  _DWORD v8[3]; // [esp+4h] [ebp-Ch] BYREF\n\n  v3 = 0;\n  if ( a1 )\n  {\n    while ( v3 < 3 )\n    {\n      v4 = *(double *)(*a2 + 8 * v3++);\n      *(float *)&v8[v3 - 1] = v4;\n      if ( v3 >= a1 )\n      {\n        if ( v3 >= 3 )\n          break;\n        goto LABEL_5;\n      }\n    }\n  }\n  else\n  {\nLABEL_5:\n    memset(&v8[v3], 0, 4 * (3 - v3));\n  }\n  v5 = sub_10049838(v8);\n  *a3 = v5;\n  return a3;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbMatrix4::RightMultiply(gbQuaternion const &)",
-  "mangled_name": "?RightMultiply@gbMatrix4@@QAEXABUgbQuaternion@@@Z",
-  "address": "0x10025ED0",
-  "size_bytes": 198,
-  "signature": "void __thiscall(gbMatrix4 *this, const struct gbQuaternion *a2)",
-  "decompiled_c": "void __thiscall gbMatrix4::RightMultiply(gbMatrix4 *this, const struct gbQuaternion *a2)\n{\n  float *v3; // ebx\n  int v4; // esi\n  float *v5; // edi\n  float *v6; // esi\n  int v7; // ebp\n  float *v8; // ecx\n  double v9; // st7\n  float *v10; // eax\n  int v11; // edx\n  double v12; // st6\n  int v13; // [esp+10h] [ebp-88h]\n  int i; // [esp+14h] [ebp-84h]\n  _DWORD v15[16]; // [esp+18h] [ebp-80h] BYREF\n  _BYTE v16[64]; // [esp+58h] [ebp-40h] BYREF\n\n  memset(v15, 0, sizeof(v15));\n  v15[15] = 1065353216;\n  v15[10] = 1065353216;\n  v15[5] = 1065353216;\n  v15[0] = 1065353216;\n  gbQuaternion::GetMatrix(a2, (struct gbMatrix4 *)v15);\n  v3 = (float *)v16;\n  qmemcpy(v16, this, sizeof(v16));\n  v4 = this - (gbMatrix4 *)v16;\n  v13 = 4;\n  for ( i = this - (gbMatrix4 *)v16; ; v4 = i )\n  {\n    v5 = (float *)v15;\n    v6 = (float *)((char *)v3 + v4);\n    v7 = 4;\n    do\n    {\n      *v6 = 0.0;\n      v8 = v3;\n      v9 = *v6;\n      v10 = v5;\n      v11 = 4;\n      do\n      {\n        v12 = *v8 * *v10;\n        v10 += 4;\n        ++v8;\n        --v11;\n        v9 = v9 + v12;\n      }\n      while ( v11 );\n      *v6++ = v9;\n      ++v5;\n      --v7;\n    }\n    while ( v7 );\n    v3 += 4;\n    if ( !--v13 )\n      break;\n  }\n}\n"
-}

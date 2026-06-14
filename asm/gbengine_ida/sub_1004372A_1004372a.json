@@ -1,8 +1,0 @@
-{
-  "name": "sub_1004372A",
-  "mangled_name": "sub_1004372A",
-  "address": "0x1004372A",
-  "size_bytes": 150,
-  "signature": "void __thiscall(_DWORD *this, int a2, int a3, float *a4)",
-  "decompiled_c": "void __thiscall sub_1004372A(_DWORD *this, int a2, int a3, float *a4)\n{\n  unsigned __int8 *v4; // eax\n  unsigned __int8 *i; // edx\n  int v7; // [esp+14h] [ebp+10h]\n\n  v4 = (unsigned __int8 *)(*(this + 8) + a3 * *(this + 25) + a2 * *(this + 24));\n  for ( i = &v4[*(this + 29)]; v4 < i; *(a4 - 1) = 1.0 )\n  {\n    *a4 = (double)v4[2] * 0.0039215689;\n    a4 += 4;\n    *(a4 - 3) = (double)v4[1] * 0.0039215689;\n    v7 = *v4;\n    v4 += 3;\n    *(a4 - 2) = (double)v7 * 0.0039215689;\n  }\n  if ( *(this + 6) )\n    sub_1003C954((int)this, (unsigned int)&a4[-4 * *(this + 26)]);\n  if ( *(this + 4) )\n    sub_1003CBEB(this, (unsigned int)&a4[-4 * *(this + 26)]);\n}\n"
-}

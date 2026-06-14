@@ -1,8 +1,0 @@
-{
-  "name": "gbActor::EnableActionTransMtl(char *,bool)",
-  "mangled_name": "?EnableActionTransMtl@gbActor@@QAEXPAD_N@Z",
-  "address": "0x100030A0",
-  "size_bytes": 68,
-  "signature": "void __thiscall(gbActor *this, char *a2, int a3)",
-  "decompiled_c": "void __thiscall gbActor::EnableActionTransMtl(gbActor *this, char *a2, int a3)\n{\n  unsigned int v4; // eax\n  int v5; // esi\n  int v6; // edx\n  _DWORD *i; // ecx\n\n  v4 = gbCrc32Compute(a2);\n  v5 = *((_DWORD *)this + 25);\n  v6 = 0;\n  if ( v5 > 0 )\n  {\n    for ( i = (_DWORD *)(*((_DWORD *)this + 24) + 4); *i != v4; i += 9 )\n    {\n      if ( ++v6 >= v5 )\n        return;\n    }\n    (*(void (__thiscall **)(_DWORD, int, int))(**((_DWORD **)this + 22) + 4))(*((_DWORD *)this + 22), v6, a3);\n  }\n}\n"
-}

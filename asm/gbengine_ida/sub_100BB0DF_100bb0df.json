@@ -1,8 +1,0 @@
-{
-  "name": "sub_100BB0DF",
-  "mangled_name": "sub_100BB0DF",
-  "address": "0x100BB0DF",
-  "size_bytes": 92,
-  "signature": "int __thiscall(_DWORD *this)",
-  "decompiled_c": "int __thiscall sub_100BB0DF(_DWORD *this)\n{\n  int v1; // eax\n  int result; // eax\n  unsigned int v3; // edi\n  int v4; // ebx\n  _DWORD *i; // eax\n  int v6; // edx\n\n  if ( (unsigned __int16)*(this + 48) >= 0x200u )\n    return 0;\n  v1 = *(this + 56);\n  if ( (*(_WORD *)(v1 + 2) & 0xFFF0) == 0 )\n    return 0;\n  v3 = *(_DWORD *)(v1 + 4);\n  v4 = 0;\n  if ( !v3 )\n    return 0;\n  for ( i = *(_DWORD **)(v1 + 8); ; ++i )\n  {\n    v6 = *(_DWORD *)(*(this + 5) + 4 * *i);\n    if ( *(_DWORD *)(v6 + 8) != -1 )\n      break;\n    if ( ++v4 >= v3 )\n      return 0;\n  }\n  result = sub_100BA398(this, *(_DWORD *)(v6 + 8));\n  if ( result >= 0 )\n    return 0;\n  return result;\n}\n"
-}

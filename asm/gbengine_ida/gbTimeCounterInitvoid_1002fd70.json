@@ -1,8 +1,0 @@
-{
-  "name": "gbTimeCounterInit(void)",
-  "mangled_name": "?gbTimeCounterInit@@YAXXZ",
-  "address": "0x1002FD70",
-  "size_bytes": 283,
-  "signature": "void __cdecl()",
-  "decompiled_c": "void __cdecl gbTimeCounterInit()\n{\n  double HighPart; // st7\n  LARGE_INTEGER PerformanceCount; // [esp+0h] [ebp-10h] BYREF\n  LARGE_INTEGER Frequency; // [esp+8h] [ebp-8h] BYREF\n\n  dword_1015D39C = 1;\n  if ( QueryPerformanceFrequency(&Frequency) )\n  {\n    PerformanceCount.QuadPart = Frequency.LowPart;\n    dword_1015D398 = 1;\n    dbl_1015D390 = (double)Frequency.HighPart * 4294967295.0 + (double)Frequency.LowPart;\n    timeGetDevCaps(&ptc, 8u);\n    if ( dword_1015D398 )\n    {\n      QueryPerformanceCounter(&PerformanceCount);\n      Frequency.QuadPart = PerformanceCount.LowPart;\n      g_CurrentTime = ((double)PerformanceCount.HighPart * 4294967295.0 + (double)PerformanceCount.LowPart)\n                    / dbl_1015D390;\n      return;\n    }\n  }\n  else if ( dword_1015D398 )\n  {\n    QueryPerformanceCounter(&PerformanceCount);\n    HighPart = (double)PerformanceCount.HighPart;\n    PerformanceCount.HighPart = 0;\n    g_CurrentTime = (HighPart * 4294967295.0 + (double)PerformanceCount.LowPart) / dbl_1015D390;\n    return;\n  }\n  g_CurrentTime = (double)clock() * 1000.0;\n}\n"
-}

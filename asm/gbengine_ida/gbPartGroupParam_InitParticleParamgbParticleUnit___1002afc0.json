@@ -1,8 +1,0 @@
-{
-  "name": "gbPartGroupParam::InitParticleParam(gbParticleUnit *)",
-  "mangled_name": "?InitParticleParam@gbPartGroupParam@@QAEXPAUgbParticleUnit@@@Z",
-  "address": "0x1002AFC0",
-  "size_bytes": 172,
-  "signature": "void __thiscall(gbPartGroupParam *this, struct gbParticleUnit *a2)",
-  "decompiled_c": "void __thiscall gbPartGroupParam::InitParticleParam(gbPartGroupParam *this, struct gbParticleUnit *a2)\n{\n  double v3; // st7\n  __int64 v4; // rax\n  double v5; // st7\n  __int64 v6; // rax\n  double v7; // st7\n  float v8[3]; // [esp+8h] [ebp-Ch] BYREF\n\n  *((_DWORD *)a2 + 5) = 0;\n  gbPartParamControl::GetValue((gbPartGroupParam *)((char *)this + 360), v8, 0.0);\n  *((float *)a2 + 16) = v8[0];\n  gbPartParamControl::GetValue((gbPartGroupParam *)((char *)this + 4940), v8, 0.0);\n  *((_DWORD *)a2 + 19) = 0;\n  gbPartParamControl::GetValue((gbPartGroupParam *)((char *)this + 9520), v8, 0.0);\n  *((float *)a2 + 17) = v8[0];\n  gbPartParamControl::GetValue((gbPartGroupParam *)((char *)this + 14100), v8, 0.0);\n  v3 = v8[1];\n  *((_BYTE *)a2 + 74) = (__int64)v8[0];\n  v4 = (__int64)v3;\n  v5 = v8[2];\n  *((_BYTE *)a2 + 73) = v4;\n  v6 = (__int64)v5;\n  v7 = *((float *)a2 + 17) * 255.0;\n  *((_BYTE *)a2 + 72) = v6;\n  *((_BYTE *)a2 + 75) = (__int64)v7;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_100366B7",
-  "mangled_name": "sub_100366B7",
-  "address": "0x100366B7",
-  "size_bytes": 59,
-  "signature": "int __stdcall(_BYTE *a1, int a2, _BYTE *a3)",
-  "decompiled_c": "int __stdcall sub_100366B7(_BYTE *a1, int a2, _BYTE *a3)\n{\n  int result; // eax\n\n  result = 0;\n  if ( !a2 )\n    return -2147024809;\n  do\n  {\n    if ( !*a3 )\n      break;\n    *a1++ = *a3++;\n    --a2;\n  }\n  while ( a2 );\n  if ( !a2 )\n  {\n    --a1;\n    result = -2147024774;\n  }\n  *a1 = 0;\n  return result;\n}\n"
-}

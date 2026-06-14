@@ -1,8 +1,0 @@
-{
-  "name": "sub_10042F94",
-  "mangled_name": "sub_10042F94",
-  "address": "0x10042F94",
-  "size_bytes": 75,
-  "signature": "_DWORD *__thiscall(_DWORD *this, int a2, int a3, int a4)",
-  "decompiled_c": "_DWORD *__thiscall sub_10042F94(_DWORD *this, int a2, int a3, int a4)\n{\n  _DWORD *result; // eax\n  unsigned int v6; // ecx\n  _DWORD *v7; // edx\n\n  if ( *(this + 4) )\n    a4 = sub_1003C9C1(this, a4);\n  result = (_DWORD *)(*(this + 8) + a3 * *(this + 25) + a2 * *(this + 24));\n  v6 = 0;\n  if ( *(this + 26) )\n  {\n    v7 = (_DWORD *)a4;\n    do\n    {\n      *result++ = *v7;\n      ++v6;\n      v7 += 4;\n    }\n    while ( v6 < *(this + 26) );\n  }\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbRefObject::GetRef(void)",
-  "mangled_name": "?GetRef@gbRefObject@@QAEHXZ",
-  "address": "0x100017B0",
-  "size_bytes": 4,
-  "signature": "int __thiscall(gbRefObject *this)",
-  "decompiled_c": "// Alternative name is '?GetDepth@gbMatrixStack@@QAEHXZ'\n// Alternative name is '?GetEntry@gbVFile1@@QAEIXZ'\n// Alternative name is '?GetFather@gbBinaryTreeNode@@QAEPAV1@XZ'\nint __thiscall gbRefObject::GetRef(gbRefObject *this)\n{\n  return *((_DWORD *)this + 1);\n}\n"
-}

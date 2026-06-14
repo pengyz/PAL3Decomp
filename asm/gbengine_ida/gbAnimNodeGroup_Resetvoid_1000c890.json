@@ -1,8 +1,0 @@
-{
-  "name": "gbAnimNodeGroup::Reset(void)",
-  "mangled_name": "?Reset@gbAnimNodeGroup@@QAEXXZ",
-  "address": "0x1000C890",
-  "size_bytes": 103,
-  "signature": "void __thiscall(gbAnimNodeGroup *this)",
-  "decompiled_c": "void __thiscall gbAnimNodeGroup::Reset(gbAnimNodeGroup *this)\n{\n  int v1; // esi\n  int v2; // edi\n  int v3; // eax\n  int v4; // eax\n\n  v1 = *(_DWORD *)this;\n  v2 = 0;\n  *((_DWORD *)this + 2) = 0;\n  *((_DWORD *)this + 4) = 0;\n  *((_DWORD *)this + 3) = -1074790400;\n  *((_DWORD *)this + 5) = 0;\n  *((_DWORD *)this + 6) = 0;\n  *((_DWORD *)this + 10) = 0;\n  *((_DWORD *)this + 11) = 1;\n  if ( v1 )\n  {\n    v3 = *(_DWORD *)(v1 + 348);\n    if ( v3 == 3 || v3 == 1 )\n      (*(void (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)(v1 + 360) + 24))(*(_DWORD *)(v1 + 360), 0);\n    if ( *(int *)(v1 + 20) > 0 )\n    {\n      do\n      {\n        v4 = gbChain1D::operator[](v2);\n        sub_1000C310(v4);\n        ++v2;\n      }\n      while ( v2 < *(_DWORD *)(v1 + 20) );\n    }\n  }\n}\n"
-}

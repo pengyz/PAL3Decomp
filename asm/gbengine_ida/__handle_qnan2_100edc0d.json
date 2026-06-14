@@ -1,8 +1,0 @@
-{
-  "name": "__handle_qnan2",
-  "mangled_name": "__handle_qnan2",
-  "address": "0x100EDC0D",
-  "size_bytes": 96,
-  "signature": "double __cdecl(int a1, double a2, double a3, int a4)",
-  "decompiled_c": "double __cdecl _handle_qnan2(int a1, double a2, double a3, int a4)\n{\n  double v6; // [esp+1Ch] [ebp-8h]\n\n  v6 = a2 + a3;\n  if ( dword_1012B4A0 )\n  {\n    *_errno() = 33;\n    _ctrlfp(a4, 0xFFFF);\n    return v6;\n  }\n  else\n  {\n    _umatherr(1, a1, SLODWORD(a2), SHIDWORD(a2), SLODWORD(a3), SHIDWORD(a3), v6, a4);\n    return a2;\n  }\n}\n"
-}

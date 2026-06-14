@@ -1,8 +1,0 @@
-{
-  "name": "gbSound3DNode::Update(double)",
-  "mangled_name": "?Update@gbSound3DNode@@QAEHN@Z",
-  "address": "0x10002860",
-  "size_bytes": 110,
-  "signature": "int __thiscall(gbSound3DNode *this, double a2)",
-  "decompiled_c": "int __thiscall gbSound3DNode::Update(gbSound3DNode *this, double a2)\n{\n  double v2; // st7\n  int v3; // ecx\n  float v5; // [esp+0h] [ebp-Ch]\n  float v6; // [esp+4h] [ebp-8h]\n  float v7; // [esp+8h] [ebp-4h]\n\n  if ( gbSound3DNode::pAudioMgr )\n  {\n    v7 = *((float *)this + 5) * a2 + *((float *)this + 2);\n    *((float *)this + 2) = v7;\n    v6 = *((float *)this + 6) * a2 + *((float *)this + 3);\n    *((float *)this + 3) = v6;\n    v2 = *((float *)this + 7) * a2 + *((float *)this + 4);\n    *((float *)this + 4) = v2;\n    v3 = *((_DWORD *)this + 1);\n    if ( !v3 )\n      return 0;\n    v5 = -v2;\n    AIL_set_3D_position(v3, LODWORD(v7), LODWORD(v6), LODWORD(v5));\n  }\n  return 1;\n}\n"
-}

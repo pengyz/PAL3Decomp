@@ -1,8 +1,0 @@
-{
-  "name": "__write",
-  "mangled_name": "__write",
-  "address": "0x100ECDB5",
-  "size_bytes": 101,
-  "signature": "int __cdecl(int FileHandle, const void *Buf, unsigned int MaxCharCount)",
-  "decompiled_c": "int __cdecl _write(int FileHandle, const void *Buf, unsigned int MaxCharCount)\n{\n  int v3; // edi\n\n  if ( FileHandle < uNumber && (*(_BYTE *)(dword_10167400[FileHandle >> 5] + 36 * (FileHandle & 0x1F) + 4) & 1) != 0 )\n  {\n    _lock_fhandle(FileHandle);\n    v3 = _write_lk(FileHandle, Buf, MaxCharCount);\n    _unlock_fhandle(FileHandle);\n    return v3;\n  }\n  else\n  {\n    *_errno() = 9;\n    *__doserrno() = 0;\n    return -1;\n  }\n}\n"
-}

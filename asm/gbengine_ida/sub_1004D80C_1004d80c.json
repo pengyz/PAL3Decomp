@@ -1,8 +1,0 @@
-{
-  "name": "sub_1004D80C",
-  "mangled_name": "sub_1004D80C",
-  "address": "0x1004D80C",
-  "size_bytes": 78,
-  "signature": "LONG()",
-  "decompiled_c": "LONG sub_1004D80C()\n{\n  LeaveCriticalSection(&CriticalSection);\n  while ( InterlockedCompareExchange(&Target, 1, 0) == 1 )\n    Sleep(1u);\n  if ( !--dword_10164C50 )\n    DeleteCriticalSection(&CriticalSection);\n  return InterlockedExchange(&Target, 0);\n}\n"
-}

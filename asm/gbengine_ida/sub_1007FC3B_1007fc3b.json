@@ -1,8 +1,0 @@
-{
-  "name": "sub_1007FC3B",
-  "mangled_name": "sub_1007FC3B",
-  "address": "0x1007FC3B",
-  "size_bytes": 140,
-  "signature": "void __thiscall(double *this, double *a2, double *a3, double *a4)",
-  "decompiled_c": "void __thiscall sub_1007FC3B(double *this, double *a2, double *a3, double *a4)\n{\n  unsigned int v4; // ebx\n  double *v5; // edi\n  double v6[4]; // [esp+14h] [ebp-20h] BYREF\n\n  v6[0] = *a3 * *a4;\n  v4 = 0;\n  v6[1] = *a3 * a4[1];\n  v6[2] = a3[1] * *a4;\n  v6[3] = a3[1] * a4[1];\n  *a2 = *(this + 19);\n  a2[1] = *(this + 20);\n  do\n  {\n    v5 = &v6[v4];\n    if ( _isnan(*v5) )\n      *v5 = 0.0;\n    if ( *a2 > *v5 )\n      *a2 = *v5;\n    if ( a2[1] < *v5 )\n      a2[1] = *v5;\n    ++v4;\n  }\n  while ( v4 < 4 );\n}\n"
-}

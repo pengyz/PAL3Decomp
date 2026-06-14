@@ -1,8 +1,0 @@
-{
-  "name": "gbStaticChain::InitBuffer(int,int)",
-  "mangled_name": "?InitBuffer@gbStaticChain@@QAEXHH@Z",
-  "address": "0x1002F810",
-  "size_bytes": 151,
-  "signature": "void __thiscall(gbStaticChain *this, int a2, int a3)",
-  "decompiled_c": "void __thiscall gbStaticChain::InitBuffer(gbStaticChain *this, int a2, int a3)\n{\n  int v3; // edi\n  void *v5; // eax\n  int v6; // ebx\n  int v7; // ecx\n  int v8; // ebp\n  int v9; // eax\n  int v10; // ecx\n  int v11; // eax\n  int v12; // ebx\n  int v13; // eax\n\n  v3 = a2;\n  *((_DWORD *)this + 4) = a2;\n  *((_DWORD *)this + 5) = a3;\n  *((_DWORD *)this + 6) = 0;\n  v5 = malloc(a3 * a2);\n  v6 = a2 - 1;\n  v7 = 0;\n  *(_DWORD *)this = v5;\n  if ( a2 - 1 > 0 )\n  {\n    do\n    {\n      v8 = (v7 + 1) * *((_DWORD *)this + 5);\n      v9 = v7 * *((_DWORD *)this + 5);\n      ++v7;\n      *(_DWORD *)(v9 + *(_DWORD *)this + 4) = *(_DWORD *)this + v8;\n    }\n    while ( v7 < v6 );\n    v3 = a2;\n  }\n  v10 = 1;\n  for ( *(_DWORD *)(v6 * *((_DWORD *)this + 5) + *(_DWORD *)this + 4) = 0;\n        v10 < v3;\n        *(_DWORD *)(v13 + *(_DWORD *)this) = *(_DWORD *)this + v12 )\n  {\n    v11 = *((_DWORD *)this + 5);\n    v12 = v11 * (v10 - 1);\n    v13 = v10 * v11;\n    ++v10;\n  }\n  **(_DWORD **)this = 0;\n  *((_DWORD *)this + 1) = *(_DWORD *)this;\n  *((_DWORD *)this + 2) = 0;\n  *((_DWORD *)this + 3) = 0;\n}\n"
-}

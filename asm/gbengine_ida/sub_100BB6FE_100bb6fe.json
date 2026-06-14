@@ -1,8 +1,0 @@
-{
-  "name": "sub_100BB6FE",
-  "mangled_name": "sub_100BB6FE",
-  "address": "0x100BB6FE",
-  "size_bytes": 52,
-  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
-  "decompiled_c": "int __thiscall sub_100BB6FE(_DWORD *this, int a2, int a3)\n{\n  int result; // eax\n  int v5; // edx\n  int v6; // ecx\n\n  result = sub_100C3685(2);\n  if ( result >= 0 )\n  {\n    v5 = *(this + 59);\n    v6 = *(this + 60);\n    *(_DWORD *)(v5 + 4 * v6) = a2;\n    *(_DWORD *)(v5 + 4 * v6 + 4) = a3;\n    *(this + 60) += 2;\n    return 0;\n  }\n  return result;\n}\n"
-}

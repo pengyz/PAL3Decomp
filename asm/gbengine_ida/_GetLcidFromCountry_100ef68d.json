@@ -1,8 +1,0 @@
-{
-  "name": "_GetLcidFromCountry",
-  "mangled_name": "_GetLcidFromCountry",
-  "address": "0x100EF68D",
-  "size_bytes": 55,
-  "signature": "BOOL()",
-  "decompiled_c": "BOOL GetLcidFromCountry()\n{\n  BOOL result; // eax\n\n  dword_10166EF8 = strlen(String1) == 3;\n  result = EnumSystemLocalesA(CountryEnumProc, 1u);\n  if ( (dword_10166F0C & 4) == 0 )\n    dword_10166F0C = 0;\n  return result;\n}\n"
-}

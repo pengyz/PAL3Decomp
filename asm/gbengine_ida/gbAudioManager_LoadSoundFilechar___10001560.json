@@ -1,8 +1,0 @@
-{
-  "name": "gbAudioManager::LoadSoundFile(char *)",
-  "mangled_name": "?LoadSoundFile@gbAudioManager@@QAEPAVgbSoundData@@PAD@Z",
-  "address": "0x10001560",
-  "size_bytes": 125,
-  "signature": "struct gbSoundData *__thiscall(gbAudioManager *this, char *a2)",
-  "decompiled_c": "struct gbSoundData *__thiscall gbAudioManager::LoadSoundFile(gbAudioManager *this, char *a2)\n{\n  gbResManager *v2; // ebx\n  struct gbResource *ResByName; // esi\n  struct gbResource *v4; // eax\n\n  v2 = (gbAudioManager *)((char *)this + 232);\n  ResByName = gbResManager::FindResByName((gbAudioManager *)((char *)this + 232), a2);\n  if ( ResByName )\n    return ResByName;\n  v4 = (struct gbResource *)operator new(0x1Cu);\n  if ( v4 )\n  {\n    *((_DWORD *)v4 + 1) = 1;\n    *((_DWORD *)v4 + 2) = 0;\n    *((_DWORD *)v4 + 4) = 0;\n    *((_DWORD *)v4 + 5) = 0;\n    *(_DWORD *)v4 = &off_100F5330;\n    *((_DWORD *)v4 + 6) = 0;\n    ResByName = v4;\n  }\n  else\n  {\n    ResByName = 0;\n  }\n  if ( sub_10001E40(ResByName, a2) )\n  {\n    gbResManager::AddResource(v2, ResByName);\n    return ResByName;\n  }\n  if ( ResByName )\n    (**(void (__thiscall ***)(struct gbResource *, int))ResByName)(ResByName, 1);\n  return 0;\n}\n"
-}

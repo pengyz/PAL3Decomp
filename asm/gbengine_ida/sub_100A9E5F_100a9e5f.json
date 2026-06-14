@@ -1,8 +1,0 @@
-{
-  "name": "sub_100A9E5F",
-  "mangled_name": "sub_100A9E5F",
-  "address": "0x100A9E5F",
-  "size_bytes": 95,
-  "signature": "int __thiscall(int this, int a2, size_t Size)",
-  "decompiled_c": "int __thiscall sub_100A9E5F(int this, int a2, size_t Size)\n{\n  _DWORD *v4; // edi\n\n  memset((void *)(this + 432), 0, 0x20u);\n  *(_DWORD *)(this + 464) = 0;\n  *(_DWORD *)(this + 468) = 0;\n  *(_DWORD *)(this + 472) = 0;\n  *(_DWORD *)(this + 476) = 0;\n  v4 = (_DWORD *)(this + 484);\n  operator delete(*(void **)(this + 484));\n  operator delete(*(void **)(this + 488));\n  *v4 = 0;\n  *(_DWORD *)(this + 488) = 0;\n  return sub_100C898D(this, a2, Size);\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_100644D6",
-  "mangled_name": "sub_100644D6",
-  "address": "0x100644D6",
-  "size_bytes": 125,
-  "signature": "int __stdcall(int *a1, unsigned int a2)",
-  "decompiled_c": "int __stdcall sub_100644D6(int *a1, unsigned int a2)\n{\n  int v3; // ecx\n  int v4; // ebx\n  int v5; // eax\n  int v6; // eax\n  int v7; // edi\n  int v9; // eax\n  int v10; // edx\n  int v11; // edi\n  int v12; // [esp+14h] [ebp+8h]\n\n  v3 = *a1;\n  v4 = *(_DWORD *)(*a1 + 16);\n  v5 = *(_DWORD *)(*a1 + 4);\n  if ( !v4 )\n    v4 = 1;\n  if ( v5 < 0 )\n    return 0;\n  if ( v5 <= 3 )\n  {\n    v9 = *(_DWORD *)(v3 + 20) / a2;\n    v10 = *(_DWORD *)(v3 + 20) % a2;\n    v11 = *(_DWORD *)(v3 + 24);\n    *a1 = v3 + 28;\n    return v4 * v11 * (v9 + (v10 != 0));\n  }\n  if ( v5 != 5 )\n    return 0;\n  v6 = *(_DWORD *)(v3 + 20);\n  v7 = 0;\n  *a1 = v3 + 24;\n  if ( v6 )\n  {\n    v12 = v6;\n    do\n    {\n      v7 += sub_100644D6(a1, a2);\n      --v12;\n    }\n    while ( v12 );\n  }\n  return v4 * v7;\n}\n"
-}

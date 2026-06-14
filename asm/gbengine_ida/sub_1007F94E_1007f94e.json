@@ -1,8 +1,0 @@
-{
-  "name": "sub_1007F94E",
-  "mangled_name": "sub_1007F94E",
-  "address": "0x1007F94E",
-  "size_bytes": 52,
-  "signature": "void __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "void __thiscall sub_1007F94E(_DWORD *this, int a2)\n{\n  int v2; // eax\n\n  if ( a2 )\n  {\n    *(this + 32) = *(_DWORD *)(a2 - 8);\n    v2 = *(_DWORD *)(a2 - 8 + 4);\n    if ( v2 <= 0 )\n    {\n      *(this + 33) = -v2;\n      operator delete((void *)(a2 - 8));\n    }\n    else\n    {\n      *(this + 33) = v2;\n    }\n  }\n}\n"
-}

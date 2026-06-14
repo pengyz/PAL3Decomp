@@ -1,8 +1,0 @@
-{
-  "name": "gbMatrix4::TransformPlane(float * const)",
-  "mangled_name": "?TransformPlane@gbMatrix4@@QAEXQAM@Z",
-  "address": "0x10025530",
-  "size_bytes": 259,
-  "signature": "void __thiscall(gbMatrix4 *this, float *const a2)",
-  "decompiled_c": "void __thiscall gbMatrix4::TransformPlane(gbMatrix4 *this, float *const a2)\n{\n  float *v2; // edx\n  int v3; // edi\n  double v4; // st7\n  double v5; // st7\n  double v6; // st6\n  double v7; // st5\n  double v8; // st4\n  double v9; // st5\n  double v10; // st4\n  float v11; // [esp+8h] [ebp-18h] BYREF\n  float v12; // [esp+Ch] [ebp-14h]\n  float v13; // [esp+10h] [ebp-10h]\n  float v14; // [esp+18h] [ebp-8h]\n  float v15; // [esp+1Ch] [ebp-4h]\n\n  v2 = &v11;\n  v3 = 3;\n  do\n  {\n    v4 = *(float *)((char *)v2++ + (char *)a2 - (char *)&v11) * a2[3];\n    --v3;\n    *(v2 - 1) = -v4;\n  }\n  while ( v3 );\n  v5 = v13 * *((float *)this + 8) + v12 * *((float *)this + 4) + v11 * *(float *)this + *((float *)this + 12);\n  v14 = v13 * *((float *)this + 9) + v12 * *((float *)this + 5) + v11 * *((float *)this + 1) + *((float *)this + 13);\n  v15 = v11 * *((float *)this + 2) + v13 * *((float *)this + 10) + v12 * *((float *)this + 6) + *((float *)this + 14);\n  v6 = a2[2] * *((float *)this + 8) + a2[1] * *((float *)this + 4) + *a2 * *(float *)this;\n  v12 = *((float *)this + 9) * a2[2] + a2[1] * *((float *)this + 5) + *a2 * *((float *)this + 1);\n  v7 = a2[2] * *((float *)this + 10) + a2[1] * *((float *)this + 6);\n  v8 = *((float *)this + 2) * *a2;\n  a2[1] = v12;\n  v13 = v7 + v8;\n  v9 = v15 * v13;\n  v10 = v14 * v12;\n  a2[2] = v13;\n  a2[3] = -(v9 + v10 + v5 * v6);\n  *a2 = v6;\n}\n"
-}

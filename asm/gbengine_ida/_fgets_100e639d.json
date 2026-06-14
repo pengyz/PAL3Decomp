@@ -1,8 +1,0 @@
-{
-  "name": "_fgets",
-  "mangled_name": "_fgets",
-  "address": "0x100E639D",
-  "size_bytes": 98,
-  "signature": "char *__cdecl(char *Buffer, int MaxCount, FILE *Stream)",
-  "decompiled_c": "char *__cdecl fgets(char *Buffer, int MaxCount, FILE *Stream)\n{\n  char *v3; // ebx\n  char *v4; // edi\n  int v7; // eax\n\n  v3 = Buffer;\n  v4 = Buffer;\n  if ( MaxCount <= 0 )\n    return 0;\n  _lock_file(Stream);\n  do\n  {\n    if ( !--MaxCount )\n      break;\n    if ( --Stream->_cnt < 0 )\n      v7 = _filbuf(Stream);\n    else\n      v7 = *(unsigned __int8 *)Stream->_ptr++;\n    if ( v7 == -1 )\n    {\n      if ( v4 == Buffer )\n      {\n        v3 = 0;\n        goto LABEL_14;\n      }\n      break;\n    }\n    *v4++ = v7;\n  }\n  while ( (_BYTE)v7 != 10 );\n  *v4 = 0;\nLABEL_14:\n  _unlock_file(Stream);\n  return v3;\n}\n"
-}

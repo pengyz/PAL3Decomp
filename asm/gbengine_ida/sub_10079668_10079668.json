@@ -1,8 +1,0 @@
-{
-  "name": "sub_10079668",
-  "mangled_name": "sub_10079668",
-  "address": "0x10079668",
-  "size_bytes": 125,
-  "signature": "int __stdcall(int *a1, void **a2, int *a3)",
-  "decompiled_c": "int __stdcall sub_10079668(int *a1, void **a2, int *a3)\n{\n  int result; // eax\n  void *v4; // esi\n  void *Block; // [esp+Ch] [ebp-8h]\n  void *v6; // [esp+10h] [ebp-4h]\n\n  result = (int)a1;\n  v4 = 0;\n  v6 = 0;\n  Block = 0;\n  if ( a1 )\n  {\n    result = *a1;\n    v6 = (void *)*a1;\n  }\n  if ( a2 )\n    v4 = *a2;\n  if ( a3 )\n  {\n    result = *a3;\n    Block = (void *)*a3;\n  }\n  if ( v6 )\n    result = sub_10079553((int)v6, v4, Block);\n  if ( v4 )\n  {\n    result = sub_10095574(v4);\n    *a2 = 0;\n  }\n  if ( Block )\n  {\n    result = sub_10095574(Block);\n    *a3 = 0;\n  }\n  if ( v6 )\n  {\n    sub_10095574(v6);\n    *a1 = 0;\n    return (int)a1;\n  }\n  return result;\n}\n"
-}

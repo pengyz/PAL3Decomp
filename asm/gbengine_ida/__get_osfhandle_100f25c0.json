@@ -1,8 +1,0 @@
-{
-  "name": "__get_osfhandle",
-  "mangled_name": "__get_osfhandle",
-  "address": "0x100F25C0",
-  "size_bytes": 66,
-  "signature": "intptr_t __cdecl(int FileHandle)",
-  "decompiled_c": "intptr_t __cdecl _get_osfhandle(int FileHandle)\n{\n  int v1; // eax\n\n  if ( FileHandle < uNumber )\n  {\n    v1 = dword_10167400[FileHandle >> 5] + 36 * (FileHandle & 0x1F);\n    if ( (*(_BYTE *)(v1 + 4) & 1) != 0 )\n      return *(_DWORD *)v1;\n  }\n  *_errno() = 9;\n  *__doserrno() = 0;\n  return -1;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_10051859",
-  "mangled_name": "sub_10051859",
-  "address": "0x10051859",
-  "size_bytes": 68,
-  "signature": "int __stdcall(int a1, const void *a2, _DWORD *a3)",
-  "decompiled_c": "int __stdcall sub_10051859(int a1, const void *a2, _DWORD *a3)\n{\n  if ( memcmp(a2, dword_10106204, 0x10u) && memcmp(a2, dword_101111E8, 0x10u) )\n    return -2147467262;\n  *a3 = a1;\n  (*(void (__stdcall **)(int))(*(_DWORD *)a1 + 4))(a1);\n  return 0;\n}\n"
-}

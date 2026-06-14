@@ -1,8 +1,0 @@
-{
-  "name": "sub_1005C35A",
-  "mangled_name": "sub_1005C35A",
-  "address": "0x1005C35A",
-  "size_bytes": 138,
-  "signature": "int __thiscall(int *this, int a2)",
-  "decompiled_c": "int __thiscall sub_1005C35A(int *this, int a2)\n{\n  int v3; // edi\n  int result; // eax\n  int v5; // eax\n  int v6; // esi\n\n  if ( sub_1007E198(20, (LPVOID)0x10) )\n    v3 = sub_1007E301(0, *(this + 5), \"UsageType\");\n  else\n    v3 = 0;\n  if ( v3 )\n  {\n    *(this + 5) = v3;\n    if ( a2 )\n    {\n      v5 = sub_1007E2AB(a2);\n      v6 = v5;\n      *(_DWORD *)(v3 + 8) = v5;\n      if ( v5 )\n      {\n        result = sub_1005AE4A(this, v5, *(_DWORD **)(v5 + 24));\n        if ( result >= 0 )\n        {\n          *(_BYTE *)(v6 + 17) &= 0xF1u;\n          return 0;\n        }\n      }\n      else\n      {\n        sub_10058E65(this, 0);\n        return -2147024882;\n      }\n    }\n    else\n    {\n      return 0;\n    }\n  }\n  else\n  {\n    sub_10058E65(this, 0);\n    return -2147024882;\n  }\n  return result;\n}\n"
-}

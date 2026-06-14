@@ -1,8 +1,0 @@
-{
-  "name": "gbGfxManager::GetWorldMatrix(void)",
-  "mangled_name": "?GetWorldMatrix@gbGfxManager@@QAEABUgbMatrix4@@XZ",
-  "address": "0x1001E330",
-  "size_bytes": 55,
-  "signature": "const struct gbMatrix4 *__thiscall(gbMatrixStack **this)",
-  "decompiled_c": "const struct gbMatrix4 *__thiscall gbGfxManager::GetWorldMatrix(gbMatrixStack **this)\n{\n  gbMatrix4 *v2; // ebp\n\n  v2 = (gbMatrix4 *)(this + 89);\n  qmemcpy(this + 89, gbMatrixStack::GetTop(*(this + 54)), 0x40u);\n  gbMatrix4::RightMultiply(v2, (const struct gbMatrix4 *)(this + 73));\n  return v2;\n}\n"
-}

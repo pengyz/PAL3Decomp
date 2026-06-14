@@ -1,8 +1,0 @@
-{
-  "name": "__getptd",
-  "mangled_name": "__getptd",
-  "address": "0x100E8581",
-  "size_bytes": 103,
-  "signature": "_DWORD *__cdecl()",
-  "decompiled_c": "_DWORD *__cdecl _getptd()\n{\n  DWORD LastError; // edi\n  _DWORD *Value; // esi\n  _DWORD *v2; // eax\n  DWORD CurrentThreadId; // eax\n\n  LastError = GetLastError();\n  Value = TlsGetValue(dwTlsIndex);\n  if ( !Value )\n  {\n    v2 = calloc(1u, 0x74u);\n    Value = v2;\n    if ( !v2 || !TlsSetValue(dwTlsIndex, v2) )\n      _amsg_exit(0x10u);\n    _initptd((int)Value);\n    CurrentThreadId = GetCurrentThreadId();\n    Value[1] = -1;\n    *Value = CurrentThreadId;\n  }\n  SetLastError(LastError);\n  return Value;\n}\n"
-}

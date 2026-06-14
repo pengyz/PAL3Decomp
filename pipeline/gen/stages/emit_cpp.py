@@ -241,11 +241,16 @@ def generate_class_cpp(cls_name, methods):
 
     # Standard includes
     lines.append('#include "pal3/ida_defs.h"')
-    lines.append('#include "pal3/gen/globals.h"')
+    lines.append('#include "globals.h"')
     lines.append('#include "pal3/pal3_constants.h"')
-    header_path = header_dir / ("%s.h" % cls_name)
+    _cls_subdir = get_class_dir(cls_name)
+    _cls_header_subdir = header_dir / _cls_subdir
+    header_path = _cls_header_subdir / ("%s.h" % cls_name)
     if header_path.exists():
-        lines.append('#include "pal3/gen/%s.h"' % cls_name)
+        if _cls_subdir:
+            lines.append('#include "%s/%s.h"' % (_cls_subdir, cls_name))
+        else:
+            lines.append('#include "%s.h"' % cls_name)
 
     # Auto-detect additional includes
     needed_classes = _detect_needed_includes(cls_name, methods)
@@ -260,7 +265,11 @@ def generate_class_cpp(cls_name, methods):
     for c in sorted(needed_classes):
         if c.startswith('vtbl_') or c in _SKIP_INCLUDE:
             continue
-        lines.append('#include "pal3/gen/%s.h"' % c)
+        _c_subdir = get_class_dir(c)
+        if _c_subdir:
+            lines.append('#include "%s/%s.h"' % (_c_subdir, c))
+        else:
+            lines.append('#include "%s.h"' % c)
 
     # Include free_functions.h if any free function is called or referenced
     free_func_h = header_dir / "free_functions.h"
@@ -270,7 +279,7 @@ def generate_class_cpp(cls_name, methods):
             import re as _re_inc
             for fname in store.free_func_sigs:
                 if _re_inc.search(r'\b' + _re_inc.escape(fname) + r'\b', all_code):
-                    lines.append('#include "pal3/gen/free_functions.h"')
+                    lines.append('#include "free_functions.h"')
                     break
 
     lines.append("")
@@ -304,8 +313,8 @@ def generate_free_funcs_cpp(funcs):
     """Generate .cpp for free functions."""
     lines = []
     lines.append('#include "pal3/ida_defs.h"')
-    lines.append('#include "pal3/gen/globals.h"')
-    lines.append('#include "pal3/gen/free_functions.h"')
+    lines.append('#include "globals.h"')
+    lines.append('#include "free_functions.h"')
 
     # Scan all function bodies for ClassName:: and (ClassName *) references, add includes
     import re
@@ -316,11 +325,15 @@ def generate_free_funcs_cpp(funcs):
         c = m.group(1)
         if c[0].isupper():
             referenced_classes.add(c)
-    header_dir = store.project_root / "include" / "pal3" / "gen"
+    header_dir = store.project_root / "pal3" / "src"
     for cls in sorted(referenced_classes):
-        hpath = header_dir / ("%s.h" % cls)
+        _subdir = get_class_dir(cls)
+        hpath = (header_dir / _subdir / ("%s.h" % cls)) if _subdir else (header_dir / ("%s.h" % cls))
         if hpath.exists():
-            lines.append('#include "pal3/gen/%s.h"' % cls)
+            if _subdir:
+                lines.append('#include "%s/%s.h"' % (_subdir, cls))
+            else:
+                lines.append('#include "%s.h"' % cls)
     lines.append("")
     lines.append("// Free functions (not belonging to any class)")
     lines.append("")
@@ -356,7 +369,7 @@ def run_cpp_generation(filter_classes=None):
     Args:
         filter_classes: If set, only generate these class names.
     """
-    output_dir = store.output_dir / "gen"
+    output_dir = store.project_root / "pal3" / "src"
 
     print("Collecting functions from decomp...")
     by_class, free_funcs = collect_functions()

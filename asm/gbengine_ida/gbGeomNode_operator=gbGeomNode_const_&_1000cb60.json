@@ -1,8 +1,0 @@
-{
-  "name": "gbGeomNode::operator=(gbGeomNode const &)",
-  "mangled_name": "??4gbGeomNode@@QAEAAV0@ABV0@@Z",
-  "address": "0x1000CB60",
-  "size_bytes": 336,
-  "signature": "_DWORD *__thiscall(_DWORD *this, _DWORD *a2)",
-  "decompiled_c": "_DWORD *__thiscall gbGeomNode::operator=(_DWORD *this, _DWORD *a2)\n{\n  *(this + 1) = a2[1];\n  *(this + 2) = a2[2];\n  *(this + 3) = a2[3];\n  *(this + 4) = a2[4];\n  *(this + 5) = a2[5];\n  *(this + 6) = a2[6];\n  qmemcpy(this + 7, a2 + 7, 0x3Cu);\n  gbMatrix4::operator=(a2 + 22);\n  gbMatrix4::operator=(a2 + 38);\n  *(this + 54) = a2[54];\n  *(this + 55) = a2[55];\n  *(this + 56) = a2[56];\n  *(this + 57) = a2[57];\n  *(this + 58) = a2[58];\n  *(this + 59) = a2[59];\n  *(this + 60) = a2[60];\n  *(this + 61) = a2[61];\n  *(this + 62) = a2[62];\n  *(this + 63) = a2[63];\n  *(this + 64) = a2[64];\n  *(this + 65) = a2[65];\n  *(this + 66) = a2[66];\n  *(this + 67) = a2[67];\n  *(this + 68) = a2[68];\n  return this;\n}\n"
-}

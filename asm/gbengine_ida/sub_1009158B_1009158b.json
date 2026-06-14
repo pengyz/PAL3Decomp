@@ -1,8 +1,0 @@
-{
-  "name": "sub_1009158B",
-  "mangled_name": "sub_1009158B",
-  "address": "0x1009158B",
-  "size_bytes": 149,
-  "signature": "int __thiscall(_DWORD *this, char *a2, int a3, int a4)",
-  "decompiled_c": "int __thiscall sub_1009158B(_DWORD *this, char *a2, int a3, int a4)\n{\n  unsigned int v4; // kr00_4\n  char *v5; // ebx\n  _DWORD *v6; // eax\n  int v7; // ecx\n  unsigned int v9; // [esp+0h] [ebp-8h]\n\n  v9 = sub_1008F99B(a2);\n  v4 = strlen(a2);\n  v5 = (char *)operator new(v4 + 1);\n  if ( !v5 )\n    return -2147024882;\n  qmemcpy(v5, a2, v4 + 1);\n  v6 = (_DWORD *)operator new(0x24u);\n  if ( v6 )\n  {\n    v7 = *(this + v9);\n    v6[3] = 0;\n    v6[1] = a3;\n    *v6 = v5;\n    v6[2] = a4;\n    v6[8] = v7;\n  }\n  else\n  {\n    v6 = 0;\n  }\n  if ( !v6 )\n    return -2147024882;\n  *(this + v9) = v6;\n  return 0;\n}\n"
-}

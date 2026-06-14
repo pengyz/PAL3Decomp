@@ -1,8 +1,0 @@
-{
-  "name": "sub_100148E0",
-  "mangled_name": "sub_100148E0",
-  "address": "0x100148E0",
-  "size_bytes": 60,
-  "signature": "void __thiscall(_DWORD *this)",
-  "decompiled_c": "void __thiscall sub_100148E0(_DWORD *this)\n{\n  int v2; // ebx\n  struct gbStaticChainNode **v3; // esi\n\n  v2 = 8;\n  v3 = (struct gbStaticChainNode **)(*this + 32);\n  do\n  {\n    if ( *v3 )\n    {\n      if ( sub_10014920(*v3) )\n      {\n        gbStaticChain::DelOneNode((gbStaticChain *)(this + 6), *v3);\n        *v3 = 0;\n      }\n    }\n    ++v3;\n    --v2;\n  }\n  while ( v2 );\n}\n"
-}

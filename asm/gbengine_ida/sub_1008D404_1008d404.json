@@ -1,8 +1,0 @@
-{
-  "name": "sub_1008D404",
-  "mangled_name": "sub_1008D404",
-  "address": "0x1008D404",
-  "size_bytes": 262,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "int __thiscall sub_1008D404(int this)\n{\n  _DWORD *v2; // ebx\n  int result; // eax\n  void *v4; // edi\n  int v5; // eax\n  int v6; // ecx\n  int v7; // eax\n  int v8; // ecx\n  int v9; // eax\n\n  v2 = *(_DWORD **)(this + 4);\n  if ( !v2 || v2[1] != 4 )\n    return 0;\n  if ( !*(_DWORD *)(this + 8) )\n    return -2147467259;\n  result = sub_1009DE54(v2, *(_DWORD *)this + 24, *(_DWORD *)(this + 16), *(_DWORD *)(this + 20));\n  if ( result >= 0 )\n  {\n    operator delete(*(void **)(this + 24));\n    v4 = (void *)operator new(4 * v2[6]);\n    *(_DWORD *)(this + 24) = v4;\n    if ( v4 )\n    {\n      memset(v4, 0xFFu, 4 * v2[6]);\n      v5 = sub_1009A113(*(_DWORD *)(*(_DWORD *)(this + 8) + 120), 0, 0, 1.0);\n      v6 = *(_DWORD *)(this + 8);\n      *(_DWORD *)(this + 32) = v5;\n      v7 = sub_1009A113(*(_DWORD *)(v6 + 120), 0, 0, 0.0);\n      v8 = *(_DWORD *)(this + 8);\n      *(_DWORD *)(this + 36) = v7;\n      v9 = sub_1009A113(*(_DWORD *)(v8 + 120), 0, 0, -1.0);\n      *(_DWORD *)(this + 48) = -1;\n      *(_DWORD *)(this + 40) = v9;\n      *(_DWORD *)(this + 44) = *(_DWORD *)(this + 32);\n      *(_DWORD *)(this + 52) = 1;\n      result = sub_1008C552(this, v2[7], 0);\n      if ( result >= 0 )\n        return *(_DWORD *)(this + 76) != 0 ? 0x80004005 : 0;\n    }\n    else\n    {\n      return -2147024882;\n    }\n  }\n  return result;\n}\n"
-}

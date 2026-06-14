@@ -1,8 +1,0 @@
-{
-  "name": "sub_100098F0",
-  "mangled_name": "sub_100098F0",
-  "address": "0x100098F0",
-  "size_bytes": 151,
-  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
-  "decompiled_c": "int __thiscall sub_100098F0(_DWORD *this, int a2, int a3)\n{\n  int v4; // ecx\n  int v5; // edi\n  int v6; // eax\n  int v7; // esi\n  int v8; // ecx\n  int v9; // edx\n  int i; // edi\n\n  v4 = *(this + 23);\n  v5 = *(_DWORD *)(v4 + 4 * *(unsigned __int8 *)(a3 + 10));\n  if ( v5 != *(this + 26) )\n  {\n    sub_1000A100(*(_DWORD *)(v4 + 4 * *(unsigned __int8 *)(a3 + 10)));\n    *(this + 26) = v5;\n    v6 = sub_10002A70(this, v5);\n    if ( v6 )\n      sub_1000A570(v6);\n  }\n  v7 = *(this + 26);\n  v8 = *(_DWORD *)(a2 + 96);\n  v9 = *(_DWORD *)(a2 + 100);\n  for ( i = 0; i < v9; ++i )\n  {\n    if ( *(_DWORD *)(v8 + 8) == 1065353216 )\n      break;\n    v8 += 36;\n  }\n  return sub_1000B130((unsigned __int8)*(_DWORD *)(a3 + 8), *(_DWORD *)(v7 + 448), *(_DWORD *)(v8 + 12), a3);\n}\n"
-}

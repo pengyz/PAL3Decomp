@@ -1,8 +1,0 @@
-{
-  "name": "gbCamera::ClipPoint(gbVec3D *)",
-  "mangled_name": "?ClipPoint@gbCamera@@QAEHPAUgbVec3D@@@Z",
-  "address": "0x10021F00",
-  "size_bytes": 82,
-  "signature": "int __thiscall(gbCamera *this, struct gbVec3D *a2)",
-  "decompiled_c": "int __thiscall gbCamera::ClipPoint(gbCamera *this, struct gbVec3D *a2)\n{\n  int v2; // esi\n  int v3; // edx\n  float *i; // ecx\n\n  v2 = *((_DWORD *)this + 36);\n  v3 = 0;\n  if ( v2 <= 0 )\n    return 0;\n  for ( i = (float *)((char *)this + 52);\n        *(i - 1) * *(float *)a2 + i[1] * *((float *)a2 + 2) + *((float *)a2 + 1) * *i + i[2] >= 0.0;\n        i += 4 )\n  {\n    if ( ++v3 >= v2 )\n      return 0;\n  }\n  return 1;\n}\n"
-}

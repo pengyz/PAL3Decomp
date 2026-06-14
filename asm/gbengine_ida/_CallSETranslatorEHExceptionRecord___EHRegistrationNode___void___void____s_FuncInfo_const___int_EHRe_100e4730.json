@@ -1,8 +1,0 @@
-{
-  "name": "_CallSETranslator(EHExceptionRecord *,EHRegistrationNode *,void *,void *,_s_FuncInfo const *,int,EHRegistrationNode *)",
-  "mangled_name": "?_CallSETranslator@@YAHPAUEHExceptionRecord@@PAUEHRegistrationNode@@PAX2PBU_s_FuncInfo@@H1@Z",
-  "address": "0x100E4730",
-  "size_bytes": 182,
-  "signature": "int __cdecl(struct EHExceptionRecord *a1, struct EHRegistrationNode *a2, void *a3, void *a4, const struct _s_FuncInfo *a5, int a6, struct EHRegistrationNode *a7)",
-  "decompiled_c": "int __cdecl _CallSETranslator(\n        struct EHExceptionRecord *a1,\n        struct EHRegistrationNode *a2,\n        void *a3,\n        void *a4,\n        const struct _s_FuncInfo *a5,\n        int a6,\n        struct EHRegistrationNode *a7)\n{\n  int v7; // eax\n  struct _EXCEPTION_REGISTRATION_RECORD *ExceptionList; // ebx\n  int v10; // [esp+0h] [ebp-40h] BYREF\n  int v11; // [esp+Ch] [ebp-34h]\n  _DWORD v12[11]; // [esp+10h] [ebp-30h] BYREF\n  int v13; // [esp+3Ch] [ebp-4h]\n  int savedregs; // [esp+40h] [ebp+0h] BYREF\n\n  v12[3] = TranslatorGuardHandler;\n  v12[4] = a5;\n  v12[5] = a2;\n  v12[6] = a6;\n  v12[7] = a7;\n  v13 = 0;\n  v12[8] = &_ExceptionContinuation_16750;\n  v12[9] = &v10;\n  v12[10] = &savedregs;\n  v12[2] = NtCurrentTeb()->NtTib.ExceptionList;\n  v11 = 1;\n  v12[0] = a1;\n  v12[1] = a3;\n  v7 = _getptd(a1->ExceptionCode, v12);\n  (*(void (**)(void))(v7 + 104))();\n  v11 = 0;\n  if ( v13 )\n  {\n    ExceptionList = NtCurrentTeb()->NtTib.ExceptionList;\n    ExceptionList->Next = ExceptionList->Next;\n  }\n  return v11;\n}\n"
-}

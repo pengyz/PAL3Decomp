@@ -1,8 +1,0 @@
-{
-  "name": "sub_10009A90",
-  "mangled_name": "sub_10009A90",
-  "address": "0x10009A90",
-  "size_bytes": 117,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "int __thiscall sub_10009A90(int this)\n{\n  float *v1; // eax\n  double v2; // st7\n  double v3; // st6\n  double v4; // st5\n\n  v1 = (float *)(*(_DWORD *)(this + 104) + 412);\n  *(float *)(this + 212) = (*v1 + *(float *)(*(_DWORD *)(this + 104) + 424)) * 0.5;\n  *(float *)(this + 216) = (v1[1] + v1[4]) * 0.5;\n  *(float *)(this + 220) = (v1[2] + v1[5]) * 0.5;\n  v2 = v1[3] - *v1;\n  v3 = v1[4] - v1[1];\n  v4 = v1[5] - v1[2];\n  *(float *)(this + 208) = sqrt(v4 * v4 + v3 * v3 + v2 * v2) * 0.5;\n  return this + 208;\n}\n"
-}

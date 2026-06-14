@@ -1,8 +1,0 @@
-{
-  "name": "gbGeomNode::LoadCVDFromStream(gbVFile *,float,gbGeomNode * *,int &)",
-  "mangled_name": "?LoadCVDFromStream@gbGeomNode@@CAXPAVgbVFile@@MPAPAV1@AAH@Z",
-  "address": "0x10010C10",
-  "size_bytes": 180,
-  "signature": "void __cdecl(struct gbVFile *a1, float a2, struct gbGeomNode **a3, int *a4)",
-  "decompiled_c": "void __cdecl gbGeomNode::LoadCVDFromStream(struct gbVFile *a1, float a2, struct gbGeomNode **a3, int *a4)\n{\n  gbGeomNode *v4; // eax\n  gbGeomNode *v5; // edi\n  int i; // edi\n  _DWORD Buffer[2]; // [esp+10h] [ebp-14h] BYREF\n  int v8; // [esp+20h] [ebp-4h]\n\n  v4 = (gbGeomNode *)operator new(0x118u);\n  Buffer[1] = v4;\n  v5 = 0;\n  v8 = 0;\n  if ( v4 )\n    v5 = gbGeomNode::gbGeomNode(v4);\n  v8 = -1;\n  gbGeomNode::LoadCVDFromStream(v5, a1, a2);\n  a3[(*a4)++] = v5;\n  gbVFileSystem::Read(g_pVFileSys, Buffer, 4u, a1);\n  for ( i = 0; i < Buffer[0]; ++i )\n    gbGeomNode::LoadCVDFromStream(a1, a2, a3, a4);\n}\n"
-}

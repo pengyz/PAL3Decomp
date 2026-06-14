@@ -1,8 +1,0 @@
-{
-  "name": "sub_1009A1C2",
-  "mangled_name": "sub_1009A1C2",
-  "address": "0x1009A1C2",
-  "size_bytes": 75,
-  "signature": "int __thiscall(void *this, int a2)",
-  "decompiled_c": "int __thiscall sub_1009A1C2(void *this, int a2)\n{\n  int v3; // eax\n  void *v4; // esi\n\n  v3 = operator new(0x34u);\n  if ( v3 )\n    v4 = (void *)sub_100DDC05(v3);\n  else\n    v4 = 0;\n  if ( !v4 )\n    return -1;\n  if ( (int)sub_100DDC4F(a2) < 0 )\n  {\n    sub_10099DD0(v4, 1);\n    return -1;\n  }\n  return sub_10099DEC((int)this, v4);\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "sub_10058E96",
-  "mangled_name": "sub_10058E96",
-  "address": "0x10058E96",
-  "size_bytes": 106,
-  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
-  "decompiled_c": "int __thiscall sub_10058E96(_DWORD *this, int a2, int a3)\n{\n  int v4; // eax\n  int v5; // eax\n\n  v4 = *(this + 4);\n  if ( v4 && !a3 )\n    a3 = *(_DWORD *)(v4 + 20);\n  if ( sub_1007E198(36, (LPVOID)0x10) )\n    v5 = sub_1007E608(a2, a3, 0, 0, *(this + 4));\n  else\n    v5 = 0;\n  if ( v5 )\n  {\n    *(this + 4) = v5;\n    return 0;\n  }\n  else\n  {\n    sub_10058E0F(this, 0, 0, \"internal error: out of memory\");\n    return -2147024882;\n  }\n}\n"
-}

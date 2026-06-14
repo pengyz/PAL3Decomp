@@ -1,8 +1,0 @@
-{
-  "name": "gbChain1D::AddNodeOnHead(gbChain1DNode *)",
-  "mangled_name": "?AddNodeOnHead@gbChain1D@@QAEXPAVgbChain1DNode@@@Z",
-  "address": "0x1002EA80",
-  "size_bytes": 27,
-  "signature": "void __thiscall(gbChain1D *this, struct gbChain1DNode *a2)",
-  "decompiled_c": "void __thiscall gbChain1D::AddNodeOnHead(gbChain1D *this, struct gbChain1DNode *a2)\n{\n  int v2; // edx\n\n  *((_DWORD *)a2 + 1) = *(_DWORD *)this;\n  v2 = *((_DWORD *)this + 1);\n  *(_DWORD *)this = a2;\n  if ( !v2 )\n    *((_DWORD *)this + 1) = a2;\n  ++*((_DWORD *)this + 2);\n}\n"
-}

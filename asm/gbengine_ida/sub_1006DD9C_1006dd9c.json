@@ -1,8 +1,0 @@
-{
-  "name": "sub_1006DD9C",
-  "mangled_name": "sub_1006DD9C",
-  "address": "0x1006DD9C",
-  "size_bytes": 80,
-  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
-  "decompiled_c": "int __thiscall sub_1006DD9C(_DWORD *this, int a2, int a3)\n{\n  int v4; // edi\n  _DWORD *v5; // eax\n  _DWORD *v6; // eax\n\n  v4 = 0;\n  v5 = (_DWORD *)operator new(0x1Cu);\n  if ( v5 )\n    v6 = sub_10067E71(v5);\n  else\n    v6 = 0;\n  if ( !v6 )\n    return -2147024882;\n  v6[1] = a2;\n  v6[3] = a3;\n  *v6 = 5;\n  *(_DWORD *)(*(this + 54) + 24) = v6;\n  *(this + 54) = v6;\n  return v4;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "gbQuaternion::Normalize(void)",
-  "mangled_name": "?Normalize@gbQuaternion@@QAEMXZ",
-  "address": "0x10026EA0",
-  "size_bytes": 115,
-  "signature": "long double __thiscall(gbQuaternion *this)",
-  "decompiled_c": "long double __thiscall gbQuaternion::Normalize(gbQuaternion *this)\n{\n  long double v1; // st3\n  long double result; // st7\n\n  v1 = sqrt(\n         *(float *)this * *(float *)this\n       + *((float *)this + 1) * *((float *)this + 1)\n       + *((float *)this + 2) * *((float *)this + 2)\n       + *((float *)this + 3) * *((float *)this + 3));\n  result = v1;\n  if ( v1 < 0.00001 && v1 > -0.00001 )\n    return 0.0;\n  *((float *)this + 3) = 1.0 / v1 * *((float *)this + 3);\n  *(float *)this = 1.0 / v1 * *(float *)this;\n  *((float *)this + 1) = 1.0 / v1 * *((float *)this + 1);\n  *((float *)this + 2) = 1.0 / v1 * *((float *)this + 2);\n  return result;\n}\n"
-}

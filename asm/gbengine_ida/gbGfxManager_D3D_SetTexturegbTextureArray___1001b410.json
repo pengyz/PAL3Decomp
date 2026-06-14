@@ -1,8 +1,0 @@
-{
-  "name": "gbGfxManager_D3D::SetTexture(gbTextureArray *)",
-  "mangled_name": "?SetTexture@gbGfxManager_D3D@@QAEXPAUgbTextureArray@@@Z",
-  "address": "0x1001B410",
-  "size_bytes": 162,
-  "signature": "void __thiscall(gbGfxManager_D3D *this, struct gbTextureArray *a2)",
-  "decompiled_c": "void __thiscall gbGfxManager_D3D::SetTexture(gbGfxManager_D3D *this, struct gbTextureArray *a2)\n{\n  struct gbTextureArray *v2; // eax\n  int v3; // esi\n  _DWORD *v5; // ebp\n  int v6; // edi\n  int *v7; // eax\n  int v8; // edx\n  _DWORD *v9; // edi\n  struct gbTextureArray *v10; // [esp+Ch] [ebp-4h]\n\n  v2 = a2;\n  v3 = 0;\n  if ( !a2 || *((int *)a2 + 16) <= 0 )\n    goto LABEL_11;\n  v10 = a2;\n  v5 = (_DWORD *)((char *)this + 1484);\n  do\n  {\n    v6 = *(_DWORD *)v10;\n    if ( *(_DWORD *)v10 != *v5 )\n    {\n      v7 = (int *)*((_DWORD *)this + 454);\n      v8 = *v7;\n      if ( v6 )\n        (*(void (__stdcall **)(int *, int, _DWORD))(v8 + 260))(v7, v3, *(_DWORD *)(v6 + 84));\n      else\n        (*(void (__stdcall **)(int *, int, _DWORD))(v8 + 260))(v7, v3, 0);\n      v2 = a2;\n      *v5 = v6;\n    }\n    ++v3;\n    ++v5;\n    v10 = (struct gbTextureArray *)((char *)v10 + 4);\n  }\n  while ( v3 < *((_DWORD *)v2 + 16) );\n  if ( v3 < 4 )\n  {\nLABEL_11:\n    v9 = (_DWORD *)((char *)this + 4 * v3 + 1484);\n    do\n    {\n      if ( *v9 )\n      {\n        (*(void (__stdcall **)(_DWORD, int, _DWORD))(**((_DWORD **)this + 454) + 260))(*((_DWORD *)this + 454), v3, 0);\n        *v9 = 0;\n      }\n      ++v3;\n      ++v9;\n    }\n    while ( v3 < 4 );\n  }\n}\n"
-}

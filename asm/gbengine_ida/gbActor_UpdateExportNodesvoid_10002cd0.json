@@ -1,8 +1,0 @@
-{
-  "name": "gbActor::UpdateExportNodes(void)",
-  "mangled_name": "?UpdateExportNodes@gbActor@@AAEXXZ",
-  "address": "0x10002CD0",
-  "size_bytes": 256,
-  "signature": "void __thiscall(gbActor *this)",
-  "decompiled_c": "void __thiscall gbActor::UpdateExportNodes(gbActor *this)\n{\n  int v2; // ebp\n  char *v3; // eax\n  gbMatrix4 *v4; // edi\n  int v5; // ebx\n  int v6; // edi\n  _DWORD *v7; // ebx\n  char *v8; // [esp+10h] [ebp-410h]\n  int v9; // [esp+10h] [ebp-410h]\n  _BYTE v10[1024]; // [esp+14h] [ebp-40Ch] BYREF\n  int v11; // [esp+41Ch] [ebp-4h]\n\n  v2 = (*(int (__thiscall **)(_DWORD, _BYTE *, int))(**((_DWORD **)this + 22) + 44))(*((_DWORD *)this + 22), v10, 256);\n  if ( v2 > *((_DWORD *)this + 28) )\n  {\n    if ( *((_DWORD *)this + 26) )\n      operator delete(*((void **)this + 26));\n    *((_DWORD *)this + 28) = v2;\n    v3 = (char *)operator new(132 * v2);\n    v8 = v3;\n    v11 = 0;\n    if ( v3 )\n    {\n      if ( v2 - 1 >= 0 )\n      {\n        v4 = (gbMatrix4 *)(v3 + 68);\n        v5 = v2;\n        do\n        {\n          gbMatrix4::gbMatrix4((gbMatrix4 *)((char *)v4 - 64));\n          gbMatrix4::gbMatrix4(v4);\n          v4 = (gbMatrix4 *)((char *)v4 + 132);\n          --v5;\n        }\n        while ( v5 );\n        v3 = v8;\n      }\n    }\n    else\n    {\n      v3 = 0;\n    }\n    v11 = -1;\n    *((_DWORD *)this + 26) = v3;\n  }\n  if ( v2 > 0 )\n  {\n    v6 = 0;\n    v7 = v10;\n    v9 = v2;\n    do\n    {\n      *(_DWORD *)(v6 + *((_DWORD *)this + 26)) = *v7;\n      gbMatrix4::LoadIdentity((gbMatrix4 *)(v6 + *((_DWORD *)this + 26) + 4));\n      ++v7;\n      v6 += 132;\n      --v9;\n    }\n    while ( v9 );\n  }\n  *((_DWORD *)this + 27) = v2;\n}\n"
-}

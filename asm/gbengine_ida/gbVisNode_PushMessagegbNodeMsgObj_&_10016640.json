@@ -1,8 +1,0 @@
-{
-  "name": "gbVisNode::PushMessage(gbNodeMsgObj &)",
-  "mangled_name": "?PushMessage@gbVisNode@@QAEXAAUgbNodeMsgObj@@@Z",
-  "address": "0x10016640",
-  "size_bytes": 89,
-  "signature": "void __thiscall(gbVisNode *this, struct gbNodeMsgObj *a2)",
-  "decompiled_c": "void __thiscall gbVisNode::PushMessage(gbVisNode *this, struct gbNodeMsgObj *a2)\n{\n  int v2; // eax\n  int v3; // edi\n  int v4; // edx\n  int v5; // esi\n  int v6; // esi\n  _DWORD *v7; // eax\n\n  v2 = *((_DWORD *)this + 12);\n  v3 = *((_DWORD *)this + 8);\n  v4 = v2 + 1;\n  if ( v2 + 1 == v3 )\n    v4 = 0;\n  v5 = *((_DWORD *)this + 11);\n  if ( v4 == v5 )\n  {\n    if ( *((_DWORD *)this + 10) )\n      return;\n    if ( v5 != v2 )\n    {\n      v6 = v5 + 1;\n      if ( v6 == v3 )\n        v6 = 0;\n      *((_DWORD *)this + 11) = v6;\n    }\n  }\n  v7 = (_DWORD *)(*((_DWORD *)this + 7) + 16 * v2);\n  *v7 = *(_DWORD *)a2;\n  v7[1] = *((_DWORD *)a2 + 1);\n  v7[2] = *((_DWORD *)a2 + 2);\n  v7[3] = *((_DWORD *)a2 + 3);\n  *((_DWORD *)this + 12) = v4;\n}\n"
-}

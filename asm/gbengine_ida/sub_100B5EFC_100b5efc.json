@@ -1,8 +1,0 @@
-{
-  "name": "sub_100B5EFC",
-  "mangled_name": "sub_100B5EFC",
-  "address": "0x100B5EFC",
-  "size_bytes": 178,
-  "signature": "int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "int __thiscall sub_100B5EFC(_DWORD *this, int a2)\n{\n  int result; // eax\n  int v4; // eax\n\n  if ( *(this + 78) )\n    return 0;\n  result = sub_100C94B8(33554463);\n  if ( result >= 0 )\n  {\n    v4 = *(_DWORD *)(a2 + 60);\n    switch ( v4 )\n    {\n      case 0x100000:\n        result = sub_100C797E(-1879048192);\n        break;\n      case 0x200000:\n        result = sub_100C797E(-1610612736);\n        break;\n      case 0x400000:\n        result = sub_100C797E(-1744830464);\n        break;\n      default:\n        sub_1009DBA6((int)this, 0, 4814, \"internal error: unexpected Alias on texture declaration\");\n        return -2147467259;\n    }\n    if ( result >= 0 )\n    {\n      result = (*(int (__thiscall **)(_DWORD *, unsigned int, int, _DWORD))(*this + 80))(\n                 this,\n                 *(_DWORD *)(a2 + 12) & 0x7FF | 0xA0000800,\n                 983040,\n                 0);\n      if ( result >= 0 )\n      {\n        result = sub_100C407A(this);\n        if ( result >= 0 )\n          return 0;\n      }\n    }\n  }\n  return result;\n}\n"
-}

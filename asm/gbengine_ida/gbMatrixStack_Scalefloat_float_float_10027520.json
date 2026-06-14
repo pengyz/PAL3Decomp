@@ -1,8 +1,0 @@
-{
-  "name": "gbMatrixStack::Scale(float,float,float)",
-  "mangled_name": "?Scale@gbMatrixStack@@QAEXMMM@Z",
-  "address": "0x10027520",
-  "size_bytes": 108,
-  "signature": "void __thiscall(gbMatrixStack *this, float a2, float a3, float a4)",
-  "decompiled_c": "void __thiscall gbMatrixStack::Scale(gbMatrixStack *this, float a2, float a3, float a4)\n{\n  float *v4; // eax\n\n  v4 = (float *)(*(_DWORD *)this + (*((_DWORD *)this + 2) << 6));\n  *v4 = a2 * *v4;\n  v4[1] = a2 * v4[1];\n  v4[2] = a2 * v4[2];\n  v4[4] = a3 * v4[4];\n  v4[5] = a3 * v4[5];\n  v4[6] = a3 * v4[6];\n  v4[8] = a4 * v4[8];\n  v4[9] = a4 * v4[9];\n  v4[10] = a4 * v4[10];\n  *((_DWORD *)this + 3) = 0;\n}\n"
-}

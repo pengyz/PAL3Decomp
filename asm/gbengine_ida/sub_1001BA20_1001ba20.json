@@ -1,8 +1,0 @@
-{
-  "name": "sub_1001BA20",
-  "mangled_name": "sub_1001BA20",
-  "address": "0x1001BA20",
-  "size_bytes": 58,
-  "signature": "int __thiscall(int this, int a2)",
-  "decompiled_c": "int __thiscall sub_1001BA20(int this, int a2)\n{\n  int result; // eax\n\n  *(_DWORD *)(this + 1644) = a2;\n  if ( *(_BYTE *)(this + 1648) )\n    result = *(_DWORD *)(this + 1692);\n  else\n    result = *(_DWORD *)(this + 1748);\n  if ( result == 1 )\n    return (*(int (__stdcall **)(_DWORD, int))(**(_DWORD **)(this + 1816) + 308))(*(_DWORD *)(this + 1816), a2);\n  return result;\n}\n"
-}

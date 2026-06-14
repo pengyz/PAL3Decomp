@@ -1,8 +1,0 @@
-{
-  "name": "sub_1000C360",
-  "mangled_name": "sub_1000C360",
-  "address": "0x1000C360",
-  "size_bytes": 81,
-  "signature": "int __thiscall(int this, int a2)",
-  "decompiled_c": "int __thiscall sub_1000C360(int this, int a2)\n{\n  int v3; // eax\n  int result; // eax\n  int i; // esi\n\n  v3 = *(_DWORD *)(this + 348);\n  if ( v3 == 3 || v3 == 1 )\n    gbVisNode::SetRenderPriority(*(gbVisNode **)(this + 360), a2);\n  result = *(_DWORD *)(this + 20);\n  for ( i = 0; i < result; ++i )\n  {\n    gbChain1D::operator[]((int *)(this + 12), i);\n    sub_1000C360(a2);\n    result = *(_DWORD *)(this + 20);\n  }\n  return result;\n}\n"
-}

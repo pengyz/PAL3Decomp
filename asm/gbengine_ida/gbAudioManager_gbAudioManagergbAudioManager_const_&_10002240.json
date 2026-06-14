@@ -1,8 +1,0 @@
-{
-  "name": "gbAudioManager::gbAudioManager(gbAudioManager const &)",
-  "mangled_name": "??0gbAudioManager@@QAE@ABV0@@Z",
-  "address": "0x10002240",
-  "size_bytes": 276,
-  "signature": "gbAudioManager *__thiscall(gbAudioManager *this, const struct gbAudioManager *a2)",
-  "decompiled_c": "gbAudioManager *__thiscall gbAudioManager::gbAudioManager(gbAudioManager *this, const struct gbAudioManager *a2)\n{\n  int v3; // ecx\n  int v4; // ecx\n\n  *(_DWORD *)this = *(_DWORD *)a2;\n  *((_DWORD *)this + 1) = *((_DWORD *)a2 + 1);\n  *((_DWORD *)this + 2) = *((_DWORD *)a2 + 2);\n  *((_DWORD *)this + 3) = *((_DWORD *)a2 + 3);\n  *((_DWORD *)this + 4) = *((_DWORD *)a2 + 4);\n  *((_DWORD *)this + 5) = *((_DWORD *)a2 + 5);\n  *((_DWORD *)this + 6) = *((_DWORD *)a2 + 6);\n  *((_DWORD *)this + 7) = *((_DWORD *)a2 + 7);\n  qmemcpy((char *)this + 32, (char *)a2 + 32, 0x78u);\n  qmemcpy((char *)this + 152, (char *)a2 + 152, 0x50u);\n  v3 = *((_DWORD *)a2 + 59);\n  *((_DWORD *)this + 59) = v3;\n  *((_DWORD *)this + 60) = *((_DWORD *)a2 + 60);\n  if ( v3 )\n    *((_DWORD *)this + 58) = malloc(4 * v3);\n  else\n    *((_DWORD *)this + 58) = 0;\n  v4 = *((_DWORD *)this + 60);\n  if ( v4 )\n    qmemcpy(*((void **)this + 58), *((const void **)a2 + 58), 4 * v4);\n  return this;\n}\n"
-}

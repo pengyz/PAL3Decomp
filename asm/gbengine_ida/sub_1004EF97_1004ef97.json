@@ -1,8 +1,0 @@
-{
-  "name": "sub_1004EF97",
-  "mangled_name": "sub_1004EF97",
-  "address": "0x1004EF97",
-  "size_bytes": 181,
-  "signature": "int __thiscall(_DWORD *this, const char **a2)",
-  "decompiled_c": "int __thiscall sub_1004EF97(_DWORD *this, const char **a2)\n{\n  const char **v2; // edi\n  const char ***v3; // esi\n  const char **v4; // ecx\n  int v5; // eax\n  const char **v6; // ecx\n\n  v2 = a2;\n  v3 = (const char ***)(this + sub_1004E9C5(*a2) + 27);\n  if ( *v3 )\n  {\n    do\n    {\n      v4 = *v3;\n      v5 = strcmp(*v2, **v3);\n      v2 = a2;\n      if ( v5 < 0 )\n        break;\n      if ( !v5 )\n      {\n        if ( !sub_1004E9F7((int)*v3, (int)a2) )\n          sub_1004CC4C(this + 6, (int)(this + 158), 0x5EFu, \"'%s' : macro redefinition\", *a2);\n        v6 = *v3;\n        *v3 = (const char **)(*v3)[3];\n        v6[3] = 0;\n        sub_1004EE2C(v6, 1);\n        break;\n      }\n      v3 = (const char ***)(v4 + 3);\n    }\n    while ( v4[3] );\n  }\n  v2[3] = (const char *)*v3;\n  *v3 = v2;\n  return 0;\n}\n"
-}

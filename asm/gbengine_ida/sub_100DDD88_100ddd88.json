@@ -1,8 +1,0 @@
-{
-  "name": "sub_100DDD88",
-  "mangled_name": "sub_100DDD88",
-  "address": "0x100DDD88",
-  "size_bytes": 72,
-  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
-  "decompiled_c": "int __thiscall sub_100DDD88(_DWORD *this, int a2, int a3)\n{\n  int result; // eax\n  int v4; // edi\n  int v5; // edx\n  int v6; // ebx\n  unsigned int v7; // [esp+10h] [ebp+Ch]\n\n  result = a3;\n  if ( (unsigned int)(a3 - a2) >> 1 )\n  {\n    v4 = 4 * a2;\n    result = 4 * a3 - 4;\n    v7 = (unsigned int)(a3 - a2) >> 1;\n    do\n    {\n      v5 = *(this + 15);\n      v6 = *(_DWORD *)(v4 + v5);\n      *(_DWORD *)(v4 + v5) = *(_DWORD *)(result + v5);\n      *(_DWORD *)(result + *(this + 15)) = v6;\n      v4 += 4;\n      result -= 4;\n      --v7;\n    }\n    while ( v7 );\n  }\n  return result;\n}\n"
-}

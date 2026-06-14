@@ -1,8 +1,0 @@
-{
-  "name": "gbImage2D::WriteJpegToBuffer(uchar *,int)",
-  "mangled_name": "?WriteJpegToBuffer@gbImage2D@@QAEHPAEH@Z",
-  "address": "0x1001F6C0",
-  "size_bytes": 265,
-  "signature": "int __thiscall(gbImage2D *this, unsigned __int8 *a2, int a3)",
-  "decompiled_c": "int __thiscall gbImage2D::WriteJpegToBuffer(gbImage2D *this, unsigned __int8 *a2, int a3)\n{\n  int v5; // edx\n  int v6; // eax\n  int v7; // esi\n\n  if ( ijlInit(&dword_1013BE00) )\n    return 0;\n  if ( *((_DWORD *)this + 45) != 24 )\n    return 0;\n  dword_1013BE08 = *((_DWORD *)this + 32);\n  dword_1013BE0C = -*((_DWORD *)this + 33);\n  v5 = *((_DWORD *)this + 46);\n  dword_1013BE10 = ((3 * dword_1013BE08 + 3) & 0xFFFFFFFC) - 3 * dword_1013BE08;\n  dword_1013BE04 = v5;\n  dword_1013BE14 = 3;\n  dword_1013BE18 = 2;\n  dword_1013BE20 = 0;\n  dword_1013BE24 = (int)a2;\n  dword_1013BE28 = *((_DWORD *)this + 32) * *((_DWORD *)this + 33) * *((_DWORD *)this + 45) / 8;\n  dword_1013BE2C = *((_DWORD *)this + 32);\n  v6 = *((_DWORD *)this + 33);\n  dword_1013BE34 = 3;\n  dword_1013BE38 = 3;\n  dword_1013BE30 = v6;\n  dword_1013BE3C = 1;\n  dword_1013BE50 = a3;\n  if ( ijlWrite(&dword_1013BE00, 9) )\n    return 0;\n  v7 = dword_1013BE28;\n  ijlFree(&dword_1013BE00);\n  return v7;\n}\n"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "__ftbuf",
-  "mangled_name": "__ftbuf",
-  "address": "0x100EC48E",
-  "size_bytes": 42,
-  "signature": "int __cdecl(int a1, int a2)",
-  "decompiled_c": "int __cdecl _ftbuf(int a1, int a2)\n{\n  int result; // eax\n\n  if ( a1 )\n  {\n    if ( (*(_BYTE *)(a2 + 13) & 0x10) != 0 )\n    {\n      result = _flush((_DWORD *)a2);\n      *(_BYTE *)(a2 + 13) &= 0xEEu;\n      *(_DWORD *)(a2 + 24) = 0;\n      *(_DWORD *)a2 = 0;\n      *(_DWORD *)(a2 + 8) = 0;\n    }\n  }\n  return result;\n}\n"
-}

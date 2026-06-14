@@ -1,8 +1,0 @@
-{
-  "name": "sub_100550EA",
-  "mangled_name": "sub_100550EA",
-  "address": "0x100550EA",
-  "size_bytes": 147,
-  "signature": "int __stdcall(_DWORD *a1, const char *a2, int a3)",
-  "decompiled_c": "int __stdcall sub_100550EA(_DWORD *a1, const char *a2, int a3)\n{\n  int v3; // edi\n  int v4; // eax\n  int v5; // ecx\n  int v6; // edx\n  _DWORD *v7; // eax\n  _DWORD *v8; // eax\n\n  v3 = 0;\n  v4 = sub_100530B3(a1, a2);\n  if ( !v4 )\n    return -2005530516;\n  v5 = *(_DWORD *)(v4 + 4);\n  v6 = *(_DWORD *)(*(_DWORD *)(v5 + 44) + 28) & 8;\n  if ( a3 )\n  {\n    if ( (_BYTE)v6 )\n      *(_DWORD *)(a1[207] + *(_DWORD *)(v5 + 68)) &= ~1u;\n    *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(v4 + 4) + 44) + 28) |= 0x80u;\n    v7 = (_DWORD *)(a1[207] + *(_DWORD *)(*(_DWORD *)(v4 + 4) + 68));\n    *v7 |= 2u;\n  }\n  else\n  {\n    if ( (_BYTE)v6 )\n      *(_DWORD *)(a1[207] + *(_DWORD *)(v5 + 68)) |= 1u;\n    *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(v4 + 4) + 44) + 28) &= ~0x80u;\n    v8 = (_DWORD *)(a1[207] + *(_DWORD *)(*(_DWORD *)(v4 + 4) + 68));\n    *v8 &= ~2u;\n  }\n  return v3;\n}\n"
-}

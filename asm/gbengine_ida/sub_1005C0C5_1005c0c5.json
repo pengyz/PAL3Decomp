@@ -1,8 +1,0 @@
-{
-  "name": "sub_1005C0C5",
-  "mangled_name": "sub_1005C0C5",
-  "address": "0x1005C0C5",
-  "size_bytes": 93,
-  "signature": "int __stdcall(_DWORD *a1, double *a2, int a3)",
-  "decompiled_c": "int __stdcall sub_1005C0C5(_DWORD *a1, double *a2, int a3)\n{\n  double v5; // st7\n  char v6; // c0\n  double v7; // st7\n  __int64 v8; // rax\n\n  if ( *(_DWORD *)a2 )\n  {\n    if ( *(_DWORD *)a2 == 1 || *(_DWORD *)a2 == 2 )\n    {\n      LODWORD(v8) = *((_DWORD *)a2 + 2);\n    }\n    else\n    {\n      if ( *(_DWORD *)a2 != 3 )\n        return -2147467259;\n      v5 = a2[1];\n      if ( v6 )\n        v7 = v5 - 0.000001;\n      else\n        v7 = v5 + 0.000001;\n      v8 = (__int64)v7;\n    }\n  }\n  else\n  {\n    LODWORD(v8) = *((_DWORD *)a2 + 2) != 0;\n  }\n  *a1 = v8;\n  return 0;\n}\n"
-}

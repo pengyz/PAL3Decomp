@@ -1,8 +1,0 @@
-{
-  "name": "gbRefObject::gbRefObject(gbRefObject const &)",
-  "mangled_name": "??0gbRefObject@@QAE@ABV0@@Z",
-  "address": "0x100017C0",
-  "size_bytes": 21,
-  "signature": "gbRefObject *__thiscall(gbRefObject *this, const struct gbRefObject *a2)",
-  "decompiled_c": "gbRefObject *__thiscall gbRefObject::gbRefObject(gbRefObject *this, const struct gbRefObject *a2)\n{\n  int v3; // edx\n\n  v3 = *((_DWORD *)a2 + 1);\n  *(_DWORD *)this = &gbRefObject::`vftable';\n  *((_DWORD *)this + 1) = v3;\n  return this;\n}\n"
-}

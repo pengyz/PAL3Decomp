@@ -1,8 +1,0 @@
-{
-  "name": "gbTexture::~gbTexture(void)",
-  "mangled_name": "??1gbTexture@@UAE@XZ",
-  "address": "0x100203C0",
-  "size_bytes": 111,
-  "signature": "void __thiscall(gbTexture *this)",
-  "decompiled_c": "void __thiscall gbTexture::~gbTexture(gbTexture *this)\n{\n  gbImage2D *v2; // ecx\n  void *v3; // edi\n\n  *(_DWORD *)this = &off_100F57E8;\n  v2 = (gbImage2D *)*((_DWORD *)this + 8);\n  if ( v2 )\n  {\n    gbImage2D::Release(v2);\n    v3 = (void *)*((_DWORD *)this + 8);\n    if ( v3 )\n    {\n      gbImage2D::Release(*((gbImage2D **)this + 8));\n      operator delete(v3);\n    }\n  }\n  gbResource::~gbResource(this);\n}\n"
-}

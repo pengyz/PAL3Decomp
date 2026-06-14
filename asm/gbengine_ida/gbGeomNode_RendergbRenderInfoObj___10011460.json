@@ -1,8 +1,0 @@
-{
-  "name": "gbGeomNode::Render(gbRenderInfoObj *)",
-  "mangled_name": "?Render@gbGeomNode@@UAEXPAUgbRenderInfoObj@@@Z",
-  "address": "0x10011460",
-  "size_bytes": 184,
-  "signature": "void __thiscall(gbGeomNode *this, struct gbRenderInfoObj *a2)",
-  "decompiled_c": "void __thiscall gbGeomNode::Render(gbGeomNode *this, struct gbRenderInfoObj *a2)\n{\n  struct gbStaticMesh *mesh; // ecx\n  double v4; // st7\n  gbMatrixStack *v5; // esi\n  int v6; // [esp+4h] [ebp-8h]\n  float currentTime; // [esp+8h] [ebp-4h]\n\n  v6 = 0;\n  currentTime = this->currentTime;\n  if ( this->animMaxTime != 0.0 )\n    v6 = (__int64)(currentTime / this->animMaxTime);\n  if ( this->visible )\n  {\n    mesh = this->mesh;\n    if ( mesh )\n    {\n      v4 = currentTime - (double)v6 * this->animMaxTime;\n      if ( v4 < 0.0 )\n        v4 = 0.0;\n      *((float *)mesh + 28) = v4;\n      v5 = (gbMatrixStack *)*((_DWORD *)gbVisNode::pGfxMgr + 54);\n      gbMatrixStack::Push(v5);\n      gbMatrixStack::LoadMatrix(v5, (struct gbMatrix4 *)((char *)a2 + 32));\n      (*(void (__thiscall **)(struct gbStaticMesh *, _DWORD, struct gbRenderInfoObj *))(*(_DWORD *)this->mesh + 4))(\n        this->mesh,\n        *((_DWORD *)a2 + 2),\n        a2);\n      gbMatrixStack::Pop(v5);\n    }\n  }\n}\n"
-}
