@@ -120,8 +120,9 @@ asm/
 
 # VC6 RTM compiler tracked via Git LFS (override global *.exe/*.dll rules)
 !tools/compilers/**
-# Generated source code (regenerable from gen_headers.py / gen_cpp.py)
+# Generated source code (regenerable from codegen pipeline)
 # Do NOT manually edit these — improve IDA annotations instead
+pal3/src/
 include/pal3/gen/
 src/pal3/
 
