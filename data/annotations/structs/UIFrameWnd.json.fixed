@@ -1,0 +1,437 @@
+{
+  "name": "UIFrameWnd",
+  "base_class": [
+    "UIWnd"
+  ],
+  "base_size": 68,
+  "binary_size": 72,
+  "known_members": {
+    "68": {
+      "name": "m_pbktex",
+      "type": "gbTexture *",
+      "source": "annotation"
+    },
+    "0": {
+      "name": "__vftable",
+      "type": "void *",
+      "source": "vtable_fix"
+    }
+  },
+  "methods": {
+    "0x00442390": {
+      "name": "UIFrameWnd::_UIFrameWnd",
+      "signature": "void __thiscall()"
+    },
+    "0x00442420": {
+      "name": "UIFrameWnd::Destroy",
+      "signature": "void __thiscall()",
+      "ordinal": 3
+    },
+    "0x00442AD0": {
+      "name": "UIFrameWnd::Update",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
+      "ordinal": 16
+    },
+    "0x00443550": {
+      "name": "UIFrameWnd::_UIFrameWnd_ovl",
+      "signature": "void __thiscall()",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "source": "+strip_suffix"
+    },
+    "0x00442E80": {
+      "name": "UIFrameWnd::ctor",
+      "signature": "void __thiscall()",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+    },
+    "0x004431D0": {
+      "name": "UIFrameWnd::DestroyCallingCtor",
+      "signature": "void __thiscall UIFrameWnd::DestroyCallingCtor()"
+    },
+    "0x00442890": {
+      "name": "UIFrameWnd::CalculateLayout",
+      "signature": "int __thiscall UIFrameWnd::CalculateLayout()"
+    },
+    "0x00444AC0": {
+      "name": "UIFrameWnd::~UIFrameWnd_Full",
+      "signature": "void __thiscall UIFrameWnd::~UIFrameWnd_Full())"
+    },
+    "0x0043BB70": {
+      "name": "UIFrameWnd::UIFrameWnd",
+      "signature": "int *__thiscall()"
+    },
+    "0x0045A220": {
+      "name": "UIFrameWnd::OnPaintUpdate",
+      "signature": "int __thiscall UIFrameWnd::OnPaintUpdate()",
+      "_misattrib_evidence": "max_offset=3268>class_size=1012"
+    },
+    "0x00478880": {
+      "name": "UIFrameWnd::ProcessTimer",
+      "signature": "BOOL __thiscall(BOOL bEnable, BOOL bReset, int nInterval, int nParam)"
+    },
+    "0x0043BBC0": {
+      "name": "UIFrameWnd::Update_bbc0",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)"
+    },
+    "0x00442370": {
+      "name": "UIFrameWnd::_sdtor",
+      "signature": "UIFrameWnd *__thiscall(UIFrameWnd *Block, char pData)"
+    },
+    "0x00442540": {
+      "name": "UIFrameWnd::SetTextureByID",
+      "signature": "gbVFileSystem *__thiscall UIFrameWnd::SetTextureByID(int nTexID)"
+    },
+    "0x00442E60": {
+      "name": "UIFrameWnd::_scalar_dtor",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
+    },
+    "0x00442FF0": {
+      "name": "UIFrameWnd::Update_2ff0",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
+      "ordinal": 2
+    },
+    "0x004434C0": {
+      "name": "UIFrameWnd::InitSharedPanel",
+      "signature": "void *__thiscall UIFrameWnd::InitSharedPanel()"
+    },
+    "0x004435A0": {
+      "name": "UIFrameWnd::LoadFrameResources",
+      "signature": "gbVFileSystem *__thiscall UIFrameWnd::LoadFrameResources()",
+      "ordinal": 28
+    },
+    "0x004438F0": {
+      "name": "UIFrameWnd::Destroy_38f0",
+      "signature": "void __thiscall()",
+      "ordinal": 24
+    },
+    "0x00443950": {
+      "name": "UIFrameWnd::Render",
+      "signature": "void **__thiscall()",
+      "ordinal": 22,
+      "source": "+canonical_rename"
+    },
+    "0x00443970": {
+      "name": "UIFrameWnd::UpdateIfVisible",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
+      "ordinal": 23
+    },
+    "0x00444D30": {
+      "name": "UIFrameWnd::ProcessInput",
+      "signature": "BOOL __thiscall UIFrameWnd::ProcessInput(int nVal, int nVal2)",
+      "ordinal": 31
+    },
+    "0x004425D0": {
+      "name": "UIFrameWnd::SetTextureByName",
+      "signature": "void __thiscall UIFrameWnd::SetTextureByName(LPCSTR lpTexName, char bCalcUV)"
+    },
+    "0x00442C80": {
+      "name": "UIFrameWnd::SetFrameParam",
+      "signature": "int __thiscall UIFrameWnd::SetFrameParam(int nVal)"
+    },
+    "0x00442D40": {
+      "name": "UIFrameWnd::_UIFrameWnd_ovl_2d40",
+      "signature": "void __thiscall UIFrameWnd::~UIFrameWnd())"
+    },
+    "0x00442E90": {
+      "name": "UIFrameWnd::RenderWithTexture",
+      "signature": "void __thiscall UIFrameWnd::RenderWithTexture()",
+      "ordinal": 1
+    },
+    "0x00443200": {
+      "name": "UIFrameWnd::Render",
+      "signature": "void __thiscall()",
+      "ordinal": 8
+    },
+    "0x00444AD0": {
+      "name": "UIFrameWnd::RenderAll",
+      "signature": "int __thiscall UIFrameWnd::RenderAll()",
+      "ordinal": 30
+    },
+    "0x0048CFB0": {
+      "name": "UIFrameWnd::RollProbability",
+      "signature": "bool __thiscall UIFrameWnd::RollProbability(float fProb)"
+    },
+    "0x004431B0": {
+      "name": "UIFrameWnd::sub_4431B0",
+      "signature": "int __thiscall(void *Block, char)",
+      "source": "vtable_migrated",
+      "ordinal": 12
+    },
+    "0x004433A0": {
+      "name": "UIFrameWnd::sub_4433A0",
+      "signature": "int __thiscall(void *Block, char)",
+      "source": "vtable_migrated",
+      "ordinal": 19
+    },
+    "0x00443530": {
+      "name": "UIFrameWnd::sub_443530",
+      "signature": "int __thiscall(void *Block, char)",
+      "source": "vtable_migrated",
+      "ordinal": 26
+    },
+    "0x00444AA0": {
+      "name": "UIFrameWnd::sub_444AA0",
+      "signature": "int __thiscall(void *Block, char)",
+      "source": "vtable_migrated",
+      "ordinal": 34
+    },
+    "0x00442C60": {
+      "name": "UIFrameWnd::SetPosition",
+      "signature": "void __thiscall(int nVal, int nVal2)",
+      "source": "pdb_ret"
+    },
+    "0x00450560": {
+      "name": "UIFrameWnd::IsOnScreen",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
+      "source": "ida_xref:sub_fix_from_decomp_this_type"
+    },
+    "0x004433C0": {
+      "name": "UIFrameWnd::_dtor_thunk",
+      "signature": "void __thiscall()"
+    },
+    "0x00442D20": {
+      "name": "UIFrameWnd::_sdtor_8",
+      "signature": "UIFrameWnd *__thiscall(UIFrameWnd *Block, char a2)"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AE10",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00442E90",
+          "from": null
+        },
+        {
+          "addr": "0x00442FF0",
+          "from": null
+        },
+        {
+          "addr": "0x00442420",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00442E60",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        }
+      ]
+    },
+    {
+      "addr": "0x0056AE2C",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00443200",
+          "from": null
+        },
+        {
+          "addr": "0x00442FF0",
+          "from": null
+        },
+        {
+          "addr": "0x00442420",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004431B0",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        }
+      ]
+    },
+    {
+      "addr": "0x0056AE48",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004433D0",
+          "from": null
+        },
+        {
+          "addr": "0x00442AD0",
+          "from": null
+        },
+        {
+          "addr": "0x00442420",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004433A0",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00443950",
+          "from": null
+        },
+        {
+          "addr": "0x00443970",
+          "from": null
+        },
+        {
+          "addr": "0x004438F0",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00443530",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004435A0",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056AE84",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00444AD0",
+          "from": null
+        },
+        {
+          "addr": "0x00444D30",
+          "from": null
+        },
+        {
+          "addr": "0x00442420",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00444AA0",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        }
+      ]
+    },
+    {
+      "addr": "0x0056AE64",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00443950",
+          "from": "CCBFiveNimbusWindow"
+        },
+        {
+          "addr": "0x00443970",
+          "from": "CCBFiveNimbusWindow"
+        },
+        {
+          "addr": "0x004438F0",
+          "from": "CCBFiveNimbusWindow"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00443530",
+          "from": "CCBFiveNimbusWindow"
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004435A0",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056AE84",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00444AD0",
+          "from": null
+        },
+        {
+          "addr": "0x00444D30",
+          "from": null
+        },
+        {
+          "addr": "0x00442420",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00444AA0",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1592 @@
+{
+  "name": "RenderTarget2",
+  "base_class": null,
+  "base_size": null,
+  "binary_size": 4292,
+  "known_members": {
+    "128": {
+      "name": "m_fSoundTimeout",
+      "type": "float",
+      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic | ida_xref"
+    },
+    "132": {
+      "name": "m_nSoundState",
+      "type": "int",
+      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic | ida_xref"
+    },
+    "136": {
+      "name": "m_nSoundParam",
+      "type": "int",
+      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic | ida_xref"
+    },
+    "140": {
+      "name": "m_fSoundVol",
+      "type": "float",
+      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic | ida_xref"
+    },
+    "144": {
+      "name": "m_fSoundPan",
+      "type": "float",
+      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic | ida_xref"
+    },
+    "160": {
+      "name": "m_nFlags0",
+      "type": "int",
+      "source": "decomp:set_0_in_reset"
+    },
+    "164": {
+      "name": "m_nFlags1",
+      "type": "int",
+      "source": "decomp:set_0_in_reset"
+    },
+    "168": {
+      "name": "m_nTargetId",
+      "type": "int",
+      "source": "reverted_auto_semantic:2x | ida_xref"
+    },
+    "172": {
+      "name": "m_pfnBegin",
+      "type": "float",
+      "source": "reverted_auto_semantic:2x|reverted:pseudo_semantic | ida_xref"
+    },
+    "176": {
+      "name": "m_szFmtBuf",
+      "type": "int",
+      "source": "decomp:20x_sprintf_target(\"%s%03d\")"
+    },
+    "180": {
+      "name": "m_fTargetScale",
+      "type": "float",
+      "source": "reverted_auto_semantic:2x|reverted:pseudo_semantic | ida_xref"
+    },
+    "184": {
+      "name": "m_fTargetPosX",
+      "type": "float",
+      "source": "reverted_auto_semantic:2x|reverted:pseudo_semantic | ida_xref"
+    },
+    "188": {
+      "name": "m_fTargetPosY",
+      "type": "float",
+      "source": "reverted_auto_semantic:2x|reverted:pseudo_semantic | ida_xref"
+    },
+    "192": {
+      "name": "m_fTargetPosZ",
+      "type": "float",
+      "source": "reverted_auto_semantic:2x|reverted:pseudo_semantic | ida_xref"
+    },
+    "4": {
+      "name": "m_pSurface",
+      "type": "char *",
+      "source": "B:naming_m_p+FPU_misattrib",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "8": {
+      "name": "m_bActive",
+      "type": "unsigned char",
+      "source": "ida_decomp:Resolve if(this), _nearby_4c04c0 = 0, 10 refs"
+    },
+    "16": {
+      "name": "m_nFallbackMode",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "20": {
+      "name": "m_fBlendParam",
+      "type": "float",
+      "source": "ida_decomp:_nearby_4c04c0 = 0.0, _nearby_4c0c10 loaded, 10 refs"
+    },
+    "24": {
+      "name": "m_pTargetArray",
+      "type": "char *",
+      "source": "A:decomp LODWORD=operator_new/delete+stride152_arithmetic in 0x004C0650,0x004C2170"
+    },
+    "28": {
+      "name": "m_nCurTarget",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "32": {
+      "name": "m_nCurPass",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "40": {
+      "name": "m_nMaxTargets",
+      "type": "int",
+      "source": "binary:C7 46 28 08=mov [esi+0x28],8 + loop bound"
+    },
+    "44": {
+      "name": "m_nMaxPasses",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "48": {
+      "name": "m_szPrefix",
+      "type": "int",
+      "source": "decomp:12x_sprintf_%s_source"
+    },
+    "52": {
+      "name": "m_fSpeed",
+      "type": "float",
+      "source": "decomp:set_0.0"
+    },
+    "60": {
+      "name": "m_fBlend",
+      "type": "float",
+      "source": "decomp:set_0.0_in_4c27d0+4c3c90"
+    },
+    "0": {
+      "name": "m_pVtable",
+      "type": "char *",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(vtable pointer)",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "12": {
+      "name": "m_SubObj",
+      "type": "int",
+      "source": "decomp:40x_accessed_address_taken(sub_object)"
+    },
+    "36": {
+      "name": "m_fTime",
+      "type": "float",
+      "source": "decomp:set_0.0_multiple_funcs"
+    },
+    "56": {
+      "name": "m_fParam",
+      "type": "float",
+      "source": "decomp:set_0.0"
+    },
+    "88": {
+      "name": "m_EffectSlots",
+      "type": "int",
+      "source": "decomp:18byte_stride_loop_over_BYTE_check"
+    },
+    "104": {
+      "name": "_todo_068",
+      "type": "float",
+      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
+    },
+    "108": {
+      "name": "_todo_06C",
+      "type": "float",
+      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
+    },
+    "112": {
+      "name": "_todo_70",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "116": {
+      "name": "_todo_074",
+      "type": "float",
+      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
+    },
+    "120": {
+      "name": "_todo_078",
+      "type": "int",
+      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
+    },
+    "124": {
+      "name": "_todo_07C",
+      "type": "float",
+      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
+    },
+    "148": {
+      "name": "m_pTargetObj",
+      "type": "int",
+      "source": "binary_scan:5refs | ida_xref"
+    },
+    "200": {
+      "name": "m_nTargetSize",
+      "type": "int",
+      "source": "binary_scan:1refs | ida_xref"
+    },
+    "228": {
+      "name": "m_pfnStageSetup",
+      "type": "int",
+      "source": "binary_scan:8refs | ida_xref"
+    },
+    "260": {
+      "name": "m_pfnStageGeometry",
+      "type": "int",
+      "source": "binary_scan:3refs | ida_xref"
+    },
+    "268": {
+      "name": "m_pfnStageProcess",
+      "type": "int",
+      "source": "binary_scan:21refs | ida_xref"
+    },
+    "272": {
+      "name": "m_nTaskState",
+      "type": "int",
+      "source": "binary_scan:1refs | ida_xref2"
+    },
+    "276": {
+      "name": "m_pfnStagePostFx",
+      "type": "int",
+      "source": "binary_scan:4refs | ida_xref"
+    },
+    "324": {
+      "name": "m_pfnStageOutput",
+      "type": "int",
+      "source": "binary_scan:1refs | ida_xref"
+    },
+    "328": {
+      "name": "m_pfnStageComposite",
+      "type": "int",
+      "source": "binary_scan:1refs | ida_xref"
+    },
+    "356": {
+      "name": "m_pfnUpdatePost",
+      "type": "int",
+      "source": "binary_scan:2refs | ida_xref"
+    },
+    "380": {
+      "name": "m_bFlag",
+      "type": "unsigned char",
+      "source": "A:mov_byte_1_confirms_byte"
+    },
+    "384": {
+      "name": "_todo_180",
+      "type": "float",
+      "source": "binary_scan:1refs"
+    },
+    "388": {
+      "name": "_todo_184",
+      "type": "float",
+      "source": "binary_scan:1refs"
+    },
+    "400": {
+      "name": "m_pfnStagePresent",
+      "type": "int",
+      "source": "binary_scan:2refs | ida_xref"
+    },
+    "416": {
+      "name": "m_pfnStageCleanup",
+      "type": "int",
+      "source": "binary_scan:1refs | ida_xref"
+    },
+    "524": {
+      "name": "m_nTargetType",
+      "type": "int",
+      "source": "binary_scan:5refs | ida_xref2"
+    },
+    "1648": {
+      "name": "m_nSoundChannels",
+      "type": "int",
+      "source": "binary_scan:1refs | ida_xref2"
+    },
+    "1660": {
+      "name": "m_nSampleRate",
+      "type": "int",
+      "source": "binary_scan:1refs | ida_xref2"
+    },
+    "1716": {
+      "name": "m_nBufferSamples",
+      "type": "int",
+      "source": "binary_scan:1refs | ida_xref2"
+    },
+    "1812": {
+      "name": "m_nRenderFlags",
+      "type": "int",
+      "source": "binary_scan:1refs | ida_xref2"
+    },
+    "1816": {
+      "name": "m_pRenderData",
+      "type": "int",
+      "source": "binary_scan:49refs | ida_xref2"
+    },
+    "2280": {
+      "name": "m_nClearFlags",
+      "type": "int",
+      "source": "binary_scan:1refs | ida_xref2"
+    },
+    "2284": {
+      "name": "m_nClearColor",
+      "type": "int",
+      "source": "binary_scan:1refs | ida_xref2"
+    },
+    "2348": {
+      "name": "m_vTargetPos",
+      "type": "int",
+      "source": "binary_scan:1refs | ida_xref2"
+    }
+  },
+  "methods": {
+    "0x004BF780": {
+      "name": "RenderTarget2::Init",
+      "signature": "int __thiscall()"
+    },
+    "0x004BFD70": {
+      "name": "RenderTarget2::Begin",
+      "signature": "void *__cdecl __thiscall()"
+    },
+    "0x004BFDD0": {
+      "name": "RenderTarget2::Resolve",
+      "signature": "void __thiscall()"
+    },
+    "0x004C0200": {
+      "name": "RenderTarget2::Update",
+      "signature": "void __thiscall(float fVal)",
+      "class": "RenderTarget2"
+    },
+    "0x004C04C0": {
+      "name": "RenderTarget2::ClearTarget",
+      "signature": "CEffBase **__thiscall()"
+    },
+    "0x004C0520": {
+      "name": "CEffAction::sub_4C0520",
+      "signature": "void __thiscall()",
+      "ordinal": 10,
+      "source": "manual_fix_vtable"
+    },
+    "0x004C1570": {
+      "name": "RenderTarget2::Reset",
+      "signature": "CEffAudio **__thiscall()"
+    },
+    "0x004C15B0": {
+      "name": "RenderTarget2::CreateEffAudio",
+      "signature": "CEffAudio **__thiscall RenderTarget2::CreateEffAudio()",
+      "ordinal": 46
+    },
+    "0x004C2050": {
+      "name": "RenderTarget2::ResetSurface",
+      "signature": "CEffBink **__thiscall()"
+    },
+    "0x004C2090": {
+      "name": "RenderTarget2::CreateEffBink",
+      "signature": "CEffBink **__thiscall RenderTarget2::CreateEffBink()",
+      "ordinal": 67
+    },
+    "0x004C27D0": {
+      "name": "RenderTarget2::Deactivate",
+      "signature": "void ** __thiscall()"
+    },
+    "0x004C2820": {
+      "name": "RenderTarget2::CreateDeactivated",
+      "signature": "void **__thiscall RenderTarget2::CreateDeactivated()",
+      "ordinal": 88
+    },
+    "0x004C2BA0": {
+      "name": "RenderTarget2::RenderFromParams",
+      "signature": "void __thiscall RenderTarget2::RenderFromParams(float *pfVal)",
+      "ordinal": 90
+    },
+    "0x004C3450": {
+      "name": "RenderTarget2::ResetTargetSlot",
+      "signature": "CEffCallBack **__thiscall()"
+    },
+    "0x004C3490": {
+      "name": "RenderTarget2::CreateEffCallBack",
+      "signature": "CEffCallBack **__thiscall RenderTarget2::CreateEffCallBack()",
+      "ordinal": 10
+    },
+    "0x004C3D90": {
+      "name": "CEffCylinder::sub_4C3D90",
+      "signature": "void __thiscall()",
+      "source": "manual_fix_vtable",
+      "ordinal": 31
+    },
+    "0x004CEEC0": {
+      "name": "RenderTarget2::AddCallbackEffect",
+      "signature": "int __thiscall RenderTarget2::AddCallbackEffect(RenderTarget2 *pTarget, int nVal, RenderTarget2 *pParam)"
+    },
+    "0x004CF340": {
+      "name": "RenderTarget2::AddGenericEffect",
+      "signature": "int __thiscall RenderTarget2::AddGenericEffect(RenderTarget2 *pTarget, int nVal, RenderTarget2 *pParam)"
+    },
+    "0x004CFA00": {
+      "name": "RenderTarget2::AddBinkEffect",
+      "signature": "int __thiscall RenderTarget2::AddBinkEffect(RenderTarget2 *pTarget, int nVal, RenderTarget2 *pParam)"
+    },
+    "0x004C0560": {
+      "name": "RenderTarget2::ExecutePasses",
+      "signature": "int __thiscall()"
+    },
+    "0x004C0600": {
+      "name": "RenderTarget2::StubReturn0",
+      "signature": "char __thiscall RenderTarget2::StubReturn0(int nVal)",
+      "ordinal": 22
+    },
+    "0x004C0920": {
+      "name": "CEffAction::sub_4C0920",
+      "signature": "void __thiscall()",
+      "ordinal": 12,
+      "source": "manual_fix_vtable"
+    },
+    "0x004C09E0": {
+      "name": "CEffAction::sub_4C09E0",
+      "signature": "void __thiscall()",
+      "ordinal": 15,
+      "source": "manual_fix_vtable"
+    },
+    "0x004C0C10": {
+      "name": "RenderTarget2::SceneRoleCallback",
+      "signature": "int __thiscall RenderTarget2::SceneRoleCallback(int nParam)"
+    },
+    "0x004C13B0": {
+      "name": "RenderTarget2::RenderScene",
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)"
+    },
+    "0x004C1490": {
+      "name": "RenderTarget2::BeginRenderPass",
+      "signature": "RenderTarget2 * __thiscall(void *Block, char pData)",
+      "ordinal": 20
+    },
+    "0x004C1660": {
+      "name": "RenderTarget2::DestroyEffBase",
+      "signature": "int __thiscall RenderTarget2::DestroyEffBase()"
+    },
+    "0x004C1700": {
+      "name": "RenderTarget2::LoadResourcesByIndex",
+      "signature": "void __thiscall RenderTarget2::LoadResourcesByIndex(float *pfVal)",
+      "ordinal": 48
+    },
+    "0x004C18D0": {
+      "name": "RenderTarget2::CreateSoundTarget",
+      "signature": "void __thiscall RenderTarget2::CreateSoundTarget(int *p_DWORD)",
+      "ordinal": 51
+    },
+    "0x004C1B00": {
+      "name": "RenderTarget2::ProcessSoundPass",
+      "signature": "int __thiscall RenderTarget2::ProcessSoundPass(int nVal)"
+    },
+    "0x004C1DD0": {
+      "name": "RenderTarget2::GetEffAudioTemplate",
+      "signature": "int *__thiscall RenderTarget2::GetEffAudioTemplate(int nType)",
+      "ordinal": 53
+    },
+    "0x004C1E90": {
+      "name": "RenderTarget2::RenderOverlay",
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)"
+    },
+    "0x004C1F70": {
+      "name": "RenderTarget2::DestroyEffAudio",
+      "signature": "RenderTarget2 *__thiscall RenderTarget2::DestroyEffAudio(void *Block, char pData)",
+      "ordinal": 56
+    },
+    "0x004C20D0": {
+      "name": "RenderTarget2::DestroyEffBink",
+      "signature": "int __thiscall RenderTarget2::DestroyEffBink()"
+    },
+    "0x004C2170": {
+      "name": "RenderTarget2::AllocTargets",
+      "signature": "char __thiscall RenderTarget2::AllocTargets(int nVal)",
+      "ordinal": 40
+    },
+    "0x004C2280": {
+      "name": "RenderTarget2::CreateVideoTarget",
+      "signature": "void __thiscall RenderTarget2::CreateVideoTarget(int *p_DWORD)",
+      "ordinal": 72
+    },
+    "0x004C24B0": {
+      "name": "RenderTarget2::ProcessVideoPass",
+      "signature": "int __thiscall RenderTarget2::ProcessVideoPass(int nVal)"
+    },
+    "0x004C25C0": {
+      "name": "RenderTarget2::GetTargetAddress",
+      "signature": "int * __thiscall(int nVal)",
+      "ordinal": 74
+    },
+    "0x004C2700": {
+      "name": "RenderTarget2::BeginNextPass",
+      "signature": "RenderTarget2 * __thiscall(void *Block, char pData)",
+      "ordinal": 77
+    },
+    "0x004C2850": {
+      "name": "RenderTarget2::AdjustThisCall",
+      "signature": "int __thiscall RenderTarget2::AdjustThisCall(int (__thiscall *a2)(char *, int), int a3, int a4)",
+      "ordinal": 1
+    },
+    "0x004C2890": {
+      "name": "RenderTarget2::BeginMultiPass",
+      "signature": "int __thiscall()"
+    },
+    "0x004C2930": {
+      "name": "RenderTarget2::InitTargetPos",
+      "signature": "int __thiscall RenderTarget2::InitTargetPos(float *pfVal, float fVal, float fVal2, float fVal3)",
+      "ordinal": 83
+    },
+    "0x004C29A0": {
+      "name": "RenderTarget2::UpdateInternal",
+      "signature": "void __thiscall(float fVal)",
+      "ordinal": 44
+    },
+    "0x004C2D00": {
+      "name": "RenderTarget2::CreateEffectTarget",
+      "signature": "void __thiscall RenderTarget2::CreateEffectTarget(int *p_DWORD)",
+      "ordinal": 93
+    },
+    "0x004C3160": {
+      "name": "RenderTarget2::GetCallbackTable",
+      "signature": "int *__thiscall RenderTarget2::GetCallbackTable(int nVal)",
+      "ordinal": 95
+    },
+    "0x004C3260": {
+      "name": "RenderTarget2::RenderPostProcess",
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)"
+    },
+    "0x004C3340": {
+      "name": "RenderTarget2::_scalar_dtor_Bink",
+      "signature": "RenderTarget2 *__thiscall RenderTarget2::_scalar_dtor_Bink(void *Block, char pData)",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 98
+    },
+    "0x004C34D0": {
+      "name": "RenderTarget2::DestroyEffCallBack",
+      "signature": "int __thiscall RenderTarget2::DestroyEffCallBack()"
+    },
+    "0x004C3570": {
+      "name": "RenderTarget2::UpdatePost",
+      "signature": "void __thiscall RenderTarget2::UpdatePost(float fVal)",
+      "ordinal": 8
+    },
+    "0x004C3770": {
+      "name": "RenderTarget2::CreateCameraTarget",
+      "signature": "void __thiscall RenderTarget2::CreateCameraTarget(int *p_DWORD)",
+      "ordinal": 15
+    },
+    "0x004C39A0": {
+      "name": "RenderTarget2::ProcessCameraPass",
+      "signature": "int __thiscall RenderTarget2::ProcessCameraPass(int nVal)"
+    },
+    "0x004C3A90": {
+      "name": "RenderTarget2::GetTargetByType",
+      "signature": "int * __thiscall(int nVal)",
+      "ordinal": 17
+    },
+    "0x004C3AD0": {
+      "name": "RenderTarget2::RenderFinal",
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)"
+    },
+    "0x004C3BB0": {
+      "name": "RenderTarget2::AdvancePass",
+      "signature": "RenderTarget2 * __thiscall(void *Block, char pData)",
+      "ordinal": 20
+    },
+    "0x004C5810": {
+      "name": "RenderTarget2::_sdtor",
+      "signature": "char *__thiscall(char pData)"
+    },
+    "0x004D05E0": {
+      "name": "RenderTarget2::CameraInterpCallback",
+      "signature": "int __thiscall RenderTarget2::CameraInterpCallback(int nVal)"
+    },
+    "0x004C1550": {
+      "name": "RenderTarget2::vfunc_0",
+      "signature": "virtual void __thiscall(float a2)",
+      "source": "vtable_migrated",
+      "ordinal": 0
+    },
+    "0x004C1560": {
+      "name": "RenderTarget2::vfunc_2",
+      "signature": "virtual char *__thiscall(char a2)",
+      "source": "vtable_migrated",
+      "ordinal": 2
+    },
+    "0x004C0650": {
+      "name": "RenderTarget2::AllocSegments",
+      "signature": "virtual char __thiscall(int nVal)",
+      "source": "vtable_migrated+pdb_correct",
+      "ordinal": 4
+    },
+    "0x004C0640": {
+      "name": "RenderTarget2::ResetState",
+      "signature": "virtual void __thiscall()",
+      "source": "vtable_migrated+pdb_correct",
+      "ordinal": 5
+    },
+    "0x00408BD0": {
+      "name": "RenderTarget2::_todo_408BD0",
+      "signature": "void __thiscall (void *pData)",
+      "source": "vtable_migrated",
+      "ordinal": 6
+    },
+    "0x004C0740": {
+      "name": "CEffAction::UpdateFrame",
+      "signature": "void __thiscall(float fVal)",
+      "source": "manual_fix_vtable",
+      "ordinal": 8
+    },
+    "0x004C2600": {
+      "name": "RenderTarget2::CalcDeltaTime",
+      "signature": "int __thiscall(float fTime)",
+      "source": "vtable_migrated+manual_ida_body",
+      "ordinal": 18
+    },
+    "0x0055434F": {
+      "name": "RenderTarget2::sub_0055434F",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 19
+    },
+    "0x00401800": {
+      "name": "RenderTarget2::_todo_401800",
+      "signature": "void __thiscall()",
+      "source": "vtable_migrated",
+      "ordinal": 24
+    },
+    "0x004C2040": {
+      "name": "RenderTarget2::sub_004C2040",
+      "signature": "virtual char *__thiscall(char a2)",
+      "source": "vtable_migrated",
+      "ordinal": 38
+    },
+    "0x004D33A0": {
+      "name": "RenderTarget2::sub_004D33A0",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 41
+    },
+    "0x004C27C0": {
+      "name": "RenderTarget2::sub_004C27C0",
+      "signature": "virtual char *__thiscall(char a2)",
+      "source": "vtable_migrated",
+      "ordinal": 59
+    },
+    "0x004C3400": {
+      "name": "RenderTarget2::sub_004C3400",
+      "signature": "virtual char *__thiscall(char a2)",
+      "source": "vtable_migrated",
+      "ordinal": 80
+    },
+    "0x004C2840": {
+      "name": "RenderTarget2::do_always_noconv",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 89
+    },
+    "0x004AF760": {
+      "name": "RenderTarget2::Update",
+      "signature": "int __thiscall(int)",
+      "source": "vtable_evidence+pdb_name",
+      "ordinal": 14
+    },
+    "0x004C4060": {
+      "name": "RenderTarget2::Create",
+      "signature": "virtual char __thiscall(tagEffObjType *pType)",
+      "source": "vtable_evidence",
+      "ordinal": 25
+    },
+    "0x004C3EC0": {
+      "name": "RenderTarget2::Init",
+      "signature": "virtual int __thiscall(float *pType, float fx, float fy, float fz)",
+      "source": "vtable_evidence",
+      "ordinal": 26
+    },
+    "0x004C45A0": {
+      "name": "RenderTarget2::CreateTask",
+      "signature": "virtual void __thiscall(float p)",
+      "source": "vtable_evidence",
+      "ordinal": 29
+    },
+    "0x004C4370": {
+      "name": "RenderTarget2::Destroy",
+      "signature": "virtual void __thiscall()",
+      "source": "vtable_evidence",
+      "ordinal": 30
+    },
+    "0x004C5150": {
+      "name": "RenderTarget2::GetEditorObjDescription",
+      "signature": "virtual const char *__thiscall(int nIndex)",
+      "source": "vtable_evidence",
+      "ordinal": 34
+    },
+    "0x004C48D0": {
+      "name": "RenderTarget2::ProcInitTask",
+      "signature": "virtual void __thiscall(int *dwParam)",
+      "source": "vtable_evidence",
+      "ordinal": 36
+    },
+    "0x004C5010": {
+      "name": "RenderTarget2::GetEditorTaskDescription",
+      "signature": "virtual const char *__thiscall(int nIndex)",
+      "source": "vtable_evidence",
+      "ordinal": 38
+    },
+    "0x004C2620": {
+      "name": "RenderTarget2::RenderEffect",
+      "signature": "void __thiscall(int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)",
+      "source": "pdb_ret"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056F5F0",
+      "slots": [
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C0740",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C0520",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004C0920",
+          "from": null
+        },
+        {
+          "addr": "0x004C0510",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C09E0",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004C1270",
+          "from": null
+        },
+        {
+          "addr": "0x004C2600",
+          "from": null
+        },
+        {
+          "addr": "0x0055434F",
+          "from": null
+        },
+        {
+          "addr": "0x004C1490",
+          "from": null
+        },
+        {
+          "addr": "0x004C0620",
+          "from": null
+        },
+        {
+          "addr": "0x004C0600",
+          "from": null
+        },
+        {
+          "addr": "0x004C0610",
+          "from": null
+        },
+        {
+          "addr": "0x00401800",
+          "from": null
+        },
+        {
+          "addr": "0x00401800",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x00401800",
+          "from": null
+        },
+        {
+          "addr": "0x0055434F",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C0510",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x00401800",
+          "from": null
+        },
+        {
+          "addr": "0x004C0510",
+          "from": null
+        },
+        {
+          "addr": "0x004C2030",
+          "from": null
+        },
+        {
+          "addr": "0x004C2850",
+          "from": null
+        },
+        {
+          "addr": "0x004C2040",
+          "from": null
+        },
+        {
+          "addr": "0x004C1640",
+          "from": null
+        },
+        {
+          "addr": "0x004C2170",
+          "from": null
+        },
+        {
+          "addr": "0x004D33A0",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056F680",
+      "slots": [
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C29A0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C15B0",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004C1700",
+          "from": null
+        },
+        {
+          "addr": "0x004C0510",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C18D0",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004C1DD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C2600",
+          "from": null
+        },
+        {
+          "addr": "0x0055434F",
+          "from": null
+        },
+        {
+          "addr": "0x004C1F70",
+          "from": null
+        },
+        {
+          "addr": "0x004C2030",
+          "from": null
+        },
+        {
+          "addr": "0x004C2850",
+          "from": null
+        },
+        {
+          "addr": "0x004C27C0",
+          "from": null
+        },
+        {
+          "addr": "0x004C20B0",
+          "from": null
+        },
+        {
+          "addr": "0x004C2170",
+          "from": null
+        },
+        {
+          "addr": "0x004D33A0",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056F6D4",
+      "slots": [
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C29A0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C2090",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C0510",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C2280",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004C25C0",
+          "from": null
+        },
+        {
+          "addr": "0x004C2600",
+          "from": null
+        },
+        {
+          "addr": "0x0055434F",
+          "from": null
+        },
+        {
+          "addr": "0x004C2700",
+          "from": null
+        },
+        {
+          "addr": "0x004C2030",
+          "from": null
+        },
+        {
+          "addr": "0x004C2850",
+          "from": null
+        },
+        {
+          "addr": "0x004C3400",
+          "from": null
+        },
+        {
+          "addr": "0x004C2870",
+          "from": null
+        },
+        {
+          "addr": "0x004C0650",
+          "from": null
+        },
+        {
+          "addr": "0x004C2930",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056F728",
+      "slots": [
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C29A0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C2820",
+          "from": null
+        },
+        {
+          "addr": "0x004C2840",
+          "from": null
+        },
+        {
+          "addr": "0x004C2BA0",
+          "from": null
+        },
+        {
+          "addr": "0x004C0510",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C2D00",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004C3160",
+          "from": null
+        },
+        {
+          "addr": "0x004C2600",
+          "from": null
+        },
+        {
+          "addr": "0x0055434F",
+          "from": null
+        },
+        {
+          "addr": "0x004C3340",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056F5E4",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004C0540",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004C0650",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004C0640",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004C0740",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004C0520",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004C0920",
+          "from": null
+        },
+        {
+          "addr": "0x004C0510",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C09E0",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004C1270",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056F674",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004C1640",
+          "from": "CEffAudio"
+        },
+        {
+          "addr": "0x004C2170",
+          "from": "CEffAudio"
+        },
+        {
+          "addr": "0x004D33A0",
+          "from": "CEffAudio"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004C29A0",
+          "from": "CEffAudio"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004C15B0",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004C1700",
+          "from": null
+        },
+        {
+          "addr": "0x004C0510",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C18D0",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004C1DD0",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056F6C8",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004C20B0",
+          "from": "CEffBink"
+        },
+        {
+          "addr": "0x004C2170",
+          "from": "CEffAudio"
+        },
+        {
+          "addr": "0x004D33A0",
+          "from": "CEffBink"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004C29A0",
+          "from": "CEffAudio"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004C2090",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C0510",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C2280",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004C25C0",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056F71C",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004C2870",
+          "from": null
+        },
+        {
+          "addr": "0x004C0650",
+          "from": null
+        },
+        {
+          "addr": "0x004C2930",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C29A0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C2820",
+          "from": null
+        },
+        {
+          "addr": "0x004C2840",
+          "from": null
+        },
+        {
+          "addr": "0x004C2BA0",
+          "from": null
+        },
+        {
+          "addr": "0x004C0510",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C2D00",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004C3160",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056F780",
+      "slots": [
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C3570",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C3490",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C0510",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C3770",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004C3A90",
+          "from": null
+        },
+        {
+          "addr": "0x004C2600",
+          "from": null
+        },
+        {
+          "addr": "0x0055434F",
+          "from": null
+        },
+        {
+          "addr": "0x004C3BB0",
+          "from": null
+        },
+        {
+          "addr": "0x004C5800",
+          "from": null
+        },
+        {
+          "addr": "0x004C2850",
+          "from": null
+        },
+        {
+          "addr": "0x004C5810",
+          "from": "CEffCylinder"
+        },
+        {
+          "addr": "0x004C3DB0",
+          "from": null
+        },
+        {
+          "addr": "0x004C4060",
+          "from": null
+        },
+        {
+          "addr": "0x004C3EC0",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056F7D4",
+      "slots": [
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C45A0",
+          "from": null
+        },
+        {
+          "addr": "0x004C4370",
+          "from": null
+        },
+        {
+          "addr": "0x004C3D90",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C5150",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C48D0",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004C5010",
+          "from": null
+        },
+        {
+          "addr": "0x004C2600",
+          "from": null
+        },
+        {
+          "addr": "0x0055434F",
+          "from": null
+        },
+        {
+          "addr": "0x004C5740",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056F774",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004C34B0",
+          "from": "CEffCallBack"
+        },
+        {
+          "addr": "0x004C0650",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004D33A0",
+          "from": "CEffCallBack"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004C3570",
+          "from": "CEffCallBack"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004C3490",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C0510",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C3770",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004C3A90",
+          "from": null
+        }
+      ]
+    }
+  ]
+}

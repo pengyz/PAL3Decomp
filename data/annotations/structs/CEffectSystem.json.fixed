@@ -1,0 +1,318 @@
+{
+  "name": "CEffectSystem",
+  "base_class": null,
+  "base_size": null,
+  "binary_size": 344,
+  "known_members": {
+    "0": {
+      "name": "m_pDisplay",
+      "type": "gbGfxManager *",
+      "source": "annotation"
+    },
+    "4": {
+      "name": "m_pVertexBuffer",
+      "type": "gbDynVertBuf *",
+      "source": "annotation"
+    },
+    "8": {
+      "name": "m_pAdditiveBlend",
+      "type": "gbRenderEffect *",
+      "source": "annotation"
+    },
+    "12": {
+      "name": "m_pAlphaBlend",
+      "type": "gbRenderEffect *",
+      "source": "annotation"
+    },
+    "16": {
+      "name": "m_DefaultUVSet",
+      "type": "tagUVSet[16]",
+      "source": "annotation"
+    },
+    "272": {
+      "name": "m_bInitialized",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "276": {
+      "name": "m_nEffect",
+      "type": "int",
+      "source": "annotation"
+    },
+    "280": {
+      "name": "m_pEffect",
+      "type": "CEffect *[8]",
+      "source": "annotation"
+    },
+    "312": {
+      "name": "m_dDeltaTime",
+      "type": "double",
+      "source": "annotation"
+    },
+    "320": {
+      "name": "m_dTimeFund",
+      "type": "double",
+      "source": "annotation"
+    },
+    "328": {
+      "name": "m_fTimeFund",
+      "type": "float",
+      "source": "annotation"
+    },
+    "332": {
+      "name": "m_fTimeScale",
+      "type": "int",
+      "source": "annotation"
+    },
+    "336": {
+      "name": "m_fWindDirection",
+      "type": "int",
+      "source": "annotation"
+    },
+    "340": {
+      "name": "m_fWindSpeed",
+      "type": "int",
+      "source": "annotation"
+    }
+  },
+  "methods": {
+    "0x004C6240": {
+      "name": "CEffectSystem::~CEffectSystem",
+      "signature": "int *__thiscall(int nVal)"
+    },
+    "0x004C6260": {
+      "name": "CEffectSystem::Reset",
+      "signature": "int *__thiscall(CEffectSystem *Block, char pData)",
+      "ordinal": 8
+    },
+    "0x004C6280": {
+      "name": "CEffectSystem::Init",
+      "signature": "bool __thiscall()",
+      "source": "pdb_ret"
+    },
+    "0x004C6290": {
+      "name": "CEffectSystem::Destroy",
+      "signature": "void __thiscall()"
+    },
+    "0x004C6330": {
+      "name": "CEffectSystem::GetEffectIndex",
+      "signature": "CEffect *__thiscall()"
+    },
+    "0x004C6340": {
+      "name": "CEffectSystem::CreateEffect",
+      "signature": "int __thiscall()"
+    },
+    "0x004C6350": {
+      "name": "CEffectSystem::GetEffect",
+      "signature": "void __thiscall()"
+    },
+    "0x004C6360": {
+      "name": "CEffectSystem::DestroyEffect",
+      "signature": "void __thiscall()"
+    },
+    "0x004C6370": {
+      "name": "CEffectSystem::DestroyEffect",
+      "signature": "CEffectSystem *__thiscall()"
+    },
+    "0x004C6410": {
+      "name": "CEffectSystem::DestroyAllEffect",
+      "signature": "int *__thiscall()"
+    },
+    "0x004C6460": {
+      "name": "CEffectSystem::IsVisible",
+      "signature": "bool __thiscall()",
+      "source": "pdb_ret"
+    },
+    "0x004C65C0": {
+      "name": "CEffectSystem::SetVisible",
+      "signature": "void __thiscall(float effect)"
+    },
+    "0x004C65F0": {
+      "name": "CEffectSystem::HandleViewMove",
+      "signature": "void(float x, float y))"
+    },
+    "0x004C6670": {
+      "name": "CEffectSystem::Update",
+      "signature": "void __thiscall()",
+      "source": "pdb_ret"
+    },
+    "0x004C6870": {
+      "name": "CEffectSystem::FillDefaultUVSet",
+      "signature": "int *__thiscall()"
+    },
+    "0x004E1190": {
+      "name": "CEffectSystem::CreateEffectChain",
+      "signature": "int __thiscall(CCBUI *pCBUI, HWND hDlg, unsigned int dwVal, int bReadOnly, int nVal)"
+    },
+    "0x004CF580": {
+      "name": "CEffectSystem::CreateEffect",
+      "signature": "int __thiscall CEffectSystem::CreateEffect__ovl_f580(CEffectSystem *pSrc, int nVal, CEffectSystem *pParam)"
+    },
+    "0x004C5DE0": {
+      "name": "CEffectSystem::ReleaseParticle",
+      "signature": "void __thiscall()",
+      "ordinal": 3
+    },
+    "0x004C5820": {
+      "name": "CEffectSystem::Create",
+      "signature": "CEffectSystem *__thiscall(int pGfxMgr)"
+    },
+    "0x004C61A0": {
+      "name": "CEffectSystem::CEffectSystem",
+      "signature": "int *__thiscall(int pDisplay)",
+      "_misattrib_evidence": "max_offset=245796>class_size=344"
+    },
+    "0x004C5D50": {
+      "name": "CEffectSystem::slot_0",
+      "signature": "int __thiscall(void *Block, char)",
+      "source": "vtable_migrated",
+      "ordinal": 0
+    },
+    "0x004C5D80": {
+      "name": "CEffectSystem::slot_1",
+      "signature": "int()",
+      "source": "vtable_migrated",
+      "ordinal": 1
+    },
+    "0x004C5DB0": {
+      "name": "CEffectSystem::slot_2",
+      "signature": "int()",
+      "source": "vtable_migrated",
+      "ordinal": 2
+    },
+    "0x004C5E80": {
+      "name": "CEffectSystem::slot_5",
+      "signature": "int __thiscall(double)",
+      "source": "vtable_migrated",
+      "ordinal": 5
+    },
+    "0x004C5E20": {
+      "name": "CEffectSystem::slot_6",
+      "signature": "int()",
+      "source": "vtable_migrated",
+      "ordinal": 6
+    },
+    "0x004C6030": {
+      "name": "CEffectSystem::sub_4C6030",
+      "signature": "int __thiscall(int)",
+      "source": "vtable_migrated",
+      "ordinal": 7
+    },
+    "0x004C5E70": {
+      "name": "CEffectSystem::nullsub_79",
+      "signature": "int __thiscall(int, int)",
+      "source": "vtable_evidence",
+      "ordinal": 4
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056F828",
+      "slots": [
+        {
+          "addr": "0x004C5D80",
+          "from": null
+        },
+        {
+          "addr": "0x004C5DB0",
+          "from": null
+        },
+        {
+          "addr": "0x004C5DE0",
+          "from": null
+        },
+        {
+          "addr": "0x004C5E70",
+          "from": null
+        },
+        {
+          "addr": "0x004C5E80",
+          "from": null
+        },
+        {
+          "addr": "0x004C5E20",
+          "from": null
+        },
+        {
+          "addr": "0x004C6030",
+          "from": null
+        },
+        {
+          "addr": "0x004C6260",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056F848",
+      "slots": [
+        {
+          "addr": "0x004C5D80",
+          "from": null
+        },
+        {
+          "addr": "0x004C5DB0",
+          "from": null
+        },
+        {
+          "addr": "0x004C5DE0",
+          "from": null
+        },
+        {
+          "addr": "0x004C5E70",
+          "from": null
+        },
+        {
+          "addr": "0x004C5E80",
+          "from": null
+        },
+        {
+          "addr": "0x004C5E20",
+          "from": null
+        },
+        {
+          "addr": "0x004C6030",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056F844",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004C6260",
+          "from": null
+        },
+        {
+          "addr": "0x004C5D80",
+          "from": null
+        },
+        {
+          "addr": "0x004C5DB0",
+          "from": null
+        },
+        {
+          "addr": "0x004C5DE0",
+          "from": "CEffect"
+        },
+        {
+          "addr": "0x004C5E70",
+          "from": null
+        },
+        {
+          "addr": "0x004C5E80",
+          "from": null
+        },
+        {
+          "addr": "0x004C5E20",
+          "from": null
+        },
+        {
+          "addr": "0x004C6030",
+          "from": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1659 @@
+{
+  "name": "PalScript",
+  "base_class": null,
+  "base_size": null,
+  "binary_size": 1816,
+  "known_members": {
+    "0": {
+      "name": "m_bLoadSceneScript",
+      "type": "int",
+      "source": "annotation"
+    },
+    "4": {
+      "name": "m_pinst",
+      "type": "scScriptInstance *",
+      "source": "annotation"
+    },
+    "8": {
+      "name": "m_waitobj",
+      "type": "PtrArray *",
+      "source": "annotation"
+    },
+    "24": {
+      "name": "m_CamObj",
+      "type": "PtrArray *",
+      "source": "annotation"
+    },
+    "12": {
+      "name": "m_fBlendFactor",
+      "type": "float",
+      "source": "ida_decomp:_sub_430500 = 0, _nearby_438110 (1-v3)*this"
+    },
+    "16": {
+      "name": "m_nState",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "20": {
+      "name": "m_nFrameCount",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "28": {
+      "name": "m_fScriptTimer",
+      "type": "float",
+      "source": "A:decomp PalScript::ReleaseFrame/SetReady =0.0; RenderUI m_nFrameCount comparison, used as script timing float"
+    },
+    "32": {
+      "name": "m_bEnabled",
+      "type": "int",
+      "source": "B:naming_m_b+alignment+FPU_misattrib"
+    },
+    "220": {
+      "name": "m_nRoleCount",
+      "type": "int",
+      "source": "binary:0x421560 mov esi,[ecx+0xDC] loop count; array starts at [ecx+0xE0] stride 896, each element has vtable"
+    },
+    "236": {
+      "name": "m_nScriptState",
+      "type": "int",
+      "source": "decomp:compared_to_1_and_2(state_enum)"
+    },
+    "240": {
+      "name": "m_bCamActive",
+      "type": "unsigned char",
+      "source": "A:mov_byte_ptr_disp32_in_class_method"
+    },
+    "248": {
+      "name": "m_fCamScale",
+      "type": "float",
+      "source": "binary:5x access | annotate_todo"
+    },
+    "252": {
+      "name": "m_fScaleX",
+      "type": "float",
+      "source": "ida_decomp:_nearby_439410 gbMatrixStack::Scale(v2,this,...)"
+    },
+    "292": {
+      "name": "m_fInterval",
+      "type": "float",
+      "source": "binary:sub_43A3E0 fld[ecx+0x44];fcomp 5e-5(active?);ctor=10.0; timer period"
+    },
+    "512": {
+      "name": "m_nLoadFromFile",
+      "type": "int",
+      "source": "binary:3x access"
+    },
+    "516": {
+      "name": "m_nLoadState",
+      "type": "int",
+      "source": "decomp:copied_from_m_nLoadFromFile"
+    },
+    "520": {
+      "name": "m_nNext",
+      "type": "int",
+      "source": "binary:17x access"
+    },
+    "528": {
+      "name": "m_nConfigIndex",
+      "type": "int",
+      "source": "binary:30x access | annotate_todo"
+    },
+    "780": {
+      "name": "m_nDialogData",
+      "type": "short",
+      "source": "A:66_prefix_word_access_in_class_method"
+    },
+    "1040": {
+      "name": "m_nDialogResult",
+      "type": "int",
+      "source": "binary:2x access | annotate_todo"
+    },
+    "1044": {
+      "name": "m_DialogByte",
+      "type": "unsigned char",
+      "source": "binary:1x access"
+    },
+    "1300": {
+      "name": "m_szDialog1",
+      "type": "char[256]",
+      "source": "binary:1x access | annotate_todo"
+    },
+    "1556": {
+      "name": "m_szDialog2",
+      "type": "char[256]",
+      "source": "binary:1x access | annotate_todo"
+    },
+    "1812": {
+      "name": "m_DialogSub",
+      "type": "unsigned char",
+      "source": "binary:1x access"
+    },
+    "36": {
+      "name": "_todo_024",
+      "type": "unsigned char",
+      "source": "reverted_auto_semantic:5x_access|reverted:pseudo_semantic"
+    },
+    "280": {
+      "name": "m_fScaleY",
+      "type": "float",
+      "source": "A+:gbMatrixStack::Scale(stack,this+276,this+280,this+284)_2nd_param=Y"
+    },
+    "296": {
+      "name": "m_fElapsed",
+      "type": "float",
+      "source": "binary:sub_43A3E0 fadd[ecx+0x48];fst(accum); reset to 0 on trigger"
+    },
+    "368": {
+      "name": "m_nRepeatCount",
+      "type": "int",
+      "source": "binary:sub_43A3E0 inc[ecx+0x90] on trigger; cmp with [ecx+0x94]; reset to 0"
+    },
+    "372": {
+      "name": "m_nMaxRepeats",
+      "type": "int",
+      "source": "binary:sub_43A3E0 cmp[ecx+0x90],[ecx+0x94]; bounds repeat count"
+    },
+    "380": {
+      "name": "m_nMaxCycles",
+      "type": "int",
+      "source": "binary:sub_43A3E0 cmp[ecx+0x98],[ecx+0x9C]; ctor=-1(infinite); cycle limit"
+    },
+    "396": {
+      "name": "m_RoleSlotArray",
+      "type": "unsigned char",
+      "source": "decomp:SetAction+SetRoleActions_896stride_role_array_base(BYTE_roleID)"
+    },
+    "397": {
+      "name": "_todo_18D",
+      "type": "unsigned char",
+      "source": "binary:SetRoleActions [esi-0x47]=Find_result"
+    },
+    "468": {
+      "name": "m_RoleActionType",
+      "type": "unsigned char",
+      "source": "decomp:SetRoleActions_at_stride+72(BYTE_==25_action_check)"
+    },
+    "260": {
+      "name": "m_WaitObjList",
+      "type": "PtrArray",
+      "source": "decomp:accessed_.buf_.capacity"
+    },
+    "312": {
+      "name": "_todo_138",
+      "type": "int",
+      "source": "reverted_auto_semantic:2x_access"
+    },
+    "472": {
+      "name": "_todo_1B8",
+      "type": "float",
+      "source": "binary:_nearby_439410 *(float*)(this+248); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
+    },
+    "480": {
+      "name": "_todo_01E0",
+      "type": "float",
+      "source": "binary:_nearby_439410 *(float*)(this+256); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
+    },
+    "484": {
+      "name": "_todo_1C4",
+      "type": "float",
+      "source": "binary:_nearby_439410 *(float*)(this+260); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
+    },
+    "488": {
+      "name": "_todo_1C8",
+      "type": "float",
+      "source": "binary:_nearby_439410 *(float*)(this+264); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
+    },
+    "492": {
+      "name": "_todo_1CC",
+      "type": "float",
+      "source": "binary:_nearby_439410 *(float*)(this+268); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
+    },
+    "496": {
+      "name": "_todo_1D0",
+      "type": "float",
+      "source": "binary:_nearby_439410 *(float*)(this+272); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
+    },
+    "500": {
+      "name": "_todo_1F4",
+      "type": "float",
+      "source": "binary:_nearby_439410 *(float*)(this+276); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
+    },
+    "504": {
+      "name": "_todo_1F8",
+      "type": "float",
+      "source": "binary:_nearby_439410 *(float*)(this+280); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
+    },
+    "508": {
+      "name": "_todo_1FC",
+      "type": "float",
+      "source": "binary:_nearby_439410 *(float*)(this+284); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
+    },
+    "284": {
+      "name": "m_fScaleZ",
+      "type": "float",
+      "source": "A+:gbMatrixStack::Scale(stack,this+276,this+280,this+284)_3rd_param=Z"
+    },
+    "376": {
+      "name": "m_nCycleCount",
+      "type": "int",
+      "source": "binary:sub_43A3E0 inc[ecx+0x98] when repeats exhausted; cmp with [ecx+0x9C]"
+    },
+    "56": {
+      "name": "m_bCreated",
+      "type": "int",
+      "source": "decomp:Create_sets_1,CheckRayHitRole_checks"
+    },
+    "60": {
+      "name": "m_bInitialized",
+      "type": "unsigned char",
+      "source": "decomp:Create_sets_1,checked_as_bool"
+    },
+    "68": {
+      "name": "_todo_044",
+      "type": "float",
+      "source": "reverted_auto_semantic:18x_access"
+    },
+    "88": {
+      "name": "m_RoleArray",
+      "type": "int",
+      "source": "decomp:8byte_stride_loop_in_CheckRayHitRole"
+    },
+    "72": {
+      "name": "_todo_048",
+      "type": "float",
+      "source": "reverted_auto_semantic:5x_access|reverted:pseudo_semantic",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "44": {
+      "name": "_todo_44",
+      "type": "int",
+      "source": "binary_scan:21_accesses(store:18, load:3)",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "76": {
+      "name": "_todo_04C",
+      "type": "float",
+      "source": "reverted_auto_semantic:5x_access|reverted:pseudo_semantic",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "80": {
+      "name": "_todo_80",
+      "type": "float",
+      "source": "binary_scan:8_accesses(store:1, store_byte:1, load:1, fld_float:5)",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "84": {
+      "name": "_todo_054",
+      "type": "float",
+      "source": "reverted_auto_semantic_r2:1x",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "40": {
+      "name": "_todo_028",
+      "type": "int",
+      "source": "reverted_auto_semantic:6x_access|reverted:pseudo_semantic",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "48": {
+      "name": "_todo_48",
+      "type": "int",
+      "source": "binary_scan:3_accesses(store:2, load:1)",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "52": {
+      "name": "_todo_034",
+      "type": "int",
+      "source": "reverted_auto_semantic:2x",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "64": {
+      "name": "m_pActorData",
+      "type": "unsigned char",
+      "source": "decomp:passed_to_Actor_method",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "128": {
+      "name": "m_nTaskIndex",
+      "type": "int",
+      "source": "binary_scan:3refs"
+    },
+    "136": {
+      "name": "m_pTaskData",
+      "type": "void *",
+      "source": "binary_scan:2refs"
+    },
+    "140": {
+      "name": "m_pDialogData",
+      "type": "void *",
+      "source": "binary_scan:3refs"
+    },
+    "144": {
+      "name": "m_pCurrentTask",
+      "type": "void*",
+      "source": "binary_scan:9refs; type_fix:m_p*_int_to_void*"
+    },
+    "148": {
+      "name": "m_pTaskPtr",
+      "type": "void*",
+      "source": "binary_scan:3refs; type_fix:m_p*_int_to_void*"
+    },
+    "152": {
+      "name": "m_nTimerCount",
+      "type": "int",
+      "source": "UpdateTimer:incremented_each_tick"
+    },
+    "156": {
+      "name": "m_nWaitTimer",
+      "type": "int",
+      "source": "binary_scan:5refs"
+    },
+    "160": {
+      "name": "m_nAnimState",
+      "type": "int",
+      "source": "binary_scan:3refs"
+    },
+    "164": {
+      "name": "m_nSnowParticles",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "168": {
+      "name": "m_nItemCheck",
+      "type": "int",
+      "source": "binary_scan:2refs"
+    },
+    "176": {
+      "name": "m_RoleEmoteData",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "196": {
+      "name": "m_pTexture",
+      "type": "gbTexture *",
+      "source": "OpenScript:gfxMgr_texture_create"
+    },
+    "200": {
+      "name": "m_pTextureInfo",
+      "type": "_PlugInfo *",
+      "source": "OpenScript:TextureLib_Data::Parent_Data"
+    },
+    "212": {
+      "name": "m_RoleEmoteSub",
+      "type": "int",
+      "source": "binary_scan:2refs"
+    },
+    "216": {
+      "name": "_todo_0D8",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "244": {
+      "name": "m_bSoundType",
+      "type": "unsigned char",
+      "source": "binary:ida_refs"
+    },
+    "256": {
+      "name": "m_nUpdateState",
+      "type": "int",
+      "source": "binary_scan:6refs"
+    },
+    "276": {
+      "name": "m_fRenderScaleX",
+      "type": "float",
+      "source": "Render:gbMatrixStack::Scale_X_component"
+    },
+    "332": {
+      "name": "m_nScriptCount",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "352": {
+      "name": "m_EncampConfig",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "432": {
+      "name": "_todo_1B0",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "448": {
+      "name": "m_bRoleAction",
+      "type": "int",
+      "source": "binary_scan:3refs"
+    },
+    "524": {
+      "name": "m_DialogTemplate",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "532": {
+      "name": "m_SceneConfig",
+      "type": "int",
+      "source": "decomp:LoadSceneConfig_220byte_stride_array_base(55_DWORD_per_scene)"
+    },
+    "536": {
+      "name": "m_SceneCfg_flags1",
+      "type": "int",
+      "source": "decomp:BYTE+220*idx_atoi_bool_flags"
+    },
+    "540": {
+      "name": "m_SceneCfg_fParam0",
+      "type": "float",
+      "source": "decomp:atof_float_220stride"
+    },
+    "544": {
+      "name": "m_SceneCfg_nParam0",
+      "type": "int",
+      "source": "decomp:atoi_int_220stride"
+    },
+    "548": {
+      "name": "m_SceneCfg_nParam1",
+      "type": "int",
+      "source": "decomp:atoi_int_220stride"
+    },
+    "552": {
+      "name": "m_SceneCfg_nParam2",
+      "type": "int",
+      "source": "decomp:atoi_int_220stride"
+    },
+    "556": {
+      "name": "m_SceneCfg_data",
+      "type": "int",
+      "source": "decomp:memset_0xC0_192byte_clear_within_220stride_slot"
+    },
+    "796": {
+      "name": "m_nEmoteParam",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "800": {
+      "name": "m_nScreenWidth",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "876": {
+      "name": "m_EncampSound",
+      "type": "int",
+      "source": "binary_scan:2refs"
+    },
+    "972": {
+      "name": "m_CamFocusData",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "1128": {
+      "name": "_todo_468",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "1272": {
+      "name": "m_nPathState",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "1276": {
+      "name": "m_nOverlapId",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "1280": {
+      "name": "_todo_500",
+      "type": "int",
+      "source": "binary_scan:2refs"
+    },
+    "1288": {
+      "name": "_todo_508",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "1296": {
+      "name": "_todo_510",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "560": {
+      "name": "m_fSceneCfg",
+      "type": "float[48]",
+      "source": "binary_scan: IDA array field, merged from individual elements"
+    }
+  },
+  "methods": {
+    "0x00412680": {
+      "name": "PalScript::DestroyScript",
+      "signature": "int __thiscall()"
+    },
+    "0x00430290": {
+      "name": "PalScript::LoadScript",
+      "signature": "int __thiscall(int pathAddr)"
+    },
+    "0x00430570": {
+      "name": "PalScript::SetAppName",
+      "signature": "char *__thiscall(char *name)"
+    },
+    "0x004318B0": {
+      "name": "PalScript::LoadFromFile",
+      "signature": "void *__thiscall(char *filename)"
+    },
+    "0x004319F0": {
+      "name": "PalScript::SetDirectory",
+      "signature": "int __thiscall(char *dir)"
+    },
+    "0x00431A60": {
+      "name": "PalScript::HasNext",
+      "signature": "int __thiscall()"
+    },
+    "0x00431B60": {
+      "name": "PalScript::LoadNext",
+      "signature": "int __thiscall()"
+    },
+    "0x00431D80": {
+      "name": "PalScript::PalScript_1d80",
+      "signature": "void __thiscall()"
+    },
+    "0x00431F00": {
+      "name": "PalScript::AddWaitObj",
+      "signature": "void __thiscall()",
+      "source": "pdb_ret"
+    },
+    "0x00431F10": {
+      "name": "PalScript::AddCamObj",
+      "signature": "int __fastcall(PalScript *this)"
+    },
+    "0x00431F40": {
+      "name": "PalScript::ClearAllCamObj",
+      "signature": "void __cdecl __thiscall()"
+    },
+    "0x00431FA0": {
+      "name": "PalScript::ClearAllWaitObj",
+      "signature": "void __thiscall()"
+    },
+    "0x00431FB0": {
+      "name": "PalScript::Update",
+      "signature": "void __thiscall()"
+    },
+    "0x00434C00": {
+      "name": "PalScript::GetString",
+      "signature": "char * __thiscall()"
+    },
+    "0x0043A250": {
+      "name": "PalScript::MoveAndHide",
+      "signature": "int __thiscall PalScript::MoveAndHide()",
+      "ordinal": 3
+    },
+    "0x0043AA00": {
+      "name": "PalScript::OpenScript",
+      "signature": "gbVFileSystem *__thiscall(const char *pszName, char pData)"
+    },
+    "0x00445D10": {
+      "name": "PalScript::OnMessage",
+      "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
+      "ordinal": 6
+    },
+    "0x00439130": {
+      "name": "PalScript::PalScript_Init",
+      "signature": "void __thiscall PalScript::PalScript_Init()"
+    },
+    "0x0043A160": {
+      "name": "PalScript::PalScript",
+      "signature": "void __thiscall()"
+    },
+    "0x00445B90": {
+      "name": "PalScript::Create",
+      "signature": "int __thiscall(int id, tagRECT *pRect, int parent)",
+      "ordinal": 4
+    },
+    "0x0043A1F0": {
+      "name": "PalScript::ctor",
+      "signature": "void __thiscall()",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+    },
+    "0x00445E70": {
+      "name": "PalScript::ShowWindow",
+      "signature": "int __thiscall(int nFlags)",
+      "ordinal": 0
+    },
+    "0x004318A0": {
+      "name": "PalScript::Cleanup",
+      "signature": "void __thiscall()"
+    },
+    "0x004353A0": {
+      "name": "PalScript::Op_InTeam",
+      "signature": "void __thiscall PalScript::Op_InTeam()"
+    },
+    "0x00435320": {
+      "name": "PalScript::Op_RoleActiveShort",
+      "signature": "void __thiscall PalScript::Op_RoleActiveShort()"
+    },
+    "0x004352D0": {
+      "name": "PalScript::Op_RoleScriptInitCam",
+      "signature": "char *__thiscall PalScript::Op_RoleScriptInitCam()"
+    },
+    "0x00431C10": {
+      "name": "PalScript::FindSaveStateString",
+      "signature": "char __thiscall(PalScript *String1, char *String2, char *Destination, int nVal)"
+    },
+    "0x00439230": {
+      "name": "PalScript::LoadModel",
+      "signature": "gbGeomNode *__thiscall PalScript::LoadModel(const char *szFilename, int nActionIdx)"
+    },
+    "0x00421CA0": {
+      "name": "PalScript::BindRolesToStage",
+      "signature": "void __thiscall()"
+    },
+    "0x00435170": {
+      "name": "PalScript::Op_GetDislike",
+      "signature": "void __thiscall PalScript::Op_GetDislike()"
+    },
+    "0x004378E0": {
+      "name": "PalScript::Op_HaveItem",
+      "signature": "void __thiscall PalScript::Op_HaveItem()"
+    },
+    "0x004384B0": {
+      "name": "PalScript::Op_Dist",
+      "signature": "void __thiscall PalScript::Op_Dist()"
+    },
+    "0x00429D10": {
+      "name": "PalScript::GetCount",
+      "signature": "int *__thiscall(int nVal)"
+    },
+    "0x00538D60": {
+      "name": "PalScript::DestroyInstances",
+      "signature": "void __thiscall PalScript::DestroyInstances(double nActionID, int *p_DWORD)"
+    },
+    "0x00410840": {
+      "name": "PalScript::InitParticleSlht",
+      "signature": "PalScript *__thiscall PalScript::InitParticleSlht(PalScript *pPalScript)"
+    },
+    "0x004309D0": {
+      "name": "PalScript::EvalExpression",
+      "signature": "int *__thiscall PalScript::EvalExpression(int *p_DWORD, char *pszBuf)"
+    },
+    "0x00431040": {
+      "name": "PalScript::GetVarRef",
+      "signature": "int *__thiscall PalScript::GetVarRef(int *pOut, int nIdx)"
+    },
+    "0x00431100": {
+      "name": "PalScript::EvalExprTree",
+      "signature": "int *__thiscall PalScript::EvalExprTree(int *p_DWORD, void *pData, int *p_DWORD2, char *pszBuf)"
+    },
+    "0x00431D20": {
+      "name": "PalScript::CleanupInstances",
+      "signature": "void __thiscall()"
+    },
+    "0x00434D70": {
+      "name": "PalScript::Op_ScriptRunMode",
+      "signature": "void __thiscall PalScript::Op_ScriptRunMode()"
+    },
+    "0x00434D90": {
+      "name": "PalScript::Op_RolePathOut",
+      "signature": "void __thiscall PalScript::Op_RolePathOut()"
+    },
+    "0x00434E50": {
+      "name": "PalScript::Op_RoleScript",
+      "signature": "char * __thiscall()"
+    },
+    "0x00434E90": {
+      "name": "PalScript::Op_RoleCtrl",
+      "signature": "char * __thiscall()"
+    },
+    "0x004350F0": {
+      "name": "PalScript::Op_RoleOverlap",
+      "signature": "char * __thiscall()"
+    },
+    "0x004351A0": {
+      "name": "PalScript::Op_RoleActive",
+      "signature": "void __thiscall()"
+    },
+    "0x00435830": {
+      "name": "PalScript::Op_CameraFocusPoint",
+      "signature": "void __thiscall PalScript::Op_CameraFocusPoint()",
+      "local_vars": [
+        {
+          "name": "nNextEventID",
+          "stack_offset": 16
+        },
+        {
+          "name": "nSkillGDB_ID",
+          "stack_offset": 28
+        },
+        {
+          "name": "nSkillCount",
+          "stack_offset": 32
+        },
+        {
+          "name": "pSkillResult",
+          "stack_offset": 36
+        },
+        {
+          "name": "nItemGDB_ID",
+          "stack_offset": 40
+        },
+        {
+          "name": "nItemCount",
+          "stack_offset": 44
+        },
+        {
+          "name": "pSkillDataStored",
+          "stack_offset": 48
+        },
+        {
+          "name": "szEventName",
+          "stack_offset": 52,
+          "type": "char[256]"
+        },
+        {
+          "name": "pSkillData",
+          "from_name": "SkillNum",
+          "type": "FightItem *"
+        },
+        {
+          "name": "nAttrIdx",
+          "from_name": "i"
+        },
+        {
+          "name": "nCurAttrVal",
+          "from_name": "v6"
+        },
+        {
+          "name": "nMaxAttrVal",
+          "from_name": "v7"
+        },
+        {
+          "name": "nItemType",
+          "from_name": "v8"
+        },
+        {
+          "name": "pSendTarget",
+          "from_name": "p_pConfig"
+        },
+        {
+          "name": "pszEventName",
+          "from_name": "v10"
+        },
+        {
+          "name": "pScrEffMgr",
+          "from_name": "v11"
+        },
+        {
+          "name": "pScrEffect",
+          "from_name": "Instance"
+        },
+        {
+          "name": "pScrMode",
+          "from_name": "v13"
+        },
+        {
+          "name": "pszItemParam",
+          "from_name": "String"
+        },
+        {
+          "name": "pszCountParam",
+          "from_name": "v3"
+        },
+        {
+          "name": "this",
+          "from_name": "v2"
+        }
+      ]
+    },
+    "0x00435BF0": {
+      "name": "PalScript::Op_LoseItem",
+      "signature": "void __thiscall PalScript::Op_LoseItem()"
+    },
+    "0x004360F0": {
+      "name": "PalScript::Op_RoleSpaceWalk",
+      "signature": "void __thiscall PalScript::Op_RoleSpaceWalk()"
+    },
+    "0x00436130": {
+      "name": "PalScript::Op_RoleMoveBackEx",
+      "signature": "unsigned int __thiscall()"
+    },
+    "0x00436190": {
+      "name": "PalScript::Op_RoleShowAction",
+      "signature": "void __thiscall PalScript::Op_RoleShowAction()"
+    },
+    "0x00436280": {
+      "name": "PalScript::Op_RoleEndAction",
+      "signature": "void __thiscall PalScript::Op_RoleEndAction()"
+    },
+    "0x00436470": {
+      "name": "PalScript::Op_FavorAdd",
+      "signature": "void __thiscall PalScript::Op_FavorAdd()"
+    },
+    "0x004364E0": {
+      "name": "PalScript::Op_AddRoleAtt",
+      "signature": "void __thiscall PalScript::Op_AddRoleAtt()"
+    },
+    "0x004365A0": {
+      "name": "PalScript::Op_RoleSetFace",
+      "signature": "void __thiscall PalScript::Op_RoleSetFace()"
+    },
+    "0x004365B0": {
+      "name": "PalScript::Op_RoleTurnFace",
+      "signature": "void __thiscall PalScript::Op_RoleTurnFace()"
+    },
+    "0x00436600": {
+      "name": "PalScript::Op_TeamClose",
+      "signature": "void __thiscall PalScript::Op_TeamClose()"
+    },
+    "0x00436680": {
+      "name": "PalScript::Op_RoleInput",
+      "signature": "void __thiscall PalScript::Op_RoleInput()"
+    },
+    "0x00436A60": {
+      "name": "PalScript::Op_Sub",
+      "signature": "void __thiscall PalScript::Op_Sub()"
+    },
+    "0x00436AB0": {
+      "name": "PalScript::Op_GetMoney",
+      "signature": "void __thiscall PalScript::Op_GetMoney()"
+    },
+    "0x00436C00": {
+      "name": "PalScript::Op_HY_Mode",
+      "signature": "void __thiscall PalScript::Op_HY_Mode()"
+    },
+    "0x00437010": {
+      "name": "PalScript::Op_StopMusic",
+      "signature": "void __thiscall PalScript::Op_StopMusic()"
+    },
+    "0x00437550": {
+      "name": "PalScript::Op_CameraSet",
+      "signature": "void __thiscall PalScript::Op_CameraSet()"
+    },
+    "0x00437630": {
+      "name": "PalScript::Op_CameraRotate",
+      "signature": "void __thiscall PalScript::Op_CameraRotate()"
+    },
+    "0x00437650": {
+      "name": "PalScript::Op_GetDlgSel",
+      "signature": "void __thiscall PalScript::Op_GetDlgSel()"
+    },
+    "0x004377F0": {
+      "name": "PalScript::Op_RoleEmote",
+      "signature": "void __thiscall PalScript::Op_RoleEmote()"
+    },
+    "0x00437AE0": {
+      "name": "PalScript::Op_RoleSetLayerByObj",
+      "signature": "char *__thiscall PalScript::Op_RoleSetLayerByObj()"
+    },
+    "0x00437C40": {
+      "name": "PalScript::Op_Enable_JusticeBook",
+      "signature": "void __thiscall PalScript::Op_Enable_JusticeBook()"
+    },
+    "0x00437C50": {
+      "name": "PalScript::Op_Specify_Compos",
+      "signature": "void __thiscall PalScript::Op_Specify_Compos()"
+    },
+    "0x00437FF0": {
+      "name": "PalScript::Op_Start_Wolf",
+      "signature": "void __thiscall PalScript::Op_Start_Wolf()"
+    },
+    "0x004381B0": {
+      "name": "PalScript::ClearFloatParams",
+      "signature": "void __thiscall PalScript::ClearFloatParams()"
+    },
+    "0x00438350": {
+      "name": "PalScript::Op_GetHS_ManageType",
+      "signature": "void __thiscall PalScript::Op_GetHS_ManageType()"
+    },
+    "0x00438390": {
+      "name": "PalScript::Op_GetHS_Accrual_type",
+      "signature": "void __thiscall PalScript::Op_GetHS_Accrual_type()"
+    },
+    "0x00438840": {
+      "name": "PalScript::Op_ScrEft",
+      "signature": "void __thiscall PalScript::Op_ScrEft()"
+    },
+    "0x004389D0": {
+      "name": "PalScript::Op_Snow",
+      "signature": "void __thiscall PalScript::Op_Snow()"
+    },
+    "0x00438B00": {
+      "name": "PalScript::Op_EntrySmeltSys",
+      "signature": "void __thiscall PalScript::Op_EntrySmeltSys()"
+    },
+    "0x00438B60": {
+      "name": "PalScript::Op_CEft_Load",
+      "signature": "void __thiscall PalScript::Op_CEft_Load()"
+    },
+    "0x00438D00": {
+      "name": "PalScript::Op_Rain",
+      "signature": "void __thiscall PalScript::Op_Rain()"
+    },
+    "0x00438F10": {
+      "name": "PalScript::Op_FullTeamAtt",
+      "signature": "void __thiscall PalScript::Op_FullTeamAtt()"
+    },
+    "0x00438F30": {
+      "name": "PalScript::Op_BeeInsertFrame",
+      "signature": "void __thiscall PalScript::Op_BeeInsertFrame()"
+    },
+    "0x0043A1D0": {
+      "name": "PalScript::_scalar_dtor",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
+    },
+    "0x0043A270": {
+      "name": "PalScript::RenderUI",
+      "signature": "int __thiscall PalScript::RenderUI()",
+      "ordinal": 1
+    },
+    "0x0043A3E0": {
+      "name": "PalScript::UpdateTimer",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
+      "ordinal": 2
+    },
+    "0x0044B8A0": {
+      "name": "PalScript::SetDialogTemplate",
+      "signature": "LPSTR __thiscall PalScript::SetDialogTemplate(CHAR *String1, CHAR *lpString2)"
+    },
+    "0x00522130": {
+      "name": "PalScript::LoadSceneConfig",
+      "signature": "char __thiscall(char *filename)"
+    },
+    "0x00529440": {
+      "name": "PalScript::LoadResource",
+      "signature": "int __thiscall(char *filename)"
+    },
+    "0x00535710": {
+      "name": "PalScript::LoadVisNode",
+      "signature": "struct gbVFileSystem *__thiscall PalScript::LoadVisNode(double String2, char *pszBuf, char *pszBuf2)"
+    },
+    "0x00430500": {
+      "name": "PalScript::ReleaseFrame",
+      "signature": "void __thiscall PalScript::ReleaseFrame()"
+    },
+    "0x004307D0": {
+      "name": "PalScript::InitScriptObj",
+      "signature": "int __thiscall PalScript::InitScriptObj(int *p_DWORD, unsigned int dwVal, unsigned int dwVal2)"
+    },
+    "0x00431390": {
+      "name": "PalScript::ResolveScope",
+      "signature": "int *__thiscall PalScript::ResolveScope(int nVal)"
+    },
+    "0x00431440": {
+      "name": "PalScript::IteratorNext",
+      "signature": "int *__thiscall PalScript::IteratorNext()"
+    },
+    "0x004314A0": {
+      "name": "PalScript::IteratorPrev",
+      "signature": "int *__thiscall PalScript::IteratorPrev()"
+    },
+    "0x004314F0": {
+      "name": "PalScript::ConstructStringObj",
+      "signature": "void __thiscall PalScript::ConstructStringObj(char *pszBuf)"
+    },
+    "0x00431640": {
+      "name": "PalScript::SetWaitRange",
+      "signature": "int __thiscall PalScript::SetWaitRange(unsigned int dwVal, unsigned int dwVal2)"
+    },
+    "0x00431780": {
+      "name": "PalScript::CompareBuffer",
+      "signature": "int __thiscall PalScript::CompareBuffer(int nDescriptor)"
+    },
+    "0x004319C0": {
+      "name": "PalScript::FreeLoadBuffer",
+      "signature": "void __thiscall PalScript::FreeLoadBuffer()"
+    },
+    "0x00431C00": {
+      "name": "PalScript::SaveLoadState",
+      "signature": "int __thiscall PalScript::SaveLoadState()"
+    },
+    "0x00434CE0": {
+      "name": "PalScript::Op_Idle",
+      "signature": "void __thiscall PalScript::Op_Idle()"
+    },
+    "0x00434ED0": {
+      "name": "PalScript::Op_RolePathOutToTile",
+      "signature": "void __thiscall PalScript::Op_RolePathOutToTile()"
+    },
+    "0x00434F90": {
+      "name": "PalScript::Op_RolePathTo",
+      "signature": "void __thiscall PalScript::Op_RolePathTo()"
+    },
+    "0x00435010": {
+      "name": "PalScript::Op_TeamCloseA",
+      "signature": "void __thiscall()"
+    },
+    "0x00435080": {
+      "name": "PalScript::Op_RoleSetPos",
+      "signature": "void __thiscall PalScript::Op_RoleSetPos()"
+    },
+    "0x00435130": {
+      "name": "PalScript::CmdGetSceneObject",
+      "signature": "void __thiscall()"
+    },
+    "0x004353F0": {
+      "name": "PalScript::Op_RoleSetLayer",
+      "signature": "void __thiscall PalScript::Op_RoleSetLayer()"
+    },
+    "0x00435470": {
+      "name": "PalScript::Op_RoleOverlapEx",
+      "signature": "void __thiscall PalScript::Op_RoleOverlapEx()"
+    },
+    "0x004354F0": {
+      "name": "PalScript::Op_RoleCtrlEx",
+      "signature": "void __thiscall PalScript::Op_RoleCtrlEx()"
+    },
+    "0x00435570": {
+      "name": "PalScript::Op_RoleScale",
+      "signature": "void __thiscall PalScript::Op_RoleScale()"
+    },
+    "0x00435600": {
+      "name": "PalScript::Op_CameraPush",
+      "signature": "void __thiscall()"
+    },
+    "0x004356C0": {
+      "name": "PalScript::Op_ShowActAutoStand",
+      "signature": "void __thiscall PalScript::Op_ShowActAutoStand()"
+    },
+    "0x00435730": {
+      "name": "PalScript::Op_RoleTurnFaceA",
+      "signature": "void __thiscall PalScript::Op_RoleTurnFaceA()"
+    },
+    "0x00435770": {
+      "name": "PalScript::Op_TeamOpenA",
+      "signature": "void __thiscall PalScript::Op_TeamOpenA()"
+    },
+    "0x004357B0": {
+      "name": "PalScript::Op_CameraPushState",
+      "signature": "void __thiscall PalScript::Op_CameraPushState()"
+    },
+    "0x004357E0": {
+      "name": "PalScript::Op_CameraFocusRole",
+      "signature": "void __thiscall PalScript::Op_CameraFocusRole()"
+    },
+    "0x00436240": {
+      "name": "PalScript::Op_RoleScaleEx",
+      "signature": "float * __thiscall()"
+    },
+    "0x004362D0": {
+      "name": "PalScript::Op_ShowActAutoStandEx",
+      "signature": "void __thiscall()"
+    },
+    "0x00436360": {
+      "name": "PalScript::Op_TestGoto",
+      "signature": "void __thiscall PalScript::Op_TestGoto()"
+    },
+    "0x00436380": {
+      "name": "PalScript::Op_Let",
+      "signature": "void __thiscall PalScript::Op_Let()"
+    },
+    "0x004363B0": {
+      "name": "PalScript::Op_AddEx",
+      "signature": "void __thiscall PalScript::Op_AddEx()"
+    },
+    "0x004363E0": {
+      "name": "PalScript::Op_GetSwitch",
+      "signature": "void __thiscall PalScript::Op_GetSwitch()"
+    },
+    "0x00436410": {
+      "name": "PalScript::Op_Call",
+      "signature": "void __thiscall PalScript::Op_Call()"
+    },
+    "0x00436440": {
+      "name": "PalScript::Op_LK_Ghost",
+      "signature": "void __thiscall PalScript::Op_LK_Ghost()"
+    },
+    "0x00436490": {
+      "name": "PalScript::Op_Team",
+      "signature": "void __thiscall PalScript::Op_Team()"
+    },
+    "0x00436530": {
+      "name": "PalScript::Op_AddItem",
+      "signature": "void __thiscall PalScript::Op_AddItem()"
+    },
+    "0x004365C0": {
+      "name": "PalScript::Op_RoleFaceRoleEx",
+      "signature": "char __thiscall()"
+    },
+    "0x004365D0": {
+      "name": "PalScript::Op_RoleTurnFaceAEx",
+      "signature": "char __thiscall()"
+    },
+    "0x004365E0": {
+      "name": "PalScript::Op_TeamOpen",
+      "signature": "void __thiscall PalScript::Op_TeamOpen()"
+    },
+    "0x00436710": {
+      "name": "PalScript::Op_GoTo",
+      "signature": "void __thiscall PalScript::Op_GoTo()"
+    },
+    "0x00436760": {
+      "name": "PalScript::Op_FNOT",
+      "signature": "void __thiscall PalScript::Op_FNOT()"
+    },
+    "0x00436780": {
+      "name": "PalScript::Op_FOP",
+      "signature": "void __thiscall PalScript::Op_FOP()"
+    },
+    "0x004367B0": {
+      "name": "PalScript::Op_GT",
+      "signature": "void __thiscall PalScript::Op_GT()"
+    },
+    "0x004367E0": {
+      "name": "PalScript::Op_LS",
+      "signature": "void __thiscall PalScript::Op_LS()"
+    },
+    "0x00436810": {
+      "name": "PalScript::Op_Between",
+      "signature": "void __thiscall PalScript::Op_Between()"
+    },
+    "0x00436860": {
+      "name": "PalScript::Op_EQ",
+      "signature": "void __thiscall PalScript::Op_EQ()"
+    },
+    "0x00436890": {
+      "name": "PalScript::Op_NEQ",
+      "signature": "void __thiscall PalScript::Op_NEQ()"
+    },
+    "0x004368C0": {
+      "name": "PalScript::Op_Music",
+      "signature": "void __thiscall PalScript::Op_Music()"
+    },
+    "0x004368E0": {
+      "name": "PalScript::Op_GEQ",
+      "signature": "void __thiscall PalScript::Op_GEQ()"
+    },
+    "0x00436910": {
+      "name": "PalScript::Op_LEQ",
+      "signature": "void __thiscall PalScript::Op_LEQ()"
+    },
+    "0x00436940": {
+      "name": "PalScript::Op_RemoveItem",
+      "signature": "void __thiscall PalScript::Op_RemoveItem()"
+    },
+    "0x004369A0": {
+      "name": "PalScript::Op_AddMoney",
+      "signature": "void __thiscall PalScript::Op_AddMoney()"
+    },
+    "0x004369C0": {
+      "name": "PalScript::Op_Movie",
+      "signature": "void __thiscall PalScript::Op_Movie()"
+    },
+    "0x00436A10": {
+      "name": "PalScript::Op_CEft_Pos",
+      "signature": "void __thiscall PalScript::Op_CEft_Pos()"
+    },
+    "0x00436B40": {
+      "name": "PalScript::Op_TeamCloseAEx",
+      "signature": "void __thiscall PalScript::Op_TeamCloseAEx()"
+    },
+    "0x00436BD0": {
+      "name": "PalScript::Op_GetHS_Period_type",
+      "signature": "void __thiscall PalScript::Op_GetHS_Period_type()"
+    },
+    "0x00436C60": {
+      "name": "PalScript::Op_FadeNormal",
+      "signature": "void __thiscall PalScript::Op_FadeNormal()"
+    },
+    "0x00436CB0": {
+      "name": "PalScript::Op_HY_FLY",
+      "signature": "void __thiscall PalScript::Op_HY_FLY()"
+    },
+    "0x00436D30": {
+      "name": "PalScript::Op_SetRoleTexture",
+      "signature": "void __thiscall PalScript::Op_SetRoleTexture()"
+    },
+    "0x00436DB0": {
+      "name": "PalScript::Op_Rotate",
+      "signature": "void __thiscall PalScript::Op_Rotate()"
+    },
+    "0x00436E10": {
+      "name": "PalScript::Op_Quake",
+      "signature": "void __thiscall PalScript::Op_Quake()"
+    },
+    "0x00436E70": {
+      "name": "PalScript::Op_ShowChatRest",
+      "signature": "void __thiscall PalScript::Op_ShowChatRest()"
+    },
+    "0x00436ED0": {
+      "name": "PalScript::Op_GetHS_UnHock_type",
+      "signature": "void __thiscall PalScript::Op_GetHS_UnHock_type()"
+    },
+    "0x00436F40": {
+      "name": "PalScript::Op_SetBigMapElement",
+      "signature": "void __thiscall PalScript::Op_SetBigMapElement()"
+    },
+    "0x00436F90": {
+      "name": "PalScript::Op_ObjectMove",
+      "signature": "void __thiscall PalScript::Op_ObjectMove()"
+    },
+    "0x00436FB0": {
+      "name": "PalScript::Op_KF_Entry",
+      "signature": "void __thiscall PalScript::Op_KF_Entry()"
+    },
+    "0x00436FE0": {
+      "name": "PalScript::Op_ENCAMP_Entry",
+      "signature": "void __thiscall PalScript::Op_ENCAMP_Entry()"
+    },
+    "0x00437040": {
+      "name": "PalScript::Op_SKEE_Entry",
+      "signature": "void __thiscall PalScript::Op_SKEE_Entry()"
+    },
+    "0x00437080": {
+      "name": "PalScript::Op_Deal",
+      "signature": "void __thiscall PalScript::Op_Deal()"
+    },
+    "0x004370C0": {
+      "name": "PalScript::Op_APPR_Entry",
+      "signature": "void __thiscall PalScript::Op_APPR_Entry()"
+    },
+    "0x004370E0": {
+      "name": "PalScript::Op_GetHSLv",
+      "signature": "void __thiscall PalScript::Op_GetHSLv()"
+    },
+    "0x00437120": {
+      "name": "PalScript::Op_SwitchRS",
+      "signature": "void __thiscall PalScript::Op_SwitchRS()"
+    },
+    "0x00437170": {
+      "name": "PalScript::Op_GetFavor",
+      "signature": "void __thiscall PalScript::Op_GetFavor()"
+    },
+    "0x00437190": {
+      "name": "PalScript::Op_AddSkill",
+      "signature": "void __thiscall PalScript::Op_AddSkill()"
+    },
+    "0x004371B0": {
+      "name": "PalScript::Op_GetFavorite",
+      "signature": "void __thiscall PalScript::Op_GetFavorite()"
+    },
+    "0x004371D0": {
+      "name": "PalScript::Op_Note",
+      "signature": "void __thiscall PalScript::Op_Note()"
+    },
+    "0x004371F0": {
+      "name": "PalScript::Op_PlaySound",
+      "signature": "void __thiscall PalScript::Op_PlaySound()"
+    },
+    "0x00437210": {
+      "name": "PalScript::Op_FullRoleAtt",
+      "signature": "void __thiscall PalScript::Op_FullRoleAtt()"
+    },
+    "0x00437280": {
+      "name": "PalScript::Op_DlgPos",
+      "signature": "void __thiscall PalScript::Op_DlgPos()"
+    },
+    "0x004373A0": {
+      "name": "PalScript::Op_FadeOut",
+      "signature": "void __thiscall PalScript::Op_FadeOut()"
+    },
+    "0x004373C0": {
+      "name": "PalScript::Op_FadeIn",
+      "signature": "void __thiscall PalScript::Op_FadeIn()"
+    },
+    "0x004373D0": {
+      "name": "PalScript::Op_DlgFace",
+      "signature": "void __thiscall PalScript::Op_DlgFace()"
+    },
+    "0x00437440": {
+      "name": "PalScript::Op_DlgFont",
+      "signature": "void __thiscall PalScript::Op_DlgFont()"
+    },
+    "0x004374A0": {
+      "name": "PalScript::Op_LoadScene",
+      "signature": "void __thiscall PalScript::Op_LoadScene()"
+    },
+    "0x004374E0": {
+      "name": "PalScript::Op_DlgHead",
+      "signature": "void __thiscall PalScript::Op_DlgHead()"
+    },
+    "0x00437500": {
+      "name": "PalScript::Op_DlgSel",
+      "signature": "void __thiscall PalScript::Op_DlgSel()"
+    },
+    "0x004375E0": {
+      "name": "PalScript::Op_CameraWag",
+      "signature": "void __thiscall PalScript::Op_CameraWag()"
+    },
+    "0x00437610": {
+      "name": "PalScript::Op_CameraMove",
+      "signature": "void __thiscall PalScript::Op_CameraMove()"
+    },
+    "0x004376A0": {
+      "name": "PalScript::Op_CameraTrans",
+      "signature": "void __thiscall PalScript::Op_CameraTrans()"
+    },
+    "0x004376F0": {
+      "name": "PalScript::Op_CameraDefault",
+      "signature": "void __thiscall PalScript::Op_CameraDefault()"
+    },
+    "0x00437740": {
+      "name": "PalScript::Op_RoleStop",
+      "signature": "void __thiscall PalScript::Op_RoleStop()"
+    },
+    "0x00437A80": {
+      "name": "PalScript::Op_Climb",
+      "signature": "void __thiscall PalScript::Op_Climb()"
+    },
+    "0x00437AC0": {
+      "name": "PalScript::Op_InTeamExecScript",
+      "signature": "char *__thiscall PalScript::Op_InTeamExecScript()"
+    },
+    "0x00437B20": {
+      "name": "PalScript::Op_Combat",
+      "signature": "void __thiscall PalScript::Op_Combat()"
+    },
+    "0x00437B90": {
+      "name": "PalScript::Op_DlgTime",
+      "signature": "void __thiscall PalScript::Op_DlgTime()"
+    },
+    "0x00437BB0": {
+      "name": "PalScript::Op_GetTimeSel",
+      "signature": "void __thiscall PalScript::Op_GetTimeSel()"
+    },
+    "0x00438030": {
+      "name": "PalScript::Op_Start_HideFight",
+      "signature": "void __thiscall PalScript::Op_Start_HideFight()"
+    },
+    "0x00438110": {
+      "name": "PalScript::UpdateWaitTimer",
+      "signature": "void __thiscall PalScript::UpdateWaitTimer(float fVal)",
+      "ordinal": 2
+    },
+    "0x004381E0": {
+      "name": "PalScript::Op_Trigger",
+      "signature": "void __thiscall PalScript::Op_Trigger()"
+    },
+    "0x004382A0": {
+      "name": "PalScript::UpdateIdleTimer",
+      "signature": "void __thiscall PalScript::UpdateIdleTimer(float fVal)",
+      "ordinal": 5
+    },
+    "0x00438310": {
+      "name": "PalScript::Op_JT_Exhibit",
+      "signature": "void __thiscall PalScript::Op_JT_Exhibit()"
+    },
+    "0x00438440": {
+      "name": "PalScript::Op_EntryRow",
+      "signature": "void __thiscall PalScript::Op_EntryRow()"
+    },
+    "0x00438450": {
+      "name": "PalScript::Op_RotateInv",
+      "signature": "void __thiscall PalScript::Op_RotateInv()"
+    },
+    "0x00438470": {
+      "name": "PalScript::Op_EntrySkee",
+      "signature": "void __thiscall PalScript::Op_EntrySkee()"
+    },
+    "0x004384D0": {
+      "name": "PalScript::Op_CombatNotGameOver",
+      "signature": "void __thiscall PalScript::Op_CombatNotGameOver()"
+    },
+    "0x00438540": {
+      "name": "PalScript::UpdateFadeOut",
+      "signature": "void __thiscall PalScript::UpdateFadeOut(float fDelta)",
+      "ordinal": 8
+    },
+    "0x004385A0": {
+      "name": "PalScript::Op_GetCombat",
+      "signature": "void __thiscall PalScript::Op_GetCombat()"
+    },
+    "0x00438640": {
+      "name": "PalScript::UpdateFadeIn",
+      "signature": "void __thiscall PalScript::UpdateFadeIn(float fDelta)",
+      "ordinal": 11
+    },
+    "0x004387B0": {
+      "name": "PalScript::Op_RoleFadeIn",
+      "signature": "void __thiscall PalScript::Op_RoleFadeIn()"
+    },
+    "0x004387D0": {
+      "name": "PalScript::Op_TeamOpenAStartMove",
+      "signature": "void __thiscall PalScript::Op_TeamOpenAStartMove()"
+    },
+    "0x004388C0": {
+      "name": "PalScript::Op_IfInTeam",
+      "signature": "void __thiscall PalScript::Op_IfInTeam()"
+    },
+    "0x00438910": {
+      "name": "PalScript::ClearIntParams",
+      "signature": "void __thiscall PalScript::ClearIntParams()"
+    },
+    "0x00438980": {
+      "name": "PalScript::Op_CEft_Role",
+      "signature": "void __thiscall PalScript::Op_CEft_Role()"
+    },
+    "0x004389A0": {
+      "name": "PalScript::Op_FogH",
+      "signature": "void __thiscall PalScript::Op_FogH()"
+    },
+    "0x00438A30": {
+      "name": "PalScript::Op_AverageLv",
+      "signature": "void __thiscall PalScript::Op_AverageLv()"
+    },
+    "0x00438B40": {
+      "name": "PalScript::Op_Switch2Menu",
+      "signature": "void __thiscall PalScript::Op_Switch2Menu()"
+    },
+    "0x00438BA0": {
+      "name": "PalScript::Op_LoadAct",
+      "signature": "void __thiscall PalScript::Op_LoadAct()"
+    },
+    "0x00438D20": {
+      "name": "PalScript::Op_WaterMagic",
+      "signature": "void __thiscall PalScript::Op_WaterMagic()"
+    },
+    "0x00438F50": {
+      "name": "PalScript::Op_CameraYaw",
+      "signature": "void __thiscall PalScript::Op_CameraYaw()"
+    },
+    "0x004391A0": {
+      "name": "PalScript::SetReady",
+      "signature": "void __thiscall PalScript::SetReady()"
+    },
+    "0x004391D0": {
+      "name": "PalScript::ReleaseStateResource",
+      "signature": "void __thiscall PalScript::ReleaseStateResource()"
+    },
+    "0x004393A0": {
+      "name": "PalScript::CheckAnimOver",
+      "signature": "char __thiscall()"
+    },
+    "0x00445E10": {
+      "name": "PalScript::OffsetRect",
+      "signature": "int *__thiscall(int *p_DWORD)"
+    },
+    "0x0052BE40": {
+      "name": "PalScript::LoadEncampConfig",
+      "signature": "int __thiscall PalScript::LoadEncampConfig()"
+    },
+    "0x00535010": {
+      "name": "PalScript::ResetAll",
+      "signature": "int __thiscall PalScript::ResetAll()"
+    },
+    "0x0042C700": {
+      "name": "PalScript::StopSound3D",
+      "signature": "void __thiscall()"
+    },
+    "0x00439FE0": {
+      "name": "PalScript::GetRayToScreen",
+      "signature": "void *__thiscall(void *pRay, long *pResult)"
+    },
+    "0x00436730": {
+      "name": "PalScript::Op_FCZero",
+      "signature": "void __thiscall PalScript::Op_FCZero()"
+    },
+    "0x00436740": {
+      "name": "PalScript::Op_Rand",
+      "signature": "void __thiscall PalScript::Op_Rand()"
+    },
+    "0x00435710": {
+      "name": "PalScript::Op_RoleMoveBack",
+      "signature": "void __thiscall PalScript::Op_RoleMoveBack()"
+    },
+    "0x00435720": {
+      "name": "PalScript::Op_RoleFaceRole",
+      "signature": "void __thiscall PalScript::Op_RoleFaceRole()"
+    },
+    "0x00436120": {
+      "name": "PalScript::Op_RoleMoveTo",
+      "signature": "void __thiscall PalScript::Op_RoleMoveTo()"
+    },
+    "0x004386C0": {
+      "name": "PalScript::Op_RoleFadeOut",
+      "signature": "void __thiscall PalScript::Op_RoleFadeOut()"
+    },
+    "0x00438A20": {
+      "name": "PalScript::Op_CEft",
+      "signature": "void __thiscall PalScript::Op_CEft()"
+    },
+    "0x00438B80": {
+      "name": "PalScript::Op_GiveCloth",
+      "signature": "void __thiscall PalScript::Op_GiveCloth()"
+    },
+    "0x00437C20": {
+      "name": "PalScript::Op_Get_Appr",
+      "signature": "void __thiscall PalScript::Op_Get_Appr()"
+    },
+    "0x00437C30": {
+      "name": "PalScript::Op_Enable_Sword",
+      "signature": "void __thiscall PalScript::Op_Enable_Sword()"
+    },
+    "0x00438930": {
+      "name": "PalScript::Op_Enable_SwordSkill",
+      "signature": "void __thiscall PalScript::Op_Enable_SwordSkill()"
+    },
+    "0x00433F90": {
+      "name": "PalScript::ProcessGBKString",
+      "signature": "int __cdecl PalScript::ProcessGBKString()",
+      "static": true
+    },
+    "0x00421560": {
+      "name": "PalScript::SetAction",
+      "signature": "void __thiscall(int nRoleID)"
+    },
+    "0x00429D40": {
+      "name": "PalScript::SetIndex",
+      "signature": "void __thiscall(int nVal)",
+      "source": "pdb_ret"
+    },
+    "0x00438190": {
+      "name": "PalScript::vfunc_0",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 0
+    },
+    "0x00438100": {
+      "name": "PalScript::vfunc_1",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 1
+    },
+    "0x00434D50": {
+      "name": "PalScript::vfunc_3",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 3
+    },
+    "0x00438530": {
+      "name": "PalScript::sub_00438530",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 7
+    },
+    "0x004573A0": {
+      "name": "PalScript::FreeScriptBuffers",
+      "signature": "void __thiscall PalScript::FreeScriptBuffers()",
+      "_misattrib_evidence": "max_offset=805416>class_size=1816"
+    },
+    "0x00487B60": {
+      "name": "PalScript::InitMainUIScripts",
+      "signature": "int __thiscall PalScript::InitMainUIScripts()",
+      "_misattrib_evidence": "max_offset=54700>class_size=1816"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056ABE0",
+      "slots": [
+        {
+          "addr": "0x00434D50",
+          "from": null
+        },
+        {
+          "addr": "0x00438100",
+          "from": null
+        },
+        {
+          "addr": "0x004382A0",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056ABEC",
+      "slots": [
+        {
+          "addr": "0x00434D50",
+          "from": null
+        },
+        {
+          "addr": "0x00438530",
+          "from": null
+        },
+        {
+          "addr": "0x00438540",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056ABF8",
+      "slots": [
+        {
+          "addr": "0x00434D50",
+          "from": null
+        },
+        {
+          "addr": "0x00438530",
+          "from": null
+        },
+        {
+          "addr": "0x00438640",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056AC4C",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": null
+        },
+        {
+          "addr": "0x0043A270",
+          "from": null
+        },
+        {
+          "addr": "0x0043A3E0",
+          "from": null
+        },
+        {
+          "addr": "0x0043A250",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": null
+        },
+        {
+          "addr": "0x0043A1D0",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": null
+        }
+      ]
+    }
+  ]
+}

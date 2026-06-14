@@ -1,0 +1,316 @@
+{
+  "name": "CCBResultWindow",
+  "base_class": [
+    "UIFrameWnd"
+  ],
+  "base_size": 72,
+  "binary_size": 180,
+  "known_members": {
+    "72": {
+      "name": "m_pBack",
+      "type": "UIStatic *",
+      "offset": 72
+    },
+    "76": {
+      "name": "m_pWind",
+      "type": "UIStatic *",
+      "offset": 76
+    },
+    "80": {
+      "name": "m_pThunder",
+      "type": "UIStatic *",
+      "offset": 80
+    },
+    "84": {
+      "name": "m_pWater",
+      "type": "UIStatic *",
+      "offset": 84
+    },
+    "88": {
+      "name": "m_pFire",
+      "type": "UIStatic *",
+      "offset": 88
+    },
+    "92": {
+      "name": "m_pEarth",
+      "type": "UIStatic *",
+      "offset": 92
+    },
+    "96": {
+      "name": "m_pDouble",
+      "type": "UIStatic *",
+      "offset": 96
+    },
+    "100": {
+      "name": "m_pEXP",
+      "type": "UIStatic *",
+      "offset": 100
+    },
+    "104": {
+      "name": "m_pLevel",
+      "type": "UIStatic *",
+      "offset": 104
+    },
+    "108": {
+      "name": "m_pFace",
+      "type": "UIStatic *[11]",
+      "offset": 108
+    },
+    "152": {
+      "name": "m_pHGM",
+      "type": "UIStatic *",
+      "offset": 152
+    },
+    "156": {
+      "name": "m_pHP",
+      "type": "UIProgressBar *",
+      "offset": 156
+    },
+    "160": {
+      "name": "m_pGP",
+      "type": "UIProgressBar *",
+      "offset": 160
+    },
+    "164": {
+      "name": "m_pMP",
+      "type": "UIProgressBar *",
+      "offset": 164
+    },
+    "168": {
+      "name": "m_pUI",
+      "type": "CCBUI *",
+      "offset": 168
+    },
+    "172": {
+      "name": "m_nIndex",
+      "type": "int",
+      "offset": 172
+    },
+    "176": {
+      "name": "m_bClosed",
+      "type": "unsigned char",
+      "offset": 176
+    },
+    "0": {
+      "name": "__vftable",
+      "type": "void *",
+      "source": "vtable_fix"
+    }
+  },
+  "methods": {
+    "0x0043BE30": {
+      "name": "CCBResultWindow::~CCBResultWindow",
+      "signature": "void __thiscall CCBResultWindow::~CCBResultWindow())"
+    },
+    "0x00442E10": {
+      "name": "CCBResultWindow::ctor",
+      "signature": "void __thiscall()",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+    },
+    "0x00443190": {
+      "name": "CCBResultWindow::Create",
+      "signature": "void __thiscall CCBResultWindow::Create()"
+    },
+    "0x00444A20": {
+      "name": "CCBResultWindow::CCBResultWindow",
+      "signature": "void __thiscall CCBResultWindow::CCBResultWindow()"
+    },
+    "0x00444D20": {
+      "name": "CCBResultWindow::SetDirty",
+      "signature": "void __thiscall()"
+    },
+    "0x00515CE0": {
+      "name": "CCBResultWindow::FindChildByID",
+      "signature": "int __thiscall UIWnd::FindChildByID(int nID)"
+    },
+    "0x00444D10": {
+      "name": "CCBResultWindow::StartAnim",
+      "signature": "int __thiscall CCBResultWindow::StartAnim()",
+      "class": "UIWnd"
+    },
+    "0x0051B030": {
+      "name": "CCBResultWindow::OnMessage",
+      "signature": "int __thiscall(int, int a2, int a3)",
+      "source": "vtable_migrated+pdb_name",
+      "ordinal": 27
+    },
+    "0x0051F0A0": {
+      "name": "CCBResultWindow::Reset",
+      "signature": "void __thiscall(CCBResultWindow *__hidden this)",
+      "source": "vtable_evidence",
+      "ordinal": 2
+    },
+    "0x00519660": {
+      "name": "CCBResultWindow::IsImbibeNimbusNotFinish",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)"
+    },
+    "0x00519360": {
+      "name": "CCBResultWindow::ShowLineupWindow",
+      "signature": "void __thiscall(BOOL bShow)"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x005704CC",
+      "slots": [
+        {
+          "addr": "0x0043DDF0",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x00519660",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x00519510",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00519360",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x005195E0",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        }
+      ]
+    },
+    {
+      "addr": "0x005704E8",
+      "slots": [
+        {
+          "addr": "0x0043DDF0",
+          "from": "UIListBox"
+        },
+        {
+          "addr": "0x0051A090",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x00519F50",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00519B40",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x00519FE0",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        }
+      ]
+    },
+    {
+      "addr": "0x00570504",
+      "slots": [
+        {
+          "addr": "0x0043DDF0",
+          "from": "UIListBox"
+        },
+        {
+          "addr": "0x0051AB00",
+          "from": null
+        },
+        {
+          "addr": "0x0051A880",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051A390",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x0051A930",
+          "from": "CCBControlWindow"
+        },
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        }
+      ]
+    },
+    {
+      "addr": "0x00570520",
+      "slots": [
+        {
+          "addr": "0x0043DDF0",
+          "from": "UIListBox"
+        },
+        {
+          "addr": "0x0051B0B0",
+          "from": "CCBControlWindow"
+        },
+        {
+          "addr": "0x0051AFE0",
+          "from": "CCBControlWindow"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051AC90",
+          "from": "CCBControlWindow"
+        },
+        {
+          "addr": "0x0051B030",
+          "from": null
+        },
+        {
+          "addr": "0x0051B5D0",
+          "from": "CCBItemWindow"
+        }
+      ]
+    },
+    {
+      "addr": "0x0057053C",
+      "slots": [
+        {
+          "addr": "0x0043DDF0",
+          "from": "UIListBox"
+        },
+        {
+          "addr": "0x0051B570",
+          "from": "CCBItemWindow"
+        },
+        {
+          "addr": "0x0051B4B0",
+          "from": "CCBItemWindow"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051B160",
+          "from": null
+        },
+        {
+          "addr": "0x0051C9B0",
+          "from": "CCBSkillWindow"
+        }
+      ]
+    }
+  ]
+}

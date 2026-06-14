@@ -1,0 +1,197 @@
+{
+  "name": "CCBControlWindow",
+  "base_class": [
+    "UIFrameWnd"
+  ],
+  "base_size": 72,
+  "binary_size": 196,
+  "known_members": {
+    "72": {
+      "name": "m_pBack",
+      "type": "UIStatic *",
+      "offset": 72
+    },
+    "76": {
+      "name": "m_pButtonAttack",
+      "type": "UIButton *",
+      "offset": 76
+    },
+    "80": {
+      "name": "m_pButtonSkill",
+      "type": "UIButton *",
+      "offset": 80
+    },
+    "84": {
+      "name": "m_pButtonMagic",
+      "type": "UIButton *",
+      "offset": 84
+    },
+    "88": {
+      "name": "m_pButtonItem",
+      "type": "UIButton *",
+      "offset": 88
+    },
+    "92": {
+      "name": "m_pButtonDefence",
+      "type": "UIButton *",
+      "offset": 92
+    },
+    "96": {
+      "name": "m_pButtonLineup",
+      "type": "UIButton *",
+      "offset": 96
+    },
+    "100": {
+      "name": "m_pButtonAI",
+      "type": "UIButton *",
+      "offset": 100
+    },
+    "104": {
+      "name": "m_pButtonFlee",
+      "type": "UIButton *",
+      "offset": 104
+    },
+    "108": {
+      "name": "m_pButtonProtect",
+      "type": "UIButton *",
+      "offset": 108
+    },
+    "112": {
+      "name": "m_CurCtrl",
+      "type": "int",
+      "offset": 112
+    },
+    "0": {
+      "name": "__vftable",
+      "type": "void *",
+      "source": "vtable_fix"
+    }
+  },
+  "methods": {
+    "0x0051A700": {
+      "name": "CCBControlWindow::CCBControlWindow",
+      "signature": "void __thiscall()"
+    },
+    "0x0051AA20": {
+      "name": "CCBControlWindow::Create",
+      "signature": "bool __thiscall(tagRECT *rc, UIWnd *pFather, int nVal, int nVal2)",
+      "source": "pdb_ret"
+    },
+    "0x0051AB60": {
+      "name": "CCBControlWindow::HandleInput",
+      "signature": "UIButton *__thiscall(UIButton *pButton)"
+    },
+    "0x0051AC30": {
+      "name": "CCBControlWindow::KeyPressed",
+      "signature": "void __thiscall()",
+      "source": "pdb_ret"
+    },
+    "0x0051AC40": {
+      "name": "CCBControlWindow::DefaultKey",
+      "signature": "UIListBox * __thiscall()"
+    },
+    "0x0051AC90": {
+      "name": "CCBControlWindow::HandleEnable",
+      "signature": "UIWnd *__thiscall(CCBControlWindow *Block, char dir)",
+      "ordinal": 5
+    },
+    "0x0051ACB0": {
+      "name": "CCBControlWindow::~CCBControlWindow",
+      "signature": "void __thiscall()"
+    },
+    "0x0051AD00": {
+      "name": "CCBControlWindow::CheckKeyInput",
+      "signature": "void __thiscall()",
+      "source": "pdb_ret"
+    },
+    "0x0051AD10": {
+      "name": "CCBControlWindow::OnMessage",
+      "signature": "char __thiscall(int *pRect, int parent)"
+    },
+    "0x0051AFE0": {
+      "name": "CCBControlWindow::Update",
+      "signature": "int __thiscall(CCBControlWindow *__hidden this, float, int)",
+      "source": "vtable_migrated",
+      "ordinal": 10
+    },
+    "0x0051B0B0": {
+      "name": "CCBControlWindow::MoveButtons",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
+      "ordinal": 2
+    },
+    "0x0051B110": {
+      "name": "CCBControlWindow::CreateButton",
+      "signature": "UIListBox * __thiscall()"
+    },
+    "0x0051B030": {
+      "name": "CCBControlWindow::OnMessage",
+      "signature": "int __thiscall(int, int a2, int a3)",
+      "source": "vtable_migrated",
+      "ordinal": 6
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x00570520",
+      "slots": [
+        {
+          "addr": "0x0043DDF0",
+          "from": null
+        },
+        {
+          "addr": "0x0051B0B0",
+          "from": null
+        },
+        {
+          "addr": "0x0051AFE0",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051AC90",
+          "from": null
+        },
+        {
+          "addr": "0x0051B030",
+          "from": null
+        },
+        {
+          "addr": "0x0051B5D0",
+          "from": "CCBItemWindow"
+        }
+      ]
+    },
+    {
+      "addr": "0x0057053C",
+      "slots": [
+        {
+          "addr": "0x0043DDF0",
+          "from": null
+        },
+        {
+          "addr": "0x0051B570",
+          "from": "CCBItemWindow"
+        },
+        {
+          "addr": "0x0051B4B0",
+          "from": "CCBItemWindow"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051B160",
+          "from": null
+        },
+        {
+          "addr": "0x0051C9B0",
+          "from": "CCBSkillWindow"
+        }
+      ]
+    }
+  ]
+}
