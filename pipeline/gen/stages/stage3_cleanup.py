@@ -546,13 +546,18 @@ def run(code, ctx):
     # Replace __SPAIR64__ IDA macro with equivalent
     code = code.replace('__SPAIR64__', '__PAIR64__')
 
-    # Comment out Hex-Rays "->0)" vtable dispatch (invalid C syntax, comment whole statement)
-    # If the dispatch line ends with ';' (single-line), don't bleed into subsequent lines.
+    # Comment out Hex-Rays "->0" / "->0 + N" vtable dispatch (invalid C syntax).
+    # Root cause: structs lack vfptr member at offset 0 in exported data_members.
+    # Pattern: "->0)" (slot 0) or "->0 + N)" (slot N) — both are vtable dispatches.
+    # Cannot fix at annotation layer (gbengine structs, no IDA available for re-export).
+    # Information IS recoverable here: the vtable dispatch pattern is unambiguous.
     lines = code.split('\n')
     out_lines = []
     commenting = False
     for line in lines:
-        if not commenting and '->0)' in line and '//' not in line:
+        _needs_comment = (not commenting and '//' not in line
+                         and re.search(r'->0\s*[)+\s]', line))
+        if not commenting and _needs_comment:
             commenting = True
             out_lines.append(line[:len(line) - len(line.lstrip())] + '// [VTBL_DISPATCH] ' + line.strip())
             if line.rstrip().endswith(';'):

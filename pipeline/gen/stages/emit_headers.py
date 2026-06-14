@@ -274,8 +274,11 @@ TYPE_REMAP = {
     'unsigned char': 'BYTE',
     'unsigned int': 'UINT',
     'unsigned long': 'DWORD',
+    'signed __int8': 'char',
     '__int8': 'char',
+    'signed __int16': 'short',
     '__int16': 'short',
+    'signed __int32': 'int',
     '__int32': 'int',
     '__int64': '__int64',
     'unsigned __int8': 'unsigned char',
@@ -588,9 +591,9 @@ def _estimate_member_size(mtype):
     t = mtype.strip()
     if t in ('char', 'unsigned char', 'BYTE', '_BYTE', 'bool'):
         return 1
-    if t in ('short', 'unsigned short', 'WORD', '_WORD', 'wchar_t'):
+    if t in ('short', 'unsigned short', 'signed short', 'WORD', '_WORD', 'wchar_t'):
         return 2
-    if t in ('int', 'unsigned int', 'long', 'unsigned long', 'DWORD',
+    if t in ('int', 'unsigned int', 'signed int', 'long', 'unsigned long', 'DWORD',
              '_DWORD', 'UINT', 'LONG', 'BOOL', 'HRESULT', 'float', 'HWND',
              'HANDLE', 'HINSTANCE', 'HDC', 'LPVOID'):
         return 4
@@ -1240,7 +1243,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 """Emit a single member line (with type remap + function pointer fix)."""
                 # Remap IDA internal types to C types
                 for ida_type, c_type in TYPE_REMAP.items():
-                    if ida_type in mtype:
+                    if re.search(r'(?:^|\s)' + re.escape(ida_type) + r'(?=\s|$|\[|\*)', mtype):
                         mtype = mtype.replace(ida_type, c_type)
                 # Fix C99 flexible array
                 mtype = re.sub(r'\[\]', '[1]', mtype)
