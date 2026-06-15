@@ -7,35 +7,10 @@
       "type": "float",
       "source": "annotation"
     },
-    "208": {
-      "name": "m_nPrintScreen",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "212": {
-      "name": "g_pSnow",
-      "type": "gbDropGroup *",
-      "source": "gen_headers_9.2"
-    },
-    "216": {
-      "name": "g_pRain",
-      "type": "gbDropGroup *",
-      "source": "gen_headers_9.2"
-    },
-    "220": {
-      "name": "s_bCombatGameOver",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "224": {
-      "name": "s_bActive",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "228": {
-      "name": "s_drvinfo",
-      "type": "gbGfxDriverInfo",
-      "source": "PAL3patch:confirmed sizeof==184, fields match g_nDisplayAdapter..waitforverticalblank"
+    "32": {
+      "name": "m_Image2D",
+      "type": "gbImage2D",
+      "source": "CRT:IAT_0x56A520=gbengine.dll!gbImage2D::gbImage2D()|verified:ctor_this=PAL3+0x20"
     },
     "412": {
       "name": "s_gamestate",
@@ -86,76 +61,6 @@
       "name": "m_gametime",
       "type": "double",
       "source": "gen_headers_9.2"
-    },
-    "456": {
-      "name": "s_hcur",
-      "type": "HICON__ *",
-      "source": "gen_headers_9.2"
-    },
-    "460": {
-      "name": "m_snapstate",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "464": {
-      "name": "m_isRenderConsole",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "684": {
-      "name": "s_flag",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "688": {
-      "name": "m_pCBSystem",
-      "type": "CCBSystem *",
-      "source": "gen_headers_9.2"
-    },
-    "692": {
-      "name": "m_pEffectSystem",
-      "type": "CEffectSystem *",
-      "source": "gen_headers_9.2"
-    },
-    "696": {
-      "name": "m_pEffMgr",
-      "type": "CEffMgr *",
-      "source": "gen_headers_9.2"
-    },
-    "700": {
-      "name": "m_snapautoindex",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "704": {
-      "name": "m_snappath",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "708": {
-      "name": "m_snapw",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "712": {
-      "name": "m_snaph_2",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "40": {
-      "name": "m_fViewY",
-      "type": "float",
-      "source": "ida_decomp:_auto_532f60 used as float, 2 refs | name_fix:position Y between ViewX(0x24) and ViewZ(0x2C)"
-    },
-    "140": {
-      "name": "m_pCollisionObj",
-      "type": "RoleSystem *",
-      "source": "ida_decomp:_auto_532f60 = v4-158, deref+16 float, 5 refs+codegen_infer"
-    },
-    "133": {
-      "name": "_todo_085",
-      "type": "unsigned char",
-      "source": "reverted_auto_semantic:2x"
     },
     "1736": {
       "name": "_todo_6C8",
@@ -236,16 +141,6 @@
       "name": "m_pAdditiveEffect2",
       "type": "gbRenderEffect *",
       "source": "A:decomp LODWORD=gbEffectMgr::NewRenderEffect() ret(gbRenderEffect*) in 0x004C58C0; Release()+set_0 in 0x004C0400"
-    },
-    "36": {
-      "name": "m_fViewX",
-      "type": "float",
-      "source": "gap_fill:ida_decomp_access | type_fix:int->float(A:fsubr dword [ebp+24h] @0x532FE0) | name_fix:position X in _auto_532f60 distance calc"
-    },
-    "44": {
-      "name": "m_fViewZ",
-      "type": "float",
-      "source": "gap_fill:ida_decomp_access | type_fix:int->float(A:fld dword [ebp+2Ch] @0x532FEE) | name_fix:position Z in _auto_532f60 distance calc"
     },
     "1696": {
       "name": "_todo_6A0",
