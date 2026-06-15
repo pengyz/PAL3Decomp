@@ -54,19 +54,22 @@ def load_struct_info(target_classes=None):
 
 def load_class_methods():
     """Load function annotations grouped by class."""
-    funcs_path = os.path.join(ANNOTATIONS_DIR, "functions.json")
-    with open(funcs_path, "r", encoding="utf-8") as f:
-        funcs = json.load(f)
     class_methods = {}
-    for addr_str, info in funcs.items():
-        name = info.get("name", "")
-        if "::" not in name or name.startswith("_misattrib"):
-            continue
-        cls = name.split("::")[0]
-        ea = int(addr_str, 16)
-        if cls not in class_methods:
-            class_methods[cls] = []
-        class_methods[cls].append(ea)
+    # Collect from struct JSONs (class methods by file ownership)
+    structs_dir = os.path.join(ANNOTATIONS_DIR, "structs")
+    if os.path.isdir(structs_dir):
+        for fname in os.listdir(structs_dir):
+            if not fname.endswith(".json"):
+                continue
+            sname = fname.replace(".json", "")
+            with open(os.path.join(structs_dir, fname), "r", encoding="utf-8") as f:
+                sdata = json.load(f)
+            # Use decomp-resolved addresses if available, else annotation addresses
+            for akey in sdata.get("methods", {}):
+                try:
+                    ea = int(akey.replace("0x0x", "0x"), 16)
+                    class_methods.setdefault(sname, []).append(ea)
+                except: pass
     return class_methods
 
 
