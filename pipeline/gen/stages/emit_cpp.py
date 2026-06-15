@@ -149,20 +149,27 @@ def _detect_needed_includes(cls_name, methods):
     all_code_preview = '\n'.join(m['code'] for m in methods)
     needed_classes = set()
 
+    def _header_exists(name):
+        """Check if a class header exists, searching subdirectories."""
+        _sub = get_class_dir(name)
+        if _sub:
+            return (header_dir / _sub / ("%s.h" % name)).exists()
+        return (header_dir / ("%s.h" % name)).exists()
+
     # ClassName:: static calls
     for match in re.finditer(r'\b([A-Z]\w+)::', all_code_preview):
         c = match.group(1)
-        if c != cls_name and (header_dir / ("%s.h" % c)).exists():
+        if c != cls_name and _header_exists(c):
             needed_classes.add(c)
 
     # (ClassName *) casts -- accessing members requires full definition
     for match in re.finditer(r'\((\w+)\s*\*+\s*\)', all_code_preview):
         c = match.group(1)
-        if c != cls_name and (header_dir / ("%s.h" % c)).exists():
+        if c != cls_name and _header_exists(c):
             needed_classes.add(c)
 
     # Any word matching a known header file name in the code
-    known_headers = {f.stem for f in header_dir.glob("*.h")}
+    known_headers = {f.stem for f in header_dir.rglob("*.h")}
     for match in re.finditer(r'\b([A-Za-z_]\w+)\b', all_code_preview):
         c = match.group(1)
         if c != cls_name and c in known_headers and c not in needed_classes:
@@ -175,10 +182,13 @@ def _detect_needed_includes(cls_name, methods):
     fwd_types = set()
     all_included = needed_classes | {cls_name}
     # Also scan globals.h for forward-declared types (included by all .cpp files)
+    # AND for extern variable declarations (var name → type mapping)
     _globals_h = header_dir / "globals.h"
     if _globals_h.exists():
         with open(_globals_h, 'r', encoding='utf-8', errors='replace') as _gh:
+            _extern_map = {}  # var_name → type_name
             for _hl in _gh:
+                # Scan forward declarations: class X;
                 _fwd = re.match(r'^\s*class\s+(\w+)\s*;\s*', _hl)
                 if _fwd:
                     _t = _fwd.group(1)
@@ -193,8 +203,21 @@ def _detect_needed_includes(cls_name, methods):
                         if _in_code:
                             all_included.add(_t)
                             needed_classes.add(_t)
+                # Scan extern declarations: extern Type var_name;
+                _ext = re.match(r'^\s*extern\s+(?:(?:class|struct)\s+)?(\w+)\s+(\w+)\s*;', _hl)
+                if _ext:
+                    _ext_type = _ext.group(1)
+                    _ext_var = _ext.group(2)
+                    if _ext_type in known_headers and not _ext_type.startswith('gb'):
+                        _extern_map[_ext_var] = _ext_type
+            # Check if any extern variable is used in the code with member access
+            for _var, _typ in _extern_map.items():
+                if _typ not in all_included and _var in all_code_preview:
+                    all_included.add(_typ)
+                    needed_classes.add(_typ)
     # Also add headers included by the class's own header
-    cls_hpath = header_dir / ("%s.h" % cls_name)
+    _cls_sub = get_class_dir(cls_name)
+    cls_hpath = (header_dir / _cls_sub / ("%s.h" % cls_name)) if _cls_sub else (header_dir / ("%s.h" % cls_name))
     if cls_hpath.exists():
         with open(cls_hpath, 'r', encoding='utf-8', errors='replace') as hf:
             for hline in hf:
@@ -205,7 +228,8 @@ def _detect_needed_includes(cls_name, methods):
                         all_included.add(inc_stem)
     # One-level BFS: scan headers we're including for forward-declared types
     for inc_cls in list(all_included):
-        hpath = header_dir / ("%s.h" % inc_cls)
+        _inc_sub = get_class_dir(inc_cls)
+        hpath = (header_dir / _inc_sub / ("%s.h" % inc_cls)) if _inc_sub else (header_dir / ("%s.h" % inc_cls))
         if not hpath.exists():
             continue
         with open(hpath, 'r', encoding='utf-8', errors='replace') as hf:

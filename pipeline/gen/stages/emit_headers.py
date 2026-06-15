@@ -951,7 +951,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         if t in _gbengine_type_to_header:
             lines.append('#include "%s"' % _gbengine_type_to_header[t])
         else:
-            lines.append('#include "%s.h"' % t)
+            _sub = get_class_dir(t)
+            if _sub:
+                lines.append('#include "%s/%s.h"' % (_sub, t))
+            else:
+                lines.append('#include "%s.h"' % t)
     if include_types or needs_stl:
         lines.append("")
 
@@ -962,7 +966,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             if t in _gbengine_type_to_header:
                 lines.append('#include "%s"' % _gbengine_type_to_header[t])
             else:
-                lines.append('#include "%s.h"' % t)
+                _sub = get_class_dir(t)
+                if _sub:
+                    lines.append('#include "%s/%s.h"' % (_sub, t))
+                else:
+                    lines.append('#include "%s.h"' % t)
         fwd_types -= enum_fwd
 
     # Emit forward declarations for class types
@@ -1022,7 +1030,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 if gb_path:
                     inc_line = '#include "%s"' % gb_path
                 else:
-                    inc_line = '#include "%s.h"' % _ann_base
+                    _sub = get_class_dir(_ann_base)
+                    if _sub:
+                        inc_line = '#include "%s/%s.h"' % (_sub, _ann_base)
+                    else:
+                        inc_line = '#include "%s.h"' % _ann_base
                 if inc_line not in lines:
                     lines.insert(0, inc_line)
 
@@ -1044,7 +1056,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         if inc_line not in lines:
                             lines.insert(0, inc_line)
                     elif param in known_classes or _ann_struct_path(param):
-                        inc_line = '#include "%s.h"' % param
+                        _sub = get_class_dir(param)
+                        if _sub:
+                            inc_line = '#include "%s/%s.h"' % (_sub, param)
+                        else:
+                            inc_line = '#include "%s.h"' % param
                         if inc_line not in lines:
                             lines.insert(0, inc_line)
                     else:
@@ -1059,7 +1075,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         if gb_path:
             inc_line = '#include "%s"' % gb_path
         else:
-            inc_line = '#include "%s.h"' % base_inc
+            _sub = get_class_dir(base_inc)
+            if _sub:
+                inc_line = '#include "%s/%s.h"' % (_sub, base_inc)
+            else:
+                inc_line = '#include "%s.h"' % base_inc
         if inc_line not in lines:
             lines.insert(0, inc_line)
 
@@ -1118,13 +1138,21 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 lines.append('class %s;' % _td_cls)
                 lines.append('typedef %s;' % _td_type_named)
                 _base_tpl = template_expr.split('<')[0]
-                _inc = '#include "%s.h"' % _base_tpl
+                _sub = get_class_dir(_base_tpl)
+                if _sub:
+                    _inc = '#include "%s/%s.h"' % (_sub, _base_tpl)
+                else:
+                    _inc = '#include "%s.h"' % _base_tpl
                 if _inc not in lines:
                     lines.insert(0, _inc)
                 # Include simple template parameter types (e.g. tagEffTaskParam)
                 for _tp in re.findall(r'\w+', template_expr.split('<', 1)[1].split(',')[0]):
                     if _tp and _tp != _base_tpl and _tp not in PRIMITIVES and _tp not in SYSTEM_TYPES:
-                        _inc2 = '#include "%s.h"' % _tp
+                        _sub = get_class_dir(_tp)
+                        if _sub:
+                            _inc2 = '#include "%s/%s.h"' % (_sub, _tp)
+                        else:
+                            _inc2 = '#include "%s.h"' % _tp
                         if _inc2 not in lines:
                             lines.insert(0, _inc2)
                 lines.append("template<>")
@@ -2112,7 +2140,11 @@ def generate_globals():
     insert_pos = 8  # after #include <windows.h> and blank line
     if includes_needed:
         for cls in sorted(includes_needed):
-            h_lines.insert(insert_pos, '#include "pal3/gen/%s.h"' % cls)
+            _sub = get_class_dir(cls)
+            if _sub:
+                h_lines.insert(insert_pos, '#include "%s/%s.h"' % (_sub, cls))
+            else:
+                h_lines.insert(insert_pos, '#include "%s.h"' % cls)
             insert_pos += 1
         h_lines.insert(insert_pos, '')
         insert_pos += 1
