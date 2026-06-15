@@ -779,6 +779,13 @@ def load_annotations():
     log("[*] Loading annotations from: %s" % ANNOTATIONS_DIR)
     with open(os.path.join(ANNOTATIONS_DIR, "functions.json"), "r", encoding="utf-8") as f:
         functions = json.load(f)
+    # Tag functions.json entries that have ClassName:: prefix with their class
+    # (legacy entries not yet moved to struct JSONs)
+    for _addr, _info in functions.items():
+        _n = _info.get("name", "")
+        if "::" in _n and "class" not in _info:
+            _info["class"] = _n.split("::", 1)[0]
+            _info["name"] = _n.split("::", 1)[1]
     with open(os.path.join(ANNOTATIONS_DIR, "globals.json"), "r", encoding="utf-8") as f:
         globals_data = json.load(f)
     structs = {}
@@ -802,13 +809,16 @@ def load_annotations():
                 minfo["class"] = sname
                 functions[addr] = minfo
         # Also merge nested type methods (e.g. NODE::FindInOpen)
+        # Use nested type as class field (ClassName::NestedType)
         for _nt_name, _nt_info in sdata.get("nested_types", {}).items():
             _nt_full = "%s::%s" % (sname, _nt_name)
             for _addr, _minfo in _nt_info.get("methods", {}).items():
                 if _addr not in functions:
                     _mn = _minfo.get("name", "")
-                    if _mn and "::" not in _mn:
-                        _minfo["name"] = "%s::%s" % (_nt_full, _mn)
+                    if _mn and "::" in _mn:
+                        _mn = _mn.split("::", 1)[1]  # strip prefix from legacy format
+                    _minfo["name"] = _mn
+                    _minfo["class"] = _nt_full
                     functions[_addr] = _minfo
     enums = {}
     enums_path = os.path.join(ANNOTATIONS_DIR, "enums.json")
@@ -1190,7 +1200,7 @@ def apply_annotations():
 
             # Use mangled name for class methods (globally unique, no _N conflict)
             # or simple name for free functions.
-            # class field is set by _load_annotations for struct methods.
+            # class field is set by _load_annotations for ALL class methods.
             if 'class' in info:
                 _cls = info['class']
                 _method = name
@@ -1203,8 +1213,6 @@ def apply_annotations():
             else:
                 if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                     renamed += 1
-                else:
-                    rename_fail.append((addr_str, cur, name))
 
     # Also name skip_functions (not decompiled, but callers need their names)
     skip_path = os.path.join(ANNOTATIONS_DIR, "skip_functions.json")
@@ -1651,8 +1659,8 @@ def apply_annotations():
             # Signatures in annotations no longer redundantly store ClassName *this.
             # Class name from info['class'] field (set by _load_annotations).
             # Only for __thiscall methods: __cdecl/__stdcall/__fastcall are static and have no this.
-            if 'class' in info:
-                _cls = info['class']
+            _cls = info.get('class')
+            if _cls:
                 _cc_is_thiscall = '__thiscall' in sig_raw
                 _params = sig_raw[paren_idx:]
                 if _cc_is_thiscall and not re.search(r'\b' + re.escape(_cls) + r'\s*\*\s*this', _params):
@@ -1664,7 +1672,6 @@ def apply_annotations():
                         _new_params = '(%s *this)' % _cls
                     sig_raw = _before + _new_params
             # Extract a valid C identifier for the function name
-            # name is already short (no ClassName:: prefix) since the migration
             short_name = name
             # Demangle: ?Name@Class@@... → Name, ??1Class@@... → dtor_Class
             if short_name.startswith("??1"):

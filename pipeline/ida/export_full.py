@@ -234,7 +234,8 @@ def main():
                         for _addr, _info in _nt_info.get('methods', {}).items():
                             if _addr not in _ann_funcs:
                                 _mn = _info.get('name', '')
-                                if _mn and '::' not in _mn:
+                                # Reconstruct full name for mangler (ClassName::NestedType::Method)
+                                if _mn:
                                     _info['name'] = "%s::%s" % (_nt_full, _mn)
                                 _ann_funcs[_addr] = _info
             _set_count = 0
