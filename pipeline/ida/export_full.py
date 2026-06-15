@@ -219,6 +219,7 @@ def main():
                     if not _sf.endswith('.json'): continue
                     with open(os.path.join(_structs_dir, _sf), 'r', encoding='utf-8') as _fh:
                         _sd = _json.load(_fh)
+                    _sname = _sd.get('name', _sf.replace('.json', ''))
                     for _addr, _info in _sd.get('methods', {}).items():
                         if _addr not in _ann_funcs:
                             _mn = _info.get('name', '')
@@ -228,7 +229,6 @@ def main():
                                 _info['name'] = "%s::%s" % (_sname, _mn)
                             _ann_funcs[_addr] = _info
                     # Also merge nested type methods
-                    _sname = _sd.get('name', _sf.replace('.json', ''))
                     for _nt_name, _nt_info in _sd.get('nested_types', {}).items():
                         _nt_full = "%s::%s" % (_sname, _nt_name)
                         for _addr, _info in _nt_info.get('methods', {}).items():

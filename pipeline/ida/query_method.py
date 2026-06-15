@@ -11,12 +11,10 @@ idaapi.auto_wait()
 
 # Functions to analyze
 FUNCTIONS = [
-    ("CCBMagicWindow_or_CCBControlWindow::Render", 0x0043DDF0),
-    ("CCBParabolaWindow::Destroy", 0x0051B920),
-    ("CCBStageScene::_method_52b2a0", 0x0052B2A0),
-    ("CCBStageScene::CCBStageScene", 0x0050F900),
-    ("CCBStageScene::_sub_50FD00", 0x0050FD00),
-    ("CCBStageScene::Init", 0x005107A0),
+    ("TextureLib::LoadLibrary", 0x004B5EE0),
+    ("TextureLib::CountEntries", 0x00443A90),
+    ("TextureLib::SearchByIndex", 0x00443A90),
+    ("TextureLib::RenderFrame", 0x004B5D20),
 ]
 
 results = {}
