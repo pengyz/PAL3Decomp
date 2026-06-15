@@ -1,0 +1,156 @@
+{
+  "name": "tagEffSParticleSys",
+  "binary_size": 808,
+  "known_members": {
+    "0": {
+      "name": "m_nEffCount",
+      "type": "int",
+      "source": "semantic: count of active sparticle effects"
+    },
+    "8": {
+      "name": "m_vSpawnPos",
+      "type": "float[2]",
+      "source": "binary: spawn position XY"
+    },
+    "16": {
+      "name": "m_vSpawnOffset",
+      "type": "float[2]",
+      "source": "binary: random offset for spawn pos"
+    },
+    "24": {
+      "name": "m_nSpawnFlags",
+      "type": "int",
+      "source": "binary: spawn control flags"
+    },
+    "28": {
+      "name": "m_nSpawnCount",
+      "type": "int",
+      "source": "binary: number of particles to spawn"
+    },
+    "32": {
+      "name": "m_fSpawnSize",
+      "type": "float",
+      "source": "binary: particle spawn size"
+    },
+    "36": {
+      "name": "m_nSpawnLife",
+      "type": "int",
+      "source": "binary: particle life duration"
+    },
+    "40": {
+      "name": "m_fSpawnBright",
+      "type": "float",
+      "source": "binary: particle brightness"
+    },
+    "44": {
+      "name": "m_nSpawnEffect",
+      "type": "int",
+      "source": "binary: particle effect type"
+    },
+    "48": {
+      "name": "m_bSpawnActive",
+      "type": "unsigned char",
+      "source": "binary: spawn active flag"
+    },
+    "56": {
+      "name": "m_vSpawn2Pos",
+      "type": "float[2]",
+      "source": "binary: group2 spawn position"
+    },
+    "64": {
+      "name": "m_nSpawn2Flags",
+      "type": "int",
+      "source": "binary: group2 spawn flags"
+    },
+    "68": {
+      "name": "m_nSpawn2Count",
+      "type": "int",
+      "source": "binary: group2 particle count"
+    },
+    "72": {
+      "name": "m_fSpawn2Size",
+      "type": "float",
+      "source": "binary: group2 particle size"
+    },
+    "76": {
+      "name": "m_nSpawn2Color",
+      "type": "int",
+      "source": "binary: group2 color param"
+    },
+    "80": {
+      "name": "m_nSpawn2Life",
+      "type": "int",
+      "source": "binary: group2 lifetime"
+    },
+    "84": {
+      "name": "m_nSpawn2Bright",
+      "type": "int",
+      "source": "binary: group2 brightness"
+    },
+    "88": {
+      "name": "m_nSpawn2Effect",
+      "type": "int",
+      "source": "binary: group2 effect type"
+    },
+    "92": {
+      "name": "m_nSpawn2Rand",
+      "type": "int",
+      "source": "binary: group2 random param"
+    },
+    "96": {
+      "name": "m_bSpawn2Active",
+      "type": "unsigned char",
+      "source": "binary: group2 active flag"
+    },
+    "104": {
+      "name": "m_vSpawn3Pos",
+      "type": "float[2]",
+      "source": "binary: group3 spawn position"
+    },
+    "112": {
+      "name": "m_vSpawn3Rand",
+      "type": "float[2]",
+      "source": "binary: group3 random offset"
+    },
+    "120": {
+      "name": "m_nSpawn3Flags",
+      "type": "int",
+      "source": "binary: group3 flags"
+    },
+    "124": {
+      "name": "m_nSpawn3Count",
+      "type": "int",
+      "source": "binary: group3 count"
+    },
+    "128": {
+      "name": "m_fSpawn3Size",
+      "type": "float",
+      "source": "binary: group3 size"
+    },
+    "132": {
+      "name": "m_nSpawn3Color",
+      "type": "int",
+      "source": "binary: group3 color"
+    },
+    "136": {
+      "name": "m_fSpawn3Bright",
+      "type": "float",
+      "source": "binary: group3 brightness"
+    },
+    "140": {
+      "name": "m_nSpawn3Life",
+      "type": "int",
+      "source": "binary: group3 lifetime"
+    },
+    "144": {
+      "name": "m_bSpawn3Active",
+      "type": "unsigned char",
+      "source": "binary: group3 active"
+    },
+    "800": {
+      "name": "m_ptLastSpawn",
+      "type": "int[2]",
+      "source": "binary: last spawn position for dedup"
+    }
+  }
+}
