@@ -86,6 +86,13 @@ def check():
     funcs = ann.get('functions', {})
     # Track (name, normalized_signature) for duplicate detection
     sig_index = {}  # (name, sig_norm) -> first_addr
+
+    # Build set of addresses belonging to struct methods (for :: check skip)
+    _struct_method_addrs = set()
+    for _sn, _sd in ann.get('structs', {}).items():
+        for _addr in _sd.get('methods', {}):
+            _struct_method_addrs.add(_addr)
+
     for addr, info in funcs.items():
         if not re.match(r'^0x[0-9A-Fa-f]{8}$', addr):
             errors.append(f"functions[{addr}]: invalid address format")
@@ -119,7 +126,7 @@ def check():
         # These need class attribution to make 'virtual' valid. Functions with
         # generic Block types (void*, char*) cannot be attributed. Functions
         # with known class types should be moved to struct annotations.
-        if 'virtual' in sig and '::' not in name:
+        if 'virtual' in sig and '::' not in name and addr not in _struct_method_addrs:
             m = re.search(r'(?:virtual\s+)?(\w[\w:]*)\s*\*+\s*(?:Block|this)', sig)
             if m and m.group(1) not in ('void', 'char', 'int', '_BYTE'):
                 errors.append(
@@ -132,7 +139,7 @@ def check():
                     f"(sig: {sig[:60]}) — generic this type, cannot determine class")
 
         # Check 2: __thiscall without :: suggests misattributed member function
-        if '__thiscall' in sig and '::' not in name:
+        if '__thiscall' in sig and '::' not in name and addr not in _struct_method_addrs:
             # Exclude known-nonmember patterns: _sdtor_, _nearby_, sub_ etc.
             if not name.startswith(('_sdtor', '_nearby', '_sub', '_todo', '_init_', 'sub_', '_old_')):
                 first_param = sig.split('(')[1].split(',')[0].strip() if '(' in sig else ''

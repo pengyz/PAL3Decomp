@@ -791,8 +791,15 @@ def load_annotations():
         sname = sdata.pop("name", fname.replace(".json", ""))
         structs[sname] = sdata
         # Merge struct methods into functions dict (class methods not in functions.json)
+        # Class name derived from file name; name field stores short method name only.
         for addr, minfo in sdata.get("methods", {}).items():
             if addr not in functions:
+                # Strip any lingering ClassName:: prefix (safety for old-format entries)
+                _raw = minfo.get("name", "")
+                if "::" in _raw:
+                    minfo["name"] = _raw.split("::", 1)[1]
+                # Tag with owning class for mangling / signature resolution
+                minfo["class"] = sname
                 functions[addr] = minfo
         # Also merge nested type methods (e.g. NODE::FindInOpen)
         for _nt_name, _nt_info in sdata.get("nested_types", {}).items():
@@ -1183,10 +1190,10 @@ def apply_annotations():
 
             # Use mangled name for class methods (globally unique, no _N conflict)
             # or simple name for free functions.
-            if '::' in name:
-                _parts = name.rsplit('::', 1)
-                _cls = _parts[0]   # may include :: for nested types
-                _method = _parts[1]
+            # class field is set by _load_annotations for struct methods.
+            if 'class' in info:
+                _cls = info['class']
+                _method = name
                 _sig = info.get('signature', '')
                 _mangled = _mangle_vc6(_cls, _method, _sig)
                 if _mangled and ida_name.set_name(addr, _mangled, ida_name.SN_NOWARN | ida_name.SN_FORCE):
@@ -1628,7 +1635,7 @@ def apply_annotations():
         sig_raw = _re_sig.sub(r'\s*__spoils<[^>]*>', '', sig_raw)
         sig_raw = sig_raw.strip()
         # Clean up redundant calling conventions for member functions
-        if ("::" in name or "*this" in sig_raw) and "__cdecl" in sig_raw and "__thiscall" in sig_raw:
+        if ("class" in info or "*this" in sig_raw) and "__cdecl" in sig_raw and "__thiscall" in sig_raw:
             # Member function with both __cdecl and __thiscall - remove __cdecl
             sig_raw = sig_raw.replace("__cdecl ", "")
         # Fix common type name issues
@@ -1642,10 +1649,10 @@ def apply_annotations():
         if paren_idx > 0:
             # Auto-complete this pointer for class methods.
             # Signatures in annotations no longer redundantly store ClassName *this.
-            # Extract class from function name and prepend if missing.
+            # Class name from info['class'] field (set by _load_annotations).
             # Only for __thiscall methods: __cdecl/__stdcall/__fastcall are static and have no this.
-            if "::" in name:
-                _cls = name.split("::")[0]
+            if 'class' in info:
+                _cls = info['class']
                 _cc_is_thiscall = '__thiscall' in sig_raw
                 _params = sig_raw[paren_idx:]
                 if _cc_is_thiscall and not re.search(r'\b' + re.escape(_cls) + r'\s*\*\s*this', _params):
@@ -1657,10 +1664,8 @@ def apply_annotations():
                         _new_params = '(%s *this)' % _cls
                     sig_raw = _before + _new_params
             # Extract a valid C identifier for the function name
-            if "::" in name:
-                short_name = name.split("::")[-1]
-            else:
-                short_name = name
+            # name is already short (no ClassName:: prefix) since the migration
+            short_name = name
             # Demangle: ?Name@Class@@... → Name, ??1Class@@... → dtor_Class
             if short_name.startswith("??1"):
                 m = _re_sig.match(r'\?\?1(\w+)@@', short_name)
@@ -1988,10 +1993,9 @@ def apply_annotations():
         if not desired:
             continue
         # Compute expected name: mangled for class methods, simple for free functions
-        if '::' in desired:
-            _parts = desired.rsplit('::', 1)
-            _cls = _parts[0]
-            _method = _parts[1]
+        if 'class' in info:
+            _cls = info['class']
+            _method = desired
             _sig = info.get('signature', '')
             _expected = _mangle_vc6(_cls, _method, _sig)
         else:

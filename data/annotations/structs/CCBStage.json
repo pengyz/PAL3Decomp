@@ -607,525 +607,525 @@
   },
   "methods": {
     "0x004DFAA0": {
-      "name": "CCBStage::InitRound",
+      "name": "InitRound",
       "signature": "int __thiscall()"
     },
     "0x004DFE00": {
-      "name": "CCBStage::AddTextLabel",
+      "name": "AddTextLabel",
       "signature": "int __thiscall(int nVal, int nVal2)",
       "_misattrib_evidence": "accesses 280*idx beyond 208-byte struct; callers pass CUtil-derived ptr chain via CCBUI.m_pUtil"
     },
     "0x004DFED0": {
-      "name": "CCBStage::EndTurnAndAdvance",
+      "name": "EndTurnAndAdvance",
       "signature": "int __thiscall()"
     },
     "0x004FB9A0": {
-      "name": "CCBStage::CCBStage",
+      "name": "CCBStage",
       "signature": "int *__thiscall(int pCBSystem)"
     },
     "0x004FB9F0": {
-      "name": "CCBStage::~CCBStage",
+      "name": "~CCBStage",
       "signature": "unsigned int __thiscall()"
     },
     "0x004FBE50": {
-      "name": "CCBStage::Create",
+      "name": "Create",
       "signature": "bool __thiscall()",
       "source": "pdb_ret"
     },
     "0x004FBF90": {
-      "name": "CCBStage::Destroy",
+      "name": "Destroy",
       "signature": "bool __thiscall()",
       "source": "pdb_ret"
     },
     "0x004FC150": {
-      "name": "CCBStage::Update_c150",
+      "name": "Update_c150",
       "signature": "int __thiscall()"
     },
     "0x004FC3A0": {
-      "name": "CCBStage::EditorUpdate",
+      "name": "EditorUpdate",
       "signature": "void(float fVal))"
     },
     "0x004FC6F0": {
-      "name": "CCBStage::Render",
+      "name": "Render",
       "signature": "void __thiscall()"
     },
     "0x004FC700": {
-      "name": "CCBStage::GetRoleIndex",
+      "name": "GetRoleIndex",
       "signature": "int __thiscall(int nameCrc, const void *pData, char pData)"
     },
     "0x004FC7D0": {
-      "name": "CCBStage::GetRoleName",
+      "name": "GetRoleName",
       "signature": "int __thiscall(int nameCrc, int nVal, int nVal2, int nVal3, int nVal4, int *p_DWORD, int nVal5, int nVal6)"
     },
     "0x004FC8B0": {
-      "name": "CCBStage::Procced",
+      "name": "Procced",
       "signature": "void __thiscall(int nVal)",
       "source": "pdb_ret"
     },
     "0x004FC8F0": {
-      "name": "CCBStage::GetStageRole",
+      "name": "GetStageRole",
       "signature": "char __thiscall(int idx)"
     },
     "0x004FC940": {
-      "name": "CCBStage::GetStageRoleByIdx",
+      "name": "GetStageRoleByIdx",
       "signature": "char __thiscall(int idx)"
     },
     "0x004FC980": {
-      "name": "CCBStage::IsDoTask",
+      "name": "IsDoTask",
       "signature": "bool __thiscall(int eTask)",
       "source": "pdb_ret"
     },
     "0x004FC9A0": {
-      "name": "CCBStage::EndTask",
+      "name": "EndTask",
       "signature": "bool __thiscall(int nIndex)",
       "source": "pdb_ret"
     },
     "0x004FC9C0": {
-      "name": "CCBStage::DelTask",
+      "name": "DelTask",
       "signature": "char *__thiscall(int nIndex, _BYTE *p_BYTE, int *p_DWORD)"
     },
     "0x004FCA00": {
-      "name": "CCBStage::ForceDelTask",
+      "name": "ForceDelTask",
       "signature": "bool __thiscall(int nIndex)",
       "source": "pdb_ret"
     },
     "0x004FCA80": {
-      "name": "CCBStage::GetTask",
+      "name": "GetTask",
       "signature": "void __thiscall()"
     },
     "0x004FCBD0": {
-      "name": "CCBStage::GetTaskID",
+      "name": "GetTaskID",
       "signature": "char __thiscall(int nIndex, int nVal)"
     },
     "0x004FCC10": {
-      "name": "CCBStage::GetTaskState",
+      "name": "GetTaskState",
       "signature": "char(int nIndex, bool *bFinished, unsigned int *dwReturn))"
     },
     "0x004FCC50": {
-      "name": "CCBStage::GetTaskState",
+      "name": "GetTaskState",
       "signature": "char(int nIndex, enum ECBStageTaskState *State))"
     },
     "0x004FCD00": {
-      "name": "CCBStage::IsTaskFinished",
+      "name": "IsTaskFinished",
       "signature": "bool __thiscall(int nIndex)",
       "source": "pdb_ret"
     },
     "0x004FCD50": {
-      "name": "CCBStage::IsTaskValidButNotFinish",
+      "name": "IsTaskValidButNotFinish",
       "signature": "unsigned char *__stdcall(unsigned char *result, int eTask, int nVal)"
     },
     "0x004FCDA0": {
-      "name": "CCBStage::IsTaskExist",
+      "name": "IsTaskExist",
       "signature": "bool __thiscall(unsigned int dwTaskID)",
       "source": "pdb_ret"
     },
     "0x004FCDE0": {
-      "name": "CCBStage::DoTask",
+      "name": "DoTask",
       "signature": "void __thiscall(int nVal)",
       "source": "pdb_ret"
     },
     "0x004FCE00": {
-      "name": "CCBStage::StartSubTask",
+      "name": "StartSubTask",
       "signature": "bool __thiscall(int n)",
       "source": "pdb_ret"
     },
     "0x004FCE70": {
-      "name": "CCBStage::IsSubTaskFinished",
+      "name": "IsSubTaskFinished",
       "signature": "bool(int n, int nSub))",
       "source": "pdb_ret"
     },
     "0x004FCFB0": {
-      "name": "CCBStage::IsAllSubTaskFinished",
+      "name": "IsAllSubTaskFinished",
       "signature": "bool __thiscall(int n)",
       "source": "pdb_ret"
     },
     "0x004FD0B0": {
-      "name": "CCBStage::IsTaskValid",
+      "name": "IsTaskValid",
       "signature": "bool __thiscall(int n)",
       "source": "pdb_ret"
     },
     "0x004FD1A0": {
-      "name": "CCBStage::IsSubTaskValid",
+      "name": "IsSubTaskValid",
       "signature": "bool(int n, int nSub))",
       "source": "pdb_ret"
     },
     "0x004FD290": {
-      "name": "CCBStage::IsIdle",
+      "name": "IsIdle",
       "signature": "bool __thiscall(int nVal)",
       "source": "pdb_ret"
     },
     "0x004FD3D0": {
-      "name": "CCBStage::HasNormalAttackRole",
+      "name": "HasNormalAttackRole",
       "signature": "bool __thiscall(int nRoleIndex)",
       "source": "pdb_ret"
     },
     "0x004FD880": {
-      "name": "CCBStage::ClearRoleAllTask",
+      "name": "ClearRoleAllTask",
       "signature": "void __thiscall(int nRoleIndex)",
       "source": "pdb_ret"
     },
     "0x004FDA10": {
-      "name": "CCBStage::EndRoleAllTask",
+      "name": "EndRoleAllTask",
       "signature": "void __thiscall(int nRoleIndex)",
       "source": "pdb_ret"
     },
     "0x004FDB10": {
-      "name": "CCBStage::GetRoleTaskNum",
+      "name": "GetRoleTaskNum",
       "signature": "int __thiscall(int nRoleIndex)"
     },
     "0x004FDD90": {
-      "name": "CCBStage::SelectRole",
+      "name": "SelectRole",
       "signature": "void __thiscall(int nRoleIndex)",
       "source": "pdb_ret"
     },
     "0x004FDFC0": {
-      "name": "CCBStage::ProcWait",
+      "name": "ProcWait",
       "signature": "unsigned long __thiscall(int __formal)",
       "source": "pdb_ret"
     },
     "0x004FE290": {
-      "name": "CCBStage::ProcShowFiveLineup",
+      "name": "ProcShowFiveLineup",
       "signature": "unsigned long __thiscall(int __formal)",
       "source": "pdb_ret"
     },
     "0x004FE540": {
-      "name": "CCBStage::ProcShowEnemyFiveLineup",
+      "name": "ProcShowEnemyFiveLineup",
       "signature": "unsigned long __thiscall()",
       "source": "pdb_ret"
     },
     "0x004FE550": {
-      "name": "CCBStage::ProcFiveLienupFadeIn",
+      "name": "ProcFiveLienupFadeIn",
       "signature": "unsigned long __thiscall(int __formal)",
       "source": "pdb_ret"
     },
     "0x004FE600": {
-      "name": "CCBStage::ProcFiveLienupFadeOut",
+      "name": "ProcFiveLienupFadeOut",
       "signature": "unsigned long __thiscall(int __formal)",
       "source": "pdb_ret"
     },
     "0x004FE660": {
-      "name": "CCBStage::ProcShowSneakAttackState",
+      "name": "ProcShowSneakAttackState",
       "signature": "unsigned long __thiscall(unsigned int _74)",
       "source": "pdb_ret"
     },
     "0x004FECE0": {
-      "name": "CCBStage::HandleKeyCtrl",
+      "name": "HandleKeyCtrl",
       "signature": "void __thiscall(int n)",
       "source": "pdb_ret"
     },
     "0x004FEE60": {
-      "name": "CCBStage::HandleKeyFriend",
+      "name": "HandleKeyFriend",
       "signature": "bool __thiscall(int Selected)",
       "source": "pdb_ret"
     },
     "0x004FEFB0": {
-      "name": "CCBStage::ProcShowName",
+      "name": "ProcShowName",
       "signature": "unsigned long __thiscall(unsigned int __formal)",
       "source": "pdb_ret"
     },
     "0x004FF1B0": {
-      "name": "CCBStage::ProcShowItemName",
+      "name": "ProcShowItemName",
       "signature": "unsigned long __thiscall(int __formal)",
       "source": "pdb_ret"
     },
     "0x004FF3D0": {
-      "name": "CCBStage::ProcShowDamage",
+      "name": "ProcShowDamage",
       "signature": "unsigned long __thiscall(unsigned int __formal)",
       "source": "pdb_ret"
     },
     "0x004FF5C0": {
-      "name": "CCBStage::ProcShowCost",
+      "name": "ProcShowCost",
       "signature": "unsigned long __thiscall(int __formal)",
       "source": "pdb_ret"
     },
     "0x004FF740": {
-      "name": "CCBStage::ProcShowCombatDialog",
+      "name": "ProcShowCombatDialog",
       "signature": "unsigned long __thiscall(int __formal)",
       "source": "pdb_ret"
     },
     "0x004FF840": {
-      "name": "CCBStage::ProcGrabStageRole",
+      "name": "ProcGrabStageRole",
       "signature": "unsigned long __thiscall(unsigned int __formal)",
       "source": "pdb_ret"
     },
     "0x00503020": {
-      "name": "CCBStage::ResetAll",
+      "name": "ResetAll",
       "signature": "int __thiscall()"
     },
     "0x00503CF0": {
-      "name": "CCBStage::UpdatePhysics",
+      "name": "UpdatePhysics",
       "signature": "int __thiscall()"
     },
     "0x0050E0D0": {
-      "name": "CCBStage::ProcessCommand",
+      "name": "ProcessCommand",
       "signature": "int __thiscall()"
     },
     "0x004FC0A0": {
-      "name": "CCBStage::Update",
+      "name": "Update",
       "signature": "void __thiscall()",
       "source": "pdb_ret"
     },
     "0x004F4AA0": {
-      "name": "CCBStage::GetRole",
+      "name": "GetRole",
       "signature": "CCBStageRole *__thiscall(int index)"
     },
     "0x004FF560": {
-      "name": "CCBStage::ProcTaskSlot",
+      "name": "ProcTaskSlot",
       "signature": "int __thiscall(int nVal)"
     },
     "0x005024D0": {
-      "name": "CCBStage::ProcessRoleEffect",
+      "name": "ProcessRoleEffect",
       "signature": "int __thiscall(int nVal)"
     },
     "0x004DF710": {
-      "name": "CCBStage::ResetRoundState",
+      "name": "ResetRoundState",
       "signature": "void __thiscall()"
     },
     "0x004DFA10": {
-      "name": "CCBStage::CountActiveActions",
+      "name": "CountActiveActions",
       "signature": "int __thiscall()"
     },
     "0x004E0010": {
-      "name": "CCBStage::SetupCamControl",
+      "name": "SetupCamControl",
       "signature": "void __thiscall(a)"
     },
     "0x004E0430": {
-      "name": "CCBStage::CreatePreviewDialog",
+      "name": "CreatePreviewDialog",
       "signature": "char __thiscall()"
     },
     "0x00503680": {
-      "name": "CCBStage::CalcSneakAttackVariance",
+      "name": "CalcSneakAttackVariance",
       "signature": "int __thiscall CCBStage::CalcSneakAttackVariance()"
     },
     "0x00504440": {
-      "name": "CCBStage::GetTurnSlotData",
+      "name": "GetTurnSlotData",
       "signature": "bool __thiscall(int nVal)"
     },
     "0x00504A80": {
-      "name": "CCBStage::ScanTurnSlots",
+      "name": "ScanTurnSlots",
       "signature": "char __thiscall()"
     },
     "0x0050EB00": {
-      "name": "CCBStage::ProcessSlotAction",
+      "name": "ProcessSlotAction",
       "signature": "int __thiscall(int nVal)"
     },
     "0x0050EF60": {
-      "name": "CCBStage::UpdateActionTimers",
+      "name": "UpdateActionTimers",
       "signature": "int __thiscall(float fVal)"
     },
     "0x0050F080": {
-      "name": "CCBStage::AnimCallback_Attack",
+      "name": "AnimCallback_Attack",
       "signature": "int __thiscall CCBStage::AnimCallback_Attack(int nVal)"
     },
     "0x0050F150": {
-      "name": "CCBStage::AnimCallback_UseItem",
+      "name": "AnimCallback_UseItem",
       "signature": "int __thiscall CCBStage::AnimCallback_UseItem(int nVal)"
     },
     "0x0050F310": {
-      "name": "CCBStage::AnimCallback_Throw",
+      "name": "AnimCallback_Throw",
       "signature": "int __thiscall CCBStage::AnimCallback_Throw(int nVal, int nVal2)"
     },
     "0x0050F410": {
-      "name": "CCBStage::AnimCallback_CastMagic",
+      "name": "AnimCallback_CastMagic",
       "signature": "int __thiscall CCBStage::AnimCallback_CastMagic(int nVal)"
     },
     "0x0050F4C0": {
-      "name": "CCBStage::AnimCallback_WaitCmd",
+      "name": "AnimCallback_WaitCmd",
       "signature": "int __thiscall CCBStage::AnimCallback_WaitCmd(int nVal)"
     },
     "0x004C5C20": {
-      "name": "CCBStage::GetReadyCount",
+      "name": "GetReadyCount",
       "signature": "int __thiscall()"
     },
     "0x004D1EF0": {
-      "name": "CCBStage::GetActiveTaskCount",
+      "name": "GetActiveTaskCount",
       "signature": "int __thiscall()"
     },
     "0x004D4D30": {
-      "name": "CCBStage::GetTaskParam",
+      "name": "GetTaskParam",
       "signature": "int __thiscall(int nVal, int nVal2)"
     },
     "0x004D4D70": {
-      "name": "CCBStage::SetTaskState",
+      "name": "SetTaskState",
       "signature": "char __thiscall(int nVal)"
     },
     "0x004DF6B0": {
-      "name": "CCBStage::InitStage",
+      "name": "InitStage",
       "signature": "int *__thiscall(int nVal)"
     },
     "0x004DF700": {
-      "name": "CCBStage::IsInitialized",
+      "name": "IsInitialized",
       "signature": "char __thiscall()"
     },
     "0x004DFB70": {
-      "name": "CCBStage::UpdateTurnFlags",
+      "name": "UpdateTurnFlags",
       "signature": "int __thiscall(const char *pszName, float fVal, float fVal2, float fVal3)"
     },
     "0x004DFC40": {
-      "name": "CCBStage::InitSlotFlags",
+      "name": "InitSlotFlags",
       "signature": "int __thiscall(const char *pszName, int nVal, int nVal2, int nVal3)"
     },
     "0x004DFF90": {
-      "name": "CCBStage::AssignSlotData",
+      "name": "AssignSlotData",
       "signature": "int __thiscall(char pData)"
     },
     "0x004DFFF0": {
-      "name": "CCBStage::CalculateTurnOrder",
+      "name": "CalculateTurnOrder",
       "signature": "__int64 __thiscall(float fVal, int nVal)"
     },
     "0x004E02F0": {
-      "name": "CCBStage::ResetAndSetSystem",
+      "name": "ResetAndSetSystem",
       "signature": "int *__thiscall(int nVal)"
     },
     "0x004E0330": {
-      "name": "CCBStage::Reset",
+      "name": "Reset",
       "signature": "int __thiscall CCBStage::Reset()"
     },
     "0x004E0340": {
-      "name": "CCBStage::ResetTurnSlots",
+      "name": "ResetTurnSlots",
       "signature": "int __thiscall()"
     },
     "0x004E0380": {
-      "name": "CCBStage::SyncTimeScale",
+      "name": "SyncTimeScale",
       "signature": "char __thiscall()"
     },
     "0x004E03F0": {
-      "name": "CCBStage::DestroyDialog",
+      "name": "DestroyDialog",
       "signature": "char __thiscall()"
     },
     "0x004E0530": {
-      "name": "CCBStage::ProcessAction",
+      "name": "ProcessAction",
       "signature": "bool __thiscall(HWND pData)"
     },
     "0x004E05B0": {
-      "name": "CCBStage::CreatePreview",
+      "name": "CreatePreview",
       "signature": "void __cdecl(float fVal)",
       "static": true
     },
     "0x004E0650": {
-      "name": "CCBStage::DestroyPreviewWindow",
+      "name": "DestroyPreviewWindow",
       "signature": "BOOL __thiscall()"
     },
     "0x004F06C0": {
-      "name": "CCBStage::FindThreadByParam",
+      "name": "FindThreadByParam",
       "signature": "bool __thiscall(int nVal, unsigned int dwVal)"
     },
     "0x004F6CD0": {
-      "name": "CCBStage::CheckGDBTypeCompat",
+      "name": "CheckGDBTypeCompat",
       "signature": "char __thiscall CCBStage::CheckGDBTypeCompat(unsigned int *pdwVal)"
     },
     "0x00500840": {
-      "name": "CCBStage::ExecuteRoleTask",
+      "name": "ExecuteRoleTask",
       "signature": "int __thiscall CCBStage::ExecuteRoleTask(int nVal)"
     },
     "0x005009C0": {
-      "name": "CCBStage::Method_5009C0",
+      "name": "Method_5009C0",
       "signature": "int __thiscall(int nVal)"
     },
     "0x00500AD0": {
-      "name": "CCBStage::Method_500AD0",
+      "name": "Method_500AD0",
       "signature": "int __thiscall(int nVal)"
     },
     "0x00503FA0": {
-      "name": "CCBStage::ResetTurnData",
+      "name": "ResetTurnData",
       "signature": "int __thiscall(int **a2, struct gbGfxManager *p)"
     },
     "0x005040D0": {
-      "name": "CCBStage::ResetTurnSystem",
+      "name": "ResetTurnSystem",
       "signature": "int __thiscall()"
     },
     "0x00504420": {
-      "name": "CCBStage::ClearTurnSlot",
+      "name": "ClearTurnSlot",
       "signature": "int __thiscall(int nVal)"
     },
     "0x00504460": {
-      "name": "CCBStage::HasTurnChanged",
+      "name": "HasTurnChanged",
       "signature": "bool __thiscall(float *pfVal)"
     },
     "0x005049F0": {
-      "name": "CCBStage::GetNextActiveTask",
+      "name": "GetNextActiveTask",
       "signature": "int *__thiscall CCBStage::GetNextActiveTask()"
     },
     "0x00504AB0": {
-      "name": "CCBStage::ClearActionSlot",
+      "name": "ClearActionSlot",
       "signature": "char __thiscall(int nVal)"
     },
     "0x00504B50": {
-      "name": "CCBStage::EnqueueCommand",
+      "name": "EnqueueCommand",
       "signature": "char __thiscall CCBStage::EnqueueCommand(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, float fVal, const void *pData, const void *pData2)"
     },
     "0x00504C50": {
-      "name": "CCBStage::ProcessQueuedCommand",
+      "name": "ProcessQueuedCommand",
       "signature": "int __thiscall CCBStage::ProcessQueuedCommand(int nVal)"
     },
     "0x00504E30": {
-      "name": "CCBStage::ClearAll",
+      "name": "ClearAll",
       "signature": "int __thiscall()"
     },
     "0x0050E550": {
-      "name": "CCBStage::ResolveActionEffect",
+      "name": "ResolveActionEffect",
       "signature": "int __thiscall CCBStage::ResolveActionEffect(int nVal)"
     },
     "0x005045B0": {
-      "name": "CCBStage::ProcessTurn",
+      "name": "ProcessTurn",
       "signature": "char __thiscall()"
     },
     "0x0050D440": {
-      "name": "CCBStage::CheckAllDone",
+      "name": "CheckAllDone",
       "signature": "int __thiscall()"
     },
     "0x0051D710": {
-      "name": "CCBStage::Create_d710",
+      "name": "Create_d710",
       "signature": "CCBProtectWindow *__thiscall()"
     },
     "0x0051DDA0": {
-      "name": "CCBStage::ShowWindow",
+      "name": "ShowWindow",
       "signature": "void __thiscall()"
     },
     "0x0050DA90": {
-      "name": "CCBStage::UpdateSlotTimer",
+      "name": "UpdateSlotTimer",
       "signature": "int __thiscall(int nVal)"
     },
     "0x0050F590": {
-      "name": "CCBStage::AnimCallback_MoveTo",
+      "name": "AnimCallback_MoveTo",
       "signature": "int __thiscall CCBStage::AnimCallback_MoveTo(int nVal)"
     },
     "0x0050E160": {
-      "name": "CCBStage::Method_50E160",
+      "name": "Method_50E160",
       "signature": "int __thiscall(int nVal)"
     },
     "0x0050E360": {
-      "name": "CCBStage::CalcFacingAngle",
+      "name": "CalcFacingAngle",
       "signature": "int __thiscall CCBStage::CalcFacingAngle(int nVal)"
     },
     "0x0051DD80": {
-      "name": "CCBStage::Destroy",
+      "name": "Destroy",
       "signature": "void __thiscall(CCBProtectWindow *__hidden this)",
       "source": "vtable_evidence",
       "ordinal": 5
     },
     "0x00445E70": {
-      "name": "PalScript::ShowWindow",
+      "name": "ShowWindow",
       "signature": "int __thiscall(int nFlags)"
     },
     "0x00524970": {
-      "name": "CCBRoleState::Render",
+      "name": "Render",
       "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)"
     },
     "0x0051F0A0": {
-      "name": "CCBProtectWindow::OnCommand",
+      "name": "OnCommand",
       "signature": "int __thiscall(int nVal, int nVal2)"
     },
     "0x0043DE40": {
-      "name": "UIListBox::Destroy",
+      "name": "Destroy",
       "signature": "void __thiscall(UIListBox *__hidden this, int)"
     },
     "0x00445B90": {
-      "name": "PalScript::Create",
+      "name": "Create",
       "signature": "int __thiscall(int id, tagRECT *pRect, int parent)"
     },
     "0x0051F1B0": {
-      "name": "CCBProtectWindow::OnMessage",
+      "name": "OnMessage",
       "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
     }
   },

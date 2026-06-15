@@ -198,243 +198,243 @@
   "base_size": 68,
   "methods": {
     "0x00421A10": {
-      "name": "UIScene::NotifyRender",
+      "name": "NotifyRender",
       "signature": "int __thiscall()"
     },
     "0x004220A0": {
-      "name": "UIScene::OverlayRender",
+      "name": "OverlayRender",
       "signature": "int __thiscall(int nVal)"
     },
     "0x004234D0": {
-      "name": "UIScene::CombatCheck",
+      "name": "CombatCheck",
       "signature": "int __cdecl __thiscall()"
     },
     "0x004235B0": {
-      "name": "UIScene::ProcessInput",
+      "name": "ProcessInput",
       "signature": "BOOL __cdecl(char *String1, char *pszBuf)",
       "static": true
     },
     "0x0043A4C0": {
-      "name": "UIScene::LoadResource",
+      "name": "LoadResource",
       "signature": "void __thiscall(void *path)"
     },
     "0x0043A770": {
-      "name": "UIScene::_UIScene",
+      "name": "_UIScene",
       "signature": "void __thiscall()"
     },
     "0x0043AB00": {
-      "name": "UIScene::Destroy",
+      "name": "Destroy",
       "signature": "void __thiscall()"
     },
     "0x0043AB20": {
-      "name": "UIScene::Update2",
+      "name": "Update2",
       "signature": "BOOL __thiscall(int nVal, int nVal2)"
     },
     "0x0043AD40": {
-      "name": "UIScene::Render",
+      "name": "Render",
       "signature": "void __thiscall()",
       "source": "+fix:sig_match_base"
     },
     "0x0043FA00": {
-      "name": "UIScene::GetChildCount",
+      "name": "GetChildCount",
       "signature": "int __thiscall UIScene::GetChildCount()"
     },
     "0x0043FAE0": {
-      "name": "UIScene::GetChildAt",
+      "name": "GetChildAt",
       "signature": "int __thiscall UIScene::GetChildAt()"
     },
     "0x004427A0": {
-      "name": "UIScene::SetShow",
+      "name": "SetShow",
       "signature": "int __thiscall(int bShow)"
     },
     "0x0043BCE0": {
-      "name": "UIScene::ctor",
+      "name": "ctor",
       "signature": "int *__thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
     "0x0043A4B0": {
-      "name": "UIScene::SetController",
+      "name": "SetController",
       "signature": "int __thiscall(int nVal)",
       "_misattrib_evidence": "max_offset=68>class_size=4"
     },
     "0x0043A5D0": {
-      "name": "UIScene::OpenAndLoadResource",
+      "name": "OpenAndLoadResource",
       "signature": "gbVFileSystem *__thiscall(BOOL bVisible, UIWnd *pWnd)",
       "_misattrib_evidence": "max_offset=160>class_size=20"
     },
     "0x0043A7F0": {
-      "name": "UIScene::_sdtor",
+      "name": "_sdtor",
       "signature": "UIScene *__thiscall(UIScene *Block, char pData)"
     },
     "0x0043A870": {
-      "name": "UIScene::CreateChildWidget",
+      "name": "CreateChildWidget",
       "signature": "gbVFileSystem *__thiscall UIScene::CreateChildWidget(int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData, char pData2)"
     },
     "0x0043AFE0": {
-      "name": "UIScene::SetupRenderClip",
+      "name": "SetupRenderClip",
       "signature": "unsigned char __thiscall(int nVal, unsigned int dwVal, unsigned int dwVal2, int nVal2)"
     },
     "0x0043B060": {
-      "name": "UIScene::CreateTextureWidget",
+      "name": "CreateTextureWidget",
       "signature": "gbVFileSystem *__thiscall UIScene::CreateTextureWidget(int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData)"
     },
     "0x0043B1E0": {
-      "name": "UIScene::Update",
+      "name": "Update",
       "signature": "BOOL __thiscall(int nVal, int nVal2)"
     },
     "0x0043B500": {
-      "name": "UIScene::GetChildWidget",
+      "name": "GetChildWidget",
       "signature": "unsigned char __thiscall(unsigned int dwVal, unsigned int dwVal2, int nVal)"
     },
     "0x0043B570": {
-      "name": "UIScene::CreateLabelWidget",
+      "name": "CreateLabelWidget",
       "signature": "gbVFileSystem *__thiscall UIScene::CreateLabelWidget(int id, void *pRect, gbVFileSystem *parent, LPCSTR lpString, char pData)"
     },
     "0x0043B900": {
-      "name": "UIScene::Update_b900",
+      "name": "Update_b900",
       "signature": "BOOL __thiscall(int nVal, int nVal2)"
     },
     "0x0043C7B0": {
-      "name": "UIScene::CreateScrollWidget",
+      "name": "CreateScrollWidget",
       "signature": "gbVFileSystem *__thiscall UIScene::CreateScrollWidget(int id, int *p_DWORD, int parent, gbVFileSystem *pVFileSystem, char pData)",
       "ordinal": 7
     },
     "0x0043D1A0": {
-      "name": "UIScene::CheckMouseHit",
+      "name": "CheckMouseHit",
       "signature": "BOOL __thiscall(int nVal, int nVal2)",
       "ordinal": 2
     },
     "0x0044DAC0": {
-      "name": "UIScene::Render_dac0",
+      "name": "Render_dac0",
       "signature": "void __thiscall()"
     },
     "0x0044DFC0": {
-      "name": "UIScene::OnMessage",
+      "name": "OnMessage",
       "signature": "int __thiscall UIScene::OnMessage(UICursor *msg, int wparam, int lparam)"
     },
     "0x00459900": {
-      "name": "UIScene::RenderUI",
+      "name": "RenderUI",
       "signature": "int __thiscall UIScene::RenderUI()",
       "_misattrib_evidence": "max_offset=3280>class_size=1012"
     },
     "0x0043A660": {
-      "name": "UIScene::ResetState",
+      "name": "ResetState",
       "signature": "int __thiscall()"
     },
     "0x0043A680": {
-      "name": "UIScene::SetColors",
+      "name": "SetColors",
       "signature": "int __thiscall(int nVal)",
       "source": " | rename:_todo_→fn_"
     },
     "0x0043B660": {
-      "name": "UIScene::Render_b660",
+      "name": "Render_b660",
       "signature": "int __thiscall()"
     },
     "0x0043BEB0": {
-      "name": "UIScene::SetTexture",
+      "name": "SetTexture",
       "signature": "void __thiscall UIScene::SetTexture(LPCSTR lpString, char pData)"
     },
     "0x0043C0F0": {
-      "name": "UIScene::UpdateLayout",
+      "name": "UpdateLayout",
       "signature": "void __thiscall UIScene::UpdateLayout(float fVal)"
     },
     "0x0043C330": {
-      "name": "UIScene::RefreshLayout",
+      "name": "RefreshLayout",
       "signature": "int __thiscall UIScene::RefreshLayout()"
     },
     "0x0043C9D0": {
-      "name": "UIScene::fill",
+      "name": "fill",
       "signature": "void __thiscall UIScene::fill(PlayerItem *a1, PlayerItem *a2, PlayerItem *a3)"
     },
     "0x0043CBD0": {
-      "name": "UIScene::ResizeContentAlt",
+      "name": "ResizeContentAlt",
       "signature": "int __thiscall UIScene::ResizeContentAlt(int nVal)"
     },
     "0x0043CDF0": {
-      "name": "UIScene::Render_cdf0",
+      "name": "Render_cdf0",
       "signature": "int __thiscall()",
       "ordinal": 1
     },
     "0x0043FBC0": {
-      "name": "UIScene::SetTextParam",
+      "name": "SetTextParam",
       "signature": "void __thiscall UIScene::SetTextParam()"
     },
     "0x00455190": {
-      "name": "UIScene::SetParam",
+      "name": "SetParam",
       "signature": "int __thiscall UIScene::SetParam(int nVal)"
     },
     "0x0045ADF0": {
-      "name": "UIScene::DestroyParent",
+      "name": "DestroyParent",
       "signature": "void __thiscall()"
     },
     "0x0052E120": {
-      "name": "UIScene::LoadMapData",
+      "name": "LoadMapData",
       "signature": "void __thiscall UIScene::LoadMapData()"
     },
     "0x0052E140": {
-      "name": "UIScene::CalcViewTransform",
+      "name": "CalcViewTransform",
       "signature": "int __thiscall UIScene::CalcViewTransform(int nVal)"
     },
     "0x00535AE0": {
-      "name": "UIScene::ClearColors",
+      "name": "ClearColors",
       "signature": "int __thiscall()"
     },
     "0x00535BA0": {
-      "name": "UIScene::ResetCameraOffset",
+      "name": "ResetCameraOffset",
       "signature": "int __thiscall()"
     },
     "0x00419C20": {
-      "name": "UIScene::RenderVertexPool",
+      "name": "RenderVertexPool",
       "signature": "int __thiscall()"
     },
     "0x0043BE80": {
-      "name": "UIScene::ReleaseTexture",
+      "name": "ReleaseTexture",
       "signature": "void __thiscall()",
       "ordinal": 3
     },
     "0x0043BE10": {
-      "name": "UIScene::_scalar_dtor",
+      "name": "_scalar_dtor",
       "signature": "void *__thiscall(UIWnd *__hidden this, char)",
       "source": "vtable_migrated",
       "ordinal": 5
     },
     "0x00524230": {
-      "name": "UIScene::InitScriptScene",
+      "name": "InitScriptScene",
       "signature": "char __thiscall(int nVal)",
       "_misattrib_evidence": "max_offset=5248>class_size=204"
     },
     "0x00532D60": {
-      "name": "UIScene::UpdateAlpha",
+      "name": "UpdateAlpha",
       "signature": "void __thiscall()"
     },
     "0x00445930": {
-      "name": "UIScene::SetState",
+      "name": "SetState",
       "signature": "void __thiscall UIScene::SetState()"
     },
     "0x00442060": {
-      "name": "UIScene::SetFirstShow",
+      "name": "SetFirstShow",
       "signature": "void __thiscall UIScene::SetFirstShow()"
     },
     "0x00445F80": {
-      "name": "UIScene::GetPixelChannel",
+      "name": "GetPixelChannel",
       "signature": "unsigned char __thiscall(int nX, int nY, int nW, int nH)"
     },
     "0x004932D0": {
-      "name": "UIScene::LoadRoleSkillData",
+      "name": "LoadRoleSkillData",
       "signature": "int __thiscall UIScene::LoadRoleSkillData(int nRoleIndex)",
       "_misattrib_evidence": "max_offset=217412>class_size=204"
     },
     "0x00445E70": {
-      "name": "PalScript::ShowWindow",
+      "name": "ShowWindow",
       "signature": "int __thiscall(int nFlags)"
     },
     "0x00445B90": {
-      "name": "PalScript::Create",
+      "name": "Create",
       "signature": "int __thiscall(int id, tagRECT *pRect, int parent)"
     },
     "0x0043D7A0": {
-      "name": "UIScene::ForwardOnMessage",
+      "name": "ForwardOnMessage",
       "signature": "int __thiscall(int nVal, int nMsg, int wParam)"
     }
   },

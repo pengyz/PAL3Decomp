@@ -221,6 +221,11 @@ def main():
                         _sd = _json.load(_fh)
                     for _addr, _info in _sd.get('methods', {}).items():
                         if _addr not in _ann_funcs:
+                            _mn = _info.get('name', '')
+                            # After method name migration (2026-06), names are short
+                            # (no ClassName:: prefix). Reconstruct for mangler.
+                            if _mn and '::' not in _mn:
+                                _info['name'] = "%s::%s" % (_sname, _mn)
                             _ann_funcs[_addr] = _info
                     # Also merge nested type methods
                     _sname = _sd.get('name', _sf.replace('.json', ''))
