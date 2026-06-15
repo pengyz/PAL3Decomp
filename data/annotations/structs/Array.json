@@ -4,8 +4,8 @@
   "known_members": {
     "0": {
       "name": "m_pDataStart",
-      "type": "char *",
-      "source": "iter2_field_rename | changed int->char* (pointer name + binary evidence)"
+      "type": "int",
+      "source": "binary: first field in Array struct, not vfptr (non-virtual class) | iter2_field_rename"
     },
     "4": {
       "name": "m_nSize",
