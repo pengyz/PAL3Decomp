@@ -95,17 +95,9 @@
     "name": "Vec3D_Cross",
     "signature": "gbVec3D *__cdecl(gbVec3D *pOut, gbVec3D *pA, gbVec3D *pB)"
   },
-  "0x0041C1E0": {
-    "name": "_old_sbh_page_alloc",
-    "signature": "int __thiscall(__old_sbh_page_struct *this)"
-  },
   "0x0041C280": {
     "name": "InputUpdate",
     "signature": "int __stdcall(float fVal)"
-  },
-  "0x0041D100": {
-    "name": "_old_sbh_page_manage",
-    "signature": "int __thiscall(__old_sbh_page_struct *this, int nVal)"
   },
   "0x00420430": {
     "name": "_sdtor_2",
@@ -249,11 +241,6 @@
   "0x00450370": {
     "name": "_sdtor_15",
     "signature": "void *__thiscall(void *Block, char a2)"
-  },
-  "0x00451730": {
-    "_misattrib_evidence": "max_offset=1104>class_size=276",
-    "name": "_todo_451730",
-    "signature": "int __thiscall _todo_451730(UIWnd *this)"
   },
   "0x004531F0": {
     "name": "_sub_4531F0",
@@ -428,18 +415,9 @@
     "name": "_nearby_4ec490",
     "signature": "void __cdecl()"
   },
-  "0x0051F0A0": {
-    "name": "CCBResultWindow::Reset",
-    "signature": "void __thiscall(CCBResultWindow *this)"
-  },
   "0x00523CB0": {
     "name": "sub_523CB0",
     "signature": "int __thiscall(_BYTE *this)"
-  },
-  "0x00525080": {
-    "_misattrib_evidence": "max_offset=5264>class_size=1488",
-    "name": "sub_525080",
-    "signature": "int __thiscall _todo_525080(UIWnd *this)"
   },
   "0x00525090": {
     "_misattrib_evidence": "max_offset=5264>class_size=584",
@@ -588,7 +566,9 @@
   },
   "0x0055CCE4": {
     "name": "NextRole",
-    "signature": "int(int *a1)"
+    "signature": "int(int *a1)",
+    "type": "skip",
+    "reason": "decompilation artifact (size=0B, body=return uninit var)"
   },
   "0x00450A25": {
     "name": "_RoleCameraCtrl",
@@ -609,122 +589,6 @@
   "0x0043C9D0": {
     "name": "fill",
     "signature": "void(PlayerItem *a1, PlayerItem *a2, PlayerItem *a3)"
-  },
-  "0x004426B0": {
-    "name": "UIStatic::CreateFromTemplate",
-    "signature": "void __thiscall(UIStatic *this)"
-  },
-  "0x004427C0": {
-    "name": "UICaption::SetEnable",
-    "signature": "void __thiscall(UICaption *this, int szName, int bEnable)"
-  },
-  "0x0053E2E0": {
-    "name": "CScreenMode::AudioSetPosition",
-    "signature": "void __thiscall(CScreenMode *this, const void *pData, int nVal)"
-  },
-  "0x0053CEF0": {
-    "name": "Logger::FormatException",
-    "signature": "char *__thiscall(Logger *this, char *msg, char *file, int line)"
-  },
-  "0x00445B90": {
-    "name": "PalScript::Create",
-    "signature": "virtual int __thiscall(PalScript *this, int id, tagRECT *pRect, int parent)"
-  },
-  "0x00445D10": {
-    "name": "PalScript::OnMessage",
-    "signature": "virtual int __thiscall(PalScript *this, int nVal, int nMsg, int wParam)"
-  },
-  "0x004427A0": {
-    "name": "UIScene::SetShow",
-    "signature": "int __thiscall(UIScene *this, int bShow)"
-  },
-  "0x0043DD60": {
-    "name": "UIListBox::SetSelTexture",
-    "signature": "void __thiscall(UIListBox *this, int id, int pRect, int nVal, int nVal2, int nVal3, int nVal4)"
-  },
-  "0x004022E0": {
-    "name": "GRPinput::GetCursorPos",
-    "signature": "BOOL __thiscall(GRPinput *this)"
-  },
-  "0x004A12F0": {
-    "name": "ARC_PlayerAtt::Refresh",
-    "signature": "int __thiscall(ARC_PlayerAtt *this)"
-  },
-  "0x0043AA00": {
-    "name": "PalScript::OpenScript",
-    "signature": "gbVFileSystem *__thiscall(PalScript *this, const char *pszName, char pData)"
-  },
-  "0x0043DE40": {
-    "name": "CCBRoleState::Destroy",
-    "signature": "virtual void __thiscall(UIListBox *this, int a2)"
-  },
-  "0x00479130": {
-    "name": "PAL_GDB::GDB_GetSkillNum",
-    "signature": "int __thiscall(PAL_GDB *this, int nVal)"
-  },
-  "0x0043DDF0": {
-    "name": "CCBControlWindow::Render",
-    "signature": "virtual void __thiscall(CCBMagicWindow *this)"
-  },
-  "0x004A1530": {
-    "name": "UIRoleSelect::SetByte",
-    "signature": "int __thiscall(UIRoleSelect *this, char value)"
-  },
-  "0x004A14D0": {
-    "name": "UIItem::SetData",
-    "signature": "void *__thiscall(UIItem *this, char pData)"
-  },
-  "0x0043FDF0": {
-    "name": "UIProgressBar::FindChildByName",
-    "signature": "void __thiscall(UIProgressBar *this, float fValue)"
-  },
-  "0x00446020": {
-    "name": "NPC::UpdateAnim",
-    "signature": "void __thiscall(NPC *this)"
-  },
-  "0x004D58A0": {
-    "name": "CEffMgr::Reset",
-    "signature": "int *__thiscall(CEffMgr *this)"
-  },
-  "0x0043E7D0": {
-    "name": "UIListBox::SetMouseMoveSel",
-    "signature": "gbVFileSystem *__thiscall(UIListBox *this, int movesel, int nVal, char *Source, int nVal2)"
-  },
-  "0x0044F610": {
-    "name": "CGameData::Load",
-    "signature": "int __thiscall(CGameData *this, CUtil *pUtil)"
-  },
-  "0x0043F5B0": {
-    "name": "UIListBox::GetItem",
-    "signature": "int __thiscall(UIListBox *this)"
-  },
-  "0x00445E70": {
-    "name": "PalScript::ShowWindow",
-    "signature": "virtual int __thiscall(PalScript *this, int nFlags)"
-  },
-  "0x0043F7F0": {
-    "name": "UIButton::ctor_17",
-    "signature": "int *__thiscall(UIButton *this)"
-  },
-  "0x00480450": {
-    "name": "StateUI::DispatchCmd",
-    "signature": "int __thiscall(StateUI *this, BOOL bFlag)"
-  },
-  "0x0041CBF0": {
-    "name": "CameraCtrl::GetLerpPos",
-    "signature": "float *__thiscall(CameraCtrl *this, float *pResult, float fCurrent, float fTarget, float fFactor)"
-  },
-  "0x00407B50": {
-    "name": "SceneObj::UpdateAutoDelete",
-    "signature": "char __thiscall(SceneObj *this, unsigned int deltatime)"
-  },
-  "0x004D9740": {
-    "name": "CCBAI::DemandChecker",
-    "signature": "void __thiscall(CCBAI *this, unsigned int dwVal, int nVal, int nVal2)"
-  },
-  "0x004D9BA0": {
-    "name": "CCBAI::CastRecoverBigMagic",
-    "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int pDemand, int nVal)"
   },
   "0x00445f60": {
     "name": "sub_445F60",

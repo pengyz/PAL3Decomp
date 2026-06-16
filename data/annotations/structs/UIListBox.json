@@ -142,8 +142,7 @@
     },
     "0x0043DD60": {
       "name": "SetSelTexture",
-      "signature": "void __thiscall(int id, int pRect, int nVal, int nVal2, int nVal3, int nVal4)",
-      "source": "pdb_ret"
+      "signature": "void __thiscall(UIListBox *this, int id, int pRect, int nVal, int nVal2, int nVal3)"
     },
     "0x0043DE90": {
       "name": "Destroy",
@@ -234,7 +233,7 @@
     },
     "0x0043E7D0": {
       "name": "SetMouseMoveSel",
-      "signature": "gbVFileSystem *__thiscall(int movesel, int nVal, char *Source, int nVal2)"
+      "signature": "gbVFileSystem *__thiscall(UIListBox *this, int movesel, int nVal, char *Source, int nVal2)"
     },
     "0x0043E8A0": {
       "name": "Render_e8a0",
@@ -271,7 +270,7 @@
     },
     "0x0043F5B0": {
       "name": "GetItem",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall(UIListBox *this)"
     },
     "0x0043F360": {
       "name": "ClearAll",

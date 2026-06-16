@@ -582,12 +582,11 @@
     },
     "0x0043AA00": {
       "name": "OpenScript",
-      "signature": "gbVFileSystem *__thiscall(const char *pszName, char pData)"
+      "signature": "gbVFileSystem *__thiscall(PalScript *this, const char *pszName, char pData)"
     },
     "0x00445D10": {
       "name": "OnMessage",
-      "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
-      "ordinal": 6
+      "signature": "virtual int __thiscall(PalScript *this, int nVal, int nMsg, int wParam, int lParam)"
     },
     "0x00439130": {
       "name": "Reset",
@@ -599,8 +598,7 @@
     },
     "0x00445B90": {
       "name": "Create",
-      "signature": "int __thiscall(int id, tagRECT *pRect, int parent)",
-      "ordinal": 4
+      "signature": "virtual int __thiscall(PalScript *this, int id, tagRECT *pRect, int param)"
     },
     "0x0043A1F0": {
       "name": "ctor",
@@ -610,8 +608,7 @@
     },
     "0x00445E70": {
       "name": "ShowWindow",
-      "signature": "int __thiscall(int nFlags)",
-      "ordinal": 0
+      "signature": "virtual int __thiscall(PalScript *this, int nFlags)"
     },
     "0x004318A0": {
       "name": "Cleanup",
