@@ -1483,12 +1483,12 @@
     "name": "g_bCombatDebugMode",
     "source": "binary: CCBRoleState_ApplyDamage/CalcCombatDamage: if(!val)/if(val) checks",
     "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "reason": "not_in_ida_structs_globals"
   },
   "0x005DFDEC": {
     "name": "g_nCombatRandSeed",
     "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "reason": "not_in_ida_structs_globals"
   },
   "0x005DFE08": {
     "name": "aRb",
@@ -8213,15 +8213,15 @@
     "reason": "address within g_EffMgr range, not an independent global"
   },
   "0x5dfdeb": {
-    "name": "g_bCombatDebugMode",
+    "name": "g_nCombatRandSeed",
     "source": "binary: CCBRoleState_ApplyDamage/CalcCombatDamage: if(!val)/if(val) checks",
     "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "reason": "not_in_ida_structs_globals"
   },
   "0x5dfdec": {
     "name": "g_nCombatRandSeed",
     "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "reason": "not_in_ida_structs_globals"
   },
   "0x5dfe04": {
     "name": "aWt",
