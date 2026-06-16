@@ -43,10 +43,6 @@
     "name": "MovePartyFollowers",
     "signature": "char *__cdecl MovePartyFollowers(char *bNotifyScript)"
   },
-  "0x0040E050": {
-    "name": "Vec3Lerp",
-    "signature": "float *__cdecl(float *pOut, float *pSrc, float fLerpFactor)"
-  },
   "0x0040E0A0": {
     "name": "RestorePartyFollowMode",
     "signature": "void __cdecl RestorePartyFollowMode(int bNotifyScript)"
@@ -90,10 +86,6 @@
   "0x00411220": {
     "name": "AssignInt",
     "signature": "int *__cdecl AssignInt(int *pDst, int *pSrc)"
-  },
-  "0x00413800": {
-    "name": "Vec3Cross",
-    "signature": "gbVec3D *__cdecl(gbVec3D *pOut, gbVec3D *pA, gbVec3D *pB)"
   },
   "0x0041C280": {
     "name": "InputUpdate",
@@ -391,10 +383,6 @@
     "name": "EditBoxGetInt",
     "signature": "int __cdecl(HWND hWnd)"
   },
-  "0x004EA590": {
-    "name": "CCBStageCamDlgProc",
-    "signature": "BOOL __stdcall(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
-  },
   "0x004EA5C0": {
     "name": "CCBUI::DlgProcCameraEdit",
     "signature": "int __stdcall(CCBCamControl *a1, HWND hDlg, UINT uMsg, WORD wParam, LPARAM lParam)"
@@ -444,10 +432,6 @@
     "name": "MiniGame3Update",
     "signature": "int __stdcall(float fVal)"
   },
-  "0x005374E0": {
-    "name": "Vec3CopyStruct",
-    "signature": "gbVec3D *__stdcall(gbVec3D *pDst, gbVec3D *pSrc, gbVec3D *pExtra)"
-  },
   "0x00538260": {
     "name": "_sub_538260",
     "signature": "CHAR *__thiscall(CHAR *this)"
@@ -471,18 +455,6 @@
   "0x0053B4D0": {
     "name": "ActVecUninitFill",
     "signature": "char **(int nVal, int nVal2, int nVal3, char **a4)"
-  },
-  "0x0053B6E0": {
-    "name": "ActorCopyConstruct1C",
-    "signature": "void __cdecl Actor_CopyConstruct_1C(void *pDst, const void *pSrc)"
-  },
-  "0x0053B700": {
-    "name": "ActorCopyConstruct290",
-    "signature": "void __cdecl Actor_CopyConstruct_290(void *pDst, const void *pSrc)"
-  },
-  "0x0053B870": {
-    "name": "ActorCopyConstruct40",
-    "signature": "void __cdecl Actor_CopyConstruct_40(void *pDst, const void *pSrc)"
   },
   "0x0053BEE0": {
     "name": "ActVecReallocate",
@@ -537,10 +509,6 @@
     "signature": "int __cdecl()",
     "type": "skip",
     "reason": "CRT init function, not game logic"
-  },
-  "0x00569020": {
-    "name": "RandomPickValues",
-    "signature": "int __cdecl PAL3_RandomPickValues(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int *p_DWORD)"
   },
   "0x0053EDD0": {
     "name": "_nearby_53edd0",
