@@ -2075,10 +2075,6 @@ def generate_globals():
             continue
         if typ == 'skip':
             continue  # known-unnameable: don't emit extern declaration
-        # Skip IDA default names (they go in per-file forward decls)
-        if re.match(r'^(dword|byte|flt|word|off|stru|unk|asc)_', name):
-            continue
-
         # Skip globals with :: in type (PDB artifacts like Concurrency::details::VirtualProcessor)
         # These types don't exist in VC6 and cause C2653 errors
         if '::' in typ:

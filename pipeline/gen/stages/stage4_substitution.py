@@ -73,6 +73,16 @@ def _try_literal_replacement(name):
                 replacement = '"%s"' % escaped
                 store.literals[name] = replacement
                 return replacement
+    elif name.startswith('byte_'):
+        try:
+            va = int(name.split('_')[1], 16)
+        except (IndexError, ValueError):
+            return None
+        if va < 0x401000:
+            # Below .text section start — not a real address, numeric literal
+            replacement = '0x%08X' % va
+            store.literals[name] = replacement
+            return replacement
     return None
 
 

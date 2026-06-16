@@ -42,36 +42,6 @@
       "type": "tagEffClass[32]",
       "source": "annotation"
     },
-    "2332": {
-      "name": "m_EffTable",
-      "type": "tagEffObj[2048]",
-      "source": "annotation"
-    },
-    "43292": {
-      "name": "m_nEff",
-      "type": "int",
-      "source": "annotation"
-    },
-    "43296": {
-      "name": "m_fCurTime",
-      "type": "float",
-      "source": "annotation"
-    },
-    "43300": {
-      "name": "m_fDeltaTime",
-      "type": "float",
-      "source": "annotation"
-    },
-    "43304": {
-      "name": "m_fTimer",
-      "type": "float",
-      "source": "annotation"
-    },
-    "43308": {
-      "name": "m_fTimeScale",
-      "type": "float",
-      "source": "annotation"
-    },
     "156": {
       "name": "m_fEffParam",
       "type": "float",
@@ -107,6 +77,11 @@
       "type": "float",
       "source": "reverted_auto_semantic:1x_access|reverted:pseudo_semantic"
     },
+    "188": {
+      "name": "_todo_0BC",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
     "196": {
       "name": "m_fScaleX",
       "type": "float",
@@ -127,10 +102,25 @@
       "type": "char[48]",
       "source": "binary:(const char*)&g_EffMgr._todo_0D0+4 fopen path"
     },
+    "256": {
+      "name": "m_szLogPath",
+      "type": "char[216]",
+      "source": "binary:(const char *)&g_EffMgr._todo_100+8 fopen path"
+    },
+    "472": {
+      "name": "_todo_1D8",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
     "740": {
       "name": "_todo_2E4",
       "type": "int",
       "source": "binary:disp32_1hits_1funcs"
+    },
+    "868": {
+      "name": "_todo_364",
+      "type": "int",
+      "source": "binary_discovery:1refs"
     },
     "1024": {
       "name": "m_nReset",
@@ -147,30 +137,15 @@
       "type": "int",
       "source": "reverted_auto_semantic_r3:1x(Reset)"
     },
-    "188": {
-      "name": "_todo_0BC",
-      "type": "int",
-      "source": "binary_discovery:1refs"
-    },
-    "256": {
-      "name": "m_szLogPath",
-      "type": "char[216]",
-      "source": "binary:(const char *)&g_EffMgr._todo_100+8 fopen path"
-    },
-    "472": {
-      "name": "_todo_1D8",
-      "type": "int",
-      "source": "binary_discovery:1refs"
-    },
-    "868": {
-      "name": "_todo_364",
-      "type": "int",
-      "source": "binary_discovery:1refs"
-    },
     "2048": {
       "name": "m_pEffectArray",
       "type": "int",
       "source": "binary_discovery:1refs | ida_xref2"
+    },
+    "2332": {
+      "name": "m_EffTable",
+      "type": "tagEffObj[2048]",
+      "source": "annotation"
     },
     "2916": {
       "name": "m_nTargetSlot",
@@ -192,8 +167,34 @@
       "name": "_todo_80EC",
       "type": "int",
       "source": "ida_gap_1refs"
+    },
+    "43292": {
+      "name": "m_nEff",
+      "type": "int",
+      "source": "annotation"
+    },
+    "43296": {
+      "name": "m_fCurTime",
+      "type": "float",
+      "source": "annotation"
+    },
+    "43300": {
+      "name": "m_fDeltaTime",
+      "type": "float",
+      "source": "annotation"
+    },
+    "43304": {
+      "name": "m_fTimer",
+      "type": "float",
+      "source": "annotation"
+    },
+    "43308": {
+      "name": "m_fTimeScale",
+      "type": "float",
+      "source": "annotation"
     }
   },
+
   "methods": {
     "0x004CE100": {
       "name": "CEffMgr",

@@ -3,24 +3,24 @@
   "binary_size": 820,
   "known_members": {
     "0": {
-      "name": "m_actarray_ptr",
-      "type": "void *",
-      "source": "PDB:basis+ActVec_Insert_char[ecx+4]=esi"
+      "name": "m_actarray_type",
+      "type": "unsigned char",
+      "source": "decomp:FastInit=m_actarray[0]=HIBYTE(this)/InitAction=actionType"
     },
     "4": {
-      "name": "m_actarray_count",
-      "type": "int",
-      "source": "PDB:basis+ActVec_Insert_char[ecx+8]=ebx"
+      "name": "m_actarray_begin",
+      "type": "Actor **",
+      "source": "decomp:IterateActiveActors=m_actarray[4]"
     },
     "8": {
-      "name": "m_actarray_capacity",
-      "type": "int",
-      "source": "PDB:basis+ActVec_Insert_char[ecx+0xC]=edx"
+      "name": "m_actarray_end",
+      "type": "Actor **",
+      "source": "decomp:IterateActiveActors=m_actarray[8]"
     },
     "12": {
-      "name": "_todo_00C",
-      "type": "int",
-      "source": "PDB:m_actarray_size_16_remainder"
+      "name": "m_actarray_capacity_end",
+      "type": "Actor **",
+      "source": "PDB:m_actarray_size_16_hint:ActVec_Insert_char[ecx+0xC]"
     },
     "16": {
       "name": "m_pact",
