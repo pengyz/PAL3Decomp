@@ -3,9 +3,24 @@
   "binary_size": 820,
   "known_members": {
     "0": {
-      "name": "m_actarray",
-      "type": "std::vector<gbActor *,std::allocator<gbActor *> >[4]",
-      "source": "annotation"
+      "name": "m_actarray_ptr",
+      "type": "void *",
+      "source": "PDB:basis+ActVec_Insert_char[ecx+4]=esi"
+    },
+    "4": {
+      "name": "m_actarray_count",
+      "type": "int",
+      "source": "PDB:basis+ActVec_Insert_char[ecx+8]=ebx"
+    },
+    "8": {
+      "name": "m_actarray_capacity",
+      "type": "int",
+      "source": "PDB:basis+ActVec_Insert_char[ecx+0xC]=edx"
+    },
+    "12": {
+      "name": "_todo_00C",
+      "type": "int",
+      "source": "PDB:m_actarray_size_16_remainder"
     },
     "16": {
       "name": "m_pact",
