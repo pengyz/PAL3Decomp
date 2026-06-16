@@ -710,6 +710,28 @@
       "name": "Release",
       "signature": "void __thiscall()",
       "source": "batch:sub_fix_from_decomp_this_type"
+    },
+    "0x004EA6D0": {
+      "name": "_nearby_4ea6d0",
+      "signature": "char __thiscall(CCBUI *this, HWND hDlg, int a3)"
+    },
+    "0x004EAC10": {
+      "name": "_nearby_4eac10",
+      "signature": "char __thiscall(CCBUI *this, HWND hDlg, int a3)"
+    },
+    "0x004EA4A0": {
+      "name": "_nearby_4ea4a0",
+      "signature": "LRESULT __thiscall(CCBUI *this, HWND hDlg, int a3)",
+      "type": "skip",
+      "reason": "dialog proc callback, void* this typed as CCBUI*"
+    },
+    "0x004AA9C0": {
+      "name": "CreatePanelUI",
+      "signature": "void __thiscall(CCBUI *this)"
+    },
+    "0x004AB2B0": {
+      "name": "DestroyDynamic",
+      "signature": "void __thiscall(CCBUI *this, int nVal)"
     }
   },
   "base_size": 72
