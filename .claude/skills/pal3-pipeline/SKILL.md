@@ -34,9 +34,38 @@ python pipeline/cli.py tool query_todo_fields       # 全局 _todo_ 扫描
 python pipeline/cli.py tool query_class_full Name   # 指定类全量扫描
 python pipeline/cli.py tool query_highref_fields    # 补充上下文
 python pipeline/cli.py tool find_strides            # stride 分析
+python pipeline/cli.py tool check_annotation_names  # 对比 annotation vs decomp 类归属
 ```
 
 输出在 `pipeline/ida/_logs/*.json`。IDA 脚本的 print() 不显示在终端。
+
+## IDA Headless 查询技术
+
+在不打开 IDA GUI 的情况下查询二进制证据的关键方法：
+
+```python
+# 运行 IDA 脚本查 raw IDB（纯 auto-analysis，无 PDB 类型干扰）
+ida_path = '/home/peng/ida-pro-9.1/idat'
+raw_idb = 'original/PAL3.exe.raw.i64'
+subprocess.run(f'"{ida_path}" -A -S"script.py" "{raw_idb}"', shell=True)
+```
+
+**三种 IDB 状态各有用途：**
+
+| IDB | 类型信息 | 用途 |
+|-----|---------|------|
+| `PAL3.exe.raw.i64` | FLIRT 签名 | 原始调用约定（不受 annotation 干扰） |
+| `PAL3.exe.i64` (init 后) | PDB + Annotation | 完整类型信息，query 用这个 |
+| `PAL3.exe.i64` (init 前) | PDB only | 无 annotation 干扰的原始 PDB 类型 |
+
+**IDA 9.x API 注意点：**
+- `idc.get_member_name(sid, member_offset)` — 参数是 (struct_id, offset)，不是 member_id
+- `idc.get_member_offset(sid, member_name)` — 参数是 (struct_id, name_str)
+- `idc.get_member_by_idx(sid, idx)` — 返回 member_t 对象
+- `idc.get_member_qty(sid)` — 成员数量
+- `ida_hexrays.decompile(addr, hf)` — Hex-Rays 反编译单函数
+- `ida_funcs.get_func_name(addr)` — 获取 PDB mangled name（全限定类名）
+- `idc.get_type(addr)` — 获取函数类型签名
 
 ## 证据等级（提交阈值）
 
@@ -45,12 +74,20 @@ python pipeline/cli.py tool find_strides            # stride 分析
 - **C 级**：Hex-Rays 文本推断（仅标注参考，不可单独用于偏移修改）
 - **D 级**：语义推断（命名≥60，不可用于偏移/类型修改）
 
-## 关键方法提醒
+## PE 内存布局（地址分析基础）
 
-- **ESI 验证法**：函数内 `[esi+disp]` 最大 disp 接近审计 max_off → 真实字段；远小于 → 反编译器伪像
-- **嵌入子对象**：构造函数中 `lea ecx,[esi+off]; call Ctor` → 连续 LEA 的 stride = 子对象大小。**二进制 LEA 是最终权威**，Hex-Rays 可能因结构体布局错误给出偏移偏差
-- **归属判别**：函数访问大偏移(>原类 size) + 小偏移(<原类 size) → 嵌入模式，不是归属错误
-- **签名修正**：仅有 signature this 类型不够，必须有 decomp member access evidence（this->member 在目标类中存在且不在原类中存在）
+```
+段      起始       结束        内容
+.text  0x401000   0x5695D0   代码段
+.rdata 0x56A000   0x57FFFF   只读数据（字符串常量、vtable、IAT）
+.data  0x580000   0x1897000  可读写数据（全局变量）
+.rsrc  0x1897000  0x18ED000  资源
+```
+
+**关键应用：**
+- 地址 < 0x401000 → 非真实地址，是 IDA 误识别的字面量（如 `byte_1010101` 实际上是 `0x01010101`）
+- 地址在 .rdata 且名称为 `dword_*`/`asc_*` → 大概率是字符串字面量
+- 地址在 .data → 真实可变全局变量
 
 ## data/annotations/ 文件格式
 
@@ -62,97 +99,94 @@ structs/*.json     {name, binary_size, known_members: {offset: {name, type}}}
 template_bases.json  {sanitized_name: {template: "full_expression"}}
 ```
 
-## 模板基类处理（重要！）
+## 关键方法提醒
 
-模板基类（如 `CTaskTpl<tagEffTaskParam, ...>`）在 PAL3 反编译管线中有特殊的处理流程，**不要误解或误删**。
+- **ESI 验证法**：函数内 `[esi+disp]` 最大 disp 接近 struct size → 真实字段；远小于 → 反编译器伪像
+- **嵌入子对象**：构造函数中 `lea ecx,[esi+off]; call Ctor` → 连续 LEA 的 stride = 子对象大小
+- **归属判别**：函数访问大偏移(>原类 size) + 小偏移(<原类 size) → 嵌入模式，不是归属错误
+- **签名修正**：仅有 signature this 类型不够，必须有 decomp member access evidence
+- **raw IDB 调用约定验证**：annotation 标了 `__thiscall` 但 raw IDB 显示 `__stdcall` → 应优先相信 raw（FLIRT 可能误判，需 PDB 交叉确认）
+- **PDB mangled name 确认归属**：`ida_funcs.get_func_name(addr)` 返回 mangled name → 可解析归属类
+
+## CRT 边界判断
+
+区分 CRT 函数和游戏逻辑函数的依据：
+
+| 证据 | 判断 |
+|------|------|
+| 函数名以 `crt_sub_` 或 `_old_sbh_` 开头 | CRT，skip |
+| 函数体访问游戏全局变量（如 `g_ScriptSystemData`、`g_SceneMgr`） | 游戏逻辑，需分析 |
+| 函数体只有 `operator delete` / `operator new` 等 | 编译器生成，skip |
+| `_sdtor_*` 函数（标量删除析构器） | 编译器生成，skip |
+| `_initterm` 表条目中的构造函数 | 需判断：C++ 全局对象构造 → 游戏逻辑 |
+
+## 模板基类处理
 
 ### 数据流
 
 ```
 structs/CEffSParticle.json          template_bases.json
   base_class: [                       CTaskTpl_tagEffTaskParam_CEffSParticle:
-    "CEffObj",                          {"template": "CTaskTpl<tagEffTaskParam, unsigned long (...)>"}
-    "CTaskTpl_tagEffTaskParam_CEffSParticle"  ← 注意：这是 sanitized 名
-  ]                                   ← 映射到完整模板表达式
+    "CEffObj",                          {"template": "CTaskTpl<tagEffTaskParam, ...>"}
+    "CTaskTpl_tagEffTaskParam_CEffSParticle"
+  ]
           │                                      │
           ▼                                      ▼
-    apply_annotations.py (IDB)       codegen emit_headers.py (源码生成)
-    - 写入 IDB struct 定义            - 读 template_bases.json
-    - 设继承为 sanizited 名           - 反查完整模板表达式
-                                      - 生成: class CEffSParticle :
-                                               public CTaskTpl<tagEffTaskParam, ...>
+    apply_annotations.py               codegen emit_headers.py
+    - 写入 IDB struct 继承             - 读 template_bases.json
+    - 用 sanitized 名                  - 反查完整模板表达式
+                                       - 生成: class CEffSParticle :
+                                                public CTaskTpl<tagEffTaskParam, ...>
 ```
 
 ### 关键约束
 
-| 规则 | 说明 |
-|------|------|
-| **struct/*.json 中的 base_class 必须使用 sanitized 名** | 替换 `<>` `::` `*` 为 `_`，如 `CTaskTpl_tagEffTaskParam_CEffSParticle` |
-| **永远不要删除模板基类** | 删除会破坏 codegen 生成的继承链，导致 class 缺少基类 |
-| **template_bases.json 是唯一权威映射** | 新增模板特化时，必须同时在此注册 sanitized 名 → 完整表达式 |
-| **apply_annotations.py 会忽略含 `<>` 的 base_class** | 以前老格式用完整表达式会被丢弃，新格式必须用 sanitized 名 |
-| **check_annotations.py 只检查名称存在性** | 它查的是 `all_struct_names`（structs/*.json 的文件名列表），sanitized 名对应的文件存在即为有效（如 `CTaskTpl_tagEffTaskParam_CEffSParticle.json`） |
+- base_class 必须使用 sanitized 名（`CTaskTpl_tagEffTaskParam_CEffSParticle`），不是完整表达式
+- 永远不要删除模板基类——会破坏继承链
+- template_bases.json 是唯一权威映射
+- apply_annotations.py 会忽略含 `<>` 的完整表达式
 
-### 错误修复示例
+## 全局变量标注
+
+### 基本原则
+
+- 二进制中存在的全局就应该可标注，不取决于 IDA 是否将其列为 `_globals`
+- 标注质量直接影响 Hex-Rays 输出：`g_GlobalName.field` 优于 `*(DWORD*)0xADDR`
+- codegen 的就地 extern 机制是合理的 fallback，不需要强制所有全局进入 globals.h
+
+### codegen 过滤规则
+
+`emit_headers.py` 中 `generate_globals()` 的过滤链：
+
+1. type=skip → 跳过
+2. 名称匹配 `^(dword|byte|flt|word|off|stru|unk|asc)_` → 跳过（IDA 自动名，不进入 globals.h）
+3. 类型含 `::` → 跳过（PDB 旧类型名）
+4. 函数指针类型 → 跳过（WinAPI 重声明）
+5. 其余进入 globals.h
+
+被过滤的全局变量（如 `dword_17A89C8`）由 codegen 在 .cpp 中就地生成 `extern` 声明。
+
+### Phantom Global
+
+地址落在 struct_instance 范围内的全局变量：
+- 不能有独立 `extern` 声明（地址与父结构体重叠）
+- 访问通过 struct_instances → _resolve_offset 解析为 g_Parent.field
+- 在 globals.json 中标记 type=skip
+
+## 字面量还原
+
+IDA 有时会把数值常量错误识别为全局变量（特别是 `byte_`/`dword_` 名称的）：
 
 ```python
-# ❌ 错误：删除了模板基类（破坏了继承链）
-"base_class": ["CEffObj"]  # CTaskTpl<...> 被删了！
-
-# ✅ 正确：用 sanitized 名替换完整表达式
-"base_class": ["CEffObj", "CTaskTpl_tagEffTaskParam_CEffSParticle"]
+# stage4_substitution.py 中的判断逻辑：
+if name.startswith('byte_'):
+    va = int(name.split('_')[1], 16)
+    if va < 0x401000:  # 低于 .text 段起始
+        # 不是真实地址，是字面量
+        replacement = '0x%08X' % va
 ```
 
-### 判断方法
-
-如果看到 struct 的 `base_class` 中有类似 `CTaskTpl<...>` 或 `gbSingleton<...>` 格式的条目：
-1. 在 `template_bases.json` 中找到对应的 sanitized 名
-2. 用 sanitized 名替换完整表达式
-3. 如无对应条目，需手动注册
-
-**顶层原则**：codegen 层依赖 `template_bases.json` 做反向映射以生成正确的模板继承代码。annotation 层只需要用 sanitized 名指向这个注册表即可。
-
-## Phantom Global 处理
-
-### 什么是 Phantom Global
-
-某些 annotation `globals.json` 中的全局变量的实际地址落在另一个更大结构体的内存
-范围内。它们在 IDB 中可能有独立命名，但实际上是父结构体的内部字段。
-
-例如 `g_ScriptRoleBuf`（地址 0xC04920）落在 `g_SceneMgr`（0xC04390, size=6904）范围内。
-它没有独立存储，不能有 `extern` 声明。
-
-### 识别方法
-
-- 编译报 C2065 + 级联 C2228（变量名.member）
-- annotation `globals.json` 中有 `overlaps_with` 字段标记
-- 地址计算：变量地址是否在某个已知 struct_instance 范围内（差值即为父结构体内的偏移）
-
-### 处理流程
-
-1. **验证**：计算变量地址和父结构体基址的差值，确认偏移落在父结构体 size 内
-2. **父 struct 补成员**：在 `structs/ParentStruct.json` 的 `known_members` 中
-   添加对应偏移的字段定义（类型、名称）
-3. **标记 skip**：在 `globals.json` 中设 `"type": "skip"`，`"reason"` 注明所属父结构体
-4. **重新导出**：`export → codegen → compile`
-
-### 禁止行为
-
-- ❌ 加 `extern` 声明——地址冲突
-- ❌ 通过 thunk_map 重命名——无法通过地址验证
-- ❌ 保留独立全局声明——编译器允许但运行时地址错误
-
-### 典型场景：g_ScriptRoleBuf
-
-```
-g_SceneMgr    0xC04390  size=6904
-g_ScriptRoleBuf 0xC04920 → g_SceneMgr + 0x590
-
-annotation 中:
-1. 在 SceneMgr.json 的 known_members 补偏移 0x590 的 RoleSystem 字段
-2. 在 globals.json 中将 g_ScriptRoleBuf 标记为 "type": "skip"
-3. 重新 export 后，codegen 自动解析为 g_SceneMgr.fieldName.subField
-```
+调用链：`_try_literal_replacement(name)` → stage4 AST 替换 + emit_cpp 跳过 extern
 
 ## 字段验证
 
