@@ -16,7 +16,7 @@ if(GBENGINE_SOURCES)
     target_link_libraries(gbengine
         topo
         ${PLATFORM_LIBS}
-        LIBCMT.LIB
+        LIBCMT
         d3d9.lib
         d3dx9.lib
         dinput8.lib

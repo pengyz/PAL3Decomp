@@ -105,8 +105,13 @@ set(CMAKE_EXECUTABLE_SUFFIX ".exe")
 # oleaut32.lib, uuid.lib, odbc32.lib, odbccp32.lib etc. as implicit link
 # libraries. Under Wine these get passed as Linux absolute paths causing
 # LNK4044 warnings. We manage all libraries explicitly in CMakeLists.txt.
+#
+# /Zl omits default library names from .obj files, preventing CMake from
+# adding LIBCMT.LIB (which it would append .lib to as LIBCMT.LIB.lib).
 set(CMAKE_C_STANDARD_LIBRARIES "" CACHE STRING "" FORCE)
 set(CMAKE_CXX_STANDARD_LIBRARIES "" CACHE STRING "" FORCE)
+set(CMAKE_C_FLAGS_INIT "/Zl")
+set(CMAKE_CXX_FLAGS_INIT "/Zl")
 
 # --------------------------------------------------------------------------
 # Include and library paths

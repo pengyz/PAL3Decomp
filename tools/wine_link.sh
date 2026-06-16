@@ -13,7 +13,7 @@ ARGS=()
 for arg in "$@"; do
     case "$arg" in
         # /OUT:/path, /DEF:/path, /LIBPATH:/path, /MAP:/path, /PDB:/path, /IMPLIB:/path
-        /[A-Z]*:/*|/[a-z]*:/*)
+        /[A-Za-z][A-Za-z]*:*/*)
             prefix="${arg%%:*}:"
             path="${arg#*:}"
             ARGS+=("${prefix}$(convert_path "$path")")
