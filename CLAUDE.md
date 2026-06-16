@@ -2,6 +2,54 @@
 
 **匹配反编译**：目标为 MSVC 6.0 SP0 编译的 PAL3.exe 生成字节匹配的 C/C++ 源码。
 
+## Pipeline Philosophy
+
+### 编译是不可逆的，我们做的是"再创作"
+
+C++ 编译成二进制是一个**不可逆的信息丢失过程**。类型信息、类层次、继承关系、模板实例化——全部坍缩为指令和数据。我们不是在"恢复"源码，而是在**再创作**一个能输出完全相同二进制的 C++ 程序。
+
+这个认知决定了所有设计决策的优先级：**字节匹配 > 代码优雅 > 工具链便利 > 个人偏好**。
+
+### 两阶段管线
+
+```
+annotations → apply → IDB → Hex-Rays → decomp JSON → codegen → C++  →  Phase2: 手工fix
+↑________________________ Phase 1 ________________________↑    ↕ 字节比对
+```
+
+**Phase 1 — 自动化管线**：annotation 为 IDA 提供类型信息，激发 Hex-Rays 输出最好的伪代码。codegen 将 Hex-Rays 的输出转换为可编译的 C++（修补 Hex-Rays 不支持的语法如引用、模板）。目标是在零人工干预下生成质量尽可能高的源码。
+
+**Phase 2 — 手工修正**：当逼近 Hex-Rays 能力上限后，通过字节比对工具定位不匹配处，手工修改源码做字节级别的 fix。
+
+### Phase 1 各层职责
+
+| 层 | 职责 | 红线 |
+|----|------|------|
+| **annotation** | 为 IDA 提供类型信息（结构体、函数签名、全局变量），让 Hex-Rays 输出尽可能高质量的伪代码 | 不能直接修改 codegen 产物 |
+| **apply_annotations** | 将 annotation 写入 IDB，不改变语义 | 不能编造信息 |
+| **Hex-Rays** | 基于 IDB 类型信息生成伪代码 | 能力有限（不支持引用、模板） |
+| **codegen** | 将 Hex-Rays 输出转换为可编译 C++，修补 Hex-Rays 的语法缺口 | 只能做等价变换，不能编造信息 |
+| **check_annotations** | 验证 annotation 内部一致性，防止矛盾信息写入 IDB | 不检查 codegen 产物风格 |
+
+### annotation 质量的投入产出
+
+充分标注函数归属（struct methods）和全局变量能使 Hex-Rays 输出 **`this->member` / `g_GlobalName.field`** 而非 **`*(type*)(this+offset)` / `*(DWORD*)0xADDR`**。Phase 2 的人工编辑量与此直接相关——标注质量越高，Phase 2 工作量越小。投入产出的最优策略是：**在 Phase 1 做所有能做的标注，即使某些信息在 Phase 1 不会立即产生收益**。
+
+### 影响字节匹配的核心困难
+
+1. **CRT 边界**：哪些函数是 CRT 的（编译器链接而来）、哪些是游戏自带的？区分错误导致重复定义或遗漏。
+2. **vtable 布局**：虚函数声明顺序、COMDAT 折叠、调整 thunk 必须精确匹配 MSVC 生成规则。
+3. **模板特化**：Hex-Rays 不支持模板，`template_bases.json` 做桥接映射。
+4. **优化反编译产物**：Hex-Rays 对优化后代码的反编译可能"看起来对但字节不对"。
+5. **无实时字节验证**：缺少自动对比机制，无法及时感知偏差。
+
+### 设计原则
+
+- **字节匹配是第一优先级**：一切决策以此为准。
+- **全局变量不依赖 export _globals**：二进制中存在的全局就应该可标注，不取决于 IDA 是否将其列为 `_globals`。codegen 的就地 extern 机制是合理的 fallback。
+- **check_annotations 不强制执行风格规范**：它的角色是发现标注矛盾，不是强制执行组织规范（如"全局必须在 globals.h 中"）。
+- **codegen 不读 annotation**：codegen 只读 export 产物，不直接访问 `data/annotations/`。
+
 ## Project Overview
 
 - **Compiler**: MSVC 6.0 SP0 (`tools/compilers/msvc6.0/`), `/O2 /Ob2 /Oi /Ot /Oy`
