@@ -506,19 +506,27 @@
   },
   "0x00540070": {
     "name": "crt_sub_00540070",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl()",
+    "type": "skip",
+    "reason": "CRT init function, not game logic"
   },
   "0x00540D20": {
     "name": "crt_sub_00540D20",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl()",
+    "type": "skip",
+    "reason": "CRT init function, not game logic"
   },
   "0x00540DC0": {
     "name": "crt_sub_00540DC0",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl()",
+    "type": "skip",
+    "reason": "CRT init function, not game logic"
   },
   "0x00540FD0": {
     "name": "crt_sub_00540FD0",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl()",
+    "type": "skip",
+    "reason": "CRT init function, not game logic"
   },
   "0x00541160": {
     "name": "UIRenderPar",
@@ -526,7 +534,9 @@
   },
   "0x00541590": {
     "name": "crt_sub_00541590",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl()",
+    "type": "skip",
+    "reason": "CRT init function, not game logic"
   },
   "0x00569020": {
     "name": "PAL3_RandomPickValues",
@@ -676,6 +686,16 @@
   },
   "0x00541210": {
     "name": "crt_sub_00541210",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl()",
+    "type": "skip",
+    "reason": "CRT init function, not game logic"
+  },
+  "0x0041C1E0": {
+    "name": "_old_sbh_page_alloc",
+    "signature": "int __thiscall(__old_sbh_page_struct *this)"
+  },
+  "0x0041D100": {
+    "name": "_old_sbh_page_manage",
+    "signature": "int __thiscall(__old_sbh_page_struct *this, int nVal)"
   }
 }
