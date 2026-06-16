@@ -452,8 +452,7 @@
     },
     "0x004C1DD0": {
       "name": "GetEffAudioTemplate",
-      "signature": "int *__thiscall RenderTarget2::GetEffAudioTemplate(int nType)",
-      "ordinal": 53
+      "signature": "int *__thiscall(int nVal)"
     },
     "0x004C1E90": {
       "name": "RenderOverlay",
@@ -713,10 +712,6 @@
       "name": "UpdateParticles",
       "signature": "void __thiscall()"
     },
-    "0x004C1E00": {
-      "name": "GetEffAudioTemplate",
-      "signature": "int *__thiscall(int nVal)"
-    },
     "0x004C1640": {
       "name": "DestroyEffBase",
       "signature": "char *__thiscall(char a2)"
@@ -740,6 +735,12 @@
     "0x004C0500": {
       "name": "OnTest",
       "signature": "int()"
+    },
+    "0x004C3C80": {
+      "name": "_sdtor_35",
+      "signature": "char *__thiscall(char *this, char a2)",
+      "type": "skip",
+      "reason": "compiler-generated scalar deleting destructor for RenderTarget2 (adjustor -12)"
     }
   },
   "vtables": [

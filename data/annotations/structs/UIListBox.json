@@ -185,10 +185,11 @@
     },
     "0x0043E100": {
       "name": "_scalar_dtor",
-      "signature": "std::ios_base *__thiscall(std::ios_base *Block, char pData)",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "ordinal": 5
+      "ordinal": 5,
+      "source": "|fixed_ios_base"
     },
     "0x0043E120": {
       "name": "DeleteRow",
@@ -427,12 +428,6 @@
       "name": "_scalar_dtor_79d0",
       "signature": "UIListBox *__thiscall(UIListBox *Block, char a2)"
     },
-    "0x00445C60": {
-      "name": "Update",
-      "signature": "int __thiscall(int a2, int a3)",
-      "source": "vtable_evidence",
-      "ordinal": 2
-    },
     "0x0043DCF0": {
       "name": "_scalar_dtor",
       "signature": "void __thiscall(UIListBox *__hidden this)",
@@ -499,6 +494,10 @@
     "0x0043D7A0": {
       "name": "ForwardOnMessage",
       "signature": "int __thiscall(int nVal, int nMsg, int wParam)"
+    },
+    "0x0043EBB0": {
+      "name": "GetGridOffset",
+      "signature": "void __thiscall(UIListBox *this, int *pOut, int index)"
     }
   },
   "vtables": [

@@ -70,11 +70,6 @@
       "name": "_UIWnd",
       "signature": "void __thiscall()"
     },
-    "0x00445C60": {
-      "name": "HitTest",
-      "signature": "BOOL __thiscall UIWnd::HitTest(int x, int y)",
-      "ordinal": 2
-    },
     "0x00445CD0": {
       "name": "Render",
       "signature": "void __thiscall()",
@@ -161,10 +156,6 @@
       "name": "ShowWindow",
       "signature": "int __thiscall(int nFlags)"
     },
-    "0x00443200": {
-      "name": "Render",
-      "signature": "void __thiscall()"
-    },
     "0x00442FF0": {
       "name": "Update",
       "signature": "BOOL __thiscall(int nVal, int nVal2)"
@@ -196,6 +187,12 @@
     "0x004431B0": {
       "name": "_sdtor_call_dtor",
       "signature": "int __thiscall(void *Block, char)"
+    },
+    "0x0044A7D0": {
+      "name": "_sdtor_14",
+      "signature": "void *__thiscall(void *Block, char a2)",
+      "type": "skip",
+      "reason": "compiler-generated scalar deleting destructor for UIWnd"
     }
   },
   "vtables": [

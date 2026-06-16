@@ -596,10 +596,10 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         udt.is_union = True
     else:
         is_flexible = struct_info.get("_flexible", False)
-    # TAUDT_FIXED + total_size required for ALL structs
-    # Without TAUDT_FIXED, IDA ignores explicit member offsets and total_size.
-    udt.taudt_bits = 1024
-    udt.total_size = binary_size
+        # TAUDT_FIXED + total_size required for non-union structs
+        # Without TAUDT_FIXED, IDA ignores explicit member offsets and total_size.
+        udt.taudt_bits = 1024
+        udt.total_size = binary_size
     # TAUDT_CPPOBJ omitted: its unnamed-member→DAG conversion
     # leaves _BYTE[] placeholders that corrupt base-class export.
 

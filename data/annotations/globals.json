@@ -1482,11 +1482,13 @@
   "0x005DFDEB": {
     "name": "g_bCombatDebugMode",
     "source": "binary: CCBRoleState_ApplyDamage/CalcCombatDamage: if(!val)/if(val) checks",
-    "type": "unsigned char"
+    "type": "skip",
+    "reason": "CRT:not_in_ida_structs_globals"
   },
   "0x005DFDEC": {
     "name": "g_nCombatRandSeed",
-    "type": "unsigned long"
+    "type": "skip",
+    "reason": "CRT:not_in_ida_structs_globals"
   },
   "0x005DFE08": {
     "name": "aRb",
@@ -8213,11 +8215,13 @@
   "0x5dfdeb": {
     "name": "g_bCombatDebugMode",
     "source": "binary: CCBRoleState_ApplyDamage/CalcCombatDamage: if(!val)/if(val) checks",
-    "type": "unsigned char"
+    "type": "skip",
+    "reason": "CRT:not_in_ida_structs_globals"
   },
   "0x5dfdec": {
     "name": "g_nCombatRandSeed",
-    "type": "unsigned long"
+    "type": "skip",
+    "reason": "CRT:not_in_ida_structs_globals"
   },
   "0x5dfe04": {
     "name": "aWt",
@@ -8745,7 +8749,7 @@
   },
   "0xbfdab0": {
     "name": "dword_BFDAB0",
-    "type": "std::ios_base",
+    "type": "int",
     "source": "final_fix"
   },
   "0xbfdb70": {

@@ -614,14 +614,14 @@
       "source": "auto:overlap_g_SceneMgr_at_+0x1E48"
     },
     "51808": {
-      "name": "_todo_CA60",
-      "type": "_DWORD[8]",
-      "source": "CRT:AStarPathFinder+RoleSystem_vtable_ctor_confirmed"
+      "name": "m_pathFinder",
+      "type": "PathFinder",
+      "source": "CRT:vtable_0x56A6D0_ctor_confirmed"
     },
     "54216": {
       "name": "_todo_D3C8",
-      "type": "_DWORD[4]",
-      "source": "CRT:ctor_confirmed_near_m_pCombatRole"
+      "type": "int[500]",
+      "source": "decomp:LoadMainUITexture[489..493]_FindRoleByState[stride=0x880]"
     }
   },
   "methods": {
@@ -691,6 +691,10 @@
       "name": "ResetSceneFlags",
       "signature": "int __cdecl SceneMgr::ResetSceneFlags()",
       "static": true
+    },
+    "0x00421C40": {
+      "name": "UINotifyUpdate",
+      "signature": "int __thiscall(SceneMgr *this)"
     }
   },
   "_flexible": true

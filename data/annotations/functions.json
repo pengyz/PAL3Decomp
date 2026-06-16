@@ -101,23 +101,17 @@
   },
   "0x0041C280": {
     "name": "InputUpdate",
-    "signature": "int __thiscall(int this, int nVal)"
+    "signature": "int __stdcall(float fVal)"
   },
   "0x0041D100": {
     "name": "_old_sbh_page_manage",
     "signature": "int __thiscall(__old_sbh_page_struct *this, int nVal)"
   },
-  "0x0041EB80": {
-    "name": "UIPostUpdate",
-    "signature": "void __thiscall(gbSound2DNode *this)"
-  },
   "0x00420430": {
     "name": "_sdtor_2",
-    "signature": "virtual void *__thiscall(void *Block, char a2)"
-  },
-  "0x00421C40": {
-    "name": "UINotifyUpdate",
-    "signature": "int __thiscall(int *this)"
+    "signature": "void *__thiscall(void *Block, char a2)",
+    "type": "skip",
+    "reason": "compiler-generated scalar deleting destructor, no game logic"
   },
   "0x004226F0": {
     "name": "UISceneUpdate",
@@ -163,10 +157,6 @@
     "name": "_sdtor_23",
     "signature": "PalScript *__thiscall(PalScript *Block, char a2)"
   },
-  "0x00431870": {
-    "name": "ctor_0x431870",
-    "signature": "int *__thiscall(int *this)"
-  },
   "0x00432600": {
     "name": "FindScriptEventByID",
     "signature": "char __cdecl FindScriptEventByID(int nEventId)"
@@ -186,10 +176,6 @@
   "0x00432930": {
     "name": "SetScriptInitFlag",
     "signature": "void __cdecl SetScriptInitFlag()"
-  },
-  "0x00432980": {
-    "name": "ResizeOpcodeParams",
-    "signature": "void __thiscall ResizeOpcodeParams(PtrArray *this)"
   },
   "0x00432990": {
     "name": "LoadScriptFile",
@@ -244,10 +230,6 @@
     "signature": "struct NameSys *__cdecl()",
     "source": "pdb"
   },
-  "0x0043EBB0": {
-    "name": "GetGridOffset",
-    "signature": "void __thiscall(void *this, int *pOut, int index)"
-  },
   "0x00443CA0": {
     "name": "UISceneMap::sub_443CA0",
     "signature": "char __thiscall(int this, float fVal)"
@@ -255,10 +237,6 @@
   "0x004499A0": {
     "name": "sub_4499A0",
     "signature": "char __thiscall(void *this, unsigned int a2, int a3)"
-  },
-  "0x0044A7D0": {
-    "name": "_sdtor_14",
-    "signature": "virtual void *__thiscall(void *Block, char a2)"
   },
   "0x0044BD80": {
     "name": "SafeDeletePtr",
@@ -374,17 +352,9 @@
     "name": "SortTripletsByField",
     "signature": "int *__cdecl SortTripletsByField(int *p_DWORD, int *p_DWORD2, int nVal)"
   },
-  "0x004BE460": {
-    "name": "RenderPost",
-    "signature": "int __thiscall(int this, int nVal)"
-  },
-  "0x004C3C80": {
-    "name": "_sdtor_35",
-    "signature": "virtual char *__thiscall(char *this, char a2)"
-  },
   "0x004C5BB0": {
     "name": "CombatEffectUpdate",
-    "signature": "int __thiscall(int this, double pData)"
+    "signature": "int __stdcall(double pData)"
   },
   "0x004CB350": {
     "name": "_sdtor_36",
@@ -400,7 +370,7 @@
   },
   "0x004CDB70": {
     "name": "SceneMgrUpdate",
-    "signature": "char __thiscall(float *this, float fVal)"
+    "signature": "int __stdcall(float fVal)"
   },
   "0x004CFD40": {
     "name": "CEffgbParticle::_nearby_4cfd40",
@@ -527,10 +497,6 @@
     "name": "_nearby_4ec490",
     "signature": "void __cdecl()"
   },
-  "0x0051DD80": {
-    "name": "CCBProtectWindow::Destroy",
-    "signature": "virtual void __thiscall(CCBProtectWindow *this)"
-  },
   "0x0051F0A0": {
     "name": "CCBResultWindow::Reset",
     "signature": "void __thiscall(CCBResultWindow *this)"
@@ -555,11 +521,11 @@
   },
   "0x0052B900": {
     "name": "MiniGame1Update",
-    "signature": "int __thiscall(int ***this, double pData)"
+    "signature": "int __stdcall(double pData)"
   },
   "0x0052F350": {
     "name": "MiniGame2Update",
-    "signature": "void __thiscall(int **this, int nVal)"
+    "signature": "int __stdcall(float fVal)"
   },
   "0x0052FC60": {
     "_misattrib_evidence": "max_offset=3336>class_size=4",
@@ -572,7 +538,7 @@
   },
   "0x005353A0": {
     "name": "MiniGame3Update",
-    "signature": "void __thiscall(int *this, float fVal)"
+    "signature": "int __stdcall(float fVal)"
   },
   "0x005374E0": {
     "name": "Vec3D_CopyStruct",
@@ -589,22 +555,6 @@
   "0x005394F0": {
     "name": "GetSaveDataManager",
     "signature": "void *__cdecl()"
-  },
-  "0x0053A340": {
-    "name": "ActVec_Insert_char",
-    "signature": "void __thiscall(Actor *this, char *pszBuf, unsigned int dwVal, char *pszBuf2)"
-  },
-  "0x0053A6C0": {
-    "name": "ActVec_Insert_word",
-    "signature": "_WORD *__thiscall(Actor *this, _WORD *p_WORD, unsigned int dwVal, _WORD *p_WORD2)"
-  },
-  "0x0053A8D0": {
-    "name": "ActVec_InsertN",
-    "signature": "unsigned int __thiscall(Actor *this, char *pszBuf, unsigned int nX, char *nY)"
-  },
-  "0x0053ACA0": {
-    "name": "ActVec_InsertRange",
-    "signature": "char *__thiscall(Actor *this, char *pszBuf, unsigned int dwVal, const void *pData)"
   },
   "0x0053B010": {
     "name": "ActVec_UninitCopy",
@@ -633,18 +583,6 @@
   "0x0053BEE0": {
     "name": "ActVec_Reallocate",
     "signature": "char *(int nVal, char *pszBuf, char *pszBuf2, char *pszBuf3, int nVal2)"
-  },
-  "0x0053CB10": {
-    "name": "WinProc_HWND_InputLine",
-    "signature": "int __thiscall WinProc_HWND_InputLine(void *this, char pData)"
-  },
-  "0x0053CCF0": {
-    "name": "WinProc_HWND_ExecCommand",
-    "signature": "char *__thiscall WinProc_HWND_ExecCommand(char *this)"
-  },
-  "0x0053CDE0": {
-    "name": "WinProc_HWND_SetAndExec",
-    "signature": "int __thiscall WinProc_HWND_SetAndExec(char *this, char *Source)"
   },
   "0x0053CF30": {
     "name": "Texture_Info_FormatException",
@@ -753,10 +691,6 @@
   "0x004427C0": {
     "name": "UICaption::SetEnable",
     "signature": "void __thiscall(UICaption *this, int szName, int bEnable)"
-  },
-  "0x00445C60": {
-    "name": "UIListBox::Update",
-    "signature": "virtual int __thiscall(int a2, int a3)"
   },
   "0x0053E2E0": {
     "name": "CScreenMode::AudioSetPosition",

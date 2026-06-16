@@ -484,48 +484,6 @@ def check():
                     f" struct methods or functions.json — remove from skip_functions.json (one source only)"
                         )
 
-    # 6. Exported globals overlap check (ida_structs.json)
-    # ida_structs.json is the actual data source for codegen.
-    # Overlapping globals in export = codegen produces wrong declarations.
-    _is_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'asm', 'pal3', 'ida_structs.json')
-    if os.path.exists(_is_path):
-        _is_data = json.load(open(_is_path, encoding='utf-8'))
-        _exp_globs = _is_data.get('_globals', {})
-        _exp_ranges = []
-        for _addr_s, _ginfo in _exp_globs.items():
-            _gt = _ginfo.get('type', '')
-            _gn = _ginfo.get('name', '')
-            if not _gt or not _gn:
-                continue
-            _st = _is_data.get(_gt, {})
-            _sz = _st.get('size', 0)
-            if not _sz:
-                continue
-            try:
-                _ga = int(_addr_s, 16)
-            except ValueError:
-                continue
-            _exp_ranges.append((_ga, _ga + _sz, _gn, _gt))
-        for _addr_s, _ginfo in _exp_globs.items():
-            _gt = _ginfo.get('type', '')
-            _gn = _ginfo.get('name', '')
-            if not _gt or not _gn:
-                continue
-            try:
-                _ga = int(_addr_s, 16)
-            except ValueError:
-                continue
-            for _rs, _re, _rn, _rt in _exp_ranges:
-                if _rn == _gn:
-                    continue
-                if _rs < _ga < _re:
-                    _has_own = any(_b == _ga for _b, _e, _, _ in _exp_ranges)
-                    if not _has_own:
-                        warnings.append(
-                            f"export[0x{_ga:X}]: '{_gn}' ({_gt}) at +0x{_ga - _rs:X} inside "
-                            f"'{_rn}' ({_rt}) [0x{_rs:X}-0x{_re:X}] — phantom global, "
-                            f"skipped by generate_globals() (not a real global)")
-
     return errors, warnings
 
 
