@@ -2061,7 +2061,7 @@ def generate_globals():
     # fwd_classes: types that only need forward declaration (pointers only)
     includes_needed = set()
     fwd_classes = set()
-    gen_header_dir = PROJECT_ROOT / "include" / "pal3" / "gen"
+    gen_header_dir = OUTPUT_DIR
 
     def extract_base_type(t):
         """Extract base type name from a type string."""
@@ -2089,7 +2089,9 @@ def generate_globals():
 
         base_typ = extract_base_type(typ)
         is_pointer_only = '*' in typ and '[' not in typ
-        has_header = (gen_header_dir / ("%s.h" % base_typ)).exists()
+        has_header = any((gen_header_dir / d / ("%s.h" % base_typ)).exists()
+                         for d in ('', 'Misc', 'Combat', 'UI', 'Effect', 'Scene',
+                                   'Role', 'GameBase', 'Render', 'Data', 'MiniGame', 'Script'))
         has_struct = _ann_struct_path(base_typ) is not None
 
         # Track types needing full definition vs forward declaration

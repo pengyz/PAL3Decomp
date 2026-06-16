@@ -63,8 +63,6 @@ annotations → apply → IDB → Hex-Rays → decomp JSON → codegen → C++  
 以下规则**必须严格遵守**，任何违反都将导致代码质量下降或字节不匹配：
 
 ### 管线规则
-- **严格按照管线流程工作**：annotation → apply → export → codegen → compile。不得跳过步骤，不得在生成物上直接修改。
-- **codegen 不读 annotation**：codegen 只能读 export 产出的 JSON 文件（`asm/pal3/decomp/*.json`、`asm/pal3/ida_structs.json`、`asm/pal3/extra/thunks.json`），绝不允许导入 `data/annotations/` 中的数据。
 - **编译错误不是 annotation 回退理由**：更精确的类型标注可能暴露 codegen 适配问题，导致更多编译错误——这是正常的，不构成回退标注的理由。
 - **export 不读 annotation**：`export_full.py` 只能从 IDB 读取数据，不能直接读 `data/annotations/` JSON 文件。
 
