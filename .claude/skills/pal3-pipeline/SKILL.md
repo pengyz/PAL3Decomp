@@ -59,7 +59,58 @@ functions.json     {addr: {name, signature}}
 globals.json       {addr: {name, type, overlaps_with, decomp_name}}
 skip_functions.json {addr: {name, reason, target_name}}
 structs/*.json     {name, binary_size, known_members: {offset: {name, type}}}
+template_bases.json  {sanitized_name: {template: "full_expression"}}
 ```
+
+## 模板基类处理（重要！）
+
+模板基类（如 `CTaskTpl<tagEffTaskParam, ...>`）在 PAL3 反编译管线中有特殊的处理流程，**不要误解或误删**。
+
+### 数据流
+
+```
+structs/CEffSParticle.json          template_bases.json
+  base_class: [                       CTaskTpl_tagEffTaskParam_CEffSParticle:
+    "CEffObj",                          {"template": "CTaskTpl<tagEffTaskParam, unsigned long (...)>"}
+    "CTaskTpl_tagEffTaskParam_CEffSParticle"  ← 注意：这是 sanitized 名
+  ]                                   ← 映射到完整模板表达式
+          │                                      │
+          ▼                                      ▼
+    apply_annotations.py (IDB)       codegen emit_headers.py (源码生成)
+    - 写入 IDB struct 定义            - 读 template_bases.json
+    - 设继承为 sanizited 名           - 反查完整模板表达式
+                                      - 生成: class CEffSParticle :
+                                               public CTaskTpl<tagEffTaskParam, ...>
+```
+
+### 关键约束
+
+| 规则 | 说明 |
+|------|------|
+| **struct/*.json 中的 base_class 必须使用 sanitized 名** | 替换 `<>` `::` `*` 为 `_`，如 `CTaskTpl_tagEffTaskParam_CEffSParticle` |
+| **永远不要删除模板基类** | 删除会破坏 codegen 生成的继承链，导致 class 缺少基类 |
+| **template_bases.json 是唯一权威映射** | 新增模板特化时，必须同时在此注册 sanitized 名 → 完整表达式 |
+| **apply_annotations.py 会忽略含 `<>` 的 base_class** | 以前老格式用完整表达式会被丢弃，新格式必须用 sanitized 名 |
+| **check_annotations.py 只检查名称存在性** | 它查的是 `all_struct_names`（structs/*.json 的文件名列表），sanitized 名对应的文件存在即为有效（如 `CTaskTpl_tagEffTaskParam_CEffSParticle.json`） |
+
+### 错误修复示例
+
+```python
+# ❌ 错误：删除了模板基类（破坏了继承链）
+"base_class": ["CEffObj"]  # CTaskTpl<...> 被删了！
+
+# ✅ 正确：用 sanitized 名替换完整表达式
+"base_class": ["CEffObj", "CTaskTpl_tagEffTaskParam_CEffSParticle"]
+```
+
+### 判断方法
+
+如果看到 struct 的 `base_class` 中有类似 `CTaskTpl<...>` 或 `gbSingleton<...>` 格式的条目：
+1. 在 `template_bases.json` 中找到对应的 sanitized 名
+2. 用 sanitized 名替换完整表达式
+3. 如无对应条目，需手动注册
+
+**顶层原则**：codegen 层依赖 `template_bases.json` 做反向映射以生成正确的模板继承代码。annotation 层只需要用 sanitized 名指向这个注册表即可。
 
 ## Phantom Global 处理
 

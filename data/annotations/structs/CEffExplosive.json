@@ -169,7 +169,10 @@
       "note": "renamed vfptr -> __vftable (unified with IDA convention)"
     }
   },
-  "base_class": "CEffObj",
+  "base_class": [
+    "CEffObj",
+    "CTaskTpl_tagEffTaskParam_CEffExplosive"
+  ],
   "methods": {
     "0x004C7C00": {
       "name": "InitDefaultUVSet",

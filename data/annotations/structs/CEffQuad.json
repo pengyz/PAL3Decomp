@@ -104,7 +104,10 @@
       "note": "renamed vfptr -> __vftable (unified with IDA convention)"
     }
   },
-  "base_class": "CEffObj",
+  "base_class": [
+    "CEffObj",
+    "CTaskTpl_tagEffTaskParam_CEffQuad"
+  ],
   "methods": {
     "0x004D1BE0": {
       "name": "DestroyOneQuad",
