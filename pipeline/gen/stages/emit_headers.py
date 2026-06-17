@@ -2236,21 +2236,25 @@ def _read_init_value(addr, typ, exe_data):
         if val == 0: return None
         if val > 0x7FFFFFFF: return '0x%X' % val
         return str(val)
+    # Char array (string) — read actual content from .data section
+    if 'char' in typ.lower() and ('[' in typ or '[]' in typ):
+        raw = exe_data[foff:foff+256]
+        null_pos = raw.find(b'\x00')
+        if null_pos > 0 and all(32 <= b < 127 for b in raw[:null_pos]):
+            s = raw[:null_pos].decode('ascii')
+            s = s.replace('\\', '\\\\')
+            return '"%s"' % s
+        elif null_pos > 0:
+            return None
+        return None
     # Pointer / function pointer types
     if '*' in typ or '(' in typ:
         val = _st.unpack_from('<I', exe_data, foff)[0]
         if val == 0: return None
-        # Validate that the pointer value is within the PE mapped range
         if val < 0x400000 or val >= 0x1897000:
-            return None  # outside mapped range — heap debris or wrong type
-        # char* pointing to .text section — likely wrong type annotation
+            return None
         if 0x401000 <= val < 0x5695D0 and ('char' in typ or 'void' in typ):
-            return None  # points to code, not a string pointer
-        return '(void*)0x%08X' % val
-    return None
-    if '*' in typ or '(' in typ:
-        val = _st.unpack_from('<I', exe_data, foff)[0]
-        if val == 0: return None
+            return None
         return '(void*)0x%08X' % val
     return None
 
