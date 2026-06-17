@@ -82,6 +82,17 @@ def generate_forward_decls(all_code):
                 continue
             # Skip if the function has a definition in this file (::sub_XXXX)
             if re.search(r'(?:\w+::)?\b' + re.escape(s) + r'\s*\(', all_code):
+                if re.search(r'::' + re.escape(s) + r'\s*\(', all_code):
+                    continue
+            # Filter out decompiler artifacts: addresses below .text section
+            _saddr = None
+            _sm = re.match(r'(?:sub|todo|_todo)_([0-9A-Fa-f]+)', s)
+            if _sm:
+                _saddr = int(_sm.group(1), 16)
+            if _saddr is not None and _saddr < 0x401000:
+                continue
+            # Skip if the function has a definition in this file (::sub_XXXX)
+            if re.search(r'(?:\w+::)?\b' + re.escape(s) + r'\s*\(', all_code):
                 # Check if there's a definition (:: prefix) not just a declaration
                 if re.search(r'::' + re.escape(s) + r'\s*\(', all_code):
                     continue
