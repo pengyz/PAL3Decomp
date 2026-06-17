@@ -349,6 +349,16 @@ class DataStore:
             return None
         return s
 
+    def try_read_rdata_dword(self, va):
+        """Read a dword value from .rdata section by virtual address."""
+        import struct
+        off = va - 0x400000
+        if off < 0 or off + 4 > len(self.exe_data):
+            return None
+        if 0x16A000 <= (va - 0x400000) < 0x16A000 + 0x16000:
+            return struct.unpack_from('<I', self.exe_data, off)[0]
+        return None
+
 
 # Module-level singleton
 store = DataStore()

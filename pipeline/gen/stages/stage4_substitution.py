@@ -53,11 +53,10 @@ def _try_literal_replacement(name):
         except (IndexError, ValueError):
             return None
         if 0x56A000 <= va <= 0x57F178 and va % 4 == 0:
-            s = store.try_read_rdata_string(va)
-            if s is not None and len(s) >= 2:
-                escaped = s.replace('\\', '\\\\').replace('"', '\\"')
-                escaped = escaped.replace('\n', '\\n').replace('\t', '\\t')
-                replacement = '"%s"' % escaped
+            # .rdata dword — replace with its integer value
+            val = store.try_read_rdata_dword(va)
+            if val is not None:
+                replacement = '0x%X' % val
                 store.literals[name] = replacement
                 return replacement
     elif name.startswith('asc_'):
@@ -79,7 +78,11 @@ def _try_literal_replacement(name):
         except (IndexError, ValueError):
             return None
         if va < 0x401000:
-            # Below .text section start — not a real address, numeric literal
+            replacement = '0x%08X' % va
+            store.literals[name] = replacement
+            return replacement
+        # Known literal constant patterns used in sentinel operations
+        if va in (0x01010101, 0x00FFFFFF, 0x01234567):
             replacement = '0x%08X' % va
             store.literals[name] = replacement
             return replacement
@@ -170,11 +173,13 @@ def _try_struct_member_resolution(name):
         if base <= addr < end:
             offset = addr - base
             # Check for a named global at the exact address within this range.
-            # If found, use it directly — it has its own type and identity,
-            # and already has a struct_instance (anchor) or extern declaration.
-            for _gn, _ga in store.global_addrs.items():
-                if _ga == addr:
-                    return _gn
+            # If it has its own struct_instance, it's independent — use its name directly.
+            # Otherwise it's a phantom — resolve as parent.member access.
+            has_own_instance = any(b == addr for b, e, _, _ in store.struct_instances)
+            if has_own_instance:
+                for _gn, _ga in store.global_addrs.items():
+                    if _ga == addr:
+                        return _gn
             resolved = _resolve_offset(gtype, offset, prefix)
             if resolved:
                 return '%s%s' % (gname, resolved)
@@ -192,10 +197,17 @@ def _try_global_name(name):
             addr = int(name.split('_', 1)[1], 16)
         except (ValueError, IndexError):
             return None
-        for base, end, gname, _ in store.struct_instances:
+        for base, end, gname, gtype in store.struct_instances:
             if base <= addr < end:
-                store.globals_map[name] = gname
-                return gname
+                # Skip if the address has its own struct_instance (independent global)
+                if any(b == addr for b, e, _, _ in store.struct_instances):
+                    continue
+                offset = addr - base
+                resolved = _resolve_offset(gtype, offset, name.split('_')[0])
+                if resolved:
+                    result = '%s%s' % (gname, resolved)
+                    store.globals_map[name] = result
+                    return result
         return None
     # Handle named globals (e.g. Buffer): check struct_instance ranges
     if name in store.global_addrs:
