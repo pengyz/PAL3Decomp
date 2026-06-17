@@ -406,6 +406,17 @@ def run_cpp_generation(filter_classes=None):
     generated = 0
     total_funcs = 0
 
+    # Pre-generate free_functions.h so .cpp files can include it (needed for include check)
+    _header_dir = store.header_dir
+    _h_lines = ['#pragma once',
+                '// Auto-generated: free function forward declarations',
+                '#include "pal3/ida_defs.h"', '']
+    for _fname, _decl in sorted(store.free_func_sigs.items()):
+        _h_lines.append('%s;' % _decl)
+    _h_lines.append('')
+    with open(_header_dir / "free_functions.h", 'w', encoding='utf-8') as _f:
+        _f.write('\n'.join(_h_lines))
+
     for cls_name, methods in sorted(by_class.items()):
         if filter_classes and cls_name not in filter_classes:
             total_funcs += len(methods)
