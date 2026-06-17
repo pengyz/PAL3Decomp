@@ -2045,6 +2045,23 @@ def generate_globals():
         if _phantom_count > 10:
             print("    ... and %d more" % (_phantom_count - 10))
 
+    # Filter out .rdata vtable/offset/string entries (compiler-generated)
+    _RDATA_VA = 0x56A000
+    _RDATA_END = 0x57F000
+    _vtable_filtered = []
+    for _addr_s, _ginfo in sorted_globs:
+        _addr = int(_addr_s, 16)
+        _gname = _ginfo.get('name', '')
+        _gtype = _ginfo.get('type', '')
+        if _RDATA_VA <= _addr < _RDATA_END:
+            # Skip everything in .rdata section — it's compiler-generated read-only data
+            continue
+        _vtable_filtered.append((_addr_s, _ginfo))
+    sorted_globs = _vtable_filtered
+    _rdata_skipped = len(_filtered) - len(_vtable_filtered)
+    if _rdata_skipped:
+        print("  .rdata globals skipped: %d" % _rdata_skipped)
+
     # Generate globals.h (extern declarations)
     h_lines = [
         '#pragma once',
