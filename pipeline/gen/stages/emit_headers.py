@@ -2062,6 +2062,24 @@ def generate_globals():
     if _rdata_skipped:
         print("  .rdata globals skipped: %d" % _rdata_skipped)
 
+    # Load annotations to filter type=skip entries
+    import json as _ann_json
+    _ann_path = PROJECT_ROOT / "data" / "annotations" / "globals.json"
+    if _ann_path.exists():
+        _ann_data = _ann_json.loads(_ann_path.read_text(encoding='utf-8'))
+        _ann_skipped = 0
+        _ann_filtered = []
+        for _addr_s, _ginfo in sorted_globs:
+            _addr = int(_addr_s, 16)
+            _ann_key = '0x%08X' % _addr
+            if _ann_data.get(_ann_key, {}).get('type') == 'skip':
+                _ann_skipped += 1
+                continue
+            _ann_filtered.append((_addr_s, _ginfo))
+        sorted_globs = _ann_filtered
+        if _ann_skipped:
+            print("  Annotation-skipped globals: %d" % _ann_skipped)
+
     # Generate globals.h (extern declarations)
     h_lines = [
         '#pragma once',
