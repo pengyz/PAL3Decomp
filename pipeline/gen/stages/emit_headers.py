@@ -2260,7 +2260,15 @@ def _read_init_value(addr, typ, exe_data):
             else:
                 # Non-printable/non-ASCII: use \x escape (encoding-independent)
                 escaped = ''.join('\\x%02X' % b for b in s)
-                return '"%s"' % escaped
+                # Try to decode as GB2312 for a comment
+                comment = ''
+                try:
+                    gb = s.decode('gb2312', errors='replace')
+                    if any(ord(c) > 127 for c in gb):
+                        comment = ' /* "%s" */' % gb
+                except:
+                    pass
+                return '"%s"%s' % (escaped, comment)
         elif null_pos == 0:
             return None
         return None
