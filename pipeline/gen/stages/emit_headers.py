@@ -2240,11 +2240,17 @@ def _read_init_value(addr, typ, exe_data):
     if 'char' in typ.lower() and ('[' in typ or '[]' in typ):
         raw = exe_data[foff:foff+256]
         null_pos = raw.find(b'\x00')
-        if null_pos > 0 and all(32 <= b < 127 for b in raw[:null_pos]):
-            s = raw[:null_pos].decode('ascii')
-            s = s.replace('\\', '\\\\')
-            return '"%s"' % s
-        elif null_pos > 0:
+        if null_pos > 0:
+            s = raw[:null_pos]
+            if all(32 <= b < 127 for b in s):
+                decoded = s.decode('ascii')
+                decoded = decoded.replace('\\', '\\\\')
+                return '"%s"' % decoded
+            else:
+                # Non-printable/non-ASCII: use \x escape (encoding-independent)
+                escaped = ''.join('\\x%02X' % b for b in s)
+                return '"%s"' % escaped
+        elif null_pos == 0:
             return None
         return None
     # Pointer / function pointer types
