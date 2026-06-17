@@ -2258,9 +2258,24 @@ def _read_init_value(addr, typ, exe_data):
                 decoded = decoded.replace('\\', '\\\\')
                 return '"%s"' % decoded
             else:
-                # Non-printable/non-ASCII: use \x escape (encoding-independent)
+                # Mixed content: escape non-printable bytes individually
+                esc_map = {ord('\r'): '\\r', ord('\n'): '\\n', ord('\t'): '\\t',
+                           ord('\\'): '\\\\', ord('"'): '\\"'}
+                result = []
+                all_ascii_ctrl = True
+                for b in s:
+                    if 32 <= b < 127:
+                        result.append(chr(b))
+                    elif b in esc_map:
+                        result.append(esc_map[b])
+                    else:
+                        all_ascii_ctrl = False
+                        result.append('\\x%02X' % b)
+                if all_ascii_ctrl:
+                    # Only regular ASCII + \r \n \t — keep readable
+                    return '"%s"' % ''.join(result)
+                # Has non-ASCII bytes: use \x escape with GB2312 comment
                 escaped = ''.join('\\x%02X' % b for b in s)
-                # Try to decode as GB2312 for a comment
                 comment = ''
                 try:
                     gb = s.decode('gb2312', errors='replace')
@@ -2272,16 +2287,10 @@ def _read_init_value(addr, typ, exe_data):
         elif null_pos == 0:
             return None
         return None
-    # Pointer / function pointer types
+    # Pointer / function pointer types — semantic correctness > byte matching
+    # Absolute addresses from original binary are invalid in our build.
     if '*' in typ or '(' in typ:
-        val = _st.unpack_from('<I', exe_data, foff)[0]
-        if val == 0: return None
-        if val < 0x400000 or val >= 0x1897000:
-            return None
-        if 0x401000 <= val < 0x5695D0 and ('char' in typ or 'void' in typ):
-            return None
-        return '(void*)0x%08X' % val
-    return None
+        return None  # always init to NULL / {0}
 
 def _read_crt_init_data():
     """Load pre-computed CRT init values."""
