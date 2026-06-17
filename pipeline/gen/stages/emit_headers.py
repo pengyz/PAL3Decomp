@@ -1951,6 +1951,9 @@ def main():
     # --- Generate globals.h from annotations ---
     generate_globals()
 
+    # --- Generate globals.cpp from annotations ---
+    generate_globals_cpp()
+
 
 def generate_globals():
     """Generate include/pal3/globals.h from ida_structs.json globals + binary initial values."""
@@ -2163,6 +2166,193 @@ def generate_globals():
         print("\n[WARN] Header generation found %d annotation conflicts (deduplicated):" % len(_header_errors))
         for e in _header_errors:
             print("  %s" % e)
+
+_POD_TYPES = {'int', 'float', 'double', 'char', 'short', 'long', 'unsigned',
+    'DWORD', 'WORD', 'BYTE', 'BOOL', 'LONG', 'UINT', 'LPCSTR', 'LPVOID',
+    'HANDLE', 'HWND', 'HDC', 'HINSTANCE', 'HRESULT', 'LSTATUS',
+    'unsigned char', 'unsigned int', 'unsigned long', 'unsigned short',
+    'signed char', '__int8', '__int16', '__int32', '__int64',
+    'unsigned __int8', 'unsigned __int16', 'unsigned __int32', 'unsigned __int64',
+    'size_t', 'wchar_t', 'LPSTR', 'LPBYTE', 'LPDWORD', 'LPCWCH',
+    'CHAR', 'TCHAR', 'UCHAR', 'UINT8', 'UINT16', 'UINT32',
+    'bool', 'void *', 'const char *', 'const void *',
+    '_PVFV', 'COLORREF',
+}
+
+def _is_pod_type(tp):
+    """Check if a type string represents a POD/fundamental type (not a struct/class)."""
+    # Strip qualifiers
+    tp_clean = tp.strip()
+    # Check exact match
+    if tp_clean in _POD_TYPES:
+        return True
+    # Check pointer types (T *)
+    if tp_clean.endswith('*') or tp_clean.endswith('*const'):
+        return True
+    # Check function pointer types (contain ( and ))
+    if '(' in tp_clean and ')' in tp:
+        return True
+    # Check if it starts with a known base type
+    for base in ('unsigned', 'signed', 'const', 'int', 'float', 'double', 'char', 'short', 'long'):
+        if tp_clean.startswith(base) and tp_clean.split('[')[0].strip() in _POD_TYPES:
+            return True
+    return False
+
+def _read_init_value(addr, typ, exe_data):
+    """Read initial value for a global from PE binary data section.
+    Type checks are ordered by size (smallest first) to avoid false matches."""
+    import struct as _st
+    foff = addr - 0x400000
+    bss_start = 0xBF0000
+    if foff < 0 or foff + 8 > len(exe_data):
+        return None
+    if addr >= bss_start:
+        return None
+    # 1-byte types - check before int/short to avoid 'int' in '__int8' false match
+    if ('char' in typ and '*' not in typ and 'unsigned' in typ) or '__int8' in typ:
+        val = exe_data[foff]
+        if val == 0: return None
+        return '0x%02X' % val
+    # 2-byte types
+    if ('short' in typ or '__int16' in typ or 'WORD' in typ) and '*' not in typ:
+        val = _st.unpack_from('<H', exe_data, foff)[0]
+        if val == 0: return None
+        return '0x%X' % val if val > 255 else str(val)
+    # 4-byte float
+    if 'float' in typ and '*' not in typ:
+        val = _st.unpack_from('<f', exe_data, foff)[0]
+        if val == 0.0: return None
+        if val == int(val):
+            return '%d.0f' % int(val)
+        return '%.7gf' % val
+    # 8-byte double
+    if 'double' in typ:
+        val = _st.unpack_from('<d', exe_data, foff)[0]
+        if val == 0.0: return None
+        return '%.15g' % val
+    # 4-byte integer types
+    if any(t in typ for t in ['int', 'DWORD', 'LONG', 'UINT', 'BOOL', 'unsigned long']):
+        val = _st.unpack_from('<I', exe_data, foff)[0]
+        if val == 0: return None
+        if val > 0x7FFFFFFF: return '0x%X' % val
+        return str(val)
+    # Pointer / function pointer types
+    if '*' in typ or '(' in typ:
+        val = _st.unpack_from('<I', exe_data, foff)[0]
+        if val == 0: return None
+        return '(void*)0x%08X' % val
+    return None
+
+def _read_crt_init_data():
+    """Load pre-computed CRT init values."""
+    import json as _json
+    paths = [
+        PROJECT_ROOT / "asm" / "pal3" / "crt_init_data.json",
+        PROJECT_ROOT / "tmp" / "crt_init_values.json",
+    ]
+    for p in paths:
+        if p.exists():
+            data = _json.loads(p.read_text(encoding='utf-8'))
+            result = {}
+            for category in data.values():
+                if isinstance(category, dict):
+                    for a_s, writes in category.items():
+                        if isinstance(writes, list) and writes:
+                            w = writes[0]
+                            v = w.get('value')
+                            if v is not None:
+                                result[int(a_s, 16)] = v
+            return result
+    return {}
+
+def generate_globals_cpp():
+    """Generate globals.cpp from ida_structs.json + PE binary + CRT init data."""
+    import json as _json, re as _re
+    import struct as _st
+
+    _is_data = _get_ida_structs()
+    _glbs = _is_data.get('_globals', {})
+    if not _glbs:
+        return
+
+    exe_path = PROJECT_ROOT / "original" / "PAL3.exe"
+    exe_data = open(exe_path, 'rb').read() if exe_path.exists() else None
+    
+    # Load CRT init data
+    crt_iv = _read_crt_init_data()
+
+    # Load annotations for skip filtering
+    ann_path = PROJECT_ROOT / "data" / "annotations" / "globals.json"
+    ann = _json.loads(ann_path.read_text(encoding='utf-8')) if ann_path.exists() else {}
+    
+    # Determine globals to include
+    # Same logic as generate_globals() for filtering
+    DATA_VA = 0x580000
+    RDATA_VA = 0x56A000
+    RDATA_END = 0x57F178
+    BSS_START = 0xBF0000
+
+    def _should_skip_global(addr, name, typ, ann_info):
+        if ann_info.get('type') == 'skip':
+            return True
+        if RDATA_VA <= addr < RDATA_END:
+            return True
+        if addr < DATA_VA:
+            return True
+        return False
+    
+    lines = [
+        '// Auto-generated globals.cpp',
+        '// Generated from ida_structs.json _globals + PE binary + CRT init data',
+        '#include "globals.h"',
+    ]
+    inc = 0
+
+    for addr_s, info in sorted(_glbs.items(), key=lambda x: int(x[0], 16)):
+        addr = int(addr_s, 16)
+        nm = info.get('name', '')
+        tp = info.get('type', '')
+        ann_info = ann.get(addr_s, {})
+        
+        if not nm or not tp:
+            continue
+        if _should_skip_global(addr, nm, tp, ann_info):
+            continue
+        if not _is_pod_type(tp.split('[')[0].strip()):
+            lines.append(f'{tp} {nm};')
+            inc += 1
+            continue
+
+        # Determine initial value
+        iv = None
+        if addr in crt_iv:
+            iv = '0x%X' % crt_iv[addr]
+        elif exe_data:
+            iv = _read_init_value(addr, tp, exe_data)
+
+        # Apply to type
+        m = _re.match(r'(.+?)((?:\[[^\]]*\])+)$', tp)
+        if m:
+            base_t = m.group(1).strip()
+            arr_t = m.group(2)
+            tp_out = f'{base_t} {nm}{arr_t}'
+            lines.append(f'{tp_out} = {{0}};')
+        else:
+            tp_out = f'{tp} {nm}'
+            if iv:
+                lines.append(f'{tp_out} = {iv};')
+            else:
+                lines.append(f'{tp_out} = {{0}};')
+        inc += 1
+    
+    lines.append('')
+    out_path = OUTPUT_DIR / "globals.cpp"
+    out_path.write_text('\n'.join(lines) + '\n', encoding='utf-8')
+    print("  Globals: %d in globals.cpp" % inc)
+    lines.append(f'// {inc} globals defined')
+    out_path = OUTPUT_DIR / "globals.cpp"
+    out_path.write_text('\n'.join(lines) + '\n', encoding='utf-8')
+    print("  Globals: %d in globals.cpp" % inc)
 
 
 def run_header_generation():
