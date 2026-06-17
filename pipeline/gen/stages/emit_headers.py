@@ -2244,6 +2244,7 @@ def _read_init_value(addr, typ, exe_data):
         null_pos = raw.find(b'\x00')
         if null_pos > 0 and all(32 <= b < 127 for b in raw[:null_pos]):
             s = raw[:null_pos].decode('ascii')
+            s = s.replace('\\', '\\\\')  # escape backslashes for C string literals
             return '"%s"' % s
         elif null_pos > 0:
             return None  # non-printable, skip
