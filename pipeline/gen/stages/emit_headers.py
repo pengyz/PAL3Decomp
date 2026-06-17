@@ -2145,7 +2145,8 @@ def generate_globals():
                     fwd_classes.add(base_typ)
 
         # Emit extern declaration with correct C syntax
-        arr_match = re.match(r'^(.+?)(\[\d*\])$', typ)
+        # Split array type: "unsigned __int8[768]" -> base="unsigned __int8", arr="[768]"
+        arr_match = re.match(r'^([\w\s]+?)((?:\[[^\]]*\])+)$', typ)
         ptr_arr_match = re.match(r'^(.+\*)\s*(\[\d+\])$', typ)
 
         if ptr_arr_match:
