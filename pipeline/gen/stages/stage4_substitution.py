@@ -44,21 +44,34 @@ def _build_identifier_map():
 # ============================================================
 
 def _try_literal_replacement(name):
-    """Check if an identifier should be replaced with a literal value."""
+    """Check if an identifier should be replaced with a literal value.
+    Uses annotation state: type=skip entries get replaced with .data/.rdata values."""
     if name in store.literals:
         return store.literals[name]
-    if name.startswith('dword_'):
-        try:
-            va = int(name.split('_')[1], 16)
-        except (IndexError, ValueError):
-            return None
-        if 0x56A000 <= va <= 0x57F178 and va % 4 == 0:
-            # .rdata dword — replace with its integer value
-            val = store.try_read_rdata_dword(va)
-            if val is not None:
-                replacement = '0x%X' % val
-                store.literals[name] = replacement
-                return replacement
+    
+    # Only replace identifiers whose address can be determined from the name
+    for prefix in ('dword_', 'byte_', 'word_', 'off_', 'flt_', 'unk_', 'stru_', 'asc_'):
+        if name.startswith(prefix):
+            try:
+                va = int(name.split('_')[1], 16)
+            except (IndexError, ValueError):
+                continue
+            break
+    else:
+        return None
+    
+    # Check annotation state: only replace if marked skip
+    ann_type = store.global_types.get(name)
+    if ann_type != 'skip':
+        return None
+    
+    # Try to read as dword from binary (handles .rdata and .data)
+    if va % 4 == 0 and not name.startswith('asc_'):
+        val = store.try_read_rdata_dword(va)
+        if val is not None:
+            replacement = '0x%X' % val
+            store.literals[name] = replacement
+            return replacement
     elif name.startswith('asc_'):
         try:
             va = int(name.split('_')[1], 16)
