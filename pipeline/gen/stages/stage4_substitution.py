@@ -60,9 +60,13 @@ def _try_literal_replacement(name):
     else:
         return None
     
-    # Check annotation state: only replace if marked skip
-    ann_type = store.global_types.get(name)
-    if ann_type != 'skip':
+    # Determine if this identifier is a skip global via address lookup.
+    # Address is the stable key (names may differ due to IDA truncation:
+    # code uses dword_DC373C, ida_structs has dword_C373C).
+    _is_skip = False
+    if va is not None:
+        _is_skip = any(sa == va for sn, sa in store.skip_globals.items())
+    if not _is_skip:
         return None
     
     # Try to read as dword from binary (handles .rdata and .data)
