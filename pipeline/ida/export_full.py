@@ -659,6 +659,20 @@ def export_structs(log):
     if _globals:
         result['_globals'] = _globals
 
+    # Mark anonymous .rdata globals as skip at export layer
+    # (dword_/byte_/etc. names in .rdata are compiler-generated, not game globals)
+    _RDATA_VA = 0x56A000
+    _RDATA_END = 0x57F000
+    _rdata_skip_names = ('dword_', 'byte_', 'word_', 'off_', 'stru_', 'unk_', 'flt_', 'asc_', 'a')
+    for _a_s in list(result.get('_globals', {}).keys()):
+        _addr = int(_a_s, 16) if isinstance(_a_s, str) else _a_s
+        if _RDATA_VA <= _addr < _RDATA_END:
+            _info = result['_globals'][_a_s]
+            _name = _info.get('name', '')
+            if _name.startswith(_rdata_skip_names):
+                _info['type'] = 'skip'
+                _info['skip_reason'] = 'rdata:compiler_generated'
+
     # Merge annotation-skipped globals into export (closing the annotation→export→codegen gap)
     _ann_path = os.path.join(os.path.dirname(structs_path), "..", "..", "data", "annotations", "globals.json")
     if os.path.exists(_ann_path):
