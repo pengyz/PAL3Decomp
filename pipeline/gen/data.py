@@ -102,12 +102,19 @@ class DataStore:
 
         # 1. Globals: name mapping + type info from ida_structs._globals
         _globals = ida_structs.get('_globals', {})
+        # Separate skip entries from real globals
+        _skip_names = set()
+        for _addr_s, _ginfo in list(_globals.items()):
+            if _ginfo.get('type') == 'skip':
+                _skip_names.add(_ginfo.get('name', ''))
         ida_prefixes = ('dword', 'byte', 'word', 'stru', 'off', 'unk', 'flt')
         for addr_str, ginfo in _globals.items():
             gname = ginfo.get('name', '')
             gtype = ginfo.get('type', '')
             if gname and gtype:
                 self.global_types[gname] = gtype
+            if gname in _skip_names:
+                continue
             # Build name->address lookup for identifier resolution in stage4
             if gname:
                 addr_int = int(addr_str, 16) if isinstance(addr_str, str) else addr_str

@@ -659,6 +659,21 @@ def export_structs(log):
     if _globals:
         result['_globals'] = _globals
 
+    # Merge annotation-skipped globals into export (closing the annotation→export→codegen gap)
+    _ann_path = os.path.join(os.path.dirname(structs_path), "..", "..", "data", "annotations", "globals.json")
+    if os.path.exists(_ann_path):
+        import json as _ann_json
+        try:
+            _ann_data = _ann_json.load(open(_ann_path, encoding='utf-8'))
+            for _a_s, _ainfo in _ann_data.items():
+                if _ainfo.get('type') == 'skip':
+                    _name = _ainfo.get('name', '')
+                    _reason = _ainfo.get('reason', '')
+                    if _name and _a_s not in _globals:
+                        _globals[_a_s] = {'name': _name, 'type': 'skip', 'skip_reason': _reason}
+        except:
+            pass
+
     with open(structs_path, 'w', encoding='utf-8') as f:
         json.dump(result, f, indent=2, ensure_ascii=False)
     log("[*] Types exported: %d structs, %d enums (skipped %d) → ida_structs.json" %
