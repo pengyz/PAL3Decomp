@@ -437,9 +437,8 @@
   },
   "0x0058B38C": {
     "name": "g_nRoleSystem_58B38C",
-    "source": "binary:3 decomp refs, 4-byte access; cls=RoleSystem, 3 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x0058B444": {
     "name": "off_58B444",
@@ -461,9 +460,9 @@
     "type": "float"
   },
   "0x005905AC": {
-    "name": "pszSceneName",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "a368",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00592DA4": {
     "name": "byte_592DA4",
@@ -518,8 +517,8 @@
   },
   "0x00598C14": {
     "name": "aQ07",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00599594": {
     "name": "off_599594",
@@ -1053,9 +1052,8 @@
   },
   "0x005D4DF4": {
     "name": "g_EffEditorState",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x005D542C": {
     "binary_size": 4,
@@ -1069,16 +1067,13 @@
   },
   "0x005D558C": {
     "name": "FileName",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x005D5FE8": {
-    "binary_size": 4,
     "name": "g_nTargetSlot",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x005D87F0": {
     "name": "unk_5D87F0",
@@ -1725,9 +1720,8 @@
   },
   "0x00ABD000": {
     "name": "g_PlayerAttTemplate",
-    "source": "binary: CGameData_InitRoles/LineupUI: ARC_PlayerAtt::Create(dst, &g_PlayerAttTemplate, nVal)|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00BFAB60": {
     "name": "g_ScriptSlots",
@@ -1744,69 +1738,58 @@
   },
   "0x00BFD6CC": {
     "name": "g_nDisplayMode",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00BFD6D0": {
     "name": "g_nDisplayWidth",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00BFD6D4": {
     "name": "g_nDisplayHeight",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00BFD6E0": {
     "name": "g_nColorBits",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00BFD6E4": {
     "name": "g_nDepthBits",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00BFD6E8": {
     "name": "g_nSyncMode",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00BFD6F0": {
     "name": "g_bSoftCursor",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00BFD770": {
     "name": "g_hInstance",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00BFD774": {
     "name": "hWnd",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00BFD778": {
     "name": "g_nScreenWidth",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00BFD77C": {
     "name": "g_nScreenHeight",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00BFDA04": {
     "name": "g_nGameTime",
@@ -1844,9 +1827,9 @@
     "type": "HINSTANCE"
   },
   "0x00BFDA4C": {
-    "name": "hWnd",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "b",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00BFDA50": {
     "name": "hDlg",
@@ -2022,9 +2005,8 @@
   },
   "0x00C02370": {
     "name": "g_nRoleMoveParam",
-    "source": "binary:10 decomp refs, 4-byte access|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C042E8": {
     "name": "g_fScriptTimeAccum",
@@ -2033,9 +2015,8 @@
   },
   "0x00C04300": {
     "name": "g_nPtrArray_C04300",
-    "source": "binary:4 decomp refs, 4-byte access; cls=PtrArray, 4 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C04334": {
     "name": "g_nRoleInitLevel",
@@ -2048,21 +2029,18 @@
   },
   "0x00C04354": {
     "name": "g_RoleTeam1",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C04358": {
     "name": "g_RoleTeam2",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C0435C": {
     "name": "g_pRoleTeam0_Capacity",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C04360": {
     "name": "g_RoleTeamArray",
@@ -2071,21 +2049,18 @@
   },
   "0x00C04364": {
     "name": "arr",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C04368": {
     "name": "end",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C0436C": {
     "name": "g_pRoleTeam1_Capacity",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C04370": {
     "name": "g_nSceneFlags",
@@ -2094,21 +2069,18 @@
   },
   "0x00C04374": {
     "name": "g_nSceneMode",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C04378": {
     "name": "elem",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C0437C": {
     "name": "g_nPAL3_C0437C",
-    "source": "binary:8 decomp refs, 4-byte access; cls=PAL3, 1 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C04380": {
     "name": "g_SceneArray",
@@ -2117,21 +2089,18 @@
   },
   "0x00C04384": {
     "name": "g_nSceneState",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C04388": {
     "name": "g_nSceneType",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C0438C": {
     "name": "g_pSceneArrayEnd",
-    "source": "binary: PAL3_FullInit: (g_pSceneArrayEnd - g_nSceneType)/12; scene array end pointer|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C04390": {
     "name": "g_SceneMgr",
@@ -2144,32 +2113,23 @@
   },
   "0x00C04920": {
     "name": "g_ScriptRoleBuf",
-    "overlaps_with": [
-      "g_SceneMgr",
-      "g_PartyCombatData"
-    ],
-    "source": "RoleSystem at g_SceneMgr+0x590; all members match RoleSystem fields|auto_skip",
-    "type": "skip",
-    "decomp_name": "Buffer",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C05F60": {
     "name": "g_pRoleSystems",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C061D8": {
     "name": "g_nUnk61D8",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C08664": {
     "name": "g_nScriptObjectCount",
-    "source": "binary: ScriptSystem_UpdateObjects: if(val <= 2 && *v2+1284 != val)|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C10960": {
     "name": "pData",
@@ -2187,10 +2147,9 @@
     "type": "PalScript *"
   },
   "0x00C10A0E": {
-    "name": "byte_C10A0E",
-    "source": "binary: PAL3_FullInit/RoleSystem_LoadWeaponModel: while(v < g_pRoleSystemArrayEnd); RoleSystem array end|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "name": "unk_C10A0E",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C10CBC": {
     "name": "g_pCurrentScript",
@@ -2272,15 +2231,13 @@
   },
   "0x00C11744": {
     "name": "g_nMonsterType",
-    "source": "binary: PAL3_StartCombat: monsterid==1 ? 2 : (monsterid==2); monster type flag|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C11754": {
     "name": "g_pCombatRole",
-    "source": "binary: PAL3_StartCombat: val=(int)side (Role*); PAL3_CheckViewCollision: *(val+632)=0 = Role.m_active=0|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C12B14": {
     "name": "g_fTileScale",
@@ -2381,69 +2338,58 @@
   },
   "0x00D8E468": {
     "name": "g_pLoadBuffer",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00D8E46C": {
     "name": "g_nPtrArray_D8E46C",
-    "source": "binary:8 decomp refs, 4-byte access; cls=PtrArray, 4 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00D8E470": {
     "name": "Block",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00D8E478": {
     "name": "g_nPalScript_D8E478",
-    "source": "binary:4 decomp refs, 4-byte access; cls=PalScript, 4 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00D8E47C": {
     "name": "g_nPalScript_D8E47C",
-    "source": "binary:6 decomp refs, 4-byte access; cls=PalScript, 4 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00D8E488": {
     "name": "g_nPAL3_D8E488",
-    "source": "binary:4 decomp refs, 4-byte access; cls=PAL3, 3 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00D8E4C0": {
     "name": "g_GameData",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00D91780": {
     "name": "g_fUIColorParam",
-    "source": "binary: CGameData_SetDefaultColors: val=64; UIListBox_Render uses as float",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00D924B4": {
     "name": "g_bRoleLoadFlags",
-    "source": "binary: PAL3_LoadRoleByIndex: g_bRoleLoadFlags[nVal]=1; PAL3_LoadUnlockFlags: memset to 0",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00D924E8": {
     "name": "g_bGameUpdating",
-    "source": "binary: PAL3_Update: set to 1; UIScenePanel_CreateSettingsUI: if(val) check",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00D92788": {
     "name": "g_SceneTransitionBuffer",
-    "source": "binary: Actor_DoSceneTransition: qmemcpy(&g_SceneTransitionBuffer, v90, 0x27848); CGameData_Load copies UISceneMap data here",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00DB9FD0": {
     "name": "g_gamefrm",
@@ -2616,75 +2562,63 @@
   },
   "0x00DE8DF8": {
     "name": "g_nRenderTarget2_DE8DF8",
-    "source": "binary:5 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00DE8DFC": {
     "name": "g_nRenderTarget2_DE8DFC",
-    "source": "binary:3 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00DE8E00": {
     "name": "g_nRenderTarget2_DE8E00",
-    "source": "binary:3 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00DE8E08": {
     "name": "g_nRenderTarget2_DE8E08",
-    "source": "binary:9 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00DE8E10": {
     "name": "g_nRenderTarget2_DE8E10",
-    "source": "binary:9 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00DE8E18": {
     "name": "g_nRenderTarget2_DE8E18",
-    "source": "binary:4 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00DE8E1C": {
     "name": "g_nRenderTarget2_DE8E1C",
-    "source": "binary:4 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00DE8E20": {
     "name": "g_nRenderTarget2_DE8E20",
-    "source": "binary:4 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00DE8E24": {
     "name": "g_nRenderTarget2State_DE8E24",
-    "source": "binary:8 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00DE937C": {
     "name": "g_bCEffCylinderFlag_DE937C",
-    "source": "binary:6 decomp refs, 1-byte access; cls=CEffCylinder, 1 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00DE9380": {
     "name": "g_nsub_4C55F0Count_DE9380",
-    "source": "binary:9 decomp refs, 4-byte access; cls=sub_4C55F0, 2 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00DE99AC": {
     "name": "g_bCEffExplosiveFlag_DE99AC",
-    "source": "binary:6 decomp refs, 1-byte access; cls=CEffExplosive, 1 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00EC9E70": {
     "name": "g_nSaveSlot0",
@@ -2710,9 +2644,8 @@
   },
   "0x017A7B74": {
     "name": "g_EffTableEnd",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017A7B84": {
     "name": "g_bgbMatrixStackFlag_17A7B84",
@@ -2755,69 +2688,58 @@
   },
   "0x017A8EF4": {
     "name": "g_pCCBRoleStateArrayEnd",
-    "source": "binary: CCBRoleState_EndRoundTasks: while(v17 < &g_pCCBRoleStateArrayEnd); CCBRoleState array end pointer; g_RoleSystemCombat+1036|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017A9180": {
     "name": "g_fCBTimer",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017A94E0": {
     "name": "pfVal",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017A94E4": {
     "name": "g_CCBStageCamBuffer",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017A9910": {
     "name": "dwInitParam",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017A991C": {
     "name": "g_nActorRenderCount",
-    "source": "binary:9 decomp refs, 0-byte access|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017A9920": {
     "name": "g_hCBStageCamDlg",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017A9926": {
     "name": "g_bWPARAM_17A9926",
-    "source": "binary:3 decomp refs, 1-byte access; cls=WPARAM, 3 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017A993C": {
     "name": "g_nCCBUISelectedRole",
-    "source": "binary: CCBUI_SettingsDialogProc: SendMessageA(DlgItem, LB_GETCURSEL=0x130B) -> selected role index|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017A9940": {
     "name": "g_nCCBUI_17A9940",
-    "source": "binary:4 decomp refs, 4-byte access; cls=CCBUI, 2 funcs|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017A9946": {
     "name": "g_bCommandEdited",
-    "source": "binary: CCBUI_ApplyCommandEdit/CommandEditDialogProc: set to 1 on command edit|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017AA870": {
     "name": "g_CCBStageState",
@@ -2837,9 +2759,8 @@
   },
   "0x017AAD54": {
     "name": "g_fCombatHalfParam",
-    "source": "binary:1 hit, D9 1D=fstp; CCCTData assigns v42*0.5|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017AAF64": {
     "name": "g_CCBCamControlData",
@@ -2875,9 +2796,8 @@
   },
   "0x017ABCDC": {
     "name": "g_fCombatTimer",
-    "source": "binary:8 hits, D9 1D=fstp float|auto_skip",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017ABF00": {
     "name": "g_CCBStageSceneData",
@@ -3096,21 +3016,18 @@
   },
   "0x017A990C": {
     "name": "g_nCombatViewMode",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017A9914": {
     "name": "g_hCombatDlg1",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017A9918": {
     "name": "g_hCombatDlg2",
-    "type": "skip",
-    "reason": "CRT:not_in_ida_structs_globals",
-    "source": "auto|auto_skip"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017B41E8": {
     "name": "g_CScreenMode",
@@ -5187,16 +5104,14 @@
     "source": "CRT init: converted from skip to int"
   },
   "0x0189555C": {
-    "name": "dword_9555C",
-    "type": "skip",
-    "source": "phantom: array_overlay",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "dword_189555C",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017ACA7C": {
-    "name": "dword_ACA7C",
-    "type": "skip",
-    "source": "phantom: array_overlay",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "dword_17ACA7C",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C109F0": {
     "name": "dword_C109F0",
@@ -5245,10 +5160,9 @@
     "source": "phantom_parent: tag17A7BData"
   },
   "0x005B1A26": {
-    "name": "dword_05B1A26",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_5B1A26",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x005D87F8": {
     "name": "unk_5D87F8",
@@ -5336,64 +5250,54 @@
     "source": "export_reimport"
   },
   "0x0080AB19": {
-    "name": "dword_080AB19",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_80AB19",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x0080AB20": {
-    "name": "dword_080AB20",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_80AB20",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x0080AB21": {
-    "name": "dword_080AB21",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_80AB21",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x0080AC01": {
-    "name": "dword_080AC01",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_80AC01",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x0080AC02": {
-    "name": "dword_080AC02",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_80AC02",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x0080AC03": {
-    "name": "dword_080AC03",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_80AC03",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x0080AC04": {
-    "name": "dword_080AC04",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_80AC04",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x0080AC05": {
-    "name": "dword_080AC05",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_80AC05",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x0080AC06": {
-    "name": "dword_080AC06",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_80AC06",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x0080AC07": {
-    "name": "dword_080AC07",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_80AC07",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x008AC5D8": {
     "name": "byte_8AC5D8",
@@ -5401,820 +5305,684 @@
     "source": "export_reimport"
   },
   "0x00A00001": {
-    "name": "dword_0A00001",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00001",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00102": {
-    "name": "dword_0A00102",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00102",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00103": {
-    "name": "dword_0A00103",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00103",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00104": {
-    "name": "dword_0A00104",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00104",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00105": {
-    "name": "dword_0A00105",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00105",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00106": {
-    "name": "dword_0A00106",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00106",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00107": {
-    "name": "dword_0A00107",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00107",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00108": {
-    "name": "dword_0A00108",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00108",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00109": {
-    "name": "dword_0A00109",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00109",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00110": {
-    "name": "dword_0A00110",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00110",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00215": {
-    "name": "dword_0A00215",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00215",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00217": {
-    "name": "dword_0A00217",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00217",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00218": {
-    "name": "dword_0A00218",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00218",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00219": {
-    "name": "dword_0A00219",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00219",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00220": {
-    "name": "dword_0A00220",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00220",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00221": {
-    "name": "dword_0A00221",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00221",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00222": {
-    "name": "dword_0A00222",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00222",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00223": {
-    "name": "dword_0A00223",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00223",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00224": {
-    "name": "dword_0A00224",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00224",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00225": {
-    "name": "dword_0A00225",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00225",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00226": {
-    "name": "dword_0A00226",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00226",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00227": {
-    "name": "dword_0A00227",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00227",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00228": {
-    "name": "dword_0A00228",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00228",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00229": {
-    "name": "dword_0A00229",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00229",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00230": {
-    "name": "dword_0A00230",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00230",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00231": {
-    "name": "dword_0A00231",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00231",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00323": {
-    "name": "dword_0A00323",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00323",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00324": {
-    "name": "dword_0A00324",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00324",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00400": {
-    "name": "dword_0A00400",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00400",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00401": {
-    "name": "dword_0A00401",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00401",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00403": {
-    "name": "dword_0A00403",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00403",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00404": {
-    "name": "dword_0A00404",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00404",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00405": {
-    "name": "dword_0A00405",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00405",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00406": {
-    "name": "dword_0A00406",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00406",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00407": {
-    "name": "dword_0A00407",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00407",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00416": {
-    "name": "dword_0A00416",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00416",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00417": {
-    "name": "dword_0A00417",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00417",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00418": {
-    "name": "dword_0A00418",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00418",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00419": {
-    "name": "dword_0A00419",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00419",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00420": {
-    "name": "dword_0A00420",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00420",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00421": {
-    "name": "dword_0A00421",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00421",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00427": {
-    "name": "dword_0A00427",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00427",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00428": {
-    "name": "dword_0A00428",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00428",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00429": {
-    "name": "dword_0A00429",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00429",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00517": {
-    "name": "dword_0A00517",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00517",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00518": {
-    "name": "dword_0A00518",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00518",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00519": {
-    "name": "dword_0A00519",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00519",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00520": {
-    "name": "dword_0A00520",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00520",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00521": {
-    "name": "dword_0A00521",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00521",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00522": {
-    "name": "dword_0A00522",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00522",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00523": {
-    "name": "dword_0A00523",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00523",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00524": {
-    "name": "dword_0A00524",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00524",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00525": {
-    "name": "dword_0A00525",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00525",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00526": {
-    "name": "dword_0A00526",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00526",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00527": {
-    "name": "dword_0A00527",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00527",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00529": {
-    "name": "dword_0A00529",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00529",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00530": {
-    "name": "dword_0A00530",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00530",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00531": {
-    "name": "dword_0A00531",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00531",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00532": {
-    "name": "dword_0A00532",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00532",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00533": {
-    "name": "dword_0A00533",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00533",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00534": {
-    "name": "dword_0A00534",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00534",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00536": {
-    "name": "dword_0A00536",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00536",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00537": {
-    "name": "dword_0A00537",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00537",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00539": {
-    "name": "dword_0A00539",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00539",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00540": {
-    "name": "dword_0A00540",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00540",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00541": {
-    "name": "dword_0A00541",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00541",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00542": {
-    "name": "dword_0A00542",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00542",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00543": {
-    "name": "dword_0A00543",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00543",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00544": {
-    "name": "dword_0A00544",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00544",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00545": {
-    "name": "dword_0A00545",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00545",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00546": {
-    "name": "dword_0A00546",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00546",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00547": {
-    "name": "dword_0A00547",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00547",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00548": {
-    "name": "dword_0A00548",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00548",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00549": {
-    "name": "dword_0A00549",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00549",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00550": {
-    "name": "dword_0A00550",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00550",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00551": {
-    "name": "dword_0A00551",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00551",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00555": {
-    "name": "dword_0A00555",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00555",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00556": {
-    "name": "dword_0A00556",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00556",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00557": {
-    "name": "dword_0A00557",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00557",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00558": {
-    "name": "dword_0A00558",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00558",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00559": {
-    "name": "dword_0A00559",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00559",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00560": {
-    "name": "dword_0A00560",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00560",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00561": {
-    "name": "dword_0A00561",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00561",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00562": {
-    "name": "dword_0A00562",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00562",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00563": {
-    "name": "dword_0A00563",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00563",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00564": {
-    "name": "dword_0A00564",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00564",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00565": {
-    "name": "dword_0A00565",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00565",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00566": {
-    "name": "dword_0A00566",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00566",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00567": {
-    "name": "dword_0A00567",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00567",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00568": {
-    "name": "dword_0A00568",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00568",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00569": {
-    "name": "dword_0A00569",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00569",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00570": {
-    "name": "dword_0A00570",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00570",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00571": {
-    "name": "dword_0A00571",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00571",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00602": {
-    "name": "dword_0A00602",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00602",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00604": {
-    "name": "dword_0A00604",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00604",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00605": {
-    "name": "dword_0A00605",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00605",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00606": {
-    "name": "dword_0A00606",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00606",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00607": {
-    "name": "dword_0A00607",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00607",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00608": {
-    "name": "dword_0A00608",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00608",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00609": {
-    "name": "dword_0A00609",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00609",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00610": {
-    "name": "dword_0A00610",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00610",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00611": {
-    "name": "dword_0A00611",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00611",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00630": {
-    "name": "dword_0A00630",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00630",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00700": {
-    "name": "dword_0A00700",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00700",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00701": {
-    "name": "dword_0A00701",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00701",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00702": {
-    "name": "dword_0A00702",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00702",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00703": {
-    "name": "dword_0A00703",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00703",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00704": {
-    "name": "dword_0A00704",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00704",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00705": {
-    "name": "dword_0A00705",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00705",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00708": {
-    "name": "dword_0A00708",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00708",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00709": {
-    "name": "dword_0A00709",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00709",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00B00": {
-    "name": "dword_0A00B00",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00B00",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00B01": {
-    "name": "dword_0A00B01",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00B01",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00B02": {
-    "name": "dword_0A00B02",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00B02",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00B03": {
-    "name": "dword_0A00B03",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00B03",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00B04": {
-    "name": "dword_0A00B04",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00B04",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00B05": {
-    "name": "dword_0A00B05",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00B05",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00B06": {
-    "name": "dword_0A00B06",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00B06",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00A00B07": {
-    "name": "dword_0A00B07",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_A00B07",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00AABC03": {
-    "name": "dword_0AABC03",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_AABC03",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00AABEF7": {
-    "name": "dword_0AABEF7",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_AABEF7",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00AABEF8": {
-    "name": "dword_0AABEF8",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_AABEF8",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00AABEF9": {
-    "name": "dword_0AABEF9",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_AABEF9",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00ABAB09": {
-    "name": "dword_0ABAB09",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_ABAB09",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00ABC000": {
-    "name": "dword_0ABC000",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_ABC000",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00ABC001": {
-    "name": "dword_0ABC001",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_ABC001",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00ABC002": {
-    "name": "dword_0ABC002",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "word_ABC002",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00ABC00B": {
-    "name": "dword_0ABC00B",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_ABC00B",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00ABC00C": {
-    "name": "dword_0ABC00C",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_ABC00C",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00ABC00D": {
-    "name": "dword_0ABC00D",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_ABC00D",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00ABC00E": {
-    "name": "dword_0ABC00E",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "word_ABC00E",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00ABE000": {
-    "name": "dword_0ABE000",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_ABE000",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00ABE00B": {
-    "name": "dword_0ABE00B",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_ABE00B",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00BFDA40": {
-    "name": "dword_0BFDA40",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_BFDA40",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00BFDA41": {
-    "name": "dword_0BFDA41",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_BFDA41",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00BFDB78": {
-    "name": "dword_0BFDB78",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_BFDB78",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00C057EC": {
     "name": "dword_C057EC",
@@ -6222,22 +5990,19 @@
     "source": "export_reimport"
   },
   "0x00D8B314": {
-    "name": "dword_0D8B314",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_D8B314",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00D92785": {
-    "name": "dword_0D92785",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_D92785",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00DBA25C": {
-    "name": "dword_0DBA25C",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_DBA25C",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00DC25F4": {
     "name": "byte_DC25F4",
@@ -6255,22 +6020,19 @@
     "source": "export_reimport"
   },
   "0x00FFFFFF": {
-    "name": "dword_0FFFFFF",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_FFFFFF",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x01010101": {
-    "name": "dword_1010101",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_1010101",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x01234567": {
-    "name": "dword_1234567",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_1234567",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017A89E8": {
     "name": "byte_17A89E8",
@@ -6278,10 +6040,9 @@
     "source": "export_reimport"
   },
   "0x017AA91C": {
-    "name": "dword_17AA91C",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_17AA91C",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017AA920": {
     "name": "byte_17AA920",
@@ -6289,22 +6050,19 @@
     "source": "export_reimport"
   },
   "0x017AAA2C": {
-    "name": "dword_17AAA2C",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_17AAA2C",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017AAEE0": {
-    "name": "dword_17AAEE0",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_17AAEE0",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017AAF21": {
-    "name": "dword_17AAF21",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_17AAF21",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017AB808": {
     "name": "byte_17AB808",
@@ -6317,10 +6075,9 @@
     "source": "export_reimport"
   },
   "0x017AB9C4": {
-    "name": "dword_17AB9C4",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_17AB9C4",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017ABD00": {
     "name": "byte_17ABD00",
@@ -6338,10 +6095,9 @@
     "source": "export_reimport"
   },
   "0x017AFB04": {
-    "name": "dword_17AFB04",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_17AFB04",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x017B1D23": {
     "name": "byte_17B1D23",
@@ -6354,28 +6110,24 @@
     "source": "export_reimport"
   },
   "0x017B3ED0": {
-    "name": "dword_17B3ED0",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_17B3ED0",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x01895558": {
-    "name": "dword_1895558",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_1895558",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x01895559": {
-    "name": "dword_1895559",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_1895559",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x0189598C": {
-    "name": "dword_189598C",
-    "type": "skip",
-    "source": "code_reimport",
-    "reason": "CRT:not_in_ida_globals"
+    "name": "byte_189598C",
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   },
   "0x00BFDAB0": {
     "name": "dword_BFDAB0",
@@ -6434,7 +6186,7 @@
   },
   "0x00C11438": {
     "name": "unk_C11438",
-    "type": "skip",
-    "reason": "CRT iostream init phantom of g_SceneMgr+0xD0A8"
+    "type": "int",
+    "source": "CRT init: converted from skip to int"
   }
 }
