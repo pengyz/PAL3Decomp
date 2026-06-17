@@ -41,6 +41,7 @@ class DataStore:
         self.global_addrs = {}      # name -> base_address (from ida_structs.json _globals)
         self.scalar_dtor_classes = set()  # classes that had _scalar_dtor filtered
         self.struct_vtables = {}    # "ClassName" -> {slot_index: method_name} (from annotations)
+        self.skip_globals = {}      # {name: addr} — annotation-skipped globals
 
     def load(self):
         """Load all resources from disk. Call once at startup."""
@@ -107,6 +108,8 @@ class DataStore:
         for _addr_s, _ginfo in list(_globals.items()):
             if _ginfo.get('type') == 'skip':
                 _skip_names.add(_ginfo.get('name', ''))
+                _skip_addr = int(_addr_s, 16) if isinstance(_addr_s, str) else _addr_s
+                self.skip_globals[_ginfo.get('name', '')] = _skip_addr
         ida_prefixes = ('dword', 'byte', 'word', 'stru', 'off', 'unk', 'flt')
         for addr_str, ginfo in _globals.items():
             gname = ginfo.get('name', '')

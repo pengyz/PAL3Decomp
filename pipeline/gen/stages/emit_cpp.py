@@ -108,6 +108,9 @@ def generate_forward_decls(all_code):
 
     _seen_addrs = {}
     for _u in list(undef):
+        if _u.startswith('unknown_libname'):
+            undef.discard(_u)
+            continue
         _ua = store.global_addrs.get(_u)
         if _ua is None:
             _m = re.match(r'(?:dword|byte|word|flt|unk|off|stru)_([0-9a-fA-F]+)', _u)
@@ -117,12 +120,23 @@ def generate_forward_decls(all_code):
             if _ua < 0x580000:
                 undef.discard(_u)
                 continue
+            if _ua >= 0x1897000:
+                undef.discard(_u)
+                continue
+            if _ua in (0x01010101, 0x00FFFFFF, 0x01234567):
+                undef.discard(_u)
+                continue
             for _base, _end, _, _ in store.struct_instances:
                 if _base < _ua < _end:
                     undef.discard(_u)
                     break
-        if _u in undef and store.global_types.get(_u) == 'skip':
-            undef.discard(_u)
+        if _u in undef:
+            if _ua and any(ga == _ua for gn, ga in store.skip_globals.items()):
+                undef.discard(_u)
+                continue
+            if _u in store.skip_globals:
+                undef.discard(_u)
+                continue
         if _ua is not None:
             for _base, _end, _, _ in store.struct_instances:
                 if _base < _ua < _end:
