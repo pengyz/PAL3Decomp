@@ -106,6 +106,20 @@ def generate_forward_decls(all_code):
     undef = collect_undefined_refs(all_code)
     undef -= store.declared_globals
 
+    _seen_addrs = {}
+    for _u in list(undef):
+        _ua = store.global_addrs.get(_u)
+        if _ua is not None:
+            for _base, _end, _, _ in store.struct_instances:
+                if _base < _ua < _end:
+                    undef.discard(_u)
+                    break
+        if _ua is not None:
+            for _base, _end, _, _ in store.struct_instances:
+                if _base < _ua < _end:
+                    undef.discard(_u)
+                    break
+
     # Detect off_ variables used as arrays
     off_as_array = set()
     for u in undef:
