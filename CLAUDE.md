@@ -49,6 +49,8 @@ annotations → apply → IDB → Hex-Rays → decomp JSON → codegen → C++  
 - **全局变量不依赖 export _globals**：二进制中存在的全局就应该可标注，不取决于 IDA 是否将其列为 `_globals`。codegen 的就地 extern 机制是合理的 fallback。
 - **check_annotations 不强制执行风格规范**：它的角色是发现标注矛盾，不是强制执行组织规范（如"全局必须在 globals.h 中"）。
 - **codegen 不读 annotation**：codegen 只读 export 产物，不直接访问 `data/annotations/`。
+- **编译错误不是问题本身**：C2440/C2664 等是标注错误的**表象**。盯着错误码修是治标不治本。真正的任务是理解原始代码的意图——内存布局、复用模式、生命周期——然后让 annotation 正确表达它。错误自然消失。
+- **禁止"试错式修改"**：不理解内存布局之前，不修改 annotation。先用 IDA 查全所有访问点，画出完整的使用图景，确认场景和约束，再动 annotation。
 
 ## Project Overview
 
