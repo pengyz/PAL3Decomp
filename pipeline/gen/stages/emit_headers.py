@@ -2237,6 +2237,17 @@ def _read_init_value(addr, typ, exe_data):
         if val > 0x7FFFFFFF: return '0x%X' % val
         return str(val)
     # Pointer / function pointer types
+    # Char array (string) — read actual content
+    if 'char' in typ.lower() and ('[' in typ or '[]' in typ):
+        # Read up to 256 bytes looking for null terminator
+        raw = exe_data[foff:foff+256]
+        null_pos = raw.find(b'\x00')
+        if null_pos > 0 and all(32 <= b < 127 for b in raw[:null_pos]):
+            s = raw[:null_pos].decode('ascii')
+            return '"%s"' % s
+        elif null_pos > 0:
+            return None  # non-printable, skip
+        return None
     if '*' in typ or '(' in typ:
         val = _st.unpack_from('<I', exe_data, foff)[0]
         if val == 0: return None
@@ -2336,7 +2347,10 @@ def generate_globals_cpp():
             base_t = m.group(1).strip()
             arr_t = m.group(2)
             tp_out = f'{base_t} {nm}{arr_t}'
-            lines.append(f'{tp_out} = {{0}};')
+            if iv:
+                lines.append(f'{tp_out} = {iv};')
+            else:
+                lines.append(f'{tp_out} = {{0}};')
         else:
             tp_out = f'{tp} {nm}'
             if iv:
