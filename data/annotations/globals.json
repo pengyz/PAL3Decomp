@@ -379,7 +379,7 @@
     "type": "char[256]"
   },
   "0x00583A1C": {
-    "name": "off_583A1C",
+    "name": "byte_583A1C",
     "reason": ".data string pointer used in string comparison; runtime-initialized",
     "type": "char[3]"
   },
@@ -402,22 +402,22 @@
   },
   "0x00586180": {
     "name": "g_pszDefaultScene",
-    "type": "char *"
+    "type": "char[4]"
   },
   "0x00586184": {
     "name": "g_pszScene1",
-    "type": "char *"
+    "type": "char[4]"
   },
   "0x00586188": {
     "name": "g_pszScene2",
-    "type": "char *"
+    "type": "char[4]"
   },
   "0x0058618C": {
     "name": "g_pfnUpdateFuncs",
-    "type": "void *[5]"
+    "type": "char[4][5]"
   },
   "0x005861F8": {
-    "name": "off_5861F8",
+    "name": "byte_5861F8",
     "reason": ".data string pointer used in string comparison; runtime-initialized",
     "type": "char[3]"
   },
@@ -447,7 +447,7 @@
     "type": "int"
   },
   "0x0058B448": {
-    "name": "off_58B448",
+    "name": "byte_58B448",
     "reason": ".data string pointer used in string comparison; runtime-initialized",
     "type": "char[3]"
   },
@@ -466,7 +466,7 @@
     "reason": "CRT:not_in_ida_globals"
   },
   "0x00592DA4": {
-    "name": "off_592DA4",
+    "name": "byte_592DA4",
     "reason": ".data string pointer used in string comparison; runtime-initialized",
     "type": "char[3]"
   },
@@ -499,12 +499,12 @@
     "type": "char[]"
   },
   "0x00596420": {
-    "name": "off_596420",
+    "name": "byte_596420",
     "reason": ".data string pointer used in string comparison; runtime-initialized",
     "type": "char[3]"
   },
   "0x00596424": {
-    "name": "off_596424",
+    "name": "byte_596424",
     "reason": ".data string pointer used in string comparison; runtime-initialized",
     "type": "char[3]"
   },
