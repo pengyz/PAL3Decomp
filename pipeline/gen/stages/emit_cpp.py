@@ -15,7 +15,8 @@ def collect_sub_refs(code):
     """Find all sub_XXXXX and named function references needing forward declaration."""
     # _todo_/todo_ after . or -> are FIELD references, not functions — skip them
     refs = set(re.findall(r'(?<![.>])\b(_todo_[0-9A-Fa-f]+|todo_[0-9A-Fa-f]+)\b', code))
-    refs.update(re.findall(r'\b(sub_[0-9A-Fa-f]+)\b', code))
+    # sub_ after . or -> are method calls, not free functions — skip them
+    refs.update(re.findall(r'(?<![.>])\b(sub_[0-9A-Fa-f]+)\b', code))
     # PascalCase game function calls (not preceded by . or -> or ::)
     for m in re.finditer(
         r'(?<![.>:])\b([A-Z][a-zA-Z0-9_]*'
@@ -79,6 +80,11 @@ def generate_forward_decls(all_code):
         for s in sorted(subs):
             if _skip_free_funcs and s in store.free_func_sigs:
                 continue
+            # Skip if the function has a definition in this file (::sub_XXXX)
+            if re.search(r'(?:\w+::)?\b' + re.escape(s) + r'\s*\(', all_code):
+                # Check if there's a definition (:: prefix) not just a declaration
+                if re.search(r'::' + re.escape(s) + r'\s*\(', all_code):
+                    continue
             if s in atexit_funcs:
                 lines.append("void __cdecl %s(void);" % s)
             elif s in store.free_func_sigs:
