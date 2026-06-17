@@ -2181,10 +2181,14 @@ _POD_TYPES = {'int', 'float', 'double', 'char', 'short', 'long', 'unsigned',
 
 def _is_pod_type(tp):
     """Check if a type string represents a POD/fundamental type (not a struct/class)."""
-    # Strip qualifiers
     tp_clean = tp.strip()
+    # Strip const/volatile qualifiers
+    base = tp_clean
+    for q in ('const ', 'volatile ', 'signed '):
+        if base.startswith(q):
+            base = base[len(q):]
     # Check exact match
-    if tp_clean in _POD_TYPES:
+    if base in _POD_TYPES or tp_clean in _POD_TYPES:
         return True
     # Check pointer types (T *)
     if tp_clean.endswith('*') or tp_clean.endswith('*const'):
@@ -2193,8 +2197,15 @@ def _is_pod_type(tp):
     if '(' in tp_clean and ')' in tp:
         return True
     # Check if it starts with a known base type
-    for base in ('unsigned', 'signed', 'const', 'int', 'float', 'double', 'char', 'short', 'long'):
-        if tp_clean.startswith(base) and tp_clean.split('[')[0].strip() in _POD_TYPES:
+    for prefix in ('unsigned', 'signed', 'int', 'float', 'double', 'char', 'short', 'long',
+                   'const char', 'const int', 'const float', 'const double'):
+        if tp_clean.startswith(prefix):
+            return True
+    # Handle pattern: "const TYPE[]" where TYPE is in POD set
+    if '[' in tp_clean and tp_clean.endswith(']'):
+        no_arr = tp_clean.split('[')[0].strip()
+        no_arr = no_arr.replace('const ', '').replace('volatile ', '').strip()
+        if no_arr in _POD_TYPES:
             return True
     return False
 
