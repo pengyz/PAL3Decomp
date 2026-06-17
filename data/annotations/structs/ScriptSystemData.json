@@ -485,14 +485,15 @@
       "source": "CRT:ctor_0x434470_confirmed_subobj_0x20"
     },
     "4048": {
-      "name": "_todo_FD0",
-      "type": "char[32]",
-      "source": "CRT:ctor_0x434470_confirmed_subobj_0x20"
+      "name": "m_nCmdFD0",
+      "type": "short",
+      "source": "binary:4x abs refs (0xFD0)"
     },
     "4080": {
-      "name": "_todo_FF0",
-      "type": "char[32]",
-      "source": "CRT:ctor_0x434470_confirmed_subobj_0x20"
+      "name": "m_pCmdTableFF0",
+      "type": "char *",
+      "source": "binary:5x abs refs, B9=mov ecx,addr (base load for array) | type_fix:int→void*(array base)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "4112": {
       "name": "m_CmdObjArray0",
@@ -500,24 +501,19 @@
       "source": "CRT:PtrArray::Clear_confirmed"
     },
     "4128": {
-      "name": "_todo_1020",
-      "type": "char[16]",
-      "source": "CRT:Iostream_init_placeholder"
+      "name": "m_nCmdParam24",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
     },
     "4144": {
-      "name": "m_CmdObjArray1",
-      "type": "PtrArray",
-      "source": "CRT:PtrArray::Clear_confirmed"
+      "name": "m_nScriptMode",
+      "type": "int",
+      "source": "binary:6x abs refs, dword access (0x1030)"
     },
     "4160": {
-      "name": "_todo_1040",
-      "type": "char[16]",
-      "source": "CRT:vtable_0x56AB9C_opcode_obj"
-    },
-    "4048": {
-      "name": "m_nCmdFD0",
+      "name": "m_nCmdParam26",
       "type": "short",
-      "source": "binary:4x abs refs (0xFD0)"
+      "source": "binary:stru_D8B318_gap"
     },
     "4052": {
       "name": "m_nCmdParam19",
@@ -544,12 +540,6 @@
       "type": "unsigned char",
       "source": "binary:stru_D8B318_gap"
     },
-    "4080": {
-      "name": "m_pCmdTableFF0",
-      "type": "char *",
-      "source": "binary:5x abs refs, B9=mov ecx,addr (base load for array) | type_fix:int→void*(array base)",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
     "4084": {
       "name": "m_nCmdParam22",
       "type": "int",
@@ -575,11 +565,6 @@
       "type": "unsigned char",
       "source": "binary:10x abs refs, byte access 8A/88 (0x100C)"
     },
-    "4128": {
-      "name": "m_nCmdParam24",
-      "type": "short",
-      "source": "binary:stru_D8B318_gap"
-    },
     "4132": {
       "name": "m_nCmdParam25",
       "type": "int",
@@ -594,11 +579,6 @@
       "name": "m_bCmdFlag6",
       "type": "unsigned char",
       "source": "binary:stru_D8B318_gap"
-    },
-    "4144": {
-      "name": "m_nScriptMode",
-      "type": "int",
-      "source": "binary:6x abs refs, dword access (0x1030)"
     },
     "4148": {
       "name": "m_nCmd1034",
@@ -618,11 +598,6 @@
     "4154": {
       "name": "m_bCmdFlag9",
       "type": "unsigned char",
-      "source": "binary:stru_D8B318_gap"
-    },
-    "4160": {
-      "name": "m_nCmdParam26",
-      "type": "short",
       "source": "binary:stru_D8B318_gap"
     },
     "4164": {
@@ -980,6 +955,61 @@
       "name": "m_fD8BEF0",
       "type": "float",
       "source": "auto:extern_overlap_g_ScriptSystemData_at_+0xBD8"
+    },
+    "2264": {
+      "name": "_todo_8D8",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2268": {
+      "name": "_todo_8DC",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2272": {
+      "name": "_todo_8E0",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2276": {
+      "name": "_todo_8E4",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2280": {
+      "name": "_todo_8E8",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2284": {
+      "name": "_todo_8EC",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2288": {
+      "name": "_todo_8F0",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2292": {
+      "name": "_todo_8F4",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2296": {
+      "name": "_todo_8F8",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2300": {
+      "name": "_todo_8FC",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2304": {
+      "name": "_todo_900",
+      "type": "int",
+      "source": "phantom:C2065_fix"
     }
   },
   "methods": {
