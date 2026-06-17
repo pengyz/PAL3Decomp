@@ -195,3 +195,44 @@ if name.startswith('byte_'):
 3. 确认访问宽度（指令前缀：8B=4B, C6=1B, 66 8B=2B, D9=float, DD=double）
 4. 记录证据到 `CHANGE_LOG.md`
 5. 修改 annotation → `check_annotations.py` 验证 → 提交
+
+## 领域知识：CCBStageRole 任务槽位分配
+
+### tagCmdData 内存复用
+
+`tagCmdData.bDestRole[11]` 的最后 4 字节（bDestRole[7..10]）在部分任务槽中被复用作指针：
+
+```
+偏移:   +0  +1  +2  +3  +4  +5  +6  +7  +8  +9 +10
+        [  bDestRole（11 个角色索引槽位） ]
+槽 57:                         128  64          ← 整数
+槽 62:                           0   0          ← 清零
+槽 63:             CRC("flydown")  0/ptr        ← CRC + 指针
+槽 48:                                funcptr   ← 回调
+槽  2:                               arrayptr  ← 音效数组
+槽  3:                               funcptr   ← 回调(this[1])
+```
+
+解决：在 `tagCmdData` 中加 `pDestRoleOverlay@+0x24 : void*`，标注 `_flexible` + source 含 "overlap"。
+
+### 任务槽位用途表
+
+CCBStageRole.m_Task = tagRoleTask[64]，每槽 96 字节。槽位按索引固定分配用途：
+
+| 槽位 | 所在文件 | 主要用途 | 特征访问 |
+|------|---------|---------|---------|
+| 2 | StageRole | cmd.pDestRoleOverlay = gbSound2DNode 数组 | stride=20 遍历，Pause/Resume |
+| 3 | StageRole | cmd.pDestRoleOverlay = 回调函数(this[1]) | 双重解引用后调用 |
+| 13 | StageCam | fp[1],fp[2] = HWND | SendMessage 窗口消息 |
+| 19 | StageRole | eMode 状态管理 | 任务模式切换 |
+| 22 | StageRole | fTemp + bValid 计时/有效性 | 频繁定时访问 |
+| 48 | StageRole | cmd.pDestRoleOverlay = 函数回调 | `(*ptr)(...)` 调用 |
+| 57 | StageRole | cmd.pDestRoleOverlay = 64 | 配置值（需 void* cast） |
+| 62 | StageRole | dwID + fTemp + fTemp2 | 通用数据存储 |
+| 63 | StageRole | fp[0..3] + pDestRoleOverlay = EditorTaskDescription | 编辑器功能 |
+
+### 分析原则
+
+- **编译错误不是问题本身**：C2440/C2664 是标注错误的**表象**。任务是理解原始代码意图——内存布局、复用模式、生命周期——然后让 annotation 正确表达，错误自然消失。
+- **禁止试错式修改**：不理解内存布局之前不修改 annotation。先用 IDA 查全所有访问点，画出完整使用图景，确认场景和约束，再动 annotation。
+- **内存复用的判断**：同一字段在不同上下文中被当作不同类型使用时，先区分是分时复用还是按索引固定分配。CCBStageRole.m_Task 的槽位是后者——每个索引有固定语义。
