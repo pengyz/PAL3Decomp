@@ -74,6 +74,43 @@ subprocess.run(f'"{ida_path}" -A -S"script.py" "{raw_idb}"', shell=True)
 - **C 级**：Hex-Rays 文本推断（仅标注参考，不可单独用于偏移修改）
 - **D 级**：语义推断（命名≥60，不可用于偏移/类型修改）
 
+## 反编译核心原则
+
+### 编译错误不是问题本身
+
+C2440/C2664/C2065 等编译错误是 annotation 标注错误的**表象**。任务是理解原始代码的意图——内存布局、复用模式、生命周期——然后让 annotation 正确表达。盯着错误码修是治标不治本，错误自然消失。
+
+**修复层次（从优先到降级）：**
+1. **annotation 层**（struct 成员类型、函数签名、全局变量类型）—— 第一选择
+2. **export 层**（`export_full.py` 的类型映射/过滤）—— 当 annotation 不完整时
+3. **codegen 层**（Stage 3/4 的 AST 变换）—— 仅当以上两层无法解决时
+
+### 禁止试错式修改
+
+不理解内存布局之前不修改 annotation。先用 IDA 查全所有访问点，画出完整使用图景，确认场景和约束，再动 annotation。
+
+### 开发者意图优先
+
+二进制不是真理——开发者的设计意图才是。如果二进制的某种现象（如 `int *` 存指针）与合理开发实践矛盾，更可能是 IDA/Hex-Rays 读错了，而不是开发者写了垃圾代码。
+
+具体体现：
+- **C2440 类型转换**：真实转型在 C++ 项目里应该很少。大量 C2440 往往意味着 annotation 类型错误（IDA 把指针字段标成了 `int`，把 `DWORD` 用途标成了 `char *` 等），不是开发者到处写 cast。
+- **内存复用**：同一块内存不同时作不同类型用，先考虑是否被 IDA 错误分割（gap），再考虑是否是分时复用，最后才考虑 union。
+
+### 信息流约束
+
+```
+annotation 层:   决定每个全局/成员的归属和类型 (globals.json, structs/*.json)
+    ↓ init → apply_annotations
+export 层:      合并 IDB 数据 + annotation 信息到 export (export_full.py → ida_structs.json)
+    ↓ export
+codegen 层:     读 export 数据生成代码 (不直接读 annotation)
+```
+
+- codegen **不能**有地址段判断（`.rdata` / `.data` 不是 codegen 的维度）
+- codegen **不能**绕过 annotation 状态做决策（`type: skip` 的替换应在 export 层完成）
+- annotation 标记 `type: skip` 的全局，如果代码引用它，应该在 export 层处理（替换为字面量或自动声明），不是 codegen 加 fallback
+
 ## PE 内存布局（地址分析基础）
 
 ```
