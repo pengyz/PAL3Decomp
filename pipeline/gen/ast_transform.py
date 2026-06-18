@@ -191,16 +191,6 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 _qualified = '%s::%s' % (class_name, method_name)
                                 if _qualified in static_methods:
                                     return
-                                # Check cast type vs qualified class name:
-                                # E.g. CCBControlWindow::Render((SaleUI *)this) has
-                                # cast_type=SaleUI != class_name=CCBControlWindow → skip OOP
-                                _cast_type = first_arg.child_by_field_name('type')
-                                if _cast_type:
-                                    _cast_type_name = _cast_type.text.decode('utf-8').rstrip('*').strip()
-                                    if _cast_type_name != class_name:
-                                        _ensure_bases()
-                                        if not _is_derived_from(cls_name, class_name):
-                                            return
                                 _needs_addr = bool(re.match(r'^g_[A-Z]', _inner_strip))
                                 _inner = '&' + inner if _needs_addr else inner
                                 new_text = '((%s *)%s)->%s(%s)' % (
