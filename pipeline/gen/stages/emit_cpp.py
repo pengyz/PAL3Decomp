@@ -148,6 +148,9 @@ def generate_forward_decls(all_code):
             if _u in store.skip_globals:
                 undef.discard(_u)
                 continue
+            if _u in store.globals_map:
+                undef.discard(_u)
+                continue
         if _ua is not None:
             for _base, _end, _, _ in store.struct_instances:
                 if _base < _ua < _end:
