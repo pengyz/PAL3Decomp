@@ -204,6 +204,8 @@ def _make_vtable_method_type(ann_sig, vm_short, til):
     close_paren = ann_sig.rindex(')')
     prefix = ann_sig[:open_paren].strip()
     params_str = ann_sig[open_paren+1:close_paren].strip()
+    # Strip __hidden this (IDA annotation, not valid C++ type)
+    params_str = re.sub(r'\w+\s*\*\s*(?:__hidden\s+)?this\s*,?\s*', '', params_str)
     prefix = re.sub(r'\w+::\w+', '', prefix).strip()
     prefix = re.sub(r'\bvirtual\s+', '', prefix).strip()
     ret_type = prefix
@@ -1607,20 +1609,9 @@ def apply_annotations():
     sig_fail = []
     sig_skip_placeholder = 0
 
-    # Build a combined list: functions.json + struct/*.json methods
+    # Build a combined list: functions.json only (struct methods are for codegen headers,
+    # NOT for setting IDB function types — sharing same address across classes corrupts SetType)
     _sig_entries = list(funcs.items())
-    _structs_dir = os.path.join(ANNOTATIONS_DIR, "structs")
-    if os.path.isdir(_structs_dir):
-        for _sf in sorted(os.listdir(_structs_dir)):
-            if not _sf.endswith('.json'):
-                continue
-            try:
-                _sd = json.load(open(os.path.join(_structs_dir, _sf), encoding='utf-8'))
-            except:
-                continue
-            for _addr_str, _minfo in _sd.get('methods', {}).items():
-                if _minfo.get('signature') and _addr_str not in funcs:
-                    _sig_entries.append((_addr_str, _minfo))
 
     for addr_str, info in _sig_entries:
         addr = int(addr_str, 16)

@@ -194,6 +194,52 @@ def check():
             else:
                 seen_sigs[sig_norm] = f"{name} @ {addr}"
 
+    # --- 2d. Inheritance/vtable consistency check ---
+    structs = ann.get('structs', {})
+    for _sn, _sd in structs.items():
+        _bc = _sd.get('base_class', '')
+        _bases = [b.get('name','') for b in (_sd.get('bases') or [])]
+        if isinstance(_bc, list):
+            _bases = _bc + _bases
+        elif _bc:
+            _bases.insert(0, _bc)
+        if not _bases:
+            continue
+        _methods = _sd.get('methods', {})
+        _ord_to_addr = {}
+        _addr_to_minfo = {}
+        for _a_s, _minfo in _methods.items():
+            _ord = _minfo.get('ordinal')
+            if _ord is not None:
+                _ord_to_addr[_ord] = int(_a_s, 16)
+            _addr_to_minfo[int(_a_s, 16)] = _minfo
+        for _base_name in _bases:
+            if not isinstance(_base_name, str):
+                continue
+            _base_data = structs.get(_base_name, {})
+            _base_methods = _base_data.get('methods', {})
+            for _ba_s, _bminfo in _base_methods.items():
+                _bord = _bminfo.get('ordinal')
+                if _bord is None:
+                    continue
+                if _bord not in _ord_to_addr:
+                    continue
+                _d_addr = _ord_to_addr[_bord]
+                _b_addr = int(_ba_s, 16)
+                _dminfo = _addr_to_minfo.get(_d_addr, {})
+                if _d_addr == _b_addr:
+                    if _dminfo.get('signature'):
+                        errors.append(
+                            f"structs[{_sn}]: method '{_dminfo.get('name','')}' @ {hex(_d_addr)} "
+                            f"(ordinal {_bord}) has same address as {_base_name} — "
+                            f"inherited, not overridden. Remove 'signature' field.")
+                elif _b_addr != _d_addr:
+                    if not _dminfo.get('signature'):
+                        errors.append(
+                            f"structs[{_sn}]: method '{_dminfo.get('name','')}' @ {hex(_d_addr)} "
+                            f"(ordinal {_bord}) overrides {_base_name} — "
+                            f"needs 'signature' field.")
+
     # 2d. Check for collisions AFTER __ovl_ stripping (simulates codegen behavior)
     stripped_sigs = {}  # (stripped_name, sig_norm) -> addr
     for addr, info in funcs.items():
