@@ -230,8 +230,11 @@ class DataStore:
                     _addr = _slot.get('addr', '')
                     if _addr in _methods:
                         _mname = _methods[_addr].get('name', '')
-                        if _mname and '::' in _mname:
-                            _method = _mname.split('::')[-1]
+                        if _mname:
+                            if '::' in _mname:
+                                _method = _mname.split('::')[-1]
+                            else:
+                                _method = _mname  # short name, use directly
                             if _method not in _slot_map.values():
                                 _slot_map[_i] = _method
             if _slot_map:

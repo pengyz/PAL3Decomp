@@ -390,11 +390,40 @@ def run(code, ctx):
         r'\*\s*\*\s*\)'
         r'\s*\(\s*(\w+)\s*\*'
         r'[^)]*\)\s*\)'
-        r'\s*\(?\s*(\w+(?:\s*->\s*\w+)*)\s*->\s*__vftable\s*\+\s*(\d+)\s*\)'
+        r'\s*\(?\s*(\w+(?:\s*->\s*\w+)*)\s*->\s*__vftable\s*(?:\+\s*(\d+))?\s*\)'
         r'\s*\)\s*\((.*?)\)\s*;\s*')
     def _try_resolve_vtable(m):
-        cls, obj, off, args = m.group(1), m.group(2), int(m.group(3)), m.group(4)
+        cls = m.group(1)
+        obj = m.group(2)
+        off_str = m.group(3)
+        off = int(off_str) if off_str else 0
+        args_str = m.group(4)
         slot = off
+        _indent = m.group(0)[:len(m.group(0)) - len(m.group(0).lstrip())]
+        try:
+            _slots = store.struct_vtables.get(cls, {})
+            if slot in _slots:
+                _method = _slots[slot]
+                _args = [a.strip() for a in args_str.split(',')]
+                _args = [a for a in _args if a.replace('&', '').strip() != obj]
+                return '%s->%s(%s);\n%s' % (obj, _method, ', '.join(_args), _indent)
+        except: pass
+        return None
+    code = _vtable_re.sub(lambda m: _try_resolve_vtable(m) or m.group(0), code)
+
+    # Pattern: ((void (callconv *)(Type))obj->__vftable)(args) — cast style, no * deref
+    _vtable_re3 = re.compile(
+        r'\(\(\s*void\s+'
+        r'\(\s*(?:__thiscall|__stdcall|\s*)\s*\*'
+        r'\s*\)'
+        r'\s*\(\s*(\w+)\s*\*'
+        r'[^)]*\)\s*\)'
+        r'\s*(\w+(?:\s*->\s*\w+)*)\s*->\s*'
+        r'__vftable\)'
+        r'\s*\((.*?)\)\s*;\s*')
+    def _try_resolve_vtable3(m):
+        cls, obj, args = m.group(1), m.group(2), m.group(3)
+        slot = 0
         _indent = m.group(0)[:len(m.group(0)) - len(m.group(0).lstrip())]
         try:
             _slots = store.struct_vtables.get(cls, {})
@@ -405,7 +434,7 @@ def run(code, ctx):
                 return '%s->%s(%s);\n%s' % (obj, _method, ', '.join(_args), _indent)
         except: pass
         return None
-    code = _vtable_re.sub(lambda m: _try_resolve_vtable(m) or m.group(0), code)
+    code = _vtable_re3.sub(lambda m: _try_resolve_vtable3(m) or m.group(0), code)
 
     _vtable_re2 = re.compile(
         r'\s*(?:\w+\s*=\s*)?'
