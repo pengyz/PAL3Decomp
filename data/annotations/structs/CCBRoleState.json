@@ -423,8 +423,8 @@
     },
     "48": {
       "name": "_todo_0030",
-      "type": "int",
-      "source": "ida_gap_2refs"
+      "type": "gbRefObject *",
+      "source": "ida_gap_2refs; corrected from int to gbRefObject*"
     },
     "64": {
       "name": "_todo_0040",
@@ -1707,5 +1707,11 @@
   ],
   "_flexible": true,
   "base_class": "CScreenMode",
-  "base_size": 4984
+  "base_size": 6768,
+  "bases": [
+    {
+      "name": "SceneObj",
+      "offset": 4984
+    }
+  ]
 }
