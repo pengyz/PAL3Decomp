@@ -234,9 +234,11 @@ def check():
                             f"(ordinal {_bord}) has same address as {_base_name} — "
                             f"inherited, not overridden. Remove 'signature' field.")
                 elif _b_addr != _d_addr:
-                    if not _dminfo.get('signature'):
+                    _bname = _bminfo.get('name', '')
+                    _dname = _dminfo.get('name', '')
+                    if _dname == _bname and not _dminfo.get('signature'):
                         errors.append(
-                            f"structs[{_sn}]: method '{_dminfo.get('name','')}' @ {hex(_d_addr)} "
+                            f"structs[{_sn}]: method '{_dname}' @ {hex(_d_addr)} "
                             f"(ordinal {_bord}) overrides {_base_name} — "
                             f"needs 'signature' field.")
 
