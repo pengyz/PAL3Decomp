@@ -175,6 +175,11 @@ def generate_forward_decls(all_code):
             if u.startswith('nullsub_'):
                 lines.append("void __cdecl %s(...);" % u)
                 continue
+            # Check if annotated in globals.json (non-IDA globals with semantic names)
+            if u in store.annotated_globals:
+                _ann_name, _ann_type = store.annotated_globals[u]
+                lines.append("extern %s %s;" % (_ann_type, _ann_name))
+                continue
             if u in store.global_types:
                 gt = store.global_types[u]
                 arr_m = re.match(r'^(.+?)(\[\d*\])$', gt)

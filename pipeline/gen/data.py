@@ -42,6 +42,7 @@ class DataStore:
         self.scalar_dtor_classes = set()  # classes that had _scalar_dtor filtered
         self.struct_vtables = {}    # "ClassName" -> {slot_index: method_name} (from annotations)
         self.skip_globals = {}      # {name: addr} — annotation-skipped globals
+        self.annotated_globals = {} # "dword_ADDR" -> (name, type) from globals.json
 
     def load(self):
         """Load all resources from disk. Call once at startup."""
@@ -51,6 +52,7 @@ class DataStore:
         self._load_globals_h()
         self._load_exported_data()
         self._load_vtable_data()
+        self._load_annotated_globals()
         self._load_binary()
         self.loaded = True
 
@@ -235,7 +237,37 @@ class DataStore:
             if _slot_map:
                 self.struct_vtables[_name] = _slot_map
 
-        # 5. Free function sigs + static methods + scalar_dtor detection from decomp JSONs
+        # 5a. Load globals.json annotations for extern generation
+
+    def _load_annotated_globals(self):
+        """Load globals.json for extern generation of non-IDA globals."""
+        _ann_path = self.project_root / "data" / "annotations" / "globals.json"
+        if not _ann_path.exists():
+            return
+        try:
+            _data = json.load(open(_ann_path, encoding='utf-8'))
+        except:
+            return
+        ida_prefixes = ('dword_', 'byte_', 'word_', 'stru_', 'off_', 'unk_', 'flt_')
+        for _addr_s, _info in _data.items():
+            if _info.get('type') == 'skip':
+                continue
+            _name = _info.get('name', '')
+            _type = _info.get('type', '')
+            if not _name or not _type:
+                continue
+            try:
+                _addr = int(_addr_s, 16) if isinstance(_addr_s, str) else int(_addr_s, 0)
+            except ValueError:
+                continue
+            _addr_hex = '%X' % _addr
+            # Add all possible raw names so extern generation can match
+            # regardless of which IDA prefix the decomp code uses.
+            for _pfx in ('dword', 'byte', 'word', 'flt', 'off', 'stru', 'unk'):
+                _raw = '%s_%s' % (_pfx, _addr_hex)
+                self.annotated_globals[_raw] = (_name, _type)
+
+        # 5b. Free function sigs + static methods + scalar_dtor detection from decomp JSONs
         _decomp_dir = self.project_root / "asm" / "pal3" / "decomp"
         if _decomp_dir.exists():
             # Pre-scan for _scalar_dtor classes (needed before header generation)

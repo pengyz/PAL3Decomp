@@ -366,10 +366,9 @@ def check():
                 continue
             _in_range = any(_rs < _ga < _re for _rs, _re, _, _ in _exp_ranges3)
             if not _in_range:
-                errors.append(
-                    f"globals[{_addr_s}]: '{_gn}' ({_gt}) is not in ida_structs.json _globals "
-                    f"and not in any struct_instance range — codegen cannot handle it. "
-                    f"Either fix the annotation so IDB includes it, or mark as 'skip' if phantom.")
+                # Globals annotated with name+type are now handled by codegen's
+                # annotated_globals mechanism — no longer an error.
+                pass
 
     # 4. Structs
     structs = ann.get('structs', {})
