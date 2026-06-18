@@ -432,15 +432,20 @@ def run(code, ctx):
         return None
     code = _vtable_re2.sub(lambda m: _try_resolve_vtable2(m) or m.group(0), code)
 
-    # Generic OOP substitution: this->__vftable->Method(this, args...) → this->Method(args...)
-    # Matches any context (assignment, array subscript, etc.)
+    # Generic OOP substitution: obj->__vftable->Method(obj, ...) → obj->Method(...)
+    # Match: ((type(...))(callconv*)(params))obj->__vftable->Method)(obj, args)
     code = re.sub(
         r'\(\(\s*[\w\s]+(?:\s*\*)*\s*'               # ((type... (*
         r'\(\s*(?:__thiscall\s*)?\s*\*\s*\)'          # (__thiscall**)
-        r'\s*\([^)]*\)\s*\)'                          # )(type_params))
-        r'\s*this\s*->\s*__vftable\s*->\s*(\w+)\)'    # this->__vftable->Method)
-        r'\s*\(\s*this\s*,\s*',                       # (this,
-        r'this->\1(',
+        r'\s*\([^)]*\)\s*\)\s*'                       # )(type_params))
+        r'(\w+)\s*->\s*'                              # obj ->
+        r'__vftable\s*->\s*(\w+)\)',                  # __vftable->Method)
+        r'\1->\2',
+        code
+    )
+    code = re.sub(
+        r'(\w+)->(\w+)\(\1\s*(?:,\s*)?',
+        r'\1->\2(',
         code
     )
 
