@@ -385,16 +385,16 @@ def run(code, ctx):
     # Pattern: (*(void (callconv **)(Type*))(obj->__vftable + N))(args);
     # Matches optional __thiscall/__stdcall or bare (**) after void.
     _vtable_re = re.compile(
-        r'\(\s*\*\s*\(\s*void\s+'
+        r'\(\s*\*\s*\(\s*\(?\s*void\s+'
         r'\(\s*(?:__thiscall|__stdcall|\s*)\s*'
         r'\*\s*\*\s*\)'
         r'\s*\(\s*(\w+)\s*\*'
         r'[^)]*\)\s*\)'
-        r'\s*\(\s*(\w+(?:\s*->\s*\w+)*)\s*->\s*__vftable\s*\+\s*(\d+)\s*\)'
+        r'\s*\(?\s*(\w+(?:\s*->\s*\w+)*)\s*->\s*__vftable\s*\+\s*(\d+)\s*\)'
         r'\s*\)\s*\((.*?)\)\s*;\s*')
     def _try_resolve_vtable(m):
         cls, obj, off, args = m.group(1), m.group(2), int(m.group(3)), m.group(4)
-        slot = off // 4
+        slot = off
         _indent = m.group(0)[:len(m.group(0)) - len(m.group(0).lstrip())]
         try:
             _slots = store.struct_vtables.get(cls, {})
