@@ -683,7 +683,12 @@
     "3072": {
       "name": "m_teamSlotsB",
       "type": "int[200]",
-      "source": "binary_scan:5refs|FullInit: array access indices 94-190"
+      "source": "binary_scan:5refs|FullInit: array access indices 94-190",
+      "_variants": [
+        {
+          "type": "tagTeamSlotsBOverlay"
+        }
+      ]
     },
     "3624": {
       "name": "dwInitParam",

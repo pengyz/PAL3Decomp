@@ -1941,7 +1941,7 @@ def apply_annotations():
                 lvar.name = new_name
                 modified = True
             new_type = ann.get("type")
-            if new_type and not is_reg:
+            if new_type:
                 tif = _resolve_member_type(new_type, ida_typeinf.get_idati())
                 if tif is not None:
                     try:
@@ -1961,6 +1961,12 @@ def apply_annotations():
                     ll.defea = cfunc.entry_ea
                     si.ll = ll
                     si.name = lv.name
+                    try:
+                        _t = lv.type
+                        if _t is not None and hasattr(_t, 'is_correct') and _t.is_correct():
+                            si.type = _t
+                    except:
+                        pass
                     uvec.lvvec.push_back(si)
                 ida_hexrays.save_user_lvar_settings(addr, uvec)
             except Exception as e:

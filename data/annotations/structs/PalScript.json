@@ -115,7 +115,12 @@
     "1300": {
       "name": "m_szDialog1",
       "type": "char[256]",
-      "source": "binary:1x access | annotate_todo"
+      "source": "binary:1x access | annotate_todo",
+      "_variants": [
+        {
+          "type": "tagDialogScriptOverlay"
+        }
+      ]
     },
     "1556": {
       "name": "m_szDialog2",
@@ -159,12 +164,7 @@
     },
     "396": {
       "name": "m_RoleSlotArray",
-      "type": "unsigned char[896]",
-      "_variants": [
-        {
-          "type": "tagRoleSlot"
-        }
-      ]
+      "type": "tagRoleSlot"
     },
     "397": {
       "name": "_todo_18D",
@@ -1550,7 +1550,14 @@
     },
     "0x00421560": {
       "name": "SetAction",
-      "signature": "void __thiscall(int nRoleID)"
+      "signature": "void __thiscall(int nRoleID)",
+      "local_vars": [
+        {
+          "from_name": "p_m_RoleSlotArray",
+          "name": "pSlots",
+          "type": "tagRoleSlot *"
+        }
+      ]
     },
     "0x00429D40": {
       "name": "SetIndex",

@@ -1386,8 +1386,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         if ref_type == 'struct':
                             lines.append("        struct {")
                             _inner_prev = off
-                            for mem in sorted(v.get('_members', []), key=lambda x: int(x['offset'], 16)):
-                                _abs = int(mem['offset'], 16)
+                            for mem in sorted(v.get('_members', []), key=lambda x: int(x['offset'], 0)):
+                                _abs = int(mem['offset'], 0)
                                 if _abs > _inner_prev:
                                     lines.append("            char _gap_%03X[%d];" % (_inner_prev, _abs - _inner_prev))
                                 _t = mem.get('type', 'int')
@@ -1405,15 +1405,15 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                                 _ref_members = {str(dm.get('offset',0)): dm for dm in _ref_ida.get('data_members', [])}
                             lines.append("        struct { // %s" % ref_type)
                             _inner_prev = off
-                            for _ro, _ri in sorted(_ref_members.items() if isinstance(_ref_members, dict) else [(str(dm.get('offset',0)), dm) for dm in _ref_members], key=lambda x: int(x[0], 16)):
-                                _abs = off + int(_ro, 16)
-                                if _abs > _inner_prev:
-                                    lines.append("            char _gap_%03X[%d];" % (_inner_prev, _abs - _inner_prev))
-                                _t = _ri.get('type', 'int')
-                                _n = _ri.get('name', '?')
-                                lines.append("            %s %s; // +0x%X" % (_t, _n, _abs))
-                                _inner_prev = _abs + _estimate_member_size(_t)
-                            lines.append("        };")
+                        for _ro, _ri in sorted(_ref_members.items() if isinstance(_ref_members, dict) else [(str(dm.get('offset',0)), dm) for dm in _ref_members], key=lambda x: int(x[0], 0)):
+                            _abs = off + int(_ro, 0)
+                            if _abs > _inner_prev:
+                                lines.append("            char _gap_%03X[%d];" % (_inner_prev, _abs - _inner_prev))
+                            _t = _ri.get('type', 'int')
+                            _n = _ri.get('name', '?')
+                            lines.append("            %s %s; // +0x%X" % (_t, _n, _abs))
+                            _inner_prev = _abs + _estimate_member_size(_t)
+                        lines.append("        };")
                     lines.append("    };")
                     # Union takes max space of all variants
                     _union_sizes = [_estimate_member_size(mtype)]
@@ -1421,7 +1421,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         if v.get('type') == 'struct':
                             vs = 0
                             for mem in v.get('_members', []):
-                                e = int(mem['offset'], 16) + _estimate_member_size(mem.get('type','int'))
+                                e = int(mem['offset'], 0) + _estimate_member_size(mem.get('type','int'))
                                 vs = max(vs, e - off)
                             _union_sizes.append(vs)
                         else:
