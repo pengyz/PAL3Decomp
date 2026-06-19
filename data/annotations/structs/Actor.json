@@ -593,6 +593,12 @@
       "type": "Actor *",
       "_flexible": true,
       "source": "overlap, GetInnerAnimDuration uses ((Actor*)&m_fAngleDeg+1)->GetAnimDuration"
+    },
+    "0x274": {
+      "name": "_overlap_RoleSystem_m_partyActor_m_nState",
+      "type": "int",
+      "_flexible": true,
+      "source": "NOT A REAL FIELD. Actor::SetActionByName calls ((RoleSystem*)this)->NotifySceneChange() which writes this->m_partyActor.m_nState @ +0x1A8++0xCC=0x274. Actor has no vtable; RoleSystem methods are non-virtual. This is a C-style cast hack, not inheritance or composition."
     }
   },
   "methods": {
