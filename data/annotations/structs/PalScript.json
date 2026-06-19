@@ -515,6 +515,30 @@
       "name": "m_fSceneCfg",
       "type": "float[48]",
       "source": "binary_scan: IDA array field, merged from individual elements"
+    },
+    "0x5A0": {
+      "name": "pScriptVtable",
+      "type": "void *",
+      "_flexible": true,
+      "source": "m_szDialog1[140] overlap — script vtable pointer, called via (**v)(v,1)"
+    },
+    "0x5A8": {
+      "name": "pScriptPtrA",
+      "type": "void *",
+      "_flexible": true,
+      "source": "m_szDialog1[148] overlap — script reference"
+    },
+    "0x5AC": {
+      "name": "pScriptPtrB",
+      "type": "void *",
+      "_flexible": true,
+      "source": "m_szDialog1[152] overlap — script reference"
+    },
+    "0x5B4": {
+      "name": "pScriptPtrC",
+      "type": "void *",
+      "_flexible": true,
+      "source": "m_szDialog1[160] overlap — script reference"
     }
   },
   "methods": {
