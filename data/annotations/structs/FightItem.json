@@ -22,11 +22,6 @@
       "type": "char[30]",
       "source": "annotation"
     },
-    "96": {
-      "name": "desc",
-      "type": "char[512]",
-      "source": "annotation"
-    },
     "608": {
       "name": "price",
       "type": "int",
@@ -147,17 +142,14 @@
       "type": "DWORD",
       "source": "annotation"
     },
-    "0x1C8": {
-      "name": "pScript",
-      "type": "PalScript",
-      "_flexible": true,
-      "source": "overlap with desc[360..511], index 508 fixed-assigned as script workspace"
-    },
-    "0x1C4": {
-      "name": "bLoaded",
-      "type": "char",
-      "_flexible": true,
-      "source": "overlap with desc[356], index 508 loaded flag"
+    "0x60": {
+      "name": "desc",
+      "type": "char[512]",
+      "_variants": [
+        {
+          "type": "tagFightItemScriptWS"
+        }
+      ]
     }
   },
   "methods": {

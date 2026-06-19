@@ -1376,6 +1376,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 _field_variants = _ida_variants.get(off_str, {}).get('_variants', [])
                 if not _field_variants:
                     _field_variants = _ida_variants.get(str(off), {}).get('_variants', [])
+                if not _field_variants:
+                    _field_variants = _ida_variants.get('0x%X' % off, {}).get('_variants', [])
                 if _field_variants:
                     lines.append("    union { // +0x%X" % off)
                     _emit_member(m, off, mname, mtype)
@@ -1396,7 +1398,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         else:
                             # Reference known struct type from ida_structs.json
                             _ref_ida = _get_ida_structs().get(ref_type, {})
-                            _ref_members = _ref_ida.get('data_members', [])
+                            # Use _variants (passed-through known_members) for relative offsets
+                            _ref_members = _ref_ida.get('_variants', {})
+                            if not _ref_members:
+                                # Fallback to data_members (absolute offsets)
+                                _ref_members = {str(dm.get('offset',0)): dm for dm in _ref_ida.get('data_members', [])}
                             lines.append("        struct { // %s" % ref_type)
                             _inner_prev = off
                             for _ro, _ri in sorted(_ref_members.items() if isinstance(_ref_members, dict) else [(str(dm.get('offset',0)), dm) for dm in _ref_members], key=lambda x: int(x[0], 16)):
