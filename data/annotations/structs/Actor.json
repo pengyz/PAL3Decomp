@@ -590,9 +590,9 @@
     },
     "0x2A8": {
       "name": "m_InnerActor",
-      "type": "Actor *",
+      "type": "void *",
       "_flexible": true,
-      "source": "overlap, GetInnerAnimDuration uses ((Actor*)&m_fAngleDeg+1)->GetAnimDuration"
+      "source": "NOT a pointer. Embedded Actor sub-object at +0x2A8."
     },
     "0x274": {
       "name": "_overlap_RoleSystem_m_partyActor_m_nState",
