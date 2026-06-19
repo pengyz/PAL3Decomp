@@ -382,13 +382,13 @@ def run(code, ctx):
         code = re.sub(r'^\s*this->\w+\(\);\s*$', '', code, flags=re.MULTILINE)
 
     # Try to resolve vtable dispatch calls to direct method calls before commenting out.
-    # Pattern: (*(void (callconv **)(Type*))(obj->__vftable + N))(args);
-    # Matches optional __thiscall/__stdcall or bare (**) after void.
+    # Pattern: (*(ret_type (callconv **)(Type*))(obj->__vftable + N))(args);
+    # Matches any return type (void, int, gbTexture*, etc.)
     _vtable_re = re.compile(
-        r'\(\s*\*\s*\(\s*\(?\s*void\s+'
+        r'\(\s*\*\s*\(\s*\(?\s*\w+(?:\s*\*)*\s+'               # ret_type (int, gbTexture*, etc.)
         r'\(\s*(?:__thiscall|__stdcall|\s*)\s*'
         r'\*\s*\*\s*\)'
-        r'\s*\(\s*(\w+)\s*\*'
+        r'\s*\(\s*(\w+)\s*\*'                                    # (Type*
         r'[^)]*\)\s*\)'
         r'\s*\(?\s*(\w+(?:\s*->\s*\w+)*)\s*->\s*__vftable\s*(?:\+\s*(\d+))?\s*\)'
         r'\s*\)\s*\((.*?)\)\s*;\s*')

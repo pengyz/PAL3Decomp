@@ -134,5 +134,72 @@
     }
   },
   "base_size": 4,
-  "base_class": "gbSingleton_gbGfxManager"
+  "base_class": "gbSingleton_gbGfxManager",
+  "methods": {
+    "0x00010002": {
+      "name": "NewTexture",
+      "ordinal": 2,
+      "signature": "gbTexture *__thiscall(const char *name)"
+    },
+    "0x00010001": {
+      "name": "MsgProc",
+      "ordinal": 1
+    },
+    "0x00010000": {
+      "name": "~gbGfxManager",
+      "ordinal": 0
+    },
+    "0x00010003": {
+      "name": "NewMesh",
+      "ordinal": 3
+    },
+    "0x00010004": {
+      "name": "NewVertexPool",
+      "ordinal": 4
+    },
+    "0x00010005": {
+      "name": "NewIndexPool",
+      "ordinal": 5
+    },
+    "0x00010006": {
+      "name": "NewDynVertBuf",
+      "ordinal": 6
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x00010000",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00010000",
+          "from": null
+        },
+        {
+          "addr": "0x00010001",
+          "from": null
+        },
+        {
+          "addr": "0x00010002",
+          "from": null
+        },
+        {
+          "addr": "0x00010003",
+          "from": null
+        },
+        {
+          "addr": "0x00010004",
+          "from": null
+        },
+        {
+          "addr": "0x00010005",
+          "from": null
+        },
+        {
+          "addr": "0x00010006",
+          "from": null
+        }
+      ]
+    }
+  ]
 }
