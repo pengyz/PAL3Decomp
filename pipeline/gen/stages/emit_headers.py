@@ -1370,6 +1370,60 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     _flat = '%s_%s' % (cls_name, _inner)
                     if (OUTPUT_DIR / ('%s.h' % _flat)).exists() or any((OUTPUT_DIR / d / ('%s.h' % _flat)).exists() for d in ('', 'Misc', 'Combat', 'UI', 'Effect', 'Scene', 'Role', 'GameBase', 'Render', 'Data', 'MiniGame', 'Script')):
                         mtype = _flat
+                # Check for _variants (union with alternative views)
+                # Read from ida_structs.json (passed through by export_full.py)
+                _ida_variants = _get_ida_structs().get(cls_name, {}).get('_variants', {})
+                _field_variants = _ida_variants.get(off_str, {}).get('_variants', [])
+                if not _field_variants:
+                    _field_variants = _ida_variants.get(str(off), {}).get('_variants', [])
+                if _field_variants:
+                    lines.append("    union { // +0x%X" % off)
+                    _emit_member(m, off, mname, mtype)
+                    for v in _field_variants:
+                        ref_type = v.get('type', '')
+                        if ref_type == 'struct':
+                            lines.append("        struct {")
+                            _inner_prev = off
+                            for mem in sorted(v.get('_members', []), key=lambda x: int(x['offset'], 16)):
+                                _abs = int(mem['offset'], 16)
+                                if _abs > _inner_prev:
+                                    lines.append("            char _gap_%03X[%d];" % (_inner_prev, _abs - _inner_prev))
+                                _t = mem.get('type', 'int')
+                                _n = mem.get('name', '?')
+                                lines.append("            %s %s; // +0x%X" % (_t, _n, _abs))
+                                _inner_prev = _abs + _estimate_member_size(_t)
+                            lines.append("        };")
+                        else:
+                            # Reference known struct type from ida_structs.json
+                            _ref_ida = _get_ida_structs().get(ref_type, {})
+                            _ref_members = _ref_ida.get('data_members', [])
+                            lines.append("        struct { // %s" % ref_type)
+                            _inner_prev = off
+                            for _ro, _ri in sorted(_ref_members.items() if isinstance(_ref_members, dict) else [(str(dm.get('offset',0)), dm) for dm in _ref_members], key=lambda x: int(x[0], 16)):
+                                _abs = off + int(_ro, 16)
+                                if _abs > _inner_prev:
+                                    lines.append("            char _gap_%03X[%d];" % (_inner_prev, _abs - _inner_prev))
+                                _t = _ri.get('type', 'int')
+                                _n = _ri.get('name', '?')
+                                lines.append("            %s %s; // +0x%X" % (_t, _n, _abs))
+                                _inner_prev = _abs + _estimate_member_size(_t)
+                            lines.append("        };")
+                    lines.append("    };")
+                    # Union takes max space of all variants
+                    _union_sizes = [_estimate_member_size(mtype)]
+                    for v in _field_variants:
+                        if v.get('type') == 'struct':
+                            vs = 0
+                            for mem in v.get('_members', []):
+                                e = int(mem['offset'], 16) + _estimate_member_size(mem.get('type','int'))
+                                vs = max(vs, e - off)
+                            _union_sizes.append(vs)
+                        else:
+                            rd = _get_ida_structs().get(v['type'], {})
+                            _union_sizes.append(rd.get('size', 0))
+                    member_size = max(_union_sizes)
+                    start_off = off + member_size
+                    continue
                 member_size = _emit_member(m, off, mname, mtype)
                 start_off = off + member_size
             # Tail padding to reach total size

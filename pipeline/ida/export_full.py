@@ -624,6 +624,8 @@ def export_structs(log):
             # Pass through annotation vtables/methods for codegen
             'vtables': _ann_structs.get(type_name, {}).get('vtables', []),
             'methods': _ann_structs.get(type_name, {}).get('methods', {}),
+            # Pass through _variants (union views) for codegen
+            '_variants': _ann_structs.get(type_name, {}).get('known_members', {}),
         }
         struct_count += 1
 

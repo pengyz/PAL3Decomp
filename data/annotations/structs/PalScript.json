@@ -159,12 +159,17 @@
     },
     "396": {
       "name": "m_RoleSlotArray",
-      "type": "tagRoleSlot"
+      "type": "unsigned char[896]",
+      "_variants": [
+        {
+          "type": "tagRoleSlot"
+        }
+      ]
     },
     "397": {
       "name": "_todo_18D",
       "type": "unsigned char",
-      "source": "binary:SetRoleActions [esi-0x47]=Find_result"
+      "source": "binary:SetRoleActions [esi-0x47]=Find_result; overlap with m_RoleSlotArray[+1] as slot[0].nRoleID high byte"
     },
     "468": {
       "name": "m_RoleActionType",

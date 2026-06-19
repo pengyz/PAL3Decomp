@@ -402,6 +402,37 @@ def check():
             if base:
                 errors.append(f"union[{sname}]: unions cannot have base_class")
         else:
+            # Check _variants union references
+            for off_str, m in members.items():
+                variants = m.get('_variants', [])
+                if not variants:
+                    continue
+                base_off = int(off_str.split('_')[0], 0)
+                main_type = m.get('type', 'int')
+                main_size = _estimate_member_size(main_type, structs)
+                for v in variants:
+                    ref_type = v.get('type', '')
+                    if not ref_type:
+                        continue
+                    if ref_type == 'struct':
+                        # Inline struct: compute max extent
+                        ref_size = 0
+                        for mem in v.get('_members', []):
+                            mem_end = int(mem['offset'], 16) + _estimate_member_size(mem.get('type', 'int'), structs)
+                            ref_size = max(ref_size, mem_end - base_off)
+                    else:
+                        if ref_type not in all_struct_names:
+                            errors.append(f"structs[{sname}]: _variants ref to unknown type '{ref_type}'")
+                            continue
+                        ref_data = structs.get(ref_type, {})
+                        ref_size = ref_data.get('binary_size', 0)
+                        if ref_data.get('is_union'):
+                            errors.append(f"structs[{sname}]: _variants cannot reference union type '{ref_type}'")
+                    if ref_size > main_size:
+                        errors.append(
+                            f"structs[{sname}]: _variants '{ref_type}' size {ref_size} > "
+                            f"main field '{m.get('name')}' size {main_size}")
+
             # Check member overlap (using known struct sizes) - structs only
             # Parse known_member keys as "base_offset[_variant]" where variant is optional
             def _base_off(key):
