@@ -587,6 +587,12 @@
       "name": "m_bParamFlag",
       "type": "unsigned char",
       "source": "A:binary_mov_byte_[eax+0D9h]_0"
+    },
+    "0x2A8": {
+      "name": "m_InnerActor",
+      "type": "Actor *",
+      "_flexible": true,
+      "source": "overlap, GetInnerAnimDuration uses ((Actor*)&m_fAngleDeg+1)->GetAnimDuration"
     }
   },
   "methods": {
