@@ -1,0 +1,17 @@
+{
+  "name": "tagTaskSlotHeader",
+  "binary_size": 8,
+  "known_members": {
+    "0": {
+      "name": "pRoleTaskData",
+      "type": "void *",
+      "source": "A:binary_GetTaskParam/SetTaskState_read_[esi+eax]"
+    },
+    "4": {
+      "name": "nTaskCount",
+      "type": "int",
+      "source": "A:binary_SetTaskState_v3[1]_loop_limit"
+    }
+  },
+  "methods": {}
+}

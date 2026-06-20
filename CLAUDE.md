@@ -76,6 +76,43 @@ annotations → apply → IDB → Hex-Rays → decomp JSON → codegen → C++  
 - **禁止仅凭 Hex-Rays 反编译文本推断偏移**——除非 IDB 已 apply_annotations 且结构体正确。
 - **禁止仅凭 signature this 修正函数归属**——必须有 decomp member access evidence（函数内 this->member 引用的成员在目标类中存在且不在原类中存在）。
 
+### inline union/struct 语法（2026-06-20 新增）
+
+对于内存复用/重叠的字段，annotation JSON 的 `type` 字段可使用 dict 形式定义 inline union/struct：
+
+```json
+// 内联 union — 同一偏移的多视图
+"offset": {
+  "name": "field_name",
+  "type": {
+    "union": [
+      { "type": "BaseType",      "name": "variant1" },
+      { "type": { "struct": [    // 嵌套内联 struct
+        { "offset": 0, "name": "member1", "type": "int" },
+        { "offset": 4, "name": "member2", "type": "float" }
+      ]}, "name": "variant2" }
+    ]
+  },
+  "source": "overlay:..."
+}
+```
+
+生成效果：
+```cpp
+union { // +0xN
+    BaseType variant1;
+    struct { int member1; float member2; } variant2;
+} field_name;
+```
+
+关键约束：
+- `struct` 内成员的 `offset` 是**相对于外层 struct 起始**的偏移
+- type 可嵌套：`union` 成员可包含 `struct`，`struct` 成员可包含 `union`
+- 同一 struct JSON 内允许多个不同偏移的 inline union/struct
+- 此语法**只适用于本类 `known_members` 范围内的偏移**（不能跨越继承边界在基类区域内插入成员）
+- 跨继承边界的内存复用应在定义该偏移的基类中标注 union
+- **`union` 本身即为 overlap 声明**：`check_annotations` 遇到 `type={"union":[...]}` 时会自动跳过该成员与后续成员的 overlap 检测，无需额外在 `source` 中写 `overlap`
+
 ### workaround 规则
 - **禁止破坏性 workaround**：不为了编译通过而丢失类型信息或结构体定义。`void*`、`int`、`char[]` 等泛化类型只在确实不知道真实类型时使用。
 - **后处理只做等价变换**：codegen pipeline 只做不改变语义的代码转换，不编造信息。

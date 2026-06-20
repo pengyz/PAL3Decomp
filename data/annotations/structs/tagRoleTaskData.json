@@ -1,0 +1,27 @@
+{
+  "name": "tagRoleTaskData",
+  "binary_size": 72,
+  "known_members": {
+    "0": {
+      "name": "nStatus",
+      "type": "int",
+      "source": "A:binary_SetTaskState_*i==4_loop_check"
+    },
+    "8": {
+      "name": "nActionType",
+      "type": "int",
+      "source": "A:binary_GetTaskParam_write_[esi+edx+8]=3"
+    },
+    "16": {
+      "name": "pRoleState",
+      "type": "void *",
+      "source": "A:binary_GetTaskParam_write_[eax+edx+10h]=m_pRoleState"
+    },
+    "24": {
+      "name": "_gap_18",
+      "type": "char[48]",
+      "source": "gap:72-24"
+    }
+  },
+  "methods": {}
+}
