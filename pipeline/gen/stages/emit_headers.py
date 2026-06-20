@@ -1365,6 +1365,23 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     _inline_type_name = mtype.split('::')[0] if '::' in mtype else mtype
                     _inline_data = _get_ida_structs().get(_inline_type_name, {})
                     _inline_dms = _inline_data.get('data_members', [])
+                    _inline_includes = set()
+                    def _collect_includes(t, s):
+                        if t and not t.startswith('$') and not t.startswith('_inline_') and '::' not in t:
+                            _b = re.sub(r'\[(?:0x[0-9a-fA-F]+|\d+)\]', '', t).replace('*', '').strip()
+                            if _b and _b not in PRIMITIVES and _b not in SYSTEM_TYPES and _valid_type_name(_b):
+                                s.add(_b)
+                        elif isinstance(t, str) and '::' in t:
+                            _inner = _get_ida_structs().get(t, {})
+                            for _im in _inner.get('data_members', []):
+                                _collect_includes(_im.get('type', ''), s)
+                    for _idm in _inline_dms:
+                        _collect_includes(_idm.get('type', ''), _inline_includes)
+                    for _inc in sorted(_inline_includes):
+                        _sub = get_class_dir(_inc)
+                        inc_line = '#include "%s/%s.h"' % (_sub, _inc)
+                        if inc_line not in lines:
+                            lines.append(inc_line)
                     if _inline_dms:
                         _kind = "union" if _inline_data.get('kind') == 'union' else "struct"
                         lines.append("    %s { // +0x%X" % (_kind, off))
@@ -1390,12 +1407,24 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                                             lines.append("            char _gap_%03X[%d];" % (_iip, _iiab - _iip))
                                         _iit = _iidm.get('type', 'int')
                                         _iin = _iidm.get('name', '?')
-                                        lines.append("            %s %s; // +0x%X" % (_iit, _iin, _iiab))
-                                        _iip = _iiab + 4
+                                        _iarr = re.search(r'^(.*?)((?:\[(?:0x[0-9a-fA-F]+|\d+)\])+)$', _iit)
+                                        if _iarr:
+                                            _iit = _iarr.group(1).strip()
+                                            _ia = _iarr.group(2)
+                                            lines.append("            %s %s%s; // +0x%X" % (_iit, _iin, _ia, _iiab))
+                                        else:
+                                            lines.append("            %s %s; // +0x%X" % (_iit, _iin, _iiab))
+                                        _iip = _iiab + _estimate_member_size(_iit)
                                     lines.append("        } %s;" % _in)
                                     _inner_prev = _iab + _inner_data.get('size', 4)
                                     continue
-                            lines.append("        %s %s; // +0x%X" % (_it, _in, _iab))
+                            _arr = re.search(r'^(.*?)((?:\[(?:0x[0-9a-fA-F]+|\d+)\])+)$', _it)
+                            if _arr:
+                                _it = _arr.group(1).strip()
+                                _ia = _arr.group(2)
+                                lines.append("        %s %s%s; // +0x%X" % (_it, _in, _ia, _iab))
+                            else:
+                                lines.append("        %s %s; // +0x%X" % (_it, _in, _iab))
                             _inner_prev = _iab + _estimate_member_size(_it)
                         lines.append("    } %s;" % mname)
                         member_size = _inline_data.get('size', 4)
