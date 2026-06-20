@@ -1379,11 +1379,20 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                                 _collect_includes(_im.get('type', ''), s)
                     for _idm in _inline_dms:
                         _collect_includes(_idm.get('type', ''), _inline_includes)
-                    for _inc in sorted(_inline_includes):
-                        _sub = get_class_dir(_inc)
-                        inc_line = '#include "%s/%s.h"' % (_sub, _inc)
-                        if inc_line not in lines:
-                            lines.append(inc_line)
+                    if _inline_includes:
+                        _insert_at = 0
+                        for _i, _l in enumerate(lines):
+                            if _l.startswith('#include') or _l.startswith('#pragma') or _l.strip() == '':
+                                continue
+                            if _l.strip().startswith('class ') or _l.strip().startswith('struct ') or _l.strip().startswith('union '):
+                                _insert_at = _i
+                                break
+                            _insert_at = _i + 1
+                        for _inc in sorted(_inline_includes):
+                            _sub = get_class_dir(_inc)
+                            _il = '#include "%s/%s.h"' % (_sub, _inc)
+                            if _il not in lines:
+                                lines.insert(_insert_at, _il)
                     if _inline_dms:
                         _kind = "union" if _inline_data.get('kind') == 'union' else "struct"
                         lines.append("    %s { // +0x%X" % (_kind, off))
