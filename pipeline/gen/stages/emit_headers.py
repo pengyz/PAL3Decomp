@@ -268,6 +268,8 @@ def should_skip_class(name):
         return True
     if name.startswith(SKIP_PREFIXES):
         return True
+    if name.startswith('_inline_'):
+        return True
     return False
 
 # Type mapping for header output (includes IDA internal type names)
