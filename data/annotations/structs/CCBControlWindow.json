@@ -54,8 +54,18 @@
     },
     "112": {
       "name": "m_CurCtrl",
-      "type": "int",
+      "type": "UIWnd *",
       "offset": 112
+    },
+    "116": {
+      "name": "m_CurCtrl_1",
+      "type": "UIWnd *",
+      "offset": 116
+    },
+    "120": {
+      "name": "m_CurCtrl_2",
+      "type": "UIWnd *",
+      "offset": 120
     },
     "0": {
       "name": "__vftable",
@@ -73,8 +83,8 @@
     },
     "0x0051AA20": {
       "name": "Create",
-      "signature": "bool __thiscall(tagRECT *rc, UIWnd *pFather, int nVal, int nVal2)",
-      "source": "pdb_ret"
+      "signature": "bool __thiscall(UIWnd **ppChild, int nCtrlID, tagRECT *rc, int nDataIdx)",
+      "source": "annotation_fix"
     },
     "0x0051AB60": {
       "name": "HandleInput",

@@ -462,18 +462,41 @@ def run(code, ctx):
     code = _vtable_re2.sub(lambda m: _try_resolve_vtable2(m) or m.group(0), code)
 
     # Generic OOP substitution: obj->__vftable->Method(obj, ...) → obj->Method(...)
-    # Match: ((type(...))(callconv*)(params))obj->__vftable->Method)(obj, args)
+    # Pattern 1: this->member->__vftable->Method(this->member, extra_args) → this->member->Method(extra_args)
     code = re.sub(
         r'\(\(\s*[\w\s]+(?:\s*\*)*\s*'               # ((type... (*
         r'\(\s*(?:__thiscall\s*)?\s*\*\s*\)'          # (__thiscall**)
         r'\s*\([^)]*\)\s*\)\s*'                       # )(type_params))
-        r'(\w+)\s*->\s*'                              # obj ->
-        r'__vftable\s*->\s*(\w+)\)',                  # __vftable->Method)
-        r'\1->\2',
+        r'(\w+(?:\s*->\s*\w+)*)\s*->\s*'              # this->member ->  (capture full chain)
+        r'__vftable\s*->\s*(\w+)\)'                   # __vftable->Method)
+        r'\s*\(\s*\1\s*(?:,\s*)?'                     # (same_expr, ...)
+        r'([^)]*)\)\s*;',                             # extra_args);
+        r'\1->\2(\3);',
+        code
+    )
+    # Pattern 2: (*ptr)->__vftable->Method(*ptr, extra_args) → ptr->Method(extra_args)
+    code = re.sub(
+        r'\(\(\s*[\w\s]+(?:\s*\*)*\s*'               # ((type... (*
+        r'\(\s*(?:__thiscall\s*)?\s*\*\s*\)'          # (__thiscall**)
+        r'\s*\([^)]*\)\s*\)\s*'                       # )(type_params))
+        r'\(\s*\*\s*(\w+)\)\s*->\s*'                  # (*ptr)->
+        r'__vftable\s*->\s*(\w+)\)'                   # __vftable->Method)
+        r'\s*\(\s*\*\s*\1\s*(?:,\s*)?'                # (*ptr, ...)
+        r'([^)]*)\)\s*;',                             # extra_args);
+        r'\1->\2(\3);',
+        code
+    )
+
+
+    # Cleanup: remove redundant self-arg from already-converted calls
+    # obj->Method(obj, ...) → obj->Method(...)  and  obj->Method(*obj, ...) → obj->Method(...)
+    code = re.sub(
+        r'(?<!\w)(\w+(?:\s*->\s*\w+)*)->(\w+)\(\s*\1\s*(?:,\s*)?',
+        r'\1->\2(',
         code
     )
     code = re.sub(
-        r'(\w+)->(\w+)\(\1\s*(?:,\s*)?',
+        r'(\w+(?:\s*->\s*\w+)*)->(\w+)\(\s*\*\s*\1\s*(?:,\s*)?',
         r'\1->\2(',
         code
     )
