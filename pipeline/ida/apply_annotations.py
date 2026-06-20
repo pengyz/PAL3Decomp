@@ -191,6 +191,72 @@ def _resolve_member_type(mtype_str, til):
     return None
 
 
+def _resolve_type_object(tdef, til):
+    """Build tinfo_t from {'union': [...]} or {'struct': [...]} annotation type.
+    Recursively resolves nested types.
+    """
+    if not isinstance(tdef, dict):
+        return None
+    if "union" in tdef:
+        return _build_udt(tdef["union"], til, is_union=True)
+    if "struct" in tdef:
+        return _build_udt(tdef["struct"], til, is_union=False)
+    return None
+
+
+def _build_udt(members, til, is_union):
+    """Build a UDT from member definitions using IDA's UDT API.
+    Returns tinfo_t or None on failure.
+    """
+    udt = ida_typeinf.udt_type_data_t()
+    if is_union:
+        udt.is_union = True
+    else:
+        udt.taudt_bits = 1024
+
+    cursor = 0
+    for m in members:
+        mname = m.get("name", "")
+        mtype = m.get("type", "int")
+        moff = m.get("offset")
+
+        if isinstance(mtype, dict):
+            tinfo = _resolve_type_object(mtype, til)
+        else:
+            tinfo = _resolve_member_type(mtype, til)
+
+        if tinfo is None:
+            log("[!] _build_udt: cannot resolve type for '%s'" % mname)
+            return None
+
+        tsz = tinfo.get_size()
+        if tsz in (0, 0xFFFFFFFFFFFFFFFF):
+            log("[!] _build_udt: invalid size %d for '%s'" % (tsz, mname))
+            return None
+
+        offset = moff if moff is not None else cursor
+
+        um = ida_typeinf.udt_member_t()
+        um.name = mname
+        um.offset = offset * 8
+        um.size = tsz * 8
+        um.type = tinfo
+        udt.push_back(um)
+
+        if not is_union:
+            cursor = max(cursor, offset + tsz)
+
+    if not is_union:
+        udt.total_size = cursor
+
+    result = ida_typeinf.tinfo_t()
+    flag = ida_typeinf.BTF_UNION if is_union else ida_typeinf.BTF_STRUCT
+    if not result.create_udt(udt, flag):
+        log("[!] _build_udt: create_udt failed")
+        return None
+    return result
+
+
 def log(msg):
     log_lines.append(str(msg))
     print(msg)
@@ -312,7 +378,10 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
 
     for offset, info in sorted_members:
         mname = info["name"]
-        mtype = info["type"].replace("class ", "").replace("struct ", "")
+        mtype_raw = info.get("type", "int")
+        if isinstance(mtype_raw, dict):
+            continue
+        mtype = mtype_raw.replace("class ", "").replace("struct ", "")
 
         if offset > cursor:
             lines.append("    char _gap_%03X[%d];" % (cursor, offset - cursor))
@@ -636,22 +705,34 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             continue
 
         mname = minfo["name"]
-        mtype_str = _normalize_type(minfo["type"])
+        mtype_raw = minfo.get("type", "int")
 
-        # STL/template types: flatten to char[span] (TIL API can't handle template syntax)
-        _is_stl = 'std::' in mtype_str or '<' in mtype_str
-        if _is_stl:
-            sorted_offs = sorted(int(o, 0) for o in members if int(o, 0) > offset)
-            span = min(sorted_offs) - offset if sorted_offs else binary_size - offset
-            if span <= 0:
-                span = 4
-            mtype_str = "char[%d]" % span
+        # Handle object-typed member (inline union/struct)
+        if isinstance(mtype_raw, dict):
+            tinfo = _resolve_type_object(mtype_raw, til)
+            if tinfo is None:
+                return (False, "add member +%d '%s': _resolve_type_object failed" % (
+                    offset, mname))
+            # Register inline type with a meaningful name to avoid IDA hash names
+            _inline_name = "_inline_%s_%s" % (name, mname)
+            tinfo.set_named_type(til, _inline_name, ida_typeinf.NTF_REPLACE)
+        else:
+            mtype_str = _normalize_type(mtype_raw)
 
-        # Resolve type string to tinfo_t
-        tinfo = _resolve_member_type(mtype_str, til)
-        if tinfo is None:
-            return (False, "add member +%d '%s' type '%s' FAILED: _resolve_member_type" % (
-                offset, mname, mtype_str))
+            # STL/template types: flatten to char[span] (TIL API can't handle template syntax)
+            _is_stl = 'std::' in mtype_str or '<' in mtype_str
+            if _is_stl:
+                sorted_offs = sorted(int(o, 0) for o in members if int(o, 0) > offset)
+                span = min(sorted_offs) - offset if sorted_offs else binary_size - offset
+                if span <= 0:
+                    span = 4
+                mtype_str = "char[%d]" % span
+
+            # Resolve type string to tinfo_t
+            tinfo = _resolve_member_type(mtype_str, til)
+            if tinfo is None:
+                return (False, "add member +%d '%s' type '%s' FAILED: _resolve_member_type" % (
+                    offset, mname, mtype_str))
 
         member_size = tinfo.get_size()
         if member_size in (0, 0xFFFFFFFFFFFFFFFF):
@@ -1296,7 +1377,23 @@ def apply_annotations():
     fwd_names = set(structs.keys())
     for sinfo in structs.values():
         for m in sinfo.get("known_members", {}).values():
-            mtype = m["type"].replace("class ", "").replace("struct ", "")
+            mtype = m["type"]
+            if isinstance(mtype, dict):
+                # inline union/struct: recursively extract type references
+                def _extract_types(tdef, out):
+                    if isinstance(tdef, str):
+                        base = _re_fwd.sub(r'\[.*\]', '', tdef).replace("*", "").strip()
+                        if base and base not in _primitives and '::' not in base:
+                            out.add(base)
+                    elif isinstance(tdef, dict):
+                        for val in tdef.values():
+                            if isinstance(val, list):
+                                for item in val:
+                                    if isinstance(item, dict):
+                                        _extract_types(item.get("type"), out)
+                _extract_types(mtype, fwd_names)
+                continue
+            mtype = mtype.replace("class ", "").replace("struct ", "")
             # Extract base type (strip pointers and arrays)
             base = _re_fwd.sub(r'\[.*\]', '', mtype).replace("*", "").strip()
             if base and base not in _primitives:
@@ -1351,7 +1448,10 @@ def apply_annotations():
         elif base and base in all_struct_names:
             deps.add(base)
         for off, m in sinfo.get("known_members", {}).items():
-            mtype = m["type"].replace("class ", "").replace("struct ", "")
+            mtype = m["type"]
+            if isinstance(mtype, dict):
+                continue  # inline union/struct deps resolved via referenced types
+            mtype = mtype.replace("class ", "").replace("struct ", "")
             if "*" in mtype:
                 continue
             base_type = _re2.sub(r'\[.*\]', '', mtype).strip()

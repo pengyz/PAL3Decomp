@@ -38,6 +38,17 @@ def load_annotations():
 
 def _estimate_member_size(mtype, structs):
     """Estimate member size for overlap detection."""
+    if isinstance(mtype, dict):
+        # type=object (inline union/struct): use max of members
+        mems = mtype.get("union") or mtype.get("struct") or []
+        max_sz = 0
+        for m in mems:
+            sz = _estimate_member_size(m.get("type", "int"), structs)
+            off = m.get("offset", 0)
+            end = off + sz
+            if end > max_sz:
+                max_sz = end
+        return max_sz
     if '*' in mtype:
         return 4
     arr = re.search(r'\[(\d+)\]', mtype)
@@ -69,6 +80,38 @@ def _estimate_member_size(mtype, structs):
         if sz:
             return int(sz)
     return 4
+
+
+def _check_type_object(tdef, sname, errors, path=""):
+    """Validate a type=object definition recursively."""
+    if not isinstance(tdef, dict):
+        return
+    tkey = None
+    members = None
+    if "union" in tdef:
+        tkey = "union"
+        members = tdef["union"]
+    elif "struct" in tdef:
+        tkey = "struct"
+        members = tdef["struct"]
+    else:
+        errors.append("structs[%s]:%s unknown type object keys: %s" % (
+            sname, path, list(tdef.keys())))
+        return
+    if not isinstance(members, list):
+        errors.append("structs[%s]:%s.%s must be an array" % (sname, path, tkey))
+        return
+    for i, m in enumerate(members):
+        if not isinstance(m, dict):
+            errors.append("structs[%s]:%s.%s[%d] must be an object" % (sname, path, tkey, i))
+            continue
+        if "name" not in m:
+            errors.append("structs[%s]:%s.%s[%d] missing 'name'" % (sname, path, tkey, i))
+        mtype = m.get("type", "")
+        if not mtype:
+            errors.append("structs[%s]:%s.%s[%d] missing 'type'" % (sname, path, tkey, i))
+        if isinstance(mtype, dict):
+            _check_type_object(mtype, sname, errors, "%s.%s[%d].type" % (path, tkey, i))
 
 
 def check():
@@ -433,6 +476,13 @@ def check():
                             f"structs[{sname}]: _variants '{ref_type}' size {ref_size} > "
                             f"main field '{m.get('name')}' size {main_size}")
 
+            # Validate type=object fields (inline union/struct)
+            for off_str, m in members.items():
+                mtype = m.get('type', '')
+                if not isinstance(mtype, dict):
+                    continue
+                _check_type_object(mtype, sname, errors)
+
             # Check member overlap (using known struct sizes) - structs only
             # Parse known_member keys as "base_offset[_variant]" where variant is optional
             def _base_off(key):
@@ -483,6 +533,8 @@ def check():
                 # Skip alignment for members in documented flexible/overlap regions
                 if any(kw in m.get('source', '').lower() for kw in ('overlap', 'confirmed', 'flexible')):
                     continue
+                if isinstance(mtype, dict):
+                    continue  # type=object, alignment checked in _check_type_object
                 if '*' in mtype and off % 4 != 0:
                     errors.append(
                         f"structs[{sname}]: ALIGN: +{off} {name} = {mtype} (pointer not 4-aligned)")

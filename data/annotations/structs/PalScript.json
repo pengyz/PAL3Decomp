@@ -114,13 +114,38 @@
     },
     "1300": {
       "name": "m_szDialog1",
-      "type": "char[256]",
-      "source": "binary:1x access | annotate_todo",
-      "_variants": [
-        {
-          "type": "tagDialogScriptOverlay"
-        }
-      ]
+      "type": {
+        "union": [
+          {
+            "type": {
+              "struct": [
+                {
+                  "offset": 140,
+                  "name": "pScriptVtable",
+                  "type": "void *"
+                },
+                {
+                  "offset": 148,
+                  "name": "pScriptPtrA",
+                  "type": "void *"
+                },
+                {
+                  "offset": 152,
+                  "name": "pScriptPtrB",
+                  "type": "void *"
+                },
+                {
+                  "offset": 160,
+                  "name": "pScriptPtrC",
+                  "type": "void *"
+                }
+              ]
+            },
+            "name": "overlay"
+          }
+        ]
+      },
+      "source": "binary:1x access | annotate_todo"
     },
     "1556": {
       "name": "m_szDialog2",
@@ -519,30 +544,6 @@
       "name": "m_fSceneCfg",
       "type": "float[48]",
       "source": "binary_scan: IDA array field, merged from individual elements"
-    },
-    "0x5A0": {
-      "name": "pScriptVtable",
-      "type": "void *",
-      "_flexible": true,
-      "source": "m_szDialog1[140] overlap — script vtable pointer, called via (**v)(v,1)"
-    },
-    "0x5A8": {
-      "name": "pScriptPtrA",
-      "type": "void *",
-      "_flexible": true,
-      "source": "m_szDialog1[148] overlap — script reference"
-    },
-    "0x5AC": {
-      "name": "pScriptPtrB",
-      "type": "void *",
-      "_flexible": true,
-      "source": "m_szDialog1[152] overlap — script reference"
-    },
-    "0x5B4": {
-      "name": "pScriptPtrC",
-      "type": "void *",
-      "_flexible": true,
-      "source": "m_szDialog1[160] overlap — script reference"
     }
   },
   "methods": {

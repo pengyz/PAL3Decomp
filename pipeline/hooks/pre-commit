@@ -45,6 +45,8 @@ def scan_violations(structs_dir):
         prev_off = -1
         for off, m in sorted_m:
             t = m.get('type', '')
+            if isinstance(t, dict):
+                continue  # type=object (inline union/struct), checked by check_annotations
             base_t = t.split('[')[0].strip()
             if '*' in t or any(x in t for x in ['int','float','DWORD','unsigned long','unsigned int','LONG','UINT','BOOL']):
                 align, sz = 4, 4

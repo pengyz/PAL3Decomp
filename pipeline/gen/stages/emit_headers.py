@@ -880,6 +880,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 fwd_types.add(base)
             else:
                 include_types.add(base)
+        # Also scan _variants type references for include resolution
+        for _v_off, _v_info in ann_variants.items():
+            for _vv in _v_info.get('_variants', []):
+                _vt = _vv.get('type', '')
+                if _vt and _vt != 'struct' and _vt not in PRIMITIVES and _vt not in SYSTEM_TYPES and _valid_type_name(_vt):
+                    include_types.add(_vt)
     except:
         pass
 
@@ -1415,30 +1421,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                                 _inner_prev = _abs + _estimate_member_size(_t)
                             lines.append("        };")
                         else:
-                            # Reference known struct type from ida_structs.json
-                            _ref_ida = _get_ida_structs().get(ref_type, {})
-                            # Use _variants (passed-through known_members) for relative offsets
-                            _ref_members = _ref_ida.get('_variants', {})
-                            if not _ref_members:
-                                # Fallback to data_members (absolute offsets)
-                                _ref_members = {str(dm.get('offset',0)): dm for dm in _ref_ida.get('data_members', [])}
-                            lines.append("        struct { // %s" % ref_type)
-                            _inner_prev = off
-                        for _ro, _ri in sorted(_ref_members.items() if isinstance(_ref_members, dict) else [(str(dm.get('offset',0)), dm) for dm in _ref_members], key=lambda x: int(x[0], 0)):
-                            _abs = off + int(_ro, 0)
-                            if _abs > _inner_prev:
-                                lines.append("            char _gap_%03X[%d];" % (_inner_prev, _abs - _inner_prev))
-                            _t = _ri.get('type', 'int')
-                            _n = _ri.get('name', '?')
-                            _arr = re.search(r'^(.*?)((?:\[(?:0x[0-9a-fA-F]+|\d+)\])+)$', _t)
-                            if _arr:
-                                _t = _arr.group(1).strip()
-                                _a = _arr.group(2)
-                                lines.append("            %s %s%s; // +0x%X" % (_t, _n, _a, _abs))
-                            else:
-                                lines.append("            %s %s; // +0x%X" % (_t, _n, _abs))
-                            _inner_prev = _abs + _estimate_member_size(_t)
-                        lines.append("        };")
+                            lines.append("        %s __%s;" % (ref_type, ref_type))
                     lines.append("    };")
                     # Union takes max space of all variants
                     _union_sizes = [_estimate_member_size(mtype)]
