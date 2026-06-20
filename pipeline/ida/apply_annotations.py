@@ -208,6 +208,18 @@ def _build_udt(members, til, is_union):
     """Build a UDT from member definitions using IDA's UDT API.
     Returns tinfo_t or None on failure.
     """
+
+    def _usz(mtype, til):
+        """Estimate size of a member type for union total_size computation."""
+        if isinstance(mtype, dict):
+            # Recursive: union/struct
+            inner = _resolve_type_object(mtype, til)
+            return inner.get_size() if inner else 4
+        t = _resolve_member_type(mtype, til)
+        if t and t.get_size() not in (0, 0xFFFFFFFFFFFFFFFF):
+            return t.get_size()
+        return 4
+
     udt = ida_typeinf.udt_type_data_t()
     if is_union:
         udt.is_union = True
@@ -248,6 +260,15 @@ def _build_udt(members, til, is_union):
 
     if not is_union:
         udt.total_size = cursor
+    else:
+        _max_usz = 0
+        for _um in members:
+            _usz_val = _usz(_um.get("type", "int"), til)
+            _uoff = _um.get("offset", 0)
+            _uend = _uoff + _usz_val
+            if _uend > _max_usz:
+                _max_usz = _uend
+        udt.total_size = _max_usz
 
     result = ida_typeinf.tinfo_t()
     flag = ida_typeinf.BTF_UNION if is_union else ida_typeinf.BTF_STRUCT

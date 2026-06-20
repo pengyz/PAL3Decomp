@@ -189,7 +189,14 @@
     },
     "396": {
       "name": "m_RoleSlotArray",
-      "type": "tagRoleSlot"
+      "type": {
+        "union": [
+          {
+            "type": "tagRoleSlot",
+            "name": "slot"
+          }
+        ]
+      }
     },
     "397": {
       "name": "_todo_18D",

@@ -876,6 +876,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 continue
             if '::' in base or '<' in base:
                 continue
+            if base.startswith('_inline_'):
+                continue
             if is_ptr:
                 fwd_types.add(base)
             else:
@@ -886,6 +888,17 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 _vt = _vv.get('type', '')
                 if _vt and _vt != 'struct' and _vt not in PRIMITIVES and _vt not in SYSTEM_TYPES and _valid_type_name(_vt):
                     include_types.add(_vt)
+        # Also scan _inline_ types for member type references
+        for m in ann_struct_ref.get('data_members', []):
+            mtype = m.get('type', '')
+            if not mtype.startswith('_inline_'):
+                continue
+            _inline_data = _get_ida_structs().get(mtype, {})
+            for _idm in _inline_data.get('data_members', []):
+                _it = _idm.get('type', '')
+                _base = re.sub(r'\[(?:0x[0-9a-fA-F]+|\d+)\]', '', _it).replace('*', '').strip()
+                if _base and _base not in PRIMITIVES and _base not in SYSTEM_TYPES and _valid_type_name(_base):
+                    include_types.add(_base)
     except:
         pass
 
@@ -944,7 +957,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             elif t in known_classes:
                 resolved_includes.add(t)
             elif (header_dir / ('%s.h' % t)).exists():
-                # Header exists on disk but processed later in generation order
+                resolved_includes.add(t)
+            elif (header_dir / get_class_dir(t) / ('%s.h' % t)).exists():
                 resolved_includes.add(t)
             else:
                 fwd_types.add(t)
@@ -1342,6 +1356,47 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         if _get_ida_structs().get(_elem, {}).get('data_members'):
                             mtype = _ann_var
                 off = int(off_str)
+                # Inline UDTs: render union/struct definition inline
+                if mtype.startswith('_inline_') or '::_inline_' in mtype or '::$' in mtype:
+                    _inline_type_name = mtype.split('::')[0] if '::' in mtype else mtype
+                    _inline_data = _get_ida_structs().get(_inline_type_name, {})
+                    _inline_dms = _inline_data.get('data_members', [])
+                    if _inline_dms:
+                        _kind = "union" if _inline_data.get('kind') == 'union' else "struct"
+                        lines.append("    %s { // +0x%X" % (_kind, off))
+                        _inner_prev = off
+                        for _idm in _inline_dms:
+                            _ioff = _idm.get('offset', 0)
+                            _iab = off + _ioff
+                            if _iab > _inner_prev:
+                                lines.append("        char _gap_%03X[%d]; // +0x%X" % (_inner_prev, _iab - _inner_prev, _inner_prev))
+                            _it = _idm.get('type', 'int')
+                            _in = _idm.get('name', '?')
+                            if isinstance(_it, str) and ('::' in _it):
+                                _inner_data = _get_ida_structs().get(_it, {})
+                                _inner_dms = _inner_data.get('data_members', [])
+                                if _inner_dms:
+                                    _ink = "union" if _inner_data.get('kind') == 'union' else "struct"
+                                    lines.append("        %s {" % _ink)
+                                    _iip = _iab
+                                    for _iidm in _inner_dms:
+                                        _iio = _iidm.get('offset', 0)
+                                        _iiab = _iab + _iio
+                                        if _iiab > _iip:
+                                            lines.append("            char _gap_%03X[%d];" % (_iip, _iiab - _iip))
+                                        _iit = _iidm.get('type', 'int')
+                                        _iin = _iidm.get('name', '?')
+                                        lines.append("            %s %s; // +0x%X" % (_iit, _iin, _iiab))
+                                        _iip = _iiab + 4
+                                    lines.append("        } %s;" % _in)
+                                    _inner_prev = _iab + _inner_data.get('size', 4)
+                                    continue
+                            lines.append("        %s %s; // +0x%X" % (_it, _in, _iab))
+                            _inner_prev = _iab + _estimate_member_size(_it)
+                        lines.append("    } %s;" % mname)
+                        member_size = _inline_data.get('size', 4)
+                        start_off = off + member_size
+                        continue
                 # Skip vfptr at +0 for classes with vtables (compiler-generated)
                 if mname == 'vfptr' and off == 0 and class_vtable_slots(cls_name):
                     start_off = off + 4

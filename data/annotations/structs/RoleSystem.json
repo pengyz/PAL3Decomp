@@ -682,33 +682,15 @@
     },
     "3072": {
       "name": "m_teamSlotsB",
-      "type": "int[200]",
-      "source": "binary_scan:5refs|FullInit: array access indices 94-190",
-      "_variants": [
-        {
-          "type": "tagTeamSlotsBOverlay"
-        }
-      ]
-    },
-    "3624": {
-      "name": "dwInitParam",
-      "type": "HWND",
-      "source": "codegen:global_overlap_detection"
-    },
-    "3628": {
-      "name": "g_hCombatDlg1",
-      "type": "HWND",
-      "source": "codegen:global_overlap_detection"
-    },
-    "3632": {
-      "name": "g_hCombatDlg2",
-      "type": "HWND",
-      "source": "codegen:global_overlap_detection"
-    },
-    "3640": {
-      "name": "g_hCBStageCamDlg",
-      "type": "HWND",
-      "source": "codegen:global_overlap_detection"
+      "type": {
+        "union": [
+          {
+            "type": "tagTeamSlotsBOverlay",
+            "name": "combat"
+          }
+        ]
+      },
+      "source": "binary_scan:5refs|FullInit: array access indices 94-190"
     },
     "4028": {
       "name": "m_pScriptBuf",
@@ -799,36 +781,6 @@
       "name": "m_CCBStageCamBuffer",
       "type": "char",
       "source": "auto:overlap_g_RoleSystemCombat_at_+0x9FC_fix:sprintf_unsigned_char_issue"
-    },
-    "3620": {
-      "name": "m_nCombatViewMode",
-      "type": "int",
-      "source": "auto:overlap_g_RoleSystemCombat_at_+0xE24"
-    },
-    "3636": {
-      "name": "m_nActorRenderCount",
-      "type": "int",
-      "source": "auto:overlap_g_RoleSystemCombat_at_+0xE34"
-    },
-    "3646": {
-      "name": "m_bWPARAM_17A9926",
-      "type": "unsigned char",
-      "source": "auto:overlap_g_RoleSystemCombat_at_+0xE3E"
-    },
-    "3668": {
-      "name": "m_nCCBUISelectedRole",
-      "type": "int",
-      "source": "auto:overlap_g_RoleSystemCombat_at_+0xE54"
-    },
-    "3672": {
-      "name": "m_nCCBUI_17A9940",
-      "type": "int",
-      "source": "auto:overlap_g_RoleSystemCombat_at_+0xE58"
-    },
-    "3678": {
-      "name": "m_bCommandEdited",
-      "type": "unsigned char",
-      "source": "auto:overlap_g_RoleSystemCombat_at_+0xE5E"
     },
     "0x69C": {
       "name": "_todo_69C",

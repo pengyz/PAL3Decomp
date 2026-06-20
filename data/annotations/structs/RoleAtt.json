@@ -14,13 +14,28 @@
     },
     "6": {
       "name": "Remark",
-      "type": "char[512]",
-      "source": "annotation",
-      "_variants": [
-        {
-          "type": "tagRemarkSkillOverlay"
-        }
-      ]
+      "type": {
+        "union": [
+          {
+            "type": {
+              "struct": [
+                {
+                  "offset": 290,
+                  "name": "nSkillCount1",
+                  "type": "int"
+                },
+                {
+                  "offset": 294,
+                  "name": "nSkillCount2",
+                  "type": "int"
+                }
+              ]
+            },
+            "name": "skillCount"
+          }
+        ]
+      },
+      "source": "annotation"
     },
     "518": {
       "name": "ModelID",
@@ -181,18 +196,6 @@
       "name": "getmoney",
       "type": "short",
       "source": "annotation"
-    },
-    "0x128": {
-      "name": "nSkillCount1",
-      "type": "int",
-      "_flexible": true,
-      "source": "overlap with Remark[290], skill count from this[1]"
-    },
-    "0x12C": {
-      "name": "nSkillCount2",
-      "type": "int",
-      "_flexible": true,
-      "source": "overlap with Remark[294], second skill count from this[1]"
     }
   },
   "methods": {

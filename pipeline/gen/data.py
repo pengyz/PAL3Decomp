@@ -146,7 +146,7 @@ class DataStore:
                     var_info = variants.get(str(off)) or variants.get(str(int(off)))
                     if var_info:
                         vt = var_info.get('type', '')
-                        if vt.endswith(']') and '[' in vt:
+                        if isinstance(vt, str) and vt.endswith(']') and '[' in vt:
                             mtype = vt
                     self.struct_members[sname][off] = (mname, mtype)
 
