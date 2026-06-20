@@ -136,10 +136,19 @@ class DataStore:
                 continue
             dms = sinfo.get('data_members', [])
             if dms:
-                self.struct_members[sname] = {
-                    dm['offset']: (dm['name'], dm.get('type', 'int'))
-                    for dm in dms
-                }
+                variants = sinfo.get('_variants', {})
+                self.struct_members[sname] = {}
+                for dm in dms:
+                    mname = dm['name']
+                    mtype = dm.get('type', 'int')
+                    off = dm['offset']
+                    # Restore annotation-preserved array type (IDA truncates arrays to span)
+                    var_info = variants.get(str(off)) or variants.get(str(int(off)))
+                    if var_info:
+                        vt = var_info.get('type', '')
+                        if vt.endswith(']') and '[' in vt:
+                            mtype = vt
+                    self.struct_members[sname][off] = (mname, mtype)
 
         # 3. Struct instances from _globals + struct sizes
         _struct_sizes = {
@@ -147,6 +156,7 @@ class DataStore:
             for sname, sinfo in ida_structs.items()
             if not sname.startswith('_') and sinfo.get('size', 0)
         }
+        self.struct_sizes = dict(_struct_sizes)  # for _resolve_offset array resolution
         import re as _re
         for addr_str, ginfo in _globals.items():
             gtype = ginfo.get('type', '')

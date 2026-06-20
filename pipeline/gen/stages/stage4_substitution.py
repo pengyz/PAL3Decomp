@@ -142,26 +142,32 @@ def _resolve_offset(type_name, offset, prefix):
         if arr_m:
             elem_type = arr_m.group(1).strip()
             arr_count = int(arr_m.group(2))
-            elem_sz = _ELEM_SIZES.get(elem_type, store.struct_members.get(elem_type) and 4 or 0)
+            elem_sz = _ELEM_SIZES.get(elem_type)
+            if elem_sz is None:
+                elem_sz = store.struct_sizes.get(elem_type, 0)
+                if elem_sz == 0:
+                    elem_sz = 4 if store.struct_members.get(elem_type) else 0
             if not elem_sz:
                 sub_m = store.struct_members.get(elem_type)
                 if sub_m:
                     elem_sz = 4
-            if elem_sz and rel < arr_count * elem_sz and rel % elem_sz == 0:
+            if elem_sz and rel < arr_count * elem_sz:
                 idx = rel // elem_sz
                 sub_rel = rel - idx * elem_sz
-                if sub_rel == 0:
-                    return '.%s[%d]' % (mname, idx)
-                # If the element type is primitive (int, char, etc.), don't
-                # try to resolve sub-members — the array is a type-erased
-                # buffer and sub-member names would be invalid (C2228).
                 _is_primitive = elem_type in _ELEM_SIZES and not store.struct_members.get(elem_type)
+                if sub_rel == 0:
+                    if _is_primitive:
+                        continue  # byte-level array, try structured array
+                    return '.%s[%d]' % (mname, idx)
                 if not _is_primitive:
                     sub_members = store.struct_members.get(elem_type)
                     if sub_members:
                         sub = _resolve_offset(elem_type, sub_rel, prefix)
                         if sub:
                             return '.%s[%d]%s' % (mname, idx, sub)
+                if _is_primitive:
+                    continue
+                return '.%s[%d]' % (mname, idx)
         embedded = store.struct_members.get(mtype.strip().rstrip('*').strip())
         if embedded and '*' not in mtype:
             # Use struct's full size as threshold (not primitive default 0x1000)

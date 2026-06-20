@@ -841,8 +841,15 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     try:
         ann_data_ref = _get_ida_structs()
         ann_struct_ref = ann_data_ref.get(cls_name, {})
+        ann_variants = ann_struct_ref.get('_variants', {})
         for m in ann_struct_ref.get('data_members', []):
             mtype = m.get('type', '')
+            # Restore annotation-preserved array type for include scanning
+            _restored = ann_variants.get(str(m.get('offset','')), {}).get('type', '') if m.get('offset') is not None else ''
+            if _restored and '[' in _restored and _restored.count('[') <= 1:
+                _elem = _restored.split('[')[0].strip()
+                if _elem not in PRIMITIVES and _elem not in SYSTEM_TYPES and _get_ida_structs().get(_elem, {}).get('data_members'):
+                    mtype = _restored
             is_ptr = '*' in mtype
             # Detect STL template usage → need pal3_stl.h
             if '<' in mtype and ('std::' in mtype or any(
@@ -1322,6 +1329,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 m = group[0]
                 mname = m.get('name', '_field_%04X' % int(off_str))
                 mtype = m.get('type', 'int')
+                _ann_var = _get_ida_structs().get(cls_name, {}).get('_variants', {}).get(off_str, {}).get('type', '')
+                if _ann_var and '[' in _ann_var and _ann_var.count('[') <= 1:
+                    _elem = _ann_var.split('[')[0].strip()
+                    if _elem not in PRIMITIVES and _elem not in SYSTEM_TYPES:
+                        if _get_ida_structs().get(_elem, {}).get('data_members'):
+                            mtype = _ann_var
                 off = int(off_str)
                 # Skip vfptr at +0 for classes with vtables (compiler-generated)
                 if mname == 'vfptr' and off == 0 and class_vtable_slots(cls_name):
@@ -1392,7 +1405,13 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                                     lines.append("            char _gap_%03X[%d];" % (_inner_prev, _abs - _inner_prev))
                                 _t = mem.get('type', 'int')
                                 _n = mem.get('name', '?')
-                                lines.append("            %s %s; // +0x%X" % (_t, _n, _abs))
+                                _arr = re.search(r'^(.*?)((?:\[(?:0x[0-9a-fA-F]+|\d+)\])+)$', _t)
+                                if _arr:
+                                    _t = _arr.group(1).strip()
+                                    _a = _arr.group(2)
+                                    lines.append("            %s %s%s; // +0x%X" % (_t, _n, _a, _abs))
+                                else:
+                                    lines.append("            %s %s; // +0x%X" % (_t, _n, _abs))
                                 _inner_prev = _abs + _estimate_member_size(_t)
                             lines.append("        };")
                         else:
@@ -1411,7 +1430,13 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                                 lines.append("            char _gap_%03X[%d];" % (_inner_prev, _abs - _inner_prev))
                             _t = _ri.get('type', 'int')
                             _n = _ri.get('name', '?')
-                            lines.append("            %s %s; // +0x%X" % (_t, _n, _abs))
+                            _arr = re.search(r'^(.*?)((?:\[(?:0x[0-9a-fA-F]+|\d+)\])+)$', _t)
+                            if _arr:
+                                _t = _arr.group(1).strip()
+                                _a = _arr.group(2)
+                                lines.append("            %s %s%s; // +0x%X" % (_t, _n, _a, _abs))
+                            else:
+                                lines.append("            %s %s; // +0x%X" % (_t, _n, _abs))
                             _inner_prev = _abs + _estimate_member_size(_t)
                         lines.append("        };")
                     lines.append("    };")
