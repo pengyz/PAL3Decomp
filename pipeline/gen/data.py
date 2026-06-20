@@ -274,11 +274,11 @@ class DataStore:
             except ValueError:
                 continue
             _addr_hex = '%X' % _addr
-            # Add all possible raw names so extern generation can match
-            # regardless of which IDA prefix the decomp code uses.
+            # Add all possible raw names for extern generation and name resolution
             for _pfx in ('dword', 'byte', 'word', 'flt', 'off', 'stru', 'unk'):
                 _raw = '%s_%s' % (_pfx, _addr_hex)
                 self.annotated_globals[_raw] = (_name, _type)
+                self.globals_map[_raw] = _name
 
         # 5b. Free function sigs + static methods + scalar_dtor detection from decomp JSONs
         _decomp_dir = self.project_root / "asm" / "pal3" / "decomp"
