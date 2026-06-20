@@ -77,41 +77,6 @@
       "type": "float",
       "source": "binary:sub_43A3E0 fld[ecx+0x44];fcomp 5e-5(active?);ctor=10.0; timer period"
     },
-    "512": {
-      "name": "m_nLoadFromFile",
-      "type": "int",
-      "source": "binary:3x access"
-    },
-    "516": {
-      "name": "m_nLoadState",
-      "type": "int",
-      "source": "decomp:copied_from_m_nLoadFromFile"
-    },
-    "520": {
-      "name": "m_nNext",
-      "type": "int",
-      "source": "binary:17x access"
-    },
-    "528": {
-      "name": "m_nConfigIndex",
-      "type": "int",
-      "source": "binary:30x access | annotate_todo"
-    },
-    "780": {
-      "name": "m_nDialogData",
-      "type": "short",
-      "source": "A:66_prefix_word_access_in_class_method"
-    },
-    "1040": {
-      "name": "m_nDialogResult",
-      "type": "int",
-      "source": "binary:2x access | annotate_todo"
-    },
-    "1044": {
-      "name": "m_DialogByte",
-      "type": "unsigned char",
-      "source": "binary:1x access"
-    },
     "1300": {
       "name": "m_szDialog1",
       "type": {
@@ -194,19 +159,206 @@
           {
             "type": "tagRoleSlot",
             "name": "slot"
+          },
+          {
+            "type": {
+              "struct": [
+                {
+                  "offset": 1,
+                  "name": "_todo_18D",
+                  "type": "unsigned char"
+                },
+                {
+                  "offset": 36,
+                  "name": "_todo_1B0",
+                  "type": "int"
+                },
+                {
+                  "offset": 52,
+                  "name": "m_bRoleAction",
+                  "type": "int"
+                },
+                {
+                  "offset": 72,
+                  "name": "m_RoleActionType",
+                  "type": "unsigned char"
+                },
+                {
+                  "offset": 76,
+                  "name": "_todo_1B8",
+                  "type": "float"
+                },
+                {
+                  "offset": 84,
+                  "name": "_todo_01E0",
+                  "type": "float"
+                },
+                {
+                  "offset": 88,
+                  "name": "_todo_1C4",
+                  "type": "float"
+                },
+                {
+                  "offset": 92,
+                  "name": "_todo_1C8",
+                  "type": "float"
+                },
+                {
+                  "offset": 96,
+                  "name": "_todo_1CC",
+                  "type": "float"
+                },
+                {
+                  "offset": 100,
+                  "name": "_todo_1D0",
+                  "type": "float"
+                },
+                {
+                  "offset": 104,
+                  "name": "_todo_1F4",
+                  "type": "float"
+                },
+                {
+                  "offset": 108,
+                  "name": "_todo_1F8",
+                  "type": "float"
+                },
+                {
+                  "offset": 112,
+                  "name": "_todo_1FC",
+                  "type": "float"
+                },
+                {
+                  "offset": 116,
+                  "name": "m_nLoadFromFile",
+                  "type": "int"
+                },
+                {
+                  "offset": 120,
+                  "name": "m_nLoadState",
+                  "type": "int"
+                },
+                {
+                  "offset": 124,
+                  "name": "m_nNext",
+                  "type": "int"
+                },
+                {
+                  "offset": 128,
+                  "name": "m_DialogTemplate",
+                  "type": "int"
+                },
+                {
+                  "offset": 132,
+                  "name": "m_nConfigIndex",
+                  "type": "int"
+                },
+                {
+                  "offset": 136,
+                  "name": "m_SceneConfig",
+                  "type": "int"
+                },
+                {
+                  "offset": 140,
+                  "name": "m_SceneCfg_flags1",
+                  "type": "int"
+                },
+                {
+                  "offset": 144,
+                  "name": "m_SceneCfg_fParam0",
+                  "type": "float"
+                },
+                {
+                  "offset": 148,
+                  "name": "m_SceneCfg_nParam0",
+                  "type": "int"
+                },
+                {
+                  "offset": 152,
+                  "name": "m_SceneCfg_nParam1",
+                  "type": "int"
+                },
+                {
+                  "offset": 156,
+                  "name": "m_SceneCfg_nParam2",
+                  "type": "int"
+                },
+                {
+                  "offset": 160,
+                  "name": "m_SceneCfg_data",
+                  "type": "int"
+                },
+                {
+                  "offset": 164,
+                  "name": "m_fSceneCfg",
+                  "type": "float[48]"
+                },
+                {
+                  "offset": 384,
+                  "name": "m_nDialogData",
+                  "type": "short"
+                },
+                {
+                  "offset": 400,
+                  "name": "m_nEmoteParam",
+                  "type": "int"
+                },
+                {
+                  "offset": 404,
+                  "name": "m_nScreenWidth",
+                  "type": "int"
+                },
+                {
+                  "offset": 480,
+                  "name": "m_EncampSound",
+                  "type": "int"
+                },
+                {
+                  "offset": 576,
+                  "name": "m_CamFocusData",
+                  "type": "int"
+                },
+                {
+                  "offset": 644,
+                  "name": "m_nDialogResult",
+                  "type": "int"
+                },
+                {
+                  "offset": 648,
+                  "name": "m_DialogByte",
+                  "type": "unsigned char"
+                },
+                {
+                  "offset": 732,
+                  "name": "_todo_468",
+                  "type": "int"
+                },
+                {
+                  "offset": 876,
+                  "name": "m_nPathState",
+                  "type": "int"
+                },
+                {
+                  "offset": 880,
+                  "name": "m_nOverlapId",
+                  "type": "int"
+                },
+                {
+                  "offset": 884,
+                  "name": "_todo_500",
+                  "type": "int"
+                },
+                {
+                  "offset": 892,
+                  "name": "_todo_508",
+                  "type": "int"
+                }
+              ]
+            },
+            "name": "overlay"
           }
         ]
       }
-    },
-    "397": {
-      "name": "_todo_18D",
-      "type": "unsigned char",
-      "source": "binary:SetRoleActions [esi-0x47]=Find_result; overlap with m_RoleSlotArray[+1] as slot[0].nRoleID high byte"
-    },
-    "468": {
-      "name": "m_RoleActionType",
-      "type": "unsigned char",
-      "source": "decomp:SetRoleActions_at_stride+72(BYTE_==25_action_check)"
     },
     "260": {
       "name": "m_WaitObjList",
@@ -217,51 +369,6 @@
       "name": "_todo_138",
       "type": "int",
       "source": "reverted_auto_semantic:2x_access"
-    },
-    "472": {
-      "name": "_todo_1B8",
-      "type": "float",
-      "source": "binary:_nearby_439410 *(float*)(this+248); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
-    },
-    "480": {
-      "name": "_todo_01E0",
-      "type": "float",
-      "source": "binary:_nearby_439410 *(float*)(this+256); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
-    },
-    "484": {
-      "name": "_todo_1C4",
-      "type": "float",
-      "source": "binary:_nearby_439410 *(float*)(this+260); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
-    },
-    "488": {
-      "name": "_todo_1C8",
-      "type": "float",
-      "source": "binary:_nearby_439410 *(float*)(this+264); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
-    },
-    "492": {
-      "name": "_todo_1CC",
-      "type": "float",
-      "source": "binary:_nearby_439410 *(float*)(this+268); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
-    },
-    "496": {
-      "name": "_todo_1D0",
-      "type": "float",
-      "source": "binary:_nearby_439410 *(float*)(this+272); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
-    },
-    "500": {
-      "name": "_todo_1F4",
-      "type": "float",
-      "source": "binary:_nearby_439410 *(float*)(this+276); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
-    },
-    "504": {
-      "name": "_todo_1F8",
-      "type": "float",
-      "source": "binary:_nearby_439410 *(float*)(this+280); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
-    },
-    "508": {
-      "name": "_todo_1FC",
-      "type": "float",
-      "source": "binary:_nearby_439410 *(float*)(this+284); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
     },
     "284": {
       "name": "m_fScaleZ",
@@ -447,110 +554,10 @@
       "type": "int",
       "source": "binary_scan:1refs"
     },
-    "432": {
-      "name": "_todo_1B0",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "448": {
-      "name": "m_bRoleAction",
-      "type": "int",
-      "source": "binary_scan:3refs"
-    },
-    "524": {
-      "name": "m_DialogTemplate",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "532": {
-      "name": "m_SceneConfig",
-      "type": "int",
-      "source": "decomp:LoadSceneConfig_220byte_stride_array_base(55_DWORD_per_scene)"
-    },
-    "536": {
-      "name": "m_SceneCfg_flags1",
-      "type": "int",
-      "source": "decomp:BYTE+220*idx_atoi_bool_flags"
-    },
-    "540": {
-      "name": "m_SceneCfg_fParam0",
-      "type": "float",
-      "source": "decomp:atof_float_220stride"
-    },
-    "544": {
-      "name": "m_SceneCfg_nParam0",
-      "type": "int",
-      "source": "decomp:atoi_int_220stride"
-    },
-    "548": {
-      "name": "m_SceneCfg_nParam1",
-      "type": "int",
-      "source": "decomp:atoi_int_220stride"
-    },
-    "552": {
-      "name": "m_SceneCfg_nParam2",
-      "type": "int",
-      "source": "decomp:atoi_int_220stride"
-    },
-    "556": {
-      "name": "m_SceneCfg_data",
-      "type": "int",
-      "source": "decomp:memset_0xC0_192byte_clear_within_220stride_slot"
-    },
-    "796": {
-      "name": "m_nEmoteParam",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "800": {
-      "name": "m_nScreenWidth",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "876": {
-      "name": "m_EncampSound",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "972": {
-      "name": "m_CamFocusData",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "1128": {
-      "name": "_todo_468",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "1272": {
-      "name": "m_nPathState",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "1276": {
-      "name": "m_nOverlapId",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "1280": {
-      "name": "_todo_500",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "1288": {
-      "name": "_todo_508",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
     "1296": {
       "name": "_todo_510",
       "type": "int",
       "source": "binary_scan:1refs"
-    },
-    "560": {
-      "name": "m_fSceneCfg",
-      "type": "float[48]",
-      "source": "binary_scan: IDA array field, merged from individual elements"
     }
   },
   "methods": {

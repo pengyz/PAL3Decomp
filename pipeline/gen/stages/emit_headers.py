@@ -881,6 +881,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             if is_ptr:
                 fwd_types.add(base)
             else:
+                if base.startswith('_inline_'):
+                    continue
                 include_types.add(base)
         # Also scan _variants type references for include resolution
         for _v_off, _v_info in ann_variants.items():
@@ -888,7 +890,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 _vt = _vv.get('type', '')
                 if _vt and _vt != 'struct' and _vt not in PRIMITIVES and _vt not in SYSTEM_TYPES and _valid_type_name(_vt):
                     include_types.add(_vt)
-        # Also scan _inline_ types for member type references
+        # Also scan _inline_ types for member type references (for inline rendering)
         for m in ann_struct_ref.get('data_members', []):
             mtype = m.get('type', '')
             if not mtype.startswith('_inline_'):
@@ -896,6 +898,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             _inline_data = _get_ida_structs().get(mtype, {})
             for _idm in _inline_data.get('data_members', []):
                 _it = _idm.get('type', '')
+                if _it.startswith('$') or _it.startswith('_inline_'):
+                    continue
                 _base = re.sub(r'\[(?:0x[0-9a-fA-F]+|\d+)\]', '', _it).replace('*', '').strip()
                 if _base and _base not in PRIMITIVES and _base not in SYSTEM_TYPES and _valid_type_name(_base):
                     include_types.add(_base)
