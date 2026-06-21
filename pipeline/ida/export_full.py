@@ -614,7 +614,7 @@ def export_structs(log):
 
         # Filter out baseclass/vtable from data members
         filtered = [m for m in members
-                    if m.get('name', '') and not any(x in m['name'].lower() for x in ('baseclass', '__parent', '__vftable', 'vtbl'))]
+                    if m.get('name', '') and not any(x in m['name'].lower() for x in ('baseclass', '__parent', '__vftable', '_vftable', 'vtbl'))]
 
         result[type_name] = {
             'size': size,
@@ -676,17 +676,51 @@ def export_structs(log):
                 _info['skip_reason'] = 'rdata:compiler_generated'
 
     # Merge annotation-skipped globals into export (closing the annotation→export→codegen gap)
+    # Two cases:
+    # 1. Annotation entry has no name → skip the address regardless of IDB name
+    # 2. Annotation entry has a name → only skip if name matches IDB name (avoid name mismatch)
     _ann_path = os.path.join(os.path.dirname(structs_path), "..", "..", "data", "annotations", "globals.json")
     if os.path.exists(_ann_path):
         import json as _ann_json
         try:
             _ann_data = _ann_json.load(open(_ann_path, encoding='utf-8'))
+            # Build address-keyed view of _globals for normalized matching
+            _globals_by_addr = {}
+            for _gk, _gv in _globals.items():
+                _ga = int(_gk, 16) if isinstance(_gk, str) else _gk
+                _globals_by_addr[_ga] = _gk
             for _a_s, _ainfo in _ann_data.items():
                 if _ainfo.get('type') == 'skip':
-                    _name = _ainfo.get('name', '')
-                    _reason = _ainfo.get('reason', '')
-                    if _name and _a_s not in _globals:
-                        _globals[_a_s] = {'name': _name, 'type': 'skip', 'skip_reason': _reason}
+                    _addr = int(_a_s, 16) if isinstance(_a_s, str) else int(_a_s, 0)
+                    _ann_name = _ainfo.get('name', '')
+                    _reason = _ainfo.get('reason', '') or 'annotation'
+                    if _addr in _globals_by_addr:
+                        _existing_name = _globals[_globals_by_addr[_addr]].get('name', '')
+                        # Update as skip only if:
+                        # - annotation has no name (skip the address regardless), OR
+                        # - annotation name matches the existing global name
+                        if not _ann_name or _ann_name == _existing_name:
+                            _globals[_globals_by_addr[_addr]]['type'] = 'skip'
+                            _globals[_globals_by_addr[_addr]]['skip_reason'] = _reason
+                    elif _ann_name:
+                        _globals[_a_s] = {'name': _ann_name, 'type': 'skip', 'skip_reason': _reason}
+        except:
+            pass
+
+    # Export skip_functions.json names (non-thunk) as _skip_function_names metadata
+    # so codegen knows which functions to exclude from forward declarations.
+    _skip_funcs_path = os.path.join(os.path.dirname(structs_path), "..", "..", "data", "annotations", "skip_functions.json")
+    if os.path.exists(_skip_funcs_path):
+        try:
+            _skip_data = _ann_json.load(open(_skip_funcs_path, encoding='utf-8'))
+            _skip_names = []
+            for _info in _skip_data.values():
+                if _info.get('reason') == 'thunk':
+                    continue
+                _n = _info.get('name')
+                if _n:
+                    _skip_names.append(_n)
+            result['_skip_function_names'] = {'_names': _skip_names}
         except:
             pass
 

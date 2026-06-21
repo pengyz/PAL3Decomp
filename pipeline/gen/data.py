@@ -42,6 +42,7 @@ class DataStore:
         self.scalar_dtor_classes = set()  # classes that had _scalar_dtor filtered
         self.struct_vtables = {}    # "ClassName" -> {slot_index: method_name} (from annotations)
         self.skip_globals = {}      # {name: addr} — annotation-skipped globals
+        self.skip_funcs = set()     # function names from skip_functions.json (non-thunk)
         self.annotated_globals = {} # "dword_ADDR" -> (name, type) from globals.json
 
     def load(self):
@@ -181,6 +182,9 @@ class DataStore:
                             self.struct_instances.append(
                                 (elem_base, elem_base + elem_size, elem_name, elem_type))
         self.struct_instances.sort()
+
+        # 3b. Skip function names from export metadata
+        self.skip_funcs = set(ida_structs.get('_skip_function_names', {}).get('_names', []))
 
         # 4. Thunks from skip_functions.json (manually curated thunk replacements)
         _skip_path = self.project_root / "data" / "annotations" / "skip_functions.json"

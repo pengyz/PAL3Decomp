@@ -10,6 +10,10 @@ from data import store
 from stages.transform import run_transforms, make_context
 from stages.collect import collect_functions, get_class_dir, CLASS_DIRS
 
+# nullsub functions that are referenced in code but skipped from codegen.
+# These need empty function bodies generated in free_functions.cpp.
+_nullsub_stubs = set()
+
 
 def collect_sub_refs(code):
     """Find all sub_XXXXX and named function references needing forward declaration."""
@@ -165,6 +169,12 @@ def generate_forward_decls(all_code):
                re.search(r'&' + re.escape(u) + r'\s*\)\s*\[', all_code) or \
                re.search(r'&' + re.escape(u) + r'\s*\)\s*[<>]', all_code):
                 off_as_array.add(u)
+
+    # Collect nullsub references for stub body generation in free_functions.cpp
+    # Keep them in undef so per-file forward declarations are still emitted.
+    for u in list(undef):
+        if u.startswith('nullsub_') and u in store.skip_funcs:
+            _nullsub_stubs.add(u)
 
     if undef:
         lines.append("// Unnamed globals (extern)")
@@ -450,6 +460,15 @@ def generate_free_funcs_cpp(funcs):
     for addr, code in transformed:
         lines.append("// %s" % addr)
         lines.append(code)
+        lines.append("")
+
+    # Nullsub stubs for compiler-generated nop functions referenced in code
+    if _nullsub_stubs:
+        lines.append("")
+        lines.append("// Nullsub stubs (compiler-generated empty bodies)")
+        lines.append("")
+        for ns in sorted(_nullsub_stubs):
+            lines.append("void __cdecl %s(...) {}" % ns)
         lines.append("")
 
     return '\n'.join(lines)
