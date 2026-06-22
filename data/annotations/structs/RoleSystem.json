@@ -70,16 +70,6 @@
       "source": "binary:raw_path_next | type_fix:int鈫抳oid*(naming m_p)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
-    "116": {
-      "name": "_todo_074",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "120": {
-      "name": "_todo_078",
-      "type": "int",
-      "source": "binary:raw_path_misc"
-    },
     "124": {
       "name": "m_nPathField7C",
       "type": "int",
@@ -357,11 +347,6 @@
       "source": "ida_decomp:ctor_1D20 UIFrameWnd init, GetChild, 3 refs | fix:int_to_ptr(decomp_vtable_dispatch_via_bvisible+4) | fix:ptr_type_for_vtable_target",
       "note": "replaced void* with char* (IDB struct compat)"
     },
-    "368": {
-      "name": "_todo_170",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
     "380": {
       "name": "m_nActive",
       "type": "int",
@@ -584,11 +569,6 @@
       "type": "char",
       "source": "gen_headers_9.2"
     },
-    "1452": {
-      "name": "_todo_5AC",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
     "1456": {
       "name": "m_pCtrlPoint",
       "type": "char *",
@@ -650,11 +630,6 @@
       "type": "float",
       "source": "ida_decomp:MoveRole = a2[2]"
     },
-    "1564": {
-      "name": "_todo_61C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
     "1572": {
       "name": "_embed_UIWnd_624",
       "type": "UIWnd",
@@ -664,11 +639,6 @@
       "name": "m_teamSlots",
       "type": "int[307]",
       "source": "expanded_to_cover_+0xB60"
-    },
-    "2960": {
-      "name": "_todo_BA4",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
     },
     "2968": {
       "name": "m_wndPanel",
@@ -702,25 +672,10 @@
       "type": "int",
       "source": "binary:gap_r3"
     },
-    "4088": {
-      "name": "_todo_FF8",
-      "type": "void *",
-      "source": "binary_scan:1refs;batch_fix:int_to_v*_LEA_embed"
-    },
     "4096": {
       "name": "m_configData",
       "type": "int[96]",
       "source": "binary_scan:3refs|FullInit: array access indices 0-32, gap 384 bytes to _todo_1198"
-    },
-    "4484": {
-      "name": "_todo_1198",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "4488": {
-      "name": "_todo_119C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
     },
     "4492": {
       "name": "m_nMoveState1",
@@ -782,48 +737,8 @@
       "type": "char",
       "source": "auto:overlap_g_RoleSystemCombat_at_+0x9FC_fix:sprintf_unsigned_char_issue"
     },
-    "0x69C": {
-      "name": "_todo_69C",
-      "type": "int",
-      "source": "Actor::ExecuteAction accesses via this[1].m_pEquipAtt1[0]"
-    },
-    "0x68C": {
-      "name": "_todo_68C",
-      "type": "int",
-      "source": "Actor::UpdatePhysics accesses via this[1].m_nRoleState1+0x1B0"
-    },
-    "0x690": {
-      "name": "_todo_690",
-      "type": "float",
-      "source": "Actor::UpdatePhysics accesses via this[1].m_pEquipAtt0+0x1B4"
-    },
-    "0x6E8": {
-      "name": "_todo_6E8",
-      "type": "float",
-      "source": "Actor::UpdatePhysics via this[1].m_pParticleData+3 @ +0x200"
-    },
-    "0x6EC": {
-      "name": "_todo_6EC",
-      "type": "float",
-      "source": "Actor::UpdatePhysics via this[1].m_pParticleData+4 @ +0x200"
-    },
-    "0x6F0": {
-      "name": "_todo_6F0",
-      "type": "float",
-      "source": "Actor::UpdatePhysics via this[1].m_pParticleData+5 @ +0x200"
-    },
-    "0x6FC": {
-      "name": "_todo_6FC",
-      "type": "float",
-      "source": "Actor::UpdatePhysics via this[1].m_dwMatMsg[1] @ +0x21C"
-    },
-    "0x700": {
-      "name": "_todo_700",
-      "type": "float",
-      "source": "Actor::UpdatePhysics via this[1].m_dwMatMsg[2] @ +0x21C"
-    },
     "0x704": {
-      "name": "_todo_704",
+      "name": "m_nTodo_704",
       "type": "float",
       "source": "Actor::UpdatePhysics via this[1].m_dwMatMsg[3] @ +0x21C"
     }

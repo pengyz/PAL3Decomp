@@ -67,13 +67,8 @@
       "type": "float",
       "source": "binary:raw_18votes | decomp:used_as_Z_coord_in_ExecuteBlock"
     },
-    "84": {
-      "name": "_todo_054",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
     "88": {
-      "name": "_todo_058",
+      "name": "m_nTodo_058",
       "type": "int",
       "source": "binary:raw_5votes"
     },
@@ -445,29 +440,9 @@
       "type": "unsigned char",
       "source": "raw_decomp:Hex-Rays_type_cast | annotate_todo"
     },
-    "245": {
-      "name": "_todo_0F5",
-      "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
     "246": {
       "name": "m_bExecuteOpcode",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "247": {
-      "name": "_todo_0F7",
-      "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "272": {
-      "name": "_todo_110",
-      "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "274": {
-      "name": "_todo_112",
-      "type": "short",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "276": {
@@ -475,29 +450,14 @@
       "type": "short",
       "source": "raw_decomp:Hex-Rays_type_cast | name_from_Camera"
     },
-    "278": {
-      "name": "_todo_116",
-      "type": "short",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
     "280": {
       "name": "m_nField_0118",
       "type": "short",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
-    "282": {
-      "name": "_todo_11A",
-      "type": "unsigned char",
-      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
-    },
     "564": {
       "name": "m_bRunCommand",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "572": {
-      "name": "_todo_23C",
-      "type": "int",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "576": {
@@ -545,11 +505,6 @@
       "type": "char[6]",
       "source": "fix:span=6_next_hits=4"
     },
-    "200": {
-      "name": "_todo_C8",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
     "204": {
       "name": "m_nSavedBlockNum",
       "type": "int",
@@ -586,11 +541,6 @@
       "type": "float",
       "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
-    "568": {
-      "name": "_todo_238",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
     "788": {
       "name": "m_pRoleSystem",
       "type": "char *",
@@ -602,21 +552,6 @@
       "type": "char *",
       "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
       "note": "replaced void* with char* (IDB struct compat)"
-    },
-    "1908": {
-      "name": "_todo_774",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "2364": {
-      "name": "_todo_93C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "3276": {
-      "name": "_todo_CCC",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
     },
     "3280": {
       "name": "m_pScreenEffect",
@@ -642,64 +577,19 @@
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "24": {
-      "name": "_todo_018",
+      "name": "m_nTodo_018",
       "type": "float",
       "source": "reverted_auto_semantic:1x"
     },
     "28": {
-      "name": "_todo_01C",
-      "type": "float",
-      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
-    },
-    "32": {
-      "name": "_todo_020",
+      "name": "m_nTodo_01C",
       "type": "float",
       "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
     },
     "36": {
-      "name": "_todo_024",
+      "name": "m_nTodo_024",
       "type": "int",
       "source": "reverted_auto_semantic:1x_access"
-    },
-    "96": {
-      "name": "_todo_060",
-      "type": "int",
-      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
-    },
-    "100": {
-      "name": "_todo_1F8",
-      "type": "int",
-      "source": "transfer_from_Camera_off_504"
-    },
-    "104": {
-      "name": "_todo_1FC",
-      "type": "short",
-      "source": "A:66_prefix_word_access_in_class_method"
-    },
-    "108": {
-      "name": "_todo_200",
-      "type": "short",
-      "source": "A:66_prefix_word_access_in_class_method"
-    },
-    "112": {
-      "name": "_todo_204",
-      "type": "int",
-      "source": "transfer_from_Camera_off_516"
-    },
-    "116": {
-      "name": "_todo_208",
-      "type": "float",
-      "source": "A:FPU_disp8_in_class_method"
-    },
-    "120": {
-      "name": "_todo_20C",
-      "type": "int",
-      "source": "transfer_from_Camera_off_524"
-    },
-    "124": {
-      "name": "_todo_210",
-      "type": "float",
-      "source": "A:FPU_disp8_in_class_method"
     },
     "128": {
       "name": "m_nExecParam",
@@ -715,11 +605,6 @@
       "name": "m_fDefaultFOV",
       "type": "float",
       "source": "transfer_from_Camera_off_540"
-    },
-    "284": {
-      "name": "_todo_2B0",
-      "type": "int",
-      "source": "transfer_from_Camera_off_688"
     },
     "952": {
       "name": "m_nState",
@@ -831,11 +716,6 @@
       "type": "void *",
       "source": "binary_scan:8refs"
     },
-    "632": {
-      "name": "_todo_278",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
     "1144": {
       "name": "m_nFrameState",
       "type": "int",
@@ -935,11 +815,6 @@
       "name": "m_nField_0C70",
       "type": "int",
       "source": "binary_scan:1refs"
-    },
-    "3305": {
-      "name": "_todo_CE9",
-      "type": "unsigned char",
-      "source": "binary_scan:3refs"
     },
     "3696": {
       "name": "m_nField_0E70",
