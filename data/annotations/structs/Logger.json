@@ -43,9 +43,9 @@
       "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
     },
     "4656": {
-      "name": "m_nTodo_1230",
+      "name": "m_szCmdBuf",
       "type": "void *",
-      "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
+      "source": "A:decomp_strcpy_command_buffer_string"
     },
     "4856": {
       "name": "m_nTodo_12F8",
@@ -55,12 +55,12 @@
     "0": {
       "name": "m_nCallbackCount",
       "type": "int",
-      "source": "A:decomp Logger::RegisterCallback *(DWORD*)this >= 34 — callback registration count"
+      "source": "A:decomp Logger::RegisterCallback *(DWORD*)this >= 34 \u2014 callback registration count"
     },
     "4": {
       "name": "m_callbacks",
       "type": "tagLoggerCallback[34]",
-      "source": "A:decomp Logger::RegisterCallback v6=&this->m_nCallbackCount + 34*count + 1 — callback array at +4, each 136 bytes, max 34 entries"
+      "source": "A:decomp Logger::RegisterCallback v6=&this->m_nCallbackCount + 34*count + 1 \u2014 callback array at +4, each 136 bytes, max 34 entries"
     }
   },
   "binary_size": 6360,
