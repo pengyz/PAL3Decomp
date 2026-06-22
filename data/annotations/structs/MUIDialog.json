@@ -49,8 +49,23 @@
     },
     "632": {
       "name": "m_btRc",
-      "type": "tagRECT",
+      "type": {
+        "union": [
+          {
+            "type": "tagRECT",
+            "name": "rc"
+          },
+          {
+            "type": "void *",
+            "name": "pCallback"
+          }
+        ]
+      },
       "source": "annotation"
+    },
+    "0x3D0": {
+      "name": "pCallbackVtable2",
+      "type": "void *"
     }
   },
   "base_class": [
