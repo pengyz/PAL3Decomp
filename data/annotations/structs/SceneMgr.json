@@ -583,16 +583,6 @@
       "type": "int",
       "source": "A:ida_stru_C11430_Camera_field"
     },
-    "50816": {
-      "name": "m_partyInitData",
-      "type": "int[100]",
-      "source": "ida:confirmed_overlap_with_RoleSystem_ptr_at_50814"
-    },
-    "50814": {
-      "name": "m_pRoleSystemArrayEnd",
-      "type": "RoleSystem *",
-      "source": "A:ida_get_type_C10A0E_confirmed_RoleSystem_ptr"
-    },
     "0x1610": {
       "name": "stru_C059A0",
       "type": "RoleSystem",
@@ -647,6 +637,35 @@
       "name": "m_nTodo_C848",
       "type": "int",
       "source": "phantom:C2065_fix"
+    },
+    "50814_0": {
+      "name": "",
+      "type": {
+        "union": [
+          {
+            "type": "RoleSystem *",
+            "name": "m_pRoleSystemArrayEnd"
+          },
+          {
+            "type": {
+              "struct": [
+                {
+                  "offset": 0,
+                  "name": "_gap_50814",
+                  "type": "unsigned char[2]"
+                },
+                {
+                  "offset": 2,
+                  "name": "m_partyInitData",
+                  "type": "int[100]"
+                }
+              ]
+            },
+            "name": ""
+          }
+        ]
+      },
+      "source": "overlap:pointer_alias_with_party_init_data"
     }
   },
   "methods": {
@@ -721,6 +740,5 @@
       "name": "UINotifyUpdate",
       "signature": "int __thiscall(SceneMgr *this)"
     }
-  },
-  "_flexible": true
+  }
 }

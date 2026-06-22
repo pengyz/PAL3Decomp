@@ -596,14 +596,22 @@ def export_structs(log):
         for mi in range(udt.size()):
             um = udt[mi]
             umname = um.name or ''
+            umoffset = um.offset // 8
             if not umname:
-                # IDB represents base classes as members with empty name
-                base_type = um.type.dstr() if um.type else ''
-                for prefix in ('struct ', 'class '):
-                    if base_type.startswith(prefix):
-                        base_type = base_type[len(prefix):]
-                if base_type and base_type != type_name:
-                    bases.append({'name': base_type, 'offset': um.offset // 8})
+                # IDB represents base classes as members with empty name at offset 0.
+                # Anonymous union/struct members have empty names but are at non-zero offsets.
+                # Check: is there already a non-anonymous member for this offset?
+                _is_base = (umoffset == 0)
+                if not _is_base:
+                    # It's an anonymous member (inline union/struct). Keep it in data_members.
+                    pass
+                else:
+                    base_type = um.type.dstr() if um.type else ''
+                    for prefix in ('struct ', 'class '):
+                        if base_type.startswith(prefix):
+                            base_type = base_type[len(prefix):]
+                    if base_type and base_type != type_name:
+                        bases.append({'name': base_type, 'offset': umoffset})
             elif 'baseclass' in umname.lower() or umname.startswith('__parent'):
                 base_type = um.type.dstr() if um.type else ''
                 for prefix in ('struct ', 'class '):
@@ -612,9 +620,13 @@ def export_structs(log):
                 if base_type and base_type != type_name:
                     bases.append({'name': base_type, 'offset': um.offset // 8})
 
-        # Filter out baseclass/vtable from data members
+        # Filter out baseclass/vtable from data members.
+        # Anonymous members (empty name) that are NOT base classes (checked via base_offsets)
+        # are inline union/struct members and should be kept.
+        _base_offsets = {b['offset'] for b in bases}
         filtered = [m for m in members
-                    if m.get('name', '') and not any(x in m['name'].lower() for x in ('baseclass', '__parent', '__vftable', '_vftable', 'vtbl'))]
+                    if (m.get('name', '') or m.get('offset', 0) not in _base_offsets)
+                    and not any(x in m.get('name', '').lower() for x in ('baseclass', '__parent', '__vftable', '_vftable', 'vtbl'))]
 
         result[type_name] = {
             'size': size,

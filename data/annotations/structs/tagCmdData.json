@@ -38,13 +38,21 @@
       "source": "annotation"
     },
     "29": {
-      "name": "bDestRole",
-      "type": "unsigned char[11]",
-      "source": "annotation"
-    },
-    "36": {
-      "name": "pDestRoleOverlay",
-      "type": "void *",
+      "name": "",
+      "type": {
+        "union": [
+          { "type": "unsigned char[11]", "name": "bDestRole" },
+          {
+            "type": {
+              "struct": [
+                { "offset": 0,  "name": "_pad_7",    "type": "unsigned char[7]" },
+                { "offset": 7,  "name": "pDestRoleOverlay", "type": "void *" }
+              ]
+            },
+            "name": ""
+          }
+        ]
+      },
       "source": "overlap:bDestRole+7_pointer_slot_slots_2_48_63"
     },
     "40": {
@@ -53,6 +61,5 @@
       "source": "annotation"
     }
   },
-  "methods": {},
-  "_flexible": true
+  "methods": {}
 }

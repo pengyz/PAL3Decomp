@@ -67,7 +67,7 @@
     "112": {
       "name": "m_pPathNext",
       "type": "char *",
-      "source": "binary:raw_path_next | type_fix:int鈫抳oid*(naming m_p)",
+      "source": "binary:raw_path_next | type_fix:int\u922b\u62b3oid*(naming m_p)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "116": {
@@ -103,7 +103,7 @@
     "140": {
       "name": "m_pPathListHead",
       "type": "char *",
-      "source": "binary:raw_path_list | type_fix:int鈫抳oid*(naming m_p)",
+      "source": "binary:raw_path_list | type_fix:int\u922b\u62b3oid*(naming m_p)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "144": {
@@ -395,7 +395,7 @@
     "416": {
       "name": "m_pPathNodeIter",
       "type": "char *",
-      "source": "binary:gap_access | type_fix:int鈫抳oid*(naming m_p)",
+      "source": "binary:gap_access | type_fix:int\u922b\u62b3oid*(naming m_p)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "420": {
@@ -546,7 +546,7 @@
     "1420": {
       "name": "m_pLinkedSystem",
       "type": "char *",
-      "source": "ida_decomp:UpdateTransform deref+756 byte, 6 refs | type_fix:int鈫抳oid*(deref pattern)",
+      "source": "ida_decomp:UpdateTransform deref+756 byte, 6 refs | type_fix:int\u922b\u62b3oid*(deref pattern)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "1424": {
@@ -592,7 +592,7 @@
     "1456": {
       "name": "m_pCtrlPoint",
       "type": "char *",
-      "source": "binary:raw_final | type_fix:int鈫抳oid*(naming m_p)",
+      "source": "binary:raw_final | type_fix:int\u922b\u62b3oid*(naming m_p)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "1460": {
@@ -628,7 +628,7 @@
     "1484": {
       "name": "m_fMoveTargetY",
       "type": "int",
-      "source": "gen_headers_9.2 | type_fix:float鈫抜nt_raw_decomp"
+      "source": "gen_headers_9.2 | type_fix:float\u922b\u629cnt_raw_decomp"
     },
     "1488": {
       "name": "m_fMoveTargetZ",
@@ -660,11 +660,6 @@
       "type": "UIWnd",
       "source": "A+:decomp_UIWnd::GetRect((UIWnd*)&field)_cast_confirm_embed,span=88,no_overlap"
     },
-    "1684": {
-      "name": "m_teamSlots",
-      "type": "int[307]",
-      "source": "expanded_to_cover_+0xB60"
-    },
     "2960": {
       "name": "m_nTodo_B90",
       "type": "int",
@@ -679,18 +674,6 @@
       "name": "m_StaticSlotArray",
       "type": "UIWnd",
       "source": "decomp:_method_532410_vtable_call+p+=38(152=UIStatic_stride)"
-    },
-    "3072": {
-      "name": "m_teamSlotsB",
-      "type": {
-        "union": [
-          {
-            "type": "tagTeamSlotsBOverlay",
-            "name": "combat"
-          }
-        ]
-      },
-      "source": "binary_scan:5refs|FullInit: array access indices 94-190"
     },
     "4028": {
       "name": "m_pScriptBuf",
@@ -767,26 +750,6 @@
       "type": "int[29]",
       "source": "decomp ref C2039"
     },
-    "1688": {
-      "name": "m_fCBTimer",
-      "type": "float",
-      "source": "auto:overlap_g_RoleSystemCombat_at_+0x698"
-    },
-    "2552": {
-      "name": "pfVal",
-      "type": "float",
-      "source": "auto:overlap_g_RoleSystemCombat_at_+0x9F8"
-    },
-    "2556": {
-      "name": "m_CCBStageCamBuffer",
-      "type": "char",
-      "source": "auto:overlap_g_RoleSystemCombat_at_+0x9FC_fix:sprintf_unsigned_char_issue"
-    },
-    "0x69C": {
-      "name": "m_nTodo_69C",
-      "type": "int",
-      "source": "Actor::ExecuteAction accesses via this[1].m_pEquipAtt1[0]"
-    },
     "0x68C": {
       "name": "m_nTodo_68C",
       "type": "int",
@@ -797,35 +760,86 @@
       "type": "float",
       "source": "Actor::UpdatePhysics accesses via this[1].m_pEquipAtt0+0x1B4"
     },
-    "0x6E8": {
-      "name": "m_nTodo_6E8",
-      "type": "float",
-      "source": "Actor::UpdatePhysics via this[1].m_pParticleData+3 @ +0x200"
+    "1684_0": {
+      "name": "",
+      "type": {
+        "union": [
+          {
+            "type": "int[307]",
+            "name": "m_teamSlots"
+          },
+          {
+            "type": {
+              "struct": [
+                {
+                  "offset": 4,
+                  "name": "m_fCBTimer",
+                  "type": "float"
+                },
+                {
+                  "offset": 8,
+                  "name": "m_nTodo_69C",
+                  "type": "int"
+                },
+                {
+                  "offset": 84,
+                  "name": "m_nTodo_6E8",
+                  "type": "float"
+                },
+                {
+                  "offset": 88,
+                  "name": "m_nTodo_6EC",
+                  "type": "float"
+                },
+                {
+                  "offset": 92,
+                  "name": "m_nTodo_6F0",
+                  "type": "float"
+                },
+                {
+                  "offset": 104,
+                  "name": "m_nTodo_6FC",
+                  "type": "float"
+                },
+                {
+                  "offset": 108,
+                  "name": "m_nTodo_700",
+                  "type": "float"
+                },
+                {
+                  "offset": 112,
+                  "name": "m_nTodo_704",
+                  "type": "float"
+                },
+                {
+                  "offset": 868,
+                  "name": "pfVal",
+                  "type": "float"
+                },
+                {
+                  "offset": 872,
+                  "name": "m_CCBStageCamBuffer",
+                  "type": "char"
+                }
+              ]
+            },
+            "name": ""
+          }
+        ]
+      },
+      "source": "overlap:team_slots_with_role_system_state"
     },
-    "0x6EC": {
-      "name": "m_nTodo_6EC",
-      "type": "float",
-      "source": "Actor::UpdatePhysics via this[1].m_pParticleData+4 @ +0x200"
-    },
-    "0x6F0": {
-      "name": "m_nTodo_6F0",
-      "type": "float",
-      "source": "Actor::UpdatePhysics via this[1].m_pParticleData+5 @ +0x200"
-    },
-    "0x6FC": {
-      "name": "m_nTodo_6FC",
-      "type": "float",
-      "source": "Actor::UpdatePhysics via this[1].m_dwMatMsg[1] @ +0x21C"
-    },
-    "0x700": {
-      "name": "m_nTodo_700",
-      "type": "float",
-      "source": "Actor::UpdatePhysics via this[1].m_dwMatMsg[2] @ +0x21C"
-    },
-    "0x704": {
-      "name": "m_nTodo_704",
-      "type": "float",
-      "source": "Actor::UpdatePhysics via this[1].m_dwMatMsg[3] @ +0x21C"
+    "3072": {
+      "name": "m_teamSlotsB",
+      "type": {
+        "union": [
+          {
+            "type": "tagTeamSlotsBOverlay",
+            "name": "combat"
+          }
+        ]
+      },
+      "source": "binary_scan:5refs|FullInit: array access indices 94-190"
     }
   },
   "binary_size": 4868,
@@ -1588,6 +1602,5 @@
         }
       ]
     }
-  ],
-  "_flexible": true
+  ]
 }
