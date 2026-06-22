@@ -316,7 +316,7 @@
     "544": {
       "name": "m_pController",
       "type": "char *",
-      "source": "ida_decomp:ProcessTurn deref+134 byte check, 10 refs | type_fix:int¡úvoid*(deref pattern)",
+      "source": "ida_decomp:ProcessTurn deref+134 byte check, 10 refs | type_fix:int\u00a1\u00favoid*(deref pattern)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "548": {
@@ -445,9 +445,9 @@
       "source": "binary:disp32_1hits_1funcs|A:memset 0x50 bytes in ClearActionSlot;batch_fix:int_to_v*_LEA_embed"
     },
     "4508": {
-      "name": "m_nTodo_119C",
+      "name": "m_nSlotCounter",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access;A:decomp_batch_rename_usage_pattern"
     },
     "4584": {
       "name": "m_TurnBuffer",
@@ -507,7 +507,7 @@
     "6632": {
       "name": "m_fAngleDegrees",
       "type": "float",
-      "source": "A+:ida_decomp 28refs + angle_math(rad->deg * 57.29578, normalize 2¦Ð, compare ¦Ð/2)"
+      "source": "A+:ida_decomp 28refs + angle_math(rad->deg * 57.29578, normalize 2\u00a6\u00d0, compare \u00a6\u00d0/2)"
     },
     "6636": {
       "name": "m_fCombatAnimY",
@@ -585,9 +585,9 @@
       "source": "decomp:_nearby_4e0340_set_-1"
     },
     "408000": {
-      "name": "m_nTodo_639C0",
+      "name": "m_EditDescBuf",
       "type": "char[2000]",
-      "source": "binary:disp32_1hits_1funcs|A:memset 0x7D0 bytes in ClearAll"
+      "source": "binary:disp32_1hits_1funcs|A:memset 0x7D0 bytes in ClearAll;A:decomp_batch_rename_usage_pattern"
     },
     "410000": {
       "name": "m_nTodo_64190",
