@@ -42,6 +42,11 @@
       "type": "float",
       "source": "A:FPU_post_reattrib_0x4d064a"
     },
+    "32": {
+      "name": "_todo_020",
+      "type": "float[12]",
+      "source": "reverted_auto_semantic_r3:11x(_nearby_4cd930,GetCurrentNode)|reverted:pseudo_semantic"
+    },
     "80": {
       "name": "m_PlayerAtts",
       "type": "PlayerAtts",
@@ -256,6 +261,18 @@
       "type": "int[1]",
       "comment": "screen mode parameter 2 (paired with Param)",
       "source": "A+:CScreenMode::Init; CameraCtrl; ScriptSystem subtract"
+    },
+    "1008": {
+      "name": "_todo_3F0",
+      "type": "int[1]",
+      "comment": "role state display param (set 3 in Init; NO read references found)",
+      "source": "A+:PAL3::Init constant + s_RoleState display (was m_nInitParamRoleState)"
+    },
+    "1012": {
+      "name": "_todo_3F4",
+      "type": "int[1]",
+      "comment": "role state display param (set 2 in Init; NO read references found)",
+      "source": "A+:PAL3::Init constant + s_RoleState display (was m_nInitParamUnknown1)"
     },
     "1016": {
       "name": "m_aStatMaxVal_Exp",
@@ -600,6 +617,36 @@
       "name": "m_pathFinder",
       "type": "PathFinder",
       "source": "CRT:vtable_0x56A6D0_ctor_confirmed"
+    },
+    "54216": {
+      "name": "_todo_D3C8",
+      "type": "int[500]",
+      "source": "decomp:LoadMainUITexture[489..493]_FindRoleByState[stride=0x880]"
+    },
+    "0x1428": {
+      "name": "_todo_1428",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "0x142C": {
+      "name": "_todo_142C",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "0x160E": {
+      "name": "_todo_160E",
+      "type": "unsigned char",
+      "source": "phantom:C2065_fix"
+    },
+    "0xC660": {
+      "name": "_todo_C660",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "0xC848": {
+      "name": "_todo_C848",
+      "type": "int",
+      "source": "phantom:C2065_fix"
     }
   },
   "methods": {
