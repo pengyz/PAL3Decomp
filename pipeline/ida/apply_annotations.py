@@ -696,6 +696,23 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     # leaves _BYTE[] placeholders that corrupt base-class export.
 
     # Add base classes as anonymous members (supports multiple inheritance)
+    #
+    # ROOT CAUSE (fixed 2026-08-29): IDA's UDT model does natively support
+    # multiple base classes — ida_typeinf.udm_t has an is_baseclass()/
+    # set_baseclass() flag (backed by TAFLD_BASECLASS) that is independent
+    # of member count or offset. Earlier code (see git blame / commit
+    # 236a324c0) assumed "IDA's struct model limitation" restricted structs
+    # to a single base and only ever wired up base_classes[0]; when support
+    # for the remaining bases was added, the anonymous member was created
+    # without ever calling set_baseclass(), so IDA silently treated bases
+    # 2+ as ordinary unnamed data members. export_full.py then re-derives
+    # "is this a base class?" from udm_t.offset == 0 instead of asking
+    # is_baseclass() directly, so every base beyond the first (non-zero
+    # offset) was exported as a plain (nameless) data member and rendered
+    # by emit_headers.py as an untyped struct field — the direct cause of
+    # the C2208 "no members defined using this type" cascade across the
+    # ~38 multi-base classes (CEff* task templates, Role/UICaption/
+    # MUIDialog/SceneObj, etc.). See docs/knowledge/gotcha_codegen_multi_inheritance_anon_member.md.
     _concrete_bases = [bc for bc in base_classes if '<' not in bc and '>' not in bc]
     _base_offset = 0
     if _concrete_bases and base_size > 0:
@@ -712,6 +729,7 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             mb.offset = base_offset * 8  # bits
             mb.size = bc_size * 8  # bits
             mb.type = bc_tinfo
+            mb.set_baseclass()  # mark every base (not just bases[0]) as a real base class
             udt.push_back(mb)
             base_offset += bc_size
         _base_offset = base_offset

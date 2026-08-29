@@ -587,46 +587,40 @@ def export_structs(log):
                             break
                 members.append({'name': mname, 'type': mtype_str, 'offset': um.offset // 8})
 
-        # Detect base classes from UDT members (anonymous baseclass members)
-        bases = []
+        # Detect base classes from UDT members.
+        #
+        # ROOT CAUSE (fixed 2026-08-29): this used to infer "is this member a
+        # base class?" from `umoffset == 0` (plus a name-based fallback for
+        # 'baseclass'/'__parent' names), instead of asking IDA's own
+        # udm_t.is_baseclass() flag. That heuristic is only correct for the
+        # FIRST base class (offset 0); any additional base in a multi-
+        # inheritance struct sits at a non-zero offset and was silently
+        # reclassified as an anonymous inline-union/struct data member,
+        # which emit_headers.py then rendered as an untyped struct field
+        # (C2208 cascade). is_baseclass() is independent of offset/name and
+        # is the authoritative signal — use it directly.
+        # See docs/knowledge/gotcha_codegen_multi_inheritance_anon_member.md.
         kind = 'struct'
         if tif.is_union():
             kind = 'union'
 
+        import udt_classify
+
+        _udt_members_raw = []
         for mi in range(udt.size()):
             um = udt[mi]
-            umname = um.name or ''
-            umoffset = um.offset // 8
-            if not umname:
-                # IDB represents base classes as members with empty name at offset 0.
-                # Anonymous union/struct members have empty names but are at non-zero offsets.
-                # Check: is there already a non-anonymous member for this offset?
-                _is_base = (umoffset == 0)
-                if not _is_base:
-                    # It's an anonymous member (inline union/struct). Keep it in data_members.
-                    pass
-                else:
-                    base_type = um.type.dstr() if um.type else ''
-                    for prefix in ('struct ', 'class '):
-                        if base_type.startswith(prefix):
-                            base_type = base_type[len(prefix):]
-                    if base_type and base_type != type_name:
-                        bases.append({'name': base_type, 'offset': umoffset})
-            elif 'baseclass' in umname.lower() or umname.startswith('__parent'):
-                base_type = um.type.dstr() if um.type else ''
-                for prefix in ('struct ', 'class '):
-                    if base_type.startswith(prefix):
-                        base_type = base_type[len(prefix):]
-                if base_type and base_type != type_name:
-                    bases.append({'name': base_type, 'offset': um.offset // 8})
+            base_type = um.type.dstr() if um.type else ''
+            for prefix in ('struct ', 'class '):
+                if base_type.startswith(prefix):
+                    base_type = base_type[len(prefix):]
+            _udt_members_raw.append({
+                'name': um.name or '',
+                'offset': um.offset // 8,
+                'type': base_type,
+                'is_baseclass': um.is_baseclass(),
+            })
 
-        # Filter out baseclass/vtable from data members.
-        # Anonymous members (empty name) that are NOT base classes (checked via base_offsets)
-        # are inline union/struct members and should be kept.
-        _base_offsets = {b['offset'] for b in bases}
-        filtered = [m for m in members
-                    if (m.get('name', '') or m.get('offset', 0) not in _base_offsets)
-                    and not any(x in m.get('name', '').lower() for x in ('baseclass', '__parent', '__vftable', '_vftable', 'vtbl'))]
+        bases, filtered = udt_classify.classify_bases_and_members(_udt_members_raw, members, type_name)
 
         result[type_name] = {
             'size': size,
