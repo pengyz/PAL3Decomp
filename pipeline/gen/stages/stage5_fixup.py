@@ -315,6 +315,12 @@ def run(code, ctx):
     # Only affects call sites (-> form), not function definitions.
     code = re.sub(r'->j_([A-Z]\w*)::', '->', code)
 
+    # Strip j_ prefix from thunk-qualified casts:
+    #   ((j_NPC *)nVal)->NPC::Method() → ((NPC *)nVal)->NPC::Method()
+    # The explicit qualified call target is unchanged, so the cast type
+    # spelling is cosmetic.
+    code = re.sub(r'\(j_([A-Z]\w*)\s*\*', r'(\1 *', code)
+
     # Strip Hex-Rays mangled name decorations in qualified method calls:
     #   obj->Class::?method@namespace@@...() → obj->Class::method()
     #   obj->?method@namespace@@...()        → obj->method()
@@ -337,6 +343,13 @@ def run(code, ctx):
 
     # Text-level substitutions (type aliases, suffixes, thunk classes)
     code = _apply_text_substitutions(code, ctx)
+
+    # VC6 doesn't know C99/C++11 integer literal suffixes LL/ULL/ll/ull.
+    # The MSVC-specific equivalent is i64/ui64. Same 64-bit constant, same
+    # generated code bytes. (Removing the suffix would change semantics:
+    # constants wider than 32 bits would be truncated by VC6.)
+    code = re.sub(r'\b([0-9][0-9a-fA-FxX]*)[uU][lL]{2}\b', r'\1ui64', code)
+    code = re.sub(r'\b([0-9][0-9a-fA-FxX]*)[lL]{2}\b', r'\1i64', code)
 
     # Algebraic decomposition: (char *)this + S*var + C → this->array[var].field
     code = _decompose_raw_pointer_arithmetic(code)

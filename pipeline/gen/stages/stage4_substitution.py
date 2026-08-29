@@ -81,7 +81,11 @@ def _try_literal_replacement(name):
             va = int(name.split('_')[1], 16)
         except (IndexError, ValueError):
             return None
-        if 0x56A000 <= va <= 0x57F178:
+        # .rdata (56A000-57F178) + .data (580000-1897000) — string
+        # constants live in both sections. try_read_rdata_string validates
+        # file bounds, length, and GBK decodability; the _is_skip gate
+        # above ensures only annotated-skip addresses reach here.
+        if 0x56A000 <= va < 0x1897000:
             s = store.try_read_rdata_string(va)
             if s is not None:
                 escaped = s.replace('\\', '\\\\').replace('"', '\\"')
@@ -389,12 +393,348 @@ def _collect_token_edits(code_bytes, tree, ctx):
 # Main entry
 # ============================================================
 
+# ============================================================
+# Member-pointer callback reconstruction (VC6 C2440/C4234)
+# ============================================================
+#
+# Hex-Rays renders thiscall member callbacks as free-fn-ptr casts of
+# 'Class::Method' values plus synthetic-this parameter types
+# ('int (__thiscall *a2)(int this, int a2)').  VC6 cannot spell any of
+# those (C2440 'cannot convert', C4234 '__thiscall' reserved).  The
+# original source used member-pointer types; a single-inheritance member
+# pointer is a 4-byte function address, so rewriting every site of the
+# type chain to member-pointer form is byte-equivalent.
+
+_CAST_MEMFN_RE = re.compile(
+    r'\(\s*([A-Za-z_][\w:]*)\s*\(\s*\*\s*\)\s*\(([^()]*)\)\s*\)\s*'
+    r'([A-Z]\w*(?:::[A-Z]\w*)*)::([A-Za-z_]\w*)')
+
+_ASSIGN_MEMFN_RE = re.compile(
+    r'(\w+)\s*=\s*\(([A-Za-z_][\w:]*)\s*\(([A-Z]\w*(?:::[A-Z]\w*)*)::\*\)'
+    r'\s*\(([^()]*)\)\)\s*&')
+
+_DECL_FNPTR_RE = re.compile(
+    r'(?m)^(\s*[A-Za-z_][\w:]*)\s*\(\s*\*\s*(\w+)\s*\)\s*\(([^;()]*)\)\s*;')
+
+_FPTR_PARAM_RE = re.compile(
+    r'^(.*?)\(\s*__thiscall\s*\*\s*(\w*)\s*\)\s*\((.*)\)$', re.S)
+
+_THIS_NAME_RE = re.compile(r'(?:^|\s)(?:\w+\s*\*+\s*)?(?:this|_this)$')
+
+
+def rewrite_thiscall_fnptr_param(param, cls_name):
+    """Rewrite one parameter spelled as a thiscall fn-ptr to member-ptr form.
+
+    'int (__thiscall *a2)(int this, int a2)' — Hex-Rays' rendering of a
+    member-pointer callback with a synthetic this argument — becomes
+    'int (CLS::*a2)(int, int)'.  The callback class is the enclosing
+    method's class (binary evidence: the values passed at call sites are
+    methods of that same class).  VC6 cannot spell the __thiscall fn-ptr
+    form at all (C4234).
+    """
+    m = _FPTR_PARAM_RE.match(param.strip())
+    if not m:
+        return param
+    pre, name, inner = m.groups()
+    depth = 0
+    args, cur = [], ''
+    for ch in inner:
+        if ch in '(<':
+            depth += 1
+        elif ch in ')>':
+            depth -= 1
+        if ch == ',' and depth == 0:
+            args.append(cur.strip())
+            cur = ''
+        else:
+            cur += ch
+    if cur.strip():
+        args.append(cur.strip())
+    if len(args) >= 2 and _THIS_NAME_RE.search(args[0]):
+        args = args[1:]
+    return '%s(%s::*%s)(%s)' % (
+        pre, cls_name, name or 'pFn', ', '.join(args))
+
+
+def _fix_member_fn_callbacks(code, ctx):
+    out = code
+
+    # pass 0 — thiscall fn-ptr parameters in the definition signature
+    # (Hex-Rays synthetic-this form).  Class = the method's own class.
+    if ctx is not None and getattr(ctx, 'cls_name', None):
+        out = re.sub(
+            r'[\w\s]*\(\s*__thiscall\s*\*\s*\w*\s*\)\s*\([^()]*\)',
+            lambda m: rewrite_thiscall_fnptr_param(m.group(0), ctx.cls_name),
+            out)
+
+    # pass 1 — cast sites:
+    #   (RET ( *)(ARGS))CLS::METH → (RET (CLS::*)(ARGS'))&CLS::METH
+    # where ARGS' drops the leading synthetic this argument.  Static
+    # members already decay legally and must keep the free-ptr form.
+    def _cast_repl(m):
+        ret, args, cls, meth = m.group(1), m.group(2), m.group(3), m.group(4)
+        if ('%s::%s' % (cls, meth)) in store.static_methods:
+            return m.group(0)
+        argl = [a.strip() for a in args.split(',') if a.strip()]
+        if not argl:
+            return m.group(0)
+        return '(%s (%s::*)(%s))&%s::%s' % (
+            ret, cls, ', '.join(argl[1:]), cls, meth)
+
+    out = _CAST_MEMFN_RE.sub(_cast_repl, out)
+
+    # pass 1b — address-equality against a member function:
+    #   (char *)a2 == (char *)CLS::METH → a2 == &CLS::METH
+    # (after pass 0/1 'a2' is a member pointer; member-pointer equality is
+    # legal C++ and compares the same 4 address bytes.  Only qualified
+    # member names on the right are rewritten — plain char* comparisons
+    # are left alone.)
+    out = re.sub(
+        r'\(\s*char\s*\*\s*\)\s*(\w+)\s*==\s*\(\s*char\s*\*\s*\)\s*'
+        r'([A-Z]\w*(?:::[A-Z]\w*)*)::([A-Za-z_]\w*)',
+        r'\1 == &\2::\3', out)
+
+    # pass 2 — local declarations correlated with rewritten casts:
+    #   RET (*v4)(int, int);  →  RET (CLS::*v4)(int);
+    var_types = {}
+    for m in _ASSIGN_MEMFN_RE.finditer(out):
+        var_types[m.group(1)] = (m.group(2), m.group(3), m.group(4))
+
+    def _decl_repl(m):
+        ret, name, args = m.group(1), m.group(2), m.group(3)
+        info = var_types.get(name)
+        if info:
+            return '%s (%s::*%s)(%s);' % (info[0], info[1], name, info[2])
+        return m.group(0)
+
+    out = _DECL_FNPTR_RE.sub(_decl_repl, out)
+    return out
+
+
+# ============================================================
+# Pointer/integral assignment cast insertion (VC6 C2440)
+# ============================================================
+#
+# VC6 C++ rejects implicit pointer<->integer assignments; the original
+# source carried explicit casts that Hex-Rays' output drops.  Re-insert
+# them where both sides' types are recoverable:
+#   ulong_var = &global;            →  ulong_var = (unsigned long)&global;
+#   *(DWORD *)x = ptr_field;        →  *(DWORD *)x = (DWORD)ptr_field;
+#   char *a = unsigned char *b;     →  char *a = (char *)b;  (same-size bases)
+# All insertions are byte-equivalent (the same mov; casts are free).
+# Cross-class pointer mismatches are NOT cast — they signal annotation
+# errors and need evidence-based review.
+
+_INTEGRAL = {
+    'int', 'unsigned int', 'long', 'unsigned long', 'short', 'unsigned short',
+    'char', 'unsigned char', 'bool', '_DWORD', '_WORD', '_BYTE', '_QWORD',
+    'UINT', 'DWORD', 'BOOL', 'BYTE', 'WORD', 'size_t', 'LPARAM', 'WPARAM',
+    'ULONG', 'UINT32', 'uintptr_t', 'DWORD_PTR',
+}
+_SAME_SIZE_PTR_BASES = {
+    'char', 'unsigned char', 'BYTE', '_BYTE',
+    'int', 'unsigned int', 'UINT', 'DWORD', '_DWORD', 'long', 'unsigned long',
+    'short', 'unsigned short', 'WORD', '_WORD',
+    'void', 'float',
+}
+
+_mem_index_cache = None
+_struct_inst_types_cache = None
+
+
+def _struct_instance_types():
+    """{global_instance_name: struct_type}"""
+    global _struct_inst_types_cache
+    if _struct_inst_types_cache is None:
+        _struct_inst_types_cache = {
+            item[2]: item[3] for item in store.struct_instances}
+    return _struct_inst_types_cache
+
+
+def _member_index():
+    """{struct_name: {member_name: member_type}} built from the store."""
+    global _mem_index_cache
+    if _mem_index_cache is None:
+        _mem_index_cache = {}
+        for sname, offs in store.struct_members.items():
+            idx = {}
+            for _off, (mname, mtype) in offs.items():
+                idx.setdefault(mname, mtype.strip())
+            _mem_index_cache[sname] = idx
+    return _mem_index_cache
+
+
+def _classify_type_text(t):
+    """type text → ('pointer'|'integral'|'struct'|None, text, struct_name)"""
+    if not t:
+        return (None, '', None)
+    t = t.strip()
+    core = t.rstrip('* ').strip()
+    if t.endswith('*'):
+        if core in _SAME_SIZE_PTR_BASES or core in _INTEGRAL:
+            return ('pointer', t, None)
+        return ('pointer', t, core)
+    if core in _INTEGRAL:
+        return ('integral', t, None)
+    return (None, t, core)
+
+
+def _declared_local_types(tree, code_bytes):
+    """Top-level function-scope locals: {name: type_text}."""
+    out = {}
+
+    def type_text_of(decl):
+        parts = []
+        for ch in decl.children:
+            if ch.type in ('primitive_type', 'type_identifier', 'sized_type_specifier'):
+                parts.append(ch.text.decode('utf-8'))
+            elif ch.type == 'pointer_declarator':
+                parts.append('*')
+        return ' '.join(parts)
+
+    def walk(node):
+        if node.type == 'declaration':
+            ttext = type_text_of(node)
+            if ttext:
+                for d in node.children:
+                    if d.type == 'pointer_declarator':
+                        d = d.children[-1] if d.children else d
+                    if d.type == 'identifier':
+                        out[d.text.decode('utf-8')] = ttext
+                    elif d.type == 'init_declarator':
+                        for dd in d.children:
+                            if dd.type == 'identifier':
+                                out[dd.text.decode('utf-8')] = ttext
+                                break
+                    elif d.type == 'array_declarator':
+                        for dd in d.children:
+                            if dd.type == 'identifier':
+                                out[dd.text.decode('utf-8')] = ttext
+                                break
+        for ch in node.children:
+            walk(ch)
+
+    walk(tree.root_node)
+    return out
+
+
+def _expr_type(node, locals_, ctx, depth=0):
+    """Classify an expression: returns _classify_type_text tuple."""
+    if depth > 8 or node is None:
+        return (None, '', None)
+    nt = node.type
+    if nt == 'pointer_expression':
+        # &x → pointer ; *x → pointee of operand
+        op = node.child_by_field_name('operator')
+        arg = node.child_by_field_name('argument') or node.children[-1]
+        if op and op.text == b'&':
+            base = _expr_type(arg, locals_, ctx, depth + 1)
+            if base[0] in ('integral', 'struct'):
+                return ('pointer', base[1], base[2])
+            return ('pointer', '', None)
+        base = _expr_type(arg, locals_, ctx, depth + 1)
+        if base[0] == 'pointer':
+            return _classify_type_text(base[1].rstrip('* ').strip() and
+                                       base[1].rstrip().rstrip('*').strip() or 'int')
+        return (None, '', None)
+    if nt == 'cast_expression':
+        # type text sits between the first ( ) pair
+        src = node.text.decode('utf-8')
+        close = src.find(')')
+        ttext = src[1:close].strip()
+        return _classify_type_text(ttext)
+    if nt == 'identifier':
+        name = node.text.decode('utf-8')
+        if name in locals_:
+            return _classify_type_text(locals_[name])
+        gt = store.global_types.get(name)
+        if gt:
+            return _classify_type_text(gt)
+        return (None, '', None)
+    if nt == 'field_expression':
+        field = node.child_by_field_name('field')
+        arg = node.child_by_field_name('argument')
+        if field is None:
+            return (None, '', None)
+        mname = field.text.decode('utf-8')
+        base_txt = arg.text.decode('utf-8') if arg is not None else ''
+        base_struct = None
+        deref = False
+        if arg is not None:
+            if arg.type == 'this':
+                base_struct = ctx.cls_name if ctx else None
+                deref = True
+            else:
+                bt = _expr_type(arg, locals_, ctx, depth + 1)
+                if bt[0] == 'pointer' and bt[2]:
+                    base_struct, deref = bt[2], True
+                elif bt[2]:
+                    base_struct, deref = bt[2], False
+        if base_struct is None:
+            # 'g_Global.field' where the global is a struct instance
+            base_struct = _struct_instance_types().get(base_txt)
+            deref = True
+        if base_struct:
+            m = _member_index().get(base_struct, {}).get(mname)
+            if m:
+                return _classify_type_text(m)
+        return (None, '', None)
+    if nt == 'subscript_expression':
+        base = _expr_type(node.child_by_field_name('argument') or node.children[0],
+                          locals_, ctx, depth + 1)
+        if base[0] == 'pointer':
+            return _classify_type_text(base[1].rstrip().rstrip('*').strip() or 'int')
+        return (None, '', None)
+    if nt == 'binary_expression' or nt == 'parenthesized_expression':
+        for ch in node.children:
+            if ch.type in ('identifier', 'field_expression', 'subscript_expression'):
+                r = _expr_type(ch, locals_, ctx, depth + 1)
+                if r[0]:
+                    return r
+        return (None, '', None)
+    return (None, '', None)
+
+
+def _collect_ptr_cast_edits(code_bytes, tree, ctx):
+    """Insert explicit casts on pointer<->integral assignments."""
+    edits = []
+    locals_ = _declared_local_types(tree, code_bytes)
+
+    def visit(node):
+        if node.type == 'assignment_expression':
+            op = node.child_by_field_name('operator')
+            left = node.child_by_field_name('left')
+            right = node.child_by_field_name('right')
+            if op is not None and op.text == b'=' and left is not None and right is not None:
+                lt = _expr_type(left, locals_, ctx)
+                rt = _expr_type(right, locals_, ctx)
+                if lt[0] == 'integral' and rt[0] == 'pointer':
+                    # pointer value stored into an integer lvalue
+                    edits.append((right.start_byte, right.start_byte,
+                                  ('(%s)' % lt[1]).encode('utf-8')))
+                elif (lt[0] == 'pointer' and rt[0] == 'pointer'
+                      and lt[1] and rt[1]):
+                    lbase = lt[1].rstrip('* ').strip()
+                    rbase = rt[1].rstrip('* ').strip()
+                    if (lbase != rbase and lbase in _SAME_SIZE_PTR_BASES
+                            and rbase in _SAME_SIZE_PTR_BASES):
+                        edits.append((right.start_byte, right.start_byte,
+                                      ('(%s)' % lt[1]).encode('utf-8')))
+        for ch in node.children:
+            visit(ch)
+
+    visit(tree.root_node)
+    return edits
+
+
 def run(code, ctx):
     """Stage 4: pure AST-based identifier/type resolution."""
     code_bytes = code.encode('utf-8')
     tree = _parser.parse(code_bytes)
     edits = _collect_token_edits(code_bytes, tree, ctx)
+    edits += _collect_ptr_cast_edits(code_bytes, tree, ctx)
     result = code_bytes
     for start, end, replacement in sorted(edits, reverse=True):
         result = result[:start] + replacement + result[end:]
-    return result.decode('utf-8')
+    result = result.decode('utf-8')
+    return _fix_member_fn_callbacks(result, ctx)
