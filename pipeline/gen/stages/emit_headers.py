@@ -303,6 +303,25 @@ def parse_signature(sig):
     """
     if not sig:
         return 'int', '', '', ''
+    # Normalize IDA __hidden this marker: apply_annotations writes method types as
+    # `Cls *__hidden this` (IDA's official this-argument spelling, adopted as
+    # definite by Hex-Rays). Codegen consumes the equivalent `Cls *this` form.
+    sig = re.sub(r'\b__hidden\s+', '', sig)
+    # Normalize Hex-Rays struct-return sret param: `Cls *__return_ptr retstr`
+    # (VC6 struct returns use the hidden pointer implicitly — the sret spelling
+    # is an IDA type-system artifact, not a real parameter).
+    if '__return_ptr' in sig:
+        sig = re.sub(r'\s*,?\s*[A-Za-z_][\w:]*(?:\s*\*+)?\s*__return_ptr\s+\w+\s*,?', ' ', sig)
+        sig = re.sub(r'\(\s*,', '(', sig)
+        sig = re.sub(r',\s*\)', ')', sig)
+        # The sret spelling means the function returns `Cls` BY VALUE:
+        # Hex-Rays shows the return as `Cls *` pointing at the sret buffer.
+        # Drop exactly one '*' from the return type (segment before first '(').
+        p0 = sig.find('(')
+        ret_seg = sig[:p0]
+        j = ret_seg.rstrip().rfind('*')
+        if j != -1:
+            sig = sig[:j] + sig[j+1:]
     # Strip IDA __attribute__ annotations from signature
     sig = re.sub(r'\s*__attribute__\s*\(\([^()]*(?:\([^()]*\)[^()]*)*\)\)', '', sig)
     # Strip __noreturn (VC6 doesn't support it; functions are noreturn by analysis)
@@ -1641,8 +1660,14 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
 
             # Fix invalid parameter names (starting with digit or 'this' keyword)
             if params:
+                from stages.stage4_substitution import rewrite_thiscall_fnptr_param
                 def _fix_param(p):
                     p = p.strip()
+                    # thiscall fn-ptr params → member-pointer form (VC6
+                    # cannot spell the fn-ptr form; callback class is the
+                    # enclosing method's class per binary evidence)
+                    if '__thiscall' in p:
+                        p = rewrite_thiscall_fnptr_param(p, cls_name)
                     m = re.match(r'^(.+?[\s\*])(\d\w*)$', p)
                     if m:
                         return '%s a_%s' % (m.group(1), m.group(2))

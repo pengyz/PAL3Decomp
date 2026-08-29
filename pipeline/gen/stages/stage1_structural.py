@@ -28,6 +28,29 @@ def run(code, ctx):
         first_lines[0] = re.sub(r'\b(__thiscall|__cdecl|__stdcall|__fastcall)\b', '', first_lines[0])
         code = '\n'.join(first_lines)
 
+    # Normalize Hex-Rays struct-return sret form so tree-sitter can parse the
+    # definition: `RET *Cls::Method(RET *__return_ptr retstr, Cls *this, rest)`
+    # → `RET Cls::Method(rest)`. VC6's struct-return ABI is implicit and
+    # byte-identical; the sret spelling is an IDA type-system artifact. The
+    # body may still reference `retstr` — such functions are queued for
+    # Phase-2 manual by-value translation (body rewrites are not mechanical).
+    if '__return_ptr' in code.split('{', 1)[0]:
+        code = re.sub(
+            r'\s*,?\s*[A-Za-z_][\w:]*(?:\s*\*+)?\s*__return_ptr\s+\w+\s*,?',
+            ' ', code, count=1)
+        code = re.sub(r'\(\s*,', '(', code, count=1)
+        code = re.sub(r',\s*\)', ')', code, count=1)
+        p0 = code.find('(')
+        if p0 > 0:
+            j = code[:p0].rstrip().rfind('*')
+            if j != -1:
+                code = code[:j] + code[j+1:]
+        # a `Cls *this` param in sret defs duplicates the implicit this — drop it
+        code = re.sub(r'(\([^)]*?),\s*[A-Za-z_][\w:]*(?:\s*\*+)?\s*this(\s*\))',
+                      r'\1\2', code, count=1)
+        code = re.sub(r'(\(\s*)[A-Za-z_][\w:]*(?:\s*\*+)?\s*this\s*,\s*',
+                      r'\1', code, count=1)
+
     # Parse with tree-sitter
     code_bytes = code.encode('utf-8')
     tree = _parser.parse(code_bytes)

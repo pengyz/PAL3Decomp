@@ -1,0 +1,93 @@
+# Phase-2 queue: sret (struct-return) functions needing manual by-value translation
+
+Hex-Rays renders these as `RET *Cls::Method(RET *__return_ptr retstr, Cls *this, ...)`;
+codegen normalizes the SIGNATURE to by-value `RET Cls::Method(...)`, but the BODY still
+references `retstr` (often register-folded into loop variables) and must be hand-translated
+to `return` statements. 86 functions. Generated: 2026-08-29.
+
+- `0x00537A90` Actor::DoSceneTransition(double,int) — FILE *(FILE *__return_ptr retstr, Actor *this, double pData, int nVal)
+- `0x0051AC90` CCBControlWindow::HandleEnable(CCBControlWindow *,char) — virtual UIWnd *(UIWnd *__return_ptr retstr, CCBControlWindow *this, CCBControlWindow *Bloc
+- `0x0051AB60` CCBControlWindow::HandleInput(UIButton *) — UIButton *(UIButton *__return_ptr retstr, CCBControlWindow *this, UIButton *pButton)
+- `0x0051B670` CCBItemWindow::CreateButtons(CCBItemWindow *,char) — UIWnd *(UIWnd *__return_ptr retstr, CCBItemWindow *this, CCBItemWindow *Block, char pData)
+- `0x0051B160` CCBItemWindow::_scalar_dtor(CCBItemWindow *,char) — virtual UIWnd *(UIWnd *__return_ptr retstr, CCBItemWindow *this, CCBItemWindow *Block, cha
+- `0x0051D6D0` CCBLineupWindow::RefreshFacePos(void) — CCBProtectWindow *(CCBProtectWindow *__return_ptr retstr, CCBLineupWindow *this)
+- `0x00440BE0` CCBParabolaWindow::LoadResourceEx(char const *,char) — gbVFileSystem *(gbVFileSystem *__return_ptr retstr, CCBParabolaWindow *this, const char *p
+- `0x0051C260` CCBParabolaWindow::_scalar_dtor(CCBSkillWindow *,char) — virtual UIWnd *(UIWnd *__return_ptr retstr, CCBParabolaWindow *this, CCBSkillWindow *Block
+- `0x00516100` CCBProtectWindow::_sdtor_19(CCBProtectWindow *,char) — virtual CCBProtectWindow *(CCBProtectWindow *__return_ptr retstr, CCBProtectWindow *this, 
+- `0x004EE870` CCBRoleState::InitUI(int) — tagRoleState *(tagRoleState *__return_ptr retstr, CCBRoleState *this, int nVal)
+- `0x0050A9B0` CCBStageRole::DoTask(gbVec3D *) — tagRoleState *(tagRoleState *__return_ptr retstr, CCBStageRole *this, gbVec3D *dwMsg)
+- `0x005092B0` CCBStageRole::GetOBBox(int) — CCBStageRole *(CCBStageRole *__return_ptr retstr, CCBStageRole *this, int nVal)
+- `0x0051D710` CCBStage::Create_d710(void) — CCBProtectWindow *(CCBProtectWindow *__return_ptr retstr, CCBStage *this)
+- `0x004F4AA0` CCBStage::GetRole(int) — CCBStageRole *(CCBStageRole *__return_ptr retstr, CCBStage *this, int index)
+- `0x004CFC70` CEffModel::CEffModel(void) — CEffModel *(CEffModel *__return_ptr retstr, CEffModel *this)
+- `0x004D3860` CEffQuake::_sdtor(char) — CEffQuake *(CEffQuake *__return_ptr retstr, CEffQuake *this, char pData)
+- `0x004D3910` CEffShock::CEffShock(void) — virtual CEffShock *(CEffShock *__return_ptr retstr, CEffShock *this)
+- `0x004C5820` CEffectSystem::Create(int) — CEffectSystem *(CEffectSystem *__return_ptr retstr, CEffectSystem *this, int pGfxMgr)
+- `0x004C6370` CEffectSystem_DestroyEffect — CEffectSystem *(CEffectSystem *__return_ptr retstr)
+- `0x004C6330` CEffectSystem::GetEffectIndex(void) — CEffect *(CEffect *__return_ptr retstr, CEffectSystem *this)
+- `0x004D0D70` CEffect::SetTimeScale(void) — virtual CEffect *(CEffect *__return_ptr retstr, CEffect *this)
+- `0x004C8930` CEffgbParticle::SetTimeScale(void) — virtual CEffgbParticle *(CEffgbParticle *__return_ptr retstr, CEffgbParticle *this)
+- `0x0053DF70` CScreenMode::GetInstance(void) — CScreenMode *(CScreenMode *__return_ptr retstr)
+- `0x005231D0` CUtil::WriteLog(CUtil *,char) — virtual UIWnd *(UIWnd *__return_ptr retstr, CUtil *this, CUtil *Block, char format)
+- `0x004BE8F0` CameraCtrl::_sdtor_17(CameraCtrl *,char) — CameraCtrl *(CameraCtrl *__return_ptr retstr, CameraCtrl *this, CameraCtrl *Block, char a2
+- `0x0041BE80` Camera::Camera(gbGfxManager *) — Camera *(Camera *__return_ptr retstr, Camera *this, struct gbGfxManager *p)
+- `0x00423540` CombatEnter — gbGfxManager *(gbGfxManager *__return_ptr retstr)
+- `0x00404020` GRPinput::GetKey(void) — GRPinput *(GRPinput *__return_ptr retstr, GRPinput *this)
+- `0x00402BA0` GRPinput::SetMousePos(void) — GRPinput *(GRPinput *__return_ptr retstr, GRPinput *this)
+- `0x00429CA0` GetActorMgr — gbActorMgr *(gbActorMgr *__return_ptr retstr)
+- `0x0042C920` ?GetCGEntry@CG_Entry@@QAEPAU[thunk]:class_GetCGEntry__public:_class_GetCGEntry@@XZ — gbVec3D *(gbVec3D *__return_ptr retstr, gbVec3D *this)
+- `0x00435380` GetCamera4 — gbCamera *(gbCamera *__return_ptr retstr)
+- `0x0053CF80` InitLogFiles — FILE *(FILE *__return_ptr retstr)
+- `0x0053D030` LogMessage — FILE *(FILE *__return_ptr retstr, char *Format, ...)
+- `0x0052FBD0` MiniGame2Scene::GetOBBox(void) — gbOBBox *(gbOBBox *__return_ptr retstr, MiniGame2Scene *this)
+- `0x0043A770` NameSys::GetSys(void) — NameSys *(NameSys *__return_ptr retstr)
+- `0x00537060` Object3D::GetVisNode(void) — gbVisNode *(gbVisNode *__return_ptr retstr, Object3D *this)
+- `0x00478E00` PAL_GDB::PAL_GDB(void) — PAL_GDB *(PAL_GDB *__return_ptr retstr, PAL_GDB *this)
+- `0x0043AA00` PalScript::OpenScript(char const *,char) — gbVFileSystem *(gbVFileSystem *__return_ptr retstr, PalScript *this, const char *pszName, 
+- `0x0053FEC0` Parent_Data::NewEffect(void) — gbRenderEffect *(gbRenderEffect *__return_ptr retstr, Parent_Data *this)
+- `0x0053D0B0` PtrArray::ClearBoth(void) — PtrArray *(PtrArray *__return_ptr retstr, PtrArray *this)
+- `0x004C04C0` RenderTarget2::ClearTarget(void) — CEffBase *(CEffBase *__return_ptr retstr, RenderTarget2 *this)
+- `0x004C2050` RenderTarget2::ResetSurface(void) — CEffBink *(CEffBink *__return_ptr retstr, RenderTarget2 *this)
+- `0x004C3450` RenderTarget2::ResetTargetSlot(void) — CEffCallBack *(CEffCallBack *__return_ptr retstr, RenderTarget2 *this)
+- `0x004C1570` RenderTarget2::Reset(void) — CEffAudio *(CEffAudio *__return_ptr retstr, RenderTarget2 *this)
+- `0x004B6C20` RenderTarget3::ClearEffects(void) — CPolicy *(CPolicy *__return_ptr retstr, RenderTarget3 *this)
+- `0x004BD880` RenderTarget::CreateParticleEffect(int) — gbParticleEffect *(gbParticleEffect *__return_ptr retstr, RenderTarget *this, int nVal)
+- `0x004BDEB0` RenderTarget::GetActiveTexture(void) — gbTexture *(gbTexture *__return_ptr retstr, RenderTarget *this)
+- `0x004B4920` RenderTarget::LoadTexture(char const *) — gbVFileSystem *(gbVFileSystem *__return_ptr retstr, RenderTarget *this, const char *szFile
+- `0x004BD900` RenderTarget::UpdateParticleEffect(int) — gbParticleGroup *(gbParticleGroup *__return_ptr retstr, RenderTarget *this, int nVal)
+- `0x00450AB0` RoleCameraCtrl::_sdtor_26(RoleCameraCtrl *,char) — virtual RoleCameraCtrl *(RoleCameraCtrl *__return_ptr retstr, RoleCameraCtrl *this, RoleCa
+- `0x0041B6A0` Role::GetGfxManager(void) — virtual gbGfxManager *(gbGfxManager *__return_ptr retstr, Role *this)
+- `0x0052F800` SceneObj::LoadGeomFromFile(char const *) — gbVFileSystem *(gbVFileSystem *__return_ptr retstr, SceneObj *this, const char *pszName)
+- `0x00530280` SceneObj::LoadGeomNode(char const *) — gbGeomNode *(gbGeomNode *__return_ptr retstr, SceneObj *this, const char *pszFilename)
+- `0x004BE590` ScreenEffectMgr::GetInstance(void) — ScreenEffect *(ScreenEffect *__return_ptr retstr, ScreenEffectMgr *this)
+- `0x0040CB80` ScriptSystem::GetMainRoleSystem(ushort) — RoleSystem *(RoleSystem *__return_ptr retstr, unsigned __int16 pData)
+- `0x0042C730` ScriptVM::OpenSceneScript(void) — gbVFileSystem *(gbVFileSystem *__return_ptr retstr, ScriptVM *this)
+- `0x004A2F90` StateUI::FindChild(int) — UIWnd *(UIWnd *__return_ptr retstr, StateUI *this, int id)
+- `0x004A2BD0` StateUI::GetChildPtr(int) — UIWnd *(UIWnd *__return_ptr retstr, StateUI *this, int index)
+- `0x00483260` StateUI::_scalar_dtor(StateUI *,char) — virtual StateUI *(StateUI *__return_ptr retstr, StateUI *this, StateUI *Block, char a2)
+- `0x00540A20` TextureLibDataBase::GetTextureInfoByIndex(int) — _Texture_Info *(_Texture_Info *__return_ptr retstr, TextureLibDataBase *this, int nIndex)
+- `0x005408E0` TextureLibDataBase::GetTextureInfo(char *) — _Texture_Info *(_Texture_Info *__return_ptr retstr, TextureLibDataBase *this, char *pszNam
+- `0x004A6960` TextureLib::CreateFromFile(void) — gbTexture *(gbTexture *__return_ptr retstr, TextureLib *this)
+- `0x004A6CA0` TextureLib::CreateFromMemory(_BYTE *,int,char) — gbTexture *(gbTexture *__return_ptr retstr, TextureLib *this, _BYTE *pData, int nSize, cha
+- `0x0043A7F0` UICaption::_sdtor(UIScene *,char) — virtual UIScene *(UIScene *__return_ptr retstr, UICaption *this, UIScene *Block, char pDat
+- `0x0044BE00` UICaption::_sdtor_24(UICaption *,char) — UICaption *(UICaption *__return_ptr retstr, UICaption *this, UICaption *Block, char a2)
+- `0x0043B4B0` UICaption::_sdtor_5(UICaption *,char) — virtual UICaption *(UICaption *__return_ptr retstr, UICaption *this, UICaption *Block, cha
+- `0x00442370` UIFrameWnd::_sdtor(UIFrameWnd *,char) — UIFrameWnd *(UIFrameWnd *__return_ptr retstr, UIFrameWnd *this, UIFrameWnd *Block, char pD
+- `0x00442D20` UIFrameWnd::_sdtor_8(UIFrameWnd *,char) — UIFrameWnd *(UIFrameWnd *__return_ptr retstr, UIFrameWnd *this, UIFrameWnd *Block, char a2
+- `0x0043DC90` UILBItem::~UILBItem(void) — UILBColumn *(UILBColumn *__return_ptr retstr, UILBItem *this)
+- `0x0043DED0` UIListBox::GetSubItemInfo(void) — UIListBox *(UIListBox *__return_ptr retstr, UIListBox *this)
+- `0x0043E7D0` UIListBox::SetMouseMoveSel(int,int,char *,int) — gbVFileSystem *(gbVFileSystem *__return_ptr retstr, UIListBox *this, int movesel, int nVal
+- `0x0043DFC0` UIListBox::UpdateKeyCtrl(void) — UIListBox *(UIListBox *__return_ptr retstr, UIListBox *this)
+- `0x005279D0` UIListBox::_scalar_dtor_79d0(UIListBox *,char) — virtual UIListBox *(UIListBox *__return_ptr retstr, UIListBox *this, UIListBox *Block, cha
+- `0x00535930` UISceneMap::LoadOverlayTexture(double,int) — gbVFileSystem *(gbVFileSystem *__return_ptr retstr, UISceneMap *this, double thisa, int nV
+- `0x00442D00` UIStatic::CtorWithFlag(void) — UIStatic *(UIStatic *__return_ptr retstr, UIStatic *this)
+- `0x00444FF0` UITextArea::_sdtor_13(UITextArea *,char) — virtual UITextArea *(UITextArea *__return_ptr retstr, UITextArea *this, UITextArea *Block,
+- `0x00450E90` UIWnd::_sdtor_27(UIWnd *,char) — virtual UIWnd *(UIWnd *__return_ptr retstr, UIWnd *this, UIWnd *Block, char a2)
+- `0x004518E0` UIWnd::_sdtor_28(UIWnd *,char) — virtual UIWnd *(UIWnd *__return_ptr retstr, UIWnd *this, UIWnd *Block, char a2)
+- `0x005374E0` Vec3CopyStruct — gbVec3D *(gbVec3D *__return_ptr retstr, gbVec3D *pDst, gbVec3D *pSrc, gbVec3D *pEnd)
+- `0x00413800` Vec3Cross — gbVec3D *(gbVec3D *__return_ptr retstr, gbVec3D *pOut, gbVec3D *pA, gbVec3D *pB)
+- `0x0042C6E0` gbLightObj::GetGfxManager(void) — virtual gbGfxManager *(gbGfxManager *__return_ptr retstr, gbLightObj *this)
+- `0x0042FD40` gbVec3D::Copy(int,gbVec3D *) — gbVec3D *(gbVec3D *__return_ptr retstr, gbVec3D *this, int nSrcIndex, gbVec3D *pSrc)
+- `0x0044F8D0` _init_44f8d0 — CCBUI *(CCBUI *__return_ptr retstr, int this, int a2)
+- `0x0044E5C0` scScriptInstance::_sdtor_25(scScriptInstance *,char) — virtual scScriptInstance *(scScriptInstance *__return_ptr retstr, scScriptInstance *this, 
+- `0x00431760` _sdtor_23 — PalScript *(PalScript *__return_ptr retstr, PalScript *Block, char a2)

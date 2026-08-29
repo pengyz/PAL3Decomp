@@ -1252,6 +1252,28 @@ def _try_apply_type_tinfo(addr, sig, info, til):
         return False
 
 
+def _apply_func_type_parse(addr, decl, til):
+    """Primary function-type application: parse_decl + apply_tinfo (TINFO_DEFINITE).
+
+    Verified path (2026-08-29): Hex-Rays adopts the type as definite. idc.SetType
+    silently fails on `ret __thiscall name(Cls *__hidden this, ...)` forms, which
+    left Hex-Rays running on its own inference — the root cause of decomp-signature
+    divergence from annotations (~231 member/free conflicts in the export audit).
+    The `__hidden this` spelling is IDA's official representation for the C++
+    this argument (docs.hex-rays.com: Set item type / C++ type details).
+    """
+    try:
+        tif = ida_typeinf.tinfo_t()
+        # parse_decl requires a complete declaration — trailing semicolon needed
+        if not decl.rstrip().endswith(';'):
+            decl = decl + ';'
+        if not ida_typeinf.parse_decl(tif, til, decl, ida_typeinf.PT_SIL):
+            return False
+        return bool(ida_typeinf.apply_tinfo(addr, tif, ida_typeinf.TINFO_DEFINITE))
+    except Exception:
+        return False
+
+
 def apply_annotations():
     ida_auto.auto_wait()
 
@@ -1747,6 +1769,7 @@ def apply_annotations():
     sig_ok = 0
     sig_fail = []
     sig_skip_placeholder = 0
+    sig_parse_ok = 0
 
     # Build a combined list: functions.json only (struct methods are for codegen headers,
     # NOT for setting IDB function types — sharing same address across classes corrupts SetType)
@@ -1794,13 +1817,18 @@ def apply_annotations():
             if _cls:
                 _cc_is_thiscall = '__thiscall' in sig_raw
                 _params = sig_raw[paren_idx:]
-                if _cc_is_thiscall and not re.search(r'\b' + re.escape(_cls) + r'\s*\*\s*this', _params):
+                if (_cc_is_thiscall
+                        and '__hidden' not in _params
+                        and not re.search(r'\b' + re.escape(_cls) + r'\s*\*\s*this', _params)):
                     _before = sig_raw[:paren_idx].rstrip()
-                    # Insert ClassName *this as first param
+                    # Insert ClassName *__hidden this as first param.
+                    # __hidden is IDA's official spelling for the C++ this argument —
+                    # with it Hex-Rays adopts the type as definite instead of
+                    # re-inferring (which produced divergent signatures at export).
                     if _params.startswith('(') and _params[1:].strip() and _params[1:].strip()[0] != ')':
-                        _new_params = '(%s *this, %s' % (_cls, _params[1:])
+                        _new_params = '(%s *__hidden this, %s' % (_cls, _params[1:])
                     else:
-                        _new_params = '(%s *this)' % _cls
+                        _new_params = '(%s *__hidden this)' % _cls
                     sig_raw = _before + _new_params
             # Extract a valid C identifier for the function name
             short_name = name
@@ -1841,8 +1869,22 @@ def apply_annotations():
                 sig_with_name = before + after
             # Strip own class prefix for __thiscall return type (function type setup
             # handles this implicitly)
+            # Build a parse_decl-friendly declaration for the primary path:
+            # qualified names break parse_decl; virtual/static are type-level
+            # modifiers (virtuality is restored by vtable placement at export).
+            _pb = before.replace("virtual ", " ").replace("static ", " ")
+            _pb = _pb.replace("struct ", "").replace("class ", "")
+            _pb = _re_format.sub(r'\s+', ' ', _pb).strip()
+            _ptoks = _pb.split()
+            if _ptoks and _ptoks[-1] not in _type_and_cc:
+                _ptoks = _ptoks[:-1]  # drop function-name token (possibly qualified)
+            _decl_parse = ' '.join(_ptoks) + ' ' + short_name + after
+            # Primary: parse_decl + apply_tinfo — Hex-Rays adopts as definite
+            if _apply_func_type_parse(addr, _decl_parse, til):
+                sig_ok += 1
+                sig_parse_ok += 1
             # Apply via idc.SetType — handles virtual, thiscall, etc.
-            if idc.SetType(addr, sig_with_name):
+            elif idc.SetType(addr, sig_with_name):
                 sig_ok += 1
             else:
                 stripped = sig_with_name.replace("struct ", "").replace("class ", "")
@@ -1865,7 +1907,7 @@ def apply_annotations():
         log("[!] Signature failures logged: %s" % sig_fail_log)
         for addr_str, fname, sig_str in sig_fail[:5]:
             log("  [!] %s %s → %s" % (addr_str, fname[:40], sig_str[:60]))
-    log("[6] Signatures: %d/%d (fail=%d, placeholder=%d)" % (sig_ok, len([f for f in funcs.values() if f.get("signature")]), len(sig_fail), sig_skip_placeholder))
+    log("[6] Signatures: %d/%d (parse_tinfo=%d, fail=%d, placeholder=%d)" % (sig_ok, len([f for f in funcs.values() if f.get("signature")]), sig_parse_ok, len(sig_fail), sig_skip_placeholder))
     if sig_fail:
         for _addr_s, _fname_s, _err_s in sig_fail[:20]:
             log("  [!] %s: %s → %s" % (_addr_s, _fname_s[:40], _err_s[:60]))

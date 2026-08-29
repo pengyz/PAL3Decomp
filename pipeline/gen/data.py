@@ -309,6 +309,20 @@ class DataStore:
                     continue
                 _name = _dd.get('name', '')
                 _sig = _dd.get('signature', '')
+                # Normalize IDA __hidden this marker (apply_annotations writes
+                # method types as `Cls *__hidden this`; consume as `Cls *this`)
+                _sig = _re2.sub(r'\b__hidden\s+', '', _sig)
+                # Normalize Hex-Rays struct-return sret param (not a real param);
+                # the sret spelling means by-value return, so drop one '*' from ret
+                if '__return_ptr' in _sig:
+                    _sig = _re2.sub(r'\s*,?\s*[A-Za-z_][\w:]*(?:\s*\*+)?\s*__return_ptr\s+\w+\s*,?', ' ', _sig)
+                    _sig = _re2.sub(r'\(\s*,', '(', _sig)
+                    _sig = _re2.sub(r',\s*\)', ')', _sig)
+                    _p0 = _sig.find('(')
+                    if _p0 > 0:
+                        _j = _sig[:_p0].rstrip().rfind('*')
+                        if _j != -1:
+                            _sig = _sig[:_j] + _sig[_j+1:]
                 if not _name or not _sig:
                     continue
                 if '::' in _name:
