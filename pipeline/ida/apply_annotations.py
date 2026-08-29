@@ -283,7 +283,7 @@ def log(msg):
     print(msg)
 
 
-def _make_vtable_method_type(ann_sig, vm_short, til):
+def _make_vtable_method_type(ann_sig, vm_short, til, cls_name=None):
     """从 annotation 签名创建 vtable 方法类型，纯 API 不用 parse_decl。"""
     if '(' not in ann_sig:
         return None
@@ -311,6 +311,20 @@ def _make_vtable_method_type(ann_sig, vm_short, til):
     func_data = ida_typeinf.func_type_data_t()
     func_data.rettype = ret_tinfo
     func_data.cc = cc
+    # Insert `Cls *__hidden this` as first arg — IDA's official this-argument
+    # spelling. Keeps the vtbl slot type consistent with the function's own
+    # definite type, so vcall sites decompile as obj->Method(...) and the
+    # structs-methods vs decomp-signature projections agree.
+    if cls_name and cc == ida_typeinf.CM_CC_THISCALL:
+        _cls_tif = _resolve_member_type(cls_name, til)
+        if _cls_tif is not None:
+            _cls_ptr = ida_typeinf.tinfo_t()
+            if _cls_ptr.create_ptr(_cls_tif):
+                _this_arg = ida_typeinf.funcarg_t()
+                _this_arg.type = _cls_ptr
+                _this_arg.name = 'this'
+                _this_arg.flags = ida_typeinf.FAI_HIDDEN
+                func_data.push_back(_this_arg)
     if params_str:
         depth = 0
         current = []
@@ -827,7 +841,7 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
                 continue
             seen_vm.add(vm_short)
             try:
-                mtif = _make_vtable_method_type(ann_sig, vm_short, til)
+                mtif = _make_vtable_method_type(ann_sig, vm_short, til, name)
                 if mtif is not None:
                     mudm = ida_typeinf.udm_t()
                     mudm.name = vm_short

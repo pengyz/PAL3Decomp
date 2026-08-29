@@ -28,6 +28,12 @@ from data import store
 def _apply_text_substitutions(code, ctx):
     """Apply text-level substitutions: type aliases, suffixes, thunk classes."""
 
+    # Normalize IDA __hidden this marker in body text: it now appears inside
+    # function-pointer declarators rendered from adopted definite types,
+    # e.g. `unsigned int (__thiscall *v21)(Cls *__hidden, int)`. `__hidden`
+    # is never valid C++ — global strip is safe (display-convention token).
+    code = re.sub(r'\b__hidden\b\s*', '', code)
+
     # Replace IDA container structures with STL types
     _type_map = {
         'std::_String_iterator<char,std::char_traits<char>,std::allocator<char>>':
