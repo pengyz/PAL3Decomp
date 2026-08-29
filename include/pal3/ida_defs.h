@@ -27,14 +27,9 @@
 #include "gbengine/gbVFileSystem.h"
 #include "gbengine/gbVisNode.h"
 
-typedef char _BYTE;
-typedef unsigned short _WORD;
-typedef unsigned long _DWORD;
-typedef unsigned __int64 _QWORD;
-
-// Hex-Rays type aliases (unsigned char -> uchar, unsigned int -> uint)
-typedef unsigned char uchar;
-typedef unsigned int uint;
+// ttl aliases + uchar/uint now live in pal3/ida_types.h (single definition
+// site, shared with standalone-compiled generated headers)
+#include "pal3/ida_types.h"
 
 // DirectInput 8 (DX SDK provides full dinput.h with IDirectInput8A)
 #define DIRECTINPUT_VERSION 0x0800

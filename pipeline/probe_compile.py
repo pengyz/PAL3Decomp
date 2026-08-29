@@ -191,8 +191,18 @@ def main():
     args = ap.parse_args()
 
     os.makedirs(OBJ_DIR, exist_ok=True)
-    report = {'generated_at': datetime.now().isoformat(timespec='seconds'),
-              'compiler': 'MSVC6 SP0 via wine (/TP /c /W3)'}
+    # Merge into any existing report so single-layer runs don't clobber
+    # the other layer's results.
+    report = {}
+    if os.path.exists(args.out):
+        try:
+            prev = json.load(open(args.out))
+            if isinstance(prev, dict):
+                report = {k: prev[k] for k in prev if k in ('s1', 's2')}
+        except (json.JSONDecodeError, OSError):
+            pass
+    report['generated_at'] = datetime.now().isoformat(timespec='seconds')
+    report['compiler'] = 'MSVC6 SP0 via wine (/TP /c /W3)'
 
     if args.layer in ('s1', 'all'):
         t0 = time.time()

@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 Generate C++ header files from IDB struct export + IDA function signatures.
 
@@ -720,8 +720,10 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     methods:    function definitions collected from decomp JSONs.
     """
     lines = ["#pragma once"]
-    lines.append("// Auto-generated: %s" % (
+    lines.append('// Auto-generated: %s' % (
         template_expr if template_expr else cls_name))
+    # standalone-compile base: Win32 primitives + Hex-Rays ttl aliases
+    lines.append('#include "pal3/ida_types.h"')
     lines.append("")
 
     # Overlay annotation known_members on top of ida_struct data for naming.
@@ -1005,6 +1007,18 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 else:
                     lines.append('#include "%s.h"' % t)
         fwd_types -= enum_fwd
+
+    # DirectX D3DX system types: extern SDK types, not game classes.
+    # Forward-declaring them is wrong (by-value members need full
+    # definitions) — include the SDK header instead.
+    _D3DX_TYPES = {'D3DXVECTOR2', 'D3DXVECTOR3', 'D3DXVECTOR4', 'D3DXMATRIX',
+                   'D3DXCOLOR', 'D3DXQUATERNION', 'D3DXPLANE',
+                   'D3DCOLORVALUE', 'D3DCOLOR'}
+    _d3dx_needed = (fwd_types | include_types) & _D3DX_TYPES
+    fwd_types -= _D3DX_TYPES
+    include_types -= _D3DX_TYPES
+    if _d3dx_needed:
+        lines.append('#include <d3dx9.h>')
 
     # Emit forward declarations for class types
     fwd_types = {t for t in fwd_types}
@@ -2044,7 +2058,8 @@ def main():
         if should_skip_class(name):
             continue
 
-        lines = ['#pragma once', '// Auto-generated: %s enum' % name, '']
+        lines = ['#pragma once', '// Auto-generated: %s enum' % name, '',
+                 '#include "pal3/ida_types.h"', '']
         lines.append('enum %s {' % name)
         sorted_vals = sorted(values.items(), key=lambda x: int(x[1]))
         for vname, vval in sorted_vals:
@@ -2078,6 +2093,7 @@ def main():
 
         lines = ['#pragma once']
         lines.append('// Auto-generated: %s (template class, simplified)' % base_name)
+        lines.append('#include "pal3/ida_types.h"')
         lines.append('// Original: %s' % tc.get('name', base_name))
         lines.append('// Size: 0x%X (%d bytes) from IDB' % (size, size))
         lines.append('')
@@ -2241,6 +2257,7 @@ def generate_globals():
         '// Auto-generated from pipeline/data/annotations/globals.json',
         '',
         '#include <windows.h>',
+        '#include "pal3/ida_types.h"',
         '#ifndef _PVFV',
         'typedef void (__cdecl *_PVFV)(void);',
         '#endif',
