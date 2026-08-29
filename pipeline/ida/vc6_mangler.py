@@ -12,20 +12,37 @@ _TC = {
 }
 _CC = {'__thiscall': 'A', '__cdecl': 'C', '__stdcall': 'G', '__fastcall': 'I'}
 
+# tokens that are part of a type, never a parameter name
+_TYPE_WORDS = {
+    'int', 'char', 'short', 'long', 'unsigned', 'signed', 'float', 'double',
+    'void', 'bool', 'const', 'volatile', 'struct', 'class', 'union', 'enum',
+    '__int8', '__int16', '__int32', '__int64', '__wchar_t',
+}
+
 
 def encode_type(t):
     t = t.strip()
+    # normalize qualifier placement: the IDA demangler emits trailing forms
+    # ('char const * *'); rotate const/volatile tokens to the front so the
+    # const-pointer chain encodes correctly ('PBD')
+    toks = t.split()
+    if 'const' in toks or 'volatile' in toks:
+        head = [t2 for t2 in toks if t2 in ('const', 'volatile')]
+        rest_toks = [t2 for t2 in toks if t2 not in ('const', 'volatile')]
+        t = ' '.join(head + rest_toks)
     is_const = t.startswith('const ')
     if is_const: t = t[6:].strip()
+    is_volatile = t.startswith('volatile ')
+    if is_volatile: t = t[9:].strip()
     is_ref = t.endswith('&')
     if is_ref: t = t[:-1].strip()
     ptr = 0
     while t.endswith('*'):
         t = t[:-1].strip(); ptr += 1
     tag = None
-    if t.startswith('struct '):
+    if t.startswith('struct ') or t == 'struct':
         tag = 'U'; t = t[7:].strip()
-    elif t.startswith('class '):
+    elif t.startswith('class ') or t == 'class':
         tag = 'V'; t = t[6:].strip()
     code = _TC.get(t)
     if code is None and ptr > 0:
@@ -45,6 +62,11 @@ def encode_type(t):
 
 
 def strip_param_name(p):
+    """Strip a trailing parameter name, but only when the last token can
+    actually be a name ('unsigned short', 'char const *' etc. are types)."""
+    toks = p.strip().rstrip('*').split()
+    if toks and toks[-1] in _TYPE_WORDS:
+        return p.strip()  # trailing token is a type word — no name present
     m = re.match(r'^(.+\*)\s*\w*$', p)
     if m: return m.group(1).strip()
     m = re.match(r'^(.+?)\s+\w+$', p)
@@ -58,34 +80,43 @@ def _mangle_class_chain(cls_name):
     return '@'.join(reversed(parts))
 
 
-def mangle(cls_name, method_name, sig):
+def mangle(cls_name, method_name, sig, cv='', virtual_=False, static_=False):
     """Compute VC6 mangled name for a class method.
-    
+
     Args:
         cls_name: Class name — may include :: for nested (e.g. 'AStarPathFinder::NODE')
-        method_name: Method name (e.g. 'FindInOpen')
+        method_name: Method name (e.g. 'FindInOpen'); a name equal to the
+            last class segment mangles as a ctor ('??0'), '~Name' as dtor ('??1')
         sig: Signature string (e.g. 'int __thiscall(int nTileIdx)')
-    
+        cv: '' | 'const' | 'volatile' | 'const volatile' — method cv-qualifier
+        virtual_: virtual method (prefix letter 'U' instead of 'Q')
+        static_: static method (prefix 'SA'; no cv, no thiscall marker)
+
     Returns:
         Mangled name string (e.g. '?FindInOpen@NODE@AStarPathFinder@@QAEHH@Z')
     """
     cls_chain = _mangle_class_chain(cls_name)
-    
+
     paren = sig.find('(') if sig else -1
     if paren == -1:
         return '?' + method_name + '@' + cls_chain + '@@QAEXXZ'
-    
+
     prefix = sig[:paren].strip()
     pstr = sig[paren + 1:sig.rfind(')')] if sig.rfind(')') > paren else ''
-    
+
+    # IDA signatures may carry 'virtual'/'static' keywords — not part of
+    # the type encoding (virtuality is the virtual_/static_ flags)
+    for kw in ('virtual', 'static'):
+        prefix = re.sub(r'\b%s\s+' % kw, '', prefix)
+
     cc = '__thiscall'
     for c in ['__thiscall', '__cdecl', '__stdcall', '__fastcall']:
         if c in prefix: cc = c; break
-    
+
     ret = prefix.replace(cc, '').strip()
     ret = re.sub(r'\w+::\w+', '', ret).strip()
     pstr = re.sub(r'\w+\s*\*\s*(?:__hidden\s+)?this\s*,?\s*', '', pstr)
-    
+
     params = []
     if pstr and pstr.strip() not in ('', 'void'):
         depth = 0; cur = ''
@@ -96,11 +127,38 @@ def mangle(cls_name, method_name, sig):
                 if cur.strip(): params.append(cur.strip()); cur = ''
             else: cur += ch
         if cur.strip(): params.append(cur.strip())
-    
-    r = '?' + method_name + '@' + cls_chain + '@@'
-    r += 'Q' + _CC.get(cc, 'A') + 'E'
+
+    # special member names: ctor ??0 / dtor ??1 — chain only, no return code
+    last_seg = cls_name.split('::')[-1]
+    special = None
+    if method_name == last_seg:
+        special = '0'
+    elif method_name == '~' + last_seg:
+        special = '1'
+
+    if special:
+        r = '??' + special + '@'.join(reversed(cls_name.split('::'))) + '@@'
+    else:
+        r = '?' + method_name + '@' + cls_chain + '@@'
+
+    if static_:
+        r += 'SA'
+    else:
+        cvl = {'': 'A', 'const': 'B', 'volatile': 'C',
+               'const volatile': 'D'}.get(cv, 'A')
+        r += ('U' if virtual_ else 'Q') + cvl + 'E'
+
+    if special:
+        r += '@'                       # ctors/dtors carry no return type
+        if not params:
+            r += 'XZ'                  # void parameter list
+        else:
+            r += ''.join(encode_type(strip_param_name(p)) for p in params) + '@Z'
+        return r
+
     r += encode_type(ret)
-    for p in params:
-        r += encode_type(strip_param_name(p))
-    r += '@Z'
+    if not params:
+        r += 'XZ'   # void parameter list: 'X' + 'Z' (no '@' terminator)
+    else:
+        r += ''.join(encode_type(strip_param_name(p)) for p in params) + '@Z'
     return r

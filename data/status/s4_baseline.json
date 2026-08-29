@@ -2,10 +2,10 @@
  "generated_by": "pipeline/compare_pal3.py",
  "stats": {
   "symbols": 153,
-  "matched": 19,
-  "unmatched": 134,
+  "matched": 57,
+  "unmatched": 96,
   "match_L1": 0,
-  "partial": 19,
+  "partial": 57,
   "oob": 0,
   "compile_skip": 0
  },
@@ -30,12 +30,30 @@
   },
   {
    "file": "pal3/src/Effect/CEffExplosive.cpp",
+   "symbol": "?CreateGeom@CEffExplosive@@QAEXXZ",
+   "name": "CEffExplosive::CreateGeom()",
+   "va": "0x004C7D40",
+   "status": "partial",
+   "match_pct": 6.2,
+   "size": 276
+  },
+  {
+   "file": "pal3/src/Effect/CEffExplosive.cpp",
    "symbol": "?UpdateExplosive@CEffExplosive@@QAEXMH@Z",
    "name": "CEffExplosive::UpdateExplosive(float,int)",
    "va": "0x004C8370",
    "status": "partial",
    "match_pct": 6.2,
    "size": 721
+  },
+  {
+   "file": "pal3/src/Misc/ARC_PlayerAtt.cpp",
+   "symbol": "?Refresh@ARC_PlayerAtt@@QAEHXZ",
+   "name": "ARC_PlayerAtt::Refresh()",
+   "va": "0x004A12F0",
+   "status": "partial",
+   "match_pct": 17.5,
+   "size": 229
   },
   {
    "file": "pal3/src/Misc/ARC_PlayerAtt.cpp",
@@ -47,6 +65,51 @@
    "size": 956
   },
   {
+   "file": "pal3/src/Misc/ArcPastScene.cpp",
+   "symbol": "?LoadCityData@ArcPastScene@@QAE_NXZ",
+   "name": "ArcPastScene::LoadCityData()",
+   "va": "0x00533B50",
+   "status": "partial",
+   "match_pct": 17.4,
+   "size": 109
+  },
+  {
+   "file": "pal3/src/Misc/ArcPastScene.cpp",
+   "symbol": "?ResetCityName@ArcPastScene@@QAEHXZ",
+   "name": "ArcPastScene::ResetCityName()",
+   "va": "0x00534F50",
+   "status": "partial",
+   "match_pct": 6.5,
+   "size": 93
+  },
+  {
+   "file": "pal3/src/Misc/ArcPastScene.cpp",
+   "symbol": "?FreeChildList@ArcPastScene@@QAEXXZ",
+   "name": "ArcPastScene::FreeChildList()",
+   "va": "0x00534FB0",
+   "status": "partial",
+   "match_pct": 32.1,
+   "size": 81
+  },
+  {
+   "file": "pal3/src/Misc/CCBPanelSlot.cpp",
+   "symbol": "?Render@CCBPanelSlot@@UAEXXZ",
+   "name": "CCBPanelSlot::Render()",
+   "va": "0x00443200",
+   "status": "partial",
+   "match_pct": 17.7,
+   "size": 378
+  },
+  {
+   "file": "pal3/src/Misc/CEffGroupNode.cpp",
+   "symbol": "??0CEffGroupNode@@QAE@XZ",
+   "name": "CEffGroupNode::CEffGroupNode()",
+   "va": "0x004B72E0",
+   "status": "partial",
+   "match_pct": 26.3,
+   "size": 38
+  },
+  {
    "file": "pal3/src/Misc/CJ_FindFile.cpp",
    "symbol": "?Create@CJ_FindFile@@QAEHHPAXHPAD@Z",
    "name": "CJ_FindFile::Create(int,void *,int,char *)",
@@ -54,6 +117,87 @@
    "status": "partial",
    "match_pct": 10.2,
    "size": 610
+  },
+  {
+   "file": "pal3/src/Misc/CScreenModeNode.cpp",
+   "symbol": "??0CScreenModeNode@@QAE@XZ",
+   "name": "CScreenModeNode::CScreenModeNode()",
+   "va": "0x0053D3A0",
+   "status": "partial",
+   "match_pct": 37.8,
+   "size": 45
+  },
+  {
+   "file": "pal3/src/Misc/Comp_Donate.cpp",
+   "symbol": "?Reset@Comp_Donate@@SAXXZ",
+   "name": "Comp_Donate::Reset()",
+   "va": "0x0043A740",
+   "status": "partial",
+   "match_pct": 45.5,
+   "size": 11
+  },
+  {
+   "file": "pal3/src/Misc/Math.cpp",
+   "symbol": "?RandomLerp@Math@@SANMM@Z",
+   "name": "Math::RandomLerp(float,float)",
+   "va": "0x004B8200",
+   "status": "partial",
+   "match_pct": 28.8,
+   "size": 66
+  },
+  {
+   "file": "pal3/src/Misc/MiniGame2Scene.cpp",
+   "symbol": "?GetOBBox@MiniGame2Scene@@QAEPAUgbOBBox@@XZ",
+   "name": "MiniGame2Scene::GetOBBox()",
+   "va": "0x0052FBD0",
+   "status": "partial",
+   "match_pct": 19.5,
+   "size": 82
+  },
+  {
+   "file": "pal3/src/Misc/OpenBaseFile.cpp",
+   "symbol": "??0OpenBaseFile@@QAE@XZ",
+   "name": "OpenBaseFile::OpenBaseFile()",
+   "va": "0x00401F50",
+   "status": "partial",
+   "match_pct": 40.0,
+   "size": 25
+  },
+  {
+   "file": "pal3/src/Misc/OpenBaseFile.cpp",
+   "symbol": "?_OpenBaseFile@OpenBaseFile@@QAEXXZ",
+   "name": "OpenBaseFile::_OpenBaseFile()",
+   "va": "0x00401F70",
+   "status": "partial",
+   "match_pct": 40.0,
+   "size": 25
+  },
+  {
+   "file": "pal3/src/Misc/OpenNULLFile.cpp",
+   "symbol": "??0OpenNULLFile@@QAE@XZ",
+   "name": "OpenNULLFile::OpenNULLFile()",
+   "va": "0x00401F90",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 11
+  },
+  {
+   "file": "pal3/src/Misc/OpenSceneFile.cpp",
+   "symbol": "??0OpenSceneFile@@QAE@PAD@Z",
+   "name": "OpenSceneFile::OpenSceneFile(char *)",
+   "va": "0x00401DF0",
+   "status": "partial",
+   "match_pct": 30.5,
+   "size": 328
+  },
+  {
+   "file": "pal3/src/Misc/OpenSceneFile.cpp",
+   "symbol": "?_OpenSceneFile@OpenSceneFile@@QAEXXZ",
+   "name": "OpenSceneFile::_OpenSceneFile()",
+   "va": "0x00401F40",
+   "status": "partial",
+   "match_pct": 25.0,
+   "size": 12
   },
   {
    "file": "pal3/src/Misc/PalScriptWaitObj.cpp",
@@ -65,6 +209,51 @@
    "size": 81
   },
   {
+   "file": "pal3/src/Misc/Parent_Data.cpp",
+   "symbol": "?_CheckKeyWord@Parent_Data@@QAEHXZ",
+   "name": "Parent_Data::_CheckKeyWord()",
+   "va": "0x0053FE80",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 5
+  },
+  {
+   "file": "pal3/src/Misc/Parent_Data.cpp",
+   "symbol": "?_CheckStr@Parent_Data@@QAEHXZ",
+   "name": "Parent_Data::_CheckStr()",
+   "va": "0x0053FE90",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 11
+  },
+  {
+   "file": "pal3/src/Misc/Parent_Data.cpp",
+   "symbol": "?GetSize@Parent_Data@@QAEXXZ",
+   "name": "Parent_Data::GetSize()",
+   "va": "0x0053FEA0",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 5
+  },
+  {
+   "file": "pal3/src/Misc/Parent_Data.cpp",
+   "symbol": "?spstr@Parent_Data@@QAEXXZ",
+   "name": "Parent_Data::spstr()",
+   "va": "0x0053FEB0",
+   "status": "partial",
+   "match_pct": 26.7,
+   "size": 15
+  },
+  {
+   "file": "pal3/src/Misc/PathObj.cpp",
+   "symbol": "?CalcLength@PathObj@@QAEHXZ",
+   "name": "PathObj::CalcLength()",
+   "va": "0x00407DC0",
+   "status": "partial",
+   "match_pct": 5.6,
+   "size": 251
+  },
+  {
    "file": "pal3/src/Misc/PathObj.cpp",
    "symbol": "?GetPosition@PathObj@@QAEPAHMPAMPAH@Z",
    "name": "PathObj::GetPosition(float,float *,int *)",
@@ -74,6 +263,42 @@
    "size": 299
   },
   {
+   "file": "pal3/src/Misc/PlayerAtt.cpp",
+   "symbol": "?CheckCurRV@PlayerAtt@@SAXXZ",
+   "name": "PlayerAtt::CheckCurRV()",
+   "va": "0x0043A690",
+   "status": "partial",
+   "match_pct": 50.0,
+   "size": 44
+  },
+  {
+   "file": "pal3/src/Misc/RenderTargetNode.cpp",
+   "symbol": "??0RenderTargetNode@@QAE@XZ",
+   "name": "RenderTargetNode::RenderTargetNode()",
+   "va": "0x004BD830",
+   "status": "partial",
+   "match_pct": 8.0,
+   "size": 25
+  },
+  {
+   "file": "pal3/src/Misc/SceneMapPlayer.cpp",
+   "symbol": "?ClearName@SceneMapPlayer@@QAEXXZ",
+   "name": "SceneMapPlayer::ClearName()",
+   "va": "0x004220F0",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 20
+  },
+  {
+   "file": "pal3/src/Misc/SceneObjParam.cpp",
+   "symbol": "?FlushCommands@SceneObjParam@@QAEHXZ",
+   "name": "SceneObjParam::FlushCommands()",
+   "va": "0x00533DA0",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 11
+  },
+  {
    "file": "pal3/src/Misc/SceneProp.cpp",
    "symbol": "?CalculateWorldPos@SceneProp@@QAEDM@Z",
    "name": "SceneProp::CalculateWorldPos(float)",
@@ -81,6 +306,33 @@
    "status": "partial",
    "match_pct": 4.4,
    "size": 343
+  },
+  {
+   "file": "pal3/src/Misc/SceneProp.cpp",
+   "symbol": "?CalcScreenPosition@SceneProp@@QAEDXZ",
+   "name": "SceneProp::CalcScreenPosition()",
+   "va": "0x00533BC0",
+   "status": "partial",
+   "match_pct": 18.1,
+   "size": 116
+  },
+  {
+   "file": "pal3/src/Misc/ScreenEffectNode.cpp",
+   "symbol": "?_ScreenEffectNode@ScreenEffectNode@@QAEXXZ",
+   "name": "ScreenEffectNode::_ScreenEffectNode()",
+   "va": "0x004B7CE0",
+   "status": "partial",
+   "match_pct": 30.4,
+   "size": 79
+  },
+  {
+   "file": "pal3/src/Misc/ScriptPoolPage.cpp",
+   "symbol": "?ScriptPoolPage_Alloc@ScriptPoolPage@@QAEHXZ",
+   "name": "ScriptPoolPage::ScriptPoolPage_Alloc()",
+   "va": "0x0041C1E0",
+   "status": "partial",
+   "match_pct": 5.3,
+   "size": 150
   },
   {
    "file": "pal3/src/Misc/ScriptPoolPage.cpp",
@@ -119,6 +371,24 @@
    "size": 13
   },
   {
+   "file": "pal3/src/Misc/TxtFile.cpp",
+   "symbol": "??0TxtFile@@QAE@XZ",
+   "name": "TxtFile::TxtFile()",
+   "va": "0x00431870",
+   "status": "partial",
+   "match_pct": 13.9,
+   "size": 36
+  },
+  {
+   "file": "pal3/src/Misc/UI3DModelNode.cpp",
+   "symbol": "?_UI3DModelNode@UI3DModelNode@@QAEXXZ",
+   "name": "UI3DModelNode::_UI3DModelNode()",
+   "va": "0x004B7510",
+   "status": "partial",
+   "match_pct": 31.6,
+   "size": 79
+  },
+  {
    "file": "pal3/src/Misc/UIAnimateCtrl.cpp",
    "symbol": "?GetRoleBySlot@UIAnimateCtrl@@QAEHI@Z",
    "name": "UIAnimateCtrl::GetRoleBySlot(uint)",
@@ -146,6 +416,24 @@
    "size": 188
   },
   {
+   "file": "pal3/src/Misc/UISceneFace.cpp",
+   "symbol": "?ResetAllSlots@UISceneFace@@QAEHXZ",
+   "name": "UISceneFace::ResetAllSlots()",
+   "va": "0x0052D0D0",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 25
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFace.cpp",
+   "symbol": "?UpdateFacePosition@UISceneFace@@QAEHXZ",
+   "name": "UISceneFace::UpdateFacePosition()",
+   "va": "0x0052D0F0",
+   "status": "partial",
+   "match_pct": 15.4,
+   "size": 260
+  },
+  {
    "file": "pal3/src/Misc/UIScrollBar.cpp",
    "symbol": "?SetRange@UIScrollBar@@QAEXM@Z",
    "name": "UIScrollBar::SetRange(float)",
@@ -155,6 +443,33 @@
    "size": 125
   },
   {
+   "file": "pal3/src/Misc/UITabCtrl.cpp",
+   "symbol": "?InitAnimParams@UITabCtrl@@QAEHXZ",
+   "name": "UITabCtrl::InitAnimParams()",
+   "va": "0x00532A80",
+   "status": "partial",
+   "match_pct": 8.3,
+   "size": 192
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_QCYM.cpp",
+   "symbol": "?HandleDeviceLostC@UITitle_QCYM@@QAEHXZ",
+   "name": "UITitle_QCYM::HandleDeviceLostC()",
+   "va": "0x00529BE0",
+   "status": "partial",
+   "match_pct": 28.3,
+   "size": 159
+  },
+  {
+   "file": "pal3/src/Misc/s_RoleState.cpp",
+   "symbol": "?LoadAndSetupRole@s_RoleState@@QAEHXZ",
+   "name": "s_RoleState::LoadAndSetupRole()",
+   "va": "0x004A3A90",
+   "status": "partial",
+   "match_pct": 18.1,
+   "size": 1071
+  },
+  {
    "file": "pal3/src/Misc/s_RoleState.cpp",
    "symbol": "?CopyRoleData@s_RoleState@@QAEDHD@Z",
    "name": "s_RoleState::CopyRoleData(int,char)",
@@ -162,6 +477,24 @@
    "status": "partial",
    "match_pct": 10.1,
    "size": 99
+  },
+  {
+   "file": "pal3/src/Misc/scScriptInstance.cpp",
+   "symbol": "?_scScriptInstance@scScriptInstance@@QAEXXZ",
+   "name": "scScriptInstance::_scScriptInstance(int)",
+   "va": "0x0044E5E0",
+   "status": "partial",
+   "match_pct": 16.7,
+   "size": 120
+  },
+  {
+   "file": "pal3/src/Scene/CameraSystem.cpp",
+   "symbol": "?BindToRoleSlot@CameraSystem@@SAHH@Z",
+   "name": "CameraSystem::BindToRoleSlot(int)",
+   "va": "0x0041D980",
+   "status": "partial",
+   "match_pct": 12.5,
+   "size": 24
   },
   {
    "file": "pal3/src/UI/UIBase.cpp",
@@ -180,6 +513,15 @@
    "status": "partial",
    "match_pct": 21.5,
    "size": 93
+  },
+  {
+   "file": "pal3/src/UI/UISystem.cpp",
+   "symbol": "?Destroy@UISystem@@QAEXXZ",
+   "name": "UISystem::Destroy()",
+   "va": "0x00422DF0",
+   "status": "partial",
+   "match_pct": 32.8,
+   "size": 67
   }
  ]
 }

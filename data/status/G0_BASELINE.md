@@ -1,5 +1,11 @@
 # G0 基线（2026-08-29，HEAD 2ee9bd2dd + 多继承修复后的全量重跑）
 
+> **G1 更新（同日，HEAD 15ffa350e+）**：
+> - S1 头独立编译：308 → **660/746**（codegen 前导 `pal3/ida_types.h` 修复 + D3DX include 修复）。剩余 86 个失败为二阶问题：44 个文件带显式 `__thiscall` 函数指针声明（VC6 保留字，改约定不保字节，需逐案决策）、~10 个未定义类型指针字段。
+> - S2 稳定在 41/205。
+> - S4：`vc6_mangler` 对齐 cl.exe COFF 真身（ctor/dtor `??0/??1`、static `SA` 前缀、volatile `QC`、void 参数 `XZ` 尾缀——全部经 wine cl 编译微型类实证），匹配 **19 → 57/153** 符号。剩余未匹配：CRT/模板实例化与编译器 thunk（合理排除）、annotation 缺口（如析构函数无 decomp 条目）、标注错误（如 `Math::RandomLerp` 标注 double/__cdecl，真身 float/__stdcall static——S4 registry 正是抓这类问题的证据链）。
+> - L1 仍为 0：52+ 个 partial 匹配率 6-12%，即 Phase-1 未调优代码的真实起点。
+
 三层信号首次同时可测。测量工具与产物：
 
 | 层 | 工具 | 产物 |

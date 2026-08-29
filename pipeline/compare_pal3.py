@@ -89,12 +89,19 @@ def build_mangled_map(decomp_idx):
         if '::' not in base:
             continue
         cls, method = base.rsplit('::', 1)
+        sig = e.get('signature') or ''
         try:
-            m = vm.mangle(cls, method, e.get('signature') or '')
+            m = vm.mangle(cls, method, sig)
+            m2e.setdefault(m, e)
+            # probe variants the annotation signature can't express:
+            # virtual (vtable methods) and static (SA-prefix members)
+            for kw in ({'virtual_': True}, {'static_': True}):
+                mv = vm.mangle(cls, method, sig, **kw)
+                if mv != m:
+                    m2e.setdefault(mv, e)
         except Exception:
             failed += 1
             continue
-        m2e.setdefault(m, e)
     return m2e, failed
 
 
