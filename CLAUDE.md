@@ -118,6 +118,12 @@ union { // +0xN
 - **后处理只做等价变换**：codegen pipeline 只做不改变语义的代码转换，不编造信息。
 - **IDA 层能解决的问题在 IDA 层解决**：类型标注、结构体导入、函数签名等应该在 IDA 中通过 annotation 完成，不在 codegen 层打补丁。
 
+## 项目共享记忆
+
+[`docs/knowledge/`](docs/knowledge/)：跨会话的项目级共享知识（6 类 type：architecture/gotcha/pattern/debug/decision/reference）。引用前必须验证文件/字段仍存在（见该目录 README 的"引用前验证"）。单字段证据仍归 `data/annotations/CHANGE_LOG.md`，不进这里——这里只记通用规律和管线级坑。
+
+会话中遇到平台坑、门禁失效、被纠正的方法、确认有效的取舍时，按 `docs/knowledge/README.md` 判断是否写入。
+
 ## Skill Routing
 
 管线、annotation、IDA 查询、编译错误分析 → 加载 `pal3-pipeline` skill

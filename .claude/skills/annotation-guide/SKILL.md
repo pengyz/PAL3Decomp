@@ -1,9 +1,14 @@
 ---
 name: annotation-guide
-description: "PAL3 annotations 标注规范与验证流程指南"
+description: "PAL3 annotations 数据格式权威 schema（functions/globals/structs JSON 字段定义）与 check_annotations.py 验证流程"
 tags: [reverse-engineering, annotations, validation]
-when_to_use: "当用户要求修改 annotations、添加函数/结构体定义、或进行反编译标注时加载"
+when_to_use: "当用户要求修改 annotations、添加函数/结构体定义、或需要查具体 JSON 字段格式/校验规则时加载"
+rejects: "需要跑 pipeline CLI、判断证据等级、CRT 边界、模板基类映射、领域知识 → pal3-pipeline"
 ---
+
+## 与 pal3-pipeline 的边界
+
+本 skill 是 annotation JSON 格式的**唯一权威 schema**。`pal3-pipeline` skill 只做路由提示，不重复维护字段定义——两处出现分歧时以本文件为准。
 
 # PAL3 Annotations 标注规范
 

@@ -429,6 +429,36 @@ def check():
                 errors.append(f"structs[{sname}]: duplicate member '{mname}' at offsets {names_seen[mname]} and {off}")
             names_seen[mname] = off
 
+            # Pseudo-semantic naming guard: CLAUDE.md forbids names like
+            # m_nState_4968 / m_fParam_0A0 where the trailing digits are just
+            # the field's own offset dressed up with a generic word (Val/Flag/
+            # State/Param/Zero/...). Detect precisely: strip a known hollow
+            # word + trailing hex/dec digits, and check whether that number
+            # equals this member's own offset (decimal or hex reading).
+            # See docs/knowledge/pattern_annotation_batch_rename_no_evidence.md
+            _hollow = re.match(
+                r'^m_[nfb](?:Val|Flag|State|Param|Init|Zero)([0-9A-Fa-f]{2,6})$',
+                mname,
+            )
+            if _hollow:
+                _suffix = _hollow.group(1)
+                try:
+                    _off_dec = int(off.split('_')[0], 0)
+                except ValueError:
+                    _off_dec = None
+                _matches_hex = _off_dec is not None and (
+                    _suffix.upper() == format(_off_dec, 'X') or
+                    _suffix.upper() == format(_off_dec, 'x').upper()
+                )
+                _matches_dec = _off_dec is not None and _suffix == str(_off_dec)
+                if _matches_hex or _matches_dec:
+                    warnings.append(
+                        f"structs[{sname}]: '{mname}' at offset {off} looks like pseudo-semantic "
+                        f"naming — suffix '{_suffix}' is this field's own offset dressed up with a "
+                        f"generic word (Val/Flag/State/...), no real semantic content added over "
+                        f"_todo_/_field_. See CLAUDE.md 禁止伪语义命名."
+                    )
+
         # Union-specific validation
         if is_union:
             binary_sz = sinfo.get('binary_size', 0)

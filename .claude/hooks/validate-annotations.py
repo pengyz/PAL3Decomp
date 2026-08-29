@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """PreToolUse hook: annotations 数据写入守卫。
 
-拦截所有对 pipeline/data/annotations/ 的写入操作：
+拦截所有对 data/annotations/ 的写入操作：
 - Edit/Write 工具：验证文件内容合规性
 - Bash 工具：检测命令中对 annotations 路径的写入意图
 
@@ -16,7 +16,7 @@ import sys
 import re
 import os
 
-ANNOTATIONS_PATH = 'pipeline/data/annotations'
+ANNOTATIONS_PATH = 'data/annotations'
 
 
 def get_alignment(mtype):

@@ -1,9 +1,18 @@
 ---
 name: pal3-pipeline
-description: "PAL3 标注迭代管线 — IDA 标注→导出→codegen→编译→对比的完整工作流"
+description: "PAL3 标注迭代管线 — IDA 标注→导出→codegen→编译→对比的完整工作流：CLI 命令、证据分级、IDA 查询技术、CRT/模板/全局变量的领域知识"
 tags: [reverse-engineering, pal3, annotations, pipeline]
-when_to_use: "当需要执行 PAL3 反编译管线流程时加载"
+when_to_use: "当需要执行 PAL3 反编译管线流程（跑 CLI、查证据、判断 CRT 边界、处理模板基类）时加载"
+rejects: "只是要查 annotation JSON 具体字段格式/校验规则 → annotation-guide；只是要修 codegen 生成的 C++ 代码模式 → pal3-patterns 命令"
 ---
+
+## 与 annotation-guide 的边界
+
+| 场景 | 用哪个 |
+|------|--------|
+| 跑 pipeline CLI、判断证据等级、CRT 边界、模板基类映射、领域知识（任务槽位等） | 本 skill |
+| 查 `structs/*.json`/`functions.json`/`globals.json` 的具体字段格式、跑 `check_annotations.py` 前的格式校验规则 | `annotation-guide` skill（唯一 schema 权威，本 skill 不重复） |
+
 
 # PAL3 标注迭代管线
 
@@ -139,12 +148,14 @@ codegen 层:     读 export 数据生成代码 (不直接读 annotation)
 
 ## data/annotations/ 文件格式
 
+完整 schema（`known_members`/`methods`/`vtables` 字段、虚函数判定规则、验证流程）见 `annotation-guide` skill——本 skill 不重复维护，避免 schema 更新后两处漂移。这里只列顶层文件清单作路由提示：
+
 ```
-functions.json     {addr: {name, signature}}
-globals.json       {addr: {name, type, overlaps_with, decomp_name}}
-skip_functions.json {addr: {name, reason, target_name}}
-structs/*.json     {name, binary_size, known_members: {offset: {name, type}}}
-template_bases.json  {sanitized_name: {template: "full_expression"}}
+functions.json       — 仅全局函数
+globals.json         — 全局变量
+skip_functions.json  — CRT/编译器生成函数标记
+structs/*.json        — 类定义（含虚函数表和方法，权威 schema 见 annotation-guide）
+template_bases.json  — 模板基类映射（本 skill "模板基类处理"节详述用法）
 ```
 
 ## 关键方法提醒
