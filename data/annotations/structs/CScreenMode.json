@@ -471,7 +471,8 @@
     },
     "0x00456E20": {
       "name": "PauseAllStreams",
-      "signature": "void __thiscall CScreenMode::PauseAllStreams(void (__thiscall ***this)(_DWORD, _DWORD), unsigned __int8 a2)"
+      "signature": "void __thiscall(void *pStreams, unsigned __int8 a2)",
+      "source": " | param1 fn-ptr-table -> void *: body iterates 52 objects of 0x178 bytes dispatching vtable slot 0 with the flag — an object pointer with unknown class, void * per generalization rule"
     },
     "0x004593C0": {
       "name": "InitGameUI",

@@ -124,7 +124,8 @@ def main():
         if addr not in decomp_sigs:
             continue
         fj = funcs_json.get(addr)
-        if fj and fj.get('type') == 'skip':
+        if (fj and fj.get('type') == 'skip') or \
+                any(e[1].get('type') == 'skip' for e in entries):
             # deliberately demoted (e.g. misattribution evidence) — the decomp
             # generic form is the accepted state; count separately, not a conflict
             nskip += 1

@@ -114,8 +114,8 @@
     },
     "0x004D33A0": {
       "name": "ResetFlags",
-      "signature": "int __thiscall(int, int, int, int)",
-      "source": "vtable_migrated",
+      "signature": "void __stdcall(int, int, int, int)",
+      "source": "vtable_migrated | ret int->void, cc __thiscall->__stdcall: VA=0x4D33A0 7-byte body mov byte ptr [ecx+8],0; retn 10h — callee pops 16 bytes (stdcall member), no EAX write; 4 vtable data xrefs (0x56F5D8/0x56F768/0x56FA88/0x56FB34)",
       "ordinal": 2
     },
     "0x004C0500": {

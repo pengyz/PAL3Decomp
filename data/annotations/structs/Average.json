@@ -47,7 +47,9 @@
     "0x004E5410": {
       "name": "Setsize",
       "signature": "void (uint)",
-      "source": "pdb"
+      "source": "pdb",
+      "type": "skip",
+      "reason": "misattributed: 0x004E5410 is GetEditBoxText (char * __cdecl(HWND)) — SendMessageA WM_GETTEXT into g_RoleSystemCombat buffer; 3 direct callers in CCBUI cluster (0x4EAE4B/0x4EB053/0x4EB086). Setsize not found at this address"
     }
   }
 }
