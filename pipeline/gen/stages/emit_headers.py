@@ -51,6 +51,56 @@ def _get_scalar_dtor_classes():
             _scalar_dtor_classes.add(cls)
     return _scalar_dtor_classes
 
+
+# Module-level cache for underscore-to-bare typedef aliases (populated lazily)
+_underscore_aliases = None  # dict: '_Texture_Info' -> 'Texture_Info', etc.
+
+def _get_underscore_aliases():
+    """Detect _X -> X typedef aliases from decomp filename/signal evidence.
+
+    In MSVC 6.0 projects, internal types often carry an underscore prefix
+    (e.g. struct _Texture_Info) with a project-level typedef to the bare
+    name (typedef _Texture_Info Texture_Info).  The decomp export uses the
+    bare name because Hex-Rays resolves the typedef.  We need to emit the
+    typedef in the generated header so the code compiles with the same
+    naming convention as the original project.
+    """
+    global _underscore_aliases
+    if _underscore_aliases is not None:
+        return _underscore_aliases
+    _underscore_aliases = {}
+    ida_structs_file = PROJECT_ROOT / "asm" / "pal3" / "ida_structs.json"
+    if not ida_structs_file.exists():
+        return _underscore_aliases
+    try:
+        ida = json.load(open(ida_structs_file, encoding='utf-8'))
+    except:
+        return _underscore_aliases
+    decomp_dir = PROJECT_ROOT / "asm" / "pal3" / "decomp"
+    if not decomp_dir.exists():
+        return _underscore_aliases
+    # Collect bare names from decomp filenames: "Texture_Info_CalculateUV..." -> "Texture_Info"
+    bare_in_decomp = set()
+    for f in decomp_dir.glob("*.json"):
+        fname = f.stem  # e.g. "Texture_Info_CalculateUVint_0053fcf0"
+        parts = fname.split('_')
+        # Try progressively longer prefixes as the class name
+        for i in range(1, min(5, len(parts))):
+            candidate = '_'.join(parts[:i])
+            if candidate and len(candidate) >= 3:
+                bare_in_decomp.add(candidate)
+    # Match: for each _-prefixed type in ida_structs, check if bare name appears in decomp
+    for type_name in ida:
+        if not type_name.startswith('_') or len(type_name) < 4:
+            continue
+        bare = type_name[1:]  # strip leading underscore
+        if bare in bare_in_decomp:
+            # Verify it's not a system type (would be blocked by SKIP_PREFIXES)
+            if not should_skip_class(type_name):
+                _underscore_aliases[type_name] = bare
+    return _underscore_aliases
+
+
 PIPELINE_ROOT = Path(__file__).parent.parent.parent  # pipeline/
 PROJECT_ROOT = PIPELINE_ROOT.parent
 ANNOTATIONS_DIR = PROJECT_ROOT / "data" / "annotations"
@@ -505,7 +555,7 @@ def collect_methods():
             cls = cls[len('_misattrib_'):]
         # Skip only invalid/synthetic names; class filtering (system types,
         # nested types) is handled at output time in main().
-        if not cls or '$' in cls or '<' in cls or not cls[0].isalpha():
+        if not cls or '$' in cls or '<' in cls or not (cls[0].isalpha() or cls[0] == '_'):
             continue
         # Skip compiler-generated _scalar_dtor functions (handled by virtual ~ClassName())
         if '_scalar_dtor' in method or method.startswith('_sdtor'):
@@ -1818,6 +1868,14 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
 
     lines.append("};")
     lines.append("")
+
+    # Emit typedef for underscore-prefixed types that had a bare-name alias
+    # in the original project (e.g. typedef _Texture_Info Texture_Info;).
+    _aliases = _get_underscore_aliases()
+    if cls_name in _aliases:
+        lines.append("typedef %s %s;" % (cls_name, _aliases[cls_name]))
+        lines.append("")
+
     return '\n'.join(lines)
 
 
