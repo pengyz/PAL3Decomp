@@ -47,7 +47,7 @@ def _get_scalar_dtor_classes():
             continue
         cls = name.split('::')[0]
         method = name.split('::', 1)[1].split('(')[0]
-        if '_scalar_dtor' in method or method == '_sdtor':
+        if '_scalar_dtor' in method or method.startswith('_sdtor'):
             _scalar_dtor_classes.add(cls)
     return _scalar_dtor_classes
 
@@ -508,7 +508,7 @@ def collect_methods():
         if not cls or '$' in cls or '<' in cls or not cls[0].isalpha():
             continue
         # Skip compiler-generated _scalar_dtor functions (handled by virtual ~ClassName())
-        if '_scalar_dtor' in method or method == '_sdtor':
+        if '_scalar_dtor' in method or method.startswith('_sdtor'):
             seen_addrs.add(addr)
             continue
         if ' ' in method or '`' in method:

@@ -1,4 +1,4 @@
-﻿"""Collect and group functions from decomp JSON files.
+"""Collect and group functions from decomp JSON files.
 
 Reads all decomp/*.json, parses MSVC mangled names, and groups functions
 by class (for class .cpp files) or as free functions.
@@ -179,7 +179,7 @@ def collect_functions(decomp_dir=None):
             # Skip compiler-generated _scalar_dtor functions.
             # These are vtable wrappers around virtual destructors; the compiler
             # generates them automatically from 'virtual ~ClassName()' declarations.
-            if '_scalar_dtor' in method or method == '_sdtor':
+            if '_scalar_dtor' in method or method.startswith('_sdtor'):
                 store.scalar_dtor_classes.add(cls)
                 continue
 
