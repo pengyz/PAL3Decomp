@@ -404,6 +404,14 @@ def run(code, ctx):
         code, flags=re.MULTILINE
     )
 
+    # if-with-comment-body: stage3 comments out vtable accesses inside if
+    # bodies, leaving bare comments without braces. MSVC6 C2143.
+    code = re.sub(
+        r'^(\s*)if\s*\((.*?)\)\s*\n(\s*//.*?)$',
+        r'\1if (\2)\n\1{\n\3\n\1}',
+        code, flags=re.MULTILINE
+    )
+
     # !this null check → (this == NULL)
     code = re.sub(r'\b!this\b', '(this == NULL)', code)
     code = re.sub(r'\bthis\s*==\s*0\b', '(this == NULL)', code)
