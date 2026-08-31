@@ -705,8 +705,8 @@
     },
     "0x004FCC50": {
       "name": "GetTaskState",
-      "signature": "char(int nIndex, enum ECBStageTaskState *State)",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "signature": "char(int nIndex, ECBStageTaskState *State)",
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | drop enum keyword: generated header fwd-declares class ECBStageTaskState (line 21) and the elaborate enum specifier in the member decl caused MSVC C2011 class-type-redefinition; pointer width identical"
     },
     "0x004FCD00": {
       "name": "IsTaskFinished",
@@ -890,7 +890,8 @@
     },
     "0x004E0010": {
       "name": "SetupCamControl",
-      "signature": "void __thiscall(a)"
+      "signature": "void __thiscall()",
+      "source": " | param a dropped: decomp void __thiscall(CCBStage *this) shows zero stack args"
     },
     "0x004E0430": {
       "name": "CreatePreviewDialog",

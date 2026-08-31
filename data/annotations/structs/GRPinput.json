@@ -346,7 +346,8 @@
     },
     "0x00404150": {
       "name": "DecideKeyStatus",
-      "signature": "unsigned int __thiscall(Time, unsigned int cKey)"
+      "signature": "unsigned int __thiscall(gbRay *pRay, unsigned int cKey)",
+      "source": " | param Time->gbRay*: decomp-inferred param type gbRay* a2; Time type not in til"
     },
     "0x004042D0": {
       "name": "IsAnyKeyPressed",
