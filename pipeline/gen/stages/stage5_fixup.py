@@ -288,9 +288,9 @@ def _fix_single_ref_arg(arg):
     cast_m = re.match(r'^(\s*\([^)]*\*\)\s*)', arg)
     if cast_m:
         return '*' + arg
-    # Case 3: plain identifier (simple variable name)
+    # Case 3: plain identifier (simple variable name, NOT numeric constants)
     ident_m = re.match(r'^(\s*)(\w+)\s*$', arg)
-    if ident_m:
+    if ident_m and not ident_m.group(2).isdigit():
         return ident_m.group(1) + '*' + ident_m.group(2)
     # Unknown pattern — leave unchanged to be safe
     return arg
