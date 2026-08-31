@@ -1830,7 +1830,8 @@
   },
   "0x00408BD0": {
     "name": "NullCallback",
-    "signature": "void __thiscall NullCallback(void *pData)"
+    "signature": "void __cdecl NullCallback(void *pData)",
+    "source": " | cc __thiscall->__cdecl: free-function callback, not a member; __thiscall caused codegen to skip declaration in free_functions.h (9 C2065 undeclared hits)"
   },
   "0x004FEEF0": {
     "name": "sub_4FEEF0",
