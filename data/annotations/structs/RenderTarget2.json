@@ -334,12 +334,6 @@
       "name": "ClearTarget",
       "signature": "CEffBase **__thiscall()"
     },
-    "0x004C0520": {
-      "name": "AllocRenderTarget",
-      "signature": "void __thiscall()",
-      "ordinal": 10,
-      "source": "manual_fix_vtable"
-    },
     "0x004C1570": {
       "name": "Reset",
       "signature": "CEffAudio **__thiscall()"
@@ -381,12 +375,6 @@
       "signature": "CEffCallBack **__thiscall RenderTarget2::CreateEffCallBack()",
       "ordinal": 10
     },
-    "0x004C3D90": {
-      "name": "AllocEffect",
-      "signature": "void __thiscall()",
-      "source": "manual_fix_vtable",
-      "ordinal": 31
-    },
     "0x004CEEC0": {
       "name": "AddCallbackEffect",
       "signature": "int __thiscall RenderTarget2::AddCallbackEffect(RenderTarget2 *pTarget, int nVal, RenderTarget2 *pParam)"
@@ -407,18 +395,6 @@
       "name": "StubReturn0",
       "signature": "char __thiscall RenderTarget2::StubReturn0(int nVal)",
       "ordinal": 22
-    },
-    "0x004C0920": {
-      "name": "PrepareEffect",
-      "signature": "void __thiscall()",
-      "ordinal": 12,
-      "source": "manual_fix_vtable"
-    },
-    "0x004C09E0": {
-      "name": "RenderScene",
-      "signature": "void __thiscall()",
-      "ordinal": 15,
-      "source": "manual_fix_vtable"
     },
     "0x004C0C10": {
       "name": "SceneRoleCallback",
@@ -506,11 +482,6 @@
       "signature": "int __thiscall RenderTarget2::InitTargetPos(float *pfVal, float fVal, float fVal2, float fVal3)",
       "ordinal": 83
     },
-    "0x004C29A0": {
-      "name": "UpdateInternal",
-      "signature": "void __thiscall(float fVal)",
-      "ordinal": 44
-    },
     "0x004C2D00": {
       "name": "CreateEffectTarget",
       "signature": "void __thiscall RenderTarget2::CreateEffectTarget(int *p_DWORD)",
@@ -584,30 +555,6 @@
       "source": "vtable_migrated",
       "ordinal": 2
     },
-    "0x004C0650": {
-      "name": "AllocSegments",
-      "signature": "virtual char __thiscall(int nVal)",
-      "source": "vtable_migrated+pdb_correct",
-      "ordinal": 4
-    },
-    "0x004C0640": {
-      "name": "ResetState",
-      "signature": "virtual void __thiscall()",
-      "source": "vtable_migrated+pdb_correct",
-      "ordinal": 5
-    },
-    "0x00408BD0": {
-      "name": "NullCallback",
-      "signature": "void __thiscall (void *pData)",
-      "source": "vtable_migrated",
-      "ordinal": 6
-    },
-    "0x004C0740": {
-      "name": "UpdateFrame",
-      "signature": "void __thiscall(float fVal)",
-      "source": "manual_fix_vtable",
-      "ordinal": 8
-    },
     "0x004C2600": {
       "name": "CalcDeltaTime",
       "signature": "int __thiscall(float fTime)",
@@ -632,12 +579,6 @@
       "source": "vtable_migrated",
       "ordinal": 38
     },
-    "0x004D33A0": {
-      "name": "ResetFlags",
-      "signature": "",
-      "source": "vtable_migrated",
-      "ordinal": 41
-    },
     "0x004C27C0": {
       "name": "DestroyEffWithBink",
       "signature": "virtual char *__thiscall(char a2)",
@@ -656,62 +597,10 @@
       "source": "vtable_migrated",
       "ordinal": 89
     },
-    "0x004AF760": {
-      "name": "Update",
-      "signature": "int __thiscall(int)",
-      "source": "vtable_evidence+pdb_name",
-      "ordinal": 14
-    },
-    "0x004C4060": {
-      "name": "Create",
-      "signature": "virtual char __thiscall(tagEffObjType *pType)",
-      "source": "vtable_evidence",
-      "ordinal": 25
-    },
-    "0x004C3EC0": {
-      "name": "Init",
-      "signature": "virtual int __thiscall(float *pType, float fx, float fy, float fz)",
-      "source": "vtable_evidence",
-      "ordinal": 26
-    },
-    "0x004C45A0": {
-      "name": "CreateTask",
-      "signature": "virtual void __thiscall(float p)",
-      "source": "vtable_evidence",
-      "ordinal": 29
-    },
-    "0x004C4370": {
-      "name": "Destroy",
-      "signature": "virtual void __thiscall()",
-      "source": "vtable_evidence",
-      "ordinal": 30
-    },
-    "0x004C5150": {
-      "name": "GetEditorObjDescription",
-      "signature": "virtual const char *__thiscall(int nIndex)",
-      "source": "vtable_evidence",
-      "ordinal": 34
-    },
-    "0x004C48D0": {
-      "name": "ProcInitTask",
-      "signature": "virtual void __thiscall(int *dwParam)",
-      "source": "vtable_evidence",
-      "ordinal": 36
-    },
-    "0x004C5010": {
-      "name": "GetEditorTaskDescription",
-      "signature": "virtual const char *__thiscall(int nIndex)",
-      "source": "vtable_evidence",
-      "ordinal": 38
-    },
     "0x004C2620": {
       "name": "RenderEffect",
       "signature": "void __thiscall(int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)",
       "source": "pdb_ret"
-    },
-    "0x004C15D0": {
-      "name": "UpdateParticles",
-      "signature": "void __thiscall()"
     },
     "0x004C1640": {
       "name": "DestroyEffBase",
@@ -725,17 +614,9 @@
       "name": "BeginMultiPass",
       "signature": "char *__thiscall(char a2)"
     },
-    "0x004C0540": {
-      "name": "ExecutePasses",
-      "signature": "char *__thiscall(char a2)"
-    },
     "0x004C2030": {
       "name": "UpdateInternalAdj",
       "signature": "void __thiscall(float a2)"
-    },
-    "0x004C0500": {
-      "name": "OnTest",
-      "signature": "int()"
     },
     "0x004C3C80": {
       "name": "_sdtor_35",
