@@ -356,9 +356,62 @@
        ]
       },
       "name": "overlay"
+     },
+     {
+      "type": {
+       "struct": [
+        {
+         "offset": 456,
+         "name": "m_pCurrentScript",
+         "type": "PalScript *"
+        },
+        {
+         "offset": 460,
+         "name": "m_bFormationReady",
+         "type": "unsigned char"
+        },
+        {
+         "offset": 461,
+         "name": "m_nSceneTransitionParam",
+         "type": "unsigned char"
+        },
+        {
+         "offset": 464,
+         "name": "_todo_35c",
+         "type": "int"
+        },
+        {
+         "offset": 468,
+         "name": "_todo_360",
+         "type": "int"
+        },
+        {
+         "offset": 476,
+         "name": "m_fFadeTimer",
+         "type": "float"
+        },
+        {
+         "offset": 480,
+         "name": "_todo_36c",
+         "type": "int"
+        },
+        {
+         "offset": 580,
+         "name": "m_szSceneUIText",
+         "type": "char[256]"
+        },
+        {
+         "offset": 860,
+         "name": "_todo_4e8",
+         "type": "int"
+        }
+       ]
+      },
+      "name": "script_state"
      }
     ]
-   }
+   },
+   "source": "union views: role-slot array (slot), flat overlay (overlay), and script-state (script_state): +0x354 m_pCurrentScript (10 refs: PAL3::FullInit, ScriptSystem::Render, ScriptUpdate, Actor::LoadActorModel); +0x358 formation-ready (SetupPartyFormation x5, ScriptUpdate); +0x359 scene-transition param (StartCombatFromNPC, DoSceneTransition); +0x360 script-VM state (x59: scAsmDecoder::Execute, ScriptSystem_ProcessScriptEvent, Array::HandleItemPage); +0x368 fade timer (ScriptUpdate, DoSceneTransition); +0x3d0 scene-UI text buffer (300 refs: EquipUI, MainEquipUI, UIBigMap, CCBStage, PAL_GDB_ResetAllData). g_palScript is a STANDALONE instance (not in the 0xC04730 array: delta 0xC238); absolute refs in its span are script-state only; role-slot view lives in array instances via this+off."
   },
   "260": {
    "name": "m_WaitObjList",

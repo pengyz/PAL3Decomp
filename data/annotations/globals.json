@@ -6269,50 +6269,5 @@
   "name": "unk_C10A0E",
   "type": "int",
   "source": "CRT init: converted from skip to int"
- },
- "0x00C10CBC": {
-  "name": "g_pCurrentScript",
-  "source": "binary: used as PalScript* with vtable calls; SceneMgr+0xC92C",
-  "type": "PalScript *"
- },
- "0x00C10CC0": {
-  "name": "g_bFormationReady",
-  "source": "binary: SetupPartyFormation sets to 1; ScriptUpdate clears to 0; formation init flag",
-  "type": "unsigned char"
- },
- "0x00C10CC1": {
-  "name": "g_nSceneTransitionParam2",
-  "source": "binary: Actor_DoSceneTransition assigns v64; stored in Buffer_44[92]",
-  "type": "unsigned char"
- },
- "0x00C10CC4": {
-  "name": "dword_C10CC4",
-  "type": "int",
-  "source": "phantom_auto"
- },
- "0x00C10CC8": {
-  "name": "dword_C10CC8",
-  "source": "binary: used as RoleSystem array index (352*val); SceneMgr+0xC938",
-  "type": "int"
- },
- "0x00C10CD0": {
-  "name": "g_fFadeTimer",
-  "source": "binary: ScriptUpdate: *(float*)&val += dt; UITitle_BBTY: (1.0-val/60.0)*255 fade calc; float confirmed",
-  "type": "float"
- },
- "0x00C10CD4": {
-  "name": "dword_C10CD4",
-  "type": "int",
-  "source": "phantom_auto"
- },
- "0x00C10D38": {
-  "name": "g_szSceneUIText",
-  "source": "binary: used as char* in lstrcpyA/strcpy/SendMessageA; SceneMgr+0xC9A8",
-  "type": "char[256]"
- },
- "0x00C10E50": {
-  "name": "unk_C10E50",
-  "type": "int",
-  "source": "phantom_auto"
  }
 }

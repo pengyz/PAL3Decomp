@@ -5266,3 +5266,23 @@ script_state 变体（union 内相对偏移 456/460/461/464/468/476/480/580）�
 Evidence: VA=0x412ace: fdiv flt_C1109C; globals.json g_fSceneTileSize
 原 source（场景 tile 尺寸）与移动插值访问模式互证。
 Confidence: 85
+
+## 2026-08-31 (4): m_RoleSlotArray script_state 变体 + 9 个全局迁移落地
+
+PalScript.json: m_RoleSlotArray union（@396, size 896）新增第三变体
+script_state（变体相对偏移）: m_pCurrentScript(456, PalScript*) /
+m_bFormationReady(460) / m_nSceneTransitionParam(461) / _todo_35c(464) /
+_todo_360(468) / m_fFadeTimer(476) / _todo_36c(480) / m_szSceneUIText(580,
+char[256]) / _todo_4e8(860)。globals.json 相应 9 条迁出。
+
+关键事实：g_palScript 是独立实例（0xC04730 数组外，差值 0xC238），其
+[396,1292) 区间的绝对引用全是 script-state 语义；role-slot 视图存在于
+数组实例（this+off）。两视图经 union 表达。
+
+fresh-IDB 重建验证：g_palScript 物化为 2176 item，语料库 643 处成员链
+渲染（m_RoleSlotArray x518、m_fSceneTileSize x69、m_RoleEmoteData/
+m_nRoleCount/m_WaitObjList...）。S2 28 -> 30/205，s_RoleState 连带翻绿。
+
+Evidence: 见 source 全量访问清单（SetupPartyFormation x5 @+0x358、
+scAsmDecoder::Execute @+0x360 x59、300 处 UI 文本缓冲引用 @+0x3d0）。
+Confidence: 90
