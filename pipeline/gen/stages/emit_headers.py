@@ -1849,7 +1849,21 @@ def main():
                 if not isinstance(s, dict):
                     continue
                 size = s.get('size', 0)
-                if not sname or sname.startswith('_'):
+                if not sname:
+                    continue
+                # Underscore-prefixed types: most are Win32 SDK internals
+                # (_D3D*, _DI*, _IMAGE*, _EXCEPTION_*, etc.) that should
+                # NOT get generated headers. Project-internal types like
+                # _Texture_Info and _Console DO need headers — whitelist.
+                _UNDERSCORE_WHITELIST = {
+                    '_Texture_Info', '_Console', '_Texture_uv', '_Tex_uv',
+                    '_Item_List_Info', '_MapElement', '_Item', '_UIPOS',
+                    '_PlugInfo', '_FLOORPARAM', '_PURGE_INFO', '_TimeMgr',
+                    '_btnOPTDATA', '_CLOUD', '_CONTEXT', '_SAMPLE',
+                    '_STREAM', '_SUBMAP', '_FLTPROVIDER', '_DIG_DRIVER',
+                    '_Collvec', '_Console__ConCmd', '_Btn_BtnID',
+                }
+                if sname.startswith('_') and sname not in _UNDERSCORE_WHITELIST:
                     continue
                 if size <= 0 or size == 0xFFFFFFFFFFFFFFFF:
                     continue
