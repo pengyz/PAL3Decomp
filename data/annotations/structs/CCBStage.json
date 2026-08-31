@@ -180,8 +180,9 @@
     },
     "192": {
       "name": "m_Task",
-      "type": "tagStageTask[256]",
-      "offset": 192
+      "type": "int",
+      "offset": 192,
+      "source": " | changed from tagStageTask[256] to int: IDB actual type is _DWORD (4 bytes) not the full array; the tagStageTask[256] annotation was too complex for [6] to apply, causing downstream m_RoleSlots/m_nActiveIdx/m_CamAngles/m_CamParams (offsets196-296) to vanish from the generated header"
     },
     "196": {
       "name": "m_RoleSlots",
