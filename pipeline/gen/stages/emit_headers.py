@@ -943,24 +943,29 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
 
     if methods:
         for method_name, sig, addr in methods:
-            # Prefer annotation signature if available (richer type information)
+            # Scan BOTH signature sources: the collected (decomp) sig that the
+            # renderer will actually print, and the annotation override. They
+            # can diverge; scanning only one risks missing a type that the
+            # other source renders (e.g. RunEffGroup's CEffSParticle param).
+            # Extra forward declarations are legal C++ — a superset is safe.
+            _sigs_to_scan = [sig]
             _ann_s = _ann_sigs_by_addr.get(addr, '')
             if _ann_s:
-                sig = _ann_s
-            # Extract all type names from signature
-            all_types_in_sig = re.findall(r'\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\*', sig)
-            for t in all_types_in_sig:
-                if t == cls_name or t in PRIMITIVES or t in SYSTEM_TYPES:
-                    continue
-                if '::' in t or '<' in t:
-                    continue
-                fwd_types.add(t)
-            # Also check return type and value params (non-pointer custom types)
-            ret_match = re.match(r'^(?:static\s+)?(\w+)\s', sig)
-            if ret_match:
-                rt = ret_match.group(1)
-                if rt not in PRIMITIVES and rt not in SYSTEM_TYPES and rt != cls_name and rt != 'void':
-                    fwd_types.add(rt)
+                _sigs_to_scan.append(_ann_s)
+            for _scan_sig in _sigs_to_scan:
+                all_types_in_sig = re.findall(r'\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\*', _scan_sig)
+                for t in all_types_in_sig:
+                    if t == cls_name or t in PRIMITIVES or t in SYSTEM_TYPES:
+                        continue
+                    if '::' in t or '<' in t:
+                        continue
+                    fwd_types.add(t)
+                # Also check return type (non-pointer custom types)
+                ret_match = re.match(r'^(?:static\s+)?(\w+)\s', _scan_sig)
+                if ret_match:
+                    rt = ret_match.group(1)
+                    if rt not in PRIMITIVES and rt not in SYSTEM_TYPES and rt != cls_name and rt != 'void':
+                        fwd_types.add(rt)
 
     # Don't forward-declare what we're including
     fwd_types -= include_types

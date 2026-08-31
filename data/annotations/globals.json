@@ -2155,9 +2155,12 @@
     "type": "skip"
   },
   "0x00C10968": {
-    "name": "flt_C10968",
-    "reason": "SceneMgrCamBlock.m_pUIScript at +92 (SceneMgr+0xC5D8); resolved via struct_instances",
-    "type": "skip"
+    "name": "g_palScript",
+    "type": "PalScript",
+    "source": "binary: dynamic-init ctor thunk 0x4086c0 'mov ecx,offset stru_C10968; jmp PalScript::PalScript'; ctor installs vtable stru_56AC4C and writes +0x44/+0x48/+0x90/+0x94/+0x9C matching PalScript.json exactly; ctor EH unwind target UIWnd::_UIWnd (UIWnd-derived window); InitSubsystems Create/LoadResource('ui\\scene\\tiao')/ShowWindow on it; 729 instr refs, max access +0x768. Embedded singleton instance (was skip via PDB SceneMgrCamBlock.m_pUIScript pointer — PAL3A-only layout, disproven).",
+    "overlaps_with": [
+      "g_SceneMgr"
+    ]
   },
   "0x00C1096C": {
     "name": "g_pScriptArrayEnd2",

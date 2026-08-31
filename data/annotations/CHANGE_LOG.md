@@ -5214,3 +5214,22 @@ float * CCBStageRole::GetWorldPos()
 | CGameData | 2 | gap | memset'd block in Init |
 | RoleSystem | 1 | gap_r3 | No references |
 | PalScriptMgr | 1 | binary:3x access | No function evidence |
+
+## 2026-08-31: g_palScript — 0xC10968 嵌入 PalScript 实例（纠正 PDB 错位标注）
+
+**变更**: `globals.json 0x00C10968` `flt_C10968/skip` → `g_palScript: PalScript`（嵌入单例实例）。
+`SceneMgrCamBlock.json +84/+88/+92/+96` source 追加 "PDB-derived (PAL3A); not verified for PAL3" 标记。
+
+**证据链（A 级）**:
+- 动态初始化 thunk 0x4086c0: `mov ecx, offset stru_C10968; jmp PalScript::PalScript` — 构造函数就地调用
+- ctor 0x43a160 安装 vtable stru_56AC4C，写 +0x44/+0x48/+0x90/+0x94/+0x9C，与 PalScript.json 全部吻合
+- ctor EH 展开目标是 `UIWnd::_UIWnd` — PalScript 是 UIWnd 派生窗口类
+- InitSubsystems 对其 Create / LoadResource("ui\scene\tiao") / ShowWindow
+- 729 条指令引用，最大访问偏移 +0x768（超出标注 size 1816）
+
+**根因**: 原 skip 源自 PAL3A PDB 的 `SceneMgrCamBlock+92 m_pUIScript: PalScript *`（指针）——PAL3 实际在此嵌入完整实例。PDB 偏移不可直接迁移的实例。
+
+**遗留（下轮）**:
+1. PalScript binary_size 1816 偏小：访问达 +0x768、脚本数组 stride 2176 — 需重推导尺寸并补 +0x734(×70 引用)/+0x768 成员
+2. 区间内 11 个语义全局（g_pCurrentScript@+0x354、g_bFormationReady、g_fFadeTimer、g_szSceneUIText 等）实为实例成员，待迁入 PalScript.json
+3. 本区域 PDB 函数名映射不可靠（`PalScript::OffsetRect` 实为矩形 helper；`UINote::Create(this=1)` 参数错位）— 函数名需逐个指令级核验
