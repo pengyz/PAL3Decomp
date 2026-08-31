@@ -5233,3 +5233,18 @@ float * CCBStageRole::GetWorldPos()
 1. PalScript binary_size 1816 偏小：访问达 +0x768、脚本数组 stride 2176 — 需重推导尺寸并补 +0x734(×70 引用)/+0x768 成员
 2. 区间内 11 个语义全局（g_pCurrentScript@+0x354、g_bFormationReady、g_fFadeTimer、g_szSceneUIText 等）实为实例成员，待迁入 PalScript.json
 3. 本区域 PDB 函数名映射不可靠（`PalScript::OffsetRect` 实为矩形 helper；`UINote::Create(this=1)` 参数错位）— 函数名需逐个指令级核验
+
+## 2026-08-31 (2): PalScript 尺寸修正 + RoleSystem 匿名 union 命名
+
+**PalScript.json**: binary_size 1816 → 2176（证据：ScriptSystem::Destroy 脚本数组
+`p += 2176` 遍历 PalScript 实例，stride=sizeof；访问直达 +0x768）。新增成员
++0x730 float / +0x734 float（×70 引用，RoleSystem 移动插值热点）/ +0x764 int /
++0x768 int，均 _todo_ 命名待语义确认。
+
+**RoleSystem.json**: 0x694 匿名 union 命名 m_teamSlotOverlay，变体[1] 命名 m_state
+（source 已记录 overlap:team_slots_with_role_system_state）。修复 Hex-Rays 把
+无名成员渲染成 `.1` 非法标识符（UISceneFace C2143）。
+
+Evidence: VA=0x40c97a..0x40c992: p_pDestRoleOverlay += 2176 stride loop;
+VA=0x412ace: fdiv flt_C1109C (MoveToTile); VA=0x411788: fstp flt_C11098.
+Confidence: 90
