@@ -587,8 +587,8 @@
     },
     "0x0050A180": {
       "name": "Grab",
-      "signature": "bool(int dwStageTaskID, bool bNormal)",
-      "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "signature": "int(int dwStageTaskID, bool bNormal)",
+      "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | ret char->int: VA=0x50A180 body is exactly mov eax,[esp+arg_0]; retn 4 (returns stack arg in EAX, 4-byte); zero AL writes | ret bool->int: VA=0x50A180 body is exactly mov eax,[esp+arg_0]; retn 4 (4-byte EAX passthrough of the stack arg, zero AL writes) — pdb bool contradicted by binary width"
     },
     "0x0050A1A0": {
       "name": "Release",
