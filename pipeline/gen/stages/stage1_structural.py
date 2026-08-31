@@ -146,7 +146,13 @@ def run(code, ctx):
                 if not is_this_param and 'this' in first_text and not ctx.is_free_function:
                     is_this_param = True
                 if is_this_param:
-                    if len(params) > 1:
+                    # Skip for dtors: line 166+ strips ALL params, producing
+                    # the same byte-range edit. Two identical edits corrupt
+                    # the output when applied in reverse (second edit deletes
+                    # body content after the first shifted the bytes).
+                    if ctx.is_dtor:
+                        pass
+                    elif len(params) > 1:
                         # Remove first param + following comma
                         # Find the comma after first param
                         end = first_param.end_byte
