@@ -292,10 +292,17 @@ def _fix_ulong_uint_cast(code):
 # ============================================================
 
 def _resolve_stru_overlap(code):
-    """Replace stru_XXXX.member[N] with (cast to containing struct) access."""
+    """Replace stru_XXXX.member[N] with (cast to containing struct) access.
+
+    Only rewrites stru_XXXX in *value position* (start of an expression).
+    When stru_XXXX is itself a MEMBER name (e.g. an embedded struct member
+    in SceneMgr named after its address: g_SceneMgr.stru_C059A0.m_retry),
+    it is already legal C++ and must NOT be cast-rewritten — hence the
+    negative lookbehind blocking '.', '->' and word chars before it.
+    """
     for base, end, gname, gtype in store.struct_instances:
         _stru_name = 'stru_%X' % base
-        _pattern = r'\b' + _stru_name + r'\.([a-zA-Z_]\w*(?:\[\d+\])?)'
+        _pattern = r'(?<![.>\w])' + _stru_name + r'\.([a-zA-Z_]\w*(?:\[\d+\])?)'
         _replacement = r'((%s *)&%s)->\1' % (gtype, gname)
         code = re.sub(_pattern, _replacement, code)
     return code
