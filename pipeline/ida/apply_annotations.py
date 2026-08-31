@@ -1887,6 +1887,13 @@ def apply_annotations():
             # qualified names break parse_decl; virtual/static are type-level
             # modifiers (virtuality is restored by vtable placement at export).
             _pb = before.replace("virtual ", " ").replace("static ", " ")
+            # Normalize glued '*cc' ('UIFrameWnd *__thiscall') so '*' and the
+            # calling convention tokenize separately. Otherwise '*__thiscall'
+            # is one unknown token, gets treated as the function-name token
+            # and dropped — the return type silently loses BOTH its '*' and
+            # the cc (parsed as by-value struct return = ctor form → Hex-Rays
+            # invents __return_ptr; root cause of the 86-function sret queue).
+            _pb = _pb.replace("*", "* ")
             _pb = _pb.replace("struct ", "").replace("class ", "")
             _pb = _re_format.sub(r'\s+', ' ', _pb).strip()
             _ptoks = _pb.split()
