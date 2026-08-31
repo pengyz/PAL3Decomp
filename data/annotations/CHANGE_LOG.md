@@ -5248,3 +5248,21 @@ float * CCBStageRole::GetWorldPos()
 Evidence: VA=0x40c97a..0x40c992: p_pDestRoleOverlay += 2176 stride loop;
 VA=0x412ace: fdiv flt_C1109C (MoveToTile); VA=0x411788: fstp flt_C11098.
 Confidence: 90
+
+## 2026-08-31 (3): PalScript 缺口字段语义升级 + union 第三视图发现
+
+**PalScript.json**: +0x734 _todo_734 → m_fSceneTileSize（globals.json 的
+g_fSceneTileSize 语义标注与 RoleSystem 移动插值证据合并；类型 float 一致）。
+
+**结构发现（排队工作）**: 脚本状态全局 g_pCurrentScript(+0x354)/
+g_bFormationReady(+0x358)/g_nSceneTransitionParam(+0x359)/g_fFadeTimer(+0x368)/
+m_szSceneUIText(+0x3d0 char[256]) 全部落在 m_RoleSlotArray overlay union
+（@396，span [396,1292)）之内——是该内存的第三视图。直接迁移为兄弟成员被
+check_annotations 正确拦截（overlap 零容忍）。正确做法是给 union 增加
+script_state 变体（union 内相对偏移 456/460/461/464/468/476/480/580），
+需先取证两个视图的生命周期互斥关系。本轮回退这批迁移，globals.json 条目
+保留（git HEAD 恢复）。
+
+Evidence: VA=0x412ace: fdiv flt_C1109C; globals.json g_fSceneTileSize
+原 source（场景 tile 尺寸）与移动插值访问模式互证。
+Confidence: 85
