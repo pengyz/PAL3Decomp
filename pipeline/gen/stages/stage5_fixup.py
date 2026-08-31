@@ -314,6 +314,37 @@ def _fix_ulong_uint_cast(code):
     return code
 
 
+def _fix_operator_new_cast(code):
+    """Add explicit casts for operator new return values.
+
+    MSVC6 does not allow implicit void* → T* conversion.
+    Pattern: var = operator new(size);
+    Fix:     var = (T *)operator new(size);
+
+    Looks up variable type from declarations in the same function body.
+    Falls back to (char *) if type not found.
+    """
+    # Build a map of variable names → pointer types from declarations
+    # Matches:  Type *var;  or  Type *var = ...;  or  Type *var, ...
+    var_types = {}
+    for m in re.finditer(r'^\s+([\w:]+(?:\s+\w+)*)\s+\*\s*(\w+)', code, re.MULTILINE):
+        var_types[m.group(2)] = m.group(1).strip()
+
+    def _replace_new(m):
+        prefix = m.group(1)  # whitespace + "var = "
+        var_match = re.search(r'(\w+)\s*=\s*$', prefix)
+        if var_match:
+            var_name = var_match.group(1)
+            typ = var_types.get(var_name)
+            if typ:
+                return '%s(%s *)operator new(' % (prefix, typ)
+        # Fallback: cast to char * (always compatible with pointer types)
+        return '%s(char *)operator new(' % prefix
+
+    code = re.sub(r'^(\s+\w+\s*=\s*)operator new\(', _replace_new, code, flags=re.MULTILINE)
+    return code
+
+
 # ============================================================
 # struct_instances overlap resolution: dword_XXXX.member → cast
 # ============================================================
@@ -421,6 +452,9 @@ def run(code, ctx):
 
     # ulong* → uint* cast fix
     code = _fix_ulong_uint_cast(code)
+
+    # operator new return value cast (MSVC6 requires explicit void* → T*)
+    code = _fix_operator_new_cast(code)
 
     # Pointer → unsigned long assignment cast (MSVC6 incompatibility)
 
