@@ -378,8 +378,10 @@ def run(code, ctx):
     if not ctx.is_free_function:
         code = re.sub(r'return\s+&this->__vftable\s*;', 'return this;', code)
         code = re.sub(r'return\s+\([^)]+\)\s*&this->__vftable\s*;', 'return this;', code)
-        # Base class ctor call: this->BaseClassName() → implicit (compiler auto-calls)
-        code = re.sub(r'^\s*this->\w+\(\);\s*$', '', code, flags=re.MULTILINE)
+        # REMOVED: this->\w+() regex was too broad — it deleted ALL zero-arg
+        # this->Method() calls including legitimate ones like SetupCamControl().
+        # Base class ctor calls are rare in decomp and harmless if present
+        # (MSVC6 treats them as method calls, not ctor re-invocation).
 
     # Try to resolve vtable dispatch calls to direct method calls before commenting out.
     # Pattern: (*(ret_type (callconv **)(Type*))(obj->__vftable + N))(args);
