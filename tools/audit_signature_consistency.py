@@ -68,8 +68,13 @@ def sig_shape(sig, drop_this=False):
     head = sig[:sig.index('(')].strip()
     head = re.sub(r'^virtual\s+', '', head)
     # strip trailing qualified method name FIRST (it may sit after the cc),
-    # then the calling convention
-    head = re.sub(r'\s*[A-Za-z_]\w*(::[A-Za-z_]\w*)+\s*$', '', head).strip()
+    # then the calling convention. '(?:~)?' handles dtors ('Cls::~Cls');
+    # loop handles doubly-qualified tails ('Cls::Nested::Method').
+    while True:
+        h2 = re.sub(r'\s*[A-Za-z_]\w*(?:::~?[A-Za-z_]\w*)+\s*$', '', head).strip()
+        if h2 == head:
+            break
+        head = h2
     head = re.sub(r'\b(__userpurge|__usercall|__thiscall|__cdecl|__stdcall|__fastcall)(@<[^>]*>)?\s*$', '', head).strip()
     ret = canon(head)
     params = pm.group(1).strip()
@@ -87,6 +92,10 @@ def main():
             decomp_sigs['0x' + m2.group(1).upper()] = (os.path.basename(fp), json.load(open(fp)).get('signature', ''))
 
     methods = {}
+    funcs_json = {}
+    fp_fj = os.path.join(ROOT, 'data', 'annotations', 'functions.json')
+    if os.path.exists(fp_fj):
+        funcs_json = json.load(open(fp_fj))
     for fp in glob.glob(os.path.join(ROOT, 'data', 'annotations', 'structs', '*.json')):
         cls = os.path.basename(fp)[:-5]
         s = json.load(open(fp))
@@ -94,16 +103,24 @@ def main():
             k = (addr if addr.startswith('0x') else '0x' + addr).upper().replace('0X', '0x')
             methods.setdefault(k, []).append((cls, info))
 
-    agree = dr = dn = both = 0
+    agree = dr = dn = both = nskip = 0
     rows = []
     for addr, entries in sorted(methods.items()):
         if addr not in decomp_sigs:
+            continue
+        fj = funcs_json.get(addr)
+        if fj and fj.get('type') == 'skip':
+            # deliberately demoted (e.g. misattribution evidence) — the decomp
+            # generic form is the accepted state; count separately, not a conflict
+            nskip += 1
             continue
         cls, info = entries[0]
         ann = info.get('signature', '')
         if not ann:
             continue
-        a = sig_shape(ann)
+        # 'this' is a C++ keyword — an explicit Cls *this param is the implicit
+        # this spelled out (old-format signatures); drop on BOTH sides
+        a = sig_shape(ann, drop_this=True)
         b = sig_shape(decomp_sigs[addr][1], drop_this=True)
         if not a or not b:
             continue
