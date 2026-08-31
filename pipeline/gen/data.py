@@ -364,6 +364,50 @@ class DataStore:
                             else:
                                 self.free_func_sigs[_name] = '%s %s %s(%s)' % (ret, cc, _name, params)
 
+        # Supplement: functions.json annotations for free functions missing from decomp
+        # (e.g. 1-byte empty functions like NullCallback that Hex-Rays cannot decompile)
+        _ann_func_path = self.project_root / "data" / "annotations" / "functions.json"
+        if _ann_func_path.exists():
+            try:
+                _ann_funcs = json.load(open(_ann_func_path, encoding='utf-8'))
+            except:
+                _ann_funcs = {}
+            for _addr_s, _info in _ann_funcs.items():
+                if not isinstance(_info, dict):
+                    continue
+                _name = _info.get('name', '')
+                _sig = _info.get('signature', '')
+                if not _name or not _sig:
+                    continue
+                if '::' in _name:
+                    continue  # class method, not a free function
+                if _name in self.free_func_sigs:
+                    continue  # already have it from decomp
+                # Same filters as above
+                if _name.startswith('_') or _name.startswith('$') or _name.startswith('?'):
+                    continue
+                # NOTE: do NOT filter unknown_libname/nullsub here — annotation
+                # entries are manually curated and may reference such functions
+                # (e.g. atexit cleanup handlers).
+                if not re.match(r'^[A-Za-z_]\w*$', _name):
+                    continue
+                # Parse signature — two formats:
+                #   decomp: "ret __cc(params)"
+                #   functions.json: "ret __cc FuncName(params)"
+                _sig_n = re.sub(r'\b__hidden\s+', '', _sig)
+                if '__cdecl' in _sig_n or '__stdcall' in _sig_n:
+                    m = re.match(r'^(.+?)\s*(__cdecl|__stdcall)\s*(?:\w+\s*)?\((.*)\)$', _sig_n)
+                    if m:
+                        ret = m.group(1).strip()
+                        ret = re.sub(r'\bvirtual\s+', '', ret)
+                        cc = m.group(2)
+                        params = m.group(3).strip()
+                        if not params: params = 'void'
+                        if cc == '__cdecl':
+                            self.free_func_sigs[_name] = '%s %s(%s)' % (ret, _name, params)
+                        else:
+                            self.free_func_sigs[_name] = '%s %s %s(%s)' % (ret, cc, _name, params)
+
     def _load_binary(self):
         exe_path = self.project_root / "original" / "PAL3.exe"
         if not exe_path.exists():

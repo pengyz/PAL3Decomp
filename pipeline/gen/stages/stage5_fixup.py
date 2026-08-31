@@ -214,14 +214,22 @@ _GB_REF_PARAM_FUNCS = {
     'PushMessage': {0}, 'PopMessage': {0},
     'GetViewport': {0}, 'GetViewSizeOnNearPlane': {0, 1},
     'GetViewPort': {0, 1, 2, 3},
+    'PointWorldToScr': {1, 2},  # (gbVec3D*, float&, float&)
+    'GetBlend': {0}, 'SetBlend': {0},
+    'SetAxisAngle': {0},
+    'RightMultiply': {0},
 }
 
 
 def _fix_ref_params(code):
-    """Strip '&' from arguments to functions that take reference params.
-    
-    Hex-Rays outputs: obj->Translate(&vec);
-    Correct C++:      obj->Translate(vec);
+    """Fix arguments passed to functions that take reference params.
+
+    Two cases handled:
+    1. Hex-Rays outputs &arg for reference params  → strip &:
+       obj->Translate(&vec)   → obj->Translate(vec)
+    2. Hex-Rays passes a pointer/cast-pointer to a reference param → add *:
+       obj->GetAABBox(pBox)   → obj->GetAABBox(*pBox)
+       obj->Translate((T*)&x) → obj->Translate(*(T*)&x)
     """
     for func_name, ref_indices in _GB_REF_PARAM_FUNCS.items():
         pattern = r'(?:->|::|\.)' + re.escape(func_name) + r'\s*\('
@@ -247,18 +255,14 @@ def _fix_ref_params(code):
                     if depth == 0:
                         arg = code[arg_start:i]
                         if arg_idx in ref_indices:
-                            arg = arg.lstrip()
-                            if arg.startswith('&') and not arg.startswith('&&'):
-                                arg = arg[1:]
+                            arg = _fix_single_ref_arg(arg)
                         result.append(arg)
                         result.append(')')
                         break
                 elif ch == ',' and depth == 1:
                     arg = code[arg_start:i]
                     if arg_idx in ref_indices:
-                        arg = arg.lstrip()
-                        if arg.startswith('&') and not arg.startswith('&&'):
-                            arg = arg[1:]
+                        arg = _fix_single_ref_arg(arg)
                     result.append(arg)
                     result.append(', ')
                     arg_idx += 1
@@ -267,6 +271,29 @@ def _fix_ref_params(code):
             pos = i + 1
         code = ''.join(result)
     return code
+
+
+def _fix_single_ref_arg(arg):
+    """Fix a single argument for a reference parameter.
+
+    Case 1: starts with '&'  → strip '&'
+    Case 2: cast-to-pointer  → add '*' before the cast: (T*)x → *(T*)x
+    Case 3: plain identifier  → add '*':  pBox → *pBox
+    """
+    arg_stripped = arg.lstrip()
+    # Case 1: &arg → arg
+    if arg_stripped.startswith('&') and not arg_stripped.startswith('&&'):
+        return arg_stripped[1:]
+    # Case 2: cast-to-pointer  (Type *)expr  or  (Type *)__thiscall
+    cast_m = re.match(r'^(\s*\([^)]*\*\)\s*)', arg)
+    if cast_m:
+        return '*' + arg
+    # Case 3: plain identifier (simple variable name)
+    ident_m = re.match(r'^(\s*)(\w+)\s*$', arg)
+    if ident_m:
+        return ident_m.group(1) + '*' + ident_m.group(2)
+    # Unknown pattern — leave unchanged to be safe
+    return arg
 
 
 # ============================================================
