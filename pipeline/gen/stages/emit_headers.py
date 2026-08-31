@@ -247,7 +247,9 @@ SKIP_PREFIXES = (
     'D3D', '_D3D', 'ID3D', 'IDirect', 'IUnknown',
     'CD3D',  # D3D helper classes from SDK samples
     'D3DX',  # D3DX math types
-    'gb',    # gbengine types (all start with gb)
+    # 'gb' removed: gbengine types have no external headers in this project;
+    # generating them here prevents C2039 'not a member' errors from cpp files
+    # that reference gb* struct members/methods. 2026-08-31.
     'vtbl_', # IDA vtable structs (not real C++ types)
     '_DI',   # DirectInput internal structs (defined by dinput.h)
     '_IMAGE',# PE header structs (defined by winnt.h)
