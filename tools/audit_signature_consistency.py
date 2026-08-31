@@ -18,12 +18,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ALIAS = {
     'unsigned __int8': 'unsigned char', 'uchar': 'unsigned char', 'unchar': 'unsigned char',
-    '_BYTE': 'unsigned char', 'BYTE': 'unsigned char', 'bool': 'int', 'BOOL': 'int',
+    '_BYTE': 'unsigned char', 'BYTE': 'unsigned char', 'BOOL': 'int',
     'unsigned __int16': 'unsigned short', 'ushort': 'unsigned short', '_WORD': 'unsigned short',
     'WORD': 'unsigned short',
     'unsigned __int32': 'unsigned int', 'uint': 'unsigned int', '_DWORD': 'unsigned int',
     'DWORD': 'unsigned int', 'UINT': 'unsigned int',
-    '__int16': 'short',
+    '__int16': 'short', 'bool': 'char',
     '__int32': 'int', '_LONG': 'long', 'LONG': 'long',
     '__int64': 'long long',
     'unsigned long': 'unsigned int',
@@ -75,6 +75,16 @@ def sig_shape(sig, drop_this=False):
         if h2 == head:
             break
         head = h2
+    head = re.sub(r'\s+__(?:noreturn|spoils<[^>]*>)\s*$', '', head).strip()
+    # strip trailing unqualified function name (free-function style heads like
+    # 'int __cdecl RandomPickValues') BEFORE the cc strip — the cc may not sit
+    # at the head end when a name follows it. Keyword-guarded so 'unsigned int'
+    # survives.
+    _TYPE_KW = {'int','void','char','short','long','float','double','unsigned','signed','bool',
+                'BYTE','WORD','DWORD','BOOL','UINT','HRESULT','__int8','__int16','__int32','__int64'}
+    _toks = head.split()
+    if len(_toks) > 1 and _toks[-1] not in _TYPE_KW and re.match(r'^[A-Za-z_]\w*$', _toks[-1]):
+        head = ' '.join(_toks[:-1])
     head = re.sub(r'\b(__userpurge|__usercall|__thiscall|__cdecl|__stdcall|__fastcall)(@<[^>]*>)?\s*$', '', head).strip()
     ret = canon(head)
     params = pm.group(1).strip()

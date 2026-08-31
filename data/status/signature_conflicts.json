@@ -208,6 +208,15 @@
  ],
  [
   "NARGS",
+  "0x004F0750",
+  "CCBRoleState",
+  "SetVisible",
+  "2",
+  "2",
+  "CCBRoleState_SetVisibleint_int_004f0750.json"
+ ],
+ [
+  "NARGS",
   "0x004FA4E0",
   "CCBRoleState",
   "FindSlotByHP",
@@ -243,6 +252,33 @@
   "CCBStage_GetTaskStateint_int_004fcc50.json"
  ],
  [
+  "RET",
+  "0x004FCE70",
+  "CCBStage",
+  "IsSubTaskFinished",
+  "char",
+  "int",
+  "CCBStage_IsSubTaskFinishedint_int_004fce70.json"
+ ],
+ [
+  "RET",
+  "0x004FD1A0",
+  "CCBStage",
+  "IsSubTaskValid",
+  "char",
+  "int",
+  "CCBStage_IsSubTaskValidint_int_004fd1a0.json"
+ ],
+ [
+  "RET",
+  "0x0050A180",
+  "CCBStageRole",
+  "Grab",
+  "char",
+  "int",
+  "CCBStageRole_Grabint_int_0050a180.json"
+ ],
+ [
   "MALFORMED",
   "0x0050B430",
   "CCBStageRole",
@@ -270,6 +306,24 @@
   "CCBSystem_PassCmdToThreadint_int_00515200.json"
  ],
  [
+  "RET",
+  "0x005155D0",
+  "CCBSystem",
+  "PassCmdToTask",
+  "char",
+  "int",
+  "CCBSystem_PassCmdToTaskint_int_005155d0.json"
+ ],
+ [
+  "RET",
+  "0x00515760",
+  "CCBSystem",
+  "PassCmdViaThread",
+  "char",
+  "int",
+  "CCBSystem_PassCmdViaThreadint_int_00515760.json"
+ ],
+ [
   "MALFORMED",
   "0x00515B20",
   "CCBSystem",
@@ -279,12 +333,12 @@
   "CCBSystem_CreateObjint_int_int_int_void_const_00515b20.json"
  ],
  [
-  "RET",
+  "NARGS",
   "0x00519BD0",
   "CCBUI",
   "CreateButton",
-  "int",
-  "char",
+  "6",
+  "6",
   "CCBUI_CreateButtonint_int_int_int_UIButton_int_00519bd0.json"
  ],
  [
@@ -315,30 +369,12 @@
   "CCBFiveNimbusWindow_OnMessageuint_uint_uint_0051c9b0.json"
  ],
  [
-  "RET",
+  "NARGS",
   "0x0051D1D0",
   "CCBLineupWindow",
   "Create",
-  "int",
-  "char",
+  "2",
+  "2",
   "CCBLineupWindow_CreatetagRECT_int_0051d1d0.json"
- ],
- [
-  "RET",
-  "0x0055434F",
-  "ScriptObj",
-  "FatalExit",
-  "void",
-  "void __thiscall __noreturn",
-  "RenderTarget2_FatalExitvoid_0055434f.json"
- ],
- [
-  "RET",
-  "0x00569020",
-  "PAL3",
-  "RandomPickValues",
-  "int __cdecl RandomPickValues",
-  "int",
-  "PAL3_RandomPickValuesint_int_int_00569020.json"
  ]
 ]
