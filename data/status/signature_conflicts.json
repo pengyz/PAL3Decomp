@@ -1,57 +1,12 @@
 [
  [
   "RET",
-  "0x00404150",
-  "GRPinput",
-  "DecideKeyStatus",
-  "unsigned int",
-  "int",
-  "GRPinput_DecideKeyStatusint_uint_00404150.json"
- ],
- [
-  "NARGS",
-  "0x00410990",
-  "Scene",
-  "AddRoleEntry",
-  "1",
-  "1",
-  "Scene_AddRoleEntryint_00410990.json"
- ],
- [
-  "NARGS",
-  "0x0041D7F0",
-  "CameraCtrl",
-  "SetupCameraArray",
-  "2",
-  "1",
-  "CameraCtrl_SetupCameraArrayint_int_0041d7f0.json"
- ],
- [
-  "NARGS",
-  "0x00439FE0",
-  "PalScript",
-  "GetRayToScreen",
-  "2",
-  "2",
-  "PalScript_GetRayToScreenvoid_long_00439fe0.json"
- ],
- [
-  "RET",
   "0x0043DE40",
   "UITitle_JDHY",
   "CCBRoleState::Destroy",
   "void",
   "int",
   "UILoadingFrm_Destroy_0043de40.json"
- ],
- [
-  "RET",
-  "0x0044B460",
-  "UITitle",
-  "Render",
-  "int",
-  "void",
-  "UITitle_UITitle_Render_0044b460.json"
  ],
  [
   "RET",
@@ -72,12 +27,12 @@
   "CCBUIPanel_OnMessageint_int_int_00454590.json"
  ],
  [
-  "MALFORMED",
+  "PTYPE",
   "0x00456E20",
   "CScreenMode",
   "PauseAllStreams",
-  "void __thiscall CScreenMode::PauseAllStr",
-  "",
+  "2",
+  "#0 void (__thisca!=void (__thisca",
   "CScreenMode_PauseAllStreamsint_int_00456e20.json"
  ],
  [
@@ -88,33 +43,6 @@
   "0",
   "3",
   "ReadRegistryString_00456fc0.json"
- ],
- [
-  "NARGS",
-  "0x0047D440",
-  "Object3D",
-  "GetScreenDegree",
-  "2",
-  "4",
-  "Object3D_GetScreenDegreeint_int_0047d440.json"
- ],
- [
-  "NARGS",
-  "0x0047DB40",
-  "Object3D",
-  "GetMouseRay",
-  "2",
-  "2",
-  "Object3D_GetMouseRaygbRay_int_0047db40.json"
- ],
- [
-  "MALFORMED",
-  "0x004C2850",
-  "RenderTarget2",
-  "AdjustThisCall",
-  "int __thiscall RenderTarget2::AdjustThis",
-  "",
-  "RenderTarget2_AdjustThisCallint_int_int_004c2850.json"
  ],
  [
   "NARGS",
@@ -135,33 +63,6 @@
   "Texture_uv_operator_004c5b90.json"
  ],
  [
-  "NARGS",
-  "0x004C65F0",
-  "CEffectSystem",
-  "HandleViewMove",
-  "2",
-  "2",
-  "CEffectSystem_HandleViewMovefloat_int_004c65f0.json"
- ],
- [
-  "NARGS",
-  "0x004CE690",
-  "CEffMgr",
-  "CreateEff",
-  "5",
-  "5",
-  "CEffMgr_CreateEffchar_const_uint_float_float_int_004ce690.json"
- ],
- [
-  "RET",
-  "0x004CEDA0",
-  "CEffMgr",
-  "RunEffGroup",
-  "unsigned int",
-  "int",
-  "CEffMgr_RunEffGroupchar_float_char_float_int_004ceda0.json"
- ],
- [
   "RET",
   "0x004D33A0",
   "CEffSParticle",
@@ -172,209 +73,11 @@
  ],
  [
   "RET",
-  "0x004D5F20",
-  "C2DSpark",
-  "CreateTrack",
-  "void",
-  "char",
-  "C2DSpark_CreateTrackchar_int_int_004d5f20.json"
- ],
- [
-  "NARGS",
-  "0x004D6BC0",
-  "C3DSpark",
-  "Render",
-  "1",
-  "1",
-  "C3DSpark_Renderint_004d6bc0.json"
- ],
- [
-  "NARGS",
-  "0x004E0010",
-  "CCBStage",
-  "SetupCamControl",
-  "1",
-  "0",
-  "CCBStage_SetupCamControlint_004e0010.json"
- ],
- [
-  "RET",
   "0x004E5410",
   "Average",
   "Setsize",
   "void",
   "char*",
   "GetEditBoxText_004e5410.json"
- ],
- [
-  "NARGS",
-  "0x004F0750",
-  "CCBRoleState",
-  "SetVisible",
-  "2",
-  "2",
-  "CCBRoleState_SetVisibleint_int_004f0750.json"
- ],
- [
-  "NARGS",
-  "0x004FA4E0",
-  "CCBRoleState",
-  "FindSlotByHP",
-  "2",
-  "2",
-  "CCBRoleState_FindSlotByHPint_uint_004fa4e0.json"
- ],
- [
-  "RET",
-  "0x004FC3A0",
-  "CCBStage",
-  "EditorUpdate",
-  "void",
-  "int",
-  "CCBStage_EditorUpdateint_004fc3a0.json"
- ],
- [
-  "NARGS",
-  "0x004FCC10",
-  "CCBStage",
-  "GetTaskState",
-  "3",
-  "3",
-  "CCBStage_GetTaskStateint_bool_int_004fcc10.json"
- ],
- [
-  "NARGS",
-  "0x004FCC50",
-  "CCBStage",
-  "GetTaskState",
-  "2",
-  "2",
-  "CCBStage_GetTaskStateint_int_004fcc50.json"
- ],
- [
-  "RET",
-  "0x004FCE70",
-  "CCBStage",
-  "IsSubTaskFinished",
-  "char",
-  "int",
-  "CCBStage_IsSubTaskFinishedint_int_004fce70.json"
- ],
- [
-  "RET",
-  "0x004FD1A0",
-  "CCBStage",
-  "IsSubTaskValid",
-  "char",
-  "int",
-  "CCBStage_IsSubTaskValidint_int_004fd1a0.json"
- ],
- [
-  "RET",
-  "0x0050A180",
-  "CCBStageRole",
-  "Grab",
-  "char",
-  "int",
-  "CCBStageRole_Grabint_int_0050a180.json"
- ],
- [
-  "MALFORMED",
-  "0x0050B430",
-  "CCBStageRole",
-  "FindFreeSlot",
-  "int (__thiscall *__thiscall(int a2))(int",
-  "",
-  "CCBStageRole_FindFreeSlotint_int_0050b430.json"
- ],
- [
-  "NARGS",
-  "0x00513EB0",
-  "CCBSystem",
-  "Message",
-  "3",
-  "3",
-  "CCBSystem_Messagechar_char_int_00513eb0.json"
- ],
- [
-  "NARGS",
-  "0x00515200",
-  "CCBSystem",
-  "PassCmdToThread",
-  "2",
-  "2",
-  "CCBSystem_PassCmdToThreadint_int_00515200.json"
- ],
- [
-  "RET",
-  "0x005155D0",
-  "CCBSystem",
-  "PassCmdToTask",
-  "char",
-  "int",
-  "CCBSystem_PassCmdToTaskint_int_005155d0.json"
- ],
- [
-  "RET",
-  "0x00515760",
-  "CCBSystem",
-  "PassCmdViaThread",
-  "char",
-  "int",
-  "CCBSystem_PassCmdViaThreadint_int_00515760.json"
- ],
- [
-  "MALFORMED",
-  "0x00515B20",
-  "CCBSystem",
-  "CreateObj",
-  "int __thiscall(int (__thiscall *a2)(int ",
-  "",
-  "CCBSystem_CreateObjint_int_int_int_void_const_00515b20.json"
- ],
- [
-  "NARGS",
-  "0x00519BD0",
-  "CCBUI",
-  "CreateButton",
-  "6",
-  "6",
-  "CCBUI_CreateButtonint_int_int_int_UIButton_int_00519bd0.json"
- ],
- [
-  "RET",
-  "0x0051A880",
-  "CCBItemWindow",
-  "Destroy",
-  "void",
-  "int",
-  "CCBItemWindow_Destroy_0051a880.json"
- ],
- [
-  "NARGS",
-  "0x0051B5D0",
-  "CCBControlWindow",
-  "OnMessage",
-  "3",
-  "3",
-  "CCBControlWindow_OnMessageuint_uint_uint_0051b5d0.json"
- ],
- [
-  "NARGS",
-  "0x0051C9B0",
-  "CCBParabolaWindow",
-  "CCBFiveNimbusWindow::OnMessage",
-  "3",
-  "3",
-  "CCBFiveNimbusWindow_OnMessageuint_uint_uint_0051c9b0.json"
- ],
- [
-  "NARGS",
-  "0x0051D1D0",
-  "CCBLineupWindow",
-  "Create",
-  "2",
-  "2",
-  "CCBLineupWindow_CreatetagRECT_int_0051d1d0.json"
  ]
 ]

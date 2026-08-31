@@ -23,7 +23,7 @@ ALIAS = {
     'WORD': 'unsigned short',
     'unsigned __int32': 'unsigned int', 'uint': 'unsigned int', '_DWORD': 'unsigned int',
     'DWORD': 'unsigned int', 'UINT': 'unsigned int',
-    '__int16': 'short', 'bool': 'char',
+    '__int16': 'short', 'bool': 'char', 'unsigned': 'unsigned int', 'long': 'int', 'ULONG': 'unsigned int',
     '__int32': 'int', '_LONG': 'long', 'LONG': 'long',
     '__int64': 'long long',
     'unsigned long': 'unsigned int',
@@ -34,6 +34,11 @@ def canon(t):
     if t is None:
         return '?'
     t = t.strip()
+    t = re.sub(r'__attribute__\s*\(\(.*\)\)', '', t).strip()
+    m = re.match(r'^(.*?)(\w+)?\s*\[[^\]]*\]$', t)
+    if m and m.group(1).strip():
+        # array param decays to pointer
+        t = (m.group(1).strip().rstrip('*') + '*')
     stars = len(t) - len(t.rstrip('*'))
     t = re.sub(r'\*+\s*$', '', t).strip()
     t = re.sub(r'^(struct|class|enum|union)\s+', '', t)
@@ -139,7 +144,8 @@ def main():
         mname = info.get('name', '')
         is_special = mname.startswith('~') or mname in ('_scalar_dtor', '_sdtor') or mname == cls or mname.endswith('_' + cls)
         malformed = False
-        ccs = re.findall(r'__(?:thiscall|cdecl|stdcall|fastcall|userpurge|usercall)', ann)
+        head_txt = ann.split('(', 1)[0]
+        ccs = re.findall(r'__(?:thiscall|cdecl|stdcall|fastcall|userpurge|usercall)', head_txt)
         if len(ccs) > 1 or re.search(r'\)\s*\)\s*$', ann):
             malformed = True
         if malformed:
@@ -153,8 +159,16 @@ def main():
                 dr += 1
                 rows.append(['RET', addr, cls, mname, a[0], b[0], fname])
         elif a[1] != b[1]:
-            dn += 1
-            rows.append(['NARGS', addr, cls, mname, str(len(a[1])), str(len(b[1])), fname])
+            if len(a[1]) == len(b[1]):
+                # equal counts: report per-param type diffs
+                diffs = []
+                for i, (pa, pb) in enumerate(zip(a[1], b[1])):
+                    if pa != pb:
+                        diffs.append('#%d %s!=%s' % (i, pa[:14], pb[:14]))
+                rows.append(['PTYPE', addr, cls, mname, str(len(a[1])), ' | '.join(diffs), fname])
+            else:
+                dn += 1
+                rows.append(['NARGS', addr, cls, mname, str(len(a[1])), str(len(b[1])), fname])
         else:
             agree += 1
 
