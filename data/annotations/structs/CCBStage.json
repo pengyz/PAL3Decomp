@@ -316,7 +316,7 @@
     "544": {
       "name": "m_pController",
       "type": "char *",
-      "source": "ida_decomp:ProcessTurn deref+134 byte check, 10 refs | type_fix:int\u00a1\u00favoid*(deref pattern)",
+      "source": "ida_decomp:ProcessTurn deref+134 byte check, 10 refs | type_fix:int¡úvoid*(deref pattern)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "548": {
@@ -507,7 +507,7 @@
     "6632": {
       "name": "m_fAngleDegrees",
       "type": "float",
-      "source": "A+:ida_decomp 28refs + angle_math(rad->deg * 57.29578, normalize 2\u00a6\u00d0, compare \u00a6\u00d0/2)"
+      "source": "A+:ida_decomp 28refs + angle_math(rad->deg * 57.29578, normalize 2¦Ð, compare ¦Ð/2)"
     },
     "6636": {
       "name": "m_fCombatAnimY",
@@ -643,7 +643,8 @@
     },
     "0x004FC3A0": {
       "name": "EditorUpdate",
-      "signature": "void(float fVal))"
+      "signature": "void(float fVal)",
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x004FC6F0": {
       "name": "Render",
@@ -699,11 +700,13 @@
     },
     "0x004FCC10": {
       "name": "GetTaskState",
-      "signature": "char(int nIndex, bool *bFinished, unsigned int *dwReturn))"
+      "signature": "char(int nIndex, bool *bFinished, unsigned int *dwReturn)",
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x004FCC50": {
       "name": "GetTaskState",
-      "signature": "char(int nIndex, enum ECBStageTaskState *State))"
+      "signature": "char(int nIndex, enum ECBStageTaskState *State)",
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x004FCD00": {
       "name": "IsTaskFinished",
@@ -731,8 +734,8 @@
     },
     "0x004FCE70": {
       "name": "IsSubTaskFinished",
-      "signature": "bool(int n, int nSub))",
-      "source": "pdb_ret"
+      "signature": "bool(int n, int nSub)",
+      "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x004FCFB0": {
       "name": "IsAllSubTaskFinished",
@@ -746,8 +749,8 @@
     },
     "0x004FD1A0": {
       "name": "IsSubTaskValid",
-      "signature": "bool(int n, int nSub))",
-      "source": "pdb_ret"
+      "signature": "bool(int n, int nSub)",
+      "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x004FD290": {
       "name": "IsIdle",

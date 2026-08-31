@@ -45,33 +45,6 @@
   "SceneObj_UpdateAutoDeleteuint_00407b50.json"
  ],
  [
-  "MALFORMED",
-  "0x00408FD0",
-  "PAL3",
-  "FullInit",
-  "int __cdecl __thiscall()",
-  "",
-  "PAL3_FullInitvoid_00408fd0.json"
- ],
- [
-  "MALFORMED",
-  "0x0040C790",
-  "ScriptSystem",
-  "Cleanup",
-  "int __cdecl __thiscall()",
-  "",
-  "ScriptSystem_Cleanupvoid_0040c790.json"
- ],
- [
-  "MALFORMED",
-  "0x0040C7D0",
-  "Scene",
-  "Render2",
-  "void __cdecl __thiscall()",
-  "",
-  "Scene_Render2void_0040c7d0.json"
- ],
- [
   "NARGS",
   "0x00410990",
   "Scene",
@@ -79,24 +52,6 @@
   "1",
   "1",
   "Scene_AddRoleEntryint_00410990.json"
- ],
- [
-  "MALFORMED",
-  "0x004118D0",
-  "PAL3",
-  "UpdateSubsystems",
-  "int __cdecl __thiscall()",
-  "",
-  "PAL3_UpdateSubsystemsvoid_004118d0.json"
- ],
- [
-  "MALFORMED",
-  "0x00411CA0",
-  "ScriptObj",
-  "~ScriptObj",
-  "void __thiscall ScriptObj::~ScriptObj())",
-  "",
-  "ScriptObj_ScriptObj_00411ca0.json"
  ],
  [
   "NARGS",
@@ -162,24 +117,6 @@
   "gbSound2DNode_UIPostUpdatevoid_0041eb80.json"
  ],
  [
-  "MALFORMED",
-  "0x0041EE40",
-  "PAL3",
-  "UIPostProcess",
-  "int __cdecl __thiscall()",
-  "",
-  "PAL3_UIPostProcessvoid_0041ee40.json"
- ],
- [
-  "MALFORMED",
-  "0x0041EE60",
-  "Camera",
-  "IsTransitioning",
-  "char __cdecl __thiscall()",
-  "",
-  "Camera_IsTransitioningvoid_0041ee60.json"
- ],
- [
   "NARGS",
   "0x00420110",
   "SystemUI",
@@ -216,24 +153,6 @@
   "SceneMgr_FindRoleByState_00422050.json"
  ],
  [
-  "MALFORMED",
-  "0x004230D0",
-  "UICamera",
-  "GetState",
-  "int __cdecl __thiscall()",
-  "",
-  "UICamera_GetStatevoid_004230d0.json"
- ],
- [
-  "MALFORMED",
-  "0x004234D0",
-  "UIScene",
-  "CombatCheck",
-  "int __cdecl __thiscall()",
-  "",
-  "UIScene_CombatCheckvoid_004234d0.json"
- ],
- [
   "NARGS",
   "0x00431870",
   "TxtFile",
@@ -243,15 +162,6 @@
   "TxtFile_TxtFilevoid_00431870.json"
  ],
  [
-  "MALFORMED",
-  "0x00431EE0",
-  "PalScriptMgr",
-  "FindScript",
-  "void __cdecl __thiscall()",
-  "",
-  "PalScriptMgr_FindScriptvoid_00431ee0.json"
- ],
- [
   "NARGS",
   "0x00431F10",
   "PalScript",
@@ -259,24 +169,6 @@
   "1",
   "0",
   "PalScript_AddCamObjvoid_00431f10.json"
- ],
- [
-  "MALFORMED",
-  "0x00431F40",
-  "PalScript",
-  "ClearAllCamObj",
-  "void __cdecl __thiscall()",
-  "",
-  "PalScript_ClearAllCamObjvoid_00431f40.json"
- ],
- [
-  "MALFORMED",
-  "0x00432480",
-  "PalScriptMgr",
-  "_CON_ReLoadScript",
-  "void __cdecl __thiscall()",
-  "",
-  "PalScriptMgr_CON_ReLoadScriptvoid_00432480.json"
  ],
  [
   "NARGS",
@@ -324,12 +216,12 @@
   "UIScene_scalar_dtorchar_0043be10.json"
  ],
  [
-  "MALFORMED",
+  "RET",
   "0x0043BE30",
   "CCBResultWindow",
   "~CCBResultWindow",
-  "void __thiscall CCBResultWindow::~CCBRes",
-  "",
+  "void __thiscall CCBResultWindow::~CCBResultWindow",
+  "void",
   "CCBResultWindow_~CCBResultWindowint_0043be30.json"
  ],
  [
@@ -459,12 +351,12 @@
   "UICaption_SetEnableint_int_004427c0.json"
  ],
  [
-  "MALFORMED",
+  "RET",
   "0x00442D40",
   "UIFrameWnd",
   "_UIFrameWnd_ovl_00442d40",
-  "void __thiscall UIFrameWnd::~UIFrameWnd(",
-  "",
+  "void __thiscall UIFrameWnd::~UIFrameWnd",
+  "void",
   "UIFrameWnd_UIFrameWnd_ovl_00442d40int_00442d40.json"
  ],
  [
@@ -477,12 +369,12 @@
   "UISceneMap_sub_443CA0float_00443ca0.json"
  ],
  [
-  "MALFORMED",
+  "RET",
   "0x00444AC0",
   "UIFrameWnd",
   "~UIFrameWnd_Full",
-  "void __thiscall UIFrameWnd::~UIFrameWnd_",
-  "",
+  "void __thiscall UIFrameWnd::~UIFrameWnd_Full",
+  "void",
   "UIFrameWnd_UIFrameWnd_Fullint_00444ac0.json"
  ],
  [
@@ -585,12 +477,12 @@
   "UIEmote_InitParticleSlots_0044d0b0.json"
  ],
  [
-  "MALFORMED",
+  "RET",
   "0x0044E5E0",
   "scScriptInstance",
   "~scScriptInstance",
-  "void __thiscall scScriptInstance::~scScr",
-  "",
+  "void __thiscall scScriptInstance::~scScriptInstance",
+  "void",
   "scScriptInstance_~scScriptInstanceint_0044e5e0.json"
  ],
  [
@@ -684,12 +576,12 @@
   "CCBUIPanel_OnMessageint_int_int_00454590.json"
  ],
  [
-  "MALFORMED",
+  "RET",
   "0x00454AA0",
   "ChoseCompose",
   "~ChoseCompose",
-  "void __thiscall ChoseCompose::~ChoseComp",
-  "",
+  "void __thiscall ChoseCompose::~ChoseCompose",
+  "void",
   "ChoseCompose_~ChoseComposeint_00454aa0.json"
  ],
  [
@@ -783,12 +675,12 @@
   "UITitle_QCYM_OnMsgSaveData_004568c0.json"
  ],
  [
-  "MALFORMED",
+  "RET",
   "0x00456C20",
   "CCBRoleState",
   "~CCBRoleState",
-  "void __thiscall CCBRoleState::~CCBRoleSt",
-  "",
+  "void __thiscall CCBRoleState::~CCBRoleState",
+  "void",
   "CCBRoleState_~CCBRoleStateint_00456c20.json"
  ],
  [
@@ -1053,30 +945,30 @@
   "PAL3_DispatchModeCommand_0047c2d0.json"
  ],
  [
-  "MALFORMED",
+  "NARGS",
   "0x0047D440",
   "Object3D",
   "GetScreenDegree",
-  "void(gbVec3D scrVec, gbMatrixStack *pMat",
-  "",
+  "2",
+  "4",
   "Object3D_GetScreenDegreeint_int_0047d440.json"
  ],
  [
-  "MALFORMED",
+  "NARGS",
   "0x0047DB40",
   "Object3D",
   "GetMouseRay",
-  "bool(gbRay *retstr, tagPOINT *pPOINT))",
-  "",
+  "2",
+  "2",
   "Object3D_GetMouseRaygbRay_int_0047db40.json"
  ],
  [
-  "MALFORMED",
+  "RET",
   "0x0047DD90",
   "UITitle_YXXX",
   "~UITitle_YXXX",
-  "void __thiscall UITitle_YXXX::~UITitle_Y",
-  "",
+  "void __thiscall UITitle_YXXX::~UITitle_YXXX",
+  "void",
   "UITitle_YXXX_~UITitle_YXXXint_0047dd90.json"
  ],
  [
@@ -1278,21 +1170,12 @@
   "RenderTarget_CameraCtrl_ValidateDevice_0048ef80.json"
  ],
  [
-  "MALFORMED",
-  "0x004909F0",
-  "MainPropUI",
-  "~MainPropUI",
-  "int __thiscall MainPropUI::~MainPropUI()",
-  "",
-  "MainPropUI_MainPropUI_004909f0.json"
- ],
- [
-  "MALFORMED",
+  "RET",
   "0x004910B0",
   "UIBigMap",
   "~UIBigMap",
-  "void __thiscall UIBigMap::~UIBigMap())",
-  "",
+  "void __thiscall UIBigMap::~UIBigMap",
+  "void",
   "UIBigMap_~UIBigMapint_004910b0.json"
  ],
  [
@@ -1384,15 +1267,6 @@
   "0",
   "1",
   "UIParabolaCtrl_GetState_004a1cf0.json"
- ],
- [
-  "MALFORMED",
-  "0x004A2450",
-  "MainEquipUI",
-  "~MainEquipUI",
-  "int __thiscall MainEquipUI::~MainEquipUI",
-  "",
-  "MainEquipUI_MainEquipUI_004a2450.json"
  ],
  [
   "NARGS",
@@ -1584,15 +1458,6 @@
   "UITitle_JDHY_DestroyPages_004b01d0.json"
  ],
  [
-  "MALFORMED",
-  "0x004B0540",
-  "UITitle_JDHY",
-  "~UITitle_JDHY",
-  "int __thiscall UITitle_JDHY::~UITitle_JD",
-  "",
-  "UITitle_JDHY_UITitle_JDHY_004b0540.json"
- ],
- [
   "NARGS",
   "0x004B0820",
   "UITitle_JDHY",
@@ -1683,15 +1548,6 @@
   "UITitle_JDHY_UITitle_JDHY_OnMessage_004b3470.json"
  ],
  [
-  "MALFORMED",
-  "0x004B6DF0",
-  "RenderTarget3",
-  "End",
-  "void *__cdecl __thiscall()",
-  "",
-  "RenderTarget3_Endvoid_004b6df0.json"
- ],
- [
   "RET",
   "0x004B7F00",
   "UINote",
@@ -1756,24 +1612,6 @@
  ],
  [
   "MALFORMED",
-  "0x004BE590",
-  "ScreenEffectMgr",
-  "GetInstance",
-  "ScreenEffect *__cdecl __thiscall()",
-  "",
-  "ScreenEffectMgr_GetInstancevoid_004be590.json"
- ],
- [
-  "MALFORMED",
-  "0x004BFD70",
-  "RenderTarget2",
-  "Begin",
-  "void *__cdecl __thiscall()",
-  "",
-  "RenderTarget2_Beginvoid_004bfd70.json"
- ],
- [
-  "MALFORMED",
   "0x004C2850",
   "RenderTarget2",
   "AdjustThisCall",
@@ -1800,12 +1638,12 @@
   "Texture_uv_operator_004c5b90.json"
  ],
  [
-  "MALFORMED",
+  "NARGS",
   "0x004C65F0",
   "CEffectSystem",
   "HandleViewMove",
-  "void(float x, float y))",
-  "",
+  "2",
+  "2",
   "CEffectSystem_HandleViewMovefloat_int_004c65f0.json"
  ],
  [
@@ -1836,21 +1674,21 @@
   "CEffMeteor_~CEffMeteorvoid_004cb4c0.json"
  ],
  [
-  "MALFORMED",
+  "NARGS",
   "0x004CE690",
   "CEffMgr",
   "CreateEff",
-  "char(const char *szEffTypeName, unsigned",
-  "",
+  "5",
+  "5",
   "CEffMgr_CreateEffchar_const_uint_float_float_int_004ce690.json"
  ],
  [
-  "MALFORMED",
+  "RET",
   "0x004CEDA0",
   "CEffMgr",
   "RunEffGroup",
-  "unsigned long(char *nGroup, float fx, ch",
-  "",
+  "unsigned int",
+  "int",
   "CEffMgr_RunEffGroupchar_float_char_float_int_004ceda0.json"
  ],
  [
@@ -1926,21 +1764,21 @@
   "CEffMgr_Resetvoid_004d58a0.json"
  ],
  [
-  "MALFORMED",
+  "RET",
   "0x004D5F20",
   "C2DSpark",
   "CreateTrack",
-  "void(char nx, int ny, gbColorQuad color)",
-  "",
+  "void",
+  "char",
   "C2DSpark_CreateTrackchar_int_int_004d5f20.json"
  ],
  [
-  "MALFORMED",
+  "NARGS",
   "0x004D6BC0",
   "C3DSpark",
   "Render",
-  "void(gbVec3D *pVec3D))",
-  "",
+  "1",
+  "1",
   "C3DSpark_Renderint_004d6bc0.json"
  ],
  [
@@ -1960,60 +1798,6 @@
   "4",
   "3",
   "CCBAI_CastRecoverBigMagicint_int_int_004d9ba0.json"
- ],
- [
-  "MALFORMED",
-  "0x004DB3A0",
-  "CCBSystem",
-  "InitCmdTable1_thunk",
-  "int __cdecl __thiscall()",
-  "",
-  "CCBSystem_InitCmdTable1_thunkvoid_004db3a0.json"
- ],
- [
-  "MALFORMED",
-  "0x004DB3B0",
-  "CCBSystem",
-  "InitCmdTable1",
-  "int __cdecl __thiscall()",
-  "",
-  "CCBSystem_InitCmdTable1void_004db3b0.json"
- ],
- [
-  "MALFORMED",
-  "0x004DB3F0",
-  "CCBSystem",
-  "InitCmdTable2_thunk",
-  "int __cdecl __thiscall()",
-  "",
-  "CCBSystem_InitCmdTable2_thunkvoid_004db3f0.json"
- ],
- [
-  "MALFORMED",
-  "0x004DB400",
-  "CCBSystem",
-  "InitCmdTable2",
-  "int __cdecl __thiscall()",
-  "",
-  "CCBSystem_InitCmdTable2void_004db400.json"
- ],
- [
-  "MALFORMED",
-  "0x004DB440",
-  "CCBSystem",
-  "InitCmdTable3_thunk",
-  "int __cdecl __thiscall()",
-  "",
-  "CCBSystem_InitCmdTable3_thunkvoid_004db440.json"
- ],
- [
-  "MALFORMED",
-  "0x004DB450",
-  "CCBSystem",
-  "InitCmdTable3",
-  "int __cdecl __thiscall()",
-  "",
-  "CCBSystem_InitCmdTable3void_004db450.json"
  ],
  [
   "NARGS",
@@ -2124,15 +1908,6 @@
   "CCBRoleState_LoadPartyDatavoid_004ed250.json"
  ],
  [
-  "MALFORMED",
-  "0x004F0750",
-  "CCBRoleState",
-  "SetVisible",
-  "bool(int nPanelIndex, bool bVisible))",
-  "",
-  "CCBRoleState_SetVisibleint_int_004f0750.json"
- ],
- [
   "NARGS",
   "0x004FA4E0",
   "CCBRoleState",
@@ -2142,67 +1917,40 @@
   "CCBRoleState_FindSlotByHPint_uint_004fa4e0.json"
  ],
  [
-  "MALFORMED",
+  "RET",
   "0x004FC3A0",
   "CCBStage",
   "EditorUpdate",
-  "void(float fVal))",
-  "",
+  "void",
+  "int",
   "CCBStage_EditorUpdateint_004fc3a0.json"
  ],
  [
-  "MALFORMED",
+  "NARGS",
   "0x004FCC10",
   "CCBStage",
   "GetTaskState",
-  "char(int nIndex, bool *bFinished, unsign",
-  "",
+  "3",
+  "3",
   "CCBStage_GetTaskStateint_bool_int_004fcc10.json"
  ],
  [
-  "MALFORMED",
+  "NARGS",
   "0x004FCC50",
   "CCBStage",
   "GetTaskState",
-  "char(int nIndex, enum ECBStageTaskState ",
-  "",
+  "2",
+  "2",
   "CCBStage_GetTaskStateint_int_004fcc50.json"
  ],
  [
-  "MALFORMED",
-  "0x004FCE70",
-  "CCBStage",
-  "IsSubTaskFinished",
-  "bool(int n, int nSub))",
-  "",
-  "CCBStage_IsSubTaskFinishedint_int_004fce70.json"
- ],
- [
-  "MALFORMED",
-  "0x004FD1A0",
-  "CCBStage",
-  "IsSubTaskValid",
-  "bool(int n, int nSub))",
-  "",
-  "CCBStage_IsSubTaskValidint_int_004fd1a0.json"
- ],
- [
-  "MALFORMED",
+  "RET",
   "0x00504E60",
   "CCBStageCam",
   "~CCBStageCam",
-  "char __thiscall CCBStageCam::~CCBStageCa",
-  "",
+  "char __thiscall CCBStageCam::~CCBStageCam",
+  "char",
   "CCBStageCam_~CCBStageCamint_00504e60.json"
- ],
- [
-  "MALFORMED",
-  "0x0050A180",
-  "CCBStageRole",
-  "Grab",
-  "bool(int dwStageTaskID, bool bNormal))",
-  "",
-  "CCBStageRole_Grabint_int_0050a180.json"
  ],
  [
   "MALFORMED",
@@ -2214,49 +1962,22 @@
   "CCBStageRole_FindFreeSlotint_int_0050b430.json"
  ],
  [
-  "MALFORMED",
-  "0x00513330",
-  "CCBSystem",
-  "GetRenderFlag",
-  "int __cdecl __thiscall()",
-  "",
-  "CCBSystem_GetRenderFlagvoid_00513330.json"
- ],
- [
-  "MALFORMED",
+  "NARGS",
   "0x00513EB0",
   "CCBSystem",
   "Message",
-  "int(char *pMsg, char *pTitle, unsigned i",
-  "",
+  "3",
+  "3",
   "CCBSystem_Messagechar_char_int_00513eb0.json"
  ],
  [
-  "MALFORMED",
+  "NARGS",
   "0x00515200",
   "CCBSystem",
   "PassCmdToThread",
-  "int(int nThreadIndex, tagCmdData *_68))",
-  "",
+  "2",
+  "2",
   "CCBSystem_PassCmdToThreadint_int_00515200.json"
- ],
- [
-  "MALFORMED",
-  "0x005155D0",
-  "CCBSystem",
-  "PassCmdToTask",
-  "bool(int nTaskIndex, int nThreadIndex))",
-  "",
-  "CCBSystem_PassCmdToTaskint_int_005155d0.json"
- ],
- [
-  "MALFORMED",
-  "0x00515760",
-  "CCBSystem",
-  "PassCmdViaThread",
-  "bool(int nDestThread, int nSrcThread))",
-  "",
-  "CCBSystem_PassCmdViaThreadint_int_00515760.json"
  ],
  [
   "MALFORMED",
@@ -2286,12 +2007,12 @@
   "CCBUI_SetupAIWindow_00516a30.json"
  ],
  [
-  "MALFORMED",
+  "RET",
   "0x00519BD0",
   "CCBUI",
   "CreateButton",
-  "bool(int parent, int id, int rc, int pic",
-  "",
+  "int",
+  "char",
   "CCBUI_CreateButtonint_int_int_int_UIButton_int_00519bd0.json"
  ],
  [
@@ -2340,12 +2061,12 @@
   "CCBFiveNimbusWindow_OnMessageuint_uint_uint_0051c9b0.json"
  ],
  [
-  "MALFORMED",
+  "RET",
   "0x0051D1D0",
   "CCBLineupWindow",
   "Create",
-  "bool(tagRECT *rc, UIWnd *pFather))",
-  "",
+  "int",
+  "char",
   "CCBLineupWindow_CreatetagRECT_int_0051d1d0.json"
  ],
  [
@@ -2610,42 +2331,6 @@
   "ArcLocaleRole_TransformPoint_00535fd0.json"
  ],
  [
-  "MALFORMED",
-  "0x00536220",
-  "Actor",
-  "GetDefaultFOV_thunk",
-  "int __cdecl __thiscall()",
-  "",
-  "Actor_GetDefaultFOV_thunkvoid_00536220.json"
- ],
- [
-  "MALFORMED",
-  "0x00536230",
-  "Actor",
-  "SetDefaultFOV",
-  "int __cdecl __thiscall()",
-  "",
-  "Actor_SetDefaultFOVvoid_00536230.json"
- ],
- [
-  "MALFORMED",
-  "0x00536240",
-  "Actor",
-  "GetDefaultDist_thunk",
-  "int __cdecl __thiscall()",
-  "",
-  "Actor_GetDefaultDist_thunkvoid_00536240.json"
- ],
- [
-  "MALFORMED",
-  "0x00536250",
-  "Actor",
-  "SetDefaultDist",
-  "void __cdecl __thiscall()",
-  "",
-  "Actor_SetDefaultDistvoid_00536250.json"
- ],
- [
   "RET",
   "0x005363E0",
   "Actor",
@@ -2680,42 +2365,6 @@
   "2",
   "1",
   "SceneObj_HandleEvent_005368a0.json"
- ],
- [
-  "MALFORMED",
-  "0x00536A40",
-  "Actor",
-  "GetDefaultFOV2_thunk",
-  "int __cdecl __thiscall()",
-  "",
-  "Actor_GetDefaultFOV2_thunkvoid_00536a40.json"
- ],
- [
-  "MALFORMED",
-  "0x00536A50",
-  "Actor",
-  "SetDefaultFOV2",
-  "int __cdecl __thiscall()",
-  "",
-  "Actor_SetDefaultFOV2void_00536a50.json"
- ],
- [
-  "MALFORMED",
-  "0x00536A60",
-  "Actor",
-  "GetDefaultDist2_thunk",
-  "int __cdecl __thiscall()",
-  "",
-  "Actor_GetDefaultDist2_thunkvoid_00536a60.json"
- ],
- [
-  "MALFORMED",
-  "0x00536A70",
-  "Actor",
-  "SetDefaultDist2",
-  "void __cdecl __thiscall()",
-  "",
-  "Actor_SetDefaultDist2void_00536a70.json"
  ],
  [
   "NARGS",
