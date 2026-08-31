@@ -412,6 +412,10 @@ def run(code, ctx):
         code, flags=re.MULTILINE
     )
 
+    # Hex-Rays (int)this cast artifact: Method((int)this) → this->Method()
+    # This is a self-call where Hex-Rays inserted an (int) cast on this.
+    code = re.sub(r'\b(\w+)\(\(int\)this\)', r'this->\1()', code)
+
     # !this null check → (this == NULL)
     code = re.sub(r'\b!this\b', '(this == NULL)', code)
     code = re.sub(r'\bthis\s*==\s*0\b', '(this == NULL)', code)
