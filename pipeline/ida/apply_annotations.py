@@ -1929,6 +1929,7 @@ def apply_annotations():
     # --- 6b. Global types (after structs so struct types are resolved) ---
     g_typed = 0
     g_type_fail = []
+    _til_g = ida_typeinf.get_idati()
     for addr_str, info in globs.items():
         addr = int(addr_str, 16)
         typ = info.get("type", "")
@@ -1937,6 +1938,26 @@ def apply_annotations():
                 g_typed += 1
                 continue
             type_str = typ.rstrip(";") + ";"
+            _base = typ.rstrip(";").replace("struct ", "").replace("class ", "").strip()
+            # Named UDT instances must become REAL data items. Hex-Rays only
+            # renders member chains through actual items — a type merely
+            # attached to mid-item bytes (tail type) yields unk_XXXX + bogus
+            # callee casts (g_palScript symptom). If the address is not a head
+            # of the right size, clear the range, force a head, then SetType
+            # (which resizes a real head to the UDT size).
+            _tif = ida_typeinf.tinfo_t()
+            if '[' not in _base and '*' not in _base and _tif.get_named_type(_til_g, _base):
+                _need = _tif.get_size()
+                if _need and _need != 0xFFFFFFFFFFFFFFFF and _need > 1:
+                    _cursz = ida_bytes.get_item_size(addr) if ida_bytes.is_head(ida_bytes.get_flags(addr)) else 0
+                    if _cursz != _need:
+                        # DELIT_EXPAND (not SIMPLE): SIMPLE refuses to undefine
+                        # neighboring typed/named bytes, leaving the address a
+                        # 1-byte tail and SetType unable to resize the item.
+                        ida_bytes.del_items(addr, ida_bytes.DELIT_EXPAND, _need)
+                    if idc.SetType(addr, type_str):
+                        g_typed += 1
+                        continue
             if idc.SetType(addr, type_str):
                 g_typed += 1
             else:
@@ -2026,6 +2047,22 @@ def apply_annotations():
         log("[6b2] Array creation failures: %d" % len(arr_fail))
         for addr_str, name, typ, reason in arr_fail[:5]:
             log("  [!] %s %s (%s): %s" % (addr_str, name, typ, reason))
+
+    # --- 6b3. Re-apply global names (idempotent) ---
+    # Step [2] names globals BEFORE structs/items exist; names targeting
+    # addresses that were mid-item at that time fail (set_name on a non-head
+    # is rejected). After [6b]/[6b2] created real item heads, re-run the
+    # rename so embedded-instance globals (g_palScript etc.) get their names.
+    _renamed2 = 0
+    for addr_str, info in globs.items():
+        _name = info.get("name", "")
+        if not _name:
+            continue
+        _a = int(addr_str, 16)
+        if ida_name.get_name(_a) != _name:
+            if ida_name.set_name(_a, _name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
+                _renamed2 += 1
+    log("[6b3] Global names (re)applied: %d" % _renamed2)
 
     # --- 6c. CRT function signatures (operator new/delete) ---
     _CRT_SIGS = {
