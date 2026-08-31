@@ -613,6 +613,38 @@ def collect_methods():
             classes[_sname].append((_method, _sig, _addr_str))
             seen_addrs.add(_addr_str)
 
+    # Supplement: add methods from annotation known_methods
+    # (virtual methods that lack decomp JSONs, e.g. UIWnd::OnMessage)
+    # NOTE: Don't check seen_addrs — annotation known_methods are manually
+    # curated and may reference the same address as a different class's method
+    # (e.g. UIWnd::OnMessage at 0x445D10 = CGameData::OnMessage impl).
+    _ann_dir = PROJECT_ROOT / "data" / "annotations" / "structs"
+    if _ann_dir.exists():
+        for _jf in _ann_dir.glob("*.json"):
+            try:
+                _ad = json.loads(_jf.read_text(encoding='utf-8'))
+            except:
+                continue
+            _ann_cls = _ad.get('name', '')
+            if not _ann_cls:
+                continue
+            _km = _ad.get('known_methods', {})
+            if not _km:
+                continue
+            for _slot, _minfo in _km.items():
+                if not isinstance(_minfo, dict):
+                    continue
+                _method = _minfo.get('name', '')
+                _sig = _minfo.get('signature', '')
+                _addr = _minfo.get('address', '')
+                if not _method or not _addr:
+                    continue
+                # Check if this method already exists in this class
+                _existing = [m for m, _, _ in classes.get(_ann_cls, []) if m == _method]
+                if _existing:
+                    continue
+                classes[_ann_cls].append((_method, _sig, _addr))
+
     return classes
 
 
@@ -1324,6 +1356,17 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         for bn in base_names:
             vtable_method_names |= _collect_base_vtable_names(bn)
 
+        # Also include known_methods from annotation as vtable methods
+        _ann_path = PROJECT_ROOT / "data" / "annotations" / "structs" / ("%s.json" % cls_name)
+        if _ann_path.exists():
+            try:
+                _ann_data = json.loads(_ann_path.read_text(encoding='utf-8'))
+                for _slot, _minfo in _ann_data.get('known_methods', {}).items():
+                    if isinstance(_minfo, dict) and _minfo.get('name'):
+                        vtable_method_names.add(_minfo['name'])
+            except:
+                pass
+
         own_slots = class_vtable_slots(cls_name)
         if own_slots and not base_names:
             lines.append("    // vtable (%d methods, order matches binary layout)" % len(own_slots))
@@ -1796,7 +1839,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 decl = "    %s %s(%s);" % (ret, _mn, params)
 
             # Virtual override: method inherited from base vtable but this class has its own impl.
-            # Declare it normally — virtual keyword needs signature matching (C2555 risk).
+            # Don't add virtual keyword — subclasses may have different return types (C2555 risk).
             if method_name in vtable_method_names:
                 pass
 
