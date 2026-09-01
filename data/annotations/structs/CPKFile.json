@@ -9,13 +9,13 @@
     },
     "4": {
       "name": "dwCRC",
-      "type": "unsigned long",
-      "source": "annotation"
+      "type": "unsigned int",
+      "source": "annotation|fix:unsigned_long_to_int"
     },
     "8": {
       "name": "dwFatherCRC",
-      "type": "unsigned long",
-      "source": "annotation"
+      "type": "unsigned int",
+      "source": "annotation|fix:unsigned_long_to_int"
     },
     "12": {
       "name": "nTableIndex",
@@ -36,8 +36,8 @@
     },
     "24": {
       "name": "dwOffset",
-      "type": "unsigned long",
-      "source": "annotation"
+      "type": "unsigned int",
+      "source": "annotation|fix:unsigned_long_to_int"
     },
     "28": {
       "name": "bCompressed",
@@ -52,13 +52,13 @@
     },
     "36": {
       "name": "dwFileSize",
-      "type": "unsigned long",
-      "source": "annotation"
+      "type": "unsigned int",
+      "source": "annotation|fix:unsigned_long_to_int"
     },
     "40": {
       "name": "dwPointer",
-      "type": "unsigned long",
-      "source": "annotation"
+      "type": "unsigned int",
+      "source": "annotation|fix:unsigned_long_to_int"
     },
     "44": {
       "name": "pTableItem",

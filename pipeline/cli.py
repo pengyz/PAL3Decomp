@@ -376,6 +376,13 @@ def cmd_codegen(args):
         snap_script = os.path.join(_PIPELINE_DIR, 'snapshots', 'snapshot.py')
         subprocess.run([sys.executable, snap_script, 'capture'])
 
+        # Auto-run regression detection
+        tools_dir = os.path.join(_PROJECT_DIR, 'tools')
+        regression_script = os.path.join(tools_dir, 'compile_regression.py')
+        if os.path.exists(regression_script):
+            print("\n[Regression] Checking for compile regressions...")
+            subprocess.run([sys.executable, regression_script])
+
 
 def _get_script_info(path):
     """Extract description and usage from script's module docstring."""

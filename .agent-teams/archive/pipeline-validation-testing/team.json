@@ -12,7 +12,7 @@
       "provider": "xiaomi",
       "model": "xiaomi/mimo-v2.5-pro",
       "joinedAt": 1788233600809,
-      "status": "idle"
+      "status": "removed"
     },
     {
       "id": "7f9b96d4-ff02-47e1-a079-84b1ece1c96c",
@@ -21,7 +21,7 @@
       "provider": "xiaomi",
       "model": "tongyi/deepseek-v4-flash-0731",
       "joinedAt": 1788233604110,
-      "status": "working"
+      "status": "removed"
     }
   ],
   "tasks": [
@@ -491,8 +491,7 @@
       "id": "t8",
       "subject": "对抗性复核：验证所有工具和测试",
       "description": "对抗性复核所有新建的工具和测试：错误分类工具、编译回归检测、annotation diff、codegen单元测试、annotation回归测试、端到端冒烟测试。验证功能、代码质量、边界情况。",
-      "status": "in_progress",
-      "assignee": "reviewer",
+      "status": "pending",
       "dependencies": [
         "t2",
         "t3",
@@ -503,10 +502,10 @@
       ],
       "attempt": 1,
       "createdAt": 1788233728357,
-      "updatedAt": 1788234942812,
+      "updatedAt": 1788234979473,
       "kind": "work",
-      "attemptId": "c62a3ab9-5eec-4a08-a25b-98e9c5b4c3a5",
-      "reassigning": false
+      "reassigning": false,
+      "handoffId": "fc6b242e-de72-4543-909e-bc9e1cbb4aa5"
     }
   ],
   "taskSeq": 8,

@@ -4,13 +4,13 @@
   "known_members": {
     "0": {
       "name": "ExceptionCode",
-      "type": "unsigned long",
-      "source": "annotation"
+      "type": "unsigned int",
+      "source": "annotation|fix:unsigned_long_to_int"
     },
     "4": {
       "name": "ExceptionFlags",
-      "type": "unsigned long",
-      "source": "annotation"
+      "type": "unsigned int",
+      "source": "annotation|fix:unsigned_long_to_int"
     },
     "8": {
       "name": "ExceptionRecord",
@@ -25,8 +25,8 @@
     },
     "16": {
       "name": "NumberParameters",
-      "type": "unsigned long",
-      "source": "annotation"
+      "type": "unsigned int",
+      "source": "annotation|fix:unsigned_long_to_int"
     },
     "20": {
       "name": "ExceptionInformation",

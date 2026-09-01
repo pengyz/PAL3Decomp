@@ -1035,11 +1035,11 @@
     {
       "unit": "pal3/src/Combat/CCBRoleState.cpp",
       "dominant_category": "codegen_fix",
-      "error_count": 101,
+      "error_count": 102,
       "categories": {
-        "annotation_fix": 19,
+        "annotation_fix": 17,
         "hexrays_limit": 38,
-        "unknown": 5,
+        "unknown": 8,
         "codegen_fix": 39
       },
       "details": [
@@ -1102,6 +1102,48 @@
           "msg": "left of '->ShowWindow' must point to class/struct/union",
           "category": "hexrays_limit",
           "description": "Left of '->' not class: Hex-Rays pointer type error"
+        },
+        {
+          "code": "C2446",
+          "msg": "'>=' : no conversion from 'const int' to 'char *'",
+          "category": "unknown",
+          "description": "Unclassified C2446 error"
+        },
+        {
+          "code": "C2040",
+          "msg": "'>=' : 'char *' differs in levels of indirection from 'const int'",
+          "category": "hexrays_limit",
+          "description": "Indirection mismatch: Hex-Rays pointer level error"
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'const int' to 'char *'",
+          "category": "annotation_fix",
+          "description": "Type conversion: annotation type mismatch"
+        },
+        {
+          "code": "C2664",
+          "msg": "'FormatChineseNumber' : cannot convert parameter 1 from 'char *' to 'int'",
+          "category": "codegen_fix",
+          "description": "Param conversion: codegen type mismatch or ptr→ref"
+        },
+        {
+          "code": "C2664",
+          "msg": "'GetRoleCount' : cannot convert parameter 1 from 'char *' to 'int'",
+          "category": "codegen_fix",
+          "description": "Param conversion: codegen type mismatch or ptr→ref"
+        },
+        {
+          "code": "C2446",
+          "msg": "'>=' : no conversion from 'const int' to 'char *'",
+          "category": "unknown",
+          "description": "Unclassified C2446 error"
+        },
+        {
+          "code": "C2040",
+          "msg": "'>=' : 'char *' differs in levels of indirection from 'const int'",
+          "category": "hexrays_limit",
+          "description": "Indirection mismatch: Hex-Rays pointer level error"
         },
         {
           "code": "C2059",
@@ -1608,46 +1650,10 @@
           "description": "Undeclared identifier: Hex-Rays missed declaration"
         },
         {
-          "code": "C2065",
-          "msg": "'unk_5D8EF8' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
-        },
-        {
-          "code": "C2065",
-          "msg": "'unk_5D8EE0' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class GRP_KEYREG' to 'int'",
-          "category": "annotation_fix",
-          "description": "Type conversion: annotation type mismatch"
-        },
-        {
-          "code": "C2664",
-          "msg": "'GetRoleName' : cannot convert parameter 6 from 'class GRP_KEYREG' to 'int *'",
-          "category": "codegen_fix",
-          "description": "Param conversion: codegen type mismatch or ptr→ref"
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "category": "annotation_fix",
-          "description": "char* type mismatch: annotation type error"
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "category": "annotation_fix",
-          "description": "char* type mismatch: annotation type error"
-        },
-        {
-          "code": "C2664",
-          "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int",
-          "category": "codegen_fix",
-          "description": "Param conversion: codegen type mismatch or ptr→ref"
+          "code": "C1003",
+          "msg": "error count exceeds 100; stopping compilation",
+          "category": "unknown",
+          "description": "Unclassified C1003 error"
         }
       ]
     },
@@ -2687,9 +2693,9 @@
       "error_count": 101,
       "categories": {
         "hexrays_limit": 35,
-        "annotation_fix": 34,
+        "annotation_fix": 35,
         "codegen_fix": 23,
-        "unknown": 9
+        "unknown": 8
       },
       "details": [
         {
@@ -2817,6 +2823,12 @@
           "msg": "'unk_5D89A4' : undeclared identifier",
           "category": "hexrays_limit",
           "description": "Undeclared identifier: Hex-Rays missed declaration"
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from 'int (__thiscall CCBStageRole::*)(int)' to 'unsigned int'",
+          "category": "annotation_fix",
+          "description": "Type conversion: annotation type mismatch"
         },
         {
           "code": "C2440",
@@ -3291,12 +3303,6 @@
           "msg": "'=' : cannot convert from 'unsigned long [3]' to 'int *'",
           "category": "annotation_fix",
           "description": "Type conversion: annotation type mismatch"
-        },
-        {
-          "code": "C2450",
-          "msg": "switch expression of type 'class GRP_KEYREG' is illegal",
-          "category": "unknown",
-          "description": "Unclassified C2450 error"
         }
       ]
     },
@@ -5385,10 +5391,11 @@
     {
       "unit": "pal3/src/Data/CGameData.cpp",
       "dominant_category": "annotation_fix",
-      "error_count": 6,
+      "error_count": 9,
       "categories": {
-        "annotation_fix": 3,
-        "hexrays_limit": 3
+        "annotation_fix": 4,
+        "hexrays_limit": 2,
+        "unknown": 3
       },
       "details": [
         {
@@ -5422,10 +5429,28 @@
           "description": "Syntax error ')': Hex-Rays lost expression context"
         },
         {
-          "code": "C2065",
-          "msg": "'init_44f8d0' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void *' to 'char'",
+          "category": "annotation_fix",
+          "description": "Type conversion: annotation type mismatch"
+        },
+        {
+          "code": "C2352",
+          "msg": "'UIEmote::Render' : illegal call of non-static member function",
+          "category": "unknown",
+          "description": "Unclassified C2352 error"
+        },
+        {
+          "code": "C2352",
+          "msg": "'UILoadingFrm::InitFullScreen' : illegal call of non-static member function",
+          "category": "unknown",
+          "description": "Unclassified C2352 error"
+        },
+        {
+          "code": "C2352",
+          "msg": "'UIGameOver::Create' : illegal call of non-static member function",
+          "category": "unknown",
+          "description": "Unclassified C2352 error"
         }
       ]
     },
@@ -11654,8 +11679,8 @@
       "error_count": 20,
       "categories": {
         "unknown": 1,
-        "hexrays_limit": 16,
-        "annotation_fix": 3
+        "hexrays_limit": 15,
+        "annotation_fix": 4
       },
       "details": [
         {
@@ -11671,10 +11696,10 @@
           "description": "Wrong param count: Hex-Rays lost parameter info"
         },
         {
-          "code": "C2065",
-          "msg": "'nearby_4b6ca0' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
+          "code": "C2039",
+          "msg": "'_nearby_4b6ca0' : is not a member of 'RenderTarget3'",
+          "category": "annotation_fix",
+          "description": "Missing member: struct annotation incomplete"
         },
         {
           "code": "C2512",
@@ -16448,10 +16473,11 @@
     {
       "unit": "pal3/src/Render/RenderTarget3.cpp",
       "dominant_category": "codegen_fix",
-      "error_count": 5,
+      "error_count": 6,
       "categories": {
         "hexrays_limit": 2,
-        "codegen_fix": 3
+        "codegen_fix": 3,
+        "annotation_fix": 1
       },
       "details": [
         {
@@ -16473,6 +16499,12 @@
           "description": "Param conversion: codegen type mismatch or ptr→ref"
         },
         {
+          "code": "C2039",
+          "msg": "'_nearby_4b6ca0' : is not a member of 'RenderTarget3'",
+          "category": "annotation_fix",
+          "description": "Missing member: struct annotation incomplete"
+        },
+        {
           "code": "C2664",
           "msg": "'PushMatrixStacks' : cannot convert parameter 1 from 'int *' to 'int'",
           "category": "codegen_fix",
@@ -16489,10 +16521,9 @@
     {
       "unit": "pal3/src/Render/TextureLib.cpp",
       "dominant_category": "codegen_fix",
-      "error_count": 7,
+      "error_count": 5,
       "categories": {
-        "codegen_fix": 5,
-        "hexrays_limit": 2
+        "codegen_fix": 5
       },
       "details": [
         {
@@ -16506,18 +16537,6 @@
           "msg": "'lstrcmpA' : cannot convert parameter 1 from 'float' to 'const char *'",
           "category": "codegen_fix",
           "description": "Param conversion: codegen type mismatch or ptr→ref"
-        },
-        {
-          "code": "C2065",
-          "msg": "'nearby_53f4c0' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
-        },
-        {
-          "code": "C2065",
-          "msg": "'nearby_53f4f0' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
         },
         {
           "code": "C2664",
@@ -18917,13 +18936,13 @@
         },
         {
           "code": "C2664",
-          "msg": "'sub_430C10' : cannot convert parameter 2 from 'char *' to 'unsigned long *'",
+          "msg": "'sub_430C10' : cannot convert parameter 2 from 'char [5]' to 'unsigned long *'",
           "category": "codegen_fix",
           "description": "Param conversion: codegen type mismatch or ptr→ref"
         },
         {
           "code": "C2664",
-          "msg": "'sub_430C10' : cannot convert parameter 2 from 'int *' to 'unsigned long *'",
+          "msg": "'sub_430C10' : cannot convert parameter 1 from 'int *' to 'char *'",
           "category": "codegen_fix",
           "description": "Param conversion: codegen type mismatch or ptr→ref"
         },
@@ -21681,9 +21700,9 @@
       "dominant_category": "hexrays_limit",
       "error_count": 101,
       "categories": {
-        "hexrays_limit": 54,
+        "hexrays_limit": 53,
         "unknown": 3,
-        "annotation_fix": 21,
+        "annotation_fix": 22,
         "codegen_fix": 23
       },
       "details": [
@@ -22108,10 +22127,10 @@
           "description": "Left operand error: Hex-Rays expression artifact"
         },
         {
-          "code": "C2065",
-          "msg": "'nearby_4b6ca0' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
+          "code": "C2039",
+          "msg": "'_nearby_4b6ca0' : is not a member of 'RenderTarget3'",
+          "category": "annotation_fix",
+          "description": "Missing member: struct annotation incomplete"
         },
         {
           "code": "C2664",
@@ -22298,20 +22317,14 @@
     {
       "unit": "pal3/src/globals.cpp",
       "dominant_category": "hexrays_limit",
-      "error_count": 73,
+      "error_count": 72,
       "categories": {
-        "manual_idb": 3,
+        "manual_idb": 2,
         "hexrays_limit": 44,
         "unknown": 24,
         "annotation_fix": 2
       },
       "details": [
-        {
-          "code": "C4234",
-          "msg": "nonstandard extension used : '__thiscall' keyword reserved for future use",
-          "category": "manual_idb",
-          "description": "__thiscall warning: MSVC6 keyword reservation"
-        },
         {
           "code": "C4234",
           "msg": "nonstandard extension used : '__thiscall' keyword reserved for future use",
