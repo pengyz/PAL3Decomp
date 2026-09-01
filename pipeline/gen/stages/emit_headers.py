@@ -2389,9 +2389,13 @@ def generate_globals():
         for _addr_s, _ginfo in sorted_globs:
             _addr = int(_addr_s, 16)
             _ann_key = '0x%08X' % _addr
-            if _ann_data.get(_ann_key, {}).get('type') == 'skip':
+            _ann_entry = _ann_data.get(_ann_key, {})
+            if _ann_entry.get('type') == 'skip':
                 _ann_skipped += 1
                 continue
+            # Override name from globals.json if available (but not type - too risky)
+            if _ann_entry.get('name'):
+                _ginfo['name'] = _ann_entry['name']
             _ann_filtered.append((_addr_s, _ginfo))
         sorted_globs = _ann_filtered
         if _ann_skipped:

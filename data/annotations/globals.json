@@ -267,8 +267,8 @@
   },
   "0x00570748": {
     "name": "off_570748",
-    "reason": "rdata offset: codegen auto-substitutes",
-    "type": "const char *"
+    "type": "int",
+    "source": "fix:C2065_root_cause:UIEmote"
   },
   "0x00570754": {
     "name": "off_570754",
@@ -561,8 +561,9 @@
   },
   "0x0059DC84": {
     "name": "off_59DC84",
-    "type": "_SPropValue *",
-    "reason": "used as AudioSetPosition param; .rdata constant"
+    "type": "skip",
+    "reason": "used as AudioSetPosition param; .rdata constant",
+    "source": "fix:_SPropValue_type_undefined_in_codebase"
   },
   "0x0059DC90": {
     "name": "off_59DC90",
@@ -773,7 +774,8 @@
   },
   "0x005B203C": {
     "name": "off_5B203C",
-    "type": "skip"
+    "type": "int",
+    "source": "fix:C2065_root_cause:UISceneFrm"
   },
   "0x005B46B4": {
     "name": "g_pCScreenMode_5B46B4",
@@ -783,7 +785,8 @@
   "0x005B46C0": {
     "name": "off_5B46C0",
     "reason": "function/vtable pointer table in .data section; runtime-initialized",
-    "type": "_SPropValue *"
+    "type": "skip",
+    "source": "fix:_SPropValue_type_undefined_in_codebase"
   },
   "0x005B46C4": {
     "name": "off_5B46C4",
@@ -798,7 +801,8 @@
   "0x005B765C": {
     "name": "off_5B765C",
     "reason": "function/vtable pointer table in .data section; runtime-initialized",
-    "type": "_SPropValue *"
+    "type": "skip",
+    "source": "fix:_SPropValue_type_undefined_in_codebase"
   },
   "0x005B7660": {
     "name": "off_5B7660",
@@ -813,7 +817,8 @@
   "0x005B9DF0": {
     "name": "off_5B9DF0",
     "reason": "function/vtable pointer table in .data section; runtime-initialized",
-    "type": "_SPropValue *"
+    "type": "skip",
+    "source": "fix:_SPropValue_type_undefined_in_codebase"
   },
   "0x005B9DF4": {
     "name": "off_5B9DF4",
@@ -876,7 +881,8 @@
   "0x005C5EC4": {
     "name": "off_5C5EC4",
     "reason": "function/vtable pointer table in .data section; runtime-initialized",
-    "type": "_SPropValue *"
+    "type": "skip",
+    "source": "fix:_SPropValue_type_undefined_in_codebase"
   },
   "0x005C5EC8": {
     "name": "off_5C5EC8",
@@ -931,7 +937,8 @@
   "0x005C9378": {
     "name": "off_5C9378",
     "reason": "function/vtable pointer table in .data section; runtime-initialized",
-    "type": "_SPropValue *"
+    "type": "skip",
+    "source": "fix:_SPropValue_type_undefined_in_codebase"
   },
   "0x005CADC4": {
     "name": "off_5CADC4",
@@ -1533,7 +1540,8 @@
   "0x005E7ED8": {
     "name": "off_5E7ED8",
     "reason": "function/vtable pointer table in .data section; runtime-initialized",
-    "type": "_SPropValue *"
+    "type": "skip",
+    "source": "fix:_SPropValue_type_undefined_in_codebase"
   },
   "0x005E7F20": {
     "name": "off_5E7F20",
@@ -2157,7 +2165,7 @@
   "0x00C10968": {
     "name": "g_palScript",
     "type": "PalScript",
-    "source": "binary: dynamic-init ctor thunk 0x4086c0 'mov ecx,offset stru_C10968; jmp PalScript::PalScript'; ctor installs vtable stru_56AC4C and writes +0x44/+0x48/+0x90/+0x94/+0x9C matching PalScript.json exactly; ctor EH unwind target UIWnd::_UIWnd (UIWnd-derived window); InitSubsystems Create/LoadResource('ui\\scene\\tiao')/ShowWindow on it; 729 instr refs, max access +0x768. Embedded singleton instance (was skip via PDB SceneMgrCamBlock.m_pUIScript pointer \u2014 PAL3A-only layout, disproven).",
+    "source": "binary: dynamic-init ctor thunk 0x4086c0 'mov ecx,offset stru_C10968; jmp PalScript::PalScript'; ctor installs vtable stru_56AC4C and writes +0x44/+0x48/+0x90/+0x94/+0x9C matching PalScript.json exactly; ctor EH unwind target UIWnd::_UIWnd (UIWnd-derived window); InitSubsystems Create/LoadResource('ui\\scene\\tiao')/ShowWindow on it; 729 instr refs, max access +0x768. Embedded singleton instance (was skip via PDB SceneMgrCamBlock.m_pUIScript pointer — PAL3A-only layout, disproven).",
     "overlaps_with": [
       "g_SceneMgr"
     ]
@@ -3832,7 +3840,7 @@
   "0x00573810": {
     "name": "dword_573810",
     "type": "int",
-    "source": "phantom_auto"
+    "source": "fix:C2065_root_cause:GRPinput"
   },
   "0x00573A5C": {
     "name": "dword_573A5C",
@@ -6269,5 +6277,10 @@
     "name": "unk_C10A0E",
     "type": "int",
     "source": "CRT init: converted from skip to int"
+  },
+  "0x01896CF0": {
+    "name": "g_Block_1896CF0",
+    "type": "void *",
+    "source": "fix:name_conflict_with_Block_at_0xD8E470"
   }
 }
