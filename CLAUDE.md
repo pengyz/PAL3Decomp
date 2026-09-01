@@ -118,6 +118,48 @@ union { // +0xN
 - **后处理只做等价变换**：codegen pipeline 只做不改变语义的代码转换，不编造信息。
 - **IDA 层能解决的问题在 IDA 层解决**：类型标注、结构体导入、函数签名等应该在 IDA 中通过 annotation 完成，不在 codegen 层打补丁。
 
+## AI 工作流纪律
+
+以下工具必须在指定节点自动运行，不可跳过：
+
+### 强制检查点
+
+| 时机 | 工具 | 命令 | 失败处理 |
+|------|------|------|----------|
+| **codegen all 后** | 编译回归检测 | `python3 tools/compile_regression.py` | 发现退化立即报警，不提交 |
+| **apply 后** | annotation diff | `python3 tools/annotation_diff.py` | 显示变更摘要，确认无意外修改 |
+| **probe_compile 后** | 错误分类 | `python3 tools/error_classifier.py --summary` | 输出根因分布，指导下一步修复方向 |
+| **修改 struct annotation 后** | 布局验证 | `python3 tools/audit_layout.py` | 发现布局问题立即修复 |
+
+### 工具使用规范
+
+1. **编译回归检测**（`compile_regression.py`）：
+   - 每次 `codegen all` 后必须运行
+   - 发现退化时：立即 `git diff` 检查变更，回退有问题的修改
+   - 基线更新：只有确认无退化后才运行 `--update-baseline`
+
+2. **错误分类**（`error_classifier.py`）：
+   - 每次 `probe_compile` 后运行
+   - 根据分类结果优先修复 `annotation_fix` 类（投入产出比最高）
+   - `hexlimits` 类不修，`manual_idb` 类记录待办
+
+3. **布局验证**（`audit_layout.py`）：
+   - 修改 struct annotation 后必须运行
+   - 检测到类型大小不匹配时：对比 IDA 导出，修正 annotation 类型
+   - 典型案例：`CEffMgr.m_EffTable` 从 `tagEffObj[2048]` 改回 `_BYTE[584]`
+
+4. **annotation diff**（`annotation_diff.py`）：
+   - `apply` 后运行，显示本次变更摘要
+   - 确认无意外修改（如指针级别变化、类型大小变化）
+
+### 修复优先级
+
+基于错误分类结果（146 个失败文件）：
+1. **annotation_fix**（49 文件，33.6%）— 最高优先级，投入产出比最高
+2. **codegen_fix**（33 文件，22.6%）— 次优先级，需要 codegen 层修改
+3. **manual_idb**（2 文件，1.4%）— 需要手动 IDB 调查
+4. **hexrays_limit**（62 文件，42.5%）— 不修，记录为已知限制
+
 ## 项目共享记忆
 
 [`docs/knowledge/`](docs/knowledge/)：跨会话的项目级共享知识（6 类 type：architecture/gotcha/pattern/debug/decision/reference）。引用前必须验证文件/字段仍存在（见该目录 README 的"引用前验证"）。单字段证据仍归 `data/annotations/CHANGE_LOG.md`，不进这里——这里只记通用规律和管线级坑。
