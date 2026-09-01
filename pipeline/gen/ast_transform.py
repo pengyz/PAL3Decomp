@@ -165,9 +165,10 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 node.start_byte, node.end_byte, new_text))
                             return
                         elif first_arg.type == 'identifier':
-                            # Simple var: cast to class type for safety
-                            # If the variable is a global OBJECT (not pointer), add &
-                            # E.g. g_RoleSystemMain (type RoleSystem) -> &g_RoleSystemMain
+                            # Simple var: direct member access (no cast)
+                            # Type safety is the annotation's job, not codegen's.
+                            # If the type is wrong, the compiler error is a clear
+                            # signal that the annotation needs fixing.
                             _strip = first_arg_text.lstrip(':')
                             _needs_addr = (
                                 class_name[0].isupper()
@@ -175,15 +176,15 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 and _strip not in static_methods
                             )
                             _obj = '&' + first_arg_text if _needs_addr else first_arg_text
-                            new_text = '((%s *)%s)->%s(%s)' % (
-                                class_name, _obj, method_name, rest_str)
+                            new_text = '%s->%s(%s)' % (
+                                _obj, method_name, rest_str)
                             replacements.append((
                                 node.start_byte, node.end_byte, new_text))
                             return
                         else:
                             # Complex expression as this-pointer
-                            # Always transform to OOP form (header declares as member function)
-                            # Use class_name for the cast since IDA may have wrong type
+                            # Strip existing casts to get the raw expression,
+                            # then use direct member access (no cast).
                             if first_arg.type == 'cast_expression':
                                 val_node = first_arg.child_by_field_name('value')
                                 inner = val_node.text.decode('utf-8') if val_node else first_arg_text
@@ -193,8 +194,8 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                     return
                                 _needs_addr = bool(re.match(r'^g_[A-Z]', _inner_strip))
                                 _inner = '&' + inner if _needs_addr else inner
-                                new_text = '((%s *)%s)->%s(%s)' % (
-                                    class_name, _inner, method_name, rest_str)
+                                new_text = '%s->%s(%s)' % (
+                                    _inner, method_name, rest_str)
                             elif first_arg.type == 'qualified_identifier':
                                 _scope = first_arg.child_by_field_name('scope')
                                 _name = first_arg.child_by_field_name('name')
@@ -205,12 +206,11 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                     and _strip.startswith('g_')
                                 )
                                 _inner = '&' + _inner if _needs_addr else _inner
-                                new_text = '((%s *)%s)->%s(%s)' % (
-                                    class_name, _inner, method_name, rest_str)
+                                new_text = '%s->%s(%s)' % (
+                                    _inner, method_name, rest_str)
                             else:
-                                new_text = '((%s *)%s)->%s(%s)' % (
-                                    class_name, first_arg_text,
-                                    method_name, rest_str)
+                                new_text = '%s->%s(%s)' % (
+                                    first_arg_text, method_name, rest_str)
                             replacements.append((
                                 node.start_byte, node.end_byte, new_text))
                             return
