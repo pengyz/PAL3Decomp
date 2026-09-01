@@ -228,8 +228,18 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 if _qualified in static_methods:
                                     return
                                 # If inner starts with &, it's a pointer to a local
-                                # variable — NOT a this-pointer. Keep as Class::Method.
+                                # variable. Convert ONLY when cast type matches the
+                                # class (explicit this), e.g. (Logger*)&ArgList.
+                                _cast_type = first_arg_text.split('(')[-1].split(')')[0] if ')' in first_arg_text else ''
+                                _cls_short = class_name.split('::')[-1]
                                 if inner.startswith('&'):
+                                    if _cls_short in _cast_type:
+                                        # Explicit this cast: (Logger*)&var -> ((Logger*)&var)->Method
+                                        new_text = '((%s))->%s(%s)' % (
+                                            first_arg_text, method_name, rest_str)
+                                        replacements.append((
+                                            node.start_byte, node.end_byte, new_text))
+                                        return
                                     return
                                 _needs_addr = bool(re.match(r'^g_[A-Z]', _inner_strip))
                                 _inner = '&' + inner if _needs_addr else inner
