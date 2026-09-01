@@ -243,8 +243,22 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                     return
                                 _needs_addr = bool(re.match(r'^g_[A-Z]', _inner_strip))
                                 _inner = '&' + inner if _needs_addr else inner
-                                new_text = '%s->%s(%s)' % (
-                                    _inner, method_name, rest_str)
+                                # When inner is 'this' with a cast to a different class:
+                                # - If cast type is a base class → qualified call: this->Base::Method()
+                                # - Otherwise → strip cast, let compiler error surface annotation issues
+                                if inner == 'this' and _cast_type and _cls_short not in _cast_type:
+                                    _ensure_bases()
+                                    _cast_cls = _cast_type.replace('*', '').strip()
+                                    if _is_derived_from(cls_name, _cast_cls):
+                                        new_text = 'this->%s::%s(%s)' % (
+                                            _cast_cls, method_name, rest_str)
+                                    else:
+                                        # Not inheritance — let compiler error surface
+                                        new_text = '%s->%s(%s)' % (
+                                            _inner, method_name, rest_str)
+                                else:
+                                    new_text = '%s->%s(%s)' % (
+                                        _inner, method_name, rest_str)
                             elif first_arg.type == 'qualified_identifier':
                                 _scope = first_arg.child_by_field_name('scope')
                                 _name = first_arg.child_by_field_name('name')
