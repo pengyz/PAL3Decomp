@@ -12,7 +12,7 @@
       "provider": "xiaomi",
       "model": "xiaomi/mimo-v2.5-pro",
       "joinedAt": 1788245914602,
-      "status": "idle"
+      "status": "removed"
     },
     {
       "id": "066ce9ff-0423-4748-a962-6e1e421eae1e",
@@ -21,7 +21,7 @@
       "provider": "kiro",
       "model": "claude-sonnet-5",
       "joinedAt": 1788245925990,
-      "status": "working",
+      "status": "removed",
       "reasoningEffort": "high"
     }
   ],
@@ -79,13 +79,13 @@
       "id": "t2",
       "subject": "修复 C2440 类型转换根因（31文件）",
       "description": "修复31个以C2440为根因的文件。C2440是类型转换错误，通常是struct成员类型标注错误。已知模式：char*→unsigned long(24次)、HWND*→unsigned long(37次)、void*→unsigned long(19次)。",
-      "status": "in_progress",
+      "status": "pending",
       "dependencies": [
         "t1"
       ],
       "attempt": 3,
       "createdAt": 1788246045799,
-      "updatedAt": 1788248417606,
+      "updatedAt": 1788251297509,
       "kind": "implementation",
       "objective": "修复31个C2440类型转换根因",
       "inScope": [
@@ -104,22 +104,20 @@
         "S2不低于59/204"
       ],
       "reassigning": false,
-      "assignee": "reviewer",
-      "attemptId": "ab7c0c67-639f-4efd-948c-f3d338e1c7bb"
+      "handoffId": "bec72d7c-d455-44ee-b72a-f474522af13e"
     },
     {
       "id": "t3",
       "subject": "修复 C2664 参数类型根因（24文件）",
       "description": "修复24个以C2664为根因的文件。C2664是参数类型不匹配，通常是函数签名标注错误或ptr→ref问题。",
       "status": "pending",
-      "assignee": "engineer-annotation",
       "dependencies": [
         "t1",
         "t2"
       ],
       "attempt": 0,
       "createdAt": 1788246070779,
-      "updatedAt": 1788246070779,
+      "updatedAt": 1788251297509,
       "kind": "implementation",
       "objective": "修复24个C2664参数类型根因",
       "inScope": [
@@ -137,45 +135,45 @@
       "verify": [
         "C2664根因文件数从24减少",
         "S2不低于59/204"
-      ]
+      ],
+      "handoffId": "bdacc719-8020-4b1d-a755-0630f9ea26cf",
+      "reassigning": false
     },
     {
       "id": "t4",
       "subject": "修复 C2065 未声明标识符 + C2039 缺失成员（25文件）",
       "description": "修复13个C2065根因 + 12个C2039根因。C2065是未声明标识符（缺失全局变量/函数声明），C2039是struct缺失成员。",
-      "status": "in_progress",
-      "assignee": "engineer-annotation",
+      "status": "pending",
       "dependencies": [
         "t1"
       ],
       "attempt": 1,
       "createdAt": 1788246076379,
-      "updatedAt": 1788247496156,
+      "updatedAt": 1788251297509,
       "kind": "work",
-      "attemptId": "d736f1e8-0606-41da-bc90-f4ce3c7c5518",
       "reassigning": false,
-      "output": "开始分析C2065未声明标识符 + C2039缺失成员错误"
+      "handoffId": "22261f3e-3690-4d9a-b8de-7622acf75a17"
     },
     {
       "id": "t5",
       "subject": "POD结构体 operator int() 批量修复（68次）",
       "description": "类似GRP_KEYREG的修复方案，为其他POD结构体添加operator int()隐式转换。const int operator= 有68次错误，都是POD结构体被当int用的场景。需要逐个分析哪些结构体需要添加operator int()。",
       "status": "pending",
-      "assignee": "engineer-annotation",
       "dependencies": [
         "t1"
       ],
       "attempt": 0,
       "createdAt": 1788246082874,
-      "updatedAt": 1788246082874,
-      "kind": "work"
+      "updatedAt": 1788251297509,
+      "kind": "work",
+      "handoffId": "97925c46-97c8-42ff-95c6-e90d584358d2",
+      "reassigning": false
     },
     {
       "id": "t6",
       "subject": "对抗性复核 + 编译验证",
       "description": "复核所有修复的合理性，验证编译结果不退化，级联错误显著减少。",
       "status": "pending",
-      "assignee": "reviewer",
       "dependencies": [
         "t2",
         "t3",
@@ -184,8 +182,10 @@
       ],
       "attempt": 0,
       "createdAt": 1788246116981,
-      "updatedAt": 1788246116981,
-      "kind": "work"
+      "updatedAt": 1788251297509,
+      "kind": "work",
+      "handoffId": "f8dc49f3-3812-4b03-af6c-ed69ba2a3f42",
+      "reassigning": false
     }
   ],
   "taskSeq": 6,

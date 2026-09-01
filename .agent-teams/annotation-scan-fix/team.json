@@ -1,0 +1,123 @@
+{
+  "name": "annotation-scan-fix",
+  "id": "annotation-scan-fix",
+  "description": "扫描176个失败文件，识别annotation错误（函数签名__cdecl→__thiscall、函数归属global→member、参数类型错误），然后系统性修复。目标：恢复S2从28到59+。",
+  "captainSessionId": "session-12762a43-7b20-4810-9ea5-405981219ea5",
+  "createdAt": 1788251302405,
+  "members": [
+    {
+      "id": "f1559856-7780-4a7f-9cfe-c8f0dc12b98f",
+      "name": "scanner",
+      "role": "engineer",
+      "provider": "xiaomi",
+      "model": "xiaomi/mimo-v2.5-pro",
+      "joinedAt": 1788251306328,
+      "status": "working"
+    },
+    {
+      "id": "5161bef9-2c76-47ad-86c4-87a63a880ab4",
+      "name": "reviewer",
+      "role": "reviewer",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4-flash-0731",
+      "joinedAt": 1788251314147,
+      "status": "idle"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "t1",
+      "subject": "扫描退化文件，识别annotation错误模式",
+      "description": "扫描31个退化文件，识别以下annotation错误模式：\n1. 函数签名错误：__cdecl应该改为__thiscall\n2. 函数归属错误：全局函数应该改为成员函数\n3. 参数类型错误：int应该改为正确的类指针\n\n使用IDA验证每个函数的实际调用约定和归属。\n\n输出：每个文件的错误列表和修复方案。",
+      "status": "completed",
+      "assignee": "captain",
+      "dependencies": [],
+      "attempt": 2,
+      "createdAt": 1788251324076,
+      "updatedAt": 1788251960176,
+      "kind": "requirements",
+      "objective": "识别31个退化文件的annotation错误",
+      "acceptance": [
+        "扫描31个退化文件",
+        "识别每个文件的annotation错误模式",
+        "输出修复方案"
+      ],
+      "reassigning": false,
+      "attemptId": "5378e872-f30b-4499-abf5-35babc9c174d",
+      "output": "扫描完成。31个退化文件根因：函数未声明为成员函数。需在functions.json添加成员函数声明。",
+      "verdict": "pass",
+      "acceptanceResults": [
+        {
+          "criterion": "扫描31个退化文件",
+          "status": "passed",
+          "evidence": "31个文件全部扫描，根因已识别"
+        },
+        {
+          "criterion": "识别annotation错误模式",
+          "status": "passed",
+          "evidence": "函数未声明为成员函数是根因"
+        },
+        {
+          "criterion": "输出修复方案",
+          "status": "passed",
+          "evidence": "在functions.json中添加成员函数声明"
+        }
+      ]
+    },
+    {
+      "id": "t2",
+      "subject": "修复函数签名（__cdecl → __thiscall）",
+      "description": "根据t1的扫描结果，批量修复函数签名：\n1. 修改functions.json中的调用约定\n2. 修改struct annotation中的函数归属\n3. 确保this指针类型正确\n\n预期修复数量：~20个函数签名。",
+      "status": "in_progress",
+      "assignee": "captain",
+      "dependencies": [
+        "t1"
+      ],
+      "attempt": 4,
+      "createdAt": 1788251332696,
+      "updatedAt": 1788255709004,
+      "kind": "implementation",
+      "objective": "修复函数签名错误",
+      "inScope": [
+        "data/annotations/functions.json",
+        "data/annotations/structs/*.json"
+      ],
+      "outOfScope": [
+        "pipeline/",
+        "pal3/src/"
+      ],
+      "acceptance": [
+        "函数签名修复完成",
+        "S2不低于28/204"
+      ],
+      "verify": [
+        "python3 tools/compile_regression.py",
+        "S2不低于28/204"
+      ],
+      "reassigning": false,
+      "attemptId": "5e8aa396-8b8a-400f-981f-3f7dda47a72e"
+    },
+    {
+      "id": "t3",
+      "subject": "验证修复结果 + 回归检测",
+      "description": "验证所有修复：\n1. 运行compile_regression.py确认无退化\n2. 运行error_classifier.py确认错误分类\n3. 确认S2恢复到59+",
+      "status": "pending",
+      "assignee": "reviewer",
+      "dependencies": [
+        "t2"
+      ],
+      "attempt": 0,
+      "createdAt": 1788251349393,
+      "updatedAt": 1788251349393,
+      "kind": "verification",
+      "objective": "验证修复结果",
+      "acceptance": [
+        "S2恢复到59+",
+        "无退化"
+      ]
+    }
+  ],
+  "taskSeq": 3,
+  "phase": "running",
+  "approvedAt": 1788251345517
+}
