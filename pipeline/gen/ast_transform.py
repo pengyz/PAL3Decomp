@@ -192,6 +192,10 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 _qualified = '%s::%s' % (class_name, method_name)
                                 if _qualified in static_methods:
                                     return
+                                # If inner starts with &, it's a pointer to a local
+                                # variable — NOT a this-pointer. Keep as Class::Method.
+                                if inner.startswith('&'):
+                                    return
                                 _needs_addr = bool(re.match(r'^g_[A-Z]', _inner_strip))
                                 _inner = '&' + inner if _needs_addr else inner
                                 new_text = '%s->%s(%s)' % (
@@ -208,6 +212,12 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 _inner = '&' + _inner if _needs_addr else _inner
                                 new_text = '%s->%s(%s)' % (
                                     _inner, method_name, rest_str)
+                            elif first_arg.type == 'pointer_expression':
+                                # &expr as first arg — this is NOT a this-pointer,
+                                # it's a pointer to a local variable or stack object.
+                                # Keep as Class::Method(&expr, ...) — don't convert
+                                # to member call because &expr is not a valid this.
+                                return
                             else:
                                 new_text = '%s->%s(%s)' % (
                                     first_arg_text, method_name, rest_str)
