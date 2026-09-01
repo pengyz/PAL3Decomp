@@ -21,7 +21,7 @@
       "provider": "kiro",
       "model": "claude-sonnet-5",
       "joinedAt": 1788245925990,
-      "status": "idle",
+      "status": "working",
       "reasoningEffort": "high"
     }
   ],
@@ -80,13 +80,12 @@
       "subject": "修复 C2440 类型转换根因（31文件）",
       "description": "修复31个以C2440为根因的文件。C2440是类型转换错误，通常是struct成员类型标注错误。已知模式：char*→unsigned long(24次)、HWND*→unsigned long(37次)、void*→unsigned long(19次)。",
       "status": "in_progress",
-      "assignee": "captain",
       "dependencies": [
         "t1"
       ],
-      "attempt": 2,
+      "attempt": 3,
       "createdAt": 1788246045799,
-      "updatedAt": 1788247384631,
+      "updatedAt": 1788248417606,
       "kind": "implementation",
       "objective": "修复31个C2440类型转换根因",
       "inScope": [
@@ -105,7 +104,8 @@
         "S2不低于59/204"
       ],
       "reassigning": false,
-      "attemptId": "8257a37f-663b-495d-b2b8-bc2d2587d364"
+      "assignee": "reviewer",
+      "attemptId": "ab7c0c67-639f-4efd-948c-f3d338e1c7bb"
     },
     {
       "id": "t3",

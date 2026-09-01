@@ -15,8 +15,15 @@
     "132": {
       "name": "pfn",
       "type": "int *",
-      "source": "A:decomp Logger::RegisterCallback v6[33] = f \u2014 function pointer type",
+      "source": "A:decomp Logger::RegisterCallback v6[33] = f — function pointer type",
       "note": "was int (*)() - explicit calling convention"
+    }
+  },
+  "known_methods": {
+    "operator_subscript": {
+      "name": "operator[]",
+      "signature": "int& __thiscall operator[](tagLoggerCallback *this, int i)",
+      "source": "fix:C2676:pfn_array_access_via_subscript"
     }
   }
 }

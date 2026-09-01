@@ -1909,13 +1909,14 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             lines.append("    void operator=(int v) { *(int*)this = v; }")
         lines.append("")
 
-    # Check annotation known_methods for operator int() and operator=(int) — emit if present
+    # Check annotation known_methods for operator int(), operator=(int), operator[] — emit if present
     _ann_file = PROJECT_ROOT / "data" / "annotations" / "structs" / ("%s.json" % cls_name)
     if _ann_file.exists():
         try:
             _ann_data = json.loads(_ann_file.read_text(encoding='utf-8'))
             _has_op_int = False
             _has_op_assign = False
+            _has_op_subscript = False
             for _slot, _minfo in _ann_data.get('known_methods', {}).items():
                 if not isinstance(_minfo, dict):
                     continue
@@ -1941,6 +1942,19 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     else:
                         lines.append("    void operator=(int v) { *(int*)this = v; }")
                     _has_op_assign = True
+                elif _minfo.get('name') == 'operator[]' and not _has_op_subscript:
+                    # Find a pointer member to use as array base
+                    _ptr_member = None
+                    for _off, _mi in _ann_data.get('known_members', {}).items():
+                        _mt = str(_mi.get('type', ''))
+                        if '*' in _mt and 'char' not in _mt:
+                            _ptr_member = _mi.get('name')
+                            break
+                    if _ptr_member:
+                        lines.append("    int& operator[](int i) { return ((int*)%s)[i]; }" % _ptr_member)
+                    else:
+                        lines.append("    int& operator[](int i) { return ((int*)this)[i]; }")
+                    _has_op_subscript = True
         except:
             pass
 

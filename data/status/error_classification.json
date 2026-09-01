@@ -2,8 +2,8 @@
   "total_files": 145,
   "category_counts": {
     "codegen_fix": 32,
-    "hexrays_limit": 60,
-    "annotation_fix": 50,
+    "hexrays_limit": 61,
+    "annotation_fix": 49,
     "manual_idb": 2,
     "unknown": 1
   },
@@ -76,6 +76,7 @@
       "pal3/src/Misc/RoleAtt.cpp",
       "pal3/src/Misc/RoleCameraCtrl.cpp",
       "pal3/src/Misc/RoleShadow.cpp",
+      "pal3/src/Misc/SaleUI.cpp",
       "pal3/src/Misc/ScriptVM.cpp",
       "pal3/src/Misc/SystemUI.cpp",
       "pal3/src/Misc/UI3DCtrl.cpp",
@@ -134,7 +135,6 @@
       "pal3/src/Misc/CG_Entry.cpp",
       "pal3/src/Misc/ChoseCompose.cpp",
       "pal3/src/Misc/ParticleEffect.cpp",
-      "pal3/src/Misc/SaleUI.cpp",
       "pal3/src/Misc/String.cpp",
       "pal3/src/Misc/SwordUI.cpp",
       "pal3/src/Misc/TaskBookUI.cpp",
@@ -5905,21 +5905,15 @@
     {
       "unit": "pal3/src/Effect/CEffMgr.cpp",
       "dominant_category": "annotation_fix",
-      "error_count": 47,
+      "error_count": 35,
       "categories": {
-        "annotation_fix": 32,
-        "unknown": 3,
+        "annotation_fix": 22,
+        "unknown": 1,
         "codegen_fix": 11,
         "hexrays_limit": 1
       },
       "details": [
         {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'int' to 'class tagEffClass'",
           "category": "annotation_fix",
@@ -5940,48 +5934,6 @@
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'int' to 'class tagEffClass'",
-          "category": "annotation_fix",
-          "description": "Type conversion: annotation type mismatch"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffClass' to 'int'",
-          "category": "annotation_fix",
-          "description": "Type conversion: annotation type mismatch"
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffClass' to 'int'",
-          "category": "annotation_fix",
-          "description": "Type conversion: annotation type mismatch"
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffClass' to 'int'",
-          "category": "annotation_fix",
-          "description": "Type conversion: annotation type mismatch"
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffClass' to 'int'",
-          "category": "annotation_fix",
-          "description": "Type conversion: annotation type mismatch"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffClass' to 'int'",
           "category": "annotation_fix",
           "description": "Type conversion: annotation type mismatch"
         },
@@ -6008,12 +5960,6 @@
           "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int",
           "category": "codegen_fix",
           "description": "Param conversion: codegen type mismatch or ptr→ref"
-        },
-        {
-          "code": "C2678",
-          "msg": "binary '!=' : no operator defined which takes a left-hand operand of type 'class tagEffClass' (or th",
-          "category": "unknown",
-          "description": "Unclassified C2678 error"
         },
         {
           "code": "C2664",
@@ -6142,12 +6088,6 @@
           "description": "Pointer→unsigned long: struct member type annotation error"
         },
         {
-          "code": "C2678",
-          "msg": "binary '!=' : no operator defined which takes a left-hand operand of type 'class tagEffClass' (or th",
-          "category": "unknown",
-          "description": "Unclassified C2678 error"
-        },
-        {
           "code": "C2664",
           "msg": "'void __thiscall gbMatrix4::SetAxisAngle(struct gbVec3D *,float)' : cannot convert parameter 1 from ",
           "category": "codegen_fix",
@@ -6166,12 +6106,6 @@
           "description": "Param conversion: codegen type mismatch or ptr→ref"
         },
         {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffClass' to 'int'",
-          "category": "annotation_fix",
-          "description": "Type conversion: annotation type mismatch"
-        },
-        {
           "code": "C2664",
           "msg": "'void __thiscall gbMatrix4::SetAxisAngle(struct gbVec3D *,float)' : cannot convert parameter 1 from ",
           "category": "codegen_fix",
@@ -6188,12 +6122,6 @@
           "msg": "'Rotate' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "category": "codegen_fix",
           "description": "Param conversion: codegen type mismatch or ptr→ref"
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffClass' to 'int'",
-          "category": "annotation_fix",
-          "description": "Type conversion: annotation type mismatch"
         }
       ]
     },
@@ -10756,21 +10684,21 @@
     },
     {
       "unit": "pal3/src/Misc/SaleUI.cpp",
-      "dominant_category": "annotation_fix",
-      "error_count": 102,
+      "dominant_category": "hexrays_limit",
+      "error_count": 52,
       "categories": {
-        "annotation_fix": 59,
-        "unknown": 12,
-        "hexrays_limit": 25,
+        "annotation_fix": 15,
+        "hexrays_limit": 26,
         "manual_idb": 2,
-        "codegen_fix": 4
+        "codegen_fix": 4,
+        "unknown": 5
       },
       "details": [
         {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from 'const int' to 'class SaleUI_SortData'",
           "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
+          "description": "Type conversion: annotation type mismatch"
         },
         {
           "code": "C2440",
@@ -10779,70 +10707,16 @@
           "description": "Type conversion: annotation type mismatch"
         },
         {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'const int' to 'class SaleUI_SortData'",
           "category": "annotation_fix",
           "description": "Type conversion: annotation type mismatch"
         },
         {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'const int' to 'class SaleUI_SortData'",
           "category": "annotation_fix",
           "description": "Type conversion: annotation type mismatch"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class SaleUI_SortData'",
-          "category": "annotation_fix",
-          "description": "Type conversion: annotation type mismatch"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
         },
         {
           "code": "C2440",
@@ -10869,150 +10743,6 @@
           "description": "Type conversion: annotation type mismatch"
         },
         {
-          "code": "C2451",
-          "msg": "conditional expression of type 'class SaleUI_SortData' is illegal",
-          "category": "unknown",
-          "description": "Unclassified C2451 error"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2451",
-          "msg": "conditional expression of type 'class SaleUI_SortData' is illegal",
-          "category": "unknown",
-          "description": "Unclassified C2451 error"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2451",
-          "msg": "conditional expression of type 'class SaleUI_SortData' is illegal",
-          "category": "unknown",
-          "description": "Unclassified C2451 error"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2451",
-          "msg": "conditional expression of type 'class SaleUI_SortData' is illegal",
-          "category": "unknown",
-          "description": "Unclassified C2451 error"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2451",
-          "msg": "conditional expression of type 'class SaleUI_SortData' is illegal",
-          "category": "unknown",
-          "description": "Unclassified C2451 error"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2451",
-          "msg": "conditional expression of type 'class SaleUI_SortData' is illegal",
-          "category": "unknown",
-          "description": "Unclassified C2451 error"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
           "code": "C2676",
           "msg": "binary '[' : 'class tagLoggerCallback' does not define this operator or a conversion to a type accep",
           "category": "hexrays_limit",
@@ -11031,24 +10761,6 @@
           "description": "Missing operator: Hex-Rays needs operator[] etc."
         },
         {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
           "category": "hexrays_limit",
@@ -11061,78 +10773,6 @@
           "description": "L-value required: Hex-Rays expression artifact"
         },
         {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
           "code": "C2385",
           "msg": "'MUIDialog::m_rect' is ambiguous",
           "category": "manual_idb",
@@ -11143,24 +10783,6 @@
           "msg": "'MUIDialog::m_rect' is ambiguous",
           "category": "manual_idb",
           "description": "Ambiguous access: inheritance diamond issue"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
         },
         {
           "code": "C2274",
@@ -11373,10 +10995,16 @@
           "description": "Undeclared identifier: Hex-Rays missed declaration"
         },
         {
-          "code": "C1003",
-          "msg": "error count exceeds 100; stopping compilation",
-          "category": "unknown",
-          "description": "Unclassified C1003 error"
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int' to 'const void *'",
+          "category": "annotation_fix",
+          "description": "Type conversion: annotation type mismatch"
+        },
+        {
+          "code": "C2065",
+          "msg": "'off_5706CC' : undeclared identifier",
+          "category": "hexrays_limit",
+          "description": "Undeclared identifier: Hex-Rays missed declaration"
         }
       ]
     },
