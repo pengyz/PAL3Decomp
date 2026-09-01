@@ -131,6 +131,28 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                         first_arg = arg_nodes[0]
                         first_arg_text = first_arg.text.decode('utf-8')
 
+                        # Constructor call: Class::Class(&var, args) -> var.Class(args)
+                        # Hex-Rays emits explicit-this ctor calls (placement style).
+                        _short_cls = class_name.split('::')[-1]
+                        if method_name == _short_cls:
+                            _ctor_rest = ', '.join(
+                                a.text.decode('utf-8') for a in arg_nodes[1:])
+                            if first_arg_text.startswith('&'):
+                                # Construct at address &var -> var.Class(args)
+                                _obj = first_arg_text[1:]
+                                new_text = '%s.%s(%s)' % (
+                                    _obj, _short_cls, _ctor_rest)
+                            elif first_arg_text == 'this':
+                                new_text = 'this->%s(%s)' % (
+                                    _short_cls, _ctor_rest)
+                            else:
+                                # Class::Class(ptr) -> ptr->Class()
+                                new_text = '%s->%s(%s)' % (
+                                    first_arg_text, _short_cls, _ctor_rest)
+                            replacements.append((
+                                node.start_byte, node.end_byte, new_text))
+                            return
+
                         # Determine conversion strategy based on first arg type
                         rest_args = [a.text.decode('utf-8')
                                      for a in arg_nodes[1:]]
@@ -141,6 +163,19 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                             _method_out = method_name
                             if method_name == '_' + class_name.split('::')[-1]:
                                 _method_out = '~' + class_name.split('::')[-1]
+                            
+                            # Constructor call: Class::Class(this) -> this->Class()
+                            _short_cls = class_name.split('::')[-1]
+                            if method_name == _short_cls:
+                                _ensure_bases()
+                                _is_base = _is_derived_from(cls_name, class_name)
+                                if _is_base and class_name != cls_name:
+                                    new_text = '%s::%s(%s)' % (class_name, _method_out, rest_str)
+                                else:
+                                    new_text = 'this->%s(%s)' % (_method_out, rest_str)
+                                replacements.append((
+                                    node.start_byte, node.end_byte, new_text))
+                                return
                             
                             _ensure_bases()
                             _is_base = _is_derived_from(cls_name, class_name)
