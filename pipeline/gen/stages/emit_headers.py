@@ -1909,6 +1909,26 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             lines.append("    void operator=(int v) { *(int*)this = v; }")
         lines.append("")
 
+    # Check annotation known_methods for operator int() — emit if present
+    _ann_file = PROJECT_ROOT / "data" / "annotations" / "structs" / ("%s.json" % cls_name)
+    if _ann_file.exists():
+        try:
+            _ann_data = json.loads(_ann_file.read_text(encoding='utf-8'))
+            for _slot, _minfo in _ann_data.get('known_methods', {}).items():
+                if isinstance(_minfo, dict) and _minfo.get('name') == 'operator int':
+                    _first_member = None
+                    for _off, _mi in _ann_data.get('known_members', {}).items():
+                        if _off == '0' or _off == '0x0':
+                            _first_member = _mi.get('name', 'Data')
+                            break
+                    if _first_member:
+                        lines.append("    operator int() const { return %s; }" % _first_member)
+                    else:
+                        lines.append("    operator int() const { return *(int*)this; }")
+                    break
+        except:
+            pass
+
     lines.append("};")
     lines.append("")
 
