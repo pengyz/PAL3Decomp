@@ -9,18 +9,18 @@
     },
     "4": {
       "name": "m_actarray_begin",
-      "type": "Actor **",
-      "source": "decomp:IterateActiveActors=m_actarray[4]"
+      "type": "Actor *",
+      "source": "decomp:IterateActiveActors=m_actarray[4]|fix:pointer_level:Actor **"
     },
     "8": {
       "name": "m_actarray_end",
-      "type": "Actor **",
-      "source": "decomp:IterateActiveActors=m_actarray[8]"
+      "type": "Actor *",
+      "source": "decomp:IterateActiveActors=m_actarray[8]|fix:pointer_level:Actor **"
     },
     "12": {
       "name": "m_actarray_capacity_end",
-      "type": "Actor **",
-      "source": "PDB:m_actarray_size_16_hint:ActVec_Insert_char[ecx+0xC]"
+      "type": "Actor *",
+      "source": "PDB:m_actarray_size_16_hint:ActVec_Insert_char[ecx+0xC]|fix:pointer_level:Actor **"
     },
     "16": {
       "name": "m_pact",
