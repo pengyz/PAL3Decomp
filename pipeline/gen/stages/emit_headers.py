@@ -1909,13 +1909,17 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             lines.append("    void operator=(int v) { *(int*)this = v; }")
         lines.append("")
 
-    # Check annotation known_methods for operator int() — emit if present
+    # Check annotation known_methods for operator int() and operator=(int) — emit if present
     _ann_file = PROJECT_ROOT / "data" / "annotations" / "structs" / ("%s.json" % cls_name)
     if _ann_file.exists():
         try:
             _ann_data = json.loads(_ann_file.read_text(encoding='utf-8'))
+            _has_op_int = False
+            _has_op_assign = False
             for _slot, _minfo in _ann_data.get('known_methods', {}).items():
-                if isinstance(_minfo, dict) and _minfo.get('name') == 'operator int':
+                if not isinstance(_minfo, dict):
+                    continue
+                if _minfo.get('name') == 'operator int' and not _has_op_int:
                     _first_member = None
                     for _off, _mi in _ann_data.get('known_members', {}).items():
                         if _off == '0' or _off == '0x0':
@@ -1925,7 +1929,18 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         lines.append("    operator int() const { return %s; }" % _first_member)
                     else:
                         lines.append("    operator int() const { return *(int*)this; }")
-                    break
+                    _has_op_int = True
+                elif _minfo.get('name') == 'operator=' and not _has_op_assign:
+                    _first_member = None
+                    for _off, _mi in _ann_data.get('known_members', {}).items():
+                        if _off == '0' or _off == '0x0':
+                            _first_member = _mi.get('name', 'Data')
+                            break
+                    if _first_member:
+                        lines.append("    void operator=(int v) { %s = v; }" % _first_member)
+                    else:
+                        lines.append("    void operator=(int v) { *(int*)this = v; }")
+                    _has_op_assign = True
         except:
             pass
 

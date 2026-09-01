@@ -1,5 +1,17 @@
 {
   "name": "tagEffClass",
   "binary_size": 4,
-  "known_members": {}
+  "known_members": {},
+  "known_methods": {
+    "operator_int": {
+      "name": "operator int",
+      "signature": "int __thiscall operator int(tagEffClass *this)",
+      "source": "fix:C2679:implicit_conversion_to_int"
+    },
+    "operator_assign_int": {
+      "name": "operator=",
+      "signature": "void __thiscall operator=(tagEffClass *this, int v)",
+      "source": "fix:C2679:assign_int_to_struct"
+    }
+  }
 }

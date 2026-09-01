@@ -1,0 +1,194 @@
+{
+  "name": "root-cause-cascade-fix",
+  "id": "root-cause-cascade-fix",
+  "description": "修复145个根因错误中的50个annotation_fix + 32个codegen_fix，目标消除96%级联错误（3220/3365）。基于级联分析，修复根因错误可消除大量级联错误。优先级：C2440类型转换 > C2664参数类型 > C2065未声明标识符 > C2039缺失成员 > POD结构体operator int()模式。",
+  "captainSessionId": "session-12762a43-7b20-4810-9ea5-405981219ea5",
+  "createdAt": 1788245906301,
+  "members": [
+    {
+      "id": "3f6a5184-fef9-433b-8d1a-ede8921ab6d2",
+      "name": "engineer-annotation",
+      "role": "engineer",
+      "provider": "xiaomi",
+      "model": "xiaomi/mimo-v2.5-pro",
+      "joinedAt": 1788245914602,
+      "status": "working"
+    },
+    {
+      "id": "066ce9ff-0423-4748-a962-6e1e421eae1e",
+      "name": "reviewer",
+      "role": "reviewer",
+      "provider": "kiro",
+      "model": "claude-sonnet-5",
+      "joinedAt": 1788245925990,
+      "status": "idle",
+      "reasoningEffort": "high"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "t1",
+      "subject": "需求定义：根因错误修复方案",
+      "description": "定义根因错误修复的具体范围、验收标准和证据要求。\n\n**背景**：\n- 145 个失败文件，3365 个错误\n- 96%（3220个）是级联错误\n- 修复 145 个根因错误可消除 3220 个级联错误\n- 50 个可通过 annotation 修复（34.5%）\n- 32 个可通过 codegen 修复（22.1%）\n\n**修复范围**：\n1. C2440 类型转换根因（31 文件）— struct 成员类型标注错误\n2. C2664 参数类型根因（24 文件）— 函数签名标注错误\n3. C2065 未声明标识符根因（13 文件）— 缺失全局变量/函数声明\n4. C2039 缺失成员根因（12 文件）— struct 缺失成员\n5. POD 结构体 operator int() 模式（68 次）— 类似 GRP_KEYREG 修复\n\n**验收标准**：\n- 每个修复有 IDA 二进制证据\n- 修复后 S2 不低于 59/204\n- 级联错误数量显著减少\n\n**非目标**：\n- 不修复 hexrays_limit 类（60 文件）\n- 不修复等价别名（unsigned int vs DWORD）",
+      "status": "completed",
+      "assignee": "captain",
+      "dependencies": [],
+      "attempt": 2,
+      "createdAt": 1788245940322,
+      "updatedAt": 1788246033458,
+      "kind": "requirements",
+      "objective": "定义根因错误修复的具体范围和验收标准",
+      "acceptance": [
+        "修复范围明确",
+        "验收标准可量化",
+        "证据要求明确",
+        "非目标明确"
+      ],
+      "reassigning": false,
+      "attemptId": "d1b8958a-3c9a-4935-8ba7-b6fb717be52b",
+      "output": "需求定义完成。",
+      "verdict": "pass",
+      "changedPaths": [],
+      "acceptanceResults": [
+        {
+          "criterion": "修复范围明确",
+          "status": "passed",
+          "evidence": "5个修复项：C2440(31文件)、C2664(24文件)、C2065(13文件)、C2039(12文件)、POD operator int()(68次)"
+        },
+        {
+          "criterion": "验收标准可量化",
+          "status": "passed",
+          "evidence": "S2不低于59/204、级联错误显著减少"
+        },
+        {
+          "criterion": "非目标明确",
+          "status": "passed",
+          "evidence": "不修hexrays_limit(60文件)、不修等价别名"
+        }
+      ],
+      "commandsRun": [
+        {
+          "command": "requirements analysis",
+          "status": "passed",
+          "exitCode": 0,
+          "evidence": "50 annotation_fix + 32 codegen_fix files identified"
+        }
+      ]
+    },
+    {
+      "id": "t2",
+      "subject": "修复 C2440 类型转换根因（31文件）",
+      "description": "修复31个以C2440为根因的文件。C2440是类型转换错误，通常是struct成员类型标注错误。已知模式：char*→unsigned long(24次)、HWND*→unsigned long(37次)、void*→unsigned long(19次)。",
+      "status": "in_progress",
+      "assignee": "captain",
+      "dependencies": [
+        "t1"
+      ],
+      "attempt": 2,
+      "createdAt": 1788246045799,
+      "updatedAt": 1788247384631,
+      "kind": "implementation",
+      "objective": "修复31个C2440类型转换根因",
+      "inScope": [
+        "data/annotations/structs/*.json"
+      ],
+      "outOfScope": [
+        "pipeline/",
+        "pal3/src/"
+      ],
+      "acceptance": [
+        "C2440根因文件数减少",
+        "S2不低于59/204"
+      ],
+      "verify": [
+        "C2440根因文件数从31减少",
+        "S2不低于59/204"
+      ],
+      "reassigning": false,
+      "attemptId": "8257a37f-663b-495d-b2b8-bc2d2587d364"
+    },
+    {
+      "id": "t3",
+      "subject": "修复 C2664 参数类型根因（24文件）",
+      "description": "修复24个以C2664为根因的文件。C2664是参数类型不匹配，通常是函数签名标注错误或ptr→ref问题。",
+      "status": "pending",
+      "assignee": "engineer-annotation",
+      "dependencies": [
+        "t1",
+        "t2"
+      ],
+      "attempt": 0,
+      "createdAt": 1788246070779,
+      "updatedAt": 1788246070779,
+      "kind": "implementation",
+      "objective": "修复24个C2664参数类型根因",
+      "inScope": [
+        "data/annotations/functions.json"
+      ],
+      "outOfScope": [
+        "pipeline/",
+        "pal3/src/",
+        "data/annotations/structs/*.json"
+      ],
+      "acceptance": [
+        "C2664根因文件数减少",
+        "S2不低于59/204"
+      ],
+      "verify": [
+        "C2664根因文件数从24减少",
+        "S2不低于59/204"
+      ]
+    },
+    {
+      "id": "t4",
+      "subject": "修复 C2065 未声明标识符 + C2039 缺失成员（25文件）",
+      "description": "修复13个C2065根因 + 12个C2039根因。C2065是未声明标识符（缺失全局变量/函数声明），C2039是struct缺失成员。",
+      "status": "in_progress",
+      "assignee": "engineer-annotation",
+      "dependencies": [
+        "t1"
+      ],
+      "attempt": 1,
+      "createdAt": 1788246076379,
+      "updatedAt": 1788247496156,
+      "kind": "work",
+      "attemptId": "d736f1e8-0606-41da-bc90-f4ce3c7c5518",
+      "reassigning": false,
+      "output": "开始分析C2065未声明标识符 + C2039缺失成员错误"
+    },
+    {
+      "id": "t5",
+      "subject": "POD结构体 operator int() 批量修复（68次）",
+      "description": "类似GRP_KEYREG的修复方案，为其他POD结构体添加operator int()隐式转换。const int operator= 有68次错误，都是POD结构体被当int用的场景。需要逐个分析哪些结构体需要添加operator int()。",
+      "status": "pending",
+      "assignee": "engineer-annotation",
+      "dependencies": [
+        "t1"
+      ],
+      "attempt": 0,
+      "createdAt": 1788246082874,
+      "updatedAt": 1788246082874,
+      "kind": "work"
+    },
+    {
+      "id": "t6",
+      "subject": "对抗性复核 + 编译验证",
+      "description": "复核所有修复的合理性，验证编译结果不退化，级联错误显著减少。",
+      "status": "pending",
+      "assignee": "reviewer",
+      "dependencies": [
+        "t2",
+        "t3",
+        "t4",
+        "t5"
+      ],
+      "attempt": 0,
+      "createdAt": 1788246116981,
+      "updatedAt": 1788246116981,
+      "kind": "work"
+    }
+  ],
+  "taskSeq": 6,
+  "phase": "running",
+  "approvedAt": 1788245970984
+}

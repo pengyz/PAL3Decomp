@@ -2,5 +2,17 @@
   "name": "SaleUI_SortData",
   "binary_size": 4,
   "known_members": {},
-  "note": "SaleUI nested struct. PDB says [299][5] but span=7228 doesn't match 4*1495=5980. Dimensions likely incorrect from PAL3A PDB."
+  "note": "SaleUI nested struct. PDB says [299][5] but span=7228 doesn't match 4*1495=5980. Dimensions likely incorrect from PAL3A PDB.",
+  "known_methods": {
+    "operator_int": {
+      "name": "operator int",
+      "signature": "int __thiscall operator int(SaleUI_SortData *this)",
+      "source": "fix:C2679:implicit_conversion_to_int"
+    },
+    "operator_assign_int": {
+      "name": "operator=",
+      "signature": "void __thiscall operator=(SaleUI_SortData *this, int v)",
+      "source": "fix:C2679:assign_int_to_struct"
+    }
+  }
 }

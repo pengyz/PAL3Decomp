@@ -1,14 +1,48 @@
 {
-  "total_files": 146,
+  "total_files": 145,
   "category_counts": {
-    "hexrays_limit": 62,
-    "annotation_fix": 49,
-    "codegen_fix": 33,
-    "manual_idb": 2
+    "codegen_fix": 32,
+    "hexrays_limit": 60,
+    "annotation_fix": 50,
+    "manual_idb": 2,
+    "unknown": 1
   },
   "category_files": {
-    "hexrays_limit": [
+    "codegen_fix": [
       "pal3/src/Combat/CCBAI.cpp",
+      "pal3/src/Combat/CCBRoleState.cpp",
+      "pal3/src/Combat/CCBStageShadow.cpp",
+      "pal3/src/Combat/CCCTData.cpp",
+      "pal3/src/Effect/C2DSpark.cpp",
+      "pal3/src/Effect/CEffQuad.cpp",
+      "pal3/src/Effect/ScreenEffect.cpp",
+      "pal3/src/Misc/ArcSceneMonster.cpp",
+      "pal3/src/Misc/ArcSceneObject.cpp",
+      "pal3/src/Misc/BINK.cpp",
+      "pal3/src/Misc/CCBEditor.cpp",
+      "pal3/src/Misc/CCBPanelSlot.cpp",
+      "pal3/src/Misc/DealData.cpp",
+      "pal3/src/Misc/GeomNode.cpp",
+      "pal3/src/Misc/LineupComp.cpp",
+      "pal3/src/Misc/MatrixStack.cpp",
+      "pal3/src/Misc/PAL3VisNode.cpp",
+      "pal3/src/Misc/SoundMgr.cpp",
+      "pal3/src/Misc/TextureLibDataBase.cpp",
+      "pal3/src/Misc/UIAnimateCtrlEX.cpp",
+      "pal3/src/Misc/UIBigMap.cpp",
+      "pal3/src/Misc/UICaption.cpp",
+      "pal3/src/Misc/UIFrameWnd.cpp",
+      "pal3/src/Misc/UIProgressBar.cpp",
+      "pal3/src/Misc/UITitle.cpp",
+      "pal3/src/Misc/UITitle_XJTM.cpp",
+      "pal3/src/Misc/UITitle_YXXX.cpp",
+      "pal3/src/Render/RenderTarget3.cpp",
+      "pal3/src/Render/TextureLib.cpp",
+      "pal3/src/Role/Object3D.cpp",
+      "pal3/src/UI/UIRenderObj.cpp",
+      "pal3/src/UI/UIScene.cpp"
+    ],
+    "hexrays_limit": [
       "pal3/src/Combat/CCBAIWindow.cpp",
       "pal3/src/Combat/CCBCamControl.cpp",
       "pal3/src/Combat/CCBItemWindow.cpp",
@@ -17,7 +51,6 @@
       "pal3/src/Combat/CCBSkillWindow.cpp",
       "pal3/src/Combat/CCBStageCam.cpp",
       "pal3/src/Combat/CCBStageEffect.cpp",
-      "pal3/src/Combat/CCBStageRole.cpp",
       "pal3/src/Combat/CCBSystem.cpp",
       "pal3/src/Combat/CCBUI.cpp",
       "pal3/src/Data/PAL_GDB.cpp",
@@ -51,6 +84,7 @@
       "pal3/src/Misc/UILoadingFrm.cpp",
       "pal3/src/Misc/UIRoleDialog.cpp",
       "pal3/src/Misc/UIScenePanel.cpp",
+      "pal3/src/Misc/UITitle_JDHY.cpp",
       "pal3/src/Misc/s_RoleState.cpp",
       "pal3/src/Misc/scAsmDecoder.cpp",
       "pal3/src/Render/CScreenMode.cpp",
@@ -68,8 +102,7 @@
       "pal3/src/UI/UIDialog.cpp",
       "pal3/src/UI/UIListBox.cpp",
       "pal3/src/UI/UIWnd.cpp",
-      "pal3/src/free_functions.cpp",
-      "pal3/src/globals.cpp"
+      "pal3/src/free_functions.cpp"
     ],
     "annotation_fix": [
       "pal3/src/Combat/CCBAttackSequen.cpp",
@@ -77,6 +110,7 @@
       "pal3/src/Combat/CCBParabolaWindow.cpp",
       "pal3/src/Combat/CCBProtectWindow.cpp",
       "pal3/src/Combat/CCBStage.cpp",
+      "pal3/src/Combat/CCBStageRole.cpp",
       "pal3/src/Combat/CCBStageScene.cpp",
       "pal3/src/Combat/CUtil.cpp",
       "pal3/src/Combat/Combat.cpp",
@@ -89,7 +123,6 @@
       "pal3/src/Effect/CEffSParticle.cpp",
       "pal3/src/Effect/CEffect.cpp",
       "pal3/src/Effect/CEffgbParticle.cpp",
-      "pal3/src/Effect/CMeteorChain.cpp",
       "pal3/src/Effect/ScreenEffectMgr.cpp",
       "pal3/src/GameBase/InputSystem.cpp",
       "pal3/src/GameBase/SoundSystem.cpp",
@@ -115,6 +148,7 @@
       "pal3/src/Misc/UIStatic.cpp",
       "pal3/src/Misc/_Texture_uv.cpp",
       "pal3/src/Render/RenderTarget2.cpp",
+      "pal3/src/Role/Actor.cpp",
       "pal3/src/Scene/Camera.cpp",
       "pal3/src/Scene/CameraCtrl.cpp",
       "pal3/src/Scene/SceneMgr.cpp",
@@ -122,63 +156,25 @@
       "pal3/src/UI/UICamera.cpp",
       "pal3/src/UI/UIManager.cpp"
     ],
-    "codegen_fix": [
-      "pal3/src/Combat/CCBRoleState.cpp",
-      "pal3/src/Combat/CCBStageShadow.cpp",
-      "pal3/src/Combat/CCCTData.cpp",
-      "pal3/src/Effect/C2DSpark.cpp",
-      "pal3/src/Effect/CEffQuad.cpp",
-      "pal3/src/Effect/ScreenEffect.cpp",
-      "pal3/src/Misc/ArcSceneMonster.cpp",
-      "pal3/src/Misc/ArcSceneObject.cpp",
-      "pal3/src/Misc/BINK.cpp",
-      "pal3/src/Misc/CCBEditor.cpp",
-      "pal3/src/Misc/CCBPanelSlot.cpp",
-      "pal3/src/Misc/DealData.cpp",
-      "pal3/src/Misc/GeomNode.cpp",
-      "pal3/src/Misc/LineupComp.cpp",
-      "pal3/src/Misc/MatrixStack.cpp",
-      "pal3/src/Misc/PAL3VisNode.cpp",
-      "pal3/src/Misc/SoundMgr.cpp",
-      "pal3/src/Misc/TextureLibDataBase.cpp",
-      "pal3/src/Misc/UIAnimateCtrlEX.cpp",
-      "pal3/src/Misc/UIBigMap.cpp",
-      "pal3/src/Misc/UICaption.cpp",
-      "pal3/src/Misc/UIFrameWnd.cpp",
-      "pal3/src/Misc/UIProgressBar.cpp",
-      "pal3/src/Misc/UITitle.cpp",
-      "pal3/src/Misc/UITitle_JDHY.cpp",
-      "pal3/src/Misc/UITitle_XJTM.cpp",
-      "pal3/src/Misc/UITitle_YXXX.cpp",
-      "pal3/src/Render/RenderTarget3.cpp",
-      "pal3/src/Render/TextureLib.cpp",
-      "pal3/src/Role/Actor.cpp",
-      "pal3/src/Role/Object3D.cpp",
-      "pal3/src/UI/UIRenderObj.cpp",
-      "pal3/src/UI/UIScene.cpp"
-    ],
     "manual_idb": [
       "pal3/src/Misc/MUIDialog.cpp",
       "pal3/src/Misc/UITitle_ArcSave.cpp"
+    ],
+    "unknown": [
+      "pal3/src/globals.cpp"
     ]
   },
   "files": [
     {
       "unit": "pal3/src/Combat/CCBAI.cpp",
-      "dominant_category": "hexrays_limit",
-      "error_count": 13,
+      "dominant_category": "codegen_fix",
+      "error_count": 12,
       "categories": {
-        "hexrays_limit": 6,
         "annotation_fix": 2,
-        "codegen_fix": 5
+        "codegen_fix": 5,
+        "hexrays_limit": 5
       },
       "details": [
-        {
-          "code": "C2065",
-          "msg": "'unk_5DFDEB' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
-        },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'bool (__cdecl *)(int,int)' to 'int (__thiscall CCBSystem::*)(int)",
@@ -302,10 +298,9 @@
     {
       "unit": "pal3/src/Combat/CCBAttackSequen.cpp",
       "dominant_category": "annotation_fix",
-      "error_count": 3,
+      "error_count": 2,
       "categories": {
-        "annotation_fix": 2,
-        "hexrays_limit": 1
+        "annotation_fix": 2
       },
       "details": [
         {
@@ -319,12 +314,6 @@
           "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
           "category": "annotation_fix",
           "description": "char* type mismatch: annotation type error"
-        },
-        {
-          "code": "C2065",
-          "msg": "'unk_5DFDEB' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
         }
       ]
     },
@@ -612,12 +601,11 @@
     {
       "unit": "pal3/src/Combat/CCBLineupWindow.cpp",
       "dominant_category": "hexrays_limit",
-      "error_count": 32,
+      "error_count": 12,
       "categories": {
-        "hexrays_limit": 22,
+        "hexrays_limit": 9,
         "codegen_fix": 1,
-        "annotation_fix": 3,
-        "unknown": 6
+        "annotation_fix": 2
       },
       "details": [
         {
@@ -691,126 +679,6 @@
           "msg": "binary '[' : 'class tagLoggerCallback' does not define this operator or a conversion to a type accep",
           "category": "hexrays_limit",
           "description": "Missing operator: Hex-Rays needs operator[] etc."
-        },
-        {
-          "code": "C2065",
-          "msg": "'unk_5DFDEB' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
-        },
-        {
-          "code": "C2784",
-          "msg": "'bool __cdecl std::operator >(const class std::list<`template-parameter257',`template-parameter258'>",
-          "category": "hexrays_limit",
-          "description": "Template deduction: Hex-Rays template limitation"
-        },
-        {
-          "code": "C2784",
-          "msg": "'bool __cdecl std::operator >(const class std::basic_string<`template-parameter257',`template-parame",
-          "category": "hexrays_limit",
-          "description": "Template deduction: Hex-Rays template limitation"
-        },
-        {
-          "code": "C2784",
-          "msg": "'bool __cdecl std::operator >(const _E *,const class std::basic_string<`template-parameter257',`temp",
-          "category": "hexrays_limit",
-          "description": "Template deduction: Hex-Rays template limitation"
-        },
-        {
-          "code": "C2784",
-          "msg": "'bool __cdecl std::operator >(const class std::basic_string<`template-parameter257',`template-parame",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'bool __cdecl std::operator >(const class std::deque<`template-parameter257',`template-parameter258'",
-          "category": "hexrays_limit",
-          "description": "Template deduction: Hex-Rays template limitation"
-        },
-        {
-          "code": "C2784",
-          "msg": "'bool __cdecl std::operator >(const class std::vector<`template-parameter257',`template-parameter258",
-          "category": "hexrays_limit",
-          "description": "Template deduction: Hex-Rays template limitation"
-        },
-        {
-          "code": "C2784",
-          "msg": "'bool __cdecl std::operator >(const class std::reverse_iterator<`template-parameter257',`template-pa",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'bool __cdecl std::operator >(const struct std::pair<`template-parameter257',`template-parameter258'",
-          "category": "hexrays_limit",
-          "description": "Template deduction: Hex-Rays template limitation"
-        },
-        {
-          "code": "C2676",
-          "msg": "binary '>' : 'class GRP_KEYREG' does not define this operator or a conversion to a type acceptable t",
-          "category": "hexrays_limit",
-          "description": "Missing operator: Hex-Rays needs operator[] etc."
-        },
-        {
-          "code": "C2784",
-          "msg": "'bool __cdecl std::operator <=(const class std::list<`template-parameter257',`template-parameter258'",
-          "category": "hexrays_limit",
-          "description": "Template deduction: Hex-Rays template limitation"
-        },
-        {
-          "code": "C2784",
-          "msg": "'bool __cdecl std::operator <=(const class std::basic_string<`template-parameter257',`template-param",
-          "category": "hexrays_limit",
-          "description": "Template deduction: Hex-Rays template limitation"
-        },
-        {
-          "code": "C2784",
-          "msg": "'bool __cdecl std::operator <=(const _E *,const class std::basic_string<`template-parameter257',`tem",
-          "category": "hexrays_limit",
-          "description": "Template deduction: Hex-Rays template limitation"
-        },
-        {
-          "code": "C2784",
-          "msg": "'bool __cdecl std::operator <=(const class std::basic_string<`template-parameter257',`template-param",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'bool __cdecl std::operator <=(const class std::deque<`template-parameter257',`template-parameter258",
-          "category": "hexrays_limit",
-          "description": "Template deduction: Hex-Rays template limitation"
-        },
-        {
-          "code": "C2784",
-          "msg": "'bool __cdecl std::operator <=(const class std::vector<`template-parameter257',`template-parameter25",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'bool __cdecl std::operator <=(const class std::reverse_iterator<`template-parameter257',`template-p",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'bool __cdecl std::operator <=(const struct std::pair<`template-parameter257',`template-parameter258",
-          "category": "hexrays_limit",
-          "description": "Template deduction: Hex-Rays template limitation"
-        },
-        {
-          "code": "C2677",
-          "msg": "binary '<=' : no global operator defined which takes type 'class GRP_KEYREG' (or there is no accepta",
-          "category": "unknown",
-          "description": "Unclassified C2677 error"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
         }
       ]
     },
@@ -1344,12 +1212,6 @@
           "description": "Undeclared identifier: Hex-Rays missed declaration"
         },
         {
-          "code": "C2065",
-          "msg": "'unk_5DFDEB' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
-        },
-        {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int",
           "category": "annotation_fix",
@@ -1650,6 +1512,12 @@
           "description": "Undeclared identifier: Hex-Rays missed declaration"
         },
         {
+          "code": "C2065",
+          "msg": "'unk_5D8EF8' : undeclared identifier",
+          "category": "hexrays_limit",
+          "description": "Undeclared identifier: Hex-Rays missed declaration"
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
           "category": "unknown",
@@ -1660,15 +1528,22 @@
     {
       "unit": "pal3/src/Combat/CCBSkillWindow.cpp",
       "dominant_category": "hexrays_limit",
-      "error_count": 18,
+      "error_count": 19,
       "categories": {
+        "unknown": 1,
         "annotation_fix": 2,
         "hexrays_limit": 16
       },
       "details": [
         {
+          "code": "C2665",
+          "msg": "'delete' : none of the 2 overloads can convert parameter 1 from type 'int'",
+          "category": "unknown",
+          "description": "Unclassified C2665 error"
+        },
+        {
           "code": "C2440",
-          "msg": "'return' : cannot convert from 'void *' to 'class CCBSkillWindow *'",
+          "msg": "'return' : cannot convert from 'int' to 'class CCBSkillWindow *'",
           "category": "annotation_fix",
           "description": "Type conversion: annotation type mismatch"
         },
@@ -1779,11 +1654,11 @@
     {
       "unit": "pal3/src/Combat/CCBStage.cpp",
       "dominant_category": "annotation_fix",
-      "error_count": 81,
+      "error_count": 78,
       "categories": {
-        "annotation_fix": 29,
+        "annotation_fix": 27,
         "codegen_fix": 12,
-        "hexrays_limit": 25,
+        "hexrays_limit": 24,
         "unknown": 15
       },
       "details": [
@@ -1974,12 +1849,6 @@
           "description": "Undeclared identifier: Hex-Rays missed declaration"
         },
         {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
           "code": "C2664",
           "msg": "'char __cdecl CCBStage::GetTaskState(int,class ECBStageTaskState *)' : cannot convert parameter 1 fr",
           "category": "codegen_fix",
@@ -2024,12 +1893,6 @@
         {
           "code": "C2065",
           "msg": "'aEnemysneakatta' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
-        },
-        {
-          "code": "C2065",
-          "msg": "'unk_5DFDEB' : undeclared identifier",
           "category": "hexrays_limit",
           "description": "Undeclared identifier: Hex-Rays missed declaration"
         },
@@ -2188,12 +2051,6 @@
           "msg": "'=' : cannot convert from 'short *' to '__int16 *'",
           "category": "annotation_fix",
           "description": "Type conversion: annotation type mismatch"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
         },
         {
           "code": "C2660",
@@ -2689,12 +2546,12 @@
     },
     {
       "unit": "pal3/src/Combat/CCBStageRole.cpp",
-      "dominant_category": "hexrays_limit",
+      "dominant_category": "annotation_fix",
       "error_count": 101,
       "categories": {
         "hexrays_limit": 35,
-        "annotation_fix": 35,
-        "codegen_fix": 23,
+        "annotation_fix": 39,
+        "codegen_fix": 19,
         "unknown": 8
       },
       "details": [
@@ -2853,12 +2710,6 @@
           "msg": "'&' requires l-value",
           "category": "hexrays_limit",
           "description": "L-value required: Hex-Rays expression artifact"
-        },
-        {
-          "code": "C2065",
-          "msg": "'unk_5DFDEB' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
         },
         {
           "code": "C2440",
@@ -3077,18 +2928,6 @@
           "description": "Unclassified C2678 error"
         },
         {
-          "code": "C2664",
-          "msg": "'Init' : cannot convert parameter 4 from 'class GRP_KEYREG' to 'int'",
-          "category": "codegen_fix",
-          "description": "Param conversion: codegen type mismatch or ptr→ref"
-        },
-        {
-          "code": "C2664",
-          "msg": "'Init' : cannot convert parameter 4 from 'class GRP_KEYREG' to 'int'",
-          "category": "codegen_fix",
-          "description": "Param conversion: codegen type mismatch or ptr→ref"
-        },
-        {
           "code": "C2679",
           "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'int' (or there is no acce",
           "category": "annotation_fix",
@@ -3165,18 +3004,6 @@
           "msg": "binary '==' : no operator defined which takes a left-hand operand of type 'class PtrArray' (or there",
           "category": "unknown",
           "description": "Unclassified C2678 error"
-        },
-        {
-          "code": "C2664",
-          "msg": "'Init' : cannot convert parameter 4 from 'class GRP_KEYREG' to 'int'",
-          "category": "codegen_fix",
-          "description": "Param conversion: codegen type mismatch or ptr→ref"
-        },
-        {
-          "code": "C2664",
-          "msg": "'Init' : cannot convert parameter 4 from 'class GRP_KEYREG' to 'int'",
-          "category": "codegen_fix",
-          "description": "Param conversion: codegen type mismatch or ptr→ref"
         },
         {
           "code": "C2065",
@@ -3287,22 +3114,52 @@
           "description": "Type conversion: annotation type mismatch"
         },
         {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned long [3]' to 'int *'",
           "category": "annotation_fix",
           "description": "Type conversion: annotation type mismatch"
+        },
+        {
+          "code": "C2065",
+          "msg": "'animId' : undeclared identifier",
+          "category": "hexrays_limit",
+          "description": "Undeclared identifier: Hex-Rays missed declaration"
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
+          "category": "annotation_fix",
+          "description": "Pointer→unsigned long: struct member type annotation error"
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
+          "category": "annotation_fix",
+          "description": "Pointer→unsigned long: struct member type annotation error"
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
+          "category": "annotation_fix",
+          "description": "Pointer→unsigned long: struct member type annotation error"
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
+          "category": "annotation_fix",
+          "description": "Pointer→unsigned long: struct member type annotation error"
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
+          "category": "annotation_fix",
+          "description": "Pointer→unsigned long: struct member type annotation error"
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
+          "category": "annotation_fix",
+          "description": "Pointer→unsigned long: struct member type annotation error"
         }
       ]
     },
@@ -3958,9 +3815,9 @@
       "dominant_category": "hexrays_limit",
       "error_count": 102,
       "categories": {
-        "annotation_fix": 19,
+        "annotation_fix": 18,
         "codegen_fix": 3,
-        "hexrays_limit": 63,
+        "hexrays_limit": 64,
         "unknown": 17
       },
       "details": [
@@ -3993,12 +3850,6 @@
           "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
           "category": "annotation_fix",
           "description": "Pointer→unsigned long: struct member type annotation error"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
         },
         {
           "code": "C2440",
@@ -4343,12 +4194,6 @@
           "description": "Syntax error ')': Hex-Rays lost expression context"
         },
         {
-          "code": "C2065",
-          "msg": "'unk_5DFDEB' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
-        },
-        {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'float' to 'class CCBStage *'",
           "category": "annotation_fix",
@@ -4571,6 +4416,18 @@
           "description": "Missing syntax: Hex-Rays structural error"
         },
         {
+          "code": "C2660",
+          "msg": "'ClearEffect' : function does not take 0 parameters",
+          "category": "hexrays_limit",
+          "description": "Wrong param count: Hex-Rays lost parameter info"
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->m_nThread' must point to class/struct/union",
+          "category": "hexrays_limit",
+          "description": "Left of '->' not class: Hex-Rays pointer type error"
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
           "category": "unknown",
@@ -4583,18 +4440,12 @@
       "dominant_category": "hexrays_limit",
       "error_count": 102,
       "categories": {
-        "hexrays_limit": 67,
-        "annotation_fix": 27,
+        "annotation_fix": 32,
+        "hexrays_limit": 62,
         "codegen_fix": 7,
         "unknown": 1
       },
       "details": [
-        {
-          "code": "C2065",
-          "msg": "'unk_5DFDEB' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
-        },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
@@ -4738,12 +4589,6 @@
           "msg": "'_mbsrchr' : cannot convert parameter 1 from 'const unsigned __int8 *' to 'const unsigned char *'",
           "category": "codegen_fix",
           "description": "Param conversion: codegen type mismatch or ptr→ref"
-        },
-        {
-          "code": "C2065",
-          "msg": "'unk_5D87F8' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
         },
         {
           "code": "C2065",
@@ -4909,30 +4754,6 @@
         },
         {
           "code": "C2065",
-          "msg": "'unk_5D87FC' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->dwSkillID' must point to class/struct/union",
-          "category": "hexrays_limit",
-          "description": "Left of '->' not class: Hex-Rays pointer type error"
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->dwMagicID' must point to class/struct/union",
-          "category": "hexrays_limit",
-          "description": "Left of '->' not class: Hex-Rays pointer type error"
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->bMagicMastered' must point to class/struct/union",
-          "category": "hexrays_limit",
-          "description": "Left of '->' not class: Hex-Rays pointer type error"
-        },
-        {
-          "code": "C2065",
           "msg": "'unk_5D89B0' : undeclared identifier",
           "category": "hexrays_limit",
           "description": "Undeclared identifier: Hex-Rays missed declaration"
@@ -4962,54 +4783,12 @@
           "description": "Missing operator: Hex-Rays needs operator[] etc."
         },
         {
-          "code": "C2227",
-          "msg": "left of '->nCombatEXP' must point to class/struct/union",
-          "category": "hexrays_limit",
-          "description": "Left of '->' not class: Hex-Rays pointer type error"
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->dwSkillID' must point to class/struct/union",
-          "category": "hexrays_limit",
-          "description": "Left of '->' not class: Hex-Rays pointer type error"
-        },
-        {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int *' to 'char *'",
           "category": "annotation_fix",
           "description": "Type conversion: annotation type mismatch"
         },
         {
-          "code": "C2227",
-          "msg": "left of '->dwSkillID' must point to class/struct/union",
-          "category": "hexrays_limit",
-          "description": "Left of '->' not class: Hex-Rays pointer type error"
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->dwMagicID' must point to class/struct/union",
-          "category": "hexrays_limit",
-          "description": "Left of '->' not class: Hex-Rays pointer type error"
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->bMagicMastered' must point to class/struct/union",
-          "category": "hexrays_limit",
-          "description": "Left of '->' not class: Hex-Rays pointer type error"
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->nCombatEXP' must point to class/struct/union",
-          "category": "hexrays_limit",
-          "description": "Left of '->' not class: Hex-Rays pointer type error"
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->dwSkillID' must point to class/struct/union",
-          "category": "hexrays_limit",
-          "description": "Left of '->' not class: Hex-Rays pointer type error"
-        },
-        {
           "code": "C2676",
           "msg": "binary '[' : 'class tagLoggerCallback' does not define this operator or a conversion to a type accep",
           "category": "hexrays_limit",
@@ -5080,12 +4859,6 @@
           "msg": "binary '[' : 'class tagLoggerCallback' does not define this operator or a conversion to a type accep",
           "category": "hexrays_limit",
           "description": "Missing operator: Hex-Rays needs operator[] etc."
-        },
-        {
-          "code": "C2065",
-          "msg": "'off_5D89BC' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
         },
         {
           "code": "C2440",
@@ -5194,6 +4967,90 @@
           "msg": "'FormatCombatBuffer' : function does not take 1 parameters",
           "category": "hexrays_limit",
           "description": "Wrong param count: Hex-Rays lost parameter info"
+        },
+        {
+          "code": "C2660",
+          "msg": "'FormatCombatBuffer' : function does not take 1 parameters",
+          "category": "hexrays_limit",
+          "description": "Wrong param count: Hex-Rays lost parameter info"
+        },
+        {
+          "code": "C2660",
+          "msg": "'FormatCombatBuffer' : function does not take 1 parameters",
+          "category": "hexrays_limit",
+          "description": "Wrong param count: Hex-Rays lost parameter info"
+        },
+        {
+          "code": "C2660",
+          "msg": "'FormatCombatBuffer' : function does not take 1 parameters",
+          "category": "hexrays_limit",
+          "description": "Wrong param count: Hex-Rays lost parameter info"
+        },
+        {
+          "code": "C2065",
+          "msg": "'unk_5D8BE4' : undeclared identifier",
+          "category": "hexrays_limit",
+          "description": "Undeclared identifier: Hex-Rays missed declaration"
+        },
+        {
+          "code": "C2660",
+          "msg": "'DlgProcCameraConfig' : function does not take 4 parameters",
+          "category": "hexrays_limit",
+          "description": "Wrong param count: Hex-Rays lost parameter info"
+        },
+        {
+          "code": "C2511",
+          "msg": "'DlgProcCameraConfig' : overloaded member function 'int (struct HWND__ *,unsigned int,unsigned short",
+          "category": "annotation_fix",
+          "description": "Wrong function signature: annotation method type error"
+        },
+        {
+          "code": "C2039",
+          "msg": "'Create' : is not a member of 'UIStatic'",
+          "category": "annotation_fix",
+          "description": "Missing member: struct annotation incomplete"
+        },
+        {
+          "code": "C2039",
+          "msg": "'Create' : is not a member of 'UIStatic'",
+          "category": "annotation_fix",
+          "description": "Missing member: struct annotation incomplete"
+        },
+        {
+          "code": "C2065",
+          "msg": "'aDProjectPal3Co_7' : undeclared identifier",
+          "category": "hexrays_limit",
+          "description": "Undeclared identifier: Hex-Rays missed declaration"
+        },
+        {
+          "code": "C2039",
+          "msg": "'Create' : is not a member of 'UIProgressBar'",
+          "category": "annotation_fix",
+          "description": "Missing member: struct annotation incomplete"
+        },
+        {
+          "code": "C2039",
+          "msg": "'Create' : is not a member of 'UIProgressBar'",
+          "category": "annotation_fix",
+          "description": "Missing member: struct annotation incomplete"
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->ShowWindow' must point to class/struct/union",
+          "category": "hexrays_limit",
+          "description": "Left of '->' not class: Hex-Rays pointer type error"
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->ShowWindow' must point to class/struct/union",
+          "category": "hexrays_limit",
+          "description": "Left of '->' not class: Hex-Rays pointer type error"
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->ShowWindow' must point to class/struct/union",
+          "category": "hexrays_limit",
+          "description": "Left of '->' not class: Hex-Rays pointer type error"
         },
         {
           "code": "C1003",
@@ -5391,10 +5248,10 @@
     {
       "unit": "pal3/src/Data/CGameData.cpp",
       "dominant_category": "annotation_fix",
-      "error_count": 9,
+      "error_count": 10,
       "categories": {
         "annotation_fix": 4,
-        "hexrays_limit": 2,
+        "hexrays_limit": 3,
         "unknown": 3
       },
       "details": [
@@ -5429,6 +5286,12 @@
           "description": "Syntax error ')': Hex-Rays lost expression context"
         },
         {
+          "code": "C2065",
+          "msg": "'g_bSceneLoaded_0' : undeclared identifier",
+          "category": "hexrays_limit",
+          "description": "Undeclared identifier: Hex-Rays missed declaration"
+        },
+        {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'char'",
           "category": "annotation_fix",
@@ -5457,11 +5320,11 @@
     {
       "unit": "pal3/src/Data/PAL_GDB.cpp",
       "dominant_category": "hexrays_limit",
-      "error_count": 70,
+      "error_count": 69,
       "categories": {
         "codegen_fix": 4,
         "annotation_fix": 17,
-        "hexrays_limit": 43,
+        "hexrays_limit": 42,
         "unknown": 6
       },
       "details": [
@@ -5704,12 +5567,6 @@
           "msg": "subscript requires array or pointer type",
           "category": "hexrays_limit",
           "description": "Subscript error: Hex-Rays array/pointer confusion"
-        },
-        {
-          "code": "C2065",
-          "msg": "'unk_5DFDEB' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
         },
         {
           "code": "C2440",
@@ -6048,11 +5905,11 @@
     {
       "unit": "pal3/src/Effect/CEffMgr.cpp",
       "dominant_category": "annotation_fix",
-      "error_count": 51,
+      "error_count": 47,
       "categories": {
         "annotation_fix": 32,
-        "codegen_fix": 15,
         "unknown": 3,
+        "codegen_fix": 11,
         "hexrays_limit": 1
       },
       "details": [
@@ -6091,12 +5948,6 @@
           "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
           "category": "annotation_fix",
           "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2664",
-          "msg": "'Init' : cannot convert parameter 4 from 'class GRP_KEYREG' to 'int'",
-          "category": "codegen_fix",
-          "description": "Param conversion: codegen type mismatch or ptr→ref"
         },
         {
           "code": "C2440",
@@ -6141,12 +5992,6 @@
           "description": "Pointer→unsigned long: struct member type annotation error"
         },
         {
-          "code": "C2664",
-          "msg": "'void (unsigned long,int,int,int,int)' : cannot convert parameter 4 from 'class GRP_KEYREG' to 'int'",
-          "category": "codegen_fix",
-          "description": "Param conversion: codegen type mismatch or ptr→ref"
-        },
-        {
           "code": "C2197",
           "msg": "'void (__cdecl *)(void)' : too many actual parameters",
           "category": "unknown",
@@ -6161,12 +6006,6 @@
         {
           "code": "C2664",
           "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int",
-          "category": "codegen_fix",
-          "description": "Param conversion: codegen type mismatch or ptr→ref"
-        },
-        {
-          "code": "C2664",
-          "msg": "'void (int,int,int,int)' : cannot convert parameter 3 from 'class GRP_KEYREG' to 'int'",
           "category": "codegen_fix",
           "description": "Param conversion: codegen type mismatch or ptr→ref"
         },
@@ -6197,12 +6036,6 @@
         {
           "code": "C2664",
           "msg": "'FormatException' : cannot convert parameter 1 from 'class tagLoggerCallback' to 'char *'",
-          "category": "codegen_fix",
-          "description": "Param conversion: codegen type mismatch or ptr→ref"
-        },
-        {
-          "code": "C2664",
-          "msg": "'CreateEffect' : cannot convert parameter 5 from 'class GRP_KEYREG' to 'int'",
           "category": "codegen_fix",
           "description": "Param conversion: codegen type mismatch or ptr→ref"
         },
@@ -6661,10 +6494,9 @@
     {
       "unit": "pal3/src/Effect/CEffShock.cpp",
       "dominant_category": "hexrays_limit",
-      "error_count": 2,
+      "error_count": 1,
       "categories": {
-        "hexrays_limit": 1,
-        "annotation_fix": 1
+        "hexrays_limit": 1
       },
       "details": [
         {
@@ -6672,12 +6504,6 @@
           "msg": "syntax error : missing ')' before '{'",
           "category": "hexrays_limit",
           "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
         }
       ]
     },
@@ -6898,9 +6724,9 @@
     {
       "unit": "pal3/src/Effect/CEffgbParticle.cpp",
       "dominant_category": "annotation_fix",
-      "error_count": 36,
+      "error_count": 35,
       "categories": {
-        "annotation_fix": 17,
+        "annotation_fix": 16,
         "hexrays_limit": 16,
         "unknown": 1,
         "codegen_fix": 2
@@ -6953,12 +6779,6 @@
           "msg": "'=' : cannot convert from 'char *const ' to 'int'",
           "category": "annotation_fix",
           "description": "Type conversion: annotation type mismatch"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
         },
         {
           "code": "C2451",
@@ -7121,22 +6941,6 @@
           "msg": "'_nearby_4cfd40' : overloaded member function 'int (void)' not found in 'CEffgbParticle'",
           "category": "annotation_fix",
           "description": "Wrong function signature: annotation method type error"
-        }
-      ]
-    },
-    {
-      "unit": "pal3/src/Effect/CMeteorChain.cpp",
-      "dominant_category": "annotation_fix",
-      "error_count": 1,
-      "categories": {
-        "annotation_fix": 1
-      },
-      "details": [
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
         }
       ]
     },
@@ -10516,11 +10320,10 @@
     {
       "unit": "pal3/src/Misc/PtrArray.cpp",
       "dominant_category": "hexrays_limit",
-      "error_count": 38,
+      "error_count": 23,
       "categories": {
-        "hexrays_limit": 16,
-        "annotation_fix": 9,
-        "unknown": 13
+        "hexrays_limit": 14,
+        "annotation_fix": 9
       },
       "details": [
         {
@@ -10566,12 +10369,6 @@
           "description": "Wrong function signature: annotation method type error"
         },
         {
-          "code": "C2451",
-          "msg": "conditional expression of type 'class GRP_KEYREG' is illegal",
-          "category": "unknown",
-          "description": "Unclassified C2451 error"
-        },
-        {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class GRP_KEYREG' to 'void *'",
           "category": "annotation_fix",
@@ -10582,90 +10379,6 @@
           "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is n",
           "category": "annotation_fix",
           "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2784",
-          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'class std::reverse_iterator<`template-parameter257',`template-parameter258',`template-parameter259'",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2676",
-          "msg": "binary '+' : 'class GRP_KEYREG' does not define this operator or a conversion to a type acceptable t",
-          "category": "hexrays_limit",
-          "description": "Missing operator: Hex-Rays needs operator[] etc."
-        },
-        {
-          "code": "C2784",
-          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'class std::reverse_iterator<`template-parameter257',`template-parameter258',`template-parameter259'",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2676",
-          "msg": "binary '+' : 'class GRP_KEYREG' does not define this operator or a conversion to a type acceptable t",
-          "category": "hexrays_limit",
-          "description": "Missing operator: Hex-Rays needs operator[] etc."
         },
         {
           "code": "C2660",
@@ -10756,12 +10469,12 @@
     {
       "unit": "pal3/src/Misc/RoleAtt.cpp",
       "dominant_category": "hexrays_limit",
-      "error_count": 20,
+      "error_count": 19,
       "categories": {
         "hexrays_limit": 12,
         "unknown": 3,
         "codegen_fix": 3,
-        "annotation_fix": 2
+        "annotation_fix": 1
       },
       "details": [
         {
@@ -10877,12 +10590,6 @@
           "msg": "'=' : cannot convert from 'int *' to 'unsigned long'",
           "category": "annotation_fix",
           "description": "Pointer→unsigned long: struct member type annotation error"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
         }
       ]
     },
@@ -12299,11 +12006,10 @@
     {
       "unit": "pal3/src/Misc/UIAnimateCtrlEX.cpp",
       "dominant_category": "codegen_fix",
-      "error_count": 46,
+      "error_count": 45,
       "categories": {
         "codegen_fix": 44,
-        "hexrays_limit": 1,
-        "annotation_fix": 1
+        "hexrays_limit": 1
       },
       "details": [
         {
@@ -12569,12 +12275,6 @@
           "msg": "'function-style cast' : illegal as right side of '->' operator",
           "category": "codegen_fix",
           "description": "Function-style cast after '.': Hex-Rays artifact"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
         },
         {
           "code": "C2273",
@@ -13138,12 +12838,12 @@
     {
       "unit": "pal3/src/Misc/UIFrameWnd.cpp",
       "dominant_category": "codegen_fix",
-      "error_count": 18,
+      "error_count": 17,
       "categories": {
         "unknown": 1,
         "codegen_fix": 9,
         "annotation_fix": 1,
-        "hexrays_limit": 7
+        "hexrays_limit": 6
       },
       "details": [
         {
@@ -13247,12 +12947,6 @@
           "msg": "'OnMessage' : cannot convert parameter 2 from 'void *' to 'int'",
           "category": "codegen_fix",
           "description": "Param conversion: codegen type mismatch or ptr→ref"
-        },
-        {
-          "code": "C2065",
-          "msg": "'unk_5DFDEB' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
         }
       ]
     },
@@ -13538,10 +13232,9 @@
     {
       "unit": "pal3/src/Misc/UIRoleSelectDialog.cpp",
       "dominant_category": "annotation_fix",
-      "error_count": 3,
+      "error_count": 2,
       "categories": {
-        "annotation_fix": 2,
-        "hexrays_limit": 1
+        "annotation_fix": 2
       },
       "details": [
         {
@@ -13555,12 +13248,6 @@
           "msg": "'=' : cannot convert from 'int (__stdcall *)(const struct tagRECT *,struct tagPOINT)' to 'int (__cde",
           "category": "annotation_fix",
           "description": "Type conversion: annotation type mismatch"
-        },
-        {
-          "code": "C2065",
-          "msg": "'unk_5DFDEB' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
         }
       ]
     },
@@ -14930,12 +14617,12 @@
     },
     {
       "unit": "pal3/src/Misc/UITitle_JDHY.cpp",
-      "dominant_category": "codegen_fix",
-      "error_count": 13,
+      "dominant_category": "hexrays_limit",
+      "error_count": 14,
       "categories": {
         "codegen_fix": 4,
         "annotation_fix": 4,
-        "hexrays_limit": 4,
+        "hexrays_limit": 5,
         "unknown": 1
       },
       "details": [
@@ -14980,6 +14667,12 @@
           "msg": "'=' : cannot convert from 'long *' to 'unsigned long *'",
           "category": "annotation_fix",
           "description": "Pointer→unsigned long: struct member type annotation error"
+        },
+        {
+          "code": "C2065",
+          "msg": "'g_bSceneLoaded_0' : undeclared identifier",
+          "category": "hexrays_limit",
+          "description": "Undeclared identifier: Hex-Rays missed declaration"
         },
         {
           "code": "C2664",
@@ -15765,6 +15458,12 @@
           "description": "Type conversion: annotation type mismatch"
         },
         {
+          "code": "C2065",
+          "msg": "'g_bSceneLoaded_0' : undeclared identifier",
+          "category": "hexrays_limit",
+          "description": "Undeclared identifier: Hex-Rays missed declaration"
+        },
+        {
           "code": "C2664",
           "msg": "'BinkClose' : cannot convert parameter 1 from 'int' to 'void *'",
           "category": "codegen_fix",
@@ -15823,12 +15522,6 @@
           "msg": "syntax error : ')'",
           "category": "hexrays_limit",
           "description": "Syntax error ')': Hex-Rays lost expression context"
-        },
-        {
-          "code": "C2065",
-          "msg": "'byte_17B3ED0' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
         },
         {
           "code": "C2065",
@@ -16226,11 +15919,11 @@
     {
       "unit": "pal3/src/Render/RenderTarget2.cpp",
       "dominant_category": "annotation_fix",
-      "error_count": 39,
+      "error_count": 34,
       "categories": {
         "codegen_fix": 9,
         "hexrays_limit": 3,
-        "annotation_fix": 25,
+        "annotation_fix": 20,
         "unknown": 2
       },
       "details": [
@@ -16277,12 +15970,6 @@
           "description": "Param conversion: codegen type mismatch or ptr→ref"
         },
         {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int",
           "category": "annotation_fix",
@@ -16299,12 +15986,6 @@
           "msg": "'type cast' : cannot convert from 'class tagLoggerCallback' to 'int *'",
           "category": "annotation_fix",
           "description": "Type conversion: annotation type mismatch"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
         },
         {
           "code": "C2440",
@@ -16331,12 +16012,6 @@
           "description": "Type conversion: annotation type mismatch"
         },
         {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
           "code": "C2511",
           "msg": "'AdjustThisCall' : overloaded member function 'int (int (__cdecl *)(char *,int),int,int)' not found ",
           "category": "annotation_fix",
@@ -16361,12 +16036,6 @@
           "description": "Type conversion: annotation type mismatch"
         },
         {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
           "category": "codegen_fix",
@@ -16389,12 +16058,6 @@
           "msg": "'type cast' : cannot convert from 'class tagLoggerCallback' to 'int *'",
           "category": "annotation_fix",
           "description": "Type conversion: annotation type mismatch"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
         },
         {
           "code": "C2440",
@@ -16560,12 +16223,12 @@
     },
     {
       "unit": "pal3/src/Role/Actor.cpp",
-      "dominant_category": "codegen_fix",
-      "error_count": 102,
+      "dominant_category": "annotation_fix",
+      "error_count": 101,
       "categories": {
-        "unknown": 8,
-        "annotation_fix": 31,
-        "codegen_fix": 34,
+        "unknown": 1,
+        "annotation_fix": 36,
+        "codegen_fix": 35,
         "hexrays_limit": 29
       },
       "details": [
@@ -16682,48 +16345,6 @@
           "msg": "'fopen' : cannot convert parameter 2 from 'float' to 'const char *'",
           "category": "codegen_fix",
           "description": "Param conversion: codegen type mismatch or ptr→ref"
-        },
-        {
-          "code": "C2784",
-          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2784",
-          "msg": "'class std::reverse_iterator<`template-parameter257',`template-parameter258',`template-parameter259'",
-          "category": "unknown",
-          "description": "Unclassified C2784 error"
-        },
-        {
-          "code": "C2676",
-          "msg": "binary '+' : 'class GRP_KEYREG' does not define this operator or a conversion to a type acceptable t",
-          "category": "hexrays_limit",
-          "description": "Missing operator: Hex-Rays needs operator[] etc."
         },
         {
           "code": "C2065",
@@ -17176,10 +16797,46 @@
           "description": "Wrong param count: Hex-Rays lost parameter info"
         },
         {
-          "code": "C1003",
-          "msg": "error count exceeds 100; stopping compilation",
-          "category": "unknown",
-          "description": "Unclassified C1003 error"
+          "code": "C2660",
+          "msg": "'SetRegion' : function does not take 1 parameters",
+          "category": "hexrays_limit",
+          "description": "Wrong param count: Hex-Rays lost parameter info"
+        },
+        {
+          "code": "C2511",
+          "msg": "'SelectPointer' : overloaded member function 'int *(int *,int *)' not found in 'Actor'",
+          "category": "annotation_fix",
+          "description": "Wrong function signature: annotation method type error"
+        },
+        {
+          "code": "C2511",
+          "msg": "'CopyConstruct_1C' : overloaded member function 'void (const void *)' not found in 'Actor'",
+          "category": "annotation_fix",
+          "description": "Wrong function signature: annotation method type error"
+        },
+        {
+          "code": "C2511",
+          "msg": "'CopyConstruct_290' : overloaded member function 'void (const void *,int)' not found in 'Actor'",
+          "category": "annotation_fix",
+          "description": "Wrong function signature: annotation method type error"
+        },
+        {
+          "code": "C2511",
+          "msg": "'CopyConstruct_40' : overloaded member function 'void (const void *,int)' not found in 'Actor'",
+          "category": "annotation_fix",
+          "description": "Wrong function signature: annotation method type error"
+        },
+        {
+          "code": "C2664",
+          "msg": "'=' : cannot convert parameter 1 from 'char *' to 'const struct gbVec3D &'",
+          "category": "codegen_fix",
+          "description": "Ptr→ref: codegen needs * dereference for reference params"
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'short *' to '__int16 *'",
+          "category": "annotation_fix",
+          "description": "Type conversion: annotation type mismatch"
         }
       ]
     },
@@ -18048,43 +17705,13 @@
     {
       "unit": "pal3/src/Scene/CameraCtrl.cpp",
       "dominant_category": "annotation_fix",
-      "error_count": 40,
+      "error_count": 35,
       "categories": {
-        "annotation_fix": 22,
         "hexrays_limit": 14,
+        "annotation_fix": 17,
         "codegen_fix": 4
       },
       "details": [
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class GRP_KEYREG' (or the",
-          "category": "annotation_fix",
-          "description": "Missing operator: struct needs operator overload"
-        },
         {
           "code": "C2102",
           "msg": "'&' requires l-value",
@@ -21700,10 +21327,10 @@
       "dominant_category": "hexrays_limit",
       "error_count": 101,
       "categories": {
-        "hexrays_limit": 53,
+        "hexrays_limit": 51,
         "unknown": 3,
-        "annotation_fix": 22,
-        "codegen_fix": 23
+        "annotation_fix": 23,
+        "codegen_fix": 24
       },
       "details": [
         {
@@ -22277,18 +21904,6 @@
           "description": "Wrong param count: Hex-Rays lost parameter info"
         },
         {
-          "code": "C2065",
-          "msg": "'unk_C0E760' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
-        },
-        {
-          "code": "C2065",
-          "msg": "'unk_C0EC50' : undeclared identifier",
-          "category": "hexrays_limit",
-          "description": "Undeclared identifier: Hex-Rays missed declaration"
-        },
-        {
           "code": "C2660",
           "msg": "'ProcessInput' : function does not take 1 parameters",
           "category": "hexrays_limit",
@@ -22311,18 +21926,30 @@
           "msg": "'int (unsigned long,int)' : cannot convert parameter 1 from 'int (__cdecl ***  )(unsigned long,int)'",
           "category": "codegen_fix",
           "description": "Param conversion: codegen type mismatch or ptr→ref"
+        },
+        {
+          "code": "C2664",
+          "msg": "'int (unsigned long,int)' : cannot convert parameter 1 from 'int (__cdecl ***  )(unsigned long,int)'",
+          "category": "codegen_fix",
+          "description": "Param conversion: codegen type mismatch or ptr→ref"
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
+          "category": "annotation_fix",
+          "description": "Pointer→unsigned long: struct member type annotation error"
         }
       ]
     },
     {
       "unit": "pal3/src/globals.cpp",
-      "dominant_category": "hexrays_limit",
-      "error_count": 72,
+      "dominant_category": "unknown",
+      "error_count": 13,
       "categories": {
         "manual_idb": 2,
-        "hexrays_limit": 44,
-        "unknown": 24,
-        "annotation_fix": 2
+        "unknown": 9,
+        "annotation_fix": 1,
+        "hexrays_limit": 1
       },
       "details": [
         {
@@ -22336,90 +21963,6 @@
           "msg": "nonstandard extension used : '__thiscall' keyword reserved for future use",
           "category": "manual_idb",
           "description": "__thiscall warning: MSVC6 keyword reservation"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '*'",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'off_59DC84' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '*'",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'off_5B46C0' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '*'",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'off_5B765C' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '*'",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'off_5B9DF0' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '*'",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'off_5C5EC4' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '*'",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'off_5C9378' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '*'",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'off_5E7ED8' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
         },
         {
           "code": "C2117",
@@ -22446,6 +21989,12 @@
           "description": "Unclassified C2117 error"
         },
         {
+          "code": "C2374",
+          "msg": "'dir' : redefinition; multiple initialization",
+          "category": "unknown",
+          "description": "Unclassified C2374 error"
+        },
+        {
           "code": "C2117",
           "msg": "'End' : array bounds overflow",
           "category": "unknown",
@@ -22464,298 +22013,22 @@
           "description": "Unclassified C2117 error"
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '*'",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
+          "code": "C2146",
+          "msg": "syntax error : missing ';' before identifier 'off_5B203C'",
+          "category": "unknown",
+          "description": "Unclassified C2146 error"
         },
         {
           "code": "C2501",
-          "msg": "'_SPropValue' : missing storage-class or type specifiers",
+          "msg": "'skip' : missing storage-class or type specifiers",
           "category": "hexrays_limit",
           "description": "Missing type: Hex-Rays declaration error"
         },
         {
-          "code": "C2501",
-          "msg": "'off_59DC84' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2086",
-          "msg": "'off_59DC84' : redefinition",
+          "code": "C1004",
+          "msg": "unexpected end of file found",
           "category": "unknown",
-          "description": "Unclassified C2086 error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '*'",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'_SPropValue' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2086",
-          "msg": "'_SPropValue' : redefinition",
-          "category": "unknown",
-          "description": "Unclassified C2086 error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'off_5B46C0' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2086",
-          "msg": "'off_5B46C0' : redefinition",
-          "category": "unknown",
-          "description": "Unclassified C2086 error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '*'",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'_SPropValue' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2086",
-          "msg": "'_SPropValue' : redefinition",
-          "category": "unknown",
-          "description": "Unclassified C2086 error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'off_5B765C' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2086",
-          "msg": "'off_5B765C' : redefinition",
-          "category": "unknown",
-          "description": "Unclassified C2086 error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '*'",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'_SPropValue' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2086",
-          "msg": "'_SPropValue' : redefinition",
-          "category": "unknown",
-          "description": "Unclassified C2086 error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'off_5B9DF0' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2086",
-          "msg": "'off_5B9DF0' : redefinition",
-          "category": "unknown",
-          "description": "Unclassified C2086 error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '*'",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'_SPropValue' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2086",
-          "msg": "'_SPropValue' : redefinition",
-          "category": "unknown",
-          "description": "Unclassified C2086 error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'off_5C5EC4' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2086",
-          "msg": "'off_5C5EC4' : redefinition",
-          "category": "unknown",
-          "description": "Unclassified C2086 error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '*'",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'_SPropValue' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2086",
-          "msg": "'_SPropValue' : redefinition",
-          "category": "unknown",
-          "description": "Unclassified C2086 error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'off_5C9378' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2086",
-          "msg": "'off_5C9378' : redefinition",
-          "category": "unknown",
-          "description": "Unclassified C2086 error"
-        },
-        {
-          "code": "C2117",
-          "msg": "'��Ч' : array bounds overflow",
-          "category": "unknown",
-          "description": "Unclassified C2117 error"
-        },
-        {
-          "code": "C2512",
-          "msg": "'CEffectSystem' : no appropriate default constructor available",
-          "category": "hexrays_limit",
-          "description": "No constructor: Hex-Rays object creation issue"
-        },
-        {
-          "code": "C2117",
-          "msg": "'%lu' : array bounds overflow",
-          "category": "unknown",
-          "description": "Unclassified C2117 error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '['",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '['",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '['",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '['",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '['",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '['",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2117",
-          "msg": "'%2d' : array bounds overflow",
-          "category": "unknown",
-          "description": "Unclassified C2117 error"
-        },
-        {
-          "code": "C2117",
-          "msg": "'yaw' : array bounds overflow",
-          "category": "unknown",
-          "description": "Unclassified C2117 error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '*'",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'_SPropValue' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2086",
-          "msg": "'_SPropValue' : redefinition",
-          "category": "unknown",
-          "description": "Unclassified C2086 error"
-        },
-        {
-          "code": "C2501",
-          "msg": "'off_5E7ED8' : missing storage-class or type specifiers",
-          "category": "hexrays_limit",
-          "description": "Missing type: Hex-Rays declaration error"
-        },
-        {
-          "code": "C2086",
-          "msg": "'off_5E7ED8' : redefinition",
-          "category": "unknown",
-          "description": "Unclassified C2086 error"
-        },
-        {
-          "code": "C2117",
-          "msg": "'�鿴/�޸ĺø�' : array bounds overflow",
-          "category": "unknown",
-          "description": "Unclassified C2117 error"
-        },
-        {
-          "code": "C2440",
-          "msg": "'initializing' : cannot convert from 'const int' to 'int []'",
-          "category": "annotation_fix",
-          "description": "Type conversion: annotation type mismatch"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '['",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '['",
-          "category": "hexrays_limit",
-          "description": "Missing syntax: Hex-Rays structural error"
+          "description": "Unclassified C1004 error"
         }
       ]
     }
