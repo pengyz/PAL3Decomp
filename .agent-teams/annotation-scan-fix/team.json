@@ -12,7 +12,7 @@
       "provider": "xiaomi",
       "model": "xiaomi/mimo-v2.5-pro",
       "joinedAt": 1788251306328,
-      "status": "working"
+      "status": "idle"
     },
     {
       "id": "5161bef9-2c76-47ad-86c4-87a63a880ab4",
@@ -68,14 +68,14 @@
       "id": "t2",
       "subject": "修复函数签名（__cdecl → __thiscall）",
       "description": "根据t1的扫描结果，批量修复函数签名：\n1. 修改functions.json中的调用约定\n2. 修改struct annotation中的函数归属\n3. 确保this指针类型正确\n\n预期修复数量：~20个函数签名。",
-      "status": "in_progress",
+      "status": "completed",
       "assignee": "captain",
       "dependencies": [
         "t1"
       ],
       "attempt": 4,
       "createdAt": 1788251332696,
-      "updatedAt": 1788255709004,
+      "updatedAt": 1788256621005,
       "kind": "implementation",
       "objective": "修复函数签名错误",
       "inScope": [
@@ -95,25 +95,83 @@
         "S2不低于28/204"
       ],
       "reassigning": false,
-      "attemptId": "5e8aa396-8b8a-400f-981f-3f7dda47a72e"
+      "attemptId": "5e8aa396-8b8a-400f-981f-3f7dda47a72e",
+      "output": "修复完成。19个成员函数声明已添加。S2: 28 -> 32 (+4)。",
+      "verdict": "pass",
+      "changedPaths": [
+        "data/annotations/functions.json"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "函数签名修复完成",
+          "status": "passed",
+          "evidence": "19个成员函数声明已添加"
+        },
+        {
+          "criterion": "S2不低于28/204",
+          "status": "passed",
+          "evidence": "S2: 28 -> 32"
+        }
+      ],
+      "commandsRun": [
+        {
+          "command": "python3 tools/compile_regression.py",
+          "status": "passed",
+          "evidence": "S2: 28 -> 32, regressions: 31 -> 27"
+        },
+        {
+          "command": "python3 pipeline/probe_compile.py",
+          "status": "passed",
+          "evidence": "S2 cpp: 32/204 ok"
+        }
+      ]
     },
     {
       "id": "t3",
       "subject": "验证修复结果 + 回归检测",
       "description": "验证所有修复：\n1. 运行compile_regression.py确认无退化\n2. 运行error_classifier.py确认错误分类\n3. 确认S2恢复到59+",
-      "status": "pending",
+      "status": "failed",
       "assignee": "reviewer",
       "dependencies": [
         "t2"
       ],
-      "attempt": 0,
+      "attempt": 1,
       "createdAt": 1788251349393,
-      "updatedAt": 1788251349393,
+      "updatedAt": 1788256805705,
       "kind": "verification",
       "objective": "验证修复结果",
       "acceptance": [
         "S2恢复到59+",
         "无退化"
+      ],
+      "attemptId": "db232307-2616-4535-a479-09b655f3389f",
+      "reassigning": false,
+      "output": "验证失败：修复远未达标。当前 S2=32/204（probe_census.json，generated 2026-09-01T17:54:58，提交 8d18f0ebd 后），目标 59+，缺口 27 个文件。compile_regression.py 报告相对存储基线（S2 58，2026-09-01T11:45 保存）有 27 个退化 + 仅 1 个改进(CMeteorChain)。t2 修复本身是干净的：28→32 (+4: SceneProp.cpp, UI3DModelNode.cpp, UITitle_QCYM.cpp, _Console.cpp)，0 个新破坏，但幅度远不够。error_classifier: 172 个失败文件 = annotation_fix 41 / hexrays_limit 113 / codegen_fix 9 / unknown 7 / manual_idb 2。对 27 个退化文件的分类：16 hexrays_limit（按项目规范不修）、7 annotation_fix、4 unknown——下一轮修复应聚焦 annotation_fix 池（41文件，最高 ROI）并处理 unknown/codegen_fix。",
+      "acceptanceResults": [
+        {
+          "criterion": "S2恢复到59+",
+          "status": "failed",
+          "evidence": "当前 S2=32/204（probe_census.json generated_at=2026-09-01T17:54:58，为提交 8d18f0ebd 后的最新探针编译结果）：ok=32, fail_own=172。目标 59+，缺口 27 文件。t2 修复使 S2 从 28 提升到 32（+4：SceneProp.cpp/UI3DModelNode.cpp/UITitle_QCYM.cpp/_Console.cpp），但距 59+ 差 27 个文件。"
+        },
+        {
+          "criterion": "无退化",
+          "status": "failed",
+          "evidence": "compile_regression.py 输出：基线 S2 58/204（编译基线 2026-09-01T11:45:16 保存）→ 当前 32/204，报告 27 个 REGRESSIONS（CCBControl/CCBResultWindow/CEffExplosive/ARC_PlayerAtt/ArcPastScene/CCBFiveNimbusWindow/CJ_FindFile/ComposeUI/ExternalStatistics/MiniGame2Scene/OpenSceneFile/PalScriptWaitObj/PathObj/RoleCamera/SceneInfo/SceneObjParam/ScriptPoolPage/UIGameFrm/UISceneFace/UITextArea/UITitle_BBTY/scScriptInstance/ObjectCamera/Role/UIBase/UICursor/UINote），仅 1 个改进(CMeteorChain)，净 -26。注：t2 提交本身 0 新增破坏（commit 内 fail→ok=4, ok→fail=0），退化全部来自该团队修复前的既有状态。"
+        }
+      ],
+      "commandsRun": [
+        {
+          "command": "python3 tools/compile_regression.py",
+          "status": "passed",
+          "exitCode": 0,
+          "evidence": "脚本正常执行（exit 0），结果为负面：27 个文件相对基线退化（基线 S2 58→当前 32），1 个改进，净 -26。"
+        },
+        {
+          "command": "python3 tools/error_classifier.py --summary",
+          "status": "passed",
+          "exitCode": 0,
+          "evidence": "脚本正常执行（exit 0），输出 172 个失败文件分类：annotation_fix 41 (23.8%) / codegen_fix 9 (5.2%) / hexrays_limit 113 (65.7%) / manual_idb 2 (1.2%) / unknown 7 (4.1%)；27 个退化文件归属：annotation_fix 7、hexrays_limit 16、unknown 4。"
+        }
       ]
     }
   ],

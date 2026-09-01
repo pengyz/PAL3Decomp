@@ -1,8 +1,8 @@
 {
  "s2": {
-  "total": 204,
-  "ok": 32,
-  "fail_own": 172,
+  "total": 202,
+  "ok": 34,
+  "fail_own": 168,
   "fail_imported_only": 0,
   "imported_units": [],
   "root_blame": {
@@ -150,8 +150,8 @@
       "msg": "'int __thiscall CCBSystem::CreateObj(int (__thiscall CCBSystem::*)(int),int,int,int,const void *)' : cannot convert parameter 5 from 'unsigned int' to 'const void *'"
      }
     ],
-    "warnings": 49,
-    "secs": 21.17
+    "warnings": 50,
+    "secs": 23.0
    },
    {
     "unit": "pal3/src/Combat/CCBAIWindow.cpp",
@@ -194,7 +194,7 @@
       "msg": "left of '->FormatException' must point to class/struct/union"
      }
     ],
-    "warnings": 32,
+    "warnings": 33,
     "secs": 0.65
    },
    {
@@ -226,7 +226,7 @@
       "msg": "'CalcSpeed' : is not a member of 'CCBAttackSequen'"
      }
     ],
-    "warnings": 39,
+    "warnings": 40,
     "secs": 0.67
    },
    {
@@ -570,21 +570,14 @@
       "msg": "left of '->Render' must point to class/struct/union"
      }
     ],
-    "warnings": 41,
-    "secs": 21.19
+    "warnings": 42,
+    "secs": 0.67
    },
    {
     "unit": "pal3/src/Combat/CCBControl.cpp",
-    "status": "fail",
-    "errors": [
-     {
-      "file": "pal3/src/Combat/CCBControl.cpp",
-      "line": 30,
-      "code": "C2039",
-      "msg": "'FindFreeThread' : is not a member of 'CCBControl'"
-     }
-    ],
-    "warnings": 38,
+    "status": "ok",
+    "errors": [],
+    "warnings": 45,
     "secs": 0.67
    },
    {
@@ -784,8 +777,8 @@
       "msg": "'m_nActivePage' : is not a member of 'CCBControlWindow'"
      }
     ],
-    "warnings": 36,
-    "secs": 0.67
+    "warnings": 37,
+    "secs": 23.02
    },
    {
     "unit": "pal3/src/Combat/CCBItemWindow.cpp",
@@ -882,8 +875,8 @@
       "msg": "'Update' : function does not take 2 parameters"
      }
     ],
-    "warnings": 34,
-    "secs": 0.36
+    "warnings": 35,
+    "secs": 0.35
    },
    {
     "unit": "pal3/src/Combat/CCBLineupWindow.cpp",
@@ -962,8 +955,8 @@
       "msg": "left of '->FormatException' must point to class/struct/union"
      }
     ],
-    "warnings": 32,
-    "secs": 0.35
+    "warnings": 33,
+    "secs": 0.34
    },
    {
     "unit": "pal3/src/Combat/CCBMagicWindow.cpp",
@@ -1246,8 +1239,8 @@
       "msg": "'Reset' : function does not take 0 parameters"
      }
     ],
-    "warnings": 33,
-    "secs": 0.35
+    "warnings": 34,
+    "secs": 0.34
    },
    {
     "unit": "pal3/src/Combat/CCBParabolaWindow.cpp",
@@ -1410,8 +1403,8 @@
       "msg": "'Render' : function does not take 1 parameters"
      }
     ],
-    "warnings": 36,
-    "secs": 0.36
+    "warnings": 37,
+    "secs": 0.35
    },
    {
     "unit": "pal3/src/Combat/CCBProtectWindow.cpp",
@@ -1436,8 +1429,8 @@
       "msg": "'HideAll' : is not a member of 'CCBProtectWindow'"
      }
     ],
-    "warnings": 34,
-    "secs": 0.36
+    "warnings": 35,
+    "secs": 0.35
    },
    {
     "unit": "pal3/src/Combat/CCBResultWindow.cpp",
@@ -1474,8 +1467,8 @@
       "msg": "left of '->SetParam' must point to class/struct/union"
      }
     ],
-    "warnings": 34,
-    "secs": 0.36
+    "warnings": 35,
+    "secs": 0.34
    },
    {
     "unit": "pal3/src/Combat/CCBRoleState.cpp",
@@ -1831,270 +1824,270 @@
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 910,
-      "code": "C2039",
-      "msg": "'FindFreeThread' : is not a member of 'CCBRoleState'"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 913,
-      "code": "C2039",
-      "msg": "'UpdatePanel' : is not a member of 'CCBRoleState'"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 914,
-      "code": "C2039",
-      "msg": "'FindFreeThread' : is not a member of 'CCBRoleState'"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 917,
-      "code": "C2227",
-      "msg": "left of '->GetRoleField' must point to class/struct/union"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 919,
-      "code": "C2039",
-      "msg": "'UpdatePanel' : is not a member of 'CCBRoleState'"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 920,
-      "code": "C2039",
-      "msg": "'FindFreeThread' : is not a member of 'CCBRoleState'"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
       "line": 923,
-      "code": "C2227",
-      "msg": "left of '->GetRoleField' must point to class/struct/union"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 925,
       "code": "C2039",
       "msg": "'UpdatePanel' : is not a member of 'CCBRoleState'"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 926,
-      "code": "C2039",
-      "msg": "'FindFreeThread' : is not a member of 'CCBRoleState'"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 931,
-      "code": "C2039",
-      "msg": "'UpdatePanel' : is not a member of 'CCBRoleState'"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 934,
-      "code": "C2039",
-      "msg": "'FindFreeThread' : is not a member of 'CCBRoleState'"
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
       "line": 937,
-      "code": "C2039",
-      "msg": "'UpdatePanel' : is not a member of 'CCBRoleState'"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 942,
-      "code": "C2039",
-      "msg": "'UpdatePanel' : is not a member of 'CCBRoleState'"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 945,
-      "code": "C2039",
-      "msg": "'FindFreeThread' : is not a member of 'CCBRoleState'"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 948,
       "code": "C2227",
       "msg": "left of '->GetRoleField' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 950,
+      "line": 939,
       "code": "C2039",
       "msg": "'UpdatePanel' : is not a member of 'CCBRoleState'"
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 963,
+      "line": 953,
+      "code": "C2227",
+      "msg": "left of '->GetRoleField' must point to class/struct/union"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 955,
+      "code": "C2039",
+      "msg": "'UpdatePanel' : is not a member of 'CCBRoleState'"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 971,
+      "code": "C2039",
+      "msg": "'UpdatePanel' : is not a member of 'CCBRoleState'"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 987,
+      "code": "C2039",
+      "msg": "'UpdatePanel' : is not a member of 'CCBRoleState'"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 992,
+      "code": "C2039",
+      "msg": "'UpdatePanel' : is not a member of 'CCBRoleState'"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1008,
+      "code": "C2227",
+      "msg": "left of '->GetRoleField' must point to class/struct/union"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1010,
+      "code": "C2039",
+      "msg": "'UpdatePanel' : is not a member of 'CCBRoleState'"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1023,
       "code": "C2227",
       "msg": "left of '->InitUI' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 963,
+      "line": 1023,
       "code": "C2227",
       "msg": "left of '->byMagicUseTime' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 964,
+      "line": 1024,
       "code": "C2227",
       "msg": "left of '->InitUI' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 965,
+      "line": 1025,
       "code": "C2227",
       "msg": "left of '->bValid' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 965,
+      "line": 1025,
       "code": "C2227",
       "msg": "left of '->InitUI' must point to class/struct/union"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 966,
-      "code": "C2227",
-      "msg": "left of '->bValid' must point to class/struct/union"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 966,
-      "code": "C2227",
-      "msg": "left of '->InitUI' must point to class/struct/union"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 966,
-      "code": "C2227",
-      "msg": "left of '->bValid' must point to class/struct/union"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 970,
-      "code": "C2039",
-      "msg": "'UpdatePanel' : is not a member of 'CCBRoleState'"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 973,
-      "code": "C2039",
-      "msg": "'FindFreeThread' : is not a member of 'CCBRoleState'"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 977,
-      "code": "C2039",
-      "msg": "'UpdatePanel' : is not a member of 'CCBRoleState'"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 996,
-      "code": "C2039",
-      "msg": "'SetCmdParam' : is not a member of 'gbImage2D'"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 997,
-      "code": "C2039",
-      "msg": "'UpdatePanel' : is not a member of 'CCBRoleState'"
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
       "line": 1026,
       "code": "C2227",
-      "msg": "left of '->PopulateItemList' must point to class/struct/union"
+      "msg": "left of '->bValid' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 1038,
-      "code": "C2273",
-      "msg": "'function-style cast' : illegal as right side of '->' operator"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 1039,
-      "code": "C2039",
-      "msg": "'FindFreeThread' : is not a member of 'CCBRoleState'"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 1044,
+      "line": 1026,
       "code": "C2227",
-      "msg": "left of '->GetDialogSlot' must point to class/struct/union"
+      "msg": "left of '->InitUI' must point to class/struct/union"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1026,
+      "code": "C2227",
+      "msg": "left of '->bValid' must point to class/struct/union"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1030,
+      "code": "C2039",
+      "msg": "'UpdatePanel' : is not a member of 'CCBRoleState'"
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
       "line": 1047,
       "code": "C2039",
-      "msg": "'FindFreeThread' : is not a member of 'CCBRoleState'"
+      "msg": "'UpdatePanel' : is not a member of 'CCBRoleState'"
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 1059,
-      "code": "C2102",
-      "msg": "'&' requires l-value"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 1068,
+      "line": 1066,
       "code": "C2039",
       "msg": "'SetCmdParam' : is not a member of 'gbImage2D'"
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 1102,
-      "code": "C2227",
-      "msg": "left of '->PopulateMagicList' must point to class/struct/union"
+      "line": 1067,
+      "code": "C2039",
+      "msg": "'UpdatePanel' : is not a member of 'CCBRoleState'"
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 1111,
+      "line": 1096,
       "code": "C2227",
-      "msg": "left of '->KeyPressed' must point to class/struct/union"
+      "msg": "left of '->PopulateItemList' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 1120,
+      "line": 1108,
       "code": "C2273",
       "msg": "'function-style cast' : illegal as right side of '->' operator"
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 1121,
-      "code": "C2039",
-      "msg": "'FindFreeThread' : is not a member of 'CCBRoleState'"
-     },
-     {
-      "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 1127,
+      "line": 1114,
       "code": "C2227",
-      "msg": "left of '->GetMagicSlotData' must point to class/struct/union"
+      "msg": "left of '->GetDialogSlot' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 1130,
+      "line": 1139,
+      "code": "C2102",
+      "msg": "'&' requires l-value"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1148,
       "code": "C2039",
-      "msg": "'FindFreeThread' : is not a member of 'CCBRoleState'"
+      "msg": "'SetCmdParam' : is not a member of 'gbImage2D'"
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 1133,
+      "line": 1182,
+      "code": "C2227",
+      "msg": "left of '->PopulateMagicList' must point to class/struct/union"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1191,
       "code": "C2227",
       "msg": "left of '->KeyPressed' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBRoleState.cpp",
-      "line": 1133,
+      "line": 1200,
+      "code": "C2273",
+      "msg": "'function-style cast' : illegal as right side of '->' operator"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1207,
+      "code": "C2227",
+      "msg": "left of '->GetMagicSlotData' must point to class/struct/union"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1223,
+      "code": "C2227",
+      "msg": "left of '->KeyPressed' must point to class/struct/union"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1236,
+      "code": "C2102",
+      "msg": "'&' requires l-value"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1245,
+      "code": "C2227",
+      "msg": "left of '->GetRoleField' must point to class/struct/union"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1250,
+      "code": "C2273",
+      "msg": "'function-style cast' : illegal as right side of '->' operator"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1251,
+      "code": "C2273",
+      "msg": "'function-style cast' : illegal as right side of '->' operator"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1252,
+      "code": "C2273",
+      "msg": "'function-style cast' : illegal as right side of '->' operator"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1253,
+      "code": "C2273",
+      "msg": "'function-style cast' : illegal as right side of '->' operator"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1263,
+      "code": "C2039",
+      "msg": "'SetCmdParam' : is not a member of 'gbImage2D'"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1296,
+      "code": "C2227",
+      "msg": "left of '->PopulateTargetList' must point to class/struct/union"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1309,
+      "code": "C2273",
+      "msg": "'function-style cast' : illegal as right side of '->' operator"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1317,
+      "code": "C2819",
+      "msg": "type 'CCBStageRole' does not have an overloaded member 'operator ->'"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1317,
+      "code": "C2227",
+      "msg": "left of '->GetAt' must point to class/struct/union"
+     },
+     {
+      "file": "pal3/src/Combat/CCBRoleState.cpp",
+      "line": 1317,
       "code": "C1003",
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 40,
+    "warnings": 41,
     "secs": 0.41
    },
    {
@@ -2330,8 +2323,8 @@
       "msg": "left of '->SetShow' must point to class/struct/union"
      }
     ],
-    "warnings": 34,
-    "secs": 0.36
+    "warnings": 35,
+    "secs": 0.35
    },
    {
     "unit": "pal3/src/Combat/CCBStage.cpp",
@@ -2950,7 +2943,7 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 48,
+    "warnings": 49,
     "secs": 0.42
    },
    {
@@ -3564,8 +3557,8 @@
       "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'"
      }
     ],
-    "warnings": 36,
-    "secs": 0.36
+    "warnings": 37,
+    "secs": 0.38
    },
    {
     "unit": "pal3/src/Combat/CCBStageEffect.cpp",
@@ -3602,8 +3595,8 @@
       "msg": "'Proceed' : is not a member of 'CCBStageEffect'"
      }
     ],
-    "warnings": 33,
-    "secs": 0.36
+    "warnings": 34,
+    "secs": 0.34
    },
    {
     "unit": "pal3/src/Combat/CCBStageRole.cpp",
@@ -4222,8 +4215,8 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 41,
-    "secs": 0.4
+    "warnings": 42,
+    "secs": 0.43
    },
    {
     "unit": "pal3/src/Combat/CCBStageScene.cpp",
@@ -4842,8 +4835,8 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 47,
-    "secs": 0.39
+    "warnings": 48,
+    "secs": 0.38
    },
    {
     "unit": "pal3/src/Combat/CCBStageShadow.cpp",
@@ -4886,8 +4879,8 @@
       "msg": "'HandleInput' : is not a member of 'CCBStageShadow'"
      }
     ],
-    "warnings": 39,
-    "secs": 0.37
+    "warnings": 40,
+    "secs": 0.36
    },
    {
     "unit": "pal3/src/Combat/CCBSystem.cpp",
@@ -5003,6 +4996,12 @@
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
+      "line": 616,
+      "code": "C2660",
+      "msg": "'FindFreeThread' : function does not take 10 parameters"
+     },
+     {
+      "file": "pal3/src/Combat/CCBSystem.cpp",
       "line": 617,
       "code": "C2039",
       "msg": "'SetPause' : is not a member of 'CCBUI'"
@@ -5039,475 +5038,469 @@
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 720,
+      "line": 673,
       "code": "C2039",
       "msg": "'CalcComboDirect' : is not a member of 'CCBSystem'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 721,
+      "line": 674,
       "code": "C2227",
       "msg": "left of '->IsCmdEmpty' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 722,
+      "line": 675,
       "code": "C2227",
       "msg": "left of '->IsCmdReady' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 724,
+      "line": 677,
       "code": "C2227",
       "msg": "left of '->GetCmdData' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 759,
+      "line": 712,
       "code": "C2039",
       "msg": "'GetRoleField' : is not a member of 'CCBSystem'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 768,
+      "line": 721,
       "code": "C2039",
       "msg": "'GetTotalRounds' : is not a member of 'CCBSystem'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 771,
+      "line": 724,
       "code": "C2039",
       "msg": "'CheckBuff' : is not a member of 'CCBSystem'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 775,
+      "line": 728,
       "code": "C2039",
       "msg": "'CheckBuff' : is not a member of 'CCBSystem'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 783,
+      "line": 736,
       "code": "C2227",
       "msg": "left of '->CreateObj' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 784,
+      "line": 737,
       "code": "C2227",
       "msg": "left of '->GetCmdData' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 787,
+      "line": 740,
       "code": "C2227",
       "msg": "left of '->HandleRoleStateDialog' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 788,
+      "line": 741,
       "code": "C2039",
       "msg": "'GetRoleField' : is not a member of 'CCBSystem'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 789,
+      "line": 742,
       "code": "C2039",
       "msg": "'ProcessRound' : is not a member of 'CCBSystem'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 796,
+      "line": 749,
       "code": "C2227",
       "msg": "left of '->ProcMessage' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 797,
+      "line": 750,
       "code": "C2039",
       "msg": "'LoadRoleModel' : is not a member of 'CCBSystem'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 800,
+      "line": 753,
       "code": "C2227",
       "msg": "left of '->HandleRoleStateDialog' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 806,
+      "line": 759,
       "code": "C2227",
       "msg": "left of '->ProcMessage' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 818,
+      "line": 771,
       "code": "C2227",
       "msg": "left of '->GetRoleIndex' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 823,
+      "line": 776,
       "code": "C2039",
       "msg": "'CheckRoleStatus' : is not a member of 'CCBSystem'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 824,
+      "line": 777,
       "code": "C2227",
       "msg": "left of '->GetRoleName' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 830,
+      "line": 783,
       "code": "C2227",
       "msg": "left of '->GetRoleIndex' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 834,
+      "line": 787,
       "code": "C2227",
       "msg": "left of '->GetRoleName' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 835,
+      "line": 788,
       "code": "C2039",
       "msg": "'CheckRoleStatus' : is not a member of 'CCBSystem'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 836,
+      "line": 789,
       "code": "C2227",
       "msg": "left of '->GetRoleName' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 838,
+      "line": 791,
       "code": "C2227",
       "msg": "left of '->GetStageRoleByIdx' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 994,
+      "line": 947,
       "code": "C2440",
       "msg": "'=' : cannot convert from 'unsigned char *' to 'unsigned long *'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 996,
+      "line": 949,
       "code": "C2227",
       "msg": "left of '->IsReady' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 998,
+      "line": 951,
       "code": "C2227",
       "msg": "left of '->ForceDelTaskByPFN' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1000,
+      "line": 953,
       "code": "C2227",
       "msg": "left of '->GetCurrentState' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1005,
+      "line": 958,
       "code": "C2227",
       "msg": "left of '->ForceDelTaskByPFN' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1020,
+      "line": 973,
       "code": "C2227",
       "msg": "left of '->ProcProtect' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1021,
+      "line": 974,
       "code": "C2039",
       "msg": "'EnqueueCommand' : is not a member of 'CCBSystem'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1087,
+      "line": 1040,
       "code": "C2065",
       "msg": "'compiler_init_00512420' : undeclared identifier"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1239,
+      "line": 1192,
       "code": "C2227",
       "msg": "left of '->FormatException' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1239,
+      "line": 1192,
       "code": "C2065",
       "msg": "'aDProjectPal3Co_6' : undeclared identifier"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1243,
+      "line": 1196,
       "code": "C2248",
       "msg": "'do_always_noconv' : cannot access protected member declared in class 'std::codecvt_base'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1249,
+      "line": 1202,
       "code": "C2059",
       "msg": "syntax error : 'this'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1251,
+      "line": 1204,
       "code": "C2039",
       "msg": "'v6' : is not a member of 'CCBUI'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1252,
+      "line": 1205,
       "code": "C2039",
       "msg": "'v34' : is not a member of 'CCBUI'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1258,
+      "line": 1211,
       "code": "C2227",
       "msg": "left of '->FormatException' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1268,
+      "line": 1221,
       "code": "C2059",
       "msg": "syntax error : 'this'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1270,
+      "line": 1223,
       "code": "C2039",
       "msg": "'v8' : is not a member of 'CCBRoleState'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1271,
+      "line": 1224,
       "code": "C2039",
       "msg": "'v34' : is not a member of 'CCBRoleState'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1277,
+      "line": 1230,
       "code": "C2227",
       "msg": "left of '->FormatException' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1287,
+      "line": 1240,
       "code": "C2059",
       "msg": "syntax error : 'this'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1289,
+      "line": 1242,
       "code": "C2039",
       "msg": "'inited' : is not a member of 'CCBSystem'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1290,
+      "line": 1243,
       "code": "C2039",
       "msg": "'v34' : is not a member of 'CCBSystem'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1296,
+      "line": 1249,
       "code": "C2227",
       "msg": "left of '->FormatException' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1300,
+      "line": 1253,
       "code": "C2872",
       "msg": "'codecvt_base' : ambiguous symbol"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1300,
+      "line": 1253,
       "code": "C2872",
       "msg": "'codecvt_base' : ambiguous symbol"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1300,
+      "line": 1253,
       "code": "C2039",
       "msg": "'codecvt_base' : is not a member of 'CCBAttackSequen'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1300,
+      "line": 1253,
       "code": "C2872",
       "msg": "'codecvt_base' : ambiguous symbol"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1300,
+      "line": 1253,
       "code": "C2872",
       "msg": "'codecvt_base' : ambiguous symbol"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1300,
+      "line": 1253,
       "code": "C2872",
       "msg": "'codecvt_base' : ambiguous symbol"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1300,
+      "line": 1253,
       "code": "C2872",
       "msg": "'codecvt_base' : ambiguous symbol"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1300,
+      "line": 1253,
       "code": "C2039",
       "msg": "'codecvt_base' : is not a member of 'CCBAttackSequen'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1300,
+      "line": 1253,
       "code": "C2653",
       "msg": "'codecvt_base' : is not a class or namespace name"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1300,
+      "line": 1253,
       "code": "C2039",
       "msg": "'do_always_noconv' : is not a member of 'CCBAttackSequen'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1317,
+      "line": 1270,
       "code": "C2227",
       "msg": "left of '->FormatException' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1321,
+      "line": 1274,
       "code": "C2227",
       "msg": "left of '->ResetSceneState' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1336,
+      "line": 1289,
       "code": "C2227",
       "msg": "left of '->FormatException' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1340,
+      "line": 1293,
       "code": "C2872",
       "msg": "'codecvt_base' : ambiguous symbol"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1340,
+      "line": 1293,
       "code": "C2872",
       "msg": "'codecvt_base' : ambiguous symbol"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1340,
+      "line": 1293,
       "code": "C2039",
       "msg": "'codecvt_base' : is not a member of 'CCBControl'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1340,
+      "line": 1293,
       "code": "C2872",
       "msg": "'codecvt_base' : ambiguous symbol"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1340,
+      "line": 1293,
       "code": "C2872",
       "msg": "'codecvt_base' : ambiguous symbol"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1340,
+      "line": 1293,
       "code": "C2872",
       "msg": "'codecvt_base' : ambiguous symbol"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1340,
+      "line": 1293,
       "code": "C2872",
       "msg": "'codecvt_base' : ambiguous symbol"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1340,
+      "line": 1293,
       "code": "C2039",
       "msg": "'codecvt_base' : is not a member of 'CCBControl'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1340,
+      "line": 1293,
       "code": "C2653",
       "msg": "'codecvt_base' : is not a class or namespace name"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1340,
+      "line": 1293,
       "code": "C2039",
       "msg": "'do_always_noconv' : is not a member of 'CCBControl'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1353,
+      "line": 1306,
       "code": "C2227",
       "msg": "left of '->FormatException' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1356,
+      "line": 1309,
       "code": "C2872",
       "msg": "'codecvt_base' : ambiguous symbol"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1356,
+      "line": 1309,
       "code": "C2872",
       "msg": "'codecvt_base' : ambiguous symbol"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1356,
+      "line": 1309,
       "code": "C2039",
       "msg": "'codecvt_base' : is not a member of 'CCBAI'"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1356,
+      "line": 1309,
       "code": "C2872",
       "msg": "'codecvt_base' : ambiguous symbol"
      },
      {
       "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1356,
-      "code": "C2872",
-      "msg": "'codecvt_base' : ambiguous symbol"
-     },
-     {
-      "file": "pal3/src/Combat/CCBSystem.cpp",
-      "line": 1356,
+      "line": 1309,
       "code": "C1003",
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 41,
-    "secs": 0.39
+    "warnings": 43,
+    "secs": 0.38
    },
    {
     "unit": "pal3/src/Combat/CCBUI.cpp",
@@ -5664,7 +5657,7 @@
       "msg": "unable to recover from previous error(s); stopping compilation"
      }
     ],
-    "warnings": 42,
+    "warnings": 44,
     "secs": 0.41
    },
    {
@@ -6284,8 +6277,8 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 35,
-    "secs": 0.35
+    "warnings": 36,
+    "secs": 0.36
    },
    {
     "unit": "pal3/src/Combat/CUtil.cpp",
@@ -6412,8 +6405,8 @@
       "msg": "'LoadQuadData' : is not a member of 'CScreenMode'"
      }
     ],
-    "warnings": 37,
-    "secs": 0.35
+    "warnings": 38,
+    "secs": 0.36
    },
    {
     "unit": "pal3/src/Combat/Combat.cpp",
@@ -6462,8 +6455,8 @@
       "msg": "left of '->GetCmdPtr' must point to class/struct/union"
      }
     ],
-    "warnings": 34,
-    "secs": 0.33
+    "warnings": 35,
+    "secs": 0.34
    },
    {
     "unit": "pal3/src/Data/CGameData.cpp",
@@ -6764,8 +6757,8 @@
       "msg": "left of '->Create' must point to class/struct/union"
      }
     ],
-    "warnings": 40,
-    "secs": 0.38
+    "warnings": 42,
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/Data/PAL_GDB.cpp",
@@ -7384,8 +7377,8 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 40,
-    "secs": 0.36
+    "warnings": 41,
+    "secs": 0.37
    },
    {
     "unit": "pal3/src/Effect/C2DSpark.cpp",
@@ -7447,7 +7440,7 @@
      }
     ],
     "warnings": 12,
-    "secs": 0.33
+    "secs": 0.34
    },
    {
     "unit": "pal3/src/Effect/C3DSpark.cpp",
@@ -7490,8 +7483,8 @@
       "msg": "'Render' : overloaded member function 'void (void)' not found in 'C3DSpark'"
      }
     ],
-    "warnings": 33,
-    "secs": 0.33
+    "warnings": 34,
+    "secs": 0.35
    },
    {
     "unit": "pal3/src/Effect/CEffCylinder.cpp",
@@ -7528,8 +7521,8 @@
       "msg": "unable to recover from previous error(s); stopping compilation"
      }
     ],
-    "warnings": 33,
-    "secs": 0.34
+    "warnings": 34,
+    "secs": 0.35
    },
    {
     "unit": "pal3/src/Effect/CEffExplosive.cpp",
@@ -7640,8 +7633,8 @@
       "msg": "unable to recover from previous error(s); stopping compilation"
      }
     ],
-    "warnings": 33,
-    "secs": 0.33
+    "warnings": 34,
+    "secs": 0.34
    },
    {
     "unit": "pal3/src/Effect/CEffMeteor.cpp",
@@ -7666,8 +7659,8 @@
       "msg": "unable to recover from previous error(s); stopping compilation"
      }
     ],
-    "warnings": 33,
-    "secs": 0.33
+    "warnings": 34,
+    "secs": 0.34
    },
    {
     "unit": "pal3/src/Effect/CEffMgr.cpp",
@@ -8444,7 +8437,7 @@
       "msg": "syntax error : '}'"
      }
     ],
-    "warnings": 32,
+    "warnings": 33,
     "secs": 0.35
    },
    {
@@ -8465,7 +8458,7 @@
      }
     ],
     "warnings": 13,
-    "secs": 0.33
+    "secs": 0.35
    },
    {
     "unit": "pal3/src/Effect/CEffQuake.cpp",
@@ -8550,8 +8543,8 @@
       "msg": "'type cast' : cannot convert from 'class tagLoggerCallback' to 'int'"
      }
     ],
-    "warnings": 34,
-    "secs": 0.33
+    "warnings": 35,
+    "secs": 0.35
    },
    {
     "unit": "pal3/src/Effect/CEffSParticle.cpp",
@@ -8582,8 +8575,8 @@
       "msg": "unable to recover from previous error(s); stopping compilation"
      }
     ],
-    "warnings": 34,
-    "secs": 0.35
+    "warnings": 35,
+    "secs": 0.34
    },
    {
     "unit": "pal3/src/Effect/CEffShock.cpp",
@@ -8602,8 +8595,8 @@
       "msg": "left of '->Reset' must point to class/struct/union"
      }
     ],
-    "warnings": 32,
-    "secs": 0.35
+    "warnings": 33,
+    "secs": 0.33
    },
    {
     "unit": "pal3/src/Effect/CEffect.cpp",
@@ -8880,8 +8873,8 @@
       "msg": "left of '->Release' must point to class/struct/union"
      }
     ],
-    "warnings": 41,
-    "secs": 0.37
+    "warnings": 42,
+    "secs": 0.36
    },
    {
     "unit": "pal3/src/Effect/CEffectSystem.cpp",
@@ -8972,8 +8965,8 @@
       "msg": "'unk_5D88EC' : undeclared identifier"
      }
     ],
-    "warnings": 37,
-    "secs": 0.35
+    "warnings": 38,
+    "secs": 0.34
    },
    {
     "unit": "pal3/src/Effect/CEffgbParticle.cpp",
@@ -9256,15 +9249,15 @@
       "msg": "'_nearby_4cfd40' : overloaded member function 'int (void)' not found in 'CEffgbParticle'"
      }
     ],
-    "warnings": 39,
-    "secs": 0.35
+    "warnings": 40,
+    "secs": 0.37
    },
    {
     "unit": "pal3/src/Effect/CMeteorChain.cpp",
     "status": "ok",
     "errors": [],
-    "warnings": 37,
-    "secs": 0.35
+    "warnings": 38,
+    "secs": 0.38
    },
    {
     "unit": "pal3/src/Effect/ScreenEffect.cpp",
@@ -9415,8 +9408,8 @@
       "msg": "left of '->ResetBase' must point to class/struct/union"
      }
     ],
-    "warnings": 34,
-    "secs": 0.35
+    "warnings": 35,
+    "secs": 0.38
    },
    {
     "unit": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -9651,8 +9644,8 @@
       "msg": "'GetAABBox' : cannot convert parameter 1 from 'struct gbAABBox' to 'struct gbAABBox *'"
      }
     ],
-    "warnings": 33,
-    "secs": 0.37
+    "warnings": 34,
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/GameBase/Config.cpp",
@@ -9762,7 +9755,7 @@
      }
     ],
     "warnings": 13,
-    "secs": 0.35
+    "secs": 0.38
    },
    {
     "unit": "pal3/src/GameBase/GRPinput.cpp",
@@ -10255,7 +10248,7 @@
       "msg": "'type cast' : cannot convert from 'struct IDirectInput8A' to 'void (__cdecl *)(class GRPinput *,int,int,unsigned long)'"
      }
     ],
-    "warnings": 131,
+    "warnings": 132,
     "secs": 0.34
    },
    {
@@ -10275,7 +10268,7 @@
       "msg": "'ProcessKeyboard' : function does not take 1 parameters"
      }
     ],
-    "warnings": 33,
+    "warnings": 35,
     "secs": 0.35
    },
    {
@@ -10331,8 +10324,8 @@
       "msg": "'WriteRoleNames' : overloaded member function 'char *(void)' not found in 'Logger'"
      }
     ],
-    "warnings": 35,
-    "secs": 0.34
+    "warnings": 36,
+    "secs": 0.33
    },
    {
     "unit": "pal3/src/GameBase/PAL3.cpp",
@@ -10945,8 +10938,8 @@
       "msg": "'=' : cannot convert from 'class PAL3 *' to 'int'"
      }
     ],
-    "warnings": 49,
-    "secs": 0.4
+    "warnings": 52,
+    "secs": 0.42
    },
    {
     "unit": "pal3/src/GameBase/SoundSystem.cpp",
@@ -10984,7 +10977,7 @@
      }
     ],
     "warnings": 12,
-    "secs": 0.32
+    "secs": 0.34
    },
    {
     "unit": "pal3/src/MiniGame/MiniGame1.cpp",
@@ -11039,8 +11032,8 @@
       "msg": "left of '->GetScreenDegree' must point to class/struct/union"
      }
     ],
-    "warnings": 32,
-    "secs": 0.32
+    "warnings": 33,
+    "secs": 0.34
    },
    {
     "unit": "pal3/src/MiniGame/MiniGame3.cpp",
@@ -11191,8 +11184,8 @@
       "msg": "conditional expression of type 'class MiniGame3' is illegal"
      }
     ],
-    "warnings": 32,
-    "secs": 0.33
+    "warnings": 34,
+    "secs": 0.36
    },
    {
     "unit": "pal3/src/Misc/ARC_PlayerAtt.cpp",
@@ -11205,7 +11198,7 @@
       "msg": "left of '->InitAfterClear' must point to class/struct/union"
      }
     ],
-    "warnings": 32,
+    "warnings": 33,
     "secs": 0.39
    },
    {
@@ -11335,8 +11328,8 @@
       "msg": "'IRender' : is not a member of 'ArcLocaleRole'"
      }
     ],
-    "warnings": 32,
-    "secs": 0.39
+    "warnings": 33,
+    "secs": 0.4
    },
    {
     "unit": "pal3/src/Misc/ArcPastScene.cpp",
@@ -11355,7 +11348,7 @@
       "msg": "'Destroy' : is not a member of 'ArcPastScene'"
      }
     ],
-    "warnings": 32,
+    "warnings": 33,
     "secs": 0.4
    },
    {
@@ -11939,7 +11932,7 @@
       "msg": "left of '->SetShow' must point to class/struct/union"
      }
     ],
-    "warnings": 32,
+    "warnings": 33,
     "secs": 0.39
    },
    {
@@ -12051,8 +12044,8 @@
       "msg": "'HandleItemPage' : overloaded member function 'double (int,int)' not found in 'Array'"
      }
     ],
-    "warnings": 35,
-    "secs": 0.48
+    "warnings": 37,
+    "secs": 0.46
    },
    {
     "unit": "pal3/src/Misc/BINK.cpp",
@@ -12083,8 +12076,8 @@
       "msg": "'=' : cannot convert from 'void ** ' to 'unsigned long'"
      }
     ],
-    "warnings": 33,
-    "secs": 0.39
+    "warnings": 34,
+    "secs": 0.38
    },
    {
     "unit": "pal3/src/Misc/CCBEditor.cpp",
@@ -12201,8 +12194,8 @@
       "msg": "left of '->ApplyRotationAxis' must point to class/struct/union"
      }
     ],
-    "warnings": 34,
-    "secs": 0.42
+    "warnings": 35,
+    "secs": 0.41
    },
    {
     "unit": "pal3/src/Misc/CCBPanelSlot.cpp",
@@ -12222,7 +12215,7 @@
      }
     ],
     "warnings": 13,
-    "secs": 0.4
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/Misc/CCBUIPanel.cpp",
@@ -12757,8 +12750,8 @@
       "msg": "left of '->GetCurSel' must point to class/struct/union"
      }
     ],
-    "warnings": 37,
-    "secs": 0.48
+    "warnings": 39,
+    "secs": 0.46
    },
    {
     "unit": "pal3/src/Misc/CEffAction.cpp",
@@ -12851,7 +12844,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 17,
-    "secs": 0.41
+    "secs": 0.42
    },
    {
     "unit": "pal3/src/Misc/CG_Entry.cpp",
@@ -12871,7 +12864,7 @@
      }
     ],
     "warnings": 12,
-    "secs": 0.4
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/Misc/CJ_FindFile.cpp",
@@ -12944,15 +12937,15 @@
       "msg": "left of '->GetPosition' must point to class/struct/union"
      }
     ],
-    "warnings": 33,
-    "secs": 0.4
+    "warnings": 34,
+    "secs": 0.41
    },
    {
     "unit": "pal3/src/Misc/CScreenModeNode.cpp",
     "status": "ok",
     "errors": [],
     "warnings": 17,
-    "secs": 0.38
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/Misc/ChoseCompose.cpp",
@@ -13319,8 +13312,8 @@
       "msg": "'=' : cannot convert from 'void ** ' to 'unsigned long *'"
      }
     ],
-    "warnings": 33,
-    "secs": 0.39
+    "warnings": 35,
+    "secs": 0.4
    },
    {
     "unit": "pal3/src/Misc/Comp_Donate.cpp",
@@ -13377,7 +13370,7 @@
      }
     ],
     "warnings": 12,
-    "secs": 0.42
+    "secs": 0.41
    },
    {
     "unit": "pal3/src/Misc/ComposeUI.cpp",
@@ -13390,8 +13383,8 @@
       "msg": "'&' requires l-value"
      }
     ],
-    "warnings": 33,
-    "secs": 0.4
+    "warnings": 35,
+    "secs": 0.42
    },
    {
     "unit": "pal3/src/Misc/DealData.cpp",
@@ -13458,7 +13451,7 @@
       "msg": "unable to recover from previous error(s); stopping compilation"
      }
     ],
-    "warnings": 32,
+    "warnings": 33,
     "secs": 0.4
    },
    {
@@ -13484,7 +13477,7 @@
       "msg": "'NegateStateMode' : is not a member of 'ExternalStatistics'"
      }
     ],
-    "warnings": 32,
+    "warnings": 33,
     "secs": 0.39
    },
    {
@@ -13540,7 +13533,7 @@
       "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int)' to 'unsigned long'"
      }
     ],
-    "warnings": 32,
+    "warnings": 33,
     "secs": 0.41
    },
    {
@@ -13819,67 +13812,61 @@
      },
      {
       "file": "pal3/src/Misc/JusticeBookUI.cpp",
-      "line": 273,
+      "line": 274,
       "code": "C2819",
       "msg": "type 'UIStatic' does not have an overloaded member 'operator ->'"
      },
      {
       "file": "pal3/src/Misc/JusticeBookUI.cpp",
-      "line": 273,
+      "line": 274,
       "code": "C2227",
       "msg": "left of '->SetByte' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Misc/JusticeBookUI.cpp",
-      "line": 274,
-      "code": "C2039",
-      "msg": "'CountActiveParticles' : is not a member of 'JusticeBookUI'"
-     },
-     {
-      "file": "pal3/src/Misc/JusticeBookUI.cpp",
-      "line": 282,
+      "line": 283,
       "code": "C2227",
       "msg": "left of '->FindSequenceSlot' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Misc/JusticeBookUI.cpp",
-      "line": 286,
+      "line": 287,
       "code": "C2227",
       "msg": "left of '->InitSceneAudio' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Misc/JusticeBookUI.cpp",
-      "line": 295,
+      "line": 296,
       "code": "C2039",
       "msg": "'CallFaceMethod' : is not a member of 'JusticeBookUI'"
      },
      {
       "file": "pal3/src/Misc/JusticeBookUI.cpp",
-      "line": 321,
+      "line": 322,
       "code": "C2039",
       "msg": "'CallFaceMethod' : is not a member of 'JusticeBookUI'"
      },
      {
       "file": "pal3/src/Misc/JusticeBookUI.cpp",
-      "line": 349,
+      "line": 350,
       "code": "C2819",
       "msg": "type 'GRPinput' does not have an overloaded member 'operator ->'"
      },
      {
       "file": "pal3/src/Misc/JusticeBookUI.cpp",
-      "line": 349,
+      "line": 350,
       "code": "C2227",
       "msg": "left of '->GetMousePos' must point to class/struct/union"
      },
      {
       "file": "pal3/src/Misc/JusticeBookUI.cpp",
-      "line": 355,
+      "line": 356,
       "code": "C2664",
       "msg": "'OnMessage' : cannot convert parameter 2 from 'int' to 'char *'"
      }
     ],
-    "warnings": 35,
-    "secs": 0.46
+    "warnings": 38,
+    "secs": 0.47
    },
    {
     "unit": "pal3/src/Misc/LineupComp.cpp",
@@ -13940,8 +13927,8 @@
       "msg": "'int (unsigned long,unsigned long)' : cannot convert parameter 1 from 'int (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'"
      }
     ],
-    "warnings": 33,
-    "secs": 0.39
+    "warnings": 34,
+    "secs": 0.4
    },
    {
     "unit": "pal3/src/Misc/LineupUI.cpp",
@@ -14560,8 +14547,8 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 38,
-    "secs": 0.5
+    "warnings": 41,
+    "secs": 0.49
    },
    {
     "unit": "pal3/src/Misc/MUIDialog.cpp",
@@ -14647,7 +14634,7 @@
      }
     ],
     "warnings": 24,
-    "secs": 0.39
+    "secs": 0.4
    },
    {
     "unit": "pal3/src/Misc/MainEquipUI.cpp",
@@ -15266,7 +15253,7 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 38,
+    "warnings": 41,
     "secs": 0.5
    },
    {
@@ -15382,8 +15369,8 @@
       "msg": "'OnMessage' : cannot convert parameter 2 from 'int *' to 'int'"
      }
     ],
-    "warnings": 34,
-    "secs": 0.43
+    "warnings": 36,
+    "secs": 0.44
    },
    {
     "unit": "pal3/src/Misc/Math.cpp",
@@ -15460,14 +15447,14 @@
      }
     ],
     "warnings": 12,
-    "secs": 0.39
+    "secs": 0.4
    },
    {
     "unit": "pal3/src/Misc/NameSys.cpp",
     "status": "ok",
     "errors": [],
-    "warnings": 38,
-    "secs": 0.38
+    "warnings": 39,
+    "secs": 0.4
    },
    {
     "unit": "pal3/src/Misc/NavFaceLayer.cpp",
@@ -15493,21 +15480,21 @@
      }
     ],
     "warnings": 12,
-    "secs": 0.4
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/Misc/OpenBaseFile.cpp",
     "status": "ok",
     "errors": [],
     "warnings": 17,
-    "secs": 0.39
+    "secs": 0.4
    },
    {
     "unit": "pal3/src/Misc/OpenNULLFile.cpp",
     "status": "ok",
     "errors": [],
     "warnings": 17,
-    "secs": 0.4
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/Misc/OpenSceneFile.cpp",
@@ -15547,7 +15534,7 @@
      }
     ],
     "warnings": 12,
-    "secs": 0.39
+    "secs": 0.38
    },
    {
     "unit": "pal3/src/Misc/PalScriptIdleObj.cpp",
@@ -15591,7 +15578,7 @@
      }
     ],
     "warnings": 12,
-    "secs": 0.41
+    "secs": 0.4
    },
    {
     "unit": "pal3/src/Misc/PalScriptWaitObj.cpp",
@@ -15611,14 +15598,14 @@
      }
     ],
     "warnings": 12,
-    "secs": 0.38
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/Misc/Parent_Data.cpp",
     "status": "ok",
     "errors": [],
     "warnings": 17,
-    "secs": 0.39
+    "secs": 0.41
    },
    {
     "unit": "pal3/src/Misc/ParticleEffect.cpp",
@@ -15686,7 +15673,7 @@
      }
     ],
     "warnings": 12,
-    "secs": 0.38
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/Misc/PathObj.cpp",
@@ -15700,7 +15687,7 @@
      }
     ],
     "warnings": 13,
-    "secs": 0.38
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/Misc/PlayerAtt.cpp",
@@ -16326,7 +16313,7 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 36,
+    "warnings": 37,
     "secs": 0.44
    },
    {
@@ -16629,7 +16616,7 @@
      }
     ],
     "warnings": 12,
-    "secs": 0.39
+    "secs": 0.38
    },
    {
     "unit": "pal3/src/Misc/RenderTargetNode.cpp",
@@ -16901,8 +16888,8 @@
       "msg": "left of '->Normalize' must point to class/struct/union"
      }
     ],
-    "warnings": 34,
-    "secs": 0.45
+    "warnings": 35,
+    "secs": 0.44
    },
    {
     "unit": "pal3/src/Misc/RoleCamera.cpp",
@@ -16915,7 +16902,7 @@
       "msg": "left of '->SetLookAt' must point to class/struct/union"
      }
     ],
-    "warnings": 33,
+    "warnings": 34,
     "secs": 0.39
    },
    {
@@ -17091,7 +17078,7 @@
       "msg": "'CalcViewTransform' : is not a member of 'RoleCameraCtrl'"
      }
     ],
-    "warnings": 33,
+    "warnings": 34,
     "secs": 0.39
    },
    {
@@ -17225,8 +17212,8 @@
       "msg": "'sprintf' : cannot convert parameter 2 from 'int *' to 'const char *'"
      }
     ],
-    "warnings": 33,
-    "secs": 0.38
+    "warnings": 34,
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/Misc/SaleUI.cpp",
@@ -17845,8 +17832,8 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 44,
-    "secs": 0.52
+    "warnings": 46,
+    "secs": 0.5
    },
    {
     "unit": "pal3/src/Misc/SceneInfo.cpp",
@@ -17907,43 +17894,36 @@
       "msg": "'IsHitBottom' : is not a member of 'SceneInfo'"
      }
     ],
-    "warnings": 32,
-    "secs": 0.38
+    "warnings": 33,
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/Misc/SceneMapPlayer.cpp",
     "status": "ok",
     "errors": [],
     "warnings": 17,
-    "secs": 0.39
+    "secs": 0.38
    },
    {
     "unit": "pal3/src/Misc/SceneObjParam.cpp",
-    "status": "fail",
-    "errors": [
-     {
-      "file": "pal3/src/Misc/SceneObjParam.cpp",
-      "line": 43,
-      "code": "C2039",
-      "msg": "'FlushCommandQueue' : is not a member of 'SceneObjParam'"
-     }
-    ],
-    "warnings": 35,
-    "secs": 0.42
+    "status": "ok",
+    "errors": [],
+    "warnings": 41,
+    "secs": 0.4
    },
    {
     "unit": "pal3/src/Misc/SceneProp.cpp",
     "status": "ok",
     "errors": [],
-    "warnings": 38,
-    "secs": 0.41
+    "warnings": 39,
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/Misc/ScreenEffectNode.cpp",
     "status": "ok",
     "errors": [],
-    "warnings": 38,
-    "secs": 0.4
+    "warnings": 39,
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/Misc/ScriptPoolPage.cpp",
@@ -17962,15 +17942,15 @@
       "msg": "'ProcessKeyboard' : function does not take 1 parameters"
      }
     ],
-    "warnings": 34,
-    "secs": 0.41
+    "warnings": 35,
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/Misc/ScriptSystemData.cpp",
     "status": "ok",
     "errors": [],
-    "warnings": 37,
-    "secs": 0.42
+    "warnings": 38,
+    "secs": 0.4
    },
    {
     "unit": "pal3/src/Misc/ScriptVM.cpp",
@@ -18265,8 +18245,8 @@
       "msg": "'=' : cannot convert from 'unsigned long *' to 'unsigned long'"
      }
     ],
-    "warnings": 33,
-    "secs": 0.43
+    "warnings": 34,
+    "secs": 0.42
    },
    {
     "unit": "pal3/src/Misc/SoundMgr.cpp",
@@ -18304,7 +18284,7 @@
      }
     ],
     "warnings": 12,
-    "secs": 0.41
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/Misc/String.cpp",
@@ -18396,7 +18376,7 @@
      }
     ],
     "warnings": 12,
-    "secs": 0.38
+    "secs": 0.41
    },
    {
     "unit": "pal3/src/Misc/SwordUI.cpp",
@@ -18481,8 +18461,8 @@
       "msg": "left of '->CreateFromFile' must point to class/struct/union"
      }
     ],
-    "warnings": 33,
-    "secs": 0.43
+    "warnings": 35,
+    "secs": 0.46
    },
    {
     "unit": "pal3/src/Misc/SystemUI.cpp",
@@ -19101,8 +19081,8 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 37,
-    "secs": 0.5
+    "warnings": 40,
+    "secs": 0.53
    },
    {
     "unit": "pal3/src/Misc/TaskBookUI.cpp",
@@ -19277,7 +19257,7 @@
       "msg": "'=' : cannot convert from 'void (__cdecl *)(char *,const char *)' to 'void (__stdcall *)(char *,const char *)'"
      }
     ],
-    "warnings": 33,
+    "warnings": 35,
     "secs": 0.41
    },
    {
@@ -19388,7 +19368,7 @@
      }
     ],
     "warnings": 12,
-    "secs": 0.37
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/Misc/TxtFile.cpp",
@@ -19480,15 +19460,15 @@
       "msg": "'CalcViewTransform' : is not a member of 'UI3DCtrl'"
      }
     ],
-    "warnings": 34,
-    "secs": 0.39
+    "warnings": 35,
+    "secs": 0.38
    },
    {
     "unit": "pal3/src/Misc/UI3DModelNode.cpp",
     "status": "ok",
     "errors": [],
-    "warnings": 38,
-    "secs": 0.4
+    "warnings": 39,
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/Misc/UIAnimateCtrl.cpp",
@@ -19802,7 +19782,7 @@
       "msg": "'function-style cast' : illegal as right side of '->' operator"
      }
     ],
-    "warnings": 34,
+    "warnings": 35,
     "secs": 0.42
    },
    {
@@ -20422,8 +20402,8 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 38,
-    "secs": 0.54
+    "warnings": 41,
+    "secs": 0.52
    },
    {
     "unit": "pal3/src/Misc/UIButton.cpp",
@@ -20520,8 +20500,8 @@
       "msg": "left of '->SetLibFolder' must point to class/struct/union"
      }
     ],
-    "warnings": 35,
-    "secs": 0.43
+    "warnings": 37,
+    "secs": 0.41
    },
    {
     "unit": "pal3/src/Misc/UICaption.cpp",
@@ -20636,8 +20616,8 @@
       "msg": "'Update' : is not a member of 'UICaption'"
      }
     ],
-    "warnings": 36,
-    "secs": 0.43
+    "warnings": 38,
+    "secs": 0.42
    },
    {
     "unit": "pal3/src/Misc/UICoverFrm.cpp",
@@ -20866,8 +20846,8 @@
       "msg": "'fscanf' : cannot convert parameter 2 from 'int *' to 'const char *'"
      }
     ],
-    "warnings": 36,
-    "secs": 0.48
+    "warnings": 37,
+    "secs": 0.46
    },
    {
     "unit": "pal3/src/Misc/UIEmote.cpp",
@@ -20970,8 +20950,8 @@
       "msg": "'HandleDeviceLostC' : is not a member of 'UIEmote'"
      }
     ],
-    "warnings": 34,
-    "secs": 0.42
+    "warnings": 35,
+    "secs": 0.4
    },
    {
     "unit": "pal3/src/Misc/UIFrameWnd.cpp",
@@ -21206,8 +21186,8 @@
       "msg": "left of '->PointWorldToScr' must point to class/struct/union"
      }
     ],
-    "warnings": 36,
-    "secs": 0.43
+    "warnings": 38,
+    "secs": 0.41
    },
    {
     "unit": "pal3/src/Misc/UIGameFrm.cpp",
@@ -21244,8 +21224,8 @@
       "msg": "'HandleMessage' : is not a member of 'UIGameFrm'"
      }
     ],
-    "warnings": 34,
-    "secs": 0.47
+    "warnings": 36,
+    "secs": 0.45
    },
    {
     "unit": "pal3/src/Misc/UIGameOver.cpp",
@@ -21294,8 +21274,8 @@
       "msg": "'CalcViewTransform' : is not a member of 'UIGameOver'"
      }
     ],
-    "warnings": 32,
-    "secs": 0.39
+    "warnings": 34,
+    "secs": 0.38
    },
    {
     "unit": "pal3/src/Misc/UILoadingFrm.cpp",
@@ -21458,7 +21438,7 @@
       "msg": "'CalcViewTransform' : is not a member of 'UILoadingFrm'"
      }
     ],
-    "warnings": 34,
+    "warnings": 36,
     "secs": 0.4
    },
    {
@@ -21562,22 +21542,8 @@
       "msg": "'Update' : is not a member of 'UIMap'"
      }
     ],
-    "warnings": 35,
-    "secs": 0.42
-   },
-   {
-    "unit": "pal3/src/Misc/UIParticle.cpp",
-    "status": "fail",
-    "errors": [
-     {
-      "file": "pal3/src/Misc/UIParticle.cpp",
-      "line": 9,
-      "code": "C2511",
-      "msg": "'CountActiveParticles' : overloaded member function 'int *(void)' not found in 'UIParticle'"
-     }
-    ],
-    "warnings": 12,
-    "secs": 0.38
+    "warnings": 36,
+    "secs": 0.41
    },
    {
     "unit": "pal3/src/Misc/UIProgressBar.cpp",
@@ -22154,7 +22120,7 @@
       "msg": "'Update' : is not a member of 'UIProgressBar'"
      }
     ],
-    "warnings": 34,
+    "warnings": 36,
     "secs": 0.4
    },
    {
@@ -22162,7 +22128,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 17,
-    "secs": 0.39
+    "secs": 0.38
    },
    {
     "unit": "pal3/src/Misc/UIRoleDialog.cpp",
@@ -22367,7 +22333,7 @@
       "msg": "'End' : is not a member of 'gbTexture'"
      }
     ],
-    "warnings": 38,
+    "warnings": 39,
     "secs": 0.43
    },
    {
@@ -22375,7 +22341,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 17,
-    "secs": 0.41
+    "secs": 0.43
    },
    {
     "unit": "pal3/src/Misc/UIRoleSelectDialog.cpp",
@@ -22682,8 +22648,8 @@
       "msg": "'_UIFrameWnd' : is not a member of 'UIRoleSelectDialog'"
      }
     ],
-    "warnings": 36,
-    "secs": 0.43
+    "warnings": 38,
+    "secs": 0.42
    },
    {
     "unit": "pal3/src/Misc/UISceneFace.cpp",
@@ -22726,8 +22692,8 @@
       "msg": "left of '->FindChildByName' must point to class/struct/union"
      }
     ],
-    "warnings": 33,
-    "secs": 0.41
+    "warnings": 34,
+    "secs": 0.4
    },
    {
     "unit": "pal3/src/Misc/UISceneFrm.cpp",
@@ -23160,7 +23126,7 @@
       "msg": "'lstrcpyA' : cannot convert parameter 1 from 'unsigned char *' to 'char *'"
      }
     ],
-    "warnings": 36,
+    "warnings": 38,
     "secs": 0.43
    },
    {
@@ -23336,8 +23302,8 @@
       "msg": "'UIFrameWnd' : is not a class or namespace name"
      }
     ],
-    "warnings": 36,
-    "secs": 0.44
+    "warnings": 38,
+    "secs": 0.43
    },
    {
     "unit": "pal3/src/Misc/UIScenePanel.cpp",
@@ -23956,15 +23922,15 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 39,
-    "secs": 0.52
+    "warnings": 42,
+    "secs": 0.5
    },
    {
     "unit": "pal3/src/Misc/UIScrollBar.cpp",
     "status": "ok",
     "errors": [],
     "warnings": 17,
-    "secs": 0.39
+    "secs": 0.38
    },
    {
     "unit": "pal3/src/Misc/UIStatic.cpp",
@@ -24211,15 +24177,15 @@
       "msg": "left of '->CreateParentData' must point to class/struct/union"
      }
     ],
-    "warnings": 35,
-    "secs": 0.45
+    "warnings": 37,
+    "secs": 0.44
    },
    {
     "unit": "pal3/src/Misc/UITabCtrl.cpp",
     "status": "ok",
     "errors": [],
     "warnings": 17,
-    "secs": 0.41
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/Misc/UITextArea.cpp",
@@ -24250,8 +24216,8 @@
       "msg": "left of '->MoveWindow' must point to class/struct/union"
      }
     ],
-    "warnings": 34,
-    "secs": 0.42
+    "warnings": 36,
+    "secs": 0.4
    },
    {
     "unit": "pal3/src/Misc/UITitle.cpp",
@@ -24600,8 +24566,8 @@
       "msg": "'InvokeItemMethod' : is not a member of 'UITitle'"
      }
     ],
-    "warnings": 36,
-    "secs": 0.45
+    "warnings": 37,
+    "secs": 0.43
    },
    {
     "unit": "pal3/src/Misc/UITitle_ArcSave.cpp",
@@ -24788,8 +24754,8 @@
       "msg": "left of '->Load' must point to class/struct/union"
      }
     ],
-    "warnings": 70,
-    "secs": 0.45
+    "warnings": 71,
+    "secs": 0.43
    },
    {
     "unit": "pal3/src/Misc/UITitle_BBTY.cpp",
@@ -24916,8 +24882,8 @@
       "msg": "left of '->GetCursorPos' must point to class/struct/union"
      }
     ],
-    "warnings": 34,
-    "secs": 0.45
+    "warnings": 36,
+    "secs": 0.42
    },
    {
     "unit": "pal3/src/Misc/UITitle_JDHY.cpp",
@@ -25206,15 +25172,15 @@
       "msg": "left of '->OnMessage' must point to class/struct/union"
      }
     ],
-    "warnings": 36,
+    "warnings": 39,
     "secs": 0.48
    },
    {
     "unit": "pal3/src/Misc/UITitle_QCYM.cpp",
     "status": "ok",
     "errors": [],
-    "warnings": 42,
-    "secs": 0.42
+    "warnings": 43,
+    "secs": 0.4
    },
    {
     "unit": "pal3/src/Misc/UITitle_XJTM.cpp",
@@ -25833,7 +25799,7 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 34,
+    "warnings": 36,
     "secs": 0.41
    },
    {
@@ -25991,8 +25957,8 @@
       "msg": "left of '->CalcPosition' must point to class/struct/union"
      }
     ],
-    "warnings": 34,
-    "secs": 0.4
+    "warnings": 36,
+    "secs": 0.43
    },
    {
     "unit": "pal3/src/Misc/VideoPlayer.cpp",
@@ -26005,29 +25971,15 @@
     "unit": "pal3/src/Misc/_Console.cpp",
     "status": "ok",
     "errors": [],
-    "warnings": 38,
-    "secs": 0.41
+    "warnings": 39,
+    "secs": 0.4
    },
    {
     "unit": "pal3/src/Misc/_Texture_Info.cpp",
     "status": "ok",
     "errors": [],
-    "warnings": 38,
+    "warnings": 39,
     "secs": 0.41
-   },
-   {
-    "unit": "pal3/src/Misc/_Texture_uv.cpp",
-    "status": "fail",
-    "errors": [
-     {
-      "file": "pal3/src/Misc/_Texture_uv.cpp",
-      "line": 11,
-      "code": "C2511",
-      "msg": "'operator_' : overloaded member function 'class _Texture_uv (void)' not found in '_Texture_uv'"
-     }
-    ],
-    "warnings": 12,
-    "secs": 0.39
    },
    {
     "unit": "pal3/src/Misc/s_RoleState.cpp",
@@ -26124,8 +26076,8 @@
       "msg": "'LoadFromFile' : is not a member of 'gbTexture'"
      }
     ],
-    "warnings": 33,
-    "secs": 0.43
+    "warnings": 35,
+    "secs": 0.41
    },
    {
     "unit": "pal3/src/Misc/scAsmDecoder.cpp",
@@ -26366,7 +26318,7 @@
       "msg": "left of '->UpdateTransform' must point to class/struct/union"
      }
     ],
-    "warnings": 35,
+    "warnings": 36,
     "secs": 0.4
    },
    {
@@ -26381,7 +26333,7 @@
      }
     ],
     "warnings": 12,
-    "secs": 0.39
+    "secs": 0.4
    },
    {
     "unit": "pal3/src/Render/CScreenMode.cpp",
@@ -27000,8 +26952,8 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 39,
-    "secs": 0.41
+    "warnings": 42,
+    "secs": 0.43
    },
    {
     "unit": "pal3/src/Render/RenderTarget.cpp",
@@ -27620,8 +27572,8 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 36,
-    "secs": 0.4
+    "warnings": 38,
+    "secs": 0.41
    },
    {
     "unit": "pal3/src/Render/RenderTarget2.cpp",
@@ -28174,7 +28126,7 @@
       "msg": "unexpected end of file found"
      }
     ],
-    "warnings": 37,
+    "warnings": 38,
     "secs": 0.36
    },
    {
@@ -28230,7 +28182,7 @@
       "msg": "'PopMatrixStacks' : cannot convert parameter 1 from 'int *' to 'int'"
      }
     ],
-    "warnings": 33,
+    "warnings": 34,
     "secs": 0.34
    },
    {
@@ -28972,8 +28924,8 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 43,
-    "secs": 0.38
+    "warnings": 44,
+    "secs": 0.37
    },
    {
     "unit": "pal3/src/Role/NPC.cpp",
@@ -29232,8 +29184,8 @@
       "msg": "left of '->ShowWindow' must point to class/struct/union"
      }
     ],
-    "warnings": 33,
-    "secs": 0.35
+    "warnings": 34,
+    "secs": 0.33
    },
    {
     "unit": "pal3/src/Role/Object3D.cpp",
@@ -29666,8 +29618,8 @@
       "msg": "illegal indirection"
      }
     ],
-    "warnings": 32,
-    "secs": 0.34
+    "warnings": 33,
+    "secs": 0.32
    },
    {
     "unit": "pal3/src/Role/ObjectCamera.cpp",
@@ -29698,8 +29650,8 @@
       "msg": "left of '->Length' must point to class/struct/union"
      }
     ],
-    "warnings": 34,
-    "secs": 0.34
+    "warnings": 35,
+    "secs": 0.35
    },
    {
     "unit": "pal3/src/Role/Role.cpp",
@@ -29731,7 +29683,7 @@
      }
     ],
     "warnings": 12,
-    "secs": 0.35
+    "secs": 0.34
    },
    {
     "unit": "pal3/src/Role/RoleSystem.cpp",
@@ -30350,8 +30302,8 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 43,
-    "secs": 0.36
+    "warnings": 45,
+    "secs": 0.37
    },
    {
     "unit": "pal3/src/Scene/Camera.cpp",
@@ -30514,8 +30466,8 @@
       "msg": "left of '->SetData' must point to class/struct/union"
      }
     ],
-    "warnings": 35,
-    "secs": 0.33
+    "warnings": 36,
+    "secs": 0.34
    },
    {
     "unit": "pal3/src/Scene/CameraCtrl.cpp",
@@ -31134,15 +31086,15 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 39,
-    "secs": 0.35
+    "warnings": 40,
+    "secs": 0.36
    },
    {
     "unit": "pal3/src/Scene/CameraSystem.cpp",
     "status": "ok",
     "errors": [],
     "warnings": 17,
-    "secs": 0.35
+    "secs": 0.36
    },
    {
     "unit": "pal3/src/Scene/Scene.cpp",
@@ -31245,8 +31197,8 @@
       "msg": "left of '->BuildCmdTransform' must point to class/struct/union"
      }
     ],
-    "warnings": 34,
-    "secs": 0.35
+    "warnings": 35,
+    "secs": 0.37
    },
    {
     "unit": "pal3/src/Scene/SceneMgr.cpp",
@@ -31283,7 +31235,7 @@
       "msg": "'InitEffClass' : is not a member of 'SceneMgr'"
      }
     ],
-    "warnings": 33,
+    "warnings": 34,
     "secs": 0.35
    },
    {
@@ -31807,8 +31759,8 @@
       "msg": "'string' : is not a class or namespace name"
      }
     ],
-    "warnings": 34,
-    "secs": 0.37
+    "warnings": 35,
+    "secs": 0.38
    },
    {
     "unit": "pal3/src/Script/PalScript.cpp",
@@ -32427,8 +32379,8 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 42,
-    "secs": 0.4
+    "warnings": 44,
+    "secs": 0.45
    },
    {
     "unit": "pal3/src/Script/PalScriptMgr.cpp",
@@ -33047,8 +32999,8 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 73,
-    "secs": 0.4
+    "warnings": 74,
+    "secs": 0.41
    },
    {
     "unit": "pal3/src/Script/ScriptSystem.cpp",
@@ -33434,7 +33386,7 @@
      }
     ],
     "warnings": 19,
-    "secs": 0.34
+    "secs": 0.36
    },
    {
     "unit": "pal3/src/UI/EquipUI.cpp",
@@ -34053,8 +34005,8 @@
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 40,
-    "secs": 0.44
+    "warnings": 43,
+    "secs": 0.42
    },
    {
     "unit": "pal3/src/UI/MagicUI.cpp",
@@ -34415,8 +34367,8 @@
       "msg": "syntax error : ')'"
      }
     ],
-    "warnings": 35,
-    "secs": 0.36
+    "warnings": 37,
+    "secs": 0.37
    },
    {
     "unit": "pal3/src/UI/PropUI.cpp",
@@ -35029,8 +34981,8 @@
       "msg": "'=' : cannot convert from 'char *' to 'unsigned long'"
      }
     ],
-    "warnings": 39,
-    "secs": 0.38
+    "warnings": 41,
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/UI/StateUI.cpp",
@@ -35643,7 +35595,7 @@
       "msg": "'==' : no conversion from 'int' to 'const char *'"
      }
     ],
-    "warnings": 35,
+    "warnings": 38,
     "secs": 0.4
    },
    {
@@ -35700,7 +35652,7 @@
      }
     ],
     "warnings": 12,
-    "secs": 0.35
+    "secs": 0.36
    },
    {
     "unit": "pal3/src/UI/UICamera.cpp",
@@ -35786,7 +35738,7 @@
      }
     ],
     "warnings": 15,
-    "secs": 0.35
+    "secs": 0.34
    },
    {
     "unit": "pal3/src/UI/UICursor.cpp",
@@ -35817,8 +35769,8 @@
       "msg": "left of '->IRender' must point to class/struct/union"
      }
     ],
-    "warnings": 34,
-    "secs": 0.36
+    "warnings": 35,
+    "secs": 0.37
    },
    {
     "unit": "pal3/src/UI/UIDialog.cpp",
@@ -35861,14 +35813,14 @@
       "msg": "left of '->SetTargetDistance' must point to class/struct/union"
      }
     ],
-    "warnings": 32,
-    "secs": 0.33
+    "warnings": 33,
+    "secs": 0.34
    },
    {
     "unit": "pal3/src/UI/UIItem.cpp",
     "status": "ok",
     "errors": [],
-    "warnings": 37,
+    "warnings": 38,
     "secs": 0.35
    },
    {
@@ -35883,7 +35835,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 17,
-    "secs": 0.36
+    "secs": 0.34
    },
    {
     "unit": "pal3/src/UI/UIListBox.cpp",
@@ -36490,8 +36442,8 @@
       "msg": "left of '->ReleaseVtable' must point to class/struct/union"
      }
     ],
-    "warnings": 36,
-    "secs": 0.39
+    "warnings": 38,
+    "secs": 0.37
    },
    {
     "unit": "pal3/src/UI/UIManager.cpp",
@@ -36702,8 +36654,8 @@
       "msg": "'type cast' : cannot convert from 'class gbRenderEffect *' to 'class UIManager'"
      }
     ],
-    "warnings": 32,
-    "secs": 0.35
+    "warnings": 33,
+    "secs": 0.37
    },
    {
     "unit": "pal3/src/UI/UINote.cpp",
@@ -36716,15 +36668,15 @@
       "msg": "'Create' : function does not take 3 parameters"
      }
     ],
-    "warnings": 32,
-    "secs": 0.34
+    "warnings": 33,
+    "secs": 0.36
    },
    {
     "unit": "pal3/src/UI/UIQuadManager.cpp",
     "status": "ok",
     "errors": [],
-    "warnings": 37,
-    "secs": 0.34
+    "warnings": 38,
+    "secs": 0.37
    },
    {
     "unit": "pal3/src/UI/UIRenderObj.cpp",
@@ -36780,7 +36732,7 @@
      }
     ],
     "warnings": 12,
-    "secs": 0.33
+    "secs": 0.36
    },
    {
     "unit": "pal3/src/UI/UIScene.cpp",
@@ -37309,15 +37261,15 @@
       "msg": "'Destroy2' : is not a member of 'UIWnd'"
      }
     ],
-    "warnings": 47,
-    "secs": 0.37
+    "warnings": 48,
+    "secs": 0.4
    },
    {
     "unit": "pal3/src/UI/UISystem.cpp",
     "status": "ok",
     "errors": [],
-    "warnings": 37,
-    "secs": 0.35
+    "warnings": 38,
+    "secs": 0.36
    },
    {
     "unit": "pal3/src/UI/UIWnd.cpp",
@@ -37432,8 +37384,8 @@
       "msg": "'sprintf' : cannot convert parameter 2 from 'int *' to 'const char *'"
      }
     ],
-    "warnings": 35,
-    "secs": 0.36
+    "warnings": 36,
+    "secs": 0.39
    },
    {
     "unit": "pal3/src/free_functions.cpp",
@@ -37459,409 +37411,403 @@
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 148,
+      "line": 149,
       "code": "C2373",
       "msg": "'ArraySort' : redefinition; different type modifiers"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 187,
+      "line": 188,
       "code": "C2227",
       "msg": "left of '->Release' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 211,
+      "line": 212,
       "code": "C2440",
       "msg": "'=' : cannot convert from 'int (__thiscall gbVFileSystem::*)(char *)' to 'unsigned long (__cdecl *)(class gbVFileSystem *,char *)'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 212,
+      "line": 213,
       "code": "C2102",
       "msg": "'&' requires l-value"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 216,
+      "line": 217,
       "code": "C2227",
       "msg": "left of '->FormatException' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 216,
+      "line": 217,
       "code": "C2440",
       "msg": "'type cast' : cannot convert from 'class Logger' to 'char *'"
-     },
-     {
-      "file": "pal3/src/free_functions.cpp",
-      "line": 223,
-      "code": "C2440",
-      "msg": "'=' : cannot convert from 'int (__thiscall gbVFileSystem::*)(char *)' to 'unsigned long (__cdecl *)(class gbVFileSystem *,char *)'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
       "line": 224,
+      "code": "C2440",
+      "msg": "'=' : cannot convert from 'int (__thiscall gbVFileSystem::*)(char *)' to 'unsigned long (__cdecl *)(class gbVFileSystem *,char *)'"
+     },
+     {
+      "file": "pal3/src/free_functions.cpp",
+      "line": 225,
       "code": "C2102",
       "msg": "'&' requires l-value"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 228,
+      "line": 229,
       "code": "C2227",
       "msg": "left of '->FormatException' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 228,
+      "line": 229,
       "code": "C2440",
       "msg": "'type cast' : cannot convert from 'class Logger' to 'char *'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 244,
+      "line": 245,
       "code": "C2102",
       "msg": "'&' requires l-value"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 248,
+      "line": 249,
       "code": "C2102",
       "msg": "'&' requires l-value"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 274,
+      "line": 275,
       "code": "C2373",
       "msg": "'StrCopyRange' : redefinition; different type modifiers"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 307,
+      "line": 308,
       "code": "C2227",
       "msg": "left of '->WinProc_HWND_InputLine' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 345,
+      "line": 346,
       "code": "C2227",
       "msg": "left of '->WinProc_HWND_SetAndExec' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 369,
+      "line": 370,
       "code": "C2819",
       "msg": "type 'GRPinput' does not have an overloaded member 'operator ->'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 369,
+      "line": 370,
       "code": "C2227",
       "msg": "left of '->HandleDeviceInput' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 375,
+      "line": 376,
       "code": "C2819",
       "msg": "type 'GRPinput' does not have an overloaded member 'operator ->'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 375,
+      "line": 376,
       "code": "C2227",
       "msg": "left of '->HandleDeviceInput' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 403,
+      "line": 404,
       "code": "C2227",
       "msg": "left of '->ReleaseVtable' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 425,
+      "line": 426,
       "code": "C2440",
       "msg": "'=' : cannot convert from 'float *' to 'int *'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 428,
+      "line": 429,
       "code": "C2227",
       "msg": "left of '->UpdateTimers' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 431,
+      "line": 432,
       "code": "C2065",
       "msg": "'pData' : undeclared identifier"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 435,
+      "line": 436,
       "code": "C2227",
       "msg": "left of '->UpdateObjects' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 439,
+      "line": 440,
       "code": "C2819",
       "msg": "type 'RoleSystem' does not have an overloaded member 'operator ->'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 439,
+      "line": 440,
       "code": "C2227",
       "msg": "left of '->UpdatePhysics' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 443,
+      "line": 444,
       "code": "C2227",
       "msg": "left of '->UpdateTimers' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 450,
+      "line": 451,
       "code": "C2819",
       "msg": "type 'RoleSystem' does not have an overloaded member 'operator ->'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 450,
+      "line": 451,
       "code": "C2227",
       "msg": "left of '->Notify' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 452,
+      "line": 453,
       "code": "C2227",
       "msg": "left of '->UpdateTimers' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 459,
+      "line": 460,
       "code": "C2819",
       "msg": "type 'RoleSystem' does not have an overloaded member 'operator ->'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 459,
+      "line": 460,
       "code": "C2227",
       "msg": "left of '->Notify' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 461,
+      "line": 462,
       "code": "C2227",
       "msg": "left of '->UpdateTimers' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 477,
+      "line": 478,
       "code": "C2227",
       "msg": "left of '->RunScript' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 480,
+      "line": 481,
       "code": "C2227",
       "msg": "left of '->RunWithDelay' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 483,
+      "line": 484,
       "code": "C2227",
       "msg": "left of '->RunScript' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 487,
+      "line": 488,
       "code": "C2227",
       "msg": "left of '->RunScript' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 502,
+      "line": 503,
       "code": "C2227",
       "msg": "left of '->RunScript' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 506,
+      "line": 507,
       "code": "C2227",
       "msg": "left of '->RunWithDelay' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 509,
+      "line": 510,
       "code": "C2227",
       "msg": "left of '->RunScript' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 514,
+      "line": 515,
       "code": "C2227",
       "msg": "left of '->RunScript' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 521,
+      "line": 522,
       "code": "C2109",
       "msg": "subscript requires array or pointer type"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 521,
+      "line": 522,
       "code": "C2102",
       "msg": "'&' requires l-value"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 529,
+      "line": 530,
       "code": "C2819",
       "msg": "type 'gbVec3D' does not have an overloaded member 'operator ->'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 529,
+      "line": 530,
       "code": "C2227",
       "msg": "left of '->Length' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 548,
+      "line": 549,
       "code": "C2819",
       "msg": "type 'PalScript' does not have an overloaded member 'operator ->'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 548,
+      "line": 549,
       "code": "C2227",
       "msg": "left of '->UpdateTimer' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 565,
+      "line": 566,
       "code": "C2102",
       "msg": "'&' requires l-value"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 618,
+      "line": 619,
       "code": "C2102",
       "msg": "'&' requires l-value"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 633,
+      "line": 634,
       "code": "C2227",
       "msg": "left of '->SetTransform' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 643,
+      "line": 644,
       "code": "C2227",
       "msg": "left of '->NotifySceneChange' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 652,
+      "line": 653,
       "code": "C2819",
       "msg": "type 'gbVec3D' does not have an overloaded member 'operator ->'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 652,
+      "line": 653,
       "code": "C2227",
       "msg": "left of '->gbVec3D' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 665,
+      "line": 666,
       "code": "C2819",
       "msg": "type 'gbVec3D' does not have an overloaded member 'operator ->'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 665,
+      "line": 666,
       "code": "C2227",
       "msg": "left of '->gbVec3D' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 674,
+      "line": 675,
       "code": "C2227",
       "msg": "left of '->+=' must point to class/struct/union"
-     },
-     {
-      "file": "pal3/src/free_functions.cpp",
-      "line": 676,
-      "code": "C2227",
-      "msg": "left of '->=' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
       "line": 677,
       "code": "C2227",
+      "msg": "left of '->=' must point to class/struct/union"
+     },
+     {
+      "file": "pal3/src/free_functions.cpp",
+      "line": 678,
+      "code": "C2227",
       "msg": "left of '->+=' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 684,
+      "line": 685,
       "code": "C2227",
       "msg": "left of '->InitPathTracking' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 723,
+      "line": 724,
       "code": "C2102",
       "msg": "'&' requires l-value"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 774,
+      "line": 775,
       "code": "C2102",
       "msg": "'&' requires l-value"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 779,
+      "line": 780,
       "code": "C2440",
       "msg": "'=' : cannot convert from 'float *' to 'int *'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 782,
+      "line": 783,
       "code": "C2227",
       "msg": "left of '->Notify' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 789,
+      "line": 790,
       "code": "C2440",
       "msg": "'=' : cannot convert from 'float *' to 'int *'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 808,
+      "line": 809,
       "code": "C2227",
       "msg": "left of '->NotifySceneChange' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 809,
+      "line": 810,
       "code": "C2227",
       "msg": "left of '->SetMoveSpeed' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 818,
-      "code": "C2227",
-      "msg": "left of '->=' must point to class/struct/union"
-     },
-     {
-      "file": "pal3/src/free_functions.cpp",
-      "line": 820,
+      "line": 819,
       "code": "C2227",
       "msg": "left of '->=' must point to class/struct/union"
      },
@@ -37869,83 +37815,83 @@
       "file": "pal3/src/free_functions.cpp",
       "line": 821,
       "code": "C2227",
-      "msg": "left of '->+=' must point to class/struct/union"
+      "msg": "left of '->=' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 823,
+      "line": 822,
       "code": "C2227",
-      "msg": "left of '->=' must point to class/struct/union"
+      "msg": "left of '->+=' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
       "line": 824,
       "code": "C2227",
+      "msg": "left of '->=' must point to class/struct/union"
+     },
+     {
+      "file": "pal3/src/free_functions.cpp",
+      "line": 825,
+      "code": "C2227",
       "msg": "left of '->+=' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 832,
+      "line": 833,
       "code": "C2227",
       "msg": "left of '->GetActorState' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 832,
+      "line": 833,
       "code": "C2102",
       "msg": "'&' requires l-value"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 845,
+      "line": 846,
       "code": "C2102",
       "msg": "'&' requires l-value"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 878,
+      "line": 879,
       "code": "C2146",
       "msg": "syntax error : missing ';' before identifier 'v26'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 878,
+      "line": 879,
       "code": "C2065",
       "msg": "'v26' : undeclared identifier"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 884,
+      "line": 885,
       "code": "C2102",
       "msg": "'&' requires l-value"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 890,
+      "line": 891,
       "code": "C2440",
       "msg": "'=' : cannot convert from 'float *' to 'int *'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 893,
+      "line": 894,
       "code": "C2227",
       "msg": "left of '->Notify' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 911,
+      "line": 912,
       "code": "C2227",
       "msg": "left of '->gbVec3D' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 913,
-      "code": "C2227",
-      "msg": "left of '->=' must point to class/struct/union"
-     },
-     {
-      "file": "pal3/src/free_functions.cpp",
-      "line": 915,
+      "line": 914,
       "code": "C2227",
       "msg": "left of '->=' must point to class/struct/union"
      },
@@ -37953,107 +37899,113 @@
       "file": "pal3/src/free_functions.cpp",
       "line": 916,
       "code": "C2227",
-      "msg": "left of '->+=' must point to class/struct/union"
+      "msg": "left of '->=' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 918,
+      "line": 917,
       "code": "C2227",
-      "msg": "left of '->=' must point to class/struct/union"
+      "msg": "left of '->+=' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
       "line": 919,
       "code": "C2227",
-      "msg": "left of '->+=' must point to class/struct/union"
+      "msg": "left of '->=' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 934,
+      "line": 920,
       "code": "C2227",
-      "msg": "left of '->NotifySceneChange' must point to class/struct/union"
+      "msg": "left of '->+=' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
       "line": 935,
       "code": "C2227",
+      "msg": "left of '->NotifySceneChange' must point to class/struct/union"
+     },
+     {
+      "file": "pal3/src/free_functions.cpp",
+      "line": 936,
+      "code": "C2227",
       "msg": "left of '->SetMoveSpeed' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 937,
+      "line": 938,
       "code": "C2227",
       "msg": "left of '->StartLinearMove' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 950,
+      "line": 951,
       "code": "C2102",
       "msg": "'&' requires l-value"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 998,
+      "line": 999,
       "code": "C2065",
       "msg": "'byte_C048B8' : undeclared identifier"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 1016,
+      "line": 1017,
       "code": "C2102",
       "msg": "'&' requires l-value"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 1051,
+      "line": 1052,
       "code": "C2227",
       "msg": "left of '->Copy' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 1105,
+      "line": 1106,
       "code": "C2819",
       "msg": "type 'CCBStageRole' does not have an overloaded member 'operator ->'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 1105,
+      "line": 1106,
       "code": "C2227",
       "msg": "left of '->SaveToStream' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 1106,
+      "line": 1107,
       "code": "C2819",
       "msg": "type 'NPC' does not have an overloaded member 'operator ->'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 1106,
+      "line": 1107,
       "code": "C2227",
       "msg": "left of '->ReadBufferData' must point to class/struct/union"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 1107,
+      "line": 1108,
       "code": "C2440",
       "msg": "'=' : cannot convert from 'char *' to 'char'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 1167,
+      "line": 1168,
       "code": "C2819",
       "msg": "type 'CCBStageRole' does not have an overloaded member 'operator ->'"
      },
      {
       "file": "pal3/src/free_functions.cpp",
-      "line": 1167,
+      "line": 1168,
       "code": "C1003",
       "msg": "error count exceeds 100; stopping compilation"
      }
     ],
-    "warnings": 50,
-    "secs": 0.47
+    "warnings": 52,
+    "secs": 0.48
    },
    {
     "unit": "pal3/src/globals.cpp",
@@ -38217,7 +38169,7 @@
      }
     ],
     "warnings": 8,
-    "secs": 0.29
+    "secs": 0.32
    }
   ]
  },
@@ -38231,56 +38183,56 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.81
+    "secs": 1.42
    },
    {
     "unit": "pal3/src/Combat/CCBAIWindow.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 39.9
+    "secs": 1.43
    },
    {
     "unit": "pal3/src/Combat/CCBAttackSequen.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.8
+    "secs": 40.92
    },
    {
     "unit": "pal3/src/Combat/CCBCamControl.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.83
+    "secs": 40.92
    },
    {
     "unit": "pal3/src/Combat/CCBControl.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.79
+    "secs": 1.42
    },
    {
     "unit": "pal3/src/Combat/CCBControlWindow.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 39.88
+    "secs": 1.42
    },
    {
     "unit": "pal3/src/Combat/CCBItemWindow.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Combat/CCBLineupWindow.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Combat/CCBMagicWindow.h",
@@ -38301,49 +38253,49 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Combat/CCBResultWindow.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Combat/CCBRoleState.h",
     "status": "ok",
     "errors": [],
     "warnings": 4,
-    "secs": 0.22
+    "secs": 0.24
    },
    {
     "unit": "pal3/src/Combat/CCBSkillWindow.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Combat/CCBStage.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.22
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Combat/CCBStageCam.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Combat/CCBStageEffect.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Combat/CCBStageRole.h",
@@ -38357,28 +38309,28 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Combat/CCBStageShadow.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Combat/CCBSystem.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.2
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Combat/CCBUI.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.21
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Combat/CCCTData.h",
@@ -38399,7 +38351,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Data/CGameData.h",
@@ -38427,7 +38379,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Effect/C3DSpark.h",
@@ -38441,42 +38393,42 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Effect/CEffExplosive.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Effect/CEffGrid.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Effect/CEffMeteor.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.23
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Effect/CEffMgr.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.23
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Effect/CEffModel.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Effect/CEffQuad.h",
@@ -38490,7 +38442,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Effect/CEffSParticle.h",
@@ -38504,21 +38456,21 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Effect/CEffect.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Effect/CEffectSystem.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Effect/CEffgbParticle.h",
@@ -38532,14 +38484,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Effect/ScreenEffect.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Effect/ScreenEffectMgr.h",
@@ -38553,7 +38505,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/GameBase/GRPinput.h",
@@ -38567,14 +38519,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/GameBase/Logger.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/GameBase/PAL3.h",
@@ -38588,28 +38540,28 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/GameBase/SoundSystem.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/MiniGame/MiniGame1.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/MiniGame/MiniGame3.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/ACTION_KIND.h",
@@ -38623,42 +38575,42 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/ARC_ArcHeader.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/ARC_ArcLocaleRole.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/ARC_ArcMsic.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/ARC_ComboAttack.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ARC_FightItem.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/ARC_FightSkill.h",
@@ -38672,42 +38624,42 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ARC_MonsterStar.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ARC_OutFile.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ARC_PAL_GDB.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/ARC_PlayerAtt.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/ARC_PlayerItem.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ARC_PlayerMgrInfo.h",
@@ -38728,35 +38680,35 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ARC_WuLing.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ASISTAGE.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/AStarPathFinder.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ArcBrief.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/ArcHeader.h",
@@ -38809,7 +38761,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/ArcMsic.h",
@@ -38823,21 +38775,21 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ArcPosition.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/ArcScene.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ArcSceneMonster.h",
@@ -38851,28 +38803,28 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/Archive.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/Array.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ArrayListType.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ArtistPlugIn.h",
@@ -38898,7 +38850,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/AudioContext.h",
@@ -38912,7 +38864,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/BARRIER.h",
@@ -38933,84 +38885,84 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/BINKRECT.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/BINKSND.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/BOSSHURT.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/BUNDLEPOINTERS.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/BillBoardFace.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/BtnGroup.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/C2DSpark_tagSpark.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/C3DSpark_tagSpark.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/CAccelCentripetalPolicy.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CAcceleratedMotionPolicy.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/CCBDisplayChain.h",
     "status": "ok",
     "errors": [],
     "warnings": 2,
-    "secs": 0.21
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/CCBEditor.h",
@@ -39037,7 +38989,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/CCBPanelSlot.h",
@@ -39058,14 +39010,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/CCBRoleStatePanelS.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/CCBUIPanel.h",
@@ -39079,7 +39031,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/CCentripetalPolicy.h",
@@ -39093,7 +39045,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CEffAction.h",
@@ -39114,14 +39066,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/CEffBink.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CEffCallBack.h",
@@ -39149,7 +39101,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/CEffObj.h",
@@ -39170,7 +39122,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CEffTrackCustomShape.h",
@@ -39261,7 +39213,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CEffectSimple.h",
@@ -39300,7 +39252,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CFadeColorPolicy.h",
@@ -39314,21 +39266,21 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CFadeOutAlphaPolicy.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/CG_Edit.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/CG_Entry.h",
@@ -39342,14 +39294,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/CG_Scene.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.26
+    "secs": 0.27
    },
    {
     "unit": "pal3/src/Misc/CG_Scene_ArrayErase.h",
@@ -39444,35 +39396,35 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/CParticleSystem.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.25
    },
    {
     "unit": "pal3/src/Misc/CParticleSystem_ParticleAttribute.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/CParticleSystem_ParticleUnit.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/CPolicy.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/CRandomColorPolicy.h",
@@ -39493,14 +39445,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CRotateEmitterPolicy.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CSEHException.h",
@@ -39549,7 +39501,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam, unsigned long (__thiscall CEffAudio___)(unsigned long)_.h",
@@ -39605,7 +39557,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam, unsigned long (__thiscall CEffCustomShape___)(unsigned long)_.h",
@@ -39619,7 +39571,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam, unsigned long (__thiscall CEffCylinder___)(unsigned long)_.h",
@@ -39647,7 +39599,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam, unsigned long (__thiscall CEffGrid___)(unsigned long)_.h",
@@ -39675,7 +39627,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam, unsigned long (__thiscall CEffModel___)(unsigned long)_.h",
@@ -39717,7 +39669,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam, unsigned long (__thiscall CEffSParticle___)(unsigned long)_.h",
@@ -39731,7 +39683,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam, unsigned long (__thiscall CEffShock___)(unsigned long)_.h",
@@ -39745,7 +39697,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam, unsigned long (__thiscall CEffTemplate___)(unsigned long)_.h",
@@ -39759,7 +39711,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam, unsigned long (__thiscall CEffTime___)(unsigned long)_.h",
@@ -39773,7 +39725,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam, unsigned long (__thiscall CEffgbParticle___)(unsigned long)_.h",
@@ -39801,7 +39753,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam_CEffAudio.h",
@@ -39843,7 +39795,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam_CEffCamera.h",
@@ -39857,7 +39809,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam_CEffCustomShape.h",
@@ -39871,7 +39823,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam_CEffCylinder.h",
@@ -39885,7 +39837,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam_CEffExplosive.h",
@@ -39899,7 +39851,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam_CEffGrid.h",
@@ -39927,7 +39879,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam_CEffModel.h",
@@ -39941,7 +39893,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.24
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam_CEffQuad.h",
@@ -39955,7 +39907,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam_CEffQuake.h",
@@ -39969,7 +39921,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam_CEffSParticle.h",
@@ -39983,7 +39935,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam_CEffShock.h",
@@ -40011,7 +39963,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam_CEffTime.h",
@@ -40025,7 +39977,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CTaskTpl_tagEffTaskParam_CEffgbParticle.h",
@@ -40039,7 +39991,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CTrail.h",
@@ -40053,35 +40005,35 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/CameraCmd.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/CameraParam.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CatchableType.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/CatchableTypeArray.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ChoseCompose.h",
@@ -40109,63 +40061,63 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/Color4ub.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/ComboAttack.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/Comp_Donate.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/Comp_DonateUI.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.28
+    "secs": 0.31
    },
    {
     "unit": "pal3/src/Misc/Comp_Donate_Detail.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/ComposeUI.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.21
+    "secs": 0.23
    },
    {
     "unit": "pal3/src/Misc/ConfigFile.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/DICOLORSET.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/DIDEVCAPS.h",
@@ -40207,14 +40159,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/DIEFFESCAPE.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/DIENVELOPE.h",
@@ -40235,42 +40187,42 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/DIPROPHEADER.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/DLG_MSG.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/DPINFO.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/DPINFO___unnamed.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/DataConst.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/DealData.h",
@@ -40284,28 +40236,28 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.23
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/DealUI.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.23
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/DisplayConfig.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/ECBBattleFieldAttr.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/ECBCombatResult.h",
@@ -40333,35 +40285,35 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ECBForce.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ECBMeetEnemy.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ECBRoleSpecState.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ECBRoleTaskMode.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ECBShowItemKind.h",
@@ -40382,28 +40334,28 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/ECBVAKind.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ECPKMode.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/EEffect.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/EH3_EXCEPTION_REGISTRATION.h",
@@ -40429,28 +40381,28 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/ERoleActState.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/EffModeParam.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/EffectInfo.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/EffectItem.h",
@@ -40492,14 +40444,14 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/FLTSTAGE.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/FightInfo.h",
@@ -40513,21 +40465,21 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/FightSkill.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/FightState.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.17
    },
    {
     "unit": "pal3/src/Misc/FindArc.h",
@@ -40555,21 +40507,21 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/FrameTex.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/FuncInfoV1.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/GBPARAMHANDLE.h",
@@ -40590,7 +40542,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/GeomNote.h",
@@ -40625,7 +40577,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/HeadMsg.h",
@@ -40646,7 +40598,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/IMAGE_FILE_HEADER.h",
@@ -40674,35 +40626,35 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/Inventory.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/Iostream_init.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/JB_TYPE.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/JusticeBookUI.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.24
+    "secs": 0.23
    },
    {
     "unit": "pal3/src/Misc/KeyFrame.h",
@@ -40734,7 +40686,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/LARGE_INTEGER.h",
@@ -40755,14 +40707,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/LINEUPINFO.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/LINEUP_SEQUENCE.h",
@@ -40783,7 +40735,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.23
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/LineupPlank.h",
@@ -40797,7 +40749,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.25
+    "secs": 0.26
    },
    {
     "unit": "pal3/src/Misc/LinkerVersion.h",
@@ -40825,14 +40777,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/MUIDialogMgr.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/MU_SortFun.h",
@@ -40853,14 +40805,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/MXPoisonFog.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/MXSavePoint.h",
@@ -40888,28 +40840,28 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.26
+    "secs": 0.27
    },
    {
     "unit": "pal3/src/Misc/Math.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/Matrix4.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/MatrixStack.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/MeshFx.h",
@@ -40923,21 +40875,21 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/MiniGame2Scene.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/MonsterStar.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/MvcController.h",
@@ -40958,7 +40910,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/NGHHURT.h",
@@ -41014,42 +40966,42 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/NavFaceLayer.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/NavHeader.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/NavTile.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/NavTileLayer.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/NavTriangle.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/NavigationInfo.h",
@@ -41070,7 +41022,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.22
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/OBJHELPER.h",
@@ -41084,7 +41036,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/ObjLockInput.h",
@@ -41098,7 +41050,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/Object.h",
@@ -41112,14 +41064,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ObjectInfoBase.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/OpenBaseFile.h",
@@ -41133,35 +41085,35 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/OpenNULLFile.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/OpenSceneFile.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/OutFile.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/PAL3VisNode.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/PAL3_FRAME.h",
@@ -41175,7 +41127,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/PGR_MODE.h",
@@ -41196,7 +41148,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/PalScriptIdleObj.h",
@@ -41210,14 +41162,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ParabolaCalculator.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ParabolaCalculator_PRBL_STATE.h",
@@ -41231,7 +41183,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/Param1.h",
@@ -41245,35 +41197,35 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/Parent_Data.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/ParticleEffect.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.23
+    "secs": 0.25
    },
    {
     "unit": "pal3/src/Misc/PathFinder.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/PathObj.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/PlayerAtt.h",
@@ -41287,7 +41239,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/PlayerAtts.h",
@@ -41301,63 +41253,63 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/PlayerItemSortFun.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/PlayerItem_Type.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/PlayerMgr.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/PlayerSkill.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/PolyLine.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ProtectPanel.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.21
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/PtrArray.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/PurgeEffect.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/RCC_TYPE.h",
@@ -41378,7 +41330,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/RGNDATAHEADER.h",
@@ -41392,7 +41344,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ROLE_BEHAVIOUR.h",
@@ -41413,7 +41365,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/RestScript.h",
@@ -41434,7 +41386,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/RoleCamera.h",
@@ -41448,14 +41400,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/RoleCtrl.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/RoleFadeIn.h",
@@ -41469,28 +41421,28 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/RoleShadow.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/RoleTask.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/RoleTaskLine.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/RoleTaskPool.h",
@@ -41504,14 +41456,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/RotateInvObj.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/RotateObj.h",
@@ -41532,14 +41484,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/SCNHeader.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/SPECIAL_ACTION.h",
@@ -41553,35 +41505,35 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/S_Distribute.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/SaleUI.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.26
+    "secs": 0.27
    },
    {
     "unit": "pal3/src/Misc/SaleUI_SortData.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/SaveTask.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/SceHeader.h",
@@ -41595,35 +41547,35 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/SceOpcodeEntry.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/SceneInfo.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/SceneMap.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/SceneMapObj.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/SceneMapPlayer.h",
@@ -41637,56 +41589,56 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/SceneObjParam.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.22
+    "secs": 0.23
    },
    {
     "unit": "pal3/src/Misc/SceneObjScript.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/SceneObj_Common_State.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/SceneObj_SubObj.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/SceneProp.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.23
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/ScreenEffectNode.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ScreenFadeIn.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ScreenFadeOut.h",
@@ -41714,28 +41666,28 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/ScriptData.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ScriptHelper.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/ScriptPoolPage.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/ScriptSystemData.h",
@@ -41749,14 +41701,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/ScriptWaitFrm.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/SkillData.h",
@@ -41770,7 +41722,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/SkyboxEff.h",
@@ -41784,28 +41736,28 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/SkyboxEffTex.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/SoundAttachObj.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/SoundItem.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/SoundMgr.h",
@@ -41833,21 +41785,21 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/SwordUI.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.26
+    "secs": 0.27
    },
    {
     "unit": "pal3/src/Misc/SystemUI.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.24
+    "secs": 0.25
    },
    {
     "unit": "pal3/src/Misc/TaskBookUI.h",
@@ -41861,7 +41813,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/TaskMgr_SceneObjParam, unsigned long (__thiscall SceneObj___)(unsigned long)_.h",
@@ -41875,7 +41827,7 @@
      }
     ],
     "warnings": 1,
-    "secs": 0.23
+    "secs": 0.25
    },
    {
     "unit": "pal3/src/Misc/TaskMgr_SceneObjParam_SceneObj.h",
@@ -41889,14 +41841,14 @@
      }
     ],
     "warnings": 1,
-    "secs": 0.25
+    "secs": 0.26
    },
    {
     "unit": "pal3/src/Misc/TextureLibDataBase.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/TextureLib_Data.h",
@@ -41910,7 +41862,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/TileMap.h",
@@ -41924,7 +41876,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/Triangle.h",
@@ -41945,35 +41897,35 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/TypeDescriptor.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/UI3DCtrl.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.23
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/UI3DModelNode.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/UI3DObj.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/UIAnimCtrl.h",
@@ -41994,63 +41946,63 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.19
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/UIAnimateCtrlEX.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.21
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/UIBigMap.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.24
+    "secs": 0.27
    },
    {
     "unit": "pal3/src/Misc/UIButton.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/UIButtonEX.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.21
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/UIButtonEXA.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/UIButton_UIBUTTON_STATE.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/UICaption.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.2
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/UIChatRest.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.22
+    "secs": 0.23
    },
    {
     "unit": "pal3/src/Misc/UICoverFrm.h",
@@ -42092,7 +42044,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.31
+    "secs": 0.3
    },
    {
     "unit": "pal3/src/Misc/UIGameOver.h",
@@ -42106,7 +42058,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/UIHeadDialog.h",
@@ -42120,28 +42072,28 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/UIListView.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/UILoadingFrm.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/UIMap.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/UIObj.h",
@@ -42155,21 +42107,21 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/UIPar_Star.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/UIPar_TimeCtrl.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/UIParabolaCtrl.h",
@@ -42183,7 +42135,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.21
+    "secs": 0.23
    },
    {
     "unit": "pal3/src/Misc/UIPosMaker.h",
@@ -42211,28 +42163,28 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.21
+    "secs": 0.23
    },
    {
     "unit": "pal3/src/Misc/UIRoleSelect.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.21
+    "secs": 0.23
    },
    {
     "unit": "pal3/src/Misc/UIRoleSelectDialog.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.22
+    "secs": 0.24
    },
    {
     "unit": "pal3/src/Misc/UISceneFace.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.21
+    "secs": 0.23
    },
    {
     "unit": "pal3/src/Misc/UISceneFrm.h",
@@ -42246,35 +42198,35 @@
     "status": "ok",
     "errors": [],
     "warnings": 2,
-    "secs": 0.21
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/UISceneObj.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/UIScenePanel.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/UIScrollBar.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.21
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/UIScrollBar_SB_AREA.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/UISlider.h",
@@ -42295,14 +42247,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/UIStaticEX.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/UIStaticEXA.h",
@@ -42323,14 +42275,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/UIStaticFlip.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/UIStaticRM.h",
@@ -42351,7 +42303,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.21
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/UITextArea.h",
@@ -42365,7 +42317,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/UITitle.h",
@@ -42379,28 +42331,28 @@
     "status": "ok",
     "errors": [],
     "warnings": 2,
-    "secs": 0.22
+    "secs": 0.24
    },
    {
     "unit": "pal3/src/Misc/UITitle_BBTY.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.23
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/UITitle_JDHY.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.24
+    "secs": 0.23
    },
    {
     "unit": "pal3/src/Misc/UITitle_QCYM.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.22
+    "secs": 0.23
    },
    {
     "unit": "pal3/src/Misc/UITitle_XJTM.h",
@@ -42414,35 +42366,35 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.21
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/UnderWater.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/UnwindMapEntry.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/VertPoolMgr.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/VertexProcessingType.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/VideoPlayer.h",
@@ -42463,21 +42415,21 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/WishPool.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/WuLing.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/XJ_Pic.h",
@@ -42505,7 +42457,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/_Btn_BtnID.h",
@@ -42539,21 +42491,21 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/_Collvec.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/_Console.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/_Console__ConCmd.h",
@@ -42574,7 +42526,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/_EH3_EXCEPTION_REGISTRATION.h",
@@ -42600,7 +42552,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/_EXCEPTION_POINTERS.h",
@@ -42614,7 +42566,7 @@
      }
     ],
     "warnings": 1,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/_FLOATING_SAVE_AREA.h",
@@ -42635,7 +42587,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/_FLTPROVIDER.h",
@@ -42670,7 +42622,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/_MapElement.h",
@@ -42691,7 +42643,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/_PURGE_INFO.h",
@@ -42705,7 +42657,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/_RGNDATA.h",
@@ -42725,7 +42677,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/_RGNDATAHEADER.h",
@@ -42746,14 +42698,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/_SCOPETABLE_ENTRY.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/_STREAM.h",
@@ -42767,14 +42719,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.23
    },
    {
     "unit": "pal3/src/Misc/_Tex_uv.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/_Texture_Info.h",
@@ -42788,7 +42740,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/_TimeMgr.h",
@@ -42837,28 +42789,28 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/_btnOPTDATA.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/_count_string.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/_s_CatchableType.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/_s_CatchableTypeArray.h",
@@ -42918,21 +42870,21 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/_strflt.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/code_page_info.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/collision.h",
@@ -42946,14 +42898,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/doubleint.h",
     "status": "ok",
     "errors": [],
     "warnings": 2,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/eSkyEffPos.h",
@@ -42981,56 +42933,56 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/errentry.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/gbActorMgr.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/gbAnimKey.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/gbAnimScript.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/gbAxis.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/gbBinkVideo.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/gbEmitterShape.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/gbEmitterSphere.h",
@@ -43044,7 +42996,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/gbFontType.h",
@@ -43065,77 +43017,77 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/gbKeyType.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/gbMaterial.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/gbMeshData.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/gbMeshType.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/gbOctree.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/gbOctreeNode.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/gbPixelFmtType.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/gbPoolType.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/gbPrimType.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/gbRenderEffect_D3D.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/gbSceneNode.h",
@@ -43225,49 +43177,49 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/gbTagNode.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/gbTagXBladeNode.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.24
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/gbTexFlipAnim.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/gbTransformType.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/gbVFSType.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/graph.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/h3DPOBJECT.h",
@@ -43288,14 +43240,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/localVar0.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/localVar1.h",
@@ -43309,7 +43261,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/m_RoleState.h",
@@ -43337,7 +43289,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.21
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/pcmwaveformat_tag.h",
@@ -43357,14 +43309,14 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/rgbcolor_particle_graph.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/rotation_particle_graph.h",
@@ -43378,28 +43330,28 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/rterrmsgs.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/sCollision.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/s_RoleState.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.21
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/s_SpecialPropItem.h",
@@ -43413,35 +43365,35 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/scCmdDef.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/scGlobalUserVar.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/scSCEFile.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/scScriptBlock.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/scScriptInstance.h",
@@ -43462,63 +43414,63 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/scVARIANT_data.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/scVarStack.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/sg_customshape.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/sg_emission_control.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/sg_emitter.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/sg_emitter_data.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/sg_emitter_sphere.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/sg_emitter_square.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/sg_particle.h",
@@ -43553,28 +43505,28 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/skill_tab.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/st_Manager.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/subPARAM.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/t3DModel.h",
@@ -43588,7 +43540,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/tChunk.h",
@@ -43602,7 +43554,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/tMaterialInfo.h",
@@ -43630,7 +43582,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/tagActionCommand.h",
@@ -43658,21 +43610,21 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/tagCCT.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/tagCPKHeader.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/tagCPKTable.h",
@@ -43686,7 +43638,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/tagCamTask.h",
@@ -43700,7 +43652,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/tagCombatTaskData.h",
@@ -43714,14 +43666,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/tagControlThread.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/tagDemand.h",
@@ -43735,49 +43687,49 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/tagEffGroup.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/tagEffLinker.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/tagEffMgrData.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/tagEffObj.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/tagEffObjType.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/tagEffSParticleSys.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/tagEffTaskParam.h",
@@ -43791,7 +43743,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/tagEntryEnd.h",
@@ -43805,7 +43757,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/tagGroup.h",
@@ -43819,7 +43771,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/tagImbibeNimbus.h",
@@ -43840,21 +43792,21 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/tagMeteor.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/tagMeteorNode.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/tagNewItem.h",
@@ -43874,7 +43826,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/tagPAL3GameState.h",
@@ -43888,7 +43840,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/tagPartical.h",
@@ -43902,7 +43854,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/tagQuad.h",
@@ -43923,14 +43875,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/tagRoleState.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/tagRoleSystemData.h",
@@ -43944,21 +43896,21 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/tagRoleTaskData.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/tagScriptCmd.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/tagShockUnit.h",
@@ -43979,14 +43931,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/tagStageSubTask.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/tagStageTask.h",
@@ -44000,28 +43952,28 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/tagTeamSlotsBOverlay.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/tagThread.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/tagUIParam.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/tagUITask.h",
@@ -44035,56 +43987,56 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/tagUVSet.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Misc/tagVA.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Misc/tagVAF.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/tagVAO.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/util.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/vert.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Misc/vertexalpha_particle_graph.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Misc/waveformat_tag.h",
@@ -44098,7 +44050,7 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Misc/wavehdr_tag.h",
@@ -44112,14 +44064,14 @@
      }
     ],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Render/CRenderTarget.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.2
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Render/CRenderTarget2.h",
@@ -44140,14 +44092,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.22
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Render/RenderTarget2.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Render/RenderTarget3.h",
@@ -44161,7 +44113,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/Render/TextureLib.h",
@@ -44175,21 +44127,21 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Role/NPC.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.19
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Role/Object3D.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.22
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Role/ObjectCamera.h",
@@ -44203,7 +44155,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.23
+    "secs": 0.24
    },
    {
     "unit": "pal3/src/Role/RoleSystem.h",
@@ -44217,28 +44169,28 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.22
+    "secs": 0.23
    },
    {
     "unit": "pal3/src/Scene/CameraCtrl.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/Scene/CameraSystem.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/Scene/Scene.h",
     "status": "ok",
     "errors": [],
     "warnings": 2,
-    "secs": 0.27
+    "secs": 0.26
    },
    {
     "unit": "pal3/src/Scene/SceneMgr.h",
@@ -44252,14 +44204,14 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.26
+    "secs": 0.25
    },
    {
     "unit": "pal3/src/Script/PalScript.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.24
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/Script/PalScriptMgr.h",
@@ -44273,21 +44225,21 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.18
    },
    {
     "unit": "pal3/src/Script/ScriptSystem.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.21
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/UI/EquipUI.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.26
+    "secs": 0.27
    },
    {
     "unit": "pal3/src/UI/MagicUI.h",
@@ -44301,42 +44253,42 @@
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.25
+    "secs": 0.28
    },
    {
     "unit": "pal3/src/UI/StateUI.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.25
+    "secs": 0.27
    },
    {
     "unit": "pal3/src/UI/UIBase.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/UI/UIBigDialog.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/UI/UICamera.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/UI/UICursor.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/UI/UIDialog.h",
@@ -44364,42 +44316,42 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/UI/UIListBox.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.2
+    "secs": 0.22
    },
    {
     "unit": "pal3/src/UI/UIManager.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.19
+    "secs": 0.21
    },
    {
     "unit": "pal3/src/UI/UINote.h",
     "status": "ok",
     "errors": [],
     "warnings": 1,
-    "secs": 0.23
+    "secs": 0.24
    },
    {
     "unit": "pal3/src/UI/UIQuadManager.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.2
    },
    {
     "unit": "pal3/src/UI/UIRenderObj.h",
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/UI/UIScene.h",
@@ -44420,7 +44372,7 @@
     "status": "ok",
     "errors": [],
     "warnings": 0,
-    "secs": 0.18
+    "secs": 0.19
    },
    {
     "unit": "pal3/src/UI/UIWnd.h",
@@ -44458,6 +44410,6 @@
    }
   ]
  },
- "generated_at": "2026-09-01T17:54:58",
+ "generated_at": "2026-09-01T18:07:30",
  "compiler": "MSVC6 SP0 via wine (/TP /c /W3)"
 }
