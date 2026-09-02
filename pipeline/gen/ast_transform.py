@@ -273,11 +273,12 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                             new_text = 'this->%s(%s)' % (
                                                 method_name, rest_str)
                                     else:
-                                        # Cross-class call: keep qualified form
-                                        # RenderTarget::ScreenToLocal((RenderTarget*)this, args)
-                                        # → RenderTarget::ScreenToLocal(args)
-                                        new_text = '%s::%s(%s)' % (
-                                            _cast_cls, method_name, rest_str)
+                                        # Cross-class call with (Cast*)this.
+                                        # This indicates a Hex-Rays attribution error
+                                        # or wrong inheritance annotation.
+                                        # Strip cast, let compiler C2039 surface the issue.
+                                        new_text = '%s->%s(%s)' % (
+                                            _inner, method_name, rest_str)
                                 else:
                                     new_text = '%s->%s(%s)' % (
                                         _inner, method_name, rest_str)
