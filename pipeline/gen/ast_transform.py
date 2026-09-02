@@ -272,11 +272,16 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 new_text = '%s->%s(%s)' % (
                                     _inner, method_name, rest_str)
                             elif first_arg.type == 'pointer_expression':
-                                # &expr as first arg — this is NOT a this-pointer,
-                                # it's a pointer to a local variable or stack object.
-                                # Keep as Class::Method(&expr, ...) — don't convert
-                                # to member call because &expr is not a valid this.
-                                return
+                                # &expr as first arg.
+                                # Global objects (&g_Input) → g_Input.Method()
+                                # Local variables (&local) → keep as Class::Method
+                                _ptr_inner = first_arg_text[1:]  # strip &
+                                _ptr_strip = _ptr_inner.lstrip(':')
+                                if re.match(r'^g_[A-Z]', _ptr_strip):
+                                    new_text = '%s->%s(%s)' % (
+                                        _ptr_inner, method_name, rest_str)
+                                else:
+                                    return
                             else:
                                 new_text = '%s->%s(%s)' % (
                                     first_arg_text, method_name, rest_str)
