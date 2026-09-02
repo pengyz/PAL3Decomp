@@ -19,8 +19,13 @@
     },
     "12": {
       "name": "yaw",
-      "type": "float",
-      "source": "annotation"
+      "type": {
+        "union": [
+          { "type": "float", "name": "f" },
+          { "type": "CEffMgr *", "name": "p" }
+        ]
+      },
+      "source": "overlay:LODWORD(yaw)->FindEffByID in CCBCamControl"
     },
     "16": {
       "name": "pit",
