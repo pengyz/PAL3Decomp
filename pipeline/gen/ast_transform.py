@@ -218,8 +218,9 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                             return
                         else:
                             # Complex expression as this-pointer
-                            # Strip existing casts to get the raw expression,
-                            # then use direct member access (no cast).
+                            # Skip function call results — they return values, not objects
+                            if first_arg.type == 'call_expression':
+                                return
                             if first_arg.type == 'cast_expression':
                                 val_node = first_arg.child_by_field_name('value')
                                 inner = val_node.text.decode('utf-8') if val_node else first_arg_text
