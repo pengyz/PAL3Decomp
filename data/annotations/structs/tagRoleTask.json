@@ -9,8 +9,21 @@
     },
     "16": {
       "name": "vec1",
-      "type": "gbVec3D",
-      "source": "annotation"
+      "type": {
+        "union": [
+          { "type": { "struct": [
+            { "offset": 0, "name": "x", "type": "float" },
+            { "offset": 4, "name": "y", "type": "float" },
+            { "offset": 8, "name": "z", "type": "float" }
+          ]}, "name": "v" },
+          { "type": { "struct": [
+            { "offset": 0, "name": "pLayout", "type": "CCBRoleState *" },
+            { "offset": 4, "name": "pToggle", "type": "PlayerMgr *" },
+            { "offset": 8, "name": "_pad", "type": "float" }
+          ]}, "name": "slots" }
+        ]
+      },
+      "source": "overlay:LODWORD(vec1.x)->LayoutSlotPanelA, LODWORD(vec1.y)->ToggleSlot0 in CCBStageRole"
     },
     "28": {
       "name": "cmd",
