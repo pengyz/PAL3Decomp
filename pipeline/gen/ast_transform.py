@@ -248,21 +248,36 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                             node.start_byte, node.end_byte, new_text))
                                         return
                                     return
+                                # If inner is parenthesized (like (v2 + 108)), keep the cast
+                                # to preserve type information: (Type*)(expr) -> ((Type*)(expr))->Method
+                                if val_node and val_node.type == 'parenthesized_expression':
+                                    new_text = '((%s))->%s(%s)' % (
+                                        first_arg_text, method_name, rest_str)
+                                    replacements.append((
+                                        node.start_byte, node.end_byte, new_text))
+                                    return
                                 _needs_addr = bool(re.match(r'^g_[A-Z]', _inner_strip))
                                 _inner = '&' + inner if _needs_addr else inner
                                 # When inner is 'this' with a cast to a different class:
                                 # - If cast type is a base class → qualified call: this->Base::Method()
                                 # - Otherwise → strip cast, let compiler error surface annotation issues
-                                if inner == 'this' and _cast_type and _cls_short not in _cast_type:
+                                if inner == 'this' and _cast_type:
                                     _ensure_bases()
                                     _cast_cls = _cast_type.replace('*', '').strip()
-                                    if _is_derived_from(cls_name, _cast_cls):
-                                        new_text = 'this->%s::%s(%s)' % (
-                                            _cast_cls, method_name, rest_str)
+                                    if _cast_cls == cls_name or _is_derived_from(cls_name, _cast_cls):
+                                        # Cast matches current class or base → member call
+                                        if _cast_cls != cls_name and _is_derived_from(cls_name, _cast_cls):
+                                            new_text = 'this->%s::%s(%s)' % (
+                                                _cast_cls, method_name, rest_str)
+                                        else:
+                                            new_text = 'this->%s(%s)' % (
+                                                method_name, rest_str)
                                     else:
-                                        # Not inheritance — let compiler error surface
-                                        new_text = '%s->%s(%s)' % (
-                                            _inner, method_name, rest_str)
+                                        # Cross-class call: keep qualified form
+                                        # RenderTarget::ScreenToLocal((RenderTarget*)this, args)
+                                        # → RenderTarget::ScreenToLocal(args)
+                                        new_text = '%s::%s(%s)' % (
+                                            _cast_cls, method_name, rest_str)
                                 else:
                                     new_text = '%s->%s(%s)' % (
                                         _inner, method_name, rest_str)
