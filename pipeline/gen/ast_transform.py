@@ -218,6 +218,12 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                             return
                         else:
                             # Complex expression as this-pointer
+                            # Literals (numbers/strings/chars) can NEVER be a this
+                            # pointer. Hex-Rays emits e.g. std::string::_Tidy(1)
+                            # where 1 is a real parameter. Keep the static call
+                            # form so the compiler reports an accurate error.
+                            if first_arg.type in ('number', 'string_literal', 'character_literal'):
+                                return
                             # Skip function call results — they return values, not objects
                             if first_arg.type == 'call_expression':
                                 return
@@ -285,6 +291,11 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                         _ptr_inner, method_name, rest_str)
                                 else:
                                     return
+                            elif first_arg.type in ('binary_expression', 'parenthesized_expression'):
+                                # Complex expression like (Type*)ptr - offset or (ptr + N)
+                                # Need parentheses to preserve operator precedence
+                                new_text = '(%s)->%s(%s)' % (
+                                    first_arg_text, method_name, rest_str)
                             else:
                                 new_text = '%s->%s(%s)' % (
                                     first_arg_text, method_name, rest_str)
