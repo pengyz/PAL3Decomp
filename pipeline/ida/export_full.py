@@ -200,7 +200,7 @@ def main():
         skip_file = os.path.join(PROJECT_ROOT, "data", "annotations", "skip_functions.json")
         if os.path.exists(skip_file):
             import json as _json
-            skip_data = _json.load(open(skip_file))
+            skip_data = _json.load(open(skip_file, encoding='utf-8'))
             skip_addrs = set(int(a, 16) for a in skip_data.keys())
 
         # Pre-pass: set mangled names for class methods so export uses clean unique names.

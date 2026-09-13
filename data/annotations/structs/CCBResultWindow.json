@@ -1,6 +1,6 @@
 {
  "name": "CCBResultWindow",
- "binary_size": 2628,
+ "binary_size": 180,
  "known_members": {
   "72": {
    "name": "m_pBack",
@@ -186,5 +186,5 @@
   }
  ],
  "base_size": 72,
- "size_note": "2026-09-13: ctor 0x518E10 accesses this+0xA44; annotation size 180 was a member-scan truncation. SceneObj::Update slot2 override evidence pending MI wiring"
+ "size_note": "2026-09-13 v2: 2628 reverts to scan value 180 — the 2628 came from a radius measured over a contaminated multi-function range; container constraint (UIAnimateCtrlEX 1012B embeds this @564 → size ≤ ~444) refutes it. True size TBD via allocation-site sizeof (push SIZE; call operator new; call ctor pattern) — tooling pending"
 }
