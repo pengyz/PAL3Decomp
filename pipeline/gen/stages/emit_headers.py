@@ -1252,14 +1252,37 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 gb_path = _gbengine_type_to_header.get(_ann_base)
                 if gb_path:
                     inc_line = '#include "%s"' % gb_path
-                else:
-                    _sub = get_class_dir(_ann_base)
-                    if _sub:
-                        inc_line = '#include "%s/%s.h"' % (_sub, _ann_base)
-                    else:
-                        inc_line = '#include "%s.h"' % _ann_base
-                if inc_line not in lines:
-                    lines.insert(0, inc_line)
+
+    # Annotation-layer base_class fallback: annotations are the source of
+    # truth — the export 'bases' field drifts (TIL mislabels like
+    # '_BYTE[7676]') and loses relationships the annotations record. This
+    # is emission-side inheritance only: no IDB derivatization, no
+    # apply/export roundtrip, so the flattened-member shift risk of the
+    # apply path does not apply here.
+    try:
+        _ann_json_base = None
+        _cls_ann_path = (PROJECT_ROOT / 'data' / 'annotations' / 'structs'
+                         / ('%s.json' % cls_name))
+        if _cls_ann_path.exists():
+            _cls_ann = json.loads(_cls_ann_path.read_text(encoding='utf-8'))
+            _ann_json_base = _cls_ann.get('base_class')
+        if _ann_json_base and not base_names:
+            if isinstance(_ann_json_base, str):
+                _ann_json_base = [_ann_json_base]
+            for _b in _ann_json_base:
+                if _b in template_map:
+                    _b = template_map[_b]
+                if _b in base_names:
+                    continue
+                if _known_base_name(_b):
+                    base_names.append(_b)
+                    _gb = _gbengine_type_to_header.get(_b)
+                    if _gb:
+                        _inc = '#include "%s"' % _gb
+                        if _inc not in lines:
+                            lines.insert(0, _inc)
+    except Exception:
+        pass
 
     # Generate includes for all base classes
     for b in base_names:

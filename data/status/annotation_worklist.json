@@ -1,0 +1,3763 @@
+{
+ "generated": "annotation batch worklist v1 (cascade-aware ledger)",
+ "missing_member_clusters": 360,
+ "signature_issues": {
+  "'Create' : overloaded member function 'bool (class UIWnd *)'": 1,
+  "'Message' : overloaded member function 'int (char *,unsigned": 1,
+  "'Render' : overloaded member function 'void (void)' not foun": 1,
+  "'CreateEff' : overloaded member function 'char (unsigned int": 1,
+  "'RunEffGroup' : overloaded member function 'unsigned int (fl": 1,
+  "'InitShiftedKeys' : overloaded member function 'float *(int)": 1,
+  "'ProcessFrame' : overloaded member function 'void (void)' no": 1,
+  "'ReadRegistryValue' : overloaded member function 'bool (unsi": 1,
+  "'StartCombat' : overloaded member function 'void (int,class ": 1,
+  "'StartCombatFromNPC' : overloaded member function 'char (int": 1,
+  "'ParseLocaleData' : overloaded member function 'unsigned int": 1,
+  "'Copy' : overloaded member function 'void *(void)' not found": 1,
+  "'PartialSort' : overloaded member function 'unsigned int *(u": 1,
+  "'HandleItemPage' : overloaded member function 'double (int,i": 1,
+  "'AdjustThisCall' : overloaded member function 'int (int (__c": 1,
+  "'RenderMainRole' : overloaded member function 'void (void)' ": 1,
+  "'CheckCollision1' : overloaded member function 'int (void *,": 1,
+  "'CheckCollision2' : overloaded member function 'int (int,voi": 1,
+  "'LoadFromConfig' : overloaded member function 'int (int *,in": 1,
+  "'CalcPosition' : overloaded member function 'float *(void)' ": 1
+ },
+ "items": [
+  {
+   "kind": "missing_member",
+   "class": "UIStatic",
+   "member": "m_rect",
+   "error_sites": 104,
+   "files": [
+    "LineupUI.cpp",
+    "MainEquipUI.cpp",
+    "MainPropUI.cpp",
+    "PropUI.cpp",
+    "SaleUI.cpp",
+    "StateUI.cpp",
+    "SwordUI.cpp",
+    "UISceneFrm.cpp",
+    "UISceneMap.cpp",
+    "UIStatic.cpp",
+    "UITitle_JDHY.cpp",
+    "UITitle_YXXX.cpp",
+    "s_RoleState.cpp"
+   ],
+   "evidence_hint": "scan UIStatic methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStatic",
+   "member": "m_childs",
+   "error_sites": 100,
+   "files": [
+    "CScreenMode.cpp",
+    "LineupUI.cpp",
+    "MainEquipUI.cpp",
+    "MainPropUI.cpp",
+    "PropUI.cpp",
+    "SaleUI.cpp",
+    "StateUI.cpp",
+    "SystemUI.cpp",
+    "UICoverFrm.cpp",
+    "UISceneFrm.cpp",
+    "UITitle_BBTY.cpp",
+    "UITitle_JDHY.cpp",
+    "UITitle_YXXX.cpp"
+   ],
+   "evidence_hint": "scan UIStatic methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStatic",
+   "member": "m_id",
+   "error_sites": 69,
+   "files": [
+    "LineupUI.cpp",
+    "StateUI.cpp",
+    "UIScenePanel.cpp",
+    "UIStatic.cpp",
+    "UITitle_JDHY.cpp",
+    "UITitle_YXXX.cpp",
+    "s_RoleState.cpp"
+   ],
+   "evidence_hint": "scan UIStatic methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_pObjMsgBuffer",
+   "error_sites": 65,
+   "files": [
+    "CCBAI.cpp",
+    "CCBAttackSequen.cpp",
+    "CCBRoleState.cpp",
+    "CCBStage.cpp",
+    "CCBStageShadow.cpp",
+    "CCBSystem.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_pObjMsgBuffer usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStatic",
+   "member": "m_bvisible",
+   "error_sites": 57,
+   "files": [
+    "CCBAttackSequen.cpp",
+    "CScreenMode.cpp",
+    "MainEquipUI.cpp",
+    "MainPropUI.cpp",
+    "PropUI.cpp",
+    "SaleUI.cpp",
+    "StateUI.cpp",
+    "SystemUI.cpp",
+    "UIStatic.cpp",
+    "s_RoleState.cpp"
+   ],
+   "evidence_hint": "scan UIStatic methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UI3DCtrl",
+   "member": "m_rect",
+   "error_sites": 40,
+   "files": [
+    "StateUI.cpp",
+    "UI3DCtrl.cpp"
+   ],
+   "evidence_hint": "scan UI3DCtrl methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStageCam",
+   "member": "fov",
+   "error_sites": 36,
+   "files": [
+    "CCBStage.cpp",
+    "CCBStageCam.cpp",
+    "CEffect.cpp"
+   ],
+   "evidence_hint": "scan CCBStageCam methods for this->fov usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBUIPanel",
+   "member": "m_scrollbar",
+   "error_sites": 29,
+   "files": [
+    "CCBUIPanel.cpp"
+   ],
+   "evidence_hint": "scan CCBUIPanel methods for this->m_scrollbar usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStatic",
+   "member": "m_pfather",
+   "error_sites": 27,
+   "files": [
+    "ComposeUI.cpp",
+    "MainEquipUI.cpp",
+    "PropUI.cpp",
+    "SystemUI.cpp",
+    "UIStatic.cpp",
+    "s_RoleState.cpp"
+   ],
+   "evidence_hint": "scan UIStatic methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIFrameWnd",
+   "member": "m_rect",
+   "error_sites": 27,
+   "files": [
+    "CScreenMode.cpp",
+    "UIFrameWnd.cpp"
+   ],
+   "evidence_hint": "scan UIFrameWnd methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "RoleSystem",
+   "member": "m_rect",
+   "error_sites": 27,
+   "files": [
+    "PalScriptMgr.cpp",
+    "RoleSystem.cpp",
+    "free_functions.cpp",
+    "scAsmDecoder.cpp"
+   ],
+   "evidence_hint": "scan RoleSystem methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStatic",
+   "member": "m_bfocus",
+   "error_sites": 25,
+   "files": [
+    "LineupUI.cpp",
+    "MainEquipUI.cpp",
+    "SaleUI.cpp",
+    "UITitle_JDHY.cpp"
+   ],
+   "evidence_hint": "scan UIStatic methods for this->m_bfocus usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITextArea",
+   "member": "m_rect",
+   "error_sites": 25,
+   "files": [
+    "UITextArea.cpp"
+   ],
+   "evidence_hint": "scan UITextArea methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIButton",
+   "member": "m_rect",
+   "error_sites": 23,
+   "files": [
+    "UIButton.cpp",
+    "UISceneFrm.cpp",
+    "UITitle_YXXX.cpp"
+   ],
+   "evidence_hint": "scan UIButton methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStatic",
+   "member": "m_bcreateok",
+   "error_sites": 21,
+   "files": [
+    "PropUI.cpp",
+    "SaleUI.cpp",
+    "SystemUI.cpp",
+    "UICoverFrm.cpp",
+    "UITitle_JDHY.cpp",
+    "UITitle_YXXX.cpp"
+   ],
+   "evidence_hint": "scan UIStatic methods for this->m_bcreateok usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStatic",
+   "member": "m_benable",
+   "error_sites": 19,
+   "files": [
+    "LineupUI.cpp",
+    "MainEquipUI.cpp",
+    "SaleUI.cpp",
+    "TaskBookUI.cpp",
+    "UIStatic.cpp",
+    "UITitle_YXXX.cpp"
+   ],
+   "evidence_hint": "scan UIStatic methods for this->m_benable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIBigMap",
+   "member": "m_rect",
+   "error_sites": 19,
+   "files": [
+    "UIBigMap.cpp"
+   ],
+   "evidence_hint": "scan UIBigMap methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIScene",
+   "member": "m_rect",
+   "error_sites": 18,
+   "files": [
+    "CGameData.cpp",
+    "CScreenMode.cpp",
+    "UIScene.cpp"
+   ],
+   "evidence_hint": "scan UIScene methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIScenePanel",
+   "member": "m_rect",
+   "error_sites": 18,
+   "files": [
+    "UIScenePanel.cpp"
+   ],
+   "evidence_hint": "scan UIScenePanel methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "RoleSystem",
+   "member": "m_fontcolor",
+   "error_sites": 17,
+   "files": [
+    "Camera.cpp",
+    "PAL3.cpp",
+    "PalScriptMgr.cpp",
+    "RoleSystem.cpp",
+    "SceneMgr.cpp",
+    "UICamera.cpp",
+    "free_functions.cpp",
+    "scAsmDecoder.cpp"
+   ],
+   "evidence_hint": "scan RoleSystem methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UICaption",
+   "member": "m_rect",
+   "error_sites": 16,
+   "files": [
+    "UICaption.cpp"
+   ],
+   "evidence_hint": "scan UICaption methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIPar_Star",
+   "member": "m_pfather",
+   "error_sites": 16,
+   "files": [
+    "UICoverFrm.cpp"
+   ],
+   "evidence_hint": "scan UIPar_Star methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "RoleSystem",
+   "member": "m_id",
+   "error_sites": 15,
+   "files": [
+    "Camera.cpp",
+    "PAL3.cpp",
+    "RoleSystem.cpp",
+    "UICamera.cpp",
+    "free_functions.cpp",
+    "scAsmDecoder.cpp"
+   ],
+   "evidence_hint": "scan RoleSystem methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_info",
+   "error_sites": 14,
+   "files": [
+    "CCBAI.cpp",
+    "CCBAttackSequen.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_info usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIListBox",
+   "member": "m_rect",
+   "error_sites": 14,
+   "files": [
+    "UIListBox.cpp",
+    "UIRoleSelect.cpp"
+   ],
+   "evidence_hint": "scan UIListBox methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIBigMap",
+   "member": "m_childs",
+   "error_sites": 13,
+   "files": [
+    "UIBigMap.cpp"
+   ],
+   "evidence_hint": "scan UIBigMap methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "SceneObj",
+   "member": "TaskMgr_SceneObjParam_SceneObj",
+   "error_sites": 13,
+   "files": [
+    "SceneObj.cpp"
+   ],
+   "evidence_hint": "scan SceneObj methods for this->TaskMgr_SceneObjParam_SceneObj usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIButton",
+   "member": "m_benable",
+   "error_sites": 12,
+   "files": [
+    "MainEquipUI.cpp",
+    "PropUI.cpp",
+    "UIButton.cpp",
+    "UISceneFrm.cpp"
+   ],
+   "evidence_hint": "scan UIButton methods for this->m_benable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UICoverFrm",
+   "member": "m_fontcolor",
+   "error_sites": 12,
+   "files": [
+    "UICoverFrm.cpp"
+   ],
+   "evidence_hint": "scan UICoverFrm methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIAnimateCtrl",
+   "member": "m_childs",
+   "error_sites": 11,
+   "files": [
+    "UIEmote.cpp",
+    "UIRoleSelectDialog.cpp"
+   ],
+   "evidence_hint": "scan UIAnimateCtrl methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITabCtrl",
+   "member": "m_childs",
+   "error_sites": 11,
+   "files": [
+    "UITabCtrl.cpp"
+   ],
+   "evidence_hint": "scan UITabCtrl methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBProtectWindow",
+   "member": "m_childs",
+   "error_sites": 10,
+   "files": [
+    "CCBProtectWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBProtectWindow methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStatic",
+   "member": "m_wndcolor",
+   "error_sites": 10,
+   "files": [
+    "LineupUI.cpp",
+    "UICoverFrm.cpp",
+    "UISceneMap.cpp",
+    "UITitle_YXXX.cpp",
+    "s_RoleState.cpp"
+   ],
+   "evidence_hint": "scan UIStatic methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStaticFlex",
+   "member": "m_id",
+   "error_sites": 10,
+   "files": [
+    "UIRoleDialog.cpp",
+    "UIRoleSelectDialog.cpp"
+   ],
+   "evidence_hint": "scan UIStaticFlex methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "RoleSystem",
+   "member": "m_childs",
+   "error_sites": 10,
+   "files": [
+    "RoleSystem.cpp",
+    "free_functions.cpp",
+    "scAsmDecoder.cpp"
+   ],
+   "evidence_hint": "scan RoleSystem methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "Logger",
+   "error_sites": 9,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->Logger usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CEffModel",
+   "member": "CTaskTpl_tagEffTaskParam_CEffModel",
+   "error_sites": 9,
+   "files": [
+    "CEffModel.cpp"
+   ],
+   "evidence_hint": "scan CEffModel methods for this->CTaskTpl_tagEffTaskParam_CEffModel usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBUIPanel",
+   "member": "m_hasKeyCtrl",
+   "error_sites": 9,
+   "files": [
+    "CCBUIPanel.cpp"
+   ],
+   "evidence_hint": "scan CCBUIPanel methods for this->m_hasKeyCtrl usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "MUIDialog",
+   "member": "m_childs",
+   "error_sites": 9,
+   "files": [
+    "MUIDialog.cpp",
+    "UITitle_ArcSave.cpp"
+   ],
+   "evidence_hint": "scan MUIDialog methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStaticFlex",
+   "member": "m_rect",
+   "error_sites": 9,
+   "files": [
+    "UIRoleDialog.cpp",
+    "UIRoleSelect.cpp",
+    "UIRoleSelectDialog.cpp"
+   ],
+   "evidence_hint": "scan UIStaticFlex methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UISceneFrm",
+   "member": "m_fontcolor",
+   "error_sites": 9,
+   "files": [
+    "UISceneFrm.cpp"
+   ],
+   "evidence_hint": "scan UISceneFrm methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "RoleSystem",
+   "member": "m_wndcolor",
+   "error_sites": 9,
+   "files": [
+    "RoleSystem.cpp",
+    "UICamera.cpp",
+    "free_functions.cpp",
+    "scAsmDecoder.cpp"
+   ],
+   "evidence_hint": "scan RoleSystem methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "MUIDialog",
+   "member": "UIFrameWnd",
+   "error_sites": 8,
+   "files": [
+    "MUIDialog.cpp",
+    "SaleUI.cpp",
+    "StateUI.cpp",
+    "UITitle_ArcSave.cpp"
+   ],
+   "evidence_hint": "scan MUIDialog methods for this->UIFrameWnd usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "PalScriptIdleObj",
+   "member": "m_needscriptdel",
+   "error_sites": 8,
+   "files": [
+    "PalScriptIdleObj.cpp",
+    "SceneObj.cpp"
+   ],
+   "evidence_hint": "scan PalScriptIdleObj methods for this->m_needscriptdel usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIBigMap",
+   "member": "m_pfather",
+   "error_sites": 8,
+   "files": [
+    "UIBigMap.cpp"
+   ],
+   "evidence_hint": "scan UIBigMap methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIButtonEXA",
+   "member": "m_rect",
+   "error_sites": 8,
+   "files": [
+    "UIBigMap.cpp",
+    "UITitle_BBTY.cpp"
+   ],
+   "evidence_hint": "scan UIButtonEXA methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UILoadingFrm",
+   "member": "m_rect",
+   "error_sites": 8,
+   "files": [
+    "UILoadingFrm.cpp"
+   ],
+   "evidence_hint": "scan UILoadingFrm methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIMap",
+   "member": "m_rect",
+   "error_sites": 8,
+   "files": [
+    "UIMap.cpp"
+   ],
+   "evidence_hint": "scan UIMap methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CameraCtrl",
+   "member": "_nearby_41cbc0",
+   "error_sites": 8,
+   "files": [
+    "CameraCtrl.cpp"
+   ],
+   "evidence_hint": "scan CameraCtrl methods for this->_nearby_41cbc0 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_fSpringPrevY",
+   "error_sites": 7,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_fSpringPrevY usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_fSpringPosX",
+   "error_sites": 7,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_fSpringPosX usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_fSpringPosY",
+   "error_sites": 7,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_fSpringPosY usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "v22",
+   "error_sites": 7,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->v22 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStatic",
+   "member": "m_fontcolor",
+   "error_sites": 7,
+   "files": [
+    "LineupUI.cpp",
+    "MainEquipUI.cpp",
+    "SystemUI.cpp",
+    "UISceneFrm.cpp",
+    "UITitle_YXXX.cpp",
+    "s_RoleState.cpp"
+   ],
+   "evidence_hint": "scan UIStatic methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIAnimateCtrl",
+   "member": "m_rect",
+   "error_sites": 7,
+   "files": [
+    "UIEmote.cpp"
+   ],
+   "evidence_hint": "scan UIAnimateCtrl methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIFrameWnd",
+   "member": "m_bvisible",
+   "error_sites": 7,
+   "files": [
+    "UIFrameWnd.cpp"
+   ],
+   "evidence_hint": "scan UIFrameWnd methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIButton",
+   "member": "m_bfocus",
+   "error_sites": 7,
+   "files": [
+    "UISceneFrm.cpp"
+   ],
+   "evidence_hint": "scan UIButton methods for this->m_bfocus usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIScene",
+   "member": "m_pfather",
+   "error_sites": 7,
+   "files": [
+    "UIScene.cpp"
+   ],
+   "evidence_hint": "scan UIScene methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBItemWindow",
+   "member": "m_pfather",
+   "error_sites": 6,
+   "files": [
+    "CCBItemWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBItemWindow methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "mOBBox",
+   "error_sites": 6,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->mOBBox usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "pExceptionObject",
+   "error_sites": 6,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->pExceptionObject usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBFiveNimbusWindow",
+   "member": "m_pfather",
+   "error_sites": 6,
+   "files": [
+    "CCBFiveNimbusWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBFiveNimbusWindow methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "MUIDialog",
+   "member": "m_rect",
+   "error_sites": 6,
+   "files": [
+    "SaleUI.cpp",
+    "UITitle_ArcSave.cpp"
+   ],
+   "evidence_hint": "scan MUIDialog methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UICaption",
+   "member": "m_pfather",
+   "error_sites": 6,
+   "files": [
+    "UICaption.cpp"
+   ],
+   "evidence_hint": "scan UICaption methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UICaption",
+   "member": "m_id",
+   "error_sites": 6,
+   "files": [
+    "UICaption.cpp"
+   ],
+   "evidence_hint": "scan UICaption methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIProgressBar",
+   "member": "m_pfather",
+   "error_sites": 6,
+   "files": [
+    "UIProgressBar.cpp"
+   ],
+   "evidence_hint": "scan UIProgressBar methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIListBox",
+   "member": "UIWnd",
+   "error_sites": 6,
+   "files": [
+    "UIListBox.cpp"
+   ],
+   "evidence_hint": "scan UIListBox methods for this->UIWnd usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_fSpringPrevX",
+   "error_sites": 5,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_fSpringPrevX usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_nSpringDir",
+   "error_sites": 5,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_nSpringDir usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "ARC_PlayerAtt",
+   "member": "Remark",
+   "error_sites": 5,
+   "files": [
+    "ARC_PlayerAtt.cpp",
+    "MainEquipUI.cpp"
+   ],
+   "evidence_hint": "scan ARC_PlayerAtt methods for this->Remark usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIPar_Star",
+   "member": "m_benable",
+   "error_sites": 5,
+   "files": [
+    "UICoverFrm.cpp"
+   ],
+   "evidence_hint": "scan UIPar_Star methods for this->m_benable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIPar_Star",
+   "member": "m_rect",
+   "error_sites": 5,
+   "files": [
+    "UICoverFrm.cpp"
+   ],
+   "evidence_hint": "scan UIPar_Star methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIAnimateCtrl",
+   "member": "m_bvisible",
+   "error_sites": 5,
+   "files": [
+    "UIEmote.cpp"
+   ],
+   "evidence_hint": "scan UIAnimateCtrl methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIFrameWnd",
+   "member": "m_pfather",
+   "error_sites": 5,
+   "files": [
+    "UIFrameWnd.cpp"
+   ],
+   "evidence_hint": "scan UIFrameWnd methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIFrameWnd",
+   "member": "m_id",
+   "error_sites": 5,
+   "files": [
+    "UIFrameWnd.cpp"
+   ],
+   "evidence_hint": "scan UIFrameWnd methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UILoadingFrm",
+   "member": "m_childs",
+   "error_sites": 5,
+   "files": [
+    "UILoadingFrm.cpp"
+   ],
+   "evidence_hint": "scan UILoadingFrm methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITextArea",
+   "member": "m_childs",
+   "error_sites": 5,
+   "files": [
+    "UIRoleDialog.cpp"
+   ],
+   "evidence_hint": "scan UITextArea methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStaticFlip",
+   "member": "m_rect",
+   "error_sites": 5,
+   "files": [
+    "UIRoleDialog.cpp",
+    "UIRoleSelectDialog.cpp"
+   ],
+   "evidence_hint": "scan UIStaticFlip methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIFlexBar",
+   "member": "m_bfocus",
+   "error_sites": 5,
+   "files": [
+    "UIRoleSelect.cpp",
+    "UIScrollBar.cpp"
+   ],
+   "evidence_hint": "scan UIFlexBar methods for this->m_bfocus usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStaticFlex",
+   "member": "m_childs",
+   "error_sites": 5,
+   "files": [
+    "CScreenMode.cpp",
+    "UIRoleSelect.cpp"
+   ],
+   "evidence_hint": "scan UIStaticFlex methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UISceneFrm",
+   "member": "m_wndcolor",
+   "error_sites": 5,
+   "files": [
+    "UISceneFrm.cpp"
+   ],
+   "evidence_hint": "scan UISceneFrm methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UISceneMap",
+   "member": "m_wndcolor",
+   "error_sites": 5,
+   "files": [
+    "UISceneMap.cpp"
+   ],
+   "evidence_hint": "scan UISceneMap methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStatic",
+   "member": "UIWnd",
+   "error_sites": 5,
+   "files": [
+    "UIStatic.cpp",
+    "UITitle_JDHY.cpp"
+   ],
+   "evidence_hint": "scan UIStatic methods for this->UIWnd usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "RoleSystem",
+   "member": "m_pfather",
+   "error_sites": 5,
+   "files": [
+    "RoleSystem.cpp",
+    "free_functions.cpp",
+    "scAsmDecoder.cpp"
+   ],
+   "evidence_hint": "scan RoleSystem methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIScene",
+   "member": "m_id",
+   "error_sites": 5,
+   "files": [
+    "UIScene.cpp"
+   ],
+   "evidence_hint": "scan UIScene methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBControlWindow",
+   "member": "m_bvisible",
+   "error_sites": 4,
+   "files": [
+    "CCBControlWindow.cpp",
+    "EquipUI.cpp"
+   ],
+   "evidence_hint": "scan CCBControlWindow methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_fSpringSpeed",
+   "error_sites": 4,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_fSpringSpeed usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_RoleXor",
+   "error_sites": 4,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_RoleXor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "_DWORD",
+   "error_sites": 4,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->_DWORD usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "_BYTE",
+   "error_sites": 4,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->_BYTE usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "CCBCamControl",
+   "error_sites": 4,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->CCBCamControl usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "gbRefObject",
+   "member": "ReleaseAllRefs",
+   "error_sites": 4,
+   "files": [
+    "CCBSystem.cpp"
+   ],
+   "evidence_hint": "scan gbRefObject methods for this->ReleaseAllRefs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "gbSound2DNode",
+   "member": "UIPostUpdate",
+   "error_sites": 4,
+   "files": [
+    "PAL3.cpp"
+   ],
+   "evidence_hint": "scan gbSound2DNode methods for this->UIPostUpdate usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBFiveNimbusWindow",
+   "member": "m_rect",
+   "error_sites": 4,
+   "files": [
+    "CCBFiveNimbusWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBFiveNimbusWindow methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStaticRM",
+   "member": "m_fontcolor",
+   "error_sites": 4,
+   "files": [
+    "SaleUI.cpp"
+   ],
+   "evidence_hint": "scan UIStaticRM methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIButtonEXA",
+   "member": "m_childs",
+   "error_sites": 4,
+   "files": [
+    "UIBigMap.cpp"
+   ],
+   "evidence_hint": "scan UIButtonEXA methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIPar_Star",
+   "member": "m_childs",
+   "error_sites": 4,
+   "files": [
+    "UICoverFrm.cpp"
+   ],
+   "evidence_hint": "scan UIPar_Star methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIPar_Star",
+   "member": "m_bfocus",
+   "error_sites": 4,
+   "files": [
+    "UICoverFrm.cpp"
+   ],
+   "evidence_hint": "scan UIPar_Star methods for this->m_bfocus usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIPar_Meteor",
+   "member": "m_fontcolor",
+   "error_sites": 4,
+   "files": [
+    "UICoverFrm.cpp"
+   ],
+   "evidence_hint": "scan UIPar_Meteor methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIAnimateCtrl",
+   "member": "m_pfather",
+   "error_sites": 4,
+   "files": [
+    "UIEmote.cpp",
+    "UIRoleDialog.cpp"
+   ],
+   "evidence_hint": "scan UIAnimateCtrl methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIFrameWnd",
+   "member": "m_benable",
+   "error_sites": 4,
+   "files": [
+    "UIFrameWnd.cpp"
+   ],
+   "evidence_hint": "scan UIFrameWnd methods for this->m_benable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIProgressBar",
+   "member": "m_rect",
+   "error_sites": 4,
+   "files": [
+    "UILoadingFrm.cpp"
+   ],
+   "evidence_hint": "scan UIProgressBar methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIButton",
+   "member": "m_wndcolor",
+   "error_sites": 4,
+   "files": [
+    "UISceneMap.cpp"
+   ],
+   "evidence_hint": "scan UIButton methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "RoleShadow",
+   "member": "TaskBookUI",
+   "error_sites": 4,
+   "files": [
+    "UIScenePanel.cpp"
+   ],
+   "evidence_hint": "scan RoleShadow methods for this->TaskBookUI usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIScrollBar",
+   "member": "m_rect",
+   "error_sites": 4,
+   "files": [
+    "UIScrollBar.cpp"
+   ],
+   "evidence_hint": "scan UIScrollBar methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITabCtrl",
+   "member": "m_rect",
+   "error_sites": 4,
+   "files": [
+    "UITabCtrl.cpp"
+   ],
+   "evidence_hint": "scan UITabCtrl methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITextArea",
+   "member": "m_fontcolor",
+   "error_sites": 4,
+   "files": [
+    "UITextArea.cpp"
+   ],
+   "evidence_hint": "scan UITextArea methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITextArea",
+   "member": "m_bvisible",
+   "error_sites": 4,
+   "files": [
+    "UITextArea.cpp"
+   ],
+   "evidence_hint": "scan UITextArea methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "MainEquipUI",
+   "member": "CScreenMode",
+   "error_sites": 4,
+   "files": [
+    "CScreenMode.cpp"
+   ],
+   "evidence_hint": "scan MainEquipUI methods for this->CScreenMode usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UI3DCtrl",
+   "member": "m_childs",
+   "error_sites": 4,
+   "files": [
+    "StateUI.cpp"
+   ],
+   "evidence_hint": "scan UI3DCtrl methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIListBox",
+   "member": "m_bfocus",
+   "error_sites": 4,
+   "files": [
+    "UIListBox.cpp"
+   ],
+   "evidence_hint": "scan UIListBox methods for this->m_bfocus usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIScene",
+   "member": "m_childs",
+   "error_sites": 4,
+   "files": [
+    "UIScene.cpp"
+   ],
+   "evidence_hint": "scan UIScene methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBResultWindow",
+   "member": "UIWnd",
+   "error_sites": 3,
+   "files": [
+    "CCBResultWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBResultWindow methods for this->UIWnd usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBResultWindow",
+   "member": "m_pfather",
+   "error_sites": 3,
+   "files": [
+    "CCBResultWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBResultWindow methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_fSpringTargX",
+   "error_sites": 3,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_fSpringTargX usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_bSpringDoneY",
+   "error_sites": 3,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_bSpringDoneY usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_fSpringTargY",
+   "error_sites": 3,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_fSpringTargY usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "memcpy",
+   "error_sites": 3,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->memcpy usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "_CxxThrowException",
+   "error_sites": 3,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->_CxxThrowException usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "_ThrowInfo",
+   "error_sites": 3,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->_ThrowInfo usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "v10",
+   "error_sites": 3,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->v10 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "CameraCtrl",
+   "error_sites": 3,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->CameraCtrl usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "v12",
+   "error_sites": 3,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->v12 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBUI",
+   "member": "m_rect",
+   "error_sites": 3,
+   "files": [
+    "CCBUI.cpp"
+   ],
+   "evidence_hint": "scan CCBUI methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBFiveNimbusWindow",
+   "member": "m_bvisible",
+   "error_sites": 3,
+   "files": [
+    "CCBFiveNimbusWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBFiveNimbusWindow methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBUIPanel",
+   "member": "UIListBox",
+   "error_sites": 3,
+   "files": [
+    "CCBUIPanel.cpp"
+   ],
+   "evidence_hint": "scan CCBUIPanel methods for this->UIListBox usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CEffAction",
+   "member": "m_pEM",
+   "error_sites": 3,
+   "files": [
+    "CEffAction.cpp"
+   ],
+   "evidence_hint": "scan CEffAction methods for this->m_pEM usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIButton",
+   "member": "m_id",
+   "error_sites": 3,
+   "files": [
+    "SystemUI.cpp",
+    "UISceneFrm.cpp",
+    "UISceneMap.cpp"
+   ],
+   "evidence_hint": "scan UIButton methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UI3DCtrl",
+   "member": "UIWnd",
+   "error_sites": 3,
+   "files": [
+    "UI3DCtrl.cpp"
+   ],
+   "evidence_hint": "scan UI3DCtrl methods for this->UIWnd usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UI3DCtrl",
+   "member": "m_bvisible",
+   "error_sites": 3,
+   "files": [
+    "StateUI.cpp",
+    "UI3DCtrl.cpp"
+   ],
+   "evidence_hint": "scan UI3DCtrl methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIButton",
+   "member": "UIWnd",
+   "error_sites": 3,
+   "files": [
+    "UIButton.cpp"
+   ],
+   "evidence_hint": "scan UIButton methods for this->UIWnd usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UICaption",
+   "member": "m_benable",
+   "error_sites": 3,
+   "files": [
+    "UICaption.cpp"
+   ],
+   "evidence_hint": "scan UICaption methods for this->m_benable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIAnimateCtrl",
+   "member": "m_fontcolor",
+   "error_sites": 3,
+   "files": [
+    "UIEmote.cpp"
+   ],
+   "evidence_hint": "scan UIAnimateCtrl methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIFrameWnd",
+   "member": "UIWnd",
+   "error_sites": 3,
+   "files": [
+    "UIFrameWnd.cpp"
+   ],
+   "evidence_hint": "scan UIFrameWnd methods for this->UIWnd usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UILoadingFrm",
+   "member": "m_fontcolor",
+   "error_sites": 3,
+   "files": [
+    "UILoadingFrm.cpp"
+   ],
+   "evidence_hint": "scan UILoadingFrm methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UILoadingFrm",
+   "member": "m_wndcolor",
+   "error_sites": 3,
+   "files": [
+    "UILoadingFrm.cpp"
+   ],
+   "evidence_hint": "scan UILoadingFrm methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UILoadingFrm",
+   "member": "m_id",
+   "error_sites": 3,
+   "files": [
+    "UILoadingFrm.cpp"
+   ],
+   "evidence_hint": "scan UILoadingFrm methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIProgressBar",
+   "member": "m_id",
+   "error_sites": 3,
+   "files": [
+    "UILoadingFrm.cpp",
+    "UIProgressBar.cpp"
+   ],
+   "evidence_hint": "scan UIProgressBar methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UILoadingFrm",
+   "member": "m_bcreateok",
+   "error_sites": 3,
+   "files": [
+    "UILoadingFrm.cpp"
+   ],
+   "evidence_hint": "scan UILoadingFrm methods for this->m_bcreateok usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UISceneMap",
+   "member": "m_childs",
+   "error_sites": 3,
+   "files": [
+    "UISceneFrm.cpp"
+   ],
+   "evidence_hint": "scan UISceneMap methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIButton",
+   "member": "m_fontcolor",
+   "error_sites": 3,
+   "files": [
+    "UISceneMap.cpp",
+    "UITitle.cpp"
+   ],
+   "evidence_hint": "scan UIButton methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStaticEX",
+   "member": "m_rect",
+   "error_sites": 3,
+   "files": [
+    "UISceneMap.cpp"
+   ],
+   "evidence_hint": "scan UIStaticEX methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIScenePanel",
+   "member": "m_benable",
+   "error_sites": 3,
+   "files": [
+    "UIScenePanel.cpp"
+   ],
+   "evidence_hint": "scan UIScenePanel methods for this->m_benable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIScenePanel",
+   "member": "m_pfather",
+   "error_sites": 3,
+   "files": [
+    "UIScenePanel.cpp"
+   ],
+   "evidence_hint": "scan UIScenePanel methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIScenePanel",
+   "member": "m_id",
+   "error_sites": 3,
+   "files": [
+    "UIScenePanel.cpp"
+   ],
+   "evidence_hint": "scan UIScenePanel methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIFlexBar",
+   "member": "m_childs",
+   "error_sites": 3,
+   "files": [
+    "UIScrollBar.cpp"
+   ],
+   "evidence_hint": "scan UIFlexBar methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIFlexBar",
+   "member": "m_benable",
+   "error_sites": 3,
+   "files": [
+    "UIScrollBar.cpp"
+   ],
+   "evidence_hint": "scan UIFlexBar methods for this->m_benable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITitle",
+   "member": "UIWnd",
+   "error_sites": 3,
+   "files": [
+    "UITitle.cpp"
+   ],
+   "evidence_hint": "scan UITitle methods for this->UIWnd usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "MUIDialog",
+   "member": "m_bcreateok",
+   "error_sites": 3,
+   "files": [
+    "UITitle_ArcSave.cpp"
+   ],
+   "evidence_hint": "scan MUIDialog methods for this->m_bcreateok usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITitle_BBTY",
+   "member": "UIWnd",
+   "error_sites": 3,
+   "files": [
+    "UITitle_BBTY.cpp"
+   ],
+   "evidence_hint": "scan UITitle_BBTY methods for this->UIWnd usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "PlayerMgr",
+   "member": "PropUI",
+   "error_sites": 3,
+   "files": [
+    "CScreenMode.cpp"
+   ],
+   "evidence_hint": "scan PlayerMgr methods for this->PropUI usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "MainEquipUI",
+   "member": "UICursor",
+   "error_sites": 3,
+   "files": [
+    "CScreenMode.cpp"
+   ],
+   "evidence_hint": "scan MainEquipUI methods for this->UICursor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "RoleSystem",
+   "member": "m_bcreateok",
+   "error_sites": 3,
+   "files": [
+    "RoleSystem.cpp",
+    "free_functions.cpp"
+   ],
+   "evidence_hint": "scan RoleSystem methods for this->m_bcreateok usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIListBox",
+   "member": "m_pfather",
+   "error_sites": 3,
+   "files": [
+    "UIListBox.cpp"
+   ],
+   "evidence_hint": "scan UIListBox methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIScene",
+   "member": "m_bvisible",
+   "error_sites": 3,
+   "files": [
+    "UIScene.cpp"
+   ],
+   "evidence_hint": "scan UIScene methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIScene",
+   "member": "m_benable",
+   "error_sites": 3,
+   "files": [
+    "UIScene.cpp"
+   ],
+   "evidence_hint": "scan UIScene methods for this->m_benable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIScene",
+   "member": "m_wndcolor",
+   "error_sites": 3,
+   "files": [
+    "UIScene.cpp"
+   ],
+   "evidence_hint": "scan UIScene methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBControlWindow",
+   "member": "m_pfather",
+   "error_sites": 2,
+   "files": [
+    "CCBControlWindow.cpp",
+    "EquipUI.cpp"
+   ],
+   "evidence_hint": "scan CCBControlWindow methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBControlWindow",
+   "member": "UIWnd",
+   "error_sites": 2,
+   "files": [
+    "CCBControlWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBControlWindow methods for this->UIWnd usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBItemWindow",
+   "member": "m_rect",
+   "error_sites": 2,
+   "files": [
+    "CCBItemWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBItemWindow methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBItemWindow",
+   "member": "m_bvisible",
+   "error_sites": 2,
+   "files": [
+    "CCBItemWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBItemWindow methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBParabolaWindow",
+   "member": "UIWnd",
+   "error_sites": 2,
+   "files": [
+    "CCBParabolaWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBParabolaWindow methods for this->UIWnd usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBProtectWindow",
+   "member": "m_rect",
+   "error_sites": 2,
+   "files": [
+    "CCBProtectWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBProtectWindow methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBProtectWindow",
+   "member": "m_pfather",
+   "error_sites": 2,
+   "files": [
+    "CCBProtectWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBProtectWindow methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_bSpringDoneX",
+   "error_sites": 2,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_bSpringDoneX usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "TaskMgr_SceneObjParam_SceneObj",
+   "error_sites": 2,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->TaskMgr_SceneObjParam_SceneObj usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_pScene",
+   "error_sites": 2,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_pScene usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_bLockPropUI",
+   "error_sites": 2,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_bLockPropUI usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "SceneObj",
+   "error_sites": 2,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->SceneObj usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBSkillWindow",
+   "member": "m_pfather",
+   "error_sites": 2,
+   "files": [
+    "CCBSkillWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBSkillWindow methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_pObjMsgBuffer2",
+   "error_sites": 2,
+   "files": [
+    "CCBStage.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_pObjMsgBuffer2 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "OBBox",
+   "error_sites": 2,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->OBBox usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "v9",
+   "error_sites": 2,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->v9 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "result",
+   "error_sites": 2,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->result usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "v11",
+   "error_sites": 2,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->v11 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "CCBStageCam",
+   "error_sites": 2,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->CCBStageCam usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "v13",
+   "error_sites": 2,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->v13 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "inited",
+   "error_sites": 2,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->inited usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CIniFile",
+   "member": "LoadData",
+   "error_sites": 2,
+   "files": [
+    "CCBSystem.cpp"
+   ],
+   "evidence_hint": "scan CIniFile methods for this->LoadData usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStageCam",
+   "member": "OrthoSize",
+   "error_sites": 2,
+   "files": [
+    "CCBSystem.cpp"
+   ],
+   "evidence_hint": "scan CCBStageCam methods for this->OrthoSize usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBUI",
+   "member": "m_wndcolor",
+   "error_sites": 2,
+   "files": [
+    "CCBUI.cpp"
+   ],
+   "evidence_hint": "scan CCBUI methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBUI",
+   "member": "m_fontcolor",
+   "error_sites": 2,
+   "files": [
+    "CCBUI.cpp"
+   ],
+   "evidence_hint": "scan CCBUI methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CEffModel",
+   "member": "m_pEM",
+   "error_sites": 2,
+   "files": [
+    "CEffModel.cpp"
+   ],
+   "evidence_hint": "scan CEffModel methods for this->m_pEM usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CEffModel",
+   "member": "m_bIdle",
+   "error_sites": 2,
+   "files": [
+    "CEffModel.cpp"
+   ],
+   "evidence_hint": "scan CEffModel methods for this->m_bIdle usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CEffectSystem",
+   "member": "Destroy_5840",
+   "error_sites": 2,
+   "files": [
+    "PAL3.cpp"
+   ],
+   "evidence_hint": "scan CEffectSystem methods for this->Destroy_5840 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "gbCamera",
+   "member": "RenderPost",
+   "error_sites": 2,
+   "files": [
+    "PAL3.cpp"
+   ],
+   "evidence_hint": "scan gbCamera methods for this->RenderPost usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "gbMatrixStack",
+   "member": "SceneRenderWithRotation",
+   "error_sites": 2,
+   "files": [
+    "PAL3.cpp"
+   ],
+   "evidence_hint": "scan gbMatrixStack methods for this->SceneRenderWithRotation usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "ARC_PlayerAtt",
+   "member": "name",
+   "error_sites": 2,
+   "files": [
+    "ARC_PlayerAtt.cpp"
+   ],
+   "evidence_hint": "scan ARC_PlayerAtt methods for this->name usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBFiveNimbusWindow",
+   "member": "m_bcreateok",
+   "error_sites": 2,
+   "files": [
+    "CCBFiveNimbusWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBFiveNimbusWindow methods for this->m_bcreateok usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBFiveNimbusWindow",
+   "member": "m_benable",
+   "error_sites": 2,
+   "files": [
+    "CCBFiveNimbusWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBFiveNimbusWindow methods for this->m_benable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBFiveNimbusWindow",
+   "member": "m_bfocus",
+   "error_sites": 2,
+   "files": [
+    "CCBFiveNimbusWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBFiveNimbusWindow methods for this->m_bfocus usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBUIPanel",
+   "member": "m_showGrayBk",
+   "error_sites": 2,
+   "files": [
+    "CCBUIPanel.cpp"
+   ],
+   "evidence_hint": "scan CCBUIPanel methods for this->m_showGrayBk usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CEffAction",
+   "member": "m_bIdle",
+   "error_sites": 2,
+   "files": [
+    "CEffAction.cpp"
+   ],
+   "evidence_hint": "scan CEffAction methods for this->m_bIdle usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CEffAction",
+   "member": "CTaskTpl_tagEffTaskParam_CEffAction",
+   "error_sites": 2,
+   "files": [
+    "CEffAction.cpp"
+   ],
+   "evidence_hint": "scan CEffAction methods for this->CTaskTpl_tagEffTaskParam_CEffAction usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "MUIDialog",
+   "member": "UIWnd",
+   "error_sites": 2,
+   "files": [
+    "MUIDialog.cpp"
+   ],
+   "evidence_hint": "scan MUIDialog methods for this->UIWnd usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "gbTexture",
+   "member": "AddEntryFromConfig",
+   "error_sites": 2,
+   "files": [
+    "ParticleEffect.cpp"
+   ],
+   "evidence_hint": "scan gbTexture methods for this->AddEntryFromConfig usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStaticRM",
+   "member": "m_rect",
+   "error_sites": 2,
+   "files": [
+    "SaleUI.cpp"
+   ],
+   "evidence_hint": "scan UIStaticRM methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStaticRM",
+   "member": "m_wndcolor",
+   "error_sites": 2,
+   "files": [
+    "SaleUI.cpp"
+   ],
+   "evidence_hint": "scan UIStaticRM methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStaticRM",
+   "member": "m_id",
+   "error_sites": 2,
+   "files": [
+    "SaleUI.cpp"
+   ],
+   "evidence_hint": "scan UIStaticRM methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "ScreenEffectNode",
+   "member": "gbChain1DNode",
+   "error_sites": 2,
+   "files": [
+    "ScreenEffectNode.cpp"
+   ],
+   "evidence_hint": "scan ScreenEffectNode methods for this->gbChain1DNode usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "MUIDialog",
+   "member": "MUIDialogMgr",
+   "error_sites": 2,
+   "files": [
+    "TaskBookUI.cpp"
+   ],
+   "evidence_hint": "scan MUIDialog methods for this->MUIDialogMgr usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UI3DCtrl",
+   "member": "m_fontcolor",
+   "error_sites": 2,
+   "files": [
+    "UI3DCtrl.cpp"
+   ],
+   "evidence_hint": "scan UI3DCtrl methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UI3DCtrl",
+   "member": "m_wndcolor",
+   "error_sites": 2,
+   "files": [
+    "UI3DCtrl.cpp"
+   ],
+   "evidence_hint": "scan UI3DCtrl methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UI3DCtrl",
+   "member": "m_id",
+   "error_sites": 2,
+   "files": [
+    "UI3DCtrl.cpp"
+   ],
+   "evidence_hint": "scan UI3DCtrl methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UI3DCtrl",
+   "member": "m_bfocus",
+   "error_sites": 2,
+   "files": [
+    "UI3DCtrl.cpp"
+   ],
+   "evidence_hint": "scan UI3DCtrl methods for this->m_bfocus usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UI3DModelNode",
+   "member": "gbChain1DNode",
+   "error_sites": 2,
+   "files": [
+    "UI3DModelNode.cpp"
+   ],
+   "evidence_hint": "scan UI3DModelNode methods for this->gbChain1DNode usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIButtonEXA",
+   "member": "m_bcreateok",
+   "error_sites": 2,
+   "files": [
+    "UIBigMap.cpp"
+   ],
+   "evidence_hint": "scan UIButtonEXA methods for this->m_bcreateok usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIButton",
+   "member": "m_bvisible",
+   "error_sites": 2,
+   "files": [
+    "UIButton.cpp"
+   ],
+   "evidence_hint": "scan UIButton methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UICaption",
+   "member": "m_bvisible",
+   "error_sites": 2,
+   "files": [
+    "UICaption.cpp"
+   ],
+   "evidence_hint": "scan UICaption methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIAnimateCtrl",
+   "member": "m_id",
+   "error_sites": 2,
+   "files": [
+    "UIEmote.cpp",
+    "UIRoleDialog.cpp"
+   ],
+   "evidence_hint": "scan UIAnimateCtrl methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIFrameWnd",
+   "member": "m_wndcolor",
+   "error_sites": 2,
+   "files": [
+    "CScreenMode.cpp",
+    "UIFrameWnd.cpp"
+   ],
+   "evidence_hint": "scan UIFrameWnd methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIFrameWnd",
+   "member": "m_fontcolor",
+   "error_sites": 2,
+   "files": [
+    "UIFrameWnd.cpp"
+   ],
+   "evidence_hint": "scan UIFrameWnd methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UINote",
+   "member": "m_rect",
+   "error_sites": 2,
+   "files": [
+    "UIGameFrm.cpp"
+   ],
+   "evidence_hint": "scan UINote methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UILoadingFrm",
+   "member": "m_pfather",
+   "error_sites": 2,
+   "files": [
+    "UILoadingFrm.cpp"
+   ],
+   "evidence_hint": "scan UILoadingFrm methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIProgressBar",
+   "member": "m_benable",
+   "error_sites": 2,
+   "files": [
+    "UILoadingFrm.cpp",
+    "UIProgressBar.cpp"
+   ],
+   "evidence_hint": "scan UIProgressBar methods for this->m_benable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIProgressBar",
+   "member": "m_bvisible",
+   "error_sites": 2,
+   "files": [
+    "UILoadingFrm.cpp",
+    "UIProgressBar.cpp"
+   ],
+   "evidence_hint": "scan UIProgressBar methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIMap",
+   "member": "m_bvisible",
+   "error_sites": 2,
+   "files": [
+    "UIMap.cpp"
+   ],
+   "evidence_hint": "scan UIMap methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIMap",
+   "member": "m_pfather",
+   "error_sites": 2,
+   "files": [
+    "UIMap.cpp"
+   ],
+   "evidence_hint": "scan UIMap methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIRoleDialog",
+   "member": "UIWnd",
+   "error_sites": 2,
+   "files": [
+    "UIRoleDialog.cpp"
+   ],
+   "evidence_hint": "scan UIRoleDialog methods for this->UIWnd usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStaticFlex",
+   "member": "m_pfather",
+   "error_sites": 2,
+   "files": [
+    "UIRoleDialog.cpp"
+   ],
+   "evidence_hint": "scan UIStaticFlex methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIRoleSelect",
+   "member": "UIWnd",
+   "error_sites": 2,
+   "files": [
+    "UIRoleSelect.cpp"
+   ],
+   "evidence_hint": "scan UIRoleSelect methods for this->UIWnd usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITextArea",
+   "member": "m_id",
+   "error_sites": 2,
+   "files": [
+    "UIRoleSelectDialog.cpp"
+   ],
+   "evidence_hint": "scan UITextArea methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIScenePanel",
+   "member": "m_bvisible",
+   "error_sites": 2,
+   "files": [
+    "UIScenePanel.cpp"
+   ],
+   "evidence_hint": "scan UIScenePanel methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "RoleShadow",
+   "member": "v26",
+   "error_sites": 2,
+   "files": [
+    "UIScenePanel.cpp"
+   ],
+   "evidence_hint": "scan RoleShadow methods for this->v26 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "RoleShadow",
+   "member": "v53",
+   "error_sites": 2,
+   "files": [
+    "UIScenePanel.cpp"
+   ],
+   "evidence_hint": "scan RoleShadow methods for this->v53 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITextArea",
+   "member": "UIWnd",
+   "error_sites": 2,
+   "files": [
+    "UITextArea.cpp"
+   ],
+   "evidence_hint": "scan UITextArea methods for this->UIWnd usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITitle_BBTY",
+   "member": "m_bvisible",
+   "error_sites": 2,
+   "files": [
+    "UITitle_BBTY.cpp"
+   ],
+   "evidence_hint": "scan UITitle_BBTY methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITitle_BBTY",
+   "member": "m_childs",
+   "error_sites": 2,
+   "files": [
+    "UITitle_BBTY.cpp"
+   ],
+   "evidence_hint": "scan UITitle_BBTY methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "MainEquipUI",
+   "member": "v2",
+   "error_sites": 2,
+   "files": [
+    "CScreenMode.cpp"
+   ],
+   "evidence_hint": "scan MainEquipUI methods for this->v2 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "RoleSystem",
+   "member": "m_bvisible",
+   "error_sites": 2,
+   "files": [
+    "CameraCtrl.cpp"
+   ],
+   "evidence_hint": "scan RoleSystem methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIButton",
+   "member": "m_childs",
+   "error_sites": 2,
+   "files": [
+    "PropUI.cpp"
+   ],
+   "evidence_hint": "scan UIButton methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIListBox",
+   "member": "m_wndcolor",
+   "error_sites": 2,
+   "files": [
+    "UIListBox.cpp"
+   ],
+   "evidence_hint": "scan UIListBox methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIListBox",
+   "member": "m_id",
+   "error_sites": 2,
+   "files": [
+    "UIListBox.cpp"
+   ],
+   "evidence_hint": "scan UIListBox methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIListBox",
+   "member": "m_fontcolor",
+   "error_sites": 2,
+   "files": [
+    "UIListBox.cpp"
+   ],
+   "evidence_hint": "scan UIListBox methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIListBox",
+   "member": "m_bvisible",
+   "error_sites": 2,
+   "files": [
+    "UIListBox.cpp"
+   ],
+   "evidence_hint": "scan UIListBox methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIScene",
+   "member": "m_bfocus",
+   "error_sites": 2,
+   "files": [
+    "UIScene.cpp"
+   ],
+   "evidence_hint": "scan UIScene methods for this->m_bfocus usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIScene",
+   "member": "m_bcreateok",
+   "error_sites": 2,
+   "files": [
+    "UIScene.cpp"
+   ],
+   "evidence_hint": "scan UIScene methods for this->m_bcreateok usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIScene",
+   "member": "m_fontcolor",
+   "error_sites": 2,
+   "files": [
+    "UIScene.cpp"
+   ],
+   "evidence_hint": "scan UIScene methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStageCam",
+   "member": "m_lastYAW",
+   "error_sites": 1,
+   "files": [
+    "CCBCamControl.cpp"
+   ],
+   "evidence_hint": "scan CCBStageCam methods for this->m_lastYAW usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "gbVolModNode",
+   "member": "m_pModObj",
+   "error_sites": 1,
+   "files": [
+    "CCBCamControl.cpp"
+   ],
+   "evidence_hint": "scan gbVolModNode methods for this->m_pModObj usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBControlWindow",
+   "member": "m_pbktex",
+   "error_sites": 1,
+   "files": [
+    "CCBControlWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBControlWindow methods for this->m_pbktex usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBControlWindow",
+   "member": "m_wndcolor",
+   "error_sites": 1,
+   "files": [
+    "CCBControlWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBControlWindow methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBControlWindow",
+   "member": "m_rect",
+   "error_sites": 1,
+   "files": [
+    "CCBControlWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBControlWindow methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBControlWindow",
+   "member": "Destroy",
+   "error_sites": 1,
+   "files": [
+    "CCBControlWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBControlWindow methods for this->Destroy usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBControlWindow",
+   "member": "m_pDescription",
+   "error_sites": 1,
+   "files": [
+    "CCBControlWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBControlWindow methods for this->m_pDescription usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBControlWindow",
+   "member": "m_nActivePage",
+   "error_sites": 1,
+   "files": [
+    "CCBControlWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBControlWindow methods for this->m_nActivePage usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBControlWindow",
+   "member": "ShowWindow",
+   "error_sites": 1,
+   "files": [
+    "CCBControlWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBControlWindow methods for this->ShowWindow usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBItemWindow",
+   "member": "m_id",
+   "error_sites": 1,
+   "files": [
+    "CCBItemWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBItemWindow methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBItemWindow",
+   "member": "m_bcreateok",
+   "error_sites": 1,
+   "files": [
+    "CCBItemWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBItemWindow methods for this->m_bcreateok usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBItemWindow",
+   "member": "m_benable",
+   "error_sites": 1,
+   "files": [
+    "CCBItemWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBItemWindow methods for this->m_benable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBMagicWindow",
+   "member": "_scalar_dtor",
+   "error_sites": 1,
+   "files": [
+    "CCBItemWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBMagicWindow methods for this->_scalar_dtor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBParabolaWindow",
+   "member": "m_wndcolor",
+   "error_sites": 1,
+   "files": [
+    "CCBParabolaWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBParabolaWindow methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBParabolaWindow",
+   "member": "m_bvisible",
+   "error_sites": 1,
+   "files": [
+    "CCBParabolaWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBParabolaWindow methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBParabolaWindow",
+   "member": "m_pfather",
+   "error_sites": 1,
+   "files": [
+    "CCBParabolaWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBParabolaWindow methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBParabolaWindow",
+   "member": "ShowWindow",
+   "error_sites": 1,
+   "files": [
+    "CCBParabolaWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBParabolaWindow methods for this->ShowWindow usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBParabolaWindow",
+   "member": "m_rect",
+   "error_sites": 1,
+   "files": [
+    "CCBParabolaWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBParabolaWindow methods for this->m_rect usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBResultWindow",
+   "member": "m_bvisible",
+   "error_sites": 1,
+   "files": [
+    "CCBResultWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBResultWindow methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_SlotUIWnd",
+   "error_sites": 1,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_SlotUIWnd usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_fSpringAccelY",
+   "error_sites": 1,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_fSpringAccelY usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_fSpringAccelX",
+   "error_sites": 1,
+   "files": [
+    "CCBRoleState.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_fSpringAccelX usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBSkillWindow",
+   "member": "m_bvisible",
+   "error_sites": 1,
+   "files": [
+    "CCBSkillWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBSkillWindow methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "m_needscriptdel",
+   "error_sites": 1,
+   "files": [
+    "CCBStage.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->m_needscriptdel usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CIniFile",
+   "member": "LoadFullConfig",
+   "error_sites": 1,
+   "files": [
+    "CCBStageCam.cpp"
+   ],
+   "evidence_hint": "scan CIniFile methods for this->LoadFullConfig usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStageCam",
+   "member": "Viewport",
+   "error_sites": 1,
+   "files": [
+    "CCBStageCam.cpp"
+   ],
+   "evidence_hint": "scan CCBStageCam methods for this->Viewport usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStageCam",
+   "member": "ViewMatrix",
+   "error_sites": 1,
+   "files": [
+    "CCBStageCam.cpp"
+   ],
+   "evidence_hint": "scan CCBStageCam methods for this->ViewMatrix usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBStage",
+   "member": "v3",
+   "error_sites": 1,
+   "files": [
+    "CCBStageScene.cpp"
+   ],
+   "evidence_hint": "scan CCBStage methods for this->v3 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBUI",
+   "member": "v6",
+   "error_sites": 1,
+   "files": [
+    "CCBSystem.cpp"
+   ],
+   "evidence_hint": "scan CCBUI methods for this->v6 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBUI",
+   "member": "v34",
+   "error_sites": 1,
+   "files": [
+    "CCBSystem.cpp"
+   ],
+   "evidence_hint": "scan CCBUI methods for this->v34 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "v8",
+   "error_sites": 1,
+   "files": [
+    "CCBSystem.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->v8 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBRoleState",
+   "member": "v34",
+   "error_sites": 1,
+   "files": [
+    "CCBSystem.cpp"
+   ],
+   "evidence_hint": "scan CCBRoleState methods for this->v34 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBSystem",
+   "member": "inited",
+   "error_sites": 1,
+   "files": [
+    "CCBSystem.cpp"
+   ],
+   "evidence_hint": "scan CCBSystem methods for this->inited usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBSystem",
+   "member": "v34",
+   "error_sites": 1,
+   "files": [
+    "CCBSystem.cpp"
+   ],
+   "evidence_hint": "scan CCBSystem methods for this->v34 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBUI",
+   "member": "m_id",
+   "error_sites": 1,
+   "files": [
+    "CCBUI.cpp"
+   ],
+   "evidence_hint": "scan CCBUI methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CUtil",
+   "member": "UIScene_InitScriptScene",
+   "error_sites": 1,
+   "files": [
+    "CUtil.cpp"
+   ],
+   "evidence_hint": "scan CUtil methods for this->UIScene_InitScriptScene usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CUtil",
+   "member": "LineupUI_InitListView",
+   "error_sites": 1,
+   "files": [
+    "CUtil.cpp"
+   ],
+   "evidence_hint": "scan CUtil methods for this->LineupUI_InitListView usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "PropUI",
+   "member": "UIRoleSelect_SetFieldLeft",
+   "error_sites": 1,
+   "files": [
+    "CUtil.cpp"
+   ],
+   "evidence_hint": "scan PropUI methods for this->UIRoleSelect_SetFieldLeft usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CGameData",
+   "member": "_vftable",
+   "error_sites": 1,
+   "files": [
+    "CGameData.cpp"
+   ],
+   "evidence_hint": "scan CGameData methods for this->_vftable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CEffGrid",
+   "member": "CTaskTpl_tagEffTaskParam_CEffGrid",
+   "error_sites": 1,
+   "files": [
+    "CEffGrid.cpp"
+   ],
+   "evidence_hint": "scan CEffGrid methods for this->CTaskTpl_tagEffTaskParam_CEffGrid usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CEffMeteor",
+   "member": "CTaskTpl_tagEffTaskParam_CEffMeteor",
+   "error_sites": 1,
+   "files": [
+    "CEffMeteor.cpp"
+   ],
+   "evidence_hint": "scan CEffMeteor methods for this->CTaskTpl_tagEffTaskParam_CEffMeteor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CEffSParticle",
+   "member": "CTaskTpl_tagEffTaskParam_CEffSParticle",
+   "error_sites": 1,
+   "files": [
+    "CEffSParticle.cpp"
+   ],
+   "evidence_hint": "scan CEffSParticle methods for this->CTaskTpl_tagEffTaskParam_CEffSParticle usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "ObjectInfo",
+   "member": "ObjectInfoBase",
+   "error_sites": 1,
+   "files": [
+    "ArcSceneObject.cpp"
+   ],
+   "evidence_hint": "scan ObjectInfo methods for this->ObjectInfoBase usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBFiveNimbusWindow",
+   "member": "m_pbktex",
+   "error_sites": 1,
+   "files": [
+    "CCBFiveNimbusWindow.cpp"
+   ],
+   "evidence_hint": "scan CCBFiveNimbusWindow methods for this->m_pbktex usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "MUIDialog",
+   "member": "m_bmodal",
+   "error_sites": 1,
+   "files": [
+    "MUIDialog.cpp"
+   ],
+   "evidence_hint": "scan MUIDialog methods for this->m_bmodal usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "MUIDialog",
+   "member": "ShowWindow",
+   "error_sites": 1,
+   "files": [
+    "MUIDialog.cpp"
+   ],
+   "evidence_hint": "scan MUIDialog methods for this->ShowWindow usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "PlayerMgr",
+   "member": "Destroy",
+   "error_sites": 1,
+   "files": [
+    "PlayerMgr.cpp"
+   ],
+   "evidence_hint": "scan PlayerMgr methods for this->Destroy usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "RoleCamera",
+   "member": "OrthoSize",
+   "error_sites": 1,
+   "files": [
+    "RoleCamera.cpp"
+   ],
+   "evidence_hint": "scan RoleCamera methods for this->OrthoSize usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStaticRM",
+   "member": "m_childs",
+   "error_sites": 1,
+   "files": [
+    "SaleUI.cpp"
+   ],
+   "evidence_hint": "scan UIStaticRM methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "ScreenEffectNode",
+   "member": "Process",
+   "error_sites": 1,
+   "files": [
+    "ScreenEffectNode.cpp"
+   ],
+   "evidence_hint": "scan ScreenEffectNode methods for this->Process usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIFlexBar",
+   "member": "m_fontcolor",
+   "error_sites": 1,
+   "files": [
+    "TaskBookUI.cpp"
+   ],
+   "evidence_hint": "scan UIFlexBar methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UI3DModelNode",
+   "member": "Process",
+   "error_sites": 1,
+   "files": [
+    "UI3DModelNode.cpp"
+   ],
+   "evidence_hint": "scan UI3DModelNode methods for this->Process usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIButtonEXA",
+   "member": "m_bvisible",
+   "error_sites": 1,
+   "files": [
+    "UIBigMap.cpp"
+   ],
+   "evidence_hint": "scan UIButtonEXA methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIButtonEXA",
+   "member": "m_fontcolor",
+   "error_sites": 1,
+   "files": [
+    "UIBigMap.cpp"
+   ],
+   "evidence_hint": "scan UIButtonEXA methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIButtonEXA",
+   "member": "m_pfather",
+   "error_sites": 1,
+   "files": [
+    "UIBigMap.cpp"
+   ],
+   "evidence_hint": "scan UIButtonEXA methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UICaption",
+   "member": "m_fontcolor",
+   "error_sites": 1,
+   "files": [
+    "UICaption.cpp"
+   ],
+   "evidence_hint": "scan UICaption methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIPar_Star",
+   "member": "m_wndcolor",
+   "error_sites": 1,
+   "files": [
+    "UICoverFrm.cpp"
+   ],
+   "evidence_hint": "scan UIPar_Star methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIPar_Star",
+   "member": "m_id",
+   "error_sites": 1,
+   "files": [
+    "UICoverFrm.cpp"
+   ],
+   "evidence_hint": "scan UIPar_Star methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIPar_Star",
+   "member": "m_bvisible",
+   "error_sites": 1,
+   "files": [
+    "UICoverFrm.cpp"
+   ],
+   "evidence_hint": "scan UIPar_Star methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIGameFrm",
+   "member": "m_fontcolor",
+   "error_sites": 1,
+   "files": [
+    "UIGameFrm.cpp"
+   ],
+   "evidence_hint": "scan UIGameFrm methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIProgressBar",
+   "member": "m_wndcolor",
+   "error_sites": 1,
+   "files": [
+    "UILoadingFrm.cpp"
+   ],
+   "evidence_hint": "scan UIProgressBar methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UILoadingFrm",
+   "member": "m_benable",
+   "error_sites": 1,
+   "files": [
+    "UILoadingFrm.cpp"
+   ],
+   "evidence_hint": "scan UILoadingFrm methods for this->m_benable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UILoadingFrm",
+   "member": "m_bvisible",
+   "error_sites": 1,
+   "files": [
+    "UILoadingFrm.cpp"
+   ],
+   "evidence_hint": "scan UILoadingFrm methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIProgressBar",
+   "member": "m_fontcolor",
+   "error_sites": 1,
+   "files": [
+    "UILoadingFrm.cpp"
+   ],
+   "evidence_hint": "scan UIProgressBar methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIProgressBar",
+   "member": "m_childs",
+   "error_sites": 1,
+   "files": [
+    "UILoadingFrm.cpp"
+   ],
+   "evidence_hint": "scan UIProgressBar methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UILoadingFrm",
+   "member": "m_bfocus",
+   "error_sites": 1,
+   "files": [
+    "UILoadingFrm.cpp"
+   ],
+   "evidence_hint": "scan UILoadingFrm methods for this->m_bfocus usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIProgressBar",
+   "member": "m_bfocus",
+   "error_sites": 1,
+   "files": [
+    "UILoadingFrm.cpp"
+   ],
+   "evidence_hint": "scan UIProgressBar methods for this->m_bfocus usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIProgressBar",
+   "member": "m_bcreateok",
+   "error_sites": 1,
+   "files": [
+    "UILoadingFrm.cpp"
+   ],
+   "evidence_hint": "scan UIProgressBar methods for this->m_bcreateok usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIMap",
+   "member": "m_benable",
+   "error_sites": 1,
+   "files": [
+    "UIMap.cpp"
+   ],
+   "evidence_hint": "scan UIMap methods for this->m_benable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIMap",
+   "member": "m_id",
+   "error_sites": 1,
+   "files": [
+    "UIMap.cpp"
+   ],
+   "evidence_hint": "scan UIMap methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStaticFlex",
+   "member": "m_wndcolor",
+   "error_sites": 1,
+   "files": [
+    "UIRoleDialog.cpp"
+   ],
+   "evidence_hint": "scan UIStaticFlex methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIRoleSelect",
+   "member": "ShowWindow",
+   "error_sites": 1,
+   "files": [
+    "UIRoleSelect.cpp"
+   ],
+   "evidence_hint": "scan UIRoleSelect methods for this->ShowWindow usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UISceneMap",
+   "member": "m_bcreateok",
+   "error_sites": 1,
+   "files": [
+    "UISceneFrm.cpp"
+   ],
+   "evidence_hint": "scan UISceneMap methods for this->m_bcreateok usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UISceneMap",
+   "member": "m_bfocus",
+   "error_sites": 1,
+   "files": [
+    "UISceneFrm.cpp"
+   ],
+   "evidence_hint": "scan UISceneMap methods for this->m_bfocus usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UISceneMap",
+   "member": "m_bvisible",
+   "error_sites": 1,
+   "files": [
+    "UISceneFrm.cpp"
+   ],
+   "evidence_hint": "scan UISceneMap methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UISceneMap",
+   "member": "m_benable",
+   "error_sites": 1,
+   "files": [
+    "UISceneFrm.cpp"
+   ],
+   "evidence_hint": "scan UISceneMap methods for this->m_benable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIButton",
+   "member": "m_bcreateok",
+   "error_sites": 1,
+   "files": [
+    "UISceneMap.cpp"
+   ],
+   "evidence_hint": "scan UIButton methods for this->m_bcreateok usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIStaticEX",
+   "member": "m_childs",
+   "error_sites": 1,
+   "files": [
+    "UISceneMap.cpp"
+   ],
+   "evidence_hint": "scan UIStaticEX methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UISceneMap",
+   "member": "m_fontcolor",
+   "error_sites": 1,
+   "files": [
+    "UISceneMap.cpp"
+   ],
+   "evidence_hint": "scan UISceneMap methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIScenePanel",
+   "member": "m_fontcolor",
+   "error_sites": 1,
+   "files": [
+    "UIScenePanel.cpp"
+   ],
+   "evidence_hint": "scan UIScenePanel methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "RoleShadow",
+   "member": "_DWORD",
+   "error_sites": 1,
+   "files": [
+    "UIScenePanel.cpp"
+   ],
+   "evidence_hint": "scan RoleShadow methods for this->_DWORD usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "RoleShadow",
+   "member": "v27",
+   "error_sites": 1,
+   "files": [
+    "UIScenePanel.cpp"
+   ],
+   "evidence_hint": "scan RoleShadow methods for this->v27 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIScenePanel",
+   "member": "TaskBookUI_CreateEntry",
+   "error_sites": 1,
+   "files": [
+    "UIScenePanel.cpp"
+   ],
+   "evidence_hint": "scan UIScenePanel methods for this->TaskBookUI_CreateEntry usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIFlexBar",
+   "member": "m_bcreateok",
+   "error_sites": 1,
+   "files": [
+    "UIScrollBar.cpp"
+   ],
+   "evidence_hint": "scan UIFlexBar methods for this->m_bcreateok usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIFlexBar",
+   "member": "m_bvisible",
+   "error_sites": 1,
+   "files": [
+    "UIScrollBar.cpp"
+   ],
+   "evidence_hint": "scan UIFlexBar methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBItemWindow",
+   "member": "m_pbktex",
+   "error_sites": 1,
+   "files": [
+    "UIStatic.cpp"
+   ],
+   "evidence_hint": "scan CCBItemWindow methods for this->m_pbktex usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITabCtrl",
+   "member": "m_fontcolor",
+   "error_sites": 1,
+   "files": [
+    "UITabCtrl.cpp"
+   ],
+   "evidence_hint": "scan UITabCtrl methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITabCtrl",
+   "member": "m_wndcolor",
+   "error_sites": 1,
+   "files": [
+    "UITabCtrl.cpp"
+   ],
+   "evidence_hint": "scan UITabCtrl methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITabCtrl",
+   "member": "m_id",
+   "error_sites": 1,
+   "files": [
+    "UITabCtrl.cpp"
+   ],
+   "evidence_hint": "scan UITabCtrl methods for this->m_id usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITabCtrl",
+   "member": "m_pfather",
+   "error_sites": 1,
+   "files": [
+    "UITabCtrl.cpp"
+   ],
+   "evidence_hint": "scan UITabCtrl methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITabCtrl",
+   "member": "m_bcreateok",
+   "error_sites": 1,
+   "files": [
+    "UITabCtrl.cpp"
+   ],
+   "evidence_hint": "scan UITabCtrl methods for this->m_bcreateok usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITabCtrl",
+   "member": "m_bvisible",
+   "error_sites": 1,
+   "files": [
+    "UITabCtrl.cpp"
+   ],
+   "evidence_hint": "scan UITabCtrl methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITabCtrl",
+   "member": "m_benable",
+   "error_sites": 1,
+   "files": [
+    "UITabCtrl.cpp"
+   ],
+   "evidence_hint": "scan UITabCtrl methods for this->m_benable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITabCtrl",
+   "member": "m_bfocus",
+   "error_sites": 1,
+   "files": [
+    "UITabCtrl.cpp"
+   ],
+   "evidence_hint": "scan UITabCtrl methods for this->m_bfocus usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITextArea",
+   "member": "m_benable",
+   "error_sites": 1,
+   "files": [
+    "UITextArea.cpp"
+   ],
+   "evidence_hint": "scan UITextArea methods for this->m_benable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITextArea",
+   "member": "m_wndcolor",
+   "error_sites": 1,
+   "files": [
+    "UITextArea.cpp"
+   ],
+   "evidence_hint": "scan UITextArea methods for this->m_wndcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "MUIDialog",
+   "member": "m_bvisible",
+   "error_sites": 1,
+   "files": [
+    "UITitle_ArcSave.cpp"
+   ],
+   "evidence_hint": "scan MUIDialog methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "MUIDialog",
+   "member": "m_pfather",
+   "error_sites": 1,
+   "files": [
+    "UITitle_ArcSave.cpp"
+   ],
+   "evidence_hint": "scan MUIDialog methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UITitle_BBTY",
+   "member": "m_benable",
+   "error_sites": 1,
+   "files": [
+    "UITitle_BBTY.cpp"
+   ],
+   "evidence_hint": "scan UITitle_BBTY methods for this->m_benable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "PlayerMgr",
+   "member": "InitPlayerList",
+   "error_sites": 1,
+   "files": [
+    "CScreenMode.cpp"
+   ],
+   "evidence_hint": "scan PlayerMgr methods for this->InitPlayerList usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CScreenMode",
+   "member": "LineupUI_InitListView",
+   "error_sites": 1,
+   "files": [
+    "CScreenMode.cpp"
+   ],
+   "evidence_hint": "scan CScreenMode methods for this->LineupUI_InitListView usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "MainEquipUI",
+   "member": "UIStatic",
+   "error_sites": 1,
+   "files": [
+    "CScreenMode.cpp"
+   ],
+   "evidence_hint": "scan MainEquipUI methods for this->UIStatic usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "MainEquipUI",
+   "member": "v3",
+   "error_sites": 1,
+   "files": [
+    "CScreenMode.cpp"
+   ],
+   "evidence_hint": "scan MainEquipUI methods for this->v3 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "MainEquipUI",
+   "member": "v4",
+   "error_sites": 1,
+   "files": [
+    "CScreenMode.cpp"
+   ],
+   "evidence_hint": "scan MainEquipUI methods for this->v4 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "MainEquipUI",
+   "member": "g_SceneMgr",
+   "error_sites": 1,
+   "files": [
+    "CScreenMode.cpp"
+   ],
+   "evidence_hint": "scan MainEquipUI methods for this->g_SceneMgr usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "MainEquipUI",
+   "member": "m_aScriptDelay",
+   "error_sites": 1,
+   "files": [
+    "CScreenMode.cpp"
+   ],
+   "evidence_hint": "scan MainEquipUI methods for this->m_aScriptDelay usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBControlWindow",
+   "member": "m_fontcolor",
+   "error_sites": 1,
+   "files": [
+    "RenderTarget.cpp"
+   ],
+   "evidence_hint": "scan CCBControlWindow methods for this->m_fontcolor usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "gbParticleEffect",
+   "member": "SpaceScale",
+   "error_sites": 1,
+   "files": [
+    "RenderTarget.cpp"
+   ],
+   "evidence_hint": "scan gbParticleEffect methods for this->SpaceScale usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "gbParticleGroup",
+   "member": "nAlivePart",
+   "error_sites": 1,
+   "files": [
+    "RenderTarget.cpp"
+   ],
+   "evidence_hint": "scan gbParticleGroup methods for this->nAlivePart usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "RenderTarget3",
+   "member": "_nearby_4b6ca0",
+   "error_sites": 1,
+   "files": [
+    "RenderTarget3.cpp"
+   ],
+   "evidence_hint": "scan RenderTarget3 methods for this->_nearby_4b6ca0 usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CIniFile",
+   "member": "LoadStructuredConfig",
+   "error_sites": 1,
+   "files": [
+    "CameraCtrl.cpp"
+   ],
+   "evidence_hint": "scan CIniFile methods for this->LoadStructuredConfig usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "CCBControlWindow",
+   "member": "m_childs",
+   "error_sites": 1,
+   "files": [
+    "EquipUI.cpp"
+   ],
+   "evidence_hint": "scan CCBControlWindow methods for this->m_childs usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "EquipUI",
+   "member": "CameraCtrl_CreateCameraUI",
+   "error_sites": 1,
+   "files": [
+    "EquipUI.cpp"
+   ],
+   "evidence_hint": "scan EquipUI methods for this->CameraCtrl_CreateCameraUI usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "EquipUI",
+   "member": "EquipUI_InitEquipUI",
+   "error_sites": 1,
+   "files": [
+    "EquipUI.cpp"
+   ],
+   "evidence_hint": "scan EquipUI methods for this->EquipUI_InitEquipUI usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "EquipUI",
+   "member": "UITitle_JDHY_PopulateContent",
+   "error_sites": 1,
+   "files": [
+    "EquipUI.cpp"
+   ],
+   "evidence_hint": "scan EquipUI methods for this->UITitle_JDHY_PopulateContent usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "PropUI",
+   "member": "UITitle_BBTY_CreateFromScript",
+   "error_sites": 1,
+   "files": [
+    "PropUI.cpp"
+   ],
+   "evidence_hint": "scan PropUI methods for this->UITitle_BBTY_CreateFromScript usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "PropUI",
+   "member": "Destroy",
+   "error_sites": 1,
+   "files": [
+    "PropUI.cpp"
+   ],
+   "evidence_hint": "scan PropUI methods for this->Destroy usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UI3DCtrl",
+   "member": "m_pfather",
+   "error_sites": 1,
+   "files": [
+    "StateUI.cpp"
+   ],
+   "evidence_hint": "scan UI3DCtrl methods for this->m_pfather usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UI3DCtrl",
+   "member": "m_bcreateok",
+   "error_sites": 1,
+   "files": [
+    "StateUI.cpp"
+   ],
+   "evidence_hint": "scan UI3DCtrl methods for this->m_bcreateok usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UIListBox",
+   "member": "m_benable",
+   "error_sites": 1,
+   "files": [
+    "UIListBox.cpp"
+   ],
+   "evidence_hint": "scan UIListBox methods for this->m_benable usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "gbFogParam",
+   "member": "type",
+   "error_sites": 1,
+   "files": [
+    "UIManager.cpp"
+   ],
+   "evidence_hint": "scan gbFogParam methods for this->type usage; verify offset vs ctor access radius"
+  },
+  {
+   "kind": "missing_member",
+   "class": "UINote",
+   "member": "m_bvisible",
+   "error_sites": 1,
+   "files": [
+    "UINote.cpp"
+   ],
+   "evidence_hint": "scan UINote methods for this->m_bvisible usage; verify offset vs ctor access radius"
+  }
+ ]
+}
