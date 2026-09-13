@@ -1,44 +1,46 @@
 {
-  "name": "NameSys",
-  "binary_size": 280,
-  "known_members": {
-    "0": {
-      "name": "m_Flag",
-      "type": "std::bitset<48>",
-      "source": "annotation"
-    },
-    "8": {
-      "name": "m_FlagZZCC",
-      "type": "std::bitset<10>",
-      "source": "annotation"
-    },
-    "12": {
-      "name": "m_Ref",
-      "type": "int[28]",
-      "source": "annotation"
-    },
-    "124": {
-      "name": "m_RefMax",
-      "type": "int[28]",
-      "source": "annotation"
-    },
-    "236": {
-      "name": "m_CheckMax",
-      "type": "unsigned int[10]",
-      "source": "annotation"
-    },
-    "276": {
-      "name": "m_LastName",
-      "type": "NameSys_NAMEFLAG",
-      "source": "annotation"
-    }
+ "name": "NameSys",
+ "binary_size": 280,
+ "known_members": {
+  "0": {
+   "name": "m_Flag",
+   "type": "char[8]",
+   "source": "annotation",
+   "note": "annotation previously 'std::bitset<48>' (speculative bitset reading); apply never propagated it — export/IDB keep 'char[8]'; MSVC6 cannot emit bitset members"
   },
-  "methods": {
-    "0x0043A770": {
-      "name": "GetSys",
-      "signature": "struct NameSys *__cdecl()",
-      "source": "pdb",
-      "note": "was [thunk]:class GetSys ... - fixed signature"
-    }
+  "8": {
+   "name": "m_FlagZZCC",
+   "type": "char[4]",
+   "source": "annotation",
+   "note": "annotation previously 'std::bitset<10>' (speculative bitset reading); apply never propagated it — export/IDB keep 'char[4]'; MSVC6 cannot emit bitset members"
+  },
+  "12": {
+   "name": "m_Ref",
+   "type": "int[28]",
+   "source": "annotation"
+  },
+  "124": {
+   "name": "m_RefMax",
+   "type": "int[28]",
+   "source": "annotation"
+  },
+  "236": {
+   "name": "m_CheckMax",
+   "type": "unsigned int[10]",
+   "source": "annotation"
+  },
+  "276": {
+   "name": "m_LastName",
+   "type": "NameSys_NAMEFLAG",
+   "source": "annotation"
   }
+ },
+ "methods": {
+  "0x0043A770": {
+   "name": "GetSys",
+   "signature": "struct NameSys *__cdecl()",
+   "source": "pdb",
+   "note": "was [thunk]:class GetSys ... - fixed signature"
+  }
+ }
 }

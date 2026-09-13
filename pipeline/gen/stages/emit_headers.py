@@ -856,13 +856,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
 
     # Overlay annotation known_members on top of ida_struct data for naming AND
     # typing (annotations are the source of truth for usage-evidenced member
-    # retypes). Gated by PAL3_HEADER_OVERLAY=1: blanket-enabling requires an
-    # annotation<->export reconciliation pass first — enabling it against a
-    # drifted export surfaces stale annotation names/types as C2039/C2143 in
-    # otherwise-green TUs (observed 2026-09-13: 45->37 S2). Union-variant
-    # keys '<off>_<n>' are matched to same-offset export members in order.
+    # retypes). Default ON after the 2026-09-13 reconciliation pass (NameSys
+    # bitset/UIStatic.m_text aligned to export; rich union specs guarded);
+    # opt out with PAL3_HEADER_OVERLAY=0. Str type/name specs only — rich
+    # dict specs (union/nested layouts) belong to apply_annotations/IDA.
     _overlaid = None
-    if os.environ.get('PAL3_HEADER_OVERLAY') == '1' \
+    if os.environ.get('PAL3_HEADER_OVERLAY', '1') != '0' \
             and ida_struct and ida_struct.get('data_members'):
         _overlaid = list(ida_struct['data_members'])
         try:
@@ -894,9 +893,15 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     _entries = _ann_by_off.get(_moff)
                     if _entries:
                         _vi, _ao = _entries.pop(0)
-                        if 'type' in _ao:
+                        # Rich annotation specs (union dicts, nested struct
+                        # lists, template idioms like std::bitset<>) belong to
+                        # apply_annotations/IDA, not the simple header emitter
+                        # — applying them here renders invalid C++.
+                        if not isinstance(_ao, dict):
+                            continue
+                        if isinstance(_ao.get('type'), str):
                             _m['type'] = _ao['type']
-                        if 'name' in _ao and _ao['name']:
+                        if isinstance(_ao.get('name'), str) and _ao['name']:
                             _m['name'] = _ao['name']
         except Exception:
             pass

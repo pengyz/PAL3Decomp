@@ -1,12 +1,13 @@
 {
-  "name": "StringTable",
-  "binary_size": 16,
-  "known_members": {
-    "0": {
-      "name": "m_data",
-      "type": "std::map<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<std:83de5b43",
-      "source": "annotation"
-    }
-  },
-  "methods": {}
+ "name": "StringTable",
+ "binary_size": 16,
+ "known_members": {
+  "0": {
+   "name": "m_data",
+   "type": "char[16]",
+   "source": "annotation",
+   "note": "annotation previously 'std::map<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<std:83de5b43' (speculative, apply never propagated it); export/IDA TIL ground truth 'char[16]'; template types unemittable in MSVC6 headers"
+  }
+ },
+ "methods": {}
 }
