@@ -5312,3 +5312,11 @@ Confidence: 90
 附注：aS_2(0x5DE9A8→aS_2_0，仅 CCBSystem::CreateObj 1 引用)、
 g_nSceneState(0xC04384→g_nSceneState_0，20 xrefs vs 真身 57) 重名消歧。
 Confidence: 80（名字层面可逆；若未来获得更强命名证据可整体重命名）
+
+## 2026-09-13: ⑥d 模式归档（CMeteorChain v12）
+- 形态：Hex-Rays 将"结构体元素数组"降级为 int 数组（v12=(int*)(v10+72*i)，memset 0x48），
+  元素真实布局 {int @0; RoleObj* @4; u8 @64; u8 @65; ...共 72B}，导致 char*→int 赋值 C2440。
+- 处置：非 lvar 注解可修（元素类型整体缺失）。需专门机制（二选一）：
+  a) codegen 指针→整数槽位赋值时重建显式 (int) cast（等价变换，需两侧类型已知）；
+  b) 元素结构体恢复工作流（证据充分的字段先建，_todo_ 补位）。
+- 样本：Effect/CMeteorChain.cpp:60。Confidence: 90（形态定性）
