@@ -128,27 +128,16 @@ def match_symbols(funcs, mangled_map, base_idx):
     return matched
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument('--census', default=str(CENSUS))
-    ap.add_argument('--limit', type=int, default=0)
-    args = ap.parse_args()
+PROBE_FLAGS = ['/nologo', '/TP', '/c', '/W3']
+# docs/compiler_setup.md hypothesis flag set (needs byte-compare calibration —
+# that is exactly what --flags-matrix does)
+HYPOTHESIS_FLAGS = ['/O2', '/Ob2', '/Oi', '/Ot', '/Oy', '/GF', '/Gy',
+                    '/GX', '/GR', '/MD', '/Gd']
 
-    census = json.loads(Path(args.census).read_text())
-    passing = [r['unit'] for r in census['s2']['results'] if r['status'] == 'ok']
-    if args.limit:
-        passing = passing[:args.limit]
-    print('S2-passing units: %d' % len(passing))
 
-    decomp_idx = load_decomp_index()
-    mangled_map, mangle_failed = build_mangled_map(decomp_idx)
-    base_idx = build_basename_index(decomp_idx)
-    print('decomp entries: %d | mangled methods: %d (mangle-fail %d) | unambiguous bases: %d'
-          % (len(decomp_idx), len(mangled_map), mangle_failed, len(base_idx)))
-
-    image_base, text, text_rva = exe_text_image()
-    print('exe .text: base 0x%X rva 0x%X captured %d bytes' % (image_base, text_rva, len(text)))
-
+def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
+                  image_base, text, text_rva):
+    """Run the S4 byte-match over `passing` units with the given CL flags."""
     os.makedirs(pc.OBJ_DIR, exist_ok=True)
     rows = []
     stats = {'symbols': 0, 'matched': 0, 'unmatched': 0,
@@ -159,7 +148,8 @@ def main():
         obj = os.path.join(pc.OBJ_DIR, 's4_%d.obj' % (abs(hash(unit)) % 10 ** 8))
         out, hard = pc.run_cl(
             ['/Fo' + pc.wpath(obj), pc.wpath(src)]
-            + ['/I' + pc.wpath(d) for d in pc.INCLUDE_DIRS], timeout=180)
+            + ['/I' + pc.wpath(d) for d in pc.INCLUDE_DIRS],
+            timeout=180, flags=flags)
         if hard or not os.path.exists(obj):
             stats['compile_skip'] += 1
             print('  [%3d] COMPILE-SKIP %s (%s)' % (n, unit, hard or 'no obj'))
@@ -196,7 +186,6 @@ def main():
         print('  [%3d] %-45s funcs=%3d matched=%3d L1=%2d partial=%2d'
               % (n, unit, len(funcs), len(matched), p1, pp))
 
-    print('\n=== S4 baseline ===')
     print('matched %d/%d symbols | L1 %d | partial %d | oob %d | unmatched %d | compile-skip %d'
           % (stats['matched'], stats['symbols'], stats['match_L1'],
              stats['partial'], stats['oob'], stats['unmatched'], stats['compile_skip']))
@@ -205,9 +194,84 @@ def main():
         print('L1 rate over matched: %d/%d = %.1f%%'
               % (stats['match_L1'], total, 100.0 * stats['match_L1'] / total))
 
+    return stats, rows
+
+
+def _flags_matrix(units, decomp_idx, mangled_map, base_idx, image_base, text, text_rva):
+    """Calibrate CL flags: probe defaults vs the hypothesis set vs
+    leave-one-out perturbations of the hypothesis. Ranks combos by L1."""
+    combos = [('probe-defaults', PROBE_FLAGS), ('hypothesis', list(HYPOTHESIS_FLAGS))]
+    for f in HYPOTHESIS_FLAGS:
+        combos.append(('hypothesis-minus-' + f.lstrip('/'),
+                       [x for x in HYPOTHESIS_FLAGS if x != f]))
+
+    results = []
+    for label, flags in combos:
+        print('\n--- %s: %s ---' % (label, ' '.join(flags)))
+        stats, _ = compare_units(units, flags, decomp_idx, mangled_map,
+                                 base_idx, image_base, text, text_rva)
+        results.append({'label': label, 'flags': flags, 'stats': stats})
+
+    results.sort(key=lambda r: (-r['stats']['match_L1'],
+                                -r['stats']['match_L1'] - r['stats']['partial']))
+    print('\n=== flags matrix (sorted by L1) ===')
+    for r in results:
+        s = r['stats']
+        print('%-28s L1 %3d | partial %3d | matched %3d/%3d' % (
+            r['label'], s['match_L1'], s['partial'], s['matched'], s['symbols']))
+
+    out = REPO / 'data' / 'status' / 'flags_matrix.json'
+    out.write_text(json.dumps({'generated_by': 'pipeline/compare_pal3.py',
+                               'units': units, 'results': results},
+                              indent=1, ensure_ascii=False))
+    print('matrix -> %s' % out)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--census', default=str(CENSUS))
+    ap.add_argument('--limit', type=int, default=0)
+    ap.add_argument('--flags', default=None,
+                    help='override CL flags, e.g. --flags "/TP /c /O2 /Gy"')
+    ap.add_argument('--flags-matrix', action='store_true',
+                    help='compile+compare a unit sample under probe defaults, '
+                         'the hypothesis set, and leave-one-out perturbations; '
+                         'ranks flag combos by L1 match rate')
+    args = ap.parse_args()
+
+    census = json.loads(Path(args.census).read_text())
+    passing = [r['unit'] for r in census['s2']['results'] if r['status'] == 'ok']
+    if args.limit:
+        passing = passing[:args.limit]
+    print('S2-passing units: %d' % len(passing))
+
+    decomp_idx = load_decomp_index()
+    mangled_map, mangle_failed = build_mangled_map(decomp_idx)
+    base_idx = build_basename_index(decomp_idx)
+    print('decomp entries: %d | mangled methods: %d (mangle-fail %d) | unambiguous bases: %d'
+          % (len(decomp_idx), len(mangled_map), mangle_failed, len(base_idx)))
+
+    image_base, text, text_rva = exe_text_image()
+    print('exe .text: base 0x%X rva 0x%X captured %d bytes' % (image_base, text_rva, len(text)))
+
+    if args.flags_matrix:
+        sample = passing[:5] if args.limit == 0 else passing
+        return _flags_matrix(sample, decomp_idx, mangled_map, base_idx,
+                             image_base, text, text_rva)
+
+    flags = args.flags.split() if args.flags else PROBE_FLAGS
+    stats, rows = compare_units(passing, flags, decomp_idx, mangled_map,
+                                base_idx, image_base, text, text_rva)
+
+    total = stats['match_L1'] + stats['partial']
+    if total:
+        print('L1 rate over matched: %d/%d = %.1f%%'
+              % (stats['match_L1'], total, 100.0 * stats['match_L1'] / total))
+
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     OUT_JSON.write_text(json.dumps(
-        {'generated_by': 'pipeline/compare_pal3.py', 'stats': stats, 'rows': rows},
+        {'generated_by': 'pipeline/compare_pal3.py', 'flags': flags,
+         'stats': stats, 'rows': rows},
         indent=1, ensure_ascii=False))
     with open(OUT_REG, 'w') as f:
         for r in rows:

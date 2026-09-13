@@ -70,12 +70,12 @@ def normalize_err_path(p):
     return p
 
 
-def run_cl(args, timeout=90):
+def run_cl(args, timeout=90, flags=('/nologo', '/TP', '/c', '/W3')):
     if NATIVE_WIN:
         prefix = [wpath(CL)]
     else:
         prefix = ['wine', wpath(CL)]
-    cmd = prefix + ['/nologo', '/TP', '/c', '/W3'] + args
+    cmd = prefix + list(flags) + args
     try:
         proc = subprocess.run(cmd, capture_output=True, text=True,
                               errors='replace', timeout=timeout, cwd=REPO)
