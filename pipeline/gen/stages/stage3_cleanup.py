@@ -336,6 +336,213 @@ def _remove_backtick_calls(code):
 # Main entry
 # ============================================================
 
+# ============================================================
+# AST-based vtable call resolution
+# ============================================================
+# Hex-Rays renders virtual dispatch two ways:
+#   direct body call:   A::f((A*)p, x)            -> p->A::f(x)  (handled in ast_transform)
+#   vtable dispatch:    ((R (*)(...))p->__vftable->f)(p, x)      (vtable struct typed)
+#                       (*(R (**)(...))(p->__vftable + N))(p, x) (raw offset)
+# A vtable dispatch rewritten as p->f(x) is byte-faithful: headers declare
+# vtable slots `virtual`, so the compiler emits call [vtbl+slot] again.
+# Slot maps come from annotations: struct_vtables[cls] = {slot_index: method}.
+# Calls we cannot resolve get a signature-accurate static stub so the
+# enclosing expression survives compilable (marked [VFTABLE-STUB]).
+
+_VTBL_STUB_MARK = '[VFTABLE-STUB]'
+
+
+def _decode_vtbl_call(call_node):
+    """Decode a vtable dispatch call_expression.
+
+    Returns dict(obj, method, offset, cls_hint, ret, params) or None.
+    method is set for named-slot form; offset (0 when absent) for raw form.
+    """
+    func = call_node.child_by_field_name('function')
+    if func is None:
+        return None
+
+    # unwrap redundant parens around the function sub-expression
+    while func is not None and func.type == 'parenthesized_expression':
+        inner = func.named_children
+        func = inner[0] if inner else None
+    if func is None:
+        return None
+
+    text = func.text.decode('utf-8', errors='replace')
+
+    ret = None
+    params = None
+    cls_hint = None
+
+    type_node = None
+    if func.type == 'cast_expression':
+        type_node = func.child_by_field_name('type')
+    if type_node is not None:
+        type_text = type_node.text.decode('utf-8', errors='replace')
+        m = re.match(r'^\s*(.*?)\(\s*\*+\s*\)\s*\((.*)\)\s*$', type_text, re.DOTALL)
+        if m:
+            ret = ' '.join(m.group(1).split())
+            params = ' '.join(m.group(2).split())
+    if ret is None:
+        # fallback: first "ret (*)(params)" shape anywhere in the function text
+        m = re.search(r'([\w ]+?)\(\s*\*+\s*\)\s*\(([^()]*(?:\([^()]*\)[^()]*)*)\)', text)
+        if m:
+            ret = ' '.join(m.group(1).split())
+            params = ' '.join(m.group(2).split())
+    if params:
+        first = params.split(',')[0].strip()
+        if first and first != 'void':
+            cls_hint = re.sub(r'\*+\s*$', '', first).strip()
+
+    # object chain: the identifier chain immediately feeding __vftable
+    mn = re.search(r'(\w+(?:\s*->\s*\w+)*)\s*->\s*__vftable\s*->\s*(\w+)', text)
+    if mn:
+        return {'obj': mn.group(1), 'method': mn.group(2), 'offset': None,
+                'cls_hint': cls_hint, 'ret': ret, 'params': params}
+    mo = re.search(r'(\w+(?:\s*->\s*\w+)*)\s*->\s*__vftable\s*(?:\+\s*(\d+))?', text)
+    if mo:
+        return {'obj': mo.group(1), 'method': None,
+                'offset': int(mo.group(2)) if mo.group(2) else 0,
+                'cls_hint': cls_hint, 'ret': ret, 'params': params}
+    return None
+
+
+def _resolve_vtbl_method(d):
+    """Map decoded call to a method name declared virtual in some header."""
+    sv = store.struct_vtables
+    if d['method']:
+        # verify the method really is a vtable slot of the hinted class
+        if d['cls_hint'] and d['method'] in sv.get(d['cls_hint'], {}).values():
+            return d['method']
+        owners = [c for c, slots in sv.items() if d['method'] in slots.values()]
+        if len(owners) == 1:
+            return d['method']
+        return None
+    if d['offset'] is not None and d['cls_hint']:
+        slots = sv.get(d['cls_hint'], {})
+        if d['cls_hint'] in sv:
+            return slots.get(d['offset'] // 4)
+    return None
+
+
+def _vtbl_stub_names(ret, params, idx):
+    """Build thunk declaration+definition preserving cast signature."""
+    is_ptr = ret.rstrip().endswith('*')
+    is_void = ret.strip() == 'void'
+    is_scalar = any(k in ret for k in ('int', 'long', 'short', 'char', 'float',
+                                       'double', 'bool', '__int', 'signed',
+                                       'unsigned', 'size_t', 'BOOL'))
+    if is_void:
+        body = ''
+    elif is_ptr or is_scalar:
+        body = 'return 0;'
+    else:
+        body = 'return %s();' % ret
+    decl = 'static %s pal3_vtbl_unk_%d(%s);' % (ret, idx, params)
+    definition = ('static %s pal3_vtbl_unk_%d(%s)\n{\n    %s\n}'
+                  % (ret, idx, params, body))
+    return decl, definition
+
+
+def _resolve_vftable_calls_ast(code, ctx):
+    tree = _parser.parse(code.encode('utf-8'))
+    edits = []          # (start_byte, end_byte, replacement)
+    stub_items = []     # (decl, definition) in emission order
+    covered = []        # byte ranges already replaced (skip nested nodes)
+
+    def _inside_covered(n):
+        s, e = n.start_byte, n.end_byte
+        return any(s >= cs and e <= ce for cs, ce in covered)
+
+    def _split_args(args_text):
+        args, depth, cur = [], 0, ''
+        for ch in args_text:
+            if ch in '([':
+                depth += 1
+            elif ch in ')]':
+                depth -= 1
+            if ch == ',' and depth == 0:
+                args.append(cur.strip())
+                cur = ''
+            else:
+                cur += ch
+        if cur.strip():
+            args.append(cur.strip())
+        return args
+
+    def _drop_self_arg(args, obj):
+        if not args:
+            return args
+        first = args[0].strip()
+        obj_n = ' '.join(obj.split())
+        # "(Class *)obj" / "obj" forms both count as the self argument
+        stripped = re.sub(r'^\(\s*[\w :]+\*+\s*\)\s*', '', first).strip()
+        if first == obj_n or stripped == obj_n:
+            return args[1:]
+        return args
+
+    def visit(node):
+        if node.type == 'call_expression' and not _inside_covered(node):
+            func = node.child_by_field_name('function')
+            if func is not None and _find_vftable_in_subtree(func):
+                d = _decode_vtbl_call(node)
+                if d is not None:
+                    args_node = node.child_by_field_name('arguments')
+                    raw_args = args_node.text.decode('utf-8', errors='replace')
+                    args = _split_args(raw_args[1:-1] if raw_args.startswith('(') else raw_args)
+                    method = _resolve_vtbl_method(d)
+                    if method:
+                        keep = _drop_self_arg(args, d['obj'])
+                        repl = '%s->%s(%s)' % (d['obj'], method, ', '.join(keep))
+                    else:
+                        if d['ret'] is not None and d['params'] is not None:
+                            idx = len(stub_items)
+                            decl, definition = _vtbl_stub_names(d['ret'], d['params'], idx)
+                            stub_items.append(
+                                (decl, definition,
+                                 '// %s original: %s'
+                                 % (_VTBL_STUB_MARK,
+                                    ' '.join(node.text.decode('utf-8', errors='replace').split()))))
+                            repl = 'pal3_vtbl_unk_%d(%s) /* %s */' % (
+                                idx, ', '.join(args), _VTBL_STUB_MARK)
+                        else:
+                            # no cast info at all — leave for legacy fallbacks
+                            repl = None
+                    if repl is not None:
+                        edits.append((node.start_byte, node.end_byte, repl))
+                        covered.append((node.start_byte, node.end_byte))
+                        return  # don't descend into replaced node
+        for child in node.children:
+            visit(child)
+
+    visit(tree.root_node)
+
+    if not edits and not stub_items:
+        return code
+
+    for s, e, repl in sorted(edits, key=lambda t: -t[0]):
+        code = code[:s] + repl + code[e:]
+
+    if stub_items:
+        block = ['\n// ---- synthesized vtable stubs (unresolved slots) ----']
+        for decl, definition, comment in stub_items:
+            block.append(comment)
+            block.append(decl)
+        block.append('')
+        thunk_block = '\n'.join(block) + '\n'
+        m = re.search(r'(?:^#[^\n]*\n)+', code, re.MULTILINE)
+        if m:
+            code = code[:m.end()] + thunk_block + code[m.end():]
+        else:
+            code = thunk_block + code
+        # definitions at end of file: declared above first use, valid C++
+        defs = '\n'.join(dfn for _, dfn, _ in stub_items)
+        code = code.rstrip('\n') + '\n\n' + defs + '\n'
+
+    return code
+
+
 def run(code, ctx):
     """Stage 3: post-OOP cleanup."""
     cls_name = ctx.cls_name
@@ -384,6 +591,15 @@ def run(code, ctx):
         # (MSVC6 treats them as method calls, not ctor re-invocation).
 
     # Try to resolve vtable dispatch calls to direct method calls before commenting out.
+
+    # AST-based generalized resolver FIRST (handles every syntactic form the
+    # tree-sitter parse can see: named-slot cast calls, raw-offset casts,
+    # plain __vftable->Method). Unresolved calls are rewritten to synthesized
+    # signature-accurate stubs so the surrounding expression survives —
+    # the old "comment out the statement" fallback destroyed enclosing
+    # expressions (e.g. `sqrt(v) * scale[vtcall(...)]` lost the multiply).
+    code = _resolve_vftable_calls_ast(code, ctx)
+
     # Pattern: (*(ret_type (callconv **)(Type*))(obj->__vftable + N))(args);
     # Matches any return type (void, int, gbTexture*, etc.)
     _vtable_re = re.compile(

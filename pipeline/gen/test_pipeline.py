@@ -98,18 +98,20 @@ class TestOopTransform(unittest.TestCase):
 class TestStage3Cleanup(unittest.TestCase):
     """Test stage3_cleanup.py run()"""
 
-    def test_vtbl_placeholder_commented(self):
-        """_vtbl_placeholder member access should be commented out"""
-        code = "this->_vtbl_placeholder = 0;"
+    def test_vfptr_assignment_passthrough(self):
+        """vfptr assignments pass through stage3 unchanged
+        (_vtbl_placeholder was renamed to vfptr in 8a2bba3e9; the old
+        comment-out behavior no longer applies to this member name)"""
+        code = "this->vfptr = 0;"
         result = stage3_run(code, _make_ctx(cls_name='Test'))
-        self.assertIn('// [VFTABLE]', result)
-        self.assertIn('_vtbl_placeholder', result)  # still visible inside comment
+        self.assertIn('vfptr = 0', result)
 
-    def test_vtbl_placeholder_multiline_function(self):
-        """_vtbl_placeholder in a function body should be commented"""
-        code = "void Test() { this->_vtbl_placeholder = 0; DoSomething(); }"
+    def test_vfptr_assignment_multiline_function(self):
+        """vfptr assignment inside a function body is not touched"""
+        code = "void Test() { this->vfptr = 0; DoSomething(); }"
         result = stage3_run(code, _make_ctx(cls_name='Test'))
-        self.assertIn('// [VFTABLE]', result)
+        self.assertIn('vfptr = 0', result)
+        self.assertIn('DoSomething();', result)
 
     def test_normal_code_unchanged(self):
         """Non-vtbl code should not be affected"""
@@ -171,17 +173,23 @@ class TestVftableFallback(unittest.TestCase):
         result = stage3_run(code, _make_ctx(cls_name='Test'))
         self.assertEqual(result.strip(), code.strip())
 
-    def test_vftable_direct_call_commented(self):
-        """(*(void(**)(Type*))(obj->__vftable))(obj) -> commented (fallback)"""
+    def test_vftable_direct_call_stubbed(self):
+        """(*(void(**)(Type*))(obj->__vftable))(obj) -> signature-accurate stub
+        (structure preserved; old behavior commented out the whole statement)"""
         code = '(*(void (**)(SceneObj *))(this->m_pObj->__vftable))(this->m_pObj);'
         result = stage3_run(code, _make_ctx(cls_name='Test'))
-        self.assertIn('// [VFTABLE]', result)
+        self.assertIn('pal3_vtbl_unk_0(this->m_pObj)', result)
+        self.assertIn('[VFTABLE-STUB]', result)
+        self.assertNotIn('// [VFTABLE]', result)
 
-    def test_vftable_offset4_call_commented(self):
-        """(*(void(**)(Type*))(obj->__vftable + 4))(obj) -> commented (fallback)"""
+    def test_vftable_offset4_call_stubbed(self):
+        """(*(void(**)(Type*))(obj->__vftable + 4))(obj) -> stub, not deletion"""
         code = '(*(void (**)(SceneObj *))(this->m_pObj->__vftable + 4))(this->m_pObj);'
         result = stage3_run(code, _make_ctx(cls_name='Test'))
-        self.assertIn('// [VFTABLE]', result)
+        self.assertIn('pal3_vtbl_unk_0(this->m_pObj)', result)
+        self.assertIn('[VFTABLE-STUB]', result)
+        # signature from the decompiler cast is preserved
+        self.assertIn('static void pal3_vtbl_unk_0(SceneObj *);', result)
 
     def test_mixed_normal_and_vftable(self):
         """Normal code with vftable refs should comment only vftable lines"""
