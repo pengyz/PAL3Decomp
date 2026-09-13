@@ -157,6 +157,11 @@ def _sanitize_filename(name):
     name = name.replace(':', '_').replace('"', '_')
     name = name.replace('?', '_').replace('*', '_')
     name = name.replace('|', '_').replace('\\', '_').replace('/', '_')
+    # Template argument lists introduce commas/spaces/parens — all illegal
+    # (and colliding) in filenames; both the file and its #include refs go
+    # through here so they stay consistent.
+    name = name.replace(',', '_').replace(' ', '_')
+    name = name.replace('(', '_').replace(')', '_')
     return name
 
 
@@ -308,15 +313,35 @@ SKIP_PREFIXES = (
 )
 
 
+# Platform types leaking from PDB/IDA TIL into the struct export table.
+# Never emit headers for them: <windows.h> (via ida_types.h) and the VC6
+# headers define the real layouts the original binary was built against.
+SDK_PLATFORM_TYPES = {
+    'CONTEXT', 'CPPEH_RECORD', 'EH3_EXCEPTION_REGISTRATION', 'FILETIME',
+    'FLOATING_SAVE_AREA', 'IMAGE_DATA_DIRECTORY', 'IMAGE_FILE_HEADER',
+    'IMAGE_OPTIONAL_HEADER32', 'LARGE_INTEGER', 'NMHDR', 'RGNDATAHEADER',
+    'WAVEFORMAT', '_CONTEXT', '_EH3_EXCEPTION_REGISTRATION',
+    '_EXCEPTION_POINTERS', '_FLOATING_SAVE_AREA', '_LARGE_INTEGER', '_PMD',
+    '_RGNDATA', '_RGNDATAHEADER', '_TypeDescriptor', '_s__CatchableType',
+    '_s__CatchableTypeArray', 'pcmwaveformat_tag', 'waveformat_tag',
+    'wavehdr_tag',
+}
+
+
 def should_skip_class(name):
     """Check if a class name should be skipped (system/library type).
-    
+
     Note: :: names are NOT skipped here — they are nested types handled
     by the scope tree and filtered in the main generation loop.
     """
     if not name or len(name) <= 1:
         return True
     if name in SKIP_CLASSES:
+        return True
+    if name in SDK_PLATFORM_TYPES:
+        # Provided by <windows.h>/VC6 headers (ida_types.h includes it).
+        # Re-emitting them collides with the real definitions (C2371/C2011);
+        # the SDK versions are ground truth for code MSVC6 built.
         return True
     if name.startswith(SKIP_PREFIXES):
         return True
@@ -829,27 +854,51 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     lines.append('#include "pal3/ida_types.h"')
     lines.append("")
 
-    # Overlay annotation known_members on top of ida_struct data for naming.
-    # ARCHITECTURE DEBT: should come via export, not direct annotation read.
+    # Overlay annotation known_members on top of ida_struct data for naming AND
+    # typing (annotations are the source of truth for usage-evidenced member
+    # retypes). Gated by PAL3_HEADER_OVERLAY=1: blanket-enabling requires an
+    # annotation<->export reconciliation pass first — enabling it against a
+    # drifted export surfaces stale annotation names/types as C2039/C2143 in
+    # otherwise-green TUs (observed 2026-09-13: 45->37 S2). Union-variant
+    # keys '<off>_<n>' are matched to same-offset export members in order.
     _overlaid = None
-    if ida_struct and ida_struct.get('data_members'):
+    if os.environ.get('PAL3_HEADER_OVERLAY') == '1' \
+            and ida_struct and ida_struct.get('data_members'):
         _overlaid = list(ida_struct['data_members'])
         try:
-            _ann_km = {}  # known_members from ida_struct data_members; naming handled via _overlaid
+            _ann_path = (PROJECT_ROOT / "data" / "annotations" / "structs"
+                         / ("%s.json" % cls_name))
+            _ann_km = {}
+            if _ann_path.exists():
+                _ann_json = json.loads(_ann_path.read_text(encoding='utf-8'))
+                _ann_km = _ann_json.get('known_members', {}) or {}
             if _ann_km:
                 _ann_sinfo = ida_struct
                 _base_size = _ann_sinfo.get('base_size', 0) or 0
-                # Annotation offsets are absolute, ida_struct offsets are relative to derived start
-                _ann_by_off = {max(0, int(k) - _base_size): v for k, v in _ann_km.items()}
+                # Annotation offsets are absolute, ida_struct offsets are relative
+                # to derived start. Union variants use '<off>_<n>' keys (12, 12_1,
+                # ...) — match them to same-offset export members in variant order
+                # instead of int()ing the whole key ('12_1' would parse as 121).
+                _ann_by_off = defaultdict(list)
+                for k, v in _ann_km.items():
+                    _km = re.match(r'^(\d+)(?:_(\d+))?$', str(k))
+                    if not _km:
+                        continue
+                    _off = max(0, int(_km.group(1)) - _base_size)
+                    _vi = int(_km.group(2)) if _km.group(2) else 0
+                    _ann_by_off[_off].append((_vi, v))
+                for _off in _ann_by_off:
+                    _ann_by_off[_off].sort(key=lambda t: t[0])
                 for _m in _overlaid:
                     _moff = _m.get('offset', -1)
-                    if _moff in _ann_by_off:
-                        _ao = _ann_by_off[_moff]
+                    _entries = _ann_by_off.get(_moff)
+                    if _entries:
+                        _vi, _ao = _entries.pop(0)
                         if 'type' in _ao:
                             _m['type'] = _ao['type']
                         if 'name' in _ao and _ao['name']:
                             _m['name'] = _ao['name']
-        except:
+        except Exception:
             pass
 
     # Embed colliding enums (case-insensitive FS collision) before class definition
@@ -1288,6 +1337,10 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             if _td_full:
                 _td_type = _td_full.group(0).strip()
                 _td_name = '_{}_cb'.format(_td_cls)
+                # MSVC6 rejects explicit __thiscall on member-pointer
+                # declarators (C4234); member functions already default to
+                # __thiscall so dropping it is semantics-preserving.
+                _td_type = re.sub(r'\b__thiscall\s+', '', _td_type)
                 _td_type_named = re.sub(r'\*\)', '*%s)' % _td_name, _td_type, 1)
                 _td_expr = template_expr.replace(_td_type, _td_name)
                 lines.append('class %s;' % _td_cls)

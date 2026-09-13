@@ -1,26 +1,26 @@
 {
-  "name": "tagControlData",
-  "binary_size": 16,
-  "known_members": {
-    "0": {
-      "name": "dwButtonID",
-      "type": "DWORD",
-      "source": "annotation"
-    },
-    "4": {
-      "name": "dwParam1",
-      "type": "DWORD",
-      "source": "annotation"
-    },
-    "8": {
-      "name": "dwParam2",
-      "type": "DWORD",
-      "source": "annotation"
-    },
-    "12": {
-      "name": "bValid",
-      "type": "BYTE",
-      "source": "annotation"
-    }
+ "name": "tagControlData",
+ "binary_size": 16,
+ "known_members": {
+  "0": {
+   "name": "dwButtonID",
+   "type": "DWORD",
+   "source": "annotation"
+  },
+  "4": {
+   "name": "dwParam1",
+   "type": "char *",
+   "source": "annotation | 2026-09-13: sole use (CCBControl.cpp:48) assigns m_pRoleObj (char * role object pointer) — retyped UINT->char *"
+  },
+  "8": {
+   "name": "dwParam2",
+   "type": "DWORD",
+   "source": "annotation"
+  },
+  "12": {
+   "name": "bValid",
+   "type": "BYTE",
+   "source": "annotation"
   }
+ }
 }

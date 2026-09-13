@@ -5286,3 +5286,16 @@ m_nRoleCount/m_WaitObjList...）。S2 28 -> 30/205，s_RoleState 连带翻绿。
 Evidence: 见 source 全量访问清单（SetupPartyFormation x5 @+0x358、
 scAsmDecoder::Execute @+0x360 x59、300 处 UI 文本缓冲引用 @+0x3d0）。
 Confidence: 90
+
+## 2026-09-13: g_bSceneLoaded 重名消歧（globals.json）
+- 0x00BFDA88 `g_bSceneLoaded` → `g_bSceneLoaded_0`
+- 原因：与 0x5A0998 同名不同址（两份独立存储）；Hex-Rays 反编译输出已自动以
+  g_bSceneLoaded_0 区分，globals.h 声明侧未跟随导致 C2065（去重后缀泄漏）。
+- 证据：CScreenMode_LoadScreenScene 写 1 / CGameData_Load 判读（annotation source 字段）。
+- 影响：CGameData.cpp 等 4 个使用文件恢复声明一致；aS_2、g_nSceneState 两组重复
+  待 xref 证据后另行消歧（归入 MISATTRIBUTED/归属修复工作流）。
+
+## 2026-09-13: tagControlData.dwParam1 类型修正
+- +0x4 UINT → char *
+- 证据：全树唯一使用点 CCBControl.cpp:48 将 m_partyActor.m_pRoleObj（char *，
+  角色对象指针）赋入该槽；无任何整数赋值用途。
