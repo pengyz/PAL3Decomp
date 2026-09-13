@@ -33,7 +33,11 @@ from datetime import datetime
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(REPO, 'pal3', 'src')
-OBJ_DIR = os.path.join('/tmp', 'pal3_probe')
+# MSVC6 CL.EXE is a native Win32 binary: run it directly on Windows, via
+# wine elsewhere. Keep the scratch dir off the repo on both platforms.
+NATIVE_WIN = (os.name == 'nt')
+OBJ_DIR = os.path.join(os.environ.get('TEMP', '/tmp') if NATIVE_WIN else '/tmp',
+                       'pal3_probe')
 CL = os.path.join(REPO, 'tools', 'compilers', 'msvc6.0', 'Bin', 'CL.EXE')
 
 INCLUDE_DIRS = [
@@ -47,6 +51,8 @@ INCLUDE_DIRS = [
 # directly instead of spawning winepath ~950 times.
 def wpath(p):
     p = os.path.abspath(p)
+    if NATIVE_WIN:
+        return p.replace('/', '\\')
     return 'Z:' + p.replace('/', '\\')
 
 ERR_RE = re.compile(r'^(?P<file>.+?)\((?P<line>\d+)\) : (?:(?P<fatal>fatal) )?error (?P<code>[A-Z]\d+): (?P<msg>.*)$')
@@ -65,7 +71,11 @@ def normalize_err_path(p):
 
 
 def run_cl(args, timeout=90):
-    cmd = ['wine', wpath(CL), '/nologo', '/TP', '/c', '/W3'] + args
+    if NATIVE_WIN:
+        prefix = [wpath(CL)]
+    else:
+        prefix = ['wine', wpath(CL)]
+    cmd = prefix + ['/nologo', '/TP', '/c', '/W3'] + args
     try:
         proc = subprocess.run(cmd, capture_output=True, text=True,
                               errors='replace', timeout=timeout, cwd=REPO)
@@ -132,7 +142,10 @@ def collect(pattern, ext):
     for dirpath, _, files in os.walk(SRC):
         for f in files:
             if f.endswith(ext):
-                out.append(os.path.relpath(os.path.join(dirpath, f), REPO))
+                # posix-relative, so unit keys match normalize_err_path output
+                # and summarize_s2's own-vs-foreign attribution on any OS
+                rel = os.path.relpath(os.path.join(dirpath, f), REPO)
+                out.append(rel.replace(os.sep, '/'))
     return sorted(out)
 
 
@@ -202,7 +215,8 @@ def main():
         except (json.JSONDecodeError, OSError):
             pass
     report['generated_at'] = datetime.now().isoformat(timespec='seconds')
-    report['compiler'] = 'MSVC6 SP0 via wine (/TP /c /W3)'
+    report['compiler'] = ('MSVC6 SP0 native' if NATIVE_WIN
+                          else 'MSVC6 SP0 via wine') + ' (/TP /c /W3)'
 
     if args.layer in ('s1', 'all'):
         t0 = time.time()
