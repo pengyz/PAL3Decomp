@@ -1,35 +1,32 @@
 {
-  "name": "UILBColumn",
-  "binary_size": 84,
-  "known_members": {
-    "0": {
-      "name": "head",
-      "type": "char[64]",
-      "source": "annotation"
-    },
-    "64": {
-      "name": "items",
-      "type": "PtrArray",
-      "source": "annotation"
-    },
-    "80": {
-      "name": "width",
-      "type": "int",
-      "source": "annotation"
-    }
+ "name": "UILBColumn",
+ "binary_size": 84,
+ "known_members": {
+  "0": {
+   "name": "head",
+   "type": "char[64]",
+   "source": "annotation"
   },
-  "methods": {
-    "0x0043DCA0": {
-      "name": "UILBColumn",
-      "signature": "void __thiscall()"
-    },
-    "0x0043DCB0": {
-      "name": "~UILBColumn",
-      "signature": "void __thiscall()"
-    },
-    "0x0043DCC0": {
-      "name": "Destroy",
-      "signature": "void __thiscall()"
-    }
+  "64": {
+   "name": "items",
+   "type": "PtrArray",
+   "source": "annotation"
+  },
+  "80": {
+   "name": "width",
+   "type": "int",
+   "source": "annotation"
   }
+ },
+ "methods": {
+  "0x0043DCB0": {
+   "name": "~UILBColumn",
+   "signature": "void __thiscall()"
+  },
+  "0x0043DCC0": {
+   "name": "Destroy",
+   "signature": "void __thiscall()"
+  }
+ },
+ "methods_note": "2026-09-14: removed pseudo ctor@0x43DCA0 (11-byte accessor mislabeled by PDB drift); kept ~UILBColumn@0x43DCB0 (jmp Destroy = real dtor shape) and Destroy"
 }

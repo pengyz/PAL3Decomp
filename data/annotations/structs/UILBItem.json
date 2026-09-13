@@ -1,27 +1,23 @@
 {
-  "name": "UILBItem",
-  "binary_size": 72,
-  "known_members": {
-    "0": {
-      "name": "picon",
-      "type": "gbTexture *",
-      "source": "annotation"
-    },
-    "4": {
-      "name": "text",
-      "type": "char[64]",
-      "source": "annotation"
-    },
-    "68": {
-      "name": "itemColor",
-      "type": "gbColorQuad",
-      "source": "annotation"
-    }
+ "name": "UILBItem",
+ "binary_size": 72,
+ "known_members": {
+  "0": {
+   "name": "picon",
+   "type": "gbTexture *",
+   "source": "annotation"
   },
-  "methods": {
-    "0x0043DC90": {
-      "name": "~UILBItem",
-      "signature": "UILBColumn *__thiscall()"
-    }
+  "4": {
+   "name": "text",
+   "type": "char[64]",
+   "source": "annotation"
+  },
+  "68": {
+   "name": "itemColor",
+   "type": "gbColorQuad",
+   "source": "annotation"
   }
+ },
+ "methods": {},
+ "methods_note": "2026-09-14: removed pseudo ~UILBItem@0x43DC90 — that 5-byte jmp is atexit/static-init glue mislabeled by PDB drift (target 0x43DCA0 is an 11-byte accessor, not a ctor; region 0x43DC60 has guard+_atexit). UILBItem is non-polymorphic (picon@0 occupies the vtable slot); see data/status/_uilb_family_verdict.json"
 }

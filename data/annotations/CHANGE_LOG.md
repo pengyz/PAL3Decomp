@@ -5334,3 +5334,9 @@ Confidence: 80（名字层面可逆；若未来获得更强命名证据可整体
   函数对表引用（工厂注册表形态）；0x43DCA0（jmp 终点）是 4 字节拷贝访问器，非 dtor 体。
 - UILBColumn 真表 0x56AD20、真 deleting dtor=0x43DCF0（形态验证：test [esp+8],1）。
 - 证据包：data/status/_uilb_family_verdict.json。重推导需 MCP 会话逐槽定名。
+
+## 2026-09-14: UILB 家族伪方法清除（v2 终裁）
+- MCP 反汇编终裁：UILBItem 为非多态 POD（picon@0 占据 vtable 位，扁平 72B）；
+  0x43DC60 区为静态初始化胶水（guard+_atexit），0x43DC90/0x43DCA0 为漂移错标。
+- 动作：UILBItem.methods 清空、UILBColumn 伪 ctor 移除、functions.json 同步。
+- S1 729/750 持平、S2 46/199（UILBItem.cpp 单元随伪方法消失，无连带回退）。
