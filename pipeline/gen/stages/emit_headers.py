@@ -2406,6 +2406,110 @@ def main():
     generate_globals_cpp()
 
 
+_DECOMP_SCAN_DIR = PROJECT_ROOT / 'asm' / 'pal3' / 'decomp'
+_REFERENCED_CACHE = None
+_IDA_NAME_ADDR_RE = re.compile(r'^(?:dword|byte|word|qword|off|unk|flt)_([0-9A-Fa-f]{6,8})$')
+
+
+def _prefix_type(name):
+    """Type for IDA-convention data names (used when resurrecting silenced
+    globals the decompiler still references)."""
+    if re.match(r'^a[A-Z]', name):
+        return 'char[]'
+    if name.startswith('dword_'):
+        return 'int'
+    if name.startswith('byte_'):
+        return 'unsigned char'
+    if name.startswith('word_'):
+        return 'unsigned short'
+    if name.startswith('qword_'):
+        return '__int64'
+    if name.startswith('off_'):
+        return 'void *'
+    if name.startswith('flt_'):
+        return 'float'
+    if name.startswith('unk_'):
+        return 'int'
+    return None
+
+
+def _referenced_identifiers():
+    """All identifiers appearing in decomp bodies (upstream truth of what the
+    emitted sources will reference)."""
+    global _REFERENCED_CACHE
+    if _REFERENCED_CACHE is not None:
+        return _REFERENCED_CACHE
+    import glob as _glob
+    tok = re.compile(r'\b[a-zA-Z_]\w*\b')
+    names = set()
+    for f in _glob.glob(str(_DECOMP_SCAN_DIR / '*.json')):
+        try:
+            d = json.loads(Path(f).read_text(encoding='utf-8', errors='replace'))
+        except (json.JSONDecodeError, OSError):
+            continue
+        names.update(tok.findall(d.get('decompiled_c', '')))
+    _REFERENCED_CACHE = names
+    return names
+
+
+def _forced_global_entries():
+    """Decomp-referenced globals that current skip filters would silence.
+
+    Policy: skip governs *renaming* and annotation semantics, not
+    *silencing* — if Hex-Rays emitted a name into a function body, the
+    generated TU references it and needs an extern + definition (observed
+    C2065 cascades: aDProjectPal3Co_7 annotation-skipped as 'within
+    g_EffMgr', dword_573810 export-skipped as 'compiler_generated', both
+    referenced by live code).
+
+    Returns (forced_names, extra_entries): extra_entries are synthesized
+    (addr, info) pairs for IDA-pattern names absent from the export.
+    """
+    _glbs = _get_ida_structs().get('_globals', {})
+    ref = _referenced_identifiers()
+    forced = set()
+    extra = []
+    for nm in ref:
+        if nm in {g.get('name') for g in _glbs.values()}:
+            forced.add(nm)
+            continue
+        m = _IDA_NAME_ADDR_RE.match(nm)
+        if m:
+            addr = int(m.group(1), 16)
+            t = _prefix_type(nm)
+            if t and 0x401000 <= addr < 0x580000 + 0x900000:
+                forced.add(nm)
+                extra.append(('0x%08X' % addr,
+                              {'name': nm, 'type': t, '_synthesized': True}))
+    return forced, extra
+
+
+def _read_c_string(exe_data, addr):
+    """NUL-terminated string at VA (image base 0x400000, identity mapping)."""
+    if exe_data is None:
+        return None
+    off = addr - 0x400000
+    if off < 0 or off >= len(exe_data):
+        return None
+    end = exe_data.find(b'\x00', off)
+    if end < 0 or end - off > 4096:
+        return None
+    raw = exe_data[off:end]
+    out = []
+    for b in raw:
+        if b == 0x22:
+            out.append('\\"')
+        elif b == 0x5C:
+            out.append('\\\\')
+        elif b == 0x0A:
+            out.append('\\n')
+        elif 0x20 <= b < 0x7F:
+            out.append(chr(b))
+        else:
+            out.append('\\x%02X' % b)
+    return ''.join(out)
+
+
 def generate_globals():
     """Generate include/pal3/globals.h from ida_structs.json globals + binary initial values."""
     import struct as _st
@@ -2470,9 +2574,13 @@ def generate_globals():
         if _sz > 0:
             _dms = _stinfo.get('data_members', [])
             _instances.append((int(_addr_s, 16), int(_addr_s, 16) + _sz, _ginfo.get('name', ''), _gtype, _dms))
+    _phantom_forced, _phantom_extra = _forced_global_entries()
     _filtered = []
     for _addr_s, _ginfo in sorted_globs:
         _addr = int(_addr_s, 16)
+        if _ginfo.get('name') in _phantom_forced:
+            _filtered.append((_addr_s, _ginfo))
+            continue
         _phantom = False
         for _base, _end, _pname, _ptype, _dms in _instances:
             if _base < _addr < _end:
@@ -2500,7 +2608,9 @@ def generate_globals():
     # Done at export layer (export_full.py marks them type=skip)
     _vtable_filtered = list(sorted_globs)
 
-    # Load annotations to filter type=skip entries
+    # Load annotations to filter type=skip entries — unless the decompiler
+    # still references the name (skip governs renaming, not silencing)
+    _forced_names, _extra_entries = _forced_global_entries()
     import json as _ann_json
     _ann_path = PROJECT_ROOT / "data" / "annotations" / "globals.json"
     if _ann_path.exists():
@@ -2511,7 +2621,8 @@ def generate_globals():
             _addr = int(_addr_s, 16)
             _ann_key = '0x%08X' % _addr
             _ann_entry = _ann_data.get(_ann_key, {})
-            if _ann_entry.get('type') == 'skip':
+            if _ann_entry.get('type') == 'skip' \
+                    and _ginfo.get('name') not in _forced_names:
                 _ann_skipped += 1
                 continue
             # Override name from globals.json if available (but not type - too risky)
@@ -2521,6 +2632,24 @@ def generate_globals():
         sorted_globs = _ann_filtered
         if _ann_skipped:
             print("  Annotation-skipped globals: %d" % _ann_skipped)
+
+    # Merge synthesized entries for referenced IDA-pattern names missing
+    # from the export entirely (byte_C11748, off_5D8A3C, ...)
+    _have = {g.get('name') for _, g in sorted_globs}
+    for _addr_s, _ginfo in _extra_entries:
+        if _ginfo['name'] not in _have:
+            sorted_globs.append((_addr_s, _ginfo))
+            _have.add(_ginfo['name'])
+    # same-name globals at multiple addresses would emit conflicting externs
+    # (C2040): first address wins
+    _dedup, _seen_names = [], set()
+    for _addr_s, _ginfo in sorted_globs:
+        _nm = _ginfo.get('name')
+        if _nm in _seen_names:
+            continue
+        _seen_names.add(_nm)
+        _dedup.append((_addr_s, _ginfo))
+    sorted_globs = _dedup
 
     # Generate globals.h (extern declarations)
     h_lines = [
@@ -2555,7 +2684,13 @@ def generate_globals():
         if not name:
             continue
         if typ == 'skip':
-            continue  # known-unnameable: don't emit extern declaration
+            # export-layer skip — resurrect when the decompiler references
+            # the name (derive a type from the IDA naming convention)
+            if name in _forced_names:
+                typ = _prefix_type(name) or 'int'
+                g = dict(g, type=typ)
+            else:
+                continue  # known-unnameable: don't emit extern declaration
         # Skip globals with :: in type (PDB artifacts like Concurrency::details::VirtualProcessor)
         # These types don't exist in VC6 and cause C2653 errors
         if '::' in typ:
@@ -2827,8 +2962,16 @@ def generate_globals_cpp():
     RDATA_END = 0x57F178
     BSS_START = 0xBF0000
 
+    _forced_names, _extra_entries = _forced_global_entries()
+
     def _should_skip_global(addr, name, typ, ann_info):
+        if name in _forced_names:
+            return False  # referenced by decomp bodies: must be defined
         if ann_info.get('type') == 'skip':
+            return True
+        if addr < DATA_VA and not (typ.startswith('char') or re.match(r'^a[A-Z]', name)):
+            # .rdata scalars are compiler-generated except strings the code
+            # actually references (those are forced above; keep other chars)
             return True
         if addr < DATA_VA:
             return True
@@ -2840,18 +2983,38 @@ def generate_globals_cpp():
         '#include "globals.h"',
     ]
     inc = 0
+    _emitted_names = set()
 
-    for addr_s, info in sorted(_glbs.items(), key=lambda x: int(x[0], 16)):
+    for addr_s, info in sorted(_glbs.items(), key=lambda x: int(x[0], 16)) + _extra_entries:
         addr = int(addr_s, 16)
         nm = info.get('name', '')
         tp = info.get('type', '')
         ann_key = f'0x{addr:08x}'
         ann_info = ann.get(ann_key, {})
-        
+        if info.get('_synthesized'):
+            ann_info = {}
+
         if not nm or not tp:
             continue
+        if '__stdcall' in tp and '*)' in tp:
+            continue  # WinAPI GetProcAddress pointers: windows.h declares
+        if tp == 'skip':
+            if nm not in _forced_names:
+                continue
+            tp = _prefix_type(nm) or 'int'
+            info = dict(info, type=tp)
         if _should_skip_global(addr, nm, tp, ann_info):
             continue
+        if nm in _emitted_names:
+            continue  # same name at another address: one definition wins
+        _emitted_names.add(nm)
+        # string globals: define from the exe bytes at the address
+        if re.match(r'^a[A-Z]', nm) or tp.startswith('char['):
+            s = _read_c_string(exe_data, addr)
+            if s is not None:
+                lines.append(f'char {nm}[] = "{s}";')
+                inc += 1
+                continue
         if not _is_pod_type(tp.split('[')[0].strip()):
             lines.append(f'{tp} {nm};')
             inc += 1

@@ -148,6 +148,58 @@ def classify_error(code, msg):
     return "unknown", f"Unclassified {code} error"
 
 
+CASCADE_CODES = {"C2227", "C2228", "C2660", "C2653"}
+_IDA_GLOBAL_PREFIX_RE = re.compile(r"^(?:a[A-Z]|dword_|byte_|word_|off_|unk_|qword_|flt_)")
+# member name extractors per cascade code
+_C2039_RE = re.compile(r"'(\w+)' : is not a member of")
+_C2228_RE = re.compile(r"left of '\.\s*(\w+)'")
+_C2227_RE = re.compile(r"left of '->\s*(\w+)'")
+_C2660_RE = re.compile(r"'(\w+)' : (?:function does not take|no overloaded function)")
+
+
+def _cascade_reclassify(details):
+    """Cascade-aware pass.
+
+    C2227/C2228/C2660/C2653 errors ride on unknown member types: when the
+    file also reports a missing member (C2039), the object expression's
+    type is unknown BECAUSE of that missing member, and the per-error rule
+    set would misfile the cascade as a decompiler limit. The cascade message
+    names the field being accessed (not the missing member), so exact
+    member matching only works for direct forms; for the rest, file-level
+    presence of C2039 is the pragmatic root-cause test (audit 2026-09-13:
+    66/76 hexrays_limit-dominant files contain C2039 roots).
+
+    C2065 undeclared identifiers matching IDA data-name patterns
+    (aFooBar/dword_XXXX/...) are missing-global annotations, not
+    decompiler limits.
+    """
+    has_missing_member = any(d["code"] == "C2039" for d in details)
+    missing_members = set()
+    for d in details:
+        if d["code"] == "C2039":
+            m = _C2039_RE.search(d["msg"])
+            if m:
+                missing_members.add(m.group(1))
+    for d in details:
+        if d["code"] in CASCADE_CODES and d["category"] == "hexrays_limit" \
+                and has_missing_member:
+            m = (_C2228_RE.search(d["msg"]) or _C2227_RE.search(d["msg"])
+                 or _C2660_RE.search(d["msg"]))
+            member = m.group(1) if m else None
+            if member is not None and member in missing_members:
+                d["description"] = ("cascade of missing member '%s' (C2039 same file)"
+                                    % member)
+            else:
+                d["description"] = "cascade of unknown member type (C2039 in file)"
+            d["category"] = "annotation_fix"
+        elif d["code"] == "C2065" and d["category"] == "hexrays_limit":
+            m = re.search(r"'([^']+)'", d["msg"])
+            if m and _IDA_GLOBAL_PREFIX_RE.match(m.group(1)):
+                d["category"] = "annotation_fix"
+                d["description"] = "missing global declaration: %s not emitted" % m.group(1)
+    return details
+
+
 def classify_file(file_errors):
     """Classify all errors in a file. Return dominant category."""
     categories = Counter()
@@ -163,6 +215,8 @@ def classify_file(file_errors):
             "category": cat,
             "description": desc,
         })
+    details = _cascade_reclassify(details)
+    categories = Counter(d["category"] for d in details)
     # Dominant category
     if categories:
         dominant = categories.most_common(1)[0][0]
