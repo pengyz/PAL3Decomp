@@ -1,0 +1,7 @@
+{
+ "finding": "NPC::NPC::UpdateAnim 双限定+零参形态（45 处 cpp）",
+ "decomp_original": "NPC::UpdateAnim(*(NPC **)(偏移表达式))",
+ "emitted": "((NPC*)expr)->NPC::NPC::UpdateAnim() 无参",
+ "analysis": "产物与 decomp 原文不符——出自析构上下文特殊分支或 stage3 拼接；原参被丢弃、限定符叠加。分支定位需对 CCBRoleState::UpdateEffects 单独跑 stage1-5 追踪",
+ "status": "已立案待追（tools: 对单函数逐 stage diff 可定位）"
+}
