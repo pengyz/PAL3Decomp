@@ -1,709 +1,705 @@
 {
-  "name": "CCBUI",
-  "binary_size": 2648,
-  "known_members": {
-    "72": {
-      "name": "m_pAttackSequenBack",
-      "type": "UIStatic *",
-      "offset": 72
-    },
-    "76": {
-      "name": "pPanel",
-      "type": "UIStatic *",
-      "offset": 76
-    },
-    "1080": {
-      "name": "m_pRoleStateMP",
-      "type": "UIProgressBar *[4]",
-      "offset": 1080
-    },
-    "1096": {
-      "name": "m_pRoleStateSword",
-      "type": "UIProgressBar *",
-      "offset": 1096
-    },
-    "1100": {
-      "name": "m_pTrickName",
-      "type": "UIStaticCB *",
-      "offset": 1100
-    },
-    "1104": {
-      "name": "m_pTrickName2",
-      "type": "UIStaticCB *",
-      "offset": 1104
-    },
-    "1108": {
-      "name": "m_pDialogBack",
-      "type": "UIStatic *",
-      "offset": 1108
-    },
-    "1112": {
-      "name": "m_pResultLevelup",
-      "type": "UIStatic *",
-      "offset": 1112
-    },
-    "1116": {
-      "name": "m_pResultWindLvup",
-      "type": "UIStatic *",
-      "offset": 1116
-    },
-    "1120": {
-      "name": "m_pResultThunderLvup",
-      "type": "UIStatic *",
-      "offset": 1120
-    },
-    "1124": {
-      "name": "m_pResultWaterLvup",
-      "type": "UIStatic *",
-      "offset": 1124
-    },
-    "1128": {
-      "name": "m_pResultFireLvup",
-      "type": "UIStatic *",
-      "offset": 1128
-    },
-    "1132": {
-      "name": "m_pResultEarthLvup",
-      "type": "UIStatic *",
-      "offset": 1132
-    },
-    "1136": {
-      "name": "m_pResultDoubleLvup",
-      "type": "UIStatic *",
-      "offset": 1136
-    },
-    "1140": {
-      "name": "m_pResultGetItem",
-      "type": "UIStatic *",
-      "offset": 1140
-    },
-    "1144": {
-      "name": "m_pMain",
-      "type": "CCBControlWindow *",
-      "offset": 1144
-    },
-    "1160": {
-      "name": "m_pSkillWindow",
-      "type": "CCBSkillWindow *",
-      "offset": 1160
-    },
-    "1164": {
-      "name": "m_pAIWindow",
-      "type": "CCBAIWindow *",
-      "offset": 1164
-    },
-    "1168": {
-      "name": "m_pLineupWindow",
-      "type": "CCBLineupWindow *",
-      "offset": 1168
-    },
-    "2608": {
-      "name": "fp",
-      "type": "CCBUI_funcptr_t",
-      "source": "PAL3patch_verified"
-    },
-    "80": {
-      "name": "m_pBattleFieldAttr",
-      "type": "UIStatic *[6]",
-      "offset": 80
-    },
-    "104": {
-      "name": "m_pAttackSequenFace",
-      "type": "UIStatic *[11]",
-      "offset": 104
-    },
-    "148": {
-      "name": "m_pRoleStatePanel",
-      "type": "UIStatic *[4]",
-      "offset": 148
-    },
-    "164": {
-      "name": "m_pRoleStateFace",
-      "type": "UIStatic *[5]",
-      "offset": 164
-    },
-    "184": {
-      "name": "m_pRoleStateFaceName",
-      "type": "UIStatic *[5]",
-      "offset": 184
-    },
-    "204": {
-      "name": "m_pRoleStateAttackInc",
-      "type": "UIStatic *[11]",
-      "offset": 204
-    },
-    "248": {
-      "name": "m_pRoleStateAttackDec",
-      "type": "UIStatic *[11]",
-      "offset": 248
-    },
-    "292": {
-      "name": "m_pRoleStateDefenceInc",
-      "type": "UIStatic *[11]",
-      "offset": 292
-    },
-    "336": {
-      "name": "m_pRoleStateDefenceDec",
-      "type": "UIStatic *[11]",
-      "offset": 336
-    },
-    "380": {
-      "name": "m_pRoleStateLuckInc",
-      "type": "UIStatic *[11]",
-      "offset": 380
-    },
-    "424": {
-      "name": "m_pRoleStateLuckDec",
-      "type": "UIStatic *[11]",
-      "offset": 424
-    },
-    "468": {
-      "name": "m_pRoleStateSpeedInc",
-      "type": "UIStatic *[11]",
-      "offset": 468
-    },
-    "512": {
-      "name": "m_pRoleStateSpeedDec",
-      "type": "UIStatic *[11]",
-      "offset": 512
-    },
-    "556": {
-      "name": "m_pRoleStateStable",
-      "type": "UIStatic *[11]",
-      "offset": 556
-    },
-    "600": {
-      "name": "m_pRoleStateBlank",
-      "type": "UIStatic *[11]",
-      "offset": 600
-    },
-    "644": {
-      "name": "m_pRoleStateForbid",
-      "type": "UIStatic *[11]",
-      "offset": 644
-    },
-    "688": {
-      "name": "m_pRoleStateSleep",
-      "type": "UIStatic *[11]",
-      "offset": 688
-    },
-    "732": {
-      "name": "m_pRoleStateChaos",
-      "type": "UIStatic *[11]",
-      "offset": 732
-    },
-    "776": {
-      "name": "m_pRoleStateMad",
-      "type": "UIStatic *[11]",
-      "offset": 776
-    },
-    "820": {
-      "name": "m_pRoleStateMirror",
-      "type": "UIStatic *[11]",
-      "offset": 820
-    },
-    "864": {
-      "name": "m_pRoleStateWall",
-      "type": "UIStatic *[11]",
-      "offset": 864
-    },
-    "908": {
-      "name": "m_pRoleStateBound",
-      "type": "UIStatic *[11]",
-      "offset": 908
-    },
-    "952": {
-      "name": "m_pRoleStateHermit",
-      "type": "UIStatic *[11]",
-      "offset": 952
-    },
-    "996": {
-      "name": "m_pRoleStateImmunity",
-      "type": "UIStatic *[11]",
-      "offset": 996
-    },
-    "1040": {
-      "name": "m_pWinPanel",
-      "type": "UIStatic *",
-      "offset": 1040
-    },
-    "1044": {
-      "name": "m_pLosePanel",
-      "type": "UIStatic *",
-      "offset": 1044
-    },
-    "1048": {
-      "name": "m_pRoleStateHP",
-      "type": "UIProgressBar *[4]",
-      "offset": 1048
-    },
-    "1064": {
-      "name": "m_pRoleStateGP",
-      "type": "UIProgressBar *[4]",
-      "offset": 1064
-    },
-    "1148": {
-      "name": "m_pItemWindow",
-      "type": "CCBItemWindow *",
-      "offset": 1148
-    },
-    "1152": {
-      "name": "m_pParabolaWindow",
-      "type": "CCBParabolaWindow *",
-      "offset": 1152
-    },
-    "1156": {
-      "name": "m_pMagicWindow",
-      "type": "CCBMagicWindow *",
-      "offset": 1156
-    },
-    "1172": {
-      "name": "m_pProtectWindow",
-      "type": "CCBProtectWindow *",
-      "offset": 1172
-    },
-    "1176": {
-      "name": "m_pResultWindow",
-      "type": "CCBResultWindow *[4]",
-      "offset": 1176
-    },
-    "1192": {
-      "name": "m_pFiveNimbusWindow",
-      "type": "CCBFiveNimbusWindow *",
-      "offset": 1192
-    },
-    "1196": {
-      "name": "m_pCBSystem",
-      "type": "CCBSystem *",
-      "offset": 1196
-    },
-    "1200": {
-      "name": "m_pUtil",
-      "type": "CUtil *",
-      "offset": 1200
-    },
-    "1208": {
-      "name": "m_Task",
-      "type": "tagUITask[19]",
-      "offset": 1208,
-      "source": "+fix:overlap_correct_count"
-    }
+ "name": "CCBUI",
+ "binary_size": 2648,
+ "known_members": {
+  "72": {
+   "name": "m_pAttackSequenBack",
+   "type": "UIStatic *",
+   "offset": 72
   },
-  "base_class": [
-    "UIFrameWnd"
-  ],
-  "methods": {
-    "0x004E0740": {
-      "name": "UpdateDisplay",
-      "signature": "char __thiscall()"
-    },
-    "0x004E0820": {
-      "name": "UpdateAnimation",
-      "signature": "char __thiscall()"
-    },
-    "0x004E0980": {
-      "name": "UpdateState",
-      "signature": "char __thiscall()"
-    },
-    "0x00517650": {
-      "name": "~CCBUI",
-      "signature": "void __thiscall()"
-    },
-    "0x005177B0": {
-      "name": "Reset",
-      "signature": "void __thiscall()"
-    },
-    "0x00517B30": {
-      "name": "CreateCombatPanel",
-      "signature": "bool __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x00517C10": {
-      "name": "CreateAttackSequen",
-      "signature": "bool __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x00517C80": {
-      "name": "CreateBattleFieldAttr",
-      "signature": "bool __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x00517D60": {
-      "name": "CreateControlWindow",
-      "signature": "bool __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x00517DF0": {
-      "name": "CreateItemWindow",
-      "signature": "BOOL __thiscall()"
-    },
-    "0x005181E0": {
-      "name": "CreateParaWindow",
-      "signature": "bool __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x005183C0": {
-      "name": "CreateMagicWindow",
-      "signature": "BOOL __thiscall()"
-    },
-    "0x005184C0": {
-      "name": "CreateSkillWindow",
-      "signature": "bool __thiscall(char pData)",
-      "source": "pdb_ret"
-    },
-    "0x00518AF0": {
-      "name": "CreateLineupWindow",
-      "signature": "bool __thiscall(int nVal, char pData)",
-      "source": "pdb_ret"
-    },
-    "0x00518B20": {
-      "name": "CreateProtectWindow",
-      "signature": "bool __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x00518B30": {
-      "name": "CreateResultWindow",
-      "signature": "bool __thiscall(char pData)",
-      "source": "pdb_ret"
-    },
-    "0x00518D40": {
-      "name": "CreateFiveNimbus",
-      "signature": "bool __thiscall(char pData)",
-      "source": "pdb_ret"
-    },
-    "0x00518E60": {
-      "name": "HideAll",
-      "signature": "void __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x00518FE0": {
-      "name": "ShowBattleFieldAttr",
-      "signature": "void __thiscall(int attr)",
-      "source": "pdb_ret"
-    },
-    "0x00519080": {
-      "name": "ShowControlWindow",
-      "signature": "void __thiscall(int bShow)",
-      "source": "pdb_ret"
-    },
-    "0x00519200": {
-      "name": "ShowDialogWindow",
-      "signature": "void __thiscall()"
-    },
-    "0x00519230": {
-      "name": "ShowAIWindow",
-      "signature": "void __thiscall(int nRoleIndex)",
-      "source": "pdb_ret"
-    },
-    "0x00519260": {
-      "name": "IsResultWindowClosed",
-      "signature": "bool __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6, int nVal7, const void *pData)",
-      "source": "pdb_ret"
-    },
-    "0x005193D0": {
-      "name": "ClearAttackSequence",
-      "signature": "void __thiscall()"
-    },
-    "0x00519400": {
-      "name": "CreateImbibeNimbus",
-      "signature": "void __thiscall(int nCount)"
-    },
-    "0x005196C0": {
-      "name": "SetNimbusToNimbusControl",
-      "signature": "void __thiscall()"
-    },
-    "0x00519A10": {
-      "name": "WriteNimbusToPlayerMgr",
-      "signature": "void __thiscall()"
-    },
-    "0x00519BB0": {
-      "name": "Render",
-      "signature": "void __thiscall()",
-      "source": "manual_fix_vtable"
-    },
-    "0x00519BD0": {
-      "name": "CreateButton",
-      "signature": "bool(int parent, int id, int rc, int picname, UIButton **a6, int nVal)",
-      "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-    },
-    "0x0051A0F0": {
-      "name": "ChangeSpecStateLum",
-      "signature": "void __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x0051A1D0": {
-      "name": "LineMove",
-      "signature": "BOOL __thiscall(POINT *pStart, POINT *pEnd)"
-    },
-    "0x0051A2B0": {
-      "name": "GravityDown",
-      "signature": "unsigned long __thiscall(unsigned int __formal)",
-      "source": "pdb_ret"
-    },
-    "0x0051A340": {
-      "name": "ChangeNumTxt",
-      "signature": "unsigned long __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x0051A430": {
-      "name": "AddTask",
-      "signature": "BOOL __thiscall(tagUITask *pTask, int nParam)"
-    },
-    "0x004E04C0": {
-      "name": "StepFrame",
-      "signature": "int __thiscall CCBUI::StepFrame()"
-    },
-    "0x00519310": {
-      "name": "ctor",
-      "signature": "int *__thiscall()",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-    },
-    "0x005160A0": {
-      "name": "ctor",
-      "signature": "int *__thiscall(int nVal)",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-    },
-    "0x00442230": {
-      "name": "SetSelection",
-      "signature": "int __thiscall(int nItemIndex)"
-    },
-    "0x004421F0": {
-      "name": "SetCurPlayer",
-      "signature": "void __thiscall(int nPlayer)"
-    },
-    "0x00442170": {
-      "name": "SetTargetPos",
-      "signature": "void __thiscall(gbVec3D *pPos, gbVec3D *pDir)"
-    },
-    "0x00441380": {
-      "name": "ShowEffect",
-      "signature": "int __thiscall(int nY, int nWidth, int nHeight)"
-    },
-    "0x004420B0": {
-      "name": "VirtualCall",
-      "signature": "int __thiscall()"
-    },
-    "0x00441040": {
-      "name": "SetTooltip",
-      "signature": "void __thiscall(const char *szText)"
-    },
-    "0x00441070": {
-      "name": "SetRect",
-      "signature": "void __thiscall(RECT *pRect)"
-    },
-    "0x00469D50": {
-      "name": "AddItem",
-      "signature": "void __thiscall(void *pData, int nCol, int nRow, int nFlags)"
-    },
-    "0x00469D00": {
-      "name": "SetItemData",
-      "signature": "int __thiscall(int nCol, int nRow, int nData, int nFlags)"
-    },
-    "0x004DC250": {
-      "name": "UpdatePanel",
-      "signature": "int __thiscall(BOOL bRefresh)"
-    },
-    "0x004E2AE0": {
-      "name": "HandleRoleStateDialog",
-      "signature": "LRESULT __thiscall(int nVal)"
-    },
-    "0x004DC220": {
-      "name": "IsActive",
-      "signature": "char __thiscall()"
-    },
-    "0x004413C0": {
-      "name": "LoadTextureSequence",
-      "signature": "gbVFileSystem *__thiscall CCBUI::LoadTextureSequence(gbVFileSystem *pPath, char bUseAtlas)",
-      "_misattrib_evidence": "max_offset=260>class_size=76"
-    },
-    "0x004E1A10": {
-      "name": "CombatDlgProcThunk",
-      "signature": "int __stdcall CCBUI::CombatDlgProcThunk(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
-    },
-    "0x004E1F70": {
-      "name": "SettingsDialogProc",
-      "signature": "int __thiscall CCBUI::SettingsDialogProc(HWND hDlg, unsigned int dwVal, WPARAM pData, LPARAM a5)"
-    },
-    "0x004E24C0": {
-      "name": "CommandEditDialogProc",
-      "signature": "int __thiscall CCBUI::CommandEditDialogProc(int *p_DWORD, HWND hDlg, int nVal, int nVal2, int nVal3)"
-    },
-    "0x004E3A20": {
-      "name": "InitUI",
-      "signature": "LRESULT __thiscall()"
-    },
-    "0x004E3D90": {
-      "name": "InitUI_4E3D90",
-      "signature": "void __thiscall()"
-    },
-    "0x004E4A80": {
-      "name": "PopulateCommandList",
-      "signature": "LRESULT __thiscall CCBUI::PopulateCommandList()"
-    },
-    "0x004E4D70": {
-      "name": "ShowCommandDetails",
-      "signature": "LRESULT __thiscall CCBUI::ShowCommandDetails()"
-    },
-    "0x005184E0": {
-      "name": "InitRoleDisplay",
-      "signature": "int __thiscall(int a_128)"
-    },
-    "0x0051AB00": {
-      "name": "CheckMagicKeyPress",
-      "signature": "BOOL __thiscall(int nVal, int nVal2)"
-    },
-    "0x00525520": {
-      "name": "_scalar_dtor",
-      "signature": "void *__thiscall(UIWnd *Block, char pData)",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-    },
-    "0x00442200": {
-      "name": "SetRoleStatePointers",
-      "signature": "int __thiscall(int nVal)"
-    },
-    "0x00459F30": {
-      "name": "ForwardToPlayerMgr",
-      "signature": "short __thiscall(_WORD *p_WORD)"
-    },
-    "0x00460A00": {
-      "name": "RollProbability",
-      "signature": "bool __thiscall CCBUI::RollProbability(float fProb)"
-    },
-    "0x004DC610": {
-      "name": "CountAttackSequences",
-      "signature": "char __thiscall()"
-    },
-    "0x004E10E0": {
-      "name": "CloseDialog",
-      "signature": "int __thiscall CCBUI::CloseDialog(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
-    },
-    "0x004E1160": {
-      "name": "DlgProcEffect",
-      "signature": "int __thiscall CCBUI::DlgProcEffect(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)"
-    },
-    "0x004E16F0": {
-      "name": "PopulateSceneList",
-      "signature": "unsigned __int8 *__thiscall CCBUI::PopulateSceneList(HWND hDlg)"
-    },
-    "0x004E1870": {
-      "name": "LoadSceneByIndex",
-      "signature": "unsigned __int8 *__thiscall CCBUI::LoadSceneByIndex(int nVal)"
-    },
-    "0x004E2430": {
-      "name": "HandleWindowMessage",
-      "signature": "int __thiscall CCBUI::HandleWindowMessage(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
-    },
-    "0x004E2490": {
-      "name": "DlgProcMain",
-      "signature": "int __thiscall CCBUI::DlgProcMain(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)"
-    },
-    "0x004E3780": {
-      "name": "UpdateDebugStatus",
-      "signature": "char __thiscall CCBUI::UpdateDebugStatus()"
-    },
-    "0x004E4D50": {
-      "name": "CloseCommandDialog",
-      "signature": "BOOL __thiscall CCBUI::CloseCommandDialog()"
-    },
-    "0x004E4F00": {
-      "name": "ApplyCommandEdit",
-      "signature": "int __thiscall CCBUI::ApplyCommandEdit()"
-    },
-    "0x004E5170": {
-      "name": "ShowSkillDetails",
-      "signature": "int __thiscall CCBUI::ShowSkillDetails()"
-    },
-    "0x004E53C0": {
-      "name": "SendWindowMessage",
-      "signature": "LRESULT __cdecl(HWND hWnd, LPARAM lParam)",
-      "static": true
-    },
-    "0x004E53E0": {
-      "name": "FormatCombatBuffer",
-      "signature": "LRESULT __cdecl(HWND hWnd, int nVal)",
-      "static": true
-    },
-    "0x004E5490": {
-      "name": "StartMagicThread",
-      "signature": "int __thiscall()"
-    },
-    "0x00516A30": {
-      "name": "SetupAIWindow",
-      "signature": "char __thiscall()",
-      "_misattrib_evidence": "max_offset=1068>class_size=208"
-    },
-    "0x00526740": {
-      "name": "Update",
-      "signature": "int __thiscall CCBUI::Update(int deltatime, int haveinput)"
-    },
-    "0x00469D40": {
-      "name": "IsAddMode",
-      "signature": "unsigned __int8 __thiscall()",
-      "source": " | rename:_todo_→fn_"
-    },
-    "0x004E0690": {
-      "name": "ResetAllSlots",
-      "signature": "char __thiscall()"
-    },
-    "0x005257B0": {
-      "name": "InitSkillUI",
-      "signature": "int *__thiscall(int nVal)",
-      "_misattrib_evidence": "max_offset=100572>class_size=2632",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-    },
-    "0x00525540": {
-      "name": "InitShopUI",
-      "signature": "void __thiscall()",
-      "_misattrib_evidence": "max_offset=100572>class_size=2632",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-    },
-    "0x005273D0": {
-      "name": "PlayResultSound",
-      "signature": "void __thiscall ()",
-      "_misattrib_evidence": "max_offset=101028>class_size=2632"
-    },
-    "0x00527610": {
-      "name": "UpdateCaptions",
-      "signature": "void __thiscall ()",
-      "_misattrib_evidence": "max_offset=99200>class_size=2632"
-    },
-    "0x00516940": {
-      "name": "InitResultPanels",
-      "signature": "void __thiscall CCBUI::InitResultPanels()",
-      "_misattrib_evidence": "max_offset=1016>class_size=208"
-    },
-    "0x00519380": {
-      "name": "Release",
-      "signature": "void __thiscall()",
-      "source": "batch:sub_fix_from_decomp_this_type"
-    },
-    "0x004EA6D0": {
-      "name": "_nearby_4ea6d0",
-      "signature": "char __thiscall(CCBUI *this, HWND hDlg, int a3)"
-    },
-    "0x004EAC10": {
-      "name": "_nearby_4eac10",
-      "signature": "char __thiscall(CCBUI *this, HWND hDlg, int a3)"
-    },
-    "0x004EA4A0": {
-      "name": "_nearby_4ea4a0",
-      "signature": "LRESULT __thiscall(CCBUI *this, HWND hDlg, int a3)",
-      "type": "skip",
-      "reason": "dialog proc callback, void* this typed as CCBUI*"
-    },
-    "0x004AA9C0": {
-      "name": "CreatePanelUI",
-      "signature": "void __thiscall(CCBUI *this)"
-    },
-    "0x004AB2B0": {
-      "name": "DestroyDynamic",
-      "signature": "void __thiscall(CCBUI *this, int nVal)"
-    }
+  "76": {
+   "name": "pPanel",
+   "type": "UIStatic *",
+   "offset": 76
   },
-  "base_size": 72
+  "1080": {
+   "name": "m_pRoleStateMP",
+   "type": "UIProgressBar *[4]",
+   "offset": 1080
+  },
+  "1096": {
+   "name": "m_pRoleStateSword",
+   "type": "UIProgressBar *",
+   "offset": 1096
+  },
+  "1100": {
+   "name": "m_pTrickName",
+   "type": "UIStaticCB *",
+   "offset": 1100
+  },
+  "1104": {
+   "name": "m_pTrickName2",
+   "type": "UIStaticCB *",
+   "offset": 1104
+  },
+  "1108": {
+   "name": "m_pDialogBack",
+   "type": "UIStatic *",
+   "offset": 1108
+  },
+  "1112": {
+   "name": "m_pResultLevelup",
+   "type": "UIStatic *",
+   "offset": 1112
+  },
+  "1116": {
+   "name": "m_pResultWindLvup",
+   "type": "UIStatic *",
+   "offset": 1116
+  },
+  "1120": {
+   "name": "m_pResultThunderLvup",
+   "type": "UIStatic *",
+   "offset": 1120
+  },
+  "1124": {
+   "name": "m_pResultWaterLvup",
+   "type": "UIStatic *",
+   "offset": 1124
+  },
+  "1128": {
+   "name": "m_pResultFireLvup",
+   "type": "UIStatic *",
+   "offset": 1128
+  },
+  "1132": {
+   "name": "m_pResultEarthLvup",
+   "type": "UIStatic *",
+   "offset": 1132
+  },
+  "1136": {
+   "name": "m_pResultDoubleLvup",
+   "type": "UIStatic *",
+   "offset": 1136
+  },
+  "1140": {
+   "name": "m_pResultGetItem",
+   "type": "UIStatic *",
+   "offset": 1140
+  },
+  "1144": {
+   "name": "m_pMain",
+   "type": "CCBControlWindow *",
+   "offset": 1144
+  },
+  "1160": {
+   "name": "m_pSkillWindow",
+   "type": "CCBSkillWindow *",
+   "offset": 1160
+  },
+  "1164": {
+   "name": "m_pAIWindow",
+   "type": "CCBAIWindow *",
+   "offset": 1164
+  },
+  "1168": {
+   "name": "m_pLineupWindow",
+   "type": "CCBLineupWindow *",
+   "offset": 1168
+  },
+  "2608": {
+   "name": "fp",
+   "type": "CCBUI_funcptr_t",
+   "source": "PAL3patch_verified"
+  },
+  "80": {
+   "name": "m_pBattleFieldAttr",
+   "type": "UIStatic *[6]",
+   "offset": 80
+  },
+  "104": {
+   "name": "m_pAttackSequenFace",
+   "type": "UIStatic *[11]",
+   "offset": 104
+  },
+  "148": {
+   "name": "m_pRoleStatePanel",
+   "type": "UIStatic *[4]",
+   "offset": 148
+  },
+  "164": {
+   "name": "m_pRoleStateFace",
+   "type": "UIStatic *[5]",
+   "offset": 164
+  },
+  "184": {
+   "name": "m_pRoleStateFaceName",
+   "type": "UIStatic *[5]",
+   "offset": 184
+  },
+  "204": {
+   "name": "m_pRoleStateAttackInc",
+   "type": "UIStatic *[11]",
+   "offset": 204
+  },
+  "248": {
+   "name": "m_pRoleStateAttackDec",
+   "type": "UIStatic *[11]",
+   "offset": 248
+  },
+  "292": {
+   "name": "m_pRoleStateDefenceInc",
+   "type": "UIStatic *[11]",
+   "offset": 292
+  },
+  "336": {
+   "name": "m_pRoleStateDefenceDec",
+   "type": "UIStatic *[11]",
+   "offset": 336
+  },
+  "380": {
+   "name": "m_pRoleStateLuckInc",
+   "type": "UIStatic *[11]",
+   "offset": 380
+  },
+  "424": {
+   "name": "m_pRoleStateLuckDec",
+   "type": "UIStatic *[11]",
+   "offset": 424
+  },
+  "468": {
+   "name": "m_pRoleStateSpeedInc",
+   "type": "UIStatic *[11]",
+   "offset": 468
+  },
+  "512": {
+   "name": "m_pRoleStateSpeedDec",
+   "type": "UIStatic *[11]",
+   "offset": 512
+  },
+  "556": {
+   "name": "m_pRoleStateStable",
+   "type": "UIStatic *[11]",
+   "offset": 556
+  },
+  "600": {
+   "name": "m_pRoleStateBlank",
+   "type": "UIStatic *[11]",
+   "offset": 600
+  },
+  "644": {
+   "name": "m_pRoleStateForbid",
+   "type": "UIStatic *[11]",
+   "offset": 644
+  },
+  "688": {
+   "name": "m_pRoleStateSleep",
+   "type": "UIStatic *[11]",
+   "offset": 688
+  },
+  "732": {
+   "name": "m_pRoleStateChaos",
+   "type": "UIStatic *[11]",
+   "offset": 732
+  },
+  "776": {
+   "name": "m_pRoleStateMad",
+   "type": "UIStatic *[11]",
+   "offset": 776
+  },
+  "820": {
+   "name": "m_pRoleStateMirror",
+   "type": "UIStatic *[11]",
+   "offset": 820
+  },
+  "864": {
+   "name": "m_pRoleStateWall",
+   "type": "UIStatic *[11]",
+   "offset": 864
+  },
+  "908": {
+   "name": "m_pRoleStateBound",
+   "type": "UIStatic *[11]",
+   "offset": 908
+  },
+  "952": {
+   "name": "m_pRoleStateHermit",
+   "type": "UIStatic *[11]",
+   "offset": 952
+  },
+  "996": {
+   "name": "m_pRoleStateImmunity",
+   "type": "UIStatic *[11]",
+   "offset": 996
+  },
+  "1040": {
+   "name": "m_pWinPanel",
+   "type": "UIStatic *",
+   "offset": 1040
+  },
+  "1044": {
+   "name": "m_pLosePanel",
+   "type": "UIStatic *",
+   "offset": 1044
+  },
+  "1048": {
+   "name": "m_pRoleStateHP",
+   "type": "UIProgressBar *[4]",
+   "offset": 1048
+  },
+  "1064": {
+   "name": "m_pRoleStateGP",
+   "type": "UIProgressBar *[4]",
+   "offset": 1064
+  },
+  "1148": {
+   "name": "m_pItemWindow",
+   "type": "CCBItemWindow *",
+   "offset": 1148
+  },
+  "1152": {
+   "name": "m_pParabolaWindow",
+   "type": "CCBParabolaWindow *",
+   "offset": 1152
+  },
+  "1156": {
+   "name": "m_pMagicWindow",
+   "type": "CCBMagicWindow *",
+   "offset": 1156
+  },
+  "1172": {
+   "name": "m_pProtectWindow",
+   "type": "CCBProtectWindow *",
+   "offset": 1172
+  },
+  "1176": {
+   "name": "m_pResultWindow",
+   "type": "CCBResultWindow *[4]",
+   "offset": 1176
+  },
+  "1192": {
+   "name": "m_pFiveNimbusWindow",
+   "type": "CCBFiveNimbusWindow *",
+   "offset": 1192
+  },
+  "1196": {
+   "name": "m_pCBSystem",
+   "type": "CCBSystem *",
+   "offset": 1196
+  },
+  "1200": {
+   "name": "m_pUtil",
+   "type": "CUtil *",
+   "offset": 1200
+  },
+  "1208": {
+   "name": "m_Task",
+   "type": "tagUITask[19]",
+   "offset": 1208,
+   "source": "+fix:overlap_correct_count"
+  }
+ },
+ "base_class": [
+  "UIFrameWnd"
+ ],
+ "methods": {
+  "0x004E0740": {
+   "name": "UpdateDisplay",
+   "signature": "char __thiscall()"
+  },
+  "0x004E0820": {
+   "name": "UpdateAnimation",
+   "signature": "char __thiscall()"
+  },
+  "0x004E0980": {
+   "name": "UpdateState",
+   "signature": "char __thiscall()"
+  },
+  "0x00517650": {
+   "name": "~CCBUI",
+   "signature": "void __thiscall()"
+  },
+  "0x005177B0": {
+   "name": "Reset",
+   "signature": "void __thiscall()"
+  },
+  "0x00517B30": {
+   "name": "CreateCombatPanel",
+   "signature": "bool __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x00517C10": {
+   "name": "CreateAttackSequen",
+   "signature": "bool __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x00517C80": {
+   "name": "CreateBattleFieldAttr",
+   "signature": "bool __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x00517D60": {
+   "name": "CreateControlWindow",
+   "signature": "bool __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x00517DF0": {
+   "name": "CreateItemWindow",
+   "signature": "BOOL __thiscall()"
+  },
+  "0x005181E0": {
+   "name": "CreateParaWindow",
+   "signature": "bool __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x005183C0": {
+   "name": "CreateMagicWindow",
+   "signature": "BOOL __thiscall()"
+  },
+  "0x005184C0": {
+   "name": "CreateSkillWindow",
+   "signature": "bool __thiscall(char pData)",
+   "source": "pdb_ret"
+  },
+  "0x00518AF0": {
+   "name": "CreateLineupWindow",
+   "signature": "bool __thiscall(int nVal, char pData)",
+   "source": "pdb_ret"
+  },
+  "0x00518B20": {
+   "name": "CreateProtectWindow",
+   "signature": "bool __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x00518B30": {
+   "name": "CreateResultWindow",
+   "signature": "bool __thiscall(char pData)",
+   "source": "pdb_ret"
+  },
+  "0x00518D40": {
+   "name": "CreateFiveNimbus",
+   "signature": "bool __thiscall(char pData)",
+   "source": "pdb_ret"
+  },
+  "0x00518E60": {
+   "name": "HideAll",
+   "signature": "void __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x00518FE0": {
+   "name": "ShowBattleFieldAttr",
+   "signature": "void __thiscall(int attr)",
+   "source": "pdb_ret"
+  },
+  "0x00519080": {
+   "name": "ShowControlWindow",
+   "signature": "void __thiscall(int bShow)",
+   "source": "pdb_ret"
+  },
+  "0x00519200": {
+   "name": "ShowDialogWindow",
+   "signature": "void __thiscall()"
+  },
+  "0x00519230": {
+   "name": "ShowAIWindow",
+   "signature": "void __thiscall(int nRoleIndex)",
+   "source": "pdb_ret"
+  },
+  "0x00519260": {
+   "name": "IsResultWindowClosed",
+   "signature": "bool __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6, int nVal7, const void *pData)",
+   "source": "pdb_ret"
+  },
+  "0x005193D0": {
+   "name": "ClearAttackSequence",
+   "signature": "void __thiscall()"
+  },
+  "0x00519400": {
+   "name": "CreateImbibeNimbus",
+   "signature": "void __thiscall(int nCount)"
+  },
+  "0x005196C0": {
+   "name": "SetNimbusToNimbusControl",
+   "signature": "void __thiscall()"
+  },
+  "0x00519A10": {
+   "name": "WriteNimbusToPlayerMgr",
+   "signature": "void __thiscall()"
+  },
+  "0x00519BB0": {
+   "name": "Render",
+   "signature": "void __thiscall()",
+   "source": "manual_fix_vtable"
+  },
+  "0x00519BD0": {
+   "name": "CreateButton",
+   "signature": "bool(int parent, int id, int rc, int picname, UIButton **a6, int nVal)",
+   "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+  },
+  "0x0051A0F0": {
+   "name": "ChangeSpecStateLum",
+   "signature": "void __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x0051A1D0": {
+   "name": "LineMove",
+   "signature": "BOOL __thiscall(POINT *pStart, POINT *pEnd)"
+  },
+  "0x0051A2B0": {
+   "name": "GravityDown",
+   "signature": "unsigned long __thiscall(unsigned int __formal)",
+   "source": "pdb_ret"
+  },
+  "0x0051A340": {
+   "name": "ChangeNumTxt",
+   "signature": "unsigned long __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x0051A430": {
+   "name": "AddTask",
+   "signature": "BOOL __thiscall(tagUITask *pTask, int nParam)"
+  },
+  "0x004E04C0": {
+   "name": "StepFrame",
+   "signature": "int __thiscall CCBUI::StepFrame()"
+  },
+  "0x00519310": {
+   "name": "ctor",
+   "signature": "int *__thiscall()",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+  },
+  "0x005160A0": {
+   "name": "ctor",
+   "signature": "int *__thiscall(int nVal)",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+  },
+  "0x00442230": {
+   "name": "SetSelection",
+   "signature": "int __thiscall(int nItemIndex)"
+  },
+  "0x004421F0": {
+   "name": "SetCurPlayer",
+   "signature": "void __thiscall(int nPlayer)"
+  },
+  "0x00442170": {
+   "name": "SetTargetPos",
+   "signature": "void __thiscall(gbVec3D *pPos, gbVec3D *pDir)"
+  },
+  "0x00441380": {
+   "name": "ShowEffect",
+   "signature": "int __thiscall(int nY, int nWidth, int nHeight)"
+  },
+  "0x004420B0": {
+   "name": "VirtualCall",
+   "signature": "int __thiscall()"
+  },
+  "0x00441040": {
+   "name": "SetTooltip",
+   "signature": "void __thiscall(const char *szText)"
+  },
+  "0x00441070": {
+   "name": "SetRect",
+   "signature": "void __thiscall(RECT *pRect)"
+  },
+  "0x00469D00": {
+   "name": "SetItemData",
+   "signature": "int __thiscall(int nCol, int nRow, int nData, int nFlags)"
+  },
+  "0x004DC250": {
+   "name": "UpdatePanel",
+   "signature": "int __thiscall(BOOL bRefresh)"
+  },
+  "0x004E2AE0": {
+   "name": "HandleRoleStateDialog",
+   "signature": "LRESULT __thiscall(int nVal)"
+  },
+  "0x004DC220": {
+   "name": "IsActive",
+   "signature": "char __thiscall()"
+  },
+  "0x004413C0": {
+   "name": "LoadTextureSequence",
+   "signature": "gbVFileSystem *__thiscall CCBUI::LoadTextureSequence(gbVFileSystem *pPath, char bUseAtlas)",
+   "_misattrib_evidence": "max_offset=260>class_size=76"
+  },
+  "0x004E1A10": {
+   "name": "CombatDlgProcThunk",
+   "signature": "int __stdcall CCBUI::CombatDlgProcThunk(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
+  },
+  "0x004E1F70": {
+   "name": "SettingsDialogProc",
+   "signature": "int __thiscall CCBUI::SettingsDialogProc(HWND hDlg, unsigned int dwVal, WPARAM pData, LPARAM a5)"
+  },
+  "0x004E24C0": {
+   "name": "CommandEditDialogProc",
+   "signature": "int __thiscall CCBUI::CommandEditDialogProc(int *p_DWORD, HWND hDlg, int nVal, int nVal2, int nVal3)"
+  },
+  "0x004E3A20": {
+   "name": "InitUI",
+   "signature": "LRESULT __thiscall()"
+  },
+  "0x004E3D90": {
+   "name": "InitUI_4E3D90",
+   "signature": "void __thiscall()"
+  },
+  "0x004E4A80": {
+   "name": "PopulateCommandList",
+   "signature": "LRESULT __thiscall CCBUI::PopulateCommandList()"
+  },
+  "0x004E4D70": {
+   "name": "ShowCommandDetails",
+   "signature": "LRESULT __thiscall CCBUI::ShowCommandDetails()"
+  },
+  "0x005184E0": {
+   "name": "InitRoleDisplay",
+   "signature": "int __thiscall(int a_128)"
+  },
+  "0x0051AB00": {
+   "name": "CheckMagicKeyPress",
+   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+  },
+  "0x00525520": {
+   "name": "_scalar_dtor",
+   "signature": "void *__thiscall(UIWnd *Block, char pData)",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+  },
+  "0x00442200": {
+   "name": "SetRoleStatePointers",
+   "signature": "int __thiscall(int nVal)"
+  },
+  "0x00459F30": {
+   "name": "ForwardToPlayerMgr",
+   "signature": "short __thiscall(_WORD *p_WORD)"
+  },
+  "0x00460A00": {
+   "name": "RollProbability",
+   "signature": "bool __thiscall CCBUI::RollProbability(float fProb)"
+  },
+  "0x004DC610": {
+   "name": "CountAttackSequences",
+   "signature": "char __thiscall()"
+  },
+  "0x004E10E0": {
+   "name": "CloseDialog",
+   "signature": "int __thiscall CCBUI::CloseDialog(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
+  },
+  "0x004E1160": {
+   "name": "DlgProcEffect",
+   "signature": "int __thiscall CCBUI::DlgProcEffect(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)"
+  },
+  "0x004E16F0": {
+   "name": "PopulateSceneList",
+   "signature": "unsigned __int8 *__thiscall CCBUI::PopulateSceneList(HWND hDlg)"
+  },
+  "0x004E1870": {
+   "name": "LoadSceneByIndex",
+   "signature": "unsigned __int8 *__thiscall CCBUI::LoadSceneByIndex(int nVal)"
+  },
+  "0x004E2430": {
+   "name": "HandleWindowMessage",
+   "signature": "int __thiscall CCBUI::HandleWindowMessage(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
+  },
+  "0x004E2490": {
+   "name": "DlgProcMain",
+   "signature": "int __thiscall CCBUI::DlgProcMain(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)"
+  },
+  "0x004E3780": {
+   "name": "UpdateDebugStatus",
+   "signature": "char __thiscall CCBUI::UpdateDebugStatus()"
+  },
+  "0x004E4D50": {
+   "name": "CloseCommandDialog",
+   "signature": "BOOL __thiscall CCBUI::CloseCommandDialog()"
+  },
+  "0x004E4F00": {
+   "name": "ApplyCommandEdit",
+   "signature": "int __thiscall CCBUI::ApplyCommandEdit()"
+  },
+  "0x004E5170": {
+   "name": "ShowSkillDetails",
+   "signature": "int __thiscall CCBUI::ShowSkillDetails()"
+  },
+  "0x004E53C0": {
+   "name": "SendWindowMessage",
+   "signature": "LRESULT __cdecl(HWND hWnd, LPARAM lParam)",
+   "static": true
+  },
+  "0x004E53E0": {
+   "name": "FormatCombatBuffer",
+   "signature": "LRESULT __cdecl(HWND hWnd, int nVal)",
+   "static": true
+  },
+  "0x004E5490": {
+   "name": "StartMagicThread",
+   "signature": "int __thiscall()"
+  },
+  "0x00516A30": {
+   "name": "SetupAIWindow",
+   "signature": "char __thiscall()",
+   "_misattrib_evidence": "max_offset=1068>class_size=208"
+  },
+  "0x00526740": {
+   "name": "Update",
+   "signature": "int __thiscall CCBUI::Update(int deltatime, int haveinput)"
+  },
+  "0x00469D40": {
+   "name": "IsAddMode",
+   "signature": "unsigned __int8 __thiscall()",
+   "source": " | rename:_todo_→fn_"
+  },
+  "0x004E0690": {
+   "name": "ResetAllSlots",
+   "signature": "char __thiscall()"
+  },
+  "0x005257B0": {
+   "name": "InitSkillUI",
+   "signature": "int *__thiscall(int nVal)",
+   "_misattrib_evidence": "max_offset=100572>class_size=2632",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+  },
+  "0x00525540": {
+   "name": "InitShopUI",
+   "signature": "void __thiscall()",
+   "_misattrib_evidence": "max_offset=100572>class_size=2632",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+  },
+  "0x005273D0": {
+   "name": "PlayResultSound",
+   "signature": "void __thiscall ()",
+   "_misattrib_evidence": "max_offset=101028>class_size=2632"
+  },
+  "0x00527610": {
+   "name": "UpdateCaptions",
+   "signature": "void __thiscall ()",
+   "_misattrib_evidence": "max_offset=99200>class_size=2632"
+  },
+  "0x00516940": {
+   "name": "InitResultPanels",
+   "signature": "void __thiscall CCBUI::InitResultPanels()",
+   "_misattrib_evidence": "max_offset=1016>class_size=208"
+  },
+  "0x00519380": {
+   "name": "Release",
+   "signature": "void __thiscall()",
+   "source": "batch:sub_fix_from_decomp_this_type"
+  },
+  "0x004EA6D0": {
+   "name": "_nearby_4ea6d0",
+   "signature": "char __thiscall(CCBUI *this, HWND hDlg, int a3)"
+  },
+  "0x004EAC10": {
+   "name": "_nearby_4eac10",
+   "signature": "char __thiscall(CCBUI *this, HWND hDlg, int a3)"
+  },
+  "0x004EA4A0": {
+   "name": "_nearby_4ea4a0",
+   "signature": "LRESULT __thiscall(CCBUI *this, HWND hDlg, int a3)",
+   "type": "skip",
+   "reason": "dialog proc callback, void* this typed as CCBUI*"
+  },
+  "0x004AA9C0": {
+   "name": "CreatePanelUI",
+   "signature": "void __thiscall(CCBUI *this)"
+  },
+  "0x004AB2B0": {
+   "name": "DestroyDynamic",
+   "signature": "void __thiscall(CCBUI *this, int nVal)"
+  }
+ },
+ "base_size": 72
 }

@@ -2672,5 +2672,25 @@
   "name": "RenderTarget2::nullsub_75_override",
   "signature": "int __thiscall(RenderTarget2 *this)",
   "source": "2026-09-13 skip-list decontamination: vtable slot of RenderTarget2 (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
+ },
+ "0x0051f070": {
+  "name": "CCBStage::UpdateWeaponSlots",
+  "signature": "int __thiscall(CCBStage *this)",
+  "source": "2026-09-14 provenance: sole caller CCBStage::GetWeaponSlotPtr; this+0x1F4C access fits CCBStage; was ScriptSystemData::* (scan-stolen, impossible names)"
+ },
+ "0x0051f080": {
+  "name": "CCBStage::SetWeaponSlotA",
+  "signature": "int __thiscall(CCBStage *this)",
+  "source": "2026-09-14 provenance: sole caller CCBStage::GetWeaponSlotPtr; this+0x1F4C access fits CCBStage; was ScriptSystemData::* (scan-stolen, impossible names)"
+ },
+ "0x0051f090": {
+  "name": "CCBStage::SetWeaponSlotB",
+  "signature": "int __thiscall(CCBStage *this)",
+  "source": "2026-09-14 provenance: sole caller CCBStage::GetWeaponSlotPtr; this+0x1F4C access fits CCBStage; was ScriptSystemData::* (scan-stolen, impossible names)"
+ },
+ "0x00469d50": {
+  "name": "PlayerMgr::AddItem",
+  "signature": "int __thiscall(PlayerMgr *this)",
+  "source": "2026-09-14 provenance: unanimous caller PlayerMgr::SetSelectionFlags (15x); body indexes array at this+0xF574 inside PlayerMgr(107056B) member region; was CCBUI::AddItem (2648B class, offset impossible)"
  }
 }

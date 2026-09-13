@@ -1,0 +1,34 @@
+{
+ "screened": 263,
+ "classes": {
+  "no_callers_safe_skip": 222,
+  "user_named_callers_recoverable": {
+   "WinProc_helpers_0x4086xx_0x408Bxx": 8,
+   "PalScript_sdtor_helpers_0x431Dxx": 5,
+   "misc": [
+    "0x4117A0<-AssignInt",
+    "0x41D920<-RoleCamera::PushState",
+    "0x422560<-SceneMgr::FindRoleByState",
+    "0x4328B0<-InitOpcodeEntry",
+    "0x434BA0<-FreeScriptInstance",
+    "0x52D770<-MiniGame2Update",
+    "0x53DF40<-LogMessage",
+    "0x44ED80<-sub_44E9F0"
+   ]
+  },
+  "mid_function_false_anchors_prune": [
+   "0x541E03",
+   "0x541EB9",
+   "0x541FA1",
+   "0x577E1",
+   "0x55CB76",
+   "0x55CB89",
+   "0x55CDB1",
+   "0x55CDC6",
+   "0x55CFCC",
+   "0x55D07E",
+   "0x55D284"
+  ],
+  "note": "非对齐地址（..03/B9/A1/E1/C6）= FLIRT 在函数中部匹配的伪锚，且调用者也是 FLIRT 条目（unknown_libname_522 自引用簇）——应从 skip 名单清除；对齐且有用户调用者的为误标用户函数"
+ }
+}

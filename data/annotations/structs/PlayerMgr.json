@@ -1,185 +1,189 @@
 {
-  "name": "PlayerMgr",
-  "binary_size": 107056,
-  "known_members": {
-    "0": {
-      "name": "m_pMsgBuffer",
-      "type": "PtrArray",
-      "source": "gen_headers_9.2"
-    },
-    "16": {
-      "name": "m_underctrl",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "20": {
-      "name": "m_bStartNGHEffect",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "24": {
-      "name": "m_nHuaYingMode",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "76": {
-      "name": "m_RoleTask",
-      "type": "RoleTaskPool",
-      "source": "gen_headers_9.2"
-    },
-    "1160": {
-      "name": "m_inventory",
-      "type": "Inventory",
-      "source": "gen_headers_9.2"
-    },
-    "1200": {
-      "name": "m_reoccupy",
-      "type": "Reoccupy",
-      "source": "gen_headers_9.2"
-    },
-    "1216": {
-      "name": "dwWeaponWU",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "61880": {
-      "name": "m_bNGHS",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "61884": {
-      "name": "m_bWPXS",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "88408": {
-      "name": "pNGHVarianceParticle",
-      "type": "CParticleEffect *",
-      "source": "gen_headers_9.2"
-    },
-    "106292": {
-      "name": "m_pstate",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "106296": {
-      "name": "m_fFStime",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "106332": {
-      "name": "m_dwCombatTimes",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "106336": {
-      "name": "nImbibeNimbusTimes",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "106360": {
-      "name": "bHaveNimbus",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "106364": {
-      "name": "bPXVariance",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "106368": {
-      "name": "m_bFinalCombat",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "106372": {
-      "name": "m_nCombatHurtHP",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "106376": {
-      "name": "m_nCombatHurtMP",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "106380": {
-      "name": "m_bShowStatuary",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "88540": {
-      "name": "m_nDataPoolBase",
-      "type": "int *",
-      "source": "A:decomp_large_offset_ptr_arithmetic_440refs_data_pool"
-    }
+ "name": "PlayerMgr",
+ "binary_size": 107056,
+ "known_members": {
+  "0": {
+   "name": "m_pMsgBuffer",
+   "type": "PtrArray",
+   "source": "gen_headers_9.2"
   },
-  "methods": {
-    "0x0045AE60": {
-      "name": "ctor",
-      "signature": "void __thiscall()",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-    },
-    "0x00469EB0": {
-      "name": "HandleInput",
-      "signature": "BOOL __thiscall(int nInputID, int nParam, int nFlags)",
-      "_misattrib_evidence": "max_offset=93596>class_size=2632"
-    },
-    "0x0045B990": {
-      "name": "InitCombatUI",
-      "signature": "int __thiscall(int nVal)"
-    },
-    "0x00462120": {
-      "name": "SetSelectionFlags",
-      "signature": "int __thiscall PlayerMgr::SetSelectionFlags(int nFlags)",
-      "_misattrib_evidence": "max_offset=94380>class_size=2632"
-    },
-    "0x004623A0": {
-      "name": "CreatePanelElements",
-      "signature": "int __thiscall(CCBUIPanel *arg0)"
-    },
-    "0x0045B7A0": {
-      "name": "LoadState",
-      "signature": "unsigned __int8 __thiscall PlayerMgr::LoadState(const void *arg0)"
-    },
-    "0x00461C50": {
-      "name": "InitMode",
-      "signature": "void __thiscall PlayerMgr::InitMode(int nVal)"
-    },
-    "0x004620E0": {
-      "name": "SendInputToRole",
-      "signature": "int __thiscall(unsigned char pData)",
-      "_misattrib_evidence": "max_offset=95748>class_size=2632"
-    },
-    "0x00469D90": {
-      "name": "SetupPlayerDisplay",
-      "signature": "void __thiscall PlayerMgr::SetupPlayerDisplay(int nVal)"
-    },
-    "0x00471220": {
-      "name": "ToggleSlot0",
-      "signature": "char __thiscall PlayerMgr::ToggleSlot0(unsigned __int8 pData)"
-    },
-    "0x004712D0": {
-      "name": "ToggleSlot1",
-      "signature": "char __thiscall PlayerMgr::ToggleSlot1(unsigned __int8 pData)"
-    },
-    "0x00471380": {
-      "name": "ToggleSlot2",
-      "signature": "char __thiscall PlayerMgr::ToggleSlot2(unsigned __int8 pData)"
-    },
-    "0x00471430": {
-      "name": "ToggleSlot3",
-      "signature": "char __thiscall PlayerMgr::ToggleSlot3(unsigned __int8 pData)"
-    },
-    "0x004714E0": {
-      "name": "ToggleSlot4",
-      "signature": "char __thiscall PlayerMgr::ToggleSlot4(unsigned __int8 pData)"
-    }
+  "16": {
+   "name": "m_underctrl",
+   "type": "int",
+   "source": "gen_headers_9.2"
   },
-  "nested_types": {
-    "PoisonState": {
-      "kind": "struct",
-      "binary_size": 32
-    }
+  "20": {
+   "name": "m_bStartNGHEffect",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "24": {
+   "name": "m_nHuaYingMode",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "76": {
+   "name": "m_RoleTask",
+   "type": "RoleTaskPool",
+   "source": "gen_headers_9.2"
+  },
+  "1160": {
+   "name": "m_inventory",
+   "type": "Inventory",
+   "source": "gen_headers_9.2"
+  },
+  "1200": {
+   "name": "m_reoccupy",
+   "type": "Reoccupy",
+   "source": "gen_headers_9.2"
+  },
+  "1216": {
+   "name": "dwWeaponWU",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "61880": {
+   "name": "m_bNGHS",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "61884": {
+   "name": "m_bWPXS",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "88408": {
+   "name": "pNGHVarianceParticle",
+   "type": "CParticleEffect *",
+   "source": "gen_headers_9.2"
+  },
+  "106292": {
+   "name": "m_pstate",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "106296": {
+   "name": "m_fFStime",
+   "type": "float",
+   "source": "gen_headers_9.2"
+  },
+  "106332": {
+   "name": "m_dwCombatTimes",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "106336": {
+   "name": "nImbibeNimbusTimes",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "106360": {
+   "name": "bHaveNimbus",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "106364": {
+   "name": "bPXVariance",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "106368": {
+   "name": "m_bFinalCombat",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "106372": {
+   "name": "m_nCombatHurtHP",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "106376": {
+   "name": "m_nCombatHurtMP",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "106380": {
+   "name": "m_bShowStatuary",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "88540": {
+   "name": "m_nDataPoolBase",
+   "type": "int *",
+   "source": "A:decomp_large_offset_ptr_arithmetic_440refs_data_pool"
   }
+ },
+ "methods": {
+  "0x0045AE60": {
+   "name": "ctor",
+   "signature": "void __thiscall()",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+  },
+  "0x00469EB0": {
+   "name": "HandleInput",
+   "signature": "BOOL __thiscall(int nInputID, int nParam, int nFlags)",
+   "_misattrib_evidence": "max_offset=93596>class_size=2632"
+  },
+  "0x0045B990": {
+   "name": "InitCombatUI",
+   "signature": "int __thiscall(int nVal)"
+  },
+  "0x00462120": {
+   "name": "SetSelectionFlags",
+   "signature": "int __thiscall PlayerMgr::SetSelectionFlags(int nFlags)",
+   "_misattrib_evidence": "max_offset=94380>class_size=2632"
+  },
+  "0x004623A0": {
+   "name": "CreatePanelElements",
+   "signature": "int __thiscall(CCBUIPanel *arg0)"
+  },
+  "0x0045B7A0": {
+   "name": "LoadState",
+   "signature": "unsigned __int8 __thiscall PlayerMgr::LoadState(const void *arg0)"
+  },
+  "0x00461C50": {
+   "name": "InitMode",
+   "signature": "void __thiscall PlayerMgr::InitMode(int nVal)"
+  },
+  "0x004620E0": {
+   "name": "SendInputToRole",
+   "signature": "int __thiscall(unsigned char pData)",
+   "_misattrib_evidence": "max_offset=95748>class_size=2632"
+  },
+  "0x00469D90": {
+   "name": "SetupPlayerDisplay",
+   "signature": "void __thiscall PlayerMgr::SetupPlayerDisplay(int nVal)"
+  },
+  "0x00471220": {
+   "name": "ToggleSlot0",
+   "signature": "char __thiscall PlayerMgr::ToggleSlot0(unsigned __int8 pData)"
+  },
+  "0x004712D0": {
+   "name": "ToggleSlot1",
+   "signature": "char __thiscall PlayerMgr::ToggleSlot1(unsigned __int8 pData)"
+  },
+  "0x00471380": {
+   "name": "ToggleSlot2",
+   "signature": "char __thiscall PlayerMgr::ToggleSlot2(unsigned __int8 pData)"
+  },
+  "0x00471430": {
+   "name": "ToggleSlot3",
+   "signature": "char __thiscall PlayerMgr::ToggleSlot3(unsigned __int8 pData)"
+  },
+  "0x004714E0": {
+   "name": "ToggleSlot4",
+   "signature": "char __thiscall PlayerMgr::ToggleSlot4(unsigned __int8 pData)"
+  },
+  "0x00469D50": {
+   "name": "AddItem",
+   "signature": "int __thiscall(PlayerMgr *this)"
+  }
+ },
+ "nested_types": {
+  "PoisonState": {
+   "kind": "struct",
+   "binary_size": 32
+  }
+ }
 }
