@@ -370,7 +370,7 @@ def _resolve_stru_overlap(code):
 # Main entry
 # ============================================================
 
-def run(code, ctx):
+def _run_inner(code, ctx):
     """Stage 5: compiler compatibility fixups (text-level, no AST)."""
     # Strip __noreturn (VC6 doesn't support this IDA attribute)
     code = re.sub(r'\b__noreturn\s*(?=\()', '', code)
@@ -512,3 +512,7 @@ def run(code, ctx):
         )
 
     return code
+
+
+def run(code, ctx):
+    return _run_inner(code, ctx)
