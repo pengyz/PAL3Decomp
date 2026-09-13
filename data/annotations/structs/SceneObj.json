@@ -1,390 +1,400 @@
 {
-  "name": "SceneObj",
-  "binary_size": 1784,
-  "known_members": {
-    "76": {
-      "name": "_SaveTaskInfo",
-      "type": "SaveTask",
-      "source": "annotation"
-    },
-    "88": {
-      "name": "m_fTime",
-      "type": "float",
-      "source": "annotation"
-    },
-    "92": {
-      "name": "m_fDeltaTime",
-      "type": "float",
-      "source": "annotation"
-    },
-    "96": {
-      "name": "m_fTimeScale",
-      "type": "float",
-      "source": "annotation"
-    },
-    "100": {
-      "name": "m_deltatime",
-      "type": "float",
-      "source": "annotation"
-    },
-    "104": {
-      "name": "m_bLockPropUI",
-      "type": "int",
-      "source": "annotation"
-    },
-    "108": {
-      "name": "m_bLockCamera",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "112": {
-      "name": "m_bProcessLinkObj",
-      "type": "int",
-      "source": "annotation"
-    },
-    "116": {
-      "name": "m_bCallProcessGroupObj",
-      "type": "int",
-      "source": "annotation"
-    },
-    "120": {
-      "name": "m_bMainGroupObj",
-      "type": "int",
-      "source": "annotation"
-    },
-    "124": {
-      "name": "dwEffGroupRunningID",
-      "type": "unsigned int",
-      "source": "annotation|fix:unsigned_long_to_int"
-    },
-    "128": {
-      "name": "bCGObj",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "129": {
-      "name": "sCGSHELF",
-      "type": "char[64]",
-      "source": "annotation"
-    },
-    "196": {
-      "name": "rCGSelfArea",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "212": {
-      "name": "rTouchAreaCG",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "228": {
-      "name": "fLastTime",
-      "type": "float",
-      "source": "annotation"
-    },
-    "232": {
-      "name": "mParam",
-      "type": "subPARAM",
-      "source": "annotation"
-    },
-    "304": {
-      "name": "mVelocity",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "316": {
-      "name": "mTime",
-      "type": "float",
-      "source": "annotation"
-    },
-    "320": {
-      "name": "mStorePos",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "332": {
-      "name": "mRetrorse",
-      "type": "int",
-      "source": "annotation"
-    },
-    "336": {
-      "name": "mTouchCounter",
-      "type": "int",
-      "source": "annotation"
-    },
-    "340": {
-      "name": "m_iState",
-      "type": "int",
-      "source": "annotation"
-    },
-    "344": {
-      "name": "m_bCVDOver",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "348": {
-      "name": "mOBBox",
-      "type": "gbOBBox",
-      "source": "annotation"
-    },
-    "424": {
-      "name": "m_pObjMsgBuffer",
-      "type": "char[256]",
-      "source": "annotation"
-    },
-    "680": {
-      "name": "m_pObjMsgBuffer2",
-      "type": "char[256]",
-      "source": "annotation"
-    },
-    "936": {
-      "name": "m_renderpos",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "948": {
-      "name": "m_subobj",
-      "type": "int",
-      "source": "annotation"
-    },
-    "984": {
-      "name": "m_mdl",
-      "type": "MyMdl",
-      "source": "annotation"
-    },
-    "1068": {
-      "name": "m_info",
-      "type": "ObjectInfo",
-      "source": "annotation"
-    },
-    "1672": {
-      "name": "m_path",
-      "type": "PathObj *",
-      "source": "annotation"
-    },
-    "1676": {
-      "name": "m_pmap",
-      "type": "SceneMapObj *",
-      "source": "annotation"
-    },
-    "1680": {
-      "name": "m_mapindex",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "1684": {
-      "name": "m_pushboxdir",
-      "type": "int",
-      "source": "annotation"
-    },
-    "1688": {
-      "name": "m_maprect",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "1704": {
-      "name": "m_liftrole",
-      "type": "int",
-      "source": "annotation"
-    },
-    "1708": {
-      "name": "m_common",
-      "type": "std::queue<SceneObj::Common_State,std::deque<SceneObj::Common_State,std::allocator<SceneObj::Common_State> > >",
-      "source": "annotation"
-    },
-    "1756": {
-      "name": "m_snd",
-      "type": "gbSound3DNode *",
-      "source": "annotation"
-    },
-    "1760": {
-      "name": "m_radius",
-      "type": "float",
-      "source": "annotation"
-    },
-    "1764": {
-      "name": "m_runscript",
-      "type": "PalScript *",
-      "source": "annotation"
-    },
-    "1768": {
-      "name": "m_fRotateX",
-      "type": "float",
-      "source": "annotation"
-    },
-    "1772": {
-      "name": "m_fRotateY",
-      "type": "float",
-      "source": "annotation"
-    },
-    "1776": {
-      "name": "m_fRotateZ",
-      "type": "float",
-      "source": "annotation"
-    },
-    "1780": {
-      "name": "m_fParam",
-      "type": "float",
-      "source": "annotation"
-    },
-    "0": {
-      "name": "__vftable",
-      "type": "void *",
-      "source": "vtable_fix"
-    },
-    "0x44": {
-      "name": "m_fTimerLimit",
-      "type": "gbRefObject *",
-      "source": "binary:Destroy_12 reads [esi+44h] as gbRefObject*;A:decomp_batch_rename_usage_pattern"
-    }
+ "name": "SceneObj",
+ "binary_size": 1784,
+ "known_members": {
+  "76": {
+   "name": "_SaveTaskInfo",
+   "type": "SaveTask",
+   "source": "annotation"
   },
-  "base_class": [
-    "PalScriptWaitObj",
-    "GlowObj",
-    "TaskMgr_SceneObjParam_SceneObj"
-  ],
-  "methods": {
-    "0x00536260": {
-      "name": "CreateUI",
-      "signature": "int __thiscall()"
-    },
-    "0x005362F0": {
-      "name": "Destructor",
-      "signature": "SceneObj * __thiscall()"
-    },
-    "0x005363C0": {
-      "name": "CleanupInternal",
-      "signature": "int __thiscall()"
-    },
-    "0x005368A0": {
-      "name": "HandleEvent",
-      "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "_misattrib_evidence": "max_offset=3340>class_size=596"
-    },
-    "0x00452FD0": {
-      "name": "ctor",
-      "signature": "int __thiscall()",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-    },
-    "0x00453030": {
-      "name": "SceneObj",
-      "signature": "void __thiscall()"
-    },
-    "0x00407B50": {
-      "name": "UpdateAutoDelete",
-      "signature": "char __thiscall(SceneObj *this, unsigned int deltatime)"
-    },
-    "0x00453010": {
-      "name": "_scalar_dtor",
-      "signature": "void *__thiscall(UIWnd *Block, char pData)",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "ordinal": 5
-    },
-    "0x0052F800": {
-      "name": "LoadGeomFromFile",
-      "signature": "gbVFileSystem *__thiscall(const char *pszName)"
-    },
-    "0x0052FB70": {
-      "name": "LoadObstruction",
-      "signature": "gbVFileSystem *__thiscall()"
-    },
-    "0x00530280": {
-      "name": "LoadGeomNode",
-      "signature": "gbGeomNode *__thiscall(const char *pszFilename)"
-    },
-    "0x00530330": {
-      "name": "LoadDefaultModel",
-      "signature": "gbGeomNode *__thiscall()"
-    },
-    "0x0053EE60": {
-      "name": "StringCopyReplace",
-      "signature": "char *__thiscall SceneObj::StringCopyReplace(SceneObj *pSceneObj, char *pszBuf, char *pszBuf2)"
-    },
-    "0x0053F060": {
-      "name": "StringCopyCat",
-      "signature": "void __thiscall SceneObj::StringCopyCat(SceneObj *pSceneObj, SceneObj *pSceneObj2)"
-    },
-    "0x00453200": {
-      "name": "ValidateState",
-      "signature": "char __thiscall SceneObj::ValidateState()",
-      "ordinal": 1
-    },
-    "0x004538E0": {
-      "name": "LoadData",
-      "signature": "char __thiscall SceneObj::LoadData()"
-    },
-    "0x00527D40": {
-      "name": "GetVisibleFlag",
-      "signature": "int __thiscall(_BYTE *p_BYTE)"
-    },
-    "0x00527D60": {
-      "name": "GetCommonData",
-      "signature": "int __thiscall()",
-      "source": " | rename:_todo_→fn_"
-    },
-    "0x00530340": {
-      "name": "SetScriptDel",
-      "signature": "int __thiscall SceneObj::SetScriptDel(int nVal)"
-    },
-    "0x0053EF60": {
-      "name": "LoadFromConfig",
-      "signature": "int __cdecl(int *p_DWORD, int *p_DWORD2, int nVal)",
-      "static": true
-    },
-    "0x00453A70": {
-      "name": "InsertAt",
-      "signature": "SceneObj *__thiscall SceneObj::InsertAt(SceneObj *pSceneObj, unsigned int dwVal, unsigned int dwVal2)"
-    },
-    "0x0053F4F0": {
-      "name": "ProcessNearby",
-      "signature": "void __thiscall(_DWORD *)"
-    },
-    "0x00445C60": {
-      "name": "Update",
-      "signature": "int __thiscall(int a2, int a3)"
-    },
-    "0x00445C10": {
-      "name": "HideAll",
-      "signature": "void __thiscall UIWnd::HideAll()"
-    }
+  "88": {
+   "name": "m_fTime",
+   "type": "float",
+   "source": "annotation"
   },
-  "vtables": [
+  "92": {
+   "name": "m_fDeltaTime",
+   "type": "float",
+   "source": "annotation"
+  },
+  "96": {
+   "name": "m_fTimeScale",
+   "type": "float",
+   "source": "annotation"
+  },
+  "100": {
+   "name": "m_deltatime",
+   "type": "float",
+   "source": "annotation"
+  },
+  "104": {
+   "name": "m_bLockPropUI",
+   "type": "int",
+   "source": "annotation"
+  },
+  "108": {
+   "name": "m_bLockCamera",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "112": {
+   "name": "m_bProcessLinkObj",
+   "type": "int",
+   "source": "annotation"
+  },
+  "116": {
+   "name": "m_bCallProcessGroupObj",
+   "type": "int",
+   "source": "annotation"
+  },
+  "120": {
+   "name": "m_bMainGroupObj",
+   "type": "int",
+   "source": "annotation"
+  },
+  "124": {
+   "name": "dwEffGroupRunningID",
+   "type": "unsigned int",
+   "source": "annotation|fix:unsigned_long_to_int"
+  },
+  "128": {
+   "name": "bCGObj",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "129": {
+   "name": "sCGSHELF",
+   "type": "char[64]",
+   "source": "annotation"
+  },
+  "196": {
+   "name": "rCGSelfArea",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "212": {
+   "name": "rTouchAreaCG",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "228": {
+   "name": "fLastTime",
+   "type": "float",
+   "source": "annotation"
+  },
+  "232": {
+   "name": "mParam",
+   "type": "subPARAM",
+   "source": "annotation"
+  },
+  "304": {
+   "name": "mVelocity",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "316": {
+   "name": "mTime",
+   "type": "float",
+   "source": "annotation"
+  },
+  "320": {
+   "name": "mStorePos",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "332": {
+   "name": "mRetrorse",
+   "type": "int",
+   "source": "annotation"
+  },
+  "336": {
+   "name": "mTouchCounter",
+   "type": "int",
+   "source": "annotation"
+  },
+  "340": {
+   "name": "m_iState",
+   "type": "int",
+   "source": "annotation"
+  },
+  "344": {
+   "name": "m_bCVDOver",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "348": {
+   "name": "mOBBox",
+   "type": "gbOBBox",
+   "source": "annotation"
+  },
+  "424": {
+   "name": "m_pObjMsgBuffer",
+   "type": "char[256]",
+   "source": "annotation"
+  },
+  "680": {
+   "name": "m_pObjMsgBuffer2",
+   "type": "char[256]",
+   "source": "annotation"
+  },
+  "936": {
+   "name": "m_renderpos",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "948": {
+   "name": "m_subobj",
+   "type": "int",
+   "source": "annotation"
+  },
+  "984": {
+   "name": "m_mdl",
+   "type": "MyMdl",
+   "source": "annotation"
+  },
+  "1068": {
+   "name": "m_info",
+   "type": "ObjectInfo",
+   "source": "annotation"
+  },
+  "1672": {
+   "name": "m_path",
+   "type": "PathObj *",
+   "source": "annotation"
+  },
+  "1676": {
+   "name": "m_pmap",
+   "type": "SceneMapObj *",
+   "source": "annotation"
+  },
+  "1680": {
+   "name": "m_mapindex",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "1684": {
+   "name": "m_pushboxdir",
+   "type": "int",
+   "source": "annotation"
+  },
+  "1688": {
+   "name": "m_maprect",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "1704": {
+   "name": "m_liftrole",
+   "type": "int",
+   "source": "annotation"
+  },
+  "1708": {
+   "name": "m_common",
+   "type": "std::queue<SceneObj::Common_State,std::deque<SceneObj::Common_State,std::allocator<SceneObj::Common_State> > >",
+   "source": "annotation"
+  },
+  "1756": {
+   "name": "m_snd",
+   "type": "gbSound3DNode *",
+   "source": "annotation"
+  },
+  "1760": {
+   "name": "m_radius",
+   "type": "float",
+   "source": "annotation"
+  },
+  "1764": {
+   "name": "m_runscript",
+   "type": "PalScript *",
+   "source": "annotation"
+  },
+  "1768": {
+   "name": "m_fRotateX",
+   "type": "float",
+   "source": "annotation"
+  },
+  "1772": {
+   "name": "m_fRotateY",
+   "type": "float",
+   "source": "annotation"
+  },
+  "1776": {
+   "name": "m_fRotateZ",
+   "type": "float",
+   "source": "annotation"
+  },
+  "1780": {
+   "name": "m_fParam",
+   "type": "float",
+   "source": "annotation"
+  },
+  "0": {
+   "name": "__vftable",
+   "type": "void *",
+   "source": "vtable_fix"
+  },
+  "0x44": {
+   "name": "m_fTimerLimit",
+   "type": "gbRefObject *",
+   "source": "binary:Destroy_12 reads [esi+44h] as gbRefObject*;A:decomp_batch_rename_usage_pattern"
+  },
+  "18804": {
+   "name": "m_nSpringTargetX",
+   "type": "int",
+   "source": "2026-09-14: CCBRoleState::UpdateEffects writes 800/600 through the TaskMgr base subobject (slot2 vtable-override family); TaskMgr base_size region"
+  },
+  "18808": {
+   "name": "m_nSpringTargetY",
+   "type": "int",
+   "source": "2026-09-14: CCBRoleState::UpdateEffects writes 800/600 through the TaskMgr base subobject (slot2 vtable-override family); TaskMgr base_size region"
+  }
+ },
+ "base_class": [
+  "PalScriptWaitObj",
+  "GlowObj",
+  "TaskMgr_SceneObjParam_SceneObj"
+ ],
+ "methods": {
+  "0x00536260": {
+   "name": "CreateUI",
+   "signature": "int __thiscall()"
+  },
+  "0x005362F0": {
+   "name": "Destructor",
+   "signature": "SceneObj * __thiscall()"
+  },
+  "0x005363C0": {
+   "name": "CleanupInternal",
+   "signature": "int __thiscall()"
+  },
+  "0x005368A0": {
+   "name": "HandleEvent",
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "_misattrib_evidence": "max_offset=3340>class_size=596"
+  },
+  "0x00452FD0": {
+   "name": "ctor",
+   "signature": "int __thiscall()",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+  },
+  "0x00453030": {
+   "name": "SceneObj",
+   "signature": "void __thiscall()"
+  },
+  "0x00407B50": {
+   "name": "UpdateAutoDelete",
+   "signature": "char __thiscall(SceneObj *this, unsigned int deltatime)"
+  },
+  "0x00453010": {
+   "name": "_scalar_dtor",
+   "signature": "void *__thiscall(UIWnd *Block, char pData)",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+   "ordinal": 5
+  },
+  "0x0052F800": {
+   "name": "LoadGeomFromFile",
+   "signature": "gbVFileSystem *__thiscall(const char *pszName)"
+  },
+  "0x0052FB70": {
+   "name": "LoadObstruction",
+   "signature": "gbVFileSystem *__thiscall()"
+  },
+  "0x00530280": {
+   "name": "LoadGeomNode",
+   "signature": "gbGeomNode *__thiscall(const char *pszFilename)"
+  },
+  "0x00530330": {
+   "name": "LoadDefaultModel",
+   "signature": "gbGeomNode *__thiscall()"
+  },
+  "0x0053EE60": {
+   "name": "StringCopyReplace",
+   "signature": "char *__thiscall SceneObj::StringCopyReplace(SceneObj *pSceneObj, char *pszBuf, char *pszBuf2)"
+  },
+  "0x0053F060": {
+   "name": "StringCopyCat",
+   "signature": "void __thiscall SceneObj::StringCopyCat(SceneObj *pSceneObj, SceneObj *pSceneObj2)"
+  },
+  "0x00453200": {
+   "name": "ValidateState",
+   "signature": "char __thiscall SceneObj::ValidateState()",
+   "ordinal": 1
+  },
+  "0x004538E0": {
+   "name": "LoadData",
+   "signature": "char __thiscall SceneObj::LoadData()"
+  },
+  "0x00527D40": {
+   "name": "GetVisibleFlag",
+   "signature": "int __thiscall(_BYTE *p_BYTE)"
+  },
+  "0x00527D60": {
+   "name": "GetCommonData",
+   "signature": "int __thiscall()",
+   "source": " | rename:_todo_→fn_"
+  },
+  "0x00530340": {
+   "name": "SetScriptDel",
+   "signature": "int __thiscall SceneObj::SetScriptDel(int nVal)"
+  },
+  "0x0053EF60": {
+   "name": "LoadFromConfig",
+   "signature": "int __cdecl(int *p_DWORD, int *p_DWORD2, int nVal)",
+   "static": true
+  },
+  "0x00453A70": {
+   "name": "InsertAt",
+   "signature": "SceneObj *__thiscall SceneObj::InsertAt(SceneObj *pSceneObj, unsigned int dwVal, unsigned int dwVal2)"
+  },
+  "0x0053F4F0": {
+   "name": "ProcessNearby",
+   "signature": "void __thiscall(_DWORD *)"
+  },
+  "0x00445C60": {
+   "name": "Update",
+   "signature": "int __thiscall(int a2, int a3)"
+  },
+  "0x00445C10": {
+   "name": "HideAll",
+   "signature": "void __thiscall UIWnd::HideAll()"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x0056B200",
+   "base": "UIWnd",
+   "slots": [
     {
-      "addr": "0x0056B200",
-      "base": "UIWnd",
-      "slots": [
-        {
-          "addr": "0x00445E70",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x00453200",
-          "from": null
-        },
-        {
-          "addr": "0x00445C60",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x00445C10",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x00453010",
-          "from": null
-        },
-        {
-          "addr": "0x00445D10",
-          "from": "UIWnd"
-        }
-      ]
+     "addr": "0x00445E70",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x00453200",
+     "from": null
+    },
+    {
+     "addr": "0x00445C60",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x00445C10",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x00445B90",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x00453010",
+     "from": null
+    },
+    {
+     "addr": "0x00445D10",
+     "from": "UIWnd"
     }
-  ],
-  "base_size": 44
+   ]
+  }
+ ],
+ "base_size": 44
 }

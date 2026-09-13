@@ -330,7 +330,12 @@ def _collect_token_edits(code_bytes, tree, ctx):
             if not replacement:
                 replacement = _try_literal_replacement(name)
             if not replacement and name in thunk_map:
-                replacement = thunk_map[name]
+                # skip when this identifier is the METHOD of a qualified call
+                # (parent qualified_identifier): replacing it would stack the
+                # qualifier (NPC::UpdateAnim -> NPC::NPC::UpdateAnim)
+                parent = node.parent
+                if not (parent is not None and parent.type == 'qualified_identifier'):
+                    replacement = thunk_map[name]
             if not replacement and name.startswith('a') and len(name) > 1 and name[1].isupper():
                 replacement = _try_literal_replacement(name)
             if not replacement and name == 'this' and ctx.is_free_function:
@@ -340,7 +345,14 @@ def _collect_token_edits(code_bytes, tree, ctx):
                 return
 
         elif node.type == 'field_identifier' and node.child_count == 0:
-            # field_identifier nodes (after -> or .) — only thunk_map applies
+            # field_identifier nodes (after -> or .) — only thunk_map applies.
+            # Skip when the field_identifier is the METHOD of a qualified call
+            # (its parent is a qualified_identifier): replacing the method
+            # name inside an already-qualified call stacks the qualification
+            # (NPC::UpdateAnim -> NPC::NPC::UpdateAnim, C2653/C2039).
+            parent = node.parent
+            if parent is not None and parent.type == 'qualified_identifier':
+                return
             name = node.text.decode('utf-8')
             if name in thunk_map:
                 edits.append((node.start_byte, node.end_byte, thunk_map[name].encode('utf-8')))

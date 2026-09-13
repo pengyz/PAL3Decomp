@@ -269,7 +269,7 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 and _strip not in static_methods
                             )
                             _obj = '&' + first_arg_text if _needs_addr else first_arg_text
-                            new_text = '((%s *)%s)->%s::%s(%s)' % (
+                            new_text = '(((%s *)%s))->%s::%s(%s)' % (
                                 class_name, _obj, class_name, method_name, rest_str)
                             replacements.append((
                                 node.start_byte, node.end_byte, new_text))
@@ -317,7 +317,7 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                             _rest = [a.text.decode('utf-8')
                                                      for a in arg_nodes[1:]]
                                             new_text = (
-                                                '((%s *)this)->%s::%s(%s) /* [ROWTABLE] */'
+                                                '(((%s *)this))->%s::%s(%s) /* [ROWTABLE] */'
                                                 % (class_name, class_name,
                                                    method_name, ', '.join(_rest)))
                                         else:
@@ -343,7 +343,7 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                     # subobject address — the call defines the
                                     # this-contract, so this is reconstruction
                                     # (Hex-Rays lost the local's type), not a lie.
-                                    new_text = '((%s *)%s)->%s::%s(%s)' % (
+                                    new_text = '(((%s *)%s))->%s::%s(%s)' % (
                                         class_name, inner, class_name,
                                         method_name, rest_str)
                                 replacements.append((
@@ -359,7 +359,7 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                     and _strip.startswith('g_')
                                 )
                                 _obj = '&' + _inner if _needs_addr else _inner
-                                new_text = '((%s *)%s)->%s::%s(%s)' % (
+                                new_text = '(((%s *)%s))->%s::%s(%s)' % (
                                     class_name, _obj, class_name, method_name, rest_str)
                                 replacements.append((
                                     node.start_byte, node.end_byte, new_text))
@@ -390,7 +390,7 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                     node.start_byte, node.end_byte, new_text))
                                 return
                             else:
-                                new_text = '((%s *)%s)->%s::%s(%s)' % (
+                                new_text = '(((%s *)%s))->%s::%s(%s)' % (
                                     class_name, first_arg_text, class_name,
                                     method_name, rest_str)
                             replacements.append((
