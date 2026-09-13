@@ -91,11 +91,14 @@ class TestOopTransform(unittest.TestCase):
         self.assertNotIn('this->', result)
 
     def test_inter_class_call_with_this(self):
-        """OtherClass::Method(this, ...) -> ((OtherClass *)this)->Method(...)"""
+        """OtherClass::Method(this, ...) in Derived::Bar = confirmed IDB
+        attribution error: keep the static call form (C2352 at compile time)
+        and mark it — never launder it into legal-looking syntax."""
         code = "int Derived::Bar() { OtherClass::DoSomething(this, 1, 2); return 0; }"
         result = transform_oop_calls(code, cls_name='Derived')
-        self.assertIn('((OtherClass *)this)->OtherClass::DoSomething(1, 2)', result)
-        self.assertNotIn('OtherClass::DoSomething(this', result)
+        self.assertIn('/* [MISATTRIBUTED] OtherClass::DoSomething on Derived::this',
+                      result)
+        self.assertIn('OtherClass::DoSomething(this, 1, 2)', result)
 
 
 class TestStage3Cleanup(unittest.TestCase):

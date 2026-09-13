@@ -195,20 +195,29 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                     new_text = 'this->%s::%s(%s)' % (
                                         class_name, _method_out, rest_str)
                             else:
-                                # Non-base class destructor: output this->~Class()
-                                # Stage 3 cleanup detects and deletes these (compiler handles chain).
+                                # Explicit base-dtor chain call: legal whether
+                                # or not annotations record the derivation
+                                # (destruction sequences are real code), keep
+                                # the old clean form.
                                 if _method_out.startswith('~'):
                                     new_text = 'this->%s()' % _method_out
                                 else:
-                                    # Inter-class call with this as first arg.
-                                    # Faithful isomorphic form: keep cast + qualifier.
-                                    # Compiles (method IS declared in class_name) and
-                                    # marks the attribution anomaly for annotation work.
-                                    new_text = '((%s *)this)->%s::%s(%s)' % (
-                                        class_name, class_name, _method_out, rest_str)
+                                    # Unrelated class called on our own this:
+                                    # confirmed IDB attribution error (the
+                                    # original source could never write this
+                                    # call). Keep the static call form so
+                                    # MSVC6 reports C2352 — precise signal to
+                                    # fix the callee's IDB name — and mark it.
+                                    # Never launder into legal syntax.
+                                    _args = 'this' + \
+                                        (', ' + rest_str if rest_str else '')
+                                    new_text = (
+                                        '/* [MISATTRIBUTED] %s::%s on %s::this '
+                                        '-> fix IDB name of callee */ %s::%s(%s)'
+                                        % (class_name, _method_out, cls_name,
+                                           class_name, _method_out, _args))
                             replacements.append((
                                 node.start_byte, node.end_byte, new_text))
-                            return
                             return
                         elif first_arg.type == 'identifier':
                             # Simple var: cast to the class so the qualified call
@@ -247,19 +256,40 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 if _qualified in static_methods:
                                     return
                                 if inner == 'this':
-                                    # (T*)this: base-of-cls casts already handled
-                                    # via the qualified base path above; here the
-                                    # cast target matches the method's class (or is
-                                    # unrelated noise) — this->Cls::M is the direct
-                                    # call Hex-Rays reported. An unrelated T carries
-                                    # no object-layout truth worth keeping.
-                                    new_text = 'this->%s::%s(%s)' % (
-                                        class_name, method_name, rest_str)
+                                    # (T*)this: the object's TRUE type is known
+                                    # (cls_name). If the method's class is this
+                                    # class or one of its bases, the qualified
+                                    # call is legal and preserves the direct-call
+                                    # semantics Hex-Rays reported.
+                                    _ensure_bases()
+                                    if class_name == cls_name or \
+                                            _is_derived_from(cls_name, class_name):
+                                        new_text = 'this->%s::%s(%s)' % (
+                                            class_name, method_name, rest_str)
+                                    else:
+                                        # Unrelated class on our own this: the IDB
+                                        # name of the callee cannot be right (the
+                                        # original source could never write this
+                                        # call). Do NOT launder it into legal
+                                        # syntax — keep the static call form and
+                                        # mark it; MSVC6 reports C2352, which is
+                                        # the honest "fix the IDB attribution"
+                                        # signal (C2039 would mislead people into
+                                        # adding declarations).
+                                        _args = first_arg_text + \
+                                            (', ' + rest_str if rest_str else '')
+                                        new_text = (
+                                            '/* [MISATTRIBUTED] %s on %s::this '
+                                            '-> fix IDB name of callee */ %s::%s(%s)'
+                                            % (class_name, cls_name, class_name,
+                                               method_name, _args))
                                 else:
                                     # Normalize the cast to the method's class and
                                     # keep the qualifier: ((Cls*)X)->Cls::M(rest).
-                                    # Works for (Cls*)&var, (Cls*)(v2+108), and
-                                    # unrelated casts alike — one faithful form.
+                                    # X is an untyped local/global or a member
+                                    # subobject address — the call defines the
+                                    # this-contract, so this is reconstruction
+                                    # (Hex-Rays lost the local's type), not a lie.
                                     new_text = '((%s *)%s)->%s::%s(%s)' % (
                                         class_name, inner, class_name,
                                         method_name, rest_str)
