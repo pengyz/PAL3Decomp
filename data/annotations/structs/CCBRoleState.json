@@ -1,1521 +1,1521 @@
 {
-  "name": "CCBRoleState",
-  "binary_size": 22224,
-  "known_members": {
-    "0": {
-      "name": "m_sCombatDialog",
-      "type": "char[4]",
-      "offset": 0
-    },
-    "360": {
-      "name": "_embed_UIFrameWnd_168",
-      "type": "UIFrameWnd",
-      "source": "A+:decomp_ctor_at_this+360,span=152=binary_size"
-    },
-    "21960": {
-      "name": "m_bScrollEnableA",
-      "type": "unsigned char",
-      "source": "ida_decomp:_method_44a2e0 if(this) proceed, 4 refs"
-    },
-    "21961": {
-      "name": "m_bScrollEnableB",
-      "type": "unsigned char",
-      "source": "ida_decomp:_method_44a2e0 if(this) proceed, 4 refs"
-    },
-    "21964": {
-      "name": "m_nScrollOffset",
-      "type": "int",
-      "source": "ida_decomp:_method_44a2e0 += 10, 10 refs"
-    },
-    "21968": {
-      "name": "m_nScrollTarget",
-      "type": "int",
-      "source": "ida_decomp:_method_44a2e0 compared/assigned, 4 refs"
-    },
-    "18700": {
-      "name": "m_fLerpCurX",
-      "type": "float",
-      "source": "ida_decomp:_method_449fe0 lerp +=/-= speed*dt, 7 refs"
-    },
-    "18704": {
-      "name": "m_fLerpCurY",
-      "type": "float",
-      "source": "ida_decomp:_method_449fe0 lerp +=/-= speed*dt, 7 refs"
-    },
-    "18708": {
-      "name": "m_nLerpTargetX",
-      "type": "int",
-      "source": "ida_decomp:_method_449fe0 compared with cur to lerp, 3 refs"
-    },
-    "18712": {
-      "name": "m_nLerpTargetY",
-      "type": "int",
-      "source": "ida_decomp:_method_449fe0 compared with cur to lerp, 3 refs"
-    },
-    "18716": {
-      "name": "m_nLerpDestX",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "18720": {
-      "name": "m_nLerpDestY",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "18732": {
-      "name": "m_nLerpDir",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "18745": {
-      "name": "m_bLerpDone",
-      "type": "unsigned char",
-      "source": "ida_decomp:_method_449fe0 set 0 start, 1 finish, 3 refs"
-    },
-    "18748": {
-      "name": "m_fLerpSpeed",
-      "type": "float",
-      "source": "ida_decomp:_method_449fe0 a2*this*dir = delta, 4 refs"
-    },
-    "7676": {
-      "name": "m_byteFlags",
-      "type": "unsigned char",
-      "source": "A:byte_array_+1821_stride"
-    },
-    "10352": {
-      "name": "m_bFlag2870",
-      "type": "unsigned char",
-      "source": "A:LOBYTE_access"
-    },
-    "10364": {
-      "name": "m_BufferData",
-      "type": "char[0x2654]",
-      "source": "A:memset_0x2654_bytes"
-    },
-    "18616": {
-      "name": "m_SlotUIWnd",
-      "type": "UIWnd",
-      "source": "A:UIWnd_GetRect_call_this+48B8"
-    },
-    "18780": {
-      "name": "m_fSpringPosX",
-      "type": "float",
-      "source": "decomp:spring_animation_position_X(+=dt*speed*dir)"
-    },
-    "18784": {
-      "name": "m_fSpringPosY",
-      "type": "float",
-      "source": "decomp:spring_animation_position_Y"
-    },
-    "18788": {
-      "name": "m_fSpringTargX",
-      "type": "float",
-      "source": "decomp:copied_from_PosX_at_frame_end"
-    },
-    "18792": {
-      "name": "m_fSpringTargY",
-      "type": "float",
-      "source": "decomp:spring_target_Y"
-    },
-    "18796": {
-      "name": "m_fSpringPrevX",
-      "type": "float",
-      "source": "decomp:spring_previous_X"
-    },
-    "18800": {
-      "name": "m_fSpringPrevY",
-      "type": "float",
-      "source": "decomp:spring_previous_Y"
-    },
-    "18812": {
-      "name": "m_nSpringDir",
-      "type": "int",
-      "source": "decomp:spring_direction(multiplied_by_speed)"
-    },
-    "18828": {
-      "name": "m_fSpringSpeed",
-      "type": "float",
-      "source": "decomp:spring_speed(multiplied_by_deltaTime)"
-    },
-    "19056": {
-      "name": "m_SlotWidgets",
-      "type": "UIWnd",
-      "source": "decomp:_method_46d770_UIWnd_array_stride38(=152bytes=UIStatic)[5]"
-    },
-    "19664": {
-      "name": "m_SlotRects",
-      "type": "int",
-      "source": "decomp:_method_46d770_RECT_array_for_5_slots(4*idx+38/39/40)"
-    },
-    "19828": {
-      "name": "m_SlotRightEdge",
-      "type": "int",
-      "source": "decomp:_method_46d770_right_edge_array[5]"
-    },
-    "19896": {
-      "name": "m_nSlotStartY",
-      "type": "int",
-      "source": "decomp:_method_46d770_Y_start_position"
-    },
-    "19900": {
-      "name": "m_nSlotSpacing",
-      "type": "int",
-      "source": "decomp:_method_46d770_X_spacing_between_slots"
-    },
-    "19904": {
-      "name": "m_nSlotHeight",
-      "type": "int",
-      "source": "decomp:_method_46d770_height_offset_per_slot"
-    },
-    "19908": {
-      "name": "m_nSlotWidth",
-      "type": "int",
-      "source": "decomp:_method_46d770_width_per_slot"
-    },
-    "19912": {
-      "name": "m_bySlotVisible",
-      "type": "unsigned char",
-      "source": "decomp:_method_46d770_BYTE_array_5slots_visibility"
-    },
-    "20064": {
-      "name": "m_pScene",
-      "type": "UIScene",
-      "source": "ctor:UIScene::_UIScene"
-    },
-    "20408": {
-      "name": "m_Static_20408",
-      "type": "UIStatic",
-      "source": "ctor:UIStatic::_UIStatic"
-    },
-    "20560": {
-      "name": "m_bVideoPlayed",
-      "type": "unsigned char",
-      "source": "A:decomp LOBYTE(this+5050) checked before CScreenMode::PlayVideo"
-    },
-    "20564": {
-      "name": "m_nVideoState",
-      "type": "int"
-    },
-    "20576": {
-      "name": "m_nCurrentTaskID",
-      "type": "int",
-      "source": "decomp:CCBStage::EndTask_result+FindThreadByID_param"
-    },
-    "20580": {
-      "name": "m_nEffCurA",
-      "type": "int",
-      "source": "decomp:effect_param_pair_A_current(swapped_with_507C)"
-    },
-    "20584": {
-      "name": "m_nEffCurB",
-      "type": "int",
-      "source": "decomp:effect_param_pair_B(swapped_with_5080)"
-    },
-    "20592": {
-      "name": "m_nEffTarget1",
-      "type": "int",
-      "source": "decomp:loaded_from_g_EffMgr"
-    },
-    "20596": {
-      "name": "m_nEffTarget2",
-      "type": "int",
-      "source": "decomp:loaded_from_g_EffMgr"
-    },
-    "20600": {
-      "name": "m_nEffTransFrames",
-      "type": "int",
-      "source": "decomp:set_6(transition_frame_count)"
-    },
-    "20604": {
-      "name": "m_nEffSwapA",
-      "type": "int",
-      "source": "decomp:effect_swap_target_A(swapped_with_5064)"
-    },
-    "20608": {
-      "name": "m_nEffSwapB",
-      "type": "int",
-      "source": "decomp:effect_swap_target_B(swapped_with_5068)"
-    },
-    "20616": {
-      "name": "m_nEffCurC",
-      "type": "int",
-      "source": "decomp:effect_param_C(swapped_with_508C)"
-    },
-    "20620": {
-      "name": "m_nEffSwapC",
-      "type": "int",
-      "source": "decomp:swap_target_C"
-    },
-    "20624": {
-      "name": "m_nEffCurD",
-      "type": "int",
-      "source": "decomp:effect_param_D(swapped_with_5094)"
-    },
-    "20628": {
-      "name": "m_nEffTransFrames2",
-      "type": "int",
-      "source": "decomp:set_6(transition_frames_2nd_group)"
-    },
-    "20632": {
-      "name": "m_nEffCurE",
-      "type": "int",
-      "source": "decomp:effect_param_E(swapped_with_509C)"
-    },
-    "20636": {
-      "name": "m_nEffSwapE",
-      "type": "int",
-      "source": "decomp:swap_target_E"
-    },
-    "20640": {
-      "name": "m_fTimeFund",
-      "type": "float",
-      "source": "A:decomp this->_todo_50A0 = v6->m_fTimeFund"
-    },
-    "22100": {
-      "name": "m_nFadeFlags",
-      "type": "int",
-      "source": "decomp:_method_44a2e0_LOBYTE+BYTE1_fade_direction_bools"
-    },
-    "22104": {
-      "name": "m_nFadeAlpha",
-      "type": "int",
-      "source": "decomp:_method_44a2e0_+=10/-=10_range_0-255_gbColorQuad_alpha"
-    },
-    "22108": {
-      "name": "m_nFadeTimer",
-      "type": "int",
-      "source": "decomp:_method_44a2e0_countdown_<=0_check"
-    },
-    "22220": {
-      "name": "m_BattleFlags",
-      "type": "int",
-      "source": "decomp:24x_BYTE+20_check(battle_state_flags)"
-    },
-    "18816": {
-      "name": "m_fSpringAccelX",
-      "type": "float",
-      "source": "decomp:_method_44a3d0_set_3.0f(0x40400000_IEEE754)"
-    },
-    "18820": {
-      "name": "m_fSpringAccelY",
-      "type": "float",
-      "source": "decomp:_method_44a3d0_set_3.0f(0x40400000_IEEE754)"
-    },
-    "18824": {
-      "name": "m_bSpringDoneX",
-      "type": "unsigned char",
-      "source": "decomp:_method_44a3d0_BYTE_set_0"
-    },
-    "18825": {
-      "name": "m_bSpringDoneY",
-      "type": "unsigned char",
-      "source": "decomp:_method_44a3d0_BYTE_set_1"
-    },
-    "512": {
-      "name": "m_fLastDialogTime",
-      "type": "float",
-      "offset": 512
-    },
-    "516": {
-      "name": "m_bCombatDialog",
-      "type": "unsigned char",
-      "offset": 516
-    },
-    "520": {
-      "name": "m_pCBSystem",
-      "type": "CCBSystem *",
-      "offset": 520
-    },
-    "524": {
-      "name": "m_pStage",
-      "type": "CCBStage *",
-      "offset": 524
-    },
-    "528": {
-      "name": "m_pUI",
-      "type": "CCBUI *",
-      "offset": 528
-    },
-    "532": {
-      "name": "m_pUtil",
-      "type": "CUtil *",
-      "offset": 532
-    },
-    "536": {
-      "name": "m_bWeSneakAttackEnemy",
-      "type": "unsigned char",
-      "offset": 536
-    },
-    "537": {
-      "name": "m_bEnemySneakAttackUs",
-      "type": "unsigned char",
-      "offset": 537
-    },
-    "540": {
-      "name": "m_nMaxRound",
-      "type": "int",
-      "offset": 540
-    },
-    "544": {
-      "name": "m_nBossRound",
-      "type": "int",
-      "offset": 544
-    },
-    "548": {
-      "name": "m_bMustFail",
-      "type": "unsigned char",
-      "offset": 548
-    },
-    "549": {
-      "name": "m_bFleeAlwaysSuccess",
-      "type": "unsigned char",
-      "offset": 549
-    },
-    "550": {
-      "name": "m_bCreatedNewRole",
-      "type": "unsigned char",
-      "offset": 550
-    },
-    "552": {
-      "name": "m_Role",
-      "type": "tagRoleState[11]",
-      "offset": 552
-    },
-    "11992": {
-      "name": "m_RoleXor",
-      "type": "tagRoleState[11]",
-      "offset": 11992
-    },
-    "4": {
-      "name": "m_nState_004",
-      "type": "int",
-      "source": "ida_gap_13refs"
-    },
-    "8": {
-      "name": "m_nState_008",
-      "type": "int",
-      "source": "ida_gap_3refs"
-    },
-    "12": {
-      "name": "m_nState_00C",
-      "type": "int",
-      "source": "ida_gap_6refs"
-    },
-    "16": {
-      "name": "m_nState_010",
-      "type": "int",
-      "source": "ida_gap_3refs"
-    },
-    "20": {
-      "name": "m_nState_014",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "24": {
-      "name": "m_nState_018",
-      "type": "int",
-      "source": "ida_gap_11refs"
-    },
-    "32": {
-      "name": "m_nState_020",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "48": {
-      "name": "m_nState_030",
-      "type": "gbRefObject *",
-      "source": "ida_gap_2refs; corrected from int to gbRefObject*"
-    },
-    "64": {
-      "name": "m_nState_040",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "68": {
-      "name": "m_nState_044",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "76": {
-      "name": "m_nState_04C",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "96": {
-      "name": "m_nState_060",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "100": {
-      "name": "m_nState_064",
-      "type": "int",
-      "source": "ida_gap_10refs"
-    },
-    "132": {
-      "name": "m_nState_084",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "136": {
-      "name": "m_nState_088",
-      "type": "int",
-      "source": "ida_gap_6refs"
-    },
-    "140": {
-      "name": "m_nState_08C",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "144": {
-      "name": "m_nState_090",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "148": {
-      "name": "m_nState_094",
-      "type": "int",
-      "source": "ida_gap_10refs"
-    },
-    "152": {
-      "name": "m_nState_098",
-      "type": "int",
-      "source": "ida_gap_5refs"
-    },
-    "156": {
-      "name": "m_nState_09C",
-      "type": "int",
-      "source": "ida_gap_16refs"
-    },
-    "160": {
-      "name": "m_nState_0A0",
-      "type": "int",
-      "source": "ida_gap_10refs"
-    },
-    "164": {
-      "name": "m_nState_0A4",
-      "type": "int",
-      "source": "ida_gap_11refs"
-    },
-    "168": {
-      "name": "m_nState_0A8",
-      "type": "int",
-      "source": "ida_gap_3refs"
-    },
-    "176": {
-      "name": "m_nState_0B0",
-      "type": "int",
-      "source": "ida_gap_2refs"
-    },
-    "188": {
-      "name": "m_nState_0BC",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "200": {
-      "name": "m_nState_0C8",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "204": {
-      "name": "m_nState_0CC",
-      "type": "int",
-      "source": "ida_gap_2refs"
-    },
-    "208": {
-      "name": "m_nState_0D0",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "212": {
-      "name": "m_nState_0D4",
-      "type": "int",
-      "source": "ida_gap_2refs"
-    },
-    "216": {
-      "name": "m_nState_0D8",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "220": {
-      "name": "m_nState_0DC",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "224": {
-      "name": "m_nState_0E0",
-      "type": "int",
-      "source": "ida_gap_2refs"
-    },
-    "228": {
-      "name": "m_nState_0E4",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "232": {
-      "name": "m_nState_0E8",
-      "type": "int",
-      "source": "ida_gap_3refs"
-    },
-    "236": {
-      "name": "m_nState_0EC",
-      "type": "int",
-      "source": "ida_gap_2refs"
-    },
-    "240": {
-      "name": "m_nState_0F0",
-      "type": "int",
-      "source": "ida_gap_2refs"
-    },
-    "248": {
-      "name": "m_nState_0F8",
-      "type": "int",
-      "source": "ida_gap_2refs"
-    },
-    "260": {
-      "name": "m_nState_104",
-      "type": "int",
-      "source": "ida_gap_2refs"
-    },
-    "268": {
-      "name": "m_nState_10C",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "280": {
-      "name": "m_nState_118",
-      "type": "int",
-      "source": "ida_gap_9refs"
-    },
-    "288": {
-      "name": "m_nState_120",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "292": {
-      "name": "m_nState_124",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "296": {
-      "name": "m_nState_128",
-      "type": "int",
-      "source": "ida_gap_2refs"
-    },
-    "300": {
-      "name": "m_nState_12C",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "304": {
-      "name": "m_nState_130",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "308": {
-      "name": "m_nState_134",
-      "type": "int",
-      "source": "ida_gap_2refs"
-    },
-    "316": {
-      "name": "m_nState_13C",
-      "type": "int",
-      "source": "ida_gap_2refs"
-    },
-    "324": {
-      "name": "m_nState_144",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "340": {
-      "name": "m_nState_154",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "344": {
-      "name": "m_nState_158",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    },
-    "348": {
-      "name": "m_nState_15C",
-      "type": "int",
-      "source": "ida_gap_2refs"
-    },
-    "352": {
-      "name": "m_nState_160",
-      "type": "int",
-      "source": "ida_gap_2refs"
-    },
-    "356": {
-      "name": "m_nState_164",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    }
+ "name": "CCBRoleState",
+ "binary_size": 22224,
+ "known_members": {
+  "0": {
+   "name": "m_sCombatDialog",
+   "type": "char[4]",
+   "offset": 0
   },
-  "methods": {
-    "0x004ED010": {
-      "name": "IsRoleAlive",
-      "signature": "char __thiscall(int roleIdx)"
-    },
-    "0x004ED040": {
-      "name": "IsActive",
-      "signature": "char __thiscall(int index)"
-    },
-    "0x004ED060": {
-      "name": "GetRoleType",
-      "signature": "char __thiscall(int roleIdx)"
-    },
-    "0x004ED100": {
-      "name": "GetForce",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004EDD60": {
-      "name": "CCBRoleState",
-      "signature": "void __thiscall()"
-    },
-    "0x004EE430": {
-      "name": "Reset",
-      "signature": "char *__thiscall(int nVal, char *pszBuf)"
-    },
-    "0x004EE540": {
-      "name": "Create",
-      "signature": "bool __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x004EE760": {
-      "name": "Destroy",
-      "signature": "bool __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x004EE7C0": {
-      "name": "Init",
-      "signature": "bool __thiscall(int nVal, char pData)",
-      "source": "pdb_ret"
-    },
-    "0x004EE870": {
-      "name": "InitUI",
-      "signature": "tagRoleState *__thiscall(int nVal)"
-    },
-    "0x004EE890": {
-      "name": "Update",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004EE990": {
-      "name": "VarianceRoundCounter",
-      "signature": "bool __thiscall(int *nRoleIndex)"
-    },
-    "0x004EEA70": {
-      "name": "CheckVarianceRound",
-      "signature": "void __thiscall(int nRoleIndex, int nVal, int *pnVal)",
-      "source": "pdb_ret"
-    },
-    "0x004EECB0": {
-      "name": "CancelVariance",
-      "signature": "void __thiscall(int *nRoleIndex, unsigned int dwVal)"
-    },
-    "0x004EEE60": {
-      "name": "IsAlive",
-      "signature": "char __thiscall(int nIndex, int nVal)"
-    },
-    "0x004EF4A0": {
-      "name": "IsBoss",
-      "signature": "void __thiscall(int *arg0, unsigned int nRoleIndex)"
-    },
-    "0x004EF6A0": {
-      "name": "IsAllWeDead",
-      "signature": "bool __thiscall(int bCheckHP)",
-      "source": "pdb_ret"
-    },
-    "0x004EF6C0": {
-      "name": "IsAllEnemyDead",
-      "signature": "int *__thiscall(int bCheckHP, int *pnVal, int *pnVal2)"
-    },
-    "0x004EF710": {
-      "name": "CanAction",
-      "signature": "bool __thiscall(int nIndex, int nVal, int nVal2)",
-      "source": "pdb_ret"
-    },
-    "0x004EF7E0": {
-      "name": "SetCanAction",
-      "signature": "void __thiscall(unsigned int dmg, int roleIdx, int nVal)",
-      "source": "pdb_ret"
-    },
-    "0x004EF8B0": {
-      "name": "RandSetEnemyPos",
-      "signature": "void __thiscall(const void *arg0)"
-    },
-    "0x004EF980": {
-      "name": "CalcHealAmount",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004EFAF0": {
-      "name": "WriteBackRoleData",
-      "signature": "void __thiscall(int nVal, int *p_DWORD, int *pnVal)",
-      "source": "pdb_ret"
-    },
-    "0x004EFD70": {
-      "name": "WriteBackConfig",
-      "signature": "bool __thiscall(int roleIdx, int nVal)"
-    },
-    "0x004EFE90": {
-      "name": "ReviveAllFriendAtEnd",
-      "signature": "bool __thiscall(int roleIdx, int nVal)"
-    },
-    "0x004EFFC0": {
-      "name": "IsRoleReady",
-      "signature": "bool __thiscall(int roleIdx)"
-    },
-    "0x004F0020": {
-      "name": "SetEnemyBeImbibeNimbus",
-      "signature": "void __thiscall(char pData, char pData2)",
-      "source": "pdb_ret"
-    },
-    "0x004F0210": {
-      "name": "CalSneakAttack",
-      "signature": "bool __thiscall(int nVal, unsigned int dwVal)"
-    },
-    "0x004F0360": {
-      "name": "InitRoleFiveMagic",
-      "signature": "unsigned int __thiscall(int nVal)"
-    },
-    "0x004F05A0": {
-      "name": "IsAllyTargetCmd",
-      "signature": "char __thiscall CCBRoleState::IsAllyTargetCmd(int *p_DWORD)"
-    },
-    "0x004F0640": {
-      "name": "InitRoleSpecEquipAttrib",
-      "signature": "void __thiscall(int nRoleIndex)"
-    },
-    "0x004F0700": {
-      "name": "UnloadWeaponModel",
-      "signature": "void __thiscall(int nVal)",
-      "source": "pdb_ret"
-    },
-    "0x004F0750": {
-      "name": "SetVisible",
-      "signature": "bool(int nPanelIndex, bool bVisible)",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-    },
-    "0x004F07D0": {
-      "name": "GetRole",
-      "signature": "char __thiscall(int nIndex, int nVal)"
-    },
-    "0x004F0830": {
-      "name": "GetRoleNum",
-      "signature": "unsigned char __thiscall(int *pnVal)"
-    },
-    "0x004F1070": {
-      "name": "GetAliveRoleNumInForce",
-      "signature": "char __thiscall(struct tagCmdData *force)"
-    },
-    "0x004F1420": {
-      "name": "GetDeadRoleNumInForce",
-      "signature": "char __thiscall(int *force)"
-    },
-    "0x004F17C0": {
-      "name": "GetFirstAliveRoleInForce",
-      "signature": "char __thiscall(int roleIdx, int arg4)"
-    },
-    "0x004F1A30": {
-      "name": "GetCastFightSkillSuccess",
-      "signature": "bool __thiscall(int pCmd)",
-      "source": "pdb_ret"
-    },
-    "0x004F1B20": {
-      "name": "SetCoAttack",
-      "signature": "void __thiscall(unsigned int dwCoAttackID)",
-      "source": "pdb_ret"
-    },
-    "0x004F1CC0": {
-      "name": "CanBeImbibeNimbus",
-      "signature": "bool __thiscall(int dmg, unsigned int nRoleIndex)",
-      "source": "pdb_ret"
-    },
-    "0x004F1FA0": {
-      "name": "CheckRoleValid",
-      "signature": "bool __thiscall(int nRoleIndex, unsigned int roleIdx, int nVal)",
-      "source": "pdb_ret"
-    },
-    "0x004F2310": {
-      "name": "CheckRoleNimbus",
-      "signature": "char __thiscall(int nRoleIndex, unsigned int dwVal)"
-    },
-    "0x004F2350": {
-      "name": "CanBeSelect",
-      "signature": "bool __thiscall(tagCmdData *pCmd, unsigned int nDestRole)",
-      "source": "pdb_ret"
-    },
-    "0x004F2910": {
-      "name": "SetRoleHP",
-      "signature": "int __thiscall(int roleIdx, int value)"
-    },
-    "0x004F2BB0": {
-      "name": "SetRoleField",
-      "signature": "int __thiscall(int roleIdx, int value)"
-    },
-    "0x004F3020": {
-      "name": "CalcAttackPower",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F31C0": {
-      "name": "CalcDefensePower",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F3380": {
-      "name": "GetMaxHP",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F33D0": {
-      "name": "GetMaxMP",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F3420": {
-      "name": "GetTotalRounds",
-      "signature": "int __thiscall()"
-    },
-    "0x004F3430": {
-      "name": "CheckBuff",
-      "signature": "char __thiscall(int roleIdx)"
-    },
-    "0x004F34E0": {
-      "name": "CanUseSkill",
-      "signature": "char __thiscall(int roleIdx)"
-    },
-    "0x004F3570": {
-      "name": "CalcMagicAttack",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F3620": {
-      "name": "CalcMPRegen",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F36D0": {
-      "name": "CalcMagicDefense",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F37A0": {
-      "name": "GetAttackBonus",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F3820": {
-      "name": "GetDefenseBonus",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F38A0": {
-      "name": "GetRoleState",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F3920": {
-      "name": "GetSpeedBonus",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F39A0": {
-      "name": "GetRoleLevel",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F39F0": {
-      "name": "GetRoleExp",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F3A30": {
-      "name": "SetRoleFlag",
-      "signature": "char __thiscall(int roleIdx, char flag)"
-    },
-    "0x004F3A50": {
-      "name": "GetRoleAttr",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F3AD0": {
-      "name": "CalcMPCost",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F3B90": {
-      "name": "GetRoleMP",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F3C00": {
-      "name": "IsForce1",
-      "signature": "int __thiscall(int force)"
-    },
-    "0x004F3C20": {
-      "name": "IsPlayerTeam",
-      "signature": "char __thiscall(int force)"
-    },
-    "0x004F3CC0": {
-      "name": "IsRoleInForce",
-      "signature": "bool __thiscall(int roleIdx)"
-    },
-    "0x004F3D10": {
-      "name": "CanRoleAct",
-      "signature": "char __thiscall(int roleIdx)"
-    },
-    "0x004F3D90": {
-      "name": "GetRoleField",
-      "signature": "char __thiscall(int roleIdx, int fieldOff)"
-    },
-    "0x004F3E20": {
-      "name": "ProcessRound",
-      "signature": "char __thiscall(unsigned int dwVal)"
-    },
-    "0x004F4DA0": {
-      "name": "ProcessAttackResult",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F5070": {
-      "name": "ProcessMagicResult",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F55D0": {
-      "name": "CalcPhysicalDamage",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F57A0": {
-      "name": "CalcMagicDamage",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F5970": {
-      "name": "ProcessSkillEffect",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F5B70": {
-      "name": "ProcessItemEffect",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F7500": {
-      "name": "GetRoleAI",
-      "signature": "char __thiscall(void *pOut)"
-    },
-    "0x004F7880": {
-      "name": "CheckStatus",
-      "signature": "unsigned int __thiscall()"
-    },
-    "0x004F7910": {
-      "name": "ProcessActions",
-      "signature": "void *__thiscall()"
-    },
-    "0x004F8480": {
-      "name": "UpdateEffects",
-      "signature": "int __thiscall()"
-    },
-    "0x004F98B0": {
-      "name": "ApplyDamage",
-      "signature": "int __thiscall(int roleIdx, int dmg)"
-    },
-    "0x004FA540": {
-      "name": "CheckRoleStatus",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004FA6A0": {
-      "name": "CheckDeath",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004FA8B0": {
-      "name": "Revive",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004FA930": {
-      "name": "UpdateRoleMP",
-      "signature": "char __thiscall(char arg0, int nVal)"
-    },
-    "0x004ECB00": {
-      "name": "Update",
-      "signature": "int __thiscall()"
-    },
-    "0x004F3C70": {
-      "name": "GetRoleForce",
-      "signature": "char __thiscall(int roleIdx)"
-    },
-    "0x00456AB0": {
-      "name": "ctor",
-      "signature": "int __thiscall()",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-    },
-    "0x005020D0": {
-      "name": "CalcTurnDelay",
-      "signature": "int __thiscall CCBRoleState::CalcTurnDelay(int nVal)",
-      "_misattrib_evidence": "max_offset=164>class_size=4"
-    },
-    "0x00503AE0": {
-      "name": "GetRoleMPValue",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
-    },
-    "0x004F7FC0": {
-      "name": "ProcessCombatDialog",
-      "signature": "void __thiscall CCBRoleState::ProcessCombatDialog(unsigned int dwVal)"
-    },
-    "0x004F3DC0": {
-      "name": "FindFirstEnemySlot",
-      "signature": "int __thiscall CCBRoleState::FindFirstEnemySlot(int roleIdx)"
-    },
-    "0x00457070": {
-      "name": "ctor",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "ordinal": 6,
-      "source": "+canonical_rename"
-    },
-    "0x00456B80": {
-      "name": "ctor_6B80",
-      "signature": "void __thiscall()"
-    },
-    "0x004F2C30": {
-      "name": "GetRole",
-      "signature": "void *__thiscall(int index)"
-    },
-    "0x004DC720": {
-      "name": "IsAlive",
-      "signature": "BOOL __thiscall()"
-    },
-    "0x004DC7A0": {
-      "name": "InitCombatDialog",
-      "signature": "void __thiscall CCBRoleState::InitCombatDialog()"
-    },
-    "0x004ECB20": {
-      "name": "ProcessCombatAction",
-      "signature": "char __thiscall(int roleIdx)"
-    },
-    "0x004EEF20": {
-      "name": "CalcCombatDamage",
-      "signature": "int __thiscall(const void *pData, unsigned int roleIdx)"
-    },
-    "0x004F2690": {
-      "name": "CheckBoss",
-      "signature": "int __thiscall(int *arg0, int roleIdx)"
-    },
-    "0x00456B60": {
-      "name": "_scalar_dtor",
-      "signature": "void *__thiscall(UIWnd *Block, char pData)",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "ordinal": 5
-    },
-    "0x004DCF80": {
-      "name": "HandleMagicMenu",
-      "signature": "int __thiscall CCBRoleState::HandleMagicMenu(int nState)"
-    },
-    "0x004DDC90": {
-      "name": "EndRoundTasks",
-      "signature": "int __thiscall(int B4)"
-    },
-    "0x004DF3D0": {
-      "name": "CheckMP",
-      "signature": "char __thiscall()"
-    },
-    "0x004E1A40": {
-      "name": "CombatDialogProc",
-      "signature": "int __thiscall CCBRoleState::CombatDialogProc(int nVal, HWND hDlg, unsigned int uMsg, int wParam, int lParam)"
-    },
-    "0x004E2C10": {
-      "name": "HandleDlgMessage",
-      "signature": "LRESULT __thiscall()"
-    },
-    "0x004E30E0": {
-      "name": "SyncRoleUIData",
-      "signature": "unsigned char __thiscall()"
-    },
-    "0x004E40B0": {
-      "name": "UpdateDebugDialog",
-      "signature": "LRESULT __thiscall CCBRoleState::UpdateDebugDialog()"
-    },
-    "0x004EC910": {
-      "name": "SetupCombatLayout",
-      "signature": "int __thiscall CCBRoleState::SetupCombatLayout()"
-    },
-    "0x004ED250": {
-      "name": "LoadPartyData",
-      "signature": "int __fastcall CCBRoleState::LoadPartyData(CCBRoleState *this)"
-    },
-    "0x004ED870": {
-      "name": "SyncSkillCent",
-      "signature": "char __thiscall()"
-    },
-    "0x004EE910": {
-      "name": "CheckMP",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004F0A10": {
-      "name": "CalcCombatDamage",
-      "signature": "char __thiscall(int nVal)"
-    },
-    "0x004F2390": {
-      "name": "CheckRoundComplete",
-      "signature": "char __thiscall CCBRoleState::CheckRoundComplete()"
-    },
-    "0x004F2560": {
-      "name": "ValidateSlotIndex",
-      "signature": "char __thiscall(unsigned int arg0, unsigned int dwVal)"
-    },
-    "0x004F2660": {
-      "name": "CheckTargetCombo",
-      "signature": "int __thiscall CCBRoleState::CheckTargetCombo(struct tagCmdData *p, unsigned int roleIdx)"
-    },
-    "0x004F27B0": {
-      "name": "GetV4",
-      "signature": "int __thiscall(int *arg0, unsigned int roleIdx)"
-    },
-    "0x004F27E0": {
-      "name": "CalcComboDirect",
-      "signature": "int __thiscall CCBRoleState::CalcComboDirect(const void *pData, unsigned int roleIdx)"
-    },
-    "0x004F2800": {
-      "name": "ApplyItemEffect",
-      "signature": "int __thiscall CCBRoleState::ApplyItemEffect(int nCmdData, int nParam)"
-    },
-    "0x004F48C0": {
-      "name": "TickDebuffs",
-      "signature": "void __thiscall CCBRoleState::TickDebuffs(int roleIdx)"
-    },
-    "0x004F4B90": {
-      "name": "CalcMagicDamage",
-      "signature": "unsigned int __thiscall CCBRoleState::CalcMagicDamage(int roleIdx, int nMagicID)"
-    },
-    "0x004F4C80": {
-      "name": "CalcSkillDamage",
-      "signature": "unsigned int __thiscall CCBRoleState::CalcSkillDamage(int roleIdx, int nSkillID)"
-    },
-    "0x004F5330": {
-      "name": "AISelectItem",
-      "signature": "int __thiscall CCBRoleState::AISelectItem(int roleIdx, char pData)"
-    },
-    "0x004F5D00": {
-      "name": "AISelectMagic",
-      "signature": "int __thiscall CCBRoleState::AISelectMagic(unsigned int roleIdx, char pData, int nVal)"
-    },
-    "0x004F6000": {
-      "name": "AISelectHealItem",
-      "signature": "int __thiscall CCBRoleState::AISelectHealItem(unsigned int roleIdx, char pData, int nVal)"
-    },
-    "0x004F61D0": {
-      "name": "AISelectTarget",
-      "signature": "int __thiscall CCBRoleState::AISelectTarget(unsigned int roleIdx, char pData, int nVal)"
-    },
-    "0x004F6370": {
-      "name": "AISelectSkill",
-      "signature": "int __thiscall CCBRoleState::AISelectSkill(unsigned int roleIdx, int nVal, char pData)"
-    },
-    "0x004F6690": {
-      "name": "AISelectItemForSkill",
-      "signature": "int __thiscall CCBRoleState::AISelectItemForSkill(unsigned int roleIdx, int nSkillID, char pData)"
-    },
-    "0x004F6860": {
-      "name": "AISelectSkillTarget",
-      "signature": "int __thiscall CCBRoleState::AISelectSkillTarget(unsigned int roleIdx, int nSkillID, char pData)"
-    },
-    "0x004F7200": {
-      "name": "CheckEventCondition",
-      "signature": "char __thiscall CCBRoleState::CheckEventCondition(int pEvent)"
-    },
-    "0x004F8AF0": {
-      "name": "ProcessControlInput",
-      "signature": "void __thiscall()"
-    },
-    "0x004F8FA0": {
-      "name": "LoadRoleModel",
-      "signature": "char __thiscall(int nVal)"
-    },
-    "0x004F8FD0": {
-      "name": "SpawnRandomEnemies",
-      "signature": "char __thiscall CCBRoleState::SpawnRandomEnemies(int nVal, int nVal2)"
-    },
-    "0x004F90F0": {
-      "name": "CheckRoleCanAct",
-      "signature": "char *__thiscall(int roleIdx)"
-    },
-    "0x004F91B0": {
-      "name": "PopulateItemList",
-      "signature": "char *__thiscall CCBRoleState::PopulateItemList(int nSlot)"
-    },
-    "0x004F9390": {
-      "name": "PopulateMagicList",
-      "signature": "unsigned int __thiscall CCBRoleState::PopulateMagicList(int nSlot)"
-    },
-    "0x004FB370": {
-      "name": "CheckMPRequirement",
-      "signature": "int __thiscall CCBRoleState::CheckMPRequirement(int nVal)"
-    },
-    "0x00449F00": {
-      "name": "CalcSpringForce",
-      "signature": "__int64 __thiscall(int nVal, int nVal2)"
-    },
-    "0x00449FE0": {
-      "name": "UpdateSpringAnim",
-      "signature": "int __thiscall CCBRoleState::UpdateSpringAnim(float fDelta)"
-    },
-    "0x0044A2E0": {
-      "name": "UpdateFadeAlpha",
-      "signature": "void __thiscall()"
-    },
-    "0x0044A3D0": {
-      "name": "InitFadeAndSpring",
-      "signature": "int __thiscall()"
-    },
-    "0x00456C20": {
-      "name": "~CCBRoleState",
-      "signature": "void __thiscall CCBRoleState::~CCBRoleState()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-    },
-    "0x00457020": {
-      "name": "PlayVideoIfReady",
-      "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "ordinal": 2
-    },
-    "0x0046D770": {
-      "name": "LayoutSlotPanelA",
-      "signature": "int __thiscall(unsigned char pData)"
-    },
-    "0x0046D890": {
-      "name": "LayoutSlotPanelB",
-      "signature": "int __thiscall(unsigned char pData)"
-    },
-    "0x0046D9B0": {
-      "name": "LayoutSlotPanelC",
-      "signature": "int __thiscall(unsigned char pData)"
-    },
-    "0x0046DAD0": {
-      "name": "LayoutSlotPanelD",
-      "signature": "int __thiscall(unsigned char pData)"
-    },
-    "0x0046DBF0": {
-      "name": "LayoutSlotPanelE",
-      "signature": "int __thiscall(unsigned char pData)"
-    },
-    "0x0046F390": {
-      "name": "NotifyStateChange",
-      "signature": "int __thiscall CCBRoleState::NotifyStateChange(unsigned __int8 nState)"
-    },
-    "0x004DC760": {
-      "name": "GetCombatDialogPos",
-      "signature": "char __thiscall(int *p_DWORD, int *p_DWORD2, int *p_DWORD3)"
-    },
-    "0x004DCD00": {
-      "name": "HandleItemMenu",
-      "signature": "int __thiscall CCBRoleState::HandleItemMenu(int nState)"
-    },
-    "0x004DD300": {
-      "name": "HandleTargetMenu",
-      "signature": "int __thiscall CCBRoleState::HandleTargetMenu(int nState)"
-    },
-    "0x004DD650": {
-      "name": "StartLineupPhase",
-      "signature": "int __thiscall(int nVal)"
-    },
-    "0x004DE8C0": {
-      "name": "InitSelectionUI",
-      "signature": "int __thiscall(int nVal)"
-    },
-    "0x004DEE80": {
-      "name": "DispatchCombatAction",
-      "signature": "int __thiscall CCBRoleState::DispatchCombatAction(int nVal)"
-    },
-    "0x004DF2F0": {
-      "name": "ExecuteCombatCommand",
-      "signature": "int __thiscall CCBRoleState::ExecuteCombatCommand(int nVal)"
-    },
-    "0x004DF370": {
-      "name": "GetActionPriority",
-      "signature": "int __thiscall(int nVal)"
-    },
-    "0x004DF6D0": {
-      "name": "ResetDialogSlots",
-      "signature": "int __thiscall()"
-    },
-    "0x004E28F0": {
-      "name": "UpdateDebugTreeView",
-      "signature": "LRESULT __thiscall CCBRoleState::UpdateDebugTreeView()"
-    },
-    "0x004E4570": {
-      "name": "ApplyDebugEdits",
-      "signature": "char __thiscall CCBRoleState::ApplyDebugEdits()"
-    },
-    "0x004EC680": {
-      "name": "ClearAndSetGP",
-      "signature": "CCBRoleState * __thiscall(int nVal)"
-    },
-    "0x004EC7D0": {
-      "name": "IterateMagicSlots",
-      "signature": "char __thiscall()"
-    },
-    "0x004EC830": {
-      "name": "DestroyAndReinit",
-      "signature": "char __thiscall()"
-    },
-    "0x004ED0A0": {
-      "name": "ApplyHitEffect",
-      "signature": "char __thiscall(char pData)"
-    },
-    "0x004ED170": {
-      "name": "ShuffleSlots",
-      "signature": "char __thiscall CCBRoleState::ShuffleSlots()"
-    },
-    "0x004ED680": {
-      "name": "SavePartyData",
-      "signature": "char __thiscall CCBRoleState::SavePartyData()"
-    },
-    "0x004ED800": {
-      "name": "UpdateDefenceStats",
-      "signature": "char *__thiscall()"
-    },
-    "0x004EDC60": {
-      "name": "RollInitiative",
-      "signature": "int __thiscall CCBRoleState::RollInitiative()"
-    },
-    "0x004EED60": {
-      "name": "ForceRoleTaskByCond",
-      "signature": "char __thiscall CCBRoleState::ForceRoleTaskByCond(int roleIdx)"
-    },
-    "0x004F2BF0": {
-      "name": "GetRoleGPBak",
-      "signature": "int __thiscall(int nVal, char pData)"
-    },
-    "0x004F6DA0": {
-      "name": "ValidateCommandTarget",
-      "signature": "char __thiscall CCBRoleState::ValidateCommandTarget(int *pCmd)"
-    },
-    "0x004F7480": {
-      "name": "CheckMagicCost",
-      "signature": "char __thiscall(int *p_DWORD)"
-    },
-    "0x004F76C0": {
-      "name": "GetSkillCostLevel",
-      "signature": "int __thiscall CCBRoleState::GetSkillCostLevel(unsigned int dwSlot, int nSkillID)"
-    },
-    "0x004F7820": {
-      "name": "SumGPCost",
-      "signature": "char __thiscall(int nVal)"
-    },
-    "0x004F8BB0": {
-      "name": "InitSlot",
-      "signature": "int __thiscall CCBRoleState::InitSlot(int idx, int nRoleID)"
-    },
-    "0x004F9340": {
-      "name": "GetDialogSlot",
-      "signature": "int __thiscall(int nVal, int nVal2)"
-    },
-    "0x004F9590": {
-      "name": "GetMagicSlotData",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
-    },
-    "0x004F95F0": {
-      "name": "PopulateTargetList",
-      "signature": "int __thiscall CCBRoleState::PopulateTargetList(int nSlot, int nType)"
-    },
-    "0x004F9790": {
-      "name": "UpdateCommandButtons",
-      "signature": "int __thiscall CCBRoleState::UpdateCommandButtons(int nSlot)"
-    },
-    "0x004FA210": {
-      "name": "GetSlotState",
-      "signature": "int __thiscall(int nVal, int nVal2)"
-    },
-    "0x004FA280": {
-      "name": "CalcSpeedByLevel",
-      "signature": "int __thiscall CCBRoleState::CalcSpeedByLevel(int nRole, int nLevel)"
-    },
-    "0x004FA330": {
-      "name": "GetActionTypeBySlot",
-      "signature": "int __thiscall(int nVal, int nVal2)"
-    },
-    "0x004FA3A0": {
-      "name": "CalcDefenseByLevel",
-      "signature": "int __thiscall CCBRoleState::CalcDefenseByLevel(int nRole, int nLevel)"
-    },
-    "0x004FA440": {
-      "name": "CalcDamage",
-      "signature": "int __thiscall(int nVal, int nVal2)"
-    },
-    "0x004FA4E0": {
-      "name": "FindSlotByHP",
-      "signature": "int __thiscall(unsigned int nVal, unsigned int dwVal)",
-      "source": " | param a typed: decomp shows two unsigned int stack args (userpurge a2,a3)"
-    },
-    "0x004FA510": {
-      "name": "GetRoleCount",
-      "signature": "int __thiscall(int nVal)"
-    },
-    "0x004FA560": {
-      "name": "GetSlotActionType",
-      "signature": "int __thiscall(int nVal, char *Buffer)"
-    },
-    "0x004FA5F0": {
-      "name": "FindRoleByID",
-      "signature": "int __thiscall(int nVal)"
-    },
-    "0x004FA620": {
-      "name": "CountValidSlots",
-      "signature": "int __thiscall(int nVal, int nVal2, int *p_DWORD, int *pnVal)"
-    },
-    "0x004FA700": {
-      "name": "GetSlotType",
-      "signature": "int __thiscall(int nVal)"
-    },
-    "0x004FA760": {
-      "name": "SwapEffectParams",
-      "signature": "int __thiscall(int nVal)"
-    },
-    "0x004FB6B0": {
-      "name": "RandomizeSpecialSkill",
-      "signature": "int __thiscall CCBRoleState::RandomizeSpecialSkill(int nSkillId)"
-    },
-    "0x005021C0": {
-      "name": "FadeMusicIn",
-      "signature": "int __thiscall CCBRoleState::FadeMusicIn(int nVal)"
-    },
-    "0x00502300": {
-      "name": "FadeMusicOut",
-      "signature": "int __thiscall CCBRoleState::FadeMusicOut(int nVal)"
-    },
-    "0x00502430": {
-      "name": "GetCombatDialogEntry",
-      "signature": "int __thiscall(int nVal)"
-    },
-    "0x005025C0": {
-      "name": "FormatSkillResultText",
-      "signature": "int __thiscall CCBRoleState::FormatSkillResultText(int nVal)"
-    },
-    "0x005027E0": {
-      "name": "FormatAttackResultText",
-      "signature": "int __thiscall CCBRoleState::FormatAttackResultText(int nVal)"
-    },
-    "0x00502950": {
-      "name": "FormatItemResultText",
-      "signature": "int __thiscall CCBRoleState::FormatItemResultText(int nVal)"
-    },
-    "0x00502CC0": {
-      "name": "FormatMagicResultText",
-      "signature": "int __thiscall CCBRoleState::FormatMagicResultText(int nVal)"
-    },
-    "0x004EC6B0": {
-      "name": "ClearRoleMemory",
-      "signature": "int __thiscall()",
-      "class": "CCBRoleState"
-    },
-    "0x004E5110": {
-      "name": "GetTargetCommand",
-      "signature": "int __cdecl CCBRoleState::GetTargetCommand()",
-      "static": true
-    },
-    "0x004F3BC0": {
-      "name": "GetRoleHP",
-      "signature": "int __thiscall(int roleIdx)"
-    },
-    "0x004EDF10": {
-      "name": "UpdateRolePositions",
-      "signature": "char __thiscall()",
-      "source": "ida_xref:sub_fix_from_decomp_this_type"
-    },
-    "0x0043DE40": {
-      "name": "CCBRoleState::Destroy",
-      "signature": "int __thiscall Destroy(int nMode)"
-    }
+  "360": {
+   "name": "_embed_UIFrameWnd_168",
+   "type": "UIFrameWnd",
+   "source": "A+:decomp_ctor_at_this+360,span=152=binary_size"
   },
-  "base_class": "SceneObj",
-  "base_size": 1784,
-  "bases": [
-    {
-      "name": "SceneObj",
-      "offset": 0
-    }
-  ]
+  "21960": {
+   "name": "m_bScrollEnableA",
+   "type": "unsigned char",
+   "source": "ida_decomp:_method_44a2e0 if(this) proceed, 4 refs"
+  },
+  "21961": {
+   "name": "m_bScrollEnableB",
+   "type": "unsigned char",
+   "source": "ida_decomp:_method_44a2e0 if(this) proceed, 4 refs"
+  },
+  "21964": {
+   "name": "m_nScrollOffset",
+   "type": "int",
+   "source": "ida_decomp:_method_44a2e0 += 10, 10 refs"
+  },
+  "21968": {
+   "name": "m_nScrollTarget",
+   "type": "int",
+   "source": "ida_decomp:_method_44a2e0 compared/assigned, 4 refs"
+  },
+  "18700": {
+   "name": "m_fLerpCurX",
+   "type": "float",
+   "source": "ida_decomp:_method_449fe0 lerp +=/-= speed*dt, 7 refs"
+  },
+  "18704": {
+   "name": "m_fLerpCurY",
+   "type": "float",
+   "source": "ida_decomp:_method_449fe0 lerp +=/-= speed*dt, 7 refs"
+  },
+  "18708": {
+   "name": "m_nLerpTargetX",
+   "type": "int",
+   "source": "ida_decomp:_method_449fe0 compared with cur to lerp, 3 refs"
+  },
+  "18712": {
+   "name": "m_nLerpTargetY",
+   "type": "int",
+   "source": "ida_decomp:_method_449fe0 compared with cur to lerp, 3 refs"
+  },
+  "18716": {
+   "name": "m_nLerpDestX",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "18720": {
+   "name": "m_nLerpDestY",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "18732": {
+   "name": "m_nLerpDir",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "18745": {
+   "name": "m_bLerpDone",
+   "type": "unsigned char",
+   "source": "ida_decomp:_method_449fe0 set 0 start, 1 finish, 3 refs"
+  },
+  "18748": {
+   "name": "m_fLerpSpeed",
+   "type": "float",
+   "source": "ida_decomp:_method_449fe0 a2*this*dir = delta, 4 refs"
+  },
+  "7676": {
+   "name": "m_byteFlags",
+   "type": "unsigned char",
+   "source": "A:byte_array_+1821_stride"
+  },
+  "10352": {
+   "name": "m_bFlag2870",
+   "type": "unsigned char",
+   "source": "A:LOBYTE_access"
+  },
+  "10364": {
+   "name": "m_BufferData",
+   "type": "char[0x2654]",
+   "source": "A:memset_0x2654_bytes"
+  },
+  "18616": {
+   "name": "m_SlotUIWnd",
+   "type": "UIWnd",
+   "source": "A:UIWnd_GetRect_call_this+48B8"
+  },
+  "18780": {
+   "name": "m_fSpringPosX",
+   "type": "float",
+   "source": "decomp:spring_animation_position_X(+=dt*speed*dir)"
+  },
+  "18784": {
+   "name": "m_fSpringPosY",
+   "type": "float",
+   "source": "decomp:spring_animation_position_Y"
+  },
+  "18788": {
+   "name": "m_fSpringTargX",
+   "type": "float",
+   "source": "decomp:copied_from_PosX_at_frame_end"
+  },
+  "18792": {
+   "name": "m_fSpringTargY",
+   "type": "float",
+   "source": "decomp:spring_target_Y"
+  },
+  "18796": {
+   "name": "m_fSpringPrevX",
+   "type": "float",
+   "source": "decomp:spring_previous_X"
+  },
+  "18800": {
+   "name": "m_fSpringPrevY",
+   "type": "float",
+   "source": "decomp:spring_previous_Y"
+  },
+  "18812": {
+   "name": "m_nSpringDir",
+   "type": "int",
+   "source": "decomp:spring_direction(multiplied_by_speed)"
+  },
+  "18828": {
+   "name": "m_fSpringSpeed",
+   "type": "float",
+   "source": "decomp:spring_speed(multiplied_by_deltaTime)"
+  },
+  "19056": {
+   "name": "m_SlotWidgets",
+   "type": "UIWnd",
+   "source": "decomp:_method_46d770_UIWnd_array_stride38(=152bytes=UIStatic)[5]"
+  },
+  "19664": {
+   "name": "m_SlotRects",
+   "type": "int",
+   "source": "decomp:_method_46d770_RECT_array_for_5_slots(4*idx+38/39/40)"
+  },
+  "19828": {
+   "name": "m_SlotRightEdge",
+   "type": "int",
+   "source": "decomp:_method_46d770_right_edge_array[5]"
+  },
+  "19896": {
+   "name": "m_nSlotStartY",
+   "type": "int",
+   "source": "decomp:_method_46d770_Y_start_position"
+  },
+  "19900": {
+   "name": "m_nSlotSpacing",
+   "type": "int",
+   "source": "decomp:_method_46d770_X_spacing_between_slots"
+  },
+  "19904": {
+   "name": "m_nSlotHeight",
+   "type": "int",
+   "source": "decomp:_method_46d770_height_offset_per_slot"
+  },
+  "19908": {
+   "name": "m_nSlotWidth",
+   "type": "int",
+   "source": "decomp:_method_46d770_width_per_slot"
+  },
+  "19912": {
+   "name": "m_bySlotVisible",
+   "type": "unsigned char",
+   "source": "decomp:_method_46d770_BYTE_array_5slots_visibility"
+  },
+  "20064": {
+   "name": "m_pScene",
+   "type": "UIScene",
+   "source": "ctor:UIScene::_UIScene"
+  },
+  "20408": {
+   "name": "m_Static_20408",
+   "type": "UIStatic",
+   "source": "ctor:UIStatic::_UIStatic"
+  },
+  "20560": {
+   "name": "m_bVideoPlayed",
+   "type": "unsigned char",
+   "source": "A:decomp LOBYTE(this+5050) checked before CScreenMode::PlayVideo"
+  },
+  "20564": {
+   "name": "m_nVideoState",
+   "type": "int"
+  },
+  "20576": {
+   "name": "m_nCurrentTaskID",
+   "type": "int",
+   "source": "decomp:CCBStage::EndTask_result+FindThreadByID_param"
+  },
+  "20580": {
+   "name": "m_nEffCurA",
+   "type": "int",
+   "source": "decomp:effect_param_pair_A_current(swapped_with_507C)"
+  },
+  "20584": {
+   "name": "m_nEffCurB",
+   "type": "int",
+   "source": "decomp:effect_param_pair_B(swapped_with_5080)"
+  },
+  "20592": {
+   "name": "m_nEffTarget1",
+   "type": "int",
+   "source": "decomp:loaded_from_g_EffMgr"
+  },
+  "20596": {
+   "name": "m_nEffTarget2",
+   "type": "int",
+   "source": "decomp:loaded_from_g_EffMgr"
+  },
+  "20600": {
+   "name": "m_nEffTransFrames",
+   "type": "int",
+   "source": "decomp:set_6(transition_frame_count)"
+  },
+  "20604": {
+   "name": "m_nEffSwapA",
+   "type": "int",
+   "source": "decomp:effect_swap_target_A(swapped_with_5064)"
+  },
+  "20608": {
+   "name": "m_nEffSwapB",
+   "type": "int",
+   "source": "decomp:effect_swap_target_B(swapped_with_5068)"
+  },
+  "20616": {
+   "name": "m_nEffCurC",
+   "type": "int",
+   "source": "decomp:effect_param_C(swapped_with_508C)"
+  },
+  "20620": {
+   "name": "m_nEffSwapC",
+   "type": "int",
+   "source": "decomp:swap_target_C"
+  },
+  "20624": {
+   "name": "m_nEffCurD",
+   "type": "int",
+   "source": "decomp:effect_param_D(swapped_with_5094)"
+  },
+  "20628": {
+   "name": "m_nEffTransFrames2",
+   "type": "int",
+   "source": "decomp:set_6(transition_frames_2nd_group)"
+  },
+  "20632": {
+   "name": "m_nEffCurE",
+   "type": "int",
+   "source": "decomp:effect_param_E(swapped_with_509C)"
+  },
+  "20636": {
+   "name": "m_nEffSwapE",
+   "type": "int",
+   "source": "decomp:swap_target_E"
+  },
+  "20640": {
+   "name": "m_fTimeFund",
+   "type": "float",
+   "source": "A:decomp this->_todo_50A0 = v6->m_fTimeFund"
+  },
+  "22100": {
+   "name": "m_nFadeFlags",
+   "type": "int",
+   "source": "decomp:_method_44a2e0_LOBYTE+BYTE1_fade_direction_bools"
+  },
+  "22104": {
+   "name": "m_nFadeAlpha",
+   "type": "int",
+   "source": "decomp:_method_44a2e0_+=10/-=10_range_0-255_gbColorQuad_alpha"
+  },
+  "22108": {
+   "name": "m_nFadeTimer",
+   "type": "int",
+   "source": "decomp:_method_44a2e0_countdown_<=0_check"
+  },
+  "22220": {
+   "name": "m_BattleFlags",
+   "type": "int",
+   "source": "decomp:24x_BYTE+20_check(battle_state_flags)"
+  },
+  "18816": {
+   "name": "m_fSpringAccelX",
+   "type": "float",
+   "source": "decomp:_method_44a3d0_set_3.0f(0x40400000_IEEE754)"
+  },
+  "18820": {
+   "name": "m_fSpringAccelY",
+   "type": "float",
+   "source": "decomp:_method_44a3d0_set_3.0f(0x40400000_IEEE754)"
+  },
+  "18824": {
+   "name": "m_bSpringDoneX",
+   "type": "unsigned char",
+   "source": "decomp:_method_44a3d0_BYTE_set_0"
+  },
+  "18825": {
+   "name": "m_bSpringDoneY",
+   "type": "unsigned char",
+   "source": "decomp:_method_44a3d0_BYTE_set_1"
+  },
+  "512": {
+   "name": "m_fLastDialogTime",
+   "type": "float",
+   "offset": 512
+  },
+  "516": {
+   "name": "m_bCombatDialog",
+   "type": "unsigned char",
+   "offset": 516
+  },
+  "520": {
+   "name": "m_pCBSystem",
+   "type": "CCBSystem *",
+   "offset": 520
+  },
+  "524": {
+   "name": "m_pStage",
+   "type": "CCBStage *",
+   "offset": 524
+  },
+  "528": {
+   "name": "m_pUI",
+   "type": "CCBUI *",
+   "offset": 528
+  },
+  "532": {
+   "name": "m_pUtil",
+   "type": "CUtil *",
+   "offset": 532
+  },
+  "536": {
+   "name": "m_bWeSneakAttackEnemy",
+   "type": "unsigned char",
+   "offset": 536
+  },
+  "537": {
+   "name": "m_bEnemySneakAttackUs",
+   "type": "unsigned char",
+   "offset": 537
+  },
+  "540": {
+   "name": "m_nMaxRound",
+   "type": "int",
+   "offset": 540
+  },
+  "544": {
+   "name": "m_nBossRound",
+   "type": "int",
+   "offset": 544
+  },
+  "548": {
+   "name": "m_bMustFail",
+   "type": "unsigned char",
+   "offset": 548
+  },
+  "549": {
+   "name": "m_bFleeAlwaysSuccess",
+   "type": "unsigned char",
+   "offset": 549
+  },
+  "550": {
+   "name": "m_bCreatedNewRole",
+   "type": "unsigned char",
+   "offset": 550
+  },
+  "552": {
+   "name": "m_Role",
+   "type": "tagRoleState[11]",
+   "offset": 552
+  },
+  "11992": {
+   "name": "m_RoleXor",
+   "type": "tagRoleState[11]",
+   "offset": 11992
+  },
+  "4": {
+   "name": "m_nState_004",
+   "type": "int",
+   "source": "ida_gap_13refs"
+  },
+  "8": {
+   "name": "m_nState_008",
+   "type": "int",
+   "source": "ida_gap_3refs"
+  },
+  "12": {
+   "name": "m_nState_00C",
+   "type": "int",
+   "source": "ida_gap_6refs"
+  },
+  "16": {
+   "name": "m_nState_010",
+   "type": "int",
+   "source": "ida_gap_3refs"
+  },
+  "20": {
+   "name": "m_nState_014",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "24": {
+   "name": "m_nState_018",
+   "type": "int",
+   "source": "ida_gap_11refs"
+  },
+  "32": {
+   "name": "m_nState_020",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "48": {
+   "name": "m_nState_030",
+   "type": "gbRefObject *",
+   "source": "ida_gap_2refs; corrected from int to gbRefObject*"
+  },
+  "64": {
+   "name": "m_nState_040",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "68": {
+   "name": "m_nState_044",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "76": {
+   "name": "m_nState_04C",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "96": {
+   "name": "m_nState_060",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "100": {
+   "name": "m_nState_064",
+   "type": "int",
+   "source": "ida_gap_10refs"
+  },
+  "132": {
+   "name": "m_nState_084",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "136": {
+   "name": "m_nState_088",
+   "type": "int",
+   "source": "ida_gap_6refs"
+  },
+  "140": {
+   "name": "m_nState_08C",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "144": {
+   "name": "m_nState_090",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "148": {
+   "name": "m_nState_094",
+   "type": "int",
+   "source": "ida_gap_10refs"
+  },
+  "152": {
+   "name": "m_nState_098",
+   "type": "int",
+   "source": "ida_gap_5refs"
+  },
+  "156": {
+   "name": "m_nState_09C",
+   "type": "int",
+   "source": "ida_gap_16refs"
+  },
+  "160": {
+   "name": "m_nState_0A0",
+   "type": "int",
+   "source": "ida_gap_10refs"
+  },
+  "164": {
+   "name": "m_nState_0A4",
+   "type": "int",
+   "source": "ida_gap_11refs"
+  },
+  "168": {
+   "name": "m_nState_0A8",
+   "type": "int",
+   "source": "ida_gap_3refs"
+  },
+  "176": {
+   "name": "m_nState_0B0",
+   "type": "int",
+   "source": "ida_gap_2refs"
+  },
+  "188": {
+   "name": "m_nState_0BC",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "200": {
+   "name": "m_nState_0C8",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "204": {
+   "name": "m_nState_0CC",
+   "type": "int",
+   "source": "ida_gap_2refs"
+  },
+  "208": {
+   "name": "m_nState_0D0",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "212": {
+   "name": "m_nState_0D4",
+   "type": "int",
+   "source": "ida_gap_2refs"
+  },
+  "216": {
+   "name": "m_nState_0D8",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "220": {
+   "name": "m_nState_0DC",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "224": {
+   "name": "m_nState_0E0",
+   "type": "int",
+   "source": "ida_gap_2refs"
+  },
+  "228": {
+   "name": "m_nState_0E4",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "232": {
+   "name": "m_nState_0E8",
+   "type": "int",
+   "source": "ida_gap_3refs"
+  },
+  "236": {
+   "name": "m_nState_0EC",
+   "type": "int",
+   "source": "ida_gap_2refs"
+  },
+  "240": {
+   "name": "m_nState_0F0",
+   "type": "int",
+   "source": "ida_gap_2refs"
+  },
+  "248": {
+   "name": "m_nState_0F8",
+   "type": "int",
+   "source": "ida_gap_2refs"
+  },
+  "260": {
+   "name": "m_nState_104",
+   "type": "int",
+   "source": "ida_gap_2refs"
+  },
+  "268": {
+   "name": "m_nState_10C",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "280": {
+   "name": "m_nState_118",
+   "type": "int",
+   "source": "ida_gap_9refs"
+  },
+  "288": {
+   "name": "m_nState_120",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "292": {
+   "name": "m_nState_124",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "296": {
+   "name": "m_nState_128",
+   "type": "int",
+   "source": "ida_gap_2refs"
+  },
+  "300": {
+   "name": "m_nState_12C",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "304": {
+   "name": "m_nState_130",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "308": {
+   "name": "m_nState_134",
+   "type": "int",
+   "source": "ida_gap_2refs"
+  },
+  "316": {
+   "name": "m_nState_13C",
+   "type": "int",
+   "source": "ida_gap_2refs"
+  },
+  "324": {
+   "name": "m_nState_144",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "340": {
+   "name": "m_nState_154",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "344": {
+   "name": "m_nState_158",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  },
+  "348": {
+   "name": "m_nState_15C",
+   "type": "int",
+   "source": "ida_gap_2refs"
+  },
+  "352": {
+   "name": "m_nState_160",
+   "type": "int",
+   "source": "ida_gap_2refs"
+  },
+  "356": {
+   "name": "m_nState_164",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  }
+ },
+ "methods": {
+  "0x004ED010": {
+   "name": "IsRoleAlive",
+   "signature": "char __thiscall(int roleIdx)"
+  },
+  "0x004ED040": {
+   "name": "IsActive",
+   "signature": "char __thiscall(int index)"
+  },
+  "0x004ED060": {
+   "name": "GetRoleType",
+   "signature": "char __thiscall(int roleIdx)"
+  },
+  "0x004ED100": {
+   "name": "GetForce",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004EDD60": {
+   "name": "CCBRoleState",
+   "signature": "void __thiscall()"
+  },
+  "0x004EE430": {
+   "name": "Reset",
+   "signature": "char *__thiscall(int nVal, char *pszBuf)"
+  },
+  "0x004EE540": {
+   "name": "Create",
+   "signature": "bool __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x004EE760": {
+   "name": "Destroy",
+   "signature": "bool __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x004EE7C0": {
+   "name": "Init",
+   "signature": "bool __thiscall(int nVal, char pData)",
+   "source": "pdb_ret"
+  },
+  "0x004EE870": {
+   "name": "InitUI",
+   "signature": "tagRoleState *__thiscall(int nVal)"
+  },
+  "0x004EE890": {
+   "name": "Update",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004EE990": {
+   "name": "VarianceRoundCounter",
+   "signature": "bool __thiscall(int *nRoleIndex)"
+  },
+  "0x004EEA70": {
+   "name": "CheckVarianceRound",
+   "signature": "void __thiscall(int nRoleIndex, int nVal, int *pnVal)",
+   "source": "pdb_ret"
+  },
+  "0x004EECB0": {
+   "name": "CancelVariance",
+   "signature": "void __thiscall(int *nRoleIndex, unsigned int dwVal)"
+  },
+  "0x004EEE60": {
+   "name": "IsAlive",
+   "signature": "char __thiscall(int nIndex, int nVal)"
+  },
+  "0x004EF4A0": {
+   "name": "IsBoss",
+   "signature": "void __thiscall(int *arg0, unsigned int nRoleIndex)"
+  },
+  "0x004EF6A0": {
+   "name": "IsAllWeDead",
+   "signature": "bool __thiscall(int bCheckHP)",
+   "source": "pdb_ret"
+  },
+  "0x004EF6C0": {
+   "name": "IsAllEnemyDead",
+   "signature": "int *__thiscall(int bCheckHP, int *pnVal, int *pnVal2)"
+  },
+  "0x004EF710": {
+   "name": "CanAction",
+   "signature": "bool __thiscall(int nIndex, int nVal, int nVal2)",
+   "source": "pdb_ret"
+  },
+  "0x004EF7E0": {
+   "name": "SetCanAction",
+   "signature": "void __thiscall(unsigned int dmg, int roleIdx, int nVal)",
+   "source": "pdb_ret"
+  },
+  "0x004EF8B0": {
+   "name": "RandSetEnemyPos",
+   "signature": "void __thiscall(const void *arg0)"
+  },
+  "0x004EF980": {
+   "name": "CalcHealAmount",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004EFAF0": {
+   "name": "WriteBackRoleData",
+   "signature": "void __thiscall(int nVal, int *p_DWORD, int *pnVal)",
+   "source": "pdb_ret"
+  },
+  "0x004EFD70": {
+   "name": "WriteBackConfig",
+   "signature": "bool __thiscall(int roleIdx, int nVal)"
+  },
+  "0x004EFE90": {
+   "name": "ReviveAllFriendAtEnd",
+   "signature": "bool __thiscall(int roleIdx, int nVal)"
+  },
+  "0x004EFFC0": {
+   "name": "IsRoleReady",
+   "signature": "bool __thiscall(int roleIdx)"
+  },
+  "0x004F0020": {
+   "name": "SetEnemyBeImbibeNimbus",
+   "signature": "void __thiscall(char pData, char pData2)",
+   "source": "pdb_ret"
+  },
+  "0x004F0210": {
+   "name": "CalSneakAttack",
+   "signature": "bool __thiscall(int nVal, unsigned int dwVal)"
+  },
+  "0x004F0360": {
+   "name": "InitRoleFiveMagic",
+   "signature": "unsigned int __thiscall(int nVal)"
+  },
+  "0x004F05A0": {
+   "name": "IsAllyTargetCmd",
+   "signature": "char __thiscall CCBRoleState::IsAllyTargetCmd(int *p_DWORD)"
+  },
+  "0x004F0640": {
+   "name": "InitRoleSpecEquipAttrib",
+   "signature": "void __thiscall(int nRoleIndex)"
+  },
+  "0x004F0700": {
+   "name": "UnloadWeaponModel",
+   "signature": "void __thiscall(int nVal)",
+   "source": "pdb_ret"
+  },
+  "0x004F0750": {
+   "name": "SetVisible",
+   "signature": "bool(int nPanelIndex, bool bVisible)",
+   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+  },
+  "0x004F07D0": {
+   "name": "GetRole",
+   "signature": "char __thiscall(int nIndex, int nVal)"
+  },
+  "0x004F0830": {
+   "name": "GetRoleNum",
+   "signature": "unsigned char __thiscall(int *pnVal)"
+  },
+  "0x004F1070": {
+   "name": "GetAliveRoleNumInForce",
+   "signature": "char __thiscall(struct tagCmdData *force)"
+  },
+  "0x004F1420": {
+   "name": "GetDeadRoleNumInForce",
+   "signature": "char __thiscall(int *force)"
+  },
+  "0x004F17C0": {
+   "name": "GetFirstAliveRoleInForce",
+   "signature": "char __thiscall(int roleIdx, int arg4)"
+  },
+  "0x004F1A30": {
+   "name": "GetCastFightSkillSuccess",
+   "signature": "bool __thiscall(int pCmd)",
+   "source": "pdb_ret"
+  },
+  "0x004F1B20": {
+   "name": "SetCoAttack",
+   "signature": "void __thiscall(unsigned int dwCoAttackID)",
+   "source": "pdb_ret"
+  },
+  "0x004F1CC0": {
+   "name": "CanBeImbibeNimbus",
+   "signature": "bool __thiscall(int dmg, unsigned int nRoleIndex)",
+   "source": "pdb_ret"
+  },
+  "0x004F1FA0": {
+   "name": "CheckRoleValid",
+   "signature": "bool __thiscall(int nRoleIndex, unsigned int roleIdx, int nVal)",
+   "source": "pdb_ret"
+  },
+  "0x004F2310": {
+   "name": "CheckRoleNimbus",
+   "signature": "char __thiscall(int nRoleIndex, unsigned int dwVal)"
+  },
+  "0x004F2350": {
+   "name": "CanBeSelect",
+   "signature": "bool __thiscall(tagCmdData *pCmd, unsigned int nDestRole)",
+   "source": "pdb_ret"
+  },
+  "0x004F2910": {
+   "name": "SetRoleHP",
+   "signature": "int __thiscall(int roleIdx, int value)"
+  },
+  "0x004F2BB0": {
+   "name": "SetRoleField",
+   "signature": "int __thiscall(int roleIdx, int value)"
+  },
+  "0x004F3020": {
+   "name": "CalcAttackPower",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F31C0": {
+   "name": "CalcDefensePower",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F3380": {
+   "name": "GetMaxHP",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F33D0": {
+   "name": "GetMaxMP",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F3420": {
+   "name": "GetTotalRounds",
+   "signature": "int __thiscall()"
+  },
+  "0x004F3430": {
+   "name": "CheckBuff",
+   "signature": "char __thiscall(int roleIdx)"
+  },
+  "0x004F34E0": {
+   "name": "CanUseSkill",
+   "signature": "char __thiscall(int roleIdx)"
+  },
+  "0x004F3570": {
+   "name": "CalcMagicAttack",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F3620": {
+   "name": "CalcMPRegen",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F36D0": {
+   "name": "CalcMagicDefense",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F37A0": {
+   "name": "GetAttackBonus",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F3820": {
+   "name": "GetDefenseBonus",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F38A0": {
+   "name": "GetRoleState",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F3920": {
+   "name": "GetSpeedBonus",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F39A0": {
+   "name": "GetRoleLevel",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F39F0": {
+   "name": "GetRoleExp",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F3A30": {
+   "name": "SetRoleFlag",
+   "signature": "char __thiscall(int roleIdx, char flag)"
+  },
+  "0x004F3A50": {
+   "name": "GetRoleAttr",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F3AD0": {
+   "name": "CalcMPCost",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F3B90": {
+   "name": "GetRoleMP",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F3C00": {
+   "name": "IsForce1",
+   "signature": "int __thiscall(int force)"
+  },
+  "0x004F3C20": {
+   "name": "IsPlayerTeam",
+   "signature": "char __thiscall(int force)"
+  },
+  "0x004F3CC0": {
+   "name": "IsRoleInForce",
+   "signature": "bool __thiscall(int roleIdx)"
+  },
+  "0x004F3D10": {
+   "name": "CanRoleAct",
+   "signature": "char __thiscall(int roleIdx)"
+  },
+  "0x004F3D90": {
+   "name": "GetRoleField",
+   "signature": "char __thiscall(int roleIdx, int fieldOff)"
+  },
+  "0x004F3E20": {
+   "name": "ProcessRound",
+   "signature": "char __thiscall(unsigned int dwVal)"
+  },
+  "0x004F4DA0": {
+   "name": "ProcessAttackResult",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F5070": {
+   "name": "ProcessMagicResult",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F55D0": {
+   "name": "CalcPhysicalDamage",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F57A0": {
+   "name": "CalcMagicDamage",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F5970": {
+   "name": "ProcessSkillEffect",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F5B70": {
+   "name": "ProcessItemEffect",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F7500": {
+   "name": "GetRoleAI",
+   "signature": "char __thiscall(void *pOut)"
+  },
+  "0x004F7880": {
+   "name": "CheckStatus",
+   "signature": "unsigned int __thiscall()"
+  },
+  "0x004F7910": {
+   "name": "ProcessActions",
+   "signature": "void *__thiscall()"
+  },
+  "0x004F8480": {
+   "name": "UpdateEffects",
+   "signature": "int __thiscall()"
+  },
+  "0x004F98B0": {
+   "name": "ApplyDamage",
+   "signature": "int __thiscall(int roleIdx, int dmg)"
+  },
+  "0x004FA540": {
+   "name": "CheckRoleStatus",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004FA6A0": {
+   "name": "CheckDeath",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004FA8B0": {
+   "name": "Revive",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004FA930": {
+   "name": "UpdateRoleMP",
+   "signature": "char __thiscall(char arg0, int nVal)"
+  },
+  "0x004ECB00": {
+   "name": "Update",
+   "signature": "int __thiscall()"
+  },
+  "0x004F3C70": {
+   "name": "GetRoleForce",
+   "signature": "char __thiscall(int roleIdx)"
+  },
+  "0x00456AB0": {
+   "name": "ctor",
+   "signature": "int __thiscall()",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+  },
+  "0x005020D0": {
+   "name": "CalcTurnDelay",
+   "signature": "int __thiscall CCBRoleState::CalcTurnDelay(int nVal)",
+   "_misattrib_evidence": "max_offset=164>class_size=4"
+  },
+  "0x00503AE0": {
+   "name": "GetRoleMPValue",
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+  },
+  "0x004F7FC0": {
+   "name": "ProcessCombatDialog",
+   "signature": "void __thiscall CCBRoleState::ProcessCombatDialog(unsigned int dwVal)"
+  },
+  "0x004F3DC0": {
+   "name": "FindFirstEnemySlot",
+   "signature": "int __thiscall CCBRoleState::FindFirstEnemySlot(int roleIdx)"
+  },
+  "0x00457070": {
+   "name": "ctor",
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+   "ordinal": 6,
+   "source": "+canonical_rename"
+  },
+  "0x00456B80": {
+   "name": "ctor_6B80",
+   "signature": "void __thiscall()"
+  },
+  "0x004F2C30": {
+   "name": "GetRole",
+   "signature": "void *__thiscall(int index)"
+  },
+  "0x004DC720": {
+   "name": "IsAlive",
+   "signature": "BOOL __thiscall()"
+  },
+  "0x004DC7A0": {
+   "name": "InitCombatDialog",
+   "signature": "void __thiscall CCBRoleState::InitCombatDialog()"
+  },
+  "0x004ECB20": {
+   "name": "ProcessCombatAction",
+   "signature": "char __thiscall(int roleIdx)"
+  },
+  "0x004EEF20": {
+   "name": "CalcCombatDamage",
+   "signature": "int __thiscall(const void *pData, unsigned int roleIdx)"
+  },
+  "0x004F2690": {
+   "name": "CheckBoss",
+   "signature": "int __thiscall(int *arg0, int roleIdx)"
+  },
+  "0x00456B60": {
+   "name": "_scalar_dtor",
+   "signature": "void *__thiscall(UIWnd *Block, char pData)",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+   "ordinal": 5
+  },
+  "0x004DCF80": {
+   "name": "HandleMagicMenu",
+   "signature": "int __thiscall CCBRoleState::HandleMagicMenu(int nState)"
+  },
+  "0x004DDC90": {
+   "name": "EndRoundTasks",
+   "signature": "int __thiscall(int B4)"
+  },
+  "0x004DF3D0": {
+   "name": "CheckMP",
+   "signature": "char __thiscall()"
+  },
+  "0x004E1A40": {
+   "name": "CombatDialogProc",
+   "signature": "int __thiscall CCBRoleState::CombatDialogProc(int nVal, HWND hDlg, unsigned int uMsg, int wParam, int lParam)"
+  },
+  "0x004E2C10": {
+   "name": "HandleDlgMessage",
+   "signature": "LRESULT __thiscall()"
+  },
+  "0x004E30E0": {
+   "name": "SyncRoleUIData",
+   "signature": "unsigned char __thiscall()"
+  },
+  "0x004E40B0": {
+   "name": "UpdateDebugDialog",
+   "signature": "LRESULT __thiscall CCBRoleState::UpdateDebugDialog()"
+  },
+  "0x004EC910": {
+   "name": "SetupCombatLayout",
+   "signature": "int __thiscall CCBRoleState::SetupCombatLayout()"
+  },
+  "0x004ED250": {
+   "name": "LoadPartyData",
+   "signature": "int __fastcall CCBRoleState::LoadPartyData(CCBRoleState *this)"
+  },
+  "0x004ED870": {
+   "name": "SyncSkillCent",
+   "signature": "char __thiscall()"
+  },
+  "0x004EE910": {
+   "name": "CheckMP",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004F0A10": {
+   "name": "CalcCombatDamage",
+   "signature": "char __thiscall(int nVal)"
+  },
+  "0x004F2390": {
+   "name": "CheckRoundComplete",
+   "signature": "char __thiscall CCBRoleState::CheckRoundComplete()"
+  },
+  "0x004F2560": {
+   "name": "ValidateSlotIndex",
+   "signature": "char __thiscall(unsigned int arg0, unsigned int dwVal)"
+  },
+  "0x004F2660": {
+   "name": "CheckTargetCombo",
+   "signature": "int __thiscall CCBRoleState::CheckTargetCombo(struct tagCmdData *p, unsigned int roleIdx)"
+  },
+  "0x004F27B0": {
+   "name": "GetV4",
+   "signature": "int __thiscall(int *arg0, unsigned int roleIdx)"
+  },
+  "0x004F27E0": {
+   "name": "CalcComboDirect",
+   "signature": "int __thiscall CCBRoleState::CalcComboDirect(const void *pData, unsigned int roleIdx)"
+  },
+  "0x004F2800": {
+   "name": "ApplyItemEffect",
+   "signature": "int __thiscall CCBRoleState::ApplyItemEffect(int nCmdData, int nParam)"
+  },
+  "0x004F48C0": {
+   "name": "TickDebuffs",
+   "signature": "void __thiscall CCBRoleState::TickDebuffs(int roleIdx)"
+  },
+  "0x004F4B90": {
+   "name": "CalcMagicDamage",
+   "signature": "unsigned int __thiscall CCBRoleState::CalcMagicDamage(int roleIdx, int nMagicID)"
+  },
+  "0x004F4C80": {
+   "name": "CalcSkillDamage",
+   "signature": "unsigned int __thiscall CCBRoleState::CalcSkillDamage(int roleIdx, int nSkillID)"
+  },
+  "0x004F5330": {
+   "name": "AISelectItem",
+   "signature": "int __thiscall CCBRoleState::AISelectItem(int roleIdx, char pData)"
+  },
+  "0x004F5D00": {
+   "name": "AISelectMagic",
+   "signature": "int __thiscall CCBRoleState::AISelectMagic(unsigned int roleIdx, char pData, int nVal)"
+  },
+  "0x004F6000": {
+   "name": "AISelectHealItem",
+   "signature": "int __thiscall CCBRoleState::AISelectHealItem(unsigned int roleIdx, char pData, int nVal)"
+  },
+  "0x004F61D0": {
+   "name": "AISelectTarget",
+   "signature": "int __thiscall CCBRoleState::AISelectTarget(unsigned int roleIdx, char pData, int nVal)"
+  },
+  "0x004F6370": {
+   "name": "AISelectSkill",
+   "signature": "int __thiscall CCBRoleState::AISelectSkill(unsigned int roleIdx, int nVal, char pData)"
+  },
+  "0x004F6690": {
+   "name": "AISelectItemForSkill",
+   "signature": "int __thiscall CCBRoleState::AISelectItemForSkill(unsigned int roleIdx, int nSkillID, char pData)"
+  },
+  "0x004F6860": {
+   "name": "AISelectSkillTarget",
+   "signature": "int __thiscall CCBRoleState::AISelectSkillTarget(unsigned int roleIdx, int nSkillID, char pData)"
+  },
+  "0x004F7200": {
+   "name": "CheckEventCondition",
+   "signature": "char __thiscall CCBRoleState::CheckEventCondition(int pEvent)"
+  },
+  "0x004F8AF0": {
+   "name": "ProcessControlInput",
+   "signature": "void __thiscall()"
+  },
+  "0x004F8FA0": {
+   "name": "LoadRoleModel",
+   "signature": "char __thiscall(int nVal)"
+  },
+  "0x004F8FD0": {
+   "name": "SpawnRandomEnemies",
+   "signature": "char __thiscall CCBRoleState::SpawnRandomEnemies(int nVal, int nVal2)"
+  },
+  "0x004F90F0": {
+   "name": "CheckRoleCanAct",
+   "signature": "char *__thiscall(int roleIdx)"
+  },
+  "0x004F91B0": {
+   "name": "PopulateItemList",
+   "signature": "char *__thiscall CCBRoleState::PopulateItemList(int nSlot)"
+  },
+  "0x004F9390": {
+   "name": "PopulateMagicList",
+   "signature": "unsigned int __thiscall CCBRoleState::PopulateMagicList(int nSlot)"
+  },
+  "0x004FB370": {
+   "name": "CheckMPRequirement",
+   "signature": "int __thiscall CCBRoleState::CheckMPRequirement(int nVal)"
+  },
+  "0x00449F00": {
+   "name": "CalcSpringForce",
+   "signature": "__int64 __thiscall(int nVal, int nVal2)"
+  },
+  "0x00449FE0": {
+   "name": "UpdateSpringAnim",
+   "signature": "int __thiscall CCBRoleState::UpdateSpringAnim(float fDelta)"
+  },
+  "0x0044A2E0": {
+   "name": "UpdateFadeAlpha",
+   "signature": "void __thiscall()"
+  },
+  "0x0044A3D0": {
+   "name": "InitFadeAndSpring",
+   "signature": "int __thiscall()"
+  },
+  "0x00456C20": {
+   "name": "~CCBRoleState",
+   "signature": "void __thiscall CCBRoleState::~CCBRoleState()",
+   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+  },
+  "0x00457020": {
+   "name": "PlayVideoIfReady",
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "ordinal": 2
+  },
+  "0x0046D770": {
+   "name": "LayoutSlotPanelA",
+   "signature": "int __thiscall(unsigned char pData)"
+  },
+  "0x0046D890": {
+   "name": "LayoutSlotPanelB",
+   "signature": "int __thiscall(unsigned char pData)"
+  },
+  "0x0046D9B0": {
+   "name": "LayoutSlotPanelC",
+   "signature": "int __thiscall(unsigned char pData)"
+  },
+  "0x0046DAD0": {
+   "name": "LayoutSlotPanelD",
+   "signature": "int __thiscall(unsigned char pData)"
+  },
+  "0x0046DBF0": {
+   "name": "LayoutSlotPanelE",
+   "signature": "int __thiscall(unsigned char pData)"
+  },
+  "0x0046F390": {
+   "name": "NotifyStateChange",
+   "signature": "int __thiscall CCBRoleState::NotifyStateChange(unsigned __int8 nState)"
+  },
+  "0x004DC760": {
+   "name": "GetCombatDialogPos",
+   "signature": "char __thiscall(int *p_DWORD, int *p_DWORD2, int *p_DWORD3)"
+  },
+  "0x004DCD00": {
+   "name": "HandleItemMenu",
+   "signature": "int __thiscall CCBRoleState::HandleItemMenu(int nState)"
+  },
+  "0x004DD300": {
+   "name": "HandleTargetMenu",
+   "signature": "int __thiscall CCBRoleState::HandleTargetMenu(int nState)"
+  },
+  "0x004DD650": {
+   "name": "StartLineupPhase",
+   "signature": "int __thiscall(int nVal)"
+  },
+  "0x004DE8C0": {
+   "name": "InitSelectionUI",
+   "signature": "int __thiscall(int nVal)"
+  },
+  "0x004DEE80": {
+   "name": "DispatchCombatAction",
+   "signature": "int __thiscall CCBRoleState::DispatchCombatAction(int nVal)"
+  },
+  "0x004DF2F0": {
+   "name": "ExecuteCombatCommand",
+   "signature": "int __thiscall CCBRoleState::ExecuteCombatCommand(int nVal)"
+  },
+  "0x004DF370": {
+   "name": "GetActionPriority",
+   "signature": "int __thiscall(int nVal)"
+  },
+  "0x004DF6D0": {
+   "name": "ResetDialogSlots",
+   "signature": "int __thiscall()"
+  },
+  "0x004E28F0": {
+   "name": "UpdateDebugTreeView",
+   "signature": "LRESULT __thiscall CCBRoleState::UpdateDebugTreeView()"
+  },
+  "0x004E4570": {
+   "name": "ApplyDebugEdits",
+   "signature": "char __thiscall CCBRoleState::ApplyDebugEdits()"
+  },
+  "0x004EC680": {
+   "name": "ClearAndSetGP",
+   "signature": "CCBRoleState * __thiscall(int nVal)"
+  },
+  "0x004EC7D0": {
+   "name": "IterateMagicSlots",
+   "signature": "char __thiscall()"
+  },
+  "0x004EC830": {
+   "name": "DestroyAndReinit",
+   "signature": "char __thiscall()"
+  },
+  "0x004ED0A0": {
+   "name": "ApplyHitEffect",
+   "signature": "char __thiscall(char pData)"
+  },
+  "0x004ED170": {
+   "name": "ShuffleSlots",
+   "signature": "char __thiscall CCBRoleState::ShuffleSlots()"
+  },
+  "0x004ED680": {
+   "name": "SavePartyData",
+   "signature": "char __thiscall CCBRoleState::SavePartyData()"
+  },
+  "0x004ED800": {
+   "name": "UpdateDefenceStats",
+   "signature": "char *__thiscall()"
+  },
+  "0x004EDC60": {
+   "name": "RollInitiative",
+   "signature": "int __thiscall CCBRoleState::RollInitiative()"
+  },
+  "0x004EED60": {
+   "name": "ForceRoleTaskByCond",
+   "signature": "char __thiscall CCBRoleState::ForceRoleTaskByCond(int roleIdx)"
+  },
+  "0x004F2BF0": {
+   "name": "GetRoleGPBak",
+   "signature": "int __thiscall(int nVal, char pData)"
+  },
+  "0x004F6DA0": {
+   "name": "ValidateCommandTarget",
+   "signature": "char __thiscall CCBRoleState::ValidateCommandTarget(int *pCmd)"
+  },
+  "0x004F7480": {
+   "name": "CheckMagicCost",
+   "signature": "char __thiscall(int *p_DWORD)"
+  },
+  "0x004F76C0": {
+   "name": "GetSkillCostLevel",
+   "signature": "int __thiscall CCBRoleState::GetSkillCostLevel(unsigned int dwSlot, int nSkillID)"
+  },
+  "0x004F7820": {
+   "name": "SumGPCost",
+   "signature": "char __thiscall(int nVal)"
+  },
+  "0x004F8BB0": {
+   "name": "InitSlot",
+   "signature": "int __thiscall CCBRoleState::InitSlot(int idx, int nRoleID)"
+  },
+  "0x004F9340": {
+   "name": "GetDialogSlot",
+   "signature": "int __thiscall(int nVal, int nVal2)"
+  },
+  "0x004F9590": {
+   "name": "GetMagicSlotData",
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+  },
+  "0x004F95F0": {
+   "name": "PopulateTargetList",
+   "signature": "int __thiscall CCBRoleState::PopulateTargetList(int nSlot, int nType)"
+  },
+  "0x004F9790": {
+   "name": "UpdateCommandButtons",
+   "signature": "int __thiscall CCBRoleState::UpdateCommandButtons(int nSlot)"
+  },
+  "0x004FA210": {
+   "name": "GetSlotState",
+   "signature": "int __thiscall(int nVal, int nVal2)"
+  },
+  "0x004FA280": {
+   "name": "CalcSpeedByLevel",
+   "signature": "int __thiscall CCBRoleState::CalcSpeedByLevel(int nRole, int nLevel)"
+  },
+  "0x004FA330": {
+   "name": "GetActionTypeBySlot",
+   "signature": "int __thiscall(int nVal, int nVal2)"
+  },
+  "0x004FA3A0": {
+   "name": "CalcDefenseByLevel",
+   "signature": "int __thiscall CCBRoleState::CalcDefenseByLevel(int nRole, int nLevel)"
+  },
+  "0x004FA440": {
+   "name": "CalcDamage",
+   "signature": "int __thiscall(int nVal, int nVal2)"
+  },
+  "0x004FA4E0": {
+   "name": "FindSlotByHP",
+   "signature": "int __thiscall(unsigned int nVal, unsigned int dwVal)",
+   "source": " | param a typed: decomp shows two unsigned int stack args (userpurge a2,a3)"
+  },
+  "0x004FA510": {
+   "name": "GetRoleCount",
+   "signature": "int __thiscall(int nVal)"
+  },
+  "0x004FA560": {
+   "name": "GetSlotActionType",
+   "signature": "int __thiscall(int nVal, char *Buffer)"
+  },
+  "0x004FA5F0": {
+   "name": "FindRoleByID",
+   "signature": "int __thiscall(int nVal)"
+  },
+  "0x004FA620": {
+   "name": "CountValidSlots",
+   "signature": "int __thiscall(int nVal, int nVal2, int *p_DWORD, int *pnVal)"
+  },
+  "0x004FA700": {
+   "name": "GetSlotType",
+   "signature": "int __thiscall(int nVal)"
+  },
+  "0x004FA760": {
+   "name": "SwapEffectParams",
+   "signature": "int __thiscall(int nVal)"
+  },
+  "0x004FB6B0": {
+   "name": "RandomizeSpecialSkill",
+   "signature": "int __thiscall CCBRoleState::RandomizeSpecialSkill(int nSkillId)"
+  },
+  "0x005021C0": {
+   "name": "FadeMusicIn",
+   "signature": "int __thiscall CCBRoleState::FadeMusicIn(int nVal)"
+  },
+  "0x00502300": {
+   "name": "FadeMusicOut",
+   "signature": "int __thiscall CCBRoleState::FadeMusicOut(int nVal)"
+  },
+  "0x00502430": {
+   "name": "GetCombatDialogEntry",
+   "signature": "int __thiscall(int nVal)"
+  },
+  "0x005025C0": {
+   "name": "FormatSkillResultText",
+   "signature": "int __thiscall CCBRoleState::FormatSkillResultText(int nVal)"
+  },
+  "0x005027E0": {
+   "name": "FormatAttackResultText",
+   "signature": "int __thiscall CCBRoleState::FormatAttackResultText(int nVal)"
+  },
+  "0x00502950": {
+   "name": "FormatItemResultText",
+   "signature": "int __thiscall CCBRoleState::FormatItemResultText(int nVal)"
+  },
+  "0x00502CC0": {
+   "name": "FormatMagicResultText",
+   "signature": "int __thiscall CCBRoleState::FormatMagicResultText(int nVal)"
+  },
+  "0x004EC6B0": {
+   "name": "ClearRoleMemory",
+   "signature": "int __thiscall()",
+   "class": "CCBRoleState"
+  },
+  "0x004E5110": {
+   "name": "GetTargetCommand",
+   "signature": "int __cdecl CCBRoleState::GetTargetCommand()",
+   "static": true
+  },
+  "0x004F3BC0": {
+   "name": "GetRoleHP",
+   "signature": "int __thiscall(int roleIdx)"
+  },
+  "0x004EDF10": {
+   "name": "UpdateRolePositions",
+   "signature": "char __thiscall()",
+   "source": "ida_xref:sub_fix_from_decomp_this_type"
+  },
+  "0x0043DE40": {
+   "name": "CCBRoleState::Destroy",
+   "signature": "int __thiscall Destroy(int nMode)"
+  }
+ },
+ "base_class": "SceneObj",
+ "base_size": 1784,
+ "bases": [
+  {
+   "name": "SceneObj",
+   "offset": 0
+  }
+ ]
 }

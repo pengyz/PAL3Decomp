@@ -1296,6 +1296,20 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     for b in base_names:
         if b in SYSTEM_TYPES:
             continue
+        # Template alias bases (from template_bases.json) need their WRAPPER
+        # header — it declares the _X_cb typedef + the specialization; the
+        # bare primary template header does not define the alias identifier.
+        if b in template_map:
+            _alias_inc = None
+            for _d in ('', 'Misc', 'Combat', 'UI', 'Effect', 'Scene', 'Role',
+                       'GameBase', 'Render', 'Data', 'MiniGame', 'Script'):
+                if (OUTPUT_DIR / _d / ('%s.h' % b)).exists():
+                    _alias_inc = '#include "%s%s%s.h"' % (
+                        _d + '/' if _d else '', _d, b) if False else (
+                        '#include "%s/%s.h"' % (_d, b) if _d else '#include "%s.h"' % b)
+                    break
+            if _alias_inc and _alias_inc not in lines:
+                lines.insert(0, _alias_inc)
         if '<' in b:
             base_inc = b.split('<')[0]
             if '$' in base_inc or ':' in base_inc:
@@ -1346,6 +1360,19 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     def _sanitize_template_base(name, _cls):
         if '<' not in name:
             return name
+        # Reverse-lookup first: an exact template_bases.json form has a
+        # concrete typedef alias whose wrapper header declares it via a
+        # pre-declared callback typedef (_X_cb). Using the alias keeps the
+        # base a real instantiation (decomp qualified names resolve) instead
+        # of the void* form (which is a DIFFERENT type -> C2039/C2653 on
+        # this->Alias::member access).
+        for _k, _v in template_map.items():
+            if _v == name and any(
+                    (OUTPUT_DIR / d / ('%s.h' % _k)).exists()
+                    for d in ('', 'Misc', 'Combat', 'UI', 'Effect', 'Scene',
+                              'Role', 'GameBase', 'Render', 'Data',
+                              'MiniGame', 'Script')):
+                return _k
         p = (r'[\w\s]+\s*\(\s*__thiscall\s+' + re.escape(_cls)
              + r'\s*::\s*\*\s*\)\s*\([\w\s,]*\)')
         return re.sub(p, 'void*', name)
