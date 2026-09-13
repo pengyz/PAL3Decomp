@@ -5328,3 +5328,9 @@ Confidence: 80（名字层面可逆；若未来获得更强命名证据可整体
 - 动作：functions.json + structs 层（RenderTarget.methods → UISceneFrm.methods），
   签名补为 void __thiscall(UISceneFrm *this, float*, float*, float*)。
 - 影响：UISceneFrm.cpp 20 处标记清零（变成本类合法限定调用）；Confidence: 90
+
+## 2026-09-14: UILB 家族注解地址判废（待重推导）
+- 0x43DC90/0x43DCB0 被标为 UILBItem/UILBColumn dtor，实际被 .data 0x580238/0x58023C
+  函数对表引用（工厂注册表形态）；0x43DCA0（jmp 终点）是 4 字节拷贝访问器，非 dtor 体。
+- UILBColumn 真表 0x56AD20、真 deleting dtor=0x43DCF0（形态验证：test [esp+8],1）。
+- 证据包：data/status/_uilb_family_verdict.json。重推导需 MCP 会话逐槽定名。

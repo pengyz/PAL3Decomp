@@ -1,0 +1,12 @@
+{
+ "question": "UILB 家族（UILBItem/UILBColumn）注解地址可信度",
+ "verdict": "不可信——需 IDB 级重推导",
+ "evidence": [
+  "0x43DC90(注解~UILBItem)是 5 字节 jmp 0x43DCA0；0x43DCA0 实为 4 字节拷贝访问器(mov eax,[0x56AD1C float 12.0]; mov [0xD90064],eax; ret)——dtor 链终点不可能是访问器",
+  "0x43DC90/0x43DCB0 被 .data 0x580238/0x58023C 引用（函数指针对表，疑似类工厂/文件处理器注册表），不在任何 vtable",
+  "UILBColumn 真表 @0x56AD20（7槽: 445E70/43DDF0/445C60/43DE40/445B90/43DCF0/445D10）；0x43DCF0 是真 deleting dtor（test [esp+8],1 + 条件 call delete 形态）",
+  "UIListBox 表 @0x56AD40 与导出一致",
+  "结论：注解把工厂表里的函数对错标为 UILB dtor；家族方法地址需按表槽+形态重推导"
+ ],
+ "action": "MCP 会话中按 0x56AD20/0x56AD40 表槽逐个反汇编定名，替换 functions.json/structs 里的 UILB* 方法地址"
+}
