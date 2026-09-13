@@ -117,11 +117,15 @@ class RegressionDetector:
         with open(baseline_file, 'w', encoding='utf-8') as f:
             json.dump(baseline.to_dict(), f, indent=2, ensure_ascii=False)
         
-        # 更新latest符号链接
+        # Windows 无符号链接权限：直接复制为 latest.json（普通副本即可供 --check 使用）
         latest_link = self.baselines_dir / "latest.json"
-        if latest_link.exists():
+        if latest_link.exists() or latest_link.is_symlink():
             latest_link.unlink()
-        latest_link.symlink_to(baseline_file.name)
+        try:
+            latest_link.symlink_to(baseline_file.name)
+        except OSError:
+            import shutil as _shutil
+            _shutil.copyfile(str(baseline_file), str(latest_link))
         
         print(f"✅ 基线已保存: {baseline_file}")
         print(f"   总文件数: {len(results)}")

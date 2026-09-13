@@ -15,6 +15,7 @@
   codegen headers     只生成 .h
   codegen cpp         只生成 .cpp
   compile             CMake 配置 + ninja 编译 (-k 0 全量)
+  probe [s1|s2|all]   S1/S2 probe 编译普查 + 自动回归对账（vs latest 基线）
   match               S4 字节匹配裁判（假设旗标组 + L1 棘轮检查）
   iterate [opts]      自动迭代引擎（annotation 修正直到收敛）
   tool --list         列出所有可用工具脚本
@@ -489,6 +490,34 @@ def cmd_match():
             pass
 
 
+def cmd_probe(args):
+    """S1/S2 probe-compile census + 自动回归对账.
+
+    Runs pipeline/probe_compile.py, then diffs the census against the
+    `latest` baseline (data/status/baselines/) — pass→fail flips are
+    regressions and listed with their new errors — and refreshes the
+    baseline afterwards so the next loop has a fresh reference.
+    """
+    script = os.path.join(_PIPELINE_DIR, 'probe_compile.py')
+    rc = subprocess.run([sys.executable, script] + args).returncode
+    if rc != 0:
+        sys.exit(rc)
+
+    tools_dir = os.path.join(_PROJECT_DIR, 'tools')
+    det_script = os.path.join(tools_dir, 'regression_detector.py')
+
+    # 1. 对账：当前 census vs 上次基线（有基线才比）
+    baselines = Path(_PROJECT_DIR) / 'data' / 'status' / 'baselines'
+    has_baseline = (baselines / 'latest.json').exists()
+    if has_baseline:
+        print("\n[Regression] diff vs latest baseline:")
+        subprocess.run([sys.executable, det_script, '--check', '--format', 'text'])
+
+    # 2. 刷新基线，供下一轮对账
+    print("\n[Baseline] refreshing latest baseline...")
+    subprocess.run([sys.executable, det_script, '--save-baseline'])
+
+
 def cmd_compile():
     """CMake configure (if needed) + ninja build with -k 0."""
     build_dir = Path(_PROJECT_DIR) / 'build'
@@ -567,6 +596,8 @@ def main():
         cmd_codegen(args[1:])
     elif command == 'match':
         cmd_match()
+    elif command == 'probe':
+        cmd_probe(args[1:])
     elif command == 'snapshot':
         snap_script = os.path.join(_PIPELINE_DIR, 'snapshots', 'snapshot.py')
         sub = args[1] if len(args) > 1 else 'list'

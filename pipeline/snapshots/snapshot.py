@@ -1,5 +1,10 @@
 """Codegen snapshot system — capture state before/after codegen for regression tracking.
 
+Captures the decomp export summary plus the latest S1/S2 probe census
+fingerprint (data/status/probe_census.json, written by pipeline/probe_compile.py).
+It does NOT recompile — run `python pipeline/cli.py probe` first if the census
+may be stale (capture warns when it is).
+
 Usage:
     python pipeline/snapshots/snapshot.py capture   # save current state
     python pipeline/snapshots/snapshot.py compare   # diff with previous
@@ -9,83 +14,77 @@ import json
 import os
 import shutil
 import subprocess
-import hashlib
 import time
+from datetime import datetime
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).parent.parent.parent
 SNAPSHOTS_DIR = PROJECT_ROOT / "pipeline" / "snapshots" / "data"
 MAX_SNAPSHOTS = 20
 
-SRC_DIR = PROJECT_ROOT / "src" / "pal3"
-DECOMP_DIR = PROJECT_ROOT / "asm" / "pal3" / "decomp"
-BUILD_DIR = PROJECT_ROOT / "build"
+DECOMP_DIRS = [PROJECT_ROOT / "asm" / "pal3" / "decomp",
+               PROJECT_ROOT / "data" / "decomp"]
+CENSUS_FILE = PROJECT_ROOT / "data" / "status" / "probe_census.json"
+CENSUS_MAX_AGE_MIN = 120
 
 
-def _hash_dir(d):
-    """Hash all files in directory for quick diff detection."""
-    h = hashlib.md5()
-    if not d.exists():
-        return "empty"
-    for f in sorted(d.rglob("*")):
-        if f.is_file() and f.suffix in ('.cpp', '.h', '.json'):
-            h.update(f.read_bytes())
-    return h.hexdigest()[:12]
+def _find_decomp_dir():
+    for d in DECOMP_DIRS:
+        if d.exists():
+            return d
+    return None
 
 
-def _compile_and_collect():
-    """Run compile, collect error stats."""
-    import re as _re
+def _census_and_collect():
+    """Fingerprint the latest probe census (no recompile).
+
+    Returns the same artifact shape the cmake-era capture produced, so
+    `compare` works unchanged. Raises if the census is missing."""
+    if not CENSUS_FILE.exists():
+        raise FileNotFoundError(
+            "probe_census.json not found — run `python pipeline/cli.py probe` first")
+    census = json.loads(CENSUS_FILE.read_text(encoding='utf-8'))
+
+    generated_at = census.get('generated_at', '')
+    age_min = None
+    if generated_at:
+        try:
+            age_min = (datetime.now() -
+                       datetime.fromisoformat(generated_at)).total_seconds() / 60
+        except ValueError:
+            pass
+    if age_min is not None and age_min > CENSUS_MAX_AGE_MIN:
+        print("  [WARN] probe_census.json is %.0f min old — run probe first "
+              "for a meaningful snapshot" % age_min)
+
+    results = census.get('s2', {}).get('results', [])
     from collections import Counter
-
-    result = subprocess.run(
-        'cmake --build build --target PAL3 -- -k 9999',
-        shell=True, capture_output=True, text=True, cwd=str(PROJECT_ROOT))
-    output = result.stdout + result.stderr
-    lines = output.split('\n')
-
-    errors = [l for l in lines if 'error C' in l]
-    failed_lines = [l for l in lines if 'FAILED:' in l]
-    total_steps = len([l for l in lines if l.startswith('[')])
-
-    # Normalized error strings: file(line): error CODE: message
-    raw_errors = []
-    for e in errors:
-        m = _re.search(r'\\src\\pal3\\(.+?\(\d+\)) : (error C\d+: .+)', e)
-        if m:
-            raw_errors.append('%s: %s' % (m.group(1), m.group(2)))
-
-    # Errors by file (full, not top-20)
-    file_errors = Counter()
-    for e in errors:
-        m = _re.search(r'\\src\\pal3\\([^(]+)\(', e)
-        if m:
-            file_errors[m.group(1)] += 1
-
-    # Error code distribution
     error_codes = Counter()
-    for e in errors:
-        m = _re.search(r'error (C\d+)', e)
-        if m:
-            error_codes[m.group(1)] += 1
-
-    # Pass/fail file lists
-    fail_files = set()
-    for l in failed_lines:
-        m = _re.search(r'PAL3\.dir[/\\](.+?)\.cpp\.obj', l)
-        if m:
-            fail_files.add(m.group(1).replace('/', '\\'))
-    all_build_files = set()
-    for l in lines:
-        m = _re.search(r'Building CXX.*PAL3\.dir[/\\](.+?)\.cpp\.obj', l)
-        if m:
-            all_build_files.add(m.group(1).replace('/', '\\'))
-    pass_files = all_build_files - fail_files
-
+    file_errors = Counter()
+    raw_errors = []
+    pass_files, fail_files = [], []
+    for r in results:
+        unit = r.get('unit', '')
+        errs = r.get('errors', [])
+        if r.get('status') == 'ok':
+            pass_files.append(unit)
+            continue
+        if r.get('status') == 'fail':
+            fail_files.append(unit)
+        for e in errs:
+            error_codes[e['code']] += 1
+            file_errors[unit] += 1
+            raw_errors.append('%s(%d): error %s: %s'
+                              % (unit, e.get('line', 0), e['code'], e['msg']))
     return {
-        'total_errors': len(errors),
+        'generated_at': generated_at,
+        's2_ok': census.get('s2', {}).get('ok'),
+        's2_total': census.get('s2', {}).get('total'),
+        's1_ok': census.get('s1', {}).get('ok'),
+        's1_total': census.get('s1', {}).get('total'),
+        'total_errors': sum(error_codes.values()),
         'failed_files': len(fail_files),
-        'total_files': total_steps,
+        'total_files': len(results),
         'pass_files': len(pass_files),
         'top_error_codes': error_codes.most_common(10),
         'errors_by_file': dict(file_errors),
@@ -123,16 +122,17 @@ def capture():
     (snap_dir / "meta.json").write_text(json.dumps(meta, indent=2))
 
     # 1. Decomp summary
-    decomp_files = list(DECOMP_DIR.glob("*.json")) if DECOMP_DIR.exists() else []
+    decomp_dir = _find_decomp_dir()
+    decomp_files = list(decomp_dir.glob("*.json")) if decomp_dir else []
     decomp_summary = {
         'n_files': len(decomp_files),
         'total_bytes': sum(f.stat().st_size for f in decomp_files),
     }
     (snap_dir / "decomp_summary.json").write_text(json.dumps(decomp_summary, indent=2))
 
-    # 2. Compile result
-    print("  Compiling for snapshot...")
-    compile_result = _compile_and_collect()
+    # 2. Probe census fingerprint (S1/S2 pass-fail + full error list)
+    print("  Fingerprinting probe census...")
+    compile_result = _census_and_collect()
     (snap_dir / "compile_result.json").write_text(json.dumps(compile_result, indent=2))
 
     # 3. Full error list (every error with file:line:code, for precise diff)
@@ -148,10 +148,10 @@ def capture():
     (snap_dir / "fail_files.txt").write_text('\n'.join(sorted(compile_result['_fail_files'])))
 
     print("  Snapshot saved: %s" % timestamp)
-    print("    errors=%d, pass=%d/%d" % (
+    print("    S2 %s/%s, errors=%d, pass=%d/%d" % (
+        compile_result.get('s2_ok'), compile_result.get('s2_total'),
         compile_result['total_errors'],
-        compile_result['pass_files'],
-        compile_result['total_files']))
+        compile_result['pass_files'], compile_result['total_files']))
 
     # Prune old snapshots
     all_snaps = sorted(SNAPSHOTS_DIR.iterdir())
@@ -169,9 +169,10 @@ def compare():
         print("No snapshots found.")
         return
 
-    snaps = sorted(SNAPSHOTS_DIR.iterdir())
+    snaps = [s for s in sorted(SNAPSHOTS_DIR.iterdir())
+             if (s / "compile_result.json").exists()]
     if len(snaps) < 2:
-        print("Need at least 2 snapshots to compare. Have %d." % len(snaps))
+        print("Need at least 2 census-bearing snapshots. Have %d." % len(snaps))
         return
 
     prev = snaps[-2]
@@ -184,10 +185,12 @@ def compare():
     delta_pass = curr_result['pass_files'] - prev_result['pass_files']
 
     print("=== Snapshot Comparison ===")
-    print("  Previous: %s (errors=%d, pass=%d)" % (
-        prev.name, prev_result['total_errors'], prev_result['pass_files']))
-    print("  Current:  %s (errors=%d, pass=%d)" % (
-        curr.name, curr_result['total_errors'], curr_result['pass_files']))
+    print("  Previous: %s (S2 %s/%s, errors=%d, pass=%d)" % (
+        prev.name, prev_result.get('s2_ok'), prev_result.get('s2_total'),
+        prev_result['total_errors'], prev_result['pass_files']))
+    print("  Current:  %s (S2 %s/%s, errors=%d, pass=%d)" % (
+        curr.name, curr_result.get('s2_ok'), curr_result.get('s2_total'),
+        curr_result['total_errors'], curr_result['pass_files']))
     print("  Delta: errors %+d, pass %+d" % (delta_errors, delta_pass))
 
     if delta_errors > 0:
@@ -251,8 +254,9 @@ def list_snapshots():
             commit = meta.get('commit', '?')
             ts = meta.get('timestamp', snap.name)
             msg = meta.get('commit_msg', '')[:40]
-            print("  %s [%s] errors=%d, pass=%d/%d  %s" % (
-                ts, commit, r['total_errors'], r['pass_files'], r['total_files'], msg))
+            print("  %s [%s] S2 %s/%s, pass=%d/%d  %s" % (
+                ts, commit, r.get('s2_ok'), r.get('s2_total'),
+                r['pass_files'], r['total_files'], msg))
 
 
 if __name__ == '__main__':

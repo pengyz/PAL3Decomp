@@ -135,12 +135,17 @@ def run(code, ctx):
             if params:
                 first_param = params[0]
                 first_text = first_param.text.decode('utf-8')
-                # Check if first param is the 'this' pointer
-                # For __thiscall, first pointer param is always 'this' regardless of name/type
+                # Check if first param is the 'this' pointer.
+                # The decomp signature carries the calling convention: only a
+                # __thiscall member has an implicit this to strip. For plain or
+                # __cdecl (static) members the first pointer param is a real
+                # argument — stripping it desynchronizes the definition from the
+                # annotated header declaration (C2511) and misaligns call sites.
+                is_thiscall = '__thiscall' in (ctx.sig or '')
                 is_this_param = ('this' in first_text and '*' in first_text)
-                if not is_this_param and '*' in first_text and ctx.cls_name:
+                if not is_this_param and is_thiscall and '*' in first_text and ctx.cls_name:
                     is_this_param = ctx.cls_name in first_text
-                if not is_this_param and '*' in first_text and not ctx.is_free_function:
+                if not is_this_param and is_thiscall and '*' in first_text and not ctx.is_free_function:
                     is_this_param = True
                 # Also catch degraded this: "int this" (IDA lost pointer type)
                 if not is_this_param and 'this' in first_text and not ctx.is_free_function:
@@ -277,8 +282,10 @@ def _regex_fallback(code, ctx):
         # Strip @<reg> annotations from names and params (Hex-Rays userpurge/usercall artifact)
         first = re.sub(r'@<\w+>', '', first)
         # Remove this param: 'ClassName *this' or 'ClassName *Block' etc.
-        # For __thiscall, first param is always this — match 'ClsName *name'
-        if ctx.cls_name:
+        # Only __thiscall members carry an implicit this (see AST path above);
+        # static/cdecl members keep their real first pointer param.
+        _is_thiscall = '__thiscall' in (ctx.sig or '')
+        if ctx.cls_name and _is_thiscall:
             _cls_pat = re.escape(ctx.cls_name)
             first = re.sub(r'\(\s*' + _cls_pat + r'\s*\*+\s*\w+\s*,\s*', '(', first, count=1)
             first = re.sub(r'\(\s*' + _cls_pat + r'\s*\*+\s*\w+\s*\)', '()', first, count=1)

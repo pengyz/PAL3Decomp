@@ -298,6 +298,34 @@ def _get_subscript_array_name(node):
 # AST-based token replacement (single walk, batch edits)
 # ============================================================
 
+_MEMBER_NAMES = None
+
+
+def _load_member_names():
+    """Union of annotated member names across structs/*.json.
+
+    Guards the type-named-subobject rewrite below: a field spelled exactly
+    like a class name could still be a genuinely declared member, in which
+    case `&x->Name` is legal C++ and must be left alone."""
+    global _MEMBER_NAMES
+    if _MEMBER_NAMES is None:
+        import json as _json
+        names = set()
+        try:
+            for p in (store.annotations_dir / 'structs').glob('*.json'):
+                try:
+                    d = _json.loads(p.read_text(encoding='utf-8'))
+                except Exception:
+                    continue
+                for m in (d.get('known_members') or {}).values():
+                    if isinstance(m, dict) and m.get('name'):
+                        names.add(m['name'])
+        except Exception:
+            pass
+        _MEMBER_NAMES = names
+    return _MEMBER_NAMES
+
+
 def _collect_token_edits(code_bytes, tree, ctx):
     """Walk AST once, collect identifier/type replacement edits."""
     edits = []
@@ -314,6 +342,39 @@ def _collect_token_edits(code_bytes, tree, ctx):
         return False
 
     def visit(node):
+        if node.type == 'pointer_expression':
+            # &E->T / &E.T where T is a class-type-named (IDA-unnamed)
+            # subobject. MSVC6 parses `->TypeName` as a function-style cast
+            # (C2273/C2274). Taking a subobject's address is isomorphic to a
+            # pointer-to-T cast, so rewrite to that form.
+            # Assumption: the casted base expression needs no identifier
+            # substitution itself (it is `this`, a local, or a plain member
+            # chain — never an IDA-artifact name).
+            op = node.child_by_field_name('operator')
+            arg = node.child_by_field_name('argument')
+            if op is not None and op.text == b'&' and arg is not None:
+                while arg.type == 'parenthesized_expression' and arg.child_count >= 2:
+                    arg = arg.children[1]
+                if arg.type == 'field_expression':
+                    fnode = arg.child_by_field_name('field')
+                    base = arg.child_by_field_name('argument')
+                    if fnode is not None and base is not None:
+                        fname = fnode.text.decode('utf-8')
+                        if (fname in store.game_classes
+                                and fname not in _load_member_names()):
+                            aop = arg.child_by_field_name('operator')
+                            aop_text = aop.text.decode('utf-8') if aop is not None else '->'
+                            base_txt = base.text.decode('utf-8')
+                            if ctx.is_free_function and base_txt == 'this':
+                                base_txt = '_this'
+                            if aop_text == '->':
+                                repl = '((%s *)%s)' % (fname, base_txt)
+                            else:
+                                repl = '((%s *)&%s)' % (fname, base_txt)
+                            edits.append((node.start_byte, node.end_byte,
+                                          repl.encode('utf-8')))
+                            return
+
         if node.type == 'identifier' and node.child_count == 0:
             name = node.text.decode('utf-8')
             replacement = None
