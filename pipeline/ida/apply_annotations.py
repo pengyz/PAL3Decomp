@@ -376,11 +376,18 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
 
     members = struct_info.get("known_members", {})
     size = struct_info.get("binary_size") or struct_info.get("pdb_size") or 0
+    base_size = struct_info.get("base_size", 0)
     base_class = struct_info.get("base_class")
+    # Half-configured guard: a base without base_size cannot re-base members
+    # safely — applying it declares inheritance while keeping the flattened
+    # member list, and every descendant's export shifts (observed 2026-09-13:
+    # UIWnd/SceneObj writes without base_size cost 9 S2 units). Configured
+    # chains (UIFrameWnd:UIWnd base_size=68 etc.) are unaffected.
+    if base_class and not base_size:
+        base_class = None
     # Handle multiple inheritance: only use first base (IDA's struct model limitation)
     if isinstance(base_class, list):
         base_class = base_class[0] if base_class else None
-    base_size = struct_info.get("base_size", 0)
 
     # IDA parse_decl cannot handle C++ template base classes
     if base_class and ('<' in base_class or '>' in base_class):

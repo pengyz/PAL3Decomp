@@ -127,6 +127,20 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                             class_name, method_name, new_text[:80]), file=_sys.stderr)
                         return
 
+                    if not arg_nodes and cls_name:
+                        # Zero-arg qualified call (Hex-Rays omits the implicit
+                        # this in dtor chains, e.g. Base::Cleanup() inside a
+                        # derived dtor). Related targets emit the legal
+                        # this-qualified form; unrelated ones pass through
+                        # untouched — blanket-marking them only added ~400
+                        # noise markers on calls that already compile.
+                        _ensure_bases()
+                        if class_name == cls_name or _is_derived_from(cls_name, class_name):
+                            new_text = 'this->%s::%s()' % (class_name, method_name)
+                            replacements.append((
+                                node.start_byte, node.end_byte, new_text))
+                        return
+
                     if arg_nodes:
                         first_arg = arg_nodes[0]
                         first_arg_text = first_arg.text.decode('utf-8')
@@ -182,7 +196,10 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                             # Use qualified Base::Method(rest) when calling base class method
                             # from derived class that may SHADOW the base method.
                             if _is_base and class_name != cls_name:
-                                new_text = '%s::%s(%s)' % (class_name, _method_out, rest_str)
+                                # 裸限定 Base::Method(rest) 缺对象 → C2352；
+                                # this->Base::Method(rest) 是合法基类直调
+                                new_text = 'this->%s::%s(%s)' % (
+                                    class_name, _method_out, rest_str)
                             elif class_name == cls_name or _is_base:
                                 # Qualified call preserves the direct-call
                                 # semantics Hex-Rays reported (unqualified

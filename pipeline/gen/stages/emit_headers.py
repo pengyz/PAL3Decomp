@@ -1221,19 +1221,33 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     except:
         pass
 
+    # Guard: IDB-side base names drift (e.g. '_BYTE[7676]' when the TIL
+    # mislabels a base type). Only accept valid C++ identifiers that name a
+    # known emitted class — anything else came from IDB type pollution and
+    # would produce unresolvable includes.
+    def _known_base_name(b):
+        if not b or not re.match(r'^[A-Za-z_]\w*$', b):
+            return False
+        if (OUTPUT_DIR / ('%s.h' % b)).exists():
+            return True
+        return any((OUTPUT_DIR / d / ('%s.h' % b)).exists()
+                   for d in ('', 'Misc', 'Combat', 'UI', 'Effect', 'Scene',
+                             'Role', 'GameBase', 'Render', 'Data',
+                             'MiniGame', 'Script'))
+
     if _ann_base:
         if isinstance(_ann_base, list):
             resolved = []
             for b in _ann_base:
                 if b in template_map:
                     resolved.append(template_map[b])
-                else:
+                elif _known_base_name(b):
                     resolved.append(b)
             base_names.extend(resolved)
         else:
             if _ann_base in template_map:
                 base_names.append(template_map[_ann_base])
-            else:
+            elif _known_base_name(_ann_base):
                 base_names.append(_ann_base)
                 gb_path = _gbengine_type_to_header.get(_ann_base)
                 if gb_path:
