@@ -17,6 +17,26 @@ _parser = tree_sitter.Parser(_lang)
 # Cache class hierarchy from annotation data
 _CLASS_BASES = None
 
+_ROWTABLE_CACHE = None
+
+
+def _rowtable_family():
+    """Classes whose 7-slot handler tables share framework slots (gbUI
+    message-handler registration family; see
+    docs/knowledge/decision_sceneobj_composition_not_inheritance.md)."""
+    global _ROWTABLE_CACHE
+    if _ROWTABLE_CACHE is not None:
+        return _ROWTABLE_CACHE
+    import json as _json
+    _p = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
+        os.path.abspath(__file__)))), 'data', 'status', '_rowtable_family.json')
+    try:
+        _ROWTABLE_CACHE = set(_json.load(open(_p, encoding='utf-8')))
+    except (OSError, ValueError):
+        _ROWTABLE_CACHE = set()
+    return _ROWTABLE_CACHE
+
+
 def _ensure_bases():
     global _CLASS_BASES
     if _CLASS_BASES is not None:
@@ -284,22 +304,38 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                         new_text = 'this->%s::%s(%s)' % (
                                             class_name, method_name, rest_str)
                                     else:
-                                        # Unrelated class on our own this: the IDB
-                                        # name of the callee cannot be right (the
-                                        # original source could never write this
-                                        # call). Do NOT launder it into legal
-                                        # syntax — keep the static call form and
-                                        # mark it; MSVC6 reports C2352, which is
-                                        # the honest "fix the IDB attribution"
-                                        # signal (C2039 would mislead people into
-                                        # adding declarations).
-                                        _args = first_arg_text + \
-                                            (', ' + rest_str if rest_str else '')
-                                        new_text = (
-                                            '/* [MISATTRIBUTED] %s on %s::this '
-                                            '-> fix IDB name of callee */ %s::%s(%s)'
-                                            % (class_name, cls_name, class_name,
-                                               method_name, _args))
+                                        # Row-table family: gbUI registers a
+                                        # 7-function message-handler table per
+                                        # window class (slot0/4/6 framework
+                                        # entries shared across the family,
+                                        # slot1/2/3/5 per-class handlers).
+                                        # X::M((X*)this) from any registered
+                                        # class is framework dispatch through
+                                        # the caller's table — emit the
+                                        # faithful cast+qualified form.
+                                        if class_name in _rowtable_family():
+                                            _rest = [a.text.decode('utf-8')
+                                                     for a in arg_nodes[1:]]
+                                            new_text = (
+                                                '((%s *)this)->%s::%s(%s) /* [ROWTABLE] */'
+                                                % (class_name, class_name,
+                                                   method_name, ', '.join(_rest)))
+                                        else:
+                                            # Unrelated class on our own this: the IDB
+                                            # name of the callee cannot be right (the
+                                            # original source could never write this
+                                            # call). Do NOT launder it into legal
+                                            # syntax — keep the static call form and
+                                            # mark it; MSVC6 reports C2352, which is
+                                            # the honest "fix the IDB attribution"
+                                            # signal (C2039 would mislead people into
+                                            # adding declarations).
+                                            _margs = first_arg_text +                                                 (', ' + rest_str if rest_str else '')
+                                            new_text = (
+                                                '/* [MISATTRIBUTED] %s on %s::this '
+                                                '-> fix IDB name of callee */ %s::%s(%s)'
+                                                % (class_name, cls_name, class_name,
+                                                   method_name, _margs))
                                 else:
                                     # Normalize the cast to the method's class and
                                     # keep the qualifier: ((Cls*)X)->Cls::M(rest).
