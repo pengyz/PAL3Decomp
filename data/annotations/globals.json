@@ -2115,9 +2115,10 @@
   "type": "Array"
  },
  "0x00C04384": {
-  "name": "g_nSceneState",
+  "name": "g_nSceneState_0",
   "type": "int",
-  "source": "CRT init: converted from skip to int"
+  "source": "CRT init: converted from skip to int",
+  "note": "renamed from g_nSceneState_0: duplicate of 0xBFDA6C(57 xrefs); this one has 20 xrefs — Hex-Rays never emitted the _0 form so 33 files bound to one definition"
  },
  "0x00C04388": {
   "name": "g_nSceneType",
@@ -3249,9 +3250,10 @@
   "reason": "address within g_EffMgr range, not an independent global"
  },
  "0x005DE9A8": {
-  "name": "aS_2",
+  "name": "aS_2_0",
   "type": "skip",
-  "reason": "address within g_EffMgr range, not an independent global"
+  "reason": "address within g_EffMgr range, not an independent global",
+  "note": "renamed from aS_2_0: duplicate of 0x5967B0(127 xrefs); this one has a single xref from CCBSystem::CreateObj — silent wrong-string binding"
  },
  "0x005DE9BC": {
   "name": "aTooManyCharact",

@@ -5299,3 +5299,16 @@ Confidence: 90
 - +0x4 UINT → char *
 - 证据：全树唯一使用点 CCBControl.cpp:48 将 m_partyActor.m_pRoleObj（char *，
   角色对象指针）赋入该槽；无任何整数赋值用途。
+
+## 2026-09-13: CCBStageRole 幽灵类整体归属修正（110 函数 → CCBStage）
+证据链：
+1. CCBStage::OnMessage(0x51F1B0) 为 vtable 安装的权威 CCBStage 方法（CCBStage vtable 槽位 0x51F1B0）；
+2. 该方法调用 DispatchUpdateAll 等的机器码为 mov ecx, ebx（0x520336），传入 CCBStage this（IDA MCP 反汇编实证）；
+3. "CCBStageRole" 无 vtable（0 槽位）、二进制无其 RTTI（/GR-，全二进制仅 CRT _Exception 有 .?AV 串）；
+4. 名为 CCBStageRole 的"构造函数"(0x522030) 在 this+4 构造 TxtFile、把 ClearRoleState 作 ArraySort 回调，
+   唯一调用方是 CScreenMode 构造函数 —— 该名字非角色类构造函数；
+5. CCBStageRole 的 known_members 结构系由这些函数的字段访问扫描导出（循环证据）。
+动作：110 个 CCBStageRole::* → CCBStage::*（functions.json + structs 层 methods 迁移 103 项）。
+附注：aS_2(0x5DE9A8→aS_2_0，仅 CCBSystem::CreateObj 1 引用)、
+g_nSceneState(0xC04384→g_nSceneState_0，20 xrefs vs 真身 57) 重名消歧。
+Confidence: 80（名字层面可逆；若未来获得更强命名证据可整体重命名）
