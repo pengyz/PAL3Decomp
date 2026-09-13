@@ -5320,3 +5320,11 @@ Confidence: 80（名字层面可逆；若未来获得更强命名证据可整体
   a) codegen 指针→整数槽位赋值时重建显式 (int) cast（等价变换，需两侧类型已知）；
   b) 元素结构体恢复工作流（证据充分的字段先建，_todo_ 补位）。
 - 样本：Effect/CMeteorChain.cpp:60。Confidence: 90（形态定性）
+
+## 2026-09-13: ScreenToLocal 归属修正（RenderTarget → UISceneFrm）
+- 0x4BB200 ScreenToLocal 的全部 16 个 xref 均为 UISceneFrm::InitGraph_* 方法（IDA MCP）；
+- 调用点机器码 mov ecx,ebx（ebx=入口 this，0x4BB439），即传入 UISceneFrm 自身指针；
+- 旧 RenderTarget:: 绑定系 0x4BB 区间相邻性启发式，且旧扫描签名缺失 this 参数；
+- 动作：functions.json + structs 层（RenderTarget.methods → UISceneFrm.methods），
+  签名补为 void __thiscall(UISceneFrm *this, float*, float*, float*)。
+- 影响：UISceneFrm.cpp 20 处标记清零（变成本类合法限定调用）；Confidence: 90

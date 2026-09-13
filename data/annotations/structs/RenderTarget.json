@@ -1,431 +1,427 @@
 {
-  "name": "RenderTarget",
-  "binary_size": 200,
-  "known_members": {
-    "0": {
-      "name": "m_iMode",
-      "type": "int",
-      "source": "annotation"
-    },
-    "4": {
-      "name": "m_Texture",
-      "type": "gbTexture_D3D *",
-      "source": "annotation"
-    },
-    "100": {
-      "name": "m_ScreenPlane",
-      "type": "gbTexture_D3D *",
-      "source": "annotation"
-    },
-    "196": {
-      "name": "m_nState",
-      "type": "int",
-      "source": "annotation"
-    },
-    "8": {
-      "name": "m_nRenderX",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "12": {
-      "name": "m_nRenderY",
-      "type": "int",
-      "source": "A:PAL3patch_verified(running_code)"
-    },
-    "16": {
-      "name": "m_nHalfW",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "20": {
-      "name": "m_nHalfH",
-      "type": "unsigned char",
-      "source": "A:mov_byte_ptr_in_class_method"
-    },
-    "24": {
-      "name": "m_nHalfWidth",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "28": {
-      "name": "m_nHalfHeight",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "32": {
-      "name": "m_nWidth",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "36": {
-      "name": "m_nHeight",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "40": {
-      "name": "m_nRT_028",
-      "type": "unsigned char",
-      "source": "A:mov_byte_ptr_in_class_method"
-    },
-    "44": {
-      "name": "m_fRT_02C",
-      "type": "float",
-      "source": "A:FPU_post_reattrib_0x485435"
-    },
-    "48": {
-      "name": "m_fX",
-      "type": "float",
-      "source": "A+:decomp_param_name_fX_assigned_to_this+48"
-    },
-    "52": {
-      "name": "m_fY",
-      "type": "float",
-      "source": "A+:decomp_param_name_fY_assigned_to_this+52,default=1.0f"
-    },
-    "56": {
-      "name": "m_nRT_038",
-      "type": "int",
-      "source": "binary:1x access in RenderTarget:: methods"
-    },
-    "60": {
-      "name": "m_nRT_03C",
-      "type": "int",
-      "source": "binary:1x access in RenderTarget:: methods"
-    },
-    "64": {
-      "name": "m_fileHeader",
-      "type": "float",
-      "source": "A:FPU_disp8_in_class_method"
-    },
-    "68": {
-      "name": "m_fRenderX",
-      "type": "float",
-      "source": "ida_decomp:Render (float *)this+17 = pos calc, 5 refs"
-    },
-    "72": {
-      "name": "m_fRenderY",
-      "type": "float",
-      "source": "ida_decomp:Render store/compare/clamp, 10 refs"
-    },
-    "76": {
-      "name": "m_fileData",
-      "type": "float",
-      "source": "A:FPU_disp8_in_class_method"
-    },
-    "80": {
-      "name": "m_fFileParam",
-      "type": "float",
-      "source": "A:decomp RenderTarget::ApplyScale unscales+rescales with all pos/dim fields; ReadVFile reads 4 bytes from file"
-    },
-    "84": {
-      "name": "m_nColor",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "88": {
-      "name": "m_szPath",
-      "type": "int",
-      "source": "ida_decomp:ctor = 800, Read 64 bytes, strcat as string"
-    },
-    "92": {
-      "name": "m_nDefaultH",
-      "type": "int",
-      "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)"
-    },
-    "124": {
-      "name": "m_nAlpha",
-      "type": "int",
-      "source": "ida_decomp:SetColor = a4"
-    },
-    "128": {
-      "name": "m_bVisible",
-      "type": "int",
-      "source": "ida_decomp:SetVisible = a2"
-    },
-    "132": {
-      "name": "m_fRenderIntensity",
-      "type": "float",
-      "source": "A:20 callers to SetField084 pass constant floats(1.0/1.6/2.0); called after SetColor/SetAlpha, before SetState; render intensity/glow factor"
-    },
-    "136": {
-      "name": "m_fOffsetParam",
-      "type": "float",
-      "source": "ida_decomp:_sub_4B4B10 add to v6, 4 refs"
-    },
-    "140": {
-      "name": "m_fRender",
-      "type": "float",
-      "source": "binary:2x access in RenderTarget:: methods"
-    },
-    "144": {
-      "name": "m_nOffsetX",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "148": {
-      "name": "m_nOffsetY",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "152": {
-      "name": "m_nScaleX",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "156": {
-      "name": "m_nScaleY",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "160": {
-      "name": "m_szTexPath",
-      "type": "char[16]",
-      "source": "A:lstrcpyA(&this+A0,szFilename)@0x4B493E + Read(&this+A0,4)@0x4BAF07"
-    },
-    "176": {
-      "name": "m_fInvScale",
-      "type": "float",
-      "source": "ida_decomp:_nearby_4bb0f0 1.0/this, 3 refs"
-    },
-    "184": {
-      "name": "m_nDeviceLost",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
-    },
-    "188": {
-      "name": "m_nTodo_0BC",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    }
+ "name": "RenderTarget",
+ "binary_size": 200,
+ "known_members": {
+  "0": {
+   "name": "m_iMode",
+   "type": "int",
+   "source": "annotation"
   },
-  "methods": {
-    "0x004BDAC0": {
-      "name": "RenderTarget",
-      "signature": "void __thiscall()"
-    },
-    "0x004BDB60": {
-      "name": "Create",
-      "signature": "void __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x004BDC10": {
-      "name": "OnDeviceLost",
-      "signature": "void __thiscall(int nVal)"
-    },
-    "0x004BDC40": {
-      "name": "OnResetDevice",
-      "signature": "bool __thiscall(int nVal)"
-    },
-    "0x004BDF10": {
-      "name": "Destroy",
-      "signature": "int *__thiscall()"
-    },
-    "0x004B4920": {
-      "name": "LoadTexture",
-      "signature": "gbVFileSystem *__thiscall(const char *szFilename)"
-    },
-    "0x004B4850": {
-      "name": "SetColor",
-      "signature": "void __thiscall(unsigned char r, unsigned char g, unsigned char b)"
-    },
-    "0x004B48B0": {
-      "name": "SetAlpha",
-      "signature": "void __thiscall(unsigned char nAlpha)"
-    },
-    "0x004B4840": {
-      "name": "SetField084",
-      "signature": "void __thiscall RenderTarget::SetField084()"
-    },
-    "0x004B49C0": {
-      "name": "UpdateTransform",
-      "signature": "void __thiscall(float fX, float fY)"
-    },
-    "0x004B4D80": {
-      "name": "SetOffset",
-      "signature": "void __thiscall(int nOffY)"
-    },
-    "0x004B4820": {
-      "name": "SetVisible",
-      "signature": "void __thiscall(BOOL bVisible)"
-    },
-    "0x004BB200": {
-      "name": "ScreenToLocal",
-      "signature": "void __thiscall(float *pOutX, float *pInX, float *pInY)"
-    },
-    "0x004B4C60": {
-      "name": "Render",
-      "signature": "void __thiscall(int nY, int nWidth, int nHeight)"
-    },
-    "0x004BB260": {
-      "name": "LoadFromFile",
-      "signature": "void __thiscall(gbVFile *pFile)",
-      "_misattrib_evidence": "max_offset=1664>class_size=200"
-    },
-    "0x00486D00": {
-      "name": "_scalar_dtor",
-      "signature": "void *__thiscall(UIWnd *Block, char pData)",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "ordinal": 5
-    },
-    "0x004BC7B0": {
-      "name": "UpdateTimeStep",
-      "signature": "void __thiscall()"
-    },
-    "0x004BC8A0": {
-      "name": "RenderToTexture",
-      "signature": "int __thiscall()"
-    },
-    "0x004BE8D0": {
-      "name": "ResetHorizontal",
-      "signature": "int __thiscall RenderTarget::ResetHorizontal()"
-    },
-    "0x004BEA60": {
-      "name": "ResetVertical",
-      "signature": "RenderTarget *__thiscall RenderTarget::ResetVertical()"
-    },
-    "0x004BEBB0": {
-      "name": "ResetVertical2",
-      "signature": "RenderTarget *__thiscall RenderTarget::ResetVertical2()"
-    },
-    "0x004BED00": {
-      "name": "ResetBase",
-      "signature": "RenderTarget *__thiscall RenderTarget::ResetBase()"
-    },
-    "0x00486CE0": {
-      "name": "Init",
-      "signature": "int *__thiscall RenderTarget::Init()"
-    },
-    "0x0048F3A0": {
-      "name": "OnRender",
-      "signature": "int __thiscall RenderTarget::OnRender()",
-      "ordinal": 6
-    },
-    "0x004B4B10": {
-      "name": "CalcRenderDimensions",
-      "signature": "void __thiscall RenderTarget::CalcRenderDimensions(int nVal, int nVal2)"
-    },
-    "0x004BB0B0": {
-      "name": "ClearTexture",
-      "signature": "int __thiscall()"
-    },
-    "0x004BB0F0": {
-      "name": "ApplyScale",
-      "signature": "int __thiscall RenderTarget::ApplyScale(float fVal)"
-    },
-    "0x004BB180": {
-      "name": "SetRenderState",
-      "signature": "int __thiscall(int nVal)",
-      "source": " | rename:_todo_→fn_"
-    },
-    "0x004BD6C0": {
-      "name": "LoadParticleTextures",
-      "signature": "char __thiscall(const char *pszName)"
-    },
-    "0x004BD870": {
-      "name": "GetManagedTexture",
-      "signature": "void __thiscall()"
-    },
-    "0x004BD880": {
-      "name": "CreateParticleEffect",
-      "signature": "gbParticleEffect *__thiscall(int nVal)"
-    },
-    "0x004BD900": {
-      "name": "UpdateParticleEffect",
-      "signature": "struct gbParticleGroup *__thiscall(int nVal)"
-    },
-    "0x004BD950": {
-      "name": "Stop",
-      "signature": "int __thiscall RenderTarget::Stop(int nVal)"
-    },
-    "0x004BD970": {
-      "name": "ReleaseDefault",
-      "signature": "int __thiscall()"
-    },
-    "0x004BD990": {
-      "name": "SetPathMode",
-      "signature": "void __thiscall(int nVal)"
-    },
-    "0x004BD9C0": {
-      "name": "SetDefaultParams",
-      "signature": "int __thiscall(int nVal)"
-    },
-    "0x004BDD90": {
-      "name": "RenderToScreen",
-      "signature": "int __thiscall()"
-    },
-    "0x004BDEB0": {
-      "name": "GetActiveTexture",
-      "signature": "gbTexture *__thiscall()"
-    },
-    "0x004BB050": {
-      "name": "ReadVFile",
-      "signature": "void __thiscall(struct gbVFile *pFile)"
-    },
-    "0x004B4910": {
-      "name": "SetState",
-      "signature": "void __thiscall()"
-    },
-    "0x004B48E0": {
-      "name": "SetSize",
-      "signature": "void __thiscall(int nHeight)"
-    },
-    "0x004B4DA0": {
-      "name": "SetScale",
-      "signature": "void __thiscall(int nScaleY)"
-    },
-    "0x004867F0": {
-      "name": "InitChildPanels",
-      "signature": "int __thiscall()",
-      "_misattrib_evidence": "max_offset=307036>class_size=200",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-    },
-    "0x0047A400": {
-      "name": "InitParticleRenders",
-      "signature": "int __thiscall RenderTarget::InitParticleRenders()",
-      "_misattrib_evidence": "max_offset=209000>class_size=200"
-    },
-    "0x004870C0": {
-      "name": "InitNPCPanel",
-      "signature": "void __thiscall()",
-      "_misattrib_evidence": "max_offset=249476>class_size=200"
-    }
+  "4": {
+   "name": "m_Texture",
+   "type": "gbTexture_D3D *",
+   "source": "annotation"
   },
-  "vtables": [
+  "100": {
+   "name": "m_ScreenPlane",
+   "type": "gbTexture_D3D *",
+   "source": "annotation"
+  },
+  "196": {
+   "name": "m_nState",
+   "type": "int",
+   "source": "annotation"
+  },
+  "8": {
+   "name": "m_nRenderX",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "12": {
+   "name": "m_nRenderY",
+   "type": "int",
+   "source": "A:PAL3patch_verified(running_code)"
+  },
+  "16": {
+   "name": "m_nHalfW",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "20": {
+   "name": "m_nHalfH",
+   "type": "unsigned char",
+   "source": "A:mov_byte_ptr_in_class_method"
+  },
+  "24": {
+   "name": "m_nHalfWidth",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "28": {
+   "name": "m_nHalfHeight",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "32": {
+   "name": "m_nWidth",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "36": {
+   "name": "m_nHeight",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "40": {
+   "name": "m_nRT_028",
+   "type": "unsigned char",
+   "source": "A:mov_byte_ptr_in_class_method"
+  },
+  "44": {
+   "name": "m_fRT_02C",
+   "type": "float",
+   "source": "A:FPU_post_reattrib_0x485435"
+  },
+  "48": {
+   "name": "m_fX",
+   "type": "float",
+   "source": "A+:decomp_param_name_fX_assigned_to_this+48"
+  },
+  "52": {
+   "name": "m_fY",
+   "type": "float",
+   "source": "A+:decomp_param_name_fY_assigned_to_this+52,default=1.0f"
+  },
+  "56": {
+   "name": "m_nRT_038",
+   "type": "int",
+   "source": "binary:1x access in RenderTarget:: methods"
+  },
+  "60": {
+   "name": "m_nRT_03C",
+   "type": "int",
+   "source": "binary:1x access in RenderTarget:: methods"
+  },
+  "64": {
+   "name": "m_fileHeader",
+   "type": "float",
+   "source": "A:FPU_disp8_in_class_method"
+  },
+  "68": {
+   "name": "m_fRenderX",
+   "type": "float",
+   "source": "ida_decomp:Render (float *)this+17 = pos calc, 5 refs"
+  },
+  "72": {
+   "name": "m_fRenderY",
+   "type": "float",
+   "source": "ida_decomp:Render store/compare/clamp, 10 refs"
+  },
+  "76": {
+   "name": "m_fileData",
+   "type": "float",
+   "source": "A:FPU_disp8_in_class_method"
+  },
+  "80": {
+   "name": "m_fFileParam",
+   "type": "float",
+   "source": "A:decomp RenderTarget::ApplyScale unscales+rescales with all pos/dim fields; ReadVFile reads 4 bytes from file"
+  },
+  "84": {
+   "name": "m_nColor",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "88": {
+   "name": "m_szPath",
+   "type": "int",
+   "source": "ida_decomp:ctor = 800, Read 64 bytes, strcat as string"
+  },
+  "92": {
+   "name": "m_nDefaultH",
+   "type": "int",
+   "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)"
+  },
+  "124": {
+   "name": "m_nAlpha",
+   "type": "int",
+   "source": "ida_decomp:SetColor = a4"
+  },
+  "128": {
+   "name": "m_bVisible",
+   "type": "int",
+   "source": "ida_decomp:SetVisible = a2"
+  },
+  "132": {
+   "name": "m_fRenderIntensity",
+   "type": "float",
+   "source": "A:20 callers to SetField084 pass constant floats(1.0/1.6/2.0); called after SetColor/SetAlpha, before SetState; render intensity/glow factor"
+  },
+  "136": {
+   "name": "m_fOffsetParam",
+   "type": "float",
+   "source": "ida_decomp:_sub_4B4B10 add to v6, 4 refs"
+  },
+  "140": {
+   "name": "m_fRender",
+   "type": "float",
+   "source": "binary:2x access in RenderTarget:: methods"
+  },
+  "144": {
+   "name": "m_nOffsetX",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "148": {
+   "name": "m_nOffsetY",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "152": {
+   "name": "m_nScaleX",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "156": {
+   "name": "m_nScaleY",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "160": {
+   "name": "m_szTexPath",
+   "type": "char[16]",
+   "source": "A:lstrcpyA(&this+A0,szFilename)@0x4B493E + Read(&this+A0,4)@0x4BAF07"
+  },
+  "176": {
+   "name": "m_fInvScale",
+   "type": "float",
+   "source": "ida_decomp:_nearby_4bb0f0 1.0/this, 3 refs"
+  },
+  "184": {
+   "name": "m_nDeviceLost",
+   "type": "int",
+   "source": "binary:disp32_1hits_1funcs"
+  },
+  "188": {
+   "name": "m_nTodo_0BC",
+   "type": "int",
+   "source": "gap_fill:ida_decomp_access"
+  }
+ },
+ "methods": {
+  "0x004BDAC0": {
+   "name": "RenderTarget",
+   "signature": "void __thiscall()"
+  },
+  "0x004BDB60": {
+   "name": "Create",
+   "signature": "void __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x004BDC10": {
+   "name": "OnDeviceLost",
+   "signature": "void __thiscall(int nVal)"
+  },
+  "0x004BDC40": {
+   "name": "OnResetDevice",
+   "signature": "bool __thiscall(int nVal)"
+  },
+  "0x004BDF10": {
+   "name": "Destroy",
+   "signature": "int *__thiscall()"
+  },
+  "0x004B4920": {
+   "name": "LoadTexture",
+   "signature": "gbVFileSystem *__thiscall(const char *szFilename)"
+  },
+  "0x004B4850": {
+   "name": "SetColor",
+   "signature": "void __thiscall(unsigned char r, unsigned char g, unsigned char b)"
+  },
+  "0x004B48B0": {
+   "name": "SetAlpha",
+   "signature": "void __thiscall(unsigned char nAlpha)"
+  },
+  "0x004B4840": {
+   "name": "SetField084",
+   "signature": "void __thiscall RenderTarget::SetField084()"
+  },
+  "0x004B49C0": {
+   "name": "UpdateTransform",
+   "signature": "void __thiscall(float fX, float fY)"
+  },
+  "0x004B4D80": {
+   "name": "SetOffset",
+   "signature": "void __thiscall(int nOffY)"
+  },
+  "0x004B4820": {
+   "name": "SetVisible",
+   "signature": "void __thiscall(BOOL bVisible)"
+  },
+  "0x004B4C60": {
+   "name": "Render",
+   "signature": "void __thiscall(int nY, int nWidth, int nHeight)"
+  },
+  "0x004BB260": {
+   "name": "LoadFromFile",
+   "signature": "void __thiscall(gbVFile *pFile)",
+   "_misattrib_evidence": "max_offset=1664>class_size=200"
+  },
+  "0x00486D00": {
+   "name": "_scalar_dtor",
+   "signature": "void *__thiscall(UIWnd *Block, char pData)",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+   "ordinal": 5
+  },
+  "0x004BC7B0": {
+   "name": "UpdateTimeStep",
+   "signature": "void __thiscall()"
+  },
+  "0x004BC8A0": {
+   "name": "RenderToTexture",
+   "signature": "int __thiscall()"
+  },
+  "0x004BE8D0": {
+   "name": "ResetHorizontal",
+   "signature": "int __thiscall RenderTarget::ResetHorizontal()"
+  },
+  "0x004BEA60": {
+   "name": "ResetVertical",
+   "signature": "RenderTarget *__thiscall RenderTarget::ResetVertical()"
+  },
+  "0x004BEBB0": {
+   "name": "ResetVertical2",
+   "signature": "RenderTarget *__thiscall RenderTarget::ResetVertical2()"
+  },
+  "0x004BED00": {
+   "name": "ResetBase",
+   "signature": "RenderTarget *__thiscall RenderTarget::ResetBase()"
+  },
+  "0x00486CE0": {
+   "name": "Init",
+   "signature": "int *__thiscall RenderTarget::Init()"
+  },
+  "0x0048F3A0": {
+   "name": "OnRender",
+   "signature": "int __thiscall RenderTarget::OnRender()",
+   "ordinal": 6
+  },
+  "0x004B4B10": {
+   "name": "CalcRenderDimensions",
+   "signature": "void __thiscall RenderTarget::CalcRenderDimensions(int nVal, int nVal2)"
+  },
+  "0x004BB0B0": {
+   "name": "ClearTexture",
+   "signature": "int __thiscall()"
+  },
+  "0x004BB0F0": {
+   "name": "ApplyScale",
+   "signature": "int __thiscall RenderTarget::ApplyScale(float fVal)"
+  },
+  "0x004BB180": {
+   "name": "SetRenderState",
+   "signature": "int __thiscall(int nVal)",
+   "source": " | rename:_todo_→fn_"
+  },
+  "0x004BD6C0": {
+   "name": "LoadParticleTextures",
+   "signature": "char __thiscall(const char *pszName)"
+  },
+  "0x004BD870": {
+   "name": "GetManagedTexture",
+   "signature": "void __thiscall()"
+  },
+  "0x004BD880": {
+   "name": "CreateParticleEffect",
+   "signature": "gbParticleEffect *__thiscall(int nVal)"
+  },
+  "0x004BD900": {
+   "name": "UpdateParticleEffect",
+   "signature": "struct gbParticleGroup *__thiscall(int nVal)"
+  },
+  "0x004BD950": {
+   "name": "Stop",
+   "signature": "int __thiscall RenderTarget::Stop(int nVal)"
+  },
+  "0x004BD970": {
+   "name": "ReleaseDefault",
+   "signature": "int __thiscall()"
+  },
+  "0x004BD990": {
+   "name": "SetPathMode",
+   "signature": "void __thiscall(int nVal)"
+  },
+  "0x004BD9C0": {
+   "name": "SetDefaultParams",
+   "signature": "int __thiscall(int nVal)"
+  },
+  "0x004BDD90": {
+   "name": "RenderToScreen",
+   "signature": "int __thiscall()"
+  },
+  "0x004BDEB0": {
+   "name": "GetActiveTexture",
+   "signature": "gbTexture *__thiscall()"
+  },
+  "0x004BB050": {
+   "name": "ReadVFile",
+   "signature": "void __thiscall(struct gbVFile *pFile)"
+  },
+  "0x004B4910": {
+   "name": "SetState",
+   "signature": "void __thiscall()"
+  },
+  "0x004B48E0": {
+   "name": "SetSize",
+   "signature": "void __thiscall(int nHeight)"
+  },
+  "0x004B4DA0": {
+   "name": "SetScale",
+   "signature": "void __thiscall(int nScaleY)"
+  },
+  "0x004867F0": {
+   "name": "InitChildPanels",
+   "signature": "int __thiscall()",
+   "_misattrib_evidence": "max_offset=307036>class_size=200",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+  },
+  "0x0047A400": {
+   "name": "InitParticleRenders",
+   "signature": "int __thiscall RenderTarget::InitParticleRenders()",
+   "_misattrib_evidence": "max_offset=209000>class_size=200"
+  },
+  "0x004870C0": {
+   "name": "InitNPCPanel",
+   "signature": "void __thiscall()",
+   "_misattrib_evidence": "max_offset=249476>class_size=200"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x0056C590",
+   "base": "UIWnd",
+   "slots": [
     {
-      "addr": "0x0056C590",
-      "base": "UIWnd",
-      "slots": [
-        {
-          "addr": "0x00445E70",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0048EB40",
-          "from": null
-        },
-        {
-          "addr": "0x0048EF80",
-          "from": null
-        },
-        {
-          "addr": "0x0043DE40",
-          "from": null
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x00486D00",
-          "from": null
-        },
-        {
-          "addr": "0x0048F3A0",
-          "from": null
-        }
-      ]
+     "addr": "0x00445E70",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x0048EB40",
+     "from": null
+    },
+    {
+     "addr": "0x0048EF80",
+     "from": null
+    },
+    {
+     "addr": "0x0043DE40",
+     "from": null
+    },
+    {
+     "addr": "0x00445B90",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x00486D00",
+     "from": null
+    },
+    {
+     "addr": "0x0048F3A0",
+     "from": null
     }
-  ]
+   ]
+  }
+ ]
 }

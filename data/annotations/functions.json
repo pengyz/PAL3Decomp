@@ -2577,5 +2577,10 @@
   "name": "CCBStage::TryRelease",
   "signature": "void __thiscall(CCBStage *this)",
   "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
+ },
+ "0x004bb200": {
+  "name": "UISceneFrm::ScreenToLocal",
+  "signature": "void __thiscall(UISceneFrm *this, float *pOutX, float *pInX, float *pInY)",
+  "source": "2026-09-13 provenance: all 16 xrefs are UISceneFrm::InitGraph_* methods; call sites pass UISceneFrm this (mov ecx,ebx @0x4BB439, entry mov ebx,ecx — IDA MCP disasm); previous RenderTarget:: binding was heuristic (0x4BB region adjacency), old scan signature even lacked the this param"
  }
 }
