@@ -1292,7 +1292,34 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     except Exception:
         pass
 
+    def _sanitize_template_base(name, _cls, allow_alias=True):
+        if '<' not in name:
+            return name
+        # Reverse-lookup first: an exact template_bases.json form has a
+        # concrete typedef alias whose wrapper header declares it via a
+        # pre-declared callback typedef (_X_cb). Using the alias keeps the
+        # base a real instantiation (decomp qualified names resolve) instead
+        # of the void* form (which is a DIFFERENT type -> C2039/C2653 on
+        # this->Alias::member access).
+        if allow_alias:
+            for _k, _v in template_map.items():
+                # template_map membership implies the wrapper gets generated
+                # in this same run — do NOT consult disk: 'codegen all' wipes
+                # pal3/src first, so a disk check fails for every class
+                # sorting before the wrapper.
+                if _v == name:
+                    return _k
+        p = (r'[\w\s]+\s*\(\s*__thiscall\s+' + re.escape(_cls)
+             + r'\s*::\s*\*\s*\)\s*\([\w\s,]*\)')
+        return re.sub(p, 'void*', name)
+
     # Generate includes for all base classes
+    for _b_i, _b_raw in enumerate(base_names):
+        # normalize raw template forms to their concrete alias BEFORE use —
+        # this loop runs before the dedup-stage normalization below, and the
+        # alias (not the raw form) is what has a wrapper header defining it
+        if '<' in _b_raw:
+            base_names[_b_i] = _sanitize_template_base(_b_raw, cls_name)
     for b in base_names:
         if b in SYSTEM_TYPES:
             continue
@@ -1300,15 +1327,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         # header — it declares the _X_cb typedef + the specialization; the
         # bare primary template header does not define the alias identifier.
         if b in template_map:
-            _alias_inc = None
-            for _d in ('', 'Misc', 'Combat', 'UI', 'Effect', 'Scene', 'Role',
-                       'GameBase', 'Render', 'Data', 'MiniGame', 'Script'):
-                if (OUTPUT_DIR / _d / ('%s.h' % b)).exists():
-                    _alias_inc = '#include "%s%s%s.h"' % (
-                        _d + '/' if _d else '', _d, b) if False else (
-                        '#include "%s/%s.h"' % (_d, b) if _d else '#include "%s.h"' % b)
-                    break
-            if _alias_inc and _alias_inc not in lines:
+            # wrapper is generated later in this same run — include by name,
+            # resolving the subdir from the class-dir mapping (default Misc)
+            _sub = get_class_dir(b) or 'Misc'
+            _alias_inc = '#include "%s/%s.h"' % (_sub, b)
+            if _alias_inc not in lines:
                 lines.insert(0, _alias_inc)
         if '<' in b:
             base_inc = b.split('<')[0]
@@ -1357,27 +1380,20 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # in base class specs. Replace such self-referencing types with void*.
     # These callback types are only forwarded to forward-declared template
     # pointers (e.g. MainTask<T, Callback>*), so void* is ABI-safe.
-    def _sanitize_template_base(name, _cls):
-        if '<' not in name:
-            return name
-        # Reverse-lookup first: an exact template_bases.json form has a
-        # concrete typedef alias whose wrapper header declares it via a
-        # pre-declared callback typedef (_X_cb). Using the alias keeps the
-        # base a real instantiation (decomp qualified names resolve) instead
-        # of the void* form (which is a DIFFERENT type -> C2039/C2653 on
-        # this->Alias::member access).
-        for _k, _v in template_map.items():
-            if _v == name and any(
-                    (OUTPUT_DIR / d / ('%s.h' % _k)).exists()
-                    for d in ('', 'Misc', 'Combat', 'UI', 'Effect', 'Scene',
-                              'Role', 'GameBase', 'Render', 'Data',
-                              'MiniGame', 'Script')):
-                return _k
-        p = (r'[\w\s]+\s*\(\s*__thiscall\s+' + re.escape(_cls)
-             + r'\s*::\s*\*\s*\)\s*\([\w\s,]*\)')
-        return re.sub(p, 'void*', name)
 
     if base_names:
+        # Normalize base_names FIRST: raw template forms reverse-map to
+        # their concrete alias (wrapper header declares the _X_cb typedef).
+        # Both the class declaration AND the include loop must see the
+        # alias — previously only the display string was sanitized, so
+        # includes pulled the bare primary template header and TUs could
+        # not resolve this->Alias::member (C2653/C2039).
+        _norm = []
+        for b in base_names:
+            if '<' in b:
+                b = _sanitize_template_base(b, cls_name)
+            _norm.append(b)
+        base_names = _norm
         # Deduplicate base classes after sanitization (PDB + annotation
         # may list the same template instantiation under different names).
         seen = set()
@@ -1412,14 +1428,18 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             # Extract the full member function pointer type string
             _td_full = re.search(r'[\w\s]+\s*\(\s*__thiscall\s+\w+\s*::\s*\*\s*\)\s*\([\w\s,]*\)', template_expr)
             if _td_full:
-                _td_type = _td_full.group(0).strip()
+                _td_type_raw = _td_full.group(0).strip()
                 _td_name = '_{}_cb'.format(_td_cls)
+                # Replace the raw form (WITH __thiscall) BEFORE stripping —
+                # the stripped form no longer appears in template_expr, so
+                # strip-then-replace silently misses and the class line keeps
+                # the raw member-pointer (C4234 on MSVC6).
+                _td_expr = template_expr.replace(_td_type_raw, _td_name)
                 # MSVC6 rejects explicit __thiscall on member-pointer
                 # declarators (C4234); member functions already default to
                 # __thiscall so dropping it is semantics-preserving.
-                _td_type = re.sub(r'\b__thiscall\s+', '', _td_type)
+                _td_type = re.sub(r'\b__thiscall\s+', '', _td_type_raw)
                 _td_type_named = re.sub(r'\*\)', '*%s)' % _td_name, _td_type, 1)
-                _td_expr = template_expr.replace(_td_type, _td_name)
                 lines.append('class %s;' % _td_cls)
                 lines.append('typedef %s;' % _td_type_named)
                 _base_tpl = template_expr.split('<')[0]
@@ -1441,13 +1461,13 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         if _inc2 not in lines:
                             lines.insert(0, _inc2)
                 lines.append("template<>")
-                lines.append("class %s%s {" % (_sanitize_template_base(_td_expr, cls_name), bases_str))
+                lines.append("class %s%s {" % (_sanitize_template_base(_td_expr, cls_name, allow_alias=False), bases_str))
             else:
                 lines.append("template<>")
-                lines.append("class %s%s {" % (_sanitize_template_base(template_expr, cls_name), bases_str))
+                lines.append("class %s%s {" % (_sanitize_template_base(template_expr, cls_name, allow_alias=False), bases_str))
         else:
             lines.append("template<>")
-            lines.append("class %s%s {" % (_sanitize_template_base(template_expr, cls_name), bases_str))
+            lines.append("class %s%s {" % (_sanitize_template_base(template_expr, cls_name, allow_alias=False), bases_str))
     elif template_param_count > 0:
         _params = ', '.join('typename T%d' % (i+1) for i in range(template_param_count))
         lines.append("template<%s>" % _params)
