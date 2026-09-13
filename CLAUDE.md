@@ -129,6 +129,7 @@ union { // +0xN
 | **codegen all 后** | 编译回归检测 | `python3 tools/compile_regression.py` | 发现退化立即报警，不提交 |
 | **apply 后** | annotation diff | `python3 tools/annotation_diff.py` | 显示变更摘要，确认无意外修改 |
 | **probe_compile 后** | 错误分类 | `python3 tools/error_classifier.py --summary` | 输出根因分布，指导下一步修复方向 |
+| **probe_compile 后** | 字节匹配裁判 | `python3 pipeline/cli.py match` | L1（字节全同函数数）不得回退；partial 的字节 diff 是注解布局/归属错误的直接证据 |
 | **修改 struct annotation 后** | 布局验证 | `python3 tools/audit_layout.py` | 发现布局问题立即修复 |
 
 ### 工具使用规范

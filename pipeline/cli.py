@@ -15,6 +15,7 @@
   codegen headers     只生成 .h
   codegen cpp         只生成 .cpp
   compile             CMake 配置 + ninja 编译 (-k 0 全量)
+  match               S4 字节匹配裁判（假设旗标组 + L1 棘轮检查）
   iterate [opts]      自动迭代引擎（annotation 修正直到收敛）
   tool --list         列出所有可用工具脚本
   tool <name> [args]  运行 tools/ 下的脚本
@@ -462,6 +463,32 @@ def cmd_tool(args):
     sys.exit(result.returncode)
 
 
+def cmd_match():
+    """S4 byte-match referee: compile S2-green units with the calibrated
+    hypothesis flags and diff function bytes against PAL3.exe .text.
+    L1 (perfect match) count is the ratchet: it must never regress."""
+    import json
+    s4 = Path('data/status/s4_baseline.json')
+    prev_l1 = 0
+    if s4.exists():
+        try:
+            prev_l1 = json.loads(s4.read_text(encoding='utf-8')).get('stats', {}).get('match_L1', 0)
+        except (json.JSONDecodeError, OSError):
+            pass
+    script = os.path.join(_PIPELINE_DIR, 'compare_pal3.py')
+    flags = "/nologo /TP /c /W3 /O2 /Ob2 /Oi /Ot /Oy /GF /Gy /GX /GR /MD /Gd"
+    rc = subprocess.run([sys.executable, script, '--flags', flags]).returncode
+    if rc == 0 and s4.exists():
+        try:
+            cur_l1 = json.loads(s4.read_text(encoding='utf-8')).get('stats', {}).get('match_L1', 0)
+            print()
+            print("[L1 ratchet] previous %d -> current %d" % (prev_l1, cur_l1))
+            if cur_l1 < prev_l1:
+                print("[L1 ratchet] REGRESSION: byte-perfect functions lost — investigate before committing")
+        except (json.JSONDecodeError, OSError):
+            pass
+
+
 def cmd_compile():
     """CMake configure (if needed) + ninja build with -k 0."""
     build_dir = Path(_PROJECT_DIR) / 'build'
@@ -538,6 +565,8 @@ def main():
         cmd_compile()
     elif command == 'codegen':
         cmd_codegen(args[1:])
+    elif command == 'match':
+        cmd_match()
     elif command == 'snapshot':
         snap_script = os.path.join(_PIPELINE_DIR, 'snapshots', 'snapshot.py')
         sub = args[1] if len(args) > 1 else 'list'
