@@ -1,189 +1,190 @@
 {
-  "name": "CCBResultWindow",
-  "binary_size": 180,
-  "known_members": {
-    "72": {
-      "name": "m_pBack",
-      "type": "UIStatic *",
-      "offset": 72
-    },
-    "76": {
-      "name": "m_pWind",
-      "type": "UIStatic *",
-      "offset": 76
-    },
-    "80": {
-      "name": "m_pThunder",
-      "type": "UIStatic *",
-      "offset": 80
-    },
-    "84": {
-      "name": "m_pWater",
-      "type": "UIStatic *",
-      "offset": 84
-    },
-    "88": {
-      "name": "m_pFire",
-      "type": "UIStatic *",
-      "offset": 88
-    },
-    "92": {
-      "name": "m_pEarth",
-      "type": "UIStatic *",
-      "offset": 92
-    },
-    "96": {
-      "name": "m_pDouble",
-      "type": "UIStatic *",
-      "offset": 96
-    },
-    "100": {
-      "name": "m_pEXP",
-      "type": "UIStatic *",
-      "offset": 100
-    },
-    "104": {
-      "name": "m_pLevel",
-      "type": "UIStatic *",
-      "offset": 104
-    },
-    "108": {
-      "name": "m_pFace",
-      "type": "UIStatic *[11]",
-      "offset": 108
-    },
-    "152": {
-      "name": "m_pHGM",
-      "type": "UIStatic *",
-      "offset": 152
-    },
-    "156": {
-      "name": "m_pHP",
-      "type": "UIProgressBar *",
-      "offset": 156
-    },
-    "160": {
-      "name": "m_pGP",
-      "type": "UIProgressBar *",
-      "offset": 160
-    },
-    "164": {
-      "name": "m_pMP",
-      "type": "UIProgressBar *",
-      "offset": 164
-    },
-    "168": {
-      "name": "m_pUI",
-      "type": "CCBUI *",
-      "offset": 168
-    },
-    "172": {
-      "name": "m_nIndex",
-      "type": "int",
-      "offset": 172
-    },
-    "176": {
-      "name": "m_bClosed",
-      "type": "unsigned char",
-      "offset": 176
-    },
-    "0": {
-      "name": "__vftable",
-      "type": "void *",
-      "source": "vtable_fix"
-    }
+ "name": "CCBResultWindow",
+ "binary_size": 2628,
+ "known_members": {
+  "72": {
+   "name": "m_pBack",
+   "type": "UIStatic *",
+   "offset": 72
   },
-  "base_class": [
-    "UIFrameWnd"
-  ],
-  "methods": {
-    "0x0043BE30": {
-      "name": "~CCBResultWindow",
-      "signature": "void __thiscall CCBResultWindow::~CCBResultWindow()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-    },
-    "0x00442E10": {
-      "name": "ctor",
-      "signature": "void __thiscall()",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-    },
-    "0x00443190": {
-      "name": "Create",
-      "signature": "void __thiscall CCBResultWindow::Create()"
-    },
-    "0x00444A20": {
-      "name": "CCBResultWindow",
-      "signature": "void __thiscall CCBResultWindow::CCBResultWindow()"
-    },
-    "0x00444D20": {
-      "name": "SetDirty",
-      "signature": "void __thiscall()"
-    },
-    "0x00515CE0": {
-      "name": "FindChildByID",
-      "signature": "int __thiscall UIWnd::FindChildByID(int nID)"
-    },
-    "0x00444D10": {
-      "name": "StartAnim",
-      "signature": "int __thiscall CCBResultWindow::StartAnim()",
-      "class": "UIWnd"
-    },
-    "0x00519660": {
-      "name": "IsImbibeNimbusNotFinish",
-      "signature": "BOOL __thiscall(int nVal, int nVal2)"
-    },
-    "0x00519360": {
-      "name": "ShowLineupWindow",
-      "signature": "void __thiscall(BOOL bShow)"
-    },
-    "0x00519510": {
-      "name": "Destroy",
-      "signature": "void __thiscall()"
-    },
-    "0x005195E0": {
-      "name": "OnMessage",
-      "signature": "int __thiscall(int pt, unsigned int area, int nVal)"
-    }
+  "76": {
+   "name": "m_pWind",
+   "type": "UIStatic *",
+   "offset": 76
   },
-  "vtables": [
+  "80": {
+   "name": "m_pThunder",
+   "type": "UIStatic *",
+   "offset": 80
+  },
+  "84": {
+   "name": "m_pWater",
+   "type": "UIStatic *",
+   "offset": 84
+  },
+  "88": {
+   "name": "m_pFire",
+   "type": "UIStatic *",
+   "offset": 88
+  },
+  "92": {
+   "name": "m_pEarth",
+   "type": "UIStatic *",
+   "offset": 92
+  },
+  "96": {
+   "name": "m_pDouble",
+   "type": "UIStatic *",
+   "offset": 96
+  },
+  "100": {
+   "name": "m_pEXP",
+   "type": "UIStatic *",
+   "offset": 100
+  },
+  "104": {
+   "name": "m_pLevel",
+   "type": "UIStatic *",
+   "offset": 104
+  },
+  "108": {
+   "name": "m_pFace",
+   "type": "UIStatic *[11]",
+   "offset": 108
+  },
+  "152": {
+   "name": "m_pHGM",
+   "type": "UIStatic *",
+   "offset": 152
+  },
+  "156": {
+   "name": "m_pHP",
+   "type": "UIProgressBar *",
+   "offset": 156
+  },
+  "160": {
+   "name": "m_pGP",
+   "type": "UIProgressBar *",
+   "offset": 160
+  },
+  "164": {
+   "name": "m_pMP",
+   "type": "UIProgressBar *",
+   "offset": 164
+  },
+  "168": {
+   "name": "m_pUI",
+   "type": "CCBUI *",
+   "offset": 168
+  },
+  "172": {
+   "name": "m_nIndex",
+   "type": "int",
+   "offset": 172
+  },
+  "176": {
+   "name": "m_bClosed",
+   "type": "unsigned char",
+   "offset": 176
+  },
+  "0": {
+   "name": "__vftable",
+   "type": "void *",
+   "source": "vtable_fix"
+  }
+ },
+ "base_class": [
+  "UIFrameWnd"
+ ],
+ "methods": {
+  "0x0043BE30": {
+   "name": "~CCBResultWindow",
+   "signature": "void __thiscall CCBResultWindow::~CCBResultWindow()",
+   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+  },
+  "0x00442E10": {
+   "name": "ctor",
+   "signature": "void __thiscall()",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+  },
+  "0x00443190": {
+   "name": "Create",
+   "signature": "void __thiscall CCBResultWindow::Create()"
+  },
+  "0x00444A20": {
+   "name": "CCBResultWindow",
+   "signature": "void __thiscall CCBResultWindow::CCBResultWindow()"
+  },
+  "0x00444D20": {
+   "name": "SetDirty",
+   "signature": "void __thiscall()"
+  },
+  "0x00515CE0": {
+   "name": "FindChildByID",
+   "signature": "int __thiscall UIWnd::FindChildByID(int nID)"
+  },
+  "0x00444D10": {
+   "name": "StartAnim",
+   "signature": "int __thiscall CCBResultWindow::StartAnim()",
+   "class": "UIWnd"
+  },
+  "0x00519660": {
+   "name": "IsImbibeNimbusNotFinish",
+   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+  },
+  "0x00519360": {
+   "name": "ShowLineupWindow",
+   "signature": "void __thiscall(BOOL bShow)"
+  },
+  "0x00519510": {
+   "name": "Destroy",
+   "signature": "void __thiscall()"
+  },
+  "0x005195E0": {
+   "name": "OnMessage",
+   "signature": "int __thiscall(int pt, unsigned int area, int nVal)"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x005704C8",
+   "slots": [
     {
-      "addr": "0x005704C8",
-      "slots": [
-        {
-          "addr": "0x00445E70",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0043DDF0",
-          "from": "CCBUI"
-        },
-        {
-          "addr": "0x00519660",
-          "from": "CCBUI"
-        },
-        {
-          "addr": "0x00519510",
-          "from": "CCBUI"
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x00519360",
-          "from": "CCBUI"
-        },
-        {
-          "addr": "0x005195E0",
-          "from": "CCBUI"
-        },
-        {
-          "addr": "0x00445E70",
-          "from": "UIWnd"
-        }
-      ]
+     "addr": "0x00445E70",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x0043DDF0",
+     "from": "CCBUI"
+    },
+    {
+     "addr": "0x00519660",
+     "from": "CCBUI"
+    },
+    {
+     "addr": "0x00519510",
+     "from": "CCBUI"
+    },
+    {
+     "addr": "0x00445B90",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x00519360",
+     "from": "CCBUI"
+    },
+    {
+     "addr": "0x005195E0",
+     "from": "CCBUI"
+    },
+    {
+     "addr": "0x00445E70",
+     "from": "UIWnd"
     }
-  ],
-  "base_size": 72
+   ]
+  }
+ ],
+ "base_size": 72,
+ "size_note": "2026-09-13: ctor 0x518E10 accesses this+0xA44; annotation size 180 was a member-scan truncation. SceneObj::Update slot2 override evidence pending MI wiring"
 }

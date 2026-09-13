@@ -1,47 +1,48 @@
 ---
-title: SceneObj/UI 家族跨类调用是组合不是继承——base_size 钉死的终裁
+title: gbUI 跨类调用终裁：7 槽行表注册制（非继承非组合）
 type: decision
 date: 2026-09-13
-confidence: 90
+confidence: 80
 ---
 
-# SceneObj::Update 的 84 处跨类调用 = 组合（has-a），非继承（is-a）
+# SceneObj::Update 84 处跨类调用 = gbUI 行表注册制调用
 
-## 裁决过程（三方证据演进）
+## 三轮裁决史（每轮都被下一轮修正——保留全过程作为方法论样本）
 
-1. **v1（账本）**：`SceneObj::Update` 84 处调用方横跨 40+ 窗口类 → 猜"未记录继承树"。
-2. **v2（对抗复核）**：vtable 槽 0/4/6 家族共享 → 裁 `UIWnd → SceneObj → CGameData(根)`，
-   但自标 "base_size 待核"。
-3. **v3（base_size + 安装点终裁，本文）**：**复核链被否决**——
-   - 尺寸硬约束：CGameData(28268B) > SceneObj(1784B)，链不可能成立；
-   - SceneObj ctor 0x452AA0（7KB）只安装自己的 vtable 0x56B200，零基类表安装；
-     对照 UIWnd ctor 0x4427C0 实装 UIFrameWnd+UIWnd 两表（该边为真）；
-   - vtable 槽重合率 3/7 = 兄弟关系（共同基在别处），非父子覆写；
-   - **75 个直接 call 0x445C60 调用点的机器码**：`mov ecx, <各类自己的指针来源>` 后
-     直接 call——各窗口类持有 SceneObj 指针（成员/全局），是教科书组合调用。
-   - SceneObj 注解既有三基（PalScriptWaitObj/GlowObj/TaskMgr_SceneObjParam_SceneObj）
-     与此自洽：它是脚本侧多继承节点，不属于 UI 窗口继承树。
+1. **v1 账本**：84 处调用方横跨 40+ 类 → 猜未记录继承树。
+2. **v2 对抗复核**：vtable 槽共享 → 裁 UIWnd→SceneObj→CGameData 链（base_size 未核）。
+3. **v3 组合**：base_size 否决 v2 链 + 75 个调用点 mov ecx,各类指针 → 裁组合。
+4. **v4 终裁（本文）**：slot2 覆写证据（CCBResultWindow::IsImbibeNimbusNotFinish 覆写
+   SceneObj::Update 槽位）推翻 v3 纯组合说；而 UIWnd.slot2 访问半径 0x94BE(38KB)
+   证明 0x4427C0 是管理器而非窗口 ctor → **槽共享的真身是 gbUI 行表注册制**：
+   每个窗口类在 .rdata 注册一张 7 函数行表（slot0/4/6 为框架通用入口
+   ShowWindow/Cleanup 等，slot1/2/3/5 是各类自实现的消息处理 Update/OnMessage），
+   框架（管理器）按表调度。Hex-Rays 把行表函数归属到注解类名，调用点渲染成
+   `SceneObj::Update((SceneObj*)this)` 限定形式。
 
-## 对 1044 处 MISATTRIBUTED 的最终解释
+## 证据链（v4）
 
-UI 大簇（SceneObj/StateUI/UIListBox/…）的跨类调用 = **组合调用被 Hex-Rays
-渲染成限定形式**（Hex-Rays 只知道被调函数归属 SceneObj，把调用方持有的
-指针显示为调用方 this——因为局部/成员变量类型未被标注，寄存器折叠后
-Hex-Rays 用当前函数的 this 兜底渲染）。
+- 0x445E70（slot0 通用入口）访问半径仅 0x3C，被 68 个类的表共享——框架级小函数；
+- UIWnd 表的 slot2（0x442FF0）访问半径 0x94BE——管理器级巨型函数（0x4427C0 区）；
+- SceneObj 表 slot2=0x445C60（Update），CCBResultWindow 表 slot2=0x519660
+  （IsImbibeNimbusNotFinish）——各类自实现消息处理器；
+- ctor 证据：SceneObj ctor 0x452AA0 只装自己表；管理器 ctor 0x4427C0 装多表；
+- 注解层 CCBResultWindow size=180 是扫描截断（ctor 访问 this+0xA44，已修正 2628）。
 
-## 修复方向（替代 base_class 方案）
+## 修复方案（终版）
 
-transform 侧识别"成员/全局持有的跨类调用"：
-- 已知类 X 的方法内出现 `SceneObj::M(ptr)` 且 ptr ≠ this → 发射
-  `((SceneObj *)ptr)->SceneObj::M(...)`（保真形式，cast+限定）；
-- `SceneObj::M(this)` 且 X 不继承 SceneObj → 维持 [MISATTRIBUTED] 标记
-  （可能真错或指针别名，需逐案）。
-
-这条修复不触碰 IDB 结构（无派生化连锁），风险远低于 base_class 方案。
+**不是 base_class（行表不是继承），不是成员组合**。正确形态：
+`((SceneObj *)this)->SceneObj::Update(...)`——但 this 兼任行表所有者的语义
+无法在注解层表达。务实路径：
+1. transform 增加"行表类白名单"：被调类属于行表注册族（SceneObj/CGameData/
+   StateUI/UIListBox 等出现在多类表中的函数）时，`X::M((X*)this)` 发射
+   `((X*)this)->X::M(...)` 保真形式（cast+限定），标记改为 [ROWTABLE]；
+2. IDB 层长期：给行表函数命名加 `_rowtable` 后缀区分归属语义；
+3. 语义校验：编译后比对调用目标地址不变（is-GA）。
 
 ## 教训
 
-- vtable 槽共享 ≠ 继承（兄弟类共享根类未覆写槽是常态）；
-- **base_size/尺寸约束是继承裁决的第一道闸**，槽分析只能做辅助；
-- 对抗复核也要被复核：复核员自己标了 "base_size 待核" 的结论，
-  核完就翻。
+- 槽共享、槽覆写都不是继承的充分证据——先看函数访问半径（0x3C vs 0x94BE
+  立刻区分框架函数与管理器）；
+- 尺寸约束（base_size）是否决性检验但不是充分性检验；
+- 四轮裁决每轮都有新证据推翻前轮：对抗复核本身也要被对抗复核。
