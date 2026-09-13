@@ -1226,9 +1226,14 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # known emitted class — anything else came from IDB type pollution and
     # would produce unresolvable includes.
     def _known_base_name(b):
+        # Deterministic: consult the in-memory class universe (export +
+        # annotations), never disk state. The old file-existence check made
+        # emission depend on generation order (UIStatic sorts before UIWnd;
+        # whether UIWnd.h existed on disk at that moment decided the base),
+        # producing run-to-run flapping headers.
         if not b or not re.match(r'^[A-Za-z_]\w*$', b):
             return False
-        if (OUTPUT_DIR / ('%s.h' % b)).exists():
+        if b in _get_ida_structs() or _ann_struct_path(b) is not None:
             return True
         return any((OUTPUT_DIR / d / ('%s.h' % b)).exists()
                    for d in ('', 'Misc', 'Combat', 'UI', 'Effect', 'Scene',
@@ -1274,9 +1279,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     _b = template_map[_b]
                 if _b in base_names:
                     continue
-                if _known_base_name(_b):
+                _gb = _gbengine_type_to_header.get(_b)
+                if _known_base_name(_b) or _gb:
+                    # _known_base_name covers classes we emit ourselves;
+                    # _gbengine_type_to_header covers external gbengine
+                    # bases whose headers live in include/gbengine/
                     base_names.append(_b)
-                    _gb = _gbengine_type_to_header.get(_b)
                     if _gb:
                         _inc = '#include "%s"' % _gb
                         if _inc not in lines:
