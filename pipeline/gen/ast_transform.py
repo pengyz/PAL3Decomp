@@ -163,7 +163,7 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                             _method_out = method_name
                             if method_name == '_' + class_name.split('::')[-1]:
                                 _method_out = '~' + class_name.split('::')[-1]
-                            
+
                             # Constructor call: Class::Class(this) -> this->Class()
                             _short_cls = class_name.split('::')[-1]
                             if method_name == _short_cls:
@@ -176,7 +176,7 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 replacements.append((
                                     node.start_byte, node.end_byte, new_text))
                                 return
-                            
+
                             _ensure_bases()
                             _is_base = _is_derived_from(cls_name, class_name)
                             # Use qualified Base::Method(rest) when calling base class method
@@ -184,7 +184,16 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                             if _is_base and class_name != cls_name:
                                 new_text = '%s::%s(%s)' % (class_name, _method_out, rest_str)
                             elif class_name == cls_name or _is_base:
-                                new_text = 'this->%s(%s)' % (_method_out, rest_str)
+                                # Qualified call preserves the direct-call
+                                # semantics Hex-Rays reported (unqualified
+                                # this->M() on a virtual M compiles to vtable
+                                # dispatch — different bytes). Explicit dtor
+                                # calls are already direct, keep them clean.
+                                if _method_out.startswith('~'):
+                                    new_text = 'this->%s()' % _method_out
+                                else:
+                                    new_text = 'this->%s::%s(%s)' % (
+                                        class_name, _method_out, rest_str)
                             else:
                                 # Non-base class destructor: output this->~Class()
                                 # Stage 3 cleanup detects and deletes these (compiler handles chain).
@@ -192,18 +201,21 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                     new_text = 'this->%s()' % _method_out
                                 else:
                                     # Inter-class call with this as first arg.
-                                    # Convert to ((Class *)this)->Method(rest) to remove
-                                    # the explicit this and match header signature.
-                                    new_text = '((%s *)this)->%s(%s)' % (
-                                        class_name, _method_out, rest_str)
+                                    # Faithful isomorphic form: keep cast + qualifier.
+                                    # Compiles (method IS declared in class_name) and
+                                    # marks the attribution anomaly for annotation work.
+                                    new_text = '((%s *)this)->%s::%s(%s)' % (
+                                        class_name, class_name, _method_out, rest_str)
                             replacements.append((
                                 node.start_byte, node.end_byte, new_text))
                             return
+                            return
                         elif first_arg.type == 'identifier':
-                            # Simple var: direct member access (no cast)
-                            # Type safety is the annotation's job, not codegen's.
-                            # If the type is wrong, the compiler error is a clear
-                            # signal that the annotation needs fixing.
+                            # Simple var: cast to the class so the qualified call
+                            # compiles regardless of the local's declared type.
+                            # The cast is the isomorphic form of Hex-Rays' own
+                            # explicit-this convention (same this value, same
+                            # call target — nothing invented).
                             _strip = first_arg_text.lstrip(':')
                             _needs_addr = (
                                 class_name[0].isupper()
@@ -211,8 +223,8 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 and _strip not in static_methods
                             )
                             _obj = '&' + first_arg_text if _needs_addr else first_arg_text
-                            new_text = '%s->%s(%s)' % (
-                                _obj, method_name, rest_str)
+                            new_text = '((%s *)%s)->%s::%s(%s)' % (
+                                class_name, _obj, class_name, method_name, rest_str)
                             replacements.append((
                                 node.start_byte, node.end_byte, new_text))
                             return
@@ -234,54 +246,26 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 _qualified = '%s::%s' % (class_name, method_name)
                                 if _qualified in static_methods:
                                     return
-                                # If inner starts with &, it's a pointer to a local
-                                # variable. Convert ONLY when cast type matches the
-                                # class (explicit this), e.g. (Logger*)&ArgList.
-                                _cast_type = first_arg_text.split('(')[-1].split(')')[0] if ')' in first_arg_text else ''
-                                _cls_short = class_name.split('::')[-1]
-                                if inner.startswith('&'):
-                                    if _cls_short in _cast_type:
-                                        # Explicit this cast: (Logger*)&var -> ((Logger*)&var)->Method
-                                        new_text = '((%s))->%s(%s)' % (
-                                            first_arg_text, method_name, rest_str)
-                                        replacements.append((
-                                            node.start_byte, node.end_byte, new_text))
-                                        return
-                                    return
-                                # If inner is parenthesized (like (v2 + 108)), keep the cast
-                                # to preserve type information: (Type*)(expr) -> ((Type*)(expr))->Method
-                                if val_node and val_node.type == 'parenthesized_expression':
-                                    new_text = '((%s))->%s(%s)' % (
-                                        first_arg_text, method_name, rest_str)
-                                    replacements.append((
-                                        node.start_byte, node.end_byte, new_text))
-                                    return
-                                _needs_addr = bool(re.match(r'^g_[A-Z]', _inner_strip))
-                                _inner = '&' + inner if _needs_addr else inner
-                                # When inner is 'this' with a cast to a different class:
-                                # - If cast type is a base class → qualified call: this->Base::Method()
-                                # - Otherwise → strip cast, let compiler error surface annotation issues
-                                if inner == 'this' and _cast_type:
-                                    _ensure_bases()
-                                    _cast_cls = _cast_type.replace('*', '').strip()
-                                    if _cast_cls == cls_name or _is_derived_from(cls_name, _cast_cls):
-                                        # Cast matches current class or base → member call
-                                        if _cast_cls != cls_name and _is_derived_from(cls_name, _cast_cls):
-                                            new_text = 'this->%s::%s(%s)' % (
-                                                _cast_cls, method_name, rest_str)
-                                        else:
-                                            new_text = 'this->%s(%s)' % (
-                                                method_name, rest_str)
-                                    else:
-                                        # Cross-class call with (Cast*)this.
-                                        # This indicates a Hex-Rays attribution error
-                                        # or wrong inheritance annotation.
-                                        # Strip cast, let compiler C2039 surface the issue.
-                                        new_text = '%s->%s(%s)' % (
-                                            _inner, method_name, rest_str)
+                                if inner == 'this':
+                                    # (T*)this: base-of-cls casts already handled
+                                    # via the qualified base path above; here the
+                                    # cast target matches the method's class (or is
+                                    # unrelated noise) — this->Cls::M is the direct
+                                    # call Hex-Rays reported. An unrelated T carries
+                                    # no object-layout truth worth keeping.
+                                    new_text = 'this->%s::%s(%s)' % (
+                                        class_name, method_name, rest_str)
                                 else:
-                                    new_text = '%s->%s(%s)' % (
-                                        _inner, method_name, rest_str)
+                                    # Normalize the cast to the method's class and
+                                    # keep the qualifier: ((Cls*)X)->Cls::M(rest).
+                                    # Works for (Cls*)&var, (Cls*)(v2+108), and
+                                    # unrelated casts alike — one faithful form.
+                                    new_text = '((%s *)%s)->%s::%s(%s)' % (
+                                        class_name, inner, class_name,
+                                        method_name, rest_str)
+                                replacements.append((
+                                    node.start_byte, node.end_byte, new_text))
+                                return
                             elif first_arg.type == 'qualified_identifier':
                                 _scope = first_arg.child_by_field_name('scope')
                                 _name = first_arg.child_by_field_name('name')
@@ -291,9 +275,12 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                     class_name[0].isupper()
                                     and _strip.startswith('g_')
                                 )
-                                _inner = '&' + _inner if _needs_addr else _inner
-                                new_text = '%s->%s(%s)' % (
-                                    _inner, method_name, rest_str)
+                                _obj = '&' + _inner if _needs_addr else _inner
+                                new_text = '((%s *)%s)->%s::%s(%s)' % (
+                                    class_name, _obj, class_name, method_name, rest_str)
+                                replacements.append((
+                                    node.start_byte, node.end_byte, new_text))
+                                return
                             elif first_arg.type == 'pointer_expression':
                                 # &expr as first arg.
                                 # &g_Global implies a VALUE-type global (a pointer
@@ -303,18 +290,26 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 _ptr_inner = first_arg_text[1:]  # strip &
                                 _ptr_strip = _ptr_inner.lstrip(':')
                                 if re.match(r'^g_[A-Z]', _ptr_strip):
-                                    new_text = '%s.%s(%s)' % (
-                                        _ptr_inner, method_name, rest_str)
+                                    new_text = '%s.%s::%s(%s)' % (
+                                        _ptr_inner, class_name, method_name, rest_str)
                                 else:
                                     return
+                                replacements.append((
+                                    node.start_byte, node.end_byte, new_text))
+                                return
                             elif first_arg.type in ('binary_expression', 'parenthesized_expression'):
                                 # Complex expression like (Type*)ptr - offset or (ptr + N)
-                                # Need parentheses to preserve operator precedence
-                                new_text = '(%s)->%s(%s)' % (
-                                    first_arg_text, method_name, rest_str)
+                                # Cast + parens preserve precedence and type
+                                new_text = '((%s *)(%s))->%s::%s(%s)' % (
+                                    class_name, first_arg_text, class_name,
+                                    method_name, rest_str)
+                                replacements.append((
+                                    node.start_byte, node.end_byte, new_text))
+                                return
                             else:
-                                new_text = '%s->%s(%s)' % (
-                                    first_arg_text, method_name, rest_str)
+                                new_text = '((%s *)%s)->%s::%s(%s)' % (
+                                    class_name, first_arg_text, class_name,
+                                    method_name, rest_str)
                             replacements.append((
                                 node.start_byte, node.end_byte, new_text))
                             return

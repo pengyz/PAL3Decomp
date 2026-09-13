@@ -36,23 +36,26 @@ class TestOopTransform(unittest.TestCase):
     """Test ast_transform.transform_oop_calls"""
 
     def test_this_as_first_arg(self):
-        """Class::Method(this, ...) -> this->Method(...)"""
+        """Class::Method(this, ...) -> this->Class::Method(...)
+        Qualifier keeps the direct-call semantics for virtual methods."""
         code = "int Foo::Bar() { Foo::DoSomething(this, 1, 2); return 0; }"
         result = transform_oop_calls(code, cls_name='Foo')
-        self.assertIn('this->DoSomething(1, 2)', result)
+        self.assertIn('this->Foo::DoSomething(1, 2)', result)
         self.assertNotIn('Foo::DoSomething(this', result)
 
     def test_identifier_as_first_arg(self):
-        """Class::Method(var, ...) -> ((Class *)var)->Method(...)"""
+        """Class::Method(var, ...) -> ((Class *)var)->Class::Method(...)
+        Cast + qualifier both preserved: compiles for untyped locals and
+        keeps the direct-call semantics Hex-Rays reported."""
         code = "int test() { Foo::DoSomething(ptr, 1, 2); return 0; }"
         result = transform_oop_calls(code)
-        self.assertIn('((Foo *)ptr)->DoSomething(1, 2)', result)
+        self.assertIn('((Foo *)ptr)->Foo::DoSomething(1, 2)', result)
 
     def test_complex_expr_as_first_arg(self):
-        """Class::Method(ptr->field, ...) -> ((Class *)ptr->field)->Method(...)"""
+        """Class::Method(ptr->field, ...) -> ((Class *)ptr->field)->Class::Method(...)"""
         code = "int test() { Foo::DoSomething(obj->field, 1); return 0; }"
         result = transform_oop_calls(code)
-        self.assertIn('((Foo *)obj->field)->DoSomething(1)', result)
+        self.assertIn('((Foo *)obj->field)->Foo::DoSomething(1)', result)
 
     def test_qualified_destructor(self):
         """Class::_Class(this) -> this->~Class()"""
@@ -91,7 +94,7 @@ class TestOopTransform(unittest.TestCase):
         """OtherClass::Method(this, ...) -> ((OtherClass *)this)->Method(...)"""
         code = "int Derived::Bar() { OtherClass::DoSomething(this, 1, 2); return 0; }"
         result = transform_oop_calls(code, cls_name='Derived')
-        self.assertIn('((OtherClass *)this)->DoSomething(1, 2)', result)
+        self.assertIn('((OtherClass *)this)->OtherClass::DoSomething(1, 2)', result)
         self.assertNotIn('OtherClass::DoSomething(this', result)
 
 
