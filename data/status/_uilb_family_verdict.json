@@ -9,5 +9,12 @@
   "结论：注解把工厂表里的函数对错标为 UILB dtor；家族方法地址需按表槽+形态重推导"
  ],
  "action": "MCP 会话中按 0x56AD20/0x56AD40 表槽逐个反汇编定名，替换 functions.json/structs 里的 UILB* 方法地址",
- "final_verdict": "v2 (MCP disasm): UILBItem is NON-polymorphic POD (picon@0 occupies vtable slot; members +0 picon/+4 text[64]/+68 itemColor = flat 72B). The apparent dtor chain was PDB-drift glue: 0x43DC60 = static-init guard+_atexit; 0x43DC90 = 5B thunk; 0x43DCA0 = 11B accessor mislabeled ??0UILBColumn. Action: pseudo methods removed from annotations (UILBItem entirely; UILBColumn pseudo-ctor). No base_class added (sizes 72<84 consistent with POD)."
+ "final_verdict": "v2 (MCP disasm): UILBItem is NON-polymorphic POD (picon@0 occupies vtable slot; members +0 picon/+4 text[64]/+68 itemColor = flat 72B). The apparent dtor chain was PDB-drift glue: 0x43DC60 = static-init guard+_atexit; 0x43DC90 = 5B thunk; 0x43DCA0 = 11B accessor mislabeled ??0UILBColumn. Action: pseudo methods removed from annotations (UILBItem entirely; UILBColumn pseudo-ctor). No base_class added (sizes 72<84 consistent with POD).",
+ "related_findings": [
+  {
+   "finding": "0x4DB940（半径 0x1C6，调用方 CCBSystem::SetThreadFlag / CCBRoleState::ProcessActions / CCBStage::TaskShow*）",
+   "verdict": "归属不定：非 vtable 成员、无 rdata 引用；0x1C6 落在 CCBStage 字段区间但无精确匹配（扫描截断）",
+   "note": "环状区函数的归属需 CCBStage 成员补全后重推导"
+  }
+ ]
 }

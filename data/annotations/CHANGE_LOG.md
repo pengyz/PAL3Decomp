@@ -5340,3 +5340,10 @@ Confidence: 80（名字层面可逆；若未来获得更强命名证据可整体
   0x43DC60 区为静态初始化胶水（guard+_atexit），0x43DC90/0x43DCA0 为漂移错标。
 - 动作：UILBItem.methods 清空、UILBColumn 伪 ctor 移除、functions.json 同步。
 - S1 729/750 持平、S2 46/199（UILBItem.cpp 单元随伪方法消失，无连带回退）。
+
+## 2026-09-14: skip 名单 FLIRT 清理批次
+- 11 个非对齐伪锚（0x541E03 等，FLIRT 在函数中部误匹配且调用者为 FLIRT 自引用簇）清除；
+- 52 个单例访问 thunk（mov ecx,[全局]; jmp 真方法）重标 SingletonThunk_*；
+- 0x52D770 真代码捞回（MiniGame2_ClearState，MiniGame2Update 调用）。
+- MCP 环区轮首案 0x4DB940：半径 0x1C6、三类调用方，归属不定，待 CCBStage 成员补全后重推导
+  （详见 data/status/_uilb_family_verdict.json related_findings）。
