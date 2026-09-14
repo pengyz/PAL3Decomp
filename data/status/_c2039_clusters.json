@@ -1,0 +1,159 @@
+{
+ "C2039 未声明成员聚类（270 错/78 名）": [
+  {
+   "member": "m_pData",
+   "sites": 69,
+   "files": [
+    "CCBRoleState.cpp",
+    "SaleUI.cpp"
+   ]
+  },
+  {
+   "member": "GetCGEntry",
+   "sites": 18,
+   "files": [
+    "PalScriptMgr.cpp"
+   ]
+  },
+  {
+   "member": "Logger",
+   "sites": 12,
+   "files": [
+    "CCBStageScene.cpp",
+    "CCBSystem.cpp"
+   ]
+  },
+  {
+   "member": "pExceptionObject",
+   "sites": 8,
+   "files": [
+    "CCBStageScene.cpp",
+    "CCBSystem.cpp"
+   ]
+  },
+  {
+   "member": "_nearby_41cbc0",
+   "sites": 8,
+   "files": [
+    "CameraCtrl.cpp"
+   ]
+  },
+  {
+   "member": "v22",
+   "sites": 7,
+   "files": [
+    "CCBStageScene.cpp"
+   ]
+  },
+  {
+   "member": "_DWORD",
+   "sites": 5,
+   "files": [
+    "CCBStageScene.cpp",
+    "UIScenePanel.cpp"
+   ]
+  },
+  {
+   "member": "_nearby_4b6ca0",
+   "sites": 5,
+   "files": [
+    "RenderTarget3.cpp",
+    "ScriptVM.cpp",
+    "free_functions.cpp"
+   ]
+  },
+  {
+   "member": "memcpy",
+   "sites": 4,
+   "files": [
+    "CCBStageScene.cpp",
+    "CCBSystem.cpp"
+   ]
+  },
+  {
+   "member": "_CxxThrowException",
+   "sites": 4,
+   "files": [
+    "CCBStageScene.cpp",
+    "CCBSystem.cpp"
+   ]
+  },
+  {
+   "member": "_ThrowInfo",
+   "sites": 4,
+   "files": [
+    "CCBStageScene.cpp",
+    "CCBSystem.cpp"
+   ]
+  },
+  {
+   "member": "_BYTE",
+   "sites": 4,
+   "files": [
+    "CCBStageScene.cpp"
+   ]
+  },
+  {
+   "member": "CCBCamControl",
+   "sites": 4,
+   "files": [
+    "CCBStageScene.cpp"
+   ]
+  },
+  {
+   "member": "ReleaseAllRefs",
+   "sites": 4,
+   "files": [
+    "CCBSystem.cpp"
+   ]
+  },
+  {
+   "member": "CCBSystem",
+   "sites": 4,
+   "files": [
+    "CCBSystem.cpp"
+   ]
+  },
+  {
+   "member": "UIPostUpdate",
+   "sites": 4,
+   "files": [
+    "PAL3.cpp"
+   ]
+  },
+  {
+   "member": "TaskBookUI",
+   "sites": 4,
+   "files": [
+    "UIScenePanel.cpp"
+   ]
+  },
+  {
+   "member": "CScreenMode",
+   "sites": 4,
+   "files": [
+    "CScreenMode.cpp"
+   ]
+  },
+  {
+   "member": "v10",
+   "sites": 3,
+   "files": [
+    "CCBStageScene.cpp"
+   ]
+  },
+  {
+   "member": "CameraCtrl",
+   "sites": 3,
+   "files": [
+    "CCBStageScene.cpp"
+   ]
+  }
+ ],
+ "top_actionable": [
+  "m_pData x69 (CCBRoleState.cpp): til 旧类型含 m_pData 但 ida_structs 无 —— 需查 til 定偏移后补 known_members",
+  "GetCGEntry x18 (PalScriptMgr): 方法未注解或类指派错",
+  "Logger x12 / v22/_DWORD/_CxxThrowException x~20 (CCBStageScene): Hex-Rays 工件泄漏（该文件头文件/类型缺失级联）",
+  "_nearby_41cbc0 x8 / _nearby_4b6ca0 x5: IDA 未定义数据标签缺全局声明"
+ ]
+}
