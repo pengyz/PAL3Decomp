@@ -343,6 +343,17 @@ def generate_class_cpp(cls_name, methods):
     lines = []
     header_dir = store.header_dir
 
+    # 先变换全部方法代码：include 检测必须基于变换后的代码
+    # （stage2 OOP 解析会引入 Class::Method 形态的类引用）
+    methods.sort(key=lambda m: m['addr'])
+    transformed = []
+    transformed_methods = []
+    for m in methods:
+        ctx = make_context(cls_name, m['method'], sig=m.get('sig', ''))
+        code = run_transforms(m['code'].strip(), ctx)
+        transformed.append((m['addr'], code))
+        transformed_methods.append({'code': code, 'method': m['method']})
+
     # Standard includes
     lines.append('#include "pal3/ida_defs.h"')
     lines.append('#include "globals.h"')
@@ -356,8 +367,8 @@ def generate_class_cpp(cls_name, methods):
         else:
             lines.append('#include "%s.h"' % cls_name)
 
-    # Auto-detect additional includes
-    needed_classes = _detect_needed_includes(cls_name, methods)
+    # Auto-detect additional includes (on TRANSFORMED code)
+    needed_classes = _detect_needed_includes(cls_name, transformed_methods)
 
     # CRT/system types that should never be included
     _SKIP_INCLUDE = {
@@ -387,16 +398,6 @@ def generate_class_cpp(cls_name, methods):
                     break
 
     lines.append("")
-
-    # Sort methods by address
-    methods.sort(key=lambda m: m['addr'])
-
-    # Transform all method code through the pipeline
-    transformed = []
-    for m in methods:
-        ctx = make_context(cls_name, m['method'], sig=m.get('sig', ''))
-        code = run_transforms(m['code'].strip(), ctx)
-        transformed.append((m['addr'], code))
 
     # Generate forward declarations based on all code in this file
     all_code = '\n'.join(code for _, code in transformed)
