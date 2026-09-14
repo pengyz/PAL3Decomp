@@ -1,0 +1,19 @@
+{
+  "question": "PAL3::SetValue(0x461FD0)/GetValue(0x462220)/SetRange(0x462080)（账本顶簇，42 站点）真正属于哪个类？",
+  "verdict": "属于 SaleUI（PDB 真名）。PAL3:: 前缀是注解管线历史误归属（IDB 名 ?SetValue@PAL3@@ 系我们自己写入，循环自证非权威）。SaleUI.binary_size 修正 111488→105656（分配点证据）。",
+  "evidence": [
+    "三个函数访问 this+0x1795C..0x196C4（≥104,132B），而 PAL3 类仅 91,024B——物理不可能",
+    "调用点形态：SaleUI/PAL_GDB/PlayerMgr 的方法全部传自己的 this（PAL3::GetValue((PAL3*)this,0)）——同一线索指向共同宿主",
+    "CScreenMode::InitGameUI+0x459724: push 19DB8h; operator new; ??0SaleUI@@QAE@XZ（PDB 修饰真名）→ SaleUI 尺寸 0x19DB8=105,656",
+    "ctor 0x45A7B0（??0SaleUI，488 行）精确初始化 +0x18E70/+0x192AC 等 SetRange/SetValue 访问的同一批子控件偏移",
+    "PAL_GDB(814KB)/PlayerMgr(107KB) 的调用方函数与 SaleUI ctor/PlayerMgr ctor(0x45AE60) 在 0x45A-0x463 区间交错且 IDA 函数边界损坏（巨函数合并到 0x561xxx）——调用方函数本身归属存疑，留下轮",
+    "0x45A7B0 与 0x45AE60 相邻（0x45A7B0+0x6B0=0x45AE60）且初始化同一布局（升序/降序互补）——可能是被 IDA 切开/漂移命名的同一条初始化链"
+  ],
+  "action": "3 方法 PAL3→SaleUI；SaleUI.binary_size 修正；函数体内 SaleUI 自身 14+ 站点的 [MISATTRIBUTED] 将随类内合法化消解；PAL_GDB 11 + PlayerMgr 4 站点留下轮（调用方函数归属未定）。",
+  "boundary_unresolved": [
+    "PAL_GDB:: 方法群中调用 SetValue(this) 的函数（可能漂移自 SaleUI）",
+    "PlayerMgr::SetSelectionFlags/CreatePanelElements 等与 SaleUI 区间交错的函数群",
+    "0x45A7B0/0x45AE60 ctor 边界重切"
+  ],
+  "date": "2026-09-14"
+}

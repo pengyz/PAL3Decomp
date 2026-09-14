@@ -1,499 +1,515 @@
 {
-  "name": "SaleUI",
-  "binary_size": 111488,
-  "known_members": {
-    "72": {
-      "name": "bkWidth",
-      "type": "int",
-      "source": "annotation"
-    },
-    "76": {
-      "name": "bkHeight",
-      "type": "int",
-      "source": "annotation"
-    },
-    "80": {
-      "name": "buf",
-      "type": "char[256]",
-      "source": "annotation"
-    },
-    "336": {
-      "name": "remarkbuf",
-      "type": "char[256]",
-      "source": "annotation"
-    },
-    "592": {
-      "name": "m_SelNum",
-      "type": "int",
-      "source": "annotation"
-    },
-    "596": {
-      "name": "m_data",
-      "type": "st_Manager",
-      "source": "annotation"
-    },
-    "18100": {
-      "name": "m_sort",
-      "type": "SaleUI_SortData[299][5]",
-      "source": "annotation"
-    },
-    "30060": {
-      "name": "m_ListSelNum",
-      "type": "int[299][5]",
-      "source": "annotation"
-    },
-    "36040": {
-      "name": "m_Max",
-      "type": "int[299][5]",
-      "source": "annotation"
-    },
-    "42020": {
-      "name": "m_Sum",
-      "type": "int[5]",
-      "source": "annotation"
-    },
-    "42040": {
-      "name": "_isCreatable",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "42044": {
-      "name": "m_SaleData",
-      "type": "PlayerItem[299][5]",
-      "source": "annotation"
-    },
-    "59984": {
-      "name": "m_TempData",
-      "type": "PlayerItem[299][5]",
-      "source": "annotation"
-    },
-    "77924": {
-      "name": "m_NotesNull",
-      "type": "int[299][5]",
-      "source": "annotation"
-    },
-    "83904": {
-      "name": "m_IsEquip",
-      "type": "unsigned char[299][5]",
-      "source": "annotation"
-    },
-    "85399": {
-      "name": "m_TempIsEquip",
-      "type": "unsigned char[299][5]",
-      "source": "annotation"
-    },
-    "86896": {
-      "name": "x",
-      "type": "int",
-      "source": "annotation"
-    },
-    "86900": {
-      "name": "rc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "86916": {
-      "name": "m_Frame",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "87076": {
-      "name": "m_FrameBar",
-      "type": "UIFlexBar",
-      "source": "annotation"
-    },
-    "87160": {
-      "name": "m_Flag",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "87320": {
-      "name": "m_OutFrameT",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "87480": {
-      "name": "m_OutFrameR",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "87640": {
-      "name": "m_OutFrameL",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "87800": {
-      "name": "m_OutFrameB",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "87960": {
-      "name": "mb_Exit",
-      "type": "UIButton",
-      "source": "annotation"
-    },
-    "88304": {
-      "name": "m_ExitRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "88320": {
-      "name": "m_ani",
-      "type": "UIAnimateCtrl",
-      "source": "annotation"
-    },
-    "88484": {
-      "name": "m_Role",
-      "type": "UIStatic[5]",
-      "source": "annotation"
-    },
-    "89284": {
-      "name": "m_RoleRc",
-      "type": "tagRECT[5]",
-      "source": "annotation"
-    },
-    "89364": {
-      "name": "RoleX",
-      "type": "int",
-      "source": "annotation"
-    },
-    "89368": {
-      "name": "RoleY",
-      "type": "int",
-      "source": "annotation"
-    },
-    "89372": {
-      "name": "HeadW",
-      "type": "int",
-      "source": "annotation"
-    },
-    "89376": {
-      "name": "HeadH",
-      "type": "int",
-      "source": "annotation"
-    },
-    "89380": {
-      "name": "m_Is",
-      "type": "unsigned char[5]",
-      "source": "annotation"
-    },
-    "89388": {
-      "name": "m_Msg",
-      "type": "MUIDialog",
-      "source": "annotation"
-    },
-    "90772": {
-      "name": "m_3DObj",
-      "type": "UI3DCtrl",
-      "source": "annotation"
-    },
-    "91080": {
-      "name": "m_FlagRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "91096": {
-      "name": "m_TalkFrame",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "91256": {
-      "name": "m_Ready",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "91416": {
-      "name": "m_ReadyRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "91432": {
-      "name": "m_entryTalk",
-      "type": "char[256]",
-      "source": "annotation"
-    },
-    "91688": {
-      "name": "m_btn",
-      "type": "UIButton[5]",
-      "source": "annotation"
-    },
-    "93408": {
-      "name": "m_TabRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "93424": {
-      "name": "m_ListSaleTitle",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "93584": {
-      "name": "m_ListEquipTitleRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "93600": {
-      "name": "m_Icon",
-      "type": "UIStaticRM[5][5]",
-      "source": "annotation"
-    },
-    "98300": {
-      "name": "m_ListFrame",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "98460": {
-      "name": "m_ScrollHB",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "98620": {
-      "name": "m_ListGrid",
-      "type": "UIStatic[14]",
-      "source": "annotation"
-    },
-    "100860": {
-      "name": "m_ListRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "100876": {
-      "name": "ml_ResumeList",
-      "type": "UIListBox",
-      "source": "annotation"
-    },
-    "102164": {
-      "name": "ResumeNum",
-      "type": "int",
-      "source": "annotation"
-    },
-    "102168": {
-      "name": "ml_TreasureList",
-      "type": "UIListBox",
-      "source": "annotation"
-    },
-    "103456": {
-      "name": "TreasureNum",
-      "type": "int",
-      "source": "annotation"
-    },
-    "103460": {
-      "name": "ml_AttackList",
-      "type": "UIListBox",
-      "source": "annotation"
-    },
-    "104748": {
-      "name": "AttackNum",
-      "type": "int",
-      "source": "annotation"
-    },
-    "104752": {
-      "name": "ml_SmeltList",
-      "type": "UIListBox",
-      "source": "annotation"
-    },
-    "106040": {
-      "name": "SmeltNum",
-      "type": "int",
-      "source": "annotation"
-    },
-    "106044": {
-      "name": "ml_AncientList",
-      "type": "UIListBox",
-      "source": "annotation"
-    },
-    "107332": {
-      "name": "AncientNum",
-      "type": "int",
-      "source": "annotation"
-    },
-    "107336": {
-      "name": "ml_EquipList",
-      "type": "UIListBox",
-      "source": "annotation"
-    },
-    "108624": {
-      "name": "EquipNum",
-      "type": "int",
-      "source": "annotation"
-    },
-    "108628": {
-      "name": "curPage",
-      "type": "int",
-      "source": "annotation"
-    },
-    "108632": {
-      "name": "curNum",
-      "type": "int",
-      "source": "annotation"
-    },
-    "108636": {
-      "name": "m_btnGroup",
-      "type": "BtnGroup",
-      "source": "annotation"
-    },
-    "109376": {
-      "name": "m_ctrlTime",
-      "type": "float",
-      "source": "annotation"
-    },
-    "109380": {
-      "name": "m_bCanUpdate1",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "109381": {
-      "name": "m_bCanUpdate2",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "109384": {
-      "name": "m_Sortfunc",
-      "type": "UIButton",
-      "source": "annotation"
-    },
-    "109728": {
-      "name": "m_Sortprice",
-      "type": "UIButton",
-      "source": "annotation"
-    },
-    "110072": {
-      "name": "m_sortstate",
-      "type": "int",
-      "source": "annotation"
-    },
-    "110076": {
-      "name": "m_ButtonRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "110092": {
-      "name": "mb_OK",
-      "type": "UIButton",
-      "source": "annotation"
-    },
-    "110436": {
-      "name": "mb_Cancel",
-      "type": "UIButton",
-      "source": "annotation"
-    },
-    "110780": {
-      "name": "m_SaleRemarkBk",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "110940": {
-      "name": "m_SaleRemark",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "111100": {
-      "name": "m_ItemFlag",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "111260": {
-      "name": "m_RemarkRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "111276": {
-      "name": "m_SaleAtt",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "0": {
-      "name": "__vftable",
-      "type": "void *",
-      "source": "vtable_fix"
-    }
+ "name": "SaleUI",
+ "binary_size": 105656,
+ "known_members": {
+  "72": {
+   "name": "bkWidth",
+   "type": "int",
+   "source": "annotation"
   },
-  "base_class": [
-    "UIFrameWnd"
-  ],
-  "methods": {
-    "0x00525120": {
-      "name": "InitUI",
-      "signature": "int __thiscall SaleUI::InitUI()"
-    },
-    "0x00526A40": {
-      "name": "OnMessage",
-      "signature": "int __thiscall(int this, UIWnd *a2, char *nMsg, int wParam)"
-    },
-    "0x0045A7B0": {
-      "name": "SaleUI",
-      "signature": "int __thiscall SaleUI::SaleUI()"
-    },
-    "0x004615F0": {
-      "name": "DestroySubFrames",
-      "signature": "int __thiscall SaleUI::DestroySubFrames()"
-    },
-    "0x0046ACD0": {
-      "name": "ConsumeItems",
-      "signature": "int __thiscall SaleUI::ConsumeItems()"
-    },
-    "0x0046A8B0": {
-      "name": "Update",
-      "signature": "int __thiscall SaleUI::Update(int deltatime, int haveinput)"
-    },
-    "0x0046B040": {
-      "name": "ProcessCellAnimations",
-      "signature": "int __thiscall SaleUI::ProcessCellAnimations(int deltatime, int haveinput)",
-      "ordinal": 2
-    },
-    "0x004AB5E0": {
-      "name": "InitColumnWidths",
-      "signature": "int __thiscall ()",
-      "_misattrib_evidence": "max_offset=383296>class_size=111488"
-    },
-    "0x005263C0": {
-      "name": "ResetGridState",
-      "signature": "int __thiscall SaleUI::ResetGridState()"
-    },
-    "0x0045AE40": {
-      "name": "_scalar_dtor",
-      "signature": "void *__thiscall(UIWnd *Block, char pData)"
-    },
-    "0x0046B4B0": {
-      "name": "OnMessage",
-      "signature": "int __thiscall(int nVal, char *pszBuf, int nVal2)"
-    }
+  "76": {
+   "name": "bkHeight",
+   "type": "int",
+   "source": "annotation"
   },
-  "vtables": [
+  "80": {
+   "name": "buf",
+   "type": "char[256]",
+   "source": "annotation"
+  },
+  "336": {
+   "name": "remarkbuf",
+   "type": "char[256]",
+   "source": "annotation"
+  },
+  "592": {
+   "name": "m_SelNum",
+   "type": "int",
+   "source": "annotation"
+  },
+  "596": {
+   "name": "m_data",
+   "type": "st_Manager",
+   "source": "annotation"
+  },
+  "18100": {
+   "name": "m_sort",
+   "type": "SaleUI_SortData[299][5]",
+   "source": "annotation"
+  },
+  "30060": {
+   "name": "m_ListSelNum",
+   "type": "int[299][5]",
+   "source": "annotation"
+  },
+  "36040": {
+   "name": "m_Max",
+   "type": "int[299][5]",
+   "source": "annotation"
+  },
+  "42020": {
+   "name": "m_Sum",
+   "type": "int[5]",
+   "source": "annotation"
+  },
+  "42040": {
+   "name": "_isCreatable",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "42044": {
+   "name": "m_SaleData",
+   "type": "PlayerItem[299][5]",
+   "source": "annotation"
+  },
+  "59984": {
+   "name": "m_TempData",
+   "type": "PlayerItem[299][5]",
+   "source": "annotation"
+  },
+  "77924": {
+   "name": "m_NotesNull",
+   "type": "int[299][5]",
+   "source": "annotation"
+  },
+  "83904": {
+   "name": "m_IsEquip",
+   "type": "unsigned char[299][5]",
+   "source": "annotation"
+  },
+  "85399": {
+   "name": "m_TempIsEquip",
+   "type": "unsigned char[299][5]",
+   "source": "annotation"
+  },
+  "86896": {
+   "name": "x",
+   "type": "int",
+   "source": "annotation"
+  },
+  "86900": {
+   "name": "rc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "86916": {
+   "name": "m_Frame",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "87076": {
+   "name": "m_FrameBar",
+   "type": "UIFlexBar",
+   "source": "annotation"
+  },
+  "87160": {
+   "name": "m_Flag",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "87320": {
+   "name": "m_OutFrameT",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "87480": {
+   "name": "m_OutFrameR",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "87640": {
+   "name": "m_OutFrameL",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "87800": {
+   "name": "m_OutFrameB",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "87960": {
+   "name": "mb_Exit",
+   "type": "UIButton",
+   "source": "annotation"
+  },
+  "88304": {
+   "name": "m_ExitRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "88320": {
+   "name": "m_ani",
+   "type": "UIAnimateCtrl",
+   "source": "annotation"
+  },
+  "88484": {
+   "name": "m_Role",
+   "type": "UIStatic[5]",
+   "source": "annotation"
+  },
+  "89284": {
+   "name": "m_RoleRc",
+   "type": "tagRECT[5]",
+   "source": "annotation"
+  },
+  "89364": {
+   "name": "RoleX",
+   "type": "int",
+   "source": "annotation"
+  },
+  "89368": {
+   "name": "RoleY",
+   "type": "int",
+   "source": "annotation"
+  },
+  "89372": {
+   "name": "HeadW",
+   "type": "int",
+   "source": "annotation"
+  },
+  "89376": {
+   "name": "HeadH",
+   "type": "int",
+   "source": "annotation"
+  },
+  "89380": {
+   "name": "m_Is",
+   "type": "unsigned char[5]",
+   "source": "annotation"
+  },
+  "89388": {
+   "name": "m_Msg",
+   "type": "MUIDialog",
+   "source": "annotation"
+  },
+  "90772": {
+   "name": "m_3DObj",
+   "type": "UI3DCtrl",
+   "source": "annotation"
+  },
+  "91080": {
+   "name": "m_FlagRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "91096": {
+   "name": "m_TalkFrame",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "91256": {
+   "name": "m_Ready",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "91416": {
+   "name": "m_ReadyRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "91432": {
+   "name": "m_entryTalk",
+   "type": "char[256]",
+   "source": "annotation"
+  },
+  "91688": {
+   "name": "m_btn",
+   "type": "UIButton[5]",
+   "source": "annotation"
+  },
+  "93408": {
+   "name": "m_TabRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "93424": {
+   "name": "m_ListSaleTitle",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "93584": {
+   "name": "m_ListEquipTitleRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "93600": {
+   "name": "m_Icon",
+   "type": "UIStaticRM[5][5]",
+   "source": "annotation"
+  },
+  "98300": {
+   "name": "m_ListFrame",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "98460": {
+   "name": "m_ScrollHB",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "98620": {
+   "name": "m_ListGrid",
+   "type": "UIStatic[14]",
+   "source": "annotation"
+  },
+  "100860": {
+   "name": "m_ListRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "100876": {
+   "name": "ml_ResumeList",
+   "type": "UIListBox",
+   "source": "annotation"
+  },
+  "102164": {
+   "name": "ResumeNum",
+   "type": "int",
+   "source": "annotation"
+  },
+  "102168": {
+   "name": "ml_TreasureList",
+   "type": "UIListBox",
+   "source": "annotation"
+  },
+  "103456": {
+   "name": "TreasureNum",
+   "type": "int",
+   "source": "annotation"
+  },
+  "103460": {
+   "name": "ml_AttackList",
+   "type": "UIListBox",
+   "source": "annotation"
+  },
+  "104748": {
+   "name": "AttackNum",
+   "type": "int",
+   "source": "annotation"
+  },
+  "104752": {
+   "name": "ml_SmeltList",
+   "type": "UIListBox",
+   "source": "annotation"
+  },
+  "106040": {
+   "name": "SmeltNum",
+   "type": "int",
+   "source": "annotation"
+  },
+  "106044": {
+   "name": "ml_AncientList",
+   "type": "UIListBox",
+   "source": "annotation"
+  },
+  "107332": {
+   "name": "AncientNum",
+   "type": "int",
+   "source": "annotation"
+  },
+  "107336": {
+   "name": "ml_EquipList",
+   "type": "UIListBox",
+   "source": "annotation"
+  },
+  "108624": {
+   "name": "EquipNum",
+   "type": "int",
+   "source": "annotation"
+  },
+  "108628": {
+   "name": "curPage",
+   "type": "int",
+   "source": "annotation"
+  },
+  "108632": {
+   "name": "curNum",
+   "type": "int",
+   "source": "annotation"
+  },
+  "108636": {
+   "name": "m_btnGroup",
+   "type": "BtnGroup",
+   "source": "annotation"
+  },
+  "109376": {
+   "name": "m_ctrlTime",
+   "type": "float",
+   "source": "annotation"
+  },
+  "109380": {
+   "name": "m_bCanUpdate1",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "109381": {
+   "name": "m_bCanUpdate2",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "109384": {
+   "name": "m_Sortfunc",
+   "type": "UIButton",
+   "source": "annotation"
+  },
+  "109728": {
+   "name": "m_Sortprice",
+   "type": "UIButton",
+   "source": "annotation"
+  },
+  "110072": {
+   "name": "m_sortstate",
+   "type": "int",
+   "source": "annotation"
+  },
+  "110076": {
+   "name": "m_ButtonRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "110092": {
+   "name": "mb_OK",
+   "type": "UIButton",
+   "source": "annotation"
+  },
+  "110436": {
+   "name": "mb_Cancel",
+   "type": "UIButton",
+   "source": "annotation"
+  },
+  "110780": {
+   "name": "m_SaleRemarkBk",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "110940": {
+   "name": "m_SaleRemark",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "111100": {
+   "name": "m_ItemFlag",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "111260": {
+   "name": "m_RemarkRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "111276": {
+   "name": "m_SaleAtt",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "0": {
+   "name": "__vftable",
+   "type": "void *",
+   "source": "vtable_fix"
+  }
+ },
+ "base_class": [
+  "UIFrameWnd"
+ ],
+ "methods": {
+  "0x00525120": {
+   "name": "InitUI",
+   "signature": "int __thiscall SaleUI::InitUI()"
+  },
+  "0x00526A40": {
+   "name": "OnMessage",
+   "signature": "int __thiscall(int this, UIWnd *a2, char *nMsg, int wParam)"
+  },
+  "0x0045A7B0": {
+   "name": "SaleUI",
+   "signature": "int __thiscall SaleUI::SaleUI()"
+  },
+  "0x004615F0": {
+   "name": "DestroySubFrames",
+   "signature": "int __thiscall SaleUI::DestroySubFrames()"
+  },
+  "0x0046ACD0": {
+   "name": "ConsumeItems",
+   "signature": "int __thiscall SaleUI::ConsumeItems()"
+  },
+  "0x0046A8B0": {
+   "name": "Update",
+   "signature": "int __thiscall SaleUI::Update(int deltatime, int haveinput)"
+  },
+  "0x0046B040": {
+   "name": "ProcessCellAnimations",
+   "signature": "int __thiscall SaleUI::ProcessCellAnimations(int deltatime, int haveinput)",
+   "ordinal": 2
+  },
+  "0x004AB5E0": {
+   "name": "InitColumnWidths",
+   "signature": "int __thiscall ()",
+   "_misattrib_evidence": "max_offset=383296>class_size=111488"
+  },
+  "0x005263C0": {
+   "name": "ResetGridState",
+   "signature": "int __thiscall SaleUI::ResetGridState()"
+  },
+  "0x0045AE40": {
+   "name": "_scalar_dtor",
+   "signature": "void *__thiscall(UIWnd *Block, char pData)"
+  },
+  "0x0046B4B0": {
+   "name": "OnMessage",
+   "signature": "int __thiscall(int nVal, char *pszBuf, int nVal2)"
+  },
+  "0x00462220": {
+   "name": "GetValue",
+   "signature": "int __thiscall(unsigned char nIndex)",
+   "_misattrib_evidence": "saleui-slider: accesses +0x1795C(96,604) > PAL3 size; SaleUI ctor inits same layout"
+  },
+  "0x00462080": {
+   "name": "SetRange",
+   "signature": "int __thiscall(unsigned char nMax)",
+   "_misattrib_evidence": "saleui-slider: accesses +0x192AC/+0x18E70 — exactly the offsets SaleUI ctor initializes"
+  },
+  "0x00461FD0": {
+   "name": "SetValue",
+   "signature": "int __thiscall(unsigned char nValue)",
+   "_misattrib_evidence": "saleui-slider: alloc 0x19DB8 + PDB ctor ??0SaleUI inits same layout; PAL3(91024B) too small"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x0056B5CC",
+   "base": "UIListBox",
+   "slots": [
     {
-      "addr": "0x0056B5CC",
-      "base": "UIListBox",
-      "slots": [
-        {
-          "addr": "0x00445E70",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0043DDF0",
-          "from": "UIListBox"
-        },
-        {
-          "addr": "0x0046B040",
-          "from": null
-        },
-        {
-          "addr": "0x0043DE40",
-          "from": "UIListBox"
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0045AE40",
-          "from": "UIBigMap"
-        },
-        {
-          "addr": "0x0046B4B0",
-          "from": "UIListBox"
-        }
-      ]
+     "addr": "0x00445E70",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x0043DDF0",
+     "from": "UIListBox"
+    },
+    {
+     "addr": "0x0046B040",
+     "from": null
+    },
+    {
+     "addr": "0x0043DE40",
+     "from": "UIListBox"
+    },
+    {
+     "addr": "0x00445B90",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x0045AE40",
+     "from": "UIBigMap"
+    },
+    {
+     "addr": "0x0046B4B0",
+     "from": "UIListBox"
     }
-  ],
-  "base_size": 72
+   ]
+  }
+ ],
+ "base_size": 72,
+ "size_evidence": "operator new(0x19DB8) at CScreenMode::InitGameUI+0x459724 followed by ??0SaleUI@@QAE@XZ (PDB-mangled ctor 0x45A7B0)"
 }
