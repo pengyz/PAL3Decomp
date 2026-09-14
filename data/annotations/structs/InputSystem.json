@@ -1,26 +1,27 @@
 {
-  "name": "InputSystem",
-  "pdb_size": 4,
-  "known_members": {},
-  "binary_size": 36,
-  "methods": {
-    "0x0041C540": {
-      "name": "ProcessMouse",
-      "signature": "void __cdecl(int nVal)",
-      "static": true
-    },
-    "0x0041C710": {
-      "name": "ProcessKeyboard",
-      "signature": "void __thiscall()"
-    },
-    "0x00410360": {
-      "name": "ProcessFrame",
-      "signature": "void __cdecl InputSystem::ProcessFrame(char *pInputState)",
-      "static": true
-    },
-    "0x0041C9A0": {
-      "name": "SetCameraTransition",
-      "signature": "int __thiscall InputSystem::SetCameraTransition(int nMode, int nStart, int nTarget, int nPosX, int nPosY, int nPosZ, int bTargetCoord)"
-    }
+ "name": "InputSystem",
+ "pdb_size": 4,
+ "known_members": {},
+ "binary_size": 36,
+ "methods": {
+  "0x0041C540": {
+   "name": "ProcessMouse",
+   "signature": "void __cdecl(int nVal)",
+   "static": true
+  },
+  "0x0041C710": {
+   "name": "ProcessKeyboard",
+   "signature": "void __thiscall(int /*_auto*/ a1)",
+   "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params"
+  },
+  "0x00410360": {
+   "name": "ProcessFrame",
+   "signature": "void __cdecl InputSystem::ProcessFrame(char *pInputState)",
+   "static": true
+  },
+  "0x0041C9A0": {
+   "name": "SetCameraTransition",
+   "signature": "int __thiscall InputSystem::SetCameraTransition(int nMode, int nStart, int nTarget, int nPosX, int nPosY, int nPosZ, int bTargetCoord)"
   }
+ }
 }

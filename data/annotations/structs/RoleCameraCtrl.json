@@ -1,174 +1,175 @@
 {
-  "name": "RoleCameraCtrl",
-  "binary_size": 76,
-  "known_members": {
-    "8": {
-      "name": "m_pVtable",
-      "type": "void*",
-      "source": "gap_fill:ida_decomp_access; type_fix:m_p*_int_to_void*"
-    },
-    "12": {
-      "name": "m_type",
-      "type": "RCC_TYPE",
-      "source": "annotation"
-    },
-    "16": {
-      "name": "m_time",
-      "type": "float",
-      "source": "annotation"
-    },
-    "20": {
-      "name": "m_passtime",
-      "type": "float",
-      "source": "annotation"
-    },
-    "24": {
-      "name": "m_itype",
-      "type": "float",
-      "source": "annotation"
-    },
-    "28": {
-      "name": "m_targetdist",
-      "type": "float",
-      "source": "annotation"
-    },
-    "32": {
-      "name": "m_startdist",
-      "type": "float",
-      "source": "annotation"
-    },
-    "36": {
-      "name": "m_targetyaw",
-      "type": "float",
-      "source": "annotation"
-    },
-    "40": {
-      "name": "m_startyaw",
-      "type": "float",
-      "source": "annotation"
-    },
-    "44": {
-      "name": "m_targetpitch",
-      "type": "float",
-      "source": "annotation"
-    },
-    "48": {
-      "name": "m_startpitch",
-      "type": "float",
-      "source": "annotation"
-    },
-    "52": {
-      "name": "m_targetfrom",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "64": {
-      "name": "m_startfrom",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "0": {
-      "name": "__vftable",
-      "type": "void *",
-      "source": "vtable_fix"
-    }
+ "name": "RoleCameraCtrl",
+ "binary_size": 76,
+ "known_members": {
+  "8": {
+   "name": "m_pVtable",
+   "type": "void*",
+   "source": "gap_fill:ida_decomp_access; type_fix:m_p*_int_to_void*"
   },
-  "base_class": [
-    "PalScriptWaitObj"
-  ],
-  "methods": {
-    "0x00450A25": {
-      "name": "~RoleCameraCtrl",
-      "signature": "void ()",
-      "source": "pdb"
-    },
-    "0x00445860": {
-      "name": "SetName",
-      "signature": "void __thiscall RoleCameraCtrl::SetName(const char *pszName)"
-    },
-    "0x00450A60": {
-      "name": "InitFrameUI",
-      "signature": "RoleCameraCtrl * __thiscall()"
-    },
-    "0x00450C90": {
-      "name": "UpdatePosition",
-      "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "ordinal": 2
-    },
-    "0x00445910": {
-      "name": "SetTargetDistance",
-      "signature": "int __thiscall RoleCameraCtrl::SetTargetDistance(int nVal)"
-    },
-    "0x00450AD0": {
-      "name": "InitBaseWidget",
-      "signature": "void __thiscall()"
-    },
-    "0x00450C60": {
-      "name": "OnMessage",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
-      "ordinal": 6
-    },
-    "0x00450D00": {
-      "name": "ShowWindow",
-      "signature": "void __thiscall()",
-      "ordinal": 0
-    },
-    "0x0051BB50": {
-      "name": "InitViewSlots",
-      "signature": "int __thiscall()"
-    },
-    "0x0052DFF0": {
-      "name": "SetViewPosition",
-      "signature": "int __thiscall RoleCameraCtrl::SetViewPosition(int nVal, int nVal2, int nVal3, char pData)"
-    },
-    "0x0052E080": {
-      "name": "ComputeViewVector",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
-    },
-    "0x00450AB0": {
-      "name": "_sdtor_26",
-      "signature": "RoleCameraCtrl *__thiscall(RoleCameraCtrl *Block, char a2)"
-    },
-    "0x0043D7A0": {
-      "name": "ForwardOnMessage",
-      "signature": "int __thiscall(int nVal, int nMsg, int wParam)"
-    }
+  "12": {
+   "name": "m_type",
+   "type": "RCC_TYPE",
+   "source": "annotation"
   },
-  "vtables": [
+  "16": {
+   "name": "m_time",
+   "type": "float",
+   "source": "annotation"
+  },
+  "20": {
+   "name": "m_passtime",
+   "type": "float",
+   "source": "annotation"
+  },
+  "24": {
+   "name": "m_itype",
+   "type": "float",
+   "source": "annotation"
+  },
+  "28": {
+   "name": "m_targetdist",
+   "type": "float",
+   "source": "annotation"
+  },
+  "32": {
+   "name": "m_startdist",
+   "type": "float",
+   "source": "annotation"
+  },
+  "36": {
+   "name": "m_targetyaw",
+   "type": "float",
+   "source": "annotation"
+  },
+  "40": {
+   "name": "m_startyaw",
+   "type": "float",
+   "source": "annotation"
+  },
+  "44": {
+   "name": "m_targetpitch",
+   "type": "float",
+   "source": "annotation"
+  },
+  "48": {
+   "name": "m_startpitch",
+   "type": "float",
+   "source": "annotation"
+  },
+  "52": {
+   "name": "m_targetfrom",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "64": {
+   "name": "m_startfrom",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "0": {
+   "name": "__vftable",
+   "type": "void *",
+   "source": "vtable_fix"
+  }
+ },
+ "base_class": [
+  "PalScriptWaitObj"
+ ],
+ "methods": {
+  "0x00450A25": {
+   "name": "~RoleCameraCtrl",
+   "signature": "void ()",
+   "source": "pdb"
+  },
+  "0x00445860": {
+   "name": "SetName",
+   "signature": "void __thiscall RoleCameraCtrl::SetName(const char *pszName)"
+  },
+  "0x00450A60": {
+   "name": "InitFrameUI",
+   "signature": "RoleCameraCtrl * __thiscall()"
+  },
+  "0x00450C90": {
+   "name": "UpdatePosition",
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "ordinal": 2
+  },
+  "0x00445910": {
+   "name": "SetTargetDistance",
+   "signature": "int __thiscall RoleCameraCtrl::SetTargetDistance(int nVal)"
+  },
+  "0x00450AD0": {
+   "name": "InitBaseWidget",
+   "signature": "void __thiscall()"
+  },
+  "0x00450C60": {
+   "name": "OnMessage",
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
+   "ordinal": 6
+  },
+  "0x00450D00": {
+   "name": "ShowWindow",
+   "signature": "void __thiscall(int /*_auto*/ a1)",
+   "ordinal": 0,
+   "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params"
+  },
+  "0x0051BB50": {
+   "name": "InitViewSlots",
+   "signature": "int __thiscall()"
+  },
+  "0x0052DFF0": {
+   "name": "SetViewPosition",
+   "signature": "int __thiscall RoleCameraCtrl::SetViewPosition(int nVal, int nVal2, int nVal3, char pData)"
+  },
+  "0x0052E080": {
+   "name": "ComputeViewVector",
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+  },
+  "0x00450AB0": {
+   "name": "_sdtor_26",
+   "signature": "RoleCameraCtrl *__thiscall(RoleCameraCtrl *Block, char a2)"
+  },
+  "0x0043D7A0": {
+   "name": "ForwardOnMessage",
+   "signature": "int __thiscall(int nVal, int nMsg, int wParam)"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x0056B120",
+   "base": "UIWnd",
+   "slots": [
     {
-      "addr": "0x0056B120",
-      "base": "UIWnd",
-      "slots": [
-        {
-          "addr": "0x00450D00",
-          "from": null
-        },
-        {
-          "addr": "0x00445CD0",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x00450C90",
-          "from": null
-        },
-        {
-          "addr": "0x00445C10",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x00450AB0",
-          "from": "UINote"
-        },
-        {
-          "addr": "0x00450C60",
-          "from": null
-        }
-      ]
+     "addr": "0x00450D00",
+     "from": null
+    },
+    {
+     "addr": "0x00445CD0",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x00450C90",
+     "from": null
+    },
+    {
+     "addr": "0x00445C10",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x00445B90",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x00450AB0",
+     "from": "UINote"
+    },
+    {
+     "addr": "0x00450C60",
+     "from": null
     }
-  ],
-  "base_size": 8
+   ]
+  }
+ ],
+ "base_size": 8
 }

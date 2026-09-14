@@ -256,7 +256,8 @@
   },
   "0x004DB6A0": {
    "name": "IsBusy",
-   "signature": "bool __thiscall()"
+   "signature": "bool __thiscall(int /*_auto*/ a1)",
+   "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params"
   },
   "0x004DB6C0": {
    "name": "IsCmdReady",
@@ -280,7 +281,8 @@
   },
   "0x004DB780": {
    "name": "GetCmdCount",
-   "signature": "int __thiscall(int idx)"
+   "signature": "int __thiscall(int idx, int /*_auto*/ a2)",
+   "sig_note": "ret-N adjudication (round 10): callee cleans 8 bytes; caller args = 2; prev 1 params"
   },
   "0x004DB7A0": {
    "name": "ProcessAllCmds",
