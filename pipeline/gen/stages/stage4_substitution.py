@@ -393,6 +393,41 @@ def _collect_reserved_names(tree, ctx):
     return reserved
 
 
+_MEMBER_KIND = None
+_DECLARED_NAMES = None
+
+
+def _load_member_kind():
+    """member name -> 'scalar' | 'agg' | 'mixed', from IDB data_members.
+
+    'agg' = declared array or pointer; 'mixed' = same name declared both
+    ways across structs (rewrite disabled for safety).
+    Also collects _DECLARED_NAMES: every declared member name + global
+    name — paths through such names are safe to embed verbatim."""
+    global _MEMBER_KIND, _DECLARED_NAMES
+    if _MEMBER_KIND is not None:
+        return _MEMBER_KIND
+    mk = {}
+    declared = set(store.global_addrs.keys())
+    for tname, offs in (store.struct_members or {}).items():
+        for off, mi in offs.items():
+            try:
+                name, mtype = mi
+            except Exception:
+                continue
+            mtype = mtype or ''
+            declared.add(name)
+            kind = 'agg' if ('[' in mtype or '*' in mtype) else 'scalar'
+            prev = mk.get(name)
+            if prev is None:
+                mk[name] = kind
+            elif prev != kind:
+                mk[name] = 'mixed'
+    _MEMBER_KIND = mk
+    _DECLARED_NAMES = declared
+    return mk
+
+
 def _collect_token_edits(code_bytes, tree, ctx):
     """Walk AST once, collect identifier/type replacement edits."""
     edits = []
@@ -410,6 +445,34 @@ def _collect_token_edits(code_bytes, tree, ctx):
         return False
 
     def visit(node):
+        if node.type == 'subscript_expression':
+            # `path.m_member[idx]` where m_member is a declared SCALAR:
+            # does not compile (C2109). Taking the member's address and
+            # indexing that is isomorphic and address-identical:
+            # `(&path.m_member)[idx]`. Array/pointer members keep normal
+            # indexing; unknown/mixed names are left untouched (conservative).
+            base = node.child_by_field_name('argument')
+            if base is not None and base.type == 'field_expression':
+                fnode = base.child_by_field_name('field')
+                if fnode is not None:
+                    fname = fnode.text.decode('utf-8')
+                    mk = _load_member_kind()
+                    if mk.get(fname) == 'scalar':
+                        base_txt = base.text.decode('utf-8')
+                        # skip bases containing IDA-artifact names UNLESS every
+                        # one is a declared global/member name (safe to embed)
+                        artifacts = re.findall(r'\b(?:dword|byte|word|off|flt|unk|stru|sub)_[0-9A-Fa-f]{4,}\b',
+                                               base_txt)
+                        if artifacts and any(a not in _DECLARED_NAMES for a in artifacts):
+                            pass
+                        else:
+                            idx = node.child_by_field_name('index')
+                            idx_txt = idx.text.decode('utf-8') if idx is not None else '0'
+                            repl = '(&%s)[%s]' % (base_txt, idx_txt)
+                            edits.append((node.start_byte, node.end_byte,
+                                          repl.encode('utf-8')))
+                            return
+
         if node.type == 'pointer_expression':
             # &E->T / &E.T where T is a class-type-named (IDA-unnamed)
             # subobject. MSVC6 parses `->TypeName` as a function-style cast
@@ -477,6 +540,27 @@ def _collect_token_edits(code_bytes, tree, ctx):
             if not replacement and name == 'this' and ctx.is_free_function:
                 replacement = '_this'
             if replacement:
+                # Member path whose FINAL member is a declared scalar, used
+                # with a subscript: `path.tail[idx]` cannot compile (C2109 —
+                # scalar has no operator[]). Taking the member's address and
+                # indexing that is isomorphic and address-identical:
+                # `(&path.tail)[idx]`.
+                p = node.parent
+                if (p is not None and p.type == 'subscript_expression'
+                        and '.' in replacement):
+                    arg = p.child_by_field_name('argument')
+                    # tree-sitter wrappers are fresh objects per access:
+                    # compare by span, not identity
+                    if arg is not None and arg.start_byte == node.start_byte:
+                        tail = replacement.split('.')[-1]
+                        mk_all = _load_member_kind()
+                        if mk_all.get(tail) == 'scalar':
+                            indices = p.child_by_field_name('indices')
+                            idx_txt = indices.text.decode('utf-8') if indices is not None else '[0]'
+                            repl = '(&%s)%s' % (replacement, idx_txt)
+                            edits.append((p.start_byte, p.end_byte,
+                                          repl.encode('utf-8')))
+                            return
                 # Under unary &, a skip-global replacement must be the data
                 # address itself, not the dword loaded from it (&0xVAL = C2101).
                 # Replace the whole `&name` node so the & disappears with it.
