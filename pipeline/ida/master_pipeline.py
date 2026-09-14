@@ -36,6 +36,10 @@ os.makedirs(LOG_DIR, exist_ok=True)
 
 PDB_EXPORT = os.path.join(PROJECT_ROOT, "data", "pdb", "pdb_export.json")
 GLOBALS_FILE = os.path.join(PROJECT_ROOT, "data", "pdb", "globals_export.json")
+# PDB 非权威源（版本与 PAL3.exe 不匹配，用户裁定 2026-09-14）：
+# 枚举默认不再导入 IDB。数据保留在 pdb_export.json 作为假设库，
+# 晋升走 tools/enum_promote.py 的二进制证据验证 → data/annotations/enums.json。
+PDB_ENUM_IMPORT = False
 OUTPUT_DIR = os.path.join(PROJECT_ROOT, "asm", "pal3")
 SIG_NAME = "pal3a_text"
 
@@ -160,34 +164,39 @@ def phase1_import_types():
     til = ida_typeinf.get_idati()
 
     # Enums - format: {name, values: {NAME: "value_str"}}
+    # PDB 非权威（见 PDB_ENUM_IMPORT 注释）：默认跳过；晋升需经
+    # tools/enum_promote.py 的二进制证据验证后写入 annotations/enums.json。
     enum_ok = 0
-    for enum_info in enums:
-        name = enum_info.get('name', '')
-        values = enum_info.get('values', {})
-        if not name or not values:
-            continue
-        # Skip anonymous enums (contain "::" with __unnamed)
-        if '__unnamed' in name or '::' in name:
-            continue
-        member_strs = []
-        for mname, mval_str in values.items():
-            try:
-                mval = int(mval_str)
-            except (ValueError, TypeError):
-                mval = 0
-            member_strs.append('    %s = %d' % (mname, mval))
-        if not member_strs:
-            continue
-        eid = idc.get_enum(name)
-        if eid == -1:
-            eid = idc.add_enum(-1, name, 1)
-        if eid != -1:
+    if not PDB_ENUM_IMPORT:
+        log("[*] PDB 枚举导入: 已跳过（PDB 非权威源，走 enum_promote 晋升通道）")
+    else:
+        for enum_info in enums:
+            name = enum_info.get('name', '')
+            values = enum_info.get('values', {})
+            if not name or not values:
+                continue
+            # Skip anonymous enums (contain "::" with __unnamed)
+            if '__unnamed' in name or '::' in name:
+                continue
+            member_strs = []
             for mname, mval_str in values.items():
                 try:
                     mval = int(mval_str)
                 except (ValueError, TypeError):
                     mval = 0
-                idc.add_enum_member(eid, mname, mval)
+                member_strs.append('    %s = %d' % (mname, mval))
+            if not member_strs:
+                continue
+            eid = idc.get_enum(name)
+            if eid == -1:
+                eid = idc.add_enum(-1, name, 1)
+            if eid != -1:
+                for mname, mval_str in values.items():
+                    try:
+                        mval = int(mval_str)
+                    except (ValueError, TypeError):
+                        mval = 0
+                    idc.add_enum_member(eid, mname, mval)
             enum_ok += 1
 
     log("[*] 枚举导入: %d / %d" % (enum_ok, len(enums)))
