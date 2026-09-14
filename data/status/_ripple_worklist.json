@@ -1,0 +1,40 @@
+{
+ "question": "+186 涟漪债务清单归类（对账批后 8 文件，2026-09-14）",
+ "zones": [
+  {
+   "name": "Zone R: RoleSystem/Buffer/Actor 重叠区路径解析",
+   "errors": 107,
+   "signatures": [
+    "C2228 .m_partyActor x53 (StateUI)",
+    "C2228 .m_pRoleObj x13",
+    "C2109/C2106 x28 (scAsmDecoder scalar-as-array)",
+    "C2228 .m_fMatrixC/B x13"
+   ],
+   "root": "stage4 _resolve_offset 多级路径走到标量成员后，decomp 原生 [v4] 下标骑上路径末端 → C2109/C2228。StateUI 的 53 处 m_partyActor 与 Array/scAsmDecoder 同源（Buffer=0xC043A0 RoleSystem 型全局）",
+   "structural_fix": "解析器门控：下标用途要求最终成员为数组/指针类型；标量末端时保留数值偏移形态或截断到最后一个数组型成员。修一处清 ~107 错"
+  },
+  {
+   "name": "Zone S: 签名涟漪（Hex-Rays 重定调调用点）",
+   "errors": 65,
+   "signatures": [
+    "C2660 PtrArray::Read x25",
+    "C2660 Array::CheckValid x16",
+    "C2660 Array::ProcessInput x13",
+    "C2660 PAL_GDB::IsValidItem x6",
+    "C2660 HandleMessage x5"
+   ],
+   "root": "尺寸变更后 Hex-Rays 对这些函数的调用点重新定参（参数个数与注解签名错位）",
+   "structural_fix": "MCP 逐个反汇编重定签名（参数个数/类型），更新 structs 注解"
+  },
+  {
+   "name": "杂项",
+   "errors": 14,
+   "signatures": [
+    "C2660 PAL_GDB::~PAL_GDB x12 (StateUI 删除析构发射形态)",
+    "C2440 转换 x17 散布"
+   ],
+   "root": "删除析构的调用形态 + 局部转换"
+  }
+ ],
+ "date": "2026-09-14"
+}
