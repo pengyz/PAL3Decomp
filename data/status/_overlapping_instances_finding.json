@@ -1,0 +1,51 @@
+{
+ "discovery": "0xC043A0-0xC07000 区域存在 7 个重叠 struct 实例（2026-09-14）",
+ "instances": [
+  {
+   "range": "0xC04390-0xC128D4",
+   "name": "g_SceneMgr",
+   "type": "SceneMgr",
+   "size": 64548,
+   "note": "全覆盖大实例"
+  },
+  {
+   "range": "0xC043A0-0xC056A4",
+   "name": "Buffer",
+   "type": "RoleSystem",
+   "size": 4676,
+   "note": "嵌于 g_SceneMgr 内；注解 binary_size 却是 22224——两处自相矛盾"
+  },
+  {
+   "range": "0xC04EA0-0xC061A4",
+   "name": "dword_C04EA0",
+   "type": "RoleSystem",
+   "note": "与 Buffer 尾部重叠"
+  },
+  {
+   "range": "0xC05420-0xC06724",
+   "name": "dword_C05420",
+   "type": "RoleSystem",
+   "note": "三方重叠"
+  },
+  {
+   "range": "0xC059A0-0xC06CA4",
+   "name": "unk_C059A0",
+   "type": "RoleSystem"
+  },
+  {
+   "range": "0xC05F20-0xC063A0",
+   "name": "unk_C05F20",
+   "type": "NPC",
+   "note": "NPC 类型混入"
+  },
+  {
+   "range": "0xC05F30-0xCAA7F4",
+   "name": "unk_C05F30",
+   "type": "CCBStage",
+   "size": 688388,
+   "note": "巨型实例覆盖 g_SceneMgr 尾部"
+  }
+ ],
+ "implication": "Zone R 的 C2228/C2109 错误是解析器在重叠实例间择路不一致的症状。Buffer 注解尺寸 22,224 与实例区间 4,676 自相矛盾；先前\"12x1408 阵列\"模型因混叠引用作废（对 _buffer_zone_census.json 的修正）",
+ "resolution_path": "逐实例裁决真实边界/类型（访问半径+交叉引用），清理 struct_instances 重叠——这是 Zone R 的真正前置"
+}
