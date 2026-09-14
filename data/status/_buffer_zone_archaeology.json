@@ -1,0 +1,22 @@
+{
+  "project": "Buffer(0xC043A0)/RoleSystem 区域考古——Zone R 的前置注解工程",
+  "symptoms": [
+    "StateUI/Array/scAsmDecoder 共 ~107 错：Buffer.m_partyActor.m_fMatrixC[352*arg0] 类路径",
+    "双重根因：① 全局名 Buffer 与 Hex-Rays 局部缓冲惯例 char Buffer[N] 撞名（C2228 遮蔽）② m_fMatrixC 标量被下标（C2109）"
+  ],
+  "known_facts": [
+    "全局 0xC043A0 尺寸 22,224，注解类型 RoleSystem（该指派本身存疑，见 Q3）",
+    "decomp 原文是 dword_C0462C[352*arg0]（=Buffer+0x28C），即步长 352 floats=1,408B 的逐角色矩阵区",
+    "行内字段与 Actor 布局逐字节吻合：+0x288/0x28C/0x290/0x294 = Actor+0xE0/0xE4/0xE8/0xEC（m_fMatrixB/C/nMatrixParam/fMatrixParamA）——说明行结构以 Actor 头部形态开始",
+    "但 sizeof(Actor)=820 ≠ 步长 1,408；且 1,408×5=7,040 的区域（0x288..0x1F08）跨越 RoleSystem 已声明成员（m_fPathTargetY@0x4DC 群）——当前 RoleSystem 布局与此区域互斥",
+    "m_partyActor@0x1A8 为单个 Actor(820B)+_gap_1AC[816]，恰好填满 0x1A8..0x4DC"
+  ],
+  "questions_to_resolve": [
+    "Q1: 行结构是什么？1,408B 行以 Actor 头部开始，余下 ~588B 是什么（更多矩阵/位标志/预留）",
+    "Q2: 行数 M？角色槽 5 个还是更多（352 floats/行的含义：352=变体槽数？）",
+    "Q3: 全局 0xC043A0 的类型指派 RoleSystem 是否正确——若区域在 +0x288，则 0x1A8 处的嵌入 Actor 与 0x288 起的行数组重叠，RoleSystem 布局必须二选一重排",
+    "Q4: 行数组的归属类：0x288 的行数组是 RoleSystem 的成员，还是本应建模为独立的 per-role 矩阵管理类"
+  ],
+  "method": "MCP 访问半径普查（0xC043A0..0xC043A0+22224 的全部访问点按偏移直方图聚类）+ 跨函数字段访问交叉 + 与 RoleStatePanel.s_RoleState[5](3,788B/行,不同区域) 对照",
+  "interim": "改名 Buffer→g_RoleSystemBuf 消除遮蔽类 C2228 有独立价值但会使其余错误变型为 C2109（总数不减），与几何修正捆绑实施更佳——故本轮不改名不落地"
+}
