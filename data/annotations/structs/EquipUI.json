@@ -1,621 +1,604 @@
 {
-  "name": "EquipUI",
-  "binary_size": 120116,
-  "known_members": {
-    "72": {
-      "name": "bkWndX",
-      "type": "int",
-      "source": "annotation"
-    },
-    "76": {
-      "name": "bkWndY",
-      "type": "int",
-      "source": "annotation"
-    },
-    "80": {
-      "name": "buf",
-      "type": "char[256]",
-      "source": "annotation"
-    },
-    "336": {
-      "name": "m_SelNum",
-      "type": "int",
-      "source": "annotation"
-    },
-    "340": {
-      "name": "m_ListNum",
-      "type": "int *",
-      "source": "annotation"
-    },
-    "344": {
-      "name": "m_x",
-      "type": "int",
-      "source": "annotation"
-    },
-    "348": {
-      "name": "m_y",
-      "type": "int",
-      "source": "annotation"
-    },
-    "352": {
-      "name": "m_Sum",
-      "type": "int",
-      "source": "annotation"
-    },
-    "356": {
-      "name": "i",
-      "type": "int",
-      "source": "annotation"
-    },
-    "360": {
-      "name": "j",
-      "type": "int",
-      "source": "annotation"
-    },
-    "364": {
-      "name": "k",
-      "type": "int",
-      "source": "annotation"
-    },
-    "368": {
-      "name": "_isCreatable",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "372": {
-      "name": "_flashSpeed",
-      "type": "float",
-      "source": "annotation"
-    },
-    "376": {
-      "name": "m_EquipData",
-      "type": "st_Manager",
-      "source": "annotation"
-    },
-    "17880": {
-      "name": "p_DealData",
-      "type": "PlayerItem *",
-      "source": "annotation"
-    },
-    "17884": {
-      "name": "m_TempData",
-      "type": "PlayerAtt[5]",
-      "source": "annotation"
-    },
-    "25504": {
-      "name": "rc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "25520": {
-      "name": "m_Frame",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "25680": {
-      "name": "m_FrameBar",
-      "type": "UIFlexBar",
-      "source": "annotation"
-    },
-    "25764": {
-      "name": "m_Flag",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "25924": {
-      "name": "m_OutFrameT",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "26084": {
-      "name": "m_OutFrameR",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "26244": {
-      "name": "m_OutFrameL",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "26404": {
-      "name": "m_OutFrameB",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "26564": {
-      "name": "m_ani",
-      "type": "UIAnimateCtrl",
-      "source": "annotation"
-    },
-    "26728": {
-      "name": "m_Role",
-      "type": "UIStatic[5]",
-      "source": "annotation"
-    },
-    "27528": {
-      "name": "m_RoleRc",
-      "type": "tagRECT[5]",
-      "source": "annotation"
-    },
-    "27608": {
-      "name": "RoleX",
-      "type": "int",
-      "source": "annotation"
-    },
-    "27612": {
-      "name": "RoleY",
-      "type": "int",
-      "source": "annotation"
-    },
-    "27616": {
-      "name": "HeadW",
-      "type": "int",
-      "source": "annotation"
-    },
-    "27620": {
-      "name": "HeadH",
-      "type": "int",
-      "source": "annotation"
-    },
-    "27624": {
-      "name": "m_Is",
-      "type": "unsigned char[5]",
-      "source": "annotation"
-    },
-    "27632": {
-      "name": "m_Arrow",
-      "type": "UIStatic[8][6][5]",
-      "source": "annotation"
-    },
-    "66032": {
-      "name": "m_ArrowNum",
-      "type": "UIStatic[8][2][5]",
-      "source": "annotation"
-    },
-    "78832": {
-      "name": "m_ArrowRc",
-      "type": "tagRECT[8][6][5]",
-      "source": "annotation"
-    },
-    "82672": {
-      "name": "m_IsArrow",
-      "type": "unsigned char[8][6][5]",
-      "source": "annotation"
-    },
-    "82912": {
-      "name": "m_OldSelect",
-      "type": "int",
-      "source": "annotation"
-    },
-    "82916": {
-      "name": "m_IsMove",
-      "type": "unsigned char[8][6][5]",
-      "source": "annotation"
-    },
-    "83156": {
-      "name": "m_AnimateRc",
-      "type": "tagRECT[8][6][5]",
-      "source": "annotation"
-    },
-    "86996": {
-      "name": "m_ArrowMove",
-      "type": "UIAnimate[8][6][5]",
-      "source": "annotation"
-    },
-    "99476": {
-      "name": "m_Icon",
-      "type": "UIStaticRM[6][5]",
-      "source": "annotation"
-    },
-    "105116": {
-      "name": "m_Select",
-      "type": "UIStatic[6][5]",
-      "source": "annotation"
-    },
-    "109916": {
-      "name": "m_IsControlEquip",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "109917": {
-      "name": "m_IsEquip",
-      "type": "unsigned char[6][5]",
-      "source": "annotation"
-    },
-    "109947": {
-      "name": "m_IsMsg",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "109948": {
-      "name": "m_EquipingNum",
-      "type": "int *",
-      "source": "annotation"
-    },
-    "109952": {
-      "name": "m_Equiping",
-      "type": "int[6][5]",
-      "source": "annotation"
-    },
-    "110072": {
-      "name": "m_UnEquipingNum",
-      "type": "int *",
-      "source": "annotation"
-    },
-    "110076": {
-      "name": "m_MaxNum",
-      "type": "int *",
-      "source": "annotation"
-    },
-    "110080": {
-      "name": "m_Adorn",
-      "type": "unsigned char[2][5]",
-      "source": "annotation"
-    },
-    "110092": {
-      "name": "m_3DObj",
-      "type": "UI3DCtrl",
-      "source": "annotation"
-    },
-    "110400": {
-      "name": "m_Msg",
-      "type": "MUIDialog",
-      "source": "annotation"
-    },
-    "111784": {
-      "name": "m_TalkFrame",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "111944": {
-      "name": "m_Ready",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "112104": {
-      "name": "m_ReadyRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "112120": {
-      "name": "mb_EquipYes",
-      "type": "UIButton",
-      "source": "annotation"
-    },
-    "112464": {
-      "name": "mb_EquipNo",
-      "type": "UIButton",
-      "source": "annotation"
-    },
-    "112808": {
-      "name": "m_EquipTalk",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "112968": {
-      "name": "m_EquipRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "112984": {
-      "name": "m_ListFrame",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "113144": {
-      "name": "m_ListGrid",
-      "type": "UIStatic[14]",
-      "source": "annotation"
-    },
-    "115384": {
-      "name": "m_ScrollHB",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "115544": {
-      "name": "m_EquipFlag",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "115704": {
-      "name": "m_ListEquipTitle",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "115864": {
-      "name": "ml_ListEquip",
-      "type": "UIListBox",
-      "source": "annotation"
-    },
-    "117152": {
-      "name": "ml_ListEquipRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "117168": {
-      "name": "m_btnGroup",
-      "type": "BtnGroup",
-      "source": "annotation"
-    },
-    "117908": {
-      "name": "m_ctrlTime",
-      "type": "float",
-      "source": "annotation"
-    },
-    "117912": {
-      "name": "m_bCanUpdate1",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "117913": {
-      "name": "m_bCanUpdate2",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "117916": {
-      "name": "m_EquipRemarkBk",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "118076": {
-      "name": "m_EquipRemark",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "118236": {
-      "name": "m_EquipRemarkRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "118252": {
-      "name": "m_EquipAtt",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "118412": {
-      "name": "m_EquipAttRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "118428": {
-      "name": "m_MoneyRemark",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "118588": {
-      "name": "m_MoneyRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "118604": {
-      "name": "m_SumEquip",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "118764": {
-      "name": "m_SumRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "118780": {
-      "name": "mb_OK",
-      "type": "UIButton",
-      "source": "annotation"
-    },
-    "119124": {
-      "name": "mb_OKRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "119140": {
-      "name": "m_IsDicker",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "119144": {
-      "name": "mb_Cancel",
-      "type": "UIButton",
-      "source": "annotation"
-    },
-    "119488": {
-      "name": "mb_CancelRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "119504": {
-      "name": "mb_Exit",
-      "type": "UIButton",
-      "source": "annotation"
-    },
-    "119848": {
-      "name": "mb_ExitRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "119864": {
-      "name": "m_TabBtn",
-      "type": "UITabBtn",
-      "source": "annotation"
-    },
-    "119888": {
-      "name": "mb_DKRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "119904": {
-      "name": "haveRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "119920": {
-      "name": "m_isCancelTalk",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "0": {
-      "name": "__vftable",
-      "type": "void *",
-      "source": "vtable_fix"
-    }
+ "name": "EquipUI",
+ "binary_size": 120116,
+ "known_members": {
+  "72": {
+   "name": "bkWndX",
+   "type": "int",
+   "source": "annotation"
   },
-  "base_class": [
-    "UIFrameWnd"
-  ],
-  "methods": {
-    "0x005137EF": {
-      "name": "ControlDealBTWnd",
-      "signature": "void (uchar)",
-      "source": "pdb"
-    },
-    "0x004A4220": {
-      "name": "Init",
-      "signature": "void __thiscall()"
-    },
-    "0x004A4890": {
-      "name": "GetSelected",
-      "signature": "int __thiscall()",
-      "_misattrib_evidence": "max_offset=96>class_size=4"
-    },
-    "0x004A48B0": {
-      "name": "InitSlots",
-      "signature": "void __thiscall()"
-    },
-    "0x00498820": {
-      "name": "ctor",
-      "signature": "int __thiscall()",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-    },
-    "0x00499030": {
-      "name": "EquipUI",
-      "signature": "void __thiscall()",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-    },
-    "0x004A1E40": {
-      "name": "InitUI",
-      "signature": "int __thiscall EquipUI::InitUI()"
-    },
-    "0x00494040": {
-      "name": "UpdateSlot",
-      "signature": "void __thiscall(int nSlotIdx, int nItemID, int nCount)"
-    },
-    "0x00494D70": {
-      "name": "HandleInput",
-      "signature": "void __thiscall(int nInputID, int nParam)"
-    },
-    "0x0049F9B0": {
-      "name": "SetGroupVisible",
-      "signature": "int __thiscall(unsigned char bVisible)"
-    },
-    "0x0049FBE0": {
-      "name": "UpdateDisplay",
-      "signature": "BOOL __thiscall(int nPage, int nSlot)"
-    },
-    "0x0049FA10": {
-      "name": "InitParticleEffects",
-      "signature": "int __thiscall EquipUI::InitParticleEffects(int nVal)"
-    },
-    "0x004A0370": {
-      "name": "HandleEquipEvent",
-      "signature": "void __thiscall(int nVal, char *pszBuf, int nVal2)",
-      "ordinal": 6
-    },
-    "0x004A4C20": {
-      "name": "Create",
-      "signature": "int __thiscall EquipUI::Create()"
-    },
-    "0x00484D20": {
-      "name": "ShowPage",
-      "signature": "int __thiscall EquipUI::ShowPage()"
-    },
-    "0x004945C0": {
-      "name": "SelectBigMapTab0",
-      "signature": "int __thiscall EquipUI::SelectBigMapTab0(char nTab)"
-    },
-    "0x00498C70": {
-      "name": "_scalar_dtor",
-      "signature": "void *__thiscall(UIWnd *Block, char pData)",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "ordinal": 5
-    },
-    "0x0049FE00": {
-      "name": "RenderEffects",
-      "signature": "void __thiscall EquipUI::RenderEffects()",
-      "_misattrib_evidence": "max_offset=231140>class_size=1208",
-      "ordinal": 1
-    },
-    "0x00484E70": {
-      "name": "SelectTab0",
-      "signature": "int __thiscall EquipUI::SelectTab0(unsigned __int8 nTab)"
-    },
-    "0x0048A2F0": {
-      "name": "SetSubTab",
-      "signature": "int __thiscall EquipUI::SetSubTab(unsigned __int8 nTab)"
-    },
-    "0x0049E840": {
-      "name": "SetSubTab2",
-      "signature": "int __thiscall EquipUI::SetSubTab2(unsigned __int8 nTab)"
-    },
-    "0x0049FF90": {
-      "name": "HandleInput",
-      "signature": "char __thiscall EquipUI::HandleInput__ovl_ff90()"
-    },
-    "0x004A00B0": {
-      "name": "Update",
-      "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "ordinal": 2
-    },
-    "0x004AB6B0": {
-      "name": "InitEquipUI",
-      "signature": "int __thiscall(int nVal)",
-      "_misattrib_evidence": "max_offset=401448>class_size=120116"
-    },
-    "0x0049FF30": {
-      "name": "FindNextSlot",
-      "signature": "int __thiscall(int *pCounter)"
-    },
-    "0x0049FF60": {
-      "name": "FindPrevSlot",
-      "signature": "int __thiscall(int *pCounter)"
-    }
+  "76": {
+   "name": "bkWndY",
+   "type": "int",
+   "source": "annotation"
   },
-  "vtables": [
+  "80": {
+   "name": "buf",
+   "type": "char[256]",
+   "source": "annotation"
+  },
+  "336": {
+   "name": "m_SelNum",
+   "type": "int",
+   "source": "annotation"
+  },
+  "340": {
+   "name": "m_ListNum",
+   "type": "int *",
+   "source": "annotation"
+  },
+  "344": {
+   "name": "m_x",
+   "type": "int",
+   "source": "annotation"
+  },
+  "348": {
+   "name": "m_y",
+   "type": "int",
+   "source": "annotation"
+  },
+  "352": {
+   "name": "m_Sum",
+   "type": "int",
+   "source": "annotation"
+  },
+  "356": {
+   "name": "i",
+   "type": "int",
+   "source": "annotation"
+  },
+  "360": {
+   "name": "j",
+   "type": "int",
+   "source": "annotation"
+  },
+  "364": {
+   "name": "k",
+   "type": "int",
+   "source": "annotation"
+  },
+  "368": {
+   "name": "_isCreatable",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "372": {
+   "name": "_flashSpeed",
+   "type": "float",
+   "source": "annotation"
+  },
+  "376": {
+   "name": "m_EquipData",
+   "type": "st_Manager",
+   "source": "annotation"
+  },
+  "17880": {
+   "name": "p_DealData",
+   "type": "PlayerItem *",
+   "source": "annotation"
+  },
+  "17884": {
+   "name": "m_TempData",
+   "type": "PlayerAtt[5]",
+   "source": "annotation"
+  },
+  "25504": {
+   "name": "rc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "25520": {
+   "name": "m_Frame",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "25680": {
+   "name": "m_FrameBar",
+   "type": "UIFlexBar",
+   "source": "annotation"
+  },
+  "25764": {
+   "name": "m_Flag",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "25924": {
+   "name": "m_OutFrameT",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "26084": {
+   "name": "m_OutFrameR",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "26244": {
+   "name": "m_OutFrameL",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "26404": {
+   "name": "m_OutFrameB",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "26564": {
+   "name": "m_ani",
+   "type": "UIAnimateCtrl",
+   "source": "annotation"
+  },
+  "26728": {
+   "name": "m_Role",
+   "type": "UIStatic[5]",
+   "source": "annotation"
+  },
+  "27528": {
+   "name": "m_RoleRc",
+   "type": "tagRECT[5]",
+   "source": "annotation"
+  },
+  "27608": {
+   "name": "RoleX",
+   "type": "int",
+   "source": "annotation"
+  },
+  "27612": {
+   "name": "RoleY",
+   "type": "int",
+   "source": "annotation"
+  },
+  "27616": {
+   "name": "HeadW",
+   "type": "int",
+   "source": "annotation"
+  },
+  "27620": {
+   "name": "HeadH",
+   "type": "int",
+   "source": "annotation"
+  },
+  "27624": {
+   "name": "m_Is",
+   "type": "unsigned char[5]",
+   "source": "annotation"
+  },
+  "27632": {
+   "name": "m_Arrow",
+   "type": "UIStatic[8][6][5]",
+   "source": "annotation"
+  },
+  "66032": {
+   "name": "m_ArrowNum",
+   "type": "UIStatic[8][2][5]",
+   "source": "annotation"
+  },
+  "78832": {
+   "name": "m_ArrowRc",
+   "type": "tagRECT[8][6][5]",
+   "source": "annotation"
+  },
+  "82672": {
+   "name": "m_IsArrow",
+   "type": "unsigned char[8][6][5]",
+   "source": "annotation"
+  },
+  "82912": {
+   "name": "m_OldSelect",
+   "type": "int",
+   "source": "annotation"
+  },
+  "82916": {
+   "name": "m_IsMove",
+   "type": "unsigned char[8][6][5]",
+   "source": "annotation"
+  },
+  "83156": {
+   "name": "m_AnimateRc",
+   "type": "tagRECT[8][6][5]",
+   "source": "annotation"
+  },
+  "86996": {
+   "name": "m_ArrowMove",
+   "type": "UIAnimate[8][6][5]",
+   "source": "annotation"
+  },
+  "99476": {
+   "name": "m_Icon",
+   "type": "UIStaticRM[6][5]",
+   "source": "annotation"
+  },
+  "105116": {
+   "name": "m_Select",
+   "type": "UIStatic[6][5]",
+   "source": "annotation"
+  },
+  "109916": {
+   "name": "m_IsControlEquip",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "109917": {
+   "name": "m_IsEquip",
+   "type": "unsigned char[6][5]",
+   "source": "annotation"
+  },
+  "109947": {
+   "name": "m_IsMsg",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "109948": {
+   "name": "m_EquipingNum",
+   "type": "int *",
+   "source": "annotation"
+  },
+  "109952": {
+   "name": "m_Equiping",
+   "type": "int[6][5]",
+   "source": "annotation"
+  },
+  "110072": {
+   "name": "m_UnEquipingNum",
+   "type": "int *",
+   "source": "annotation"
+  },
+  "110076": {
+   "name": "m_MaxNum",
+   "type": "int *",
+   "source": "annotation"
+  },
+  "110080": {
+   "name": "m_Adorn",
+   "type": "unsigned char[2][5]",
+   "source": "annotation"
+  },
+  "110092": {
+   "name": "m_3DObj",
+   "type": "UI3DCtrl",
+   "source": "annotation"
+  },
+  "110400": {
+   "name": "m_Msg",
+   "type": "MUIDialog",
+   "source": "annotation"
+  },
+  "111784": {
+   "name": "m_TalkFrame",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "111944": {
+   "name": "m_Ready",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "112104": {
+   "name": "m_ReadyRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "112120": {
+   "name": "mb_EquipYes",
+   "type": "UIButton",
+   "source": "annotation"
+  },
+  "112464": {
+   "name": "mb_EquipNo",
+   "type": "UIButton",
+   "source": "annotation"
+  },
+  "112808": {
+   "name": "m_EquipTalk",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "112968": {
+   "name": "m_EquipRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "112984": {
+   "name": "m_ListFrame",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "113144": {
+   "name": "m_ListGrid",
+   "type": "UIStatic[14]",
+   "source": "annotation"
+  },
+  "115384": {
+   "name": "m_ScrollHB",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "115544": {
+   "name": "m_EquipFlag",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "115704": {
+   "name": "m_ListEquipTitle",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "115864": {
+   "name": "ml_ListEquip",
+   "type": "UIListBox",
+   "source": "annotation"
+  },
+  "117152": {
+   "name": "ml_ListEquipRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "117168": {
+   "name": "m_btnGroup",
+   "type": "BtnGroup",
+   "source": "annotation"
+  },
+  "117908": {
+   "name": "m_ctrlTime",
+   "type": "float",
+   "source": "annotation"
+  },
+  "117912": {
+   "name": "m_bCanUpdate1",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "117913": {
+   "name": "m_bCanUpdate2",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "117916": {
+   "name": "m_EquipRemarkBk",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "118076": {
+   "name": "m_EquipRemark",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "118236": {
+   "name": "m_EquipRemarkRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "118252": {
+   "name": "m_EquipAtt",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "118412": {
+   "name": "m_EquipAttRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "118428": {
+   "name": "m_MoneyRemark",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "118588": {
+   "name": "m_MoneyRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "118604": {
+   "name": "m_SumEquip",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "118764": {
+   "name": "m_SumRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "118780": {
+   "name": "mb_OK",
+   "type": "UIButton",
+   "source": "annotation"
+  },
+  "119124": {
+   "name": "mb_OKRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "119140": {
+   "name": "m_IsDicker",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "119144": {
+   "name": "mb_Cancel",
+   "type": "UIButton",
+   "source": "annotation"
+  },
+  "119488": {
+   "name": "mb_CancelRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "119504": {
+   "name": "mb_Exit",
+   "type": "UIButton",
+   "source": "annotation"
+  },
+  "119848": {
+   "name": "mb_ExitRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "119864": {
+   "name": "m_TabBtn",
+   "type": "UITabBtn",
+   "source": "annotation"
+  },
+  "119888": {
+   "name": "mb_DKRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "119904": {
+   "name": "haveRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "119920": {
+   "name": "m_isCancelTalk",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "0": {
+   "name": "__vftable",
+   "type": "void *",
+   "source": "vtable_fix"
+  }
+ },
+ "base_class": [
+  "UIFrameWnd"
+ ],
+ "methods": {
+  "0x005137EF": {
+   "name": "ControlDealBTWnd",
+   "signature": "void (uchar)",
+   "source": "pdb"
+  },
+  "0x004A4220": {
+   "name": "Init",
+   "signature": "void __thiscall()"
+  },
+  "0x00498820": {
+   "name": "ctor",
+   "signature": "int __thiscall()",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+  },
+  "0x00499030": {
+   "name": "EquipUI",
+   "signature": "void __thiscall()",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+  },
+  "0x00494040": {
+   "name": "UpdateSlot",
+   "signature": "void __thiscall(int nSlotIdx, int nItemID, int nCount)"
+  },
+  "0x00494D70": {
+   "name": "HandleInput",
+   "signature": "void __thiscall(int nInputID, int nParam)"
+  },
+  "0x0049F9B0": {
+   "name": "SetGroupVisible",
+   "signature": "int __thiscall(unsigned char bVisible)"
+  },
+  "0x0049FBE0": {
+   "name": "UpdateDisplay",
+   "signature": "BOOL __thiscall(int nPage, int nSlot)"
+  },
+  "0x0049FA10": {
+   "name": "InitParticleEffects",
+   "signature": "int __thiscall EquipUI::InitParticleEffects(int nVal)"
+  },
+  "0x004A0370": {
+   "name": "HandleEquipEvent",
+   "signature": "void __thiscall(int nVal, char *pszBuf, int nVal2)",
+   "ordinal": 6
+  },
+  "0x00484D20": {
+   "name": "ShowPage",
+   "signature": "int __thiscall EquipUI::ShowPage()"
+  },
+  "0x004945C0": {
+   "name": "SelectBigMapTab0",
+   "signature": "int __thiscall EquipUI::SelectBigMapTab0(char nTab)"
+  },
+  "0x00498C70": {
+   "name": "_scalar_dtor",
+   "signature": "void *__thiscall(UIWnd *Block, char pData)",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+   "ordinal": 5
+  },
+  "0x0049FE00": {
+   "name": "RenderEffects",
+   "signature": "void __thiscall EquipUI::RenderEffects()",
+   "_misattrib_evidence": "max_offset=231140>class_size=1208",
+   "ordinal": 1
+  },
+  "0x00484E70": {
+   "name": "SelectTab0",
+   "signature": "int __thiscall EquipUI::SelectTab0(unsigned __int8 nTab)"
+  },
+  "0x0048A2F0": {
+   "name": "SetSubTab",
+   "signature": "int __thiscall EquipUI::SetSubTab(unsigned __int8 nTab)"
+  },
+  "0x0049E840": {
+   "name": "SetSubTab2",
+   "signature": "int __thiscall EquipUI::SetSubTab2(unsigned __int8 nTab)"
+  },
+  "0x0049FF90": {
+   "name": "HandleInput",
+   "signature": "char __thiscall EquipUI::HandleInput__ovl_ff90()"
+  },
+  "0x004A00B0": {
+   "name": "Update",
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "ordinal": 2
+  },
+  "0x004AB6B0": {
+   "name": "InitEquipUI",
+   "signature": "int __thiscall(int nVal)",
+   "_misattrib_evidence": "max_offset=401448>class_size=120116"
+  },
+  "0x0049FF30": {
+   "name": "FindNextSlot",
+   "signature": "int __thiscall(int *pCounter)"
+  },
+  "0x0049FF60": {
+   "name": "FindPrevSlot",
+   "signature": "int __thiscall(int *pCounter)"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x0056E170",
+   "base": "UIWnd",
+   "slots": [
     {
-      "addr": "0x0056E170",
-      "base": "UIWnd",
-      "slots": [
-        {
-          "addr": "0x00445E70",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0049FE00",
-          "from": null
-        },
-        {
-          "addr": "0x004A00B0",
-          "from": null
-        },
-        {
-          "addr": "0x0043DE40",
-          "from": null
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x00498C70",
-          "from": null
-        },
-        {
-          "addr": "0x004A0370",
-          "from": null
-        }
-      ]
+     "addr": "0x00445E70",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x0049FE00",
+     "from": null
+    },
+    {
+     "addr": "0x004A00B0",
+     "from": null
+    },
+    {
+     "addr": "0x0043DE40",
+     "from": null
+    },
+    {
+     "addr": "0x00445B90",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x00498C70",
+     "from": null
+    },
+    {
+     "addr": "0x004A0370",
+     "from": null
     }
-  ],
-  "base_size": 72
+   ]
+  }
+ ],
+ "base_size": 72
 }

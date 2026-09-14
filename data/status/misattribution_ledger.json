@@ -52,28 +52,6 @@
    "rename_to": null
   },
   {
-   "callee": "CCBUI::AddItem",
-   "callee_class": "CCBUI",
-   "method": "AddItem",
-   "sites": 15,
-   "callers": {
-    "PlayerMgr": 15
-   },
-   "files": [
-    "pal3/src/Misc/PlayerMgr.cpp"
-   ],
-   "addrs": [
-    "0x00469D50"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "CCBUI"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
    "callee": "ScriptVM::IsRunning",
    "callee_class": "ScriptVM",
    "method": "IsRunning",
@@ -162,32 +140,6 @@
    "vtable_owners": [],
    "struct_owners": [
     "PAL3"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "UIBase::SetItemData",
-   "callee_class": "UIBase",
-   "method": "SetItemData",
-   "sites": 12,
-   "callers": {
-    "EquipUI": 4,
-    "MagicUI": 4,
-    "StateUI": 4
-   },
-   "files": [
-    "pal3/src/UI/EquipUI.cpp",
-    "pal3/src/UI/MagicUI.cpp",
-    "pal3/src/UI/StateUI.cpp"
-   ],
-   "addrs": [
-    "0x004A3900"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "UIBase"
    ],
    "full_callers": {},
    "bucket": "C",
@@ -1262,6 +1214,31 @@
    "rename_to": null
   },
   {
+   "callee": "PtrArray::RemoveAt",
+   "callee_class": "PtrArray",
+   "method": "RemoveAt",
+   "sites": 2,
+   "callers": {
+    "CUtil": 1,
+    "CScreenMode": 1
+   },
+   "files": [
+    "pal3/src/Combat/CUtil.cpp",
+    "pal3/src/Render/CScreenMode.cpp"
+   ],
+   "addrs": [
+    "0x004343F0",
+    "0x004327B0"
+   ],
+   "vtable_owners": [],
+   "struct_owners": [
+    "PtrArray"
+   ],
+   "full_callers": {},
+   "bucket": "C",
+   "rename_to": null
+  },
+  {
    "callee": "GeomNode::LoadFromNode",
    "callee_class": "GeomNode",
    "method": "LoadFromNode",
@@ -2242,9 +2219,9 @@
    "rename_to": null
   },
   {
-   "callee": "CCCTData::CCCTData",
+   "callee": "CCCTData::UpdateCamera",
    "callee_class": "CCCTData",
-   "method": "CCCTData",
+   "method": "UpdateCamera",
    "sites": 1,
    "callers": {
     "CCBStage": 1
@@ -2253,8 +2230,7 @@
     "pal3/src/Combat/CCBStage.cpp"
    ],
    "addrs": [
-    "0x005058F0",
-    "0x004A6F10"
+    "0x005044C0"
    ],
    "vtable_owners": [],
    "struct_owners": [
@@ -3508,6 +3484,70 @@
    "rename_to": null
   },
   {
+   "callee": "ComposeUI::ProcessChildItem",
+   "callee_class": "ComposeUI",
+   "method": "ProcessChildItem",
+   "sites": 1,
+   "callers": {
+    "RoleStatePanel": 1
+   },
+   "files": [
+    "pal3/src/Misc/RoleStatePanel.cpp"
+   ],
+   "addrs": [
+    "0x004A3730"
+   ],
+   "vtable_owners": [],
+   "struct_owners": [
+    "ComposeUI"
+   ],
+   "full_callers": {},
+   "bucket": "C",
+   "rename_to": null
+  },
+  {
+   "callee": "CCBRoleState::sub_4A3360",
+   "callee_class": "CCBRoleState",
+   "method": "sub_4A3360",
+   "sites": 1,
+   "callers": {
+    "RoleStatePanel": 1
+   },
+   "files": [
+    "pal3/src/Misc/RoleStatePanel.cpp"
+   ],
+   "addrs": [
+    "0x004A3360"
+   ],
+   "vtable_owners": [],
+   "struct_owners": [],
+   "full_callers": {},
+   "bucket": "C",
+   "rename_to": null
+  },
+  {
+   "callee": "s_RoleState::LoadAndSetupRole",
+   "callee_class": "s_RoleState",
+   "method": "LoadAndSetupRole",
+   "sites": 1,
+   "callers": {
+    "RoleStatePanel": 1
+   },
+   "files": [
+    "pal3/src/Misc/RoleStatePanel.cpp"
+   ],
+   "addrs": [
+    "0x004A3A90"
+   ],
+   "vtable_owners": [],
+   "struct_owners": [
+    "s_RoleState"
+   ],
+   "full_callers": {},
+   "bucket": "C",
+   "rename_to": null
+  },
+  {
    "callee": "GRPinput::ProcessButtonHold",
    "callee_class": "GRPinput",
    "method": "ProcessButtonHold",
@@ -3788,6 +3828,28 @@
    "vtable_owners": [],
    "struct_owners": [
     "TextureLibDataBase"
+   ],
+   "full_callers": {},
+   "bucket": "C",
+   "rename_to": null
+  },
+  {
+   "callee": "RoleStatePanel::Create",
+   "callee_class": "RoleStatePanel",
+   "method": "Create",
+   "sites": 1,
+   "callers": {
+    "UIGameFrm": 1
+   },
+   "files": [
+    "pal3/src/Misc/UIGameFrm.cpp"
+   ],
+   "addrs": [
+    "0x004A4C20"
+   ],
+   "vtable_owners": [],
+   "struct_owners": [
+    "RoleStatePanel"
    ],
    "full_callers": {},
    "bucket": "C",
@@ -4118,29 +4180,6 @@
    "vtable_owners": [],
    "struct_owners": [
     "ArcPastScene"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "PtrArray::RemoveAt",
-   "callee_class": "PtrArray",
-   "method": "RemoveAt",
-   "sites": 1,
-   "callers": {
-    "CScreenMode": 1
-   },
-   "files": [
-    "pal3/src/Render/CScreenMode.cpp"
-   ],
-   "addrs": [
-    "0x004343F0",
-    "0x004327B0"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "PtrArray"
    ],
    "full_callers": {},
    "bucket": "C",
@@ -4621,114 +4660,6 @@
    "vtable_owners": [],
    "struct_owners": [
     "Array"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "MagicUI::SetSelectedData",
-   "callee_class": "MagicUI",
-   "method": "SetSelectedData",
-   "sites": 1,
-   "callers": {
-    "EquipUI": 1
-   },
-   "files": [
-    "pal3/src/UI/EquipUI.cpp"
-   ],
-   "addrs": [
-    "0x004A4AC0"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "MagicUI"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "MagicUI::Init",
-   "callee_class": "MagicUI",
-   "method": "Init",
-   "sites": 1,
-   "callers": {
-    "EquipUI": 1
-   },
-   "files": [
-    "pal3/src/UI/EquipUI.cpp"
-   ],
-   "addrs": [
-    "0x004A4B70"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "MagicUI"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "ComposeUI::ProcessChildItem",
-   "callee_class": "ComposeUI",
-   "method": "ProcessChildItem",
-   "sites": 1,
-   "callers": {
-    "EquipUI": 1
-   },
-   "files": [
-    "pal3/src/UI/EquipUI.cpp"
-   ],
-   "addrs": [
-    "0x004A3730"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "ComposeUI"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "CCBRoleState::sub_4A3360",
-   "callee_class": "CCBRoleState",
-   "method": "sub_4A3360",
-   "sites": 1,
-   "callers": {
-    "EquipUI": 1
-   },
-   "files": [
-    "pal3/src/UI/EquipUI.cpp"
-   ],
-   "addrs": [
-    "0x004A3360"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "s_RoleState::LoadAndSetupRole",
-   "callee_class": "s_RoleState",
-   "method": "LoadAndSetupRole",
-   "sites": 1,
-   "callers": {
-    "EquipUI": 1
-   },
-   "files": [
-    "pal3/src/UI/EquipUI.cpp"
-   ],
-   "addrs": [
-    "0x004A3A90"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "s_RoleState"
    ],
    "full_callers": {},
    "bucket": "C",

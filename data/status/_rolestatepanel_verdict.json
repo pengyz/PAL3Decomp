@@ -1,0 +1,20 @@
+{
+  "question": "0x4A1E40-0x4A5B30 区间的 16 个函数归属哪个类？IDA 名散布在 EquipUI/StateUI/MagicUI/MainEquipUI/UIBase 五个类上，且 [MISATTRIBUTED] 标记 12 处。",
+  "verdict": "全部属于一个未立档的 ~176KB 容器类（vtable 0x56F040，尺寸 0x2B080=176256），命名为 RoleStatePanel。它是 5 角色状态面板：持有 5× s_RoleState(3788B) 记录(@+0x25E04)、槽标志(@+0x169[5])、标签页子控件(@+0x2AFBC/0x2AFC0)。",
+  "evidence": [
+    "构造点 sub_44F130+0x44f1d5: push 2B080h; call operator new → InitUI@0x4A1E40(this=新对象) → 存父+0x6E14；五个 0xa1 函数全部以 ecx=[父+0x6E14] 调用",
+    "InitUI@0x4A1E40 在 this+0 安装 vtable off_56F040（xrefs 仅 2：InitUI 自身 + ~dtor@0x4A246D）——该 vtable 在注解宇宙无主",
+    "五个连续函数尺寸完全相同(0xa1)却分属四个类名（EquipUI/StateUI×2/MagicUI），且逐字节同构：同一个 GetSelected 助手、相同 +0x2AFBC/+0x2AFC0 子控件偏移——命名漂移簇",
+    "SetItemData@0x4A3900 步长演算: id*16-15id→*8→947id→*4 = this+id*3788；3788 = s_RoleState.binary_size 精确吻合；字段偏移 +0x25E04..+0x264AC",
+    "HandleDeviceLostB@0x4A4780 写 +0x2B07C/+0x2B078 → 0x2B07C+4 = 0x2B080 = 分配尺寸（访问半径=类尺寸，末字段铁证）",
+    "SetEquipSlotData@0x4A4FC0 写 +0x2AFD4..0x2AFD9 → 高偏移尾部区",
+    "真 EquipUI ctor 在 0x498C2E/0x49904D（装 vtable 0x56E170）、真 MainEquipUI ctor 0x4795CB（vtable 0x56B820，槽位 0x47B200 自洽）——本区间函数不属于它们"
+  ],
+  "action": "16 个方法从 EquipUI(4)/MagicUI(2)/StateUI(2)/MainEquipUI(7)/UIBase(1) 迁移到新类 RoleStatePanel；functions.json 同步改名。",
+  "boundary_unresolved": [
+    "0x4A4ED0 ShowPage@MainEquipUI（偏移 +0x508/+0xA68 不定，留下一轮）",
+    "0x4A3360 sub@CCBRoleState、0x4A36B0 FormatChineseNumber、0x4A3730 ProcessChildItem@ComposeUI、0x4A3A90 LoadAndSetupRole@s_RoleState —— 邻域混杂但证据不足不动",
+    "PAL3::SetValue/GetValue/SetRange 簇（42 站点）独立立案：GetValue@0x462220 访问 this+0x1795C(96KB)，非本类"
+  ],
+  "date": "2026-09-14"
+}
