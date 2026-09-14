@@ -847,6 +847,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 Contains data_members, size, bases from IDB after annotation apply.
     methods:    function definitions collected from decomp JSONs.
     """
+    seen_methods = set()  # populated by the method-decl loop below; also read by the scalar-wrapper ctor block
     lines = ["#pragma once"]
     lines.append('// Auto-generated: %s' % (
         template_expr if template_expr else cls_name))
@@ -2044,29 +2045,45 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             # An empty default ctor would silently construct an invalid object.
             pass
 
-    # For opaque 4-byte structs (no real members), add int conversion operators
-    # This allows IDA-generated code to assign integers to these types
-    _ann_for_opaque = _get_ida_structs()
-    _opaque_struct = _ann_for_opaque.get(cls_name, {})
-    _opaque_size = _opaque_struct.get('binary_size') or 0
-    _opaque_members = _opaque_struct.get('data_members', [])
-    if _opaque_size and _opaque_size <= 16 and len(_opaque_members) == 0:
-        lines.append("    // Opaque type: default ctor + int conversion for IDA codegen")
-        lines.append("    %s() { memset(this, 0, sizeof(*this)); }" % cls_name)
-        if _opaque_size == 4:
-            lines.append("    %s(int v) { *(int*)this = v; }" % cls_name)
-            lines.append("    operator int() const { return *(int*)this; }")
-            lines.append("    void operator=(int v) { *(int*)this = v; }")
-        lines.append("")
+    # For opaque scalar-wrapper structs (size <= 16, no real members —
+    # _tail_* fill entries don't count), emit converting constructors.
+    # Hex-Rays renders enum-like 1/2/4-byte IDA structs as classes, and its
+    # output contains C-style casts like (tagEffClass)nVal which MSVC6 only
+    # accepts when Cls has a Cls(int) constructor.
+    # The default ctor body is EMPTY (zero codegen at /Od) — it exists only
+    # because the user ctor suppresses the implicit one, which would break
+    # local/array decls like `UIManager v[4];`. NO memset — that would inject
+    # real initialization code at every declaration site.
+    _isd_opaque = _get_ida_structs().get(cls_name, {})
+    _isd_size = _isd_opaque.get('size') or 0
+    _isd_real_members = [m for m in (_isd_opaque.get('data_members') or [])
+                         if not str(m.get('name', '')).startswith('_tail')]
+    if _isd_size and _isd_size <= 16 and not _isd_real_members:
+        _ctor_body = {
+            1: "*(char*)this = (char)v",
+            2: "*(short*)this = (short)v",
+            4: "*(int*)this = v",
+            8: "*(__int64*)this = (__int64)v",
+        }.get(_isd_size)
+        if _ctor_body:
+            if (cls_name + '()') not in seen_methods:
+                lines.append("    // Scalar-wrapper: ctors for IDA (Cls)int casts (no init code)")
+                lines.append("    %s() {}" % cls_name)
+            if (cls_name + '(int)') not in seen_methods:
+                lines.append("    %s(int v) { %s; }" % (cls_name, _ctor_body))
+            lines.append("")
 
-    # Check annotation known_methods for operator int(), operator=(int), operator[] — emit if present
+    # Emit annotated operators (known_methods).
+    # NOTE: the scalar-wrapper block above no longer emits operator int/=, so
+    # no cross-block dedup flags are needed — the flags below only dedupe
+    # within this loop.
     _ann_file = PROJECT_ROOT / "data" / "annotations" / "structs" / ("%s.json" % cls_name)
+    _has_op_int = False
+    _has_op_assign = False
+    _has_op_subscript = False
     if _ann_file.exists():
         try:
             _ann_data = json.loads(_ann_file.read_text(encoding='utf-8'))
-            _has_op_int = False
-            _has_op_assign = False
-            _has_op_subscript = False
             for _slot, _minfo in _ann_data.get('known_methods', {}).items():
                 if not isinstance(_minfo, dict):
                     continue

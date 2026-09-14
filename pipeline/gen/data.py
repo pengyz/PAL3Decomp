@@ -34,6 +34,7 @@ class DataStore:
         self.game_classes = set()   # class names with .h files
         self.thunk_classes = set()  # j_ClassName thunk type names
         self.static_methods = set() # "ClassName::Method" for __cdecl methods
+        self.method_sigs = {}       # "ClassName::Method" -> decomp signature (ret-type lookup)
         self.declared_globals = set()  # already in globals.h
         self.free_func_sigs = {}    # "FuncName" -> "ret FuncName(params)" declaration
         self.exe_data = b''         # raw exe for .rdata string lookup
@@ -326,7 +327,11 @@ class DataStore:
                 if not _name or not _sig:
                     continue
                 if '::' in _name:
-                    # Class method: detect __cdecl for static_methods
+                    # Class method: keep signature for return-type lookups.
+                    # decomp `name` carries a param list ("Cls::M(int)") — index
+                    # by the bare "Cls::M"; first overload wins (best-effort).
+                    self.method_sigs.setdefault(_name.split('(')[0], _sig)
+                    # detect __cdecl for static_methods
                     if '__cdecl' in _sig and '__thiscall' not in _sig:
                         self.static_methods.add(_name)
                 else:

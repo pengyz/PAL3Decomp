@@ -1,10 +1,10 @@
 {
-  "name": "20260914_193321",
-  "timestamp": "2026-09-14T19:33:21.422096",
+  "name": "20260914_211147",
+  "timestamp": "2026-09-14T21:11:47.358192",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "fail",
-      "error_count": 5,
+      "error_count": 4,
       "errors": [
         {
           "code": "C2660",
@@ -25,11 +25,6 @@
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'bool (__cdecl *)(int,int)' to 'int (__thiscall CCBSystem::*)(int)'",
           "line": 1300
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'int' to 'class ECBRoleSpecState'",
-          "line": 1491
         }
       ]
     },
@@ -40,18 +35,8 @@
     },
     "pal3/src/Combat/CCBAttackSequen.cpp": {
       "status": "fail",
-      "error_count": 4,
+      "error_count": 2,
       "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 123
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 164
-        },
         {
           "code": "C2660",
           "msg": "'CalcSpeed' : function does not take 3 parameters",
@@ -162,7 +147,7 @@
     },
     "pal3/src/Combat/CCBControlWindow.cpp": {
       "status": "fail",
-      "error_count": 21,
+      "error_count": 20,
       "errors": [
         {
           "code": "C2664",
@@ -193,11 +178,6 @@
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
           "line": 152
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class UIButton *' to 'unsigned long'",
-          "line": 201
         },
         {
           "code": "C2227",
@@ -476,17 +456,12 @@
     },
     "pal3/src/Combat/CCBParabolaWindow.cpp": {
       "status": "fail",
-      "error_count": 14,
+      "error_count": 13,
       "errors": [
         {
           "code": "C2660",
           "msg": "'CreateParentData' : function does not take 2 parameters",
           "line": 52
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int *' to 'unsigned long'",
-          "line": 87
         },
         {
           "code": "C2227",
@@ -552,7 +527,7 @@
     },
     "pal3/src/Combat/CCBProtectWindow.cpp": {
       "status": "fail",
-      "error_count": 3,
+      "error_count": 2,
       "errors": [
         {
           "code": "C2660",
@@ -563,11 +538,6 @@
           "code": "C2660",
           "msg": "'HideAll' : function does not take 1 parameters",
           "line": 468
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class PalScriptMgr *' to 'unsigned long'",
-          "line": 512
         }
       ]
     },
@@ -762,11 +732,6 @@
           "line": 2917
         },
         {
-          "code": "C2297",
-          "msg": "'+=' : illegal, right operand has type 'char *'",
-          "line": 2946
-        },
-        {
           "code": "C2660",
           "msg": "'GetRoleLevel' : function does not take 2 parameters",
           "line": 2976
@@ -927,26 +892,6 @@
           "line": 3839
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char [11]' to 'unsigned long'",
-          "line": 3883
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char [9]' to 'unsigned long'",
-          "line": 3885
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char [7]' to 'unsigned long'",
-          "line": 3889
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char [5]' to 'unsigned long'",
-          "line": 3894
-        },
-        {
           "code": "C2039",
           "msg": "'m_pData' : is not a member of 'CCBRoleState'",
           "line": 3918
@@ -995,11 +940,6 @@
           "code": "C2661",
           "msg": "'CreateObj' : no overloaded function takes 4 parameters",
           "line": 5020
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CCBRoleState *' to 'unsigned long'",
-          "line": 5075
         },
         {
           "code": "C2660",
@@ -1112,15 +1052,45 @@
           "line": 7112
         },
         {
+          "code": "C2660",
+          "msg": "'GetCmdData' : function does not take 2 parameters",
+          "line": 7223
+        },
+        {
+          "code": "C2039",
+          "msg": "'m_pData' : is not a member of 'CCBRoleState'",
+          "line": 7713
+        },
+        {
+          "code": "C2660",
+          "msg": "'HandleControlCmd' : function does not take 2 parameters",
+          "line": 8047
+        },
+        {
+          "code": "C2660",
+          "msg": "'HandleControlCmd' : function does not take 2 parameters",
+          "line": 8069
+        },
+        {
+          "code": "C2660",
+          "msg": "'HandleControlCmd' : function does not take 2 parameters",
+          "line": 8079
+        },
+        {
+          "code": "C2660",
+          "msg": "'HandleControlCmd' : function does not take 2 parameters",
+          "line": 8088
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 7112
+          "line": 8088
         }
       ]
     },
     "pal3/src/Combat/CCBSkillWindow.cpp": {
       "status": "fail",
-      "error_count": 19,
+      "error_count": 18,
       "errors": [
         {
           "code": "C2660",
@@ -1156,11 +1126,6 @@
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
           "line": 262
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void ** ' to 'const char ** '",
-          "line": 263
         },
         {
           "code": "C2227",
@@ -1249,16 +1214,6 @@
           "line": 230
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'unsigned int *'",
-          "line": 275
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CCBStage *' to 'unsigned long'",
-          "line": 458
-        },
-        {
           "code": "C2660",
           "msg": "'Copy' : function does not take 0 parameters",
           "line": 486
@@ -1282,21 +1237,6 @@
           "code": "C2660",
           "msg": "'ResetDialogSlots' : function does not take 1 parameters",
           "line": 806
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CCBEditor *' to 'unsigned long'",
-          "line": 1012
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CCBEditor *' to 'unsigned long'",
-          "line": 1053
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CCBEditor *' to 'unsigned long'",
-          "line": 1066
         },
         {
           "code": "C2664",
@@ -1484,8 +1424,8 @@
           "line": 1800
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CCBStageRole *' to 'int'",
+          "code": "C2059",
+          "msg": "syntax error : ')'",
           "line": 1801
         },
         {
@@ -1649,8 +1589,8 @@
           "line": 2812
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CCBStageRole *[11]' to 'int'",
+          "code": "C2059",
+          "msg": "syntax error : ')'",
           "line": 2833
         },
         {
@@ -1694,8 +1634,8 @@
           "line": 2847
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CCBStageRole *[11]' to 'int'",
+          "code": "C2059",
+          "msg": "syntax error : ')'",
           "line": 2890
         },
         {
@@ -1719,8 +1659,8 @@
           "line": 2896
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CCBStageRole *[11]' to 'int'",
+          "code": "C2059",
+          "msg": "syntax error : ')'",
           "line": 2916
         },
         {
@@ -1729,15 +1669,40 @@
           "line": 2921
         },
         {
+          "code": "C2227",
+          "msg": "left of '->m_bShowWeapon' must point to class/struct/union",
+          "line": 2921
+        },
+        {
+          "code": "C2100",
+          "msg": "illegal indirection",
+          "line": 2922
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->m_bFlash' must point to class/struct/union",
+          "line": 2922
+        },
+        {
+          "code": "C2084",
+          "msg": "function 'void __cdecl pal3_vtbl_unk_0(class UIProgressBar *,int)' already has a body",
+          "line": 3007
+        },
+        {
+          "code": "C2084",
+          "msg": "function 'void __cdecl pal3_vtbl_unk_1(class UIProgressBar *,unsigned long)' already has a body",
+          "line": 3067
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 2921
+          "line": 3067
         }
       ]
     },
     "pal3/src/Combat/CCBStageCam.cpp": {
       "status": "fail",
-      "error_count": 45,
+      "error_count": 21,
       "errors": [
         {
           "code": "C2653",
@@ -1830,126 +1795,6 @@
           "line": 1884
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1902
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1903
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1904
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1905
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1906
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1907
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1908
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1909
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1910
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1911
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1912
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1913
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1914
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1915
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1916
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1917
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1918
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1919
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1920
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1921
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1922
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1923
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1924
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1925
-        },
-        {
           "code": "C2660",
           "msg": "'DlgProcCameraEdit' : function does not take 4 parameters",
           "line": 1949
@@ -1986,11 +1831,6 @@
       "status": "fail",
       "error_count": 102,
       "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CCBStageScene *' to 'unsigned long'",
-          "line": 75
-        },
         {
           "code": "C2589",
           "msg": "'this' : illegal token on right side of '::'",
@@ -2492,6 +2332,11 @@
           "line": 153
         },
         {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 153
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
           "line": 153
@@ -2523,11 +2368,6 @@
       "status": "fail",
       "error_count": 102,
       "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CEffectSimple ** ' to 'char *'",
-          "line": 153
-        },
         {
           "code": "C2660",
           "msg": "'CalcTurnOrder' : function does not take 1 parameters",
@@ -2572,11 +2412,6 @@
           "code": "C2660",
           "msg": "'GetCmdData' : function does not take 2 parameters",
           "line": 680
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'unsigned long *'",
-          "line": 828
         },
         {
           "code": "C2065",
@@ -2789,8 +2624,8 @@
           "line": 1587
         },
         {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class ECBBattleFieldAttr' (or there is no acceptable conversion)",
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from 'class ECBBattleFieldAttr' to 'unsigned long'",
           "line": 1710
         },
         {
@@ -3026,6 +2861,16 @@
         {
           "code": "C2039",
           "msg": "'CCBSystem' : is not a member of 'CCBStage'",
+          "line": 3024
+        },
+        {
+          "code": "C2653",
+          "msg": "'CCBSystem' : is not a class or namespace name",
+          "line": 3024
+        },
+        {
+          "code": "C2061",
+          "msg": "syntax error : identifier 'CCBSystem'",
           "line": 3024
         },
         {
@@ -3276,11 +3121,6 @@
         },
         {
           "code": "C2440",
-          "msg": "'=' : cannot convert from 'int *' to 'char *'",
-          "line": 1673
-        },
-        {
-          "code": "C2440",
           "msg": "'=' : cannot convert from 'void (__cdecl *)(struct HWND__ *,unsigned int,unsigned int,long)' to 'void (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
           "line": 1720
         },
@@ -3288,11 +3128,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void (__cdecl *)(struct HWND__ *,unsigned int,unsigned int,long)' to 'void (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
           "line": 1726
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int *' to 'char *'",
-          "line": 1742
         },
         {
           "code": "C2660",
@@ -3328,71 +3163,6 @@
           "code": "C2660",
           "msg": "'GetAlive' : function does not take 3 parameters",
           "line": 2079
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 2192
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 2193
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 2194
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 2195
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 2196
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 2197
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 2198
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 2199
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 2200
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 2201
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 2202
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 2203
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 2204
         },
         {
           "code": "C2660",
@@ -3545,15 +3315,90 @@
           "line": 3224
         },
         {
+          "code": "C2660",
+          "msg": "'Reset' : function does not take 2 parameters",
+          "line": 3226
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->ShowWindow' must point to class/struct/union",
+          "line": 3238
+        },
+        {
+          "code": "C2660",
+          "msg": "'Reset' : function does not take 2 parameters",
+          "line": 3240
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->ShowWindow' must point to class/struct/union",
+          "line": 3252
+        },
+        {
+          "code": "C2660",
+          "msg": "'Reset' : function does not take 2 parameters",
+          "line": 3254
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->ShowWindow' must point to class/struct/union",
+          "line": 3266
+        },
+        {
+          "code": "C2660",
+          "msg": "'Reset' : function does not take 2 parameters",
+          "line": 3268
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->ShowWindow' must point to class/struct/union",
+          "line": 3280
+        },
+        {
+          "code": "C2084",
+          "msg": "function 'void __cdecl pal3_vtbl_unk_0(class UIStatic *,int,int *,class CCBUI *)' already has a body",
+          "line": 3294
+        },
+        {
+          "code": "C2084",
+          "msg": "function 'void __cdecl pal3_vtbl_unk_1(class UIStatic *,int,int *,class CCBUI *)' already has a body",
+          "line": 3298
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->ShowWindow' must point to class/struct/union",
+          "line": 3440
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->ShowWindow' must point to class/struct/union",
+          "line": 3612
+        },
+        {
+          "code": "C2084",
+          "msg": "function 'void __cdecl pal3_vtbl_unk_0(class UIStatic *,unsigned long)' already has a body",
+          "line": 3622
+        },
+        {
+          "code": "C2084",
+          "msg": "function 'void __cdecl pal3_vtbl_unk_1(class UIStatic *,unsigned long)' already has a body",
+          "line": 3626
+        },
+        {
+          "code": "C2084",
+          "msg": "function 'void __cdecl pal3_vtbl_unk_2(class UIProgressBar *,unsigned long)' already has a body",
+          "line": 3630
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 3224
+          "line": 3630
         }
       ]
     },
     "pal3/src/Combat/CCCTData.cpp": {
       "status": "fail",
-      "error_count": 66,
+      "error_count": 62,
       "errors": [
         {
           "code": "C2660",
@@ -3571,11 +3416,6 @@
           "line": 80
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'unsigned int *'",
-          "line": 89
-        },
-        {
           "code": "C2660",
           "msg": "'InitParticle2' : function does not take 2 parameters",
           "line": 120
@@ -3586,8 +3426,8 @@
           "line": 157
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'union *' to 'int'",
+          "code": "C2059",
+          "msg": "syntax error : ')'",
           "line": 163
         },
         {
@@ -3786,16 +3626,6 @@
           "line": 194
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'char'",
-          "line": 256
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'char'",
-          "line": 409
-        },
-        {
           "code": "C2653",
           "msg": "'j_InputSystem' : is not a class or namespace name",
           "line": 809
@@ -3834,11 +3664,6 @@
           "code": "C2660",
           "msg": "'IsColOBB' : function does not take 2 parameters",
           "line": 1093
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class gbGeomNode *' to 'unsigned long'",
-          "line": 1118
         },
         {
           "code": "C2660",
@@ -3941,7 +3766,7 @@
     },
     "pal3/src/Data/CGameData.cpp": {
       "status": "fail",
-      "error_count": 11,
+      "error_count": 10,
       "errors": [
         {
           "code": "C2660",
@@ -3992,17 +3817,12 @@
           "code": "C2059",
           "msg": "syntax error : ')'",
           "line": 306
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'char'",
-          "line": 581
         }
       ]
     },
     "pal3/src/Data/PAL_GDB.cpp": {
       "status": "fail",
-      "error_count": 41,
+      "error_count": 34,
       "errors": [
         {
           "code": "C2227",
@@ -4043,41 +3863,6 @@
           "code": "C2660",
           "msg": "'ProcessInput' : function does not take 1 parameters",
           "line": 383
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'int *'",
-          "line": 564
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'int *'",
-          "line": 571
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'int *'",
-          "line": 578
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'int *'",
-          "line": 585
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'int *'",
-          "line": 592
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'int *'",
-          "line": 599
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'int *'",
-          "line": 606
         },
         {
           "code": "C2440",
@@ -4323,33 +4108,8 @@
     },
     "pal3/src/Effect/CEffMgr.cpp": {
       "status": "fail",
-      "error_count": 38,
+      "error_count": 18,
       "errors": [
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'int' to 'class tagEffClass'",
-          "line": 76
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'int' to 'class tagEffClass'",
-          "line": 77
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'int' to 'class tagEffClass'",
-          "line": 78
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'int' to 'class tagEffClass'",
-          "line": 80
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long *'",
-          "line": 605
-        },
         {
           "code": "C2197",
           "msg": "'void (__cdecl *)(void)' : too many actual parameters",
@@ -4389,81 +4149,6 @@
           "code": "C2664",
           "msg": "'sprintf' : cannot convert parameter 2 from 'class tagUVSet *' to 'const char *'",
           "line": 941
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long *'",
-          "line": 1034
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CEffBase ** ' to 'unsigned long'",
-          "line": 1089
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'const char *' to 'unsigned long'",
-          "line": 1096
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'const char *' to 'unsigned long'",
-          "line": 1135
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CEffCylinder ** ' to 'unsigned long'",
-          "line": 1167
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'const char *' to 'unsigned long'",
-          "line": 1174
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CEffModel *' to 'unsigned long'",
-          "line": 1208
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'const char *' to 'unsigned long'",
-          "line": 1215
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'const char *' to 'unsigned long'",
-          "line": 1254
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'const char *' to 'unsigned long'",
-          "line": 1293
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CEffAudio ** ' to 'unsigned long'",
-          "line": 1325
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'const char *' to 'unsigned long'",
-          "line": 1332
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'const char *' to 'unsigned long'",
-          "line": 1370
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'const char *' to 'unsigned long'",
-          "line": 1403
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'const char *' to 'unsigned long'",
-          "line": 1410
         },
         {
           "code": "C2660",
@@ -4519,13 +4204,8 @@
     },
     "pal3/src/Effect/CEffModel.cpp": {
       "status": "fail",
-      "error_count": 8,
+      "error_count": 7,
       "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'const char *' to 'unsigned long'",
-          "line": 59
-        },
         {
           "code": "C2440",
           "msg": "'return' : cannot convert from 'class CEffModel *' to 'int'",
@@ -4649,22 +4329,12 @@
     },
     "pal3/src/Effect/CEffect.cpp": {
       "status": "fail",
-      "error_count": 40,
+      "error_count": 25,
       "errors": [
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 203
-        },
         {
           "code": "C2660",
           "msg": "'CreateGeom' : function does not take 1 parameters",
           "line": 248
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class EEffect'",
-          "line": 379
         },
         {
           "code": "C2440",
@@ -4687,44 +4357,14 @@
           "line": 618
         },
         {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 651
-        },
-        {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
           "line": 813
         },
         {
           "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class EEffect'",
-          "line": 817
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 897
-        },
-        {
-          "code": "C2440",
           "msg": "'type cast' : cannot convert from 'float' to 'char *'",
           "line": 933
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 980
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 1005
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 1010
         },
         {
           "code": "C2664",
@@ -4735,11 +4375,6 @@
           "code": "C2660",
           "msg": "'ToNextFrame' : function does not take 2 parameters",
           "line": 1023
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 1032
         },
         {
           "code": "C2660",
@@ -4763,11 +4398,6 @@
         },
         {
           "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class EEffect'",
-          "line": 1505
-        },
-        {
-          "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
           "line": 1598
         },
@@ -4775,16 +4405,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
           "line": 1635
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 1809
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 1855
         },
         {
           "code": "C2660",
@@ -4807,19 +4427,9 @@
           "line": 2088
         },
         {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class EEffect'",
-          "line": 2101
-        },
-        {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
           "line": 2124
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CEffectSystem *' to 'unsigned long'",
-          "line": 2130
         },
         {
           "code": "C2679",
@@ -4842,11 +4452,6 @@
           "line": 2332
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 2490
-        },
-        {
           "code": "C2660",
           "msg": "'Release' : function does not take 1 parameters",
           "line": 2495
@@ -4855,7 +4460,7 @@
     },
     "pal3/src/Effect/CEffectSystem.cpp": {
       "status": "fail",
-      "error_count": 11,
+      "error_count": 8,
       "errors": [
         {
           "code": "C2660",
@@ -4888,11 +4493,6 @@
           "line": 337
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'",
-          "line": 339
-        },
-        {
           "code": "C2660",
           "msg": "'NewIndexPool' : function does not take 1 parameters",
           "line": 352
@@ -4901,22 +4501,12 @@
           "code": "C2660",
           "msg": "'NewIndexPool' : function does not take 1 parameters",
           "line": 409
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int *' to 'unsigned long'",
-          "line": 605
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'const char *' to 'unsigned long'",
-          "line": 612
         }
       ]
     },
     "pal3/src/Effect/CEffgbParticle.cpp": {
       "status": "fail",
-      "error_count": 32,
+      "error_count": 29,
       "errors": [
         {
           "code": "C2059",
@@ -4937,11 +4527,6 @@
           "code": "C2660",
           "msg": "'InitDefaultUVSet' : function does not take 3 parameters",
           "line": 191
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 245
         },
         {
           "code": "C2660",
@@ -5064,16 +4649,6 @@
           "line": 1049
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int *' to 'unsigned long'",
-          "line": 1168
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'const char *' to 'unsigned long'",
-          "line": 1175
-        },
-        {
           "code": "C2059",
           "msg": "syntax error : '}'",
           "line": 1206
@@ -5138,57 +4713,12 @@
     },
     "pal3/src/Effect/ScreenEffectMgr.cpp": {
       "status": "fail",
-      "error_count": 25,
+      "error_count": 15,
       "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int ** ' to 'unsigned long'",
-          "line": 220
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'unsigned long'",
-          "line": 252
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'unsigned long'",
-          "line": 259
-        },
         {
           "code": "C2065",
           "msg": "'SingletonThunk_004BE5D0' : undeclared identifier",
           "line": 340
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 474
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 475
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 487
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 488
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 506
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 508
         },
         {
           "code": "C2664",
@@ -5244,11 +4774,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'",
           "line": 658
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class gbTexture *' to 'unsigned long'",
-          "line": 663
         },
         {
           "code": "C2660",
@@ -5315,7 +4840,7 @@
     },
     "pal3/src/GameBase/GRPinput.cpp": {
       "status": "fail",
-      "error_count": 47,
+      "error_count": 36,
       "errors": [
         {
           "code": "C2065",
@@ -5323,19 +4848,9 @@
           "line": 86
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'unsigned __int8 *'",
-          "line": 232
-        },
-        {
           "code": "C2664",
           "msg": "'int (struct IDirectInputDevice8A *,int,char *)' : cannot convert parameter 3 from 'unsigned char *' to 'char *'",
           "line": 236
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 329
         },
         {
           "code": "C2102",
@@ -5403,19 +4918,9 @@
           "line": 811
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct IDirectInputDevice8A *' to 'char *'",
-          "line": 814
-        },
-        {
           "code": "C2679",
           "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
           "line": 816
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'struct IDirectInputDevice8A *' to 'unsigned long'",
-          "line": 817
         },
         {
           "code": "C2679",
@@ -5423,19 +4928,9 @@
           "line": 822
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 1038
-        },
-        {
           "code": "C2660",
           "msg": "'Read' : function does not take 0 parameters",
           "line": 1098
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'unsigned long *'",
-          "line": 1107
         },
         {
           "code": "C2660",
@@ -5478,19 +4973,9 @@
           "line": 1133
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 1134
-        },
-        {
           "code": "C2660",
           "msg": "'Read' : function does not take 0 parameters",
           "line": 1135
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 1136
         },
         {
           "code": "C2660",
@@ -5498,19 +4983,9 @@
           "line": 1137
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class GRPinput *' to 'unsigned long'",
-          "line": 1145
-        },
-        {
           "code": "C2102",
           "msg": "'&' requires l-value",
           "line": 1565
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'long *' to 'int *'",
-          "line": 1585
         },
         {
           "code": "C2100",
@@ -5526,11 +5001,6 @@
           "code": "C2660",
           "msg": "'Length' : function does not take 1 parameters",
           "line": 1668
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'long *' to 'int *'",
-          "line": 1699
         },
         {
           "code": "C2440",
@@ -5613,7 +5083,7 @@
     },
     "pal3/src/GameBase/PAL3.cpp": {
       "status": "fail",
-      "error_count": 101,
+      "error_count": 102,
       "errors": [
         {
           "code": "C2011",
@@ -5931,26 +5401,6 @@
           "line": 1525
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned __int8 *' to 'char *'",
-          "line": 1575
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned __int8 *'",
-          "line": 1580
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned __int8 *' to 'char *'",
-          "line": 1607
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned __int8 *'",
-          "line": 1611
-        },
-        {
           "code": "C2660",
           "msg": "'ScaleTo' : function does not take 3 parameters",
           "line": 1622
@@ -6119,6 +5569,31 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class PAL3 *' to 'int'",
           "line": 2271
+        },
+        {
+          "code": "C2660",
+          "msg": "'Create' : function does not take 0 parameters",
+          "line": 2320
+        },
+        {
+          "code": "C2660",
+          "msg": "'Init' : function does not take 0 parameters",
+          "line": 2321
+        },
+        {
+          "code": "C2660",
+          "msg": "'Insert' : function does not take 3 parameters",
+          "line": 2351
+        },
+        {
+          "code": "C2660",
+          "msg": "'Erase' : function does not take 3 parameters",
+          "line": 2352
+        },
+        {
+          "code": "C1003",
+          "msg": "error count exceeds 100; stopping compilation",
+          "line": 2352
         }
       ]
     },
@@ -6165,17 +5640,12 @@
     },
     "pal3/src/MiniGame/MiniGame1.cpp": {
       "status": "fail",
-      "error_count": 8,
+      "error_count": 7,
       "errors": [
         {
           "code": "C2660",
           "msg": "'SetAsCurrent' : function does not take 2 parameters",
           "line": 23
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class gbMatrixStack *' to 'unsigned long'",
-          "line": 35
         },
         {
           "code": "C2440",
@@ -6211,17 +5681,12 @@
     },
     "pal3/src/MiniGame/MiniGame3.cpp": {
       "status": "fail",
-      "error_count": 17,
+      "error_count": 14,
       "errors": [
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'void *' to 'class MiniGame3'",
           "line": 79
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 86
         },
         {
           "code": "C2660",
@@ -6234,19 +5699,9 @@
           "line": 92
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 104
-        },
-        {
           "code": "C2660",
           "msg": "'LoadFromFile' : function does not take 4 parameters",
           "line": 107
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 121
         },
         {
           "code": "C2660",
@@ -6318,23 +5773,8 @@
     },
     "pal3/src/Misc/ArcLocaleRole.cpp": {
       "status": "fail",
-      "error_count": 14,
+      "error_count": 11,
       "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'unsigned long'",
-          "line": 189
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'unsigned long'",
-          "line": 203
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'unsigned long'",
-          "line": 204
-        },
         {
           "code": "C2664",
           "msg": "'sub_4AB560' : cannot convert parameter 1 from 'int *' to 'unsigned long *'",
@@ -6410,7 +5850,7 @@
     },
     "pal3/src/Misc/ArcSceneMonster.cpp": {
       "status": "fail",
-      "error_count": 50,
+      "error_count": 47,
       "errors": [
         {
           "code": "C2440",
@@ -6421,11 +5861,6 @@
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'unsigned __int64' to 'struct tagPOINT'",
           "line": 89
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 149
         },
         {
           "code": "C2664",
@@ -6466,11 +5901,6 @@
           "code": "C2664",
           "msg": "'void (char *,unsigned long,int *,class ArcSceneMonster *)' : cannot convert parameter 2 from 'void *' to 'unsigned long'",
           "line": 297
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 365
         },
         {
           "code": "C2664",
@@ -6618,11 +6048,6 @@
           "line": 621
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 681
-        },
-        {
           "code": "C2664",
           "msg": "'void (char *,unsigned long,int *,class ArcSceneMonster *,int)' : cannot convert parameter 2 from 'void *' to 'unsigned long'",
           "line": 687
@@ -6697,7 +6122,7 @@
     },
     "pal3/src/Misc/Array.cpp": {
       "status": "fail",
-      "error_count": 22,
+      "error_count": 19,
       "errors": [
         {
           "code": "C2660",
@@ -6708,11 +6133,6 @@
           "code": "C2660",
           "msg": "'Copy' : function does not take 0 parameters",
           "line": 132
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
-          "line": 181
         },
         {
           "code": "C2660",
@@ -6785,16 +6205,6 @@
           "line": 961
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class NPC ** ' to 'char *'",
-          "line": 1025
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from '__int16 *' to 'char *'",
-          "line": 1093
-        },
-        {
           "code": "C2664",
           "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
           "line": 1285
@@ -6813,22 +6223,12 @@
     },
     "pal3/src/Misc/BINK.cpp": {
       "status": "fail",
-      "error_count": 3,
+      "error_count": 1,
       "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'unsigned int *'",
-          "line": 34
-        },
         {
           "code": "C2664",
           "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
           "line": 92
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void ** ' to 'unsigned long'",
-          "line": 120
         }
       ]
     },
@@ -6860,13 +6260,8 @@
     },
     "pal3/src/Misc/CCBFiveNimbusWindow.cpp": {
       "status": "fail",
-      "error_count": 9,
+      "error_count": 8,
       "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class gbCamera *' to 'unsigned long'",
-          "line": 40
-        },
         {
           "code": "C2660",
           "msg": "'Render' : function does not take 1 parameters",
@@ -6932,13 +6327,8 @@
     },
     "pal3/src/Misc/CCBUIPanel.cpp": {
       "status": "fail",
-      "error_count": 12,
+      "error_count": 10,
       "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 1066
-        },
         {
           "code": "C2228",
           "msg": "left of '.RenderIfUnlocked' must have class/struct/union type",
@@ -6953,11 +6343,6 @@
           "code": "C2660",
           "msg": "'Destroy' : function does not take 0 parameters",
           "line": 2019
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char [4]' to 'int *'",
-          "line": 2030
         },
         {
           "code": "C2660",
@@ -7038,20 +6423,9 @@
       "errors": []
     },
     "pal3/src/Misc/ChoseCompose.cpp": {
-      "status": "fail",
-      "error_count": 2,
-      "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void ** ' to 'unsigned long *'",
-          "line": 172
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void ** ' to 'unsigned long *'",
-          "line": 256
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/Comp_Donate.cpp": {
       "status": "ok",
@@ -7076,17 +6450,12 @@
     },
     "pal3/src/Misc/DealData.cpp": {
       "status": "fail",
-      "error_count": 2,
+      "error_count": 1,
       "errors": [
         {
           "code": "C2664",
           "msg": "'lstrcpyA' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
           "line": 124
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 444
         }
       ]
     },
@@ -7160,17 +6529,12 @@
     },
     "pal3/src/Misc/LineupUI.cpp": {
       "status": "fail",
-      "error_count": 59,
+      "error_count": 47,
       "errors": [
         {
           "code": "C2664",
           "msg": "'sub_474990' : cannot convert parameter 1 from 'class LineupUI *const ' to 'char *'",
           "line": 52
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 184
         },
         {
           "code": "C2664",
@@ -7198,11 +6562,6 @@
           "line": 305
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'unsigned int *'",
-          "line": 455
-        },
-        {
           "code": "C2664",
           "msg": "'void (char *,unsigned long)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
           "line": 589
@@ -7218,8 +6577,8 @@
           "line": 602
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'union *' to 'int'",
+          "code": "C2059",
+          "msg": "syntax error : ')'",
           "line": 607
         },
         {
@@ -7258,11 +6617,6 @@
           "line": 2453
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'float *' to 'unsigned long'",
-          "line": 2472
-        },
-        {
           "code": "C2660",
           "msg": "'SetCameraAtPosition' : function does not take 3 parameters",
           "line": 2477
@@ -7289,18 +6643,8 @@
         },
         {
           "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 3180
-        },
-        {
-          "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class Parent_Data' to 'void (__cdecl *)(class Parent_Data ** ,int,unsigned long *,class LineupUI *)'",
           "line": 3283
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 3307
         },
         {
           "code": "C2036",
@@ -7318,11 +6662,6 @@
           "line": 3330
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 3334
-        },
-        {
           "code": "C2036",
           "msg": "'void *' : unknown size",
           "line": 3351
@@ -7331,11 +6670,6 @@
           "code": "C2228",
           "msg": "left of '._sdtor_call_dtor' must have class/struct/union type",
           "line": 3351
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int (__cdecl ** )(char)' to 'unsigned long'",
-          "line": 3356
         },
         {
           "code": "C2036",
@@ -7363,11 +6697,6 @@
           "line": 3374
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int (__cdecl ** )(char)' to 'unsigned long'",
-          "line": 3378
-        },
-        {
           "code": "C2664",
           "msg": "'void (char *,int *,class UIStatic *,class LineupUI *,char *,int,void *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
           "line": 3390
@@ -7381,16 +6710,6 @@
           "code": "C2228",
           "msg": "left of '._sdtor_call_dtor' must have class/struct/union type",
           "line": 3394
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 3395
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int (__cdecl ** )(char)' to 'unsigned long'",
-          "line": 3400
         },
         {
           "code": "C2036",
@@ -7418,19 +6737,9 @@
           "line": 3417
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int (__cdecl ** )(char)' to 'unsigned long'",
-          "line": 3422
-        },
-        {
           "code": "C2664",
           "msg": "'void (char *,int *,class UIStatic *,class LineupUI *,char *,int,void *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
           "line": 3434
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 3440
         },
         {
           "code": "C2664",
@@ -7502,7 +6811,7 @@
     },
     "pal3/src/Misc/MainEquipUI.cpp": {
       "status": "fail",
-      "error_count": 29,
+      "error_count": 28,
       "errors": [
         {
           "code": "C2660",
@@ -7521,18 +6830,13 @@
         },
         {
           "code": "C2440",
-          "msg": "'=' : cannot convert from 'class _PlugInfo *' to 'unsigned long'",
-          "line": 762
+          "msg": "'=' : cannot convert from 'unsigned long' to 'class _PlugInfo *'",
+          "line": 735
         },
         {
           "code": "C2440",
-          "msg": "'=' : cannot convert from 'class _PlugInfo *' to 'unsigned long'",
-          "line": 763
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class _PlugInfo *' to 'unsigned long'",
-          "line": 764
+          "msg": "'=' : cannot convert from 'unsigned long' to 'class _PlugInfo *'",
+          "line": 736
         },
         {
           "code": "C2181",
@@ -7653,22 +6957,12 @@
     },
     "pal3/src/Misc/MainPropUI.cpp": {
       "status": "fail",
-      "error_count": 7,
+      "error_count": 5,
       "errors": [
         {
           "code": "C2664",
           "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
           "line": 68
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 278
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 283
         },
         {
           "code": "C2227",
@@ -7853,7 +7147,7 @@
     },
     "pal3/src/Misc/PtrArray.cpp": {
       "status": "fail",
-      "error_count": 36,
+      "error_count": 33,
       "errors": [
         {
           "code": "C2660",
@@ -7956,11 +7250,6 @@
           "line": 710
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 714
-        },
-        {
           "code": "C2660",
           "msg": "'Read' : function does not take 0 parameters",
           "line": 716
@@ -7984,11 +7273,6 @@
           "code": "C2660",
           "msg": "'Read' : function does not take 0 parameters",
           "line": 1038
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 1042
         },
         {
           "code": "C2660",
@@ -8029,11 +7313,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void (__thiscall gbVFileSystem::*)(void *,unsigned int,class gbVFile *)' to 'void (__cdecl *)(class gbVFileSystem *)'",
           "line": 1208
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 1214
         }
       ]
     },
@@ -8044,7 +7323,7 @@
     },
     "pal3/src/Misc/RoleAtt.cpp": {
       "status": "fail",
-      "error_count": 35,
+      "error_count": 34,
       "errors": [
         {
           "code": "C2065",
@@ -8202,11 +7481,6 @@
           "line": 668
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int *' to 'unsigned long'",
-          "line": 695
-        },
-        {
           "code": "C2660",
           "msg": "'UpdateAnimState' : function does not take 2 parameters",
           "line": 813
@@ -8230,7 +7504,7 @@
     },
     "pal3/src/Misc/RoleCameraCtrl.cpp": {
       "status": "fail",
-      "error_count": 20,
+      "error_count": 19,
       "errors": [
         {
           "code": "C2882",
@@ -8318,11 +7592,6 @@
           "line": 195
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 196
-        },
-        {
           "code": "C2660",
           "msg": "'Length' : function does not take 1 parameters",
           "line": 207
@@ -8377,11 +7646,6 @@
       "errors": [
         {
           "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 299
-        },
-        {
-          "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'int *'",
           "line": 325
         },
@@ -8406,19 +7670,9 @@
           "line": 825
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 1675
-        },
-        {
           "code": "C2660",
           "msg": "'SetPanelStates' : function does not take 2 parameters",
           "line": 1776
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 1816
         },
         {
           "code": "C2660",
@@ -8429,11 +7683,6 @@
           "code": "C2660",
           "msg": "'GetAlive' : function does not take 3 parameters",
           "line": 1940
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 2045
         },
         {
           "code": "C2660",
@@ -8459,11 +7708,6 @@
           "code": "C2660",
           "msg": "'RollProbability' : function does not take 2 parameters",
           "line": 2445
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CCBUIPanel *' to 'unsigned long'",
-          "line": 3601
         },
         {
           "code": "C2039",
@@ -8791,64 +8035,14 @@
           "line": 6917
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class RoleAtt *' to 'unsigned long'",
-          "line": 7070
-        },
-        {
           "code": "C2039",
           "msg": "'m_pData' : is not a member of 'SaleUI'",
           "line": 7179
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class RoleAtt *' to 'unsigned long'",
-          "line": 7182
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class RoleAtt *' to 'unsigned long'",
-          "line": 7183
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class RoleAtt *' to 'unsigned long'",
-          "line": 7184
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class RoleAtt *' to 'unsigned long'",
-          "line": 7301
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class RoleAtt *' to 'unsigned long'",
-          "line": 7302
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class RoleAtt *' to 'unsigned long'",
-          "line": 7303
-        },
-        {
           "code": "C2039",
           "msg": "'m_pData' : is not a member of 'SaleUI'",
           "line": 7357
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class RoleAtt *' to 'unsigned long'",
-          "line": 7360
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class RoleAtt *' to 'unsigned long'",
-          "line": 7361
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class RoleAtt *' to 'unsigned long'",
-          "line": 7362
         },
         {
           "code": "C2039",
@@ -8871,14 +8065,89 @@
           "line": 7712
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 7981
+          "code": "C2660",
+          "msg": "'InitResultWindow' : function does not take 1 parameters",
+          "line": 8151
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessSlotResults' : function does not take 2 parameters",
+          "line": 8197
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 8235
         },
         {
           "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 7987
+          "msg": "'=' : cannot convert from 'void' to 'char *'",
+          "line": 8235
+        },
+        {
+          "code": "C2660",
+          "msg": "'InitResultWindow' : function does not take 1 parameters",
+          "line": 8295
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 8301
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void' to 'char *'",
+          "line": 8301
+        },
+        {
+          "code": "C2660",
+          "msg": "'InitResultWindow' : function does not take 1 parameters",
+          "line": 8464
+        },
+        {
+          "code": "C2661",
+          "msg": "'ReplaceTexture' : no overloaded function takes 2 parameters",
+          "line": 8529
+        },
+        {
+          "code": "C2660",
+          "msg": "'EnterGameMode' : function does not take 2 parameters",
+          "line": 8849
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 9182
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 9199
+        },
+        {
+          "code": "C2660",
+          "msg": "'RefreshPartyStats' : function does not take 1 parameters",
+          "line": 9253
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 9390
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void' to 'char *'",
+          "line": 9390
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 9394
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void' to 'char *'",
+          "line": 9394
         }
       ]
     },
@@ -9457,7 +8726,7 @@
     },
     "pal3/src/Misc/String.cpp": {
       "status": "fail",
-      "error_count": 9,
+      "error_count": 4,
       "errors": [
         {
           "code": "C2451",
@@ -9466,28 +8735,8 @@
         },
         {
           "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 30
-        },
-        {
-          "code": "C2440",
           "msg": "'type cast' : cannot convert from 'char *' to 'class String'",
           "line": 31
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 36
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 42
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 44
         },
         {
           "code": "C2440",
@@ -9498,23 +8747,13 @@
           "code": "C2451",
           "msg": "conditional expression of type 'class String' is illegal",
           "line": 50
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 53
         }
       ]
     },
     "pal3/src/Misc/SwordUI.cpp": {
       "status": "fail",
-      "error_count": 2,
+      "error_count": 1,
       "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 149
-        },
         {
           "code": "C2660",
           "msg": "'RecalcAggregatedStats' : function does not take 2 parameters",
@@ -9524,7 +8763,7 @@
     },
     "pal3/src/Misc/SystemUI.cpp": {
       "status": "fail",
-      "error_count": 21,
+      "error_count": 19,
       "errors": [
         {
           "code": "C2440",
@@ -9602,16 +8841,6 @@
           "line": 729
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 899
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void ** ' to 'const char ** '",
-          "line": 1116
-        },
-        {
           "code": "C2660",
           "msg": "'CreatePanelUI' : function does not take 1 parameters",
           "line": 1208
@@ -9635,17 +8864,12 @@
     },
     "pal3/src/Misc/TaskBookUI.cpp": {
       "status": "fail",
-      "error_count": 4,
+      "error_count": 3,
       "errors": [
         {
           "code": "C2660",
           "msg": "'CreateFromMemory' : function does not take 1 parameters",
           "line": 108
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class gbTexture ** ' to 'unsigned long *'",
-          "line": 115
         },
         {
           "code": "C2440",
@@ -9722,13 +8946,8 @@
     },
     "pal3/src/Misc/UI3DCtrl.cpp": {
       "status": "fail",
-      "error_count": 3,
+      "error_count": 2,
       "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class gbGeomNode *' to 'unsigned long'",
-          "line": 194
-        },
         {
           "code": "C2102",
           "msg": "'&' requires l-value",
@@ -9769,7 +8988,7 @@
     },
     "pal3/src/Misc/UIBigMap.cpp": {
       "status": "fail",
-      "error_count": 54,
+      "error_count": 49,
       "errors": [
         {
           "code": "C2660",
@@ -9807,29 +9026,14 @@
           "line": 376
         },
         {
-          "code": "C2512",
-          "msg": "'OpenSceneFile' : no appropriate default constructor available",
-          "line": 427
-        },
-        {
           "code": "C2660",
           "msg": "'Destroy' : function does not take 1 parameters",
           "line": 437
         },
         {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'unsigned long' to 'class OpenSceneFile'",
-          "line": 487
-        },
-        {
           "code": "C2664",
           "msg": "'=' : cannot convert parameter 1 from 'char *' to 'const struct gbVec3D &'",
           "line": 491
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 497
         },
         {
           "code": "C2660",
@@ -9875,16 +9079,6 @@
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'unsigned long *' to 'class OpenSceneFile'",
           "line": 689
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'int' to 'class OpenSceneFile'",
-          "line": 742
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'int' to 'class OpenSceneFile'",
-          "line": 754
         },
         {
           "code": "C2660",
@@ -10045,43 +9239,8 @@
     },
     "pal3/src/Misc/UIButton.cpp": {
       "status": "fail",
-      "error_count": 8,
+      "error_count": 1,
       "errors": [
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'int' to 'class UIButton_UIBUTTON_STATE'",
-          "line": 49
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from '__int64' to 'class UIButton_UIBUTTON_STATE'",
-          "line": 136
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 143
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from '__int64' to 'class UIButton_UIBUTTON_STATE'",
-          "line": 161
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 171
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from '__int64' to 'class UIButton_UIBUTTON_STATE'",
-          "line": 190
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from '__int64' to 'class UIButton_UIBUTTON_STATE'",
-          "line": 216
-        },
         {
           "code": "C2664",
           "msg": "'SetLibFolder' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
@@ -10112,7 +9271,7 @@
     },
     "pal3/src/Misc/UICoverFrm.cpp": {
       "status": "fail",
-      "error_count": 8,
+      "error_count": 6,
       "errors": [
         {
           "code": "C2660",
@@ -10123,16 +9282,6 @@
           "code": "C2660",
           "msg": "'UpdateFacePosition' : function does not take 1 parameters",
           "line": 380
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'short *' to '__int16 *'",
-          "line": 383
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'short *' to '__int16 *'",
-          "line": 385
         },
         {
           "code": "C2664",
@@ -10158,13 +9307,8 @@
     },
     "pal3/src/Misc/UIEmote.cpp": {
       "status": "fail",
-      "error_count": 6,
+      "error_count": 4,
       "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void ** ' to 'int *'",
-          "line": 68
-        },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
@@ -10181,11 +9325,6 @@
           "line": 144
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 147
-        },
-        {
           "code": "C2660",
           "msg": "'HandleDeviceLostC' : function does not take 1 parameters",
           "line": 167
@@ -10194,17 +9333,12 @@
     },
     "pal3/src/Misc/UIFrameWnd.cpp": {
       "status": "fail",
-      "error_count": 15,
+      "error_count": 13,
       "errors": [
         {
           "code": "C2660",
           "msg": "'OpenBaseFile::~OpenBaseFile' : function does not take 1 parameters",
           "line": 129
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class gbTexture *' to 'unsigned long'",
-          "line": 131
         },
         {
           "code": "C2660",
@@ -10225,11 +9359,6 @@
           "code": "C2100",
           "msg": "illegal indirection",
           "line": 473
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 693
         },
         {
           "code": "C2297",
@@ -10597,17 +9726,12 @@
     },
     "pal3/src/Misc/UISceneFrm.cpp": {
       "status": "fail",
-      "error_count": 34,
+      "error_count": 24,
       "errors": [
         {
           "code": "C2660",
           "msg": "'RunSceneScript' : function does not take 2 parameters",
           "line": 148
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class UIButton_UIBUTTON_STATE'",
-          "line": 288
         },
         {
           "code": "C2061",
@@ -10620,11 +9744,6 @@
           "line": 332
         },
         {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class UIButton_UIBUTTON_STATE'",
-          "line": 363
-        },
-        {
           "code": "C2061",
           "msg": "syntax error : identifier 'v4'",
           "line": 379
@@ -10633,11 +9752,6 @@
           "code": "C2059",
           "msg": "syntax error : '}'",
           "line": 407
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class UIButton_UIBUTTON_STATE'",
-          "line": 438
         },
         {
           "code": "C2061",
@@ -10650,11 +9764,6 @@
           "line": 482
         },
         {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class UIButton_UIBUTTON_STATE'",
-          "line": 513
-        },
-        {
           "code": "C2061",
           "msg": "syntax error : identifier 'v4'",
           "line": 537
@@ -10663,11 +9772,6 @@
           "code": "C2059",
           "msg": "syntax error : '}'",
           "line": 565
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class UIButton_UIBUTTON_STATE'",
-          "line": 596
         },
         {
           "code": "C2061",
@@ -10680,11 +9784,6 @@
           "line": 648
         },
         {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class UIButton_UIBUTTON_STATE'",
-          "line": 679
-        },
-        {
           "code": "C2061",
           "msg": "syntax error : identifier 'v4'",
           "line": 699
@@ -10693,11 +9792,6 @@
           "code": "C2059",
           "msg": "syntax error : '}'",
           "line": 727
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class UIButton_UIBUTTON_STATE'",
-          "line": 758
         },
         {
           "code": "C2061",
@@ -10710,11 +9804,6 @@
           "line": 806
         },
         {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class UIButton_UIBUTTON_STATE'",
-          "line": 837
-        },
-        {
           "code": "C2061",
           "msg": "syntax error : identifier 'v4'",
           "line": 857
@@ -10725,11 +9814,6 @@
           "line": 885
         },
         {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class UIButton_UIBUTTON_STATE'",
-          "line": 916
-        },
-        {
           "code": "C2061",
           "msg": "syntax error : identifier 'v4'",
           "line": 936
@@ -10738,11 +9822,6 @@
           "code": "C2059",
           "msg": "syntax error : '}'",
           "line": 964
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class UIButton_UIBUTTON_STATE'",
-          "line": 995
         },
         {
           "code": "C2061",
@@ -11559,7 +10638,7 @@
     },
     "pal3/src/Misc/UITitle_JDHY.cpp": {
       "status": "fail",
-      "error_count": 8,
+      "error_count": 6,
       "errors": [
         {
           "code": "C2440",
@@ -11570,16 +10649,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class gbTexture *' to 'unsigned long'",
           "line": 544
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 661
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'long *' to 'unsigned long *'",
-          "line": 690
         },
         {
           "code": "C2664",
@@ -11706,23 +10775,8 @@
     },
     "pal3/src/Misc/UITitle_YXXX.cpp": {
       "status": "fail",
-      "error_count": 8,
+      "error_count": 5,
       "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 195
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 196
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 198
-        },
         {
           "code": "C2065",
           "msg": "'DllMain' : undeclared identifier",
@@ -11828,7 +10882,7 @@
     },
     "pal3/src/Render/CScreenMode.cpp": {
       "status": "fail",
-      "error_count": 102,
+      "error_count": 101,
       "errors": [
         {
           "code": "C2671",
@@ -12256,11 +11310,6 @@
           "line": 1356
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int *' to 'class RoleSystem *'",
-          "line": 1408
-        },
-        {
           "code": "C2065",
           "msg": "'OBBox' : undeclared identifier",
           "line": 1474
@@ -12336,15 +11385,15 @@
           "line": 2076
         },
         {
-          "code": "C1003",
-          "msg": "error count exceeds 100; stopping compilation",
-          "line": 2076
+          "code": "C2664",
+          "msg": "'BinkClose' : cannot convert parameter 1 from 'int' to 'void *'",
+          "line": 2132
         }
       ]
     },
     "pal3/src/Render/RenderTarget.cpp": {
       "status": "fail",
-      "error_count": 31,
+      "error_count": 28,
       "errors": [
         {
           "code": "C2181",
@@ -12375,21 +11424,6 @@
           "code": "C2660",
           "msg": "'CalcStatPower' : function does not take 2 parameters",
           "line": 1195
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void ** ' to 'const char ** '",
-          "line": 1223
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void ** ' to 'const char ** '",
-          "line": 1225
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class gbTexture *' to 'unsigned long'",
-          "line": 1398
         },
         {
           "code": "C2660",
@@ -12505,7 +11539,7 @@
     },
     "pal3/src/Render/RenderTarget2.cpp": {
       "status": "fail",
-      "error_count": 33,
+      "error_count": 26,
       "errors": [
         {
           "code": "C2664",
@@ -12554,11 +11588,6 @@
         },
         {
           "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 1740
-        },
-        {
-          "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
           "line": 1862
         },
@@ -12596,36 +11625,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
           "line": 2808
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CEffCallBack ** ' to 'unsigned long'",
-          "line": 3051
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'const char *' to 'unsigned long'",
-          "line": 3058
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void ** ' to 'unsigned long'",
-          "line": 3094
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'const char *' to 'unsigned long'",
-          "line": 3101
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CEffBink ** ' to 'unsigned long'",
-          "line": 3137
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'const char *' to 'unsigned long'",
-          "line": 3144
         },
         {
           "code": "C2660",
@@ -12723,22 +11722,12 @@
     },
     "pal3/src/Role/Actor.cpp": {
       "status": "fail",
-      "error_count": 102,
+      "error_count": 83,
       "errors": [
         {
           "code": "C2011",
           "msg": "'gbActorMgr' : 'class' type redefinition",
           "line": 7
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class Actor *' to 'unsigned long'",
-          "line": 115
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void ** ' to 'unsigned long *'",
-          "line": 179
         },
         {
           "code": "C2660",
@@ -12906,11 +11895,6 @@
           "line": 1899
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'float *' to 'int *'",
-          "line": 1909
-        },
-        {
           "code": "C2065",
           "msg": "'pData_0' : undeclared identifier",
           "line": 1917
@@ -12936,24 +11920,9 @@
           "line": 2045
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'char'",
-          "line": 2138
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'float *' to 'int *'",
-          "line": 2163
-        },
-        {
           "code": "C2664",
           "msg": "'strcpy' : cannot convert parameter 2 from 'char' to 'const char *'",
           "line": 2174
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'char'",
-          "line": 2215
         },
         {
           "code": "C2660",
@@ -12979,11 +11948,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'char *'",
           "line": 2436
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 2439
         },
         {
           "code": "C2664",
@@ -13024,41 +11988,6 @@
           "code": "C2664",
           "msg": "'CopyBufferBlocks' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
           "line": 2851
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 2933
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 2944
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 2970
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 2974
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 2976
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 2980
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 2981
         },
         {
           "code": "C2065",
@@ -13114,36 +12043,6 @@
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
           "line": 3263
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 3311
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'unsigned short *'",
-          "line": 3404
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'unsigned short *'",
-          "line": 3456
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'unsigned short *'",
-          "line": 3497
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'unsigned short *'",
-          "line": 3517
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'unsigned short *'",
-          "line": 3522
         },
         {
           "code": "C2660",
@@ -13206,34 +12105,39 @@
           "line": 3719
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 3813
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 3926
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 3949
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 3954
-        },
-        {
           "code": "C2660",
           "msg": "'SetRegion' : function does not take 1 parameters",
           "line": 3972
         },
         {
-          "code": "C1003",
-          "msg": "error count exceeds 100; stopping compilation",
-          "line": 3972
+          "code": "C2660",
+          "msg": "'SetRegion' : function does not take 1 parameters",
+          "line": 3987
+        },
+        {
+          "code": "C2664",
+          "msg": "'=' : cannot convert parameter 1 from 'char *' to 'const struct gbVec3D &'",
+          "line": 4176
+        },
+        {
+          "code": "C2660",
+          "msg": "'=' : function does not take 2 parameters",
+          "line": 4191
+        },
+        {
+          "code": "C2660",
+          "msg": "'=' : function does not take 2 parameters",
+          "line": 4192
+        },
+        {
+          "code": "C2660",
+          "msg": "'=' : function does not take 2 parameters",
+          "line": 4217
+        },
+        {
+          "code": "C2440",
+          "msg": "'return' : cannot convert from 'unsigned char *' to 'char *'",
+          "line": 4221
         }
       ]
     },
@@ -13701,11 +12605,6 @@
           "line": 799
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 802
-        },
-        {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
           "line": 816
@@ -13906,11 +12805,6 @@
           "line": 1868
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 1890
-        },
-        {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
           "line": 1893
@@ -14051,9 +12945,19 @@
           "line": 2088
         },
         {
+          "code": "C2106",
+          "msg": "'=' : left operand must be l-value",
+          "line": 2088
+        },
+        {
+          "code": "C2109",
+          "msg": "subscript requires array or pointer type",
+          "line": 2095
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 2088
+          "line": 2095
         }
       ]
     },
@@ -14115,7 +13019,7 @@
     },
     "pal3/src/Scene/CameraCtrl.cpp": {
       "status": "fail",
-      "error_count": 45,
+      "error_count": 33,
       "errors": [
         {
           "code": "C2664",
@@ -14141,61 +13045,6 @@
           "code": "C2664",
           "msg": "'ProcessKeyboard' : cannot convert parameter 1 from 'class InputSystem *' to 'int'",
           "line": 225
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 433
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 437
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 438
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'unsigned long'",
-          "line": 443
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 450
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 451
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'unsigned long'",
-          "line": 458
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 469
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 470
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 471
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 472
         },
         {
           "code": "C2664",
@@ -14261,11 +13110,6 @@
           "code": "C2660",
           "msg": "'Length' : function does not take 1 parameters",
           "line": 1076
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'float *' to 'int *'",
-          "line": 1128
         },
         {
           "code": "C2065",
@@ -14351,7 +13195,7 @@
     },
     "pal3/src/Scene/Scene.cpp": {
       "status": "fail",
-      "error_count": 11,
+      "error_count": 7,
       "errors": [
         {
           "code": "C2660",
@@ -14385,26 +13229,6 @@
         },
         {
           "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 150
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 155
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 161
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 162
-        },
-        {
-          "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class Scene' to 'unsigned __int8'",
           "line": 198
         }
@@ -14423,7 +13247,7 @@
     },
     "pal3/src/Scene/SceneObj.cpp": {
       "status": "fail",
-      "error_count": 46,
+      "error_count": 42,
       "errors": [
         {
           "code": "C2660",
@@ -14459,11 +13283,6 @@
           "code": "C2059",
           "msg": "syntax error : ')'",
           "line": 286
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned __int8 *' to 'unsigned long'",
-          "line": 290
         },
         {
           "code": "C2882",
@@ -14581,11 +13400,6 @@
           "line": 584
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned __int8 *' to 'unsigned long'",
-          "line": 588
-        },
-        {
           "code": "C2660",
           "msg": "'LoadSkeletonModel' : function does not take 1 parameters",
           "line": 660
@@ -14606,11 +13420,6 @@
           "line": 737
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned __int8 *' to 'unsigned long'",
-          "line": 785
-        },
-        {
           "code": "C2882",
           "msg": "'std' : illegal use of namespace identifier in expression",
           "line": 917
@@ -14649,17 +13458,12 @@
           "code": "C2059",
           "msg": "syntax error : ')'",
           "line": 939
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned __int8 *' to 'unsigned long'",
-          "line": 943
         }
       ]
     },
     "pal3/src/Script/PalScript.cpp": {
       "status": "fail",
-      "error_count": 102,
+      "error_count": 101,
       "errors": [
         {
           "code": "C2065",
@@ -14672,8 +13476,8 @@
           "line": 138
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'union *' to 'int'",
+          "code": "C2059",
+          "msg": "syntax error : ')'",
           "line": 144
         },
         {
@@ -14857,31 +13661,6 @@
           "line": 647
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int *' to 'unsigned long'",
-          "line": 686
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'class PalScript *'",
-          "line": 689
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 690
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class scScriptInstance ** ' to 'unsigned long'",
-          "line": 743
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class scScriptInstance ** ' to 'unsigned long'",
-          "line": 754
-        },
-        {
           "code": "C2446",
           "msg": "'!=' : no conversion from 'char *' to 'class PalScript *'",
           "line": 762
@@ -14892,16 +13671,6 @@
           "line": 762
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class scScriptInstance ** ' to 'unsigned long'",
-          "line": 768
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class scScriptInstance ** ' to 'unsigned long'",
-          "line": 781
-        },
-        {
           "code": "C2446",
           "msg": "'!=' : no conversion from 'char *' to 'class PalScript *'",
           "line": 799
@@ -14910,11 +13679,6 @@
           "code": "C2230",
           "msg": "'!=' : indirection to different types",
           "line": 799
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class scScriptInstance ** ' to 'unsigned long'",
-          "line": 829
         },
         {
           "code": "C2446",
@@ -14955,11 +13719,6 @@
           "code": "C2230",
           "msg": "'==' : indirection to different types",
           "line": 951
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned __int8 *' to 'unsigned long'",
-          "line": 1010
         },
         {
           "code": "C2882",
@@ -15167,15 +13926,55 @@
           "line": 2489
         },
         {
-          "code": "C1003",
-          "msg": "error count exceeds 100; stopping compilation",
-          "line": 2489
+          "code": "C2660",
+          "msg": "'GetAlive' : function does not take 3 parameters",
+          "line": 2492
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetAlive' : function does not take 3 parameters",
+          "line": 2499
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetAlive' : function does not take 3 parameters",
+          "line": 2503
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetAlive' : function does not take 3 parameters",
+          "line": 2509
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessFrame' : function does not take 0 parameters",
+          "line": 2514
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
+          "line": 2589
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
+          "line": 2596
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
+          "line": 2603
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
+          "line": 2610
         }
       ]
     },
     "pal3/src/Script/PalScriptMgr.cpp": {
       "status": "fail",
-      "error_count": 102,
+      "error_count": 98,
       "errors": [
         {
           "code": "C2059",
@@ -15191,16 +13990,6 @@
           "code": "C2018",
           "msg": "unknown character '0x60'",
           "line": 33
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 177
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 189
         },
         {
           "code": "C2100",
@@ -15248,21 +14037,6 @@
           "line": 333
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 557
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 717
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'short *' to '__int16 *'",
-          "line": 742
-        },
-        {
           "code": "C2660",
           "msg": "'=' : function does not take 2 parameters",
           "line": 750
@@ -15291,11 +14065,6 @@
           "code": "C2660",
           "msg": "'ProcessFrame' : function does not take 0 parameters",
           "line": 997
-        },
-        {
-          "code": "C2512",
-          "msg": "'OpenSceneFile' : no appropriate default constructor available",
-          "line": 1072
         },
         {
           "code": "C2065",
@@ -15473,26 +14242,6 @@
           "line": 2029
         },
         {
-          "code": "C2027",
-          "msg": "use of undefined type 'CameraCtrl'",
-          "line": 2031
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->CameraCtrl' must point to class/struct/union",
-          "line": 2031
-        },
-        {
-          "code": "C2653",
-          "msg": "'CameraCtrl' : is not a class or namespace name",
-          "line": 2031
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 2050
-        },
-        {
           "code": "C2661",
           "msg": "'Copy' : no overloaded function takes 3 parameters",
           "line": 2051
@@ -15511,11 +14260,6 @@
           "code": "C2661",
           "msg": "'Copy' : no overloaded function takes 3 parameters",
           "line": 2089
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 2115
         },
         {
           "code": "C2039",
@@ -15578,89 +14322,9 @@
           "line": 2504
         },
         {
-          "code": "C2027",
-          "msg": "use of undefined type 'CameraCtrl'",
-          "line": 2579
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nextYAW' must point to class/struct/union",
-          "line": 2579
-        },
-        {
-          "code": "C2027",
-          "msg": "use of undefined type 'CameraCtrl'",
-          "line": 2584
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_vecLookAt' must point to class/struct/union",
-          "line": 2584
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.x' must have class/struct/union type",
-          "line": 2584
-        },
-        {
-          "code": "C2027",
-          "msg": "use of undefined type 'CameraCtrl'",
-          "line": 2585
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_vecLookAt' must point to class/struct/union",
-          "line": 2585
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.y' must have class/struct/union type",
-          "line": 2585
-        },
-        {
-          "code": "C2027",
-          "msg": "use of undefined type 'CameraCtrl'",
-          "line": 2588
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_vecLookAt' must point to class/struct/union",
-          "line": 2588
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.z' must have class/struct/union type",
-          "line": 2588
-        },
-        {
           "code": "C2660",
           "msg": "'Length' : function does not take 1 parameters",
           "line": 2592
-        },
-        {
-          "code": "C2027",
-          "msg": "use of undefined type 'CameraCtrl'",
-          "line": 2593
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->CameraCtrl' must point to class/struct/union",
-          "line": 2593
-        },
-        {
-          "code": "C2653",
-          "msg": "'CameraCtrl' : is not a class or namespace name",
-          "line": 2593
-        },
-        {
-          "code": "C2027",
-          "msg": "use of undefined type 'CameraCtrl'",
-          "line": 2597
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_vecLookAt' must point to class/struct/union",
-          "line": 2597
         },
         {
           "code": "C2664",
@@ -15683,21 +14347,131 @@
           "line": 2673
         },
         {
-          "code": "C1003",
-          "msg": "error count exceeds 100; stopping compilation",
-          "line": 2673
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 3 parameters",
+          "line": 2699
+        },
+        {
+          "code": "C2100",
+          "msg": "illegal indirection",
+          "line": 3019
+        },
+        {
+          "code": "C2065",
+          "msg": "'SingletonThunk_00431E70' : undeclared identifier",
+          "line": 3113
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'",
+          "line": 3114
+        },
+        {
+          "code": "C2065",
+          "msg": "'SingletonThunk_00431EC0' : undeclared identifier",
+          "line": 3120
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'",
+          "line": 3121
+        },
+        {
+          "code": "C2660",
+          "msg": "'InsertAt' : function does not take 2 parameters",
+          "line": 3143
+        },
+        {
+          "code": "C2882",
+          "msg": "'std' : illegal use of namespace identifier in expression",
+          "line": 3168
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 3168
+        },
+        {
+          "code": "C2446",
+          "msg": "'>=' : no conversion from 'unsigned int' to 'char *'",
+          "line": 3171
+        },
+        {
+          "code": "C2040",
+          "msg": "'>=' : 'char *' differs in levels of indirection from 'unsigned int'",
+          "line": 3171
+        },
+        {
+          "code": "C2882",
+          "msg": "'std' : illegal use of namespace identifier in expression",
+          "line": 3173
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 3173
+        },
+        {
+          "code": "C2660",
+          "msg": "'PollInputState' : function does not take 2 parameters",
+          "line": 3175
+        },
+        {
+          "code": "C2660",
+          "msg": "'CopyRange' : function does not take 2 parameters",
+          "line": 3197
+        },
+        {
+          "code": "C2660",
+          "msg": "'CopyRange' : function does not take 2 parameters",
+          "line": 3200
+        },
+        {
+          "code": "C2660",
+          "msg": "'CopyRange' : function does not take 2 parameters",
+          "line": 3201
+        },
+        {
+          "code": "C2660",
+          "msg": "'PtrArray::~PtrArray' : function does not take 1 parameters",
+          "line": 3318
+        },
+        {
+          "code": "C2106",
+          "msg": "'=' : left operand must be l-value",
+          "line": 3321
+        },
+        {
+          "code": "C2661",
+          "msg": "'RemoveAt' : no overloaded function takes 3 parameters",
+          "line": 3374
+        },
+        {
+          "code": "C2660",
+          "msg": "'DestroyAll' : function does not take 1 parameters",
+          "line": 3387
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 3462
+        },
+        {
+          "code": "C2660",
+          "msg": "'_CON_State' : function does not take 0 parameters",
+          "line": 3473
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 3533
         }
       ]
     },
     "pal3/src/Script/ScriptSystem.cpp": {
       "status": "fail",
-      "error_count": 15,
+      "error_count": 13,
       "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'float *' to 'int *'",
-          "line": 37
-        },
         {
           "code": "C2065",
           "msg": "'pData_0' : undeclared identifier",
@@ -15722,11 +14496,6 @@
           "code": "C2660",
           "msg": "'MoveAndHide' : function does not take 1 parameters",
           "line": 112
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'float *' to 'int *'",
-          "line": 276
         },
         {
           "code": "C2660",
@@ -16154,7 +14923,7 @@
     },
     "pal3/src/UI/PropUI.cpp": {
       "status": "fail",
-      "error_count": 31,
+      "error_count": 27,
       "errors": [
         {
           "code": "C2039",
@@ -16183,23 +14952,8 @@
         },
         {
           "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 590
-        },
-        {
-          "code": "C2440",
           "msg": "'=' : cannot convert from 'class UIWnd *' to 'unsigned long'",
           "line": 774
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 775
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 777
         },
         {
           "code": "C2440",
@@ -16210,11 +14964,6 @@
           "code": "C2664",
           "msg": "'void (float *,int,char *,class PropUI *,char *,unsigned long,int)' : cannot convert parameter 3 from 'unsigned char *' to 'char *'",
           "line": 889
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 1001
         },
         {
           "code": "C2660",
@@ -16315,7 +15064,7 @@
     },
     "pal3/src/UI/StateUI.cpp": {
       "status": "fail",
-      "error_count": 50,
+      "error_count": 47,
       "errors": [
         {
           "code": "C2660",
@@ -16458,11 +15207,6 @@
           "line": 1343
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void ** ' to 'const char ** '",
-          "line": 1368
-        },
-        {
           "code": "C2036",
           "msg": "'void *' : unknown size",
           "line": 1386
@@ -16491,11 +15235,6 @@
           "code": "C2660",
           "msg": "'SetMonsterState' : function does not take 3 parameters",
           "line": 1656
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 1671
         },
         {
           "code": "C2664",
@@ -16531,11 +15270,6 @@
           "code": "C2664",
           "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
           "line": 1708
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 2014
         },
         {
           "code": "C2660",
@@ -16591,45 +15325,14 @@
       ]
     },
     "pal3/src/UI/UICursor.cpp": {
-      "status": "fail",
-      "error_count": 5,
-      "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class UISceneFrm *' to 'unsigned long'",
-          "line": 53
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int *' to 'unsigned long'",
-          "line": 62
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class Iostream_init *' to 'unsigned long'",
-          "line": 72
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class CameraCtrl *' to 'unsigned long'",
-          "line": 79
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 98
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/UI/UIDialog.cpp": {
       "status": "fail",
-      "error_count": 2,
+      "error_count": 1,
       "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class gbTexture *' to 'unsigned long'",
-          "line": 26
-        },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
@@ -16785,48 +15488,8 @@
     },
     "pal3/src/UI/UIManager.cpp": {
       "status": "fail",
-      "error_count": 22,
+      "error_count": 13,
       "errors": [
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 54
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 55
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class UIManager'",
-          "line": 56
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class UIManager'",
-          "line": 57
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 81
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 82
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class UIManager'",
-          "line": 83
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const int' to 'class UIManager'",
-          "line": 84
-        },
         {
           "code": "C2039",
           "msg": "'type' : is not a member of 'gbFogParam'",
@@ -16884,11 +15547,6 @@
         },
         {
           "code": "C2440",
-          "msg": "'=' : cannot convert from 'class gbTexture *' to 'unsigned long'",
-          "line": 137
-        },
-        {
-          "code": "C2440",
           "msg": "'=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'",
           "line": 139
         },
@@ -16932,7 +15590,7 @@
     },
     "pal3/src/UI/UIScene.cpp": {
       "status": "fail",
-      "error_count": 32,
+      "error_count": 30,
       "errors": [
         {
           "code": "C2660",
@@ -16993,11 +15651,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'float *' to 'const int'",
           "line": 132
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 134
         },
         {
           "code": "C2664",
@@ -17088,11 +15741,6 @@
           "code": "C2660",
           "msg": "'CreateParentData' : function does not take 2 parameters",
           "line": 1690
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 1710
         }
       ]
     },
@@ -17182,11 +15830,6 @@
           "line": 268
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'float *' to 'int *'",
-          "line": 420
-        },
-        {
           "code": "C2065",
           "msg": "'pData_0' : undeclared identifier",
           "line": 426
@@ -17242,11 +15885,6 @@
           "line": 524
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'float *' to 'int *'",
-          "line": 531
-        },
-        {
           "code": "C2660",
           "msg": "'Length' : function does not take 1 parameters",
           "line": 539
@@ -17282,16 +15920,6 @@
           "line": 687
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'float *' to 'int *'",
-          "line": 787
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'float *' to 'int *'",
-          "line": 797
-        },
-        {
           "code": "C2660",
           "msg": "'=' : function does not take 2 parameters",
           "line": 826
@@ -17320,11 +15948,6 @@
           "code": "C2102",
           "msg": "'&' requires l-value",
           "line": 840
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'float *' to 'int *'",
-          "line": 898
         },
         {
           "code": "C2660",
@@ -17532,19 +16155,9 @@
           "line": 1901
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void ** ' to 'unsigned long'",
-          "line": 2018
-        },
-        {
           "code": "C2664",
           "msg": "'ProcessKeyboard' : cannot convert parameter 1 from 'struct InputSystem *' to 'int'",
           "line": 2075
-        },
-        {
-          "code": "C2512",
-          "msg": "'OpenSceneFile' : no appropriate default constructor available",
-          "line": 2196
         },
         {
           "code": "C2027",
@@ -17632,9 +16245,44 @@
           "line": 2282
         },
         {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 2282
+        },
+        {
+          "code": "C2653",
+          "msg": "'scAsmDecoder' : is not a class or namespace name",
+          "line": 2282
+        },
+        {
+          "code": "C2660",
+          "msg": "'ShowWindow' : function does not take 2 parameters",
+          "line": 2284
+        },
+        {
+          "code": "C2027",
+          "msg": "use of undefined type 'CGameData'",
+          "line": 2294
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->CGameData' must point to class/struct/union",
+          "line": 2294
+        },
+        {
+          "code": "C2653",
+          "msg": "'CGameData' : is not a class or namespace name",
+          "line": 2294
+        },
+        {
+          "code": "C2027",
+          "msg": "use of undefined type 'CGameData'",
+          "line": 2296
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 2282
+          "line": 2296
         }
       ]
     },

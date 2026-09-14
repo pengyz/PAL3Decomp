@@ -1,0 +1,106 @@
+{
+ "generated_at": "2026-09-14T21:15",
+ "summary": "C2440 residual 243 after stage5 cast-insertion pass (baseline 571, -328)",
+ "fixed_this_batch": {
+  "F1-dword-slot-pointer-rhs": "stage5 _fix_line_dword_slots (+slot macros BYTE/WORD/DWORD family)",
+  "F2-pointer-sign-mismatch": "stage5 _fix_line_plain_var_assign (generalized: provable-pointer RHS -> LHS decl cast)",
+  "F4-cast-to-scalar-wrapper-class": "emit_headers scalar-wrapper ctors (_tail filter fix, size-aware, no-memset)"
+ },
+ "residual_families": {
+  "F1-unresolved-form": {
+   "count": 107,
+   "sample": [
+    "pal3/src/Combat/CCBControlWindow.cpp(394)",
+    "pal3/src/Combat/CCBParabolaWindow.cpp(217)",
+    "pal3/src/Combat/CCBRoleState.cpp(6172)",
+    "pal3/src/Combat/CCBRoleState.cpp(6174)",
+    "pal3/src/Combat/CCBSkillWindow.cpp(42)",
+    "pal3/src/Combat/CCBStage.cpp(1873)"
+   ]
+  },
+  "F6-register-pseudonym": {
+   "count": 39,
+   "sample": [
+    "pal3/src/Combat/CCBLineupWindow.cpp(63)",
+    "pal3/src/GameBase/PAL3.cpp(589)",
+    "pal3/src/GameBase/PAL3.cpp(591)",
+    "pal3/src/Misc/ScriptVM.cpp(333)",
+    "pal3/src/Misc/ScriptVM.cpp(413)",
+    "pal3/src/Misc/ScriptVM.cpp(414)"
+   ]
+  },
+  "F3-member-fnptr-slot": {
+   "count": 30,
+   "sample": [
+    "pal3/src/Combat/CCBAI.cpp(1300)",
+    "pal3/src/Combat/CCBSystem.cpp(1461)",
+    "pal3/src/Combat/CCBSystem.cpp(2097)",
+    "pal3/src/Combat/CCBSystem.cpp(2695)",
+    "pal3/src/Effect/CEffModel.cpp(338)",
+    "pal3/src/Effect/CEffModel.cpp(371)"
+   ]
+  },
+  "fnptr-calling-convention": {
+   "count": 28,
+   "sample": [
+    "pal3/src/Combat/CCBRoleState.cpp(2679)",
+    "pal3/src/Combat/CCBRoleState.cpp(2690)",
+    "pal3/src/Combat/CCBRoleState.cpp(2698)",
+    "pal3/src/Combat/CCBStage.cpp(1141)",
+    "pal3/src/Combat/CCBStage.cpp(1240)",
+    "pal3/src/Combat/CCBUI.cpp(796)"
+   ]
+  },
+  "misc-initializer": {
+   "count": 13,
+   "sample": [
+    "pal3/src/Misc/UIScenePanel.cpp(1180)",
+    "pal3/src/Misc/UIScenePanel.cpp(1185)",
+    "pal3/src/Misc/UIScenePanel.cpp(1186)",
+    "pal3/src/Misc/UIScenePanel.cpp(1187)",
+    "pal3/src/Misc/UIScenePanel.cpp(1188)",
+    "pal3/src/Misc/UIScenePanel.cpp(1189)"
+   ]
+  },
+  "F5-array-global-init": {
+   "count": 11,
+   "sample": [
+    "pal3/src/globals.cpp(60)",
+    "pal3/src/globals.cpp(66)",
+    "pal3/src/globals.cpp(67)",
+    "pal3/src/globals.cpp(68)",
+    "pal3/src/globals.cpp(69)",
+    "pal3/src/globals.cpp(70)"
+   ]
+  },
+  "this-reassignment": {
+   "count": 9,
+   "sample": [
+    "pal3/src/Effect/CEffMgr.cpp(707)",
+    "pal3/src/Effect/CEffMgr.cpp(827)",
+    "pal3/src/Effect/ScreenEffectMgr.cpp(623)",
+    "pal3/src/Effect/ScreenEffectMgr.cpp(624)",
+    "pal3/src/GameBase/GRPinput.cpp(782)",
+    "pal3/src/Misc/UIRoleDialog.cpp(222)"
+   ]
+  },
+  "lvar-typing-struct-value-to-ptr": {
+   "count": 6,
+   "sample": [
+    "pal3/src/GameBase/GRPinput.cpp(811)",
+    "pal3/src/GameBase/GRPinput.cpp(1749)",
+    "pal3/src/GameBase/GRPinput.cpp(1764)",
+    "pal3/src/GameBase/GRPinput.cpp(1799)",
+    "pal3/src/GameBase/GRPinput.cpp(1814)",
+    "pal3/src/Misc/PtrArray.cpp(970)"
+   ]
+  }
+ },
+ "routes": {
+  "F6-register-pseudonym": "lvar assetization batch (_EXX are #defined to 0 in ida_defs.h)",
+  "F3-member-fnptr-slot": "desc-table structural round (72B entries, member-fnptr at +0) or uniform two-line idiom; VC6 rejects all member-fnptr->cdecl casts",
+  "F5-array-global-init": "data-side global array emission (needs binary dword fetch)",
+  "this-reassignment": "Hex-Rays ctor artifact; needs marker/comment emission policy",
+  "lvar-typing-struct-value-to-ptr": "lvar assetization adjacent (var mis-typed as value struct)"
+ }
+}

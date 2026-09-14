@@ -11,6 +11,7 @@ Topics:
 - Register-this alias elimination
 - Reference parameter restoration
 - Pointer cast fixups for MSVC6 compatibility
+- C2440 cast insertion (pointer RHS into DWORD slots, ptr/ptr sign)
 - IDA artifact cleanup (null checks, return statements)
 - Struct overlap resolution
 - Struct global array access fix
@@ -297,8 +298,418 @@ def _fix_single_ref_arg(arg):
 
 
 # ============================================================
-# MSVC6 pointer/int cast fixups
+# C2440 fixups: MSVC6 strictness — pointer RHS into DWORD slots,
+# and pointer/pointer assignment mismatches.
 # ============================================================
+
+# Element/pointee bases whose slots receive raw address bits (DWORD slots).
+_DWORD_SLOT_BASES = frozenset((
+    'unsigned long', 'unsigned int', '_DWORD', 'DWORD', 'long', 'int',
+))
+
+# Calls returning pointers that are not in decomp signatures (Win32/CRT).
+_PTR_RETURN_FUNCS = frozenset((
+    'operator new', 'GetDlgItem', 'malloc', 'calloc', 'realloc',
+    'LocalAlloc', 'GlobalAlloc', 'HeapAlloc',
+    'LoadIcon', 'LoadCursor', 'LoadBitmap', 'LoadMenu',
+))
+
+# IDA auto-named globals whose bare reference yields a pointer (address):
+# byte_/off_/stru_/flt_/dbl_/asc_ name arrays/functions/data whose value in
+# expression position is the address itself. word_/dword_ are VALUES → not here.
+_IDA_PTR_GLOBAL_RE = re.compile(r'^(?:byte|off|stru|flt|dbl|asc)_[0-9A-Fa-f]+$')
+
+# LHS forms that denote a DWORD slot (each alternative is anchored to the
+# '=' that follows it, so == / != / >= can never match):
+#   LODWORD(x) / BYTE1(x) / HIWORD(x) ...  — IDA byte/word/dword slot macros
+#   *((_DWORD *)X + N) =       — DWORD slot by index
+#   *(_DWORD *)X =             — DWORD slot by address
+_SLOT_LHS_RE = re.compile(
+    r'\b(?:LO|HI)?(?:BYTE|WORD|DWORD)[0-9]?\s*\([^()]*\)\s*=(?!=)'
+    r'|\*\s*\(\s*\(\s*(?:_DWORD|unsigned long|unsigned int)\s*\*\s*\)[^;=]*?\)\s*=(?!=)'
+    r'|\*\s*\(\s*(?:_DWORD|unsigned long|unsigned int)\s*\*\s*\)[^;=]+?\s*=(?!=)'
+)
+
+# Cast-to-pointer prefix: (T *), (unsigned int **), (int (__cdecl *)...)
+_CAST_PTR_RE = re.compile(
+    r'^\(\s*[A-Za-z_][\w:]*(?:\s+(?:unsigned|signed|long|short|char|int|double|float))*\s*'
+    r'(?:__cdecl|__stdcall|__thiscall)?\s*\*+\s*\)'
+)
+
+_DECL_KEYWORDS = frozenset(('return', 'goto', 'case', 'delete', 'new', 'else', 'sizeof'))
+
+
+def _split_top_commas(s):
+    parts, depth, cur = [], 0, []
+    for ch in s:
+        if ch in '(<[':
+            depth += 1
+        elif ch in ')>]':
+            depth -= 1
+        if ch == ',' and depth == 0:
+            parts.append(''.join(cur))
+            cur = []
+        else:
+            cur.append(ch)
+    if cur:
+        parts.append(''.join(cur))
+    return parts
+
+
+def _build_var_types(code, ctx):
+    """Map local/param names to declared types for pointer-ness decisions."""
+    vt = {}
+    # fnptr locals:  int ( **v12)(CEffect *, int);
+    for m in re.finditer(r'^\s+([A-Za-z_]\w*)\s*\(\s*(\*+)\s*(\w+)\s*\)\s*\(([^()]*)\)\s*;',
+                         code, re.M):
+        vt[m.group(3)] = {'kind': 'fnptr', 'ret': m.group(1).strip(),
+                          'params': m.group(4), 'stars': len(m.group(2))}
+    # pointer locals:  UIButton *pButton;  unsigned char *v2;
+    for m in re.finditer(r'^\s+((?:(?:unsigned|signed|const|struct|class|enum)\s+)*[A-Za-z_]\w*)'
+                         r'\s*(\*+)\s*(\w+)\s*;', code, re.M):
+        if m.group(1) not in _DECL_KEYWORDS:
+            vt.setdefault(m.group(3), {'kind': 'ptr', 'base': m.group(1),
+                                       'stars': len(m.group(2))})
+    # value locals:  int v10;  unsigned long v3;
+    for m in re.finditer(r'^\s+((?:(?:unsigned|signed|const|struct|class|enum)\s+)*[A-Za-z_]\w*)'
+                         r'\s+(\w+)\s*;', code, re.M):
+        if m.group(1) not in _DECL_KEYWORDS:
+            vt.setdefault(m.group(2), {'kind': 'value', 'base': m.group(1), 'stars': 0})
+    # array locals:  unsigned long v10[4];  (element type = base)
+    for m in re.finditer(r'^\s+((?:(?:unsigned|signed|const|struct|class|enum)\s+)*[A-Za-z_]\w*)'
+                         r'\s+(\w+)\s*\[[^\]]+\]\s*;', code, re.M):
+        if m.group(1) not in _DECL_KEYWORDS:
+            vt.setdefault(m.group(2), {'kind': 'array', 'base': m.group(1), 'stars': 0})
+    # parameters from ctx.sig: "... __cc(Cls *this, int nVal)"
+    sig = getattr(ctx, 'sig', '') or ''
+    pm = re.search(r'__(?:thiscall|cdecl|stdcall)\s*(?:[A-Za-z_][\w:]*\s*)?\((.*)\)\s*$', sig)
+    if pm:
+        for p in _split_top_commas(pm.group(1)):
+            p = p.strip()
+            if not p or p == 'void':
+                continue
+            nm = re.search(r'(\w+)\s*(?:\[[^\]]*\])?\s*$', p)
+            if not nm:
+                continue
+            name = nm.group(1)
+            if name == 'this':
+                continue  # `this` is never an assignable local; assigning to
+                # it (Hex-Rays ctor artifact) must stay uncast
+            # base = param text without the name (else the name leaks into
+            # synthesized casts, e.g. `(Cls *this *)`)
+            base = p[:nm.start()].strip() or p
+            # array params decay to pointers
+            is_ptr = '*' in p or '[' in p
+            vt.setdefault(name, {'kind': 'ptr' if is_ptr else 'value',
+                                 'base': base, 'stars': max(p.count('*'), 1)})
+    return vt
+
+
+_MEMBER_TYPE_INDEX = None
+
+
+def _member_type(cls, member):
+    """Declared type of a struct member, or None."""
+    global _MEMBER_TYPE_INDEX
+    if _MEMBER_TYPE_INDEX is None:
+        idx = {}
+        for type_name, members in store.struct_members.items():
+            for _off, (mname, mtype) in members.items():
+                idx.setdefault(type_name, {})[mname] = mtype
+        _MEMBER_TYPE_INDEX = idx
+    return _MEMBER_TYPE_INDEX.get(cls, {}).get(member)
+
+
+def _call_return_type(name):
+    """Return-type text for 'Cls::Method' or 'Func', or None if unknown."""
+    sig = store.method_sigs.get(name)
+    if sig is None:
+        sig = store.free_func_sigs.get(name)
+    if not sig:
+        return None
+    m = re.match(r'^(.*?)\s*__(?:thiscall|cdecl|stdcall)\b', sig)
+    if not m:
+        return None
+    return re.sub(r'^virtual\s+', '', m.group(1).strip()) or None
+
+
+def _strip_outer_parens(e):
+    e = e.strip()
+    while e.startswith('('):
+        depth = 0
+        for i, ch in enumerate(e):
+            if ch == '(':
+                depth += 1
+            elif ch == ')':
+                depth -= 1
+                if depth == 0:
+                    if i == len(e) - 1:
+                        e = e[1:i].strip()
+                    else:
+                        return e
+                    break
+        else:
+            return e
+    return e
+
+
+_GLOBAL_BASE_TYPE_MAP = None
+
+
+def _global_base_type(name):
+    """Struct type of a named global instance (g_X), or None."""
+    global _GLOBAL_BASE_TYPE_MAP
+    if _GLOBAL_BASE_TYPE_MAP is None:
+        m = {}
+        for _base, _end, gname, gtype in store.struct_instances:
+            m[gname] = gtype
+        _GLOBAL_BASE_TYPE_MAP = m
+    return _GLOBAL_BASE_TYPE_MAP.get(name)
+
+
+def _path_is_pointer(path, vt, ctx):
+    """Resolve a member access path like g_X.a.b / this->m_x / p->a.b.
+
+    Returns True/False when decidable, None when any link is unknown.
+    """
+    parts = re.split(r'(?:->|\.)', path.strip())
+    if len(parts) < 2:
+        return None
+    parts = [re.sub(r'\s*\[[^\]]*\]', '', p).strip() for p in parts]
+    base = parts[0]
+    if base == 'this':
+        cls = ctx.cls_name
+    else:
+        cls = _global_base_type(base)
+        if not cls:
+            t = vt.get(base)
+            if t and t.get('base'):
+                cls = t['base']
+    if not cls:
+        return None
+    for member in parts[1:]:
+        if not member:
+            return None
+        mt = _member_type(cls, member)
+        if mt is None:
+            return None
+        mt = str(mt).strip()
+        if '*' in mt:
+            return True
+        cls = re.sub(r'\s*\[[^\]]*\]\s*$', '', mt)
+    return False
+
+
+def _expr_is_pointer(e, vt, ctx):
+    """Positive-only pointer detection.
+
+    Returns True only when pointer-ness is provable from expression text +
+    declarations; unknown forms return False (no cast inserted — a cast on a
+    float/int RHS would silently change semantics, e.g. float→ulong converts
+    the value instead of copying bits).
+    """
+    e = _strip_outer_parens(e)
+    if not e:
+        return False
+    c0 = e[0]
+    if c0 == '"' or c0 == '&':
+        return True
+    if c0 == '*':
+        m = re.match(r'\*\s*(\w+)', e)
+        if m:
+            t = vt.get(m.group(1))
+            return bool(t) and t['kind'] in ('ptr', 'fnptr')
+        return False
+    if _CAST_PTR_RE.match(e):
+        return True
+    m = re.match(r'^(%s)\b' % '|'.join(sorted(_PTR_RETURN_FUNCS)), e)
+    if m:
+        return True
+    # qualified member call anywhere in the expression
+    m = re.search(r'([A-Za-z_]\w*)::([A-Za-z_]\w*)\s*\(', e)
+    if m:
+        ret = _call_return_type('%s::%s' % (m.group(1), m.group(2)))
+        return bool(ret) and '*' in ret
+    # unqualified call at expression start
+    m = re.match(r'([A-Za-z_]\w*)\s*\(', e)
+    if m and '::' not in e:
+        n = m.group(1)
+        if n in _PTR_RETURN_FUNCS:
+            return True
+        ret = _call_return_type(n)
+        return bool(ret) and '*' in ret
+    # multi-level member path, with optional trailing subscripts:
+    #   g_RoleSlotBuf.m_partyActor.m_pEquipAtt1[352 * n + 1]
+    # (mid-path subscripts allowed; resolved after part-splitting)
+    m = re.match(r'([\w>.\-\[\]]+?)\s*(?:\[[^\]]*\])+\s*$', e)
+    if m:
+        pt = _path_is_pointer(m.group(1), vt, ctx)
+        if pt is not None:
+            return pt
+    if re.search(r'(?:->|\.)', e):
+        pt = _path_is_pointer(e, vt, ctx)
+        if pt is not None:
+            return pt
+    # subscript: base[...] keeps the base's pointer-ness
+    m = re.match(r'(\w+)\s*\[', e)
+    if m:
+        t = vt.get(m.group(1))
+        return bool(t) and t['kind'] in ('ptr', 'fnptr')
+    # plain identifier
+    m = re.match(r'^(\w+)$', e)
+    if m:
+        if _IDA_PTR_GLOBAL_RE.match(m.group(1)):
+            return True
+        t = vt.get(m.group(1))
+        return bool(t) and t['kind'] in ('ptr', 'fnptr')
+    # top-level +/- : pointer arithmetic preserves pointer-ness
+    depth = 0
+    for i, ch in enumerate(e):
+        if ch in '([':
+            depth += 1
+        elif ch in ')]':
+            depth -= 1
+        elif ch in '+-' and depth == 0 and i > 0 and e[i - 1] not in 'eE':
+            return _expr_is_pointer(e[:i], vt, ctx)
+    return False
+
+
+def _needs_parens(e):
+    """True when a cast placed at the START of `e` would bind only to the
+    first operand instead of the whole expression (top-level binary op)."""
+    depth = 0
+    prev = None
+    for i, ch in enumerate(e):
+        if ch in '([':
+            depth += 1
+        elif ch in ')]':
+            depth -= 1
+        elif depth == 0 and ch in '+-*/%&|^':
+            if ch == '-' and i + 1 < len(e) and e[i + 1] == '>':
+                pass  # '->' arrow operator, not subtraction
+            elif prev is not None and (prev.isalnum() or prev in '_)]'):
+                return True  # binary operator (operand before it)
+        prev = ch
+    return False
+
+
+def _scan_rhs_end(line, start):
+    """End of the assignment RHS: first ; , ) at bracket-depth 0."""
+    depth = 0
+    i = start
+    while i < len(line):
+        ch = line[i]
+        if ch in '([':
+            depth += 1
+        elif ch in ')]':
+            if depth == 0:
+                return i
+            depth -= 1
+        elif ch in ';,' and depth == 0:
+            return i
+        i += 1
+    return i
+
+
+def _fix_line_dword_slots(line, vt, ctx):
+    if '=' not in line:
+        return line
+    cand = []
+    for m in _SLOT_LHS_RE.finditer(line):
+        # m.end() is right after the assignment '='
+        p = m.end()
+        while p < len(line) and line[p] in ' \t':
+            p += 1
+        cand.append(p)
+    for m in re.finditer(r'\b(\w+)\s*\[[^\]]*\]\s*=(?!=)', line):
+        t = vt.get(m.group(1))
+        if t and t.get('kind') in ('ptr', 'array') and t.get('base') in _DWORD_SLOT_BASES:
+            p = m.end()
+            while p < len(line) and line[p] in ' \t':
+                p += 1
+            cand.append(p)
+    if not cand:
+        return line
+    inserts = []
+    for p in sorted(set(cand)):
+        rhs_end = _scan_rhs_end(line, p)
+        rhs = line[p:rhs_end]
+        if rhs.strip().startswith('(unsigned long)'):
+            continue
+        if _expr_is_pointer(rhs, vt, ctx):
+            inserts.append(p)
+    if not inserts:
+        return line
+    out = line
+    for p in reversed(inserts):
+        rhs_end = _scan_rhs_end(out, p)
+        rhs = out[p:rhs_end]
+        cast = '(unsigned long)'
+        if _needs_parens(rhs):
+            cast += '(%s)' % rhs
+            out = out[:p] + cast + out[rhs_end:]
+        else:
+            out = out[:p] + cast + out[p:]
+    return out
+
+
+def _fix_line_plain_var_assign(line, vt, ctx):
+    """Statement `ident = RHS;` where the LHS is a declared local/param:
+
+    - LHS pointer decl + provably-pointer RHS (different pointee): insert a
+      cast to the LHS declared type — pointer→pointer, byte-neutral.
+    - LHS DWORD-width value decl + provably-pointer RHS: insert (unsigned long)
+      — the mirror of the slot rule (ptr → 32-bit int slot).
+    """
+    m = re.match(r'^(\s*)([A-Za-z_]\w*)\s*=(?!=)\s*', line)
+    if not m:
+        return line
+    t = vt.get(m.group(2))
+    if not t:
+        return line
+    rhs_start = m.end()
+    rhs_end = _scan_rhs_end(line, rhs_start)
+    rhs = line[rhs_start:rhs_end]
+    if rhs.strip().startswith('('):
+        return line
+    if not _expr_is_pointer(rhs, vt, ctx):
+        return line
+    if _needs_parens(rhs):
+        rhs_wrapped = '(%s)' % rhs
+    else:
+        rhs_wrapped = rhs
+    if t.get('kind') == 'ptr' and t.get('base'):
+        base = t['base']
+        # only build casts from clean type texts (defense against name leaks)
+        if not re.match(r'^[A-Za-z_][\w:]*(?:\s+(?:unsigned|signed|const|long|short|int|char'
+                        r'|double|float|struct|class|enum|__int8|__int16|__int32|__int64))*$', base):
+            return line
+        cast = '(%s %s)' % (base, '*' * max(t.get('stars', 1), 1))
+        return line[:rhs_start] + cast + rhs_wrapped + line[rhs_end:]
+    if t.get('kind') == 'value' and t.get('base') in _DWORD_SLOT_BASES:
+        return line[:rhs_start] + '(unsigned long)' + rhs_wrapped + line[rhs_end:]
+    return line
+
+
+def _fix_c2440_casts(code, ctx):
+    """Insert explicit casts where Hex-Rays relies on implicit pointer
+    conversions MSVC6 rejects (C2440).
+
+    Family 1 — pointer-valued RHS written into DWORD slots (LODWORD(...),
+    BYTE1(x), *((_DWORD*)X+N), *(_DWORD*)X, ulong* element): insert
+    (unsigned long). Pointer→ulong is a bit-preserving no-op on x86, so the
+    cast is byte-neutral. Only positively-identified pointer RHS get casts.
+    Family 2 — statement assignments: &-rooted or otherwise provably-pointer
+    RHS into a differently-typed pointer local → cast to LHS declared type;
+    pointer RHS into a DWORD-width value local → (unsigned long).
+    """
+    vt = _build_var_types(code, ctx)
+    out = []
+    for line in code.split('\n'):
+        line = _fix_line_dword_slots(line, vt, ctx)
+        line = _fix_line_plain_var_assign(line, vt, ctx)
+        out.append(line)
+    return '\n'.join(out)
 
 def _fix_ulong_uint_cast(code):
     """Add explicit casts for unsigned long* → unsigned int* conversions.
@@ -456,7 +867,8 @@ def _run_inner(code, ctx):
     # operator new return value cast (MSVC6 requires explicit void* → T*)
     code = _fix_operator_new_cast(code)
 
-    # Pointer → unsigned long assignment cast (MSVC6 incompatibility)
+    # C2440 cast insertion: pointer RHS into DWORD slots + ptr/ptr sign
+    code = _fix_c2440_casts(code, ctx)
 
     # Empty if-body before else
     code = re.sub(
