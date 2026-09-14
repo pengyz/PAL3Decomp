@@ -494,6 +494,18 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                             method_name, rest_str)
                                         replacements.append((
                                             node.start_byte, node.end_byte, new_text))
+                                    else:
+                                        # 成员子对象地址（&this->m_x 等）作 this：
+                                        # cast 重建形式 —— 与未知类型局部变量的
+                                        # ((A*)p)->A::f(x) 同一保真规则（规则 c）：
+                                        # 调用本身定义了 this 契约，地址是真实的
+                                        # 对象位置，cast 只是恢复 Hex-Rays 丢失的
+                                        # 子对象类型，不是类型谎言。
+                                        new_text = '(((%s *)%s))->%s::%s(%s)' % (
+                                            class_name, first_arg_text,
+                                            class_name, method_name, rest_str)
+                                        replacements.append((
+                                            node.start_byte, node.end_byte, new_text))
                                     return
                                 # 其余（局部 &local、无法定位对象等）：保持静态形式，
                                 # 让 MSVC6 诚实报错 —— 不做任何编辑
