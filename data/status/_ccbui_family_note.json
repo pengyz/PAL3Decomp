@@ -1,0 +1,13 @@
+{
+ "item": "CCBUI 家族纠缠（MCP 轮 9 记录，待专轮）",
+ "facts": [
+  "CCBUI 方法块 0x517650-0x519400：~CCBUI/Reset/CreateCombatPanel/CreateResultWindow/CreateProtectWindow/CreateMagicWindow 等 25 个工厂/管理方法",
+  "0x519310（注解 ctor）vtable 存储为 0x5704C8 = CCBResultWindow 的表（轮 6 提取）；0x5160A0 存 0x5704A8 = CCBProtectWindow 的表",
+  "出现两个 ??1CCBUI 命名：0x517650（注解 dtor，头部却是 operator new(0x98)+sub_4422E0=疑似工厂形态）与 0x567xxx（存 stru_579D90）",
+  "0x579D90 vtable 无注解属主，仅 1 xref（0x5670d6 的 ??1CCBUI）",
+  "CCBProtectWindow/CCBResultWindow vtable 0x5704A8/0x5704C8 相邻（0x20 间隔）——三族（CCBUI/Protect/Result）纠缠"
+ ],
+ "hypothesis": "CCBUI 是战斗面板容器（Create*Window 工厂群），与 CCBProtectWindow/CCBResultWindow 为容器-子窗关系或三兄弟类；0x519310 可能构造内嵌 CCBResultWindow 子对象（offset 0）",
+ "next": "专轮：以 0x579D90/0x5704A8/0x5704C8 三表 xref 全查 + Create* 工厂逐个反汇编定谳三族边界",
+ "date": "2026-09-14"
+}
