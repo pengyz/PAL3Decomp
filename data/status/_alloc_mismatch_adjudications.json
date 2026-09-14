@@ -1,0 +1,329 @@
+{
+ "question": "alloc_sizeof v2 的 17 个 MISMATCH 行裁决（MCP 轮 6 工作清单）",
+ "pairing_integrity": "全部 17 行 exhibit 字节解码：call target == 注解 ctor 地址；push 值即分配尺寸（UIScenePanel 深检：push 0x379C=14236 全链一致）",
+ "blocker": "13/17 类为双 ctor（functions.json/structs/ida_structs 三来源地址不一致）——ctor 身份未定谳前不得套用尺寸修正",
+ "verified_example": "UIScenePanel: push 14236 -> new(0x55353B) -> mov ecx,eax -> call 0x44BA60；注解 14232 差 4 字节布局漂移，alloc-wins 候选",
+ "adjudications": [
+  {
+   "class": "Camera",
+   "paired_ctor": "0x0041BE80",
+   "all_ctor_addresses": [
+    "0x0041BE80"
+   ],
+   "dual_ctor": false,
+   "alloc_size": 544,
+   "annotation_size": 12956,
+   "delta": -12412,
+   "exhibit": {
+    "alloc_push_at": "0x004050DA",
+    "ctor_call_at": "0x004050FF",
+    "call_target": "0x0041BE80",
+    "target_verified": true
+   },
+   "note": "pairing binary-faithful; ctor identity unresolved (dual-ctor) - resolve ctor first (vtable store / block adjacency), then size per alloc-wins doctrine"
+  },
+  {
+   "class": "UIStatic",
+   "paired_ctor": "0x00440740",
+   "all_ctor_addresses": [
+    "0x00440740"
+   ],
+   "dual_ctor": false,
+   "alloc_size": 248,
+   "annotation_size": 152,
+   "delta": 96,
+   "exhibit": {
+    "alloc_push_at": "0x0051A1F3",
+    "ctor_call_at": "0x0051A210",
+    "call_target": "0x00440740",
+    "target_verified": true
+   },
+   "note": "pairing binary-faithful; ctor identity unresolved (dual-ctor) - resolve ctor first (vtable store / block adjacency), then size per alloc-wins doctrine"
+  },
+  {
+   "class": "CCBUIPanel",
+   "paired_ctor": "0x004460D0",
+   "all_ctor_addresses": [
+    "0x004460D0",
+    "0x00453E70"
+   ],
+   "dual_ctor": true,
+   "alloc_size": 22112,
+   "annotation_size": 22068,
+   "delta": 44,
+   "exhibit": {
+    "alloc_push_at": "0x0044FE6A",
+    "ctor_call_at": "0x0044FE84",
+    "call_target": "0x004460D0",
+    "target_verified": true
+   },
+   "note": "pairing binary-faithful; ctor identity unresolved (dual-ctor) - resolve ctor first (vtable store / block adjacency), then size per alloc-wins doctrine"
+  },
+  {
+   "class": "UIScenePanel",
+   "paired_ctor": "0x0044BA60",
+   "all_ctor_addresses": [
+    "0x0044BA60",
+    "0x0044BE80"
+   ],
+   "dual_ctor": true,
+   "alloc_size": 14236,
+   "annotation_size": 14232,
+   "delta": 4,
+   "exhibit": {
+    "alloc_push_at": "0x0044F9E2",
+    "ctor_call_at": "0x0044F9FC",
+    "call_target": "0x0044BA60",
+    "target_verified": true
+   },
+   "note": "pairing binary-faithful; ctor identity unresolved (dual-ctor) - resolve ctor first (vtable store / block adjacency), then size per alloc-wins doctrine"
+  },
+  {
+   "class": "UISceneMap",
+   "paired_ctor": "0x0044FFE0",
+   "all_ctor_addresses": [
+    "0x0044FFE0",
+    "0x00450DC0"
+   ],
+   "dual_ctor": true,
+   "alloc_size": 232,
+   "annotation_size": 1012,
+   "delta": -780,
+   "exhibit": {
+    "alloc_push_at": "0x0044F972",
+    "ctor_call_at": "0x0044F98C",
+    "call_target": "0x0044FFE0",
+    "target_verified": true
+   },
+   "note": "pairing binary-faithful; ctor identity unresolved (dual-ctor) - resolve ctor first (vtable store / block adjacency), then size per alloc-wins doctrine"
+  },
+  {
+   "class": "CCBRoleState",
+   "paired_ctor": "0x00456AB0",
+   "all_ctor_addresses": [
+    "0x00456AB0",
+    "0x00457070",
+    "0x004EDD60"
+   ],
+   "dual_ctor": true,
+   "alloc_size": 20568,
+   "annotation_size": 22224,
+   "delta": -1656,
+   "exhibit": {
+    "alloc_push_at": "0x0044C5F8",
+    "ctor_call_at": "0x0044C60E",
+    "call_target": "0x00456AB0",
+    "target_verified": true
+   },
+   "note": "pairing binary-faithful; ctor identity unresolved (dual-ctor) - resolve ctor first (vtable store / block adjacency), then size per alloc-wins doctrine"
+  },
+  {
+   "class": "UISceneFrm",
+   "paired_ctor": "0x004590D0",
+   "all_ctor_addresses": [
+    "0x004590D0",
+    "0x00459260"
+   ],
+   "dual_ctor": true,
+   "alloc_size": 3288,
+   "annotation_size": 2864,
+   "delta": 424,
+   "exhibit": {
+    "alloc_push_at": "0x0044FA7D",
+    "ctor_call_at": "0x0044FA97",
+    "call_target": "0x004590D0",
+    "target_verified": true
+   },
+   "note": "pairing binary-faithful; ctor identity unresolved (dual-ctor) - resolve ctor first (vtable store / block adjacency), then size per alloc-wins doctrine"
+  },
+  {
+   "class": "UITitle_ArcSave",
+   "paired_ctor": "0x0047BBF0",
+   "all_ctor_addresses": [
+    "0x0047BBF0",
+    "0x0047BD20"
+   ],
+   "dual_ctor": true,
+   "alloc_size": 4004,
+   "annotation_size": 4116,
+   "delta": -112,
+   "exhibit": {
+    "alloc_push_at": "0x0044FB1B",
+    "ctor_call_at": "0x0044FB35",
+    "call_target": "0x0047BBF0",
+    "target_verified": true
+   },
+   "note": "pairing binary-faithful; ctor identity unresolved (dual-ctor) - resolve ctor first (vtable store / block adjacency), then size per alloc-wins doctrine"
+  },
+  {
+   "class": "ScreenEffectNode",
+   "paired_ctor": "0x004B7C30",
+   "all_ctor_addresses": [
+    "0x004B7C30"
+   ],
+   "dual_ctor": false,
+   "alloc_size": 1060,
+   "annotation_size": 220,
+   "delta": 840,
+   "exhibit": {
+    "alloc_push_at": "0x004B715F",
+    "ctor_call_at": "0x004B7179",
+    "call_target": "0x004B7C30",
+    "target_verified": true
+   },
+   "note": "pairing binary-faithful; ctor identity unresolved (dual-ctor) - resolve ctor first (vtable store / block adjacency), then size per alloc-wins doctrine"
+  },
+  {
+   "class": "CCBStageScene",
+   "paired_ctor": "0x0050FD00",
+   "all_ctor_addresses": [
+    "0x0050FD00",
+    "0x0050FEE0"
+   ],
+   "dual_ctor": true,
+   "alloc_size": 972,
+   "annotation_size": 1012,
+   "delta": -40,
+   "exhibit": {
+    "alloc_push_at": "0x004FBA99",
+    "ctor_call_at": "0x004FBAB5",
+    "call_target": "0x0050FD00",
+    "target_verified": true
+   },
+   "note": "pairing binary-faithful; ctor identity unresolved (dual-ctor) - resolve ctor first (vtable store / block adjacency), then size per alloc-wins doctrine"
+  },
+  {
+   "class": "CCBUI",
+   "paired_ctor": "0x005160A0",
+   "all_ctor_addresses": [
+    "0x005160A0",
+    "0x00519310"
+   ],
+   "dual_ctor": true,
+   "alloc_size": 2632,
+   "annotation_size": 2648,
+   "delta": -16,
+   "exhibit": {
+    "alloc_push_at": "0x0051269D",
+    "ctor_call_at": "0x005126BB",
+    "call_target": "0x005160A0",
+    "target_verified": true
+   },
+   "note": "pairing binary-faithful; ctor identity unresolved (dual-ctor) - resolve ctor first (vtable store / block adjacency), then size per alloc-wins doctrine"
+  },
+  {
+   "class": "CCBUI",
+   "paired_ctor": "0x00519310",
+   "all_ctor_addresses": [
+    "0x005160A0",
+    "0x00519310"
+   ],
+   "dual_ctor": true,
+   "alloc_size": 116,
+   "annotation_size": 2648,
+   "delta": -2532,
+   "exhibit": {
+    "alloc_push_at": "0x0051CCFD",
+    "ctor_call_at": "0x0051CD1A",
+    "call_target": "0x00519310",
+    "target_verified": true
+   },
+   "note": "pairing binary-faithful; ctor identity unresolved (dual-ctor) - resolve ctor first (vtable store / block adjacency), then size per alloc-wins doctrine"
+  },
+  {
+   "class": "CScreenMode",
+   "paired_ctor": "0x00523F30",
+   "all_ctor_addresses": [
+    "0x00523F30"
+   ],
+   "dual_ctor": false,
+   "alloc_size": 5496,
+   "annotation_size": 4984,
+   "delta": 512,
+   "exhibit": {
+    "alloc_push_at": "0x0052339F",
+    "ctor_call_at": "0x005233B5",
+    "call_target": "0x00523F30",
+    "target_verified": true
+   },
+   "note": "pairing binary-faithful; ctor identity unresolved (dual-ctor) - resolve ctor first (vtable store / block adjacency), then size per alloc-wins doctrine"
+  },
+  {
+   "class": "UIListBox",
+   "paired_ctor": "0x00527950",
+   "all_ctor_addresses": [
+    "0x0043DCD0",
+    "0x00527950"
+   ],
+   "dual_ctor": true,
+   "alloc_size": 1760,
+   "annotation_size": 1208,
+   "delta": 552,
+   "exhibit": {
+    "alloc_push_at": "0x0044FC4A",
+    "ctor_call_at": "0x0044FC64",
+    "call_target": "0x00527950",
+    "target_verified": true
+   },
+   "note": "pairing binary-faithful; ctor identity unresolved (dual-ctor) - resolve ctor first (vtable store / block adjacency), then size per alloc-wins doctrine"
+  },
+  {
+   "class": "JusticeBookUI",
+   "paired_ctor": "0x005282E0",
+   "all_ctor_addresses": [
+    "0x005282E0",
+    "0x005284E0"
+   ],
+   "dual_ctor": true,
+   "alloc_size": 56192,
+   "annotation_size": 11404,
+   "delta": 44788,
+   "exhibit": {
+    "alloc_push_at": "0x00527B33",
+    "ctor_call_at": "0x00527B49",
+    "call_target": "0x005282E0",
+    "target_verified": true
+   },
+   "note": "pairing binary-faithful; ctor identity unresolved (dual-ctor) - resolve ctor first (vtable store / block adjacency), then size per alloc-wins doctrine"
+  },
+  {
+   "class": "UIRoleSelectDialog",
+   "paired_ctor": "0x005295F0",
+   "all_ctor_addresses": [
+    "0x005295F0",
+    "0x00529790"
+   ],
+   "dual_ctor": true,
+   "alloc_size": 2204,
+   "annotation_size": 2116,
+   "delta": 88,
+   "exhibit": {
+    "alloc_push_at": "0x0044FCA8",
+    "ctor_call_at": "0x0044FCC2",
+    "call_target": "0x005295F0",
+    "target_verified": true
+   },
+   "note": "pairing binary-faithful; ctor identity unresolved (dual-ctor) - resolve ctor first (vtable store / block adjacency), then size per alloc-wins doctrine"
+  },
+  {
+   "class": "UICoverFrm",
+   "paired_ctor": "0x0052BA10",
+   "all_ctor_addresses": [
+    "0x0052BA10",
+    "0x0052BD50"
+   ],
+   "dual_ctor": true,
+   "alloc_size": 12956,
+   "annotation_size": 14952,
+   "delta": -1996,
+   "exhibit": {
+    "alloc_push_at": "0x0052B7E0",
+    "ctor_call_at": "0x0052B7FD",
+    "call_target": "0x0052BA10",
+    "target_verified": true
+   },
+   "note": "pairing binary-faithful; ctor identity unresolved (dual-ctor) - resolve ctor first (vtable store / block adjacency), then size per alloc-wins doctrine"
+  }
+ ],
+ "date": "2026-09-14"
+}
