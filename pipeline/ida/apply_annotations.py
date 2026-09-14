@@ -1851,6 +1851,19 @@ def apply_annotations():
                     else:
                         _new_params = '(%s *__hidden this)' % _cls
                     sig_raw = _before + _new_params
+                    # 类限定成员原型优先路径（2026-09-14 MCP set_function_prototype
+                    # 验证形态）：'RET __thiscall Cls::Method(Cls *this, params)' —
+                    # Hex-Rays 对该形态采纳为确定类型；短名 + __hidden 形式在部分
+                    # 成员函数上不生效（HandleMessage 案例：SetType 报成功但
+                    # 反编译仍为无参形态）。
+                    if _cc_is_thiscall and re.match(r'^\w+$', name):
+                        _qsig = '%s __thiscall %s::%s%s' % (
+                            _before, _cls, name,
+                            _new_params.replace('__hidden ', ''))
+                        if _apply_func_type_parse(addr, _qsig, til):
+                            sig_ok += 1
+                            sig_parse_ok += 1
+                            continue
             # Extract a valid C identifier for the function name
             short_name = name
             # Demangle: ?Name@Class@@... → Name, ??1Class@@... → dtor_Class
