@@ -5,14 +5,14 @@
    "range": "0xC04390-0xC128D4",
    "name": "g_SceneMgr",
    "type": "SceneMgr",
-   "size": 64548,
+   "size": 58692,
    "note": "全覆盖大实例"
   },
   {
    "range": "0xC043A0-0xC056A4",
    "name": "Buffer",
    "type": "RoleSystem",
-   "size": 4676,
+   "size": 4868,
    "note": "嵌于 g_SceneMgr 内；注解 binary_size 却是 22224——两处自相矛盾"
   },
   {
@@ -42,10 +42,18 @@
    "range": "0xC05F30-0xCAA7F4",
    "name": "unk_C05F30",
    "type": "CCBStage",
-   "size": 688388,
+   "size": 673988,
    "note": "巨型实例覆盖 g_SceneMgr 尾部"
   }
  ],
  "implication": "Zone R 的 C2228/C2109 错误是解析器在重叠实例间择路不一致的症状。Buffer 注解尺寸 22,224 与实例区间 4,676 自相矛盾；先前\"12x1408 阵列\"模型因混叠引用作废（对 _buffer_zone_census.json 的修正）",
- "resolution_path": "逐实例裁决真实边界/类型（访问半径+交叉引用），清理 struct_instances 重叠——这是 Zone R 的真正前置"
+ "resolution_path": "逐实例裁决真实边界/类型（访问半径+交叉引用），清理 struct_instances 重叠——这是 Zone R 的真正前置",
+ "adversarial_review": {
+  "verdict": "机制成立；三处字节数修正（58692/4868/673988）；\"RoleSystem 22,224 自相矛盾\"撤回（当前注解 4,868 一致，系引用陈旧状态）",
+  "zone_r_count": "112 条/3 文件（Array 56 + StateUI 44 + scAsmDecoder 12）；PtrArray 与 CScreenMode 不属于 Zone R",
+  "direct_cause": "局部 char Buffer 遮蔽 + stage4 输出未限定的全局根名（Array.cpp:903 的 ::Buffer 为正确形态先例）",
+  "layout_truth": "0xC043A0 = 5 槽 x 1,408B 槽位阵列（raw decomp 自证 &::Buffer+1408*elem + RecalcAggregatedStats）；五平行数组 0xC0461C-0xC04630 = slot[i].m_partyActor.m_fMatrix* 与 Actor 偏移吻合；slot4 末端恰为 unk_C05F30",
+  "refined_plan": "①注解层定 5 槽布局 ②skip 机制去重幻影实例（保留 extern）③Buffer 改名消撞名 ④槽位视图数组化/cast 化解标量下标 ⑤否决纯解析器穿透（能编译但语义错）",
+  "missed_instances": "0xC07000 之外还有 unk_C08160/unk_C0A360(RoleSystem)/unk_C0A608(Actor)/g_palScript/unk_C11720(PalScript)/unk_C11758(UIManager) 等重叠实例待同批处理"
+ }
 }

@@ -6285,5 +6285,10 @@
   "name": "g_Block_1896CF0",
   "type": "void *",
   "source": "fix:name_conflict_with_Block_at_0xD8E470"
+ },
+ "0x00C043A0": {
+  "name": "g_RoleSlotBuf",
+  "type": "RoleSystem",
+  "rename_reason": "Buffer collides with Hex-Rays local char Buffer[N] convention - shadow C2228s in StateUI(44)/Array(56). 5-slot x 1408B slot array per raw decomp (&::Buffer + 1408*elem) - adversarial review 2026-09-14. Slot-view array modeling of scalar members (m_fMatrixA etc.) pending; C2109s expected to remain until then."
  }
 }
