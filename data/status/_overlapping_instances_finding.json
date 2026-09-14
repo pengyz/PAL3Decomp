@@ -55,5 +55,15 @@
   "layout_truth": "0xC043A0 = 5 槽 x 1,408B 槽位阵列（raw decomp 自证 &::Buffer+1408*elem + RecalcAggregatedStats）；五平行数组 0xC0461C-0xC04630 = slot[i].m_partyActor.m_fMatrix* 与 Actor 偏移吻合；slot4 末端恰为 unk_C05F30",
   "refined_plan": "①注解层定 5 槽布局 ②skip 机制去重幻影实例（保留 extern）③Buffer 改名消撞名 ④槽位视图数组化/cast 化解标量下标 ⑤否决纯解析器穿透（能编译但语义错）",
   "missed_instances": "0xC07000 之外还有 unk_C08160/unk_C0A360(RoleSystem)/unk_C0A608(Actor)/g_palScript/unk_C11720(PalScript)/unk_C11758(UIManager) 等重叠实例待同批处理"
+ },
+ "deeper_finding": {
+  "discovery": "ida_structs 的 CCBRoleState 类型指派本身错误（2026-09-14 MCP 轮 13）",
+  "evidence": "store.struct_members['CCBRoleState']（来自 ida_structs data_members，63 个）内容是 UI 面板类成员（m_SlotWidgets/m_nScrollOffset/m_nFadeFlags/m_bScrollEnableA），而注解 known_members（132 个）才是战斗角色状态成员（GetRoleField/m_partyActor 群）——两套类共用同一个名字",
+  "implication": [
+   "①该区域（0xC04390 起）至少有两个真实类：一个 UI 面板类（ida_structs 误标为 CCBRoleState）和一个战斗角色状态类（注解 known_members 对应）",
+   "②stage4 解析器用 struct_members（错误类）解析偏移 → 产出错误成员名（如 m_pData）→ C2039 ×69 的 m_pData 即错误类的成员名",
+   "③修复 = CCBRoleState 区域的类型重定（与 g_RoleSlots/unk_C05F30 同属一个区域考古包）"
+  ],
+  "m_pData_cluster_status": "69 错挂起，待区域类型重定后自然消解或重新归类"
  }
 }
