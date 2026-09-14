@@ -1,0 +1,17 @@
+{
+ "directive": "PDB 非权威源（用户裁定 2026-09-14）",
+ "detail": "data/pdb/pdb_export.json 的版本与 original/PAL3.exe 不匹配。其中全部 mangled 名、类定义、方法签名不得作为归属或命名的权威证据。",
+ "contamination_census": {
+  "structs_methods_with_pdb_provenance": 315,
+  "structs_classes_affected": 65,
+  "total_structs_methods": 3396,
+  "pdb_export_classes": 1251
+ },
+ "evidence_hierarchy": [
+  "1. 二进制证据：分配点尺寸、vtable 安装点与同表性、this 调用链（mov ecx,esi）、成员偏移轮廓、调用方分布、访问半径",
+  "2. 二进制互证的重命名（多证据收敛）",
+  "3. 描述性标签（标注 _naming_note，不声称出处）",
+  "X. 已作废：pdb_export 的 mangled 名与类型（版本不符）"
+ ],
+ "worklist": "315 个 pdb 来源方法需按证据层级重验（新结构性工作清单）；init 的 phase1_import_types 仍在导入 pdb 类型，是否隔离待定。"
+}
