@@ -1,6 +1,6 @@
 {
  "name": "UIStatic",
- "binary_size": 248,
+ "binary_size": 152,
  "known_members": {
   "68": {
    "name": "pDebugTex",
@@ -263,5 +263,6 @@
    ]
   }
  ],
- "base_size": 68
+ "base_size": 68,
+ "size_note": "alloc says 248 (3 sites, vtable-proven ctor 0x440740) but 152->248 destabilizes UIStaticFlip/EX/RM family emission (headers vanish); deferred pending family member alignment"
 }

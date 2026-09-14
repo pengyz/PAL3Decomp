@@ -1,6 +1,6 @@
 {
  "name": "UIListBox",
- "binary_size": 1760,
+ "binary_size": 1208,
  "known_members": {
   "68": {
    "name": "m_selcolor",
@@ -640,5 +640,6 @@
    ]
   }
  ],
- "base_size": 68
+ "base_size": 68,
+ "size_note": "heap alloc says 1760 (vtable-proven ctor 0x527950, 0x5706EC table) BUT UIRoleSelect embeds a 1208-byte region at +0x58 (bounded by m_bk@0x510) whose accesses break at 1760. UIListBox family likely has base(1208)/derived(1760) split - finding recorded round 6b. Held at 1208 pending family split resolution."
 }
