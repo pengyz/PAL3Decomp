@@ -1519,6 +1519,16 @@
   "0x0043DE40": {
    "name": "CCBRoleState::Destroy",
    "signature": "int __thiscall Destroy(int nMode)"
+  },
+  "0x004dc250": {
+   "name": "UpdatePanel",
+   "signature": "int __thiscall(BOOL bRefresh)",
+   "_misattrib_evidence": "round3: this=CCBRoleState (mov ecx,esi -> GetRoleField family); +0xC/+0x20 are CCBRoleState known_members; sole caller x12"
+  },
+  "0x004f2c70": {
+   "name": "AddCommand",
+   "signature": "int __thiscall(int nCmdType, BOOL bImmediate, int nParam)",
+   "_misattrib_evidence": "round3: this=CCBRoleState: GetRoleField/GetTotalRounds/CheckBuff all on own this; CCBSystem only reached via other objects; sole caller x12"
   }
  },
  "base_class": "SceneObj",

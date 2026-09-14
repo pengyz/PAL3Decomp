@@ -1,1308 +1,1304 @@
 {
-  "name": "PalScriptMgr",
-  "binary_size": 9512,
-  "known_members": {
-    "0": {
-      "name": "m_bGetSceneScript",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "4": {
-      "name": "m_script",
-      "type": "PtrArray",
-      "source": "gen_headers_9.2"
-    },
-    "20": {
-      "name": "m_scefile",
-      "type": "scSCEFile *",
-      "source": "fix:span=4_next_hits=22_ptr"
-    },
-    "48": {
-      "name": "m_fCamZ",
-      "type": "float",
-      "source": "A:decomp PalScriptMgr::ExecuteFrame (0x42F460) used as float camera Z along m_fCamX/m_fCamY — 5 accesses: lerp, LODWORD copy, float addition"
-    },
-    "76": {
-      "name": "m_scepath",
-      "type": "scSCEFile *",
-      "source": "A:decomp LODWORD(this->m_scepath)=this->m_scesys where m_scesys is scSCEFile*"
-    },
-    "80": {
-      "name": "m_bBigMapState",
-      "type": "unsigned char",
-      "source": "A:decomp PalScriptMgr::ExecuteFrame LOBYTE(this->m_bigMapState) compare to 0/1 + SetBigMapState LOBYTE assignment — byte-only access"
-    },
-    "40": {
-      "name": "m_fCamX",
-      "type": "float",
-      "source": "binary:raw_31votes"
-    },
-    "44": {
-      "name": "m_fCamY",
-      "type": "float",
-      "source": "binary:raw_29votes"
-    },
-    "56": {
-      "name": "m_nFrameCounter",
-      "type": "int",
-      "source": "binary:raw_14votes | decomp:counter_in_SetPauseState_ExecuteBlock"
-    },
-    "60": {
-      "name": "m_fField3C",
-      "type": "float",
-      "source": "binary:raw_12votes"
-    },
-    "64": {
-      "name": "m_pBigMapSce",
-      "type": "scSCEFile *",
-      "source": "A:decomp LODWORD(this->m_fField40)=this->m_scesys where m_scesys is scSCEFile* | decomp:assigned_from_m_scesys_and_m_nSavedDataB"
-    },
-    "68": {
-      "name": "m_fField44",
-      "type": "float",
-      "source": "binary:raw_14votes | decomp:Normalize_called_on_this_field"
-    },
-    "72": {
-      "name": "m_fPosZ",
-      "type": "float",
-      "source": "binary:raw_18votes | decomp:used_as_Z_coord_in_ExecuteBlock"
-    },
-    "84": {
-      "name": "m_nTodo_054",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "88": {
-      "name": "m_nTodo_058",
-      "type": "int",
-      "source": "binary:raw_5votes"
-    },
-    "92": {
-      "name": "m_pExecSystem",
-      "type": "char *",
-      "source": "binary:raw_7votes | fix:int_to_ptr",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
-    "52": {
-      "name": "m_Sub_0034",
-      "type": "int",
-      "source": "binary:raw_final"
-    },
-    "212": {
-      "name": "m_nExecuteBlock",
-      "type": "int",
-      "source": "binary:6x access"
-    },
-    "216": {
-      "name": "m_nSavedDataA",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "220": {
-      "name": "m_nSavedDataB",
-      "type": "int",
-      "source": "ida_decomp:ExecuteBlock *64 = *220, 16 refs"
-    },
-    "224": {
-      "name": "m_fAngle",
-      "type": "float",
-      "source": "binary:3x access"
-    },
-    "244": {
-      "name": "m_nCmdType",
-      "type": "unsigned char",
-      "source": "ida_decomp:RunCommand/ExecuteBlock switch(this), 11 refs"
-    },
-    "248": {
-      "name": "m_nCmdValue",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "252": {
-      "name": "m_nCmdParam0",
-      "type": "short",
-      "source": "A:66_prefix_word_access_in_class_method"
-    },
-    "256": {
-      "name": "m_nCmdParam1",
-      "type": "short",
-      "source": "A:66_prefix_word_access_in_class_method"
-    },
-    "264": {
-      "name": "m_nExecCounter",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "300": {
-      "name": "m_pScriptObj",
-      "type": "PalScriptMgr *",
-      "source": "ida_decomp:ExecuteBlock Destroy(this), if(this), 10 refs+codegen_infer"
-    },
-    "304": {
-      "name": "m_nScriptDepth",
-      "type": "int",
-      "source": "ida_decomp:ExecuteOpcode +1, >0 check, 4 refs"
-    },
-    "320": {
-      "name": "m_fExecuteBlock",
-      "type": "float",
-      "source": "binary:1x access"
-    },
-    "324": {
-      "name": "m_fCurPosY",
-      "type": "float",
-      "source": "ida_decomp:ExecuteBlock this - +312"
-    },
-    "328": {
-      "name": "m_fAnimSpeed",
-      "type": "float",
-      "source": "binary:1x access"
-    },
-    "500": {
-      "name": "m_nScriptID",
-      "type": "short",
-      "source": "ida_decomp:ExecScript_42bf90 ==0xFFFF sentinel"
-    },
-    "536": {
-      "name": "m_fPosAX",
-      "type": "float",
-      "source": "ida_decomp:ExecuteBlock = this+548 + this, 3 refs"
-    },
-    "548": {
-      "name": "m_fPosBX",
-      "type": "float",
-      "source": "ida_decomp:ExecuteBlock added to posA, 3 refs"
-    },
-    "552": {
-      "name": "m_fPosBY",
-      "type": "float",
-      "source": "ida_decomp:ExecuteBlock added to posA, 3 refs"
-    },
-    "556": {
-      "name": "m_fPosBZ",
-      "type": "float",
-      "source": "ida_decomp:ExecuteBlock added to posA, 3 refs"
-    },
-    "560": {
-      "name": "m_nMatrixData",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "792": {
-      "name": "m_nBlockHandle",
-      "type": "int",
-      "source": "ida_decomp:loaded in ExecuteOpcode"
-    },
-    "796": {
-      "name": "m_pSceneMgr",
-      "type": "RoleSystem *",
-      "source": "ida_decomp:ExecuteOpcode GetRolePtr(*(this+16)), 33 refs+codegen_infer"
-    },
-    "800": {
-      "name": "m_bRoleCmd",
-      "type": "unsigned char",
-      "source": "binary:3x access"
-    },
-    "804": {
-      "name": "m_nExecState",
-      "type": "int",
-      "source": "ida_decomp:ExecuteBlock = 1/2, 8 refs"
-    },
-    "812": {
-      "name": "m_nLoopCountA",
-      "type": "int",
-      "source": "ida_decomp:this-1, decrement"
-    },
-    "816": {
-      "name": "m_nLoopCountB",
-      "type": "int",
-      "source": "ida_decomp:this+1, increment"
-    },
-    "820": {
-      "name": "m_nLoopCountC",
-      "type": "int",
-      "source": "ida_decomp:this+1, increment"
-    },
-    "824": {
-      "name": "m_nSavedPosX",
-      "type": "int",
-      "source": "binary:2x access | annotate_todo"
-    },
-    "832": {
-      "name": "m_nScriptCamX",
-      "type": "int",
-      "source": "fix:decomp_LODWORD_only_no_fpu"
-    },
-    "840": {
-      "name": "m_pScriptBlock",
-      "type": "char *",
-      "source": "ida_decomp:ExecuteOpcode = this+76, 11 refs | type_fix:int→void*(decomp ptr usage)",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
-    "844": {
-      "name": "m_pExecObj",
-      "type": "char *",
-      "source": "ida_decomp:ExecuteOpcode deref as void***, 12 refs | type_fix:int→void*(triple deref)",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
-    "848": {
-      "name": "m_fExecParam",
-      "type": "float",
-      "source": "ida_decomp:ExecuteOpcode = v52/v39, 8 refs"
-    },
-    "864": {
-      "name": "m_pWaitObj",
-      "type": "char *",
-      "source": "ida_decomp:ExecuteOpcode deref as void**, 4 refs | type_fix:int→void*(double deref)",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
-    "872": {
-      "name": "m_nWaitCount",
-      "type": "int",
-      "source": "ida_decomp:ExecuteOpcode if(this), this-1, 21 refs"
-    },
-    "884": {
-      "name": "m_pClearResult",
-      "type": "char *",
-      "source": "ida_decomp:ExecuteOpcode = Destroy(v2+64), 12 refs | fix:int_to_ptr",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
-    "3284": {
-      "name": "m_nField_CD4",
-      "type": "unsigned char",
-      "source": "binary:3x access"
-    },
-    "3288": {
-      "name": "m_nScreenEffect",
-      "type": "int",
-      "source": "ida_decomp:_init_44b0f0 = ProcessEffect(2), 4 refs"
-    },
-    "3292": {
-      "name": "m_nEffectTick",
-      "type": "int",
-      "source": "ida_decomp:_init_44b0f0 = TickCount, 2 refs"
-    },
-    "3296": {
-      "name": "m_nTickStamp",
-      "type": "int",
-      "source": "ida_decomp:_init_44b0f0 = TickCount, 3 refs"
-    },
-    "3300": {
-      "name": "m_bEffectInit",
-      "type": "unsigned char",
-      "source": "ida_decomp:_init_44b0f0 if(!this) set 1, 3 refs"
-    },
-    "3304": {
-      "name": "m_bEffectActive",
-      "type": "unsigned char",
-      "source": "ida_decomp:_init_44b0f0 set 0, if(this), 8 refs"
-    },
-    "156": {
-      "name": "m_nBlockEndAddr",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
-    },
-    "174": {
-      "name": "m_bExecuteBlock",
-      "type": "unsigned char",
-      "source": "binary:disp32_23hits_1funcs"
-    },
-    "175": {
-      "name": "m_bScriptPause",
-      "type": "unsigned char",
-      "source": "ida_decomp:ExecuteBlock if(!this) + toggle, 13 refs"
-    },
-    "209": {
-      "name": "m_bOpcodeFlag",
-      "type": "unsigned char",
-      "source": "ida_decomp:ExecuteOpcode = v2+60, ExecuteBlock = _bScriptPause, 9 refs"
-    },
-    "228": {
-      "name": "m_nExecRangeA",
-      "type": "int",
-      "source": "ida_decomp:ExecuteBlock this+228+this+236"
-    },
-    "232": {
-      "name": "m_nExecRangeB",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "236": {
-      "name": "m_nExecRangeC",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "240": {
-      "name": "m_nExecRangeD",
-      "type": "int",
-      "source": "ida_decomp:ExecuteBlock LODWORD(v129)=this"
-    },
-    "260": {
-      "name": "m_nCmdParam2",
-      "type": "int",
-      "source": "ida_decomp:ExecuteBlock param, also as float, 3 refs"
-    },
-    "308": {
-      "name": "m_fPrevPosX",
-      "type": "float",
-      "source": "ida_decomp:ExecuteBlock +320-this = deltaX"
-    },
-    "312": {
-      "name": "m_fPrevPosY",
-      "type": "float",
-      "source": "ida_decomp:ExecuteBlock +324-this = deltaY"
-    },
-    "316": {
-      "name": "m_nExecuteOpcode",
-      "type": "int",
-      "source": "binary:disp32_2hits_2funcs"
-    },
-    "534": {
-      "name": "m_bScriptByte",
-      "type": "unsigned char",
-      "source": "ida_decomp:if(this!=0xFF), 2 refs"
-    },
-    "540": {
-      "name": "m_fPosAY",
-      "type": "float",
-      "source": "ida_decomp:ExecuteBlock = this+552 + this, 3 refs"
-    },
-    "544": {
-      "name": "m_fPosAZ",
-      "type": "float",
-      "source": "ida_decomp:ExecuteBlock = this+556 + this, 3 refs"
-    },
-    "808": {
-      "name": "m_pCmdBuffer",
-      "type": "char *",
-      "source": "ida_decomp:PAL3_Helper_426E80(this,&a2) | type_fix:int→void*(naming+decomp)",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
-    "828": {
-      "name": "m_pSubScriptB",
-      "type": "PalScriptMgr *",
-      "source": "ida_decomp:ExecuteOpcode _sub_42FCC0(this), 12 refs+codegen_infer"
-    },
-    "836": {
-      "name": "m_nScriptCamY",
-      "type": "int",
-      "source": "fix:decomp_LODWORD_only_no_fpu"
-    },
-    "880": {
-      "name": "m_fDirNeg",
-      "type": "float",
-      "source": "ida_decomp:ExecuteBlock -this(negated)"
-    },
-    "1916": {
-      "name": "m_ctrlParabola",
-      "type": "int",
-      "source": "ida_decomp:UIParabolaCtrl::GetState(this)"
-    },
-    "2372": {
-      "name": "m_wndTextDisplay",
-      "type": "UIWnd *",
-      "source": "ida_decomp:UIWnd::SetEnable(this,Buffer,0)+codegen_infer"
-    },
-    "8460": {
-      "name": "m_nCapacity",
-      "type": "int",
-      "source": "ida_decomp:_init_44b0f0 loaded, >= compare, 3 refs"
-    },
-    "9488": {
-      "name": "m_pScriptInstA",
-      "type": "char *",
-      "source": "ida_decomp:Destroy(this)→+9500, 2 refs | type_fix:int→void*(destroy pattern)",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
-    "9492": {
-      "name": "m_pScriptInstD",
-      "type": "PalScriptMgr *",
-      "source": "ida_decomp:Destroy(this)→+9504, 2 refs+codegen_infer"
-    },
-    "9496": {
-      "name": "m_pScriptInstE",
-      "type": "char *",
-      "source": "ida_decomp:Destroy(this), 2 refs | type_fix:int→void*(destroy pattern)",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
-    "9500": {
-      "name": "m_nScriptResultA",
-      "type": "int",
-      "source": "ida_decomp:= Destroy(+9488), if+ClearAllScript, 3 refs"
-    },
-    "9504": {
-      "name": "m_nScriptResultB",
-      "type": "int",
-      "source": "ida_decomp:= Destroy(+9492), 2 refs"
-    },
-    "9508": {
-      "name": "m_nScriptResultC",
-      "type": "int",
-      "source": "ida_decomp:= 0, if+ClearAllScript, 2 refs"
-    },
-    "208": {
-      "name": "m_pSavedIndex",
-      "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast | annotate_todo"
-    },
-    "245": {
-      "name": "m_nTodo_0F5",
-      "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "246": {
-      "name": "m_bExecuteOpcode",
-      "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "247": {
-      "name": "m_nTodo_0F7",
-      "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "272": {
-      "name": "m_nTodo_110",
-      "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "274": {
-      "name": "m_nTodo_112",
-      "type": "short",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "276": {
-      "name": "m_Actor",
-      "type": "short",
-      "source": "raw_decomp:Hex-Rays_type_cast | name_from_Camera"
-    },
-    "278": {
-      "name": "m_nTodo_116",
-      "type": "short",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "280": {
-      "name": "m_nField_0118",
-      "type": "short",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "282": {
-      "name": "m_nTodo_11A",
-      "type": "unsigned char",
-      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
-    },
-    "564": {
-      "name": "m_bRunCommand",
-      "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "572": {
-      "name": "m_nTodo_23C",
-      "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "576": {
-      "name": "m_bInputBlock",
-      "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "580": {
-      "name": "m_bRoleLock",
-      "type": "int",
-      "source": "reverted_auto_semantic:3x_access|reverted:pseudo_semantic"
-    },
-    "852": {
-      "name": "m_fExecPosY",
-      "type": "float",
-      "source": "ida_decomp:ExecuteOpcode = y, 4 refs"
-    },
-    "856": {
-      "name": "m_fExecPosZ",
-      "type": "float",
-      "source": "ida_decomp:ExecuteOpcode = v53, 4 refs"
-    },
-    "860": {
-      "name": "m_nExecState2",
-      "type": "int",
-      "source": "ida_decomp:ExecuteOpcode = v55, 4 refs"
-    },
-    "888": {
-      "name": "m_nExecHandle",
-      "type": "int",
-      "source": "ida_decomp:*(this+222) loaded"
-    },
-    "160": {
-      "name": "m_pExecState",
-      "type": "void *",
-      "source": "A:0_fpu_in_14+_refs_all_mov_load_store"
-    },
-    "164": {
-      "name": "m_pVarContext",
-      "type": "int",
-      "source": "A:0_fpu_in_14+_refs_all_mov_load_store"
-    },
-    "168": {
-      "name": "m_szScriptFile",
-      "type": "char[6]",
-      "source": "fix:span=6_next_hits=4"
-    },
-    "200": {
-      "name": "m_nTodo_0C8",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "204": {
-      "name": "m_nSavedBlockNum",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access | annotate_todo"
-    },
-    "268": {
-      "name": "m_pRoleSystemCache",
-      "type": "RoleSystem *",
-      "source": "A+:decomp_assigned_from_m_pRoleSystem_in_UpdateScriptRoles"
-    },
-    "292": {
-      "name": "m_pSubScript",
-      "type": "char *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
-    "296": {
-      "name": "m_nScriptCount",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access | annotate_todo"
-    },
-    "492": {
-      "name": "m_fSpeed1",
-      "type": "float",
-      "source": "A:FPU_binary_evidence"
-    },
-    "526": {
-      "name": "m_nRoleIndex",
-      "type": "short",
-      "source": "gap_fill:ida_decomp_access | annotate_todo"
-    },
-    "528": {
-      "name": "m_fPosAYTarget",
-      "type": "float",
-      "source": "gap_fill:ida_decomp_access | annotate_todo"
-    },
-    "568": {
-      "name": "m_nTodo_238",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "788": {
-      "name": "m_pRoleSystem",
-      "type": "char *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
-    "876": {
-      "name": "m_pScriptInst",
-      "type": "char *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
-    "1908": {
-      "name": "m_nTodo_774",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "2364": {
-      "name": "m_nTodo_93C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "3276": {
-      "name": "m_nTodo_CCC",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "3280": {
-      "name": "m_pScreenEffect",
-      "type": "char *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
-    "8452": {
-      "name": "m_nCost",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access | annotate_todo"
-    },
-    "9480": {
-      "name": "m_pScriptInstB",
-      "type": "char *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
-    "9484": {
-      "name": "m_pScriptInstC",
-      "type": "char *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
-    "24": {
-      "name": "m_nTodo_018",
-      "type": "float",
-      "source": "reverted_auto_semantic:1x"
-    },
-    "28": {
-      "name": "m_nTodo_01C",
-      "type": "float",
-      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
-    },
-    "32": {
-      "name": "m_nTodo_020",
-      "type": "float",
-      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
-    },
-    "36": {
-      "name": "m_nTodo_024",
-      "type": "int",
-      "source": "reverted_auto_semantic:1x_access"
-    },
-    "96": {
-      "name": "m_nTodo_060",
-      "type": "int",
-      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
-    },
-    "100": {
-      "name": "m_nTodo_064",
-      "type": "int",
-      "source": "transfer_from_Camera_off_504"
-    },
-    "104": {
-      "name": "m_nTodo_068",
-      "type": "short",
-      "source": "A:66_prefix_word_access_in_class_method"
-    },
-    "108": {
-      "name": "m_nTodo_06C",
-      "type": "short",
-      "source": "A:66_prefix_word_access_in_class_method"
-    },
-    "112": {
-      "name": "m_nTodo_070",
-      "type": "int",
-      "source": "transfer_from_Camera_off_516"
-    },
-    "116": {
-      "name": "m_nTodo_074",
-      "type": "float",
-      "source": "A:FPU_disp8_in_class_method"
-    },
-    "120": {
-      "name": "m_nTodo_078",
-      "type": "int",
-      "source": "transfer_from_Camera_off_524"
-    },
-    "124": {
-      "name": "m_nTodo_07C",
-      "type": "float",
-      "source": "A:FPU_disp8_in_class_method"
-    },
-    "128": {
-      "name": "m_nExecParam",
-      "type": "int",
-      "source": "A:0_fpu_in_14+_refs_all_mov_load_store"
-    },
-    "132": {
-      "name": "m_vRolePos",
-      "type": "int",
-      "source": "transfer_from_Camera_off_536"
-    },
-    "136": {
-      "name": "m_fDefaultFOV",
-      "type": "float",
-      "source": "transfer_from_Camera_off_540"
-    },
-    "284": {
-      "name": "m_nTodo_11C",
-      "type": "int",
-      "source": "transfer_from_Camera_off_688"
-    },
-    "952": {
-      "name": "m_nState",
-      "type": "int",
-      "source": "transfer_from_Camera_off_1356"
-    },
-    "1052": {
-      "name": "m_bDirty",
-      "type": "int",
-      "source": "transfer_from_Camera_off_1456"
-    },
-    "148": {
-      "name": "m_nScriptIdx",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "152": {
-      "name": "m_pCurScriptBlock",
-      "type": "void *",
-      "source": "binary_scan:8refs"
-    },
-    "176": {
-      "name": "m_RoleAnimData",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "184": {
-      "name": "m_bRunning",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "188": {
-      "name": "m_bBlockActive",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "192": {
-      "name": "m_bBlockFlag",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "360": {
-      "name": "m_nField_0168",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "364": {
-      "name": "m_RolePos",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "376": {
-      "name": "m_RoleDir",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "388": {
-      "name": "m_nRoleState",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "392": {
-      "name": "m_RoleSubData",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "400": {
-      "name": "m_nRoleParam1",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "404": {
-      "name": "m_nRoleParam2",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "408": {
-      "name": "m_nRoleParam3",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "412": {
-      "name": "m_pRoleScript",
-      "type": "void *",
-      "source": "binary_scan:1refs"
-    },
-    "420": {
-      "name": "m_nField_01A4",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "448": {
-      "name": "m_pOpResult",
-      "type": "void *",
-      "source": "binary_scan:4refs"
-    },
-    "468": {
-      "name": "m_bTileType",
-      "type": "unsigned char",
-      "source": "binary:ida_refs"
-    },
-    "496": {
-      "name": "m_fSpeed2",
-      "type": "float",
-      "source": "binary_scan:1refs"
-    },
-    "628": {
-      "name": "m_pCaseTable",
-      "type": "void *",
-      "source": "binary_scan:8refs"
-    },
-    "632": {
-      "name": "m_nTodo_278",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "1144": {
-      "name": "m_nFrameState",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "1268": {
-      "name": "m_nOpType",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "1284": {
-      "name": "m_nCmdData",
-      "type": "int",
-      "source": "binary_scan:4refs"
-    },
-    "1296": {
-      "name": "m_fFramePosX",
-      "type": "int",
-      "source": "binary_scan:3refs"
-    },
-    "1300": {
-      "name": "m_fFramePosY",
-      "type": "int",
-      "source": "binary_scan:4refs"
-    },
-    "1304": {
-      "name": "m_fFramePosZ",
-      "type": "int",
-      "source": "binary_scan:3refs"
-    },
-    "1308": {
-      "name": "m_fFrameScale",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "1312": {
-      "name": "m_fFrameRot",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "1316": {
-      "name": "m_nFrameParam",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "1480": {
-      "name": "m_OpSubObj",
-      "type": "int",
-      "source": "binary_scan:3refs"
-    },
-    "1484": {
-      "name": "m_OpParam",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "1488": {
-      "name": "m_OpData",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "1500": {
-      "name": "m_OpBuffer",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "2000": {
-      "name": "m_nField_07D0",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "2412": {
-      "name": "m_nField_096C",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "2876": {
-      "name": "m_nField_0B3C",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "2932": {
-      "name": "m_nField_0B74",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "3076": {
-      "name": "m_nField_0C04",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "3172": {
-      "name": "m_nField_0C64",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "3184": {
-      "name": "m_nField_0C70",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "3305": {
-      "name": "m_nTodo_CE9",
-      "type": "unsigned char",
-      "source": "binary_scan:3refs"
-    },
-    "3696": {
-      "name": "m_nField_0E70",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "4028": {
-      "name": "m_RoleCmdCtx",
-      "type": "int",
-      "source": "binary_scan:11refs"
-    },
-    "4552": {
-      "name": "m_nTileFlags",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "4556": {
-      "name": "m_fTileHeight",
-      "type": "float",
-      "source": "binary_scan:2refs"
-    },
-    "5036": {
-      "name": "m_nField_13AC",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "5224": {
-      "name": "m_nField_1468",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "5264": {
-      "name": "m_nField_1490",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "5476": {
-      "name": "m_nField_1564",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "5628": {
-      "name": "m_nField_15FC",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "5672": {
-      "name": "m_nField_1628",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "6928": {
-      "name": "m_nField_1B10",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "7008": {
-      "name": "m_nField_1B60",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "7180": {
-      "name": "m_nField_1C0C",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "7572": {
-      "name": "m_nField_1D94",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "8692": {
-      "name": "m_fFrameTime",
-      "type": "float",
-      "source": "binary_scan:7refs"
-    },
-    "8696": {
-      "name": "m_fFrameDelta",
-      "type": "float",
-      "source": "binary_scan:5refs"
-    },
-    "8700": {
-      "name": "m_fFrameTotal",
-      "type": "float",
-      "source": "binary_scan:7refs"
-    }
+ "name": "PalScriptMgr",
+ "binary_size": 9512,
+ "known_members": {
+  "0": {
+   "name": "m_bGetSceneScript",
+   "type": "unsigned char",
+   "source": "annotation"
   },
-  "methods": {
-    "0x00431E60": {
-      "name": "PalScriptMgr",
-      "signature": "void __thiscall()"
-    },
-    "0x00431EB0": {
-      "name": "OpenSCE",
-      "signature": "void __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x00431EE0": {
-      "name": "FindScript",
-      "signature": "void __thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-    },
-    "0x004320A0": {
-      "name": "Update",
-      "signature": "void __cdecl(const char *pszName)",
-      "static": true
-    },
-    "0x00432170": {
-      "name": "Destroy",
-      "signature": "void __thiscall()"
-    },
-    "0x00432260": {
-      "name": "_CON_State",
-      "signature": "const char **__cdecl(const char *pszName)",
-      "static": true
-    },
-    "0x004322A0": {
-      "name": "IfAnyScriptRunning",
-      "signature": "bool __thiscall(int nVal)",
-      "source": "pdb_ret"
-    },
-    "0x004322C0": {
-      "name": "IsScriptRuning",
-      "signature": "int __thiscall(int pal)"
-    },
-    "0x004323C0": {
-      "name": "RunSceneScript",
-      "signature": "void __thiscall(const char *pszScene)"
-    },
-    "0x00432480": {
-      "name": "_CON_ReLoadScript",
-      "signature": "void __thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-    },
-    "0x004324A0": {
-      "name": "_CON_CloseScript",
-      "signature": "BOOL __thiscall()"
-    },
-    "0x004324B0": {
-      "name": "ClearAllScript",
-      "signature": "void __cdecl()",
-      "source": "pdb_ret",
-      "static": true
-    },
-    "0x00432500": {
-      "name": "FindScriptByDesc",
-      "signature": "int *__cdecl(const char *pszName, const char *desc)",
-      "static": true
-    },
-    "0x00432550": {
-      "name": "IfHaveScript",
-      "signature": "void __thiscall()"
-    },
-    "0x00434C40": {
-      "name": "NotifyEvent",
-      "signature": "void __cdecl()",
-      "static": true
-    },
-    "0x0042EBE0": {
-      "name": "ExecuteOpcode",
-      "signature": "int __thiscall()"
-    },
-    "0x00424C20": {
-      "name": "ExecuteBlock",
-      "signature": "void __thiscall()"
-    },
-    "0x00434CA0": {
-      "name": "InitVtable",
-      "signature": "void __thiscall()"
-    },
-    "0x0041BDE0": {
-      "name": "Get_result",
-      "signature": "int *__thiscall()"
-    },
-    "0x0042AF80": {
-      "name": "GetScriptState",
-      "signature": "char __thiscall()"
-    },
-    "0x0042B350": {
-      "name": "ProcessRoleLoading",
-      "signature": "void __thiscall()"
-    },
-    "0x0042BF90": {
-      "name": "ExecuteScriptByID",
-      "signature": "PalScriptMgr *__thiscall PalScriptMgr::ExecuteScriptByID()"
-    },
-    "0x0042BFE0": {
-      "name": "IsScriptReady",
-      "signature": "bool __thiscall()"
-    },
-    "0x0042E6C0": {
-      "name": "CmdRoleMoveDirect",
-      "signature": "int __thiscall PalScriptMgr::CmdRoleMoveDirect(unsigned __int8 pData)"
-    },
-    "0x0042FCC0": {
-      "name": "PopScript",
-      "signature": "void __thiscall()"
-    },
-    "0x00420B40": {
-      "name": "CheckTileScript",
-      "signature": "void __thiscall PalScriptMgr::CheckTileScript(RoleSystem *pRole, float fVal, char bExecute)"
-    },
-    "0x00429DB0": {
-      "name": "BuildCmdTransform",
-      "signature": "void __thiscall PalScriptMgr::BuildCmdTransform(gbMatrix4 *pMatrix)"
-    },
-    "0x0042B5B0": {
-      "name": "UpdateScriptRoles",
-      "signature": "double __thiscall(double thisa, int nVal, int nVal2)"
-    },
-    "0x0042BEF0": {
-      "name": "HandleGetItem",
-      "signature": "void __cdecl PalScriptMgr::HandleGetItem(int nSkillGDBID)",
-      "static": true
-    },
-    "0x0042C280": {
-      "name": "LoadSceneGeometry",
-      "signature": "struct gbVFileSystem *__thiscall PalScriptMgr::LoadSceneGeometry(char bNoPol)"
-    },
-    "0x0042CF60": {
-      "name": "CmdPushCmd04",
-      "signature": "int __thiscall PalScriptMgr::CmdPushCmd04(int nVal, unsigned __int8 pData)"
-    },
-    "0x0042D130": {
-      "name": "CmdPushCmd05",
-      "signature": "int __thiscall PalScriptMgr::CmdPushCmd05(unsigned __int8 pData)"
-    },
-    "0x0042D2F0": {
-      "name": "CmdPushCmd07",
-      "signature": "int __thiscall PalScriptMgr::CmdPushCmd07(unsigned __int8 pData)"
-    },
-    "0x0042D830": {
-      "name": "CmdPushCmd10",
-      "signature": "int __thiscall PalScriptMgr::CmdPushCmd10(unsigned __int8 pData)"
-    },
-    "0x0042F460": {
-      "name": "ExecuteFrame",
-      "signature": "void __thiscall(float fVal)"
-    },
-    "0x0042FB40": {
-      "name": "SetBigMapState",
-      "signature": "char __thiscall PalScriptMgr::SetBigMapState(char nState)"
-    },
-    "0x00450BC0": {
-      "name": "ShowTextBox",
-      "signature": "int __thiscall PalScriptMgr::ShowTextBox(const char *pszText)"
-    },
-    "0x00410920": {
-      "name": "LoadYlfScript",
-      "signature": "int *__thiscall PalScriptMgr::LoadYlfScript()"
-    },
-    "0x0042AAE0": {
-      "name": "CheckTileCollision",
-      "signature": "BOOL __thiscall PalScriptMgr::CheckTileCollision(int *pnVal, int nVal, struct gbVec3D *p)"
-    },
-    "0x0042BEA0": {
-      "name": "OnAnimFinish",
-      "signature": "void __thiscall PalScriptMgr::OnAnimFinish()"
-    },
-    "0x0042C030": {
-      "name": "SetPauseState",
-      "signature": "void __thiscall PalScriptMgr::SetPauseState(int bPause)"
-    },
-    "0x0042DF30": {
-      "name": "CmdPushCmd14",
-      "signature": "int __thiscall PalScriptMgr::CmdPushCmd14(int nVal, unsigned __int8 pData)"
-    },
-    "0x0042E100": {
-      "name": "CmdPushCmd15",
-      "signature": "int __thiscall PalScriptMgr::CmdPushCmd15(unsigned __int8 pData)"
-    },
-    "0x0042E2C0": {
-      "name": "CmdCameraOrbitPos",
-      "signature": "char *__thiscall PalScriptMgr::CmdCameraOrbitPos(int nVal, float fVal, float fVal2, unsigned __int8 pData)"
-    },
-    "0x0042E4D0": {
-      "name": "CmdRoleMoveSmooth",
-      "signature": "int __thiscall PalScriptMgr::CmdRoleMoveSmooth(int nVal, unsigned __int8 pData)"
-    },
-    "0x00429D80": {
-      "name": "InitControlBlock",
-      "signature": "int __thiscall PalScriptMgr::InitControlBlock()"
-    },
-    "0x00429F90": {
-      "name": "BuildFullTransform",
-      "signature": "void __thiscall PalScriptMgr::BuildFullTransform(gbMatrix4 *pMatrix, struct gbVec3D *pPos)"
-    },
-    "0x0042AC80": {
-      "name": "CmdUpdateRolePath",
-      "signature": "int __thiscall PalScriptMgr::CmdUpdateRolePath(float *pfVal, float *pfVal2)"
-    },
-    "0x0042AFA0": {
-      "name": "SaveExecutionState",
-      "signature": "int __thiscall PalScriptMgr::SaveExecutionState()"
-    },
-    "0x0042B450": {
-      "name": "IsPosInBounds",
-      "signature": "BOOL __thiscall PalScriptMgr::IsPosInBounds(float *pfPos)"
-    },
-    "0x0042C3A0": {
-      "name": "IsInputBlocked",
-      "signature": "bool __thiscall PalScriptMgr::IsInputBlocked()"
-    },
-    "0x00434CC0": {
-      "name": "IsWaitComplete",
-      "signature": "BOOL __thiscall PalScriptMgr::IsWaitComplete()",
-      "ordinal": 1
-    },
-    "0x00434D20": {
-      "name": "IsBlendComplete",
-      "signature": "BOOL __thiscall()",
-      "ordinal": 4
-    },
-    "0x00434D40": {
-      "name": "AccumulateTime",
-      "signature": "void __thiscall PalScriptMgr::AccumulateTime(float fDelta)",
-      "ordinal": 5
-    },
-    "0x00434C80": {
-      "name": "UpdateLoadProgress",
-      "signature": "void * __cdecl PalScriptMgr::UpdateLoadProgress()",
-      "static": true
-    },
-    "0x004100A0": {
-      "name": "RunScript",
-      "signature": "int __cdecl(int nVal, int nVal2, int nVal3)",
-      "static": true
-    },
-    "0x0042C440": {
-      "name": "RunCommand",
-      "signature": "void __thiscall()"
-    }
+  "4": {
+   "name": "m_script",
+   "type": "PtrArray",
+   "source": "gen_headers_9.2"
   },
-  "vtables": [
+  "20": {
+   "name": "m_scefile",
+   "type": "scSCEFile *",
+   "source": "fix:span=4_next_hits=22_ptr"
+  },
+  "48": {
+   "name": "m_fCamZ",
+   "type": "float",
+   "source": "A:decomp PalScriptMgr::ExecuteFrame (0x42F460) used as float camera Z along m_fCamX/m_fCamY — 5 accesses: lerp, LODWORD copy, float addition"
+  },
+  "76": {
+   "name": "m_scepath",
+   "type": "scSCEFile *",
+   "source": "A:decomp LODWORD(this->m_scepath)=this->m_scesys where m_scesys is scSCEFile*"
+  },
+  "80": {
+   "name": "m_bBigMapState",
+   "type": "unsigned char",
+   "source": "A:decomp PalScriptMgr::ExecuteFrame LOBYTE(this->m_bigMapState) compare to 0/1 + SetBigMapState LOBYTE assignment — byte-only access"
+  },
+  "40": {
+   "name": "m_fCamX",
+   "type": "float",
+   "source": "binary:raw_31votes"
+  },
+  "44": {
+   "name": "m_fCamY",
+   "type": "float",
+   "source": "binary:raw_29votes"
+  },
+  "56": {
+   "name": "m_nFrameCounter",
+   "type": "int",
+   "source": "binary:raw_14votes | decomp:counter_in_SetPauseState_ExecuteBlock"
+  },
+  "60": {
+   "name": "m_fField3C",
+   "type": "float",
+   "source": "binary:raw_12votes"
+  },
+  "64": {
+   "name": "m_pBigMapSce",
+   "type": "scSCEFile *",
+   "source": "A:decomp LODWORD(this->m_fField40)=this->m_scesys where m_scesys is scSCEFile* | decomp:assigned_from_m_scesys_and_m_nSavedDataB"
+  },
+  "68": {
+   "name": "m_fField44",
+   "type": "float",
+   "source": "binary:raw_14votes | decomp:Normalize_called_on_this_field"
+  },
+  "72": {
+   "name": "m_fPosZ",
+   "type": "float",
+   "source": "binary:raw_18votes | decomp:used_as_Z_coord_in_ExecuteBlock"
+  },
+  "84": {
+   "name": "m_nTodo_054",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "88": {
+   "name": "m_nTodo_058",
+   "type": "int",
+   "source": "binary:raw_5votes"
+  },
+  "92": {
+   "name": "m_pExecSystem",
+   "type": "char *",
+   "source": "binary:raw_7votes | fix:int_to_ptr",
+   "note": "replaced void* with char* (IDB struct compat)"
+  },
+  "52": {
+   "name": "m_Sub_0034",
+   "type": "int",
+   "source": "binary:raw_final"
+  },
+  "212": {
+   "name": "m_nExecuteBlock",
+   "type": "int",
+   "source": "binary:6x access"
+  },
+  "216": {
+   "name": "m_nSavedDataA",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "220": {
+   "name": "m_nSavedDataB",
+   "type": "int",
+   "source": "ida_decomp:ExecuteBlock *64 = *220, 16 refs"
+  },
+  "224": {
+   "name": "m_fAngle",
+   "type": "float",
+   "source": "binary:3x access"
+  },
+  "244": {
+   "name": "m_nCmdType",
+   "type": "unsigned char",
+   "source": "ida_decomp:RunCommand/ExecuteBlock switch(this), 11 refs"
+  },
+  "248": {
+   "name": "m_nCmdValue",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "252": {
+   "name": "m_nCmdParam0",
+   "type": "short",
+   "source": "A:66_prefix_word_access_in_class_method"
+  },
+  "256": {
+   "name": "m_nCmdParam1",
+   "type": "short",
+   "source": "A:66_prefix_word_access_in_class_method"
+  },
+  "264": {
+   "name": "m_nExecCounter",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "300": {
+   "name": "m_pScriptObj",
+   "type": "PalScriptMgr *",
+   "source": "ida_decomp:ExecuteBlock Destroy(this), if(this), 10 refs+codegen_infer"
+  },
+  "304": {
+   "name": "m_nScriptDepth",
+   "type": "int",
+   "source": "ida_decomp:ExecuteOpcode +1, >0 check, 4 refs"
+  },
+  "320": {
+   "name": "m_fExecuteBlock",
+   "type": "float",
+   "source": "binary:1x access"
+  },
+  "324": {
+   "name": "m_fCurPosY",
+   "type": "float",
+   "source": "ida_decomp:ExecuteBlock this - +312"
+  },
+  "328": {
+   "name": "m_fAnimSpeed",
+   "type": "float",
+   "source": "binary:1x access"
+  },
+  "500": {
+   "name": "m_nScriptID",
+   "type": "short",
+   "source": "ida_decomp:ExecScript_42bf90 ==0xFFFF sentinel"
+  },
+  "536": {
+   "name": "m_fPosAX",
+   "type": "float",
+   "source": "ida_decomp:ExecuteBlock = this+548 + this, 3 refs"
+  },
+  "548": {
+   "name": "m_fPosBX",
+   "type": "float",
+   "source": "ida_decomp:ExecuteBlock added to posA, 3 refs"
+  },
+  "552": {
+   "name": "m_fPosBY",
+   "type": "float",
+   "source": "ida_decomp:ExecuteBlock added to posA, 3 refs"
+  },
+  "556": {
+   "name": "m_fPosBZ",
+   "type": "float",
+   "source": "ida_decomp:ExecuteBlock added to posA, 3 refs"
+  },
+  "560": {
+   "name": "m_nMatrixData",
+   "type": "int",
+   "source": "binary:1x access"
+  },
+  "792": {
+   "name": "m_nBlockHandle",
+   "type": "int",
+   "source": "ida_decomp:loaded in ExecuteOpcode"
+  },
+  "796": {
+   "name": "m_pSceneMgr",
+   "type": "RoleSystem *",
+   "source": "ida_decomp:ExecuteOpcode GetRolePtr(*(this+16)), 33 refs+codegen_infer"
+  },
+  "800": {
+   "name": "m_bRoleCmd",
+   "type": "unsigned char",
+   "source": "binary:3x access"
+  },
+  "804": {
+   "name": "m_nExecState",
+   "type": "int",
+   "source": "ida_decomp:ExecuteBlock = 1/2, 8 refs"
+  },
+  "812": {
+   "name": "m_nLoopCountA",
+   "type": "int",
+   "source": "ida_decomp:this-1, decrement"
+  },
+  "816": {
+   "name": "m_nLoopCountB",
+   "type": "int",
+   "source": "ida_decomp:this+1, increment"
+  },
+  "820": {
+   "name": "m_nLoopCountC",
+   "type": "int",
+   "source": "ida_decomp:this+1, increment"
+  },
+  "824": {
+   "name": "m_nSavedPosX",
+   "type": "int",
+   "source": "binary:2x access | annotate_todo"
+  },
+  "832": {
+   "name": "m_nScriptCamX",
+   "type": "int",
+   "source": "fix:decomp_LODWORD_only_no_fpu"
+  },
+  "840": {
+   "name": "m_pScriptBlock",
+   "type": "char *",
+   "source": "ida_decomp:ExecuteOpcode = this+76, 11 refs | type_fix:int→void*(decomp ptr usage)",
+   "note": "replaced void* with char* (IDB struct compat)"
+  },
+  "844": {
+   "name": "m_pExecObj",
+   "type": "char *",
+   "source": "ida_decomp:ExecuteOpcode deref as void***, 12 refs | type_fix:int→void*(triple deref)",
+   "note": "replaced void* with char* (IDB struct compat)"
+  },
+  "848": {
+   "name": "m_fExecParam",
+   "type": "float",
+   "source": "ida_decomp:ExecuteOpcode = v52/v39, 8 refs"
+  },
+  "864": {
+   "name": "m_pWaitObj",
+   "type": "char *",
+   "source": "ida_decomp:ExecuteOpcode deref as void**, 4 refs | type_fix:int→void*(double deref)",
+   "note": "replaced void* with char* (IDB struct compat)"
+  },
+  "872": {
+   "name": "m_nWaitCount",
+   "type": "int",
+   "source": "ida_decomp:ExecuteOpcode if(this), this-1, 21 refs"
+  },
+  "884": {
+   "name": "m_pClearResult",
+   "type": "char *",
+   "source": "ida_decomp:ExecuteOpcode = Destroy(v2+64), 12 refs | fix:int_to_ptr",
+   "note": "replaced void* with char* (IDB struct compat)"
+  },
+  "3284": {
+   "name": "m_nField_CD4",
+   "type": "unsigned char",
+   "source": "binary:3x access"
+  },
+  "3288": {
+   "name": "m_nScreenEffect",
+   "type": "int",
+   "source": "ida_decomp:_init_44b0f0 = ProcessEffect(2), 4 refs"
+  },
+  "3292": {
+   "name": "m_nEffectTick",
+   "type": "int",
+   "source": "ida_decomp:_init_44b0f0 = TickCount, 2 refs"
+  },
+  "3296": {
+   "name": "m_nTickStamp",
+   "type": "int",
+   "source": "ida_decomp:_init_44b0f0 = TickCount, 3 refs"
+  },
+  "3300": {
+   "name": "m_bEffectInit",
+   "type": "unsigned char",
+   "source": "ida_decomp:_init_44b0f0 if(!this) set 1, 3 refs"
+  },
+  "3304": {
+   "name": "m_bEffectActive",
+   "type": "unsigned char",
+   "source": "ida_decomp:_init_44b0f0 set 0, if(this), 8 refs"
+  },
+  "156": {
+   "name": "m_nBlockEndAddr",
+   "type": "int",
+   "source": "binary:disp32_1hits_1funcs"
+  },
+  "174": {
+   "name": "m_bExecuteBlock",
+   "type": "unsigned char",
+   "source": "binary:disp32_23hits_1funcs"
+  },
+  "175": {
+   "name": "m_bScriptPause",
+   "type": "unsigned char",
+   "source": "ida_decomp:ExecuteBlock if(!this) + toggle, 13 refs"
+  },
+  "209": {
+   "name": "m_bOpcodeFlag",
+   "type": "unsigned char",
+   "source": "ida_decomp:ExecuteOpcode = v2+60, ExecuteBlock = _bScriptPause, 9 refs"
+  },
+  "228": {
+   "name": "m_nExecRangeA",
+   "type": "int",
+   "source": "ida_decomp:ExecuteBlock this+228+this+236"
+  },
+  "232": {
+   "name": "m_nExecRangeB",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "236": {
+   "name": "m_nExecRangeC",
+   "type": "int",
+   "source": "B:naming_m_n+FPU_misattrib"
+  },
+  "240": {
+   "name": "m_nExecRangeD",
+   "type": "int",
+   "source": "ida_decomp:ExecuteBlock LODWORD(v129)=this"
+  },
+  "260": {
+   "name": "m_nCmdParam2",
+   "type": "int",
+   "source": "ida_decomp:ExecuteBlock param, also as float, 3 refs"
+  },
+  "308": {
+   "name": "m_fPrevPosX",
+   "type": "float",
+   "source": "ida_decomp:ExecuteBlock +320-this = deltaX"
+  },
+  "312": {
+   "name": "m_fPrevPosY",
+   "type": "float",
+   "source": "ida_decomp:ExecuteBlock +324-this = deltaY"
+  },
+  "316": {
+   "name": "m_nExecuteOpcode",
+   "type": "int",
+   "source": "binary:disp32_2hits_2funcs"
+  },
+  "534": {
+   "name": "m_bScriptByte",
+   "type": "unsigned char",
+   "source": "ida_decomp:if(this!=0xFF), 2 refs"
+  },
+  "540": {
+   "name": "m_fPosAY",
+   "type": "float",
+   "source": "ida_decomp:ExecuteBlock = this+552 + this, 3 refs"
+  },
+  "544": {
+   "name": "m_fPosAZ",
+   "type": "float",
+   "source": "ida_decomp:ExecuteBlock = this+556 + this, 3 refs"
+  },
+  "808": {
+   "name": "m_pCmdBuffer",
+   "type": "char *",
+   "source": "ida_decomp:PAL3_Helper_426E80(this,&a2) | type_fix:int→void*(naming+decomp)",
+   "note": "replaced void* with char* (IDB struct compat)"
+  },
+  "828": {
+   "name": "m_pSubScriptB",
+   "type": "PalScriptMgr *",
+   "source": "ida_decomp:ExecuteOpcode _sub_42FCC0(this), 12 refs+codegen_infer"
+  },
+  "836": {
+   "name": "m_nScriptCamY",
+   "type": "int",
+   "source": "fix:decomp_LODWORD_only_no_fpu"
+  },
+  "880": {
+   "name": "m_fDirNeg",
+   "type": "float",
+   "source": "ida_decomp:ExecuteBlock -this(negated)"
+  },
+  "1916": {
+   "name": "m_ctrlParabola",
+   "type": "int",
+   "source": "ida_decomp:UIParabolaCtrl::GetState(this)"
+  },
+  "2372": {
+   "name": "m_wndTextDisplay",
+   "type": "UIWnd *",
+   "source": "ida_decomp:UIWnd::SetEnable(this,Buffer,0)+codegen_infer"
+  },
+  "8460": {
+   "name": "m_nCapacity",
+   "type": "int",
+   "source": "ida_decomp:_init_44b0f0 loaded, >= compare, 3 refs"
+  },
+  "9488": {
+   "name": "m_pScriptInstA",
+   "type": "char *",
+   "source": "ida_decomp:Destroy(this)→+9500, 2 refs | type_fix:int→void*(destroy pattern)",
+   "note": "replaced void* with char* (IDB struct compat)"
+  },
+  "9492": {
+   "name": "m_pScriptInstD",
+   "type": "PalScriptMgr *",
+   "source": "ida_decomp:Destroy(this)→+9504, 2 refs+codegen_infer"
+  },
+  "9496": {
+   "name": "m_pScriptInstE",
+   "type": "char *",
+   "source": "ida_decomp:Destroy(this), 2 refs | type_fix:int→void*(destroy pattern)",
+   "note": "replaced void* with char* (IDB struct compat)"
+  },
+  "9500": {
+   "name": "m_nScriptResultA",
+   "type": "int",
+   "source": "ida_decomp:= Destroy(+9488), if+ClearAllScript, 3 refs"
+  },
+  "9504": {
+   "name": "m_nScriptResultB",
+   "type": "int",
+   "source": "ida_decomp:= Destroy(+9492), 2 refs"
+  },
+  "9508": {
+   "name": "m_nScriptResultC",
+   "type": "int",
+   "source": "ida_decomp:= 0, if+ClearAllScript, 2 refs"
+  },
+  "208": {
+   "name": "m_pSavedIndex",
+   "type": "unsigned char",
+   "source": "raw_decomp:Hex-Rays_type_cast | annotate_todo"
+  },
+  "245": {
+   "name": "m_nTodo_0F5",
+   "type": "unsigned char",
+   "source": "raw_decomp:Hex-Rays_type_cast"
+  },
+  "246": {
+   "name": "m_bExecuteOpcode",
+   "type": "unsigned char",
+   "source": "raw_decomp:Hex-Rays_type_cast"
+  },
+  "247": {
+   "name": "m_nTodo_0F7",
+   "type": "unsigned char",
+   "source": "raw_decomp:Hex-Rays_type_cast"
+  },
+  "272": {
+   "name": "m_nTodo_110",
+   "type": "unsigned char",
+   "source": "raw_decomp:Hex-Rays_type_cast"
+  },
+  "274": {
+   "name": "m_nTodo_112",
+   "type": "short",
+   "source": "raw_decomp:Hex-Rays_type_cast"
+  },
+  "276": {
+   "name": "m_Actor",
+   "type": "short",
+   "source": "raw_decomp:Hex-Rays_type_cast | name_from_Camera"
+  },
+  "278": {
+   "name": "m_nTodo_116",
+   "type": "short",
+   "source": "raw_decomp:Hex-Rays_type_cast"
+  },
+  "280": {
+   "name": "m_nField_0118",
+   "type": "short",
+   "source": "raw_decomp:Hex-Rays_type_cast"
+  },
+  "282": {
+   "name": "m_nTodo_11A",
+   "type": "unsigned char",
+   "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
+  },
+  "564": {
+   "name": "m_bRunCommand",
+   "type": "unsigned char",
+   "source": "raw_decomp:Hex-Rays_type_cast"
+  },
+  "572": {
+   "name": "m_nTodo_23C",
+   "type": "int",
+   "source": "raw_decomp:Hex-Rays_type_cast"
+  },
+  "576": {
+   "name": "m_bInputBlock",
+   "type": "int",
+   "source": "raw_decomp:Hex-Rays_type_cast"
+  },
+  "580": {
+   "name": "m_bRoleLock",
+   "type": "int",
+   "source": "reverted_auto_semantic:3x_access|reverted:pseudo_semantic"
+  },
+  "852": {
+   "name": "m_fExecPosY",
+   "type": "float",
+   "source": "ida_decomp:ExecuteOpcode = y, 4 refs"
+  },
+  "856": {
+   "name": "m_fExecPosZ",
+   "type": "float",
+   "source": "ida_decomp:ExecuteOpcode = v53, 4 refs"
+  },
+  "860": {
+   "name": "m_nExecState2",
+   "type": "int",
+   "source": "ida_decomp:ExecuteOpcode = v55, 4 refs"
+  },
+  "888": {
+   "name": "m_nExecHandle",
+   "type": "int",
+   "source": "ida_decomp:*(this+222) loaded"
+  },
+  "160": {
+   "name": "m_pExecState",
+   "type": "void *",
+   "source": "A:0_fpu_in_14+_refs_all_mov_load_store"
+  },
+  "164": {
+   "name": "m_pVarContext",
+   "type": "int",
+   "source": "A:0_fpu_in_14+_refs_all_mov_load_store"
+  },
+  "168": {
+   "name": "m_szScriptFile",
+   "type": "char[6]",
+   "source": "fix:span=6_next_hits=4"
+  },
+  "200": {
+   "name": "m_nTodo_0C8",
+   "type": "int",
+   "source": "gap_fill:ida_decomp_access"
+  },
+  "204": {
+   "name": "m_nSavedBlockNum",
+   "type": "int",
+   "source": "gap_fill:ida_decomp_access | annotate_todo"
+  },
+  "268": {
+   "name": "m_pRoleSystemCache",
+   "type": "RoleSystem *",
+   "source": "A+:decomp_assigned_from_m_pRoleSystem_in_UpdateScriptRoles"
+  },
+  "292": {
+   "name": "m_pSubScript",
+   "type": "char *",
+   "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
+   "note": "replaced void* with char* (IDB struct compat)"
+  },
+  "296": {
+   "name": "m_nScriptCount",
+   "type": "int",
+   "source": "gap_fill:ida_decomp_access | annotate_todo"
+  },
+  "492": {
+   "name": "m_fSpeed1",
+   "type": "float",
+   "source": "A:FPU_binary_evidence"
+  },
+  "526": {
+   "name": "m_nRoleIndex",
+   "type": "short",
+   "source": "gap_fill:ida_decomp_access | annotate_todo"
+  },
+  "528": {
+   "name": "m_fPosAYTarget",
+   "type": "float",
+   "source": "gap_fill:ida_decomp_access | annotate_todo"
+  },
+  "568": {
+   "name": "m_nTodo_238",
+   "type": "int",
+   "source": "gap_fill:ida_decomp_access"
+  },
+  "788": {
+   "name": "m_pRoleSystem",
+   "type": "char *",
+   "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
+   "note": "replaced void* with char* (IDB struct compat)"
+  },
+  "876": {
+   "name": "m_pScriptInst",
+   "type": "char *",
+   "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
+   "note": "replaced void* with char* (IDB struct compat)"
+  },
+  "1908": {
+   "name": "m_nTodo_774",
+   "type": "int",
+   "source": "gap_fill:ida_decomp_access"
+  },
+  "2364": {
+   "name": "m_nTodo_93C",
+   "type": "int",
+   "source": "gap_fill:ida_decomp_access"
+  },
+  "3276": {
+   "name": "m_nTodo_CCC",
+   "type": "int",
+   "source": "gap_fill:ida_decomp_access"
+  },
+  "3280": {
+   "name": "m_pScreenEffect",
+   "type": "char *",
+   "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
+   "note": "replaced void* with char* (IDB struct compat)"
+  },
+  "8452": {
+   "name": "m_nCost",
+   "type": "int",
+   "source": "gap_fill:ida_decomp_access | annotate_todo"
+  },
+  "9480": {
+   "name": "m_pScriptInstB",
+   "type": "char *",
+   "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
+   "note": "replaced void* with char* (IDB struct compat)"
+  },
+  "9484": {
+   "name": "m_pScriptInstC",
+   "type": "char *",
+   "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
+   "note": "replaced void* with char* (IDB struct compat)"
+  },
+  "24": {
+   "name": "m_nTodo_018",
+   "type": "float",
+   "source": "reverted_auto_semantic:1x"
+  },
+  "28": {
+   "name": "m_nTodo_01C",
+   "type": "float",
+   "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
+  },
+  "32": {
+   "name": "m_nTodo_020",
+   "type": "float",
+   "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
+  },
+  "36": {
+   "name": "m_nTodo_024",
+   "type": "int",
+   "source": "reverted_auto_semantic:1x_access"
+  },
+  "96": {
+   "name": "m_nTodo_060",
+   "type": "int",
+   "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
+  },
+  "100": {
+   "name": "m_nTodo_064",
+   "type": "int",
+   "source": "transfer_from_Camera_off_504"
+  },
+  "104": {
+   "name": "m_nTodo_068",
+   "type": "short",
+   "source": "A:66_prefix_word_access_in_class_method"
+  },
+  "108": {
+   "name": "m_nTodo_06C",
+   "type": "short",
+   "source": "A:66_prefix_word_access_in_class_method"
+  },
+  "112": {
+   "name": "m_nTodo_070",
+   "type": "int",
+   "source": "transfer_from_Camera_off_516"
+  },
+  "116": {
+   "name": "m_nTodo_074",
+   "type": "float",
+   "source": "A:FPU_disp8_in_class_method"
+  },
+  "120": {
+   "name": "m_nTodo_078",
+   "type": "int",
+   "source": "transfer_from_Camera_off_524"
+  },
+  "124": {
+   "name": "m_nTodo_07C",
+   "type": "float",
+   "source": "A:FPU_disp8_in_class_method"
+  },
+  "128": {
+   "name": "m_nExecParam",
+   "type": "int",
+   "source": "A:0_fpu_in_14+_refs_all_mov_load_store"
+  },
+  "132": {
+   "name": "m_vRolePos",
+   "type": "int",
+   "source": "transfer_from_Camera_off_536"
+  },
+  "136": {
+   "name": "m_fDefaultFOV",
+   "type": "float",
+   "source": "transfer_from_Camera_off_540"
+  },
+  "284": {
+   "name": "m_nTodo_11C",
+   "type": "int",
+   "source": "transfer_from_Camera_off_688"
+  },
+  "952": {
+   "name": "m_nState",
+   "type": "int",
+   "source": "transfer_from_Camera_off_1356"
+  },
+  "1052": {
+   "name": "m_bDirty",
+   "type": "int",
+   "source": "transfer_from_Camera_off_1456"
+  },
+  "148": {
+   "name": "m_nScriptIdx",
+   "type": "int",
+   "source": "binary_scan:2refs"
+  },
+  "152": {
+   "name": "m_pCurScriptBlock",
+   "type": "void *",
+   "source": "binary_scan:8refs"
+  },
+  "176": {
+   "name": "m_RoleAnimData",
+   "type": "int",
+   "source": "binary_scan:2refs"
+  },
+  "184": {
+   "name": "m_bRunning",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "188": {
+   "name": "m_bBlockActive",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "192": {
+   "name": "m_bBlockFlag",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "360": {
+   "name": "m_nField_0168",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "364": {
+   "name": "m_RolePos",
+   "type": "int",
+   "source": "binary_scan:2refs"
+  },
+  "376": {
+   "name": "m_RoleDir",
+   "type": "int",
+   "source": "binary_scan:2refs"
+  },
+  "388": {
+   "name": "m_nRoleState",
+   "type": "int",
+   "source": "binary_scan:2refs"
+  },
+  "392": {
+   "name": "m_RoleSubData",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "400": {
+   "name": "m_nRoleParam1",
+   "type": "int",
+   "source": "binary_scan:2refs"
+  },
+  "404": {
+   "name": "m_nRoleParam2",
+   "type": "int",
+   "source": "binary_scan:2refs"
+  },
+  "408": {
+   "name": "m_nRoleParam3",
+   "type": "int",
+   "source": "binary_scan:2refs"
+  },
+  "412": {
+   "name": "m_pRoleScript",
+   "type": "void *",
+   "source": "binary_scan:1refs"
+  },
+  "420": {
+   "name": "m_nField_01A4",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "448": {
+   "name": "m_pOpResult",
+   "type": "void *",
+   "source": "binary_scan:4refs"
+  },
+  "468": {
+   "name": "m_bTileType",
+   "type": "unsigned char",
+   "source": "binary:ida_refs"
+  },
+  "496": {
+   "name": "m_fSpeed2",
+   "type": "float",
+   "source": "binary_scan:1refs"
+  },
+  "628": {
+   "name": "m_pCaseTable",
+   "type": "void *",
+   "source": "binary_scan:8refs"
+  },
+  "632": {
+   "name": "m_nTodo_278",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "1144": {
+   "name": "m_nFrameState",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "1268": {
+   "name": "m_nOpType",
+   "type": "int",
+   "source": "binary_scan:2refs"
+  },
+  "1284": {
+   "name": "m_nCmdData",
+   "type": "int",
+   "source": "binary_scan:4refs"
+  },
+  "1296": {
+   "name": "m_fFramePosX",
+   "type": "int",
+   "source": "binary_scan:3refs"
+  },
+  "1300": {
+   "name": "m_fFramePosY",
+   "type": "int",
+   "source": "binary_scan:4refs"
+  },
+  "1304": {
+   "name": "m_fFramePosZ",
+   "type": "int",
+   "source": "binary_scan:3refs"
+  },
+  "1308": {
+   "name": "m_fFrameScale",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "1312": {
+   "name": "m_fFrameRot",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "1316": {
+   "name": "m_nFrameParam",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "1480": {
+   "name": "m_OpSubObj",
+   "type": "int",
+   "source": "binary_scan:3refs"
+  },
+  "1484": {
+   "name": "m_OpParam",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "1488": {
+   "name": "m_OpData",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "1500": {
+   "name": "m_OpBuffer",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "2000": {
+   "name": "m_nField_07D0",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "2412": {
+   "name": "m_nField_096C",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "2876": {
+   "name": "m_nField_0B3C",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "2932": {
+   "name": "m_nField_0B74",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "3076": {
+   "name": "m_nField_0C04",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "3172": {
+   "name": "m_nField_0C64",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "3184": {
+   "name": "m_nField_0C70",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "3305": {
+   "name": "m_nTodo_CE9",
+   "type": "unsigned char",
+   "source": "binary_scan:3refs"
+  },
+  "3696": {
+   "name": "m_nField_0E70",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "4028": {
+   "name": "m_RoleCmdCtx",
+   "type": "int",
+   "source": "binary_scan:11refs"
+  },
+  "4552": {
+   "name": "m_nTileFlags",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "4556": {
+   "name": "m_fTileHeight",
+   "type": "float",
+   "source": "binary_scan:2refs"
+  },
+  "5036": {
+   "name": "m_nField_13AC",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "5224": {
+   "name": "m_nField_1468",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "5264": {
+   "name": "m_nField_1490",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "5476": {
+   "name": "m_nField_1564",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "5628": {
+   "name": "m_nField_15FC",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "5672": {
+   "name": "m_nField_1628",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "6928": {
+   "name": "m_nField_1B10",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "7008": {
+   "name": "m_nField_1B60",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "7180": {
+   "name": "m_nField_1C0C",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "7572": {
+   "name": "m_nField_1D94",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "8692": {
+   "name": "m_fFrameTime",
+   "type": "float",
+   "source": "binary_scan:7refs"
+  },
+  "8696": {
+   "name": "m_fFrameDelta",
+   "type": "float",
+   "source": "binary_scan:5refs"
+  },
+  "8700": {
+   "name": "m_fFrameTotal",
+   "type": "float",
+   "source": "binary_scan:7refs"
+  }
+ },
+ "methods": {
+  "0x00431E60": {
+   "name": "PalScriptMgr",
+   "signature": "void __thiscall()"
+  },
+  "0x00431EB0": {
+   "name": "OpenSCE",
+   "signature": "void __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x00431EE0": {
+   "name": "FindScript",
+   "signature": "void __thiscall()",
+   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+  },
+  "0x004320A0": {
+   "name": "Update",
+   "signature": "void __cdecl(const char *pszName)",
+   "static": true
+  },
+  "0x00432170": {
+   "name": "Destroy",
+   "signature": "void __thiscall()"
+  },
+  "0x00432260": {
+   "name": "_CON_State",
+   "signature": "const char **__cdecl(const char *pszName)",
+   "static": true
+  },
+  "0x004322A0": {
+   "name": "IfAnyScriptRunning",
+   "signature": "bool __thiscall(int nVal)",
+   "source": "pdb_ret"
+  },
+  "0x004322C0": {
+   "name": "IsScriptRuning",
+   "signature": "int __thiscall(int pal)"
+  },
+  "0x004323C0": {
+   "name": "RunSceneScript",
+   "signature": "void __thiscall(const char *pszScene)"
+  },
+  "0x00432480": {
+   "name": "_CON_ReLoadScript",
+   "signature": "void __thiscall()",
+   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+  },
+  "0x004324A0": {
+   "name": "_CON_CloseScript",
+   "signature": "BOOL __thiscall()"
+  },
+  "0x004324B0": {
+   "name": "ClearAllScript",
+   "signature": "void __cdecl()",
+   "source": "pdb_ret",
+   "static": true
+  },
+  "0x00432500": {
+   "name": "FindScriptByDesc",
+   "signature": "int *__cdecl(const char *pszName, const char *desc)",
+   "static": true
+  },
+  "0x00432550": {
+   "name": "IfHaveScript",
+   "signature": "void __thiscall()"
+  },
+  "0x00434C40": {
+   "name": "NotifyEvent",
+   "signature": "void __cdecl()",
+   "static": true
+  },
+  "0x0042EBE0": {
+   "name": "ExecuteOpcode",
+   "signature": "int __thiscall()"
+  },
+  "0x00434CA0": {
+   "name": "InitVtable",
+   "signature": "void __thiscall()"
+  },
+  "0x0041BDE0": {
+   "name": "Get_result",
+   "signature": "int *__thiscall()"
+  },
+  "0x0042AF80": {
+   "name": "GetScriptState",
+   "signature": "char __thiscall()"
+  },
+  "0x0042B350": {
+   "name": "ProcessRoleLoading",
+   "signature": "void __thiscall()"
+  },
+  "0x0042BF90": {
+   "name": "ExecuteScriptByID",
+   "signature": "PalScriptMgr *__thiscall PalScriptMgr::ExecuteScriptByID()"
+  },
+  "0x0042BFE0": {
+   "name": "IsScriptReady",
+   "signature": "bool __thiscall()"
+  },
+  "0x0042E6C0": {
+   "name": "CmdRoleMoveDirect",
+   "signature": "int __thiscall PalScriptMgr::CmdRoleMoveDirect(unsigned __int8 pData)"
+  },
+  "0x0042FCC0": {
+   "name": "PopScript",
+   "signature": "void __thiscall()"
+  },
+  "0x00420B40": {
+   "name": "CheckTileScript",
+   "signature": "void __thiscall PalScriptMgr::CheckTileScript(RoleSystem *pRole, float fVal, char bExecute)"
+  },
+  "0x00429DB0": {
+   "name": "BuildCmdTransform",
+   "signature": "void __thiscall PalScriptMgr::BuildCmdTransform(gbMatrix4 *pMatrix)"
+  },
+  "0x0042B5B0": {
+   "name": "UpdateScriptRoles",
+   "signature": "double __thiscall(double thisa, int nVal, int nVal2)"
+  },
+  "0x0042BEF0": {
+   "name": "HandleGetItem",
+   "signature": "void __cdecl PalScriptMgr::HandleGetItem(int nSkillGDBID)",
+   "static": true
+  },
+  "0x0042C280": {
+   "name": "LoadSceneGeometry",
+   "signature": "struct gbVFileSystem *__thiscall PalScriptMgr::LoadSceneGeometry(char bNoPol)"
+  },
+  "0x0042CF60": {
+   "name": "CmdPushCmd04",
+   "signature": "int __thiscall PalScriptMgr::CmdPushCmd04(int nVal, unsigned __int8 pData)"
+  },
+  "0x0042D130": {
+   "name": "CmdPushCmd05",
+   "signature": "int __thiscall PalScriptMgr::CmdPushCmd05(unsigned __int8 pData)"
+  },
+  "0x0042D2F0": {
+   "name": "CmdPushCmd07",
+   "signature": "int __thiscall PalScriptMgr::CmdPushCmd07(unsigned __int8 pData)"
+  },
+  "0x0042D830": {
+   "name": "CmdPushCmd10",
+   "signature": "int __thiscall PalScriptMgr::CmdPushCmd10(unsigned __int8 pData)"
+  },
+  "0x0042F460": {
+   "name": "ExecuteFrame",
+   "signature": "void __thiscall(float fVal)"
+  },
+  "0x0042FB40": {
+   "name": "SetBigMapState",
+   "signature": "char __thiscall PalScriptMgr::SetBigMapState(char nState)"
+  },
+  "0x00450BC0": {
+   "name": "ShowTextBox",
+   "signature": "int __thiscall PalScriptMgr::ShowTextBox(const char *pszText)"
+  },
+  "0x00410920": {
+   "name": "LoadYlfScript",
+   "signature": "int *__thiscall PalScriptMgr::LoadYlfScript()"
+  },
+  "0x0042AAE0": {
+   "name": "CheckTileCollision",
+   "signature": "BOOL __thiscall PalScriptMgr::CheckTileCollision(int *pnVal, int nVal, struct gbVec3D *p)"
+  },
+  "0x0042BEA0": {
+   "name": "OnAnimFinish",
+   "signature": "void __thiscall PalScriptMgr::OnAnimFinish()"
+  },
+  "0x0042C030": {
+   "name": "SetPauseState",
+   "signature": "void __thiscall PalScriptMgr::SetPauseState(int bPause)"
+  },
+  "0x0042DF30": {
+   "name": "CmdPushCmd14",
+   "signature": "int __thiscall PalScriptMgr::CmdPushCmd14(int nVal, unsigned __int8 pData)"
+  },
+  "0x0042E100": {
+   "name": "CmdPushCmd15",
+   "signature": "int __thiscall PalScriptMgr::CmdPushCmd15(unsigned __int8 pData)"
+  },
+  "0x0042E2C0": {
+   "name": "CmdCameraOrbitPos",
+   "signature": "char *__thiscall PalScriptMgr::CmdCameraOrbitPos(int nVal, float fVal, float fVal2, unsigned __int8 pData)"
+  },
+  "0x0042E4D0": {
+   "name": "CmdRoleMoveSmooth",
+   "signature": "int __thiscall PalScriptMgr::CmdRoleMoveSmooth(int nVal, unsigned __int8 pData)"
+  },
+  "0x00429D80": {
+   "name": "InitControlBlock",
+   "signature": "int __thiscall PalScriptMgr::InitControlBlock()"
+  },
+  "0x00429F90": {
+   "name": "BuildFullTransform",
+   "signature": "void __thiscall PalScriptMgr::BuildFullTransform(gbMatrix4 *pMatrix, struct gbVec3D *pPos)"
+  },
+  "0x0042AC80": {
+   "name": "CmdUpdateRolePath",
+   "signature": "int __thiscall PalScriptMgr::CmdUpdateRolePath(float *pfVal, float *pfVal2)"
+  },
+  "0x0042AFA0": {
+   "name": "SaveExecutionState",
+   "signature": "int __thiscall PalScriptMgr::SaveExecutionState()"
+  },
+  "0x0042B450": {
+   "name": "IsPosInBounds",
+   "signature": "BOOL __thiscall PalScriptMgr::IsPosInBounds(float *pfPos)"
+  },
+  "0x0042C3A0": {
+   "name": "IsInputBlocked",
+   "signature": "bool __thiscall PalScriptMgr::IsInputBlocked()"
+  },
+  "0x00434CC0": {
+   "name": "IsWaitComplete",
+   "signature": "BOOL __thiscall PalScriptMgr::IsWaitComplete()",
+   "ordinal": 1
+  },
+  "0x00434D20": {
+   "name": "IsBlendComplete",
+   "signature": "BOOL __thiscall()",
+   "ordinal": 4
+  },
+  "0x00434D40": {
+   "name": "AccumulateTime",
+   "signature": "void __thiscall PalScriptMgr::AccumulateTime(float fDelta)",
+   "ordinal": 5
+  },
+  "0x00434C80": {
+   "name": "UpdateLoadProgress",
+   "signature": "void * __cdecl PalScriptMgr::UpdateLoadProgress()",
+   "static": true
+  },
+  "0x004100A0": {
+   "name": "RunScript",
+   "signature": "int __cdecl(int nVal, int nVal2, int nVal3)",
+   "static": true
+  },
+  "0x0042C440": {
+   "name": "RunCommand",
+   "signature": "void __thiscall()"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x0056ABB8",
+   "base": null,
+   "slots": [
     {
-      "addr": "0x0056ABB8",
-      "base": null,
-      "slots": [
-        {
-          "addr": "0x00434D50",
-          "from": null
-        },
-        {
-          "addr": "0x00434CC0",
-          "from": null
-        },
-        {
-          "addr": "0x004AF760",
-          "from": null
-        },
-        {
-          "addr": "0x00434D50",
-          "from": null
-        },
-        {
-          "addr": "0x00434D20",
-          "from": null
-        },
-        {
-          "addr": "0x00434D40",
-          "from": null
-        }
-      ]
+     "addr": "0x00434D50",
+     "from": null
+    },
+    {
+     "addr": "0x00434CC0",
+     "from": null
+    },
+    {
+     "addr": "0x004AF760",
+     "from": null
+    },
+    {
+     "addr": "0x00434D50",
+     "from": null
+    },
+    {
+     "addr": "0x00434D20",
+     "from": null
+    },
+    {
+     "addr": "0x00434D40",
+     "from": null
     }
-  ]
+   ]
+  }
+ ]
 }

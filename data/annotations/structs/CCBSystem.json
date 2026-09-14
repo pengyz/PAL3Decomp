@@ -1,642 +1,638 @@
 {
-  "name": "CCBSystem",
-  "binary_size": 90840,
-  "known_members": {
-    "0": {
-      "name": "m_pUtil",
-      "type": "CCBSystem *",
-      "offset": 0
-    },
-    "4": {
-      "name": "m_pUI",
-      "type": "CCBUI *",
-      "offset": 4
-    },
-    "8": {
-      "name": "m_pControl",
-      "type": "CCBControl *",
-      "offset": 8
-    },
-    "12": {
-      "name": "m_pAttackSequen",
-      "type": "CCBAttackSequen *",
-      "offset": 12
-    },
-    "16": {
-      "name": "m_pRoleState",
-      "type": "CCBRoleState *",
-      "offset": 16
-    },
-    "20": {
-      "name": "m_pStage",
-      "type": "CCBStage *",
-      "offset": 20
-    },
-    "24": {
-      "name": "m_pAI",
-      "type": "CCBAI *",
-      "offset": 24
-    },
-    "28": {
-      "name": "m_pEditor",
-      "type": "CCBEditor *",
-      "offset": 28
-    },
-    "32": {
-      "name": "m_pES",
-      "type": "CEffectSystem *",
-      "offset": 32
-    },
-    "36": {
-      "name": "m_pEffectSimple",
-      "type": "CEffectSimple *",
-      "offset": 36
-    },
-    "40": {
-      "name": "m_pConfig",
-      "type": "TxtFile *",
-      "offset": 40
-    },
-    "44": {
-      "name": "m_pEffMgr",
-      "type": "CEffMgr *",
-      "offset": 44
-    },
-    "48": {
-      "name": "m_pATSEffMgr",
-      "type": "CEffMgr *",
-      "offset": 48
-    },
-    "52": {
-      "name": "m_p2DSpark",
-      "type": "C2DSpark *",
-      "offset": 52
-    },
-    "56": {
-      "name": "m_p3DSpark",
-      "type": "C3DSpark *",
-      "offset": 56
-    },
-    "64": {
-      "name": "m_DeltaTime",
-      "type": "double",
-      "offset": 64
-    },
-    "72": {
-      "name": "m_dTimeFund",
-      "type": "double",
-      "offset": 72
-    },
-    "80": {
-      "name": "m_fTimeFund",
-      "type": "float",
-      "offset": 80
-    },
-    "88": {
-      "name": "m_AbsDeltaTime",
-      "type": "double",
-      "offset": 88
-    },
-    "96": {
-      "name": "m_dAbsTimeFund",
-      "type": "double",
-      "offset": 96
-    },
-    "104": {
-      "name": "m_fAbsTimeFund",
-      "type": "float",
-      "offset": 104
-    },
-    "108": {
-      "name": "m_fTimeScale",
-      "type": "float",
-      "offset": 108
-    },
-    "112": {
-      "name": "m_pFightInfo",
-      "type": "FightInfo *",
-      "offset": 112
-    },
-    "116": {
-      "name": "m_bQuitFlag",
-      "type": "unsigned char",
-      "offset": 116
-    },
-    "117": {
-      "name": "m_bPause",
-      "type": "unsigned char",
-      "offset": 117
-    },
-    "120": {
-      "name": "m_eState",
-      "type": "ECBCombatState",
-      "offset": 120
-    },
-    "124": {
-      "name": "m_eResult",
-      "type": "ECBCombatResult",
-      "offset": 124
-    },
-    "128": {
-      "name": "m_bFiveNimbus",
-      "type": "unsigned char",
-      "offset": 128
-    },
-    "129": {
-      "name": "m_bPXVariance",
-      "type": "unsigned char",
-      "offset": 129
-    },
-    "132": {
-      "name": "m_nTimesOfCombat",
-      "type": "int",
-      "offset": 132
-    },
-    "136": {
-      "name": "m_bAuto",
-      "type": "unsigned char",
-      "offset": 136
-    },
-    "137": {
-      "name": "m_bEditor",
-      "type": "unsigned char",
-      "offset": 137
-    },
-    "138": {
-      "name": "m_bLockCam",
-      "type": "unsigned char",
-      "offset": 138
-    },
-    "139": {
-      "name": "m_bFirstRender",
-      "type": "unsigned char",
-      "offset": 139
-    },
-    "140": {
-      "name": "m_dwIDHolder",
-      "type": "unsigned int",
-      "offset": 140,
-      "source": "|fix:unsigned_long_to_int"
-    },
-    "144": {
-      "name": "m_nThread",
-      "type": "int",
-      "offset": 144
-    },
-    "148": {
-      "name": "m_nCurThread",
-      "type": "int",
-      "offset": 148
-    },
-    "152": {
-      "name": "m_Thread",
-      "type": "tagThread[1024]",
-      "offset": 152
-    },
-    "90264": {
-      "name": "m_Player",
-      "type": "tagPlayerSet[11]",
-      "offset": 90264
-    }
+ "name": "CCBSystem",
+ "binary_size": 90840,
+ "known_members": {
+  "0": {
+   "name": "m_pUtil",
+   "type": "CCBSystem *",
+   "offset": 0
   },
-  "methods": {
-    "0x004DB3A0": {
-      "name": "InitCmdTable1_thunk",
-      "signature": "int __thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-    },
-    "0x004DB3B0": {
-      "name": "InitCmdTable1",
-      "signature": "int __thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-    },
-    "0x004DB3F0": {
-      "name": "InitCmdTable2_thunk",
-      "signature": "int __thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-    },
-    "0x004DB400": {
-      "name": "InitCmdTable2",
-      "signature": "int __thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-    },
-    "0x004DB440": {
-      "name": "InitCmdTable3_thunk",
-      "signature": "int __thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-    },
-    "0x004DB450": {
-      "name": "InitCmdTable3",
-      "signature": "int __thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-    },
-    "0x004DB490": {
-      "name": "InitCmd",
-      "signature": "CCBSystem * __thiscall(int nVal)"
-    },
-    "0x004DB4C0": {
-      "name": "ResetFlags",
-      "signature": "int __thiscall()"
-    },
-    "0x004DB4F0": {
-      "name": "DestroySubsystems",
-      "signature": "char __thiscall()"
-    },
-    "0x004DB640": {
-      "name": "CalcSpeed",
-      "signature": "int __thiscall(int roleIdx, int nVal)"
-    },
-    "0x004DB660": {
-      "name": "GetCmdSlot",
-      "signature": "int __thiscall(int idx)"
-    },
-    "0x004DB690": {
-      "name": "GetCmdType",
-      "signature": "char __thiscall(int idx)"
-    },
-    "0x004DB6A0": {
-      "name": "IsBusy",
-      "signature": "bool __thiscall()"
-    },
-    "0x004DB6C0": {
-      "name": "IsCmdReady",
-      "signature": "bool __thiscall(int idx)"
-    },
-    "0x004DB6E0": {
-      "name": "IsCmdEmpty",
-      "signature": "bool __thiscall(int idx)"
-    },
-    "0x004DB700": {
-      "name": "GetCmdValue",
-      "signature": "int __thiscall(int idx)"
-    },
-    "0x004DB710": {
-      "name": "GetCmdPtr",
-      "signature": "char *__thiscall(int idx)"
-    },
-    "0x004DB730": {
-      "name": "ClearCmdSlot",
-      "signature": "char *__thiscall(int nVal)"
-    },
-    "0x004DB780": {
-      "name": "GetCmdCount",
-      "signature": "int __thiscall(int idx)"
-    },
-    "0x004DB7A0": {
-      "name": "ProcessAllCmds",
-      "signature": "int __thiscall()"
-    },
-    "0x004DB8B0": {
-      "name": "GetCmdString",
-      "signature": "char *__thiscall(int idx)"
-    },
-    "0x004DB920": {
-      "name": "SetCmdParam",
-      "signature": "int __thiscall(int idx, int value)"
-    },
-    "0x00500170": {
-      "name": "EndBattle",
-      "signature": "int __thiscall()"
-    },
-    "0x00512310": {
-      "name": "HandleInput",
-      "signature": "void __thiscall()"
-    },
-    "0x00512320": {
-      "name": "SetQuitFlag",
-      "signature": "void __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x00512330": {
-      "name": "IsEditorWindow",
-      "signature": "bool __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x00512370": {
-      "name": "SetAuto",
-      "signature": "void __thiscall()"
-    },
-    "0x00512380": {
-      "name": "SetAutoOnly",
-      "signature": "void __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x005123C0": {
-      "name": "ShowInfo",
-      "signature": "void __thiscall()"
-    },
-    "0x005123D0": {
-      "name": "SetTimeScale",
-      "signature": "void __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x00512410": {
-      "name": "GetFreeID",
-      "signature": "unsigned long __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x00512460": {
-      "name": "DelAllTaskAndThread",
-      "signature": "void __thiscall()"
-    },
-    "0x00512470": {
-      "name": "Proceed",
-      "signature": "void __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x005124B0": {
-      "name": "CanBeHandleWPX_R",
-      "signature": "bool __thiscall()"
-    },
-    "0x005124C0": {
-      "name": "CanBeHandleNGH_R",
-      "signature": "bool __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x00512580": {
-      "name": "ProcDialog",
-      "signature": "unsigned long __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x005125E0": {
-      "name": "ProcNormalAttack",
-      "signature": "char __thiscall()"
-    },
-    "0x00512BA0": {
-      "name": "ProcFling",
-      "signature": "char __thiscall()"
-    },
-    "0x00512D40": {
-      "name": "ProcCoAttack",
-      "signature": "void *__thiscall(CCBSystem *Block, char __formal)"
-    },
-    "0x00512D60": {
-      "name": "ProcWeaponSkill",
-      "signature": "char __thiscall()"
-    },
-    "0x00512F40": {
-      "name": "ProcMagicWait",
-      "signature": "char __thiscall(unsigned int __formal, char pData)"
-    },
-    "0x00513060": {
-      "name": "CombatUpdate",
-      "signature": "int __thiscall(double dt)"
-    },
-    "0x00513120": {
-      "name": "RenderCheck",
-      "signature": "char __thiscall()"
-    },
-    "0x00513150": {
-      "name": "ProcMagic",
-      "signature": "char __thiscall()"
-    },
-    "0x00513330": {
-      "name": "GetRenderFlag",
-      "signature": "int __thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-    },
-    "0x00513380": {
-      "name": "ProcUseItem",
-      "signature": "bool __thiscall(HWND __formal)"
-    },
-    "0x00513390": {
-      "name": "SetRenderFlag",
-      "signature": "int __thiscall(char flag)"
-    },
-    "0x00513420": {
-      "name": "ProcFlee",
-      "signature": "char __thiscall(char __formal)"
-    },
-    "0x00513430": {
-      "name": "ProcDefence",
-      "signature": "char __thiscall()"
-    },
-    "0x00513600": {
-      "name": "ProcAI",
-      "signature": "void __thiscall(float __formal)"
-    },
-    "0x005136A0": {
-      "name": "ProcProtect",
-      "signature": "unsigned long __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x005136D0": {
-      "name": "ProcMessage",
-      "signature": "char __thiscall(int idx)"
-    },
-    "0x005137F0": {
-      "name": "IsFriendDoSkill",
-      "signature": "bool __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x00513840": {
-      "name": "CheckBattleEnd",
-      "signature": "int __thiscall()"
-    },
-    "0x00513EB0": {
-      "name": "Message",
-      "signature": "int(char *pMsg, char *pTitle, unsigned int uType)",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-    },
-    "0x00513FD0": {
-      "name": "IsRoleWaitForFlee",
-      "signature": "bool __thiscall(int nRoleIndex)",
-      "source": "pdb_ret"
-    },
-    "0x00514220": {
-      "name": "AddThread",
-      "signature": "unsigned long __thiscall(int fp)",
-      "source": "pdb_ret"
-    },
-    "0x00514610": {
-      "name": "DelThread",
-      "signature": "bool __thiscall(int nIndex)",
-      "source": "pdb_ret"
-    },
-    "0x00514870": {
-      "name": "GetSameThreadNum",
-      "signature": "int __thiscall(int fp)"
-    },
-    "0x00514AE0": {
-      "name": "IsThreadExist",
-      "signature": "bool __thiscall(unsigned int dwThreadID)",
-      "source": "pdb_ret"
-    },
-    "0x00514D60": {
-      "name": "GetThreadIndex",
-      "signature": "int __thiscall(unsigned int dwThreadID)"
-    },
-    "0x00514FE0": {
-      "name": "PassCmdToThread",
-      "signature": "int __thiscall(int _34)"
-    },
-    "0x00515200": {
-      "name": "PassCmdToThread",
-      "signature": "int(int nThreadIndex, tagCmdData *_68)",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-    },
-    "0x005155D0": {
-      "name": "PassCmdToTask",
-      "signature": "bool(int nTaskIndex, int nThreadIndex)",
-      "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-    },
-    "0x00515760": {
-      "name": "PassCmdViaThread",
-      "signature": "bool(int nDestThread, int nSrcThread)",
-      "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-    },
-    "0x00515940": {
-      "name": "CreateObj",
-      "signature": "int __thiscall(int nVal)"
-    },
-    "0x005159A0": {
-      "name": "CreateObj",
-      "signature": "BOOL __thiscall(CCBUI **ppUI, const char *szName, UINT nFlags)"
-    },
-    "0x00515AC0": {
-      "name": "CreateObj",
-      "signature": "char __thiscall(CCBRoleState **a2)"
-    },
-    "0x00515B20": {
-      "name": "CreateObj",
-      "signature": "int __thiscall(int (__thiscall *a2)(int this, int a2), int nVal, int nVal2, int nVal3, const void *pData)"
-    },
-    "0x00515C50": {
-      "name": "ClearEffect",
-      "signature": "char __thiscall(int idx)"
-    },
-    "0x00515D10": {
-      "name": "CreateObj",
-      "signature": "bool __thiscall(struct CCBEditor **a2)"
-    },
-    "0x00515DD0": {
-      "name": "DestroyObj",
-      "signature": "void *__thiscall(CCBSystem *Block, char pData)"
-    },
-    "0x00515DF0": {
-      "name": "DestroyObj_5df0",
-      "signature": "void *__thiscall(CCBSystem *Block, char pData)"
-    },
-    "0x00515E50": {
-      "name": "DestroyObj",
-      "signature": "BOOL __thiscall()"
-    },
-    "0x00515E70": {
-      "name": "DestroyObj_5e70",
-      "signature": "void __thiscall()"
-    },
-    "0x00515E90": {
-      "name": "InitObj",
-      "signature": "bool __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x00515EE0": {
-      "name": "InitObj_5ee0",
-      "signature": "int __thiscall()"
-    },
-    "0x00515F30": {
-      "name": "InitObj_5f30",
-      "signature": "int __thiscall()"
-    },
-    "0x00515F80": {
-      "name": "InitObj_5f80",
-      "signature": "int __thiscall()"
-    },
-    "0x00515FD0": {
-      "name": "InitObj_5fd0",
-      "signature": "int __thiscall()"
-    },
-    "0x00512500": {
-      "name": "CCBSystem",
-      "signature": "void __thiscall()"
-    },
-    "0x004DC650": {
-      "name": "FindFreeThread",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6, int nVal7, int nVal8, int nVal9)"
-    },
-    "0x004F2C70": {
-      "name": "AddCommand",
-      "signature": "int __thiscall(int nCmdType, BOOL bImmediate, int nParam)"
-    },
-    "0x004F7050": {
-      "name": "IsMagicSlotMsg",
-      "signature": "bool __thiscall(int nVal)"
-    },
-    "0x004F7140": {
-      "name": "HandleMagicSlotInput",
-      "signature": "char __thiscall(int nVal)"
-    },
-    "0x004DB9C0": {
-      "name": "InvokeThreadMethod",
-      "signature": "int __thiscall(int nVal, char pData)"
-    },
-    "0x004DC160": {
-      "name": "CopyCmdData",
-      "signature": "CCBSystem * __thiscall(int *p_DWORD)"
-    },
-    "0x004DC1B0": {
-      "name": "GetState",
-      "signature": "int __thiscall()"
-    },
-    "0x004DC3F0": {
-      "name": "StartRoleThread",
-      "signature": "char __thiscall(int arg0)"
-    },
-    "0x004DB8E0": {
-      "name": "SetThreadFlag",
-      "signature": "int __thiscall CCBSystem::SetThreadFlag(char pData)"
-    },
-    "0x004DBE60": {
-      "name": "InitCombatSlot",
-      "signature": "void __thiscall CCBSystem::InitCombatSlot(int roleIdx)"
-    },
-    "0x004DC510": {
-      "name": "ResetConfig",
-      "signature": "double __thiscall(int nVal)"
-    },
-    "0x004F1C40": {
-      "name": "ValidateThreadAction",
-      "signature": "char __thiscall(int nVal)"
-    },
-    "0x00462280": {
-      "name": "ProcessSlotResults",
-      "signature": "void __thiscall CCBSystem::ProcessSlotResults(int nVal)"
-    },
-    "0x00462340": {
-      "name": "InitResultWindow",
-      "signature": "void __thiscall()"
-    },
-    "0x004C6170": {
-      "name": "GetThreadBase",
-      "signature": "_BYTE *__thiscall()"
-    },
-    "0x004DB9F0": {
-      "name": "InitRoleStateUI",
-      "signature": "void __thiscall()"
-    },
-    "0x004DC1C0": {
-      "name": "ClearAllPointers",
-      "signature": "int __thiscall()"
-    },
-    "0x004F70A0": {
-      "name": "HandleMagicCommand",
-      "signature": "char __thiscall(int nVal)"
-    },
-    "0x004FCA40": {
-      "name": "FindThreadByID",
-      "signature": "int __thiscall CCBSystem::FindThreadByID(int nID)"
-    },
-    "0x00504D60": {
-      "name": "CastProtect",
-      "signature": "char __thiscall CCBSystem::CastProtect(int nCaster, int nTarget, float fVal)"
-    },
-    "0x005158F0": {
-      "name": "AllocThread",
-      "signature": "int __thiscall(int nVal)"
-    },
-    "0x004DB750": {
-      "name": "GetCmdData",
-      "signature": "char *__thiscall(int idx)"
-    }
+  "4": {
+   "name": "m_pUI",
+   "type": "CCBUI *",
+   "offset": 4
+  },
+  "8": {
+   "name": "m_pControl",
+   "type": "CCBControl *",
+   "offset": 8
+  },
+  "12": {
+   "name": "m_pAttackSequen",
+   "type": "CCBAttackSequen *",
+   "offset": 12
+  },
+  "16": {
+   "name": "m_pRoleState",
+   "type": "CCBRoleState *",
+   "offset": 16
+  },
+  "20": {
+   "name": "m_pStage",
+   "type": "CCBStage *",
+   "offset": 20
+  },
+  "24": {
+   "name": "m_pAI",
+   "type": "CCBAI *",
+   "offset": 24
+  },
+  "28": {
+   "name": "m_pEditor",
+   "type": "CCBEditor *",
+   "offset": 28
+  },
+  "32": {
+   "name": "m_pES",
+   "type": "CEffectSystem *",
+   "offset": 32
+  },
+  "36": {
+   "name": "m_pEffectSimple",
+   "type": "CEffectSimple *",
+   "offset": 36
+  },
+  "40": {
+   "name": "m_pConfig",
+   "type": "TxtFile *",
+   "offset": 40
+  },
+  "44": {
+   "name": "m_pEffMgr",
+   "type": "CEffMgr *",
+   "offset": 44
+  },
+  "48": {
+   "name": "m_pATSEffMgr",
+   "type": "CEffMgr *",
+   "offset": 48
+  },
+  "52": {
+   "name": "m_p2DSpark",
+   "type": "C2DSpark *",
+   "offset": 52
+  },
+  "56": {
+   "name": "m_p3DSpark",
+   "type": "C3DSpark *",
+   "offset": 56
+  },
+  "64": {
+   "name": "m_DeltaTime",
+   "type": "double",
+   "offset": 64
+  },
+  "72": {
+   "name": "m_dTimeFund",
+   "type": "double",
+   "offset": 72
+  },
+  "80": {
+   "name": "m_fTimeFund",
+   "type": "float",
+   "offset": 80
+  },
+  "88": {
+   "name": "m_AbsDeltaTime",
+   "type": "double",
+   "offset": 88
+  },
+  "96": {
+   "name": "m_dAbsTimeFund",
+   "type": "double",
+   "offset": 96
+  },
+  "104": {
+   "name": "m_fAbsTimeFund",
+   "type": "float",
+   "offset": 104
+  },
+  "108": {
+   "name": "m_fTimeScale",
+   "type": "float",
+   "offset": 108
+  },
+  "112": {
+   "name": "m_pFightInfo",
+   "type": "FightInfo *",
+   "offset": 112
+  },
+  "116": {
+   "name": "m_bQuitFlag",
+   "type": "unsigned char",
+   "offset": 116
+  },
+  "117": {
+   "name": "m_bPause",
+   "type": "unsigned char",
+   "offset": 117
+  },
+  "120": {
+   "name": "m_eState",
+   "type": "ECBCombatState",
+   "offset": 120
+  },
+  "124": {
+   "name": "m_eResult",
+   "type": "ECBCombatResult",
+   "offset": 124
+  },
+  "128": {
+   "name": "m_bFiveNimbus",
+   "type": "unsigned char",
+   "offset": 128
+  },
+  "129": {
+   "name": "m_bPXVariance",
+   "type": "unsigned char",
+   "offset": 129
+  },
+  "132": {
+   "name": "m_nTimesOfCombat",
+   "type": "int",
+   "offset": 132
+  },
+  "136": {
+   "name": "m_bAuto",
+   "type": "unsigned char",
+   "offset": 136
+  },
+  "137": {
+   "name": "m_bEditor",
+   "type": "unsigned char",
+   "offset": 137
+  },
+  "138": {
+   "name": "m_bLockCam",
+   "type": "unsigned char",
+   "offset": 138
+  },
+  "139": {
+   "name": "m_bFirstRender",
+   "type": "unsigned char",
+   "offset": 139
+  },
+  "140": {
+   "name": "m_dwIDHolder",
+   "type": "unsigned int",
+   "offset": 140,
+   "source": "|fix:unsigned_long_to_int"
+  },
+  "144": {
+   "name": "m_nThread",
+   "type": "int",
+   "offset": 144
+  },
+  "148": {
+   "name": "m_nCurThread",
+   "type": "int",
+   "offset": 148
+  },
+  "152": {
+   "name": "m_Thread",
+   "type": "tagThread[1024]",
+   "offset": 152
+  },
+  "90264": {
+   "name": "m_Player",
+   "type": "tagPlayerSet[11]",
+   "offset": 90264
   }
+ },
+ "methods": {
+  "0x004DB3A0": {
+   "name": "InitCmdTable1_thunk",
+   "signature": "int __thiscall()",
+   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+  },
+  "0x004DB3B0": {
+   "name": "InitCmdTable1",
+   "signature": "int __thiscall()",
+   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+  },
+  "0x004DB3F0": {
+   "name": "InitCmdTable2_thunk",
+   "signature": "int __thiscall()",
+   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+  },
+  "0x004DB400": {
+   "name": "InitCmdTable2",
+   "signature": "int __thiscall()",
+   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+  },
+  "0x004DB440": {
+   "name": "InitCmdTable3_thunk",
+   "signature": "int __thiscall()",
+   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+  },
+  "0x004DB450": {
+   "name": "InitCmdTable3",
+   "signature": "int __thiscall()",
+   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+  },
+  "0x004DB490": {
+   "name": "InitCmd",
+   "signature": "CCBSystem * __thiscall(int nVal)"
+  },
+  "0x004DB4C0": {
+   "name": "ResetFlags",
+   "signature": "int __thiscall()"
+  },
+  "0x004DB4F0": {
+   "name": "DestroySubsystems",
+   "signature": "char __thiscall()"
+  },
+  "0x004DB640": {
+   "name": "CalcSpeed",
+   "signature": "int __thiscall(int roleIdx, int nVal)"
+  },
+  "0x004DB660": {
+   "name": "GetCmdSlot",
+   "signature": "int __thiscall(int idx)"
+  },
+  "0x004DB690": {
+   "name": "GetCmdType",
+   "signature": "char __thiscall(int idx)"
+  },
+  "0x004DB6A0": {
+   "name": "IsBusy",
+   "signature": "bool __thiscall()"
+  },
+  "0x004DB6C0": {
+   "name": "IsCmdReady",
+   "signature": "bool __thiscall(int idx)"
+  },
+  "0x004DB6E0": {
+   "name": "IsCmdEmpty",
+   "signature": "bool __thiscall(int idx)"
+  },
+  "0x004DB700": {
+   "name": "GetCmdValue",
+   "signature": "int __thiscall(int idx)"
+  },
+  "0x004DB710": {
+   "name": "GetCmdPtr",
+   "signature": "char *__thiscall(int idx)"
+  },
+  "0x004DB730": {
+   "name": "ClearCmdSlot",
+   "signature": "char *__thiscall(int nVal)"
+  },
+  "0x004DB780": {
+   "name": "GetCmdCount",
+   "signature": "int __thiscall(int idx)"
+  },
+  "0x004DB7A0": {
+   "name": "ProcessAllCmds",
+   "signature": "int __thiscall()"
+  },
+  "0x004DB8B0": {
+   "name": "GetCmdString",
+   "signature": "char *__thiscall(int idx)"
+  },
+  "0x004DB920": {
+   "name": "SetCmdParam",
+   "signature": "int __thiscall(int idx, int value)"
+  },
+  "0x00500170": {
+   "name": "EndBattle",
+   "signature": "int __thiscall()"
+  },
+  "0x00512310": {
+   "name": "HandleInput",
+   "signature": "void __thiscall()"
+  },
+  "0x00512320": {
+   "name": "SetQuitFlag",
+   "signature": "void __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x00512330": {
+   "name": "IsEditorWindow",
+   "signature": "bool __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x00512370": {
+   "name": "SetAuto",
+   "signature": "void __thiscall()"
+  },
+  "0x00512380": {
+   "name": "SetAutoOnly",
+   "signature": "void __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x005123C0": {
+   "name": "ShowInfo",
+   "signature": "void __thiscall()"
+  },
+  "0x005123D0": {
+   "name": "SetTimeScale",
+   "signature": "void __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x00512410": {
+   "name": "GetFreeID",
+   "signature": "unsigned long __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x00512460": {
+   "name": "DelAllTaskAndThread",
+   "signature": "void __thiscall()"
+  },
+  "0x00512470": {
+   "name": "Proceed",
+   "signature": "void __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x005124B0": {
+   "name": "CanBeHandleWPX_R",
+   "signature": "bool __thiscall()"
+  },
+  "0x005124C0": {
+   "name": "CanBeHandleNGH_R",
+   "signature": "bool __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x00512580": {
+   "name": "ProcDialog",
+   "signature": "unsigned long __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x005125E0": {
+   "name": "ProcNormalAttack",
+   "signature": "char __thiscall()"
+  },
+  "0x00512BA0": {
+   "name": "ProcFling",
+   "signature": "char __thiscall()"
+  },
+  "0x00512D40": {
+   "name": "ProcCoAttack",
+   "signature": "void *__thiscall(CCBSystem *Block, char __formal)"
+  },
+  "0x00512D60": {
+   "name": "ProcWeaponSkill",
+   "signature": "char __thiscall()"
+  },
+  "0x00512F40": {
+   "name": "ProcMagicWait",
+   "signature": "char __thiscall(unsigned int __formal, char pData)"
+  },
+  "0x00513060": {
+   "name": "CombatUpdate",
+   "signature": "int __thiscall(double dt)"
+  },
+  "0x00513120": {
+   "name": "RenderCheck",
+   "signature": "char __thiscall()"
+  },
+  "0x00513150": {
+   "name": "ProcMagic",
+   "signature": "char __thiscall()"
+  },
+  "0x00513330": {
+   "name": "GetRenderFlag",
+   "signature": "int __thiscall()",
+   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+  },
+  "0x00513380": {
+   "name": "ProcUseItem",
+   "signature": "bool __thiscall(HWND __formal)"
+  },
+  "0x00513390": {
+   "name": "SetRenderFlag",
+   "signature": "int __thiscall(char flag)"
+  },
+  "0x00513420": {
+   "name": "ProcFlee",
+   "signature": "char __thiscall(char __formal)"
+  },
+  "0x00513430": {
+   "name": "ProcDefence",
+   "signature": "char __thiscall()"
+  },
+  "0x00513600": {
+   "name": "ProcAI",
+   "signature": "void __thiscall(float __formal)"
+  },
+  "0x005136A0": {
+   "name": "ProcProtect",
+   "signature": "unsigned long __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x005136D0": {
+   "name": "ProcMessage",
+   "signature": "char __thiscall(int idx)"
+  },
+  "0x005137F0": {
+   "name": "IsFriendDoSkill",
+   "signature": "bool __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x00513840": {
+   "name": "CheckBattleEnd",
+   "signature": "int __thiscall()"
+  },
+  "0x00513EB0": {
+   "name": "Message",
+   "signature": "int(char *pMsg, char *pTitle, unsigned int uType)",
+   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+  },
+  "0x00513FD0": {
+   "name": "IsRoleWaitForFlee",
+   "signature": "bool __thiscall(int nRoleIndex)",
+   "source": "pdb_ret"
+  },
+  "0x00514220": {
+   "name": "AddThread",
+   "signature": "unsigned long __thiscall(int fp)",
+   "source": "pdb_ret"
+  },
+  "0x00514610": {
+   "name": "DelThread",
+   "signature": "bool __thiscall(int nIndex)",
+   "source": "pdb_ret"
+  },
+  "0x00514870": {
+   "name": "GetSameThreadNum",
+   "signature": "int __thiscall(int fp)"
+  },
+  "0x00514AE0": {
+   "name": "IsThreadExist",
+   "signature": "bool __thiscall(unsigned int dwThreadID)",
+   "source": "pdb_ret"
+  },
+  "0x00514D60": {
+   "name": "GetThreadIndex",
+   "signature": "int __thiscall(unsigned int dwThreadID)"
+  },
+  "0x00514FE0": {
+   "name": "PassCmdToThread",
+   "signature": "int __thiscall(int _34)"
+  },
+  "0x00515200": {
+   "name": "PassCmdToThread",
+   "signature": "int(int nThreadIndex, tagCmdData *_68)",
+   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+  },
+  "0x005155D0": {
+   "name": "PassCmdToTask",
+   "signature": "bool(int nTaskIndex, int nThreadIndex)",
+   "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+  },
+  "0x00515760": {
+   "name": "PassCmdViaThread",
+   "signature": "bool(int nDestThread, int nSrcThread)",
+   "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+  },
+  "0x00515940": {
+   "name": "CreateObj",
+   "signature": "int __thiscall(int nVal)"
+  },
+  "0x005159A0": {
+   "name": "CreateObj",
+   "signature": "BOOL __thiscall(CCBUI **ppUI, const char *szName, UINT nFlags)"
+  },
+  "0x00515AC0": {
+   "name": "CreateObj",
+   "signature": "char __thiscall(CCBRoleState **a2)"
+  },
+  "0x00515B20": {
+   "name": "CreateObj",
+   "signature": "int __thiscall(int (__thiscall *a2)(int this, int a2), int nVal, int nVal2, int nVal3, const void *pData)"
+  },
+  "0x00515C50": {
+   "name": "ClearEffect",
+   "signature": "char __thiscall(int idx)"
+  },
+  "0x00515D10": {
+   "name": "CreateObj",
+   "signature": "bool __thiscall(struct CCBEditor **a2)"
+  },
+  "0x00515DD0": {
+   "name": "DestroyObj",
+   "signature": "void *__thiscall(CCBSystem *Block, char pData)"
+  },
+  "0x00515DF0": {
+   "name": "DestroyObj_5df0",
+   "signature": "void *__thiscall(CCBSystem *Block, char pData)"
+  },
+  "0x00515E50": {
+   "name": "DestroyObj",
+   "signature": "BOOL __thiscall()"
+  },
+  "0x00515E70": {
+   "name": "DestroyObj_5e70",
+   "signature": "void __thiscall()"
+  },
+  "0x00515E90": {
+   "name": "InitObj",
+   "signature": "bool __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x00515EE0": {
+   "name": "InitObj_5ee0",
+   "signature": "int __thiscall()"
+  },
+  "0x00515F30": {
+   "name": "InitObj_5f30",
+   "signature": "int __thiscall()"
+  },
+  "0x00515F80": {
+   "name": "InitObj_5f80",
+   "signature": "int __thiscall()"
+  },
+  "0x00515FD0": {
+   "name": "InitObj_5fd0",
+   "signature": "int __thiscall()"
+  },
+  "0x00512500": {
+   "name": "CCBSystem",
+   "signature": "void __thiscall()"
+  },
+  "0x004DC650": {
+   "name": "FindFreeThread",
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6, int nVal7, int nVal8, int nVal9)"
+  },
+  "0x004F7050": {
+   "name": "IsMagicSlotMsg",
+   "signature": "bool __thiscall(int nVal)"
+  },
+  "0x004F7140": {
+   "name": "HandleMagicSlotInput",
+   "signature": "char __thiscall(int nVal)"
+  },
+  "0x004DB9C0": {
+   "name": "InvokeThreadMethod",
+   "signature": "int __thiscall(int nVal, char pData)"
+  },
+  "0x004DC160": {
+   "name": "CopyCmdData",
+   "signature": "CCBSystem * __thiscall(int *p_DWORD)"
+  },
+  "0x004DC1B0": {
+   "name": "GetState",
+   "signature": "int __thiscall()"
+  },
+  "0x004DC3F0": {
+   "name": "StartRoleThread",
+   "signature": "char __thiscall(int arg0)"
+  },
+  "0x004DB8E0": {
+   "name": "SetThreadFlag",
+   "signature": "int __thiscall CCBSystem::SetThreadFlag(char pData)"
+  },
+  "0x004DBE60": {
+   "name": "InitCombatSlot",
+   "signature": "void __thiscall CCBSystem::InitCombatSlot(int roleIdx)"
+  },
+  "0x004DC510": {
+   "name": "ResetConfig",
+   "signature": "double __thiscall(int nVal)"
+  },
+  "0x004F1C40": {
+   "name": "ValidateThreadAction",
+   "signature": "char __thiscall(int nVal)"
+  },
+  "0x00462280": {
+   "name": "ProcessSlotResults",
+   "signature": "void __thiscall CCBSystem::ProcessSlotResults(int nVal)"
+  },
+  "0x00462340": {
+   "name": "InitResultWindow",
+   "signature": "void __thiscall()"
+  },
+  "0x004C6170": {
+   "name": "GetThreadBase",
+   "signature": "_BYTE *__thiscall()"
+  },
+  "0x004DB9F0": {
+   "name": "InitRoleStateUI",
+   "signature": "void __thiscall()"
+  },
+  "0x004DC1C0": {
+   "name": "ClearAllPointers",
+   "signature": "int __thiscall()"
+  },
+  "0x004F70A0": {
+   "name": "HandleMagicCommand",
+   "signature": "char __thiscall(int nVal)"
+  },
+  "0x004FCA40": {
+   "name": "FindThreadByID",
+   "signature": "int __thiscall CCBSystem::FindThreadByID(int nID)"
+  },
+  "0x00504D60": {
+   "name": "CastProtect",
+   "signature": "char __thiscall CCBSystem::CastProtect(int nCaster, int nTarget, float fVal)"
+  },
+  "0x005158F0": {
+   "name": "AllocThread",
+   "signature": "int __thiscall(int nVal)"
+  },
+  "0x004DB750": {
+   "name": "GetCmdData",
+   "signature": "char *__thiscall(int idx)"
+  }
+ }
 }

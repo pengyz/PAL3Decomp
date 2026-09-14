@@ -1,0 +1,18 @@
+{
+  "question": "CCBRoleState 环区：CCBUI::UpdatePanel(0x4DC250)、CCBSystem::AddCommand(0x4F2C70)（各 12 站点，唯一调用方 CCBRoleState）与 ScriptVM::IsRunning(0x42C1A0，14 站点，调用方 PalScriptMgr) 的真实归属？",
+  "verdict": "UpdatePanel 与 AddCommand 均为 CCBRoleState 方法；ExecuteBlock(0x424C20) 是 ScriptVM 的解释器主循环（原误归 PalScriptMgr），归位后 IsRunning 的 13 个调用点类内合法化（IsRunning 本身在 ScriptVM 是对的）。",
+  "evidence": [
+    "AddCommand@0x4F2C70: 无自身偏移外的对象使用；所有 CCBRoleState 方法调用（GetRoleField/GetTotalRounds/CheckBuff）均为 mov ecx,esi —— this 即 CCBRoleState 对象；唯一调用方 CCBRoleState x12",
+    "UpdatePanel@0x4DC250: 访问 this+0x20/+0xC，恰为 CCBRoleState known_members（m_nState_020/m_nState_00C）；唯一调用方 CCBRoleState x12",
+    "ExecuteBlock@0x424C20（2,353 行解释器循环）: ScriptVM::CallFunction/SetRolePosition 六处以上 mov ecx,esi 直呼 —— this 即 ScriptVM；IsRunning 的 15 个 xref 中 14 个位于此函数内",
+    "ExecuteBlock 物理位置 0x424C20-0x426Exx 远离 PalScriptMgr 真 ctor 块 0x431Exx-0x4325xx；IsRunning+sub_42C1C0 位于 ScriptVM 块 0x42Cxxx",
+    "ExecuteBlock 访问 +0x370/+0x374（9 次）超出 ScriptVM 注解尺寸 876(0x36C) —— ScriptVM 尺寸注解疑低估（≥0x378），待分配点证据修正"
+  ],
+  "action": "3 方法迁移；IsRunning 14 站点标记将随 ExecuteBlock 归位消解。",
+  "boundary_unresolved": [
+    "ScriptVM.binary_size 876 疑低估（ExecuteBlock 访问 +0x370/+0x374），需分配点证据",
+    "sub_42C1C0@CScreenMode（IsRunning 另一调用方）归属",
+    "UpdateScriptRoles@PalScriptMgr 位于 0x42Bxxx（ScriptVM 块边缘），归属存疑"
+  ],
+  "date": "2026-09-14"
+}
