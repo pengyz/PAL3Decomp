@@ -412,5 +412,15 @@
    "+0x038 int x56",
    "+0x354-0x3CC dense int cluster"
   ]
+ },
+ "slot_boundary_evidence": {
+  "tiling": "5 slots x 1408B = 0xC043A0..0xC05F30 (7,040B)",
+  "exact_boundary_starts": {
+   "dword_C04EA0": "0xC04EA0-0xC043A0 = 2816 = 2x1408 (slot[2] start)",
+   "unk_C059A0": "0xC059A0-0xC043A0 = 5632 = 4x1408 (slot[4] start)",
+   "unk_C05F30": "0xC05F30-0xC043A0 = 7040 = 5x1408 (one past array end)"
+  },
+  "implication": "three overlapping instances start EXACTLY on slot boundaries - the 5-slot tiling is structurally real; those instances are alternative (likely wrong) interpretations of slot regions or adjacent objects",
+  "row0_note": "g_SceneMgr+0x10 (=slot[0] start) typed m_pAddEffect pointer in ida_structs conflicts with slot modeling - needs resolution"
  }
 }
