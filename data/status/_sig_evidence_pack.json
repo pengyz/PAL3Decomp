@@ -6419,7 +6419,9 @@
     2
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "grade": "SDK",
+   "slots": 1,
+   "source": "gbengine SDK header (DLL-imported method, body not in exe)"
   },
   {
    "cls": "gbChain1DNode",
@@ -6445,7 +6447,9 @@
     3
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "grade": "SDK",
+   "slots": 4,
+   "source": "gbengine SDK header (DLL-imported method, body not in exe)"
   },
   {
    "cls": "gbGeomNode",
@@ -6465,7 +6469,9 @@
     2
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "grade": "SDK",
+   "slots": 1,
+   "source": "gbengine SDK header (DLL-imported method, body not in exe)"
   },
   {
    "cls": "gbGeomNode",
@@ -6475,7 +6481,9 @@
     4
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "grade": "SDK",
+   "slots": 4,
+   "source": "gbengine SDK header (DLL-imported method, body not in exe)"
   },
   {
    "cls": "gbGeomNode",
@@ -6515,7 +6523,9 @@
     1
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "grade": "SDK",
+   "slots": 0,
+   "source": "gbengine SDK header (DLL-imported method, body not in exe)"
   },
   {
    "cls": "gbMatrix4",
@@ -6525,7 +6535,9 @@
     3
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "grade": "SDK",
+   "slots": 1,
+   "source": "gbengine SDK header (DLL-imported method, body not in exe)"
   },
   {
    "cls": "gbMatrix4",
@@ -6575,7 +6587,9 @@
     2
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "grade": "SDK",
+   "slots": 1,
+   "source": "gbengine SDK header (DLL-imported method, body not in exe)"
   },
   {
    "cls": "gbQuaternion",
@@ -6595,7 +6609,9 @@
     3
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "grade": "SDK",
+   "slots": 2,
+   "source": "gbengine SDK header (DLL-imported method, body not in exe)"
   },
   {
    "cls": "gbQuaternion",
@@ -6615,7 +6631,9 @@
     3
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "grade": "SDK",
+   "slots": 2,
+   "source": "gbengine SDK header (DLL-imported method, body not in exe)"
   },
   {
    "cls": "gbRay",
@@ -6625,7 +6643,9 @@
     2
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "grade": "SDK",
+   "slots": 1,
+   "source": "gbengine SDK header (DLL-imported method, body not in exe)"
   },
   {
    "cls": "gbRay",
@@ -6635,7 +6655,9 @@
     2
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "grade": "SDK",
+   "slots": 1,
+   "source": "gbengine SDK header (DLL-imported method, body not in exe)"
   },
   {
    "cls": "gbRefObject",
@@ -6645,7 +6667,9 @@
     1
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "grade": "SDK",
+   "slots": 0,
+   "source": "gbengine SDK header (DLL-imported method, body not in exe)"
   },
   {
    "cls": "gbVFileSystem",
@@ -6655,7 +6679,9 @@
     0
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "grade": "SDK",
+   "slots": 3,
+   "source": "gbengine SDK header (DLL-imported method, body not in exe)"
   },
   {
    "cls": "gbVec3D",
@@ -6665,7 +6691,9 @@
     2
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "grade": "SDK",
+   "slots": 1,
+   "source": "gbengine SDK header (DLL-imported method, body not in exe)"
   },
   {
    "cls": "gbVec3D",
@@ -6675,7 +6703,9 @@
     1
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "grade": "SDK",
+   "slots": 0,
+   "source": "gbengine SDK header (DLL-imported method, body not in exe)"
   },
   {
    "cls": "gbVec3D",
@@ -6685,7 +6715,9 @@
     1
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "grade": "SDK",
+   "slots": 0,
+   "source": "gbengine SDK header (DLL-imported method, body not in exe)"
   },
   {
    "cls": "gbVisNode",
@@ -6734,7 +6766,9 @@
     2
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "grade": "SDK",
+   "slots": 1,
+   "source": "gbengine SDK header (DLL-imported method, body not in exe)"
   },
   {
    "cls": "gbVolModNode",
@@ -6797,6 +6831,36 @@
    ],
    "addrs": [],
    "grade": "C-NOADDR"
+  },
+  {
+   "cls": "CCBRoleState",
+   "method": "ProcessRound",
+   "sites": 0,
+   "args": [],
+   "addrs": [],
+   "slots": 4,
+   "grade": "A-V2",
+   "source": "caller push x4 + retn 10h x5"
+  },
+  {
+   "cls": "CCBRoleState",
+   "method": "GetRoleMPValue",
+   "sites": 0,
+   "args": [],
+   "addrs": [],
+   "slots": 3,
+   "grade": "A-V2",
+   "source": "retn 0Ch x3 (decl honest; sites are MISATTRIBUTED)"
+  },
+  {
+   "cls": "CCBSystem",
+   "method": "InitResultWindow",
+   "sites": 0,
+   "args": [],
+   "addrs": [],
+   "slots": 0,
+   "grade": "A-V2",
+   "source": "retn 0"
   }
  ],
  "unattributed": 0
