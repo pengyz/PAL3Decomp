@@ -1,0 +1,12 @@
+{
+ "correction": "对账批错误账面修正（2026-09-14）",
+ "wrong_claim": "提交 1c2234d06 称 \"error total down by hundreds across ~140 files\"——引用了 130300 基线（对账失败中途态，44 个 imported-only 文件的错误不计入总数，虚低）",
+ "honest_accounting_vs_123427_true_recovery_baseline": {
+  "S2": "49/197 持平（UIRoleSelect 翻红已由 UIListBox 尺寸挂起解决）",
+  "better": "-33（多文件小改善）",
+  "worse": "+219，集中 8 文件：StateUI +45(52->97)、Array +41(50->91)、scAsmDecoder +22(10->32)、PtrArray +14(24->38)、EquipUI +12、PAL_GDB +12、MainEquipUI +11、GRPinput +10",
+  "net": "+186",
+  "nature": "类型传播涟漪（⑥a 模式）——7 个尺寸修正改变 IDB 类型后 Hex-Rays 成员解析位移，揭露 Array/PtrArray/scAsmDecoder（Buffer/重叠区）与 StateUI（RoleStatePanel 邻域）的存量债务；S2 无单元损失"
+ },
+ "discipline": "错误总数对账必须用\"同健康度\"基线（S2 相同、无 imported-only 干扰），imported-only 态的总数不可比。"
+}
