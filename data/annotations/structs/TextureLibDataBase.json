@@ -112,7 +112,8 @@
     },
     "0x005407A0": {
       "name": "GetLib",
-      "signature": "char *__thiscall(char *pszName)"
+      "signature": "char *__thiscall(TextureLibDataBase *this)",
+      "source": "fix:C2660:inflation: decl 1 vs ret-N slots 0, pszName was double-counted this"
     },
     "0x005408E0": {
       "name": "GetTextureInfo",

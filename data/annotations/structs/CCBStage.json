@@ -1364,8 +1364,8 @@
     },
     "0x0040CCF0": {
       "name": "GetAlive",
-      "signature": "char *__thiscall(CCBStage *this, int thisa, int *pConfig)",
-      "source": "fix:C2660:rollback-2026-09-14 (dual evidence says 1 param: caller push x1 + callee retn 4 x5; mangled QAEPADHPAH is pollution; re-export ripple too costly to absorb this round - needs dedicated absorb session)"
+      "signature": "char *__thiscall(CCBStage *this, int *pConfig)",
+      "source": "fix:C2660:dual evidence: caller push x1 + callee retn 4 x5; mangled QAEPADHPAH is pollution"
     },
     "0x0040DCF0": {
       "name": "GetByIndex",

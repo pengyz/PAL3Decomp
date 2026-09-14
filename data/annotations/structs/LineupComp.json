@@ -79,7 +79,8 @@
   "methods": {
     "0x004543C0": {
       "name": "SetVisible",
-      "signature": "int __thiscall LineupComp::SetVisible(int this, unsigned __int8 pData)"
+      "signature": "int __thiscall(LineupComp *this, unsigned __int8 pData)",
+      "source": "fix:C2660:inflation: decl 2 vs ret-N slots 1, phantom first param dropped"
     },
     "0x0044B850": {
       "name": "LineupComp",
