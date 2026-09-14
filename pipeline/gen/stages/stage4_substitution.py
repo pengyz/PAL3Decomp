@@ -43,6 +43,25 @@ def _build_identifier_map():
 # Literal + global resolution helpers
 # ============================================================
 
+def _try_literal_address(name):
+    """Address constant for a skip-annotated global, for use under unary &.
+
+    `&stru_XXXX` must become the data address itself, never the dword loaded
+    from it (_try_literal_replacement would emit `&0xVAL` — C2101)."""
+    for prefix in ('dword_', 'byte_', 'word_', 'off_', 'flt_', 'unk_', 'stru_', 'asc_'):
+        if name.startswith(prefix):
+            try:
+                va = int(name.split('_')[1], 16)
+            except (IndexError, ValueError):
+                return None
+            break
+    else:
+        return None
+    if any(sa == va for _sn, sa in store.skip_globals.items()):
+        return '0x%X' % va
+    return None
+
+
 def _try_literal_replacement(name):
     """Check if an identifier should be replaced with a literal value.
     Uses annotation state: type=skip entries get replaced with .data/.rdata values."""
@@ -326,10 +345,59 @@ def _load_member_names():
     return _MEMBER_NAMES
 
 
+def _declarator_name(node):
+    """Leftmost identifier of a declarator chain (pointer/array/function)."""
+    if node is None:
+        return None
+    if node.type == 'identifier':
+        return node.text.decode('utf-8')
+    for ch in node.children:
+        r = _declarator_name(ch)
+        if r:
+            return r
+    return None
+
+
+def _collect_reserved_names(tree, ctx):
+    """Names declared in this function's scope: parameters + locals.
+
+    Hex-Rays parameter conventions (nVal, pnVal, ...) occasionally collide
+    with IDA data names; a declared name must shadow any same-named global,
+    thunk, or literal inside its own function (C++ scoping)."""
+    reserved = set()
+    m = re.match(r'^[^(]*\(([^)]*)\)', getattr(ctx, 'sig', '') or '')
+    if m:
+        inner = m.group(1).strip()
+        if inner and inner != 'void':
+            for p in inner.split(','):
+                pm = re.search(r'([A-Za-z_]\w*)\s*(?:\[[^\]]*\])*\s*$', p.strip())
+                if pm:
+                    reserved.add(pm.group(1))
+
+    def _walk(node):
+        if node.type == 'declaration':
+            for ch in node.children:
+                if ch.type == 'init_declarator':
+                    n = _declarator_name(ch.child_by_field_name('declarator'))
+                    if n:
+                        reserved.add(n)
+                elif ch.type in ('identifier', 'pointer_declarator',
+                                 'array_declarator', 'function_declarator'):
+                    n = _declarator_name(ch)
+                    if n:
+                        reserved.add(n)
+        for ch in node.children:
+            _walk(ch)
+
+    _walk(tree.root_node)
+    return reserved
+
+
 def _collect_token_edits(code_bytes, tree, ctx):
     """Walk AST once, collect identifier/type replacement edits."""
     edits = []
     thunk_map = _build_identifier_map()
+    reserved = _collect_reserved_names(tree, ctx)
 
     def _in_declaration(node):
         """Check if this node is within a variable declaration (not an expression)."""
@@ -377,6 +445,13 @@ def _collect_token_edits(code_bytes, tree, ctx):
 
         if node.type == 'identifier' and node.child_count == 0:
             name = node.text.decode('utf-8')
+            # Scoped name shadows any same-named global/thunk/literal — unless
+            # the use is `::name` (qualified_identifier), which is an explicit
+            # global-scope reference despite the collision.
+            parent = node.parent
+            if (name in reserved
+                    and not (parent is not None and parent.type == 'qualified_identifier')):
+                return
             replacement = None
             if name.startswith(('dword_', 'byte_', 'word_', 'off_', 'flt_', 'unk_', 'stru_')):
                 # Skip struct_instances resolution in declaration contexts
@@ -402,6 +477,19 @@ def _collect_token_edits(code_bytes, tree, ctx):
             if not replacement and name == 'this' and ctx.is_free_function:
                 replacement = '_this'
             if replacement:
+                # Under unary &, a skip-global replacement must be the data
+                # address itself, not the dword loaded from it (&0xVAL = C2101).
+                # Replace the whole `&name` node so the & disappears with it.
+                p = node.parent
+                if (p is not None and p.type == 'pointer_expression'
+                        and replacement.startswith('0x')):
+                    pop = p.child_by_field_name('operator')
+                    if pop is not None and pop.text == b'&':
+                        addr = _try_literal_address(name)
+                        if addr:
+                            edits.append((p.start_byte, p.end_byte,
+                                          addr.encode('utf-8')))
+                            return
                 edits.append((node.start_byte, node.end_byte, replacement.encode('utf-8')))
                 return
 
