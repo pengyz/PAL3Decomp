@@ -172,6 +172,20 @@ def collect_functions(decomp_dir=None):
             cls = parts[0]
             method = parts[1].split('(')[0] if '(' in parts[1] else parts[1]
 
+        # IDA same-name dedup suffix (__ovl_1 / __ovl_2 / ...) is a decompiler
+        # bookkeeping artifact — the original C++ source never had such
+        # identifiers. Strip it so cpp definitions match header declarations
+        # (emit_headers applies the same strip for declarations). The ordinal
+        # can flip between exports when IDB types are re-applied, turning a
+        # previously-fine method into an undeclared-member cascade.
+        if method:
+            _stripped = re.sub(r'__ovl_[0-9a-fA-F]+$', '', method)
+            if _stripped != method:
+                # rename inside the body too: stage1 rebuilds the definition
+                # from the code text's own signature line
+                code = re.sub(r'\b%s\b' % re.escape(method), _stripped, code)
+            method = _stripped
+
         if cls and method:
             if cls in skip_classes:
                 continue
