@@ -17,6 +17,87 @@ _parser = tree_sitter.Parser(_lang)
 # Cache class hierarchy from annotation data
 _CLASS_BASES = None
 
+# Cache ret-N param-slot evidence: (cls, method) -> slots or None
+_RET_SLOTS_CACHE = None
+
+_RET_SLOTS_WARNED = set()
+
+
+def _ret_param_slots(cls_name, method_name):
+    """True stack-param slot count for a method, from the binary.
+
+    MSVC6 __thiscall callees clean their own stack: the function-tail
+    'ret N' immediate is the parameter byte-count (4 per 4-byte slot).
+    This is compiler-generated ground truth used to gate the
+    explicit-this member-call rewrite: the rewrite is only valid when
+    the rendered arg count is consistent with first-arg = this.
+
+    Returns slot count (N/4, requiring N%%4==0), 0 for no-param, or
+    None when the evidence is unavailable/ambiguous."""
+    global _RET_SLOTS_CACHE
+    if _RET_SLOTS_CACHE is None:
+        _RET_SLOTS_CACHE = {}
+        _load_ret_slots()
+    hit = _RET_SLOTS_CACHE.get((cls_name, method_name))
+    if hit is None and (cls_name, method_name) not in _RET_SLOTS_WARNED:
+        _RET_SLOTS_WARNED.add((cls_name, method_name))
+    return hit
+
+
+def _load_ret_slots():
+    """Build (cls, method) -> param slots from structs annotations + exe."""
+    import struct as _struct
+    _gen_dir = os.path.dirname(os.path.abspath(__file__))
+    _proj = os.path.dirname(os.path.dirname(_gen_dir))
+    _structs_dir = os.path.join(_proj, 'data', 'annotations', 'structs')
+    exe_path = os.path.join(_proj, 'original', 'PAL3.exe')
+    if not os.path.isfile(exe_path):
+        return
+    try:
+        _exe = open(exe_path, 'rb').read()
+    except OSError:
+        return
+
+    def va2off(va):
+        return 0x1000 + (va - 0x401000)
+
+    def ret_n_at(va, max_scan=0x600):
+        off = va2off(va)
+        if off < 0x1000 or off + max_scan > len(_exe):
+            return None
+        for i in range(off, off + max_scan):
+            b = _exe[i]
+            if b == 0xC2:
+                n = _struct.unpack_from('<H', _exe, i + 1)[0]
+                if n <= 0x200:
+                    return n
+            elif b == 0xC3:
+                return 0
+        return None
+
+    for _f in sorted(os.listdir(_structs_dir)):
+        if not _f.endswith('.json'):
+            continue
+        try:
+            d = json.load(open(os.path.join(_structs_dir, _f), encoding='utf-8'))
+        except Exception:
+            continue
+        cls = d.get('name') or _f[:-5]
+        for a, m in (d.get('methods') or {}).items():
+            mn = str(m.get('name', ''))
+            try:
+                va = int(a, 16)
+            except ValueError:
+                continue
+            if (cls, mn) in _RET_SLOTS_CACHE:
+                continue
+            n = ret_n_at(va)
+            if n is not None and n % 4 == 0:
+                _RET_SLOTS_CACHE[(cls, mn)] = n // 4
+            else:
+                _RET_SLOTS_CACHE[(cls, mn)] = None
+
+
 _ROWTABLE_CACHE = None
 
 
@@ -365,20 +446,37 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                     node.start_byte, node.end_byte, new_text))
                                 return
                             elif first_arg.type == 'pointer_expression':
-                                # &expr as first arg.
-                                # &g_Global implies a VALUE-type global (a pointer
-                                # wouldn't need the address-of). Method call on a
-                                # value uses '.', not '->'.
-                                # Local variables (&local) → keep as Class::Method
-                                _ptr_inner = first_arg_text[1:]  # strip &
-                                _ptr_strip = _ptr_inner.lstrip(':')
-                                if re.match(r'^g_[A-Z]', _ptr_strip):
-                                    new_text = '%s.%s::%s(%s)' % (
-                                        _ptr_inner, class_name, method_name, rest_str)
-                                else:
+                                _op_node = first_arg.child_by_field_name('operator')
+                                _op = _op_node.text.decode('utf-8') if _op_node is not None else ''
+                                _ptr_inner = first_arg_text[1:].lstrip(':').lstrip()
+                                # 证据门控：__thiscall 被调方自清栈，尾部 ret N
+                                # 即真实栈参数字节数（4B/槽）。槽 == len(args)-1
+                                # ⇔ "首参=this" 解释自洽 → 成员调用形式同构重写；
+                                # 否则首参是真参数（静态/ cdecl 形态），保持原样
+                                # 让 MSVC6 诚实报错。
+                                _slots = _ret_param_slots(class_name, method_name)
+                                _this_consistent = (
+                                    _slots is not None
+                                    and _slots == len(arg_nodes) - 1)
+                                if _op == '*' and _this_consistent:
+                                    new_text = '(%s)->%s::%s(%s)' % (
+                                        first_arg_text, class_name,
+                                        method_name, rest_str)
+                                    replacements.append((
+                                        node.start_byte, node.end_byte, new_text))
                                     return
-                                replacements.append((
-                                    node.start_byte, node.end_byte, new_text))
+                                if _op == '&' and _this_consistent:
+                                    # 全局对象地址作 this：obj.Cls::M(rest)
+                                    _ptr_strip = _ptr_inner.lstrip(':')
+                                    if re.match(r'^(g_[A-Z]|unk_|stru_|dword_)', _ptr_strip):
+                                        new_text = '%s.%s::%s(%s)' % (
+                                            _ptr_strip, class_name,
+                                            method_name, rest_str)
+                                        replacements.append((
+                                            node.start_byte, node.end_byte, new_text))
+                                    return
+                                # 其余（局部 &local、无法定位对象等）：保持静态形式，
+                                # 让 MSVC6 诚实报错 —— 不做任何编辑
                                 return
                             elif first_arg.type in ('binary_expression', 'parenthesized_expression'):
                                 # Complex expression like (Type*)ptr - offset or (ptr + N)
