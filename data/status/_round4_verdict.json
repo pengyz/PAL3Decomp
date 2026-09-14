@@ -1,0 +1,32 @@
+{
+  "question": "轮4顶簇归属：NPC::CreateChild(0x43F560)、PAL_GDB::UpdateSkillPanel(0x460A90)、GRPinput::PollInputState(0x403000)、CCBAIWindow::Reset(0x51CB60)。",
+  "verdict": "CreateChild 定谳为 UIListBox 方法；其余三簇证据已收集但不足以定谳，立档待深挖。",
+  "resolved": [
+    {
+      "addr": "0x0043F560",
+      "from": "NPC",
+      "to": "UIListBox",
+      "name": "CreateChild",
+      "evidence": "33 个 xref 全部来自 UIListBox 方法块（OnMessage/SetItemOffset/Render/Update/ProcessSelection，0x43E4xx-0x43F2xx，函数物理位于块尾）；访问 +0x1B0/+0x45C/+0x460 全部落在 UIListBox(1208B) 内；NPC 类 1152B 且与该函数无块邻接关系。8 个标记站点全在 UIListBox.cpp 内传自身 this，改名后类内合法化。"
+    }
+  ],
+  "evidence_collected": [
+    {
+      "addr": "0x00460A90",
+      "name": "UpdateSkillPanel",
+      "findings": "745 行；esi+ 最大偏移 0x19DA8=105,384 —— 同时落在 PlayerMgr(107,056) 与 SaleUI(105,656) 内；调用方 PlayerMgr x7 + SaleUI x2 均传自身 this。与轮2结论（SaleUI ctor 0x45A7B0 与 PlayerMgr ctor 0x45AE60 初始化同一布局、疑似同链切开）互洽：属于 PlayerMgr/SaleUI 共同基类或同类的纠缠区。需 ctor 边界重切后定谳。"
+    },
+    {
+      "addr": "0x403000",
+      "name": "PollInputState",
+      "findings": "无 this 偏移访问；体内 operator new/delete + `key|0x1F` 尺寸归整（32 字节桶）+ SEH —— 疑似尺寸类池分配器而非输入轮询；Hex-Rays 类型已污染（全部显示 IDirectInputDevice8）。调用方 SceneObj/PalScript/PalScriptIdleObj 传自身 this——若为根类（SceneObj→CGameData 链）方法则调用形态成立；0x403000 位于 .text 最前端（早期编译区=根类/工具）。待分配器语义分析。"
+    },
+    {
+      "addr": "0x51CB60",
+      "name": "Reset (CCBAIWindow::)",
+      "findings": "51 行，operator new(0x98)=152B + SEH；CCBAIWindow 仅 208B 而 152B 分配接近其尺寸——可能是在给定缓冲构造 AI 窗口。调用方 CCBUI x8 传自身 this + &this->m_pRoleStateMP[i]（CCBUI 2648B 成员数组元素）。证据不足。"
+    }
+  ],
+  "action": "CreateChild 迁移 NPC→UIListBox（8 站点消解）。",
+  "date": "2026-09-14"
+}

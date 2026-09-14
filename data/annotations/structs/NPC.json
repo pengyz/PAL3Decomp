@@ -1,199 +1,195 @@
 {
-  "name": "NPC",
-  "pdb_size": 4,
-  "known_members": {
-    "292": {
-      "name": "m_wndHPBar",
-      "type": "UIWnd *",
-      "source": "ida_decomp:_init_4520a0 UIWnd::FindChild(&this), 2 refs+codegen_infer"
-    },
-    "536": {
-      "name": "m_wndNameLabel",
-      "type": "int",
-      "source": "ida_decomp:_init_4520a0 UIWnd::SetRect(&this), 4 refs"
-    },
-    "688": {
-      "name": "m_wndDialog",
-      "type": "NPC *",
-      "source": "ida_decomp:_init_4520a0 vtable call, 3 refs+codegen_infer"
-    },
-    "840": {
-      "name": "m_wndTooltip",
-      "type": "NPC *",
-      "source": "ida_decomp:_init_4520a0 vtable call, 2 refs+codegen_infer"
-    },
-    "1144": {
-      "name": "m_fAnimTimer",
-      "type": "float",
-      "source": "ida_decomp:_init_4520a0 += result, 3 refs"
-    },
-    "1148": {
-      "name": "m_bAnimActive",
-      "type": "int",
-      "source": "ida_decomp:_init_4520a0 if(this) =0, 2 refs"
-    },
-    "4": {
-      "name": "m_pBuffer",
-      "type": "char *",
-      "source": "A:decomp *(_DWORD*)&field=new/delete+4*idx array in NPC.cpp; type_fix:int\u2192void*(alloc/free pattern)",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
-    "8": {
-      "name": "m_nBufStart",
-      "type": "int",
-      "source": "A:decomp LODWORD(field) in (end-begin)>>2 count calc; vector-like begin/last"
-    },
-    "12": {
-      "name": "m_nBufEnd",
-      "type": "int",
-      "source": "A:decomp *(_DWORD*)&field in (end-begin)>>2 count calc; vector-like end ptr"
-    },
-    "56": {
-      "name": "m_pConditionA",
-      "type": "int",
-      "source": "ida_decomp:_init_4520a0 if(this && _todo_03C), 1 ref"
-    },
-    "60": {
-      "name": "m_pConditionB",
-      "type": "void*",
-      "source": "ida_decomp:_init_4520a0 if(_todo_038 && this), 1 ref; type_fix:m_p*_int_to_void*"
-    },
-    "36": {
-      "name": "m_nTodo_024",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "68": {
-      "name": "m_wndBase",
-      "type": "UIWnd",
-      "source": "gap_fill:ida_decomp_access | type_fix:int\u2192UIWnd(UIWnd::FindChild/FindChildByName(&this->_todo_44,...))"
-    },
-    "0": {
-      "name": "__vftable",
-      "type": "void *",
-      "source": "binary_scan:2refs",
-      "note": "renamed vfptr -> __vftable (unified with IDA convention)"
-    },
-    "48": {
-      "name": "m_bFlag_30",
-      "type": "int",
-      "source": "binary_scan:1refs;A:decomp_batch_rename_usage_pattern"
-    },
-    "224": {
-      "name": "m_nTodo_0E0",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "312": {
-      "name": "m_WndContainer",
-      "type": "UIWnd",
-      "source": "decomp:Init_UIWnd_FindChild+UIProgressBar_FindChildByName"
-    },
-    "556": {
-      "name": "m_AnimWndA",
-      "type": "UIWnd",
-      "source": "decomp:NPC_UpdateAnim+UIWnd_SetRect(UIWnd_not_UIStatic,688_exists)"
-    },
-    "708": {
-      "name": "m_AnimWndB",
-      "type": "UIWnd",
-      "source": "decomp:NPC_UpdateAnim(UIWnd_not_UIStatic,840_exists)"
-    },
-    "860": {
-      "name": "m_AnimWndC",
-      "type": "UIWnd",
-      "source": "decomp:NPC_UpdateAnim(UIWnd)"
-    }
+ "name": "NPC",
+ "pdb_size": 4,
+ "known_members": {
+  "292": {
+   "name": "m_wndHPBar",
+   "type": "UIWnd *",
+   "source": "ida_decomp:_init_4520a0 UIWnd::FindChild(&this), 2 refs+codegen_infer"
   },
-  "binary_size": 1152,
-  "methods": {
-    "0x0040EB90": {
-      "name": "Create",
-      "signature": "unsigned int __cdecl(int index)",
-      "static": true
-    },
-    "0x0040EC20": {
-      "name": "Init",
-      "signature": "void *__cdecl(int index)",
-      "static": true
-    },
-    "0x0040F060": {
-      "name": "SetRoleMode",
-      "signature": "int __cdecl(int nVal)",
-      "static": true
-    },
-    "0x0040F620": {
-      "name": "InitAll",
-      "signature": "int __cdecl()",
-      "static": true
-    },
-    "0x0043F560": {
-      "name": "CreateChild",
-      "signature": "int __thiscall()"
-    },
-    "0x00446020": {
-      "name": "UpdateAnim",
-      "signature": "void __thiscall(NPC *this)"
-    },
-    "0x00517A50": {
-      "name": "DestroyAndRecreateUI",
-      "signature": "void __thiscall()"
-    },
-    "0x00517AC0": {
-      "name": "HandleAIMessage",
-      "signature": "char __thiscall(int thisa, int nVal)"
-    },
-    "0x0040F9E0": {
-      "name": "LoadFromStream",
-      "signature": "size_t __thiscall(FILE *Stream)"
-    },
-    "0x00410580": {
-      "name": "SetSceneFlag",
-      "signature": "void __thiscall()"
-    },
-    "0x00517CF0": {
-      "name": "ResetLineupWindow",
-      "signature": "void __thiscall()"
-    },
-    "0x0040EE00": {
-      "name": "FreeBuffer",
-      "signature": "int __thiscall()"
-    },
-    "0x0040EE30": {
-      "name": "ShiftBufferData",
-      "signature": "char __thiscall(int nVal)"
-    },
-    "0x0040F000": {
-      "name": "HasBufferData",
-      "signature": "bool __thiscall(int nVal)"
-    },
-    "0x0040F030": {
-      "name": "GetBufferCount",
-      "signature": "int __thiscall NPC::GetBufferCount()"
-    },
-    "0x0040F050": {
-      "name": "GetBufferAt",
-      "signature": "int __thiscall NPC::GetBufferAt(int nIndex)"
-    },
-    "0x0040F6F0": {
-      "name": "ReadBufferData",
-      "signature": "int __thiscall(FILE *Stream)"
-    },
-    "0x0040F760": {
-      "name": "LoadBufferFromStream",
-      "signature": "int __thiscall NPC::LoadBufferFromStream(FILE *fp)"
-    },
-    "0x0040F950": {
-      "name": "SaveToStream",
-      "signature": "size_t __thiscall(FILE *Stream)"
-    },
-    "0x00479100": {
-      "name": "GetPropertyByIndex",
-      "signature": "int __thiscall NPC::GetPropertyByIndex(unsigned int dwVal)"
-    },
-    "0x00517BA0": {
-      "name": "ShowAIWindow",
-      "signature": "void __thiscall()"
-    }
+  "536": {
+   "name": "m_wndNameLabel",
+   "type": "int",
+   "source": "ida_decomp:_init_4520a0 UIWnd::SetRect(&this), 4 refs"
+  },
+  "688": {
+   "name": "m_wndDialog",
+   "type": "NPC *",
+   "source": "ida_decomp:_init_4520a0 vtable call, 3 refs+codegen_infer"
+  },
+  "840": {
+   "name": "m_wndTooltip",
+   "type": "NPC *",
+   "source": "ida_decomp:_init_4520a0 vtable call, 2 refs+codegen_infer"
+  },
+  "1144": {
+   "name": "m_fAnimTimer",
+   "type": "float",
+   "source": "ida_decomp:_init_4520a0 += result, 3 refs"
+  },
+  "1148": {
+   "name": "m_bAnimActive",
+   "type": "int",
+   "source": "ida_decomp:_init_4520a0 if(this) =0, 2 refs"
+  },
+  "4": {
+   "name": "m_pBuffer",
+   "type": "char *",
+   "source": "A:decomp *(_DWORD*)&field=new/delete+4*idx array in NPC.cpp; type_fix:int→void*(alloc/free pattern)",
+   "note": "replaced void* with char* (IDB struct compat)"
+  },
+  "8": {
+   "name": "m_nBufStart",
+   "type": "int",
+   "source": "A:decomp LODWORD(field) in (end-begin)>>2 count calc; vector-like begin/last"
+  },
+  "12": {
+   "name": "m_nBufEnd",
+   "type": "int",
+   "source": "A:decomp *(_DWORD*)&field in (end-begin)>>2 count calc; vector-like end ptr"
+  },
+  "56": {
+   "name": "m_pConditionA",
+   "type": "int",
+   "source": "ida_decomp:_init_4520a0 if(this && _todo_03C), 1 ref"
+  },
+  "60": {
+   "name": "m_pConditionB",
+   "type": "void*",
+   "source": "ida_decomp:_init_4520a0 if(_todo_038 && this), 1 ref; type_fix:m_p*_int_to_void*"
+  },
+  "36": {
+   "name": "m_nTodo_024",
+   "type": "int",
+   "source": "gap_fill:ida_decomp_access"
+  },
+  "68": {
+   "name": "m_wndBase",
+   "type": "UIWnd",
+   "source": "gap_fill:ida_decomp_access | type_fix:int→UIWnd(UIWnd::FindChild/FindChildByName(&this->_todo_44,...))"
+  },
+  "0": {
+   "name": "__vftable",
+   "type": "void *",
+   "source": "binary_scan:2refs",
+   "note": "renamed vfptr -> __vftable (unified with IDA convention)"
+  },
+  "48": {
+   "name": "m_bFlag_30",
+   "type": "int",
+   "source": "binary_scan:1refs;A:decomp_batch_rename_usage_pattern"
+  },
+  "224": {
+   "name": "m_nTodo_0E0",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "312": {
+   "name": "m_WndContainer",
+   "type": "UIWnd",
+   "source": "decomp:Init_UIWnd_FindChild+UIProgressBar_FindChildByName"
+  },
+  "556": {
+   "name": "m_AnimWndA",
+   "type": "UIWnd",
+   "source": "decomp:NPC_UpdateAnim+UIWnd_SetRect(UIWnd_not_UIStatic,688_exists)"
+  },
+  "708": {
+   "name": "m_AnimWndB",
+   "type": "UIWnd",
+   "source": "decomp:NPC_UpdateAnim(UIWnd_not_UIStatic,840_exists)"
+  },
+  "860": {
+   "name": "m_AnimWndC",
+   "type": "UIWnd",
+   "source": "decomp:NPC_UpdateAnim(UIWnd)"
   }
+ },
+ "binary_size": 1152,
+ "methods": {
+  "0x0040EB90": {
+   "name": "Create",
+   "signature": "unsigned int __cdecl(int index)",
+   "static": true
+  },
+  "0x0040EC20": {
+   "name": "Init",
+   "signature": "void *__cdecl(int index)",
+   "static": true
+  },
+  "0x0040F060": {
+   "name": "SetRoleMode",
+   "signature": "int __cdecl(int nVal)",
+   "static": true
+  },
+  "0x0040F620": {
+   "name": "InitAll",
+   "signature": "int __cdecl()",
+   "static": true
+  },
+  "0x00446020": {
+   "name": "UpdateAnim",
+   "signature": "void __thiscall(NPC *this)"
+  },
+  "0x00517A50": {
+   "name": "DestroyAndRecreateUI",
+   "signature": "void __thiscall()"
+  },
+  "0x00517AC0": {
+   "name": "HandleAIMessage",
+   "signature": "char __thiscall(int thisa, int nVal)"
+  },
+  "0x0040F9E0": {
+   "name": "LoadFromStream",
+   "signature": "size_t __thiscall(FILE *Stream)"
+  },
+  "0x00410580": {
+   "name": "SetSceneFlag",
+   "signature": "void __thiscall()"
+  },
+  "0x00517CF0": {
+   "name": "ResetLineupWindow",
+   "signature": "void __thiscall()"
+  },
+  "0x0040EE00": {
+   "name": "FreeBuffer",
+   "signature": "int __thiscall()"
+  },
+  "0x0040EE30": {
+   "name": "ShiftBufferData",
+   "signature": "char __thiscall(int nVal)"
+  },
+  "0x0040F000": {
+   "name": "HasBufferData",
+   "signature": "bool __thiscall(int nVal)"
+  },
+  "0x0040F030": {
+   "name": "GetBufferCount",
+   "signature": "int __thiscall NPC::GetBufferCount()"
+  },
+  "0x0040F050": {
+   "name": "GetBufferAt",
+   "signature": "int __thiscall NPC::GetBufferAt(int nIndex)"
+  },
+  "0x0040F6F0": {
+   "name": "ReadBufferData",
+   "signature": "int __thiscall(FILE *Stream)"
+  },
+  "0x0040F760": {
+   "name": "LoadBufferFromStream",
+   "signature": "int __thiscall NPC::LoadBufferFromStream(FILE *fp)"
+  },
+  "0x0040F950": {
+   "name": "SaveToStream",
+   "signature": "size_t __thiscall(FILE *Stream)"
+  },
+  "0x00479100": {
+   "name": "GetPropertyByIndex",
+   "signature": "int __thiscall NPC::GetPropertyByIndex(unsigned int dwVal)"
+  },
+  "0x00517BA0": {
+   "name": "ShowAIWindow",
+   "signature": "void __thiscall()"
+  }
+ }
 }
