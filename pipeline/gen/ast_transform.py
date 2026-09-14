@@ -97,6 +97,26 @@ def _load_ret_slots():
             else:
                 _RET_SLOTS_CACHE[(cls, mn)] = None
 
+    # MCP-verified evidence overrides the raw byte-scan. sig_evidence.py
+    # extracts ret instructions via IDA disassemble_function (instruction-
+    # accurate; the byte-scan above misreads early 0xC2/0xC3 bytes inside
+    # function bodies — e.g. conditional returns — as the function tail,
+    # which wrongly blocks the explicit-this gate). Pack entries are graded:
+    # 'slots' exists only for unanimous, %4==0 rets, so ambiguous callees
+    # stay unevidenced and the gate conservatively blocks.
+    _pack_path = os.path.join(_proj, 'data', 'status', '_sig_evidence_pack.json')
+    if os.path.isfile(_pack_path):
+        try:
+            _pack = json.load(open(_pack_path, encoding='utf-8'))
+            for _c in _pack.get('graded', []):
+                if not isinstance(_c, dict) or 'slots' not in _c:
+                    continue
+                _key = (_c.get('cls'), _c.get('method'))
+                if _key[0] and _key[1]:
+                    _RET_SLOTS_CACHE[_key] = _c['slots']
+        except Exception:
+            pass
+
 
 _ROWTABLE_CACHE = None
 

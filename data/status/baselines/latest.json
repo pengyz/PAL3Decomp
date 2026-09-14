@@ -1,6 +1,6 @@
 {
-  "name": "20260914_211147",
-  "timestamp": "2026-09-14T21:11:47.358192",
+  "name": "20260914_220205",
+  "timestamp": "2026-09-14T22:02:05.508039",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "fail",
@@ -51,7 +51,7 @@
     },
     "pal3/src/Combat/CCBCamControl.cpp": {
       "status": "fail",
-      "error_count": 17,
+      "error_count": 15,
       "errors": [
         {
           "code": "C2664",
@@ -127,16 +127,6 @@
           "code": "C2039",
           "msg": "'m_pModObj' : is not a member of 'gbVolModNode'",
           "line": 968
-        },
-        {
-          "code": "C2660",
-          "msg": "'Render' : function does not take 2 parameters",
-          "line": 1013
-        },
-        {
-          "code": "C2660",
-          "msg": "'Render' : function does not take 2 parameters",
-          "line": 1016
         }
       ]
     },
@@ -253,7 +243,7 @@
     },
     "pal3/src/Combat/CCBItemWindow.cpp": {
       "status": "fail",
-      "error_count": 12,
+      "error_count": 13,
       "errors": [
         {
           "code": "C2664",
@@ -301,6 +291,11 @@
           "line": 344
         },
         {
+          "code": "C2660",
+          "msg": "'CreateFromTemplate' : function does not take 1 parameters",
+          "line": 347
+        },
+        {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
           "line": 348
@@ -330,7 +325,7 @@
     },
     "pal3/src/Combat/CCBMagicWindow.cpp": {
       "status": "fail",
-      "error_count": 24,
+      "error_count": 25,
       "errors": [
         {
           "code": "C2059",
@@ -341,6 +336,11 @@
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
           "line": 151
+        },
+        {
+          "code": "C2660",
+          "msg": "'CreateFromTemplate' : function does not take 1 parameters",
+          "line": 154
         },
         {
           "code": "C2227",
@@ -456,17 +456,17 @@
     },
     "pal3/src/Combat/CCBParabolaWindow.cpp": {
       "status": "fail",
-      "error_count": 13,
+      "error_count": 14,
       "errors": [
-        {
-          "code": "C2660",
-          "msg": "'CreateParentData' : function does not take 2 parameters",
-          "line": 52
-        },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
           "line": 96
+        },
+        {
+          "code": "C2660",
+          "msg": "'CreateFromTemplate' : function does not take 1 parameters",
+          "line": 99
         },
         {
           "code": "C2227",
@@ -477,6 +477,11 @@
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
           "line": 114
+        },
+        {
+          "code": "C2660",
+          "msg": "'CreateFromTemplate' : function does not take 1 parameters",
+          "line": 117
         },
         {
           "code": "C2664",
@@ -623,474 +628,474 @@
         },
         {
           "code": "C2660",
-          "msg": "'PopulateMagicList' : function does not take 2 parameters",
-          "line": 1224
-        },
-        {
-          "code": "C2660",
-          "msg": "'CreateFiveNimbus' : function does not take 2 parameters",
-          "line": 1798
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 1815
         },
         {
           "code": "C2660",
           "msg": "'EndTurnAndAdvance' : function does not take 1 parameters",
-          "line": 1814
+          "line": 1823
         },
         {
           "code": "C2660",
           "msg": "'SetVisible' : function does not take 0 parameters",
-          "line": 1819
+          "line": 1828
         },
         {
           "code": "C2660",
-          "msg": "'CreateFiveNimbus' : function does not take 2 parameters",
-          "line": 1836
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 1859
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 1910
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 1920
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 1930
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 1992
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2002
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2012
         },
         {
           "code": "C2660",
           "msg": "'SetVisible' : function does not take 0 parameters",
-          "line": 1985
+          "line": 2057
         },
         {
           "code": "C2660",
           "msg": "'CCBMagicWindow::~CCBMagicWindow' : function does not take 2 parameters",
-          "line": 2020
+          "line": 2092
         },
         {
           "code": "C2660",
           "msg": "'CCBMagicWindow::~CCBMagicWindow' : function does not take 2 parameters",
-          "line": 2022
+          "line": 2094
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 2026
+          "line": 2098
         },
         {
           "code": "C2660",
           "msg": "'CCBMagicWindow::~CCBMagicWindow' : function does not take 2 parameters",
-          "line": 2031
+          "line": 2103
         },
         {
           "code": "C2660",
           "msg": "'CCBMagicWindow::~CCBMagicWindow' : function does not take 2 parameters",
-          "line": 2036
+          "line": 2108
         },
         {
           "code": "C2660",
-          "msg": "'CreateFiveNimbus' : function does not take 2 parameters",
-          "line": 2071
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2142
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2189
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2199
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2224
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2536
         },
         {
           "code": "C2039",
           "msg": "'m_pData' : is not a member of 'CCBRoleState'",
-          "line": 2468
+          "line": 2585
         },
         {
           "code": "C2660",
           "msg": "'GetRoleMP' : function does not take 2 parameters",
-          "line": 2563
+          "line": 2680
         },
         {
           "code": "C2065",
           "msg": "'aGp' : undeclared identifier",
-          "line": 2634
+          "line": 2751
         },
         {
           "code": "C2065",
           "msg": "'aMp' : undeclared identifier",
-          "line": 2636
+          "line": 2753
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 2679
+          "line": 2796
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 2690
+          "line": 2807
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 2698
+          "line": 2815
         },
         {
           "code": "C2664",
           "msg": "'sprintf' : cannot convert parameter 2 from 'int *' to 'const char *'",
-          "line": 2790
+          "line": 2907
         },
         {
           "code": "C2660",
           "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 2908
+          "line": 3025
         },
         {
           "code": "C2660",
           "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 2917
+          "line": 3034
         },
         {
           "code": "C2660",
           "msg": "'GetRoleLevel' : function does not take 2 parameters",
-          "line": 2976
+          "line": 3093
         },
         {
           "code": "C2660",
           "msg": "'HandleRoleStateDialog' : function does not take 2 parameters",
-          "line": 3006
+          "line": 3123
         },
         {
           "code": "C2660",
           "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3210
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3212
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3214
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3216
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3218
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3220
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3222
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3224
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3226
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3228
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3230
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3232
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3234
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3236
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3238
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3240
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3242
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3244
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3246
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3248
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3250
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3252
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3254
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessRound' : function does not take 2 parameters",
-          "line": 3256
-        },
-        {
-          "code": "C2664",
-          "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
           "line": 3327
         },
         {
           "code": "C2660",
-          "msg": "'LoadSkillData' : function does not take 1 parameters",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3329
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3331
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3333
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3335
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3337
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3339
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3341
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3343
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3345
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3347
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3349
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3351
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3353
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3355
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3357
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3359
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3361
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3363
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3365
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3367
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
           "line": 3369
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3371
+        },
+        {
+          "code": "C2660",
+          "msg": "'ProcessRound' : function does not take 2 parameters",
+          "line": 3373
         },
         {
           "code": "C2664",
           "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
-          "line": 3418
+          "line": 3444
+        },
+        {
+          "code": "C2660",
+          "msg": "'LoadSkillData' : function does not take 1 parameters",
+          "line": 3486
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
+          "line": 3535
         },
         {
           "code": "C2664",
           "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
-          "line": 3449
+          "line": 3566
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 3684
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 3694
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 3824
+          "line": 3959
         },
         {
           "code": "C2660",
           "msg": "'PAL_GDB::~PAL_GDB' : function does not take 1 parameters",
-          "line": 3839
+          "line": 3974
         },
         {
           "code": "C2039",
           "msg": "'m_pData' : is not a member of 'CCBRoleState'",
-          "line": 3918
+          "line": 4053
         },
         {
           "code": "C2660",
           "msg": "'PAL_GDB::~PAL_GDB' : function does not take 1 parameters",
-          "line": 4120
+          "line": 4255
         },
         {
           "code": "C2660",
           "msg": "'PAL_GDB::~PAL_GDB' : function does not take 1 parameters",
-          "line": 4122
+          "line": 4257
         },
         {
           "code": "C2065",
           "msg": "'SLOWORD' : undeclared identifier",
-          "line": 4231
+          "line": 4366
         },
         {
           "code": "C2065",
           "msg": "'SHIWORD' : undeclared identifier",
-          "line": 4232
+          "line": 4367
         },
         {
           "code": "C2661",
           "msg": "'ReplaceTexture' : no overloaded function takes 2 parameters",
-          "line": 4435
+          "line": 4570
         },
         {
           "code": "C2664",
           "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
-          "line": 4489
+          "line": 4624
         },
         {
           "code": "C2065",
           "msg": "'Proxy' : undeclared identifier",
-          "line": 4613
+          "line": 4748
         },
         {
           "code": "C2661",
           "msg": "'EndTask' : no overloaded function takes 3 parameters",
-          "line": 4825
+          "line": 4960
         },
         {
           "code": "C2661",
           "msg": "'CreateObj' : no overloaded function takes 4 parameters",
-          "line": 5020
+          "line": 5155
         },
         {
           "code": "C2660",
           "msg": "'ValidateThreadAction' : function does not take 2 parameters",
-          "line": 5333
+          "line": 5468
         },
         {
           "code": "C2660",
           "msg": "'SetVisible' : function does not take 0 parameters",
-          "line": 5869
+          "line": 6004
         },
         {
           "code": "C2661",
           "msg": "'CreateObj' : no overloaded function takes 4 parameters",
-          "line": 5971
+          "line": 6106
         },
         {
           "code": "C2102",
           "msg": "'&' requires l-value",
-          "line": 6018
+          "line": 6153
         },
         {
           "code": "C2102",
           "msg": "'&' requires l-value",
-          "line": 6052
+          "line": 6187
         },
         {
           "code": "C2660",
           "msg": "'Init' : function does not take 6 parameters",
-          "line": 6111
+          "line": 6246
         },
         {
           "code": "C2660",
           "msg": "'Init' : function does not take 6 parameters",
-          "line": 6129
+          "line": 6264
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 6300
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 6311
         },
         {
           "code": "C2102",
           "msg": "'&' requires l-value",
-          "line": 6167
+          "line": 6320
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 6172
+          "line": 6325
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 6174
+          "line": 6327
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 6337
         },
         {
           "code": "C2660",
           "msg": "'GetCmdData' : function does not take 2 parameters",
-          "line": 6255
+          "line": 6417
         },
         {
           "code": "C2660",
           "msg": "'PAL_GDB::~PAL_GDB' : function does not take 1 parameters",
-          "line": 6261
+          "line": 6423
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 6468
         },
         {
           "code": "C2660",
           "msg": "'SearchItemLoop' : function does not take 5 parameters",
-          "line": 6314
-        },
-        {
-          "code": "C2660",
-          "msg": "'GetCmdData' : function does not take 2 parameters",
-          "line": 6381
-        },
-        {
-          "code": "C2660",
-          "msg": "'PAL_GDB::~PAL_GDB' : function does not take 1 parameters",
-          "line": 6389
-        },
-        {
-          "code": "C2660",
-          "msg": "'GetAlive' : function does not take 3 parameters",
-          "line": 6532
-        },
-        {
-          "code": "C2660",
-          "msg": "'GetCmdData' : function does not take 2 parameters",
-          "line": 6570
-        },
-        {
-          "code": "C2660",
-          "msg": "'GetCmdData' : function does not take 2 parameters",
-          "line": 6605
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckValid' : function does not take 2 parameters",
-          "line": 6767
-        },
-        {
-          "code": "C2661",
-          "msg": "'CreateObj' : no overloaded function takes 4 parameters",
-          "line": 7085
-        },
-        {
-          "code": "C2661",
-          "msg": "'CreateObj' : no overloaded function takes 4 parameters",
-          "line": 7102
-        },
-        {
-          "code": "C2661",
-          "msg": "'CreateObj' : no overloaded function takes 4 parameters",
-          "line": 7112
-        },
-        {
-          "code": "C2660",
-          "msg": "'GetCmdData' : function does not take 2 parameters",
-          "line": 7223
-        },
-        {
-          "code": "C2039",
-          "msg": "'m_pData' : is not a member of 'CCBRoleState'",
-          "line": 7713
-        },
-        {
-          "code": "C2660",
-          "msg": "'HandleControlCmd' : function does not take 2 parameters",
-          "line": 8047
-        },
-        {
-          "code": "C2660",
-          "msg": "'HandleControlCmd' : function does not take 2 parameters",
-          "line": 8069
-        },
-        {
-          "code": "C2660",
-          "msg": "'HandleControlCmd' : function does not take 2 parameters",
-          "line": 8079
-        },
-        {
-          "code": "C2660",
-          "msg": "'HandleControlCmd' : function does not take 2 parameters",
-          "line": 8088
+          "line": 6485
         },
         {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 8088
+          "line": 6485
         }
       ]
     },
     "pal3/src/Combat/CCBSkillWindow.cpp": {
       "status": "fail",
-      "error_count": 18,
+      "error_count": 20,
       "errors": [
         {
           "code": "C2660",
@@ -1134,6 +1139,11 @@
         },
         {
           "code": "C2660",
+          "msg": "'CreateFromTemplate' : function does not take 1 parameters",
+          "line": 273
+        },
+        {
+          "code": "C2660",
           "msg": "'GetChildCount' : function does not take 1 parameters",
           "line": 288
         },
@@ -1161,6 +1171,11 @@
           "code": "C2660",
           "msg": "'GetChildAt' : function does not take 1 parameters",
           "line": 317
+        },
+        {
+          "code": "C2660",
+          "msg": "'CreateFromTemplate' : function does not take 1 parameters",
+          "line": 328
         },
         {
           "code": "C2227",
@@ -1702,7 +1717,7 @@
     },
     "pal3/src/Combat/CCBStageCam.cpp": {
       "status": "fail",
-      "error_count": 21,
+      "error_count": 20,
       "errors": [
         {
           "code": "C2653",
@@ -1758,11 +1773,6 @@
           "code": "C2664",
           "msg": "'CreateDialogParamA' : cannot convert parameter 4 from 'int (struct HWND__ *,unsigned int,unsigned int,long)' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
           "line": 1295
-        },
-        {
-          "code": "C2660",
-          "msg": "'Render' : function does not take 2 parameters",
-          "line": 1327
         },
         {
           "code": "C2660",
@@ -2390,6 +2400,11 @@
         },
         {
           "code": "C2660",
+          "msg": "'CreateFromTemplate' : function does not take 1 parameters",
+          "line": 557
+        },
+        {
+          "code": "C2660",
           "msg": "'FindFreeThread' : function does not take 10 parameters",
           "line": 619
         },
@@ -2664,219 +2679,214 @@
           "line": 2663
         },
         {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2682
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2683
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2693
+        },
+        {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'bool (__cdecl *)(int,int)' to 'int (__thiscall CCBSystem::*)(int)'",
-          "line": 2695
+          "line": 2713
         },
         {
           "code": "C2660",
           "msg": "'GetCmdData' : function does not take 2 parameters",
-          "line": 2702
+          "line": 2720
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2743
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2790
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2800
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2810
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2867
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2877
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2887
         },
         {
           "code": "C2144",
           "msg": "syntax error : missing ')' before type 'int'",
-          "line": 2936
+          "line": 3008
         },
         {
           "code": "C2064",
           "msg": "term does not evaluate to a function",
-          "line": 2936
+          "line": 3008
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 2936
+          "line": 3008
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before '{'",
-          "line": 2941
+          "line": 3013
         },
         {
           "code": "C2447",
           "msg": "missing function header (old-style formal list?)",
-          "line": 2941
+          "line": 3013
         },
         {
           "code": "C2589",
           "msg": "'this' : illegal token on right side of '::'",
-          "line": 2996
+          "line": 3068
         },
         {
           "code": "C2059",
           "msg": "syntax error : '::'",
-          "line": 2996
+          "line": 3068
         },
         {
           "code": "C2039",
           "msg": "'v4' : is not a member of 'CCBStage'",
-          "line": 2998
+          "line": 3070
         },
         {
           "code": "C2039",
           "msg": "'v8' : is not a member of 'CCBStage'",
-          "line": 2999
+          "line": 3071
         },
         {
           "code": "C2039",
           "msg": "'a2' : is not a member of 'CCBStage'",
-          "line": 3000
+          "line": 3072
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 3000
+          "line": 3072
         },
         {
           "code": "C2039",
           "msg": "'CCBEditor' : is not a member of 'CCBStage'",
-          "line": 3000
+          "line": 3072
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 3000
+          "line": 3072
         },
         {
           "code": "C2039",
           "msg": "'v4' : is not a member of 'CCBStage'",
-          "line": 3001
+          "line": 3073
         },
         {
           "code": "C2039",
           "msg": "'memcpy' : is not a member of 'CCBStage'",
-          "line": 3003
+          "line": 3075
         },
         {
           "code": "C2039",
           "msg": "'pExceptionObject' : is not a member of 'CCBStage'",
-          "line": 3004
+          "line": 3076
         },
         {
           "code": "C2039",
           "msg": "'Logger' : is not a member of 'CCBStage'",
-          "line": 3005
+          "line": 3077
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 3005
+          "line": 3077
         },
         {
           "code": "C2039",
           "msg": "'Logger' : is not a member of 'CCBStage'",
-          "line": 3005
+          "line": 3077
         },
         {
           "code": "C2039",
           "msg": "'Logger' : is not a member of 'CCBStage'",
-          "line": 3005
+          "line": 3077
         },
         {
           "code": "C2653",
           "msg": "'Logger' : is not a class or namespace name",
-          "line": 3005
+          "line": 3077
         },
         {
           "code": "C2039",
           "msg": "'_CxxThrowException' : is not a member of 'CCBStage'",
-          "line": 3007
+          "line": 3079
         },
         {
           "code": "C2039",
           "msg": "'pExceptionObject' : is not a member of 'CCBStage'",
-          "line": 3007
+          "line": 3079
         },
         {
           "code": "C2039",
           "msg": "'_ThrowInfo' : is not a member of 'CCBStage'",
-          "line": 3007
+          "line": 3079
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 3007
+          "line": 3079
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 3009
+          "line": 3081
         },
         {
           "code": "C2039",
           "msg": "'CCBSystem' : is not a member of 'CCBStage'",
-          "line": 3013
+          "line": 3085
         },
         {
           "code": "C2039",
           "msg": "'CCBSystem' : is not a member of 'CCBStage'",
-          "line": 3013
+          "line": 3085
         },
         {
           "code": "C2653",
           "msg": "'CCBSystem' : is not a class or namespace name",
-          "line": 3013
-        },
-        {
-          "code": "C2061",
-          "msg": "syntax error : identifier 'CCBSystem'",
-          "line": 3013
-        },
-        {
-          "code": "C2039",
-          "msg": "'NullCallback' : is not a member of 'CCBStage'",
-          "line": 3017
-        },
-        {
-          "code": "C2039",
-          "msg": "'v5' : is not a member of 'CCBStage'",
-          "line": 3017
-        },
-        {
-          "code": "C2039",
-          "msg": "'Block' : is not a member of 'CCBStage'",
-          "line": 3018
-        },
-        {
-          "code": "C2039",
-          "msg": "'delete' : is not a member of 'CCBStage'",
-          "line": 3019
-        },
-        {
-          "code": "C2673",
-          "msg": "'DestroyObj' : global functions do not have 'this' pointers",
-          "line": 3019
-        },
-        {
-          "code": "C2673",
-          "msg": "'DestroyObj' : global functions do not have 'this' pointers",
-          "line": 3020
-        },
-        {
-          "code": "C2039",
-          "msg": "'CCBSystem' : is not a member of 'CCBStage'",
-          "line": 3024
-        },
-        {
-          "code": "C2039",
-          "msg": "'CCBSystem' : is not a member of 'CCBStage'",
-          "line": 3024
-        },
-        {
-          "code": "C2653",
-          "msg": "'CCBSystem' : is not a class or namespace name",
-          "line": 3024
-        },
-        {
-          "code": "C2061",
-          "msg": "syntax error : identifier 'CCBSystem'",
-          "line": 3024
+          "line": 3085
         },
         {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 3024
+          "line": 3085
         }
       ]
     },
@@ -3241,6 +3251,11 @@
         },
         {
           "code": "C2660",
+          "msg": "'CreateFromTemplate' : function does not take 1 parameters",
+          "line": 2875
+        },
+        {
+          "code": "C2660",
           "msg": "'Update' : function does not take 2 parameters",
           "line": 3014
         },
@@ -3280,6 +3295,11 @@
           "line": 3170
         },
         {
+          "code": "C2660",
+          "msg": "'CreateFromTemplate' : function does not take 1 parameters",
+          "line": 3179
+        },
+        {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
           "line": 3182
@@ -3288,6 +3308,11 @@
           "code": "C2660",
           "msg": "'Reset' : function does not take 2 parameters",
           "line": 3184
+        },
+        {
+          "code": "C2660",
+          "msg": "'CreateFromTemplate' : function does not take 1 parameters",
+          "line": 3193
         },
         {
           "code": "C2227",
@@ -3300,6 +3325,11 @@
           "line": 3198
         },
         {
+          "code": "C2660",
+          "msg": "'CreateFromTemplate' : function does not take 1 parameters",
+          "line": 3207
+        },
+        {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
           "line": 3210
@@ -3308,6 +3338,11 @@
           "code": "C2660",
           "msg": "'Reset' : function does not take 2 parameters",
           "line": 3212
+        },
+        {
+          "code": "C2660",
+          "msg": "'CreateFromTemplate' : function does not take 1 parameters",
+          "line": 3221
         },
         {
           "code": "C2227",
@@ -3320,6 +3355,11 @@
           "line": 3226
         },
         {
+          "code": "C2660",
+          "msg": "'CreateFromTemplate' : function does not take 1 parameters",
+          "line": 3235
+        },
+        {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
           "line": 3238
@@ -3328,6 +3368,11 @@
           "code": "C2660",
           "msg": "'Reset' : function does not take 2 parameters",
           "line": 3240
+        },
+        {
+          "code": "C2660",
+          "msg": "'CreateFromTemplate' : function does not take 1 parameters",
+          "line": 3249
         },
         {
           "code": "C2227",
@@ -3340,6 +3385,11 @@
           "line": 3254
         },
         {
+          "code": "C2660",
+          "msg": "'CreateFromTemplate' : function does not take 1 parameters",
+          "line": 3263
+        },
+        {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
           "line": 3266
@@ -3350,55 +3400,15 @@
           "line": 3268
         },
         {
-          "code": "C2227",
-          "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 3280
-        },
-        {
-          "code": "C2084",
-          "msg": "function 'void __cdecl pal3_vtbl_unk_0(class UIStatic *,int,int *,class CCBUI *)' already has a body",
-          "line": 3294
-        },
-        {
-          "code": "C2084",
-          "msg": "function 'void __cdecl pal3_vtbl_unk_1(class UIStatic *,int,int *,class CCBUI *)' already has a body",
-          "line": 3298
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 3440
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 3612
-        },
-        {
-          "code": "C2084",
-          "msg": "function 'void __cdecl pal3_vtbl_unk_0(class UIStatic *,unsigned long)' already has a body",
-          "line": 3622
-        },
-        {
-          "code": "C2084",
-          "msg": "function 'void __cdecl pal3_vtbl_unk_1(class UIStatic *,unsigned long)' already has a body",
-          "line": 3626
-        },
-        {
-          "code": "C2084",
-          "msg": "function 'void __cdecl pal3_vtbl_unk_2(class UIProgressBar *,unsigned long)' already has a body",
-          "line": 3630
-        },
-        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 3630
+          "line": 3268
         }
       ]
     },
     "pal3/src/Combat/CCCTData.cpp": {
       "status": "fail",
-      "error_count": 62,
+      "error_count": 60,
       "errors": [
         {
           "code": "C2660",
@@ -3697,18 +3707,8 @@
         },
         {
           "code": "C2660",
-          "msg": "'SetAsCurrent' : function does not take 2 parameters",
-          "line": 1448
-        },
-        {
-          "code": "C2660",
           "msg": "'CalcDist' : function does not take 3 parameters",
           "line": 1722
-        },
-        {
-          "code": "C2660",
-          "msg": "'SetAsCurrent' : function does not take 2 parameters",
-          "line": 1754
         }
       ]
     },
@@ -5029,8 +5029,8 @@
       "error_count": 2,
       "errors": [
         {
-          "code": "C2660",
-          "msg": "'ShowWindow' : function does not take 2 parameters",
+          "code": "C2059",
+          "msg": "syntax error : ')'",
           "line": 49
         },
         {
@@ -6122,7 +6122,7 @@
     },
     "pal3/src/Misc/Array.cpp": {
       "status": "fail",
-      "error_count": 19,
+      "error_count": 17,
       "errors": [
         {
           "code": "C2660",
@@ -6133,16 +6133,6 @@
           "code": "C2660",
           "msg": "'Copy' : function does not take 0 parameters",
           "line": 132
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckValid' : function does not take 2 parameters",
-          "line": 506
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckValid' : function does not take 2 parameters",
-          "line": 512
         },
         {
           "code": "C2660",
@@ -6811,22 +6801,12 @@
     },
     "pal3/src/Misc/MainEquipUI.cpp": {
       "status": "fail",
-      "error_count": 28,
+      "error_count": 20,
       "errors": [
-        {
-          "code": "C2660",
-          "msg": "'CheckValid' : function does not take 2 parameters",
-          "line": 681
-        },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
           "line": 688
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckValid' : function does not take 2 parameters",
-          "line": 700
         },
         {
           "code": "C2440",
@@ -6889,39 +6869,9 @@
           "line": 1790
         },
         {
-          "code": "C2660",
-          "msg": "'CheckValid' : function does not take 2 parameters",
-          "line": 2161
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckValid' : function does not take 2 parameters",
-          "line": 2231
-        },
-        {
           "code": "C2661",
           "msg": "'ReplaceTexture' : no overloaded function takes 2 parameters",
           "line": 2299
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckValid' : function does not take 2 parameters",
-          "line": 2309
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckValid' : function does not take 2 parameters",
-          "line": 2371
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckValid' : function does not take 2 parameters",
-          "line": 2433
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckValid' : function does not take 2 parameters",
-          "line": 2500
         },
         {
           "code": "C2661",
@@ -9250,13 +9200,8 @@
     },
     "pal3/src/Misc/UICaption.cpp": {
       "status": "fail",
-      "error_count": 3,
+      "error_count": 2,
       "errors": [
-        {
-          "code": "C2660",
-          "msg": "'CreateParentData' : function does not take 2 parameters",
-          "line": 55
-        },
         {
           "code": "C2660",
           "msg": "'OpenScript' : function does not take 3 parameters",
@@ -9333,17 +9278,12 @@
     },
     "pal3/src/Misc/UIFrameWnd.cpp": {
       "status": "fail",
-      "error_count": 13,
+      "error_count": 12,
       "errors": [
         {
           "code": "C2660",
           "msg": "'OpenBaseFile::~OpenBaseFile' : function does not take 1 parameters",
           "line": 129
-        },
-        {
-          "code": "C2660",
-          "msg": "'CreateParentData' : function does not take 2 parameters",
-          "line": 167
         },
         {
           "code": "C2100",
@@ -9891,11 +9831,6 @@
       "error_count": 102,
       "errors": [
         {
-          "code": "C2660",
-          "msg": "'CreateParentData' : function does not take 2 parameters",
-          "line": 80
-        },
-        {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
           "line": 519
@@ -10396,9 +10331,14 @@
           "line": 1191
         },
         {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 1195
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 1191
+          "line": 1195
         }
       ]
     },
@@ -10408,45 +10348,9 @@
       "errors": []
     },
     "pal3/src/Misc/UIStatic.cpp": {
-      "status": "fail",
-      "error_count": 7,
-      "errors": [
-        {
-          "code": "C2660",
-          "msg": "'CreateParentData' : function does not take 2 parameters",
-          "line": 180
-        },
-        {
-          "code": "C2660",
-          "msg": "'CreateParentData' : function does not take 2 parameters",
-          "line": 223
-        },
-        {
-          "code": "C2660",
-          "msg": "'CreateParentData' : function does not take 2 parameters",
-          "line": 256
-        },
-        {
-          "code": "C2660",
-          "msg": "'CreateParentData' : function does not take 2 parameters",
-          "line": 291
-        },
-        {
-          "code": "C2660",
-          "msg": "'CreateParentData' : function does not take 2 parameters",
-          "line": 351
-        },
-        {
-          "code": "C2660",
-          "msg": "'CreateParentData' : function does not take 2 parameters",
-          "line": 546
-        },
-        {
-          "code": "C2660",
-          "msg": "'CreateParentData' : function does not take 2 parameters",
-          "line": 585
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/UITabCtrl.cpp": {
       "status": "ok",
@@ -10864,8 +10768,8 @@
           "line": 77
         },
         {
-          "code": "C2660",
-          "msg": "'sub_536D20' : function does not take 3 parameters",
+          "code": "C2664",
+          "msg": "'sub_536D20' : cannot convert parameter 1 from 'int' to 'const char *'",
           "line": 79
         },
         {
@@ -11722,7 +11626,7 @@
     },
     "pal3/src/Role/Actor.cpp": {
       "status": "fail",
-      "error_count": 83,
+      "error_count": 82,
       "errors": [
         {
           "code": "C2011",
@@ -11903,11 +11807,6 @@
           "code": "C2664",
           "msg": "'_strcmpi' : cannot convert parameter 1 from 'char' to 'const char *'",
           "line": 1918
-        },
-        {
-          "code": "C2660",
-          "msg": "'sub_536D20' : function does not take 3 parameters",
-          "line": 1920
         },
         {
           "code": "C2664",
@@ -14541,7 +14440,7 @@
     },
     "pal3/src/UI/EquipUI.cpp": {
       "status": "fail",
-      "error_count": 35,
+      "error_count": 29,
       "errors": [
         {
           "code": "C2660",
@@ -14557,36 +14456,6 @@
           "code": "C2660",
           "msg": "'SetEntryVisible' : function does not take 3 parameters",
           "line": 133
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckValid' : function does not take 2 parameters",
-          "line": 183
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckValid' : function does not take 2 parameters",
-          "line": 215
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckValid' : function does not take 2 parameters",
-          "line": 247
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckValid' : function does not take 2 parameters",
-          "line": 284
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckValid' : function does not take 2 parameters",
-          "line": 320
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckValid' : function does not take 2 parameters",
-          "line": 356
         },
         {
           "code": "C2661",
@@ -15352,7 +15221,7 @@
     },
     "pal3/src/UI/UIListBox.cpp": {
       "status": "fail",
-      "error_count": 26,
+      "error_count": 25,
       "errors": [
         {
           "code": "C2660",
@@ -15363,11 +15232,6 @@
           "code": "C2059",
           "msg": "syntax error : ')'",
           "line": 182
-        },
-        {
-          "code": "C2660",
-          "msg": "'CreateParentData' : function does not take 2 parameters",
-          "line": 277
         },
         {
           "code": "C2036",
@@ -15590,7 +15454,7 @@
     },
     "pal3/src/UI/UIScene.cpp": {
       "status": "fail",
-      "error_count": 30,
+      "error_count": 24,
       "errors": [
         {
           "code": "C2660",
@@ -15709,38 +15573,8 @@
         },
         {
           "code": "C2660",
-          "msg": "'CreateParentData' : function does not take 2 parameters",
-          "line": 366
-        },
-        {
-          "code": "C2660",
           "msg": "'OpenScript' : function does not take 3 parameters",
           "line": 384
-        },
-        {
-          "code": "C2660",
-          "msg": "'CreateParentData' : function does not take 2 parameters",
-          "line": 635
-        },
-        {
-          "code": "C2660",
-          "msg": "'CreateParentData' : function does not take 2 parameters",
-          "line": 959
-        },
-        {
-          "code": "C2660",
-          "msg": "'CreateParentData' : function does not take 2 parameters",
-          "line": 1609
-        },
-        {
-          "code": "C2660",
-          "msg": "'CreateParentData' : function does not take 2 parameters",
-          "line": 1650
-        },
-        {
-          "code": "C2660",
-          "msg": "'CreateParentData' : function does not take 2 parameters",
-          "line": 1690
         }
       ]
     },
@@ -15983,11 +15817,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char *' to 'char'",
           "line": 1114
-        },
-        {
-          "code": "C2660",
-          "msg": "'LoadBufferFromStream' : function does not take 2 parameters",
-          "line": 1175
         },
         {
           "code": "C2227",
@@ -16255,8 +16084,8 @@
           "line": 2282
         },
         {
-          "code": "C2660",
-          "msg": "'ShowWindow' : function does not take 2 parameters",
+          "code": "C2059",
+          "msg": "syntax error : ')'",
           "line": 2284
         },
         {
@@ -16277,6 +16106,11 @@
         {
           "code": "C2027",
           "msg": "use of undefined type 'CGameData'",
+          "line": 2296
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->CGameData' must point to class/struct/union",
           "line": 2296
         },
         {

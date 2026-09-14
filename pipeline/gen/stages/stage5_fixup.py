@@ -578,7 +578,7 @@ def _needs_parens(e):
     """True when a cast placed at the START of `e` would bind only to the
     first operand instead of the whole expression (top-level binary op)."""
     depth = 0
-    prev = None
+    prev = None  # last non-whitespace char seen
     for i, ch in enumerate(e):
         if ch in '([':
             depth += 1
@@ -589,7 +589,8 @@ def _needs_parens(e):
                 pass  # '->' arrow operator, not subtraction
             elif prev is not None and (prev.isalnum() or prev in '_)]'):
                 return True  # binary operator (operand before it)
-        prev = ch
+        if ch not in ' \t':
+            prev = ch
     return False
 
 
@@ -651,6 +652,15 @@ def _fix_line_dword_slots(line, vt, ctx):
         else:
             out = out[:p] + cast + out[p:]
     return out
+
+
+# ============================================================
+# NOTE: explicit-this static-call rewriting (`Cls::M(obj, rest)` →
+# `((Cls *)obj)->Cls::M(rest)`) deliberately does NOT live here.
+# Call-form policy is single-sourced in ast_transform.transform_oop_calls
+# (the OOP stage), which already has the first-arg branches and the
+# ret-N evidence gate. Stage 5 is text-level compatibility fixups only.
+# ============================================================
 
 
 def _fix_line_plain_var_assign(line, vt, ctx):
