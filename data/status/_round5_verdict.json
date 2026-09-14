@@ -10,7 +10,7 @@
   "轮 2 的 SetValue/SetRange/GetValue→SaleUI 改名获 PDB mangled 名直接复核确认",
   "修正(2026-09-14)：原第3条\"PDB 修饰名\"证据作废——用户裁定 data/pdb 版本与二进制不符，PDB 非权威源。mangled 名单（含 ??0SaleUI）不可作归属证据。"
  ],
- "action": "PlayerMgr 15 方法→SaleUI（0x45AE60 更名 ~SaleUI）；22 known_members 合并 20（0x0 vtable 胜、0x4c bkHeight 胜）；UpdateSkillPanel PAL_GDB→SaleUI；functions.json 6 处 PlayerMgr_*→SaleUI_*；PlayerMgr.json 删除（幻影类解散）；SaleUI.binary_size 已于轮2修正 105656。",
+ "action": "PlayerMgr 15 方法→SaleUI（0x45AE60 更名 ~SaleUI）；22 known_members 合并 20（0x0 vtable 胜、0x4c bkHeight 胜）；UpdateSkillPanel PAL_GDB→SaleUI；functions.json 6 处 PlayerMgr_*→SaleUI_*；PlayerMgr.json 删除（幻影类解散）；SaleUI.binary_size 已于轮2修正 105912。",
  "boundary_unresolved": [
   "SaleUI vtable 0x56B5CC 的槽位归属未枚举（annotated base 'UIListBox' 字段系漂移期旧值，待重验）",
   "?ForwardToPlayerMgr@CCBUI（PDB 真名）中的 'PlayerMgr' 是源码概念名，指向的对象类型待考（可能就是 SaleUI*）",

@@ -1,6 +1,6 @@
 {
  "name": "SaleUI",
- "binary_size": 105656,
+ "binary_size": 105912,
  "known_members": {
   "72": {
    "name": "bkWidth",
@@ -691,6 +691,6 @@
   }
  ],
  "base_size": 72,
- "size_evidence": "operator new(0x19DB8) at CScreenMode::InitGameUI+0x459724 followed by ??0SaleUI@@QAE@XZ (PDB-mangled ctor 0x45A7B0)",
+ "size_evidence": "operator new(0x19DB8)=105,912 at CScreenMode::InitGameUI+0x459724 followed by ctor 0x45A7B0; cross-check: ~SaleUI teardown touches +0x19DB4 (=size-4 last dword). NOTE: an earlier session recorded 105,656 - decimal conversion error, fixed 2026-09-14.",
  "_naming_note": "类名标签 \"SaleUI\" 源自非权威 PDB 导出（data/pdb 版本与二进制不符），仅作标识符使用。类身份由二进制证据钉死：分配 0x19DB8（CScreenMode::InitGameUI）、ctor 升序初始化、~dtor 降序拆除（0x45AE60，scalar_dtor 调用链）、vtable 0x56B5CC 同表安装。幻影 \"PlayerMgr\" 注解已于 2026-09-14 解散并入（_round5_verdict.json）。"
 }

@@ -1,0 +1,11 @@
+{
+  "item": "空析构尾跳 codegen 修复（账面长期项）",
+  "status": "RETIRED 2026-09-14",
+  "reason": "该记账项的唯一样本 UILBItem::~UILBItem 已被 _uilb_family_verdict.json v2 推翻（UILBItem 是非多态 POD，所谓 dtor 链是 PDB 漂移胶水）。全量重查（35 个发射析构）仅 1 个空体：CEffCylinder::~CEffCylinder @0x4C3EB0。",
+  "fresh_evidence": [
+    "CEffCylinder 原字节 = c7 01 2c f6 56 00 c3 = mov dword ptr [ecx], 0x56F62C; ret —— 是 Hex-Rays 从伪代码中隐藏的 vtable 存储，不是 jmp 尾跳",
+    "MSVC6 对多态类的 ctor/dtor 自动生成 vtable 存储（源码不可见也无法手写），重编译形态取决于类上下文（基类/虚函数声明）正确性——这正是 vtable/base 注解工作的一般目标，无需专项修复",
+    "最小实验佐证：MSVC6 /O2 下 `virtual ~X(){}` 的完整析构 ??1 可被整体优化（依赖构建上下文），原构建存在的析构函数体来自其上下文"
+  ],
+  "implication": "析构字节残差应通过『类上下文正确性』路线解决（vtable 槽位/基类链注解），不设专项 codegen 修复。L1 残差分类中的 (c) 空析构类目随之退役，未来 match 残差中的析构函数体差异按『上下文差异』归因。"
+}
