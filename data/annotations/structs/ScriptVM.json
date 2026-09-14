@@ -140,7 +140,7 @@
    "source": "decomp:ExecuteOpcode_slot11_incremented"
   }
  },
- "binary_size": 876,
+ "binary_size": 888,
  "methods": {
   "0x0042CD90": {
    "name": "CallFunction",
@@ -188,5 +188,6 @@
    "signature": "void __thiscall()",
    "_misattrib_evidence": "round3: interpreter loop; ScriptVM::CallFunction/SetRolePosition on own this (mov ecx,esi); IsRunning(0x42C1A0) callers all inside this function"
   }
- }
+ },
+ "size_evidence": "ExecuteBlock(0x424C20, this-proven ScriptVM method) accesses this+0x370/+0x374 (first-party member access, round-6 profile); old 876(0x36C) contradicted. No heap alloc site exists - objects are embedded/members. Lower bound 0x378=888."
 }
