@@ -1,0 +1,13 @@
+{
+ "item": "Zone S Read 丢参根因（MCP 轮 10）",
+ "chain": [
+  "头文件真签名: bool Read(void*, unsigned long, CPKFile*) [gbVFileSystem.h:133]",
+  "decomp 输出 gbVFileSystem::Read(g_pVFileSys) 仅 1 参——Hex-Rays 未恢复实参",
+  "反汇编 PtrArray::ReadFileSection: mov esi, ds:?Read@gbVFileSystem（0x56A540）+ 6 处 call esi（每次 3 push）",
+  "MCP data_read_dword(0x56A540) = 0xFFFFFFFF —— 不是 vtable 槽，是运行期晚绑定函数指针（静态值未绑定）",
+  "IDB 无名为 ?Read@gbVFileSystem 的函数定义（仅 rdata 位置的标签，源自非权威 PDB 导入）"
+ ],
+ "resolution_path": "找 0x56A540 的注册点（哪个 init 函数写入真函数地址）→ 运行期真身 → 设置函数类型 → 重导出后调用点带参。或：用头文件签名直接给 6 个 call esi 站点做 cast 重写（codegen 侧）",
+ "note": "Zone S 其余标识符（CheckValid/ProcessInput/HandleMessage/IsValidItem）需同类逐站点分析",
+ "date": "2026-09-14"
+}
