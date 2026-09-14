@@ -2,30 +2,6 @@
  "generated_by": "D:\\workspace\\PAL3Decomp\\tools\\misattribution_ledger.py",
  "ledger": [
   {
-   "callee": "PAL_GDB::UpdateSkillPanel",
-   "callee_class": "PAL_GDB",
-   "method": "UpdateSkillPanel",
-   "sites": 9,
-   "callers": {
-    "PlayerMgr": 7,
-    "SaleUI": 2
-   },
-   "files": [
-    "pal3/src/Misc/PlayerMgr.cpp",
-    "pal3/src/Misc/SaleUI.cpp"
-   ],
-   "addrs": [
-    "0x00460A90"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "PAL_GDB"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
    "callee": "CCBAIWindow::Reset",
    "callee_class": "CCBAIWindow",
    "method": "Reset",
@@ -218,28 +194,6 @@
    "vtable_owners": [],
    "struct_owners": [
     "PAL_GDB"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "PlayerMgr::InitMode",
-   "callee_class": "PlayerMgr",
-   "method": "InitMode",
-   "sites": 5,
-   "callers": {
-    "SaleUI": 5
-   },
-   "files": [
-    "pal3/src/Misc/SaleUI.cpp"
-   ],
-   "addrs": [
-    "0x00461C50"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "PlayerMgr"
    ],
    "full_callers": {},
    "bucket": "C",
@@ -660,32 +614,6 @@
    "rename_to": null
   },
   {
-   "callee": "PAL3::SetPanelStates",
-   "callee_class": "PAL3",
-   "method": "SetPanelStates",
-   "sites": 3,
-   "callers": {
-    "PAL_GDB": 1,
-    "PlayerMgr": 1,
-    "SaleUI": 1
-   },
-   "files": [
-    "pal3/src/Data/PAL_GDB.cpp",
-    "pal3/src/Misc/PlayerMgr.cpp",
-    "pal3/src/Misc/SaleUI.cpp"
-   ],
-   "addrs": [
-    "0x00462030"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "PAL3"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
    "callee": "PalScriptMgr::RunSceneScript",
    "callee_class": "PalScriptMgr",
    "method": "RunSceneScript",
@@ -730,6 +658,28 @@
    "vtable_owners": [],
    "struct_owners": [
     "LineupComp"
+   ],
+   "full_callers": {},
+   "bucket": "C",
+   "rename_to": null
+  },
+  {
+   "callee": "PAL3::SetPanelStates",
+   "callee_class": "PAL3",
+   "method": "SetPanelStates",
+   "sites": 3,
+   "callers": {
+    "SaleUI": 3
+   },
+   "files": [
+    "pal3/src/Misc/SaleUI.cpp"
+   ],
+   "addrs": [
+    "0x00462030"
+   ],
+   "vtable_owners": [],
+   "struct_owners": [
+    "PAL3"
    ],
    "full_callers": {},
    "bucket": "C",
@@ -1123,28 +1073,6 @@
    "rename_to": null
   },
   {
-   "callee": "CCBUI::RollProbability",
-   "callee_class": "CCBUI",
-   "method": "RollProbability",
-   "sites": 2,
-   "callers": {
-    "PlayerMgr": 2
-   },
-   "files": [
-    "pal3/src/Misc/PlayerMgr.cpp"
-   ],
-   "addrs": [
-    "0x00460A00"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "CCBUI"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
    "callee": "UIBigMap::LayoutBinkVideo",
    "callee_class": "UIBigMap",
    "method": "LayoutBinkVideo",
@@ -1167,9 +1095,9 @@
    "rename_to": null
   },
   {
-   "callee": "PlayerMgr::CreatePanelElements",
-   "callee_class": "PlayerMgr",
-   "method": "CreatePanelElements",
+   "callee": "CCBUI::RollProbability",
+   "callee_class": "CCBUI",
+   "method": "RollProbability",
    "sites": 2,
    "callers": {
     "SaleUI": 2
@@ -1178,33 +1106,11 @@
     "pal3/src/Misc/SaleUI.cpp"
    ],
    "addrs": [
-    "0x004623A0"
+    "0x00460A00"
    ],
    "vtable_owners": [],
    "struct_owners": [
-    "PlayerMgr"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "PlayerMgr::SetupPlayerDisplay",
-   "callee_class": "PlayerMgr",
-   "method": "SetupPlayerDisplay",
-   "sites": 2,
-   "callers": {
-    "SaleUI": 2
-   },
-   "files": [
-    "pal3/src/Misc/SaleUI.cpp"
-   ],
-   "addrs": [
-    "0x00469D90"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "PlayerMgr"
+    "CCBUI"
    ],
    "full_callers": {},
    "bucket": "C",

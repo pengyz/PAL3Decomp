@@ -406,6 +406,106 @@
    "name": "__vftable",
    "type": "void *",
    "source": "vtable_fix"
+  },
+  "16": {
+   "name": "m_underctrl",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "20": {
+   "name": "m_bStartNGHEffect",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "24": {
+   "name": "m_nHuaYingMode",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "1160": {
+   "name": "m_inventory",
+   "type": "Inventory",
+   "source": "gen_headers_9.2"
+  },
+  "1200": {
+   "name": "m_reoccupy",
+   "type": "Reoccupy",
+   "source": "gen_headers_9.2"
+  },
+  "1216": {
+   "name": "dwWeaponWU",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "61880": {
+   "name": "m_bNGHS",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "61884": {
+   "name": "m_bWPXS",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "88408": {
+   "name": "pNGHVarianceParticle",
+   "type": "CParticleEffect *",
+   "source": "gen_headers_9.2"
+  },
+  "106292": {
+   "name": "m_pstate",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "106296": {
+   "name": "m_fFStime",
+   "type": "float",
+   "source": "gen_headers_9.2"
+  },
+  "106332": {
+   "name": "m_dwCombatTimes",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "106336": {
+   "name": "nImbibeNimbusTimes",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "106360": {
+   "name": "bHaveNimbus",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "106364": {
+   "name": "bPXVariance",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "106368": {
+   "name": "m_bFinalCombat",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "106372": {
+   "name": "m_nCombatHurtHP",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "106376": {
+   "name": "m_nCombatHurtMP",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "106380": {
+   "name": "m_bShowStatuary",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "88540": {
+   "name": "m_nDataPoolBase",
+   "type": "int *",
+   "source": "A:decomp_large_offset_ptr_arithmetic_440refs_data_pool"
   }
  },
  "base_class": [
@@ -472,6 +572,86 @@
    "name": "SetValue",
    "signature": "int __thiscall(unsigned char nValue)",
    "_misattrib_evidence": "saleui-slider: alloc 0x19DB8 + PDB ctor ??0SaleUI inits same layout; PAL3(91024B) too small"
+  },
+  "0x0045ae60": {
+   "name": "~SaleUI",
+   "signature": "void __thiscall()",
+   "_misattrib_evidence": "round5: installs vtable 0x56B5CC at 0x45ae81 and tears members down descending (+0x19DB4 first); sole caller is ?_scalar_dtor@SaleUI@@ 0x45ae43 - this is ~SaleUI, IDA had it as ?ctor@PlayerMgr (no PDB mangled PlayerMgr exists)"
+  },
+  "0x0045b7a0": {
+   "name": "LoadState",
+   "signature": "unsigned __int8 __thiscall PlayerMgr::LoadState(const void *arg0)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x0045b990": {
+   "name": "InitCombatUI",
+   "signature": "int __thiscall(int nVal)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x00461c50": {
+   "name": "InitMode",
+   "signature": "void __thiscall PlayerMgr::InitMode(int nVal)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x004620e0": {
+   "name": "SendInputToRole",
+   "signature": "int __thiscall(unsigned char pData)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x00462120": {
+   "name": "SetSelectionFlags",
+   "signature": "int __thiscall PlayerMgr::SetSelectionFlags(int nFlags)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x004623a0": {
+   "name": "CreatePanelElements",
+   "signature": "int __thiscall(CCBUIPanel *arg0)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x00469d50": {
+   "name": "AddItem",
+   "signature": "int __thiscall(PlayerMgr *this)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x00469d90": {
+   "name": "SetupPlayerDisplay",
+   "signature": "void __thiscall PlayerMgr::SetupPlayerDisplay(int nVal)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x00469eb0": {
+   "name": "HandleInput",
+   "signature": "BOOL __thiscall(int nInputID, int nParam, int nFlags)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x00471220": {
+   "name": "ToggleSlot0",
+   "signature": "char __thiscall PlayerMgr::ToggleSlot0(unsigned __int8 pData)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x004712d0": {
+   "name": "ToggleSlot1",
+   "signature": "char __thiscall PlayerMgr::ToggleSlot1(unsigned __int8 pData)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x00471380": {
+   "name": "ToggleSlot2",
+   "signature": "char __thiscall PlayerMgr::ToggleSlot2(unsigned __int8 pData)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x00471430": {
+   "name": "ToggleSlot3",
+   "signature": "char __thiscall PlayerMgr::ToggleSlot3(unsigned __int8 pData)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x004714e0": {
+   "name": "ToggleSlot4",
+   "signature": "char __thiscall PlayerMgr::ToggleSlot4(unsigned __int8 pData)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x00460a90": {
+   "name": "UpdateSkillPanel",
+   "signature": "int __thiscall()",
+   "_misattrib_evidence": "round5: max this-offset 0x19DA8 fits SaleUI 0x19DB8; block-adjacent to PDB ?DestroySubFrames@SaleUI@@ 0x4615F0; callers are SaleUI methods"
   }
  },
  "vtables": [
@@ -511,5 +691,6 @@
   }
  ],
  "base_size": 72,
- "size_evidence": "operator new(0x19DB8) at CScreenMode::InitGameUI+0x459724 followed by ??0SaleUI@@QAE@XZ (PDB-mangled ctor 0x45A7B0)"
+ "size_evidence": "operator new(0x19DB8) at CScreenMode::InitGameUI+0x459724 followed by ??0SaleUI@@QAE@XZ (PDB-mangled ctor 0x45A7B0)",
+ "_naming_note": "PDB-attested class (??0SaleUI@@QAE@XZ ctor, 12 mangled methods, vtable 0x56B5CC, size 0x19DB8 from CScreenMode::InitGameUI alloc). The former \"PlayerMgr\" annotation was a phantom pseudo-name for this same class; dissolved 2026-09-14 (see _round5_verdict.json)."
 }

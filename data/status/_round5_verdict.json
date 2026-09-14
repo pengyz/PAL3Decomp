@@ -1,0 +1,20 @@
+{
+  "question": "0x45A-0x46A 区的类清单：SaleUI ctor(0x45A7B0) 与 ?ctor@PlayerMgr(0x45AE60) 是两个类还是一个？PlayerMgr 类是否真实存在？",
+  "verdict": "一个类：SaleUI（PDB 实名）。PlayerMgr 是幻影伪名（0 个 PDB 修饰名，17 个 IDA 伪名），已解散并入 SaleUI。0x45AE60 实为 ~SaleUI 析构。",
+  "evidence": [
+    "vtable 0x56B5CC 被两个函数安装：0x45acde（??0SaleUI ctor 内）+ 0x45ae81（?ctor@PlayerMgr 开头 +0x21）——同一张表=同一个类",
+    "0x45AE60 的唯一调用方是 ?_scalar_dtor@SaleUI@@（0x45ae43）——MSVC deleting-dtor 调真析构的标准链；其成员拆除为降序（+0x19DB4 先行 = 0x19DB8 分配尺寸的末 dword）——析构逆序特征",
+    "IDB 中 PlayerMgr 无任何 MSVC 修饰名（??0PlayerMgr 形式为 0 个），仅 17 个 IDA 伪名（?ctor@PlayerMgr@@QAEXXZ 格式）；对比 SaleUI 有 ??0SaleUI@@QAE@XZ 真 mangled",
+    "PDB 实名 SaleUI 方法 12 个（mangled 枚举），与 PlayerMgr 伪名函数物理交错：0x461C50 InitMode@PlayerMgr → 0x461FD0 SetValue@SaleUI → 0x462080 SetRange@SaleUI → 0x462120 SetSelectionFlags@PlayerMgr → 0x462220 GetValue@SaleUI",
+    "六个抽查的 PlayerMgr 伪名方法（LoadState/InitCombatUI/InitMode/SetSelectionFlags/CreatePanelElements/HandleInput）最大 this 偏移全部 ≤0x19DB4，落在 SaleUI 分配尺寸 0x19DB8 内（其中三个触及 0x19DB0-4 = 末 dword 区）",
+    "UpdateSkillPanel 0x460A90（原 PAL_GDB::）最大偏移 0x19DA8 落 SaleUI 内，且紧邻 PDB ?DestroySubFrames@SaleUI@@ 0x4615F0",
+    "轮 2 的 SetValue/SetRange/GetValue→SaleUI 改名获 PDB mangled 名直接复核确认"
+  ],
+  "action": "PlayerMgr 15 方法→SaleUI（0x45AE60 更名 ~SaleUI）；22 known_members 合并 20（0x0 vtable 胜、0x4c bkHeight 胜）；UpdateSkillPanel PAL_GDB→SaleUI；functions.json 6 处 PlayerMgr_*→SaleUI_*；PlayerMgr.json 删除（幻影类解散）；SaleUI.binary_size 已于轮2修正 105656。",
+  "boundary_unresolved": [
+    "SaleUI vtable 0x56B5CC 的槽位归属未枚举（annotated base 'UIListBox' 字段系漂移期旧值，待重验）",
+    "?ForwardToPlayerMgr@CCBUI（PDB 真名）中的 'PlayerMgr' 是源码概念名，指向的对象类型待考（可能就是 SaleUI*）",
+    "分配点工具（alloc_sizeof）曾把 107,056 映到该区——其 ctor 映射含幻影类污染，全量重跑待办"
+  ],
+  "date": "2026-09-14"
+}

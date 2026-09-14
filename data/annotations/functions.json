@@ -1402,19 +1402,19 @@
   "reason": "misattributed in struct, removed"
  },
  "0x00469EB0": {
-  "name": "PlayerMgr_HandleInput",
+  "name": "SaleUI_HandleInput",
   "signature": "int __cdecl(int nVal)",
   "type": "skip",
   "reason": "misattributed in struct, removed"
  },
  "0x00462120": {
-  "name": "PlayerMgr_SetSelectionFlags",
+  "name": "SaleUI_SetSelectionFlags",
   "signature": "int __cdecl(int nVal)",
   "type": "skip",
   "reason": "misattributed in struct, removed"
  },
  "0x004620E0": {
-  "name": "PlayerMgr_SendInputToRole",
+  "name": "SaleUI_SendInputToRole",
   "signature": "int __cdecl(int nVal)",
   "type": "skip",
   "reason": "misattributed in struct, removed"
@@ -2689,7 +2689,7 @@
   "source": "2026-09-14 provenance: sole caller CCBStage::GetWeaponSlotPtr; this+0x1F4C access fits CCBStage; was ScriptSystemData::* (scan-stolen, impossible names)"
  },
  "0x00469d50": {
-  "name": "PlayerMgr::AddItem",
+  "name": "SaleUI::AddItem",
   "signature": "int __thiscall(PlayerMgr *this)",
   "source": "2026-09-14 provenance: unanimous caller PlayerMgr::SetSelectionFlags (15x); body indexes array at this+0xF574 inside PlayerMgr(107056B) member region; was CCBUI::AddItem (2648B class, offset impossible)"
  },
