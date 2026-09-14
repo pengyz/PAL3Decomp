@@ -9,5 +9,11 @@
  ],
  "resolution_path": "找 0x56A540 的注册点（哪个 init 函数写入真函数地址）→ 运行期真身 → 设置函数类型 → 重导出后调用点带参。或：用头文件签名直接给 6 个 call esi 站点做 cast 重写（codegen 侧）",
  "note": "Zone S 其余标识符（CheckValid/ProcessInput/HandleMessage/IsValidItem）需同类逐站点分析",
- "date": "2026-09-14"
+ "date": "2026-09-14",
+ "resolution_attempt": {
+  "static_write_search": "全 .text 搜索 mov [0x56A540], imm / mov [0x56A540], eax —— 零命中",
+  "file_value": "exe 文件 0x56A540 处 = 0x0017EB30（非 VA，< imagebase）；IDB 值 0xFFFFFFFF——含重定位/未初始化语义",
+  "verdict": "晚绑定目标需运行期证据（动态调试或 registration 模式深挖），静态不可定 → B 级挂起",
+  "alternative": "25 个调用点可在 codegen 侧按头文件真签名做 cast 重写（Read(pBuf, size, pFile)）——需要逐站点恢复实参（MCP 反汇编每站点 push 序列）"
+ }
 }
