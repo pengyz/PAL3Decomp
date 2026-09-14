@@ -2,150 +2,6 @@
  "generated_by": "D:\\workspace\\PAL3Decomp\\tools\\misattribution_ledger.py",
  "ledger": [
   {
-   "callee": "PAL3::SetValue",
-   "callee_class": "PAL3",
-   "method": "SetValue",
-   "sites": 15,
-   "callers": {
-    "PAL_GDB": 7,
-    "PlayerMgr": 2,
-    "SaleUI": 6
-   },
-   "files": [
-    "pal3/src/Data/PAL_GDB.cpp",
-    "pal3/src/Misc/PlayerMgr.cpp",
-    "pal3/src/Misc/SaleUI.cpp"
-   ],
-   "addrs": [
-    "0x00461FD0"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "PAL3"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "PAL3::GetValue",
-   "callee_class": "PAL3",
-   "method": "GetValue",
-   "sites": 15,
-   "callers": {
-    "PlayerMgr": 1,
-    "SaleUI": 14
-   },
-   "files": [
-    "pal3/src/Misc/PlayerMgr.cpp",
-    "pal3/src/Misc/SaleUI.cpp"
-   ],
-   "addrs": [
-    "0x00462220"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "PAL3"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "ScriptVM::IsRunning",
-   "callee_class": "ScriptVM",
-   "method": "IsRunning",
-   "sites": 14,
-   "callers": {
-    "CScreenMode": 1,
-    "PalScriptMgr": 13
-   },
-   "files": [
-    "pal3/src/Render/CScreenMode.cpp",
-    "pal3/src/Script/PalScriptMgr.cpp"
-   ],
-   "addrs": [
-    "0x0042C1A0"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "ScriptVM"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "CCBUI::UpdatePanel",
-   "callee_class": "CCBUI",
-   "method": "UpdatePanel",
-   "sites": 12,
-   "callers": {
-    "CCBRoleState": 12
-   },
-   "files": [
-    "pal3/src/Combat/CCBRoleState.cpp"
-   ],
-   "addrs": [
-    "0x004DC250"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "CCBUI"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "CCBSystem::AddCommand",
-   "callee_class": "CCBSystem",
-   "method": "AddCommand",
-   "sites": 12,
-   "callers": {
-    "CCBRoleState": 12
-   },
-   "files": [
-    "pal3/src/Combat/CCBRoleState.cpp"
-   ],
-   "addrs": [
-    "0x004F2C70"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "CCBSystem"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "PAL3::SetRange",
-   "callee_class": "PAL3",
-   "method": "SetRange",
-   "sites": 12,
-   "callers": {
-    "PAL_GDB": 4,
-    "PlayerMgr": 1,
-    "SaleUI": 7
-   },
-   "files": [
-    "pal3/src/Data/PAL_GDB.cpp",
-    "pal3/src/Misc/PlayerMgr.cpp",
-    "pal3/src/Misc/SaleUI.cpp"
-   ],
-   "addrs": [
-    "0x00462080"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "PAL3"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
    "callee": "PAL_GDB::UpdateSkillPanel",
    "callee_class": "PAL_GDB",
    "method": "UpdateSkillPanel",
@@ -1076,72 +932,6 @@
    "vtable_owners": [],
    "struct_owners": [
     "CameraCtrl"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "CCBRoleState::GetRoleField",
-   "callee_class": "CCBRoleState",
-   "method": "GetRoleField",
-   "sites": 2,
-   "callers": {
-    "CCBSystem": 2
-   },
-   "files": [
-    "pal3/src/Combat/CCBSystem.cpp"
-   ],
-   "addrs": [
-    "0x004F3D90"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "CCBRoleState"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "CCBRoleState::CheckBuff",
-   "callee_class": "CCBRoleState",
-   "method": "CheckBuff",
-   "sites": 2,
-   "callers": {
-    "CCBSystem": 2
-   },
-   "files": [
-    "pal3/src/Combat/CCBSystem.cpp"
-   ],
-   "addrs": [
-    "0x004F3430"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "CCBRoleState"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "CCBRoleState::CheckRoleStatus",
-   "callee_class": "CCBRoleState",
-   "method": "CheckRoleStatus",
-   "sites": 2,
-   "callers": {
-    "CCBSystem": 2
-   },
-   "files": [
-    "pal3/src/Combat/CCBSystem.cpp"
-   ],
-   "addrs": [
-    "0x004FA540"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "CCBRoleState"
    ],
    "full_callers": {},
    "bucket": "C",
@@ -2373,72 +2163,6 @@
    "rename_to": null
   },
   {
-   "callee": "CCBRoleState::GetTotalRounds",
-   "callee_class": "CCBRoleState",
-   "method": "GetTotalRounds",
-   "sites": 1,
-   "callers": {
-    "CCBSystem": 1
-   },
-   "files": [
-    "pal3/src/Combat/CCBSystem.cpp"
-   ],
-   "addrs": [
-    "0x004F3420"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "CCBRoleState"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "CCBRoleState::ProcessRound",
-   "callee_class": "CCBRoleState",
-   "method": "ProcessRound",
-   "sites": 1,
-   "callers": {
-    "CCBSystem": 1
-   },
-   "files": [
-    "pal3/src/Combat/CCBSystem.cpp"
-   ],
-   "addrs": [
-    "0x004F3E20"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "CCBRoleState"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
-   "callee": "CCBRoleState::LoadRoleModel",
-   "callee_class": "CCBRoleState",
-   "method": "LoadRoleModel",
-   "sites": 1,
-   "callers": {
-    "CCBSystem": 1
-   },
-   "files": [
-    "pal3/src/Combat/CCBSystem.cpp"
-   ],
-   "addrs": [
-    "0x004F8FA0"
-   ],
-   "vtable_owners": [],
-   "struct_owners": [
-    "CCBRoleState"
-   ],
-   "full_callers": {},
-   "bucket": "C",
-   "rename_to": null
-  },
-  {
    "callee": "CCBSystem::ClearAllPointers",
    "callee_class": "CCBSystem",
    "method": "ClearAllPointers",
@@ -2461,9 +2185,9 @@
    "rename_to": null
   },
   {
-   "callee": "CCBRoleState::CheckMP",
+   "callee": "CCBRoleState::UpdatePanel",
    "callee_class": "CCBRoleState",
-   "method": "CheckMP",
+   "method": "UpdatePanel",
    "sites": 1,
    "callers": {
     "CCBUI": 1
@@ -2472,8 +2196,7 @@
     "pal3/src/Combat/CCBUI.cpp"
    ],
    "addrs": [
-    "0x004EE910",
-    "0x004DF3D0"
+    "0x004DC250"
    ],
    "vtable_owners": [],
    "struct_owners": [
@@ -3658,6 +3381,28 @@
    "rename_to": null
   },
   {
+   "callee": "PalScriptMgr::RunCommand",
+   "callee_class": "PalScriptMgr",
+   "method": "RunCommand",
+   "sites": 1,
+   "callers": {
+    "ScriptVM": 1
+   },
+   "files": [
+    "pal3/src/Misc/ScriptVM.cpp"
+   ],
+   "addrs": [
+    "0x0042C440"
+   ],
+   "vtable_owners": [],
+   "struct_owners": [
+    "PalScriptMgr"
+   ],
+   "full_callers": {},
+   "bucket": "C",
+   "rename_to": null
+  },
+  {
    "callee": "SwordUI::RenderSword",
    "callee_class": "SwordUI",
    "method": "RenderSword",
@@ -4026,6 +3771,28 @@
    "vtable_owners": [],
    "struct_owners": [
     "RoleShadow"
+   ],
+   "full_callers": {},
+   "bucket": "C",
+   "rename_to": null
+  },
+  {
+   "callee": "ScriptVM::IsRunning",
+   "callee_class": "ScriptVM",
+   "method": "IsRunning",
+   "sites": 1,
+   "callers": {
+    "CScreenMode": 1
+   },
+   "files": [
+    "pal3/src/Render/CScreenMode.cpp"
+   ],
+   "addrs": [
+    "0x0042C1A0"
+   ],
+   "vtable_owners": [],
+   "struct_owners": [
+    "ScriptVM"
    ],
    "full_callers": {},
    "bucket": "C",
