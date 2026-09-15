@@ -122,6 +122,45 @@ def _get_ida_structs():
     else:
         _ida_structs_cache = {}
     return _ida_structs_cache
+
+
+# SDK 类型尺寸（`data/annotations/sdk_types.json`）。
+#
+# 为什么需要单独一源：`_estimate_member_size` 原先只查 ida_structs.json，
+# 而 SDK 类型（`tagRECT` / `tagPOINT` / `_D3DFORMAT` …）**不在** ida_structs 里
+# —— 它们由 sdk_types.json 定义（`apply_annotations.py` 的 2b 步消费）。
+# 实测：`tagRECT` 在 sdk_types 里 `binary_size=16`，在 ida_structs 里**不存在**，
+# 于是 UIWnd 的 `m_rect` 被估成 4 字节、生成头出现错误的 `_gap_014[12]`。
+# 2026-09-15 由独立复核 `761ba967` 指出（其 F1），captain 定位到具体缺口。
+#
+# 本缓存只用于**尺寸估计**，不参与类型发射 ⇒ 修复风险局部化。
+_sdk_type_sizes_cache = None
+
+def _get_sdk_type_sizes():
+    """返回 {类型名: 字节数}，来源 data/annotations/sdk_types.json。"""
+    global _sdk_type_sizes_cache
+    if _sdk_type_sizes_cache is not None:
+        return _sdk_type_sizes_cache
+    out = {}
+    path = ANNOTATIONS_DIR / "sdk_types.json"
+    if path.exists():
+        try:
+            with open(path, encoding='utf-8') as f:
+                data = json.load(f)
+            # 兼容 list-of-dict 与 dict 两种形态
+            entries = data if isinstance(data, list) else list(data.values())
+            for e in entries:
+                if not isinstance(e, dict):
+                    continue
+                nm = e.get('name')
+                sz = e.get('binary_size') or e.get('size')
+                if nm and isinstance(sz, int) and sz > 0:
+                    out[nm] = sz
+        except (OSError, json.JSONDecodeError, TypeError):
+            out = {}
+    _sdk_type_sizes_cache = out
+    return out
+
 _header_errors = []
 # Map IDA ordinal types to their actual type names
 ORDINAL_MAP = {
@@ -733,14 +772,33 @@ def _estimate_member_size(mtype):
     # Strip nested class prefix: C2DSpark::tagSpark -> tagSpark
     if '::' in t:
         t = t.rsplit('::', 1)[-1]
-    # Struct/class - check annotation cache first, then file
+    # Struct/class 尺寸来源必须**穷尽**，否则 gap 决策会系统性错。
+    #
+    # F1（2026-09-15 独立复核 `761ba967` 发现，captain 定位并修正）：
+    # 本处原先**只**查 `_get_ida_structs()`（= `asm/pal3/ida_structs.json`），有两个缺口：
+    #   ① 键名失配：该文件用的是 `'size'`，而这里读 `'binary_size'` ⇒ 即便命中该文件也拿不到值；
+    #   ② 来源不全：**全管线没有任何地方读 `data/annotations/sdk_types.json`**
+    #      ⇒ SDK 类型（如 `tagRECT`，sdk_types 里 `binary_size=16`）在此无处可查，返回 4。
+    # 实证（UIWnd）：注解成员偏移 `[0,4,8,12,16,32,...]`（与 ida_structs 完全一致），
+    # `m_rect` 为 `tagRECT` 且下一成员在 +32 ⇒ 它实占 16 字节；但因②被判为 4 字节，
+    # 生成头里出现 `char _gap_014[12]; // +0x14` 这种**错误补齐**，后续 gap 链随之错位。
+    #
+    # 修复：按 `ida_structs['size']` → 注解 `binary_size` → `sdk_types['binary_size']` 依次查。
+    # 仅影响 **尺寸估计**（gap/偏移决策），不改变类型发射，故风险局部化。
     try:
         ann = _get_ida_structs()
         ann_s = ann.get(t, {})
-        sz = ann_s.get('binary_size')
+        sz = ann_s.get('size') or ann_s.get('binary_size')
         if sz and sz != '?':
             return int(sz)
-    except:
+    except Exception:
+        pass
+    try:
+        sdk = _get_sdk_type_sizes()
+        sz = sdk.get(t)
+        if sz:
+            return int(sz)
+    except Exception:
         pass
     # Default: assume 4 bytes (int-sized)
     return 4

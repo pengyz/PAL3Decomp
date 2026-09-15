@@ -1,0 +1,196 @@
+{
+  "role": "independent design reviewer (C-V layout design)",
+  "date": "2026-09-15",
+  "design_doc": "docs/specs/2026-09-15-cv-layout-design.md",
+  "head": "e1064ee93",
+  "method_note": "所有结论均本 agent 实测：emit/apply/export/stage3 源码逐行读 + asm/pal3/ida_structs.json 实测 + data/annotations 实测 + wine_cl.sh (VC6 12.00.8168) 最小复现 5 组（/tmp/cvtest/a_vptr.cpp, b_sceneobj.cpp, d2_uiwnd.cpp, e_fixed.cpp）。未运行任何触碰 IDB 的命令。",
+
+  "root_cause_A": {
+    "verdict": "partial",
+    "summary": "双计现象存在，但 captain 的因果链错误，且他给的修复动作（改跳过判据拼写）是无效修法。",
+    "confirmed": [
+      "生成头确实出现 'char _gap_000[4]' 占据 vptr 位置，与 virtual 发射双计（UIWnd.h:12 gap[4] + :27 virtual ~UIWnd）",
+      "VC6 实测复现了机制本身：struct Plain{char[4];int;int}=12，+virtual dtor=16（/tmp/cvtest/a_vptr.cpp → Show<12>/Show<16>）"
+    ],
+    "refuted": [
+      "因果：captain 称 'emit_headers.py:1727-1731 判据只认 vfptr ⇒ 永不触发 ⇒ __vftable 落入 gap'。实测 data_members 里根本没有 vfptr/__vftable 成员：有 base_class 的类被 apply_annotations.py:940 (offset<base_size→continue) 拦在 IDB 外；无 base_class 的类被 udt_classify.classify_bases_and_members 的名字过滤（__vftable/_vftable/vtbl）在 export 时剔除。emit_headers 的成员循环 100% 遇不到 vptr，:1728-1731 是死代码——把判据改成 __vftable 也永远不会触发（S2 第 1 步无效）",
+      "量级：captain 称 '多态类对象比二进制大 4 字节'。实测 UIWnd 按生成头 VC6 sizeof=84 vs binary_size=68，+16 而非 +4：4(vptr) + 12(tagRECT 被 _estimate_member_size 估成 4B 实为 16B，_gap_014 又补了重叠的 12B)"
+    ],
+    "true_mechanism": "vptr 区间由 gap 生成器补洞（start_off=base_size 恒 0，见 root_cause_B），同时 :1841-1842 对 _scalar_dtor 类发射 virtual——两种认领并存。真正要修的是 gap 起点，不是跳过判据拼写。"
+  },
+
+  "root_cause_B": {
+    "verdict": "partial",
+    "summary": "双重认领存在（public Base 与覆盖基类区的 gap 并存），但成因不是 '注解 base_size 传入了错误值'，而是 'emit_headers 根本读不到 base_size'。",
+    "confirmed": [
+      "生成的 SceneObj.h:24 确有 'char _gap_000[88]' 与 ': public PalScriptWaitObj, public GlowObj, public TaskMgr_SceneObjParam_SceneObj' 并存",
+      "实测 asm/pal3/ida_structs.json：946 个 struct 中 0 个含 base_size 键（export_full.py :672-682 只导出 size/kind/data_members/bases/vtables/methods/_variants）",
+      "因此 emit_headers.py:1558 base_size = ann_struct.get('base_size', 0) 恒为 0 → :1585 start_off=0 → [0, 首个自成员) 全部补成 gap",
+      "ida_structs.json 的 bases 数组含 IDB 实际基类偏移（SceneObj: PalScriptWaitObj@0, GlowObj@8, TaskMgr_SceneObjParam_SceneObj@40），这是修复 B 可用的现成数据"
+    ],
+    "refuted": [
+      "captain 证据链第 3 步 'gap 生成按注解偏移补洞'：实际是按恒 0 的 base_size 补洞，注解 base_size 从未进入 emit_headers"
+    ]
+  },
+
+  "root_cause_C": {
+    "verdict": "partial",
+    "summary": "base_size 语义不一致属实（captain 的定性成立），但 (1) 它与 96 字节漂移无关（漂移成因见下），(2) captain 未查明 44 的来历与真实写入点，(3) 他给的全仓统计口径无意义。",
+    "facts": [
+      "写入点 1（注解层）：e848e431d (2026-06-04) 'Add base_size to 165 structs with base_class'，批量/手工补写，提交自称 verified against binary_size",
+      "写入点 2（apply 层，运行时不回写）：apply_annotations.py:855-866 对多基类用 TIL size 之和重算 base_size（SceneObj: 8+32+40=80）",
+      "写入点 3（emit 层）：读不到（见 root_cause_B）",
+      "写入点 4（PDB 路径）：tools/ida_import_pdb_types.py:230、tools/ida/pal3_import_structs.py:144 各自估算，口径又不同"
+    ],
+    "semantics_census": "176 个带 base_size 且有 base_class 的注解：130 个 == 首个自成员偏移（'基类区宽度'语义，自洽）；29 个 == sum(基类 binary_size)；12 个 < sum（部分和/错值）；5 个其它错值；1 个是十六进制字面量误写为十进制（SceneObj base_size=44 正是 0x44=68 首自成员偏移的 '44'）；7 个无自成员。即至少三种语义并存且含手误。",
+    "examples": [
+      {"class": "SceneObj", "sum_bases": 80, "base_size": 44, "first_own_member": 68, "note": "44 = hex(0x44) 误写；68/76 两条 known_members 还落在 TaskMgr 子对象 [40,80) 内部（跨界误标），且 VC6/二进制 [80,88) 有 ctor 清零的 8 字节在注解中无任何条目"},
+      {"class": "UIStatic", "sum_bases": 68, "base_size": 68, "first_own_member": 68, "note": "自洽"},
+      {"class": "RoleCamera", "sum_bases": 376, "base_size": 376, "first_own_member": 28, "note": "base_size==sum 但 != first_own（28 的 known_members 落在 gbCamera 区内，又是跨界误标）"},
+      {"class": "CEffSParticle", "sum_bases": 48, "base_size": 16, "first_own_member": 48, "note": "16 与两者都不符"},
+      {"class": "gbGfxManager", "sum_bases": 8, "base_size": 4, "first_own_member": 8, "note": "4 与两者都不符"},
+      {"class": "UITitle", "sum_bases": 72, "base_size": 72, "first_own_member": 3288, "note": "自洽（首个自成员很远）"}
+    ],
+    "captain_stat_refuted": "captain 的 '6 个 ==binary_size、170 个 <' 分类没有信息量：==binary_size 只说明类是纯基类转发。真正有效的是上面的语义普查。"
+  },
+
+  "sizeof_minimal_repro": {
+    "tool": "tools/wine_cl.sh (MSVC 12.00.8168, wine)",
+    "files": "/tmp/cvtest/{a_vptr,b_sceneobj,d2_uiwnd,e_fixed}.cpp",
+    "commands": [
+      "cd /tmp/cvtest && tools-wine_cl.sh /c a_vptr.cpp 2>&1 | grep -o 'Show<[0-9]*>'",
+      "cd /tmp/cvtest && ... /c b_sceneobj.cpp ...",
+      "cd /tmp/cvtest && ... /c d2_uiwnd.cpp ...",
+      "cd /tmp/cvtest && ... /c e_fixed.cpp ..."
+    ],
+    "results": {
+      "repro_A_mechanism": {"Plain(char[4];int;int)": 12, "V1(+virtual~)": 16, "D(B1,B2,B3;int)": 28, "DV(V1(8),V2(8);int)": 20},
+      "captain_Show12_16": "复现成立（12/16）",
+      "captain_multi_base_tight": "紧排成立（28=8+4+12+4；DV=8+8+4 无填充；但 captain 文中 DV=16=8+4+4 的数字与其 V2 定义不符，属笔误级）",
+      "SceneObj_as_generated": {"sizeof": 196, "offsetof_m_fTime": 180, "note": "repro 中 gbColorFlt 曾误用 12B；按真实 16B 修正后 offsetof(m_fTime)=184 —— 与前复核者报告的 +184 完全一致，sizeof 相应为 200 级别"},
+      "UIWnd_as_generated": {"sizeof": 84, "offset_m_id": 16, "offset_m_bfocus": 80, "binary_truth": {"sizeof": 68, "m_id": 12, "m_bfocus": 64}, "delta": "+16 = 4(vptr) + 12(tagRECT 低估)"},
+      "SceneObj_after_proposed_fix": {"PalScriptWaitObj": 8, "GlowObj": 32, "TaskMgr": 40, "offsetof_m_fTime": 88, "offsetof_m_bLockCamera": 108, "offsetof_sCGSHELF": 129, "note": "PSW/Glow 的 vptr 改由 virtual 提供 + 不发射基类区 gap + Glow 去掉错误 _tail_ + 保留 [80,88) 的 8B gap —— 全部命中二进制真值"}
+    }
+  },
+
+  "sceneobj_96byte_drift": {
+    "reported": "m_fTime 落在 +184，注解 +88，差 96",
+    "verdict": "复现并定谳：96 = 4 + 12 + 88 - 8",
+    "decomposition": {
+      "+4": "SceneObj 自身有 virtual（~SceneObj + 2 虚方法），但其第一基类 PalScriptWaitObj 生成头无任何 virtual ⇒ VC6 无法共享 vptr，把 vptr 插在偏移 0，整个基类区后移 4",
+      "+12": "GlowObj 生成头 'gbColorFlt m_GeomColor'(_estimate_member_size 估 4B，实际 16B) 后跟 'char _tail_014[12]'（emit_headers.py:1826-1829 尾部补齐）⇒ VC6 下 GlowObj=44 vs binary_size=32",
+      "+88": "char _gap_000[88] 与 public Base 并存（根因 B）",
+      "-8": "二进制 [80,88) 的 8 字节（SceneObj ctor 清零 this+80 DWORD / this+84 BYTE，见 asm/pal3/decomp/SceneObj_ctorvoid_00452fd0.json）在注解无条目，被并入 gap 的 88 之内"
+    },
+    "root_cause_C_is_NOT_the_cause": "emit_headers 读不到 base_size（恒 0），44 这个错值根本没参与布局。captain 的 '根因 C 给出候选解释' 不成立。",
+    "binary_evidence": "decomp SceneObj::ctor / LoadData / ValidateState：this+40=TaskMgr::__vftable、this+68..80 被 std::string 语义使用、this+80/+84 被 ctor 清零、this+88=m_fTime —— 与 '基类区 80 + 洞 8 + m_fTime@88' 自洽"
+  },
+
+  "base_size_semantics": {
+    "one_line": "不是单一语义：约 130 个='基类区宽度'(首自成员偏移)，约 29 个=sum(基类 binary_size)，12+5 个=错值，1 个=十六进制误写(SceneObj 44=0x44)。任何把它当权威口径的设计都不成立。",
+    "writers": ["e848e431d (2026-06-04) 批量补写 165 个（注解层，含手误）", "apply_annotations.py:855-866 运行时重算（多基类，不回写 JSON）", "tools/ida_import_pdb_types.py:230 与 tools/ida/pal3_import_structs.py:144（PDB 路径各自估算）"],
+    "recommended_source_of_truth": "基类区宽度 = sum(sizeof(VC6 下各基类))，且与 ida_structs bases[-1].offset + size(bases[-1]) 互检；两者应相等（apply 累加逻辑保证）。不用注解 base_size。",
+    "five_class_table": "见 root_cause_C.examples（6 类）"
+  },
+
+  "fourth_cause_or_missed": [
+    {
+      "id": "F1",
+      "name": "_estimate_member_size 读错键（影响面最大）",
+      "evidence": "emit_headers.py:740 sz = ann_s.get('binary_size')，但 ida_structs.json 的键是 'size'（946/946 实测无 binary_size 键）⇒ 所有非基本类型成员按默认 4 字节估计",
+      "impact": "440 个 struct 含 2919 个 UDT 类型成员；_tail_ 补齐机制(:1826-1829)按低估尺寸补洞 ⇒ VC6 实际布局系统性偏移（GlowObj +12、UIWnd +12；生成源码 399 个文件含 _tail_）",
+      "fix": "一行：读 'size'（或在 export 侧补 binary_size 别名）。这是 P1 大面积失败的最大单一成因，修复成本最低"
+    },
+    {
+      "id": "F2",
+      "name": "vptr/vtable 无发射途径的影子多态类",
+      "evidence": "PalScriptWaitObj: 注解 known_members 有 0:__vftable，但 ida_structs vtables=[]（空），生成头无任何 virtual ⇒ 修复 A 后该类 vptr 无人提供；且二进制里它有 vftable（vtable 符号+COMDAT 无法生成）",
+      "impact": "字节匹配的 vtable 布局（CLAUDE.md 核心困难 2）与 sizeof 无关，P1 通过也不代表能匹配。79 个 vtables 非空的类中，无 dtor/_scalar_dtor 的类同样存在此问题（数量待窗口统计）",
+      "fix": "emit 需为 'vtables 非空但无虚函数发射' 的类补 virtual 声明（按 vtable slots）或显式 void* 成员；并把 'vtables=[] 但 known_members 有 __vftable' 列为注解缺口工单"
+    },
+    {
+      "id": "F3",
+      "name": "限定形式 __vftable 引用未被改写",
+      "evidence": "stage3_cleanup._fold_vftable_mask 明确跳过 X->Base::__vftable（'base offset unknown'）；生成源码实测 606 处 '::__vftable' 限定引用残留原文（总 __vftable 引用 1047 处，captain 说 611——口径偏小）",
+      "impact": "头文件无 __vftable 成员 ⇒ 这 606 处现在就编译不过（是当前 142 个失败文件的构成之一），与 C-V 修复无关也必须处理",
+      "fix": "见 vftable_reference_fix"
+    },
+    {
+      "id": "F4",
+      "name": "known_members 跨界条目被静默丢弃",
+      "evidence": "SaleUI: 注解 base_size=72，known_members 有 +16/+20/+24 三条；apply:940 将 [0,72) 成员全部跳过 ⇒ IDB 与生成头中消失（实测 ida_structs.SaleUI data_members 首偏移 72）",
+      "impact": "信息无告警丢失；若 base_size 本身错（如 RoleCamera 376 vs first 28），丢弃的是正确标注",
+      "fix": "apply/emit 对 'known_members 落在 [0, base_size) 区间' 的条目输出告警清单，人工裁决是删注解还是修 base_size（SceneObj 的 68/76、RoleCamera 的 28 同此）"
+    },
+    {
+      "id": "F5",
+      "name": "captain 的 145 与实测不符",
+      "evidence": "生成头实测：_gap_000 且含 virtual = 59（与 captain 的 59 一致）；_gap_000 且多基类 = 30（captain 说 145）。145 可能是 '有 base_class 的头总数'（ida_structs 有 bases 的 struct=175，注解层 176）口径",
+      "impact": "统计口径需在门禁里固化，否则 P1 范围无法复核"
+    }
+  ],
+
+  "vftable_reference_fix": {
+    "question": "删掉 __vftable 成员后 611 处引用如何编译",
+    "answer": "方案 (a) 正确且是项目既定方向，但必须扩展；'由 virtual 隐式提供' (b) 只解决 sizeof，不解决引用。",
+    "details": [
+      "非限定 X->__vftable / &X->__vftable：_fold_vftable_mask 已改写为 (*(void**)X) / ((void**)X) —— MSVC ABI 下字节等价，保留",
+      "限定 X->Base::__vftable（606 处）：按基类子对象偏移改写为 *(void **)((char *)(X) + OFF)，&X->Base::__vftable → ((void **)((char *)(X) + OFF))；OFF 机械可得 = ida_structs[cls].bases 中名为 Base 的 offset（SceneObj: PalScriptWaitObj→0, GlowObj→8, TaskMgr→40）",
+      "虚调用 X->__vftable->slot(i)：改写为函数指针表访问 ((ret (__thiscall **)(void *, ...))(*(void **)X))[i](X, ...) 或走既有 [VFTABLE-STUB] 注释路径",
+      "C++ 标准层面 vptr 是实现细节不可移植，但本项目目标是 MSVC6 字节匹配，ABI 固定，*(void**)obj 惯用法成立（_fold_vftable_mask 已在用）",
+      "不建议用 '保留一个 void *__vftable 成员' 方案：与编译器 vptr 形成第三种认领（设计书 §2 已正确指出）"
+    ]
+  },
+
+  "P1_feasibility": {
+    "mechanical": true,
+    "scale": {
+      "structs_total": 946,
+      "poly_vtables_nonempty": 79,
+      "with_bases": 175,
+      "multi_inherit": 31,
+      "generated_headers_with_gap_and_virtual": 59,
+      "generated_headers_with_gap_and_multibase": 30,
+      "structs_with_udt_typed_members": 440,
+      "captain_59_145": "59 精确命中；145 与任何实测口径都对不上（最近的是 175/176 '有基类'）"
+    },
+    "cost_estimate": "纯编译路线：受影响类约 150~250 个，每 TU 一个 Show<sizeof> 行，wine_cl 每文件 1-3s ⇒ 单线程约 10 分钟内，可分片。依赖隔离是主要麻烦（部分头 include Windows/D3D）。",
+    "recommended": "两级：Python 布局模拟器（声明顺序紧排 + 成员各自对齐 + vptr 规则 + ida_structs size 键做 UDT 尺寸表 + gap/_tail 均按显式字节）做全量静态 P1/P2/P3；VC6 抽样 20~30 类校准模拟器。比全量编译便宜一个数量级且可进 CI。",
+    "P2_P3": "均静态可机械（P2: .h 偏移注释 vs 注解偏移 vs 模拟偏移三方比对；P3: 区间覆盖唯一性）。注意 P3 的认领者类别需把 F1 的 _tail_ 重叠也算作违规认领。"
+  },
+
+  "recommended_design": {
+    "agree_with_captain": [
+      "单一认领不变式（3.1）与 P1-P4 判据框架",
+      "根因 B 认领者选 public Base；基类区宽度用 sum(sizeof(base)) 不用注解 base_size",
+      "__vftable 引用走改写方案 (a)（需扩展到限定形式）",
+      "接受 '数字可能先变差' 的过渡预期"
+    ],
+    "differ_from_captain": [
+      {"point": "S2 修法", "captain": "把 :1728 跳过判据改为 vfptr|__vftable 双拼写", "reviewer": "该分支是死代码（vptr 成员根本不进成员列表），必须改为：start_off 初始化 = (有 base_class ? sum(sizeof(base)) : (class_vtable_slots 非空 ? 4 : 0))，让 gap 从基类区/vptr 之后起算", "evidence": "ida_structs 0/946 有 base_size 键；apply:940 与 udt_classify 双重剔除 vptr 成员"},
+      {"point": "执行顺序", "captain": "S1 二分 → S2 → S3 → S4 → S5", "reviewer": "新增 S0 = 修 _estimate_member_size 的 binary_size→size 键 bug（F1，一行，影响 440 struct）；S1 已被本次复核实测回答（VC6 多基类紧排成立，无需再做）；S2 与 S3 应合并为一次 emit 重构（同一处 gap 起点逻辑），否则中间态布局仍错", "evidence": "repro E 证明 S0+S2+S3 合并后 SceneObj 全部偏移命中"},
+      {"point": "范围", "captain": "只覆盖 sizeof 与引用编译", "reviewer": "必须补 vtable 重建子任务（F2）：无 virtual 发射的多态类补虚函数声明，否则 P1 通过也匹配不了 vtable 符号", "evidence": "PSW vtables=[] 但二进制多态"},
+      {"point": "P1 实现方式", "captain": "VC6 逐类编译", "reviewer": "模拟器全量 + VC6 抽样校准", "evidence": "751 个头逐个 wine 编译不可持续"},
+      {"point": "known_members 越界条目", "captain": "未提", "reviewer": "修 B 时会静默丢弃 [0,基类区) 的注解成员（SaleUI +16/20/24 实测），必须输出裁决清单", "evidence": "F4"}
+    ],
+    "concrete_order": [
+      "S0 修 _estimate_member_size 键 bug + _tail_ 语义审查（399 文件影响面）",
+      "S1'（替代原 S1）已在本次复核完成：VC6 多基类顺序紧排、基类 sizeof 与注解 binary_size 一致性依赖 S0 修复",
+      "S2+S3 合并：emit 的 start_off 决策表（基类区 / vptr 4 / 0）+ 不再为被认领区间发 gap；对 vtables 非空但无 virtual 的类补虚函数声明（F2）",
+      "S4 扩展 _fold_vftable_mask 至限定形式（606 处）与 vtable 槽位调用",
+      "S5 P1(模拟器+抽样)/P2/P3 门禁 + known_members 越界清单（F4）+ 全链取权威 ok/L1"
+    ]
+  },
+
+  "hard_lines": {
+    "note": "本复核未运行 pipeline/cli.py 与任何 idat 命令，未改动仓库（除本 JSON）；所有实验在 /tmp/cvtest。L1/ok/oob 无回退风险。"
+  },
+
+  "not_verified": [
+    "59/145 之外受 P1 影响类的精确闭包（需要模拟器实现后全量跑）",
+    "vtables=[] 但二进制多态的类清单全量（仅实测 PalScriptWaitObj；待窗口按 known_members 有 __vftable 而 vtables 为空过滤）",
+    "SceneObj known_members 的 m_fTimerLimit@68/_SaveTaskInfo@76 究竟应归属 TaskMgr 内部还是 SceneObj（需 IDA 窗口查 +68/+76 访问点的类型语境；decomp 语境显示为 std::string 操作，注解 gbRefObject*/SaveTask 存疑）",
+    "606 处限定 __vftable 中按基类改写后的逐一可编译性（需要 S4 实施后编译验证）",
+    "captain 'Show<12>/Show<16>' 之外的其原始 /tmp 复现内容（我按设计书描述独立重建，数字 12/16 一致；DV 一项他的 16 与我的 20 不同，取决于 V2 定义，不影响结论）"
+  ]
+}
