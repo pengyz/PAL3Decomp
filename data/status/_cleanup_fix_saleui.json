@@ -1,0 +1,92 @@
+{
+  "task": "t2b — SaleUI 布局裁定与修复（B1 批次剩余部分）",
+  "generated_by": "captain（AgentTeams 成员派发不可用，改由 captain 直接执行 + 子 agent 前半段）",
+  "generated_at": "2026-09-15T15:16+08:00",
+  "scope": "data/annotations/structs/SaleUI.json（只改此文件）",
+  "result": {
+    "members_before": 101,
+    "members_after": 66,
+    "deleted": 35,
+    "binary_size_before": 105912,
+    "binary_size_after": 105912,
+    "note": "binary_size 保持不变（未采用『尺寸偏小』假设），删除的是几何不可能 + 无归属证据的成员"
+  },
+  "deletions": [
+    {
+      "batch": "A（前半段，由子 agent 执行）",
+      "count": 34,
+      "criterion": "成员偏移 ≥ binary_size(105912)（几何不可能）",
+      "supporting_evidence": [
+        "几何不可能：成员偏移超出所属 struct 声明尺寸 → IDA create_udt 产出不完整 UDT（该机制已在 SceneObj/UICursor 上定谳并验证）",
+        "出处可追：其中约 10 条源自已解散的旧 PlayerMgr.json(107056)（round5 解散幻影时遗留）",
+        "负证据（弱，仅作支持）：34 条的位移在 original/PAL3.exe.asm 中出现 0 次"
+      ],
+      "negative_evidence_caveat": "『位移在 asm 出现 0 次』判别力弱：界内成员中也有 50/67 位移为 0 次（基础发生率≈75%）→ 不作为决定性依据。决定性依据是几何不可能 + 出处可追。",
+      "byproduct": "两条 member overlap 随被删的『下一个成员』(88408/88540) 一并消解"
+    },
+    {
+      "batch": "B（captain 补做）",
+      "count": 1,
+      "member": "ml_SmeltList @104752 (0x19930), type=UIListBox(1208)",
+      "criterion": "成员末端 > binary_size（105960 > 105912，gap=-48）",
+      "evidence": [
+        "其位移 +19930h 在 asm 中的 3 处访问（mov dword ptr [esi+19930h],1BFh / mov ecx,[esi+19930h] / cmp ecx,[esi+19930h]）**均位于 LineupUI 的方法内**：0x00477BB0 = LineupUI::OnMessage、0x00471590 = LineupUI::InitListView（依 asm/pal3/ida_structs.json）→ 该偏移的访问属 LineupUI，不是 SaleUI 的成员访问",
+        "SaleUI 自身对该偏移 0 次访问（与另 34 条同判）",
+        "几何不可能：末端超出声明尺寸"
+      ],
+      "rejected_hypothesis": "假设 B（SaleUI.binary_size 偏小）：无正证据——若这些成员真属 SaleUI，其位移应被 SaleUI 的 this 访问；实测为 0 或归于他类"
+    }
+  ],
+  "verification": {
+    "check_annotations": "SaleUI 零错误（此前：3 条 member overlap + 1 条 members extend to +105960）",
+    "apply_status_json": {
+      "refreshed_at": "2026-09-15T15:14:42",
+      "SaleUI": { "status": "ok", "ann_members": 66, "ida_members": 63, "ann_size": 105912, "ida_size": 105912, "size_match": true },
+      "SceneObj": { "status": "ok", "ann_members": 47, "ida_members": 47, "ann_size": 1784, "ida_size": 1784, "size_match": true },
+      "UICursor": { "status": "ok", "ann_members": 6, "ida_members": 6, "ann_size": 64, "ida_size": 64, "size_match": true },
+      "ok_total": "881 / 881"
+    },
+    "apply_log": "[3] Structs: 881/881 imported successfully (fail=0)",
+    "s4_baseline": { "match_L1": 5, "oob": 0, "matched": "123/175", "partial": 118 },
+    "baselines_latest": { "name": "20260915_151121", "ok": 53, "total": 198, "note": "分母未变，可比" },
+    "match_ratchet": "previous 5 -> current 5",
+    "criteria": {
+      "L1 >= 5": "pass",
+      "ok >= 53/198": "pass",
+      "oob == 0": "pass",
+      "struct import 881/881": "pass"
+    }
+  },
+  "legacy_findings": [
+    {
+      "id": "LINEUPUI-SIZE-1208",
+      "severity": "high",
+      "finding": "LineupUI.binary_size=1208，而其方法访问到 +124248（~LineupUI 自标 _misattrib_evidence: max_offset=124248>class_size=1208；OnMessage 0x00477BB0 与 InitListView 0x00471590 均在 124268 字节量级的类上访问）→ 尺寸疑小约 100 倍（0x1E56C=124268 的分配点线索同样指向该量级）",
+      "status": "未修（不在本步范围）→ 需补证批次：需独立尺寸锚点（分配点/嵌入 span/数组元素尺寸）"
+    },
+    {
+      "id": "UILISTBOX-SIZE-1208",
+      "severity": "medium",
+      "finding": "UIListBox.binary_size=1208 与 LineupUI 同值，且 LineupUI 的 _misattrib_evidence 以 class_size=1208 为基准 → 两者疑同源；UIListBox 的真实尺寸需独立裁定",
+      "status": "未修 → 需补证"
+    },
+    {
+      "id": "SALEUI-MEMBER-COUNT-GAP",
+      "severity": "low",
+      "finding": "SaleUI ann_members=66 vs ida_members=63（3 条未被 IDA 建入，疑 union variant 键/重复偏移）",
+      "status": "记录待核（不影响 size_match 与导入）"
+    },
+    {
+      "id": "GLOBALS-ROLESLOTBUF-OVERLAP",
+      "severity": "low",
+      "finding": "g_RoleSlotBuf 落在 g_SceneMgr 内 → 需在 globals 注解加 overlaps_with 声明",
+      "status": "未修（本步只改 SaleUI.json）→ 交后续"
+    }
+  ],
+  "discipline": {
+    "files_touched": ["data/annotations/structs/SaleUI.json", "data/annotations/CHANGE_LOG.md", "data/status/_cleanup_fix_saleui.json"],
+    "no_pipeline_or_tools_edits": true,
+    "no_destructive_git": true,
+    "ida_sessions": "用完即关；复核：0 个 idat 进程、无锁文件、无边车残留"
+  }
+}

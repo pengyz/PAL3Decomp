@@ -1,0 +1,161 @@
+{
+  "task": "t3",
+  "title": "导入器显式失败：apply_annotations.py 不再静默产出不完整 UDT",
+  "date": "2026-09-15",
+  "in_scope": ["pipeline/ida/apply_annotations.py"],
+  "out_of_scope_touched": [],
+  "root_cause_chain": {
+    "statement": "已定谳，本次未重新调研，仅按其修复",
+    "chain": [
+      "成员偏移/末端越界 → create_udt() 仍返回 true 但产出不完整 UDT（get_size()==-1、get_udt_details()==false）",
+      "旧 :866-877（TAUDT_FIXED）**无条件**把 -1 降级成 actual_size=binary_size",
+      "旧 :888 set_named_type 无返回值、静默失败留下空壳",
+      "SceneObj[256] 取元素尺寸得 -1 → 旧 :797-800 报 invalid member_size FATAL",
+      "结论：真正的病根在导入器的降级与静默放行，不在下游报错点"
+    ]
+  },
+  "changes": {
+    "1_criteria": {
+      "requirement": "判据用 get_udt_details() 成功 + 实际落入成员数 == 期望推入成员数；不要「见 get_size()==-1 即 fail」（旧 :867-868 注释承认 union 同偏移变体时 -1 属正常）",
+      "implementation": [
+        "新增 _expected_pushed_member_count()：干跑成员循环算出应落入数（复刻基类区域成员被跳过的过滤）",
+        "成员循环内新增 _pushed_count，每次 push_back 后 +1（含 _tail_000 filler）",
+        "新增判据①a：get_udt_details() 必须成功；①b：returned_members == _pushed_count（仅对净新建的非 union）",
+        "**-1 已从失败条件中移除**，降级为诊断信息（见 changes.6）"
+      ],
+      "union_policy": "union 的同偏移变体在 IDA 中可能被合并/重排，故成员数一致性对 union 只作诊断、不作硬判据"
+    },
+    "2_terminal_bounds": {
+      "requirement": "保留独立前置检查 member_end = 声明偏移 + 成员解析尺寸 > binary_size（末端口径；偏移口径会漏掉 SaleUI 那类「末成员尺寸撑破边界」）",
+      "implementation": [
+        "新增 _layout_end_of_members()：遍历 get_udt_details() 读回的真实布局",
+        "对每个成员算 member_end = offset//8 + size//8，用 udt_member_t.size（原始 bit 宽度）而非 type.get_size()",
+        "为什么用 .size 而不用 type.get_size()：后者已含对齐填充，会把末端算大、产生假越界",
+        "位域（is_bitfield）跳过末端检查（无字节粒度偏移语义）"
+      ],
+      "terminal_overflow_flag": "返回 max_end > binary_size 的专门标志，区分「末成员撑破边界」这一形态"
+    },
+    "3_unify_two_paths": {
+      "requirement": "统一 :654-656（diff-mode，正确拒绝 -1）与 :866-877（无条件降级）的行为",
+      "implementation": [
+        "create_fixed_struct_diff 也接入了 _layout_end_of_members 末端检查",
+        "diff-mode 的 -1 仍正确拒绝（本次是 layout 合并失败，不是 union 变体形态）",
+        "diff-mode 的 set_named_type 后同样调用共享的 _verify_named_udt 落地复核",
+        "diff-mode 的 size 不匹配回退 replace 模式时新增 [i] 日志（原先静默降级）",
+        "抽出共享的 _verify_named_udt()，两条路径复用同一落地判据"
+      ]
+    },
+    "4_error_reporting": {
+      "requirement": "报错同时打印 offset / member_end / binary_size 三元组 + 输出可操作不完整清单",
+      "implementation": [
+        "FATAL 块打印：结构名、binary_size、base、成员数对照、bounds 明细、reasons 列表、get_size() 读数",
+        "bounds 明细含 max member end + culprit 名字 + declared offset + end + binary_size",
+        "越界成员清单最多列 5 条，超出显示省略号",
+        "布局不可读时显式说明「no geometric bounds available; this is the empty-shell form」"
+      ]
+    },
+    "5_override_switch": {
+      "requirement": "提供逐 struct 留痕覆盖开关（默认拒绝 apply），每次覆盖都要记录「该 struct 已登记为已知待修」",
+      "implementation": [
+        "新增 _load_incomplete_udt_overrides()，读 data/annotations/_incomplete_udt_overrides.json",
+        "该文件不存在 → 返回空 dict → **默认拒绝**（无全局开关，覆盖面必须逐 struct 显式登记）",
+        "命中覆盖时打印 [OVERRIDE] + reason/registered/tracking 三字段留痕",
+        "**越界（几何不可能）形态即使登记也不放行**：打印 [OVERRIDE-REJECTED] 并保持 FATAL",
+        "理由：越界会污染下游布局计算，不属于「已知可容忍」范畴"
+      ],
+      "override_file_present": false
+    },
+    "6_get_size_dash_one": {
+      "requirement": "不得把 -1 当判据（旧注释承认 union 同偏移变体下属正常）",
+      "implementation": [
+        "-1 已从失败条件中完全移除",
+        "仅在 get_udt_details() 可读 + 成员数一致 + 无越界时记录一条 [i] 诊断，并用 binary_size 作权威尺寸",
+        "FATAL 块仍打印 get_size() 读数，但显式标注「-1 is NOT the failure cause here」",
+        "实测：881 个结构中有 5 个走该诊断路径，全部判定为成功"
+      ]
+    },
+    "7_extra_fixes_found_en_route": {
+      "note": "以下两处是修复过程中发现的同类缺陷，属同一 inScope 文件，一并修好并实测",
+      "items": [
+        {
+          "id": "set_methods_ordering",
+          "problem": "旧代码在 set_methods() **之后**才做 get_udt_details() 相关后处理；set_methods() 之后 get_udt_details() 对带成员函数的 UDT 会合法失败",
+          "consequence": "所有带虚表的类（本仓 93 个 vtable struct 覆盖的类）的 __vftable 类型修正被静默跳过",
+          "fix": "把 __vftable 修正上移到 set_methods() 之前；判定顺序稳定为 create_udt → set_named_type → 完整性判据/__vftable 修正 → set_methods"
+        },
+        {
+          "id": "set_named_type_must_precede_readback",
+          "problem": "get_udt_details() 在**未在 TIL 中命名的 tinfo** 上，对一部分 UDT 返回 false",
+          "evidence": "实测：tagNewItem / C2DSpark_tagSpark / CEffMgr / UIChatRest / SaleUI 五个结构，命名前全部不可读（误导为「空壳」）；命名后全部可读，且 15:08 的导出证明它们各有 5/15/38/38/62 个成员、是完整 UDT",
+          "fix": "set_named_type() 提前到完整性判据之前调用；落地成功与否由 _verify_named_udt() 在末尾复核",
+          "significance": "若不修此点，这 5 个结构会被误判为不完整 → 计数从 881 掉到 876，属**假失败**"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "baseline_before_change": {
+      "command": "python3 pipeline/cli.py apply ; echo $?",
+      "result": "[3] Structs: 881/881 imported successfully (fail=0)",
+      "FATAL_count": 0,
+      "i64_mtime_before": "2026-09-15 15:14:42",
+      "i64_mtime_after_baseline_run": "2026-09-15 15:30:28",
+      "log_mtime": "15:06",
+      "sidecars": "none (clean exit)"
+    },
+    "after_change": {
+      "command": "python3 pipeline/cli.py apply ; echo $?",
+      "result": "[3] Structs: 881/881 imported successfully (fail=0)",
+      "apply_exit": 0,
+      "FATAL_count": 0,
+      "i64_mtime": "2026-09-15 15:40:48",
+      "sidecars": "none (clean exit)",
+      "union_variant_diagnostics": 5,
+      "note": "计数与修改前**逐位一致**，符合 t3 判据要求"
+    },
+    "false_positive_eliminated": {
+      "symptom_seen_during_development": "第一版把判据放在 set_methods() 之后 → 10 个结构被误判；修正时序后 → 5 个；去掉 -1 判据后 → 0 个",
+      "final_state": "0 假失败",
+      "honest_note": "该过程说明「判据本身也会引入假失败」，故最终判据只用 get_udt_details() 可读性 + 成员数一致性 + 末端口径三项，且都经过实测校准"
+    },
+    "pure_logic_tests": {
+      "method": "从源码 AST 抽出 _expected_pushed_member_count 后 exec（该函数不依赖 IDA）",
+      "cases": [
+        {"input": "3 个不同偏移成员，无基类", "expected": 3, "actual": 3},
+        {"input": "成员偏移 0/8/16/32，base_size=16", "expected": 2, "actual": 2},
+        {"input": "union 变体键 12/12_1/12_2/16", "expected": 4, "actual": 4, "why": "验证未踩 int(key) 陷阱（int('12_1')==121，见交接文档 §5.6）"}
+      ]
+    },
+    "ordering_invariant_check": {
+      "method": "AST 遍历 create_fixed_struct，断言 set_methods 只出现一次且所有 get_udt_details 都在它之前",
+      "result": "create_udt → set_named_type(927) → get_udt_details(1058) → set_methods(1108)，断言通过"
+    },
+    "criteria_status": {
+      "apply_structs": "881/881 (fail=0) — 达成，与修改前一致",
+      "L1_ge_5": "未实测（需窗口跑 pipeline/cli.py match）",
+      "ok_ge_53_of_198": "未实测（需窗口跑 probe）",
+      "i64_mtime_refreshed": true
+    },
+    "pending_window": [
+      "python3 pipeline/cli.py match → 确认 L1 >= 5",
+      "python3 pipeline/cli.py probe all + tools/error_classifier.py --summary → 确认 ok >= 53/198",
+      "这两项由 t9 独立验证统一在其独占窗口内实测"
+    ]
+  },
+  "files_changed": [
+    "pipeline/ida/apply_annotations.py",
+    "data/status/_cleanup_fix_struct_import.json"
+  ],
+  "not_done": [
+    "未改任何注解（t3 只改导入器；annotations 属 eng-annotation 的 inScope）",
+    "未跑 match/probe（窗口纪律；留给 t9）",
+    "未写 docs/knowledge/ 知识页（属 t12 integrator 职责；本文件的 7 条 en-route 发现应被 t12 收编）"
+  ],
+  "handoff_notes_for_reviewer": [
+    "复核重点1：判据是否真的不依赖 get_size()==-1（grep _size_is_dash_one 确认它不在任何失败条件里）",
+    "复核重点2：末端口径用的是 udt_member_t.size 而非 type.get_size()（后者含对齐填充会产生假越界）",
+    "复核重点3：两条路径是否真正统一（_verify_named_udt 与 _layout_end_of_members 均被 diff-mode 复用）",
+    "复核重点4：覆盖开关是否默认拒绝（删除该 json 后行为不变）且越界形态不可被覆盖放行",
+    "复核重点5：set_named_type 是否在 get_udt_details 之前（AST 断言可复跑）"
+  ]
+}

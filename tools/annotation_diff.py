@@ -13,6 +13,14 @@ Annotation Diff Visualization Tool
    - 名称变更
 3. 输出可视化报告
 
+失败形态（重要）：
+本工具**必须**能区分「注解无变更」与「读不到 git」。旧实现在 git 不可用
+（无仓库 / 坏 commit / git 不在 PATH）时 `git show` 与 `git ls-tree` 全部失败，
+于是每个结构体都被当成「新增文件」：实测把 898 个结构体全报为新增，**仍以 0 退出**，
+与「无变更」不可区分。现在：
+    * git/commit 不可读 -> 报错并退出 3（verdict: git_unavailable）
+    * git 可读          -> 退出 0（verdict: clean / changed），报告写明 git 可读证据
+
 用法：
     python3 tools/annotation_diff.py                    # 对比当前vs HEAD
     python3 tools/annotation_diff.py --commit abc123    # 对比当前vs指定commit
@@ -34,6 +42,10 @@ from collections import Counter
 PROJECT_ROOT = Path(__file__).parent.parent
 ANNOTATIONS_DIR = PROJECT_ROOT / "data" / "annotations" / "structs"
 REPORT_DIR = PROJECT_ROOT / "pipeline" / "_logs" / "annotation_diffs"
+
+
+class GitUnavailableError(Exception):
+    """git (or the requested commit) cannot be read -> the diff is meaningless."""
 
 
 class ChangeType(Enum):
@@ -74,7 +86,42 @@ class AnnotationDiffer:
     def __init__(self):
         self.report_dir = REPORT_DIR
         self.report_dir.mkdir(parents=True, exist_ok=True)
-    
+        self.git_sha = None            # resolved commit sha (proves git was readable)
+        self.commit_arg = None         # commit argument as given on the CLI
+        self.git_files_count = 0       # struct files found in git at that commit
+        self.current_files_count = 0   # struct files in the working tree
+        self.git_read_errors = []      # files listed by git but not readable
+
+    def check_git_available(self, commit: str = "HEAD") -> str:
+        """Resolve <commit> to a sha or fail loudly.
+
+        A diff tool that cannot read git has NO information; it must not
+        degrade into "everything is new".
+        """
+        try:
+            result = subprocess.run(
+                ["git", "rev-parse", "--verify", "--quiet", "%s^{commit}" % commit],
+                capture_output=True, text=True, cwd=PROJECT_ROOT)
+        except FileNotFoundError as e:
+            raise GitUnavailableError(
+                "git is not runnable: %s\n"
+                "  This tool diffs the working tree against a git commit; without git it\n"
+                "  cannot distinguish 'no annotation changes' from 'cannot read git'." % e)
+        except Exception as e:
+            raise GitUnavailableError("git invocation failed: %s" % e)
+        if result.returncode != 0:
+            raise GitUnavailableError(
+                "cannot resolve commit %r (git rev-parse exit %d)\n"
+                "  cwd: %s\n"
+                "  stderr: %s\n"
+                "  If this is a clean checkout without git metadata, run the diff from a\n"
+                "  git working copy -- 'no changes' cannot be claimed without git."
+                % (commit, result.returncode, PROJECT_ROOT, result.stderr.strip()))
+        sha = result.stdout.strip()
+        if not sha:
+            raise GitUnavailableError("git rev-parse returned an empty sha for %r" % commit)
+        return sha
+
     def get_git_file_content(self, filepath: str, commit: str = "HEAD") -> Optional[str]:
         """获取git中指定commit的文件内容"""
         try:
@@ -203,41 +250,57 @@ class AnnotationDiffer:
         )
     
     def analyze_directory(self, commit: str = "HEAD") -> List[StructDiff]:
-        """分析整个annotation目录"""
+        """分析整个annotation目录
+
+        Raises GitUnavailableError when git / the commit / the tree listing
+        cannot be read. Never classifies "git unreadable" as "file added".
+        """
         diffs = []
-        
+
+        # Fail fast: without a resolvable commit this analysis has no meaning.
+        self.commit_arg = commit
+        self.git_sha = self.check_git_available(commit)
+
         # 获取当前所有struct文件
         current_files = set()
         if ANNOTATIONS_DIR.exists():
             for f in ANNOTATIONS_DIR.glob("*.json"):
                 current_files.add(f.name)
-        
+        self.current_files_count = len(current_files)
+
         # 获取git中的struct文件
         git_files = set()
-        try:
-            result = subprocess.run(
-                ["git", "ls-tree", "-r", "--name-only", commit, str(ANNOTATIONS_DIR.relative_to(PROJECT_ROOT))],
-                capture_output=True,
-                text=True,
-                cwd=PROJECT_ROOT
-            )
-            if result.returncode == 0:
-                for line in result.stdout.strip().split('\n'):
-                    if line.endswith('.json'):
-                        git_files.add(Path(line).name)
-        except Exception:
-            pass
-        
+        result = subprocess.run(
+            ["git", "ls-tree", "-r", "--name-only", commit,
+             str(ANNOTATIONS_DIR.relative_to(PROJECT_ROOT))],
+            capture_output=True, text=True, cwd=PROJECT_ROOT)
+        if result.returncode != 0:
+            raise GitUnavailableError(
+                "git ls-tree failed for %r (exit %d)\n  stderr: %s\n"
+                "  The tracked struct list cannot be read, so every struct would look new."
+                % (commit, result.returncode, result.stderr.strip()))
+        for line in result.stdout.strip().split('\n'):
+            if line.endswith('.json'):
+                git_files.add(Path(line).name)
+        self.git_files_count = len(git_files)
+
         all_files = current_files | git_files
-        
+
         for filename in sorted(all_files):
             filepath = str(ANNOTATIONS_DIR.relative_to(PROJECT_ROOT) / filename)
-            
+
             current_content = self.get_current_file_content(filepath)
             git_content = self.get_git_file_content(filepath, commit)
-            
-            # 新增文件
-            if current_content and not git_content:
+            tracked = filename in git_files
+
+            if tracked and git_content is None:
+                # git listed the file but its content could not be read: this is
+                # a git read failure, NOT a new file. Never silently reclassify.
+                self.git_read_errors.append(filename)
+                continue
+
+            # 新增文件（git 确认该文件不在这个 commit 里）
+            if current_content and not tracked:
                 current_data = self.load_struct_json(current_content)
                 if current_data:
                     diffs.append(StructDiff(
@@ -251,7 +314,7 @@ class AnnotationDiffer:
                     ))
             
             # 删除文件
-            elif not current_content and git_content:
+            elif not current_content and tracked:
                 git_data = self.load_struct_json(git_content)
                 if git_data:
                     diffs.append(StructDiff(
@@ -273,7 +336,13 @@ class AnnotationDiffer:
                     diff = self.compare_struct(git_data, current_data)
                     if diff.changes:
                         diffs.append(diff)
-        
+
+        if self.git_read_errors:
+            raise GitUnavailableError(
+                "%d file(s) are tracked at %s but their content could not be read "
+                "(first: %s)\n  Refusing to report them as 'added': the diff would be wrong."
+                % (len(self.git_read_errors), commit, self.git_read_errors[0]))
+
         return diffs
     
     def generate_text_report(self, diffs: List[StructDiff]) -> str:
@@ -283,11 +352,16 @@ class AnnotationDiffer:
         lines.append("Annotation Diff Report")
         lines.append("=" * 80)
         lines.append(f"分析时间: {__import__('datetime').datetime.now().isoformat()}")
+        lines.append(f"git: {self.commit_arg} -> {self.git_sha} (可读)")
+        lines.append(f"struct 文件: 工作区 {self.current_files_count} / git {self.git_files_count}")
         lines.append(f"变更结构体数量: {len(diffs)}")
+        lines.append(f"verdict: {'changed' if diffs else 'clean'}")
         lines.append("")
         
         if not diffs:
-            lines.append("✅ 未检测到annotation变更。")
+            lines.append(
+                "✅ 未检测到annotation变更（git 可读: %s；%d 个 struct 文件与 %s 一致）。"
+                % (self.git_sha, self.current_files_count, self.commit_arg))
             return "\n".join(lines)
         
         # 统计变更类型
@@ -332,6 +406,12 @@ class AnnotationDiffer:
         """生成JSON报告"""
         report = {
             "timestamp": __import__('datetime').datetime.now().isoformat(),
+            "verdict": "changed" if diffs else "clean",
+            "git_readable": True,
+            "git_commit": self.commit_arg,
+            "git_sha": self.git_sha,
+            "current_struct_files": self.current_files_count,
+            "git_struct_files": self.git_files_count,
             "total_structs_changed": len(diffs),
             "changes": []
         }
@@ -382,12 +462,14 @@ class AnnotationDiffer:
     <div class="header">
         <h1>Annotation Diff Report</h1>
         <p>Generated: """ + __import__('datetime').datetime.now().isoformat() + """</p>
+        <p>git: """ + str(self.commit_arg) + """ -&gt; """ + str(self.git_sha) + """ (readable); struct files: working tree """ + str(self.current_files_count) + """ / git """ + str(self.git_files_count) + """</p>
         <p>Structs changed: """ + str(len(diffs)) + """</p>
     </div>
 """)
         
         if not diffs:
-            html.append('<div class="summary">✅ No annotation changes detected.</div>')
+            html.append('<div class="summary">✅ No annotation changes detected (git readable: '
+                        + str(self.git_sha) + ').</div>')
         else:
             html.append('<div class="summary">📊 Changes found in ' + str(len(diffs)) + ' structs</div>')
             
@@ -472,9 +554,16 @@ def main():
             if not args.quiet:
                 print(report)
         
-        # 返回码：有变更返回0，无变更返回0
+        # 返回码：git 可读且有/无变更均返回 0（verdict 在报告里）
         return 0
-        
+
+    except GitUnavailableError as e:
+        # Cannot read git -> the diff is meaningless. Exit 3 (distinct from the
+        # generic 2) so a caller can never mistake this for "no changes".
+        print("❌ GIT 不可读 —— 无法判断注解是否有变更（不是「无变更」）:", file=sys.stderr)
+        print(str(e), file=sys.stderr)
+        return 3
+
     except Exception as e:
         print(f"❌ 错误: {e}", file=sys.stderr)
         return 2

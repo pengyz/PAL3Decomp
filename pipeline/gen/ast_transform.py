@@ -22,6 +22,34 @@ _RET_SLOTS_CACHE = None
 
 _RET_SLOTS_WARNED = set()
 
+# ---------------------------------------------------------------------------
+# AR-002 EVIDENCE-SOURCE DECLARATION (declared, deliberately NOT migrated)
+# ---------------------------------------------------------------------------
+# WHAT IS READ  : `data/annotations/structs/*.json` — `methods{addr: {name}}`,
+#                 used as the (class, method) -> VA index for the ret-N probe.
+# WHY IT MUST BE READ
+#               : the gate needs a *binary* fact (the function-tail `ret N`
+#                 immediate = true __thiscall stack-param byte count). The only
+#                 route from a rendered `Cls::Method(...)` call to that fact is
+#                 an address, and the address is only carried by the struct
+#                 annotations' method table.
+# WHY IT CANNOT BE MIGRATED TO AN EXPORT PRODUCT TODAY (all measured on this
+# worktree, 2026-09-15; harness = the real `transform_oop_calls` driven over
+# all 3524 class-member decomp JSONs, pure in-memory — see
+# `data/status/_cleanup_fix_codegen_policy.json` -> harness_evidence):
+#   * `_sig_evidence_pack.json` as the ONLY source -> 167/3524 files drift and
+#     90.0% of the evidence table (3299 -> 335 non-None entries) disappears;
+#     the direction includes *silent passes* (a gate that can no longer block).
+#   * slot counts parsed from `asm/pal3/ida_structs.json` signatures ->
+#     219/3524 files drift; the two sources disagree on 758 of 3332 callees.
+#   * the two sources are NOT interchangeable: neither is a superset of the
+#     other, so a migration is a semantic change, not a refactor.
+# AR-002 (docs/specs/2026-09-15-cleanup-scan-architecture-rulings.md, ruling
+# (a)) classifies this read as a C1 architectural violation. It stays here
+# DECLARED until the migration is proven output-identical; lifting the
+# CLAUDE.md red line is a user decision, not a codegen decision.
+# ---------------------------------------------------------------------------
+
 
 def _ret_param_slots(cls_name, method_name):
     """True stack-param slot count for a method, from the binary.
@@ -47,15 +75,22 @@ def _ret_param_slots(cls_name, method_name):
 def _load_ret_slots():
     """Build (cls, method) -> param slots from structs annotations + exe."""
     import struct as _struct
+    import sys as _sys
     _gen_dir = os.path.dirname(os.path.abspath(__file__))
     _proj = os.path.dirname(os.path.dirname(_gen_dir))
     _structs_dir = os.path.join(_proj, 'data', 'annotations', 'structs')
     exe_path = os.path.join(_proj, 'original', 'PAL3.exe')
     if not os.path.isfile(exe_path):
+        print('[WARN] ast_transform: ret-N evidence source missing: %s '
+              '(ret-N gate will block every site => more [MISATTRIBUTED])'
+              % exe_path, file=_sys.stderr)
         return
     try:
         _exe = open(exe_path, 'rb').read()
-    except OSError:
+    except OSError as _e:
+        print('[WARN] ast_transform: cannot read %s (%s) '
+              '(ret-N gate will block every site)' % (exe_path, _e),
+              file=_sys.stderr)
         return
 
     def va2off(va):
@@ -80,14 +115,18 @@ def _load_ret_slots():
             continue
         try:
             d = json.load(open(os.path.join(_structs_dir, _f), encoding='utf-8'))
-        except Exception:
+        except Exception as _e:
+            print('[WARN] ast_transform: skipping unreadable struct '
+                  'annotation %s (%s)' % (_f, _e), file=_sys.stderr)
             continue
         cls = d.get('name') or _f[:-5]
         for a, m in (d.get('methods') or {}).items():
             mn = str(m.get('name', ''))
             try:
                 va = int(a, 16)
-            except ValueError:
+            except ValueError as _e:
+                print('[WARN] ast_transform: non-hex method address %r in %s '
+                      '(%s)' % (a, _f, _e), file=_sys.stderr)
                 continue
             if (cls, mn) in _RET_SLOTS_CACHE:
                 continue
@@ -106,6 +145,14 @@ def _load_ret_slots():
     # stay unevidenced and the gate conservatively blocks.
     _pack_path = os.path.join(_proj, 'data', 'status', '_sig_evidence_pack.json')
     if os.path.isfile(_pack_path):
+        # t6 §4: this typed except is KEPT on purpose and recorded as C3b
+        # (redundant, not a defect): `_sig_evidence_pack` is an OPTIONAL
+        # evidence-refinement input — every (cls, method) it carries is
+        # already present in the byte-scan table above with an identical
+        # value (measured: 335/335 pack keys exist in the cache and 0 of
+        # them disagree), so a corrupt pack cannot change the verdict.
+        # Making it fatal would turn an optional refinement into a hard
+        # dependency.  It is NOT silent: the failure is reported.
         try:
             _pack = json.load(open(_pack_path, encoding='utf-8'))
             for _c in _pack.get('graded', []):
@@ -114,8 +161,9 @@ def _load_ret_slots():
                 _key = (_c.get('cls'), _c.get('method'))
                 if _key[0] and _key[1]:
                     _RET_SLOTS_CACHE[_key] = _c['slots']
-        except Exception:
-            pass
+        except Exception as _e:
+            print('[WARN] ast_transform: %s unreadable (%s); continuing with '
+                  'the raw byte-scan only' % (_pack_path, _e), file=_sys.stderr)
 
 
 _ROWTABLE_CACHE = None
@@ -124,7 +172,17 @@ _ROWTABLE_CACHE = None
 def _rowtable_family():
     """Classes whose 7-slot handler tables share framework slots (gbUI
     message-handler registration family; see
-    docs/knowledge/decision_sceneobj_composition_not_inheritance.md)."""
+    docs/knowledge/decision_sceneobj_composition_not_inheritance.md).
+
+    CG-023: a missing/corrupt family list used to fall back to an EMPTY set
+    (`except (OSError, ValueError): _ROWTABLE_CACHE = set()`). Every family
+    class then took the `else` arm and emitted `[MISATTRIBUTED]` instead of
+    `[ROWTABLE]` — a whole-tree reclassification with NO signal in the
+    generated source and none on stderr. Measured cost of that fallback on
+    this worktree: 588 sites change / 328 files change. An input contract
+    this load-bearing must fail loudly; `RuntimeError` (not a silent
+    default) is the contract.
+    """
     global _ROWTABLE_CACHE
     if _ROWTABLE_CACHE is not None:
         return _ROWTABLE_CACHE
@@ -132,10 +190,49 @@ def _rowtable_family():
     _p = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
         os.path.abspath(__file__)))), 'data', 'status', '_rowtable_family.json')
     try:
-        _ROWTABLE_CACHE = set(_json.load(open(_p, encoding='utf-8')))
-    except (OSError, ValueError):
-        _ROWTABLE_CACHE = set()
+        with open(_p, encoding='utf-8') as _fh:
+            _ROWTABLE_CACHE = set(_json.load(_fh))
+    except (OSError, ValueError) as _e:
+        raise RuntimeError(
+            'ast_transform: the [ROWTABLE] family list is required but could '
+            'not be read: %s (%s). Falling back to an empty family would '
+            'silently reclassify every [ROWTABLE] site as [MISATTRIBUTED] '
+            '(measured: 588 sites / 328 files), so this is a hard failure. '
+            'Regenerate/restore the file instead of continuing.' % (_p, _e))
     return _ROWTABLE_CACHE
+
+
+# ---------------------------------------------------------------------------
+# AR-002 EVIDENCE-SOURCE DECLARATION (declared, deliberately NOT migrated)
+# ---------------------------------------------------------------------------
+# WHAT IS READ  : `data/annotations/structs/*.json` — `base_class` (+ `name`),
+#                 used as the class-hierarchy edge set for `_is_derived_from`.
+# WHY IT MUST BE READ
+#               : the OOP transform has to decide whether `Derived::this` and
+#                 `Base::Method` are related, i.e. whether a qualified call is
+#                 a legal base-class direct call (which SHADOWS a virtual and
+#                 is therefore byte-relevant) or an unrelated-class call. That
+#                 relation exists nowhere in the rendered code.
+# WHY IT CANNOT BE MIGRATED TO AN EXPORT PRODUCT TODAY (measured on this
+# worktree, 2026-09-15, same pure in-memory harness):
+#   * `asm/pal3/ida_structs.json.bases` is NOT equivalent: the annotation
+#     source has 179 classes with `base_class`, the export has 175 non-empty
+#     `bases`; neither is a superset. The export is missing all four of
+#     CEffCamera / CEffTemplate / CEffTime / _Item_List_Info (they carry a
+#     `base_class` in annotations and an EMPTY `bases` in the export) and no
+#     export-only base exists whose annotation is empty. Value disagreements
+#     among the shared keys: 0.
+#   * Swapping the source changed 0/3524 files on the current corpus, i.e. the
+#     swap is *currently* output-neutral — but it is neutral only because no
+#     live site today touches those four classes. That is an accident of the
+#     corpus, not an equivalence proof: the tables differ, so the next
+#     annotation/export cycle can move the difference into the output. A
+#     migration must therefore be argued as a semantic change (with the four
+#     classes ruled on explicitly), not as a refactor.
+# AR-002 (ruling (a)) classifies this read as a C1 architectural violation.
+# It stays DECLARED until the migration is proven output-identical on a
+# corpus that exercises the differing entries.
+# ---------------------------------------------------------------------------
 
 
 def _ensure_bases():
@@ -170,6 +267,107 @@ def _is_derived_from(derived, base):
         if _is_derived_from(_b, base):
             return True
     return False
+
+
+# ---------------------------------------------------------------------------
+# IDB-export vtable-slot evidence (Track 1 of the t6 double-track policy)
+# ---------------------------------------------------------------------------
+# `asm/pal3/ida_structs.json` is an EXPORT product (per AR-002 ruling (a) it is
+# the legitimate channel), so consuming it does not add a new C1 read of
+# `data/annotations/`. It answers exactly one question that the ret-N gate
+# cannot: does the callee VA actually OCCUPY a vtable slot of some class?
+# Occupying a slot is what makes `ret N` a *component-object-model* fact
+# ("self-cleaning __thiscall member") rather than "some function with a
+# stack-cleaning tail". See the Track-1 gate in `transform_oop_calls`.
+_VTABLE_EVIDENCE = None
+_VA_BY_METHOD = None
+
+
+def _vtable_slot_evidence():
+    """(frozenset of slot VAs, frozenset of (cls, method) ctor/dtor keys)."""
+    global _VTABLE_EVIDENCE
+    if _VTABLE_EVIDENCE is not None:
+        return _VTABLE_EVIDENCE
+    _proj = os.path.dirname(os.path.dirname(
+        os.path.dirname(os.path.abspath(__file__))))
+    _p = os.path.join(_proj, 'asm', 'pal3', 'ida_structs.json')
+    try:
+        with open(_p, encoding='utf-8') as _fh:
+            _d = json.load(_fh)
+    except (OSError, ValueError) as _e:
+        # No silent fallback: `transform_oop_calls` is the only consumer and a
+        # missing export would silently change its verdicts.
+        raise RuntimeError(
+            'ast_transform: vtable-slot evidence is required for the '
+            'cross-class `(T*)this` gate but %s could not be read (%s). '
+            'Run the IDA export (pipeline/cli.py export) instead of '
+            'silently degrading the gate.' % (_p, _e))
+    _slots = set()
+    _ctor_dtor = set()
+    for _c, _v in _d.items():
+        if _c.startswith('_') or not isinstance(_v, dict):
+            continue
+        for _vt in (_v.get('vtables') or []):
+            for _sl in (_vt.get('slots') or []):
+                _a = _sl.get('addr')
+                if not _a:
+                    continue
+                try:
+                    _slots.add(int(_a, 16))
+                except (TypeError, ValueError):
+                    continue
+        for _a, _m in (_v.get('methods') or {}).items():
+            _mn = str(_m.get('name', ''))
+            if _mn == _c or _mn == '~' + _c or _mn == '_' + _c:
+                _ctor_dtor.add((_c, _mn))
+    _VTABLE_EVIDENCE = (frozenset(_slots), frozenset(_ctor_dtor))
+    return _VTABLE_EVIDENCE
+
+
+def _occupies_vtable_slot(cls_name, method_name):
+    """True when the callee's VA is present in some class's vtable slots."""
+    _cache = _VA_BY_METHOD
+    if _cache is None:
+        _load_va_by_method()
+        _cache = _VA_BY_METHOD
+    _va = _cache.get((cls_name, method_name))
+    if _va is None:
+        return False
+    return _va in _vtable_slot_evidence()[0]
+
+
+def _is_ctor_or_dtor(cls_name, method_name):
+    return (cls_name, method_name) in _vtable_slot_evidence()[1]
+
+
+def _load_va_by_method():
+    """(cls, method) -> VA index from the IDB export (one pass, cached)."""
+    global _VA_BY_METHOD
+    if _VA_BY_METHOD is not None:
+        return _VA_BY_METHOD
+    _proj = os.path.dirname(os.path.dirname(
+        os.path.dirname(os.path.abspath(__file__))))
+    _p = os.path.join(_proj, 'asm', 'pal3', 'ida_structs.json')
+    try:
+        with open(_p, encoding='utf-8') as _fh:
+            _d = json.load(_fh)
+    except (OSError, ValueError) as _e:
+        raise RuntimeError(
+            'ast_transform: method->VA index is required for the cross-class '
+            '`(T*)this` gate but %s could not be read (%s). Run the IDA '
+            'export (pipeline/cli.py export) instead of silently degrading '
+            'the gate.' % (_p, _e))
+    _m = {}
+    for _c, _v in _d.items():
+        if _c.startswith('_') or not isinstance(_v, dict):
+            continue
+        for _a, _mi in (_v.get('methods') or {}).items():
+            try:
+                _m[(_c, str(_mi.get('name', '')))] = int(_a, 16)
+            except (TypeError, ValueError):
+                continue
+    _VA_BY_METHOD = _m
+    return _VA_BY_METHOD
 
 
 def transform_oop_calls(code, static_methods=None, cls_name=None):
@@ -431,12 +629,62 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                             # the honest "fix the IDB attribution"
                                             # signal (C2039 would mislead people into
                                             # adding declarations).
+                                            #
+                                            # Track-1 exception (t6 double-track
+                                            # policy, strictly 3 sites): the marker's
+                                            # own action text ("fix IDB name of
+                                            # callee") is DISPROVEN when two
+                                            # independent binary facts hold at the
+                                            # SAME site:
+                                            #   (1) the ret-N gate passes
+                                            #       (_ret_param_slots == len(args)-1):
+                                            #       the rendered arg count is exactly
+                                            #       the __thiscall stack-param count,
+                                            #       so "first arg == this" is
+                                            #       self-consistent;
+                                            #   (2) the callee VA OCCUPIES a vtable
+                                            #       slot of its class: the callee is a
+                                            #       real member of that class, so the
+                                            #       attribution is correct and only
+                                            #       the CALLER's this-type is
+                                            #       unverified.
+                                            # Together they say: keep the cast AND keep
+                                            # the qualified direct-call form
+                                            # (byte-faithful — the binary does a direct
+                                            # E8 call here, not a vtable dispatch),
+                                            # and drop the marker whose premise is
+                                            # falsified. This is NOT "laundering into
+                                            # legal syntax": the static-call shape and
+                                            # the `(Cls*)this` cast are preserved
+                                            # verbatim; only the false claim goes.
+                                            # Ctor/dtor are excluded on purpose — a
+                                            # ctor/dtor is never the "unrelated class's
+                                            # vtable slot on our own this" case.
+                                            # NEITHER condition alone is admissible:
+                                            # the ret-N gate alone rewrites 298 sites /
+                                            # 189 files on this corpus; the vtable fact
+                                            # alone also opens 3.
                                             _margs = first_arg_text +                                                 (', ' + rest_str if rest_str else '')
-                                            new_text = (
-                                                '/* [MISATTRIBUTED] %s on %s::this '
-                                                '-> fix IDB name of callee */ %s::%s(%s)'
-                                                % (class_name, cls_name, class_name,
-                                                   method_name, _margs))
+                                            _t1_slots = _ret_param_slots(
+                                                class_name, method_name)
+                                            _t1_retn = (
+                                                _t1_slots is not None
+                                                and _t1_slots == len(arg_nodes) - 1)
+                                            _t1_vt = _occupies_vtable_slot(
+                                                class_name, method_name)
+                                            if (_t1_retn and _t1_vt
+                                                    and not _is_ctor_or_dtor(
+                                                        class_name, method_name)):
+                                                new_text = (
+                                                    '(((%s *)this))->%s::%s(%s)'
+                                                    % (class_name, class_name,
+                                                       method_name, rest_str))
+                                            else:
+                                                new_text = (
+                                                    '/* [MISATTRIBUTED] %s on %s::this '
+                                                    '-> fix IDB name of callee */ %s::%s(%s)'
+                                                    % (class_name, cls_name, class_name,
+                                                       method_name, _margs))
                                 else:
                                     # Normalize the cast to the method's class and
                                     # keep the qualifier: ((Cls*)X)->Cls::M(rest).

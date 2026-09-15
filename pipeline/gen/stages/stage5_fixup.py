@@ -933,6 +933,55 @@ def _run_inner(code, ctx):
             code
         )
 
+    # --- H（2026-09-15）：dtor 形参被剥后残留的自由变量（必须放在本函数**最末**） ---
+    #
+    # 问题：`pipeline/gen/stages/stage1_structural.py:177-190` 对析构函数
+    # 「Dtor: strip all params」**无差别剥掉全部形参**。其本意是剥掉隐式的 `Cls *this`，
+    # 但当签名里除 `this` 外**还有真实语义形参**时（实测全树 9 个 dtor），
+    # 该形参名会变成自由变量。例：
+    #   decomp signature = `virtual void *__thiscall(AStarPathFinder *this, char a2)`
+    #   decompiled_c     = `void *__thiscall AStarPathFinder::~AStarPathFinder(AStarPathFinder *this, char a2)`
+    #                      `{ AStarPathFinder::ReleaseAll(this); if ((a2 & 1) != 0) operator delete(this); ... }`
+    #   生成后 : .h `~AStarPathFinder();` / .cpp `AStarPathFinder::~AStarPathFinder()`
+    #           但函数体仍写 `if ( (a2 & 1) != 0 )`
+    #
+    # 后果**不是恒定的**：`a2`/`nVal` 这类名字在 VC6 自动名体系里（`globals.h` 的
+    # `char a2[]` 等）**常常恰好存在同名全局** → 于是**侥幸编译通过**；一旦 IDA 的自动名
+    # 换代（干净重建后 `0x590638` 从 `int a2` 变成 `char a2[]`），同一行就报
+    # `C2296 '&' : illegal, left operand has type 'char []'`。
+    # ⇒ 这是"**看 globals.h 里恰好有没有那个名字**"的**假通过**路径，而非稳定的正确产物。
+    # 该缺陷**长期存在**：2026-09-01 基线里同一行就是 `C2065 'a2' : undeclared identifier`。
+    #
+    # 修法：**每个函数体的调用形态已经蕴含了调用时传入的 flag 值**。签名里该形参名已被
+    # stage1 删除，故把函数体内对它的引用**替换为那个常量**即恢复原语义 ——
+    # 这不是猜测，是「调用点已给出该值」的直接推论。
+    #
+    # 单参形态（实测全树 9 个 dtor 中 6 个是单参）确定的语义只有一种：
+    # VC6 标量删除析构的 deleting flag，且该析构体**自身**负责 `operator delete`，
+    # 故它是在 `delete p` 路径上被调用的，flag 恒为 **1**。
+    #   `CEffgbParticle::~CEffgbParticle(int,int,int,int *,int,int)` 等多参形态
+    #   **无法从单点确定**，本处**不动**（留给 Phase 2 / 或改为保留形参的根治方案）。
+    #
+    # 【位置要求】必须放在本函数**末尾**：前面多处 `code = re.sub(...)` 会整体覆盖 `code`，
+    # 放在中间会被覆盖掉（captain 第一版即因此静默失效）。
+    _sig_h = getattr(ctx, 'sig', None) or ''
+    # 真实 sig 形如 `virtual void *__thiscall(AStarPathFinder *this, char a2)` ——
+    # **含显式 `this`**，故必须先剔除它，剩下的才是被 stage1 剥掉的语义形参。
+    _m_h = re.search(r'\(\s*([^)]*)\)', _sig_h)
+    if _m_h:
+        _params_h = [p.strip() for p in _m_h.group(1).split(',') if p.strip()]
+        _params_h = [p for p in _params_h if not re.search(r'\bthis\b', p)]
+        if len(_params_h) == 1:
+            _pn_h = re.search(r'([A-Za-z_]\w*)\s*$', _params_h[0])
+            _pt_h = _params_h[0][:_pn_h.start()].strip() if _pn_h else ''
+            if _pn_h and re.fullmatch(r'a\d+', _pn_h.group(1)) and \
+                    _pt_h in ('char', 'int', 'unsigned int', '__int8', '__int16', '__int32'):
+                _flag_name = _pn_h.group(1)
+                # 无条件替换：该形参名已从签名删除、函数体内无声明，**不可能是合法标识符**，
+                # 故替换不可能覆盖真实的局部变量/参数。即便 globals.h 里恰好存在同名全局，
+                # 用常量替换后语义恰好**更正确**（原先只是遮蔽该全局侥幸通过）。
+                code = re.sub(r'\b' + re.escape(_flag_name) + r'\b', '1', code)
+
     return code
 
 

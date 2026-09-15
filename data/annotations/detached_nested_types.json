@@ -1,0 +1,18 @@
+{
+  "_purpose": "已解散/无注解文件的父类所遗留的嵌套类型名载体（detached nested types）。apply 的嵌套类型前向声明 pre-pass 会一并遍历本文件，使仍被引用的限定名（如 PlayerMgr::PoisonState）可被解析。",
+  "_why_not_in_a_struct_json": "这些父类没有（也不应有）自己的 struct 注解文件：它们要么是已解散的幻影类（PlayerMgr，见 tools/_migrate_playermgr.py / 提交 6a8d71924），要么只被引用而无成员数据。为它们新建受管 struct 注解会制造『第 882 个 struct』并复活已解散的类名，属无证据扩张。",
+  "_evidence": {
+    "arc_locale_pstate": "data/annotations/structs/ArcLocale.json 的 known_members['336'] = {name: pstate, type: 'PlayerMgr::PoisonState *'}。该限定名在 apply 里必须可解析，否则 ArcLocale 整个 struct 拒导、在导出中退化为 size=1/data_members=0（16 个成员全丢），并向下游 CGameData.cpp / free_functions.h / CCBUI.cpp / Actor.cpp 传播。",
+    "name_and_size_are_not_new_assertions": "名字 'PlayerMgr::PoisonState' 与尺寸 32 均取自仓库今日已有记录（原 PlayerMgr.json 的 nested_types 条目 + 提交 892c0999a 的 PlayerMgr_PoisonState stub binary_size=32）。本文件不新增任何归属或尺寸断言。",
+    "does_not_assert_membership": "本条目不主张 PoisonState 位于 PlayerMgr 的内存里 —— 该主张已被独立复核证伪（见 data/status/_cleanup_correction_poisonstate_attribution.md）。它只提供名称解析目标。",
+    "player_mgr_already_exists_in_til": "PlayerMgr 这个名字必定已在 TIL 中且早于嵌套类型 pre-pass：tagRoleTask.json 的 vec1.slots.pToggle 类型是 bare 'PlayerMgr *'，会被 step 3a 建成 1 字节空占位。故本条目不需要也不应该复活 PlayerMgr 类。"
+  },
+  "_maintenance": "若将来某父类重新获得真实的 struct 注解文件（含 nested_types），应把此处的条目移回该文件并从此文件删除，避免双份来源。",
+  "PlayerMgr": {
+    "PoisonState": {
+      "kind": "struct",
+      "binary_size": 32,
+      "_note": "尺寸 32 来自提交 892c0999a 的 PlayerMgr_PoisonState stub（note: 'Size=32 from member stride'），非新断言。"
+    }
+  }
+}

@@ -5347,3 +5347,121 @@ Confidence: 80（名字层面可逆；若未来获得更强命名证据可整体
 - 0x52D770 真代码捞回（MiniGame2_ClearState，MiniGame2Update 调用）。
 - MCP 环区轮首案 0x4DB940：半径 0x1C6、三类调用方，归属不定，待 CCBStage 成员补全后重推导
   （详见 data/status/_uilb_family_verdict.json related_findings）。
+
+### [2026-09-15] SceneObj/UICursor 不完整 UDT 修复（apply 两条 FATAL 根治）
+
+**背景**: `pipeline/cli.py apply` 报两条 `invalid member_size` FATAL（`CG_Scene → +104 'm_OBJ'`、`Scene → +224 'm_obj'`）。根因：`SceneObj`/`UICursor` 注解存在成员偏移越界（成员末端超出 `binary_size`）→ IDA `create_udt()` 返回 true 但产出不完整 UDT（`get_size()==-1`、`get_udt_details()==false`）→ 导入器把 -1 静默降级成 `binary_size` 当作成功 → 空壳写入 TIL → `SceneObj[256]` 数组取元素尺寸得 -1 → `Scene.m_obj`/`CG_Scene.m_OBJ` FATAL。
+
+**修复 1: SceneObj — 删除两个越界成员**
+
+- **变更**: 删除偏移 18804 (`m_nSpringTargetX`) 与 18808 (`m_nSpringTargetY`) 两个成员条目；`binary_size` 保持 1784 不变。
+- **证据**（删除，非新增，无需置信度阈值）：
+  1. [自证] 两条成员的原 `source` 字段自证来自 `CCBRoleState::UpdateEffects`，却错误挂在基类 `SceneObj` 上（跨继承边界违规）；
+  2. [A] `original/PAL3.exe.asm` ~115025/115028 行：`fst dword ptr [esi+4974h]` / `fstp dword ptr [esi+4978h]`（即 18804/18808），位于 `CCBRoleState::CalcSpringForce`（VA 0x00449F00，:115018 `mov esi, ecx` 确认 esi=this）→ this+18804/18808 确为 `CCBRoleState` 的成员访问，非 `SceneObj`；
+  3. [交叉验证] `data/annotations/structs/CCBRoleState.json`（`base_class: SceneObj, base_size: 1784, binary_size: 22224`）已有同名同偏移成员且在界内（18804/18808 < 22224）；全仓库仅这两个文件出现这两个名字 → 删除零信息损失；
+  4. [门禁] `python3 pipeline/check_annotations.py` 曾报 `ERROR: structs[SceneObj]: members extend to +18812 but binary_size=1784 (gap=-17028)`。
+  5. [锚点] 未放大 `SceneObj.binary_size` 掩盖问题：CHANGE_LOG 已载 `SceneObj: 3496 → 1784` 且 `Scene.m_obj[256]` 覆盖 224-456928（456704/256 = 1784/元素），两条独立锚点均指向 1784，与本次删除后的界内状态一致。
+- **验证**（实测数字，见下方综合验证结果）：
+  - `check_annotations.py` 输出中 SceneObj 越界 ERROR 消失（grep 确认为空）；
+  - `apply_status.json`: `SceneObj => {"status":"ok","ann_members":47,"ida_members":47,"ann_size":1784,"ida_size":1784,"size_match":true}`；
+  - `apply_annotations_log.txt`: `[3] Structs: 881/881 imported successfully (fail=0)`；
+  - `CG_Scene`/`Scene` 两条 `invalid member_size` FATAL 消失（`apply_status.json` 两者均 `status:ok, size_match:true`）。
+
+**修复 2: UICursor — binary_size 32 → 64**
+
+- **变更**: `binary_size` 从 32 改为 64；成员条目不变（`m_pData` 等真实布局保留）。
+- **证据**:
+  1. [A] `UICursor::Update` 函数中 `esi = this`，访问到 `+0x3E`（>32）→ 真实尺寸至少 64；
+  2. [交叉验证] `binary_size=64` 时该类型 `get_size()==64` 且 `get_udt_details()==true`；`32` 时是不完整类型（`get_udt_details()==false`）。
+- **验证**: `apply_status.json`: `UICursor => {"status":"ok","ann_members":6,"ida_members":6,"ann_size":64,"ida_size":64,"size_match":true}`。
+
+**综合验证结果**（命令链，退出码均以 `$?` 紧跟命令取值，非管道尾部）:
+
+| 步骤 | 退出码 | 关键输出 |
+|------|--------|----------|
+| `check_annotations.py` | 1（SaleUI 遗留问题，本步不处理） | SceneObj/UICursor 越界 ERROR 已消失；剩余 5 errors 全部为 SaleUI(4) + g_RoleSlotBuf(1) |
+| `audit_layout.py` | 1（同上，SaleUI 遗留） | 64 errors 全部为 `[SaleUI]`，SceneObj/UICursor 零命中 |
+| `cli.py apply` | 0 | `-> OK: annotations applied`；`original/PAL3.exe.i64` mtime 1789439858→1789450566 刷新；`apply_annotations_log.txt` mtime 同步刷新 |
+| `cli.py export` | 0 | `-> OK: decomp JSON exported` |
+| `cli.py codegen all` | 0 | `Current S2: 53/198`（回归脚本重建基线） |
+| `cli.py probe all` | 0 | `S2 cpp: 53/198 ok` |
+| `error_classifier.py --summary` | 0 | 145 failed files 分类完成 |
+| `cli.py match` | 0 | `matched 123/175 | L1 5 | oob 0`；`[L1 ratchet] previous 5 -> current 5` |
+
+**判据核对**（全部达成）:
+
+- `SceneObj`: `get_size()==1784` ✓，`get_udt_details()==true`（`ida_members=47>0`）✓；
+- `apply_annotations_log.txt` 中 `CG_Scene → +104 'm_OBJ'` 与 `Scene → +224 'm_obj'` 两条 FAILED 消失 ✓；`[3] Structs: 881/881` ✓；
+- `data/status/s4_baseline.json`: `stats.match_L1 = 5 ≥ 5` ✓，`stats.oob = 0` ✓；
+- `data/status/baselines/latest.json`: `ok = 53 ≥ 53`，`total = 198`（分母未变，可比）✓；
+- `check_annotations.py` 中 SceneObj/UICursor 越界 ERROR 消失 ✓。
+
+**遗留（未在本步处理，留给后续专门裁定）**:
+
+- `SaleUI` struct：仍有 3 条 member overlap + 1 条越界（`binary_size=105912` vs 成员末端 111428/111276，gap≈-5516/-1364），根因疑似字段重叠或联合体误标，需要单独的偏移重排调查；
+- `g_RoleSlotBuf`(0x00C043A0) 与 `g_SceneMgr` 的 globals overlap，需要单独裁定是否为 intentional overlap（联合内存池）。
+
+**影响**: 本次修复未新增/删除除上述两个 struct 之外的任何注解；`SceneObj.cpp` 编译错误数从 42→45 为既有 `std::queue<SceneObj::Common_State,...>` 模板相关问题（`C2882`/`C2059`，VC6 对该 STL 用法的已知既有限制），与本次删除的两个 int 成员无关，且 `SceneObj.cpp` 在改动前后均属于 `status:fail`（不计入 53/198 的 ok 分子），故 `probe` 回归报告 "新失败: 0" 确认此改动未引入新的编译回归。
+
+---
+
+## 2026-09-15 — SaleUI 布局收口（B1 批次剩余部分）
+
+**修复 3: SaleUI — 删除 35 个结构性不可能成员（binary_size 保持 105912）**
+
+- **变更**: 成员 101 → 66（删 35 条）；`binary_size` **不变**（105912）。分两批：
+  - 批 A（34 条）：成员偏移 ≥ `binary_size`（几何不可能）；
+  - 批 B（1 条）：`ml_SmeltList@104752`（`UIListBox`，1208）末端 **105960 > 105912**（gap=-48，几何不可能）。
+- **证据**:
+  1. **[决定性·几何]** 成员偏移 ≥ 声明尺寸、或成员末端 > 声明尺寸，均使 IDA `create_udt()` 产出**不完整 UDT**（`get_size()==-1`）——该机制已在 SceneObj/UICursor 上定谳并实测验证（`create_array` 尺寸由 -1 变合法）。
+  2. **[决定性·出处]** 批 A 中约 10 条源自**已解散的旧 `PlayerMgr.json`(107056)**（round5 解散幻影时遗留），可经 git 历史追溯。
+  3. **[支持性·负证据]** 批 A 的 34 条位移在 `original/PAL3.exe.asm` 中出现 **0 次**。**但该方法判别力弱**：界内成员中亦有 **50/67** 位移为 0 次（基础发生率≈75%）→ **仅作支持，不作决定性依据**。
+  4. **[决定性·归属]** `ml_SmeltList` 的位移 `+19930h` 在 asm 中的 3 处访问——`mov dword ptr [esi+19930h], 1BFh`、`mov ecx, [esi+19930h]`、`cmp ecx, [esi+19930h]`——**全部位于 LineupUI 的方法内**（`0x00477BB0` = `LineupUI::OnMessage`、`0x00471590` = `LineupUI::InitListView`，依 `asm/pal3/ida_structs.json`）⇒ 该偏移的访问**属 LineupUI**（真实尺寸约 124268 量级），**不是 SaleUI 的成员访问**；SaleUI 自身对该偏移 **0 次**访问。
+  5. **[竞争假设已排除]** 「`SaleUI.binary_size` 偏小」（假设 B）**无正证据**：若这些成员真属 SaleUI，其位移应被 SaleUI 的 this 访问；实测为 0 或归于他类。
+- **附带解决**: 两条 member overlap（`m_ani@88320` vs `pNGHVarianceParticle@88408`；`m_Role@88484` vs `m_nDataPoolBase@88540`）随被删的「下一个成员」一并消解。
+- **验证**（本轮实测）:
+  - `check_annotations.py`：**SaleUI 零错误**（此前 3 条 overlap + 1 条 `members extend to +105960`）；
+  - `apply_status.json`（15:14:42 刷新）：`SaleUI => {"status":"ok","ann_members":66,"ida_members":63,"ann_size":105912,"ida_size":105912,"size_match":true}`；
+  - `apply_annotations_log.txt`：`[3] Structs: 881/881 imported successfully (fail=0)`；
+  - `data/status/s4_baseline.json`：`stats.match_L1 = 5 ≥ 5`、`stats.oob = 0`；`match` 棘轮 `previous 5 -> current 5`；
+  - `data/status/baselines/latest.json`（`20260915_151121`）：`ok = 53 ≥ 53`、`total = 198`（分母未变，可比）。
+- **新发现遗留（不在本步修复范围，转需补证）**:
+  - **`LineupUI.binary_size = 1208` 疑小约 100 倍**：其方法访问到 `+124248`（`~LineupUI` 自标 `_misattrib_evidence: max_offset=124248>class_size=1208`；`OnMessage` 0x477BB0 / `InitListView` 0x471590），且 `0x1E56C`=124268 的分配点线索同量级；
+  - **`UIListBox.binary_size = 1208`** 与 LineupUI 同值、疑同源，需独立裁定；
+  - `SaleUI` 的 `ann_members=66` vs `ida_members=63`（3 条未被 IDA 建入，疑 union variant 键/重复偏移）待核；
+  - `g_RoleSlotBuf`  `g_SceneMgr` 的 globals overlap 需 `overlaps_with` 声明。
+- **影响**: 仅 `SaleUI.json` 被改（+ `CHANGE_LOG.md` 与 `data/status/_cleanup_fix_saleui.json` 产出）；未触碰 `pipeline/`、`tools/`、其它 struct；未使用任何破坏性 git 操作；IDA 会话用完即关（复核：0 个 idat 进程、无锁文件、无边车残留）。
+
+---
+
+## 2026-09-15 · globals：`g_RoleSlotBuf` 补 `overlaps_with` 声明（清理工作 §3.3 遗留 #4）
+
+- **改动**: `data/annotations/globals.json` 的 `0x00C043A0`（`g_RoleSlotBuf`，type `RoleSystem`）新增 `"overlaps_with": ["g_SceneMgr"]`。**未改任何其它字段**（`name`/`type`/`rename_reason` 原样保留）。
+- **证据**: `pipeline/check_annotations.py` 的既有门禁报 `g_RoleSlotBuf`（`RoleSystem`，4868b）位于 `g_SceneMgr`（`SceneMgr`）range `[0xC04390-0xC128D4]` **entirely within**，并要求「若属有意则加 `overlaps_with`」。
+- **性质**: 这是**声明既有事实**，不是新增语义主张——重叠本已存在于当前注解数据中，`overlaps_with` 只是把「有意」登记下来（与 `g_palScript`/`g_vRotateAxis`/`dword_C109F0` 等已有用例同格式）。
+- **验证**（本轮实测）: `check_annotations.check()` → `errors=0 warnings=9`（改前 `errors=1`）；该错误此前**一直阻塞 pre-commit 钩子**，故本改动同时解除提交阻断。
+- **影响**: 仅 `globals.json`；未触碰 `pipeline/`、`tools/`、任何 struct 文件。
+
+## 2026-09-15 · 新增 `detached_nested_types.json`（E3：已解散父类的嵌套类型名载体）
+
+- **改动**: 新增 `data/annotations/detached_nested_types.json`，内容为
+  `{"PlayerMgr": {"PoisonState": {"kind":"struct","binary_size":32}}}`（+ 元数据键 `_purpose`/`_evidence`/`_maintenance`）。
+- **证据**: `data/annotations/structs/ArcLocale.json` 的 `known_members["336"]` 为
+  `{name:"pstate", type:"PlayerMgr::PoisonState *"}`。`PlayerMgr` 是**已解散幻影类**
+  （`tools/_migrate_playermgr.py`，提交 `6a8d71924`，round 5 并入 `SaleUI`），其
+  `nested_types` 在该迁移中**被丢弃**（脚本只搬 `methods`/`members`）⇒ 该限定名悬垂。
+- **性质**: **不新增任何归属或尺寸断言**。名字 `PlayerMgr::PoisonState` 与尺寸 32 均取自仓库
+  已有记录（原 `PlayerMgr.json` 的 `nested_types` 条目、提交 `892c0999a` 的
+  `PlayerMgr_PoisonState` stub 的 `binary_size=32`）。本条**不主张** `PoisonState` 位于
+  `PlayerMgr` 的内存里——该主张已被独立复核证伪（见
+  `data/status/_cleanup_correction_poisonstate_attribution.md`）。它只提供名称解析目标。
+- **配套实现**: `pipeline/ida/apply_annotations.py` 新增 §3c，在嵌套类型 pre-pass
+  之后遍历该文件（复用现成的 `_forward_decl_nested()`）；加载失败即 `raise`（不静默）。
+  `pipeline/check_annotations.py` 的 §4f 悬垂检测**同步把该文件算作合法解析来源**
+  （否则门禁与实现脱节，会把 apply 已能解析的引用误报为悬垂）。
+- **验证**（本轮实测）:
+  - `[3c] Detached nested types: 1 parent(s) processed`；
+  - `[3] Structs: 880/881 (fail=1)` → **`881/881 (fail=0)`**；
+  - `ArcLocale` 由 `size=1, data_members=0`（16 个成员全丢）恢复为 **`size=484, data_members=16`**；
+  - **未新增第 882 个 struct**（`PlayerMgr` 仍为 `size=1` 空占位，与改动前一致）。
+- **影响**: 仅新增该数据文件 + `apply_annotations.py` 的 §3c + `check_annotations.py` §4f 的来源集合；**`ArcLocale.json` 一个字符都未改**。

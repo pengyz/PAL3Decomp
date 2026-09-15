@@ -1,0 +1,83 @@
+{
+  "task": "Fix two struct annotations (SceneObj, UICursor) causing incomplete-UDT FATAL in apply: invalid member_size on CG_Scene.m_OBJ and Scene.m_obj",
+  "date": "2026-09-15",
+  "baseline": {
+    "SceneObj.json": {
+      "mtime_before": 1789439694,
+      "sha256_prefix_before": "1474e36e",
+      "member_count_before": 49,
+      "binary_size_before": 1784
+    },
+    "UICursor.json": {
+      "mtime_before": 1789439694,
+      "sha256_prefix_before": "0850dae3",
+      "member_count_before": 6,
+      "binary_size_before": 32
+    }
+  },
+  "fixes": [
+    {
+      "id": "fix1_SceneObj_remove_oob_members",
+      "file": "data/annotations/structs/SceneObj.json",
+      "change": "Removed 2 member entries at offsets 18804 (m_nSpringTargetX) and 18808 (m_nSpringTargetY). binary_size unchanged at 1784.",
+      "evidence": [
+        "Self-evidence: original 'source' field of both members attributes them to CCBRoleState::UpdateEffects, not SceneObj (cross-inheritance-boundary violation)",
+        "A-grade: original/PAL3.exe.asm ~lines 115025/115028: 'fst dword ptr [esi+4974h]' / 'fstp dword ptr [esi+4978h]' (0x4974=18804, 0x4978=18808) inside CCBRoleState::CalcSpringForce (VA 0x00449F00, :115018 'mov esi, ecx' confirms esi=this)",
+        "Cross-check: data/annotations/structs/CCBRoleState.json (base_class: SceneObj, base_size: 1784, binary_size: 22224) already has identical members at identical offsets, in-bounds (18804/18808 < 22224); these two names appear nowhere else in the repo -> zero information loss on deletion",
+        "Gate evidence: pipeline/check_annotations.py previously reported 'ERROR: structs[SceneObj]: members extend to +18812 but binary_size=1784 (gap=-17028)'",
+        "Anchor consistency: SceneObj.binary_size was NOT enlarged to hide the issue; CHANGE_LOG.md records SceneObj: 3496 -> 1784, and Scene.m_obj[256] spans 224-456928 (456704/256 = 1784/element) - two independent anchors both confirm 1784"
+      ],
+      "verification": {
+        "check_annotations_SceneObj_error": "absent (confirmed via grep on full check_annotations.py output)",
+        "apply_status_SceneObj": {"status": "ok", "ann_members": 47, "ida_members": 47, "ann_size": 1784, "ida_size": 1784, "size_match": true},
+        "apply_log_structs_line": "[3] Structs: 881/881 imported successfully (fail=0)",
+        "CG_Scene_FATAL_gone": true,
+        "Scene_FATAL_gone": true,
+        "apply_status_CG_Scene": {"status": "ok", "ann_members": 34, "ida_members": 34, "ann_size": 474200, "ida_size": 474200, "size_match": true},
+        "apply_status_Scene": {"status": "ok", "ann_members": 14, "ida_members": 14, "ann_size": 1100000, "ida_size": 1100000, "size_match": true}
+      }
+    },
+    {
+      "id": "fix2_UICursor_size_correction",
+      "file": "data/annotations/structs/UICursor.json",
+      "change": "binary_size changed from 32 to 64. No members added/removed.",
+      "evidence": [
+        "A-grade: UICursor::Update accesses up to this+0x3E (>32) via esi=this, proving real size is at least 64",
+        "Cross-check: with binary_size=64, IDA get_size()==64 and get_udt_details()==true; with 32, the type was incomplete (get_udt_details()==false)"
+      ],
+      "verification": {
+        "apply_status_UICursor": {"status": "ok", "ann_members": 6, "ida_members": 6, "ann_size": 64, "ida_size": 64, "size_match": true}
+      }
+    }
+  ],
+  "pipeline_run": {
+    "check_annotations": {"exit_code": 1, "note": "non-zero due to unrelated pre-existing SaleUI (4 errors) + g_RoleSlotBuf overlap (1 error); SceneObj/UICursor errors absent"},
+    "audit_layout": {"exit_code": 1, "note": "64 errors, all [SaleUI]; zero SceneObj/UICursor hits"},
+    "apply": {"exit_code": 0, "i64_mtime_before": 1789439858, "i64_mtime_after": 1789450566, "apply_log_mtime_after": 1789450565},
+    "export": {"exit_code": 0},
+    "codegen_all": {"exit_code": 0, "current_S2": "53/198"},
+    "probe_all": {"exit_code": 0, "S2_cpp": "53/198 ok", "new_failures": 0, "new_errors_files": ["pal3/src/Scene/SceneObj.cpp (42->45 errors, pre-existing std::queue<SceneObj::Common_State,...> C2882/C2059 issue unrelated to this fix; file was already status:fail before and after)"]},
+    "error_classifier_summary": {"exit_code": 0, "total_failed_files": 145},
+    "match": {"exit_code": 0, "matched": "123/175", "L1": 5, "partial": 118, "oob": 0, "unmatched": 52, "l1_ratchet": "previous 5 -> current 5"}
+  },
+  "criteria_check": {
+    "SceneObj_get_size_1784": true,
+    "SceneObj_get_udt_details_true": true,
+    "CG_Scene_Scene_FATAL_gone": true,
+    "structs_881_of_881": true,
+    "s4_baseline_match_L1_ge_5": {"actual": 5, "required": ">=5", "pass": true},
+    "baselines_latest_ok_ge_53_total_198": {"actual_ok": 53, "actual_total": 198, "required_ok": ">=53", "required_total": "==198", "pass": true},
+    "check_annotations_SceneObj_UICursor_errors_gone": true,
+    "overall_conclusion": "ALL CRITERIA MET"
+  },
+  "not_addressed_in_this_step": {
+    "SaleUI": "3 member-overlap errors + 1 out-of-bounds error (binary_size=105912 vs member end ~111428/111276); requires dedicated offset re-audit, deferred per task instructions",
+    "g_RoleSlotBuf_vs_g_SceneMgr_overlap": "globals[0x00C043A0] 'g_RoleSlotBuf' entirely within g_SceneMgr range; needs dedicated intentional-overlap adjudication, not part of this step's two-struct scope"
+  },
+  "git_diff_scope": {
+    "files_changed": ["data/annotations/structs/SceneObj.json", "data/annotations/structs/UICursor.json"],
+    "confirmed_only_two_files": true
+  },
+  "destructive_git_ops_used": false,
+  "ida_sessions_left_running": false
+}

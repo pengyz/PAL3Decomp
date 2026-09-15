@@ -1,0 +1,784 @@
+{
+  "taxonomy_version": "2026-09-15-cleanup-scan-taxonomy.md",
+  "list_prefix": "CG-",
+  "author": "scanner-codegen (t2)",
+  "evidence_grade_convention": {
+    "note": "taxonomy §2 的 A–E 分级以二进制证据为对象（A=指令级 reg+disp32/绝对地址、B=≥3 条 A 交叉或 ret-N/mangled/decomp member access、C=Hex-Rays 文本推断、D=语义推断、E=无证据）。本清单多数条目是**代码路径/门禁基建/生成物标记**类，不存在二进制证据。为避免把已用可复现命令证明的事实错标为 E（无证据），约定：A=以可复现命令直接观测到事实本身（文件内容原文/生成物计数/实跑退出码），无推断；B=直接观测 + 一项独立交叉校验（或形状级统计支撑的因果判断）；C=仅由阅读上下文逻辑推断而未实跑；D=语义推断；E=无证据。所有 FIX_PIPELINE/FIX_INFRA/DELETE 条目均给出可复现命令；本清单无 FIX_ATTRIBUTION/FIX_ANNOTATION 条目，故未触碰 §5.1 的 {C,D,E} 禁令。",
+    "deviation": true
+  },
+  "baseline": {
+    "l1": 5,
+    "s2_ok": 53,
+    "s2_total": 198,
+    "s4_matched": 123,
+    "s2_errors": 3090,
+    "captured_at": "2026-09-15",
+    "l1_source": "data/status/s4_baseline.json → stats.match_L1",
+    "s2_source": "data/status/baselines/latest.json → s2 results status==ok 计数 53 / 总数 198",
+    "markers": {
+      "[VFTABLE]": 1643,
+      "[VFTABLE-STUB]": 612,
+      "[ROWTABLE]": 576,
+      "[MISATTRIBUTED]": 344,
+      "[IDA_MISID]": 84,
+      "[AUTO-COMMENTED]": 229,
+      "[IDA_VTABLE]": 1,
+      "[IDA_VFTABLE]": 0,
+      "[IDA_USERPURGE]": 0,
+      "[IDA_REGPARAM]": 0
+    },
+    "marker_count_command": "for m in 'VFTABLE-STUB' '\\[VFTABLE\\]' '\\[ROWTABLE\\]' 'MISATTRIBUTED' 'IDA_MISID' 'IDA_VTABLE' 'AUTO-COMMENTED' 'IDA_VFTABLE' 'IDA_USERPURGE' 'IDA_REGPARAM'; do echo \"$m sites=$(grep -ro \"$m\" pal3/ | wc -l)\"; done",
+    "cpp_total": 198
+  },
+  "items": [
+    {
+      "id": "CG-001",
+      "class": "C1_arch_violation",
+      "subclass": null,
+      "title": "[VFTABLE] 1643 站点是对真实语句的注释化（非等价变换）：仅 41 处(2.5%)是编译器自管的 vptr 存根，其余为真实数据访问/控制流头被丢弃",
+      "evidence_grade": "B",
+      "evidence": {
+        "kind": "measured_count",
+        "location": "pipeline/gen/stages/stage3_cleanup.py:722-749",
+        "detail": "产生代码两段：(a) :722-743 按括号深度把含 __vftable 的多行语句整段注释为 '// [VFTABLE] '（:729、:735）；(b) :745-749 正则把残留单行注释化。站内形状分类实测：offset_arith_on_&vftable=546、other __vftable ref=418、无 __vftable 的续行=263、CONTROL_HEADER(if/while/for)=168、__vftable 作为数据值比较/赋值=163、cast_of_vftable=44、真正的 vptr store=41。总计 1643 行 ≈1380 条语句/82 文件/276 个外层函数。实例：pal3/src/Combat/CCBCamControl.cpp:983-986 被注释的 4 行是 float 写入(-1098907648=0xBE800000、1065353216=1.0f)，而同一函数 :978-981 的同类写法未被注释 → 证明这不是编译器自管的 vptr 语义，而是渲染差异造成的纯丢失；pal3/src/Combat/CCBParabolaWindow.cpp:45-46 是 `if (v5->__vftable) { Release(); }` 整个条件释放被注释；pal3/src/Combat/CCBAttackSequen.cpp:134 是一处 sub_445D20 调用被注释。",
+        "command": "grep -rhoE '// \\[VFTABLE\\] .*' pal3/src --include=*.cpp | wc -l   # 1643\npython3 - <<'E'\n# 形状分类见本清单生成脚本；关键行：\nimport re;from pathlib import Path\nfor f in sorted(Path('pal3/src').rglob('*.cpp')):\n  for i,l in enumerate(f.read_text(encoding='utf-8',errors='replace').split('\\n'),1):\n    if l.lstrip().startswith('// [VFTABLE]'): print(f,i,l.strip()[:80])\nE"
+      },
+      "location": "pipeline/gen/stages/stage3_cleanup.py:722-749",
+      "sites": 1643,
+      "files": [
+        "pipeline/gen/stages/stage3_cleanup.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "FIX_PIPELINE",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": "misattribution_ledger.json",
+        "agrees": true,
+        "discrepancy": "[VFTABLE] 不进 ledger（ledger 只收 [MISATTRIBUTED]），无冲突"
+      },
+      "notes": "判定依据三层：(1) 代码位置 :722 的注释理由是 'unresolved = no method name for that slot'，但实测 546 处是 `*(T**)((char *)&X.__vftable + k)` 形式的字段偏移访问、168 处是控制流头——都不存在 slot，理由与实况不符；(2) 提交 6d9bca4b5（2026-09-13, fix(codegen): non-destructive vtable dispatch fallback via AST resolution）原文承认 'Regex fallbacks commented out entire statements containing unresolved __vftable refs, silently destroying enclosing expressions ... including in S2-green files'，并把 dispatch 部分改为 AST 解析 + [VFTABLE-STUB]，但它只覆盖了 vtable dispatch，残留的通用 __vftable 注释化路径仍在发射（当时 2186→1854，现 1643）→ 属半完成的迁移；(3) CLAUDE.md '后处理只做等价变换' 红线。修复层次：__vftable 的误类型化（offset0 被 IDA/注解当成 vptr）应在 annotation/IDA 层修正（C1.4），代码层删除该注释化路径。与 AR-101（'五类标记均是有意保留的信号'）结论相反，见 GAP-CG-01。"
+    },
+    {
+      "id": "CG-002",
+      "class": "C2_intentional_signal",
+      "subclass": null,
+      "title": "[VFTABLE] 中 41 处真正的 vptr 存根（this->__vftable = &vtbl）是合法的等价变换信号，应保留",
+      "evidence_grade": "B",
+      "evidence": {
+        "kind": "measured_count",
+        "location": "pipeline/gen/stages/stage3_cleanup.py:722-743",
+        "detail": "形状实测 vptr_store=41/1643，形态如 '// [VFTABLE] this->__vftable = 0;' 与 '// [VFTABLE] v4->__vftable = (void *)-1098907648;'（后者经人工判别仍属数据写入，不计入）。MSVC6 在构造/析构中自行发射 vptr store，显式 C++ 无法表达 __vftable，故注释化对这类站点是等价的。",
+        "command": "grep -rn '// \\[VFTABLE\\] this->__vftable' pal3/src --include=*.cpp | head"
+      },
+      "location": "pipeline/gen/stages/stage3_cleanup.py:722-743",
+      "sites": 41,
+      "files": [
+        "pipeline/gen/stages/stage3_cleanup.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "KEEP_AS_SIGNAL",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "解除条件：当 struct 注解把 offset0 表达为真实成员（或 IDA 不再以 __vftable 命名 offset0）后，该子集消失、标记可整体撤销。本条与 CG-001 是同一产生位置的两个互斥子集：CG-001 要求删除通用注释化路径，CG-002 只要求保留可在 C++ 中不可表达的 vptr 存根子集——实施时应以'是否为被写入的 vptr 槽'而非行文本做分流。"
+    },
+    {
+      "id": "CG-003",
+      "class": "C2_intentional_signal",
+      "subclass": null,
+      "title": "[VFTABLE-STUB] 612 站点是 substitute 型信号（非破坏性存根），有代码注释与提交双重保留理由",
+      "evidence_grade": "A",
+      "evidence": {
+        "kind": "comment",
+        "location": "pipeline/gen/stages/stage3_cleanup.py:339-352",
+        "detail": "产生位置：:505 在存根定义注释中写入标记、:508 把无法解码的 dispatch 替换为 'pal3_vtbl_unk_N(args) /* [VFTABLE-STUB] */'。保留理由原文见 :339-352：'A vtable dispatch rewritten as p->f(x) is byte-faithful ... Calls we cannot resolve get a signature-accurate static stub so the enclosing expression survives compilable (marked [VFTABLE-STUB]).' 规模：612 站点/51 文件/104 个外层函数，另有 309 处长在文件级存根定义区（非函数体外）。",
+        "command": "grep -rho '\\[VFTABLE-STUB\\]' pal3/src --include=*.cpp | wc -l   # 612"
+      },
+      "location": "pipeline/gen/stages/stage3_cleanup.py:505,508",
+      "sites": 612,
+      "files": [
+        "pipeline/gen/stages/stage3_cleanup.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "KEEP_AS_SIGNAL",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "与 CG-001 的区别已经实测确认：STUB 是代换（语句保留、类型保守），VFTABLE 是注释化（语句消失）。测试契约已固化：pipeline/gen/test_pipeline.py:188/196 断言 stub 出现、:189 断言不再出现 '// [VFTABLE]'。解除条件：struct_vtables 的 slot 覆盖补全后所有 dispatch 可解码，pal3_vtbl_unk_N 存根归零。"
+    },
+    {
+      "id": "CG-004",
+      "class": "C2_intentional_signal",
+      "subclass": null,
+      "title": "[ROWTABLE] 576 站点是 gbUI 7 槽消息处理器家族的表分发保真形式，保留理由经 4 轮对抗性复核后写入代码与知识页",
+      "evidence_grade": "A",
+      "evidence": {
+        "kind": "comment",
+        "location": "pipeline/gen/ast_transform.py:408-423",
+        "detail": "产生位置唯一：:421 '(((%s *)this))->%s::%s(%s) /* [ROWTABLE] */'，触发条件 :417 `class_name in _rowtable_family()`。保留理由原文 :408-416：'gbUI registers a 7-function message-handler table per window class (slot0/4/6 framework entries shared across the family, slot1/2/3/5 per-class handlers). X::M((X*)this) from any registered class is framework dispatch through the caller's table — emit the faithful cast+qualified form.' 家族清单来自 data/status/_rowtable_family.json（tracked，63 项）。规模：576 站点/88 文件/314 个外层函数。",
+        "command": "grep -rho '\\[ROWTABLE\\]' pal3/src --include=*.cpp | wc -l   # 576\npython3 -c \"import json;print(len(json.load(open('data/status/_rowtable_family.json'))))\"  # 63"
+      },
+      "location": "pipeline/gen/ast_transform.py:421",
+      "sites": 576,
+      "files": [
+        "pipeline/gen/ast_transform.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "KEEP_AS_SIGNAL",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "提交 bb62deb95 'feat(codegen): faithful row-table emission for gbUI handler-family calls' 记录判定链（继承→组合→表分发）并给出 'MISATTRIBUTED 1044 -> 486' 的效果量化；知识页 docs/knowledge/decision_sceneobj_composition_not_inheritance.md:39 亦载明。解除条件：按 base_class 补全 gbUI 继承链（docs/knowledge/arch_gbui_seven_slot_vtables_inheritance_chain.md 所述修复路径）后，((X*)this)->X::M 成为合法基类直调，标记可撤销。静默降级风险另立 CG-023。"
+    },
+    {
+      "id": "CG-005",
+      "class": "C2_intentional_signal",
+      "subclass": null,
+      "title": "[MISATTRIBUTED] 344 站点是证据门槛下的诚实信号（保留静态调用形式令 MSVC6 报 C2352），非缺陷",
+      "evidence_grade": "A",
+      "evidence": {
+        "kind": "comment",
+        "location": "pipeline/gen/ast_transform.py:343-356,425-439",
+        "detail": "两个产生位置：:353（first_arg 为 this 形式的跨类调用）、:436（first_arg 为 (T*)this 形式）。保留理由原文 :343-349：'Unrelated class called on our own this: confirmed IDB attribution error ... Keep the static call form so MSVC6 reports C2352 — precise signal to fix the callee's IDB name — and mark it. Never launder into legal syntax.' 规模：344 处标记（按行聚类 343 行/74 文件/204 个外层函数——pal3/src/Data/PAL_GDB.cpp:1972 一行含 2 处）；按 (callee, caller) 聚类 65 个被调类 × 73 个调用者类，头部为 PAL_GDB on CCBRoleState::this(13)、PAL_GDB on EquipUI::this(11)、CCBRoleState on CCBStage::this(10)。",
+        "command": "grep -rho '\\[MISATTRIBUTED\\]' pal3/src --include=*.cpp | wc -l   # 344\ngrep -rn '\\[MISATTRIBUTED\\]' pal3/src --include=*.cpp | awk -F: '{print $(NF)}' | grep -oE '\\[MISATTRIBUTED\\] [A-Za-z_]+(::[A-Za-z_]+)? on [A-Za-z_]+::this' | sort | uniq -c | sort -rn | head"
+      },
+      "location": "pipeline/gen/ast_transform.py:353,436",
+      "sites": 344,
+      "files": [
+        "pipeline/gen/ast_transform.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "KEEP_AS_SIGNAL",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": "misattribution_ledger.json",
+        "agrees": true,
+        "discrepancy": "站点数可对齐：本条 344 处标记 vs ledger 197 条聚类（按 callee 聚类而非按站点），非矛盾；ledger 全 bucket C、rename_to 全 null，与 root_cause_fixed=false 一致"
+      },
+      "notes": "提交 2010eb3ad 'fix(codegen): cross-class this calls are attribution errors, not legal forms' 载明理由与效果（当时 1124 站点/106 文件），并明确 'None relied on laundering'。解除条件：ledger 对应条目从 bucket C 转为已确认 rename_to 目标并在 IDB 落地后，该站点标记可撤销。站点级'根因是否已修'属 t3 范围（见 GAP-AR-02）。"
+    },
+    {
+      "id": "CG-006",
+      "class": "C2_intentional_signal",
+      "subclass": null,
+      "title": "[IDA_VTABLE] 生成物仅 1 处（在 .h 中而非 .cpp）：emit_headers 跳过不可拼写的 vtbl_ 参数类型声明，是有意的保守跳过",
+      "evidence_grade": "A",
+      "evidence": {
+        "kind": "measured_count",
+        "location": "pipeline/gen/stages/emit_headers.py:1945-1946",
+        "detail": "产生位置唯一：emit_headers.py:1945 `if 'vtbl_' in ret or 'vtbl_' in params or '__vftable' in sig:` → :1946 把方法声明写成注释 '// [IDA_VTABLE] %s; // %s'。实测生成物仅 1 处，位于 pal3/src/Render/RenderTarget3.h:31，内容 '// [IDA_VTABLE] _nearby_4b6ca0; // 0x004B6CA0'；对应 decomp 为 asm/pal3/decomp/RenderTarget3_nearby_4b6ca0vtbl_0056F36C_004b6ca0.json（signature 含 vtbl_0056F36C，函数体仅 ';'）。交叉校验：3594 个 decomp JSON 的 signature 中 vtbl_ 出现 1 次 → 1:1 吻合。",
+        "command": "grep -rn 'IDA_VTABLE' pal3/   # 1 处：pal3/src/Render/RenderTarget3.h:31\npython3 -c \"import json,glob;print(sum(1 for p in glob.glob('asm/pal3/decomp/*.json') if 'vtbl_' in (json.load(open(p,encoding='utf-8')).get('signature') or '')))\"  # 1"
+      },
+      "location": "pipeline/gen/stages/emit_headers.py:1945-1946",
+      "sites": 1,
+      "files": [
+        "pipeline/gen/stages/emit_headers.py",
+        "pal3/src/Render/RenderTarget3.h"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "KEEP_AS_SIGNAL",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "对团队简报的更正：简报称 1 而 t1 分类学文档称 0，两者都是 grep 口径差异——t1 用 `--include=*.cpp` 故为 0，正确口径须含 .h（本标记只发射到生成的头文件）。t1 另把产生位置记为 stage3_cleanup.py:290，实为 emit_headers.py:1946；stage3_cleanup.py:290 发射的是不同拼写的 [IDA_VFTABLE]，其实测 0 处（见 CG-009）。G3 的'保留理由写明'在本条只弱成立（邻近注释 :1942 为 'Skip invalid method names and calling conventions'），若 t5 判定 G3 不成立需改派 C3 子类，见 GAP-CG-06。"
+    },
+    {
+      "id": "CG-007",
+      "class": "C1_arch_violation",
+      "subclass": null,
+      "title": "[IDA_MISID] 84 站点以硬编码模式表在 codegen 层注释掉 IDA FLIRT/TIL 误识别行——非等价变换 + 应在 IDA 层解决",
+      "evidence_grade": "B",
+      "evidence": {
+        "kind": "measured_count",
+        "location": "pipeline/gen/stages/stage3_cleanup.py:751-759",
+        "detail": "产生位置：:756-759 用 6 个硬编码模式（:752-755 'Concurrency'、'details::VirtualProcessor'、'NtTib'、'ExceptionList'、'std::_Xlen'、'std::_Xran'）匹配到即整行注释为 '// [IDA_MISID] ...'。规模：84 站点/29 文件/37 个外层函数，头部 CCBUI_Render(10)、JusticeBookUI::JusticeBookUI_Render(5)、SystemUI::ProcessFrame(5)。抽样内容为真实代码：'ExceptionList = NtCurrentTeb()->NtTib.ExceptionList;'、'v18 = ExceptionList;'、'std::_Xlen();'、'Concurrency::details::ExternalStatistics::MarkInactive(...)'。",
+        "command": "grep -rho '\\[IDA_MISID\\]' pal3/src --include=*.cpp | wc -l   # 84\ngrep -rh '// \\[IDA_MISID\\]' pal3/src --include=*.cpp | head -10"
+      },
+      "location": "pipeline/gen/stages/stage3_cleanup.py:751-759",
+      "sites": 84,
+      "files": [
+        "pipeline/gen/stages/stage3_cleanup.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "FIX_PIPELINE",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "提交 222ec3247 'fix(codegen): stage3 注释 IDA 类型误识别' 给出理由（'IDA FLIRT/TIL 把游戏函数误匹配为 Windows Concurrency Runtime、NT 内部结构等系统类型。这些在源码中不可能存在'）与效果（4403 → 4358 errors）——理由成立，但手段违反两条红线：CLAUDE.md '后处理只做等价变换' 与 'IDA 层能解决的问题在 IDA 层解决'（正解是在 IDB 中 undefine/改名被误识别的符号，或在 export 层剔除，而非在生成源码里注释真实调用）。站点级'哪一条真的丢行为'未逐条验证，见 GAP-CG-03。与 AR-101 结论相反，见 GAP-CG-01。"
+    },
+    {
+      "id": "CG-008",
+      "class": "C1_arch_violation",
+      "subclass": null,
+      "title": "[AUTO-COMMENTED] 229 站点中的 89 处是丢弃被使用赋值的 ctor 注释化（非等价变换），且该标记不在五类清单内",
+      "evidence_grade": "B",
+      "evidence": {
+        "kind": "measured_count",
+        "location": "pipeline/gen/stages/stage3_cleanup.py:238-247,291-292",
+        "detail": "产生位置：:243 与 :245-246 把 ctor/dtor 调用表达式标记为 ('comment_ctor', ...)，:291-292 渲染为 '// [AUTO-COMMENTED] <原行>'。触发条件：非自由函数、且该行含 '=' 或既非 return/if/while 开头。规模：229 站点/55 文件/114 个外层函数；形状实测 137 处是成员子对象构造（如 '(gbMatrix4 *)&this->m_OBBox->gbMatrix4();'，注释化可视为等价）、89 处是**被使用值被丢弃的赋值**、3 处 other。丢值实例：pal3/src/Combat/CCBStage.cpp:867 '// [AUTO-COMMENTED] Color = v22.gbColorQuad(...)->Color;'（右侧结果被取成员并赋给 Color，注释后 Color 变为未初始化）、pal3/src/Combat/CCBRoleState.cpp:427 '// [AUTO-COMMENTED] v9 = v13.gbColorQuad(0x3Du, 0x5Au, 0x85u, 0xFFu);'、pal3/src/Combat/CCBStage.cpp:1798 'v6 = v26->gbVec3D(v13, v14, v15);'。",
+        "command": "grep -rho '\\[AUTO-COMMENTED\\]' pal3/src --include=*.cpp | wc -l   # 229\ngrep -rn '// \\[AUTO-COMMENTED\\]' pal3/src --include=*.cpp | grep -E '= ' | head"
+      },
+      "location": "pipeline/gen/stages/stage3_cleanup.py:238-247",
+      "sites": 229,
+      "files": [
+        "pipeline/gen/stages/stage3_cleanup.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "FIX_PIPELINE",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "任务书列了五类标记，本条是同一产生族里被漏掉的第 6 类（grep pal3/ 全量 bracketed 标记实测：VFTABLE 1643、VFTABLE-STUB 612、ROWTABLE 576、MISATTRIBUTED 344、AUTO-COMMENTED 229、IDA_MISID 84、IDA_VTABLE 1），建议 t5 纳入清理总账。89 处中'有多少导致后续读取未初始化值'未验证，见 GAP-CG-04。"
+    },
+    {
+      "id": "CG-009",
+      "class": "C3_historical_residue",
+      "subclass": "C3b",
+      "title": "stage3_cleanup 的 action 分派含两个永不产生的分支：'comment_vft'（发射 [IDA_VFTABLE]）与 'insert'",
+      "evidence_grade": "A",
+      "evidence": {
+        "kind": "file_absence",
+        "location": "pipeline/gen/stages/stage3_cleanup.py:287-290",
+        "detail": "edits 字典全部赋值点实测为：'delete'(:218,:235)、'comment_ctor'(:243,:246)、'return_expr'(:265)、'return_this'(:267,:269)；不存在产生 'comment_vft' 或 'insert' 的赋值。消费端 :287-288（'insert'）与 :289-290（comment_vft → '// [IDA_VFTABLE] '）因此为死分支。交叉证据：生成物中 [IDA_VFTABLE] 实测 0 处。",
+        "command": "grep -rn \"comment_vft\\|'insert'\" pipeline/gen/ --include=*.py\nfor m in IDA_VFTABLE IDA_USERPURGE IDA_REGPARAM; do echo \"$m=$(grep -ro \\$m pal3/ | wc -l)\"; done  # 0/0/0"
+      },
+      "location": "pipeline/gen/stages/stage3_cleanup.py:287-290",
+      "sites": 2,
+      "files": [
+        "pipeline/gen/stages/stage3_cleanup.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "DELETE",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "这解释了 t1 文档与简报对 [IDA_VTABLE] 规模的争议根因：存在两个只差一个字母的不同标记，[IDA_VFTABLE]（本条，0 处，死）与 [IDA_VTABLE]（CG-006，1 处，活）。删除这两个分支不改变任何生成物。"
+    },
+    {
+      "id": "CG-010",
+      "class": "C3_historical_residue",
+      "subclass": "C3b",
+      "title": "stage3_cleanup._node_contains_text 无任何引用",
+      "evidence_grade": "A",
+      "evidence": {
+        "kind": "file_absence",
+        "location": "pipeline/gen/stages/stage3_cleanup.py:23-27",
+        "detail": "全仓（排除 .git/.agent-teams）唯一出现处即定义行本身：grep -rn '_node_contains_text' 仅命中 stage3_cleanup.py:23。模块内无 getattr/globals()/eval 动态分派（grep 'getattr|globals()|eval\\(' pipeline/gen 的命中均为 getattr(ctx, ...) 属性读取）。",
+        "command": "grep -rn '_node_contains_text' --include=*.py . | grep -v '^./.git'"
+      },
+      "location": "pipeline/gen/stages/stage3_cleanup.py:23-27",
+      "sites": 1,
+      "files": [
+        "pipeline/gen/stages/stage3_cleanup.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "DELETE",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "删除不改变生成物（无引用）。"
+    },
+    {
+      "id": "CG-011",
+      "class": "C3_historical_residue",
+      "subclass": "C3b",
+      "title": "stage3_cleanup._is_vftable_call 无任何引用",
+      "evidence_grade": "A",
+      "evidence": {
+        "kind": "file_absence",
+        "location": "pipeline/gen/stages/stage3_cleanup.py:58-64",
+        "detail": "全仓唯一出现处即定义行：grep -rn '_is_vftable_call' 仅命中 :58。同族 _is_vftable_field(:30)/_find_vftable_in_subtree(:39)/_is_vftable_assignment(:49) 仍有引用（经 _ast_cleanup 调用），本条单独废弃。",
+        "command": "grep -rn '_is_vftable_call\\|_is_vftable_field\\|_find_vftable_in_subtree\\|_is_vftable_assignment' pipeline/gen/ --include=*.py"
+      },
+      "location": "pipeline/gen/stages/stage3_cleanup.py:58-64",
+      "sites": 1,
+      "files": [
+        "pipeline/gen/stages/stage3_cleanup.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "DELETE",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "该函数是 pre-AST 的 vftable dispatch 检测，已被 AST 路径（_resolve_vftable_calls_ast，:448）取代；:221-222 的注释亦自认 'Vftable calls are handled by regex preprocessing (above). AST detection is unreliable for complex function-pointer call syntax.'"
+    },
+    {
+      "id": "CG-012",
+      "class": "C3_historical_residue",
+      "subclass": "C3b",
+      "title": "stage3_cleanup._try_resolve_vftable 无任何引用，已被 _resolve_vftable_calls_ast 取代",
+      "evidence_grade": "A",
+      "evidence": {
+        "kind": "file_absence",
+        "location": "pipeline/gen/stages/stage3_cleanup.py:67-118",
+        "detail": "全仓唯一出现处即定义行：grep -rn '_try_resolve_vftable' 仅命中 :67。取代者 _resolve_vftable_calls_ast 定义于 :448、调用点 :601（stage3 run 内），是活路径。",
+        "command": "grep -rn '_try_resolve_vftable\\|_resolve_vftable_calls_ast' pipeline/gen/ --include=*.py"
+      },
+      "location": "pipeline/gen/stages/stage3_cleanup.py:67-118",
+      "sites": 1,
+      "files": [
+        "pipeline/gen/stages/stage3_cleanup.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "DELETE",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "取代证据（提交级）：6d9bca4b5 'non-destructive vtable dispatch fallback via AST resolution' 原文称旧的 regex 回退 'looked up byte offsets in slot-index maps and mostly missed'，改用 tree-sitter pass；本函数正是那段旧 regex 解析。删除后仅剩 :448 的 AST 实现对等覆盖。"
+    },
+    {
+      "id": "CG-013",
+      "class": "C3_historical_residue",
+      "subclass": "C3b",
+      "title": "stage5_fixup 的数组 stride 索引三件套从未接线（dead-on-arrival）",
+      "evidence_grade": "A",
+      "evidence": {
+        "kind": "file_absence",
+        "location": "pipeline/gen/stages/stage5_fixup.py:71-105",
+        "detail": "_build_array_stride_index(:71) 唯一调用者是 _get_arrays_for(:104)，而 _get_arrays_for(:101) 无任何调用者；_ARRAY_STRIDE_INDEX(:98) 只被该对使用。以调用图计算（pipeline/gen 内 126 个顶层函数、21 个外部可达根）三者的可达性实测均为不可达；仓库级 grep '_get_arrays_for' 仅命中定义行。:67-69 的章节标题 'Algebraic decomposition: (char *)this + S*var + C → this->array[var].field' 表明设计意图，但消费方从未加入——同章节里真正在用的是 :108 _decompose_raw_pointer_arithmetic（该函数不使用索引）。",
+        "command": "grep -rn '_get_arrays_for\\|_build_array_stride_index\\|_ARRAY_STRIDE_INDEX' pipeline/gen/ --include=*.py"
+      },
+      "location": "pipeline/gen/stages/stage5_fixup.py:71-105",
+      "sites": 3,
+      "files": [
+        "pipeline/gen/stages/stage5_fixup.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "DELETE",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "引入提交 28c005c59 'refactor(codegen): split Stage4 into Stage4 (AST resolution) + Stage5 (text fixup)' 即已存在且无引用 → 属从未接线，而非'曾生效后被取代'。删除不改变生成物；若将来要做代数分解，应从该提交的设计意图重建而非复活死码。"
+    },
+    {
+      "id": "CG-014",
+      "class": "C3_historical_residue",
+      "subclass": "C3b",
+      "title": "emit_headers 的 [IDA_USERPURGE] 分支不可达：sig 中的 __userpurge/__usercall 在检查前已被剥离",
+      "evidence_grade": "A",
+      "evidence": {
+        "kind": "file_absence",
+        "location": "pipeline/gen/stages/emit_headers.py:1948-1950",
+        "detail": "同一函数体先执行 :1883 `sig = re.sub(r'\\s*__userpurge\\s*', ' ', sig)` 与 :1884 `sig = re.sub(r'\\s*__usercall\\s*', ' ', sig)`，之后才在 :1948 判断 `if '__userpurge' in sig or '__usercall' in sig:` —— 该条件恒假。交叉证据：生成物 [IDA_USERPURGE] 实测 0 处；3594 个 decomp signature 中 __userpurge/__usercall 出现 0 次。",
+        "command": "sed -n '1880,1952p' pipeline/gen/stages/emit_headers.py\ngrep -ro 'IDA_USERPURGE' pal3/ | wc -l  # 0"
+      },
+      "location": "pipeline/gen/stages/emit_headers.py:1948-1950",
+      "sites": 1,
+      "files": [
+        "pipeline/gen/stages/emit_headers.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "DELETE",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "不可达由代码顺序直接证明，与输入数据无关。"
+    },
+    {
+      "id": "CG-015",
+      "class": "C3_historical_residue",
+      "subclass": "C3b",
+      "title": "emit_headers 的 [IDA_REGPARAM] 分支不可达：@<reg> 在检查前已被剥离（且被剥离两次）",
+      "evidence_grade": "A",
+      "evidence": {
+        "kind": "file_absence",
+        "location": "pipeline/gen/stages/emit_headers.py:1951-1953",
+        "detail": ":1882 `sig = re.sub(r'@<\\w+>', '', sig)` 先剥离；:1951 `if '@<' in sig:` 因此只对畸形输入（@< 后非 \\w+>）成立 → 实际不可达。另有 :1901 `params = re.sub(r'@<\\w+>', '', params)` 是同一模式的第二次剥离（冗余）。交叉证据：生成物 [IDA_REGPARAM] 实测 0 处。",
+        "command": "sed -n '1880,1952p' pipeline/gen/stages/emit_headers.py\ngrep -ro 'IDA_REGPARAM' pal3/ | wc -l  # 0"
+      },
+      "location": "pipeline/gen/stages/emit_headers.py:1951-1953",
+      "sites": 1,
+      "files": [
+        "pipeline/gen/stages/emit_headers.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "DELETE",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "与 CG-014 同源：三条 IDA_* 跳过分支持中，只有 :1945 的 vtbl_ 分支仍可达（CG-006）。删除 :1948-1953 不改变任何生成物。"
+    },
+    {
+      "id": "CG-016",
+      "class": "C3_historical_residue",
+      "subclass": "C3c",
+      "title": "emit_headers.OVERRIDES_DIR 指向不存在的 include/pal3/overrides，且该常量无任何引用（override 机制已被 template_bases.json 取代）",
+      "evidence_grade": "A",
+      "evidence": {
+        "kind": "file_absence",
+        "location": "pipeline/gen/stages/emit_headers.py:110",
+        "detail": "常量定义处 :110 `OVERRIDES_DIR = PROJECT_ROOT / 'include' / 'pal3' / 'overrides'`；全仓引用数 0（grep -rn OVERRIDES_DIR 仅命中定义行）。目标目录不存在（ls include/pal3/overrides → No such file）。CMake 侧亦无引用（grep 'overrides' CMakeLists.txt cmake/*.cmake → 0）。取代机制：同一文件 :993 与 :1206 读 data/annotations/template_bases.json 做模板桥接。",
+        "command": "ls -la include/pal3/  # 仅 globals.h/ida_defs.h/ida_types.h/pal3_constants.h/pal3_stl.h\ngrep -rn 'OVERRIDES_DIR' pipeline/ tools/*.py\ngrep -rn 'overrides' CMakeLists.txt cmake/*.cmake"
+      },
+      "location": "pipeline/gen/stages/emit_headers.py:110",
+      "sites": 1,
+      "files": [
+        "pipeline/gen/stages/emit_headers.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "DELETE",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "提交链：418464287 'fix: template override mechanism + TaskMgr/CTaskTpl template conversion' 引入该目录机制，d57fd68ea 'chore(pipeline): strict mode, codegen cleanup, gbengine header alignment' 之后目录未再入库（git ls-files include/pal3/ 仅 4 个头文件，无 overrides）。属过期引用。"
+    },
+    {
+      "id": "CG-017",
+      "class": "C3_historical_residue",
+      "subclass": "C3b",
+      "title": "pipeline/gen 中 4 个模块存在无引用 import（data.py 的 os/Path、stage4/stage5 的 struct、emit_headers 的 sys）",
+      "evidence_grade": "A",
+      "evidence": {
+        "kind": "file_absence",
+        "location": "pipeline/gen/data.py:6,9; pipeline/gen/stages/stage4_substitution.py:17; pipeline/gen/stages/stage5_fixup.py:20; pipeline/gen/stages/emit_headers.py:21",
+        "detail": "以 AST 逐模块统计 import 名在模块内的 Name/Attribute 使用：data.py 的 os(:6) 与 Path(:9) 零使用；stage4_substitution.py `import struct as _struct`(:17) 零使用（`_struct.` 出现 0 次，命中的 `_struct_sz` 是局部变量）；stage5_fixup.py 同名 import(:20) 零使用；emit_headers.py `import sys`(:21) 零使用（`sys.` 出现 0 次）。",
+        "command": "grep -c '_struct\\.' pipeline/gen/stages/stage4_substitution.py  # 0\ngrep -c 'sys\\.' pipeline/gen/stages/emit_headers.py  # 0\ngrep -n 'os\\.\\|Path(' pipeline/gen/data.py  # 无输出"
+      },
+      "location": "pipeline/gen/data.py:6,9",
+      "sites": 4,
+      "files": [
+        "pipeline/gen/data.py",
+        "pipeline/gen/stages/stage4_substitution.py",
+        "pipeline/gen/stages/stage5_fixup.py",
+        "pipeline/gen/stages/emit_headers.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "DELETE",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "纯卫生项，删除不改变生成物。低优先级。"
+    },
+    {
+      "id": "CG-018",
+      "class": "C3_historical_residue",
+      "subclass": "C3b",
+      "title": "pipeline/cli.py 的 iterate 命令指向不存在的模块 pipeline/iterate.py（调用即 ModuleNotFoundError）",
+      "evidence_grade": "A",
+      "evidence": {
+        "kind": "file_absence",
+        "location": "pipeline/cli.py:607-610",
+        "detail": "cli.py:608 `from pipeline.iterate import main as iterate_main`，但仓库中不存在 pipeline/iterate.py（find pipeline -name '*.py' 无该文件）。实跑：python3 pipeline/cli.py iterate → exit 1、ModuleNotFoundError: No module named 'pipeline.iterate'（栈顶 cli.py:618 → :608）。",
+        "command": "python3 pipeline/cli.py iterate; echo \"exit=$?\"   # exit=1, ModuleNotFoundError\nls pipeline/iterate.py   # No such file"
+      },
+      "location": "pipeline/cli.py:607-610",
+      "sites": 1,
+      "files": [
+        "pipeline/cli.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "DELETE",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "属'文档/入口声明了但实现不存在'。修复二选一：删除该命令分支，或补回 pipeline/iterate.py（须由 t5 决定，因为 iterate 的语义属于工作流设计）。"
+    },
+    {
+      "id": "CG-019",
+      "class": "C1_arch_violation",
+      "subclass": null,
+      "title": "pipeline/gen 共 29 处裸 except: 与 4 处 except Exception: pass，其中 data.py:218 会静默丢弃 thunk 映射",
+      "evidence_grade": "B",
+      "evidence": {
+        "kind": "measured_count",
+        "location": "pipeline/gen/data.py:218; pipeline/gen/stages/emit_headers.py:18 处; pipeline/gen/stages/stage3_cleanup.py:628,653,678",
+        "detail": "统计：grep -rn 'except:' pipeline/gen → emit_headers.py 18 处(:43,:77,:547,:651,:743,:985,:1068,:1080,:1222,:1419,:1500,:1518,:1532,:1559,:1570,:2125,:2993,:3050)、data.py 8 处(:76,:105,:218,:235,:267,:295,:309,:378)、stage3_cleanup.py 3 处(:628,:653,:678 'except: pass')；另有 stage4_substitution.py:342、emit_headers.py:907/:1293、ast_transform.py:117 的 except Exception: pass。典型：data.py:218 吞掉 skip_functions.json 的解析异常（:194 的 json.load），使 thunk 映射静默为空——codegen 随后按未改名函数发射，且无任何信号。",
+        "command": "grep -rn 'except:' pipeline/gen/ --include=*.py | wc -l   # 29\ngrep -rn -A1 'except Exception:' pipeline/gen/ --include=*.py | grep -B1 'pass' | head"
+      },
+      "location": "pipeline/gen/data.py:218",
+      "sites": 33,
+      "files": [
+        "pipeline/gen/data.py",
+        "pipeline/gen/stages/emit_headers.py",
+        "pipeline/gen/stages/stage3_cleanup.py",
+        "pipeline/gen/stages/stage4_substitution.py",
+        "pipeline/gen/ast_transform.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "FIX_PIPELINE",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "判为 C1.5（门禁被弱化——吞异常）。注意并非全部裸 except 都需要报错：对'可选文件不存在'可保留，但对'文件存在却解析失败'必须可见。建议改为按 (OSError, ValueError) 显式捕获并计数上报。与 AR-101 的'标记均为有意设计'无关，属另一类。ast_transform.py:154 的 `json.load(...)` 在 _ensure_bases 中连 try 都没有 → 任一结构体 JSON 损坏会让 codegen 直接崩，与本条互为印证。"
+    },
+    {
+      "id": "CG-020",
+      "class": "C1_arch_violation",
+      "subclass": null,
+      "title": "cli.py 的 codegen all 后置 snapshot/regression 钩子不检查 returncode：门禁失败被吞、命令仍以 0 退出",
+      "evidence_grade": "B",
+      "evidence": {
+        "kind": "comment",
+        "location": "pipeline/cli.py:375-386",
+        "detail": "cli.py:379 `subprocess.run([sys.executable, snap_script, 'capture'])` 与 :386 `subprocess.run([sys.executable, regression_script])` 均未取 returncode、无 check=True；cmd_codegen 无返回值，main() 直接落出 → 即使两个门禁都失败，`python pipeline/cli.py codegen all` 仍 exit 0。门禁本身确实会失败：见 test 证据——干净检出（git archive HEAD 解出的树，无 data/status/probe_census.json）下 pipeline/snapshots/snapshot.py capture → exit 1，栈底 `FileNotFoundError: probe_census.json not found — run \\`python pipeline/cli.py probe\\` first`（snapshot.py:44 raise，:135 _census_and_collect，:266 capture）；tools/compile_regression.py → exit 1。",
+        "command": "rm -rf /tmp/clean && mkdir -p /tmp/clean && git archive HEAD pipeline tools data/status docs/specs > /tmp/clean.tar && tar -x -C /tmp/clean -f /tmp/clean.tar --exclude='data/status/baselines/latest.json'\ncd /tmp/clean && python3 pipeline/snapshots/snapshot.py capture; echo \"snapshot_exit=$?\"\ncd /tmp/clean && python3 tools/compile_regression.py; echo \"regression_exit=$?\"\nsed -n '375,386p' /home/peng/workspace/PAL3Decomp/pipeline/cli.py"
+      },
+      "location": "pipeline/cli.py:375-386",
+      "sites": 2,
+      "files": [
+        "pipeline/cli.py",
+        "pipeline/snapshots/snapshot.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "FIX_INFRA",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "AR-007 记录了'钩子在缺 probe_census.json 时以未捕获异常终止'；本条记录的是**互补的另一半事实**：即使钩子以非 0 退出，外层命令仍返回 0（无 check、无 returncode 判定），因此 CI/代理无法据退出码发现门禁失败。两者应作为一个修复一起做（既给可操作提示，也把失败上抛退出码）；是否与 AR-007 合并由 t5 决定，见 GAP-CG-07。"
+    },
+    {
+      "id": "CG-021",
+      "class": "C1_arch_violation",
+      "subclass": null,
+      "title": "pipeline/compare_pal3.py 未守卫 census 读取：缺 probe_census.json 时 cli.py match 以裸 FileNotFoundError 崩栈（非可操作提示）",
+      "evidence_grade": "A",
+      "evidence": {
+        "kind": "file_absence",
+        "location": "pipeline/compare_pal3.py:242",
+        "detail": ":242 `census = json.loads(Path(args.census).read_text())` 无 exists 检查、无 try。干净检出实跑：`python3 pipeline/compare_pal3.py --limit 1` → exit 1，栈为 compare_pal3.py:287 main → :242 → pathlib read_text → `FileNotFoundError: [Errno 2] No such file or directory: '/tmp/clean/data/status/probe_census.json'`。入口 cli.py:467-481 只对 data/status/s4_baseline.json 做了 exists+try 守卫（:474-478），对 census 无守卫。",
+        "command": "cd /tmp/clean && python3 pipeline/compare_pal3.py --limit 1; echo \"exit=$?\"\nsed -n '236,244p' pipeline/compare_pal3.py; sed -n '467,481p' pipeline/cli.py"
+      },
+      "location": "pipeline/compare_pal3.py:242",
+      "sites": 1,
+      "files": [
+        "pipeline/compare_pal3.py",
+        "pipeline/cli.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "FIX_INFRA",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "与 AR-007 同类（门禁缺前置产物时崩栈而非提示），AR-007 只覆盖 snapshot 钩子；本条是 S4 裁判（L1 棘轮）的入口。附带实测（不另立条目，属 t6/t7 修复目标）：tools/audit_layout.py 当前 70 errors/881 structs、exit 1（SaleUI 64、SceneObj 4、UICursor 2），即'修改 struct annotation 后必须跑'的门禁当前常红；其干净检出失败点另见 AR-005。"
+    },
+    {
+      "id": "CG-022",
+      "class": "C1_arch_violation",
+      "subclass": null,
+      "title": "tools/annotation_diff.py 无法区分'无变更'与'读不到 git'：git 不可用时把 898 个结构体全报为新增并以 exit 0 结束",
+      "evidence_grade": "A",
+      "evidence": {
+        "kind": "measured_count",
+        "location": "tools/annotation_diff.py:217-229",
+        "detail": ":217-229 的 `git ls-tree` 失败被 `except Exception: pass`(:228-229) 吞掉 → git_files 为空；:237 的 get_git_file_content 亦在异常时返回 None(:88-89)；:240 `if current_content and not git_content:` 遂对每个现存结构体判定为新增。实跑（不可解析的 commit 等价于 git 不可用/HEAD 缺失）：python3 tools/annotation_diff.py --commit 0000000000000000000000000000000000000000 → '变更结构体数量: 898'、898 条 New struct、exit 0。正常调用（HEAD 可解析、工作区无结构体改动）→ '变更结构体数量: 0'、exit 0。两者退出码相同。",
+        "command": "python3 tools/annotation_diff.py   # 变更结构体数量: 0, exit 0\npython3 tools/annotation_diff.py --commit 0000000000000000000000000000000000000000  # 变更结构体数量: 898, exit 0"
+      },
+      "location": "tools/annotation_diff.py:217-229",
+      "sites": 1,
+      "files": [
+        "tools/annotation_diff.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "FIX_INFRA",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "CLAUDE.md 把 annotation_diff 列为 apply 后的强制检查点；本条证明该检查点在 git 层不可用时会给出无意义结果而退出码不变，属 AR-005 同族的'静默假通过/假失败'。修复：git 不可用时应显式失败（含 returncode/异常上抛），不要落入与'无变更'相同的输出面。"
+    },
+    {
+      "id": "CG-023",
+      "class": "C1_arch_violation",
+      "subclass": null,
+      "title": "[ROWTABLE] 语义依赖静默失败的 status 文件：_rowtable_family() 读不到 data/status/_rowtable_family.json 时返回空集，576 个站点会整体降级为 [MISATTRIBUTED]",
+      "evidence_grade": "B",
+      "evidence": {
+        "kind": "measured_count",
+        "location": "pipeline/gen/ast_transform.py:124-138",
+        "detail": ":132-135 从 data/status/_rowtable_family.json 读家族清单，`except (OSError, ValueError): _ROWTABLE_CACHE = set()`(:136-137) 静默返回空集；:417 的分支 `if class_name in _rowtable_family()` 为假时落入 :424-439 的 else 分支，发射 [MISATTRIBUTED] 而非 [ROWTABLE]。即：文件缺失/损坏 → 576 个 ROWTABLE 站点静默改变分类，生成源码不同、且无任何信号。文件本身 tracked（63 项，data/status/_rowtable_family.json），故它不是生成物缺失风险，而是**输入契约未声明、未校验**的风险。",
+        "command": "sed -n '124,138p' pipeline/gen/ast_transform.py; sed -n '417,439p' pipeline/gen/ast_transform.py\npython3 -c \"import json;print(len(json.load(open('data/status/_rowtable_family.json'))))\"  # 63"
+      },
+      "location": "pipeline/gen/ast_transform.py:124-138",
+      "sites": 576,
+      "files": [
+        "pipeline/gen/ast_transform.py",
+        "data/status/_rowtable_family.json"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "FIX_PIPELINE",
+      "proof_needed": null,
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "注释把该文件称作家族判定的依据（指向 docs/knowledge/decision_sceneobj_composition_not_inheritance.md），但读取处不校验存在性与条目数。修复最小改动：文件缺失时报错而非空集，并在 codegen 摘要里输出家族条目数。本条与 CG-004（C2 保留）不冲突：CG-004 判定信号本身正当，本条判定其可复现性/静默降级风险。"
+    },
+    {
+      "id": "CG-024",
+      "class": "C3_historical_residue",
+      "subclass": "C3a",
+      "title": "[MISATTRIBUTED] 的标记文本 \"fix IDB name of callee\" 在 callee 为 vtable 槽桩函数时是错的判据：该调用是合法直呼，callee 名有 vtable 归属证据，无可修的 IDB 名",
+      "evidence_grade": "B",
+      "evidence": {
+        "kind": "abs_addr",
+        "location": "pipeline/gen/ast_transform.py:425-439",
+        "detail": "产生点：ast_transform.py:435-439（走 :396 inner=='this' → :403 非基类 → :417 非 rowtable 家族 → :424 else 分支）输出 '/* [MISATTRIBUTED] %s on %s::this -> fix IDB name of callee */ %s::%s(%s)'；另一模板在 :353。被证伪的实例（我对 engineer-annotation 证据包做独立复算，全部命中）：callee 0x004014F0 原始字节 = 32 C0 C2 08 00（xor al,al ; retn 8，3 字节桩），相邻 slot1 0x004014E0 = 33 C0 C2 08 00；vtable @0x0056A600 = [0x00401030, 0x004014E0, 0x004014F0]，与 asm/pal3/ida_structs.json 的 AStarPathFinder.vtables[0].slots 逐项一致；全镜像对 0x004014F0 的 dword 引用恰 1 处（0x0056A608 = vtable+8）；对 0x004014F0 的 E8 直呼经全镜像穷举扫描恰 3 处（0x004D7576/0x004D7BB4/0x004D824C，rel32 全部解算正确）。归属侧：ida_structs.json 中 AStarPathFinder.bases=[]、CCBAI.bases=[] 且 CCBAI.vtables=[] → 无继承关系且 CCBAI 根本没有 vtable，故 callee 不可能是 CCBAI 成员；decomp 全库中名字含 GetHeuristicIdx 的条目**只有 1 个**（0x4014F0, 'virtual unsigned __int8 __thiscall(AStarPathFinder *this, int nX, int nY)'），即无重名/无另一份真实函数体 → '该名字唯一依据是位于 AStarPathFinder slot2' 与 3 个直呼点共同构成 B 级归属证据（vtable 归属 + 调用点一致性），并不存在需要修的 IDB 名。生成侧三个站点：pal3/src/Combat/CCBAI.cpp:246/444/646，形态为 'AStarPathFinder::GetHeuristicIdx((AStarPathFinder *)this, nRoleIndex, (int)&this->m_nHandleEnemyWell)'（3 实参），而 pal3/src/Misc/AStarPathFinder.h:41 声明为 'virtual unsigned __int8 GetHeuristicIdx(int nX, int nY)'（2 参数）→ 三处报 C2660 \"'GetHeuristicIdx' : function does not take 3 parameters\"。**关键反证**：整个 probe（3090 错误）中 C2352 计数 = 0 —— 而 :346-349 的保留理由与提交 2010eb3ad 都声称该形态会让 MSVC6 报 C2352 作为'诚实信号'。实测发生的诊断是**参数个数**抱怨，恰恰是理由文本自称要避免的那类误导信息（原文反对 C2039 的理由是'会误导人去加声明'，C2660 同样误导人去改签名）。规模口径核对（captain 提示的 '110 个 C2660' 不可复现）：stub-callee 站点 = **3**（CCBAI.cpp:246/444/646，对应恰 3 个 C2660）；C2660 全量 = 713；含 [MISATTRIBUTED] 的 74 个文件内 C2660 = 615（仅文件级共现，非因果）；C2352 = 0。另对 338 个可解析站点做 callee 性质分类：callee 有真实函数体且非 vtable 槽 = 328、callee_va 未解析 = 4、callee 是 vtable 槽函数 = 6（其中 3 = 本案 AStarPathFinder::GetHeuristicIdx@0x4014F0；另 3 个 gbVisNode::EnableShadow/GetAABBox/GetBoundSphere 的注解槽地址 0x5420D8/0x5420DE/0x54210E 非 4 字节对齐，需复核，见 GAP-CG-08）。",
+        "command": "python3 - <<'E'\nimport struct\np=open('original/PAL3.exe','rb').read()\no=lambda va: 0x1000+(va-0x401000)\nprint('callee   ', p[o(0x4014F0):o(0x4014F0)+8].hex(' '))          # 32 c0 c2 08 00\nprint('vtbl     ', [hex(struct.unpack_from('<I',p,o(0x56A600)+4*i)[0]) for i in range(3)])  # 401030 4014e0 4014f0\nprint('dword_ref', sum(1 for i in range(len(p)-4) if p[i:i+4]==struct.pack('<I',0x4014F0)))   # 1\nprint('e8_call  ', [hex(i-0x1000+0x401000) for i in range(len(p)-5) if p[i]==0xE8 and (i-0x1000+0x401000)+5+struct.unpack_from('<i',p,i+1)[0]==0x4014F0])  # 3 处\nE\npython3 -c \"import json;d=json.load(open('asm/pal3/ida_structs.json'));print({k:(d[k].get('bases'),d[k].get('vtables')) for k in ('AStarPathFinder','CCBAI')})\"\npython3 -c \"import json,collections;d=json.load(open('data/status/probe_census.json'));c=collections.Counter(e['code'] for r in d['s2']['results'] for e in r.get('errors',[]));print(dict(c))\"   # C2352=0\ngrep -rn 'GetHeuristicIdx' pal3/src/Combat/CCBAI.cpp pal3/src/Misc/AStarPathFinder.h"
+      },
+      "location": "pipeline/gen/ast_transform.py:435-439",
+      "sites": 3,
+      "files": [
+        "pipeline/gen/ast_transform.py",
+        "pal3/src/Combat/CCBAI.cpp",
+        "pal3/src/Misc/AStarPathFinder.h"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "NEED_EVIDENCE",
+      "proof_needed": "需要逐站点判定 338 个 [MISATTRIBUTED] 站点中'合法直呼 vtable 槽函数'的真实规模（当前可证 3 个：CCBAI.cpp:246/444/646），并逐条判定建议文本是否成立；具体取证：对每个站点按本案方法（callee 字节形态 = 桩/函数体 + callee 是否为某类 vtable 槽 + caller 与该类有无继承关系 + 全镜像 E8 直呼点）复核，先复核 GAP-CG-08 的 3 个非对齐槽地址案例。在规模未定前不得据本条修改标记文本（避免仅修 3 个站点却改变其余站点的语义）。",
+      "consistency": {
+        "bucket_ref": "misattribution_ledger.json",
+        "agrees": false,
+        "discrepancy": "ledger 由 tools/misattribution_ledger.py:31 的同形正则聚类，其 bucket 语义（B=单一 vtable owner 且 ≠ callee）**未考虑 callee 是桩函数的情形**；本条 3 个站点在 vtable@0x56A600 上的 owner 就是 AStarPathFinder 本身，而 caller 是 CCBAI（无 vtable、无 bases）→ 按 ledger 分桶逻辑会落入 bucket C（需考古），但实际证据已足以判定'无 IDB 名可修'。即 ledger 的分桶前提在本形态上失效，属分桶口径缺口。"
+      },
+      "notes": "判定依据：t1 §C2 第 3 条——'标记描述与实况矛盾'时 C2 降为 C3；本条即该情形，故 class=C3、subclass=C3a（已打标记但未修根的 misattribution）。**未按 C2 处理**，也未沿用 AR-101 的粗粒度结论。action 取 NEED_EVIDENCE 而非 FIX_PIPELINE，原因是规模未定（见 proof_needed）：在 338 个站点中只有 3 个被证为'合法直呼桩'，直接改标记文本会同时改动另外 335 个站点（其中 328 个 callee 有真实函数体、性质未定）。**特别说明**：本条只登记判据缺陷与可复现口径；修复即改动 ast_transform.py 的标记文本/分支条件，属代码生成策略变更，需 captain/用户裁决，**禁止进入'可立即修'批次**（与 CG-025 同一裁决点）。captain 提示的 '110 个 C2660' 口径我无法复现，最接近的三个可复现数值为 3 / 615 / 713，已写入 evidence，差异原因未解 → 见 GAP-CG-09。"
+    },
+    {
+      "id": "CG-025",
+      "class": "C1_arch_violation",
+      "subclass": null,
+      "title": "策略问题（架构级）：对'合法直呼 vtable 槽函数'的站点，codegen 产出不可编译的静态形态并把**诊断信号与真实缺陷混同**，且所承诺的诊断码（C2352）实测从不出现",
+      "evidence_grade": "B",
+      "evidence": {
+        "kind": "abs_addr",
+        "location": "pipeline/gen/ast_transform.py:343-356,424-439",
+        "detail": "策略代码位置：ast_transform.py:424-439（else 分支——把跨类直呼改写成静态形式并打标，注释明写 'Keep the static call form so MSVC6 reports C2352 — precise signal to fix the callee's IDB name — and mark it. Never launder into legal syntax.'，见 :343-349）与 :353/:436 两个模板。实测后果（同一批 3 个站点，CCBAI.cpp:246/444/646）：生成物不可编译（C2660 x3），且诊断信息指向错误方向——报的是 \"'GetHeuristicIdx' : function does not take 3 parameters\"（参数个数），而真实情况是：callee 0x4014F0 是 vtable@0x56A600 的 slot2、3 字节桩（32 C0 C2 08 00）、全镜像仅 3 个 E8 直呼点、dword 引用仅 1 处（vtable+8）、AStarPathFinder.bases=[]、CCBAI.bases=[] 且 CCBAI.vtables=[]（无继承）、declaration 与 callee 参数个数不符（AStarPathFinder.h:41 声明 2 参数，调用传 3 实参）。**核心事实：整个 probe 3090 个错误中 C2352 = 0** —— 策略赖以成立的'诚实信号'机制在当前工具链/声明形态下不成立，于是'诊断信号'退化为一条误导性的参数个数错误，与真实缺陷（本形态下无可修的 IDB 名）被混同在同一错误的归因面上。",
+        "command": "python3 -c \"import json,collections;d=json.load(open('data/status/probe_census.json'));c=collections.Counter(e['code'] for r in d['s2']['results'] for e in r.get('errors',[]));print('C2352=',c.get('C2352',0),'C2660=',c.get('C2660',0))\"\npython3 -c \"import json;d=json.load(open('data/status/probe_census.json'));print([e for r in d['s2']['results'] if r['unit'].endswith('CCBAI.cpp') for e in r.get('errors',[])])\"\nsed -n '343,356p;424,439p' pipeline/gen/ast_transform.py"
+      },
+      "location": "pipeline/gen/ast_transform.py:424-439",
+      "sites": 3,
+      "files": [
+        "pipeline/gen/ast_transform.py"
+      ],
+      "root_cause_fixed": false,
+      "recommended_action": "NEED_EVIDENCE",
+      "proof_needed": "本条是策略级定性，修复=代码生成策略变更（改动标记分支条件/文本或改变跨类直呼的改写策略），**须 captain/用户裁决后方可实施，禁止进入'可立即修'批次**（captain 路由指令）。裁决前需要：(a) 确定'合法直呼 vtable 槽函数'的完整判定条件（本案可操作判据：callee 为 3 字节桩或函数体存在 + callee ∈ 某类 vtable slot + caller 与该类无继承 + 存在 E8 直呼点），并给出该判据下受影响的站点全集（当前仅证 3 个，见 CG-024 proof_needed 与 GAP-CG-08）；(b) 确认替代诊断手段（若不再依赖 C2352，是否需要显式产出'无法判定归属'的分类信号而非令编译报错）；(c) 评估策略变更对 L1/ok 基线的影响方式（本条 3 个站点所在的 CCBAI.cpp 当前为 fail，改策略可能改变 S2 计数）。",
+      "consistency": {
+        "bucket_ref": null,
+        "agrees": true,
+        "discrepancy": null
+      },
+      "notes": "为什么判 C1 而不是 C3：按 t1 的 G1→G4 闸门顺序，G2（层职责错位/后处理产出与上游事实不符的形态并编造诊断信息）先于 G3/G4 命中——这是一条**当前活跃**的代码路径，它在对上游事实（callee 归属）做出可被证伪的断言，并令生成形态不可编译；不只是'过期痕迹'。若 t5 认为其本质是标记残留而非策略违规，可改派 C3（子类需新定，见 GAP-CG-06 同类问题）。与 CG-005 的关系：CG-005 判定 [MISATTRIBUTED] **标记机制**本身是 C2（保留理由有原文、多数站点根因确未修）；CG-024/CG-025 判定该方法在'合法直呼槽函数'这一类站点上**判据失效、诊断码落空**。三者不冲突：CG-024 是站点级判据缺陷（C3a），CG-025 是策略级混同（C1）。与 AR-101 的冲突另见 GAP-CG-01。**本条的修复属策略变更，需 captain/用户裁决。**"
+    }
+  ],
+  "gaps": [
+    {
+      "id": "GAP-CG-01",
+      "what": "跨扫描结论冲突：data/status/_cleanup_scan_architecture.json 的 AR-101 断言'五类 codegen 信号标记本身是有意保留的设计信号（产生位置均带保留理由注释），非缺陷'，而本清单实测 [VFTABLE]（仅 41/1643 属等价变换）、[IDA_MISID]（在 codegen 层硬编码模式表绕开 IDA 层修复）、[AUTO-COMMENTED]（89 处丢弃被使用赋值）三条不满足 C2 的第 3 条件（信号当前仍有效/描述与实况相符）。",
+      "why_unresolved": "t2 只负责取证与初判，类别裁决属 t5；AR-101 是粗粒度汇总条目，与站点级证据存在粒度不匹配。",
+      "how_to_resolve": "t5 以 CG-001/CG-007/CG-008 的站点级实测为准，把 AR-101 拆分为'确实有意保留的子集'（CG-002/CG-003/CG-004/CG-005/CG-006）与'应清理的三条'；若维持 AR-101 则须回应 CCBCamControl.cpp:983-986 与 CCBParabolaWindow.cpp:45-46 两个反例。"
+    },
+    {
+      "id": "GAP-CG-02",
+      "what": "[VFTABLE] 1643 站点中'哪些站点对应真实行为丢失'只做到形状级统计（546 偏移访问/168 控制流头/163 数据值/44 cast/41 vptr 存根/418 其他/263 续行），未逐站点验证编译产物的字节或行为差异。",
+      "why_unresolved": "逐站点验证需要为每个站点构造 obj 字节对比或 IDA xref 对照，属修复阶段（t6/t8）的工作量，超出只读扫描。",
+      "how_to_resolve": "对 S2-green 文件按站点做 before/after obj 反汇编对照（pipeline/compare_pal3.py 的函数级 diff），或对 168 个控制流头站点优先做人工核对——它们最可能改变分支语义。"
+    },
+    {
+      "id": "GAP-CG-03",
+      "what": "[IDA_MISID] 84 站点中哪些是无害重渲染（如 MSVC 自管的 SEH 帧 setup）、哪些丢掉了真实调用（如 std::_Xlen/_Xran），未逐站点定性。",
+      "why_unresolved": "6 个模式的语义差异很大（Concurrency 命名空间类名 vs std:: 库函数 vs NT 结构体字段），单一 blocklist 掩盖了差异；定性需逐站点看 Hex-Rays 原文与反汇编对照。",
+      "how_to_resolve": "按模式分组取出 84 站点原文，对每组抽 3 例与 PAL3.exe 反汇编对照，判定是否等价；据此决定是整条删除该 blocklist 还是在 IDB 层 undefine 误识别符号。"
+    },
+    {
+      "id": "GAP-CG-04",
+      "what": "[AUTO-COMMENTED] 的 89 个'被使用赋值被丢弃'站点中，有多少导致下游读取未初始化局部变量（即真实行为丢失），未验证。",
+      "why_unresolved": "需要为每个站点做 use-def 追踪或在编译日志中确认是否出现 C4700/未初始化告警，属修复阶段的验证工作。",
+      "how_to_resolve": "从 probe 编译的 C4700 类告警或 obj 反汇编里对 v9/Color/v6 等变量做 use-def 对照；至少验证 CCBStage.cpp:867 与 CCBRoleState.cpp:427 两例。"
+    },
+    {
+      "id": "GAP-CG-05",
+      "what": "t2 扫描发现的额外 C1 读注解锚点未被 AR-001/AR-002 枚举：pipeline/gen/stages/emit_headers.py:185-189 存在一个只用于抛 'load_annotations_data() called from codegen — forbidden' 的哨兵函数，而同文件 :646、:869（structs）、:993、:1206（template_bases.json）仍直接读 data/annotations；另有 pipeline/gen/ast_transform.py:148（_ensure_bases 读 structs，且 json.load 无 try）与 pipeline/gen/stages/stage4_substitution.py:334（store.annotations_dir / 'structs'）。",
+      "why_unresolved": "同一对象已被 AR-001/AR-002 归类，t2 不重复计类以免 t5 出现重复条目。",
+      "how_to_resolve": "t5 将上述锚点合并进 AR-001/AR-002 的 files/evidence；'哨兵函数 declared forbidden 与同文件实际读取并存'可作为该条 C1 的最强单点证据（自相矛盾的层规则）。"
+    },
+    {
+      "id": "GAP-CG-06",
+      "what": "[IDA_VTABLE]（CG-006）的类别判定依赖 G3 的'保留理由写明'，但产生位置 emit_headers.py:1945-1946 附近只有 :1942 的 'Skip invalid method names and calling conventions'，没有说明为何把声明降级为注释/为何保留该标记。",
+      "why_unresolved": "t2 不能替 t5 判定 G3 是否成立；若判不成立，该条须改派 C3 并指定 C3a/C3b/C3c/C3d 之一（当前四个子类均不精确贴合'IDB 类型名泄漏进真实签名'这一根因）。",
+      "how_to_resolve": "t5 裁决；或将子类边界补一条（如 C3e：'上游类型名泄漏导致生成物保守降级的未修根痕迹'）后归入。"
+    },
+    {
+      "id": "GAP-CG-07",
+      "what": "CG-020（cli.py 后置钩子不检查 returncode）与 AR-007（钩子以未捕获异常终止）是否应合并为一条，未定。",
+      "why_unresolved": "两者是同一代码块的两个不同事实（失败形态 vs 失败被吞），合并会丢失其中之一的信息；不合并则同一锚点出现两条。",
+      "how_to_resolve": "t5 决定：建议保留两条但在修复批次里绑成一个改动（提示可操作化 + 失败上抛退出码），验收时以 `python pipeline/cli.py codegen all` 在缺 census 的干净检出上返回非 0 为准。"
+    },
+    {
+      "id": "GAP-CG-08",
+      "what": "callee 为 vtable 槽函数的 [MISATTRIBUTED] 站点中，有 3 个（gbVisNode::EnableShadow / GetAABBox / GetBoundSphere）经注解解析得到的槽地址 0x5420D8 / 0x5420DE / 0x54210E 不是 4 字节对齐，且落在 .text 内的非函数起始处。",
+      "why_unresolved": "无法区分'注解 vtables 槽地址本身有误'与'我的名字→地址解析走错了映射'；也未核实这 3 个站点是否同属'合法直呼'形态。",
+      "how_to_resolve": "用 asm/pal3/ida_structs.json 中 gbVisNode.vtables 的原值核对这 3 个地址是否为槽条目原样，再对每个地址读原始字节判定是否函数起始（是否在 IDA 函数列表内）。"
+    },
+    {
+      "id": "GAP-CG-09",
+      "what": "captain 路由信息中的 '该形态对应 110 个 C2660' 无法复现：我实测的可复现口径为 stub-callee 站点 3（对应 C2660 恰 3，均在 CCBAI.cpp）、含 [MISATTRIBUTED] 文件内 C2660 = 615、C2660 全量 713；C2352 = 0。110 的组合方式未找到。",
+      "why_unresolved": "该数字的来源口径未在路由信息中给出（未说明是按 C2660 的 msg 过滤、按文件过滤、还是按某类站点聚合），四种可想到的口径均不等于 110。",
+      "how_to_resolve": "请 captain 或 engineer-annotation 给出 110 的原始统计命令；若无法给出，t5/t9 应一律采用本条列出的可复现口径（3 / 615 / 713 / C2352=0），并把 110 作废。"
+    }
+  ],
+  "revision": {
+    "note": "本清单在 t2（attempt 1）completed 后，按 captain 路由指令**只登记不改**追加 CG-024/CG-025 两条与 GAP-CG-08/GAP-CG-09 两条缺口。追加后 items=25（原 23）。未修改任何既有条目、未改动 pipeline/gen/** 下任何文件、未改动 engineer-annotation 的证据包 data/status/_cleanup_evidence_stub_call_4014F0.json。",
+    "routed_by": "captain",
+    "amended_at": "2026-09-15"
+  }
+}

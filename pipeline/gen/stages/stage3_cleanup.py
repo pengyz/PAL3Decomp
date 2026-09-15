@@ -6,6 +6,7 @@ where no structural understanding is needed (e.g., __thiscall removal).
 """
 import re
 import struct as _struct
+import sys
 
 import tree_sitter_cpp as tscpp
 import tree_sitter
@@ -47,7 +48,16 @@ def _find_vftable_in_subtree(node):
 
 
 def _is_vftable_assignment(node):
-    """Detect: this->__vftable = expr (assignment to vftable pointer)."""
+    """Detect: this->__vftable = expr (assignment to vftable pointer).
+
+    NOTE (t7 audit): this branch is preempted by `_comment_vptr_stores()` in
+    `run()`, which runs *before* `_ast_cleanup()` and already rewrites or
+    comments every `__vftable` statement.  It is kept because it is the
+    correct AST-level description of the pattern and becomes reachable again
+    if that earlier pass is ever narrowed; it is currently dead in practice
+    (verified with a direct `stage3_run` harness, see
+    data/status/_cleanup_fix_vftable_comment.md §7).
+    """
     if node.type == 'assignment_expression':
         left = node.child_by_field_name('left')
         if left and _is_vftable_field(left):
@@ -108,7 +118,14 @@ def _try_resolve_vftable(expr):
         if not name or '::' not in name:
             return None
         method = name.split('::')[-1]
-    except Exception:
+    except (OSError, ValueError, KeyError, IndexError, TypeError) as _e:
+        # t7: was a bare `except Exception`.  This helper only reads a JSON
+        # annotation file and walks its dicts, so the failures above are the
+        # expected ones; anything else (e.g. a refactor breaking the shape of
+        # `struct_vtables` data) now surfaces instead of silently degrading
+        # every vtable call to a stub.
+        sys.stderr.write('[stage3] vftable resolution failed for %s: %r\n'
+                         % (class_type, _e))
         return None
 
     _args = [a.strip() for a in args.split(',')]
@@ -195,6 +212,41 @@ def _iter_all(node):
         yield from _iter_all(child)
 
 
+def _fold_ctor_call_value(line, call_node):
+    """Fold an explicit ctor call that is used as a *value* into a typed pointer.
+
+    Hex-Rays renders `obj.Cls(args)` / `obj->Cls(args)` for an explicit
+    constructor call and gives it the class pointer as its "return value".
+    When that value is consumed (assigned, member-accessed, passed on), the
+    surrounding statement is real code and must not be dropped.
+
+    `obj.Cls(args)`  -> `((Cls *)&obj)`     (object addressed through '.')
+    `obj->Cls(args)` -> `((Cls *)obj)`      (object already a pointer)
+
+    Returns the rewritten line, or None when the call cannot be folded
+    (caller then keeps the previous comment-out behaviour).
+    """
+    func = call_node.child_by_field_name('function')
+    if func is None or func.type != 'field_expression':
+        return None
+    method, _obj_text = _get_ctor_call_info(call_node)
+    if not method:
+        return None
+    obj_node = func.child_by_field_name('argument')
+    if obj_node is None:
+        return None
+    op = func.child_by_field_name('operator')
+    arrow = (op is not None and op.text == b'->')
+    cls = method[1:] if method.startswith('~') else method
+    obj = obj_node.text.decode('utf-8', errors='replace')
+    ptr = '((%s *)%s)' % (cls, obj) if arrow else '((%s *)&%s)' % (cls, obj)
+    call_text = call_node.text.decode('utf-8', errors='replace')
+    pos = line.find(call_text)
+    if pos < 0:
+        return None
+    return line[:pos] + ptr + line[pos + len(call_text):]
+
+
 # ============================================================
 # AST cleanup pass
 # ============================================================
@@ -243,7 +295,20 @@ def _ast_cleanup(code, ctx):
                                 edits[line_idx] = ('comment_ctor', stripped)
                                 return
                             elif '=' in stripped:
-                                edits[line_idx] = ('comment_ctor', stripped)
+                                # t7: this used to be commented out wholesale,
+                                # which discarded the assignment's *value* even
+                                # when later statements consume it
+                                # (e.g. CCBStage.cpp `Color = v22.gbColorQuad(..)->Color;`).
+                                # Hex-Rays models an explicit ctor call as a
+                                # value-returning call whose value is the object
+                                # address, so fold the call to a typed pointer to
+                                # the object and keep the assignment intact.
+                                folded = _fold_ctor_call_value(lines[line_idx], child) \
+                                    if line_idx < len(lines) else None
+                                if folded is not None:
+                                    edits[line_idx] = ('assign_ctor', folded)
+                                else:
+                                    edits[line_idx] = ('comment_ctor', stripped)
                                 return
                         break
 
@@ -284,18 +349,29 @@ def _ast_cleanup(code, ctx):
         indent = line[:len(line) - len(line.lstrip())]
         if action == 'delete':
             continue
-        elif action == 'insert':
-            out.append(data)
-        elif action == 'comment_vft':
-            out.append(indent + '// [IDA_VFTABLE] ' + data)
         elif action == 'comment_ctor':
             out.append(indent + '// [AUTO-COMMENTED] ' + data)
+        elif action == 'assign_ctor':
+            # t7: value-preserving restoration of a commented-out assignment.
+            out.append(data)
         elif action == 'return_expr':
             out.append(indent + 'return %s; // ctor auto-called' % data)
         elif action == 'return_this':
             out.append(indent + 'return this; // [ctor replaced]')
         else:
             out.append(line)
+
+    # t7: two edit actions were deleted here because they had no producer
+    # anywhere in the tree (`[IDA_VFTABLE]` was measured at 0 occurrences and
+    # `'insert'` was never emitted by `_ast_cleanup` or any other stage):
+    #   elif action == 'insert':       out.append(data)
+    #   elif action == 'comment_vft':  out.append(indent + '// [IDA_VFTABLE] ' + data)
+    # Original intent (documented, not re-implemented): `comment_vft` was meant
+    # for IDA-layer-emitted vftable annotations — an "the IDB already told us
+    # this is a vftable" marker distinct from the codegen-side `// [VFTABLE]`
+    # fallback below. The IDA layer never produced that action, so the marker
+    # was unreachable and its spelling (`[IDA_VFTABLE]`, no dash) was one of
+    # the four non-mergeable spellings flagged in the cleanup handoff §2.3.
 
     return '\n'.join(out)
 
@@ -543,6 +619,192 @@ def _resolve_vftable_calls_ast(code, ctx):
     return code
 
 
+# ============================================================
+# t7: __vftable statement handling
+# ============================================================
+# Context for the two passes below (full audit in
+# data/status/_cleanup_fix_vftable_comment.md):
+#   * the header generator emits only `data_members`; the `__vftable`
+#     `_variants` of `ida_structs.json` are dropped, so *no* generated header
+#     declares `__vftable` — raw text can never compile;
+#   * every exported `__vftable` variant sits at offset 0 of its own struct
+#     (118/118 in the annotations, 116/116 in `ida_structs.json._variants`);
+#   * a *qualified* access (`this->GlowObj::__vftable`) is a base subobject at
+#     a non-zero offset (SceneObj: GlowObj +8, TaskMgr_SceneObjParam_SceneObj
+#     +40), which the decomp text does not carry — those are left verbatim
+#     instead of being folded to a wrong offset.
+
+# `<obj>[Base::]__vftable = <rhs>;` (whole statement on one line)
+_VPTR_STORE_RE = re.compile(
+    r'^[ \t]*(?P<pre>[^=;]*?)__vftable\s*=\s*(?!=)(?P<rhs>[^;]*?)\s*;\s*(?://.*)?$')
+
+# Positive evidence that <rhs> is a *vtable address*: only these lines are
+# genuine compiler-managed vptr setup and may take the comment-out path.
+# Deliberately narrow — `(vtbl_XXXX *)` is the declared type of the field and
+# Hex-Rays emits it for data stores as well, and `= 0` / `= <local>` show up
+# in the tree as genuine data writes (verified contexts in the .md).
+_VPTR_RHS_EVIDENCE = re.compile(r"`vftable'")
+
+# Decisive evidence that <rhs> is a data value (float/int bit pattern).
+_VPTR_RHS_DATA = re.compile(
+    r"\(\s*[A-Za-z_][\w:]*\s*\*+\s*\)\s*-?\s*(?:0[xX][0-9A-Fa-f]+|\d+)\s*$"
+    r"|LODWORD\s*\(|HIDWORD\s*\(|\*\s*\(\s*float\s*\*")
+
+
+def _vptr_store_kind(line):
+    """Return 'store' when `line` is a positively-evidenced vptr store."""
+    body = re.sub(r'/\*.*?\*/', '', line)      # ignore stub/original comments
+    tag = body.find('__vftable')
+    if tag < 0:
+        return None
+    slash = body.find('//')
+    if slash >= 0 and slash < tag:
+        return None                            # only referenced in a comment
+    m = _VPTR_STORE_RE.match(body)
+    if not m:
+        return None
+    pre = m.group('pre').rstrip()
+    if not (pre.endswith('>') or pre.endswith('.') or pre.endswith('::')):
+        return None                            # `*(float *)&x.__vftable = ..`
+    rhs = m.group('rhs').strip()
+    if _VPTR_RHS_DATA.search(rhs):
+        return None
+    if rhs.startswith('&') or _VPTR_RHS_EVIDENCE.search(rhs):
+        return 'store'
+    return None
+
+
+def _comment_vptr_stores(code):
+    """Comment out genuine vptr stores only (the only allowed comment path).
+
+    t7: replaces the two blanket scanners that commented out *every* line
+    containing `__vftable` (a bracket-depth block scanner plus a
+    `^...__vftable[^;]*;.*$` regex).  Everything else is left for
+    `_fold_vftable_mask()`.
+    """
+    lines = code.split('\n')
+    out = []
+    i = 0
+    in_block = False
+    while i < len(lines):
+        line = lines[i]
+        if in_block:
+            out.append(line)
+            if '*/' in line:
+                in_block = False
+            i += 1
+            continue
+        if '/*' in line and '*/' not in line:
+            in_block = True
+        if _vptr_store_kind(line) == 'store':
+            commented = ['// [VFTABLE] ' + line.lstrip()]
+            depth = line.count('(') - line.count(')')
+            has_semi = line.rstrip().endswith(';')
+            i += 1
+            while i < len(lines) and not has_semi and depth > 0:
+                cont_line = lines[i]
+                commented.append('// [VFTABLE]   ' + cont_line.lstrip())
+                depth += cont_line.count('(') - cont_line.count(')')
+                has_semi = cont_line.rstrip().endswith(';')
+                i += 1
+            out.extend(commented)
+        else:
+            out.append(line)
+            i += 1
+    return '\n'.join(out)
+
+
+def _needs_ptr_wrap(rhs):
+    """True when a restored assignment RHS must be made pointer-shaped."""
+    r = rhs.strip()
+    if r.startswith('&') or '__vftable' in r:
+        return False
+    if re.match(r'^\(\s*[A-Za-z_][\w:\s]*\*+\s*\)', r):
+        return False
+    return True
+
+
+def _fold_vftable_mask(code):
+    """Restore every *unqualified* `__vftable` access as an offset-0 access.
+
+    Byte-exact equivalences (the vfptr variant is at offset 0 of its object):
+        X->__vftable    -> (*(void **)(X))       value/lvalue, type `void *`
+        X.__vftable     -> (*(void **)&(X))
+        &X->__vftable   -> ((void **)(X))        address,     type `void **`
+        &X.__vftable    -> ((void **)&(X))
+
+    Skipped (left verbatim, reported as a gap in the .md):
+      * qualified base accesses `X->Base::__vftable` — base offset unknown;
+      * `X->__vftable->M` / `X->__vftable[i]` — the vptr value is used as an
+        object and `void *` cannot be dereferenced.
+
+    For `X->__vftable = rhs` the RHS is additionally wrapped in `(void *)`
+    when it is not already pointer-shaped, because the field's declared type
+    is `void *`.
+    """
+    raw = code.encode('utf-8')
+    tree = _parser.parse(raw)
+    edits = []
+    covered = []
+
+    def _overlaps(s, e):
+        return any(not (e <= cs or s >= ce) for cs, ce in covered)
+
+    def visit(node):
+        if node.type == 'field_expression':
+            field = node.child_by_field_name('field')
+            if field is not None and field.text == b'__vftable' \
+                    and field.type != 'qualified_identifier':
+                arg = node.child_by_field_name('argument')
+                op = node.child_by_field_name('operator')
+                if arg is not None and op is not None:
+                    target = node
+                    parent = node.parent
+                    if parent is not None and parent.type == 'pointer_expression' \
+                            and parent.child_by_field_name('operator') is not None \
+                            and parent.child_by_field_name('operator').text == b'&':
+                        target = parent
+                    p = target.parent
+                    used_as_object = (
+                        p is not None
+                        and p.type in ('field_expression', 'subscript_expression')
+                        and p.child_by_field_name('argument') is not None
+                        and p.child_by_field_name('argument').id == target.id)
+                    if not used_as_object and not _overlaps(target.start_byte, target.end_byte):
+                        obj = raw[arg.start_byte:arg.end_byte].decode('utf-8')
+                        arrow = (op.text == b'->')
+                        deref = '(%s)' % obj if arrow else '&(%s)' % obj
+                        if target is parent:
+                            repl = '((void **)%s)' % deref
+                        else:
+                            repl = '(*(void **)%s)' % deref
+                        edits.append((target.start_byte, target.end_byte, repl))
+                        covered.append((target.start_byte, target.end_byte))
+                        ap = target.parent
+                        if ap is not None and ap.type == 'assignment_expression':
+                            left = ap.child_by_field_name('left')
+                            right = ap.child_by_field_name('right')
+                            aop = ap.child_by_field_name('operator')
+                            if left is not None and left.id == target.id \
+                                    and right is not None and aop is not None \
+                                    and aop.text == b'=' \
+                                    and raw[right.start_byte:right.end_byte].decode('utf-8').strip():
+                                rhs = raw[right.start_byte:right.end_byte].decode('utf-8')
+                                if _needs_ptr_wrap(rhs):
+                                    edits.append((right.start_byte, right.end_byte,
+                                                  '(void *)(%s)' % rhs))
+                                    covered.append((right.start_byte, right.end_byte))
+        for child in node.children:
+            visit(child)
+
+    visit(tree.root_node)
+    if not edits:
+        return code
+    for s, e, repl in sorted(edits, key=lambda t: -t[0]):
+        raw = raw[:s] + repl.encode('utf-8') + raw[e:]
+    return raw.decode('utf-8')
+
+
 def run(code, ctx):
     """Stage 3: post-OOP cleanup."""
     cls_name = ctx.cls_name
@@ -625,7 +887,11 @@ def run(code, ctx):
                 _args = [a.strip() for a in args_str.split(',')]
                 _args = [a for a in _args if a.replace('&', '').strip() != obj]
                 return '%s->%s(%s);\n%s' % (obj, _method, ', '.join(_args), _indent)
-        except: pass
+        except (AttributeError, KeyError, TypeError, IndexError, ValueError) as _e:
+            # t7: was a bare `except: pass` (three legacy resolvers).  They only
+            # read `store.struct_vtables`; unexpected shapes must not be swallowed
+            # (cf. the silent-degradation class of bugs in the cleanup handoff).
+            sys.stderr.write('[stage3] legacy vtable resolver failed (%s): %r\n' % (cls, _e))
         return None
     code = _vtable_re.sub(lambda m: _try_resolve_vtable(m) or m.group(0), code)
 
@@ -650,7 +916,11 @@ def run(code, ctx):
                 _args = [a.strip() for a in args.split(',')]
                 _args = [a for a in _args if a.replace('&', '').strip() != obj]
                 return '%s->%s(%s);\n%s' % (obj, _method, ', '.join(_args), _indent)
-        except: pass
+        except (AttributeError, KeyError, TypeError, IndexError, ValueError) as _e:
+            # t7: was a bare `except: pass` (three legacy resolvers).  They only
+            # read `store.struct_vtables`; unexpected shapes must not be swallowed
+            # (cf. the silent-degradation class of bugs in the cleanup handoff).
+            sys.stderr.write('[stage3] legacy vtable resolver failed (%s): %r\n' % (cls, _e))
         return None
     code = _vtable_re3.sub(lambda m: _try_resolve_vtable3(m) or m.group(0), code)
 
@@ -675,7 +945,9 @@ def run(code, ctx):
                 _args = [a.strip() for a in args.split(',')]
                 _args = [a for a in _args if a.replace('&', '').strip() != obj]
                 return '%s->%s(%s);\n' % (_obj_expr, _method, ', '.join(_args))
-        except: pass
+        except (AttributeError, KeyError, TypeError, IndexError, ValueError) as _e:
+            # t7: was a bare `except: pass` (third legacy resolver) — see above.
+            sys.stderr.write('[stage3] legacy vtable resolver failed (%s): %r\n' % (cls, _e))
         return None
     code = _vtable_re2.sub(lambda m: _try_resolve_vtable2(m) or m.group(0), code)
 
@@ -719,44 +991,31 @@ def run(code, ctx):
         code
     )
 
-    # Comment out remaining __vftable refs (unresolved = no method name for that slot)
-    lines_arr = code.split('\n')
-    result_lines = []
-    i = 0
-    while i < len(lines_arr):
-        line = lines_arr[i]
-        if '__vftable' in line and '//' not in line:
-            commented = ['// [VFTABLE] ' + line.lstrip()]
-            depth = line.count('(') - line.count(')')
-            has_semi = line.rstrip().endswith(';')
-            i += 1
-            while i < len(lines_arr) and not has_semi and depth > 0:
-                cont_line = lines_arr[i]
-                commented.append('// [VFTABLE]   ' + cont_line.lstrip())
-                depth += cont_line.count('(') - cont_line.count(')')
-                has_semi = cont_line.rstrip().endswith(';')
-                i += 1
-            result_lines.extend(commented)
-        else:
-            result_lines.append(line)
-            i += 1
-    code = '\n'.join(result_lines)
-
-    # Comment out remaining __vftable refs
-    code = re.sub(
-        r'^([ \t]*(?!/[/*]).*__vftable[^;]*;.*)$',
-        r'// [VFTABLE] \1',
-        code, flags=re.MULTILINE)
-
-    # Comment out lines with IDA type misidentifications (FLIRT/TIL false matches)
-    _IDA_MISID_PATTERNS = (
-        'Concurrency', 'details::VirtualProcessor', 'NtTib', 'ExceptionList',
-        'std::_Xlen', 'std::_Xran',
-    )
-    code = re.sub(
-        r'^([ \t]*.*(?:' + '|'.join(re.escape(p) for p in _IDA_MISID_PATTERNS) + r').*)$',
-        r'// [IDA_MISID] \1',
-        code, flags=re.MULTILINE)
+    # ------------------------------------------------------------------
+    # __vftable handling (t7 rewrite)
+    # ------------------------------------------------------------------
+    # Old behaviour: every line containing `__vftable` was commented out
+    # (`// [VFTABLE]`), first by a bracket-depth block scanner and then by a
+    # `^...__vftable[^;]*;.*$` regex.  Measured on the 2026-09-15 tree that
+    # destroyed 1935 lines, of which only a couple of dozen are genuine
+    # compiler-managed vptr setup; the rest are real data accesses, real
+    # control-flow, real dispatch and real conversions (see
+    # data/status/_cleanup_fix_vftable_comment.md).
+    #
+    # New behaviour, two passes:
+    #   1. `_comment_vptr_stores()` — the ONLY path allowed to comment, and
+    #      only for statements carrying positive evidence that the store
+    #      target is a vtable pointer (vptr copy / vtable symbol / a load
+    #      through a vtable-typed pointer).  A store the compiler regenerates
+    #      from the class definition must not appear in the source.
+    #   2. `_fold_vftable_mask()` — everything else is restored in a form that
+    #      compiles: the `__vftable` member is not emitted by the header
+    #      generator (`_variants` are dropped; only `data_members` are
+    #      written), so the raw text could never compile.  The vfptr sits at
+    #      offset 0 of its own object in every exported struct, so the access
+    #      is rewritten to the byte-exact offset-0 equivalent.
+    code = _comment_vptr_stores(code)
+    code = _fold_vftable_mask(code)
 
     # --- Reference parameter adaptation (gbengine &param fix) ---
     code = _fix_ref_params(code)

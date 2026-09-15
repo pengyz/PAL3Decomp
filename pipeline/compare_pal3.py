@@ -239,7 +239,41 @@ def main():
                          'ranks flag combos by L1 match rate')
     args = ap.parse_args()
 
-    census = json.loads(Path(args.census).read_text())
+    census_path = Path(args.census)
+    if not census_path.exists():
+        # Prerequisite guard: this used to die with a bare FileNotFoundError
+        # traceback, and `cli.py match` (which must enforce the L1 ratchet)
+        # would then report nothing useful about why.
+        print('[ERROR] probe census not found: %s' % census_path, file=sys.stderr)
+        print('  data/status/probe_census.json is produced by the S2 probe:', file=sys.stderr)
+        print('      python pipeline/cli.py probe all', file=sys.stderr)
+        print('  Refusing to run: byte-match L1 cannot be computed without the S2 list.',
+              file=sys.stderr)
+        sys.exit(2)
+    try:
+        census = json.loads(census_path.read_text())
+    except (json.JSONDecodeError, UnicodeDecodeError, OSError) as e:
+        print('[ERROR] probe census is unreadable/invalid: %s' % census_path, file=sys.stderr)
+        print('  %s' % e, file=sys.stderr)
+        print('  Re-run: python pipeline/cli.py probe all', file=sys.stderr)
+        sys.exit(2)
+    s2 = census.get('s2') if isinstance(census, dict) else None
+    if not isinstance(s2, dict) or not isinstance(s2.get('results'), list):
+        print('[ERROR] probe census has no usable s2.results list: %s' % census_path,
+              file=sys.stderr)
+        print('  Expected a census written by pipeline/probe_compile.py.', file=sys.stderr)
+        print('  Re-run: python pipeline/cli.py probe all', file=sys.stderr)
+        sys.exit(2)
+    malformed = [i for i, r in enumerate(s2['results'])
+                 if not isinstance(r, dict) or 'unit' not in r or 'status' not in r]
+    if malformed:
+        # Never silently skip an entry: a dropped S2-passing unit would silently
+        # shrink the byte-match denominator and inflate the L1 rate.
+        print('[ERROR] probe census has %d malformed s2.results entr(ies) (first idx %d): %s'
+              % (len(malformed), malformed[0], census_path), file=sys.stderr)
+        print('  Every entry needs "unit" and "status". Re-run: '
+              'python pipeline/cli.py probe all', file=sys.stderr)
+        sys.exit(2)
     passing = [r['unit'] for r in census['s2']['results'] if r['status'] == 'ok']
     if args.limit:
         passing = passing[:args.limit]

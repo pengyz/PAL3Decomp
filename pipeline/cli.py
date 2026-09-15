@@ -17,7 +17,7 @@
   compile             CMake 配置 + ninja 编译 (-k 0 全量)
   probe [s1|s2|all]   S1/S2 probe 编译普查 + 自动回归对账（vs latest 基线）
   match               S4 字节匹配裁判（假设旗标组 + L1 棘轮检查）
-  iterate [opts]      自动迭代引擎（annotation 修正直到收敛）
+  iterate [opts]      不可用（pipeline/iterate.py 不存在；会明确报错并退出 2）
   tool --list         列出所有可用工具脚本
   tool <name> [args]  运行 tools/ 下的脚本
 
@@ -279,8 +279,8 @@ def cmd_init(force=False):
     # Step 3: Master pipeline (PDB + FLIRT)
     print()
     print("[3/4] Master pipeline: importing PDB types + FLIRT ...")
-    ok = _run_ida('master_pipeline.py', cfg.idb_work)
-    print("      -> %s" % ("OK" if ok else "WARN: non-zero exit"))
+    ok_master = _run_ida('master_pipeline.py', cfg.idb_work)
+    print("      -> %s" % ("OK" if ok_master else "WARN: non-zero exit"))
 
     # Step 4: Apply annotations
     print()
@@ -296,6 +296,18 @@ def cmd_init(force=False):
     # Done
     print()
     print("=" * 55)
+    if not (ok_master and ok and vtok):
+        # Same defect class as cmd_apply: this used to print "INIT COMPLETE.
+        # IDB is ready" even after a failed step, so export/codegen/match ran
+        # against a half-built IDB and the numbers looked plausible.
+        failed = [name for name, good in (('master_pipeline.py', ok_master),
+                                          ('apply_annotations.py', ok),
+                                          ('fix_vtable_types.py', vtok)) if not good]
+        print("INIT INCOMPLETE - failed step(s): %s" % ", ".join(failed))
+        print("The IDB is NOT ready; fix the failure and re-run 'init' (or the")
+        print("individual step) before export/codegen/match.")
+        print("=" * 55)
+        sys.exit(1)
     print("INIT COMPLETE. IDB is ready for export/codegen.")
     print()
     print("Next steps:")
@@ -313,11 +325,24 @@ def cmd_apply():
 
     print("APPLY: updating annotations in %s ..." % cfg.idb_work.name)
     ok = _run_ida('apply_annotations.py', cfg.idb_work)
-    _run_ida('fix_vtable_types.py', cfg.idb_work)
-    if ok:
-        print("-> OK: annotations applied")
-    else:
-        print("-> WARN: non-zero exit (check _logs/apply_status.json)")
+    vtok = _run_ida('fix_vtable_types.py', cfg.idb_work)
+    if not ok:
+        # 'apply' is the first link of the `apply && export && codegen all &&
+        # probe all && match` gate chain. Returning 0 here made a FAILED apply
+        # look like success, so the chain kept running against a half-updated
+        # IDB and produced plausible-but-wrong baselines.
+        print()
+        print("-> ERROR: apply FAILED (apply_annotations.py exited non-zero).")
+        print("   Check pipeline/ida/_logs/apply_annotations_log.txt ([3] Structs line).")
+        print("   NOTE: _logs/apply_status.json is written by a separate script")
+        print("   (pipeline/ida/check_apply_status.py) and can be a stale value.")
+        print("   Refusing to report success; the gate chain stops here.")
+        sys.exit(1)
+    print("-> OK: annotations applied")
+    if not vtok:
+        print("-> [WARN] fix_vtable_types.py exited non-zero: vtable pointer types in the")
+        print("   IDB may be stale. Do not trust export/codegen/match output before")
+        print("   re-running apply and verifying.")
     print()
     print("Next: python pipeline/cli.py export")
 
@@ -376,14 +401,26 @@ def cmd_codegen(args):
     if args[0] == 'all' and '--no-snapshot' not in args:
         print("\n[Snapshot] Capturing compile baseline...")
         snap_script = os.path.join(_PIPELINE_DIR, 'snapshots', 'snapshot.py')
-        subprocess.run([sys.executable, snap_script, 'capture'])
+        snap = subprocess.run([sys.executable, snap_script, 'capture'])
+        if snap.returncode != 0:
+            print("[ERROR] snapshot capture failed (exit %d) -- not swallowing it; "
+                  "'codegen all' fails." % snap.returncode)
+            sys.exit(snap.returncode if snap.returncode > 0 else 1)
 
         # Auto-run regression detection
         tools_dir = os.path.join(_PROJECT_DIR, 'tools')
         regression_script = os.path.join(tools_dir, 'compile_regression.py')
         if os.path.exists(regression_script):
             print("\n[Regression] Checking for compile regressions...")
-            subprocess.run([sys.executable, regression_script])
+            reg = subprocess.run([sys.executable, regression_script])
+            if reg.returncode != 0:
+                # Propagate instead of silently discarding: a regression (or a
+                # frozen baseline) must break the `&&` chain, not scroll past.
+                print("[ERROR] compile_regression.py exited %d." % reg.returncode)
+                print("        If the ratchet baseline is stale, refresh it deliberately with")
+                print("        'python3 tools/compile_regression.py --update-baseline' after")
+                print("        confirming there is no real regression.")
+                sys.exit(reg.returncode if reg.returncode > 0 else 1)
 
 
 def _get_script_info(path):
@@ -605,9 +642,18 @@ def main():
     elif command == 'tool':
         cmd_tool(args[1:])
     elif command == 'iterate':
-        from pipeline.iterate import main as iterate_main
-        sys.argv = ['iterate'] + args[1:]
-        iterate_main()
+        # UNAVAILABLE: this used to `from pipeline.iterate import main`, but
+        # pipeline/iterate.py does not exist in this repository, so the command
+        # died with a bare ModuleNotFoundError traceback. Fail loudly instead.
+        print("[ERROR] 'iterate' is UNAVAILABLE: pipeline/iterate.py does not exist.")
+        print("        No automatic annotation-iteration engine is implemented in this")
+        print("        repository. Drive the pipeline step by step instead:")
+        print("          python pipeline/cli.py apply")
+        print("          python pipeline/cli.py export")
+        print("          python pipeline/cli.py codegen all")
+        print("          python pipeline/cli.py probe all")
+        print("          python pipeline/cli.py match")
+        sys.exit(2)
     else:
         print("Unknown command: %s" % command)
         print("Run with --help for usage.")

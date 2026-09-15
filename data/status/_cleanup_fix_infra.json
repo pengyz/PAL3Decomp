@@ -1,0 +1,461 @@
+{
+  "task": "t5 门禁与基建 —— 只做窗口外 7 项（第1、3项留给 captain）",
+  "generated_at": "2026-09-15T16:11:58+08:00",
+  "repo": "/home/peng/workspace/PAL3Decomp",
+  "head": "9cb436305017d39345c7530426bed793bb609bfb",
+  "window_discipline": {
+    "ran_shared_writers": false,
+    "note": "未运行 apply/export/codegen/probe/match，未启动 idat，未触碰 original/PAL3.exe.i64。所有读数来自静态分析 + /tmp 副本/harness（monkeypatch）。",
+    "concurrent_writers_observed": [
+      "pipeline/ida/apply_annotations.py、pipeline/ida/export_full.py（t3/t4，非本任务）",
+      "data/status/probe_census.json 15:57:59、data/status/s4_baseline.json 16:00:24、data/status/baselines/20260915_155759.json（captain 窗口）"
+    ]
+  },
+  "artifacts_fingerprint_at_measurement": {
+    "asm/pal3/decomp": {
+      "files": 3594,
+      "dir_mtime": "2026-09-15 15:44:09",
+      "fingerprint_name_size_sha256_16": "d38646079563540c"
+    },
+    "asm/pal3/ida_structs.json": {
+      "size": 3229277,
+      "mtime": "2026-09-15 15:44:30",
+      "entries": 1034
+    },
+    "data/annotations/structs": {
+      "files": 898,
+      "unique_names": 881,
+      "fingerprint_name_size_sha256_16": "87b1f2650a76ee7d"
+    }
+  },
+  "items": [
+    {
+      "id": 2,
+      "title": "tools/audit_layout.py 两处缺陷",
+      "status": "fixed",
+      "files": [
+        "tools/audit_layout.py"
+      ],
+      "defect_a_missing_prerequisite": {
+        "before": {
+          "command": "python3 /tmp/noida_old/tools/audit_layout.py   # HEAD 版放在无 asm/ 的副本里",
+          "exit": 0,
+          "output": "WARN: IDA structs not found at /tmp/noida_old/asm/pal3/ida_structs.json\\nLoading annotations...\\n  Loaded 881 structs\\nLoading IDA structs...\\n  Loaded 0 structs\\nAuditing 881 structs...\\n\\n✅ No layout issues detected.",
+          "verdict": "假通过：交叉检查表为空，check1/check2d 静默跳过，仍退出 0"
+        },
+        "after": {
+          "command": "python3 /tmp/noida_new/tools/audit_layout.py   # 新版，同一无 asm/ 副本",
+          "exit": 2,
+          "output": "AUDIT CANNOT RUN - prerequisite artifact missing or unreadable\\nIDA structs export not found: /tmp/noida_new/asm/pal3/ida_structs.json\\n  This is a PREREQUISITE ARTIFACT (asm/ is gitignored): regenerate it with\\n      python pipeline/cli.py export\\nThis is NOT a pass: the checks that need this artifact were not run.",
+          "verdict": "显式失败退出 2（与 ERROR 级布局问题的 1 区分开）"
+        },
+        "extra_hardening": [
+          "annotation structs 目录缺失 -> PrerequisiteError（原来 return {} 同样假通过）",
+          "单个 struct JSON 解析失败 -> 收集 load_failures，非空则退出 2（原来逐文件 WARN 跳过，审计覆盖面静默缩小）",
+          "ida_structs.json 为空对象 -> 退出 2"
+        ]
+      },
+      "defect_b_circular_size_check": {
+        "before": {
+          "command": "python3 /tmp/oldpkg/tools/audit_layout.py   # HEAD 版跑真实树",
+          "exit": 0,
+          "output": "✅ No layout issues detected.",
+          "verdict": "binary_size vs IDA size 恒等通过（同源），无任何提示"
+        },
+        "measured_tautology": "818/881 个 struct 有 IDA size（1034 条记录中命中 818），其中 818 相等 / 0 不等 / 63 无对应；100% 相等 = 同一条数据通路的构造必然",
+        "after": {
+          "command": "python3 tools/audit_layout.py; echo exit=$?",
+          "exit": 0,
+          "output_excerpt": "  IDA cross-check coverage: 818/881 structs have an IDA entry with a size (match=818, mismatch=0, not_compared=63)\\n  Declared-size geometry: 37 struct(s) above 3x\\n...\\nNON-DISCRIMINATING CHECK (reported, never used as evidence):\\n  check 1 binary_size vs IDA size: compared=818 match=818 mismatch=0 not_compared=63\\n  Reason: ... (annotation -> apply -> IDB -> export is ONE data path) ...",
+          "verdict": "① 显式标注该检查不具备判别力（报告正文 + JSON non_discriminating 字段）；② 新增 IDB 无关的『声明尺寸几何』信号（binary_size > 3× 声明成员末端，>50× 标 HIGH），本轮命中 37 个（>50× 14 个），逐条打印并计为 WARNING；③ 不改严重度为 ERROR（几何只是待复核信号，不是证据）"
+        },
+        "new_signal_blind_spot": "按值嵌套成员一致撑大的尺寸看不到：gbVFileSystem binary_size=917972 = 24 + sizeof(CPK=917948) -> 比值 1.0 不命中；SoundMgr 918796 = 848 + sizeof(CPK) 同理。已写入函数 docstring 与报告。"
+      },
+      "supporting_change": {
+        "what": "estimate_type_size(): 数组先于裸指针判定（原来 char *[N] 被当成 4 字节指针）；未知尺寸成员按 1 字节计入下界；完全无法解析成员尺寸的 struct 不输出比值",
+        "why": "否则新几何信号被估计器缺陷主导，产生假阳性",
+        "effect": "剔除 6 个假阳性（gbPrintFontMgr 5.0x->1.0x、EffectItem、primitive、t3DModel、Reoccupy、ARC_Reoccupy）",
+        "whole_tool_regression_check": "改动后真实树 0 个 ERROR（与 HEAD 版相同），无新增 ERROR"
+      }
+    },
+    {
+      "id": 4,
+      "title": "pipeline/decomp_quality.py:110 收紧判据",
+      "status": "fixed",
+      "files": [
+        "pipeline/decomp_quality.py"
+      ],
+      "change": "max(offsets) > cls_size * 2  ->  max(offsets) > cls_size（并同步注释；注释还写明 cls_size 膨胀会稀释该判据）",
+      "before": {
+        "command": "python3 pipeline/decomp_quality.py; echo exit=$?",
+        "exit": 0,
+        "output": "ATTRIBUTION: 99.8%\\n    Misattributed: 7/3025"
+      },
+      "after": {
+        "command": "python3 pipeline/decomp_quality.py; echo exit=$?",
+        "exit": 0,
+        "output": "ATTRIBUTION: 99.5%\\n    Misattributed: 16/3025"
+      },
+      "positive_contrast_newly_flagged_9_functions": [
+        [
+          "CCBUI",
+          "CCBUI::InitSkillUI(int)",
+          4696,
+          2648,
+          1.77
+        ],
+        [
+          "CPK",
+          "CPK::InitPackFiles(void)",
+          917964,
+          917948,
+          1.0
+        ],
+        [
+          "CScreenMode",
+          "CScreenMode::ResetProgressList(void)",
+          9980,
+          5496,
+          1.82
+        ],
+        [
+          "EquipUI",
+          "EquipUI::EquipUI(void)",
+          185176,
+          120116,
+          1.54
+        ],
+        [
+          "PalScript",
+          "PalScript::LoadResource(char *)",
+          2900,
+          2176,
+          1.33
+        ],
+        [
+          "UICaption",
+          "UICaption::CreateChildWidget(...)",
+          116,
+          96,
+          1.21
+        ],
+        [
+          "UICaption",
+          "UICaption::Destroy(void)",
+          116,
+          96,
+          1.21
+        ],
+        [
+          "UIMap",
+          "UIMap::Destroy(void)",
+          192,
+          152,
+          1.26
+        ],
+        [
+          "gbRefObject",
+          "gbRefObject::ReleaseAllRefs(gbRefObject **)",
+          12,
+          8,
+          1.5
+        ]
+      ],
+      "required_contrast_gbVFileSystem_SoundMgr": {
+        "gbVFileSystem": {
+          "cls_size": 917972,
+          "threshold_before_star2": 1835944,
+          "threshold_after_star1": 917972,
+          "hits_before": 0,
+          "hits_after": 0,
+          "reason": "该类的 decomp 记录里 __thiscall gbVFileSystem:: 函数数为 0 -> 结构性无法命中；且其尺寸由按值 CPK 成员派生（917972 = 24 + 917948），阈值在任何倍率下都不可达（裁决(b) 的稀释论点）"
+        },
+        "SoundMgr": {
+          "cls_size": 918796,
+          "threshold_before_star2": 1837592,
+          "threshold_after_star1": 918796,
+          "hits_before": 0,
+          "hits_after": 0,
+          "reason": "只有 2 个 decomp 函数（InitCPK/PlayCPKStream），两者都没有任何 `this+N` 裸偏移 -> 无信号；尺寸同样由按值 CPK 成员派生（918796 = 848 + 917948）"
+        },
+        "conclusion": "『收紧到 >cls_size 后 gbVFileSystem/SoundMgr 会被标记』不成立（实测 0->0）。这两个类的问题只能在『尺寸本身』这一层检出，而本判据消费的 cls_size 正是被质疑的量；真正需要的是 IDB 无关尺寸来源（裁决(b) 已裁定）。不得以此为由再放宽倍率。"
+      },
+      "discrepancy_vs_handoff": "交接文档/captain 给的是『7 -> 17』；实测 `> cls_size` 为 **16**。口径核对：`>2*cls_size`=7、`>cls_size`=16、`>=cls_size`=17（17 对应 `>=` 口径，不是任务要求的 `>`）。",
+      "baseline_note": "pipeline/_logs/quality_baseline.json 记录 misattrib_funcs=14（total_funcs=3401，旧树），当前 16/3594；attribution_accuracy 99.55% -> 99.48%，落差 0.07% < 5% 阈值，未触发 [REGRESSION]。是否 `--save` 刷新该基线属刻意决定，留给 captain（未做）。"
+    },
+    {
+      "id": 5,
+      "title": "pipeline/cli.py 三处（+1 处同类）",
+      "status": "fixed",
+      "files": [
+        "pipeline/cli.py"
+      ],
+      "a_apply_exit_code": {
+        "before": {
+          "harness": "/tmp/t5_cli_before.py（monkeypatch _run_ida -> False）",
+          "result": "cmd_apply() 返回 None，无 SystemExit -> 进程退出 0",
+          "output": "-> WARN: non-zero exit (check _logs/apply_status.json)"
+        },
+        "after": {
+          "harness": "同一 harness",
+          "result": "cmd_apply() raised SystemExit(1)",
+          "output": "-> ERROR: apply FAILED (apply_annotations.py exited non-zero).\\n   Check pipeline/ida/_logs/apply_annotations_log.txt ([3] Structs line).\\n   NOTE: _logs/apply_status.json is written by a separate script\\n   (pipeline/ida/check_apply_status.py) and can be a stale value."
+        }
+      },
+      "b_post_hooks_returncode": {
+        "before": {
+          "harness": "cmd_codegen(['all']) + stub subprocess.run（codegen=0, snapshot=0, compile_regression=1）",
+          "result": "返回 None，退出码 0 -> compile_regression 的失败被吞"
+        },
+        "after": {
+          "result": "SystemExit(1)（snapshot 非零或 compile_regression 非零都会传出）",
+          "output": "[ERROR] compile_regression.py exited 1."
+        }
+      },
+      "c_iterate_missing_module": {
+        "before": {
+          "command": "python3 pipeline/cli.py iterate; echo exit=$?",
+          "exit": 1,
+          "output": "ModuleNotFoundError: No module named 'pipeline.iterate'（裸 traceback）"
+        },
+        "after": {
+          "command": "python3 pipeline/cli.py iterate; echo exit=$?",
+          "exit": 2,
+          "output": "[ERROR] 'iterate' is UNAVAILABLE: pipeline/iterate.py does not exist."
+        },
+        "also": "docstring 命令行从『自动迭代引擎』改为『不可用（pipeline/iterate.py 不存在；会明确报错并退出 2）』"
+      },
+      "d_scope_adjacent_cmd_init": {
+        "what": "cmd_init 现在在 master_pipeline/apply_annotations/fix_vtable_types 任一步失败时打印 INIT INCOMPLETE 并退出 1",
+        "before": {
+          "harness": "全部 3 步 _run_ida -> False",
+          "result": "打印 'INIT COMPLETE. IDB is ready' + 退出 0"
+        },
+        "after": {
+          "result": "SystemExit(1)",
+          "output": "INIT INCOMPLETE - failed step(s): master_pipeline.py, apply_annotations.py, fix_vtable_types.py"
+        },
+        "rationale": "与 item5(a) 同一缺陷类（谎报成功），且 docs 会引导用户跑 init；已在此显式声明为 inScope 外的一点附加改动"
+      },
+      "coupling_warning_for_captain": "post-hook 传出后，`codegen all` 会在 compile_regression.py 退出 1 时失败。当前棘轮基线冻结在 2026-09-01（204 文件/58 ok）-> 恒定 REGRESSIONS。即：**captain 的第 3 项（刷新棘轮基线）落地前，codegen all 会以非零退出**，这是预期的耦合，不是新缺陷。"
+    },
+    {
+      "id": 6,
+      "title": "缺前置产物/不可用时的失败形态",
+      "status": "fixed",
+      "files": [
+        "pipeline/config.py",
+        "pipeline/compare_pal3.py",
+        "tools/annotation_diff.py"
+      ],
+      "a_pipeline_toml": {
+        "handoff_claim": "顶层 import 未捕获 -> 裸 traceback",
+        "measured": "**不符**。pipeline/config.py:132-139 早已捕获 ConfigError，打印 PIPELINE CONFIG ERROR 横幅（含完整 toml 模板）并退出 1，无 traceback；该处理自提交 a3f423c94（2026-05-17 'pipeline.toml config + validation with LLM-friendly errors'）起就在。",
+        "repro": "在 /tmp/cfgtest 复制 pipeline/ 后（无 pipeline.toml）跑 7 个入口：cli.py exit1/0 traceback、check_annotations.py exit1/0、config.py exit1/0；decomp_quality.py、probe_compile.py、compare.py exit0（它们不读 config，属正常）。",
+        "change_made": "仅在 missing-toml 消息里增加可操作提示（模板是 tracked 的）：'cp pipeline.toml.example pipeline.toml' + 说明该文件按设计 gitignored。",
+        "not_done_and_why": "未把模块级 sys.exit(1) 改成 raise ConfigError 传播：那需要同时改造 3 个入口的 try/except，否则会**新增**裸 traceback（现有行为已是响亮失败）。"
+      },
+      "b_compare_pal3_census": {
+        "before": {
+          "command": "python3 pipeline/compare_pal3.py --census /tmp/no_such_census.json; echo exit=$?",
+          "exit": 1,
+          "output": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/no_such_census.json'（裸 traceback，line 242）"
+        },
+        "after": {
+          "command": "同一命令",
+          "exit": 2,
+          "output": "[ERROR] probe census not found: /tmp/no_such_census.json\\n  data/status/probe_census.json is produced by the S2 probe:\\n      python pipeline/cli.py probe all"
+        },
+        "extra": [
+          "census 非法 JSON -> 退出 2",
+          "无 s2.results 列表 -> 退出 2",
+          "s2.results 条目缺 unit/status -> 退出 2（绝不静默丢条目：会缩小字节匹配分母、虚高 L1）"
+        ]
+      },
+      "c_annotation_diff_git": {
+        "before": {
+          "repro": "/tmp/andiff（898 个 struct JSON 的副本）A) 有 git 无变更 B) 删除 .git",
+          "A_exit": 0,
+          "A_output": "变更结构体数量: 0 / ✅ 未检测到annotation变更。",
+          "B_exit": 0,
+          "B_output": "变更结构体数量: 898 / 898 条 struct_added",
+          "verdict": "两种情形退出码都是 0 -> 不可区分；且把 898 个结构体全报为『新增』"
+        },
+        "after": {
+          "A_exit": 0,
+          "A_output": "git: HEAD -> b9ca46d5... (可读) / verdict: clean / ✅ 未检测到annotation变更（git 可读: ...；898 个 struct 文件与 HEAD 一致）。",
+          "B_exit": 3,
+          "B_output": "❌ GIT 不可读 —— 无法判断注解是否有变更（不是「无变更」）: cannot resolve commit 'HEAD' (git rev-parse exit 128)",
+          "real_repo": "python3 tools/annotation_diff.py -> exit 0, verdict: changed, 变更结构体数量 3（SaleUI/SceneObj/UICursor，与 git status 一致）；JSON 报告新增 verdict/git_sha/current_struct_files/git_struct_files 字段；坏 commit（deadbeef）同样 exit 3。"
+        },
+        "never_reclassify": "git ls-tree 列出了某文件但 git show 读不到 -> 记入 git_read_errors 并报错（不再当成『新增』）"
+      }
+    },
+    {
+      "id": 7,
+      "title": "报告：已跟踪 >10MB blob 清单 + 仓库根 __vftable（只报告，未删任何东西）",
+      "status": "reported_only",
+      "tracked_blobs_over_10MiB": [
+        {
+          "path": "original/PAL3.exe.i64.polluted.bak",
+          "bytes": 85833047,
+          "MiB": 81.86,
+          "blob_sha": "2c4a5c8987a8370184be001ebb53fd18fbe6cbda",
+          "introduced_by": "0d1294b0e",
+          "worktree_file_still_present": true,
+          "worktree_mtime": "2026-08-29 19:03:37",
+          "action_taken": "无（只报告）"
+        },
+        {
+          "path": "data/pdb/pdb_export.json",
+          "bytes": 11628898,
+          "MiB": 11.09,
+          "blob_sha": "62eadba0d89f3cdf6811d69b3ce0eb796f3501a2",
+          "note": "**交接文档未提到**：这是第二条 >10MB 的已跟踪 blob（11.1 MiB 的 PDB 导出）。",
+          "action_taken": "无（只报告）"
+        }
+      ],
+      "method": "git ls-files -s -> git cat-file -s <blob> | awk '$1>10485760'；共 4223 个已跟踪文件，只有上述 2 个超 10MiB",
+      "repo_root_vftable": {
+        "path": "__vftable",
+        "mode": "100644",
+        "blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "bytes": 0,
+        "mtime": "2026-06-18 15:32:25",
+        "producer_path": "未找到：git grep 在 pipeline/tools/cmake 中找不到任何以 '__vftable' 为文件名打开/写入的代码路径；该标识符只作为生成 C++ 里的字段名出现在 stage3_cleanup.py / emit_headers.py 等正则里",
+        "action_taken": "无（删除留给 integrator 的 B4 批次）"
+      },
+      "other_tracked_symlinks": {
+        "count": 1,
+        "paths": [
+          "data/status/baselines/latest.json（mode 120000，指向未入库的 20260915_100946.json）"
+        ],
+        "note": "属 captain 的第 1 项（发行阻断），本任务按分工未改；工作区当前是 -> 20260915_155759.json 的本地符号链接"
+      },
+      "explicitly_not_done": [
+        "未执行 git rm --cached",
+        "未删除 original/PAL3.exe.i64.polluted.bak 工作区文件",
+        "未删除 __vftable",
+        "未改 .gitignore",
+        "未重写历史"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "tools/vc6 小写 shim 存在性门禁",
+      "status": "fixed",
+      "files": [
+        "tools/wine_vc6.sh"
+      ],
+      "before": {
+        "evidence": "git grep 在 HEAD 的 pipeline/*.py 与 tools/*.py 中搜 setup_wine_vc6 / vc6/Include / msvcrt.lib -> 无命中（exit 1）；git grep 在 HEAD 的 tools/wine_vc6.sh 中搜 symlink/lowercase/setup_wine -> 无命中（exit 1）",
+        "consequence": "漏跑 setup_wine_vc6.sh 时的失败形态是晦涩的 'fatal error C1083: Cannot open include file: windows.h' / 'cannot open input file MSVCRT.LIB'"
+      },
+      "after": {
+        "gate": "vc6_check_shims() 抽样 $VC6_SHIM_INCLUDE/windows.h 与 $VC6_LIB/msvcrt.lib（test -e），缺失则打印缺哪个 + 指向 `bash tools/setup_wine_vc6.sh` + 该脚本 UPPERCASE/Linux 大小写原理，非零退出；无静默兜底、无绕过开关",
+        "measurements": {
+          "repo_shims_present_source": "bash -c 'source tools/wine_vc6.sh; echo rc=$?' -> rc=0（并定义 vc6_compile；VC6_SHIM_INCLUDE=/home/peng/workspace/PAL3Decomp/tools/vc6/Include）",
+          "missing_source": "bash -c 'source /tmp/vc6test/tools/wine_vc6.sh' -> 退出 2 且打印 MISSING 横幅",
+          "missing_executed": "bash /tmp/vc6test/tools/wine_vc6.sh bogus -> 退出 2",
+          "strict_mode": "set -euo pipefail 下：缺 shim -> 2；shim 存在（真实仓库）-> 0",
+          "syntax": "bash -n tools/wine_vc6.sh -> 0"
+        }
+      },
+      "shim_inventory_unchanged": {
+        "tools/vc6 symlinks": 1258,
+        "repo_total_symlinks_excl_git": 1266,
+        "tracked_symlinks": 1,
+        "gitignore": ".gitignore:87-88 tools/vc6/{Include,Lib}/[a-z_]*",
+        "note": "未把任何 shim 纳入版本控制（用户明确要求保留为本地适配层）"
+      },
+      "scope_adjacent_change": {
+        "what": "vc6_compile / vc6_compile_gbengine 的 /I 列表新增 `$WIN_VC6_SHIM_INCLUDE`（排在 msvc6.0/Include 之后）",
+        "why": "实测 tools/compilers/msvc6.0/Include **没有** 小写 windows.h（只有 WINDOWS.H），即这两个函数在本机原本就解析不了 <windows.h>；probe_compile.py:43-48 与 cmake/toolchain-vc6.cmake 早已同时包含 tools/vc6/Include，手工入口与自动构建路径保持一致，门禁才真正守得住这条路径",
+        "declared_as": "超出第 8 项字面要求，但属同一缺陷（shim 层未接入该入口 + 无存在性门禁），请复核是否接受"
+      },
+      "recommendation_out_of_scope": "真正每次都在跑的 S2 门禁 pipeline/probe_compile.py 仍无 shim 前置检查（grep 实测 *.py 零命中）。建议由 captain 决定是否把同一检查加到 probe_compile.py 的 INCLUDE_DIRS 校验里（本任务 inScope 未含该文件，未改）。",
+      "doc_observation": "tools/compilers/msvc6.0 与 tools/vc6 是两份并存的 VC6 分发（Bin/Include 各一份，Lib/Lib+DX 各一份）：属裁决(c) 提到的维护歧义，低优先级 DOCUMENT，未改。"
+    },
+    {
+      "id": 9,
+      "title": "docs/decompilation_workflow.md 写入重建路径与 apply 观测点",
+      "status": "fixed",
+      "files": [
+        "docs/decompilation_workflow.md"
+      ],
+      "content_added": [
+        "§0 单写者纪律（哪些命令写共享产物、idat 路径与调用形式 cli.py:138-150、TVHEADLESS=1、读者先快照）",
+        "§1 前置产物表 + 缺失时的失败形态（含 asm/ 被 .gitignore:119 忽略的后果）",
+        "§2 从 raw IDB 重建的最小路径：`python pipeline/cli.py init`（raw 已存在则跳过最贵的一步）+ 等价手工 idat 三步 + 之后 export/codegen/probe/match 与判据",
+        "§3 apply 真成功的观测点（三条）+ 边车文件说明",
+        "§4 门禁退出码语义速查表（含本次收紧后的 2/3 语义）",
+        "§5 已知『看起来通过其实没查』清单（同源尺寸比较 818/818、decomp_quality 稀释、几何信号盲区、codegen 读 annotation 红线未收口）"
+      ],
+      "verified_facts": {
+        "i64_mtime_vs_apply_log": "original/PAL3.exe.i64 mtime 2026-09-15 15:44:39 > apply_annotations_log.txt mtime 15:40:47（日志末行 '[*] Done. Database saved.'）",
+        "apply_log_structs_line": "pipeline/ida/_logs/apply_annotations_log.txt:98 -> `[3] Structs: 881/881 imported successfully (fail=0)`",
+        "apply_status_is_not_written_by_apply": "grep -n apply_status pipeline/ida/apply_annotations.py -> 无命中（exit 1）；唯一写入者 check_apply_status.py:16/:84",
+        "apply_status_staleness_measured": "apply_status.json mtime 15:14:42 vs apply 日志 15:40:47 / .i64 15:44:39 -> 落后约 26 分钟",
+        "sidecars": "original/ 下当前 .til/.nam/.id0/.id1/.id2 共 0 个（与 15:44:39 干净保存一致）；按裁决口径『边车存在=上次崩过』，反向不成立",
+        "ida_structs_producer": "export_full.py:520/:787 写 asm/pal3/ida_structs.json"
+      },
+      "unverified_marked_in_doc": "『mtime 刷新』的通用性依赖 IDA 保存行为；本任务窗口外未重跑 apply，故文档以机制依据 + 当前实测快照呈现，未声称已复跑验证。",
+      "history_handling": "原文件内容（2026-05-01 topo.dll/Ghidra 工作流，src/topo、run_verify.bat、asm/topo）与当前 PAL3.exe 管线无关，已在文末标注为『历史内容，已过期』保留，未删除。"
+    }
+  ],
+  "files_changed": [
+    "pipeline/cli.py",
+    "pipeline/compare_pal3.py",
+    "pipeline/config.py",
+    "pipeline/decomp_quality.py",
+    "tools/annotation_diff.py",
+    "tools/audit_layout.py",
+    "tools/wine_vc6.sh",
+    "docs/decompilation_workflow.md",
+    "data/status/_cleanup_fix_infra.json"
+  ],
+  "not_touched_by_me": [
+    "original/PAL3.exe.i64",
+    "data/status/*.json 中已存在的文件（除本交付物）",
+    "pal3/src/",
+    "asm/pal3/",
+    "pipeline/ida/*.py（t3/t4 的改动非本任务）",
+    "data/annotations/",
+    "backup/local-line-20260904 分支与 stash",
+    "任何 shim"
+  ],
+  "acceptance_criteria": {
+    "L1_ge_5": {
+      "value": 5,
+      "source": "data/status/s4_baseline.json stats.match_L1（captain 16:00 窗口读数）",
+      "verified_by_me": false
+    },
+    "ok_ge_53_of_198": {
+      "value": "53/198 (S1 733/754)",
+      "source": "data/status/probe_census.json s2（captain 15:57 窗口读数）",
+      "verified_by_me": false
+    },
+    "why_not_verified_by_me": "窗口由 captain 独占，本任务按硬纪律 4 未运行 apply/export/codegen/probe/match。本任务的改动不触碰 codegen 输入与注解，因此不改变 L1/ok；三处门禁收紧（audit_layout 假通过->exit2、decomp_quality 7->16、cli 钩子不再吞错）都不在 L1/ok 的判定路径上。"
+  },
+  "pending_window": [
+    "captain 第1项：data/status/baselines/latest.json 改 100644（当前工作区仍是 -> 20260915_155759.json 的符号链接；git index 仍为 120000，指向未入库的 20260915_100946.json） + 修 tools/regression_detector.py:120-128 + 跑 probe s2 做防复发复验 + 撤销 core.symlinks=false 后复验（clone/archive 四项合取式）。**未做**。",
+    "captain 第3项：tools/compile_regression.py 棘轮基线刷新（当前仍冻结 2026-09-01）。注意：因 item5(b) 现在会传出 returncode，**基线刷新前 `codegen all` 会以非零退出**。",
+    "captain 窗口复验：本任务未产生 L1/ok 变更，但若 t3/t4/t6 落地，需按其判据重跑 probe/match。",
+    "可选：probe_compile.py 增加同款 shim 前置检查（本任务 inScope 外，未改）。",
+    "可选：pipeline/_logs/quality_baseline.json 是否随 decomp_quality 收紧而 --save 刷新（刻意决定，留给 captain）。",
+    "可选：pipeline/ida/check_apply_status.py 跑一次（idat）以把 apply_status.json 从 15:14:42 的陈旧值刷新（窗口内操作）。"
+  ],
+  "discrepancies_vs_handoff_or_captain": [
+    "decomp_quality 收紧后命中数：captain 说 17，实测 `> cls_size` 为 **16**（`>=` 才是 17）。以实测为准。",
+    "『收紧到 >cls_size 后 gbVFileSystem/SoundMgr 被标记』不成立：两者 0->0（前者 decomp 函数数 0，后者 2 个函数无 `this+N`）。",
+    "『pipeline.toml 缺失时顶层 import 未捕获 -> 裸 traceback』不成立：config.py:132-139 早已捕获 ConfigError、退出 1、无 traceback（自 a3f423c94 起）。",
+    "grep 口径纠错（我方）：一度用 `grep ... | head` 取退出码，得 exit=0 的假象；已改用不接管道重测（*.py 中 setup_wine_vc6 命中数 0，exit=1）。",
+    "额外的 >10MB 已跟踪 blob：data/pdb/pdb_export.json（11.1 MiB），交接文档只提了 85MB 那一个。",
+    "交付文档口径：交接文档说 `tools/annotation_diff.py` 会把『898 个结构体』全报新增 —— 实测确为 898（struct JSON 文件数；audit_layout 口径的**唯一** struct 名是 881，两者不可混用）。"
+  ],
+  "reviewer_notes": [
+    "所有 before/after 均可复跑：harness 与副本在 /tmp（t5_probe_before.py、t5_cli_before.py、oldpkg/、noida_old/、noida_new/、andiff/、vc6test/）。",
+    "本任务未放宽任何检查：audit_layout 只新增失败路径与信号；decomp_quality 只收紧倍率；cli 只把吞掉的失败传出；annotation_diff 只把『读不到 git』从假成功改成显式失败；wine_vc6.sh 只新增前置检查（并让手工 include 路径与 probe/cmake 对齐）。",
+    "唯一可能被视为『放宽』的是 wine_vc6.sh 的 /I 追加（更多 include 候选）——已在 scope_adjacent_change 中显式声明，请复核。"
+  ]
+}

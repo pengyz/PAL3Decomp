@@ -1,0 +1,171 @@
+{
+  "task": "t4",
+  "title": "export 红线（pipeline/ida/export_full.py）",
+  "exit_chosen": "b",
+  "exit_summary": "判 b：证据充分的「有意取舍」。8 处读取承重且其信息在当前 IDB 中无等价可查询形式；第 9 处（:148-154 读 functions.json）经 AST 证明是死读，已就地删除（不影响 exit 判定，但使失实注释与 1 个读点消失）。未做 (a) 的原因是等价性无法成立/无法证明：纯 IDB 取数会改变导出产物，而证明等价需要独占 export 窗口（本轮被 t3 的 apply/export 占用）。",
+  "verdict_vs_red_line": "仍判定为红线违规（CLAUDE.md:69「export 不读 annotation：export_full.py 只能从 IDB 读取数据，不能直接读 data/annotations/ JSON 文件」）。t4 的作用是把存量违规从「未声明的 9 处」变为「已逐处声明 + 可查证取舍的 8 处」，并给出迁移前置条件；**红线本身未被满足，也未通过改注释「修好」**。",
+
+  "read_sites_before": [
+    {"n": 1, "line": "148-154 (读在 :150)", "reads": "data/annotations/functions.json", "declared_exception": false,
+     "note": "❌未声明例外；:148 注释自称 'authoritative source for signatures' —— **失实**。",
+     "verdict": "DEAD（死读）——已删除",
+     "evidence": "AST 取证：Name ann_funcs 的 Store 行=[149,153]，Load 行(非 Store)=[154] 且 154 只是 log 计数 → 153 之后无任何读取。成因可追：d827ebca6(2026-05-21) 引入「以注解 signature 为权威源」，71a2e09db(2026-05-22，次日) 删去其唯一使用点（diff 显示 sig 改回 cfunc.type.dstr()）却留下 load。运行期实证：export 日志 '[*] Loaded 530 function annotations' = functions.json 条目数 530，除此无任何后续作用。"},
+
+    {"n": 2, "line": "156-196 (读在 :159)", "reads": "data/annotations/structs/*.json 的 methods['ordinal'] 与 vtables[].slots[].addr/from", "declared_exception": false,
+     "note": "❌未声明例外（文件内无例外注释）。历史自述：18838d912 的 commit message 写 'export_full.py: export globals from IDB, vtables/methods from annotations (export IS the bridge stage, reads annotations to produce final output)'。",
+     "consumer": ":381-382 给 signature 注入 'virtual ' 前缀；:388-389 用 _addr_to_class 注入 'ClassName::'",
+     "measured_effect": "离线复现 _virtual_addrs=475 / _addr_to_class=369 / methods=0，与 export 日志 '[*] Loaded 475 virtual methods, 369 class-attributable addresses (methods=0)' **逐字一致**（同一 15:44:30 运行）。导出语料实测：442/3594 个 signature 以 'virtual ' 开头；3199/3594 个 name 含 '::'，其中 34 个末段以 'sub_' 开头（该形态不可能是 mangled demangle 产物 → 必为 :388 注入形态，故 34 是注入效果的下界）。",
+     "sub_finding": "同一块内 :183-194 的「非虚方法归属」循环当前贡献 0（日志 methods=0）→ 是当前惰性但非死代码的路径（换注解状态可能非 0），未删除。"},
+
+    {"n": 3, "line": "198-204 (读在 :200)", "reads": "data/annotations/skip_functions.json（键=地址）", "declared_exception": false,
+     "consumer": ":272 与 :290 —— 排除出 targets（不反编译）",
+     "measured_effect": "1955 个条目，**全部落在 .text 区间** [0x401000,0x5695D0]；与 3594 个实际导出地址的**交集=0**（即完全生效）。apply 侧会为这些地址 add_func（apply_annotations.py:1686-1687），但只 set_name，**不留任何 skip 标记**。"},
+
+    {"n": 4, "line": "206-264 (读在 :213)", "reads": "data/annotations/functions.json", "declared_exception": false,
+     "consumer": "构造增补签名 → vc6_mangler.mangle() → ida_name.set_name()",
+     "measured_effect": "export 日志 '[*] Mangler: set 3276 mangled function names'。注意：这段**写 IDB**，与本文件头部自述 'Pure export - no modifications to IDB' 相矛盾（另一处已记录的失实自述）。"},
+
+    {"n": 5, "line": "206-264 (读在 :216)", "reads": "data/annotations/structs/*.json（methods + nested_types.methods）", "declared_exception": false,
+     "consumer": "同上（mangler pre-pass 的第二个数据源）",
+     "measured_effect": "同上 3276；语料侧 3199/3594 个导出 name 含 '::'。"},
+
+    {"n": 6, "line": "280-321 (读在 :281)", "reads": "data/annotations/functions.json（全地址表）", "declared_exception": false,
+     "consumer": ":295-313 对 IDA 未列出的地址 create_insn/add_func 后补进 targets",
+     "measured_effect": "当前 **recovered=0**（日志无 '[*] Recovered' 行），另有 2 条不可恢复（0x00401800 _todo_401800、0x00408BD0 NullCallback）→ 对本轮导出产物**零贡献**；保留理由是换库/重建 IDB 时对 'IDA undefine race' 的稳健性，而该地址全表在 IDB 中无等价查询（IDB 里没有的函数，自然查不出它的地址）。"},
+
+    {"n": 7, "line": "483-494 (读在 :485)", "reads": "data/annotations/structs/*.json（整个文件：vtables / methods / known_members）", "declared_exception": false,
+     "consumer": "两处：(i) :582-587 的 `_BYTE[]/_BYTE[1]/_BYTE` 成员类型回退；(ii) :631-634 把 vtables/methods/known_members **透传**进 asm/pal3/ida_structs.json（键名 vtables / methods / _variants）",
+     "measured_effect": "在 ida_structs.json（sha256(16)=3bf54cafe721d3e4，mtime 15:44:30）上实测：761 个有注解文件的 struct 中，**vtables/methods/_variants 与注解逐字段不一致数 = 0/0/0**（即一一等值复制）；受影响规模：79 个 struct 带 vtables、215 个带 methods、686 个带非空 _variants（共 8979 条条目）。下游消费者（实测 grep）：pipeline/gen/stages/emit_headers.py:203/:205/:619/:621/:1006/:1642/:1775-1811/:2145/:2316/:2368、pipeline/gen/data.py:141、pipeline/gen/stages/stage3_cleanup.py:100。"},
+
+    {"n": 8, "line": "684-714 (读在 :688)", "reads": "data/annotations/globals.json（type=='skip' 的条目）", "declared_exception": false,
+     "consumer": ":699-712 把对应地址的 _globals 条目标成 type='skip'（或补一条 skip 记录）",
+     "measured_effect": "注解 skip=196 条，**196 条地址全部存在**于导出的 _globals，其中 **188 条**被置为 skip（另 8 条因注解 name 与 IDB name 不一致而按 :708 的策略跳过）；导出 _globals 的 skip 总数=808 → 另 620 条来自本文件 :672-682 的 .rdata 过滤。apply 侧明确**不**把 type=='skip' 写进 IDB（apply_annotations.py:1710 `if name and gtype and gtype != \"skip\"`）→ IDB 无 skip 语义。"},
+
+    {"n": 9, "line": "716-731 (读在 :718)", "reads": "data/annotations/skip_functions.json（reason != 'thunk' 的 name）", "declared_exception": false,
+     "consumer": "写出 ida_structs.json['_skip_function_names']['_names']；下游 pipeline/gen/data.py:188 `self.skip_funcs = set(...)`",
+     "measured_effect": "导出的 1816 个名字与非 thunk 名单 **集合完全相等**（1955 总条目 − 139 thunk = 1816），可逐位对上。"}
+  ],
+
+  "read_sites_after": [
+    {"line": 194, "reads": "data/annotations/structs (site 2)", "marked": "[t4-DECLARED-EXCEPTION]"},
+    {"line": 238, "reads": "data/annotations/skip_functions.json (site 3)", "marked": "[t4-DECLARED-EXCEPTION]"},
+    {"line": 254, "reads": "data/annotations/functions.json (site 4)", "marked": "[t4-DECLARED-EXCEPTION]"},
+    {"line": 257, "reads": "data/annotations/structs (site 5)", "marked": "[t4-DECLARED-EXCEPTION]"},
+    {"line": 325, "reads": "data/annotations/functions.json (site 6)", "marked": "[t4-DECLARED-EXCEPTION]"},
+    {"line": 532, "reads": "data/annotations/structs (site 7)", "marked": "[t4-DECLARED-EXCEPTION]"},
+    {"line": 738, "reads": "data/annotations/globals.json (site 8)", "marked": "[t4-DECLARED-EXCEPTION]"},
+    {"line": 770, "reads": "data/annotations/skip_functions.json (site 9)", "marked": "[t4-DECLARED-EXCEPTION]"}
+  ],
+  "read_sites_after_count": 8,
+  "read_sites_before_count": 9,
+  "sites_removed": [
+    {"site": 1, "line_before": "148-154", "why_safe": "AST 证明 ann_funcs 无消费者（153 之后无 Load）；删除是纯代码 token 删除。",
+     "neutrality_proof": "对 HEAD 版与工作区版做「忽略 COMMENT/NL 的 token 流」diff（tokenize+SequenceMatcher）：**唯一差异**是删除 HEAD[803:869] 的 67 个代码 token（正是该死块），其余全为注释插入 → 可执行语义零变化。副作用仅一条日志行消失（'[*] Loaded 530 function annotations'），且 grep 全仓无任何消费者解析该日志。",
+     "syntax_check": "python3 ast.parse(current) = OK（未写任何 __pycache__ 之外的产物）"}
+  ],
+
+  "equivalence_proof": null,
+  "equivalence_proof_note": "exit=b，故无 (a) 式等价证明。(a) 不可达的理由见 exit_b_rationale 与 tradeoff_evidence.cannot_prove_equivalence。",
+
+  "exit_b_rationale": {
+    "why_a_was_not_chosen": [
+      "1. 纯 IDB 取数**不可能等价**：site 3/8/9 的信息在 IDB 中不存在（apply 只 set_name，:1710 明确排除 'skip'），site 7 的三个字段是注解 JSON 结构（透传后逐字段等于注解，0/761 不一致），site 2/6 的集合以注解为唯一定义域。若改为「只从 IDB 取数」，导出产物必然改变，那是行为变更而非等价重构。",
+      "2. 对本轮**不可验证**：判据要求 L1/ok 实测，且 (a) 还要求「导出产物 diff」。match/probe/export 都会写共享产物（compare_pal3.py 写 data/status/s4_baseline.json；export 写 asm/pal3/decomp + asm/pal3/ida_structs.json），本轮窗口被 t3 的 apply/export 占用（实测 15:40:47 apply 日志、15:44:30 export 日志、15:44:39 .i64 mtime），按窗口纪律不得并发。",
+      "3. 迁移必然连带其它模块：要落地 (a) 需改 apply_annotations.py（或新增独立 IDB dumper 脚本）把 skip 集合 / globals skip / skip 名单 / structs 元数据以「从 IDB 状态生成」的形式落盘 —— 超出本任务 inScope（只有 export_full.py），按边界须先回报 captain。",
+      "4. 风险面不划算：export 是 annotation→codegen 的**唯一桥**（18838d912 自述），其输出驱动 ≥13 个 emit_headers 消费点 + data.py:188。未经窗口验证就改写桥的取数来源，正是裁决 (a) 警告的「旁路/旁路后果」类改动。"
+    ],
+    "why_b_is_evidence_sufficient": "8 处逐处给出了「读什么 + 谁消费 + 当前规模的实测数字」，并逐处证明了 IDB 侧没有等价形式（apply 只 set_name / 明确排除 skip / 无任何磁盘元数据产物：apply 只写 _logs/*.txt、gbengine_flat_ida.h、sig-fail log —— grep open(...,'w')/json.dump 实测）。",
+    "irreducible_core": "export 的这 8 处读取本质是「把注解里**不进入 IDB** 的元数据（skip 语义、类归属/虚性、方法名表、skip 名单）搬运到导出产物」。它们既不是 IDB 状态的读出，也不是可推导量。"
+  },
+
+  "tradeoff_evidence": {
+    "information_absent_from_idb": [
+      {"site": 3, "what": "1955 个 skip 地址集合", "idb_has": false, "proof": "apply_annotations.py:1676-1689 只做 add_func + ida_name.set_name；无 comment/属性/标记写入。grep 全 apply 文件无 'skip' 语义写盘。"},
+      {"site": 8, "what": "196 条 globals 的 type=='skip'", "idb_has": false, "proof": "apply_annotations.py:1710 显式把 gtype=='skip' 排除在 SetType 之外；IDB 只得到名字。"},
+      {"site": 9, "what": "1816 个非 thunk 的 skip 名字", "idb_has": "partial", "proof": "名字被 apply 写进 IDB（:1688），但「哪些地址属于刻意 skip（且非 thunk）」这一**集合语义**只存在于注解文件。"},
+      {"site": 7, "what": "vtables / methods / known_members（8979 条 _variants 条目）", "idb_has": "partial", "proof": "实测导出值=注解值（0/761 不一致），说明该字段是从注解文件读的，不是从 IDB 读的；IDB 侧只有 apply 加工后的 UDT 视图（且 apply 会把 'vtbl'/'__vftable' 名字的成员过滤掉，见 udt_classify.py:50-57），JSON 形态（含 slots[].from 继承来源、方法 name/signature 表）无持久化产物。"},
+      {"site": 2, "what": "_virtual_addrs(475) / _addr_to_class(369)", "idb_has": "partial", "proof": "虚性可由 vftable 数据推、类归属可由 vtbl_* UDT 的持有者推（apply 生成 `vtbl_XXXX *__vftable;`，export 里的 vtables[].slots[].from 则无对应），但**等价性未验证**（见 pending_window 第 6 项）。"},
+      {"site": 6, "what": "functions.json 全地址表", "idb_has": false, "proof": "该表的用途正是「IDB 里还没有的函数地址」；IDB 无法自证不存在的函数。"},
+      {"site": 1, "what": "（无）", "idb_has": "n/a", "proof": "死读，已删。"}
+    ],
+    "what_would_be_lost_if_not_read": [
+      "语料组成：1955 个 skip 地址不再被排除（apply 已把它们造成函数）→ 导出语料可能从 3594 膨胀；当前 skip∩导出=0 证明该排除完全生效。",
+      "442 个 signature 失去 'virtual ' 前缀；≥34 个 name 失去 'ClassName::' 注入。",
+      "3276 个 VC6 mangled 名不再注入 IDB（→ 导出 name 失去 3199/3594 的 '::' 形态）。",
+      "ida_structs.json 失去 79 个 vtables / 215 个 methods / 686 个 struct 的 _variants（8979 条）→ emit_headers 的 vtable 声明、方法补录、union/variant 字段渲染全部退化。",
+      "data.py:188 的 skip_funcs 变空集（1816 个名字）→ codegen 不再排除这些函数的前向声明。",
+      "188 条 globals 失去 skip 语义（导出 skip 从 808 降为 620）。"
+    ],
+    "consequence_of_reading": [
+      "① 三个透传字段对「apply 是否真把注解落进 IDB」**零信息量**：实测 vtables/methods/_variants 与注解 0 不一致（761/761），即它们是注解的复制，无论 IDB 状态如何都长这样。任何用 ida_structs.json 校验 apply 落地情况的检查，在这三个字段上都会被误导（这正是 t3 要防的「静默留下空壳」失效模式）。",
+      "② 存在非观察到但有机制支撑的混合风险：若某 struct 的注解 UDT 未落地而 IDB 里仍留着 PDB 版类型，:631-634 会把注解的 vtables/methods/_variants 嫁接到 PDB 形状的 data_members 上（data_members 来自 IDB、注解字段来自文件）→ 导出产物成为两源混合体。**是否实际发生：未验证**（本轮无 IDB 窗口；属 t10 复核范围）。反向对照：818/818 个可比 struct 的 export.size 与注解 binary_size 相等，**未见**尺寸级落地失败的证据。",
+      "③ 旁路效应：注解改动只要跑 export（**不需要 apply**）就能改变 codegen 输入，绕过 apply 的校验链（member_end/binary_size/UDT 落地复核）。",
+      "④ 天花板：裁决 (b) 已证明 binary_size/IDA 导出属同源比对，本类「读注解→写产物」使得 ida_structs.json 不能作为任何独立证据源。"
+    ],
+    "cannot_prove_equivalence": "本轮无法给出 (a) 所需的「关键计数对照 + 导出产物 diff」：需要一次独占窗口的 export（含禁用注解读取的对照变体）并 diff 3594 个 decomp JSON + ida_structs.json。窗口不可用（t3 占用），且 (a) 的落地还需改 export 之外的模块。"
+  },
+
+  "harms_are_declared_not_fixed": "CLAUDE.md:69 红线未被满足。t4 产出的替代是：(i) 删除唯一可判死的读点；(ii) 给余下 8 处加可 grep 的 [t4-DECLARED-EXCEPTION] 声明（写明读什么/为何必须读/为何当前不可迁移/迁移前置条件）；(iii) 把取舍写成决策页交 t12 落 docs/knowledge/ 并更新当前为空的 MEMORY.md Decisions 段。**是否把该例外正式写进 CLAUDE.md 属用户/captain 决策，不在 t4 inScope。**",
+
+  "files_changed": [
+    "pipeline/ida/export_full.py",
+    "data/status/_cleanup_fix_export_redline.json",
+    "data/status/_cleanup_fix_export_redline_decision_page.md"
+  ],
+  "files_changed_in_scope_only": true,
+  "files_changed_note": "代码变更仅 pipeline/ida/export_full.py（inScope 内）。两处 /tmp 之外无其它写入；未改 data/annotations/（只读）、未改任何共享产物、未跑 apply/export/codegen/probe/match。",
+
+  "criteria": {
+    "L1": {"value": 5, "threshold": ">=5", "measured_this_turn": false,
+           "source": "data/status/s4_baseline.json stats.match_L1（mtime 2026-09-15 15:13:21, sha256(16)=737a002e83f6d351）",
+           "stale_caveat": "该基线早于本轮期间发生的 apply(15:40:47)+export(15:44:30)+.i64(15:44:39)，可能已不对应当前 IDB/语料状态。"},
+    "ok": {"value": "53/198", "threshold": ">=53/198（分母 198 变化即不可比）", "measured_this_turn": false,
+           "source": "data/status/baselines/latest.json → 20260915_151121.json（mtime 15:11:21, sha256(16)=87459cc90c7bd55）；results 198 条，状态分布 {'ok': 53, 'fail': 145}",
+           "stale_caveat": "同上：该基线早于 15:40-15:44 的 apply/export，分母若变化即不可比。"},
+    "this_turn_runs": "未运行 pipeline/cli.py match / probe / export（写共享产物，窗口被 t3 占用）。故 L1 与 ok **无本轮实测值**。",
+    "expected_impact_of_change": "对 L1/ok 预期零影响：代码变更经 token 级证明为语义中性，且 export 未被重跑（asm/pal3/decomp 与 ida_structs.json 均不是我写的），match/probe 的输入未被触碰。—— 这是论证，不是测量，须在窗口复测。"
+  },
+
+  "pending_window": [
+    {"n": 1, "what": "用改后文件重跑 `python3 pipeline/cli.py export`，并与 15:44:30 的产物（asm/pal3/ida_structs.json sha256(16)=3bf54cafe721d3e4 + 3594 个 decomp JSON）做全量 diff", "expect": "除日志少一行 '[*] Loaded 530 function annotations' 外逐字节相同", "why": "证明删死读零影响"},
+    {"n": 2, "what": "`python3 pipeline/cli.py match`（独占窗口，退出码用 PIPESTATUS[0]）", "expect": "L1 >= 5", "why": "验收判据 L1 的实测值"},
+    {"n": 3, "what": "`python3 pipeline/cli.py probe all` + 读 data/status/baselines/latest.json", "expect": "ok >= 53/198 且分母=198", "why": "验收判据 ok 的实测值；注意 t3 apply 已刷新过语料，基线需重取"},
+    {"n": 4, "what": "对照实验：临时副本（/tmp）禁用 site 1-9 的注解读取后 export → 与生产导出 diff", "why": "(a) 迁移代价的量化（预期大量差异）；也是将来真做 (a) 时的等价性基线"},
+    {"n": 5, "what": "关闭 :582-587 的 `_BYTE[]` 类型回退（现 :631-634 附近）后再 export → diff", "why": "量出该回退当前的实际贡献（离线不可测：需要 IDB 的原始 dstr）"},
+    {"n": 6, "what": "IDB 侧取证：读取 vtbl_* UDT 与其持有者 struct、vftable 数据的 slot 地址，验证能否复现 _virtual_addrs=475 / _addr_to_class=369", "why": "判断 (a) 对 site 2 是否可行；(a) 的唯一部分可达路径"},
+    {"n": 7, "what": "重取 t3 落地后的 apply 读数（_logs/apply_annotations_log.txt 的 [3] Structs 行 + .i64 mtime）", "why": "本轮期间 apply 已跑过一次；t4 与 t3 的判据核对需以同一版本状态为准"}
+  ],
+
+  "window_observation": {
+    "event": "本轮工作中（15:40:47-15:44:39）captain 侧完成了 apply + export：pipeline/ida/_logs/apply_annotations_log.txt mtime 15:40:47、asm/pal3/ida_structs.json 与 _logs/pal3_export_only_log.txt mtime 15:44:30、original/PAL3.exe.i64 mtime 15:44:39。",
+    "consequence_for_this_task": "我最初读到的 export 日志是 15:08 那次（'skipped 5887'、'139.6s'），随后被 15:44:30 的产物替换（'skipped 6352'、'164.6s'）。**因此本交付物中所有 ida_structs.json/日志/语料派生数字已在 15:44:30 版本上重新取过一遍**（sha256(16)=3bf54cafe721d3e4），两次读数完全一致（475/369/0、949 keys、79/215/686、8979、808、188、1816、3594、442、3199、34）。",
+    "not_by_me": "我没有运行 apply/export/codegen/probe/match；未触碰 IDB。",
+    "layer_divergence_after_that_window": "该窗口只跑到 export 为止：asm/pal3/decomp 全部刷新到 15:44:09（新 export 产物），但 **pal3/src 没有任何文件在 15:20 之后被写**（最新 = free_functions.h 15:10:13）→ codegen 未重跑；data/status/probe_census.json 15:11:21、baselines/latest.json 15:11:21、s4_baseline.json 15:13:21 也都早于该 export。即当前盘上是「IDB(新) → decomp(新) → pal3/src(旧)」且基线(旧)。故 L1/ok 不仅是『本轮未实测』，其**可比性**也要在窗口里连同 codegen/probe/match 重跑后一并重建。"
+  },
+
+  "uncertainties_unverified": [
+    "① 我未能运行 export 以实测删除死读后的产物 diff（结论基于 token 级语义中性证明 + 该块无消费者）。",
+    "② 'IDA 的 cfunc.type.dstr() 永不输出 virtual' 这一前提**未独立验证**（待窗口）。我据此把 442 个 'virtual ' 前缀归因给 :381-382；支撑是 :381 的 `not sig.startswith('virtual ')` 守卫与『无此注入则 _virtual_addrs 无用处』的自洽性。",
+    "③ :388 注入效果 34 个是**下界**而非精确值（只统计了末段以 sub_ 开头的必然注入形态）。",
+    "④ '_BYTE[] 回退'的实际贡献量未测（需 IDB 原始 dstr / 对照 export）。",
+    "⑤ site 7 的「PDB 形状 + 注解字段」混合风险有机制但**未观察到实例**；818/818 尺寸相符是对照（未见落地失败）。",
+    "⑥ 未验证 apply 的 skip 名单是否与 skip_functions.json 逐一落地（需要 IDB 窗口）。",
+    "⑦ B3 类未处理项与 t4 无关，未评估。"
+  ],
+
+  "commands_run": [
+    "grep -n \"annotations\" pipeline/ida/export_full.py",
+    "python3 -c \"import ast ...\"  # AST 证明 ann_funcs 无 Load（153 之后）",
+    "python3 <离线复现 _virtual_addrs/_addr_to_class>  # → 475/369/0",
+    "python3 <pass-through 等值核对>  # → 不一致 0/0/0，761 有注解 / 188 无",
+    "python3 <skip/globals/_skip_function_names 归因>  # → 1955 / 196→188 / 808 / 1816 集合相等",
+    "python3 <语料统计>  # → decomp 3594、virtual 442、'::' 3199、sub_ 34、skip∩导出=0",
+    "python3 <token 流 diff（忽略注释）HEAD vs 工作区>  # → 唯一差异 = 死块 67 token",
+    "python3 <交叉核对 export.size vs 注解 binary_size>  # → 818/818 相等",
+    "git log -S / git show  # 读点引入与移除提交（d827ebca6 / 71a2e09db / 18838d912 / ad527e5c2 / 38f811d0f / 093431db5）",
+    "grep -rn '_skip_function_names|ida_structs' pipeline/ tools/ --include=*.py  # 消费者清单",
+    "grep -n \"open(.*'w'|json.dump\" pipeline/ida/apply_annotations.py  # apply 无元数据落盘"
+  ],
+
+  "exit_code_discipline": "本任务所有命令都不写共享产物，且无管道误用；涉及退出码的命令均单独取 $? / 未使用 cmd|tail。"
+}

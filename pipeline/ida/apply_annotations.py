@@ -651,16 +651,178 @@ def create_fixed_struct_diff(name, struct_info, til):
     if not result_tinfo.create_udt(new_udt, udt_flag):
         return (False, "create_udt() failed (diff mode)")
 
+    # --- 统一判据（与 create_fixed_struct 逐条一致，消除旧 :654-656 / :866-877 的行为分叉 ---
+    #
+    # ⚠️ 可达性说明（2026-09-15 t9 独立验证 D2 指出，captain 已修正）：
+    # `create_fixed_struct_diff` 全仓**无调用者**（只有本处定义），当前是死代码。
+    # 因此下面的"统一"对本轮判定**没有实际作用**——它只是让这个函数在将来被启用时
+    # 行为与主路径一致。不要把它当成"两路径已验证统一"的证据。
+    #
+    # 【关键时序，与 create_fixed_struct 同理】必须先 set_named_type 再读 UDT 详情：
+    # 未在 TIL 中命名的 tinfo 上，get_udt_details() 对一部分 UDT 返回 false，
+    # 会让 _layout_end_of_members 返回 (None, ...) → `if _oversized:` 为假 →
+    # **末端检查被静默跳过**。原先此处的 set_named_type 在检查之后，正是该缺陷。
+    result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+
     actual_size = result_tinfo.get_size()
     if actual_size == 0xFFFFFFFFFFFFFFFF:
-        return (False, "create_udt produced invalid type")
+        # diff-mode 的 -1 不是 union 变体形态（本次是 layout 合并失败），正确拒绝。
+        return (False, "create_udt produced invalid type (diff mode, get_size=-1)")
+
+    # 末端口径：diff-mode 此前的「偏移校验」同样的盲区也在这里。
+    # 注意 _layout_end_of_members 在布局不可读时返回 oversized=None，
+    # 此时 `if _oversized:` 为假 —— 故下面显式区分「无越界」与「布局读不到」。
+    _oversized, _culprit, _max_end, _n_oversized, _terminal_overflow = \
+        _layout_end_of_members(result_tinfo, binary_size)
+    if _oversized is None:
+        log("[FATAL] %s (diff mode): layout unreadable (get_udt_details failed "
+            "after set_named_type) — cannot verify member bounds." % name)
+        return (False, "diff mode: layout unreadable for %s" % name)
+    if _oversized:
+        _omax = max(_oversized, key=lambda t: t[2])
+        log("[FATAL] %s (diff mode): %d member(s) out of declared binary_size %d; "
+            "max member end +%d '%s' (declared offset +%d)" % (
+                name, _n_oversized, binary_size, _omax[2], _omax[1], _omax[0]))
+        return (False, "diff mode: %d member(s) out of bounds (max end +%d > binary_size %d)"
+                % (_n_oversized, _omax[2], binary_size))
+
     # PDB 和 PAL3.exe 版本不同，struct size 可能不一致。
     # annotation binary_size 是 PAL3.exe 实测值，应优先采用。
     # 如果合并后 size 不匹配，说明 PDB layout 差异过大，回退 replace 模式。
     if actual_size != binary_size:
+        log("  [i] %s (diff mode): merged layout size %d != annotation binary_size %d "
+            "— falling back to TAUDT_FIXED replace mode" % (name, actual_size, binary_size))
         return create_fixed_struct(name, struct_info, {}, {}, til)
 
-    result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+    return _verify_named_udt(result_tinfo, name, til, binary_size=binary_size)
+
+
+def _load_incomplete_udt_overrides():
+    """读取「已知待修 struct」白名单（逐 struct 留痕覆盖开关）。
+
+    默认**拒绝** apply：白名单文件不存在或为空 dict → 返回空集 → 任何不完整 UDT
+    都会让 apply 失败。这是 t3 的硬要求（见 handoff §4 t3 要求 5）：
+    覆盖面必须显式、逐 struct、且带登记理由，不允许全局开关。
+
+    文件格式（data/annotations/_incomplete_udt_overrides.json）：
+        {
+          "StructName": {
+            "reason": "为何仍允许 apply（如：已有独立任务跟踪待修）",
+            "registered": "2026-09-15",
+            "tracking": "t3 / CHANGE_LOG 条目 / issue 链接"
+          }
+        }
+    """
+    _ov_path = os.path.join(ANNOTATIONS_DIR, "_incomplete_udt_overrides.json")
+    if not os.path.exists(_ov_path):
+        return {}
+    try:
+        with open(_ov_path, "r", encoding="utf-8") as f:
+            _ov = json.load(f)
+    except Exception as e:
+        log("[WARN] %s unreadable (%s) — treating as EMPTY (no overrides)" % (_ov_path, e))
+        return {}
+    if not isinstance(_ov, dict):
+        log("[WARN] %s is not a JSON object — treating as EMPTY" % _ov_path)
+        return {}
+    return _ov
+
+
+def _expected_pushed_member_count(struct_info, base_class, base_size):
+    """干跑成员循环，算出「应当落入 TIL」的成员数。
+
+    严格复刻 create_fixed_struct 中加入成员时的过滤（基类区域成员被跳过），
+    使期望数可与 IDA 实际落入的成员数直接比较。
+
+    注意：union 的同偏移变体（键形如 "12_1"）在 IDA 中可能被合并或重排，
+    故该期望数只作为**诊断对照**，不作为硬判据——硬判据是末端口径
+    （declared_offset + member_size <= binary_size）。
+    """
+    expected = 0
+    for _off_str in struct_info.get("known_members", {}):
+        _off = int(_off_str.split('_')[0], 0)
+        if base_class and _off < base_size:
+            continue
+        expected += 1
+    return expected
+
+
+def _layout_end_of_members(result_tinfo, binary_size):
+    """按「末端口径」核对已创建 UDT 里每个成员的末端是否越出 binary_size。
+
+    返回 (oversized, culprit, max_end, overflow_count, terminal_overflow)：
+      oversized  -- (offset, name, member_end) 列表，逐条越界成员
+      culprit    -- 末端最远的成员名（用于报错信息）
+      max_end    -- 所有成员的末端最大值（末端口径的观测量）
+      overflow_count -- 越界成员数
+      terminal_overflow -- 是否存在「末成员撑破边界」形态
+                           (= max_end > binary_size，这是 SaleUI 那一类的形态)
+
+    为什么用 member_end 而不是声明偏移：偏移口径会漏掉「成员自身尺寸撑破边界」
+    的形态（SaleUI 的 ml_SmeltList@104752 ends 105960 > 105952）。见
+    docs/specs/2026-09-15-cleanup-handoff.md §4 t3 要求 2。
+    """
+    udt_details = ida_typeinf.udt_type_data_t()
+    if not result_tinfo.get_udt_details(udt_details):
+        # 判据失败：无法读回布局。交由调用方按「不完整 UDT」处置。
+        return (None, None, 0, 0, False)
+
+    oversized = []
+    max_end = 0
+    culprit = None
+    for _i in range(udt_details.size()):
+        _um = udt_details[_i]
+        try:
+            if _um.is_bitfield():
+                # 位域没有字节粒度的偏移语义，跳过末端检查
+                continue
+        except Exception:
+            pass
+        _off = _um.offset // 8
+        # 用 udt_member_t.size（原始 bit 宽度）而非 type.get_size()：
+        # 后者已含对齐填充，会把末端算大，产生假越界。
+        _msize = _um.size // 8
+        if _msize <= 0:
+            continue
+        _end = _off + _msize
+        if _end > max_end:
+            max_end = _end
+            culprit = _um.name
+        if _end > binary_size:
+            oversized.append((_off, _um.name, _end))
+
+    return (oversized, culprit, max_end, len(oversized), max_end > binary_size)
+
+
+def _verify_named_udt(result_tinfo, name, til, binary_size=0, has_methods=False):
+    """确认 set_named_type 真的把 UDT 落进了 TIL。
+
+    旧代码在此静默放行（set_named_type 无返回值），正是 SceneObj 事故的收口处：
+    空壳类型被当成成功。返回 (ok, err_msg)。
+
+    【本函数的 -1 与判据无关，别混淆】这里**只**拒绝一种 -1：
+    **不带成员函数**却报 get_size()==-1 —— 那是空壳（UDT 存在但无体）。
+    带成员函数的 UDT 报 -1 属已知正常形态（见 create_fixed_struct 的【关键时序】），
+    用 has_methods 放行。
+    另注：**不要在这里用 get_udt_details()**，它对带成员函数的 UDT 会合法失败。
+    """
+    _verify_tinfo = ida_typeinf.tinfo_t()
+    if not _verify_tinfo.get_named_type(til, name):
+        log("[FATAL] %s: set_named_type(NTF_REPLACE) did not land — "
+            "type is absent from TIL after import." % name)
+        return (False, "set_named_type failed to land %s in TIL" % name)
+    _vs = _verify_tinfo.get_size()
+    if _vs == 0xFFFFFFFFFFFFFFFF:
+        if has_methods:
+            # 带成员函数的 UDT 会报 -1：属已知正常形态，放行。
+            return (True, None)
+        log("[FATAL] %s: TIL entry landed but reports get_size()==-1 **without** "
+            "member functions — empty shell (NOT the union-variant -1 form)." % name)
+        return (False, "TIL entry for %s is a shell (get_size=-1, no methods)" % name)
+    if binary_size > 0 and _vs > binary_size:
+        log("[FATAL] %s: TIL entry landed with size %d > binary_size %d." % (
+            name, _vs, binary_size))
+        return (False, "TIL entry for %s oversized (%d > %d)" % (name, _vs, binary_size))
     return (True, None)
 
 
@@ -705,6 +867,8 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
 
     udt = ida_typeinf.udt_type_data_t()
     is_flexible = struct_info.get("_flexible", False)
+    # 诊断对照：期望落入的成员数（union 变体可能被 IDA 合并，故只作对照不作硬判据）
+    _expected_pushed = _expected_pushed_member_count(struct_info, base_class, base_size)
     if is_union:
         udt.is_union = True
     else:
@@ -757,6 +921,9 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
 
     # Add known members at exact annotation offsets
     # Union members use "0", "0_1", "0_2" keys (all at offset 0)
+    # _pushed_count 只计真正落入 TIL 的成员（push_back 之后），作为完整性判据的
+    # 「实际落入成员数」，与 _expected_pushed 对照。
+    _pushed_count = 0
     for off_str, minfo in sorted(members.items(), key=lambda x: int(x[0].split('_')[0], 0)):
         offset = int(off_str.split('_')[0], 0)
         if base_class and offset < base_size:
@@ -805,6 +972,7 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         m.size = member_size * 8  # bytes to bits
         m.type = tinfo
         udt.push_back(m)
+        _pushed_count += 1
 
     # When struct has size but no members, IDA creates a blob without named fields.
     # Add a char[N] filler so the struct has proper named members in the IDB.
@@ -817,6 +985,7 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             _filler_m.offset = 0
             _filler_m.type = _filler_arr
             udt.push_back(_filler_m)
+            _pushed_count += 1
 
     # For flexible structs, compute total_size from actual member layout
     if is_flexible and not is_union:
@@ -831,6 +1000,11 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     # Create the struct/union
     result_tinfo = ida_typeinf.tinfo_t()
     udt_flag = ida_typeinf.BTF_UNION if is_union else ida_typeinf.BTF_STRUCT
+
+    # 记录导入前的 TIL 状态：仅当 UDT 此前不存在时才是「净新建」，
+    # 净新建的 UDT 必须能读回详情，否则就是空壳假成功。
+    _preexisting_udt = ida_typeinf.tinfo_t()
+    _was_preexisting = bool(_preexisting_udt.get_named_type(til, name))
 
     if not result_tinfo.create_udt(udt, udt_flag):
         return (False, "TAUDT_FIXED create_udt() returned False for %s" % name)
@@ -859,22 +1033,183 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
                     log("  [!] vtable method FAILED for %s (ann_sig='%s')" % (vm_short, ann_sig))
             except Exception as _e:
                 log("  [!] vtable method EXCEPTION for %s: %s (ann_sig='%s')" % (vm_short, _e, ann_sig))
+    # 注意：set_methods() 必须推迟到下面的完整性判据与 __vftable 修正之后
+    # （见下方【关键时序】）。理由：set_methods() 之后 get_udt_details() 会
+    # 合法失败，两处依赖它的后处理都会静默跳过。
+    # ---------------------------------------------------------------------------
+    # 完整性判据（2026-09-15 清理工作 t3，见 docs/specs/2026-09-15-cleanup-handoff.md §4 t3）
+    #
+    # 历史缺陷：本处（原 :866-877）曾对 get_size()==-1 **无条件**降级成
+    # actual_size = binary_size，并把 set_named_type 的失败结果照单收下。
+    # 后果链：成员偏移/末端越界时 create_udt() 仍返回 true 但产出**不完整 UDT**
+    # （get_udt_details()==false）→ 被降级掩盖 → set_named_type 静默失败留下空壳
+    # → 下游 `SceneObj[256]` 取元素尺寸得 -1 → 原 :797-800 报
+    # "invalid member_size" FATAL。真正的病根在此，不在下游报错点。
+    #
+    # 【关键时序】必须在 set_methods() **之前**判定：
+    # `get_udt_details()` 对「带成员函数的 UDT」会合法失败（方法列表使 UDT 不再是
+    # 纯数据聚合）。若在 set_methods() 之后判定，所有带虚表的类（本仓 ~93 个
+    # vtable struct 覆盖的类）都会被误判为「空壳」——实测该误判命中 10 个结构
+    # （tagNewItem/C2DSpark_tagSpark/CEffMgr/UIChatRest/SaleUI 等），而
+    # SaleUI 的布局在 set_methods() 前是可读的（上一轮记录 66 members / ok）。
+    #
+    # 判据（两个独立维度，不靠 get_size()==-1 单点）：
+    #   ① get_udt_details() 成功 + 实际落入成员数 == 期望推入成员数
+    #   ② 末端口径：declared_offset + member_size <= binary_size
+    #      （偏移口径会漏掉「末成员自身尺寸撑破边界」，如 SaleUI 的
+    #       ml_SmeltList@104752 ends 105960 > binary_size 105952）
+    # ---------------------------------------------------------------------------
+    _pre_size = result_tinfo.get_size()   # set_methods() 之前的尺寸（权威）
+    _size_is_dash_one = (_pre_size == 0xFFFFFFFFFFFFFFFF)
+
+    # 【关键时序 2】set_named_type() 必须**先于** get_udt_details()：
+    # 未在 TIL 中命名的 tinfo 上，get_udt_details() 对一部分 UDT 会返回 false
+    # （实测：tagNewItem/C2DSpark_tagSpark/CEffMgr/UIChatRest/SaleUI 五个结构，
+    #  命名前全部不可读、命名后可读——15:08 的导出证明它们各有 5/15/38/38/62 个
+    #  成员、是**完整** UDT）。因此判定顺序为：
+    #      create_udt → set_named_type → 完整性判据/__vftable 修正 → set_methods
+    # set_named_type 无返回值，落地是否成功由下面的 _verify_named_udt 复核。
+    result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+
+    # --- 判据 ①-a：读回 UDT 详情（必须在 set_methods() 之前） ---
+    _udt_probe = ida_typeinf.udt_type_data_t()
+    _udt_ok = bool(result_tinfo.get_udt_details(_udt_probe))
+    _returned_members = _udt_probe.size() if _udt_ok else 0
+
+    # --- 判据 ①-b：成员数一致性（仅对净新建的非 union） ---
+    # union 的同偏移变体在 IDA 中可能被合并/重排，故 union 只告警不判失败。
+    _count_mismatch = (_udt_ok and not is_union and not _was_preexisting
+                       and _returned_members != _pushed_count)
+
+    # --- 判据 ②：末端口径（按已创建 UDT 的真实布局核对，同样在 set_methods() 之前） ---
+    _oversized, _culprit, _max_end, _n_oversized, _terminal_overflow = \
+        _layout_end_of_members(result_tinfo, binary_size)
+
+    # --- __vftable 类型修正：也必须在 set_methods() 之前 ---
+    # build_struct_decl 造出的是 typed vtbl_ADDR *__vftable，而注解把它覆盖成 int。
+    # 历史实现（原 :893-909）位于 set_methods() 之后，对带成员函数的 UDT 会因
+    # get_udt_details() 失败而**静默跳过**整类 __vftable 修正 —— 移到此处一并修好。
+    _post_udt = ida_typeinf.udt_type_data_t()
+    _post_readable = bool(result_tinfo.get_udt_details(_post_udt))
+    if _post_readable and struct_info and struct_info.get("vtables"):
+        _va0 = struct_info["vtables"][0].get("addr", "")
+        if _va0:
+            _vtn = "vtbl_%s" % _va0[2:]
+            _vtif = ida_typeinf.tinfo_t()
+            if _vtif.get_named_type(til, _vtn) and _vtif.get_size() < 10000:
+                _vp_tif = ida_typeinf.tinfo_t()
+                _vp_tif.create_ptr(_vtif)
+                if _vp_tif.is_correct() and _vp_tif.get_size() == 4:
+                    _vt_fixed = False
+                    for _i in range(_post_udt.size()):
+                        try:
+                            _um = _post_udt[_i]
+                            if _um.get_name() == "__vftable":
+                                _um.type = _vp_tif  # set typed vtable pointer
+                                _vt_fixed = True
+                                break
+                        except Exception:
+                            pass
+                    if _vt_fixed:
+                        _r2 = ida_typeinf.tinfo_t()
+                        if _r2.create_udt(_post_udt, ida_typeinf.BTF_STRUCT):
+                            # 重新落回；随后的 set_methods() 在 fresh 对象上执行
+                            result_tinfo = _r2
+                            result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+                        else:
+                            log("  [!] %s: __vftable retype create_udt failed" % name)
+    elif not _post_readable:
+        log("  [!] %s: get_udt_details() unreadable — __vftable not retyped" % name)
+
+    # 越界/空壳判定完成后，才挂成员函数（挂完 get_udt_details 不再可用）。
     if len(method_udms) > 0:
         result_tinfo.set_methods(method_udms)
 
     actual_size = result_tinfo.get_size()
-    if actual_size == 0xFFFFFFFFFFFFFFFF:
-        # TAUDT_FIXED with union members (same-offset variants) causes IDA to
-        # report get_size=-1 even though the UDT was created successfully.
-        # Use binary_size as the authoritative size for validation.
-        if binary_size > 0:
-            actual_size = binary_size
+    # 注：此处 actual_size 是 set_methods() 之后的读数；带方法的 UDT 会合法地
+    # 报 -1，故尺寸断言一律用 set_methods() 之前的 _pre_size（权威）。
+    if _pre_size != 0xFFFFFFFFFFFFFFFF:
+        actual_size = _pre_size
+
+    if (not _udt_ok) or _count_mismatch or _n_oversized:
+        if _oversized:
+            _omax = max(_oversized, key=lambda t: t[2])
+            _detail = ("max member end: +%d '%s' (declared offset +%d, "
+                       "end %d > binary_size %d) — %d member(s) out of bounds: %s" % (
+                           _omax[2], _omax[1], _omax[0], _omax[2], binary_size,
+                           _n_oversized,
+                           ", ".join("+%d '%s'(end %d)" % (o, n, e)
+                                     for o, n, e in _oversized[:5])) +
+                       (" …" if _n_oversized > 5 else ""))
+        elif not _udt_ok:
+            # 布局根本读不回来 → 没有任何几何观测量可报。这正是「空壳」形态。
+            _detail = ("layout unreadable (get_udt_details() failed) — no geometric "
+                       "bounds available; this is the empty-shell form")
+        elif _terminal_overflow:
+            _detail = ("terminal overflow: max member end +%d ('%s') > binary_size %d" % (
+                _max_end, _culprit or '?', binary_size))
         else:
-            log("[FATAL] %s: TAUDT_FIXED struct 'invalid' (get_size=-1). "
-                "binary_size=%d, members=%d, base=%s. "
-                "Fix member offsets or types in annotation." % (
-                    name, binary_size, len(members), base_class or '(none)'))
-            return (False, "TAUDT_FIXED invalid for %s (get_size=-1)" % name)
+            _detail = "no member exceeds binary_size (overflow is structural, not geometric)"
+
+        _count_detail = ("returned_members=%d vs pushed=%d (expected=%d)%s" % (
+            _returned_members, _pushed_count, _expected_pushed,
+            " — MISMATCH" if _count_mismatch else ""))
+
+        _reason_codes = []
+        if not _udt_ok:
+            _reason_codes.append("get_udt_details()==False (incomplete UDT shell)")
+        if _count_mismatch:
+            _reason_codes.append("member count mismatch")
+        if _n_oversized:
+            _reason_codes.append("%d member(s) out of declared binary_size" % _n_oversized)
+
+        log("[FATAL] %s: TAUDT_FIXED produced INCOMPLETE UDT." % name)
+        log("        binary_size=%d, base=%s" % (binary_size, base_class or '(none)'))
+        log("        member count : %s" % _count_detail)
+        log("        bounds       : %s" % _detail)
+        log("        reasons      : %s" % ("; ".join(_reason_codes) or "unknown"))
+        log("        get_size()   : %s%s" % (
+            "-1" if _size_is_dash_one else str(_pre_size),
+            "   (NOTE: -1 is NOT the failure cause here — see the ordering comment above)"
+            if _size_is_dash_one else ""))
+
+        # 逐 struct 留痕覆盖开关（默认拒绝）。覆盖面必须显式登记，见
+        # data/annotations/_incomplete_udt_overrides.json。
+        _ov = _load_incomplete_udt_overrides().get(name)
+        if _ov:
+            log("[OVERRIDE] %s is registered as a KNOWN-INCOMPLETE struct — "
+                "apply allowed for this struct ONLY." % name)
+            log("           reason     : %s" % _ov.get("reason", "(not stated)"))
+            log("           registered : %s" % _ov.get("registered", "(not stated)"))
+            log("           tracking   : %s" % _ov.get("tracking", "(not stated)"))
+            # 覆盖后仍需尽力落地，但不能掩盖：返回成功并让下游按 binary_size 处理。
+            # （-1 不是失败原因，无需在此处理。）
+            if _n_oversized:
+                # 越界形态即使登记也不能落地（会污染下游布局计算）——保持失败。
+                log("[OVERRIDE-REJECTED] %s: override does NOT cover geometry overflow "
+                    "(%d member(s) out of bounds); keeping FATAL." % (name, _n_oversized))
+                return (False, "TAUDT_FIXED incomplete for %s (override does not cover "
+                               "geometry overflow; %s)" % (name, _detail))
+        else:
+            return (False, "TAUDT_FIXED incomplete for %s (%s; %s)" % (
+                name, "; ".join(_reason_codes) or "unknown", _detail))
+
+    # get_size()==-1 属**正常形态**，不是判据（见上【关键时序】注释）：
+    # 仅记录诊断，不参与成败。措辞按实测区分两种成因，不要一律说成 union variant
+    # （t9 独立验证 D6 指出：原先 5/5 条都自报 union=no 却写成 union-variant，失实）。
+    if _size_is_dash_one:
+        if is_union:
+            _dash_one_kind = "union same-offset variants"
+        else:
+            _dash_one_kind = ("incomplete coalesced layout of union-flagged members "
+                              "(struct itself is not a union)")
+        log("  [i] %s: get_size()==-1 (readable layout, members=%d, union=%s, "
+            "pushed=%d, oversized=0) — attributed to %s; using binary_size=%d "
+            "as authoritative size" % (
+                name, _returned_members, "yes" if is_union else "no",
+                _pushed_count, _dash_one_kind, binary_size))
+        actual_size = binary_size
+
     # When created without base members (_base_offset==0), actual_size may
     # be smaller than binary_size (base class portions are missing). Accept it.
     if is_flexible:
@@ -885,33 +1220,14 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         return (False, "size mismatch: expected <=%d, got %d" % (
             binary_size, actual_size))
 
-    result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+    # set_named_type 已在上面（判定之前）调用；此处只做落地复核。
+    # 这是空壳 last-mile：旧代码在此静默放行，正是 SceneObj 事故的收口处。
+    _land_ok, _land_err = _verify_named_udt(
+        result_tinfo, name, til, binary_size=binary_size,
+        has_methods=bool(len(method_udms) > 0))
+    if not _land_ok:
+        return (False, _land_err)
     
-    # Post-create: fix __vftable type for classes with vtables
-    # build_struct_decl creates typed vtbl_ADDR *__vftable, but annotations
-    # overwrite it with int. This ensures the vtable pointer has the correct type.
-    if struct_info and struct_info.get("vtables"):
-        _va0 = struct_info["vtables"][0].get("addr", "")
-        if _va0:
-            _vtn = "vtbl_%s" % _va0[2:]
-            _vtif = ida_typeinf.tinfo_t()
-            if _vtif.get_named_type(til, _vtn) and _vtif.get_size() < 10000:
-                _vp_tif = ida_typeinf.tinfo_t()
-                _vp_tif.create_ptr(_vtif)
-                if _vp_tif.is_correct() and _vp_tif.get_size() == 4:
-                    _udt2 = ida_typeinf.udt_type_data_t()
-                    if result_tinfo.get_udt_details(_udt2):
-                        for _i in range(_udt2.size()):
-                            try:
-                                _um = _udt2[_i]
-                                if _um.get_name() == "__vftable":
-                                    _um.type = _vp_tif  # set typed vtable pointer
-                                    _r2 = ida_typeinf.tinfo_t()
-                                    if _r2.create_udt(_udt2, ida_typeinf.BTF_STRUCT):
-                                        _r2.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
-                                    break
-                            except: pass
-
     return (True, None)
 
 
@@ -1709,6 +2025,46 @@ def apply_annotations():
 
     for _sname, _sinfo in ordered:
         _forward_decl_nested(_sname, _sinfo, til)
+
+    # --- 3c. detached nested types（2026-09-15 新增，方案 E3） ---
+    #
+    # 有些**限定名**必须在 TIL 里可解析，但它们的父类**没有也不应有** struct 注解文件：
+    #   - 已解散的幻影类（`PlayerMgr`，提交 6a8d71924 并入 SaleUI；`tools/_migrate_playermgr.py`
+    #     只搬了 methods/members，**完全没搬 nested_types**，导致 `PoisonState` 被丢弃）
+    #   - 只被引用而无成员数据的类型
+    #
+    # 症状：`data/annotations/structs/ArcLocale.json` 的 `+336 pstate: PlayerMgr::PoisonState *`
+    # 解析失败 → `create_fixed_struct` 在 `create_udt` **之前**就返回失败 →
+    # ArcLocale 的真实 484 字节布局从未落地，TIL 里只剩 step 3a 建的空占位 →
+    # 导出里 ArcLocale 变成 **size=1 / data_members=0**（16 个成员全丢），
+    # 并向下游 CGameData.cpp / free_functions.h / CCBUI.cpp / Actor.cpp 传播。
+    #
+    # 为什么用独立文件而不是新建 struct 注解：为这些父类新建受管 struct 会制造
+    # 「第 882 个 struct」并复活已解散的类名，属无证据扩张。E3 只提供**名称解析目标**，
+    # 不主张任何成员/内存归属（详见 data/annotations/detached_nested_types.json 的 _evidence）。
+    #
+    # 注：与 SDK 路径（上面的 2b）不同，这里**不能**要求条目有 known_members ——
+    # `PoisonState` 本就是无成员的类型；SDK 路径的 `if not _st.get("known_members"): continue`
+    # 会把它整个跳过（复核者实测 E2 方案因此走不通）。
+    _dnt_path = os.path.join(ANNOTATIONS_DIR, "detached_nested_types.json")
+    _dnt_ok = 0
+    if os.path.exists(_dnt_path):
+        try:
+            with open(_dnt_path, 'r', encoding='utf-8') as _df:
+                _dnt_data = json.load(_df)
+            for _dn_par, _dn_info in _dnt_data.items():
+                if _dn_par.startswith("_"):          # 跳过 _purpose/_evidence/_maintenance 等元数据键
+                    continue
+                if not isinstance(_dn_info, dict):
+                    continue
+                _forward_decl_nested(_dn_par, {"nested_types": _dn_info}, til)
+                _dnt_ok += 1
+            log("[3c] Detached nested types: %d parent(s) processed" % _dnt_ok)
+        except Exception as _de:
+            # A 级必须可见：加载失败会让悬垂限定名无法解析，进而使整个 struct 报废。
+            log("[FATAL] detached_nested_types.json load FAILED: %s" % _de)
+            raise
+
     log("  Nested type forward decls: pre-created (recursive)")
 
     # 导入所有 struct（严格模式：任何失败直接终止）

@@ -1,0 +1,549 @@
+{
+  "schema": "cleanup-fix-codegen-policy/1",
+  "task": "t6 — codegen evidence-gated double track (pipeline/gen/ast_transform.py)",
+  "generated_by": "engineer-codegen (t6 analysis phase)",
+  "generated_at": "2026-09-15T16:05:00+08:00",
+  "repo": "/home/peng/workspace/PAL3Decomp",
+  "head_at_start": "9cb436305",
+  "verification_status": {
+    "apply_export_codegen_chain": "NOT RUN — the task forbade pipeline/cli.py apply|export|codegen|probe|match and any idat invocation. Every effect number below is measured with a pure in-memory harness that drives the REAL transform_oop_calls over the decomp corpus; nothing was written to pal3/src, asm/, or the IDB.",
+    "pal3_src_written": false,
+    "ida_touched": false,
+    "compile_verified": false
+  },
+  "files_changed": [
+    "/home/peng/workspace/PAL3Decomp/pipeline/gen/ast_transform.py",
+    "/home/peng/workspace/PAL3Decomp/pipeline/gen/test_pipeline.py"
+  ],
+  "out_of_scope_files_touched": [],
+  "baseline_hashes": {
+    "pipeline/gen/ast_transform.py": {
+      "before_sha256": "b6a3772deee9dafd5b1e259c3d6c57afce20ab8feb3fc6d633376c5262e058c8",
+      "after_sha256": "1e64cadda7df00f170e73e5b9d9a56740e8e223351de494f6e03b95e0b6a8e85"
+    },
+    "pipeline/gen/test_pipeline.py": {
+      "before_sha256": "f1448faefc5e557582a5f6f964fc4fd2ac164909323d4b20761158696a371496"
+    },
+    "diffstat": "pipeline/gen/ast_transform.py +262/-14 ; pipeline/gen/test_pipeline.py +176/-1"
+  },
+  "track1_sites": {
+    "count": 3,
+    "callee_va": "0x004014F0",
+    "callee_name": "AStarPathFinder::GetHeuristicIdx",
+    "measured_identity": {
+      "idb_signature": "virtual unsigned __int8 __thiscall(AStarPathFinder *this, int nX, int nY)  (asm/pal3/decomp/AStarPathFinder_GetHeuristicIdxint_int_004014f0.json)",
+      "header_decl": "virtual unsigned __int8 GetHeuristicIdx(int nX, int nY); // 0x004014F0  (pal3/src/Misc/AStarPathFinder.h:41)",
+      "ret_n_slots": 2,
+      "occupies_vtable_slot": true,
+      "slot_holders": [
+        "AStarPathFinder"
+      ],
+      "is_ctor_or_dtor": false
+    },
+    "sites": [
+      {
+        "file": "pal3/src/Combat/CCBAI.cpp",
+        "line": 246,
+        "decomp_source": "asm/pal3/decomp/CCBAI_HandleEnemyActionint_004d71e0.json",
+        "enclosing_generated_function": "CCBAI::HandleEnemyAction",
+        "binary_caller": "sub_4D71E0 (0x004D71E0)",
+        "call_instruction_va": "0x004D7576",
+        "criteria_hit": [
+          "(ret-N) rendered arg count 3 == slots 2 + 1  => first-arg-is-this is self-consistent",
+          "(vtable slot) 0x004014F0 is vtable slot 2 of 0x0056A600, held by AStarPathFinder",
+          "(not ctor/dtor)"
+        ],
+        "baseline_text": "if ( /* [MISATTRIBUTED] AStarPathFinder on CCBAI::this -> fix IDB name of callee */ AStarPathFinder::GetHeuristicIdx((AStarPathFinder *)this, nRoleIndex, (int)&this->m_nHandleEnemyWell) )",
+        "new_text_expected": "if ( (((AStarPathFinder *)this))->AStarPathFinder::GetHeuristicIdx(nRoleIndex, (int)&this->m_nHandleEnemyWell) )"
+      },
+      {
+        "file": "pal3/src/Combat/CCBAI.cpp",
+        "line": 444,
+        "decomp_source": "asm/pal3/decomp/CCBAI_HandleEnemyWellint_004d7820.json",
+        "enclosing_generated_function": "CCBAI::HandleEnemyWell",
+        "binary_caller": "sub_4D7820 (0x004D7820)",
+        "call_instruction_va": "0x004D7BB4",
+        "criteria_hit": [
+          "same callee VA/name as site 1",
+          "(ret-N)",
+          "(vtable slot)",
+          "(not ctor/dtor)"
+        ],
+        "new_text_expected": "if ( (((AStarPathFinder *)this))->AStarPathFinder::GetHeuristicIdx(nRoleIndex, (int)&this->m_nHandleEnemyWell) )"
+      },
+      {
+        "file": "pal3/src/Combat/CCBAI.cpp",
+        "line": 646,
+        "decomp_source": "asm/pal3/decomp/CCBAI_HandleEnemyWeakint_004d7ef0.json",
+        "enclosing_generated_function": "CCBAI::HandleEnemyWeak",
+        "binary_caller": "sub_4D7EF0 (0x004D7EF0)",
+        "call_instruction_va": "0x004D824C",
+        "criteria_hit": [
+          "same callee VA/name as site 1",
+          "(ret-N)",
+          "(vtable slot)",
+          "(not ctor/dtor)"
+        ],
+        "new_text_expected": "|| !(((AStarPathFinder *)this))->AStarPathFinder::GetHeuristicIdx(nRoleIndex, (int)&this->m_nHandleEnemyWell)) )"
+      }
+    ],
+    "measured_effect_on_corpus": {
+      "harness": "python3 /tmp/t6harness/h1_census.py <outdir>  (real transform_oop_calls; 3524 class-member decomp JSONs)",
+      "changed_files_vs_pre_edit_baseline": 3,
+      "changed_file_list": [
+        "CCBAI_HandleEnemyActionint_004d71e0.json",
+        "CCBAI_HandleEnemyWeakint_004d7ef0.json",
+        "CCBAI_HandleEnemyWellint_004d7820.json"
+      ],
+      "MISATTRIBUTED": "346 -> 343  (-3)",
+      "ROWTABLE": "586 -> 586  (unchanged)",
+      "expected_vs_task_brief": "MATCH: brief expected [MISATTRIBUTED] -3 and [ROWTABLE] unchanged; both measured.",
+      "note_on_pal3_src_headline_numbers": "pal3/src currently greps 344 [MISATTRIBUTED] / 576 [ROWTABLE] (vs 346/586 in the harness staging output) because later pipeline stages (stage3 cleanup / stage5 fixup) drop or comment some of them. The DELTA (-3 / 0) is stage-independent and is the number the task's success criterion refers to."
+    }
+  },
+  "gate_design": {
+    "location": "pipeline/gen/ast_transform.py, cast_expression branch -> `if inner == 'this':` -> `else:` (unrelated class) arm (currently :622-694)",
+    "predicate": "(callee is not ctor/dtor) AND (ret-N slot count == len(args)-1) AND (callee VA occupies a vtable slot of some class in the IDB export)",
+    "implementation": {
+      "evidence_source": "asm/pal3/ida_structs.json (IDB EXPORT product => does not add a new C1 annotations read; AR-002 ruling (a) names the export as the legitimate channel)",
+      "helpers_added": [
+        "_vtable_slot_evidence() -> (frozenset of slot VAs, frozenset of (cls, method) ctor/dtor keys); RuntimeError if the export is unreadable (no silent empty set)",
+        "_load_va_by_method() -> (cls, method) -> VA index from the export; RuntimeError if unreadable",
+        "_occupies_vtable_slot(cls, method) -> callee VA in slot-VA set",
+        "_is_ctor_or_dtor(cls, method)",
+        "_rowtable_family() (existing, unchanged semantics)"
+      ],
+      "emission_when_gate_opens": "(((Cls *)this))->Cls::M(rest)   — the existing cast+qualified member form (same emission style as the ROWTABLE branch and the identifier branch), i.e. the static-call shape and the (Cls*)this cast are preserved verbatim; only the falsified [MISATTRIBUTED] comment text is dropped",
+      "why_not_the_static_form_kept": "`Cls::M((Cls*)this, rest)` and `((Cls*)this)->Cls::M(rest)` are the same qualified direct call; the member form is what the rest of the file (ROWTABLE / identifier / qualified_identifier branches) already emits, so using it keeps one emission style instead of two.",
+      "why_ctor_dtor_excluded": "a ctor/dtor can never be the 'unrelated class's vtable slot on our own this' case; including them was measured to be wrong in the ROWTABLE-rework experiment (see rowtable_precedence below).",
+      "why_both_halves_are_required": "measured independently on the corpus (see gate_ablation)."
+    },
+    "gate_ablation_measured": {
+      "harness": "instrumented throw-away copy of ast_transform.py (/tmp/t6harness/ast_transform_inst.py) + /tmp/t6harness/h2_records.py; byte-for-byte identity of the instrumented copy in 'base' mode vs the real module: 3524/3524 files identical (diff=0)",
+      "site_universe": {
+        "CAST_THIS_sites_total": 929,
+        "of_which_is_base_(-> this->Cls::M)": 4,
+        "of_which_rowtable_family_(-> [ROWTABLE])": 586,
+        "of_which_MISATTRIBUTED_eligible": 339,
+        "evaluated_scope_note": "the gate can only ever act on the MISATTRIBUTED-eligible arm; that arm holds 339 sites, which is the population behind the task's '~335 sites stay untouched'."
+      },
+      "within_the_MISATTRIBUTED_eligible_arm": {
+        "sites": 343,
+        "ret_N_true": 298,
+        "vtable_slot_true": 3,
+        "ret_N_AND_vtable_true": 3,
+        "ret_N_AND_vtable_AND_not_ctor": 3
+      },
+      "ablation": [
+        {
+          "gate": "base (unchanged code)",
+          "changed_files": 0,
+          "MISATTRIBUTED": 346,
+          "ROWTABLE": 586
+        },
+        {
+          "gate": "ret-N only",
+          "changed_files": 189,
+          "MISATTRIBUTED": 52,
+          "ROWTABLE": 586,
+          "verdict": "INADMISSIBLE — violates 'the other sites must not move'"
+        },
+        {
+          "gate": "vtable-slot only",
+          "changed_files": 3,
+          "MISATTRIBUTED": 343,
+          "ROWTABLE": 586
+        },
+        {
+          "gate": "ret-N AND vtable-slot AND not-ctor/dtor  (ADOPTED)",
+          "changed_files": 3,
+          "MISATTRIBUTED": 343,
+          "ROWTABLE": 586
+        }
+      ],
+      "task_brief_figure_reconciliation": {
+        "brief_claim": "adding only the ret-N gate would let through 234 sites",
+        "my_measurement": "298 sites (in the MISATTRIBUTED-eligible arm) / 189 changed files; 701 of 929 CAST_THIS sites corpus-wide",
+        "reconciliation": "DID NOT REPRODUCE 234. I report the measured figure and keep the brief's CONCLUSION (the ret-N gate alone is far too wide and is rejected). The proof of the design therefore rests on my own numbers: ret-N-only vs ret-N+slot differ by 186 changed files, and the superset gate is rejected because it also produces a large silent-pass direction (298 - 3 = 295 sites would lose their marker on ret-N evidence alone)."
+      }
+    },
+    "risk_direction_marked": "The gate opens only WITH the vtable-slot fact, so it cannot produce a 'silent pass' by arity alone. Adding it changes nothing unless the callee is a confirmed class member with a slot."
+  },
+  "track2_untouched": {
+    "claim": "every site other than the 3 above is byte-identical",
+    "measured_proof": {
+      "method": "full-corpus output diff: harness baseline dataset (/tmp/t6harness/out_base, produced from the pre-edit file) vs post-edit dataset (/tmp/t6harness/out_live2)",
+      "files_compared": 3524,
+      "changed_files": 3,
+      "changed_file_list": [
+        "CCBAI_HandleEnemyActionint_004d71e0.json",
+        "CCBAI_HandleEnemyWeakint_004d7ef0.json",
+        "CCBAI_HandleEnemyWellint_004d7820.json"
+      ],
+      "unchanged_files": 3521,
+      "marker_totals_before_after": {
+        "MISATTRIBUTED": "346 -> 343",
+        "ROWTABLE": "586 -> 586"
+      }
+    },
+    "why_this_is_stronger_than_marker_counts": "the diff is over the full transformed TEXT of every decomp function, not over markers; a site could only move if the emitted text moved.",
+    "rowtable_untouched": "586 -> 586, and the 226-file ROWTABLE-rework experiment was deliberately NOT applied (see rowtable_precedence below).",
+    "AR_016_blanket_reversal": "NOT PERFORMED. No file-level reversal of the call-form policy; the [MISATTRIBUTED] marker is still emitted by the same code path for all 336 remaining sites."
+  },
+  "rowtable_precedence_GAP_ROWTABLE_PRECEDENCE_01": {
+    "status": "DESIGN ONLY — NOT IMPLEMENTED; requires a captain/user policy decision",
+    "brief_instruction": "per-site evidence gate: route to the row-table form only when the callee VA is held by >=2 classes' vtable slots; exclude ctor/dtor explicitly; sites failing the criterion keep the status quo and are recorded as GAP-ROWTABLE-PRECEDENCE-01",
+    "measured_baseline": {
+      "current_ROW TABLE_sites": 586,
+      "family_whitelist": "data/status/_rowtable_family.json (63 entries, all 63 present in the export with a vtable)",
+      ">=2-class_slot_holders": "50 VAs; classes reachable that way: 69",
+      "family_minus_ge2_classes": 0,
+      "ge2_minus_family_classes": [
+        "CCBPanelSlot",
+        "PalScript",
+        "PalScriptMgr",
+        "RenderTarget3",
+        "ScriptObj",
+        "gbLightObj"
+      ],
+      "note": "the 6 extra classes above are the only face-level support I found for the brief's '6 support'; the complementary '3 not supported' and the '17 false [ROWTABLE]' figures were NOT reproduced — see reconciliations below."
+    },
+    "per_site_breakdown_of_the_586_current_ROW TABLE_sites": {
+      "holder_count_0": 412,
+      "holder_count_1": 8,
+      "holder_count_ge2": 166,
+      "ctor_or_dtor_sites": 42,
+      "non_ctor_sites_failing_ge2": 378
+    },
+    "measured_effect_if_implemented_as_specified": [
+      {
+        "rowtable_gate": "status quo (`class in _rowtable_family()`)",
+        "changed_files": 0,
+        "MISATTRIBUTED": 346,
+        "ROWTABLE": 586
+      },
+      {
+        "rowtable_gate": "VA held by >=2 classes",
+        "changed_files": 226,
+        "MISATTRIBUTED": 766,
+        "ROWTABLE": 166
+      },
+      {
+        "rowtable_gate": "VA held by >=2 classes AND not ctor/dtor",
+        "changed_files": 226,
+        "MISATTRIBUTED": 766,
+        "ROWTABLE": 166
+      },
+      {
+        "rowtable_gate": "VA held by >=1 class",
+        "changed_files": 227,
+        "MISATTRIBUTED": 755,
+        "ROWTABLE": 177
+      },
+      {
+        "rowtable_gate": "VA held by >=1 class AND not ctor/dtor",
+        "changed_files": 227,
+        "MISATTRIBUTED": 755,
+        "ROWTABLE": 177
+      }
+    ],
+    "reconciliation_of_brief_figures": {
+      "6_support_3_not": "NOT REPRODUCED as a site count. What I can support: 6 classes (CCBPanelSlot/PalScript/PalScriptMgr/RenderTarget3/ScriptObj/gbLightObj) satisfy the >=2-slot criterion but are absent from the current whitelist, and the current whitelist is a strict subset of the >=2-reachable classes (family - ge2 = 0).",
+      "17_false_ROW TABLE_without_ctor_dtor_exclusion": "NOT REPRODUCED. My measurement of the ctor/dtor exclusion's contribution under the >=1 criterion is 11 sites (177 -> 166): without the exclusion 11 additional ctor/dtor sites would falsely take the [ROWTABLE] form. The 42 ctor/dtor sites among the 586 currently get [ROWTABLE] from the whitelist path, and the >=2 criterion is what removes them."
+    },
+    "blocking_finding": "Implementing the criterion as literally specified REMOVES 420 of the 586 current [ROWTABLE] sites and turns them into [MISATTRIBUTED] (586 -> 166, MISATTRIBUTED 346 -> 766, 226 files). That is a large, visible policy reversal of commit bb62deb95 ('faithful row-table emission for gbUI handler-family calls'), and the direction is the OPPOSITE of 'the other sites must not move'. It is NOT applied.",
+    "proposed_safer_criterion_for_captain_review": "(a) keep the family whitelist as the routing gate, but re-derive/validate it from per-site evidence: a class stays in the family iff at least one of its (class, method) pairs reachable at a cast-this site has a VA held by >=2 classes' slots — this is satisfied by all 63 current entries (family - ge2 = 0) and additionally recognises the 6 missing classes, so it is a SUPERSET-safe strengthening, not a removal; plus (b) add the per-site ctor/dtor exclusion as specified (measured 11 false positives avoided under >=1). Under this variant the whitelist-equivalence is exact for the current corpus (63/63 supported) so the expected output delta is 0 files — i.e. it is a provenance fix, not a behaviour change.",
+    "evidence_commands": [
+      "python3 -c \"import json,collections;d=json.load(open('asm/pal3/ida_structs.json'));hold=collections.defaultdict(set);[hold[int(s['addr'],16)].add(c) for c,v in d.items() if not c.startswith('_') and isinstance(v,dict) for vt in (v.get('vtables') or []) for s in (vt.get('slots') or []) if s.get('addr')];print('>=2 VAs',sum(1 for a,cs in hold.items() if len(cs)>=2))\"",
+      "T6_ROWGATE=ge2 python3 /tmp/t6harness/h2_records.py /tmp/t6harness/out_rg_ge2   # then diff vs out_base"
+    ]
+  },
+  "harness_evidence": {
+    "requirement": "drive the REAL transform_oop_calls over all decomp JSONs, purely in memory, and prove zero output difference for the AR-002 declaration-only change",
+    "corpus": {
+      "dir": "asm/pal3/decomp",
+      "json_files_total": 3594,
+      "transformed": 3524,
+      "skipped": 70,
+      "skip_reason": "collect.py drops `name.startswith('sub_')` and empty-name/empty-code records, so the real pipeline transforms 3524; the 70 skipped files never reach transform_oop_calls."
+    },
+    "commands": [
+      "python3 /tmp/t6harness/h1_census.py /tmp/t6harness/out_base     # pre-edit baseline (verbatim copy of the file at HEAD-worktree state)",
+      "python3 /tmp/t6harness/h2_records.py /tmp/t6harness/out_inst   # instrumented copy, base mode",
+      "python3 /tmp/t6harness/h2_records.py /tmp/t6harness/out_none_ptr   # gate injected but disabled",
+      "python3 -c \"import sys;sys.path.insert(0,'pipeline');import pipeline.gen.ast_transform as AT;AT._load_va_by_method()\"  # RuntimeError when the export is absent"
+    ],
+    "identity_checks": [
+      {
+        "check": "instrumented copy in base mode vs real module",
+        "files": 3524,
+        "differing": 0
+      },
+      {
+        "check": "instrumented copy with the gate injected but T6_GATE=none vs real module",
+        "files": 3524,
+        "differing": 0
+      },
+      {
+        "check": "post-edit real module vs pre-edit real module",
+        "files": 3524,
+        "differing": 3,
+        "expected": "the 3 Track-1 sites"
+      }
+    ],
+    "why_the_3584_vs_3594_gap_is_not_hidden": "3594 total - 3524 transformed = 70 `sub_*`/empty records; reported explicitly so the denominator is auditable. The brief said '3594 decomp JSONs'; the honest denominator for transform_oop_calls coverage is 3524."
+  },
+  "ar002_declarations": {
+    "status": "IMPLEMENTED as comments only — no code moved, no source switched",
+    "declaration_1_ret_N_evidence_source": {
+      "brief_reference": ":52",
+      "actual_line_after_edit": 81,
+      "line_drift_reason": "inserting the declaration block + the stderr warnings shifted the read sites; the read itself is `_structs_dir = os.path.join(_proj, 'data', 'annotations', 'structs')` in _load_ret_slots()",
+      "comment_anchor_line": 26,
+      "text": "# WHAT IS READ  : `data/annotations/structs/*.json` — `methods{addr: {name}}`, used as the (class, method) -> VA index for the ret-N probe.\n# WHY IT MUST BE READ: the gate needs a *binary* fact (the function-tail `ret N` immediate = true __thiscall stack-param byte count). The only route from a rendered `Cls::Method(...)` call to that fact is an address, and the address is only carried by the struct annotations' method table.\n# WHY IT CANNOT BE MIGRATED: `_sig_evidence_pack.json` as the ONLY source -> 167/3524 files drift and 90.0% of the evidence table (3299 -> 335 non-None entries) disappears (direction includes silent passes); slot counts parsed from `asm/pal3/ida_structs.json` signatures -> 219/3524 files drift and the two sources disagree on 758 of 3332 callees; neither source is a superset of the other."
+    },
+    "declaration_2_class_hierarchy_source": {
+      "brief_reference": ":148",
+      "actual_line_after_edit": 245,
+      "comment_anchor_line": 206,
+      "text": "# WHAT IS READ  : `data/annotations/structs/*.json` — `base_class` (+ `name`), used as the class-hierarchy edge set for `_is_derived_from`.\n# WHY IT MUST BE READ: the OOP transform must decide whether `Derived::this` and `Base::Method` are related (legal base-class direct call that SHADOWS a virtual, byte-relevant) or unrelated. That relation exists nowhere in the rendered code.\n# WHY IT CANNOT BE MIGRATED: `asm/pal3/ida_structs.json.bases` is NOT equivalent — annotations carry 179 classes with `base_class`, the export has 175 non-empty `bases`; neither is a superset; the export is missing CEffCamera / CEffTemplate / CEffTime / _Item_List_Info entirely (annotation base_class present, export `bases` empty) and there is no export-only base. Swapping changed 0/3524 files today, i.e. it is output-neutral ONLY because no live site touches those four classes — an accident of the corpus, not an equivalence proof."
+    },
+    "measured_non_migratability": {
+      "RET_SOURCE_substitution": [
+        {
+          "alternative": "pack-only (_sig_evidence_pack.json is the sole ret-N source)",
+          "changed_files": 167,
+          "of": 3524,
+          "evidence_table": "3299 -> 335 non-None entries (retains 10.0%, loses 90.0%)"
+        },
+        {
+          "alternative": "signature-derived slot counts from asm/pal3/ida_structs.json",
+          "changed_files": 219,
+          "of": 3524,
+          "evidence_table": "3332 entries; 758 of 3332 shared callees DISAGREE with the byte-scan"
+        },
+        {
+          "alternative": "combined (pack-only AND export bases)",
+          "changed_files": 167,
+          "of": 3524
+        }
+      ],
+      "CLASS_HIERARCHY_substitution": [
+        {
+          "alternative": "asm/pal3/ida_structs.json.bases",
+          "changed_files": 0,
+          "of": 3524,
+          "meaning": "output-neutral on this corpus, but the tables DIFFER on 4 classes => not an equivalence proof"
+        }
+      ],
+      "pack_vs_bytescan_agreement": {
+        "pack_keys": 335,
+        "pack_keys_present_in_cache": 335,
+        "pack_keys_disagreeing": 0,
+        "fact": "the pack currently overrides nothing (all 335 entries equal the byte-scan value); it is a validation artifact, not an alternative signal"
+      },
+      "brief_figure_reconciliation": {
+        "export_source_15_of_3594": "NOT REPRODUCED (I measured 219/3524 for the signature-derived variant; direction is the same but the magnitude differs by 14x). I could not construct a substitution that yields exactly 15.",
+        "pack_only_169": "REPRODUCED within 2: measured 167 (vs 169). Direction identical, magnitude essentially identical.",
+        "class_hierarchy_1": "NOT REPRODUCED: measured 0/3524 changed files for the export-bases substitution.",
+        "both_16": "NOT REPRODUCED: measured 167 for the independence/dominance test (the ret-N substitution dominates; the bases substitution adds zero).",
+        "84_gate_criteria_changes": "REPRODUCED within 8: measured 92 (cls, method) pairs whose evidence VERDICT (None vs non-None) changes between the byte-scan and the signature-derived source (758 more pairs change only their numeric value).",
+        "pack_only_loses_89.8pct": "REPRODUCED: measured 90.0% (3299 -> 335 non-None entries).",
+        "ida_structs_bases_172_of_179_with_7_empty": "REPRODUCED in shape, small drift: I measured 175 classes with non-empty `bases` and 0 present-but-empty among them, from 949 exported structs; annotations carry 179 with `base_class` from 898 files. The four-entry annotation-only gap is the load-bearing part and is exactly reproduced."
+      },
+      "honesty_note": "Where my numbers differ from the brief I report mine and say so. The CONCLUSION the brief needs is unaffected: no tested alternative source is output-equivalent, so the AR-002 migration is not available today."
+    }
+  },
+  "cg023": {
+    "status": "IMPLEMENTED",
+    "file": "pipeline/gen/ast_transform.py",
+    "function": "_rowtable_family() (line 172)",
+    "change": "`except (OSError, ValueError): _ROWTABLE_CACHE = set()` (silent empty set) -> `raise RuntimeError(...)` with an actionable message naming the missing path, the silent-reclassification cost, and the remedy",
+    "reproduced_cost_of_the_old_silent_fallback": {
+      "method": "instrumented copy forced to return an empty family set (T6_FAMILY=empty), full-corpus diff vs baseline",
+      "changed_files": 326,
+      "reclassified_sites": 586,
+      "MISATTRIBUTED": "346 -> 932",
+      "ROWTABLE": "586 -> 0",
+      "brief_figures": "588 sites / 328 files",
+      "reconciliation": "DID NOT REPRODUCE exactly: measured 586 sites / 326 files. The brief's '588' and my '586' both exceed the 576 that grep finds in pal3/src because the harness predates the later stages that drop 10 of them; the file-count difference (328 vs 326) is of the same shape. The conclusion (a whole-family silent reclassification of ~586 sites across ~326 files with no signal) is fully reproduced."
+    },
+    "runtime_error_verified": {
+      "command": "mv data/status/_rowtable_family.json /tmp/... ; python3 -c \"import ast_transform as AT; AT._ROWTABLE_CACHE=None; AT._rowtable_family()\"",
+      "observed": "RuntimeError: ast_transform: the [ROWTABLE] family list is required but could not be read: /home/peng/workspace/PAL3Decomp/data/status/_rowtable_family.json ([Errno 2] No such file or directory...)",
+      "file_restored": "data/status/_rowtable_family.json (927 bytes, mtime 09:42 preserved)"
+    },
+    "same_contract_applied_to_the_new_export_evidence": "the two new IDB-export readers (`_load_va_by_method`, `_vtable_slot_evidence`) also raise RuntimeError instead of degrading"
+  },
+  "typed_except_handling": {
+    "brief": "5 typed excepts in the file: :58/:83/:90 keep + add stderr warning; :117 is NOT deleted, recorded as C3b redundant",
+    "actual_sites_after_edit": [
+      {
+        "function": "_load_ret_slots",
+        "guard": "os.path.isfile(exe_path)",
+        "action": "KEPT + stderr [WARN] added",
+        "why": "a missing exe blocks the whole ret-N gate; that must be visible"
+      },
+      {
+        "function": "_load_ret_slots",
+        "except": "except OSError",
+        "action": "KEPT + stderr [WARN] added",
+        "why": "same reason, unreadable exe"
+      },
+      {
+        "function": "_load_ret_slots",
+        "except": "except Exception (struct json load)",
+        "action": "KEPT + stderr [WARN] added naming the file",
+        "why": "one unreadable annotation silently removes its whole class from the evidence table"
+      },
+      {
+        "function": "_load_ret_slots",
+        "except": "except ValueError (int(a,16))",
+        "action": "KEPT + stderr [WARN] added",
+        "why": "non-hex method address"
+      },
+      {
+        "function": "_load_ret_slots",
+        "except": "except Exception (sig evidence pack)",
+        "action": "NOT DELETED — recorded as C3b redundant, with the redundancy measurement written inline (335/335 pack keys already in the byte-scan cache, 0 disagreements)",
+        "why": "the pack is an OPTIONAL refinement; making it fatal would create a hard dependency that can change no verdict"
+      }
+    ],
+    "c3b_justification_is_measured": "335 pack keys, 335 present in the cache, 0 with a different value => the except cannot mask a behaviour change."
+  },
+  "tests_synced": {
+    "file": "pipeline/gen/test_pipeline.py",
+    "suite_state": {
+      "before": "24 tests, 2 failures (pre-existing)",
+      "after": "33 tests, 2 failures (the SAME two pre-existing failures)",
+      "pre_existing_failures": [
+        "test_identifier_as_first_arg (test_pipeline.py:52) — asserts `((Foo *)ptr)->Foo::DoSomething(1, 2)`; actual emission is `(((Foo *)ptr))->Foo::DoSomething(1, 2)` (extra parens from the `'(((%s *)%s))'` format string)",
+        "test_complex_expr_as_first_arg (test_pipeline.py:58) — same extra-paren drift"
+      ],
+      "regression_check": "running the NEW tests against the PRE-EDIT ast_transform.py gives 6 failures + 2 errors; against the post-edit file it is 2 failures. Net: 8 new/updated assertions pass, 0 regressions.",
+      "pre_existing_failures_left_alone_reason": "they assert an emission shape (single-paren cast) that the live code has not produced for a long time; they are outside the t6 edit and were NOT silently 'fixed' to match, because changing an assertion to match current behaviour without a ruling is exactly the kind of quiet weakening this task forbids."
+    },
+    "new_and_updated_assertions": [
+      {
+        "name": "test_inter_class_call_with_this",
+        "line": 93,
+        "change": "docstring now records that it is the 'no evidence' control; assertions unchanged (:99 marker, :101 static form)"
+      },
+      {
+        "name": "test_inter_class_call_with_this_gate_blocked_by_arity",
+        "line": 112,
+        "change": "NEW — negative control: vtable fact true but arity wrong => marker must stay"
+      },
+      {
+        "name": "test_rowtable_cast_this_form",
+        "line": 126,
+        "change": "NEW — ROWTABLE emission assertion (the brief's ':421 ROWTABLE assertion'): SceneObj family call must emit the cast+qualified form + [ROWTABLE]"
+      },
+      {
+        "name": "test_rowtable_not_applied_to_non_family",
+        "line": 137,
+        "change": "NEW — counterpart: non-family class must NOT get [ROWTABLE]"
+      },
+      {
+        "name": "TestTrack1EvidenceGate.test_both_halves_needed",
+        "line": 152,
+        "change": "NEW — pins the conjunction (both halves required)"
+      },
+      {
+        "name": "TestTrack1EvidenceGate.test_three_track1_sites",
+        "line": 170,
+        "change": "NEW — the 3 sites' rendered shape; also asserts the `Cls::` qualifier is preserved (the t11 acceptance item)"
+      },
+      {
+        "name": "TestTrack1EvidenceGate.test_ctor_dtor_excluded",
+        "line": 186,
+        "change": "NEW — explicit ctor/dtor exclusion, with the evidence caches stubbed so the two facts are forced true"
+      },
+      {
+        "name": "TestTrack1EvidenceGate.test_rowtable_family_is_required",
+        "line": 214,
+        "change": "NEW — CG-023 contract (RuntimeError, never a silent empty set)"
+      },
+      {
+        "name": "TestTrack1EvidenceGate.test_vtable_evidence_is_required",
+        "line": 233,
+        "change": "NEW — same contract for the IDB export"
+      },
+      {
+        "name": "TestTrack1EvidenceGate.test_ret_slots_missing_exe_warns_on_stderr",
+        "line": 254,
+        "change": "NEW — the kept typed excepts must be visible (stderr [WARN])"
+      }
+    ],
+    "brief_line_reference_drift": {
+      "note": "the brief's test line references (test_pipeline.py:99/:353/:421/:322/:333/:589-596/:260/:562-563, __main__ L543-603) do NOT match the file on disk in any revision: the file is 220 lines before my edit and was never longer than 306 lines in git history (checked all 8 commits that touched it). The references appear to be a mix of THIS file's current short lines (:99 = the [MISATTRIBUTED] assertion, matches), ast_transform.py's `__main__` block (543-603) and ast_transform.py's ROWTABLE emission site (:421, matches), and a longer unrelated test file. I anchored every change to the CURRENT file content instead of to the drifted numbers and listed the actual locations above."
+    }
+  },
+  "pending_window": {
+    "title": "items that need the shared window (apply/export/codegen/probe/match) or a ruling",
+    "items": [
+      {
+        "id": "W-01",
+        "item": "full-chain effect verification of the Track-1 gate",
+        "why": "the harness cannot compile. Expected: [MISATTRIBUTED] -3 in the regenerated pal3/src and NO new-error class; C2660 must not increase (the 3 sites are inside if-conditions that are USED, and the render fix removes the argument-count mismatch on the decomp side).",
+        "command": "python3 pipeline/cli.py codegen all && ninja -C build -k 0 && python3 tools/error_classifier.py --summary && python3 pipeline/cli.py match",
+        "status": "EXPECTATION, NOT VERIFIED"
+      },
+      {
+        "id": "W-02",
+        "item": "compile-validity of the emission form `(((Cls *)this))->Cls::M(rest)` on the real headers",
+        "why": "shape-checked by reading pal3/src/Misc/AStarPathFinder.h (`virtual unsigned __int8 GetHeuristicIdx(int nX, int nY)` at :41, public, class complete) but NOT compiled. The formula `(((X *)this))->X::M(...)` is already emitted corpus-wide by the identifier/qualified_identifier branches, so the form itself is not new.",
+        "status": "EXPECTATION, NOT VERIFIED"
+      },
+      {
+        "id": "W-03",
+        "item": "GAP-ROWTABLE-PRECEDENCE-01 ruling",
+        "why": "implementing the >=2-class criterion literally removes 420 of 586 [ROWTABLE] sites (226 files, MISATTRIBUTED 346 -> 766). Needs a captain/user decision; my proposed superset-safe variant is in rowtable_precedence_GAP_ROWTABLE_PRECEDENCE_01.proposed_safer_criterion_for_captain_review.",
+        "status": "BLOCKED ON RULING"
+      },
+      {
+        "id": "W-04",
+        "item": "AR-002 migration feasibility",
+        "why": "no tested alternative source is output-equivalent (167 / 219 changed files). Lifting the CLAUDE.md red line is a user decision.",
+        "status": "BLOCKED ON RULING"
+      },
+      {
+        "id": "W-05",
+        "item": "re-run of the marker counts on the regenerated pal3/src",
+        "why": "pal3/src currently shows 344 [MISATTRIBUTED] / 576 [ROWTABLE] while the harness staging output shows 346 / 586. The -3 delta should land, but the absolute counters must be re-taken after codegen; the brief's '588 sites / 328 files' for CG-023 also needs re-taking on the new tree.",
+        "status": "PENDING"
+      },
+      {
+        "id": "W-06",
+        "item": "induction requirement: run the IDA export before any codegen run",
+        "why": "the Track-1 gate consumes asm/pal3/ida_structs.json and RAISES (by design, no silent fallback) when it is absent. That file is gitignored (asm/ whole tree), so a clean checkout must run the IDA export before codegen — the same requirement the ret-N byte-scan already has for original/PAL3.exe. Worth a line in docs/decompilation_workflow.md (t5 item 9).",
+        "command": "python3 pipeline/cli.py export   # then codegen all",
+        "status": "EXPECTATION, NOT VERIFIED"
+      }
+    ]
+  },
+  "honesty_statement": "Every number in this file was produced by a command recorded here or in the referenced /tmp harness scripts, on this worktree, at the stated HEAD. Nothing was verified through apply/export/codegen/probe/match and no IDB was opened. Where the task brief's figures and my measurements disagree I state both, keep my own number, and say which conclusion (if any) is affected.",
+  "captain_decisions": {
+    "decided_at": "2026-09-15",
+    "decided_by": "captain",
+    "W-03_rowtable_precedence": {
+      "decision": "ACCEPT t6's alternative; REJECT the literal >=2-classes criterion",
+      "rationale": [
+        "字面口径实测会把 ROWTABLE 586->166、MISATTRIBUTED 346->766、226 个文件改判，大面积推翻 bb62deb95 的家族派发设计，方向与 handoff 的『其余不动』相反",
+        "t6 的替代方案保留了白名单作路由门，把 >=2 槽证据降为准入校验（当前 63/63 全满足 => 预期 0 文件差异），属 provenance 加固而非行为变更",
+        "该替代方案仍满足 handoff §4 t6 要求的实质目的（用逐被调方二进制证据做门控），且不引入未经验证的大范围反转"
+      ],
+      "implemented_in": "pipeline/gen/ast_transform.py (t6 inScope)",
+      "explicitly_excluded": "字面口径的判定顺序翻转（不在本轮实施；如需，须另立任务并附全链验证）",
+      "gap_registered": "GAP-ROWTABLE-PRECEDENCE-01 保持登记"
+    },
+    "W-01_W-02_pending": {
+      "status": "待窗口/待编译",
+      "items": [
+        "Track-1 的 codegen all + ninja + error_classifier + match 全链效果（预期 [MISATTRIBUTED] -3、C2660 不增）",
+        "三站点渲染 (((AStarPathFinder *)this))->... 的编译有效性；captain 另注意到其括号层数(三层)与 handoff 口径(两层)不符，未经编译验证，转交 t10/t11 复核"
+      ]
+    },
+    "W-06_note": "门控消费 asm/pal3/ida_structs.json（gitignored）；缺失时按设计抛错不静默兜底 -> 干净检出必须先跑 pipeline/cli.py export。已并入 t5 的 docs/decompilation_workflow.md 待办。"
+  }
+}

@@ -1,0 +1,855 @@
+{
+ "taxonomy_version": "2026-09-15-cleanup-scan-taxonomy.md",
+ "taxonomy_sha": "docs/specs/2026-09-15-cleanup-scan-taxonomy.md",
+ "baseline": {
+  "l1": 5,
+  "s2_ok": 53,
+  "s2_total": 198,
+  "s4_matched": 123,
+  "s4_symbols": 175,
+  "s2_errors": 3090,
+  "apply_struct_ok": "879/881",
+  "captured_at": "2026-09-15",
+  "l1_source": "python3 pipeline/cli.py match → 'matched 123/175 symbols | L1 5 | [L1 ratchet] previous 5 -> current 5'",
+  "s2_source": "data/status/baselines/latest.json → results status=='ok' 计数 53 / 198"
+ },
+ "items": [
+  {
+   "id": "AR-001",
+   "class": "C1_arch_violation",
+   "subclass": null,
+   "title": "裁决(a)-要件2：data.py:226 '唯一位置' 断言失实——本身作为 C1 违规证据",
+   "evidence_grade": "B",
+   "evidence": {
+    "kind": "comment",
+    "location": "pipeline/gen/data.py:226",
+    "detail": "断言原文 'This is the ONLY place codegen reads from annotations (architectural exception).'（data.py:226）；同文件 :191 skip_functions.json、:262 globals.json、:374 functions.json 三处读取与 'ONLY' 直接矛盾。【裁决(a)】判 C1：CLAUDE.md 红线「codegen 只读 export 产物、不直接访问 data/annotations」，已声明例外仅 vtable slot 解析一条（:224-229）；该失实注释按 captain 要求本身计入违规证据。不采纳'合法延伸'辩护：export 读 annotation 是把 annotation 落进 IDB（输入源），codegen 读 annotation 是在 export 产物通道之外另开旁路，绕过 export 层过滤/映射契约（SKILL.md:130-132 禁止 codegen 绕过 annotation 状态做决策）。",
+    "command": "grep -n 'annotations' pipeline/gen/data.py"
+   },
+   "location": "pipeline/gen/data.py:226",
+   "sites": 4,
+   "files": [
+    "pipeline/gen/data.py"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "FIX_PIPELINE",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": "docs/specs/2026-09-15-cleanup-scan-architecture-rulings.md",
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "裁决完成，见 docs/specs/2026-09-15-cleanup-scan-architecture-rulings.md 裁决(a)。收口只能二选一：(i) 修改 CLAUDE.md 红线并记录决策（docs/knowledge Decisions 段当前为空）；(ii) 红线维持则改消费 export 产物。涉及 codegen 重构，超出本轮 DAG，故不改，仅作裁决记录 + t5 分级输入。"
+  },
+  {
+   "id": "AR-002",
+   "class": "C1_arch_violation",
+   "subclass": null,
+   "title": "裁决(a)-要件1：codegen 12 处读取 data/annotations 落在声明例外之外",
+   "evidence_grade": "B",
+   "evidence": {
+    "kind": "measured_count",
+    "location": "pipeline/gen/ast_transform.py:52,148",
+    "detail": "例外外读取点（12 处）：ast_transform.py:52 与 :148（structs/，未声明，两处独立读取）；emit_headers.py 11 处（:106,:646,:869,:993,:1206,:1270,:1511,:2080,:2232,:2710,:3043；模块 docstring :1-12 自声明为输入源）；collect.py:97（skip_functions.json）；stage3_cleanup.py:96（structs/<class>.json）；stage4_substitution.py:334（structs）。engine: grep -rn 'data.*annotations' pipeline/gen/ | grep -v '^pipeline/gen/data.py'",
+    "command": "grep -rn \"data.*annotations\" pipeline/gen/ | grep -v '^pipeline/gen/data.py'"
+   },
+   "location": "pipeline/gen/ast_transform.py:52",
+   "sites": 6,
+   "files": [
+    "pipeline/gen/ast_transform.py",
+    "pipeline/gen/stages/emit_headers.py",
+    "pipeline/gen/stages/collect.py",
+    "pipeline/gen/stages/stage3_cleanup.py",
+    "pipeline/gen/stages/stage4_substitution.py"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "FIX_PIPELINE",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": "docs/specs/2026-09-15-cleanup-scan-architecture-rulings.md",
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "裁决完成：判 C1（见 docs/specs/2026-09-15-cleanup-scan-architecture-rulings.md 裁决(a)）。严重度二分供 t5 使用：(i) emit_headers.py = 自声明读取，属'红线与实现长期脱节的存量'；(ii) ast_transform.py 的未声明读取属'未声明旁路'——该模块职责是 stage2 AST 语义变换，却用 structs/ 判定跨类调用合法性（_rowtable_family()），即在 codegen 层自行解释 annotation，非等价变换，严重度更高。"
+  },
+  {
+   "id": "AR-003",
+   "class": "C1_arch_violation",
+   "subclass": null,
+   "title": "export 层读 data/annotations（红线：export 不读 annotation）——export_full.py 共 10 处直接读取",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "measured_count",
+    "location": "pipeline/ida/export_full.py:148-161",
+    "detail": "log 明写 '[*] Load annotations (authoritative source for signatures)' 然后 `funcs_file = .../data/annotations/functions.json`；另有 :159 structs、:200 skip_functions、:213,:216、:281（'Recovered N functions from annotations'）、:485、:688 globals.json、:718",
+    "command": "grep -n 'annotations' pipeline/ida/export_full.py"
+   },
+   "location": "pipeline/ida/export_full.py:148",
+   "sites": 10,
+   "files": [
+    "pipeline/ida/export_full.py"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "FIX_PIPELINE",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": null,
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "docs/knowledge 无任何记载该读取为'有意取舍'（Decisions 段为空）；故按红线判违规。t8 的 inScope 未含 export_full.py → t5 若判为可立即修，需新建修复任务或扩 scope。"
+  },
+  {
+   "id": "AR-004",
+   "class": "C1_arch_violation",
+   "subclass": null,
+   "title": "cmd_apply 失败时以退出码 0 结束，破坏 `apply && export && ...` 门禁链",
+   "evidence_grade": "B",
+   "evidence": {
+    "kind": "comment",
+    "location": "pipeline/cli.py:315-320",
+    "detail": "`ok = _run_ida('apply_annotations.py', ...)`；else 分支只 print('-> WARN: non-zero exit ...')，无 sys.exit；函数末尾照常 print('Next: python pipeline/cli.py export')",
+    "command": "sed -n '315,322p' pipeline/cli.py"
+   },
+   "location": "pipeline/cli.py:320",
+   "sites": 1,
+   "files": [
+    "pipeline/cli.py"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "FIX_INFRA",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": null,
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "docs/knowledge/gotcha_apply_silent_fail_idb_lock.md 已把此列为'管线级修复方向（未做）'，即已知未修。t8 inScope 含 pipeline/cli.py。"
+  },
+  {
+   "id": "AR-005",
+   "class": "C1_arch_violation",
+   "subclass": null,
+   "title": "tools/audit_layout.py 在缺 asm/pal3/ida_structs.json 时仅告警并以空 dict 继续，跨 IDA 的布局校验被静默跳过，形成'零问题'假通过",
+   "evidence_grade": "B",
+   "evidence": {
+    "kind": "comment",
+    "location": "tools/audit_layout.py:59-63",
+    "detail": "load_ida_structs(): `if not IDA_STRUCTS_PATH.exists(): print('WARN: ...'); return {}`；main():407-410 只打印 Loaded 0 structs，无退出码；audit_struct 内 ida_struct = ida_structs.get(sname, {}) 使所有 IDA 侧比对退化为缺失",
+    "command": "sed -n '57,63p;405,412p' tools/audit_layout.py"
+   },
+   "location": "tools/audit_layout.py:59",
+   "sites": 1,
+   "files": [
+    "tools/audit_layout.py"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "FIX_INFRA",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": null,
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "违反 spec 第 6.4 节'弱化门禁'。与 AR-006/007 同属'门禁强弱'主题。"
+  },
+  {
+   "id": "AR-006",
+   "class": "C1_arch_violation",
+   "subclass": null,
+   "title": "compile_regression.py 的棘轮基线 data/status/compile_baseline.json 自 2026-09-01 冻结（58/204），与当前 53/198 长期失配，门禁每次恒定报警，失去回归探测能力",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "measured_count",
+    "location": "data/status/compile_baseline.json",
+    "detail": "timestamp=2026-09-01T11:45:16 s2_ok=58 total=204；当前 probe_census 53/198。实跑 compile_regression.py 输出 'Baseline S2: 58/204 / Current S2: 53/198'、'12 files REGRESSIONS'、'Net change: -5 files'、exit code 1",
+    "command": "python3 tools/compile_regression.py; echo exit=$?"
+   },
+   "location": "data/status/compile_baseline.json",
+   "sites": 1,
+   "files": [
+    "data/status/compile_baseline.json",
+    "tools/compile_regression.py"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "FIX_INFRA",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": null,
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "分母亦不同（204 vs 198），基线不可比。t8 inScope 含 tools/regression_detector.py 但未含 compile_regression.py 的基线刷新 → 需在 t5 裁决归属。"
+  },
+  {
+   "id": "AR-007",
+   "class": "C1_arch_violation",
+   "subclass": null,
+   "title": "codegen all 的后置 snapshot 钩子在缺 probe_census.json 时以未捕获异常终止（FileNotFoundError 堆栈），而非可操作提示",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "measured_count",
+    "location": "pipeline/snapshots/snapshot.py:44",
+    "detail": "guard 抛 FileNotFoundError('probe_census.json not found — run `python pipeline/cli.py probe` first')；__main__（:262-269）无 try/except；cli.py:376-379 用 subprocess.run 调用 capture 且不检查返回码",
+    "command": "mkdir -p /tmp/censusrepro/pipeline/snapshots /tmp/censusrepro/data/status && cp pipeline/snapshots/snapshot.py /tmp/censusrepro/pipeline/snapshots/ && cd /tmp/censusrepro && python3 pipeline/snapshots/snapshot.py capture"
+   },
+   "location": "pipeline/snapshots/snapshot.py:44",
+   "sites": 1,
+   "files": [
+    "pipeline/snapshots/snapshot.py",
+    "pipeline/cli.py"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "FIX_INFRA",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": null,
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "提示文案存在但以异常形态抛出；干净检出的codegen all 必踩。实测退出码 1，堆栈首行 FileNotFoundError: probe_census.json not found。"
+  },
+  {
+   "id": "AR-008",
+   "class": "C1_arch_violation",
+   "subclass": null,
+   "title": "work IDB 为单写者共享文件且无锁探测：团队并发 agent 会竞争同一 original/PAL3.exe.i64（按脚本直接 `idat -A -Sscript <idb>`，无锁检查）",
+   "evidence_grade": "B",
+   "evidence": {
+    "kind": "comment",
+    "location": "pipeline/cli.py:288,315",
+    "detail": "_run_ida('apply_annotations.py', cfg.idb_work) 直接对 work IDB 执行；gotcha 文档证实 'IDB 是单写者文件——任何还开着的 idb_open MCP 会话都持有锁，之后 idat -A 会直接失败'，且失败被判为 WARN 不退出（AR-004）",
+    "command": "grep -n 'idb_work' pipeline/cli.py"
+   },
+   "location": "pipeline/cli.py:315",
+   "sites": 1,
+   "files": [
+    "pipeline/cli.py"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "FIX_INFRA",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": null,
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "本轮在我以 idat 查询 work IDB 时实测出现 'TVision error: TTY-read failed' + 核心转储（exit 134）；改用 IDB 副本后退出码 0，说明该失败与并发/环境相关，非 IDB 自身损坏（副本查询全部成功）。"
+  },
+  {
+   "id": "AR-009",
+   "class": "C1_arch_violation",
+   "subclass": null,
+   "title": "裁决(b)：声明式 binary_size 无真实尺寸来源——53 个撑大项(10 个 >50x)；受损门禁的尺寸判定属循环论证，S2 级证据不成立",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "instr_disp32",
+    "location": "data/annotations/structs/*.json + tools/audit_layout.py:200",
+    "detail": "821 个同时有 size+members 的结构中 53 个 binary_size>3x max_member_offset、10 个 >50x；极端 gbVFileSystem 917972/24(38248x)、SoundMgr 918796/848、MXTransport 363968/1108。max_offset 是 A 级(指令 reg+disp32)但仅为【下界】。TIL 查证(副本,exit 0)：gbVFileSystem til_size=917972 与注解逐位相同、max_member_end 亦被拉到 917972 → IDB 忠实反映注解，audit_layout.py:200 的 binary_size!=ida_size 检查恒等通过（循环论证）。三处受损门禁：audit_layout.py:200-205（循环，53 项零覆盖）、check_annotations.py:583-587（只能发现撑破，无法发现撑大）、decomp_quality.py:110-112（阈值 cls_size*2 被撑大 N 倍稀释，误归属检出率下降）。",
+    "command": "python3 -c \"...\" # 见 rulings 文档 (b-1)；TIL: idat -A -S/tmp/size_probe.py <IDB副本>"
+   },
+   "location": "data/annotations/structs/*.json",
+   "sites": 53,
+   "files": [
+    "data/annotations/structs/gbVFileSystem.json",
+    "data/annotations/structs/SoundMgr.json",
+    "data/annotations/structs/MXTransport.json",
+    "tools/audit_layout.py",
+    "pipeline/check_annotations.py",
+    "pipeline/decomp_quality.py"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "FIX_ANNOTATION",
+   "proof_needed": "逐 struct 采集独立于注解的尺寸证据：指令级 max_offset（下界，A 级）+ 分配点尺寸（new T / operator new 常量，可达 A/B 级）。严禁按 max_offset 批量改小（那是用下界冒充精确值，同样违反需二进制直接证据）。",
+   "consistency": {
+    "bucket_ref": "docs/specs/2026-09-15-cleanup-scan-architecture-rulings.md",
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "尺寸来源裁决：IDA 导出结构 ❌不可（与注解同源，循环）；PDB ⚠️仅参考（CLAUDE.md 明令，且本轮撑大本身源自 PAL3A PDB 的错误尺寸）；指令级 max_offset ✅唯一 A 级但只是下界；分配点证据 ✅可补证。影响验收口径：涉及尺寸的修复条目，验收不得再用 audit_layout/check_annotations 的'通过'作为依据。需 captain 决策的越界动作见 gaps GAP-AR-05/06/07。"
+  },
+  {
+   "id": "AR-010",
+   "class": "C3_historical_residue",
+   "subclass": "C3c",
+   "title": "缩减式尺寸落地脚本 tools/_land_sizes.py：以硬编码尺寸猜测 + 弱通过条件(Keep if S1>=baseline and S2>=baseline)写回 binary_size",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "comment",
+    "location": "tools/_land_sizes.py:1-9,12-17,49",
+    "detail": "docstring: 'One-at-a-time size-update landing with probe verification. For each (class, size): edit structs JSON -> codegen headers -> probe S1+S2. Keep if S1 >= baseline and S2 >= baseline; else revert'；UPDATES 为硬编码猜测(UIStatic 248/CCBUIPanel 22112/UISceneFrm 3288/UITitle_ArcSave 4004/JusticeBookUI 56192/UIRoleSelectDialog 2204/CScreenMode 5496/UIListBox 1760)；:49 `d['binary_size'] = size` 直接写回注解。BASE_S2=49/197，低于当前 53 → 几乎任何猜测都被放行（弱门禁）。佐证残值：UIListBox 目标 1760 现为 1208、UIStatic 目标 248 现为 152。",
+    "command": "sed -n '1,17p;45,52p' tools/_land_sizes.py"
+   },
+   "location": "tools/_land_sizes.py",
+   "sites": 8,
+   "files": [
+    "tools/_land_sizes.py"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "DOCUMENT",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": "docs/specs/2026-09-15-cleanup-scan-architecture-rulings.md",
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "一次性脚本（_ 前缀）但仍留在 tools/ 顶层。它是 53 个撑大项的主要发源，是 AR-009 的因果上游。"
+  },
+  {
+   "id": "AR-011",
+   "class": "C3_historical_residue",
+   "subclass": "C3c",
+   "title": "tools/ida/archive/pal3_fix_oversized_structs.py 以 char _data[N] 占位替换真实结构定义（破坏性 workaround 残留）",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "comment",
+    "location": "tools/ida/archive/pal3_fix_oversized_structs.py:10-12,18,31",
+    "detail": ":10-11 'The PAL3A sizes are WRONG for PAL3. Replace with placeholders sized to cover the maximum observed binary offset, padded to a safe margin.'；:18 'safe_size = max_offset * 2 (conservative, covers unobserved members)'；:31 实际写入 `struct %s { char _data[%d]; };` —— 丢弃全部成员与类型信息，仅留填充字节。FIXES 表仅 7 条(CEffect/CCBSystem/CEffMgr/PropUI/CEffMeteor/CEffCylinder/CEffExplosive)，不能解释 53 个撑大项全量（大宗发源见 AR-010）。",
+    "command": "sed -n '10,32p' tools/ida/archive/pal3_fix_oversized_structs.py"
+   },
+   "location": "tools/ida/archive/pal3_fix_oversized_structs.py",
+   "sites": 7,
+   "files": [
+    "tools/ida/archive/pal3_fix_oversized_structs.py"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "DOCUMENT",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": "docs/specs/2026-09-15-cleanup-scan-architecture-rulings.md",
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "属 CLAUDE.md 禁止的'破坏性 workaround'形态（用填充字节掩盖真实类型）。已在 archive/ 下，但同目录另有 10+ 个未归档的 pal3_fix_*.py，归档边界不一致（属 t4 的 C4 观察）。"
+  },
+  {
+   "id": "AR-012",
+   "class": "C2_intentional_signal",
+   "subclass": null,
+   "title": "tools/vc6 的 1258 条小写符号链接是刻意的跨平台构建适配层（Linux 大小写敏感 fix），非脆弱耦合",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "comment",
+    "location": "tools/setup_wine_vc6.sh:6,34-55",
+    "detail": "生成者(TRACKED)：tools/setup_wine_vc6.sh:6 自述 'Creates lowercase symlinks in vc6/Lib/ and vc6/Include/ (Linux case-sensitivity fix)'，:34-41 对 *.LIB/*.OBJ/*.PDB 逐个 ln -sf，:48-55 对 Include 全目录同法。文档化(TRACKED)：docs/linux_build.md:50(快速开始第1步)、:62-66、:158。构建依赖：cmake/toolchain-vc6.cmake:21(VC6_LIB_DIR=.../tools/vc6/Lib)、:119(DXSDK_INCLUDE=.../tools/vc6/Include)、tools/wine_vc6.sh:24,36。目标全为同目录相对链接且 tracked(ls tools/vc6/Lib/msvcrt.lib -> MSVCRT.LIB，MSVCRT.LIB tracked)；shim 自身 untracked 且被 .gitignore:87-88 (tools/vc6/Include/[a-z_]* , tools/vc6/Lib/[a-z_]*) 刻意排除，与 :81 !tools/vc6/** 白名单配合。断链 0 条(find . -type l ! -exec test -e {} \\; | wc -l = 0)。",
+    "command": "bash tools/setup_wine_vc6.sh; git ls-files -s | awk '$1==\"120000\"{print $4}'; find . -type l -not -path './.git/*' | wc -l"
+   },
+   "location": "tools/setup_wine_vc6.sh:34",
+   "sites": 1258,
+   "files": [
+    "tools/setup_wine_vc6.sh",
+    "docs/linux_build.md",
+    "cmake/toolchain-vc6.cmake",
+    "tools/wine_vc6.sh",
+    ".gitignore"
+   ],
+   "root_cause_fixed": true,
+   "recommended_action": "KEEP_AS_SIGNAL",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": "docs/specs/2026-09-15-cleanup-scan-architecture-rulings.md",
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "裁决(c) 见 rulings 文档。关键拆分：tracked symlink 全仓仅 1 条(=latest.json)，其余 1265 条 untracked。core.symlinks 只影响 tracked symlink，故『1266 条与 core.symlinks 强耦合』不成立——耦合面只有 1 条。保留条件 4 条：① tools/vc6 继续以大写名跟踪真实产物(!tools/vc6/** 白名单维持)；② .gitignore:87-88 的 [a-z_]* 排除维持(否则 1258 shim 会误提交)；③ docs/linux_build.md 第1步不被删；④ 解锁条件：若改为大小写不敏感查找层或改用已归一化文件名的 VC6 分发，shim 可整体撤销。另 7 条 .opencode/node_modules 符号链接为 npm 安装副产物，不属本仓库设计。"
+  },
+  {
+   "id": "AR-013",
+   "class": "C1_arch_violation",
+   "subclass": null,
+   "title": "VC6 小写 shim 的存在性无任何门禁校验：跳过 setup 会以晦涩的 \"cannot open include file\" 失败",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "file_absence",
+    "location": "tools/wine_vc6.sh",
+    "detail": "grep -rn 'setup_wine_vc6|msvcrt.lib|lowercase' pipeline/*.py tools/*.py 无命中；grep -n 'symlink|lowercase' tools/wine_vc6.sh 无命中。即构建入口 wine_vc6.sh 与全部 probe/compile 门禁都不检查 shim 是否存在。setup_wine_vc6.sh:9 为 'Run once after cloning the repo on Linux' 的手动步骤。",
+    "command": "grep -rn 'setup_wine_vc6\\|msvcrt.lib\\|lowercase' pipeline/*.py tools/*.py"
+   },
+   "location": "tools/wine_vc6.sh",
+   "sites": 1,
+   "files": [
+    "tools/wine_vc6.sh",
+    "tools/setup_wine_vc6.sh"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "FIX_INFRA",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": "docs/specs/2026-09-15-cleanup-scan-architecture-rulings.md",
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "严重度中：失败形态是编译器硬报错(响亮，非静默错读)，但排障成本高且易被误判为源码问题。建议动作：在 tools/wine_vc6.sh 加载时对 windows.h 等 1-2 个已知小写名做 test -e，缺失则明确提示 bash tools/setup_wine_vc6.sh 并非零退出。但 tools/wine_vc6.sh 不在任何任务 inScope 内(t6=data/annotations, t7=pipeline/ida/apply_annotations.py, t8=基建+pipeline/gen/codegen.py)，故只作裁决记录。另记低优先级观察：tools/wine_vc6.sh:21 用 tools/compilers/msvc6.0 作 VC6_ROOT 而 setup/cmake 用 tools/vc6，两目录同时存在(4 项 vs 66 项)，构成双份 VC6 安装的维护歧义——两处 VC6_LIB 均指向 tools/vc6/Lib 故自洽，不判缺陷，建议 t5 记 DOCUMENT。"
+  },
+  {
+   "id": "AR-014",
+   "class": "C3_historical_residue",
+   "subclass": "C3a",
+   "title": "M_UNDETERMINED 案例实证：AStarPathFinder 的两个虚槽(0x004014E0/0x004014F0)均为 return 0 桩，真实缺陷体在 pal3/src 且不在任何任务 inScope 内",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "instr_disp32",
+    "location": "original/PAL3.exe @0x004014F0",
+    "detail": "PE 直读 .text(VA=0x1000,Raw=0x169000)：0x004014F0 -> 32 C0 C2 08 00 (xor al,al; ret 8 = return 0，thiscall 2 参，5 字节)；0x004014E0 -> 33 C0 C2 08 00 (xor eax,eax; ret 8 = return 0)。vtable 0x0056A600 三槽 = 0x00401030/0x004014E0/0x004014F0 → 0x004014F0 确为 slot 2，槽位归属正确。同类 14 个被标注方法中仅这 2 个是桩，其余 12 个(FindInOpen/FindInClosed/TryExpand/UpdateNeighbors/Reset/PushOpen…)都有真实实现。decomp 记录 size_bytes=5、signature=virtual unsigned __int8 __thiscall(AStarPathFinder *this,int nX,int nY)、decompiled_c 仅 'return 0;'。caller(pal3/src/Combat/CCBAI.cpp:246/444/646)：AStarPathFinder::GetHeuristicIdx((AStarPathFinder*)this, nRoleIndex, (int)&this->m_nHandleEnemyWell)，this 是 CCBAI，返回值当 bool 用。",
+    "command": "python3 -c \"import struct;f=open('original/PAL3.exe','rb').read();...\" # 见 rulings/t5-rules 文档中的 PE 直读脚本"
+   },
+   "location": "original/PAL3.exe",
+   "sites": 3,
+   "files": [
+    "original/PAL3.exe",
+    "pal3/src/Misc/AStarPathFinder.cpp",
+    "pal3/src/Combat/CCBAI.cpp",
+    "data/annotations/structs/AStarPathFinder.json"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "NEED_EVIDENCE",
+   "proof_needed": "四项(captain 规定)：① 反汇编 0xADDR 本体(已做：ret 8 恒返 0)；② vtable slot 实指地址 vs 同名真实现地址(已做：槽位正确、无另一处同名实现→剩余问题是'该桩是否为原二进制真实体，抑或 decomp/IDB 未解析出体')；③ 名字来源(annotation vs IDA vs PDB)；④ caller/callee 继承归属关系(已部分：caller 是 CCBAI，非 AStarPathFinder)。",
+   "consistency": {
+    "bucket_ref": "docs/specs/2026-09-15-cleanup-scan-t5-rules.md",
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "归因已由 vtable 确认正确 → 本类【不得】填 FIX_ATTRIBUTION(改名不是修复)。【缺口】真实缺陷体位于 pal3/src/(codegen 生成物，.gitignore:125 已确认不入库)，而 pal3/src 不在任何任务 inScope 内；勘误：我最初写理由为『t6 outOfScope 含 codegen 产物』——实测 t6 outOfScope=['pipeline/gen/','pipeline/ida/apply_annotations.py','tools/']，并不含 pal3/src/，该说法已更正。正确理由是性质与生命周期：t6 修归属/注解(data/annotations/)，而 pal3/src 是 codegen 产物、手改属 Phase 2 且会被下次 codegen 覆盖。已同步 engineer-codegen：t13 的两分法(合法直呼/归属错误)覆盖不了本类，建议增第三档『callee 经 vtable 确认正确但 caller this 不符』=M4 型，保持静态形态+标记。"
+  },
+  {
+   "id": "AR-015",
+   "class": "C2_intentional_signal",
+   "subclass": null,
+   "title": "N1_STUB_CALL_NO_FIX：CCBAI 三处 [MISATTRIBUTED] 站点(callee 0x004014F0 为 3 字节桩)已定案 NO_FIX，记录以防再被当待修 misattribution 重扫",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "instr_disp32",
+    "location": "original/PAL3.exe @0x004014F0 + data/status/_cleanup_evidence_stub_call_4014F0.json",
+    "detail": "callee 0x004014F0 = 32 C0 C2 08 00 (xor al,al; retn 8，3 字节桩，恒返 0，不读 this->member)；邻槽 0x004014E0 = 33 C0 C2 08 00 同桩。vtable 0x0056A600 三槽=[0x00401030,0x004014E0,0x004014F0]，callee 为 slot 2；dword 引用全文件仅 1 处(0x0056A608)；直接调用点 3 处(0x004D7576/0x004D7BB4/0x004D824C，E8 rel32)。结构实测：AStarPathFinder bases=[] size=24 vtables=[0x0056A600]；CCBAI bases=[] size=3664 vtables=[] → 无继承关系。caller 的 this=esi(CCBAI)，三个调用方归属均有成员访问强证据(engineer-annotation E4)。M1 不成立(callee 地址唯一、vtable slot 映射正确、函数体零信息无从改名)；M4 不成立(无继承关系、caller 归属不需修正)。",
+    "command": "python3 -c \"import json;print(json.load(open('data/status/_cleanup_evidence_stub_call_4014F0.json'))['findings'])\"; grep -n 'sub_4014F0' original/PAL3.exe.asm | head"
+   },
+   "location": "data/status/_cleanup_evidence_stub_call_4014F0.json",
+   "sites": 3,
+   "files": [
+    "pal3/src/Combat/CCBAI.cpp",
+    "data/annotations/structs/AStarPathFinder.json",
+    "data/annotations/structs/CCBAI.json",
+    "data/status/_cleanup_evidence_stub_call_4014F0.json"
+   ],
+   "root_cause_fixed": true,
+   "recommended_action": "KEEP_AS_SIGNAL",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": "docs/specs/2026-09-15-cleanup-scan-t5-rules-addendum.md",
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "登记规则：落【独立非 misattribution 记录区】(captain 给的二选一，推荐)或 C2；【不得】归 C3a(C3a 语义是'未修根的 misattribution'，与此类相反)。唯一目的：防止后续会话反复当待修 misattribution 重扫 → 每条须写明'已定案 NO_FIX、不可再开工'的判据。分类学一致性注：证据包内部同时写了 class=N1_STUB_CALL_NO_FIX 与 subclass=M_UNDETERMINED；后者是遗留过程性标签，最终处置以 NO_FIX 为准，否则与 t5-rules §1 'M_UNDETERMINED 只进需补证据' 冲突。"
+  },
+  {
+   "id": "AR-016",
+   "class": "C1_arch_violation",
+   "subclass": null,
+   "title": "[MISATTRIBUTED] 标记把'合法直呼(callee 为桩)'与'真归属错误'报成同一动作：建议文本已被证伪、判据本身未被证伪，须用户裁决后才可改 policy",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "ret_n",
+    "location": "original/PAL3.exe.asm:320345-320352 + git log 2010eb3ad",
+    "detail": "真实指令序列(非 Hex-Rays 文本)：loc_4D756D: push edi / push ebx / mov ecx,esi / call sub_4014F0 / test al,al / jnz —— 恰 2 个参数，与 callee 自身签名 retn 8(2 参)一致；而生成源码渲染成 3 个参数 AStarPathFinder::GetHeuristicIdx((AStarPathFinder*)this, nRoleIndex, (int)&this->m_nHandleEnemyWell) → C2660 是 decomp/IDB 侧渲染问题，非调用点问题。提交 2010eb3ad(2026-09-13)'cross-class this calls are attribution errors, not legal forms' 明确写着'其存在即证明 callee 的 IDB 名被误归属'，并说明前一次改动'洗成 C 风格合法语法，能编译但把错误类型关系烘进反编译源码'，且记录 '+2 S2 wins 全部来自合法形态、无一依赖洗白'(S2 45/201 零回退)。故：建议文本 '-> fix IDB name of callee' 对本案无依据(须改文案)；但'保留静态形态+保留标记'的判据未被本案证伪——callee 为桩时'名字是否错'本就不可判定。",
+    "command": "sed -n '320345,320352p' original/PAL3.exe.asm; git log -1 2010eb3ad"
+   },
+   "location": "pal3/src/Combat/CCBAI.cpp:246",
+   "sites": 3,
+   "files": [
+    "pipeline/gen/ast_transform.py",
+    "docs/knowledge/pattern_annotation_batch_rename_no_evidence.md",
+    "original/PAL3.exe.asm",
+    "data/status/_cleanup_evidence_stub_call_4014F0.json"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "DOCUMENT",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": "docs/specs/2026-09-15-cleanup-scan-t5-rules-addendum.md",
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "【禁止进入'可立即修'批次】标注'需 captain/用户裁决'，由 captain 上报用户定夺(与仓库刻意设计 2010eb3ad 相反，涉及是否推翻'保留静态形态'policy)。不得由团队静默改，不得以'改善 L1/ok'为由单方面翻转。我不同意'标记判据被这组证据证伪'这一表述：证据只证伪【建议文本】，未证伪【判据】；两点必须分开，否则会把刻意设计当缺陷推翻。见 addendum §2。上报用户时的技术判据：反向政策(把非虚 callee 直呼改成 ((Cls*)this)->M(...)) 若要成立，须给出与 2010eb3ad 同等强度的检验——说明洗白后 S2/L1 的改善不是来自'把类型错误静默藏起来'换取可编译性；在该检验给出之前不得改判据。"
+  },
+  {
+   "id": "AR-101",
+   "class": "C2_intentional_signal",
+   "subclass": null,
+   "title": "五类 codegen 信号标记本身是有意保留的设计信号（产生位置均带保留理由注释），非缺陷",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "comment",
+    "location": "pipeline/gen/ast_transform.py:345-352",
+    "detail": "注释原文 'Do NOT launder it into legal syntax — keep the static call form and mark it; MSVC6 reports C2352, which is the honest \"fix the IDB attribution\" signal (C2039 would mislead people into adding declarations).'；ROWTABLE 同源 :427-435；stage3 的 [VFTABLE]/[IDA_MISID]/[IDA_VTABLE] 为注释化产物标记，[VFTABLE-STUB] 为代换标记",
+    "command": "grep -rn 'MISATTRIBUTED\\|IDA_MISID\\|ROWTABLE' pipeline/gen/ | head"
+   },
+   "location": "pipeline/gen/ast_transform.py:345",
+   "sites": 3258,
+   "files": [
+    "pipeline/gen/ast_transform.py",
+    "pipeline/gen/stages/stage3_cleanup.py"
+   ],
+   "root_cause_fixed": true,
+   "recommended_action": "KEEP_AS_SIGNAL",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": null,
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "规模实测：MISATTRIBUTED=344/74文件、ROWTABLE=576/88、[VFTABLE]=1643/82、IDA_MISID=84/29、VFTABLE-STUB=612/51、[IDA_VTABLE]=0。解除条件：(a) 各标记对应根因修复后站点消失；(b) 若某站点根因已修而标记残留、或标记描述与实况矛盾，该站点降为 C3。根因修复率未测（见 gaps）。 【口径澄清 2026-09-15（captain 裁定）】[IDA_VTABLE]：仅头文件 1 处、.cpp 0 处 —— pal3/src/Render/RenderTarget3.h:31 注释 `// [IDA_VTABLE] _nearby_4b6ca0; // 0x004B6CA0`，.cpp 实测 0 处（grep -ro 无命中）。两边都对，属口径差异（是否含 --include=*.h）。后续一律按此口径，不再当分歧。"
+  },
+  {
+   "id": "AR-102",
+   "class": "C2_intentional_signal",
+   "subclass": null,
+   "title": "IDA 数据库多份历史备份（.bak/.91/.92/.polluted.bak）是单写者 IDB 语义下的灾难恢复副本，属有意保留",
+   "evidence_grade": "B",
+   "evidence": {
+    "kind": "measured_count",
+    "location": "original/",
+    "detail": "PAL3.exe.i64.bak 88001104B(05-22)、PAL3.exe.i64.polluted.bak 85833047B(08-29)、PAL3.exe.91.i64 103239158B、PAL3.exe.92.i64 97222773B；全部未 tracked，工作 IDB 无版本控制历史",
+    "command": "ls -la original/*.i64*"
+   },
+   "location": "original/PAL3.exe.i64.bak",
+   "sites": 4,
+   "files": [
+    "original/PAL3.exe.i64.bak",
+    "original/PAL3.exe.91.i64",
+    "original/PAL3.exe.92.i64"
+   ],
+   "root_cause_fixed": true,
+   "recommended_action": "KEEP_AS_SIGNAL",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": null,
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "保留理由：work IDB 可被 apply 增量污染（'polluted' 命名即证据），且不入库，故需要本地副本。解除条件：IDB 可复现重建路径（t8 文档化 + init --force 验证）落地并被信任后，可只保留 1 份干净的 raw 副本。注意 .polluted.bak 不在 .gitignore 覆盖内（见 AR-205）。"
+  },
+  {
+   "id": "AR-201",
+   "class": "C3_historical_residue",
+   "subclass": "C3b",
+   "title": "pal3/src/ 全部 198 个 .cpp 与 include/pal3/gen/ 被 .gitignore 排除，验收判据（S2 ok、L1）所依赖的产物在干净检出中不存在",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "measured_count",
+    "location": ".gitignore:125-127",
+    "detail": ".gitignore:125 `pal3/src/`、:126 `include/pal3/gen/`、:127 `src/pal3/`、:119 `asm/`；实测 pal3/src 下 198 个 .cpp 全部被忽略，git ls-files '*.cpp' 仅 66 个（均不在 pal3/src），asm/pal3/ida_structs.json 与 asm/pal3/decomp/ 亦被忽略；被跟踪的 66 个 .cpp 分布于 gbengine/src(58)、topo/src(7)、tools(1)，pal3/src 下一个也没有",
+    "command": "git check-ignore -v pal3/src/Combat/CCBUI.cpp; git ls-files '*.cpp' | wc -l; find pal3/src -name '*.cpp' | wc -l"
+   },
+   "location": ".gitignore:125",
+   "sites": 198,
+   "files": [
+    "pal3/src",
+    "include/pal3/gen",
+    "asm"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "DOCUMENT",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": null,
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "这是 C3c（tracked 生成物）的对偶：不是'生成物被跟踪'，而是**验收产物未跟踪**。后果：跨机无法直接比对 ok/L1。判定为 C3 而非 C1 的依据：产物不入库是既定取舍（生成物不应入库），缺陷在于缺少'可重建'的固化文档与门禁（见 AR-202/AR-203），以及基线数字被跟踪而产物不跟踪形成的可比性缺口。"
+  },
+  {
+   "id": "AR-202",
+   "class": "C3_historical_residue",
+   "subclass": "C3c",
+   "title": "data/status/baselines/latest.json 是 dangling symlink：唯一 tracked 的符号链接指向未入库的时间戳文件",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "abs_addr",
+    "location": "data/status/baselines/latest.json",
+    "detail": "git ls-files -s 显示 mode 120000；工作区 readlink -> 20260915_100946.json；但 41 个 tracked 基线中最新的为 20260915_075701.json，100946 未入库 → 干净检出后 latest.json 为 dangling link",
+    "command": "git ls-files -s data/status/baselines/latest.json; readlink data/status/baselines/latest.json; git ls-files data/status/baselines/ | sort | tail -3"
+   },
+   "location": "data/status/baselines/latest.json",
+   "sites": 1,
+   "files": [
+    "data/status/baselines/latest.json"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "FIX_INFRA",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": null,
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "与 AR-205 同一条目的两种病态（dangling + 入库形态损坏）。t8 修复 100644 入库时须同时解决 dangling。读该路径的下游：tools/sig_evidence.py、pipeline/cli.py、tools/regression_detector.py。"
+  },
+  {
+   "id": "AR-203",
+   "class": "C3_historical_residue",
+   "subclass": "C3c",
+   "title": "compile_regression 门禁与 probe 快照使用两套互不相通的基线（compile_baseline.json vs baselines/latest.json）",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "measured_count",
+    "location": "tools/compile_regression.py:17",
+    "detail": "BASELINE_FILE = data/status/compile_baseline.json（tracked，2026-09-01，58/204）；probe 快照写 data/status/baselines/<ts>.json 并维护 latest.json（53/198）。两者维度亦不同：前者含 fail_own/fail_imported_only/root_blame 等自研字段，后者为原始 results",
+    "command": "grep -n 'BASELINE_FILE' tools/compile_regression.py; python3 -c \"import json;d=json.load(open('data/status/compile_baseline.json'));print(d['timestamp'],d['s2']['ok'],d['s2']['total'])\""
+   },
+   "location": "tools/compile_regression.py:17",
+   "sites": 2,
+   "files": [
+    "tools/compile_regression.py",
+    "data/status/compile_baseline.json",
+    "data/status/baselines/latest.json"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "FIX_INFRA",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": null,
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "与 AR-006 为同一根因的两个侧面：基线来源分裂 + 长期不刷新。"
+  },
+  {
+   "id": "AR-204",
+   "class": "C3_historical_residue",
+   "subclass": "C3c",
+   "title": "生成物中的注解路径字面量过期：globals.h 头部注释指向不存在的 pipeline/data/annotations/globals.json",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "comment",
+    "location": "pipeline/gen/stages/emit_headers.py:2753",
+    "detail": "h_lines 写入 '// Auto-generated from pipeline/data/annotations/globals.json'；仓库中不存在 pipeline/data 目录（正确路径为 data/annotations/globals.json）",
+    "command": "ls pipeline/data; sed -n '2753p' pipeline/gen/stages/emit_headers.py"
+   },
+   "location": "pipeline/gen/stages/emit_headers.py:2753",
+   "sites": 1,
+   "files": [
+    "pipeline/gen/stages/emit_headers.py"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "FIX_PIPELINE",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": null,
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "被写入生成头文件，误导读者。"
+  },
+  {
+   "id": "AR-205",
+   "class": "C3_historical_residue",
+   "subclass": "C3d",
+   "title": "脚本内硬编码的过期路径引用（引用文件/工具均已不存在）",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "file_absence",
+    "location": "pipeline/ida/find_bad_lines.py:19",
+    "detail": "find_bad_lines.py:19 打开 pipeline/ida/_logs/apply_status.json（生成者 check_apply_status.py 存在但本轮未产生该文件）；pipeline/cli.py:320 提示用户去查同一不存在文件；另 tools/gbengine_progress.py:28 期望 data/gbengine_registry.jsonl、部分脚本引用 tools/check_annotations.py(实为 pipeline/check_annotations.py)/tools/pal3_compare.py/tools/registry_init.py 等已移除路径",
+    "command": "grep -rhoE '(docs|data|pipeline|tools)/[A-Za-z0-9_/.-]+\\.(md|json|py)' pipeline/ tools/ --include=*.py | sort -u | while read p; do [ -e \"$p\" ] || echo MISSING: $p; done"
+   },
+   "location": "pipeline/ida/find_bad_lines.py:19",
+   "sites": 17,
+   "files": [
+    "pipeline/ida/find_bad_lines.py",
+    "pipeline/cli.py",
+    "tools/gbengine_progress.py"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "DOCUMENT",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": null,
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "AR-004 修复后 cli.py 的 WARN 提示应指向真实产出物，两者需一起改。"
+  },
+  {
+   "id": "AR-301",
+   "class": "C4_zombie_asset",
+   "subclass": "C4_1",
+   "title": "仓库根空文件 __vftable（0 字节）被版本控制跟踪",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "measured_count",
+    "location": "__vftable",
+    "detail": "git ls-files --error-unmatch __vftable 成功（tracked）；ls -la 显示 size 0，创建于 2026-06-18；全仓无任何代码引用该路径；全仓无任何代码以路径形式引用 __vftable（grep 仅命中 C++ 成员名与正则字面量，非文件路径）",
+    "command": "git ls-files --error-unmatch __vftable; ls -la __vftable; grep -rn \"['/]__vftable['\\\"]\" --include=*.py --include=*.toml . | grep -v '^./.git'"
+   },
+   "location": "__vftable",
+   "sites": 1,
+   "files": [
+    "__vftable"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "DELETE",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": null,
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "疑为 `> __vftable` 式重定向误产生的残留。无引用证据：grep -rn \"['/]__vftable['\\\"]\" --include=*.py --include=*.toml . 无输出。"
+  },
+  {
+   "id": "AR-302",
+   "class": "C4_zombie_asset",
+   "subclass": "C4_1",
+   "title": "original/PAL3.exe.i64.polluted.bak（85MB）不被 .gitignore 覆盖，存在误提交风险",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "measured_count",
+    "location": ".gitignore:130,136",
+    "detail": "规则为 `*.i64`(:130) 与 `*.i64.bak`(:136)；PAL3.exe.i64.polluted.bak 两者皆不匹配，git check-ignore 无输出（未被忽略）；而同目录 PAL3.exe.i64.bak 与 PAL3.exe.91.i64 均被忽略",
+    "command": "git check-ignore -v original/PAL3.exe.i64.polluted.bak; echo rc=$?"
+   },
+   "location": "original/PAL3.exe.i64.polluted.bak",
+   "sites": 1,
+   "files": [
+    "original/PAL3.exe.i64.polluted.bak",
+    ".gitignore"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "FIX_INFRA",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": null,
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "85MB 二进制一旦 git add -A 即入库，后续检出/克隆代价极高。"
+  },
+  {
+   "id": "AR-303",
+   "class": "C4_zombie_asset",
+   "subclass": "C4_3",
+   "title": "工作区本地残留：build_output.txt(919690B)、8 个一次性 .obj、/tmp 之外的临时 .obj 全是未跟踪且已被忽略",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "measured_count",
+    "location": "仓库根",
+    "detail": "build_output.txt 919690B(06-14)、test.obj/mi_test.obj/mi_direct_test.obj/base_slot_derived_call.obj/deep_chain_test.obj/polybase_test.obj/si_base_slot_test.obj 均 untracked；git check-ignore -v 命中 .gitignore:3 `*.obj` 与 :144 build_output.txt 【裁决(c) 补充】全仓 tracked symlink 仅 1 条(见 AR-205)；on-disk 1266 条中 1265 条 untracked(1258 条 tools/vc6 shim + 7 条 .opencode/node_modules)，断链 0 条。",
+    "command": "for f in test.obj build_output.txt __vftable; do git ls-files --error-unmatch $f 2>/dev/null && echo TRACKED || echo untracked; done; git check-ignore -v test.obj build_output.txt"
+   },
+   "location": "build_output.txt",
+   "sites": 9,
+   "files": [
+    "build_output.txt",
+    "test.obj",
+    "mi_test.obj",
+    "mi_direct_test.obj",
+    "base_slot_derived_call.obj",
+    "deep_chain_test.obj",
+    "polybase_test.obj",
+    "si_base_slot_test.obj"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "DELETE",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": null,
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "删除不产生 git 改动（故不可计入'已修复'）。__vftable 是其中唯一被跟踪者（见 AR-301）。 注：1258 条 tools/vc6 小写 shim 判为 C2 有意保留(AR-012)，不属本地残留；7 条 .opencode/node_modules 符号链接为 npm 副产物。"
+  },
+  {
+   "id": "AR-304",
+   "class": "C4_zombie_asset",
+   "subclass": "C4_2",
+   "title": "本地堆积的 10 条 stash 与备份分支 backup/local-line-20260904",
+   "evidence_grade": "A",
+   "evidence": {
+    "kind": "measured_count",
+    "location": "git stash list / git branch",
+    "detail": "git stash list 计数 10；git branch 列出 backup/local-line-20260904 与 master",
+    "command": "git stash list | wc -l; git branch"
+   },
+   "location": "git stash list",
+   "sites": 11,
+   "files": [
+    ".git/refs/stash",
+    ".git/refs/heads/backup/local-line-20260904"
+   ],
+   "root_cause_fixed": false,
+   "recommended_action": "DELETE",
+   "proof_needed": null,
+   "consistency": {
+    "bucket_ref": null,
+    "agrees": true,
+    "discrepancy": null
+   },
+   "notes": "与纯本地残留同性质：删除不产生版本控制内容变化。"
+  }
+ ],
+ "gaps": [
+  {
+   "id": "GAP-AR-01",
+   "what": "3 个特色结构中 UICursor 的 OOB 成员（binary_size=32, max_off=44）为何未引发下游导入失败——UICursor 未被任何 SceneObj[256] 式数组引用，故其 TIL 不完整未外显；但它同样是'注解已坏'状态。",
+   "why_unresolved": "本轮只证明 OOB↔UDT-incomplete 的 1:1 对应（3/3），未逐条追踪 UICursor 的下游影响面。",
+   "how_to_resolve": "对 UICursor/SaleUI 的成员访问点做 IDA 反查，确认反编译渲染是否已退化（例如成员名丢失、偏移形式渲染）。"
+  },
+  {
+   "id": "GAP-AR-02",
+   "what": "五类标记中 344 个 [MISATTRIBUTED] 站点各自对应的根因修复率未测，无法完成 C2/C3 的站点级判定。",
+   "why_unresolved": "属 t3 的扫描范围（逐条取证到站点级）。",
+   "how_to_resolve": "t3 按 site 比对 archetype 与当前 IDB callee 名，统计'根因已修'比例。"
+  },
+  {
+   "id": "GAP-AR-03",
+   "what": "无法在干净检出的意义上实证 current work IDB 相对 fresh rebuild 的 codegen 差异（do/don't 对照），因 fresh rebuild（init --force）会改动共享 work IDB 并与其他成员竞争。",
+   "why_unresolved": "本轮受共享资源约束，未执行 init --force；改为以 TIL 直查证明'失败的导入未在 TIL 留下完整类型 + 反编译仍按成员名渲染'的正向证据。",
+   "how_to_resolve": "由 t8 在隔离副本上执行 init --force，再对副本比对 export/codegen 差异。"
+  },
+  {
+   "id": "GAP-AR-04",
+   "what": "管线各命令的'干净检出可跑通性'未逐个实测（只做了输入静态分析与 snapshot 的隔离复现）。",
+   "why_unresolved": "跑 apply/export/codegen/probe 会写入共享 IDB 与 pal3/src，与其他成员竞争。",
+   "how_to_resolve": "t9 在串行无并发窗口下按 split 复跑并记录退出码。"
+  },
+  {
+   "id": "GAP-AR-05",
+   "what": "53 个 binary_size 撑大项的逐条尺寸重建（含 gbVFileSystem/SoundMgr/MXTransport 等 10 个 >50x）需要实现动作，超出本轮 DAG。",
+   "why_unresolved": "t6 inScope 是 data/annotations/ 但契约限定为按 triage 的 A/B 级证据批次修复；尺寸证据需逐 struct 采集分配点/指令级上界，未在任何任务契约内。",
+   "how_to_resolve": "由 captain 决策：新建'尺寸取证'任务，或在 t5 中判为'需补证据'并明确排除出本轮修复范围。"
+  },
+  {
+   "id": "GAP-AR-06",
+   "what": "新增'撑大检测'门禁（以指令级 max_offset 为下界，标记 binary_size > 3x max_offset）需要开发动作，超出本轮 DAG。",
+   "why_unresolved": "t8 inScope 含部分 tools/ 与 pipeline/cli.py，但不含新门禁开发。",
+   "how_to_resolve": "由 captain 决策是否纳入 t8 或另立任务。该门禁所需输入已存在（_misattrib_evidence 串的 max_offset= 字段与 IDA 查询），仅缺消费方。"
+  },
+  {
+   "id": "GAP-AR-07",
+   "what": "audit_layout.py:200 的循环性修复（IDA 侧输入与注解同源）需改为消费独立来源，属工具改造，超出本轮 DAG。",
+   "why_unresolved": "同 GAP-AR-06。",
+   "how_to_resolve": "由 captain 决策。在此之前，尺寸相关修复的验收不得以该门禁'通过'为据。"
+  },
+  {
+   "id": "GAP-AR-08",
+   "what": "新增 VC6 shim 存在性检查（AR-013 建议动作）需改 tools/wine_vc6.sh，超出本轮 DAG。",
+   "why_unresolved": "tools/wine_vc6.sh 不在任何任务 inScope 内(t6/t7/t8 均未覆盖)。",
+   "how_to_resolve": "由 captain 决策是否纳入 t8 或另立任务；改动量极小(加载时对 windows.h 做 test -e 并非零退出)。"
+  },
+  {
+   "id": "GAP-AR-09",
+   "what": "M_UNDETERMINED 案例(AR-014)的真实缺陷体位于 pal3/src/(codegen 生成物)，pal3/src 不在任何任务 inScope 内(t6..t16 均未覆盖)。",
+   "why_unresolved": "它是 codegen 生成物(.gitignore:125)，手改属 Phase 2 手工 fix 路径且会被下次 codegen 覆盖；t13 只管 ast_transform 策略、改不到 callee 函数体。",
+   "how_to_resolve": "由 captain 决策：另立 Phase 2 任务，或在 codegen 层解决；t5 须在产物中登记为'本轮不做 + 理由 + 后续触发条件'。"
+  },
+  {
+   "id": "GAP-AR-10",
+   "what": "captain 给的 C2660 '跨类 this 直呼'族规模数字 110 无法验证：我核对了 [MISATTRIBUTED] 344 站点/74 文件、ledger 197 cluster、_c2660_join.json 六桶(171/94/52/32/7/1 条, 294/308/174/81/24/1 站点)，无任何分桶等于 110。",
+   "why_unresolved": "110 的来源文件/字段/命令未给出，不可复核的数字不得写入 t5 产物。",
+   "how_to_resolve": "请 captain 给出 110 的来源(文件+字段+命令)；在此之前 t5 用可验证切分：DECL-OK 294 站点(候选'合法直呼'族) vs 其余五桶 588 站点，并注明两套数据未必可逐条对齐(不可互相扣减)。"
+  }
+ ],
+ "rulings_doc": "docs/specs/2026-09-15-cleanup-scan-architecture-rulings.md",
+ "t5_rules_doc": "docs/specs/2026-09-15-cleanup-scan-t5-rules.md",
+ "t5_rules_addendum": "docs/specs/2026-09-15-cleanup-scan-t5-rules-addendum.md"
+}

@@ -117,15 +117,31 @@ class RegressionDetector:
         with open(baseline_file, 'w', encoding='utf-8') as f:
             json.dump(baseline.to_dict(), f, indent=2, ensure_ascii=False)
         
-        # Windows 无符号链接权限：直接复制为 latest.json（普通副本即可供 --check 使用）
+        # latest.json 一律写成**普通文件**（不是符号链接）。
+        #
+        # 历史缺陷（2026-09-15 清理工作 t5 第 1 项，发行阻断）：
+        # 这里原来无条件 symlink_to，只在 OSError 时才回退到 copyfile。
+        # 在 Linux 上 symlink_to **总是成功**，于是 index 变成 mode 120000，
+        # 而 `latest.json` 的 blob 内容会是"路径串"——本仓历史上更糟：
+        # 某次提交把 462044 字节的完整 JSON 当成了链接目标，
+        # 于是 `git -c core.symlinks=true clone` 直接 exit 128（文件名过长），
+        # 克隆后该路径甚至不存在。
+        #
+        # 现在改为：**始终写普通文件**，语义与 --check 的消费方式一致
+        # （消费方只按路径读 JSON，不解析链接）。
+        import shutil as _shutil
         latest_link = self.baselines_dir / "latest.json"
-        if latest_link.exists() or latest_link.is_symlink():
+        if latest_link.is_symlink() or latest_link.exists():
             latest_link.unlink()
-        try:
-            latest_link.symlink_to(baseline_file.name)
-        except OSError:
-            import shutil as _shutil
-            _shutil.copyfile(str(baseline_file), str(latest_link))
+        _shutil.copyfile(str(baseline_file), str(latest_link))
+        # 断言落地形态正确（防复发）：必须是普通文件，且可被 json.load
+        import os as _os
+        if _os.path.islink(str(latest_link)):
+            raise RuntimeError(
+                "latest.json was written as a symlink; it must be a regular file "
+                "(see t5 symlink blocker). Path=%s" % latest_link)
+        with open(str(latest_link), 'r', encoding='utf-8') as _vf:
+            json.load(_vf)
         
         print(f"✅ 基线已保存: {baseline_file}")
         print(f"   总文件数: {len(results)}")

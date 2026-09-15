@@ -54,7 +54,11 @@ class Config:
         if not _TOML_PATH.exists():
             raise ConfigError(
                 "pipeline.toml not found at: %s\n\n"
-                "Please create it with the following content:\n\n"
+                "This file is gitignored by design (per-environment paths).\n"
+                "Quickest fix (template is tracked):\n"
+                "    cp pipeline.toml.example pipeline.toml\n"
+                "  then edit the [ida] path / [binary] paths for this machine.\n\n"
+                "Or create it with the following content:\n\n"
                 "[ida]\n"
                 'path = "D:\\\\Program Files\\\\IDA Professional 9.2\\\\idat.exe"\n\n'
                 "[binary]\n"

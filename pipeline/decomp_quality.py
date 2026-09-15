@@ -99,7 +99,21 @@ def measure():
             raw_globals += sum(1 for m in re.finditer(r'\b(?:dword|byte|word|off|qword|unk)_[0-9A-Fa-f]+', code)
                                if m.group(0) not in _skip_globals)
 
-            # Misattribution detection: function accesses offsets far beyond class size
+            # Misattribution detection: function accesses an offset beyond the
+            # declared class size -> the function probably belongs to another
+            # class (or the class size is wrong).
+            #
+            # Threshold is `> cls_size` (NOT `> cls_size * 2`): the old `*2` was
+            # inconsistent with this comment and silently tolerated a whole
+            # offset range (measured 2026-09-15: 7 -> 16 hits).
+            # CAVEAT (architecture ruling (b)): this check is DILUTED, not
+            # strengthened, when cls_size is inflated -- a class whose size is
+            # declared N times too large multiplies the threshold by N as well
+            # (e.g. gbVFileSystem cls_size=917972, SoundMgr=918796: no function
+            # can ever reach the threshold, so this gate has zero power on
+            # them at any multiplier >= 1). Fixing that needs an IDB-independent
+            # size source; tightening the multiplier only restores the detection
+            # that `*2` had removed.
             if '__thiscall' in first_line:
                 cls_match = re.match(r'.*__thiscall\s+(\w+)::', first_line)
                 if cls_match:
@@ -107,7 +121,7 @@ def measure():
                     cls_size = _struct_sizes.get(cls_name, 0)
                     if cls_size > 0:
                         offsets = [int(x) for x in re.findall(r'this\s*\+\s*(\d+)', code)]
-                        if offsets and max(offsets) > cls_size * 2:
+                        if offsets and max(offsets) > cls_size:
                             misattrib_funcs += 1
 
         except (json.JSONDecodeError, KeyError):

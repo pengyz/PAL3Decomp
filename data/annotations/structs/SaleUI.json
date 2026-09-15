@@ -287,121 +287,6 @@
    "type": "int",
    "source": "annotation"
   },
-  "104752": {
-   "name": "ml_SmeltList",
-   "type": "UIListBox",
-   "source": "annotation"
-  },
-  "106040": {
-   "name": "SmeltNum",
-   "type": "int",
-   "source": "annotation"
-  },
-  "106044": {
-   "name": "ml_AncientList",
-   "type": "UIListBox",
-   "source": "annotation"
-  },
-  "107332": {
-   "name": "AncientNum",
-   "type": "int",
-   "source": "annotation"
-  },
-  "107336": {
-   "name": "ml_EquipList",
-   "type": "UIListBox",
-   "source": "annotation"
-  },
-  "108624": {
-   "name": "EquipNum",
-   "type": "int",
-   "source": "annotation"
-  },
-  "108628": {
-   "name": "curPage",
-   "type": "int",
-   "source": "annotation"
-  },
-  "108632": {
-   "name": "curNum",
-   "type": "int",
-   "source": "annotation"
-  },
-  "108636": {
-   "name": "m_btnGroup",
-   "type": "BtnGroup",
-   "source": "annotation"
-  },
-  "109376": {
-   "name": "m_ctrlTime",
-   "type": "float",
-   "source": "annotation"
-  },
-  "109380": {
-   "name": "m_bCanUpdate1",
-   "type": "unsigned char",
-   "source": "annotation"
-  },
-  "109381": {
-   "name": "m_bCanUpdate2",
-   "type": "unsigned char",
-   "source": "annotation"
-  },
-  "109384": {
-   "name": "m_Sortfunc",
-   "type": "UIButton",
-   "source": "annotation"
-  },
-  "109728": {
-   "name": "m_Sortprice",
-   "type": "UIButton",
-   "source": "annotation"
-  },
-  "110072": {
-   "name": "m_sortstate",
-   "type": "int",
-   "source": "annotation"
-  },
-  "110076": {
-   "name": "m_ButtonRc",
-   "type": "tagRECT",
-   "source": "annotation"
-  },
-  "110092": {
-   "name": "mb_OK",
-   "type": "UIButton",
-   "source": "annotation"
-  },
-  "110436": {
-   "name": "mb_Cancel",
-   "type": "UIButton",
-   "source": "annotation"
-  },
-  "110780": {
-   "name": "m_SaleRemarkBk",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "110940": {
-   "name": "m_SaleRemark",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "111100": {
-   "name": "m_ItemFlag",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "111260": {
-   "name": "m_RemarkRc",
-   "type": "tagRECT",
-   "source": "annotation"
-  },
-  "111276": {
-   "name": "m_SaleAtt",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
   "0": {
    "name": "__vftable",
    "type": "void *",
@@ -446,66 +331,6 @@
    "name": "m_bWPXS",
    "type": "int",
    "source": "gen_headers_9.2"
-  },
-  "88408": {
-   "name": "pNGHVarianceParticle",
-   "type": "CParticleEffect *",
-   "source": "gen_headers_9.2"
-  },
-  "106292": {
-   "name": "m_pstate",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "106296": {
-   "name": "m_fFStime",
-   "type": "float",
-   "source": "gen_headers_9.2"
-  },
-  "106332": {
-   "name": "m_dwCombatTimes",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "106336": {
-   "name": "nImbibeNimbusTimes",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "106360": {
-   "name": "bHaveNimbus",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "106364": {
-   "name": "bPXVariance",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "106368": {
-   "name": "m_bFinalCombat",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "106372": {
-   "name": "m_nCombatHurtHP",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "106376": {
-   "name": "m_nCombatHurtMP",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "106380": {
-   "name": "m_bShowStatuary",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "88540": {
-   "name": "m_nDataPoolBase",
-   "type": "int *",
-   "source": "A:decomp_large_offset_ptr_arithmetic_440refs_data_pool"
   }
  },
  "base_class": [
@@ -691,6 +516,6 @@
   }
  ],
  "base_size": 72,
- "size_evidence": "operator new(0x19DB8)=105,912 at CScreenMode::InitGameUI+0x459724 followed by ctor 0x45A7B0; cross-check: ~SaleUI teardown touches +0x19DB4 (=size-4 last dword). NOTE: an earlier session recorded 105,656 - decimal conversion error, fixed 2026-09-14.",
- "_naming_note": "类名标签 \"SaleUI\" 源自非权威 PDB 导出（data/pdb 版本与二进制不符），仅作标识符使用。类身份由二进制证据钉死：分配 0x19DB8（CScreenMode::InitGameUI）、ctor 升序初始化、~dtor 降序拆除（0x45AE60，scalar_dtor 调用链）、vtable 0x56B5CC 同表安装。幻影 \"PlayerMgr\" 注解已于 2026-09-14 解散并入（_round5_verdict.json）。"
+ "size_evidence": "operator new(0x19DB8)=105,912 at CScreenMode::InitGameUI+0x459724 followed by ctor 0x45A7B0; cross-check: ~SaleUI teardown touches +0x19DB4 (=size-4 last dword). NOTE: an earlier session recorded 105,656 - decimal conversion error, fixed 2026-09-14. 2026-09-15 round6 cleanup: deleted 32 out-of-bounds known_members (offset>=105912, max was m_SaleAtt@111276) plus 2 member-overlap intruders (pNGHVarianceParticle@88408, m_nDataPoolBase@88540) — all were unverified gen_headers_9.2/PlayerMgr-import debris (see CHANGE_LOG 2026-09-15 entry, data/status/_cleanup_fix_saleui.json). Ctor 0x45A7B0 last write is [esi+19DB4h] (byte, =105908); dtor 0x45AE60 descending teardown starts at [esi+19AECh]=105196 then jumps straight to vtable-install/base-dtor — neither function ever touches an offset >=105912. binary_size is NOT changed; it remains the hard ctor/alloc-anchored 105912.",
+ "_naming_note": "类名标签 \"SaleUI\" 源自非权威 PDB 导出（data/pdb 版本与二进制不符），仅作标识符使用。类身份由二进制证据钉死：分配 0x19DB8（CScreenMode::InitGameUI）、ctor 升序初始化、~dtor 降序拆除（0x45AE60，scalar_dtor 调用链）、vtable 0x56B5CC 同表安装。幻影 \"PlayerMgr\" 注解已于 2026-09-14 解散并入（_round5_verdict.json）。2026-09-15 round6：round5 合并 PlayerMgr 时把其 20 个 known_members 整批带入，其中 10 个落在 105912 界外、2 个落在 m_ani/m_Role 内造成 overlap，均未逐条验证 this-offset 是否真被 SaleUI 的 ctor/dtor 访问——本轮复核确认 ctor(0x45A7B0)/dtor(0x45AE60) 均止步于 <105912，故予以删除（保留另外 8 个界内但落在 m_data/m_TempData 数组间隙、checker 未标记为 overlap 的同源字段，标为待查，未删除，见 _cleanup_fix_saleui.json）。"
 }

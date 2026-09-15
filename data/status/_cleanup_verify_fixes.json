@@ -1,0 +1,604 @@
+{
+ "schema": "cleanup-verify-fixes/1",
+ "task": "t9 —— 独立验证（范围限定 t3/t4/t5/t6 + captain 窗口补做项）",
+ "verifier": "独立验证者（非实施者），全程中文汇报",
+ "generated_at": "2026-09-15T16:49:03.996834",
+ "repo": "/home/peng/workspace/PAL3Decomp",
+ "head": "aacdf69c5400c5a54823f9c6c97b39b99f57f12d",
+ "method_discipline": {
+  "mode": "只读 + /tmp 副本；未运行 apply/export/codegen/probe/match；未启动 idat；未触碰 original/PAL3.exe.i64",
+  "shared_writers_run": [],
+  "exit_code_discipline": "全部用 `cmd; echo \"exit=$?\"` 或 PIPESTATUS[0]，未用 `| tail` 取退出码",
+  "forbidden_ops_not_used": [
+   "git checkout --",
+   "git restore",
+   "git stash",
+   "git clean -fd"
+  ],
+  "concurrency_check": "核验期间 stage3_cleanup.py / emit_headers.py / data.py / stage5_fixup.py 均无改动（mtime 2026-09-15 09:42:59，git status 干净）→ 未受 t7 并发写干扰",
+  "own_harnesses_written": [
+   "/tmp/ver_ast_order.py（AST 时序）",
+   "/tmp/ver_token_diff.py（t4 token 级等价）",
+   "/tmp/ver_t6_harness.py（Track-1 门控，collect 驱动）",
+   "/tmp/ver_t6_all.py（Track-1 门控，全 3524 JSON 驱动）",
+   "/tmp/ver_t6_corpus_diff.py（HEAD vs 当前 全语料文本 diff）",
+   "/tmp/ver_t6_markers.py（全 3524 标记计数）",
+   "/tmp/ver_dq.py（decomp_quality 独立计数）",
+   "/tmp/ver_head_transform.py（HEAD 变换复现）",
+   "/tmp/ver_cg023.py（CG-023 负对照）"
+  ]
+ },
+ "file_fingerprints_at_start": {
+  "pipeline/ida/apply_annotations.py": {
+   "mtime": "2026-09-15 15:39:46.882450575 +0800",
+   "sha256": "d31a0e6ead8aff3a37e8150b7a5b9762778f98c5889eb36dcd71ae5f5f7da5b2"
+  },
+  "pipeline/ida/export_full.py": {
+   "mtime": "2026-09-15 15:53:28.162642799 +0800",
+   "sha256": "42074a987f9f2284e9ec8fdb4614522c1768c5e5e3795440f4ca51dbb905bf16"
+  },
+  "pipeline/decomp_quality.py": {
+   "mtime": "2026-09-15 15:58:32.011873210 +0800",
+   "sha256": "7276938e958ace776fedf2567506416de20eaceff6675f3c1af5e56a01c664e0"
+  },
+  "tools/audit_layout.py": {
+   "mtime": "2026-09-15 16:09:21.584844447 +0800",
+   "sha256": "d8dd343087c28693a1e1ff96f32b9f50af700f936d30ff694280c1118bfd3d8e"
+  },
+  "pipeline/cli.py": {
+   "mtime": "2026-09-15 16:06:42.292892340 +0800",
+   "sha256": "caaad5c1350fd2542c1cf299af1eab47dc1be50b4a09253c6013a58d0d23b70a"
+  },
+  "pipeline/config.py": {
+   "mtime": "2026-09-15 16:00:33.876896330 +0800",
+   "sha256": "85a9cbbee4016d5d6287a145ffa6e4719ee7f8c55124d81c035989f33c078468"
+  },
+  "pipeline/compare_pal3.py": {
+   "mtime": "2026-09-15 16:00:58.910718600 +0800",
+   "sha256": "deb6df0ea948713af511a544a6e7e9c9f978d58f3cd64787e40d6201db37f2d5"
+  },
+  "tools/annotation_diff.py": {
+   "mtime": "2026-09-15 16:02:56.739572786 +0800",
+   "sha256": "87109416d2345d6a5c85ba637c3612cc7a3a6c4092955c78baa876e1e116ab42"
+  },
+  "tools/wine_vc6.sh": {
+   "mtime": "2026-09-15 16:04:57.891512350 +0800",
+   "sha256": "fd7dc325a39258df5cf0de226993bde8e45515e187aeb68815629fe6336446db"
+  },
+  "pipeline/gen/ast_transform.py": {
+   "mtime": "2026-09-15 16:12:24.464299598 +0800",
+   "sha256": "1e64cadda7df00f170e73e5b9d9a56740e8e223351de494f6e03b95e0b6a8e85"
+  },
+  "pipeline/gen/test_pipeline.py": {
+   "mtime": "2026-09-15 16:12:10.119731166 +0800",
+   "sha256": "9cea353b973de16d5659e28de54101f1df8d462da22faaa4bd20927d34909304"
+  },
+  "data/status/compile_baseline.json": {
+   "mtime": "2026-09-15 16:13:54.058797439 +0800",
+   "sha256": "517d7d0f5af7220c14be9c7a56c6e477c20dd978229009349dd8e1d66a11a3a9"
+  },
+  "data/status/s4_baseline.json": {
+   "mtime": "2026-09-15 16:00:24.940602486 +0800",
+   "sha256": "737a002e83f6d351210706a56f865cd67a68d1bf76374fb3105a2b1bbd4291e4"
+  },
+  "data/status/baselines/latest.json": {
+   "mtime": "2026-09-15 16:16:24.444495473 +0800",
+   "sha256": "08ab1d1618394fa0bb5d3d0f213b8d98492f445cf3225fd16fd4ad8bbbf203de"
+  }
+ },
+ "file_fingerprints_unchanged_at_end": {
+  "pipeline/ida/apply_annotations.py": true,
+  "pipeline/ida/export_full.py": true,
+  "pipeline/decomp_quality.py": true,
+  "tools/audit_layout.py": true,
+  "pipeline/cli.py": true,
+  "pipeline/config.py": true,
+  "pipeline/compare_pal3.py": true,
+  "tools/annotation_diff.py": true,
+  "tools/wine_vc6.sh": true,
+  "pipeline/gen/ast_transform.py": true,
+  "pipeline/gen/test_pipeline.py": true,
+  "data/status/compile_baseline.json": true,
+  "data/status/s4_baseline.json": true,
+  "data/status/baselines/latest.json": true
+ },
+ "scope_verified": [
+  "t3 导入器显式失败 (pipeline/ida/apply_annotations.py)",
+  "t4 export 红线 (pipeline/ida/export_full.py)",
+  "t5 门禁与基建（cli/compare_pal3/config/decomp_quality/annotation_diff/audit_layout/wine_vc6/regression_detector + docs/decompilation_workflow.md）",
+  "t5 发行阻断项（baselines/latest.json 100644 + regression_detector 产生路径）",
+  "t6 codegen 双轨 (pipeline/gen/ast_transform.py + test_pipeline.py)",
+  "captain 窗口补做：棘轮基线刷新 (data/status/compile_baseline.json)、发行阻断提交 aacdf69c5"
+ ],
+ "scope_deferred": [
+  "t7 破坏性注释恢复（stage3_cleanup.py 未改动：mtime 09:42:59，git status 干净）",
+  "t8 死门禁与吞错（emit_headers.py / data.py / stage5_fixup.py 未改动）"
+ ],
+ "not_verified": [
+  {
+   "item": "t3/t5/t6 判据的 L1/ok 实测（match/probe）",
+   "reason": "需独占窗口 + idat/编译；按硬纪律未运行",
+   "status": "待 verifier 窗口"
+  },
+  {
+   "item": "Track-1 三站点渲染 (((AStarPathFinder *)this))->... 的编译有效性",
+   "reason": "需 wine CL 编译/全链",
+   "status": "待 verifier 窗口"
+  },
+  {
+   "item": "t3 en-route 断言“~93 个 vtable struct 的 __vftable 修正此前被静默跳过”的实测量",
+   "reason": "需 IDA 打开 IDB 对比 set_methods 前后 get_udt_details",
+   "status": "未验证（仅代码读）"
+  },
+  {
+   "item": "t3 判据①-b（成员数一致性）的实际覆盖面",
+   "reason": "被 _was_preexisting 门控，需 IDA 数“净新建 UDT”个数",
+   "status": "未验证（覆盖面未知）"
+  },
+  {
+   "item": "wine_vc6.sh 新增 /I tools/vc6/Include 对实际编译结果的影响",
+   "reason": "需跑 wine CL 编译；仅做静态归属判定",
+   "status": "未执行（静态判定：非放宽）"
+  },
+  {
+   "item": "probe_compile.py 的 shim 前置检查（t5 可选项）",
+   "reason": "t5 明确声明未做，文件未改",
+   "status": "确认未做（非缺陷）"
+  }
+ ],
+ "items": [
+  {
+   "id": "t3.1",
+   "claim": "判据不依赖 get_size()==-1（_size_is_dash_one 不在任何失败条件里）",
+   "verdict": "confirmed",
+   "evidence": "grep -n _size_is_dash_one pipeline/ida/apply_annotations.py -> 仅在 1045(定义)/1154,1156(日志)/1181(诊断分支)；失败条件在 :1116 `if (not _udt_ok) or _count_mismatch or _n_oversized:`，不含 -1。:1181 分支只 log [i] 并把 actual_size=binary_size。",
+   "note": "但交付物 changes.6 的措辞“-1 已从失败条件中完全移除”过宽：新增的 _verify_named_udt()（:780-808，:1201/:680 每条成功路径都调用）在 :797-803 仍把 get_size()==-1（且无成员函数）当硬失败。属新增的 last-mile 空壳检查，与旧“无条件降级”不同，但与交付物自述冲突；且 :1179-1180 注释“-1 属正常形态，不是判据”与 :797 自相矛盾。"
+  },
+  {
+   "id": "t3.2",
+   "claim": "末端口径用 udt_member_t.size 而非 type.get_size()",
+   "verdict": "confirmed",
+   "evidence": "_layout_end_of_members() :756-777：`_msize = _um.size // 8`（udt_member_t 原始 bit 宽度），注释 :765-766 明写“用 .size 而非 type.get_size()（后者含对齐填充会产生假越界）”；位域 :759 跳过。"
+  },
+  {
+   "id": "t3.3",
+   "claim": "两条路径（create_fixed_struct / create_fixed_struct_diff）真正统一",
+   "verdict": "partial",
+   "evidence": "create_fixed_struct_diff 确实复用两个共享 helper：:661-662 _layout_end_of_members、:680 _verify_named_udt；:656-658 -1 拒绝；:674-677 新增 [i] 日志。",
+   "counterexample": "反例1（可达性）：`grep -rn create_fixed_struct_diff --include=*.py .` 只有 :569 定义本身，**全仓无任何调用者** → 这条“统一”落在死代码上，要求3的实际效果为零。\n反例2（时序未统一）：diff-mode 在 :649 新建 result_tinfo（未命名）→ :651 create_udt → :655 get_size → :661-662 _layout_end_of_members(...) 读回；而 set_named_type 直到 :679 才调用。t3 交付物自己的 en-route 发现②称“未在 TIL 中命名的 tinfo 上 get_udt_details() 对一部分 UDT 返回 false（实测 5 个结构）” → 此时 _layout_end_of_members 走 :749-751 返回 (None,None,0,0,False)，调用点 `if _oversized:` 因 None 为假 → **末端检查被静默跳过**。即未命名读回这一课只修了 create_fixed_struct，diff-mode 未同步。",
+   "severity": "medium"
+  },
+  {
+   "id": "t3.4",
+   "claim": "覆盖开关默认拒绝",
+   "verdict": "confirmed",
+   "evidence": "data/annotations/_incomplete_udt_overrides.json **不存在**（stat MISSING）；_load_incomplete_udt_overrides() :699-701 文件不存在即返回 {}；无全局开关；命中时 :1162-1166 打印 reason/registered/tracking 留痕。",
+   "residual_escape": "残留（低）：若覆盖命中且 _n_oversized==0 且 _udt_ok==False（布局不可读，_layout_end_of_members 返回 None → _n_oversized=0），覆盖分支不会 return，最终落到 _verify_named_udt；当该 struct 带成员函数时 has_methods=True → :798-800 放行 → 不可读布局的空壳可被覆盖放行。当前覆盖文件不存在，该路径惰性。"
+  },
+  {
+   "id": "t3.5",
+   "claim": "越界（几何不可能）形态不可被覆盖放行",
+   "verdict": "confirmed",
+   "evidence": ":1169-1174：override 命中后若 _n_oversized>0 → 打印 [OVERRIDE-REJECTED] 并 `return (False, ...)`，保持 FATAL。"
+  },
+  {
+   "id": "t3.6",
+   "claim": "AST 断言：create_fixed_struct 内 set_named_type 先于所有 get_udt_details，set_methods 恰一次且在所有 get_udt_details 之后",
+   "verdict": "confirmed",
+   "evidence": "自写 AST harness /tmp/ver_ast_order.py（ast.walk 收集 Call.attr）输出：set_named_type=[927,1054,1100]，get_udt_details=[1058,1075]，set_methods=[1108](count=1)；断言 min(set_named_type)<min(get_udt_details)=True，set_methods 唯一且 max(get_udt_details)<set_methods=True。",
+   "scoped_note": "断言只对 create_fixed_struct 成立。create_fixed_struct_diff 里 get_udt_details@587 在 set_named_type@679 之前 —— 那是“读取已存在的 PDB 命名类型”（:584 已 get_named_type），属设计意图，不算违反；但见 t3.3 反例2（:662 的读回发生在命名前）。"
+  },
+  {
+   "id": "t3.7",
+   "claim": "apply 计数不变：881/881 fail=0、FATAL=0、5 条 -1 诊断",
+   "verdict": "confirmed（读自 captain 窗口产出，非我产生）",
+   "evidence": "pipeline/ida/_logs/apply_annotations_log.txt（mtime 2026-09-15 15:40:47，**晚于** apply_annotations.py 改动时刻 15:39:46 → 该日志确为改动后运行）：`grep -n \"\\[3\\]\"` -> `[3] Structs: 881/881 imported successfully (fail=0)`；`grep -c \"\\[FATAL\\]\"` -> 0（exit=1 表示零命中）；`grep -c \"get_size()==-1 (readable layout\"` -> 5（tagNewItem/C2DSpark_tagSpark/CEffMgr/UIChatRest/SaleUI，全部 oversized=0、union=no）。",
+   "counterexample": "反例（日志措辞失实，低）：这 5 条诊断全部打印 “known union-variant form”，但同一行自报 `union=no`（5/5）→ 该措辞对这批结构是错的（真因是未命名 tinfo 读回形态）。不影响判定，但日志会让读者误判形态。",
+   "apply_exit_or_i64_not_reverifiable": "apply 未由我重跑（窗口纪律）；.i64 mtime 现为 2026-09-15 15:44:39（export 写库），边车 .til/.nam/.id0-2 不存在（干净退出）。"
+  },
+  {
+   "id": "t4.1",
+   "claim": "读点数 9 -> 8",
+   "verdict": "confirmed",
+   "evidence": "grep -c '\"annotations\"' pipeline/ida/export_full.py = 8；git show HEAD:pipeline/ida/export_full.py | grep -c = 9。余下 8 处在 194/238/254/257/325/532/738/770；[t4-DECLARED-EXCEPTION] 标记 9 处（含文件头 27/31 两处自述），即 7 条字段级标记覆盖 8 个读点（254+257 共用一条）。"
+  },
+  {
+   "id": "t4.2",
+   "claim": "语义中性：唯一代码差异只有被删的死块",
+   "verdict": "confirmed（自写 token diff，未用 t4 脚本）",
+   "evidence": "/tmp/ver_token_diff.py（tokenize 去 COMMENT/NL/NEWLINE + SequenceMatcher）：HEAD tokens=5049, CUR=4989，**非 equal 的 opcode 恰好 1 个**，内容 = 删除 HEAD[704:764] 的 `ann_funcs = {} funcs_file = ... if os.path.exists(...): import json as _ann_json; ann_funcs = ...; log(\"[*] Loaded %d function annotations\" % len(ann_funcs))`。其余全部是注释插入。",
+   "counterexample": "自写 AST（HEAD 版）复核死读：Name ann_funcs 的 Store 行=[149,153]，Load 行仅 [154]（即那条 log 计数）→ 153 之后无任何读取，块可删。",
+   "verdict_note": "“t4 已解除 export 红线”不成立：t4 选择了规范允许的出口 (b)「有意取舍」，红线本身**仍然违反**（8 处直接读 data/annotations/）。交付物 verdict_vs_red_line 自己也这么写，属诚实声明，不是隐瞒。"
+  },
+  {
+   "id": "t4.3",
+   "claim": "出口 (b)：证据充分的“有意取舍”+ 决策页交 t12",
+   "verdict": "confirmed（作为“已声明的存量违规”）/ refuted（作为“红线已解除”）",
+   "evidence": "data/status/_cleanup_fix_export_redline.json 存在（23KB，exit_chosen=\"b\"）；data/status/_cleanup_fix_export_redline_decision_page.md 存在（14182B，标注“草稿，待 t12 落盘 docs/knowledge/”）；docs/knowledge/MEMORY.md `## Decisions` 段仍为空（:18-19）→ 尚未落盘，符合“待 t12”。",
+   "counterexample": "等价性证明不存在（equivalence_proof=None）—— 因此“不迁移”是取舍而非证明；这正是 t11/t12 需要复核的点。",
+   "exit_option": "handoff §4 t4 允许 (a) 等价重构 或 (b) 有意取舍；选 (b) 合规。"
+  },
+  {
+   "id": "t5.1",
+   "claim": "发行判据① git ls-files -s = 100644",
+   "verdict": "confirmed",
+   "evidence": "`git ls-files -s data/status/baselines/latest.json` -> `100644 30b85e51e4e5d7396758ed3b1c8d6d6e474d95c8 0 ...` (exit=0)；`git ls-tree HEAD` 同为 100644。父提交 9cb436305 为 `120000`（blob 462044 字节，正是坏形态）。"
+  },
+  {
+   "id": "t5.2",
+   "claim": "发行判据② checkout-index -f --prefix=/tmp/x/ (core.symlinks=true) exit 0",
+   "verdict": "confirmed",
+   "evidence": "`git -c core.symlinks=true checkout-index -f --prefix=/tmp/x/ -- <path>; echo exit=$?` -> exit=0；落地 `普通文件 478352`；`json.load` OK（keys=name,timestamp,results）。默认配置下（②b）同样 exit=0、普通文件。"
+  },
+  {
+   "id": "t5.3",
+   "claim": "发行判据③ clone -q --no-hardlinks exit 0 ∧ 普通文件 ∧ json.load OK",
+   "verdict": "confirmed",
+   "evidence": "`git -c core.symlinks=true clone -q --no-hardlinks . /tmp/c; echo clone_exit=$?` -> 0；`/tmp/c/data/status/baselines/latest.json` = 普通文件 478352；json.load OK name=20260915_155759 n=198；clone HEAD=aacdf69c5。默认配置的 /tmp/c_default 同样 exit=0、普通文件、json.load OK。find /tmp/c -type l 无输出。"
+  },
+  {
+   "id": "t5.4",
+   "claim": "发行判据④ git archive HEAD | tar -x 无错解出",
+   "verdict": "confirmed",
+   "evidence": "`git archive HEAD > /tmp/arch.tar; echo git_archive_exit=$?` -> 0（stderr 空）；`tar -xf ... ; echo tar_exit=$?` -> 0（stderr 空）；解出 4222 个文件；latest.json 普通文件 478352、json.load OK；`find /tmp/arch -type l` 无输出。"
+  },
+  {
+   "id": "t5.5",
+   "claim": "core.symlinks 未被本地配置兜住（用默认配置复验）",
+   "verdict": "confirmed",
+   "evidence": "`git config --local --get core.symlinks` exit=1（未设置）；`git config --local --list | grep -i symlink` 无输出（exit=1）；global exit=1；system exit=1；`git config --get core.symlinks` exit=1。即四层全未设置 → 上述 ②③ 在**默认配置**下复验通过。"
+  },
+  {
+   "id": "t5.6",
+   "claim": "判据的判别力（负对照）",
+   "verdict": "confirmed",
+   "evidence": "用临时 index 复现旧提交、不动工作区：`GIT_INDEX_FILE=/tmp/idx_old git read-tree 9cb436305` -> ls-files 显示 `120000`；`GIT_INDEX_FILE=/tmp/idx_old git -c core.symlinks=true checkout-index -f --prefix=/tmp/xold/ -- <path>; echo exit=$?` -> **exit=1**，stderr=`error: unable to create symlink /tmp/xold/...: 文件名过长`，该路径未创建（目录只有 . 与 ..）→ 修复真实有效、判据非空转。"
+  },
+  {
+   "id": "t5.7",
+   "claim": "7 个静态文件都在声明 inScope 内",
+   "verdict": "confirmed",
+   "evidence": "t5 files_changed 列 9 项：pipeline/cli.py、pipeline/compare_pal3.py、pipeline/config.py、pipeline/decomp_quality.py、tools/annotation_diff.py、tools/audit_layout.py、tools/wine_vc6.sh、docs/decompilation_workflow.md、data/status/_cleanup_fix_infra.json —— 全部落在 handoff §4 t5 的第2/4/5/6/8/9 项与“交付”条目内。git status 中这些文件均为 M。",
+   "counterexample": "**交付物清单漏报 1 个自己改过的文件**：`tools/regression_detector.py` 已修改（diff 明确写着“t5 第 1 项”、把 symlink_to 改为无条件 copyfile + islink 断言 + json.load 校验），但 t5 files_changed 9 项里**没有它**。属声明不完整（低），不是越界（该文件在 handoff §4 t5 第1项内）。",
+   "severity": "low"
+  },
+  {
+   "id": "t5.8",
+   "claim": "decomp_quality.py 判据 *2 -> *1",
+   "verdict": "confirmed",
+   "evidence": "diff：`if offsets and max(offsets) > cls_size * 2:` -> `> cls_size`（并同步注释，写明 *2 与注释语义不一致、且写明 cls_size 膨胀会稀释该判据）。"
+  },
+  {
+   "id": "t5.9",
+   "claim": "收紧后命中数：交接文档说 7->17，t5 纠正为 16",
+   "verdict": "confirmed（t5 的 16 正确，handoff 的 17 错误）",
+   "evidence": "自写独立计数 /tmp/ver_dq.py（复刻 decomp_quality.measure 的判定：first_line `__thiscall Cls::` + structs/*.json binary_size + regex `this\\s*\\+\\s*(\\d+)`）：total_funcs=3594、thiscall=3025、`> cls_size` = **16**、`> cls_size*2` = 7。新标记 9 个函数（CCBUI_InitSkillUI、CPK_InitPackFiles、CScreenMode_ResetProgressList、EquipUI_EquipUI、PalScript_LoadResource、UICaption_CreateChildWidget、UICaption_Destroy、UIMap_Destroy、gbRefObject_ReleaseAllRefs），丢失 0。",
+   "counterexample": "**handoff §4 t5 第4项的反例被证实**：其“至少覆盖 gbVFileSystem、SoundMgr”不成立 —— 独立计数显示 gbVFileSystem(cls_size=917972) 与 SoundMgr(cls_size=918796) 在 `>` 与 `>2*` 两种口径下**命中均为 0**（尺寸膨胀到任何倍率都无法触及阈值）。t5 的 discrepancy#2 正确。"
+  },
+  {
+   "id": "t5.10",
+   "claim": "audit_layout.py 缺前置产物显式失败",
+   "verdict": "confirmed",
+   "evidence": "code：load_ida_structs() 缺 asm/pal3/ida_structs.json → raise PrerequisiteError；main() 捕获 → _prerequisite_failure()。\n/tmp 无 asm 副本实跑：`python3 /tmp/noasm/tools/audit_layout.py; echo audit_no_asm_exit=$?` -> **exit=2**，输出 `AUDIT CANNOT RUN - prerequisite artifact missing or unreadable` + `IDA structs export not found` + “This is NOT a pass”。\n对照（HEAD 版同环境）：`python3 /tmp/noasm_old/tools/audit_layout.py; echo exit=$?` -> **exit=0**，输出 `WARN: IDA structs not found... / Loaded 0 structs / ✅ No layout issues detected.`（正是“假通过”）。",
+   "also": "真仓正向路径：`python3 tools/audit_layout.py; echo exit=$?` -> exit=0，报告 check1 compared=818 match=818 mismatch=0 not_compared=63，并显式声明该检查同源、不构成证据。"
+  },
+  {
+   "id": "t5.11",
+   "claim": "audit_layout 的“循环性”已修",
+   "verdict": "partial",
+   "evidence": "循环比对本身**未被移除**（仍比对 annotation binary_size vs IDA size），而是被降级为“NON-DISCRIMINATING CHECK（报告但从不作为证据）”，另加 IDB 无关的 declared_size_geometry 信号（ratio>3x 告警 / >50x HIGH）。",
+   "counterexample": "因此严格说“修其循环性”= 标注+旁证，不是消除循环。这属于诚实收口（handoff 的另一种允许做法是裁决(b)），但 t5 自述“只加强未放宽”在此项是“改为不采信 + 新增信号”。",
+   "severity": "low"
+  },
+  {
+   "id": "t5.12",
+   "claim": "annotation_diff.py git 不可用时不再报 898 假新增",
+   "verdict": "confirmed",
+   "evidence": "/tmp 副本（无 git 元数据）：`python3 /tmp/andiff/tools/annotation_diff.py; echo exit=$?` -> **exit=3**，输出 `❌ GIT 不可读 —— 无法判断注解是否有变更（不是「无变更」）: cannot resolve commit 'HEAD' (git rev-parse exit 128)`。\n坏 commit：`--commit deadbeefdeadbeef` -> exit=3。\ngit 可读时（.git 软链到 /tmp 副本）：exit=0，且报告的是**真实**变更（SaleUI/SceneObj/UICursor），无 898 假新增。\n负对照（HEAD 版 + 无 git）：exit=**0**，`变更结构体数量: 898` / `struct_added: 898` —— 与 handoff 描述逐字一致。"
+  },
+  {
+   "id": "t5.13",
+   "claim": "wine_vc6.sh 缺 shim 时 exit 2",
+   "verdict": "confirmed",
+   "evidence": "/tmp 无 tools/vc6 副本：`bash /tmp/vc6test/tools/wine_vc6.sh compile foo.cpp foo.obj; echo exit=$?` -> **exit=2**，stderr 打印 `[ERROR] VC6 lowercase shims are MISSING` + 缺失清单 + `bash tools/setup_wine_vc6.sh`。\nsource 形式：`bash -c 'source ...; echo sourced_return=$?'` -> outer_exit=0（未杀调用方 shell）、sourced_return=2。"
+  },
+  {
+   "id": "t5.14",
+   "claim": "tools/vc6/Include 加进 vc6_compile(_gbengine) 的 /I —— 是否属于“放宽检查”",
+   "verdict": "confirmed（判定：**不是放宽**；属与受管路径对齐）",
+   "evidence": "事实：`tools/vc6/Include` 不是“小写 shim 树”这么单纯 —— 它有 1162 个普通文件（VC6 头 + 1101 个大写头）与 959 个软链（小写别名，windows.h->WINDOWS.H），本质是 **DXSDK_INCLUDE**：cmake/toolchain-vc6.cmake:119 `get_filename_component(DXSDK_INCLUDE \".../tools/vc6/Include\")` + :120,122,123 include_directories(SYSTEM ...)；pipeline/probe_compile.py:43-48 INCLUDE_DIRS 也已包含 `tools/vc6/Include`。\n结论：改动让**手工** vc6_compile 与**受管** probe_compile/cmake 路径一致；未禁用任何检查、未吞任何错误；L1/ok 来自 probe_compile，其 INCLUDE_DIRS 未变 → 该改动不可能抬高指标。",
+   "counterexample": "需要点名的边界：这仍是对编译环境的实质性变更（此前手工编译无 DX SDK include，现在有），可能让此前报错的手工编译通过。我未用 wine CL 实编译验证影响面（属性：行为对齐，非门禁放宽）。",
+   "severity": "low"
+  },
+  {
+   "id": "t5.15",
+   "claim": "cli.py 三处 +1：apply 失败非零退出 / 后置钩子传出 returncode / iterate 明确报错",
+   "verdict": "confirmed（静态 + iterate 实跑）",
+   "evidence": "diff：cmd_apply 失败 -> `sys.exit(1)`（:330-340）；cmd_codegen 对 snapshot 与 compile_regression 检查 returncode 并 sys.exit（:404-424）；cmd_init 失败 -> sys.exit(1)（:299-312，与 apply 同类缺陷）。\n实跑：`python3 pipeline/cli.py iterate; echo exit=$?` -> **exit=2**，打印 `[ERROR] 'iterate' is UNAVAILABLE: pipeline/iterate.py does not exist.`；`ls pipeline/iterate.py` -> 不存在。",
+   "counterexample": "apply 失败退出码与 post-hook 传出**未实跑**（会触发 idat/共享产物）→ 仅静态读代码确认。",
+   "not_executed": [
+    "cmd_apply sys.exit(1)",
+    "compile_regression returncode 传播"
+   ]
+  },
+  {
+   "id": "t5.16",
+   "claim": "缺 pipeline.toml / census 缺守卫",
+   "verdict": "confirmed（并纠正 handoff 的一处错误声称）",
+   "evidence": "/tmp 无 pipeline.toml：`python3 pipeline/cli.py apply; echo exit=$?` -> **exit=1**，输出 `PIPELINE CONFIG ERROR` + 修复指引，**无裸 traceback** → handoff §4 t5 第6项“顶层 import 未捕获 -> 裸 traceback”**不成立**（t5 discrepancy#2 正确；config.py 本就捕获 ConfigError，本次仅改提示文案）。\n`python3 pipeline/compare_pal3.py --census /tmp/does_not_exist.json; echo exit=$?` -> **exit=2**，`[ERROR] probe census not found ... Refusing to run`。"
+  },
+  {
+   "id": "t5.17",
+   "claim": "item7（85MB blob / __vftable）只报告未删",
+   "verdict": "confirmed",
+   "evidence": "`git ls-files -s original/PAL3.exe.i64.polluted.bak` -> `100644 2c4a5c89...`（仍跟踪）；`grep -n polluted .gitignore` exit=1（未加忽略）；`ls -la __vftable` -> 0 字节文件仍在，`git ls-files -s __vftable` -> `100644 e69de29b...`（仍跟踪）。t5 items[4].explicitly_not_done 五项（未 git rm --cached / 未删工作区文件 / 未删 __vftable / 未改 .gitignore / 未重写历史）与实况一致。"
+  },
+  {
+   "id": "t5.18",
+   "claim": "t5 可选项：probe_compile.py 补 shim 前置检查 —— 未做",
+   "verdict": "confirmed（未做，且已声明）",
+   "evidence": "`git status --porcelain pipeline/probe_compile.py` 空；`grep -n \"setup_wine_vc6|shim|windows\\.h\" pipeline/probe_compile.py` exit=1（无命中），仅 INCLUDE_DIRS 里含 tools/vc6/Include。t5 pending_window[3] 已点名该可选项。"
+  },
+  {
+   "id": "t6.1",
+   "claim": "Track-1 门控严格只命中 3 个站点",
+   "verdict": "confirmed（自写双驱动 harness + 全语料文本 diff）",
+   "evidence": "A) 自写插桩副本（/tmp/ver_ast_instr.py，仅插入 _VER_LOG 记录，判定式未改）驱动 collect_functions() 的真实 (cls, code)：候选站点 335，门控开启 **3**，全部 `(AStarPathFinder, GetHeuristicIdx, slots=2, len(args)-1=2, vt=True, ctor=False, cls=CCBAI)`。\nB) 同一插桩驱动**全部 3524** 个过滤后 decomp JSON（含 free funcs、不跳过任何类）：候选 **339**、门控开启 **3**（同上三条）。\nC) 全语料 HEAD vs 当前 transform 的**全文输出 diff**：3524 个 JSON 中**只有 3 个不同**（CCBAI_HandleEnemyAction/HandleEnemyWeak/HandleEnemyWell），差异行仅为那 3 条 marker -> `(((AStarPathFinder *)this))->AStarPathFinder::GetHeuristicIdx(nRoleIndex, (int)&this->m_nHandleEnemyWell)`（首参 `(AStarPathFinder *)this` 被正确吸收为 this，其余实参原样保留）。",
+   "denominator_reconciled": "3524 = 3594 - 70 个 `sub_` 前缀（自写计数：total=3594, sub_=70, empty=0, 过滤后=3524）→ t6 的“3594 总量 / 3524 实际变换”口径可审、诚实。",
+   "spec_figure_conflict": "handoff §4 t6 说“只加 ret-N 闸门会放行 234 个站点”，t6 代码注释说“298 sites / 189 files”，我的同口径测量（候选臂内 retn 命中且非 ctor/dtor）= **289**。三个数字互不相同（语料换代）；**承重结论“恰 3”不受影响**。"
+  },
+  {
+   "id": "t6.2",
+   "claim": "ROWTABLE 不变",
+   "verdict": "confirmed",
+   "evidence": "自写全语料标记计数（3524 JSON）：`[ROWTABLE]` HEAD=586 CUR=586（delta 0），`/* [ROWTABLE] */` 586->586。pal3/src 实况（16:14 重生成）：576，与 handoff §2.3 的 576 一致（15:10 树）。"
+  },
+  {
+   "id": "t6.3",
+   "claim": "MISATTRIBUTED -3",
+   "verdict": "confirmed",
+   "evidence": "自写全语料计数：`[MISATTRIBUTED]` HEAD=346 CUR=343（delta -3）。pal3/src 实况：344（handoff §2.3，15:10 树）-> 341（当前 16:14 树），delta 同样 -3 → 两个独立层一致。"
+  },
+  {
+   "id": "t6.4",
+   "claim": "CG-023 改成 RuntimeError（读不到家族文件不再静默空集）",
+   "verdict": "confirmed（含负对照）",
+   "evidence": "code：_rowtable_family() :190-201 `except (OSError, ValueError) as _e: raise RuntimeError(...)`。\n实跑（__file__ 指向 /tmp/nofamily，使家族文件缺失）：新版 -> `RuntimeError: ast_transform: the [ROWTABLE] family list is required but could not be read: /tmp/nofamily/data/status/_rowtable_family.json`；HEAD 版同环境 -> **返回 set()**（负对照，正是被修的静默退化）。\n同款硬失败也加在 _vtable_slot_evidence() 与 _load_va_by_method()（ida_structs.json 缺失 -> RuntimeError）。",
+   "new_hard_dependency": "新增耦合（需点名）：codegen 现在**硬依赖** asm/pal3/ida_structs.json，而 asm/ 整树被 .gitignore → 干净检出必须先跑 `pipeline/cli.py export`，否则 transform 抛 RuntimeError。t6 pending_window W-06 已声明。"
+  },
+  {
+   "id": "t6.5",
+   "claim": "test_pipeline.py 实测失败数（captain 说 33 条中 2 条失败）",
+   "verdict": "confirmed（2/33），但**2 条失败是 HEAD 既有失败，非 t6 引入**",
+   "evidence": "`python3 pipeline/gen/test_pipeline.py; echo exit=$?` -> exit=1，`Ran 33 tests ... FAILED (failures=2)`：\ntest_identifier_as_first_arg: 断言 `((Foo *)ptr)->Foo::DoSomething(1, 2)`，实际 `(((Foo *)ptr))->Foo::DoSomething(1, 2)`；\ntest_complex_expr_as_first_arg: 断言 `((Foo *)obj->field)->...`，实际 `(((Foo *)obj->field))->...`。\n括号差异**独立确认**：三层括号。\n关键：这两条断言在 HEAD 中逐字相同（`grep -n 'assertIn(.(()' /tmp/t6_head_test.py` = :52/:58，与当前 :52/:58 完全一致；t6 的 test_pipeline diff 从 :95 才开始），且用 HEAD 版 ast_transform 跑同两段输入（/tmp/ver_head_transform.py）输出同样是三层括号、两条断言同为 False → **pre-existing，与 t6 无关**。",
+   "counterexample": "对 t6 三站点渲染口径**无影响**：三站点走的是新增 Track-1 分支（:678-681 `(((%s *)this))->`），其断言 test_three_track1_sites（:172，期望三层）**通过**；且三层括号是仓内既有发射风格（HEAD ast_transform 已有 6 处 `(((%s *)%s))->`）。",
+   "tests_count": "24 -> 33（+9）；t6 交付物 tests_synced 自述“同一个 2 failures（pre-existing）”，与我的复现一致。"
+  },
+  {
+   "id": "t6.6",
+   "claim": "AR-016：未做文件级 blanket 反转",
+   "verdict": "confirmed",
+   "evidence": "候选臂 339 站点中仅 3 个改变；其余 336 个仍走 marker 路径（未改动该分支的 else 逻辑）；无任何按文件的整体反转（全语料 diff 只有 3 个文件、3 行）。"
+  },
+  {
+   "id": "t6.7",
+   "claim": "ctor/dtor 排除生效",
+   "verdict": "confirmed",
+   "evidence": "自写插桩分类：候选臂 335（collect 驱动）中 `(retn 命中, ctor=True)` 有 2 条被排除；门控开启的 3 条 ctor=False。t6 单测 test_ctor_dtor_excluded 通过。"
+  },
+  {
+   "id": "t6.8",
+   "claim": "轨道2（约 335 站点）一律不动 / 判定顺序翻转未实施（GAP-ROWTABLE-PRECEDENCE-01）",
+   "verdict": "confirmed",
+   "evidence": "t6 交付物 rowtable_precedence...status=\"DESIGN ONLY — NOT IMPLEMENTED\"；captain_decisions.W-03 记录“ACCEPT t6 替代方案；REJECT 字面 >=2 类口径（字面会把 ROWTABLE 586->166、226 文件改判）”。实况支撑：ROWTABLE 586->586 无变化 → 未实施。",
+   "counterexample": "t6 交付物同时诚实标注：brief 的“6 支持/3 不支持”与“排除 ctor/dtor 否则凭空造 17 个假 ROWTABLE”**未被复现**（t6 实测排除贡献为 11：177->166）。属 brief 数字与实测不符，t6 已声明。"
+  },
+  {
+   "id": "cap.1",
+   "claim": "发行阻断提交 aacdf69c5：latest.json 由坏符号链接改为普通文件",
+   "verdict": "confirmed",
+   "evidence": "`git show --stat aacdf69c5` -> 只改 1 个文件（+5037/-4640）。HEAD 版 blob sha256 = 08ab1d16... **与 data/status/baselines/20260915_155759.json 逐字节相同**；json.load -> name=20260915_155759, results 198 项（53 ok/145 fail）。父提交 9cb436305 为 mode 120000、blob 462044 字节（“完整 JSON 当链接目标”的坏形态）。四项合取式全过 + 负对照见 t5.1-t5.6。"
+  },
+  {
+   "id": "cap.2",
+   "claim": "棘轮基线刷新（compile_baseline.json 2026-09-01 204/58 -> 当前 198/53）",
+   "verdict": "partial（数字属实，但“无退化”不成立）",
+   "evidence": "文件属实：timestamp 2026-09-01T11:45:16（s2.total=204, ok=58）-> 2026-09-15T16:13:54（s2.total=198, ok=53, ok_files 53 项）。\n逐文件比对（我自写，用 s2.results[*].unit）：ok->not-ok **9** 个（CCBResultWindow/CEffExplosive/ArcPastScene/CCBFiveNimbusWindow/ScriptPoolPage/UIGameFrm/UISceneFace/UITextArea/Role，均为文件仍存在但现编译失败）；not-ok->ok **7** 个；旧语料独有 **7** 个（其中 ScriptSystemData/UIBase/UILBItem 三个原为 ok、现文件已不存在）→ 58-3-9+7=53，账目自洽。\n**关键问题**：`compile_baseline.json` 的 s2/s1/ok_files 与 `data/status/probe_census.json` **完全相等**（自写比对 True/True/True）→ 刷新只是把 probe_census 原样抄成基线；`python3 tools/compile_regression.py; echo exit=$?` -> `✅ No regressions detected / Net change: 0 files / exit=0`，**属自比自（tautology）**：棘轮在诞生的那一刻就失去了判别力。\n且 probe_census 是 15:56:47 的读数，而 pal3/src 在 **16:14:02–16:15:42** 才被重生成（晚于基线刷新 16:13:54）→ 刷新出的基线相对当前树**已经过期**。\n工具还硬编码分母：`Baseline S2: 53/204`（compile_regression.py:87 写死 \"/204\"）。",
+   "counterexample": "反例（掩盖真实退化）：9 个 09-01 可编译、现在不可编译的文件（错误形态为 C2660/C2660/C2440 参数数目族，与 t6 处理的 CCBAI 同类，**不是** B1 注解删成员造成的 C2039/C2065）在 t5/t3/t6/captain 的任何产物里都没有逐条分析（grep：9 个文件里只有 ScriptPoolPage 出现在 1 份扫描产物中，其余 0 命中）→ 刷新把它们静默吸收进基线。",
+   "severity": "high",
+   "impact": "下一次完整链路（probe s2 -> codegen all）若 ok 变化，compile_regression 会以“相对这条自比基线”的方式报 REGRESSIONS 并因 cli.py 新传出的 returncode 让 `codegen all` 非零退出；反之若再 --update-baseline，则又抹掉一次真实退化。"
+  },
+  {
+   "id": "cap.3",
+   "claim": "发行阻断项之后的防复发：latest.json 重新以普通文件落地",
+   "verdict": "confirmed（间接）",
+   "evidence": "regression_detector.py diff：`latest_link.symlink_to(...) except OSError: copyfile` -> **无条件 copyfile** + `if os.path.islink(...): raise RuntimeError` + json.load 校验。latest.json mtime 2026-09-15 16:16:24（该生产路径此后再写过一次），而 `git status` 不列为 M、当前 sha256 与 HEAD blob 相同 → 再写仍是普通文件且内容字节不变。"
+  }
+ ],
+ "release_criteria": {
+  "conjunction_all_pass": true,
+  "default_config": true,
+  "core_symlinks_set_anywhere": false,
+  "details": [
+   {
+    "n": 1,
+    "criterion": "git ls-files -s data/status/baselines/latest.json == 100644",
+    "result": "PASS",
+    "evidence": "100644 30b85e51e4e5d7396758ed3b1c8d6d6e474d95c8 0 data/status/baselines/latest.json (exit=0)"
+   },
+   {
+    "n": 2,
+    "criterion": "git -c core.symlinks=true checkout-index -f --prefix=/tmp/x/ -- <path> exit 0",
+    "result": "PASS",
+    "evidence": "exit=0; 普通文件 478352; json.load OK（默认配置同样 exit=0）"
+   },
+   {
+    "n": 3,
+    "criterion": "git -c core.symlinks=true clone -q --no-hardlinks . /tmp/c exit 0 ∧ 普通文件 ∧ json.load OK",
+    "result": "PASS",
+    "evidence": "clone_exit=0; /tmp/c/... 普通文件 478352; json.load OK name=20260915_155759 n=198; clone HEAD=aacdf69c5；默认配置 /tmp/c_default 同样全过；无软链"
+   },
+   {
+    "n": 4,
+    "criterion": "git archive HEAD | tar -x 无错解出",
+    "result": "PASS",
+    "evidence": "git_archive_exit=0（stderr 空）; tar_exit=0（stderr 空）; 4222 文件; latest.json 普通文件 478352 + json.load OK; 无软链"
+   }
+  ],
+  "negative_control": "临时 index 复现 9cb436305：read-tree -> ls-files 120000；checkout-index -c core.symlinks=true -> exit=1 'error: unable to create symlink ...: 文件名过长'，路径未创建 → 判据有判别力，修复非靠配置兜住",
+  "verdict": "confirmed —— captain 声称的发行阻断解除，我独立复验成立（默认配置）"
+ },
+ "criteria_L1_ok": {
+  "L1": {
+   "value": 5,
+   "source": "data/status/s4_baseline.json -> stats.match_L1（mtime 2026-09-15 16:00:24，generated_by pipeline/compare_pal3.py）",
+   "produced_by": "captain 窗口（match 运行）—— 读自其产出，非我产生",
+   "threshold": "L1 >= 5",
+   "meets": true,
+   "rows": [
+    "CCBControl::GetControl(void)",
+    "AStarPathFinder::IsInBounds(int,int)",
+    "TxtFile::TxtFile(void)",
+    "ObjectCamera::Destroy(void)",
+    "CameraSystem::BindToRoleSlot(int)"
+   ],
+   "other_stats": {
+    "symbols": 175,
+    "matched": 123,
+    "partial": 118,
+    "unmatched": 52,
+    "oob": 0
+   }
+  },
+  "ok": {
+   "value": "53 / 198",
+   "source": "data/status/baselines/latest.json name=20260915_155759, timestamp=2026-09-15T15:57:59（并与 baselines/20260915_155759.json 逐字节相同，sha256 08ab1d16...）",
+   "produced_by": "captain 窗口（probe s2 运行）—— 读自其产出，非我产生",
+   "threshold": "ok >= 53/198",
+   "meets": true,
+   "denominator": 198,
+   "denominator_changed": false,
+   "error_total": 3089,
+   "top_codes": {
+    "C2660": 706,
+    "C2664": 498,
+    "C2440": 291,
+    "C2039": 236,
+    "C2059": 205,
+    "C2227": 143,
+    "C2100": 106,
+    "C2065": 82
+   }
+  },
+  "disk_numbers_match_captain_claim": true,
+  "comparability_verdict": "不可比（对当前工作树）—— 需 verifier 窗口重跑",
+  "comparability_reason": "两条读数都产生于 pal3/src 的**上一代**（15:10 生成）：probe 15:57:59、match 16:00:24；而 pal3/src 已在 16:14:02–16:15:42 被**整体重生成**（952/952 文件，含 t6 改动后的 CCBAI.cpp 三条 Track-1 渲染）。同一 pal3/src 的三层一致性在读数时成立，但现在 decomp(15:44)/i64(15:44:39) 与 pal3/src(16:14) 分属两代。",
+  "expected_but_unverified_delta": "若 t6 之外无其他 codegen 影响（已独立证实 t5/t3/t4 不触碰 codegen 输出），预期错误总数 3089 -> 3086（恰好 −3 条 CCBAI 的 C2660@246/444/646；C2660 706 -> 703），ok/fail 集合不变、L1 的 5 个函数不在 CCBAI → 预期仍 53/198 与 L1=5。**这只是预测，未实测。**",
+  "reproduce_commands_for_window": [
+   "python3 pipeline/cli.py probe all; echo $?",
+   "python3 tools/error_classifier.py --summary",
+   "python3 pipeline/cli.py match; echo $?",
+   "python3 tools/compile_regression.py; echo $? # 注意：先 probe 会让“自比基线”暴露 REGRESSIONS"
+  ]
+ },
+ "scope_check_git_status": {
+  "tracked_modified_count": 21,
+  "untracked_count": 31,
+  "deleted": 0,
+  "undeclared_out_of_scope_changes_found": false,
+  "t3_t4_t5_t6_in_scope_all_present": true,
+  "outside_current_task_scope_but_declared_elsewhere": [
+   "data/annotations/structs/{SaleUI,SceneObj,UICursor}.json + data/annotations/CHANGE_LOG.md —— B1 批次（handoff §3.2，t10 复核范围），非 t3-t6 inScope",
+   ".agent-teams/retired-members.json —— handoff §2.1 既有 8 项之一（AgentTeams 状态）",
+   "data/status/s4_baseline.json / pal3_registry.jsonl / baselines/*.json —— captain 窗口产出 + handoff §4 t12 第1项（纳入版本控制）"
+  ],
+  "stat_cache_artifact": "首次 `git status --porcelain` 曾列出 ` M tools/compile_regression.py`；随后 `git status --porcelain -- tools/compile_regression.py` 为空、`git diff` 无输出 → 该文件**内容与 HEAD 相同**（未修改），初次列出属索引 stat 缓存失效，不是改动。棘轮刷新是通过改 data/status/compile_baseline.json 完成的（不是改 compile_regression.py）。",
+  "deliverables_untracked_all_declared": [
+   "_cleanup_fix_struct_import.json (t3)",
+   "_cleanup_fix_export_redline.json + _cleanup_fix_export_redline_decision_page.md (t4)",
+   "_cleanup_fix_infra.json (t5)",
+   "_cleanup_fix_codegen_policy.json (t6)"
+  ]
+ },
+ "discrepancies_vs_claims": [
+  {
+   "id": "D1",
+   "severity": "high",
+   "against": "captain / handoff §4 t5 第3项 + captain 的“棘轮已刷新”",
+   "claim": "棘轮基线刷新到当前态，门禁恢复探测能力",
+   "reality": "刷新属实（198/53 @16:13:54），但基线内容与 probe_census.json 逐字段相同 → compile_regression 自比自，恒 `No regressions detected`/exit 0；相对 09-01 基线有 **9 个文件由 ok 变 fail** 被吸收且无逐条分析；基线相对 16:14 重生成的 pal3/src 已过期；工具还硬编码 \"/204\"。",
+   "evidence": "自写逐文件比对（9 regressed / 7 newly-ok / 3 个 ok 文件源已删除，58-3-9+7=53）；baseline.s2==census.s2 True；`python3 tools/compile_regression.py` -> exit=0 Net change 0；compile_regression.py:87 硬编码。"
+  },
+  {
+   "id": "D2",
+   "severity": "medium",
+   "against": "t3 交付物 changes.6 与 changes.3 的措辞",
+   "claim": "“-1 已从失败条件中完全移除” / “两条路径真正统一”",
+   "reality": "（a）-1 仍是失败条件：新增 _verify_named_udt() 在 :797-803 对 get_size()==-1 且无成员函数直接失败，且它是每条成功路径的必经点；同函数内 :1179-1180 注释与本判定自相矛盾。（b）create_fixed_struct_diff 全仓**无调用者**（死代码），且它在**未命名** tinfo 上调用 _layout_end_of_members（:661-662 早于 :679 set_named_type）→ 按其自己的 en-route 发现②，该读回对一部分 UDT 会返回 false，导致末端检查静默跳过（`if _oversized:` 收到 None）。",
+   "evidence": "grep 三处 _size_is_dash_one 均非失败条件但 _verify_named_udt:797 是；grep -rn create_fixed_struct_diff 仅 :569；自写 AST 时序输出 diff-mode get_udt_details@587/662 vs set_named_type@679。"
+  },
+  {
+   "id": "D3",
+   "severity": "low",
+   "against": "t5 交付物 files_changed",
+   "claim": "t5 的文件清单（9 项）",
+   "reality": "漏报 tools/regression_detector.py —— 该文件确被 t5 修改（diff 注释自述“t5 第 1 项”），但不在清单内。未越界（handoff §4 t5 第1项覆盖它），属声明不完整。",
+   "evidence": "git diff -- tools/regression_detector.py 有 30 行改动；t5 files_changed 9 项中无此文件。"
+  },
+  {
+   "id": "D4",
+   "severity": "medium",
+   "against": "handoff §4 t5 第4项 / §2.2 的观测结论",
+   "claim": "decomp_quality 收紧为 >cls_size 后命中 17 个函数，且“至少覆盖 gbVFileSystem、SoundMgr”",
+   "reality": "两个数字都错：`>` 口径命中 **16**（`>=` 才是 17）；gbVFileSystem 与 SoundMgr 在 `>` 与 `>2*` 下命中**均为 0**（cls_size 917972/918796 膨胀到任何倍率都无法触及）。t5 的 discrepancy 已纠正，我的独立计数与 t5 一致。",
+   "evidence": "/tmp/ver_dq.py 独立复刻：total 3594, >cls_size=16, >2*cls_size=7, newly flagged=9, lost=0；gbVFileSystem/SoundMgr both False。"
+  },
+  {
+   "id": "D5",
+   "severity": "low",
+   "against": "handoff §4 t5 第6项",
+   "claim": "pipeline.toml 缺失时顶层 import 未捕获 → 裸 traceback",
+   "reality": "不成立。config.py 本就 raise ConfigError 且 cli 顶层捕获：/tmp 无 toml 实跑 exit=1、输出 “PIPELINE CONFIG ERROR”+指引，无 traceback。t5 的 discrepancy#2 正确。",
+   "evidence": "cd /tmp/notoml && python3 pipeline/cli.py apply; echo exit=$? -> exit=1 干净错误。"
+  },
+  {
+   "id": "D6",
+   "severity": "low",
+   "against": "t3 交付物 verification.after_change 的日志读法",
+   "claim": "5 条 -1 诊断为 “known union-variant form”",
+   "reality": "日志措辞与自身数据冲突：5/5 条同行自报 `union=no`，因此不是 union 变体形态（真因是未命名 tinfo 读回）。不影响计数。",
+   "evidence": "apply_annotations_log.txt 五条 `[i] ... union=no, pushed=...`。"
+  },
+  {
+   "id": "D7",
+   "severity": "low",
+   "against": "handoff §4 t6 / t6 代码注释",
+   "claim": "“只加 ret-N 闸门会放行 234 个站点”（handoff） / “298 sites / 189 files”（t6 注释）",
+   "reality": "同口径（候选臂内 retn 命中且非 ctor/dtor）在当前语料实测 **289**；234 与 298 都与 289 不一致（语料换代/口径不同）。承重结论“恰 3 个”不受影响（已独立证实）。",
+   "evidence": "自写插桩分类：(no-vt,retn-match,non-ctor)=286 + (vt,retn-match)=3 = 289；ctor 排除 2。"
+  },
+  {
+   "id": "D8",
+   "severity": "info",
+   "against": "t6 交付物（诚实自纠）",
+   "claim": "handoff 的“6 支持/3 不支持”“排除 ctor/dtor 否则造 17 个假 ROWTABLE”",
+   "reality": "t6 已自行声明未复现（实测排除贡献 11：177->166）。属 brief 数字不可复现，t6 处理方式正确（保留自己的数并声明）。",
+   "evidence": "t6 交付物 rowtable_precedence.reconciliation_of_brief_figures。"
+  }
+ ],
+ "undeclared_or_incomplete": {
+  "t7_not_implemented": "pipeline/gen/stages/stage3_cleanup.py 未改动（无 diff，mtime 2026-09-15 09:42:59）→ 破坏性注释恢复未实施",
+  "t8_not_implemented": "pipeline/gen/stages/emit_headers.py、pipeline/gen/data.py、pipeline/gen/stages/stage5_fixup.py 均未改动 → 死门禁/吞错未实施",
+  "t5_optional_not_done": "probe_compile.py 的 shim 前置检查未做（文件未改、无 shim 检查代码），t5 已声明",
+  "t5_item7_reported_only_not_done": "85MB blob 仍被跟踪（100644）、未加 .gitignore、__vftable 仍在、未 git rm --cached、未重写历史 —— 全部与 t5 声明一致",
+  "t4_decision_page_not_landed": "docs/knowledge/ 下无 export 决策页，MEMORY.md `## Decisions` 段仍为空 → 待 t12",
+  "quality_baseline_not_refreshed": "pipeline/_logs/quality_baseline.json mtime 2026-06-02（未随 decomp_quality 收紧刷新），t5 pending_window[4] 已声明留给 captain"
+ },
+ "known_risks_for_next_steps": [
+  "【最高】棘轮自比自带病：再跑一次 `probe s2` 后若不 --update-baseline，`codegen all` 会因 cli.py 新传出的 returncode 而非零退出；若 --update-baseline 又抹掉一次真实退化。建议：先逐条判定那 9 个回归文件（或明确接受并记录），再刷新基线，并修 compile_regression.py:87 的硬编码 \"/204\"。",
+  "【高】L1/ok 读数相对当前 pal3/src 已过期（16:14 整体重生成）：窗口内必须重跑 probe all + match，且注意 error_total 预期 3089->3086、C2660 706->703（t6 三站点）。",
+  "【中】codegen 新增对 asm/pal3/ida_structs.json 的硬依赖（gitignored）：干净检出/CI 必须先 export，否则 RuntimeError。已记入 docs/decompilation_workflow.md 由 t5 写就。",
+  "【中】t3 的“两路径统一”落在无调用者的 create_fixed_struct_diff 上：若未来有人接到这条路径，末端检查会因未命名读回而静默失效（t3.3 反例2）。建议要么在 diff-mode 里把 set_named_type 提前，要么显式标注该函数当前不可达。",
+  "【低】Track-1 渲染 `(((Cls *)this))->` 的编译有效性未经编译验证（t6 W-02）；且它与仓内既有风格一致但与 handoff 表述（两层括号）不符，captain 已转交 t10/t11。"
+ ]
+}

@@ -23,6 +23,41 @@ TEXT_END = 0x005695D0
 RDATA_START = 0x0056A000
 RDATA_END = 0x0057F178
 
+# ---------------------------------------------------------------------------
+# [t4-DECLARED-EXCEPTION] export 读 data/annotations/ —— 有意取舍，本轮不迁移
+#
+# CLAUDE.md 红线：「export 不读 annotation：export_full.py 只能从 IDB 读取数据，
+# 不能直接读 data/annotations/ JSON 文件」。本文件**仍有 8 处**直接读
+# data/annotations/，全部带 [t4-DECLARED-EXCEPTION] 标记（grep 即得）。
+# （第 9 处 :150 的 functions.json 死读已于 t4 删除，见 main() 内的存根注释。）
+#
+# 取舍结论与全部实测证据：
+#   data/status/_cleanup_fix_export_redline.json              ← t4 交付物
+#   data/status/_cleanup_fix_export_redline_decision_page.md  ← 决策页草稿
+#     （待 captain→integrator 落盘到 docs/knowledge/；本轮不直接改知识库）
+#
+# 不迁移的三条实测理由（详细数字见交付物）：
+#  1. 这些信息在当前 IDB 中**没有等价可查询形式**：apply_annotations.py 对
+#     skip_functions.json 只做 set_name/add_func（无 skip 标记）；对 globals.json
+#     的 type=="skip" 明确不写入 IDB（:1710 排除）；methods/vtables/known_members
+#     的 JSON 形态与 skip 名单也未被 apply 持久化成任何磁盘产物（apply 只写
+#     _logs/*.txt、gbengine_flat_ida.h、sig-fail log）。
+#  2. 这些读取**承重**（对当前导出有可测量效果）：1955 个 skip 地址决定语料组成
+#     （与 3594 个导出地址交集=0）；475 个 virtual 地址 → 442 个 signature 的
+#     "virtual " 前缀；3276 个 VC6 mangled 名；686 个 struct 的 _variants（8979 条
+#     条目）透传进 asm/pal3/ida_structs.json；1816 个 _skip_function_names
+#     （pipeline/gen/data.py:188 消费）；188/808 个 globals 的 type=skip。
+#  3. asm/pal3/ida_structs.json 的 vtables/methods/_variants 与注解**逐字段等值**
+#     （761/761 个 struct 零不一致）→ 它们是"注解的复制"，不是 IDB 状态的证据；
+#     改为纯 IDB 取数会改变导出产物，须用一次独占 export 窗口做 3594 个 decomp
+#     JSON + ida_structs.json 的全量 diff 才能判等价（本轮窗口被 t3 apply 占用）。
+#
+# 迁移前置条件（见交付物 pending_window）：apply（或独立 IDB dumper）先把
+# skip 集合 / globals skip / skip 名单 / structs 元数据以"从 IDB 状态生成"的形式
+# 落盘，export 只读该产物，并给出上述全量 diff。本轮**不做**（inScope 只有
+# export_full.py，且无法验证）。
+# ---------------------------------------------------------------------------
+
 _COMPILER_GENERATED_NAMES = (
     '??_L@',   # `eh vector constructor iterator'
     '??_M@',   # `eh vector destructor iterator'
@@ -145,15 +180,15 @@ def main():
             if not os.path.basename(f).startswith('_'):
                 os.remove(f)
 
-        # Load annotations (authoritative source for signatures)
-        ann_funcs = {}
-        funcs_file = os.path.join(PROJECT_ROOT, "data", "annotations", "functions.json")
-        if os.path.exists(funcs_file):
-            import json as _ann_json
-            ann_funcs = _ann_json.load(open(funcs_file, encoding='utf-8'))
-            log("[*] Loaded %d function annotations" % len(ann_funcs))
+        # [t4] 已删除的死读（原 :148-154，读 data/annotations/functions.json）：
+        # d827ebca6 引入"以注解 signature 为权威源"，71a2e09db（次日）删去其唯一
+        # 使用点却留下 load。AST 取证：Name ann_funcs 仅在 :149/:153 被赋值、
+        # 在 :154 打印计数，153 之后**无任何读取** → 删除对导出结果零影响。
+        # 该处注释 "authoritative source for signatures" 是失实的化石（已随块删除）。
 
         # Load per-class methods to detect virtual functions and build class attribution.
+        # [t4-DECLARED-EXCEPTION] structs/*.json: methods+vtables → _virtual_addrs/_addr_to_class
+        # （离线复现 = 475/369/0，与 export 日志逐字一致）
         _virtual_addrs = set()    # int(addr) — appears in ANY vtable slot (own or inherited)
         _addr_to_class = {}       # int(addr) -> class_name (own slots only)
         _structs_dir = os.path.join(PROJECT_ROOT, "data", "annotations", "structs")
@@ -196,6 +231,9 @@ def main():
                 len(_virtual_addrs), len(_addr_to_class), _method_attributed))
 
         # Load skip list
+        # [t4-DECLARED-EXCEPTION] skip_functions.json → skip_addrs(1955)；
+        # apply 会为这些地址 add_func（apply:1686-1687）但**不留 skip 标记**，
+        # 故 IDB 无法自证"哪些地址不该导出"。实测与 3594 个导出地址交集=0。
         skip_addrs = set()
         skip_file = os.path.join(PROJECT_ROOT, "data", "annotations", "skip_functions.json")
         if os.path.exists(skip_file):
@@ -205,6 +243,9 @@ def main():
 
         # Pre-pass: set mangled names for class methods so export uses clean unique names.
         # This ensures function names like ?Create@UINote@@... are used, not Create_37.
+        # [t4-DECLARED-EXCEPTION] structs/*.json + functions.json → VC6 mangled 名
+        # （实测 ida_name.set_name 3276 次；3199/3594 个导出 name 含 "::"）。
+        # 注：这段**写 IDB**（与文件头 "no modifications to IDB" 的自述不符）。
         try:
             import sys as _sys
             _sys.path.insert(0, SCRIPT_DIR)
@@ -278,6 +319,9 @@ def main():
             target_addrs.add(ea)
 
         # Ensure all functions.json entries are in targets (fix for IDA undefine race)
+        # [t4-DECLARED-EXCEPTION] functions.json 全地址表 → 未定义函数的 recover 补录。
+        # 当前实测 recovered=0（2 条不可恢复），故对本轮产物零贡献；保留理由是
+        # 换 IDB / 重建库时的稳健性（address 全表在 IDB 里无等价查询）。
         funcs_json = os.path.join(PROJECT_ROOT, "data", "annotations", "functions.json")
         _recovered = 0
         _missing = []
@@ -481,6 +525,9 @@ def export_structs(log):
     skipped_count = 0
 
     # Load annotation struct data for vtables/methods pass-through
+    # [t4-DECLARED-EXCEPTION] structs/*.json → ida_structs.json 的
+    # vtables/methods/_variants 透传（实测 761/761 struct 与注解逐字段等值，
+    # 即"注解的复制"，不是 IDB 状态的证据）＋ :582 的 _BYTE[] 类型回退。
     _ann_structs = {}
     _ann_dir = os.path.join(PROJECT_ROOT, "data", "annotations", "structs")
     if os.path.isdir(_ann_dir):
@@ -685,6 +732,9 @@ def export_structs(log):
     # Two cases:
     # 1. Annotation entry has no name → skip the address regardless of IDB name
     # 2. Annotation entry has a name → only skip if name matches IDB name (avoid name mismatch)
+    # [t4-DECLARED-EXCEPTION] globals.json 的 type=="skip"：apply 明确不把它写进 IDB
+    # （apply:1710），故 IDB 无 skip 标记；实测 196 条注解 skip → 188 条落进
+    # _globals 的 type=skip（另 620 条 skip 来自本文件的 .rdata 过滤）。
     _ann_path = os.path.join(os.path.dirname(structs_path), "..", "..", "data", "annotations", "globals.json")
     if os.path.exists(_ann_path):
         import json as _ann_json
@@ -715,6 +765,8 @@ def export_structs(log):
 
     # Export skip_functions.json names (non-thunk) as _skip_function_names metadata
     # so codegen knows which functions to exclude from forward declarations.
+    # [t4-DECLARED-EXCEPTION] 实测导出 1816 个名字 == (1955 - 139 thunk) 的非 thunk
+    # 名单（集合相等），下游消费者 pipeline/gen/data.py:188。
     _skip_funcs_path = os.path.join(os.path.dirname(structs_path), "..", "..", "data", "annotations", "skip_functions.json")
     if os.path.exists(_skip_funcs_path):
         try:

@@ -417,6 +417,31 @@ def check():
     structs = ann.get('structs', {})
     all_struct_names = set(structs.keys())
 
+    # 所有注解声明过的嵌套类型（"Parent::Nested"），供悬垂引用检测使用（见下方 4f）
+    #
+    # 必须把 `detached_nested_types.json` 也算作**合法解析来源**：apply 的 §3c pre-pass
+    # 会遍历该文件为「无 struct 注解文件的父类」（如已解散的幻影类 PlayerMgr）建前向声明。
+    # 若此处不认它，门禁会与实现脱节——把 apply 已能解析的引用误报为悬垂
+    # （captain 首次提交即被 pre-commit 钩子以该假阳性挡下，教训：门禁与实现必须共用同一真相源）。
+    _provided_nested = set()
+    for _sn, _si in structs.items():
+        for _nt in (_si.get("nested_types") or {}):
+            _provided_nested.add("%s::%s" % (_sn, _nt))
+    _dnt_check_path = os.path.join(ANN_DIR, "detached_nested_types.json")
+    if os.path.exists(_dnt_check_path):
+        try:
+            with open(_dnt_check_path, "r", encoding="utf-8") as _dcf:
+                _dnt_check = json.load(_dcf)
+            for _dp, _di in _dnt_check.items():
+                if _dp.startswith("_") or not isinstance(_di, dict):
+                    continue
+                for _dn in _di:
+                    _provided_nested.add("%s::%s" % (_dp, _dn))
+        except Exception as _dce:
+            errors.append(
+                "detached_nested_types.json unreadable (%s) — 悬垂引用检测的合法来源不完整，"
+                "结果不可信" % _dce)
+
     for sname, sinfo in structs.items():
         members = sinfo.get('known_members', {})
         is_union = sinfo.get('is_union', False)
@@ -618,6 +643,44 @@ def check():
                     f"structs[{sname}].nested_types[{nt_name}]: kind=enum "
                     f"requires values"
                 )
+
+        # --- 4f. 悬垂 `::` 限定类型引用检测（2026-09-15 新增） ---
+        #
+        # 背景：`ArcLocale.pstate: PlayerMgr::PoisonState *` 引用了**已解散幻影类**下的嵌套类型。
+        # 该缺陷长期被"增量 IDB 里残留的 forward declaration"掩盖（apply 从不删除注解里已删掉的
+        # 结构，无 tombstone/GC），只有从 raw.i64 **干净重建**时才以 apply 的 FATAL 暴露
+        # （`_resolve_member_type` 失败 → 整个 struct 退化为 size=1/data_members=0）。
+        # 见 data/status/_cleanup_finding_dangling_nested_type.md。
+        #
+        # 本检查把该缺陷**提前到 check 阶段**暴露并给可操作清单，不必等到 apply 才炸。
+        #
+        # 【判据必须镜像 apply 的 flatten 逻辑】`create_fixed_struct` 对含 `std::` 或 `<` 的
+        # 成员类型**一律展平成 char[span]、从不解析**，故这类类型里的 `::` 限定名不是悬垂引用。
+        # 实测（2026-09-15）：不加该过滤会多报 3 个假阳性 —
+        #   CParticleSystem::TexCoordQuad / Role::ScriptCmd / SceneObj::Common_State
+        # 它们全部出现在 `std::vector<...>` / `std::queue<...>` 的模板实参里。
+        # 加过滤后：真阳性 1（PlayerMgr::PoisonState）、假阳性 0。
+        for _off, _m in members.items():
+            _mt = _m.get("type")
+            if not isinstance(_mt, str):
+                continue
+            # 镜像 apply：STL/模板类型被展平，不参与类型解析
+            if ("std::" in _mt) or ("<" in _mt):
+                continue
+            for _qm in re.finditer(r"\b([A-Za-z_]\w*)::([A-Za-z_]\w*)", _mt):
+                _q = _qm.group(0)
+                if _q.startswith(("std::", "Concurrency::")):
+                    continue
+                if _q not in _provided_nested:
+                    _par, _chi = _q.split("::", 1)
+                    errors.append(
+                        f"structs[{sname}]: member '{_m.get('name')}' at +{_off} type "
+                        f"'{_mt}' references undefined nested type '{_q}' — no annotation "
+                        f"declares struct {_par} → nested_types['{_chi}']. apply will fail "
+                        f"with _resolve_member_type and the struct will degrade to "
+                        f"size=1/data_members=0. Fix: declare the nested type under its "
+                        f"real parent, or correct the member type."
+                    )
 
     # 5. Check skip_functions thunks vs struct methods / functions conflicts
     # When a function is in skip as reason=thunk AND in struct methods,

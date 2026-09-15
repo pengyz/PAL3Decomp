@@ -1,0 +1,209 @@
+{
+  "schema": "cleanup-evidence/1",
+  "generated_by": "engineer-annotation",
+  "generated_at": "2026-09-15T10:19:36+08:00",
+  "team": "cleanup-arch-scan",
+  "authorization": "captain ruling: this is the ONLY file engineer-annotation is authorized to create under data/status/. Requested by captain after the four-item evidence pack resolved the CCBAI/AStarPathFinder stub-slot case.",
+  "subject": "CCBAI 三处 [MISATTRIBUTED] 站点（callee 0x004014F0）—— 桩调用案",
+  "binary_identity": {
+    "file": "original/PAL3.exe",
+    "sha256": "1f4612d0905a034a28d6728f5f1b81c62e0ff297ceb2fc633164417a63747f13",
+    "md5": "a9ec0cc6730b68b39f02c58d646c5984",
+    "note": "与 original/PAL3.exe.asm 头部记录的 Input SHA256 / MD5 逐字符一致 => 下列 asm 行号引用与 PE 字节读取指向同一份输入。",
+    "image_base": "0x00400000",
+    "section_map_for_repro": [
+      ".text  VA 0x00001000 raw 0x00001000",
+      ".rdata VA 0x0016A000 raw 0x0016A000",
+      ".data  VA 0x00180000 raw 0x00180000"
+    ],
+    "rva_equals_file_offset": true
+  },
+  "sites": [
+    {
+      "file": "pal3/src/Combat/CCBAI.cpp",
+      "line": 246,
+      "enclosing_generated_function": "CCBAI::HandleEnemyAction",
+      "binary_caller": "sub_4D71E0 (0x004D71E0)",
+      "call_instruction_va": "0x004D7576",
+      "callee_va": "0x004014F0",
+      "marker": "/* [MISATTRIBUTED] AStarPathFinder on CCBAI::this -> fix IDB name of callee */"
+    },
+    {
+      "file": "pal3/src/Combat/CCBAI.cpp",
+      "line": 444,
+      "enclosing_generated_function": "CCBAI::HandleEnemyWell",
+      "binary_caller": "sub_4D7820 (0x004D7820)",
+      "call_instruction_va": "0x004D7BB4",
+      "callee_va": "0x004014F0",
+      "marker": "/* [MISATTRIBUTED] AStarPathFinder on CCBAI::this -> fix IDB name of callee */"
+    },
+    {
+      "file": "pal3/src/Combat/CCBAI.cpp",
+      "line": 646,
+      "enclosing_generated_function": "CCBAI::HandleEnemyWeak",
+      "binary_caller": "sub_4D7EF0 (0x004D7EF0)",
+      "call_instruction_va": "0x004D824C",
+      "callee_va": "0x004014F0",
+      "marker": "/* [MISATTRIBUTED] AStarPathFinder on CCBAI::this -> fix IDB name of callee */"
+    }
+  ],
+  "callee": {
+    "va": "0x004014F0",
+    "name_in_annotations": "AStarPathFinder::GetHeuristicIdx",
+    "name_source_file": "data/annotations/structs/AStarPathFinder.json",
+    "name_source_path": "methods[\"0x004014F0\"].name + vtables[0].slots[2]",
+    "present_in_functions_json": false
+  },
+  "conclusion": {
+    "class": "N1_STUB_CALL_NO_FIX",
+    "subclass": "M_UNDETERMINED",
+    "action": "NO_FIX",
+    "reason": "二进制行为即如此（callee 为桩，分支不可达）",
+    "m1_callee_name_error": "not established — callee 地址唯一且 vtable slot 映射正确；名字错误与否对字节无影响，且函数体零信息，无可依据的改名证据",
+    "m4_caller_this_error": "not established — CCBAI 与 AStarPathFinder 无继承关系；三个调用方的归属由大量成员访问独立支撑",
+    "annotation_change_required": false,
+    "codegen_marker_change_required": true,
+    "codegen_marker_owner": "t2 (scanner-codegen) / t5 — 不归 engineer-annotation"
+  },
+  "evidence": [
+    {
+      "id": "E1",
+      "claim": "callee 0x004014F0 是 3 字节桩：xor al,al ; retn 8，恒返 0，不读任何 this->member（无 reg+disp32）。",
+      "grade": "A",
+      "method": "PE 原始字节直读 + IDA 反汇编文本交叉核对",
+      "raw_bytes": "32 C0 C2 08 00",
+      "disassembly": [
+        "sub_4014F0  proc near   ; CODE XREF: sub_4D71E0+396↓p / sub_4D7820+394↓p / ...",
+        "            xor     al, al",
+        "            retn    8",
+        "sub_4014F0  endp"
+      ],
+      "sources": [
+        "original/PAL3.exe.asm:629-633",
+        "PE bytes at VA 0x004014F0 (file offset 0x14F0)"
+      ],
+      "adjacent_stub": {
+        "va": "0x004014E0",
+        "raw_bytes": "33 C0 C2 08 00",
+        "disassembly": "xor eax, eax ; retn 8",
+        "note": "同一 vtable 的 slot1 (IsInBounds) 同为桩",
+        "source": "original/PAL3.exe.asm:618-621"
+      }
+    },
+    {
+      "id": "E2",
+      "claim": "vtable slot→地址映射正确，且全文件不存在第二个承载 0x004014F0 的地址；'真实现另有地址' 假设被否定。",
+      "grade": "A",
+      "method": "PE .rdata 直读 3 个 dword + 全文件 dword 引用计数 + 交叉核对 ida_structs.json",
+      "vtable": {
+        "va": "0x0056A600",
+        "file_offset": "0x16A600",
+        "dwords": ["0x00401030", "0x004014E0", "0x004014F0"],
+        "slot_index_of_callee": 2
+      },
+      "dword_reference_count_to_0x004014F0": 1,
+      "dword_reference_sites": ["0x0056A608 == vtable+8 (slot2)"],
+      "cross_check": "asm/pal3/ida_structs.json 与 data/annotations/structs/AStarPathFinder.json 的 AStarPathFinder.vtables[0].slots 均为 [0x00401030, 0x004014E0, 0x004014F0]",
+      "sources": [
+        "PE bytes at VA 0x0056A600",
+        "asm/pal3/ida_structs.json",
+        "data/annotations/structs/AStarPathFinder.json"
+      ]
+    },
+    {
+      "id": "E3",
+      "claim": "名字来源是 struct annotation 的人工语义命名，无 mangled 名、无函数体证据；对 0x004014F0 的直接调用点只有 3 处（E8 rel32）。",
+      "grade": "A",
+      "method": "annotation 文件穷举 + .text 全段扫描 E8/E9 rel32 目标比对",
+      "name_provenance": {
+        "functions_json_has_entry": false,
+        "struct_annotation_has_entry": true,
+        "mangled_name_available": false,
+        "body_level_evidence_available": false,
+        "assessment": "不可验证的语义命名（伪语义命名风险）；改名无字节收益且会破坏 vtable slot 命名一致性 => 不改"
+      },
+      "direct_call_sites": [
+        {"va": "0x004D7576", "opcode": "0xE8", "caller": "sub_4D71E0 (CCBAI::HandleEnemyAction)"},
+        {"va": "0x004D7BB4", "opcode": "0xE8", "caller": "sub_4D7820 (CCBAI::HandleEnemyWell)"},
+        {"va": "0x004D824C", "opcode": "0xE8", "caller": "sub_4D7EF0 (CCBAI::HandleEnemyWeak)"}
+      ],
+      "sources": [
+        "data/annotations/functions.json (无该地址条目)",
+        "data/annotations/structs/AStarPathFinder.json",
+        "original/PAL3.exe.asm:320348 / 320938 / 321580"
+      ]
+    },
+    {
+      "id": "E4",
+      "claim": "CCBAI 与 AStarPathFinder 无继承关系，CCBAI 甚至没有 vtable；因此 (AStarPathFinder*)this 只是直呼目标命名带来的渲染产物，不构成 M4 证据。",
+      "grade": "A",
+      "method": "IDB 结构体导出比对",
+      "classes": {
+        "AStarPathFinder": {"bases": [], "size": 24, "vtables": ["0x0056A600"]},
+        "CCBAI": {"bases": [], "size": 3664, "vtables": []}
+      },
+      "caller_attribution_strength": "三个调用方均有强成员访问证据（this->m_pRoleState / this->m_Demand / this->m_nHandleEnemyWell / CCBRoleState::GetRoleType 等），调用方归属本身不需要修正",
+      "sources": ["asm/pal3/ida_structs.json", "asm/pal3/decomp/CCBAI_HandleEnemyActionint_004d71e0.json", "asm/pal3/decomp/CCBAI_HandleEnemyWellint_004d7820.json", "asm/pal3/decomp/CCBAI_HandleEnemyWeakint_004d7ef0.json"]
+    }
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "statement": "三个调用点的分支不可达：指令序列为 push edi / push ebx / mov ecx,esi / call sub_4014F0 / test al,al / jnz <target>，而 callee 恒置 al=0 => jnz 永不跳。",
+      "grade": "A",
+      "nature": "原版二进制真实行为，非反编译缺陷；不修",
+      "sources": [
+        "original/PAL3.exe.asm:320345-320350 (loc_4D756D -> jnz loc_4D71F8)",
+        "original/PAL3.exe.asm:320935-320940 (loc_4D7BAB -> jnz loc_4D7ECF)",
+        "original/PAL3.exe.asm:321577-321582 (loc_4D8243 -> jnz loc_4D856E)"
+      ]
+    },
+    {
+      "id": "F2",
+      "statement": "pal3/src/Misc/AStarPathFinder.cpp 中 g_fHeuristicScale[this->GetHeuristicIdx(...)] 恒索引 [0] —— 因为 vtable slot2 指向的桩恒返 0；二进制本身即此行为。",
+      "grade": "A",
+      "nature": "原版二进制真实行为；不修",
+      "sources": [
+        "pal3/src/Misc/AStarPathFinder.cpp:149-152 (生成定义体为 return 0;)",
+        "asm/pal3/decomp/AStarPathFinder_GetHeuristicIdxint_int_004014f0.json",
+        "evidence E1 + E2"
+      ]
+    }
+  ],
+  "marker_issue": {
+    "marker_text": "/* [MISATTRIBUTED] AStarPathFinder on CCBAI::this -> fix IDB name of callee */",
+    "problem": "标记所规定的动作（'fix IDB name of callee'）不被证据支持：callee 地址唯一、vtable slot 映射正确；名字即使错误也不影响字节。",
+    "owner": "t2 (scanner-codegen) / t5",
+    "requested_followup": "改为 N1_STUB_CALL_NO_FIX 语义（或按 t1 定稿的分类学文本），动作 NO_FIX，理由字段写 '二进制行为即如此（callee 为桩，分支不可达）'"
+  },
+  "non_actions": [
+    "本轮未修改任何 annotation 文件（data/annotations/** 未改动）。",
+    "本轮未修改任何 codegen 产物（pal3/src/** 未改动）。",
+    "本轮未写入 IDB、未 apply、未 export、未 codegen、未 probe、未 match —— 因为不存在需要验证的变更；因此基线锚点保持不变。"
+  ],
+  "baseline_anchors": {
+    "L1_source": "data/status/s4_baseline.json -> stats.match_L1",
+    "L1": 5,
+    "ok_source": "data/status/baselines/latest.json (name 20260915_100946) -> results status 统计",
+    "ok": 53,
+    "fail": 145,
+    "total": 198,
+    "rule": "分母 198 变化即判不可比；任一条修复使 L1 或 ok 回退即判该条失败"
+  },
+  "repro": {
+    "note": "ImageBase 0x400000 且 .text/.rdata 的 VA 与 raw 偏移相同 => RVA == 文件偏移，下列偏移直接可用。",
+    "commands": [
+      "python3 -c \"d=open('original/PAL3.exe','rb').read(); print(d[0x14F0:0x14F5].hex(' '))\"   # -> 32 c0 c2 08 00",
+      "python3 -c \"import struct; d=open('original/PAL3.exe','rb').read(); print([hex(x) for x in struct.unpack_from('<3I',d,0x16A600)])\"   # -> ['0x401030', '0x4014e0', '0x4014f0']",
+      "python3 -c \"import struct; d=open('original/PAL3.exe','rb').read(); t=struct.pack('<I',0x4014F0); i=0; h=[]\\nwhile True:\\n i=d.find(t,i)\\n if i<0: break\\n h.append(i); i+=1\\nprint([hex(x) for x in h])\"   # -> [0x16a608]",
+      "grep -n 'sub_4014F0' original/PAL3.exe.asm                      # 定义与三处调用点行号",
+      "grep -rn 'GetHeuristicIdx' data/annotations/functions.json       # 无输出 => 名字不来自函数级 annotation"
+    ]
+  },
+  "cross_refs": [
+    "docs/knowledge/pattern_annotation_batch_rename_no_evidence.md",
+    "data/status/misattribution_ledger.json (该 callee 不在 ledger 的 197 个 cluster 内；ledger 无 evidence_grade 字段)",
+    "asm/pal3/decomp/AStarPathFinder_GetHeuristicIdxint_int_004014f0.json",
+    "asm/pal3/ida_structs.json"
+  ]
+}

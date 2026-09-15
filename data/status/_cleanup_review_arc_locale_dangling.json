@@ -1,0 +1,545 @@
+{
+ "schema": "cleanup-review-arc-locale-dangling/1",
+ "reviewer": "independent adversarial reviewer (subagent)",
+ "date": "2026-09-15",
+ "workspace": "/home/peng/workspace/PAL3Decomp",
+ "window_discipline": {
+  "ran": [
+   "read-only git/grep/python over repo",
+   "diff -rq pre-tree vs working tree",
+   "python3 pipeline/check_annotations.py (pure-python static checker, no IDA import)",
+   "read /tmp/t7 (previous sub-agent's harness trees)"
+  ],
+  "not_run": [
+   "pipeline/cli.py apply|export|codegen|probe|match",
+   "any idat script",
+   "no writes except this file"
+  ],
+  "idb_touched": false
+ },
+ "verdict_summary": "captain 的因果链**部分成立**，但核心归属论证（PoisonState 属 SaleUI）被证伪，方案 A 建立在错误前提上，不应采纳。round2 进一步：①找到 ArcLocale 退化为 size=1 的**完整机制**（apply 自身的 step-3a 前向声明为空占位 + 导入在 create_udt 之前失败）；②发现 captain 未提的**第二处 `PlayerMgr` 引用**（tagRoleTask.json 的 `PlayerMgr * pToggle`），并据此得到**更优方案 E3**；③独立发现两个 ok 回退（AStarPathFinder / ExternalStatistics）与 ok=52<53 判据未达标；④**推翻我自己 round1 的一处推断**（PDB 导入 PlayerMgr —— 错，PDB struct 导入已关闭；raw.i64 自带 TIL —— 错，strings 证明它不含任何游戏名）。",
+ "captain_claims": [
+  {
+   "id": "C1a",
+   "claim": "PlayerMgr 是幻影类，已由 tools/_migrate_playermgr.py（6a8d71924）解散进 SaleUI",
+   "verdict": "partial",
+   "evidence": [
+    "cmd: sed -n '1,105p' tools/_migrate_playermgr.py  -> 5 步：methods→SaleUI、UpdateSkillPanel(PAL_GDB)→SaleUI、known_members 合并、functions.json 改名、unlink PlayerMgr.json",
+    "cmd: git show 6a8d71924^:data/annotations/structs/PlayerMgr.json  -> binary_size=107056 (0x1A230), known_members=22",
+    "cmd: python3 -c 'json.load(open(\"asm/pal3/ida_structs.json\"))'  -> SaleUI size=105912 (0x19DB8), PlayerMgr size=1 n_dm=0",
+    "cmd: /tmp/t7/pre/src/Misc/PlayerMgr.h  -> total size 0x1A230 (107056)，成员一直到 +0x19F8C (106380)"
+   ],
+   "counterexample": "round-5 把 PlayerMgr 的成员一路并到 +0x1B2AC(111276)；但**本轮 t2b 裁定又把这些成员删掉了**，判据原文：'_cleanup_fix_saleui.json -> deletions.batch A criterion: 成员偏移 >= binary_size(105912)（几何不可能）… 出处可追：其中约 10 条源自已解散的旧 PlayerMgr.json(107056)'。即项目自己最近一次裁定认定 0x19DB8 以上的区域**不属于 SaleUI**。所以『PlayerMgr 内存已确证并入 SaleUI』只在 < 0x19DB8 成立；用它来论证 PoisonState（一个类型定义）归属 SaleUI 是加倍的外推。"
+  },
+  {
+   "id": "C2",
+   "claim": "tools/_migrate_playermgr.py 完全没处理 nested_types",
+   "verdict": "confirmed",
+   "evidence": [
+    "cmd: grep -n nested tools/_migrate_playermgr.py ; echo exit=$?  -> 无输出，exit=1",
+    "全文通读 105 行确认：脚本只处理 pm['methods'] / pm['known_members'] / PAL_GDB.methods / functions.json 名 / pm_p.unlink()，**没有任何 nested_types 读写**"
+   ],
+   "counterexample": null
+  },
+  {
+   "id": "C3",
+   "claim": "原 PlayerMgr.json 有 nested_types = {\"PoisonState\": {kind:struct, binary_size:32}}；迁移后 SaleUI.json 的 nested_types = []",
+   "verdict": "partial",
+   "evidence": [
+    "cmd: git show 6a8d71924^:data/annotations/structs/PlayerMgr.json -> python3 dump -> nested_types = {\"PoisonState\": {\"kind\": \"struct\", \"binary_size\": 32}}  (确认)",
+    "cmd: python3 -c 'json.load(open(\"data/annotations/structs/SaleUI.json\")).get(\"nested_types\")' -> None"
+   ],
+   "counterexample": "不是 `[]` 而是**该键根本不存在**（null）。而且 SaleUI.json 在 HEAD / 6a8d71924 **两个版本里也都没有 nested_types 键** —— 所以不是『被搬空成[]』，而是从来就没有。表述不精确，虽不影响结论方向。"
+  },
+  {
+   "id": "C4",
+   "claim": "ArcLocale.json known_members[\"336\"].type = PlayerMgr::PoisonState * 成为悬垂引用；干净重建 _resolve_member_type 失败",
+   "verdict": "confirmed",
+   "evidence": [
+    "cmd: sed -n '30,34p' data/annotations/structs/ArcLocale.json -> {\"336\": {\"name\": \"pstate\", \"type\": \"PlayerMgr::PoisonState *\", \"source\": \"annotation\"}}",
+    "cmd: sed -n '43p;100,101p' pipeline/ida/_logs/apply_annotations_log.txt (mtime 17:31:21) ->",
+    "  [FATAL] Struct import failed: ArcLocale → add member +336 'pstate' type 'PlayerMgr::PoisonState *' FAILED: _resolve_member_type",
+    "  [3] Structs: 880/881 imported successfully (fail=1)",
+    "独立静态普查（我自己写的 /tmp 脚本）：全 881 个注解文件里 `::` 非 std 成员类型只有 5 个 —— AStarPathFinder::NODE/STACK、CParticleSystem::EmitterAttribute、Comp_DonateUI::CDState 都有对应 nested_types，**唯一悬垂的就是 PlayerMgr::PoisonState**",
+    "cmd: python3 -c list all nested_types -> 当前仓里 nested_types 只存在于 3 个文件：AStarPathFinder / CParticleSystem / Comp_DonateUI"
+   ],
+   "counterexample": null
+  },
+  {
+   "id": "C5",
+   "claim": "增量 IDB 靠历史残留的 forward declaration 掩盖了它",
+   "verdict": "confirmed",
+   "evidence": [
+    "cmd: head -20 /tmp/t7/pre/src/Misc/PlayerMgr.h  -> 14: `struct PoisonState;`  17: `struct PoisonState {`  54: `// total size: 0x1A230 (107056)`  ⇒ 增量代 IDB 里 PlayerMgr 与 PlayerMgr::PoisonState **都完整存在**",
+    "cmd: python3 ida_structs.json -> PlayerMgr size=1 n_dm=0；'PoisonState' ABSENT  ⇒ 干净重建代没有它",
+    "cmd: sed -n '2002,2028p' pipeline/ida/apply_annotations.py -> _forward_decl_nested() 仅在 `_probe.get_named_type(til, nt_full)` 为假时才创建；已存在则跳过"
+   ],
+   "counterexample": null,
+   "root_cause_sharpening": "更精确的根因不是『血统』：apply **从不删除『注解里已被删除』的结构**（没有 tombstone/GC）。所以增量 IDB 会永久累积幽灵类型（PlayerMgr 107056 + 其 nested PoisonState 就是遗留物），而干净重建没有。这同时说明『增量 881/881』是**不可复现**的读数，不是『等价状态』。"
+  },
+  {
+   "id": "C6",
+   "claim": "check_annotations.py 无悬垂类型引用检测（grep resolve|dangling 0 命中）",
+   "verdict": "confirmed",
+   "evidence": [
+    "cmd: grep -n 'resolve|dangling|nested_types|not.*exist|undefined' pipeline/check_annotations.py -> 只有 :603-618 共 4 行，全部是 nested_types 的**格式**校验（kind 取值、enum 需 values），无任何存在性检查",
+    "cmd: timeout 300 python3 pipeline/check_annotations.py ; echo exit=$?  -> '1 errors, 9 warnings — FAIL'，并且**没有**任何 PlayerMgr/PoisonState/ArcLocale/dangling 字样  ⇒ 活体读数证实悬垂引用完全逃过 check 阶段"
+   ],
+   "counterexample": null,
+   "extra": "顺带实测：check_annotations **当前本来就是 FAIL**，那 1 个 error 是 globals 重叠（g_RoleSlotBuf 落在 g_SceneMgr 内），即 t2b 报告里已登记的未修项。"
+  },
+  {
+   "id": "C7a",
+   "claim": "干净重建后 asm/pal3/ida_structs.json 里 ArcLocale 是 size=1, data_members=0",
+   "verdict": "confirmed",
+   "evidence": [
+    "cmd: python3 -c \"d=json.load(open('asm/pal3/ida_structs.json')); print(d['ArcLocale']['size'], len(d['ArcLocale']['data_members']))\" -> 1 0",
+    "对照：SceneInfo 132/7、RC_ARG 28/5、AStarPathFinder 24/5"
+   ]
+  },
+  {
+   "id": "C7b",
+   "claim": "这是 matched 从 123 崩到 101 的原因",
+   "verdict": "refuted",
+   "evidence": [
+    "cmd: python3 -c \"json.load(open('data/status/_cleanup_verify_fixes.json'))['criteria_L1_ok']['L1']['other_stats']\" -> {'symbols': 175, 'matched': 123, 'partial': 118, 'unmatched': 52, 'oob': 0}",
+    "cmd: python3 -c \"json.load(open('data/status/s4_baseline.json'))['stats']\" -> {'symbols': 135, 'matched': 101, 'unmatched': 34, 'match_L1': 5, 'partial': 96}"
+   ],
+   "counterexample": "**分母不同**：123 是 123/175，101 是 101/135 —— 按本条任务自己的可比性规则（『分母变化即判不可比』）这两个读数不可比。而且比率是**上升**的：123/175=70.3% → 101/135=74.8%。另有直接反证：两代的 L1 名单本身已经漂移（123/175 代 L1 含 `AStarPathFinder::IsInBounds(int,int)`；现 L1 含 `UISceneFace::ResetAllSlots(void)`），且 `AStarPathFinder::*` 在现有 135 符号集里**完全不存在**（ABSENT）。见 contaminated_readings。"
+  },
+  {
+   "id": "C8",
+   "claim": "ChoseCompose.cpp 回归（0→17 错）属 t7 判据豁免：新错误来自恢复的真实代码",
+   "verdict": "partial",
+   "evidence": [
+    "cmd: python3 比对 baselines/20260915_155759.json vs 20260915_174124.json -> ChoseCompose.cpp ok->fail，**19** 条错误（非 17）：C2039 'UIWnd' is not a member of 'UIFrameWnd' / C2039 '__vftable' is not a member of 'ChoseCompose' / C2227",
+    "cmd: sed -n '28,50p' pal3/src/Misc/ChoseCompose.cpp -> `((void (*)(...))this->UIFrameWnd::UIWnd::__vftable->OnMessage)(...)` —— 限定基子对象分派表访问",
+    "cmd: sed -n '295,312p' data/status/_cleanup_fix_vftable_comment.md -> t7 自己的表：ChoseCompose ok->fail(17) 归因『恢复的真实代码…按 GAP-1 保留原样→无法编译』；UIStatic 预计 -1；ArcLocaleRole 预计 +1；外推 53-2+1=52",
+    "cmd: grep -n ChoseCompose /tmp/t7/changed_files.txt -> 14:Misc/ChoseCompose.cpp (在 t7 变更集内)"
+   ],
+   "counterexample": "『来自恢复的真实代码』这一条**成立**（该行确实是 t7 解除 blanket `__vftable` 注释后恢复的真实虚调用）。但 (a) 错误数报错为 17，实测 19；(b) 豁免**只覆盖了 ChoseCompose 一个文件**，而 17:41 基线实测 ok→fail **共 4 个**：AStarPathFinder.cpp(1)、ChoseCompose.cpp(19)、ExternalStatistics.cpp(3)、UIStatic.cpp(2)；fail→ok 3 个（CCBAIWindow / UISceneFace / s_RoleState），净 -1。ExternalStatistics.cpp 的新错误来自 t7 **删除 `_IDA_MISID_PATTERNS`**（working stage3 里命中数 3→0），恢复 84 站点/29 文件，**既不在 t7 的 changed_files.txt、也不在其影响表里** ⇒ 豁免的『逐条证明』并未完成。"
+  },
+  {
+   "id": "C9",
+   "claim": "判据 ok >= 53/198 成立",
+   "verdict": "refuted",
+   "evidence": [
+    "cmd: python3 -c \"d=json.load(open('data/status/baselines/latest.json')); print(d['name'], sum(1 for v in d['results'].values() if v.get('status')=='ok'), len(d['results']))\" -> 20260915_174124 52 198",
+    "cmd: python3 同法读 baselines/20260915_155759.json -> 53 198（分母未变，可比）"
+   ],
+   "counterexample": "**ok=52 < 53** ⇒ 当前盘上该判据未达标。L1 判据仍达标（s4_baseline stats.match_L1=5；5 个函数名单已独立核对）。"
+  }
+ ],
+ "poison_state_original_owner": {
+  "conclusion": "`PoisonState` **从来不是 PlayerMgr 的内存内容**。它自始至终只是 `ArcLocale` +0x150 字段的**类型名（name-resolution 载体）**，被挂到 PlayerMgr 名下纯粹是为了让 `ArcLocale.pstate` 的 `::` 限定名在 IDA TIL 里可解析。captain 的『恢复迁移遗漏 / PoisonState 应随之归属 SaleUI』论证不成立。",
+  "evidence_chain": [
+   {
+    "step": 1,
+    "fact": "名字来源是（已作废的）PDB 限定名 `PlayerMgr::PoisonState`",
+    "evidence": "cmd: python3 -c \"...pdb_export.json['classes']...\" -> {'name': 'PlayerMgr::PoisonState', 'kind': 'struct', 'size': 32, 'data_members': [nCounter/fLength/lastpos/poison/fLastHurt/fDelay]}；b40b49bae commit message 自载 'Annotation migration: ... PlayerMgr: PoisonState nested type'",
+    "authority": "**非权威**。data/status/_pdb_nonauthority_notice.json（用户裁定 2026-09-14）：『data/pdb/pdb_export.json 的版本与 original/PAL3.exe 不匹配。其中全部 mangled 名、类定义、方法签名不得作为归属或命名的权威证据。』⇒ 用 PDB 名字把 PoisonState 判给 SaleUI 与用把它判给 PlayerMgr 同样无权威性。"
+   },
+   {
+    "step": 2,
+    "fact": "它最初的形态是一个**独立顶层 struct stub**，不是 PlayerMgr 的成员",
+    "evidence": "cmd: git show 892c0999a:data/annotations/structs/PlayerMgr_PoisonState.json -> {\"name\": \"PlayerMgr_PoisonState\", \"binary_size\": 32, \"known_members\": {}, \"note\": \"Nested struct from PlayerMgr::PoisonState. Size=32 from member stride.\"}；892c0999a 的 stat 也确认 `A data/annotations/structs/PlayerMgr_PoisonState.json | 6 ++++++`",
+    "note": "32 字节的**来源是 member stride（成员边界推导）**，与名字来源（PDB）不是同一条证据链。"
+   },
+   {
+    "step": 3,
+    "fact": "【决定性反证】PoisonState stub 被创建的那一刻，PlayerMgr.json 里**没有** nested_types，也**没有**任何 PoisonState 类型的成员",
+    "evidence": "cmd: git show 892c0999a:data/annotations/structs/PlayerMgr.json | grep -n -i poison ; echo exit=$? -> 无输出 / exit=1",
+    "implication": "⇒ PlayerMgr 从未『包含』PoisonState。nested_types 是**类型系统里的名字解析条目**，不是对象内存里的字段。把『PlayerMgr 的内存并入 SaleUI』当作『其 nested type 应迁到 SaleUI』的依据是范畴错误。"
+   },
+   {
+    "step": 4,
+    "fact": "PlayerMgr.json 直到 b40b49bae 才被塞进 nested_types，且目的只是让 ArcLocale 的 `::` 名字可解析",
+    "evidence": "cmd: git show b40b49bae -- data/annotations/structs/ArcLocale.json -> 同一提交里 \"336\": {\"type\": \"PlayerMgr_PoisonState\"} 改成 {\"type\": \"PlayerMgr::PoisonState *\"}；cmd: git log --oneline -S PoisonState -- data/annotations/structs/ArcLocale.json -> 只有 49d4ac886（目录搬迁）",
+    "implication": "`pstate` 字段自 f1fc29299（多文件拆分之前）就存在；b40b49bae 只是把扁平名 `PlayerMgr_PoisonState` 换成限定名 `PlayerMgr::PoisonState`，并顺手在 PlayerMgr.json 里补了 nested_types 来支撑这个限定名。"
+   },
+   {
+    "step": 5,
+    "fact": "尺寸互证：32 字节，两处独立边界都对上",
+    "evidence": "ArcLocale 336 → 368(g_bYouDi) = 32 字节；stub binary_size=32；PDB PoisonState size=32（其 6 成员 +0/+4/+8(gbVec3D 12B→20)/+20(FightState4B)/+24/+28 恰好排到 32）"
+   }
+  ],
+  "also_refuted_subclaim": {
+   "claim": "captain 引用 `pal3/src/Misc/PlayerMgr.h` 里 `struct PoisonState { _BYTE _tail_000[32]; }` 作为 PoisonState 是『占位产物』的证据",
+   "verdict": "stale",
+   "evidence": "cmd: cat pal3/src/Misc/PlayerMgr.h（17:38 生成）-> 全文只有 `char _tail_000[1]; // +0x0` 与 `// total size: 0x1 (1)`，**没有任何 PoisonState**。captain 引的是 16:55 之前的旧产物。旧产物在 /tmp/t7/pre/src/Misc/PlayerMgr.h 里确实有 `struct PoisonState {`（:17），但那证明的是**增量 IDB 的遗留**，不是 PoisonState 的性质"
+  }
+ },
+ "pstate_true_nature": {
+  "conclusion": "ArcLocale +0x150 是一个 **32 字节跨度、内部结构未知** 的字段，被记录为 `pstate`。注解里的 `*` 是**类型错误**（会造成 IDB 里该成员变成 4 字节指针 + 28 字节洞），但被 codegen 的显式 gap 兜住、不破坏布局。二进制层面**没有任何外部证据**能判定这 32 字节的内部构成；也无任何证据把它绑定到 SaleUI。",
+  "evidence": [
+   {
+    "what": "跨度 = 32 字节，来自注解自身成员边界",
+    "cmd": "python3 -c \"...ArcLocale.json...\" -> 336 pstate；下一成员 368 g_bYouDi；368-336=32",
+    "how_it_materialises": "pipeline/ida/apply_annotations.py:936-997 create_fixed_struct：只有 'std::' 或 '<' 才被展平成 char[span]；`Parent::Nested *` 走 _resolve_member_type → **建成 4 字节指针**，340..368 成为未覆盖的 28 字节洞（UDT 用显式 bit offset，所以 total_size 仍 484）",
+    "codegen_evidence": "cmd: sed -n '20,26p' /tmp/t7/pre/src/Misc/ArcLocale.h -> `PlayerMgr::PoisonState * pstate; // +0x150` 紧跟 `char _gap_154[28]; // +0x154` 紧跟 `BYTE g_bYouDi; // +0x170` ⇒ 布局被 gap 保住，`*` 只是语义错误，不是布局错误"
+   },
+   {
+    "what": "全仓没有任何 ArcLocale 访问点（所以『ArcLocale.cpp 从不访问 pstate』成立但空洞）",
+    "cmd": "ls pal3/src/Misc/ArcLocale.cpp -> 不存在；grep -rn '\\bArcLocale\\b' pal3/src --include=*.cpp --include=*.h | grep -v 'ArcLocaleRole|ArcLocaleMusic|ARC_ArcLocaleRole' -> 只命中 ArcLocale.h 自身 4 行",
+    "cmd2": "grep -rl 'ArcLocale\\b' asm/pal3/decomp/ | wc -l -> 0",
+    "cmd3": "grep -n ArcLocale pal3/src/globals.h -> 0（无 ArcLocale 类型全局）",
+    "implication": "captain 的『ArcLocale.cpp 从不访问 pstate』**不能**用来证明 +0x150 在二进制里无意义 —— 因为整个 ArcLocale 根本不存在任何 TU 或访问点。这条证据是 0 信息量。"
+   },
+   {
+    "what": "PlayerMgr.h 的 `int m_pstate; // +0x19F34` 与 ArcLocale.pstate 不是同一个字段",
+    "cmd": "sed -n '40,42p' /tmp/t7/pre/src/Misc/PlayerMgr.h -> `int m_pstate; // +0x19F34` / `float m_fFStime; // +0x19F38`",
+    "算术": "0x19F34 = 106292 > SaleUI 的 0x19DB8 = 105912 ⇒ 它落在 PlayerMgr(107056) 自己的区域、**在 SaleUI 之外**；且它已被本轮 t2b 以『几何不可能 + 不属于 SaleUI』删除",
+    "implication": "用『m_pstate 是 int』去反驳 `ArcLocale.pstate 是 PoisonState*` 是范畴错误（两个不同对象的两个不同字段）。但这个发现的作用在另一方向：它**反证**了『PlayerMgr 的内存（含 0x19F34 区）已并入 SaleUI』——该区域恰恰已被判为不属于 SaleUI。"
+   },
+   {
+    "what": "语义匹配候选全部不成立",
+    "cmd": "python3 读各注解 binary_size -> PalScript 2176 / PalScriptMgr 9512 / ArcLocaleRole 28 / Reoccupy 16 / Inventory 40 / RoleTaskPool 684",
+    "implication": "**无一为 32 字节**，没有一个能填 +0x150 的 32 字节跨度。32 字节内有内部结构的唯一候选是（非权威）PDB 的 6 成员 PoisonState。"
+   }
+  ],
+  "not_established": "没有独立二进制证据能证明 +0x150 是「一个 32 字节对象」而不是「一个 4 字节指针 + 28 字节未记录洞」。两者都能与注解 offsets 相容。⇒ **待窗口**（需在 IDA 里查 ArcLocale 实例/访问点，例如任何以 ArcLocale 为 this 的函数、或 g_ArcLocale 类全局）。"
+ },
+ "options": [
+  {
+   "id": "A",
+   "name": "captain 推荐：把 nested_types.PoisonState 恢复进 SaleUI.json，并把 ArcLocale.pstate 改成 SaleUI::PoisonState *",
+   "evidence_strength": "weak — 前提被证伪（PoisonState 不是 PlayerMgr 的内存内容，见 poison_state_original_owner）；且它**新增**一个无任何证据的断言『SaleUI 内嵌一个 32 字节 struct 名为 PoisonState』。它援引的『PlayerMgr 内存并入 SaleUI』恰恰被本轮 t2b 裁定否掉了 0x19DB8 以上区域。名字本身还来自已作废的 PDB。",
+   "violates_CLAUDE_md": "YES — 「每一处 annotation 修改必须有二进制直接证据」「禁止猜测性修改」。把类型名从 A 类改到 B 类并声明 B 有嵌套类型，是**两处**新增断言、零二进制证据。",
+   "loses_offset_info": "no（332 字节跨度由 _gap/_tail 保住）",
+   "L1_ok_impact": "ok 恢复 1 个 struct 导入（880/881 → 881/881；若 PlayerMgr 名字不再进注解则断言数为 881）；L1 无关。**但会污染后续 session 的类结构认知**",
+   "verdict": "REJECT"
+  },
+  {
+   "id": "B",
+   "name": "删掉 ArcLocale 的 +336 pstate 成员",
+   "evidence_strength": "medium（能解决悬垂，代价是丢名字）",
+   "violates_CLAUDE_md": "YES — 为让 apply 通过而删除已记录的字段名 = 「禁止破坏性 workaround / 不为了编译通过而丢失类型信息」。这里**没有**几何不可能论证可用（指针 4 字节 + 28 字节未记录洞在几何上是可能的），所以不能用 t2b 的 SaleUI 判据类比。",
+   "loses_offset_info": "partially — 布局保住（变成 char _gap_150[32]），丢的是偏移的**语义名** pstate 与其类型线索",
+   "L1_ok_impact": "880/881 → 881/881；L1 无关",
+   "verdict": "REJECT（违反 CLAUDE.md）"
+  },
+  {
+   "id": "C",
+   "name": "只修门禁不动注解：在 check_annotations.py 加悬垂类型引用检测",
+   "evidence_strength": "strong，且**可做到零误报**",
+   "my_measurement": "全注解集里 `::` 非 std 成员类型只有 5 个：AStarPathFinder::NODE / AStarPathFinder::STACK / CParticleSystem::EmitterAttribute / Comp_DonateUI::CDState 均 RESOLVED-via-nested_types，**唯一 dangling 的就是 PlayerMgr::PoisonState**。规则『每个 `Parent::Nested` 成员类型必须在某个注解文件的 nested_types 里有对应条目』今天恰好命中 1 个真阳性、0 个假阳性。",
+   "violates_CLAUDE_md": "NO — check_annotations 的职责就是『验证 annotation 内部一致性，防止矛盾信息写入 IDB』；悬垂类型引用正是内部不一致。也不需要 IDA（纯静态可判）。",
+   "loses_offset_info": "no",
+   "L1_ok_impact": "不影响 L1/ok（不改注解、不改 codegen）。会让 check_annotations 从『1 error』变『2 errors』（当前已因 globals 重叠而 FAIL）",
+   "verdict": "ACCEPT（应做，但**不是**完整修法）",
+   "warning_against_blanket_version": "不要写成『成员类型引用的 struct 必须存在』的通用检测：我实测有 **148 个不同的成员类型名**在注解/ sdk 里都没有定义（tagRECT x145、tagPOINT x22、_D3DFORMAT x11、_GUID x10、std:: 各式、HWND、FILE、ULONG、函数指针形态…）——它们靠 PDB/TIL 导入与 SDK 头解析。通用版会喷 148 个假阳性。必须限定到 `::` 限定名。"
+  },
+  {
+   "id": "D",
+   "name": "把 PoisonState 建为独立 struct stub（892c0999a 先例）+ 把 ArcLocale.pstate 改为 PoisonState（无 `*`）",
+   "evidence_strength": "medium-strong — 这才是 892c0999a 当年的**原始形态**（我实测该提交创建的正是顶层 `PlayerMgr_PoisonState.json`），而且能顺带修掉 `*` 这个类型错误（32 字节 by value）",
+   "violates_CLAUDE_md": "NO（不猜测归属；只用已知的 32 字节跨度）。但需要把 `::` 名字降级为顶层名字 —— 属于**改名**，会丢『PlayerMgr::』这个已记录的限定前缀",
+   "loses_offset_info": "no（若写成 by-value 32B struct，IDB 里 pstate 变成真正的 32 字节 UDT 成员，比现在的『4 字节指针+28 字节洞』**信息更多**）",
+   "L1_ok_impact": "struct 数 881→882（t3 的『881/881』判据分母变化，需重新定义）；L1 无关",
+   "verdict": "ACCEPT-AS-CANDIDATE（次于我的推荐，但远优于 A/B）"
+  },
+  {
+   "id": "E",
+   "name": "保留已记录的名字：让 `PlayerMgr::PoisonState` 在干净重建里也能解析（不搬归属）",
+   "evidence_strength": "strong — 它**不新增任何断言**，只是让『已记录的限定名』继续可用",
+   "how": "两条路（都待窗口确认一条）：(E1) 恢复一份**只含 nested_types、不含任何成员/方法**的 `PlayerMgr.json`（binary_size 与现有 IDB 的 PlayerMgr 一致=1），并在 `_naming_note` 里写明『本文件只是已记录嵌套类型名 `PlayerMgr::PoisonState` 的载体；PlayerMgr 的幻影类已于 round5 解散』；(E2) 在 `data/annotations/sdk_types.json`（apply_annotations.py:1740 消费，list-of-structs）里加一条 `{\"name\": \"PlayerMgr::PoisonState\", \"binary_size\": 32, \"known_members\": {}}` —— **未实测** IDA 是否接受带 `::` 的顶层名，标 待窗口。",
+   "violates_CLAUDE_md": "NO — 不猜测、不改归属、不丢信息",
+   "loses_offset_info": "no",
+   "L1_ok_impact": "E1: struct 数 881→882；E2: 结构数不变（若 sdk_types 不计入 structs 分母）",
+   "verdict": "ACCEPT-AS-CANDIDATE（被 round2 的 E3 取代）"
+  },
+  {
+   "id": "E3",
+   "name": "【round2 新增，独立推荐】把『脱离父注解的嵌套类型』做成可声明的数据，交给同一个 nested-type pre-pass",
+   "evidence_strength": "**strong** — 父名 `PlayerMgr` 必定已存在于 TIL（N1，逻辑必然，由 tagRoleTask 的 bare `PlayerMgr *` 触发 step 3a）；`set_named_type(til, \"Parent::Nested\")` 已被证明可用（导出里 `AStarPathFinder::NODE`/`STACK`、`CParticleSystem::EmitterAttribute` 正是这样建出来的）",
+   "how": [
+    "数据：新增 `data/annotations/detached_nested_types.json` = {\"PlayerMgr\": {\"PoisonState\": {\"kind\": \"struct\", \"binary_size\": 32}}}（名字与尺寸与今天记录的完全一致，不新增任何断言）",
+    "代码：apply_annotations.py 的 nested-type pre-pass（~:2025-2027 调用 `_forward_decl_nested` 的地方）同时遍历该文件；约 6 行，属于 IDA 层（CLAUDE.md『IDA 层能解决的问题在 IDA 层解决』）"
+   ],
+   "violates_CLAUDE_md": "NO — 不猜测归属、不改类型名、不丢偏移信息、不做静默降级",
+   "loses_offset_info": "no（ArcLocale 16 个成员全部照常落地；`pstate` 仍是 32 字节跨度）",
+   "L1_ok_impact": "struct 数保持 881（不新增受管 struct，不生成新的 PlayerMgr.h 语义 —— PlayerMgr.h 今天就已经作为空占位存在）；881/881 恢复；L1 无关",
+   "why_best": "优于 A（不把名字改判给 SaleUI、不新增『SaleUI 有嵌套 PoisonState』这个无证据断言）；优于 B（不丢名字）；优于 D/E1（不新增第 882 个受管 struct、不复活 PlayerMgr 注解文件）；优于 E2（sdk_types 路径被 `if not _st.get(\"known_members\"): continue` 挡掉空成员条目，且 E2 只能建**顶层**名字）；优于 G（不违背 t3 的显式失败方向）",
+   "verdict": "**ACCEPT — 首选**"
+  },
+  {
+   "id": "F",
+   "name": "把该成员改成 void * 或 _BYTE[4]",
+   "evidence_strength": "none — 与二进制证据**矛盾**：跨度是 32 字节，不是 4 字节；`_BYTE[4]` 会立刻触发 create_fixed_struct 的末端/覆盖矛盾或产出错误布局",
+   "violates_CLAUDE_md": "YES — 『void*/int/char[] 等泛化类型只在确实不知道真实类型时使用』+『禁止破坏性 workaround』",
+   "loses_offset_info": "yes（32 字节跨度信息丢失）",
+   "L1_ok_impact": "可能直接让 ArcLocale 再次 FATAL 或产出错误布局",
+   "verdict": "REJECT"
+  },
+  {
+   "id": "G",
+   "name": "改 apply 让不可解析的 `Parent::Nested` 成员退化为 char[span]（不再 FATAL）",
+   "evidence_strength": "medium（技术上与 build_struct_decl 的既有语义一致：build_struct_decl 对任何含 `::` 的类型本来就是**按 span 发 char name[span]**，见 apply_annotations.py:441-445）",
+   "violates_CLAUDE_md": "**YES（本轮明确反向）** — t3 刚刚把『静默降级产出不完整 UDT』改成显式 FATAL（_cleanup_fix_struct_import.json 开篇即『导入器显式失败：不再静默产出不完整 UDT』）。此时再加一条静默降级会直接推翻 t3 的方向。",
+   "loses_offset_info": "no",
+   "L1_ok_impact": "880/881 → 881/881",
+   "verdict": "REJECT（与本轮 t3 裁定冲突）"
+  },
+  {
+   "id": "H",
+   "name": "独立发现（captain 未提）：修 codegen 的 scalar-dtor 形参丢失缺陷",
+   "evidence_strength": "strong，A 级（decomp 签名 + 生成物 + 编译器读数三重）",
+   "why": "pipeline/gen/stages/emit_headers.py:1975-1979 对 dtor 无条件写 `decl = \"    ~%s();\" % cls_name`，丢掉 `char a2`；.cpp 定义侧同样不带形参，于是 body 里的 `a2` 变成自由变量。这正是 AStarPathFinder.cpp 的（以及潜在同类文件的）失败根因。",
+   "violates_CLAUDE_md": "NO",
+   "loses_offset_info": "no",
+   "L1_ok_impact": "L1 无关；可把 AStarPathFinder.cpp 从 fail 拉回 ok（+1）",
+   "verdict": "ACCEPT（与 ArcLocale 无关，但是本轮真正的『独立原因』之一）"
+  }
+ ],
+ "recommended_plan": {
+  "summary": "（round2 更新）驳回方案 A 与 B。首选改为 **E3**：保留已记录的名字、把『脱离父注解的嵌套类型』变成可声明的数据，交给现有的 nested-type pre-pass。",
+  "steps": [
+   {
+    "n": 1,
+    "action": "在 pipeline/check_annotations.py 加**限定到 `::` 限定名**的悬垂检测（每个 `Parent::Nested` 成员类型必须在某注解的 nested_types 里有条目）。实测今天 1 真阳性 / 0 假阳性。",
+    "why_better": "captain 的 C 只说『应加』；我给出零误报的精确规则。通用版会喷 148 个假阳性（我实测：148 个不同成员类型名在注解/sdk 里无定义，靠 apply 的 fwd_names pre-pass 或 IDA 基础 TIL 解析）。"
+   },
+   {
+    "n": 2,
+    "action": "按 **E3** 修悬垂：新增 detached_nested_types.json + pre-pass 遍历（~6 行）。arcLocale 与 pstate 一个字符都不改。",
+    "why_better": "见 options[E3].why_best。这是唯一一个『不新增任何断言、不丢任何信息、不新增受管结构、不动注解语义』就能让干净重建回到 881/881 的方案。"
+   },
+   {
+    "n": 3,
+    "action": "顺手修掉 `*`（把 `PlayerMgr::PoisonState *` 改为 by value），或至少把它标为**待窗口**：现在 IDB 里 pstate 是 4 字节指针 + 28 字节洞，而跨度是 32 字节。",
+    "why_better": "这是**独立于悬垂**的类型错误，A 方案不会修它。改它需要二进制证据（ArcLocale 访问点），拿不到就标待窗口、不动。"
+   },
+   {
+    "n": 4,
+    "action": "【判据/归因补完】把 AStarPathFinder.cpp 与 ExternalStatistics.cpp 两个 ok 回退补进逐条归因；并在一条**被记录的 init→apply 链**上重跑一次『干净重建』以消除 N4 的可复现性缺口。",
+    "why_better": "否则『ok 下降来自 t7 恢复的真实代码』在 4 个回退里只对 1.5 个成立，且『干净 vs 增量』缺少可复现对照。"
+   }
+  ]
+ },
+ "independent_findings_not_reported_by_captain": {
+  "astarpathfinder_root_cause": {
+   "phenomenon": "pal3/src/Misc/AStarPathFinder.cpp L19 C2296 `'&' : illegal, left operand has type 'char []'`（baselines/20260915_155759 ok → 20260915_174124 fail）",
+   "root_cause": "codegen 丢失 scalar-dtor 的 `char a2` 形参。decomp 事实：asm/pal3/decomp/AStarPathFinder_~AStarPathFinderchar_00401030.json 的 signature 是 `virtual void *__thiscall(AStarPathFinder *this, char a2)`；而 emit_headers.py:1975-1979 对 dtor 无条件 `decl = \"    ~%s();\" % cls_name` ⇒ .h 写 `~AStarPathFinder();`；.cpp 定义同样无形参 ⇒ body L19 `if ( (a2 & 1) != 0 )` 的 `a2` 是**自由变量**。",
+   "why_the_error_code_changed": "它可以自由解析到 globals.h 里恰好叫 a2 的全局。16:55 的 globals.h 里 `a2` 是 `extern int a2; // 0x586194`（int，`a2 & 1` 合法 ⇒ ok）；干净重建导出后 0x586194 变成 `dword_586194`，而 **0x590638 被命名为 `extern CHAR a2[];`**（char[]，`&` 非法 ⇒ C2296）。",
+   "decisive_evidence": [
+    "cmd: diff /tmp/t7/pre/src/Misc/AStarPathFinder.cpp pal3/src/Misc/AStarPathFinder.cpp -> 空（byte-identical）；.h 同样 -> 空 ⇒ **该 TU 的文件没变过**",
+    "cmd: grep -n 'extern CHAR a2\\[\\]' /tmp/t7/pre/src/globals.h -> 无（exit=1）；grep -n 'extern int a2;' /tmp/t7/pre/src/globals.h -> 'extern int a2; // 0x586194'",
+    "cmd: grep -n 'extern CHAR a2\\[\\]' pal3/src/globals.h -> 316:extern CHAR a2[]; // 0x590638；且 diff 显示 0x586194 已改名为 dword_586194",
+    "cmd: grep -c 'PlayerMgr' data/pdb/pdb_export.json -> 668；PDB 里有 63 个 `@PlayerMgr@@` 修饰名（含 ??0PlayerMgr@@QAE@XZ / ??1PlayerMgr@@QAE@XZ）"
+   ],
+   "causal_verdict": "与 ArcLocale **无因果**（不 include ArcLocale；唯一路径是 globals.h，而那是导出换代造成的）。经 globals.h 的『间接级联』成立但**方向是反的**：不是 ArcLocale 空结构导致它失败，而是**干净重建改变了 globals.h 里 IDA 自动名的分配**。",
+   "new_failure_attribution": "**不属于 t7**：/tmp/t7 的 pre/base/new/cnt 四棵树里该文件完全相同，且它不在 changed_files.txt 里。真正的引入者是『从 raw.i64 干净重建后的整代 export』。",
+   "is_it_restored_real_code": "不适用 —— 正确表述是『一个长期存在的 codegen 形参丢失缺陷，此前被一个恰好叫 a2 的 int 全局偶然掩盖』。",
+   "L1_impact": "L1 名单 5 个函数已独立核对：CCBControl::GetControl(0x004DC5B0) / TxtFile::TxtFile(0x00431870) / UISceneFace::ResetAllSlots(0x0052D0D0) / ObjectCamera::Destroy(0x0047C810) / CameraSystem::BindToRoleSlot(0x0041D980) —— **不含 AStarPathFinder**（且当前 135 符号集里 `AStarPathFinder::*` 完全 ABSENT）。AStarPathFinder.h/.cpp 字节未变 ⇒ 其目标文件字节亦未变，L1 5→5 未退。"
+  },
+  "externalstatistics_regression": {
+   "phenomenon": "pal3/src/Misc/ExternalStatistics.cpp L62：C2653 'Concurrency' is not a class or namespace name / C2065 'MarkInactive' undeclared（ok→fail, 3 错）",
+   "root_cause": "t7 **删除**了 stage3_cleanup.py 的 `_IDA_MISID_PATTERNS` 注释器（3 处命中 → 0 处），把 84 站点/29 文件的 `// [IDA_MISID] ...` 全部恢复为活代码。",
+   "evidence": [
+    "cmd: for f in /tmp/t7/stage3_cleanup.ORIG.py pipeline/gen/stages/stage3_cleanup.py; do grep -c IDA_MISID $f; done -> 3 / 0",
+    "cmd: git diff pipeline/gen/stages/stage3_cleanup.py | grep -n IDA_MISID -> 显示 `_IDA_MISID_PATTERNS = (...)` 与 `r'// [IDA_MISID] \\1'` 等 7 行被删除",
+    "cmd: diff /tmp/t7/pre/src/Misc/ExternalStatistics.cpp pal3/src/Misc/ExternalStatistics.cpp -> 62c62: `// [IDA_MISID]     Concurrency::details::ExternalStatistics::MarkInactive(...)` → `    Concurrency::details::ExternalStatistics::MarkInactive(...)`",
+    "cmd: grep -rh '\\[IDA_MISID\\]' /tmp/t7/pre/src | wc -l -> 84（29 文件）；grep -rh '\\[IDA_MISID\\]' pal3/src | wc -l -> 0",
+    "cmd: grep -c ExternalStatistics /tmp/t7/changed_files.txt -> 0 ⇒ **该文件不在 t7 自报的变更集里**"
+   ],
+   "verdict": "既不在 t7 的 changed_files.txt，也不在 t7 的 ok 影响表（后者只预测 ChoseCompose + UIStatic = 52）。豁免要求『逐条证明新错误来自恢复的真实代码』—— 本行确实是被恢复的真实语句，但其文本里的 `Concurrency::details::ExternalStatistics` 是**编造类型名**，永不可能编译；scan 清单（_cleanup_scan_attribution.json:9297）对该类（ii）的建议原文是『**应重命名保留**』，不是『原样解除注释』。⇒ t7 做的是**半成品恢复**，不属于可豁免的『恢复真实代码』。"
+  },
+  "t7_exemption_review": {
+   "claimed_scope": "豁免：不以 S2 ok 为判据，但要求 ①L1 不回退 ②不得再有真实语义被注释 ③若 ok 下降须逐条证明新错误来自恢复的真实代码",
+   "measured_delta_155759_to_174124": {
+    "denominator": "198 = 198（可比）",
+    "ok": "53 → 52",
+    "ok_to_fail": [
+     "pal3/src/Misc/AStarPathFinder.cpp (1 错, C2296)  ← 未归因，且**不是 t7**",
+     "pal3/src/Misc/ChoseCompose.cpp (19 错, C2039/C2227) ← t7 已归因（但报的是 17 错）",
+     "pal3/src/Misc/ExternalStatistics.cpp (3 错, C2653/C2065) ← **未归因**，来自 t7 删除 IDA_MISID",
+     "pal3/src/Misc/UIStatic.cpp (2 错, C2440) ← t7 已归因（GAP-5，注解层 m_textx/m_texty 被注成 int）"
+    ],
+    "fail_to_ok": [
+     "pal3/src/Combat/CCBAIWindow.cpp",
+     "pal3/src/Misc/UISceneFace.cpp",
+     "pal3/src/Misc/s_RoleState.cpp"
+    ],
+    "note": "t7 的影响表预测 -2+1=52；**净数字对上了，但成员构成不对**（表里没有 AStarPathFinder / ExternalStatistics，且表里预期 ArcLocaleRole fail→ok 在真实树上并未发生 —— 真实树 ArcLocaleRole.cpp 仍是 fail 11 错）。⇒ 52 是巧合，不能当作 t7 影响面的证据。"
+   },
+   "structural_confound": {
+    "finding": "15:57:59 与 17:41:24 之间夹着**两个变量**：t7/t6 的 codegen 改动 **和** 从 raw.i64 干净重建后的整代 decomp/export/codegen 重生成。",
+    "evidence": "cmd: diff -rq /tmp/t7/pre/src /home/peng/workspace/PAL3Decomp/pal3/src -> **146 个文件不同**；而 t7 自报 changed_files.txt 只有 54 个 ⇒ 至少 92 个文件的差异来自换代 export，不是 t7。",
+    "implication": "任何『这个窗口里 ok 掉了一个 ⇒ 是 t7 干的』的推理都必须先排除换代变量。本轮 captain 的归因没有排除。"
+   }
+  },
+  "saleui_member_deletion_review": {
+   "claim_checked": "工作区里 data/annotations/structs/SaleUI.json 是**未提交修改**（mtime 15:05，HEAD 版本 101 成员 → 现 66 成员，-35 成员 / 177 行）",
+   "verdict": "documented, 不是暗改 —— 但有残余风险，且对本轮的归属论证构成反证",
+   "evidence": [
+    "cmd: git diff --numstat data/annotations/structs/SaleUI.json -> 2 177",
+    "cmd: python3 data/status/_cleanup_fix_saleui.json -> task t2b，deletions batch A(34) 判据『成员偏移 >= binary_size(105912)（几何不可能）』+『出处可追：约 10 条源自已解散的旧 PlayerMgr.json(107056)』；batch B(1) ml_SmeltList@104752 经 asm 3 处访问定位到 **LineupUI 的方法**（0x00477BB0/0x00471590）",
+    "cmd: python3 对比 6a8d71924 vs 6a8d71924^ vs HEAD 的 SaleUI.json -> round5 迁移**确实**把 22 个 PlayerMgr 成员并入了 SaleUI（81→101，max 0x1B2AC）",
+    "cmd: python3 读工作区 SaleUI.json -> 66 成员、max 104748、**无任何偏移 >= 105912 的成员**（含 m_pstate@106292 被删）"
+   ],
+   "residual_risk": "删除『几何不可能』的成员而**保持 binary_size=105912 不变**，等于选择『成员错』而不是『尺寸错』。t2b 自己也留了 LINEUPUI-SIZE-1208 / UILISTBOX-SIZE-1208 两个高/中未修项（LineupUI 方法访问到 +124248，疑尺寸小约 100 倍）⇒ 104752..111276 这批偏移**可能属于另一个更大对象**。删掉它们后，这些偏移的唯一记录就消失了（注释里说位移在 asm 中 0 次访问，但 t2b 自己也承认该判别力弱：界内成员也有 50/67 为 0 次）。建议把偏移清单留档到 status JSON。",
+   "why_it_matters_here": "它**直接反证** captain 的 A 级依据：round5 把 0x19DB8 以上的 PlayerMgr 成员并入 SaleUI，本轮 t2b 又按『几何不可能 + 出处可追（旧 PlayerMgr.json）』把它们删掉 ⇒ 『PlayerMgr 的内存确证并入 SaleUI』在 0x19DB8 以上**已被项目自己推翻**。"
+  },
+  "mechanism_finding_apply_has_no_tombstone": {
+   "finding": "`apply` 从不删除『注解里已被移除』的结构，所以增量 IDB 会永久累积幽灵类型 —— 这才是『增量 881/881 掩盖悬垂引用』的机制性根因（比 captain 的『历史血统』更可操作）。",
+   "evidence": [
+    "cmd: python3 ida_structs.json（干净重建代）-> PlayerMgr size=1 n_dm=0；对照 /tmp/t7/pre/src/Misc/PlayerMgr.h（增量代）-> total size 0x1A230 + 22 成员 + nested PoisonState",
+    "PDB 的 PlayerMgr 也是 kind=union size=1 ⇒ 干净 IDB 的 PlayerMgr 来自 init 的 phase1_import_types（PDB 导入）",
+    "cmd: python3 ida_structs.json -> 含 '::' 的条目 13 个（AStarPathFinder::NODE/STACK、CParticleSystem::EmitterAttribute、9 个 _inline_*），**没有** PlayerMgr::PoisonState"
+   ],
+   "open_question_for_window": "PDB 导入带进了 `PlayerMgr`（size=1 union）却没带进 `PlayerMgr::PoisonState`（同一 PDB 里的一个 size=32 类）—— 是否因为导入器丢弃含 `::` 的类名？若是，这本身就是一个可修的 IDA 层缺陷，且可能一举消除本悬垂。**待窗口**（需看 master_pipeline phase1_import_types）。"
+  }
+ },
+ "criteria_baseline_independent_check": {
+  "L1_ge_5": {
+   "reading": 5,
+   "source": "data/status/s4_baseline.json stats.match_L1 (mtime?) / rows 里 5 行 match_L1",
+   "meets": true,
+   "names_independently_verified": [
+    "CCBControl::GetControl(void) 0x004DC5B0",
+    "TxtFile::TxtFile(void) 0x00431870",
+    "UISceneFace::ResetAllSlots(void) 0x0052D0D0",
+    "ObjectCamera::Destroy(void) 0x0047C810",
+    "CameraSystem::BindToRoleSlot(int) 0x0041D980"
+   ],
+   "note": "与 captain 给的名单**完全一致**（已独立核对）。但对照：HEAD 的 s4_baseline 是 symbols=77/matched=66/L1=4，且 L1 名单不含 ObjectCamera::Destroy ⇒ 分母与名单在两代之间都变过。"
+  },
+  "ok_ge_53_of_198": {
+   "reading": "52/198",
+   "source": "data/status/baselines/latest.json name=20260915_174124",
+   "meets": false
+  },
+  "oob_0": {
+   "reading": 0,
+   "meets": true
+  },
+  "struct_import": {
+   "reading": "880/881 (fail=1)",
+   "meets": false
+  }
+ },
+ "contaminated_readings": [
+  {
+   "reading": "data/status/s4_baseline.json -> matched 101 (symbols 135)",
+   "vs": "data/status/_cleanup_verify_fixes.json -> matched 123 (symbols 175)",
+   "why_contaminated": "**分母不同**（175 vs 135），按任务自己的规则『分母变化即判不可比』；比率反而从 70.3% 升到 74.8%。且 pipeline/compare_pal3.py 在本工作区是**未提交修改**（git diff --numstat -> 36 行），符号集本身在两代之间变过（AStarPathFinder::* 现已 ABSENT）。",
+   "action": "**禁止**用它支撑『ArcLocale 空结构导致 matched 崩溃』。"
+  },
+  {
+   "reading": "baselines/20260915_155759.json (ok 53/198)",
+   "why_contaminated_as_a_t7_baseline": "它产生于**换代前**的 pal3/src（15:10 代）；与 17:41 的读数之间同时存在 t7/t6 codegen 改动和整代 export 重生成（146 文件差异 vs t7 自报 54）。",
+   "usable_for": "只能用于『ok 掉了 1』这一事实陈述，**不能**用于把每一个 ok 回退单独归因给 t7。"
+  },
+  {
+   "reading": "data/status/compile_baseline.json (timestamp 2026-09-15T16:13:54)",
+   "why": "属上一代 pal3/src；其对 AStarPathFinder.cpp 的『ok』读数（与 09-01 提交版的 C2065 相对照）是一条**跨代**轨迹，需按代分层解读，不能当作同代证据。",
+   "usable_for": "证明该缺陷**长期存在**（09-01 就是 C2065 'a2' undeclared identifier，同一行同一根因）"
+  },
+  {
+   "reading": "_cleanup_fix_vftable_comment.md 的『53-2+1=52/198』预测",
+   "why": "预测值与实测值同为 52，但**成员构成不同**（真实树多损失 AStarPathFinder + ExternalStatistics，且预期的 ArcLocaleRole fail→ok 未发生）。且该 md 的 base/new 树与真实 working tree 在 changed_files 的 54 个文件里**大量不一致**（我实测 `/tmp/t7/new` vs 当前树 DIFF 命中 20/20 抽样）。",
+   "action": "不可作为 t7 影响面的证据；52 是巧合。"
+  },
+  {
+   "reading": "pipeline/ida/_logs/apply_annotations_log.txt (17:31) + asm/pal3/ida_structs.json (17:34) + pal3/src (17:38) + baselines/latest.json (17:41)",
+   "why": "**同一条重建链上的连续产物**，层间一致 ⇒ 这一组读数**可信、未污染**（这是本轮唯一可作准的一组）。"
+  }
+ ],
+ "not_verified": [
+  {
+   "item": "ArcLocale +0x150 是 32 字节 by-value 对象还是 4 字节指针 + 28 字节洞",
+   "why": "需 IDA 查 ArcLocale 实例/访问点；当前 export 无 ArcLocale 类型全局、decomp 里 `ArcLocale\\b` 命中 0 文件。",
+   "mark": "待窗口"
+  },
+  {
+   "item": "PDB 的 6 个 PoisonState 成员（nCounter/fLength/lastpos/poison/fLastHurt/fDelay）是否在 PAL3.exe 里真实存在",
+   "why": "唯一来源是已作废的 PDB；补这 6 个成员需要二进制访问证据。",
+   "mark": "待窗口"
+  },
+  {
+   "item": "在一**条被记录的 init→apply 链**上重放『干净重建』，以消除 N4 的可复现性缺口",
+   "why": "已证明 17:31 的 apply 不是裸库上的第一次 apply（965 skipped / 1596 skip_named / raw.i64 无游戏名）。",
+   "mark": "待窗口"
+  },
+  {
+   "item": "104752..111276 这批被 t2b 删掉的 SaleUI 偏移的真实归属（LineupUI/UIListBox 尺寸疑小约 100 倍）",
+   "why": "需独立尺寸锚点（分配点 / 嵌入 span / 数组元素尺寸）。",
+   "mark": "待窗口"
+  },
+  {
+   "item": "本轮 3 个 fail→ok（CCBAIWindow / UISceneFace / s_RoleState）是否有真实语义被重新注释（豁免条件②）",
+   "why": "仍未逐行审其 pre→current 差异。",
+   "mark": "未做（round2 优先处理了更关键的机制与修复方案；可作为下一轮）"
+  },
+  {
+   "item": "E3 的实际 apply 验证（detached_nested_types 是否让 881/881 恢复、是否引入副作用）",
+   "why": "不得占用 IDB 窗口。",
+   "mark": "待窗口"
+  }
+ ],
+ "hard_discipline_notes": [
+  "所有退出码用 `cmd; echo exit=$?` 或 `echo exit=${PIPESTATUS[0]}`；未使用 `cmd | tail` 判退出码。",
+  "只写了一个文件：data/status/_cleanup_review_arc_locale_dangling.json。未做 git checkout/restore/stash/clean。未碰 backup/local-line-20260904 分支与 10 条 stash。",
+  "未运行 apply/export/codegen/probe/match，未启动 idat，未触碰 IDB。",
+  "运行了 `python3 pipeline/check_annotations.py`（纯 json/sys/os/re 导入、无 IDA 依赖的静态检查器，只读）以取得活体门禁读数。"
+ ],
+ "round2_continuation": {
+  "why": "captain 认可后继续补完 not_verified[] 里**不需要窗口**的项目。本轮结论：找到完整机制、找到更优方案 E3，并**推翻我自己 round1 的一个假设**。",
+  "N1_second_PlayerMgr_reference_unreported_by_captain": {
+   "finding": "`data/annotations/structs/tagRoleTask.json` 里存在**第二处、captain 从未提到的 PlayerMgr 引用**：known_members[\"16\"].type.union[1].type.struct[1] = {\"offset\":4,\"name\":\"pToggle\",\"type\":\"PlayerMgr *\"}。",
+   "evidence": [
+    "cmd: python3 全量扫 data/annotations/structs/*.json 的 type 字段（含 inline union/struct 递归）-> bare PlayerMgr refs: 1（就是它）",
+    "cmd: grep -rn 'PlayerMgr' data/annotations/structs/tagRoleTask.json -> +4 pToggle 'PlayerMgr *'",
+    "cmd: python3 读 ida_structs.json -> 'PlayerMgr' 存在但 size=1 n_dm=0 kind=struct"
+   ],
+   "why_it_matters": [
+    "① 回答 captain 待办 §9『扫查是否还有其它 PlayerMgr 引用』：**有，多一条**（bare 形态）。它**不会 dangling**，因为 apply_annotations.py:1767-1801 的 step 3a 把非 `::` 的成员基类型收进 fwd_names 并建空的 total_size=0 UDT ⇒ `PlayerMgr` 在 TIL 里是一个 **1 字节空占位**。所以这是**类型质量缺陷**（`PlayerMgr *` 指向 1 字节空壳），不是 FATAL。",
+    "② 由此得到一个**逻辑必然**（与任何运行顺序无关）：`PlayerMgr` 这个名字**必定已存在于 TIL**，先于 `_forward_decl_nested`（日志 line7 早于 line12）。⇒ 修复悬垂**不需要**复活 PlayerMgr 类、也不需要新增第 882 个 struct。"
+   ]
+  },
+  "N2_complete_mechanism_of_the_size1_damage": {
+   "finding": "`ArcLocale` 在导出里变成 size=1/data_members=0 的**完整机制**已确认，不是『raw.i64 残留』也不是 PDB 导入：",
+   "steps": [
+    "① apply_annotations.py:1749 `fwd_names = set(structs.keys())` ⇒ **ArcLocale 自己**就在 fwd_names 里",
+    "② 日志 line7 `[3a] Forward declarations: 2 new, 965 skipped` 这个 pre-pass 对每个不在 TIL 里的名字 `create_udt(total_size=0)` + `set_named_type` ⇒ 建出**空占位 ArcLocale**",
+    "③ 日志 line10 之后的导入循环对 ArcLocale 找 +336 'pstate' → `_resolve_member_type` 失败 → **在 create_udt 之前**就 `return (False, ...)`（apply_annotations.py:959-961）",
+    "④ 于是真实 484 字节布局**从未落地**，TIL 里留下的就是②的空占位",
+    "⑤ export_full 把它导出成 size=1/dm=0；codegen 产出 `class ArcLocale { char _tail_000[1]; }`"
+   ],
+   "corroboration": "asm/pal3/ida_structs.json 里 **size=1 且 0 成员的条目共 90 个**，ArcLocale 与 PlayerMgr 都在其中；这 90 个正是同一 pre-pass 的产物（ECB*/gb*/_TYPE 之类只被引用、没有注解文件的类型 + 导入失败者）。",
+   "generalised_defect": "⇒ **任何** struct 只要它的一条成员类型解析失败，它在导出里就退化为 1 字节空壳（而不是保留上一版布局）。这是『一个坏成员类型 → 整个结构体报废』的放大器，也是 codegen 侧大面积塌方的真正起点。",
+   "second_destructive_path": "另有一条同类路径：apply_annotations.py:1974 在 `[3a] Vtable structs pre-created` 里先 `del_named_type(...)`，而当 `_vt_off == 0` 时重建的是**空 total_size=0** UDT（日志 line83 `[vtable] RoleStatePanel: 1 table(s), 0 slots`）。若该 struct 随后的注解导入失败，同样只剩空占位。建议：`_vt_off==0` 时不要先删，或显式告警（本轮不修，交 captain）。"
+  },
+  "N3_corrections_to_my_own_round1_report": {
+   "honesty_note": "我 round1 报告里有两处推断是**错的**，在此自我更正（复核者的价值在于对包括自己在内的所有人证伪）：",
+   "correction_1": {
+    "my_wrong_claim": "『干净 IDB 的 PlayerMgr size=1 与 PDB 的 PlayerMgr(union,size=1) 完全一致，说明它来自 init 的 phase1_import_types（PDB 导入）』",
+    "refuted_by": "cmd: sed -n '196,205p' pipeline/ida/master_pipeline.py -> `# PDB struct 不再由 master_pipeline 导入。annotation 文件已合并 PDB 所有成员数据` 且 `cls_ok = 0`；同文件枚举导入默认关闭（PDB_ENUM_IMPORT / 『PDB 枚举导入: 已跳过』）",
+    "corrected": "PDB **不贡献任何 struct 类型**。`PlayerMgr` 来自 apply 自己的 step 3a 前向声明（见 N1）。"
+   },
+   "correction_2": {
+    "my_wrong_claim": "暗示 raw.i64 可能自带一个已填充的 TIL（因为 `965 skipped (already in til)`）",
+    "refuted_by": "cmd: strings -n 5 original/PAL3.exe.raw.i64 | grep -c ... -> 91,074 条字符串、其中 `sub_` **143** 条（证明名字确实以可见形式存放），但 BindToRoleSlot/ResetAllSlots/GetCGEntry/PlayerMgr/ArcLocale/SaleUI/PoisonState/g_RoleSlotBuf **全部 0**；同一探针在当前 i64 上全部命中（ArcLocale 68、PlayerMgr 22、ResetAllSlots 9、GetCGEntry 9）",
+    "corrected": "**raw.i64 不含任何游戏类型名/函数名** ⇒ 965 个『已在 til』的名字是 `init`/FLIRT/或**更早的一次 apply** 造出来的。"
+   },
+   "still_standing": "N1 的『PlayerMgr 必定已在 TIL』是**逻辑必然**（tagRoleTask 的 bare `PlayerMgr *` 是唯一入口，且只能由 step 3a 建出），**不依赖**上面那个被推翻的顺序推断。所以 E3 依然成立。"
+  },
+  "N4_reproducibility_caveat_on_the_clean_rebuild_story": {
+   "finding": "17:31 的 apply 日志**不是**在一个裸库上跑的第一次 apply。",
+   "evidence": [
+    "日志 line7 `[3a] Forward declarations: 2 new, 965 skipped (already in til)`：fwd_names ⊇ 881 个注解 struct 名，若库是裸的应当有约 880+ 个 new",
+    "日志 line4 `[1] Functions: created=0, renamed=3662/3673, skip_named=1596`：apply 时库内已有 1596 个非 sub_ 函数名",
+    "raw.i64 里既无游戏函数名也无游戏类型名（N3 correction_2 的 strings 读数）"
+   ],
+   "conclusion": "⇒ 『干净重建』= raw.i64 → init(FLIRT+类型导入) → 至少一次 apply。`880/881` 与 `881/881` 的『干净 vs 增量』对立**必须**在一条被记录的 init→apply 链上重新建立，否则『增量被历史掩盖』这一说法缺少可复现的对照。",
+   "mark": "待窗口",
+   "note": "这不影响悬垂的存在（`PlayerMgr::PoisonState` 在这条链的任何一次 apply 里都不存在，因为它的父类没有注解文件 ⇒ 见 N2 机制）。"
+  },
+  "N5_other_round5_migration_omissions": {
+   "finding": "`_migrate_playermgr.py` 只改了 `name`，**从未重写 `signature`** ⇒ 一批方法签名仍自称 `PlayerMgr::`。",
+   "census": "cmd: grep -rc 'PlayerMgr::' data/annotations/ -> ArcLocale.json 1（即 pstate 的类型）；SaleUI.json **9 处 signature**；functions.json 1（0x00469d50 → SaleUI::AddItem）；vtable_ownership_evidence.json 2。具体 10 个方法：LoadState / InitMode / SetSelectionFlags / SetupPlayerDisplay / ToggleSlot0..4 / InitSkillUI / InitShopUI",
+   "why_it_matters": "apply_annotations.py:~1525 `_apply_fn_type_via_tinfo` 是一个**只在 '::' 出现在签名里时**才走的 fallback；这些陈旧签名会把方法送进该路径。日志 line105 `[6] Signatures: 3655/3656` 说明目前没有致命失败，故不是 FATAL；但这是与 id 归属不一致的陈旧数据，会误导后续轮次并可能在 TIL 里留下错误的限定名。",
+   "recommendation": "作为 captain §9 待办的一项**独立扫描+清理**任务（逐条核对 apply 后 TIL 里的方法名，再决定是否改写签名），本轮不动。"
+  }
+ }
+}
