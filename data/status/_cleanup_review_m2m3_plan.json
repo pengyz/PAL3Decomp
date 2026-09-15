@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "role": "independent reviewer (M2/M3 falsification pass)",
+    "date": "2026-09-15",
+    "workspace": "/home/peng/workspace/PAL3Decomp",
+    "method": "全部结论基于本会话亲自读取源码与日志 + 只读数据模拟；未运行任何 pipeline/cli.py apply|export|codegen|probe|match|init 或 idat 命令"
+  },
+  "claims": [
+    {
+      "id": "M2-a-1",
+      "claim": "captain: cmd_match 的 prev_l1 来自同一个会被本次覆盖的 s4_baseline.json，属于「自比自」",
+      "verdict": "refuted",
+      "evidence": "pipeline/cli.py:521-544 实际顺序：先读 prev_l1(:526-532) → 再运行 compare_pal3.py(:535) → compare_pal3.py 在结尾才写 s4_baseline.json(compare_pal3.py:305-309) → 最后读 cur_l1(:536-538)。单次调用内 prev 是覆盖前的旧值、cur 是覆盖后的新值，时序上不可能同值。",
+      "counterexample": "只要 compare_pal3.py 正常完成，prev/cur 必然是两轮测量。唯一能造成同值的场景是并发跑两个 match（单写者纪律下不存在）。"
+    },
+    {
+      "id": "M2-a-2",
+      "claim": "captain: compare_pal3.py 的 returncode 未被传入 sys.exit，match 恒 exit 0",
+      "verdict": "confirmed",
+      "evidence": "cli.py:535 捕获 rc 后从未使用；:541-542 L1 退化只 print；cmd_match 无任何 sys.exit → 恒 exit 0。更糟：compare_pal3.py 前置守卫缺 census 时 exit 2(compare_pal3.py:243-252)，这个非零码也被吞掉。",
+      "counterexample": null
+    },
+    {
+      "id": "M2-a-3",
+      "claim": "captain 方案风险问询：compare_pal3.py 正常情况也非 0，导致 match 恒失败？",
+      "verdict": "refuted",
+      "evidence": "通读 compare_pal3.py main(:230-321)：L1 与退出码完全解耦，正常完成 return None → exit 0；只有前置守卫（census 缺失/损坏/畸形，:243-276）exit 2。传出 rc 不会造成恒失败。",
+      "counterexample": null
+    },
+    {
+      "id": "M2-a-4",
+      "claim": "captain 方案遗漏：L1 棘轮失忆",
+      "verdict": "confirmed",
+      "evidence": "compare_pal3.py :305-309 在 cli 判棘轮**之前**已覆盖 s4_baseline.json。若某轮 L1 退化触发 sys.exit(1) 而操作者忽视，下一轮 prev_l1 就读退化后的值 → 棘轮永久滑落且不再报警。对照：compile_regression.py 的基线只在显式 --update-baseline 时前进。",
+      "counterexample": null
+    },
+    {
+      "id": "M2-b-1",
+      "claim": "captain: cmd_probe 丢弃 --check 的 rc，并无条件 --save-baseline，退化当轮被洗白，probe 恒 exit 0",
+      "verdict": "confirmed",
+      "evidence": "cli.py:568 `subprocess.run([..., det_script, '--check', ...])` 返回值直接丢弃；:572 无条件 `--save-baseline`；函数无 sys.exit → 恒 exit 0。",
+      "counterexample": null
+    },
+    {
+      "id": "M2-b-2",
+      "claim": "captain: regression_detector.py:369-370 的 --check 语义正确（new_failures>0 or new_errors>0 → 1）",
+      "verdict": "confirmed",
+      "evidence": "regression_detector.py:369-370 逐字符合：`has_regression = comparison[\"summary\"][\"new_failures\"] > 0 or comparison[\"summary\"][\"new_errors\"] > 0` / `return 1 if has_regression else 0`。--save-baseline 路径(:354-356)恒 return 0。",
+      "counterexample": null
+    },
+    {
+      "id": "M2-b-3",
+      "claim": "洗白效果在当前仓库已实际发生（本会话独立发现，非 captain 所述）",
+      "verdict": "confirmed",
+      "evidence": "只读模拟：compile_baseline.json(16:13:54) 含 53 ok；当前 probe_census.json(20:06:39) 54 ok，其中 ChoseCompose.cpp、UIStatic.cpp 为 ok→fail 翻转（regressions=2）。而 baselines/latest.json 时间戳 20:07:45 —— 在翻转之后保存，模拟 --check 结果 new_failures=0/new_errors=0。即：无条件刷新已把这两个真实退化从 regression_detector 的视野里洗掉，只有 compile_regression 的旧基线还能看见（下次 codegen all 将 exit 1，因 cmd_codegen 已传播其 rc）。",
+      "counterexample": null
+    },
+    {
+      "id": "M3-1",
+      "claim": "captain: _was_preexisting 恒真，判据 ①-b 对所有非 union struct 恒 False（同义反复）",
+      "verdict": "confirmed",
+      "evidence": "两道预建 pass 都先于 create_fixed_struct 执行：(1) :1813-1852 fwd_names=set(structs.keys())，对 TIL 中不存在的名字 create_udt(total_size=0)+set_named_type（本次日志 `[3a] Forward declarations: 2 new, 965 skipped (already in til)`）；(2) :2026 `[3a] Vtable structs pre-created: 93/93`。因此 :1006-1007 的 get_named_type(til, name) 对每个待导入 struct 必然命中 → :1081-1082 的 _count_mismatch 恒 False。实测 `grep -c \"member count mismatch\" pipeline/ida/_logs/apply_annotations_log.txt` = 0（exit=1 无匹配）；日志 `[3] Structs: 881/881 imported successfully (fail=0)`。",
+      "counterexample": null
+    },
+    {
+      "id": "M3-2",
+      "claim": "captain: returned > pushed 是「同偏移 union 变体被 IDA 展开」，故 SaleUI/UIChatRest 多 1 属正常",
+      "verdict": "refuted",
+      "evidence": "真实成因是**基类子对象成员**：(1) SaleUI.json base_class=[UIFrameWnd]、UIChatRest.json base_class=[UIWnd]；三个计数相等者（tagNewItem/C2DSpark_tagSpark/CEffMgr）base_class=None —— 完全相关。(2) 基类成员在 :893-919 循环里 udt.push_back(mb)（:918），而 _pushed_count=0 在 :926 才初始化 → 系统性欠计数；_expected_pushed_member_count(:731-747) 同样不含基类。(3) 账目闭合：SaleUI 注解 66 成员、4 个落基类区域(offset 0/16/20/24 < base_size 72)被 :929-932 跳过 → own=62=pushed；returned=62+1(基类 UIFrameWnd)=63 ✓。UIChatRest 38-0=38=pushed；returned=38+1(UIWnd)=39 ✓。(4) 两结构 union=no 且无任何同偏移键组、无 inline dict 类型，与「union 变体」无关；代码注释 :1197-1199 已记载 t9 曾纠正过一次同样的错误归因。",
+      "counterexample": "按 captain 的解释无法说明为何恰好只有带 base_class 的两个结构 +1，也无法说明 SaleUI 为何是 66 注解成员只 push 62（基类区域跳过 4 个）——这两点都只有基类子对象理论能解释。"
+    },
+    {
+      "id": "M3-3",
+      "claim": "captain: 若一刀切用 !=，UIChatRest/SaleUI 会失败并退化成空壳",
+      "verdict": "refuted",
+      "evidence": "该预言建立在未修正的计数器上。修正计数（把基类 push 计入 _pushed_count）后，五结构的预期读数为 5/5、15/15、38/38、63/63、39/39，`!=` 全部通过，无误杀。tagNewItem（非 union，offset12 有一对 union 标记成员 fnMP/fMP）日志 members=5 pushed=5，证明 TAUDT_FIXED 的显式偏移 UDT 连同偏移重叠成员都原样保留、不合并 —— 「returned < pushed 因 IDA 合并」在当前日志中一次也没发生过。",
+      "counterexample": null
+    },
+    {
+      "id": "M3-4",
+      "claim": "captain 方案的隐藏前提：M3 判据开火能阻断什么",
+      "verdict": "refuted",
+      "evidence": "apply_annotations.py 对 struct 失败只 log+continue(:2108-2116, :2158-2162)，结尾**无条件** idc.qexit(0)(:2678)；仅顶层异常才 qexit(1)(:2704)。因此即使 M3 判据改为真判据，apply 仍 exit 0，cmd_apply(:327-341) 照样打印 \"OK: annotations applied\"。M3 现状只是**日志信号**，不是门禁。captain 方案未处理这一环。",
+      "counterexample": null
+    },
+    {
+      "id": "Q6-1",
+      "claim": "问 6：修好后 match/probe 在当前真实状态下会不会失败/误报",
+      "verdict": "partial",
+      "evidence": "只读模拟（不运行管线）：(1) regression_detector 语义 vs latest.json(20:07) vs probe_census.json(20:06)：new_failures=0, new_errors=0, fixed=0 → 修好 M2-b 后 probe **当下不会失败**，也不存在已知误报机制；(2) s4_baseline.json(20:09:58) stats.match_L1=6 ≥ 硬线 5，ok=54/198 ≥ 53，编译确定性 → M2-a 修好后 match 当下也不会失败；(3) 但 compile_baseline.json(16:13) 已含 2 个未处理退化（ChoseCompose/UIStatic）→ **下一次 codegen all 就会 exit 1**（cmd_codegen 本轮清理已传播其 rc），这与 M2/M3 无关、是已挂起的现实，需要先裁决（修文件或显式 --update-baseline）。",
+      "counterexample": null
+    }
+  ],
+  "m2a_verdict": {
+    "defect_real": true,
+    "as_described": false,
+    "summary": "「不阻断」真实且比 captain 说的更糟（连 compare 的 exit-2 守卫也被吞）；「自比自」不成立（prev 在覆盖前读取）。修法方向可用但需两点修正：阻断依据必须是棘轮比较结果而非仅 compare 的 rc（compare 正常完成恒 0）；并补棘轮记忆。",
+    "fix_safe": "partially — captain 三步中的 ②③ 可用，①（存临时状态）是对既有行为的误解，无必要"
+  },
+  "m2b_verdict": {
+    "defect_real": true,
+    "as_described": true,
+    "summary": "与 captain 描述完全一致（:568 丢 rc、:572 无条件刷新、:369-370 语义正确）。且本复核找到洗白已实际发生的现场证据（ChoseCompose/UIStatic 被 20:07 基线洗掉）。",
+    "fix_safe": "yes — rc≠0 跳过刷新符合棘轮语义；需补：--save-baseline 的 rc 也要传播、跳过时把对比报告落盘（det 已有 save_report/--output）、失败消息里给出人工刷新指令（仿 cmd_codegen 对 compile_regression 的提示）"
+  },
+  "m3_verdict": {
+    "defect_real": true,
+    "as_described": "partially — 同义反复属实（恒 False、grep=0、881/881）；但成因解释（union 变体展开）错误，真实成因是基类子对象成员未被计数",
+    "summary": "方向切分（< 失败 / > 告警）建立在错误诊断上，应当改为：修正 _pushed_count（把 :918 的基类 push 计入，或把初始化移到基类循环前），然后对非 union 用 !=。预测当前五结构全过、无误杀。同时必须指出：不修 apply_annotations.py 的 qexit(0)（s_fail 不进退出码），M3 永远只是日志信号，不是门禁。",
+    "fix_safe": "captain 的修法「安全但无效」：不会引入新问题，但判据仍是错的（把 179 个带基类结构的系统性 +1 规范化为正常，且 <:> 的不对称没有事实依据）"
+  },
+  "m2b_stale_baseline_risk": {
+    "question": "rc≠0 跳过刷新是否导致基线永久停旧、probe 永远失败",
+    "answer": "否，这不是缺陷而是棘轮语义本身（与 compile_regression.py 基线只在显式 --update-baseline 时前进同构）。终止条件有三：退化被修复 → check 通过 → 刷新恢复；操作者确认后手动 `python3 tools/regression_detector.py --save-baseline`；或显式放弃。唯一真实风险是**逃生口没有提示**：若跳过刷新时只静默 exit 1，操作者可能不知道需要手动刷新。缓解：失败消息必须仿照 cmd_codegen:437-439 的写法给出人工刷新指令；同时建议跳过刷新时仍用 det 的 save_report 把退化报告落到 pipeline/_logs/regression_detection/，避免证据只存在于一次 stdout。另一处小注意：fixed_files（fail→pass）也要等下一次干净刷新才入账，只是记账延迟，无害。"
+  },
+  "m3_direction_analysis": {
+    "returned_gt_pushed_cause": "基类子对象成员。apply_annotations.py:918 在基类循环里 push 每个具体基类为一个匿名成员（带 set_baseclass），而 _pushed_count=0 在 :926 才初始化，_expected_pushed_member_count(:731-747) 也不含基类 → returned = own_members + n_bases 恒大于 pushed。实证：五结构中仅有的两个 returned>pushed 恰好是仅有的两个带 base_class 者（SaleUI→UIFrameWnd +1=63、UIChatRest→UIWnd +1=39），三个无基类者全部相等；SaleUI 66 注解成员中 4 个落 base_size=72 内被 :929-932 跳过 → 62=pushed，62+1=63=returned，账目闭合。与 union 无关（两结构 union=no、无同偏移键、无 inline dict 类型）；t9 曾纠正过同样的错误归因（:1197-1199 注释）。",
+    "is_downgrade_to_warning_masking": "在**不修正计数**的前提下把 > 降为告警，等于把 179 个带基类非 union 结构（全仓扫描 n_with_base=179/897）的系统性偏差永久规范化，并把真实成因写成错误的「union 展开」——这不是掩盖某个未知缺陷，而是把一个已知误报制度化；同时 <:> 不对称本身无事实依据（当前日志中 < 一次都未发生，tagNewItem 5/5 证明同偏移成员也不被合并）。在**修正计数**的前提下，> 与 < 都是真实异常信号，应同权：== 才是正确不变量。",
+    "recommended": "修正 _pushed_count 后直接用 !=（保留 not is_union 排除）。若担心未经窗口验证的 876 个无回读日志结构存在未知 IDA 行为，可先合入计数修正+全量诊断行（对每个 struct 记 returned/pushed/n_bases，一次 apply 即可采集），观察一轮后再收紧为硬判据（待窗口）。注意即使硬判据开火，当前它也只是 s_fail→WARN→qexit(0)，不会卡死管线——真正的门禁缺口在退出码，见 other_gate_failures。"
+  },
+  "other_gate_failures": [
+    {
+      "where": "pipeline/cli.py:364-370 cmd_export",
+      "what": "export_full.py 经 _run_ida 返回 False 时只打印 '-> WARN: non-zero exit'，不 sys.exit → export 恒 exit 0",
+      "impact": "`apply && export && codegen all` 链中 export 失败后 codegen 会对陈旧/残缺 decomp JSON 继续跑，产出看似合法的基线",
+      "severity": "high"
+    },
+    {
+      "where": "pipeline/ida/apply_annotations.py:2158-2162 + :2678",
+      "what": "struct 导入失败（s_fail）只 [WARN]+continue，结尾无条件 idc.qexit(0)；签名失败 sig_fail 同样不进退出码",
+      "impact": "cmd_apply 的 ok 门只能拦顶层异常，拦不住逐结构/逐签名失败；M3 判据再准也到此为止",
+      "severity": "high"
+    },
+    {
+      "where": "pipeline/cli.py:617-626 cmd_compile",
+      "what": "ninja rc 非零只打印 BUILD INCOMPLETE，恒 exit 0",
+      "impact": "在 144 个文件 fail 的现状下属半有意设计，但未写明政策；等 ok 率上来后它会成为又一条哑门禁",
+      "severity": "medium（设计决策待明确）"
+    },
+    {
+      "where": "pipeline/cli.py:655-658 snapshot 子命令",
+      "what": "subprocess.run(snap_script, sub) 的 rc 不传播 → `cli.py snapshot capture` 恒 exit 0",
+      "impact": "小；cmd_codegen 内部路径(:404-408)已正确传播，仅直连路径丢失",
+      "severity": "low"
+    },
+    {
+      "where": "pipeline/cli.py:572 cmd_probe（M2-b 之外的一半）",
+      "what": "--save-baseline 自身的 rc 也被丢弃（census 缺失时 det 抛 FileNotFoundError → rc 2 → 吞掉）",
+      "impact": "基线保存失败无人知晓，下一轮 check 会拿旧基线比",
+      "severity": "medium"
+    },
+    {
+      "where": "tools/compile_regression.py:87",
+      "what": "硬编码 '/204' 仅是显示文案；当前实际 s2.total=198",
+      "impact": "纯外观误导，不影响门禁逻辑（regressions→exit 1 的判定与分母无关）；顺手改成 f\"/{current['s2']['total']}\" 即可",
+      "severity": "cosmetic"
+    },
+    {
+      "where": "tools/regression_detector.py:188-189",
+      "what": "compare_with_baseline 对「基线中不存在的 unit」直接 continue：新增 unit 的失败永远不会被判为回归",
+      "impact": "扩 census（新文件进入 S2）即脱离对账视野；与本轮门禁主题同构，captain 方案未覆盖",
+      "severity": "medium"
+    }
+  ],
+  "recommended_changes": [
+    {
+      "id": "R1",
+      "target": "M2-a",
+      "delta_vs_captain": "丢弃①的「自比自/临时状态」叙事；②③保留并加强",
+      "change": "cli.py cmd_match：rc != 0 时打印并 sys.exit(rc if rc>0 else 1)（覆盖 compare 的 exit-2 守卫）；rc==0 时读 cur_l1，cur_l1 < prev_l1 → 打印明细并 sys.exit(1)。新增棘轮记忆：运行前把 s4_baseline.json 旧内容读入内存，判棘轮失败时先写回旧内容再 exit 1，使基线只能显式前进（对齐 compile_regression 语义）"
+    },
+    {
+      "id": "R2",
+      "target": "M2-b",
+      "delta_vs_captain": "三步全保留，补三条",
+      "change": "① rc = run(--check)；② rc != 0 → 仍调用 det 的 save_report（或 --output）落盘证据，打印「确认无退化后可手动 python3 tools/regression_detector.py --save-baseline」，sys.exit(rc)；③ rc == 0 → 刷新，且 --save-baseline 的 rc 也要检查非零即 exit"
+    },
+    {
+      "id": "R3",
+      "target": "M3 判据",
+      "delta_vs_captain": "以「修正计数」替代「方向切分」",
+      "change": "apply_annotations.py：把 _pushed_count=0 移到基类循环之前（或每 push 一个基类成员 +1），_expected_pushed_member_count 同步计入基类（或从消息中删除该数）；判据改为 (not is_union) and _returned_members != _pushed_count。删除/重写 :1197-1210 处把 >1 归因 union 的措辞。可选加固：先全量诊断一轮（每个 struct 记 returned/pushed/n_bases）再收紧（待窗口）"
+    },
+    {
+      "id": "R4",
+      "target": "apply 退出码（captain 方案缺失的一环）",
+      "change": "apply_annotations.py 结尾按 s_fail 决定退出码（如 s_fail 非零 qexit(3)），cmd_apply 无需改动即可拦截。落地前先确认历史 fail 率非常态（当前日志 fail=0；更早日志未留存，待窗口/待 owner 确认），否则需按 registered overrides/白名单收敛"
+    },
+    {
+      "id": "R5",
+      "target": "同链其它哑门禁",
+      "change": "cmd_export 失败应 sys.exit(1)（fast 模式同样）；`cli.py snapshot` 传播 rc；cmd_compile 的恒 0 政策写成显式注释/参数（如 --allow-fail），并预留 ok 率达标后转为棘轮的路径；regression_detector 对「基线没有的新 unit」至少告警"
+    },
+    {
+      "id": "R6",
+      "target": "挂起事项（先于 M2/M3 处理）",
+      "change": "compile_baseline.json(16:13) 有 2 个未裁决退化（pal3/src/Misc/ChoseCompose.cpp、UIStatic.cpp）→ 下一次 codegen all 必 exit 1。需先修复这两个文件，或确认属有意变更后显式 --update-baseline。这是本轮清理已生效的门禁在工作，不是误报"
+    }
+  ],
+  "not_verified": [
+    "881 个 struct 中仅 5 个（get_size()==-1 诊断行）有 returned/pushed 回读数据；其余 ~876 个的 returned==pushed+n_bases 假设未经 IDA 实测（待窗口：一次 apply 的全量诊断行即可验证）",
+    "历史上 s_fail>0 是否常态（_logs 只保留当前一次日志，fail=0；更早日志未留存）——影响 R4 直接致命化是否安全（待窗口/待 owner）",
+    "ChoseCompose.cpp/UIStatic.cpp 的 ok→fail 翻转是有意变更还是真退化（需 owner 裁决，本复核只确认翻转事实与基线时间戳）",
+    "inline dict 类型成员（_resolve_type_object 路径）在回读时是否恒等 1 个成员（理论上是，未实测；本轮扫描的 5 个可见结构中无此形态）",
+    "下一轮 match 的实际 L1 读数（编译确定性推理其稳定，未运行验证）"
+  ],
+  "evidence_log": [
+    "grep -n \"def cmd_\" pipeline/cli.py → 160/225/318/350/373/380/470/521/547/575",
+    "sed 读 cli.py:521-572（cmd_match/cmd_probe 全文）、:364-370（export WARN）、:617-626（compile print）、:655-658（snapshot rc 丢弃）",
+    "读 compare_pal3.py 全文：:305-309 结尾写 s4_baseline.json；:243-276 守卫 exit 2；main 无 L1→退出码耦合",
+    "读 tools/regression_detector.py 全文：:369-370 rc 语义；:101-151 save_baseline；:188-189 新 unit 跳过",
+    "读 apply_annotations.py :731-747 / :838-926 / :1004-1223 / :1795-1852 / :2100-2162 / :2660-2704",
+    "grep -c \"member count mismatch\" pipeline/ida/_logs/apply_annotations_log.txt → 0 (exit=1)",
+    "grep \"get_size()==-1 (readable layout\" → 5 行：tagNewItem 5/5、C2DSpark_tagSpark 15/15、CEffMgr 38/38、UIChatRest 39/38、SaleUI 63/62（全部 union=no），与 captain 表完全一致",
+    "python3 解析 SaleUI.json/UIChatRest.json/tagNewItem.json 等：base_class、base_size、基类区域被跳过成员数（SaleUI 66→62，跳过 0/16/20/24 四个）、同偏移键组（非 union 全仓仅 tagNewItem offset12 ×2）",
+    "只读模拟 --check（latest.json 20:07:45 vs probe_census.json 20:06:39）→ new_failures=0 new_errors=0 fixed=0",
+    "只读模拟 compile_regression（compile_baseline.json 16:13:54）→ regressions=[ChoseCompose.cpp, UIStatic.cpp]，improvements=3，current 54/198",
+    "grep \"[3] Structs:\" 日志 → `[3] Structs: 881/881 imported successfully (fail=0)`（日志 mtime 2026-09-15 20:01:57）",
+    "s4_baseline.json stats.match_L1=6（mtime 20:09:58），flags 为全假设旗标组"
+  ]
+}

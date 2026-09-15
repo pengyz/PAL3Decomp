@@ -1,0 +1,354 @@
+{
+  "schema": "pipeline-cleanup-review/next-step/v1",
+  "reviewer": "独立决策复核者（非实施者，非 captain 同源；全程只读 + /tmp 副本 + 内存 harness，未运行任何经 idat / cli.py apply|export|codegen|probe|match|init 的命令）",
+  "generated_at": "2026-09-15T19:56:31+08:00",
+  "repo": "/home/peng/workspace/PAL3Decomp",
+  "head": "8faf2ca38",
+  "head_commits_examined": ["aacdf69c5", "31a155585", "8faf2ca38"],
+  "working_tree_state_at_review": {
+    "dirty_tracked": [
+      "pipeline/ida/apply_annotations.py (+47/-4, 未提交 —— 畸形键守卫 + 异常文件加时间戳)",
+      "data/status/baselines/latest.json (tracked，已被 19:43 的 probe 刷新，与 HEAD 差 2 行=name/timestamp)",
+      ".agent-teams/retired-members.json"
+    ],
+    "untracked_new": ["data/status/baselines/20260915_194339.json"],
+    "note": "本轮存在未提交工作；硬纪律禁止 git checkout/restore/stash/clean，已遵守（未执行任何破坏性 git 操作）"
+  },
+  "method_discipline": {
+    "no_forbidden_commands": true,
+    "forbidden_commands_not_run": ["cli.py apply", "cli.py export", "cli.py codegen", "cli.py probe", "cli.py match", "cli.py init", "任何 idat 调用"],
+    "read_only_tools_used": ["ls/stat", "git show/diff/log/ls-files/archive/clone", "python3 json/grep 分析", "tools/compile_regression.py（只读基线比对）", "cli.py check（只读，无写路径：grep 无 open(w)/write_text/json.dump）"],
+    "in_memory_only_harness": "/tmp/rev/probe_stage.py 与 /tmp/rev/bisect5.py 直接 import pipeline.gen.stages.*，只对单个 decomp JSON 做内存变换后打印，不写 pal3/src、不写 asm/、不碰 IDB",
+    "exit_code_discipline": "所有命令均 cmd; echo \"exit=$?\" 或 PIPESTATUS[0]",
+    "snapshots": ["/tmp/rev/ann（data/annotations 副本）", "/tmp/rev/base（data/status/baselines 副本）", "/tmp/rev/s4_baseline.json"]
+  },
+
+  "live_window_finding": {
+    "severity": "blocker-for-any-reading",
+    "what": "复核期间存在一条**正在循环执行的 IDB 写链**（apply_annotations.py → export_full.py → codegen → probe → match），且未通报。",
+    "evidence": [
+      "19:37:41 `ls -la original/` 见 PAL3.exe.id0 @19:37:41；19:37:53 同批 sidecar 已消失、.i64 mtime 变为 19:37:43（85782751 字节）",
+      "19:38:36 轮询 `ps -eo pid,comm,args | awk '$2==\"idat\"'` → `1076027 idat /home/peng/ida-pro-9.1/idat -A -S.../apply_annotations.py .../PAL3.exe.i64`；19:38:42 → `1076163 ... -S.../export_full.py ...`",
+      "19:38:23 .i64 85782745；19:38:41 .i64 85782745；19:41:15 .i64 85790943",
+      "期间 `ls pal3/src/*.cpp | wc -l` 中途只剩 119（正常 198）→ codegen 正在重建；asm/pal3/ida_structs.json @19:41:15",
+      "19:43:39 产生新基线 20260915_194339.json（内容与 192719 逐文件同，仅 name/timestamp 不同）；19:45:48 s4_baseline.json 被重写",
+      "pipeline/snapshots/data/20260915_194235 存在 → `codegen all` 走了自动快照路径（非 --no-snapshot）"
+    ],
+    "consequence": [
+      "交接表里的『现在 20260915_192719』在复核开始时已不是磁盘状态；三层一致（annotations→IDB→decomp→pal3/src）被打破",
+      "任何时刻起的新读数与 192719 不可比；本轮所有结论必须带时间戳",
+      "这是 handoff §5.5『一次未通报的重生成把全队计数基线作废』的**第三次同形事故**（另两次：10:39 重生成、D1 §6 记录的 16:xx 并发事故）"
+    ],
+    "partial_positive": "两次独立闭环（19:22-19:27 与 19:37-19:43）产出的 S2 基线**逐文件状态与错误数完全一致**（per-file delta 全 0）→ 在**同一条 IDB 血统**上，apply/export/codegen/probe 是可复现的、幂等的。这一点**证伪**了『读数完全不可复现』的强形式；未证伪的是**跨血统（干净重建）**的不可复现。"
+  },
+
+  "captain_claims": [
+    {
+      "claim": "ok 53→54 / 198（fail 145→144）",
+      "verdict": "confirmed",
+      "evidence": "python3 -c 汇总 data/status/baselines/{20260915_151121,latest}.json → 151121: ok=53 fail=145 err=3089；192719: ok=54 fail=144 err=3500；分母均 198",
+      "counterexample": "无。但净 +1 是 **8 次文件级翻转**的残差：17:41 时 ok 集合 +3/-4（53→52），18:40 AStarPathFinder.cpp 回 ok（→53），19:27 ExternalStatistics.cpp 回 ok（→54）。见 reliability_of_L1_and_ok"
+    },
+    {
+      "claim": "L1 5→6，新增的是 `AStarPathFinder::IsInBounds(int,int) @0x004014E0`",
+      "verdict": "refuted",
+      "evidence": "s4_baseline.json 的 6 条 100% 行为 {CCBControl::GetControl 0x004DC5B0, AStarPathFinder::IsInBounds 0x004014E0, TxtFile::TxtFile 0x00431870, UISceneFace::ResetAllSlots 0x0052D0D0, ObjectCamera::Destroy 0x0047C810, CameraSystem::BindToRoleSlot 0x0041D980}",
+      "counterexample": "**L1=5 时的独立记录里就已经包含 IsInBounds**：data/status/_cleanup_verify_fixes.json（t9 独立验证者，generated_at 2026-09-15T16:49:03, head aacdf69c5）criteria_L1_ok.L1.rows = [CCBControl::GetControl, **AStarPathFinder::IsInBounds**, TxtFile::TxtFile, ObjectCamera::Destroy, CameraSystem::BindToRoleSlot]。故 L1 5→6 的**真实新增是 UISceneFace::ResetAllSlots(void) @0x0052D0D0**。captain 把旧成员当成了新成员。"
+    },
+    {
+      "claim": "结构 import 881/881（fail=0）保持不变",
+      "verdict": "partial",
+      "evidence": "pipeline/ida/_logs/apply_annotations_log.txt → `[3] Structs: 881/881 imported successfully (fail=0)`；FATAL 0。发行判据四项我独立复验通过（见下条）",
+      "counterexample": "**该 881/881 对本轮读数是结构性同义反复**：(a) t3 的成员数判据 `_count_mismatch` 被 `not _was_preexisting` 门控（apply_annotations.py:1081-1082），而 `_was_preexisting` 在 :1007 读 TIL，此时 step 3a（日志行 `[3a] Forward declarations: 2 new, 965 skipped`，:1809 `fwd_names = set(structs.keys())`）**已把所有注解 struct 名预建成空 UDT** → 判据对**所有**非 union struct 恒为 False（干净重建同样如此，因为 3a 在导入循环之前）。日志实证：`[i] SaleUI: get_size()==-1 (readable layout, members=63, union=no, pushed=62, oversized=0)` —— returned(63) != pushed(62) 却未按判据①-b 失败 ⇒ 门控确实为 True ⇒ **判据是死代码**。(b) 同一现象也解释了 handoff §3.3 遗留项『SaleUI ann 66 / ida 63』：**有成员被静默丢弃，而 881/881 照报成功**。"
+    },
+    {
+      "claim": "发行判据四项合取式全过（默认配置，无本地 workaround）",
+      "verdict": "confirmed",
+      "evidence": [
+        "`git ls-files -s data/status/baselines/latest.json` → `100644 721fbd2b… 0 data/status/baselines/latest.json` exit=0",
+        "`git config --get core.symlinks` → exit=1（未设置，无本地 override）；`git config --local --list | grep -i symlink` → 无输出",
+        "`git archive HEAD | tar -x -C /tmp/rev/arch` → archive_exit=0 tar_exit=0，stderr 0 字节；解出的 latest.json `stat -c %F` = 普通文件，542471 字节",
+        "`git -c core.symlinks=true clone -q --no-hardlinks . /tmp/rev/c` → clone_exit=0；解出普通文件 542471 字节；json.load OK name=20260915_192719 n=198；`find /tmp/rev/c -type l` 无命中"
+      ],
+      "counterexample": "无。这一项 captain 的声明成立，且我不依赖 t9 的记录而是自己复跑了（含更严的 core.symlinks=true）"
+    },
+    {
+      "claim": "那 +411 条主要来自 t7 恢复被注释的真实代码（__vftable 访问 + [IDA_MISID]）",
+      "verdict": "partial",
+      "evidence": "见 error_411_attribution（方向成立：`__vftable` 族 0→719→597；但 +411 不是单一事件，且被截断与假降污染）",
+      "counterexample": "见 error_411_attribution.counterexamples（3 条）"
+    },
+    {
+      "claim": "fail→ok 3 个（CCBAIWindow/UISceneFace/s_RoleState）；ok→fail 2 个（ChoseCompose/UIStatic）",
+      "verdict": "confirmed",
+      "evidence": "集合差：ob-oa = {CCBAIWindow.cpp, UISceneFace.cpp, s_RoleState.cpp}（3）；oa-ob = {ChoseCompose.cpp, UIStatic.cpp}（2）。这 3 个文件的旧错误分别是 C2664 sprintf/FormatException `int *` 5 条 ×2 与 C2440 tagRoleTask→int 1 条",
+      "counterexample": "补充：同一次窗口内**另有 4 个文件 ok→fail 后又有 2 个回 ok**（AStarPathFinder.cpp @18:40、ExternalStatistics.cpp @19:27），故 53→54 的净 +1 是 8 次翻转的残差，不是 5 次"
+    },
+    {
+      "claim": "错误总数 3089→3500（+411）、C2039 236→919（+683）、C2660 706→600（−106）",
+      "verdict": "confirmed",
+      "evidence": "对照两份基线逐码汇总，数字逐一吻合",
+      "counterexample": "数字对，但**含义不对**：见 error_411_attribution（C1003 截断使 +411 只是下界；−294 那一次是 C1004 解析崩塌假降）"
+    },
+    {
+      "claim": "capitão 自述『t7 豁免条件③：若 ok 下降须逐条证明新错误来自被恢复的真实代码；目前只做了抽样（13 文件 358 条中的 151 条）』",
+      "verdict": "confirmed",
+      "evidence": "自述如实。但注意 ok 的净变化并不止『下降』：t7 落地时 ok 集合 +3/−4",
+      "counterexample": "无（这是一条自认欠账）"
+    },
+    {
+      "claim": "棘轮基线当前 `compile_regression.py` exit 1（4 项）",
+      "verdict": "partial",
+      "evidence": "我实跑 `python3 tools/compile_regression.py; echo exit=$?` → `Baseline: 2026-09-15T16:13:54` / `Baseline S2: 53/204` / `Current S2: 54/198` / `⚠️ REGRESSIONS (2 files): ChoseCompose.cpp, UIStatic.cpp` / `🎉 IMPROVEMENTS (3 files)` / `Net change: +1 files` / **exit=1**",
+      "counterexample": "是 **2 个** REGRESSIONS 而非 4 项；且**基线不再是『自比自』**（D1 描述的恒真状态已被打破：现在真的报出 2 个回归）。但 `tools/compile_regression.py:87` 仍硬编码 `%d/204`（D1 §5 待办未修），显示的分母与当前 198 不一致。"
+    },
+    {
+      "claim": "captain 未做项清单包含 t8 / t10/t11 / t12 / 棘轮刷新 / 其余 3 个 skip 的 Concurrency 命名",
+      "verdict": "confirmed",
+      "evidence": "t8 我独立复核仍成立（见 captain_missed.M4）；t10/t11 产物 _cleanup_review_attribution.json / _cleanup_review_pipeline_codegen.json 在 data/status/ 下**不存在**（ls 无此二文件）",
+      "counterexample": "清单漏掉的更重要项见 captain_missed（尤其 M1 H 守卫缺陷、M2 L1 棘轮不阻断、M3 t3 判据死代码）"
+    }
+  ],
+
+  "error_411_attribution": {
+    "headline": "+411 **不是一个可归因的量**：它是三个方向相反的事件相抵之后的残差，并且被两种测量伪影同时污染（上限截断 + 下限假降）。逐条归因在原理上做不全。",
+    "timeline_from_existing_baselines": {
+      "note": "全部读自仓库内既有基线快照（纯读，未占窗口）",
+      "columns": ["baseline", "ok", "err_total", "C2039", "C2660", "C2039+C2653 member=__vftable", "C2039 other", "sat>=100"],
+      "rows": [
+        {"b": "20260915_095407", "ok": 53, "err": 3090, "C2039": 240, "C2660": null, "vftable_family": 0, "sat": 13},
+        {"b": "20260915_151121", "ok": 53, "err": 3089, "C2039": 236, "C2660": 706, "vftable_family": 0, "C2039_other": 236, "sat": 13},
+        {"b": "20260915_155759", "ok": 53, "err": 3089, "C2039": 236, "C2660": 706, "vftable_family": 0, "sat": 13},
+        {"b": "20260915_174124", "ok": 52, "err": 3780, "C2039": 1069, "C2660": null, "vftable_family": 719, "C2039_other": 350, "sat": 16},
+        {"b": "20260915_182459", "ok": 52, "err": 3798, "C2039": 1068, "vftable_family": 718, "C2039_other": 350, "sat": 16},
+        {"b": "20260915_184019", "ok": 53, "err": 3504, "C2039": 919, "vftable_family": 597, "C2039_other": 322, "sat": 14},
+        {"b": "20260915_192719", "ok": 54, "err": 3500, "C2039": 919, "C2660": 600, "vftable_family": 597, "C2039_other": 322, "sat": 14}
+      ],
+      "reading": "15:11→15:57 完全不变（t3/t4/t5 未触碰 codegen）→ 17:41 单跳 +691（C2039 236→1069，其中 __vftable 族 0→719）→ 18:24 +18 → 18:40 **−294** → 19:27 −4（K）。net = +411。"
+    },
+    "artifact_1_C1003_truncation": {
+      "finding": "error_count 被 MSVC 的 100 条上限截断：饱和文件末条固定为 `C1003 error count exceeds 100; stopping compilation`，error_count=102。",
+      "evidence": "192719 有 14 个文件 error_count==102（151121 为 13）；python3 计数：`Counter(v['error_count'])[102]` = 14；CEffCylinder/CEffgbParticle/SceneObj 的 errors 末条均为 C1003@同一行。",
+      "consequence": "**+411 只是下界**；17:41 那一跳的真实增幅 > +691（同跳还有 C2039-other +114、C2653 +75、C2227 +56…）。饱和文件（新增 3 个）的真实增量被完全隐藏 ⇒ 逐条归因在这些文件上不可能完成。"
+    },
+    "artifact_2_C1004_parse_collapse": {
+      "finding": "18:40 的 **−294 修正完全是假降**：14 个文件因签名被破坏而解析崩塌（C2143 + `C1004 unexpected end of file found`），编译器在第一个语法错误处放弃，**其后的全部语义错误不再上报**。",
+      "evidence": [
+        "14 个 C1004 文件在 18:24→18:40 的错误数合计 571→278 = **−293**（占 −294 的全部）",
+        "逐文件：CCBSystem 102→7、CEffCylinder 102→3、PalScriptMgr 71→18、CEffGrid 53→38、CEffMeteor 46→49、CEffQuake 45→44 …",
+        "CEffCylinder 的错误构成 18:24 = {42× C2039 '__vftable' not member of CEffCylinder, 41× C2039 '__vftable' not member of CTaskTpl<…>, …}；18:40 = {C2143×2 @31, C1004 @31}",
+        "`grep -n 'Update(int' pal3/src/Effect/CEffCylinder.{h,cpp}` → `CEffCylinder.h:64: virtual int Update(int a2);` 而 `CEffCylinder.cpp:31: int CEffCylinder::Update(int 1)`"
+      ],
+      "consequence": "**误差计数与真实质量反相关**：把 21+ 个函数定义弄坏，错误总数反而下降 293。任何基于 error_total 的棘轮/归因在修复此项前都无意义。"
+    },
+    "artifact_2_root_cause": {
+      "id": "M1 / H-REGRESSION",
+      "severity": "blocker",
+      "location": "pipeline/gen/stages/stage5_fixup.py:967-983（`_run_inner` 末尾的『H』修复，无 `ctx.is_dtor` 守卫；全文件 grep `ctx.is_dtor` = 0 命中）",
+      "provenance": "`git log -S '_flag_name' -- pipeline/gen/stages/stage5_fixup.py` → 唯一提交 **31a155585**（18:45，本条『E3/H 缺陷修复』）；9cb436305→HEAD 的 diff 显示该 55 行 hunk 为新增。**该 hunk 从未被任何独立复核覆盖**（t9 的 _cleanup_verify_fixes.json 生成于 16:49@aacdf69c5，早于 31a155585）。",
+      "mechanism": "谓词：sig 去掉含 `this` 的形参后**恰好剩 1 个**、其名匹配 `a\\d+`、其类型 ∈ {char,int,unsigned int,__int8/16/32} ⇒ 把该标识符在**整个函数文本**里替换为常量 `1`。原意只针对 dtor（stage1 对 dtor 剥掉全部形参），但**没有 dtor 判据** ⇒ 对普通方法同样开火，连**函数定义行的形参声明一起替换**。",
+      "blast_radius": {
+        "predicate_matches_over_decomp_corpus": 51,
+        "of_which_real_destructors": 1,
+        "non_dtor_victims": 50,
+        "corrupted_signature_sites_in_pal3_src": 30,
+        "corrupted_files": 17,
+        "files": ["RenderTarget2.cpp(7)", "CEffGrid.cpp(3)", "CEffgbParticle.cpp(3)", "free_functions.cpp(2)", "CEffQuake.cpp(2)", "CEffMeteor.cpp(2)", "PalScriptMgr.cpp(1)", "UIScene.cpp(1)", "ScreenEffectMgr.cpp(1)", "CEffCylinder.cpp(1)", "CEffect.cpp(1)", "CCBSystem.cpp(1)", "CCBStage.cpp(1)", "CEffAction.cpp(1)", "RoleCameraCtrl.cpp(1)", "MainEquipUI.cpp(1)", "Comp_DonateUI.cpp(1)"],
+        "correlation": "14 个 C1004 文件 = 17 个受害文件中的 14 个（完全对应）"
+      },
+      "semantic_corruption_proof": {
+        "decomp": "int __thiscall CEffgbParticle::GetEffect(CEffgbParticle *this, int a2) { result = (int)this->m_pEffect; *(_DWORD *)(result + 362768) = a2; return result; }",
+        "generated": "int CEffgbParticle::GetEffect(int 1) { ... *(_DWORD *)(result + 362768) = 1; ... }",
+        "meaning": "**形参被静默替换成常量**，不只是语法错误。即使只修定义行，函数体语义也已错（存常量 1 与存实参编译出不同字节）——这直接攻击项目第一优先级（字节匹配）。"
+      },
+      "diagnosis_proof": "内存 harness（/tmp/rev/probe_stage.py）：stage1→stage4 第一行恒为 `int CEffCylinder::Update(int a2)`，只有 **stage5** 把它变成 `int CEffCylinder::Update(int 1)`。/tmp/rev/bisect5.py 对 stage5 各子步骤逐一调用均不改动该行 ⇒ 定位到 `_run_inner` 末尾的 H 块。",
+      "fix_verified_in_memory": "把 `if len(_params_h) == 1:` 改为 `... and ctx.is_dtor:` 后（/tmp/rev/verify_fix.py 内 exec 打过补丁的模块源码）：CEffCylinder::Update 与 CEffgbParticle::GetEffect 第一行恢复为 `int a2`。",
+      "why_no_gate_caught_it": [
+        "`compile_regression.py` 只比 ok/fail 状态；17 个受害文件**全部本来就是 fail**（无一在 ok 集合中）⇒ 不可见",
+        "`cli.py codegen all` 的回归门禁只调 compile_regression（同上）",
+        "错误总数反而下降 ⇒ 任何『错误数下降=改善』的直觉都被误导",
+        "t8 类的死门禁/吞错未修，且本条属新代码，无对应断言"
+      ],
+      "note_on_acceptable_scope": "对 dtor 而言该替换是**有意且正确**的（VC6 标量删除析构 flag 恒为 1，调用点已给出该值）；问题**仅仅是缺 dtor 守卫**，不应整体回退该修复。"
+    },
+    "artifact_3___vftable_family": {
+      "finding": "captain 的说法『主要来自 t7 恢复的真实代码』在**方向**上成立，但（a）量级被低估（族本身就超过净增量），（b）它不是『新暴露的潜在错误』，而是 **t7 自己已知的、故意保留的不可编译形态**。",
+      "evidence": [
+        "净增量 +683 C2039 中，`__vftable` 族 = 597；另有 `C2653 'X' : is not a class or namespace name` +67 与 `UIListBox`(50)/`TaskMgr_SceneObjParam_SceneObj`(35)/`GlowObj`(8)/`UIWnd`(12)/`CEffObj`(4)/`PalScriptWaitObj`(2) 等**限定名前半截**，同属一族（例如 `this->m_scrollbar.UIListBox::__vftable = (void*)800;` 一个站点即报 4 条：C2039×2 + C2653 + C2039）",
+        "`grep -rn '::__vftable' pal3/src --include=*.cpp | wc -l` = **606**，与 597 条 C2039 数量吻合",
+        "151121 基线里 __vftable 族 = **0**（t7 之前这些行被旧 blanket scanner 整体注释掉）",
+        "**t7 源码自述这是已知缺口**：stage3_cleanup.py 的 `_fold_vftable_mask` docstring 写『Skipped (left verbatim, reported as a gap in the .md): * qualified base accesses `X->Base::__vftable` — base offset unknown』，其上下文注释更直接写明『the header generator emits only data_members; the `__vftable` `_variants` … are dropped, so **no generated header declares `__vftable` — raw text can never compile**』"
+      ],
+      "independent_check_that_refutes_a_naive_fix": "`grep -rl '__vftable' pal3/src --include=*.h` = **0 命中**（任何生成头文件都不声明 `__vftable`）。而 597 条里有 **304** 条的类在 `data/annotations/structs/*.json` 里**已经**有 `known_members['0'].__vftable`（118 个 struct 有、780 个没有）⇒ 『补注解成员』并不能消掉那 304 条（它们是限定基类访问）。故该族不是一条『机械补齐』就能关掉的问题，需要 codegen 表达式的改法（按基类偏移折叠，或声明可编译的等价物）。",
+      "residual_unexplained": "C2039-other +86、C2653 非限定名 +67、C2227 +56、C2228 +26、C2143 +22、C2065 +14、C2109 +10 等尚未逐条归因；其中 C2227/C2228 疑与 `X->__vftable->M`/`[i]` 形态相关，未验证。"
+    },
+    "verdict_for_captain_plan_A": "**A（逐条归因 net +411）在当前测量下不可执行**：net 里混进了方向相反的 −293 假降，剩余部分被 100 条上限截断，且判据本身（真实代码 vs 非真实代码）已经可以由构造回答 ≈700/683 是限定 `__vftable` 族。真正欠的账是 **t7 的判据豁免③在『族』层面的定性**（已可给出）与 **t7 设计决策（leave verbatim）是否可接受**（codegen 政策问题，不是证据问题）。"
+  },
+
+  "reproducibility_impact": {
+    "severity": "high（但比 captain 描述的更具体，且**部分已被证伪**）",
+    "what_is_actually_broken": [
+      "工作 IDB 是 **2026-06-27 17:05:33 的 raw.i64 之后、N 次未记录 apply 的累积态**（raw.i64 mtime 06-27，工作 .i64 今日 19:41）。链上没有一条被记录的 `init→apply` 记录。",
+      "apply 的日志每次被覆盖，无历史；`pipeline/ida/_logs/apply_status.json` 也不是 apply 写的（mtime 15:14:42，陈旧 4.5 小时）。"
+    ],
+    "evidence_of_non_bare_lineage": [
+      "当前 apply 日志：`[0] Un-named 0 stale functions` / `[1] Functions: created=0, renamed=3663/3674, skip_named=1595` / `[3a] Forward declarations: 2 new, 965 skipped (already in til)` → 类型名早已全部存在",
+      "反向证据（captain 的 strings 探针，我未重跑）：raw.i64 无任何游戏名；同一探针在当前 i64 上全命中",
+      "**我独立复核的残留实证**：`asm/pal3/ida_structs.json`（当前 IDB 的导出）含 1031 个类型，其中 211 个在 `data/annotations/structs/` 里**没有**注解文件，包括 `PlayerMgr` 与 `PlayerMgr::PoisonState`（size=1 空壳）——这正是『历史血统残留』；`ArcLocale` 在当前 IDB 里是 size=484/16 成员，其成员 `pstate` 类型为 `PlayerMgr::PoisonState *`（注解仍是该类型，data/annotations/structs/ArcLocale.json 的 known_members['336']）。",
+      "size=1 且 0 成员的退化条目共 **90** 个（与 _cleanup_fix_detached_nested_types.md §2 自述的 90 一致）"
+    ],
+    "contaminated_deliverables_and_numbers": [
+      {"item": "881/881（fail=0）", "why": "判据①-b 被 _was_preexisting 门控而恒 False（见 captain_claims[2]）＋ 干净重建时的历史掩盖（PlayerMgr::PoisonState）", "verdict": "不诚实（结构性同义反复 + 至少 1 例静默丢成员：SaleUI 63→62）"},
+      {"item": "ArcLocale 的 484/16 布局（进而 CGameData.cpp / free_functions.cpp / CCBUI.cpp / Actor.cpp 的生成码）", "why": "依赖只存在于增量 TIL 的 PlayerMgr::PoisonState 条目", "verdict": "**待窗口**；E3 若对干净路径有效则可闭，但见下条"},
+      {"item": "E3（detached_nested_types.json）自身的验证结论『E3 前 880/881 → E3 后 881/881、ArcLocale size=484/16』", "why": "『E3 后』那条读数取自**增量** IDB —— 而增量 IDB 在 E3 之前就已经能解析 PlayerMgr::PoisonState（151121/155759 时就是 881/881、ArcLocale 已是 484/16）。故该读数**无论如何都会通过**，对 E3 在干净路径上的有效性**没有判别力**。", "verdict": "**E3 的干净重建有效性未验证**（captain 自己在同文件 §5 也把『可复现性缺口』标为待窗口）"},
+      {"item": "ok=54/198 与 L1=6 的**跨血统**可比性", "why": "同一血统内我实测可复现（两次闭环逐文件一致）；跨血统未测", "verdict": "同血统内可信、跨血统未知"},
+      {"item": "s4 分母漂移 175→135→149→152", "why": "L1 的分母是 **S2-ok 文件集编译出的 COFF 符号集**，随 ok 集合翻转而变；本轮 symbols 175→152、matched 123→111（−10%/-12）", "verdict": "**是同一问题的另一面**（读数依赖可变的 ok 集合），但不必与 IDB 血统问题混为一谈——两者独立"},
+      {"item": "_cleanup_fix_detached_nested_types.md / _cleanup_finding_dangling_nested_type.md 的『881/881 vs 880/881』对照", "why": "880/881 那条读数是干净重建的结果，但**该次干净重建是在 E3 之前**、且当时的 IDB 状态已被后续事故覆盖", "verdict": "对照本身可信（有 FATAL 日志），但不可复跑"}
+    ],
+    "not_contaminated": [
+      "发行判据四项（我独立复验通过，且它不依赖 IDB 内容）",
+      "『同一血统内 apply/export/codegen/probe 幂等』这一结论（19:27 与 19:43 两次闭环逐文件一致）",
+      "ok 集合的**逐文件状态**（编译是确定性的；翻转可逐条追因）"
+    ],
+    "verdict_on_captain_priority_B": "**B 的方向正确，但 captain 把它写成『干净 vs 增量的对照需要重建』还不够尖锐。** 精确的缺口是：**(i)** 没有任何一条被记录的 init→apply 链，**(ii)** E3 这个『为了对齐干净与增量而新增的机制』本身**没有在干净路径上被验证过**，**(iii)** 881/881 作为验收读数已证明是恒真（t3 判据死代码）。因此 B 必须包含『修 t3 判据门控』与『在干净链上重取 881/881 与 E3 的判别读数』，否则重建完仍然是不诚实的 881/881。"
+  },
+
+  "reliability_of_L1_and_ok": {
+    "L1": {
+      "absolute_claim_true": "s4_baseline.json 的 6 行 status=match_L1 且 match_pct=100.0，是**真实**的字节全同函数（含长度相等 + 零差异字节判定）。L1=6 这个数本身可采信。",
+      "but_ratchet_is_unsound": [
+        "(a) **L1 不是独立判据，它条件于 ok**：compare_pal3.py:277 `passing = [r['unit'] for r in census['s2']['results'] if r['status'] == 'ok']` → 只有编译通过的文件的符号进入比对。文件一旦 fail，其全部函数**根本不参与 L1**。",
+        "(b) 5→6 的真实机制就是这个偶联：新增的 `UISceneFace::ResetAllSlots` 之所以能计数，是因为 `pal3/src/Misc/UISceneFace.cpp` 由 fail（1 条 C2440 `tagRoleTask`→`int`，与 ResetAllSlots 无关）变成 ok（15:11 fail → 17:41 ok）。**修一个无关的编译错误，就把该文件里早已字节全同的函数『变成』L1。**",
+        "(c) ratchet 不阻断：`pipeline/cli.py:504-527 cmd_match` 把 `prev_l1` 从**同一个会被本次运行覆盖的** `s4_baseline.json` 读出，跑完再读 `cur_l1` 比较，且**不 sys.exit**（只 print）⇒ ① 参照物是上一次运行而非冻结基线，单次回退会被永久重基；② `cli.py match` 恒返回 0，`apply && export && codegen all && probe all && match` 链**不会因 L1 回退而失败**。",
+        "(d) 分母漂移：symbols 175→152、matched 123→111。同一 `symbols` 定义下（S2-ok 单元的 COFF 符号数），−13% 的分母变动使 L1 的『比率型』读法完全不可比。"
+      ],
+      "verdict": "**L1=6 这个绝对值可信；但『L1 从 5→6 是收益』不可信（是 ok 偶联产物），且『L1 ≥ 5 不得回退』现在**不是**一条门禁（只是打印）。**"
+    },
+    "ok": {
+      "within_one_generation": "可信：逐文件 status 由编译确定性决定；我复核了全部 198 项的分母与 status 枚举（fail 144 / ok 54）。",
+      "net_+1_is_fragile": "53→54 的净 +1 = 17:41 的 (+3/−4) + 18:40 的 AStarPathFinder 回 ok + 19:27 的 ExternalStatistics 回 ok。即 **8 次文件级翻转的残差**；其中 2 个回落（AStarPathFinder、ExternalStatistics）都是先掉出再回来。若 t7 的判据豁免不被授予，17:41 那一刻 ok=52 就已低于硬线。",
+      "comparability": "分母 198 未变 ⇒ 内部可比；但**同一时刻的 error_total 已因 M1/C1004 失真**，ok 判据自身不受该失真影响（17 个受害文件本来就是 fail）。",
+      "gate_status": [
+        "`tools/compile_regression.py` 是**唯一的 ok 棘轮**，会 exit 1（我实测），且 `cli.py codegen all` 会传出该 returncode（cli.py:412-423）——这一项是**真门禁**。",
+        "但它现在**正在失败**（2 regressions）：`pipeline/snapshots/data/20260915_194235` 与 `data/status/compile_baseline.json` mtime 16:13:54 证明 19:42 的 `codegen all` 走了快照+回归检查路径 ⇒ **该次 `codegen all` 退出码必为 1**，而链条继续走到 19:43:39 的 probe 并刷新了 latest.json。",
+        "`cmd_probe` 的回归对账同样**不阻断且每轮自重基**：cli.py:549-555 —— 先 `subprocess.run(det_script --check)`（returncode 被丢弃、无 sys.exit），随后无条件 `--save-baseline`。⇒ probe 永远 exit 0，且『当前态』每轮被吸收为基线。"
+      ],
+      "verdict": "ok 的**逐代读数可信**，但『净 +1 是可靠收益』应表述为『8 次翻转后的残差，其中 2 次是回落』；且 ok 链的两个自动门禁中只有 compile_regression 真的会失败，而它**现在就在失败**。"
+    }
+  },
+
+  "captain_missed": [
+    {
+      "id": "M1",
+      "severity": "blocker",
+      "title": "H 修复缺 `ctx.is_dtor` 守卫 → 51 个函数的形参被静默替换成常量 1（30 处签名语法错误 / 17 个文件 / 14 个 C1004），并让错误总数**下降** 293",
+      "why_it_matters": "① 它是本轮自己引入的、针对字节匹配的**语义损坏**（不是风格问题）；② 它使候选 A 要归因的那个数字本身失真；③ 没有任何门禁能发现它；④ 修复是一行。证据与内存复现见 error_411_attribution.artifact_2_root_cause。",
+      "not_in_captain_list": true
+    },
+    {
+      "id": "M2",
+      "severity": "high",
+      "title": "两条硬线的门禁其实都不阻断：(a) L1 ratchet 自比自且不 sys.exit（cli.py:504-527）；(b) probe 的回归对账不检查 returncode 且每轮 `--save-baseline` 自重基（cli.py:549-555）",
+      "why_it_matters": "『L1 ≥ 5 不得回退』『ok ≥ 53』在自动化链上只有 compile_regression 一项是真的；handoff §4 t5 第 5 项要求『后置钩子检查并传出 returncode』只落实了 codegen，未落实到 probe/match。同时 `probe` 的『刷新基线供下一轮对账』使得 regression_detector 只能发现**同一次调用窗口内**的退化，且发现后立即被吸收。",
+      "not_in_captain_list": true
+    },
+    {
+      "id": "M3",
+      "severity": "high",
+      "title": "t3 的成员数判据（①-b）是死代码 —— `_was_preexisting` 恒真，故 881/881 对成员数是同义反复；SaleUI 63→62 的静默丢成员因此未被拦下",
+      "why_it_matters": "t3 是本轮的核心交付之一，其判据被宣称为『实际落入成员数 == 期望推入成员数』。实测该判据永不求值。t9 已把它列为『未验证（覆盖面未知）』，我用代码路径 + 日志算术给出确定性答案：**覆盖面 = 0**。修法：把 ①-b 的判据改成『与上一次 apply 的成员数比较』或在 step 3a 前快照 TIL 存在性。",
+      "not_in_captain_list": true
+    },
+    {
+      "id": "M4",
+      "severity": "medium",
+      "title": "t8 仍完全未做：emit_headers.py 的两个恒假门禁可达性我独立确认（`[IDA_USERPURGE]`/`[IDA_REGPARAM]`），data.py 的裸 `except: pass`（thunk 装载）仍在",
+      "evidence": "pipeline/gen/stages/emit_headers.py:1881-1883 先 `sig = re.sub(r'@<\\w+>','',sig)` / 剥 `__userpurge` / `__usercall`，而 :1948/1951 的 `if '__userpurge' in sig or '__usercall' in sig:` / `if '@<' in sig:` 检查的是同一个已被清洗的变量 ⇒ 不可达（文件路径注意：不是 handoff 写的 `pipeline/gen/emit_headers.py`，实际在 `pipeline/gen/stages/emit_headers.py`）。data.py 的 thunk 装载 `except: pass` 仍在（当前 139 条 reason=thunk 里 126 条缺 target_name，实际只装载 13 条映射；有坏条目时会静默丢全部）。",
+      "not_in_captain_list": false
+    },
+    {
+      "id": "M5",
+      "severity": "medium",
+      "title": "交付物里的证据引用有一处日期错误",
+      "evidence": "`data/status/_cleanup_fix_flirt_misnamed_crt.md` 同源的代码注释（apply_annotations.py:1634-1637，未提交）写『实测 2026-09-15 17:47 一条 \"invalid literal for int() with base 16: 'CCBUI::CountAttackSequences'\"』；但我在 19:36 实测 `stat pipeline/ida/_logs/apply_exception.txt` = **2026-09-01 17:47:04，419 字节**，19:37:42 才被新异常覆盖（502 字节，带新增的时间戳行）。⇒ 该引用的日期应为 2026-09-01（或需重新取证）。",
+      "not_in_captain_list": true
+    },
+    {
+      "id": "M6",
+      "severity": "low",
+      "title": "两个注解数据文件被整体重新格式化，造成 ~28k 行无意义 diff",
+      "evidence": "9cb436305→HEAD: `data/annotations/skip_functions.json` 7900+/7904−、`globals.json` 6295+/6292−；语义比对：skip_functions 键集 1955→1954（删 1 个 = K 的 0x00532D50），**changed values = 0**；globals 键集 1306→1306，**changed values = 1**（`0x00C043A0 g_RoleSlotBuf` 增加 `overlaps_with:['g_SceneMgr']`，即 handoff §3.3 第 4 项）。原因是 `json.dump` 缩进从 1 空格变成 2 空格。",
+      "why_it_matters": "『每处注解修改必须有二进制证据』在 diff 层面被这 ~28k 行噪声掩盖；且 git log/blame 对这两个文件从此不可用。建议：要么统一缩进并单独提交一次『格式化』，要么在写回时保持原缩进。",
+      "not_in_captain_list": true
+    },
+    {
+      "id": "M7",
+      "severity": "low",
+      "title": "`tools/compile_regression.py:87` 仍硬编码 `/204`（D1 §5 待办未修）",
+      "evidence": "输出 `Baseline S2: 53/204` 而当前 `Current S2: 54/198` —— 同一行里两个不同分母，正好踩『分母变化即判不可比』的红线。",
+      "not_in_captain_list": false
+    }
+  ],
+
+  "recommended_next_step": {
+    "one_step": "**先停窗并冻结，然后修 M1（stage5_fixup.py 的 H 缺 dtor 守卫，一行）＋ 加一条永久门禁断言『生成源码的函数定义形参名不得为纯数字』，重新生成同一条血统的 pal3/src 并在同一状态上连取两次基线。**",
+    "why_it_beats_A": [
+      "A 的产出是一份关于 +411 的文档；而 +411 里有 293 条是**M1 造成的假降**。M1 一修，14 个文件的错误数会**涨回去**（回到 18:24 量级的真实读数），A 的归因对象立刻作废 ⇒ A 的产出在 M1 修复当天就过期。",
+      "M1 是**语义损坏**而非报表问题：`*(_DWORD *)(result + 362768) = a2;` 被改成 `= 1;`。项目第一优先级是字节匹配，这一条直接违背它。",
+      "成本对比：M1 = 一行 + 一条断言 + 一次 codegen（分钟级）；A = 逐条读 917 条（且 14 个文件被 C1003 截断、原理上做不全）。",
+      "A 想知道的『t7 恢复是否只带来真实代码』其实**已经可以回答**：净 +683 C2039 中 ≈700 条是 t7 自己文档化的『qualified base `__vftable` 留原样』缺口（见 artifact_3），不是需要逐条取证的悬案；真正需要裁定的是 t7 的**设计决策**（leave verbatim 会让 `pal3/src` 永远不可能编译），那是 codegen 政策裁定，不是证据补账。"
+    ],
+    "why_it_beats_B_alone": [
+      "B 的**方向**我认同（且我把它尖锐化为：编一条被记录的 init→apply 链 + 修 t3 死判据 + 在干净链上重新验证 E3），但 B 不能在**当前**状态下执行：IDB 正在被循环重写（19:37:43/19:38:23/19:38:41/19:41:15），工作区有未提交改动，且 `codegen all` 现在 exit 1。",
+      "更重要的是**顺序**：B 的产出是一条干净无关的**基准**。若先做 B 再做 M1，M1 一落地 codegen 输出就变，B 的基准与它的『两次基线可复现』证据立即失效，B 要重做。**M1 必须先于 B**，因为它是会改变 codegen 输出的最便宜的确定性修复。",
+      "此外 B 如果不连带修 t3 死判据，重建后拿到的仍然是恒真的 `881/881` —— 花了最贵的窗口却仍得不到诚实读数。"
+    ],
+    "minimal_sequence": [
+      "S0（现在，分钟级）：停止循环窗口并通报；不要在当前状态刷新任何棘轮基线（`compile_regression.py --update-baseline` 会把 2 个真实回退与 M1 的假降一并吸收）；提交或至少登记未提交的 apply_annotations.py 改动。",
+      "S1（分钟级）：`pipeline/gen/stages/stage5_fixup.py:974` 加 `and ctx.is_dtor`；同时在 codegen 后加断言『`pal3/src/**` 的函数定义形参名不得匹配 ^\\d+$』并让它进入 `codegen all` 的 ∧ 链（这样同类错误永久不可再发生）。验证：重跑 codegen 后 30 处 `int 1`/`char 1` 归零；预期 error_total 显著上升（真实读数回归）、C1004 文件 14→0..1。",
+      "S2（同一窗口内、独立验证）：重跑 probe + match，与 19:27/19:43 两次闭环对照，确认 M1 之外无其它漂移；此时才谈 L1/ok 的新基线。",
+      "S3（下一窗口，B）：修 t3 的 ①-b 门控（使 `_was_preexisting` 不再恒真），然后**编一条被记录的 `init(raw.i64) → apply` 链**，一次拿到三件事的判别读数：干净路径的 `[3] Structs N/881`、E3 是否在干净路径上生效（ArcLocale size/data_members）、以及干净 vs 增量的逐文件 ok 差异。同一状态连取两次基线以证明可复现。",
+      "S4（之后）：以 S3 的物化状态为棘轮起点（并修 compile_regression.py:87 的 `/204`）；同时补 t10/t11 两路独立复核（重点复核对象应包含 31a155585 里**从未被复核过**的 t7 与 H 代码块）。"
+    ],
+    "explicitly_not_recommended_now": [
+      "不要把棘轮基线刷新到当前态（会把 M1 的假降与 2 个真实回退一起吸收，重演 D1）",
+      "不要在 M1 落地前做 A 的逐条归因（对象会变）",
+      "不要试图用『给 597 条 __vftable 补注解成员』解决该族（实测 304 条属限定基类访问，补成员无效；另外 293 条所在类确实缺成员，但补法需先裁定 codegen 侧表达）"
+    ]
+  },
+
+  "not_verified": [
+    {"item": "干净 `init(raw.i64)→apply` 链的实际读数（881/881? ArcLocale 布局? E3 是否生效?）", "reason": "需独占窗口 + idat；按硬纪律未运行", "status": "待窗口"},
+    {"item": "E3（detached_nested_types.json + §3c）在**干净路径**上的有效性", "reason": "给出的『E3 后 881/881』取自增量 IDB，而增量 IDB 在 E3 前就已能解析 ⇒ 无判别力；需干净重建", "status": "待窗口（我给出的是**证据无判别力**的证明，不是结论本身）"},
+    {"item": "M1 修复后的实际 error_total / ok / L1（预测 error_total 上升、C1004 文件 14→0..1，未实测）", "reason": "需 codegen 窗口", "status": "待窗口"},
+    {"item": "跨血统的 s4 分母（symbols/matched）差异归因", "reason": "需要两代 pal3/src 各跑一次 match", "status": "待窗口"},
+    {"item": "`__vftable` 族剩余 304 条（类已有成员却仍报错）的逐条形态", "reason": "pal3/src 在复核期间被反复重建，未能在同一代上完成逐行归类；已用类名/成员存在性做了聚合判定", "status": "部分未验证"},
+    {"item": "C2039-other +86 / C2653 +67 / C2227 +56 等的逐条归因", "reason": "同上，且被 C1003 截断", "status": "未验证"},
+    {"item": "`_cleanup_fix_flirt_misnamed_crt.md` 中『其余 3 个被 skip 的 Concurrency 命名』（0x004790F0/0x00479250/0x004B4830）真伪", "reason": "需函数体取证（IDA）", "status": "待窗口（captain 已登记）"},
+    {"item": "t7 的判据豁免③在**逐条**层面的完整性", "reason": "我在『族』层面给出了 ≈700/683 的定性；逐条需 917 条中扣除截断部分后逐一读源码，在 M1 修复前对象不稳定", "status": "部分（族层面已定，逐条未做）"}
+  ],
+
+  "contaminated_readings": [
+    {"reading": "error_total = 3500", "contaminated_by": ["C1003 100 条上限截断（14 文件饱和）", "M1/C1004 解析崩塌假降（−293）"], "usable_as": "下界，且与质量反相关；不可作为棘轮或验收依据"},
+    {"reading": "C2039 = 919（+683）", "contaminated_by": ["同上截断", "t7 的 qualified-__vftable 已知缺口占 ≈700"], "usable_as": "方向性指标"},
+    {"reading": "881/881 (fail=0)", "contaminated_by": ["t3 判据①-b 恒不生效", "增量血统的历史掩盖"], "usable_as": "**不可作为验收读数**"},
+    {"reading": "L1 = 6 / s4 symbols=152, matched=111", "contaminated_by": ["L1 条件于 ok 集合（UISceneFace.cpp 由 fail→ok 而『送来』第 6 个）", "分母漂移 175→152"], "usable_as": "绝对计数可采信；『5→6 是收益』与比率不可采信"},
+    {"reading": "L1 ratchet『previous 5 -> current 6』", "contaminated_by": ["prev 取自同一个会被本次覆盖的 s4_baseline.json（自比自）"], "usable_as": "**不可作为棘轮证据**"},
+    {"reading": "probe 的 regression_detector 输出（每次 probe 都刷 latest.json）", "contaminated_by": ["每轮无条件 --save-baseline 自重基，且 returncode 被丢弃"], "usable_as": "仅供参考，不是门禁"},
+    {"reading": "captain 表格里的『现在 20260915_192719』", "contaminated_by": ["复核期间 IDB 被重写 4 次（19:37:43→19:41:15），decomp/src/@19:42 由新闭环产生；三层一致已破"], "usable_as": "仅为 19:27 时点快照；已由 19:43 的等价快照接续"},
+    {"reading": "apply_status.json 的逐 struct 状态", "contaminated_by": ["mtime 15:14:42（陈旧 4.5h），且不是 apply 写的"], "usable_as": "不可作当前状态（handoff 已记）"}
+  ],
+
+  "key_commands_for_reproduction": [
+    "python3 - <<'EOF'  # 逐码/逐文件 delta（读 baselines）\nimport json,collections\nA=json.load(open('data/status/baselines/20260915_151121.json'))['results']\nB=json.load(open('data/status/baselines/latest.json'))['results']\nprint(sum(1 for v in B.values() if v['status']=='ok'), sum(v['error_count'] for v in B.values()))\nEOF\necho \"exit=$?\"",
+    "python3 tools/compile_regression.py; echo \"exit=$?\"   # -> exit=1, 2 REGRESSIONS",
+    "python3 pipeline/cli.py check; echo \"exit=$?\"          # -> 0 errors, 10 warnings, PASS",
+    "grep -c \"ctx.is_dtor\" pipeline/gen/stages/stage5_fixup.py   # -> 0（缺失守卫）",
+    "python3 /tmp/rev/probe_stage.py    # 内存复现：stage5 把 `int a2` 变成 `int 1`",
+    "python3 /tmp/rev/verify_fix.py     # 内存验证：加 `and ctx.is_dtor` 后恢复 `int a2`",
+    "grep -rn \"::__vftable\" pal3/src --include=*.cpp | wc -l   # -> 606",
+    "ps -eo pid,comm,args | awk '$2==\"idat\"'                    # 窗口占用的取证方式"
+  ],
+
+  "final_verdict_summary": "captain 的数字基本都是真读数（ok/err/C2039/L1/发行判据我都复验），但**他的因果与归因有两处关键错误**：L1 的第 6 个函数不是 IsInBounds（是 UISceneFace::ResetAllSlots，且是 ok 偶联产物），+411 里 293 条是**假降**而非修正。而真正该先做的既不是 A 也不是原样的 B，而是**先修本轮自己引入的、把形参静默替换成常量 1 的那处缺守卫（30 处签名 / 17 个文件 / 14 个 C1004 / −293 假降）**，因为它同时污染了度量、破坏了字节匹配，并且是一行修复。"
+}

@@ -900,6 +900,17 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     # MUIDialog/SceneObj, etc.). See docs/knowledge/gotcha_codegen_multi_inheritance_anon_member.md.
     _concrete_bases = [bc for bc in base_classes if '<' not in bc and '>' not in bc]
     _base_offset = 0
+    # 完整性判据的两个计数器**必须在基类循环之前**初始化：
+    # 基类子对象成员在下面的 `udt.push_back(mb)` 里就已经落入 UDT，
+    # 而 `get_udt_details()` 的 size() **包含**它们。先前 `_pushed_count = 0`
+    # 被放在基类循环**之后**（原 :926），导致**带 base_class 的 struct 系统性欠计数**，
+    # 使 `returned != pushed` 恒成立——M3 的死判据之外还叠加了这个错位。
+    # 实证：SaleUI(ann 66 − 4 落 base 内 = own 62) + 1 基类 = 63 = returned；
+    #        UIChatRest(38 − 0 = 38) + 1 = 39 = returned。
+    # 全仓有 176 个带 base_class 且 base_size>0 的非 union struct。
+    _pushed_count = 0      # 落入 UDT 的成员总数（含基类子对象）
+    _pushed_own = 0        # 其中来自 known_members 的部分（不含基类）
+    _n_bases = 0           # 基类子对象个数
     if _concrete_bases and base_size > 0:
         base_offset = 0
         for bc in _concrete_bases:
@@ -916,14 +927,14 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             mb.type = bc_tinfo
             mb.set_baseclass()  # mark every base (not just bases[0]) as a real base class
             udt.push_back(mb)
+            _pushed_count += 1
+            _n_bases += 1
             base_offset += bc_size
         _base_offset = base_offset
 
     # Add known members at exact annotation offsets
     # Union members use "0", "0_1", "0_2" keys (all at offset 0)
-    # _pushed_count 只计真正落入 TIL 的成员（push_back 之后），作为完整性判据的
-    # 「实际落入成员数」，与 _expected_pushed 对照。
-    _pushed_count = 0
+    # （计数器已在基类循环之前初始化，见上。）
     for off_str, minfo in sorted(members.items(), key=lambda x: int(x[0].split('_')[0], 0)):
         offset = int(off_str.split('_')[0], 0)
         if base_class and offset < base_size:
@@ -973,6 +984,7 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         m.type = tinfo
         udt.push_back(m)
         _pushed_count += 1
+        _pushed_own += 1
 
     # When struct has size but no members, IDA creates a blob without named fields.
     # Add a char[N] filler so the struct has proper named members in the IDB.
@@ -986,6 +998,7 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             _filler_m.type = _filler_arr
             udt.push_back(_filler_m)
             _pushed_count += 1
+            _pushed_own += 1
 
     # For flexible structs, compute total_size from actual member layout
     if is_flexible and not is_union:
@@ -1076,9 +1089,20 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     _udt_ok = bool(result_tinfo.get_udt_details(_udt_probe))
     _returned_members = _udt_probe.size() if _udt_ok else 0
 
-    # --- 判据 ①-b：成员数一致性（仅对净新建的非 union） ---
-    # union 的同偏移变体在 IDA 中可能被合并/重排，故 union 只告警不判失败。
-    _count_mismatch = (_udt_ok and not is_union and not _was_preexisting
+    # --- 判据 ①-b：成员数一致性（非 union） ---
+    #
+    # 【M3，2026-09-15 独立复核修正】原判据带 `not _was_preexisting` 门控，
+    # 但 step 3a 的 fwd 声明与 vtable 结构预建**先于**导入，已把全部 struct 名建入 TIL
+    # ⇒ `_was_preexisting` **恒真** ⇒ 本判据对所有非 union struct **恒为 False**
+    # （实证：`grep -c "member count mismatch"` = 0；`[3] Structs: 881/881` 对成员数是同义反复）。
+    # 现去掉该门控，使判据真正生效。
+    #
+    # 同时修正计数：`_pushed_count` 现已包含基类子对象（见上），故 `!=` 才是正确比较。
+    # 先前 counter 置于基类循环之后 ⇒ 176 个带 base_class 的非 union struct 会**欠计数 1**，
+    # 那正是 SaleUI(63 vs 62)、UIChatRest(39 vs 38) 的真实成因
+    # ——**不是** captain 曾误称的「union 变体被 IDA 展开」（两结构 `union=no`、无同偏移键组）。
+    # union 的同偏移变体确可能被 IDA 合并/重排，故 union 仍豁免本判据。
+    _count_mismatch = (_udt_ok and not is_union
                        and _returned_members != _pushed_count)
 
     # --- 判据 ②：末端口径（按已创建 UDT 的真实布局核对，同样在 set_methods() 之前） ---
@@ -1151,8 +1175,8 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         else:
             _detail = "no member exceeds binary_size (overflow is structural, not geometric)"
 
-        _count_detail = ("returned_members=%d vs pushed=%d (expected=%d)%s" % (
-            _returned_members, _pushed_count, _expected_pushed,
+        _count_detail = ("returned_members=%d vs pushed=%d (own=%d + bases=%d; expected=%d)%s" % (
+            _returned_members, _pushed_count, _pushed_own, _n_bases, _expected_pushed,
             " — MISMATCH" if _count_mismatch else ""))
 
         _reason_codes = []
@@ -1631,12 +1655,37 @@ def apply_annotations():
     # --- 0. Un-name functions no longer in annotations (revert to sub_XXXXXX) ---
     import ida_funcs as _ida_funcs
     _ann_addrs = set()
+    # 键必须是地址。畸形键（非地址字符串）**不得**让整个 apply 崩溃——
+    # 历史事故（源自 **2026-09-01**，非本轮）：`int(_k, 16)` 抛 ValueError 使 apply 整体
+    # 失败并写出 `_logs/apply_exception.txt`，内容 "invalid literal for int() with base 16:
+    # 'CCBUI::CountAttackSequences'"。该文件的**原始 mtime 实测为 2026-09-01 17:47:04**
+    # （419 B）；2026-09-15 19:37:42 复现时被新异常覆盖——captain 曾误把日期读成
+    # "2026-09-15 17:47"，由独立复核者纠正，特此留痕。
+    # 本守卫已于 2026-09-15 用**注入该键**的方式实测：apply 不崩、逐条 skip 并汇总上报，
+    # 且 `[3] Structs: 881/881`。
+    # 与 t8 的 `data.py:218`（一条坏条目丢全部 thunk 映射）、
+    # `compare_pal3.py` census 守卫同类：**逐条跳过 + 计数上报，不静默、不整体崩**。
+    _bad_addr_keys = []
     for _k in data.get("functions", {}):
-        _ann_addrs.add(int(_k, 16))
+        try:
+            _ann_addrs.add(int(_k, 16))
+        except (ValueError, TypeError):
+            _bad_addr_keys.append(("functions.json", _k))
     _skip_path = os.path.join(ANNOTATIONS_DIR, "skip_functions.json")
     if os.path.exists(_skip_path):
         for _k in json.load(open(_skip_path, encoding="utf-8")):
-            _ann_addrs.add(int(_k, 16))
+            try:
+                _ann_addrs.add(int(_k, 16))
+            except (ValueError, TypeError):
+                _bad_addr_keys.append(("skip_functions.json", _k))
+    if _bad_addr_keys:
+        # 响亮但非致命：这些键会被忽略，可能让"stale function 清理"漏掉真实地址。
+        log("[WARN] %d malformed address key(s) ignored (not valid hex addresses):" %
+            len(_bad_addr_keys))
+        for _src, _k in _bad_addr_keys[:20]:
+            log("       %s: %r" % (_src, _k))
+        if len(_bad_addr_keys) > 20:
+            log("       ... and %d more" % (len(_bad_addr_keys) - 20))
     _unnamed = 0
     for ea in idautils.Functions(0x00401000, 0x00560000):
         cur = ida_name.get_name(ea) or ""
@@ -1699,18 +1748,31 @@ def apply_annotations():
     # Also name skip_functions (not decompiled, but callers need their names)
     skip_path = os.path.join(ANNOTATIONS_DIR, "skip_functions.json")
     skip_named = 0
+    _skip_bad_keys = []
     skip_funcs = {}
     if os.path.exists(skip_path):
         with open(skip_path, "r", encoding="utf-8") as f:
             skip_funcs = json.load(f)
         for addr_str, info in skip_funcs.items():
             name = info.get("name", "")
-            if name and not name.startswith("sub_"):
+            # 畸形键不得让整个 apply 崩溃（同 1635/1643 处的守卫）。
+            # 实测 2026-09-15 19:37：注入一个非地址键
+            # 'CCBUI::CountAttackSequences' 后本行 `int(addr_str, 16)` 抛 ValueError，
+            # 使 apply 整体失败（cli.py 正确报 exit 1）。逐条跳过 + 汇总上报。
+            try:
                 addr = int(addr_str, 16)
+            except (ValueError, TypeError):
+                _skip_bad_keys.append(addr_str)
+                continue
+            if name and not name.startswith("sub_"):
                 if not _ida_funcs.get_func(addr):
                     _ida_funcs.add_func(addr)
                 if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                     skip_named += 1
+
+    if _skip_bad_keys:
+        log("[WARN] skip_functions.json: %d malformed key(s) ignored: %s" % (
+            len(_skip_bad_keys), ", ".join(repr(k) for k in _skip_bad_keys[:10])))
 
     log("[1] Functions: created=%d, renamed=%d/%d, skip_named=%d, rename_fail=%d" %
           (created, renamed, len(funcs), skip_named, len(rename_fail)))
@@ -2637,6 +2699,22 @@ def apply_annotations():
     with open(LOG_FILE, 'w', encoding='utf-8') as f:
         f.write('\n'.join(log_lines))
 
+    # --- R4（2026-09-15 独立复核）：逐 struct 失败必须反映到退出码 ---
+    #
+    # 原先此处**无条件** `qexit(0)`，而 struct 导入失败只在上面 `[WARN]`+continue
+    # ⇒ `cmd_apply` 照样打印 "OK: annotations applied"，整条 `apply && export && codegen`
+    # 链对"导入失败"完全失效。这使 t3/M3 的证据门槛**永远只是日志信号，不是门禁**。
+    #
+    # 退出码取 **4**（避开 IDA 自身语义：`qexit(1)` 用于顶层异常，`2`/`3` 留给 IDA 内部）。
+    # 注意 `cli.py:cmd_apply` 已检查本脚本的 returncode 并以之退出（t5 修复），
+    # 故此处非零即可让 `&&` 链停下。
+    if s_fail:
+        log("[FATAL] %d struct(s) failed to import — exiting non-zero so the "
+            "`apply && export && codegen` chain stops here." % len(s_fail))
+        with open(LOG_FILE, 'w', encoding='utf-8') as f:
+            f.write('\n'.join(log_lines))
+        idc.qexit(4)
+
     idc.qexit(0)
 
 
@@ -2648,7 +2726,12 @@ if __name__ == "__main__":
         err_log = os.path.join(SCRIPT_DIR, "_logs", "apply_exception.txt")
         os.makedirs(os.path.dirname(err_log), exist_ok=True)
         with open(err_log, 'w') as f:
-            f.write("EXCEPTION in apply_annotations:\n")
+            # 首行带时间戳：本文件**从不自动清理**，陈旧内容会被误读成"当前状态"
+            # （与 apply_status.json 同一类坑——那份也不是 apply 写的）。
+            # 带时间戳后，读者可立即判断该异常属于哪一次运行。
+            import datetime as _dt
+            f.write("EXCEPTION in apply_annotations at %s\n" %
+                    _dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
             f.write(str(e) + "\n\n")
             f.write(traceback.format_exc())
         # Also write log_lines before exit

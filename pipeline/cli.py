@@ -365,7 +365,14 @@ def cmd_export(fast=False):
     if ok:
         print("-> OK: decomp JSON exported")
     else:
-        print("-> WARN: non-zero exit")
+        # R5（2026-09-15 独立复核）：原先此处只打 WARN，**恒 exit 0**，
+        # 使 `apply && export && codegen` 链对 export 完全失效。
+        # export 失败必须让链停下：decomp 是 codegen 的唯一输入，
+        # 用它继续生成会产出一份与 IDB 不符的源码（且看起来一切正常）。
+        print("-> ERROR: export FAILED (export_full.py exited non-zero).")
+        print("   The decomp JSON is stale/incomplete; codegen would produce source "
+              "that does not match the IDB. Stopping the chain here.")
+        sys.exit(1)
     print()
     print("Next: python pipeline/cli.py codegen all")
 
@@ -409,6 +416,23 @@ def cmd_codegen(args):
 
         # Auto-run regression detection
         tools_dir = os.path.join(_PROJECT_DIR, 'tools')
+
+        # Generated-source lint：形参名不得为纯数字。
+        # 缘起（2026-09-15 独立复核 M1）：stage5 的 H 块曾把普通函数的形参名替换成常量，
+        # 产出 `int CEffCylinder::Update(int 1)` —— **语义损坏**（不只是语法错）。
+        # 受害文件本来就全是 fail，故 compile_regression（只比 ok/fail）**发现不了**；
+        # 更糟的是解析崩塌让 error_count **下降**，度量反而变好看。
+        # 放在回归检测**之前**：源码正确性优先于编译 ok/fail 统计。
+        lint_script = os.path.join(tools_dir, 'codegen_param_lint.py')
+        if os.path.exists(lint_script):
+            print("\n[Lint] Checking generated source for numeric parameter names...")
+            lint = subprocess.run([sys.executable, lint_script, '--quiet'])
+            if lint.returncode != 0:
+                print("[ERROR] codegen_param_lint.py exited %d — generated source has "
+                      "numeric parameter names (semantic corruption, not style)."
+                      % lint.returncode)
+                sys.exit(lint.returncode if lint.returncode > 0 else 1)
+
         regression_script = os.path.join(tools_dir, 'compile_regression.py')
         if os.path.exists(regression_script):
             print("\n[Regression] Checking for compile regressions...")
@@ -508,21 +532,48 @@ def cmd_match():
     import json
     s4 = Path('data/status/s4_baseline.json')
     prev_l1 = 0
+    prev_text = None
     if s4.exists():
         try:
-            prev_l1 = json.loads(s4.read_text(encoding='utf-8')).get('stats', {}).get('match_L1', 0)
+            prev_text = s4.read_text(encoding='utf-8')
+            prev_l1 = json.loads(prev_text).get('stats', {}).get('match_L1', 0)
         except (json.JSONDecodeError, OSError):
             pass
     script = os.path.join(_PIPELINE_DIR, 'compare_pal3.py')
     flags = "/nologo /TP /c /W3 /O2 /Ob2 /Oi /Ot /Oy /GF /Gy /GX /GR /MD /Gd"
     rc = subprocess.run([sys.executable, script, '--flags', flags]).returncode
-    if rc == 0 and s4.exists():
+
+    # R1（2026-09-15 独立复核 M2-a）：
+    # 原先这里**捕获 rc 后从未使用**，且函数没有任何 sys.exit ⇒ `match` 恒 exit 0。
+    # 连 compare_pal3.py 的前置守卫（census 缺失时 sys.exit(2)）也被一并吞掉。
+    # 现在：非零即传出（`match` 是验收硬线之一，不能恒报成功）。
+    if rc != 0:
+        print()
+        print("[ERROR] compare_pal3.py exited %d — the byte-match referee did not "
+              "complete (e.g. missing probe_census.json). Stopping." % rc)
+        sys.exit(rc if rc > 0 else 1)
+
+    if s4.exists():
         try:
             cur_l1 = json.loads(s4.read_text(encoding='utf-8')).get('stats', {}).get('match_L1', 0)
             print()
             print("[L1 ratchet] previous %d -> current %d" % (prev_l1, cur_l1))
             if cur_l1 < prev_l1:
-                print("[L1 ratchet] REGRESSION: byte-perfect functions lost — investigate before committing")
+                # 棘轮失忆修复（同 R1）：compare_pal3.py 在**脚本结尾**才覆盖
+                # s4_baseline.json，而棘轮判断在它之后 ⇒ 若不把旧内容写回，
+                # 下一轮 prev_l1 读到的就是**退化后**的值，棘轮永久滑落、不再报警。
+                # 故：失败时把旧基线写回，使基线**只能显式前进**
+                # （与 tools/compile_regression.py 的 `--update-baseline` 语义一致）。
+                if prev_text is not None:
+                    try:
+                        s4.write_text(prev_text, encoding='utf-8')
+                        print("[L1 ratchet] baseline restored to previous value "
+                              "(ratchet may only advance explicitly)")
+                    except OSError as e:
+                        print("[L1 ratchet] WARN: could not restore baseline: %s" % e)
+                print("[L1 ratchet] REGRESSION: byte-perfect functions lost — "
+                      "investigate before committing")
+                sys.exit(1)
         except (json.JSONDecodeError, OSError):
             pass
 
@@ -544,15 +595,57 @@ def cmd_probe(args):
     det_script = os.path.join(tools_dir, 'regression_detector.py')
 
     # 1. 对账：当前 census vs 上次基线（有基线才比）
+    #
+    # R2（2026-09-15 独立复核 M2-b）：原先本步的 returncode **被丢弃**，
+    # 随后**无条件** `--save-baseline` ⇒ 任何退化都在同一轮被"洗白"进基线，
+    # `probe` 恒 exit 0。已实际发生的危害实例：`compile_baseline.json`(16:13) 记录的
+    # ChoseCompose/UIStatic 两个 ok→fail，在 20:07 的无条件刷新后
+    # `regression_detector --check` 已看不见（new_failures/new_errors 均为 0）。
     baselines = Path(_PROJECT_DIR) / 'data' / 'status' / 'baselines'
     has_baseline = (baselines / 'latest.json').exists()
+    check_rc = 0
     if has_baseline:
         print("\n[Regression] diff vs latest baseline:")
-        subprocess.run([sys.executable, det_script, '--check', '--format', 'text'])
+        check_rc = subprocess.run(
+            [sys.executable, det_script, '--check', '--format', 'text']).returncode
 
-    # 2. 刷新基线，供下一轮对账
+    # regression_detector.py 的退出码语义（已核验 :369-370）：
+    #   has_regression = new_failures > 0 or new_errors > 0  →  return 1
+    if check_rc != 0:
+        # 跳过刷新 = 棘轮语义（与 tools/compile_regression.py 只在显式
+        # `--update-baseline` 时前进同构）。**不是**"基线永久停旧"缺陷：
+        # 退化修好后 --check 自动通过，刷新即恢复；操作者也可在确认后手动刷新。
+        # 但必须给出逃生口提示 + 把退化报告落盘留痕，否则证据会随下次刷新消失。
+        print("\n[Baseline] NOT refreshing: regressions detected (exit %d)." % check_rc)
+        print("        The baseline is intentionally left unchanged so the regression "
+              "stays visible on the next run.")
+        # 证据落盘：调用 det 的 `--report`，它**自己**决定落盘路径。
+        # ⚠️ 注意：`regression_detector.py:323-337` 的 `save_report()` **忽略** `args.output`
+        # （总是写 `self.report_dir/regression_<timestamp>.txt`），故**不要**传 `--output`
+        # ——传了也无效，且会让人误以为文件在别处（captain 首版即因此写了个不存在的路径）。
+        # `--report` 的返回码遵循 "有回归→1"，那是本分支的正常情形；2 = 内部错误。
+        try:
+            _rep = subprocess.run([sys.executable, det_script, '--report',
+                                   '--format', 'text'])
+            if _rep.returncode == 2:
+                print("        WARN: --report exited 2 (evidence may be incomplete).")
+            elif _rep.returncode != 0:
+                # 非 0 非 2：仍属"有回归"，但提示实际落盘目录以便查证
+                print("        Evidence saved under pipeline/_logs/regression_detection/")
+        except OSError as e:
+            print("        WARN: could not run --report: %s" % e)
+        print("        After confirming the regressions are understood, refresh "
+              "deliberately with:")
+        print("          python3 tools/regression_detector.py --save-baseline")
+        sys.exit(check_rc if check_rc > 0 else 1)
+
+    # 2. 无退化 → 刷新基线，供下一轮对账
     print("\n[Baseline] refreshing latest baseline...")
-    subprocess.run([sys.executable, det_script, '--save-baseline'])
+    save_rc = subprocess.run([sys.executable, det_script, '--save-baseline']).returncode
+    if save_rc != 0:
+        # 原先此处的 rc 也被丢弃（census 缺失时该脚本会抛错 → rc 2）。
+        print("[ERROR] regression_detector.py --save-baseline exited %d." % save_rc)
+        sys.exit(save_rc if save_rc > 0 else 1)
 
 
 def cmd_compile():

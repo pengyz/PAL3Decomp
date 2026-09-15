@@ -967,8 +967,20 @@ def _run_inner(code, ctx):
     _sig_h = getattr(ctx, 'sig', None) or ''
     # 真实 sig 形如 `virtual void *__thiscall(AStarPathFinder *this, char a2)` ——
     # **含显式 `this`**，故必须先剔除它，剩下的才是被 stage1 剥掉的语义形参。
+    #
+    # ⚠️⚠️ 必须有 `ctx.is_dtor` 守卫（2026-09-15 独立复核 M1 抓出，captain 补）：
+    # 缺此守卫时，本块会命中**任何**「恰好 1 个 int/char 类形参」的**普通函数**，
+    # 把该形参名在整段函数体里替换成常量 `1` ⇒ **语义损坏**，不只是语法错：
+    #   decomp    : *(_DWORD *)(result + 362768) = a2;      // 存形参
+    #   generated : int CEffCylinder::Update(int 1) { ... *(_DWORD *)(result + 362768) = 1; }
+    # 实测半径：谓词命中 decomp 51 个函数，其中**真 dtor 只有 1 个**；
+    # `pal3/src` 里 **30 处签名 / 17 个文件**被毁（含 `int 1`/`char 1` 这类非法形参名）。
+    # 更危险的是**它让度量反向**：受害者文件本来全是 fail，被解析崩塌后
+    # error_count 反而下降（18:24→18:40 的「−294 修正」里 −293 全是这个假降），
+    # 而 `compile_regression.py` 只比 ok/fail ⇒ **无门禁可发现**。
+    # 故本块**仅对析构函数**生效，且只限「单参标量 deleting flag」这一确定语义。
     _m_h = re.search(r'\(\s*([^)]*)\)', _sig_h)
-    if _m_h:
+    if _m_h and getattr(ctx, 'is_dtor', False):
         _params_h = [p.strip() for p in _m_h.group(1).split(',') if p.strip()]
         _params_h = [p for p in _params_h if not re.search(r'\bthis\b', p)]
         if len(_params_h) == 1:
@@ -977,9 +989,9 @@ def _run_inner(code, ctx):
             if _pn_h and re.fullmatch(r'a\d+', _pn_h.group(1)) and \
                     _pt_h in ('char', 'int', 'unsigned int', '__int8', '__int16', '__int32'):
                 _flag_name = _pn_h.group(1)
-                # 无条件替换：该形参名已从签名删除、函数体内无声明，**不可能是合法标识符**，
-                # 故替换不可能覆盖真实的局部变量/参数。即便 globals.h 里恰好存在同名全局，
-                # 用常量替换后语义恰好**更正确**（原先只是遮蔽该全局侥幸通过）。
+                # 仅对 dtor：该形参名已从签名删除、函数体内无声明，**不可能是合法标识符**，
+                # 故替换不可能覆盖真实的局部变量/参数。且该析构体自身负责 `operator delete`、
+                # 只能由 `delete` 路径进入 ⇒ flag 恒为 1（否则 double-free）。
                 code = re.sub(r'\b' + re.escape(_flag_name) + r'\b', '1', code)
 
     return code
