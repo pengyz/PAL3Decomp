@@ -1,6 +1,6 @@
 {
-  "name": "20260915_192719",
-  "timestamp": "2026-09-15T19:27:19.030611",
+  "name": "20260915_220221",
+  "timestamp": "2026-09-15T22:02:21.942165",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "fail",
@@ -51,47 +51,12 @@
     },
     "pal3/src/Combat/CCBCamControl.cpp": {
       "status": "fail",
-      "error_count": 21,
+      "error_count": 14,
       "errors": [
         {
           "code": "C2664",
           "msg": "'sprintf' : cannot convert parameter 2 from 'int *' to 'const char *'",
           "line": 83
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 194
-        },
-        {
-          "code": "C2065",
-          "msg": "'IThreadProxy' : undeclared identifier",
-          "line": 194
-        },
-        {
-          "code": "C2065",
-          "msg": "'Concurrency' : undeclared identifier",
-          "line": 212
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 212
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 212
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 213
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 213
         },
         {
           "code": "C2660",
@@ -2466,7 +2431,7 @@
     },
     "pal3/src/Combat/CCBSystem.cpp": {
       "status": "fail",
-      "error_count": 7,
+      "error_count": 102,
       "errors": [
         {
           "code": "C2660",
@@ -2489,19 +2454,494 @@
           "line": 303
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ')' before 'constant'",
-          "line": 354
+          "code": "C2660",
+          "msg": "'SetPause' : function does not take 2 parameters",
+          "line": 502
+        },
+        {
+          "code": "C2664",
+          "msg": "'sub_4DB940' : cannot convert parameter 1 from 'class CCBSystem *const ' to 'char *'",
+          "line": 503
+        },
+        {
+          "code": "C2660",
+          "msg": "'FindFreeThread' : function does not take 10 parameters",
+          "line": 638
+        },
+        {
+          "code": "C2106",
+          "msg": "'=' : left operand must be l-value",
+          "line": 641
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
+          "line": 651
+        },
+        {
+          "code": "C2660",
+          "msg": "'CalcComboDirect' : function does not take 3 parameters",
+          "line": 695
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetCmdData' : function does not take 2 parameters",
+          "line": 699
+        },
+        {
+          "code": "C2065",
+          "msg": "'compiler_init_00512420' : undeclared identifier",
+          "line": 940
+        },
+        {
+          "code": "C2882",
+          "msg": "'std' : illegal use of namespace identifier in expression",
+          "line": 1096
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 1096
+        },
+        {
+          "code": "C2589",
+          "msg": "'this' : illegal token on right side of '::'",
+          "line": 1102
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : '::'",
+          "line": 1102
+        },
+        {
+          "code": "C2039",
+          "msg": "'v6' : is not a member of 'CCBUI'",
+          "line": 1104
+        },
+        {
+          "code": "C2039",
+          "msg": "'v34' : is not a member of 'CCBUI'",
+          "line": 1105
+        },
+        {
+          "code": "C2589",
+          "msg": "'this' : illegal token on right side of '::'",
+          "line": 1121
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : '::'",
+          "line": 1121
+        },
+        {
+          "code": "C2039",
+          "msg": "'v8' : is not a member of 'CCBRoleState'",
+          "line": 1123
+        },
+        {
+          "code": "C2039",
+          "msg": "'v34' : is not a member of 'CCBRoleState'",
+          "line": 1124
+        },
+        {
+          "code": "C2039",
+          "msg": "'LoadData' : is not a member of 'CIniFile'",
+          "line": 1134
+        },
+        {
+          "code": "C2039",
+          "msg": "'LoadData' : is not a member of 'CIniFile'",
+          "line": 1134
+        },
+        {
+          "code": "C2589",
+          "msg": "'this' : illegal token on right side of '::'",
+          "line": 1140
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : '::'",
+          "line": 1140
+        },
+        {
+          "code": "C2039",
+          "msg": "'inited' : is not a member of 'CCBSystem'",
+          "line": 1142
+        },
+        {
+          "code": "C2039",
+          "msg": "'v34' : is not a member of 'CCBSystem'",
+          "line": 1143
+        },
+        {
+          "code": "C2882",
+          "msg": "'std' : illegal use of namespace identifier in expression",
+          "line": 1153
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 1153
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'class CCBStage *' to 'int *'",
+          "line": 1159
+        },
+        {
+          "code": "C2882",
+          "msg": "'std' : illegal use of namespace identifier in expression",
+          "line": 1191
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 1191
+        },
+        {
+          "code": "C2882",
+          "msg": "'std' : illegal use of namespace identifier in expression",
+          "line": 1207
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 1207
+        },
+        {
+          "code": "C2882",
+          "msg": "'std' : illegal use of namespace identifier in expression",
+          "line": 1321
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 1321
+        },
+        {
+          "code": "C2882",
+          "msg": "'std' : illegal use of namespace identifier in expression",
+          "line": 1343
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 1343
+        },
+        {
+          "code": "C2882",
+          "msg": "'std' : illegal use of namespace identifier in expression",
+          "line": 1362
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 1362
+        },
+        {
+          "code": "C2882",
+          "msg": "'std' : illegal use of namespace identifier in expression",
+          "line": 1377
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 1377
+        },
+        {
+          "code": "C2039",
+          "msg": "'ReleaseAllRefs' : is not a member of 'gbRefObject'",
+          "line": 1384
+        },
+        {
+          "code": "C2039",
+          "msg": "'ReleaseAllRefs' : is not a member of 'gbRefObject'",
+          "line": 1384
+        },
+        {
+          "code": "C2039",
+          "msg": "'ReleaseAllRefs' : is not a member of 'gbRefObject'",
+          "line": 1391
+        },
+        {
+          "code": "C2039",
+          "msg": "'ReleaseAllRefs' : is not a member of 'gbRefObject'",
+          "line": 1391
+        },
+        {
+          "code": "C2660",
+          "msg": "'C3DSpark::~C3DSpark' : function does not take 1 parameters",
+          "line": 1424
+        },
+        {
+          "code": "C2660",
+          "msg": "'CreateTrack' : function does not take 2 parameters",
+          "line": 1482
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from 'int (__cdecl *)(char *,char *,unsigned int)' to 'int (__thiscall CCBSystem::*)(int)'",
+          "line": 1486
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 1534
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from 'float' to 'class CCBStage *'",
+          "line": 1613
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->CCBStage' must point to class/struct/union",
+          "line": 1613
+        },
+        {
+          "code": "C2653",
+          "msg": "'CCBStage' : is not a class or namespace name",
+          "line": 1613
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from 'class ECBBattleFieldAttr' to 'unsigned long'",
+          "line": 1736
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from 'float' to 'class CCBStage *'",
+          "line": 1861
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->CCBStage' must point to class/struct/union",
+          "line": 1861
+        },
+        {
+          "code": "C2653",
+          "msg": "'CCBStage' : is not a class or namespace name",
+          "line": 1861
+        },
+        {
+          "code": "C2660",
+          "msg": "'IsTaskValidButNotFinish' : function does not take 2 parameters",
+          "line": 1904
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from 'bool (__cdecl *)(int,int)' to 'int (__thiscall CCBSystem::*)(int)'",
+          "line": 2126
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'bool (__thiscall CCBStage::*)(int)' to 'void *'",
+          "line": 2503
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetCmdData' : function does not take 2 parameters",
+          "line": 2692
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2711
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2712
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2722
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from 'bool (__cdecl *)(int,int)' to 'int (__thiscall CCBSystem::*)(int)'",
+          "line": 2742
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetCmdData' : function does not take 2 parameters",
+          "line": 2749
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2772
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2819
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2829
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2839
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2896
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2906
+        },
+        {
+          "code": "C2660",
+          "msg": "'GetRoleName' : function does not take 9 parameters",
+          "line": 2916
+        },
+        {
+          "code": "C2144",
+          "msg": "syntax error : missing ')' before type 'int'",
+          "line": 3037
+        },
+        {
+          "code": "C2064",
+          "msg": "term does not evaluate to a function",
+          "line": 3037
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 3037
         },
         {
           "code": "C2143",
-          "msg": "syntax error : missing ';' before 'constant'",
-          "line": 354
+          "msg": "syntax error : missing ';' before '{'",
+          "line": 3042
         },
         {
-          "code": "C1004",
-          "msg": "unexpected end of file found",
-          "line": 354
+          "code": "C2447",
+          "msg": "missing function header (old-style formal list?)",
+          "line": 3042
+        },
+        {
+          "code": "C2589",
+          "msg": "'this' : illegal token on right side of '::'",
+          "line": 3097
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : '::'",
+          "line": 3097
+        },
+        {
+          "code": "C2039",
+          "msg": "'v4' : is not a member of 'CCBStage'",
+          "line": 3099
+        },
+        {
+          "code": "C2039",
+          "msg": "'v8' : is not a member of 'CCBStage'",
+          "line": 3100
+        },
+        {
+          "code": "C2039",
+          "msg": "'a2' : is not a member of 'CCBStage'",
+          "line": 3101
+        },
+        {
+          "code": "C2100",
+          "msg": "illegal indirection",
+          "line": 3101
+        },
+        {
+          "code": "C2039",
+          "msg": "'CCBEditor' : is not a member of 'CCBStage'",
+          "line": 3101
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 3101
+        },
+        {
+          "code": "C2039",
+          "msg": "'v4' : is not a member of 'CCBStage'",
+          "line": 3102
+        },
+        {
+          "code": "C2039",
+          "msg": "'memcpy' : is not a member of 'CCBStage'",
+          "line": 3104
+        },
+        {
+          "code": "C2039",
+          "msg": "'pExceptionObject' : is not a member of 'CCBStage'",
+          "line": 3105
+        },
+        {
+          "code": "C2039",
+          "msg": "'Logger' : is not a member of 'CCBStage'",
+          "line": 3106
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 3106
+        },
+        {
+          "code": "C2039",
+          "msg": "'Logger' : is not a member of 'CCBStage'",
+          "line": 3106
+        },
+        {
+          "code": "C2039",
+          "msg": "'Logger' : is not a member of 'CCBStage'",
+          "line": 3106
+        },
+        {
+          "code": "C2653",
+          "msg": "'Logger' : is not a class or namespace name",
+          "line": 3106
+        },
+        {
+          "code": "C2039",
+          "msg": "'_CxxThrowException' : is not a member of 'CCBStage'",
+          "line": 3108
+        },
+        {
+          "code": "C2039",
+          "msg": "'pExceptionObject' : is not a member of 'CCBStage'",
+          "line": 3108
+        },
+        {
+          "code": "C2039",
+          "msg": "'_ThrowInfo' : is not a member of 'CCBStage'",
+          "line": 3108
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 3108
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 3110
+        },
+        {
+          "code": "C2039",
+          "msg": "'CCBSystem' : is not a member of 'CCBStage'",
+          "line": 3114
+        },
+        {
+          "code": "C1003",
+          "msg": "error count exceeds 100; stopping compilation",
+          "line": 3114
         }
       ]
     },
@@ -3629,22 +4069,517 @@
     },
     "pal3/src/Effect/CEffCylinder.cpp": {
       "status": "fail",
-      "error_count": 3,
+      "error_count": 102,
       "errors": [
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ')' before 'constant'",
-          "line": 31
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 48
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before 'constant'",
-          "line": 31
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 48
         },
         {
-          "code": "C1004",
-          "msg": "unexpected end of file found",
-          "line": 31
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 53
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 53
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 56
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 56
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 61
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 61
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 67
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 67
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 69
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 69
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 74
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 74
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 86
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 86
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 87
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 87
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 88
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 88
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 89
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 89
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 90
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 90
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 91
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 91
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 92
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 92
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 93
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 93
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 275
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 275
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 282
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 282
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 283
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 283
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 290
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 290
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 291
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 291
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 295
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 295
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 297
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 297
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 304
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 304
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 308
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 308
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 313
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 313
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 322
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 322
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 328
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 328
+        },
+        {
+          "code": "C2660",
+          "msg": "'UpdateParticlePositions' : function does not take 1 parameters",
+          "line": 395
+        },
+        {
+          "code": "C2784",
+          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __cdecl std::operator +(const class std::basic_string<`template-parameter257',`template-parameter258',",
+          "line": 462
+        },
+        {
+          "code": "C2784",
+          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __cdecl std::operator +(const class std::basic_string<`template-parameter257',`template-parameter258',",
+          "line": 462
+        },
+        {
+          "code": "C2784",
+          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __cdecl std::operator +(const _E,const class std::basic_string<`template-parameter257',`template-param",
+          "line": 462
+        },
+        {
+          "code": "C2784",
+          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __cdecl std::operator +(const _E *,const class std::basic_string<`template-parameter257',`template-par",
+          "line": 462
+        },
+        {
+          "code": "C2784",
+          "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __cdecl std::operator +(const class std::basic_string<`template-parameter257',`template-parameter258',",
+          "line": 462
+        },
+        {
+          "code": "C2784",
+          "msg": "'class std::reverse_iterator<`template-parameter257',`template-parameter258',`template-parameter259',`template-parameter260',`template-parameter261'> __cdecl std::operator +(_D,const class std::revers",
+          "line": 462
+        },
+        {
+          "code": "C2676",
+          "msg": "binary '+' : 'struct gbVec3D' does not define this operator or a conversion to a type acceptable to the predefined operator",
+          "line": 462
+        },
+        {
+          "code": "C2664",
+          "msg": "'void __thiscall gbDynVertBuf::RenderGeomQuadViaStrip(struct gbGeomQuad *,int,class gbRenderEffect *,struct gbTextureArray *)' : cannot convert parameter 1 from 'int' to 'struct gbGeomQuad *'",
+          "line": 465
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 503
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 503
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 505
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 505
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 506
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 506
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 507
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 507
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 510
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 510
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 594
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 594
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 599
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 599
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffObj'",
+          "line": 613
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 613
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 676
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 676
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 722
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 755
+        },
+        {
+          "code": "C2039",
+          "msg": "'CEffObj' : is not a member of 'gbGfxManager'",
+          "line": 981
+        },
+        {
+          "code": "C2039",
+          "msg": "'CEffObj' : is not a member of 'gbGfxManager'",
+          "line": 981
+        },
+        {
+          "code": "C2653",
+          "msg": "'CEffObj' : is not a class or namespace name",
+          "line": 981
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'gbGfxManager'",
+          "line": 981
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 1037
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 1037
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 1038
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 1038
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 1039
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 1039
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 1040
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 1040
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 1043
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 1043
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 1063
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
+          "line": 1063
+        },
+        {
+          "code": "C2665",
+          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4'",
+          "line": 1065
+        },
+        {
+          "code": "C2100",
+          "msg": "illegal indirection",
+          "line": 1069
+        },
+        {
+          "code": "C1003",
+          "msg": "error count exceeds 100; stopping compilation",
+          "line": 1069
         }
       ]
     },
@@ -3701,7 +4636,7 @@
     },
     "pal3/src/Effect/CEffGrid.cpp": {
       "status": "fail",
-      "error_count": 38,
+      "error_count": 53,
       "errors": [
         {
           "code": "C2027",
@@ -3879,25 +4814,100 @@
           "line": 442
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ')' before 'constant'",
-          "line": 455
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
+          "line": 491
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before 'constant'",
-          "line": 455
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffGrid'",
+          "line": 491
         },
         {
-          "code": "C1004",
-          "msg": "unexpected end of file found",
-          "line": 455
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
+          "line": 493
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffGrid'",
+          "line": 493
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
+          "line": 494
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffGrid'",
+          "line": 494
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
+          "line": 495
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffGrid'",
+          "line": 495
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
+          "line": 503
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffGrid'",
+          "line": 503
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
+          "line": 587
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffGrid'",
+          "line": 587
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
+          "line": 593
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffGrid'",
+          "line": 593
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
+          "line": 677
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffGrid'",
+          "line": 677
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 732
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 765
         }
       ]
     },
     "pal3/src/Effect/CEffMeteor.cpp": {
       "status": "fail",
-      "error_count": 49,
+      "error_count": 46,
       "errors": [
         {
           "code": "C2039",
@@ -4128,21 +5138,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
           "line": 856
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ')' before 'constant'",
-          "line": 883
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before 'constant'",
-          "line": 883
-        },
-        {
-          "code": "C1004",
-          "msg": "unexpected end of file found",
-          "line": 883
         }
       ]
     },
@@ -4616,7 +5611,7 @@
     },
     "pal3/src/Effect/CEffQuake.cpp": {
       "status": "fail",
-      "error_count": 44,
+      "error_count": 45,
       "errors": [
         {
           "code": "C2039",
@@ -4824,19 +5819,24 @@
           "line": 270
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ')' before 'constant'",
-          "line": 292
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
+          "line": 315
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before 'constant'",
-          "line": 292
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffQuake'",
+          "line": 315
         },
         {
-          "code": "C1004",
-          "msg": "unexpected end of file found",
-          "line": 292
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 370
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 403
         }
       ]
     },
@@ -5264,7 +6264,7 @@
     },
     "pal3/src/Effect/CEffect.cpp": {
       "status": "fail",
-      "error_count": 18,
+      "error_count": 24,
       "errors": [
         {
           "code": "C2660",
@@ -5342,19 +6342,49 @@
           "line": 1637
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ')' before 'constant'",
-          "line": 1670
+          "code": "C2660",
+          "msg": "'CreateGeom' : function does not take 3 parameters",
+          "line": 1924
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before 'constant'",
-          "line": 1670
+          "code": "C2664",
+          "msg": "'FormatException' : cannot convert parameter 2 from 'int' to 'char *'",
+          "line": 1959
         },
         {
-          "code": "C1004",
-          "msg": "unexpected end of file found",
-          "line": 1670
+          "code": "C2106",
+          "msg": "'=' : left operand must be l-value",
+          "line": 2058
+        },
+        {
+          "code": "C2106",
+          "msg": "'=' : left operand must be l-value",
+          "line": 2090
+        },
+        {
+          "code": "C2106",
+          "msg": "'=' : left operand must be l-value",
+          "line": 2126
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class EEffect' (or there is no acceptable conversion)",
+          "line": 2193
+        },
+        {
+          "code": "C2660",
+          "msg": "'RenderGeomQuad' : function does not take 3 parameters",
+          "line": 2225
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 2301
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 2334
         }
       ]
     },
@@ -6106,19 +7136,19 @@
           "line": 625
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ')' before 'constant'",
-          "line": 836
+          "code": "C2660",
+          "msg": "'EnableShadow' : function does not take 2 parameters",
+          "line": 838
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before 'constant'",
-          "line": 836
+          "code": "C2660",
+          "msg": "'GetAABBox' : function does not take 2 parameters",
+          "line": 845
         },
         {
-          "code": "C1004",
-          "msg": "unexpected end of file found",
-          "line": 836
+          "code": "C2660",
+          "msg": "'GetBoundSphere' : function does not take 2 parameters",
+          "line": 852
         }
       ]
     },
@@ -8137,22 +9167,92 @@
     },
     "pal3/src/Misc/CEffAction.cpp": {
       "status": "fail",
-      "error_count": 3,
+      "error_count": 17,
       "errors": [
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ')' before 'constant'",
-          "line": 43
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffAction::*)(unsigned long)>'",
+          "line": 81
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before 'constant'",
-          "line": 43
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffAction'",
+          "line": 81
         },
         {
-          "code": "C1004",
-          "msg": "unexpected end of file found",
-          "line": 43
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffAction::*)(unsigned long)>'",
+          "line": 83
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffAction'",
+          "line": 83
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffAction::*)(unsigned long)>'",
+          "line": 84
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffAction'",
+          "line": 84
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffAction::*)(unsigned long)>'",
+          "line": 85
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffAction'",
+          "line": 85
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffAction::*)(unsigned long)>'",
+          "line": 89
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffAction'",
+          "line": 89
+        },
+        {
+          "code": "C2106",
+          "msg": "'=' : left operand must be l-value",
+          "line": 110
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffAction::*)(unsigned long)>'",
+          "line": 170
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffAction'",
+          "line": 170
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffAction::*)(unsigned long)>'",
+          "line": 239
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CEffAction'",
+          "line": 239
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 285
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 318
         }
       ]
     },
@@ -8295,22 +9395,12 @@
     },
     "pal3/src/Misc/Comp_DonateUI.cpp": {
       "status": "fail",
-      "error_count": 3,
+      "error_count": 1,
       "errors": [
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ')' before 'constant'",
-          "line": 13
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before 'constant'",
-          "line": 13
-        },
-        {
-          "code": "C1004",
-          "msg": "unexpected end of file found",
-          "line": 13
+          "code": "C2660",
+          "msg": "'UpdateAnim' : function does not take 1 parameters",
+          "line": 42
         }
       ]
     },
@@ -8357,70 +9447,9 @@
       ]
     },
     "pal3/src/Misc/JusticeBookUI.cpp": {
-      "status": "fail",
-      "error_count": 12,
-      "errors": [
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 133
-        },
-        {
-          "code": "C2065",
-          "msg": "'VirtualProcessor' : undeclared identifier",
-          "line": 133
-        },
-        {
-          "code": "C2065",
-          "msg": "'p_m_bfocus' : undeclared identifier",
-          "line": 133
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 142
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 142
-        },
-        {
-          "code": "C2065",
-          "msg": "'Concurrency' : undeclared identifier",
-          "line": 146
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 146
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 146
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 148
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 148
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 151
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 151
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/LineupComp.cpp": {
       "status": "fail",
@@ -8455,312 +9484,287 @@
     },
     "pal3/src/Misc/LineupUI.cpp": {
       "status": "fail",
-      "error_count": 61,
+      "error_count": 56,
       "errors": [
         {
           "code": "C2664",
           "msg": "'sub_474990' : cannot convert parameter 1 from 'class LineupUI *const ' to 'char *'",
-          "line": 52
+          "line": 53
         },
         {
           "code": "C2664",
           "msg": "'void (char *,unsigned long)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 234
+          "line": 235
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 245
+          "line": 246
         },
         {
           "code": "C2664",
           "msg": "'void (char *,unsigned long)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 270
+          "line": 271
         },
         {
           "code": "C2664",
           "msg": "'void (char *,unsigned long)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 284
+          "line": 285
         },
         {
           "code": "C2664",
           "msg": "'void (char *,unsigned long)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 305
+          "line": 306
         },
         {
           "code": "C2664",
           "msg": "'void (char *,unsigned long)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 589
+          "line": 590
         },
         {
           "code": "C2065",
           "msg": "'_inline_MUIDialog_m_btRc' : undeclared identifier",
-          "line": 602
+          "line": 603
         },
         {
           "code": "C2065",
           "msg": "'v4' : undeclared identifier",
-          "line": 602
+          "line": 603
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 607
+          "line": 608
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 611
-        },
-        {
-          "code": "C2065",
-          "msg": "'Concurrency' : undeclared identifier",
-          "line": 708
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 708
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 708
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 712
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 712
+          "line": 612
         },
         {
           "code": "C2660",
           "msg": "'HandleKeyInput' : function does not take 1 parameters",
-          "line": 752
+          "line": 755
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIStatic'",
-          "line": 2340
+          "line": 2343
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 2340
+          "line": 2343
         },
         {
           "code": "C2664",
           "msg": "'void (class gbTexture ** ,const char *,char *,class LineupUI *,char *,int,int)' : cannot convert parameter 2 from 'void *' to 'const char *'",
-          "line": 2461
+          "line": 2464
         },
         {
           "code": "C2660",
           "msg": "'CreateFromMemory' : function does not take 1 parameters",
-          "line": 2461
+          "line": 2464
         },
         {
           "code": "C2664",
           "msg": "'pal3_vtbl_unk_2' : cannot convert parameter 2 from 'void *' to 'const char *'",
-          "line": 2462
+          "line": 2465
         },
         {
           "code": "C2660",
           "msg": "'ShowById' : function does not take 2 parameters",
-          "line": 2474
+          "line": 2477
         },
         {
           "code": "C2660",
           "msg": "'SetCameraAtPosition' : function does not take 3 parameters",
-          "line": 2499
+          "line": 2502
         },
         {
           "code": "C2660",
           "msg": "'Object3D::~Object3D' : function does not take 2 parameters",
-          "line": 2501
+          "line": 2504
         },
         {
           "code": "C2660",
           "msg": "'Object3D::~Object3D' : function does not take 2 parameters",
-          "line": 2511
+          "line": 2514
         },
         {
           "code": "C2660",
           "msg": "'Object3D::~Object3D' : function does not take 2 parameters",
-          "line": 2556
+          "line": 2559
         },
         {
           "code": "C2660",
           "msg": "'CreateFromMemory' : function does not take 1 parameters",
-          "line": 2633
+          "line": 2636
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class Parent_Data' to 'void (__cdecl *)(class Parent_Data ** ,int,unsigned long *,class LineupUI *)'",
-          "line": 3327
+          "line": 3331
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIStatic'",
-          "line": 3339
+          "line": 3343
         },
         {
           "code": "C2228",
           "msg": "left of '.ShowWindow' must have class/struct/union type",
-          "line": 3339
+          "line": 3343
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIStatic'",
-          "line": 3348
+          "line": 3352
         },
         {
           "code": "C2228",
           "msg": "left of '.Render' must have class/struct/union type",
-          "line": 3348
+          "line": 3352
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 3355
+          "line": 3359
         },
         {
           "code": "C2228",
           "msg": "left of '.OnMessage' must have class/struct/union type",
-          "line": 3355
+          "line": 3359
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int *,class UIStatic *,class LineupUI *,char *,int,int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 3376
+          "line": 3380
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 3397
+          "line": 3401
         },
         {
           "code": "C2228",
           "msg": "left of '._sdtor_call_dtor' must have class/struct/union type",
-          "line": 3397
+          "line": 3401
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 3404
+          "line": 3408
         },
         {
           "code": "C2228",
           "msg": "left of '.OnMessage' must have class/struct/union type",
-          "line": 3404
+          "line": 3408
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int *,class UIStatic *,class LineupUI *,char *,int,char *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 3414
+          "line": 3418
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIStatic'",
-          "line": 3415
+          "line": 3419
         },
         {
           "code": "C2228",
           "msg": "left of '.Render' must have class/struct/union type",
-          "line": 3415
+          "line": 3419
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 3420
+          "line": 3424
         },
         {
           "code": "C2228",
           "msg": "left of '._sdtor_call_dtor' must have class/struct/union type",
-          "line": 3420
+          "line": 3424
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int *,class UIStatic *,class LineupUI *,char *,int,void *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 3436
-        },
-        {
-          "code": "C2036",
-          "msg": "'void *' : unknown size",
-          "line": 3440
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '._sdtor_call_dtor' must have class/struct/union type",
           "line": 3440
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 3448
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.OnMessage' must have class/struct/union type",
-          "line": 3448
-        },
-        {
-          "code": "C2664",
-          "msg": "'void (char *,int *,class UIStatic *,class LineupUI *,char *,int,char *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 3458
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'UIStatic'",
-          "line": 3459
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.Render' must have class/struct/union type",
-          "line": 3459
-        },
-        {
-          "code": "C2036",
-          "msg": "'void *' : unknown size",
-          "line": 3463
+          "line": 3444
         },
         {
           "code": "C2228",
           "msg": "left of '._sdtor_call_dtor' must have class/struct/union type",
+          "line": 3444
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 3452
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.OnMessage' must have class/struct/union type",
+          "line": 3452
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (char *,int *,class UIStatic *,class LineupUI *,char *,int,char *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
+          "line": 3462
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'UIStatic'",
           "line": 3463
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.Render' must have class/struct/union type",
+          "line": 3463
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 3467
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '._sdtor_call_dtor' must have class/struct/union type",
+          "line": 3467
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int *,class UIStatic *,class LineupUI *,char *,int,void *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 3480
+          "line": 3484
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int *,class UIStatic *,class LineupUI *,char *,int,unsigned int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 3498
+          "line": 3502
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int *,class UIStatic *,class LineupUI *,char *,int,void *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 3512
+          "line": 3516
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 3524
+          "line": 3528
         },
         {
           "code": "C2228",
           "msg": "left of '.Update_2ff0' must have class/struct/union type",
-          "line": 3524
+          "line": 3528
         },
         {
           "code": "C2660",
           "msg": "'LayoutItem' : function does not take 6 parameters",
-          "line": 3811
+          "line": 3815
         }
       ]
     },
@@ -8847,7 +9851,7 @@
     },
     "pal3/src/Misc/MainEquipUI.cpp": {
       "status": "fail",
-      "error_count": 26,
+      "error_count": 18,
       "errors": [
         {
           "code": "C2440",
@@ -8863,31 +9867,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned long' to 'class _PlugInfo *'",
           "line": 757
-        },
-        {
-          "code": "C2065",
-          "msg": "'Concurrency' : undeclared identifier",
-          "line": 890
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 890
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 890
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '{'",
-          "line": 891
-        },
-        {
-          "code": "C2181",
-          "msg": "illegal else without matching if",
-          "line": 894
         },
         {
           "code": "C2660",
@@ -8947,37 +9926,22 @@
         {
           "code": "C2664",
           "msg": "'int (char *,int *,unsigned long *,class MainEquipUI *,char *,int,int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 3070
+          "line": 3069
         },
         {
           "code": "C2660",
           "msg": "'UpdateMonsterEntry2' : function does not take 3 parameters",
-          "line": 3199
+          "line": 3198
         },
         {
           "code": "C2660",
           "msg": "'CreateStatusPanel' : function does not take 6 parameters",
-          "line": 3200
+          "line": 3199
         },
         {
           "code": "C2664",
           "msg": "'void (char *,unsigned long,int *,class MainEquipUI *)' : cannot convert parameter 2 from 'void *' to 'unsigned long'",
-          "line": 3213
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ')' before 'constant'",
-          "line": 3353
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before 'constant'",
-          "line": 3353
-        },
-        {
-          "code": "C1004",
-          "msg": "unexpected end of file found",
-          "line": 3353
+          "line": 3212
         }
       ]
     },
@@ -9430,7 +10394,7 @@
     },
     "pal3/src/Misc/RoleCameraCtrl.cpp": {
       "status": "fail",
-      "error_count": 19,
+      "error_count": 18,
       "errors": [
         {
           "code": "C2882",
@@ -9513,19 +10477,14 @@
           "line": 126
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ')' before 'constant'",
-          "line": 133
+          "code": "C2664",
+          "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
+          "line": 149
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before 'constant'",
-          "line": 133
-        },
-        {
-          "code": "C1004",
-          "msg": "unexpected end of file found",
-          "line": 133
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'class gbImage2D *' to 'unsigned long'",
+          "line": 196
         }
       ]
     },
@@ -9552,7 +10511,7 @@
     },
     "pal3/src/Misc/RoleStatePanel.cpp": {
       "status": "fail",
-      "error_count": 14,
+      "error_count": 9,
       "errors": [
         {
           "code": "C2660",
@@ -9580,49 +10539,24 @@
           "line": 484
         },
         {
-          "code": "C2065",
-          "msg": "'Concurrency' : undeclared identifier",
-          "line": 519
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 519
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 519
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 523
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 523
-        },
-        {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIStatic'",
-          "line": 700
+          "line": 704
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 700
+          "line": 704
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIStatic'",
-          "line": 702
+          "line": 706
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 702
+          "line": 706
         }
       ]
     },
@@ -9668,62 +10602,72 @@
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 811
+          "line": 809
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class Parent_Data' to 'void (__cdecl *)(class Parent_Data ** ,unsigned long,unsigned long *,class SaleUI *)'",
-          "line": 838
+          "line": 836
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class Parent_Data' to 'void (__cdecl *)(class Parent_Data ** ,unsigned long,unsigned long *,class SaleUI *)'",
-          "line": 864
+          "line": 862
         },
         {
           "code": "C2664",
           "msg": "'void (int *,const char *,unsigned long *,class SaleUI *)' : cannot convert parameter 2 from 'void *' to 'const char *'",
-          "line": 881
+          "line": 879
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class Parent_Data' to 'void (__cdecl *)(class Parent_Data ** ,unsigned long,unsigned long *,class SaleUI *)'",
-          "line": 890
+          "line": 888
         },
         {
           "code": "C2664",
           "msg": "'void (char *,unsigned long,unsigned long *,class SaleUI *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 907
+          "line": 905
         },
         {
           "code": "C2664",
           "msg": "'void (char *,unsigned long)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 914
+          "line": 912
         },
         {
           "code": "C2664",
           "msg": "'void (char *,const char *,unsigned long *,class SaleUI *)' : cannot convert parameter 2 from 'void *' to 'const char *'",
-          "line": 931
+          "line": 929
         },
         {
           "code": "C2664",
           "msg": "'void (char *,const char *,unsigned long *,class SaleUI *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 931
+          "line": 929
         },
         {
           "code": "C2664",
           "msg": "'void (char *,unsigned long)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 938
+          "line": 936
         },
         {
           "code": "C2385",
           "msg": "'MUIDialog::m_rect' is ambiguous",
-          "line": 939
+          "line": 937
         },
         {
           "code": "C2385",
           "msg": "'MUIDialog::m_rect' is ambiguous",
-          "line": 942
+          "line": 940
+        },
+        {
+          "code": "C2385",
+          "msg": "'MUIDialog::m_rect' is ambiguous",
+          "line": 945
+        },
+        {
+          "code": "C2385",
+          "msg": "'MUIDialog::m_rect' is ambiguous",
+          "line": 946
         },
         {
           "code": "C2385",
@@ -9731,44 +10675,44 @@
           "line": 947
         },
         {
-          "code": "C2385",
-          "msg": "'MUIDialog::m_rect' is ambiguous",
-          "line": 948
-        },
-        {
-          "code": "C2385",
-          "msg": "'MUIDialog::m_rect' is ambiguous",
-          "line": 949
-        },
-        {
           "code": "C2664",
           "msg": "'void (char *,const char *,unsigned long *,class SaleUI *)' : cannot convert parameter 2 from 'void *' to 'const char *'",
-          "line": 956
+          "line": 954
         },
         {
           "code": "C2664",
           "msg": "'void (char *,const char *,unsigned long *,class SaleUI *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 956
+          "line": 954
         },
         {
           "code": "C2664",
           "msg": "'void (char *,unsigned long)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 963
+          "line": 961
         },
         {
           "code": "C2664",
           "msg": "'void (float *,int,char *,class SaleUI *)' : cannot convert parameter 3 from 'unsigned char *' to 'char *'",
-          "line": 1576
+          "line": 1574
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 1621
+          "line": 1619
         },
         {
           "code": "C2660",
           "msg": "'SetPanelStates' : function does not take 2 parameters",
-          "line": 2019
+          "line": 2017
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'UIStaticRM'",
+          "line": 2230
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->ShowWindow' must point to class/struct/union",
+          "line": 2230
         },
         {
           "code": "C2039",
@@ -9781,44 +10725,39 @@
           "line": 2232
         },
         {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'UIStaticRM'",
-          "line": 2234
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 2234
-        },
-        {
           "code": "C2660",
           "msg": "'SetPanelStates' : function does not take 2 parameters",
-          "line": 2568
+          "line": 2566
         },
         {
           "code": "C2668",
           "msg": "'SendInputToRole' : ambiguous call to overloaded function",
-          "line": 2573
+          "line": 2571
         },
         {
           "code": "C2660",
           "msg": "'SetPanelStates' : function does not take 2 parameters",
-          "line": 2652
+          "line": 2650
         },
         {
           "code": "C2660",
           "msg": "'RollProbability' : function does not take 2 parameters",
-          "line": 2672
+          "line": 2670
         },
         {
           "code": "C2660",
           "msg": "'RollProbability' : function does not take 2 parameters",
-          "line": 2680
+          "line": 2678
         },
         {
           "code": "C2664",
           "msg": "'int (char *,unsigned long)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 2783
+          "line": 2781
+        },
+        {
+          "code": "C2039",
+          "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
+          "line": 3861
         },
         {
           "code": "C2039",
@@ -9828,27 +10767,27 @@
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
+          "line": 3864
+        },
+        {
+          "code": "C2039",
+          "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
           "line": 3865
         },
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 3866
+          "line": 3924
         },
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 3867
+          "line": 3935
         },
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 3926
-        },
-        {
-          "code": "C2039",
-          "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 3937
+          "line": 3936
         },
         {
           "code": "C2039",
@@ -9858,7 +10797,12 @@
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 3940
+          "line": 3942
+        },
+        {
+          "code": "C2039",
+          "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
+          "line": 3943
         },
         {
           "code": "C2039",
@@ -9878,12 +10822,12 @@
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 3947
+          "line": 3957
         },
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 3948
+          "line": 3958
         },
         {
           "code": "C2039",
@@ -9903,17 +10847,12 @@
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 3962
+          "line": 3982
         },
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 3963
-        },
-        {
-          "code": "C2039",
-          "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 3984
+          "line": 3987
         },
         {
           "code": "C2039",
@@ -9923,7 +10862,12 @@
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 3991
+          "line": 3993
+        },
+        {
+          "code": "C2039",
+          "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
+          "line": 3994
         },
         {
           "code": "C2039",
@@ -9943,12 +10887,12 @@
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 3998
+          "line": 4008
         },
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 3999
+          "line": 4009
         },
         {
           "code": "C2039",
@@ -9968,17 +10912,17 @@
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 4013
+          "line": 4039
         },
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 4014
+          "line": 4045
         },
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 4041
+          "line": 4046
         },
         {
           "code": "C2039",
@@ -9988,12 +10932,12 @@
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 4048
+          "line": 4049
         },
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 4049
+          "line": 4050
         },
         {
           "code": "C2039",
@@ -10013,22 +10957,22 @@
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 4054
+          "line": 4065
         },
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 4055
-        },
-        {
-          "code": "C2039",
-          "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 4067
+          "line": 4066
         },
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
           "line": 4068
+        },
+        {
+          "code": "C2039",
+          "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
+          "line": 4069
         },
         {
           "code": "C2039",
@@ -10048,12 +10992,7 @@
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 4073
-        },
-        {
-          "code": "C2039",
-          "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 4074
+          "line": 4094
         },
         {
           "code": "C2039",
@@ -10063,7 +11002,12 @@
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 4098
+          "line": 4100
+        },
+        {
+          "code": "C2039",
+          "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
+          "line": 4101
         },
         {
           "code": "C2039",
@@ -10083,12 +11027,12 @@
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 4105
+          "line": 4115
         },
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 4106
+          "line": 4116
         },
         {
           "code": "C2039",
@@ -10108,22 +11052,17 @@
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 4120
+          "line": 4142
         },
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 4121
+          "line": 4145
         },
         {
           "code": "C2039",
           "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 4144
-        },
-        {
-          "code": "C2039",
-          "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 4147
+          "line": 4146
         },
         {
           "code": "C2039",
@@ -10131,14 +11070,9 @@
           "line": 4148
         },
         {
-          "code": "C2039",
-          "msg": "'m_bWPXS' : is not a member of 'SaleUI'",
-          "line": 4150
-        },
-        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 4150
+          "line": 4148
         }
       ]
     },
@@ -10719,7 +11653,7 @@
     },
     "pal3/src/Misc/SystemUI.cpp": {
       "status": "fail",
-      "error_count": 33,
+      "error_count": 21,
       "errors": [
         {
           "code": "C2440",
@@ -10802,89 +11736,29 @@
           "line": 511
         },
         {
-          "code": "C2065",
-          "msg": "'Concurrency' : undeclared identifier",
-          "line": 581
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 581
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 581
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '{'",
-          "line": 582
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 632
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 632
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 634
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 634
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 645
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 645
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 649
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 649
-        },
-        {
           "code": "C2660",
           "msg": "'RenderSword' : function does not take 1 parameters",
-          "line": 729
+          "line": 730
         },
         {
           "code": "C2660",
           "msg": "'CreatePanelUI' : function does not take 1 parameters",
-          "line": 1208
+          "line": 1209
         },
         {
           "code": "C2660",
           "msg": "'DestroyDynamic' : function does not take 2 parameters",
-          "line": 1226
+          "line": 1227
         },
         {
           "code": "C2660",
           "msg": "'DestroyDynamic' : function does not take 2 parameters",
-          "line": 1232
+          "line": 1233
         },
         {
           "code": "C2660",
           "msg": "'ProcessInput' : function does not take 1 parameters",
-          "line": 1280
+          "line": 1281
         }
       ]
     },
@@ -11029,67 +11903,62 @@
     },
     "pal3/src/Misc/UIBigMap.cpp": {
       "status": "fail",
-      "error_count": 53,
+      "error_count": 48,
       "errors": [
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'float' to 'struct gbVec3D *'",
-          "line": 239
+          "line": 240
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'float' to 'struct gbVec3D *'",
-          "line": 251
+          "line": 252
         },
         {
           "code": "C2664",
           "msg": "'=' : cannot convert parameter 1 from 'int' to 'const struct gbVec3D &'",
-          "line": 267
+          "line": 268
         },
         {
           "code": "C2664",
           "msg": "'=' : cannot convert parameter 1 from 'int' to 'const struct gbVec3D &'",
-          "line": 271
+          "line": 272
         },
         {
           "code": "C2660",
           "msg": "'-' : function does not take 2 parameters",
-          "line": 272
+          "line": 273
         },
         {
           "code": "C2102",
           "msg": "'&' requires l-value",
-          "line": 274
+          "line": 275
         },
         {
           "code": "C2664",
           "msg": "'=' : cannot convert parameter 1 from 'int' to 'const struct gbVec3D &'",
-          "line": 276
+          "line": 277
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'float' to 'struct gbVec3D *'",
-          "line": 358
+          "line": 359
         },
         {
           "code": "C2664",
           "msg": "'+=' : cannot convert parameter 1 from 'float *' to 'const struct gbVec3D &'",
-          "line": 376
+          "line": 377
         },
         {
           "code": "C2660",
           "msg": "'Destroy' : function does not take 1 parameters",
-          "line": 437
+          "line": 438
         },
         {
           "code": "C2664",
           "msg": "'=' : cannot convert parameter 1 from 'char *' to 'const struct gbVec3D &'",
-          "line": 491
-        },
-        {
-          "code": "C2660",
-          "msg": "'=' : function does not take 2 parameters",
-          "line": 506
+          "line": 492
         },
         {
           "code": "C2660",
@@ -11098,203 +11967,183 @@
         },
         {
           "code": "C2660",
+          "msg": "'=' : function does not take 2 parameters",
+          "line": 508
+        },
+        {
+          "code": "C2660",
           "msg": "'SetAnimBlend' : function does not take 0 parameters",
-          "line": 528
+          "line": 529
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class gbSound3DNode *' to 'class OpenSceneFile'",
-          "line": 540
+          "line": 541
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class gbSound3DNode *' to 'unsigned char *'",
-          "line": 546
+          "line": 547
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 556
+          "line": 557
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 562
+          "line": 563
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'unsigned long *' to 'class OpenSceneFile'",
-          "line": 687
+          "line": 688
         },
         {
           "code": "C2660",
           "msg": "'BuildCmdTransform' : function does not take 2 parameters",
-          "line": 770
+          "line": 771
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 860
+          "line": 861
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 867
+          "line": 868
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 884
+          "line": 885
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 891
+          "line": 892
         },
         {
           "code": "C2664",
           "msg": "'void __thiscall gbMatrixStack::Rotate(struct gbQuaternion &)' : cannot convert parameter 1 from 'struct gbQuaternion *' to 'struct gbQuaternion &'",
-          "line": 932
+          "line": 933
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 940
+          "line": 941
         },
         {
           "code": "C2660",
           "msg": "'SetTransform' : function does not take 2 parameters",
-          "line": 961
+          "line": 962
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 968
+          "line": 969
         },
         {
           "code": "C2660",
           "msg": "'GetAABBox' : function does not take 2 parameters",
-          "line": 968
+          "line": 969
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 979
+          "line": 980
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 986
+          "line": 987
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 1010
+          "line": 1011
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 1016
+          "line": 1017
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 1024
+          "line": 1025
         },
         {
           "code": "C2660",
           "msg": "'BuildRenderLists' : function does not take 1 parameters",
-          "line": 1381
+          "line": 1382
         },
         {
           "code": "C2664",
           "msg": "'void (char *,unsigned long,int *,class UIBigMap *)' : cannot convert parameter 2 from 'void *' to 'unsigned long'",
-          "line": 1474
+          "line": 1475
         },
         {
           "code": "C2664",
           "msg": "'void (char *,unsigned long,int *,class UIBigMap *)' : cannot convert parameter 2 from 'void *' to 'unsigned long'",
-          "line": 1490
+          "line": 1491
         },
         {
           "code": "C2664",
           "msg": "'void (char *,unsigned long,int *,class UIBigMap *)' : cannot convert parameter 2 from 'void *' to 'unsigned long'",
-          "line": 1506
+          "line": 1507
         },
         {
           "code": "C2664",
           "msg": "'void (char *,unsigned long,int,class UIBigMap *)' : cannot convert parameter 2 from 'void *' to 'unsigned long'",
-          "line": 1522
+          "line": 1523
         },
         {
           "code": "C2664",
           "msg": "'void (char *,unsigned long,int,class UIBigMap *)' : cannot convert parameter 2 from 'void *' to 'unsigned long'",
-          "line": 1527
+          "line": 1528
         },
         {
           "code": "C2664",
           "msg": "'void (char *,unsigned long,int,class UIBigMap *)' : cannot convert parameter 2 from 'void *' to 'unsigned long'",
-          "line": 1532
+          "line": 1533
         },
         {
           "code": "C2664",
           "msg": "'void (char *,unsigned long,int,class UIBigMap *)' : cannot convert parameter 2 from 'void *' to 'unsigned long'",
-          "line": 1537
+          "line": 1538
         },
         {
           "code": "C2664",
           "msg": "'void (char *,unsigned long,int,class UIBigMap *)' : cannot convert parameter 2 from 'void *' to 'unsigned long'",
-          "line": 1551
+          "line": 1552
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 1553
-        },
-        {
-          "code": "C2065",
-          "msg": "'Concurrency' : undeclared identifier",
-          "line": 1714
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 1714
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 1714
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 1718
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 1718
+          "line": 1554
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 2242
+          "line": 2248
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void' to 'char *'",
-          "line": 2242
+          "line": 2248
         },
         {
           "code": "C2664",
           "msg": "'ActVec_Insert_char' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 2529
+          "line": 2535
         },
         {
           "code": "C2664",
           "msg": "'ActVec_Insert_word' : cannot convert parameter 3 from '__int16 *' to 'unsigned short *'",
-          "line": 2540
+          "line": 2546
         }
       ]
     },
@@ -11691,22 +12540,12 @@
     },
     "pal3/src/Misc/UIGameOver.cpp": {
       "status": "fail",
-      "error_count": 3,
+      "error_count": 1,
       "errors": [
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
           "line": 96
-        },
-        {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 253
-        },
-        {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 258
         }
       ]
     },
@@ -12569,20 +13408,9 @@
       "errors": []
     },
     "pal3/src/Misc/UIStatic.cpp": {
-      "status": "fail",
-      "error_count": 2,
-      "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class gbGfxManager *' to 'int'",
-          "line": 260
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'class gbGfxManager *' to 'int'",
-          "line": 295
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/UITabCtrl.cpp": {
       "status": "ok",
@@ -12824,82 +13652,67 @@
     },
     "pal3/src/Misc/UITitle_JDHY.cpp": {
       "status": "fail",
-      "error_count": 15,
+      "error_count": 12,
       "errors": [
         {
           "code": "C2440",
+          "msg": "'=' : cannot convert from 'class gbRefObject *' to 'unsigned long'",
+          "line": 377
+        },
+        {
+          "code": "C2440",
           "msg": "'=' : cannot convert from 'class Parent_Data *' to 'unsigned long'",
-          "line": 386
+          "line": 380
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
+          "line": 505
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class gbTexture *' to 'unsigned long'",
-          "line": 544
+          "line": 537
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 554
+          "line": 547
         },
         {
           "code": "C2228",
           "msg": "left of '.Update_2ff0' must have class/struct/union type",
-          "line": 554
+          "line": 547
         },
         {
           "code": "C2664",
           "msg": "'WriteRegistry' : cannot convert parameter 1 from 'unsigned long' to 'char *'",
-          "line": 806
+          "line": 799
         },
         {
           "code": "C2660",
           "msg": "'WriteJpegImage' : function does not take 3 parameters",
-          "line": 858
+          "line": 851
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 891
+          "line": 884
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 893
+          "line": 886
         },
         {
           "code": "C2660",
           "msg": "'LayoutItem' : function does not take 6 parameters",
-          "line": 910
+          "line": 903
         },
         {
           "code": "C2664",
           "msg": "'WriteRegistry' : cannot convert parameter 1 from 'unsigned long' to 'char *'",
-          "line": 911
-        },
-        {
-          "code": "C2065",
-          "msg": "'Concurrency' : undeclared identifier",
-          "line": 938
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 938
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 938
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 942
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 942
+          "line": 904
         }
       ]
     },
@@ -13639,112 +14452,32 @@
     },
     "pal3/src/Render/RenderTarget.cpp": {
       "status": "fail",
-      "error_count": 40,
+      "error_count": 27,
       "errors": [
         {
-          "code": "C2065",
-          "msg": "'Concurrency' : undeclared identifier",
-          "line": 192
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 192
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 192
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 194
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 194
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 213
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 213
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 217
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 217
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 231
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 231
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '{'",
-          "line": 232
-        },
-        {
-          "code": "C2181",
-          "msg": "illegal else without matching if",
-          "line": 235
-        },
-        {
           "code": "C2660",
           "msg": "'CalcStatPower' : function does not take 2 parameters",
-          "line": 653
+          "line": 656
         },
         {
           "code": "C2661",
           "msg": "'ReplaceTexture' : no overloaded function takes 2 parameters",
-          "line": 817
+          "line": 820
         },
         {
           "code": "C2661",
           "msg": "'ReplaceTexture' : no overloaded function takes 2 parameters",
-          "line": 1068
+          "line": 1071
         },
         {
           "code": "C2660",
           "msg": "'CalcStatPower' : function does not take 2 parameters",
-          "line": 1187
+          "line": 1190
         },
         {
           "code": "C2660",
           "msg": "'CalcStatPower' : function does not take 2 parameters",
-          "line": 1203
-        },
-        {
-          "code": "C2660",
-          "msg": "'Read' : function does not take 0 parameters",
-          "line": 1603
-        },
-        {
-          "code": "C2660",
-          "msg": "'Read' : function does not take 0 parameters",
-          "line": 1604
-        },
-        {
-          "code": "C2660",
-          "msg": "'Read' : function does not take 0 parameters",
-          "line": 1605
+          "line": 1206
         },
         {
           "code": "C2660",
@@ -13752,100 +14485,115 @@
           "line": 1606
         },
         {
+          "code": "C2660",
+          "msg": "'Read' : function does not take 0 parameters",
+          "line": 1607
+        },
+        {
+          "code": "C2660",
+          "msg": "'Read' : function does not take 0 parameters",
+          "line": 1608
+        },
+        {
+          "code": "C2660",
+          "msg": "'Read' : function does not take 0 parameters",
+          "line": 1609
+        },
+        {
           "code": "C2664",
           "msg": "'memcpy' : cannot convert parameter 2 from 'const struct gbMatrix4' to 'const void *'",
-          "line": 1772
+          "line": 1775
         },
         {
           "code": "C2660",
           "msg": "'NewMesh' : function does not take 0 parameters",
-          "line": 1779
+          "line": 1782
         },
         {
           "code": "C2664",
           "msg": "'memcpy' : cannot convert parameter 2 from 'const struct gbMatrix4' to 'const void *'",
-          "line": 1780
+          "line": 1783
         },
         {
           "code": "C2660",
           "msg": "'Process' : function does not take 1 parameters",
-          "line": 2140
+          "line": 2143
         },
         {
           "code": "C2039",
           "msg": "'SpaceScale' : is not a member of 'gbParticleEffect'",
-          "line": 2161
+          "line": 2164
         },
         {
           "code": "C2039",
           "msg": "'nAlivePart' : is not a member of 'gbParticleGroup'",
-          "line": 2179
+          "line": 2182
         },
         {
           "code": "C2664",
           "msg": "'int (unsigned long,int)' : cannot convert parameter 1 from 'int (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
-          "line": 2203
+          "line": 2206
         },
         {
           "code": "C2660",
           "msg": "'gbTexture_D3D::~gbTexture_D3D' : function does not take 1 parameters",
-          "line": 2239
+          "line": 2242
         },
         {
           "code": "C2660",
           "msg": "'gbTexture_D3D::~gbTexture_D3D' : function does not take 1 parameters",
-          "line": 2240
+          "line": 2243
         },
         {
           "code": "C2660",
           "msg": "'NewIndexPool' : function does not take 2 parameters",
-          "line": 2251
+          "line": 2254
         },
         {
           "code": "C2660",
           "msg": "'NewIndexPool' : function does not take 0 parameters",
-          "line": 2259
+          "line": 2262
         },
         {
           "code": "C2660",
           "msg": "'NewIndexPool' : function does not take 1 parameters",
-          "line": 2301
+          "line": 2304
         },
         {
           "code": "C2660",
           "msg": "'NewIndexPool' : function does not take 1 parameters",
-          "line": 2305
+          "line": 2308
         },
         {
           "code": "C2660",
           "msg": "'NewMesh' : function does not take 0 parameters",
-          "line": 2320
+          "line": 2323
         },
         {
           "code": "C2664",
           "msg": "'PushMatrixStacks' : cannot convert parameter 1 from 'class RenderTarget ** ' to 'int'",
-          "line": 2321
+          "line": 2324
         },
         {
           "code": "C2660",
           "msg": "'NewMesh' : function does not take 0 parameters",
-          "line": 2324
+          "line": 2327
         },
         {
           "code": "C2664",
           "msg": "'PopMatrixStacks' : cannot convert parameter 1 from 'class RenderTarget ** ' to 'int'",
-          "line": 2326
+          "line": 2329
         },
         {
           "code": "C2660",
           "msg": "'NewIndexPool' : function does not take 1 parameters",
-          "line": 2349
+          "line": 2352
         }
       ]
     },
     "pal3/src/Render/RenderTarget2.cpp": {
       "status": "fail",
-      "error_count": 6,
+      "error_count": 20,
       "errors": [
         {
           "code": "C2664",
@@ -13863,19 +14611,89 @@
           "line": 620
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ')' before 'constant'",
-          "line": 1127
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 1349
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 1382
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 1871
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 1904
+        },
+        {
+          "code": "C2511",
+          "msg": "'AdjustThisCall' : overloaded member function 'int (int (__cdecl *)(char *,int),int,int)' not found in 'RenderTarget2'",
+          "line": 2130
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 2322
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 2355
+        },
+        {
+          "code": "C2106",
+          "msg": "'=' : left operand must be l-value",
+          "line": 2623
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 2793
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 2826
+        },
+        {
+          "code": "C2665",
+          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4'",
+          "line": 3225
+        },
+        {
+          "code": "C2100",
+          "msg": "illegal indirection",
+          "line": 3229
+        },
+        {
+          "code": "C2660",
+          "msg": "'Rotate' : function does not take 3 parameters",
+          "line": 3229
+        },
+        {
+          "code": "C2664",
+          "msg": "'SetBlend' : cannot convert parameter 1 from 'const int' to 'enum NodeBlend'",
+          "line": 3254
         },
         {
           "code": "C2143",
-          "msg": "syntax error : missing ';' before 'constant'",
-          "line": 1127
+          "msg": "syntax error : missing ';' before 'tag::id'",
+          "line": 3262
+        },
+        {
+          "code": "C2182",
+          "msg": "'__noreturn' : illegal use of type 'void'",
+          "line": 3262
         },
         {
           "code": "C1004",
           "msg": "unexpected end of file found",
-          "line": 1127
+          "line": 3262
         }
       ]
     },
@@ -14344,33 +15162,8 @@
     },
     "pal3/src/Role/NPC.cpp": {
       "status": "fail",
-      "error_count": 24,
+      "error_count": 19,
       "errors": [
-        {
-          "code": "C2065",
-          "msg": "'Concurrency' : undeclared identifier",
-          "line": 44
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 44
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 44
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 93
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 93
-        },
         {
           "code": "C2660",
           "msg": "'StoreParam' : function does not take 3 parameters",
@@ -16394,7 +17187,7 @@
     },
     "pal3/src/Script/PalScriptMgr.cpp": {
       "status": "fail",
-      "error_count": 18,
+      "error_count": 71,
       "errors": [
         {
           "code": "C2100",
@@ -16472,19 +17265,284 @@
           "line": 1108
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ')' before 'constant'",
-          "line": 1134
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 1302
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before 'constant'",
-          "line": 1134
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 1321
         },
         {
-          "code": "C1004",
-          "msg": "unexpected end of file found",
-          "line": 1134
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 1337
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 1425
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 1444
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 1460
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 1548
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 1567
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 1583
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 1671
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 1690
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 1706
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 1797
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 1816
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 1832
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 1920
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 1939
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 1955
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 2057
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 2065
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 2079
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 2095
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 2182
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 2201
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 2217
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 2306
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 2325
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 2341
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->CameraCtrl' must point to class/struct/union",
+          "line": 2510
+        },
+        {
+          "code": "C2653",
+          "msg": "'CameraCtrl' : is not a class or namespace name",
+          "line": 2510
+        },
+        {
+          "code": "C2664",
+          "msg": "'ProcessKeyboard' : cannot convert parameter 1 from 'class InputSystem *' to 'int'",
+          "line": 2604
+        },
+        {
+          "code": "C2660",
+          "msg": "'SetTransform' : function does not take 2 parameters",
+          "line": 2644
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 2679
+        },
+        {
+          "code": "C2661",
+          "msg": "'Copy' : no overloaded function takes 2 parameters",
+          "line": 2705
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
+          "line": 2876
+        },
+        {
+          "code": "C2100",
+          "msg": "illegal indirection",
+          "line": 3025
+        },
+        {
+          "code": "C2065",
+          "msg": "'SingletonThunk_00431E70' : undeclared identifier",
+          "line": 3122
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'",
+          "line": 3123
+        },
+        {
+          "code": "C2065",
+          "msg": "'SingletonThunk_00431EC0' : undeclared identifier",
+          "line": 3129
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'",
+          "line": 3130
+        },
+        {
+          "code": "C2882",
+          "msg": "'std' : illegal use of namespace identifier in expression",
+          "line": 3175
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 3175
+        },
+        {
+          "code": "C2446",
+          "msg": "'>=' : no conversion from 'unsigned int' to 'char *'",
+          "line": 3178
+        },
+        {
+          "code": "C2040",
+          "msg": "'>=' : 'char *' differs in levels of indirection from 'unsigned int'",
+          "line": 3178
+        },
+        {
+          "code": "C2882",
+          "msg": "'std' : illegal use of namespace identifier in expression",
+          "line": 3180
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 3180
+        },
+        {
+          "code": "C2660",
+          "msg": "'PollInputState' : function does not take 2 parameters",
+          "line": 3182
+        },
+        {
+          "code": "C2660",
+          "msg": "'CopyRange' : function does not take 2 parameters",
+          "line": 3204
+        },
+        {
+          "code": "C2660",
+          "msg": "'CopyRange' : function does not take 2 parameters",
+          "line": 3207
+        },
+        {
+          "code": "C2660",
+          "msg": "'CopyRange' : function does not take 2 parameters",
+          "line": 3208
+        },
+        {
+          "code": "C2660",
+          "msg": "'PtrArray::~PtrArray' : function does not take 1 parameters",
+          "line": 3325
+        },
+        {
+          "code": "C2106",
+          "msg": "'=' : left operand must be l-value",
+          "line": 3328
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 3420
+        },
+        {
+          "code": "C2660",
+          "msg": "'_CON_State' : function does not take 0 parameters",
+          "line": 3431
+        },
+        {
+          "code": "C2511",
+          "msg": "'Destroy_28' : overloaded member function 'void *(char)' not found in 'PalScriptMgr'",
+          "line": 3483
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 3500
         }
       ]
     },
@@ -16551,7 +17609,7 @@
     },
     "pal3/src/UI/EquipUI.cpp": {
       "status": "fail",
-      "error_count": 40,
+      "error_count": 31,
       "errors": [
         {
           "code": "C2660",
@@ -16589,169 +17647,124 @@
           "line": 637
         },
         {
-          "code": "C2065",
-          "msg": "'Concurrency' : undeclared identifier",
-          "line": 822
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 822
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 822
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 824
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 824
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 843
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 843
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 847
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 847
-        },
-        {
           "code": "C2227",
           "msg": "left of '->OnMessage' must point to class/struct/union",
-          "line": 935
+          "line": 937
         },
         {
           "code": "C2664",
           "msg": "'pal3_vtbl_unk_2' : cannot convert parameter 3 from 'void *' to 'const char *'",
-          "line": 974
+          "line": 976
         },
         {
           "code": "C2660",
           "msg": "'ResetEquipControls' : function does not take 1 parameters",
-          "line": 1162
+          "line": 1164
         },
         {
           "code": "C2660",
           "msg": "'IsValidItem' : function does not take 3 parameters",
-          "line": 1333
+          "line": 1335
         },
         {
           "code": "C2660",
           "msg": "'IsValidItem' : function does not take 3 parameters",
-          "line": 1341
+          "line": 1343
         },
         {
           "code": "C2660",
           "msg": "'SelectBestTarget' : function does not take 2 parameters",
-          "line": 1349
+          "line": 1351
         },
         {
           "code": "C2660",
           "msg": "'IsValidItem' : function does not take 3 parameters",
-          "line": 1368
+          "line": 1370
         },
         {
           "code": "C2660",
           "msg": "'IsValidItem' : function does not take 3 parameters",
-          "line": 1466
-        },
-        {
-          "code": "C2660",
-          "msg": "'SelectBestTarget' : function does not take 2 parameters",
           "line": 1468
         },
         {
           "code": "C2660",
+          "msg": "'SelectBestTarget' : function does not take 2 parameters",
+          "line": 1470
+        },
+        {
+          "code": "C2660",
           "msg": "'IsValidItem' : function does not take 3 parameters",
-          "line": 1483
+          "line": 1485
         },
         {
           "code": "C2660",
           "msg": "'LoadByType' : function does not take 3 parameters",
-          "line": 1630
+          "line": 1632
         },
         {
           "code": "C2660",
           "msg": "'IsValidItem' : function does not take 3 parameters",
-          "line": 1644
+          "line": 1646
         },
         {
           "code": "C2660",
           "msg": "'SelectBestTarget' : function does not take 2 parameters",
-          "line": 1664
+          "line": 1666
         },
         {
           "code": "C2660",
           "msg": "'LoadByType' : function does not take 3 parameters",
-          "line": 1722
+          "line": 1724
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int,int *,class EquipUI *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 1822
+          "line": 1824
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class CCCTData *' to 'int'",
-          "line": 1917
+          "line": 1919
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class LineupUI *' to 'int'",
-          "line": 1925
+          "line": 1927
         },
         {
           "code": "C2589",
           "msg": "'this' : illegal token on right side of '::'",
-          "line": 1939
+          "line": 1941
         },
         {
           "code": "C2059",
           "msg": "syntax error : '::'",
-          "line": 1939
+          "line": 1941
         },
         {
           "code": "C2039",
           "msg": "'CameraCtrl_CreateCameraUI' : is not a member of 'EquipUI'",
-          "line": 1940
+          "line": 1942
         },
         {
           "code": "C2589",
           "msg": "'this' : illegal token on right side of '::'",
-          "line": 1942
+          "line": 1944
         },
         {
           "code": "C2059",
           "msg": "syntax error : '::'",
-          "line": 1942
+          "line": 1944
         },
         {
           "code": "C2039",
           "msg": "'EquipUI_InitEquipUI' : is not a member of 'EquipUI'",
-          "line": 1943
+          "line": 1945
         },
         {
           "code": "C2039",
           "msg": "'UITitle_JDHY_PopulateContent' : is not a member of 'EquipUI'",
-          "line": 1945
+          "line": 1947
         }
       ]
     },
@@ -17114,7 +18127,7 @@
     },
     "pal3/src/UI/StateUI.cpp": {
       "status": "fail",
-      "error_count": 56,
+      "error_count": 51,
       "errors": [
         {
           "code": "C2660",
@@ -17225,31 +18238,6 @@
           "code": "C2664",
           "msg": "'PushMatrixStacks' : cannot convert parameter 1 from 'char [4]' to 'int'",
           "line": 623
-        },
-        {
-          "code": "C2065",
-          "msg": "'Concurrency' : undeclared identifier",
-          "line": 630
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 630
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 630
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 633
-        },
-        {
-          "code": "C2653",
-          "msg": "'Concurrency' : is not a class or namespace name",
-          "line": 633
         },
         {
           "code": "C2664",
@@ -17649,7 +18637,7 @@
     },
     "pal3/src/UI/UIScene.cpp": {
       "status": "fail",
-      "error_count": 30,
+      "error_count": 35,
       "errors": [
         {
           "code": "C2660",
@@ -17787,19 +18775,44 @@
           "line": 1754
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ')' before 'constant'",
-          "line": 1775
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'UIScene'",
+          "line": 1893
         },
         {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before 'constant'",
-          "line": 1775
+          "code": "C2228",
+          "msg": "left of '.Create' must have class/struct/union type",
+          "line": 1893
         },
         {
-          "code": "C1004",
-          "msg": "unexpected end of file found",
-          "line": 1775
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'UIScene'",
+          "line": 1896
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.Destroy' must have class/struct/union type",
+          "line": 1896
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'UIScene'",
+          "line": 1899
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.Update_2ff0' must have class/struct/union type",
+          "line": 1899
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'UIScene'",
+          "line": 1902
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.Render' must have class/struct/union type",
+          "line": 1902
         }
       ]
     },

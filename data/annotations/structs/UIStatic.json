@@ -24,13 +24,15 @@
     },
     "84": {
       "name": "m_textx",
-      "type": "int",
-      "source": "annotation"
+      "type": "gbRefObject *",
+      "source": "vtable_fix: type corrected int -> gbRefObject * (binary evidence 0x00440A20)",
+      "_evidence": "decomp 0x00440A20 UIStatic::LoadResource 明文 `gbRefObject *m_textx; // ecx`，并 `m_textx = (gbRefObject *)this->m_textx; gbRefObject::Release(m_textx);` 以及 `v7 = (gbTexture *)this->m_textx;` —— 三处均按指针使用，原注解 `int` 与之矛盾，致 C2440 'gbGfxManager *' -> 'int'（L258/L292）。"
     },
     "88": {
       "name": "m_texty",
-      "type": "int",
-      "source": "annotation"
+      "type": "gbRefObject *",
+      "source": "vtable_fix: type corrected int -> gbRefObject * (binary evidence 0x00440A20)",
+      "_evidence": "decomp 0x00440A20 UIStatic::LoadResource 明文 `gbRefObject *m_textx; // ecx`，并 `m_textx = (gbRefObject *)this->m_textx; gbRefObject::Release(m_textx);` 以及 `v7 = (gbTexture *)this->m_textx;` —— 三处均按指针使用，原注解 `int` 与之矛盾，致 C2440 'gbGfxManager *' -> 'int'（L258/L292）。"
     },
     "92": {
       "name": "m_fonttype",
