@@ -2702,5 +2702,11 @@
     "name": "StopSceneScripts",
     "signature": "void __cdecl StopSceneScripts(const char *pszScene)",
     "source": "reattributed from PalScriptMgr::RunSceneScript (false member): no this usage (operates on stru_D8C2B8 globals), callee bare retn + caller add esp,4 = cdecl; semantics: kill running scene-script instances matching pszScene and compact the slot array. _naming_note: descriptive label, binary evidence only."
+  },
+  "0x00532D50": {
+    "name": "ClearStateMode",
+    "signature": "void __thiscall RoleSystem::ClearStateMode(RoleSystem *this)",
+    "class": "RoleSystem",
+    "_flirt_correction": "FLIRT 曾将 0x00532D50 误命名为 ?MarkInactive@ExternalStatistics@details@Concurrency@@QAEXXZ，并被前一轮以「函数名属于 MSVC Concurrency Runtime」为由写入 skip_functions.json (reason=crt_runtime)。该判断仅凭名字、无函数体取证，属错误：实测函数体 = C7 41 18 00 00 00 00 C3 (mov dword [ecx+0x18], 0 ; retn)，是**游戏函数**，非 CRT。位置证据：邻居 0x00532CF0 CalcAngleBetweenVectors / 0x00532D30 GetStateMode / 0x00532E10 ResetPathState 全为游戏函数。调用点证据：xrefs_to = 0x534EA9，落在 ExternalStatistics::UpdateFromRole(0x00534E60) 内；同函数前两分支分别调 GetStateMode 与 RoleSystem::NegateStateMode，均取 *(RoleSystem **)this。命名理由：C7 41 18 = mov dword [ecx+0x18], 0 与邻居 GetStateMode 的 8B 41 50 89 41 18 (mov eax,[ecx+0x50]; mov [ecx+0x18],eax) 操作**同一字段 0x18**，故本函数是该字段的『清零』变体。"
   }
 }

@@ -5465,3 +5465,22 @@ Confidence: 80（名字层面可逆；若未来获得更强命名证据可整体
   - `ArcLocale` 由 `size=1, data_members=0`（16 个成员全丢）恢复为 **`size=484, data_members=16`**；
   - **未新增第 882 个 struct**（`PlayerMgr` 仍为 `size=1` 空占位，与改动前一致）。
 - **影响**: 仅新增该数据文件 + `apply_annotations.py` 的 §3c + `check_annotations.py` §4f 的来源集合；**`ArcLocale.json` 一个字符都未改**。
+
+## 2026-09-15 · 纠正 FLIRT 误命名：`0x00532D50` 由 CRT 命名空间名改为游戏函数名（K）
+
+- **改动**:
+  1. `data/annotations/functions.json` **新增** `0x00532D50`：`name` = `ClearStateMode`、`signature` = `void __thiscall RoleSystem::ClearStateMode(RoleSystem *this)`、`class` = `RoleSystem`（+ `_flirt_correction` 记载完整取证）。
+  2. `data/annotations/skip_functions.json` **删除** `0x00532D50` 条目（原 `reason: crt_runtime`）。
+- **证据**:
+  1. **[A·函数体]** `idat` 探针实测：`0x00532D50` = `C7 41 18 00 00 00 00 C3`（`mov dword [ecx+0x18], 0 ; retn`，size=8，`ecx`=this）。**`ecx+0x18` 是 `0x00532D30 GetStateMode` 写入的字段**（`8B 41 50 89 41 18 C3` = `mov eax,[ecx+0x50]; mov [ecx+0x18],eax; retn`）⇒ 同族游戏逻辑，非 CRT。
+  2. **[A·区域]** 邻居全为游戏函数：`0x00532CF0 CalcAngleBetweenVectors`、`0x00532D30 GetStateMode`、`0x00532E10 ResetPathState`。对照同批被 skip 的 `0x004790F0`/`0x00479250`/`0x004B4830` **均不在 `functions.json`**（那才是真 CRT 区）。
+  3. **[A·调用点]** `xrefs_to(0x00532D50) = 0x534EA9`，落在 `ExternalStatistics::UpdateFromRole(0x00534E60)` 内；同函数前两分支分别调 `GetStateMode` 与 `RoleSystem::NegateStateMode`，**均取 `*(RoleSystem **)this`**。FLIRT 原名 `?MarkInactive@ExternalStatistics@details@Concurrency@@QAEXXZ` 与 `*(RoleSystem **)this` 强转**类型自相矛盾**。
+  4. **[溯源·负面]** 前轮以「函数名明确属于 MSVC Concurrency Runtime (非游戏逻辑)」判 skip（`CHANGE_LOG` 自载，置信度 90），**只有名字、无函数体取证**。
+- **性质**: **只改符号名，不改任何偏移/类型/结构布局**。改名不影响字节匹配（`call rel32` 操作数与符号名无关）。
+- **验证**（本轮实测）:
+  - `ExternalStatistics.cpp` **fail(3 错：C2653×2 + C2065) → ok(0 错)**；
+  - 生成源码 `Concurrency::details::ExternalStatistics::MarkInactive(*(Concurrency::details::ExternalStatistics **)this)` → **`ClearStateMode(*(RoleSystem **)this)`**（与同函数其它分支形态一致）；
+  - `decomp` JSON 数 **3594 → 3595**（被误 skip 的函数重新进入反编译，新增 `ClearStateMode_00532d50.json`，签名 `void __thiscall(RoleSystem *this)`）；
+  - `apply`：`[3] Structs: 881/881 (fail=0)`、`FATAL=0`；`match` 棘轮 `previous 6 -> current 6`；
+  - 判据：`ok = 54/198`（硬线 ≥53，**净提升**）、`L1 = 6`（≥5）、`oob = 0`。
+- **遗留（未验证）**: 其余 3 个被 skip 的 Concurrency 命名（`0x004790F0`/`0x00479250`/`0x004B4830`）需逐条函数体取证以判断真伪；`std::_Xlen`/`_Xran` 在 decomp 中**无同名函数记录**（属 Hex-Rays 在越界分支贴的库名），是否保留调用未逐条裁定。详见 `data/status/_cleanup_fix_flirt_misnamed_crt.md`。
