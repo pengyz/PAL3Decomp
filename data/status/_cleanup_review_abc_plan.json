@@ -1,0 +1,139 @@
+{
+  "reviewer": "independent adversarial reviewer (subagent)",
+  "date": "2026-09-15",
+  "scope": "复核 captain 倾向 A + 独立推进 C；证伪优先；全部引用均实测（未触碰 IDB/管线命令，字节直接读自 original/PAL3.exe 静态 PE 解析）",
+  "baselines_used": {
+    "probe": "data/status/baselines/20260915_200745.json (最新, ok=54/198, fail=144)",
+    "tree_state": "当前 pal3/src 已为 t7 后重生成（[VFTABLE] 注释残留=0，grep 实测）"
+  },
+
+  "concurrency_3_addrs": [
+    {
+      "addr": "0x004790F0",
+      "flirt_name": "?GetExecutionResourceId@VirtualProcessor@details@Concurrency@@QBEIXZ",
+      "verdict": "FLIRT 误命名 —— 游戏函数（PAL_GDB getter 家族）",
+      "body_bytes": "8B 81 8C 00 00 00 C3  (mov eax,[ecx+0x8C]; retn)  size=7",
+      "body_source": "python 静态解析 original/PAL3.exe PE 节表后直接读 .text（非 IDA）",
+      "neighbor_evidence": "0x479080 PAL_GDB::GDB_GetRoleNum 前缀字节含 8B 91 8C 00 00 00 (mov edx,[ecx+0x8C]) 并 test/jle 作 int 用 —— 同一字段的计数语义；IDA struct 方法表 PAL_GDB.methods 含 0x479040/50/80/130/1A0/1B0/1E0/2C0，精确包夹本地址",
+      "xref_evidence": "调用者 4 个全在游戏区: NPC_Create(0x40EB90), NPC_Init(0x40EC20), EquipUI_InitEquipUI(0x4AB6B0), CCBCamControl(0x4EB8D0)；decomp 原文: GetExecutionResourceId((V*)&g_pGDB) 返回值作循环上限，循环体调 NPC::GetPropertyByIndex((NPC*)&g_pGDB,i)",
+      "region_evidence": "0x47 段注解函数 25 / skip 34；CRT 区从 0x54xxxx 起（skip 334+370、注解≈0）",
+      "era_evidence": "PAL3.exe 为 MSVC 6.0 SP0 编译；Concurrency Runtime 由 VS2010 引入 —— 本二进制不可能含真 Concurrency 代码"
+    },
+    {
+      "addr": "0x00479250",
+      "flirt_name": "?GetProxy@InternalContextBase@details@Concurrency@@UAEPAUIThreadProxy@3@XZ",
+      "verdict": "FLIRT 误命名 —— 游戏函数（PAL_GDB getter 家族）",
+      "body_bytes": "8B 81 9C 00 00 00 C3  (mov eax,[ecx+0x9C]; retn)  size=7",
+      "neighbor_evidence": "0x4791E0 GDB_GetItemNum 与 0x479260 UIAnimateCtrl_GetRoleBySlot 间距 0x70/0x10，与 getter 家族同构；PAL_GDB.methods 包夹同上",
+      "xref_evidence": "调用者: CCBRoleState_CheckVarianceRound(0x4EEA70), CCBCamControl(0x4EB8D0)；decomp 原文: GetProxy((V*)&g_pGDB) 返回值 if((int)Proxy<=0) return; do{...} —— 作计数的 int",
+      "region_evidence": "同 0x4790F0"
+    },
+    {
+      "addr": "0x004B4830",
+      "flirt_name": "?IsThrottled@VirtualProcessor@details@Concurrency@@QBE_NXZ",
+      "verdict": "FLIRT 误命名 —— 游戏函数（RenderTarget +0x80 标志读取器；与 K 同构）",
+      "body_bytes": "8A 81 80 00 00 00 C3  (mov al,[ecx+0x80]; retn)  size=7 bool getter",
+      "neighbor_evidence": "0x4B4820 RenderTarget_SetVisible = 8A 44 24 04 88 81 80 00 00 00 C2 04 00 (mov [ecx+0x80],al; ret 4) —— 写同一字段 [ecx+0x80]；0x4B4840 SetField084 / 0x4B4850 SetColor 同族，0x10 间距 setter 家族（decomp 文件名实证）。字段级『写/读同址』论证与 K 的 GetStateMode/ClearStateMode 完全同构",
+      "xref_evidence": "调用者 12 个全为 UI 渲染游戏函数（RoleStatePanel_RenderThrottled 0x4A5930、UITitle_JDHY_RenderSlotEffects 0x4B2C70、SystemUI_ProcessFrame 0x4AD140 等）；decomp 原文: if(IsThrottled(&this->m_bSlotFlags[...+584*i])) → ScreenEffect::Apply —— 渲染前逐元素可见性判断",
+      "region_evidence": "±0x30 邻居全部是有名 RenderTarget 方法 decomp 文件"
+    }
+  ],
+  "k_control_verification": "0x00532D50 读出 C7 41 18 00 00 00 C3、0x00532D30 读出 8B 41 50 89 41 18 C3 —— 与 captain K 记录逐字节一致，证明静态 PE 读取与 idat 探针等价（A 无需 IDA 窗口即可完成取证）",
+  "k_doc_correction": "data/status/_cleanup_fix_flirt_misnamed_crt.md L47-48 断言『另 3 个地址才是真正的 CRT 区域』——证伪。论据仅有『不在 functions.json』（缺席论证）。实测 3 地址均为游戏函数（见上）。该句必须勘误，否则误导后续决策",
+
+  "a_verdict": {
+    "feasible": true,
+    "cost": "小时级。函数体字节已全部取到（无需 IDA 窗口）；剩命名裁定与 functions.json/skip_functions.json 落笔，K 提供完整模板",
+    "direct_ok_gain": "≈0（这是与 captain 预期可能的偏差）。实测 14 个含 Concurrency 引用文件合计 596 错，其中 Concurrency 直接相关仅 47 条；修完名字后这些文件大概率仍 fail。A 的收益是：消除 47 条非法名错误、恢复 3 个真实函数入反编译语料（3595→3598）、清掉 K 文档遗留项",
+    "risk_of_misrenaming_real_crt": "六条证据链否定『真 CRT』：时代(MSVC6 vs VS2010 Concurrency)、字节形态(7B thiscall getter vs 调度器内部函数)、调用者区域(全在 0x40-0x53 游戏区，无一在 0x54+ CRT 区)、this 对象(&g_pGDB/UI 元素)、邻居(全是有名游戏函数)、字段同构(与 setter/getter 家族写读同址)。即使最坏情况(第三方静态库代码)，重命名在字节层风险也为零——call rel32 操作数与符号名无关；仅语义标注不精确",
+    "side_finding": "同 gap 内 0x479290/0x4B45B0/0x4B4620/0x4B6390/0x4B64E0/0x4B6BF0 等 unknown_libname_*(reason=crt_runtime) 同样可疑，但无 decomp 调用点；建议沿用 A 方法论逐条取证，禁止批量处置"
+  },
+
+  "vftable_root_cause": {
+    "scale_verified": "718 条 C2039 '__vftable' : is not a member of 'X'（最新基线 20260915_200745 实测，与题面一致）；涉及 38 文件、43 个属主拼写；全树含 __vftable 引用行 1047（题面 611 为 Class:: 限定形态子集口径）",
+    "form_breakdown_718": "qualified 基类形态 650 + qualified+chained 8 = 658 (92%)；chained (X->__vftable->M) 38；indexed (X->__vftable[i]) 15；跨行续行未能定位 7 —— 即 t7 自报的 GAP-1(qualified, 需 bases 偏移) + GAP-2(chained/indexed, 需 vtbl 类型)",
+    "verdict": "(i)+(iv)。表层 (i) 成立但只是冰山；深层 (iv)：vtable 表示在管线四层不一致（annotation=显式 __vftable 名 → export 丢弃 → emit_headers=gap+virtual → stage3 折叠不全），且 emit_headers 的布局发射本身有 bug。不是 (ii)：118 个注解 struct 已带 __vftable 成员（UIWnd/GlowObj/SceneObj/UIListBox/PalScriptWaitObj/TaskMgr_… 逐一验证，note 自载 'renamed vfptr -> __vftable (unified with IDA convention)'）；不是 (iii)：重新注释=丢弃已证实为真实代码的语义",
+    "root_cause_chain": [
+      "1. annotation: offset 0 成员统一命名 __vftable, source=vtable_fix/annotation（structs/*.json 实测）→ apply 进 IDB",
+      "2. Hex-Rays 依 IDB 生成 body 文本引用 X->__vftable / X->Base::__vftable（名字在 IDB 存在）",
+      "3. export: ida_structs.json 的 data_members 无 +0 成员（UIWnd 实测首成员 m_fontcolor@4），vtables 单列；GlowObj.vtables=[]",
+      "4. emit_headers.py:1728 仅跳过名为 'vfptr' 的成员 —— '__vftable' 名不进 .h；+0 落入 _gap_000[4]（UIWnd.h 实测）",
+      "5. 有 vtables 的类 .h 同时发射 virtual 方法 —— 59 个头 _gap_000 与 virtual 并存（双 vptr 表示）",
+      "6. 有 bases 的类 .h 发射 ': public A, public B' 同时用 _gap_000[基类区] 覆盖基类区域 —— 145 个头双重计算",
+      "7. stage3 仅折叠无修饰形态(422 处)，qualified/chained/indexed 保留 → 718 C2039 显形"
+    ],
+    "layout_bomb_vc6_measured": "用真实仓库头文件 + t7 同款 wine_cl.sh 单 TU /Fa 实测：UIWnd.h → sizeof=0x60(96) vs 二进制 68, m_fontcolor@+8 vs +4, m_bfocus@+0x5C vs +0x40；SceneObj.h → sizeof=0xC7C(3196) vs 二进制 1784, m_fTime@+0xB8(184) vs +0x58(88)。即：即使 718 条编译错误全修成可编译，145 个多继承类 + 59 个多态类的布局漂移也使字节匹配不可能 —— 布局漂移是比 718 更硬的拦路石，且它是 emit_headers 预先存在(t7 之前)的缺陷，t7 只是让编译错误层显形",
+    "anti_anecdote_check": "按 captain 警示逐环取证（注解 JSON→export→emit_headers 源码行→VC6 实测），无跳步。C2039 表象指向『类缺成员』(易臆测成 (ii) 补注解)，真因在另一层（表示丢弃+双重表示）——与『union 展开实为基类未计数』教训同构"
+  },
+
+  "c_verdict": {
+    "feasible": true,
+    "cost": "天级。需设计裁定三选一 + 跨层协同：emit_headers(表示选择) + data.py(struct_bases 表, 即 t7 GAP-1 的前置) + stage3(qualified 折叠)。是 718 编译错误 + 145/59 布局漂移的主战场，对 L1/ok 影响最大",
+    "recommended_direction": "C-V：收口到 C++ virtual 表示。emit_headers 对有 vtables 的类删除 +0 gap(由隐式 vfptr 占位)、对有 bases 的类删除基类区域 gap(由基类子对象占位)；qualified 形态用 bases 偏移表折叠为 (*(T*)((char*)X+off))。哲学依据：原 90 年代源码中不存在 __vftable 成员——virtual 才是语义忠实的再创作；显式成员表示(C-E)反而引入原源码没有的成员",
+    "alternative_rejected": "C-E(发 void *__vftable + 删 virtual + 恢复 ctor vptr 存储重开 _remove_backtick_calls + 发射 vtbl 数据符号)：工作量大且引入原源码不存在的成员；任务书可选项 b『单独补一行 void *__vftable;』有害——59 类 virtual 未删则双 vptr(再 +4)、145 类基类双计未修则漂移依旧，修 658 条编译错误的同时埋更多字节雷"
+  },
+
+  "option_b_reanalysis": {
+    "verdict": "B 不正确，拒绝",
+    "reasons": [
+      "1. 0x532D50 的游戏函数身份已由字节+同字段+xrefs 三重证据钉死；B 把它重新 skip = 把真实游戏函数永久踢出反编译语料(3595→3594)，与匹配反编译的项目目标直接相悖",
+      "2. B 消除 46 行非法引用的手段是重新注释真实调用点 —— 违反 t7 判据豁免②『不得再有真实语义被注释』的精神；captain 已证明这 46 行全部是真实代码",
+      "3. 豁免③救不了 B：它要求『ok 下降须逐条证明新错误来自恢复的真实代码』；B 的 ok 下降(54→53)来自『丢弃真实代码』，方向正好相反，不满足豁免框架",
+      "4. CLAUDE.md：编译错误不是回退标注纠错的理由。标注错误已被 K 纠正，正确路径是 A 补齐剩余 3 个，而不是回头。且 A 落地后 46 行引用变为合法调用，B 的动机随之消失"
+    ]
+  },
+
+  "fourth_options": [
+    {
+      "id": "D1",
+      "name": "A'(=A 的增强版)：静态 PE 取证替代 IDA 探针",
+      "detail": "函数体字节直接从 original/PAL3.exe 读（python 解析 PE 节表 → .text 文件偏移）。本轮已实测并与 K 的 idat 探针逐字节互证。A 的取证环节成本归零，只剩命名裁定",
+      "assessment": "强烈推荐，已替 captain 完成大半"
+    },
+    {
+      "id": "D2",
+      "name": "C-V：vtable 表示收口到 C++ virtual + bases 偏移表折叠",
+      "detail": "见 c_verdict.recommended_direction",
+      "assessment": "推荐，是 C 的正确打开方式；顺带修复 145+59 类布局漂移"
+    },
+    {
+      "id": "D3",
+      "name": "C-E：显式 __vftable 成员表示（含任务书选项 b 的单行补声明）",
+      "detail": "见 c_verdict.alternative_rejected",
+      "assessment": "不推荐单独做；只能作为 C-E 整体的组成部分，而 C-E 整体劣于 C-V"
+    },
+    {
+      "id": "D4",
+      "name": "注解层占位类型（Concurrency 命名空间 stub，仿 detached_nested_types 先例）",
+      "detail": "把 Concurrency/std::_Xlen 等建为占位类型使引用可编译",
+      "assessment": "不推荐：A 之后 Concurrency 名已无存在理由；保留错误名违背『再创作』哲学。_Xlen/_Xran(11+9 处, Hex-Rays 在越界死分支贴的 STL 名，decomp 无同名函数) 可另案单独裁定，不在本案三选一范围"
+    },
+    {
+      "id": "D5",
+      "name": "对 gap 内 unknown_libname_*(crt_runtime) 扩展 A 方法论",
+      "detail": "0x479290 等同区域 skip 条目逐条静态取证",
+      "assessment": "值得排队，但无 decomp 调用点、不阻塞任何 ok 文件，优先级低于 A'/C-V；严禁批量处置"
+    }
+  ],
+
+  "recommended_plan": {
+    "sequence": [
+      "1. A'（立即，小时级）：按 K 模板将 3 地址写入 functions.json（含本轮字节/邻居/xref 取证作 _flirt_correction）、从 skip_functions.json 删除；建议命名方向：0x4790F0=PAL_GDB 计数 getter(读+0x8C, GetRoleNum 同字段)、0x479250=PAL_GDB 计数 getter(读+0x9C)、0x4B4830=RenderTarget +0x80 bool 读取器(SetVisible 同字段)；精确业务名留给 captain 裁定",
+      "2. 勘误 K 文档 L47-48『它们才是真正的 CRT 区域』句（同时修订其第 5 节遗留表）",
+      "3. C-V 设计裁定（下一个大项，天级）：vtable 表示选边 virtual，emit_headers 删基类区/+0 双重 gap，data.py 供 struct_bases，stage3 折叠 qualified；验收含『145 多继承类 + 59 多态类 VC6 sizeof 与二进制一致』这条新硬判据",
+      "4. B：不做"
+    ],
+    "diff_from_captain": "方向上一致(A+C、拒绝 B)，但有五点实质差异：① A 比 captain 以为的更便宜——取证无需 IDA 窗口，字节已到手；② A 的 ok 直接收益≈0（14 文件共 596 错，Concurrency 仅占 47），不要以 ok 提升立项；③ C 的真实体量远大于『718 条编译错误』——145 个多继承类(实测 SceneObj 3196 vs 1784)与 59 个多态类(实测 UIWnd 96 vs 68)的布局漂移才是拦住 L1 的硬石，718 只是编译层可见冰山；④ captain 的 K 文档含一条已被证伪的断言（『另 3 个才是真 CRT 区域』），必须勘误——captain 此前若据此推迟 A，是错的；幸好其行动方向未受影响；⑤ B 被明确拒绝且给出违反 t7 豁免框架的论证"
+  },
+
+  "not_verified": [
+    "3 个地址的精确业务命名（+0x8C/+0x9C/+0x80 的语义名需更多调用点归纳，本轮只给证据方向）",
+    "3 个函数是否应同时挂入 PAL_GDB/RenderTarget 的 struct 方法表（与 K 保持同构：K 未挂；挂上后 Hex-Rays 调用点更干净，留给 captain）",
+    "A' 落地后的权威 L1/ok 读数（需 codegen 窗口；我未运行任何管线命令）",
+    "C-V 下 59/145 类的精确 MSVC 多继承布局推演（多个多态基的次 vfptr 位置需设计窗口逐类核算）",
+    "718 条中 7 条跨行续行未能定位到含 __vftable 的语句行",
+    "_Xlen/_Xran 共 20 处未裁定（不在本案范围）",
+    "145 个多继承头是否全部双重计算基类区域（抽测 SceneObj/UIWnd 成立；其余需 C-V 后跑 audit_layout 逐类确认）",
+    "未运行 idat/IDA（IDB 单写者纪律）；所有字节证据来自 original/PAL3.exe 静态读取"
+  ]
+}

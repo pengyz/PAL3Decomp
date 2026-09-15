@@ -2708,5 +2708,23 @@
     "signature": "void __thiscall RoleSystem::ClearStateMode(RoleSystem *this)",
     "class": "RoleSystem",
     "_flirt_correction": "FLIRT 曾将 0x00532D50 误命名为 ?MarkInactive@ExternalStatistics@details@Concurrency@@QAEXXZ，并被前一轮以「函数名属于 MSVC Concurrency Runtime」为由写入 skip_functions.json (reason=crt_runtime)。该判断仅凭名字、无函数体取证，属错误：实测函数体 = C7 41 18 00 00 00 00 C3 (mov dword [ecx+0x18], 0 ; retn)，是**游戏函数**，非 CRT。位置证据：邻居 0x00532CF0 CalcAngleBetweenVectors / 0x00532D30 GetStateMode / 0x00532E10 ResetPathState 全为游戏函数。调用点证据：xrefs_to = 0x534EA9，落在 ExternalStatistics::UpdateFromRole(0x00534E60) 内；同函数前两分支分别调 GetStateMode 与 RoleSystem::NegateStateMode，均取 *(RoleSystem **)this。命名理由：C7 41 18 = mov dword [ecx+0x18], 0 与邻居 GetStateMode 的 8B 41 50 89 41 18 (mov eax,[ecx+0x50]; mov [ecx+0x18],eax) 操作**同一字段 0x18**，故本函数是该字段的『清零』变体。"
+  },
+  "0x004B4830": {
+    "name": "IsVisible",
+    "signature": "char __thiscall RenderTarget::IsVisible(RenderTarget *this)",
+    "class": "RenderTarget",
+    "_flirt_correction": "FLIRT 曾误命名为 Conformance Runtime 命名空间函数（原名 ?IsThrottled@VirtualProcessor@details@Concurrency@@QBE_NXZ）。判定为误命名的依据：PE 静态读（tools/pe_probe.py，与 idat 探针逐字节互证）实测函数体；MSVC6(1998) 二进制不含 VS2010 才有的 Concurrency Runtime；调用者全在游戏区、this 为游戏对象、邻居为游戏函数。见 data/status/_cleanup_review_abc_plan.json。 命名依据：0x4B4830 = 8A 81 80 00 00 00 C3 = `mov al,[ecx+0x80]; retn`（7B bool getter）。字段证据：RenderTarget 注解 +0x80 = m_bVisible (int)；setter 0x4B4820 RenderTarget_SetVisible 写同一字段 [ecx+0x80]（88 81 80 00 00 00）。"
+  },
+  "0x004790F0": {
+    "name": "GDB_GetRoleNum",
+    "signature": "int __thiscall PAL_GDB::GDB_GetRoleNum(PAL_GDB *this)",
+    "class": "PAL_GDB",
+    "_flirt_correction": "FLIRT 曾误命名为 Conformance Runtime 命名空间函数（原名 ?GetExecutionResourceId@VirtualProcessor@details@Concurrency@@QBEIXZ）。判定为误命名的依据：PE 静态读（tools/pe_probe.py，与 idat 探针逐字节互证）实测函数体；MSVC6(1998) 二进制不含 VS2010 才有的 Concurrency Runtime；调用者全在游戏区、this 为游戏对象、邻居为游戏函数。见 data/status/_cleanup_review_abc_plan.json。 命名依据：0x4790F0 = 8B 81 8C 00 00 00 C3 = `mov eax,[ecx+0x8C]; retn`（7B getter）。邻居 0x479080 GDB_GetRoleNum 读同一字段 [ecx+0x8C] 并作计数用（8B 91 8C 00 00 00 + test/jle）；调用者 4 个全游戏区，this=&g_pGDB，返回值作 NPC::GetPropertyByIndex 循环上限。"
+  },
+  "0x00479250": {
+    "name": "GDB_GetItemNum",
+    "signature": "int __thiscall PAL_GDB::GDB_GetItemNum(PAL_GDB *this)",
+    "class": "PAL_GDB",
+    "_flirt_correction": "FLIRT 曾误命名为 Conformance Runtime 命名空间函数（原名 ?GetProxy@InternalContextBase@details@Concurrency@@UAEPAUIThreadProxy@3@XZ）。判定为误命名的依据：PE 静态读（tools/pe_probe.py，与 idat 探针逐字节互证）实测函数体；MSVC6(1998) 二进制不含 VS2010 才有的 Concurrency Runtime；调用者全在游戏区、this 为游戏对象、邻居为游戏函数。见 data/status/_cleanup_review_abc_plan.json。 命名依据：0x479250 = 8B 81 9C 00 00 00 C3 = `mov eax,[ecx+0x9C]; retn`（7B getter）。夹在 GDB_GetItemNum 与 GetRoleBySlot 之间；调用者 CCBRoleState/CCBCamControl，返回值作计数。"
   }
 }
