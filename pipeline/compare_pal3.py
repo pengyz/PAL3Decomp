@@ -322,7 +322,10 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
             # R8：两种越界语义**不得合并计数**。
             #   oob_text_end —— 越过 `.text` 尾（真实代码区之外）⇒ 比对数据不可信
             #   oob_file_end —— 越过文件末尾 ⇒ 连字节都取不到
-            'oob_text_end': 0, 'oob_file_end': 0}
+            'oob_text_end': 0, 'oob_file_end': 0,
+            # 0b-⑤：名字命中但**无 `va`** 的合成条目（dtor 名字供给），无法定位原始字节 ⇒ 未参与比对。
+            # 显式计数，避免它被静默算进「可比对」的 matched 里。
+            'unresolved_synth': 0}
 
     for n, unit in enumerate(passing, 1):
         src = str(REPO / unit)
@@ -343,7 +346,18 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
         p1 = pp = 0
         for sym, e in matched.items():
             info = funcs[sym]
-            size = e['size']
+            # 0b-⑤ 修正（2026-09-15）：**合成条目**（`_from` 标记的 dtor 名字供给）
+            # 只携带 name/signature，**没有 `size`/`va`**（真实 decomp 条目由
+            # `load_decomp_index` 提供 `va`/`size` 两键）。
+            # ⇒ 原先直接 `e['size']` 会 `KeyError`（实测：match 在第 2 个单元即崩）。
+            # 此处用**编译产物**的字节长度作 size（`info['bytes']` 就是该符号的机器码），
+            # 这是语义正确的：字节比对要的就是"该函数在 .obj 里的字节数"。
+            # `va`（原始二进制地址）合成条目不携带 ⇒ 无法定位原始字节，**跳过比对**
+            # 并计入新计数器 `unresolved_synth`（不静默丢弃）。
+            if 'va' not in e:
+                stats['unresolved_synth'] = stats.get('unresolved_synth', 0) + 1
+                continue
+            size = e['size'] if 'size' in e else len(info['bytes'])
             idx0 = e['va'] - image_base - text_rva
             # R8：界的语义必须正确 —— 用 **`.text` 的 raw_size**，不是缓冲区长度。
             # 缓冲区长度曾是"文件末尾到 .text 起点"（0x211000），比 .text（0x169000）大一截，
@@ -376,10 +390,10 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
               % (n, unit, len(funcs), len(matched), p1, pp))
 
     print('matched %d/%d symbols | L1 %d | partial %d | oob %d (text_end %d / file_end %d) '
-          '| unmatched %d | compile-skip %d'
+          '| unmatched %d | compile-skip %d | unresolved-synth %d'
           % (stats['matched'], stats['symbols'], stats['match_L1'],
              stats['partial'], stats['oob'], stats['oob_text_end'], stats['oob_file_end'],
-             stats['unmatched'], stats['compile_skip']))
+             stats['unmatched'], stats['compile_skip'], stats.get('unresolved_synth', 0)))
     total = stats['match_L1'] + stats['partial']
     if total:
         print('L1 rate over matched: %d/%d = %.1f%%'
