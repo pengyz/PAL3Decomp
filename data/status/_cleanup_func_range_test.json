@@ -1,0 +1,50 @@
+{
+ "idb": "/tmp/range_test.i64",
+ "tests": [
+  {
+   "ok": true,
+   "start": "0x4623a0",
+   "end": "0x469cec",
+   "size": 31052,
+   "next_start": "0x469d00",
+   "name": "?CreatePanelElements@SaleUI@@QAEHPAUCCBUIPanel@@@Z",
+   "test": "select_target"
+  },
+  {
+   "ok": true,
+   "want": "0x46603f",
+   "got": "0x46603f",
+   "test": "T1_set_func_end_truncate"
+  },
+  {
+   "ok": true,
+   "got": "0x469cec",
+   "want": "0x469cec",
+   "test": "T1_restore"
+  },
+  {
+   "ok": false,
+   "want": "0x469d20",
+   "got": "0x469cec",
+   "note": "ok=False -> overlap rejected; ok=True -> would swallow the next function",
+   "test": "T2_extend_past_next_func"
+  },
+  {
+   "ok": false,
+   "at": "0x464c07",
+   "note": "False -> must truncate or del_func first",
+   "test": "T3a_add_func_inside_no_truncate"
+  },
+  {
+   "ok": true,
+   "at": "0x464c07",
+   "note": "True -> correct order is set_func_end -> add_func",
+   "test": "T3b_add_func_after_truncate"
+  },
+  {
+   "got": "0x469cec",
+   "want": "0x469cec",
+   "test": "final_restore"
+  }
+ ]
+}
