@@ -203,3 +203,65 @@ idat -A -S"pipeline/ida/export_func_bounds.py" original/PAL3.exe.i64
 | **1** | 用 `func_bounds.json` 的 **`vptr_sites` + IDA 归属**重跑全量"表→类"映射（170/467 已可做）| **纯离线**，立即可做 |
 | **2** | 对那 54 个"IDA 无名"的类：**先在 IDB 里找到它们的 ctor 并命名**（annotation 工作）| 需窗口；这是 F2 的真正前置 |
 | **3** | `CEffShock` / `ScriptVM` / `filebuf` 这 3 个**已可取证**的，先做闭环验证 | 验证方法链 |
+
+---
+
+## 9. 【更正 R18/§8 的错误方向】IDB 是**生成物**，修法只能在 annotation 层（captain 记）
+
+> **用户纠正**：「你飘了，IDB 是生成物，不能写，正确的路径是走 annotation apply export codegen 完整管线」
+
+**这个纠正是对的**，我在此前的 R18/§8 里把「在 IDB 里创建/重命名函数」当成了候选路径——**方向错误**。
+
+### 事实（已核实 `pipeline/cli.py:cmd_init`）
+
+```
+[1/4] Raw IDB: EXISTS (original/PAL3.exe.raw.i64)
+[2/4] Work IDB: EXISTS, **overwriting with fresh raw copy**   ← 每次 init 都从 raw 覆盖
+      → 再 apply annotations（第 3 步）→ export（第 4 步）
+```
+
+⇒ **`original/PAL3.exe.i64` 完全由 `PAL3.exe` + PDB + `data/annotations/` 重建**。
+**对它的任何写入都会被下次 `init` 覆盖 = 无意义的动作。**
+
+**我犯的具体错误**：
+1. 在 §8 把"写 IDB（创建/重命名函数）"列为**候选路径 B**；
+2. 更早我还用 `idat -A -S"<只读脚本>"` 跑了一次——**即使脚本不 `save_database`，
+   `idat` 仍更新了 IDB 的 mtime**（大小未变）。**那也是"向生成物写入"的动作，不该做。**
+   （正确做法：如果只是要读信息，应明确知道 IDB 会被 `init` 重建，
+   所以"读到的东西"必须来自 `apply/export` 的**产物**，而不是"改 IDB 让产物变好"。）
+
+### 正确的修法位置
+
+| 目标 | 正确位置 | 机制 |
+|---|---|---|
+| 给函数命名/改归属 | `data/annotations/functions.json` | `apply_annotations.py:11` → `set_name` + `SetType`（幂等）|
+| **给类补方法归属（F2 缺口）** | **`data/annotations/structs/<Cls>.json` 的 `methods` 字段** | apply 时写入 IDB 的 struct methods ⇒ **codegen 才能据此发 `virtual`** |
+| 给类补 vtable 记录 | `structs/<Cls>.json` 的 `vtables` 字段 | 同上 |
+
+**⇒ 所以 F2 的修法是**：往 `structs/*.json` 的 `methods`/`vtables` 加条目（**带二进制证据**），
+然后跑完整管线 `apply → export → codegen`，让 IDB 与 `ida_structs.json` 自然带上这些信息。
+
+**并须遵守项目规则**：`CLAUDE.md` 「每一处 annotation 修改必须有二进制直接证据」
+（A 级 = 指令中的 reg+disp32 / 绝对地址；禁止猜测性修改、禁止批量未验证修改）。
+
+### ️ 但"归属"本身的证据仍不足（这是真实的技术障碍，不是方向问题）
+
+即使方向对了，**"某个函数属于哪个类"的证据仍难取**。本轮实测的两条反例：
+
+```
+CEffShock:  ?GetEditorTaskDescription@CEffShock@@QAEPBDH@Z（const char*(int) 的 getter）
+            写了 3 张表 0x56FA7C/0x56FA88/0x56FAC4
+            ⇒ **一个 getter 不可能是 ctor** ⇒ IDA 的函数边界把 ctor 合并进了它
+```
+```
+IDA 函数大小：中位数 73 B，均值 246 B，**最大 31052 B**；>4KB 的 24 个（0.4%）
+ 例：?CreatePanelElements@SaleUI@@QAEHPAUCCBUIPanel@@@Z = 31,052 B
+⇒ **IDA 的"函数容器"也有合并** ⇒ 不能用它做归属
+```
+
+**⇒ 结论**：方向已明确（annotation 层 + 完整管线），
+但**"给 F2 的 57 个类补方法归属"缺少可靠的归属证据**——
+`decomp`、`annotations`、**IDB 的函数边界**三者都不足以单独支撑归属。
+
+**⇒ 需要的方法**：用**调用链**取证（ctor 的调用者是谁、`new Cls` 的调用点在哪），
+而不是依赖"函数容器"。
