@@ -1,5 +1,8 @@
 {"addr": "0x0051CB60", "name": "CCBAIWindow::Reset(int *)", "file": "pal3/src/Combat/CCBAIWindow.cpp", "status": "partial", "match_pct": 20.2, "size": 178}
 {"addr": "0x0051CCE0", "name": "CCBAIWindow::Destroy(void)", "file": "pal3/src/Combat/CCBAIWindow.cpp", "status": "partial", "match_pct": 18.3, "size": 175}
+{"addr": "0x0051CD90", "name": "CCBAIWindow::OnMessage(UIListBox * *)", "file": "pal3/src/Combat/CCBAIWindow.cpp", "status": "partial", "match_pct": 19.4, "size": 175}
+{"addr": "0x0051CE40", "name": "CCBAIWindow::Update(CCBUI * *)", "file": "pal3/src/Combat/CCBAIWindow.cpp", "status": "partial", "match_pct": 20.2, "size": 178}
+{"addr": "0x0051CF00", "name": "CCBAIWindow::ShowWindow(CCBControlWindow * *)", "file": "pal3/src/Combat/CCBAIWindow.cpp", "status": "partial", "match_pct": 18.9, "size": 175}
 {"addr": "0x004DC240", "name": "CCBControl::GetActiveAttackCount(void)", "file": "pal3/src/Combat/CCBControl.cpp", "status": "partial", "match_pct": 0.0, "size": 13}
 {"addr": "0x004DC560", "name": "CCBControl::GetState(void)", "file": "pal3/src/Combat/CCBControl.cpp", "status": "partial", "match_pct": 6.8, "size": 74}
 {"addr": "0x004DC5B0", "name": "CCBControl::GetControl(void)", "file": "pal3/src/Combat/CCBControl.cpp", "status": "match_L1", "match_pct": 100.0, "size": 4}
@@ -16,9 +19,13 @@
 {"addr": "0x004A12F0", "name": "ARC_PlayerAtt::Refresh(void)", "file": "pal3/src/Misc/ARC_PlayerAtt.cpp", "status": "partial", "match_pct": 11.8, "size": 229}
 {"addr": "0x00401000", "name": "AStarPathFinder::AStarPathFinder(void)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 43.6, "size": 39}
 {"addr": "0x00401050", "name": "AStarPathFinder::ReleaseAll(void)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 17.9, "size": 28}
+{"addr": "0x004012A0", "name": "?TryExpand@AStarPathFinder@@QAEHPAUAStarPathFinder::NODE@@HHHH@Z", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 5.0, "size": 523}
 {"addr": "0x004014E0", "name": "AStarPathFinder::IsInBounds(int,int)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "match_L1", "match_pct": 100.0, "size": 5}
 {"addr": "0x00401500", "name": "AStarPathFinder::FindInOpen(int)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 94.1, "size": 34}
 {"addr": "0x00401530", "name": "AStarPathFinder::FindInClosed(int)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 94.1, "size": 34}
+{"addr": "0x00401560", "name": "?PushOpen@AStarPathFinder@@QAEHPAUAStarPathFinder::NODE@@@Z", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 33.3, "size": 48}
+{"addr": "0x00401590", "name": "?Release@AStarPathFinder@@QAEHPAUAStarPathFinder::NODE@@@Z", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 38.7, "size": 31}
+{"addr": "0x004015B0", "name": "?UpdateNeighbors@AStarPathFinder@@QAEHPAUAStarPathFinder::NODE@@@Z", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 10.2, "size": 401}
 {"addr": "0x00401750", "name": "AStarPathFinder::ResortNode(void)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 15.0, "size": 40}
 {"addr": "0x004017A0", "name": "AStarPathFinder::Reset(void)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 16.7, "size": 36}
 {"addr": "0x004B72E0", "name": "CEffGroupNode::CEffGroupNode(void)", "file": "pal3/src/Misc/CEffGroupNode.cpp", "status": "partial", "match_pct": 44.7, "size": 38}
@@ -33,11 +40,13 @@
 {"addr": "0x0044DA30", "name": "JusticeBookUI::UpdateFadeAnim(float)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 10.8, "size": 139}
 {"addr": "0x005282E0", "name": "JusticeBookUI::ctor(void)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 15.6, "size": 474}
 {"addr": "0x005284E0", "name": "JusticeBookUI::JusticeBookUI(void)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 36.0, "size": 367}
+{"addr": "0x0044A7D0", "name": "UIWnd::_sdtor_14(void *,char)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x005284C0", "name": "JusticeBookUI::_scalar_dtor(UIWnd *,char)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x0043F950", "name": "UIButton::_scalar_dtor(void *,char)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x00528ED0", "name": "JusticeBookUI::JusticeBookUI_Render", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 16.8, "size": 125}
 {"addr": "0x00528F50", "name": "JusticeBookUI::ProcessInput(int,int)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 35.6, "size": 449}
 {"addr": "0x00529120", "name": "JusticeBookUI::OnMessage(int,char *,int)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 24.0, "size": 688}
 {"addr": "0x004B8200", "name": "Math::RandomLerp(float,float)", "file": "pal3/src/Misc/Math.cpp", "status": "partial", "match_pct": 47.0, "size": 66}
-{"addr": "0x0052FBD0", "name": "MiniGame2Scene::GetOBBox(void)", "file": "pal3/src/Misc/MiniGame2Scene.cpp", "status": "partial", "match_pct": 36.6, "size": 82}
 {"addr": "0x00401F50", "name": "OpenBaseFile::OpenBaseFile(void)", "file": "pal3/src/Misc/OpenBaseFile.cpp", "status": "partial", "match_pct": 64.0, "size": 25}
 {"addr": "0x00401F70", "name": "OpenBaseFile::~OpenBaseFile(void)", "file": "pal3/src/Misc/OpenBaseFile.cpp", "status": "partial", "match_pct": 48.0, "size": 25}
 {"addr": "0x00401F90", "name": "OpenNULLFile::OpenNULLFile(void)", "file": "pal3/src/Misc/OpenNULLFile.cpp", "status": "partial", "match_pct": 63.6, "size": 11}
@@ -49,6 +58,7 @@
 {"addr": "0x0053FE90", "name": "Parent_Data::_CheckStr(void)", "file": "pal3/src/Misc/Parent_Data.cpp", "status": "partial", "match_pct": 54.5, "size": 11}
 {"addr": "0x0053FEA0", "name": "Parent_Data::GetSize(void)", "file": "pal3/src/Misc/Parent_Data.cpp", "status": "partial", "match_pct": 60.0, "size": 5}
 {"addr": "0x0053FEB0", "name": "Parent_Data::spstr(void)", "file": "pal3/src/Misc/Parent_Data.cpp", "status": "partial", "match_pct": 33.3, "size": 15}
+{"addr": "0x0053FEC0", "name": "Parent_Data::NewEffect(void)", "file": "pal3/src/Misc/Parent_Data.cpp", "status": "partial", "match_pct": 62.5, "size": 224}
 {"addr": "0x00407DC0", "name": "PathObj::CalcLength(void)", "file": "pal3/src/Misc/PathObj.cpp", "status": "partial", "match_pct": 16.3, "size": 251}
 {"addr": "0x0041F120", "name": "PathObj::GetPosition(float,float *,int *)", "file": "pal3/src/Misc/PathObj.cpp", "status": "partial", "match_pct": 5.7, "size": 299}
 {"addr": "0x0043A690", "name": "PlayerAtt::CheckCurRV(void)", "file": "pal3/src/Misc/PlayerAtt.cpp", "status": "partial", "match_pct": 63.6, "size": 44}
@@ -66,6 +76,7 @@
 {"addr": "0x004447A0", "name": "SceneInfo::CheckBoundsRightCombo(float)", "file": "pal3/src/Misc/SceneInfo.cpp", "status": "partial", "match_pct": 62.0, "size": 308}
 {"addr": "0x004448E0", "name": "SceneInfo::CheckBoundsBottomCombo(float)", "file": "pal3/src/Misc/SceneInfo.cpp", "status": "partial", "match_pct": 61.8, "size": 306}
 {"addr": "0x004220F0", "name": "SceneMapPlayer::ClearName(void)", "file": "pal3/src/Misc/SceneMapPlayer.cpp", "status": "partial", "match_pct": 95.0, "size": 20}
+{"addr": "0x00533CB0", "name": "SceneObjParam::UpdateCameraAndRole(gbGfxManager *)", "file": "pal3/src/Misc/SceneObjParam.cpp", "status": "partial", "match_pct": 11.8, "size": 204}
 {"addr": "0x00533DA0", "name": "SceneObjParam::FlushCommands(void)", "file": "pal3/src/Misc/SceneObjParam.cpp", "status": "partial", "match_pct": 36.4, "size": 11}
 {"addr": "0x005330F0", "name": "SceneProp::CalculateWorldPos(float)", "file": "pal3/src/Misc/SceneProp.cpp", "status": "partial", "match_pct": 5.5, "size": 343}
 {"addr": "0x00533BC0", "name": "SceneProp::CalcScreenPosition(void)", "file": "pal3/src/Misc/SceneProp.cpp", "status": "partial", "match_pct": 16.4, "size": 116}
@@ -82,18 +93,25 @@
 {"addr": "0x0043D920", "name": "UIStatic::Destroy(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 16.0, "size": 25}
 {"addr": "0x0043DAB0", "name": "UIStatic::RenderQuadSlice(int *,int)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 13.0, "size": 400}
 {"addr": "0x00440740", "name": "UIStatic::UIStatic(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 40.7, "size": 81}
+{"addr": "0x0044A7D0", "name": "UIWnd::_sdtor_14(void *,char)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x004407A0", "name": "UIStatic::_scalar_dtor(void *,char)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x004407C0", "name": "UIStatic::~UIStatic(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 43.0, "size": 79}
 {"addr": "0x00440960", "name": "UIStatic::FormatText(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 35.3, "size": 187}
+{"addr": "0x00440A20", "name": "UIStatic::LoadResource(int,char)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 40.6, "size": 187}
 {"addr": "0x00440AE0", "name": "UIStatic::LoadTexture(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 35.8, "size": 187}
 {"addr": "0x00440BA0", "name": "UIStatic::OnMessage(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 46.2, "size": 52}
 {"addr": "0x00440CE0", "name": "UIStatic::SetText(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 41.3, "size": 230}
 {"addr": "0x00440F30", "name": "UIStatic::Render(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 11.7, "size": 265}
+{"addr": "0x00442480", "name": "UIStatic::LoadTextureByName(int,char)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 17.9, "size": 190}
 {"addr": "0x004426B0", "name": "UIStatic::CreateFromTemplate(void *,int)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 22.5, "size": 227}
 {"addr": "0x0044AA20", "name": "UIStatic::RenderTile(int,char)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 13.1, "size": 214}
 {"addr": "0x0044BE60", "name": "UIStatic::DestroyChainToBase(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 33.3, "size": 12}
 {"addr": "0x00532A80", "name": "UITabCtrl::InitAnimParams(void)", "file": "pal3/src/Misc/UITabCtrl.cpp", "status": "partial", "match_pct": 5.7, "size": 192}
 {"addr": "0x00445CD0", "name": "UITitle_BBTY::Render(void)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "partial", "match_pct": 51.0, "size": 49}
 {"addr": "0x00451CC0", "name": "UITitle_BBTY::UITitle_BBTY(void)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "partial", "match_pct": 44.0, "size": 184}
+{"addr": "0x0044A7D0", "name": "UIWnd::_sdtor_14(void *,char)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x00451D80", "name": "UITitle_BBTY::_scalar_dtor(UIWnd *,char)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x0043F950", "name": "UIButton::_scalar_dtor(void *,char)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x00451DA0", "name": "UITitle_BBTY::ctor(void)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "partial", "match_pct": 10.5, "size": 172}
 {"addr": "0x004520A0", "name": "UITitle_BBTY::UpdateFrame(double,int,int)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "partial", "match_pct": 24.4, "size": 861}
 {"addr": "0x00452420", "name": "UITitle_BBTY::OnMessage(int,int,int)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "partial", "match_pct": 25.9, "size": 139}
@@ -101,12 +119,14 @@
 {"addr": "0x0053B720", "name": "VideoPlayer::SetRegion(int,int)", "file": "pal3/src/Misc/VideoPlayer.cpp", "status": "partial", "match_pct": 8.6, "size": 336}
 {"addr": "0x0041C170", "name": "_Console::SetActive(int)", "file": "pal3/src/Misc/_Console.cpp", "status": "partial", "match_pct": 84.4, "size": 32}
 {"addr": "0x004A3A90", "name": "s_RoleState::LoadAndSetupRole(void)", "file": "pal3/src/Misc/s_RoleState.cpp", "status": "partial", "match_pct": 17.4, "size": 1071}
+{"addr": "0x0052FA50", "name": "s_RoleState::LoadSkeletonModel(void)", "file": "pal3/src/Misc/s_RoleState.cpp", "status": "partial", "match_pct": 48.5, "size": 169}
 {"addr": "0x0052FB00", "name": "s_RoleState::CopyRoleData(int,char)", "file": "pal3/src/Misc/s_RoleState.cpp", "status": "partial", "match_pct": 63.6, "size": 99}
 {"addr": "0x0044E5E0", "name": "scScriptInstance::~scScriptInstance(void)", "file": "pal3/src/Misc/scScriptInstance.cpp", "status": "partial", "match_pct": 3.3, "size": 120}
 {"addr": "0x0047C570", "name": "ObjectCamera::ObjectCamera(void)", "file": "pal3/src/Role/ObjectCamera.cpp", "status": "partial", "match_pct": 0.0, "size": 5}
 {"addr": "0x0047C580", "name": "ObjectCamera::~ObjectCamera(void)", "file": "pal3/src/Role/ObjectCamera.cpp", "status": "partial", "match_pct": 33.3, "size": 15}
 {"addr": "0x0047C590", "name": "ObjectCamera::Create(void)", "file": "pal3/src/Role/ObjectCamera.cpp", "status": "partial", "match_pct": 3.2, "size": 156}
 {"addr": "0x0047C630", "name": "ObjectCamera::GetCameraDirect(void)", "file": "pal3/src/Role/ObjectCamera.cpp", "status": "partial", "match_pct": 0.0, "size": 5}
+{"addr": "0x0047C640", "name": "ObjectCamera::SetCameraEyePosition(gbGfxManager *)", "file": "pal3/src/Role/ObjectCamera.cpp", "status": "partial", "match_pct": 14.7, "size": 156}
 {"addr": "0x0047C770", "name": "ObjectCamera::SetCameraRotate(float,float,float)", "file": "pal3/src/Role/ObjectCamera.cpp", "status": "partial", "match_pct": 17.3, "size": 110}
 {"addr": "0x0047C7E0", "name": "ObjectCamera::SetCameraDist(int,int,int)", "file": "pal3/src/Role/ObjectCamera.cpp", "status": "partial", "match_pct": 28.3, "size": 46}
 {"addr": "0x0047C810", "name": "ObjectCamera::Destroy(void)", "file": "pal3/src/Role/ObjectCamera.cpp", "status": "match_L1", "match_pct": 100.0, "size": 26}
@@ -125,5 +145,6 @@
 {"addr": "0x0043DCC0", "name": "UILBColumn::Destroy(void)", "file": "pal3/src/UI/UILBColumn.cpp", "status": "partial", "match_pct": 33.3, "size": 15}
 {"addr": "0x004450A0", "name": "UINote::Create(int,int,int,char *)", "file": "pal3/src/UI/UINote.cpp", "status": "partial", "match_pct": 35.7, "size": 207}
 {"addr": "0x00528D30", "name": "UINote::GetEntryPtr(int)", "file": "pal3/src/UI/UINote.cpp", "status": "partial", "match_pct": 88.2, "size": 17}
+{"addr": "0x0052AFF0", "name": "UINote::RenderWithStack(gbMatrixStack *)", "file": "pal3/src/UI/UINote.cpp", "status": "partial", "match_pct": 42.1, "size": 57}
 {"addr": "0x0052B030", "name": "UINote::CallVtableMethod(double)", "file": "pal3/src/UI/UINote.cpp", "status": "partial", "match_pct": 0.0, "size": 22}
 {"addr": "0x00422DF0", "name": "UISystem::Destroy(void)", "file": "pal3/src/UI/UISystem.cpp", "status": "partial", "match_pct": 50.7, "size": 67}

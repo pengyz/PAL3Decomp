@@ -19,10 +19,10 @@
  ],
  "stats": {
   "symbols": 189,
-  "matched": 129,
-  "unmatched": 60,
-  "match_L1": 6,
-  "partial": 123,
+  "matched": 150,
+  "unmatched": 39,
+  "match_L1": 14,
+  "partial": 136,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
@@ -45,6 +45,33 @@
    "va": "0x0051CCE0",
    "status": "partial",
    "match_pct": 18.3,
+   "size": 175
+  },
+  {
+   "file": "pal3/src/Combat/CCBAIWindow.cpp",
+   "symbol": "?OnMessage@CCBAIWindow@@QAEDPAPAVUIListBox@@@Z",
+   "name": "CCBAIWindow::OnMessage(UIListBox * *)",
+   "va": "0x0051CD90",
+   "status": "partial",
+   "match_pct": 19.4,
+   "size": 175
+  },
+  {
+   "file": "pal3/src/Combat/CCBAIWindow.cpp",
+   "symbol": "?Update@CCBAIWindow@@QAEDPAPAVCCBUI@@@Z",
+   "name": "CCBAIWindow::Update(CCBUI * *)",
+   "va": "0x0051CE40",
+   "status": "partial",
+   "match_pct": 20.2,
+   "size": 178
+  },
+  {
+   "file": "pal3/src/Combat/CCBAIWindow.cpp",
+   "symbol": "?ShowWindow@CCBAIWindow@@QAEDPAPAVCCBControlWindow@@@Z",
+   "name": "CCBAIWindow::ShowWindow(CCBControlWindow * *)",
+   "va": "0x0051CF00",
+   "status": "partial",
+   "match_pct": 18.9,
    "size": 175
   },
   {
@@ -193,6 +220,15 @@
   },
   {
    "file": "pal3/src/Misc/AStarPathFinder.cpp",
+   "symbol": "?TryExpand@AStarPathFinder@@QAEHPAUNODE@1@HHHH@Z",
+   "name": "?TryExpand@AStarPathFinder@@QAEHPAUAStarPathFinder::NODE@@HHHH@Z",
+   "va": "0x004012A0",
+   "status": "partial",
+   "match_pct": 5.0,
+   "size": 523
+  },
+  {
+   "file": "pal3/src/Misc/AStarPathFinder.cpp",
    "symbol": "?IsInBounds@AStarPathFinder@@UAEHHH@Z",
    "name": "AStarPathFinder::IsInBounds(int,int)",
    "va": "0x004014E0",
@@ -217,6 +253,33 @@
    "status": "partial",
    "match_pct": 94.1,
    "size": 34
+  },
+  {
+   "file": "pal3/src/Misc/AStarPathFinder.cpp",
+   "symbol": "?PushOpen@AStarPathFinder@@QAEHPAUNODE@1@@Z",
+   "name": "?PushOpen@AStarPathFinder@@QAEHPAUAStarPathFinder::NODE@@@Z",
+   "va": "0x00401560",
+   "status": "partial",
+   "match_pct": 33.3,
+   "size": 48
+  },
+  {
+   "file": "pal3/src/Misc/AStarPathFinder.cpp",
+   "symbol": "?Release@AStarPathFinder@@QAEHPAUNODE@1@@Z",
+   "name": "?Release@AStarPathFinder@@QAEHPAUAStarPathFinder::NODE@@@Z",
+   "va": "0x00401590",
+   "status": "partial",
+   "match_pct": 38.7,
+   "size": 31
+  },
+  {
+   "file": "pal3/src/Misc/AStarPathFinder.cpp",
+   "symbol": "?UpdateNeighbors@AStarPathFinder@@QAEHPAUNODE@1@@Z",
+   "name": "?UpdateNeighbors@AStarPathFinder@@QAEHPAUAStarPathFinder::NODE@@@Z",
+   "va": "0x004015B0",
+   "status": "partial",
+   "match_pct": 10.2,
+   "size": 401
   },
   {
    "file": "pal3/src/Misc/AStarPathFinder.cpp",
@@ -346,6 +409,33 @@
   },
   {
    "file": "pal3/src/Misc/JusticeBookUI.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::_sdtor_14(void *,char)",
+   "va": "0x0044A7D0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/JusticeBookUI.cpp",
+   "symbol": "??_GJusticeBookUI@@UAEPAXI@Z",
+   "name": "JusticeBookUI::_scalar_dtor(UIWnd *,char)",
+   "va": "0x005284C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/JusticeBookUI.cpp",
+   "symbol": "??_GUIButton@@UAEPAXI@Z",
+   "name": "UIButton::_scalar_dtor(void *,char)",
+   "va": "0x0043F950",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/JusticeBookUI.cpp",
    "symbol": "?JusticeBookUI_Render@JusticeBookUI@@SAHH@Z",
    "name": "JusticeBookUI::JusticeBookUI_Render",
    "va": "0x00528ED0",
@@ -379,15 +469,6 @@
    "status": "partial",
    "match_pct": 47.0,
    "size": 66
-  },
-  {
-   "file": "pal3/src/Misc/MiniGame2Scene.cpp",
-   "symbol": "?GetOBBox@MiniGame2Scene@@QAEPAUgbOBBox@@XZ",
-   "name": "MiniGame2Scene::GetOBBox(void)",
-   "va": "0x0052FBD0",
-   "status": "partial",
-   "match_pct": 36.6,
-   "size": 82
   },
   {
    "file": "pal3/src/Misc/OpenBaseFile.cpp",
@@ -487,6 +568,15 @@
    "status": "partial",
    "match_pct": 33.3,
    "size": 15
+  },
+  {
+   "file": "pal3/src/Misc/Parent_Data.cpp",
+   "symbol": "?NewEffect@Parent_Data@@QAEPAVgbRenderEffect@@XZ",
+   "name": "Parent_Data::NewEffect(void)",
+   "va": "0x0053FEC0",
+   "status": "partial",
+   "match_pct": 62.5,
+   "size": 224
   },
   {
    "file": "pal3/src/Misc/PathObj.cpp",
@@ -643,6 +733,15 @@
   },
   {
    "file": "pal3/src/Misc/SceneObjParam.cpp",
+   "symbol": "?UpdateCameraAndRole@SceneObjParam@@QAEHPAVgbGfxManager@@@Z",
+   "name": "SceneObjParam::UpdateCameraAndRole(gbGfxManager *)",
+   "va": "0x00533CB0",
+   "status": "partial",
+   "match_pct": 11.8,
+   "size": 204
+  },
+  {
+   "file": "pal3/src/Misc/SceneObjParam.cpp",
    "symbol": "?FlushCommands@SceneObjParam@@QAEHXZ",
    "name": "SceneObjParam::FlushCommands(void)",
    "va": "0x00533DA0",
@@ -787,6 +886,24 @@
   },
   {
    "file": "pal3/src/Misc/UIStatic.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::_sdtor_14(void *,char)",
+   "va": "0x0044A7D0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
+   "symbol": "??_GUIStatic@@UAEPAXI@Z",
+   "name": "UIStatic::_scalar_dtor(void *,char)",
+   "va": "0x004407A0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
    "symbol": "??1UIStatic@@UAE@XZ",
    "name": "UIStatic::~UIStatic(void)",
    "va": "0x004407C0",
@@ -801,6 +918,15 @@
    "va": "0x00440960",
    "status": "partial",
    "match_pct": 35.3,
+   "size": 187
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
+   "symbol": "?LoadResource@UIStatic@@QAEPAVgbVFileSystem@@PBDD@Z",
+   "name": "UIStatic::LoadResource(int,char)",
+   "va": "0x00440A20",
+   "status": "partial",
+   "match_pct": 40.6,
    "size": 187
   },
   {
@@ -838,6 +964,15 @@
    "status": "partial",
    "match_pct": 11.7,
    "size": 265
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
+   "symbol": "?LoadTextureByName@UIStatic@@QAEXPBDD@Z",
+   "name": "UIStatic::LoadTextureByName(int,char)",
+   "va": "0x00442480",
+   "status": "partial",
+   "match_pct": 17.9,
+   "size": 190
   },
   {
    "file": "pal3/src/Misc/UIStatic.cpp",
@@ -892,6 +1027,33 @@
    "status": "partial",
    "match_pct": 44.0,
    "size": 184
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_BBTY.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::_sdtor_14(void *,char)",
+   "va": "0x0044A7D0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_BBTY.cpp",
+   "symbol": "??_GUITitle_BBTY@@UAEPAXI@Z",
+   "name": "UITitle_BBTY::_scalar_dtor(UIWnd *,char)",
+   "va": "0x00451D80",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_BBTY.cpp",
+   "symbol": "??_GUIButton@@UAEPAXI@Z",
+   "name": "UIButton::_scalar_dtor(void *,char)",
+   "va": "0x0043F950",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
   },
   {
    "file": "pal3/src/Misc/UITitle_BBTY.cpp",
@@ -958,6 +1120,15 @@
   },
   {
    "file": "pal3/src/Misc/s_RoleState.cpp",
+   "symbol": "?LoadSkeletonModel@s_RoleState@@QAEPAVgbVFileSystem@@XZ",
+   "name": "s_RoleState::LoadSkeletonModel(void)",
+   "va": "0x0052FA50",
+   "status": "partial",
+   "match_pct": 48.5,
+   "size": 169
+  },
+  {
+   "file": "pal3/src/Misc/s_RoleState.cpp",
    "symbol": "?CopyRoleData@s_RoleState@@QAEDHD@Z",
    "name": "s_RoleState::CopyRoleData(int,char)",
    "va": "0x0052FB00",
@@ -1009,6 +1180,15 @@
    "status": "partial",
    "match_pct": 0.0,
    "size": 5
+  },
+  {
+   "file": "pal3/src/Role/ObjectCamera.cpp",
+   "symbol": "?SetCameraEyePosition@ObjectCamera@@QAEXPAVgbGfxManager@@@Z",
+   "name": "ObjectCamera::SetCameraEyePosition(gbGfxManager *)",
+   "va": "0x0047C640",
+   "status": "partial",
+   "match_pct": 14.7,
+   "size": 156
   },
   {
    "file": "pal3/src/Role/ObjectCamera.cpp",
@@ -1171,6 +1351,15 @@
    "status": "partial",
    "match_pct": 88.2,
    "size": 17
+  },
+  {
+   "file": "pal3/src/UI/UINote.cpp",
+   "symbol": "?RenderWithStack@UINote@@QAEXPAVgbMatrixStack@@@Z",
+   "name": "UINote::RenderWithStack(gbMatrixStack *)",
+   "va": "0x0052AFF0",
+   "status": "partial",
+   "match_pct": 42.1,
+   "size": 57
   },
   {
    "file": "pal3/src/UI/UINote.cpp",
