@@ -46,7 +46,17 @@ def encode_type(t):
         tag = 'V'; t = t[6:].strip()
     code = _TC.get(t)
     if code is None and ptr > 0:
-        code = 'U' + t + '@@'
+        # 0b-①（2026-09-15）：原先一律用 struct 前缀 'U'。
+        # MSVC 对 class 用 'V'、对 struct 用 'U'，而 **decomp 签名里拿不到这个区分**：
+        # `ida_structs.json` 的 kind **全是 'struct'**（实测 1016/1016，0 个 class），
+        # 且 `gbOBBox` 这类真 struct 在签名里也是**裸名**（`gbOBBox *`，无 `struct` 关键字）。
+        # ⇒ 只能按多数投票。实测 real `.obj` 符号里 `PAV` : `PAU` = 8 : 2
+        #   （PAV: UIListBox/CCBUI/CCBControlWindow/gbRenderEffect/gbGfxManager/
+        #          gbVFileSystem/gbMatrixStack + 嵌套反向引用 PAV1@/PAV2@；
+        #     PAU: gbOBBox + 嵌套 NODE@1@）。
+        # 离线复测（tools/mangler_bench.py）：matched 129 → **136**（+7）。
+        # `struct `/`class ` 关键字仍走上面的 tag 分支（优先于此处）。
+        code = 'V' + t + '@@'
     elif code is None and tag:
         code = tag + t + '@@'
     elif code is None:
