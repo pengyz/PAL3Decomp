@@ -388,3 +388,37 @@ exe_text_image 应返回 data[raw_ptr : raw_ptr + raw_size]，并把越界判定
 
 **captain 的自省**：这是本会话第 6 例恒真/近恒真门禁，且**是 kiro 复核者而非 captain 发现的**；
 captain 此前引用它两次，**属"把恒真读数当证据"**——与"以缺席反推事实"同族（都是**用弱读数支撑强结论**）。
+
+### R8 的落地实测（captain，2026-09-15）
+
+**已实施**：`pipeline/compare_pal3.py`
+
+| 改动 | 内容 |
+|---|---|
+| `exe_text_image()` | 返回 `data[raw_ptr : raw_ptr + raw_size]`（原先 `+0x10000000` → 切片超尾截断成"到文件末尾"）；**一并返回 `raw_size`** 供正确边界判定 |
+| `compare_units()` / `_flags_matrix()` | 增 `text_raw_size` 参数并逐层传递 |
+| 越界判据 | `_limit = text_raw_size`（**`.text` 的 raw_size**），不再用 `len(text)` |
+| `stats` | 拆分 `oob_text_end`（越过 `.text` 尾 ⇒ 比对数据不可信）与 `oob_file_end`（越过文件末尾），**不再合并计数** |
+
+**实测验证**：
+
+```
+修复前: exe .text: ... captured 2166784 bytes   (0x211000，跨越 .rdata/.data/.rsrc)
+修复后: exe .text: ... captured 1478656 bytes   (0x169000 == .text raw_size) ✓
+matched 129/189 symbols | L1 6 | partial 123 | oob 0 (text_end 0 / file_end 0) | unmatched 60
+[L1 ratchet] previous 6 -> current 6
+```
+
+**独立复核的额外结论（captain 静态核实，重要）**：
+用**正确的 `.text` 上界**（`0x56A000`）复核全部 129 个符号 ⇒ **越过 `.text` 的符号 = 0**，
+且**没有任何符号的 VA ≥ `.text` 上界**（即 `symbols` 里没有落在 `.rdata` 的）。
+⇒ **`oob=0` 当前"结论正确但推理错"**：正确性来自"所有符号都恰好在 `.text` 内"的
+**副作用**，而非边界正确。**现有匹配结果不受本缺陷影响**（`L1`/`partial` 逐位不变已验证）。
+
+⇒ 本修订是**纯正确性修复 + 恢复判据判别力**，无行为副作用。
+
+**captain 的 3 处执行失误（如实留痕）**：
+1. 首次补丁脚本**在写文件前断言失败** ⇒ `oob` 判定与打印行**未落地**，而 captain 一度以为已修
+   （`oob_text_end: None` 就是线索）——**又是"以缺席读数误判完成状态"**。
+2. 漏改 `compare_units()` **自己的签名**（只改了调用点）⇒ 运行期 `TypeError`。
+3. 漏改 `_flags_matrix` 的传递（它同样调用 `compare_units`）。

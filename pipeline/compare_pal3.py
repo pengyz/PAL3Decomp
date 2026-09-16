@@ -43,7 +43,18 @@ OUT_REG = REPO / 'data' / 'status' / 'pal3_registry.jsonl'
 
 
 def exe_text_image():
-    """Return (image_base, text_bytes, text_rva)."""
+    """Return (image_base, text_bytes, text_rva, text_raw_size).
+
+    ⚠️ `text_bytes` **只含 `.text`**（`raw_ptr .. raw_ptr + raw_size`）。
+
+    R8（2026-09-15 第 6 任复核者 kiro 发现、captain 量化并修）：
+    本函数原先返回 `data[raw_ptr : raw_ptr + 0x10000000]` —— Python 切片**超尾静默截断**
+    ⇒ 实际得到 `data[raw_ptr:]` = **到文件末尾**（实测 0x211000 字节），
+    而 `.text` 只有 `raw_size = 0x169000`。该窗口跨越 `.text + .rdata + .data + .rsrc`。
+    后果：下游 `oob` 判据用 `len(text)` 作界 ⇒ **近恒真**（`.rdata` 里的地址也判"在界内"），
+    为本会话第 6 例恒真/近恒真门禁。
+    `raw_size` 一并返回，供调用方做**正确的 `.text` 边界判定**。
+    """
     data = EXE.read_bytes()
     pe = struct.unpack_from('<I', data, 0x3C)[0]
     num_sec = struct.unpack_from('<H', data, pe + 6)[0]
@@ -53,9 +64,9 @@ def exe_text_image():
     for i in range(num_sec):
         off = sec0 + i * 40
         name = data[off:off + 8].rstrip(b'\x00').decode('ascii', 'replace')
-        _vsz, virt_addr, _rsz, raw_ptr = struct.unpack_from('<IIII', data, off + 8)
+        _vsz, virt_addr, raw_size, raw_ptr = struct.unpack_from('<IIII', data, off + 8)
         if name == '.text':
-            return image_base, data[raw_ptr:raw_ptr + 0x10000000], virt_addr
+            return image_base, data[raw_ptr:raw_ptr + raw_size], virt_addr, raw_size
     raise RuntimeError('.text section not found in %s' % EXE)
 
 
@@ -136,12 +147,19 @@ HYPOTHESIS_FLAGS = ['/O2', '/Ob2', '/Oi', '/Ot', '/Oy', '/GF', '/Gy',
 
 
 def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
-                  image_base, text, text_rva):
-    """Run the S4 byte-match over `passing` units with the given CL flags."""
+                  image_base, text, text_rva, text_raw_size=None):
+    """Run the S4 byte-match over `passing` units with the given CL flags.
+
+    `text_raw_size` = `.text` 的 `raw_size`，用作**正确的越界界**（R8）。
+    None 时退回 `len(text)`（仅为向后兼容，会退化为近恒真的旧行为）。"""
     os.makedirs(pc.OBJ_DIR, exist_ok=True)
     rows = []
     stats = {'symbols': 0, 'matched': 0, 'unmatched': 0,
-             'match_L1': 0, 'partial': 0, 'oob': 0, 'compile_skip': 0}
+             'match_L1': 0, 'partial': 0, 'oob': 0, 'compile_skip': 0,
+            # R8：两种越界语义**不得合并计数**。
+            #   oob_text_end —— 越过 `.text` 尾（真实代码区之外）⇒ 比对数据不可信
+            #   oob_file_end —— 越过文件末尾 ⇒ 连字节都取不到
+            'oob_text_end': 0, 'oob_file_end': 0}
 
     for n, unit in enumerate(passing, 1):
         src = str(REPO / unit)
@@ -164,8 +182,16 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
             info = funcs[sym]
             size = e['size']
             idx0 = e['va'] - image_base - text_rva
-            if idx0 < 0 or idx0 + size > len(text):
+            # R8：界的语义必须正确 —— 用 **`.text` 的 raw_size**，不是缓冲区长度。
+            # 缓冲区长度曾是"文件末尾到 .text 起点"（0x211000），比 .text（0x169000）大一截，
+            # 使该判据近恒真（`.rdata` 里的地址也判"在界内"）。本会话第 6 例恒真门禁。
+            _limit = text_raw_size if text_raw_size is not None else len(text)
+            if idx0 < 0 or idx0 + size > _limit:
                 stats['oob'] += 1
+                if idx0 < 0 or idx0 + size > len(text):
+                    stats['oob_file_end'] += 1
+                else:
+                    stats['oob_text_end'] += 1
                 rows.append({'file': unit, 'symbol': sym, 'name': e['name'],
                              'va': '0x%08X' % e['va'], 'status': 'out_of_range', 'size': size})
                 continue
@@ -186,9 +212,11 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
         print('  [%3d] %-45s funcs=%3d matched=%3d L1=%2d partial=%2d'
               % (n, unit, len(funcs), len(matched), p1, pp))
 
-    print('matched %d/%d symbols | L1 %d | partial %d | oob %d | unmatched %d | compile-skip %d'
+    print('matched %d/%d symbols | L1 %d | partial %d | oob %d (text_end %d / file_end %d) '
+          '| unmatched %d | compile-skip %d'
           % (stats['matched'], stats['symbols'], stats['match_L1'],
-             stats['partial'], stats['oob'], stats['unmatched'], stats['compile_skip']))
+             stats['partial'], stats['oob'], stats['oob_text_end'], stats['oob_file_end'],
+             stats['unmatched'], stats['compile_skip']))
     total = stats['match_L1'] + stats['partial']
     if total:
         print('L1 rate over matched: %d/%d = %.1f%%'
@@ -197,7 +225,8 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
     return stats, rows
 
 
-def _flags_matrix(units, decomp_idx, mangled_map, base_idx, image_base, text, text_rva):
+def _flags_matrix(units, decomp_idx, mangled_map, base_idx, image_base, text, text_rva,
+                  text_raw_size=None):
     """Calibrate CL flags: probe defaults vs the hypothesis set vs
     leave-one-out perturbations of the hypothesis. Ranks combos by L1."""
     combos = [('probe-defaults', PROBE_FLAGS), ('hypothesis', list(HYPOTHESIS_FLAGS))]
@@ -209,7 +238,7 @@ def _flags_matrix(units, decomp_idx, mangled_map, base_idx, image_base, text, te
     for label, flags in combos:
         print('\n--- %s: %s ---' % (label, ' '.join(flags)))
         stats, _ = compare_units(units, flags, decomp_idx, mangled_map,
-                                 base_idx, image_base, text, text_rva)
+                                 base_idx, image_base, text, text_rva, text_raw_size)
         results.append({'label': label, 'flags': flags, 'stats': stats})
 
     results.sort(key=lambda r: (-r['stats']['match_L1'],
@@ -285,17 +314,17 @@ def main():
     print('decomp entries: %d | mangled methods: %d (mangle-fail %d) | unambiguous bases: %d'
           % (len(decomp_idx), len(mangled_map), mangle_failed, len(base_idx)))
 
-    image_base, text, text_rva = exe_text_image()
+    image_base, text, text_rva, text_raw_size = exe_text_image()
     print('exe .text: base 0x%X rva 0x%X captured %d bytes' % (image_base, text_rva, len(text)))
 
     if args.flags_matrix:
         sample = passing[:5] if args.limit == 0 else passing
         return _flags_matrix(sample, decomp_idx, mangled_map, base_idx,
-                             image_base, text, text_rva)
+                             image_base, text, text_rva, text_raw_size)
 
     flags = args.flags.split() if args.flags else PROBE_FLAGS
     stats, rows = compare_units(passing, flags, decomp_idx, mangled_map,
-                                base_idx, image_base, text, text_rva)
+                                base_idx, image_base, text, text_rva, text_raw_size)
 
     total = stats['match_L1'] + stats['partial']
     if total:
