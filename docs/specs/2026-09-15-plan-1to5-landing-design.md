@@ -615,3 +615,56 @@ _ovl*           3    ← 不命中
 - **R9 缺陷①（虚性）已被实测证伪**，0b 不应包含它。
 - **第 5 项（dtor 归位）的真实可达性未验证**：需先回答"57 个 `~Cls` 里有多少能对上 obj 的 25 个 `??1`"。
 - kiro 报的 `CHAR`/`LPCSTR` typedef 一处，captain **仍未独立复现**。
+
+---
+
+## R11 0b 实施结果（captain，2026-09-15，bounded 路径）
+
+### 已完成（4/6）
+
+| 步 | 改动 | 离线复测（`tools/mangler_bench.py`）|
+|---|---|---|
+| — | 基准 | `matched=129  unmatched=60` |
+| **①** | `encode_type`：`ptr>0` 默认类前缀 `U`→`V` | matched **136**（+7）· `ptr-class` 14→6 |
+| **②** | `_PTR_TYPEDEF = {'LPCSTR': 'PBD'}` | matched **138**（+2）· `char*` 5→3 |
+| **③** | 嵌套类层级号 `NODE@1@` + `_split_mangled_name`（name 本身已是 mangled 名的 5 条） | matched **142**（+4）· `nested` 5→1 |
+| **④** | `??_G<Cls>@@UAEPAXI@Z` scalar-dtor 生成路径 | matched **150**（+8）· `scalar-dtor` 15→7 |
+| **合计** | | **matched 129 → 150（+21，+16%）· unmatched 60 → 39** |
+
+### 未完成（2/6），**且都因数据缺口而非算法缺陷**
+
+| 步 | 状态 | 实测结论 |
+|---|---|---|
+| **⑤** `??1` dtor 族（16 条） | **阻塞** | 15/16 条的类在 **`decomp`** 里**没有 `~Cls` 条目**；唯一有的 `AStarPathFinder` 给的是 `~AStarPathFinder(char)`，产出 `??1AStarPathFinder@@QAE@D@Z`，而真实是 `@@QAE@XZ`（**零参**）⇒ **`??_G` 型签名与 `??1` 是不同符号**，不能混用 |
+| **⑥** static（`SA`/`YA`，3 条） | 未做 | 覆盖仅 3 条，边际低 |
+
+### ⚠️ 关键的新发现（0b-⑤ 的真正出路，但**超出已批准 scope**）
+
+```
+注解 methods 中 '~Cls' 形态: **70 个**     ← 供给在**annotation**，不在 decomp
+            '_scalar_dtor/_sdtor' 形态: 75 个
+obj 侧 ??1 虚性分布: U 18 / Q 7
+```
+
+`build_mangled_map` 的名字来源是 **`decomp_idx`**（`load_decomp_index()` 扫 `asm/pal3/decomp/*.json`）
+⇒ **注解层那 70 个 `~Cls` 完全没被用上**。
+
+**⇒ 0b-⑤ 的正确修法是"把注解的 dtor 名并入 mangled_map 的名字来源"，属结构性改动**
+（改变 `build_mangled_map` 的输入来源，触及"codegen 不读 annotation"之外的新边界）。
+**captain 不擅自扩大 scope**，列为待批。
+
+### 方法论修正（本轮踩坑并留痕）
+
+`tools/mangler_bench.py` 最初**自己复刻**了一份 `build_mangled_map`，
+导致 ③ 的 A 项修正**未被测量到**（单测 MATCH 但 bench 显示 +0），
+一度让 captain 误判"该分支没用"。**已改为直接复用 `compare_pal3.build_mangled_map`**
+—— 离线复测与管线**必然同口径**。教训：**测量台复刻被测逻辑 = 制造假象**。
+
+### 尚未验证（诚实标注）
+
+1. **离线命中（150）尚未转化为管线判据**：`match` 在窗口内跑完后的
+   `matched`/`L1`/`partial` **尚未实测**（离线台证明的是 `mangled_map` 命中数，
+   与管线 `matched` 同口径但未端到端验证）。
+2. `L1` 是否回退：**未验证**（命中数上升改变了 `partial`/`L1` 的**分母**）。
+3. 新增命中是否为**错配**（mangler 生成了名字但指向错误条目）：**未逐一核验**。
+   `build_mangled_map` 用 `setdefault` ⇒ 先到先得，存在错配可能。
