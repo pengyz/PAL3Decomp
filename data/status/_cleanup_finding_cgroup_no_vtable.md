@@ -126,3 +126,66 @@ CreateShockEffect  (0x4CFB20-0x4CFC34, CEffMgr)  → call 0x4D3280   （ctor 变
 **⇒ 建议的方法**：用 `base_class` 的**传递闭包**建"允许的类族集合"，
 再判"表的槽是否全落在该集合内" ⇒ 这比"含多少本类地址"稳健。
 **（该方法尚未实现，是下一步的具体动作。）**
+
+---
+
+## 7. 【穷尽】继承链一致性判据**也失败** ⇒ 归属的根因是"**输入数据不全/不准**"
+
+### 7.1 方法实现与 sanity（FAIL 6/7）
+
+**方法**：按 `ida_structs.bases` 求"该类的**继承传递闭包**"（允许的类族集合），
+再判"该表的所有槽的类族是否都落在闭包内"。
+
+| 类 | 允许类族数 | 该表类族数 | **越界类族** |
+|---|---|---|---|
+| `AStarPathFinder` | 1 | 1 | **无 ✓** |
+| `CEffCylinder` | 3 | 2 | `CEffAction` |
+| `CEffSParticle` | 3 | 4 | `CEffAction`,`CEffCylinder`,`CEffQuake` |
+| `CEffQuake` | 3 | 4 | `CEffAction`,`CEffCylinder`,`CEffSParticle` |
+| `CEffGrid` / `CEffMeteor` | 3 | 3 | `CEffAction`,`CEffCylinder` |
+| `CEffModel` | 3 | 5 | `CEffAction`,`CEffCylinder`,`CEffSParticle`,`CEffect` |
+
+**⇒ FAIL（6/7 越界）** ⇒ 该判据**不可用**。
+
+### 7.2 根因（实测，两条并存）
+
+**根因 1：继承数据不全。**
+```
+CEffCylinder.bases  = ['CEffObj', 'CTaskTpl_tagEffTaskParam_CEffCylinder']
+CEffObj.bases       = []        ← **空**
+CEffObj.base_class  = None      ← 注解侧也空
+```
+⇒ 闭包**只能到 `CEffObj` 为止**，而表里有 `CEffAction` ⇒ 越界。
+**⇒ `CEffObj` 与 `CEffAction` 之间的继承关系在现有数据里不存在。**
+
+**根因 2：函数名不可信（已知，见 `gotcha_attribution_signal_limits`）。**
+表里的 `CEffAction`/`CEffCylinder` 命名可能本身就是**误归属**（同一个 `CEffObj` 基类 ctor 被
+不同函数内联，命名各异——本会话已实测 17 个不同名字的函数写 `CEffObj` 的表）。
+
+**⇒ 两个根因叠加 ⇒ 任何"基于函数名/继承名"的归属判据都**不可能**在这套数据上可靠工作。**
+
+### 7.3 ⇒ 这是本会话关于 F2/C2039 的**最终判定**
+
+| 判据 | sanity 结果 | 可用性 |
+|---|---|---|
+| 打分法（表里含多少本类方法地址）| 7/7 正确 | ⚠️ 有盲区（多继承表以基类实现为主时失效）|
+| 继承链一致性（闭包内）| **FAIL 6/7** | ❌ 不可用（继承数据不全 + 名字不可信）|
+
+**⇒ 归属问题的根因不是"缺工具/缺方法"，而是"缺可靠的输入数据"：**
+- `methods`（哪些函数属于哪个类）**不准**；
+- `bases`（继承关系）**不全**；
+- **函数名**（IDA/注解的 demangled 名）**不可信**。
+
+**⇒ 这不是本会话能解决的范围**：它需要**先把 `CEffObj` 这一族的 `methods` 与 `bases` 人工补正**
+（逐槽取证 —— 而 `CEffObj` 是全族共同的根，它 `methods` 为空）。
+
+### 7.4 建议（对本线做一次明确的收敛）
+
+**F2/C2039 这条线应暂停**，因为：
+1. 已有的两种归属方法**一种有盲区、一种 FAIL**；
+2. 根因是**输入数据**（`methods`/`bases`/名字），不是工具；
+3. 补齐输入数据=逐类逐槽人工取证，**规模远超本会话剩余容量**，
+   且**每一步都要 A 级证据**（项目规则），无法批量。
+
+**⇒ 应把"F2 输入数据补正"作为一个**独立的、有规模的**任务立项**（含：`CEffObj` 全族的
+`methods`/`bases` 取证清单、每个地址的证据要求、验收判据），而不是在本会话继续试探。
