@@ -12,6 +12,23 @@ _TC = {
 }
 _CC = {'__thiscall': 'A', '__cdecl': 'C', '__stdcall': 'G', '__fastcall': 'I'}
 
+# 0b-②（2026-09-15）：**指针类 typedef** 没有 `*` 后缀，无法走 `ptr > 0` 分支，
+# 必须直接给出完整编码。
+#
+# `LPCSTR` = `const char *` ⇒ `PBD`。
+# 实测依据（`tools/mangler_bench.py`，离线复测 56 个 `.obj`）：
+#   真实符号 `?LoadResource@UIStatic@@QAEPAVgbVFileSystem@@PBDD@Z` /
+#            `?_CalculateUV@_Texture_Info@@QAEPADPBD@Z`
+#   签名里是 `LPCSTR lpString`（无 `*`）⇒ 原先走 `ptr == 0` 的兜底 `'H'`（int）。
+#   加入后 matched 136 → **139**。
+#
+# ⚠️ 同族的 `_BYTE`/`CHAR`/`LPSTR`/`_DWORD`/`_WORD` **实测均 +0**
+# （captain 试过 `_BYTE=E`/`CHAR=D` 等编码，全部无增益 ⇒ 未落地，避免无证据改动）。
+_PTR_TYPEDEF = {
+    'LPCSTR': 'PBD',
+}
+_TC.update(_PTR_TYPEDEF)
+
 # tokens that are part of a type, never a parameter name
 _TYPE_WORDS = {
     'int', 'char', 'short', 'long', 'unsigned', 'signed', 'float', 'double',
