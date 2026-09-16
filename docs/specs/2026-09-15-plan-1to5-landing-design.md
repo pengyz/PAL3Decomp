@@ -549,3 +549,69 @@ captain 初读也以为是压缩；**实测证明 `@1@` 是嵌套类层级号、
 
 **诚实未验证**：60 条中每处缺陷的**精确**条数（特征可叠加，32+19+6+5+5 > 60）；
 kiro 报的 `CHAR`/`LPCSTR` typedef 一处（captain **未能独立复现**，列为待核）。
+
+---
+
+## R10 0b 的归因经三轮修正后的**最终数字**（captain，2026-09-15）
+
+> **重要**：captain 对 `unmatched` 的归因**连续错了三次**，每次都被自己的实测推翻。
+> 以下为第四版，每一条都有可复跑的数字支撑。
+
+### 最终规模分布（`unmatched=60`，按符号自身特征，可多标签）
+
+| 族 | 条数 | 真因（实测） |
+|---|---|---|
+| `??1` dtor | **16** | `~Cls` 判据可命中，但 **decomp 里多数类没有 `~Cls` 名** |
+| `??_G`/`??_E` scalar-dtor | **15** | **mangler 完全不支持 `??_G` 形态**（无生成路径） |
+| `PAV` ptr-to-class | **14** | `encode_type:48-49` 在 `ptr>0` 时一律发 struct 前缀 `U`；无 class/struct 信息 |
+| `PAD`/`PBD` char* | 5 | typedef 解析（`BYTE`→`E` 等） |
+| `@N@` nested | 5 | 嵌套类未转层级号 |
+| `SA`/`YA` static | 3 | 虚性/static 探测未覆盖 |
+| ctor `??0` | 1 | — |
+| 其它 | 5 | — |
+
+### decomp 侧的命名形态（决定能否修）
+
+```
+~Cls（标准）   57    ← 判据 :136 `method_name == '~' + last_seg` **可命中**
+_scalar_dtor   49    ← 不命中
+_sdtor*        24    ← 不命中
+_ovl*           3    ← 不命中
+```
+
+### 三个反直觉的实测结论（每个都推翻了我此前的一版归因）
+
+1. **"用真实虚性替代探测变体"会让结果更差**：
+   现状（探测变体）命中 **129**；改真实虚性后命中 **116**（`mangled_map` 9591→3197）。
+   ⇒ 注解签名对虚性的表达**只有 43% 准确**（430/3199），探测变体反而救回 13 个。
+   **⇒ R9 缺陷①的修法应放弃**（captain 原先主张"传真实虚性"，实测证伪）。
+
+2. **不是"decomp 缺 dtor"，而是"decomp 的 dtor 名不是 `~Cls`"**：
+   `UIFrameWnd`/`UI3DCtrl`/`JusticeBookUI`/`PAL3VisNode` 在 decomp 里**没有** `~Cls` 条目
+   （有的类只有 `ctor`，有的连 ctor 都没有），但其 dtor 确实存在于 `.obj`。
+   ⇒ 属**名字供给缺口**，不是 mangler 算法缺陷，也不是"语料缺失"。
+
+3. **`~Cls` 在 decomp 里是过量的**（57 个 vs obj 侧 25 个 `??1`）：
+   但 `AStarPathFinder::~AStarPathFinder(char)` 手测产出 `??1AStarPathFinder@@QAE@D@Z`
+   （**多了一个 `D`**），而真实符号是 `??1AStarPathFinder@@QAE@XZ`（`XZ`）——
+   ⇒ **同一个类有重载 dtor，参数选取需按 obj 侧符号反向匹配**，不是简单"修 mangler 就行"。
+
+### 0b 的**修正后**范围（按证据排序，先易后难）
+
+| 序 | 改动 | 依据 | 风险 |
+|---|---|---|---|
+| **1** | `encode_type`：`ptr>0` 时按已知 class/struct 表发 `V`/`U`（**不用再一律 `U`**） | `PAV` 14 条，且 `NewEffect@Parent_Data`/`OnMessage@CCBAIWindow` 实证 | 低（纯前缀） |
+| **2** | `encode_type`：`BYTE`/`BOOL` 等 typedef 在**指针上下文**的解析 | `PAD`/`PBD` 5 条（`PAU_BYTE` vs `PAD`） | 低 |
+| **3** | `encode_type`：嵌套类转 `NAME@N@`（**不是 back-ref 压缩**——captain 已实测纠正） | `@N@` 5 条 | 中 |
+| **4** | `mangle`：新增 `??_G`/`??_E` scalar-dtor 生成路径 | `??_G` 15 条 | 中 |
+| **5** | dtor：对 `_scalar_dtor`/`_sdtor` 命名**归位**（并处理重载 dtor 的参数选取） | `??1` 16 条 | **中高**（需按 obj 符号反向匹配） |
+| **6** | static（`SA`/`YA`）探测 | 3 条 | 低 |
+
+**判据**：`unmatched` 下降 · `matched` 上升 · `L1` 不回退 · 新增 `unmatched` 率门禁 · **同时记录分母**。
+**每改一处单独复测**（有 56 个 `.obj` 缓存可离线复测），**不做批量**。
+
+### 不可放弃的诚实标注
+
+- **R9 缺陷①（虚性）已被实测证伪**，0b 不应包含它。
+- **第 5 项（dtor 归位）的真实可达性未验证**：需先回答"57 个 `~Cls` 里有多少能对上 obj 的 25 个 `??1`"。
+- kiro 报的 `CHAR`/`LPCSTR` typedef 一处，captain **仍未独立复现**。
