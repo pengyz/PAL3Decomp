@@ -1,0 +1,182 @@
+{
+  "meta": {
+    "role": "独立设计复核者（第 5 任，证伪向）",
+    "date": "2026-09-16",
+    "reviewed_doc": "docs/specs/2026-09-15-plan-1to5-landing-design.md (207 行已通读)",
+    "head_reviewed": "a9f2b1e85 (设计文档标注 HEAD 17a4d2de0)",
+    "method": "所有引用均本会话独立实测：真编译(wine_cl, /tmp 隔离)、COFF 解析、二进制字节提取、基线数字模拟。未运行 cli.py apply|export|codegen|probe|match|init，未触碰 IDB，仓库内仅写本文件。",
+    "captain_claims_checked": "§1 全部可核数值（ok=56、L1=6、oob=0、symbols=189/matched=129/partial=123/unmatched=60、中位数 24.1%、最高 95.0%、compare_pal3.py:277、cmd_match 只棘轮 L1）——全部复现属实。本设计文档没有'以缺席反推'型数值错误；问题出在判据设计层。"
+  },
+  "claims": [
+    {
+      "step": "方案1 — partial 棘轮 + per-function diff 落盘",
+      "verdict": "refuted",
+      "refuted_aspects": ["棘轮判据（中位数+总和双看）在集合变化时自相矛盾，且验收负例方向写反", "ctx_hex 不足以支撑方案 2 的逐指令比对"],
+      "confirmed_aspects": ["必要性成立：cli.py:528-578 实读确只棘轮 match_L1，partial 退化不报警", "compare_pal3.py:181-183 确只写 match_pct 不写字节 diff", "失败写回旧基线机制已存在且可复用（cli.py:567-573）"],
+      "evidence": [
+        "grep/read cli.py:528-578: cmd_match 只读 stats.match_L1 比较，L1 降才 exit(1)",
+        "read compare_pal3.py:181-183: rows 只有 {file,symbol,name,va,status,match_pct,size}",
+        "tools/gbengine_compare.py:246-291: compare_bytes 内部已算出完整 diffs 列表但**丢弃**，只返回聚合计 ⇒ 方案1字段可低成本取得（设计未提，成本被高估的同时信息设计被低估）"
+      ]
+    },
+    {
+      "step": "方案2 — 4 个 near-L1 → 100%",
+      "verdict": "partial",
+      "summary": "4 个目标与其数值全部属实（我独立重编译逐一复现 match_pct），但差异性质与设计的'典型成因'清单不符：0/4 是编译器 flag 差异，3/4 是**生成头文件布局链疾病（方案3 的病）**，1/4 是被调方声明/归属问题。在方案 3 之前做方案 2，L1 6→≥10 不成立。",
+      "evidence": "见 step2_feasibility"
+    },
+    {
+      "step": "方案4 — C-V 单类试点（P1/P2/P3）",
+      "verdict": "partial",
+      "summary": "P1/P2 判据可实现；P3 **按现文字是恒真门禁**（'scanner 取到的槽位序列 == 二进制真实表槽位序列'——scanner 读的就是二进制，自比自恒真，正是设计 §5 自己引用的'4 例恒真门禁'教训的复发）。但 P3 的**本意**（编译产物合成表槽位 == 二进制真实表槽位）经实测**可行**，需新增编译侧提取器（现无此工具，vtable_scanner 只读 PE 侧）。",
+      "evidence": "见 step4_P3_implementability",
+      "extra_finding": "CEffCylinder 当前 sizeof(TU)=4344 vs binary_size=4292（+52）⇒ 试点 P1 现在就过不了，试点本身含一次真实布局修复，不是纯路线选择"
+    },
+    {
+      "step": "方案3 — 布局炸弹（59 多态头 + 145 多继承头）",
+      "verdict": "confirmed",
+      "summary": "量级在本会话树上**逐字复现**：59 与 145 都是可机械再生的句法口径，不是孤例；sizeof 抽样 19 类，11 个含 _gap/virtual 的类全部漂移、8 个干净类全部吻合，机制（根因A/B）获独立佐证。第 0 步复跑清单的决策正确。需修正：'多继承头'系误称（真正的多基类只有 30）；§5 回归样例数字已过期。",
+      "evidence": "见 step3_magnitude_recheck"
+    },
+    {
+      "step": "方案5 — MISATTRIBUTED 26 处定谳",
+      "verdict": "partial",
+      "summary": "三分类处置表（修 / NEED_EVIDENCE / NO_FIX）流程上健全，判据'26 条每条有定论'可验收。弱点：可行性结论来自 26 条中的 1 条抽查（Array::Insert），存在单样本推广；属'以偏概全'轻度同型而非'以缺席反推'。维持原设计可接受，但写作计划阶段应先批量过一遍 26 条的形态分布再排期。"
+    }
+  ],
+  "step1_ratchet_flaw": {
+    "question": "修好一个 partial 使其 L1(100%) 会把它移出 partial 集合 ⇒ 中位数与总和的比较是否有意义？会被判为退化吗？",
+    "answer": "会。设计的棘轮在'进步'上必然误触发，属逻辑漏洞而非边界情形。",
+    "simulation_real_numbers": {
+      "baseline": "s4_baseline.json rows: partial=123, median=24.1, sum=3803.9",
+      "structural_cause": "n=123(奇) median=sorted[61]=24.1, sorted[60]=24.0；移出任一元素后 n=122(偶)，median=(sorted[60]+sorted[61])/2=24.05 < 24.1。即：**从奇数集合移出最高分也让中位数下降**，与被移出者的分值无关——这是奇偶性结构效应",
+      "per_target": [
+        "ClearName 95.0% 移出: med 24.10→24.05(降,触发) ; sum 3803.9→3708.9(降 2.50%>2%,触发) ⇒ 双重误伤",
+        "FindInOpen 94.1% 移出: 降 0.05 / 2.47% ⇒ 双重误伤",
+        "FindInClosed 94.1% 移出: 降 0.05 / 2.47% ⇒ 双重误伤",
+        "GetEntryPtr 88.2% 移出: 降 0.05 / 2.32% ⇒ 双重误伤",
+        "SetActive 84.4% 移出: 降 0.05 / 2.22% ⇒ 双重误伤",
+        "CMeteorChain 76.1% 移出: 降 0.05 / 2.00% ⇒ 双重误伤；再往下至 24.4% 档共约 60 个函数**仅中位数判据就全部误伤**"
+      ],
+      "conclusion": "方案 2 的全部 4+1 个目标一旦成功即触发棘轮 exit≠0；方案 3 若修好任何 partial 同样触发。方案 1 与方案 2/3 在现有判据下**互斥**。反之，中位数对下半区函数（大多数）的退化**不敏感**——该严不严、该松不松。",
+      "negative_test_direction_bug": {
+        "design_says": "判据3: 临时把某 partial 的 match_pct 改低 → match 必须 exit≠0",
+        "reality": "改低**旧基线**只会让旧值更差：模拟 ClearName 95.0→1.0 后旧 med=24.00、旧 sum=3709.9，新真值 med=24.10、sum=3803.9 ⇒ 两判据都判'未退化'，exit=0，负例**无法触发**。若实现者为了让该负例通过而反转比较方向，将得到一个把进步报成退化的坏门禁。",
+        "correct_injection": "把旧基线整体 +10（med 24.1→34.1）或对中位位置附近的值定向抬高 ⇒ 新 24.1 < 旧 34.1 ⇒ 触发且基线写回。或真退化一个源文件后跑全链。"
+      },
+      "required_fix": "棘轮改为**按 symbol 键控**：对旧∩新行集逐符号要求 new_pct ≥ old_pct（partial→L1 视为 100≥95 天然通过）；L1 计数单调；新增哨兵 stats.unmatched 不得增、stats.oob 不得增（现=0）、symbols/matched 总量不得静默缩水。中位数/总和仅打印为 advisory，不作为门禁。"
+    }
+  },
+  "step1_diffs_sufficiency": {
+    "question": "ctx_hex 是否足以支撑方案 2 的逐指令比对？比 match_pct + asm/pal3/decomp/<fn>.json 多了什么？",
+    "answer": "方向正确但**不足**。多的必要信息是'哪个字节不同、两侧各是什么'——match_pct 与 decomp JSON（实证为 Hex-Rays **伪代码**，无指令层信息，SceneMapPlayer_ClearNamevoid_004220f0.json 实读仅有 decompiled_c）都给不了。但 ctx_hex（首差异 ±8B 单窗口）只对 1~2 字节差异的小函数够用；对 123 个 partial 里多差异点的大函数（如 CGameData 级）会漏掉全部后续差异。",
+    "required_fix": "diff 产物按行存：完整 diff_offsets 列表 + compiled_hex/original_hex **全函数两侧字节**（size 最大几百字节，129 行总量 <100KB）+ reloc 掩码（防止把 don't-care 重定位字节当靶子追查）+ size_mismatch 标志（compiled_len != size 时 first_diff_off 语义失真）。ctx_hex 可保留为人工判读视图。compare_bytes 已有 diffs 列表，改动极小。",
+    "pending_window": "无——以上为静态实测"
+  },
+  "step2_feasibility": {
+    "question": "4 个目标能否达到 100%？差异性质是什么？",
+    "method": "用 cmd_match 同款 flags（/O2 /Ob2 /Oi /Ot /Oy /GF /Gy /GX /GR /MD /Gd）独立重编 4 个单元到 /tmp，parse_coff_obj 提取函数字节，与 original/PAL3.exe .text 逐字节比对；另用探针 TU 实测相关类 sizeof。",
+    "match_pct_reproduction": "ClearName 95.0 / FindInOpen 94.1 / FindInClosed 94.1 / GetEntryPtr 88.2 / SetActive 84.4 —— 与基线完全一致（captain 读数属实）",
+    "per_target": [
+      {
+        "target": "SceneMapPlayer::ClearName 20B",
+        "diffs": "1 字节 @off12: lea edi,[edx+0x115](编译) vs [edx+0x105](二进制)。注解 m_szName=+261(0x105) 与二进制**一致**，错的是生成头：TU 实测 sizeof(SceneMapPlayer)=408 vs 392(+16)，m_szName 实落 0x115。上游疑为 gbImage2D 成员尺寸差(TU 链 vs 注解)。其余 19 字节已全同（含 rep stosd 内联形态）",
+        "nature": "生成头布局漂移（方案3 族）",
+        "fixable": "布局修复后近乎必中；也可 Phase-2 手改（如显式 (char*)this+0x105），但该手改会被方案3重写",
+        "verdict": "可修，但依赖布局修复"
+      },
+      {
+        "target": "AStarPathFinder::FindInOpen / FindInClosed 34B×2",
+        "diffs": "各 2 字节 @off2,@off22。off2: mov ecx,[ecx+0x8](编译) vs [ecx+0x4](二进制)——OPEN/CLOSED 系统性 +4；TU 实测 sizeof(AStarPathFinder)=28 vs 注解 24：**vtable 双重认领**（方案3 根因A 的直接类型级证据，与 emit_headers.py:1728 跳过判据失效吻合）。off22: 循环回边读 i->next 用 [eax+0x3c] vs 二进制 [ecx+0x3c]——寄存器选择差异，语义相同",
+        "nature": "布局(+4) + 源码形态(寄存器)",
+        "fixable": "布局修复后剩 1 字节；最后一字节需循环改写成 'while(p->next)' 形态让重载走 p——中置信度，可能需数次形态尝试",
+        "verdict": "大概率可修，但依赖布局修复 + 源码整形；IsInBounds(该文件唯一 L1) 实测为 5 字节 return 0 桩，不触任何成员 ⇒ 布局修复**无涟漪**（已验证）"
+      },
+      {
+        "target": "UINote::GetEntryPtr 17B",
+        "diffs": "2 字节 @off10,11: disp32 0x1b58(编译) vs 0xd60(二进制)。生成源码 &this[12].m_static.m_texs.m_ptex[64n+13] 是 Hex-Rays 指针算术还原，其正确性依赖 TU 内 sizeof(UINote)；实测 sizeof(UINote)=548 vs 268(+280)，&m_static 实落 0xD8 vs 0x48(+144)——**UIDialog 基类链布局烂**",
+        "nature": "深层布局链疾病（方案3）",
+        "verdict": "布局链修好前不可修；修好后可修。不是'便宜果实'"
+      },
+      {
+        "target": "_Console::SetActive 32B",
+        "diffs": "5 字节: 编译发 jnz; push ecx; call rel32(占位); pop ecx; ret 4，二进制发 jnz; call rel32(直接); ret 4。调用目标 0x41C1E0 = _Console::ScriptPoolPage_Alloc(__thiscall, decomp 实读)。二进制形态是 this 已在 ecx 的直接 thiscall 调用；编译产物多 push/pop ecx ⇒ 生成源码里被调方声明/归属不对（ecx 被当易变保存）",
+        "nature": "被调方声明/归属（annotation_fix 族）——**唯一不依赖方案3 的目标**",
+        "verdict": "可修（把调用表达为正确 thiscall 成员调用），中高置信度"
+      }
+    ],
+    "overall": "0/4 是 flag 差异、0/4 是 Hex-Rays 限制 ⇒'遇 hexrays_limit 记 NO_FIX'的风险预案在这 4 个上用不上（不是坏事）。'L1 6→≥10' **在方案 3 之前不成立**；方案 3 落地后 ClearName 近乎必中、AStar 一对大概率、GetEntryPtr 可修、SetActive 独立可修 ⇒ ≥10 总体仍可达，但顺序必须调整。",
+    "z_order_impact": "Z 排序 1→2→4→3→5 的前提'2 是便宜独立果实'被证伪（3/4 果实挂在方案 3 的树上）。建议 1→4→3→2→5，或把 2 明确拆成 SetActive(先) + 其余(3 后)。"
+  },
+  "step4_P3_implementability": {
+    "question": "编译产物(.obj)里的合成表槽位序列怎么取？P3 是否形同虚设？",
+    "as_written": "P3 现文字'tools/vtable_scanner.py 取到该类的表槽位序列 == 二进制真实表槽位序列'是**恒真式**——scanner 读的就是二进制，自比自永真。若照文字实现即成为设计 §5 自己警告的恒真门禁。必须改写为：**编译产物中该类合成表的槽位序列（符号级）== 二进制真实表槽位序列（方法级）**。",
+    "proof_of_feasibility": {
+      "experiment": "自写测试类(VBase 3 虚函数+虚析构 / VDerived override f1 + 新增 extra)，wine_cl 用 cmd_match 同款 flags 编译到 /tmp/rev_vtable_test.obj，自写 ~60 行 COFF 解析器（关键点：reloc 的 r_symtab 是**原始符号表索引**，aux 记录占位，parse_coff_obj 现实现会错位——我第一版就踩了，需按 raw index 建映射）",
+      "raw_output": [
+        "??_7VBase@@6B@ section=.rdata sym.value=4: [COL=??_R4VBase] [f1@VBase] [f2@VBase] [f3@VBase] [??_EVBase]  (4 槽)",
+        "??_7VDerived@@6B@ section=.rdata sym.value=4: [COL=??_R4VDerived] [f1@VDerived] [f2@VBase] [f3@VBase] [??_EVDerived] [extra@VDerived]  (5 槽)"
+      ],
+      "semantics_confirmed": "override 原位替换(槽0)、继承槽指向基类符号(f2/f3)、dtor 替换、新增槽追加(槽4)、/GR 下 vtable[-1]=RTTI COL(??_R4)——全部符合编译器合成语义，正是 P3 需要比对的东西",
+      "integration": "槽位以**符号名**取得，与二进制侧（vtable_scanner.py 实读接口: --class/--all/--verify，读 PE .rdata + 反汇编）经 mangled-name↔decomp 索引对接即可逐槽比对；无需链接，.obj 层即门禁"
+    },
+    "verdict": "P3 本意可实现、且必须新增工具能力（scanner 现无 .obj 侧读取——接口已核实）；同时 P3 文字必须去恒真化。方案4 判据应加第 0 条前置：CEffCylinder 头先过 P1（现 +52）。"
+  },
+  "step3_magnitude_recheck": {
+    "question": "59 多态头 + 145 多继承头量级是否可信？",
+    "answer": "可信且**当前树上精确复现**（此前'只验证过 2 个类'的担忧可以解除），但命名误导、且旧快照数字已过期。",
+    "exact_reproduction": [
+      "59 = 同时含 `char _gap_000[` 与 `virtual` 的生成头数——精确复现 59（样例: Data/CGameData.h, Scene/SceneObj.h, UI/UIWnd.h, Effect/CEffSParticle.h…）",
+      "145 = 有基类(class X :) 且含任意 `char _gap_` 的头数——精确复现 145",
+      "更正: '多继承头'是误称——真正 ≥2 基类的头只有 30（注解侧 base_class>=2 = 31 交叉印证）；145 中的其余 115 是单继承+gap"
+    ],
+    "sizeof_sampling": {
+      "method": "探针 TU + wine_cl(cmd_match 同款 flags) 编译后从 .obj 读 mov eax,imm32 常量，与头注释、注解 binary_size 三方对照",
+      "dirty_11_all_mismatch": "SceneObj 1872/1784(+88, 恰= _gap_000[88] 双计——根因B机制独立佐证)、UIWnd 72/68(+4, 根因A)、RenderTarget 204/200(+4)、AStarPathFinder 28/24(+4, vtable 双认领——根因A类型级证据)、CEffCylinder 4344/4292(+52)、CameraCtrl 4136/4088(+48)、CEffSParticle 152/100(+52)、SceneMapPlayer 408/392(+16)、UINote 548/268(+280, 基类链)、SceneMgr 58924/58692(+232)、CGameData 28632/28268(+364)",
+      "clean_8_all_match": "InputSystem 36、UISystem 4、UIBase 4、CRenderTarget 4、UILBColumn 84、ScriptObj 4、UIRenderObj 4、UILBItem 72 —— 全 MATCH",
+      "conclusion": "炸弹真实且边界清晰：含 _gap/virtual 的类漂移、干净类吻合。P1 门禁可实现。注意漂移量不是单一 +4：+88/+364/+280 等复合漂移意味着嵌套脏基类传播，P1 清单必须含传递闭包"
+    },
+    "stale_numbers_warning": "§5 回归样例 'UIWnd 96→68、SceneObj 3196→1784' 已过期：当前树 UIWnd=72、SceneObj=1872（旧测量出自另一代生成物）。pal3/src 被 gitignore（git log 实证: f71df65f2 'gitignore pal3/src/'）⇒ 头文件是移动目标，**任何清单/门禁必须与被门禁的 codegen 状态同 commit/同代**，否则门禁对不上实物。第 0 步的门禁还应同时记录生成物指纹。",
+    "robustness": "发现两个门禁噪音源：① 个别生成头不能自编译（PAL_GDB.h → RoleAtt.h:87 gbVec3D 未定义，实测 C2061）⇒ gate 需容错；② wine_cl 偶发 C1034（同参数先失败后成功，本会话实测复现）⇒ gate 需重试机制。"
+  },
+  "step3_criteria_sufficiency": {
+    "question": "判据豁免（乙）①L1不降 ②partial中位数不降 ③ok降须逐条证明 —— 合起来够吗？",
+    "answer": "不够。三条防不住'布局修复引入真实退化却被放行'。",
+    "gaps": [
+      "②继承方案1中位数缺陷：任何 partial→L1 进步都降中位数(实测 24.10→24.05) ⇒ 修布局修好了函数反而判退；同时对下半区(占多数)的真实退化不敏感。②必须替换为**逐符号 pct 不回退**（依赖方案1按修正后的设计重做）",
+      "③只盯 ok 降：布局修复可以不降 ok 而系统性拉低多个 partial 的 match_pct（改错偏移的典型症状），三条判据全部无感。逐符号棘轮可接住",
+      "行蒸发盲区：compare 只遍历 ok 单元(compare_pal3.py:277 实证)，一个文件跌出 ok，其符号**整体从新基线消失**，行集缩水在'中位数/总和'下近乎静默。需加哨兵：symbols/matched 不得缩水、unmatched 不得增、oob 不得增(现=0)",
+      "用户提示的两个候选都该加：unmatched 不得增加(防符号静默失配)；此外 symbols(匹配池总量)与 matched 不得减少。L1(①)保留"
+    ],
+    "amended_乙": "① L1 计数不降 ② 逐符号 match_pct 不降（partial→L1 通过）③ ok 降须逐条证明 ④ unmatched/oob 不得增加，symbols/matched 不得缩水 ⑤ 方案1的 diffs 产物对每条退行给出 first_diff/diff_bytes 以便归因"
+  },
+  "captain_missed": [
+    "方案2 真实根因是方案3/4 的病（TU 级实证）：3/4 目标依赖布局修复，1/4 是归属问题 ⇒ Z 排序 1→2→4→3→5 的前提错误，建议 1→4→3→2→5（或 2 拆两半）",
+    "棘轮集合漂移缺陷 + 注入负例方向写反（均数字实证）——§6 消歧自检没有覆盖这两条，恰因缺了'集合变化时聚合量是否可比'这一问",
+    "compare_bytes 已算出完整 diffs 却丢弃：方案1 改动比设计估的更小，但信息设计要升级（全量 diff_offsets + 两侧 hex + reloc 掩码，而非 ctx_hex 单窗口）",
+    "方案4 P3 现文字是恒真门禁（自比自）；且编译侧表槽位提取工具不存在——本复核已证可行（COFF ??_7 + reloc 原始索引解析，含 aux 错位坑），可直接进入 writing-plans",
+    "CEffCylinder 试点 P1 当前就不过（4344 vs 4292, +52）：方案4 含一次真实头修复，工作量与风险都被低估",
+    "§5 回归样例数字过期（UIWnd 96→现 72；SceneObj 3196→现 1872）+ pal3/src 为 gitignore 生成物 ⇒ 门禁必须绑定 codegen 状态指纹，测试策略里的写死数字必须实现时再生成",
+    "总成本约低估 2×：方案1 '半天'→ 实为 1–2 天（含两次端到端独占窗口 + 负例重做）；方案3 '天级'→ 3–5 天（204 类口径清单 + emit_headers 三处修复 + 逐类证据 + 对抗复核 + 容错/重试）；方案2 在 3 之前只剩 SetActive 约 0.5 天且无把握、其余需排在 3 后；方案4 1–2 天；方案5 1 天。合计 ~7–11 天量级",
+    "wine_cl 偶发失败与个别头不能自编译（实证）将污染方案3门禁 ⇒ 门禁需重试+容错，否则报告噪声会淹没真退化"
+  ],
+  "final_verdict": {
+    "can_implement_as_is": false,
+    "summary": "五步工作集本身方向正确、必要性论证成立（match 盲区、布局炸弹、vtable 路线均实证），但方案 1 棘轮判据与方案 2 前提被证伪，方案 4 P3 需去恒真化并补工具。必须先修订再进 writing-plans。",
+    "mandatory_revisions": [
+      "R1(方案1): 棘轮改逐符号键控（new_pct ≥ old_pct 按 symbol 对齐；L1 单调；unmatched/oob 不增；symbols/matched 不缩水），中位数/总和降为 advisory；注入负例改为'抬高旧基线'或真退化源码；diff 产物存全量 diff_offsets + 两侧全函数 hex + reloc 掩码",
+      "R2(方案2): 重排 Z 为 1→4→3→2→5（或 2 拆为 SetActive 先行 + 其余 3 后）；验收判据改为'方案3 落地后 L1 6→≥10'，并预登记每目标的差异性质与本复核给出的字节级证据（ClearName off12 偏移漂移、AStar off2/off22、GetEntryPtr disp32、SetActive 调用形态）",
+      "R3(方案4): P3 文字改为'编译产物合成表槽位序列 == 二进制真实表槽位序列'并新增 COFF 侧提取器（已证可行）；P1 前置 'CEffCylinder 头修复到 sizeof==4292'",
+      "R4(方案3): 判据乙按 amended_乙 扩至 5 条；§5 样例数字实现时再生成；门禁加 wine 重试与头自编译容错；'145 多继承头'改称'145 继承+gap 头'（真多基类 30）",
+      "R5(全案): writing-plans 阶段按修订后顺序拆 5 子计划，成本按 ~7–11 天报预算，方案2 与方案3 之间显式设依赖"
+    ]
+  },
+  "not_verified": [
+    "§1 的 err=3703 / C2039=1068 / C1003 截断 16 文件：未独立重跑错误分类（不构成本设计判据的承重墙，但 captain 若引用需自行保持口径）",
+    "方案5 的 26 条 MISATTRIBUTED 逐条形态：仅采信设计方对 Array::Insert 的抽查，未复核其余 25 条",
+    "链接级（.exe 整链）合成表槽位：只证到 .obj 层（P3 门禁层面已足够；链接层 COMDAT 折叠对最终 PE 表的影响未测）",
+    "C-V 路线②在真实 CEffCylinder 上的 43 处 thunk 同构：采信前一复核者 + captain 核对结论，未重做（属方案4 实施内容）",
+    "59/145 口径的**类粒度**（非文件粒度）精确数：本复核按文件粒度复现 59/145；若按类粒度数字会略不同，不影响量级结论",
+    "并发窗口对本会话 wine 编译的干扰源未定位（C1034 偶发已实证存在）"
+  ]
+}
