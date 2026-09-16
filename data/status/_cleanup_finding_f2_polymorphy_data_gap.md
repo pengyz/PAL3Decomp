@@ -321,3 +321,65 @@ const 表落 `CONST(.rdata)`；`__vftable` 成员名零警告。
    - **S-c**：`B`（gap 起点决策表）**单独不可行**——它只解布局，不产 vtable 符号与 ctor 存储指令；
      且当前 `PalScriptWaitObj.h` 已用 `_gap_000[4]` 占位，**布局本来就没少 4 字节**
      （§1 那句只在 C-V 删 gap 的场景下成立）
+
+---
+
+## 12. S-a′ 实测：扫描器**可用**，但"vptr 存储 → 类"的**全量归因超出其能力**
+
+工具：`tools/vtable_scanner.py`（已提交 `0b56e338f`，含本文档 §13 的边界注释）。
+
+### 12.1 可靠的产出（已校验）
+
+| 项 | 实测 |
+|---|---|
+| 全局 vptr 存储（`movl $imm32,0x0(%reg)` 且 `imm ∈ .rdata`） | **425** 条 |
+| 118 类中 `with_ctor` / `found_any` | 32 / 32 |
+| **`match_recorded`** | **26**（31 个有注解记录的候选中 **84%** 在 ctor 窗口内命中）|
+| **槽位内容校验**（槽位能否对映到已知函数起始） | 32 张表**全部**通过（**0 张无映射**）|
+
+**独立互证**：`AStarPathFinder` 扫到表 `0x56a600`、**3 槽 3 有名字** ——
+与交接文档记载的 `vtable 0x56A600 = [0x401030, 0x4014E0, 0x4014F0]` **一致**。
+
+**B 类补齐实例**：`CEffShock`（B 类 7 个之一）扫到 **18 槽 / 16 槽有 method 名**。
+
+### 12.2 ⚠️ 能力边界（实测发现，captain 犯错的直接来源）
+
+**`decomp` 的 `address` 是「反编译体起始」，不保证是函数入口。**
+实测 `CCBItemWindow` 的 ctor：
+
+```
+decomp:  address=0x004461B0, size_bytes=25, 正文仅 3 行
+         LOBYTE(this->__vftable) = 0;  UIScenePanel__UIScenePanel(v2);  ...
+实际:    vptr 存储在 0x446175（**早于** 0x4461B0）与 0x44621D
+         `movl $0x56af80,(%esi)`  ← 且它存的是 **CCBUIPanel 的表**，不是 CCBItemWindow 的
+         CCBItemWindow 自己记录的 0x570500 出现在 0x51A36C / 0x51A3CD（另一个函数）
+```
+
+⇒ 两点结论：
+1. **固定窗口 `[ctor, ctor+0x1000)` 会漏**（store 可能早于该地址）；
+2. **store 的目标 vptr 未必属于该类**——可能属于**基类**或**内联成员子对象**。
+
+**⇒ "vptr 存储 → 类"的全量归因需另做**（按**真实函数边界** + 基类/子对象判定），
+**本工具只对"简单类"（单一 ctor、目标 vptr = 该类）可靠**。
+
+### 12.3 captain 在 S-a′ 期间又犯的 4 个读数错误（全部留痕）
+
+| # | 错误 | 真相 |
+|---|---|---|
+| 1 | 读 `objdump -s` 的十六进制 dump 时**把行首地址算进了字节流** | 我的 `read_rdata_dwords` 其实**是对的**（`0x570500 → 0x445E70` = `UIWnd::ShowWindow` ✓）；是我读 dump 的方式错 |
+| 2 | `found`/`recorded` 地址**比较未归一化** | 首版 `match_recorded=0` **假阴性**，归一化后为 26 |
+| 3 | 基于**单一样例**（`CEffShock`）推断 `ctor_map` 覆盖不足 | 实际 map 有 69 类、`CEffCylinder` 就在其中 |
+| 4 | **以"缺乏特定信号"推"缺乏数据"（本会话第 3 次）** | 把"无自名 ctor"当成"无 vtable 数据"；实际 `CCBFiveNimbusWindow` 等 `vtables=1` **数据已存在** |
+
+**精确分类账（修正后）**：A=61（`vtables` 非空）· **B=7**（`methods` 非空、`vtables` 空）·
+**C=48**（两者皆空，主要是 `CTaskTpl_<...>` 模板实例与 `CEffBase`/`CEffObj` 抽象基类）·
+D=2（不在 `ida_structs`）。**缺口 = B+C+D = 57，精确成立。**
+
+### 12.4 对下一步的修正建议
+
+- **B 类 7 个**：扫描器可覆盖（已补 `CEffShock`）；其余 6 个无自名 ctor，
+  需按 12.2 的"真实函数边界"另做。
+- **C 类 48 个**：**多数可能本就没有自己的 vtable**（`CTaskTpl_*` 是模板实例、
+  `CEffBase`/`CEffObj` 是抽象基类），其 `__vftable` 注解**可能指向基类的表**
+  ⇒ **"是否真需要 vptr"应由二进制证据判定，不能由注解存在性推断**。
+  这与复核的另一条提醒同源：`SceneObj` 的 ctor 里基类 vptr 存储被 MSVC **死存储消除**。

@@ -128,6 +128,45 @@ def read_rdata_dwords(addr, max_slots=256):
     return slots
 
 
+_method_starts_cache = None
+
+def method_starts():
+    """函数起始地址 -> 名字（`functions.json` + `ida_structs` 的 methods）。
+
+    用于**槽位内容校验**：vtable 的槽位应指向真实函数，故槽位能被命名即强证据。
+    实测 32 张表**全部**通过该校验（0 张无映射）——这比"字节看起来像指针"强得多。
+    """
+    global _method_starts_cache
+    if _method_starts_cache is not None:
+        return _method_starts_cache
+    out = {}
+    try:
+        fj = json.load(open(os.path.join(ROOT, "data", "annotations",
+                                         "functions.json"), encoding="utf-8"))
+        for a, v in fj.items():
+            try:
+                out[int(a, 16)] = (v or {}).get("name") or ""
+            except (ValueError, TypeError):
+                continue
+    except (OSError, json.JSONDecodeError):
+        pass
+    try:
+        ida = json.load(open(os.path.join(ROOT, "asm", "pal3",
+                                          "ida_structs.json"), encoding="utf-8"))
+        for cls, v in ida.items():
+            if not isinstance(v, dict):
+                continue
+            for a, m in (v.get("methods") or {}).items():
+                try:
+                    out.setdefault(int(a, 16), "%s::%s" % (cls, (m or {}).get("name")))
+                except (ValueError, TypeError):
+                    continue
+    except (OSError, json.JSONDecodeError):
+        pass
+    _method_starts_cache = out
+    return out
+
+
 def ctor_map():
     """类名 → ctor 地址（来自 decomp 的自名 ctor 文件）。"""
     m = {}
@@ -161,13 +200,28 @@ def scan_class(cls, stores, ctor_addr=None):
         res["note"] = "no self-named ctor in decomp"
         return res
     # ctor 起始 ~ 4KB 窗口内的 vptr 存储（ctor 不会跨 4KB 内的连续多条 vptr 存储）
+    #
+    # ️ 能力边界（2026-09-15 实测，captain 记录）：
+    # `decomp` 的 `address` 是**反编译体起始**，**不保证是函数入口**——
+    # 实测 `CCBItemWindow` 的 ctor 在 decomp 里是 `0x4461B0`（`size_bytes=25`，只有 3 行），
+    # 而它的 vptr 存储实际在 `0x446175`（**早于** `0x4461B0`，落在另一个函数起始之后）
+    # ⇒ 固定窗口会**漏**。
+    # 更根本的是：**store 的目标 vptr 未必属于该类**——`CCBItemWindow` 的 ctor 存的是
+    # `0x56AF80`（`CCBUIPanel` 的表），而它自己记录的 `0x570500` 出现在
+    # `0x51A36C/0x51A3CD`（另一个函数）。原因：store 可能属于**基类**或**内联成员子对象**。
+    #
+    # ⇒ 本工具**只对"简单类"（单一 ctor、目标 vptr = 该类）可靠**：
+    #    实测 31 个有注解记录的候选中 26 个命中（84%），
+    #    且 32 张在窗口内扫到的表**全部**能与 method 名对映（slot→method 校验通过）。
+    #    "vptr 存储 → 类" 的**全量归因超出本工具能力**，需另做（按真实函数边界 + 基类/子对象判定）。
     near = [(a, imm, reg, b) for (a, imm, reg, b) in stores
             if ctor <= a < ctor + 0x1000]
     for a, imm, reg, b in near:
         slots = read_rdata_dwords(imm)
+        named = sum(1 for s in slots if s in method_starts())
         res["found"].append({"store_at": "0x%X" % a, "target": "0x%X" % imm,
                              "via_reg": reg, "bytes": b,
-                             "slots_n": len(slots),
+                             "slots_n": len(slots), "slots_named": named,
                              "slots_head": ["0x%X" % s for s in slots[:6]]})
     rec = ann_vtables(cls)
     if rec is not None:
