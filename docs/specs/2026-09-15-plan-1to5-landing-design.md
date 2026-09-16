@@ -490,3 +490,62 @@ kiro 另报第 ③ 处：**`CHAR`/`LPCSTR` 等 typedef 未解析为 `D`/`PBD`**�
 **⚠️ captain 的诚实标注**：`unmatched=60` 中**多少比例**是这两处缺陷造成的——**未验证**
 （只测了 1 个单元 3/5）。且 kiro 的第 ③ 处（typedef）**未独立验证**。
 **故方案 0 的第一步应是"把 `unmatched` 逐符号分类"（静态、无需窗口）**，再决定修哪些。
+
+---
+
+## R9 落地准备：`unmatched` 0a 分类完成 + 4 处缺陷精确定位（captain，2026-09-15）
+
+### 0a 结果：**复现与基线逐位吻合**，证明该复现就是管线在做的事
+
+```
+.obj 符号总数=189   mangler 命中=129   unmatched=60 (31.7%)
+```
+
+与 `s4_baseline.json` 的 `symbols=189 / matched=129 / unmatched=60` **逐位一致**
+⇒ 下面的分类可信（不再是"以缺席反推"）。
+
+**特征分布**（一符号可多特征）：
+
+| 特征 | 条数 |
+|---|---|
+| `??` ctor/dtor 形态 | **32** |
+| `ptr-to-class`（`PAU`/`PAV`） | 19 |
+| `by-value`（`H` 前缀） | 6 |
+| `char*`（`PBD`/`PAD`） | 5 |
+| `@N`（嵌套层级） | 5 |
+
+### 4 处缺陷（**逐一手测定位**，非推断）
+
+| # | 缺陷 | 实测证据 | 影响面 |
+|---|---|---|---|
+| **① 虚性未传入 mangler** | `mangle()` **有** `virtual_` 参数（`:149` `'U' if virtual_ else 'Q'`），但 `compare_pal3.py:build_mangled_map` **只探测 `{'virtual_':True}` 作变体、从不传真实虚性**。实测 `?Update@UIStatic@@`**`U`**`AEHMH@Z`（真）vs `@@`**`Q`**`AEHMH@Z`（产出） | 最大族（`??` 32 条中多为虚 dtor；`UAE` 形态） |
+| **② 嵌套类名未转层级号** | 真实 `PAU`**`NODE@1@`**；mangler 产出 `PAU`**`AStarPathFinder::NODE@@`**。实测 `?PushOpen@AStarPathFinder@@QAEHPAUNODE@1@@Z`（真）vs `...PAUAStarPathFinder::NODE@@@Z`（产出） | 5+ 条，且**所有以嵌套类为参数/返回的函数** |
+| **③ 类/结构体前缀未区分** | `encode_type:48-49`：`code is None and ptr > 0` ⇒ 一律 `'U' + t + '@@'`（struct 前缀）。实测 `UIListBox`（**class**）生成 `PAUUIListBox`，真实 obj 是 `PAVUIListBox`。且 `NODE *` 这类**裸类型名**（无 `struct`/`class` 关键字）根本走不到 `:43-46` 的 `tag` 分支 | 19 条 |
+| **④ scalar-dtor 命名形态** | 真实 `??_GCEffGroupNode@@UAEPAXI@Z`；产出 `?_scalar_dtor@CEffGroupNode@@QAEPAXD@Z` —— **既非 `??_G`、虚性也错、参数还错** | 含 `??_G` 的若干条 |
+
+**captain 的自我修正**：kiro 报的第 1 处缺陷写作「缺 back-reference 压缩（`V1@`）」，
+captain 初读也以为是压缩；**实测证明 `@1@` 是嵌套类层级号、不是 back-ref 压缩**
+（`?TryExpand` 的注解签名只有 1 个 `NODE *`，若为压缩则参数个数不符）。
+⇒ **该表述需修正为「嵌套类名未转层级号」**。此为 captain 第三次修正复核者的成因表述
+（前两次：`union` 变体、CRT 区域）——**但这次是我先信了它，再用实测纠正两个人。**
+
+### 为何 0b 应排在方案 1–5 之前（保留前议）
+
+`match_symbols` 的**唯一** `matched` 路径是 mangler（`base_idx` fallback 只对**非 `?` 符号**生效，
+而 `.obj` 符号全是 `?` 开头）⇒ **mangler 是整个字节匹配判据的单点故障**。
+修 0b ⇒ `matched` 上升 ⇒ `L1`/`partial` **分母**上升 ⇒ **`L1=6` 的代表性改变**。
+
+### 0b 的范围（已定，勿扩大）
+
+1. `compare_pal3.py:build_mangled_map` 改为**按函数传入真实虚性**
+   （从注解 `methods` 或 decomp 签名里的 `virtual` 关键字提取）
+2. `vc6_mangler.encode_type`：裸类型名（无 `struct`/`class` 关键字）也走类分支；
+   用已知的 class/struct 表决定 `V`/`U`
+3. `encode_type`：生成**嵌套类层级号**（`NODE@1@`）而非完整限定名
+4. `mangle`：`scalar_dtor`/`??_G` 形态
+
+**判据**：`unmatched` 显著下降 · `matched` 上升 · `L1` 不回退 ·
+**新增 `unmatched` 率门禁**（现无任何门禁盯它）· **同时记录分母**（本会话已有"分母变即不可比"的教训）。
+
+**诚实未验证**：60 条中每处缺陷的**精确**条数（特征可叠加，32+19+6+5+5 > 60）；
+kiro 报的 `CHAR`/`LPCSTR` typedef 一处（captain **未能独立复现**，列为待核）。
