@@ -112,10 +112,143 @@ def _split_mangled_name(name):
     return None, None
 
 
+def _load_annotation_dtors():
+    """从 `data/annotations/structs/*.json` 收集析构函数名，返回 [(cls, method_name)]。
+
+    0b-⑤（2026-09-15）。析构函数的**名字供给在注解层**——`decomp` 对多数类没有 `~Cls`
+    条目，但注解 methods 里有 70 条 `~Cls` 形态（覆盖 65 个类）。
+
+    **后缀归一化**：注解里存在带后缀的命名，实测两类：
+      - `~UIFrameWnd_Full`（`UIFrameWnd`）——这种会让 mangler 的
+        `method_name == '~' + last_seg` 判据不成立，退化成普通方法名 `?~UIFrameWnd_Full@...`
+      - `~CUtil_31f0`（`CUtil`）——同类的**另一个** dtor 也被显式命名
+    因此：原名与"去掉尾部 `_xxxx` 后缀"的形态**都产出**（mangler 侧 `setdefault` 去重，
+    重复无害），既不丢 `_31f0` 这类真实重载，也能救 `_Full` 这类修饰。
+    """
+    out = []
+    seen = set()
+    for p in sorted((REPO / 'data' / 'annotations').glob('structs/*.json')):
+        try:
+            with open(p, encoding='utf-8') as f:
+                d = json.load(f)
+        except (OSError, json.JSONDecodeError):
+            continue
+        cls = d.get('name')
+        if not cls:
+            continue
+        for _addr, m in (d.get('methods') or {}).items():
+            nm = (m or {}).get('name') or ''
+            if not nm.startswith('~'):
+                continue
+            cands = [nm]
+            # 归一化：`~Cls<suffix>` → `~Cls`。
+            # mangler 的 dtor 判据是 `method_name == '~' + last_seg`，
+            # 任何后缀（`_Full` / `_31f0` / `_ovl` …）都会让它退化成普通方法名
+            # `?~UIFrameWnd_Full@UIFrameWnd@@QAEXXZ`（实测）。
+            # 同时保留原名，以免丢掉真实的同名重载。
+            if not nm.startswith('~' + cls):
+                pass
+            else:
+                cands.append('~' + cls)
+            stripped = re.sub(r'_[0-9a-fA-F]{3,}$', '', nm)
+            if stripped != nm and stripped.startswith('~') and stripped not in cands:
+                cands.append(stripped)
+            for c in cands:
+                key = (cls, c)
+                if key not in seen:
+                    seen.add(key)
+                    out.append(key)
+    return out
+
+
+def _load_dtor_candidates():
+    """推导"必有析构函数"的类名集合（0b-⑤）。
+
+    判据（任一命中即入选）：
+      - 注解或 decomp 里出现 `~Cls` / `_scalar_dtor` / `_sdtor*` ⇒ 直接或间接见到 dtor
+      - 注解 methods 里有 `ctor` 或 `Cls::Cls`（构造函数存在是较弱信号，一并纳入）
+
+    **假阳性无害**：这些名字只用作 `mangled_map` 的查找键，多余键永不匹配 ⇒
+    不会制造假匹配，只是多几个无用的字典项（实测候选 120 类，`mangled_map` 增量很小）。
+    """
+    cands = set()
+    for p in sorted((REPO / 'data' / 'annotations').glob('structs/*.json')):
+        try:
+            with open(p, encoding='utf-8') as f:
+                d = json.load(f)
+        except (OSError, json.JSONDecodeError):
+            continue
+        cls = d.get('name')
+        if not cls:
+            continue
+        for m in (d.get('methods') or {}).values():
+            nm = (m or {}).get('name') or ''
+            if (nm.startswith('~') or re.match(r'^_s(dtor|calar_dtor)', nm)
+                    or nm in ('ctor', cls)):
+                cands.add(cls)
+                break
+    return cands
+
+
 def build_mangled_map(decomp_idx):
     sys.path.insert(0, str(REPO / 'pipeline' / 'ida'))
     import vc6_mangler as vm
     m2e, failed = {}, 0
+    # 0b-⑤（2026-09-15）：**析构函数供给在 annotation，不在 decomp**。
+    #
+    # 实测：`decomp` 对多数类**没有** `~Cls` 条目（`UIFrameWnd`/`UIWnd`/`UI3DCtrl`/
+    # `JusticeBookUI`/`PAL3VisNode`… 全部缺失），但 `data/annotations/structs/*.json`
+    # 里有 **70 条** `~Cls` 形态的 methods（`dtors` 命中 65 个类）。
+    # `.obj` 引用的 `??1` 涉及 20 个类，其中 **11 个注解有供给**、9 个两处都缺。
+    #
+    # 为什么值得做：`match_symbols` 的 `matched` 路径**只有 `mangled_map`**
+    # （`base_idx` 回退只对非 `?` 符号生效，而 `.obj` 符号全是 `?` 开头）
+    # ⇒ 名字供给缺失 = 该函数**从不参与字节比对**。
+    #
+    # 做法：从注解 methods 收集 `~Cls`，用 mangler 生成 `??1<Cls>@@{Q,U}AE@XZ`
+    # 两种虚性都要（实测 obj 侧 `??1` 的虚性分布为 U 18 / Q 7，不可只发一种）。
+    # 实测 11 个有供给的类里 **10 个能生成正确名**；
+    # 唯一失败的 `~UIFrameWnd_Full` 是**注解命名带后缀**（`_Full`）导致
+    # mangler 的 `method_name == '~' + last_seg` 判据不成立（见下方 _ann_dtors 处理）。
+    _ann_dtors = _load_annotation_dtors()
+    # **推导**出的析构函数（0b-⑤ 的第二条供给路径）。
+    #
+    # 注解/decomp 只对部分类给出 `~Cls`（71 对），实测 `.obj` 需要 `??1` 的 20 个类里
+    # 有 9 个**两处都没有** dtor 名（`UIWnd`/`JusticeBookUI`/`PAL3VisNode`/`UI3DCtrl`/
+    # `UIButtonEXA`/`UIPushButton`/`UITitle_BBTY`/`CEffGroupNode`/`CScreenModeNode`）。
+    #
+    # 但这些类里有若干**有 `_scalar_dtor`/`_sdtor` 条目**
+    # （`JusticeBookUI`/`UI3DCtrl`/`UITitle_BBTY` 有 `_scalar_dtor`，
+    #  `UIWnd` 有 `_sdtor_14/27/28`）——**有 scalar-dtor ⇒ 该类必有析构函数**。
+    # 再叠加有 ctor / `Cls::Cls` 的类（同一判据的弱化版，作为候选）。
+    #
+    # **为什么可以安全推广**：这些名字只用作 `mangled_map` 的**查找键**——
+    # 若某类推错了（其实没有 `??1`），生成的多余键**永远匹配不上任何符号**，
+    # 不产生假匹配。⇒ 假阳性无害、假阴性才是损失。
+    #
+    # 实测：候选 120 个类 ⇒ matched 153 → **164**，unmatched 36 → **25**。
+    _dtor_cands = _load_dtor_candidates()
+    for _cls in _dtor_cands:
+        for _virtual in (False, True):
+            try:
+                _k = vm.mangle(_cls, '~' + _cls, 'void __thiscall()',
+                               virtual_=_virtual)
+                if _k.startswith('??1'):
+                    m2e.setdefault(_k, {'name': '%s::~%s' % (_cls, _cls),
+                                        'signature': 'void __thiscall()',
+                                        '_from': 'derived_dtor'})
+            except Exception:
+                failed += 1
+    for _cls, _method in _ann_dtors:
+        for _virtual in (False, True):
+            try:
+                _k = vm.mangle(_cls, _method, 'void __thiscall()', virtual_=_virtual)
+                if _k.startswith('??1'):
+                    m2e.setdefault(_k, {'name': '%s::%s' % (_cls, _method),
+                                        'signature': 'void __thiscall()',
+                                        '_from': 'annotation_dtor'})
+            except Exception:
+                failed += 1
     for name, e in decomp_idx.items():
         if name.startswith('?'):
             # name 本身即 mangled 名 ⇒ 解析出 cls/method 后**用签名重算**
