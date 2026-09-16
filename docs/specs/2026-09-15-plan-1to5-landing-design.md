@@ -422,3 +422,71 @@ matched 129/189 symbols | L1 6 | partial 123 | oob 0 (text_end 0 / file_end 0) |
    （`oob_text_end: None` 就是线索）——**又是"以缺席读数误判完成状态"**。
 2. 漏改 `compare_units()` **自己的签名**（只改了调用点）⇒ 运行期 `TypeError`。
 3. 漏改 `_flags_matrix` 的传递（它同样调用 `compare_units`）。
+
+---
+
+## R9（第 6 任复核者 kiro 停止前报出，captain 已独立验证并量化）
+
+**Mangler 缺陷直接产生 `unmatched = 60`（占 `symbols=189` 的 32%）** ——
+而 `unmatched` **前 5 任复核者从未问过**（注意力全在 `partial` 123 与 `L1` 6 上）。
+
+### 机制（captain 实读 `compare_pal3.py`）
+
+```python
+def match_symbols(funcs, mangled_map, base_idx):
+    for sym in funcs:
+        if sym in mangled_map: matched[sym] = ...; continue
+        if sym.startswith('?'):
+            continue        # ← mangled 但 mangler 生不出 ⇒ 计入 unmatched
+        cand = sym[1:] if sym.startswith('_') else sym
+        cand = re.sub(r'@\d+$', '', cand)
+        if cand in base_idx: matched[sym] = base_idx[cand]
+```
+
+⇒ **`unmatched` = 「`.obj` 里是 mangled（`?` 开头）但 `mangler` 生不出该名字」的符号**。
+**mangler 缺陷与 `unmatched` 是同一件事。**
+
+### 实测（captain 编一个 passing 单元直接看符号）
+
+编译 `pal3/src/Combat/CCBAIWindow.cpp`（同款 flags）⇒ `parse_coff_obj` 得 5 个符号：
+
+```
+MATCH   ?Reset@CCBAIWindow@@QAEXPAH@Z
+MATCH   ?Destroy@CCBAIWindow@@UAEXXZ
+UNMATCH ?OnMessage@CCBAIWindow@@QAEDPAPAVUIListBox@@@Z
+UNMATCH ?Update@CCBAIWindow@@QAEDPAPAVCCBUI@@@Z
+UNMATCH ?ShowWindow@CCBAIWindow@@QAEDPAPAVCCBControlWindow@@@Z
+```
+
+**⇒ 本样本 unmatched = 3/5（60%）**，与全局 32% 同量级。
+
+### 两处已定位的具体缺陷（与 kiro 所报一致）
+
+| # | 缺陷 | 实测 |
+|---|---|---|
+| **① 类类型前缀 `U`（应为 `V`）** | `UIListBox` 是 **class** 却生成 `PAUUIListBox` | mangler 手测： `mangle('CCBAIWindow','OnMessage','char __thiscall(UIListBox **)')` → `?OnMessage@CCBAIWindow@@QAEDPAPAUUIListBox@@@Z`，而真实 obj 是 `...PAPAVUIListBox@@@Z` |
+| **② 缺 back-reference 压缩** | 重复类型应生成 `V1@` | 真实名末尾 `...UIListBox@@@Z`（**3 个 `@`**）vs mangler 的 `...UIListBox@@@Z` 少一个 ⇒ 无压缩；**`grep -nE "V\d\|back.?ref\|backref\|repeat\|seen" pipeline/ida/vc6_mangler.py` 零命中** |
+
+kiro 另报第 ③ 处：**`CHAR`/`LPCSTR` 等 typedef 未解析为 `D`/`PBD`**（captain 未独立验证）。
+
+### 为什么这条比方案 1–5 都更该先做
+
+1. **它是"让本来无法评分的函数进入评分"**：`matched` 增大 ⇒ `L1`/`partial` 的**分母**增大。
+   **当前 `L1=6` 是"129 个可判定函数里的 6 个"**；若 `unmatched` 大部分可救，
+   可判定池可能显著扩大 —— **这改变整个评分的代表性**。
+2. **它是**（近）纯 bug 修复**，不改 codegen、不改布局 ⇒ 风险远低于方案 3。**
+3. **它直接服务第一优先级**（字节匹配）：`unmatched` 的函数**从未被比对过**，
+   修好 mangler 后它们**第一次进入字节比对**。
+4. **前 5 任复核者全部漏掉它** —— 这正是第 5 任自陈的"**框架内复核**"盲区的实例：
+   5 轮都在 `partial`/`L1`/错误族的框架里，**没人问"这 189 个符号是怎么选出来的"**。
+
+### 修订（**建议新增为方案 0，排在方案 1 之前**）
+
+| 步 | 内容 | 判据 |
+|---|---|---|
+| **0** | 修 `pipeline/ida/vc6_mangler.py`：① class 用 `V`（或从注解取 class/struct 信息）② 实现 back-reference 压缩（`Vn@`）③ `CHAR`/`LPCSTR` 等 typedef 解析 | `unmatched` **显著下降**；`matched` **上升**；`L1` 不回退；**新增 `unmatched` 率作为门禁**（现无任何门禁盯它） |
+| — | 承认：`matched` 上升后 `L1`/`partial` 的**分母变化**⇒ 必须**同时记录分母**（本会话已有"分母变即不可比"的教训） |
+
+**⚠️ captain 的诚实标注**：`unmatched=60` 中**多少比例**是这两处缺陷造成的——**未验证**
+（只测了 1 个单元 3/5）。且 kiro 的第 ③ 处（typedef）**未独立验证**。
+**故方案 0 的第一步应是"把 `unmatched` 逐符号分类"（静态、无需窗口）**，再决定修哪些。
