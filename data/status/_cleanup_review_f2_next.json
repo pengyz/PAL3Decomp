@@ -1,0 +1,303 @@
+{
+  "meta": {
+    "title": "F2 机制调研独立对抗性复核 + 下一步裁定建议",
+    "reviewer": "independent adversarial reviewer (fresh session, 不采信 captain 原文，全部实测)",
+    "date": "2026-09-16",
+    "repo_head": "740582b8d (docs(cleanup): F2 机制调研——多态性判定的数据缺口)",
+    "reviewed_doc": "data/status/_cleanup_finding_f2_polymorphy_data_gap.md",
+    "premise_check": {
+      "census_s2": "data/status/probe_census.json s2: total=198 ok=56 —— 与题面 ok=56/198 一致",
+      "self_named_ctor_classes": "asm/pal3/decomp 中 <Cls>_<Cls>void_ADDR.json 去重后 69 类 —— F2 §9 的 69 复现"
+    }
+  },
+
+  "claims": [
+    {
+      "id": "claim1_scale",
+      "claim": "118 个注解含 __vftable 的类中 50 个 methods=0、7 个 methods>0 但 vtables=[]、61 个有 vtables；全仓 218 个有 methods 的 struct 仅 79 个有 vtables；methods=0 ⇒ 连哪些是虚函数都不知道",
+      "verdict": "partial",
+      "evidence": [
+        {
+          "what": "118 复现",
+          "cmd": "grep -l '__vftable' data/annotations/structs/*.json | wc -l",
+          "out": "118"
+        },
+        {
+          "what": "分组复现（我的口径：按 ida_structs 分组）",
+          "cmd": "python3 统计脚本（注解含 __vftable ∩ ida_structs）",
+          "out": "methods=0: 48；methods>0 且 vtables=[]: 7 (CEffShock/CEffExplosive/PalScriptWaitObj/NPC/ScriptVM/CEffQuad/gbRefObject)；vtables 非空: 61；**不在 ida_structs: 2 (gbSingleton_gbGfxManager_, filebuf)**；sum=118"
+        },
+        {
+          "what": "50 的口径 = 48 空导出 + 2 根本未导出，把『未导出』并入『methods=0』是口径混用（filebuf 实际有完整数据，见 methods_zero_alternatives）",
+          "cmd": "交叉核对 data/annotations/structs/filebuf.json",
+          "out": "filebuf 注解自带 methods(3 条) + vtables[addr=0x0056AC08, 3 slots]，却在 ida_structs 缺席 → 被误归 methods=0 组"
+        },
+        {
+          "what": "218 的口径含 3 个 _ 前缀内部键",
+          "cmd": "python3 统计（排除 _ 前缀 vs 不排除）",
+          "out": "排除 _ 前缀: 215 个有 methods 的具名 struct，其中 79 有 vtables (36.7%)；不排除: 218（多出 _Console/_Texture_Info/_Texture_uv 三个内部伪 struct）"
+        },
+        {
+          "what": "样例核对",
+          "cmd": "g0 列表打印",
+          "out": "gbMeshData/CEffBase/MvcController/CTaskTpl_tagEffTaskParam_CEff*/elelife_emitter_graph/direction_emitter_graph 等均在 methods=0 组 —— captain 样例属实"
+        }
+      ],
+      "notes": "数字大体可复现（118/7/61 精确，50 与 218 口径小瑕）。但『methods=0 ⇒ 不知虚性』被 4 个替代数据源部分削弱，见 methods_zero_alternatives：约 42/50 的类确实无数据源，绝对化结论不成立。"
+    },
+    {
+      "id": "claim2_mechanism",
+      "claim": "三环：① vtables 是注解透传 ② class_vtable_slots 只读当前类不跨继承链 ⇒ 子类看不到基类 vtable ③ vtables 只在人工记录过时才存在",
+      "verdict": "partial",
+      "evidence": [
+        {
+          "what": "环① 属实（代码 + 产物双重实测）",
+          "cmd": "sed -n '650,690p' pipeline/ida/export_full.py",
+          "out": "'vtables': _ann_structs.get(type_name, {}).get('vtables', []) —— 纯透传；且对**现有产物**独立复核：897/898 个注解文件的 vtables 字段与 ida_structs 完全相等，唯一差异是 filebuf（未导出，非透传错误）。『761/761』的精神被独立证实"
+        },
+        {
+          "what": "环② 函数本体属实",
+          "cmd": "sed -n '231,243p' pipeline/gen/stages/emit_headers.py；grep -n class_vtable_slots pipeline/gen/",
+          "out": "class_vtable_slots() 只读 _get_ida_structs().get(cls_name)；4 个调用点（1547/1579/1787/1915）均只传 cls_name，不传聚合数据"
+        },
+        {
+          "what": "环② 的结论性表述『不向上查基类；即使基类有 vtable，子类也看不到』**不成立**",
+          "cmd": "sed -n '1539,1595p' pipeline/gen/stages/emit_headers.py",
+          "out": "_collect_base_vtable_names()（1542-1567）沿 bases/base_class **递归聚合基类 vtable 槽名**；且 virtual 关键字的真实来源是 **decomp 签名自带 virtual**（asm/pal3/decomp 中 442 个文件 signature 含 virtual，79 个类），emit_headers 只是透传/剥离（2040/2045 剥离 static 的，2052 对聚合名 pass）——环②把『一个辅助函数不跨链』误述成『整条发射链不跨链』"
+        },
+        {
+          "what": "环③ 属实且补强",
+          "cmd": "grep -n \"__vftable\" pipeline/ida/udt_classify.py；python3 全导出统计",
+          "out": "udt_classify.py:55 过滤 __vftable/_vftable/vtbl/baseclass 成员名；**全 ida_structs.json 的 data_members 中 __vftable/vfptr 为 0 条**（对所有类生效，不止 UIWnd/SceneObj）"
+        }
+      ],
+      "notes": "环①③ confirmed；环②函数级描述真、机制级结论假。最终『57 组类发射不出 virtual』的实践结论仍成立——但成立原因是 decomp 签名无 virtual（虚性信息在 IDA 侧只随已记录 vtable 槽位下发），而非 class_vtable_slots 的守卫。"
+    },
+    {
+      "id": "claim3_history",
+      "claim": "CHANGE_LOG.md:181-188 的『144 个 C2039』与今天的 718 条是同一批，718 的主体在 2026-05-19 被注释掩盖过一次，t7 把掩盖翻转回暴露",
+      "verdict": "partial",
+      "evidence": [
+        {
+          "what": "引文准确",
+          "cmd": "sed -n '181,188p' data/annotations/CHANGE_LOG.md",
+          "out": "与 captain 引文逐字一致：『效果: 消除 144 个 C2039 \"__vftable is not a member\" errors』"
+        },
+        {
+          "what": "718 的形态分解（repo 内已有独立复核记录，抽查自洽）",
+          "cmd": "grep 718 data/status/_cleanup_review_abc_plan.json",
+          "out": "718 = 650 qualified(Base::__vftable) + 8 qualified+chained + 38 chained + 15 indexed + 7 跨行 —— **92% 是限定形态**；且记载『stage3 仅折叠无修饰形态(422 处)』"
+        },
+        {
+          "what": "pre-t7 stage3 的掩盖范围",
+          "cmd": "git show 31a155585^:pipeline/gen/stages/stage3_cleanup.py | grep -n '__vftable' ；sed -n '580,640p'",
+          "out": "所有处理 regex 的对象链模式为 (\\w+(?:\\s*->\\s*\\w+)*)->__vftable —— \\w+ 不匹配 UIDialog::UIWnd 中的 :: ⇒ **限定形态从未被掩盖**（05-19 与今天都在报错）；被掩盖的无修饰形态至今仍折叠 422 处"
+        }
+      ],
+      "notes": "『同一批』不成立：144（05-19，无修饰多行语句的残留）与 718（今日，主体为限定形态）是**不同子集**，718 主体从未被掩盖过；t7 翻转的取舍也未把 144 子集放回来。成立的只有弱版本：两者同属『decomp 引用 __vftable 而成员不存在』错误族，且 05-19 确实只记了掩盖手段未记修法。"
+    },
+    {
+      "id": "claim4_erratum",
+      "claim": "§10 勘误：原『decomp 层拿不到 vptr 安装指令』是 pe_probe 工具假象；objdump 实测 0x4c3df3: c7 45 00 c8 f7 56 00 = movl $0x56f7c8,0x0(%ebp)，0x56f7c8 即 CEffCylinder vtables[0].addr",
+      "verdict": "confirmed",
+      "evidence": [
+        {
+          "what": "objdump 读数逐字节复现",
+          "cmd": "objdump -d --start-address=0x4C3DD0 --stop-address=0x4C3E20 original/PAL3.exe",
+          "out": "4c3df3: c7 45 00 c8 f7 56 00  movl $0x56f7c8,0x0(%ebp) ← vptr 安装；4c3dfa: c7 07 bc f7 56 00  movl $0x56f7bc,(%edi) ← 第二张表(+0xC 基类子对象)。与 §10 引文逐字节一致"
+        },
+        {
+          "what": "0x56f7c8 归属核对",
+          "cmd": "python3: ida_structs['CEffCylinder']['vtables'][0].addr + 原始字节逐槽比对",
+          "out": "注解 addr=0x0056F7C8；对 .rdata 原始 15 个槽逐 DWORD 比对 **0 mismatch / 15** —— 记录表与二进制完全一致"
+        },
+        {
+          "what": "教训本身（把工具读不出来当事实不存在）成立",
+          "cmd": "见 residual_absence_errors[0]",
+          "out": "该同型错误确实残留在文档其它结论里（见第 6 问），§10 的自我批评方向正确且不彻底"
+        }
+      ],
+      "notes": "勘误方向正确、objdump 证据属实。但勘误自身有一处未复核的读数：『pe_probe 把 c7 45 00 解成 db 0x00…垃圾』**不复现**——当前 tools/pe_probe.py（commit 45fef4226 后状态）对 0x4C3DD0 输出：SEH 序言区确有错位垃圾（0x4c3dd5 把立即数第 4 字节解成 push esi，与 §9 描述一致），但流内重同步后 **正确解出** 4c3df3 与 4c3dfa 两条 vptr 存储（mov dword [+0x0], 0x56F7C8 / mov dword [], 0x56F7BC）。即『换 objdump』的结论对，『pe_probe 连这两条都解不出』的论据错。"
+    },
+    {
+      "id": "claim5_conclusion",
+      "claim": "C-V 只能覆盖 vtables 非空的 61 类；其余 57 类 vptr/vtable 表达需先补数据，属设计之外的独立工程；字节匹配当前不可能——与 P1 是否通过无关",
+      "verdict": "refuted",
+      "evidence": [
+        {
+          "what": "『没有地址/说不出指向哪张表』是以注解缺席反推事实不存在——数据在二进制里可批量机械提取",
+          "cmd": "objdump -d original/PAL3.exe > /tmp/pal3_disasm.txt（0.26s，471,544 行）+ 扫描 mov [reg(+0)], imm32∈.rdata + 槽位内容校验（前 2 槽均为 .text 指针）",
+          "out": "186 个直接 vptr 存储目标；92 张已记录表地址中 **89 张被直接存储命中**（记录数据高可信）；**86 张通过校验的未记录实表**（含 CEffCylinder 第二表 0x56f7bc、ScriptObj 邻位族 0x56a9b0/0x56a9c0、Op_Idle 内联 ctor 的 0x56abc4 等）——补『有 vptr+表地址』不是独立工程，是几小时的脚本工作"
+        },
+        {
+          "what": "『57 个类在原理上无法用编译器插入 vptr 表达』在成员构成上也不精确",
+          "cmd": "python3: 57 组 ∩ 沿 bases 递归存在已记录 vtable 祖先",
+          "out": "gbTexture_D3D、UIFlexBar 两类有已记录 vtable 祖先 ⇒ 其基类若发射 virtual，编译器 vptr 由基类提供 ⇒ 严格说 C-V 覆盖面是 61+2=63 类上限、57 组实为 55 个『整链无 virtual』类"
+        },
+        {
+          "what": "『字节匹配当前不可能』过强——被自己的 I1 数据路径否定",
+          "cmd": "见 explicit_member_combo_test 与 objdump_address_convention",
+          "out": "补数据后存在两条可验证的可行表达路线（C-V 或 删 virtual+显式成员+手工表数据发射，后者已经 VC6 实测布局/编码/落节全通过）"
+        }
+      ],
+      "notes": "现状描述（57 组当前注解缺虚表数据、当前 codegen 对 55 类发射不出 virtual）属实；但把『当前缺』推成『不可获得/原理不可能』是文档自己 §10 点名的同型错误的残留。另注意：『无 vptr 存储指令 ⇒ 不多态』本身也是缺席论证——MSVC 会把被派生 ctor 立即覆盖的基类 vptr 存储优化删除（实测 SceneObj ctor 0x453036 只写自己的 0x56b200，基类 PalScriptWaitObj 的存储被消除）。"
+    }
+  ],
+
+  "methods_zero_alternatives": {
+    "question": "methods=0 是否真的意味着无法判定虚性？有无其它数据源？",
+    "answer": "有 4 个替代数据源，覆盖 50 个 methods=0/未导出类中的约 7~8 个；其余约 42 个确实无仓内数据源，captain 对这部分类成立",
+    "sources": [
+      {
+        "name": "注解自带 vtables/methods（被导出口径误伤）",
+        "evidence": "data/annotations/structs/filebuf.json 自带 methods(3) + vtables[0x0056AC08,3 slots]；filebuf 因未进 ida_structs 被计入 methods=0 组",
+        "covers": ["filebuf"]
+      },
+      {
+        "name": "gbengine 子项目头文件（include/gbengine/*.h，含真实 virtual 声明与 IDA-verified 布局注释）",
+        "evidence": "gbActor.h: class gbActor 18 处 virtual；gbActorDef 24；gbGeomNode.h: class gbGeomNode 11；gbRenderEffect.h: virtual ~gbRenderEffect + 『[0] vtable (gbRefObject)』布局注释；gbTexture.h: gbTexture_D3D 5；gbengine_internal.h: gbVolumeModifier 5",
+        "covers": ["gbActor", "gbActorDef", "gbGeomNode", "gbRenderEffect", "gbTexture_D3D", "gbVolumeModifier"],
+        "caveat": "这些头文档化的是 gbengine.dll 侧同名类；用于 PAL3.exe 同名类需逐类核对布局一致性（待窗口）"
+      },
+      {
+        "name": "data/annotations/vtable_ownership_evidence.json（45 条 vtable 写者/读者证据）",
+        "evidence": "含 vtable_addr/guessed_owner/slot_count/writer_details；覆盖 methods=0 组中的 gbRenderEffect",
+        "covers": ["gbRenderEffect"]
+      },
+      {
+        "name": "decomp signature 的 virtual 标记",
+        "evidence": "asm/pal3/decomp 中 442 个文件 signature 含 virtual，79 个类；但与 57 组交集仅 filebuf（IDA 只对已记录 vtable 的槽位下发 virtual 签名）",
+        "covers": ["filebuf"]
+      }
+    ],
+    "residual": "约 42 个类（CTaskTpl_tagEffTaskParam_CEff* 20 个、emitter/particle_graph 10 个、CEffBase/CEffObj/Object/GlowObj/HeadMsg/Mvc*/UIFlexBar/gbFileStream/gbMeshData/gbSceneNode/gbSingleton 等）仓内确无虚性数据源——需二进制取证（这正是 objdump 路线第一步即可回答的问题）"
+  },
+
+  "explicit_member_combo_test": {
+    "question": "第 4 问：『删除 virtual + 保留显式 void *__vftable 成员』能否同时满足 61 类与 57 类？（复核者 D3 被判有害的前提『virtual 未删则双 vptr』是否可规避）",
+    "setup": "/tmp/vftcombo/combo.cpp，cl 12.00.8168（MSVC6 SP0）经 tools/wine_cl.sh，旗标 /c /O2 /Ob2 /Oi /Ot /Oy /Fa",
+    "results": [
+      {"case": "struct A { void *__vftable; int a; int b; }（模拟 CEffObj，二进制 12 字节）", "measured": "sizeof = 0xC (12)；成员序 __vftable@0, a@4, b@8 —— 与多态布局逐字节同构"},
+      {"case": "struct B : A { int c; }（派生不再声明成员）", "measured": "sizeof = 0x10 (16)；B::B 内联基类字段写后 mov [eax+0Ch], imm —— c@+0xC，无第二指针"},
+      {"case": "struct Poly { virtual void f(); int x; } / PolyD（对照组）", "measured": "8 / 12 —— 编译器 vptr 布局与显式成员布局一致"},
+      {"case": "struct Both { virtual void g(); void *__vftable; int z; }（反例：virtual+成员并存）", "measured": "sizeof = 12 但 vptr@0, __vftable@4, z@8 —— **双指针是偏移炸弹：总尺寸可能与正确版相同而成员全部 +4**；证明 D3 有害性仅在『virtual 未删』前提下成立，删 virtual 后无害"},
+      {"case": "A::A() : __vftable(&fake_tbl), ... 的生成码", "measured": "mov eax,ecx; mov DWORD PTR [eax], OFFSET FLAT:?fake_tbl@@3UVtbl3@@A; mov [eax+4],imm; ret —— 与二进制 ctor 的 c7 0x <imm32> 存储同族同长度，字节级可表达"},
+      {"case": "表数据落节", "measured": "非 const 全局 fake_tbl → _DATA；const Vtbl3 fake_tbl_const → **CONST 节（PE .rdata）** —— 手工发射的 vtable 数据可与二进制同节"},
+      {"case": "__vftable 作为成员名的合法性", "measured": "cl 12.00.8168 编译零 error 零 warning（保留字面名的实现宽容实测确认）"}
+    ],
+    "verdict": "可行。『删 virtual + 保留显式 __vftable 成员（+ ctor 显式赋表址 + const 表数据发射）』同时覆盖 61 类与 57 类：布局正确、ctor 的 vptr 存储指令可表达、表字节由数据直接控制（不赌 MSVC 虚表合成规则）。约束：与『发射 virtual』按类互斥（Both 反例）；61 类需撤销现有多余 virtual（当前 pal3/src/Scene/SceneObj.h:76-80 实测已发射 virtual）；57 类 ctor 的赋表语句需要表地址 ⇒ 依赖 objdump 数据补充。"
+  },
+
+  "objdump_address_convention": {
+    "convention_check": {
+      "format": "objdump 2.38，『文件格式 pei-i386』，ImageBase 0x00400000（objdump -p）",
+      "sections": ".text VMA 0x401000 len 0x1685d0；.rdata VMA 0x56a000 len 0x15178 —— VMA 含 ImageBase，与 IDA VA 同口径",
+      "relocs": "PE Characteristics 0x010f 含 RELOCS_STRIPPED（objdump -p: relocations stripped）⇒ 固定基址加载，静态 VA == 运行时 VA == IDA VA，无重定位坑",
+      "speed": "objdump -d 全文件 0.256s / 471,544 行；扫描与校验各 <1s —— 完全可批量"
+    },
+    "batch_proof_3_classes": [
+      {
+        "cls": "CEffCylinder（61 组）",
+        "ctor": "0x4C3DD0",
+        "cmd": "objdump -d --start-address=0x4C3DD0 --stop-address=0x4C3E20 original/PAL3.exe",
+        "found": "4c3df3: movl $0x56f7c8,0x0(%ebp)（= 注解 vtables[0].addr，原始字节 15/15 槽吻合）；4c3dfa: movl $0x56f7bc,(%edi)（第二表 @+0xC=CTaskTpl… 子对象，注解未记录，已入 86 张验证表）"
+      },
+      {
+        "cls": "ScriptObj（61 组，size=4 纯 vptr 类）",
+        "ctor": "0x411b30 / 0x411cc3（ScriptObj ctor 内）",
+        "found": "movl $0x56a9bc,(%esi) == 注解 0x0056A9BC 精确命中。复核自省：初看 0x411ba0 存 0x56a9c0 疑为记录 off-by-4，进一步实测 0x411ba0/0x411b70 属邻位兄弟类（其表 0x56a9c0/0x56a9cc 均有独立 ctor），原记录无误"
+      },
+      {
+        "cls": "SceneObj（61 组）",
+        "ctor": "0x453030",
+        "found": "453036: movl $0x56b200,(%esi) == 注解 0x0056B200；基类 PalScriptWaitObj 的 vptr 存储被 MSVC 优化删除（写后即覆盖 ⇒ 死存储消除）——这解释了为何 PalScriptWaitObj 找不到独立存储"
+      },
+      {
+        "cls": "（加映）Op_Idle 内联 ctor（无导出 ctor 的类形态）",
+        "site": "0x434cfe",
+        "found": "malloc(0x10) 后 movl $0x56abc4,(%eax) + fstps 0x8/eax + mov [eax+0xC],0 —— 表 0x56abc4 含 3 个 .text 槽（0x434d50/0x434d20/0x434d40）为真实 vtable：**ctor 被内联/无自名 decomp 文件的类同样可提取**"
+      }
+    ],
+    "batch_stats": {
+      "direct_store_targets": 186,
+      "recorded_addrs_total": 92,
+      "recorded_hit_by_direct_store": 89,
+      "unrecorded_candidates": 97,
+      "unrecorded_passing_2_text_slot_check": 86,
+      "rejected_false_positives": 11,
+      "false_positive_examples": "0x56a620（float 数组）、0x5731d4（EH 0xE06D7363 域）、0x573238（ASCII）"
+    },
+    "pitfalls": [
+      "自写字节解码器会失步（pe_probe 在 SEH 序言区解出 push esi 等垃圾）——必须用真反汇编器线性扫描",
+      "扫描目标含假阳性（浮点/跳转表/EH 常量）——需槽位内容校验过滤，如 ≥2 个 .text 槽",
+      "vtable 槽位可能指向 adjustor thunk（数据转录无影响；槽位→方法名映射需一跳解引用）",
+      "MSVC 会消除『写后即被覆盖』的基类 vptr 存储 ⇒ 某类无存储 ≠ 该类不多态（PalScriptWaitObj 即此形态）",
+      "PE 无重定位信息在本例是利好（固定基址），但意味着不能依赖 objdump 的 RELOC 推断任何东西"
+    ]
+  },
+
+  "residual_absence_errors": [
+    {
+      "where": "§5 + §6 结论",
+      "text": "『其余 57 个没有地址 ⇒ 即便知道有 vptr，也说不出它指向哪张表 ⇒ 这 57 个类在原理上无法用编译器插入 vptr 的方案表达』『字节匹配当前不可能』",
+      "why_same_type": "把『当前注解里没有』当成『不可获得』。实测 objdump 全量反汇编+扫描 5 分钟级提取 186 个存储目标、86 张验证通过的未记录实表（含 0x56f7bc/0x56abc4 等直接反例）。数据缺失是可机械关闭的账面问题，不是原理障碍",
+      "severity": "high"
+    },
+    {
+      "where": "§3 分类表",
+      "text": "『methods 为空 50 ⇒ 连哪些是虚函数都不知道』",
+      "why_same_type": "未检索替代数据源即断言不可知：filebuf 注解自带完整 vtables（被导出口径误归 methods=0）；gbengine 头给 6 个 gb* 类真实 virtual 声明；ownership evidence 覆盖 gbRenderEffect；decomp 虚签名覆盖 filebuf。约 42 类的『不可知』仍成立（partial）",
+      "severity": "medium"
+    },
+    {
+      "where": "§2 环 2",
+      "text": "『不向上查基类：即使基类有 vtable，子类也看不到』",
+      "why_same_type": "只验证了 class_vtable_slots 本体，未检查调用侧（_collect_base_vtable_names 跨链聚合）与 virtual 关键字真实来源（decomp 签名）——以单一函数的读数反推整条发射链的行为（partial）",
+      "severity": "medium"
+    },
+    {
+      "where": "§4",
+      "text": "『今天看到的 718 条 __vftable 族错误，其主体在 2026-05-19 就被注释掉掩盖过一次』",
+      "why_same_type": "由『当时存在掩盖机制』推『今天这批被掩盖过』，未核对形态子集：718 主体（650 限定形态）因 stage3 regex 不支持 :: 而从未被掩盖；144 与 718 是不同子集（refuted）",
+      "severity": "medium"
+    },
+    {
+      "where": "§10 勘误本身",
+      "text": "『pe_probe 在 0x4C3DD0 上把 c7 45 00 解成 db 0x00 0x00 0x00 等垃圾』",
+      "why_same_type": "勘误中更换工具后的这条工具读数未复核：当前 pe_probe 对该地址正确解出两条 vptr 存储（垃圾仅在序言区且自动重同步）。结论（用 objdump）不受影响，论据不成立（refuted, minor）",
+      "severity": "low"
+    },
+    {
+      "where": "（反向提醒）§8.1",
+      "text": "captain 自己标注的未验证项『50 个 methods=0 的类是否真多态』",
+      "why_same_type": "回答它时同样要防缺席论证：无 vptr 存储指令 ≠ 不多态（SceneObj ctor 的基类存储被 MSVC 死存储消除；PalScriptWaitObj 即疑似此形态）。判定必须基于表归属+槽位核对，而非指令缺席",
+      "severity": "info"
+    }
+  ],
+
+  "next_step_recommendation": {
+    "choice": "第三方案：先做『objdump 批量取证 + 表归属』（= 扩大版 A 的第 0 步），再按数据裁定表达路线；B 不作为独立选项",
+    "rationale": [
+      "A 与『显式成员表达』不是二选一：无论走 C-V（编译器 vptr）还是删 virtual+显式成员+手工表发射，57 类都需要表地址与槽位数据——A 是任何路线的共同前提，captain 的 A vs B 是伪对立",
+      "B（gap 起点决策表）只解决 sizeof 布局，不产生 vtable 符号、不产生 ctor 的 vptr 存储指令 ⇒ 57 类的字节匹配依旧悬空；且当前产物 PalScriptWaitObj.h 实测已用 char _gap_000[4] 占位（布局并未少 4 字节——F2 §1『少 4 字节』仅在 C-V 删 gap 场景下成立，现状态描述不准），B 无新增量",
+      "显式成员路线经 VC6 实测布局/指令编码/落节全部可行（见 explicit_member_combo_test），且 718 错误中 650 条限定引用在成员回归后直接合法，无需 base-offset 重写引擎；表字节由数据控制，不赌 MSVC 虚表合成（dtor-pair/thunk/COMDAT）与二进制逐字节一致——这是 C-V 路线至今完全未验证的一环",
+      "成本实测：全量反汇编 0.26s；扫描+校验秒级；已拿到 86 张验证表。下一步把槽位地址与 methods/functions.json 按 Trust-by-address 匹配，自动得出『57 类逐类多态判定表』，一次性关闭 F2 §8.1 的未验证项"
+    ],
+    "concrete_steps": [
+      "0. 把本次 /tmp 扫描器产品化：objdump -d + mov [reg(+0)],imm32∈.rdata + 槽位校验 + 槽位→methods 归属，产出 data/status 下 118 类取证表（不占 IDB 窗口）",
+      "1. 用取证表回答：57 组逐类『真多态/假多态/存储被优化消除』三分类（PalScriptWaitObj 单列待窗口）",
+      "2. 裁定表达路线：推荐『删 virtual + 显式 __vftable 成员 + const 表数据发射』（D3 修正版，实测通过）对比 C-V 做一次小范围 A/B（如 UIWnd 家族 vs CEff 家族）后定案",
+      "3. 若坚持 C-V：必须先补数据（同步骤 0），且需先验证『编译器合成 vtable 逐字节命中二进制』这一未验证前提，否则 61 类也不过是把不确定性从数据层挪到编译器行为层"
+    ]
+  },
+
+  "not_verified": [
+    "57 组逐类真多态性（需表归属后核对；PalScriptWaitObj 因基类存储被优化删除而尤其存疑）——待取证表/待窗口",
+    "86 张未记录实表与注解类的自动归属（槽位→methods 匹配未跑完）",
+    "C-V 路线的核心前提『MSVC 合成 vtable 与二进制表逐字节一致』（thunk/析构对/COMDAT 折叠/节布局）——完全未验证",
+    "今日时点的 718/C2039 计数重算（需 probe_compile，被纪律禁止；沿用了 20260915_200745 基线的既有复核记录）",
+    "gbengine 头的类布局对 PAL3.exe 同名类的逐类适用性（需 IDA 窗口或交叉核对）",
+    "2026-05-19 时点 stage3 的实际掩盖范围——基于 pre-t7 源码 regex 与 _cleanup_review_abc_plan.json 的形态分解推断，未复跑当时代码",
+    "emit_headers 对 chained/indexed（X->__vftable->M / __vftable[i]）形态的表达方案（两条路线都需 vtable 类型化，未设计）"
+  ]
+}
