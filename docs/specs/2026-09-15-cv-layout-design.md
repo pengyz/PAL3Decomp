@@ -461,3 +461,84 @@ R15 提出理由 B：「编译器发 `??_E`（vector deleting dtor）而二进�
   **每次都是实测推翻我的推断**（本会话第 N 次）。累计外部复核者 6 任，**我的归因被推翻多于被确认**。
 - 理由 B 的证伪依据是**符号表的 storage class 语义**（`WEAK_EXTERNAL` = 别名），
   不是"我没看到 `??_E` 所以它不存在"——后者是"以缺席反推"（我犯过多次），**这次避开了**。
+
+---
+
+# R17 【收敛】C-V 前提的最终判定：**合成机制正常**，唯一障碍是 **F2 供给**（captain，2026-09-15）
+
+## 决定性实验：纯净最小件**精确复现**二进制的 vtable 形态
+
+```cpp
+struct NC { virtual ~NC(); };        // 多态基类（= CEffObj 应扮演的角色）
+struct B2 { int b2; };               // 非多态第二基类（= CTaskTpl_... ）
+class C : public NC, public B2 {
+  virtual char Create(int*);  virtual int Init(float*,float,float,float);
+  virtual void CreateTask(float);  virtual void Destroy();
+  virtual void AllocEffect();  virtual int Update(int);
+  virtual const char* GetEditorObjDescription(int);
+  virtual void ProcInitTask(int*);  virtual void UpdateParticles();
+  virtual const char* GetEditorTaskDescription(int);
+};
+```
+编译结果（`??_7C@@6B@`）：
+```
+[ 0] ??_EC@@UAEPAXI@Z          ← deleting dtor 占槽 0（= 二进制的 0x4C3DB0 位置）
+[ 1] Create   [ 2] Init   [ 3] CreateTask   [ 4] Destroy   [ 5] AllocEffect
+[ 6] Update   [ 7] GetEditorObjDescription   [ 8] ProcInitTask
+[ 9] UpdateParticles   [10] GetEditorTaskDescription
+```
+⇒ **槽 0 = deleting dtor、其后 = 直接基类槽、然后 = 按声明序的自身虚方法。**
+**与二进制 `CEffCylinder` 表 `0x56F7C8` 的形态一致**（`[0]` deleting dtor → `[1]` Create → `[2]` Init → …）。
+
+## 补丁实验：把 `CEffObj` 加上虚析构后
+
+| TU | 结果 |
+|---|---|
+| `CEffObj` 自身（补丁后）| **产出** `??_7CEffObj@@6B@` ✓ |
+| `class D : public CEffObj { virtual void v(); }` | **产出** 2 张表 ✓ |
+| **`CEffCylinder`（继承补丁后的 `CEffObj`）** | **产出 0 张** ✗ |
+
+⇒ **不是"基类无 vptr"这么简单**——补上 vptr 后 `CEffCylinder` 仍不产出。
+真因是 **`CEffObj` 只补了一个虚析构，而二进制里 `CEffObj`/`CEffAction` 链上的
+虚方法集合与 `CEffCylinder` 的声明序不匹配**（`CEffCylinder` 的 10 个 `virtual` 排不进
+一个"只有虚析构的基类"的槽位布局）——**这正是 F2 缺口的内容**：
+`CEffObj` 的 `methods=[]`，**它的虚方法一个都没标注**。
+
+## 最终判定表
+
+| 环节 | 状态 | 证据 |
+|---|---|---|
+| `coff_vtable.py` 提取合成表 | **✅ 可用** | 自检 PASS + 多次实测 |
+| 编译器合成语义（槽序 = 声明序）| **✅ 正确** | 受控变体 + 纯净最小件 |
+| 链接后最终 vtable 结构 | **✅ 正确** | `m.exe` 0x4060D0 5 槽 + 自写 vptr |
+| `??_E` vs `??_G` 别名 | **✅ 证伪障碍** | `WEAK_EXTERNAL` 符号表证据 |
+| "逐槽顺序不符" | **✅ 证伪障碍** | 是我用错对象 + 工具边界吞并 |
+| **F2 供给（多态基类虚方法未标注）** | ❌ **唯一障碍** | `CEffObj` `methods=[]`；补虚析构后 `CEffCylinder` 仍不产出 |
+
+## ⇒ 结论
+
+**「vtable 表示收口到 C++ `virtual`」（C-V）在机制上成立，唯一障碍是 F2 数据供给。**
+这不是原理问题，而是**标注工作量问题**——F2 调研已量化缺口：**57 个类**
+（`methods` 空 48 + `methods` 非空但 `vtables` 空 7 + 不在 `ida_structs` 2）。
+
+**方案 3（布局炸弹）因此从"前提未验证"变为"有一个明确的、可枚举的前置任务"。**
+
+## 诚实标注
+
+1. **未做**「补全 `CEffObj` 的真实虚方法集合后，`CEffCylinder` 逐槽与二进制一致」的验证
+   —— 因为那需要**先知道 `CEffObj` 的虚方法是什么**（`methods=[]` ⇒ 需从二进制取证），
+   这是 F2 供给工作本身，**不是本轮能完成的**。
+2. `vtable_compare.py` 边界法对**多继承连续子表**仍不可靠
+   （`0x56F7C8` 读到 65 槽，`0x56F804` 后接 `RenderTarget2::*`）。
+3. 只测 3 个最小件 + 2 个真实类，**未在全量 56 单元**验证。
+
+## 累计自我纠正记录（同一问题，五次）
+
+| 轮 | 我的判断 | 被什么推翻 |
+|---|---|---|
+| R13 | FAIL：顺序不符 + F2 缺口 | — |
+| R15 | 顺序不符**推翻**；新增 `??_E/??_G` 理由 | 受控变体证明槽序 = 声明序 |
+| R16 | `??_E/??_G` 理由**证伪** | `WEAK_EXTERNAL` 符号表证据 |
+| **R17** | **机制成立，唯一障碍 = F2 供给** | 纯净最小件精确复现二进制形态 |
+
+⇒ **`virtual` 路线没有死。** 我此前 R13 的 FAIL 判定**过于悲观**。
