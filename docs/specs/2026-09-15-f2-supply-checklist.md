@@ -265,3 +265,95 @@ IDA 函数大小：中位数 73 B，均值 246 B，**最大 31052 B**；>4KB 的
 
 **⇒ 需要的方法**：用**调用链**取证（ctor 的调用者是谁、`new Cls` 的调用点在哪），
 而不是依赖"函数容器"。
+
+---
+
+# 附：函数范围标注机制的可行性调研（captain，2026-09-15）
+
+> **用户的观察与要求**：IDA 的函数切分错误需要新机制——
+> 「允许手动切分函数，函数标注可标注**起始和结束偏移**；IDA 有能力自定义函数与修改函数范围；
+> 发现错误合并就自己标注修正。**先把可行方案调研清楚，写测试用例确保机制有效，
+> 然后落地 annotation 中的函数范围标注功能，然后进行重标注**」
+
+## 1. 可行性：**成立**，且项目已有先例
+
+### 1.1 IDA 具备所需 API
+
+| API | 作用 |
+|---|---|
+| `ida_funcs.set_func_end(ea, new_end)` | 截断/延长函数范围 |
+| `ida_funcs.add_func(start, end)` | 在指定范围创建函数 |
+| `ida_funcs.del_func(ea)` | 删除函数 |
+| `ida_name.set_name(ea, name, flags)` | 命名 |
+
+### 1.2 项目已实现过同型操作（**可直接复用**）
+
+`docs/superpowers/plans/2026-05-06-pal3a-ida-quality-fix.md:640-675` 的
+`split_overlapping_functions`（PAL3A 的 BOUNDARY_OVERLAP 修复）：
+
+```python
+old_end = func.end_ea
+if not ida_funcs.set_func_end(addr, split_addr):     # 截断父函数
+    log("[FAIL]"); continue
+if not ida_funcs.add_func(split_addr):               # 在切点建新函数
+    ida_funcs.set_func_end(addr, old_end)            # **回滚**
+    continue
+ida_name.set_name(split_addr, safe_name, SN_NOWARN | SN_NOCHECK)
+```
+**已含 dry-run（默认）/ `--execute` / 回滚 / 逐条日志** —— 正是所需的机制骨架。
+
+### 1.3 为什么现有 `apply` 修不了
+
+`pipeline/ida/apply_annotations.py:1704-1718`：
+```python
+if not _ida_funcs.get_func(addr):
+    if _ida_funcs.add_func(addr):          # 无 end 参数 ⇒ 用 IDA 自己的推断
+        created += 1
+    else:
+        _next_func = _ida_funcs.get_next_func(addr)
+        if _next_func:
+            _ida_funcs.add_func(addr, _next_func.start_ea)   # end = **下一个函数起点**
+```
+⇒ **只做启发式，annotations 无法指定 `end`** ⇒ **合并/错位无法修**。
+
+### 1.4 annotation 模式可以安全扩展
+
+`pipeline/check_annotations.py:138-195` 对 `functions.json` 只校验
+`address` 格式、`name`、`signature`（及重复/`virtual`/`__thiscall` 归属）——
+**新增 `end`（或 `range`）字段不会被拒**。
+
+## 2. 问题的真实规模（实测，**修正我先前的错误推断**）
+
+### 2.1 ️ 我说过的"两个合并案例"**都不成立**
+
+| 我此前的说法 | 实测真相 |
+|---|---|
+| `?CreatePanelElements@SaleUI@@QAEHPAUCCBUIPanel@@@Z` = 31,052 B **是合并** | **不是**：该范围只有 **1 个函数序言**（对照组单一函数也是 1）；尾部 `jl 0x4623f9` 是**循环回边**，是**真正的单个大函数** |
+| `?GetEditorTaskDescription@CEffShock@@QAEPBDH@Z` 写 3 张表 ⇒ **边界合并** | **不是**：反汇编显示它是**构造函数**（`mov %ecx,%eax` + 初始化成员 + 3 个 vptr 写 + `ret`），**自包含在 58 字节内、未合并**。**错的是"名字"**，不是边界 |
+
+### 2.2 但边界**确实**有系统性问题（抽样确证）
+
+对 **60 个随机函数**检查"结束地址处是否为 `ret`/`int3`/填充"：
+**18 个（30%）不是**。样例：
+```
+?AttachToRole@CameraCtrl@@QAEXH@Z   结束于 0x41E7CB → 反汇编为 `les (%ebx,%eax,8),%ecx`（**指令中间**）
+?CastAttackMagic@CCBAI@@QAE_NHH@Z   结束处 `or %al,(%eax)`（指令中间）
+?GetRenderFlag@CCBSystem@@QAEHXZ    结束处 `add %bl,-0x3e(%esi)`（指令中间）
+thunk_00503D80                      结束于 `jmp`（thunk，**正常**）
+SingletonThunk_00408B40             结束处非 ret（**正常**）
+```
+⇒ **约 30% 的边界有问题**（其中部分是 thunk/正常形态，部分是**真错位**）。
+
+**另一个独立信号："函数体内含其他已知函数起始" = 0 个**（用 3618 个已知起始扫描 5554 个函数）
+⇒ **"经典吞并式合并"没有证据**；问题是**边界错位**（end 落在指令中间、或 start 不是真入口）。
+
+## 3. 修完边界后的连锁影响（必须设计进去）
+
+1. **必须重反编译**：Hex-Rays 按**函数边界**输出（`export_full.py:388` `ida_hexrays.decompile(ea)`）
+   ⇒ 改边界后**受影响的函数必须重跑 `export`**，而 `export` 是**全量**的（3598 个 JSON）⇒
+   **改边界 = 一次全量 export**（时间成本可观）。
+2. **`decomp` 的 `address` 语义会变**：它将成为"修正后的函数起始"
+   ⇒ 下游 `match`/`mangler_bench` 的 `symbols` 与 `unmatched` **可能变化**（分母变 ⇒ 不可跨轮比较）。
+3. **`functions.json` 的 `name` 与 `end` 必须一致**：若 `name` 指向的地址不是函数起始，
+   现有 `add_func` 会创建**新函数**（可能吞掉后续代码）⇒ 新增 `end` 应当**强制**
+   （即：有 `end` 时用 `add_func(start, end)`，并在必要时 `set_func_end` 先截断）。
