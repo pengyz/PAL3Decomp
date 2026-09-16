@@ -1,0 +1,162 @@
+{
+ "schema": "cleanup-review/strategy-next/v1",
+ "reviewer": "第 4 任独立对抗性复核者（fresh subagent，不采信 captain 原文；全部结论自带命令与输出）",
+ "generated_at": "2026-09-16T12:30:00+08:00",
+ "repo_head": "17a4d2de0",
+ "discipline": {
+  "forbidden_not_run": ["cli.py apply|export|codegen|probe|match|init", "任何 idat 调用", "git checkout/restore/stash/clean", "pkill -f / kill -9 配 ps|grep"],
+  "writes": ["仅本文件 data/status/_cleanup_review_strategy_next.json"],
+  "scratch": "/tmp/vtrev/（VC6 vtable 实验副本，exp.cpp/exp2.cpp/exp3.cpp + exp.cod/exp2.cod/exp3.cod + exp3.exe + pal3.asm）",
+  "exit_code_discipline": "全部命令带 echo exit=${PIPESTATUS[0]}"
+ },
+ "claims": [
+  {
+   "id": "A_results",
+   "claim": "ok 53→56/198、L1 5→6、err 3089→3703（+614，度量变诚实）；修好 7 个真缺陷",
+   "verdict": "partial",
+   "evidence": [
+    {"what": "ok 轨迹复现（基线文件全量复算）", "cmd": "python3 遍历 data/status/baselines/2026*.json 统计 results ok/err", "out": "20260915_184019 ok=53 err=3504 → 20260915_220221 ok=56 err=3703 → 20260915_232306 ok=56 err=3703；更早 20260914_041143 ok=45 err=3876。『53→56』成立，但本轮 err 起点 3504（+199），非 3089（+614）——3089 出处在本轮基线中不存在"},
+    {"what": "当前 ok/err 复现", "cmd": "python3 读 data/status/probe_census.json s2", "out": "total=198 ok=56；errors 总和=3703"},
+    {"what": "L1=6 复现", "cmd": "python3 读 data/status/s4_baseline.json stats", "out": "symbols=189 matched=129 match_L1=6 partial=123 oob=0 compile_skip=0。历史值『5』无法从现存产物验证（s4_baseline 被覆盖，未挖 git 历史）→ 待窗口"},
+    {"what": "7 个真缺陷在 git log 全部可对应", "cmd": "git log --oneline -15", "out": "aacdf69c5(latest.json 符号链接=发行阻断)、aa4c04257(M1 形参损坏+M2/M3/R4/R5 门禁)、8faf2ca38+45fef4226(FLIRT 误命名)、e1064ee93(UIStatic 类型)、17b1af7e2(S0 尺寸来源)、31a155585(t3-t7+门禁加强)。缺陷清单 confirmed；err『+614』的基线口径存疑"}
+   ]
+  },
+  {
+   "id": "B_key_numbers",
+   "claim": "C2039=1068=29%（最大族）；近失池(≤5)=48 文件/126 错误；err 因 16 文件 C1003 截断在 102 而是下界",
+   "verdict": "confirmed",
+   "evidence": [
+    {"what": "全部关键数字独立复算一致", "cmd": "python3 重算 probe_census.json s2 的 errors 总和/族分布/近失池/C1003", "out": "err=3703；C2039=1068(28.8%)；C2660=634(17.1%) C2664=318 C2440=285；近失池 48 文件/126 错误；C1003 截断=16 文件均恰 102 条（CCBRoleState/CCBStage/CCBStageScene/CCBSystem/CCBUI/CEffCylinder/CEffgbParticle/PAL3/CCBUIPanel/SaleUI/UIScenePanel/CScreenMode/RoleSystem/SceneObj/PalScript/free_functions）"}
+   ]
+  },
+  {
+   "id": "C_near_miss_no_batch",
+   "claim": "近失池没有批量机制可捞：convert 41 条散在 24 文件；26 条 [MISATTRIBUTED] 是 B5 有意保留非缺陷；arity 18 条/15 文件只涉 4 个纯族文件",
+   "verdict": "partial",
+   "evidence": [
+    {"what": "convert 族 41/24 复现", "cmd": "python3 统计近失池 C2440+C2664", "out": "total=41 union_files=24 —— 精确复现"},
+    {"what": "convert 族抽查 5 个：大体互不相关，但非绝对同质", "cmd": "打印错误文本 + 按 vtbl_unk 归组", "out": "①CCBAI.cpp:1302 C2440 cdecl函数指针→thiscall成员指针(qsort类) ②CCBAttackSequen.cpp:281/287 C2664 pal3_vtbl_unk_0/1 桩签名(void*→unsigned long)——②③同机制 ④CCBLineupWindow.cpp:63 C2440 CCBItemWindow*→char(字段类型) ⑤CCBProtectWindow.cpp:377 C2664 const int→gbImage2D*(字段类型)。近失池中 vtbl_unk 相关仅 4 条：主体确无共享机制，但有会随 C-V/布局工作自然消失的子群——『无批量机制』成立，『全部互不相关』过强"},
+    {"what": "arity 族数字对不上（多口径复算）", "cmd": "python3 对 C2660/C2661/C2196 组合×纯文件定义复算", "out": "近失池 C2660=44 条/26 文件/9 个纯 C2660 文件（ captain 说 18/15/4）；仅取 15 个含 [MISATTRIBUTED] 文件：C2660=33 条/5 个纯文件。任何口径均得不到 18/15/4 —— captain 的该组数字未复现，口径不明"},
+    {"what": "『26 条 MISATTRIBUTED=有意保留非缺陷』定性被证伪一半", "cmd": "grep -rn MISATTRIBUTED pal3/src + 行号交叉 probe_census + 读 docs/specs/2026-09-15-cleanup-scan-triage.md B5 段", "out": "①近失池 48 文件中 [MISATTRIBUTED] 站点确=26 处/15 文件（复现）②但这 26 处报的错误形态是 C2660『function does not take N parameters』（签名与调用形态不匹配），而 CG-005 定性『非缺陷』的对象是 344 个报 C2352 的站点——两者不是同一形态 ③AR-016 明文：『[MISATTRIBUTED] 标记把合法直呼(callee为桩)与真归属错误报成同一动作：判据本身未被证伪，须用户裁决后才可改 policy』——即未决区，不是定案 ④抽查 Array::Insert 站点（Scene.cpp:101）：Array 注解 binary_size=16、known_members 仅 4 个数据成员、methods 为空 ⇒ 声明与调用参数数不符是真签名缺口，属可修的 annotation_fix（CLAUDE.md 优先级表第 1 类），callee 非桩、非『合法直呼』⑤故『这 26 条永远不会让 ok 上升』的前提不成立：修复方式是补签名/归属定谳，修复或定案 NO_FIX 都推进判据诚实度。captain 把『未决』读成『非缺陷』并据此降低其优先级——这是他复盘里最实质的错误"}
+   ]
+  },
+  {
+   "id": "D_plan",
+   "claim": "停止刷 ok 回架构：①vtable A/B（C-V 前提至今完全未验证）②布局炸弹 ③顺手 convert",
+   "verdict": "partial",
+   "evidence": [
+    {"what": "C-V 前提『完全未验证』已过时——本轮完成首轮实证，结果支持 C-V", "cmd": "见 cv_vtable_byte_comparison 全节", "out": "VC6 合成表与二进制表结构同构成立（槽序/thunk 形态 83 e9 imm8;e9 rel32/放置规则/体内调整选择规则全部对上，二进制 43 处 thunk 同款）"},
+    {"what": "布局炸弹先降后升说法有先例支撑", "cmd": "读 docs/specs/2026-09-15-cv-layout-design.md + git log M1", "out": "设计书自记『修好布局后数字可能先变差——与 M1 修复错误总数+293 同模式』；基线轨迹亦见 20:07 err=3793→22:02 err=3703 的暴露后回落。说法成立。但 59/145 出自复核者 VC6 统计、设计书自认 captain 只独立验证 2 个类未复跑全量——优先级建立在未复跑数据上，应先复跑清单"},
+    {"what": "『顺手 convert』低估了 MISATTRIBUTED 定谳的独立价值", "cmd": "见 claim C", "out": "AR-016 的『用户裁决』本身就是待办：26 条逐条定谳（修复或 NO_FIX 定案）无论结果都改善 ok 判据的诚实度，不是顺手级工作"}
+   ]
+  }
+ ],
+ "metric_alignment": {
+  "question": "ok vs L1 谁代表进展；现有门禁能否发现『编译通过但字节不匹配』的退化",
+  "l1_is_the_result_metric": {
+   "data": "s4_baseline.json: symbols=189 matched=129 match_L1=6 partial=123；partial 的 match_pct 中位数 26.1% 均值 34.1%",
+   "meaning": "56 个编译通过文件贡献的字节比对池里，只有 6 个函数字节全同，且全是 ≤36B 的小函数（4B GetControl/5B IsInBounds/36B TxtFile ctor/25B ResetAllSlots/26B Destroy/24B BindToRoleSlot）。字节匹配整体仍处『指令形态偏差』阶段，离目标非常远。L1（及 partial 分布）才是第一优先级的度量"
+  },
+  "ok_is_upstream_not_rival": {
+   "fact": "compare_pal3.py 只对 S2-green 单元做字节比对（compile_skip=0，依赖 probe_census 前置守卫）",
+   "judgment": "ok 是 L1 的漏斗上游而非对立指标：文件不编译通过就不进字节比对池。『按 ok 做最终取舍』确实是优化错误指标；但『停止维护 ok』会缩小比对覆盖面。正解是分层：ok 管漏斗扩张，L1/partial 管终点验收，两门禁都要。此外 ok 分母含未决死区：若近失池 MISATTRIBUTED 站点最终批量定案 NO_FIX，应把定案文件从 ok 分母剔除或单独记账（『可归因天花板』），否则 ok 天花板 <198 且不可解释——这是 captain 复盘未处理而必须补的推论"
+  },
+  "gate_blind_spot": {
+   "finding": "能看见、不能自动拦截",
+   "evidence": [
+    {"cmd": "sed -n '520,575p' pipeline/cli.py cmd_match + grep ratchet pipeline/compare_pal3.py", "out": "cmd_match 只对 match_L1 做棘轮（且 R1/R2 修复后 rc 传出正确）；compare_pal3.py 无 match_pct 棘轮；partial diff 不落盘（只写 s4_baseline.json 的 pct 行 + pal3_registry.jsonl 地址映射）"},
+    {"cmd": "构造反例（思想实验，由代码结构直接导出）", "out": "某次修改使 123 个 partial 的 match_pct 中位数从 26.1% 跌到 10%（大面积字节退化），只要 L1 保持 6，`cli.py match` 仍 exit 0——『编译通过但字节变差』对现有门禁不可见"}
+   ],
+   "fix": "①match 增加 partial 棘轮（如 Σmatch_pct 或中位数不降，超阈值 fail）②compare_pal3.py 落盘 per-function 逐字节 diff（Phase 2 手工 fix 的直接输入，当前缺失）③L1 棘轮已正确，保留"
+  }
+ },
+ "cv_vtable_byte_comparison": {
+  "question": "VC6 编译器合成的 vtable 能否与二进制逐字节一致（C-V 的前提，captain 称至今完全未验证）",
+  "method": "/tmp/vtrev 三组实验：wine_cl.sh /c /O2 /Ob2 /Oi /Ot /Oy /FAcs（与项目判据同优化级）；对 original/PAL3.exe objdump -d 全量反汇编（471,544 行）做同构检索；vtable_scanner.py 单类取证",
+  "experiments": [
+   {
+    "name": "exp/exp2：单继承+多继承基本合成",
+    "cmd": "grep -n 'vftable\\|DD\\tFLAT' exp2.cod",
+    "out": "①槽序=声明序：Base1 表 [deleting dtor, F1, F2]；②override 原位替换：Derived 主表 [??_E, F1(Derived), F2(Base1 继承实现原地址), H3]；③新虚函数追加表尾；④多继承=每子对象一张表（??_7Derived@@6BBase1@@@ 与 6BBase2@@@）"
+   },
+   {
+    "name": "exp2：this 调整编入函数体（无 thunk）",
+    "cmd": "sed -n '/?G1@Derived@@UAEXXZ PROC/,/ENDP/p' exp2.cod",
+    "out": "G1 只出现在 Base2 次表（单一偏移）⇒ VC6 不生成 thunk，把 -8 调整编入访存位移：mov eax,[ecx+8]/mov edx,[ecx-4]（b1/b2/d 以次对象为基准）——即『体内调整』策略"
+   },
+   {
+    "name": "exp3：同一 override 双表双偏移 ⇒ 强制 thunk",
+    "cmd": "sed -n '/?V@C@@W7AEHH@Z PROC/,/ENDP/p' exp3.cod",
+    "out": "C::V 同时出现在主表(offset 0)与次表(offset +8) ⇒ 次表槽放 adjustor thunk，字节形态：83 e9 08 (sub ecx,8) + e9 rel32 (jmp ?V@C@@UAEHH@Z)。修饰名 ?V@C@@W7AEHH@Z（W7=adjustor{8}）"
+   },
+   {
+    "name": "二进制同构检索（决定性）",
+    "cmd": "objdump -d original/PAL3.exe > pal3.asm; python3 扫 'sub $0xNN,%ecx' + 下一行 'jmp'",
+    "out": "43 处 sub ecx,imm8;jmp rel32 同款 thunk。决定性样本：CEffCylinder 次表 0x56F7BC 槽1=0x4C5800=thunk adj{0xC}→0x4C45A0，而主表 0x56F7C8 槽5=0x4C45A0（同一函数两表两偏移，与 exp3 完全同构）；主表槽0/1=[thunk adj{0xC}→0x4C3DB0, 0x4C3DB0]（dtor 对形态亦与编译器行为一致）"
+   },
+   {
+    "name": "RTTI 排除",
+    "cmd": "objdump -s -j .rdata --start-address=0x56F7A0 --stop-address=0x56F820 original/PAL3.exe",
+    "out": "表前邻接字节是字符串数据（'UCO'/0x0055434F）非 RTTI CompleteObjectLocator —— 项目为 /GR- 形态，与 exp（未开 /GR）一致，无 col 干扰"
+   }
+  ],
+  "verdict": "结构同构成立：VC6 合成规则（槽序=声明序、override 原位替换、新虚函数追加、thunk 生成与放置、单表时体内调整/多表时 thunk 的选择规则）与 PAL3.exe 观察形态一致。『逐字节一致』的剩余变量是①源码声明顺序还原（源码还原问题，非编译器能力问题）②链接布局（两路线共担）③项目级链接下 dtor 对/COMDAT 折叠细节（待窗口）。C-V 前提从『完全未验证』更新为『结构验证通过』",
+  "implication_for_plan": "①captain 的 A/B 问题已被预答一半：C-V 拿到第一手正证据，而路线①（删 virtual+显式 __vftable+手工表发射）需要手工维护全部表内容与 thunk——在 118+ 类规模下漂移风险大、且当前 612 处 [VFTABLE-STUB] 手工形式已经产生了大量 C2664/C2440 类型错误，是 convert 族的子群来源。②建议把『小规模 A/B』改为『单类 C-V 试点』：选一个多继承类（如 CEffCylinder），C-V 改写后判据=sizeof 一致 + vtable_scanner 槽位序列逐项一致，一次窗口定案",
+  "residual_risks": "exp3 mini exe 用 msvcrt.lib 链接（项目用 LIBC），链接布局不同——不影响槽序/thunk 判定，最终布局判据须在项目 toolchain 下复验（待窗口）；/GS- 被 VC6 忽略（VC6 无此选项），实验 flags 与项目判据的其余项一致"
+ },
+ "layout_fix_impact_prediction": {
+  "question": "修好布局（59 多态头+145 多继承头）后 ok/L1 会如何",
+  "ok_prediction": "先降后升。依据：①设计书自记的 M1 先例（错误总数 +293 后回落）②本轮基线轨迹可见同模式（20:07 err=3793 → 22:02 err=3703）③机制：错位掩盖的签名/类型错误在偏移对齐后暴露，随后批量消失。captain『可能先变差』的说法有依据",
+  "l1_prediction": "理论上单调不降。论证：函数字节仅依赖其引用的偏移/类型/调用形态；布局修复把偏移修向二进制真值。若某函数在错误布局下已字节全同（L1），说明它不引用任何受影响偏移，修复后重编结果不变；若它引用了受影响偏移，它在错误布局下本不可能全同（是 partial，修复后 match_pct 上移）。唯一降 L1 的路径是修复采用非等价源码变换（如错误增删 virtual 改变调用形态）——即对修复方式的约束，而非布局修复本身的后果",
+  "priority_judgment": "顺序正确（布局与 C-V 有硬耦合：根因 A 是 vptr 被 gap+virtual 双算，修法本身就是 C-V 路线选择），但 59/145 清单出自复核者统计、captain 仅独立验证 2 类——动工前应先用半天复跑全量 VC6 sizeof 清单（这本身就是比 A/B 更便宜的前置实验）",
+  "dual_benefit": "布局修复同时服务 ok 与 L1：123 个 partial 的 match_pct 整体上移主要靠布局（偏移错位是指令级 diff 的最大来源之一）。这是 captain 方案里唯一同时推进两个指标的动作，保留并前置"
+ },
+ "highest_value_next_step": {
+  "mine": [
+   {
+    "rank": 1,
+    "action": "L1 通道：把 9 个 match_pct≥90% 的 partial 修到 100%（L1 6→10+）",
+    "why": "这是唯一直接推进第一优先级（字节匹配）的动作，且量级小、确定性高。targets（s4_baseline 实测）: SceneMapPlayer::ClearName 95.0%/20B、AStarPathFinder::FindInOpen 94.1%/34B、FindInClosed 94.1%/34B、UINote::GetEntryPtr 88.2%/17B、_Console::SetActive 84.4%/32B、CMeteorChain::CMeteorChain 76.1%/46B 等。每函数 diff <8 字节级别。captain 方案完全缺失此通道——他把全部赌注押在架构工作上，而第一优先级的字面执行是修字节不是修架构",
+    "prereq": "先让 compare_pal3.py 落盘 per-function diff（当前只有 pct，Phase 2 手工 fix 缺直接输入——这是产品化缺口不是体力问题）"
+   },
+   {
+    "rank": 2,
+    "action": "门禁补全：partial 棘轮 + partial diff 落盘",
+    "why": "布局修复『先降后升』窗口期内字节退化完全静默（match 只棘轮 L1）。没有这道门禁，架构工作自身的中间态会无声损坏 partial。半天工作量"
+   },
+   {
+    "rank": 3,
+    "action": "布局炸弹（保留 captain D-2）：先半天复跑 59/145 全量 sizeof 清单，再定案修法（修法含 C-V 路线选择）"
+   },
+   {
+    "rank": 4,
+    "action": "C-V 单类试点（改造 captain D-1）：CEffCylinder 级别的多继承类，判据=sizeof 一致+vtable_scanner 槽位序列逐项一致",
+    "why": "A/B 的科学问题已被本轮实验预答（见 cv_vtable_byte_comparison），直接试点比再开 A/B 更省一个窗口"
+   },
+   {
+    "rank": 5,
+    "action": "近失池 26 处 MISATTRIBUTED 站点逐条定谳（AR-016 要求的用户裁决落地）：每条给出『修复签名/归属』或『NO_FIX 定案』二选一",
+    "why": "无论结果都改善判据诚实度：修复→ok 可能上升；定案→ok 分母可归因。抽查显示至少 Array::Insert 形态是可修的真签名缺口，『全部非缺陷』不成立"
+   }
+  ],
+  "vs_captain": "captain：停 ok → 架构（vtable A/B → 布局）→ 顺手 convert。差异①他缺 L1 通道（9 个 ≥90% 函数是他方案里没有任何位置容纳的直接字节工作）②他把 C-V 前提当未验证而保守地计划 A/B，实测后可直接试点③他把 MISATTRIBUTED 定谳降为『非缺陷/不处理』，实际是 AR-016 挂账的必办裁决④他未发现门禁的 partial 盲区——而他的布局计划恰恰会在盲区内运行",
+  "why_not_pure_L1_grind": "不建议只做 L1 通道：partial 中位数 26.1% 说明大头函数的形态偏差可能正是布局/vptr 双算的下游症状，硬修会返工。正确顺序是 L1 通道(小)→门禁(小)→布局+C-V(大)并行，L1 通道选的非多态小函数（ClearName/FindInOpen/UINote 等）不依赖布局定案"
+ },
+ "review_mechanism_blind_spots": [
+  "同源产物盲区：历轮复核者读同一 probe_census.json/s4_baseline.json/同一批 status JSON——上游产物的系统性误差被全体共享。实例：本轮实测 vtable_scanner 的槽位下边界估计会把相邻表吞并（CEffCylinder 0x56F7BC 报 21 槽，实为 3 槽+后续表），若前轮结论引用过该扫描，误差已共享",
+  "口径漂移无对账：captain 的『arity 18 条/15 文件/4 纯族』与任何口径的实测（44/26/9 或 MA15 子集 33/15/5）对不上，但该数字进入了决策链。历轮复盘数字无人强制复算——每轮各自定义口径，错误口径作为既定事实向下传递",
+  "框架内复核：前 3 轮复核（_cleanup_review_next_step/m2m3/abc/cv_design/f2_next）全部在『ok/错误族』框架内审视 captain 的结论，无人挑战『为什么在这个维度上优化』这一层——指标对齐问题（本报告第 2 问）直到第 4 轮才被提出。机制能拦『事实错误』，拦不住『框架错误』",
+  "不复现 captain 的实验：『①路线已 VC6 实测可行』『C-V 前提未验证』两轮滞留，无人跑过——本次实测（3 个 .cpp + 1 次全量反汇编检索）耗时约 10 分钟，复核成本被系统性高估，导致可立即验证的前提以『待验证』身份参与了两次战略决策",
+  "复核时序滞后：复核总在复盘/实施之后（拦错），无人在计划成形前复核前置假设。C-V 前提若在提出当日被验证，A/B 设计环节本可省略",
+  "定性惰性：『有意保留/非缺陷』标签一旦写入 B5 清单，后续轮次倾向引用而非重验。实例：CG-005 定性对象是 C2352 形态的 344 站点，captain 把它扩展引用到报 C2660 的 26 个未决站点上——标签的适用边界在传递中丢失，且未被任何一轮复核拦住（含本轮之前的我方同行）",
+  "盲区对策（建议）：①每轮复核强制复算上轮决策链中的全部数字（口径写入 JSON schema）②captain 的『已实测』声明必须有第二人复现记录才可进入决策链③每轮注入一个框架级问题（本轮为指标对齐），由 captain 指定而非复核者自选"
+ ],
+ "not_verified": [
+  "L1 历史值『5』：s4_baseline.json 被覆盖，未挖 git 历史验证 5→6 轨迹",
+  "err『3089』基线出处：本轮基线起点实测 3504（20260915_184019），3089 未在任何现存基线中出现",
+  "59/145 布局炸弹全量复跑（需逐类 VC6 sizeof 编译统计，约半天）——待窗口",
+  "项目级链接下 VC6 dtor 对(??_E/??_D)与 COMDAT 折叠的精确布局（mini exe 用 msvcrt.lib 与项目 LIBC 不同）——待窗口",
+  "wine 环境下 LINK 对 /OPT:ICF/REF 的默认行为与项目 build.ninja 实际 flags 的逐项对齐——待窗口",
+  "近失池其余 100 条非 C2660 非 convert 错误（C2100 gbRay::IntersectPlane×9、C2065、C2227 等）的机制归组——本轮只深查了 C2660/convert/MISATTRIBUTED 三群"
+ ]
+}
