@@ -152,3 +152,54 @@ C-V（vtable 表示收口到 C++ `virtual`）经 R18 判定**机制可行**，�
 | **2** | 只对 **P0（根基类）** 做完整取证 + 补注解 | 下游类依赖它们 |
 | **3** | 用 `CEffCylinder` 做**闭环验证**（R18 已定位 2 个缺陷，补齐后逐槽应一致）| 验证方法链有效 |
 | **4** | P1（7 个，最容易）→ 再评估 P2/P3 是否真需要 | 边际收益判断 |
+---
+
+## 8. 【修正 §6.1 的结论】IDA 分析**能**解决归属——但受 F2 缺口本身限制（captain，2026-09-15）
+
+> **用户指出：「为什么不走 IDA 分析确定 ctor 归属？」——这是对的。**
+> 我把 IDA 列为"需窗口的选项 A"并让位给离线方案，**判断有误**：
+> **函数边界本就是 IDA auto-analysis 的职责**，用 `objdump` + Python 重建是舍近求远。
+
+### 已实施：`pipeline/ida/export_func_bounds.py`（**只读**）
+
+```
+idat -A -S"pipeline/ida/export_func_bounds.py" original/PAL3.exe.i64
+⇒ pipeline/ida/_logs/func_bounds.json
+   counts: {funcs: 5554, vptr_sites: 476}
+```
+
+- **5554 个函数边界**（`start`/`end`/`name`/`flags`），名字含 **mangled 3261 个**（如 `??0AStarPathFinder@@QAE@XZ`）
+- **476 个 vptr 写站点**，每条都带 **`func_start` + `func_name`**（IDA 归属）
+- **只读**：脚本不调用 `save_database`；**IDB 文件大小不变**（85,659,881）。
+  ⚠️ **mtime 被更新**（18:07），需在下次窗口操作时留意；内容未变（无 `save_database`）。
+
+**首版脚本的操作数判据错误**，只抓到 **80/476** 条（把内存操作数只判为 `o_displ`）；
+改为接受 `o_mem`/`o_displ`/`o_phrase` 后正确（476）。**如实留痕。**
+
+### 归属效果：**170/467 张表**有了类归属（离线 6 种口径的最好结果是 20/467）
+
+且立刻暴露两处**标注错误**：
+```
+0x4C0629 → IDA: RenderTarget2::scalar_deleting_dtor    （注解说 nullsub_75_override，错）
+0x4C04EC → IDA: ?ClearTarget@RenderTarget2@@QAEPAPAUCEffBase@@XZ （注解说 CEffAction，待核）
+0x4C3DF3 → ??0CEffCylinder@@QAE@XZ                     ✓
+0x446175 → ??0CCBUIPanel@@QAE@XZ                       ✓（证实是 CCBUIPanel 的 ctor）
+```
+
+### 但 F2 缺口类只命中 **3/57**（`CEffShock` / `ScriptVM` / `filebuf`）
+
+**真因（实测）**：**剩余 54 个类本身没有 IDA 函数归属**——
+`IDA 函数名里含该类名的: 13 / 57`。这与 F2 缺口的定义**自洽**：
+`methods=0` ⇔ **IDA 侧也没有归属给该类的函数**。
+
+⇒ **不是归属方法的问题，是这些类在 IDB 里"没有名字"**。
+⇒ 要补它们，需要**先给 IDA 里的那些函数命名/归属**（即 annotation 的 `methods` 侧），
+那是**另一个工作方向**（不是"从二进制反推虚方法"，而是"先把 IDB 里的函数归属做对"）。
+
+### 修正后的路径建议
+
+| 序 | 动作 | 说明 |
+|---|---|---|
+| **1** | 用 `func_bounds.json` 的 **`vptr_sites` + IDA 归属**重跑全量"表→类"映射（170/467 已可做）| **纯离线**，立即可做 |
+| **2** | 对那 54 个"IDA 无名"的类：**先在 IDB 里找到它们的 ctor 并命名**（annotation 工作）| 需窗口；这是 F2 的真正前置 |
+| **3** | `CEffShock` / `ScriptVM` / `filebuf` 这 3 个**已可取证**的，先做闭环验证 | 验证方法链 |
