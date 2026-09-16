@@ -62,7 +62,17 @@ def encode_type(t):
     elif t.startswith('class ') or t == 'class':
         tag = 'V'; t = t[6:].strip()
     code = _TC.get(t)
-    if code is None and ptr > 0:
+    # 0b-③（2026-09-15）：**嵌套类**编码。限定名不能原样嵌入。
+    # 实测：签名 `AStarPathFinder::NODE *pNode`，真实符号 `?PushOpen@AStarPathFinder@@QAEHPAUNODE@1@@Z`
+    # ⇒ 正确编码是 `PAU` + `NODE` + `@1@`（`U`=struct、`1`=嵌套深度），
+    #    而原先产出 `PAVAStarPathFinder::NODE@@`（限定名原样嵌入 + 前缀错）。
+    # 必须放在 `ptr > 0` 分支**之前**：限定名不在 `_TC` 里，
+    # 若先走 `ptr > 0` 就永远到不了这里。
+    if code is None and '::' in t and ptr > 0:
+        _parts = t.split('::')
+        _depth = len(_parts) - 1
+        code = 'U' + _parts[-1] + '@%d@' % _depth
+    elif code is None and ptr > 0:
         # 0b-①（2026-09-15）：原先一律用 struct 前缀 'U'。
         # MSVC 对 class 用 'V'、对 struct 用 'U'，而 **decomp 签名里拿不到这个区分**：
         # `ida_structs.json` 的 kind **全是 'struct'**（实测 1016/1016，0 个 class），

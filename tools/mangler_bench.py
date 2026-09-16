@@ -46,25 +46,14 @@ def load_decomp_idx():
 
 
 def build_map(idx, import_vm):
-    """与 compare_pal3.build_mangled_map 同口径（含探测变体）。"""
-    m2e = {}
-    for name, e in idx.items():
-        if "::" not in name:
-            continue
-        base = name.split("(")[0]
-        if "::" not in base:
-            continue
-        cls, method = base.rsplit("::", 1)
-        sig = e.get("signature") or ""
-        try:
-            m = import_vm.mangle(cls, method, sig)
-            m2e.setdefault(m, e)
-            for kw in ({"virtual_": True}, {"static_": True}):
-                mv = import_vm.mangle(cls, method, sig, **kw)
-                if mv != m:
-                    m2e.setdefault(mv, e)
-        except Exception:
-            pass
+    """**直接复用** `compare_pal3.build_mangled_map`（保证离线复测与管线同口径）。
+
+    早期版本在此处复刻逻辑，导致 0b-③ 的 `_split_mangled_name` 修正未被测量到
+    （captain 实测踩坑：单测 MATCH 但 bench 显示 +0）。复用真实现可避免这类偏差。
+    """
+    sys.path.insert(0, os.path.join(ROOT, "pipeline"))
+    import compare_pal3 as cp
+    m2e, _failed = cp.build_mangled_map(idx)
     return m2e
 
 

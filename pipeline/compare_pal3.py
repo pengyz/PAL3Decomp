@@ -89,17 +89,47 @@ def load_decomp_index():
     return idx
 
 
+def _split_mangled_name(name):
+    """从 **本身已是 mangled 名** 的 decomp name 里提取 (cls, method)。
+
+    0b-③ 补（2026-09-15）：实测量得 5 个 decomp 条目的 `name` 以 `?` 开头
+    （本身就是 mangled 名，形如
+    `?PushOpen@AStarPathFinder@@QAEHPAUAStarPathFinder::NODE@@@Z` 或含 `[thunk]`）。
+    原 `build_mangled_map` 假设所有 name 都是 `Cls::meth(...)` 形态，对它做
+    `base.rsplit('::', 1)` ⇒ cls 变成 `?PushOpen@AStarPathFinder@@QAEHPAUAStarPathFinder`、
+    method 变成 `NODE@@@Z`，产出**垃圾名**（永远匹配不上）。
+
+    正确做法：从 mangled 名解析出 `?<method>@<class>@@`。
+    返回 `(cls, method)`，无法解析时返回 `(None, None)`。
+    """
+    m = re.match(r'^\?+[0-9A-Za-z_]*?(\w+)@(\w+)@@', name)
+    if m:
+        return m.group(2), m.group(1)
+    # ctor/dtor: ??0Cls@@ / ??1Cls@@
+    m = re.match(r'^\?\?[01](\w+)@@', name)
+    if m:
+        return m.group(1), m.group(1)
+    return None, None
+
+
 def build_mangled_map(decomp_idx):
     sys.path.insert(0, str(REPO / 'pipeline' / 'ida'))
     import vc6_mangler as vm
     m2e, failed = {}, 0
     for name, e in decomp_idx.items():
-        if '::' not in name:
-            continue
-        base = name.split('(')[0]
-        if '::' not in base:
-            continue
-        cls, method = base.rsplit('::', 1)
+        if name.startswith('?'):
+            # name 本身即 mangled 名 ⇒ 解析出 cls/method 后**用签名重算**
+            # （mangler 可能生成得比 IDA 的 mangled name 更准，例如嵌套类层级号）
+            cls, method = _split_mangled_name(name)
+            if not cls:
+                continue
+        else:
+            if '::' not in name:
+                continue
+            base = name.split('(')[0]
+            if '::' not in base:
+                continue
+            cls, method = base.rsplit('::', 1)
         sig = e.get('signature') or ''
         try:
             m = vm.mangle(cls, method, sig)
