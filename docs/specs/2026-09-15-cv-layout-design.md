@@ -219,3 +219,94 @@ sizeof(DV : public V1, public V2 { int c; }) = 16 = 8+4+4                 ← �
 5. **P1/P2/P3 判据是否可机械实现**，还是某个在原理上做不到？
 6. **S1–S5 的顺序是否合理**？有没有更该先做的一步？
 7. **本设计是否会破坏既有硬线**（`L1`/`ok`/`oob`/struct import）？
+---
+
+# R13 C-V 前提的**决定性实测**：**判定 FAIL**（captain，2026-09-15）
+
+> **这是方案 4 的 P3 判据的第一次真正执行。** 结论推翻复核者 `ad32c455` 的"结构同构 ⇒ 可行"乐观预期。
+
+## 实验设置（两侧分离，避免 P3 的恒真陷阱）
+
+| 侧 | 工具 | 取什么 |
+|---|---|---|
+| **编译产物侧** | **新增 `tools/coff_vtable.py`** | 遍历 COFF 符号表找 `??_7<Cls>@@6B@`（vftable 符号），读其 section 的 DWORD 序列，按 **DIR32 重定位**解出**槽位函数符号名** |
+| **二进制侧** | `tools/vtable_scanner.py` | 从 ctor 实际写入的 vptr 地址读槽位 |
+
+**`coff_vtable.py` 自检 PASS**（`--selfcheck`）：固定源码编出 `??_7B@@6B@` / `??_7D@@6B@`，
+槽序 `[0]=??_E<Cls>`（虚 dtor 占槽 0）、override 原位替换、未替换槽指基类 —— 全部正确。
+**保留了复核者点名的坑**：reloc 的符号索引必须按**原始 COFF 索引**建映射（aux 占位会错位）。
+
+## 结果一：CEffCylinder（F2 缺口类）**根本不产出 vtable**
+
+```
+编译含 CEffCylinder.h 的 TU（3 种：仅 include / 定义虚函数 / 全局实例化）：
+  vtable 符号: **0**          ← 三次都为 0
+  .bss 大小 = **4344**（二进制 4292，差 +52，与复核者实测吻合）
+  产出符号只有 ??0CEffCylinder@@QAE@XZ / ??1CEffCylinder@@QAE@XZ（**QAE=非虚**）
+```
+
+原因：其多态基类 **`CEffObj` 的生成头里只有一个 `char _gap_000[4]`、零 `virtual`**
+（`CEffObj` 注解 `binary_size=12`、`+0=__vftable`、`methods=[]` —— **正是 F2 的数据缺口**）。
+⇒ **编译器无处生成 vptr；`virtual` 只能声明新槽，不能凭空造出 vptr。**
+
+**把 `~CEffCylinder` 改成 `virtual`（产生 `??1CEffCylinder@@UAE@XZ`）后仍为 0** ⇒ 不是虚析构的问题。
+
+## 结果二：CEffAction（**能**产出表）——但**逐槽顺序与二进制不同**
+
+对照组 `CEffAction.h`（同样继承 `CEffObj` + `CTaskTpl_...`）**产出 vtable** ✓（7 槽），
+说明**不是编译器能力问题**，是供给/建模问题。
+
+| 槽 | 二进制 @`0x56F5E4` | 编译器合成 |
+|---|---|---|
+| 0 | `0x4C0540` ExecutePasses | `ExecutePasses` |
+| 1 | `0x4C0650` ? | `ResetState` |
+| 2 | `0x4C0640` ResetState | `UpdateFrame` |
+| 3 | `0x408BD0` NullCallback | `AllocRenderTarget` |
+| 5 | `0x4C0740` UpdateFrame | `RenderScene` |
+| 7 | `0x4C0520` AllocRenderTarget | — |
+| 9 | `0x4C0920` PrepareEffect | — |
+
+- **集合相同** ✓（两者都含那 7 个函数）
+- **逐槽顺序不同** ✗：合成表 **紧凑、严格按声明顺序**；
+  二进制是 `[0][2][5][7][9]…`（**步长 2–3，非紧凑**）
+- 二进制基址 `0x56F5E4` **已确证**（ctor `0x4C04EC` / `0x4C056B` 两处实写该地址）
+
+⇒ **复核者的"槽序=声明序"结论被证伪**：二进制槽序不跟随生成头的声明序。
+
+## 判定：**FAIL**
+
+C-V 的核心前提（"编译器合成的 vtable 能与二进制逐字节一致"）**不成立**，两条独立理由：
+
+1. **F2 缺口类根本不产出 vtable**（`CEffObj` 等多态基类无 `virtual` 供给）⇒ 无表可谈；
+2. **能产出的类，其槽序与二进制不同**（合成 = 紧凑声明序；二进制 = 非紧凑）
+
+⇒ **"vtable 表示收口到 C++ `virtual`"这条路线在原理上不足以复现二进制 vtables。**
+方案 3（布局炸弹）若以"改用 `virtual`"为前提，**必须先重新设计**。
+
+## ️ 副产物：`vtable_scanner` 的**边界吞并**缺陷已量化
+
+```
+CEffAction 表 0x56F5E4：读出 **96 槽**（注解记录 15 槽）⇒ 吞并了相邻多张表
+CEffAction 注解记录的槽位内容也**混入了别的类**（[1] = CEffQuake::AllocSegments）
+⇒ 注解记录的 vtables **可能同样来自串读**，不可作为 P3 的 ground truth 直接用
+```
+
+⇒ **P3 的正确 ground truth 需要"按 ctor 实写的基址 + 表结束判据"重新界定**，不能用注解记录。
+（`vtable_scanner` 的 `read_rdata_dwords` 以"非 `.text` 指针"为终止 ⇒ 对本例失效。）
+
+## 结论与建议
+
+| 项 | 判定 |
+|---|---|
+| C-V 前提（合成表 == 二进制表） | **FAIL** |
+| 方案 4（vtable 表示收口到 `virtual`） | **应放弃或重新设计** |
+| 方案 3（布局炸弹） | **其"改用 virtual"前提不成立** ⇒ 必须先解决 **F2 供给**（否则无表）**且**解释二进制槽序的非紧凑性 |
+| `coff_vtable.py` | **保留**（它是本判定的唯一手段，且自检严格）|
+| 省下的成本 | 原计划 3–5 天（方案 3）**不应按原设计投入** |
+
+**诚实标注**：
+1. 只测了 **2 个类**（`CEffCylinder` 失败、`CEffAction` 顺序不符）——**样本小**，
+   但两条理由都是**结构性**的（不产出 / 顺序不符），不是个例噪声。
+2. `CEffAction` 二进制槽序的**成因未查明**（为何非紧凑？可能是多继承布局或 IDA 类型系统伪影）
+   —— **这本身是新问题，需独立调研**。
+3. `coff_vtable.py` 未在**全量 56 个单元**上跑（只测了 3 个 TU + 自检）。
