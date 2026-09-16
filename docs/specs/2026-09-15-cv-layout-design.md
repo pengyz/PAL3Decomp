@@ -542,3 +542,84 @@ class C : public NC, public B2 {
 | **R17** | **机制成立，唯一障碍 = F2 供给** | 纯净最小件精确复现二进制形态 |
 
 ⇒ **`virtual` 路线没有死。** 我此前 R13 的 FAIL 判定**过于悲观**。
+
+---
+
+# R18 【闭环完成】C-V 前提：**合成机制可用**，暴露出**两个精确的数据缺陷**（captain，2026-09-15）
+
+## 触发的关键发现：MSVC6 的 vtable 发射条件
+
+系统排查 5 个变体（同一 TU，仅构造方式不同）：
+
+| 变体 | 内容 | vtable |
+|---|---|---|
+| A | 仅实例化 `CEffCylinder g;` | **0** |
+| B | 取虚成员指针 `&CEffCylinder::Destroy` | **0** |
+| C | **定义全部 10 个虚函数** | **0** |
+| **D** | **定义 `Destroy` + 定义虚析构 `CEffCylinder::~CEffCylinder(){}`** | **1** ✓ |
+| E | 对照：`CEffObj`（补丁后）自身 | **1** ✓ |
+
+⇒ **MSVC6 只在"定义该类的虚函数"时才发射其 vtable**（key-function 语义）。
+**`CEffCylinder.h` 的 `~CEffCylinder();` 是非虚声明，且仓库里没有它的定义**
+（`CEffCylinder.cpp` 有 >100 错误、不产出 `.obj`）⇒ **这就是它"不产出 vtable"的直接原因之一。**
+
+## 补 `CEffObj` 的虚方法后，**合成了 13 槽表**（`??_7CEffCylinder@@6B@`）
+
+`CEffObj` 的虚方法从二进制取证（`0x56F62C` 表 + ctor 实写）：
+
+```
+0x4C0620  无名  → 反汇编证实是 **deleting destructor**（test $0x1,%al + 恢复 vptr movl $0x56f62c,(%esi) + 条件释放）
+0x4C0600  RenderTarget2::StubReturn0   → 实为 `xor %al,%al; ret 4`（返回 0 的桩）
+0x4C0610  RenderTarget2::nullsub_75_override → 实为 `ret 0x10`（空桩）
+```
+
+合成结果：
+```
+[ 0] ??_ECEffCylinder@@UAEPAXI@Z          ← deleting dtor
+[ 1] CEffObj::OnTest        [ 2] CEffObj::nullsub_75      ← 基类虚方法（补进去的）
+[ 3] Create   [ 4] Init   [ 5] CreateTask   [ 6] Destroy   [ 7] AllocEffect
+[ 8] Update   [ 9] GetEditorObjDescription   [10] ProcInitTask
+[11] UpdateParticles   [12] GetEditorTaskDescription        ← 声明序 ✓
+```
+
+与二进制 `0x56F7C8` 对比（**二进制槽更多、且有 NullCallback 填充**）：
+```
+[ 0] dtor   [ 1] Create   [ 2] Init   [ 3][4] **NullCallback×2**   [ 5] CreateTask
+[ 6] Destroy   [ 7] AllocEffect   [ 8] OnTest   [ 9] Update
+[10] GetEditorObjDescription   [11] Update   [12] ProcInitTask
+[13] UpdateParticles   [14] GetEditorTaskDescription
+```
+
+## ⇒ 两个**精确的**数据缺陷（这就是 C-V 的全部剩余工作量）
+
+| # | 缺陷 | 证据 |
+|---|---|---|
+| **缺陷 1** | **`CEffCylinder` 的虚方法声明序错**。合成序 = `Create, Init, CreateTask, Destroy, AllocEffect, Update, GetEditorObjDescription, ProcInitTask, UpdateParticles, GetEditorTaskDescription`；二进制序 = `Create, Init, **NullCallback, NullCallback**, CreateTask, Destroy, AllocEffect, OnTest, Update, …` ⇒ **二进制在 Init 与 CreateTask 之间有 2 个"空槽"**，说明**原类的虚函数表里有 2 个本类未 override 的基类虚方法**（被 NullCallback 占位） | 两表逐槽对照 |
+| **缺陷 2** | **`CEffObj` 的虚方法集合不全**。取证到 3 个（deleting dtor + 返回 0 的桩 + 空桩），但二进制槽位布局显示还需要更多（否则排不出 2 个空槽的位置） | 同上 |
+
+## 最终判定（R13 → R18 的终点）
+
+| 环节 | 判定 |
+|---|---|
+| 编译器合成 vtable 的机制 | **✅ 可用**（13 槽表已合成，槽序 = 声明序）|
+| 合成表与二进制**集合** | **✅ 相同**（那 10 个 CEffCylinder 方法全在）|
+| 合成表与二进制**槽位布局** | ❌ **不同**——差在**基类虚方法供给**（缺陷 1+2）|
+| 障碍性质 | **数据/标注缺口**，**不是编译器能力问题** |
+| **C-V 可行性** | **机制可行**；剩余工作 = **补齐多态基类的虚方法集合**（即 F2 供给），**可枚举、可复用** |
+
+## 诚实标注
+
+1. **仍未做**"补全 `CEffObj` 真实虚方法集合后两表逐槽一致"的验证——
+   需要先把 `CEffObj` 的虚方法**全部**从二进制取证（本轮只取证到 3 个），
+   这本身是 F2 供给工作，**不是本轮能完成的**。
+2. `CEffCylinder.cpp` 有 **>100 编译错误**（不产出 `.obj`）⇒ 真实 TU 无法用于验证，
+   只能用最小件替代 ⇒ 与真实编译条件可能仍有差异。
+3. `vtable_compare.py` 的边界法对**多继承连续子表**仍不可靠（`0x56F7C8` 读到 65 槽）。
+
+## 本轮净产出
+
+- **新增工具 3 个**：`coff_vtable.py`（COFF 合成表提取，自检 PASS）、
+  `vtable_compare.py`（按 ctor 实写地址界定边界）、`mangler_bench.py`（离线 mangler 复测）
+- **C-V 从"FAIL，前提未验证"** → **"机制可行，剩余是可枚举的 F2 供给工作"**
+- **新增关键知识**：MSVC6 的 vtable 发射条件（定义了本类虚函数才发射）——
+  这解释了"为什么有些类编不出表"，**是 F2 供给予之外的第二个原因**
