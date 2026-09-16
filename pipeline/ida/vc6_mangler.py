@@ -173,6 +173,18 @@ def mangle(cls_name, method_name, sig, cv='', virtual_=False, static_=False):
     elif method_name == '~' + last_seg:
         special = '1'
 
+    # 0b-④（2026-09-15）：**scalar deleting destructor**（`??_G<Cls>@@UAEPAXI@Z`）。
+    # decomp 用 `_scalar_dtor` / `_sdtor` / `_sdtor_NN` 命名表示它
+    # （实测 UIWnd 有 `_sdtor_14/_sdtor_27/_sdtor_28`，UIButton 有 `_scalar_dtor`）。
+    # 形态完全一致：15/15 个 obj 符号都是 `??_G<Cls>@@UAEPAXI@Z`
+    #   `U`=virtual、`AE`=__thiscall(虚)、`PAX`=void*、`I`=unsigned int(flags)
+    # ⇒ 可直接机械生成，无需从签名推导。
+    # ⚠️ 供给限制：decomp 只对部分类给出了 `_scalar_dtor`/`_sdtor` 名
+    # （UIWnd 有、CEffGroupNode/CScreenModeNode/UIPushButton **没有**）
+    # ⇒ 本规则只能覆盖有供给的那些（captain 实测），无供给的属**数据缺口**。
+    if re.match(r'^_s(dtor|calar_dtor)(_\d+)?$', method_name):
+        return '??_G' + '@'.join(reversed(cls_name.split('::'))) + '@@UAEPAXI@Z'
+
     if special:
         r = '??' + special + '@'.join(reversed(cls_name.split('::'))) + '@@'
     else:
