@@ -238,3 +238,54 @@
 - 若**不消费**（只用于 `virtual` 判定等间接用途）⇒ **补 `methods` 就够，`vtables` 可降级为文档**。
 
 **这决定"补 F2 供给"到底要写什么。**
+
+---
+
+## 9. ✅ 决定"要写什么"的核实：`vtables` 与 `methods` 都被 codegen 消费（captain，2026-09-15）
+
+### 9.1 核实结果（`codegen` 对两个字段的真实用法）
+
+| 位置 | 用法 |
+|---|---|
+| `pipeline/gen/data.py:238-256` | `_vtables = _ann.get('vtables'); ...`<br>`if not _vtables or not _methods: continue`<br>⇒ **构建 `struct_vtables[cls] = {slot_index: method_name}`** ⇒ **两个字段都要非空才生效** |
+| `pipeline/gen/data.py:44` | 注释：`"ClassName" -> {slot_index: method_name} (from annotations)` |
+| `pipeline/gen/stages/emit_headers.py:242` | `class_vtable_slots` 需要 `vtables` 非空（否则返回空 ⇒ 不发 `virtual`）|
+| `pipeline/gen/stages/emit_headers.py:662` | `if not _sinfo.get('methods'): continue` ⇒ **`methods` 空则整个类被跳过** |
+| `pipeline/gen/ast_transform.py:310` | `for _vt in (_v.get('vtables') or [])` ⇒ 消费 `vtables` |
+
+**⇒ 两个字段都**承重**，但信息**来源不同**：**
+
+| 字段 | 语义 | 来源 | 能否从二进制导出 |
+|---|---|---|---|
+| **`methods`** | 类的虚方法（**名 + 地址**）| `decomp` / `annotations`（**已有大量数据**）| ✅ **可以**（地址是二进制事实）|
+| **`vtables`** | 虚方法的**声明顺序**（哪个地址在哪个槽）| **人的知识** | ❌ **不能**（§8 穷尽证明：字节层无边界信号）|
+
+### 9.2 ⇒ 关键结论：`vtables` 不必"导出"，它可以由 `methods` + **顺序**构造
+
+**因此"补 F2 供给"要写的是两样，且都不需要新的二进制信号**：
+
+1. **`methods`**：该类的虚方法（名 + 地址）——**地址可从 `decomp`/注解取**；
+2. **`vtables`**：**按声明顺序**列出这些方法的地址——**顺序来自"原类的声明序"，
+   而 R15 已实测确认"编译器槽序 = 源码声明序"** ⇒ 只要我按二进制槽序写出 `methods` 的顺序，
+   `vtables` 就是它的直接映射（**不需要另找边界信号**）。
+
+**⇒ 这与 R17/R18 的实测完全一致**：补上虚方法后编译器合成 13 槽表、槽序 = 声明序。
+
+### 9.3 但 §8 的困难依然真实——**它换成"顺序未知"而不是"边界未知"**
+
+要构造 `vtables`，必须知道**二进制里那 15 个槽的真实顺序**。
+而 §8 证明"从字节切不出表" ⇒ **顺序从哪来？**
+- 若**注解里已有**该方法地址集合（`methods`），仍需**顺序**；
+- **可用的顺序线索**：① 二进制表 `0x56F7C8` 的**前 N 槽顺序**（可用——因为**从 base 开始读，
+  直到遇到**不属于该类的函数**为止；§8 的问题只在"表尾被吞并"，**表头是对的**）；
+  ② 生成头里 `virtual` 的**行序**（R18 已发现它与二进制**部分一致**）。
+
+**⇒ 关键区分（§8 未强调）**：**表被"吞并"影响的是"表尾"，不影响"表头"**。
+⇒ **从 base 顺序读到第一个"确定属于别的类"的槽**，就能得到**真实的前段顺序**；
+配合注解已有的方法集合，即可构造 `vtables`。
+
+**⇒ 下一步（修正后）**：
+1. 对 **C 组 7 个类**（IDA 已有该类函数）：用**表头顺序**（从 base 读、遇到别类函数即停）
+   + `methods` 集合 ⇒ 构造 `vtables`；
+2. 补 `methods`（补齐缺失的虚方法）+ `vtables`（按该顺序）；
+3. 跑 `check → apply → export → codegen all` ⇒ **测 `C2039` 是否降、`sizeof` 是否变对**。
