@@ -1,0 +1,322 @@
+{
+  "name": "CEffShock",
+  "binary_size": 4272,
+  "known_members": {
+    "48": {
+      "name": "m_DefaultUVSet",
+      "type": "tagUV[256]",
+      "source": "annotation"
+    },
+    "4144": {
+      "name": "m_pTexture",
+      "type": "gbTexture *",
+      "source": "annotation"
+    },
+    "4148": {
+      "name": "m_pTextureArray",
+      "type": "gbTextureArray *",
+      "source": "annotation"
+    },
+    "4152": {
+      "name": "m_nMaxGeomQuad",
+      "type": "int",
+      "source": "annotation"
+    },
+    "4156": {
+      "name": "m_pGeomQuad",
+      "type": "gbGeomQuad *",
+      "source": "annotation"
+    },
+    "4160": {
+      "name": "m_pShock",
+      "type": "tagShockUnit *",
+      "source": "annotation"
+    },
+    "4164": {
+      "name": "m_bVisible",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "4165": {
+      "name": "m_bAdditiveBlend",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "4166": {
+      "name": "m_bNoZTest",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "4168": {
+      "name": "m_fFramePerSec",
+      "type": "float",
+      "source": "annotation"
+    },
+    "4172": {
+      "name": "m_byMaxFrame",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "4176": {
+      "name": "m_nRequireLoops",
+      "type": "int",
+      "source": "annotation"
+    },
+    "4180": {
+      "name": "m_nLoops",
+      "type": "int",
+      "source": "annotation"
+    },
+    "4184": {
+      "name": "m_fCurFrame",
+      "type": "float",
+      "source": "annotation"
+    },
+    "4188": {
+      "name": "m_dwStartColor",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "4192": {
+      "name": "m_fAlpha",
+      "type": "float",
+      "source": "annotation"
+    },
+    "4196": {
+      "name": "m_fRed",
+      "type": "float",
+      "source": "annotation"
+    },
+    "4200": {
+      "name": "m_fGreen",
+      "type": "float",
+      "source": "annotation"
+    },
+    "4204": {
+      "name": "m_fBlue",
+      "type": "float",
+      "source": "annotation"
+    },
+    "4208": {
+      "name": "m_fSize",
+      "type": "float",
+      "source": "annotation"
+    },
+    "4212": {
+      "name": "m_vecRot",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "4224": {
+      "name": "m_vecPos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "4236": {
+      "name": "m_vecOffsetPos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "4248": {
+      "name": "m_nNodeOfShock",
+      "type": "int",
+      "source": "annotation"
+    },
+    "4252": {
+      "name": "m_nCascade",
+      "type": "int",
+      "source": "annotation"
+    },
+    "4256": {
+      "name": "m_fWidthOfNode",
+      "type": "float",
+      "source": "annotation"
+    },
+    "4260": {
+      "name": "m_fHeightOfNode",
+      "type": "float",
+      "source": "annotation"
+    },
+    "4264": {
+      "name": "m_fSpeedOfDisappear",
+      "type": "float",
+      "source": "annotation"
+    },
+    "4268": {
+      "name": "m_fInterleaving",
+      "type": "float",
+      "source": "annotation"
+    },
+    "0": {
+      "name": "__vftable",
+      "type": "void *",
+      "source": "binary:vtable_ptr",
+      "note": "renamed vfptr -> __vftable (unified with IDA convention)"
+    }
+  },
+  "base_class": [
+    "CEffObj",
+    "CTaskTpl_tagEffTaskParam_CEffShock"
+  ],
+  "methods": {
+    "0x004D45D0": {
+      "name": "StartShock",
+      "signature": "void __thiscall(int nRequireLoops)",
+      "source": "pdb_ret"
+    },
+    "0x004D49F0": {
+      "name": "CreateGeom",
+      "signature": "void __thiscall(int nVal, int nVal2)",
+      "source": "pdb_ret"
+    },
+    "0x004D4B50": {
+      "name": "LoadTexture",
+      "signature": "void __thiscall(int pFileName, int nVal, int nVal2, int *p_DWORD, int nVal3, int nVal4)",
+      "source": "pdb_ret"
+    },
+    "0x004D4570": {
+      "name": "UpdateSegment",
+      "signature": "int __thiscall(int nVal)"
+    },
+    "0x004D3280": {
+      "name": "GetEditorTaskDescription",
+      "signature": "const char *__thiscall(int nIndex)"
+    },
+    "0x004D3910": {
+      "name": "CEffShock",
+      "signature": "CEffShock *__thiscall(CEffShock *__hidden this)",
+      "source": "vtable_evidence+pdb_correct",
+      "ordinal": 7
+    },
+    "0x004D3930": {
+      "name": "_slot00_004D3930",
+      "signature": "void __thiscall()",
+      "source": "vtable_slot_evidence: 表 0x56FADC 槽 0（A 级：ctor 0x4D3280 实写该表 + 槽序=声明序）"
+    },
+    "0x004D3AD0": {
+      "name": "Create_3ad0",
+      "signature": "void __thiscall()",
+      "source": "vtable_slot_evidence: 表 0x56FADC 槽 1（A 级：ctor 0x4D3280 实写该表 + 槽序=声明序）"
+    },
+    "0x004D3A50": {
+      "name": "Init",
+      "signature": "void __thiscall()",
+      "source": "vtable_slot_evidence: 表 0x56FADC 槽 2（A 级：ctor 0x4D3280 实写该表 + 槽序=声明序）"
+    },
+    "0x00408BD0": {
+      "name": "NullCallback",
+      "signature": "void __thiscall()",
+      "source": "vtable_slot_evidence: 表 0x56FADC 槽 3（A 级：ctor 0x4D3280 实写该表 + 槽序=声明序）"
+    },
+    "0x004D3DC0": {
+      "name": "sub_4D3DC0",
+      "signature": "void __thiscall()",
+      "source": "vtable_slot_evidence: 表 0x56FADC 槽 5（A 级：ctor 0x4D3280 实写该表 + 槽序=声明序）"
+    },
+    "0x004D4110": {
+      "name": "sub_4D4110",
+      "signature": "void __thiscall()",
+      "source": "vtable_slot_evidence: 表 0x56FADC 槽 6（A 级：ctor 0x4D3280 实写该表 + 槽序=声明序）"
+    },
+    "0x004C0500": {
+      "name": "OnTest",
+      "signature": "void __thiscall()",
+      "source": "vtable_slot_evidence: 表 0x56FADC 槽 8（A 级：ctor 0x4D3280 实写该表 + 槽序=声明序）"
+    },
+    "0x004AF760": {
+      "name": "Update",
+      "signature": "void __thiscall()",
+      "source": "vtable_slot_evidence: 表 0x56FADC 槽 9（A 级：ctor 0x4D3280 实写该表 + 槽序=声明序）"
+    },
+    "0x004D4840": {
+      "name": "sub_4D4840",
+      "signature": "void __thiscall()",
+      "source": "vtable_slot_evidence: 表 0x56FADC 槽 10（A 级：ctor 0x4D3280 实写该表 + 槽序=声明序）"
+    },
+    "0x004D4340": {
+      "name": "CreateTarget",
+      "signature": "void __thiscall()",
+      "source": "vtable_slot_evidence: 表 0x56FADC 槽 12（A 级：ctor 0x4D3280 实写该表 + 槽序=声明序）"
+    },
+    "0x004C15D0": {
+      "name": "UpdateParticles",
+      "signature": "void __thiscall()",
+      "source": "vtable_slot_evidence: 表 0x56FADC 槽 13（A 级：ctor 0x4D3280 实写该表 + 槽序=声明序）"
+    },
+    "0x004D4700": {
+      "name": "sub_4D4700",
+      "signature": "void __thiscall()",
+      "source": "vtable_slot_evidence: 表 0x56FADC 槽 14（A 级：ctor 0x4D3280 实写该表 + 槽序=声明序）"
+    }
+  },
+  "base_size": 16,
+  "vtables": [
+    {
+      "addr": "0x0056FADC",
+      "base": "CEffect",
+      "slots": [
+        {
+          "addr": "0x004D3930",
+          "from": null
+        },
+        {
+          "addr": "0x004D3AD0",
+          "from": null
+        },
+        {
+          "addr": "0x004D3A50",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004D3DC0",
+          "from": null
+        },
+        {
+          "addr": "0x004D4110",
+          "from": null
+        },
+        {
+          "addr": "0x004D3910",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004D4840",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004D4340",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004D4700",
+          "from": null
+        }
+      ],
+      "_evidence": "ctor 实写链 + 槽序 A 级证据：CreateShockEffect(0x4CFB20, CEffMgr) → call 0x4D3280 → 写 0x56FA7C/0x56FA88/0x56FAC4；同族参照 CEffSParticle 的 0x56FB34 为 15 槽、槽 7 = 本类 ctor；本表 0x56FADC 亦 15 槽且槽 7 = ??0CEffShock(0x4D3910)，槽 1/2 = Create/Init 与参照同位置"
+    }
+  ]
+}
