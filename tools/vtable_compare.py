@@ -48,14 +48,44 @@ def read_dword(va, data=None):
     return struct.unpack_from('<I', data, off)[0]
 
 
+# ️ 2026-09-15 修：原正则 `(?:[0-9a-f]{2} )+` **要求每个字节后都有空格**，
+# 而 objdump 对指令字节做**列对齐**：
+#   6 字节指令 `c7 06 00 a6 56 00   movl ...`（字节后**单空格**）⇒ 原正则**匹配失败**
+#   7 字节指令 `c7 45 00 e4 f5 56 00  movl ...`（**双空格**）⇒ 匹配成功
+# ⇒ 原实现只收集到"**奇数字节**"的 vptr 写（476 条），**丢掉全部偶数字节形态**
+#   （`c7 06`/`c7 00`/`c7 01`…即 `mov [reg],imm32`，正是最常见的 vptr 写）
+#   实测后果：`AStarPathFinder` 的表 0x56A600（写在 `401007: c7 06 00 a6 56 00`）
+#   不在集合里 ⇒ 注解 93 个表地址与它只有 **7 个交集**的假象由此而来。
+# 修法：字节串与助记符之间用 `\s+`，且不要求每字节后都有空格。
+# ⚠️ 正则踩坑记录（2026-09-15，本会话在此错了 4 次，逐条留痕）：
+#   objdump 对指令字节做**列对齐**，且不同长度的指令字节数与空格数不同：
+#     6 字节 `c7 06 00 a6 56 00    \tmovl ...`（无位移 `(%esi)`）
+#     7 字节 `c7 45 00 e4 f5 56 00 \tmovl ...`（有位移 `0x0(%ebp)`）
+#   错误写法与后果：
+#     ① `(?:[0-9a-f]{2} )+`（每字节后必须空格）⇒ 只命中"奇数字节"的行；
+#     ② 加了 `\s*` 后再写 `(?:[0-9a-f]{2}\s+)+` ⇒ 字节组的尾部 `\s+` 把 `movl` 前的
+#        空隙吃掉，`movl` 处无空白可匹配 ⇒ **匹配失败**（两个量词不能共享同一段空白）；
+#     ③ 把位移写成 `(?:0x0\()?` ⇒ 要求字面量 `0x0`，**无位移形态全丢**（丢掉了 AStarPathFinder 的表）。
+#   ✅ 正确形态：`(?:\s*[0-9a-f]{2})+` —— **`\s*` 在每字节之前**，最后一段空隙留给 `\s+movl?`。
+#   实测：修前收集 467 条（= 仅"有位移"形态），修后实测见 tools 自检。
 _VPTR_WRITE = re.compile(
-    r'^\s*[0-9a-f]+:\s+(?:[0-9a-f]{2} )+\s*movl?\s+\$0x(5[0-9a-f]{5}),(?:0x0\()?(%[a-z]+)\)?',
+    r'^\s*[0-9a-f]+:\s+'
+    r'(?:\s*[0-9a-f]{2})+'
+    r'\s+movl?\s+'
+    r'\$0x(5[0-9a-f]{5})'
+    r',\s*'
+    r'(?:0x[0-9a-f]+)?\(%[a-z]+\)',
     re.M)
 
 
 def bin_vptr_targets(dis_path='/tmp/pal3.dis'):
     """从反汇编里收集 ctor 实写的 vptr 目标（= 各表起始地址）。"""
-    if not os.path.exists(dis_path):
+    # ️ 必须按 EXE 的 mtime 判断新鲜度——**不能只看"文件存在"**：
+    # 2026-09-15 踩坑：修正则后复用陈旧的 /tmp/pal3.dis，导致结果不变（467→467），
+    # 一度让我以为修复无效。改为：反汇编文件比 EXE 旧就重建。
+    need = (not os.path.exists(dis_path)
+            or os.path.getmtime(dis_path) < os.path.getmtime(EXE))
+    if need:
         import subprocess
         with open(dis_path, 'w') as f:
             f.write(subprocess.run(['objdump', '-d', EXE], capture_output=True,
@@ -71,13 +101,84 @@ def bin_vptr_targets(dis_path='/tmp/pal3.dis'):
     return sorted(out)
 
 
-def bin_table(base, targets):
-    """按"下一个 ctor 实写地址"界定表长，返回槽位地址列表。"""
+def class_family(name):
+    """从一个函数名里提"它属于哪个类族"（用于槽位归属一致性判据）。
+
+    `?DestroyEffBase@RenderTarget2@@QAEHXZ` → `RenderTarget2`
+    `CEffCylinder::Create`                 → `CEffCylinder`
+    `??0CEffShock@@QAE@XZ`                 → `CEffShock`
+    提不出（`sub_xxx` / `unknown_libname_*` / 空）→ None
+    """
+    if not name:
+        return None
+    if '::' in name:
+        return name.split('::')[0]
+    if name.startswith('?'):
+        s = name
+        for p in ('??_7', '??_G', '??_E', '??0', '??1', '??2', '??3'):
+            if s.startswith(p):
+                s = s[len(p):]
+                break
+        else:
+            s = s[1:]
+            m = re.match(r'^[^@]*@(.+)$', s)
+            if not m:
+                return None
+            s = m.group(1)
+        m = re.match(r'^([^@]+)@', s)
+        return m.group(1) if m else None
+    return None
+
+
+def bin_table(base, targets, idx=None):
+    """界定二进制表长，返回 (槽位地址列表, end, confidence, broken_at, family)。
+
+    ## 为什么需要"归属一致性"判据（2026-09-15 修）
+
+    原先只用"**下一个 ctor 实写地址**"作边界 ⇒ 在**多继承的连续子表**排布下失效：
+    实测 `CEffShock` 的三张表被读出 **28 槽 / 43 槽**，里面混进了
+    `RenderTarget2::CalcDeltaTime`、`CEffQuake::AllocSegments` 等**别的类**的函数
+    ⇒ 无法据此写 `vtables` 注解（违反"禁止未验证修改"）。
+
+    ## 判据（三信号）
+
+    1. **硬上界**：下一个 ctor 实写地址（原有逻辑）；
+    2. **非 `.text` 槽**：直接断（`.rdata`/数据/0）；
+    3. **归属一致性**：从槽 0 的类族出发，**一旦出现"可识别为其它类族"的槽，表在该槽结束**。
+       提不出类族的槽（`sub_`/无名）**不算断裂**。
+
+    ⚠️ 仍是启发式：`confidence` 用于告知可信度（`high` = 未发生归属断裂；
+    `low` = 发生过 ⇒ 可能是子表续接，需人工核）。
+    """
     nxt = [t for t in targets if t > base]
-    end = nxt[0] if nxt else base + 0x400
-    n = (end - base) // 4
+    hard_end = nxt[0] if nxt else base + 0x400
     data = _exe()
-    return [read_dword(base + i * 4, data) for i in range(n)], end
+    if idx is None:
+        idx = va_index()
+
+    from vtable_scanner import in_section  # 复用节判定（SECTIONS 由调用方加载）
+
+    fam = class_family(idx.get(read_dword(base, data), ''))
+    slots = []
+    end = hard_end
+    broken_at = None
+    a = base
+    while a + 4 <= hard_end:
+        v = read_dword(a, data)
+        if not in_section(v, '.text'):
+            end = a
+            break
+        f = class_family(idx.get(v, ''))
+        if fam and f and f != fam:
+            end = a
+            broken_at = '%s(0x%X)' % (f, v)
+            break
+        slots.append(v)
+        a += 4
+    else:
+        end = a
+    conf = 'high' if broken_at is None else 'low'
+    return slots, end, conf, broken_at, fam
 
 
 def va_index():
@@ -137,9 +238,13 @@ def main():
         return 0
     if args.bin_base:
         base = int(args.bin_base, 16)
-        slots, end = bin_table(base, targets)
+        import vtable_scanner as _vs
+        _vs.SECTIONS = _vs.load_sections()
         idx = va_index()
-        print('二进制表 0x%X .. 0x%X （%d 槽，边界 = 下一个 ctor 实写地址）' % (base, end, len(slots)))
+        slots, end, conf, broken, fam = bin_table(base, targets, idx)
+        print('二进制表 0x%X .. 0x%X （%d 槽）' % (base, end, len(slots)))
+        print('  类族=%s  置信=%s%s' % (fam, conf,
+              ('  在 %s 处断裂（别的类族）' % broken) if broken else ''))
         for i, v in enumerate(slots):
             print('  [%2d] 0x%08X  %s' % (i, v, idx.get(v, '')))
     if args.obj:
