@@ -338,3 +338,53 @@ L1 单调不降
 `err=3703`/`C2039=1068` 未独立重跑；26 条 `MISATTRIBUTED` 仅采信 captain 的 `Array::Insert` 单抽查
 （**轻度"以偏概全"**）；链接级（整链 `.exe`）表槽位未测（`.obj` 层对 P3 门禁已足够）；
 C-V 的 43 处 thunk 同构**采信前复核者结论**。
+
+## R8（第 6 任复核者 kiro 在停止前发现，captain 已独立验证并量化）
+
+**`oob = 0` 是一个近乎空洞的读数** —— 本会话发现的**第 6 例"恒真/近恒真门禁"**。
+
+```
+pipeline/compare_pal3.py:45-59  exe_text_image():
+    if name == '.text':
+        return image_base, data[raw_ptr:raw_ptr + 0x10000000], virt_addr
+        #                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        #                          从 raw_ptr 到**文件末尾**（Python 切片超尾静默截断），
+        #                          **不是** .text 的 raw_ptr .. raw_ptr + raw_size
+```
+
+实测（`original/PAL3.exe`）：
+
+| 项 | 值 |
+|---|---|
+| 文件大小 | `0x212000` |
+| `.text` | `raw_ptr=0x1000`、`raw_size=0x169000` ← **真实代码区** |
+| `exe_text_image` 实际返回 | `data[0x1000:]` = **`0x211000` 字节** |
+| 该窗口实际跨越 | `.text`(0x1000) + `.rdata`(0x16A000) + `.data`(0x180000) + `.rsrc`(0x20C000) |
+
+`oob` 判定（`:166-168`）：
+```python
+idx0 = e['va'] - image_base - text_rva
+if idx0 < 0 or idx0 + size > len(text):   # len(text)=0x211000，而非 .text 的 0x169000
+    stats['oob'] += 1
+```
+
+**⇒ `oob=0` 只证明"没有符号越过文件末尾"，不证明任何符号落在 `.text` 内**；
+`.rdata` 里的地址也会被判"在界内"。**它量的边界比 `.text` 大 `0xA8000` 字节。**
+
+**影响**：
+1. **captain 此前两次把 `oob == 0` 当"证据"引用**（在 t3/t5 判据与方案 1 设计中）——
+   该读数**为真但接近恒真**，**不构成"尺寸/偏移正确"的证据**。
+2. **字节比对的边界不可信**：函数体读取若越过 `.text` 尾（`va ≥ 0x16A000`）会**静默读到 `.rdata` 的字节**，
+   而非报错 ⇒ 理论上可造成"匹配上了但比的是错的数据"。**当前 129 个符号是否受影响 ⇒ 待窗口核实**
+   （可用 `s4_diffs.json` 的 `size`/`va` 与 `.text` 尾 `0x16A000` 对照，静态即可判）。
+
+**修订（列入方案 1，因它属同一文件同一职责）**：
+```
+exe_text_image 应返回 data[raw_ptr : raw_ptr + raw_size]，并把越界判定改为
+   idx0 + size > raw_size      （.text 内，而非文件末尾）
+另：应在 stats 中区分 `oob_text_end`（越过 .text）与 `oob_file_end`（越过文件），
+    二者语义不同，不得合并计数
+```
+
+**captain 的自省**：这是本会话第 6 例恒真/近恒真门禁，且**是 kiro 复核者而非 captain 发现的**；
+captain 此前引用它两次，**属"把恒真读数当证据"**——与"以缺席反推事实"同族（都是**用弱读数支撑强结论**）。
