@@ -109,7 +109,8 @@ cast 成 `UIScene*`，callee 读 `this+0x5c`。含义是**该偏移上的存储�
 **分母可靠性核查**：`binary_size` 是"物理不可能"判据的分母，而 881 个类里有
 **46 个（5%）**已知成员上界 > `binary_size`（`SceneMgr` 差 5.2MB、`Comp_DonateUI`
 差 416KB…）。但**残余额度中 0/70** 的终值类型落在这 46 个类里 ⇒ **分母误差不影响
-本次残余**。
+本次残余**。（`UIWnd`/`UIStatic` **不在**这 46 个里，二者上界与 `binary_size`
+精确相等；详见 §4.2 勘误。）
 
 ### 4.2 `callee_self_overflow`（42 行 / 11 个 callee）—— 新的一类发现
 callee 的访问跨度 > 它**自己所属类**的 `binary_size`：
@@ -126,12 +127,41 @@ CCBSystem::GetThreadBase need=98336 CCBSystem.size=90840
 ```
 
 `UIWnd::GetWidth/GetHeight/GetPosition` 实测分别写 `+0x8c/+0x90/+0x94`（140/144/148），
-而 `UIStatic`(152) 恰好覆盖这三个偏移 —— 但它们被登记在 `UIWnd`(68) 名下。
-**这是与调用点无关的、纯 callee 侧的归属矛盾。**
+而 `UIWnd` 只有 **68** 字节 ⇒ **这三个方法写在自身对象之外 72 字节**，登记在
+`UIWnd` 名下必然有误。**这是与调用点无关的、纯 callee 侧的归属矛盾。**
 
-⚠️ **但 `binary_size` 不是权威值**：`UIWnd` 自己 `binary_size=68` 而成员上界已到
-`+0x64`；`UIStatic` 152 而 `+0x96 m_text char[16]` 到 `0xA6`。所以"UIWnd 真的是 68 吗"
-必须先独立确定，**不能**据此直接改方法归属。
+> **勘误（2026-09-17，本轮自查）**：本节初稿写过"`UIWnd` binary_size=68 但成员上界
+> 已到 `+0x64(100)`；`UIStatic` 152 而 `m_text char[16]` 到 `0xA6`"——**这是错的**。
+> 成因：我用临时脚本对 `known_members` 的键调了 `norm_va()`，而 9837/9849 个键是
+> **十进制无前缀**（只有 51 个带 `0x`），于是把十进制当十六进制读、放大了偏移。
+> 用 `load_structs()` 的正确规则重算：`UIWnd` 成员上界 = **68 = binary_size**；
+> `UIStatic` = **152 = binary_size**，两者**都自洽**。
+> ⇒ "`binary_size` 不可靠"这个说法**不适用于 UIWnd/UIStatic**（但 §4 里
+> 基于 `S[...]['members']` 算出的那 46 个类仍然成立，那份统计没走错规则）。
+
+### 归属不是 UIWnd —— 但要小心别过度断言
+调用点确实存在（非死代码）：
+
+```
+4508b5: push $0xa        ; UILoadingFrm::InitFullScreen (0x4507F0)
+4508b7: mov  %esi,%ecx   ;  this = %esi
+4508b9: call 0x43fdd0    ;  "GetHeight"
+4508c0: mov  %esi,%ecx
+4508c2: call 0x43fde0    ;  "GetPosition"
+4508c9: mov  %esi,%ecx
+4508cb: call 0x43fdc0    ;  "GetWidth"
+```
+另有 `UITitle_XJTM::UpdateMonsterEntry`（0x487cf8 `mov %edi,%ecx`）、
+`CCBUI_SetupAIWindow`（0x516c93 `mov 0x42c(%esi),%ecx`）、
+`CJ_FindFile::Create`（0x4511d3）等调用者。
+
+写的是 **float**（`fildl 0x4(%esp); fstps 0x8c(%ecx)`），偏移恰好是
+`UIStatic` 的 +140/+144/+148 —— 但**不能据此断定归属 UIStatic**：
+`UILoadingFrm` 派生自 `UIFrameWnd`（**不是** UIStatic），其自有成员起于 +72。
+
+⇒ **成立的部分**：`UIWnd` 这个归属是错的（写 +140 超出 68 字节，铁证）。
+**未定**的部分：真正的宿主类。下一步应逐个调用点回溯 `%esi`/`%edi`
+的来源（`mov 0x2c(%edi),%esi` 之类），而不是靠"偏移像谁"。
 
 ---
 
