@@ -680,11 +680,11 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                                     % (class_name, class_name,
                                                        method_name, rest_str))
                                             else:
-                                                new_text = (
-                                                    '/* [MISATTRIBUTED] %s on %s::this '
-                                                    '-> fix IDB name of callee */ %s::%s(%s)'
-                                                    % (class_name, cls_name, class_name,
-                                                       method_name, _margs))
+                                                # 【候选①·复核者反例】保留 cast 与 IDB 归属，
+                                                # 只补上对象解引用（与 Track-1/ROWTABLE 同形状）
+                                                new_text = '((%s))->%s::%s(%s)' % (
+                                                    first_arg_text, class_name,
+                                                    method_name, rest_str)
                                 else:
                                     # Normalize the cast to the method's class and
                                     # keep the qualifier: ((Cls*)X)->Cls::M(rest).
