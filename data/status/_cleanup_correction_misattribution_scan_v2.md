@@ -160,8 +160,41 @@ CCBSystem::GetThreadBase need=98336 CCBSystem.size=90840
 `UILoadingFrm` 派生自 `UIFrameWnd`（**不是** UIStatic），其自有成员起于 +72。
 
 ⇒ **成立的部分**：`UIWnd` 这个归属是错的（写 +140 超出 68 字节，铁证）。
-**未定**的部分：真正的宿主类。下一步应逐个调用点回溯 `%esi`/`%edi`
-的来源（`mov 0x2c(%edi),%esi` 之类），而不是靠"偏移像谁"。
+
+### 已回溯的调用点（A 级）
+`UILoadingFrm::InitFullScreen`（`0x4507F0`）里 `%esi` **只被写两次**
+（`0x450801` 读全局、`0x450825`）：
+```
+4507f6: mov  %ecx,%edi          ; %edi = this (UILoadingFrm)
+450825: lea  0x48(%edi),%esi    ; %esi = this + 72   ← 被当 this 的对象
+4508a6: movl $0xffffffec,0xd0(%esi)   ; 该子对象至少到 +208
+4508b7: mov  %esi,%ecx ; call 0x43fdd0
+4508c0: mov  %esi,%ecx ; call 0x43fde0
+4508c9: mov  %esi,%ecx ; call 0x43fdc0
+```
+而 `UILoadingFrm` 的 `+72` 成员是 **`m_LoadProgress : UIProgressBar`（内嵌）**，
+且它的下一个成员 `m_anitime` 在 **+316** —— `72 + 244 = 316`，与
+`UIProgressBar.binary_size = 244` **精确吻合**。
+
+`CCBUI_SetupAIWindow`（`0x516A30`）调用点 `0x516c93`：`mov 0x42c(%esi),%ecx`，
+而 `CCBUI` 在 `+1064` 有 `m_pRoleStateGP : UIProgressBar *[4]` ⇒ `+1068 = [1]`
+是**一个 `UIProgressBar *`**。
+
+⇒ 两个已回溯的调用点都指向 **`UIProgressBar`**；
+`UISceneFace` 也内嵌 `m_hp`/`m_mp : UIProgressBar`，同族。
+
+### ⚠️ 但仍不能直接改归属 —— 有一处硬矛盾未解
+这三个函数体是 **float 存储**：`fstps 0x8c(%ecx)` / `0x90` / `0x94`（140/144/148）。
+而 `UIProgressBar` 自己在这三个偏移的声明是
+`+140 m_IsGetit:BYTE` / `+144 m_bkColor:gbColorQuad` / `+148 m_foColor:gbColorQuad`
+—— **往 BYTE 里写 float 不可能**。
+
+⇒ `UIWnd::GetWidth/GetHeight/GetPosition → UIProgressBar` 这个**归属修正**与
+**`UIProgressBar` 在 +140/144/148 的成员类型**，两者**至少有一个是错的**。
+需先取"这三处实际是 float 还是别的"的独立证据（如 `UISceneFace::m_hp` 的
+初始化代码、或同族函数的读写），再动其中任何一个。
+**未解析的调用者**：`UITitle_XJTM::UpdateMonsterEntry`（0x487cfa）——该类注解里
+**没有** `UIProgressBar` 成员，其 `%edi` 来源尚未回溯。
 
 ---
 
