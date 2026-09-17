@@ -3183,7 +3183,13 @@ def generate_globals_cpp():
         if re.match(r'^a[A-Z]', nm) or tp.startswith('char['):
             s = _read_c_string(exe_data, addr)
             if s is not None:
-                lines.append(f'char {nm}[] = "{s}";')
+                # `const` 必须与 globals.h 的 extern 声明**一致**：声明侧用注解的
+                # 类型原样发（`extern const char X[];`），定义侧过去硬编码成
+                # `char X[] = "..."` ⇒ C2373: redefinition; different type modifiers。
+                # 实测 45 对不一致（globals.cpp 共 96 个错误）。
+                # 判据与声明侧同源：都看注解类型是否带 const。
+                _cq = 'const ' if tp.strip().startswith('const') else ''
+                lines.append(f'{_cq}char {nm}[] = "{s}";')
                 inc += 1
                 continue
         if not _is_pod_type(tp.split('[')[0].strip()):
