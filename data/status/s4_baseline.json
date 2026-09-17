@@ -18,11 +18,11 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 203,
-  "matched": 177,
-  "unmatched": 26,
-  "match_L1": 16,
-  "partial": 136,
+  "symbols": 218,
+  "matched": 191,
+  "unmatched": 27,
+  "match_L1": 17,
+  "partial": 149,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
@@ -117,7 +117,7 @@
    "name": "C2DSpark::C2DSpark(int,int)",
    "va": "0x004D5AB0",
    "status": "partial",
-   "match_pct": 23.2,
+   "match_pct": 24.0,
    "size": 770
   },
   {
@@ -1152,7 +1152,7 @@
    "name": "UITitle_BBTY::UpdateFrame(double,int,int)",
    "va": "0x004520A0",
    "status": "partial",
-   "match_pct": 25.2,
+   "match_pct": 24.4,
    "size": 861
   },
   {
@@ -1316,6 +1316,132 @@
    "status": "match_L1",
    "match_pct": 100.0,
    "size": 24
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "symbol": "?ResetPlayerAtts@SceneMgr@@SAHXZ",
+   "name": "SceneMgr::ResetPlayerAtts(void)",
+   "va": "0x00408850",
+   "status": "partial",
+   "match_pct": 23.0,
+   "size": 213
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "symbol": "?InitSceneRoles@SceneMgr@@SAHXZ",
+   "name": "SceneMgr::InitSceneRoles(void)",
+   "va": "0x0040CA40",
+   "status": "partial",
+   "match_pct": 13.4,
+   "size": 320
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "symbol": "?GetValidPartyCount@SceneMgr@@SAHXZ",
+   "name": "SceneMgr::GetValidPartyCount(void)",
+   "va": "0x0040FC70",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 22
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "symbol": "?UINotifyUpdate@SceneMgr@@QAEHXZ",
+   "name": "SceneMgr::UINotifyUpdate(void)",
+   "va": "0x00421C40",
+   "status": "partial",
+   "match_pct": 39.8,
+   "size": 88
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "symbol": "?ClearInactiveRoles@SceneMgr@@SAHXZ",
+   "name": "SceneMgr::ClearInactiveRoles(void)",
+   "va": "0x00423500",
+   "status": "partial",
+   "match_pct": 98.3,
+   "size": 58
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "symbol": "?ResetSceneFlags@SceneMgr@@SAHXZ",
+   "name": "SceneMgr::ResetSceneFlags(void)",
+   "va": "0x004236B0",
+   "status": "partial",
+   "match_pct": 64.0,
+   "size": 25
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "symbol": "?Create@SceneMgr@@QAEPAVCEffMgr@@HHH@Z",
+   "name": "SceneMgr::Create(int,int,int)",
+   "va": "0x004CDA10",
+   "status": "partial",
+   "match_pct": 35.2,
+   "size": 196
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "symbol": "?RenderAll@SceneMgr@@QAEDXZ",
+   "name": "SceneMgr::RenderAll(void)",
+   "va": "0x004CDBF0",
+   "status": "partial",
+   "match_pct": 52.8,
+   "size": 36
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "symbol": "?RenderUpdate@SceneMgr@@QAEDXZ",
+   "name": "SceneMgr::RenderUpdate(void)",
+   "va": "0x004CDC20",
+   "status": "partial",
+   "match_pct": 52.8,
+   "size": 36
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "symbol": "?GetCurrentNode@SceneMgr@@QAEPAHXZ",
+   "name": "SceneMgr::GetCurrentNode(void)",
+   "va": "0x0052EC90",
+   "status": "partial",
+   "match_pct": 4.3,
+   "size": 70
+  },
+  {
+   "file": "pal3/src/UI/UICamera.cpp",
+   "symbol": "?GetViewMode@UICamera@@SAHH@Z",
+   "name": "UICamera::GetViewMode(int)",
+   "va": "0x00420CD0",
+   "status": "partial",
+   "match_pct": 12.3,
+   "size": 374
+  },
+  {
+   "file": "pal3/src/UI/UICamera.cpp",
+   "symbol": "?CalcPosition@UICamera@@SAPAMPAM@Z",
+   "name": "UICamera::CalcPosition(float *)",
+   "va": "0x00420E50",
+   "status": "partial",
+   "match_pct": 12.6,
+   "size": 215
+  },
+  {
+   "file": "pal3/src/UI/UICamera.cpp",
+   "symbol": "?GetState@UICamera@@QAEHXZ",
+   "name": "UICamera::GetState(void)",
+   "va": "0x004230D0",
+   "status": "partial",
+   "match_pct": 20.3,
+   "size": 508
+  },
+  {
+   "file": "pal3/src/UI/UICamera.cpp",
+   "symbol": "?GetTarget@UICamera@@SAHXZ",
+   "name": "UICamera::GetTarget(void)",
+   "va": "0x004232D0",
+   "status": "partial",
+   "match_pct": 16.8,
+   "size": 452
   },
   {
    "file": "pal3/src/UI/UICursor.cpp",

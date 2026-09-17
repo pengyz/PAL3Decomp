@@ -76,6 +76,24 @@
       "name": "AdvanceToNextSlot",
       "signature": "void __thiscall CCBAttackSequen::AdvanceToNextSlot()",
       "_misattrib_evidence": "max_offset=15008>class_size=4280"
+    },
+    "0x004DB640": {
+      "name": "CalcSpeed",
+      "signature": "int __thiscall(int roleIdx, int nVal)",
+      "_migrated_from": "CCBSystem",
+      "_evidence": "A级: 0x4DB640 用 this+8 作 CCBRoleState* 调 0x4F3920(GetSpeedBonus, 访问 +0x481+idx*892 ⇒ 需>=1154B)，而 CCBSystem::m_pControl 是 CCBControl*(368B) 物理不可能；CCBAttackSequen::m_pRole 即 CCBRoleState*(+0x8) 类型精确吻合；0x4DB660 以 (char*)this+40*idx 后 +44/+45 写元素，与 m_Sequen 数组形态一致"
+    },
+    "0x004DB660": {
+      "name": "GetCmdSlot",
+      "signature": "int __thiscall(int idx)",
+      "_migrated_from": "CCBSystem",
+      "_evidence": "A级: 0x4DB640 用 this+8 作 CCBRoleState* 调 0x4F3920(GetSpeedBonus, 访问 +0x481+idx*892 ⇒ 需>=1154B)，而 CCBSystem::m_pControl 是 CCBControl*(368B) 物理不可能；CCBAttackSequen::m_pRole 即 CCBRoleState*(+0x8) 类型精确吻合；0x4DB660 以 (char*)this+40*idx 后 +44/+45 写元素，与 m_Sequen 数组形态一致"
+    },
+    "0x004DBE60": {
+      "name": "InitCombatSlot",
+      "signature": "void __thiscall CCBSystem::InitCombatSlot(int roleIdx)",
+      "_migrated_from": "CCBSystem",
+      "_evidence": "A级: 0x4DB640 用 this+8 作 CCBRoleState* 调 0x4F3920(GetSpeedBonus, 访问 +0x481+idx*892 ⇒ 需>=1154B)，而 CCBSystem::m_pControl 是 CCBControl*(368B) 物理不可能；CCBAttackSequen::m_pRole 即 CCBRoleState*(+0x8) 类型精确吻合；0x4DB660 以 (char*)this+40*idx 后 +44/+45 写元素，与 m_Sequen 数组形态一致"
     }
   }
 }
