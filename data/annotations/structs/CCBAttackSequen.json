@@ -94,6 +94,12 @@
       "signature": "void __thiscall CCBSystem::InitCombatSlot(int roleIdx)",
       "_migrated_from": "CCBSystem",
       "_evidence": "A级: 0x4DB640 用 this+8 作 CCBRoleState* 调 0x4F3920(GetSpeedBonus, 访问 +0x481+idx*892 ⇒ 需>=1154B)，而 CCBSystem::m_pControl 是 CCBControl*(368B) 物理不可能；CCBAttackSequen::m_pRole 即 CCBRoleState*(+0x8) 类型精确吻合；0x4DB660 以 (char*)this+40*idx 后 +44/+45 写元素，与 m_Sequen 数组形态一致"
+    },
+    "0x004DB7A0": {
+      "name": "ProcessAllCmds",
+      "signature": "int __thiscall()",
+      "_migrated_from": "CCBSystem",
+      "_evidence": "A级: 0x4DB7A0 把 this+8(=m_pControl, 声明 CCBControl*) 当 CCBRoleState* 传给 CCBRoleState::IsActive(0x4ED052: mov 0x243(%ecx,%edx,4),%al)、InitUI(0x4EE882: lea 0x228(%ecx,%edx,4))、SetRoleField(0x4F2BCA: mov 0x250(%ecx,%edx,4),%eax)，edx=idx*28 ⇒ 对象需>=0x250+28*idx=592B+；CCBControl binary_size=368 ⇒ 物理不可能；CCBAttackSequen::m_pRole 即 CCBRoleState*(+0x8) 吻合"
     }
   }
 }
