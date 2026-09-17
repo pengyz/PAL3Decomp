@@ -18,11 +18,11 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 189,
-  "matched": 164,
-  "unmatched": 25,
+  "symbols": 180,
+  "matched": 156,
+  "unmatched": 24,
   "match_L1": 14,
-  "partial": 127,
+  "partial": 119,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
@@ -117,7 +117,7 @@
    "name": "C2DSpark::C2DSpark(int,int)",
    "va": "0x004D5AB0",
    "status": "partial",
-   "match_pct": 24.0,
+   "match_pct": 23.2,
    "size": 770
   },
   {
@@ -207,17 +207,8 @@
    "name": "AStarPathFinder::ReleaseAll(void)",
    "va": "0x00401050",
    "status": "partial",
-   "match_pct": 17.9,
+   "match_pct": 42.9,
    "size": 28
-  },
-  {
-   "file": "pal3/src/Misc/AStarPathFinder.cpp",
-   "symbol": "?TryExpand@AStarPathFinder@@QAEHPAUNODE@1@HHHH@Z",
-   "name": "?TryExpand@AStarPathFinder@@QAEHPAUAStarPathFinder::NODE@@HHHH@Z",
-   "va": "0x004012A0",
-   "status": "partial",
-   "match_pct": 5.0,
-   "size": 523
   },
   {
    "file": "pal3/src/Misc/AStarPathFinder.cpp",
@@ -248,33 +239,6 @@
   },
   {
    "file": "pal3/src/Misc/AStarPathFinder.cpp",
-   "symbol": "?PushOpen@AStarPathFinder@@QAEHPAUNODE@1@@Z",
-   "name": "?PushOpen@AStarPathFinder@@QAEHPAUAStarPathFinder::NODE@@@Z",
-   "va": "0x00401560",
-   "status": "partial",
-   "match_pct": 33.3,
-   "size": 48
-  },
-  {
-   "file": "pal3/src/Misc/AStarPathFinder.cpp",
-   "symbol": "?Release@AStarPathFinder@@QAEHPAUNODE@1@@Z",
-   "name": "?Release@AStarPathFinder@@QAEHPAUAStarPathFinder::NODE@@@Z",
-   "va": "0x00401590",
-   "status": "partial",
-   "match_pct": 38.7,
-   "size": 31
-  },
-  {
-   "file": "pal3/src/Misc/AStarPathFinder.cpp",
-   "symbol": "?UpdateNeighbors@AStarPathFinder@@QAEHPAUNODE@1@@Z",
-   "name": "?UpdateNeighbors@AStarPathFinder@@QAEHPAUAStarPathFinder::NODE@@@Z",
-   "va": "0x004015B0",
-   "status": "partial",
-   "match_pct": 10.2,
-   "size": 401
-  },
-  {
-   "file": "pal3/src/Misc/AStarPathFinder.cpp",
    "symbol": "?ResortNode@AStarPathFinder@@QAEHXZ",
    "name": "AStarPathFinder::ResortNode(void)",
    "va": "0x00401750",
@@ -288,7 +252,7 @@
    "name": "AStarPathFinder::Reset(void)",
    "va": "0x004017A0",
    "status": "partial",
-   "match_pct": 16.7,
+   "match_pct": 86.1,
    "size": 36
   },
   {
@@ -402,8 +366,8 @@
   {
    "file": "pal3/src/Misc/JusticeBookUI.cpp",
    "symbol": "??_GUIWnd@@UAEPAXI@Z",
-   "name": "UIWnd::_sdtor_14(void *,char)",
-   "va": "0x0044A7D0",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x00450E90",
    "status": "match_L1",
    "match_pct": 100.0,
    "size": 30
@@ -411,7 +375,7 @@
   {
    "file": "pal3/src/Misc/JusticeBookUI.cpp",
    "symbol": "??_GJusticeBookUI@@UAEPAXI@Z",
-   "name": "JusticeBookUI::_scalar_dtor(UIWnd *,char)",
+   "name": "JusticeBookUI::`scalar deleting destructor'(uint)",
    "va": "0x005284C0",
    "status": "match_L1",
    "match_pct": 100.0,
@@ -420,7 +384,7 @@
   {
    "file": "pal3/src/Misc/JusticeBookUI.cpp",
    "symbol": "??_GUIButton@@UAEPAXI@Z",
-   "name": "UIButton::_scalar_dtor(void *,char)",
+   "name": "UIButton::`scalar deleting destructor'(uint)",
    "va": "0x0043F950",
    "status": "match_L1",
    "match_pct": 100.0,
@@ -843,8 +807,8 @@
   {
    "file": "pal3/src/Misc/UIStatic.cpp",
    "symbol": "??_GUIWnd@@UAEPAXI@Z",
-   "name": "UIWnd::_sdtor_14(void *,char)",
-   "va": "0x0044A7D0",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x00450E90",
    "status": "match_L1",
    "match_pct": 100.0,
    "size": 30
@@ -852,7 +816,7 @@
   {
    "file": "pal3/src/Misc/UIStatic.cpp",
    "symbol": "??_GUIStatic@@UAEPAXI@Z",
-   "name": "UIStatic::_scalar_dtor(void *,char)",
+   "name": "UIStatic::`scalar deleting destructor'(uint)",
    "va": "0x004407A0",
    "status": "match_L1",
    "match_pct": 100.0,
@@ -870,7 +834,7 @@
   {
    "file": "pal3/src/Misc/UIStatic.cpp",
    "symbol": "?LoadResource@UIStatic@@QAEPAVgbVFileSystem@@PBDD@Z",
-   "name": "UIStatic::LoadResource(int,char)",
+   "name": "UIStatic::LoadResource(char const *,char)",
    "va": "0x00440A20",
    "status": "partial",
    "match_pct": 40.6,
@@ -915,7 +879,7 @@
   {
    "file": "pal3/src/Misc/UIStatic.cpp",
    "symbol": "?LoadTextureByName@UIStatic@@QAEXPBDD@Z",
-   "name": "UIStatic::LoadTextureByName(int,char)",
+   "name": "UIStatic::LoadTextureByName(char const *,char)",
    "va": "0x00442480",
    "status": "partial",
    "match_pct": 17.9,
@@ -978,8 +942,8 @@
   {
    "file": "pal3/src/Misc/UITitle_BBTY.cpp",
    "symbol": "??_GUIWnd@@UAEPAXI@Z",
-   "name": "UIWnd::_sdtor_14(void *,char)",
-   "va": "0x0044A7D0",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x00450E90",
    "status": "match_L1",
    "match_pct": 100.0,
    "size": 30
@@ -987,7 +951,7 @@
   {
    "file": "pal3/src/Misc/UITitle_BBTY.cpp",
    "symbol": "??_GUITitle_BBTY@@UAEPAXI@Z",
-   "name": "UITitle_BBTY::_scalar_dtor(UIWnd *,char)",
+   "name": "UITitle_BBTY::`scalar deleting destructor'(uint)",
    "va": "0x00451D80",
    "status": "match_L1",
    "match_pct": 100.0,
@@ -996,7 +960,7 @@
   {
    "file": "pal3/src/Misc/UITitle_BBTY.cpp",
    "symbol": "??_GUIButton@@UAEPAXI@Z",
-   "name": "UIButton::_scalar_dtor(void *,char)",
+   "name": "UIButton::`scalar deleting destructor'(uint)",
    "va": "0x0043F950",
    "status": "match_L1",
    "match_pct": 100.0,
@@ -1017,7 +981,7 @@
    "name": "UITitle_BBTY::UpdateFrame(double,int,int)",
    "va": "0x004520A0",
    "status": "partial",
-   "match_pct": 24.4,
+   "match_pct": 25.2,
    "size": 861
   },
   {
@@ -1181,42 +1145,6 @@
    "status": "match_L1",
    "match_pct": 100.0,
    "size": 24
-  },
-  {
-   "file": "pal3/src/UI/UICamera.cpp",
-   "symbol": "?GetViewMode@UICamera@@SAHH@Z",
-   "name": "UICamera::GetViewMode(int)",
-   "va": "0x00420CD0",
-   "status": "partial",
-   "match_pct": 12.3,
-   "size": 374
-  },
-  {
-   "file": "pal3/src/UI/UICamera.cpp",
-   "symbol": "?CalcPosition@UICamera@@SAPAMPAM@Z",
-   "name": "UICamera::CalcPosition(float *)",
-   "va": "0x00420E50",
-   "status": "partial",
-   "match_pct": 12.6,
-   "size": 215
-  },
-  {
-   "file": "pal3/src/UI/UICamera.cpp",
-   "symbol": "?GetState@UICamera@@QAEHXZ",
-   "name": "UICamera::GetState(void)",
-   "va": "0x004230D0",
-   "status": "partial",
-   "match_pct": 20.3,
-   "size": 508
-  },
-  {
-   "file": "pal3/src/UI/UICamera.cpp",
-   "symbol": "?GetTarget@UICamera@@SAHXZ",
-   "name": "UICamera::GetTarget(void)",
-   "va": "0x004232D0",
-   "status": "partial",
-   "match_pct": 16.8,
-   "size": 452
   },
   {
    "file": "pal3/src/UI/UICursor.cpp",
