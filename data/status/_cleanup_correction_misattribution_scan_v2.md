@@ -1,297 +1,263 @@
-# 归属误判扫描器：偏移链解析修复（勘误 + 结果）
+# 归属误判扫描器：偏移链解析修复（含独立复核处置）
 
-**日期**：2026-09-17 · **前置**：`_cleanup_correction_misattribution_scan.md`、
+**日期**：2026-09-17 · **产物**：`tools/scan_misattribution.py`（重写）、
+`tools/test_scan_misattribution.py`（42 用例）、
+`data/status/_scan_misattribution{,_v2,_v3}.json`
+
+**前置**：`_cleanup_correction_misattribution_scan.md`、
 `_cleanup_review_misattribution_scan_kiro.md`
-**产物**：`tools/scan_misattribution.py`（重写）、`tools/test_scan_misattribution.py`（新，28 用例）、
-`data/status/_scan_misattribution_v2.json`
+**独立复核**：`subagent-9`（kiro），两轮结论见 §5
 
 ---
 
-## 1. 结论（先说结果）
+## 1. 结论
 
-| 项 | 修复前 | 修复后 |
-|---|---|---|
-| 候选（旧"类型不符"过滤后） | 1524 | **1524**（候选面不变）|
-| 标记为"物理不可能" | **71**（去重 52）| **70**（去重 55）|
-| 旧候选仍存活 | — | **24 / 52**（**28 个被证伪**）|
-| 偏移链**经二进制真值校验** | 未做 | **84 吻合 / 0 不吻合** |
-| 单元用例 | 0 | **28 全绿** |
+| 项 | v1 旧实现 | v2（修 4 缺陷）| **v3（再修 3 缺陷）** |
+|---|---|---|---|
+| 工具默认输出候选数 | 1524 | 2196 | **2234** |
+| 其中 `head_type_differs` 子集 | 1524 | 1524 | **1556** |
+| 标记"物理不可能" | **71**（去重 52）| 70（去重 55）| **87**（去重 66）|
+| 链不可解析 | — | 462 | **253** |
+| 偏移链经二进制真值校验 | 未做 | 84 / 0 | **151 / 0** |
+| 单元用例 | 0 | 28 | **42** |
 
-**新增的第二类发现**：`callee_self_overflow` **42 行（11 个不同 callee）** —— callee
-的访问跨度超过**它自己所属类**的 `binary_size`。这与调用点无关，是**callee 自身归属/
-类尺寸**的矛盾，见 §4。
-
-**对"批量重归属"这个方案的影响：结论不变（不可做），但理由被换掉了。**
-原来的理由是"物理不可能有 71 个"；现在的理由是：残余 70 个**不是"函数归属错"**，
-而是**成员/元素类型过小**（A 级证据见 §3）。两者要用完全不同的 fix。
-
----
-
-## 2. 四个缺陷（全部有可复现证据）
-
-### 缺陷 1 —— 偏移链不解析（**82% 的旧结论建立在此之上**）
-旧正则 `(?:&?this->(m_\w+))` 只抓成员名，忽略 `[k]` / `.field` / `->field` 后缀。
-于是 `&this->m_ShoesName.m_rect.bottom`（终值是个 `int`）被当成 `UIStatic`(152B)
-去和 `CCBUI` 的访问需求(352B)比，判成"物理不可能"。
-
-```
-旧 71 个"物理不可能"里：带后缀 58 个（82%）、裸成员 13 个
-```
-
-### 缺陷 2 —— 无函数边界：盲目反汇编 `va .. va+0x400`
-`UIWnd::GetWidth` 在 `0x0043FDC0`，**真实长度 13 字节**（`decomp/*.json` 的
-`size_bytes`），函数体只有 `fildl 0x4(%esp); fstps 0x8c(%ecx); ret $0x4`，
-即只访问 `+0x8c`(140)。旧实现却报 `need=244` —— 因为它把之后 60 多个**彼此只隔
-16 字节**的小函数一起扫了进来。修法：用 `size_bytes` 界定，遇 `ret` 立即停。
-
-### 缺陷 3 —— `%ecx` 活性判据写反
-旧代码 `re.search(r'\bmov\s+%ecx\s*,', body)` 匹配的是 AT&T 里的**源**操作数
-（`mov %ecx,<dst>` = 把 this 拷出去，**恰恰无害**），而真正致命的
-`mov <src>,%ecx`（ecx 被覆盖）**完全没检测**。修法：改成 `,\s*%ecx`（目标操作数）
-+ `pop %ecx`，且**先算本指令的读、再判覆盖**（`mov 0x8(%ecx),%ecx` 那次读必须算）。
-
-### 缺陷 4 —— 指针数组元素步长错（由 §3 的验证器抓出）
-`UIScrollBar::m_texarrayInfo` 声明是 `_PlugInfo *[10]`。每元素是 **4 字节指针**，
-旧实现用了 `sizeof(_PlugInfo)=584`：`m_scrollbar.m_texarrayInfo[4]` 解析成 **2676**，
-编译器真值是 **356**。
-
-### 额外：`norm_va` 的 `.lstrip('0X')` 陷阱
-`'0X004F3D90'.lstrip('0X')` = `'4F3D90'`（`lstrip` 按**字符集**剥离，连前导 `0`
-一起吃掉）⇒ 查函数尺寸表**永远失败**，`need` 全变 `None`。旧代码靠 `int()` 侥幸
-无事，新代码依赖字符串键就暴露了。已改整数键 + `norm_va()` 统一入口。
+- **v1 → v2**：4 个缺陷修复，28 个旧候选被证伪（占旧去重 52 的 54%）。
+- **v2 → v3**：**独立复核抓出 3 个我漏掉的缺陷**（§5.1），其中"字段不查基类"
+  一项就把 `impossible` 从 **70 抬到 87**（+24%）——**"70"不是终态**。
+- v1 与 v3 的"物理不可能"去重后**共有 31 个**，即 **21 个旧结论被证伪**，
+  v3 新增 35 个。
+- 与方案的关系：**"统一扫描 + 批量重归属"仍不可做**，理由见 §7。
 
 ---
 
-## 3. 偏移链解析器已被**二进制真值**校验
+## 2. v1 的四个缺陷（每个都可复现证伪）
 
-`python3 tools/scan_misattribution.py --verify-offsets`
+**缺陷 1 —— 偏移链不解析。** 旧正则 `(?:&?this->(m_\w+))` 忽略 `[k]`/`.field`/
+`->field` 后缀。旧 71 个"物理不可能"里 **58 个（82%）带后缀**，于是
+`&this->m_ShoesName.m_rect.bottom`（终值 `int`）被当成 `UIStatic`(152B) 去比
+`CCBUI` 的需求(352B)。
 
-做法：在 caller 的机器码里找 `call <callee>`，回溯 `%ecx` 的来源；若为
-`lea X(%this),%ecx`，则 **X 必须等于解析出的 `member_off`**。
+**缺陷 2 —— 无函数边界。** 旧实现盲目反汇编 `va..va+0x400`。
+`UIWnd::GetWidth`（`0x43FDC0`）真实长度 **13 字节**、只访问 `0x8c(%ecx)`=140，
+旧实现报 `need=244` —— 因为它扫进了后面 60 多个**彼此只隔 16 字节**的小函数。
+`decomp/*.json` 里本来就有真实 `size_bytes`（复核者用 objdump 独立核对 3 个函数，
+逐条吻合）。
+
+**缺陷 3 —— `%ecx` 活性判据写反。** 旧代码 `r'\bmov\s+%ecx\s*,'` 匹配的是 AT&T 的
+**源**操作数（`mov %ecx,<dst>` = 把 this 拷出去，**无害**），而真正覆盖 ecx 的
+`mov <src>,%ecx` **完全没检测**。修法：`,\s*%ecx`（目标操作数）+ `pop %ecx`，
+且**先算本指令的读、再判覆盖**。
+
+**缺陷 4 —— 指针数组元素步长错。** `UIScrollBar.m_texarrayInfo` 声明
+`_PlugInfo *[10]`，每元素是 **4 字节指针**，旧实现用 `sizeof(_PlugInfo)=584`：
+`m_scrollbar.m_texarrayInfo[4]` 解析成 **2676**，真值 **356**。
+
+**附：`norm_va` 的 `.lstrip('0X')` 陷阱。** `'0X004F3D90'.lstrip('0X')` = `'4F3D90'`
+（`lstrip` 按**字符集**剥离，连前导 `0` 一起吃掉）⇒ 查函数尺寸表永远失败、
+`need` 全变 `None`。已改整数键。
+
+---
+
+## 3. v2 遗留、由独立复核抓出的三个缺陷（v3 已修）
+
+### 缺陷 5 —— 字段查找不回溯基类（**影响最大**）
+`resolve_chain` 处理 `.field`/`->field` 时只查 `S[cls]['members']`。
+但 `UIStatic.m_bcreateok` 实际定义在**基类 `UIWnd`**，`m_nLoop` 等同理。
+
+实测（我自己复现，非采信复核者的数字）：
+```
+                     候选      impossible   unknown_field
+v2                   2196         70            462
+v3（仅加基类查找）    2234         87            253
+```
+**87% 量级的"拒答"是工具能力不足，不是"annotation 缺失"。**
+
+修法：`_find_member()` 沿 `bases[0]` 递归。**只沿主基类**——MSVC 单继承下主基类
+子对象在偏移 0，成员偏移可直接沿用；**次要基类（`bases[1:]`）偏移未知，绝不猜**
+（多继承时非主基类不在 0 偏移）。已加"次要基类必须查不到"的用例。
+
+### 缺陷 6 —— `_ecx_sources` 不识别 `mov %reg,%ecx`
+`this` 经寄存器传递（`mov %edi,%ecx`）时本可继续回溯，旧实现一律归为
+`clobber`（覆盖）⇒ 把**本可判定**的调用点丢进"无法判定"堆，
+**并让文档把这些数字全部归因于"必要的谨慎"**（这处归因不诚实，复核者指出后已改）。
+
+修法：新增 `_this_regs()`（序言里 `mov %ecx,%r` 检测 this 别名，`%esi`/`%ebp`/
+`%edi`/`%ebx` 都用过）+ `_trace_reg()`（有界回溯到 `lea X(%this),%reg`，遇 `call`
+或寄存器被写即中断）。同时收紧：`lea X(%r),%ecx` 只当 `%r` 确实是 this 时才作数
+——旧版会把 `lea X(%esp),%ecx`（**栈局部变量**）误当 this 偏移。
+
+效果：真值校验覆盖 **84 → 151**，不吻合仍为 **0**。
+
+### 缺陷 7 —— `parse_decl_type` 误读前缀/嵌套/模板
+926 个类型串里：前缀关键字 15 个、嵌套 `::` 41 个、模板 33 个。
+- `'const struct TypeDescriptor *'` → 旧抓出 `base='const'`；
+- `'AStarPathFinder::NODE *'` → 旧抓出**外层类** `AStarPathFinder`
+  （**尺寸是错的**，比漏判更危险）；
+- `'std::vector<...>'` → 旧抓出 `'std'`。
+
+修法：剥 `const/volatile/struct/class/enum/union`；含 `::` 或 `<` 一律
+`base=None`（保守拒答，绝不用外层类冒充）；`sizeof_type` 对指针先返回 4。
+复核者提到这些"目前未观察到已产生错误结果"——同意，属潜在风险，但仍已修。
+
+---
+
+## 4. 偏移链解析器已被**二进制真值**校验（151 / 0）
+
+`python3 tools/scan_misattribution.py --limit 0 --verify-offsets`
+
+在 caller 机器码里找 `call <callee>`，回溯 `%ecx` 来源；若为 `lea X(%this),%ecx`
+（或经寄存器传递可回溯到它），则 **X 必须等于解析出的 `member_off`**。
 
 ```
-单点可判定：吻合 84，不吻合 0；多点需配对 128；无法判定 114
+单点可判定：吻合 151，不吻合 0；多点需配对 157；无法判定 119
 ```
 
+- **不是循环论证**（复核者独立确认）：`resolve_chain` 的数据源是 annotation 的
+  类型声明串，`_ecx_sources` 的数据源是 `objdump` 反汇编；两条独立路径。
 - 只对 **(caller, callee) 恰有一个调用点、且只有一个候选**的组合下结论 ——
-  多调用点时集合级比较**不构成证据**（这正是缺陷 4 被发现后收紧的规则）。
-- 修复缺陷 4 之前是 `84/4`；4 个不吻合**全部**是 `m_texarrayInfo` 同族。
+  多调用点必须先做表达式↔指令配对，集合级比较不构成证据（这正是缺陷 4 被发现后
+  收紧的规则）。
+- 收紧 `this` 寄存器判定后仍有 0 不吻合，说明原先 84 个 `lea` 都是真 this 相对寻址。
 
-### 调用点定谳示例（决定"是归属错还是类型错"）
+### 调用点定谳示例（区分"归属错"与"类型错"）
 `LineupUI::OnMessage` → `UIListBox::GetGridOffset`：
 ```
-4782bc:	lea    0x1bcb4(%esi),%ecx     ← 对象内嵌在 LineupUI+0x1bcb4
-4782c2:	call   0x43ebb0               ← UIListBox::GetGridOffset
-43ebb4:	mov    0x45c(%ecx),%eax       ← callee 真的读 +0x45c(1116)
-43ebbf:	imul   0x454(%ecx),%edx
+4782bc: lea  0x1bcb4(%esi),%ecx     ← 对象内嵌在 LineupUI+0x1bcb4
+4782c2: call 0x43ebb0
+43ebb4: mov  0x45c(%ecx),%eax       ← callee 真的读 +0x45c(1116)
+43ebbf: imul 0x454(%ecx),%edx
 ```
-声明链 `m_btnPar2[10][0]._x` 解析 = **113844 = 0x1bcb4**（与 `lea` 完全一致，说明
-偏移链算法正确），但终值声明类型是 **`float`(4B)**。
-⇒ **被调函数是它本身没错，错的是"声明类型太小"** —— 这是成员/元素类型缺陷，
-**不是** `CalcSpeed` 那一型的函数归属误判。
+声明链 `m_btnPar2[10][0]._x` 解析 = **113844 = 0x1bcb4**（与 `lea` 一致），
+终值声明类型是 **`float`(4B)** ⇒ **被调函数归属没错，是声明类型太小**
+（`m_btnPar2` 是 `UIParticle[16][7]`，`_x` 在元素内 +136）。
 
 ---
 
-## 4. 残余 70 的构成（诚实分类）
+## 5. 对独立复核（`subagent-9`）结论的逐条处置
+
+| 复核主张 | 我的处置 |
+|---|---|
+| 缺陷 1/2/3/4 真实 | **证实**（我原本就是这么写的；复核者独立三重核对 `size_bytes`）|
+| `--verify-offsets` 不是循环论证 | **证实** |
+| **字段查找不回溯基类（缺陷 5）** | **证实并复现**：`impossible` 70→87。**已修** |
+| **`_ecx_sources` 把 `mov %reg,%ecx` 误判为 clobber（缺陷 6）** | **证实**。**已修**，覆盖 84→151 |
+| **`parse_decl_type` 误读 `const`/`struct`/`::`（缺陷 7）** | **证实**（真实数据里 15+41+33 个）。**已修** |
+| "文档把 1524 当候选总数、具有误导性" | **部分成立**：表格该行原文写了"旧'类型不符'**过滤后**"，但**确实没有交代工具默认输出是 2196**。已在 §1 同时列出两个数 |
+| "46 个类 `binary_size` 不自洽" | **口径差**：复核者算 44、我用当前规则算 **45**。差异来自"无法解析类型"的尺寸规则（±1 敏感）。**该指标不承载结论**，已给出可复算片段 |
+| "文档说 28 用例、实际 31" | **时间差**：写文档时确为 28，其后又加了 14 个。现为 **42** |
+| "§5.1'扫描器现在可信'过度推广" | **接受**。已新增 §6 置信度分层，明确"候选发生器"与"判决器"的区别 |
+
+### 复核者自身的一处过度表述
+我把"无法判定 114"归因于"必要的谨慎"确属**归因不完整**（已改）；
+但复核者称 §1 表格"**直接矛盾**/相差 44%"的措辞强于事实——原文该行已标注
+"过滤后"。真正的问题是**没写出默认总数**，已补。
+
+---
+
+## 6. 残余 87 的构成（诚实分类）
 
 | 终值声明类型 | 行数 |
 |---|---|
-| 标量（`int`14 / `char`9 / `unsigned`8 / `float`6 / `long`3 / `DWORD`1）| **41** |
-| 类名（`gbTexture`14 / `Actor`5 / `_PlugInfo`3 / `UIWnd`2 / 其余 7 种各 1）| 29 |
+| 标量（`int`/`char`/`unsigned`/`float`/`long`/`DWORD`）| **48** |
+| 类名（`gbTexture`/`Actor`/`_PlugInfo`/`UIWnd`/…）| **39** |
 
-**41/70 是"标量字段的地址被当成类对象用"**：`&this->m_X`（`m_X` 声明 `int`）被
-cast 成 `UIScene*`，callee 读 `this+0x5c`。含义是**该偏移上的存储其实是一个对象**，
-声明类型写小了 —— 与 `CalcSpeed` 的推断同构，但结论指向**成员类型**而非函数归属。
+**超出幅度**（callee 需求 − 声明尺寸）：中位 **188B**；
+`<=8B` 14、`9–32B` 5、`33–128B` 20、`129–512B` 25、`>512B` 23。
+按 §9 的反例，**`<=32B` 那 19 个是启发式噪声**，不能单独当证据。
 
-**超出幅度**：中位 159B；`<=8B` 13 个、`9–32B` 5 个、`33–128B` 16 个、
-`129–512B` 18 个、`>512B` 18 个。`<=8B` 那 13 个是**启发式噪声**的边界，不应单独当证据。
+**分母可靠性**：`binary_size` 是判据分母，881 个类里 **45 个**成员上界 > `binary_size`。
+但**残余额度中 0/87** 的终值类型落在这 45 个类里 ⇒ **分母误差不影响本次残余**。
 
-**分母可靠性核查**：`binary_size` 是"物理不可能"判据的分母，而 881 个类里有
-**46 个（5%）**已知成员上界 > `binary_size`（`SceneMgr` 差 5.2MB、`Comp_DonateUI`
-差 416KB…）。但**残余额度中 0/70** 的终值类型落在这 46 个类里 ⇒ **分母误差不影响
-本次残余**。（`UIWnd`/`UIStatic` **不在**这 46 个里，二者上界与 `binary_size`
-精确相等；详见 §4.2 勘误。）
-
-### 4.2 `callee_self_overflow`（42 行 / 11 个 callee）—— 新的一类发现
-callee 的访问跨度 > 它**自己所属类**的 `binary_size`：
-
+### 6.2 `callee_self_overflow`（42 行 / 11 个 callee）—— 与调用点无关的一类
 ```
-UIWnd::GetWidth        need=144  UIWnd.size=68     x2
-UIWnd::GetHeight       need=148  UIWnd.size=68     x2
-UIWnd::GetPosition     need=152  UIWnd.size=68     x2
-UIFrameWnd::SetPosition need=92  UIFrameWnd.size=72 x3
-CCBFiveNimbusWindow::SetFloatParam need=296 类尺寸=160 x15
-RenderTarget::SetState  need=584 RenderTarget.size=200
-UISceneMap::GetSceneInfo need=1744 UISceneMap.size=1012
-CCBSystem::GetThreadBase need=98336 CCBSystem.size=90840
+CCBFiveNimbusWindow::SetFloatParam need=296  类尺寸=160   x15
+CCBAttackSequen    ::SetPause       need=457  类尺寸=456   x9
+UIPushButton       ::SetAnimOffset  need=256  类尺寸=252   x5
+UIFrameWnd         ::SetPosition    need=92   类尺寸=72    x3
+UIWnd              ::GetHeight      need=148  类尺寸=68    x2
+UIWnd              ::GetPosition    need=152  类尺寸=68    x2
+UIWnd              ::GetWidth       need=144  类尺寸=68    x2
+UIFrameWnd         ::SetFrameParam  need=152  类尺寸=72    x1
+RenderTarget       ::SetState       need=584  类尺寸=200   x1
+CCBSystem          ::GetThreadBase  need=98336 类尺寸=90840 x1
+UISceneMap         ::GetSceneInfo   need=1744 类尺寸=1012  x1
 ```
 
-`UIWnd::GetWidth/GetHeight/GetPosition` 实测分别写 `+0x8c/+0x90/+0x94`（140/144/148），
-而 `UIWnd` 只有 **68** 字节 ⇒ **这三个方法写在自身对象之外 72 字节**，登记在
-`UIWnd` 名下必然有误。**这是与调用点无关的、纯 callee 侧的归属矛盾。**
+**其中 `UIWnd::GetWidth/GetHeight/GetPosition` 已定谳（§9）**：
+`sizeof(UIWnd)=68`，而三者写 `+140/+144/+148` ⇒ **写在自身对象之外，
+`UIWnd` 归属必然有误**。
 
-> **勘误（2026-09-17，本轮自查）**：本节初稿写过"`UIWnd` binary_size=68 但成员上界
-> 已到 `+0x64(100)`；`UIStatic` 152 而 `m_text char[16]` 到 `0xA6`"——**这是错的**。
-> 成因：我用临时脚本对 `known_members` 的键调了 `norm_va()`，而 9837/9849 个键是
-> **十进制无前缀**（只有 51 个带 `0x`），于是把十进制当十六进制读、放大了偏移。
-> 用 `load_structs()` 的正确规则重算：`UIWnd` 成员上界 = **68 = binary_size**；
-> `UIStatic` = **152 = binary_size**，两者**都自洽**。
-> ⇒ "`binary_size` 不可靠"这个说法**不适用于 UIWnd/UIStatic**（但 §4 里
-> 基于 `S[...]['members']` 算出的那 46 个类仍然成立，那份统计没走错规则）。
-
-### 归属不是 UIWnd —— 但要小心别过度断言
-调用点确实存在（非死代码）：
-
-```
-4508b5: push $0xa        ; UILoadingFrm::InitFullScreen (0x4507F0)
-4508b7: mov  %esi,%ecx   ;  this = %esi
-4508b9: call 0x43fdd0    ;  "GetHeight"
-4508c0: mov  %esi,%ecx
-4508c2: call 0x43fde0    ;  "GetPosition"
-4508c9: mov  %esi,%ecx
-4508cb: call 0x43fdc0    ;  "GetWidth"
-```
-另有 `UITitle_XJTM::UpdateMonsterEntry`（0x487cf8 `mov %edi,%ecx`）、
-`CCBUI_SetupAIWindow`（0x516c93 `mov 0x42c(%esi),%ecx`）、
-`CJ_FindFile::Create`（0x4511d3）等调用者。
-
-写的是 **float**（`fildl 0x4(%esp); fstps 0x8c(%ecx)`），偏移恰好是
-`UIStatic` 的 +140/+144/+148 —— 但**不能据此断定归属 UIStatic**：
-`UILoadingFrm` 派生自 `UIFrameWnd`（**不是** UIStatic），其自有成员起于 +72。
-
-⇒ **成立的部分**：`UIWnd` 这个归属是错的（写 +140 超出 68 字节，铁证）。
-
-### 已回溯的调用点（A 级）
-`UILoadingFrm::InitFullScreen`（`0x4507F0`）里 `%esi` **只被写两次**
-（`0x450801` 读全局、`0x450825`）：
-```
-4507f6: mov  %ecx,%edi          ; %edi = this (UILoadingFrm)
-450825: lea  0x48(%edi),%esi    ; %esi = this + 72   ← 被当 this 的对象
-4508a6: movl $0xffffffec,0xd0(%esi)   ; 该子对象至少到 +208
-4508b7: mov  %esi,%ecx ; call 0x43fdd0
-4508c0: mov  %esi,%ecx ; call 0x43fde0
-4508c9: mov  %esi,%ecx ; call 0x43fdc0
-```
-而 `UILoadingFrm` 的 `+72` 成员是 **`m_LoadProgress : UIProgressBar`（内嵌）**，
-且它的下一个成员 `m_anitime` 在 **+316** —— `72 + 244 = 316`，与
-`UIProgressBar.binary_size = 244` **精确吻合**。
-
-`CCBUI_SetupAIWindow`（`0x516A30`）调用点 `0x516c93`：`mov 0x42c(%esi),%ecx`，
-而 `CCBUI` 在 `+1064` 有 `m_pRoleStateGP : UIProgressBar *[4]` ⇒ `+1068 = [1]`
-是**一个 `UIProgressBar *`**。
-
-⇒ 两个已回溯的调用点都指向 **`UIProgressBar`**；
-`UISceneFace` 也内嵌 `m_hp`/`m_mp : UIProgressBar`，同族。
-
-### ⚠️ 但仍不能直接改归属 —— 有一处硬矛盾未解
-这三个函数体是 **float 存储**：`fstps 0x8c(%ecx)` / `0x90` / `0x94`（140/144/148）。
-而 `UIProgressBar` 自己在这三个偏移的声明是
-`+140 m_IsGetit:BYTE` / `+144 m_bkColor:gbColorQuad` / `+148 m_foColor:gbColorQuad`
-—— **往 BYTE 里写 float 不可能**。
-
-⇒ `UIWnd::GetWidth/GetHeight/GetPosition → UIProgressBar` 这个**归属修正**与
-**`UIProgressBar` 在 +140/144/148 的成员类型**，两者**至少有一个是错的**。
-需先取"这三处实际是 float 还是别的"的独立证据（如 `UISceneFace::m_hp` 的
-初始化代码、或同族函数的读写），再动其中任何一个。
-**未解析的调用者**：`UITitle_XJTM::UpdateMonsterEntry`（0x487cfa）——该类注解里
-**没有** `UIProgressBar` 成员，其 `%edi` 来源尚未回溯。
+> **勘误（本轮自查）**：本节初稿曾写"`UIWnd` binary_size=68 但成员上界 `+0x64(100)`；
+> `UIStatic` 152 而 `m_text char[16]` 到 `0xA6`"——**错的**。成因：临时脚本对
+> `known_members` 的键调了 `norm_va()`，而 **9837/9849 个键是十进制无前缀**
+> （仅 51 个带 `0x`），把十进制当十六进制读放大了偏移。用 `load_structs()` 的正确
+> 规则重算：`UIWnd` 上界 **= 68 = binary_size**；`UIStatic` **= 152**，**都自洽**。
+> 已加回归用例 `TestMemberKeyRadix`。**扫描器代码未受污染**（`norm_va` 只用于 VA）。
 
 ---
 
-## 5. 这对方案意味着什么（诚实结论）
+## 7. 这对方案意味着什么
 
-- ✅ **扫描器现在可信**：偏移链经 84/0 真值校验，边界与活性判据可证伪地修好。
-- ❌ **"统一扫描 + 批量重归属"依然不可做**，但**理由换了**：
-  残余的主体是**成员/元素类型过小**（41 个标量）与 **callee 侧 self_overflow**，
+- ✅ **扫描器现在是可信的候选发生器**：偏移链 151/0 真值校验、42 用例、
+  7 个缺陷全部有可复现证据。
+-  **"统一扫描 + 批量重归属"不可做** —— 理由换了：残余主体是
+  **成员/元素类型过小**（48 个标量）与 **callee 侧 self_overflow**，
   不是"方法声明在了错误的类里"。批量改归属会把成员类型缺陷误修成归属改动。
-- ▶ **可独立推进的两条**（互不依赖）：
-  1. **成员/元素类型修复**：对 41 个标量终值逐个取"调用点 `lea` + callee disp32"
-     证据。**这会改 `known_members` 的 `type`**，与已有的 `+0x12`/`m_Sequen` 类
-     偏移工作同一批。
-  2. **`binary_size` 一致性**：46 个类成员上界 > `binary_size`，其中
-     `UIWnd`/`UIStatic` 直接影响 6 行 `self_overflow`。先定 `binary_size` 权威性，
-     再谈 `UIWnd::GetWidth` 归属。
+- ⚠️ **"87"也不是终态**：v2→v3 已证明每修一个结构性缺陷数字就会变。
+  在下游任何批量工作之前，必须先固定扫描器（本轮已固定 7 个缺陷）。
 
 ---
 
-## 6. 复现
+## 8. 复现
 
 ```bash
-python3 -m unittest tools.test_scan_misattribution -v        # 28 用例
-python3 tools/scan_misattribution.py --limit 40              # 全量扫描
-python3 tools/scan_misattribution.py --limit 0 --verify-offsets   # 偏移真值校验
+python3 -m unittest tools.test_scan_misattribution -v            # 42 用例
+python3 tools/scan_misattribution.py --limit 40                  # 默认输出 2234
+python3 tools/scan_misattribution.py --limit 0 --verify-offsets  # 151/0
 ```
 
-旧产物 `data/status/_scan_misattribution.json`（1524 候选 / 71 不可能）**保留**，
-作为对照基线。
+v1 产物 `_scan_misattribution.json` 与 v2 产物 `_scan_misattribution_v2.json`
+**保留**作为对照基线。
 
 ---
 
-## 7. 附：标量终值案例的调用点定谳（补 §3 缺少的例子）
+## 9. 附录：调用点定谳
 
-§3 只给了**类名终值**（`UIParticle._x`）的例子，而残余主体是**标量终值**（41/70）。
-补一个，把"`%ecx` 里到底是什么"直接摆在机器码上：
-
+### 9.1 标量终值（补 §4 缺的例子）
 `PalScriptMgr::ShowTextBox(char const *)`（`0x00450BC0`，160B）：
-
 ```asm
 450bc9: mov   %ecx,%esi          ; %esi = this (PalScriptMgr)
-...
-450c1d: lea   0x48(%esi),%edi    ; %edi = this + 0x48 (72)      ← 解析出的 member_off = 72
+450c1d: lea   0x48(%esi),%edi    ; %edi = this + 0x48 (72)  ← 解析值 = 72
 450c25: mov   %edi,%ecx          ; 第 1 个调用
-450c2d: mov   %edi,%ecx          ; 第 2 个调用
-450c35: mov   %edi,%ecx          ; 第 3 个调用
-450c50: mov   %edi,%ecx          ; 第 4 个调用
+450c2d: mov   %edi,%ecx          ; 第 2 个
+450c35: mov   %edi,%ecx          ; 第 3 个
+450c50: mov   %edi,%ecx          ; 第 4 个
 ```
+（`%esi` 在本函数内**只被写两次**：`450801` 读全局、`450825`。）
+`+0x48` 的成员声明是 **`float m_fPosZ`(4B)**，同一地址被
+`RoleCameraCtrl::SetName`（体内最大 disp 72 ⇒ need=76）与
+`UIScene::SetState`（188 ⇒ need=192）两个不同类当 `this` 用。
+⇒ 该偏移是 **≥192 字节的内嵌对象**，声明成 float 是错的。
 
-`%edi = this+72` 与解析值**逐值相同**。而 `+0x48` 上的成员声明是 **`float m_fPosZ`(4B)**，
-同一个地址被交给：
-
-| callee | 体内 `[ecx+disp]` 最大 | need |
-|---|---|---|
-| `RoleCameraCtrl::SetName` | 72 | 76 |
-| `UIScene::SetState` | 188 | 192 |
-
-⇒ 该偏移上的存储是一个**≥192 字节的内嵌对象**，声明成 `float` 是错的；
-同一个地址被两个不同类当 `this` 用，说明这些 callee 的 `this` 归属里
-**至少有一个也是错的**。
-
-### 反向例子（必须承认的噪声）
+### 9.2 反向例子（必须承认的噪声）
 `Actor::UpdateFrame`：`this->m_dwMatMsg[6]` 解析 off=**564**，调用点
-`lea 0x234(%ebp),%ecx` = 0x234 = **564** ✓；但 callee `ArcSceneMonster::CheckDistance`
-只读 `+8`（need=12），而 `m_dwMatMsg` 是 `unsigned` 元素数组 ⇒ 多读 8 字节
-**只是相邻数组元素**，属正常。
-⇒ **`<=32B` 那 5 个（`<=8B` 13 个）是启发式噪声，不能单独当证据。**
+`lea 0x234(%ebp),%ecx` = **564** ✓；但 `ArcSceneMonster::CheckDistance` 只读 `+8`
+（need=12），而 `m_dwMatMsg` 是 `unsigned` 元素数组 ⇒ 多读 8 字节只是**相邻数组
+元素**，正常。⇒ `<=32B` 桶是噪声。
 
-### 由此得到的一个新判据（尚未落地）
-**"同一地址被 ≥2 个不同类当 `this`"** 是一个不依赖尺寸、不易假阳性的信号：
-它直接说明这些 callee 的归属互相矛盾。`PalScriptMgr+0x48` 就是一例
-（`RoleCameraCtrl::SetName` vs `UIScene::SetState`）。在残余 70 里跑一遍，
-命中 **2 组**：
-```
-00450BC0 +0x48  -> RoleCameraCtrl, UIScene
-00451200 +0x350 -> UIListBox, UIProgressBar
-```
+### 9.3 `UIWnd::GetWidth/GetHeight/GetPosition` 归属定谳
+1. 三者是 `fstps` 浮点存储到 `+0x8c/+0x90/+0x94`；`sizeof(UIWnd)=68`
+   ⇒ UIWnd 归属必错。
+2. `UILoadingFrm::InitFullScreen`：`4507f6 mov %ecx,%edi`（`%edi=this`）→
+   `450825 lea 0x48(%edi),%esi` → 调用点 `%ecx = this+72`。
+3. `UILoadingFrm+72` 是 **`m_LoadProgress : UIProgressBar`（内嵌）**，
+   其下一成员 `m_anitime` 在 **+316 = 72+244**，与 `UIProgressBar.binary_size=244`
+   精确吻合。
+4. `CCBUI_SetupAIWindow` 调用点 `0x516c93 mov 0x42c(%esi),%ecx`，而 `CCBUI+1064`
+   是 `m_pRoleStateGP : UIProgressBar *[4]` ⇒ `+1068=[1]` 是 `UIProgressBar *`。
 
----
-
-## 8. 置信度分层（防止把"解析器可信"读成"残余结论可信"）
-
-**不要把这两件事混为一谈：**
-
-| 对象 | 证据强度 |
-|---|---|
-| **偏移链解析器**（`resolve_chain`）| **高**：84 个单点组合经调用点 `lea` 逐值校验，0 不吻合；28 个单元用例 |
-| **残余 70 行"类型过小"这一判决** | **中**：依赖 `min_required_span` 启发式 + 声明类型比较，**只有 3 例做了人工定谳**（§3、§7）|
-
-残余 70 行**自身**的调用点校验分布：
-
-```
-多点需配对 37 行   非 lea 装载 26 行   单点 lea 直接印证 7 行
-```
-
-（41 行标量终值里 36 行**算出了**常量偏移，但"算出常量偏移" ≠ "被二进制印证"。）
-
-**⇒ 正确的说法是**：扫描器已经成为一个可信的**候选发生器**；
-把它当**判决器**用之前，必须对每一行补"调用点 `%ecx` 装载 + callee 体内 disp32"
-的逐案证据（§3/§7 就是范式）。`<=32B` 桶（18 行）按 §7 的反例应直接降级。
+⇒ 宿主收敛到 **`UIProgressBar`**。**但仍不能改归属**：三处是 float 存储，而
+`UIProgressBar` 在 +140/+144/+148 声明为 `BYTE`/`gbColorQuad`/`gbColorQuad`
+—— **往 BYTE 写 float 不可能**；归属修正与成员类型**至少一个错**，
+须先取独立证据。未解析调用者：`UITitle_XJTM::UpdateMonsterEntry`（0x487cfa），
+该类注解里没有 `UIProgressBar` 成员。

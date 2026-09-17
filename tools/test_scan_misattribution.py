@@ -319,5 +319,123 @@ class TestMemberKeyRadix(unittest.TestCase):
         self.assertTrue(found, '已无 0x 前缀键 ⇒ 解析规则需重新确认')
 
 
+
+class TestBaseClassMemberLookup(unittest.TestCase):
+    """字段定义在**基类**时必须能查到（独立复核抓出的缺陷）。
+
+    `UIStatic` 的 `.m_bcreateok` 实际在基类 `UIWnd` 里；只查
+    `S[cls]['members']` 会把这类访问整片误判成 `unknown_field`。
+    实测影响：`impossible` 70 -> 87，`unknown_field` 462 -> 253。
+    """
+
+    def test_inherited_field_found(self):
+        from tools.scan_misattribution import _find_member
+        S2 = {
+            'UIWnd': {'size': 8, 'members': {'m_bcreateok': (4, 'bool')},
+                      'methods': {}, 'bases': []},
+            'UIStatic': {'size': 16, 'members': {'m_text': (0, 'char[16]')},
+                         'methods': {}, 'bases': ['UIWnd']},
+        }
+        self.assertEqual(_find_member(S2, 'UIStatic', 'm_bcreateok'), (4, 'bool'))
+        self.assertEqual(_find_member(S2, 'UIStatic', 'm_text'), (0, 'char[16]'))
+        self.assertIsNone(_find_member(S2, 'UIStatic', 'm_nope'))
+
+    def test_only_primary_base_is_searched(self):
+        """次要基类偏移未知 ⇒ 绝不猜（多继承时非主基类不在 0 偏移）。"""
+        from tools.scan_misattribution import _find_member
+        S2 = {
+            'A': {'size': 8, 'members': {'fa': (0, 'int')}, 'methods': {}, 'bases': []},
+            'B': {'size': 8, 'members': {'fb': (0, 'int')}, 'methods': {}, 'bases': []},
+            'D': {'size': 16, 'members': {}, 'methods': {}, 'bases': ['A', 'B']},
+        }
+        self.assertEqual(_find_member(S2, 'D', 'fa'), (0, 'int'))
+        self.assertIsNone(_find_member(S2, 'D', 'fb'))
+
+    def test_chain_resolves_through_base(self):
+        S2 = {
+            'UIWnd': {'size': 8, 'members': {'m_bcreateok': (4, 'bool')},
+                      'methods': {}, 'bases': []},
+            'UIStatic': {'size': 16, 'members': {}, 'methods': {}, 'bases': ['UIWnd']},
+            'Panel': {'size': 64, 'members': {'m_w': (16, 'UIStatic')},
+                      'methods': {}, 'bases': []},
+        }
+        r = resolve_chain(S2, 'Panel', 'm_w', '.m_bcreateok', True)
+        self.assertEqual(r['status'], 'ok')
+        self.assertEqual(r['obj_type'], 'bool')
+        self.assertEqual(r['off'], 16 + 4)
+
+    def test_cycle_does_not_hang(self):
+        from tools.scan_misattribution import _find_member
+        S2 = {
+            'X': {'size': 8, 'members': {}, 'methods': {}, 'bases': ['Y']},
+            'Y': {'size': 8, 'members': {}, 'methods': {}, 'bases': ['X']},
+        }
+        self.assertIsNone(_find_member(S2, 'X', 'nope'))
+
+
+class TestDeclTypePrefixAndNested(unittest.TestCase):
+    """真实数据里的 3 类坑：前缀关键字 15 个、嵌套 `::` 41 个、模板 33 个。
+
+    `'AStarPathFinder::NODE *'` 若不处理会取到**外层类** `AStarPathFinder`，
+    用错尺寸 —— 比漏判更危险。故嵌套/模板一律返回 base=None。
+    """
+
+    def test_const_and_struct_prefix_stripped(self):
+        self.assertEqual(parse_decl_type('const struct TypeDescriptor *'),
+                         ('TypeDescriptor', [], True))
+        self.assertEqual(parse_decl_type('struct _EH3_EXCEPTION_REGISTRATION *'),
+                         ('_EH3_EXCEPTION_REGISTRATION', [], True))
+        self.assertEqual(parse_decl_type('const char *'), ('char', [], True))
+
+    def test_nested_and_template_are_refused_not_misread(self):
+        b, d, p = parse_decl_type('AStarPathFinder::NODE *')
+        self.assertIsNone(b, '不许取外层类 AStarPathFinder')
+        self.assertTrue(p)
+        b2, _, _ = parse_decl_type('std::vector<int,std::allocator<int> >')
+        self.assertIsNone(b2)
+
+    def test_pointer_to_unknown_still_is_4_bytes(self):
+        # 指针本身恒为 4 字节，即使基名查不到
+        self.assertEqual(size_of('std::vector<int,std::allocator<int> > *'), 4)
+
+
+class TestThisRegAndTrace(unittest.TestCase):
+    """`this` 不恒在 `%esi`（`Actor::UpdateFrame` 用 `%ebp`，
+    `UILoadingFrm::InitFullScreen` 用 `%edi`）。"""
+
+    LINES = [
+        '  4507f0:\t83 ec 10              \tsub    $0x10,%esp',
+        '  4507f6:\t8b f9                 \tmov    %ecx,%edi',
+        '  450801:\t8b 35 d4 d6 bf 00     \tmov    0xbfd6d4,%esi',
+        '  450825:\t8d 77 48              \tlea    0x48(%edi),%esi',
+        '  4508b7:\t8b ce                 \tmov    %esi,%ecx',
+    ]
+
+    def test_this_regs_detected(self):
+        from tools.scan_misattribution import _this_regs
+        regs = _this_regs(self.LINES)
+        self.assertIn('%ecx', regs)
+        self.assertIn('%edi', regs)      # mov %ecx,%edi
+        self.assertNotIn('%esi', regs)   # %esi 是覆写过的，不是 this 别名
+
+    def test_trace_reg_finds_lea_offset(self):
+        from tools.scan_misattribution import _this_regs, _trace_reg
+        regs = _this_regs(self.LINES)
+        # 第4行 mov %esi,%ecx 处回溯 %esi -> lea 0x48(%edi) = 72
+        self.assertEqual(_trace_reg(self.LINES, 4, '%esi', regs), 0x48)
+
+    def test_trace_reg_stops_at_call(self):
+        from tools.scan_misattribution import _trace_reg
+        lines = ['  1:\tlea    0x48(%edi),%esi',
+                 '  2:\tcall   0x123456',
+                 '  3:\tmov    %esi,%ecx']
+        self.assertIsNone(_trace_reg(lines, 2, '%esi', {'%ecx', '%edi'}))
+
+    def test_trace_reg_rejects_non_this_base(self):
+        from tools.scan_misattribution import _trace_reg
+        lines = ['  1:\tlea    0x10(%esp),%esi', '  2:\tmov    %esi,%ecx']
+        self.assertIsNone(_trace_reg(lines, 1, '%esi', {'%ecx'}))
+
+
 if __name__ == '__main__':
     unittest.main()

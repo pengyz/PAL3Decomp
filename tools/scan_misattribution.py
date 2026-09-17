@@ -56,6 +56,15 @@ def parse_decl_type(t):
     `'UIListBox *[1]'` -> `('UIListBox', [1], True)`
     `'CEffectSimple *'` -> `('CEffectSimple', [], True)`
     维度非字面量（`'Foo[n]'`）时该维为 **None**（绝不静默当 0）。
+
+    ️ 三个真实数据里存在的坑（926 个类型串中：嵌套 `::` 41 个、模板 33 个、
+    前缀关键字 15 个）：
+      · `'const struct TypeDescriptor *'` —— 不剥前缀会抓出 `base='const'`；
+      · `'AStarPathFinder::NODE *'` —— 抓出外层类 `AStarPathFinder`（**尺寸是错的**，
+        比漏判更危险）；
+      · `'std::vector<T,std::allocator<T> >'` —— 抓出 `'std'`。
+    模板/嵌套名在 structs 里没有对应条目 ⇒ 一律返回 `base=None`（保守拒答），
+    绝不用外层类冒充。
     """
     t = (t or '').strip()
     dims = []
@@ -70,17 +79,26 @@ def parse_decl_type(t):
     while t.endswith('*'):
         ptr = True
         t = t[:-1].strip()
+    for kw in ('const', 'volatile', 'struct', 'class', 'enum', 'union'):
+        t = re.sub(r'\b%s\b\s*' % kw, '', t).strip()
+    if '::' in t or '<' in t:
+        # 嵌套 / 模板类型名：structs 里查不到，宁可拒答也不用外层类冒充
+        return None, dims, ptr
     m = re.search(r'([A-Za-z_]\w*)', t)
     return (m.group(1) if m else None), dims, ptr
 
 
 def sizeof_type(S, t):
-    """声明类型的总字节数（数组 = 各维乘积 × 基类型；指针 = 4）。None = 未知。"""
+    """声明类型**作为存储**占多少字节（数组 = 各维乘积 × 基类型；指针 = 4）。
+
+    None = 未知。注意指针必须先判：`'std::vector<...> *'` 的基名查不到，
+    但指针本身恒为 4 字节。
+    """
     base, dims, ptr = parse_decl_type(t)
-    if base is None:
-        return None
     if ptr:
         return 4
+    if base is None:
+        return None
     n = 1
     for d in dims:
         if d is None:
@@ -196,7 +214,7 @@ def resolve_chain(S, cls, mem, suffix, amp):
       off       相对声明类起始的常量偏移（None = 动态下标或已跨指针）
       via_deref 是否经由指针间接（决定 off 是否还是"相对 this"）
     """
-    info = (S.get(cls, {}).get('members') or {}).get(mem)
+    info = _find_member(S, cls, mem)
     if not info:
         return {'status': 'unknown_member', 'obj_type': None, 'obj_size': None,
                 'off': None, 'via_deref': False}
@@ -246,7 +264,7 @@ def resolve_chain(S, cls, mem, suffix, amp):
             # ️ `_STEP_RE` 的三组是 (下标, `->`字段, `.`字段)：
             # `->` 分支必须用 `arrow`，不是 `field`（写成 field 会拿到 None ⇒
             # 所有 `->` 链都被误判成 unknown_field）。
-            fi = (S[tgt].get('members') or {}).get(arrow)
+            fi = _find_member(S, tgt, arrow)
             if not fi:
                 return {'status': 'unknown_field', 'obj_type': None,
                         'obj_size': None, 'off': None, 'via_deref': True}
@@ -260,7 +278,7 @@ def resolve_chain(S, cls, mem, suffix, amp):
             if cur not in S:
                 return {'status': 'unknown_field', 'obj_type': None,
                         'obj_size': None, 'off': None, 'via_deref': state['via_deref']}
-            fi = (S[cur].get('members') or {}).get(field)
+            fi = _find_member(S, cur, field)
             if not fi:
                 return {'status': 'unknown_field', 'obj_type': None,
                         'obj_size': None, 'off': None, 'via_deref': state['via_deref']}
@@ -285,6 +303,31 @@ def resolve_chain(S, cls, mem, suffix, amp):
     return {'status': 'ok', 'obj_type': state['base'], 'obj_size': sz,
             'off': state['off'], 'via_deref': state['via_deref'],
             'dims': state['dims'], 'ptr': state['ptr']}
+
+
+def _find_member(S, cls, field, _depth=0):
+    """在 `cls` 及其**主基类**链上找成员，返回 `(off, decl_type)` 或 None。
+
+    ⚠️ 只沿 `bases[0]` 递归：C++/MSVC 里主基类子对象位于偏移 0，所以基类成员的
+    偏移可直接沿用。**次要基类（`bases[1:]`）的偏移未知，绝不猜**（多继承时
+    非主基类不在 0 偏移）。
+
+    这条是独立复核抓出的缺陷：`UIStatic` 的 `.m_bcreateok` 实际定义在基类
+    `UIWnd`，只查 `S[cls]['members']` 会把这类访问整片误判成 `unknown_field`
+    而拒答（实测 311 个 `unknown_field` 里绝大多数属此）。
+    """
+    if not cls or _depth > 8:
+        return None
+    info = S.get(cls)
+    if not info:
+        return None
+    got = (info.get('members') or {}).get(field)
+    if got:
+        return got
+    bases = info.get('bases') or []
+    if not bases:
+        return None
+    return _find_member(S, bases[0], field, _depth + 1)
 
 
 def _elem_size(S, base, dims_after, ptr):
@@ -396,11 +439,11 @@ def scan(S, D):
         cls = nm.split('::')[0]
         for mm in PAT.finditer(code):
             called_cls, called_m, cast_cls, amp, mem, suffix = mm.groups()
-            if mem not in (S.get(cls, {}).get('members') or {}):
+            if not _find_member(S, cls, mem):
                 continue
             r = resolve_chain(S, cls, mem, suffix or '', amp == '&')
             tgt = cast_cls or called_cls
-            head_decl = (S.get(cls, {}).get('members') or {})[mem][1]
+            head_decl = _find_member(S, cls, mem)[1]
             head_base, _hd, _hp = parse_decl_type(head_decl)
             callee_va = None
             for k, v in (S.get(tgt, {}).get('methods') or {}).items():
@@ -441,14 +484,56 @@ def scan(S, D):
     return cand
 
 
+def _this_regs(lines):
+    """函数入口 `this`（`%ecx`）在序言里被复制到哪些寄存器。
+
+    只看**第一次 `call` 之前**的指令（之后 `%ecx` 可能已是别的对象）。
+    `Actor::UpdateFrame` 用 `%ebp`、`UILoadingFrm::InitFullScreen` 用 `%edi`，
+    所以**不能**假定 this 恒在 `%esi`。
+    """
+    regs = {'%ecx'}
+    for l in lines:
+        if re.search(r'\bcall\b', l):
+            break
+        m = re.search(r'\bmov\s+%ecx\s*,\s*(%[a-z]{2,3})\b', l)
+        if m:
+            regs.add(m.group(1))
+    return regs
+
+
+def _trace_reg(lines, start, reg, this_regs, max_back=24):
+    """从 `lines[start]` 往回找 `reg` 的偏移来源。
+
+    命中 `lea X(%this),%reg`（`%this` ∈ this_regs）⇒ 返回 X；否则 None。
+    遇 `call` 或 `reg` 被写即中断（跨调用/被覆盖都不可信）。
+    """
+    for j in range(start - 1, max(-1, start - max_back), -1):
+        b = lines[j]
+        if re.search(r'\bcall\b', b):
+            return None
+        m = re.search(r'lea\s+0x([0-9a-f]+)\((%[a-z0-9]+)\),\s*' + re.escape(reg) + r'\b', b)
+        if m:
+            return int(m.group(1), 16) if m.group(2) in this_regs else None
+        if re.search(r',\s*' + re.escape(reg) + r'\b', b) or \
+           re.search(r'\bpop\s+' + re.escape(reg) + r'\b', b):
+            return None      # reg 在此被写，来源断了
+    return None
+
+
 def _ecx_sources(va, size, callee_va):
     """在 `va..va+size` 里找 `call callee_va`，回溯 `%ecx` 的来源。
 
-    返回 [(kind, disp)]：kind = 'lea'（`lea X(%reg),%ecx`，X 是 this 相对偏移）
-    / 'mov'（从指针装载） / 'clobber' / 'unknown'。
+    返回 [(kind, disp)]：
+      · `'lea'`（`lea X(%this),%ecx`，X 是相对 this 的偏移，**可用来校验**）；
+      · `'lea_otherbase'`（`lea X(%r),%ecx` 但 `%r` 不是 this ⇒ 不可校验，
+        旧版会把 `lea X(%esp),%ecx` 这种**栈局部变量**误当 this 偏移）；
+      · `'reg'`（`mov %r,%ecx` 且 `%r` 追不到 `lea X(%this)` ⇒ 不可校验，
+        **旧版把它误判成 `clobber`**，见独立复核）；
+      · `'mov'`（`mov X(%r),%ecx` 从指针装载）/ `'clobber'` / `'unknown'`。
     """
     out = _objdump(va, va + size)
     lines = [l for l in out.splitlines() if re.match(r'\s+[0-9a-f]+:', l)]
+    this_regs = _this_regs(lines)
     res = []
     for i, l in enumerate(lines):
         if not re.search(r'call\s+0x0*%x\b' % callee_va, l):
@@ -456,13 +541,19 @@ def _ecx_sources(va, size, callee_va):
         found = ('unknown', None)
         for j in range(i - 1, max(-1, i - 12), -1):
             b = lines[j]
-            m = re.search(r'lea\s+0x([0-9a-f]+)\(%[a-z]+\d*\),\s*%ecx', b)
+            m = re.search(r'lea\s+0x([0-9a-f]+)\((%[a-z0-9]+)\),\s*%ecx', b)
             if m:
-                found = ('lea', int(m.group(1), 16))
+                found = ('lea', int(m.group(1), 16)) if m.group(2) in this_regs \
+                    else ('lea_otherbase', int(m.group(1), 16))
                 break
-            m = re.search(r'mov\s+0x([0-9a-f]+)\(%[a-z]+\d*\),\s*%ecx', b)
+            m = re.search(r'mov\s+0x([0-9a-f]+)\(%[a-z0-9]+\),\s*%ecx', b)
             if m:
                 found = ('mov', int(m.group(1), 16))
+                break
+            m = re.search(r'mov\s+(%[a-z]{2,3}),\s*%ecx\b', b)
+            if m:
+                d = _trace_reg(lines, j, m.group(1), this_regs)
+                found = ('lea', d) if d is not None else ('reg', None)
                 break
             if re.search(r',\s*%ecx\b', b) or re.search(r'\bpop\s+%ecx\b', b):
                 found = ('clobber', None)
