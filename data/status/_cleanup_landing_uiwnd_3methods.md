@@ -93,8 +93,13 @@ UIProgressBar 的下一成员放在 +244（`CG_UI` 8748→8992、`s_RoleState` 6
    当成本次 diff 报出来（"+8 files / 9 improvements / 1 regression"），
    **无法用于衡量一次具体改动**。本记录因此改用同轮 `probe_census.json` +
    `match` 输出对照。
-3. **`probe` 的"回归"提示语义反了**：它列出的条目是 `EquipUI.cpp: 31 ↓ 17`
-   这类**错误数下降**，却打出"🚨 检测到回归"并拒绝刷新基线。
+3. ~~**`probe` 的"回归"提示语义反了**：它列出的条目是 `EquipUI.cpp: 31 ↓ 17`
+   这类**错误数下降**，却打出"🚨 检测到回归"并拒绝刷新基线。~~
+   **❌ 勘误（2026-09-17 晚）：这条不成立。** 读码确认判定是
+   `has_regression = new_failures > 0 or new_errors > 0`，即**由（陈旧的）基线驱动**；
+   `📈 错误数量变化` 里的 `↓` 只是附带信息，不是判据。真实缺陷只有一个：
+   **基线陈旧**（即上面第 2 条）。详见
+   `_cleanup_fix_qualified_name_call.md` §7。
 
 ## 6. 复现
 

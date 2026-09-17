@@ -48,6 +48,15 @@ class GitUnavailableError(Exception):
     """git (or the requested commit) cannot be read -> the diff is meaningless."""
 
 
+def summarize_value(v, limit: int = 200) -> str:
+    """把任意 JSON 值压成一行摘要，供报告使用。"""
+    try:
+        s = json.dumps(v, ensure_ascii=False, sort_keys=True)
+    except (TypeError, ValueError):
+        s = repr(v)
+    return s if len(s) <= limit else s[:limit] + "..."
+
+
 class ChangeType(Enum):
     """变更类型"""
     MEMBER_ADDED = "member_added"
@@ -57,6 +66,9 @@ class ChangeType(Enum):
     NAME_CHANGED = "name_changed"
     SOURCE_CHANGED = "source_changed"
     BINARY_SIZE_CHANGED = "binary_size_changed"
+    FIELD_ADDED = "field_added"
+    FIELD_REMOVED = "field_removed"
+    FIELD_CHANGED = "field_changed"
     STRUCT_ADDED = "struct_added"
     STRUCT_REMOVED = "struct_removed"
 
@@ -219,6 +231,57 @@ class AnnotationDiffer:
         
         return changes
     
+    # 已被 compare_struct 专门处理的顶层字段；其余字段一律走 compare_other_fields
+    DETAILED_FIELDS = ("name", "known_members", "binary_size")
+
+    def compare_other_fields(self, old_data: Dict, new_data: Dict) -> List[MemberChange]:
+        """比较 `known_members` / `binary_size` 之外的**全部**顶层字段。
+
+        这个洞曾经真实存在：`compare_struct` 只看 binary_size + known_members，
+        于是 **`methods`（函数归属）变更完全不可见** —— 而归属迁移是本项目的主要
+        改动类型。实例：把 `UIWnd::GetWidth/GetHeight/GetPosition` 迁到
+        `UIProgressBar` 后，本工具仍报「变更结构体数量: 0 / verdict: clean」，
+        而 `git status` 明确显示两个文件已修改（见
+        data/status/_cleanup_landing_uiwnd_3methods.md §5）。
+
+        修法不是逐个补字段（那样下一个新字段还会被静默忽略），而是**白名单之外
+        全部比较**；dict 字段再按键细化，报告里能看出是哪个 VA / 哪个基类变了。
+        """
+        changes: List[MemberChange] = []
+        for key in sorted(set(old_data) | set(new_data)):
+            if key in self.DETAILED_FIELDS:
+                continue
+            ov, nv = old_data.get(key), new_data.get(key)
+            if ov == nv:
+                continue
+            if isinstance(ov, dict) or isinstance(nv, dict):
+                od = ov if isinstance(ov, dict) else {}
+                nd = nv if isinstance(nv, dict) else {}
+                for k in sorted(set(od) | set(nd), key=str):
+                    a, b = od.get(k), nd.get(k)
+                    if a == b:
+                        continue
+                    if a is None:
+                        ct = ChangeType.FIELD_ADDED
+                    elif b is None:
+                        ct = ChangeType.FIELD_REMOVED
+                    else:
+                        ct = ChangeType.FIELD_CHANGED
+                    changes.append(MemberChange(
+                        offset=str(k), change_type=ct,
+                        old_value=None if a is None else summarize_value(a),
+                        new_value=None if b is None else summarize_value(b),
+                        field=key))
+            else:
+                changes.append(MemberChange(
+                    offset="",
+                    change_type=ChangeType.FIELD_REMOVED if nv is None
+                    else (ChangeType.FIELD_ADDED if ov is None else ChangeType.FIELD_CHANGED),
+                    old_value=None if ov is None else summarize_value(ov),
+                    new_value=None if nv is None else summarize_value(nv),
+                    field=key))
+        return changes
+
     def compare_struct(self, old_data: Dict, new_data: Dict) -> StructDiff:
         """比较整个结构体"""
         struct_name = new_data.get("name", old_data.get("name", "unknown"))
@@ -241,6 +304,9 @@ class AnnotationDiffer:
         new_members = new_data.get("known_members", {})
         member_changes = self.compare_members(old_members, new_members)
         changes.extend(member_changes)
+
+        # 其余顶层字段（methods / base_class / base_size / vtables / ...）
+        changes.extend(self.compare_other_fields(old_data, new_data))
         
         return StructDiff(
             struct_name=struct_name,
@@ -389,6 +455,13 @@ class AnnotationDiffer:
                     lines.append(f"  - {change.old_value}")
                 elif change.change_type == ChangeType.BINARY_SIZE_CHANGED:
                     lines.append(f"  binary_size: {change.old_value} → {change.new_value}")
+                elif change.change_type == ChangeType.FIELD_ADDED:
+                    lines.append(f"  + {change.field}[{change.offset}] {change.new_value}")
+                elif change.change_type == ChangeType.FIELD_REMOVED:
+                    lines.append(f"  - {change.field}[{change.offset}] {change.old_value}")
+                elif change.change_type == ChangeType.FIELD_CHANGED:
+                    lines.append(f"  {change.field}[{change.offset}]: "
+                                 f"{change.old_value} → {change.new_value}")
                 elif change.change_type == ChangeType.MEMBER_ADDED:
                     lines.append(f"  + [{change.offset}] {change.new_value}")
                 elif change.change_type == ChangeType.MEMBER_REMOVED:

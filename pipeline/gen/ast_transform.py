@@ -414,6 +414,34 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                     class_name = scope_node.text.decode('utf-8').rstrip(':')
                     method_name = name_node.text.decode('utf-8')
 
+                    # ⚠️ tree-sitter 对 `std::string::_Eos(...)` 给的是**嵌套**
+                    # qualified_identifier：scope='std'、name='string::_Eos'。
+                    # 只取一层会让 class_name='std' ⇒ 产出 `((std *)v6)->std::string::_Eos()`
+                    # —— cast 类型错，且限定符重复。这里把嵌套摊平到最内层。
+                    _guard = 0
+                    while name_node is not None and name_node.type == 'qualified_identifier' \
+                            and _guard < 8:
+                        _sc = name_node.child_by_field_name('scope')
+                        _nm = name_node.child_by_field_name('name')
+                        if not _sc or not _nm:
+                            break
+                        class_name = '%s::%s' % (
+                            class_name, _sc.text.decode('utf-8').rstrip(':'))
+                        name_node = _nm
+                        method_name = name_node.text.decode('utf-8')
+                        _guard += 1
+
+                    # `p->Cls::M()` 只在 Cls 是**简单类名**时合法。当 scope 是
+                    # **限定名**（`std::string`、`std::codecvt_base`）时，MSVC 会把
+                    # `->std` 当成成员查找：
+                    #     C2039: 'std' : is not a member of 'GRPinput'
+                    #     C2653: 'std' : is not a class or namespace name
+                    # 实测生成物里有 **75 处**这种非法形态
+                    # （std::string::_Tidy/_Eos/_Split/_Freeze/_Grow、std::codecvt_base::...）。
+                    # ⇒ 限定名时省略 `Cls::` 限定符，但**保留 cast**：
+                    #     ((std::string *)this)->_Tidy(...)
+                    _qual = '' if '::' in class_name else (class_name + '::')
+
                     # Skip static (__cdecl) methods — their first arg is data, not this
                     qualified = '%s::%s' % (class_name, method_name)
                     if qualified in static_methods:
@@ -676,14 +704,14 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                                     and not _is_ctor_or_dtor(
                                                         class_name, method_name)):
                                                 new_text = (
-                                                    '(((%s *)this))->%s::%s(%s)'
-                                                    % (class_name, class_name,
+                                                    '(((%s *)this))->%s%s(%s)'
+                                                    % (class_name, _qual,
                                                        method_name, rest_str))
                                             else:
                                                 # 【候选①·复核者反例】保留 cast 与 IDB 归属，
                                                 # 只补上对象解引用（与 Track-1/ROWTABLE 同形状）
-                                                new_text = '((%s))->%s::%s(%s)' % (
-                                                    first_arg_text, class_name,
+                                                new_text = '((%s))->%s%s(%s)' % (
+                                                    first_arg_text, _qual,
                                                     method_name, rest_str)
                                 else:
                                     # Normalize the cast to the method's class and
@@ -692,8 +720,8 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                     # subobject address — the call defines the
                                     # this-contract, so this is reconstruction
                                     # (Hex-Rays lost the local's type), not a lie.
-                                    new_text = '(((%s *)%s))->%s::%s(%s)' % (
-                                        class_name, inner, class_name,
+                                    new_text = '(((%s *)%s))->%s%s(%s)' % (
+                                        class_name, inner, _qual,
                                         method_name, rest_str)
                                 replacements.append((
                                     node.start_byte, node.end_byte, new_text))
@@ -784,6 +812,14 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
     result = code_bytes
     for start, end, new_text in sorted(replacements, reverse=True):
         result = result[:start] + new_text.encode('utf-8') + result[end:]
+
+    # 兜底归一化：`p->A::B::m(` / `this->A::B::m(` 在 MSVC6 下非法
+    # （C2039 'std' is not a member of ... / C2653）。合法 C++ **绝不会**出现
+    # 连续 ≥2 段限定名跟在 `->` 后（单段 `p->Cls::m()` 是合法的，且是刻意保留的
+    # 非虚调用形式，这里**不动**）。实测生成物里曾有 75 处。
+    # 只折叠限定符、保留对象表达式本身；对非虚方法调用语义等价。
+    _QUAL2 = re.compile(rb'->\s*(?:[A-Za-z_]\w*::){2,}([A-Za-z_~]\w*)\s*\(')
+    result = _QUAL2.sub(rb'->\1(', result)
 
     return result.decode('utf-8')
 
