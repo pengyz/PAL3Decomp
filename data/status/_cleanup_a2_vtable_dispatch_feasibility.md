@@ -76,3 +76,63 @@ void __thiscall UIGameOver::Create(UIGameOver *this)
 
 自造 `vtbl_defs.h` 之前**未查项目既有机制**，而该机制**就在同一个文件里**（早先 grep 过其名字）。
 ⇒ 与之前"先动手后查约定"同型。**规程：动手前先 grep 目标关键词，列出既有机制。**
+
+---
+
+## 7. A 路线取证结果：**拿到 A 级证据，但暴露一个必须解决的矛盾**
+
+### 7.1 ✅ A 级证据（字节级）：槽 4 = `0x00445B90`，UI 族共享
+
+```
+0x00445B90 出现在【4 个类】vtable 的【同一个偏移 16（槽 4）】:
+   UIStatic  [4] 0x00445B90  IDB槽名=Create
+   UIFrameWnd[4] 0x00445B90  IDB槽名=Create
+   CCBItemWindow[4] 0x00445B90 IDB槽名=Create
+   UIWnd     [4] 0x00445B90  IDB槽名=Create
+```
+⇒ **`vftable->Create` = 槽 4 = `0x00445B90`**（**字节级证据，非猜测**）。
+
+### 7.2 ✅ 反汇编证据：真实签名是**2 个有效参数**
+
+```
+00445b90: mov 0x4(%esp),%eax     ← 读 [esp+4]（arg1）
+00445b95: mov %ecx,%esi          ← esi = this
+00445b9c: lea 0x10(%esi),%edi    ← 目标 = this+0x10
+   ...   拷贝 16 字节（= tagRECT 大小！）到 this+0x10
+00445bba: mov 0x14(%esp),%ecx    ← 读 [esp+0x14]（arg3）
+00445bc0: mov %ecx,0x20(%esi)    ← 写入 this+0x20
+```
+⇒ 形态为 `Create(tagRECT *pRect, int parent)`（**2 个有效参数**），
+与 **IDB 槽签名 `int (__thiscall *)(int, int)` 一致**。
+
+**⚠️ 间接支持**：它把 **16 字节**拷贝到 `this+0x10` —— 与标注的 `CCBItemWindow::Create(int id, tagRECT *pRect, int parent)` 里 `tagRECT` 有关；
+但 `[esp+4]` 被当作**源指针**使用（`mov (%ecx),%eax` 等 4 次 4 字节读），说明 arg1 是**指针**，不是 `int id`。
+
+### 7.3 ❌ 暴露的矛盾：**调用点传 4 个参数，实现只读 2 个**
+
+```c
+// decomp（UIGameOver::Create:19-23）
+((void (__thiscall *)(UIStatic *, _DWORD, int *, UIGameOver *))vftable->Create)(
+   &this->m_Blood,   // 对象
+   0,                // ?
+   &v3,              // ?
+   this);            // ?
+```
+若实现是 `Create(pRect, parent)`（this 由 `%ecx` 传入），则**其余实参应为 2 个**；
+而 decomp 给了 **3 个**（`0`, `&v3`, `this`）⇒ **多传一个 ⇒ stdcall 下 `%esp` 会错位 4 字节**。
+
+**⇒ 该处【不能】简单改成 `(&this->m_Blood)->Create(0, &v3)`** —— 必须先把
+**"调用点参数个数 / 类型" 与 "实现" 对齐**，而那需要判断"哪个实参是多余的"。
+
+### 7.4 ⇒ A 路线的真实形状（比"补一条注解"复杂）
+
+A 路线**拿得到 A 级证据**（§7.1 槽位、§7.2 签名），但**要落成 `methods` 注解还缺一步**：
+
+| 缺口 | 内容 |
+|---|---|
+| **多传参矛盾** | 调用点 4 参 vs 实现 2 参 ⇒ 需判定多余实参（可能 `/O2` 下寄存器传参未体现在 `%esp` 偏移里）|
+| **类归属** | `0x00445B90` 现记为 `CCBItemWindow::Create`，但它在 4 个类的槽 4 共享 ⇒ 需判断它是"UI 族共享实现"还是"某类的实现被折叠" |
+| **空槽** | `UIStatic` 的 `UIInfo` 空槽（byte 0x56A600）里槽 4 无对应函数名 ⇒ 佐证 `UIStatic` 未实现自己的 `Create` |
+
+**⇒ 结论：A 路线可行但**单点成本高**（需逐槽对齐调用点与实现），
+**不适合按"补 26 个类"的粒度批量推进**；应按**单类单槽**粒度做，且每步验证。**
