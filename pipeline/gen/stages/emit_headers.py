@@ -47,7 +47,19 @@ def _get_scalar_dtor_classes():
             continue
         cls = name.split('::')[0]
         method = name.split('::', 1)[1].split('(')[0]
-        if '_scalar_dtor' in method or method.startswith('_sdtor'):
+        # 【2026-09-15 修】Hex-Rays 的**反引号特名**必须先归一化，否则漏判：
+        #   `` `scalar deleting destructor' `` → `_scalar_dtor`
+        #   `` `vector deleting destructor' `` → `_vector_dtor`
+        # 为什么必须做：`collect.py` 的跳过判据、以及本函数下游的
+        # `if cls_name in _get_scalar_dtor_classes() and not _has_dtor:
+        #      lines.append("virtual ~%s() {}")` 都依赖这个判定。
+        # 漏判的后果（实测）：该类的**显式非虚析构**保留 ⇒ 编译器**不发射 `??_G`**
+        #   ⇒ `match` 匹配不到该符号 ⇒ **该类的 L1（字节全同函数）丢失**。
+        # 实例：`UIStatic`（其 vtable 槽 5 = 0x004407A0 `` UIStatic::`scalar deleting destructor' ``；
+        #   生成头里却是 `~UIStatic();` 非虚 ⇒ 无 `??_G`）。
+        method = re.sub(r'`?\s*scalar deleting destructor\s*\'?', '_scalar_dtor', method)
+        method = re.sub(r'`?\s*vector deleting destructor\s*\'?', '_vector_dtor', method).strip()
+        if '_scalar_dtor' in method or '_vector_dtor' in method or method.startswith('_sdtor'):
             _scalar_dtor_classes.add(cls)
     return _scalar_dtor_classes
 

@@ -109,6 +109,18 @@ def _split_mangled_name(name):
     m = re.match(r'^\?\?[01](\w+)@@', name)
     if m:
         return m.group(1), m.group(1)
+    # 【2026-09-15 修】Hex-Rays 的**反引号特名**：`Cls::`scalar deleting destructor'(uint)`
+    # 原实现只认 `?...`（mangled）与 `Cls::meth(...)` 形态，对这一类返回 (None, None)
+    # ⇒ 该条目在 build_mangled_map 里被**跳过** ⇒ `??_G<Cls>@@UAEPAXI@Z` **进不了 mangled_map**
+    # ⇒ `match` 匹配不到该符号 ⇒ **该类的 L1（字节全同函数）丢失**（实测 UIStatic / JusticeBookUI）。
+    # 归一化为 mangler 认识的 `_scalar_dtor` / `_vector_dtor`（与 collect.py / emit_headers.py 同法）。
+    if '::' in name:
+        _cls, _, _rest = name.rpartition('::')
+        _meth = _rest.split('(')[0]
+        _norm = re.sub(r'`?\s*scalar deleting destructor\s*\'?', '_scalar_dtor', _meth)
+        _norm = re.sub(r'`?\s*vector deleting destructor\s*\'?', '_vector_dtor', _norm).strip()
+        if _cls and _norm and _norm != _meth:
+            return _cls, _norm
     return None, None
 
 
@@ -263,6 +275,16 @@ def build_mangled_map(decomp_idx):
             if '::' not in base:
                 continue
             cls, method = base.rsplit('::', 1)
+            # 【2026-09-15 修】反引号特名归一化（本函数**第四个**同类问题点）：
+            # `UIStatic::`scalar deleting destructor'(uint)` 走本分支时，
+            # `base.rsplit('::',1)` 得到 method = "`scalar deleting destructor'"
+            # ⇒ `vm.mangle` 的 `^_s(dtor|calar_dtor)(_\d+)?$` 判据**不匹配**
+            # ⇒ 既不产出 `??_G<Cls>@@UAEPAXI@Z`，也产出普通的 `?`scalar...@Cls@@`（垃圾名）
+            # ⇒ `match` 匹配不到 obj 里的 `??_G` ⇒ **该类 L1 丢失**。
+            _norm = re.sub(r'`?\s*scalar deleting destructor\s*\'?', '_scalar_dtor', method)
+            _norm = re.sub(r'`?\s*vector deleting destructor\s*\'?', '_vector_dtor', _norm).strip()
+            if _norm:
+                method = _norm
         sig = e.get('signature') or ''
         try:
             m = vm.mangle(cls, method, sig)
