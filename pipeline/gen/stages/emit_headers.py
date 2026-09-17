@@ -2567,8 +2567,11 @@ def main():
     # --- Generate globals.h from annotations ---
     generate_globals()
 
-    # --- Generate vtbl_defs.h（vtable 伪结构体定义）---
-    generate_vtbl_defs()
+    # 【2026-09-15 撤除】vtbl_defs.h 方案已废弃（方向错误：vtable 是编译器内部机制，
+    # 不应在反编译产物里暴露）。不留生成调用，避免它重新生成残留文件。
+    # 正确的方向见 data/status/_cleanup_a2_vtable_dispatch_feasibility.md：
+    # 把 `vftable->Method(...)` 解析回源码级方法调用（复用 stage3 既有的
+    # _decode_vtbl_call / _resolve_vtbl_method / _vtbl_stub_names）。
 
     # --- Generate globals.cpp from annotations ---
     generate_globals_cpp()
@@ -2676,114 +2679,6 @@ def _read_c_string(exe_data, addr):
         else:
             out.append('\\x%02X' % b)
     return ''.join(out)
-
-
-def generate_vtbl_defs():
-    """生成 `pal3/src/vtbl_defs.h` —— **vtable 伪结构体的定义**。
-
-    ## 为什么需要（2026-09-15）
-
-    IDB 里为每张 vtable 建了一个 UDT（`vtbl_<addr>`），其 `data_members` 就是**各槽**：
-    ```
-    vtbl_0056AE2C.data_members = [
-      {name: 'ShowWindow', type: 'int (__thiscall *)(int)',       offset: 0},
-      {name: 'Create',     type: 'int (__thiscall *)(int, int)',  offset: 16}, ...]
-    ```
-    成员名 = 槽名，成员类型 = **可调用的函数指针** ⇒ `vftable->Create(...)` 是**合法 C++**。
-
-    但 `stage4_substitution.py:596` 把 `vtbl_XXXXXX` 类型替换成 `void`
-    （因为 `emit_headers` 从不发这些结构体的定义），于是产物变成 `void *vftable;`
-    ⇒ **`vftable->Create` 对 `void*` 失效** ⇒ `C2227`。
-    实测：全库 `vftable->X` 出现 **400+ 次**，含此形态的 **20 个文件全部编译失败**。
-
-    ## 做法
-
-    **数据全部来自 IDB**（`asm/pal3/ida_structs.json` 的 `data_members`），**不编造任何信息**；
-    只把 IDA 的伪结构体翻译成等价的 C++ struct 定义。
-    """
-    _is_data = _get_ida_structs()
-    vtbls = {k: v for k, v in _is_data.items() if k.startswith('vtbl_')}
-    if not vtbls:
-        return
-
-    out = ['#pragma once',
-           '// vtable 伪结构体定义（自动生成）',
-           '// 来源：asm/pal3/ida_structs.json 的 vtbl_* 条目的 data_members',
-           '// 每个成员 = vtable 的一个槽（成员名=槽名，类型=函数指针）⇒ 使 `vftable->Method(...)` 合法。',
-           '#include "pal3/ida_types.h"',
-           '']
-    # 收集成员类型里**引用到的具名类型**，在文件头统一前向声明
-    # （`gbTexture *`、`_BYTE` 等）——否则本头无法独立编译。
-    # `_BYTE`/`_WORD`/`_DWORD`/`_QWORD` 由 ida_types.h 提供，无需声明。
-    _BUILTIN = {'void', 'int', 'char', 'short', 'long', 'float', 'double',
-                'unsigned', 'signed', 'bool', '_BYTE', '_WORD', '_DWORD', '_QWORD',
-                'BYTE', 'WORD', 'DWORD', 'UINT', 'BOOL', 'CHAR', 'LPVOID'}
-    # 只把**后面紧跟 `*`** 的标识符当类型（如 `gbTexture *`）。
-    # ⚠️ 不能收全部标识符：`int (__thiscall *)(int)` 里函数名也在 token 流里
-    # ⇒ 会把 `HINSTANCE`/`LPCSTR` 这类 **Windows typedef** 误发成
-    # `struct HINSTANCE;`（实测报 C2040 "重载函数类型"）。
-    _used = set()
-    for _v in vtbls.values():
-        for _m in (_v.get('data_members') or []):
-            for _tok in re.findall(r'([A-Za-z_]\w*)\s*\*', (_m.get('type') or '')):
-                if _tok not in _BUILTIN and not _tok.startswith('__'):
-                    _used.add(_tok)
-    if _used:
-        out.append('// 前向声明：成员类型引用到的具名类型')
-        for _t in sorted(_used):
-            out.append('struct %s;' % _t)
-        out.append('')
-    n_ok = n_skip = 0
-    for name in sorted(vtbls):
-        members = vtbls[name].get('data_members') or []
-        if not members:
-            n_skip += 1
-            continue
-        out.append('struct %s {' % name)
-        for m in members:
-            mname = (m.get('name') or '').strip()
-            mtype = (m.get('type') or '').strip()
-            # 合法形状：`<ret> (__cc *)(<params>)`，且类型串里**不含成员名**。
-            # ⚠️ 实测两个坑：
-            #   ① IDA 偶有 `gbTexture *NewTexture(__thiscall *)()` —— 名字嵌在类型里 ⇒ 必须拦掉；
-            #   ② 本项目的 MSVC6 对**函数指针上的 `__thiscall`** 报
-            #      `C4234: nonstandard extension used : '__thiscall' keyword reserved for future use`。
-            # ② 有干净的解法：调用点形如
-            #      `((void (*)(UIStatic *, ...))vftable->Create)(&this->m_Blood, ...)`
-            #   —— **首参是显式传进去的对象**，所以成员用 `__cdecl` 语义同样成立，
-            #   且不会触发 C4234。⇒ 统一改成 `__cdecl`。
-            # 真实 type 形如 `int (__thiscall *)(int)` / `gbTexture *(__thiscall *)()`
-            # ⚠️ 交替里 `__cdecl` 必须写成 `__c`（原写 `__cdecl` 会被 `__c` 前缀吃到 ⇒ 误拦 41 个成员；
-            #    实测：`void (__cdecl *)()` 匹配失败。这是本会话第二个"正则细节"坑）。
-            # 两种合法形态（用交替明确区分，避免"两种都拦"或"两种都放"）：
-            #   ① 无指针：`int (__thiscall *)(int)`        —— `int` 后直接空白 + `(`
-            #   ② 有指针：`gbTexture *(__thiscall *)()`    —— `gbTexture` 后 ` *` 紧贴 `(`
-            # ⚠️ 关键是**不许**出现"标识符 + 空白 + 标识符"（那是名字被吃进返回类型）。
-            mm = re.match(
-                r'^([A-Za-z_]\w*(?:\s*\*)?)\s*\((__(?:this|std|c|fast)call)\s*\*\)\s*\(([^)]*)\)$',
-                mtype)
-            if mm and re.search(r'\w\s+\w', mm.group(1)):
-                mm = None   # 返回类型里出现"标识符 标识符" ⇒ 名字混进来了，拦掉
-            if not mname or not mm:
-                n_skip += 1
-                continue
-            if not re.match(r'^[A-Za-z_]\w*$', mname):
-                n_skip += 1
-                continue
-            ret = mm.group(1).strip()
-            # 返回类型不得含"标识符+空格+标识符"（那是名字被吃进来的形态）
-            if re.search(r'\w\s+\w', ret):
-                n_skip += 1
-                continue
-            decl = '%s (__cdecl *%s)(%s);' % (ret, mname, mm.group(3))
-            out.append('    %s' % decl)
-        out.append('};')
-        out.append('')
-        n_ok += 1
-
-    dst = OUTPUT_DIR / 'vtbl_defs.h'
-    dst.write_text('\n'.join(out), encoding='utf-8')
-    print("  vtbl_defs.h: %d 个结构体（跳过 %d 个空定义）→ %s" % (n_ok, n_skip, dst))
 
 
 def generate_globals():
