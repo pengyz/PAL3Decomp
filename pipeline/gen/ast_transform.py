@@ -788,6 +788,52 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
     return result.decode('utf-8')
 
 
+# ---------------------------------------------------------------- COERCE 变换
+# 【2026-09-15 加】为什么用 AST 而不是正则（本会话实测教训）：
+#   `COERCE_FLOAT(x)` / `COERCE_DOUBLE(x)` 在 include/pal3/ida_defs.h 里定义为
+#   `(*(float*)&(x))` / `(*(double*)&(x))` —— **内部对实参取地址**。
+#   而 MSVC6 **不允许对 rvalue 取地址**：最小样例实测
+#       `float a = *(float*)&(GetTickCount());`  →  `error C2102: '&' requires l-value`
+#   ⇒ 当 Hex-Rays 产出 `COERCE_FLOAT(GetTickCount())`（实测
+#      pal3/src/Misc/UI3DCtrl.cpp:384/389）时编译失败。
+#   修法：改用 ida_defs.h 里**取值传参的 __forceinline 辅助函数**
+#   （形参本身即 lvalue ⇒ 语义等价、零开销）。
+#
+#   判据是【语法结构】——"实参是不是函数调用"。**正则做不到可靠**：
+#   本会话我在正则上连错 4 次（交替顺序、贪婪匹配、把 this->m_x 的 '-' 当运算符、
+#   0x10000000i64 的 i64 后缀破匹配）。tree-sitter 直接给出节点类型 ⇒ 无歧义。
+def transform_coerce_calls(code):
+    """把 `COERCE_FLOAT(<函数调用>)` / `COERCE_DOUBLE(<函数调用>)` 改为辅助函数调用。
+
+    只改**实参是 `call_expression`**（真正的 rvalue）的情形；
+    实参为标识符 / 成员访问 / 字面量 / 其它表达式**一律保持原样**
+    （那些在 MSVC6 下 `&(x)` 合法；不动它们可避免影响既有 51 处用法）。
+    """
+    _MAP = {'COERCE_FLOAT': '_pal3_coerce_f32', 'COERCE_DOUBLE': '_pal3_coerce_f64'}
+    code_bytes = code.encode('utf-8')
+    tree = _parser.parse(code_bytes)
+    replacements = []
+
+    def process_node(node):
+        if node.type == 'call_expression':
+            fn = node.child_by_field_name('function')
+            ar = node.child_by_field_name('arguments')
+            if fn is not None and ar is not None and fn.type == 'identifier':
+                helper = _MAP.get(fn.text.decode('utf-8'))
+                if helper:
+                    exprs = [c for c in ar.children if c.type not in ('(', ')', ',')]
+                    if len(exprs) == 1 and exprs[0].type == 'call_expression':
+                        replacements.append((fn.start_byte, fn.end_byte, helper))
+        for child in node.children:
+            process_node(child)
+
+    process_node(tree.root_node)
+    result = code_bytes
+    for start, end, new_text in sorted(replacements, reverse=True):
+        result = result[:start] + new_text.encode('utf-8') + result[end:]
+    return result.decode('utf-8')
+
+
 if __name__ == '__main__':
     # Test
     test_code = """

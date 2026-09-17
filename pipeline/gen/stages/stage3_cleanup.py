@@ -842,6 +842,12 @@ def run(code, ctx):
         return m.group(0)
     code = re.sub(r'COERCE_FLOAT\((\s*-?(?:0x[0-9A-Fa-f]+|\d+)\s*)\)', _fix_coerce, code)
 
+    # 【2026-09-15】`COERCE_FLOAT/T` 实参为**非字面量**的情形**不在这里处理**——
+    # 这里只能做文本替换，而"实参是不是 lvalue / 是不是函数调用"是**语法结构**判断，
+    # 正则做不可靠（实测我在此连错 4 次：交替顺序、贪婪匹配、`->` 误判、`i64` 后缀）。
+    # ⇒ 改由 **AST 层**处理：`ast_transform.transform_coerce_calls()`，
+    #    在 `stage2_semantic` 里调用（该 stage 已用 tree-sitter）。
+
     # Dereference fix and ctor return
     code = re.sub(r'\(\*\)(\w+)', r'(*\1)', code)
     if not ctx.is_free_function:

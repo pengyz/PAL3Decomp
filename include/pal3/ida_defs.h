@@ -95,6 +95,17 @@ static void *retaddr = 0;
 #define COERCE_DOUBLE(x) (*(double*)&(x))
 #define __PAIR64__(high, low) (((unsigned __int64)(high) << 32) | (unsigned int)(low))
 
+// 【2026-09-15 加】上面三个宏内部对实参取地址（`&(x)`）⇒ **实参必须是 lvalue**。
+// 而 Hex-Rays 会产出 `COERCE_FLOAT(GetTickCount())` 这类**对 rvalue 取地址**的形态
+// ⇒ MSVC6 报 `C2102: '&' requires l-value`（实测 pal3/src/Misc/UI3DCtrl.cpp:384/389）。
+// 下面用**取值传参的 inline 函数**替代：形参本身即 lvalue ⇒ 语义等价（按位重解释），
+// 且 __forceinline 保证与宏一致的零开销（MSVC6 支持 __forceinline）。
+// ⚠️ 名字刻意避开双下划线开头（那是实现保留命名空间）。
+__forceinline float  _pal3_coerce_f32(unsigned long v) { return *(float *)&v; }
+__forceinline double _pal3_coerce_f64(unsigned __int64 v) { return *(double *)&v; }
+__forceinline long   _pal3_slo_dword(unsigned __int64 v) { return (long)(unsigned long)v; }
+__forceinline long   _pal3_shi_dword(unsigned __int64 v) { return (long)(unsigned long)(v >> 32); }
+
 // IDA FLIRT misidentifications
 #define CRT_set_new_handler srand
 #define __OFSUB__(x, y) (((x) ^ ((x) - (y))) & ((x) ^ (y)))
