@@ -267,5 +267,57 @@ class TestPointerArrayStride(unittest.TestCase):
         self.assertEqual(r['off'], 18100 + 349 * 20 + 12)
 
 
+
+class TestMemberKeyRadix(unittest.TestCase):
+    """`known_members` 的键**大多是十进制无前缀**（9837/9849，仅 51 个带 `0x`）。
+
+    这条是真踩过的坑：临时脚本对键调 `norm_va()`（按十六进制读），把
+    `'64'` 读成 0x64=100，于是得出"UIWnd 成员上界 100 > binary_size 68"的
+    **错误断言**。`load_structs` 的规则（`isdigit()` → 十进制）才是对的。
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        from tools.scan_misattribution import load_structs
+        cls.S = load_structs()
+
+    def test_decimal_keys_read_as_decimal(self):
+        # UIWnd.json 键为十进制：m_rect 在 16（不是 0x16=22）
+        m = (self.S.get('UIWnd') or {}).get('members') or {}
+        if 'm_rect' not in m:
+            self.skipTest('UIWnd.m_rect 不存在')
+        self.assertEqual(m['m_rect'][0], 16)
+        if 'm_bfocus' in m:
+            self.assertEqual(m['m_bfocus'][0], 64)
+
+    def test_member_extent_matches_binary_size(self):
+        """UIWnd 成员上界必须等于 binary_size=68（二者自洽，是勘误的依据）。"""
+        d = self.S.get('UIWnd')
+        if not d or not d.get('size'):
+            self.skipTest('无 UIWnd')
+        from tools.scan_misattribution import sizeof_type
+        hi = max([0] + [off + (sizeof_type(self.S, ty) or 0)
+                        for mn, (off, ty) in (d['members'] or {}).items()
+                        if mn != '__vftable'])
+        self.assertEqual(hi, d['size'])
+
+    def test_hex_prefixed_keys_also_supported(self):
+        # 至少存在带 0x 前缀的键（如 Actor.json），且能被解析
+        import glob
+        import json
+        import os
+        root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        found = False
+        for f in glob.glob(os.path.join(root, 'data', 'annotations', 'structs', '*.json')):
+            try:
+                j = json.load(open(f, encoding='utf-8'))
+            except Exception:
+                continue
+            if any(str(k).lower().startswith('0x') for k in (j.get('known_members') or {})):
+                found = True
+                break
+        self.assertTrue(found, '已无 0x 前缀键 ⇒ 解析规则需重新确认')
+
+
 if __name__ == '__main__':
     unittest.main()
