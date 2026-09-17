@@ -186,6 +186,30 @@ def collect_functions(decomp_dir=None):
                 code = re.sub(r'\b%s\b' % re.escape(method), _stripped, code)
             method = _stripped
 
+        # 【2026-09-15 修】规范化 Hex-Rays 的**反引号特名**：
+        #   `` `scalar deleting destructor' `` → `_scalar_dtor`
+        #   `` `vector deleting destructor' `` → `_vector_dtor`
+        #
+        # 为什么必须做：`collect.py:196` 的跳过判据只认 `_scalar_dtor` / `_sdtor`，
+        # 而 `:171-173` 从 name（`UIStatic::`scalar deleting destructor'(uint)`）提取出的
+        # method 是**反引号原名** ⇒ 判据**不匹配** ⇒ 该函数**未被跳过**、带着反引号名进入 codegen
+        # ⇒ 其函数头含反引号/非法字符被剥离 ⇒ 产物只剩 `return (int)this;` + `}`
+        # ⇒ **C2143 语法崩、文件必然编译失败**（实测 `UIStatic.cpp` 6 错）。
+        #
+        # 与既有 `__ovl_` 处理同模式：**改名后必须同步重写正文**，
+        # 因为 stage1 会从正文自己的签名行重建定义。
+        #
+        # ⚠️ 注解侧本就把该地址记为 `_scalar_dtor`（`source: vtable_migrated`）
+        # ⇒ 两处命名本就不一致，此处是**归一化**，不是新造信息。
+        if method:
+            _norm = method
+            _norm = re.sub(r'`?\s*scalar deleting destructor\s*\'?', '_scalar_dtor', _norm)
+            _norm = re.sub(r'`?\s*vector deleting destructor\s*\'?', '_vector_dtor', _norm)
+            _norm = _norm.strip()
+            if _norm and _norm != method:
+                code = re.sub(r'\b%s\b' % re.escape(method), _norm, code)
+                method = _norm
+
         if cls and method:
             if cls in skip_classes:
                 continue
@@ -193,7 +217,9 @@ def collect_functions(decomp_dir=None):
             # Skip compiler-generated _scalar_dtor functions.
             # These are vtable wrappers around virtual destructors; the compiler
             # generates them automatically from 'virtual ~ClassName()' declarations.
-            if '_scalar_dtor' in method or method.startswith('_sdtor'):
+            # 【2026-09-15】`_vector_dtor` 同属编译器生成物，一并跳过
+            # （其名字由上面的规范化产生，见 `` `vector deleting destructor' `` → `_vector_dtor`）。
+            if '_scalar_dtor' in method or '_vector_dtor' in method or method.startswith('_sdtor'):
                 store.scalar_dtor_classes.add(cls)
                 continue
 
