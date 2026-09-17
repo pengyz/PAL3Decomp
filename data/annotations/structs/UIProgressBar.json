@@ -202,6 +202,24 @@
     "UIWnd"
   ],
   "methods": {
+    "0x0043FDC0": {
+      "name": "GetWidth",
+      "signature": "void __thiscall(int nWidth)",
+      "_migrated_from": "UIWnd",
+      "_evidence": "fstps +0x8c/+0x90/+0x94(140/144/148) 4B float > sizeof(UIWnd)=68; callers pass UIProgressBar (UILoadingFrm.m_LoadProgress lea 0x48(%edi); CCBUI.m_pRoleStateGP[1] 0x42c(%esi)); sizeof(UIProgressBar)=308"
+    },
+    "0x0043FDD0": {
+      "name": "GetHeight",
+      "signature": "void __thiscall(int nHeight)",
+      "_migrated_from": "UIWnd",
+      "_evidence": "fstps +0x8c/+0x90/+0x94(140/144/148) 4B float > sizeof(UIWnd)=68; callers pass UIProgressBar (UILoadingFrm.m_LoadProgress lea 0x48(%edi); CCBUI.m_pRoleStateGP[1] 0x42c(%esi)); sizeof(UIProgressBar)=308"
+    },
+    "0x0043FDE0": {
+      "name": "GetPosition",
+      "signature": "void __thiscall(int pPos)",
+      "_migrated_from": "UIWnd",
+      "_evidence": "fstps +0x8c/+0x90/+0x94(140/144/148) 4B float > sizeof(UIWnd)=68; callers pass UIProgressBar (UILoadingFrm.m_LoadProgress lea 0x48(%edi); CCBUI.m_pRoleStateGP[1] 0x42c(%esi)); sizeof(UIProgressBar)=308"
+    },
     "0x004C6831": {
       "name": "SetRadiusWidth",
       "signature": "void (int)",
