@@ -161,3 +161,46 @@ python3 tools/scan_misattribution.py --limit 0 --verify-offsets   # 偏移真值
 
 旧产物 `data/status/_scan_misattribution.json`（1524 候选 / 71 不可能）**保留**，
 作为对照基线。
+
+---
+
+## 7. 附：标量终值案例的调用点定谳（补 §3 缺少的例子）
+
+§3 只给了**类名终值**（`UIParticle._x`）的例子，而残余主体是**标量终值**（41/70）。
+补一个，把"`%ecx` 里到底是什么"直接摆在机器码上：
+
+`PalScriptMgr::ShowTextBox(char const *)`（`0x00450BC0`，160B）：
+
+```asm
+450bc9: mov   %ecx,%esi          ; %esi = this (PalScriptMgr)
+...
+450c1d: lea   0x48(%esi),%edi    ; %edi = this + 0x48 (72)      ← 解析出的 member_off = 72
+450c25: mov   %edi,%ecx          ; 第 1 个调用
+450c2d: mov   %edi,%ecx          ; 第 2 个调用
+450c35: mov   %edi,%ecx          ; 第 3 个调用
+450c50: mov   %edi,%ecx          ; 第 4 个调用
+```
+
+`%edi = this+72` 与解析值**逐值相同**。而 `+0x48` 上的成员声明是 **`float m_fPosZ`(4B)**，
+同一个地址被交给：
+
+| callee | 体内 `[ecx+disp]` 最大 | need |
+|---|---|---|
+| `RoleCameraCtrl::SetName` | 72 | 76 |
+| `UIScene::SetState` | 188 | 192 |
+
+⇒ 该偏移上的存储是一个**≥192 字节的内嵌对象**，声明成 `float` 是错的；
+同一个地址被两个不同类当 `this` 用，说明这些 callee 的 `this` 归属里
+**至少有一个也是错的**。
+
+### 反向例子（必须承认的噪声）
+`Actor::UpdateFrame`：`this->m_dwMatMsg[6]` 解析 off=**564**，调用点
+`lea 0x234(%ebp),%ecx` = 0x234 = **564** ✓；但 callee `ArcSceneMonster::CheckDistance`
+只读 `+8`（need=12），而 `m_dwMatMsg` 是 `unsigned` 元素数组 ⇒ 多读 8 字节
+**只是相邻数组元素**，属正常。
+⇒ **`<=32B` 那 5 个（`<=8B` 13 个）是启发式噪声，不能单独当证据。**
+
+### 由此得到的一个新判据（尚未落地）
+**"同一地址被 ≥2 个不同类当 `this`"** 是一个不依赖尺寸、不易假阳性的信号：
+它直接说明这些 callee 的归属互相矛盾。`PalScriptMgr+0x48` 就是一例
+（`RoleCameraCtrl::SetName` vs `UIScene::SetState`）。
