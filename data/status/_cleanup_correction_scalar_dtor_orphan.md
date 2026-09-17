@@ -57,3 +57,68 @@
 | **不是**注解造成 | 移除注解 + 重跑 export + codegen ⇒ 产物不变 |
 | 与 `collect.py:193-198` 的"跳过"意图**不一致** | 源码 + 产物对照 |
 | `CEffShock` 不受影响 | `grep -c _scalar_dtor CEffShock.cpp` = 0 |
+
+---
+
+## 6. ✅ 根因精确定位（`collect.py:171-173` 与 `:196` 的**判据不匹配**）
+
+### 6.1 `scalar deleting destructor` 的**名字有多条路径**，跳过判据只认其中一条
+
+**输入**（`asm/pal3/decomp/` 的文件名与 `name` 字段）：
+```
+文件名: UIStatic_`scalar_deleting_destructoruint_004407a0.json
+name  : UIStatic::`scalar deleting destructor'(uint)
+code  : int __thiscall UIStatic::`scalar deleting destructor'(UIStatic *this, void *Block, char a3)
+        { UIStatic::~UIStatic(this); if (((unsigned __int8)Block & 1) != 0) operator delete(this);
+          return (int)this; }
+```
+⇒ **`code` 里【有】函数头。**
+
+**`collect.py:171-173` 的 method 提取**：
+```python
+parts = name.rsplit('::', 1)          # "`scalar deleting destructor'(uint)"
+method = parts[1].split('(')[0]       # "`scalar deleting destructor'"
+```
+**⇒ `method` = `` `scalar deleting destructor' ``（**反引号 + 单引号**），
+而注解里它是 `_scalar_dtor`（`UIStatic.json:methods["0x004407A0"]`）。**
+
+**`collect.py:196` 的跳过判据**：
+```python
+if '_scalar_dtor' in method or method.startswith('_sdtor'):
+```
+**⚠️ `'_scalar_dtor'` 不匹配 `` `scalar deleting destructor' ``（下划线 vs 反引号、
+且 `scalar` 前后有反引号/空格）⇒ **判据漏过 ⇒ 该函数未被跳过。**
+
+### 6.2 ⇒ 完整因果链（三步）
+
+```
+① decomp 的 name = "UIStatic::`scalar deleting destructor'(uint)"（反引号形态）
+② collect.py:173 提取出 method = "`scalar deleting destructor'"（含反引号）
+   ⇒ :196 的跳过判据（只认 '_scalar_dtor' / '_sdtor'）**不匹配** ⇒ 未跳过
+③ 该函数继续进入 codegen；其**函数头含反引号/非法字符**，被某处剥离
+   ⇒ 产物只剩 `return (int)this;` + `}` ⇒ **C2143 语法崩 ⇒ 文件必然编译失败**
+```
+
+### 6.3 为什么 `CEffShock` 不受影响
+
+`CEffShock.cpp` 里 `_scalar_dtor` 计数为 **0** ⇒ 该类的同类函数**没进 codegen**
+（可能它的 decomp `name` 形态不同，或未产出该文件）⇒ **同一缺陷按 `name` 形态选择性地发作**。
+
+### 6.4 ⇒ 修复方案（两处任一即可，建议都做）
+
+| 处 | 改法 |
+|---|---|
+| **`collect.py:196` 的判据** | 扩展为同时匹配**反引号形态**：<br>`if '_scalar_dtor' in method or method.startswith('_sdtor') or 'scalar deleting destructor' in method or 'vector deleting destructor' in method:` |
+| **`collect.py:173` 的提取** | 或先把 `scalar deleting destructor` / `vector deleting destructor` **规范化成 `_scalar_dtor` / `_vector_dtor`**，再走既有判据（更统一） |
+
+**⚠️ 并需核对**：既有的 `methods` 注解里已把该地址记为 `_scalar_dtor`（`source: vtable_migrated`）
+⇒ 两处命名（decomp 原文 vs 注解）**本就不一致**，应在 `collect` 里做**归一化映射**。
+
+### 6.5 诚实标注
+
+- 我**未**定位到"剥离函数头"的确切代码行（已知它在 `collect` 之后、
+  `emit_cpp:353 run_transforms(m['code'])` 之前，且**不在 5 个 stage 里**——
+  我用 5 阶段离线复现证明过头能存活）。
+  **⇒ 更可能是"头被改写成非法形式后在别处被清理"，或 `method` 名里的反引号让某处正则失配。**
+- 我**未**验证"第 ② 步未跳过"就是产物只剩体的**唯一**原因（它是**必要条件**：若不跳过，
+  该函数必然带着反引号名进入 codegen）。
