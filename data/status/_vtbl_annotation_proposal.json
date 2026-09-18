@@ -1,0 +1,700 @@
+{
+ "gbGfxManager": {
+  "annotation_file": "data/annotations/structs/gbGfxManager.json",
+  "evidence_grade": "A",
+  "methods_add": {
+   "0x00010000": {
+    "name": "~gbGfxManager",
+    "ordinal": 0,
+    "signature": "void __thiscall ~gbGfxManager()",
+    "evidence": "A:include/gbengine/gbGfxManager.h:141 (slot 0) <-> original/gbengine.dll.asm off_100F56B4[0] = 0x10018BB0"
+   },
+   "0x00010001": {
+    "name": "MsgProc",
+    "ordinal": 1,
+    "signature": "void __thiscall MsgProc(int,int,int)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:142 (slot 1) <-> original/gbengine.dll.asm off_100F56B4[1] = 0x1001B4C0"
+   },
+   "0x00010002": {
+    "name": "NewTexture",
+    "ordinal": 2,
+    "signature": "gbTexture *__thiscall NewTexture(const char *)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:143 (slot 2) <-> original/gbengine.dll.asm off_100F56B4[2] = 0x10019040"
+   },
+   "0x00010003": {
+    "name": "NewMesh",
+    "ordinal": 3,
+    "signature": "gbBaseMesh *__thiscall NewMesh(const char *,gbMeshType)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:144 (slot 3) <-> original/gbengine.dll.asm off_100F56B4[3] (base impl, ?NewMesh@gbGfxManager@@)"
+   },
+   "0x00010004": {
+    "name": "NewVertexPool",
+    "ordinal": 4,
+    "signature": "void *__thiscall NewVertexPool(int,int,int)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:145 (slot 4) <-> original/gbengine.dll.asm off_100F56B4[4] = 0x100190D0"
+   },
+   "0x00010005": {
+    "name": "NewIndexPool",
+    "ordinal": 5,
+    "signature": "void *__thiscall NewIndexPool(int,int,int)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:146 (slot 5) <-> original/gbengine.dll.asm off_100F56B4[5] = 0x10019140"
+   },
+   "0x00010006": {
+    "name": "NewDynVertBuf",
+    "ordinal": 6,
+    "signature": "void *__thiscall NewDynVertBuf(int,int)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:147 (slot 6) <-> original/gbengine.dll.asm off_100F56B4[6] = 0x100191B0"
+   },
+   "0x00010007": {
+    "name": "SetFrustum",
+    "ordinal": 7,
+    "signature": "void __thiscall SetFrustum(double,double,double,double,double,double)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:148 (slot 7) <-> original/gbengine.dll.asm off_100F56B4[7] = 0x10019220"
+   },
+   "0x00010008": {
+    "name": "SetOrtho",
+    "ordinal": 8,
+    "signature": "void __thiscall SetOrtho(double,double,double,double,double,double)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:149 (slot 8) <-> original/gbengine.dll.asm off_100F56B4[8] = 0x100192B0"
+   },
+   "0x00010009": {
+    "name": "SetViewport",
+    "ordinal": 9,
+    "signature": "void __thiscall SetViewport(void *)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:150 (slot 9) <-> original/gbengine.dll.asm off_100F56B4[9] = 0x10019380"
+   },
+   "0x0001000A": {
+    "name": "SetLight",
+    "ordinal": 10,
+    "signature": "void __thiscall SetLight(int,void *)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:151 (slot 10) <-> original/gbengine.dll.asm off_100F56B4[10] = 0x100193E0"
+   },
+   "0x0001000B": {
+    "name": "SetMaterial",
+    "ordinal": 11,
+    "signature": "void __thiscall SetMaterial(D3DMATERIAL9 *)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:152 (slot 11) <-> original/gbengine.dll.asm off_100F56B4[11] = 0x10019460"
+   },
+   "0x0001000C": {
+    "name": "BeginScene",
+    "ordinal": 12,
+    "signature": "int __thiscall BeginScene()",
+    "evidence": "A:include/gbengine/gbGfxManager.h:153 (slot 12) <-> original/gbengine.dll.asm off_100F56B4[12] = 0x10018CD0"
+   },
+   "0x0001000D": {
+    "name": "Present",
+    "ordinal": 13,
+    "signature": "void __thiscall Present()",
+    "evidence": "A:include/gbengine/gbGfxManager.h:154 (slot 13) <-> original/gbengine.dll.asm off_100F56B4[13] = 0x10018F00"
+   },
+   "0x0001000E": {
+    "name": "DrawIndexedPrimitive",
+    "ordinal": 14,
+    "signature": "void __thiscall DrawIndexedPrimitive(int,int,int,int,int,int,int)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:155 (slot 14) <-> original/gbengine.dll.asm off_100F56B4[14] (base impl, ?NewMesh@gbGfxManager@@)"
+   },
+   "0x0001000F": {
+    "name": "DrawPrimitive",
+    "ordinal": 15,
+    "signature": "void __thiscall DrawPrimitive()",
+    "evidence": "A:include/gbengine/gbGfxManager.h:156 (slot 15) <-> original/gbengine.dll.asm off_100F56B4[15] = 0x10019500"
+   },
+   "0x00010010": {
+    "name": "GetFrustumPlanes",
+    "ordinal": 16,
+    "signature": "void __thiscall GetFrustumPlanes(float *,int)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:157 (slot 16) <-> original/gbengine.dll.asm off_100F56B4[16] = 0x10019620"
+   },
+   "0x00010011": {
+    "name": "GetGfxCaps",
+    "ordinal": 17,
+    "signature": "int __thiscall GetGfxCaps(gbGfxCaps *)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:158 (slot 17) <-> original/gbengine.dll.asm off_100F56B4[17] = 0x1001B190"
+   },
+   "0x00010012": {
+    "name": "ApplyTransform",
+    "ordinal": 18,
+    "signature": "void __thiscall ApplyTransform()",
+    "evidence": "A:include/gbengine/gbGfxManager.h:159 (slot 18) <-> original/gbengine.dll.asm off_100F56B4[18] = 0x10009210"
+   },
+   "0x00010013": {
+    "name": "SetGammaRamp",
+    "ordinal": 19,
+    "signature": "void __thiscall SetGammaRamp(void *)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:160 (slot 19) <-> original/gbengine.dll.asm off_100F56B4[19] = 0x1001B210"
+   },
+   "0x00010014": {
+    "name": "GetGammaRamp",
+    "ordinal": 20,
+    "signature": "void __thiscall GetGammaRamp(int,int)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:161 (slot 20) <-> original/gbengine.dll.asm off_100F56B4[20] = 0x1001B2B0"
+   },
+   "0x00010015": {
+    "name": "CreateDepthStencil",
+    "ordinal": 21,
+    "signature": "void __thiscall CreateDepthStencil(int,int)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:162 (slot 21) <-> original/gbengine.dll.asm off_100F56B4[21] = 0x10018F40"
+   },
+   "0x00010016": {
+    "name": "RestoreDepthStencil",
+    "ordinal": 22,
+    "signature": "void __thiscall RestoreDepthStencil()",
+    "evidence": "A:include/gbengine/gbGfxManager.h:163 (slot 22) <-> original/gbengine.dll.asm off_100F56B4[22] = 0x10019030"
+   },
+   "0x00010017": {
+    "name": "SetRenderTarget",
+    "ordinal": 23,
+    "signature": "void __thiscall SetRenderTarget(void *)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:164 (slot 23) <-> original/gbengine.dll.asm off_100F56B4[23] = 0x1001B360"
+   },
+   "0x00010018": {
+    "name": "LoadCursor",
+    "ordinal": 24,
+    "signature": "void *__thiscall LoadCursor(const char *)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:165 (slot 24) <-> original/gbengine.dll.asm off_100F56B4[24] = 0x1001B840"
+   },
+   "0x00010019": {
+    "name": "SetCursor",
+    "ordinal": 25,
+    "signature": "void __thiscall SetCursor(void *)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:166 (slot 25) <-> original/gbengine.dll.asm off_100F56B4[25] = 0x1001B9D0"
+   },
+   "0x0001001A": {
+    "name": "ShowCursor",
+    "ordinal": 26,
+    "signature": "void __thiscall ShowCursor(int)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:167 (slot 26) <-> original/gbengine.dll.asm off_100F56B4[26] = 0x1001BA00"
+   },
+   "0x0001001B": {
+    "name": "SetSoftwareVP",
+    "ordinal": 27,
+    "signature": "void __thiscall SetSoftwareVP(int)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:168 (slot 27) <-> original/gbengine.dll.asm off_100F56B4[27] = 0x1001BA20"
+   },
+   "0x0001001C": {
+    "name": "SetFog",
+    "ordinal": 28,
+    "signature": "void __thiscall SetFog(gbFogParam *)",
+    "evidence": "A:include/gbengine/gbGfxManager.h:169 (slot 28) <-> original/gbengine.dll.asm off_100F56B4[28] = 0x10019480"
+   }
+  },
+  "slots_add": [
+   {
+    "index": 0,
+    "addr": "0x00010000",
+    "from": "include/gbengine/gbGfxManager.h:141"
+   },
+   {
+    "index": 1,
+    "addr": "0x00010001",
+    "from": "include/gbengine/gbGfxManager.h:142"
+   },
+   {
+    "index": 2,
+    "addr": "0x00010002",
+    "from": "include/gbengine/gbGfxManager.h:143"
+   },
+   {
+    "index": 3,
+    "addr": "0x00010003",
+    "from": "include/gbengine/gbGfxManager.h:144"
+   },
+   {
+    "index": 4,
+    "addr": "0x00010004",
+    "from": "include/gbengine/gbGfxManager.h:145"
+   },
+   {
+    "index": 5,
+    "addr": "0x00010005",
+    "from": "include/gbengine/gbGfxManager.h:146"
+   },
+   {
+    "index": 6,
+    "addr": "0x00010006",
+    "from": "include/gbengine/gbGfxManager.h:147"
+   },
+   {
+    "index": 7,
+    "addr": "0x00010007",
+    "from": "include/gbengine/gbGfxManager.h:148"
+   },
+   {
+    "index": 8,
+    "addr": "0x00010008",
+    "from": "include/gbengine/gbGfxManager.h:149"
+   },
+   {
+    "index": 9,
+    "addr": "0x00010009",
+    "from": "include/gbengine/gbGfxManager.h:150"
+   },
+   {
+    "index": 10,
+    "addr": "0x0001000A",
+    "from": "include/gbengine/gbGfxManager.h:151"
+   },
+   {
+    "index": 11,
+    "addr": "0x0001000B",
+    "from": "include/gbengine/gbGfxManager.h:152"
+   },
+   {
+    "index": 12,
+    "addr": "0x0001000C",
+    "from": "include/gbengine/gbGfxManager.h:153"
+   },
+   {
+    "index": 13,
+    "addr": "0x0001000D",
+    "from": "include/gbengine/gbGfxManager.h:154"
+   },
+   {
+    "index": 14,
+    "addr": "0x0001000E",
+    "from": "include/gbengine/gbGfxManager.h:155"
+   },
+   {
+    "index": 15,
+    "addr": "0x0001000F",
+    "from": "include/gbengine/gbGfxManager.h:156"
+   },
+   {
+    "index": 16,
+    "addr": "0x00010010",
+    "from": "include/gbengine/gbGfxManager.h:157"
+   },
+   {
+    "index": 17,
+    "addr": "0x00010011",
+    "from": "include/gbengine/gbGfxManager.h:158"
+   },
+   {
+    "index": 18,
+    "addr": "0x00010012",
+    "from": "include/gbengine/gbGfxManager.h:159"
+   },
+   {
+    "index": 19,
+    "addr": "0x00010013",
+    "from": "include/gbengine/gbGfxManager.h:160"
+   },
+   {
+    "index": 20,
+    "addr": "0x00010014",
+    "from": "include/gbengine/gbGfxManager.h:161"
+   },
+   {
+    "index": 21,
+    "addr": "0x00010015",
+    "from": "include/gbengine/gbGfxManager.h:162"
+   },
+   {
+    "index": 22,
+    "addr": "0x00010016",
+    "from": "include/gbengine/gbGfxManager.h:163"
+   },
+   {
+    "index": 23,
+    "addr": "0x00010017",
+    "from": "include/gbengine/gbGfxManager.h:164"
+   },
+   {
+    "index": 24,
+    "addr": "0x00010018",
+    "from": "include/gbengine/gbGfxManager.h:165"
+   },
+   {
+    "index": 25,
+    "addr": "0x00010019",
+    "from": "include/gbengine/gbGfxManager.h:166"
+   },
+   {
+    "index": 26,
+    "addr": "0x0001001A",
+    "from": "include/gbengine/gbGfxManager.h:167"
+   },
+   {
+    "index": 27,
+    "addr": "0x0001001B",
+    "from": "include/gbengine/gbGfxManager.h:168"
+   },
+   {
+    "index": 28,
+    "addr": "0x0001001C",
+    "from": "include/gbengine/gbGfxManager.h:169"
+   }
+  ],
+  "notes": "Referenced dispatch N = {0,2,12,13,15,21,22,23,25,26,28}; target = full 0..28. Primary evidence: include/gbengine/gbGfxManager.h:140-169 (29 slot comments). Cross-validation: original/gbengine.dll.asm:433353 `off_100F56B4` = gbGfxManager_D3D vtable, exactly 29 dwords; header-claimed addresses match the table index-for-index for 27 of the 28 overrides (slot 3 is the non-overridden base symbol ?NewMesh@gbGfxManager@@). Only conflict: slot 14 — header claims 0x100194F0 but the D3D table holds `nullsub_8`; slot 14 is NOT referenced by Hex-Rays. Keep the existing synthetic-key convention addr = 0x00010000 + slot (task-mandated). Effect of the change: N=2 switches from the WRONG name ~gbGfxManager to NewTexture at 47 call sites; N in {12,13,15,21,22,23,25,26} currently fold to slots 3/5/6 (NewMesh/NewIndexPool/NewDynVertBuf) and become resolvable once 7..28 are annotated."
+ },
+ "gbTexture": {
+  "annotation_file": "data/annotations/structs/gbTexture.json",
+  "evidence_grade": "A (table identity) / CONFLICT (slot indices)",
+  "methods_add": {
+   "0x1001BA80": {
+    "name": "_scalar_dtor",
+    "ordinal": 0,
+    "evidence": "A:original/gbengine.dll.asm .rdata off_100F5738 slot 0 = loc_1001BA80 (gbTexture_D3D vtable; ctor writes it at gbTexture_D3D::gbTexture_D3D+0xA)"
+   }
+  },
+  "slots_add": [
+   {
+    "index": 0,
+    "addr": "0x1001BA80",
+    "from": "A:gbengine.dll.asm off_100F5738[0] (scalar dtor)"
+   },
+   {
+    "index": 1,
+    "addr": "0x1001BD30",
+    "from": "A:gbengine.dll.asm off_100F5738[1]; registry: gbTexture_D3D::CreateFromMemory"
+   },
+   {
+    "index": 2,
+    "addr": "0x1001BEA0",
+    "from": "A:gbengine.dll.asm off_100F5738[2]; registry: gbTexture_D3D::UpdateTexture"
+   },
+   {
+    "index": 3,
+    "addr": "0x1001BF80",
+    "from": "A:gbengine.dll.asm off_100F5738[3]; registry: gbTexture_D3D::CreateForRenderTarget"
+   },
+   {
+    "index": 4,
+    "addr": "0x1001C010",
+    "from": "A:gbengine.dll.asm off_100F5738[4]; registry: gbTexture_D3D::CreateFromFileMemory"
+   }
+  ],
+  "slots_remove": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "notes": "REPLACE, do not append: the current 4 entries are the right addresses in the WRONG index slots (off by one). True layout (both vtables, 5 dwords each): gbTexture @0x100F57E8 = [loc_100203A0, __purecall x4]; gbTexture_D3D @0x100F5738 = [loc_1001BA80, CreateFromMemory, UpdateTexture, CreateForRenderTarget, CreateFromFileMemory]. So slot0 must be the scalar dtor and the four current addresses move 0..3 -> 1..4. N=4 (referenced by CCBSkillWindow::Create, 0x0051C330, `(*p_m_pbktex)->__vftable + 4`) becomes covered by this fix. N=5 (referenced twice: CCBParabolaWindow::Destroy 0x0051C880 / CCBProtectWindow::Destroy 0x005164D0, binary `[eax+14h]` = 20 bytes = slot 5) is OUT OF RANGE for gbTexture/gbTexture_D3D => unresolved, see report section 2.3."
+ },
+ "gbActorDef": {
+  "annotation_file": "data/annotations/structs/gbActorDef.json",
+  "evidence_grade": "B (names) / D (addresses)",
+  "methods_add": {
+   "0x00020007": {
+    "name": "GetCollideOBB",
+    "ordinal": 7,
+    "signature": "void __thiscall(gbOBBox *,gbActor *)",
+    "evidence": "include/gbengine/gbActor.h:74 `// vtable[7] offset 0x1C` (CONFLICT with call site: PAL3.exe sub_536FD0 `call dword ptr [edx+1Ch]` returns a value, header says void)"
+   },
+   "0x0002000F": {
+    "name": "SetCurMaterial",
+    "ordinal": 15,
+    "signature": "void __thiscall(char *)",
+    "evidence": "include/gbengine/gbActor.h:82; call sites Actor::SetMaterialName / SetTextureName / SetVisible pass exactly one `char *`/texture-name arg -> arg-type match"
+   }
+  },
+  "slots_add": [
+   {
+    "index": 7,
+    "addr": "0x00020007",
+    "from": "include/gbengine/gbActor.h:74 (SYNTHETIC key, no real address available)"
+   },
+   {
+    "index": 15,
+    "addr": "0x0002000F",
+    "from": "include/gbengine/gbActor.h:82 (SYNTHETIC key, no real address available)"
+   }
+  ],
+  "notes": "No vtable is present in the annotation and no gbActorDef vtable exists in original/gbengine.dll.asm (IDA never named the hierarchy: zero `gbActorDef` symbols; the 27 exported ??_7 tables do not include it). Slot names come from the header only (grade B); slot 7 conflicts on return type. Because there is no real table address the proposal uses a SYNTHETIC key base 0x00020000+slot, mirroring the gbGfxManager 0x00010000+slot convention. Referenced N = {7,15}."
+ },
+ "gbRenderEffect": {
+  "annotation_file": "data/annotations/structs/gbRenderEffect.json",
+  "evidence_grade": "CONFLICT - do not annotate",
+  "methods_add": {},
+  "slots_add": [],
+  "notes": "Referenced N = 2 (PAL3::ClearAdditiveEffects 0x004C0400: `call dword ptr [ecx+8]` = slot 2) but ??_7gbRenderEffect@@6B@ in original/gbengine.dll.asm:433107 holds EXACTLY ONE dword (sub_10004CB0), and gbRenderEffect::gbRenderEffect writes that same symbol. So gbRenderEffect has a 1-entry vtable and slot 2 does not exist. => evidence insufficient / type conflict; slot MUST stay null. Note: data/annotations/structs/PAL3.json already labels the same `[+8]` access \"Release()\", which is consistent with the object NOT being a gbRenderEffect at all (gbRefObject::Release is a non-virtual function at DLL 0x1002F7F0 and occupies no vtable slot). The uncovered raw text is left verbatim by stage3 and still compiles, so this gap does not block the //4 -> N change."
+ },
+ "SceneObj": {
+  "annotation_file": "data/annotations/structs/SceneObj.json",
+  "evidence_grade": "A",
+  "methods_add": {},
+  "slots_add": [],
+  "notes": "Already covered: struct_vtables[\"SceneObj\"][1] = ValidateState, slot1 addr 0x00453200. Binary: PAL3.exe sub_453200; decomp export name = `SceneObj::ValidateState(void)`. No action needed. (The N=6 row in the task table is `*((CCBStage **)&this->SceneObj::TaskMgr_SceneObjParam_SceneObj::__vftable + 6)` = OBJECT MEMORY at +24, not a slot.)"
+ },
+ "CTaskTpl_tagEffTaskParam_CEffAction": {
+  "annotation_file": "data/annotations/structs/CTaskTpl_tagEffTaskParam_CEffAction.json",
+  "evidence_grade": "C",
+  "methods_add": {
+   "0x004C0650": {
+    "name": "AllocSegments",
+    "ordinal": 1,
+    "evidence": "addr from CEffAction.json vtables[0].slots[1]; binary: PAL3.exe 0x004C0740 `call dword ptr [edx+4]` = slot 1"
+   }
+  },
+  "slots_add": [
+   {
+    "index": 0,
+    "addr": "0x004C0540",
+    "from": "CEffAction.json vtables[0].slots[0]"
+   },
+   {
+    "index": 1,
+    "addr": "0x004C0650",
+    "from": "CEffAction.json vtables[0].slots[1] (binary-verified slot 1)"
+   }
+  ],
+  "vtables_add": [
+   {
+    "addr": "0x0056F5E4",
+    "base": "CEffAction",
+    "slots_from": "CEffAction.json"
+   }
+  ],
+  "notes": "Hex-Rays emits the vftable access through the *template base* name CTaskTpl_tagEffTaskParam_CEffAction (template_bases.json), not through CEffAction, so struct_vtables needs the template-base key. The dispatch site 0x004C0740 is a genuine slot-1 virtual call on that object. The file already exists (known_members only) and must gain a `methods` + `vtables` block."
+ },
+ "CTaskTpl_tagEffTaskParam_CEffCylinder": {
+  "annotation_file": "data/annotations/structs/CTaskTpl_tagEffTaskParam_CEffCylinder.json",
+  "evidence_grade": "C",
+  "methods_add": {
+   "0x004C4060": {
+    "name": "Create",
+    "ordinal": 1,
+    "evidence": "addr from CEffCylinder.json vtables[0].slots[1]; binary: PAL3.exe 0x004C45A0 `call dword ptr [edx+4]` = slot 1"
+   }
+  },
+  "slots_add": [
+   {
+    "index": 0,
+    "addr": "0x004C3DB0",
+    "from": "CEffCylinder.json vtables[0].slots[0]"
+   },
+   {
+    "index": 1,
+    "addr": "0x004C4060",
+    "from": "CEffCylinder.json vtables[0].slots[1] (binary-verified slot 1)"
+   }
+  ],
+  "vtables_add": [
+   {
+    "addr": "0x0056F7C8",
+    "base": "CEffCylinder",
+    "slots_from": "CEffCylinder.json"
+   }
+  ],
+  "notes": "Hex-Rays emits the vftable access through the *template base* name CTaskTpl_tagEffTaskParam_CEffCylinder (template_bases.json), not through CEffCylinder, so struct_vtables needs the template-base key. The dispatch site 0x004C45A0 is a genuine slot-1 virtual call on that object. The file already exists (known_members only) and must gain a `methods` + `vtables` block."
+ },
+ "CTaskTpl_tagEffTaskParam_CEffGrid": {
+  "annotation_file": "data/annotations/structs/CTaskTpl_tagEffTaskParam_CEffGrid.json",
+  "evidence_grade": "C",
+  "methods_add": {
+   "0x004C98F0": {
+    "name": "Create",
+    "ordinal": 1,
+    "evidence": "addr from CEffGrid.json vtables[0].slots[1]; binary: PAL3.exe 0x004C9ED0 `call dword ptr [edx+4]` = slot 1"
+   }
+  },
+  "slots_add": [
+   {
+    "index": 0,
+    "addr": "0x004C9630",
+    "from": "CEffGrid.json vtables[0].slots[0]"
+   },
+   {
+    "index": 1,
+    "addr": "0x004C98F0",
+    "from": "CEffGrid.json vtables[0].slots[1] (binary-verified slot 1)"
+   }
+  ],
+  "vtables_add": [
+   {
+    "addr": "0x0056F920",
+    "base": "CEffGrid",
+    "slots_from": "CEffGrid.json"
+   }
+  ],
+  "notes": "Hex-Rays emits the vftable access through the *template base* name CTaskTpl_tagEffTaskParam_CEffGrid (template_bases.json), not through CEffGrid, so struct_vtables needs the template-base key. The dispatch site 0x004C9ED0 is a genuine slot-1 virtual call on that object. The file already exists (known_members only) and must gain a `methods` + `vtables` block."
+ },
+ "CTaskTpl_tagEffTaskParam_CEffMeteor": {
+  "annotation_file": "data/annotations/structs/CTaskTpl_tagEffTaskParam_CEffMeteor.json",
+  "evidence_grade": "C",
+  "methods_add": {
+   "0x004CB800": {
+    "name": "Create",
+    "ordinal": 1,
+    "evidence": "addr from CEffMeteor.json vtables[0].slots[1]; binary: PAL3.exe 0x004CBFC0 `call dword ptr [edx+4]` = slot 1"
+   }
+  },
+  "slots_add": [
+   {
+    "index": 0,
+    "addr": "0x004CB4A0",
+    "from": "CEffMeteor.json vtables[0].slots[0]"
+   },
+   {
+    "index": 1,
+    "addr": "0x004CB800",
+    "from": "CEffMeteor.json vtables[0].slots[1] (binary-verified slot 1)"
+   }
+  ],
+  "vtables_add": [
+   {
+    "addr": "0x0056F978",
+    "base": "CEffMeteor",
+    "slots_from": "CEffMeteor.json"
+   }
+  ],
+  "notes": "Hex-Rays emits the vftable access through the *template base* name CTaskTpl_tagEffTaskParam_CEffMeteor (template_bases.json), not through CEffMeteor, so struct_vtables needs the template-base key. The dispatch site 0x004CBFC0 is a genuine slot-1 virtual call on that object. The file already exists (known_members only) and must gain a `methods` + `vtables` block."
+ },
+ "CTaskTpl_tagEffTaskParam_CEffQuake": {
+  "annotation_file": "data/annotations/structs/CTaskTpl_tagEffTaskParam_CEffQuake.json",
+  "evidence_grade": "B",
+  "methods_add": {
+   "0x004C0650": {
+    "name": "AllocSegments",
+    "ordinal": 1,
+    "evidence": "addr from CEffQuake.json vtables[0].slots[1]; binary: PAL3.exe 0x004C29A0 `call dword ptr [edx+4]` = slot 1"
+   }
+  },
+  "slots_add": [
+   {
+    "index": 0,
+    "addr": "0x004D32E0",
+    "from": "CEffQuake.json vtables[0].slots[0]"
+   },
+   {
+    "index": 1,
+    "addr": "0x004C0650",
+    "from": "CEffQuake.json vtables[0].slots[1] (binary-verified slot 1)"
+   }
+  ],
+  "vtables_add": [
+   {
+    "addr": "0x0056FA88",
+    "base": "CEffQuake",
+    "slots_from": "CEffQuake.json"
+   }
+  ],
+  "notes": "Hex-Rays emits the vftable access through the *template base* name CTaskTpl_tagEffTaskParam_CEffQuake (template_bases.json), not through CEffQuake, so struct_vtables needs the template-base key. The dispatch site 0x004C29A0 is a genuine slot-1 virtual call on that object. The file already exists (known_members only) and must gain a `methods` + `vtables` block."
+ },
+ "CTaskTpl_tagEffTaskParam_CEffSParticle": {
+  "annotation_file": "data/annotations/structs/CTaskTpl_tagEffTaskParam_CEffSParticle.json",
+  "evidence_grade": "C",
+  "methods_add": {
+   "0x004C0650": {
+    "name": "AllocSegments",
+    "ordinal": 1,
+    "evidence": "addr from CEffSParticle.json vtables[0].slots[1]; binary: PAL3.exe 0x004D4FC0 `call dword ptr [edx+4]` = slot 1"
+   }
+  },
+  "slots_add": [
+   {
+    "index": 0,
+    "addr": "0x004D4F00",
+    "from": "CEffSParticle.json vtables[0].slots[0]"
+   },
+   {
+    "index": 1,
+    "addr": "0x004C0650",
+    "from": "CEffSParticle.json vtables[0].slots[1] (binary-verified slot 1)"
+   }
+  ],
+  "vtables_add": [
+   {
+    "addr": "0x0056FB34",
+    "base": "CEffSParticle",
+    "slots_from": "CEffSParticle.json"
+   }
+  ],
+  "notes": "Hex-Rays emits the vftable access through the *template base* name CTaskTpl_tagEffTaskParam_CEffSParticle (template_bases.json), not through CEffSParticle, so struct_vtables needs the template-base key. The dispatch site 0x004D4FC0 is a genuine slot-1 virtual call on that object. The file already exists (known_members only) and must gain a `methods` + `vtables` block."
+ },
+ "CTaskTpl_tagEffTaskParam_CEffgbParticle": {
+  "annotation_file": "data/annotations/structs/CTaskTpl_tagEffTaskParam_CEffgbParticle.json",
+  "evidence_grade": "B",
+  "methods_add": {
+   "0x004C8A40": {
+    "name": "CreateTask",
+    "ordinal": 1,
+    "evidence": "addr from CEffgbParticle.json vtables[0].slots[1]; binary: PAL3.exe 0x004C8BF0 `call dword ptr [edx+4]` = slot 1"
+   }
+  },
+  "slots_add": [
+   {
+    "index": 0,
+    "addr": "0x004C8950",
+    "from": "CEffgbParticle.json vtables[0].slots[0]"
+   },
+   {
+    "index": 1,
+    "addr": "0x004C8A40",
+    "from": "CEffgbParticle.json vtables[0].slots[1] (binary-verified slot 1)"
+   }
+  ],
+  "vtables_add": [
+   {
+    "addr": "0x0056F8CC",
+    "base": "CEffgbParticle",
+    "slots_from": "CEffgbParticle.json"
+   }
+  ],
+  "notes": "Hex-Rays emits the vftable access through the *template base* name CTaskTpl_tagEffTaskParam_CEffgbParticle (template_bases.json), not through CEffgbParticle, so struct_vtables needs the template-base key. The dispatch site 0x004C8BF0 is a genuine slot-1 virtual call on that object. The file already exists (known_members only) and must gain a `methods` + `vtables` block."
+ },
+ "StateUI": {
+  "annotation_file": "data/annotations/structs/StateUI.json",
+  "evidence_grade": "A",
+  "methods_add": {
+   "0x00445E70": {
+    "name": "ShowWindow",
+    "ordinal": 0,
+    "signature": "int __thiscall(int nFlags)",
+    "evidence": "A:PAL3.exe .rdata off_56AE2C[0] = sub_445E70 (UIWnd vtable); decomp export name for 0x00445E70 = `UIWnd::ShowWindow(int)`; call-site arg count matches (this + 1 int)"
+   }
+  },
+  "slots_add": [],
+  "notes": "vtables[0].slots[0].addr is already 0x00445E70 but that address has no `methods` entry in this file, so data.py drops slot 0. Adding the methods entry covers it. Not affected by the //4 -> N change (0//4 == 0); listed for coverage completeness. Note 59 exe vtables share slot0 = 0x00445E70."
+ },
+ "UIStatic": {
+  "annotation_file": "data/annotations/structs/UIStatic.json",
+  "evidence_grade": "A",
+  "methods_add": {
+   "0x00445E70": {
+    "name": "ShowWindow",
+    "ordinal": 0,
+    "signature": "int __thiscall(int nFlags)",
+    "evidence": "A:PAL3.exe .rdata off_56AE2C[0] = sub_445E70 (UIWnd vtable); decomp export name for 0x00445E70 = `UIWnd::ShowWindow(int)`; call-site arg count matches (this + 1 int)"
+   }
+  },
+  "slots_add": [],
+  "notes": "vtables[0].slots[0].addr is already 0x00445E70 but that address has no `methods` entry in this file, so data.py drops slot 0. Adding the methods entry covers it. Not affected by the //4 -> N change (0//4 == 0); listed for coverage completeness. Note 59 exe vtables share slot0 = 0x00445E70."
+ },
+ "CCBProtectWindow": {
+  "annotation_file": "data/annotations/structs/CCBProtectWindow.json",
+  "evidence_grade": "A",
+  "methods_add": {
+   "0x00445E70": {
+    "name": "ShowWindow",
+    "ordinal": 0,
+    "signature": "int __thiscall(int nFlags)",
+    "evidence": "A:PAL3.exe .rdata off_56AE2C[0] = sub_445E70 (UIWnd vtable); decomp export name for 0x00445E70 = `UIWnd::ShowWindow(int)`; call-site arg count matches (this + 1 int)"
+   }
+  },
+  "slots_add": [],
+  "notes": "vtables[0].slots[0].addr is already 0x00445E70 but that address has no `methods` entry in this file, so data.py drops slot 0. Adding the methods entry covers it. Not affected by the //4 -> N change (0//4 == 0); listed for coverage completeness. Note 59 exe vtables share slot0 = 0x00445E70."
+ },
+ "_meta": {
+  "generated_by": "read-only vtable-annotation survey",
+  "must_cover_measurement": "derived by running the real pipeline/gen/stages/stage3_cleanup.run() over all 3598 asm/pal3/decomp/*.json with a spy on _resolve_vtbl_method (AST path, which resolves cls_hint only AFTER the `__thiscall ` pre-pass) plus the legacy _vtable_re pass (which already uses slot = N)",
+  "change_effect": "Patching _resolve_vtbl_method from slots.get(offset // 4) to slots.get(offset) changes stage3 output for 51 / 3598 files today. Almost all of it is a fix (gbGfxManager N=2: 47 sites stop emitting ~gbGfxManager() and emit NewTexture()). The regressions named in the task come from the gbGfxManager 12/13/15/21/22/23/25/26 + gbTexture 4/5 sites, which are exactly the slots this proposal fills.",
+  "not_annotatable": {
+   "int": [
+    21
+   ],
+   "LONG": [
+    86
+   ],
+   "void": [
+    0,
+    12
+   ],
+   "_DWORD": [
+    0
+   ],
+   "reason": "cast-type parse artifacts (the leading cast parameter is a scalar type, not a class); no class to annotate. `LONG` N=86 comes from `*(_DWORD *)*p_right + 20`-style integer arithmetic, not a vtable dispatch."
+  }
+ }
+}
