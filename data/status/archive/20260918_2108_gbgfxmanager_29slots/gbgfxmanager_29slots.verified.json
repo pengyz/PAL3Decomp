@@ -1,0 +1,240 @@
+{
+ "source_table": "original/gbengine.dll.asm off_100F56B4 (gbGfxManager_D3D)",
+ "source_header": "include/gbengine/gbGfxManager.h",
+ "slots": 29,
+ "addr_matches": 27,
+ "table": [
+  {
+   "slot": 0,
+   "dll_symbol": "loc_10018BB0",
+   "header_addr": "0x10018BB0",
+   "addr_match": true,
+   "decl": "~gbGfxManager()",
+   "name": "~gbGfxManager"
+  },
+  {
+   "slot": 1,
+   "dll_symbol": "sub_1001B4C0",
+   "header_addr": "0x1001B4C0",
+   "addr_match": true,
+   "decl": "void MsgProc(int msg, int wParam, int lParam)",
+   "name": "MsgProc"
+  },
+  {
+   "slot": 2,
+   "dll_symbol": "sub_10019040",
+   "header_addr": "0x10019040",
+   "addr_match": true,
+   "decl": "gbTexture* NewTexture(const char* name)",
+   "name": "NewTexture"
+  },
+  {
+   "slot": 3,
+   "dll_symbol": "?NewMesh@gbGfxManager@@UAEPAVgbBaseMesh@@PBDW4gbMeshType@@@Z",
+   "header_addr": null,
+   "addr_match": false,
+   "decl": "gbBaseMesh* NewMesh(const char* name, gbMeshType type)",
+   "name": "NewMesh"
+  },
+  {
+   "slot": 4,
+   "dll_symbol": "sub_100190D0",
+   "header_addr": "0x100190D0",
+   "addr_match": true,
+   "decl": "void* NewVertexPool(int poolType, int fvf, int count)",
+   "name": "NewVertexPool"
+  },
+  {
+   "slot": 5,
+   "dll_symbol": "sub_10019140",
+   "header_addr": "0x10019140",
+   "addr_match": true,
+   "decl": "void* NewIndexPool(int poolType, int indexSize, int count)",
+   "name": "NewIndexPool"
+  },
+  {
+   "slot": 6,
+   "dll_symbol": "sub_100191B0",
+   "header_addr": "0x100191B0",
+   "addr_match": true,
+   "decl": "void* NewDynVertBuf(int fvf, int maxVerts)",
+   "name": "NewDynVertBuf"
+  },
+  {
+   "slot": 7,
+   "dll_symbol": "sub_10019220",
+   "header_addr": "0x10019220",
+   "addr_match": true,
+   "decl": "void SetFrustum(double l, double r, double b, double t, double n, double f)",
+   "name": "SetFrustum"
+  },
+  {
+   "slot": 8,
+   "dll_symbol": "sub_100192B0",
+   "header_addr": "0x100192B0",
+   "addr_match": true,
+   "decl": "void SetOrtho(double l, double r, double b, double t, double n, double f)",
+   "name": "SetOrtho"
+  },
+  {
+   "slot": 9,
+   "dll_symbol": "sub_10019380",
+   "header_addr": "0x10019380",
+   "addr_match": true,
+   "decl": "void SetViewport(void* pViewportData)",
+   "name": "SetViewport"
+  },
+  {
+   "slot": 10,
+   "dll_symbol": "sub_100193E0",
+   "header_addr": "0x100193E0",
+   "addr_match": true,
+   "decl": "void SetLight(int index, void* pLightData)",
+   "name": "SetLight"
+  },
+  {
+   "slot": 11,
+   "dll_symbol": "sub_10019460",
+   "header_addr": "0x10019460",
+   "addr_match": true,
+   "decl": "void SetMaterial(D3DMATERIAL9* pMaterial)",
+   "name": "SetMaterial"
+  },
+  {
+   "slot": 12,
+   "dll_symbol": "sub_10018CD0",
+   "header_addr": "0x10018CD0",
+   "addr_match": true,
+   "decl": "int BeginScene(void)",
+   "name": "BeginScene"
+  },
+  {
+   "slot": 13,
+   "dll_symbol": "sub_10018F00",
+   "header_addr": "0x10018F00",
+   "addr_match": true,
+   "decl": "void Present()",
+   "name": "Present"
+  },
+  {
+   "slot": 14,
+   "dll_symbol": "nullsub_8",
+   "header_addr": "0x100194F0",
+   "addr_match": false,
+   "decl": "void DrawIndexedPrimitive(int, int, int, int, int, int, int)",
+   "name": "DrawIndexedPrimitive"
+  },
+  {
+   "slot": 15,
+   "dll_symbol": "sub_10019500",
+   "header_addr": "0x10019500",
+   "addr_match": true,
+   "decl": "void DrawPrimitive()",
+   "name": "DrawPrimitive"
+  },
+  {
+   "slot": 16,
+   "dll_symbol": "sub_10019620",
+   "header_addr": "0x10019620",
+   "addr_match": true,
+   "decl": "void GetFrustumPlanes(float* outPlanes, int bNormalize)",
+   "name": "GetFrustumPlanes"
+  },
+  {
+   "slot": 17,
+   "dll_symbol": "sub_1001B190",
+   "header_addr": "0x1001B190",
+   "addr_match": true,
+   "decl": "int GetGfxCaps(gbGfxCaps* caps)",
+   "name": "GetGfxCaps"
+  },
+  {
+   "slot": 18,
+   "dll_symbol": "sub_10009210",
+   "header_addr": "0x10009210",
+   "addr_match": true,
+   "decl": "void ApplyTransform()",
+   "name": "ApplyTransform"
+  },
+  {
+   "slot": 19,
+   "dll_symbol": "sub_1001B210",
+   "header_addr": "0x1001B210",
+   "addr_match": true,
+   "decl": "void SetGammaRamp(void* pData)",
+   "name": "SetGammaRamp"
+  },
+  {
+   "slot": 20,
+   "dll_symbol": "sub_1001B2B0",
+   "header_addr": "0x1001B2B0",
+   "addr_match": true,
+   "decl": "void GetGammaRamp(int p1, int p2)",
+   "name": "GetGammaRamp"
+  },
+  {
+   "slot": 21,
+   "dll_symbol": "sub_10018F40",
+   "header_addr": "0x10018F40",
+   "addr_match": true,
+   "decl": "void CreateDepthStencil(int index, int param2)",
+   "name": "CreateDepthStencil"
+  },
+  {
+   "slot": 22,
+   "dll_symbol": "sub_10019030",
+   "header_addr": "0x10019030",
+   "addr_match": true,
+   "decl": "void RestoreDepthStencil()",
+   "name": "RestoreDepthStencil"
+  },
+  {
+   "slot": 23,
+   "dll_symbol": "sub_1001B360",
+   "header_addr": "0x1001B360",
+   "addr_match": true,
+   "decl": "void SetRenderTarget(void* pParam)",
+   "name": "SetRenderTarget"
+  },
+  {
+   "slot": 24,
+   "dll_symbol": "sub_1001B840",
+   "header_addr": "0x1001B840",
+   "addr_match": true,
+   "decl": "void* LoadCursor(const char* name)",
+   "name": "LoadCursor"
+  },
+  {
+   "slot": 25,
+   "dll_symbol": "sub_1001B9D0",
+   "header_addr": "0x1001B9D0",
+   "addr_match": true,
+   "decl": "void SetCursor(void* pCursor)",
+   "name": "SetCursor"
+  },
+  {
+   "slot": 26,
+   "dll_symbol": "sub_1001BA00",
+   "header_addr": "0x1001BA00",
+   "addr_match": true,
+   "decl": "void ShowCursor(int bShow)",
+   "name": "ShowCursor"
+  },
+  {
+   "slot": 27,
+   "dll_symbol": "sub_1001BA20",
+   "header_addr": "0x1001BA20",
+   "addr_match": true,
+   "decl": "void SetSoftwareVP(int bSoftVP)",
+   "name": "SetSoftwareVP"
+  },
+  {
+   "slot": 28,
+   "dll_symbol": "sub_10019480",
+   "header_addr": "0x10019480",
+   "addr_match": true,
+   "decl": "void SetFog(gbFogParam* pFogParam)",
+   "name": "SetFog"
+  }
+ ]
+}

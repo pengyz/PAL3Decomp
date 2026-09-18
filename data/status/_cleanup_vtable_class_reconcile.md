@@ -1370,3 +1370,63 @@ MSVC 允许经实例调用静态成员（对象被忽略）⇒ **旧形态能编
 **错的算术 + 侥幸命中是一种隐性依赖**：它把缺失的数据折叠进已有数据，产生看似合理的输出，
 且没有任何显式记录。
 → 正确顺序：**先补洞（注解）→ 让回退路径类型安全 → 再改算术。**
+
+---
+
+# 23. 关键结构发现：补注解与翻 `//4` **强耦合**，只做一半会更糟（实测）
+
+## 23.1 我做了什么
+
+按提案顺序做第 1 步：把 `data/annotations/structs/gbGfxManager.json` 从 **7 槽补到 29 槽**
+（`methods` 新增 22 条，仅 `name`+`ordinal`、不加签名以压风险；`vtables[0].slots` 扩到 29）。
+证据为 **A 级且由我亲自提取验证**：
+
+- `include/gbengine/gbGfxManager.h` 明写 `// === Virtual functions (29 slots, order matches binary vtable) ===`
+  并逐槽给出 `// slot N` + 完整声明（0..28 全覆盖）。
+- `original/gbengine.dll.asm` 的 `off_100F56B4`（`gbGfxManager_D3D` 真表）**恰好 29 个 dword**，
+  与头文件的 `// slot N: 0x...` **逐槽地址吻合 27/28**（唯一不符是 slot14：头文件称 `0x100194F0`、
+  表里是 `nullsub_8`，且在 29 个被引用槽中未被引用）。
+- 已存证：`data/status/archive/20260918_2108_gbgfxmanager_29slots/gbgfxmanager_29slots.verified.json`
+  （逐槽 `dll_symbol` / `header_addr` / `addr_match` / `decl` / `name`），下一位不必重做。
+
+补完后 `store.struct_vtables['gbGfxManager']` 覆盖 0..28 全部 —— **前提条件本身达成**。
+
+## 23.2 但**只补注解、不翻 `//4`** 实测是**更糟**
+
+`codegen` 后 `GameBase/PAL3.cpp` 出现这样的变化：
+
+```
+- // [VFTABLE-STUB] original: (*((void ( **)(gbGfxManager *, int *))gfxMgr->__vftable + 28))(gfxMgr, &...)
+- static void pal3_vtbl_unk_0(gbGfxManager *, int *);
+-         pal3_vtbl_unk_0(gfxMgr, &...) /* [VFTABLE-STUB] */;
++         gfxMgr->SetFrustum(&...);
+```
+
+**槽 28 是 `SetFog`，而 `SetFrustum` 是槽 7。** 机制：旧注解只有 0–6 时
+`slots.get(28 // 4 = 7)` = **None** ⇒ 走老实 stub（签名由 cast 合成）；
+注解扩到 29 槽后 `slots.get(7)` = **`SetFrustum`** ⇒ `//4` **"命中"了一个完全错误的名字**。
+
+⇒ **`//4` 的"侥幸顶住"是双向的**：它既遮住了缺失的注解，也**依赖注解的稀疏**才不至于产出错误命名。
+**扩注解与翻口径必须同时落地；半个改动会让输出从"老实的 stub"退化成"错误命名"。**
+
+## 23.3 因此已回退本步
+
+`data/annotations/structs/gbGfxManager.json` 已还原到 HEAD（`methods=7 slots=7`），
+重跑 `codegen` 后与基线逐字节核对：`.cpp` 仅 `globals.cpp`、`.h` 仅 `globals.h`
+（两者都是**已知的 globals 生成乱序**，与本改动无关）。
+
+**没有落地任何改动。** 但 23.1 的**证据与产物已固化**，且 23.2 的耦合关系是本轮新增的结构性认知。
+
+## 23.4 修正后的落地方案（下一步照此做，**一次性**完成）
+
+1. `gbGfxManager` 补 29 槽（证据已就绪，见 23.1 的 verified.json）
+2. **修 `gbTexture` 索引错位**（真值 idx 1–4；基表 `off_100F57E8` 实为 `[loc_100203A0, __purecall × 4]`，
+   与注解里那 4 个地址**对不上** ⇒ 该注解指错了表/条目，需钉死应引用哪张表）
+3. 三个 exe 类补 `ShowWindow` 的 `methods` 条目（`0//4==0`，独立）
+4. 7 个 `CTaskTpl_tagEffTaskParam_CEff*` 补 slot1（key 用模板基名）
+5. `gbActorDef`（仅头注释，B 级，地址须合成键）
+6. **裁定两处 `gbTexture + 5`**：无证据可命名；若那 2 个文件必须保持 ok，需先修成员类型（动 IDA，超出范围）
+7. **同一次提交内**翻转 `_resolve_vtbl_method` 的 `//4` → `N`，然后跑
+   `probe all` + `regression_detector --before` + `match`，确认 S2 不降、**L1 多重集不回退**。
+
+`tests/test_vtbl_slot_index.py` 的 3 项 SKIP 守卫即为第 7 步的验收。
