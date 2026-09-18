@@ -2667,3 +2667,48 @@ m_RoleArray / m_RoleSlotArray / m_bCreated / m_pActorData / m_pDialogData / m_nT
 * 好的一面：**没有把 273 个假阳性批量写进管线**（工具默认只报告，写入需显式 `--write-batch`）；
 * 收获：把"成员投票"这条路**证伪**，并发现了**传递访问**这个一般性陷阱；
 * 遗留：§43.3 的待复核项（需要用**偏移/结构证据**或人工 IDB 分析定案）。
+
+---
+
+# 44. 用**函数逻辑**定案（回应"函数名判定要基于函数逻辑，这才是最准确的"）
+
+## 44.1 读逻辑就定案了：`0x00411CA0` 属于 `PalScript`、名为 `~PalScript`
+
+```c
+int __cdecl ScriptObj__ScriptObj(int nVal)
+{
+  PalScript *v1; // ecx          ← v1 来自 ecx ⇒ 它就是 this（__thiscall 约定）
+  PalScript *v2; // esi
+  v2 = v1;
+  p_m_bCreated = &v1->m_bCreated;
+  PalScript::DestroyScript(v1);                        ← 在 this 上调 PalScript 的具名方法
+  NPC::FreeBuffer((NPC *)((char *)&v2->m_RoleSlotArray... + 284));
+  m_pDialogData = (char *)v2->m_pDialogData;
+  for (...) { ... operator delete(*v7); ... PalScriptMgr::Get_result(...); ... }
+```
+
+**逻辑证据链**：① `v1` **来自 `ecx`** ⇒ 是 `this`（解释了 `this->` 计数为 0——Hex-Rays 没物化 `this`）；
+② 在 `this` 上调用 **`PalScript::DestroyScript`**；③ 访问的成员**全部**属 `PalScript`；
+④ 语义 = 释放缓冲 + `operator delete` + `FreeBuffer` + `PalScriptMgr::Get_result` ⇒ **析构/资源释放**。
+
+⇒ **归属 `PalScript`、名为 `~PalScript`** —— 证据从"成员名投票"（会被传递访问污染）
+**升级为逻辑证据**；同时也验证了 §42 那次改动的**方向是对的**（只是当时的理由不够硬）。
+
+## 44.2 由此得到一条**可机械化的强判据**
+
+> **decomp 首个局部形如 `X *v1; // ecx` ⇒ 它是 `this`，函数属于 `X`（或其派生）。**
+
+这比"成员名投票"强得多，且能自动筛出**大量"Hex-Rays 没写 `this` 但其实是成员函数"**的条目
+—— 正是那 339 个候选里最需要分开的一类。
+
+## 44.3 名字怎么定（纪律）
+
+顺序：**寄存器来源 → 调用的具名方法 → 经 `this` 的成员访问 → 算法语义**。
+语义给不出就写 `_todo_` 风格占位名并在 `name_evidence` 写明"含义未定"；**禁止造名**。
+已把这条写进 `docs/knowledge/pattern_name_and_attribute_from_function_logic.md`。
+
+## 44.4 下一轮的具体动作
+
+用"`// ecx` 首局部"这条判据重跑候选筛选（替换掉被证伪的成员投票）：
+* 首局部是 `X *…// ecx` 且 `X != 当前注解类` ⇒ **有据重归属**；
+* 首局部不是 `ecx` 来源 ⇒ 归入"非成员函数/待定"，**不再用成员名投票猜**。

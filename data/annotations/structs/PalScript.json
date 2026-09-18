@@ -1677,7 +1677,9 @@
     },
     "0x00411CA0": {
       "name": "~PalScript",
-      "note": "attribution-fix(member-access evidence): 该函数引用的成员 m_RoleArray/m_RoleSlotArray/m_bCreated/m_pActorData/m_pDialogData/m_nTaskIndex **全部属于 PalScript、且都不在 ScriptObj 里** ⇒ 归属应为 PalScript。原注解为 ScriptObj::~ScriptObj（且 decomp 是 __cdecl、this-> 出现 0 次）。"
+      "note": "attribution-fix(member-access evidence): 该函数引用的成员 m_RoleArray/m_RoleSlotArray/m_bCreated/m_pActorData/m_pDialogData/m_nTaskIndex **全部属于 PalScript、且都不在 ScriptObj 里** ⇒ 归属应为 PalScript。原注解为 ScriptObj::~ScriptObj（且 decomp 是 __cdecl、this-> 出现 0 次）。",
+      "evidence": "logic-based attribution: ① decomp 首个局部 `PalScript *v1; // ecx` —— MSVC __thiscall 把 this 放在 ecx ⇒ v1 就是 this（这解释了 this-> 计数为 0）；② 在 this 上调用具名方法 `PalScript::DestroyScript(v1)`；③ 访问的成员 m_bCreated/m_pDialogData/m_RoleArray/m_nTaskIndex 全属 PalScript；④ 语义=释放缓冲区+operator delete+NPC::FreeBuffer+PalScriptMgr::Get_result ⇒ 析构/资源释放。旁证：原注解自带 _misattrib_evidence=max_offset=140>class_size=4（不属于 ScriptObj）。",
+      "name_evidence": "语义命名：函数逻辑为\"拆除\"——释放 m_pDialogData 缓冲、operator delete、NPC::FreeBuffer、并调用 PalScript::DestroyScript ⇒ 判为 PalScript 的析构 ~PalScript。（不是 PalScript::PalScript：ctor 不会去摧毁已有资源。）"
     }
   },
   "vtables": [
