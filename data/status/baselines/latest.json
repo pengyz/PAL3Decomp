@@ -1,6 +1,6 @@
 {
-  "name": "20260918_200046",
-  "timestamp": "2026-09-18T20:00:46.205760",
+  "name": "20260918_201707",
+  "timestamp": "2026-09-18T20:17:08.003242",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "fail",
@@ -1184,31 +1184,6 @@
       "error_count": 101,
       "errors": [
         {
-          "code": "C2660",
-          "msg": "'Copy' : function does not take 0 parameters",
-          "line": 227
-        },
-        {
-          "code": "C2660",
-          "msg": "'Copy' : function does not take 0 parameters",
-          "line": 487
-        },
-        {
-          "code": "C2660",
-          "msg": "'Copy' : function does not take 0 parameters",
-          "line": 490
-        },
-        {
-          "code": "C2660",
-          "msg": "'Copy' : function does not take 0 parameters",
-          "line": 494
-        },
-        {
-          "code": "C2660",
-          "msg": "'CompareValues' : function does not take 1 parameters",
-          "line": 531
-        },
-        {
           "code": "C2039",
           "msg": "'GlowObj' : is not a member of 'SceneObj'",
           "line": 969
@@ -1687,6 +1662,31 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(int)' to 'void *'",
           "line": 3540
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(int)' to 'void *'",
+          "line": 3543
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CCBStage::*)(void)' to 'void *'",
+          "line": 3560
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(int)' to 'void *'",
+          "line": 3569
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from 'int (__thiscall CCBStage::*)(int)' to 'unsigned int'",
+          "line": 3706
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from 'int (__thiscall CCBStage::*)(int)' to 'unsigned int'",
+          "line": 3732
         }
       ]
     },
@@ -2046,7 +2046,7 @@
     },
     "pal3/src/Combat/CCBSystem.cpp": {
       "status": "fail",
-      "error_count": 45,
+      "error_count": 42,
       "errors": [
         {
           "code": "C2664",
@@ -2204,21 +2204,6 @@
           "line": 1641
         },
         {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'float' to 'class CCBStage *'",
-          "line": 1766
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->CCBStage' must point to class/struct/union",
-          "line": 1766
-        },
-        {
-          "code": "C2653",
-          "msg": "'CCBStage' : is not a class or namespace name",
-          "line": 1766
-        },
-        {
           "code": "C2660",
           "msg": "'IsTaskValidButNotFinish' : function does not take 2 parameters",
           "line": 1809
@@ -2279,11 +2264,6 @@
       "status": "fail",
       "error_count": 102,
       "errors": [
-        {
-          "code": "C2660",
-          "msg": "'ParseLocaleData' : function does not take 2 parameters",
-          "line": 465
-        },
         {
           "code": "C2664",
           "msg": "'sub_4AB560' : cannot convert parameter 1 from 'int *' to 'unsigned long *'",
@@ -2760,16 +2740,6 @@
           "line": 2214
         },
         {
-          "code": "C2660",
-          "msg": "'SendWindowMessage' : function does not take 1 parameters",
-          "line": 2256
-        },
-        {
-          "code": "C2660",
-          "msg": "'SendWindowMessage' : function does not take 1 parameters",
-          "line": 2258
-        },
-        {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'CCBUI'",
           "line": 2374
@@ -2782,6 +2752,21 @@
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'CCBUI'",
+          "line": 2390
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.Create' must have class/struct/union type",
+          "line": 2390
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->CEffMgr' must point to class/struct/union",
+          "line": 2390
+        },
+        {
+          "code": "C2653",
+          "msg": "'CEffMgr' : is not a class or namespace name",
           "line": 2390
         },
         {
@@ -3152,7 +3137,7 @@
     },
     "pal3/src/Data/PAL_GDB.cpp": {
       "status": "fail",
-      "error_count": 52,
+      "error_count": 50,
       "errors": [
         {
           "code": "C2227",
@@ -3190,11 +3175,6 @@
           "line": 286
         },
         {
-          "code": "C2660",
-          "msg": "'ProcessInput' : function does not take 1 parameters",
-          "line": 385
-        },
-        {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned long [5]' to 'int *'",
           "line": 646
@@ -3203,11 +3183,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned long [5]' to 'int *'",
           "line": 658
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessInput' : function does not take 1 parameters",
-          "line": 753
         },
         {
           "code": "C2664",
@@ -6342,7 +6317,7 @@
     },
     "pal3/src/Effect/ScreenEffectMgr.cpp": {
       "status": "fail",
-      "error_count": 14,
+      "error_count": 8,
       "errors": [
         {
           "code": "C2065",
@@ -6368,36 +6343,6 @@
           "code": "C2664",
           "msg": "'PopMatrixStacks' : cannot convert parameter 1 from 'char [4]' to 'int'",
           "line": 568
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const double' to 'class RenderTarget3 *'",
-          "line": 624
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->RenderTarget3' must point to class/struct/union",
-          "line": 624
-        },
-        {
-          "code": "C2653",
-          "msg": "'RenderTarget3' : is not a class or namespace name",
-          "line": 624
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const double' to 'class RenderTarget3 *'",
-          "line": 625
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->RenderTarget3' must point to class/struct/union",
-          "line": 625
-        },
-        {
-          "code": "C2653",
-          "msg": "'RenderTarget3' : is not a class or namespace name",
-          "line": 625
         },
         {
           "code": "C2660",
@@ -6765,11 +6710,6 @@
           "line": 800
         },
         {
-          "code": "C2660",
-          "msg": "'RenderMainRole' : function does not take 0 parameters",
-          "line": 856
-        },
-        {
           "code": "C2039",
           "msg": "'SceneRenderWithRotation' : is not a member of 'gbMatrixStack'",
           "line": 876
@@ -6975,19 +6915,9 @@
           "line": 1657
         },
         {
-          "code": "C2660",
-          "msg": "'StartWolf' : function does not take 1 parameters",
-          "line": 1680
-        },
-        {
           "code": "C2664",
           "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
           "line": 1744
-        },
-        {
-          "code": "C2660",
-          "msg": "'HandleGetItem' : function does not take 0 parameters",
-          "line": 1764
         },
         {
           "code": "C2664",
@@ -7003,11 +6933,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'class Role *'",
           "line": 1845
-        },
-        {
-          "code": "C2660",
-          "msg": "'StartCombat' : function does not take 3 parameters",
-          "line": 1888
         },
         {
           "code": "C2040",
@@ -7095,29 +7020,9 @@
           "line": 2221
         },
         {
-          "code": "C2660",
-          "msg": "'SetRoleMode' : function does not take 0 parameters",
-          "line": 2248
-        },
-        {
-          "code": "C2660",
-          "msg": "'BindToRoleSlot' : function does not take 0 parameters",
-          "line": 2257
-        },
-        {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class PAL3 *' to 'int'",
           "line": 2260
-        },
-        {
-          "code": "C2660",
-          "msg": "'Create' : function does not take 0 parameters",
-          "line": 2309
-        },
-        {
-          "code": "C2660",
-          "msg": "'Init' : function does not take 0 parameters",
-          "line": 2310
         },
         {
           "code": "C2660",
@@ -7146,48 +7051,88 @@
         },
         {
           "code": "C2660",
-          "msg": "'CalcXueJianInit' : function does not take 1 parameters",
-          "line": 2376
-        },
-        {
-          "code": "C2660",
-          "msg": "'CalcLongKuiInit' : function does not take 1 parameters",
-          "line": 2377
-        },
-        {
-          "code": "C2660",
-          "msg": "'CalcZiXuanInit' : function does not take 1 parameters",
-          "line": 2378
-        },
-        {
-          "code": "C2660",
-          "msg": "'CalcChangQingInit' : function does not take 1 parameters",
-          "line": 2379
-        },
-        {
-          "code": "C2660",
-          "msg": "'CalcHuaYingInit' : function does not take 1 parameters",
-          "line": 2380
-        },
-        {
-          "code": "C2660",
           "msg": "'Insert' : function does not take 3 parameters",
-          "line": 2427
+          "line": 2429
         },
         {
           "code": "C2660",
           "msg": "'Erase' : function does not take 3 parameters",
-          "line": 2428
+          "line": 2430
         },
         {
           "code": "C2660",
           "msg": "'Insert' : function does not take 3 parameters",
-          "line": 2451
+          "line": 2453
+        },
+        {
+          "code": "C2660",
+          "msg": "'Erase' : function does not take 3 parameters",
+          "line": 2454
+        },
+        {
+          "code": "C2660",
+          "msg": "'Insert' : function does not take 3 parameters",
+          "line": 2455
+        },
+        {
+          "code": "C2660",
+          "msg": "'Insert' : function does not take 3 parameters",
+          "line": 2517
+        },
+        {
+          "code": "C2660",
+          "msg": "'Erase' : function does not take 3 parameters",
+          "line": 2518
+        },
+        {
+          "code": "C2660",
+          "msg": "'Insert' : function does not take 3 parameters",
+          "line": 2541
+        },
+        {
+          "code": "C2660",
+          "msg": "'Erase' : function does not take 3 parameters",
+          "line": 2542
+        },
+        {
+          "code": "C2660",
+          "msg": "'Insert' : function does not take 3 parameters",
+          "line": 2543
+        },
+        {
+          "code": "C2660",
+          "msg": "'Insert' : function does not take 3 parameters",
+          "line": 2557
+        },
+        {
+          "code": "C2660",
+          "msg": "'Erase' : function does not take 3 parameters",
+          "line": 2558
+        },
+        {
+          "code": "C2660",
+          "msg": "'Insert' : function does not take 3 parameters",
+          "line": 2581
+        },
+        {
+          "code": "C2660",
+          "msg": "'Erase' : function does not take 3 parameters",
+          "line": 2582
+        },
+        {
+          "code": "C2660",
+          "msg": "'Insert' : function does not take 3 parameters",
+          "line": 2583
+        },
+        {
+          "code": "C2660",
+          "msg": "'Insert' : function does not take 3 parameters",
+          "line": 2597
         },
         {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 2451
+          "line": 2597
         }
       ]
     },
@@ -7610,7 +7555,7 @@
     },
     "pal3/src/Misc/ArcLocaleRole.cpp": {
       "status": "fail",
-      "error_count": 9,
+      "error_count": 7,
       "errors": [
         {
           "code": "C2664",
@@ -7646,16 +7591,6 @@
           "code": "C2664",
           "msg": "'sub_4AB560' : cannot convert parameter 1 from 'int *' to 'unsigned long *'",
           "line": 386
-        },
-        {
-          "code": "C2660",
-          "msg": "'ParseLocaleData' : function does not take 2 parameters",
-          "line": 409
-        },
-        {
-          "code": "C2660",
-          "msg": "'ParseLocaleData' : function does not take 2 parameters",
-          "line": 415
         }
       ]
     },
@@ -7923,92 +7858,32 @@
     },
     "pal3/src/Misc/Array.cpp": {
       "status": "fail",
-      "error_count": 17,
+      "error_count": 5,
       "errors": [
-        {
-          "code": "C2660",
-          "msg": "'Copy' : function does not take 0 parameters",
-          "line": 130
-        },
-        {
-          "code": "C2660",
-          "msg": "'Copy' : function does not take 0 parameters",
-          "line": 133
-        },
-        {
-          "code": "C2660",
-          "msg": "'CalcXueJianInit' : function does not take 1 parameters",
-          "line": 890
-        },
-        {
-          "code": "C2660",
-          "msg": "'CalcZiXuanInit' : function does not take 1 parameters",
-          "line": 891
-        },
-        {
-          "code": "C2660",
-          "msg": "'CalcLongKuiInit' : function does not take 1 parameters",
-          "line": 895
-        },
-        {
-          "code": "C2660",
-          "msg": "'CalcChangQingInit' : function does not take 1 parameters",
-          "line": 897
-        },
-        {
-          "code": "C2660",
-          "msg": "'CalcHuaYingInit' : function does not take 1 parameters",
-          "line": 898
-        },
-        {
-          "code": "C2660",
-          "msg": "'CalcXueJianInit' : function does not take 1 parameters",
-          "line": 905
-        },
-        {
-          "code": "C2660",
-          "msg": "'CalcLongKuiInit' : function does not take 1 parameters",
-          "line": 907
-        },
-        {
-          "code": "C2660",
-          "msg": "'CalcZiXuanInit' : function does not take 1 parameters",
-          "line": 909
-        },
-        {
-          "code": "C2660",
-          "msg": "'CalcChangQingInit' : function does not take 1 parameters",
-          "line": 911
-        },
-        {
-          "code": "C2660",
-          "msg": "'CalcHuaYingInit' : function does not take 1 parameters",
-          "line": 913
-        },
         {
           "code": "C2297",
           "msg": "'+=' : illegal, right operand has type 'class ScriptSystem *'",
-          "line": 918
+          "line": 930
         },
         {
           "code": "C2065",
           "msg": "'SLOWORD' : undeclared identifier",
-          "line": 1019
+          "line": 1031
         },
         {
           "code": "C2664",
           "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
-          "line": 1288
+          "line": 1300
         },
         {
           "code": "C2664",
           "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
-          "line": 1302
+          "line": 1314
         },
         {
           "code": "C2664",
           "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
-          "line": 1315
+          "line": 1327
         }
       ]
     },
@@ -9502,23 +9377,8 @@
     },
     "pal3/src/Misc/PtrArray.cpp": {
       "status": "fail",
-      "error_count": 23,
+      "error_count": 17,
       "errors": [
-        {
-          "code": "C2660",
-          "msg": "'PartialSort' : function does not take 5 parameters",
-          "line": 226
-        },
-        {
-          "code": "C2660",
-          "msg": "'ParseStringPair' : function does not take 2 parameters",
-          "line": 229
-        },
-        {
-          "code": "C2660",
-          "msg": "'ParseStringPair' : function does not take 2 parameters",
-          "line": 234
-        },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned long [5]' to 'int *'",
@@ -9528,16 +9388,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned long [5]' to 'int *'",
           "line": 505
-        },
-        {
-          "code": "C2660",
-          "msg": "'ParseStringPair' : function does not take 2 parameters",
-          "line": 586
-        },
-        {
-          "code": "C2660",
-          "msg": "'ParseStringPair' : function does not take 2 parameters",
-          "line": 592
         },
         {
           "code": "C2059",
@@ -9608,11 +9458,6 @@
           "code": "C2660",
           "msg": "'Read' : function does not take 0 parameters",
           "line": 1176
-        },
-        {
-          "code": "C2660",
-          "msg": "'ReadFromVFile' : function does not take 1 parameters",
-          "line": 1196
         },
         {
           "code": "C2440",
@@ -10962,23 +10807,8 @@
     },
     "pal3/src/Misc/SystemUI.cpp": {
       "status": "fail",
-      "error_count": 17,
+      "error_count": 13,
       "errors": [
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'float' to 'class ScriptSystem *'",
-          "line": 143
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->ScriptSystem' must point to class/struct/union",
-          "line": 143
-        },
-        {
-          "code": "C2653",
-          "msg": "'ScriptSystem' : is not a class or namespace name",
-          "line": 143
-        },
         {
           "code": "C2660",
           "msg": "'CreateFromMemory' : function does not take 1 parameters",
@@ -11043,11 +10873,6 @@
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIWnd'",
           "line": 511
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessInput' : function does not take 1 parameters",
-          "line": 1281
         }
       ]
     },
@@ -11181,7 +11006,7 @@
     },
     "pal3/src/Misc/UIBigMap.cpp": {
       "status": "fail",
-      "error_count": 41,
+      "error_count": 40,
       "errors": [
         {
           "code": "C2440",
@@ -11242,11 +11067,6 @@
           "code": "C2660",
           "msg": "'=' : function does not take 2 parameters",
           "line": 509
-        },
-        {
-          "code": "C2660",
-          "msg": "'SetAnimBlend' : function does not take 0 parameters",
-          "line": 530
         },
         {
           "code": "C2440",
@@ -11919,7 +11739,7 @@
     },
     "pal3/src/Misc/UIScenePanel.cpp": {
       "status": "fail",
-      "error_count": 48,
+      "error_count": 47,
       "errors": [
         {
           "code": "C2227",
@@ -12060,11 +11880,6 @@
           "code": "C2653",
           "msg": "'TaskBookUI' : is not a class or namespace name",
           "line": 955
-        },
-        {
-          "code": "C2660",
-          "msg": "'LoadRoleByIndex' : function does not take 0 parameters",
-          "line": 1084
         },
         {
           "code": "C2664",
@@ -12596,7 +12411,7 @@
     },
     "pal3/src/Misc/scAsmDecoder.cpp": {
       "status": "fail",
-      "error_count": 9,
+      "error_count": 8,
       "errors": [
         {
           "code": "C2679",
@@ -12624,11 +12439,6 @@
           "line": 54
         },
         {
-          "code": "C2660",
-          "msg": "'BindToRoleSlot' : function does not take 0 parameters",
-          "line": 63
-        },
-        {
           "code": "C2664",
           "msg": "'_strcmpi' : cannot convert parameter 1 from 'char' to 'const char *'",
           "line": 77
@@ -12652,53 +12462,8 @@
     },
     "pal3/src/Render/CScreenMode.cpp": {
       "status": "fail",
-      "error_count": 86,
+      "error_count": 68,
       "errors": [
-        {
-          "code": "C2671",
-          "msg": "'ProcessGameMode' : static member functions do not have 'this' pointers",
-          "line": 85
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->CScreenMode' must point to class/struct/union",
-          "line": 85
-        },
-        {
-          "code": "C2653",
-          "msg": "'CScreenMode' : is not a class or namespace name",
-          "line": 85
-        },
-        {
-          "code": "C2671",
-          "msg": "'ProcessGameMode' : static member functions do not have 'this' pointers",
-          "line": 93
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->CScreenMode' must point to class/struct/union",
-          "line": 93
-        },
-        {
-          "code": "C2653",
-          "msg": "'CScreenMode' : is not a class or namespace name",
-          "line": 93
-        },
-        {
-          "code": "C2671",
-          "msg": "'ProcessGameMode' : static member functions do not have 'this' pointers",
-          "line": 99
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->CScreenMode' must point to class/struct/union",
-          "line": 99
-        },
-        {
-          "code": "C2653",
-          "msg": "'CScreenMode' : is not a class or namespace name",
-          "line": 99
-        },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIButton'",
@@ -12800,11 +12565,6 @@
           "line": 2137
         },
         {
-          "code": "C2660",
-          "msg": "'OpenBinkVideo' : function does not take 4 parameters",
-          "line": 2146
-        },
-        {
           "code": "C2664",
           "msg": "'BinkWait' : cannot convert parameter 1 from 'int' to 'void *'",
           "line": 2156
@@ -12898,11 +12658,6 @@
           "code": "C2664",
           "msg": "'SetOpenMode' : cannot convert parameter 1 from 'const int' to 'enum ECPKMode'",
           "line": 2545
-        },
-        {
-          "code": "C2660",
-          "msg": "'GetByteParam' : function does not take 1 parameters",
-          "line": 2645
         },
         {
           "code": "C2227",
@@ -13025,11 +12780,6 @@
           "line": 2988
         },
         {
-          "code": "C2660",
-          "msg": "'LoadFromConfig' : function does not take 2 parameters",
-          "line": 3051
-        },
-        {
           "code": "C2143",
           "msg": "syntax error : missing ';' before '}'",
           "line": 3111
@@ -13040,21 +12790,6 @@
           "line": 3307
         },
         {
-          "code": "C2671",
-          "msg": "'LoadAudioFromFile' : static member functions do not have 'this' pointers",
-          "line": 3376
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->CScreenMode' must point to class/struct/union",
-          "line": 3376
-        },
-        {
-          "code": "C2653",
-          "msg": "'CScreenMode' : is not a class or namespace name",
-          "line": 3376
-        },
-        {
           "code": "C2664",
           "msg": "'BinkOpen' : cannot convert parameter 1 from 'const char *' to 'void *'",
           "line": 3421
@@ -13063,21 +12798,6 @@
           "code": "C2664",
           "msg": "'BinkOpen' : cannot convert parameter 1 from 'int' to 'void *'",
           "line": 3438
-        },
-        {
-          "code": "C2671",
-          "msg": "'OpenBinkVideo' : static member functions do not have 'this' pointers",
-          "line": 3443
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->CScreenMode' must point to class/struct/union",
-          "line": 3443
-        },
-        {
-          "code": "C2653",
-          "msg": "'CScreenMode' : is not a class or namespace name",
-          "line": 3443
         },
         {
           "code": "C2065",
@@ -13351,7 +13071,7 @@
     },
     "pal3/src/Role/Actor.cpp": {
       "status": "fail",
-      "error_count": 77,
+      "error_count": 62,
       "errors": [
         {
           "code": "C2011",
@@ -13479,16 +13199,6 @@
           "line": 1914
         },
         {
-          "code": "C2660",
-          "msg": "'CopyConstruct_1C' : function does not take 1 parameters",
-          "line": 1923
-        },
-        {
-          "code": "C2660",
-          "msg": "'CopyConstruct_1C' : function does not take 1 parameters",
-          "line": 1930
-        },
-        {
           "code": "C2065",
           "msg": "'pData_0' : undeclared identifier",
           "line": 1948
@@ -13534,11 +13244,6 @@
           "line": 2245
         },
         {
-          "code": "C2660",
-          "msg": "'LoadAudioFromFile' : function does not take 2 parameters",
-          "line": 2256
-        },
-        {
           "code": "C2664",
           "msg": "'CompareModelName' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
           "line": 2450
@@ -13579,11 +13284,6 @@
           "line": 2840
         },
         {
-          "code": "C2660",
-          "msg": "'CopyConstruct_40' : function does not take 2 parameters",
-          "line": 2879
-        },
-        {
           "code": "C2664",
           "msg": "'CopyBufferBlocks' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
           "line": 2888
@@ -13597,21 +13297,6 @@
           "code": "C2065",
           "msg": "'ActVecUninitCopy2' : undeclared identifier",
           "line": 3109
-        },
-        {
-          "code": "C2660",
-          "msg": "'SetRegion' : function does not take 1 parameters",
-          "line": 3136
-        },
-        {
-          "code": "C2660",
-          "msg": "'SetRegion' : function does not take 1 parameters",
-          "line": 3139
-        },
-        {
-          "code": "C2660",
-          "msg": "'CopyConstruct_290' : function does not take 2 parameters",
-          "line": 3226
         },
         {
           "code": "C2106",
@@ -13644,11 +13329,6 @@
           "line": 3303
         },
         {
-          "code": "C2660",
-          "msg": "'SetRegion' : function does not take 1 parameters",
-          "line": 3633
-        },
-        {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
           "line": 3638
@@ -13664,19 +13344,9 @@
           "line": 3676
         },
         {
-          "code": "C2660",
-          "msg": "'SetRegion' : function does not take 1 parameters",
-          "line": 3691
-        },
-        {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
           "line": 3696
-        },
-        {
-          "code": "C2660",
-          "msg": "'SetRegion' : function does not take 1 parameters",
-          "line": 3704
         },
         {
           "code": "C2106",
@@ -13687,31 +13357,6 @@
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
           "line": 3723
-        },
-        {
-          "code": "C2660",
-          "msg": "'SetRegion' : function does not take 1 parameters",
-          "line": 3746
-        },
-        {
-          "code": "C2660",
-          "msg": "'SetRegion' : function does not take 1 parameters",
-          "line": 3751
-        },
-        {
-          "code": "C2660",
-          "msg": "'SetRegion' : function does not take 1 parameters",
-          "line": 3762
-        },
-        {
-          "code": "C2660",
-          "msg": "'SetRegion' : function does not take 1 parameters",
-          "line": 4015
-        },
-        {
-          "code": "C2660",
-          "msg": "'SetRegion' : function does not take 1 parameters",
-          "line": 4030
         },
         {
           "code": "C2664",
@@ -13820,52 +13465,32 @@
         {
           "code": "C2227",
           "msg": "left of '->Render' must point to class/struct/union",
-          "line": 130
+          "line": 131
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
-          "line": 152
+          "line": 153
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 774
+          "line": 775
         },
         {
           "code": "C2228",
           "msg": "left of '.m_teamSlotsB' must have class/struct/union type",
-          "line": 774
+          "line": 775
         },
         {
           "code": "C2228",
           "msg": "left of '.combat' must have class/struct/union type",
-          "line": 774
+          "line": 775
         },
         {
           "code": "C2228",
           "msg": "left of '.m_bCommandEdited' must have class/struct/union type",
-          "line": 774
-        },
-        {
-          "code": "C2109",
-          "msg": "subscript requires array or pointer type",
-          "line": 780
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.m_teamSlotsB' must have class/struct/union type",
-          "line": 780
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.combat' must have class/struct/union type",
-          "line": 780
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.m_bCommandEdited' must have class/struct/union type",
-          "line": 780
+          "line": 775
         },
         {
           "code": "C2109",
@@ -13906,56 +13531,56 @@
           "code": "C2228",
           "msg": "left of '.m_bCommandEdited' must have class/struct/union type",
           "line": 782
+        },
+        {
+          "code": "C2109",
+          "msg": "subscript requires array or pointer type",
+          "line": 783
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.m_teamSlotsB' must have class/struct/union type",
+          "line": 783
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.combat' must have class/struct/union type",
+          "line": 783
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.m_bCommandEdited' must have class/struct/union type",
+          "line": 783
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 785
+          "line": 786
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 785
+          "line": 786
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 792
+          "line": 793
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 792
+          "line": 793
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 799
+          "line": 800
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 799
-        },
-        {
-          "code": "C2109",
-          "msg": "subscript requires array or pointer type",
-          "line": 816
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.m_teamSlotsB' must have class/struct/union type",
-          "line": 816
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.combat' must have class/struct/union type",
-          "line": 816
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.m_bCommandEdited' must have class/struct/union type",
-          "line": 816
+          "line": 800
         },
         {
           "code": "C2109",
@@ -13978,149 +13603,144 @@
           "line": 817
         },
         {
-          "code": "C2660",
-          "msg": "'GetAnimOffset' : function does not take 1 parameters",
-          "line": 1090
+          "code": "C2109",
+          "msg": "subscript requires array or pointer type",
+          "line": 818
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.m_teamSlotsB' must have class/struct/union type",
+          "line": 818
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.combat' must have class/struct/union type",
+          "line": 818
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.m_bCommandEdited' must have class/struct/union type",
+          "line": 818
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'float' to 'class UIWnd *'",
-          "line": 1192
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'float' to 'char *'",
           "line": 1193
         },
         {
           "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'float' to 'class UIWnd *'",
-          "line": 1293
+          "msg": "'type cast' : cannot convert from 'float' to 'char *'",
+          "line": 1194
         },
         {
           "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'float' to 'char *'",
+          "msg": "'type cast' : cannot convert from 'float' to 'class UIWnd *'",
           "line": 1294
         },
         {
           "code": "C2440",
+          "msg": "'type cast' : cannot convert from 'float' to 'char *'",
+          "line": 1295
+        },
+        {
+          "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 1321
+          "line": 1322
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'float' to 'class UIWnd *'",
-          "line": 1445
+          "line": 1446
         },
         {
           "code": "C2660",
           "msg": "'=' : function does not take 2 parameters",
-          "line": 1651
+          "line": 1652
         },
         {
           "code": "C2660",
           "msg": "'*=' : function does not take 2 parameters",
-          "line": 1653
+          "line": 1654
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char *' to 'const int'",
-          "line": 1693
+          "line": 1694
         },
         {
           "code": "C2101",
           "msg": "'&' on constant",
-          "line": 1717
+          "line": 1718
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'struct gbColorQuad *' to 'const int'",
-          "line": 1727
+          "line": 1728
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'float *' to 'const int'",
-          "line": 1774
+          "line": 1775
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 1786
+          "line": 1787
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 1786
+          "line": 1787
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 1793
+          "line": 1794
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 1793
+          "line": 1794
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 1799
+          "line": 1800
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 1799
+          "line": 1800
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'float *' to 'const int'",
-          "line": 1829
+          "line": 1830
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 1834
+          "line": 1835
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 1834
+          "line": 1835
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 1845
+          "line": 1846
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char *' to 'const int'",
-          "line": 1847
+          "line": 1848
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'struct gbVec3D *' to 'const int'",
-          "line": 1849
-        },
-        {
-          "code": "C2109",
-          "msg": "subscript requires array or pointer type",
-          "line": 1898
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.m_teamSlotsB' must have class/struct/union type",
-          "line": 1898
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.combat' must have class/struct/union type",
-          "line": 1898
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.m_bCommandEdited' must have class/struct/union type",
-          "line": 1898
+          "line": 1850
         },
         {
           "code": "C2109",
@@ -14161,171 +13781,196 @@
           "code": "C2228",
           "msg": "left of '.m_bCommandEdited' must have class/struct/union type",
           "line": 1900
+        },
+        {
+          "code": "C2109",
+          "msg": "subscript requires array or pointer type",
+          "line": 1901
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.m_teamSlotsB' must have class/struct/union type",
+          "line": 1901
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.combat' must have class/struct/union type",
+          "line": 1901
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.m_bCommandEdited' must have class/struct/union type",
+          "line": 1901
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 1941
+          "line": 1942
         },
         {
           "code": "C2660",
           "msg": "'Normalize' : function does not take 1 parameters",
-          "line": 2006
+          "line": 2007
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'float *' to 'const int'",
-          "line": 2008
+          "line": 2009
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 2026
+          "line": 2027
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 2026
+          "line": 2027
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 2033
+          "line": 2034
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 2033
+          "line": 2034
         },
         {
           "code": "C2660",
           "msg": "'=' : function does not take 2 parameters",
-          "line": 2039
+          "line": 2040
         },
         {
           "code": "C2660",
           "msg": "'=' : function does not take 2 parameters",
-          "line": 2041
-        },
-        {
-          "code": "C2660",
-          "msg": "'+=' : function does not take 2 parameters",
           "line": 2042
         },
         {
           "code": "C2660",
+          "msg": "'+=' : function does not take 2 parameters",
+          "line": 2043
+        },
+        {
+          "code": "C2660",
           "msg": "'=' : function does not take 2 parameters",
-          "line": 2044
+          "line": 2045
         },
         {
           "code": "C2660",
           "msg": "'+=' : function does not take 2 parameters",
-          "line": 2045
+          "line": 2046
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'float *' to 'const int'",
-          "line": 2051
+          "line": 2052
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 2074
+          "line": 2075
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 2074
+          "line": 2075
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 2081
+          "line": 2082
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 2081
+          "line": 2082
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 2087
+          "line": 2088
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 2087
+          "line": 2088
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 2094
+          "line": 2095
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 2094
+          "line": 2095
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 2101
+          "line": 2102
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 2101
+          "line": 2102
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 2108
+          "line": 2109
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 2108
+          "line": 2109
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 2163
+          "line": 2164
         },
         {
           "code": "C2228",
           "msg": "left of '.m_teamSlotsB' must have class/struct/union type",
-          "line": 2163
+          "line": 2164
         },
         {
           "code": "C2228",
           "msg": "left of '.combat' must have class/struct/union type",
-          "line": 2163
+          "line": 2164
         },
         {
           "code": "C2228",
           "msg": "left of '.m_bCommandEdited' must have class/struct/union type",
-          "line": 2163
+          "line": 2164
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 2164
+          "line": 2165
         },
         {
           "code": "C2228",
           "msg": "left of '.m_teamSlotsB' must have class/struct/union type",
-          "line": 2164
+          "line": 2165
         },
         {
           "code": "C2228",
           "msg": "left of '.combat' must have class/struct/union type",
-          "line": 2164
+          "line": 2165
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.m_bCommandEdited' must have class/struct/union type",
+          "line": 2165
         },
         {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 2164
+          "line": 2165
         }
       ]
     },
@@ -14342,7 +13987,7 @@
     },
     "pal3/src/Scene/CameraCtrl.cpp": {
       "status": "fail",
-      "error_count": 29,
+      "error_count": 21,
       "errors": [
         {
           "code": "C2664",
@@ -14380,41 +14025,6 @@
           "line": 781
         },
         {
-          "code": "C2660",
-          "msg": "'CalcPosition' : function does not take 0 parameters",
-          "line": 794
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckCollision1' : function does not take 2 parameters",
-          "line": 853
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckCollision2' : function does not take 2 parameters",
-          "line": 854
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckCollision2' : function does not take 2 parameters",
-          "line": 872
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckCollision2' : function does not take 2 parameters",
-          "line": 884
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckCollision2' : function does not take 2 parameters",
-          "line": 896
-        },
-        {
-          "code": "C2660",
-          "msg": "'GetViewMode' : function does not take 0 parameters",
-          "line": 937
-        },
-        {
           "code": "C2664",
           "msg": "'GetPosition' : cannot convert parameter 1 from 'float' to 'float *'",
           "line": 1006
@@ -14423,11 +14033,6 @@
           "code": "C2664",
           "msg": "'GetPosition' : cannot convert parameter 1 from 'float' to 'float *'",
           "line": 1051
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckCollision2' : function does not take 2 parameters",
-          "line": 1074
         },
         {
           "code": "C2065",
@@ -14497,15 +14102,9 @@
       "errors": []
     },
     "pal3/src/Scene/Scene.cpp": {
-      "status": "fail",
-      "error_count": 1,
-      "errors": [
-        {
-          "code": "C2660",
-          "msg": "'Copy' : function does not take 0 parameters",
-          "line": 143
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Scene/SceneMgr.cpp": {
       "status": "ok",
@@ -15030,7 +14629,7 @@
     },
     "pal3/src/Script/PalScript.cpp": {
       "status": "fail",
-      "error_count": 102,
+      "error_count": 91,
       "errors": [
         {
           "code": "C2065",
@@ -15313,16 +14912,6 @@
           "line": 1614
         },
         {
-          "code": "C2660",
-          "msg": "'ProcessFrame' : function does not take 0 parameters",
-          "line": 2010
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessFrame' : function does not take 0 parameters",
-          "line": 2498
-        },
-        {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
           "line": 2573
@@ -15346,16 +14935,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
           "line": 2601
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessFrame' : function does not take 0 parameters",
-          "line": 2786
-        },
-        {
-          "code": "C2660",
-          "msg": "'_CON_State' : function does not take 0 parameters",
-          "line": 2875
         },
         {
           "code": "C2653",
@@ -15393,79 +14972,9 @@
           "line": 3093
         },
         {
-          "code": "C2660",
-          "msg": "'_CON_State' : function does not take 0 parameters",
-          "line": 3115
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->CameraCtrl' must point to class/struct/union",
-          "line": 3195
-        },
-        {
-          "code": "C2653",
-          "msg": "'CameraCtrl' : is not a class or namespace name",
-          "line": 3195
-        },
-        {
-          "code": "C2660",
-          "msg": "'ForceStopRole' : function does not take 0 parameters",
-          "line": 3223
-        },
-        {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
           "line": 3250
-        },
-        {
-          "code": "C2660",
-          "msg": "'GetObjectByID' : function does not take 0 parameters",
-          "line": 3300
-        },
-        {
-          "code": "C2660",
-          "msg": "'GetObjectByID' : function does not take 0 parameters",
-          "line": 3316
-        },
-        {
-          "code": "C2660",
-          "msg": "'GetObjectByID' : function does not take 0 parameters",
-          "line": 3332
-        },
-        {
-          "code": "C2660",
-          "msg": "'GetObjectByID' : function does not take 0 parameters",
-          "line": 3353
-        },
-        {
-          "code": "C2660",
-          "msg": "'GetObjectByID' : function does not take 0 parameters",
-          "line": 3355
-        },
-        {
-          "code": "C2660",
-          "msg": "'GetObjectByID' : function does not take 0 parameters",
-          "line": 3371
-        },
-        {
-          "code": "C2660",
-          "msg": "'GetObjectByID' : function does not take 0 parameters",
-          "line": 3387
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->ScriptVM' must point to class/struct/union",
-          "line": 3398
-        },
-        {
-          "code": "C2653",
-          "msg": "'ScriptVM' : is not a class or namespace name",
-          "line": 3398
-        },
-        {
-          "code": "C2660",
-          "msg": "'GetObjectByID' : function does not take 0 parameters",
-          "line": 3413
         },
         {
           "code": "C2039",
@@ -15483,11 +14992,6 @@
           "line": 3461
         },
         {
-          "code": "C2660",
-          "msg": "'_CON_State' : function does not take 0 parameters",
-          "line": 3519
-        },
-        {
           "code": "C2664",
           "msg": "'sub_536D20' : cannot convert parameter 1 from 'int' to 'const char *'",
           "line": 3577
@@ -15496,16 +15000,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'char *'",
           "line": 3579
-        },
-        {
-          "code": "C2660",
-          "msg": "'StartCombat' : function does not take 3 parameters",
-          "line": 4136
-        },
-        {
-          "code": "C2660",
-          "msg": "'StartCombat' : function does not take 3 parameters",
-          "line": 4179
         },
         {
           "code": "C2039",
@@ -15518,35 +15012,85 @@
           "line": 4226
         },
         {
-          "code": "C2660",
-          "msg": "'GetObjectByID' : function does not take 0 parameters",
-          "line": 4256
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessFrame' : function does not take 0 parameters",
-          "line": 4286
-        },
-        {
           "code": "C2102",
           "msg": "'&' requires l-value",
           "line": 4526
         },
         {
-          "code": "C2660",
-          "msg": "'ProcessInput' : function does not take 1 parameters",
-          "line": 4543
+          "code": "C2665",
+          "msg": "'delete' : none of the 2 overloads can convert parameter 1 from type 'int'",
+          "line": 4838
         },
         {
-          "code": "C1003",
-          "msg": "error count exceeds 100; stopping compilation",
-          "line": 4543
+          "code": "C2440",
+          "msg": "'return' : cannot convert from 'int' to 'class PalScript *'",
+          "line": 4839
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 5175
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'int' (or there is no acceptable conversion)",
+          "line": 5180
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 5313
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'unsigned long' (or there is no acceptable conversion)",
+          "line": 5333
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'int' (or there is no acceptable conversion)",
+          "line": 5370
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'unsigned long [3]' to 'int *'",
+          "line": 5406
+        },
+        {
+          "code": "C2660",
+          "msg": "'NotifySceneChange' : function does not take 1 parameters",
+          "line": 5527
+        },
+        {
+          "code": "C2653",
+          "msg": "'j_InputSystem' : is not a class or namespace name",
+          "line": 5542
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
+          "line": 5690
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 5926
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 5937
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
+          "line": 6760
         }
       ]
     },
     "pal3/src/Script/PalScriptMgr.cpp": {
       "status": "fail",
-      "error_count": 62,
+      "error_count": 54,
       "errors": [
         {
           "code": "C2664",
@@ -15589,19 +15133,9 @@
           "line": 805
         },
         {
-          "code": "C2660",
-          "msg": "'ProcessFrame' : function does not take 0 parameters",
-          "line": 1003
-        },
-        {
           "code": "C2065",
           "msg": "'a2Pol' : undeclared identifier",
           "line": 1089
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessInput' : function does not take 1 parameters",
-          "line": 1108
         },
         {
           "code": "C2661",
@@ -15744,16 +15278,6 @@
           "line": 2341
         },
         {
-          "code": "C2227",
-          "msg": "left of '->CameraCtrl' must point to class/struct/union",
-          "line": 2510
-        },
-        {
-          "code": "C2653",
-          "msg": "'CameraCtrl' : is not a class or namespace name",
-          "line": 2510
-        },
-        {
           "code": "C2664",
           "msg": "'ProcessKeyboard' : cannot convert parameter 1 from 'class InputSystem *' to 'int'",
           "line": 2604
@@ -15819,21 +15343,6 @@
           "line": 3182
         },
         {
-          "code": "C2660",
-          "msg": "'CopyRange' : function does not take 2 parameters",
-          "line": 3204
-        },
-        {
-          "code": "C2660",
-          "msg": "'CopyRange' : function does not take 2 parameters",
-          "line": 3207
-        },
-        {
-          "code": "C2660",
-          "msg": "'CopyRange' : function does not take 2 parameters",
-          "line": 3208
-        },
-        {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
           "line": 3328
@@ -15842,11 +15351,6 @@
           "code": "C2059",
           "msg": "syntax error : ')'",
           "line": 3420
-        },
-        {
-          "code": "C2660",
-          "msg": "'_CON_State' : function does not take 0 parameters",
-          "line": 3431
         },
         {
           "code": "C2511",
@@ -15862,7 +15366,7 @@
     },
     "pal3/src/Script/ScriptSystem.cpp": {
       "status": "fail",
-      "error_count": 10,
+      "error_count": 9,
       "errors": [
         {
           "code": "C2065",
@@ -15878,11 +15382,6 @@
           "code": "C2059",
           "msg": "syntax error : ')'",
           "line": 102
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessFrame' : function does not take 0 parameters",
-          "line": 300
         },
         {
           "code": "C2106",
@@ -16941,74 +16440,14 @@
           "line": 425
         },
         {
-          "code": "C2660",
-          "msg": "'RunScript' : function does not take 2 parameters",
-          "line": 471
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const double' to 'class ScriptSystem *'",
-          "line": 474
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->ScriptSystem' must point to class/struct/union",
-          "line": 474
-        },
-        {
-          "code": "C2653",
-          "msg": "'ScriptSystem' : is not a class or namespace name",
-          "line": 474
-        },
-        {
-          "code": "C2660",
-          "msg": "'RunScript' : function does not take 2 parameters",
-          "line": 486
-        },
-        {
-          "code": "C2660",
-          "msg": "'RunScript' : function does not take 2 parameters",
-          "line": 505
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'const double' to 'class ScriptSystem *'",
-          "line": 509
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->ScriptSystem' must point to class/struct/union",
-          "line": 509
-        },
-        {
-          "code": "C2653",
-          "msg": "'ScriptSystem' : is not a class or namespace name",
-          "line": 509
-        },
-        {
-          "code": "C2660",
-          "msg": "'RunScript' : function does not take 2 parameters",
-          "line": 523
+          "code": "C2274",
+          "msg": "'function-style cast' : illegal as right side of '.' operator",
+          "line": 664
         },
         {
           "code": "C2274",
           "msg": "'function-style cast' : illegal as right side of '.' operator",
-          "line": 661
-        },
-        {
-          "code": "C2274",
-          "msg": "'function-style cast' : illegal as right side of '.' operator",
-          "line": 674
-        },
-        {
-          "code": "C2660",
-          "msg": "'+=' : function does not take 2 parameters",
-          "line": 683
-        },
-        {
-          "code": "C2660",
-          "msg": "'=' : function does not take 2 parameters",
-          "line": 685
+          "line": 677
         },
         {
           "code": "C2660",
@@ -17018,16 +16457,16 @@
         {
           "code": "C2660",
           "msg": "'=' : function does not take 2 parameters",
-          "line": 827
-        },
-        {
-          "code": "C2664",
-          "msg": "'=' : cannot convert parameter 1 from 'float *' to 'const struct gbVec3D &'",
-          "line": 829
+          "line": 688
         },
         {
           "code": "C2660",
           "msg": "'+=' : function does not take 2 parameters",
+          "line": 689
+        },
+        {
+          "code": "C2660",
+          "msg": "'=' : function does not take 2 parameters",
           "line": 830
         },
         {
@@ -17041,18 +16480,18 @@
           "line": 833
         },
         {
-          "code": "C2660",
-          "msg": "'=' : function does not take 2 parameters",
-          "line": 921
-        },
-        {
-          "code": "C2660",
-          "msg": "'=' : function does not take 2 parameters",
-          "line": 923
+          "code": "C2664",
+          "msg": "'=' : cannot convert parameter 1 from 'float *' to 'const struct gbVec3D &'",
+          "line": 835
         },
         {
           "code": "C2660",
           "msg": "'+=' : function does not take 2 parameters",
+          "line": 836
+        },
+        {
+          "code": "C2660",
+          "msg": "'=' : function does not take 2 parameters",
           "line": 924
         },
         {
@@ -17067,348 +16506,408 @@
         },
         {
           "code": "C2660",
-          "msg": "'Copy' : function does not take 0 parameters",
-          "line": 1059
+          "msg": "'=' : function does not take 2 parameters",
+          "line": 929
+        },
+        {
+          "code": "C2660",
+          "msg": "'+=' : function does not take 2 parameters",
+          "line": 930
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char *' to 'char'",
-          "line": 1115
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->NPC' must point to class/struct/union",
-          "line": 1206
-        },
-        {
-          "code": "C2653",
-          "msg": "'NPC' : is not a class or namespace name",
-          "line": 1206
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessFrame' : function does not take 0 parameters",
-          "line": 1338
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessFrame' : function does not take 0 parameters",
-          "line": 1343
+          "line": 1118
         },
         {
           "code": "C2039",
           "msg": "'_nearby_4b6ca0' : is not a member of 'RenderTarget3'",
-          "line": 1673
+          "line": 1676
         },
         {
           "code": "C2039",
           "msg": "'_nearby_4b6ca0' : is not a member of 'RenderTarget3'",
-          "line": 1673
+          "line": 1676
         },
         {
           "code": "C2819",
           "msg": "type 'gbOBBox' does not have an overloaded member 'operator ->'",
-          "line": 1698
+          "line": 1701
         },
         {
           "code": "C2227",
           "msg": "left of '->gbMatrix4' must point to class/struct/union",
-          "line": 1698
+          "line": 1701
         },
         {
           "code": "C2660",
           "msg": "'IsColOBB' : function does not take 2 parameters",
-          "line": 1704
+          "line": 1707
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ')' before 'this'",
-          "line": 1708
+          "line": 1711
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before 'this'",
-          "line": 1708
+          "line": 1711
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before 'this'",
-          "line": 1708
+          "line": 1711
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 1708
+          "line": 1711
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before '{'",
-          "line": 1709
+          "line": 1712
         },
         {
           "code": "C2447",
           "msg": "missing function header (old-style formal list?)",
-          "line": 1709
+          "line": 1712
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ')' before 'this'",
-          "line": 1757
+          "line": 1760
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before 'this'",
-          "line": 1757
+          "line": 1760
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before 'this'",
-          "line": 1757
+          "line": 1760
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 1757
+          "line": 1760
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before '{'",
-          "line": 1758
+          "line": 1761
         },
         {
           "code": "C2447",
           "msg": "missing function header (old-style formal list?)",
-          "line": 1758
+          "line": 1761
         },
         {
           "code": "C2373",
           "msg": "'InputUpdate' : redefinition; different type modifiers",
-          "line": 1792
+          "line": 1795
         },
         {
           "code": "C2664",
           "msg": "'ProcessKeyboard' : cannot convert parameter 1 from 'struct InputSystem *' to 'int'",
-          "line": 1898
+          "line": 1901
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ')' before 'this'",
-          "line": 1903
+          "line": 1906
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before 'this'",
-          "line": 1903
+          "line": 1906
         },
         {
           "code": "C2244",
           "msg": "'InputSystem::ProcessKeyboard' : unable to resolve function overload",
-          "line": 1903
+          "line": 1906
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before 'this'",
-          "line": 1903
+          "line": 1906
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 1903
+          "line": 1906
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before '{'",
-          "line": 1904
+          "line": 1907
         },
         {
           "code": "C2447",
           "msg": "missing function header (old-style formal list?)",
-          "line": 1904
+          "line": 1907
         },
         {
           "code": "C2664",
           "msg": "'ProcessKeyboard' : cannot convert parameter 1 from 'struct InputSystem *' to 'int'",
-          "line": 2080
+          "line": 2083
         },
         {
           "code": "C2065",
           "msg": "'VFileSystem' : undeclared identifier",
-          "line": 2220
+          "line": 2223
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 2220
+          "line": 2223
         },
         {
           "code": "C2653",
           "msg": "'VFileSystem' : is not a class or namespace name",
-          "line": 2220
-        },
-        {
-          "code": "C2660",
-          "msg": "'AttachToRole' : function does not take 0 parameters",
-          "line": 2221
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessInput' : function does not take 1 parameters",
-          "line": 2241
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessInput' : function does not take 1 parameters",
-          "line": 2242
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessInput' : function does not take 1 parameters",
-          "line": 2243
-        },
-        {
-          "code": "C2660",
-          "msg": "'Update' : function does not take 0 parameters",
-          "line": 2269
-        },
-        {
-          "code": "C2660",
-          "msg": "'FindScriptByDesc' : function does not take 1 parameters",
-          "line": 2270
-        },
-        {
-          "code": "C2660",
-          "msg": "'AttachToRole' : function does not take 0 parameters",
-          "line": 2271
+          "line": 2223
         },
         {
           "code": "C2027",
           "msg": "use of undefined type '_Console'",
-          "line": 2283
+          "line": 2286
         },
         {
           "code": "C2227",
           "msg": "left of '->_Console' must point to class/struct/union",
-          "line": 2283
+          "line": 2286
         },
         {
           "code": "C2653",
           "msg": "'_Console' : is not a class or namespace name",
-          "line": 2283
+          "line": 2286
         },
         {
           "code": "C2065",
           "msg": "'scAsmDecoder' : undeclared identifier",
-          "line": 2287
+          "line": 2290
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 2287
+          "line": 2290
         },
         {
           "code": "C2653",
           "msg": "'scAsmDecoder' : is not a class or namespace name",
-          "line": 2287
+          "line": 2290
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 2289
+          "line": 2292
         },
         {
           "code": "C2664",
           "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
-          "line": 2303
+          "line": 2306
         },
         {
           "code": "C2664",
           "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
-          "line": 2305
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessInput' : function does not take 1 parameters",
-          "line": 2332
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessInput' : function does not take 1 parameters",
-          "line": 2497
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessInput' : function does not take 1 parameters",
-          "line": 2498
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessInput' : function does not take 1 parameters",
-          "line": 2499
+          "line": 2308
         },
         {
           "code": "C2664",
           "msg": "'int (unsigned long,int)' : cannot convert parameter 1 from 'int (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
-          "line": 2563
+          "line": 2566
         },
         {
           "code": "C2664",
           "msg": "'int (unsigned long,int)' : cannot convert parameter 1 from 'int (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
-          "line": 2572
+          "line": 2575
         },
         {
           "code": "C2661",
           "msg": "'Copy' : no overloaded function takes 2 parameters",
-          "line": 2648
+          "line": 2651
         },
         {
           "code": "C2661",
           "msg": "'Copy' : no overloaded function takes 2 parameters",
-          "line": 2656
+          "line": 2659
         },
         {
           "code": "C2661",
           "msg": "'Copy' : no overloaded function takes 2 parameters",
-          "line": 2670
+          "line": 2673
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 2686
+          "line": 2689
         },
         {
           "code": "C2228",
           "msg": "left of '.Create' must have class/struct/union type",
-          "line": 2686
+          "line": 2689
         },
         {
           "code": "C2661",
           "msg": "'Copy' : no overloaded function takes 2 parameters",
-          "line": 2686
+          "line": 2689
         },
         {
           "code": "C2661",
           "msg": "'RemoveAt' : no overloaded function takes 3 parameters",
-          "line": 2768
+          "line": 2771
         },
         {
           "code": "C2679",
           "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 2835
+          "line": 2838
         },
         {
           "code": "C2679",
           "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 2836
+          "line": 2839
         },
         {
           "code": "C2679",
           "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 2837
+          "line": 2840
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2841
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2842
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2843
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2844
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2845
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2846
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2847
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2848
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2849
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2850
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2851
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2852
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2853
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2854
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2855
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2856
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2857
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2858
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2859
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2860
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2861
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2862
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2863
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2864
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2865
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2866
         },
         {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 2837
+          "line": 2866
         }
       ]
     },

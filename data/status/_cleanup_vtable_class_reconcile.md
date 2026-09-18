@@ -1240,3 +1240,69 @@ code = re.sub(r'(?<![\w:.>])(\w+)\(\(int\)this\)', r'this->\1()', code)   # 新
 2. 残余 C2660 亚族：`gbVFileSystem::Read` 33 条（Hex-Rays 丢实参，IDB 层）、
    `CCBControl::SetParam` 17 条（annotation 补参）、`gbDynVertBuf::RenderGeomQuad` 15 条（codegen 吞首参）。
 3. vtable 槽位 `//4` 缩放（§18.3，21 条）**仍未逐点验证**。
+
+---
+
+# 21. 落地记录：修 `static_methods` 守卫恒为假（2026-09-18）
+
+**结论：修好并落地。S2 66 → 67（`Scene.cpp` 转 ok），总错误 3305 → 3205（−100），
+L1 按多重集恒等，零 ok→fail。**
+
+## 21.1 缺陷
+
+`data.py:336` 存 `_name`（decomp 的**带参数表**名字 `"Cls::M(int)"`），而三处消费方全部用**裸名**比
+（`ast_transform:529`/`:702`、`stage4_substitution:721`）⇒ 守卫**恒为假**。**实测 104 条里 96 条**带参数表。
+同一循环里紧邻的 `method_sigs` **已经** `split('(')[0]` —— 这是最强的 bug 指示。
+
+**后果是静默语义错误**（不是编译错误）：`__cdecl` 静态成员的第一个实参被当成 `this`，
+被吞掉或用于构造成员调用：
+
+```
+(((Array *)j))->Array::Copy();                     ← 实参 j 被当 this，少传一个参数
+(((UIScene *)"M22"))->UIScene::ProcessInput(0)     ← 字符串字面量被当 this
+```
+
+MSVC 允许经实例调用静态成员（对象被忽略）⇒ **旧形态能编译**，骗过了编译门禁。
+
+## 21.2 先写用例（红→绿）
+
+新增 `tests/test_static_methods_guard.py`（3 项）。**修前 2 项失败**（96/104 带参数表）。
+**必须补这条用例**：既有的 `test_pipeline.py:76` 传裸名 `{'Foo::StaticMethod'}`，
+**覆盖不到真实形态**，改前改后都过 ⇒ 等于没有护栏。
+
+修法：`self.static_methods.add(_name.split('(')[0])`。
+
+## 21.3 验收
+
+| Gate | 结果 |
+|---|---|
+| 生成文件存在性 | **202 = 202** |
+| 结构不变量（畸形形态） | **0**（未引入新畸形） |
+| 内容 diff | 202 文件中 **23 个变化**，**191 hunk**（除 `globals.cpp` 乱序）；逐条核对全部是"静态成员首参被还原为真实实参" |
+| `probe all` | **S2 66 → 67**；总错误 **3305 → 3205（−100）**；**C1003 截断 11 → 10**；大降 `Actor` 77→62、`CScreenMode` 86→68、`PalScript` 102→91、`Array` 17→5、`PtrArray` 23→17 |
+| 逐码净增减 | **C2660 −65**、C2227 −10、C2653 −10、C2671 −5；**C2440 +1**（见下，已归因） |
+| `compile_regression.py` | **No regressions**（+1 `Scene.cpp`） |
+| `match` | `matched 210/241 → 212/244`；`L1 17` |
+| **L1 按多重集** | **identical，lost 0 / gained 0** |
+| 单测 | 新增 `test_static_methods_guard.py` **3/3**（修前 2 项红） |
+
+### 归因：一处"假回归"（已查清，非引入缺陷）
+
+`tools/regression_detector.py --before` 报 `CCBStage.cpp` **真新增 5 条 C2440**
+（`v8 = CCBStage::ProcTurnToRole` 把成员函数指针赋给 `void *`，L3540/3543/3560/3569）。
+但该文件**只有 6 行变化**（227/487/490/494/531/12618），**这 5 条错误所在行均不在变化区间内**
+（脚本逐行核对），且同缺陷的 L3512/3524 改前就已报出 ⇒ **错误恢复位移**
+（同 TU 里修掉早期错误后 MSVC6 把此前被抑制的错误报出来）。
+
+**流程副作用（已记录）**：因为我把 `regression_detector` 收紧到"净增错误码 / 真新增错误即报警并
+拒刷基线"，**任何修掉早期错误的改动都会触发它**（churn 使其报警）。这是**保守设计的正确行为**；
+流程必须是 **逐条归因 → 确认是位移 → 刻意刷新**（`regression_detector.py --save-baseline`），
+而不是绕过。本次已按此执行。
+
+## 21.4 下一步
+
+1. **vtable 槽位 `//4` 缩放**（§18.3，21 条）—— 仍未逐点验证，验证后按同样流程处理。
+2. 残余 C2660 亚族：`gbVFileSystem::Read` 33 条（Hex-Rays 丢实参 → IDB 层）、
+   `CCBControl::SetParam` 17 条（annotation 补参）、`gbDynVertBuf::RenderGeomQuad` 15 条（codegen 吞首参）。
+3. `ast_transform:678` 的 `_strip not in static_methods` 是**第三种误用**（拿变量名比 `Cls::M` 集合）
+   ⇒ 该条件恒为真、语义不明，**按纪律不猜**，留作独立待办。

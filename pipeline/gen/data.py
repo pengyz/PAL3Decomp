@@ -330,10 +330,18 @@ class DataStore:
                     # Class method: keep signature for return-type lookups.
                     # decomp `name` carries a param list ("Cls::M(int)") — index
                     # by the bare "Cls::M"; first overload wins (best-effort).
+                    # FIX(2026-09-18)：`_name` 是 decomp 的**带参数表**名字
+                    # （"Cls::M(int)"），而所有消费方都用**裸名**比：
+                    #   ast_transform:529 / :702   ('%s::%s' % (class_name, method_name))
+                    #   stage4_substitution:721   ('%s::%s' % (cls, meth))
+                    # ⇒ 只要名字带参数表，`in static_methods` 就**恒为假**，
+                    # "__cdecl 静态成员的第一个实参是数据、不是 this" 这条守卫从未生效。
+                    # 实测 104 条里 96 条带参数表。上行 method_sigs 已 split，这里漏了。
+                    # 归一化为裸名（与 method_sigs / 消费方同形）。
                     self.method_sigs.setdefault(_name.split('(')[0], _sig)
                     # detect __cdecl for static_methods
                     if '__cdecl' in _sig and '__thiscall' not in _sig:
-                        self.static_methods.add(_name)
+                        self.static_methods.add(_name.split('(')[0])
                 else:
                     # Free function: build forward declaration
                     if _name.startswith('_') or _name.startswith('$') or _name.startswith('?'):
