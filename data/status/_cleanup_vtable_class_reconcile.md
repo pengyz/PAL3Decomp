@@ -1074,3 +1074,75 @@ retn 值**一致且是 4 的倍数**、只是**调用点实参数与它不一致
    预期解锁 `Scene.cpp` 并影响 118 条。**但必须先补"带参数表形态"的单测**
    （现有 `test_pipeline.py:76` 用的是裸名，覆盖不到真实形态 ⇒ 改了也测不出来）。
 3. DLL 侧证据补全（`gbVec3D::operator=` 27 条 / `Role.cpp`）。
+
+---
+
+# 19. 落地记录：修 `RET_RE` 的 h 后缀缺陷（2026-09-18，实测）
+
+**结论：修好并落地。S2 64 → 65（+1，`TextureLib.cpp` 转 ok），L1 按多重集恒等，
+错误普查里只有 `C2660 −2`，零新增错误、零净增错误码、零 churn。**
+
+## 19.1 根因与修法
+
+`tools/sig_evidence.py:27` 的 `RET_RE` 把可选后缀 `h?` 写在**捕获组之外**，
+使 `parse_ret_num` 的 `endswith('h')` 分支成死代码 ⇒ 所有多位立即数按十进制解析。
+修法：把 `h` 收进捕获组 `([0-9A-Fa-f]+h?)`。
+
+**A 级依据**：`original/PAL3.exe.asm` 里所有多位立即数都带 `h`（`10h`199、`14h`151、
+`18h`122、`20h`17、`0Ch`916、`1Ch`11、`44h`5），"无 h 的多位数"命中 **0** 条。
+
+## 19.2 修复范围**必须收窄**（这是一条方法论）
+
+只动**可被证明**解析错的 29 条：`B-ODDRET`(17) ∪ `C-DISASM-ERR`(9) ∪
+`rets` 里存在 ≥10 且为 4 倍数的值(3)。判据写进 `provably_misparsed()`。
+
+**实测反例**：我第一版写成"用 asm 重新评分整张 pack"，结果**改动了 54 条 `A-V2`** ——
+而 `A-V2` 是现行 `main()` 的评分函数**产不出**的等级（说明 pack 由别的版本写入），
+重评会把它们降级成 `A`/`B-SLOTMISMATCH`。已立即回滚（备份逐字节一致）后收窄。
+**"顺手重算"= 把工具口径差异当成了修复。**
+
+另外 asm 源的函数边界与 MCP 的 `disassemble_function` **不等价**（`Role::CalcXueJianInit`
+asm 得 `[0]×4`、MCP 得 `[0]×5`），且 asm 里 **715 个函数是 COLLAPSED**（只有 `proc/endp`
+没有指令行）⇒ asm 只能作**离线回退**，不能当等价替代。
+
+## 19.3 两种独立证据互相印证
+
+对 26 条能从 asm 取到指令的条目，**asm 指令级扫描得出的值与"把旧十进制串当十六进制读回"
+完全一致**（`14`→`20`、`10`→`16`）。只有 3 条（asm 里 COLLAPSED）用了读回法：
+
+| 条目 | 旧 `rets`/`slots` | 真值 | 真 slots |
+|---|---|---|---|
+| `CCBStage::GetRoleName` | `[20,20]` / 5 | 32 | **8** |
+| `CCBSystem::FindFreeThread` | `[28,28]` / 7 | 40 | **10** |
+| `CCCTData::CalcDist` | `[20]` / 5 | 32 | **8** |
+
+## 19.4 验收
+
+| Gate | 结果 |
+|---|---|
+| pack 差异范围 | 456 条**只动 29 条**；`A-V2` 0 改动、`C-NOADDR` 0 改动 |
+| 病态等级 | **`B-ODDRET` 17→0、`C-DISASM-ERR` 9→0** |
+| 证据解锁 | **26 条新发布 `slots`**（原先门永久阻塞）、3 条 slots 修正 |
+| 生成文件 | 202 cpp / 751 h（`s1.total` 两侧一致） |
+| `probe all` | **S2 64 → 65 / 202**；`CCBStageCam.cpp` 18→17 |
+| **对账（`regression_detector --before`）** | `new_failures 0`、`new_errors 0`、`increased_codes []`、`churn 0`、`moved 0`；`fixed_files = TextureLib.cpp`；`code_delta` 只有 **C2660 −2**；15 个截断单元已排除 |
+| `compile_regression.py` | No regressions（+1 improvements） |
+| `match` | `matched 201/229 → 209/240`；`L1 17` |
+| **L1 按多重集** | **identical，lost 0 / gained 0** |
+| 单测 | 新增 `tests/test_sig_evidence_retn.py` **5 项全过**（h 后缀、单位数无歧义、slots 换算、收窄范围、评分语义） |
+
+## 19.5 只拿到 +1（子 agent 预测 +2）—— 原因已定
+
+子 agent 说修证据可解锁 `SwordUI.cpp` + `TextureLib.cpp`。实际只解锁了 `TextureLib.cpp`。
+原因：`SwordUI.cpp` 的被调方是 `RoleSystem::RecalcAggregatedStats`，它**不在**这 29 条里 ——
+子 agent 自己写了它的病是"**裸字节扫描**把 `+695` 处的 `retn 0x40` 误读成 16"，属**另一个缺陷**
+（`ast_transform.ret_n_at` 扫原始字节找 `0xC2`/`0xC3`，会把指令操作数里的字节当函数尾；
+代码注释 L139-145 已自承该盲区）。**两族不同，不该合并计数。**
+
+## 19.6 下一步
+
+1. **裸字节扫描**（`ast_transform.ret_n_at`）：证据已由代码注释自承；修法与本次同构
+   （改成指令级来源 / 或直接以 pack 为准）。预期解锁 `SwordUI.cpp` 等。
+2. **`static_methods` 守卫恒为假**（§18.1）：先补"带参数表形态"的单测再改。
+3. 残余：`Camera.cpp` 1 条（第 4 类）、`gbVFileSystem::Read` 33 条（Hex-Rays 丢实参，IDB 层）、
+   `std::string::_Eos` 8 条（不可修）。

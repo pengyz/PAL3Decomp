@@ -280,8 +280,11 @@
    "addrs": [
     "0x00537510"
    ],
-   "grade": "C-DISASM-ERR",
-   "err": "invalid literal for int() with base 10: '0C'"
+   "grade": "A",
+   "rets": [
+    12
+   ],
+   "slots": 3
   },
   {
    "cls": "Actor",
@@ -493,8 +496,11 @@
    "addrs": [
     "0x004111E0"
    ],
-   "grade": "C-DISASM-ERR",
-   "err": "invalid literal for int() with base 10: '0C'"
+   "grade": "A",
+   "rets": [
+    12
+   ],
+   "slots": 3
   },
   {
    "cls": "Array",
@@ -522,8 +528,12 @@
    "addrs": [
     "0x00411170"
    ],
-   "grade": "C-DISASM-ERR",
-   "err": "invalid literal for int() with base 10: '0C'"
+   "grade": "A",
+   "rets": [
+    12,
+    12
+   ],
+   "slots": 3
   },
   {
    "cls": "Array",
@@ -535,8 +545,14 @@
    "addrs": [
     "0x004AF450"
    ],
-   "grade": "C-DISASM-ERR",
-   "err": "invalid literal for int() with base 10: '0C'"
+   "grade": "B-SLOTMISMATCH",
+   "rets": [
+    12,
+    12,
+    12,
+    12
+   ],
+   "slots": 3
   },
   {
    "cls": "Array",
@@ -835,8 +851,11 @@
    "addrs": [
     "0x004DC5C0"
    ],
-   "grade": "C-DISASM-ERR",
-   "err": "invalid literal for int() with base 10: '0C'"
+   "grade": "A",
+   "rets": [
+    12
+   ],
+   "slots": 3
   },
   {
    "cls": "CCBControlWindow",
@@ -1040,8 +1059,11 @@
    "addrs": [
     "0x004F9590"
    ],
-   "grade": "C-DISASM-ERR",
-   "err": "invalid literal for int() with base 10: '0C'"
+   "grade": "B-SLOTMISMATCH",
+   "rets": [
+    12
+   ],
+   "slots": 3
   },
   {
    "cls": "CCBRoleState",
@@ -1589,9 +1611,10 @@
     "0x004DFED0"
    ],
    "rets": [
-    14
+    20
    ],
-   "grade": "B-ODDRET"
+   "grade": "B-SLOTMISMATCH",
+   "slots": 5
   },
   {
    "cls": "CCBStage",
@@ -1721,8 +1744,12 @@
    "addrs": [
     "0x004FC700"
    ],
-   "grade": "C-DISASM-ERR",
-   "err": "invalid literal for int() with base 10: '0C'"
+   "grade": "B-SLOTMISMATCH",
+   "rets": [
+    12,
+    12
+   ],
+   "slots": 3
   },
   {
    "cls": "CCBStage",
@@ -1735,10 +1762,10 @@
     "0x004FC7D0"
    ],
    "rets": [
-    20,
-    20
+    32,
+    32
    ],
-   "slots": 5,
+   "slots": 8,
    "grade": "B-SLOTMISMATCH"
   },
   {
@@ -2088,11 +2115,11 @@
     "0x004DC650"
    ],
    "rets": [
-    28,
-    28
+    40,
+    40
    ],
-   "slots": 7,
-   "grade": "B-SLOTMISMATCH"
+   "slots": 10,
+   "grade": "A"
   },
   {
    "cls": "CCBSystem",
@@ -2121,9 +2148,10 @@
     "0x004DB750"
    ],
    "rets": [
-    10
+    16
    ],
-   "grade": "B-ODDRET"
+   "grade": "B-SLOTMISMATCH",
+   "slots": 4
   },
   {
    "cls": "CCBSystem",
@@ -2617,9 +2645,9 @@
     "0x0041C900"
    ],
    "rets": [
-    20
+    32
    ],
-   "slots": 5,
+   "slots": 8,
    "grade": "B-SLOTMISMATCH"
   },
   {
@@ -2809,11 +2837,12 @@
     "0x004CDCA0"
    ],
    "rets": [
-    14,
-    14,
-    14
+    20,
+    20,
+    20
    ],
-   "grade": "B-ODDRET"
+   "grade": "B-SLOTMISMATCH",
+   "slots": 5
   },
   {
    "cls": "CEffMgr",
@@ -2858,10 +2887,11 @@
     "0x004CE340"
    ],
    "rets": [
-    14,
-    14
+    20,
+    20
    ],
-   "grade": "B-ODDRET"
+   "grade": "B-SLOTMISMATCH",
+   "slots": 5
   },
   {
    "cls": "CEffMgr",
@@ -3213,9 +3243,10 @@
     "0x004B19E0"
    ],
    "rets": [
-    14
+    20
    ],
-   "grade": "B-ODDRET"
+   "grade": "B-SLOTMISMATCH",
+   "slots": 5
   },
   {
    "cls": "Comp_DonateUI",
@@ -3450,8 +3481,11 @@
    "addrs": [
     "0x004841B0"
    ],
-   "grade": "C-DISASM-ERR",
-   "err": "invalid literal for int() with base 10: '0C'"
+   "grade": "B-SLOTMISMATCH",
+   "rets": [
+    12
+   ],
+   "slots": 3
   },
   {
    "cls": "LineupComp",
@@ -3816,9 +3850,10 @@
     "0x0047C6E0"
    ],
    "rets": [
-    10
+    16
    ],
-   "grade": "B-ODDRET"
+   "grade": "B-SLOTMISMATCH",
+   "slots": 4
   },
   {
    "cls": "PAL3",
@@ -5105,9 +5140,10 @@
     "0x00421440"
    ],
    "rets": [
-    10
+    16
    ],
-   "grade": "B-ODDRET"
+   "grade": "B-SLOTMISMATCH",
+   "slots": 4
   },
   {
    "cls": "SaleUI",
@@ -5215,8 +5251,17 @@
    "addrs": [
     "0x00443FC0"
    ],
-   "grade": "C-DISASM-ERR",
-   "err": "invalid literal for int() with base 10: '0C'"
+   "grade": "B-SLOTMISMATCH",
+   "rets": [
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12
+   ],
+   "slots": 3
   },
   {
    "cls": "SceneProp",
@@ -5365,10 +5410,11 @@
     "0x0042C950"
    ],
    "rets": [
-    10,
-    10
+    16,
+    16
    ],
-   "grade": "B-ODDRET"
+   "grade": "A",
+   "slots": 4
   },
   {
    "cls": "ScriptVM",
@@ -5513,9 +5559,10 @@
     "0x004B4FE0"
    ],
    "rets": [
-    10
+    16
    ],
-   "grade": "B-ODDRET"
+   "grade": "B-SLOTMISMATCH",
+   "slots": 4
   },
   {
    "cls": "TextureLibDataBase",
@@ -5528,9 +5575,10 @@
     "0x004B51A0"
    ],
    "rets": [
-    10
+    16
    ],
-   "grade": "B-ODDRET"
+   "grade": "B-SLOTMISMATCH",
+   "slots": 4
   },
   {
    "cls": "TextureLibDataBase",
@@ -5592,9 +5640,10 @@
     "0x004B6300"
    ],
    "rets": [
-    10
+    16
    ],
-   "grade": "B-ODDRET"
+   "grade": "B-SLOTMISMATCH",
+   "slots": 4
   },
   {
    "cls": "TextureLibDataBase",
@@ -5607,9 +5656,10 @@
     "0x004B5D20"
    ],
    "rets": [
-    10
+    16
    ],
-   "grade": "B-ODDRET"
+   "grade": "B-SLOTMISMATCH",
+   "slots": 4
   },
   {
    "cls": "TextureLibDataBase",
@@ -5638,9 +5688,10 @@
     "0x004B60F0"
    ],
    "rets": [
-    10
+    16
    ],
-   "grade": "B-ODDRET"
+   "grade": "B-SLOTMISMATCH",
+   "slots": 4
   },
   {
    "cls": "TextureLibDataBase",
@@ -5653,9 +5704,10 @@
     "0x004B5380"
    ],
    "rets": [
-    10
+    16
    ],
-   "grade": "B-ODDRET"
+   "grade": "B-SLOTMISMATCH",
+   "slots": 4
   },
   {
    "cls": "TextureLibDataBase",
@@ -5668,9 +5720,10 @@
     "0x004B5750"
    ],
    "rets": [
-    10
+    16
    ],
-   "grade": "B-ODDRET"
+   "grade": "B-SLOTMISMATCH",
+   "slots": 4
   },
   {
    "cls": "TextureLibDataBase",
@@ -5683,9 +5736,10 @@
     "0x004B5450"
    ],
    "rets": [
-    10
+    16
    ],
-   "grade": "B-ODDRET"
+   "grade": "B-SLOTMISMATCH",
+   "slots": 4
   },
   {
    "cls": "UIBigMap",
@@ -5909,9 +5963,10 @@
     "0x004A14D0"
    ],
    "rets": [
-    10
+    16
    ],
-   "grade": "B-ODDRET"
+   "grade": "B-SLOTMISMATCH",
+   "slots": 4
   },
   {
    "cls": "UIListBox",
