@@ -1,5 +1,20 @@
 #!/usr/bin/env python3
-"""为"归属无据"的函数批量收集**成员访问证据**，产出可入批次的**重归属候选**。
+"""【**已停用 —— 两条口径都被证伪，保留作反例记录，不要再据此批改注解**】
+
+* 口径 v1（文本**成员名投票**）→ 273 个候选**全假阳性**：Hex-Rays 用成员名命名局部变量，
+  而函数**合法访问别的对象的成员**（`this->m_pRoleObj->m_Actor` 的 `m_Actor` 属于 `Actor`，
+  但函数是 `Role` 的方法）⇒ 传递访问污染。
+  见 docs/knowledge/gotcha_member_name_voting_is_confounded_by_transitive_access.md。
+* 口径 v3（签名无显式 `this` ＋ 首个**指针型** `// ecx` 局部 = `this`）→ 32 个候选，
+  抽样即现反例 `0x005155D0`：正则**跳过**了真正的首个 `// ecx`（`int v2; // ecx`），
+  抓到**中途临时值** `C2DSpark *v9; // ecx`，于是把 `CCBSystem::PassCmdToTask` 误判为
+  `CCBSystem → C2DSpark`。⇒ 局部类型由 Hex-Rays 从赋值表达式（常含强转）推断，**类型 ≠ 归属**。
+
+**⇒ 寄存器/命名启发式都不可靠。可靠的是【结构性证据】**：成员访问的**最大偏移 vs 类尺寸**
+（`max_offset > class_size` ⇒ **必然不属于该类**）—— 即注解里那条
+`_misattrib_evidence: "max_offset=140>class_size=4"` 的做法。它一直是对的。
+
+原用途（历史记录）：为"归属无据"的函数批量收集成员访问证据，产出可入批次的重归属候选。
 
 # 判据（项目规则）
 
