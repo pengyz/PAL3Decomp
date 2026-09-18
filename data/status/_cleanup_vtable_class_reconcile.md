@@ -8,7 +8,7 @@
 |--------|----------|----------|----------|
 | `0x56AC20` | `UIProgressBar.json` | **UI3DCtrl** | **A（三链互证）** |
 | `0x56AD64` | `UIButton.json` | **UIProgressBar** | **A（三链互证）** |
-| `0x56ACFC` | `UI3DCtrl.json` | 某个 **84 字节 UIWnd 派生类**（最佳候选 `UIFlexBar`）| **B（仅下界 + 成员集吻合）** |
+| `0x56ACFC` | `UI3DCtrl.json` | **UIFlexBar**（84 字节）| **A（ctor 写入成员集逐一吻合 + 尺寸吻合）** |
 
 并且：**这不是"三个 `vtables` 字段写错地址"，而是 `methods`+`vtables` 整块与 `known_members`+`binary_size` 错配**
 （见 §4）——所以修法比"改一个地址"重。
@@ -66,13 +66,54 @@ SaleUI::InitUI  0x5251f8 lea 0xfa4(%esi),%ecx   0x525203 call 0x439030
 |--------|--------|----------|
 | `0x56AC20` | `0x43909d`, `0x43914d` | ctor `0x439030` / dtor `0x439130` |
 | `0x56AD64` | `0x43f871`, `0x43f98d` | ctor `0x43F7F0` / dtor `0x43F970` |
-| `0x56ACFC` | `0x43d83a`, `0x43d880` | `0x43D7F0`? / `0x43D880`（`movl $vptr,(%ecx); jmp 0x445b40`，叶 ctor） |
+| `0x56ACFC` | `0x43d83a`（真 ctor `0x43D830`）, `0x43d880`（**不是 ctor**，见 §2.4）| — |
+
+### 2.4 `0x56ACFC` = UIFlexBar（84 字节）
+
+**先修正一处自己的错误**：`0x43D880` **不是 ctor**。它是
+```
+43d880: movl $0x56acfc,(%ecx)
+43d886: jmp  0x445b40
+```
+而 `0x445b40`（`UIWnd::UIWnd`）在 `0x445b5d` 立刻写 `movl $0x56aec8,(%esi)` —— **把它覆盖掉**。
+所以它只是"装 vptr 然后尾调基类 ctor"的 stub（`??_E` 一类），**不能**用来推断类尺寸
+（这正是 `--stride 0x43d880` 测不出小 stride 的原因）。
+
+真 ctor 是含 `0x43D83A` 的 **`0x43D830`**（37 字节，`int *__thiscall`，返回 `this`）：
+
+```
+43d833: call   0x445aa0           ; 基类 ctor
+43d83a: movl   $0x56acfc,(%esi)   ; 装本类 vptr
+43d840: mov    %eax,0x50(%esi)    ; 偏移 80 = 0
+43d843: mov    %eax,0x4c(%esi)    ; 偏移 76 = 0
+43d846: mov    $0x20,%eax
+43d84b: mov    %eax,0x44(%esi)    ; 偏移 68 = 0x20 = 32
+43d84e: mov    %eax,0x48(%esi)    ; 偏移 72 = 32
+```
+
+它初始化的偏移**恰好是 `{68,72,76,80}`**，`req = 84`。
+
+而 `UIFlexBar`（`UIFlexBar.json`，`base=UIWnd`）：
+- `binary_size = 84` ✅ 与 `req` 完全相等
+- `known_members` own = `{0, 68, 72, 76, 80}` ✅ 与被初始化的偏移**逐一相同**
+- 当前 `vtables: []`、`methods: {}` —— **空记录**（正是 `vtable_scanner.py` 记录的"57 个类没有虚表记录"之一）
+
+三个竞争候选里，`CCBParabolaWindow`/`CCBSkillWindow` 同为 84 但其 `0x57058C`/`0x570570`
+已由 `0x51c23c`/`0x51bbbc` 真实安装（表被占用）⇒ **UIFlexBar 是唯一未被占用且成员集完全吻合的 84 字节类**。
+
+> 这条同时解释了 `UI3DCtrl.json` 的 `0x43D830` 方法为何**名字**叫 `"UI3DCtrl"`：
+> 那是"把所在文件的类名当 ctor 名"的**循环命名**，无独立证据权重（见
+> `gotcha_pdb_identity_drift_vtable_arbitration.md`：名字都是"谁说的"，不是二进制说的）。
 
 ## 3. 工具
 
 `tools/vtable_class_reconcile.py`（新增，只读）
-- `--self-test`：**9/9 通过**，把上面手工核验过的锚点钉成回归用例（stride / `new` 尺寸 / 安装点归属 / 冲突判决）。
+- `--self-test`：**12/12 通过**，把上面手工核验过的锚点钉成回归用例（stride / `new` 尺寸 /
+  安装点归属 / 冲突判决 / cluster B 的 `this` 写入集 / `0x43D880` 是 stub）。
 - `--stride <ctor>`：报 heap 尺寸 + 内嵌 stride（含对数）。
+- `--writes <ctor>`：列出该 ctor 的 `this` 写入偏移，并**反查** `binary_size == req` 且
+  成员集覆盖的注解类（cluster B 用它一次列出 `CCBParabolaWindow/CCBSkillWindow/UIFlexBar`，
+  再用"表是否已被占用"排除前两个）。
 - `--installs`：vptr 安装点覆盖统计。
 - `--all --out ...`：全量对账，输出 `data/status/_vtable_reconcile_20260917.json`。
 
@@ -102,26 +143,29 @@ SaleUI::InitUI  0x5251f8 lea 0xfa4(%esi),%ecx   0x525203 call 0x439030
 
 ## 5. 未决问题（不落地）
 
-1. **`0x56ACFC` 属于谁**：只有下界（`req=84`）+ 成员集吻合（访问到的派生区偏移恰为 `{68,72,76,80}`）。
-   `UIFlexBar`（`binary_size=84`，`base=UIWnd`，own `{68,72,76,80}`，且**当前 `vtables:[]`、`methods:{}`**）
-   是最佳候选，但 `--stride 0x43d880` **测不出小 stride**（只有跨函数假值）⇒ **不到 A 级**。
-   `CCBParabolaWindow`/`CCBSkillWindow` 也是 84 且成员吻合，但它们的 `0x57058C`/`0x570570`
-   已由 `0x51c23c`/`0x51bbbc` 真实安装（**表被占用**）。
+1. ~~`0x56ACFC` 属于谁~~ —— **已定谳：UIFlexBar**（§2.4）。
 2. **UIButton(344) 的表在哪**：三簇都不是 344。需要按 `--stride`/`new(0x158)` 全量搜 344 的 ctor。
+   **在找到之前 `UIButton.json` 的 `binary_size=344` 与 `known_members` 都缺独立证据**
+   （`0x43F7F0` 实测 244 已证其 `ctor_17` 归属为假）。
 3. **26 条 `IMPOSSIBLE`**：逐条用 §2 方法复核（含 `UIFrameWnd req=172>72`、`UIMap req=352>152` 等
    更像漂移假阳性）。
 
 ## 6. 落地清单（待审议，附 ROI）
 
-**可立即落地（A 级）**
-1. `UI3DCtrl.json`：`vtables` 改为 `0x56AC20` + 槽位表；从 `UIProgressBar.json` 迁入
-   `0x439030(ctor)`, `0x439410(Render,ord1)`, `0x439810(Destroy,ord3)`, `0x439A20(CheckRayHitRole,ord2)`。
-2. `UIProgressBar.json`：`vtables` 改为 `0x56AD64` + 槽位表；从 `UIButton.json` 迁入
+**可立即落地（全部 A 级，4 文件）**
+1. `UI3DCtrl.json`：`vtables` 改为 `0x56AC20` + 其槽位表；从 `UIProgressBar.json` 迁入
+   `0x439030(ctor)`, `0x439410(Render,ord1)`, `0x439810(Destroy,ord3)`, `0x439A20(CheckRayHitRole,ord2)`；
+   **移出** `0x43D830(ctor)/0x43D880/0x43D860/0x43D890/0x43D920/0x43D940`（→ UIFlexBar）；
+   保留 `0x52AF20/0x52B050/0x52E8C0/0x52E940/0x52E9C0/0x52EA40/0x52EAC0`（本就属于它）。
+2. `UIProgressBar.json`：`vtables` 改为 `0x56AD64` + 其槽位表；从 `UIButton.json` 迁入
    `0x43F7F0(ctor)`, `0x43F970(dtor)`, `0x43F950`, `0x43F9C0(Destroy,ord3)`,
    `0x43FF00(Create,ord4)`, `0x43FF70(Render,ord1)`, `0x440560(Update,ord2)`；
+   **移出** `0x439030/0x439410/0x439810/0x439A20`（→ UI3DCtrl）；保留 `0x43FDC0/D0/E0/FDF0`；
    并删掉三条 `GetWidth/GetHeight/GetPosition` 里**已证伪的 `sizeof(UIProgressBar)=308` 论据**
    （它们本身仍属 UIProgressBar：访问 `140/144/148 < 244`）。
-3. `UIButton.json`：清空被证伪的 `methods`/`vtables`，`binary_size` 待重新取证（344 是否有独立证据？）。
+3. `UIFlexBar.json`：补 `vtables` = `0x56ACFC` + 槽位表；从 `UI3DCtrl.json` 迁入
+   `0x43D830(ctor)`, `0x43D860(ord5)`, `0x43D890(ord7)`, `0x43D920`, `0x43D940(ord1)`。
+4. `UIButton.json`：清空被证伪的 `methods`/`vtables`（其真表未找到）；`binary_size=344` 标注为待取证。
 
 **ROI 估计**
 - 收益：`emit_headers.class_vtable_slots()` 按 `vtables` 给类发 `virtual` ⇒ 修对之后

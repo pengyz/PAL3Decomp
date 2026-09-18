@@ -543,6 +543,23 @@ def run_self_test():
         hs.get(0xF4) == 2 and S['UIButton']['binary_size'] != 0xF4,
         'UIButton.binary_size=%s' % S['UIButton']['binary_size'])
 
+    # ---- 证据链 4：0x56ACFC = UIFlexBar（真 ctor 是 0x43D830，不是 0x43D880）----
+    hits, req = this_offsets(0x43D830)
+    w = sorted({o for o, _, _ in (hits or [])})
+    chk('ctor 0x43D830 的 this 写入 == {0,68,72,76,80} 且 req=84', w == [0, 68, 72, 76, 80] and req == 84,
+        'writes=%s req=%s' % (w, req))
+    uf = S.get('UIFlexBar') or {}
+    own = sorted(int(k) for k in (uf.get('known_members') or {}))
+    chk('UIFlexBar binary_size=84 且 own members == {0,68,72,76,80}',
+        uf.get('binary_size') == 84 and own == [0, 68, 72, 76, 80],
+        'bs=%s own=%s  (当前 vtables=%s methods=%d)' % (
+            uf.get('binary_size'), own, [v.get('addr') for v in (uf.get('vtables') or [])],
+            len(uf.get('methods') or {})))
+    body = asm_lines(0x43D880, 0x43D880 + (func_size(0x43D880) or 11))
+    chk('0x43D880 只是装 vptr 的 stub（无 ret，尾调基类）—— 不可用于推断尺寸',
+        len(body) <= 2 and any('jmp' in b for b in body),
+        'body=%s' % body)
+
     print('self-test: %d/%d passed' % (total - len(fails), total))
     return 0 if not fails else 1
 
@@ -566,6 +583,7 @@ def main():
     ap.add_argument('--out')
     ap.add_argument('--stride', help='ctor VA，测其类的内嵌成员 stride')
     ap.add_argument('--installs', action='store_true', help='列出 vptr 安装点统计')
+    ap.add_argument('--writes', help='ctor VA，列出其 this 写入偏移（对照 known_members）')
     ap.add_argument('--self-test', action='store_true')
     a = ap.parse_args()
 
@@ -582,6 +600,26 @@ def main():
     if a.installs:
         vi = vptr_installs()
         print('vptr 安装点覆盖 %d 张表' % len(vi))
+        return 0
+
+    if a.writes:
+        c = norm_va(a.writes)
+        hits, req = this_offsets(c)
+        w = sorted({o for o, _, _ in (hits or [])})
+        print('ctor %s  sz=%s  thiscall=%s  req=%d' % (hex(c), func_size(c), is_thiscall(c), req or 0))
+        print('  this 写入/读取偏移: %s' % w)
+        for S_ in (load_structs(),):
+            for cls, d in sorted(S_.items()):
+                own = set()
+                for k in chain(S_, cls):
+                    for offs in (S_[k].get('known_members') or {}):
+                        try:
+                            own.add(int(offs))
+                        except Exception:
+                            pass
+                if d.get('binary_size') == req and w and set(w) <= own:
+                    print('  匹配候选: %-24s binary_size=%s (own 覆盖 %d/%d)' % (
+                        cls, d.get('binary_size'), len(set(w) & own), len(w)))
         return 0
 
     S = load_structs()
