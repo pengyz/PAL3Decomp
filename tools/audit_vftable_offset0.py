@@ -61,7 +61,28 @@ def load_decomp_texts():
     return out
 
 
-def audit_one(cls, ann, asm, texts, cache):
+def _mi_base_with_install(cls, ann_map, install_disps):
+    """类是否为"**次基类且其子对象处确实有 vtable 安装**"。
+
+    反例（必须拦住）：`CTaskTpl_tagEffTaskParam_CEff*` 自身没有 ctor、没有方法、
+    没有 vtable 注解 —— 单看它会被误判成"非 vfptr"。但 CEff 族的 `CTaskTpl` 基在**+12**，
+    而二进制里 disp `0xC` 有几十个安装点 ⇒ **它的 offset0 就是 vfptr**（只是装在派生类的 +12 处）。
+
+    判据：若某个类 K 的注解 `bases` 里把 `cls` 放在**非零偏移** off 上，而 off 在
+    全库安装位移集合里出现过 ⇒ `cls` 的 offset0 有 vtable 安装 ⇒ VFPTR。
+    """
+    for k, d in ann_map.items():
+        for b in (d.get('bases') or []):
+            try:
+                if b.get('name') == cls and int(b.get('offset') or 0) > 0 \
+                        and int(b['offset']) in install_disps:
+                    return True
+            except (TypeError, ValueError):
+                continue
+    return False
+
+
+def audit_one(cls, ann, asm, texts, cache, base_guard=False):
     """返回该类的证据字典与结论。"""
     ev = {'class': cls}
     e0 = (ann.get('known_members') or {}).get('0') or {}
@@ -119,12 +140,17 @@ def audit_one(cls, ann, asm, texts, cache):
     ev.update({'refs': total, 'objptr_casts': casts, 'n_through': n_through,
                'n_store': n_store, 'store_rhs': store_rhs, 'n_arith': n_arith})
 
-    # --- 结论（**只有拿到位移 0 的安装点才算 VFPTR**；"多态"不作为充分条件） ---
+    # --- 结论 ---
+    # VFPTR 的两条**结构性**证据（都不依赖"注解怎么命名"）：
+    #   ① 该类 ctor 在 [this+0] 装过 vtable ⇒ offset0 就是它的 vfptr；
+    #   ② 该类有注解方法 / 有 vtable 注解 ⇒ 它是多态的，其 offset0 按 C++ 布局即 vfptr。
+    # 两条都不成立（**既无安装点、又完全没有多态证据**）⇒ 结构性判为**非 vfptr**。
     n_objcast = sum(casts.values())
-    if disp0:
+    ev['mi_base_with_install'] = base_guard
+    if disp0 or ev['polymorphic'] or base_guard:
         verdict = 'VFPTR'
-    elif n_objcast > 0 or n_arith > 0 or (total > 0 and n_through == 0 and n_store == 0):
-        verdict = 'DATA_PTR'
+    elif ev['n_methods'] == 0 and ev['n_vtables'] == 0 and not cands:
+        verdict = 'NOT_VFPTR'
     else:
         verdict = 'UNKNOWN'
     ev['verdict'] = verdict
@@ -138,6 +164,18 @@ def main():
 
     asm = _mi.Asm()
     texts = load_decomp_texts()
+    # 全库 vtable 安装位移集合（带 lea/寄存器装载形态）
+    install_disps = set()
+    for lab in asm.spans:
+        for d in (asm.installs(lab) or []):
+            install_disps.add(d)
+    ann_map = {}
+    for f in sorted(glob.glob(os.path.join(ANN, '*.json'))):
+        try:
+            d = json.load(open(f, encoding='utf-8'))
+        except Exception:
+            continue
+        ann_map[d.get('name') or os.path.basename(f)[:-5]] = d
     rows = []
     for f in sorted(glob.glob(os.path.join(ANN, '*.json'))):
         try:
@@ -148,7 +186,8 @@ def main():
         e0 = (d.get('known_members') or {}).get('0') or {}
         if e0.get('name') != '__vftable':
             continue
-        rows.append(audit_one(cls, d, asm, texts, {}))
+        rows.append(audit_one(cls, d, asm, texts, {},
+                               base_guard=_mi_base_with_install(cls, ann_map, install_disps)))
 
     by = {}
     for r in rows:

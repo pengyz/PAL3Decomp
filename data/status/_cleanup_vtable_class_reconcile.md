@@ -2403,3 +2403,56 @@ CEff 族的链拼写也随之改变 ⇒ **"某类名出现次数"不是稳定的
 ② 它的 offset0 是否**从来只做数据用法**（对象指针强转、算术、比较）。
 两条都指向"非 vfptr" ⇒ **批量改名 + 走管线**（试点已证明这条路能同时降错误并涨 L1）。
 这仍需要**逐类看证据**，正是"annotation 质量要逐步做、没有捷径"的形态。
+
+---
+
+# 38. 审计判据两轮收紧：护栏拦下 9 个会改错的类；并**明确否定"批量改名"**
+
+## 38.1 第一轮收紧：VFPTR 必须**结构性**成立（不靠"注解怎么命名"）
+
+`VFPTR ⟺ ① 该类 ctor 在 [this+0] 装过 vtable ／ ② 该类有多态证据（注解方法或 vtable）`。
+两条都不成立 ⇒ 结构性判为 NOT_VFPTR。
+结果：**VFPTR 68 / NOT_VFPTR 46 / UNKNOWN 0**。
+
+## 38.2 **发现的错误批量**（护栏的由来）
+
+`CTaskTpl_tagEffTaskParam_CEff*`（19 个）被判 NOT_VFPTR，但：
+**CEff 族的 `CTaskTpl` 基在 +12，而二进制里 disp `0xC` 有 45 个安装点**
+⇒ **它们的 offset0 就是 vfptr**，只是装在**派生类的 +12** 处 ——
+而 per-class 判据只查了"该类自己的 ctor"，**结构性否定在此不成立**。
+
+## 38.3 第二轮：加"次基类且其子对象处确有安装点"护栏
+
+判据：若某类 K 的注解 `bases` 把 `cls` 放在**非零偏移 off**，而 `off` 出现在**全库安装位移集合**里
+⇒ `cls` 的 offset0 有 vtable 安装 ⇒ **VFPTR**。
+
+结果：**VFPTR 77 / NOT_VFPTR 37 / UNKNOWN 0**，**护栏拦下 9 个**（`CTaskTpl_…CEffAction/
+CEffCylinder/CEffGrid/CEffMeteor/CEffModel/CEffQuake/CEffSParticle/CEffShock/CEffgbParticle`）
+——**若按上一版规则批量改名，这 9 个会被改错。**
+
+## 38.4 **但同一陷阱还剩 10 个 ⇒ 明确否定"批量改名"**
+
+仍在 NOT_VFPTR 里的
+`CTaskTpl_tagEffTaskParam_CEffAudio / CEffBink / CEffCallBack / CEffCamera / CEffCustomShape /
+CEffExplosive / CEffQuad / CEffTemplate / CEffTime`（以及类似者）
+与那 9 个**结构完全相同**（同一模板族、同一 +12 布局），
+护栏对它们**没能触发**，只是因为**其派生类的 base 偏移尚未写进注解**
+（目前只有 §30 确认过的那 ~15 个类写了 `bases`）。
+
+⇒ **结论：不能按"审计桶"批量改名。** 关键教训：
+**"注解里没有多态证据"≠"该类不多态"** —— 缺的往往正是注解本身（`Object`/`gbGeomNode`/
+`gbRenderEffect`/`gbActor` 这类名字本身就暗示是带虚函数的基类，只是 `methods` 未标注）。
+
+## 38.5 安全的判据长什么样（下一轮的入口）
+
+对类 C 的 offset0 能否改名，**唯一可靠**的问法是：
+> **C 的子对象所在的那个偏移，在全库有没有 vtable 安装点。**
+
+* `GlowObj`：在 `SceneObj` 里位于 **+8**，而**全库没有 disp 8 的安装** ⇒ 安全（试点已证）✓
+* `TaskMgr_*`：位于 **+40**，全库**没有 disp 0x28** ⇒ 安全 ✓
+* `CTaskTpl_*`：位于 **+12**，全库**有 45 个 disp 0xC 安装** ⇒ **不安全** ✗
+* 首基类（offset 0）：disp 0 的安装遍地都是，**无法区分**是哪个类的 vfptr ⇒ 需逐类归属
+
+⇒ 这条路要求**每类子对象偏移 + 安装点归属**，而它们正是 §31 里那两张"稀疏且双向依赖"的映射。
+**所以正确的下一步是继续扩充"已确认 MI 基偏移"的集合**（当前只有 ~10 个类），
+它不是绕路——**它就是"annotation 质量"这条主线本身**（有二进制证据、可逐类推进、无捷径）。
