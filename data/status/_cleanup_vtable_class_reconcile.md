@@ -1306,3 +1306,67 @@ MSVC 允许经实例调用静态成员（对象被忽略）⇒ **旧形态能编
    `CCBControl::SetParam` 17 条（annotation 补参）、`gbDynVertBuf::RenderGeomQuad` 15 条（codegen 吞首参）。
 3. `ast_transform:678` 的 `_strip not in static_methods` 是**第三种误用**（拿变量名比 `Cls::M` 集合）
    ⇒ 该条件恒为真、语义不明，**按纪律不猜**，留作独立待办。
+
+---
+
+# 22. vtable 槽位 `//4` 的**根因**（我第一版修复是猜测，已回退）
+
+## 22.1 我先做对的部分：`//4` 在语义上**是错的**（A 级）
+
+`stage3_cleanup.py:501` 用 `slots.get(d['offset'] // 4)` 把 `obj->__vftable + N` 映射到槽位名，
+而 `store.struct_vtables` 的键是**槽位下标**（`data.py:44` 注释即 `{slot_index: method_name}`）。
+
+| 证据 | 内容 |
+|---|---|
+| **二进制直接对照** | `sub_4C52C0`：Hex-Rays `__vftable + 2` ⇔ asm `call dword ptr [edx+8]` ⇒ **8/4 = 2** |
+| 多样本 | 脚本化配对 **6/9** 一致：`sub_5371B0 N=15↔60h`、`sub_536AC0 N=15↔3Ch`、`sub_536FD0 N=7↔1Ch`、`sub_541710 N=26↔68h`、`sub_541590 N=25↔64h` |
+| 反面排除 | 855 处 `__vftable + N` 中 **639 处（75%）N 不是 4 的倍数**（`+3` 243 次、`+1` 91 次…）⇒ N 不可能是字节偏移 |
+
+另：`_try_resolve_vftable`（`:85-93` 的正则，含 `slot_index = offset // 4`）**对 930 处真实
+`__vftable + N` 文本命中 0 次** ⇒ 那是**死代码**，不过同一颗地雷。
+
+## 22.2 我做错的部分：**证明了它是错的，就直接改**
+
+改动 `//4` → `N` 后实测：**2 个 ok→fail**（`Misc/UI3DCtrl.cpp`、`Misc/UIStatic.cpp`）、
+1 个 fail→ok（`Combat/CCBProtectWindow.cpp`）、**S2 净 −1**、`compile_regression` 报 REGRESSIONS。
+**已回退**（`git show HEAD:` 还原，并与 `/tmp/vtbl_pre_src` 逐字节核对：202 文件中仅
+`globals.cpp` 的已知乱序差异）。
+
+我还写了一版"命中 N 就用 N、否则回退 //4"的**兼容补丁** —— 那正是项目明令禁止的
+**试错式修改**（改一版看指标骂不骂），同样已撤销。
+
+## 22.3 真正的根因：**DLL 类的 vtable 注解不完整**，`//4` 一直在"意外顶住"
+
+| 类 | 注解覆盖下标 | Hex-Rays 实际引用的 N |
+|---|---|---|
+| `gbTexture` | **0–3** | {2, **4, 5**} |
+| `gbGfxManager` | **0–6** | {2, **12,13,15,21,22,23,25,26,28**} |
+| `gbActorDef` | — | {7, 15} |
+
+**机制（逐条可对上）**：
+- **旧 `N // 4`**：`gbGfxManager` 12→3、13→3、15→3、21→5、22→5、23→5、25→6、26→6、28→7 ——
+  把**未标注的高槽折叠进已标注的低区间**，"命中"并给出名字。`gbTexture` 的 `N=5 //4=1` →
+  `UpdateTexture`（一个看着合理、且能过类型检查的名字）⇒ 文件保持 ok。**是巧合在顶住。**
+- **新 `N`**：槽 5/12/28 未标注 → `None` → 走 **stub 回退**，而 stub 的签名由 Hex-Rays 的 cast
+  合成（`int (__thiscall)(gbGfxManager *, char *)`），与调用点实参类型不符 ⇒ C2664/C2440
+  （实测 `'NewTexture' : cannot convert parameter 1 from 'int' to 'const char *'`、
+  `'=' : cannot convert from 'class gbTexture *' to 'unsigned long'`）。
+
+⇒ **需要修的是两件别的事**：(1) 补全 DLL 类 vtable 注解槽位（证据源：`original/gbengine.dll`、
+`gbengine.dll.asm`、`gbengine/gbengine.def`）；(2) 让 stub 回退的合成签名**类型安全**，
+或在类型不符时退回裸下标调用形（"没有注解"目前比"错的注解"更糟）。
+**`//4` 不是任何东西的根因，它只是把 (1) 掩盖住了。**
+
+## 22.4 已固化
+
+- `tests/test_vtbl_slot_index.py`：2 项断言**证据本身**（N = 位移/4 的实例表）+ 3 项**显式 SKIP**
+  并写明前置条件 ⇒ 未来修复者有现成护栏，不靠"记得这件事"。
+- `docs/knowledge/gotcha_wrong_arithmetic_can_be_accidentally_load_bearing.md`。
+
+## 22.5 教训（本轮最贵）
+
+**"证明了它是错的" ≠ "证明了改成对的是安全的"。**
+在能解释"错的东西为什么产出正确结果"之前改它，必然是试错。
+**错的算术 + 侥幸命中是一种隐性依赖**：它把缺失的数据折叠进已有数据，产生看似合理的输出，
+且没有任何显式记录。
+→ 正确顺序：**先补洞（注解）→ 让回退路径类型安全 → 再改算术。**
