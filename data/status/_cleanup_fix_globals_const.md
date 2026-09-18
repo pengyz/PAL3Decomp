@@ -57,6 +57,11 @@ line 2033                           C2065  'v20' : undeclared identifier
 见 `_cleanup_finding_dangling_nested_type.md`）。这是**独立缺陷**，
 修它要给 `_inline_*` 合成类型发射声明（或改为内联渲染），属 codegen 功能，不在本轮。
 
+> ❌ **本节"刷新后 `--check` 为 新失败0/新错误0"不能当作门禁通过（2026-09-17 撤回）**：
+> 刷新后 `latest.json` 的内容 == `extract_results(probe_census.json)`，`0/0/0` 是**恒真式**；
+> 注入实验证明**带着一行真实编译错误**跑 `--check` 仍报 exit 0。
+> 详见 `_cleanup_erratum_adversarial_review_C1_C6.md` §2。
+
 ## 4. 基线刷新（明示）
 
 因为两份基线都停在 2 天前、导致无法衡量单次改动，且**上面 3 个被标记文件现已全部定性**

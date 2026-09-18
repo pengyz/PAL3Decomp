@@ -264,6 +264,12 @@ v1 产物 `_scan_misattribution.json` 与 v2 产物 `_scan_misattribution_v2.jso
 
 ---
 
+> ❌ **本节结论已被撤回（2026-09-17）**：`sizeof(UIProgressBar)=308` **是错的（真值 244）**。
+> 308 是 **UI3DCtrl** 的尺寸（`UI3DCtrl.h` 自载 `total size: 0x134 (308)`；vtable `0x56ac20` 的
+> slot1 体内访问 `0x124(%esi)` = UI3DCtrl::m_camera）。我用**注解自己的 vtable 声明**去锚定 ctor，
+> 属循环论证；"27 个 overlap 是注解错、244 是同源传播错误值"整段作废。
+> 详见 `_cleanup_erratum_adversarial_review_C1_C6.md` §1。后文保留原文以留下审计痕迹。
+
 ## 10. 消歧结论：`UIProgressBar` 布局注解在 +152 之后**与二进制不符**
 
 **任务**：判定 `+140/144/148` 是 float 还是 `BYTE`/`gbColorQuad`，以便给

@@ -53,6 +53,13 @@
 - ⚠️ `FightInfo` **有 ≥4 个调用点**，改名必须同时改 `ScriptVM.cpp` 的调用 ⇒ 需知道
   codegen 是否对自由函数名有统一的改名映射（若有则一处即可）。
 
+> ❌ **更正（2026-09-17，对抗性复核实测）**：真正被误解析的是 **cast 里的类型名**
+> （`(RoleCameraCtrl *)` 里的 `RoleCameraCtrl` 被当成函数），**不是"函数::成员"**。
+> 合成 TU 实测：去掉限定符 `((RoleCameraCtrl*)&this[1])->SetTargetDistance(2)` **仍报 C2059**；
+> 而 `((class RoleCameraCtrl *)&this[1])->...` **通过**。故**候选 B 无效**，
+> 改用 **候选 B′：把 cast 写成 elaborated type specifier `(class RoleCameraCtrl *)`**。
+> 详见 `_cleanup_erratum_adversarial_review_C1_C6.md` §4。
+
 ### 候选 B（**推荐**）：在**使用侧**避免 `->Cls::method` 形式
 - 复用**上一轮刚加**的 `_qual` 机制（`pipeline/gen/ast_transform.py`）：
   当 `class_name` **与某个自由函数同名**（或含 `::`）时，省略限定符，发

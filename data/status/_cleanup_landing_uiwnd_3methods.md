@@ -57,6 +57,9 @@ UIProgressBar::GetWidth(&this->m_LoadProgress, 6);
 **诚实结论：本次落地 `ok`/`L1` 均无变化（Δ0）。** 收益是注解正确性与反编译产物可读性
 （CLAUDE.md 所述"annotation 质量 → Phase 2 工作量"杠杆），不是本轮的字节收益。
 
+> ❌ **本节的 308 结论已被撤回（2026-09-17）**：真值是 **244**，308 属 **UI3DCtrl**。
+> 详见 `_cleanup_erratum_adversarial_review_C1_C6.md` §1。§2 的归属**结论**仍成立，但论证须按该文件 §6 重写。
+
 ## 4. 顺带证实的重大事实：`sizeof(UIProgressBar) = 308`（不是 244）
 
 **下界**：`UIProgressBar::ctor`（`0x439030`，vtable 锚点 `0x56AC20` 唯一安装处之一）
