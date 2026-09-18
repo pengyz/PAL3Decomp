@@ -48,3 +48,35 @@ date: 2026-09-18
    （`lea reg,[base+d]; mov [reg], offset V`）。只匹配第一种会把存在的东西判成不存在。
 4. 遇到"这块内存到底是什么"的问题，可用的**独立**证据是：谁写它、谁读它、怎么用
    （数值/比较/解引用/被调用）——而不是注解怎么命名它。
+
+## 实例：`GlowObj` / `TaskMgr_*` / `PalScriptWaitObj` 的 offset0（2026-09-18）
+
+**注解怎么说**：`known_members["0"] = {"name": "__vftable", "type": "void *", "source": "annotation",
+"note": "renamed vfptr -> __vftable"}`；`source` 分布上，全库 118 个这样声明的类里
+只有 **7 个**是二进制支撑的（`binary:vtable_ptr` / `binary:all CEffXxx first_off=…`），
+其余是 **59 个 `vtable_fix`、21 个无 source、11 个 `annotation` 自造**、10 个 PDB……
+
+**二进制/用法怎么说**（独立证据）：
+
+* `CCBStage::GetRoleIndex((CCBStage *)this->SceneObj::GlowObj::__vftable, …)` ——
+  **被强转成对象指针使用**；全库统计 `GlowObj::__vftable` 的强转类型：
+  **`CCBStage*` 38 次**、`char*` 17、`_DWORD*` 5、`CCBSystem*` 2，**从未被当 vtable 调用**；
+* `Actor_DoSceneTransition`：`v17 = (Actor *)strlen(v66); p_m_nScreenFlags->GlowObj::__vftable = v17;`
+  —— **存进去的是对象指针**；
+* `TaskMgr_SceneObjParam_SceneObj::__vftable` 被当成一族成员的**锚点**用：
+  `*((_DWORD *)&…__vftable + 4) = 264;` / `if (!*((_BYTE *)&…__vftable + 12))` / `… = 0;` —— 数据；
+* **整库没有任何指令把 vtable 装到该偏移**（带 lea/寄存器装载形态复核：位移 8 与 0x28 不存在）；
+* IDA 自己**从未在 offset0 放成员**（`GlowObj` 最小成员偏移 = 4）；
+* `GlowObj` 自身 `methods=0`、`vtables=None` —— 无多态证据。
+
+**⇒ 那 4 字节是"普通数据成员（对象指针）"**，不是 vfptr，也不是基类子对象
+（它是**该类自己的具名成员**，所以"应该有基类"这个假设也不成立）。
+
+**⇒ 推论**：那 147 个限定 `X::__vftable` 位点与 **vtable 无关** —— 它们只是
+"**成员名错了 + 该成员没被发射进头**"的普通成员访问。整族应归到
+**注解完整性 / 命名**问题，而不是 vtable 机制问题。
+
+**处理时的一个硬约束**（容易踩）：生成 `.cpp` 里的拼写来自 **export 产物**，
+所以在**不重跑 apply/export** 的前提下改注解名字，`.cpp` 里仍然写着 `__vftable` ——
+头里就必须有叫 `__vftable` 的成员才能编译。**要真正改名，必须走
+annotation → apply → export → codegen 全管线**。
