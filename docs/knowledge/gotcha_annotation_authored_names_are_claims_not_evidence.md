@@ -1,0 +1,50 @@
+---
+type: gotcha
+date: 2026-09-18
+---
+
+# 注解里"自造的名字"是**声明**，不是二进制证据 —— 别拿它当事实往下推
+
+## 现象
+
+`GlowObj` 的 offset0 在**注解**里是：
+
+```json
+"0": {"name": "__vftable", "type": "void *",
+      "source": "annotation",
+      "note": "renamed vfptr -> __vftable (unified with IDA convention)"}
+```
+
+而在 **IDB 导出**（`asm/pal3/ida_structs.json`）里，`GlowObj` 的**最小成员偏移是 4** ——
+也就是说 **IDA 从没在 offset0 放过任何成员**；同一份 `_variants["0"]` 也只是把注解那份抄了过来。
+
+于是这个 `__vftable` **只存在于注解层**，`source` 字段已经写着 `annotation`。
+
+## 坑
+
+我在修限定形 vtable 访问（147 个 `X::__vftable` 位点）时，看到这个 `source: vtable_fix` /
+`annotation` 的 `__vftable` 条目，就把它当成了"注解层已经声明了 vfptr 成员"，于是准备让头生成器
+**发射它**（在 `GlowObj` 等类里把 `char _gap_000[4]` 换成 `void *__vftable`）。
+**这是拿一个自造名字去断言一个二进制事实。**
+
+被纠正是因为有人问了一句："`GlowObj` 应该有基类，而不是用 gap 填充，对吗？"——
+顺着查下去才发现：
+
+* **整库没有任何指令把 vtable 装到该偏移**（复核时带上了 lea/寄存器装载形态：位移 8 与 0x28
+  **一次都不存在**，全部非零位移是 0xC/0x38/0x40/0x44/0x48/0x50/0x60/0x68/0xAC/…）；
+* `GlowObj` 自身 `methods=0`、`vtables=None`，**没有任何多态证据**；
+* `SceneObj` 方法里 28 处 `[reg+8]`，**27 处是数值/比较用**，无一像"经 vfptr 调用"。
+
+⇒ 若那 4 字节真是 vfptr（自己的或某个基类的），编译器**必须**在该偏移装一次表。它没有。
+
+## 规则
+
+1. **`source: annotation` / `vtable_fix` / `renamed ...` 这类条目是"声明"**，
+   只有 `source` 指向二进制（如 `reg+disp32`、ctor 安装位移、thunk 位移）时才算证据。
+   引用前先看 `source` 字段，别只看 `name`。
+2. **不要用注解的名字去反推布局**。名字可能是为了让某段文本能编译而加的。
+3. **"不存在"这一类否定结论，扫描必须覆盖全部写入形态**：立即数、寄存器装载
+   （`mov reg, offset V; mov [base+d], reg`）、以及**基址被 lea 算进寄存器**
+   （`lea reg,[base+d]; mov [reg], offset V`）。只匹配第一种会把存在的东西判成不存在。
+4. 遇到"这块内存到底是什么"的问题，可用的**独立**证据是：谁写它、谁读它、怎么用
+   （数值/比较/解引用/被调用）——而不是注解怎么命名它。
