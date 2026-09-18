@@ -2078,3 +2078,63 @@ codegen 要把限定形 vtable 访问 `this->A::B::__vftable` 折算成**距对�
    `vptr_installs` 反向索引），或引入**PDB 仅作归属命名**（偏移仍取二进制）—— 后者是**策略问题**，
    需按项目规则单独裁定，我不擅自采用。
 3. 对 `SceneObj`/`Role` 这类：先回答 31.5 的"那到底是不是 vfptr"，再谈补偏移。
+
+---
+
+# 32. 落地记录：`SaleUI.m_TempData` 跨度超估吞掉成员（总错误 2798→2765）
+
+## 32.1 现象与定位路径
+
+按消息形态聚类后，**两个单文件大簇**最显眼：`m_bWPXS is not a member of 'SaleUI'`（**71 条 / 1 文件**）
+与 `'UIListBox' is not a member of 'UIScrollBar'`（50 条）。前者一路查到底：
+
+1. `ida_structs.json['SaleUI']` **有** `m_bWPXS` @0xF1BC ⇒ 不是 annotation drift
+2. 生成头 `SaleUI.h` **没有** ⇒ 丢弃发生在发射逻辑内
+3. 发射循环只有 `if off < start_off: continue` 一处跳过 ⇒ **跨度超估会吞掉后续成员**
+4. 前一个成员 `m_TempData` @0xEA50 类型写作 `PlayerItem[299][5]` = 299×5×**12** = **17940 字节**，
+   而 **IDB 的偏移序列给出真实跨度** = `m_bNGHS`@0xF1B8 − 0xEA50 = **1896 字节**（1896/12 = **158** 整除）
+⇒ `start_off` 越过 0xF1B8，**`m_bNGHS`(0xF1B8) 与 `m_bWPXS`(0xF1BC) 被静默吞掉**（零告警）。
+
+**对照**：同类 `m_SaleData`@0xA43C 的 `PlayerItem[299][5]` 跨度正好 17940 ✓ **是对的** ⇒ 只此一处错。
+
+## 32.2 修法与验收
+
+`known_members["59984"].type`: `PlayerItem[299][5]` → **`PlayerItem[158]`**
+（元素类型不变，只把尺寸改成**等于可证跨度**；`source` 记明跨度算术）。
+`m_TempData` 在任何生成 `.cpp` 里**都未被使用**（grep 为空）⇒ 无调用点受影响。
+
+| Gate | 结果 |
+|---|---|
+| 生成头 | 恢复 `m_bWPXS`（grep 1） |
+| `Misc/SaleUI.cpp` | **102 → 69** |
+| 总错误 | **2798 → 2765（−33）** |
+| **C1003 截断** | **该文件退出截断态**（102 条=上限 → 69 条） |
+| ok / `compile_regression` | 68 不变 / No regressions |
+| **L1 按多重集** | **identical，lost 0 / gained 0**（注解类型变更会影响 `.cpp`，故必须验） |
+
+## 32.3 **−33 的真实构成：−72 + 39**（截断浮出，教科书级实例）
+
+- **消失 72 条** = `m_bWPXS` C2039 ×71 **+ `C1003` ×1**（截断标记消失）
+- **新增 39 条** = **此前被错误上限抑制、现在浮出**的：`C2440 'type cast' RoleAtt*→SaleUI_SortData` ×10、
+  `C2036 'void*' : unknown size` ×6、`C2385 'MUIDialog::m_rect' is ambiguous` ×4、
+  `C2440 '=' void→char*` ×4 …
+
+⇒ **修好错误会让同单元里被抑制的错误浮现**（`gotcha_error_census_not_a_pure_function_of_the_tree.md`）。
+本轮 `regression_detector --before` 对该单元输出**全零**是**正确行为** —— 它按设计排除
+C1003 截断单元（逐码增减不可测）。**−33 由普查总量独立确认。**
+
+## 32.4 附带：一个通用但**无告警**的机制
+
+"成员被跨度超估吞掉"整仓共 **6 个成员 / 5 个类**（SaleUI 2、`CEffMgr.m_nTodo_80EC`、
+`SceneMgr`（`_inline_`）、`UIChatRest.bkrc`、`tagCmdData`（`_inline_`））。
+
+家族不大，但**发射器对此没有任何诊断** —— 这属于本会话反复遇到的"**静默通道**"一类：
+**建议给 `generate_header` 的 `off < start_off` 分支加告警/计数**（否则下一个实例仍会隐身）。
+
+## 32.5 下一个候选（已量化）
+
+`'UIListBox' : is not a member of 'UIScrollBar'`（50 条 / 1 文件，`CCBMagicWindow.cpp` 32 条等）：
+生成头 `class UIScrollBar : public UIWnd`，而 decomp 写 `this->m_scrollbar.UIListBox::member`
+—— 与 `__vftable` 限定链**同族**（MI 基类的限定拼写），但对象是**成员 `m_scrollbar`**（非 `this`），
+故需要该成员的**静态类型**（`m_scrollbar` 在注解里是否存在？其类型是否以 UIListBox 为基？）——
+下一步查这里。
