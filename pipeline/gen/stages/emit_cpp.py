@@ -348,8 +348,11 @@ def generate_class_cpp(cls_name, methods):
     methods.sort(key=lambda m: m['addr'])
     transformed = []
     transformed_methods = []
+    # 本输出文件共享的 stub 去重集合（同一签名只发射一次定义，避免 C2084/C2371/C2556）
+    _stub_reg = set()
     for m in methods:
-        ctx = make_context(cls_name, m['method'], sig=m.get('sig', ''))
+        ctx = make_context(cls_name, m['method'], sig=m.get('sig', ''),
+                           stub_registry=_stub_reg)
         code = run_transforms(m['code'].strip(), ctx)
         transformed.append((m['addr'], code))
         transformed_methods.append({'code': code, 'method': m['method']})
@@ -447,8 +450,10 @@ def generate_free_funcs_cpp(funcs):
 
     # Transform all through the pipeline (as free functions)
     transformed = []
+    _stub_reg = set()
     for f in funcs:
-        ctx = make_context('', f['name'], sig=f.get('sig', ''), is_free=True)
+        ctx = make_context('', f['name'], sig=f.get('sig', ''), is_free=True,
+                           stub_registry=_stub_reg)
         code = run_transforms(f['code'].strip(), ctx)
         transformed.append((f['addr'], code))
 

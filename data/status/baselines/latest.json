@@ -1,6 +1,6 @@
 {
-  "name": "20260918_215421",
-  "timestamp": "2026-09-18T21:54:21.250099",
+  "name": "20260918_220910",
+  "timestamp": "2026-09-18T22:09:10.561137",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "fail",
@@ -24,12 +24,12 @@
       "errors": [
         {
           "code": "C2664",
-          "msg": "'pal3_vtbl_unk_0' : cannot convert parameter 1 from 'void *' to 'unsigned long'",
+          "msg": "'pal3_vtbl_unk_349246c5' : cannot convert parameter 1 from 'void *' to 'unsigned long'",
           "line": 351
         },
         {
           "code": "C2664",
-          "msg": "'pal3_vtbl_unk_1' : cannot convert parameter 1 from 'void *' to 'unsigned long'",
+          "msg": "'pal3_vtbl_unk_a53a85b0' : cannot convert parameter 1 from 'void *' to 'unsigned long'",
           "line": 357
         },
         {
@@ -82,132 +82,87 @@
     },
     "pal3/src/Combat/CCBControlWindow.cpp": {
       "status": "fail",
-      "error_count": 25,
+      "error_count": 16,
       "errors": [
         {
           "code": "C2664",
           "msg": "'Create' : cannot convert parameter 1 from 'class UIButton ** ' to 'class UIWnd ** '",
-          "line": 56
+          "line": 54
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 57
+          "line": 55
         },
         {
           "code": "C2664",
           "msg": "'Create' : cannot convert parameter 1 from 'class UIButton ** ' to 'class UIWnd ** '",
-          "line": 62
+          "line": 60
         },
         {
           "code": "C2664",
           "msg": "'Create' : cannot convert parameter 1 from 'class UIButton ** ' to 'class UIWnd ** '",
-          "line": 68
+          "line": 66
         },
         {
           "code": "C2660",
           "msg": "'ShowWindow' : function does not take 5 parameters",
-          "line": 131
+          "line": 125
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 152
+          "line": 146
         },
         {
           "code": "C2027",
           "msg": "use of undefined type '_TEB'",
-          "line": 274
+          "line": 268
         },
         {
           "code": "C2227",
           "msg": "left of '->NtTib' must point to class/struct/union",
-          "line": 274
+          "line": 268
         },
         {
           "code": "C2228",
           "msg": "left of '.ExceptionList' must have class/struct/union type",
-          "line": 274
+          "line": 268
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIButton'",
-          "line": 345
+          "line": 339
         },
         {
           "code": "C2228",
           "msg": "left of '.ShowWindow' must have class/struct/union type",
-          "line": 345
+          "line": 339
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 353
-        },
-        {
-          "code": "C2556",
-          "msg": "'int __cdecl pal3_vtbl_unk_0(class UIButton *,int)' : overloaded function differs only by return type from 'void __cdecl pal3_vtbl_unk_0(class UIButton *,int)'",
-          "line": 381
-        },
-        {
-          "code": "C2371",
-          "msg": "'pal3_vtbl_unk_0' : redefinition; different basic types",
-          "line": 381
-        },
-        {
-          "code": "C2556",
-          "msg": "'int __cdecl pal3_vtbl_unk_1(class UIStatic *,int)' : overloaded function differs only by return type from 'void __cdecl pal3_vtbl_unk_1(class UIStatic *,int)'",
-          "line": 383
-        },
-        {
-          "code": "C2371",
-          "msg": "'pal3_vtbl_unk_1' : redefinition; different basic types",
-          "line": 383
+          "line": 347
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void' to 'int'",
-          "line": 394
-        },
-        {
-          "code": "C2264",
-          "msg": "'pal3_vtbl_unk_0' : error in function definition or declaration; function not called",
-          "line": 398
-        },
-        {
-          "code": "C2264",
-          "msg": "'pal3_vtbl_unk_1' : error in function definition or declaration; function not called",
-          "line": 404
-        },
-        {
-          "code": "C2556",
-          "msg": "'int __cdecl pal3_vtbl_unk_0(class UIButton *,int)' : overloaded function differs only by return type from 'void __cdecl pal3_vtbl_unk_0(class UIButton *,int)'",
-          "line": 417
-        },
-        {
-          "code": "C2556",
-          "msg": "'int __cdecl pal3_vtbl_unk_1(class UIStatic *,int)' : overloaded function differs only by return type from 'void __cdecl pal3_vtbl_unk_1(class UIStatic *,int)'",
-          "line": 421
+          "line": 386
         },
         {
           "code": "C2660",
           "msg": "'SetParam' : function does not take 3 parameters",
-          "line": 436
+          "line": 424
         },
         {
           "code": "C2039",
           "msg": "'m_pDescription' : is not a member of 'CCBControlWindow'",
-          "line": 465
+          "line": 451
         },
         {
           "code": "C2039",
           "msg": "'m_nActivePage' : is not a member of 'CCBControlWindow'",
-          "line": 469
-        },
-        {
-          "code": "C2264",
-          "msg": "'pal3_vtbl_unk_1' : error in function definition or declaration; function not called",
-          "line": 472
+          "line": 455
         }
       ]
     },
@@ -288,7 +243,7 @@
         {
           "code": "C2660",
           "msg": "'SetParam' : function does not take 3 parameters",
-          "line": 478
+          "line": 455
         }
       ]
     },
@@ -501,32 +456,32 @@
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void' to 'int'",
-          "line": 209
+          "line": 201
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 244
+          "line": 236
         },
         {
           "code": "C2664",
           "msg": "'void __thiscall gbTexture::UpdateTexture(class gbImage2D *)' : cannot convert parameter 1 from 'const int' to 'class gbImage2D *'",
-          "line": 280
+          "line": 272
         },
         {
           "code": "C2660",
           "msg": "'SetParam' : function does not take 3 parameters",
-          "line": 334
+          "line": 310
         },
         {
           "code": "C2664",
           "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
-          "line": 354
+          "line": 330
         },
         {
           "code": "C2664",
           "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
-          "line": 356
+          "line": 332
         }
       ]
     },
@@ -537,7 +492,7 @@
         {
           "code": "C2664",
           "msg": "'void __thiscall gbTexture::UpdateTexture(class gbImage2D *)' : cannot convert parameter 1 from 'const int' to 'class gbImage2D *'",
-          "line": 377
+          "line": 373
         }
       ]
     },
@@ -553,17 +508,17 @@
         {
           "code": "C2660",
           "msg": "'SetParam' : function does not take 3 parameters",
-          "line": 277
+          "line": 217
         },
         {
           "code": "C2660",
           "msg": "'SetParam' : function does not take 3 parameters",
-          "line": 281
+          "line": 221
         },
         {
           "code": "C2660",
           "msg": "'SetParam' : function does not take 3 parameters",
-          "line": 292
+          "line": 232
         }
       ]
     },
@@ -1105,83 +1060,83 @@
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 95
+          "line": 93
         },
         {
           "code": "C2660",
           "msg": "'SetParam' : function does not take 3 parameters",
-          "line": 144
+          "line": 138
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 222
+          "line": 216
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 226
+          "line": 220
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 236
+          "line": 230
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 249
+          "line": 243
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 256
+          "line": 250
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 263
+          "line": 257
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 272
+          "line": 266
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 279
+          "line": 273
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 288
+          "line": 282
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 308
+          "line": 302
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 309
+          "line": 303
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 318
+          "line": 312
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 319
+          "line": 313
         }
       ]
     },
     "pal3/src/Combat/CCBStage.cpp": {
       "status": "fail",
-      "error_count": 101,
+      "error_count": 102,
       "errors": [
         {
           "code": "C2039",
@@ -1584,109 +1539,114 @@
           "line": 2931
         },
         {
-          "code": "C2084",
-          "msg": "function 'void __cdecl pal3_vtbl_unk_0(class UIProgressBar *,int)' already has a body",
-          "line": 3016
-        },
-        {
-          "code": "C2084",
-          "msg": "function 'void __cdecl pal3_vtbl_unk_1(class UIProgressBar *,unsigned long)' already has a body",
-          "line": 3076
-        },
-        {
           "code": "C2660",
           "msg": "'UpdateAnim' : function does not take 1 parameters",
-          "line": 3385
+          "line": 3357
         },
         {
           "code": "C2664",
           "msg": "'sub_445D20' : cannot convert parameter 1 from 'void ** ' to 'unsigned long *'",
-          "line": 3387
-        },
-        {
-          "code": "C2264",
-          "msg": "'pal3_vtbl_unk_0' : error in function definition or declaration; function not called",
-          "line": 3392
+          "line": 3359
         },
         {
           "code": "C2065",
           "msg": "'v7' : undeclared identifier",
-          "line": 3417
+          "line": 3383
         },
         {
           "code": "C2296",
           "msg": "'*' : illegal, left operand has type 'class CCBStage *(__thiscall CCBStage::*)(void)'",
-          "line": 3417
+          "line": 3383
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 3425
+          "line": 3391
         },
         {
           "code": "C2227",
           "msg": "left of '->m_bCatching' must point to class/struct/union",
-          "line": 3426
+          "line": 3392
         },
         {
           "code": "C2227",
           "msg": "left of '->m_bDelAllTask' must point to class/struct/union",
-          "line": 3426
+          "line": 3392
         },
         {
           "code": "C2227",
           "msg": "left of '->m_bCatching' must point to class/struct/union",
-          "line": 3428
+          "line": 3394
         },
         {
           "code": "C2660",
           "msg": "'ResetAll' : function does not take 1 parameters",
-          "line": 3504
+          "line": 3470
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 3512
+          "line": 3478
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 3524
+          "line": 3490
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(unsigned int)' to 'void *'",
-          "line": 3536
+          "line": 3502
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 3540
+          "line": 3506
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 3543
+          "line": 3509
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CCBStage::*)(void)' to 'void *'",
-          "line": 3560
+          "line": 3526
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 3569
+          "line": 3535
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'int (__thiscall CCBStage::*)(int)' to 'unsigned int'",
-          "line": 3706
+          "line": 3672
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'int (__thiscall CCBStage::*)(int)' to 'unsigned int'",
-          "line": 3732
+          "line": 3698
+        },
+        {
+          "code": "C2065",
+          "msg": "'v8' : undeclared identifier",
+          "line": 3715
+        },
+        {
+          "code": "C2296",
+          "msg": "'*' : illegal, left operand has type 'class CCBStage *(__thiscall CCBStage::*)(void)'",
+          "line": 3715
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 3738
+        },
+        {
+          "code": "C1003",
+          "msg": "error count exceeds 100; stopping compilation",
+          "line": 3738
         }
       ]
     },
@@ -2055,12 +2015,12 @@
         },
         {
           "code": "C2664",
-          "msg": "'pal3_vtbl_unk_2' : cannot convert parameter 1 from 'void *' to 'unsigned long'",
+          "msg": "'pal3_vtbl_unk_a53a85b0' : cannot convert parameter 1 from 'void *' to 'unsigned long'",
           "line": 301
         },
         {
           "code": "C2664",
-          "msg": "'pal3_vtbl_unk_3' : cannot convert parameter 1 from 'void *' to 'unsigned long'",
+          "msg": "'pal3_vtbl_unk_349246c5' : cannot convert parameter 1 from 'void *' to 'unsigned long'",
           "line": 303
         },
         {
@@ -7931,32 +7891,32 @@
         {
           "code": "C2660",
           "msg": "'SetParam' : function does not take 3 parameters",
-          "line": 272
+          "line": 260
         },
         {
           "code": "C2660",
           "msg": "'SetParam' : function does not take 3 parameters",
-          "line": 285
+          "line": 273
         },
         {
           "code": "C2660",
           "msg": "'SetParam' : function does not take 3 parameters",
-          "line": 296
+          "line": 284
         },
         {
           "code": "C2660",
           "msg": "'SetParam' : function does not take 3 parameters",
-          "line": 309
+          "line": 297
         },
         {
           "code": "C2660",
           "msg": "'SetParam' : function does not take 3 parameters",
-          "line": 315
+          "line": 303
         },
         {
           "code": "C2660",
           "msg": "'SetParam' : function does not take 3 parameters",
-          "line": 328
+          "line": 316
         }
       ]
     },
@@ -8860,212 +8820,212 @@
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIStatic'",
-          "line": 2343
+          "line": 2341
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 2343
+          "line": 2341
         },
         {
           "code": "C2664",
           "msg": "'void (class gbTexture ** ,const char *,char *,class LineupUI *,char *,int,int)' : cannot convert parameter 2 from 'void *' to 'const char *'",
-          "line": 2464
+          "line": 2462
         },
         {
           "code": "C2660",
           "msg": "'CreateFromMemory' : function does not take 1 parameters",
-          "line": 2464
+          "line": 2462
         },
         {
           "code": "C2664",
-          "msg": "'pal3_vtbl_unk_2' : cannot convert parameter 2 from 'void *' to 'const char *'",
-          "line": 2465
+          "msg": "'pal3_vtbl_unk_8f4b6adb' : cannot convert parameter 2 from 'void *' to 'const char *'",
+          "line": 2463
         },
         {
           "code": "C2660",
           "msg": "'SetCameraAtPosition' : function does not take 3 parameters",
+          "line": 2500
+        },
+        {
+          "code": "C2660",
+          "msg": "'Object3D::~Object3D' : function does not take 2 parameters",
           "line": 2502
         },
         {
           "code": "C2660",
           "msg": "'Object3D::~Object3D' : function does not take 2 parameters",
-          "line": 2504
+          "line": 2512
         },
         {
           "code": "C2660",
           "msg": "'Object3D::~Object3D' : function does not take 2 parameters",
-          "line": 2514
-        },
-        {
-          "code": "C2660",
-          "msg": "'Object3D::~Object3D' : function does not take 2 parameters",
-          "line": 2559
+          "line": 2557
         },
         {
           "code": "C2660",
           "msg": "'CreateFromMemory' : function does not take 1 parameters",
-          "line": 2636
+          "line": 2630
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class Parent_Data' to 'void (__cdecl *)(class Parent_Data ** ,int,unsigned long *,class LineupUI *)'",
-          "line": 3331
+          "line": 3325
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIStatic'",
-          "line": 3343
+          "line": 3337
         },
         {
           "code": "C2228",
           "msg": "left of '.ShowWindow' must have class/struct/union type",
-          "line": 3343
+          "line": 3337
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIStatic'",
-          "line": 3352
+          "line": 3346
         },
         {
           "code": "C2228",
           "msg": "left of '.Render' must have class/struct/union type",
-          "line": 3352
+          "line": 3346
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 3359
+          "line": 3353
         },
         {
           "code": "C2228",
           "msg": "left of '.OnMessage' must have class/struct/union type",
-          "line": 3359
+          "line": 3353
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int *,class UIStatic *,class LineupUI *,char *,int,int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 3380
+          "line": 3374
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 3401
+          "line": 3395
         },
         {
           "code": "C2228",
           "msg": "left of '._sdtor_call_dtor' must have class/struct/union type",
-          "line": 3401
+          "line": 3395
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 3408
+          "line": 3402
         },
         {
           "code": "C2228",
           "msg": "left of '.OnMessage' must have class/struct/union type",
-          "line": 3408
+          "line": 3402
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int *,class UIStatic *,class LineupUI *,char *,int,char *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
+          "line": 3412
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'UIStatic'",
+          "line": 3413
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.Render' must have class/struct/union type",
+          "line": 3413
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
           "line": 3418
         },
         {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'UIStatic'",
-          "line": 3419
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.Render' must have class/struct/union type",
-          "line": 3419
-        },
-        {
-          "code": "C2036",
-          "msg": "'void *' : unknown size",
-          "line": 3424
-        },
-        {
           "code": "C2228",
           "msg": "left of '._sdtor_call_dtor' must have class/struct/union type",
-          "line": 3424
+          "line": 3418
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int *,class UIStatic *,class LineupUI *,char *,int,void *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 3440
+          "line": 3434
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 3444
+          "line": 3438
         },
         {
           "code": "C2228",
           "msg": "left of '._sdtor_call_dtor' must have class/struct/union type",
-          "line": 3444
+          "line": 3438
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 3452
+          "line": 3446
         },
         {
           "code": "C2228",
           "msg": "left of '.OnMessage' must have class/struct/union type",
-          "line": 3452
+          "line": 3446
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int *,class UIStatic *,class LineupUI *,char *,int,char *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 3462
+          "line": 3456
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIStatic'",
-          "line": 3463
+          "line": 3457
         },
         {
           "code": "C2228",
           "msg": "left of '.Render' must have class/struct/union type",
-          "line": 3463
+          "line": 3457
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 3467
+          "line": 3461
         },
         {
           "code": "C2228",
           "msg": "left of '._sdtor_call_dtor' must have class/struct/union type",
-          "line": 3467
+          "line": 3461
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int *,class UIStatic *,class LineupUI *,char *,int,void *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 3484
+          "line": 3478
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int *,class UIStatic *,class LineupUI *,char *,int,unsigned int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 3502
+          "line": 3496
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int *,class UIStatic *,class LineupUI *,char *,int,void *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 3516
+          "line": 3510
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 3528
+          "line": 3522
         },
         {
           "code": "C2228",
           "msg": "left of '.Update_2ff0' must have class/struct/union type",
-          "line": 3528
+          "line": 3522
         }
       ]
     },
@@ -9238,22 +9198,22 @@
         {
           "code": "C2227",
           "msg": "left of '->OnMessage' must point to class/struct/union",
-          "line": 373
+          "line": 371
         },
         {
           "code": "C2227",
           "msg": "left of '->OnMessage' must point to class/struct/union",
-          "line": 384
+          "line": 382
         },
         {
           "code": "C2664",
-          "msg": "'pal3_vtbl_unk_1' : cannot convert parameter 3 from 'void *' to 'const char *'",
-          "line": 403
+          "msg": "'pal3_vtbl_unk_a035b048' : cannot convert parameter 3 from 'void *' to 'const char *'",
+          "line": 401
         },
         {
           "code": "C2664",
-          "msg": "'pal3_vtbl_unk_2' : cannot convert parameter 3 from 'void *' to 'const char *'",
-          "line": 411
+          "msg": "'pal3_vtbl_unk_a035b048' : cannot convert parameter 3 from 'void *' to 'const char *'",
+          "line": 409
         }
       ]
     },
@@ -9711,22 +9671,22 @@
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIStatic'",
-          "line": 704
+          "line": 696
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 704
+          "line": 696
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIStatic'",
-          "line": 706
+          "line": 698
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 706
+          "line": 698
         }
       ]
     },
@@ -10970,37 +10930,32 @@
     },
     "pal3/src/Misc/UIAnimateCtrlEX.cpp": {
       "status": "fail",
-      "error_count": 6,
+      "error_count": 5,
       "errors": [
-        {
-          "code": "C2084",
-          "msg": "function 'int __cdecl pal3_vtbl_unk_0(class UIWnd *,int,void *,unsigned long)' already has a body",
-          "line": 95
-        },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UITextArea'",
-          "line": 205
+          "line": 194
         },
         {
           "code": "C2227",
           "msg": "left of '->Update_2ff0' must point to class/struct/union",
-          "line": 205
+          "line": 194
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 220
+          "line": 209
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UITextArea'",
-          "line": 223
+          "line": 212
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 223
+          "line": 212
         }
       ]
     },
@@ -11243,12 +11198,32 @@
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIWnd'",
-          "line": 129
+          "line": 121
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UICaption'",
-          "line": 129
+          "line": 121
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'UIWnd'",
+          "line": 138
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'UICaption'",
+          "line": 138
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'UIWnd'",
+          "line": 143
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'UICaption'",
+          "line": 143
         },
         {
           "code": "C2039",
@@ -11263,152 +11238,132 @@
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIWnd'",
-          "line": 151
+          "line": 150
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UICaption'",
-          "line": 151
+          "line": 150
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIWnd'",
-          "line": 154
+          "line": 153
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UICaption'",
-          "line": 154
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'UIWnd'",
-          "line": 158
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'UICaption'",
-          "line": 158
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'UIWnd'",
-          "line": 161
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'UICaption'",
-          "line": 161
+          "line": 153
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'PalScriptWaitObj'",
-          "line": 177
+          "line": 169
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UICaption'",
-          "line": 177
+          "line": 169
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIWnd'",
-          "line": 180
+          "line": 172
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UICaption'",
-          "line": 180
+          "line": 172
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIWnd'",
-          "line": 191
+          "line": 183
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UICaption'",
-          "line": 191
+          "line": 183
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIWnd'",
-          "line": 207
+          "line": 199
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UICaption'",
-          "line": 207
+          "line": 199
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIWnd'",
-          "line": 212
+          "line": 204
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UICaption'",
-          "line": 212
+          "line": 204
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIWnd'",
-          "line": 218
+          "line": 210
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UICaption'",
-          "line": 218
+          "line": 210
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIWnd'",
-          "line": 315
+          "line": 291
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UICaption'",
-          "line": 315
+          "line": 291
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIWnd'",
-          "line": 325
+          "line": 301
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UICaption'",
-          "line": 325
+          "line": 301
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIWnd'",
-          "line": 361
+          "line": 337
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UICaption'",
-          "line": 361
+          "line": 337
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIWnd'",
-          "line": 365
+          "line": 341
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UICaption'",
-          "line": 365
+          "line": 341
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'PalScriptWaitObj'",
-          "line": 403
+          "line": 379
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UICaption'",
-          "line": 403
+          "line": 379
         }
       ]
     },
@@ -11496,7 +11451,7 @@
     },
     "pal3/src/Misc/UIFrameWnd.cpp": {
       "status": "fail",
-      "error_count": 5,
+      "error_count": 3,
       "errors": [
         {
           "code": "C2440",
@@ -11506,22 +11461,12 @@
         {
           "code": "C2248",
           "msg": "'_Tidy' : cannot access private member declared in class 'std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >'",
-          "line": 929
+          "line": 911
         },
         {
           "code": "C2660",
           "msg": "'_Eos' : function does not take 0 parameters",
-          "line": 938
-        },
-        {
-          "code": "C2084",
-          "msg": "function 'void __cdecl pal3_vtbl_unk_1(class UIWnd *,int,void *,int)' already has a body",
-          "line": 1075
-        },
-        {
-          "code": "C2084",
-          "msg": "function 'void __cdecl pal3_vtbl_unk_2(class UIWnd *,int,void *,unsigned long)' already has a body",
-          "line": 1079
+          "line": 920
         }
       ]
     },
@@ -11744,187 +11689,202 @@
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 526
+          "line": 514
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 539
+          "line": 527
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 548
+          "line": 536
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 559
+          "line": 547
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIStatic'",
-          "line": 565
+          "line": 553
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 565
+          "line": 553
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 572
+          "line": 560
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 580
+          "line": 568
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 595
+          "line": 583
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIStatic'",
-          "line": 605
+          "line": 593
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 605
+          "line": 593
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 618
+          "line": 606
         },
         {
           "code": "C2228",
           "msg": "left of '.Render' must have class/struct/union type",
-          "line": 618
+          "line": 606
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 631
+          "line": 619
         },
         {
           "code": "C2228",
           "msg": "left of '.Render' must have class/struct/union type",
-          "line": 631
+          "line": 619
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 644
+          "line": 632
         },
         {
           "code": "C2228",
           "msg": "left of '.Render' must have class/struct/union type",
-          "line": 644
+          "line": 632
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 657
+          "line": 645
         },
         {
           "code": "C2228",
           "msg": "left of '.Render' must have class/struct/union type",
-          "line": 657
+          "line": 645
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 670
+          "line": 658
         },
         {
           "code": "C2228",
           "msg": "left of '.Render' must have class/struct/union type",
-          "line": 670
+          "line": 658
         },
         {
           "code": "C2036",
           "msg": "'void *' : unknown size",
-          "line": 683
+          "line": 671
         },
         {
           "code": "C2228",
           "msg": "left of '.Render' must have class/struct/union type",
-          "line": 683
+          "line": 671
         },
         {
           "code": "C2039",
           "msg": "'TaskBookUI_CreateEntry' : is not a member of 'UIScenePanel'",
-          "line": 719
+          "line": 707
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 918
+          "line": 906
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'double' to 'class TaskBookUI *'",
-          "line": 955
+          "line": 943
         },
         {
           "code": "C2227",
           "msg": "left of '->TaskBookUI' must point to class/struct/union",
-          "line": 955
+          "line": 943
         },
         {
           "code": "C2653",
           "msg": "'TaskBookUI' : is not a class or namespace name",
-          "line": 955
+          "line": 943
         },
         {
           "code": "C2664",
           "msg": "'WriteRegistryDword' : cannot convert parameter 1 from 'unsigned long' to 'char *'",
-          "line": 1111
+          "line": 1099
         },
         {
           "code": "C2664",
           "msg": "'WriteRegistryDword' : cannot convert parameter 1 from 'unsigned long' to 'char *'",
-          "line": 1112
+          "line": 1100
         },
         {
           "code": "C2664",
           "msg": "'WriteRegistryDword' : cannot convert parameter 1 from 'unsigned long' to 'char *'",
-          "line": 1113
+          "line": 1101
         },
         {
           "code": "C2664",
           "msg": "'void (const char *,char *,class UIScenePanel *)' : cannot convert parameter 1 from 'void *' to 'const char *'",
-          "line": 1214
+          "line": 1200
         },
         {
           "code": "C2664",
           "msg": "'void (const char *,char *,class UIScenePanel *)' : cannot convert parameter 1 from 'void *' to 'const char *'",
-          "line": 1221
+          "line": 1207
         },
         {
           "code": "C2664",
           "msg": "'int (const char *,char *,class UIScenePanel *)' : cannot convert parameter 1 from 'void *' to 'const char *'",
-          "line": 1226
+          "line": 1212
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 1228
+          "line": 1214
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'const char *'",
-          "line": 1232
+          "line": 1218
         },
         {
           "code": "C2664",
           "msg": "'void (const char *,char *,class UIScenePanel *)' : cannot convert parameter 1 from 'void *' to 'const char *'",
-          "line": 1241
+          "line": 1227
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (char *,const char *,char *,class UIScenePanel *)' : cannot convert parameter 2 from 'void *' to 'const char *'",
+          "line": 1233
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (const char *,unsigned long *,class UIScenePanel *)' : cannot convert parameter 1 from 'void *' to 'const char *'",
+          "line": 1239
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (const char *,char *,class UIScenePanel *)' : cannot convert parameter 1 from 'void *' to 'const char *'",
+          "line": 1244
         },
         {
           "code": "C2664",
@@ -11933,48 +11893,33 @@
         },
         {
           "code": "C2664",
-          "msg": "'void (const char *,unsigned long *,class UIScenePanel *)' : cannot convert parameter 1 from 'void *' to 'const char *'",
+          "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
+          "line": 1250
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
+          "line": 1252
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
           "line": 1253
         },
         {
           "code": "C2664",
-          "msg": "'void (const char *,char *,class UIScenePanel *)' : cannot convert parameter 1 from 'void *' to 'const char *'",
-          "line": 1258
-        },
-        {
-          "code": "C2664",
-          "msg": "'void (char *,const char *,char *,class UIScenePanel *)' : cannot convert parameter 2 from 'void *' to 'const char *'",
-          "line": 1261
+          "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
+          "line": 1254
         },
         {
           "code": "C2664",
           "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
-          "line": 1264
+          "line": 1255
         },
         {
           "code": "C2664",
           "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
-          "line": 1266
-        },
-        {
-          "code": "C2664",
-          "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
-          "line": 1267
-        },
-        {
-          "code": "C2664",
-          "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
-          "line": 1268
-        },
-        {
-          "code": "C2664",
-          "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
-          "line": 1269
-        },
-        {
-          "code": "C2664",
-          "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
-          "line": 1270
+          "line": 1256
         }
       ]
     },
@@ -12061,37 +12006,27 @@
     },
     "pal3/src/Misc/UITitle.cpp": {
       "status": "fail",
-      "error_count": 6,
+      "error_count": 4,
       "errors": [
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UISceneMap'",
-          "line": 297
+          "line": 272
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 297
+          "line": 272
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UISceneMap'",
-          "line": 298
+          "line": 273
         },
         {
           "code": "C2227",
           "msg": "left of '->Update_2ff0' must point to class/struct/union",
-          "line": 298
-        },
-        {
-          "code": "C2084",
-          "msg": "function 'void __cdecl pal3_vtbl_unk_0(class UITitle *,unsigned long)' already has a body",
-          "line": 328
-        },
-        {
-          "code": "C2084",
-          "msg": "function 'void __cdecl pal3_vtbl_unk_1(class UITitle *,unsigned long)' already has a body",
-          "line": 332
+          "line": 273
         }
       ]
     },
@@ -13071,7 +13006,7 @@
     },
     "pal3/src/Role/Actor.cpp": {
       "status": "fail",
-      "error_count": 62,
+      "error_count": 60,
       "errors": [
         {
           "code": "C2011",
@@ -13136,252 +13071,242 @@
         {
           "code": "C2248",
           "msg": "'pBody' : cannot access private member declared in class 'gbActor'",
-          "line": 1260
-        },
-        {
-          "code": "C2084",
-          "msg": "function 'void __cdecl pal3_vtbl_unk_0(class gbActorDef *,char *)' already has a body",
-          "line": 1267
+          "line": 1255
         },
         {
           "code": "C2248",
           "msg": "'pBody' : cannot access private member declared in class 'gbActor'",
-          "line": 1311
-        },
-        {
-          "code": "C2264",
-          "msg": "'pal3_vtbl_unk_0' : error in function definition or declaration; function not called",
-          "line": 1311
+          "line": 1295
         },
         {
           "code": "C2664",
           "msg": "'fopen' : cannot convert parameter 2 from 'float' to 'const char *'",
-          "line": 1582
+          "line": 1560
         },
         {
           "code": "C2065",
           "msg": "'ActVecUninitCopy' : undeclared identifier",
-          "line": 1641
+          "line": 1619
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'char ** '",
-          "line": 1645
+          "line": 1623
         },
         {
           "code": "C2664",
           "msg": "'ActVec_InsertN' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 1660
+          "line": 1638
         },
         {
           "code": "C2664",
           "msg": "'ActVec_InsertRange' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 1694
+          "line": 1672
         },
         {
           "code": "C2664",
           "msg": "'fopen' : cannot convert parameter 2 from 'float' to 'const char *'",
-          "line": 1811
+          "line": 1789
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'GlowObj'",
-          "line": 1905
+          "line": 1883
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'SceneObj'",
-          "line": 1905
+          "line": 1883
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'double [4]' to 'unsigned long'",
-          "line": 1914
+          "line": 1892
         },
         {
           "code": "C2065",
           "msg": "'pData_0' : undeclared identifier",
-          "line": 1948
+          "line": 1926
         },
         {
           "code": "C2664",
           "msg": "'_strcmpi' : cannot convert parameter 1 from 'char' to 'const char *'",
-          "line": 1949
+          "line": 1927
         },
         {
           "code": "C2664",
           "msg": "'strcpy' : cannot convert parameter 1 from 'char' to 'char *'",
-          "line": 1952
+          "line": 1930
         },
         {
           "code": "C2440",
           "msg": "'return' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 2076
+          "line": 2054
         },
         {
           "code": "C2027",
           "msg": "use of undefined type '_TEB'",
-          "line": 2158
+          "line": 2136
         },
         {
           "code": "C2227",
           "msg": "left of '->NtTib' must point to class/struct/union",
-          "line": 2158
+          "line": 2136
         },
         {
           "code": "C2228",
           "msg": "left of '.ExceptionList' must have class/struct/union type",
-          "line": 2158
+          "line": 2136
         },
         {
           "code": "C2664",
           "msg": "'strcpy' : cannot convert parameter 2 from 'char' to 'const char *'",
-          "line": 2205
+          "line": 2183
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'char'",
-          "line": 2245
+          "line": 2223
         },
         {
           "code": "C2664",
           "msg": "'CompareModelName' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 2450
+          "line": 2428
         },
         {
           "code": "C2065",
           "msg": "'ActVecReallocate' : undeclared identifier",
-          "line": 2465
+          "line": 2443
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'char *'",
-          "line": 2470
+          "line": 2448
         },
         {
           "code": "C2664",
           "msg": "'=' : cannot convert parameter 1 from 'int *' to 'const struct gbVec3D &'",
-          "line": 2496
+          "line": 2474
         },
         {
           "code": "C2664",
           "msg": "'ActVec_Insert_char' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 2502
+          "line": 2480
         },
         {
           "code": "C2664",
           "msg": "'ActVec_Insert_word' : cannot convert parameter 3 from '__int16 *' to 'unsigned short *'",
-          "line": 2521
+          "line": 2499
         },
         {
           "code": "C2664",
           "msg": "'CompareModelName' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 2703
+          "line": 2681
         },
         {
           "code": "C2664",
           "msg": "'CopyIfValid' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 2840
+          "line": 2818
         },
         {
           "code": "C2664",
           "msg": "'CopyBufferBlocks' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 2888
+          "line": 2866
         },
         {
           "code": "C2065",
           "msg": "'ActVecUninitFill' : undeclared identifier",
-          "line": 3108
+          "line": 3086
         },
         {
           "code": "C2065",
           "msg": "'ActVecUninitCopy2' : undeclared identifier",
-          "line": 3109
+          "line": 3087
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 3231
+          "line": 3209
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 3244
+          "line": 3222
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 3255
+          "line": 3233
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 3274
+          "line": 3252
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 3288
+          "line": 3266
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 3303
+          "line": 3281
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 3638
+          "line": 3616
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 3661
+          "line": 3639
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 3676
+          "line": 3654
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 3696
+          "line": 3674
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 3709
+          "line": 3687
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 3723
+          "line": 3701
         },
         {
           "code": "C2664",
           "msg": "'=' : cannot convert parameter 1 from 'char *' to 'const struct gbVec3D &'",
-          "line": 4219
+          "line": 4197
         },
         {
           "code": "C2660",
           "msg": "'=' : function does not take 2 parameters",
-          "line": 4234
+          "line": 4212
         },
         {
           "code": "C2660",
           "msg": "'=' : function does not take 2 parameters",
-          "line": 4235
+          "line": 4213
         },
         {
           "code": "C2660",
           "msg": "'=' : function does not take 2 parameters",
-          "line": 4260
+          "line": 4238
         },
         {
           "code": "C2440",
           "msg": "'return' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 4264
+          "line": 4242
         }
       ]
     },
@@ -15437,52 +15362,52 @@
         {
           "code": "C2227",
           "msg": "left of '->OnMessage' must point to class/struct/union",
-          "line": 937
+          "line": 935
         },
         {
           "code": "C2664",
-          "msg": "'pal3_vtbl_unk_2' : cannot convert parameter 3 from 'void *' to 'const char *'",
-          "line": 976
+          "msg": "'pal3_vtbl_unk_d7d8bdd4' : cannot convert parameter 3 from 'void *' to 'const char *'",
+          "line": 974
         },
         {
           "code": "C2227",
           "msg": "left of '->Array' must point to class/struct/union",
-          "line": 1726
+          "line": 1720
         },
         {
           "code": "C2653",
           "msg": "'Array' : is not a class or namespace name",
-          "line": 1726
+          "line": 1720
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int,int *,class EquipUI *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 1824
+          "line": 1818
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class CCCTData *' to 'int'",
-          "line": 1919
+          "line": 1913
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class LineupUI *' to 'int'",
-          "line": 1927
+          "line": 1921
         },
         {
           "code": "C2039",
           "msg": "'CameraCtrl_CreateCameraUI' : is not a member of 'EquipUI'",
-          "line": 1942
+          "line": 1936
         },
         {
           "code": "C2039",
           "msg": "'EquipUI_InitEquipUI' : is not a member of 'EquipUI'",
-          "line": 1945
+          "line": 1939
         },
         {
           "code": "C2039",
           "msg": "'UITitle_JDHY_PopulateContent' : is not a member of 'EquipUI'",
-          "line": 1947
+          "line": 1941
         }
       ]
     },
@@ -15997,7 +15922,7 @@
     },
     "pal3/src/UI/UIListBox.cpp": {
       "status": "fail",
-      "error_count": 17,
+      "error_count": 10,
       "errors": [
         {
           "code": "C2059",
@@ -16022,67 +15947,32 @@
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class std::vector<int,class std::allocator<int> >' to 'class Actor *'",
-          "line": 529
+          "line": 524
         },
         {
           "code": "C2227",
           "msg": "left of '->Actor' must point to class/struct/union",
-          "line": 529
+          "line": 524
         },
         {
           "code": "C2653",
           "msg": "'Actor' : is not a class or namespace name",
-          "line": 529
-        },
-        {
-          "code": "C2084",
-          "msg": "function 'void __cdecl pal3_vtbl_unk_0(class UIWnd *,int,void *,int)' already has a body",
-          "line": 552
+          "line": 524
         },
         {
           "code": "C2065",
           "msg": "'UIDestorySystem' : undeclared identifier",
-          "line": 704
+          "line": 693
         },
         {
           "code": "C2227",
           "msg": "left of '->OnMessage' must point to class/struct/union",
-          "line": 956
-        },
-        {
-          "code": "C2556",
-          "msg": "'int __cdecl pal3_vtbl_unk_0(class UIWnd *,int,void *,int)' : overloaded function differs only by return type from 'void __cdecl pal3_vtbl_unk_0(class UIWnd *,int,void *,int)'",
-          "line": 1001
-        },
-        {
-          "code": "C2556",
-          "msg": "'int __cdecl pal3_vtbl_unk_2(class UIWnd *,int,void *,int)' : overloaded function differs only by return type from 'void __cdecl pal3_vtbl_unk_2(class UIWnd *,int,void *,int)'",
-          "line": 1005
-        },
-        {
-          "code": "C2371",
-          "msg": "'pal3_vtbl_unk_2' : redefinition; different basic types",
-          "line": 1005
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void (__cdecl *)(class UIWnd *,int,void *,int)' to 'int'",
-          "line": 1108
+          "line": 939
         },
         {
           "code": "C2227",
           "msg": "left of '->OnMessage' must point to class/struct/union",
-          "line": 1176
-        },
-        {
-          "code": "C2556",
-          "msg": "'int __cdecl pal3_vtbl_unk_0(class UIWnd *,int,void *,int)' : overloaded function differs only by return type from 'void __cdecl pal3_vtbl_unk_0(class UIWnd *,int,void *,int)'",
-          "line": 1189
-        },
-        {
-          "code": "C2556",
-          "msg": "'int __cdecl pal3_vtbl_unk_2(class UIWnd *,int,void *,int)' : overloaded function differs only by return type from 'void __cdecl pal3_vtbl_unk_2(class UIWnd *,int,void *,int)'",
-          "line": 1197
+          "line": 1143
         }
       ]
     },
@@ -16315,62 +16205,62 @@
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class gbGfxManager *' to 'int'",
-          "line": 969
+          "line": 957
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class gbGfxManager *' to 'int'",
-          "line": 1649
+          "line": 1637
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class gbGfxManager *' to 'int'",
-          "line": 1689
+          "line": 1677
         },
         {
           "code": "C2660",
           "msg": "'GetPixelChannel' : function does not take 4 parameters",
-          "line": 1754
+          "line": 1742
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIScene'",
-          "line": 1893
+          "line": 1881
         },
         {
           "code": "C2228",
           "msg": "left of '.Create' must have class/struct/union type",
-          "line": 1893
+          "line": 1881
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIScene'",
-          "line": 1896
+          "line": 1884
         },
         {
           "code": "C2228",
           "msg": "left of '.Destroy' must have class/struct/union type",
-          "line": 1896
+          "line": 1884
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIScene'",
-          "line": 1899
+          "line": 1887
         },
         {
           "code": "C2228",
           "msg": "left of '.Update_2ff0' must have class/struct/union type",
-          "line": 1899
+          "line": 1887
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIScene'",
-          "line": 1902
+          "line": 1890
         },
         {
           "code": "C2228",
           "msg": "left of '.Render' must have class/struct/union type",
-          "line": 1902
+          "line": 1890
         }
       ]
     },

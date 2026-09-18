@@ -4,6 +4,7 @@ All structural detection is done through AST node types.
 No regex is used for pattern recognition — only for simple text substitution
 where no structural understanding is needed (e.g., __thiscall removal).
 """
+import hashlib as _hashlib
 import re
 import struct as _struct
 import sys
@@ -502,7 +503,22 @@ def _resolve_vtbl_method(d):
     return None
 
 
-def _vtbl_stub_names(ret, params, idx):
+def _vtbl_stub_name(ret, params):
+    """stub 名由**签名**决定（不再是每函数从 0 开始的序号）。
+
+    旧实现用 `idx = len(stub_items)`，而 `stub_items` 是**每次
+    `_resolve_vftable_calls_ast` 调用（= 每个函数）局部新建**的 ⇒ 同一个 .cpp 里
+    每个函数都从 `_0` 重新编号。实测：51 个文件含 stub 块，其中 **22 个含多于一个块**
+    （`Combat/CCBUI.cpp` 16 个），**22 个文件存在同名但不同签名的重复定义** ⇒
+    MSVC `C2084`(already has a body) / `C2371`(redefinition) /
+    `C2556`(overloaded function differs only by return type)。
+    改成签名哈希后，不同签名永不同名。
+    """
+    key = '%s|%s' % (' '.join(str(ret).split()), ' '.join(str(params).split()))
+    return 'pal3_vtbl_unk_%s' % _hashlib.md5(key.encode('utf-8')).hexdigest()[:8]
+
+
+def _vtbl_stub_names(ret, params, name):
     """Build thunk declaration+definition preserving cast signature."""
     is_ptr = ret.rstrip().endswith('*')
     is_void = ret.strip() == 'void'
@@ -515,9 +531,9 @@ def _vtbl_stub_names(ret, params, idx):
         body = 'return 0;'
     else:
         body = 'return %s();' % ret
-    decl = 'static %s pal3_vtbl_unk_%d(%s);' % (ret, idx, params)
-    definition = ('static %s pal3_vtbl_unk_%d(%s)\n{\n    %s\n}'
-                  % (ret, idx, params, body))
+    decl = 'static %s %s(%s);' % (ret, name, params)
+    definition = ('static %s %s(%s)\n{\n    %s\n}'
+                  % (ret, name, params, body))
     return decl, definition
 
 
@@ -573,15 +589,23 @@ def _resolve_vftable_calls_ast(code, ctx):
                         repl = '%s->%s(%s)' % (d['obj'], method, ', '.join(keep))
                     else:
                         if d['ret'] is not None and d['params'] is not None:
-                            idx = len(stub_items)
-                            decl, definition = _vtbl_stub_names(d['ret'], d['params'], idx)
-                            stub_items.append(
-                                (decl, definition,
-                                 '// %s original: %s'
-                                 % (_VTBL_STUB_MARK,
-                                    ' '.join(node.text.decode('utf-8', errors='replace').split()))))
-                            repl = 'pal3_vtbl_unk_%d(%s) /* %s */' % (
-                                idx, ', '.join(args), _VTBL_STUB_MARK)
+                            name = _vtbl_stub_name(d['ret'], d['params'])
+                            # 同文件去重：同一个签名在**本输出文件**里只发射一次
+                            # 声明+定义（第二次起调用点仍引用该名字，声明已在其上方）。
+                            # registry 由 emit_cpp 按输出文件创建并传入（见 TransformContext.
+                            # stub_registry）；未传时退化为"每次都发射"（旧行为，安全）。
+                            _reg = getattr(ctx, 'stub_registry', None)
+                            if _reg is None or name not in _reg:
+                                if _reg is not None:
+                                    _reg.add(name)
+                                decl, definition = _vtbl_stub_names(d['ret'], d['params'], name)
+                                stub_items.append(
+                                    (decl, definition,
+                                     '// %s original: %s'
+                                     % (_VTBL_STUB_MARK,
+                                        ' '.join(node.text.decode('utf-8', errors='replace').split()))))
+                            repl = '%s(%s) /* %s */' % (
+                                name, ', '.join(args), _VTBL_STUB_MARK)
                         else:
                             # no cast info at all — leave for legacy fallbacks
                             repl = None

@@ -19,14 +19,18 @@ class TransformContext:
     is_ctor: bool
     is_dtor: bool
     is_free_function: bool
+    # 同一**输出文件**内共享的 stub 去重集合（由 emit_cpp 按文件创建）。
+    # None ⇒ 不去重（旧行为，安全回退）。
+    stub_registry: object = None
 
 
-def make_context(cls_name, method_name, sig='', is_free=False):
+def make_context(cls_name, method_name, sig='', is_free=False, stub_registry=None):
     is_ctor = (method_name == cls_name) if cls_name else False
     is_dtor = (method_name == '~%s' % cls_name) if cls_name else False
     return TransformContext(
         cls_name=cls_name, method_name=method_name, sig=sig,
-        is_ctor=is_ctor, is_dtor=is_dtor, is_free_function=is_free)
+        is_ctor=is_ctor, is_dtor=is_dtor, is_free_function=is_free,
+        stub_registry=stub_registry)
 
 
 def run_transforms(code, ctx):
