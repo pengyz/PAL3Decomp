@@ -3,9 +3,10 @@
   "binary_size": 40,
   "known_members": {
     "0": {
-      "name": "__vftable",
+      "name": "m_nTodo_000",
       "type": "void *",
-      "note": "renamed vfptr -> __vftable (unified with IDA convention)"
+      "source": "usage_evidence",
+      "note": "usage-evidence: offset0 是**对象指针**而非 vfptr —— (1) `GlowObj::__vftable` 全库被强转为 CCBStage* 38 次 / char* 17 / _DWORD* 5 / CCBSystem* 2，**从未被当 vtable 调用**；(2) Actor_DoSceneTransition 往里存的是对象指针（v17=(Actor*)strlen(v66)）；(3) 整库无任何指令把 vtable 装到该偏移（带 lea/寄存器装载形态复核：位移 8、0x28 不存在）；(4) IDA 从未在 offset0 建模成员。⇒ 按惯例命名 m_nTodo_000（含义未知、类型为指针），原 `__vftable` 是 source=annotation 的自造名。"
     }
   }
 }

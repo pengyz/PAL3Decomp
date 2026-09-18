@@ -2300,3 +2300,63 @@ X.__vftable->Method   ->   (*((void **)&(X) + IDX))     其中 IDX = Method 在 
    立即数、寄存器装载、**基址经 lea 算入寄存器**三种形态）；
 4. **该类是否有多态证据**（methods / vtables / 被谁调用）；
 5. **注解怎么说** —— 这一条**只能最后看**，且必须看 `source` 字段。
+
+---
+
+# 36. 试点落地：把"非 vfptr"的 offset0 从 `__vftable` 诚实改名 —— 总错误 2662→2446，**L1 17→18**（本会话首次 L1 增益）
+
+## 36.1 可规模化的根因（`pipeline/ida/apply_annotations.py:431`）
+
+```python
+# __vftable/vfptr: typed vtable pointer（IDA 反编译输出最优）
+if offset == 0 and mname in ("__vftable", "vfptr") and virtual_methods:
+    lines.append("    %s *__vftable;" % vt_struct_name)
+```
+
+**名字叫 `__vftable`/`vfptr` 且 offset==0 会被特判成"带类型的 vtable 指针"**，
+其结果**不进 `data_members`**（只出现在 `_variants`）⇒ 头生成器（只读 `data_members`）**从不发射它**
+⇒ 所有 `X.__vftable` / `X::__vftable` 访问都报"不是成员"。
+
+**改名成任何别的名字 ⇒ 就是普通成员 ⇒ 进 `data_members` ⇒ 被发射** ✓
+
+## 36.2 试点范围（SceneObj 链 4 个碎片）
+
+`GlowObj` / `TaskMgr_SceneObjParam_SceneObj` / `PalScriptWaitObj` / `CEffObj`
+的 offset0：`__vftable` → **`m_nTodo_000`**（`void *`，沿用项目 `m_nTodo_<偏移>` 惯例），
+`source` 从 `annotation`/`vtable_fix` 改为 **`usage_evidence`** 并在 `note` 里记明四条独立证据。
+
+**走了完整管线**（这是关键，`.cpp` 的拼写来自 export 产物）：
+`annotation → apply → export → codegen all → probe all → match`
+
+## 36.3 验收（全部实测）
+
+| Gate | 结果 |
+|---|---|
+| decomp 拼写 | `GlowObj::m_nTodo_000` **100 处**、`TaskMgr_…::m_nTodo_000` **85 处**（改名确实改变拼写） |
+| IDB | `GlowObj.data_members@0 = [{'name':'m_nTodo_000','type':'void *','offset':0}]` ✓ |
+| 生成头 | `void * m_nTodo_000; // +0x0`（替换 `char _gap_000[4]`）⇒ **4 字节等长、布局不变** |
+| **总错误** | **2662 → 2446（−216）** |
+| 逐码 | **C2039 −127、C2227 −8、C2065 −1** |
+| **S2** | **68 → 69**（`Misc/ChoseCompose.cpp` 转 ok） |
+| **L1** | **17 → 18**，多重集 **lost 0 / gained 1** = `('Misc/ChoseCompose.cpp','??_GUIWnd@@UAEPAXI@Z','0x00450E90')` |
+| `compile_regression` | **+1 改善，无回归**；`matched 218/250 → 228/262` |
+| **新增 2 条**（`increased_codes`） | ① `RoleCameraCtrl.cpp L126` `(*m_nTodo_000)(this,0)` C2064 —— 那是**局部变量**形态，原先靠**字面名 `__vftable`** 命中 `_fold_vftable_mask`，改名后不命中；② `CGameData.cpp L352` `'SceneObj::m_nTodo_000' is ambiguous` C2385 —— **多继承下三个基类同名成员**导致无限定访问歧义 |
+
+## 36.4 规模化的两个注意点（试点暴露的）
+
+1. **`_fold_vftable_mask` 是按字面名 `__vftable` 匹配的** ⇒ 改名会让"该处 fold 本来是正确行为"的位点
+   失去改写（试点里代价 = **1 条** C2064）。规模化时应把它改成**按结构判定**（成员在 offset0 且
+   类型为指针 / 或按注解的 vfptr 标记），而不是按名字。
+2. **多继承下同名会歧义**（试点里代价 = **1 条** C2385）。规模化时同一继承链上的多个基类
+   不宜用完全相同的新名，或需要保留限定拼写。
+
+## 36.5 下一步：按证据审计全部 118 个 offset0 声明（不是一刀切）
+
+全库 **118 个类**在 offset0 声明了 `__vftable`，但 `source` 分布是：
+**`vtable_fix` 59、无 source 21、`annotation` 11、PDB 10、`binary:vtable_ptr` 6、
+`binary:all CEffXxx first_off=…` 1**、其余杂项。
+⇒ **只有二进制支撑的那几个类，offset0 真的是 vfptr，绝不能改名**；
+其余必须**逐个用独立用法证据判定**（谁写/写什么值、谁读/怎么用、有无安装点、类是否多态）——
+这正是"annotation 质量要逐步做 IDB 分析、没有捷径"的具体形态。
+**可先把 36.1 的特判 + 用法证据做成一个审计工具**，输出每个类的"是/不是 vfptr + 依据"，
+再按结论分批走管线。

@@ -18,16 +18,16 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 250,
-  "matched": 218,
-  "unmatched": 32,
-  "match_L1": 17,
-  "partial": 176,
+  "symbols": 262,
+  "matched": 228,
+  "unmatched": 34,
+  "match_L1": 18,
+  "partial": 182,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 25
+  "unresolved_synth": 28
  },
  "rows": [
   {
@@ -171,7 +171,7 @@
    "name": "CEffShock::GetEditorTaskDescription(int)",
    "va": "0x004D3280",
    "status": "partial",
-   "match_pct": 63.8,
+   "match_pct": 36.2,
    "size": 58
   },
   {
@@ -216,7 +216,7 @@
    "name": "CEffShock::LoadTexture(int,int,int,int *,int,int)",
    "va": "0x004D4B50",
    "status": "partial",
-   "match_pct": 9.9,
+   "match_pct": 9.4,
    "size": 213
   },
   {
@@ -398,6 +398,69 @@
    "status": "partial",
    "match_pct": 46.7,
    "size": 45
+  },
+  {
+   "file": "pal3/src/Misc/ChoseCompose.cpp",
+   "symbol": "?Init@ChoseCompose@@QAEXH@Z",
+   "name": "ChoseCompose::Init(int)",
+   "va": "0x0044C970",
+   "status": "partial",
+   "match_pct": 19.2,
+   "size": 417
+  },
+  {
+   "file": "pal3/src/Misc/ChoseCompose.cpp",
+   "symbol": "?DestroyScene@ChoseCompose@@QAEXXZ",
+   "name": "ChoseCompose::DestroyScene(void)",
+   "va": "0x004549A0",
+   "status": "partial",
+   "match_pct": 14.5,
+   "size": 256
+  },
+  {
+   "file": "pal3/src/Misc/ChoseCompose.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x00450E90",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/ChoseCompose.cpp",
+   "symbol": "?LayoutItems@ChoseCompose@@QAEHHHHHH@Z",
+   "name": "ChoseCompose::LayoutItems(int,int,int,int,int)",
+   "va": "0x00455570",
+   "status": "partial",
+   "match_pct": 8.3,
+   "size": 530
+  },
+  {
+   "file": "pal3/src/Misc/ChoseCompose.cpp",
+   "symbol": "?InitCompose@ChoseCompose@@QAEXXZ",
+   "name": "ChoseCompose::InitCompose(void)",
+   "va": "0x004A2170",
+   "status": "partial",
+   "match_pct": 24.1,
+   "size": 361
+  },
+  {
+   "file": "pal3/src/Misc/ChoseCompose.cpp",
+   "symbol": "?DestroySubWindows@ChoseCompose@@QAEXXZ",
+   "name": "ChoseCompose::DestroySubWindows(void)",
+   "va": "0x004A22E0",
+   "status": "partial",
+   "match_pct": 23.4,
+   "size": 364
+  },
+  {
+   "file": "pal3/src/Misc/ChoseCompose.cpp",
+   "symbol": "?LayoutItem@ChoseCompose@@QAEHHHHHH@Z",
+   "name": "ChoseCompose::LayoutItem(int,int,int,int,int)",
+   "va": "0x004B19E0",
+   "status": "partial",
+   "match_pct": 8.1,
+   "size": 530
   },
   {
    "file": "pal3/src/Misc/Comp_Donate.cpp",
