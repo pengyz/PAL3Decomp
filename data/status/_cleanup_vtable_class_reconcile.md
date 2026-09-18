@@ -427,3 +427,61 @@ by tier (仅 SIZE_*): A=5  B=4
   ④ 作为**一个完整变更集**重新落地，跑 `check`+`audit_layout`+`apply`+`diff`+`export`+`codegen all`+
   `compile`+`compile_regression`+`probe all`+`error_classifier`+`match`，并做 A-B-A 与
   **L1 的 (VA) 集合**比对（不只看条数）。
+
+---
+
+# 12. 下一步（2026-09-18 定案）—— 为什么先修 20 个错误
+
+**结论：下一步不是继续改归属，而是修掉 `pal3/src/Misc/UIProgressBar.cpp` 的 20 个编译错误。**
+理由：这些错误**在基线就存在**（`UIProgressBar.cpp` 一直 fail），修它独立于 vtable 之争就有收益（救回一个 s2 单元）；
+同时它是**整套 vtable 落地的 gate** —— 一经迁移，这 20 个错误会**原样搬到** `UI3DCtrl.cpp`
+（`(code,msg)` 多重集已实测相同，仅多 1 条 `C2660 QueryState`），把 `UI3DCtrl.cpp` 从 ok 打成 fail、
+丢掉它 11 条 s4 符号 —— 这正是上一轮被独立复核判 blocker 的机制。
+
+## 12.1 错误分解（实测，20 = 11 + 7 + 2）
+
+| 族 | 数量 | 形态（当前源码行） | 层次 |
+|---|----|-------------------|------|
+| `C2100 illegal indirection` | **11** | `:239 void *v20; // esi` → `:132 Rotate(v12, *v20)`（局部被推成 `void *` 后解引用/传值） | annotation 成员类型 → 传染局部 |
+| `C2664` | **7** | ① `:94 SetAxisAngle(v20, 45.0)` 传**值**、声明是 `gbVec3D*`（2）② `:337 GetRayToScreen(pRay, &Point.x)`：`POINT.x` 是 **`LONG`**，MSVC6 里 `long*` ≠ `int*`（5） | ①调用点实参退化 ②参数类型注解 |
+| `C2660` | **2** | `:358 GetOBBox(&actionId)` 传 1 参而声明 "does not take 2" ⇒ 参数数 vs `ret N` | annotation 签名 |
+
+## 12.2 两条可直接开工的线索
+
+1. **`void *` 局部从哪来**：`UIProgressBar.json` 的 `known_members["88"]`(`m_progress`) 的 source 串是
+   `"A:PAL3patch_verified(running_code); type_fix:m_p*_int_to_void*"`（但 `type` 现值是 `int`）。
+   **全库共 10 处这种批量 `type_fix:m_p*_int_to_void*`**，其中 **6 处现值就是 `void *`**：
+   `Actor+496 m_pSelfAtt`、`NPC+60 m_pConditionB`、`PalScript+144/+148 m_pCurrentTask/m_pTaskPtr`、
+   **`RoleCameraCtrl+8 m_pVtable`**、**`ScreenEffectMgr+0 m_pVtable`**。
+   ⚠️ 后两个把**偏移 0 的 vftable** 标成名为 `m_pVtable` 的 `void*` 成员 —— 与 `__vftable` 约定冲突，须单独核。
+   这类批量 type_fix 正是 CLAUDE.md 禁的"批量修改未验证字段"，值得作为**独立审计项**。
+2. **`0x56AC70` 属 `UICaption`(96) 还是 `UIButton`(344)**：ctor `0x43A770`（`new(0x158)`×2、stride 0x158×106、
+   直调 `0x445aa0`=UIWnd ctor ⇒ 直系派生）。关键判据 = **`0x56AC90`（派生表）的安装者是否 `call 0x43A770`**
+   + `0x43A770` 的写入偏移集（尤其 `rep stos` 覆盖 212..340）与两候选的 `known_members` 对照。
+   这条不解，`UIButton` 只能空着，会重演 `UIButton.cpp` 消失。
+
+## 12.3 在飞任务（本次会话）
+
+- 内部子 agent `d62338e9`：**N1** —— 三族错误的根因 + 最小修复方案（只读，不改文件）。
+- 内部子 agent `d4acdb30`：**N2** —— `0x56AC70`/`0x56AC90` 归属定谳（只读）。
+
+回来后由 captain 合并成**一个完整变更集**再落地。**不许**拆分落地（这正是上一轮的教训）。
+
+## 12.4 重新落地的验收清单（补上上一轮漏掉的两项）
+
+```
+① L1 按 (VA) 集合比对 —— 不只看条数        ← 上一轮只比条数，漏掉"成分替换"
+② 生成文件存在性 diff（ls pal3/src/**/*.cpp vs 上一版）  ← 上一轮漏掉"UIButton.cpp 消失"
+③ compile_regression.py 单独跑（不信 codegen 内置那次：
+   回退后它报过幻影回归 15:01:25 指纹 62/202，而 15:01:37 独立 probe 才给出正确的 61）
+④ s4 逐行符号 diff（查"静默消失"的符号）
+⑤ probe all + error_classifier + audit_layout + check + annotation_diff
+⑥ A-B-A：先归档 probe_census.json + s4_baseline.json
+```
+
+## 12.5 当前安全状态
+
+工作区干净；`3aff03cf2` 已提交。回退后指标逐项回到 pre-state：
+`UIButton.cpp` 已恢复生成、`matched 191/218 | L1 17`、`probe s2 ok=61`、
+`compile_regression.py → ✅ No regressions detected (Current S2: 61/202)`、
+`--self-test 17/17`、单测 54 OK。
