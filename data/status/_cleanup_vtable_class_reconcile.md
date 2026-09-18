@@ -2360,3 +2360,46 @@ if offset == 0 and mname in ("__vftable", "vfptr") and virtual_methods:
 这正是"annotation 质量要逐步做 IDB 分析、没有捷径"的具体形态。
 **可先把 36.1 的特判 + 用法证据做成一个审计工具**，输出每个类的"是/不是 vfptr + 依据"，
 再按结论分批走管线。
+
+---
+
+# 37. offset0 `__vftable` 审计工具与首轮结果（含一个**诚实暴露的局限**）
+
+## 37.1 工具
+
+`tools/audit_vftable_offset0.py`：对注解里 offset0 声明 `__vftable` 的每个类收集**独立证据**并给结论。
+
+| 信号 | 含义 |
+|---|---|
+| `ctor_disp0` | 该类注解 ctor（或安装其主表的函数）里**有没有位移 0 的 vtable 安装** ⇒ 有则 offset0 **确凿**是 vfptr |
+| `polymorphic` | 有 `vtables` 注解 / 有被注解的方法 |
+| `objptr_casts` | decomp 里 `(X *)C::__vftable` 的次数 ⇒ 被当**对象指针**用 |
+| `n_through` / `n_store` / `n_arith` | 经它取成员 / 存入 / 参与算术 |
+| `src` | 注解 `source` 字段（**只作最后参考**） |
+
+结论：**VFPTR**（拿到位移 0 安装点）｜**DATA_PTR**（有对象指针用法/算术、且无安装点）｜**UNKNOWN**。
+
+## 37.2 首轮结果（114 个类）
+
+**VFPTR 61 ｜ DATA_PTR 0 ｜ UNKNOWN 53**
+
+**VFPTR=61 的含义很重要**：这 61 个类的 ctor **确实在 `[this+0]` 装了 vtable**
+⇒ 它们的 offset0 **真的是 vfptr** ⇒ `apply_annotations:431` 那条特判**对它们是正确的**，
+**绝不能改名**（与 §36.5 的判断一致：有二进制支撑的不能动）。
+
+## 37.3 **诚实暴露的局限**：按名字统计引用不可靠
+
+53 个 UNKNOWN 里，19 个 `CTaskTpl_tagEffTaskParam_CEff*` 的 `refs = 0` ——
+但 §30 实测这些类**确实**出现在 `this->CTaskTpl_…::__vftable` 形态里。
+原因是 **decomp 的拼写随上下文变化**：本轮的试点把 `CEffObj` 的 offset0 改名后，
+CEff 族的链拼写也随之改变 ⇒ **"某类名出现次数"不是稳定的引用度量**。
+
+⇒ 工具可用于"**有没有位移 0 安装点**"这一**确凿**判据（61 个 VFPTR 可信），
+但"用法"一路必须改成**按对象静态类型 + 偏移**解析，而不是按类名匹配字符串。
+
+## 37.4 下一步（把 53 个 UNKNOWN 逐个定案）
+
+对每个 UNKNOWN：① 该类**是否在任何地方有多态证据**（自身/派生类的安装点、方法表）；
+② 它的 offset0 是否**从来只做数据用法**（对象指针强转、算术、比较）。
+两条都指向"非 vfptr" ⇒ **批量改名 + 走管线**（试点已证明这条路能同时降错误并涨 L1）。
+这仍需要**逐类看证据**，正是"annotation 质量要逐步做、没有捷径"的形态。
