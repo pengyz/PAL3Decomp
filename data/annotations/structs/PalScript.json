@@ -1674,6 +1674,10 @@
       "name": "InitMainUIScripts",
       "signature": "int __thiscall PalScript::InitMainUIScripts()",
       "_misattrib_evidence": "max_offset=54700>class_size=1816"
+    },
+    "0x00411CA0": {
+      "name": "~PalScript",
+      "note": "attribution-fix(member-access evidence): 该函数引用的成员 m_RoleArray/m_RoleSlotArray/m_bCreated/m_pActorData/m_pDialogData/m_nTaskIndex **全部属于 PalScript、且都不在 ScriptObj 里** ⇒ 归属应为 PalScript。原注解为 ScriptObj::~ScriptObj（且 decomp 是 __cdecl、this-> 出现 0 次）。"
     }
   },
   "vtables": [

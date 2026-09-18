@@ -2577,3 +2577,50 @@ decomp 文件是 `ScriptObj_ScriptObj_00411ca0.json`，签名为
 四张互相依赖的映射里 **`函数→类` 是最底层的一张**；它现在从"隐约有问题"变成了
 **一个有判据、有工具、有 339 个候选清单的具体任务**。修它的收益不止于基偏移：
 函数归属错了，`表→类`、`槽→方法`、`基偏移` 全都建在沙上（§39 空集、§40 误归属即例证）。
+
+---
+
+# 42. 归属定案的第一个实例 + **批处理工作流**（回应"改一次跑一次受不了"）
+
+## 42.1 第一个定案：`sub_411CA0` 归属 `ScriptObj` → **`PalScript`**
+
+**判据（成员访问证据，项目规则要求）**：该函数引用的成员
+
+```
+m_RoleArray / m_RoleSlotArray / m_bCreated / m_pActorData / m_pDialogData / m_nTaskIndex
+```
+
+**全部属于 `PalScript`，且都不在 `ScriptObj` 里** ⇒ 归属应为 `PalScript` ✓
+**旁证**：原注解**自带** `_misattrib_evidence: "max_offset=140>class_size=4"`
+—— 之前某个会话已检出它误归属（成员最大偏移 140 > `ScriptObj` 尺寸 4），与我的独立判据吻合；
+且 decomp 是 `int __cdecl ScriptObj__ScriptObj(int)`、`this->` **0 次**。
+
+**实测结果：总错误 2446 → 2446，ok 69 → 69 —— 无可测收益。**
+（该函数归到正确的类了，但该文件的错误计数不变；属**正确性修正**，保留。）
+> 教训：**"归属正确"与"指标改善"是两件事** —— 不要用指标去反推归属是否正确。
+
+## 42.2 **批处理工作流**（本轮真正的交付）
+
+新增：
+
+* `tools/apply_annotation_batch.py` —— 一次落盘一批修正 + `check` 校验（**不动 IDB**），
+  `--run-pipeline` 才跑**一次** apply/export/codegen/probe；
+* `data/status/annotation_fix_batch.json` —— 批次文件；
+* `docs/knowledge/pattern_annotation_fix_batching.md` —— 工作流与硬约束。
+
+**硬约束（工具会拒绝不合规条目，宁可不做也不写无据改动）**：
+`evidence` 为空、重归属缺成员访问证据、改名后仍无语义且缺 `name_evidence`。
+
+**与"函数名合理性"配合**：重归属时**必须同时复核名字**；仍无语义的名字要给出
+`name_evidence`（依据它**做什么**）；给不出语义就用 `_todo_` 风格的**诚实占位名** ——
+**禁止造名**（`pattern_annotation_batch_rename_no_evidence.md` 记载过一次造名批量被整体撤销）。
+
+**非语义函数名规模**：3395 个注解方法里 **126 个**是候选
+（`_sdtor*` / `_scalar_dtor*` / 尾部十六进制如 `Destroy_c880`、`Update_bbc0`、`~CUtil_31f0`）。
+
+## 42.3 下一步（按批推进）
+
+1. 用 `tools/audit_method_attribution.py` 的 339 个候选，**逐条**取成员访问证据定案；
+2. 同时按 42.2 的规则复核/修正函数名；
+3. 全部写进 `annotation_fix_batch.json`（每条带证据）；
+4. **攒够一批后跑一次** `apply_annotation_batch.py --run-pipeline`，再对账 + `match`。
