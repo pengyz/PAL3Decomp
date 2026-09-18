@@ -7,3 +7,16 @@
 - UI3DCtrl.json / UIProgressBar.json / UIButton.json / UIFlexBar.json —— 迁移前原文
 
 变更依据：data/status/_cleanup_vtable_class_reconcile.md §2（A 级三链证据）
+
+## 回退方法
+
+```bash
+# 4 个文件：直接用本目录快照覆盖
+cp data/status/archive/20260918_1423_vtable_reconcile/{UI3DCtrl,UIProgressBar,UIButton,UIFlexBar}.json \
+   data/annotations/structs/
+
+# UIStatic.json 未在快照里（落地后期才追加修改），用 git：
+git show 66367eab6^:data/annotations/structs/UIStatic.json > data/annotations/structs/UIStatic.json
+
+# 回退后必须重跑：check → apply → export → codegen all → compile → probe all → match
+```
