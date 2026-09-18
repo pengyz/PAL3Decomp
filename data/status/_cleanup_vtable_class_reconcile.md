@@ -978,3 +978,99 @@ Hex-Rays 把 `CameraCtrl::GetViewTarget` 的 out 参数（应当传 `pTarget[0]`
 行号会漂移）、同码增删并存识别为 churn（非新错误种类）、**剔除 C1003 截断单元**、
 新增 `--before/--after` 直比两份 census 与 `--self-test`（7 项，只依赖合成输入）。
 旧实现用**下标切片** `errors[baseline_count:]` 判断新错误，在"总数不变但种类换了"时**完全失明**。
+
+---
+
+# 18. C2660 调研结论 + 我亲自复核的两条 A 级 codegen 缺陷（2026-09-18）
+
+子 agent（只读，唯一写入 `data/status/_c2660_survey.md`）交付了 418 条 C2660 的逐条解析
+（416 条正则精确匹配实参个数 + 2 条人工）与亚族分解。**我复核了它最关键的两条论断**，
+结论如下（含一条对它表述的纠正）。
+
+## 18.1 复核结论一：`static_methods` 守卫**确实恒为假**（成立，A 级）
+
+- `pipeline/gen/data.py:336`：`self.static_methods.add(_name)`，而 `_name` 是 decomp 的
+  **带参数表**名字（同函数上方的注释自己写着 `decomp \`name\` carries a param list ("Cls::M(int)")`）。
+  **实测**：104 条里 **96 条含 `(`**，例如 `Actor::CompareModelName(char *,char *)`。
+- `pipeline/gen/ast_transform.py:447`（以及 `:620`）：`qualified = '%s::%s' % (class_name, method_name)`
+  = `Cls::M`（**无参数表**）⇒ `qualified in static_methods` **对那 96 条恒为假**。
+  ⇒ "`__cdecl` 静态成员的第一个实参是数据、不是 `this`" 这条守卫**从未生效**，
+  第 1 个实参被当 `this` 吞掉。子 agent 估 118 条 / 44 簇 / 20 文件。
+- 另发现**第三处误用**：`ast_transform.py:596` 是 `_strip not in static_methods`，
+  拿一个**变量/全局名**去比 `Cls::M` 集合 —— 与另两处语义不同，属独立缺陷。
+- 修法：存储时一并保存裸名（`_name.split('(')[0]`，`method_sigs` 已经这么做了），
+  或比较时把两侧都归一化。**注意 `test_pipeline.py:76` 传的是裸 `{'Foo::StaticMethod'}`，
+  所以现有单测覆盖不到真实形态** —— 修之前先补一条用"带参数表"形态的单测。
+
+## 18.2 复核结论二：`RET_RE` 的 `h` 后缀缺陷（成立，A 级）
+
+`tools/sig_evidence.py:27`：
+```python
+RET_RE = re.compile(r'^(?:retn|ret)(?:\s+([0-9A-Fa-f]+)h?)?\s*$')   # h? 把 h 吃掉了
+def parse_ret_num(rest):
+    if rest.lower().endswith('h'):      # ← 对这条正则永远是死代码
+        return int(rest[:-1], 16)
+    return int(rest)
+```
+**实测**（直接调用这两个函数）：
+| asm 文本 | 捕获 | parse 结果 | 真值 |
+|---|---|---|---|
+| `retn 20h` | `20` | **20** | 32 |
+| `retn 10h` | `10` | **10** | 16 |
+| `retn 0Ch` | `0C` | **ValueError** | 12 |
+| `retn 8` | `8` | 8 ✓ | 8 |
+
+**asm 文本形态是 A 级确证的**：`original/PAL3.exe.asm` 里所有多位立即数**都带 `h`**
+（`10h` 199 处、`14h` 151、`18h` 122、`20h` 17、`0Ch` 916、`1Ch` 11、`44h` 5），
+且**不存在**"无 `h` 的多位数"（正则 `\bretn +[0-9]{2,}\b` 命中 **0** 条）。
+⇒ 十六进制分支永不触发，所有多位立即数按十进制解析。
+
+**后果（按真值分类）**：
+- `retn 10h`/`14h`/`18h`/`44h` → 解析值非 4 的倍数 → grade `B-ODDRET` → **不发 `slots`**
+  ⇒ 证据门 `_ret_param_slots == len(args)-1` **永久阻塞**（假阴性）；
+- `retn 20h` → 20 → `slots=5`（真值 8）⇒ **发布错误 slots**，门判错；
+- `retn 0Ch` → `ValueError`（单元级已复现；**端到端是否会崩未验证**，见 18.4）。
+
+**pack 里的直接旁证**：456 条中 **17 条的 `rets` 不是 4 的倍数**（如 `[14]`、`[10]`），
+而真 `retn` 立即数必然是 `4×slots` ⇒ **这 17 条必然是误解析**。
+其中 `rets=[20,20] slots=5 grade=B-SLOTMISMATCH`（`CCBStage::GetRoleName`）正是子 agent 举的例，
+修好后 slots=8，而调用点 `len(args)=9` ⇒ `8 == 9-1` **恰好通过门**（现状 slots=5 通不过）。
+
+**对子 agent 表述的纠正**：它说"`sig_evidence.py` 标了 `B-SLOTMISMATCH` 却仍把 `slots` 写进 pack"
+是缺陷 —— **不对**。读 `sig_evidence.py:148-161` 后可见该 grade 的语义是：
+retn 值**一致且是 4 的倍数**、只是**调用点实参数与它不一致**（`len(caller_args)==1` 且不等）。
+发布 retn 真值**本身是对的**（二进制真值优先于调用点），`B-SLOTMISMATCH` 是"调用点在说谎"的信号。
+**真正的 bug 只有 D1（十六进制解析）**，它让"真值"本身就是错的。
+
+## 18.3 第三条（未逐行复核，子 agent 报的）：vtable 槽位 `//4` 缩放
+
+`stage3_cleanup.py:501` 是 `slots.get(d['offset'] // 4)`（`:100` 亦有 `slot_index = offset // 4`）。
+子 agent 称 Hex-Rays 的 `__vftable + N` 里 **N 已是槽位下标**（二进制 `[eax+30h]`=slot12 对应文本 `+12`），
+故再 `//4` 会得到 3 而非 12，产出"看起来对"的错名字。**这条我尚未亲自验证**（需要拿一个具体
+调用点的 `+N` 与其二进制 vtable 访问对照），标为**待验证**，不要当结论用。
+
+## 18.4 未闭合 / 需要下一步验证的
+
+1. `retn 0Ch` 的 `ValueError`：**单元级已复现**（直接调用 `RET_RE`+`parse_ret_num`）；
+   但 pack 有 456 条且看起来生成成功过，说明**端到端跑 `tools/sig_evidence.py` 时可能另有归一化或吞异常**。
+   修 D1 之前**先跑一次** `python3 tools/sig_evidence.py` 看是否真崩（不要凭推断下结论）。
+2. vtable `//4`（18.3）待逐点验证。
+3. 8 个"只被 C2660 卡住"的文件需 **6 类不同改动**（不存在"修一族 +8"）：
+   `CCBFiveNimbusWindow`(annotation)、`CCBStageShadow`(codegen×2)、`C3DSpark`(codegen)、
+   `Comp_DonateUI`(annotation)、`SwordUI`/`TextureLib`/`Role`(codegen 证据)、`Scene`(static 守卫)。
+4. 不可修：STL/CRT 内部（`std::string::_Eos` 8 条）、Hex-Rays 静默丢实参
+   （`gbVFileSystem::Read` 33 条、`CreateFromMemory` 12 条 — codegen 看不到被丢的实参）、
+   `::ShowWindow` 遮蔽 9 条（文本层无法区分 import 与成员）。
+5. 子 agent 标"证据不足"的约 50 条单点（类归属与真值均未定）。
+
+## 18.5 建议的下一个落地 slot（按 ROI）
+
+1. **修 D1（`RET_RE`/`parse_ret_num`）**：证据 A 级、改动极小（正则与/或换算一行）、
+   且**它错的是"二进制真值"本身** —— 影响面是整张证据门。先补单测（`retn 20h`→8 slots 等），
+   再跑 `tools/sig_evidence.py` 重建 pack，然后 `codegen all`+`probe all`+对账。
+   预期至少解锁 `SwordUI.cpp`、`TextureLib.cpp`（+2 ok），并修正 `GetRoleName` 一类门的判错。
+   风险：中（要动 `_sig_evidence_pack.json` 的**全部** retn 派生值，属全局性变更，必须走完整 A-B-A）。
+2. **修 `static_methods` 守卫**：证据 A 级、改动小（存储/比较归一化）、
+   预期解锁 `Scene.cpp` 并影响 118 条。**但必须先补"带参数表形态"的单测**
+   （现有 `test_pipeline.py:76` 用的是裸名，覆盖不到真实形态 ⇒ 改了也测不出来）。
+3. DLL 侧证据补全（`gbVec3D::operator=` 27 条 / `Role.cpp`）。
