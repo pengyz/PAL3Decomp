@@ -71,6 +71,39 @@ class Asm:
             self._seg[lab] = '\n'.join(self.lines[s:e])
         return self._seg[lab]
 
+    def installs_v(self, lab):
+        """某函数内按出现顺序的 **(位移, 装的哪张表)** —— 含 lea / 寄存器装载形态。
+
+        归属需要"装的是哪张表"（表→类 可由注解 `vtables[].addr` 给出），
+        所以这里与 `installs()` 一并提供。
+        """
+        if lab not in self.spans:
+            return None
+        s, e = self.spans[lab]
+        reg, vreg, seq = {}, {}, []
+        for k in range(s, e):
+            line = self.lines[k]
+            lm = _LEA.search(line)
+            if lm:
+                reg[lm.group(1)] = int(lm.group(3), 16)
+                continue
+            vm = _MOVV.search(line)
+            if vm:
+                vreg[vm.group(1)] = int(vm.group(2)[4:], 16)
+                continue
+            mm = _MOVI.search(line)
+            if mm:
+                seq.append((reg.get(mm.group(1), 0) +
+                            (int(mm.group(2), 16) if mm.group(2) else 0),
+                            int(mm.group(3)[4:], 16)))
+                continue
+            mr = _MOVR.search(line)
+            if mr and mr.group(3) in vreg:
+                seq.append((reg.get(mr.group(1), 0) +
+                            (int(mr.group(2), 16) if mr.group(2) else 0),
+                            vreg[mr.group(3)]))
+        return seq
+
     def installs(self, lab):
         """某函数内**按出现顺序**的 vfptr 安装位移（含 lea / 寄存器装载形态）。"""
         if lab not in self.spans:
