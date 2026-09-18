@@ -166,14 +166,6 @@
       "name": "UIStatic_Base",
       "signature": "UIStatic *__thiscall UIStatic::UIStatic_Base()"
     },
-    "0x0043D920": {
-      "name": "Destroy",
-      "signature": "void __thiscall()"
-    },
-    "0x0043DAB0": {
-      "name": "RenderQuadSlice",
-      "signature": "void __thiscall(int *pnVal, int nVal)"
-    },
     "0x00442480": {
       "name": "LoadTextureByName",
       "signature": "void __thiscall(LPCSTR lpString, char pData)"
@@ -267,5 +259,6 @@
     }
   ],
   "base_size": 68,
-  "size_note": "alloc says 248 (3 sites, vtable-proven ctor 0x440740) but 152->248 destabilizes UIStaticFlip/EX/RM family emission (headers vanish); deferred pending family member alignment"
+  "size_note": "alloc says 248 (3 sites, vtable-proven ctor 0x440740) but 152->248 destabilizes UIStaticFlip/EX/RM family emission (headers vanish); deferred pending family member alignment",
+  "_vtable_reconcile": "方法 0x43D920/0x43DAB0 已迁往 UIFlexBar（cluster B = 0x43D830 ctor 所在类）。UIStatic 自身的方法全在 0x440740..0x44BExx，这两个是本文件里的离群项。"
 }

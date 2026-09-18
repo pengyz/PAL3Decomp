@@ -32,6 +32,98 @@
   "base_class": [
     "UIWnd"
   ],
-  "methods": {},
-  "base_size": 68
+  "methods": {
+    "0x0043D830": {
+      "name": "UIFlexBar",
+      "signature": "int *__thiscall()",
+      "_migrated_from": "UI3DCtrl",
+      "_evidence": "A:vtable_class_reconcile(fstps/dump+stride+new). 0x56AC20 ctor=0x439030 stride 0x134=308(4 pairs, hand-verified SaleUI::InitUI 0x5251f8/0x525208/0x525218); this writes 236..304 (req=308); LoadModel/UpdateRotation/UpdateTransform access same 228..294 -> UI3DCtrl(308). 0x56AD64 ctor=0x43F7F0 new(0xF4=244)x2 + stride 0xF4; constructs UILoadingFrm.m_LoadProgress(off 72) typed UIProgressBar; sizeof(UILoadingFrm)=new(0x14C=332) at 0x44f8fd => 72+344>332 excludes UIButton -> UIProgressBar(244). 0x56ACFC real ctor=0x43D830 writes {68,72,76,80}=m_tilewidth/m_tileheight/m_tex/m_style with 0x20/0x20/0/0, req=84=UIFlexBar.binary_size (0x43D880 is only a vptr-install stub that jumps to UIWnd::UIWnd which overwrites it). See data/status/_cleanup_vtable_class_reconcile.md"
+    },
+    "0x0043D860": {
+      "name": "_scalar_dtor",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5,
+      "_migrated_from": "UI3DCtrl",
+      "_evidence": "A:vtable_class_reconcile(fstps/dump+stride+new). 0x56AC20 ctor=0x439030 stride 0x134=308(4 pairs, hand-verified SaleUI::InitUI 0x5251f8/0x525208/0x525218); this writes 236..304 (req=308); LoadModel/UpdateRotation/UpdateTransform access same 228..294 -> UI3DCtrl(308). 0x56AD64 ctor=0x43F7F0 new(0xF4=244)x2 + stride 0xF4; constructs UILoadingFrm.m_LoadProgress(off 72) typed UIProgressBar; sizeof(UILoadingFrm)=new(0x14C=332) at 0x44f8fd => 72+344>332 excludes UIButton -> UIProgressBar(244). 0x56ACFC real ctor=0x43D830 writes {68,72,76,80}=m_tilewidth/m_tileheight/m_tex/m_style with 0x20/0x20/0/0, req=84=UIFlexBar.binary_size (0x43D880 is only a vptr-install stub that jumps to UIWnd::UIWnd which overwrites it). See data/status/_cleanup_vtable_class_reconcile.md"
+    },
+    "0x0043D880": {
+      "name": "ctor",
+      "signature": "void __thiscall()",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "_migrated_from": "UI3DCtrl",
+      "_evidence": "A:vtable_class_reconcile(fstps/dump+stride+new). 0x56AC20 ctor=0x439030 stride 0x134=308(4 pairs, hand-verified SaleUI::InitUI 0x5251f8/0x525208/0x525218); this writes 236..304 (req=308); LoadModel/UpdateRotation/UpdateTransform access same 228..294 -> UI3DCtrl(308). 0x56AD64 ctor=0x43F7F0 new(0xF4=244)x2 + stride 0xF4; constructs UILoadingFrm.m_LoadProgress(off 72) typed UIProgressBar; sizeof(UILoadingFrm)=new(0x14C=332) at 0x44f8fd => 72+344>332 excludes UIButton -> UIProgressBar(244). 0x56ACFC real ctor=0x43D830 writes {68,72,76,80}=m_tilewidth/m_tileheight/m_tex/m_style with 0x20/0x20/0/0, req=84=UIFlexBar.binary_size (0x43D880 is only a vptr-install stub that jumps to UIWnd::UIWnd which overwrites it). See data/status/_cleanup_vtable_class_reconcile.md"
+    },
+    "0x0043D890": {
+      "name": "CreateWithTexture",
+      "signature": "gbVFileSystem *__thiscall UIFlexBar::CreateWithTexture(int id, void *pRect, int nVal, unsigned int dwVal, int parent)",
+      "ordinal": 7,
+      "_migrated_from": "UI3DCtrl",
+      "_evidence": "A:vtable_class_reconcile(fstps/dump+stride+new). 0x56AC20 ctor=0x439030 stride 0x134=308(4 pairs, hand-verified SaleUI::InitUI 0x5251f8/0x525208/0x525218); this writes 236..304 (req=308); LoadModel/UpdateRotation/UpdateTransform access same 228..294 -> UI3DCtrl(308). 0x56AD64 ctor=0x43F7F0 new(0xF4=244)x2 + stride 0xF4; constructs UILoadingFrm.m_LoadProgress(off 72) typed UIProgressBar; sizeof(UILoadingFrm)=new(0x14C=332) at 0x44f8fd => 72+344>332 excludes UIButton -> UIProgressBar(244). 0x56ACFC real ctor=0x43D830 writes {68,72,76,80}=m_tilewidth/m_tileheight/m_tex/m_style with 0x20/0x20/0/0, req=84=UIFlexBar.binary_size (0x43D880 is only a vptr-install stub that jumps to UIWnd::UIWnd which overwrites it). See data/status/_cleanup_vtable_class_reconcile.md"
+    },
+    "0x0043D920": {
+      "name": "Destroy",
+      "signature": "void __thiscall()",
+      "ordinal": 3,
+      "_migrated_from": "UIStatic",
+      "_evidence": "A:this-offset bound + cluster locality + slot ordinals. 0x43D920 (25B): this reads/writes only offset 76 (`mov 0x4c(%esi),%ecx; test; je; call *0x56a58c; movl $0x0,0x4c(%esi)`) = release of m_tex: gbTexture* @76; req=80 <= 84; it is slot3 of 0x56ACFC (cluster B's own table) and is NOT a slot of either UIStatic vtable (0x56AD88 slot3=0x440BA0 OnMessage; 0x56AE48 slot3=0x442420 UIFrameWnd's). 0x43DAB0 (400B): this accesses exactly {68,72,76,80} (req=84) = UIFlexBar's own member set. Both are adjacent to cluster B (0x43D830 ctor / 0x43D940 Render) while UIStatic's own methods are all in 0x440740..0x44BExx -> they are cluster-B strays parked in UIStatic.json."
+    },
+    "0x0043D940": {
+      "name": "Render",
+      "signature": "void __thiscall()",
+      "ordinal": 1,
+      "_migrated_from": "UI3DCtrl",
+      "_evidence": "A:vtable_class_reconcile(fstps/dump+stride+new). 0x56AC20 ctor=0x439030 stride 0x134=308(4 pairs, hand-verified SaleUI::InitUI 0x5251f8/0x525208/0x525218); this writes 236..304 (req=308); LoadModel/UpdateRotation/UpdateTransform access same 228..294 -> UI3DCtrl(308). 0x56AD64 ctor=0x43F7F0 new(0xF4=244)x2 + stride 0xF4; constructs UILoadingFrm.m_LoadProgress(off 72) typed UIProgressBar; sizeof(UILoadingFrm)=new(0x14C=332) at 0x44f8fd => 72+344>332 excludes UIButton -> UIProgressBar(244). 0x56ACFC real ctor=0x43D830 writes {68,72,76,80}=m_tilewidth/m_tileheight/m_tex/m_style with 0x20/0x20/0/0, req=84=UIFlexBar.binary_size (0x43D880 is only a vptr-install stub that jumps to UIWnd::UIWnd which overwrites it). See data/status/_cleanup_vtable_class_reconcile.md"
+    },
+    "0x0043DAB0": {
+      "name": "RenderQuadSlice",
+      "signature": "void __thiscall(int *pnVal, int nVal)",
+      "_migrated_from": "UIStatic",
+      "_evidence": "A:this-offset bound + cluster locality + slot ordinals. 0x43D920 (25B): this reads/writes only offset 76 (`mov 0x4c(%esi),%ecx; test; je; call *0x56a58c; movl $0x0,0x4c(%esi)`) = release of m_tex: gbTexture* @76; req=80 <= 84; it is slot3 of 0x56ACFC (cluster B's own table) and is NOT a slot of either UIStatic vtable (0x56AD88 slot3=0x440BA0 OnMessage; 0x56AE48 slot3=0x442420 UIFrameWnd's). 0x43DAB0 (400B): this accesses exactly {68,72,76,80} (req=84) = UIFlexBar's own member set. Both are adjacent to cluster B (0x43D830 ctor / 0x43D940 Render) while UIStatic's own methods are all in 0x440740..0x44BExx -> they are cluster-B strays parked in UIStatic.json."
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056ACFC",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043D940",
+          "from": null
+        },
+        {
+          "addr": "0x00445C60",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043D920",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043D860",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043D890",
+          "from": null
+        }
+      ]
+    }
+  ],
+  "base_size": 68,
+  "_vtable_reconcile": "vtable_class_reconcile 2026-09-18: methods+vtables block was attached to the wrong class; known_members/binary_size were right. A:vtable_class_reconcile(fstps/dump+stride+new). 0x56AC20 ctor=0x439030 stride 0x134=308(4 pairs, hand-verified SaleUI::InitUI 0x5251f8/0x525208/0x525218); this writes 236..304 (req=308); LoadModel/UpdateRotation/UpdateTransform access same 228..294 -> UI3DCtrl(308). 0x56AD64 ctor=0x43F7F0 new(0xF4=244)x2 + stride 0xF4; constructs UILoadingFrm.m_LoadProgress(off 72) typed UIProgressBar; sizeof(UILoadingFrm)=new(0x14C=332) at 0x44f8fd => 72+344>332 excludes UIButton -> UIProgressBar(244). 0x56ACFC real ctor=0x43D830 writes {68,72,76,80}=m_tilewidth/m_tileheight/m_tex/m_style with 0x20/0x20/0/0, req=84=UIFlexBar.binary_size (0x43D880 is only a vptr-install stub that jumps to UIWnd::UIWnd which overwrites it). See data/status/_cleanup_vtable_class_reconcile.md"
 }

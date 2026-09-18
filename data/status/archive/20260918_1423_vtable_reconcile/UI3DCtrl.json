@@ -1,0 +1,207 @@
+{
+  "name": "UI3DCtrl",
+  "binary_size": 308,
+  "known_members": {
+    "68": {
+      "name": "m_numobj",
+      "type": "int",
+      "source": "annotation"
+    },
+    "72": {
+      "name": "m_obj",
+      "type": "UI3DObj[5]",
+      "source": "annotation"
+    },
+    "232": {
+      "name": "m_orthosize",
+      "type": "float",
+      "source": "annotation"
+    },
+    "236": {
+      "name": "m_rotatemode",
+      "type": "int",
+      "source": "annotation"
+    },
+    "240": {
+      "name": "m_isrotateto",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "244": {
+      "name": "m_speed",
+      "type": "int",
+      "source": "annotation"
+    },
+    "248": {
+      "name": "m_rotate",
+      "type": "float",
+      "source": "annotation"
+    },
+    "252": {
+      "name": "m_rotatetarget",
+      "type": "float",
+      "source": "annotation"
+    },
+    "256": {
+      "name": "m_rotx",
+      "type": "float",
+      "source": "annotation"
+    },
+    "260": {
+      "name": "m_rotz",
+      "type": "float",
+      "source": "annotation"
+    },
+    "264": {
+      "name": "m_dropx",
+      "type": "float",
+      "source": "annotation"
+    },
+    "268": {
+      "name": "m_dropy",
+      "type": "float",
+      "source": "annotation"
+    },
+    "272": {
+      "name": "m_dropz",
+      "type": "float",
+      "source": "annotation"
+    },
+    "276": {
+      "name": "m_scalex",
+      "type": "float",
+      "source": "annotation"
+    },
+    "280": {
+      "name": "m_scaley",
+      "type": "float",
+      "source": "annotation"
+    },
+    "284": {
+      "name": "m_scalez",
+      "type": "float",
+      "source": "annotation"
+    },
+    "288": {
+      "name": "m_lightobj",
+      "type": "gbLightObj *",
+      "source": "annotation"
+    },
+    "292": {
+      "name": "m_camera",
+      "type": "gbCamera *",
+      "source": "annotation"
+    },
+    "296": {
+      "name": "m_raydir",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "0": {
+      "name": "__vftable",
+      "type": "void *",
+      "source": "vtable_fix"
+    }
+  },
+  "base_class": [
+    "UIWnd"
+  ],
+  "methods": {
+    "0x0043D880": {
+      "name": "ctor",
+      "signature": "void __thiscall()",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+    },
+    "0x0043D830": {
+      "name": "UI3DCtrl",
+      "signature": "int *__thiscall()"
+    },
+    "0x0043D860": {
+      "name": "_scalar_dtor",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
+    },
+    "0x0043D890": {
+      "name": "CreateWithTexture",
+      "signature": "gbVFileSystem *__thiscall UI3DCtrl::CreateWithTexture(int id, void *pRect, int nVal, unsigned int dwVal, int parent)",
+      "ordinal": 7
+    },
+    "0x0043D940": {
+      "name": "Render",
+      "signature": "void __thiscall()",
+      "ordinal": 1
+    },
+    "0x0052B050": {
+      "name": "LoadEncampModel",
+      "signature": "char __thiscall(const char *pszModelName, const char *pszName)"
+    },
+    "0x0052E8C0": {
+      "name": "UpdateRotation",
+      "signature": "double __thiscall()"
+    },
+    "0x0052E940": {
+      "name": "UpdateOscillation",
+      "signature": "double __thiscall UI3DCtrl::UpdateOscillation()"
+    },
+    "0x0052E9C0": {
+      "name": "UpdateOscillationX",
+      "signature": "double __thiscall UI3DCtrl::UpdateOscillationX()"
+    },
+    "0x0052EA40": {
+      "name": "UpdateOscillationY",
+      "signature": "double __thiscall UI3DCtrl::UpdateOscillationY()"
+    },
+    "0x0052EAC0": {
+      "name": "UpdateTransform",
+      "signature": "char __thiscall UI3DCtrl::UpdateTransform(int nVal)"
+    },
+    "0x0052AF20": {
+      "name": "LoadModel",
+      "signature": "char __thiscall UI3DCtrl::LoadModel(const char *pszModelName)"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056ACFC",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043D940",
+          "from": null
+        },
+        {
+          "addr": "0x00445C60",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043D920",
+          "from": "CCBProtectWindow"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043D860",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043D890",
+          "from": null
+        }
+      ]
+    }
+  ],
+  "base_size": 68
+}

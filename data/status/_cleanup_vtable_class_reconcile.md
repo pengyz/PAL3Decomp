@@ -187,3 +187,84 @@ SaleUI::InitUI  0x5251f8 lea 0xfa4(%esi),%ecx   0x525203 call 0x439030
 - UIWnd 三方法（`GetWidth/GetHeight/GetPosition`）**迁移本身是对的**，只是当初的理由（308）是错的。
 - 与 `docs/knowledge/gotcha_pdb_identity_drift_vtable_arbitration.md` 一致：
   "ctor 安装的 vtable 值 = 类的身份证"。本次新增**定量**手段（stride / `new` 实参）。
+---
+
+# 8. 落地结果（2026-09-18）—— A-B-A 实测
+
+落地内容：4 文件 `methods`+`vtables` 整块迁移（§6 清单），**并追加** 2 个同簇方法
+（`0x43D920 Destroy(ord3)`、`0x43DAB0 RenderQuadSlice`，原挂 `UIStatic.json` —— 见 §9）。
+
+管线段：`check`(PASS 0 errors) → `audit_layout`(PASSED) → `apply` → `annotation_diff`(变更集=意图) →
+`export`(3599 decomp 刷新) → `codegen all` → `compile` → `probe all` → `match`。
+
+## 8.1 指标（pre = `data/status/archive/20260918_1423_vtable_reconcile/` + 基线 `20260917_201614`）
+
+| 指标 | pre | post | Δ |
+|------|-----|------|---|
+| probe **s1** ok | 731/751 | 731/751 | 0 |
+| probe **s2** ok | 61/202 | **62/202** | **+1** |
+| s2 fail_own | 141 | 140 | −1 |
+| **s4 `match_L1`（硬线）** | **17** | **17** | **0** ✅ `[L1 ratchet] previous 17 -> current 17` |
+| s4 matched | 191/218 | 194/228 | +3 |
+| s4 partial | 149 | 150 | +1 |
+| s4 unmatched | 27 | 34 | +7（UIFlexBar 新符号名不在预期表） |
+| unresolved_synth | 25 | 27 | +2 |
+| error_classifier 失败文件 | — | 140（annotation_fix 63 / codegen_fix 29 / hexrays_limit 41 / manual_idb 1 / unknown 6） | — |
+
+## 8.2 生成头文件的效果（落地目的达成）
+
+| 头文件 | pre | post |
+|--------|-----|------|
+| `UIProgressBar.h` | `Render@0x00439410 / CheckRayHitRole@0x00439A20 / Destroy@0x00439810`（**UI3DCtrl 的函数**）| `Render@0x0043FF70 / Update@0x00440560 / Destroy@0x0043F9C0 / Create@0x0043FF00` ✅ |
+| `UI3DCtrl.h` | `Render@0x0043D940 / CreateWithTexture@0x0043D890`（**UIFlexBar 的函数**）| `Render@0x00439410 / CheckRayHitRole@0x00439A20 / Destroy@0x00439810` ✅ |
+| `UIButton.h` | 4 个 `virtual`（**其真表未找到**）| 0 个 `virtual` ✅（诚实化）|
+| `UIFlexBar.h` | **零个 virtual**（但其有虚表 ⇒ 必然字节不匹配）| `~UIFlexBar / Render@0x0043D940 / CreateWithTexture@0x0043D890` ✅ |
+
+## 8.3 错误账：**同一多重集搬移 +2**
+
+`UIProgressBar.cpp` 基线 **fail, 20 errors** → 现在 **ok, 0**；`UI3DCtrl.cpp` 0 → **21**。
+按 `(code,msg)` **忽略行号**比对：两者**相同 20 条**，`UI3DCtrl.cpp` 多 1 条
+`C2660 'QueryState' : function does not take 1 parameters`。
+
+`RoleAtt.cpp` 22 → 23：按 `(code,msg)` 比对，**真实新增仅 1 条**
+`C2059 syntax error : ')'`（`RoleAtt.cpp:123`）；其余差异是
+(i) **行号漂移**（同一条 C2664 由 668→667，`(code,line)` 比较把它算成"删+增"）、
+(ii) 我的重命名使反编译文本里的 `->UIButton` 变成 `->UIProgressBar`（C2653/C2227 各 1 条，数量不变）。
+
+⇒ **净增量 = 2 条**，且两条都在**本就失败**的单元里，分属两个**已归档的 codegen 缺口族**：
+- `C2059`：`...->UIProgressBar::FindChildByName(` —— **单段限定名**调用点。
+  `pipeline/gen/ast_transform.py` 的安全网 `_QUAL2` 要求 `(?:Ident::){2,}`，**单段不触发**（既有 C5(a) 的延伸）。
+- `C2660 QueryState`：已知 C2660 **原型约定**族（annotation 参数数 vs `ret N` vs 调用点实参数）。
+
+按 CLAUDE.md「**编译错误不是 annotation 回退理由**」，且 `L1` 硬线与 s2 ok 都未退化，**保留落地**；
+上述 2 条作为独立后续项（不属本次归属修复范围）。
+
+## 8.4 本次实测暴露的**门禁盲区**（第二个实证）
+
+`tools/regression_detector.py` 同时踩两坑：
+1. **按 `(code,line)` 比较** ⇒ 生成文件行号漂移会把同一条错误报成"新错误 + 已消失"。
+   实证：`RoleAtt.cpp` 的 C2664 由 668→667，被判为新增。
+2. **只比计数** ⇒ **错误在文件间整体搬移**（方法体迁移）看起来像回归。
+   实证：`UIProgressBar.cpp` −20 / `UI3DCtrl.cpp` +20 被报成"新失败"。
+
+⇒ 修法（与既有待办一致）：改成比 **`(code,msg)` 多重集**（忽略行号），并对"搬移"做
+跨文件多重集抵消后再判回归。已记入 `docs/knowledge/gotcha_measurement_bench_replicating_subject_logic.md` 附四。
+
+## 9. 追加：`0x43D920` / `0x43DAB0` 同属 cluster B
+
+两者原挂 `UIStatic.json`，而 `UIStatic` 自身 18 个方法的地址**全在 `0x440740..0x44BExx`** ⇒ 它们是离群项。
+
+| 函数 | 长度 | `this` 访问 | 判定 |
+|------|------|-------------|------|
+| `0x43D920` | 25 B | 只 `76` | cluster B 的 `Destroy`（`mov 0x4c(%esi),%ecx; test; je; call *0x56a58c; movl $0x0,0x4c(%esi)` = 释放 `m_tex: gbTexture*@76`）；且它是 `0x56ACFC` 的 **slot3**，**不是** `UIStatic` 两张表（`0x56AD88` slot3=`0x440BA0` OnMessage / `0x56AE48` slot3=`0x442420`）的任何槽位 |
+| `0x43DAB0` | 400 B | 恰 `{68,72,76,80}`，req=84 | cluster B 的非虚方法 `RenderQuadSlice` |
+
+迁移后 `UIFlexBar` 的 ordinal 为 **1/3/5/7**，恰好落在 8 槽表的 4 个重写位上
+（`0x56ACFC` = UIWnd 的 7 槽 + 本类新增虚函数 `CreateWithTexture`@slot7）—— 强内部一致性。
+另把 `0x56ACFC` slot3 的 `from` 由 `"CCBProtectWindow"` 改为 `null`（本类重写）。
+
+**cluster B 归属的第 4 条独立证据**：`0x445aa0` 装 `0x56aec8`(=UIWnd 的表) ⇒
+`0x43D830` 是"先调 `UIWnd::UIWnd`(0x445aa0) 再覆盖 vptr"的**直系 UIWnd 派生**标准形态，
+与 `UIFlexBar.json`(`base_class:[UIWnd]`, `base_size:68`, `binary_size:84`) 吻合。
+**第 5 条**：ctor 写 `m_tilewidth=0x20, m_tileheight=0x20, m_tex=0, m_style=0` —— 与
+"flex/tile bar"(tile 32px) 语义吻合。

@@ -206,19 +206,19 @@
       "name": "GetWidth",
       "signature": "void __thiscall(int nWidth)",
       "_migrated_from": "UIWnd",
-      "_evidence": "fstps +0x8c/+0x90/+0x94(140/144/148) 4B float > sizeof(UIWnd)=68; callers pass UIProgressBar (UILoadingFrm.m_LoadProgress lea 0x48(%edi); CCBUI.m_pRoleStateGP[1] 0x42c(%esi)); sizeof(UIProgressBar)=308"
+      "_evidence": "fstps +0x8c/+0x90/+0x94(140/144/148) 4B float > sizeof(UIWnd)=68; sizeof(UIProgressBar)=244 由 A 级证据定谳(new(0xF4)x2 @ctor 0x43F7F0 + stride 0xF4)，140/144/148 < 244 => 属 UIProgressBar。旧文中 'sizeof(UIProgressBar)=308' 已证伪"
     },
     "0x0043FDD0": {
       "name": "GetHeight",
       "signature": "void __thiscall(int nHeight)",
       "_migrated_from": "UIWnd",
-      "_evidence": "fstps +0x8c/+0x90/+0x94(140/144/148) 4B float > sizeof(UIWnd)=68; callers pass UIProgressBar (UILoadingFrm.m_LoadProgress lea 0x48(%edi); CCBUI.m_pRoleStateGP[1] 0x42c(%esi)); sizeof(UIProgressBar)=308"
+      "_evidence": "fstps +0x8c/+0x90/+0x94(140/144/148) 4B float > sizeof(UIWnd)=68; sizeof(UIProgressBar)=244 由 A 级证据定谳(new(0xF4)x2 @ctor 0x43F7F0 + stride 0xF4)，140/144/148 < 244 => 属 UIProgressBar。旧文中 'sizeof(UIProgressBar)=308' 已证伪"
     },
     "0x0043FDE0": {
       "name": "GetPosition",
       "signature": "void __thiscall(int pPos)",
       "_migrated_from": "UIWnd",
-      "_evidence": "fstps +0x8c/+0x90/+0x94(140/144/148) 4B float > sizeof(UIWnd)=68; callers pass UIProgressBar (UILoadingFrm.m_LoadProgress lea 0x48(%edi); CCBUI.m_pRoleStateGP[1] 0x42c(%esi)); sizeof(UIProgressBar)=308"
+      "_evidence": "fstps +0x8c/+0x90/+0x94(140/144/148) 4B float > sizeof(UIWnd)=68; sizeof(UIProgressBar)=244 由 A 级证据定谳(new(0xF4)x2 @ctor 0x43F7F0 + stride 0xF4)，140/144/148 < 244 => 属 UIProgressBar。旧文中 'sizeof(UIProgressBar)=308' 已证伪"
     },
     "0x004C6831": {
       "name": "SetRadiusWidth",
@@ -229,31 +229,52 @@
       "name": "FindChildByName",
       "signature": "void __thiscall(UIProgressBar *this, float fValue)"
     },
-    "0x00439030": {
+    "0x0043F7F0": {
       "name": "ctor",
-      "signature": "int *__thiscall()",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "signature": "int *__thiscall(UIProgressBar *this)",
+      "_migrated_from": "UIButton"
     },
-    "0x00439A20": {
-      "name": "CheckRayHitRole",
-      "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "ordinal": 2
+    "0x0043F950": {
+      "name": "_scalar_dtor",
+      "signature": "int __thiscall(void *Block, char)",
+      "source": "vtable_migrated",
+      "ordinal": 5,
+      "_migrated_from": "UIButton"
     },
-    "0x00439410": {
-      "name": "Render",
+    "0x0043F970": {
+      "name": "~UIProgressBar",
       "signature": "void __thiscall()",
-      "ordinal": 1
+      "_migrated_from": "UIButton"
     },
-    "0x00439810": {
+    "0x0043F9C0": {
       "name": "Destroy",
       "signature": "void __thiscall()",
-      "ordinal": 3
+      "ordinal": 3,
+      "_migrated_from": "UIButton"
+    },
+    "0x0043FF00": {
+      "name": "Create",
+      "signature": "int __thiscall UIProgressBar::Create(int id, int *pRect, int parent)",
+      "ordinal": 4,
+      "_migrated_from": "UIButton"
+    },
+    "0x0043FF70": {
+      "name": "Render",
+      "signature": "void __thiscall()",
+      "ordinal": 1,
+      "source": "+fix:sig_match_base",
+      "_migrated_from": "UIButton"
+    },
+    "0x00440560": {
+      "name": "Update",
+      "signature": "BOOL __thiscall UIProgressBar::Update(int nDelta, int nVal2)",
+      "ordinal": 2,
+      "_migrated_from": "UIButton"
     }
   },
   "vtables": [
     {
-      "addr": "0x0056AC20",
+      "addr": "0x0056AD64",
       "base": "UIWnd",
       "slots": [
         {
@@ -261,24 +282,24 @@
           "from": "UIWnd"
         },
         {
-          "addr": "0x00439410",
+          "addr": "0x0043FF70",
           "from": null
         },
         {
-          "addr": "0x00439A20",
+          "addr": "0x00440560",
           "from": null
         },
         {
-          "addr": "0x00439810",
+          "addr": "0x0043F9C0",
           "from": null
         },
         {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
+          "addr": "0x0043FF00",
+          "from": null
         },
         {
-          "addr": "0x00439110",
-          "from": "UIWnd"
+          "addr": "0x0043F950",
+          "from": null
         },
         {
           "addr": "0x00445D10",
@@ -287,5 +308,6 @@
       ]
     }
   ],
-  "base_size": 68
+  "base_size": 68,
+  "_vtable_reconcile": "vtable_class_reconcile 2026-09-18: methods+vtables block was attached to the wrong class; known_members/binary_size were right. A:vtable_class_reconcile(fstps/dump+stride+new). 0x56AC20 ctor=0x439030 stride 0x134=308(4 pairs, hand-verified SaleUI::InitUI 0x5251f8/0x525208/0x525218); this writes 236..304 (req=308); LoadModel/UpdateRotation/UpdateTransform access same 228..294 -> UI3DCtrl(308). 0x56AD64 ctor=0x43F7F0 new(0xF4=244)x2 + stride 0xF4; constructs UILoadingFrm.m_LoadProgress(off 72) typed UIProgressBar; sizeof(UILoadingFrm)=new(0x14C=332) at 0x44f8fd => 72+344>332 excludes UIButton -> UIProgressBar(244). 0x56ACFC real ctor=0x43D830 writes {68,72,76,80}=m_tilewidth/m_tileheight/m_tex/m_style with 0x20/0x20/0/0, req=84=UIFlexBar.binary_size (0x43D880 is only a vptr-install stub that jumps to UIWnd::UIWnd which overwrites it). See data/status/_cleanup_vtable_class_reconcile.md"
 }

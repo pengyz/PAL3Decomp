@@ -1,0 +1,291 @@
+{
+  "name": "UIProgressBar",
+  "binary_size": 244,
+  "known_members": {
+    "68": {
+      "name": "m_mode",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "72": {
+      "name": "m_decorateRc",
+      "type": "tagRECT",
+      "source": "annotation"
+    },
+    "88": {
+      "name": "m_progress",
+      "type": "int",
+      "source": "A:PAL3patch_verified(running_code); type_fix:m_p*_int_to_void*"
+    },
+    "92": {
+      "name": "m_speed",
+      "type": "int",
+      "source": "A:PAL3patch_verified(running_code)"
+    },
+    "96": {
+      "name": "m_SetProgress",
+      "type": "int",
+      "source": "A:PAL3patch_verified(running_code)"
+    },
+    "100": {
+      "name": "m_Lenth",
+      "type": "int",
+      "source": "A:PAL3patch_verified(running_code)"
+    },
+    "104": {
+      "name": "m_MaxVal",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "108": {
+      "name": "m_stepval",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "112": {
+      "name": "m_radius",
+      "type": "int",
+      "source": "A:PAL3patch_verified(running_code)"
+    },
+    "116": {
+      "name": "m_lradius",
+      "type": "int",
+      "source": "A:PAL3patch_verified(running_code)"
+    },
+    "120": {
+      "name": "m_rradius",
+      "type": "int",
+      "source": "A:PAL3patch_verified(running_code)"
+    },
+    "124": {
+      "name": "m_tradius",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "128": {
+      "name": "m_bradius",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "132": {
+      "name": "m_step",
+      "type": "int",
+      "source": "A:PAL3patch_verified(running_code)"
+    },
+    "136": {
+      "name": "m_Val",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "140": {
+      "name": "m_IsGetit",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "144": {
+      "name": "m_bkColor",
+      "type": "gbColorQuad",
+      "source": "gen_headers_9.2"
+    },
+    "148": {
+      "name": "m_foColor",
+      "type": "gbColorQuad",
+      "source": "gen_headers_9.2"
+    },
+    "152": {
+      "name": "m_pbk",
+      "type": "gbTexture *",
+      "source": "gen_headers_9.2"
+    },
+    "156": {
+      "name": "m_pbkInfo",
+      "type": "_PlugInfo *",
+      "source": "gen_headers_9.2"
+    },
+    "160": {
+      "name": "m_ppic",
+      "type": "gbTexture *",
+      "source": "gen_headers_9.2"
+    },
+    "164": {
+      "name": "m_ppicInfo",
+      "type": "_PlugInfo *",
+      "source": "gen_headers_9.2"
+    },
+    "168": {
+      "name": "m_pdecorate",
+      "type": "gbTexture *",
+      "source": "gen_headers_9.2"
+    },
+    "172": {
+      "name": "m_pdecorateInfo",
+      "type": "_PlugInfo *",
+      "source": "gen_headers_9.2"
+    },
+    "176": {
+      "name": "m_decorateW",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "180": {
+      "name": "m_decorateH",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "184": {
+      "name": "m_decorateOffsetX",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "188": {
+      "name": "m_decorateOffsetY",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "192": {
+      "name": "m_pgrmode",
+      "type": "PGR_MODE",
+      "source": "gen_headers_9.2"
+    },
+    "196": {
+      "name": "m_color",
+      "type": "gbColorQuad",
+      "source": "gen_headers_9.2"
+    },
+    "200": {
+      "name": "m_dstAlpha",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "204": {
+      "name": "m_alpha",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "208": {
+      "name": "m_minAlpha",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "212": {
+      "name": "m_fadespeed",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "216": {
+      "name": "m_isAdd",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "217": {
+      "name": "m_isFlash",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "218": {
+      "name": "m_stop",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "220": {
+      "name": "m_warningval",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "0": {
+      "name": "__vftable",
+      "type": "void *",
+      "source": "vtable_fix"
+    }
+  },
+  "base_class": [
+    "UIWnd"
+  ],
+  "methods": {
+    "0x0043FDC0": {
+      "name": "GetWidth",
+      "signature": "void __thiscall(int nWidth)",
+      "_migrated_from": "UIWnd",
+      "_evidence": "fstps +0x8c/+0x90/+0x94(140/144/148) 4B float > sizeof(UIWnd)=68; callers pass UIProgressBar (UILoadingFrm.m_LoadProgress lea 0x48(%edi); CCBUI.m_pRoleStateGP[1] 0x42c(%esi)); sizeof(UIProgressBar)=308"
+    },
+    "0x0043FDD0": {
+      "name": "GetHeight",
+      "signature": "void __thiscall(int nHeight)",
+      "_migrated_from": "UIWnd",
+      "_evidence": "fstps +0x8c/+0x90/+0x94(140/144/148) 4B float > sizeof(UIWnd)=68; callers pass UIProgressBar (UILoadingFrm.m_LoadProgress lea 0x48(%edi); CCBUI.m_pRoleStateGP[1] 0x42c(%esi)); sizeof(UIProgressBar)=308"
+    },
+    "0x0043FDE0": {
+      "name": "GetPosition",
+      "signature": "void __thiscall(int pPos)",
+      "_migrated_from": "UIWnd",
+      "_evidence": "fstps +0x8c/+0x90/+0x94(140/144/148) 4B float > sizeof(UIWnd)=68; callers pass UIProgressBar (UILoadingFrm.m_LoadProgress lea 0x48(%edi); CCBUI.m_pRoleStateGP[1] 0x42c(%esi)); sizeof(UIProgressBar)=308"
+    },
+    "0x004C6831": {
+      "name": "SetRadiusWidth",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0043FDF0": {
+      "name": "FindChildByName",
+      "signature": "void __thiscall(UIProgressBar *this, float fValue)"
+    },
+    "0x00439030": {
+      "name": "ctor",
+      "signature": "int *__thiscall()",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+    },
+    "0x00439A20": {
+      "name": "CheckRayHitRole",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
+      "ordinal": 2
+    },
+    "0x00439410": {
+      "name": "Render",
+      "signature": "void __thiscall()",
+      "ordinal": 1
+    },
+    "0x00439810": {
+      "name": "Destroy",
+      "signature": "void __thiscall()",
+      "ordinal": 3
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AC20",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00439410",
+          "from": null
+        },
+        {
+          "addr": "0x00439A20",
+          "from": null
+        },
+        {
+          "addr": "0x00439810",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00439110",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        }
+      ]
+    }
+  ],
+  "base_size": 68
+}

@@ -107,33 +107,6 @@
     "UIWnd"
   ],
   "methods": {
-    "0x0043D880": {
-      "name": "ctor",
-      "signature": "void __thiscall()",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-    },
-    "0x0043D830": {
-      "name": "UI3DCtrl",
-      "signature": "int *__thiscall()"
-    },
-    "0x0043D860": {
-      "name": "_scalar_dtor",
-      "signature": "void *__thiscall(UIWnd *Block, char pData)",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "ordinal": 5
-    },
-    "0x0043D890": {
-      "name": "CreateWithTexture",
-      "signature": "gbVFileSystem *__thiscall UI3DCtrl::CreateWithTexture(int id, void *pRect, int nVal, unsigned int dwVal, int parent)",
-      "ordinal": 7
-    },
-    "0x0043D940": {
-      "name": "Render",
-      "signature": "void __thiscall()",
-      "ordinal": 1
-    },
     "0x0052B050": {
       "name": "LoadEncampModel",
       "signature": "char __thiscall(const char *pszModelName, const char *pszName)"
@@ -161,11 +134,32 @@
     "0x0052AF20": {
       "name": "LoadModel",
       "signature": "char __thiscall UI3DCtrl::LoadModel(const char *pszModelName)"
+    },
+    "0x00439030": {
+      "name": "ctor",
+      "signature": "int *__thiscall()",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+    },
+    "0x00439410": {
+      "name": "Render",
+      "signature": "void __thiscall()",
+      "ordinal": 1
+    },
+    "0x00439810": {
+      "name": "Destroy",
+      "signature": "void __thiscall()",
+      "ordinal": 3
+    },
+    "0x00439A20": {
+      "name": "CheckRayHitRole",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
+      "ordinal": 2
     }
   },
   "vtables": [
     {
-      "addr": "0x0056ACFC",
+      "addr": "0x0056AC20",
       "base": "UIWnd",
       "slots": [
         {
@@ -173,35 +167,32 @@
           "from": "UIWnd"
         },
         {
-          "addr": "0x0043D940",
+          "addr": "0x00439410",
           "from": null
         },
         {
-          "addr": "0x00445C60",
-          "from": "UIWnd"
+          "addr": "0x00439A20",
+          "from": null
         },
         {
-          "addr": "0x0043D920",
-          "from": "CCBProtectWindow"
+          "addr": "0x00439810",
+          "from": null
         },
         {
           "addr": "0x00445B90",
           "from": "UIWnd"
         },
         {
-          "addr": "0x0043D860",
-          "from": null
+          "addr": "0x00439110",
+          "from": "UIWnd"
         },
         {
           "addr": "0x00445D10",
           "from": "UIWnd"
-        },
-        {
-          "addr": "0x0043D890",
-          "from": null
         }
       ]
     }
   ],
-  "base_size": 68
+  "base_size": 68,
+  "_vtable_reconcile": "vtable_class_reconcile 2026-09-18: methods+vtables block was attached to the wrong class; known_members/binary_size were right. A:vtable_class_reconcile(fstps/dump+stride+new). 0x56AC20 ctor=0x439030 stride 0x134=308(4 pairs, hand-verified SaleUI::InitUI 0x5251f8/0x525208/0x525218); this writes 236..304 (req=308); LoadModel/UpdateRotation/UpdateTransform access same 228..294 -> UI3DCtrl(308). 0x56AD64 ctor=0x43F7F0 new(0xF4=244)x2 + stride 0xF4; constructs UILoadingFrm.m_LoadProgress(off 72) typed UIProgressBar; sizeof(UILoadingFrm)=new(0x14C=332) at 0x44f8fd => 72+344>332 excludes UIButton -> UIProgressBar(244). 0x56ACFC real ctor=0x43D830 writes {68,72,76,80}=m_tilewidth/m_tileheight/m_tex/m_style with 0x20/0x20/0/0, req=84=UIFlexBar.binary_size (0x43D880 is only a vptr-install stub that jumps to UIWnd::UIWnd which overwrites it). See data/status/_cleanup_vtable_class_reconcile.md"
 }

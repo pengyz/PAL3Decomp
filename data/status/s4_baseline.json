@@ -18,16 +18,16 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 218,
-  "matched": 191,
-  "unmatched": 27,
+  "symbols": 228,
+  "matched": 194,
+  "unmatched": 34,
   "match_L1": 17,
-  "partial": 149,
+  "partial": 150,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 25
+  "unresolved_synth": 27
  },
  "rows": [
   {
@@ -414,7 +414,7 @@
    "name": "JusticeBookUI::JusticeBookUI(void)",
    "va": "0x005284E0",
    "status": "partial",
-   "match_pct": 36.0,
+   "match_pct": 36.2,
    "size": 367
   },
   {
@@ -431,15 +431,6 @@
    "symbol": "??_GJusticeBookUI@@UAEPAXI@Z",
    "name": "JusticeBookUI::`scalar deleting destructor'(uint)",
    "va": "0x005284C0",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
-  },
-  {
-   "file": "pal3/src/Misc/JusticeBookUI.cpp",
-   "symbol": "??_GUIButton@@UAEPAXI@Z",
-   "name": "UIButton::`scalar deleting destructor'(uint)",
-   "va": "0x0043F950",
    "status": "match_L1",
    "match_pct": 100.0,
    "size": 30
@@ -769,114 +760,6 @@
    "size": 36
   },
   {
-   "file": "pal3/src/Misc/UI3DCtrl.cpp",
-   "symbol": "??0UI3DCtrl@@QAE@XZ",
-   "name": "UI3DCtrl::UI3DCtrl(void)",
-   "va": "0x0043D830",
-   "status": "partial",
-   "match_pct": 40.5,
-   "size": 37
-  },
-  {
-   "file": "pal3/src/Misc/UI3DCtrl.cpp",
-   "symbol": "??_GUIWnd@@UAEPAXI@Z",
-   "name": "UIWnd::`scalar deleting destructor'(uint)",
-   "va": "0x00450E90",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
-  },
-  {
-   "file": "pal3/src/Misc/UI3DCtrl.cpp",
-   "symbol": "??_GUI3DCtrl@@UAEPAXI@Z",
-   "name": "UI3DCtrl::`scalar deleting destructor'(uint)",
-   "va": "0x0043D860",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
-  },
-  {
-   "file": "pal3/src/Misc/UI3DCtrl.cpp",
-   "symbol": "?ctor@UI3DCtrl@@QAEXXZ",
-   "name": "UI3DCtrl::ctor(void)",
-   "va": "0x0043D880",
-   "status": "partial",
-   "match_pct": 36.4,
-   "size": 11
-  },
-  {
-   "file": "pal3/src/Misc/UI3DCtrl.cpp",
-   "symbol": "?CreateWithTexture@UI3DCtrl@@UAEPAVgbVFileSystem@@HPAXHIH@Z",
-   "name": "UI3DCtrl::CreateWithTexture(int,void *,int,uint,int)",
-   "va": "0x0043D890",
-   "status": "partial",
-   "match_pct": 8.0,
-   "size": 138
-  },
-  {
-   "file": "pal3/src/Misc/UI3DCtrl.cpp",
-   "symbol": "?Render@UI3DCtrl@@UAEXXZ",
-   "name": "UI3DCtrl::Render(void)",
-   "va": "0x0043D940",
-   "status": "partial",
-   "match_pct": 10.9,
-   "size": 357
-  },
-  {
-   "file": "pal3/src/Misc/UI3DCtrl.cpp",
-   "symbol": "?LoadModel@UI3DCtrl@@QAEDPBD@Z",
-   "name": "UI3DCtrl::LoadModel(char const *)",
-   "va": "0x0052AF20",
-   "status": "partial",
-   "match_pct": 12.2,
-   "size": 147
-  },
-  {
-   "file": "pal3/src/Misc/UI3DCtrl.cpp",
-   "symbol": "?UpdateRotation@UI3DCtrl@@QAENXZ",
-   "name": "UI3DCtrl::UpdateRotation(void)",
-   "va": "0x0052E8C0",
-   "status": "partial",
-   "match_pct": 29.8,
-   "size": 121
-  },
-  {
-   "file": "pal3/src/Misc/UI3DCtrl.cpp",
-   "symbol": "?UpdateOscillation@UI3DCtrl@@QAENXZ",
-   "name": "UI3DCtrl::UpdateOscillation(void)",
-   "va": "0x0052E940",
-   "status": "partial",
-   "match_pct": 29.8,
-   "size": 121
-  },
-  {
-   "file": "pal3/src/Misc/UI3DCtrl.cpp",
-   "symbol": "?UpdateOscillationX@UI3DCtrl@@QAENXZ",
-   "name": "UI3DCtrl::UpdateOscillationX(void)",
-   "va": "0x0052E9C0",
-   "status": "partial",
-   "match_pct": 29.8,
-   "size": 121
-  },
-  {
-   "file": "pal3/src/Misc/UI3DCtrl.cpp",
-   "symbol": "?UpdateOscillationY@UI3DCtrl@@QAENXZ",
-   "name": "UI3DCtrl::UpdateOscillationY(void)",
-   "va": "0x0052EA40",
-   "status": "partial",
-   "match_pct": 30.6,
-   "size": 121
-  },
-  {
-   "file": "pal3/src/Misc/UI3DCtrl.cpp",
-   "symbol": "?UpdateTransform@UI3DCtrl@@QAEDH@Z",
-   "name": "UI3DCtrl::UpdateTransform(int)",
-   "va": "0x0052EAC0",
-   "status": "partial",
-   "match_pct": 12.8,
-   "size": 288
-  },
-  {
    "file": "pal3/src/Misc/UIAnimateCtrl.cpp",
    "symbol": "?GetRoleBySlot@UIAnimateCtrl@@QAEHI@Z",
    "name": "UIAnimateCtrl::GetRoleBySlot(uint)",
@@ -886,6 +769,78 @@
    "size": 36
   },
   {
+   "file": "pal3/src/Misc/UIFlexBar.cpp",
+   "symbol": "??0UIFlexBar@@QAE@XZ",
+   "name": "UIFlexBar::UIFlexBar(void)",
+   "va": "0x0043D830",
+   "status": "partial",
+   "match_pct": 43.2,
+   "size": 37
+  },
+  {
+   "file": "pal3/src/Misc/UIFlexBar.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x00450E90",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UIFlexBar.cpp",
+   "symbol": "??_GUIFlexBar@@UAEPAXI@Z",
+   "name": "UIFlexBar::`scalar deleting destructor'(uint)",
+   "va": "0x0043D860",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UIFlexBar.cpp",
+   "symbol": "?ctor@UIFlexBar@@QAEXXZ",
+   "name": "UIFlexBar::ctor(void)",
+   "va": "0x0043D880",
+   "status": "partial",
+   "match_pct": 36.4,
+   "size": 11
+  },
+  {
+   "file": "pal3/src/Misc/UIFlexBar.cpp",
+   "symbol": "?CreateWithTexture@UIFlexBar@@UAEPAVgbVFileSystem@@HPAXHIH@Z",
+   "name": "UIFlexBar::CreateWithTexture(int,void *,int,uint,int)",
+   "va": "0x0043D890",
+   "status": "partial",
+   "match_pct": 8.0,
+   "size": 138
+  },
+  {
+   "file": "pal3/src/Misc/UIFlexBar.cpp",
+   "symbol": "?Destroy@UIFlexBar@@UAEXXZ",
+   "name": "UIFlexBar::Destroy(void)",
+   "va": "0x0043D920",
+   "status": "partial",
+   "match_pct": 40.0,
+   "size": 25
+  },
+  {
+   "file": "pal3/src/Misc/UIFlexBar.cpp",
+   "symbol": "?Render@UIFlexBar@@UAEXXZ",
+   "name": "UIFlexBar::Render(void)",
+   "va": "0x0043D940",
+   "status": "partial",
+   "match_pct": 10.9,
+   "size": 357
+  },
+  {
+   "file": "pal3/src/Misc/UIFlexBar.cpp",
+   "symbol": "?RenderQuadSlice@UIFlexBar@@QAEXPAHH@Z",
+   "name": "UIFlexBar::RenderQuadSlice(int *,int)",
+   "va": "0x0043DAB0",
+   "status": "partial",
+   "match_pct": 11.8,
+   "size": 400
+  },
+  {
    "file": "pal3/src/Misc/UIGameFrm.cpp",
    "symbol": "?OnMessage@UIGameFrm@@QAEHHHH@Z",
    "name": "UIGameFrm::OnMessage(int,int,int)",
@@ -893,6 +848,87 @@
    "status": "partial",
    "match_pct": 24.1,
    "size": 1082
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x00450E90",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "??_GUIProgressBar@@UAEPAXI@Z",
+   "name": "UIProgressBar::`scalar deleting destructor'(uint)",
+   "va": "0x0043F950",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?Destroy@UIProgressBar@@UAEXXZ",
+   "name": "UIProgressBar::Destroy(void)",
+   "va": "0x0043F9C0",
+   "status": "partial",
+   "match_pct": 36.8,
+   "size": 57
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?GetWidth@UIProgressBar@@QAEXH@Z",
+   "name": "UIProgressBar::GetWidth(int)",
+   "va": "0x0043FDC0",
+   "status": "partial",
+   "match_pct": 92.3,
+   "size": 13
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?GetHeight@UIProgressBar@@QAEXH@Z",
+   "name": "UIProgressBar::GetHeight(int)",
+   "va": "0x0043FDD0",
+   "status": "partial",
+   "match_pct": 92.3,
+   "size": 13
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?GetPosition@UIProgressBar@@QAEXH@Z",
+   "name": "UIProgressBar::GetPosition(int)",
+   "va": "0x0043FDE0",
+   "status": "partial",
+   "match_pct": 92.3,
+   "size": 13
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?FindChildByName@UIProgressBar@@QAEXM@Z",
+   "name": "UIProgressBar::FindChildByName(float)",
+   "va": "0x0043FDF0",
+   "status": "partial",
+   "match_pct": 13.2,
+   "size": 159
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?Create@UIProgressBar@@UAEHHPAHH@Z",
+   "name": "UIProgressBar::Create(int,int *,int)",
+   "va": "0x0043FF00",
+   "status": "partial",
+   "match_pct": 30.2,
+   "size": 106
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?Render@UIProgressBar@@UAEXXZ",
+   "name": "UIProgressBar::Render(void)",
+   "va": "0x0043FF70",
+   "status": "partial",
+   "match_pct": 15.7,
+   "size": 1505
   },
   {
    "file": "pal3/src/Misc/UIPushButton.cpp",
@@ -947,24 +983,6 @@
    "status": "partial",
    "match_pct": 16.8,
    "size": 125
-  },
-  {
-   "file": "pal3/src/Misc/UIStatic.cpp",
-   "symbol": "?Destroy@UIStatic@@UAEXXZ",
-   "name": "UIStatic::Destroy(void)",
-   "va": "0x0043D920",
-   "status": "partial",
-   "match_pct": 16.0,
-   "size": 25
-  },
-  {
-   "file": "pal3/src/Misc/UIStatic.cpp",
-   "symbol": "?RenderQuadSlice@UIStatic@@QAEXPAHH@Z",
-   "name": "UIStatic::RenderQuadSlice(int *,int)",
-   "va": "0x0043DAB0",
-   "status": "partial",
-   "match_pct": 13.0,
-   "size": 400
   },
   {
    "file": "pal3/src/Misc/UIStatic.cpp",
@@ -1124,15 +1142,6 @@
    "symbol": "??_GUITitle_BBTY@@UAEPAXI@Z",
    "name": "UITitle_BBTY::`scalar deleting destructor'(uint)",
    "va": "0x00451D80",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
-  },
-  {
-   "file": "pal3/src/Misc/UITitle_BBTY.cpp",
-   "symbol": "??_GUIButton@@UAEPAXI@Z",
-   "name": "UIButton::`scalar deleting destructor'(uint)",
-   "va": "0x0043F950",
    "status": "match_L1",
    "match_pct": 100.0,
    "size": 30

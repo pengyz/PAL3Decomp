@@ -1,0 +1,173 @@
+{
+  "name": "UIButton",
+  "binary_size": 344,
+  "known_members": {
+    "68": {
+      "name": "m_hasDBclk",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "72": {
+      "name": "m_ratiow",
+      "type": "float",
+      "source": "annotation"
+    },
+    "76": {
+      "name": "m_state",
+      "type": "UIButton_UIBUTTON_STATE",
+      "source": "annotation"
+    },
+    "80": {
+      "name": "m_canctrl",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "81": {
+      "name": "m_bLockUpdate",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "84": {
+      "name": "m_offsetx",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "88": {
+      "name": "m_offsety",
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
+    },
+    "92": {
+      "name": "m_bBigFont",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "96": {
+      "name": "m_texarray",
+      "type": "UITextureArray",
+      "source": "gen_headers_9.2"
+    },
+    "164": {
+      "name": "m_texarrayInfo",
+      "type": "_PlugInfo *[3]",
+      "source": "pdb_fill_incomplete"
+    },
+    "176": {
+      "name": "m_disablepic",
+      "type": "gbTexture *",
+      "source": "gen_headers_9.2"
+    },
+    "180": {
+      "name": "m_disablepicInfo",
+      "type": "_PlugInfo *",
+      "source": "gen_headers_9.2"
+    },
+    "184": {
+      "name": "m_mouseoff",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "185": {
+      "name": "m_mouseon",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "188": {
+      "name": "m_alignmode",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "192": {
+      "name": "m_caption",
+      "type": "char[128]",
+      "source": "pdb_fill_incomplete"
+    },
+    "320": {
+      "name": "m_benable_snd",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "0": {
+      "name": "__vftable",
+      "type": "void *",
+      "source": "vtable_fix"
+    }
+  },
+  "base_class": [
+    "UIWnd"
+  ],
+  "methods": {
+    "0x0043F970": {
+      "name": "~UIButton",
+      "signature": "void __thiscall()"
+    },
+    "0x0043F7F0": {
+      "name": "ctor_17",
+      "signature": "int *__thiscall(UIButton *this)"
+    },
+    "0x00440560": {
+      "name": "Update",
+      "signature": "BOOL __thiscall UIButton::Update(int nDelta, int nVal2)",
+      "ordinal": 2
+    },
+    "0x0043F9C0": {
+      "name": "Destroy",
+      "signature": "void __thiscall()",
+      "ordinal": 3
+    },
+    "0x0043FF00": {
+      "name": "Create",
+      "signature": "int __thiscall UIButton::Create(int id, int *pRect, int parent)",
+      "ordinal": 4
+    },
+    "0x0043FF70": {
+      "name": "Render",
+      "signature": "void __thiscall()",
+      "ordinal": 1,
+      "source": "+fix:sig_match_base"
+    },
+    "0x0043F950": {
+      "name": "_scalar_dtor",
+      "signature": "int __thiscall(void *Block, char)",
+      "source": "vtable_migrated",
+      "ordinal": 5
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AD64",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043FF70",
+          "from": null
+        },
+        {
+          "addr": "0x00440560",
+          "from": null
+        },
+        {
+          "addr": "0x0043F9C0",
+          "from": null
+        },
+        {
+          "addr": "0x0043FF00",
+          "from": null
+        },
+        {
+          "addr": "0x0043F950",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        }
+      ]
+    }
+  ],
+  "base_size": 68
+}
