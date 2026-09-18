@@ -52,5 +52,16 @@
       "_misattrib_evidence": "max_offset=10048>class_size=2272"
     }
   },
-  "base_size": 76
+  "base_size": 76,
+  "bases": [
+    {
+      "name": "UIWnd",
+      "offset": 0
+    },
+    {
+      "name": "PalScriptWaitObj",
+      "offset": 68
+    }
+  ],
+  "bases_source": "A+C 两路线一致（纯二进制）：路线A=注解 ctor UIEmote 的 vfptr 安装序列；路线C=本类被注解函数里的非零位移安装。工具 tools/mi_base_offsets.py 可复现。"
 }
