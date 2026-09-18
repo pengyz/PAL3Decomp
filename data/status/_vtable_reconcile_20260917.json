@@ -1,0 +1,11666 @@
+[
+ {
+  "vtable": "0x00010000",
+  "declared_owner": [
+   "gbGfxManager"
+  ],
+  "n_slots": 0,
+  "end": "0x0056A600",
+  "total_req": 0,
+  "slots": [],
+  "verdict": {
+   "gbGfxManager": "consistent (req 0 <= binary_size 1520)"
+  },
+  "candidates": []
+ },
+ {
+  "vtable": "0x0056A600",
+  "declared_owner": [
+   "AStarPathFinder"
+  ],
+  "n_slots": 3,
+  "end": "0x0056A620",
+  "total_req": 0,
+  "slots": [
+   {
+    "va": "0x00401030",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004014E0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004014F0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "AStarPathFinder": "consistent (req 0 <= binary_size 24)"
+  },
+  "candidates": []
+ },
+ {
+  "vtable": "0x0056A9A4",
+  "declared_owner": [
+   "Role"
+  ],
+  "n_slots": 3,
+  "end": "0x0056A9B0",
+  "total_req": 620,
+  "slots": [
+   {
+    "va": "0x0041B640",
+    "n_this_access": 4,
+    "req": 620,
+    "offsets": [
+     96,
+     100,
+     104,
+     616
+    ]
+   },
+   {
+    "va": "0x0041B6A0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0041BE30",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "Role": "consistent (req 620 <= binary_size 8928)"
+  },
+  "candidates": [
+   {
+    "class": "CameraCtrl",
+    "binary_size": 4088,
+    "exact_member_hits": 4,
+    "n_off": 4,
+    "ratio": 1.0
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 4,
+    "n_off": 4,
+    "ratio": 1.0
+   },
+   {
+    "class": "_SAMPLE",
+    "binary_size": 652,
+    "exact_member_hits": 3,
+    "n_off": 4,
+    "ratio": 0.75
+   },
+   {
+    "class": "tagPAL3GameState",
+    "binary_size": 672,
+    "exact_member_hits": 3,
+    "n_off": 4,
+    "ratio": 0.75
+   },
+   {
+    "class": "SceneObjParam",
+    "binary_size": 708,
+    "exact_member_hits": 3,
+    "n_off": 4,
+    "ratio": 0.75
+   },
+   {
+    "class": "SceneMgrCamBlock",
+    "binary_size": 768,
+    "exact_member_hits": 3,
+    "n_off": 4,
+    "ratio": 0.75
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056A9BC",
+  "declared_owner": [
+   "ScriptObj"
+  ],
+  "n_slots": 1,
+  "end": "0x0056A9C0",
+  "total_req": 0,
+  "slots": [
+   {
+    "va": "0x00411BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "ScriptObj": "consistent (req 0 <= binary_size 4)"
+  },
+  "candidates": []
+ },
+ {
+  "vtable": "0x0056AA90",
+  "declared_owner": [
+   "CameraCtrl"
+  ],
+  "n_slots": 3,
+  "end": "0x0056AAC4",
+  "total_req": 36,
+  "slots": [
+   {
+    "va": "0x0041CBA0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0041CBD0",
+    "n_this_access": 2,
+    "req": 24,
+    "offsets": [
+     16,
+     20
+    ]
+   },
+   {
+    "va": "0x0041CC50",
+    "n_this_access": 12,
+    "req": 36,
+    "offsets": [
+     8,
+     12,
+     16,
+     20,
+     28,
+     32
+    ]
+   }
+  ],
+  "verdict": {
+   "CameraCtrl": "consistent (req 36 <= binary_size 4088)"
+  },
+  "candidates": [
+   {
+    "class": "BUNDLEPOINTERS",
+    "binary_size": 36,
+    "exact_member_hits": 6,
+    "n_off": 6,
+    "ratio": 1.0
+   },
+   {
+    "class": "CTaskTpl",
+    "binary_size": 36,
+    "exact_member_hits": 6,
+    "n_off": 6,
+    "ratio": 1.0
+   },
+   {
+    "class": "DICOLORSET",
+    "binary_size": 36,
+    "exact_member_hits": 6,
+    "n_off": 6,
+    "ratio": 1.0
+   },
+   {
+    "class": "FontPrint3DInfo",
+    "binary_size": 36,
+    "exact_member_hits": 6,
+    "n_off": 6,
+    "ratio": 1.0
+   },
+   {
+    "class": "PathFinder",
+    "binary_size": 36,
+    "exact_member_hits": 6,
+    "n_off": 6,
+    "ratio": 1.0
+   },
+   {
+    "class": "TaskMgr",
+    "binary_size": 36,
+    "exact_member_hits": 6,
+    "n_off": 6,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AAD8",
+  "declared_owner": [
+   "RoleSystem"
+  ],
+  "n_slots": 3,
+  "end": "0x0056AAE4",
+  "total_req": 16,
+  "slots": [
+   {
+    "va": "0x004202F0",
+    "n_this_access": 4,
+    "req": 16,
+    "offsets": [
+     4,
+     8,
+     12
+    ]
+   },
+   {
+    "va": "0x004202A0",
+    "n_this_access": 4,
+    "req": 16,
+    "offsets": [
+     0,
+     4,
+     8,
+     12
+    ]
+   },
+   {
+    "va": "0x00420270",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "RoleSystem": "consistent (req 16 <= binary_size 4868)"
+  },
+  "candidates": [
+   {
+    "class": "ARC_MonsterStar",
+    "binary_size": 16,
+    "exact_member_hits": 4,
+    "n_off": 4,
+    "ratio": 1.0
+   },
+   {
+    "class": "Array",
+    "binary_size": 16,
+    "exact_member_hits": 4,
+    "n_off": 4,
+    "ratio": 1.0
+   },
+   {
+    "class": "BINKRECT",
+    "binary_size": 16,
+    "exact_member_hits": 4,
+    "n_off": 4,
+    "ratio": 1.0
+   },
+   {
+    "class": "CameraParam",
+    "binary_size": 16,
+    "exact_member_hits": 4,
+    "n_off": 4,
+    "ratio": 1.0
+   },
+   {
+    "class": "D3DXCOLOR",
+    "binary_size": 16,
+    "exact_member_hits": 4,
+    "n_off": 4,
+    "ratio": 1.0
+   },
+   {
+    "class": "D3DXPlane",
+    "binary_size": 16,
+    "exact_member_hits": 4,
+    "n_off": 4,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AB28",
+  "declared_owner": [
+   "gbLightObj"
+  ],
+  "n_slots": 3,
+  "end": "0x0056AB34",
+  "total_req": 12,
+  "slots": [
+   {
+    "va": "0x0042C6A0",
+    "n_this_access": 1,
+    "req": 12,
+    "offsets": [
+     8
+    ]
+   },
+   {
+    "va": "0x0042C6E0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0042C8D0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "gbLightObj": "consistent (req 12 <= binary_size 216)"
+  },
+  "candidates": [
+   {
+    "class": "CEffObj",
+    "binary_size": 12,
+    "exact_member_hits": 1,
+    "n_off": 1,
+    "ratio": 1.0
+   },
+   {
+    "class": "CPolicy",
+    "binary_size": 12,
+    "exact_member_hits": 1,
+    "n_off": 1,
+    "ratio": 1.0
+   },
+   {
+    "class": "D3DXVECTOR3",
+    "binary_size": 12,
+    "exact_member_hits": 1,
+    "n_off": 1,
+    "ratio": 1.0
+   },
+   {
+    "class": "EffModeParam",
+    "binary_size": 12,
+    "exact_member_hits": 1,
+    "n_off": 1,
+    "ratio": 1.0
+   },
+   {
+    "class": "MIXSTAGE",
+    "binary_size": 12,
+    "exact_member_hits": 1,
+    "n_off": 1,
+    "ratio": 1.0
+   },
+   {
+    "class": "NMHDR",
+    "binary_size": 12,
+    "exact_member_hits": 1,
+    "n_off": 1,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056ABB8",
+  "declared_owner": [
+   "PalScriptMgr"
+  ],
+  "n_slots": 3,
+  "end": "0x0056ABC4",
+  "total_req": 12,
+  "slots": [
+   {
+    "va": "0x00434D50",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00434CC0",
+    "n_this_access": 1,
+    "req": 12,
+    "offsets": [
+     8
+    ]
+   },
+   {
+    "va": "0x004AF760",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "PalScriptMgr": "consistent (req 12 <= binary_size 9512)"
+  },
+  "candidates": [
+   {
+    "class": "CEffObj",
+    "binary_size": 12,
+    "exact_member_hits": 1,
+    "n_off": 1,
+    "ratio": 1.0
+   },
+   {
+    "class": "CPolicy",
+    "binary_size": 12,
+    "exact_member_hits": 1,
+    "n_off": 1,
+    "ratio": 1.0
+   },
+   {
+    "class": "D3DXVECTOR3",
+    "binary_size": 12,
+    "exact_member_hits": 1,
+    "n_off": 1,
+    "ratio": 1.0
+   },
+   {
+    "class": "EffModeParam",
+    "binary_size": 12,
+    "exact_member_hits": 1,
+    "n_off": 1,
+    "ratio": 1.0
+   },
+   {
+    "class": "MIXSTAGE",
+    "binary_size": 12,
+    "exact_member_hits": 1,
+    "n_off": 1,
+    "ratio": 1.0
+   },
+   {
+    "class": "NMHDR",
+    "binary_size": 12,
+    "exact_member_hits": 1,
+    "n_off": 1,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056ABD4",
+  "declared_owner": [
+   "PalScript"
+  ],
+  "n_slots": 3,
+  "end": "0x0056ABE0",
+  "total_req": 28,
+  "slots": [
+   {
+    "va": "0x00438190",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00438100",
+    "n_this_access": 1,
+    "req": 16,
+    "offsets": [
+     12
+    ]
+   },
+   {
+    "va": "0x00438110",
+    "n_this_access": 8,
+    "req": 28,
+    "offsets": [
+     8,
+     12,
+     16,
+     20,
+     24
+    ]
+   }
+  ],
+  "verdict": {
+   "PalScript": "consistent (req 28 <= binary_size 2176)"
+  },
+  "candidates": [
+   {
+    "class": "Comp_Donate_Detail",
+    "binary_size": 28,
+    "exact_member_hits": 5,
+    "n_off": 5,
+    "ratio": 1.0
+   },
+   {
+    "class": "FuncInfoV1",
+    "binary_size": 28,
+    "exact_member_hits": 5,
+    "n_off": 5,
+    "ratio": 1.0
+   },
+   {
+    "class": "IMAGE_FILE_HEADER",
+    "binary_size": 28,
+    "exact_member_hits": 5,
+    "n_off": 5,
+    "ratio": 1.0
+   },
+   {
+    "class": "ScreenFadeIn",
+    "binary_size": 28,
+    "exact_member_hits": 5,
+    "n_off": 5,
+    "ratio": 1.0
+   },
+   {
+    "class": "_D3DRECTPATCH_INFO",
+    "binary_size": 28,
+    "exact_member_hits": 5,
+    "n_off": 5,
+    "ratio": 1.0
+   },
+   {
+    "class": "_D3DVOLUME_DESC",
+    "binary_size": 28,
+    "exact_member_hits": 5,
+    "n_off": 5,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AC08",
+  "declared_owner": [
+   "filebuf"
+  ],
+  "n_slots": 3,
+  "end": "0x0056AC20",
+  "total_req": 16,
+  "slots": [
+   {
+    "va": "0x00438E90",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00438100",
+    "n_this_access": 1,
+    "req": 16,
+    "offsets": [
+     12
+    ]
+   },
+   {
+    "va": "0x00438E30",
+    "n_this_access": 5,
+    "req": 16,
+    "offsets": [
+     8,
+     12
+    ]
+   }
+  ],
+  "verdict": {
+   "filebuf": "IMPOSSIBLE (req 16 > binary_size 4)"
+  },
+  "candidates": [
+   {
+    "class": "ARC_MonsterStar",
+    "binary_size": 16,
+    "exact_member_hits": 2,
+    "n_off": 2,
+    "ratio": 1.0
+   },
+   {
+    "class": "Array",
+    "binary_size": 16,
+    "exact_member_hits": 2,
+    "n_off": 2,
+    "ratio": 1.0
+   },
+   {
+    "class": "BINKRECT",
+    "binary_size": 16,
+    "exact_member_hits": 2,
+    "n_off": 2,
+    "ratio": 1.0
+   },
+   {
+    "class": "COnceFramePolicy",
+    "binary_size": 16,
+    "exact_member_hits": 2,
+    "n_off": 2,
+    "ratio": 1.0
+   },
+   {
+    "class": "CReBackFramePolicy",
+    "binary_size": 16,
+    "exact_member_hits": 2,
+    "n_off": 2,
+    "ratio": 1.0
+   },
+   {
+    "class": "CameraParam",
+    "binary_size": 16,
+    "exact_member_hits": 2,
+    "n_off": 2,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AC20",
+  "declared_owner": [
+   "UIProgressBar"
+  ],
+  "n_slots": 7,
+  "end": "0x0056AC4C",
+  "total_req": 296,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00439410",
+    "n_this_access": 14,
+    "req": 296,
+    "offsets": [
+     68,
+     88,
+     248,
+     256,
+     260,
+     264,
+     268,
+     272,
+     276,
+     280,
+     284,
+     292
+    ]
+   },
+   {
+    "va": "0x00439A20",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x00439810",
+    "n_this_access": 5,
+    "req": 296,
+    "offsets": [
+     68,
+     72,
+     292
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00439110",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UIProgressBar": "IMPOSSIBLE (req 296 > binary_size 244)"
+  },
+  "candidates": [
+   {
+    "class": "UI3DCtrl",
+    "binary_size": 308,
+    "exact_member_hits": 19,
+    "n_off": 20,
+    "ratio": 0.95
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 18,
+    "n_off": 20,
+    "ratio": 0.9
+   },
+   {
+    "class": "PalScriptMgr",
+    "binary_size": 9512,
+    "exact_member_hits": 18,
+    "n_off": 20,
+    "ratio": 0.9
+   },
+   {
+    "class": "_DIG_DRIVER",
+    "binary_size": 724,
+    "exact_member_hits": 17,
+    "n_off": 20,
+    "ratio": 0.85
+   },
+   {
+    "class": "PalScript",
+    "binary_size": 2176,
+    "exact_member_hits": 17,
+    "n_off": 20,
+    "ratio": 0.85
+   },
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 17,
+    "n_off": 20,
+    "ratio": 0.85
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AC4C",
+  "declared_owner": [
+   "PalScript"
+  ],
+  "n_slots": 7,
+  "end": "0x0056AC70",
+  "total_req": 164,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0043A270",
+    "n_this_access": 13,
+    "req": 164,
+    "offsets": [
+     16,
+     20,
+     24,
+     28,
+     56,
+     76,
+     144,
+     148,
+     160
+    ]
+   },
+   {
+    "va": "0x0043A3E0",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x0043A250",
+    "n_this_access": 1,
+    "req": 80,
+    "offsets": [
+     76
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0043A1D0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "PalScript": "consistent (req 164 <= binary_size 2176)"
+  },
+  "candidates": [
+   {
+    "class": "RenderTarget",
+    "binary_size": 200,
+    "exact_member_hits": 14,
+    "n_off": 14,
+    "ratio": 1.0
+   },
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 14,
+    "n_off": 14,
+    "ratio": 1.0
+   },
+   {
+    "class": "PalScript",
+    "binary_size": 2176,
+    "exact_member_hits": 14,
+    "n_off": 14,
+    "ratio": 1.0
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 14,
+    "n_off": 14,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIParticle",
+    "binary_size": 584,
+    "exact_member_hits": 13,
+    "n_off": 14,
+    "ratio": 0.929
+   },
+   {
+    "class": "RenderTarget2",
+    "binary_size": 4292,
+    "exact_member_hits": 13,
+    "n_off": 14,
+    "ratio": 0.929
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AC70",
+  "declared_owner": [
+   "UICaption"
+  ],
+  "n_slots": 8,
+  "end": "0x0056AC90",
+  "total_req": 344,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0043AD40",
+    "n_this_access": 36,
+    "req": 216,
+    "offsets": [
+     4,
+     8,
+     16,
+     20,
+     24,
+     28,
+     56,
+     60,
+     72,
+     76,
+     96,
+     104,
+     108,
+     112,
+     116,
+     196,
+     200,
+     208,
+     212
+    ]
+   },
+   {
+    "va": "0x0043AB20",
+    "n_this_access": 2,
+    "req": 60,
+    "offsets": [
+     16,
+     56
+    ]
+   },
+   {
+    "va": "0x0043AB00",
+    "n_this_access": 1,
+    "req": 120,
+    "offsets": [
+     116
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0043A7F0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0043A870",
+    "n_this_access": 9,
+    "req": 344,
+    "offsets": [
+     68,
+     100,
+     104,
+     108,
+     112,
+     116,
+     184,
+     200,
+     340
+    ]
+   }
+  ],
+  "verdict": {
+   "UICaption": "IMPOSSIBLE (req 344 > binary_size 96)"
+  },
+  "candidates": [
+   {
+    "class": "Actor",
+    "binary_size": 820,
+    "exact_member_hits": 24,
+    "n_off": 27,
+    "ratio": 0.889
+   },
+   {
+    "class": "_DIG_DRIVER",
+    "binary_size": 724,
+    "exact_member_hits": 23,
+    "n_off": 27,
+    "ratio": 0.852
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 23,
+    "n_off": 27,
+    "ratio": 0.852
+   },
+   {
+    "class": "UIScene",
+    "binary_size": 344,
+    "exact_member_hits": 22,
+    "n_off": 27,
+    "ratio": 0.815
+   },
+   {
+    "class": "PalScriptMgr",
+    "binary_size": 9512,
+    "exact_member_hits": 22,
+    "n_off": 27,
+    "ratio": 0.815
+   },
+   {
+    "class": "UIScenePanel",
+    "binary_size": 14232,
+    "exact_member_hits": 22,
+    "n_off": 27,
+    "ratio": 0.815
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AC90",
+  "declared_owner": [
+   "UIScenePanel"
+  ],
+  "n_slots": 9,
+  "end": "0x0056ACB8",
+  "total_req": 376,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0043B660",
+    "n_this_access": 40,
+    "req": 376,
+    "offsets": [
+     4,
+     8,
+     16,
+     20,
+     24,
+     28,
+     56,
+     60,
+     96,
+     116,
+     184,
+     196,
+     200,
+     212,
+     360,
+     364,
+     368,
+     372
+    ]
+   },
+   {
+    "va": "0x0043B900",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x0043AB00",
+    "n_this_access": 1,
+    "req": 120,
+    "offsets": [
+     116
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0043B4B0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0043A870",
+    "n_this_access": 9,
+    "req": 344,
+    "offsets": [
+     68,
+     100,
+     104,
+     108,
+     112,
+     116,
+     184,
+     200,
+     340
+    ]
+   },
+   {
+    "va": "0x0043B570",
+    "n_this_access": 4,
+    "req": 204,
+    "offsets": [
+     116,
+     184,
+     200
+    ]
+   }
+  ],
+  "verdict": {
+   "UIScenePanel": "consistent (req 376 <= binary_size 14232)"
+  },
+  "candidates": [
+   {
+    "class": "Actor",
+    "binary_size": 820,
+    "exact_member_hits": 23,
+    "n_off": 28,
+    "ratio": 0.821
+   },
+   {
+    "class": "_DIG_DRIVER",
+    "binary_size": 724,
+    "exact_member_hits": 22,
+    "n_off": 28,
+    "ratio": 0.786
+   },
+   {
+    "class": "PalScriptMgr",
+    "binary_size": 9512,
+    "exact_member_hits": 21,
+    "n_off": 28,
+    "ratio": 0.75
+   },
+   {
+    "class": "tagCombatTaskData",
+    "binary_size": 384,
+    "exact_member_hits": 20,
+    "n_off": 28,
+    "ratio": 0.714
+   },
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 20,
+    "n_off": 28,
+    "ratio": 0.714
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 20,
+    "n_off": 28,
+    "ratio": 0.714
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056ACD8",
+  "declared_owner": [
+   "UIScene"
+  ],
+  "n_slots": 8,
+  "end": "0x0056ACFC",
+  "total_req": 272,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0043CDF0",
+    "n_this_access": 79,
+    "req": 272,
+    "offsets": [
+     8,
+     108,
+     120,
+     136,
+     140,
+     144,
+     148,
+     152,
+     156,
+     160,
+     164,
+     172,
+     176,
+     180,
+     204,
+     208,
+     212,
+     216,
+     220,
+     224,
+     236,
+     248,
+     256,
+     264,
+     268
+    ]
+   },
+   {
+    "va": "0x0043D1A0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0043BE80",
+    "n_this_access": 1,
+    "req": 184,
+    "offsets": [
+     180
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0043BE10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0043D7A0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0043C7B0",
+    "n_this_access": 25,
+    "req": 244,
+    "offsets": [
+     68,
+     72,
+     76,
+     80,
+     84,
+     88,
+     92,
+     96,
+     120,
+     124,
+     128,
+     132,
+     136,
+     144,
+     152,
+     180,
+     224,
+     228,
+     236,
+     240
+    ]
+   }
+  ],
+  "verdict": {
+   "UIScene": "consistent (req 272 <= binary_size 344)"
+  },
+  "candidates": [
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 43,
+    "n_off": 45,
+    "ratio": 0.956
+   },
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 43,
+    "n_off": 45,
+    "ratio": 0.956
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 43,
+    "n_off": 45,
+    "ratio": 0.956
+   },
+   {
+    "class": "Actor",
+    "binary_size": 820,
+    "exact_member_hits": 38,
+    "n_off": 45,
+    "ratio": 0.844
+   },
+   {
+    "class": "PalScriptMgr",
+    "binary_size": 9512,
+    "exact_member_hits": 38,
+    "n_off": 45,
+    "ratio": 0.844
+   },
+   {
+    "class": "_STREAM",
+    "binary_size": 276,
+    "exact_member_hits": 35,
+    "n_off": 45,
+    "ratio": 0.778
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056ACFC",
+  "declared_owner": [
+   "UI3DCtrl"
+  ],
+  "n_slots": 8,
+  "end": "0x0056AD20",
+  "total_req": 84,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0043D940",
+    "n_this_access": 17,
+    "req": 84,
+    "offsets": [
+     16,
+     20,
+     24,
+     28,
+     56,
+     68,
+     72,
+     80
+    ]
+   },
+   {
+    "va": "0x00445C60",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x0043D920",
+    "n_this_access": 2,
+    "req": 80,
+    "offsets": [
+     76
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0043D860",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0043D890",
+    "n_this_access": 2,
+    "req": 84,
+    "offsets": [
+     76,
+     80
+    ]
+   }
+  ],
+  "verdict": {
+   "UI3DCtrl": "consistent (req 84 <= binary_size 308)"
+  },
+  "candidates": [
+   {
+    "class": "ASISTAGE",
+    "binary_size": 96,
+    "exact_member_hits": 14,
+    "n_off": 14,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagEffTaskParam",
+    "binary_size": 124,
+    "exact_member_hits": 14,
+    "n_off": 14,
+    "ratio": 1.0
+   },
+   {
+    "class": "RenderTarget",
+    "binary_size": 200,
+    "exact_member_hits": 14,
+    "n_off": 14,
+    "ratio": 1.0
+   },
+   {
+    "class": "_IMAGE_OPTIONAL_HEADER",
+    "binary_size": 224,
+    "exact_member_hits": 14,
+    "n_off": 14,
+    "ratio": 1.0
+   },
+   {
+    "class": "IMAGE_OPTIONAL_HEADER32",
+    "binary_size": 248,
+    "exact_member_hits": 14,
+    "n_off": 14,
+    "ratio": 1.0
+   },
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 14,
+    "n_off": 14,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AD20",
+  "declared_owner": [
+   "UIListBox"
+  ],
+  "n_slots": 7,
+  "end": "0x0056AD40",
+  "total_req": 72,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0043DDF0",
+    "n_this_access": 4,
+    "req": 72,
+    "offsets": [
+     8,
+     16,
+     56,
+     68
+    ]
+   },
+   {
+    "va": "0x00445C60",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0043DCF0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UIListBox": "consistent (req 72 <= binary_size 1208)"
+  },
+  "candidates": [
+   {
+    "class": "UIDialog",
+    "binary_size": 72,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIFrameWnd",
+    "binary_size": 72,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "_FLTPROVIDER",
+    "binary_size": 72,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "gbPrintFont",
+    "binary_size": 76,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagOFNA",
+    "binary_size": 76,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagQuad",
+    "binary_size": 80,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AD40",
+  "declared_owner": [
+   "UIListBox"
+  ],
+  "n_slots": 8,
+  "end": "0x0056AD64",
+  "total_req": 1200,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0043E8A0",
+    "n_this_access": 48,
+    "req": 1200,
+    "offsets": [
+     8,
+     16,
+     20,
+     24,
+     28,
+     56,
+     72,
+     432,
+     500,
+     504,
+     1108,
+     1112,
+     1116,
+     1120,
+     1124,
+     1144,
+     1148,
+     1152,
+     1160,
+     1164,
+     1168,
+     1172,
+     1176,
+     1180,
+     1184,
+     1188,
+     1196
+    ]
+   },
+   {
+    "va": "0x0043EBE0",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x0043E520",
+    "n_this_access": 3,
+    "req": 1148,
+    "offsets": [
+     432,
+     1144
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0043E100",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0043E480",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0043E1C0",
+    "n_this_access": 11,
+    "req": 1176,
+    "offsets": [
+     76,
+     80,
+     1128,
+     1132,
+     1136,
+     1140,
+     1144,
+     1148,
+     1172
+    ]
+   }
+  ],
+  "verdict": {
+   "UIListBox": "consistent (req 1200 <= binary_size 1208)"
+  },
+  "candidates": [
+   {
+    "class": "CCBUI",
+    "binary_size": 2648,
+    "exact_member_hits": 29,
+    "n_off": 38,
+    "ratio": 0.763
+   },
+   {
+    "class": "UIListBox",
+    "binary_size": 1208,
+    "exact_member_hits": 28,
+    "n_off": 38,
+    "ratio": 0.737
+   },
+   {
+    "class": "CCBUIPanel",
+    "binary_size": 22112,
+    "exact_member_hits": 28,
+    "n_off": 38,
+    "ratio": 0.737
+   },
+   {
+    "class": "CameraCtrl",
+    "binary_size": 4088,
+    "exact_member_hits": 17,
+    "n_off": 38,
+    "ratio": 0.447
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 15,
+    "n_off": 38,
+    "ratio": 0.395
+   },
+   {
+    "class": "PropUI",
+    "binary_size": 29056,
+    "exact_member_hits": 15,
+    "n_off": 38,
+    "ratio": 0.395
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AD64",
+  "declared_owner": [
+   "UIButton"
+  ],
+  "n_slots": 7,
+  "end": "0x0056AD88",
+  "total_req": 228,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0043FF70",
+    "n_this_access": 132,
+    "req": 228,
+    "offsets": [
+     8,
+     16,
+     20,
+     24,
+     28,
+     56,
+     68,
+     72,
+     76,
+     80,
+     84,
+     88,
+     92,
+     96,
+     100,
+     104,
+     108,
+     132,
+     136,
+     140,
+     144,
+     148,
+     164,
+     168,
+     171,
+     172,
+     176,
+     180,
+     184,
+     188,
+     192,
+     196,
+     200,
+     204,
+     208,
+     212,
+     216,
+     219,
+     224
+    ]
+   },
+   {
+    "va": "0x00440560",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x0043F9C0",
+    "n_this_access": 4,
+    "req": 184,
+    "offsets": [
+     172,
+     180
+    ]
+   },
+   {
+    "va": "0x0043FF00",
+    "n_this_access": 5,
+    "req": 128,
+    "offsets": [
+     16,
+     24,
+     76,
+     120,
+     124
+    ]
+   },
+   {
+    "va": "0x0043F950",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UIButton": "consistent (req 228 <= binary_size 344)"
+  },
+  "candidates": [
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 41,
+    "n_off": 43,
+    "ratio": 0.953
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 38,
+    "n_off": 43,
+    "ratio": 0.884
+   },
+   {
+    "class": "UIScene",
+    "binary_size": 344,
+    "exact_member_hits": 35,
+    "n_off": 43,
+    "ratio": 0.814
+   },
+   {
+    "class": "UIScenePanel",
+    "binary_size": 14232,
+    "exact_member_hits": 35,
+    "n_off": 43,
+    "ratio": 0.814
+   },
+   {
+    "class": "UIProgressBar",
+    "binary_size": 244,
+    "exact_member_hits": 34,
+    "n_off": 43,
+    "ratio": 0.791
+   },
+   {
+    "class": "_STREAM",
+    "binary_size": 276,
+    "exact_member_hits": 34,
+    "n_off": 43,
+    "ratio": 0.791
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AD88",
+  "declared_owner": [
+   "UIStatic"
+  ],
+  "n_slots": 8,
+  "end": "0x0056ADAC",
+  "total_req": 124,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00440F30",
+    "n_this_access": 19,
+    "req": 124,
+    "offsets": [
+     8,
+     16,
+     20,
+     24,
+     28,
+     56,
+     60,
+     72,
+     80,
+     100,
+     104,
+     108,
+     112,
+     116,
+     120
+    ]
+   },
+   {
+    "va": "0x00440DD0",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x00440BA0",
+    "n_this_access": 1,
+    "req": 88,
+    "offsets": [
+     84
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x004407A0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00440810",
+    "n_this_access": 1,
+    "req": 88,
+    "offsets": [
+     84
+    ]
+   }
+  ],
+  "verdict": {
+   "UIStatic": "consistent (req 124 <= binary_size 152)"
+  },
+  "candidates": [
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 20,
+    "n_off": 20,
+    "ratio": 1.0
+   },
+   {
+    "class": "IMAGE_OPTIONAL_HEADER32",
+    "binary_size": 248,
+    "exact_member_hits": 19,
+    "n_off": 20,
+    "ratio": 0.95
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 18,
+    "n_off": 20,
+    "ratio": 0.9
+   },
+   {
+    "class": "Object3D",
+    "binary_size": 152,
+    "exact_member_hits": 17,
+    "n_off": 20,
+    "ratio": 0.85
+   },
+   {
+    "class": "UIMap",
+    "binary_size": 152,
+    "exact_member_hits": 17,
+    "n_off": 20,
+    "ratio": 0.85
+   },
+   {
+    "class": "CCBControlWindow",
+    "binary_size": 196,
+    "exact_member_hits": 17,
+    "n_off": 20,
+    "ratio": 0.85
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056ADAC",
+  "declared_owner": [
+   "UIMap"
+  ],
+  "n_slots": 8,
+  "end": "0x0056ADD0",
+  "total_req": 352,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x004414F0",
+    "n_this_access": 33,
+    "req": 352,
+    "offsets": [
+     8,
+     16,
+     56,
+     68,
+     69,
+     160,
+     164,
+     168,
+     172,
+     180,
+     192,
+     260,
+     264,
+     268,
+     304,
+     316,
+     320,
+     324,
+     336,
+     340,
+     344,
+     348
+    ]
+   },
+   {
+    "va": "0x00441730",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x004414D0",
+    "n_this_access": 1,
+    "req": 196,
+    "offsets": [
+     192
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x004411B0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004420C0",
+    "n_this_access": 2,
+    "req": 76,
+    "offsets": [
+     16,
+     72
+    ]
+   },
+   {
+    "va": "0x004412C0",
+    "n_this_access": 10,
+    "req": 352,
+    "offsets": [
+     16,
+     24,
+     72,
+     176,
+     180,
+     316,
+     340,
+     344,
+     348
+    ]
+   }
+  ],
+  "verdict": {
+   "UIMap": "IMPOSSIBLE (req 352 > binary_size 152)"
+  },
+  "candidates": [
+   {
+    "class": "UIScrollBar",
+    "binary_size": 352,
+    "exact_member_hits": 24,
+    "n_off": 30,
+    "ratio": 0.8
+   },
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 22,
+    "n_off": 30,
+    "ratio": 0.733
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 21,
+    "n_off": 30,
+    "ratio": 0.7
+   },
+   {
+    "class": "CCBRoleState",
+    "binary_size": 22224,
+    "exact_member_hits": 21,
+    "n_off": 30,
+    "ratio": 0.7
+   },
+   {
+    "class": "_DIG_DRIVER",
+    "binary_size": 724,
+    "exact_member_hits": 20,
+    "n_off": 30,
+    "ratio": 0.667
+   },
+   {
+    "class": "Actor",
+    "binary_size": 820,
+    "exact_member_hits": 20,
+    "n_off": 30,
+    "ratio": 0.667
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AE10",
+  "declared_owner": [
+   "UIFrameWnd"
+  ],
+  "n_slots": 7,
+  "end": "0x0056AE2C",
+  "total_req": 172,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00442E90",
+    "n_this_access": 12,
+    "req": 160,
+    "offsets": [
+     8,
+     16,
+     20,
+     24,
+     28,
+     56,
+     112,
+     116,
+     152,
+     156
+    ]
+   },
+   {
+    "va": "0x00442FF0",
+    "n_this_access": 6,
+    "req": 172,
+    "offsets": [
+     152,
+     156,
+     164,
+     168
+    ]
+   },
+   {
+    "va": "0x00442420",
+    "n_this_access": 9,
+    "req": 152,
+    "offsets": [
+     112,
+     120,
+     128,
+     136,
+     148
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00442E60",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UIFrameWnd": "IMPOSSIBLE (req 172 > binary_size 72)"
+  },
+  "candidates": [
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 21,
+    "n_off": 21,
+    "ratio": 1.0
+   },
+   {
+    "class": "_DIG_DRIVER",
+    "binary_size": 724,
+    "exact_member_hits": 19,
+    "n_off": 21,
+    "ratio": 0.905
+   },
+   {
+    "class": "RenderTarget2",
+    "binary_size": 4292,
+    "exact_member_hits": 19,
+    "n_off": 21,
+    "ratio": 0.905
+   },
+   {
+    "class": "UIStaticRM",
+    "binary_size": 180,
+    "exact_member_hits": 18,
+    "n_off": 21,
+    "ratio": 0.857
+   },
+   {
+    "class": "UIStaticEX",
+    "binary_size": 184,
+    "exact_member_hits": 18,
+    "n_off": 21,
+    "ratio": 0.857
+   },
+   {
+    "class": "UIStaticEXA",
+    "binary_size": 192,
+    "exact_member_hits": 18,
+    "n_off": 21,
+    "ratio": 0.857
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AE2C",
+  "declared_owner": [
+   "CCBPanelSlot",
+   "UIWnd"
+  ],
+  "n_slots": 7,
+  "end": "0x0056AE48",
+  "total_req": 189,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00443200",
+    "n_this_access": 13,
+    "req": 189,
+    "offsets": [
+     8,
+     16,
+     20,
+     24,
+     28,
+     112,
+     116,
+     152,
+     156,
+     184,
+     188
+    ]
+   },
+   {
+    "va": "0x00442FF0",
+    "n_this_access": 6,
+    "req": 172,
+    "offsets": [
+     152,
+     156,
+     164,
+     168
+    ]
+   },
+   {
+    "va": "0x00442420",
+    "n_this_access": 9,
+    "req": 152,
+    "offsets": [
+     112,
+     120,
+     128,
+     136,
+     148
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x004431B0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CCBPanelSlot": "consistent (req 189 <= binary_size 476)",
+   "UIWnd": "IMPOSSIBLE (req 189 > binary_size 68)"
+  },
+  "candidates": [
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 23,
+    "n_off": 23,
+    "ratio": 1.0
+   },
+   {
+    "class": "_DIG_DRIVER",
+    "binary_size": 724,
+    "exact_member_hits": 21,
+    "n_off": 23,
+    "ratio": 0.913
+   },
+   {
+    "class": "RenderTarget2",
+    "binary_size": 4292,
+    "exact_member_hits": 21,
+    "n_off": 23,
+    "ratio": 0.913
+   },
+   {
+    "class": "UIStaticEXA",
+    "binary_size": 192,
+    "exact_member_hits": 20,
+    "n_off": 23,
+    "ratio": 0.87
+   },
+   {
+    "class": "UIProgressBar",
+    "binary_size": 244,
+    "exact_member_hits": 20,
+    "n_off": 23,
+    "ratio": 0.87
+   },
+   {
+    "class": "UIScene",
+    "binary_size": 344,
+    "exact_member_hits": 20,
+    "n_off": 23,
+    "ratio": 0.87
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AE48",
+  "declared_owner": [
+   "UIStatic"
+  ],
+  "n_slots": 7,
+  "end": "0x0056AE64",
+  "total_req": 156,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x004433D0",
+    "n_this_access": 18,
+    "req": 156,
+    "offsets": [
+     8,
+     16,
+     56,
+     60,
+     112,
+     116,
+     128,
+     132,
+     152
+    ]
+   },
+   {
+    "va": "0x00442AD0",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x00442420",
+    "n_this_access": 9,
+    "req": 152,
+    "offsets": [
+     112,
+     120,
+     128,
+     136,
+     148
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x004433A0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UIStatic": "IMPOSSIBLE (req 156 > binary_size 152)"
+  },
+  "candidates": [
+   {
+    "class": "UIStaticCB",
+    "binary_size": 156,
+    "exact_member_hits": 16,
+    "n_off": 16,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIStaticFlip",
+    "binary_size": 156,
+    "exact_member_hits": 16,
+    "n_off": 16,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIStaticRM",
+    "binary_size": 180,
+    "exact_member_hits": 16,
+    "n_off": 16,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIStaticEX",
+    "binary_size": 184,
+    "exact_member_hits": 16,
+    "n_off": 16,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIStaticEXA",
+    "binary_size": 192,
+    "exact_member_hits": 16,
+    "n_off": 16,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIProgressBar",
+    "binary_size": 244,
+    "exact_member_hits": 16,
+    "n_off": 16,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AE64",
+  "declared_owner": [
+   "UIFrameWnd"
+  ],
+  "n_slots": 8,
+  "end": "0x0056AE84",
+  "total_req": 152,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00443950",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x00443970",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x004438F0",
+    "n_this_access": 6,
+    "req": 116,
+    "offsets": [
+     108,
+     112
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00443530",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004435A0",
+    "n_this_access": 49,
+    "req": 152,
+    "offsets": [
+     68,
+     72,
+     76,
+     80,
+     84,
+     88,
+     92,
+     96,
+     100,
+     104,
+     108,
+     112,
+     140,
+     144,
+     148
+    ]
+   }
+  ],
+  "verdict": {
+   "UIFrameWnd": "IMPOSSIBLE (req 152 > binary_size 72)"
+  },
+  "candidates": [
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 22,
+    "n_off": 22,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIScene",
+    "binary_size": 344,
+    "exact_member_hits": 22,
+    "n_off": 22,
+    "ratio": 1.0
+   },
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 22,
+    "n_off": 22,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIScenePanel",
+    "binary_size": 14232,
+    "exact_member_hits": 22,
+    "n_off": 22,
+    "ratio": 1.0
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 21,
+    "n_off": 22,
+    "ratio": 0.955
+   },
+   {
+    "class": "UIParticle",
+    "binary_size": 584,
+    "exact_member_hits": 20,
+    "n_off": 22,
+    "ratio": 0.909
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AEA4",
+  "declared_owner": [
+   "UITextArea"
+  ],
+  "n_slots": 7,
+  "end": "0x0056AEC8",
+  "total_req": 188,
+  "slots": [
+   {
+    "va": "0x00445720",
+    "n_this_access": 2,
+    "req": 180,
+    "offsets": [
+     172,
+     176
+    ]
+   },
+   {
+    "va": "0x00445500",
+    "n_this_access": 33,
+    "req": 188,
+    "offsets": [
+     4,
+     56,
+     76,
+     80,
+     88,
+     92,
+     96,
+     100,
+     172,
+     180,
+     184
+    ]
+   },
+   {
+    "va": "0x00445170",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x00445920",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00444FF0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UITextArea": "IMPOSSIBLE (req 188 > binary_size 104)"
+  },
+  "candidates": [
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIScene",
+    "binary_size": 344,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "Actor",
+    "binary_size": 820,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIScenePanel",
+    "binary_size": 14232,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AEC8",
+  "declared_owner": [
+   "UIWnd"
+  ],
+  "n_slots": 7,
+  "end": "0x0056AEE8",
+  "total_req": 64,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00445CD0",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     36,
+     40,
+     56
+    ]
+   },
+   {
+    "va": "0x00445C60",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x00445C10",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     36,
+     40,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00445B20",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UIWnd": "consistent (req 64 <= binary_size 68)"
+  },
+  "candidates": [
+   {
+    "class": "D3DXMATRIX",
+    "binary_size": 64,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "_FLTPROVIDER",
+    "binary_size": 72,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "gbPrintFont",
+    "binary_size": 76,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagOFNA",
+    "binary_size": 76,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagQuad",
+    "binary_size": 80,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "ASISTAGE",
+    "binary_size": 96,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AF80",
+  "declared_owner": [
+   "CCBUIPanel"
+  ],
+  "n_slots": 7,
+  "end": "0x0056AFA4",
+  "total_req": 20185,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00449C20",
+    "n_this_access": 1,
+    "req": 612,
+    "offsets": [
+     608
+    ]
+   },
+   {
+    "va": "0x0044A1B0",
+    "n_this_access": 1,
+    "req": 20185,
+    "offsets": [
+     20181
+    ]
+   },
+   {
+    "va": "0x00449990",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x004461D0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0044A540",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CCBUIPanel": "consistent (req 20185 <= binary_size 22112)"
+  },
+  "candidates": [
+   {
+    "class": "PropUI",
+    "binary_size": 29056,
+    "exact_member_hits": 8,
+    "n_off": 9,
+    "ratio": 0.889
+   },
+   {
+    "class": "CCBUIPanel",
+    "binary_size": 22112,
+    "exact_member_hits": 7,
+    "n_off": 9,
+    "ratio": 0.778
+   },
+   {
+    "class": "UIGameFrm",
+    "binary_size": 28188,
+    "exact_member_hits": 7,
+    "n_off": 9,
+    "ratio": 0.778
+   },
+   {
+    "class": "CG_UI",
+    "binary_size": 39240,
+    "exact_member_hits": 7,
+    "n_off": 9,
+    "ratio": 0.778
+   },
+   {
+    "class": "Comp_DonateUI",
+    "binary_size": 46192,
+    "exact_member_hits": 7,
+    "n_off": 9,
+    "ratio": 0.778
+   },
+   {
+    "class": "JusticeBookUI",
+    "binary_size": 56192,
+    "exact_member_hits": 7,
+    "n_off": 9,
+    "ratio": 0.778
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AFB0",
+  "declared_owner": [
+   "UIWnd"
+  ],
+  "n_slots": 7,
+  "end": "0x0056AFD4",
+  "total_req": 96,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0044A870",
+    "n_this_access": 7,
+    "req": 96,
+    "offsets": [
+     56,
+     76,
+     80,
+     88,
+     92
+    ]
+   },
+   {
+    "va": "0x0044A820",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x0043D920",
+    "n_this_access": 2,
+    "req": 80,
+    "offsets": [
+     76
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0044A7D0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UIWnd": "IMPOSSIBLE (req 96 > binary_size 68)"
+  },
+  "candidates": [
+   {
+    "class": "ASISTAGE",
+    "binary_size": 96,
+    "exact_member_hits": 11,
+    "n_off": 11,
+    "ratio": 1.0
+   },
+   {
+    "class": "UICaption",
+    "binary_size": 96,
+    "exact_member_hits": 11,
+    "n_off": 11,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIPar_Star",
+    "binary_size": 124,
+    "exact_member_hits": 11,
+    "n_off": 11,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagEffTaskParam",
+    "binary_size": 124,
+    "exact_member_hits": 11,
+    "n_off": 11,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIMap",
+    "binary_size": 152,
+    "exact_member_hits": 11,
+    "n_off": 11,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIStatic",
+    "binary_size": 152,
+    "exact_member_hits": 11,
+    "n_off": 11,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AFD4",
+  "declared_owner": [
+   "UITitle"
+  ],
+  "n_slots": 7,
+  "end": "0x0056AFFC",
+  "total_req": 9516,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0044B460",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x0044B0F0",
+    "n_this_access": 1,
+    "req": 9516,
+    "offsets": [
+     9512
+    ]
+   },
+   {
+    "va": "0x004A14C0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0044ACC0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0044B710",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UITitle": "IMPOSSIBLE (req 9516 > binary_size 9236)"
+  },
+  "candidates": [
+   {
+    "class": "UIChatRest",
+    "binary_size": 9516,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIBigMap",
+    "binary_size": 10248,
+    "exact_member_hits": 7,
+    "n_off": 8,
+    "ratio": 0.875
+   },
+   {
+    "class": "Camera",
+    "binary_size": 12956,
+    "exact_member_hits": 7,
+    "n_off": 8,
+    "ratio": 0.875
+   },
+   {
+    "class": "UIScenePanel",
+    "binary_size": 14232,
+    "exact_member_hits": 7,
+    "n_off": 8,
+    "ratio": 0.875
+   },
+   {
+    "class": "UICoverFrm",
+    "binary_size": 14952,
+    "exact_member_hits": 7,
+    "n_off": 8,
+    "ratio": 0.875
+   },
+   {
+    "class": "UITitle_QCYM",
+    "binary_size": 17676,
+    "exact_member_hits": 7,
+    "n_off": 8,
+    "ratio": 0.875
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056AFFC",
+  "declared_owner": [
+   "UIScenePanel"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B018",
+  "total_req": 13904,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0044DAC0",
+    "n_this_access": 2,
+    "req": 13872,
+    "offsets": [
+     13856,
+     13868
+    ]
+   },
+   {
+    "va": "0x0044DB70",
+    "n_this_access": 2,
+    "req": 13904,
+    "offsets": [
+     13896,
+     13900
+    ]
+   },
+   {
+    "va": "0x0044C910",
+    "n_this_access": 6,
+    "req": 13868,
+    "offsets": [
+     13856,
+     13860,
+     13864
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0044BE40",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0044DFC0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UIScenePanel": "consistent (req 13904 <= binary_size 14232)"
+  },
+  "candidates": [
+   {
+    "class": "UIScenePanel",
+    "binary_size": 14232,
+    "exact_member_hits": 9,
+    "n_off": 13,
+    "ratio": 0.692
+   },
+   {
+    "class": "UICoverFrm",
+    "binary_size": 14952,
+    "exact_member_hits": 9,
+    "n_off": 13,
+    "ratio": 0.692
+   },
+   {
+    "class": "PropUI",
+    "binary_size": 29056,
+    "exact_member_hits": 8,
+    "n_off": 13,
+    "ratio": 0.615
+   },
+   {
+    "class": "UITitle_QCYM",
+    "binary_size": 17676,
+    "exact_member_hits": 7,
+    "n_off": 13,
+    "ratio": 0.538
+   },
+   {
+    "class": "CCBUIPanel",
+    "binary_size": 22112,
+    "exact_member_hits": 7,
+    "n_off": 13,
+    "ratio": 0.538
+   },
+   {
+    "class": "UIGameFrm",
+    "binary_size": 28188,
+    "exact_member_hits": 7,
+    "n_off": 13,
+    "ratio": 0.538
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B050",
+  "declared_owner": [
+   "scScriptInstance"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B094",
+  "total_req": 64,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00445CD0",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     36,
+     40,
+     56
+    ]
+   },
+   {
+    "va": "0x0044E980",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x00445C10",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     36,
+     40,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0044E5C0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "scScriptInstance": "consistent (req 64 <= binary_size 84)"
+  },
+  "candidates": [
+   {
+    "class": "D3DXMATRIX",
+    "binary_size": 64,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "_FLTPROVIDER",
+    "binary_size": 72,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "gbPrintFont",
+    "binary_size": 76,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagOFNA",
+    "binary_size": 76,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagQuad",
+    "binary_size": 80,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "ASISTAGE",
+    "binary_size": 96,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B094",
+  "declared_owner": [
+   "CGameData"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B0B4",
+  "total_req": 28188,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0044F5B0",
+    "n_this_access": 7,
+    "req": 28188,
+    "offsets": [
+     3904,
+     14532,
+     14536,
+     28176,
+     28184
+    ]
+   },
+   {
+    "va": "0x0044F4C0",
+    "n_this_access": 13,
+    "req": 28188,
+    "offsets": [
+     648,
+     652,
+     653,
+     3904,
+     14532,
+     14536,
+     28176,
+     28184
+    ]
+   },
+   {
+    "va": "0x0044F430",
+    "n_this_access": 9,
+    "req": 28184,
+    "offsets": [
+     3904,
+     14532,
+     14536,
+     28176,
+     28180
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0044F030",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CGameData": "consistent (req 28188 <= binary_size 28268)"
+  },
+  "candidates": [
+   {
+    "class": "UIGameFrm",
+    "binary_size": 28188,
+    "exact_member_hits": 15,
+    "n_off": 16,
+    "ratio": 0.938
+   },
+   {
+    "class": "CGameData",
+    "binary_size": 28268,
+    "exact_member_hits": 15,
+    "n_off": 16,
+    "ratio": 0.938
+   },
+   {
+    "class": "MainPropUI",
+    "binary_size": 247976,
+    "exact_member_hits": 9,
+    "n_off": 16,
+    "ratio": 0.562
+   },
+   {
+    "class": "PropUI",
+    "binary_size": 29056,
+    "exact_member_hits": 7,
+    "n_off": 16,
+    "ratio": 0.438
+   },
+   {
+    "class": "CG_UI",
+    "binary_size": 39240,
+    "exact_member_hits": 7,
+    "n_off": 16,
+    "ratio": 0.438
+   },
+   {
+    "class": "Comp_DonateUI",
+    "binary_size": 46192,
+    "exact_member_hits": 7,
+    "n_off": 16,
+    "ratio": 0.438
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B0B4",
+  "declared_owner": [
+   "UISceneMap"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B0D4",
+  "total_req": 232,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00450230",
+    "n_this_access": 10,
+    "req": 232,
+    "offsets": [
+     8,
+     9,
+     10,
+     11,
+     16,
+     20,
+     24,
+     28,
+     76,
+     228
+    ]
+   },
+   {
+    "va": "0x004501A0",
+    "n_this_access": 3,
+    "req": 232,
+    "offsets": [
+     228
+    ]
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00450070",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UISceneMap": "consistent (req 232 <= binary_size 1012)"
+  },
+  "candidates": [
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 13,
+    "n_off": 16,
+    "ratio": 0.812
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 13,
+    "n_off": 16,
+    "ratio": 0.812
+   },
+   {
+    "class": "IMAGE_OPTIONAL_HEADER32",
+    "binary_size": 248,
+    "exact_member_hits": 12,
+    "n_off": 16,
+    "ratio": 0.75
+   },
+   {
+    "class": "CCBPanelSlot",
+    "binary_size": 476,
+    "exact_member_hits": 12,
+    "n_off": 16,
+    "ratio": 0.75
+   },
+   {
+    "class": "_DIG_DRIVER",
+    "binary_size": 724,
+    "exact_member_hits": 12,
+    "n_off": 16,
+    "ratio": 0.75
+   },
+   {
+    "class": "Actor",
+    "binary_size": 820,
+    "exact_member_hits": 12,
+    "n_off": 16,
+    "ratio": 0.75
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B100",
+  "declared_owner": [
+   "UILoadingFrm"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B120",
+  "total_req": 332,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00524970",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00450900",
+    "n_this_access": 9,
+    "req": 332,
+    "offsets": [
+     72,
+     232,
+     316,
+     320,
+     328
+    ]
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00450770",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00450990",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UILoadingFrm": "consistent (req 332 <= binary_size 332)"
+  },
+  "candidates": [
+   {
+    "class": "UILoadingFrm",
+    "binary_size": 332,
+    "exact_member_hits": 12,
+    "n_off": 13,
+    "ratio": 0.923
+   },
+   {
+    "class": "Actor",
+    "binary_size": 820,
+    "exact_member_hits": 11,
+    "n_off": 13,
+    "ratio": 0.846
+   },
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 11,
+    "n_off": 13,
+    "ratio": 0.846
+   },
+   {
+    "class": "PalScriptMgr",
+    "binary_size": 9512,
+    "exact_member_hits": 11,
+    "n_off": 13,
+    "ratio": 0.846
+   },
+   {
+    "class": "UIButton",
+    "binary_size": 344,
+    "exact_member_hits": 10,
+    "n_off": 13,
+    "ratio": 0.769
+   },
+   {
+    "class": "UIButtonEXA",
+    "binary_size": 376,
+    "exact_member_hits": 10,
+    "n_off": 13,
+    "ratio": 0.769
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B120",
+  "declared_owner": [
+   "RoleCameraCtrl"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B140",
+  "total_req": 268,
+  "slots": [
+   {
+    "va": "0x00450D00",
+    "n_this_access": 7,
+    "req": 60,
+    "offsets": [
+     0,
+     36,
+     40,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00445CD0",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     36,
+     40,
+     56
+    ]
+   },
+   {
+    "va": "0x00450C90",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x00445C10",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     36,
+     40,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00450AB0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00450C60",
+    "n_this_access": 1,
+    "req": 268,
+    "offsets": [
+     264
+    ]
+   }
+  ],
+  "verdict": {
+   "RoleCameraCtrl": "IMPOSSIBLE (req 268 > binary_size 76)"
+  },
+  "candidates": [
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 10,
+    "n_off": 10,
+    "ratio": 1.0
+   },
+   {
+    "class": "_DIG_DRIVER",
+    "binary_size": 724,
+    "exact_member_hits": 10,
+    "n_off": 10,
+    "ratio": 1.0
+   },
+   {
+    "class": "Actor",
+    "binary_size": 820,
+    "exact_member_hits": 10,
+    "n_off": 10,
+    "ratio": 1.0
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 10,
+    "n_off": 10,
+    "ratio": 1.0
+   },
+   {
+    "class": "UINote",
+    "binary_size": 268,
+    "exact_member_hits": 9,
+    "n_off": 10,
+    "ratio": 0.9
+   },
+   {
+    "class": "UI3DCtrl",
+    "binary_size": 308,
+    "exact_member_hits": 9,
+    "n_off": 10,
+    "ratio": 0.9
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B14C",
+  "declared_owner": [
+   "RoleAtt"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B16C",
+  "total_req": 908,
+  "slots": [
+   {
+    "va": "0x00451740",
+    "n_this_access": 9,
+    "req": 908,
+    "offsets": [
+     56,
+     80,
+     696,
+     752,
+     848,
+     904
+    ]
+   },
+   {
+    "va": "0x004512F0",
+    "n_this_access": 4,
+    "req": 256,
+    "offsets": [
+     56,
+     80,
+     252
+    ]
+   },
+   {
+    "va": "0x004515E0",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x00451320",
+    "n_this_access": 6,
+    "req": 596,
+    "offsets": [
+     80,
+     436,
+     592
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00450E90",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004515A0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "RoleAtt": "IMPOSSIBLE (req 908 > binary_size 852)"
+  },
+  "candidates": [
+   {
+    "class": "CameraCtrl",
+    "binary_size": 4088,
+    "exact_member_hits": 9,
+    "n_off": 14,
+    "ratio": 0.643
+   },
+   {
+    "class": "UIListBox",
+    "binary_size": 1208,
+    "exact_member_hits": 8,
+    "n_off": 14,
+    "ratio": 0.571
+   },
+   {
+    "class": "PalScript",
+    "binary_size": 2176,
+    "exact_member_hits": 8,
+    "n_off": 14,
+    "ratio": 0.571
+   },
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 8,
+    "n_off": 14,
+    "ratio": 0.571
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 8,
+    "n_off": 14,
+    "ratio": 0.571
+   },
+   {
+    "class": "CCBUIPanel",
+    "binary_size": 22112,
+    "exact_member_hits": 8,
+    "n_off": 14,
+    "ratio": 0.571
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B178",
+  "declared_owner": [
+   "UIListBox"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B19C",
+  "total_req": 84,
+  "slots": [
+   {
+    "va": "0x00451B40",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00451C10",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x0043BBC0",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x00445C10",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     36,
+     40,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x004518E0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00451AA0",
+    "n_this_access": 2,
+    "req": 84,
+    "offsets": [
+     0,
+     80
+    ]
+   }
+  ],
+  "verdict": {
+   "UIListBox": "consistent (req 84 <= binary_size 1208)"
+  },
+  "candidates": [
+   {
+    "class": "ASISTAGE",
+    "binary_size": 96,
+    "exact_member_hits": 10,
+    "n_off": 10,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagEffTaskParam",
+    "binary_size": 124,
+    "exact_member_hits": 10,
+    "n_off": 10,
+    "ratio": 1.0
+   },
+   {
+    "class": "RenderTarget",
+    "binary_size": 200,
+    "exact_member_hits": 10,
+    "n_off": 10,
+    "ratio": 1.0
+   },
+   {
+    "class": "_IMAGE_OPTIONAL_HEADER",
+    "binary_size": 224,
+    "exact_member_hits": 10,
+    "n_off": 10,
+    "ratio": 1.0
+   },
+   {
+    "class": "IMAGE_OPTIONAL_HEADER32",
+    "binary_size": 248,
+    "exact_member_hits": 10,
+    "n_off": 10,
+    "ratio": 1.0
+   },
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 10,
+    "n_off": 10,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B19C",
+  "declared_owner": [
+   "UITitle_BBTY"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B1BC",
+  "total_req": 1172,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00445CD0",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     36,
+     40,
+     56
+    ]
+   },
+   {
+    "va": "0x004520A0",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x00445C10",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     36,
+     40,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00451D80",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00452420",
+    "n_this_access": 8,
+    "req": 1172,
+    "offsets": [
+     556,
+     708,
+     860,
+     1164,
+     1168
+    ]
+   }
+  ],
+  "verdict": {
+   "UITitle_BBTY": "consistent (req 1172 <= binary_size 5252)"
+  },
+  "candidates": [
+   {
+    "class": "UISceneFace",
+    "binary_size": 1780,
+    "exact_member_hits": 11,
+    "n_off": 14,
+    "ratio": 0.786
+   },
+   {
+    "class": "CCBUI",
+    "binary_size": 2648,
+    "exact_member_hits": 11,
+    "n_off": 14,
+    "ratio": 0.786
+   },
+   {
+    "class": "PropUI",
+    "binary_size": 29056,
+    "exact_member_hits": 11,
+    "n_off": 14,
+    "ratio": 0.786
+   },
+   {
+    "class": "UIListBox",
+    "binary_size": 1208,
+    "exact_member_hits": 10,
+    "n_off": 14,
+    "ratio": 0.714
+   },
+   {
+    "class": "CameraCtrl",
+    "binary_size": 4088,
+    "exact_member_hits": 10,
+    "n_off": 14,
+    "ratio": 0.714
+   },
+   {
+    "class": "CCBUIPanel",
+    "binary_size": 22112,
+    "exact_member_hits": 10,
+    "n_off": 14,
+    "ratio": 0.714
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B1BC",
+  "declared_owner": [
+   "UIListBox"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B1DC",
+  "total_req": 72,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x004526F0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004526C0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x004525E0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0043D7A0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UIListBox": "consistent (req 72 <= binary_size 1208)"
+  },
+  "candidates": [
+   {
+    "class": "UIDialog",
+    "binary_size": 72,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIFrameWnd",
+    "binary_size": 72,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   },
+   {
+    "class": "_FLTPROVIDER",
+    "binary_size": 72,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   },
+   {
+    "class": "gbPrintFont",
+    "binary_size": 76,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagOFNA",
+    "binary_size": 76,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagQuad",
+    "binary_size": 80,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B1DC",
+  "declared_owner": [
+   "UIAnimateCtrlEX"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B200",
+  "total_req": 1012,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00452AA0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00452D30",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x00445C10",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     36,
+     40,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00452830",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00452DA0",
+    "n_this_access": 3,
+    "req": 1012,
+    "offsets": [
+     748,
+     1008
+    ]
+   }
+  ],
+  "verdict": {
+   "UIAnimateCtrlEX": "consistent (req 1012 <= binary_size 1012)"
+  },
+  "candidates": [
+   {
+    "class": "UIAnimateCtrlEX",
+    "binary_size": 1012,
+    "exact_member_hits": 10,
+    "n_off": 11,
+    "ratio": 0.909
+   },
+   {
+    "class": "UISceneMap",
+    "binary_size": 1012,
+    "exact_member_hits": 10,
+    "n_off": 11,
+    "ratio": 0.909
+   },
+   {
+    "class": "PalScript",
+    "binary_size": 2176,
+    "exact_member_hits": 9,
+    "n_off": 11,
+    "ratio": 0.818
+   },
+   {
+    "class": "CameraCtrl",
+    "binary_size": 4088,
+    "exact_member_hits": 9,
+    "n_off": 11,
+    "ratio": 0.818
+   },
+   {
+    "class": "RenderTarget2",
+    "binary_size": 4292,
+    "exact_member_hits": 9,
+    "n_off": 11,
+    "ratio": 0.818
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 9,
+    "n_off": 11,
+    "ratio": 0.818
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B200",
+  "declared_owner": [
+   "SceneObj"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B220",
+  "total_req": 104,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00453200",
+    "n_this_access": 5,
+    "req": 104,
+    "offsets": [
+     56,
+     68,
+     84,
+     100
+    ]
+   },
+   {
+    "va": "0x00445C60",
+    "n_this_access": 1,
+    "req": 60,
+    "offsets": [
+     56
+    ]
+   },
+   {
+    "va": "0x00445C10",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     36,
+     40,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00453010",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00445D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "SceneObj": "consistent (req 104 <= binary_size 1784)"
+  },
+  "candidates": [
+   {
+    "class": "tagEffTaskParam",
+    "binary_size": 124,
+    "exact_member_hits": 12,
+    "n_off": 12,
+    "ratio": 1.0
+   },
+   {
+    "class": "RenderTarget",
+    "binary_size": 200,
+    "exact_member_hits": 12,
+    "n_off": 12,
+    "ratio": 1.0
+   },
+   {
+    "class": "CParticleSystem",
+    "binary_size": 220,
+    "exact_member_hits": 12,
+    "n_off": 12,
+    "ratio": 1.0
+   },
+   {
+    "class": "IMAGE_OPTIONAL_HEADER32",
+    "binary_size": 248,
+    "exact_member_hits": 12,
+    "n_off": 12,
+    "ratio": 1.0
+   },
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 12,
+    "n_off": 12,
+    "ratio": 1.0
+   },
+   {
+    "class": "Actor",
+    "binary_size": 820,
+    "exact_member_hits": 12,
+    "n_off": 12,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B22C",
+  "declared_owner": [
+   "CCBUIPanel"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B274",
+  "total_req": 5312,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00454550",
+    "n_this_access": 1,
+    "req": 5312,
+    "offsets": [
+     5308
+    ]
+   },
+   {
+    "va": "0x00454560",
+    "n_this_access": 1,
+    "req": 5312,
+    "offsets": [
+     5308
+    ]
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00453E50",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00454590",
+    "n_this_access": 1,
+    "req": 5312,
+    "offsets": [
+     5308
+    ]
+   }
+  ],
+  "verdict": {
+   "CCBUIPanel": "consistent (req 5312 <= binary_size 22112)"
+  },
+  "candidates": [
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 8,
+    "n_off": 9,
+    "ratio": 0.889
+   },
+   {
+    "class": "_Item_List_Info",
+    "binary_size": 5784,
+    "exact_member_hits": 8,
+    "n_off": 9,
+    "ratio": 0.889
+   },
+   {
+    "class": "UITitle",
+    "binary_size": 9236,
+    "exact_member_hits": 8,
+    "n_off": 9,
+    "ratio": 0.889
+   },
+   {
+    "class": "UIChatRest",
+    "binary_size": 9516,
+    "exact_member_hits": 8,
+    "n_off": 9,
+    "ratio": 0.889
+   },
+   {
+    "class": "UIBigMap",
+    "binary_size": 10248,
+    "exact_member_hits": 8,
+    "n_off": 9,
+    "ratio": 0.889
+   },
+   {
+    "class": "Camera",
+    "binary_size": 12956,
+    "exact_member_hits": 8,
+    "n_off": 9,
+    "ratio": 0.889
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B274",
+  "declared_owner": [
+   "TaskBookUI"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B294",
+  "total_req": 72,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00524970",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00456500",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00454980",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004568C0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "TaskBookUI": "consistent (req 72 <= binary_size 143672)"
+  },
+  "candidates": [
+   {
+    "class": "UIDialog",
+    "binary_size": 72,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIFrameWnd",
+    "binary_size": 72,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   },
+   {
+    "class": "_FLTPROVIDER",
+    "binary_size": 72,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   },
+   {
+    "class": "gbPrintFont",
+    "binary_size": 76,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagOFNA",
+    "binary_size": 76,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagQuad",
+    "binary_size": 80,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B394",
+  "declared_owner": [
+   "UISceneFrm"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B5CC",
+  "total_req": 3272,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0045A490",
+    "n_this_access": 1,
+    "req": 3260,
+    "offsets": [
+     3256
+    ]
+   },
+   {
+    "va": "0x0045A4F0",
+    "n_this_access": 1,
+    "req": 3260,
+    "offsets": [
+     3256
+    ]
+   },
+   {
+    "va": "0x00459360",
+    "n_this_access": 6,
+    "req": 3272,
+    "offsets": [
+     3260,
+     3264,
+     3268
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00459240",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0045A600",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UISceneFrm": "consistent (req 3272 <= binary_size 3288)"
+  },
+  "candidates": [
+   {
+    "class": "UIChatRest",
+    "binary_size": 9516,
+    "exact_member_hits": 9,
+    "n_off": 11,
+    "ratio": 0.818
+   },
+   {
+    "class": "MainEquipUI",
+    "binary_size": 204620,
+    "exact_member_hits": 8,
+    "n_off": 11,
+    "ratio": 0.727
+   },
+   {
+    "class": "UISceneFrm",
+    "binary_size": 3288,
+    "exact_member_hits": 7,
+    "n_off": 11,
+    "ratio": 0.636
+   },
+   {
+    "class": "ChoseCompose",
+    "binary_size": 3770,
+    "exact_member_hits": 7,
+    "n_off": 11,
+    "ratio": 0.636
+   },
+   {
+    "class": "ComposeUI",
+    "binary_size": 3896,
+    "exact_member_hits": 7,
+    "n_off": 11,
+    "ratio": 0.636
+   },
+   {
+    "class": "UITitle_ArcSave",
+    "binary_size": 4004,
+    "exact_member_hits": 7,
+    "n_off": 11,
+    "ratio": 0.636
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B5CC",
+  "declared_owner": [
+   "SaleUI"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B688",
+  "total_req": 105908,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0043DDF0",
+    "n_this_access": 4,
+    "req": 72,
+    "offsets": [
+     8,
+     16,
+     56,
+     68
+    ]
+   },
+   {
+    "va": "0x0046B040",
+    "n_this_access": 11,
+    "req": 368,
+    "offsets": [
+     356,
+     360,
+     364
+    ]
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0045AE40",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0046B4B0",
+    "n_this_access": 61,
+    "req": 105908,
+    "offsets": [
+     0,
+     80,
+     336,
+     340,
+     377,
+     900,
+     2436,
+     14272,
+     25328,
+     93472,
+     93596,
+     95748,
+     98900,
+     99204,
+     100460,
+     100804,
+     101172,
+     101173,
+     101664,
+     102364,
+     103084,
+     105196,
+     105348,
+     105349,
+     105864,
+     105872,
+     105904
+    ]
+   }
+  ],
+  "verdict": {
+   "SaleUI": "consistent (req 105908 <= binary_size 105912)"
+  },
+  "candidates": [
+   {
+    "class": "EquipUI",
+    "binary_size": 120116,
+    "exact_member_hits": 15,
+    "n_off": 38,
+    "ratio": 0.395
+   },
+   {
+    "class": "SwordUI",
+    "binary_size": 388952,
+    "exact_member_hits": 12,
+    "n_off": 38,
+    "ratio": 0.316
+   },
+   {
+    "class": "SaleUI",
+    "binary_size": 105912,
+    "exact_member_hits": 11,
+    "n_off": 38,
+    "ratio": 0.289
+   },
+   {
+    "class": "SystemUI",
+    "binary_size": 516636,
+    "exact_member_hits": 11,
+    "n_off": 38,
+    "ratio": 0.289
+   },
+   {
+    "class": "LineupUI",
+    "binary_size": 171244,
+    "exact_member_hits": 10,
+    "n_off": 38,
+    "ratio": 0.263
+   },
+   {
+    "class": "MainEquipUI",
+    "binary_size": 204620,
+    "exact_member_hits": 10,
+    "n_off": 38,
+    "ratio": 0.263
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B688",
+  "declared_owner": [
+   "PropUI"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B77C",
+  "total_req": 28892,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0043DDF0",
+    "n_this_access": 4,
+    "req": 72,
+    "offsets": [
+     8,
+     16,
+     56,
+     68
+    ]
+   },
+   {
+    "va": "0x0046F620",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0046D4C0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0046F650",
+    "n_this_access": 61,
+    "req": 28892,
+    "offsets": [
+     0,
+     612,
+     2148,
+     13988,
+     16392,
+     17596,
+     18108,
+     18112,
+     18116,
+     18548,
+     18892,
+     22220,
+     24516,
+     24836,
+     26092,
+     26436,
+     26804,
+     26805,
+     27264,
+     27600,
+     27964,
+     28324,
+     28700,
+     28865,
+     28868,
+     28876,
+     28888
+    ]
+   }
+  ],
+  "verdict": {
+   "PropUI": "consistent (req 28892 <= binary_size 29056)"
+  },
+  "candidates": [
+   {
+    "class": "PropUI",
+    "binary_size": 29056,
+    "exact_member_hits": 18,
+    "n_off": 35,
+    "ratio": 0.514
+   },
+   {
+    "class": "CG_UI",
+    "binary_size": 39240,
+    "exact_member_hits": 9,
+    "n_off": 35,
+    "ratio": 0.257
+   },
+   {
+    "class": "Comp_DonateUI",
+    "binary_size": 46192,
+    "exact_member_hits": 9,
+    "n_off": 35,
+    "ratio": 0.257
+   },
+   {
+    "class": "JusticeBookUI",
+    "binary_size": 56192,
+    "exact_member_hits": 9,
+    "n_off": 35,
+    "ratio": 0.257
+   },
+   {
+    "class": "SaleUI",
+    "binary_size": 105912,
+    "exact_member_hits": 9,
+    "n_off": 35,
+    "ratio": 0.257
+   },
+   {
+    "class": "EquipUI",
+    "binary_size": 120116,
+    "exact_member_hits": 9,
+    "n_off": 35,
+    "ratio": 0.257
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B820",
+  "declared_owner": [
+   "MainEquipUI"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B850",
+  "total_req": 209004,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0047B200",
+    "n_this_access": 6,
+    "req": 209004,
+    "offsets": [
+     173940,
+     173948,
+     208988,
+     208992,
+     208996,
+     209000
+    ]
+   },
+   {
+    "va": "0x0047B3B0",
+    "n_this_access": 37,
+    "req": 173945,
+    "offsets": [
+     104,
+     162820,
+     162828,
+     162832,
+     162840,
+     162868,
+     162876,
+     163572,
+     163724,
+     167232,
+     168440,
+     168784,
+     169128,
+     172208,
+     172664,
+     173648,
+     173652,
+     173664,
+     173884,
+     173888,
+     173892,
+     173940,
+     173941
+    ]
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00479660",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0047B6C0",
+    "n_this_access": 5,
+    "req": 163728,
+    "offsets": [
+     162876,
+     163572,
+     163724
+    ]
+   }
+  ],
+  "verdict": {
+   "MainEquipUI": "IMPOSSIBLE (req 209004 > binary_size 204620)"
+  },
+  "candidates": [
+   {
+    "class": "MainPropUI",
+    "binary_size": 247976,
+    "exact_member_hits": 10,
+    "n_off": 36,
+    "ratio": 0.278
+   },
+   {
+    "class": "SwordUI",
+    "binary_size": 388952,
+    "exact_member_hits": 9,
+    "n_off": 36,
+    "ratio": 0.25
+   },
+   {
+    "class": "SystemUI",
+    "binary_size": 516636,
+    "exact_member_hits": 9,
+    "n_off": 36,
+    "ratio": 0.25
+   },
+   {
+    "class": "MagicUI",
+    "binary_size": 267300,
+    "exact_member_hits": 8,
+    "n_off": 36,
+    "ratio": 0.222
+   },
+   {
+    "class": "UITitle_JDHY",
+    "binary_size": 377700,
+    "exact_member_hits": 8,
+    "n_off": 36,
+    "ratio": 0.222
+   },
+   {
+    "class": "CCBCamControl",
+    "binary_size": 430256,
+    "exact_member_hits": 6,
+    "n_off": 36,
+    "ratio": 0.167
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B850",
+  "declared_owner": [
+   "UITitle_ArcSave"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B884",
+  "total_req": 128,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0047C370",
+    "n_this_access": 2,
+    "req": 128,
+    "offsets": [
+     120,
+     124
+    ]
+   },
+   {
+    "va": "0x0047C3A0",
+    "n_this_access": 1,
+    "req": 128,
+    "offsets": [
+     124
+    ]
+   },
+   {
+    "va": "0x0047BDF0",
+    "n_this_access": 2,
+    "req": 124,
+    "offsets": [
+     120
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0047BD00",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0047C430",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UITitle_ArcSave": "consistent (req 128 <= binary_size 4004)"
+  },
+  "candidates": [
+   {
+    "class": "UIMap",
+    "binary_size": 152,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIStatic",
+    "binary_size": 152,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIStaticCB",
+    "binary_size": 156,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIStaticFlip",
+    "binary_size": 156,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIStaticRM",
+    "binary_size": 180,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIStaticEX",
+    "binary_size": 184,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B8A4",
+  "declared_owner": [
+   "UITitle_YXXX"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B90C",
+  "total_req": 3834,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00524970",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x0047E3E0",
+    "n_this_access": 16,
+    "req": 3834,
+    "offsets": [
+     388,
+     392,
+     564,
+     584,
+     736,
+     2456,
+     3829,
+     3830
+    ]
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0047DD70",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0047E4E0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UITitle_YXXX": "IMPOSSIBLE (req 3834 > binary_size 2472)"
+  },
+  "candidates": [
+   {
+    "class": "CameraCtrl",
+    "binary_size": 4088,
+    "exact_member_hits": 12,
+    "n_off": 16,
+    "ratio": 0.75
+   },
+   {
+    "class": "Camera",
+    "binary_size": 12956,
+    "exact_member_hits": 10,
+    "n_off": 16,
+    "ratio": 0.625
+   },
+   {
+    "class": "UITitle_XJTM",
+    "binary_size": 5052,
+    "exact_member_hits": 9,
+    "n_off": 16,
+    "ratio": 0.562
+   },
+   {
+    "class": "PalScriptMgr",
+    "binary_size": 9512,
+    "exact_member_hits": 9,
+    "n_off": 16,
+    "ratio": 0.562
+   },
+   {
+    "class": "CGameData",
+    "binary_size": 28268,
+    "exact_member_hits": 9,
+    "n_off": 16,
+    "ratio": 0.562
+   },
+   {
+    "class": "PropUI",
+    "binary_size": 29056,
+    "exact_member_hits": 9,
+    "n_off": 16,
+    "ratio": 0.562
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056B90C",
+  "declared_owner": [
+   "LineupUI"
+  ],
+  "n_slots": 7,
+  "end": "0x0056B97C",
+  "total_req": 162772,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0047F880",
+    "n_this_access": 5,
+    "req": 154340,
+    "offsets": [
+     154336
+    ]
+   },
+   {
+    "va": "0x0047F970",
+    "n_this_access": 56,
+    "req": 162772,
+    "offsets": [
+     104,
+     4392,
+     4544,
+     154412,
+     154428,
+     154724,
+     154956,
+     155108,
+     155260,
+     155412,
+     156172,
+     156932,
+     157604,
+     157756,
+     157908,
+     158252,
+     158596,
+     158844,
+     159092,
+     159340,
+     159588,
+     159836,
+     160112,
+     162516,
+     162520,
+     162528,
+     162748,
+     162749,
+     162752,
+     162768
+    ]
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0047E8F0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00480600",
+    "n_this_access": 1,
+    "req": 365,
+    "offsets": [
+     361
+    ]
+   }
+  ],
+  "verdict": {
+   "LineupUI": "consistent (req 162772 <= binary_size 171244)"
+  },
+  "candidates": [
+   {
+    "class": "LineupUI",
+    "binary_size": 171244,
+    "exact_member_hits": 10,
+    "n_off": 40,
+    "ratio": 0.25
+   },
+   {
+    "class": "MainEquipUI",
+    "binary_size": 204620,
+    "exact_member_hits": 10,
+    "n_off": 40,
+    "ratio": 0.25
+   },
+   {
+    "class": "MainPropUI",
+    "binary_size": 247976,
+    "exact_member_hits": 9,
+    "n_off": 40,
+    "ratio": 0.225
+   },
+   {
+    "class": "SwordUI",
+    "binary_size": 388952,
+    "exact_member_hits": 9,
+    "n_off": 40,
+    "ratio": 0.225
+   },
+   {
+    "class": "SystemUI",
+    "binary_size": 516636,
+    "exact_member_hits": 9,
+    "n_off": 40,
+    "ratio": 0.225
+   },
+   {
+    "class": "MagicUI",
+    "binary_size": 267300,
+    "exact_member_hits": 8,
+    "n_off": 40,
+    "ratio": 0.2
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056BA30",
+  "declared_owner": [
+   "StateUI"
+  ],
+  "n_slots": 7,
+  "end": "0x0056C548",
+  "total_req": 160612,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x004850E0",
+    "n_this_access": 4,
+    "req": 160612,
+    "offsets": [
+     154640,
+     159664,
+     159816,
+     160608
+    ]
+   },
+   {
+    "va": "0x00485230",
+    "n_this_access": 17,
+    "req": 159941,
+    "offsets": [
+     104,
+     4544,
+     4696,
+     159560,
+     159568,
+     159576,
+     159580,
+     159588,
+     159664,
+     159816,
+     159937
+    ]
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00483260",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00485DF0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "StateUI": "consistent (req 160612 <= binary_size 162000)"
+  },
+  "candidates": [
+   {
+    "class": "LineupUI",
+    "binary_size": 171244,
+    "exact_member_hits": 9,
+    "n_off": 21,
+    "ratio": 0.429
+   },
+   {
+    "class": "MainEquipUI",
+    "binary_size": 204620,
+    "exact_member_hits": 9,
+    "n_off": 21,
+    "ratio": 0.429
+   },
+   {
+    "class": "MainPropUI",
+    "binary_size": 247976,
+    "exact_member_hits": 9,
+    "n_off": 21,
+    "ratio": 0.429
+   },
+   {
+    "class": "SwordUI",
+    "binary_size": 388952,
+    "exact_member_hits": 9,
+    "n_off": 21,
+    "ratio": 0.429
+   },
+   {
+    "class": "SystemUI",
+    "binary_size": 516636,
+    "exact_member_hits": 9,
+    "n_off": 21,
+    "ratio": 0.429
+   },
+   {
+    "class": "StateUI",
+    "binary_size": 162000,
+    "exact_member_hits": 8,
+    "n_off": 21,
+    "ratio": 0.381
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056C590",
+  "declared_owner": [
+   "RenderTarget"
+  ],
+  "n_slots": 7,
+  "end": "0x0056D0A0",
+  "total_req": 205776,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0048EB40",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x0048EF80",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00486D00",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0048F3A0",
+    "n_this_access": 3,
+    "req": 205776,
+    "offsets": [
+     888,
+     909,
+     205772
+    ]
+   }
+  ],
+  "verdict": {
+   "RenderTarget": "IMPOSSIBLE (req 205776 > binary_size 200)"
+  },
+  "candidates": [
+   {
+    "class": "MainPropUI",
+    "binary_size": 247976,
+    "exact_member_hits": 8,
+    "n_off": 11,
+    "ratio": 0.727
+   },
+   {
+    "class": "MagicUI",
+    "binary_size": 267300,
+    "exact_member_hits": 8,
+    "n_off": 11,
+    "ratio": 0.727
+   },
+   {
+    "class": "UITitle_JDHY",
+    "binary_size": 377700,
+    "exact_member_hits": 8,
+    "n_off": 11,
+    "ratio": 0.727
+   },
+   {
+    "class": "SwordUI",
+    "binary_size": 388952,
+    "exact_member_hits": 8,
+    "n_off": 11,
+    "ratio": 0.727
+   },
+   {
+    "class": "SystemUI",
+    "binary_size": 516636,
+    "exact_member_hits": 8,
+    "n_off": 11,
+    "ratio": 0.727
+   },
+   {
+    "class": "CCBCamControl",
+    "binary_size": 430256,
+    "exact_member_hits": 6,
+    "n_off": 11,
+    "ratio": 0.545
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056D618",
+  "declared_owner": [
+   "MainPropUI"
+  ],
+  "n_slots": 7,
+  "end": "0x0056E148",
+  "total_req": 154508,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00496FA0",
+    "n_this_access": 5,
+    "req": 154508,
+    "offsets": [
+     154504
+    ]
+   },
+   {
+    "va": "0x004971E0",
+    "n_this_access": 6,
+    "req": 4716,
+    "offsets": [
+     96,
+     104,
+     366,
+     4560,
+     4712
+    ]
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00490E70",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004974A0",
+    "n_this_access": 1,
+    "req": 370,
+    "offsets": [
+     366
+    ]
+   }
+  ],
+  "verdict": {
+   "MainPropUI": "consistent (req 154508 <= binary_size 247976)"
+  },
+  "candidates": [
+   {
+    "class": "MainEquipUI",
+    "binary_size": 204620,
+    "exact_member_hits": 11,
+    "n_off": 14,
+    "ratio": 0.786
+   },
+   {
+    "class": "LineupUI",
+    "binary_size": 171244,
+    "exact_member_hits": 10,
+    "n_off": 14,
+    "ratio": 0.714
+   },
+   {
+    "class": "MainPropUI",
+    "binary_size": 247976,
+    "exact_member_hits": 10,
+    "n_off": 14,
+    "ratio": 0.714
+   },
+   {
+    "class": "SwordUI",
+    "binary_size": 388952,
+    "exact_member_hits": 10,
+    "n_off": 14,
+    "ratio": 0.714
+   },
+   {
+    "class": "SystemUI",
+    "binary_size": 516636,
+    "exact_member_hits": 10,
+    "n_off": 14,
+    "ratio": 0.714
+   },
+   {
+    "class": "StateUI",
+    "binary_size": 162000,
+    "exact_member_hits": 8,
+    "n_off": 14,
+    "ratio": 0.571
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056E170",
+  "declared_owner": [
+   "EquipUI"
+  ],
+  "n_slots": 7,
+  "end": "0x0056E190",
+  "total_req": 154776,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0049FE00",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004A00B0",
+    "n_this_access": 6,
+    "req": 4992,
+    "offsets": [
+     96,
+     108,
+     632,
+     4836,
+     4988
+    ]
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00498C70",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004A0370",
+    "n_this_access": 3,
+    "req": 154776,
+    "offsets": [
+     632,
+     652,
+     154772
+    ]
+   }
+  ],
+  "verdict": {
+   "EquipUI": "IMPOSSIBLE (req 154776 > binary_size 120116)"
+  },
+  "candidates": [
+   {
+    "class": "MainPropUI",
+    "binary_size": 247976,
+    "exact_member_hits": 12,
+    "n_off": 15,
+    "ratio": 0.8
+   },
+   {
+    "class": "LineupUI",
+    "binary_size": 171244,
+    "exact_member_hits": 9,
+    "n_off": 15,
+    "ratio": 0.6
+   },
+   {
+    "class": "MainEquipUI",
+    "binary_size": 204620,
+    "exact_member_hits": 9,
+    "n_off": 15,
+    "ratio": 0.6
+   },
+   {
+    "class": "SwordUI",
+    "binary_size": 388952,
+    "exact_member_hits": 9,
+    "n_off": 15,
+    "ratio": 0.6
+   },
+   {
+    "class": "SystemUI",
+    "binary_size": 516636,
+    "exact_member_hits": 9,
+    "n_off": 15,
+    "ratio": 0.6
+   },
+   {
+    "class": "StateUI",
+    "binary_size": 162000,
+    "exact_member_hits": 8,
+    "n_off": 15,
+    "ratio": 0.533
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056E190",
+  "declared_owner": [
+   "UIRoleDialog"
+  ],
+  "n_slots": 7,
+  "end": "0x0056E718",
+  "total_req": 1344,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x004A1A80",
+    "n_this_access": 2,
+    "req": 116,
+    "offsets": [
+     112
+    ]
+   },
+   {
+    "va": "0x004A1AA0",
+    "n_this_access": 1,
+    "req": 1344,
+    "offsets": [
+     1340
+    ]
+   },
+   {
+    "va": "0x004A14C0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x004A13F0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004A1D10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UIRoleDialog": "IMPOSSIBLE (req 1344 > binary_size 720)"
+  },
+  "candidates": [
+   {
+    "class": "ChoseCompose",
+    "binary_size": 3770,
+    "exact_member_hits": 8,
+    "n_off": 9,
+    "ratio": 0.889
+   },
+   {
+    "class": "RenderTarget2",
+    "binary_size": 4292,
+    "exact_member_hits": 8,
+    "n_off": 9,
+    "ratio": 0.889
+   },
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 8,
+    "n_off": 9,
+    "ratio": 0.889
+   },
+   {
+    "class": "UIScenePanel",
+    "binary_size": 14232,
+    "exact_member_hits": 8,
+    "n_off": 9,
+    "ratio": 0.889
+   },
+   {
+    "class": "UIRoleSelect",
+    "binary_size": 1488,
+    "exact_member_hits": 7,
+    "n_off": 9,
+    "ratio": 0.778
+   },
+   {
+    "class": "UISceneFace",
+    "binary_size": 1780,
+    "exact_member_hits": 7,
+    "n_off": 9,
+    "ratio": 0.778
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056F040",
+  "declared_owner": [
+   "RoleStatePanel"
+  ],
+  "n_slots": 7,
+  "end": "0x0056F1F4",
+  "total_req": 176088,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x004A5930",
+    "n_this_access": 6,
+    "req": 176088,
+    "offsets": [
+     154496,
+     176084
+    ]
+   },
+   {
+    "va": "0x004A5B30",
+    "n_this_access": 3,
+    "req": 376,
+    "offsets": [
+     96,
+     372
+    ]
+   },
+   {
+    "va": "0x004A6600",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x004A2150",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004A6120",
+    "n_this_access": 1,
+    "req": 376,
+    "offsets": [
+     372
+    ]
+   }
+  ],
+  "verdict": {
+   "RoleStatePanel": "consistent (req 176088 <= binary_size 176256)"
+  },
+  "candidates": [
+   {
+    "class": "MainEquipUI",
+    "binary_size": 204620,
+    "exact_member_hits": 9,
+    "n_off": 11,
+    "ratio": 0.818
+   },
+   {
+    "class": "MainPropUI",
+    "binary_size": 247976,
+    "exact_member_hits": 8,
+    "n_off": 11,
+    "ratio": 0.727
+   },
+   {
+    "class": "SwordUI",
+    "binary_size": 388952,
+    "exact_member_hits": 8,
+    "n_off": 11,
+    "ratio": 0.727
+   },
+   {
+    "class": "SystemUI",
+    "binary_size": 516636,
+    "exact_member_hits": 8,
+    "n_off": 11,
+    "ratio": 0.727
+   },
+   {
+    "class": "MagicUI",
+    "binary_size": 267300,
+    "exact_member_hits": 7,
+    "n_off": 11,
+    "ratio": 0.636
+   },
+   {
+    "class": "UITitle_JDHY",
+    "binary_size": 377700,
+    "exact_member_hits": 7,
+    "n_off": 11,
+    "ratio": 0.636
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056F29C",
+  "declared_owner": [
+   "SystemUI"
+  ],
+  "n_slots": 7,
+  "end": "0x0056F33C",
+  "total_req": 402824,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x004AD140",
+    "n_this_access": 41,
+    "req": 402824,
+    "offsets": [
+     21843,
+     177424,
+     185228,
+     185576,
+     283688,
+     283692,
+     283696,
+     283700,
+     383172,
+     383176,
+     383180,
+     383185,
+     383187,
+     383188,
+     402820
+    ]
+   },
+   {
+    "va": "0x004AD540",
+    "n_this_access": 72,
+    "req": 401452,
+    "offsets": [
+     104,
+     360,
+     364,
+     516,
+     520,
+     524,
+     528,
+     532,
+     536,
+     540,
+     544,
+     21840,
+     21843,
+     21852,
+     21856,
+     21860,
+     23444,
+     23448,
+     27480,
+     27632,
+     178036,
+     178124,
+     178280,
+     178804,
+     178956,
+     179452,
+     179456,
+     179460,
+     179464,
+     179468,
+     179472,
+     179476,
+     179500,
+     179502,
+     179504,
+     185228,
+     381816,
+     382160,
+     382744,
+     383184,
+     383185,
+     383186,
+     383204,
+     383208,
+     396024,
+     397552,
+     401448
+    ]
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x004A7670",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004ADC30",
+    "n_this_access": 41,
+    "req": 402824,
+    "offsets": [
+     104,
+     360,
+     364,
+     516,
+     520,
+     524,
+     528,
+     532,
+     536,
+     540,
+     544,
+     21840,
+     21843,
+     177416,
+     178036,
+     178804,
+     178956,
+     179108,
+     179452,
+     179456,
+     179460,
+     179464,
+     179468,
+     179472,
+     179484,
+     179504,
+     185228,
+     381816,
+     382160,
+     383204,
+     402816,
+     402820
+    ]
+   }
+  ],
+  "verdict": {
+   "SystemUI": "consistent (req 402824 <= binary_size 516636)"
+  },
+  "candidates": [
+   {
+    "class": "SystemUI",
+    "binary_size": 516636,
+    "exact_member_hits": 12,
+    "n_off": 71,
+    "ratio": 0.169
+   },
+   {
+    "class": "CCBStage",
+    "binary_size": 673988,
+    "exact_member_hits": 9,
+    "n_off": 71,
+    "ratio": 0.127
+   },
+   {
+    "class": "CCBCamControl",
+    "binary_size": 430256,
+    "exact_member_hits": 6,
+    "n_off": 71,
+    "ratio": 0.085
+   },
+   {
+    "class": "CG_Scene",
+    "binary_size": 474200,
+    "exact_member_hits": 4,
+    "n_off": 71,
+    "ratio": 0.056
+   },
+   {
+    "class": "gbVFileSystem",
+    "binary_size": 917972,
+    "exact_member_hits": 3,
+    "n_off": 71,
+    "ratio": 0.042
+   },
+   {
+    "class": "DealData",
+    "binary_size": 833340,
+    "exact_member_hits": 2,
+    "n_off": 71,
+    "ratio": 0.028
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056F33C",
+  "declared_owner": [
+   "UITitle_JDHY"
+  ],
+  "n_slots": 7,
+  "end": "0x0056F36C",
+  "total_req": 154492,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x004B2C70",
+    "n_this_access": 5,
+    "req": 154492,
+    "offsets": [
+     154488
+    ]
+   },
+   {
+    "va": "0x004B3100",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x004B0520",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004B3470",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UITitle_JDHY": "consistent (req 154492 <= binary_size 377700)"
+  },
+  "candidates": [
+   {
+    "class": "StateUI",
+    "binary_size": 162000,
+    "exact_member_hits": 8,
+    "n_off": 9,
+    "ratio": 0.889
+   },
+   {
+    "class": "LineupUI",
+    "binary_size": 171244,
+    "exact_member_hits": 8,
+    "n_off": 9,
+    "ratio": 0.889
+   },
+   {
+    "class": "MainEquipUI",
+    "binary_size": 204620,
+    "exact_member_hits": 8,
+    "n_off": 9,
+    "ratio": 0.889
+   },
+   {
+    "class": "MainPropUI",
+    "binary_size": 247976,
+    "exact_member_hits": 8,
+    "n_off": 9,
+    "ratio": 0.889
+   },
+   {
+    "class": "MagicUI",
+    "binary_size": 267300,
+    "exact_member_hits": 8,
+    "n_off": 9,
+    "ratio": 0.889
+   },
+   {
+    "class": "UITitle_JDHY",
+    "binary_size": 377700,
+    "exact_member_hits": 8,
+    "n_off": 9,
+    "ratio": 0.889
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056F36C",
+  "declared_owner": [
+   "RenderTarget3"
+  ],
+  "n_slots": 3,
+  "end": "0x0056F37C",
+  "total_req": 0,
+  "slots": [
+   {
+    "va": "0x0055434F",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0055434F",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004B6C80",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "RenderTarget3": "consistent (req 0 <= binary_size 24)"
+  },
+  "candidates": []
+ },
+ {
+  "vtable": "0x0056F580",
+  "declared_owner": [
+   "ScreenEffectMgr"
+  ],
+  "n_slots": 15,
+  "end": "0x0056F5D8",
+  "total_req": 1100,
+  "slots": [
+   {
+    "va": "0x004BEF30",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004BF260",
+    "n_this_access": 24,
+    "req": 1096,
+    "offsets": [
+     88,
+     92,
+     96,
+     100,
+     168,
+     176,
+     584,
+     992,
+     1056,
+     1057,
+     1058,
+     1064,
+     1092
+    ]
+   },
+   {
+    "va": "0x00542102",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004BF1D0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004BF1C0",
+    "n_this_access": 1,
+    "req": 4,
+    "offsets": [
+     0
+    ]
+   },
+   {
+    "va": "0x0054211A",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00542114",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x0054210E",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x005420DE",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x005420D8",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004BEFB0",
+    "n_this_access": 25,
+    "req": 1060,
+    "offsets": [
+     92,
+     96,
+     100,
+     164,
+     168,
+     176,
+     241,
+     584,
+     992,
+     996,
+     1000,
+     1004,
+     1008,
+     1012,
+     1016,
+     1020,
+     1024,
+     1028,
+     1032,
+     1036,
+     1040,
+     1044,
+     1048,
+     1052,
+     1056
+    ]
+   },
+   {
+    "va": "0x004BF170",
+    "n_this_access": 7,
+    "req": 172,
+    "offsets": [
+     96,
+     100,
+     164,
+     168
+    ]
+   },
+   {
+    "va": "0x004BF4F0",
+    "n_this_access": 14,
+    "req": 1100,
+    "offsets": [
+     88,
+     92,
+     1060,
+     1064,
+     1068,
+     1092,
+     1096
+    ]
+   },
+   {
+    "va": "0x004BF680",
+    "n_this_access": 2,
+    "req": 1064,
+    "offsets": [
+     88,
+     1060
+    ]
+   },
+   {
+    "va": "0x004BF6C0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "ScreenEffectMgr": "IMPOSSIBLE (req 1100 > binary_size 152)"
+  },
+  "candidates": [
+   {
+    "class": "SceneMgr",
+    "binary_size": 58692,
+    "exact_member_hits": 14,
+    "n_off": 34,
+    "ratio": 0.412
+   },
+   {
+    "class": "MXTransport",
+    "binary_size": 363968,
+    "exact_member_hits": 10,
+    "n_off": 34,
+    "ratio": 0.294
+   },
+   {
+    "class": "tagEffMgrData",
+    "binary_size": 1500,
+    "exact_member_hits": 9,
+    "n_off": 34,
+    "ratio": 0.265
+   },
+   {
+    "class": "PalScriptMgr",
+    "binary_size": 9512,
+    "exact_member_hits": 9,
+    "n_off": 34,
+    "ratio": 0.265
+   },
+   {
+    "class": "CCBRoleState",
+    "binary_size": 22224,
+    "exact_member_hits": 9,
+    "n_off": 34,
+    "ratio": 0.265
+   },
+   {
+    "class": "CCBStage",
+    "binary_size": 673988,
+    "exact_member_hits": 9,
+    "n_off": 34,
+    "ratio": 0.265
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056F5D8",
+  "declared_owner": [
+   "RenderTarget2"
+  ],
+  "n_slots": 3,
+  "end": "0x0056F5E4",
+  "total_req": 0,
+  "slots": [
+   {
+    "va": "0x004C1550",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C2850",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C1560",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "RenderTarget2": "consistent (req 0 <= binary_size 4292)"
+  },
+  "candidates": []
+ },
+ {
+  "vtable": "0x0056F5E4",
+  "declared_owner": [
+   "CEffAction"
+  ],
+  "n_slots": 15,
+  "end": "0x0056F620",
+  "total_req": 52,
+  "slots": [
+   {
+    "va": "0x004C0540",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0650",
+    "n_this_access": 10,
+    "req": 48,
+    "offsets": [
+     24,
+     40,
+     44
+    ]
+   },
+   {
+    "va": "0x004C0640",
+    "n_this_access": 2,
+    "req": 52,
+    "offsets": [
+     8,
+     48
+    ]
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0740",
+    "n_this_access": 3,
+    "req": 24,
+    "offsets": [
+     12,
+     16,
+     20
+    ]
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0520",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0500",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0920",
+    "n_this_access": 2,
+    "req": 8,
+    "offsets": [
+     4
+    ]
+   },
+   {
+    "va": "0x004C0510",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004AF760",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C09E0",
+    "n_this_access": 1,
+    "req": 16,
+    "offsets": [
+     12
+    ]
+   },
+   {
+    "va": "0x004C15D0",
+    "n_this_access": 7,
+    "req": 48,
+    "offsets": [
+     24,
+     40,
+     44
+    ]
+   },
+   {
+    "va": "0x004C1270",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CEffAction": "consistent (req 52 <= binary_size 52)"
+  },
+  "candidates": [
+   {
+    "class": "tag17A8Data",
+    "binary_size": 52,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "CMeteorChain",
+    "binary_size": 56,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "DIEFFECT",
+    "binary_size": 56,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "_D3DPRESENT_PARAMETERS_",
+    "binary_size": 56,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "D3DXMATRIX",
+    "binary_size": 64,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   },
+   {
+    "class": "gbMatrix4",
+    "binary_size": 64,
+    "exact_member_hits": 9,
+    "n_off": 9,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056F768",
+  "declared_owner": [
+   "RenderTarget2"
+  ],
+  "n_slots": 3,
+  "end": "0x0056F774",
+  "total_req": 0,
+  "slots": [
+   {
+    "va": "0x004C3C70",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C2850",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C3C80",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "RenderTarget2": "consistent (req 0 <= binary_size 4292)"
+  },
+  "candidates": []
+ },
+ {
+  "vtable": "0x0056F7C8",
+  "declared_owner": [
+   "CEffCylinder"
+  ],
+  "n_slots": 15,
+  "end": "0x0056F804",
+  "total_req": 196,
+  "slots": [
+   {
+    "va": "0x004C3DB0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004C4060",
+    "n_this_access": 38,
+    "req": 184,
+    "offsets": [
+     24,
+     40,
+     44,
+     48,
+     61,
+     62,
+     63,
+     64,
+     76,
+     104,
+     108,
+     112,
+     116,
+     120,
+     124,
+     128,
+     132,
+     136,
+     140,
+     144,
+     148,
+     152,
+     160,
+     164,
+     168,
+     172,
+     176,
+     180
+    ]
+   },
+   {
+    "va": "0x004C3EC0",
+    "n_this_access": 25,
+    "req": 196,
+    "offsets": [
+     8,
+     60,
+     68,
+     72,
+     76,
+     80,
+     84,
+     88,
+     92,
+     96,
+     100,
+     156,
+     160,
+     164,
+     168,
+     172,
+     176,
+     180,
+     184,
+     188,
+     192
+    ]
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004C45A0",
+    "n_this_access": 3,
+    "req": 24,
+    "offsets": [
+     12,
+     16,
+     20
+    ]
+   },
+   {
+    "va": "0x004C4370",
+    "n_this_access": 22,
+    "req": 196,
+    "offsets": [
+     4,
+     8,
+     48,
+     56,
+     60,
+     61,
+     62,
+     76,
+     96,
+     100,
+     112,
+     160,
+     164,
+     168,
+     172,
+     176,
+     180,
+     184,
+     188,
+     192
+    ]
+   },
+   {
+    "va": "0x004C3D90",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0500",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004AF760",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C5150",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004AF760",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C48D0",
+    "n_this_access": 1,
+    "req": 16,
+    "offsets": [
+     12
+    ]
+   },
+   {
+    "va": "0x004C15D0",
+    "n_this_access": 7,
+    "req": 48,
+    "offsets": [
+     24,
+     40,
+     44
+    ]
+   },
+   {
+    "va": "0x004C5010",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CEffCylinder": "consistent (req 196 <= binary_size 4292)"
+  },
+  "candidates": [
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 44,
+    "n_off": 47,
+    "ratio": 0.936
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 40,
+    "n_off": 47,
+    "ratio": 0.851
+   },
+   {
+    "class": "UIScene",
+    "binary_size": 344,
+    "exact_member_hits": 39,
+    "n_off": 47,
+    "ratio": 0.83
+   },
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 39,
+    "n_off": 47,
+    "ratio": 0.83
+   },
+   {
+    "class": "UIScenePanel",
+    "binary_size": 14232,
+    "exact_member_hits": 39,
+    "n_off": 47,
+    "ratio": 0.83
+   },
+   {
+    "class": "PalScriptMgr",
+    "binary_size": 9512,
+    "exact_member_hits": 37,
+    "n_off": 47,
+    "ratio": 0.787
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056F824",
+  "declared_owner": [
+   "CEffectSystem"
+  ],
+  "n_slots": 8,
+  "end": "0x0056F844",
+  "total_req": 245800,
+  "slots": [
+   {
+    "va": "0x004C5D50",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C5D80",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004C5DB0",
+    "n_this_access": 3,
+    "req": 237604,
+    "offsets": [
+     12,
+     13,
+     237600
+    ]
+   },
+   {
+    "va": "0x004C5DE0",
+    "n_this_access": 4,
+    "req": 245800,
+    "offsets": [
+     245792,
+     245796
+    ]
+   },
+   {
+    "va": "0x004C5E70",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C5E80",
+    "n_this_access": 4,
+    "req": 98392,
+    "offsets": [
+     24,
+     42,
+     98388
+    ]
+   },
+   {
+    "va": "0x004C5E20",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004C6030",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CEffectSystem": "IMPOSSIBLE (req 245800 > binary_size 344)"
+  },
+  "candidates": [
+   {
+    "class": "CEffect",
+    "binary_size": 245800,
+    "exact_member_hits": 6,
+    "n_off": 8,
+    "ratio": 0.75
+   },
+   {
+    "class": "CCBStage",
+    "binary_size": 673988,
+    "exact_member_hits": 2,
+    "n_off": 8,
+    "ratio": 0.25
+   },
+   {
+    "class": "gbVFileSystem",
+    "binary_size": 917972,
+    "exact_member_hits": 2,
+    "n_off": 8,
+    "ratio": 0.25
+   },
+   {
+    "class": "MainPropUI",
+    "binary_size": 247976,
+    "exact_member_hits": 1,
+    "n_off": 8,
+    "ratio": 0.125
+   },
+   {
+    "class": "MagicUI",
+    "binary_size": 267300,
+    "exact_member_hits": 1,
+    "n_off": 8,
+    "ratio": 0.125
+   },
+   {
+    "class": "MXTransport",
+    "binary_size": 363968,
+    "exact_member_hits": 1,
+    "n_off": 8,
+    "ratio": 0.125
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056F8CC",
+  "declared_owner": [
+   "CEffgbParticle"
+  ],
+  "n_slots": 15,
+  "end": "0x0056F908",
+  "total_req": 80,
+  "slots": [
+   {
+    "va": "0x004C8950",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004C8A40",
+    "n_this_access": 13,
+    "req": 52,
+    "offsets": [
+     24,
+     40,
+     44,
+     48
+    ]
+   },
+   {
+    "va": "0x004C8B80",
+    "n_this_access": 10,
+    "req": 80,
+    "offsets": [
+     8,
+     48,
+     52,
+     56,
+     60,
+     64,
+     68,
+     72,
+     76
+    ]
+   },
+   {
+    "va": "0x004D0A60",
+    "n_this_access": 2,
+    "req": 52,
+    "offsets": [
+     48
+    ]
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004C8BF0",
+    "n_this_access": 4,
+    "req": 52,
+    "offsets": [
+     12,
+     16,
+     20,
+     48
+    ]
+   },
+   {
+    "va": "0x004C8E10",
+    "n_this_access": 11,
+    "req": 80,
+    "offsets": [
+     4,
+     8,
+     36,
+     48,
+     56,
+     60,
+     64,
+     68,
+     72,
+     76
+    ]
+   },
+   {
+    "va": "0x004C8930",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0500",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004AF760",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0510",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C8E80",
+    "n_this_access": 1,
+    "req": 52,
+    "offsets": [
+     48
+    ]
+   },
+   {
+    "va": "0x004C8E90",
+    "n_this_access": 1,
+    "req": 16,
+    "offsets": [
+     12
+    ]
+   },
+   {
+    "va": "0x004C15D0",
+    "n_this_access": 7,
+    "req": 48,
+    "offsets": [
+     24,
+     40,
+     44
+    ]
+   },
+   {
+    "va": "0x004C9260",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CEffgbParticle": "consistent (req 80 <= binary_size 80)"
+  },
+  "candidates": [
+   {
+    "class": "tagQuad",
+    "binary_size": 80,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "ASISTAGE",
+    "binary_size": 96,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagEffTaskParam",
+    "binary_size": 124,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "RenderTarget",
+    "binary_size": 200,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "BINKIO",
+    "binary_size": 204,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "_IMAGE_OPTIONAL_HEADER",
+    "binary_size": 224,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056F920",
+  "declared_owner": [
+   "CEffGrid"
+  ],
+  "n_slots": 15,
+  "end": "0x0056F95C",
+  "total_req": 184,
+  "slots": [
+   {
+    "va": "0x004C9630",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004C98F0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C9750",
+    "n_this_access": 24,
+    "req": 184,
+    "offsets": [
+     8,
+     68,
+     76,
+     80,
+     84,
+     88,
+     92,
+     96,
+     100,
+     104,
+     108,
+     148,
+     152,
+     156,
+     160,
+     164,
+     168,
+     172,
+     176,
+     180
+    ]
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004C9ED0",
+    "n_this_access": 3,
+    "req": 24,
+    "offsets": [
+     12,
+     16,
+     20
+    ]
+   },
+   {
+    "va": "0x004C9CA0",
+    "n_this_access": 21,
+    "req": 184,
+    "offsets": [
+     4,
+     8,
+     48,
+     64,
+     68,
+     69,
+     70,
+     104,
+     108,
+     124,
+     148,
+     152,
+     156,
+     160,
+     164,
+     168,
+     172,
+     176,
+     180
+    ]
+   },
+   {
+    "va": "0x004C9610",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0500",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004AF760",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004CAAB0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004AF760",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004CA1D0",
+    "n_this_access": 1,
+    "req": 16,
+    "offsets": [
+     12
+    ]
+   },
+   {
+    "va": "0x004C15D0",
+    "n_this_access": 7,
+    "req": 48,
+    "offsets": [
+     24,
+     40,
+     44
+    ]
+   },
+   {
+    "va": "0x004CA9A0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CEffGrid": "consistent (req 184 <= binary_size 4280)"
+  },
+  "candidates": [
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 30,
+    "n_off": 32,
+    "ratio": 0.938
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 29,
+    "n_off": 32,
+    "ratio": 0.906
+   },
+   {
+    "class": "UIScene",
+    "binary_size": 344,
+    "exact_member_hits": 25,
+    "n_off": 32,
+    "ratio": 0.781
+   },
+   {
+    "class": "tagCombatTaskData",
+    "binary_size": 384,
+    "exact_member_hits": 25,
+    "n_off": 32,
+    "ratio": 0.781
+   },
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 25,
+    "n_off": 32,
+    "ratio": 0.781
+   },
+   {
+    "class": "PalScriptMgr",
+    "binary_size": 9512,
+    "exact_member_hits": 25,
+    "n_off": 32,
+    "ratio": 0.781
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056F978",
+  "declared_owner": [
+   "CEffMeteor"
+  ],
+  "n_slots": 15,
+  "end": "0x0056F9B4",
+  "total_req": 208,
+  "slots": [
+   {
+    "va": "0x004CB4A0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004CB800",
+    "n_this_access": 51,
+    "req": 208,
+    "offsets": [
+     4,
+     24,
+     40,
+     44,
+     48,
+     52,
+     56,
+     64,
+     69,
+     70,
+     71,
+     72,
+     76,
+     88,
+     116,
+     120,
+     124,
+     128,
+     132,
+     136,
+     144,
+     148,
+     152,
+     156,
+     160,
+     164,
+     168,
+     184,
+     188,
+     192,
+     196,
+     200,
+     204
+    ]
+   },
+   {
+    "va": "0x004CB5E0",
+    "n_this_access": 39,
+    "req": 196,
+    "offsets": [
+     8,
+     52,
+     68,
+     80,
+     84,
+     88,
+     92,
+     96,
+     100,
+     104,
+     108,
+     112,
+     116,
+     120,
+     128,
+     132,
+     136,
+     148,
+     152,
+     156,
+     160,
+     164,
+     168,
+     172,
+     176,
+     180,
+     184,
+     188,
+     192
+    ]
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004CBFC0",
+    "n_this_access": 3,
+    "req": 24,
+    "offsets": [
+     12,
+     16,
+     20
+    ]
+   },
+   {
+    "va": "0x004CBC50",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004CB480",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0500",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004AF760",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004CCBA0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004AF760",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004CC290",
+    "n_this_access": 1,
+    "req": 16,
+    "offsets": [
+     12
+    ]
+   },
+   {
+    "va": "0x004C15D0",
+    "n_this_access": 7,
+    "req": 48,
+    "offsets": [
+     24,
+     40,
+     44
+    ]
+   },
+   {
+    "va": "0x004CCA90",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CEffMeteor": "consistent (req 208 <= binary_size 4304)"
+  },
+  "candidates": [
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 46,
+    "n_off": 49,
+    "ratio": 0.939
+   },
+   {
+    "class": "UIScene",
+    "binary_size": 344,
+    "exact_member_hits": 41,
+    "n_off": 49,
+    "ratio": 0.837
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 41,
+    "n_off": 49,
+    "ratio": 0.837
+   },
+   {
+    "class": "UIScenePanel",
+    "binary_size": 14232,
+    "exact_member_hits": 41,
+    "n_off": 49,
+    "ratio": 0.837
+   },
+   {
+    "class": "PalScriptMgr",
+    "binary_size": 9512,
+    "exact_member_hits": 39,
+    "n_off": 49,
+    "ratio": 0.796
+   },
+   {
+    "class": "UIProgressBar",
+    "binary_size": 244,
+    "exact_member_hits": 38,
+    "n_off": 49,
+    "ratio": 0.776
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056F9DC",
+  "declared_owner": [
+   "CEffModel"
+  ],
+  "n_slots": 15,
+  "end": "0x0056FA18",
+  "total_req": 104,
+  "slots": [
+   {
+    "va": "0x004CFD20",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004CFEB0",
+    "n_this_access": 10,
+    "req": 48,
+    "offsets": [
+     24,
+     40,
+     44
+    ]
+   },
+   {
+    "va": "0x004CFE20",
+    "n_this_access": 15,
+    "req": 104,
+    "offsets": [
+     8,
+     48,
+     52,
+     56,
+     60,
+     64,
+     68,
+     72,
+     76,
+     80,
+     84,
+     88,
+     92,
+     96,
+     100
+    ]
+   },
+   {
+    "va": "0x004CFFA0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004D01C0",
+    "n_this_access": 16,
+    "req": 104,
+    "offsets": [
+     4,
+     8,
+     48,
+     52,
+     56,
+     60,
+     64,
+     68,
+     72,
+     76,
+     80,
+     84,
+     88,
+     92,
+     96,
+     100
+    ]
+   },
+   {
+    "va": "0x004CFFB0",
+    "n_this_access": 3,
+    "req": 24,
+    "offsets": [
+     12,
+     16,
+     20
+    ]
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004CFD00",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0500",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004AF760",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0510",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004D0390",
+    "n_this_access": 1,
+    "req": 52,
+    "offsets": [
+     48
+    ]
+   },
+   {
+    "va": "0x004D03B0",
+    "n_this_access": 1,
+    "req": 16,
+    "offsets": [
+     12
+    ]
+   },
+   {
+    "va": "0x004C15D0",
+    "n_this_access": 7,
+    "req": 48,
+    "offsets": [
+     24,
+     40,
+     44
+    ]
+   },
+   {
+    "va": "0x004D0850",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CEffModel": "consistent (req 104 <= binary_size 104)"
+  },
+  "candidates": [
+   {
+    "class": "tagEffTaskParam",
+    "binary_size": 124,
+    "exact_member_hits": 22,
+    "n_off": 22,
+    "ratio": 1.0
+   },
+   {
+    "class": "IMAGE_OPTIONAL_HEADER32",
+    "binary_size": 248,
+    "exact_member_hits": 22,
+    "n_off": 22,
+    "ratio": 1.0
+   },
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 22,
+    "n_off": 22,
+    "ratio": 1.0
+   },
+   {
+    "class": "CameraCtrl",
+    "binary_size": 4088,
+    "exact_member_hits": 22,
+    "n_off": 22,
+    "ratio": 1.0
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 22,
+    "n_off": 22,
+    "ratio": 1.0
+   },
+   {
+    "class": "RenderTarget",
+    "binary_size": 200,
+    "exact_member_hits": 21,
+    "n_off": 22,
+    "ratio": 0.955
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056FA30",
+  "declared_owner": [
+   "CEffect"
+  ],
+  "n_slots": 15,
+  "end": "0x0056FA6C",
+  "total_req": 4272,
+  "slots": [
+   {
+    "va": "0x004D0D90",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004D1090",
+    "n_this_access": 24,
+    "req": 168,
+    "offsets": [
+     24,
+     40,
+     44,
+     50,
+     52,
+     53,
+     54,
+     56,
+     68,
+     156,
+     160,
+     164
+    ]
+   },
+   {
+    "va": "0x004D0EC0",
+    "n_this_access": 27,
+    "req": 156,
+    "offsets": [
+     8,
+     48,
+     49,
+     51,
+     76,
+     80,
+     81,
+     82,
+     83,
+     84,
+     88,
+     92,
+     96,
+     100,
+     104,
+     108,
+     112,
+     116,
+     120,
+     124,
+     128,
+     132,
+     136,
+     140,
+     144,
+     148,
+     152
+    ]
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004D17D0",
+    "n_this_access": 19,
+    "req": 164,
+    "offsets": [
+     8,
+     12,
+     16,
+     20,
+     54,
+     56,
+     60,
+     156,
+     160
+    ]
+   },
+   {
+    "va": "0x004D1300",
+    "n_this_access": 25,
+    "req": 4272,
+    "offsets": [
+     4,
+     51,
+     52,
+     53,
+     64,
+     156,
+     160,
+     164,
+     4268
+    ]
+   },
+   {
+    "va": "0x004D0D70",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0500",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004AF760",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0510",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004AF760",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004D2080",
+    "n_this_access": 2,
+    "req": 60,
+    "offsets": [
+     12,
+     56
+    ]
+   },
+   {
+    "va": "0x004C15D0",
+    "n_this_access": 7,
+    "req": 48,
+    "offsets": [
+     24,
+     40,
+     44
+    ]
+   },
+   {
+    "va": "0x004D2ED0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CEffect": "consistent (req 4272 <= binary_size 245800)"
+  },
+  "candidates": [
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 34,
+    "n_off": 46,
+    "ratio": 0.739
+   },
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 32,
+    "n_off": 46,
+    "ratio": 0.696
+   },
+   {
+    "class": "PalScriptMgr",
+    "binary_size": 9512,
+    "exact_member_hits": 32,
+    "n_off": 46,
+    "ratio": 0.696
+   },
+   {
+    "class": "UIScenePanel",
+    "binary_size": 14232,
+    "exact_member_hits": 32,
+    "n_off": 46,
+    "ratio": 0.696
+   },
+   {
+    "class": "CEffCylinder",
+    "binary_size": 4292,
+    "exact_member_hits": 30,
+    "n_off": 46,
+    "ratio": 0.652
+   },
+   {
+    "class": "CEffTrackCylinder",
+    "binary_size": 4320,
+    "exact_member_hits": 30,
+    "n_off": 46,
+    "ratio": 0.652
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056FA88",
+  "declared_owner": [
+   "CEffQuake"
+  ],
+  "n_slots": 15,
+  "end": "0x0056FAC4",
+  "total_req": 48,
+  "slots": [
+   {
+    "va": "0x004D32E0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0650",
+    "n_this_access": 10,
+    "req": 48,
+    "offsets": [
+     24,
+     40,
+     44
+    ]
+   },
+   {
+    "va": "0x004D33A0",
+    "n_this_access": 1,
+    "req": 12,
+    "offsets": [
+     8
+    ]
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004C29A0",
+    "n_this_access": 3,
+    "req": 24,
+    "offsets": [
+     12,
+     16,
+     20
+    ]
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004D32C0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0500",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004AF760",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0510",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004AF760",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004D33B0",
+    "n_this_access": 1,
+    "req": 16,
+    "offsets": [
+     12
+    ]
+   },
+   {
+    "va": "0x004C15D0",
+    "n_this_access": 7,
+    "req": 48,
+    "offsets": [
+     24,
+     40,
+     44
+    ]
+   },
+   {
+    "va": "0x004D3660",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CEffQuake": "consistent (req 48 <= binary_size 4272)"
+  },
+  "candidates": [
+   {
+    "class": "CEffBase",
+    "binary_size": 48,
+    "exact_member_hits": 7,
+    "n_off": 7,
+    "ratio": 1.0
+   },
+   {
+    "class": "CPKFile",
+    "binary_size": 48,
+    "exact_member_hits": 7,
+    "n_off": 7,
+    "ratio": 1.0
+   },
+   {
+    "class": "gbGfxStatistic",
+    "binary_size": 48,
+    "exact_member_hits": 7,
+    "n_off": 7,
+    "ratio": 1.0
+   },
+   {
+    "class": "lconv",
+    "binary_size": 48,
+    "exact_member_hits": 7,
+    "n_off": 7,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagPartical",
+    "binary_size": 48,
+    "exact_member_hits": 7,
+    "n_off": 7,
+    "ratio": 1.0
+   },
+   {
+    "class": "tag17A8Data",
+    "binary_size": 52,
+    "exact_member_hits": 7,
+    "n_off": 7,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056FADC",
+  "declared_owner": [
+   "CEffect"
+  ],
+  "n_slots": 15,
+  "end": "0x0056FB18",
+  "total_req": 4272,
+  "slots": [
+   {
+    "va": "0x004D3930",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004D3AD0",
+    "n_this_access": 38,
+    "req": 4272,
+    "offsets": [
+     24,
+     40,
+     44,
+     4152,
+     4156,
+     4160,
+     4165,
+     4166,
+     4168,
+     4172,
+     4176,
+     4188,
+     4212,
+     4216,
+     4220,
+     4224,
+     4228,
+     4232,
+     4248,
+     4252,
+     4256,
+     4260,
+     4264,
+     4268
+    ]
+   },
+   {
+    "va": "0x004D3A50",
+    "n_this_access": 9,
+    "req": 4236,
+    "offsets": [
+     8,
+     4188,
+     4208,
+     4212,
+     4216,
+     4220,
+     4224,
+     4228,
+     4232
+    ]
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004D3DC0",
+    "n_this_access": 3,
+    "req": 24,
+    "offsets": [
+     12,
+     16,
+     20
+    ]
+   },
+   {
+    "va": "0x004D4110",
+    "n_this_access": 19,
+    "req": 4248,
+    "offsets": [
+     4,
+     8,
+     4148,
+     4152,
+     4156,
+     4165,
+     4166,
+     4208,
+     4212,
+     4216,
+     4220,
+     4224,
+     4228,
+     4232,
+     4236,
+     4240,
+     4244
+    ]
+   },
+   {
+    "va": "0x004D3910",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0500",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004AF760",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004D4840",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004AF760",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004D4340",
+    "n_this_access": 1,
+    "req": 16,
+    "offsets": [
+     12
+    ]
+   },
+   {
+    "va": "0x004C15D0",
+    "n_this_access": 7,
+    "req": 48,
+    "offsets": [
+     24,
+     40,
+     44
+    ]
+   },
+   {
+    "va": "0x004D4700",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CEffect": "consistent (req 4272 <= binary_size 245800)"
+  },
+  "candidates": [
+   {
+    "class": "CEffShock",
+    "binary_size": 4272,
+    "exact_member_hits": 22,
+    "n_off": 34,
+    "ratio": 0.647
+   },
+   {
+    "class": "ScriptSystemData",
+    "binary_size": 12624,
+    "exact_member_hits": 16,
+    "n_off": 34,
+    "ratio": 0.471
+   },
+   {
+    "class": "RenderTarget2",
+    "binary_size": 4292,
+    "exact_member_hits": 8,
+    "n_off": 34,
+    "ratio": 0.235
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 8,
+    "n_off": 34,
+    "ratio": 0.235
+   },
+   {
+    "class": "GRPinput",
+    "binary_size": 10584,
+    "exact_member_hits": 8,
+    "n_off": 34,
+    "ratio": 0.235
+   },
+   {
+    "class": "Camera",
+    "binary_size": 12956,
+    "exact_member_hits": 8,
+    "n_off": 34,
+    "ratio": 0.235
+   }
+  ]
+ },
+ {
+  "vtable": "0x0056FB34",
+  "declared_owner": [
+   "CEffSParticle"
+  ],
+  "n_slots": 15,
+  "end": "0x0056FB70",
+  "total_req": 48,
+  "slots": [
+   {
+    "va": "0x004D4F00",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0650",
+    "n_this_access": 10,
+    "req": 48,
+    "offsets": [
+     24,
+     40,
+     44
+    ]
+   },
+   {
+    "va": "0x004D33A0",
+    "n_this_access": 1,
+    "req": 12,
+    "offsets": [
+     8
+    ]
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004D4FC0",
+    "n_this_access": 2,
+    "req": 20,
+    "offsets": [
+     12,
+     16
+    ]
+   },
+   {
+    "va": "0x00408BD0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004D4EE0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0500",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x004AF760",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004C0510",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004AF760",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x004D51B0",
+    "n_this_access": 1,
+    "req": 16,
+    "offsets": [
+     12
+    ]
+   },
+   {
+    "va": "0x004C15D0",
+    "n_this_access": 7,
+    "req": 48,
+    "offsets": [
+     24,
+     40,
+     44
+    ]
+   },
+   {
+    "va": "0x004D5620",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CEffSParticle": "consistent (req 48 <= binary_size 100)"
+  },
+  "candidates": [
+   {
+    "class": "CEffBase",
+    "binary_size": 48,
+    "exact_member_hits": 6,
+    "n_off": 6,
+    "ratio": 1.0
+   },
+   {
+    "class": "CPKFile",
+    "binary_size": 48,
+    "exact_member_hits": 6,
+    "n_off": 6,
+    "ratio": 1.0
+   },
+   {
+    "class": "gbGfxStatistic",
+    "binary_size": 48,
+    "exact_member_hits": 6,
+    "n_off": 6,
+    "ratio": 1.0
+   },
+   {
+    "class": "lconv",
+    "binary_size": 48,
+    "exact_member_hits": 6,
+    "n_off": 6,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagPartical",
+    "binary_size": 48,
+    "exact_member_hits": 6,
+    "n_off": 6,
+    "ratio": 1.0
+   },
+   {
+    "class": "tag17A8Data",
+    "binary_size": 52,
+    "exact_member_hits": 6,
+    "n_off": 6,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x005704A8",
+  "declared_owner": [
+   "CCBProtectWindow"
+  ],
+  "n_slots": 7,
+  "end": "0x005704C8",
+  "total_req": 1148,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0043DDF0",
+    "n_this_access": 4,
+    "req": 72,
+    "offsets": [
+     8,
+     16,
+     56,
+     68
+    ]
+   },
+   {
+    "va": "0x00518E30",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x005164D0",
+    "n_this_access": 46,
+    "req": 1148,
+    "offsets": [
+     72,
+     76,
+     156,
+     1012,
+     1016,
+     1020,
+     1068,
+     1072,
+     1076,
+     1084,
+     1088,
+     1092,
+     1096,
+     1100,
+     1104,
+     1108,
+     1112,
+     1116,
+     1120,
+     1124,
+     1128,
+     1132,
+     1136,
+     1140,
+     1144
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00516100",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0043D7A0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CCBProtectWindow": "IMPOSSIBLE (req 1148 > binary_size 176)"
+  },
+  "candidates": [
+   {
+    "class": "CCBUI",
+    "binary_size": 2648,
+    "exact_member_hits": 24,
+    "n_off": 34,
+    "ratio": 0.706
+   },
+   {
+    "class": "UIListBox",
+    "binary_size": 1208,
+    "exact_member_hits": 18,
+    "n_off": 34,
+    "ratio": 0.529
+   },
+   {
+    "class": "CCBUIPanel",
+    "binary_size": 22112,
+    "exact_member_hits": 18,
+    "n_off": 34,
+    "ratio": 0.529
+   },
+   {
+    "class": "PalScript",
+    "binary_size": 2176,
+    "exact_member_hits": 12,
+    "n_off": 34,
+    "ratio": 0.353
+   },
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 12,
+    "n_off": 34,
+    "ratio": 0.353
+   },
+   {
+    "class": "UIScenePanel",
+    "binary_size": 14232,
+    "exact_member_hits": 12,
+    "n_off": 34,
+    "ratio": 0.353
+   }
+  ]
+ },
+ {
+  "vtable": "0x005704C8",
+  "declared_owner": [
+   "CCBResultWindow"
+  ],
+  "n_slots": 7,
+  "end": "0x005704E4",
+  "total_req": 116,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0043DDF0",
+    "n_this_access": 4,
+    "req": 72,
+    "offsets": [
+     8,
+     16,
+     56,
+     68
+    ]
+   },
+   {
+    "va": "0x00519660",
+    "n_this_access": 2,
+    "req": 60,
+    "offsets": [
+     32,
+     56
+    ]
+   },
+   {
+    "va": "0x00519510",
+    "n_this_access": 22,
+    "req": 116,
+    "offsets": [
+     72,
+     76,
+     80,
+     84,
+     88,
+     92,
+     96,
+     100,
+     104,
+     108,
+     112
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00519360",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x005195E0",
+    "n_this_access": 2,
+    "req": 36,
+    "offsets": [
+     32
+    ]
+   }
+  ],
+  "verdict": {
+   "CCBResultWindow": "consistent (req 116 <= binary_size 180)"
+  },
+  "candidates": [
+   {
+    "class": "UIMap",
+    "binary_size": 152,
+    "exact_member_hits": 20,
+    "n_off": 20,
+    "ratio": 1.0
+   },
+   {
+    "class": "CCBControlWindow",
+    "binary_size": 196,
+    "exact_member_hits": 20,
+    "n_off": 20,
+    "ratio": 1.0
+   },
+   {
+    "class": "IMAGE_OPTIONAL_HEADER32",
+    "binary_size": 248,
+    "exact_member_hits": 20,
+    "n_off": 20,
+    "ratio": 1.0
+   },
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 20,
+    "n_off": 20,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIScene",
+    "binary_size": 344,
+    "exact_member_hits": 20,
+    "n_off": 20,
+    "ratio": 1.0
+   },
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 20,
+    "n_off": 20,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x005704E4",
+  "declared_owner": [
+   "CCBFiveNimbusWindow"
+  ],
+  "n_slots": 7,
+  "end": "0x00570500",
+  "total_req": 104,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0043DDF0",
+    "n_this_access": 4,
+    "req": 72,
+    "offsets": [
+     8,
+     16,
+     56,
+     68
+    ]
+   },
+   {
+    "va": "0x0051A090",
+    "n_this_access": 2,
+    "req": 60,
+    "offsets": [
+     32,
+     56
+    ]
+   },
+   {
+    "va": "0x00519F50",
+    "n_this_access": 11,
+    "req": 104,
+    "offsets": [
+     72,
+     76,
+     80,
+     92,
+     96,
+     100
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00519B40",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00519FE0",
+    "n_this_access": 2,
+    "req": 36,
+    "offsets": [
+     32
+    ]
+   }
+  ],
+  "verdict": {
+   "CCBFiveNimbusWindow": "consistent (req 104 <= binary_size 160)"
+  },
+  "candidates": [
+   {
+    "class": "UIPar_Star",
+    "binary_size": 124,
+    "exact_member_hits": 15,
+    "n_off": 15,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagEffTaskParam",
+    "binary_size": 124,
+    "exact_member_hits": 15,
+    "n_off": 15,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIMap",
+    "binary_size": 152,
+    "exact_member_hits": 15,
+    "n_off": 15,
+    "ratio": 1.0
+   },
+   {
+    "class": "CCBResultWindow",
+    "binary_size": 180,
+    "exact_member_hits": 15,
+    "n_off": 15,
+    "ratio": 1.0
+   },
+   {
+    "class": "CCBItemWindow",
+    "binary_size": 188,
+    "exact_member_hits": 15,
+    "n_off": 15,
+    "ratio": 1.0
+   },
+   {
+    "class": "CCBControlWindow",
+    "binary_size": 196,
+    "exact_member_hits": 15,
+    "n_off": 15,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x00570500",
+  "declared_owner": [
+   "CCBItemWindow"
+  ],
+  "n_slots": 7,
+  "end": "0x0057051C",
+  "total_req": 124,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0043DDF0",
+    "n_this_access": 4,
+    "req": 72,
+    "offsets": [
+     8,
+     16,
+     56,
+     68
+    ]
+   },
+   {
+    "va": "0x0051AB00",
+    "n_this_access": 2,
+    "req": 60,
+    "offsets": [
+     32,
+     56
+    ]
+   },
+   {
+    "va": "0x0051A880",
+    "n_this_access": 15,
+    "req": 124,
+    "offsets": [
+     72,
+     76,
+     100,
+     104,
+     108,
+     112,
+     116,
+     120
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0051A390",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0051A930",
+    "n_this_access": 3,
+    "req": 36,
+    "offsets": [
+     32
+    ]
+   }
+  ],
+  "verdict": {
+   "CCBItemWindow": "consistent (req 124 <= binary_size 188)"
+  },
+  "candidates": [
+   {
+    "class": "UIMap",
+    "binary_size": 152,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "CCBControlWindow",
+    "binary_size": 196,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "CCBAIWindow",
+    "binary_size": 208,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "CCBMagicWindow",
+    "binary_size": 208,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIScene",
+    "binary_size": 344,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0057051C",
+  "declared_owner": [
+   "CCBControlWindow"
+  ],
+  "n_slots": 7,
+  "end": "0x00570538",
+  "total_req": 84,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0043DDF0",
+    "n_this_access": 4,
+    "req": 72,
+    "offsets": [
+     8,
+     16,
+     56,
+     68
+    ]
+   },
+   {
+    "va": "0x0051B0B0",
+    "n_this_access": 2,
+    "req": 60,
+    "offsets": [
+     32,
+     56
+    ]
+   },
+   {
+    "va": "0x0051AFE0",
+    "n_this_access": 6,
+    "req": 84,
+    "offsets": [
+     72,
+     76,
+     80
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0051AC90",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0051B030",
+    "n_this_access": 2,
+    "req": 36,
+    "offsets": [
+     32
+    ]
+   }
+  ],
+  "verdict": {
+   "CCBControlWindow": "consistent (req 84 <= binary_size 196)"
+  },
+  "candidates": [
+   {
+    "class": "CCBParabolaWindow",
+    "binary_size": 84,
+    "exact_member_hits": 12,
+    "n_off": 12,
+    "ratio": 1.0
+   },
+   {
+    "class": "CCBSkillWindow",
+    "binary_size": 84,
+    "exact_member_hits": 12,
+    "n_off": 12,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIFlexBar",
+    "binary_size": 84,
+    "exact_member_hits": 12,
+    "n_off": 12,
+    "ratio": 1.0
+   },
+   {
+    "class": "ASISTAGE",
+    "binary_size": 96,
+    "exact_member_hits": 12,
+    "n_off": 12,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIPar_Star",
+    "binary_size": 124,
+    "exact_member_hits": 12,
+    "n_off": 12,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagEffTaskParam",
+    "binary_size": 124,
+    "exact_member_hits": 12,
+    "n_off": 12,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x00570538",
+  "declared_owner": [
+   "CCBLineupWindow"
+  ],
+  "n_slots": 7,
+  "end": "0x00570554",
+  "total_req": 128,
+  "slots": [
+   {
+    "va": "0x0051B5D0",
+    "n_this_access": 2,
+    "req": 128,
+    "offsets": [
+     76,
+     124
+    ]
+   },
+   {
+    "va": "0x0043DDF0",
+    "n_this_access": 4,
+    "req": 72,
+    "offsets": [
+     8,
+     16,
+     56,
+     68
+    ]
+   },
+   {
+    "va": "0x0051B570",
+    "n_this_access": 2,
+    "req": 60,
+    "offsets": [
+     32,
+     56
+    ]
+   },
+   {
+    "va": "0x0051B4B0",
+    "n_this_access": 16,
+    "req": 124,
+    "offsets": [
+     72,
+     96,
+     100,
+     104,
+     108,
+     112,
+     116,
+     120
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0051B160",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0051C9B0",
+    "n_this_access": 1,
+    "req": 36,
+    "offsets": [
+     32
+    ]
+   }
+  ],
+  "verdict": {
+   "CCBLineupWindow": "IMPOSSIBLE (req 128 > binary_size 124)"
+  },
+  "candidates": [
+   {
+    "class": "UIMap",
+    "binary_size": 152,
+    "exact_member_hits": 18,
+    "n_off": 18,
+    "ratio": 1.0
+   },
+   {
+    "class": "CCBAIWindow",
+    "binary_size": 208,
+    "exact_member_hits": 18,
+    "n_off": 18,
+    "ratio": 1.0
+   },
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 18,
+    "n_off": 18,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIScene",
+    "binary_size": 344,
+    "exact_member_hits": 18,
+    "n_off": 18,
+    "ratio": 1.0
+   },
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 18,
+    "n_off": 18,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIScenePanel",
+    "binary_size": 14232,
+    "exact_member_hits": 18,
+    "n_off": 18,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x00570570",
+  "declared_owner": [
+   "CCBSkillWindow"
+  ],
+  "n_slots": 7,
+  "end": "0x0057058C",
+  "total_req": 104,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0043DDF0",
+    "n_this_access": 4,
+    "req": 72,
+    "offsets": [
+     8,
+     16,
+     56,
+     68
+    ]
+   },
+   {
+    "va": "0x0051C1B0",
+    "n_this_access": 2,
+    "req": 60,
+    "offsets": [
+     32,
+     56
+    ]
+   },
+   {
+    "va": "0x0051C110",
+    "n_this_access": 16,
+    "req": 104,
+    "offsets": [
+     72,
+     76,
+     80,
+     84,
+     88,
+     92,
+     96,
+     100
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0051BBE0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0051B860",
+    "n_this_access": 1,
+    "req": 36,
+    "offsets": [
+     32
+    ]
+   }
+  ],
+  "verdict": {
+   "CCBSkillWindow": "IMPOSSIBLE (req 104 > binary_size 84)"
+  },
+  "candidates": [
+   {
+    "class": "UIPar_Star",
+    "binary_size": 124,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagEffTaskParam",
+    "binary_size": 124,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIMap",
+    "binary_size": 152,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "CCBResultWindow",
+    "binary_size": 180,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "CCBControlWindow",
+    "binary_size": 196,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   },
+   {
+    "class": "IMAGE_OPTIONAL_HEADER32",
+    "binary_size": 248,
+    "exact_member_hits": 17,
+    "n_off": 17,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x0057058C",
+  "declared_owner": [
+   "CCBParabolaWindow"
+  ],
+  "n_slots": 7,
+  "end": "0x005705D0",
+  "total_req": 180,
+  "slots": [
+   {
+    "va": "0x0051CA50",
+    "n_this_access": 3,
+    "req": 180,
+    "offsets": [
+     108,
+     172,
+     176
+    ]
+   },
+   {
+    "va": "0x0051CAA0",
+    "n_this_access": 6,
+    "req": 172,
+    "offsets": [
+     16,
+     20,
+     156,
+     160,
+     164,
+     168
+    ]
+   },
+   {
+    "va": "0x0051C9F0",
+    "n_this_access": 2,
+    "req": 60,
+    "offsets": [
+     32,
+     56
+    ]
+   },
+   {
+    "va": "0x0051C880",
+    "n_this_access": 27,
+    "req": 168,
+    "offsets": [
+     72,
+     76,
+     80,
+     84,
+     88,
+     92,
+     96,
+     100,
+     104,
+     108,
+     152,
+     156,
+     160,
+     164
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0051C260",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0051C9B0",
+    "n_this_access": 1,
+    "req": 36,
+    "offsets": [
+     32
+    ]
+   }
+  ],
+  "verdict": {
+   "CCBParabolaWindow": "IMPOSSIBLE (req 180 > binary_size 84)"
+  },
+  "candidates": [
+   {
+    "class": "_D3DCAPS9",
+    "binary_size": 304,
+    "exact_member_hits": 24,
+    "n_off": 24,
+    "ratio": 1.0
+   },
+   {
+    "class": "CCBResultWindow",
+    "binary_size": 180,
+    "exact_member_hits": 23,
+    "n_off": 24,
+    "ratio": 0.958
+   },
+   {
+    "class": "UIScene",
+    "binary_size": 344,
+    "exact_member_hits": 23,
+    "n_off": 24,
+    "ratio": 0.958
+   },
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 23,
+    "n_off": 24,
+    "ratio": 0.958
+   },
+   {
+    "class": "CScreenMode",
+    "binary_size": 5496,
+    "exact_member_hits": 23,
+    "n_off": 24,
+    "ratio": 0.958
+   },
+   {
+    "class": "UIScenePanel",
+    "binary_size": 14232,
+    "exact_member_hits": 23,
+    "n_off": 24,
+    "ratio": 0.958
+   }
+  ]
+ },
+ {
+  "vtable": "0x005705D0",
+  "declared_owner": [
+   "CCBStage"
+  ],
+  "n_slots": 7,
+  "end": "0x005705F4",
+  "total_req": 507436,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00524970",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x0051F0A0",
+    "n_this_access": 14,
+    "req": 507436,
+    "offsets": [
+     8044,
+     8048,
+     328020,
+     328032,
+     328036,
+     328040,
+     328044,
+     345572,
+     345580,
+     345584,
+     507420,
+     507424,
+     507428,
+     507432
+    ]
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0051DD80",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x0051F1B0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CCBStage": "consistent (req 507436 <= binary_size 673988)"
+  },
+  "candidates": [
+   {
+    "class": "SystemUI",
+    "binary_size": 516636,
+    "exact_member_hits": 8,
+    "n_off": 22,
+    "ratio": 0.364
+   },
+   {
+    "class": "CCBStage",
+    "binary_size": 673988,
+    "exact_member_hits": 4,
+    "n_off": 22,
+    "ratio": 0.182
+   },
+   {
+    "class": "gbVFileSystem",
+    "binary_size": 917972,
+    "exact_member_hits": 3,
+    "n_off": 22,
+    "ratio": 0.136
+   },
+   {
+    "class": "Scene",
+    "binary_size": 1100000,
+    "exact_member_hits": 2,
+    "n_off": 22,
+    "ratio": 0.091
+   },
+   {
+    "class": "gbBinkVideo",
+    "binary_size": 1835912,
+    "exact_member_hits": 2,
+    "n_off": 22,
+    "ratio": 0.091
+   },
+   {
+    "class": "ARC_PAL_GDB",
+    "binary_size": 804888,
+    "exact_member_hits": 1,
+    "n_off": 22,
+    "ratio": 0.045
+   }
+  ]
+ },
+ {
+  "vtable": "0x005705F4",
+  "declared_owner": [
+   "CUtil"
+  ],
+  "n_slots": 7,
+  "end": "0x00570630",
+  "total_req": 1756,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00523670",
+    "n_this_access": 1,
+    "req": 1756,
+    "offsets": [
+     1752
+    ]
+   },
+   {
+    "va": "0x005236E0",
+    "n_this_access": 2,
+    "req": 1756,
+    "offsets": [
+     368,
+     1752
+    ]
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x005231D0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00523B90",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CUtil": "consistent (req 1756 <= binary_size 1772)"
+  },
+  "candidates": [
+   {
+    "class": "PalScript",
+    "binary_size": 2176,
+    "exact_member_hits": 9,
+    "n_off": 10,
+    "ratio": 0.9
+   },
+   {
+    "class": "ChoseCompose",
+    "binary_size": 3770,
+    "exact_member_hits": 9,
+    "n_off": 10,
+    "ratio": 0.9
+   },
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 9,
+    "n_off": 10,
+    "ratio": 0.9
+   },
+   {
+    "class": "EquipUI",
+    "binary_size": 120116,
+    "exact_member_hits": 9,
+    "n_off": 10,
+    "ratio": 0.9
+   },
+   {
+    "class": "LineupUI",
+    "binary_size": 171244,
+    "exact_member_hits": 9,
+    "n_off": 10,
+    "ratio": 0.9
+   },
+   {
+    "class": "MainEquipUI",
+    "binary_size": 204620,
+    "exact_member_hits": 9,
+    "n_off": 10,
+    "ratio": 0.9
+   }
+  ]
+ },
+ {
+  "vtable": "0x00570630",
+  "declared_owner": [
+   "CScreenMode"
+  ],
+  "n_slots": 7,
+  "end": "0x005706AC",
+  "total_req": 72,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00524970",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00524980",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00524110",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x005249A0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CScreenMode": "consistent (req 72 <= binary_size 5496)"
+  },
+  "candidates": [
+   {
+    "class": "UIDialog",
+    "binary_size": 72,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   },
+   {
+    "class": "UIFrameWnd",
+    "binary_size": 72,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   },
+   {
+    "class": "_FLTPROVIDER",
+    "binary_size": 72,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   },
+   {
+    "class": "gbPrintFont",
+    "binary_size": 76,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagOFNA",
+    "binary_size": 76,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   },
+   {
+    "class": "tagQuad",
+    "binary_size": 80,
+    "exact_member_hits": 8,
+    "n_off": 8,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x005706EC",
+  "declared_owner": [
+   "UIListBox"
+  ],
+  "n_slots": 7,
+  "end": "0x00570728",
+  "total_req": 1732,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00527D80",
+    "n_this_access": 2,
+    "req": 1732,
+    "offsets": [
+     352,
+     1728
+    ]
+   },
+   {
+    "va": "0x00527DC0",
+    "n_this_access": 2,
+    "req": 360,
+    "offsets": [
+     352,
+     356
+    ]
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x005279D0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00527EA0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UIListBox": "IMPOSSIBLE (req 1732 > binary_size 1208)"
+  },
+  "candidates": [
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 10,
+    "n_off": 11,
+    "ratio": 0.909
+   },
+   {
+    "class": "UIScenePanel",
+    "binary_size": 14232,
+    "exact_member_hits": 10,
+    "n_off": 11,
+    "ratio": 0.909
+   },
+   {
+    "class": "CG_UI",
+    "binary_size": 39240,
+    "exact_member_hits": 10,
+    "n_off": 11,
+    "ratio": 0.909
+   },
+   {
+    "class": "EquipUI",
+    "binary_size": 120116,
+    "exact_member_hits": 10,
+    "n_off": 11,
+    "ratio": 0.909
+   },
+   {
+    "class": "PalScript",
+    "binary_size": 2176,
+    "exact_member_hits": 9,
+    "n_off": 11,
+    "ratio": 0.818
+   },
+   {
+    "class": "PropUI",
+    "binary_size": 29056,
+    "exact_member_hits": 9,
+    "n_off": 11,
+    "ratio": 0.818
+   }
+  ]
+ },
+ {
+  "vtable": "0x00570728",
+  "declared_owner": [
+   "JusticeBookUI"
+  ],
+  "n_slots": 7,
+  "end": "0x00570748",
+  "total_req": 13212,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00528ED0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00528F50",
+    "n_this_access": 17,
+    "req": 11244,
+    "offsets": [
+     96,
+     1456,
+     2892,
+     4716,
+     4808,
+     6324,
+     6416,
+     7932,
+     8024,
+     9540,
+     9632,
+     11148,
+     11240
+    ]
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x005284C0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x00529120",
+    "n_this_access": 2,
+    "req": 13212,
+    "offsets": [
+     12752,
+     13208
+    ]
+   }
+  ],
+  "verdict": {
+   "JusticeBookUI": "consistent (req 13212 <= binary_size 56192)"
+  },
+  "candidates": [
+   {
+    "class": "JusticeBookUI",
+    "binary_size": 56192,
+    "exact_member_hits": 10,
+    "n_off": 23,
+    "ratio": 0.435
+   },
+   {
+    "class": "UIScenePanel",
+    "binary_size": 14232,
+    "exact_member_hits": 9,
+    "n_off": 23,
+    "ratio": 0.391
+   },
+   {
+    "class": "CG_UI",
+    "binary_size": 39240,
+    "exact_member_hits": 9,
+    "n_off": 23,
+    "ratio": 0.391
+   },
+   {
+    "class": "TaskBookUI",
+    "binary_size": 143672,
+    "exact_member_hits": 9,
+    "n_off": 23,
+    "ratio": 0.391
+   },
+   {
+    "class": "LineupUI",
+    "binary_size": 171244,
+    "exact_member_hits": 9,
+    "n_off": 23,
+    "ratio": 0.391
+   },
+   {
+    "class": "MainEquipUI",
+    "binary_size": 204620,
+    "exact_member_hits": 9,
+    "n_off": 23,
+    "ratio": 0.391
+   }
+  ]
+ },
+ {
+  "vtable": "0x0057076C",
+  "declared_owner": [
+   "UIRoleSelectDialog"
+  ],
+  "n_slots": 7,
+  "end": "0x00570794",
+  "total_req": 2204,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00529CF0",
+    "n_this_access": 11,
+    "req": 1696,
+    "offsets": [
+     512,
+     1264,
+     1268,
+     1612,
+     1640,
+     1692
+    ]
+   },
+   {
+    "va": "0x00529E40",
+    "n_this_access": 61,
+    "req": 2204,
+    "offsets": [
+     352,
+     1064,
+     1244,
+     1252,
+     1256,
+     1260,
+     1264,
+     1268,
+     1272,
+     1276,
+     1280,
+     1284,
+     1436,
+     1588,
+     1592,
+     1596,
+     1600,
+     1604,
+     1608,
+     1624,
+     1628,
+     1632,
+     1636,
+     1692,
+     1708,
+     1836,
+     2184,
+     2200
+    ]
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00529770",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0052AAB0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UIRoleSelectDialog": "consistent (req 2204 <= binary_size 2204)"
+  },
+  "candidates": [
+   {
+    "class": "RoleSystem",
+    "binary_size": 4868,
+    "exact_member_hits": 20,
+    "n_off": 39,
+    "ratio": 0.513
+   },
+   {
+    "class": "gbGfxManager_D3D",
+    "binary_size": 2288,
+    "exact_member_hits": 10,
+    "n_off": 39,
+    "ratio": 0.256
+   },
+   {
+    "class": "CCBUI",
+    "binary_size": 2648,
+    "exact_member_hits": 10,
+    "n_off": 39,
+    "ratio": 0.256
+   },
+   {
+    "class": "UIScenePanel",
+    "binary_size": 14232,
+    "exact_member_hits": 10,
+    "n_off": 39,
+    "ratio": 0.256
+   },
+   {
+    "class": "DealUI",
+    "binary_size": 3080,
+    "exact_member_hits": 9,
+    "n_off": 39,
+    "ratio": 0.231
+   },
+   {
+    "class": "CameraCtrl",
+    "binary_size": 4088,
+    "exact_member_hits": 9,
+    "n_off": 39,
+    "ratio": 0.231
+   }
+  ]
+ },
+ {
+  "vtable": "0x00570830",
+  "declared_owner": [
+   "UICoverFrm"
+  ],
+  "n_slots": 7,
+  "end": "0x00570890",
+  "total_req": 12952,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x0052C450",
+    "n_this_access": 2,
+    "req": 12952,
+    "offsets": [
+     12948
+    ]
+   },
+   {
+    "va": "0x0052C480",
+    "n_this_access": 49,
+    "req": 12948,
+    "offsets": [
+     96,
+     1156,
+     1157,
+     1158,
+     1159,
+     1160,
+     1312,
+     1464,
+     1468,
+     1476,
+     1480,
+     1484,
+     1492,
+     3276,
+     10184,
+     10188,
+     10192,
+     10196,
+     10200,
+     10206,
+     10208,
+     11576,
+     12944
+    ]
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x0052BBB0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x0052CA10",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "UICoverFrm": "consistent (req 12952 <= binary_size 14952)"
+  },
+  "candidates": [
+   {
+    "class": "CCBUIPanel",
+    "binary_size": 22112,
+    "exact_member_hits": 15,
+    "n_off": 32,
+    "ratio": 0.469
+   },
+   {
+    "class": "UIScenePanel",
+    "binary_size": 14232,
+    "exact_member_hits": 11,
+    "n_off": 32,
+    "ratio": 0.344
+   },
+   {
+    "class": "UICoverFrm",
+    "binary_size": 14952,
+    "exact_member_hits": 10,
+    "n_off": 32,
+    "ratio": 0.312
+   },
+   {
+    "class": "TaskBookUI",
+    "binary_size": 143672,
+    "exact_member_hits": 10,
+    "n_off": 32,
+    "ratio": 0.312
+   },
+   {
+    "class": "MainPropUI",
+    "binary_size": 247976,
+    "exact_member_hits": 10,
+    "n_off": 32,
+    "ratio": 0.312
+   },
+   {
+    "class": "CG_UI",
+    "binary_size": 39240,
+    "exact_member_hits": 9,
+    "n_off": 32,
+    "ratio": 0.281
+   }
+  ]
+ },
+ {
+  "vtable": "0x00570890",
+  "declared_owner": [
+   "RoleSystem"
+  ],
+  "n_slots": 7,
+  "end": "0x005708CC",
+  "total_req": 7600,
+  "slots": [
+   {
+    "va": "0x00445E70",
+    "n_this_access": 4,
+    "req": 60,
+    "offsets": [
+     0,
+     52,
+     56
+    ]
+   },
+   {
+    "va": "0x00524970",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   },
+   {
+    "va": "0x00532710",
+    "n_this_access": 59,
+    "req": 7600,
+    "offsets": [
+     352,
+     356,
+     360,
+     364,
+     516,
+     517,
+     520,
+     523,
+     1308,
+     1312,
+     4512,
+     4516,
+     4520,
+     4524,
+     4528,
+     4532,
+     4536,
+     4540,
+     5908,
+     7276,
+     7277,
+     7280,
+     7432,
+     7584,
+     7588,
+     7592,
+     7596
+    ]
+   },
+   {
+    "va": "0x0043DE40",
+    "n_this_access": 2,
+    "req": 72,
+    "offsets": [
+     68
+    ]
+   },
+   {
+    "va": "0x00445B90",
+    "n_this_access": 7,
+    "req": 64,
+    "offsets": [
+     12,
+     16,
+     32,
+     52,
+     56,
+     60
+    ]
+   },
+   {
+    "va": "0x00531E50",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   },
+   {
+    "va": "0x005329A0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "RoleSystem": "IMPOSSIBLE (req 7600 > binary_size 4868)"
+  },
+  "candidates": [
+   {
+    "class": "CG_UI",
+    "binary_size": 39240,
+    "exact_member_hits": 13,
+    "n_off": 35,
+    "ratio": 0.371
+   },
+   {
+    "class": "UIScenePanel",
+    "binary_size": 14232,
+    "exact_member_hits": 12,
+    "n_off": 35,
+    "ratio": 0.343
+   },
+   {
+    "class": "EquipUI",
+    "binary_size": 120116,
+    "exact_member_hits": 12,
+    "n_off": 35,
+    "ratio": 0.343
+   },
+   {
+    "class": "Comp_DonateUI",
+    "binary_size": 46192,
+    "exact_member_hits": 11,
+    "n_off": 35,
+    "ratio": 0.314
+   },
+   {
+    "class": "PalScriptMgr",
+    "binary_size": 9512,
+    "exact_member_hits": 10,
+    "n_off": 35,
+    "ratio": 0.286
+   },
+   {
+    "class": "UIBigMap",
+    "binary_size": 10248,
+    "exact_member_hits": 10,
+    "n_off": 35,
+    "ratio": 0.286
+   }
+  ]
+ },
+ {
+  "vtable": "0x00570A04",
+  "declared_owner": [
+   "CPK"
+  ],
+  "n_slots": 1,
+  "end": "0x00570A24",
+  "total_req": 0,
+  "slots": [
+   {
+    "va": "0x0053C2B0",
+    "n_this_access": 0,
+    "req": null,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "CPK": "consistent (req 0 <= binary_size 917948)"
+  },
+  "candidates": []
+ },
+ {
+  "vtable": "0x00570A60",
+  "declared_owner": [
+   "TextureLib"
+  ],
+  "n_slots": 2,
+  "end": "0x00570A78",
+  "total_req": 532,
+  "slots": [
+   {
+    "va": "0x0053F680",
+    "n_this_access": 21,
+    "req": 532,
+    "offsets": [
+     12,
+     524,
+     528
+    ]
+   },
+   {
+    "va": "0x0053F5C0",
+    "n_this_access": 0,
+    "req": 0,
+    "offsets": []
+   }
+  ],
+  "verdict": {
+   "TextureLib": "consistent (req 532 <= binary_size 532)"
+  },
+  "candidates": [
+   {
+    "class": "TextureLib",
+    "binary_size": 532,
+    "exact_member_hits": 3,
+    "n_off": 3,
+    "ratio": 1.0
+   },
+   {
+    "class": "TextureLibDataBase",
+    "binary_size": 584,
+    "exact_member_hits": 3,
+    "n_off": 3,
+    "ratio": 1.0
+   },
+   {
+    "class": "RoleCamera",
+    "binary_size": 692,
+    "exact_member_hits": 3,
+    "n_off": 3,
+    "ratio": 1.0
+   },
+   {
+    "class": "BINK",
+    "binary_size": 932,
+    "exact_member_hits": 3,
+    "n_off": 3,
+    "ratio": 1.0
+   },
+   {
+    "class": "TextureLib_Data",
+    "binary_size": 1116,
+    "exact_member_hits": 3,
+    "n_off": 3,
+    "ratio": 1.0
+   },
+   {
+    "class": "CCBStageCam",
+    "binary_size": 6272,
+    "exact_member_hits": 3,
+    "n_off": 3,
+    "ratio": 1.0
+   }
+  ]
+ },
+ {
+  "vtable": "0x100F57E8",
+  "declared_owner": [
+   "gbTexture"
+  ],
+  "n_slots": 0,
+  "end": "0x00580000",
+  "total_req": 0,
+  "slots": [],
+  "verdict": {
+   "gbTexture": "consistent (req 0 <= binary_size 84)"
+  },
+  "candidates": []
+ }
+]

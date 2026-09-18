@@ -21,3 +21,34 @@ sources: [session-2026-08-31]
 **何时使用**：任何"PDB 说 A、反编译正文说 B"的标注争议；任何要用 PDB 布局/函数名做 struct_instances 推断之前；看到 `某类::OffsetRect` 之类"语义违和"的函数名时（名字漂移的标志症状——语义违和 = 名字错，不是代码怪）。
 
 **反面教训**：本轮最初差点按名字采信"PalScript 指针"或反向采信"UI 窗口"推翻 PDB 类型——两边都是名字。最后 vtable + EH 裁决：两边都对（PalScript 本就是 UIWnd 派生窗口类），错的只是 PDB 把实例说成了指针。
+
+---
+
+## 补充（2026-09-17）：把"vtable = 身份证"升级为**定量**裁决
+
+上面第 1 条（ctor 安装的 vtable 值）只回答"**哪张表属于哪个 ctor**"，不回答"**这个类多大**"。
+实测补上两个**可自动化**的定量手段后，`vtables` 错挂的诊断从"猜"变成"证明"：
+
+| 手段 | 做法 | 强度 |
+|------|------|------|
+| **内嵌成员 stride** | 同一函数里连续 `lea X(%reg),%ecx … call <ctor>` 两个成员 ⇒ `X2-X1 == sizeof(该类)` | **A**（成员在宿主对象里紧凑排布）|
+| **`new` 实参** | `push $IMM ; call <operator new> ; … ; call <ctor>` ⇒ `IMM == sizeof(该类)` | **A**（与 annotation 无关）|
+
+**必须取最小 stride 并报对数**：两次构造之间可以夹着别的成员（实测 `0x439030` 除 4 对 `0x134=308`
+外还有 1 对 `0x170=368`）。**放宽 `lea` 的回溯范围会产生假 stride**
+（往回找 N 条会借用前一个 `call` 的 `lea`，实测把 `548`/`25020` 当成过类尺寸）——
+只接受**紧邻**的 `lea`（中间最多夹一条 SEH 状态标记 `mov[bwl] $imm,0xNN(%esp)`）。
+
+配套工具：`tools/vtable_class_reconcile.py --stride <ctor>`（`--self-test` 9/9）。
+
+**判据组合的威力**（2026-09-17 实测，一次对出 2 处 A 级错挂）：
+`0x56AC20` 挂着 `UIProgressBar`(244)，但其 ctor `0x439030` 的 stride 是 **308**（4 对）、
+`this` 写入覆盖 `236..304`、且该类自己命名的 `LoadModel/UpdateRotation/UpdateTransform`
+访问**同一块** ⇒ 实为 `UI3DCtrl`(308)。
+`0x56AD64` 挂着 `UIButton`(344)，但其 ctor `0x43F7F0` 有 **两处 `new(0xF4=244)`** 且 stride `0xF4`，
+它构造的 `UILoadingFrm.m_LoadProgress`(偏移 72) 声明类型是 `UIProgressBar`，而 `72+344 > 332=sizeof(UILoadingFrm)`
+⇒ 实为 `UIProgressBar`。
+
+**"req > binary_size"判决不可全信**：`this` 寄存器跟踪在大型优化函数里会漂移
+（`%ebp` 被复用为**另一个对象**的指针，实测算出 `req=205776`）。它只配当**候选生成器**，
+每条都要用上面的 stride/`new` 链条复核。
