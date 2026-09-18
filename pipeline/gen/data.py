@@ -31,6 +31,7 @@ class DataStore:
         self.global_types = {}      # "dword_XXX" -> "int[4]"
         self.struct_instances = []  # [(base, end, name, type)]
         self.struct_members = {}    # type -> {offset: (name, member_type)}
+        self.struct_bases = {}      # type -> {base_name: offset}（限定形 __vftable 的偏移解析用）
         self.game_classes = set()   # class names with .h files
         self.thunk_classes = set()  # j_ClassName thunk type names
         self.static_methods = set() # "ClassName::Method" for __cdecl methods
@@ -54,6 +55,7 @@ class DataStore:
         self._load_globals_h()
         self._load_exported_data()
         self._load_vtable_data()
+        self._load_struct_bases()
         self._load_annotated_globals()
         self._load_binary()
         self.loaded = True
@@ -256,6 +258,40 @@ class DataStore:
                 self.struct_vtables[_name] = _slot_map
 
         # 5a. Load globals.json annotations for extern generation
+
+    def _load_struct_bases(self):
+        """type -> {base_name: offset}，供 `_fold_vftable_mask` 解析**限定形**
+        `this->A::B::__vftable` 的总偏移（限定形原先被整块跳过 —— 见该函数 docstring 的
+        "qualified base accesses `X->Base::__vftable` — base offset unknown"）。
+
+        offset 来源，**优先显式、绝不猜**：
+          1. 注解 `bases` 里的显式 `offset`（每个写入的类都在 `bases_source` 里附 A 级依据）；
+          2. 若无 `bases`：**只给"首个基类"填 0** —— 这是 MS C++ ABI 的事实
+             （主基类子对象必在偏移 0），不是猜测；**其余基类不写入**，
+             于是 `_fold_vftable_mask` 对它们保持"原样跳过"的旧行为。
+        """
+        _dir = self.annotations_dir / "structs"
+        if not _dir.exists():
+            return
+        for _f in sorted(_dir.glob("*.json")):
+            try:
+                _ann = json.load(open(_f, encoding='utf-8'))
+            except Exception:
+                continue
+            _name = _ann.get('name') or _f.stem
+            _bases = _ann.get('bases')
+            m = {}
+            if isinstance(_bases, list) and _bases and isinstance(_bases[0], dict):
+                for _b in _bases:
+                    if 'name' in _b and 'offset' in _b:
+                        m[_b['name']] = _b['offset']
+            else:
+                _bc = _ann.get('base_class')
+                _names = _bc if isinstance(_bc, list) else ([_bc] if _bc else [])
+                if _names:
+                    m[_names[0]] = 0        # ABI: 主基类子对象在偏移 0
+            if m:
+                self.struct_bases[_name] = m
 
     def _load_annotated_globals(self):
         """Load globals.json for extern generation of non-IDA globals."""

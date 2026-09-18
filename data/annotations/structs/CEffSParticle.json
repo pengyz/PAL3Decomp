@@ -181,5 +181,16 @@
       ]
     }
   ],
-  "base_size": 16
+  "base_size": 16,
+  "bases": [
+    {
+      "name": "CEffObj",
+      "offset": 0
+    },
+    {
+      "name": "CTaskTpl_tagEffTaskParam_CEffSParticle",
+      "offset": 12
+    }
+  ],
+  "bases_source": "A: ctor `mov [reg+0Ch], offset <vtable>` (CEffModel sub_4CFC70 / CEffCylinder sub_4C3DD0)；PDB 全族 CTaskTpl 基 = 12；template_bases.json 记载 18 个 CEff* 共享该模板布局；二进制另有 58 处 `sub ecx,0Ch` 的 this 调整"
 }

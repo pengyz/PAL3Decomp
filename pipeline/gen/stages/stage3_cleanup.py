@@ -748,7 +748,34 @@ def _needs_ptr_wrap(rhs):
     return True
 
 
-def _fold_vftable_mask(code):
+def _qualified_vftable_offset(qual_text, cls_name):
+    """把限定链 `A::B::__vftable` 折算成**距对象起点的字节偏移**；不可解析返回 None。
+
+    依据：`store.struct_bases`（由 data.py 从注解 `bases` 读入）。
+    该类数据**只含两级来源**：① 注解里带显式 offset 的基类（每类在 `bases_source` 附 A 级依据）；
+    ② 无 `bases` 时**仅**首个基类的 0（MS C++ ABI：主基类子对象必在偏移 0）。
+    **其余情况一律返回 None** ⇒ 调用方保持"原样跳过"的旧行为，不猜。
+    """
+    if not cls_name:
+        return None
+    qual = qual_text.decode('utf-8')
+    if not qual.endswith('::__vftable'):
+        return None
+    parts = [x for x in qual[:-len('::__vftable')].split('::') if x]
+    if not parts:
+        return None
+    off = 0
+    cur = cls_name
+    for p in parts:
+        bases = store.struct_bases.get(cur) or {}
+        if p not in bases:
+            return None                     # 偏移未知 ⇒ 不猜
+        off += bases[p]
+        cur = p
+    return off
+
+
+def _fold_vftable_mask(code, ctx=None):
     """Restore every *unqualified* `__vftable` access as an offset-0 access.
 
     Byte-exact equivalences (the vfptr variant is at offset 0 of its object):
@@ -777,8 +804,18 @@ def _fold_vftable_mask(code):
     def visit(node):
         if node.type == 'field_expression':
             field = node.child_by_field_name('field')
-            if field is not None and field.text == b'__vftable' \
-                    and field.type != 'qualified_identifier':
+            _qoff = None
+            if field is not None and field.type == 'qualified_identifier' \
+                    and field.text.endswith(b'::__vftable'):
+                _a = node.child_by_field_name('argument')
+                # 只对**对象就是 `this`** 的限定链动手：此时对象的静态类型确定是
+                # ctx.cls_name，链的偏移可据 store.struct_bases 解析。对象是别的变量时
+                # 需要它的静态类型（不在本函数的 A 级依据内）⇒ 保持原样跳过。
+                if _a is not None and raw[_a.start_byte:_a.end_byte] == b'this' and ctx is not None:
+                    _qoff = _qualified_vftable_offset(field.text, getattr(ctx, 'cls_name', None))
+            if field is not None and (
+                    (field.text == b'__vftable' and field.type != 'qualified_identifier')
+                    or _qoff is not None):
                 arg = node.child_by_field_name('argument')
                 op = node.child_by_field_name('operator')
                 if arg is not None and op is not None:
@@ -798,6 +835,9 @@ def _fold_vftable_mask(code):
                         obj = raw[arg.start_byte:arg.end_byte].decode('utf-8')
                         arrow = (op.text == b'->')
                         deref = '(%s)' % obj if arrow else '&(%s)' % obj
+                        # 限定链：把总偏移折进地址（偏移 0 时保持与未限定形完全相同的写法，
+                        # 避免对 38 处"首基类偏移 0"的位点产生无谓文本改动）
+                        deref = ('((char *)%s + %d)' % (deref, _qoff)) if _qoff else deref
                         if target is parent:
                             repl = '((void **)%s)' % deref
                         else:
@@ -1045,7 +1085,7 @@ def run(code, ctx):
     #      offset 0 of its own object in every exported struct, so the access
     #      is rewritten to the byte-exact offset-0 equivalent.
     code = _comment_vptr_stores(code)
-    code = _fold_vftable_mask(code)
+    code = _fold_vftable_mask(code, ctx)
 
     # --- Reference parameter adaptation (gbengine &param fix) ---
     code = _fix_ref_params(code)

@@ -1,6 +1,6 @@
 {
-  "name": "20260918_220910",
-  "timestamp": "2026-09-18T22:09:10.561137",
+  "name": "20260918_223312",
+  "timestamp": "2026-09-18T22:33:12.633217",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "fail",
@@ -853,26 +853,6 @@
         },
         {
           "code": "C2039",
-          "msg": "'PalScriptWaitObj' : is not a member of 'SceneObj'",
-          "line": 1229
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CCBRoleState'",
-          "line": 1229
-        },
-        {
-          "code": "C2039",
-          "msg": "'PalScriptWaitObj' : is not a member of 'SceneObj'",
-          "line": 1236
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CCBRoleState'",
-          "line": 1236
-        },
-        {
-          "code": "C2039",
           "msg": "'TaskMgr_SceneObjParam_SceneObj' : is not a member of 'SceneObj'",
           "line": 1645
         },
@@ -1032,9 +1012,29 @@
           "line": 1788
         },
         {
+          "code": "C2039",
+          "msg": "'GlowObj' : is not a member of 'SceneObj'",
+          "line": 1790
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CCBRoleState'",
+          "line": 1790
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->CCBStage' must point to class/struct/union",
+          "line": 1790
+        },
+        {
+          "code": "C2653",
+          "msg": "'CCBStage' : is not a class or namespace name",
+          "line": 1790
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 1788
+          "line": 1790
         }
       ]
     },
@@ -3369,278 +3369,8 @@
     },
     "pal3/src/Effect/CEffCylinder.cpp": {
       "status": "fail",
-      "error_count": 102,
+      "error_count": 22,
       "errors": [
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 48
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 48
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 53
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 53
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 56
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 56
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 61
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 61
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 67
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 67
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 69
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 69
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 74
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 74
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 86
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 86
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 87
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 87
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 88
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 88
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 89
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 89
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 90
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 90
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 91
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 91
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 92
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 92
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 93
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 93
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 275
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 275
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 282
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 282
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 283
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 283
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 290
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 290
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 291
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 291
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 295
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 295
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 297
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 297
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 304
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 304
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 308
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 308
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 313
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 313
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 322
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 322
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 328
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 328
-        },
         {
           "code": "C2784",
           "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __cdecl std::operator +(const class std::basic_string<`template-parameter257',`template-parameter258',",
@@ -3684,56 +3414,6 @@
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 503
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 503
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 505
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 505
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 506
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 506
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 507
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 507
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 510
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 510
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
           "line": 594
         },
         {
@@ -3760,16 +3440,6 @@
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'CEffCylinder'",
           "line": 613
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 676
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 676
         },
         {
           "code": "C2440",
@@ -3802,66 +3472,6 @@
           "line": 981
         },
         {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 1037
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 1037
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 1038
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 1038
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 1039
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 1039
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 1040
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 1040
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 1043
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 1043
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 1063
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffCylinder'",
-          "line": 1063
-        },
-        {
           "code": "C2665",
           "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4 *'",
           "line": 1065
@@ -3870,16 +3480,6 @@
           "code": "C2660",
           "msg": "'Rotate' : function does not take 3 parameters",
           "line": 1069
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
-          "line": 1201
-        },
-        {
-          "code": "C1003",
-          "msg": "error count exceeds 100; stopping compilation",
-          "line": 1201
         }
       ]
     },
@@ -3936,7 +3536,7 @@
     },
     "pal3/src/Effect/CEffGrid.cpp": {
       "status": "fail",
-      "error_count": 53,
+      "error_count": 17,
       "errors": [
         {
           "code": "C2027",
@@ -3952,126 +3552,6 @@
           "code": "C2228",
           "msg": "left of '.ExceptionList' must have class/struct/union type",
           "line": 192
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
-          "line": 197
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffGrid'",
-          "line": 197
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
-          "line": 204
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffGrid'",
-          "line": 204
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
-          "line": 205
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffGrid'",
-          "line": 205
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
-          "line": 212
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffGrid'",
-          "line": 212
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
-          "line": 213
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffGrid'",
-          "line": 213
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
-          "line": 217
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffGrid'",
-          "line": 217
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
-          "line": 219
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffGrid'",
-          "line": 219
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
-          "line": 226
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffGrid'",
-          "line": 226
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
-          "line": 228
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffGrid'",
-          "line": 228
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
-          "line": 233
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffGrid'",
-          "line": 233
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
-          "line": 242
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffGrid'",
-          "line": 242
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
-          "line": 248
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffGrid'",
-          "line": 248
         },
         {
           "code": "C2784",
@@ -4116,56 +3596,6 @@
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
-          "line": 491
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffGrid'",
-          "line": 491
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
-          "line": 493
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffGrid'",
-          "line": 493
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
-          "line": 494
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffGrid'",
-          "line": 494
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
-          "line": 495
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffGrid'",
-          "line": 495
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
-          "line": 503
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffGrid'",
-          "line": 503
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
           "line": 587
         },
         {
@@ -4182,16 +3612,6 @@
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'CEffGrid'",
           "line": 593
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)>'",
-          "line": 677
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffGrid'",
-          "line": 677
         },
         {
           "code": "C2440",
@@ -4207,128 +3627,8 @@
     },
     "pal3/src/Effect/CEffMeteor.cpp": {
       "status": "fail",
-      "error_count": 46,
+      "error_count": 10,
       "errors": [
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>'",
-          "line": 209
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffMeteor'",
-          "line": 209
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>'",
-          "line": 216
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffMeteor'",
-          "line": 216
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>'",
-          "line": 217
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffMeteor'",
-          "line": 217
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>'",
-          "line": 224
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffMeteor'",
-          "line": 224
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>'",
-          "line": 225
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffMeteor'",
-          "line": 225
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>'",
-          "line": 229
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffMeteor'",
-          "line": 229
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>'",
-          "line": 231
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffMeteor'",
-          "line": 231
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>'",
-          "line": 238
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffMeteor'",
-          "line": 238
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>'",
-          "line": 242
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffMeteor'",
-          "line": 242
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>'",
-          "line": 247
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffMeteor'",
-          "line": 247
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>'",
-          "line": 256
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffMeteor'",
-          "line": 256
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>'",
-          "line": 262
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffMeteor'",
-          "line": 262
-        },
         {
           "code": "C2660",
           "msg": "'GetDynVertBuf' : function does not take 2 parameters",
@@ -4338,56 +3638,6 @@
           "code": "C2352",
           "msg": "'gbDynVertBuf::RenderGeomQuad' : illegal call of non-static member function",
           "line": 554
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>'",
-          "line": 606
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffMeteor'",
-          "line": 606
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>'",
-          "line": 608
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffMeteor'",
-          "line": 608
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>'",
-          "line": 609
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffMeteor'",
-          "line": 609
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>'",
-          "line": 610
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffMeteor'",
-          "line": 610
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>'",
-          "line": 613
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffMeteor'",
-          "line": 613
         },
         {
           "code": "C2039",
@@ -4418,16 +3668,6 @@
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'CEffMeteor'",
           "line": 730
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>'",
-          "line": 777
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffMeteor'",
-          "line": 777
         },
         {
           "code": "C2440",
@@ -4509,182 +3749,12 @@
     },
     "pal3/src/Effect/CEffModel.cpp": {
       "status": "fail",
-      "error_count": 55,
+      "error_count": 5,
       "errors": [
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 69
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 69
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 70
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 70
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 71
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 71
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 72
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 72
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 73
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 73
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 74
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 74
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 75
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 75
-        },
         {
           "code": "C2440",
           "msg": "'return' : cannot convert from 'class CEffModel *' to 'int'",
           "line": 112
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 131
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 131
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 138
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 138
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 139
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 139
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 146
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 146
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 151
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 151
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 160
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 160
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 167
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 167
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 177
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 177
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 183
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 183
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 291
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 291
         },
         {
           "code": "C2440",
@@ -4699,409 +3769,49 @@
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 469
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 469
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 470
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 470
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 478
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 478
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 480
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 480
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 483
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 483
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
           "line": 485
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'CEffModel'",
           "line": 485
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 486
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 486
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 487
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 487
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>'",
-          "line": 488
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffModel'",
-          "line": 488
         }
       ]
     },
     "pal3/src/Effect/CEffQuad.cpp": {
       "status": "fail",
-      "error_count": 18,
+      "error_count": 4,
       "errors": [
         {
           "code": "C2039",
           "msg": "'CEffObj' : is not a member of 'gbGfxManager'",
-          "line": 137
+          "line": 136
         },
         {
           "code": "C2039",
           "msg": "'CEffObj' : is not a member of 'gbGfxManager'",
-          "line": 137
+          "line": 136
         },
         {
           "code": "C2653",
           "msg": "'CEffObj' : is not a class or namespace name",
-          "line": 137
+          "line": 136
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'gbGfxManager'",
-          "line": 137
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuad::*)(unsigned long)>'",
-          "line": 174
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuad'",
-          "line": 174
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuad::*)(unsigned long)>'",
-          "line": 175
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuad'",
-          "line": 175
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuad::*)(unsigned long)>'",
-          "line": 176
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuad'",
-          "line": 176
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuad::*)(unsigned long)>'",
-          "line": 184
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuad'",
-          "line": 184
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuad::*)(unsigned long)>'",
-          "line": 190
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuad'",
-          "line": 190
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuad::*)(unsigned long)>'",
-          "line": 197
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuad'",
-          "line": 197
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuad::*)(unsigned long)>'",
-          "line": 200
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuad'",
-          "line": 200
+          "line": 136
         }
       ]
     },
     "pal3/src/Effect/CEffQuake.cpp": {
       "status": "fail",
-      "error_count": 45,
+      "error_count": 3,
       "errors": [
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 31
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 31
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 38
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 38
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 39
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 39
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 46
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 46
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 47
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 47
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 51
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 51
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 53
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 53
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 60
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 60
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 62
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 62
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 67
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 67
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 77
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 77
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 83
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 83
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 114
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 114
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 116
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 116
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 117
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 117
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 118
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 118
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 122
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 122
-        },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
           "line": 141
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 233
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 233
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 267
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 267
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 270
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 270
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffQuake::*)(unsigned long)>'",
-          "line": 315
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffQuake'",
-          "line": 315
         },
         {
           "code": "C2440",
@@ -5117,425 +3827,44 @@
     },
     "pal3/src/Effect/CEffSParticle.cpp": {
       "status": "fail",
-      "error_count": 52,
+      "error_count": 6,
       "errors": [
         {
           "code": "C2679",
           "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 29
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 51
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 51
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 54
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 54
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 102
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 102
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 104
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 104
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 105
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 105
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 107
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 107
+          "line": 28
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 214
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 216
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 216
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 252
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 252
+          "line": 213
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
-          "line": 298
+          "line": 297
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
-          "line": 331
+          "line": 330
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 368
+          "line": 560
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 368
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 369
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 369
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 370
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 370
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 499
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 499
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 503
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 503
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 534
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 534
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 545
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 545
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 546
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 546
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 554
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 554
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 556
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 556
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 559
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 559
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 561
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 561
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 562
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 562
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 563
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 563
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)>'",
-          "line": 564
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 564
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffObj'",
-          "line": 618
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffSParticle'",
-          "line": 618
+          "line": 560
         }
       ]
     },
     "pal3/src/Effect/CEffShock.cpp": {
-      "status": "fail",
-      "error_count": 30,
-      "errors": [
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffShock::*)(unsigned long)>'",
-          "line": 23
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffShock'",
-          "line": 23
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffShock::*)(unsigned long)>'",
-          "line": 24
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffShock'",
-          "line": 24
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffShock::*)(unsigned long)>'",
-          "line": 25
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffShock'",
-          "line": 25
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffShock::*)(unsigned long)>'",
-          "line": 26
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffShock'",
-          "line": 26
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffShock::*)(unsigned long)>'",
-          "line": 27
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffShock'",
-          "line": 27
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffShock::*)(unsigned long)>'",
-          "line": 28
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffShock'",
-          "line": 28
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffShock::*)(unsigned long)>'",
-          "line": 29
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffShock'",
-          "line": 29
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffShock::*)(unsigned long)>'",
-          "line": 30
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffShock'",
-          "line": 30
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffShock::*)(unsigned long)>'",
-          "line": 53
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffShock'",
-          "line": 53
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffShock::*)(unsigned long)>'",
-          "line": 54
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffShock'",
-          "line": 54
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffShock::*)(unsigned long)>'",
-          "line": 55
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffShock'",
-          "line": 55
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffShock::*)(unsigned long)>'",
-          "line": 63
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffShock'",
-          "line": 63
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffShock::*)(unsigned long)>'",
-          "line": 196
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffShock'",
-          "line": 196
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffShock::*)(unsigned long)>'",
-          "line": 200
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffShock'",
-          "line": 200
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffShock::*)(unsigned long)>'",
-          "line": 231
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffShock'",
-          "line": 231
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Effect/CEffect.cpp": {
       "status": "fail",
@@ -5751,128 +4080,8 @@
     },
     "pal3/src/Effect/CEffgbParticle.cpp": {
       "status": "fail",
-      "error_count": 102,
+      "error_count": 55,
       "errors": [
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 113
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 113
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 120
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 120
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 121
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 121
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 128
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 128
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 129
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 129
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 133
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 133
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 135
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 135
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 142
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 142
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 146
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 146
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 151
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 151
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 160
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 160
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 166
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 166
-        },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
@@ -6084,26 +4293,6 @@
           "line": 326
         },
         {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 454
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 454
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 458
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 458
-        },
-        {
           "code": "C2451",
           "msg": "conditional expression of type 'class PtrArray' is illegal",
           "line": 481
@@ -6136,66 +4325,6 @@
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 489
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 489
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 500
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 500
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 501
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 501
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 509
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 509
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 511
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 511
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 514
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 514
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
           "line": 516
         },
         {
@@ -6206,62 +4335,27 @@
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 517
+          "line": 897
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 517
+          "line": 897
         },
         {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 518
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 1021
         },
         {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 518
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
+          "line": 1054
         },
         {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 519
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 519
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 533
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 533
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 535
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffgbParticle'",
-          "line": 535
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>'",
-          "line": 542
-        },
-        {
-          "code": "C1003",
-          "msg": "error count exceeds 100; stopping compilation",
-          "line": 542
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
+          "line": 1156
         }
       ]
     },
@@ -8443,82 +6537,12 @@
     },
     "pal3/src/Misc/CEffAction.cpp": {
       "status": "fail",
-      "error_count": 17,
+      "error_count": 3,
       "errors": [
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffAction::*)(unsigned long)>'",
-          "line": 81
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffAction'",
-          "line": 81
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffAction::*)(unsigned long)>'",
-          "line": 83
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffAction'",
-          "line": 83
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffAction::*)(unsigned long)>'",
-          "line": 84
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffAction'",
-          "line": 84
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffAction::*)(unsigned long)>'",
-          "line": 85
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffAction'",
-          "line": 85
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffAction::*)(unsigned long)>'",
-          "line": 89
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffAction'",
-          "line": 89
-        },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
           "line": 110
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffAction::*)(unsigned long)>'",
-          "line": 170
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffAction'",
-          "line": 170
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffAction::*)(unsigned long)>'",
-          "line": 239
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'CEffAction'",
-          "line": 239
         },
         {
           "code": "C2440",
@@ -8565,7 +6589,7 @@
     },
     "pal3/src/Misc/ChoseCompose.cpp": {
       "status": "fail",
-      "error_count": 19,
+      "error_count": 15,
       "errors": [
         {
           "code": "C2039",
@@ -8641,26 +6665,6 @@
           "code": "C2227",
           "msg": "left of '->OnMessage' must point to class/struct/union",
           "line": 97
-        },
-        {
-          "code": "C2039",
-          "msg": "'UIWnd' : is not a member of 'UIFrameWnd'",
-          "line": 152
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'ChoseCompose'",
-          "line": 152
-        },
-        {
-          "code": "C2039",
-          "msg": "'UIWnd' : is not a member of 'UIFrameWnd'",
-          "line": 236
-        },
-        {
-          "code": "C2039",
-          "msg": "'__vftable' : is not a member of 'ChoseCompose'",
-          "line": 236
         }
       ]
     },

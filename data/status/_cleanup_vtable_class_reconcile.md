@@ -1915,3 +1915,86 @@ regression_detector --before → match → L1 多重集不回退才落地**。
 这很可能是本会话早前的 `RET_RE` 修复与指令级 asm 证据源（`1dbf0f93d`）的**预期副作用**
 （门更多时候能拿到正确 slots ⇒ 不再退化成 `[MISATTRIBUTED]`）。
 但那 5 例的断言是否还代表**应当的行为**，需要单独裁定；**不要让它们长期红着**。
+
+---
+
+# 30. 落地记录：限定形 `__vftable` 的偏移解析（**本会话最大单项收益：总错误 −399**）
+
+## 30.1 缺陷（实测）
+
+`_fold_vftable_mask`（AST）的 docstring 自己记着一条**已知缺口**：
+
+```
+Skipped (left verbatim, reported as a gap in the .md):
+  * qualified base accesses `X->Base::__vftable` — base offset unknown;
+```
+
+代码里就是那句 `field.type != 'qualified_identifier'`。而按消息形态聚类，**这是全仓最大的单一机制**：
+
+| 条数 | 文件数 | 形态 |
+|---|---|---|
+| **741** | **38** | `'__vftable' : is not a member of 'T'` |
+| 188 | 54 | `'=' : cannot convert from 'T' to 'T'` |
+| 84 | 30 | `'type cast'` |
+
+其中 **665 条（90%）是限定形** `this->A::B::__vftable`（`::` 在 `__vftable` 之前）。
+根因**不是 AST vs 正则**（该 pass 本来就是 AST），而是**基类子对象偏移这个数据在注解里缺失**：
+179 个有基类的类里**只有 1 个**的 `bases` 带 offset。
+
+## 30.2 证据分级（**只写 A 级，其余一律不猜**）
+
+| 偏移 | 依据 | 等级 |
+|---|---|---|
+| CEff 族 `CTaskTpl<…>` 基 = **12** | ① ctor 直接安装：`CEffModel sub_4CFC70` 的 `mov [eax+0Ch], offset off_56FA18`、`CEffCylinder sub_4C3DD0`；② PDB 全族 = 12；③ `template_bases.json` 记载 18 个 CEff* 共享该模板布局；④ 二进制 **58 处** `sub ecx, 0Ch` 的 this 调整 | **A** |
+| **首个基类 = 0** | **MS C++ ABI：主基类子对象必在偏移 0**（是语言/ABI 事实，非猜测） | **A** |
+| `SceneObj` 的 `GlowObj(+8)` / `TaskMgr(+40)` | PDB 有值，但**二进制未能确认**（无对应 `sub ecx,28h` thunk；ctor 只安装主 vptr） | **不写** |
+
+⇒ `data/annotations/structs/*.json` 只为 **15 个 CEff 族类**写入 `bases`（并附 `bases_source` 记明依据）。
+
+## 30.3 实现
+
+1. **`data.py`** 新增 `_load_struct_bases()` → `store.struct_bases = {cls: {base: offset}}`。
+   优先级：注解 `bases` 的显式 offset；缺失时**只给首个基类 0**，其余**不写入**（于是下游保持"跳过"的旧行为）。
+2. **`stage3_cleanup._fold_vftable_mask(code, ctx)`**：新增 `_qualified_vftable_offset(qual_text, cls_name)`
+   把链折成距对象起点的字节偏移；仅当**对象字面就是 `this`**（其静态类型确定为 `ctx.cls_name`）
+   且链上每一级都能在 `struct_bases` 里查到时才改写；否则**原样跳过**（旧行为）。
+   改写形态：偏移 0 时与未限定形**完全同形**（避免对 38 处 ABI-0 位点产生无谓改动）：
+
+```
+&this->A::B::__vftable      -> ((void **)((char *)(this) + OFF))
+this->A::B::__vftable       -> (*(void **)((char *)(this) + OFF))
+```
+
+## 30.4 验收（全部实测）
+
+| Gate | 结果 |
+|---|---|
+| 生成文件存在性 / 畸形不变量 | 202 = 202 / **0** |
+| 限定形残留 | 665 处错误 → **304 处仍为限定形**（可解析的已消化，未知的**正确保留**） |
+| **`probe all`** | **S2 67 → 68**；**总错误 3183 → 2784（−399，−12.5%）** |
+| 逐码 | **C2039 −272** —— **全部减少、零增加** |
+| 对账 `regression_detector --before` | `new_failures 0`、`new_errors 0`、**`increased_codes []`**、`churn 0`、`moved 0` |
+| **C1003 截断文件** | **11 → 9** |
+| 文件级 | `CEffgbParticle` 102→**55**、`CEffSParticle` 52→**6**、`CEffAction` 17→**3**；`CEffShock.cpp` **fail→ok** |
+| `compile_regression` | **No regressions（+1）** |
+| `match` | `matched 212/244 → 218/250`；`L1 17` |
+| **L1 按多重集** | **identical，lost 0 / gained 0** |
+| 合成用例 | 4 项：A 级偏移改写 ✓、ABI 偏移 0 改写 ✓、**两个未知偏移正确跳过** ✓ |
+
+## 30.5 仍欠（明确记录）
+
+- **`SceneObj` 的 `GlowObj+8` / `TaskMgr+40`**：PDB 有值但**二进制未确认** ⇒ 未写入，
+  对应 **约 191 条**错误仍在（`CCBRoleState`/`SceneObj` 链）。要拿这批需要**新的二进制手段**
+  （例如从"最派生类 ctor 的 this 调整 + 基类 ctor 调用"反推，或从对象内存的 vptr 实际值定位）。
+- **非 `this` 对象**的限定链（如 `m_pSceneObjRef->PalScriptWaitObj::__vftable`，76 条"无链"里的一部分）
+  需要对象表达式的**静态类型**，不在本函数的 A 级依据内 ⇒ 保持跳过。
+- 本项**只做了 codegen + 数据**，未动 IDB。
+
+## 30.6 方法论收益（比 −399 更值钱）
+
+1. **"已知缺口"要定期用量化重新排序**：这个缺口在 docstring 里躺了很久，但**没人按错误条数
+   给它排过队**。一聚类才发现它是**全仓最大单一机制**（741 条 / 23%）。
+2. **用"证据分级"切开缺口**：665 条里只有 474 条有 A 级偏移，那就**只修那 474 条**，
+   其余**保持原样**。结果是 −399 且**零新增、零回归** —— 把"能不能做"换成"哪一部分能做"。
+3. **不能靠普查验证正确性**：偏移写错会**静默写错地址**（能编译）。所以 A 级证据是不可省的；
+   普查只能验证"错误减少"，不能验证"地址正确"。本项的 A 级依据（ctor 安装位移 + ABI）正是为此。
