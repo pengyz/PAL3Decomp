@@ -533,15 +533,34 @@ def run_self_test():
         'sites=%s -> %s' % ([hex(s) for s in vi.get(0x56AD64, [])],
                             [hex(owning_func(s) or 0) for s in vi.get(0x56AD64, [])]))
 
-    # ---- 与实际 annotation 的冲突：req > binary_size 直接证伪 ----
+    # ---- 落地后的地面真值（2026-09-18 landing；本条是**回归守卫**）----
+    # 迁移前 0x56AC20 挂 UIProgressBar(244) 且 req=296 > 244 被证伪；落地后归 UI3DCtrl。
+    want = {0x56AC20: 'UI3DCtrl', 0x56AD64: 'UIProgressBar', 0x56ACFC: 'UIFlexBar'}
+    for vt, cls in want.items():
+        r = reconcile_vtable(S, vt)
+        chk('%s 的声明归属 == %s' % (hex(vt), cls), r['declared_owner'] == [cls],
+            'declared=%s verdict=%s' % (r['declared_owner'], r['verdict']))
     r = reconcile_vtable(S, 0x56AC20)
-    chk('0x56AC20 声明归属 UIProgressBar 被证伪(296>244)',
-        'IMPOSSIBLE' in r['verdict'].get('UIProgressBar', ''),
-        'verdict=%s req=%d' % (r['verdict'], r['total_req']))
-    r2 = reconcile_vtable(S, 0x56AD64)
-    chk('0x56AD64 的 ctor 尺寸 244 != UIButton 的 344（故非 UIButton）',
-        hs.get(0xF4) == 2 and S['UIButton']['binary_size'] != 0xF4,
-        'UIButton.binary_size=%s' % S['UIButton']['binary_size'])
+    chk('0x56AC20 对 UI3DCtrl 自洽（req<=binary_size）',
+        'consistent' in r['verdict'].get('UI3DCtrl', ''), 'req=%d' % r['total_req'])
+    chk('0x56AD64 的 ctor 尺寸 244 == UIProgressBar.binary_size（且 != UIButton 344）',
+        hs.get(0xF4) == 2 and S['UIProgressBar']['binary_size'] == 0xF4
+        and S['UIButton']['binary_size'] != 0xF4,
+        'UIProgressBar=%s UIButton=%s' % (S['UIProgressBar']['binary_size'],
+                                         S['UIButton']['binary_size']))
+    uf2 = S['UIFlexBar']
+    ords = sorted(v.get('ordinal') for v in (uf2.get('methods') or {}).values()
+                  if v.get('ordinal') is not None)
+    chk('UIFlexBar 的 ordinal == {1,3,5,7}（落在 8 槽表的 4 个重写位）', ords == [1, 3, 5, 7],
+        'ordinals=%s n_methods=%d vtables=%s' % (ords, len(uf2.get('methods') or {}),
+                                                 [v['addr'] for v in (uf2.get('vtables') or [])]))
+    chk('UIButton 已清空被证伪的 methods/vtables',
+        not (S['UIButton'].get('methods') or {}) and not (S['UIButton'].get('vtables') or []),
+        'methods=%d vtables=%d' % (len(S['UIButton'].get('methods') or {}),
+                                   len(S['UIButton'].get('vtables') or [])))
+    chk('UI3DCtrl 不再持有 cluster B（0x43D8xx/0x43D9xx）的任何方法',
+        not any(k.startswith('0x0043D') for k in (S['UI3DCtrl'].get('methods') or {})),
+        'methods=%s' % sorted(S['UI3DCtrl'].get('methods') or {}))
 
     # ---- 证据链 4：0x56ACFC = UIFlexBar（真 ctor 是 0x43D830，不是 0x43D880）----
     hits, req = this_offsets(0x43D830)
@@ -576,6 +595,154 @@ def _new_size_before_ctor(ctor_va):
     return None
 
 
+# ---- 全局审计：把 stride/new 方法从"单张表"推广到**全部已安装表** ----------------
+_SITE_INDEX = None
+
+
+def site_index():
+    """**一次**遍历全 `.text`，抽取三类可复用事实（避免 189× 重复反汇编）：
+
+      · `member[(func, ctor)] = [(site, off, last_new_size), ...]`
+        —— `lea off(%reg),%ecx ; (SEH 标记)? ; call ctor`，即"在 func 里就地构造了一个
+           ctor 类型的成员，偏移 off"（`last_new_size` = 该处之前最近一次 `new` 实参）；
+      · `vptr[(func, table)] = [site, ...]` —— func 安装了这张表的 vptr；
+      · `ctor_func[site] = func` —— 安装点所属函数。
+
+    「相邻成员的偏移差 = 类尺寸」与「`new` 实参 = 类尺寸」都由它派生。
+    """
+    global _SITE_INDEX
+    if _SITE_INDEX is not None:
+        return _SITE_INDEX
+    lines = _insn_lines()
+    member = {}
+    vptr = {}
+    ctor_func = {}
+    # 预扫：算子函数边界（用于把安装点归到 ctor/dtor）
+    _load_func_index()
+    fstarts = sorted(_FUNC_SIZE)
+    import bisect
+
+    def owner(va):
+        i = bisect.bisect_right(fstarts, va) - 1
+        if i >= 0 and fstarts[i] <= va < fstarts[i] + _FUNC_SIZE[fstarts[i]]:
+            return fstarts[i]
+        return None
+
+    cur = None
+    last_new = None
+    vpat = re.compile(r'movl?\s+\$0x([0-9a-f]{6,8}),(?:0x([0-9a-f]+))?\((%[a-z]+)\)')
+    for i, (va, t) in enumerate(lines):
+        f = owner(va)
+        if f != cur:
+            cur, last_new = f, None
+        if re.match(r'call\s+0x55353b$', t) and i > 0:
+            m = re.match(r'push\s+\$0x([0-9a-f]+)$', lines[i - 1][1])
+            if m:
+                last_new = int(m.group(1), 16)
+            continue
+        m = vpat.search(t)
+        if m:
+            a = int(m.group(1), 16)
+            if RDATA_LO <= a < RDATA_HI and cur is not None:
+                vptr.setdefault((cur, a), []).append(va)
+                ctor_func[va] = cur
+            continue
+        mm = re.match(r'call\s+0x([0-9a-f]+)$', t)
+        if mm:
+            callee = int(mm.group(1), 16)
+            j = i - 1
+            if j >= 0 and re.match(r'mov[bwl]?\s+\$0x[0-9a-f]+,0x[0-9a-f]+\(%esp\)$', lines[j][1]):
+                j -= 1
+            if j >= 0 and cur is not None:
+                lm = re.match(r'lea\s+(?:0x([0-9a-f]+))?\((%[a-z]+)\),%ecx$', lines[j][1])
+                if lm:
+                    off = int(lm.group(1), 16) if lm.group(1) else 0
+                    member.setdefault((cur, callee), []).append((va, off, last_new, lm.group(2)))
+    _SITE_INDEX = (member, vptr, ctor_func)
+    return _SITE_INDEX
+
+
+def measured_size(ctor):
+    """(min_stride, {new_size: n}) —— 该 ctor 所属类的实测尺寸证据。"""
+    member, _v, _c = site_index()
+    out = {}
+    for (f, callee), hits in member.items():
+        if callee == ctor:
+            out.setdefault(f, hits)
+    strides = []
+    pairs = {}
+    news = {}
+    for f, hits in out.items():
+        hits = sorted(hits, key=lambda x: x[0])
+        for k in range(len(hits) - 1):
+            # **必须同基址寄存器**：同一函数里两个不同宿主对象的成员构造
+            # （`a.m1.Ctor(); b.m2.Ctor()`）偏移差与类尺寸无关，会产生假 stride。
+            if hits[k + 1][3] != hits[k][3]:
+                continue
+            d = hits[k + 1][1] - hits[k][1]
+            if d > 0:
+                strides.append(d)
+                pairs[d] = pairs.get(d, 0) + 1
+        for _s, _o, n, _r in hits:
+            if n:
+                news[n] = news.get(n, 0) + 1
+    ms = min(strides) if strides else None
+    return ms, news, (pairs.get(ms, 0) if ms else 0)
+
+
+def audit_all():
+    """全部已安装表 × 注解声明的全局对账。返回 rows（每张表一行）。"""
+    S = load_structs()
+    member, vptr, _cf = site_index()
+    declared = {}
+    for c, d in S.items():
+        for v in (d.get('vtables') or []):
+            a = norm_va(v.get('addr'))
+            if a:
+                declared.setdefault(a, []).append(c)
+    rows = []
+    # 注意：`vptr` 的键是 (func, table) 元组，遍历它拿到的是元组 —— 必须先取表地址集合
+    for table in sorted({t for (_f, t) in vptr}):
+        ctors = {f for (f, t2) in vptr if t2 == table}
+        # 去掉 dtor：选有 member 构造记录、或有 new 尺寸的那个
+        best, best_ev = None, (None, {}, 0)
+        for c in sorted(ctors):
+            st, news, np_ = measured_size(c)
+            if (st or news) and (best is None or (news and not best_ev[1])):
+                best, best_ev = c, (st, news, np_)
+            elif best is None:
+                best, best_ev = c, (st, news, np_)
+        st, news, npairs = best_ev
+        ms = st if st else (min(news) if news else None)
+        # 证据分级：`new` 实参是独立于 stride 的强证据；stride 需 ≥3 对才可信
+        # （1~2 对可能是两个宿主对象/嵌套对象的巧合，实测 0x43bce0 给出互不一致的 272/280）
+        if ms is None:
+            tier = '-'
+        elif news:
+            tier = 'A(new)'
+        elif st and npairs >= 3:
+            tier = 'A(stride x%d)' % npairs
+        else:
+            tier = 'B(stride x%d)' % npairs
+        dec = declared.get(table, [])
+        dsizes = {S[c].get('binary_size') for c in dec}
+        if not dec:
+            verdict = 'UNASSIGNED'
+        elif ms is None:
+            verdict = 'NO_MEASUREMENT'
+        elif ms in dsizes:
+            verdict = 'SIZE_OK'
+        else:
+            verdict = 'SIZE_CONFLICT'
+        rows.append({'table': '0x%08X' % table, 'ctors': ['0x%08X' % c for c in sorted(ctors)],
+                     'measured_ctor': '0x%08X' % best if best else None,
+                     'min_stride': st, 'stride_pairs': npairs, 'new_sizes': news,
+                     'measured': ms, 'tier': tier,
+                     'declared': dec, 'declared_size': sorted(x for x in dsizes if x),
+                     'verdict': verdict})
+    return rows
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--vtable')
@@ -585,6 +752,8 @@ def main():
     ap.add_argument('--installs', action='store_true', help='列出 vptr 安装点统计')
     ap.add_argument('--writes', help='ctor VA，列出其 this 写入偏移（对照 known_members）')
     ap.add_argument('--self-test', action='store_true')
+    ap.add_argument('--audit', action='store_true', help='全局：全部已安装表 vs 注解声明')
+    ap.add_argument('--audit-out')
     a = ap.parse_args()
 
     if a.stride:
@@ -633,6 +802,30 @@ def main():
 
     if a.self_test:
         return run_self_test()
+
+    if a.audit:
+        rows = audit_all()
+        cnt = {}
+        for r in rows:
+            cnt[r['verdict']] = cnt.get(r['verdict'], 0) + 1
+        for r in rows:
+            if r['verdict'] in ('SIZE_CONFLICT', 'UNASSIGNED'):
+                print('%-11s ctor=%-11s measured=%-6s %-14s declared=%-26s size=%-8s %s' % (
+                    r['table'], r['measured_ctor'] or '-', r['measured'], r['tier'],
+                    ','.join(r['declared']) or '(none)', r['declared_size'] or '-', r['verdict']))
+        print('--- summary ---')
+        for k in sorted(cnt):
+            print('  %-16s %d' % (k, cnt[k]))
+        at = {}
+        for r in rows:
+            if r['verdict'] in ('SIZE_CONFLICT', 'SIZE_OK'):
+                at[r['tier'][:1]] = at.get(r['tier'][:1], 0) + 1
+        print('  by tier: %s' % at)
+        print('  total %d tables (installed by ctor/dtor)' % len(rows))
+        if a.audit_out:
+            json.dump(rows, open(a.audit_out, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+            print('written: %s' % a.audit_out)
+        return 0
 
     targets = [norm_va(a.vtable)] if a.vtable else known
     out = []

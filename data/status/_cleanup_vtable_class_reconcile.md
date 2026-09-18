@@ -268,3 +268,77 @@ SaleUI::InitUI  0x5251f8 lea 0xfa4(%esi),%ecx   0x525203 call 0x439030
 与 `UIFlexBar.json`(`base_class:[UIWnd]`, `base_size:68`, `binary_size:84`) 吻合。
 **第 5 条**：ctor 写 `m_tilewidth=0x20, m_tileheight=0x20, m_tex=0, m_style=0` —— 与
 "flex/tile bar"(tile 32px) 语义吻合。
+
+---
+
+# 10. 方法论推广到全部 178 张已安装表（2026-09-18）
+
+## 10.1 能不能推广：**能**，且 1.2 秒跑完
+
+`tools/vtable_class_reconcile.py --audit` 把 §2 的三种取证手段自动套到**每一张**由 ctor/dtor 安装的表上：
+
+| 手段 | 实现的函数 | 覆盖 |
+|------|-----------|------|
+| vptr 安装点 → (表, ctor, dtor) | `site_index()` / `vptr_installs()` | **178 张表** |
+| 内嵌成员 stride → 类尺寸 | `measured_size()`（**要求同基址寄存器**） | 9 张 |
+| `new` 实参 → 类尺寸 | 同上（`last_new`） | 1 张额外 |
+
+一次遍历全 `.text` 预计算（`site_index()` 缓存），避免 178× 重复反汇编 —— 全量 **1.2 s**。
+输出 `data/status/_vtable_audit_global.json`。
+
+## 10.2 全局结果（证据已分级）
+
+```
+NO_MEASUREMENT   80     # 无内嵌/new 证据（单例、静态、其他构造路径）
+UNASSIGNED       89     # ctor 安装了表，但没有任何注解类声明它  <<< 最大机会
+SIZE_CONFLICT     5
+SIZE_OK           4
+total           178
+by tier (仅 SIZE_*): A=5  B=4
+```
+
+**分级规则**（`tier`）：`A(new)` = 有 `new` 实参（独立于 stride）；`A(stride xN)` = N≥3；
+`B(stride xN)` = N≤2。理由是实测：`0x43bce0` 给出**互不一致**的 272(×1)/280(×1) ⇒ 1~2 对的 stride
+可能是"同函数里两个宿主对象 / 嵌套对象"的巧合，**必须先手验**。
+
+### SIZE_OK（4，含本次落地的 3 张 + 1 张新独立确认）
+
+| 表 | ctor | 实测 | 声明 | 级别 |
+|---|---|---|---|---|
+| `0x56AC20` | `0x439030` | 308 | UI3DCtrl 308 ✅ | A(stride x4) |
+| `0x56ACFC` | `0x43D830` | 84 | UIFlexBar 84 ✅ | B(stride x1) |
+| `0x56AD64` | `0x43F7F0` | 244 | UIProgressBar 244 ✅ | B(stride x1) + `new(0xF4)×2` |
+| `0x56AD40` | `0x43DFC0` | 1208 | **UIListBox 1208** ✅ | A(stride x17) |
+
+⇒ `UIListBox` 是**本次方法独立确认**的又一例（未做任何手工工作）。
+
+### SIZE_CONFLICT（5，A/B 级候选工作清单）
+
+| 表 | ctor | 实测 | 现声明 | 声明尺寸 | 级别 | 备注 |
+|---|---|---|---|---|---|---|
+| `0x56AC70` | `0x43A770` | **344** | UICaption | 96 | **A(stride x106)** | 106 对压倒性；344 恰为 `UIButton` 的声明尺寸 ⇒ **可能是 UIButton 的真表**（§5.2 未决项） |
+| `0x56AD88` | `0x440740` | **248** | UIStatic | 152 | **A(stride x19)** + `new(0xF8)×3` | `new` 实参是独立第二链 |
+| `0x56E190` | `0x4A12F0` | **1368** | UIRoleDialog | 720 | **A(stride x9)** | |
+| `0x56ACD8` | `0x43BCE0` | 272 | UIScene | 344 | B(stride x1) | stride 出现互不一致的 272/280 ⇒ **可能假** |
+| `0x56AE2C` | `0x443190` | 192 | CCBPanelSlot, UIWnd | 476 / 68 | B(stride x1) | "UIWnd 拥有第二张表"本身可疑 |
+
+## 10.3 纪律：这些是**候选**，不是结论
+
+本次落地的 3 张表各有 **3 条互相独立的链条**（安装点归属 + stride + `new`/调用点语义 + 成员集覆盖）。
+`--audit` 的 `measured` 只是其中**一条**（stride 或 new）。因此：
+
+- **A 级冲突**（`0x56AC70`/`0x56AD88`/`0x56E190`）值得排进落地槽位，但**仍需**补齐第二、三条链
+  （成员集覆盖、调用点语义、表槽位与 ordinal 自洽性），并跑完整管线 + A-B-A。
+- **B 级冲突**必须先手验 stride 是否真（把 `--stride <ctor>` 的对数与偏移逐个看，确认同基址寄存器、
+  且两次构造确为**相邻成员**）。
+- **89 张 UNASSIGNED** 是比"补 5 个错挂"大得多的机会：它们是"ctor 真的安装了表，但注解里没有类认领"，
+  对应 `docs/knowledge/gotcha_vtables_not_derivable_from_bytes.md` 里"57 个类没有虚表记录"的问题
+  —— 现在有了**带安装点证据**的 89 张表清单，补录不再是猜。
+
+## 10.4 已知残余弱点（不许当结论用）
+
+1. `site_index()` 不跟踪寄存器被改写/重载 ⇒ 同一函数里 `%esi` 换成另一个宿主对象时仍会被当成"同基址"。
+   `--audit` 的 B 级分级就是这个弱点的缓冲；**A 级（`new` 实参）不受影响**。
+2. `stride` 只在"同一 ctor 被连续调用 ≥2 次"时才有值 ⇒ 覆盖率天然低（9/178）。这是**方法上限**，不是缺陷。
+3. `UNASSIGNED` 判据是"注解里没有 `vtables[].addr` 等于该表"。多继承子表、`??_E` 之类 stub 安装的表
+   会落进来（本次 `0x43D880` 即一例）⇒ 需要按安装点函数是否为真 ctor 再筛一遍。
