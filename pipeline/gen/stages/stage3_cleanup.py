@@ -748,31 +748,92 @@ def _needs_ptr_wrap(rhs):
     return True
 
 
-def _qualified_vftable_offset(qual_text, cls_name):
-    """把限定链 `A::B::__vftable` 折算成**距对象起点的字节偏移**；不可解析返回 None。
+def _base_names_of(cls_name, depth=0):
+    """`cls_name` 的**传递基类名集合**（只用 `store.struct_base_names`，**不需要偏移**）。
 
-    依据：`store.struct_bases`（由 data.py 从注解 `bases` 读入）。
-    该类数据**只含两级来源**：① 注解里带显式 offset 的基类（每类在 `bases_source` 附 A 级依据）；
-    ② 无 `bases` 时**仅**首个基类的 0（MS C++ ABI：主基类子对象必在偏移 0）。
-    **其余情况一律返回 None** ⇒ 调用方保持"原样跳过"的旧行为，不猜。
+    用途：判定限定链上的某个名字"**到底是不是**该类的基类" —— 这决定了遇到
+    "是基类但偏移未知"（保持原样）还是"根本不是基类"（限定符是 IDB 残留，按未限定处理）。
+    走 `store` 而不是自读 annotation JSON：`data.py` 是 codegen 读 annotation 的唯一获准位置。
+    """
+    seen = set()
+    cur = [cls_name]
+    while cur and depth < 12:
+        nxt = []
+        for c in cur:
+            for n in (store.struct_base_names.get(c) or []):
+                if n and n not in seen:
+                    seen.add(n)
+                    nxt.append(n)
+        cur = nxt
+        depth += 1
+    return seen
+
+
+def _static_member_type(cls_name, member, depth=0):
+    """成员在其类（含继承链）里的声明类型；找不到返回 None。"""
+    if not cls_name or depth > 12:
+        return None
+    for _o, v in (store.struct_members.get(cls_name) or {}).items():
+        if v and v[0] == member:
+            t = str(v[1] or '').strip()
+            return t or None
+    for b in (store.struct_base_names.get(cls_name) or []):
+        t = _static_member_type(b, member, depth + 1)
+        if t:
+            return t
+    return None
+
+
+def _static_type_of_object(obj_text, ctx):
+    """对象表达式的静态类型名（尽力而为）：`this` / 成员名。**取不到就返回 None**
+    —— 调用方据此不做任何推断。"""
+    obj = obj_text.strip()
+    while obj.startswith('(') and obj.endswith(')'):
+        obj = obj[1:-1].strip()
+    if obj == 'this':
+        return getattr(ctx, 'cls_name', None) or None
+    m = re.match(r'^(?:this\s*->\s*)?([A-Za-z_]\w*)$', obj)
+    if not m:
+        return None
+    base = getattr(ctx, 'cls_name', None) or None
+    if not base:
+        return None
+    t = _static_member_type(base, m.group(1))
+    if not t:
+        return None
+    t = re.sub(r'\[[^\]]*\]', '', t).replace('*', '').strip()
+    return t or None
+
+
+def _qualified_vftable_offset(qual_text, cls_name):
+    """限定链 `A::B::__vftable` -> (动作, 偏移)。
+
+    动作：
+      'offset' —— 链的每一级都是**已知偏移的基类**，返回距对象起点的字节偏移；
+      'strip'  —— 链上某一级**根本不是**所在类的基类（用 `base_class` 名单可证），
+                  说明该限定符是 IDB 残留 ⇒ 回落成**未限定**语义（对象自身的 vfptr，偏移 0）；
+      'skip'   —— 该级**是**基类但偏移未知 ⇒ 不猜，原样保留。
     """
     if not cls_name:
-        return None
+        return ('skip', None)
     qual = qual_text.decode('utf-8')
     if not qual.endswith('::__vftable'):
-        return None
+        return ('skip', None)
     parts = [x for x in qual[:-len('::__vftable')].split('::') if x]
     if not parts:
-        return None
+        return ('skip', None)
     off = 0
     cur = cls_name
     for p in parts:
         bases = store.struct_bases.get(cur) or {}
-        if p not in bases:
-            return None                     # 偏移未知 ⇒ 不猜
-        off += bases[p]
-        cur = p
-    return off
+        if p in bases:
+            off += bases[p]
+            cur = p
+            continue
+        if p in _base_names_of(cur):
+            return ('skip', None)        # 是基类，但偏移未知 —— 不猜
+        return ('strip', None)           # 根本不是基类 —— 限定符是残留
+    return ('offset', off)
 
 
 def _fold_vftable_mask(code, ctx=None):
@@ -805,17 +866,27 @@ def _fold_vftable_mask(code, ctx=None):
         if node.type == 'field_expression':
             field = node.child_by_field_name('field')
             _qoff = None
+            _qstrip = False
             if field is not None and field.type == 'qualified_identifier' \
-                    and field.text.endswith(b'::__vftable'):
+                    and field.text.endswith(b'::__vftable') and ctx is not None:
                 _a = node.child_by_field_name('argument')
-                # 只对**对象就是 `this`** 的限定链动手：此时对象的静态类型确定是
-                # ctx.cls_name，链的偏移可据 store.struct_bases 解析。对象是别的变量时
-                # 需要它的静态类型（不在本函数的 A 级依据内）⇒ 保持原样跳过。
-                if _a is not None and raw[_a.start_byte:_a.end_byte] == b'this' and ctx is not None:
-                    _qoff = _qualified_vftable_offset(field.text, getattr(ctx, 'cls_name', None))
+                if _a is not None:
+                    # 对象的静态类型：`this` 用 ctx.cls_name；成员名走注解的继承链查
+                    # （`store.struct_members` 同源）。**取不到类型就不动**。
+                    _otype = _static_type_of_object(
+                        raw[_a.start_byte:_a.end_byte].decode('utf-8'), ctx)
+                    _act, _off = _qualified_vftable_offset(field.text, _otype)
+                    if _act == 'offset':
+                        _qoff = _off
+                    elif _act == 'strip':
+                        # 链上某级**根本不是**所在类的基类（base_class 名单可证，
+                        # 例如 UIScrollBar 的尺寸 352 < UIListBox 的 1208 ⇒ 不可能派生）
+                        # ⇒ 该限定符是 IDB 残留，按**未限定**语义处理（对象自身 vfptr，偏移 0）
+                        _qstrip = True
+                    # 'skip'：是基类但偏移未知 ⇒ 原样保留，不猜
             if field is not None and (
                     (field.text == b'__vftable' and field.type != 'qualified_identifier')
-                    or _qoff is not None):
+                    or _qoff is not None or _qstrip):
                 arg = node.child_by_field_name('argument')
                 op = node.child_by_field_name('operator')
                 if arg is not None and op is not None:

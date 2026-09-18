@@ -32,6 +32,7 @@ class DataStore:
         self.struct_instances = []  # [(base, end, name, type)]
         self.struct_members = {}    # type -> {offset: (name, member_type)}
         self.struct_bases = {}      # type -> {base_name: offset}（限定形 __vftable 的偏移解析用）
+        self.struct_base_names = {} # type -> [直接基类名, 按声明顺序]
         self.game_classes = set()   # class names with .h files
         self.thunk_classes = set()  # j_ClassName thunk type names
         self.static_methods = set() # "ClassName::Method" for __cdecl methods
@@ -292,6 +293,12 @@ class DataStore:
                     m[_names[0]] = 0        # ABI: 主基类子对象在偏移 0
             if m:
                 self.struct_bases[_name] = m
+            # 直接基类名单（含无 offset 的）—— 供"某名字到底是不是基类"的判定，
+            # 该判定**不需要偏移**，故名单本身即可用。
+            _bc2 = _ann.get('base_class')
+            _n2 = _bc2 if isinstance(_bc2, list) else ([_bc2] if _bc2 else [])
+            if _n2:
+                self.struct_base_names[_name] = [x for x in _n2 if x]
 
     def _load_annotated_globals(self):
         """Load globals.json for extern generation of non-IDA globals."""
