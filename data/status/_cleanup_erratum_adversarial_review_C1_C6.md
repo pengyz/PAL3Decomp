@@ -141,3 +141,66 @@ C5(b)（`const` 一致性 45→0、反向 0）**证实**。
 4. C3 改成"窗口总 Δ"口径，并把 `probe_census.json` 随 commit 归档（或纳入 git）。
 5. C4 落地前查 `pipeline/compare_pal3.py` 的 218 symbols 是否含 `?RoleCameraCtrl@@YAXXZ`；
    优先采用 `(class RoleCameraCtrl *)`。
+---
+
+# 第二轮追加（复核者 `bc0a67e9` 追加复核，2026-09-17）
+
+## 9. ✅ 已执行：pre-state 产物入仓
+复核者穷尽搜索发现**唯一**的改前产物集在 `/tmp/c2660bak/`（易失），已归档：
+`data/status/archive/20260917_1549/`（生成树 tar.gz + 15:49 census + 15:52/17:22 两份 s4 +
+`latest.json` + registry，含 README）。**以后每条主张都能做真正的 A-B-A。**
+
+## 10. C3 从"无法判定"上调为"高度证实（残留一处文档依赖）"
+- **L1 分量：产物级证实 ΔL1=0。** 改前侧 = `76349df80`(16:50) 提交的 `s4_baseline.json`
+  （`L1 17 · matched 191/218 · symbols 218`，17:22 有同内容产物）；改后侧
+  `data/status/s4_baseline.json`（mtime 20:14:17）**是一次真跑** —— 同一次跑重写的
+  `pal3_registry.jsonl` 从 133 行→166 行，且内部自洽（`17+149+25=191 matched`）。
+- **ok 分量：窗口级 + 受影响单元级证实。** 15:49 与 20:10 两份 census 的
+  **S2 单元集合完全相同（202/202）**、S1 亦相同（751/751）⇒ 跨运行口径成立：
+  `ok 56→61`，`fail→ok` 5 个、**`ok→fail` 0 个**，总错误 3817→3572；5 个 flip 全落在
+  16:30/16:50 两个已记录 commit 上。
+- **对 `2b94ce769` 的受影响 8 单元逐个比对：状态全不变**
+  （`CJ_FindFile ok(0)→ok(0)`、`UILoadingFrm fail(1)→fail(1)`、`UIProgressBar fail(20)→20`、
+  `StateUI 52→37`、`CCBMagicWindow 32→32`、`UITitle_XJTM 20→19`、`UIBigMap 53→44`、
+  `free_functions 101→102`），并用**快照树独立重编译**了唯一 ok 的那个（两侧 0 错）。
+- 残留：**"每条 commit 各自的 Δok"仍无逐次测量**（kiro 17:14 的 61 只是文档、非产物）。
+⇒ 我的写法应固定为 **"窗口总 Δ=0（L1 产物级、ok 窗口级+受影响单元级）"**。
+
+## 11. C2 的**落地**已有产物级验证（错的只是论证）
+`diff` 15:49 快照 vs 当前：`UI/UIWnd.h` **只删了 3 行**、`Misc/UIProgressBar.h` **只加了 3 行**；
+调用点 cast 随方法所属类改写（`->UIWnd::GetHeight(9)` → `->UIProgressBar::GetHeight(9)`），
+并删了一行 `#include "UI/UIWnd.h"`。**改动面与文档描述一致、受影响单元状态不变**
+⇒ "迁出 UIWnd + 目标类 UIProgressBar + Δ0" 在**落地层面成立**；错的仅是 justify 用的 308。
+
+## 12. C5 的"改前"侧现在有产物数字
+- (a) 15:49 快照 `->(Ident::){2,}Ident(` = **68**（`_Tidy 36 / _Eos 11 / do_always_noconv 11 /
+  _Split 6 / _Freeze 3 / _Grow 1`；`~string` = 0），与 commit 自报 75 的**5/6 分项完全一致**
+  （`_Split` 6 vs 10；`~string` 0 vs 3 属 15:49→20:06 漂移）；当前 = **0** ✓
+  ⇒ 方向与量级证实，**精确 75 不可复算**（我原文已如实标注）。
+- (b) 15:49 快照 const 不一致 = **46**（483 对可比），**全部是"声明 const/定义非 const"、反向 0**；
+  当前 = **0**（512 对）⇒ "45→0" 证实到 **±1**、方向完全一致。
+
+## 13. C4 最后一个风险关闭 + **我的一处口径澄清 + 复核者一处路径错误**
+- ✅ **符号风险不存在**：`symbols=218` 来自"对每个 S2-passing 的 .cpp 编译并读 COFF 符号表"，
+  而 `void RoleCameraCtrl()` 只在 `pal3/src/free_functions.cpp`（**fail, 102 错**）里
+  ⇒ **不可能在 218 里**；全树仅**定义 1 处、调用点 0 处**。**改名可安全进行。**
+- ⚠️ **复核者 §4 有一处路径错误，我不接受该指控**：它称
+  "`pal3/src/Script/ScriptVM.cpp` 在树里不存在 ⇒ 文档里 `FightInfo` 的 4 个调用点说法是错的"。
+  实测：`pal3/src/Script/ScriptVM.cpp` 确实不存在，但**我文档引用的是
+  `pal3/src/Misc/ScriptVM.cpp`（该文件存在）**，其 `443/963/1318/1494` **确为 `FightInfo();` 调用点**
+  （且第 10 行 `#include "Misc/FightInfo.h"`）。复核者另说的"CCBSystem/CCBRoleState/CCBStage/
+  CCBStageScene 里约 10 处**类型用法**"**也对**——两者并存（调用点 + 类型用法）。
+  ⇒ 正确表述：**改名需同时处理 `Misc/ScriptVM.cpp` 的 4 个调用点**（复核者漏了它们）。
+
+## 14. C6 的精确措辞（避免夸大）
+15:49→20:10 窗口内错误计数**非单调**：`PAL_GDB 33→52`、`SoundSystem 1→7`、
+`CEffMgr 10→14`、`GeomNode 2→3`。其中**只有 `PAL_GDB` 相对 Sep-15 基线是新增**；
+另三个是相对**中间态**上升 ⇒ **不能**说成"相对刷新基线未披露的回归"。
+准确版本：**刷新所吸收的"现状"本身包含若干错误增长，其来源落在 13 个 commit 的窗口内、
+无法归因到单条 commit；而门禁对它们一律无感（刷新后即成为基线）。**
+
+## 15. 建议动作（第二轮）
+1. ✅ **已完成**：`/tmp/c2660bak/` 入仓 `data/status/archive/20260917_1549/`。
+2. **`probe_census.json` 随 commit 归档**（`probe_census_<rev>.json`），否则"Δok"永远靠文档。
+3. 其余同第一轮：vtable↔类对账（3 处已知错映射）· 门禁三修 · 撤回 308（已做）·
+   C4 落地用 `(class RoleCameraCtrl *)`。
