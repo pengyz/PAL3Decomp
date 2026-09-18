@@ -1430,3 +1430,89 @@ MSVC 允许经实例调用静态成员（对象被忽略）⇒ **旧形态能编
    `probe all` + `regression_detector --before` + `match`，确认 S2 不降、**L1 多重集不回退**。
 
 `tests/test_vtbl_slot_index.py` 的 3 项 SKIP 守卫即为第 7 步的验收。
+
+---
+
+# 24. vtable 槽位映射的**根因分析**（分层，逐层有实测证据）
+
+## 24.0 结论一句话
+
+**槽位号是隐式编码的（数组位置），而链路上有 4 处会"静默失败"的通道；它们互相掩盖，
+共同把「算错了 / 数据缺了 / 代码丢了」表现为 `ok` 与"看不出问题的生成文本"。**
+`//4` 不是根因，它是让这套缺陷沉默的**放大器**。
+
+## 24.1 层 1 — 算术不一致（症状放大器）
+
+同一个文件里两套映射：
+- **legacy** `_try_resolve_vtable`（`:887`）：`slot = off` ⇒ **`slot = N`（对）**
+- **AST** `_resolve_vtbl_method`（`:501`）：`slots.get(d['offset'] // 4)` ⇒ **错**
+且 `N = 二进制位移 / 4 = 槽位下标` 已由二进制证实（`sub_4C52C0`：`__vftable + 2` ⇔ `call dword ptr [edx+8]`）。
+
+## 24.2 层 2 — 数据：**"前缀全对、长度不足"**（+1 例来源错误）
+
+我核对**全部 91 个 exe 内 vtable 注解**（从 `original/PAL3.exe` 按 `va2off` 读真表逐项比对）：
+
+| 类别 | 数量 |
+|---|---|
+| 完全一致（长度+逐项地址） | **65** |
+| **截断**（前缀 100% 正确，长度不足） | **25** |
+| 部分吻合 | 1 |
+
+**关键：没有任何一例"注解地址是错的"** —— `slots[i] == 真表第 i 项` 对 exe 类是**普遍成立的不变量**
+（`CEffect` 15/15、`UIWnd` 7/7 但真表 29…）。缺陷只是**数组比真表短**，最极端 `CEffAction` 15/80。
+
+DLL 类：
+- `gbGfxManager`：同属**截断**（注解 7 槽 / 真表 29 槽）。我亲自验证：头文件
+  `// === Virtual functions (29 slots, order matches binary vtable) ===` × `gbengine.dll.asm`
+  的 `off_100F56B4`（恰好 29 dword），**逐槽地址吻合 27/28**。
+- `gbTexture`：**唯一的来源错误** —— 注解自称指向 `0x100F57E8`，而该表实为
+  `[loc_100203A0, __purecall × 4]`，注解里那 4 个地址（`0x1001BD30/0x1001BEA0/0x1001BF80/0x1001C010`）
+  **一个都不在其中** ⇒ 这份注解与它自称的表**无关**（张冠李戴）。
+
+## 24.3 层 3 — 静默失败通道（4 条，都有代码或实测指向）
+
+1. **错误算术 × 可信前缀 = 永不失手**：`//4` 把高 N 别名到 ⌊N/4⌋，而**低位前缀恰好永远是正确的**
+   ⇒ 别名"命中"的名字看着合理，输出有名字的调用、**永不落入 stub、永无"未解析"信号**。
+2. **`data.py:243` 的 `if _addr in _methods:` 静默跳过**：槽地址不在本类 `methods` 里就丢弃，
+   **无计数、无日志** ⇒ 注解里的槽消失了也看不见。
+3. **`stage3_cleanup.py:587` 的 `else: repl = None`**（"no cast info at all — leave for legacy fallbacks"）：
+   解码拿不到 cast 时不改、**也不记录** ⇒ 该位点是否被处理过无从判断。
+4. **（新发现，待独立核查）legacy 正则的分组疑似错配**：`_try_resolve_vtable` 里
+   `cls = m.group(1)`，但其正则的 group(1) 是**对象链**（`gfxMgr`）而非类名 ⇒
+   `store.struct_vtables.get('gfxMgr')` 恒为 None、`slot in _slots` 恒假、该分支可能**从不生效**。
+   **这条我只看了一眼正则分组，尚未独立验证，按"疑似"记。**
+
+## 24.4 我尚未闭合的一环（如实记录）
+
+pre 树里这段 decomp：
+```c
+v7 = (gbTexture *)(*((int (__thiscall **)(gbGfxManager *, int))gfxMgr->__vftable + 2))(gfxMgr, nVal);
+```
+在生成物 `UI3DCtrl.cpp` 里**整条不存在**（`gbTexture *v7;` 声明在、下一行直接
+`this->m_obj[0].m_enable = (int)v7;` 读未初始化的 v7）—— **既无 `// [VFTABLE]` 也无 stub 标记**
+（全树 `[VFTABLE]` 标记 0 个文件）。
+
+而按 24.3-3，AST 路径对它是 `repl = None`（不改）；按 24.3-4，legacy 路径大概也命中不了。
+**⇒ 至少还有一条我没找到的静默通道删掉了这条语句。**
+**这正是 `UI3DCtrl.cpp` / `UIStatic.cpp` 在"只翻算术"时由 ok 转 fail 的真正原因**：
+那份 `ok` 本身建立在"语句被丢掉 + 变量未初始化"之上（能编译，但语义已坏）；
+翻了口径后它变成一条**有名有类型的调用**，类型不符 ⇒ C2664/C2440 暴露出来。
+
+**我不编。这一环未闭合前，"翻算术"的收益/风险无法完整评估。**
+
+## 24.5 因此：先做**可观测性**，再动数据与算术
+
+根因是"隐式 + 静默"，所以第一步不该是补数据或改算术（那是症状层，而且实测单边改必退化），
+而是**把不可观测变成可观测**：
+
+1. **门禁工具** `tools/audit_vtable_slots.py`（只读）：对每个 `vtables[].addr` 从真表取槽数与逐项地址
+   —— exe 类读 `original/PAL3.exe`（`va2off`），DLL 类读 `original/gbengine.dll` +
+   `include/gbengine/*.h` 的 `// slot N` 注释；输出：**长度不符 / 逐项地址不符 / 地址不在本类
+   `methods` 里被丢弃** 三类计数与清单。本次 91 表的口径即可作为它的首个报告。
+2. **把静默改成可见**：`data.py` 的丢弃计数上报；`stage3` 的 `repl = None` 与
+   `_resolve_vtbl_method` 返回 None 时计数上报（按位点）。
+3. **把槽号显式化**：`slots[i]` 增加显式 `slot` 字段，并断言 `slot == i`（消除隐式位置语义）。
+4. **补数据 + 翻转算术**（**同一次提交**，见 §23.2 的耦合）：exe 类 25 个截断补齐、
+   `gbGfxManager` 补 29 槽（证据已就绪）、修 `gbTexture` 的来源错、
+   裁定两处 `gbTexture + 5`，然后 `//4 → N`，跑 `probe` + `regression_detector --before` + `match`。
+5. **补第 24.4 的未闭合通道**（找出谁删了那条语句）——**这是清单里唯一还未知的项**。
