@@ -372,7 +372,10 @@ class TestVftableFallback(unittest.TestCase):
         (structure preserved; old behavior commented out the whole statement)"""
         code = '(*(void (**)(SceneObj *))(this->m_pObj->__vftable))(this->m_pObj);'
         result = stage3_run(code, _make_ctx(cls_name='Test'))
-        self.assertIn('pal3_vtbl_unk_0(this->m_pObj)', result)
+        # 2026-09-18: stub 名由**签名哈希**决定（不再是从 0 起的每函数序号 ——
+        # 那会让同一 .cpp 内不同签名的 stub 撞名，触发 C2084/C2371/C2556）。
+        # 这里断言**形态**而非具体序号，避免以后换命名方式又要改测试。
+        self.assertRegex(result, r'pal3_vtbl_unk_[0-9a-f]{8}\(this->m_pObj\)')
         self.assertIn('[VFTABLE-STUB]', result)
         self.assertNotIn('// [VFTABLE]', result)
 
@@ -380,10 +383,10 @@ class TestVftableFallback(unittest.TestCase):
         """(*(void(**)(Type*))(obj->__vftable + 4))(obj) -> stub, not deletion"""
         code = '(*(void (**)(SceneObj *))(this->m_pObj->__vftable + 4))(this->m_pObj);'
         result = stage3_run(code, _make_ctx(cls_name='Test'))
-        self.assertIn('pal3_vtbl_unk_0(this->m_pObj)', result)
+        self.assertRegex(result, r'pal3_vtbl_unk_[0-9a-f]{8}\(this->m_pObj\)')
         self.assertIn('[VFTABLE-STUB]', result)
-        # signature from the decompiler cast is preserved
-        self.assertIn('static void pal3_vtbl_unk_0(SceneObj *);', result)
+        # signature from the decompiler cast is preserved（名字同样是签名哈希）
+        self.assertRegex(result, r'static void pal3_vtbl_unk_[0-9a-f]{8}\(SceneObj \*\);')
 
     def test_mixed_normal_and_vftable(self):
         """Only genuine vptr stores are commented; data stores are restored.

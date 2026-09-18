@@ -1891,3 +1891,27 @@ regression_detector --before → match → L1 多重集不回退才落地**。
    对非 void 且无合适默认构造的类型，`return %s()` 可能仍不合法；
 2. **静默丢弃调用**：stub 体不实现真实语义（复核 §25.5 的 312 处），
    修它需要"退回原始下标调用形态 `vftable[N](obj,...)`"或真实的 vtable 绑定，属独立工作。
+
+## 29.6 附带：`pipeline/gen/test_pipeline.py` 的 **5 个既有失败**（**非本提交引入**，登记为待办）
+
+本提交改动了 stub 命名，导致 2 个断言旧序号名的用例失败（`TestVftableFallback` 的
+`test_vftable_direct_call_stubbed` / `test_vftable_offset4_call_stubbed`）。
+**已把它们改成"形态断言"**（`assertRegex(r'pal3_vtbl_unk_[0-9a-f]{8}\(...\)')`），
+这样以后换命名方式不必再改测试。改后套件剩 **5 个失败，全部既有**：
+
+| 用例 | 归属 | 证据 |
+|---|---|---|
+| `test_complex_expr_as_first_arg` | `ast_transform` 的 cast 渲染（实际 `(((Foo *)ptr))` 三重括号，期望 `((Foo *)ptr)`） | **在会话起点 `467feee82` 上已失败**（实测：起点 44 例中 2 failures + 6 errors，此二例在列） |
+| `test_identifier_as_first_arg` | 同上 | 同上 |
+| `test_inter_class_call_with_this_gate_blocked_by_arity` | `ast_transform` 的显式-this 证据门（实际给出 cast 形态、无 `[MISATTRIBUTED]` marker） | **在起点上已是 error**（实测清单含此例） |
+| `test_both_halves_needed` | 同上 | 同上 |
+| `test_ctor_dtor_excluded` | 同上 | 同上 |
+
+**本提交与它们无关的判据**：本提交只改 ①`stage3_cleanup` 的 stub 命名与去重、
+②`TransformContext` 增一个**带默认值**的字段、③`emit_cpp` 按文件建 registry。
+这三者都**不参与** `ast_transform` 的 `_ret_param_slots` / cast 渲染，而上述 5 例断言的全是后者。
+
+**待办（独立票）**：其中 3 例表明"显式-this 证据门比测试预期更常打开"——
+这很可能是本会话早前的 `RET_RE` 修复与指令级 asm 证据源（`1dbf0f93d`）的**预期副作用**
+（门更多时候能拿到正确 slots ⇒ 不再退化成 `[MISATTRIBUTED]`）。
+但那 5 例的断言是否还代表**应当的行为**，需要单独裁定；**不要让它们长期红着**。
