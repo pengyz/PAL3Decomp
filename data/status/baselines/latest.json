@@ -1,6 +1,6 @@
 {
-  "name": "20260918_150242",
-  "timestamp": "2026-09-18T15:02:42.350816",
+  "name": "20260918_162953",
+  "timestamp": "2026-09-18T16:29:53.540188",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "fail",
@@ -41,7 +41,7 @@
     },
     "pal3/src/Combat/CCBCamControl.cpp": {
       "status": "fail",
-      "error_count": 8,
+      "error_count": 6,
       "errors": [
         {
           "code": "C2664",
@@ -52,16 +52,6 @@
           "code": "C2660",
           "msg": "'=' : function does not take 2 parameters",
           "line": 650
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 651
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 651
         },
         {
           "code": "C2664",
@@ -1354,16 +1344,6 @@
           "line": 1791
         },
         {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 1792
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 1792
-        },
-        {
           "code": "C2660",
           "msg": "'=' : function does not take 2 parameters",
           "line": 1809
@@ -1697,6 +1677,16 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CCBStage::*)(int)' to 'void *'",
           "line": 3524
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(unsigned int)' to 'void *'",
+          "line": 3536
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(int)' to 'void *'",
+          "line": 3540
         }
       ]
     },
@@ -3378,7 +3368,7 @@
     },
     "pal3/src/Combat/CCCTData.cpp": {
       "status": "fail",
-      "error_count": 48,
+      "error_count": 46,
       "errors": [
         {
           "code": "C2065",
@@ -3599,16 +3589,6 @@
           "code": "C2660",
           "msg": "'RenderGeomQuad' : function does not take 3 parameters",
           "line": 992
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 1087
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 1093
         },
         {
           "code": "C2660",
@@ -4538,13 +4518,8 @@
         },
         {
           "code": "C2665",
-          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4'",
+          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4 *'",
           "line": 1065
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 1069
         },
         {
           "code": "C2660",
@@ -4552,9 +4527,14 @@
           "line": 1069
         },
         {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'CTaskTpl<class tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>'",
+          "line": 1201
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 1069
+          "line": 1201
         }
       ]
     },
@@ -5118,7 +5098,7 @@
     },
     "pal3/src/Effect/CEffMgr.cpp": {
       "status": "fail",
-      "error_count": 14,
+      "error_count": 12,
       "errors": [
         {
           "code": "C2197",
@@ -5162,13 +5142,8 @@
         },
         {
           "code": "C2665",
-          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4'",
+          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4 *'",
           "line": 1645
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 1649
         },
         {
           "code": "C2660",
@@ -5177,13 +5152,8 @@
         },
         {
           "code": "C2665",
-          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4'",
+          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4 *'",
           "line": 1817
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 1821
         },
         {
           "code": "C2660",
@@ -5194,7 +5164,7 @@
     },
     "pal3/src/Effect/CEffModel.cpp": {
       "status": "fail",
-      "error_count": 56,
+      "error_count": 55,
       "errors": [
         {
           "code": "C2039",
@@ -5360,11 +5330,6 @@
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'CEffModel'",
           "line": 183
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 243
         },
         {
           "code": "C2039",
@@ -6229,7 +6194,7 @@
     },
     "pal3/src/Effect/CEffect.cpp": {
       "status": "fail",
-      "error_count": 20,
+      "error_count": 19,
       "errors": [
         {
           "code": "C2440",
@@ -6265,11 +6230,6 @@
           "code": "C2660",
           "msg": "'RenderGeomQuad' : function does not take 3 parameters",
           "line": 1204
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 1245
         },
         {
           "code": "C2660",
@@ -7084,7 +7044,7 @@
     },
     "pal3/src/GameBase/GRPinput.cpp": {
       "status": "fail",
-      "error_count": 33,
+      "error_count": 32,
       "errors": [
         {
           "code": "C2065",
@@ -7220,11 +7180,6 @@
           "code": "C2102",
           "msg": "'&' requires l-value",
           "line": 1575
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 1670
         },
         {
           "code": "C2664",
@@ -7393,36 +7348,6 @@
           "code": "C2660",
           "msg": "'NewMesh' : function does not take 0 parameters",
           "line": 746
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 768
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 772
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 776
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAxisAngle' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 788
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAxisAngle' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 792
-        },
-        {
-          "code": "C2660",
-          "msg": "'MultiplyBy' : function does not take 3 parameters",
-          "line": 793
         },
         {
           "code": "C2660",
@@ -7820,9 +7745,39 @@
           "line": 2377
         },
         {
+          "code": "C2660",
+          "msg": "'CalcZiXuanInit' : function does not take 1 parameters",
+          "line": 2378
+        },
+        {
+          "code": "C2660",
+          "msg": "'CalcChangQingInit' : function does not take 1 parameters",
+          "line": 2379
+        },
+        {
+          "code": "C2660",
+          "msg": "'CalcHuaYingInit' : function does not take 1 parameters",
+          "line": 2380
+        },
+        {
+          "code": "C2660",
+          "msg": "'RecalcAggregatedStats' : function does not take 2 parameters",
+          "line": 2395
+        },
+        {
+          "code": "C2660",
+          "msg": "'Insert' : function does not take 3 parameters",
+          "line": 2427
+        },
+        {
+          "code": "C2660",
+          "msg": "'Erase' : function does not take 3 parameters",
+          "line": 2428
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 2377
+          "line": 2428
         }
       ]
     },
@@ -7910,7 +7865,7 @@
     },
     "pal3/src/MiniGame/MiniGame3.cpp": {
       "status": "fail",
-      "error_count": 11,
+      "error_count": 9,
       "errors": [
         {
           "code": "C2451",
@@ -7946,16 +7901,6 @@
           "code": "C2660",
           "msg": "'LoadFromFile' : function does not take 4 parameters",
           "line": 124
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 157
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 162
         },
         {
           "code": "C2451",
@@ -8731,25 +8676,9 @@
       ]
     },
     "pal3/src/Misc/CCBPanelSlot.cpp": {
-      "status": "fail",
-      "error_count": 3,
-      "errors": [
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 40
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 48
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 53
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/CCBUIPanel.cpp": {
       "status": "fail",
@@ -10049,25 +9978,9 @@
       "errors": []
     },
     "pal3/src/Misc/MatrixStack.cpp": {
-      "status": "fail",
-      "error_count": 3,
-      "errors": [
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 58
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 77
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 82
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/MiniGame2Scene.cpp": {
       "status": "ok",
@@ -11864,7 +11777,7 @@
     },
     "pal3/src/Misc/UIBigMap.cpp": {
       "status": "fail",
-      "error_count": 44,
+      "error_count": 41,
       "errors": [
         {
           "code": "C2440",
@@ -11987,24 +11900,9 @@
           "line": 942
         },
         {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 970
-        },
-        {
           "code": "C2660",
           "msg": "'GetAABBox' : function does not take 2 parameters",
           "line": 970
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 981
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 988
         },
         {
           "code": "C2100",
@@ -12374,27 +12272,12 @@
     },
     "pal3/src/Misc/UIFrameWnd.cpp": {
       "status": "fail",
-      "error_count": 8,
+      "error_count": 5,
       "errors": [
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class gbGfxManager *' to 'int'",
           "line": 160
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 463
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 471
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 476
         },
         {
           "code": "C2248",
@@ -12458,62 +12341,12 @@
     },
     "pal3/src/Misc/UIProgressBar.cpp": {
       "status": "fail",
-      "error_count": 20,
+      "error_count": 5,
       "errors": [
-        {
-          "code": "C2664",
-          "msg": "'SetAxisAngle' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 94
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAxisAngle' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 98
-        },
-        {
-          "code": "C2660",
-          "msg": "'MultiplyBy' : function does not take 3 parameters",
-          "line": 99
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 132
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 137
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 142
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 147
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 152
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 157
-        },
         {
           "code": "C2664",
           "msg": "'GetRayToScreen' : cannot convert parameter 2 from 'long *' to 'int *'",
           "line": 337
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 361
         },
         {
           "code": "C2664",
@@ -12521,19 +12354,9 @@
           "line": 377
         },
         {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 401
-        },
-        {
           "code": "C2664",
           "msg": "'GetRayToScreen' : cannot convert parameter 2 from 'long *' to 'int *'",
           "line": 417
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 441
         },
         {
           "code": "C2664",
@@ -12541,24 +12364,9 @@
           "line": 457
         },
         {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 481
-        },
-        {
           "code": "C2664",
           "msg": "'GetRayToScreen' : cannot convert parameter 2 from 'long *' to 'int *'",
           "line": 495
-        },
-        {
-          "code": "C2660",
-          "msg": "'GetOBBox' : function does not take 2 parameters",
-          "line": 520
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 523
         }
       ]
     },
@@ -12569,7 +12377,7 @@
     },
     "pal3/src/Misc/UIRoleDialog.cpp": {
       "status": "fail",
-      "error_count": 20,
+      "error_count": 17,
       "errors": [
         {
           "code": "C2660",
@@ -12637,11 +12445,6 @@
           "line": 222
         },
         {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 259
-        },
-        {
           "code": "C2660",
           "msg": "'RenderGeomQuad' : function does not take 3 parameters",
           "line": 263
@@ -12652,19 +12455,9 @@
           "line": 264
         },
         {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 272
-        },
-        {
           "code": "C2660",
           "msg": "'RenderGeomQuad' : function does not take 3 parameters",
           "line": 273
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 294
         },
         {
           "code": "C2660",
@@ -14388,7 +14181,7 @@
     },
     "pal3/src/Render/RenderTarget2.cpp": {
       "status": "fail",
-      "error_count": 20,
+      "error_count": 19,
       "errors": [
         {
           "code": "C2664",
@@ -14457,13 +14250,8 @@
         },
         {
           "code": "C2665",
-          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4'",
+          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4 *'",
           "line": 3225
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 3229
         },
         {
           "code": "C2660",
@@ -14541,7 +14329,7 @@
     },
     "pal3/src/Role/Actor.cpp": {
       "status": "fail",
-      "error_count": 79,
+      "error_count": 77,
       "errors": [
         {
           "code": "C2011",
@@ -14589,11 +14377,6 @@
           "line": 955
         },
         {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 1023
-        },
-        {
           "code": "C2248",
           "msg": "'pBody' : cannot access private member declared in class 'gbActor'",
           "line": 1031
@@ -14617,11 +14400,6 @@
           "code": "C2084",
           "msg": "function 'void __cdecl pal3_vtbl_unk_0(class gbActorDef *,char *)' already has a body",
           "line": 1267
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 1303
         },
         {
           "code": "C2248",
@@ -14968,112 +14746,32 @@
     },
     "pal3/src/Role/Object3D.cpp": {
       "status": "fail",
-      "error_count": 21,
+      "error_count": 5,
       "errors": [
         {
           "code": "C2665",
-          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4'",
+          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4 *'",
           "line": 26
         },
         {
           "code": "C2665",
-          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4'",
+          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4 *'",
           "line": 29
         },
         {
           "code": "C2665",
-          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4'",
+          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4 *'",
           "line": 31
         },
         {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 46
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 56
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 61
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 71
-        },
-        {
           "code": "C2665",
-          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4'",
+          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4 *'",
           "line": 89
         },
         {
           "code": "C2065",
           "msg": "'actionIdx' : undeclared identifier",
           "line": 163
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 302
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 313
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 551
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 556
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 576
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 636
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 787
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 800
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 831
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 844
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 882
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 892
         }
       ]
     },
@@ -15084,13 +14782,8 @@
     },
     "pal3/src/Role/Role.cpp": {
       "status": "fail",
-      "error_count": 2,
+      "error_count": 1,
       "errors": [
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 180
-        },
         {
           "code": "C2660",
           "msg": "'GetAABBox' : function does not take 2 parameters",
@@ -15616,23 +15309,18 @@
     },
     "pal3/src/Scene/Camera.cpp": {
       "status": "fail",
-      "error_count": 2,
+      "error_count": 1,
       "errors": [
         {
-          "code": "C2100",
-          "msg": "illegal indirection",
+          "code": "C2664",
+          "msg": "'IntersectPlane' : cannot convert parameter 1 from 'struct gbVec3D [2]' to 'struct gbVec3D &'",
           "line": 164
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 212
         }
       ]
     },
     "pal3/src/Scene/CameraCtrl.cpp": {
       "status": "fail",
-      "error_count": 30,
+      "error_count": 29,
       "errors": [
         {
           "code": "C2664",
@@ -15723,11 +15411,6 @@
           "code": "C2065",
           "msg": "'pData_0' : undeclared identifier",
           "line": 1160
-        },
-        {
-          "code": "C2664",
-          "msg": "'GetPosition' : cannot convert parameter 1 from 'float' to 'float *'",
-          "line": 1171
         },
         {
           "code": "C2039",
@@ -16841,13 +16524,8 @@
     },
     "pal3/src/Script/PalScriptMgr.cpp": {
       "status": "fail",
-      "error_count": 66,
+      "error_count": 62,
       "errors": [
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 250
-        },
         {
           "code": "C2664",
           "msg": "'=' : cannot convert parameter 1 from 'int *' to 'const struct gbMatrix4 &'",
@@ -16855,28 +16533,18 @@
         },
         {
           "code": "C2665",
-          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4'",
+          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4 *'",
           "line": 282
         },
         {
           "code": "C2665",
-          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4'",
+          "msg": "'SetAxisAngle' : none of the 3 overloads can convert parameter 1 from type 'struct gbMatrix4 *'",
           "line": 284
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 320
         },
         {
           "code": "C2660",
           "msg": "'IsColOBB' : function does not take 2 parameters",
           "line": 320
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 338
         },
         {
           "code": "C2660",
@@ -17084,11 +16752,6 @@
           "line": 2876
         },
         {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 3025
-        },
-        {
           "code": "C2065",
           "msg": "'SingletonThunk_00431E70' : undeclared identifier",
           "line": 3122
@@ -17177,7 +16840,7 @@
     },
     "pal3/src/Script/ScriptSystem.cpp": {
       "status": "fail",
-      "error_count": 11,
+      "error_count": 10,
       "errors": [
         {
           "code": "C2065",
@@ -17188,11 +16851,6 @@
           "code": "C2664",
           "msg": "'void __thiscall gbRenderEffect::SetVariant(enum GBPARAMHANDLE,void *)' : cannot convert parameter 1 from 'const int' to 'enum GBPARAMHANDLE'",
           "line": 69
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 80
         },
         {
           "code": "C2059",
@@ -18456,11 +18114,6 @@
           "line": 1698
         },
         {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 1704
-        },
-        {
           "code": "C2660",
           "msg": "'IsColOBB' : function does not take 2 parameters",
           "line": 1704
@@ -18746,9 +18399,14 @@
           "line": 2836
         },
         {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2837
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 2836
+          "line": 2837
         }
       ]
     },

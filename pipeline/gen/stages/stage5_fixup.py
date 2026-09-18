@@ -217,12 +217,29 @@ _GB_REF_PARAM_FUNCS = {
     'GetViewPort': {0, 1, 2, 3},
     'PointWorldToScr': {1, 2},  # (gbVec3D*, float&, float&)
     'GetBlend': {0}, 'SetBlend': {0},
-    'SetAxisAngle': {0},
+    # 'SetAxisAngle' REMOVED — see the F1b note below.
     'RightMultiply': {0},
 }
 
+# NOTE (F1b): 'SetAxisAngle': {0} was WRONG and has been deleted.
+# `gbengine/gbengine.def` (authoritative, compiler-emitted mangled names):
+#   ?SetAxisAngle@gbQuaternion@@QAEXPAUgbVec3D@@M@Z  -> (gbVec3D *, float)  = POINTER
+#   ?SetAxisAngle@gbMatrix4@@QAEXPAUgbVec3D@@M@Z     -> (gbVec3D *, float)  = POINTER
+#   ?SetAxisAngle@gbMatrix4@@QAEXW4gbAxis@@M@Z       -> (gbAxis, float)
+#   ?SetAxisAngle@gbMatrix4@@QAEXW4gbAxis@@MM@Z      -> (gbAxis, float, float)
+# `PAU` = pointer, not `AAU` = reference — contradicting the `Translate`/`Rotate`
+# family this table was built for.  Treating arg 0 as a reference (a) stripped a
+# required `&`, and (b) for the static form `Cls::SetAxisAngle(&this_, axis, f)`
+# it consumed the `this` argument and shifted every later argument by one.
+# Deleting the entry makes the pass leave `SetAxisAngle` alone, restoring the
+# decompiler's own `&` (e.g. `SetAxisAngle(&v4, 0, angle)`).
 
-def _fix_ref_params(code):
+# Local kinds that are positive evidence the identifier is NOT a `T` pointed at
+# by the reference parameter (see the F1a gate in `_fix_single_ref_arg`).
+_NON_POINTER_LOCAL_KINDS = frozenset(('value', 'array', 'fnptr'))
+
+
+def _fix_ref_params(code, ctx=None):
     """Fix arguments passed to functions that take reference params.
 
     Two cases handled:
@@ -231,7 +248,12 @@ def _fix_ref_params(code):
     2. Hex-Rays passes a pointer/cast-pointer to a reference param → add *:
        obj->GetAABBox(pBox)   → obj->GetAABBox(*pBox)
        obj->Translate((T*)&x) → obj->Translate(*(T*)&x)
+
+    `ctx` is threaded in only to supply local-declaration evidence for the
+    Case 3 gate in `_fix_single_ref_arg`; omitting it degrades to the legacy
+    (evidence-free) behaviour.
     """
+    vt = _build_var_types(code, ctx) if ctx is not None else {}
     for func_name, ref_indices in _GB_REF_PARAM_FUNCS.items():
         pattern = r'(?:->|::|\.)' + re.escape(func_name) + r'\s*\('
         pos = 0
@@ -256,14 +278,14 @@ def _fix_ref_params(code):
                     if depth == 0:
                         arg = code[arg_start:i]
                         if arg_idx in ref_indices:
-                            arg = _fix_single_ref_arg(arg)
+                            arg = _fix_single_ref_arg(arg, vt)
                         result.append(arg)
                         result.append(')')
                         break
                 elif ch == ',' and depth == 1:
                     arg = code[arg_start:i]
                     if arg_idx in ref_indices:
-                        arg = _fix_single_ref_arg(arg)
+                        arg = _fix_single_ref_arg(arg, vt)
                     result.append(arg)
                     result.append(', ')
                     arg_idx += 1
@@ -274,12 +296,40 @@ def _fix_ref_params(code):
     return code
 
 
-def _fix_single_ref_arg(arg):
+def _fix_single_ref_arg(arg, vt=None):
     """Fix a single argument for a reference parameter.
 
     Case 1: starts with '&'  → strip '&'
     Case 2: cast-to-pointer  → add '*' before the cast: (T*)x → *(T*)x
-    Case 3: plain identifier  → add '*':  pBox → *pBox
+    Case 3: plain identifier  → add '*':  pBox → *pBox  **only with evidence**
+
+    Case 3 evidence gate (F1a).  Case 3 used to fire on the *text shape*
+    alone (`^\\s*\\w+\\s*$`), which double-applies the `&`-strip that stage 3
+    already performed on the SAME table:
+
+        decomp `Rotate(v10, &v15)`  --stage3 Case1-->  `Rotate(v10, v15)`
+                                    --stage5 Case3-->  `Rotate(v10,  *v15)`  (C2100)
+
+    The generated text carries a reproducible fingerprint of this: the extra
+    `', '` separator emitted by `_fix_ref_params` plus Case 3's preserved
+    leading whitespace yields a DOUBLE space — `Rotate(v10,  *v15)`.  A
+    decompiler-authored `*v15` would give a single space.
+
+    The fix requires positive evidence from this function's own declarations
+    (`_build_var_types`, the same table the C2440 fixer uses):
+
+      * `ptr`               → keep the legacy `*`  (e.g. `Translate(*v5)`
+                              where `gbVec3D *v5;` — genuinely a pointer)
+      * `value`/`array`/
+        `fnptr`             → leave the bare identifier alone.  `&`-stripping
+                              is what produced this shape, so the reference
+                              argument is the object itself (`Rotate(…, v15)`
+                              with `struct gbVec3D v15; // BYREF`).
+      * unknown (globals,
+        members, …)         → keep the legacy `*` — conservative, no change.
+
+    This is an equivalence-preserving transform, not invention: the verdict
+    comes from declarations already present in the same function text.
     """
     arg_stripped = arg.lstrip()
     # Case 1: &arg → arg
@@ -292,6 +342,12 @@ def _fix_single_ref_arg(arg):
     # Case 3: plain identifier (simple variable name, NOT numeric constants)
     ident_m = re.match(r'^(\s*)(\w+)\s*$', arg)
     if ident_m and not ident_m.group(2).isdigit():
+        vt = vt or {}
+        kind = (vt.get(ident_m.group(2)) or {}).get('kind')
+        if kind in _NON_POINTER_LOCAL_KINDS:
+            # Positive evidence this is not a pointer: the `&` stage 3 removed
+            # was the reference-taking one.  Leave the object expression.
+            return arg
         return ident_m.group(1) + '*' + ident_m.group(2)
     # Unknown pattern — leave unchanged to be safe
     return arg
@@ -869,7 +925,7 @@ def _run_inner(code, ctx):
     code = _fix_register_this_alias(code)
 
     # Reference parameter restoration
-    code = _fix_ref_params(code)
+    code = _fix_ref_params(code, ctx)
 
     # ulong* → uint* cast fix
     code = _fix_ulong_uint_cast(code)

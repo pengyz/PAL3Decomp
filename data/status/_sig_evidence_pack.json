@@ -6459,7 +6459,12 @@
     2
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "rets": [
+    4
+   ],
+   "slots": 1,
+   "grade": "SDK",
+   "source": "gbengine/gbengine.def ?GetOBBox@gbGeomNode@@QAEPAUgbOBBox@@PAU2@@Z (1 pointer param) + original/gbengine.dll.asm tail `retn 4` => 1 stack slot (body not in PAL3.exe)"
   },
   {
    "cls": "gbGeomNode",
@@ -6599,7 +6604,12 @@
     3
    ],
    "addrs": [],
-   "grade": "C-NOADDR"
+   "rets": [
+    8
+   ],
+   "slots": 2,
+   "grade": "SDK",
+   "source": "gbengine/gbengine.def ?MultiplyBy@gbQuaternion@@QAEXPAU1@0@Z (2 pointer params) + original/gbengine.dll.asm tail `retn 8` => 2 stack slots (body not in PAL3.exe)"
   },
   {
    "cls": "gbQuaternion",

@@ -768,3 +768,91 @@ codegen 的两个阶段上 —— 这是**可复现**的证据，我的是**相�
 - F2 若 IDA 解析不了 `tagPOINT`，会在 `pipeline/ida/_logs/signature_failures.txt` 落一条失败（风险低但要查）。
   ⚠️ **不要用 `ida_structs.json` 里写着的 `long *` 当"已生效"** —— 它的 methods 是**注解透传**；
   `decomp JSON 的 `int *`` 才是 IDB 现状。必须按「annotation 改 → apply → export」验证。
+
+---
+
+# 15. 落地记录：F1a + F1b + F3（2026-09-18，实测）
+
+**结论：落地成功，全部 gate 通过，L1 恒等（按多重集），S2 +2。** 三个改动均为 codegen 层，未动 IDB、未动 annotation。
+
+## 15.1 三个改动的最终形态
+
+| 项 | 文件 | 内容 |
+|---|---|---|
+| **F1a** | `pipeline/gen/stages/stage5_fixup.py` | Case3 加**声明证据门**：`_fix_ref_params(code, ctx)` 复用既有 `_build_var_types(code, ctx)`（C2440 fixer 用的同一张表），把 `vt` 传进 `_fix_single_ref_arg(arg, vt)`。`kind == 'ptr'` → 保留旧行为加 `*`；`kind ∈ {value, array, fnptr}` → **原样保留**；未知（全局/成员）→ 保留旧行为加 `*`（保守）。 |
+| **F1b** | 同上 | 删除 `_GB_REF_PARAM_FUNCS['SetAxisAngle'] = {0}`。 |
+| **F3** | `data/status/_sig_evidence_pack.json` | `gbGeomNode::GetOBBox` / `gbQuaternion::MultiplyBy` 由 `C-NOADDR`（无 slots）升级为 `SDK`，各带 `rets`/`slots`/`source`。 |
+
+**F1b 的 A 级依据（我独立复核过，两个独立来源一致）**——`gbengine/gbengine.def`（编译器产出的 mangled name）+ `original/gbengine.dll.asm` 的函数尾 `retn`：
+
+| 导出名 | 真签名 | 旧表判定 |
+|---|---|---|
+| `?SetAxisAngle@gbQuaternion@@QAEXPAUgbVec3D@@M@Z` | `(gbVec3D *, float)` = **指针** | `{0}` 当引用 **错** |
+| `?SetAxisAngle@gbMatrix4@@QAEXPAUgbVec3D@@M@Z` | `(gbVec3D *, float)` = **指针** | 同上 |
+| `?SetAxisAngle@gbMatrix4@@QAEXW4gbAxis@@M@Z` | `(gbAxis, float)` | 解释了 `SetAxisAngle(&v4, 0, angle)` 的 3 参静态形态 |
+| `?Rotate@gbMatrixStack@@QAEXMAAUgbVec3D@@@Z` | `Rotate(float, gbVec3D &)` = **引用** | `{1}` **对** |
+| `?IsColOBB_H@gbRay@@QAEHAAUgbOBBox@@@Z` | `(gbOBBox &)` = **引用** | `{0}` **对** |
+| `?MultiplyBy@gbQuaternion@@QAEXPAU1@0@Z` | 2 个指针参数；`dll.asm` 尾 `retn 8` | **slots 2**（F3） |
+| `?GetOBBox@gbGeomNode@@QAEPAUgbOBBox@@PAU2@@Z` | 1 个指针参数；`dll.asm` 尾 `retn 4` | **slots 1**（F3） |
+
+`PAU`=指针 vs `AAU`=引用：F1b 修的是**表把指针当引用**；`retn` 与 `.def` 两条独立证据互相印证。
+
+## 15.2 实测矩阵（全部 gate）
+
+| Gate | 结果 |
+|---|---|
+| 生成文件**存在性** diff | **202 = 202，列表逐字相同**（上一轮 blocker 就是这里丢文件） |
+| **内容** diff（A-B-A） | **30 个文件变化**；122 hunk = **107 个调用点 hunk（F1a/F1b/F3）** + 15 个 `globals.cpp` 纯乱序 hunk；**无一处非预期变更** |
+| 改动是否只落在 fail 文件 | 30/30 在 pre-state 都是 fail；**0 个 ok 文件被改**（实测，非断言） |
+| `probe all` S2 | **61 → 63 / 202**（+2）；**0 个 ok→fail 翻转** |
+| `compile_regression.py` | ✅ No regressions（+2 improvements） |
+| `error_classifier.py` | 失败文件 141 → 139 |
+| `check` / `audit_layout` | PASS / PASSED（warnings 均为既有） |
+| `match` | `matched 191/218 → 194/221`；`L1 17`（棘轮 OK） |
+| **L1 按多重集** | **17 = 17，(file,symbol,VA) 多重集完全相同，lost 0 / gained 0** ⇒ 无成分替换 |
+| `UIProgressBar.cpp` | **20 → 5**，与 N1 预测**逐字相符**；残余 5 条全是 F2 族（`GetRayToScreen` `long*`→`int*`） |
+
+`L1` 的 17 条里 `0x00450E90`（`??_GUIWnd`）出现 **4 次**、`0x0043F950`（`??_GUIButton`）**2 次** —— `/OPT:ICF` 折叠；**distinct VA 只有 13**。所以"L1 计数"这个标量天生会掩盖重命名/换位；**必须比多重集**（本次已这样做）。
+
+## 15.3 对 §14 预测的修正（N1 的 +3 实为 +2）
+
+| 文件 | N1 预测 | 实测 | 原因 |
+|---|---|---|---|
+| `MatrixStack.cpp` | 3→0 ✅ | **3→0** | — |
+| `CCBPanelSlot.cpp` | 3→0 ✅ | **3→0** | — |
+| `Camera.cpp` | 2→0 ❌ | **2→1** | 残余是**第 4 类独立缺陷**（见下） |
+
+`Camera.cpp:164` 的 decomp 是 `gbRay::IntersectPlane(&v19, pTarget, &v17)`，而 `pTarget` 声明为 `gbVec3D pTarget[2]`——
+Hex-Rays 把 `CameraCtrl::GetViewTarget` 的 out 参数（应当传 `pTarget[0]`）丢成了数组整体。它**改不改都错**：
+改前 `*pTarget` → C2100 "illegal indirection"；改后 `pTarget` → C2664 "cannot convert `gbVec3D [2]` to `gbVec3D &`"。
+两者都剩 1 条错误 ⇒ **F1a 的 `array` 判定不改变 Camera 的 ok 数**（既不是收益也不是回退），
+真修法是让 `GetViewTarget` 的 out 参数类型带上 `[0]` 语义（annotation 层，另立）。
+
+⇒ **N1 的"仅 F1a ⇒ +3"在其 /tmp 仿真里成立，但真实管线上是 +2**。我以实测为准。
+
+## 15.4 本轮暴露的 3 个流程缺陷（都不是本次改动引入的）
+
+1. **`compile_regression.py` 是"读缓存"而非"重新编译"**：它只读 `data/status/probe_census.json`。因此
+   `codegen all` 之后**直接**跑它会拿**上一轮**的 census 报"✅ No regressions"（我实际遇到了：它报 61/202 无回归，
+   而真实已是 63/202）。CLAUDE.md 的检查点顺序（codegen → compile_regression）**缺了"先 probe"**。
+   ⇒ 正确顺序：`codegen all` → **`probe all`** → `compile_regression.py` → `error_classifier` → `match`。
+
+2. **`globals.cpp` 的行序是不确定的**：两次完全相同的输入，输出 2703 行**多重集完全相同、顺序不同**
+   （`only-in-pre = only-in-post = 0`）。所以 `globals.cpp` 的 md5 **不能**当 A-B-A 锚点，
+   任何基于 md5 的"文件是否变化"判定都必须把它排除或按多重集比较。
+
+3. **`git worktree` 在本项目里是危险的**（我踩了，已恢复）：worktree 里的 `codegen all` 会跑到主仓库去写。
+   主因是输出路径来自 `store.project_root`（`emit_cpp.py:486`）与 `emit_headers.py:117` 的
+   `PROJECT_ROOT = PIPELINE_ROOT.parent`，与 `pipeline.toml` 的**绝对路径**（`annotations`/`decomp`/`pdb` 都指向主仓库）
+   混用；`pipeline.toml` 又是 gitignored，worktree 默认没有它。
+   ⇒ **不要用 worktree 做 A-B-A 对照**。正确做法：落地前把整棵 `pal3/src` **内容**归档
+   （本轮我只归档了 md5 + 文件清单，好在被 clobber 的那棵树正好就是 pre-state，才补回了内容快照）。
+   AR 建议：给 codegen 加一个 `--out-dir` 覆盖，或在 `cmd_clean()` 前校验 `output_src` 落在 `PROJECT_ROOT` 内。
+
+## 15.5 下一项（F2，唯一动 IDB 的一步）
+
+`data/annotations/structs/PalScript.json` 的 `methods["0x00439FE0"]`：`long *pResult` → **`tagPOINT *pResult`**
+（依据：`sub_439FE0` 体 `fild [eax]`/`fild [eax+4]`、`retn 8` ⇒ 只读、2×4 字节、偏移 0/4 = `POINT{LONG x; LONG y;}`；
+且 IDA 存不住 `long`≠`int`，横证 22/22 全部塌成 `int`）。
+按「annotation 改 → apply → export → codegen」验证，预期 `UIProgressBar.cpp` **5 → 0**（+1 ok），
+并检查 `pipeline/ida/_logs/signature_failures.txt`。
