@@ -856,3 +856,99 @@ Hex-Rays 把 `CameraCtrl::GetViewTarget` 的 out 参数（应当传 `pTarget[0]`
 且 IDA 存不住 `long`≠`int`，横证 22/22 全部塌成 `int`）。
 按「annotation 改 → apply → export → codegen」验证，预期 `UIProgressBar.cpp` **5 → 0**（+1 ok），
 并检查 `pipeline/ida/_logs/signature_failures.txt`。
+
+---
+
+# 16. 落地记录：F2（2026-09-18，实测）
+
+**结论：F2 成功，`UIProgressBar.cpp` 5 → 0，S2 63 → 64（+1），L1 恒等。** 走的是
+「**annotation 改 → apply → export → codegen**」完整管线（不是 codegen 打补丁）。
+
+## 16.1 改动（1 行）
+
+`data/annotations/structs/PalScript.json` 的 `methods["0x00439FE0"]`：
+
+```
+"void *__thiscall(void *pRay, long *pResult)"  →  "void *__thiscall(void *pRay, LPPOINT pResult)"
+```
+
+选 `LPPOINT` 而不是 `tagPOINT *`：**项目里已有证明**——`GRPinput.json` 的
+`BOOL __thiscall(GRPinput *this, LPPOINT lpPoint)` 在 `GRPinput.h:63` 里原样保留成
+`BOOL GetCursorPos(LPPOINT lpPoint);`，而 `GRPinput.h` 是 **S1 ok**；`LPPOINT` 由
+`pal3/ida_types.h:8` 的 `#include <windows.h>` 提供，`PalScript.h:3` 走同一条 include 链。
+（`LPPOINT` 的定义在 `tools/compilers/msvc6.0/Include/WTYPES.H:289`。）
+
+## 16.2 A 级依据（我自己复核过，不只是沿用 §14.2）
+
+- **真类型**：`asm/pal3/decomp/.../PalScript_GetRayToScreen*` 的函数体读 `*pResult`(x) 与 `pResult[1]`(y)，
+  直接参与 `g_DrvInfo.width` / `g_DrvInfo.height` 的浮点运算 ⇒ 偏移 **0 与 4**、各 4 字节
+  = 恰好 `POINT{LONG x; LONG y;}`。
+- **参数个数**：`original/PAL3.exe.asm` 的 `sub_439FE0 proc near` 尾部 `retn 8` ⇒ 2 个栈参
+  （`pRay`, `pResult`）与注解一致。
+- **`long *` 根本存不住**：IDA 把 `long` 塌成 `int`（decomp 签名是 `int *pResult`，文件名却叫 `..._long_...`）；
+  横证 22/22。所以必须换成**结构体指针**才能穿过 IDB。
+
+## 16.3 机制：为什么这一步必须走 export，不能改 codegen
+
+同一个 `Point` 变量、同一条 decomp 模式，在**被调方原型不同**时渲染出不同的实参文本：
+
+| 调用 | 被调方第二参类型 | Hex-Rays 渲染 |
+|---|---|---|
+| `g_Input.GRPinput::GetCursorPos(&Point)` | `LPPOINT`（结构体指针） | **`&Point`** ✓ |
+| `...->PalScript::GetRayToScreen(pRay, &Point.x)` | `int *` | **`&Point.x`**（收窄成首字段）✗ |
+
+`&Point.x` 是 `long *`，而声明要 `int *` ⇒ **C2664 ×5**。
+把注解改成 `LPPOINT pResult` 后**重新 export**，Hex-Rays 按新原型重新渲染，5 处实参**自动变成 `&Point`**——
+这不是我改的源码，是 IDB 类型信息的直接产物。所以 F2 是 annotation 层的修复，不是 codegen 的。
+
+**落地后实测到的重渲染**（decomp `old/new` diff）：
+
+```
+- RayToScreen = ...->PalScript::GetRayToScreen(pRay, &Point.x);
++ RayToScreen = ...->PalScript::GetRayToScreen(pRay, &Point);
+   （5 处全部如此）
+- v5 = 1.0 - ((double)pResult[1] + (double)pResult[1]) / (double)g_DrvInfo.height;
+- v4 = ((double)*pResult + (double)*pResult) / (double)g_DrvInfo.width - 1.0;
++ v5 = 1.0 - ((double)pResult->y + (double)pResult->y) / (double)g_DrvInfo.height;
++ v4 = ((double)pResult->x + (double)pResult->x) / (double)g_DrvInfo.width - 1.0;
+```
+
+函数体从 `pResult[1]` / `*pResult` 变成 **`pResult->y` / `pResult->x`** —— 这是**类型正确性的额外独立证据**
+（`POINT.x`@0、`.y`@4 与上面 A 级依据完全吻合）。
+
+## 16.4 验收（全部实测）
+
+| Gate | 结果 |
+|---|---|
+| IDB 真的写进去了 | `PAL3.exe.i64` mtime 更新到 16:40:36（防「apply 静默失败」的既有 gotcha） |
+| `annotation_diff.py` | **1 个结构体变更**，就是这一条签名，无意外修改 |
+| **decomp export diff** | 3598 个文件中 **仅 1 个改名**（定义文件 `..._long_` → `..._int_`）+ **1 个内容变**（`UIProgressBar_CheckRayHitRole`）⇒ **IDB 与注解本来就是同步的**，apply 是外科式的 |
+| 生成文件存在性 | **202 = 202**，无丢失 |
+| **内容 A-B-A** | 202 个文件 **3 个变化**：`UIProgressBar.cpp`（5 处 `&Point.x`→`&Point`）、`PalScript.cpp`（签名 + 函数体）、`globals.cpp`（**已知行序不确定**，见 gotcha）⇒ 语义变化 **7 行**，全部是目标 |
+| `probe all` | S2 **63 → 64 / 202**（+1）；`UIProgressBar.cpp` **5 → 0 error，转 ok**；**0 个 ok→fail** |
+| `compile_regression.py` | ✅ No regressions（+1 improvements） |
+| `error_classifier.py` | 失败文件 139 → 138；`codegen_fix` 25 → 24 |
+| `check` / `audit_layout` | **0 errors PASS** / **PASSED**（改注解后必跑，均通过） |
+| `signature_failures.txt` | 仅 1 条 **`0x0042C920 GetCGEntry`（thunk，与本次无关）**；`0x00439FE0` **未失败** ⇒ `LPPOINT` 被 IDA 正常解析 |
+| `match` | `matched 194/221 → 201/229`；`L1 17`（棘轮 OK） |
+| **L1 按多重集** | 原始 pre-state == F1 后 == F2 后：**(file,symbol,VA) 多重集完全相同，lost 0 / gained 0** |
+
+**全会话 L1 恒等**：17 → 17 → 17，且身份逐条不变（不是计数相同）。这是 §12.4 加固清单里
+「L1 必须按 (VA) 集合比」的直接兑现——上一轮落地正是靠"17→17"掩盖了成分替换。
+
+## 16.5 残余（都已定性，非本次目标）
+
+1. `Camera.cpp` 仍 1 条：第 4 类独立缺陷（`gbVec3D pTarget[2]` 整体传给了 `gbVec3D &` 形参，
+   decomp 是 `IntersectPlane(&v19, pTarget, &v17)`）⇒ 需要 `GetViewTarget` out 参数的 `[0]` 语义（annotation 层）。
+2. `gbMatrix4::Rotate` 的静态形态调用**改不改都错**（表项未按类限定 + 静态形态下标整体偏移）——
+   §14.7 已记录为**独立缺陷**，`_GB_REF_PARAM_FUNCS` 按方法名索引这个结构性问题本轮**未改**。
+3. `data/status/_sig_evidence_pack.json` 的 F3 两条现在带 `rets` 字段；若日后有工具按
+   「A 级必须有 addrs」校验，需注意 `SDK` 级证据天然只有 DLL 侧来源。
+
+## 16.6 下一步候选（按 ROI）
+
+- **N2 的 4 文件归属修正**（`UIButton`/`UICaption`/`UIButtonEXA`/`UIScenePanel` +
+  已证明的 3 处 vtable 重归属）——它动的是 `vtable_ownership_evidence.json` 与 struct 注解，
+  会改变成员布局，**风险显著高于 F1/F2/F3**，必须按 §12.4 全清单落地并单独成提交。
+- 第 4 类缺陷（`&array` vs `&array[0]`）与 `_GB_REF_PARAM_FUNCS` 的类限定改造 —— 都是**独立**小缺陷，
+  可用 F1a 同样的「先写用例 → 再改」方式做。
