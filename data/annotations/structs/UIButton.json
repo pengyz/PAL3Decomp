@@ -96,7 +96,78 @@
   "base_class": [
     "UIWnd"
   ],
-  "base_size": 68,
-  "methods": {},
-  "_vtable_reconcile": "被证伪：0x56AD64 由 ctor 0x43F7F0 安装，其类实测 244(=UIProgressBar) 且构造 UILoadingFrm.m_LoadProgress(声明类型 UIProgressBar)。故本文件原 methods(Render/Update/Destroy/Create/ctor_17/~UIButton/_scalar_dtor) 与 vtables 全部迁往 UIProgressBar。binary_size=344 与 known_members 目前**缺独立证据**，待按 stride/new(0x158) 搜 344 的 ctor 后重建。"
+  "methods": {
+    "0x0043F970": {
+      "name": "~UIButton",
+      "signature": "void __thiscall()"
+    },
+    "0x0043F7F0": {
+      "name": "ctor_17",
+      "signature": "int *__thiscall(UIButton *this)"
+    },
+    "0x00440560": {
+      "name": "Update",
+      "signature": "BOOL __thiscall UIButton::Update(int nDelta, int nVal2)",
+      "ordinal": 2
+    },
+    "0x0043F9C0": {
+      "name": "Destroy",
+      "signature": "void __thiscall()",
+      "ordinal": 3
+    },
+    "0x0043FF00": {
+      "name": "Create",
+      "signature": "int __thiscall UIButton::Create(int id, int *pRect, int parent)",
+      "ordinal": 4
+    },
+    "0x0043FF70": {
+      "name": "Render",
+      "signature": "void __thiscall()",
+      "ordinal": 1,
+      "source": "+fix:sig_match_base"
+    },
+    "0x0043F950": {
+      "name": "_scalar_dtor",
+      "signature": "int __thiscall(void *Block, char)",
+      "source": "vtable_migrated",
+      "ordinal": 5
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AD64",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043FF70",
+          "from": null
+        },
+        {
+          "addr": "0x00440560",
+          "from": null
+        },
+        {
+          "addr": "0x0043F9C0",
+          "from": null
+        },
+        {
+          "addr": "0x0043FF00",
+          "from": null
+        },
+        {
+          "addr": "0x0043F950",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        }
+      ]
+    }
+  ],
+  "base_size": 68
 }

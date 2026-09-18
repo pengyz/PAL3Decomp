@@ -1,5 +1,24 @@
 # vtable ↔ 类 全局对账（只读取证）— 2026-09-17
 
+> ## ⛔ 状态：§8 的落地已于 2026-09-18 **回退**（独立复核 `e1140ba4` 判定 blocker）
+>
+> **回退原因**（复核结论，我已复现确认）：
+> 1. `tools/compile_regression.py` 明确报 `- pal3/src/Misc/UI3DCtrl.cpp`（21 errors）——
+>    那 20 个错误只是从 `UIProgressBar.cpp` **搬**过来，但 `s4` 里 **11 条 UI3DCtrl 符号（含 1 条 L1）随之消失**，
+>    其中 **7 个方法本就属于 UI3DCtrl**。总 `L1 17→17` 是**成分替换**造成的假平稳
+>    （0x43F950 / 0x43D860 两个函数仍在 L1，只是改名换 TU）。
+> 2. 清空 `UIButton.json` 使 UIButton 失去 `__vftable` ⇒ **`pal3/src/Misc/UIButton.cpp` 不再生成**，
+>    并让 `CCBControlWindow.cpp` 等报 `'__vftable' : is not a member of 'UIButton'`。
+> 3. 「UIButton(344) 真表未找到」**是错的**：复核找到 ctor **`0x43A770`**（`call 0x445aa0` 直系 UIWnd 派生 →
+>    `movl $0x56ac70,(%esi)`）+ `push $0x158; call 0x55353b` ×2 ⇒ **size 344**，stride 0x158 有 **106 对**；
+>    而 `0x56AC70` 现被 **`UICaption`(binary_size=96)** 声明 ⇒ **第 4 处同类错配**。清空只是把"错挂"变成"空"。
+>
+> 按 CLAUDE.md「发现退化立即报警，不提交」，5 个 JSON 已回退到 pre-state
+> （快照 `data/status/archive/20260918_1423_vtable_reconcile/`，回退方法见其 README）。
+> **§2 的归属结论（哪张表属于哪个类）经复核全部成立**（见 §1 表），不成立的是"可以这样落地"。
+> 下文 §2.1/§2.2/§2.4/§3/§4/§6.3 中若干措辞已被复核证伪，**逐条见 §11 勘误**；引用时以 §11 为准。
+
+
 > **本文件只记录取证结论，不含任何 annotation 改动。** 落地清单见 §6，需单独审议。
 
 ## 1. 结论摘要
@@ -342,3 +361,69 @@ by tier (仅 SIZE_*): A=5  B=4
 2. `stride` 只在"同一 ctor 被连续调用 ≥2 次"时才有值 ⇒ 覆盖率天然低（9/178）。这是**方法上限**，不是缺陷。
 3. `UNASSIGNED` 判据是"注解里没有 `vtables[].addr` 等于该表"。多继承子表、`??_E` 之类 stub 安装的表
    会落进来（本次 `0x43D880` 即一例）⇒ 需要按安装点函数是否为真 ctor 再筛一遍。
+
+---
+
+# 11. 勘误（独立复核 `e1140ba4`，2026-09-18）—— 逐条
+
+复核独立自写 PE/dword 分析器（未复用我的工具），只读。**§2 的三处归属结论全部成立**，
+被证伪的是我的**论证措辞**、**工具断言**与**落地处置**。逐条：
+
+| 位置 | 我原来写的 | 复核结论 | 更正 |
+|------|-----------|---------|------|
+| §2.1 链 2 | ctor 写偏移"**逐一命中** UI3DCtrl 的 `known_members`" | **假**：写入含 **+300/+304**，而 known_members 只到 **+296**（且 +232 是成员却未被写）。工具因 `set(w) <= own` 失败而**打不出任何匹配候选** ⇒ 这条"吻合"从未被机器验证 | 改为「覆盖 16/18，尾部 +300/+304 未注解；+232 未写」。**归属结论不受影响**：靠 `req=308` + stride 0x134 + 表只此一张 |
+| §2.2 链 4 | 写偏移"**逐一落在** UIProgressBar 已标注成员上" | **假**：ctor 写到 **+240**，known_members 只到 **+220**（+224/228/232/236-238/240、+219 无注解） | 改为「前段吻合、尾部 7 个偏移未注解」 |
+| §2.4 | `0x445b40` = `UIWnd::UIWnd`；`0x43D880` 是"尾调基类 **ctor** 的 stub（`??_E`）" | **种类搞错**：`0x445aa0` 才是 UIWnd ctor（装 0x56aec8 + 构造 +0x24 成员）；`0x445b40` 装 0x56aec8 后调 `0x445c10`、**析构 +0x24 成员** ⇒ 是 **`~UIWnd`**；故 `0x43D880` 是 **84 类的析构 `??1`**（`0x43D860`=`??_G` 调它） | 措辞更正；"不能用于推尺寸"的结论仍对 |
+| §2.4 | "三个竞争候选里 CCBParabolaWindow/CCBSkillWindow 同为 84" | 不实：`binary_size==84` 有 **7 个**类 | 改为：`{68,72,76,80}⊆own` 的类有 40+，`bs==84 ∧ 直系 UIWnd 派生` 才收敛到 UIFlexBar；CCB* 用**层次**排除（其 ctor `0x51c210`/`0x51bb90` 先 `call 0x43dcd0` = UIFrameWnd 层） |
+| §2.4 / §10 | cluster B 的 A 级"三链"含"成员集吻合" | **不能区分 UIStatic**（`base=[UIWnd]`，成员 `0,68,72,76,80,84…148` 偏移集相同，同为直系派生） | 真正独立的只有三条：「ctor 写入集 + req=84」「**stride 0x54=84**（复核独立发现：`0x4a7359 lea 0x5d944` / `0x4a7369 lea 0x5d998`，差 0x54，全 .text 唯一）」「直系 UIWnd 派生（调 0x445aa0）」。UIStatic 靠"两张表已被 `0x440740`/`0x443388` 占用"排除（**依赖注解里 UIStatic 表归属正确**） |
+| §9 | `0x43D920` 是"cluster B 的 slot3"（隐含唯一） | **部分**：它**同时**是 `0x56AFB0`（**UIWnd.json 自己声明**的表，由多继承类 ctor `0x44A790` 安装）的 slot3；`cmake/MSVCSettings.cmake:141` 是 **`/OPT:ICF`** ⇒ 地址共享是**合并产物** | 保留归属结论（`0x56ACFC` slot3 是直接事实），但必须写明「**ICF 双表共享**」；"只碰偏移 76"**不是**判据（复核：`0x43DAB0` 那类函数也只在 68..80）。反证其**非 UIStatic**：UIStatic ctor `0x440779 movl $0x1,0x4c(%esi)` 把 +76 写成**整数 1**，而 `0x43D920` 把 +76 当**指针**解引用 |
+| §9 | `0x43DAB0` = cluster B（理由：this 访问恰为 {68,72,76,80}） | **结论成立，理由错**：UIStatic 同样是这四个偏移，`req=84` 只证明跨度 ≥84 | 换成两条硬证据：① 被 cluster B 的 `Render 0x43D940` 以 `mov %esi,%ecx` **调用 5 次**（`43d992/43d9c1/43da31/43da59/43da99`），全 .text 无绝对引用、不在任何槽位 ⇒ 非虚成员；② `[this+76]` 被**当指针**解引用（`43dade mov 0x4c(%edi),%ecx; 43dae7 fildl 0x1c(%ecx)`），UIStatic 的 +76 是整数 1；③ 按 +80 做 0/1 switch（`43dacb`）与 `m_style`(int) 吻合、与 UIStatic 的 `m_ratioh`(float) 不吻合 |
+| §3 | `--self-test` **12/12 通过** | 落地后**必然**变 11/12：该断言是"注解状态快照"，不是二进制回归用例 | 已改：改为断言**不可变二进制事实** + 落地后地面真值（现 18/18）。**教训**：回归用例不许编码注解状态 |
+| §4 表 | UI3DCtrl 的 methods 簇含 **`0x43D920`** | **假**：归档只有 `0x43D880/0x43D830/0x43D860/0x43D890/0x43D940`（5 个） | 更正；`0x43D920` 是本轮之后从 UIStatic 迁入的，不在原簇 |
+| §6.3 | 「从 UI3DCtrl 迁入 …0x43D920」「未列 0x43D880」 | 与落地不符：实际迁入含 `0x43D880`、**无** `0x43D920` | 更正清单 |
+| §5.2 / §6.4 / §8 | 「UIButton(344) 的真表未找到」⇒ 清空其 methods/vtables | **证伪**：ctor `0x43A770` + 表 `0x56AC70` + `new(0x158)`×2 + stride 0x158×106（复核已验证）。清空造成 `UIButton.cpp` 消失与 2 条 L1 标签丢失 | 撤销"清空"；先定谳 `0x56AC70`/`0x56AC90` 属 `UICaption`(96) 还是 `UIButton`(344)（注：`0x43A770` 在注解里被挂成 `NameSys::GetSys`，**又一个自由函数同名**，不可用作名字证据）|
+| §10.4(3) | 「UNASSIGNED 含多继承子表与 `??_E` stub」 | 补充：`0x43D880` 实为 **`??1` 析构**（非 `??_E`）；`owning_func()` 会把安装点误归（`0x51c23c` → `CCBMagicWindow::GetActivePage`）⇒ "某表属某类"的**类名来自注解**，不是工具输出 | 工具输出不得作为类名归属的证据 |
+| §10.2 | UIStatic 相关推论依赖其 `binary_size=152` | 复核：`0x440740` 的 `rep stos` 写到 `0xf4` ⇒ 真实 ≥248（与 UIStatic 自身 `size_note` 一致） | 标注为预存问题；`0x56AD88` 的 `SIZE_CONFLICT(248 vs 152)` 正是它的表现 |
+
+## 11.1 复核**未能推翻**的部分（我的结论因此更硬）
+
+- **`0x56AC20 = UI3DCtrl`**：复核加了三条我没写的证据 ——
+  ① `.rdata` 绝对引用反查：`0x439410→0x56ac24`、`0x439A20→0x56ac28`、`0x439810→0x56ac2c`、`0x439110→0x56ac34`
+  **只出现在 `0x56AC20` 一张表** ⇒ 不存在第二张 308 表/多继承；
+  ② **第二条独立 308 stride**：`0x4ac421 lea 0x2b7bc(%ebp)` / `0x4ac4a8 lea 0x2b8f0(%ebp)` 两处 `call 0x439230`，
+  差 `0x134`；而 `0x439230` 是**同类方法**（`new(0x118)` 后装 `0x56a66c`，非 ctor）；
+  ③ 上界排除与注解无关：`0x439444 mov 0x124(%esi),%ecx` ⇒ 292+4=296 > 244。
+  另：UI3DCtrl 保留的 7 个非虚方法逐条量 `req = 260/280/292/293/294/295/296`，**全 >244** ⇒ 保留正确。
+- **`0x56AD64 = UIProgressBar`**：`new(0xF4)`×2（第三处 `push $0xf4` 后接 `call *0x56a4cc`，属另一类 ⇒ 工具未混入）、
+  stride 0xF4 **全 .text 唯一**、`sizeof(UILoadingFrm)=332`。
+- **槽位表长度污染**：这 3 张表后紧跟浮点常量（`0x43B38000`/`0x41400000`/`0x3EAAAAAB`），
+  原始 dword 数 = **7/8/7** 与注解逐一相同，`ordinal == slot index` 三表自洽 ⇒ **把 8 槽表搬到 UIFlexBar 没引入新错误**；
+  `docs/knowledge/gotcha_vtables_not_derivable_from_bytes.md` 的"不可导出"在这 3 张表上不适用。
+- `0x4C6831` / `0x52B050` 未被误移（`git diff` 确认）。
+
+## 11.2 复核未证实但仍待办（不可当结论）
+
+- **`0x56AC70` 属 `UICaption` 还是 `UIButton`**：复核能证明"存在 344 字节、装 `0x56AC70` 的 ctor `0x43A770`"，
+  但**不能**只凭二进制定其名字（两者 known_members 都只部分吻合）。需额外取证：
+  `0x56AC90`（派生表）的安装者是否 `call 0x43A770`；两组槽位函数的 this 跨度。
+- **UIStatic 的离群方法不止 2 个**：复核逐条量完后另有 2 个**不可判**项 ——
+  `0x44BE60 DestroyChainToBase`（12B，不访问任何 this 偏移）、`0x4538D0 IsHidden`（11B，只读 76，
+  且 **0x4538D0 远在 0x44BE60 之外** ⇒ 我在 §9 写的"UIStatic 方法全在 `0x440740..0x44BExx`"**不成立**）。
+- **UI3DCtrl 缺 3 个注解**：dtor `0x439130`、`??_G 0x439110`（⇒ 表 slot5 无名）、同类第二 308 交点 `0x439230`。
+- **`0x56AC20` slot5=`0x439110` 的 `from` 仍写 `"UIWnd"`**，而 UIWnd 表 slot5=`0x445B20` ⇒ 应为 `null`。
+- 复核指出工具 3 个实现缺陷：`--writes` 候选过滤用 `binary_size == req`（**藏掉更大的类**，如 UIStatic 被 `0x43dab0` 隐藏）
+  ⇒ 应改 `>= req` 并标注"下界判据"；`is_thiscall()` 走 decomp（注解经 IDB 的产物）⇒ 对被测注解是**循环论证**
+  （且 decomp 有错名：`0x439130` 是 308 类 dtor 却签名 `PalScript *this`/名 `PalScript::Reset`）；
+  `owning_func()` 误归属。**`--writes` 已改为 `>= req`（见工具 v 后续提交）。**
+
+## 11.3 结论
+
+- **§2 / §9 / §10 的归属判断：成立**（复核逐条攻击均失败，且新证据更强）。
+- **§8 的落地：不成立**，已回退。正确顺序是：
+  ① 修 `UI3DCtrl.cpp` 的 18 个 `codegen_fix`（`C2664 SetAxisAngle`/`C2100 illegal indirection` 等，
+  是**既存**缺口，只是换了个文件暴露）**或**先接受 `UIProgressBar.cpp` 继续失败；
+  ② 定谳 `0x43A770 + 0x56AC70/0x56AC90` 的归属，让 `UIButton` 有真内容（不再"清空"）；
+  ③ 把 `0x439130/0x439110/0x439230` 与 slot5 的 `from` 一并补正；
+  ④ 作为**一个完整变更集**重新落地，跑 `check`+`audit_layout`+`apply`+`diff`+`export`+`codegen all`+
+  `compile`+`compile_regression`+`probe all`+`error_classifier`+`match`，并做 A-B-A 与
+  **L1 的 (VA) 集合**比对（不只看条数）。

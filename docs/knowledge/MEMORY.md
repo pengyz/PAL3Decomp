@@ -19,6 +19,7 @@
 - [**vtables 无法从二进制导出**](gotcha_vtables_not_derivable_from_bytes.md) — 表在 .rdata 连续排布且内容全是 .text 指针，字节层无"表结束"信号；IDA 也只给 8 张建符号且无 UDT；6 个判据已穷尽
 - [**归属信号的真实覆盖**](gotcha_attribution_signal_limits.md) — mangled 名可靠但 F2 缺口只命中 3/57；**IDA/注解的函数名本身不可信**；operator new=0x55353b 但 size 不唯一；F2 缺口分 A/C/D 三组
 - [**PE 节范围须用 max(VirtualSize,SizeOfRawData)**](gotcha_pe_section_extent_max_vsz_rsz.md) — 按 VirtualSize 读 `.rdata` 会截掉尾部，把 `0x5704A8` 等**真实存在的 vtable** 误判为"未映射"，产出"18 个注解 vtable 是伪造的"**假发现**
+- [**/OPT:ICF 使函数地址共享**](gotcha_icf_function_address_sharing.md) — 相同的函数被折叠到一个地址 ⇒「同一函数出现在两张不相关的 vtable」**不是**矛盾，不能当归属证据；要用 `[this+off]` 的语义/数据流判定
 
 ## Patterns
 

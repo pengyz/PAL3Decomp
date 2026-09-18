@@ -533,34 +533,45 @@ def run_self_test():
         'sites=%s -> %s' % ([hex(s) for s in vi.get(0x56AD64, [])],
                             [hex(owning_func(s) or 0) for s in vi.get(0x56AD64, [])]))
 
-    # ---- 落地后的地面真值（2026-09-18 landing；本条是**回归守卫**）----
-    # 迁移前 0x56AC20 挂 UIProgressBar(244) 且 req=296 > 244 被证伪；落地后归 UI3DCtrl。
-    want = {0x56AC20: 'UI3DCtrl', 0x56AD64: 'UIProgressBar', 0x56ACFC: 'UIFlexBar'}
-    for vt, cls in want.items():
-        r = reconcile_vtable(S, vt)
-        chk('%s 的声明归属 == %s' % (hex(vt), cls), r['declared_owner'] == [cls],
-            'declared=%s verdict=%s' % (r['declared_owner'], r['verdict']))
-    r = reconcile_vtable(S, 0x56AC20)
-    chk('0x56AC20 对 UI3DCtrl 自洽（req<=binary_size）',
-        'consistent' in r['verdict'].get('UI3DCtrl', ''), 'req=%d' % r['total_req'])
-    chk('0x56AD64 的 ctor 尺寸 244 == UIProgressBar.binary_size（且 != UIButton 344）',
-        hs.get(0xF4) == 2 and S['UIProgressBar']['binary_size'] == 0xF4
-        and S['UIButton']['binary_size'] != 0xF4,
-        'UIProgressBar=%s UIButton=%s' % (S['UIProgressBar']['binary_size'],
-                                         S['UIButton']['binary_size']))
-    uf2 = S['UIFlexBar']
-    ords = sorted(v.get('ordinal') for v in (uf2.get('methods') or {}).values()
-                  if v.get('ordinal') is not None)
-    chk('UIFlexBar 的 ordinal == {1,3,5,7}（落在 8 槽表的 4 个重写位）', ords == [1, 3, 5, 7],
-        'ordinals=%s n_methods=%d vtables=%s' % (ords, len(uf2.get('methods') or {}),
-                                                 [v['addr'] for v in (uf2.get('vtables') or [])]))
-    chk('UIButton 已清空被证伪的 methods/vtables',
-        not (S['UIButton'].get('methods') or {}) and not (S['UIButton'].get('vtables') or []),
-        'methods=%d vtables=%d' % (len(S['UIButton'].get('methods') or {}),
-                                   len(S['UIButton'].get('vtables') or [])))
-    chk('UI3DCtrl 不再持有 cluster B（0x43D8xx/0x43D9xx）的任何方法',
-        not any(k.startswith('0x0043D') for k in (S['UI3DCtrl'].get('methods') or {})),
-        'methods=%s' % sorted(S['UI3DCtrl'].get('methods') or {}))
+    # ---- 不可变二进制事实（**不许编码注解状态**）----------------------------
+    # 教训（独立复核 e1140ba4）: 原自检断言"0x56AC20 声明归属 UIProgressBar 被证伪"，
+    # 落地后注解变了就必然 FAIL —— 那是"注解状态快照"，不是二进制回归用例。
+    # 回归用例只能钉**与注解无关**的事实。
+    hits, _rq = this_offsets(0x439410)
+    offs = {o for o, _s, _b in (hits or [])}
+    chk('0x439410 访问 this+292（4B）=> 296 > 244，故其表不属 244 字节类',
+        292 in offs, 'offsets=%s' % sorted(o for o in offs if o >= 200))
+    hits2, rq2 = this_offsets(0x439030)
+    offs2 = {o for o, _s, _b in (hits2 or [])}
+    chk('ctor 0x439030 的 this 写入最大 304 => req=308 且 %esi 全程未被改写',
+        rq2 == 308 and 304 in offs2 and 300 in offs2,
+        'req=%s has300=%s has304=%s' % (rq2, 300 in offs2, 304 in offs2))
+    r3 = reconcile_vtable(S, 0x56AD64)
+    chk('0x56AD64 槽位 req=228 <= 244 且 ctor(0x43F7F0) 实测 244 == new 实参',
+        r3['total_req'] == 228 and hs.get(0xF4) == 2, 'req=%d' % r3['total_req'])
+    # ICF：同一函数挂两张互不相关的表（复核 e1140ba4 发现）
+    d1, d2 = rd32(0x56AD08), rd32(0x56AFBC)
+    chk('0x43D920 同时是 0x56ACFC 与 0x56AFB0 的 slot3（/OPT:ICF 合并）',
+        d1 == 0x43D920 and d2 == 0x43D920, '0x56AD08=%s 0x56AFBC=%s' % (hex(d1), hex(d2)))
+    # cluster B 的两个成员方法语义判据（比"只碰 68..80"硬）
+    callees = set()
+    for (f, callee), hh in site_index()[0].items():
+        pass
+    lines = _insn_lines()
+    calls = [va for va, t in lines
+             if re.match(r'call\s+0x43dab0$', t) and 0x43D940 <= va < 0x43D940 + 400]
+    chk('0x43DAB0 被 cluster B 的 Render 0x43D940 调用（>=3 次）', len(calls) >= 3,
+        'sites=%s' % [hex(c) for c in calls])
+    h4, _r4 = this_offsets(0x440740)
+    chk('UIStatic ctor 0x440740 把 +76 写成整数 1（故 +76 是整数语义）',
+        any(o == 76 for o, _s, _b in (h4 or [])), 'writes=%s' % sorted({o for o, _s, _b in (h4 or [])}))
+    h5, r5 = this_offsets(0x43A770)
+    hs2 = heap_size_of_ctor(0x43A770)
+    st3 = ctor_stride(0x43A770)
+    chk('ctor 0x43A770 new(0x158=344) x2 且 stride 0x158（UIButton/UICaption 之争的线索）',
+        hs2.get(0x158) == 2 and 0x158 in st3,
+        'new=%s stride_pairs=%s' % ({('0x%x' % k): v for k, v in hs2.items()},
+                                    len(st3.get(0x158, []))))
 
     # ---- 证据链 4：0x56ACFC = UIFlexBar（真 ctor 是 0x43D830，不是 0x43D880）----
     hits, req = this_offsets(0x43D830)
@@ -786,8 +797,10 @@ def main():
                             own.add(int(offs))
                         except Exception:
                             pass
-                if d.get('binary_size') == req and w and set(w) <= own:
-                    print('  匹配候选: %-24s binary_size=%s (own 覆盖 %d/%d)' % (
+                # **下界判据**：`req` 只是"最小所需跨度"的下界，**不能排除更大的类**
+                # （复核 e1140ba4：用 `== req` 会把 UIStatic(152) 从 `0x43dab0`(req=84) 的候选里藏掉）
+                if (d.get('binary_size') or 0) >= req and w and set(w) <= own:
+                    print('  候选(下界判据, 不能排除更大类): %-24s binary_size=%s (own 覆盖 %d/%d)' % (
                         cls, d.get('binary_size'), len(set(w) & own), len(w)))
         return 0
 
