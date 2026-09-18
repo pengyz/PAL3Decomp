@@ -1770,3 +1770,66 @@ C2440 '=' : cannot convert from 'class gbTexture *' to 'unsigned long' / to 'int
 子 agent 报告 + `gbgfxmanager_29slots.verified.json`），**转投 `C2440` 簇**（7 个文件单独卡住，
 且该码已有 §21 的归因经验）。若日后要做 vtable 线，按 §27.5 的 4 部件**一次做完**，
 验收标准不变：**S2 不降且 L1 多重集不回退**。
+
+---
+
+# 28. **判据修正**：ROI 的正确判据是"共享病因 × 位点数"，不是"被单一错误码卡住的文件数"
+
+## 28.1 我上一节的建议（§27.6「转投 C2440」）**是错的**
+
+我只看了"被单一错误码单独卡住的文件数"（C2440 = 7 个），没检查**这些文件是否共享病因**。实测：
+
+| 错误码 | 单独卡住 | **是否共享病因** |
+|---|---|---|
+| `C2440` | 7 个文件 | **7 个不同病因**：`UITextArea`(STL cast)、`CG_Entry`(`CG_Entry*→char*`)、`UIRoleSelectDialog`(**调用约定 `__stdcall*`→`__cdecl*`**)、`CCBAI`(`bool(__cdecl*)→int(__thiscall CCBSystem::*)`)、`CCBLineupWindow`(`CCBItemWindow*→char`)、`Combat`(`Combat→int`)、`UIMap`(`void*→unsigned long`)。**最大子族（成员函数指针→`void*`，8 条）不解锁其中任何一个。** |
+| `C2664` | 6 个文件 | **6 个不同被调方**：`LineupComp`(5)/`gbTexture::UpdateTexture`/`BINK`/`lstrcpyA`/`SetLibFolder`/`IntersectPlane` |
+| `C2660` | 5 个文件 | ~5 病因，但**每个都已被上一轮 C2660 调研诊断过**（诊断成本已付）；且 `SwordUI`/`TextureLib` **已被早前落地修好** |
+| **`C2227`** | **2 个文件** | **唯一真正共享病因的一对**：`UIGameOver` 与 `UILoadingFrm` 都是 `left of '->Create' must point to class/struct/union` |
+
+⇒ **`C2440` 不是一族，是一片散沙**：298 条 / 202 文件，条数很多，但**几乎每条都要单独诊断**。
+它是**诊断成本**的集中地，不是**修复杠杆**的集中地。
+
+## 28.2 正确判据（由已落地的三个成功案例反推）
+
+| 已落地改动 | 共享机制 | 位点数 | 实测产出 |
+|---|---|---|---|
+| `C2100` 族 | 引用参数表被 stage3 与 stage5 **各跑一遍** | 46 处 / 28 文件 | **+3 ok / −71 错误** |
+| `static_methods` | 一条**恒为假**的集合键形态守卫 | 118 处 / 20 文件 | **+1 ok / −100 错误** |
+| `RET_RE` h 后缀 | 一处**死代码**（`endswith('h')` 永不可达） | 26 条 | **+1 ok** |
+
+三者共同点：**一个机制 × 很多位点**。
+⇒ **ROI 判据 = 共享病因的位点数，而不是文件数或错误条数。**
+"被单一错误码卡住"是个**坏判据** —— 它把"诊断负担"伪装成"修复机会"。
+
+## 28.3 按正确判据重新排序（实测基数）
+
+| 候选 | 共享机制 | 位点数 | 备注 |
+|---|---|---|---|
+| **① stub 回退路径不合格** | 空体函数 + 每文件序号命名（撞名）+ 声明返回类型撒谎 | **312 处** | §26 已实测证明不合格；**目前已知位点最多的单一机制**；修它同时消掉"编译通过但语义被丢弃"的假信号 |
+| ② `vtable //4` 线 | 口径错 + 数据缺 + 签名缺 + 回退不合格 | 51 文件 / 46 条被删语句 | **已冻结**（§27：需 4 部件、四次尝试全部净退化、L1 无据） |
+| ③ `C2227` 的 `->Create` | **唯一共享病因的一对** | 2 文件 | 小，但成因单一、可一次修 |
+| ④ `C2660` 剩余 5 文件 | ~5 病因，**诊断已完成** | 5 文件 | 可直接施工 |
+| ⑤ `C2440` 7 文件 / `C2664` 6 文件 | 各 7 / 6 个不同病因 | — | **诊断成本高、无杠杆** |
+
+## 28.4 建议的下一步：①「stub 回退路径」
+
+两件，都在 codegen 层、天然可回退：
+
+1. **stub 命名按签名去重**（用签名 hash，如 `pal3_vtbl_unk_<hash8>`），消掉 §26 实测到的
+   `C2084`(already has a body)/`C2371`(redefinition)/`C2556`(overload differs only by return type) 撞名；
+2. **stub 的声明与函数体不再撒谎**：要么用调用点 cast 的**完整签名**并给语义诚实的体，
+   要么**直接退回原始下标调用形态** `vftable[N](obj,...)` —— 后者**改前是能编译的**（§25.5 的证据），
+   是最保守的选择。
+
+验收纪律不变：**先写用例 → codegen → 存在性/畸形不变量/内容 diff → probe →
+regression_detector --before → match → L1 多重集不回退才落地**。
+
+## 28.5 本轮冻结的资产（vtable 线，供日后一次性完成）
+
+- 根因分层与全部推翻/撤回：§22–§27
+- 两份独立报告：`data/status/_c2660_survey.md`（C2660 亚族，418 条逐条）、
+  `data/status/_vtbl_root_cause_adversarial_review.md`（对抗性复核，推翻我 6 条）
+- 验证过的数据：`data/status/archive/20260918_2108_gbgfxmanager_29slots/gbgfxmanager_29slots.verified.json`
+  （29 槽，真表 `off_100F56B4` × 头文件 `// slot N`，地址吻合 27/28）
+- 提案：`data/status/_vtbl_annotation_proposal.{md,json}`
+- **4 部件清单**（§27.5）+ **验收标准**（S2 不降且 L1 多重集不回退）
