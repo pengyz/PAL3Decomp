@@ -2538,3 +2538,42 @@ sub_411CA0 (注解=ScriptObj) +0x38 <- off_56A9B0
 ⇒ 下一轮应**对可疑函数逐个用"成员访问证据"复核归属**，先把这张底图修正；
 它修好之后，`表→类` 与 `基偏移` 才有可靠的落脚点（否则会继续产出自相矛盾的三元组，
 正如今日的 `sub_411CA0`）。
+
+---
+
+# 41. 收敛到 `函数→类` 底图：判据落地为工具，全库筛出 **339 个归属无据候选**
+
+## 41.1 起点：一个具体的无据归属
+
+`sub_411CA0`（§40 里"装了 Role 主表却被注解成 ScriptObj 方法"的那个）：
+decomp 文件是 `ScriptObj_ScriptObj_00411ca0.json`，签名为
+**`int __cdecl ScriptObj__ScriptObj(int nVal)`**，且 **`this->` 出现 0 次**。
+
+⇒ 既没有"是 `ScriptObj` 方法"的证据（无成员访问），也不像实例方法（`__cdecl` + int 参数）
+⇒ **这条归属是"无据"的** —— 而 §39/§40 的归属失败正是从这类函数扩散出去的。
+
+## 41.2 判据落地为工具
+
+`tools/audit_method_attribution.py`：筛出"注解为类方法，但 decomp 里 **0 次 `this->`
+且签名非 `__thiscall`**"的函数。判据直接来自项目规则：
+
+> 不能仅凭 signature 的 `this` 修正函数归属 —— 必须有 decomp 成员访问证据。
+
+**全库结果：注解方法 3395 个（匹配到 decomp 3375、未匹配 20）⇒ 归属无据候选 339 个。**
+按类聚合 top：`PAL3` 18、`LineupUI` 16、`UIListBox` 12、`UITitle_JDHY` 12、`CCBStage` 10、
+`CameraCtrl` 10、`RoleSystem` 10、`Actor` 9、`CCBUI` 9、`SceneMgr` 9、`ScriptSystem` 9…
+
+## 41.3 **边界（不要误读，也不许批量改）**
+
+候选里含大量 **`__cdecl` 辅助 / 编译器生成函数**：
+`CopyConstruct_1C(void *, const void *)`、`CompareModelName(char *, char *)`、
+`ParseLocaleData(char *, char *)`、`SelectPointer(int *, int *, int *)` …
+
+把它们挂在某个类下**可能是有意分组**（静态成员 / 就近归类），也**可能是误归属**
+⇒ **本工具只筛不定案，每个都要人看**。按它批量改是**禁止**的。
+
+## 41.4 这条线的意义
+
+四张互相依赖的映射里 **`函数→类` 是最底层的一张**；它现在从"隐约有问题"变成了
+**一个有判据、有工具、有 339 个候选清单的具体任务**。修它的收益不止于基偏移：
+函数归属错了，`表→类`、`槽→方法`、`基偏移` 全都建在沙上（§39 空集、§40 误归属即例证）。
