@@ -5,7 +5,12 @@
   "class_size": 176,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 2883（0xB43），而注解类 CCBProtectWindow 的 binary_size=176 ⇒ **2883 >= 176，必然不属于该类**（对象里不存在那个字节）。签名=virtual int __thiscall(",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": false,
+  "member_count": 7,
+  "member_max_off": 92,
+  "verdict": "size_suspect",
+  "verdict_reason": "尺寸是占位值或不完整（size=4 且 0 成员 / 成员未覆盖到 size）⇒ 应先修尺寸（需分配/memset 长度证据）"
  },
  {
   "addr": "0x004C5DE0",
@@ -13,7 +18,12 @@
   "class_size": 344,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 714（0x2CA），而注解类 CEffectSystem 的 binary_size=344 ⇒ **714 >= 344，必然不属于该类**（对象里不存在那个字节）。签名=virtual void __thiscall(CEff",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": true,
+  "member_count": 14,
+  "member_max_off": 340,
+  "verdict": "attribution_wrong",
+  "verdict_reason": "尺寸模型完整（末成员+4≈size 且成员≥2）⇒ 尺寸可信、归属错，应\"移出\"（目标类待定）"
  },
  {
   "addr": "0x004C5DB0",
@@ -21,7 +31,12 @@
   "class_size": 344,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 690（0x2B2），而注解类 CEffectSystem 的 binary_size=344 ⇒ **690 >= 344，必然不属于该类**（对象里不存在那个字节）。签名=virtual int __thiscall(CEffe",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": true,
+  "member_count": 14,
+  "member_max_off": 340,
+  "verdict": "attribution_wrong",
+  "verdict_reason": "尺寸模型完整（末成员+4≈size 且成员≥2）⇒ 尺寸可信、归属错，应\"移出\"（目标类待定）"
  },
  {
   "addr": "0x00504240",
@@ -29,7 +44,12 @@
   "class_size": 8,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 573（0x23D），而注解类 CIniFile 的 binary_size=8 ⇒ **573 >= 8，必然不属于该类**（对象里不存在那个字节）。签名=int __thiscall(CIniFile *this)",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": true,
+  "member_count": 2,
+  "member_max_off": 4,
+  "verdict": "attribution_wrong",
+  "verdict_reason": "尺寸模型完整（末成员+4≈size 且成员≥2）⇒ 尺寸可信、归属错，应\"移出\"（目标类待定）"
  },
  {
   "addr": "0x004EC700",
@@ -37,7 +57,12 @@
   "class_size": 8,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 2571（0xA0B），而注解类 CIniFile 的 binary_size=8 ⇒ **2571 >= 8，必然不属于该类**（对象里不存在那个字节）。签名=char __thiscall(CIniFile *this)",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": true,
+  "member_count": 2,
+  "member_max_off": 4,
+  "verdict": "attribution_wrong",
+  "verdict_reason": "尺寸模型完整（末成员+4≈size 且成员≥2）⇒ 尺寸可信、归属错，应\"移出\"（目标类待定）"
  },
  {
   "addr": "0x00504130",
@@ -45,7 +70,12 @@
   "class_size": 8,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 573（0x23D），而注解类 CIniFile 的 binary_size=8 ⇒ **573 >= 8，必然不属于该类**（对象里不存在那个字节）。签名=void __thiscall(CIniFile *this)",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": true,
+  "member_count": 2,
+  "member_max_off": 4,
+  "verdict": "attribution_wrong",
+  "verdict_reason": "尺寸模型完整（末成员+4≈size 且成员≥2）⇒ 尺寸可信、归属错，应\"移出\"（目标类待定）"
  },
  {
   "addr": "0x004DFD20",
@@ -53,7 +83,12 @@
   "class_size": 4,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 4（0x4），而注解类 Combat 的 binary_size=4 ⇒ **4 >= 4，必然不属于该类**（对象里不存在那个字节）。签名=char(Combat *this, char *a2, int a3, char *fo",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": false,
+  "member_count": 0,
+  "member_max_off": null,
+  "verdict": "size_suspect",
+  "verdict_reason": "尺寸是占位值或不完整（size=4 且 0 成员 / 成员未覆盖到 size）⇒ 应先修尺寸（需分配/memset 长度证据）"
  },
  {
   "addr": "0x004F4820",
@@ -61,7 +96,12 @@
   "class_size": 4,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 144（0x90），而注解类 Combat 的 binary_size=4 ⇒ **144 >= 4，必然不属于该类**（对象里不存在那个字节）。签名=unsigned __int8 __thiscall(Combat *this,",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": false,
+  "member_count": 0,
+  "member_max_off": null,
+  "verdict": "size_suspect",
+  "verdict_reason": "尺寸是占位值或不完整（size=4 且 0 成员 / 成员未覆盖到 size）⇒ 应先修尺寸（需分配/memset 长度证据）"
  },
  {
   "addr": "0x0052FC60",
@@ -69,7 +109,12 @@
   "class_size": 4,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 940（0x3AC），而注解类 MatrixStack 的 binary_size=4 ⇒ **940 >= 4，必然不属于该类**（对象里不存在那个字节）。签名=void __thiscall(MatrixStack *this)",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": false,
+  "member_count": 0,
+  "member_max_off": null,
+  "verdict": "size_suspect",
+  "verdict_reason": "尺寸是占位值或不完整（size=4 且 0 成员 / 成员未覆盖到 size）⇒ 应先修尺寸（需分配/memset 长度证据）"
  },
  {
   "addr": "0x0052FBD0",
@@ -77,7 +122,12 @@
   "class_size": 4,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 927（0x39F），而注解类 MiniGame2Scene 的 binary_size=4 ⇒ **927 >= 4，必然不属于该类**（对象里不存在那个字节）。签名=gbOBBox *__thiscall(MiniGame2Sc",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": false,
+  "member_count": 0,
+  "member_max_off": null,
+  "verdict": "size_suspect",
+  "verdict_reason": "尺寸是占位值或不完整（size=4 且 0 成员 / 成员未覆盖到 size）⇒ 应先修尺寸（需分配/memset 长度证据）"
  },
  {
   "addr": "0x00535F10",
@@ -85,7 +135,12 @@
   "class_size": 4,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 49（0x31），而注解类 MiniGame3 的 binary_size=4 ⇒ **49 >= 4，必然不属于该类**（对象里不存在那个字节）。签名=void __thiscall(MiniGame3 *this, gbMatr",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": false,
+  "member_count": 0,
+  "member_max_off": null,
+  "verdict": "size_suspect",
+  "verdict_reason": "尺寸是占位值或不完整（size=4 且 0 成员 / 成员未覆盖到 size）⇒ 应先修尺寸（需分配/memset 长度证据）"
  },
  {
   "addr": "0x0048F3A0",
@@ -93,7 +148,12 @@
   "class_size": 200,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 1535（0x5FF），而注解类 RenderTarget 的 binary_size=200 ⇒ **1535 >= 200，必然不属于该类**（对象里不存在那个字节）。签名=virtual int __thiscall(Rend",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": true,
+  "member_count": 39,
+  "member_max_off": 196,
+  "verdict": "attribution_wrong",
+  "verdict_reason": "尺寸模型完整（末成员+4≈size 且成员≥2）⇒ 尺寸可信、归属错，应\"移出\"（目标类待定）"
  },
  {
   "addr": "0x004867F0",
@@ -101,7 +161,12 @@
   "class_size": 200,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 1535（0x5FF），而注解类 RenderTarget 的 binary_size=200 ⇒ **1535 >= 200，必然不属于该类**（对象里不存在那个字节）。签名=int __thiscall(RenderTarget",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": true,
+  "member_count": 39,
+  "member_max_off": 196,
+  "verdict": "attribution_wrong",
+  "verdict_reason": "尺寸模型完整（末成员+4≈size 且成员≥2）⇒ 尺寸可信、归属错，应\"移出\"（目标类待定）"
  },
  {
   "addr": "0x00479260",
@@ -109,7 +174,12 @@
   "class_size": 164,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 4869（0x1305），而注解类 UIAnimateCtrl 的 binary_size=164 ⇒ **4869 >= 164，必然不属于该类**（对象里不存在那个字节）。签名=int __thiscall(UIAnimateC",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": true,
+  "member_count": 8,
+  "member_max_off": 160,
+  "verdict": "attribution_wrong",
+  "verdict_reason": "尺寸模型完整（末成员+4≈size 且成员≥2）⇒ 尺寸可信、归属错，应\"移出\"（目标类待定）"
  },
  {
   "addr": "0x0041F370",
@@ -117,7 +187,12 @@
   "class_size": 4,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 4（0x4），而注解类 UIManager 的 binary_size=4 ⇒ **4 >= 4，必然不属于该类**（对象里不存在那个字节）。签名=void __thiscall(UIManager *this)",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": false,
+  "member_count": 0,
+  "member_max_off": null,
+  "verdict": "size_suspect",
+  "verdict_reason": "尺寸是占位值或不完整（size=4 且 0 成员 / 成员未覆盖到 size）⇒ 应先修尺寸（需分配/memset 长度证据）"
  },
  {
   "addr": "0x00541640",
@@ -125,7 +200,12 @@
   "class_size": 4,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 7（0x7），而注解类 UIRenderObj 的 binary_size=4 ⇒ **7 >= 4，必然不属于该类**（对象里不存在那个字节）。签名=void __thiscall(UIRenderObj *this)",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": false,
+  "member_count": 0,
+  "member_max_off": null,
+  "verdict": "size_suspect",
+  "verdict_reason": "尺寸是占位值或不完整（size=4 且 0 成员 / 成员未覆盖到 size）⇒ 应先修尺寸（需分配/memset 长度证据）"
  },
  {
   "addr": "0x00541710",
@@ -133,7 +213,12 @@
   "class_size": 4,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 7（0x7），而注解类 UIRenderObj 的 binary_size=4 ⇒ **7 >= 4，必然不属于该类**（对象里不存在那个字节）。签名=void __thiscall(UIRenderObj *this)",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": false,
+  "member_count": 0,
+  "member_max_off": null,
+  "verdict": "size_suspect",
+  "verdict_reason": "尺寸是占位值或不完整（size=4 且 0 成员 / 成员未覆盖到 size）⇒ 应先修尺寸（需分配/memset 长度证据）"
  },
  {
   "addr": "0x00525080",
@@ -141,7 +226,12 @@
   "class_size": 68,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 77（0x4D），而注解类 UIWnd 的 binary_size=68 ⇒ **77 >= 68，必然不属于该类**（对象里不存在那个字节）。签名=int __thiscall(UIWnd *this)",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": true,
+  "member_count": 11,
+  "member_max_off": 64,
+  "verdict": "attribution_wrong",
+  "verdict_reason": "尺寸模型完整（末成员+4≈size 且成员≥2）⇒ 尺寸可信、归属错，应\"移出\"（目标类待定）"
  },
  {
   "addr": "0x004C5B90",
@@ -149,7 +239,12 @@
   "class_size": 8,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 35（0x23），而注解类 _Texture_uv 的 binary_size=8 ⇒ **35 >= 8，必然不属于该类**（对象里不存在那个字节）。签名=_Texture_uv __thiscall(_Texture_uv *t",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": true,
+  "member_count": 2,
+  "member_max_off": 4,
+  "verdict": "attribution_wrong",
+  "verdict_reason": "尺寸模型完整（末成员+4≈size 且成员≥2）⇒ 尺寸可信、归属错，应\"移出\"（目标类待定）"
  },
  {
   "addr": "0x004CDAE0",
@@ -157,6 +252,11 @@
   "class_size": 8,
   "target_guess": "(目标类待定)",
   "evidence": "decomp 在基指针 `this` 上访问到最大偏移 293（0x125），而注解类 gbRefObject 的 binary_size=8 ⇒ **293 >= 8，必然不属于该类**（对象里不存在那个字节）。签名=char __thiscall(gbRefObject *this,",
-  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）"
+  "needs_decision": "修尺寸 or 修归属（二者之一；本判据只证明\"不可能同时成立\"）",
+  "size_model_complete": true,
+  "member_count": 2,
+  "member_max_off": 4,
+  "verdict": "attribution_wrong",
+  "verdict_reason": "尺寸模型完整（末成员+4≈size 且成员≥2）⇒ 尺寸可信、归属错，应\"移出\"（目标类待定）"
  }
 ]
