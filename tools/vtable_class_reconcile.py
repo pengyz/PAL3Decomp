@@ -209,13 +209,45 @@ def _load_func_index():
 
 
 def is_thiscall(va):
-    """只有签名声明 `__thiscall` 时 `%ecx` 才是 this。
+    """`%ecx` 是否 this —— **decomp 签名 OR 二进制序言**，二者取或。
 
     **没有这个闸门会产出垃圾**：非 thiscall 槽位（回调/`__cdecl`）的 `%ecx` 是任意值，
     实测把 `RenderTarget` 的 req 算成 307044（见 2026-09-17 全量对账的 v1 输出）。
+
+    **为什么不能只看 decomp 签名**（独立复核 e1140ba4 #9.3）：签名的源头是注解经 IDB 的产物
+    ⇒ 对"正在被争议的注解"是**循环论证**；且 decomp 索引本身有错名（`0x43A770` 被挂成
+    `NameSys *__cdecl()` 的自由函数名，于是本工具对它**静默返回空**，正是复核不得不手工
+    objdump 抽取偏移的原因）。故补一条**纯二进制**判据 `thiscall_binary()`。
     """
     _load_func_index()
-    return '__thiscall' in (_FUNC_SIG.get(va) or '')
+    if '__thiscall' in (_FUNC_SIG.get(va) or ''):
+        return True
+    return thiscall_binary(va)
+
+
+def thiscall_binary(va, max_insn=14):
+    """纯二进制判据：序言里是否把入口 `%ecx` 当 this 建立起来。
+
+    接受两种形态（都要求发生在**第一次 `call` 之前**，且 `%ecx` 在被读之前未被写过）：
+      · `mov %ecx,%reg`（MSVC `__thiscall` 的标准序言：把 this 挪到被调用者保存寄存器）；
+      · 直接读 `(%ecx)` / `0xNN(%ecx)`（this 的成员访问）。
+
+    这样对"注解签名被错挂成 `__cdecl`"的函数仍然可用，同时不会把真正的 `__cdecl` 放进来
+    ——`__cdecl` 不会把 `%ecx` 当对象基址。
+    """
+    sz = func_size(va)
+    if not sz:
+        return False
+    for i, body in enumerate(asm_lines(va, va + sz)):
+        if i >= max_insn or re.search(r'\bcall\b', body):
+            break
+        if re.search(r'\bmov\s+%ecx\s*,\s*%[a-z]{2,3}\b', body):
+            return True
+        if re.search(r'(?:0x[0-9a-f]+)?\(%ecx\)', body):
+            return True
+        if re.search(r',\s*%ecx\b', body) or re.search(r'\bpop\s+%ecx\b', body):
+            return False      # %ecx 先被覆盖 ⇒ 入口那个 ecx 不是 this（保守）
+    return False
 
 
 def this_regs(lines):
@@ -799,6 +831,9 @@ def main():
                             pass
                 # **下界判据**：`req` 只是"最小所需跨度"的下界，**不能排除更大的类**
                 # （复核 e1140ba4：用 `== req` 会把 UIStatic(152) 从 `0x43dab0`(req=84) 的候选里藏掉）
+                # `req is None` = 该函数非 __thiscall 或无 this 访问 ⇒ 没有下界，**不要比**（否则 TypeError）
+                if req is None:
+                    continue
                 if (d.get('binary_size') or 0) >= req and w and set(w) <= own:
                     print('  候选(下界判据, 不能排除更大类): %-24s binary_size=%s (own 覆盖 %d/%d)' % (
                         cls, d.get('binary_size'), len(set(w) & own), len(w)))

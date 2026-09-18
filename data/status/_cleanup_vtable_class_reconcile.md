@@ -485,3 +485,147 @@ by tier (仅 SIZE_*): A=5  B=4
 `UIButton.cpp` 已恢复生成、`matched 191/218 | L1 17`、`probe s2 ok=61`、
 `compile_regression.py → ✅ No regressions detected (Current S2: 61/202)`、
 `--self-test 17/17`、单测 54 OK。
+
+---
+
+# 13. N2 定谳（子 agent `d4acdb30`，只读）：`0x56AC70`/`0x56AC90` 与 UICaption
+
+## 13.1 判定
+
+| 表 | 归属 | sizeof | 置信度 |
+|---|------|--------|--------|
+| **`0x56AC70`** | **`UIButton`**（基类 `UIWnd`，单继承） | **344** | **A** |
+| **`0x56AC90`** | **`UIButtonEXA`**（基类 `UIButton`） | **376** | 结构 **A** / 名字 B+ |
+| **`0x56AFB0`** | **`UICaption`** 主表（+ 第二基类表 `0x56AFA4` @+0x44） | 132(PDB) / 二进制下界 96 | **A** |
+| `0x56ACD8` | 疑 **`UIDragBar`(272)**，非注解的 `UIScene`(344) | 272 | 未闭合，另开单 |
+
+工具独立判据：`--vtable 0x56AC70` → `slots=8 req=344 声明=UICaption  <<< MISMATCH` + `!! UICaption: IMPOSSIBLE (req 344 > binary_size 96)`。
+
+## 13.2 **根因**：两张表被并成一张 17 槽表
+
+`data/annotations/vtable_ownership_evidence.json` 对 `0x56AC70` 记录的正是
+**`slot_count: 17, orig_class: "UIScene"`** —— 它把 `0x56AC70`(8 槽) 与 `0x56AC90`(9 槽)
+跨边界并成一张 17 槽表，并挂给 `UIScene`，后又被 `UICaption` 继承了这个地址。
+**这就是 §2/§10 反复出现的"表长不可从字节导出"陷阱的实例化**（`gotcha_vtables_not_derivable_from_bytes.md`）。
+
+独立于工具的边界论据：**两张表各含恰好一个 scalar deleting destructor**（`0x43A7F0` / `0x43B4B0`），
+MSVC 单继承 vtable 不可能有两个；`0x56AC90` 前一张表 `0x56AC4C` 在两枚 float 常量后于
+`0x56AC68/0x56AC6C` 收尾，`0x56AC90` 后 `0x56ACB4 = 0x41400000`(=12.0f，非 `.text` 指针) 收尾。
+
+## 13.3 表长/槽位（字节界定）
+
+```
+0x56AC70 (8 槽, 0x56AC70–0x56AC8F)
+  +00 0x00445E70(UIWnd s0)  +04 0x0043AD40  +08 0x0043AB20  +0C 0x0043AB00
+  +10 0x00445B90(UIWnd s4)  +14 0x0043A7F0(scalar dtor→0x43A810)
+  +18 0x00445D10(UIWnd s6)  +1C 0x0043A870(新增虚函数, ret $0x18 = 6 参数)
+0x56AC90 (9 槽, 0x56AC90–0x56ACB3)
+  +00 0x00445E70  +04 0x0043B660  +08 0x0043B900  +0C 0x0043AB00
+  +10 0x00445B90  +14 0x0043B4B0(scalar dtor→0x43B4D0)  +18 0x00445D10
+  +1C 0x0043A870  +20 0x0043B570
+```
+
+`0x56AC90` **不是** `0x56AC70` 的第二 vptr，而是**派生类**的表：安装点 `0x43B497`(ctor `0x43B3E0` 内)、
+`0x43B4D3`(dtor `0x43B4D0` 内)；ctor `0x43B3E0` **确实 `call 0x43A770`**（`43b3e4`，同 this），
+dtor 末尾 `call 0x43A810`(UIButton 的 dtor) ⇒ `UIButtonEXA : UIButton`。
+多继承的第二 vptr 写在**非零偏移**（如 UICaption 的 `movl $0x56afa4,0x44(%esi)`）。
+
+## 13.4 sizeof 的 A 级证据（`operator new` / `__ehvec_ctor` 元素尺寸）
+
+- `push $0x158; call 0x55353b; …; call 0x43A770` @ **`0x519a50`**、**`0x51d42d`** ⇒ 344。
+- `__ehvec_ctor`(0x553627) 元素 `$0x158,$n,ctor 0x43a770,dtor 0x43a810` @ 11 处 ⇒ 344。
+- `$0x178,$0x3, ctor 0x43b3e0,dtor 0x43b4d0` @`0x453d71`、`$0x178,$0x34` @`0x456b01` ⇒ 376。
+- **独立第三方约束**：`CCBItemWindow` ctor `0x446105` 建 0x26 个 **0x1dc=476** 字节元素，
+  元素 ctor `0x4461B0` 在 **+0x60** 构造 class_B、随后写 **+0x1d8** ⇒ `0x60+0x178=0x1d8`
+  ⇒ class_B **恰好 376**（`UIScenePanel` 声明 14232，**不可能是它**）。
+
+## 13.5 `0x43A770` 写入 vs 候选（19/19 命中 PDB）
+
+- ctor 实写：`0x48=1.0f, 0x4c=1.0f, 0x60=0`；`lea 0x74; call 0x445ea0`(UITextureArray ctor)；
+  `0xc4=0, 0xcc=1(B), 0xd0=1`；`lea 0xd4; mov $0x20,%ecx; rep stos` ⇒ **212..339 = `m_caption[128]`**；
+  虚函数 `0x43A870` 另写 `0x44(B),0x64(B),0x68,0x6c,0x70(B),0xc8,0x154(B)` + `lea 0xb8`(3 指针 0xb8/0xbc/0xc0)。
+- **vs `UICaption.json`(成员 0/76/80/84/88/92, bs96)**：命中仅 `0/76`（且 `76` 语义冲突：UICaption 是 `m_tex` 指针，
+  UIButton 是 `m_ratioh`=1.0f）；`rep stos 212..339` 与 96 上限**直接冲突**（req=344）。
+- **vs `UIButton.json`**：**该文件的 offsets 本身是错的** —— = PDB UIButton 布局**删掉 `m_ratioh`(76,4B)
+  与 `m_drawrc`(80, tagRECT 16B) 后整体前移 20**（96→76、116→96、212→192、340→320 处处差 20）。
+  改用其真正来源 `data/pdb/pdb_export.json` 的 `UIButton`(344)：**19/19 命中** ——
+  `68 m_hasDBclk / 72 m_ratiow / 76 m_ratioh / 96 m_state / 100 m_canctrl / 104 m_offsetx / 108 m_offsety /
+  112 m_bBigFont / **116 m_texarray**(=lea 0x74) / **184 m_texarrayInfo**(=0xb8/bc/c0) / 196 m_disablepic /
+  200 m_disablepicInfo / 204 m_mouseoff / 205 m_mouseon / 208 m_alignmode / **212 m_caption[128]** /
+  **340 m_benable_snd**(=0x154) / size 344`。
+- 两条独立**语义**旁证：**`0x43AFA0` = `UIButton::SetCaption(char const*)`**（arg==NULL → `rep stos 0x20 dwords @0xd4`；
+  否则 `strncpy(this+0xd4, arg, 0x7f)`，call `0x5540f0`）；`0x43AA00` 只碰 `0xc4/0xc8` 且用 `"%s%d.tga"`(0x5967b0) 建纹理。
+- class_B 5/5 命中 PDB `UIButtonEXA`(376, base UIButton)：`0x158`(dtor free)=`m_optData`、`0x168=1`=`m_EnableMode`、
+  `0x16c/0x170/0x174`(打包色值 0x44/0x80/0xff/0x0a)=`m_color`/`m_enablecolor`/`m_surecolor`。
+- **344 的三个"ctor 候选"全部不是 ctor**：`0x43AA00`=UIButton 方法（只碰 +0xc4/+0xc8）、
+  `0x43AFA0`=`SetCaption`、`0x445E50`=**UIWnd 方法**。
+
+## 13.6 UICaption 的真表（反向排除，已找到）
+
+- **ctor `0x44A790`**：`call 0x445aa0`(UIWnd) → `movl $0x56a9c0,0x44(%esi)`(PalScriptWaitObj 子对象 vptr)
+  → `0x48=0` → **`0x4c=0`(`m_tex`)** → **`0x50=0`(`m_numline`)** → `movl $0x56afb0,(%esi)`
+  → **`movl $0x56afa4,0x44(%esi)`** → **`0x54=1`(`m_lineheight`)**；dtor **`0x44A7F0`** 还原两处 vptr 后 `jmp 0x445b40`(`~UIWnd`)。
+- 主表 `0x56AFB0` = `[0x445E70, 0x44A870, 0x44A820, 0x43D920, 0x445B90, 0x44A7D0, 0x445D10]`（7 槽）；
+  第二基类表 `0x56AFA4` = `[0x44AB40, 0x44AB00, 0x4AF760]`（3 槽）@+0x44 —— **铁证**：
+  `0x44AB40` = 调整 thunk **`sub $0x44,%ecx; jmp 0x44a7d0`**。
+- 成员级：`0x44A870` 读 `0x4c/0x50/0x58`；`0x44A820` `fadds 0x5c(%ecx)` + `fcomps 0x56afa0`(=2.0f) 累加并换行
+  ⇒ 字幕换行计时。与 PDB `UICaption`(132；UIWnd@0 + PalScriptWaitObj@68, m_tex@76…) 一致。
+- **根因线索（与 §13.2 同源）**：注解里 UICaption 的 `Destroy 0x0043AB00` / `_sdtor 0x0043A7F0` /
+  `CreateChildWidget 0x0043A870` **全是 0x43xxxx（UIButton 系）**，而 UICaption 真的是
+  **`0x44AB00 / 0x44A7F0 / 0x44A7D0`** ⇒ 典型的 **`43xxxx ↔ 44xxxx` 混淆**（同一类被写错一位十六进制前缀）。
+- `0x00450320` 经 `$0x160,$0x5,ctor 0x450320` 元素尺寸证据属 **`UIHeadDialog`(352)**，不是 UICaption。
+
+## 13.7 名字证据的边界（严格区分）
+
+- 二进制**无游戏类 RTTI**：全库 `.?AV` 仅 6 条（CRT 的 `_Exception/exception/logic_error/length_error/out_of_range/type_info`）。
+  无 `UIButton/UICaption/UIScene` 字符串。
+- 唯一 UI 源文件串是 `D:\Project\PAL3\UI\UIListBox.cpp`@0x5971b8；344B 的 new 站点 assert 是通用
+  `C++ new failed` + `Combat\CBUI.cpp`。
+- ⇒ **唯一独立名字源是 `data/pdb/pdb_export.json`（PAL3A PDB）**；`UIScene`/`UIScenePanel` 在 PDB 里**不存在**
+  （这两个名字**没有外部来源**）。`asm/pal3/decomp/*.json` 的文件名（`NameSys_GetSys_0043a770` 等）全是注解派生，**不可作证据**。
+
+## 13.8 最小变更方案（未执行）+ 下游风险
+
+1. `UIButton.json`：`vtables[0].addr` `0x0056AD64`→**`0x0056AC70`**（8 槽）；`known_members` 按 §13.5 的 19 项重建
+   （关键差别：**不是**现在的 `…/96/164/176/180/184/185/188/192/320`，而是 `…/96/100/101/104/108/112/**116**/
+   **184**/196/200/204/205/208/**212(char[128])**/**340**`）；`methods` 把 7 个 244B 类的方法迁给 UIProgressBar，
+   补 `0x43A770/0x43A810/0x43A7F0/0x43A870/0x43AB00/0x43AB20/0x43AD40/0x43AA00/0x43AFA0/0x43AFE0`。
+2. `UICaption.json`：`vtables` 两条（`0x56AFB0` 7 槽 + `0x56AFA4` base `PalScriptWaitObj` 3 槽）；
+   `binary_size` 96→**132**（PDB；二进制硬下界 96）；`known_members` 补 `96/100/104/108/112(tagRECT)/128/129`；
+   `methods` 删 7 个 `0x43xxxx`、补 `0x44A790/0x44A7F0/0x44A870/0x44A820/0x44A7D0/0x44AB00/0x44AB40/0x4AF760`。
+3. `UIButtonEXA.json`：增 `vtables` = `{0x0056AC90, base: UIButton, 9 槽}`。
+4. `UIScenePanel.json`：删 `vtables[0]`（`0x0056AC90`；376B ≠ 14232B，只是 476B 槽结构体的子对象）。
+5. 另开单：`0x56ACD8`（实测 272，疑 PDB `UIDragBar`；`UIScene/UIScenePanel` 两名在 PDB 无据）。
+
+**风险**：
+- `emit_headers.py:243 class_vtable_slots()` 按 slot 地址取短名决定虚性 ⇒ `UIButton.h` 的 virtual 将由
+  `0x43AD40/0x43AB20/0x43AB00/0x43A870` 决定（现状写的是 `0x0043FF70/0x00440560` 等 244B 类的方法）。
+- `UIButton.h` 布局：现为 `m_texarray+0x60 / m_caption+0xC0 / m_benable_snd+0x140`，**从 `m_state` 起全部错 20 字节**；
+  改后 `+0x74 / +0xD4 / +0x154`（**总 size 仍 344**，只改字段语义）。
+- **s4**：现有 2 条 L1 `UIButton::??_G @0x0043F950`（JusticeBookUI.cpp / UITitle_BBTY.cpp）修好后
+  会**改名换 TU**（UIButton 的 scalar dtor 变 `0x43A7F0`、`0x43F950` 归 UIProgressBar）⇒ 必须重跑 `match`
+  并重设基线，**不能只看 L1 总数（17→17 是假平稳）**。
+
+## 13.9 N2 未能推翻/未闭合
+
+1. 「`0x56AC70 = UIScene(344)`」：仅凭二进制**无法绝对排除**（UIScene 不在 PDB），但它需同时解释
+   class_A 的 **19/19** 命中 PDB UIButton **且**其派生类 376B 的 **5/5** 命中 UIButtonEXA ⇒ 判为不可维持。
+2. class_B 的**名字**只能到 B+（无 RTTI、无字符串）。
+3. `0x56ACD8`/ctor `0x43BCE0` 实测 272（`0x10c+4=0x110`），更像 PDB `UIDragBar` ⇒ 另开单。
+
+## 13.10 工具缺陷（N2 发现，已修）
+
+`--writes <ctor>` 在 `req=None`（非 thiscall 或无 this 访问）时崩溃
+`TypeError: '>=' not supported between 'int' and 'NoneType'`（我上一轮把 `==req` 改成 `>=req` 引入）。
+**已修**（`req is None` 直接跳过）。
+
+同时暴露一条更本质的问题：`is_thiscall()` 只看 decomp 签名 ⇒ 对**正在被争议的注解**是循环论证，
+`0x43A770` 因被错挂成 `NameSys *__cdecl()` 而**静默返回空**，N2 不得不手工 objdump。
+**已补纯二进制判据 `thiscall_binary()`**（序言里 `mov %ecx,%reg` 或读 `(%ecx)`，且发生在第一次 `call` 之前、
+`%ecx` 未被写过），二者取或。修后 `--writes 0x43a770` 给出 `req=216` 与偏移 `[0,72,76,96,116,196,204,208,212]`
+（与 N2 手工抽取一致）。
+
+⚠️ **该修改的副作用需注意**：`--audit` 的汇总从 `SIZE_OK 4 / SIZE_CONFLICT 5` 变为 `SIZE_OK 1 / SIZE_CONFLICT 8`
+—— 因为更多 ctor 现在"可测"，`measured_size` 的 `best` 选主（同一张表的多个 ctor 中挑一个）可能挑错。
+**结论：`--audit` 的 `SIZE_*` 汇总暂不可用，`--stride/--writes --vtable` 单点模式可用**；
+下一步需给 `measured_size` 的 ctor 选择加判据（优先"有 `new` 实参"或"配对 dtor 在相邻函数"的那个）。
