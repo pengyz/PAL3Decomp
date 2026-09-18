@@ -1615,6 +1615,79 @@ stub 的函数体是**空的**（`{\n    \n}`）⇒ 它等于**静默丢弃调�
 ## 25.8 下一步（复核给出的最省事护栏，我认可）
 
 **`_resolve_vtbl_method` 解析出的名字若以 `~` 开头则返回 `None`** ——
-可**立即消掉那 46 例误删**，且**不必动数据、也不必提前改算术**。
-这是本轮唯一一个"低风险、可立即生效、且直击已被因果证明的伤害"的改动。
-它同时把 §23 的"必须一次做完"约束**松开**：先止血（停掉误删），再按 §23.4 的顺序补数据与翻口径。
+可**立即消掉那 46 例误删**，且不必动数据、也不必提前改算术。
+
+> **⚠️ 该建议已被实测否决（见 §26）**：它确实消掉了误删（语句恢复为 `[VFTABLE-STUB]` 调用），
+> 但 S2 **净退化 −1**（1 个 ok→fail），新增 `C2084/C2371/C2556/C2264` ——
+> 因为 stub 命名是**每文件序号**、不按签名去重，恢复出来的 stub 与已有 stub 撞名。
+> **它不是止血，只是把伤害换了位置。已回退。**
+
+---
+
+# 26. `~` 护栏实测**未能落地**（修正复核的 §25.8 建议）
+
+## 26.1 按复核建议实现并测量
+
+实现（仅打在 `_resolve_vtbl_method` 的 **offset 分支**上，**不动** `if d['method']:` 分支 ——
+那里的 `~X` 来自 decomp 自身、是真实调用）：命中析构名即返回 `None`，
+让该位点回落 stub / 原始下标形态，而不是被 `_ast_cleanup` 静默删除。
+
+**预期效果达成**：`codegen` 后 **20 个文件变化 / 124 hunk**，被误删的语句恢复为**带标记的 stub 调用**：
+
+```c
+v2 = (gbTexture *)pal3_vtbl_unk_0(gfxMgr, aCbsceneFivelin) /* [VFTABLE-STUB] */;
+(*(void **)(v5)) = (void *)pal3_vtbl_unk_0(gfxMgr, Buffer) /* [VFTABLE-STUB] */;
+```
+且复核点名的文件（`C2DSpark`/`C3DSpark`/`CCBStageShadow`/`PalScript`/`RenderTarget`/`UI3DCtrl`/
+`UIListBox`/`UIStatic`/`UIScene`）**全部在变化清单里** ✓
+
+## 26.2 但 S2 **净退化**，故未能落地
+
+| 指标 | 结果 |
+|---|---|
+| **S2** | **67 → 66（−1）** |
+| ok→fail | **1**（`Misc/UIStatic.cpp`）；fail→ok **0** |
+| 新增错误码 | `C2084`×4（already has a body）、`C2556`×2（overload differs only by return type）、`C2371`×1（redefinition）、`C2264`×7 |
+
+**根因（新发现）**：stub 的命名是**每文件一个序号计数器**（`pal3_vtbl_unk_N`），
+恢复出来的新 stub 与文件里**已存在的** stub **撞名/撞签名**：
+
+```
+C2084 function 'int __cdecl pal3_vtbl_unk_0(class gbGfxManager *,char *)' already has a body
+C2371 'pal3_vtbl_unk_1' : redefinition; different basic types
+C2556 'int __cdecl pal3_vtbl_unk_1(class UIWnd *,int,void *,int)' : overloaded function differs only by return type
+```
+
+⇒ 护栏把"**静默删除**"换成了"**重复 stub 定义**" —— 在 S2 上更差。**已回退**
+（`git show HEAD:` 还原，重跑 codegen 后与基线逐字节核对：仅 `globals.cpp` 的已知乱序差异）。
+
+## 26.3 这修正了复核的 §25.8 建议
+
+复核称 `~` 护栏"最省事、可立即消掉 46 例误删" —— **消掉误删这点成立**，
+但它**没有考虑 stub 回退路径本身是否承受得住**。实测证明它承受不住：
+
+- stub **命名不按签名去重**（每文件序号）⇒ 新增 stub 会撞名；
+- stub **函数体为空**（复核 §25.5 已指出）⇒ 即便编译过，语义也是丢弃调用；
+- stub 的**声明返回 `int` 而调用点 cast 成 `gbTexture *`** ⇒ 类型层面本就不诚实。
+
+⇒ **"把删除改成 stub"不是止血，只是把伤害换了一个位置。**
+
+## 26.4 三次单边尝试**全部失败**，耦合关系因此被三重确认
+
+| 单边改动 | 结果 |
+|---|---|
+| 只翻 `//4 → N` | 2 个 ok→fail（高位 miss → stub，且暴露"靠删语句维持的 ok"） |
+| 只补注解（`gbGfxManager` 29 槽） | 槽 28 别名命中 `slots[7]`=`SetFrustum`（真值 `SetFog`）⇒ 错误命名 |
+| 只加 `~` 护栏 | 1 个 ok→fail，stub 撞名（C2084/C2371/C2556/C2264） |
+
+**⇒ 结论（比 §23/§24 更硬）：这不是"某一步该先做"的问题，而是这条链路上有三处缺陷
+（数据不足/口径错/回退路径不合格）必须一并修好，任一单边改动都会把伤害挪到别处。**
+
+## 26.5 因此修正后的完整改动集（**一次**提交）
+
+1. **补数据**：exe 类 13 例"注解过长"（跨表吞并）+ 真截断 2 例 + `gbGfxManager` 29 槽
+   + 修 `gbTexture` 错位一格（取自 `gbTexture_D3D` 槽 1–4）
+2. **修回退路径**（本次新证明其不合格）：stub 命名**按签名去重**（hash 而非序号）、
+   函数体与返回类型**不再撒谎**（或干脆退回原始下标调用形态 `vftable[N](obj,...)`，它在改前是能编译的）
+3. **翻口径** `//4 → N`
+4. 验收：`probe` + `regression_detector --before` + `match`，**S2 不降、L1 多重集不回退**
