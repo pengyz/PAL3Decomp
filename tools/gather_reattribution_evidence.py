@@ -45,8 +45,8 @@ _MEMNAME = re.compile(r'\b(m_[A-Za-z]\w*|p?m_p[A-Za-z]\w*)\b')
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--write-batch', action='store_true')
-    ap.add_argument('--min-votes', type=int, default=3,
-                    help='目标类至少要独占这么多成员才算定案（默认 3）')
+    ap.add_argument('--min-votes', type=int, default=0,
+                    help='成员投票口径的票数阈值；默认 0 = 关闭（该口径已被证伪，见知识库）')
     ap.add_argument('--max-batch', type=int, default=40, help='一次最多产出多少条')
     args = ap.parse_args()
 
@@ -83,6 +83,25 @@ def main():
             if not e:
                 continue
             txt, sig, lvars = e
+            # ---- 判据（user 指正后采用）：**寄存器来源** ----
+            # MSVC __thiscall 把 this 放在 ecx；decomp 里首个局部若形如
+            #     `X *v1; // ecx`
+            # 那它就是 this ⇒ 函数属于 X（或其派生）。
+            # 这比"成员名投票"强得多：后者会被**传递访问**污染
+            # （this->m_pRoleObj->m_Actor 的 m_Actor 属于 Actor，但函数是 Role 的）。
+            # **必须先排除"签名里已有显式 this"的情形**：
+            # Hex-Rays 的 `// ecx` 只是**寄存器分配**注释，中途占用 ecx 的临时值也会带上它
+            # （实测 0x004FB9F0：`Actor **p_m_WPXVariance; // ecx` 其实是 `&this->m_WPXVariance`，
+            #  而该函数签名里已有 `CCBStage *this`）⇒ 那样会把 CCBStage 的析构误判成 Actor 的方法。
+            # 只有当签名**没有**显式 this（Hex-Rays 没物化 this，如 0x00411CA0 的 `__cdecl(int)`）
+            # 时，首个 `// ecx` 局部才可能是 this。
+            ecx_hit = None
+            if not re.search(r'\bthis\b', sig):
+                for line in txt.split('\n')[:40]:
+                    m = re.match(r'\s*([A-Za-z_]\w*)\s*\*+\s*(\w+)\s*;\s*//\s*ecx\b', line)
+                    if m:
+                        ecx_hit = m.group(1)
+                        break
             # **只认"从 this 派生的证据"**：
             #   ① 局部变量表里以 m_/p_m_ 开头的名字（Hex-Rays 的局部名来自它被赋值的表达式，
             #      若来自 `this->m_X` 就长这样）；
@@ -90,6 +109,18 @@ def main():
             # **排除**文本里 `->m_X` / `.m_X` 形态 —— 那可能是**另一个对象**的成员
             #   （`this->m_pRoleObj->m_Actor` 的 m_Actor 属于 Actor，但函数仍是 Role 的方法），
             #   全量文本匹配会把它误当成本函数的成员证据（本工具初版就踩了这个坑）。
+            # 有 ecx 证据 ⇒ 直接定案（不再投票）
+            if ecx_hit and ecx_hit != cls and ecx_hit in anns:
+                cands.append({
+                    'kind': 'reattribute', 'addr': a, 'from': cls, 'to': ecx_hit,
+                    'new_name': '_todo_%s' % a.lower().replace('0x', ''),
+                    'evidence': ('寄存器来源证据：签名无显式 this（Hex-Rays 未物化 this），且 decomp 首个 `// ecx` 局部为 '
+                                 '`%s *…` —— MSVC __thiscall 把 this 放在 ecx ⇒ 该函数属于 %s，'
+                                 '而非注解里的 %s。签名=%s' % (ecx_hit, ecx_hit, cls, sig[:56])),
+                    'name_evidence': '含义未定：归属有寄存器证据，但名字需按函数逻辑（算法语义）'
+                                     '人工复核后给出；此处按规则用诚实占位名，禁止造名。',
+                })
+                continue
             ids = set()
             for lv in lvars:
                 nm = lv.get('name') if isinstance(lv, dict) else lv
@@ -118,6 +149,8 @@ def main():
             top, n = votes.most_common(1)[0]
             # 排除当前类；要求独占票数达阈值且明显高于次席
             second = votes.most_common(2)[1][1] if len(votes) > 1 else 0
+            if args.min_votes <= 0:
+                continue            # 投票口径默认关闭（已被证伪：传递访问会污染）
             if top == cls or n < args.min_votes or n <= second:
                 continue
             cands.append({
