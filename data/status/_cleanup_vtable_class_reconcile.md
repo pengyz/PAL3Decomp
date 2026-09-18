@@ -629,3 +629,142 @@ dtor 末尾 `call 0x43A810`(UIButton 的 dtor) ⇒ `UIButtonEXA : UIButton`。
 —— 因为更多 ctor 现在"可测"，`measured_size` 的 `best` 选主（同一张表的多个 ctor 中挑一个）可能挑错。
 **结论：`--audit` 的 `SIZE_*` 汇总暂不可用，`--stride/--writes --vtable` 单点模式可用**；
 下一步需给 `measured_size` 的 ctor 选择加判据（优先"有 `new` 实参"或"配对 dtor 在相邻函数"的那个）。
+
+---
+
+# 14. N1 定谳（子 agent `d62338e9`，只读）：20 个错误的根因 + 最小修复（编译器实测）
+
+方法：把 `pal3/src` 拷到 `/tmp`，用工程自带 MSVC6 SP0 + wine **真编译**；`run_transforms`/`generate_class_cpp`
+在内存里跑（仓库零改动）。控制组内存重建当前 `UIProgressBar.cpp` → **20 errors，行号/错误码与
+`data/status/compile_baseline.json` 逐条一致**。真签名取自 `original/gbengine.dll.asm`（**有导出名**）。
+
+## 14.1 族 1（11× C2100 + 2× C2664 SetAxisAngle）= **codegen**（非 decomp、非 annotation）
+
+**根因**：`_GB_REF_PARAM_FUNCS`（"方法名 → 引用参数下标"的硬编码表）被**两个阶段各跑一遍**：
+- `pipeline/gen/stages/stage3_cleanup.py:1123/1156` 的 `_fix_ref_params`（只做 Case1：剥 `&`），调用点 `:1027`
+- `pipeline/gen/stages/stage5_fixup.py:204/225` 的 `_fix_ref_params`（Case1 剥 `&` + Case2 补 `*` + **Case3 裸标识符→加 `*`**，`:277-296`）
+
+⇒ `&local` 被 stage3 剥成 `local`，stage5 的 Case3 又当指针**加回 `*`**。
+
+**文本指纹（可复现的铁证）**：生成物里是 `Rotate(v12,  *v20)` —— `v12,` 后**两个空格**。
+若 decomp 直接给 `*v20`，Case3 不匹配，只会是**一个**空格。双空格唯一对应"stage3 剥 `&` + stage5 补 `*`"。
+
+| decompiled_c（原始） | stage5 后（= 当前 .cpp） | 错误 |
+|---|---|---|
+| `gbMatrixStack::Rotate(v2, v12, &v20)` ×6 | `Rotate(v12,  *v20)` | **C2100 ×6** |
+| `gbQuaternion::SetAxisAngle(&v25, &v20, 45.0)` ×2 | `SetAxisAngle(v20,  45.0)` | **C2664 ×2** |
+| `gbRay::IsColOBB_H(&v43, &actionId)` ×5 | `IsColOBB_H(*actionId)` | **C2100 ×5** |
+
+**DLL 导出名 = 真签名（A 级，原 DLL 编译期真值）**：
+- `?Rotate@gbMatrixStack@@QAEXMAAUgbVec3D@@@Z` = `Rotate(float, gbVec3D &)` ⇒ **引用**，`v20` 对、`*v20` 错
+- `?IsColOBB_H@gbRay@@QAEHAAUgbOBBox@@@Z` = `IsColOBB_H(gbOBBox &)` ⇒ **引用**，`actionId` 对、`*actionId` 错
+- `?SetAxisAngle@gbQuaternion@@QAEXPAUgbVec3D@@M@Z` = `SetAxisAngle(gbVec3D *, float)` ⇒ **指针（`PAU` 非 `AAU`）**
+  ⇒ stage5 的表项 `'SetAxisAngle': {0}`（`stage5_fixup.py:220`）**本身就是错的**；且它对**静态形态**调用
+  会啃掉 this 实参（`gbMatrix4::SetAxisAngle(&v27, &v25, v18)` → `SetAxisAngle(v27, ...)`）。
+
+**修复（都在 codegen 层，均为等价变换）**
+- **F1a（主修）**：给 `stage5_fixup.py:292-296` 的 **Case3 加证据门** —— 只有该标识符在**本函数体的局部声明里
+  确实是指针类型**时才补 `*`，否则保持原样（现状是纯文本启发式 `^\s*\w+\s*$` 就加 `*`，没有类型证据）。
+  实测影响面：**46 个函数 / 28 个 .cpp**，其中**没有任何当前 `ok` 的文件**（逐文件对照 `compile_baseline.json`）。
+- **F1a'（等价替代，1 行）**：删掉 stage3 那份重复实现（`stage3_cleanup.py:1027`）。影响面 42 函数/26 文件，
+  但 `CCBPanelSlot.cpp` 只到 2 ⇒ **F1a 严格优于 F1a'**（多救 1 个文件且"有证据"）。
+- **F1b**：从 `stage5_fixup.py:220` 的 `_GB_REF_PARAM_FUNCS` **删除 `'SetAxisAngle': {0}`**。
+  实测 12 处语义变化/9 文件，**0 个 ok 文件**，全部是修复。
+
+## 14.2 族 2（5× C2664 `GetRayToScreen`）= **annotation**，但类型不是 `long *`
+
+- annotation **本来就是** `long *pResult`（`PalScript.json` methods `0x00439FE0`），但 **IDA 的类型系统存不住
+  32 位 `long` 与 `int` 的区别**：`decompiled_c` 的签名是 **`int *pResult`**（文件名还叫 `..._long_...`，
+  名字来自注解、签名来自 IDB）。
+- **横证**：全量扫描「注解含 `long`、decomp 不含」共 **22 条，22/22 全部 `long`→`int` /
+  `unsigned long`→`unsigned int`** ⇒ 注解写 `long *` **不可能**穿过 IDB。
+- 被调函数体（`sub_439FE0`）：`fild dword ptr [eax+4]` / `fild dword ptr [eax]`、`retn 8` ⇒ **只读、两次 4 字节读、
+  偏移 0/4** = `POINT{LONG x; LONG y;}`。
+- **最小修复 F2**：`PalScript.json` 的 `0x00439FE0` 签名 `long *pResult` → **`tagPOINT *pResult`**
+  （或 `LPPOINT`，与同项目 `GRPinput::GetCursorPos(... LPPOINT)` 同形）。
+  **A 级类比**：同一文件 `:336` 的 `g_Input.GRPinput::GetCursorPos(&Point);`（注解 `LPPOINT lpPoint`）
+  渲染成 `&Point`（整个结构体地址）而**不报错**；改成 POINT* 后调用点必然渲染成 `&Point` ⇒ 5 条消失。
+  影响面：`GetRayToScreen` 全仓只有 5 个调用点（全在 `UIProgressBar.cpp`）+ 定义体 `PalScript.cpp`（已 fail）。
+
+## 14.3 族 3（2× C2660）= **codegen 的证据门缺证据**（参数数并没写错）
+
+- `ast_transform.py:758-786`：对首参是 `&局部`/`*指针`（pointer_expression）的调用点有**证据门**
+  `_this_consistent = (_ret_param_slots(cls,method) == len(args)-1)`，不满足就**故意保留静态形式**让编译器诚实报错。
+- `_ret_param_slots` 的两个输入都**没有这两条函数的证据**：① `_sig_evidence_pack.json` 里
+  `{"cls":"gbQuaternion","method":"MultiplyBy","grade":"C-NOADDR"}` / `{"cls":"gbGeomNode","method":"GetOBBox",
+  "grade":"C-NOADDR"}` —— **无 `slots` 无 `addrs`**；② `gbQuaternion.json`/`gbGeomNode.json` 的 `methods` **为空**。
+- 原因：两者都在 **gbengine.dll**（IAT 导入），而 `_load_ret_slots` 只扫 `PAL3.exe` ⇒ 永远拿不到。
+  这解释了为何 358/398/438/478 行的 `GetOBBox((gbGeomNode*)*i,...)`（cast_expression 分支，**无门**）成功、
+  520 行的 `*((gbGeomNode**)v39+22)`（pointer_expression，**有门**）失败。
+- **真参数数（DLL）**：`?MultiplyBy@gbQuaternion@@QAEXPAU1@0@Z` 尾 `retn 8` ⇒ **2 栈参**；
+  `?GetOBBox@gbGeomNode@@QAEPAUgbOBBox@@PAU2@@Z` 尾 `retn 4` ⇒ **1 栈参** ⇒ **现有 annotation 参数个数是对的**。
+- **最小修复 F3**：向 `data/status/_sig_evidence_pack.json` 的 `graded[]` 补两条（把 C-NOADDR 升级为 `SDK`，
+  带 `rets/slots/source`）。实测 4 处语义变化/3 文件，**0 个 ok 文件**；`UIProgressBar` 两条 C2660 消失，
+  且 `PAL3::Render` 的同类 C2660 一并消失。
+
+## 14.4 编译器实测矩阵（MSVC6 SP0 / wine，/tmp 内）
+
+| 组合 | UIProgressBar.cpp | obj |
+|---|---|---|
+| 基线（控制组，与 `compile_baseline.json` 逐条一致） | **20** | 无 |
+| 仅 F1a | 9 | 无 |
+| 仅 F1a' | 9 | 无 |
+| 仅 F1b | 18 | 无 |
+| 仅 F3 | 18 | 无 |
+| 仅 F2（模拟 `&Point.x`→`&Point`） | 15 | 无 |
+| **F1a+F1b+F3（纯 codegen）** | **5** | 无 |
+| **F1a+F1b+F3+F2（全部）** | **0** | ✅ 产出 obj |
+| F1a'+F1b+F3+F2 | **0** | ✅ |
+
+**附带收益（编译器实测）**：仅 F1a 就使 `MatrixStack.cpp` 3→0、`Camera.cpp` 2→0、`CCBPanelSlot.cpp` 3→0
+（三者基线都是"只含 C2100"的单码失败文件）⇒ **+3 ok**；F1a' 为 +2。全部改动只发生在当前 `fail` 文件里
+（逐文件比对 s2 状态，**0 个 ok 文件文本变化**）⇒ ok 数不可能下降。
+全仓量级：C2100 共 109 条/30 文件（F1a 覆盖 46 处/28 文件）；C2660 共 415 条/78 文件、C2664 共 328 条/62 文件
+—— 本方案只吃掉各自很小一簇，**不声称解决大盘**。
+
+## 14.5 错误**不依赖**"方法挂哪个头文件"（重要）
+
+对同样 3 个方法体分别用 `cls_name='UIProgressBar'` 与 `'UI3DCtrl'` 跑完整 `run_transforms`，输出**逐字节相同**，
+唯一差异是 stage1 重写的定义名（`void UIProgressBar::Render()` → `void UI3DCtrl::Render()`）。
+原因：这 20 条的可见声明都不来自类头文件（`gbMatrixStack` 全定义在 `gbengine/gbengine_internal.h`；
+`Actor::QueryState`/`PalScript::GetRayToScreen` 的声明来自 **`globals.h`**，它被每个生成 .cpp include 且
+自己就 include 了 `Role/Actor.h`、`Script/PalScript.h`）。
+
+⇒ 实务结论：**这 20 条会原样搬走**，三族修复对 `UI3DCtrl.cpp` 同样适用，不必因"挂哪个头"额外修。
+（子 agent 的迁移仿真重现了同样 4 簇，但**未能复现**我上一轮观察到的 `+1 C2660 QueryState` ⇒ 标为
+**证据不足**；那条只能来自迁移后**重新 export 的 decomp 文本/合并后的成员集**，不是头文件上下文副作用。
+落地后请用 decomp `old/new` diff 定位它的具体生成行。）
+
+## 14.6 N1 推翻了我的三条判断（勘误）
+
+| 我写的 | 判定 | 证据 |
+|---|---|---|
+| §12.1「族 1 = `void *` 局部被解引用」 | **证伪** | 20 条里**没有一条**碰到 `void *`；`CheckRayHitRole` 的 `void *RayToScreen/v20/...` 来自 annotation 里 `GetRayToScreen` 的**返回类型** `void *`，只被 `qmemcpy` 使用，不产生错误 |
+| §12.1「行号 239 的 `void *v20` 与 132 的 `*v20` 同一函数」 | **证伪** | 239 在 `CheckRayHitRole`；132 的 `v20` 是 `Render` 里的 `struct gbVec3D v20;`（`:62`）。两个函数的同名局部 |
+| §12.2/§12.5「`known_members["88"].source` 的 `type_fix:...void*` 是族 1 元凶」 | **证伪** | `m_progress` 现值 `int`，代码里是 `(int *)&this->m_progress` 显式 cast，不参与这 20 条；该 source 串是**脏 provenance 残留**（与现值矛盾，可清理但无编译影响） |
+
+**我的教训**：我是从"局部类型是 `void *`"这个**表象**倒推的（`grep void \*v20` 命中就下结论），
+没有回到 decomp 原文与生成物做**逐步对照**。子 agent 用"双空格指纹 + decomp/生成物 diff"把根因钉在
+codegen 的两个阶段上 —— 这是**可复现**的证据，我的是**相关性猜测**。
+
+## 14.7 落地顺序（供执行，附风险）
+
+1. **codegen 三项**（F1a + F1b + F3）→ `python pipeline/gen/codegen.py all` → `python3 tools/compile_regression.py`
+   → 预期 `UIProgressBar.cpp` 20→5、`MatrixStack/Camera/CCBPanelSlot` 转 ok（**+3**）→ `probe all` + `match` 看 L1。
+   （无需 apply/export，天然可回退。）
+2. **单独一提交 F2**：`PalScript.json` 的 `long *pResult` → `tagPOINT *pResult` → `apply` + `export` + `codegen`
+   → 预期 `UIProgressBar.cpp` **0 error**。这是唯一动 IDB 的一项，**单独可回退**。
+3. 复核 `pipeline/ida/_logs/signature_failures.txt`、`tools/annotation_diff.py`、`tools/audit_layout.py`
+   （F2 只改函数签名，不动结构体布局）。
+
+**风险（N1 自陈）**
+- F1a/F1b/F3 会改 26~28 个 .cpp 的生成文本 ⇒ **L1 硬线必须落地后跑 `match` 复核**（它被禁止跑 link/字节工具）。
+- F1a 的门在**全局变量/成员**上取不到声明时会回退到现行为（保守）；应把"为什么不是编造信息"
+  （依据是同一函数文本里的既有声明）写进 caveat。
+- F1b/F3 都在**按方法名索引**的全局表上，天然有"同名不同类"风险
+  （`gbMatrixStack::Rotate(float,gbVec3D&)` vs `gbMatrix4::Rotate(const gbVec3D*,gbVec3D*)`）。
+  **本次不改这个结构**，但记录：`gbMatrix4::Rotate` 的静态形态调用**改不改都仍错**
+  （基线 `*v26` C2100 ↔ 改后 `v26` C2664）⇒ **独立缺陷**（表项未按类限定 + 静态形态下标整体偏移），后续工作。
+- F2 若 IDA 解析不了 `tagPOINT`，会在 `pipeline/ida/_logs/signature_failures.txt` 落一条失败（风险低但要查）。
+  ⚠️ **不要用 `ida_structs.json` 里写着的 `long *` 当"已生效"** —— 它的 methods 是**注解透传**；
+  `decomp JSON 的 `int *`` 才是 IDB 现状。必须按「annotation 改 → apply → export」验证。
