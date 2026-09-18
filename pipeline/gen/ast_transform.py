@@ -51,6 +51,71 @@ _RET_SLOTS_WARNED = set()
 # ---------------------------------------------------------------------------
 
 
+# ---- 指令级 retn 证据源（模块级，便于测试与复用）-------------------
+_AST_PROJ = os.path.dirname(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))))
+
+_ASM_RET_RE = re.compile(r'^(?:retn|ret)(?:\s+([0-9A-Fa-f]+h?))?\s*$')
+
+def _parse_retn(text):
+    """retn 立即数 -> 栈字节数。注意 h 必须留在捕获组内（见 gotcha_*_h 后缀）。"""
+    m = _ASM_RET_RE.match(text)
+    if not m:
+        return None
+    t = m.group(1)
+    if not t:
+        return 0
+    return int(t[:-1], 16) if t.lower().endswith('h') else int(t)
+
+_ASM_RETNS = None
+
+def _asm_retn_map():
+    """**一次遍历**建 label -> retn 立即数列表（避免逐函数重扫 18MB 清单）。
+
+    只用 `proc near` / `endp` 定界，取区间内所有 retn；调用方只接受
+    "值唯一"的情形，多个不一致的 retn 视为无证据（保守）。
+    """
+    nonlocal_state = _asm_retn_map.__dict__
+    if 'cache' in nonlocal_state:
+        return nonlocal_state['cache']
+    m = {}
+    try:
+        path = os.path.join(_AST_PROJ, 'original', 'PAL3.exe.asm')
+        with open(path, encoding='utf-8', errors='replace') as fh:
+            cur = None
+            for line in fh:
+                if cur is None:
+                    pm = re.match(r'^(\S+)\s+proc near', line)
+                    if pm:
+                        cur = pm.group(1)
+                        m[cur] = []
+                elif re.match(r'^\S+\s+endp', line):
+                    cur = None
+                else:
+                    v = _parse_retn(line.strip())
+                    if v is not None:
+                        m[cur].append(v)
+    except OSError as _e:
+        print('[WARN] ast_transform: 指令级 retn 源不可读 (%s)；将退回裸字节扫描'
+              % _e, file=_sys.stderr)
+        m = {}
+    nonlocal_state['cache'] = m
+    return m
+
+_ASM_SRC_STATS = {'asm': 0, 'byte': 0, 'none': 0}
+
+def ret_n_at_asm(va):
+    """从 IDA 反汇编清单取函数尾 retn（指令级，不会把操作数当函数尾）。"""
+    m = _asm_retn_map()
+    if not m:
+        return None
+    vals = m.get('sub_%X' % va)
+    if not vals or len(set(vals)) != 1:
+        return None
+    return vals[0]
+
+
+
 def _ret_param_slots(cls_name, method_name):
     """True stack-param slot count for a method, from the binary.
 
@@ -96,6 +161,13 @@ def _load_ret_slots():
     def va2off(va):
         return 0x1000 + (va - 0x401000)
 
+    # ---- 指令级 retn 证据源（主源） ------------------------------------
+    # R3(2026-09-18)：裸字节扫描会把**指令操作数里的** 0xC2/0xC3 当成函数尾
+    # （下面 ret_n_at 的既有注释已自承这个盲区）。实测对 3395 个注解方法：
+    # 3178 个能在 original/PAL3.exe.asm 里做指令级取值，其中与裸扫描
+    # **分歧 367 个（11.6%）**，且幅度极大（Actor::LoadActorModel asm=4 而裸扫描=420
+    # ⇒ 105 个假 slots；Actor::SetVisible asm=12 而裸扫描=0）。
+    # 故改为：**asm 指令级为主**，裸扫描仅作 asm 不可用时的回退（并计数上报）。
     def ret_n_at(va, max_scan=0x600):
         off = va2off(va)
         if off < 0x1000 or off + max_scan > len(_exe):
@@ -130,11 +202,21 @@ def _load_ret_slots():
                 continue
             if (cls, mn) in _RET_SLOTS_CACHE:
                 continue
-            n = ret_n_at(va)
+            n = ret_n_at_asm(va)
+            if n is None:
+                n = ret_n_at(va)
+                _ASM_SRC_STATS['byte' if n is not None else 'none'] += 1
+            else:
+                _ASM_SRC_STATS['asm'] += 1
             if n is not None and n % 4 == 0:
                 _RET_SLOTS_CACHE[(cls, mn)] = n // 4
             else:
                 _RET_SLOTS_CACHE[(cls, mn)] = None
+
+    if _ASM_SRC_STATS['byte'] or _ASM_SRC_STATS['none']:
+        print('[ret-N evidence] 指令级(asm) %d / 裸扫描回退 %d / 无证据 %d'
+              % (_ASM_SRC_STATS['asm'], _ASM_SRC_STATS['byte'],
+                 _ASM_SRC_STATS['none']), file=_sys.stderr)
 
     # MCP-verified evidence overrides the raw byte-scan. sig_evidence.py
     # extracts ret instructions via IDA disassemble_function (instruction-

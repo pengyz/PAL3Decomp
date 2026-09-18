@@ -1146,3 +1146,97 @@ asm 得 `[0]×4`、MCP 得 `[0]×5`），且 asm 里 **715 个函数是 COLLAPSE
 2. **`static_methods` 守卫恒为假**（§18.1）：先补"带参数表形态"的单测再改。
 3. 残余：`Camera.cpp` 1 条（第 4 类）、`gbVFileSystem::Read` 33 条（Hex-Rays 丢实参，IDB 层）、
    `std::string::_Eos` 8 条（不可修）。
+
+---
+
+# 20. 落地记录：retn 证据门改用指令级 asm 源 + 修 stage5 上下文无关替换（2026-09-18）
+
+**结论：两项都落地。S2 65 → 66，总错误 3497 → 3305（−192），畸形代码 15 → 0，
+C1003 截断文件 15 → 11，L1 按多重集恒等，零新增错误、零净增错误码、零 churn。**
+
+## 20.1 缺陷 A：裸字节扫描当证据源（`ast_transform.ret_n_at`）
+
+在 `original/PAL3.exe` 的原始字节里搜第一个 `0xC2`/`0xC3` 当函数尾 —— 会把**指令操作数里的**
+同值字节当成函数尾。对 3395 个注解方法，用 `PAL3.exe.asm` 做指令级对照：
+
+| | 数量 |
+|---|---|
+| 指令级可用 | 3178（93.6%） |
+| 与裸扫描一致 | 2810 |
+| **与裸扫描分歧** | **367（11.6%）** |
+| asm 里 COLLAPSED | 136 |
+| asm 里找不到 | 81 |
+
+分歧幅度极大：`Actor::LoadActorModel` 真值 1 slot 而裸扫描给 **105**；`SetVisible` 真值 3 而给 0。
+
+**修法**：新增模块级 `_asm_retn_map()`（**一次遍历**建 `label -> [retn...]`）+ `ret_n_at_asm()`，
+作为**主源**；裸扫描降为**回退**，来源分布打印到 stderr（实测 **指令级 3126 / 回退 202 / 无证据 11**）。
+
+**性能坑**：第一版在 `ret_n_at_asm` 里逐函数重新打开 18MB 清单（3395 × 45 万行）⇒ >60s 被杀。
+改成一次遍历后 **0.37s**。
+
+**等价性边界**：asm 的 `proc/endp` 定界与 IDA `disassemble_function` **不完全等价**
+（`Role::CalcXueJianInit` asm 得 `[0]×4`、MCP 得 `[0]×5），且 asm 里 715 个函数是 COLLAPSED
+⇒ asm 是离线回退而非等价替代；这也是为什么 pack 的 MCP 派生值仍然覆盖它。
+
+## 20.2 缺陷 B：`stage5_fixup.py` 的上下文无关替换（新暴露既有缺陷）
+
+```python
+code = re.sub(r'\b(\w+)\(\(int\)this\)', r'this->\1()', code)   # 旧
+```
+意图是 `Method((int)this)` → `this->Method()`（未限定自调用），但 `\b(\w+)\(` 也会命中
+**上游 `ast_transform` 刚改写好的** 调用尾部：
+
+```
+obj->Cls::Method((int)this)  →  obj->Cls::this->Method()     （畸形，实参丢失）
+::ShowWindow((int)this)      →  ::this->ShowWindow()         （畸形）
+```
+
+**改前生成树里这类畸形共 15 处 / 7 个文件**（`CScreenMode`、`EquipUI`、`CUtil`、`CCBSystem`、
+`CCBStageScene`、`RoleSystem`、`UIScenePanel`）。我的 A 项改动打开证据门后**新增 1 处同类**
+（16 处），才在**内容 diff** 里发现——**没有任何门禁能看见它们**：这些文件都在 C1003 截断名单里
+（恰好 102 条），畸形行的错误落在报告窗口之外 ⇒ 普查报"新增错误 0 / 净增错误码 无"。
+
+**修法**：负向后顾排除 `\w` `:` `.` `>`：
+```python
+code = re.sub(r'(?<![\w:.>])(\w+)\(\(int\)this\)', r'this->\1()', code)   # 新
+```
+限定形态交给上游显式-this 分支（产出 `(obj)->Cls::Method(rest)` 或保留静态调用，均比畸形可读）。
+
+## 20.3 验收（全部实测）
+
+| Gate | 结果 |
+|---|---|
+| 生成文件存在性 | **202 = 202**，列表逐字相同 |
+| **内容 diff** | 202 个文件里 **13 个变化**（12 + `globals.cpp` 乱序）；逐条核对：静态→成员转换**正确**、`(int)this` 实参保留 |
+| **畸形形态不变量** `(::\|\.\|->)this->\w+` | **15 → 0** |
+| 未限定自调用意图 | 未丢（`this->Destroy()` 16 处等仍转换） |
+| `probe all` | **S2 65 → 66**；总错误 **3497 → 3305（−192）**；**C1003 截断 15 → 11**；大降：`UIScenePanel` 102→48、`CCBSystem`/`CCBStageScene` 102→45、`CScreenMode` 102→86、`CUtil` 6→3、`EquipUI` 17→13 |
+| **对账**（`regression_detector --before`） | `new_failures 0`、`new_errors 0`、`increased_codes []`、`churn 0`、`moved 0`；`fixed_files = SwordUI.cpp`；可测 net：C2059 −3、C2589 −3、C2039 −1、C2660 −1（大降的那几个是截断单元，逐码不可测、已正确排除） |
+| `compile_regression.py` | No regressions（+1） |
+| `match` | `matched 209/240 → 210/241`；`L1 17` |
+| **L1 按多重集** | **identical，lost 0 / gained 0** |
+| 单测 | `tests/test_retn_evidence_source.py` **5/5**（含"缓存值 == 另一套独立实现对同一 asm 的指令级读取"这一**不变量**，不编码注解状态） |
+| 既有单测 | `test_sig_evidence_retn.py` 5/5、`test_stage5.py` 4/4、工具自检 7/7 |
+
+**测试假象（记录）**：不变量测试首版报"1/144 分歧"，查清是 `CCBRoleState::CheckMP`
+**同时标注在两个地址**（`0x004DF3D0`/`0x004EE910`），loader 取第一个、测试取了第二个。
+已把测试改为镜像 loader 语义（同名取首个地址）。**不是实现分歧。**
+
+## 20.4 方法论收获（本轮最贵的一条）
+
+**"普查零新增错误"不等于"没引入畸形代码"。** 本轮 A 项引入的畸形代码完全躲过了
+普查（C1003 截断把它移出窗口）与 `compile_regression`（只看 ok/fail 与文件级计数），
+**只有内容 diff 抓到**。因此：
+1. **每打开一个证据门/修一个上游缺陷，都要重做内容 diff** —— 上游修好一处可能让下游
+   长期沉默的缺陷显形；
+2. **把"结构不变量"写成可 grep 的检查**（如畸形形态必须为 0），比"再看一眼 diff"可靠；
+3. 归档时**落地前的 `pal3/src` 内容**要么存 `/tmp` 并明确注明易失，要么不入库
+   （12MB 生成源码塞进 git 会造成仓库膨胀；本次已在归档 README 里写明）。
+
+## 20.5 下一步
+
+1. **`static_methods` 守卫恒为假**（§18.1）：先补"带参数表形态"的单测再改，预期影响 118 条。
+2. 残余 C2660 亚族：`gbVFileSystem::Read` 33 条（Hex-Rays 丢实参，IDB 层）、
+   `CCBControl::SetParam` 17 条（annotation 补参）、`gbDynVertBuf::RenderGeomQuad` 15 条（codegen 吞首参）。
+3. vtable 槽位 `//4` 缩放（§18.3，21 条）**仍未逐点验证**。

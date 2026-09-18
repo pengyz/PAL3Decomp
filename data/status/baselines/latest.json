@@ -1,6 +1,6 @@
 {
-  "name": "20260918_174408",
-  "timestamp": "2026-09-18T17:44:08.946563",
+  "name": "20260918_200046",
+  "timestamp": "2026-09-18T20:00:46.205760",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "fail",
@@ -1799,517 +1799,232 @@
     },
     "pal3/src/Combat/CCBStageScene.cpp": {
       "status": "fail",
-      "error_count": 102,
+      "error_count": 45,
       "errors": [
         {
-          "code": "C2589",
-          "msg": "'this' : illegal token on right side of '::'",
-          "line": 89
+          "code": "C2248",
+          "msg": "'do_always_noconv' : cannot access protected member declared in class 'std::codecvt_base'",
+          "line": 160
         },
         {
-          "code": "C2059",
-          "msg": "syntax error : '::'",
-          "line": 89
+          "code": "C2065",
+          "msg": "'m_pFightInfo' : undeclared identifier",
+          "line": 470
         },
         {
-          "code": "C2039",
-          "msg": "'OBBox' : is not a member of 'CCBStage'",
-          "line": 91
-        },
-        {
-          "code": "C2039",
-          "msg": "'v22' : is not a member of 'CCBStage'",
-          "line": 92
-        },
-        {
-          "code": "C2039",
-          "msg": "'_DWORD' : is not a member of 'CCBStage'",
-          "line": 93
+          "code": "C2296",
+          "msg": "'*' : illegal, left operand has type 'void (__cdecl *)(void)'",
+          "line": 470
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 93
+          "line": 481
         },
         {
-          "code": "C2039",
-          "msg": "'OBBox' : is not a member of 'CCBStage'",
-          "line": 94
+          "code": "C2227",
+          "msg": "left of '->eSceneFiveMagic' must point to class/struct/union",
+          "line": 482
         },
         {
-          "code": "C2039",
-          "msg": "'memcpy' : is not a member of 'CCBStage'",
-          "line": 96
+          "code": "C2227",
+          "msg": "left of '->sSceneName' must point to class/struct/union",
+          "line": 604
         },
         {
-          "code": "C2039",
-          "msg": "'pExceptionObject' : is not a member of 'CCBStage'",
-          "line": 97
+          "code": "C2227",
+          "msg": "left of '->sSceneName' must point to class/struct/union",
+          "line": 605
         },
         {
-          "code": "C2039",
-          "msg": "'Logger' : is not a member of 'CCBStage'",
-          "line": 98
+          "code": "C2660",
+          "msg": "'LoadFromFile' : function does not take 4 parameters",
+          "line": 711
         },
         {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 98
+          "code": "C2661",
+          "msg": "'ReplaceTexture' : no overloaded function takes 2 parameters",
+          "line": 725
         },
         {
-          "code": "C2039",
-          "msg": "'Logger' : is not a member of 'CCBStage'",
-          "line": 98
+          "code": "C2660",
+          "msg": "'RenderGeomQuad' : function does not take 3 parameters",
+          "line": 1141
         },
         {
-          "code": "C2039",
-          "msg": "'Logger' : is not a member of 'CCBStage'",
-          "line": 98
+          "code": "C2660",
+          "msg": "'RenderGeomQuad' : function does not take 3 parameters",
+          "line": 1142
         },
         {
-          "code": "C2653",
-          "msg": "'Logger' : is not a class or namespace name",
-          "line": 98
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void *' to 'class gbVisNode *'",
+          "line": 1312
         },
         {
-          "code": "C2039",
-          "msg": "'_CxxThrowException' : is not a member of 'CCBStage'",
-          "line": 100
+          "code": "C2660",
+          "msg": "'OpenFileRead' : function does not take 2 parameters",
+          "line": 1350
         },
         {
-          "code": "C2039",
-          "msg": "'pExceptionObject' : is not a member of 'CCBStage'",
-          "line": 100
+          "code": "C2660",
+          "msg": "'ReadStart' : function does not take 1 parameters",
+          "line": 1353
         },
         {
-          "code": "C2039",
-          "msg": "'_ThrowInfo' : is not a member of 'CCBStage'",
-          "line": 100
+          "code": "C2660",
+          "msg": "'ReadSection' : function does not take 2 parameters",
+          "line": 1354
         },
         {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 100
+          "code": "C2665",
+          "msg": "'ReadLine' : none of the 4 overloads can convert parameter 1 from type 'class CIniFile *'",
+          "line": 1356
         },
         {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 102
+          "code": "C2665",
+          "msg": "'ReadLine' : none of the 4 overloads can convert parameter 1 from type 'class CIniFile *'",
+          "line": 1359
         },
         {
-          "code": "C2039",
-          "msg": "'v3' : is not a member of 'CCBStage'",
-          "line": 104
+          "code": "C2660",
+          "msg": "'ReadStart' : function does not take 1 parameters",
+          "line": 1371
         },
         {
-          "code": "C2039",
-          "msg": "'v9' : is not a member of 'CCBStage'",
-          "line": 106
+          "code": "C2660",
+          "msg": "'ReadSection' : function does not take 2 parameters",
+          "line": 1372
         },
         {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 106
+          "code": "C2665",
+          "msg": "'ReadLine' : none of the 4 overloads can convert parameter 1 from type 'class CIniFile *'",
+          "line": 1373
         },
         {
-          "code": "C2039",
-          "msg": "'v22' : is not a member of 'CCBStage'",
-          "line": 107
+          "code": "C2665",
+          "msg": "'ReadLine' : none of the 4 overloads can convert parameter 1 from type 'class CIniFile *'",
+          "line": 1374
         },
         {
-          "code": "C2039",
-          "msg": "'v9' : is not a member of 'CCBStage'",
-          "line": 108
+          "code": "C2660",
+          "msg": "'CIniFile::~CIniFile' : function does not take 1 parameters",
+          "line": 1400
         },
         {
-          "code": "C2039",
-          "msg": "'v10' : is not a member of 'CCBStage'",
-          "line": 109
+          "code": "C2660",
+          "msg": "'OpenFileRead' : function does not take 2 parameters",
+          "line": 1413
         },
         {
-          "code": "C2039",
-          "msg": "'CameraCtrl' : is not a member of 'CCBStage'",
-          "line": 109
+          "code": "C2660",
+          "msg": "'ReadSection' : function does not take 2 parameters",
+          "line": 1414
         },
         {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 109
+          "code": "C2665",
+          "msg": "'ReadLine' : none of the 4 overloads can convert parameter 1 from type 'class CIniFile *'",
+          "line": 1415
         },
         {
-          "code": "C2039",
-          "msg": "'v10' : is not a member of 'CCBStage'",
-          "line": 111
+          "code": "C2665",
+          "msg": "'ReadLine' : none of the 4 overloads can convert parameter 1 from type 'class CIniFile *'",
+          "line": 1416
         },
         {
-          "code": "C2039",
-          "msg": "'_DWORD' : is not a member of 'CCBStage'",
-          "line": 112
+          "code": "C2665",
+          "msg": "'ReadLine' : none of the 4 overloads can convert parameter 1 from type 'class CIniFile *'",
+          "line": 1417
         },
         {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 112
+          "code": "C2665",
+          "msg": "'ReadLine' : none of the 4 overloads can convert parameter 1 from type 'class CIniFile *'",
+          "line": 1418
         },
         {
-          "code": "C2039",
-          "msg": "'v22' : is not a member of 'CCBStage'",
-          "line": 113
+          "code": "C2665",
+          "msg": "'ReadLine' : none of the 4 overloads can convert parameter 1 from type 'class CIniFile *'",
+          "line": 1420
         },
         {
-          "code": "C2039",
-          "msg": "'v10' : is not a member of 'CCBStage'",
-          "line": 114
+          "code": "C2660",
+          "msg": "'ReadSection' : function does not take 2 parameters",
+          "line": 1428
         },
         {
-          "code": "C2039",
-          "msg": "'memcpy' : is not a member of 'CCBStage'",
-          "line": 116
+          "code": "C2665",
+          "msg": "'ReadLine' : none of the 4 overloads can convert parameter 1 from type 'class CIniFile *'",
+          "line": 1429
         },
         {
-          "code": "C2039",
-          "msg": "'pExceptionObject' : is not a member of 'CCBStage'",
-          "line": 117
+          "code": "C2665",
+          "msg": "'ReadLine' : none of the 4 overloads can convert parameter 1 from type 'class CIniFile *'",
+          "line": 1430
         },
         {
-          "code": "C2039",
-          "msg": "'Logger' : is not a member of 'CCBStage'",
-          "line": 118
+          "code": "C2665",
+          "msg": "'ReadLine' : none of the 4 overloads can convert parameter 1 from type 'class CIniFile *'",
+          "line": 1431
         },
         {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 118
+          "code": "C2665",
+          "msg": "'ReadLine' : none of the 4 overloads can convert parameter 1 from type 'class CIniFile *'",
+          "line": 1432
         },
         {
-          "code": "C2039",
-          "msg": "'Logger' : is not a member of 'CCBStage'",
-          "line": 118
+          "code": "C2665",
+          "msg": "'ReadLine' : none of the 4 overloads can convert parameter 1 from type 'class CIniFile *'",
+          "line": 1433
         },
         {
-          "code": "C2039",
-          "msg": "'Logger' : is not a member of 'CCBStage'",
-          "line": 118
+          "code": "C2660",
+          "msg": "'CIniFile::~CIniFile' : function does not take 1 parameters",
+          "line": 1435
         },
         {
-          "code": "C2653",
-          "msg": "'Logger' : is not a class or namespace name",
-          "line": 118
+          "code": "C2660",
+          "msg": "'OpenFileWrite' : function does not take 2 parameters",
+          "line": 1447
         },
         {
-          "code": "C2039",
-          "msg": "'_CxxThrowException' : is not a member of 'CCBStage'",
-          "line": 120
+          "code": "C2660",
+          "msg": "'WriteSection' : function does not take 2 parameters",
+          "line": 1448
         },
         {
-          "code": "C2039",
-          "msg": "'pExceptionObject' : is not a member of 'CCBStage'",
-          "line": 120
+          "code": "C2661",
+          "msg": "'WriteLine' : no overloaded function takes 3 parameters",
+          "line": 1449
         },
         {
-          "code": "C2039",
-          "msg": "'_ThrowInfo' : is not a member of 'CCBStage'",
-          "line": 120
+          "code": "C2661",
+          "msg": "'WriteLine' : no overloaded function takes 3 parameters",
+          "line": 1450
         },
         {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 120
+          "code": "C2661",
+          "msg": "'WriteLine' : no overloaded function takes 3 parameters",
+          "line": 1451
         },
         {
-          "code": "C2039",
-          "msg": "'_BYTE' : is not a member of 'CCBStage'",
-          "line": 122
+          "code": "C2661",
+          "msg": "'WriteLine' : no overloaded function takes 3 parameters",
+          "line": 1452
         },
         {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 122
+          "code": "C2661",
+          "msg": "'WriteLine' : no overloaded function takes 3 parameters",
+          "line": 1453
         },
         {
-          "code": "C2039",
-          "msg": "'CameraCtrl' : is not a member of 'CCBStage'",
-          "line": 122
+          "code": "C2660",
+          "msg": "'CIniFile::~CIniFile' : function does not take 1 parameters",
+          "line": 1455
         },
         {
-          "code": "C2039",
-          "msg": "'CameraCtrl' : is not a member of 'CCBStage'",
-          "line": 122
-        },
-        {
-          "code": "C2653",
-          "msg": "'CameraCtrl' : is not a class or namespace name",
-          "line": 122
-        },
-        {
-          "code": "C2039",
-          "msg": "'_BYTE' : is not a member of 'CCBStage'",
-          "line": 123
-        },
-        {
-          "code": "C2146",
-          "msg": "syntax error : missing ')' before identifier 'result'",
-          "line": 123
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 123
-        },
-        {
-          "code": "C2039",
-          "msg": "'result' : is not a member of 'CCBStage'",
-          "line": 124
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '{'",
-          "line": 124
-        },
-        {
-          "code": "C2039",
-          "msg": "'v11' : is not a member of 'CCBStage'",
-          "line": 125
-        },
-        {
-          "code": "C2039",
-          "msg": "'CCBCamControl' : is not a member of 'CCBStage'",
-          "line": 125
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 125
-        },
-        {
-          "code": "C2039",
-          "msg": "'v22' : is not a member of 'CCBStage'",
-          "line": 126
-        },
-        {
-          "code": "C2039",
-          "msg": "'v11' : is not a member of 'CCBStage'",
-          "line": 127
-        },
-        {
-          "code": "C2039",
-          "msg": "'v12' : is not a member of 'CCBStage'",
-          "line": 128
-        },
-        {
-          "code": "C2039",
-          "msg": "'CCBCamControl' : is not a member of 'CCBStage'",
-          "line": 128
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 128
-        },
-        {
-          "code": "C2039",
-          "msg": "'CCBCamControl' : is not a member of 'CCBStage'",
-          "line": 128
-        },
-        {
-          "code": "C2039",
-          "msg": "'CCBCamControl' : is not a member of 'CCBStage'",
-          "line": 128
-        },
-        {
-          "code": "C2653",
-          "msg": "'CCBCamControl' : is not a class or namespace name",
-          "line": 128
-        },
-        {
-          "code": "C2039",
-          "msg": "'v12' : is not a member of 'CCBStage'",
-          "line": 130
-        },
-        {
-          "code": "C2039",
-          "msg": "'v22' : is not a member of 'CCBStage'",
-          "line": 131
-        },
-        {
-          "code": "C2039",
-          "msg": "'_DWORD' : is not a member of 'CCBStage'",
-          "line": 132
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 132
-        },
-        {
-          "code": "C2039",
-          "msg": "'v12' : is not a member of 'CCBStage'",
-          "line": 133
-        },
-        {
-          "code": "C2039",
-          "msg": "'memcpy' : is not a member of 'CCBStage'",
-          "line": 135
-        },
-        {
-          "code": "C2039",
-          "msg": "'pExceptionObject' : is not a member of 'CCBStage'",
-          "line": 136
-        },
-        {
-          "code": "C2039",
-          "msg": "'Logger' : is not a member of 'CCBStage'",
-          "line": 137
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 137
-        },
-        {
-          "code": "C2039",
-          "msg": "'Logger' : is not a member of 'CCBStage'",
-          "line": 137
-        },
-        {
-          "code": "C2039",
-          "msg": "'Logger' : is not a member of 'CCBStage'",
-          "line": 137
-        },
-        {
-          "code": "C2653",
-          "msg": "'Logger' : is not a class or namespace name",
-          "line": 137
-        },
-        {
-          "code": "C2039",
-          "msg": "'_CxxThrowException' : is not a member of 'CCBStage'",
-          "line": 139
-        },
-        {
-          "code": "C2039",
-          "msg": "'pExceptionObject' : is not a member of 'CCBStage'",
-          "line": 139
-        },
-        {
-          "code": "C2039",
-          "msg": "'_ThrowInfo' : is not a member of 'CCBStage'",
-          "line": 139
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 139
-        },
-        {
-          "code": "C2039",
-          "msg": "'_BYTE' : is not a member of 'CCBStage'",
-          "line": 141
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 141
-        },
-        {
-          "code": "C2039",
-          "msg": "'CCBStageCam' : is not a member of 'CCBStage'",
-          "line": 141
-        },
-        {
-          "code": "C2039",
-          "msg": "'CCBStageCam' : is not a member of 'CCBStage'",
-          "line": 141
-        },
-        {
-          "code": "C2653",
-          "msg": "'CCBStageCam' : is not a class or namespace name",
-          "line": 141
-        },
-        {
-          "code": "C2039",
-          "msg": "'_BYTE' : is not a member of 'CCBStage'",
-          "line": 142
-        },
-        {
-          "code": "C2146",
-          "msg": "syntax error : missing ')' before identifier 'result'",
-          "line": 142
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 142
-        },
-        {
-          "code": "C2039",
-          "msg": "'result' : is not a member of 'CCBStage'",
-          "line": 143
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '{'",
-          "line": 143
-        },
-        {
-          "code": "C2039",
-          "msg": "'v13' : is not a member of 'CCBStage'",
-          "line": 144
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 144
-        },
-        {
-          "code": "C2039",
-          "msg": "'v22' : is not a member of 'CCBStage'",
-          "line": 145
-        },
-        {
-          "code": "C2039",
-          "msg": "'v13' : is not a member of 'CCBStage'",
-          "line": 146
-        },
-        {
-          "code": "C2039",
-          "msg": "'inited' : is not a member of 'CCBStage'",
-          "line": 147
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 147
-        },
-        {
-          "code": "C2589",
-          "msg": "'this' : illegal token on right side of '::'",
-          "line": 147
-        },
-        {
-          "code": "C2039",
-          "msg": "'inited' : is not a member of 'CCBStage'",
-          "line": 149
-        },
-        {
-          "code": "C2039",
-          "msg": "'v22' : is not a member of 'CCBStage'",
-          "line": 150
-        },
-        {
-          "code": "C2039",
-          "msg": "'_DWORD' : is not a member of 'CCBStage'",
-          "line": 151
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 151
-        },
-        {
-          "code": "C1003",
-          "msg": "error count exceeds 100; stopping compilation",
-          "line": 151
+          "code": "C2065",
+          "msg": "'compiler_init_00511CA0' : undeclared identifier",
+          "line": 1510
         }
       ]
     },
@@ -2331,7 +2046,7 @@
     },
     "pal3/src/Combat/CCBSystem.cpp": {
       "status": "fail",
-      "error_count": 102,
+      "error_count": 45,
       "errors": [
         {
           "code": "C2664",
@@ -2384,46 +2099,6 @@
           "line": 1001
         },
         {
-          "code": "C2589",
-          "msg": "'this' : illegal token on right side of '::'",
-          "line": 1007
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : '::'",
-          "line": 1007
-        },
-        {
-          "code": "C2039",
-          "msg": "'v6' : is not a member of 'CCBUI'",
-          "line": 1009
-        },
-        {
-          "code": "C2039",
-          "msg": "'v34' : is not a member of 'CCBUI'",
-          "line": 1010
-        },
-        {
-          "code": "C2589",
-          "msg": "'this' : illegal token on right side of '::'",
-          "line": 1026
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : '::'",
-          "line": 1026
-        },
-        {
-          "code": "C2039",
-          "msg": "'v8' : is not a member of 'CCBRoleState'",
-          "line": 1028
-        },
-        {
-          "code": "C2039",
-          "msg": "'v34' : is not a member of 'CCBRoleState'",
-          "line": 1029
-        },
-        {
           "code": "C2039",
           "msg": "'LoadData' : is not a member of 'CIniFile'",
           "line": 1039
@@ -2432,26 +2107,6 @@
           "code": "C2039",
           "msg": "'LoadData' : is not a member of 'CIniFile'",
           "line": 1039
-        },
-        {
-          "code": "C2589",
-          "msg": "'this' : illegal token on right side of '::'",
-          "line": 1045
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : '::'",
-          "line": 1045
-        },
-        {
-          "code": "C2039",
-          "msg": "'inited' : is not a member of 'CCBSystem'",
-          "line": 1047
-        },
-        {
-          "code": "C2039",
-          "msg": "'v34' : is not a member of 'CCBSystem'",
-          "line": 1048
         },
         {
           "code": "C2248",
@@ -2617,231 +2272,6 @@
           "code": "C2447",
           "msg": "missing function header (old-style formal list?)",
           "line": 2875
-        },
-        {
-          "code": "C2589",
-          "msg": "'this' : illegal token on right side of '::'",
-          "line": 2930
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : '::'",
-          "line": 2930
-        },
-        {
-          "code": "C2039",
-          "msg": "'v4' : is not a member of 'CCBStage'",
-          "line": 2932
-        },
-        {
-          "code": "C2039",
-          "msg": "'v8' : is not a member of 'CCBStage'",
-          "line": 2933
-        },
-        {
-          "code": "C2039",
-          "msg": "'a2' : is not a member of 'CCBStage'",
-          "line": 2934
-        },
-        {
-          "code": "C2100",
-          "msg": "illegal indirection",
-          "line": 2934
-        },
-        {
-          "code": "C2039",
-          "msg": "'CCBEditor' : is not a member of 'CCBStage'",
-          "line": 2934
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 2934
-        },
-        {
-          "code": "C2039",
-          "msg": "'v4' : is not a member of 'CCBStage'",
-          "line": 2935
-        },
-        {
-          "code": "C2039",
-          "msg": "'memcpy' : is not a member of 'CCBStage'",
-          "line": 2937
-        },
-        {
-          "code": "C2039",
-          "msg": "'pExceptionObject' : is not a member of 'CCBStage'",
-          "line": 2938
-        },
-        {
-          "code": "C2039",
-          "msg": "'Logger' : is not a member of 'CCBStage'",
-          "line": 2939
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 2939
-        },
-        {
-          "code": "C2039",
-          "msg": "'Logger' : is not a member of 'CCBStage'",
-          "line": 2939
-        },
-        {
-          "code": "C2039",
-          "msg": "'Logger' : is not a member of 'CCBStage'",
-          "line": 2939
-        },
-        {
-          "code": "C2653",
-          "msg": "'Logger' : is not a class or namespace name",
-          "line": 2939
-        },
-        {
-          "code": "C2039",
-          "msg": "'_CxxThrowException' : is not a member of 'CCBStage'",
-          "line": 2941
-        },
-        {
-          "code": "C2039",
-          "msg": "'pExceptionObject' : is not a member of 'CCBStage'",
-          "line": 2941
-        },
-        {
-          "code": "C2039",
-          "msg": "'_ThrowInfo' : is not a member of 'CCBStage'",
-          "line": 2941
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 2941
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 2943
-        },
-        {
-          "code": "C2039",
-          "msg": "'CCBSystem' : is not a member of 'CCBStage'",
-          "line": 2947
-        },
-        {
-          "code": "C2039",
-          "msg": "'CCBSystem' : is not a member of 'CCBStage'",
-          "line": 2947
-        },
-        {
-          "code": "C2653",
-          "msg": "'CCBSystem' : is not a class or namespace name",
-          "line": 2947
-        },
-        {
-          "code": "C2061",
-          "msg": "syntax error : identifier 'CCBSystem'",
-          "line": 2947
-        },
-        {
-          "code": "C2039",
-          "msg": "'NullCallback' : is not a member of 'CCBStage'",
-          "line": 2951
-        },
-        {
-          "code": "C2039",
-          "msg": "'v5' : is not a member of 'CCBStage'",
-          "line": 2951
-        },
-        {
-          "code": "C2039",
-          "msg": "'Block' : is not a member of 'CCBStage'",
-          "line": 2952
-        },
-        {
-          "code": "C2039",
-          "msg": "'delete' : is not a member of 'CCBStage'",
-          "line": 2953
-        },
-        {
-          "code": "C2673",
-          "msg": "'DestroyObj' : global functions do not have 'this' pointers",
-          "line": 2953
-        },
-        {
-          "code": "C2673",
-          "msg": "'DestroyObj' : global functions do not have 'this' pointers",
-          "line": 2954
-        },
-        {
-          "code": "C2039",
-          "msg": "'CCBSystem' : is not a member of 'CCBStage'",
-          "line": 2958
-        },
-        {
-          "code": "C2039",
-          "msg": "'CCBSystem' : is not a member of 'CCBStage'",
-          "line": 2958
-        },
-        {
-          "code": "C2653",
-          "msg": "'CCBSystem' : is not a class or namespace name",
-          "line": 2958
-        },
-        {
-          "code": "C2061",
-          "msg": "syntax error : identifier 'CCBSystem'",
-          "line": 2958
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 2960
-        },
-        {
-          "code": "C2039",
-          "msg": "'Block' : is not a member of 'CCBStage'",
-          "line": 2961
-        },
-        {
-          "code": "C2039",
-          "msg": "'delete' : is not a member of 'CCBStage'",
-          "line": 2962
-        },
-        {
-          "code": "C2673",
-          "msg": "'DestroyObj_5df0' : global functions do not have 'this' pointers",
-          "line": 2962
-        },
-        {
-          "code": "C2673",
-          "msg": "'DestroyObj_5df0' : global functions do not have 'this' pointers",
-          "line": 2963
-        },
-        {
-          "code": "C2039",
-          "msg": "'CCBSystem' : is not a member of 'CCBStage'",
-          "line": 2967
-        },
-        {
-          "code": "C2039",
-          "msg": "'CCBSystem' : is not a member of 'CCBStage'",
-          "line": 2967
-        },
-        {
-          "code": "C2653",
-          "msg": "'CCBSystem' : is not a class or namespace name",
-          "line": 2967
-        },
-        {
-          "code": "C2146",
-          "msg": "syntax error : missing ';' before identifier 'DestroyObj'",
-          "line": 2967
-        },
-        {
-          "code": "C1003",
-          "msg": "error count exceeds 100; stopping compilation",
-          "line": 2967
         }
       ]
     },
@@ -3599,7 +3029,7 @@
     },
     "pal3/src/Combat/CUtil.cpp": {
       "status": "fail",
-      "error_count": 6,
+      "error_count": 3,
       "errors": [
         {
           "code": "C2660",
@@ -3615,21 +3045,6 @@
           "code": "C2039",
           "msg": "'LineupUI_InitListView' : is not a member of 'CUtil'",
           "line": 209
-        },
-        {
-          "code": "C2589",
-          "msg": "'this' : illegal token on right side of '::'",
-          "line": 211
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : '::'",
-          "line": 211
-        },
-        {
-          "code": "C2039",
-          "msg": "'UIRoleSelect_SetFieldLeft' : is not a member of 'PropUI'",
-          "line": 212
         }
       ]
     },
@@ -7756,11 +7171,6 @@
         },
         {
           "code": "C2660",
-          "msg": "'RecalcAggregatedStats' : function does not take 2 parameters",
-          "line": 2395
-        },
-        {
-          "code": "C2660",
           "msg": "'Insert' : function does not take 3 parameters",
           "line": 2427
         },
@@ -7770,9 +7180,14 @@
           "line": 2428
         },
         {
+          "code": "C2660",
+          "msg": "'Insert' : function does not take 3 parameters",
+          "line": 2451
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 2428
+          "line": 2451
         }
       ]
     },
@@ -11541,15 +10956,9 @@
       ]
     },
     "pal3/src/Misc/SwordUI.cpp": {
-      "status": "fail",
-      "error_count": 1,
-      "errors": [
-        {
-          "code": "C2660",
-          "msg": "'RecalcAggregatedStats' : function does not take 2 parameters",
-          "line": 218
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/SystemUI.cpp": {
       "status": "fail",
@@ -12510,7 +11919,7 @@
     },
     "pal3/src/Misc/UIScenePanel.cpp": {
       "status": "fail",
-      "error_count": 102,
+      "error_count": 48,
       "errors": [
         {
           "code": "C2227",
@@ -12628,238 +12037,28 @@
           "line": 683
         },
         {
-          "code": "C2589",
-          "msg": "'this' : illegal token on right side of '::'",
-          "line": 709
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : '::'",
-          "line": 709
-        },
-        {
-          "code": "C2039",
-          "msg": "'v33' : is not a member of 'RoleShadow'",
-          "line": 710
-        },
-        {
-          "code": "C2039",
-          "msg": "'TaskBookUI' : is not a member of 'RoleShadow'",
-          "line": 710
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 710
-        },
-        {
-          "code": "C2039",
-          "msg": "'_DWORD' : is not a member of 'RoleShadow'",
-          "line": 711
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 711
-        },
-        {
-          "code": "C2039",
-          "msg": "'v60' : is not a member of 'RoleShadow'",
-          "line": 712
-        },
-        {
-          "code": "C2039",
-          "msg": "'v33' : is not a member of 'RoleShadow'",
-          "line": 713
-        },
-        {
-          "code": "C2039",
-          "msg": "'TaskBookUI' : is not a member of 'RoleShadow'",
-          "line": 714
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 714
-        },
-        {
-          "code": "C2039",
-          "msg": "'TaskBookUI' : is not a member of 'RoleShadow'",
-          "line": 714
-        },
-        {
-          "code": "C2039",
-          "msg": "'TaskBookUI' : is not a member of 'RoleShadow'",
-          "line": 714
-        },
-        {
-          "code": "C2653",
-          "msg": "'TaskBookUI' : is not a class or namespace name",
-          "line": 714
-        },
-        {
-          "code": "C2039",
-          "msg": "'v34' : is not a member of 'RoleShadow'",
-          "line": 716
-        },
-        {
-          "code": "C2039",
-          "msg": "'v60' : is not a member of 'RoleShadow'",
-          "line": 717
-        },
-        {
           "code": "C2039",
           "msg": "'TaskBookUI_CreateEntry' : is not a member of 'UIScenePanel'",
           "line": 719
         },
         {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 734
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 735
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 736
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 740
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 741
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 742
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 743
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 750
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 756
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 757
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 783
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 786
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 789
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 809
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 816
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 864
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 882
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 883
-        },
-        {
-          "code": "C2146",
-          "msg": "syntax error : missing ')' before identifier 'v6'",
-          "line": 886
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 886
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '{'",
-          "line": 887
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
+          "code": "C2227",
+          "msg": "left of '->ShowWindow' must point to class/struct/union",
           "line": 918
         },
         {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 920
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 929
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 944
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 947
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 952
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 954
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from 'double' to 'class TaskBookUI *'",
           "line": 955
         },
         {
-          "code": "C2039",
-          "msg": "'_todo_456200' : is not a member of 'TaskBookUI'",
+          "code": "C2227",
+          "msg": "left of '->TaskBookUI' must point to class/struct/union",
+          "line": 955
+        },
+        {
+          "code": "C2653",
+          "msg": "'TaskBookUI' : is not a class or namespace name",
           "line": 955
         },
         {
@@ -12883,109 +12082,19 @@
           "line": 1113
         },
         {
-          "code": "C2061",
-          "msg": "syntax error : identifier '_DWORD'",
-          "line": 1185
+          "code": "C2664",
+          "msg": "'void (const char *,char *,class UIScenePanel *)' : cannot convert parameter 1 from 'void *' to 'const char *'",
+          "line": 1214
         },
         {
-          "code": "C2061",
-          "msg": "syntax error : identifier '_DWORD'",
-          "line": 1187
+          "code": "C2664",
+          "msg": "'void (const char *,char *,class UIScenePanel *)' : cannot convert parameter 1 from 'void *' to 'const char *'",
+          "line": 1221
         },
         {
-          "code": "C2078",
-          "msg": "too many initializers",
-          "line": 1196
-        },
-        {
-          "code": "C2440",
-          "msg": "'initializing' : cannot convert from 'int' to 'void ***  '",
-          "line": 1196
-        },
-        {
-          "code": "C2078",
-          "msg": "too many initializers",
-          "line": 1201
-        },
-        {
-          "code": "C2440",
-          "msg": "'initializing' : cannot convert from 'int' to 'void ***  '",
-          "line": 1201
-        },
-        {
-          "code": "C2078",
-          "msg": "too many initializers",
-          "line": 1202
-        },
-        {
-          "code": "C2440",
-          "msg": "'initializing' : cannot convert from 'int' to 'void ***  '",
-          "line": 1202
-        },
-        {
-          "code": "C2078",
-          "msg": "too many initializers",
-          "line": 1203
-        },
-        {
-          "code": "C2440",
-          "msg": "'initializing' : cannot convert from 'int' to 'void ***  '",
-          "line": 1203
-        },
-        {
-          "code": "C2078",
-          "msg": "too many initializers",
-          "line": 1204
-        },
-        {
-          "code": "C2440",
-          "msg": "'initializing' : cannot convert from 'int' to 'void ***  '",
-          "line": 1204
-        },
-        {
-          "code": "C2078",
-          "msg": "too many initializers",
-          "line": 1205
-        },
-        {
-          "code": "C2440",
-          "msg": "'initializing' : cannot convert from 'int' to 'void ***  '",
-          "line": 1205
-        },
-        {
-          "code": "C2146",
-          "msg": "syntax error : missing ';' before identifier 'v19'",
-          "line": 1207
-        },
-        {
-          "code": "C2065",
-          "msg": "'v19' : undeclared identifier",
-          "line": 1207
-        },
-        {
-          "code": "C2109",
-          "msg": "subscript requires array or pointer type",
-          "line": 1207
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 1211
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 1217
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 1218
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 1223
+          "code": "C2664",
+          "msg": "'int (const char *,char *,class UIScenePanel *)' : cannot convert parameter 1 from 'void *' to 'const char *'",
+          "line": 1226
         },
         {
           "code": "C2109",
@@ -12993,34 +12102,64 @@
           "line": 1228
         },
         {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 1229
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void *' to 'const char *'",
+          "line": 1232
         },
         {
-          "code": "C2109",
-          "msg": "subscript requires array or pointer type",
-          "line": 1230
+          "code": "C2664",
+          "msg": "'void (const char *,char *,class UIScenePanel *)' : cannot convert parameter 1 from 'void *' to 'const char *'",
+          "line": 1241
         },
         {
-          "code": "C2106",
-          "msg": "'=' : left operand must be l-value",
-          "line": 1230
+          "code": "C2664",
+          "msg": "'void (char *,const char *,char *,class UIScenePanel *)' : cannot convert parameter 2 from 'void *' to 'const char *'",
+          "line": 1247
         },
         {
-          "code": "C2109",
-          "msg": "subscript requires array or pointer type",
-          "line": 1231
+          "code": "C2664",
+          "msg": "'void (const char *,unsigned long *,class UIScenePanel *)' : cannot convert parameter 1 from 'void *' to 'const char *'",
+          "line": 1253
         },
         {
-          "code": "C2106",
-          "msg": "'=' : left operand must be l-value",
-          "line": 1231
+          "code": "C2664",
+          "msg": "'void (const char *,char *,class UIScenePanel *)' : cannot convert parameter 1 from 'void *' to 'const char *'",
+          "line": 1258
         },
         {
-          "code": "C1003",
-          "msg": "error count exceeds 100; stopping compilation",
-          "line": 1231
+          "code": "C2664",
+          "msg": "'void (char *,const char *,char *,class UIScenePanel *)' : cannot convert parameter 2 from 'void *' to 'const char *'",
+          "line": 1261
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
+          "line": 1264
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
+          "line": 1266
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
+          "line": 1267
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
+          "line": 1268
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
+          "line": 1269
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
+          "line": 1270
         }
       ]
     },
@@ -13513,7 +12652,7 @@
     },
     "pal3/src/Render/CScreenMode.cpp": {
       "status": "fail",
-      "error_count": 102,
+      "error_count": 86,
       "errors": [
         {
           "code": "C2671",
@@ -13586,46 +12725,6 @@
           "line": 553
         },
         {
-          "code": "C2589",
-          "msg": "'this' : illegal token on right side of '::'",
-          "line": 569
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : '::'",
-          "line": 569
-        },
-        {
-          "code": "C2039",
-          "msg": "'PropUI' : is not a member of 'SaleUI'",
-          "line": 570
-        },
-        {
-          "code": "C2039",
-          "msg": "'PropUI' : is not a member of 'SaleUI'",
-          "line": 570
-        },
-        {
-          "code": "C2653",
-          "msg": "'PropUI' : is not a class or namespace name",
-          "line": 570
-        },
-        {
-          "code": "C2039",
-          "msg": "'InitPlayerList' : is not a member of 'SaleUI'",
-          "line": 570
-        },
-        {
-          "code": "C2039",
-          "msg": "'PropUI' : is not a member of 'SaleUI'",
-          "line": 570
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 570
-        },
-        {
           "code": "C2039",
           "msg": "'LineupUI_InitListView' : is not a member of 'CScreenMode'",
           "line": 571
@@ -13639,96 +12738,6 @@
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
           "line": 643
-        },
-        {
-          "code": "C2589",
-          "msg": "'this' : illegal token on right side of '::'",
-          "line": 737
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : '::'",
-          "line": 737
-        },
-        {
-          "code": "C2039",
-          "msg": "'UICursor' : is not a member of 'MainEquipUI'",
-          "line": 738
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 738
-        },
-        {
-          "code": "C2039",
-          "msg": "'UICursor' : is not a member of 'MainEquipUI'",
-          "line": 738
-        },
-        {
-          "code": "C2039",
-          "msg": "'UICursor' : is not a member of 'MainEquipUI'",
-          "line": 738
-        },
-        {
-          "code": "C2653",
-          "msg": "'UICursor' : is not a class or namespace name",
-          "line": 738
-        },
-        {
-          "code": "C2039",
-          "msg": "'UIStatic' : is not a member of 'MainEquipUI'",
-          "line": 741
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ','",
-          "line": 741
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '{'",
-          "line": 742
-        },
-        {
-          "code": "C2447",
-          "msg": "missing function header (old-style formal list?)",
-          "line": 742
-        },
-        {
-          "code": "C2039",
-          "msg": "'CScreenMode' : is not a member of 'MainEquipUI'",
-          "line": 748
-        },
-        {
-          "code": "C2039",
-          "msg": "'CScreenMode' : is not a member of 'MainEquipUI'",
-          "line": 748
-        },
-        {
-          "code": "C2653",
-          "msg": "'CScreenMode' : is not a class or namespace name",
-          "line": 748
-        },
-        {
-          "code": "C2039",
-          "msg": "'v2' : is not a member of 'MainEquipUI'",
-          "line": 755
-        },
-        {
-          "code": "C2673",
-          "msg": "'GetPlayerAttByIndex' : global functions do not have 'this' pointers",
-          "line": 755
-        },
-        {
-          "code": "C2039",
-          "msg": "'m_BtnTooltipC' : is not a member of 'MainEquipUI'",
-          "line": 755
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.m_caption' must have class/struct/union type",
-          "line": 755
         },
         {
           "code": "C2039",
@@ -13774,11 +12783,6 @@
           "code": "C2664",
           "msg": "'Init' : cannot convert parameter 1 from 'const int' to 'enum gbLightObj::LIGHT_TYPE'",
           "line": 1653
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 1684
         },
         {
           "code": "C2664",
@@ -13829,26 +12833,6 @@
           "code": "C2664",
           "msg": "'BinkNextFrame' : cannot convert parameter 1 from 'int' to 'void *'",
           "line": 2232
-        },
-        {
-          "code": "C2065",
-          "msg": "'v5' : undeclared identifier",
-          "line": 2241
-        },
-        {
-          "code": "C2065",
-          "msg": "'v8' : undeclared identifier",
-          "line": 2243
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 2285
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 2298
         },
         {
           "code": "C2065",
@@ -14021,9 +13005,84 @@
           "line": 2948
         },
         {
-          "code": "C1003",
-          "msg": "error count exceeds 100; stopping compilation",
+          "code": "C2660",
+          "msg": "'gbSound2DNode::~gbSound2DNode' : function does not take 1 parameters",
           "line": 2948
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'UIStatic'",
+          "line": 2988
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->Create' must point to class/struct/union",
+          "line": 2988
+        },
+        {
+          "code": "C2660",
+          "msg": "'Stop' : function does not take 1 parameters",
+          "line": 2988
+        },
+        {
+          "code": "C2660",
+          "msg": "'LoadFromConfig' : function does not take 2 parameters",
+          "line": 3051
+        },
+        {
+          "code": "C2143",
+          "msg": "syntax error : missing ';' before '}'",
+          "line": 3111
+        },
+        {
+          "code": "C2440",
+          "msg": "'return' : cannot convert from 'char ** ' to 'unsigned long *'",
+          "line": 3307
+        },
+        {
+          "code": "C2671",
+          "msg": "'LoadAudioFromFile' : static member functions do not have 'this' pointers",
+          "line": 3376
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->CScreenMode' must point to class/struct/union",
+          "line": 3376
+        },
+        {
+          "code": "C2653",
+          "msg": "'CScreenMode' : is not a class or namespace name",
+          "line": 3376
+        },
+        {
+          "code": "C2664",
+          "msg": "'BinkOpen' : cannot convert parameter 1 from 'const char *' to 'void *'",
+          "line": 3421
+        },
+        {
+          "code": "C2664",
+          "msg": "'BinkOpen' : cannot convert parameter 1 from 'int' to 'void *'",
+          "line": 3438
+        },
+        {
+          "code": "C2671",
+          "msg": "'OpenBinkVideo' : static member functions do not have 'this' pointers",
+          "line": 3443
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->CScreenMode' must point to class/struct/union",
+          "line": 3443
+        },
+        {
+          "code": "C2653",
+          "msg": "'CScreenMode' : is not a class or namespace name",
+          "line": 3443
+        },
+        {
+          "code": "C2065",
+          "msg": "'BinkSetVolume' : undeclared identifier",
+          "line": 3446
         }
       ]
     },
@@ -16260,11 +15319,6 @@
         },
         {
           "code": "C2660",
-          "msg": "'RecalcAggregatedStats' : function does not take 2 parameters",
-          "line": 2423
-        },
-        {
-          "code": "C2660",
           "msg": "'ProcessFrame' : function does not take 0 parameters",
           "line": 2498
         },
@@ -16479,9 +15533,14 @@
           "line": 4526
         },
         {
+          "code": "C2660",
+          "msg": "'ProcessInput' : function does not take 1 parameters",
+          "line": 4543
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 4526
+          "line": 4543
         }
       ]
     },
@@ -16859,7 +15918,7 @@
     },
     "pal3/src/UI/EquipUI.cpp": {
       "status": "fail",
-      "error_count": 17,
+      "error_count": 13,
       "errors": [
         {
           "code": "C2661",
@@ -16912,29 +15971,9 @@
           "line": 1927
         },
         {
-          "code": "C2589",
-          "msg": "'this' : illegal token on right side of '::'",
-          "line": 1941
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : '::'",
-          "line": 1941
-        },
-        {
           "code": "C2039",
           "msg": "'CameraCtrl_CreateCameraUI' : is not a member of 'EquipUI'",
           "line": 1942
-        },
-        {
-          "code": "C2589",
-          "msg": "'this' : illegal token on right side of '::'",
-          "line": 1944
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : '::'",
-          "line": 1944
         },
         {
           "code": "C2039",

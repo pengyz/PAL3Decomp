@@ -23,6 +23,8 @@
 - [**compile_regression 读的是缓存 census**](gotcha_compile_regression_reads_cached_census.md) — 它从不重新编译，只读 `data/status/probe_census.json` ⇒ `codegen all` 后直接跑它会用**上一轮**数据报「✅ No regressions」；正确顺序是 codegen → **probe all** → compile_regression → error_classifier → match
 - [**错误 census 不是源码的纯函数**](gotcha_error_census_not_a_pure_function_of_the_tree.md) — C1003 截断 15 个文件（恰 102 条，逐码增减不可测）+ 修掉早期错误会让后期错误"浮现"（CCBStage C2440 5→7 但 L3536/3540 源码逐字未变）⇒ "总错误数/逐码增减"是带噪声的指示器，可信量是 ok 文件数与 L1 多重集；工具 `tools/regression_detector.py` 已剔除截断单元
 - [**可选后缀写在捕获组外 ⇒ 解析分支成死代码**](gotcha_optional_group_suffix_kills_parse_branch.md) — `RET_RE` 的 `h?` 吃掉 h，所有 `retn` 多位立即数按十进制解析，静默污染"显式 this 证据门"的二进制真值（`B-ODDRET` 不发 slots ⇒ 门永久阻塞；`20h`→错 slots；`0Ch`→ValueError 被吞）；pack 的 `err` 字段一直记着现场却无人消费。修法须收窄到"可被证明错"的 29 条，"顺手重评整张 pack"会误伤 54 条 `A-V2`
+- [**上下文无关的替换会破坏已被改写的调用**](gotcha_context_blind_text_substitution_corrupts_rewritten_calls.md) — `Name((int)this)` → `this->Name()` 命中 `obj->Cls::Name((int)this)` 的尾部，拼出`obj->Cls::this->Name()` 畸形代码；**既有 15 处**被 C1003 截断掩盖，只有内容 diff 能发现；修后错误 3497→3305，截断文件 15→11
+- [**裸字节扫描不能当证据源**](gotcha_bare_byte_scan_as_evidence_source.md) — 在字节里搜 `0xC2/0xC3` 找函数尾会把**指令操作数**当函数尾；与指令级真值**分歧 367/3178（11.6%）**，幅度可达 105 个假 slots（`LoadActorModel` 真 1）；改用 `PAL3.exe.asm` 指令级为主源、裸扫描降为回退并上报
 - [**globals.cpp 行序不确定**](gotcha_globals_cpp_nondeterministic_order.md) — 同输入两次生成，2703 行多重集完全相同、顺序不同 ⇒ 它的 md5 永远在变，不能当 A-B-A 字节锚点，也不能用 md5 判「该文件是否被改动」
 - [**codegen 输出路径未锚定 PROJECT_ROOT**](gotcha_codegen_output_path_not_anchored_to_project_root.md) — `emit_cpp` 用 `store.project_root`、`emit_headers` 用 `PIPELINE_ROOT.parent`，而 `pipeline.toml` 的输入路径是绝对的 ⇒ 在 `git worktree` 里跑 codegen 会**先 rmtree 再重建主仓库的 pal3/src**；不要用 worktree 做 A-B-A
 

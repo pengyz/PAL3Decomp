@@ -953,7 +953,15 @@ def _run_inner(code, ctx):
 
     # Hex-Rays (int)this cast artifact: Method((int)this) → this->Method()
     # This is a self-call where Hex-Rays inserted an (int) cast on this.
-    code = re.sub(r'\b(\w+)\(\(int\)this\)', r'this->\1()', code)
+    #
+    # FIX(2026-09-18)：`\b(\w+)\(` 也会命中**限定/成员调用之后**的形态，于是
+    #   obj->Cls::Method((int)this)   →   obj->Cls::this->Method()   (畸形，且丢实参)
+    #   ::ShowWindow((int)this)       →   ::this->ShowWindow()       (畸形)
+    # 实测改前生成树里这类畸形共 **15 处**（`::this->Xxx` / `->this->ShowWindow`）。
+    # 本替换的语义只适用**未限定**的自调用 `Method((int)this)`，故加负向后顾排除
+    # `\w` `:` `.` `>`：限定形态交给 ast_transform 的显式-this 分支处理（它会给出
+    # `(obj)->Cls::Method(rest)` 或实施静态调用，都比畸形文本可读且报错准确）。
+    code = re.sub(r'(?<![\w:.>])(\w+)\(\(int\)this\)', r'this->\1()', code)
 
     # !this null check → (this == NULL)
     code = re.sub(r'\b!this\b', '(this == NULL)', code)
