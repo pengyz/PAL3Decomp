@@ -297,9 +297,10 @@ def main(argv=None):
               % rep['target_ctor_dtor_methods'])
     sc = rep.get('shift_candidates') or {}
     if sc:
-        print('   需平移成员（多口径并列，供对齐 ✓）: ge_old_size=%d · derived_only=%d · after_embedding=%d · unique_positions=%d'
-              % (sc['ge_old_size'], sc['derived_only_ge_old_size'], sc['after_embedding'],
-                 sc['unique_positions_ge_old_size']))
+        # 键名与实际 _shift_calibers 返回一致 ✓（此前引用了已删除的 after_embedding ⇒ 默认输出 KeyError ✗）
+        print('   需平移成员：**shift_member_keys=%s（语义正确 ✓）** · scope_classes=%s · r960_caliber=%s · ge_old_size=%s · derived_only=%s'
+              % (sc.get('shift_member_keys'), sc.get('scope_classes'), sc.get('r960_caliber'),
+                 sc.get('ge_old_size'), sc.get('derived_only_ge_old_size')))
     if rep['historical_observation']:
         print('历史观测（非预测能力）：%s' % rep['historical_observation'])
     return 0
