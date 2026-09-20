@@ -87,3 +87,62 @@
 ⇒ 这正说明缺的是**通路**：**subagent 报告 → status 文档 → knowledge 条目** 三步里，
 我只做了第一步的"读"，没有落盘 ✗（本文件是补救 ✓，但仍是**摘要**而非全文 ✗）
 ⇒ **建议**：以后派 subagent 做审计时，**要求它把报告写入指定 tracked 路径** ✓（而不是只发消息 ✓）
+
+---
+
+# 附加：第三份复核（"两层验证"架构方案）的**决定性更正**（2026-09-20）
+
+> 来源：用户发起的"两层验证"方案对抗性复核（只读子 agent，含 3 个已确认无写盘的只读工具与 asm 实读）。
+> **它推翻了我（主 agent）的一处关键证据，并纠正了框架** ✓
+
+## A. 我的断言被**证伪**的
+| 我的断言 | 裁定 | 复核证据 |
+|---|---|---|
+| P1 "`Scene` 的 1100000 是**几何比值**检查发现的" | **证据错** ✗（结论"存活 113 天"对 ✓） | `tools/audit_layout.py:70-71` 阈值 3×/50×，而 `git show 32326e886^` 的 `Scene.json` 前缀比值 = 1,100,000/1,099,748 = **1.0 ⇒ 永不触发** ✗（该函数 docstring `:451-461` **自己就写明这个盲区**）；真值来自 **asm**（BSS 跨度 `0x16932C = 493156×3`），而**线索来自一条编译错误** C2664 ⇒ **编译层是"触发者"**，迟钝的是**所有以 `binary_size` 为界的检查** ✗ |
+| P2 自洽≠正确 | **成立且远比我说得严重** ✓ | pre-fix `Scene.json`：14 成员、递增、**0 重叠**、末端 1,099,748、余量仅 252 ⇒ 内部完全自洽却 **2.231× 偏大** ✓；更强的是：**`check_annotations.py` 现在报 `0 errors, 13 warnings — PASS`，而全库 881 个 struct 里有 91 个 `binary_size > 3× 最大成员末端`** ✗（9 个精确 = 2×，即 `safe_size = max_offset*2` 指纹 ✗）⇒ **现有闸的判别力 ≈ 0** ✓ 仓库自己的 `pipeline/decomp_quality.py:105-112` 原文："this check is DILUTED… **zero power**… needs an **IDB-independent size source**" ✓ |
+| P4 "`audit_structural_attribution` 应与 asm `[reg+imm]` 一致" | **部分成立，其中一条是重复劳动** ✗ | ✓ check1 同源恒真；✓ 该工具的偏移取自 decomp `this+N`（报 2571，asm 真值 `[ebp+505Ch]`=20572，**8× 差**）；**但** `tools/attribution_offset_match.py:8-13` **早已**用 asm `[reg+imm]` 并**就举了 CIniFile×8 这个例子** ✓，实跑 `--func 0x4EC700` 得正确字节偏移 ✓ —— 它**只缺一个 `--scan`** ✗；另 `scan_misattribution` 的分子是**真二进制**，弱的是**参照物**（取注解 `binary_size` ⇒ 循环 ✗）|
+| P5 杠杆选择 | **杠杆选错** ✗ | "一致性门禁"这条杠杆**已被占满且有反证**（0 errors PASS 而 91 个尺寸污染 ✗）；"修偏移来源"**已有实现** ✗ ⇒ **唯一真正缺的是"独立于注解的尺寸/归属证据源"** ✓ |
+
+## B. 复核者发现的、我**没提到**的两个窗口
+1. **`tools/codegen_invariants.py` 完全零调用** ✗（grep 无调用者；`audit_layout` 只被 `test_smoke.py:72` 断言"能跑"；`--strict-geometry` 默认关 ✗）⇒ 一个**秒级、可判别**的门禁**根本没接线** ✓
+2. **`alloc_sizeof.json` 已有 17 条 ctor-anchored 尺寸 MISMATCH** ✗（Camera 544 vs **12956**、ScreenEffectNode 1060 vs 220、UIListBox 1760 vs 1208、JusticeBookUI 56192 vs 11404…），而 `_land_sizes.py` **只硬编码落地了 8 条** ⇒ **8 个类仍未落地** ✓
+
+## C. **框架的准确表述**（原"两个层面"需修正）
+C++ 结构体布局**由注解直接生成**（`emit_headers.py` 发 `_gap_*`/`_tail_*`，`:1780/:1895/:1995`），Hex-Rays 缺口（stage1–5）**只补语句、从不补布局** ✓；且 `export_full.py` 的 **8 处 `[t4-DECLARED-EXCEPTION]`** 直读注解 ⇒ `ida_structs.json` 是"**注解的复制**"（761/761 ✓）——**这正是 check1 同源恒真的根** ✓
+**⇒ 准确模型**：**一个声明源（注解）+ 两个消费者（IDB→Hex-Rays；codegen→C++）+ 一个裁判（exe/asm）** ✓
+**⇒ 错误有三类**：**(a) 注解主张错**；**(b) 注解正确但通路错**（C2208 型）；**(c) codegen 改写错** ✓
+⚠️ **其中 (b) 对任何"层 1 门禁"天生不可见** ✗✓ —— **这是原方案最大的未言明盲区** ✓
+（复核还列举：`gotcha_codegen_multi_inheritance_anon_member` 明载"注解数据本身没错"，是 apply 写入侧未调 `set_baseclass()` + export 读取侧用 `umoffset==0` 猜基类 ⇒ **经 globals.h 炸穿全部 205 个 .cpp** ✗；另有 include 图、vfptr 隐式 +4 位移、`_variants` 致 −20 漂移、**归属双源 27 条**）
+
+## D. "问题都压到编译层"**不成立** ✗
+编译前**已有**：`check_annotations`（仅内部一致性）、`audit_layout` 的 1b+2/3/4、`codegen_invariants`（秒级、可判别）、`alloc_sizeof`/`alloc_point_size`（真·二进制）、`mi_base_offsets`（真·二进制）、`attribution_offset_match`（asm）、`audit_vftable_offset0` ✓
+**真问题三件**：**(i) 接线缺失** ✗；**(ii) 参照物用错**（4–5 个消费点全以**被污染的 `binary_size`** 为界；A 级纪要 **AT-200**（`_cleanup_scan_attribution.json`）已判"binary_size 被撑大/占位值污染，使 attribution/misattribution 门禁**全部失效**：52 个 struct" ✗）；**(iii) 缺独立尺寸源** ✗
+
+## E. "函数归属"**不能**用用户提的判据独立验证 ✗
+① **MI/子对象**：本文件 §1 的 CCBRoleState 就是实例（`this` 是基类子对象 ⇒ `this->m_x` 解析不到 ⇒ 净 +6 ✗，两次尝试全回退 ✓）；② **δ 不可换算**：实测 **179 个有基类的类只有 11 个带 base offset（94% 缺）** ✗，`mi_base_offsets.py` 自述该缺口 = 741 错误 / 38 文件 / 23% ✓；③ **参照物污染** ✗；④ **函数名不可信**（`gotcha_attribution_signal_limits`：`?GetEditorTaskDescription@CEffShock@@` 实为 ctor、`??0CEffShock` 实为工厂 ✗）✓
+**⇒ 更强判据（用本仓既有积木）**：vtable 写表签名 ∧ `operator new(N)`+ctor（alloc_sizeof）∧ **`??_L/??_M` 元素尺寸字面量**（133 站点；实读 `PAL3.exe.asm:11956-11963` 的 `push 0x2200; push 5; call ??_L` ⇒ **sizeof(Role)=8704**，正是 8928 的反证 ✓）∧ ctor vfptr 安装次序 ⇒ **偏移越界只能作"侦察信号"，不能作结论** ✓
+
+## F. 成本（实测，非估）
+整轮 ≈ **11–20 min**（git 时间戳实测；文档化"~15 分钟" ✓）；分解：**export 是重活**（"数分钟到十几分钟" ✗）+ codegen 83s + probe 93s + match 131s ≈ 5 min；`probe s2` = 21s ✓
+**⇒ 挂在 `cli.py check`（apply/export **之前**）才省得多** ✓；只挪到 codegen 前只省 ~4 min ✗；**真正收益是避免用被污染的 `binary_size` 定修正方向** ✓
+**拦得住**：Role/Scene 通胀（**提前 113 天** ✓）、AT-200 的 52 个、17 条 MISMATCH、27 条 signature/JSON 矛盾、`CCBProtectWindow` 176 vs 2632 ✓ **拦不住**：C2208 型、include 图、C2620、vtable 深水区 ✗
+
+## G. 复核者给出的**应做清单（ROI 序）** —— 与我原方案不同 ✓
+1. **接线 `codegen_invariants.py`（含 check C）到 check/codegen** ✓ 分钟级零新逻辑；拦 27 条 signature/JSON 类名矛盾、`__vftable` 残留、`sub_` 形参不一致（check C 先 WARN+白名单 ✓）
+2. **新增 `??_L/??_M` 元素尺寸审计器** ✓（133 站点；取 ptr/size/count/ctor/dtor，**用 ctor 指针锚定元素类**再比对 `binary_size`）—— 拦 Role 8928→8704 及全部内嵌数组元素尺寸 ✓⚠️ 风险：**弱判据无效**（8704 同时匹配 `RoleSystem` ✗）⇒ **必须 ctor 锚**；而 **ctor 归属本身可能错**（`sub_411CA0` 被注成 `~PalScript` ✗）
+3. **把 `alloc_sizeof` 的 17 条 MISMATCH 做成显式台账门禁** ✓（替代 `_land_sizes.py` 的 8 条硬编码）—— 拦 Camera 12956 vs 544 等 ✓⚠️ **不可自动落地**（混有 base-subobject/phantom：UIStatic 248 vs 152、CCBUI 116 与 2632 ✗）
+4. **`binary_size` 证据分级 + placeholder 标记**（2× 指纹 / 无独立源）⇒ 让所有 offsets-vs-size 判据在 placeholder 类上**拒绝出结论** ✓（消费点：`decomp_quality.py:102`、`audit_layout`、`check_annotations:600`、`scan_misattribution:142`、`audit_structural_attribution`）
+5. **`attribution_offset_match` 加 `--scan`；作废 `_structural_contradictions.json`** 并把引用改指 asm 重算产物 ✓（含 `_attribution_evidence_20260919.md`/`_size_evidence_20260919.md` 的 max_offset 数字，3/20 已过期 ✓）
+6. 把 1–5 **挂到 `cli.py check`（apply/export 之前）**，并让 `apply_annotation_batch.py --run-pipeline` 也过这道门 ✓（审计已指出它绕过钩子且跳过 L1 ✗）
+7. （可选）全局相邻地址/BSS 跨度上界：`binary_size(T) ≤ next_global_addr − this_addr` ✓
+
+## H. **不应该做**（复核明确）
+❌ 再造"一致性/重叠/越界"门禁（**已存在，0 errors PASS 而 91 个尺寸污染，边际收益 ≈0** ✓）
+❌ 把几何比值当尺寸真值（**1.0 永不触发**；14 条 HIGH 已被裁定为"成员缺失、尺寸可能正确" ✓）
+❌ 只修 `audit_structural_attribution` 就算完 ✗ ❌ 把"前置省 15 分钟"当主要动机 ✗（省的是**跑错方向那一轮**，不是每轮 ✓）
+❌ 用 `check`/`audit_layout` 的 PASS 当"布局正确"证据 ✗ ❌ 未建锚点前批量改 `binary_size` ✗
+❌ 继续引用 `_structural_contradictions.json` 及派生文档的数字 ✗
+⚠️ **复核对我漏掉的风险的两条点名**：① **层 1 门禁对"注解正确但通路错"（C2208，炸穿 205 个 .cpp）完全无判别力** ✗；② **层 1 自身的"归属双源矛盾（27 条）"无人消费** ✗ —— 这比"能否从二进制验证"**更便宜也更该先修** ✓
+
+## I. 复核者主动交代的**自我证伪**（值得学习）
+它最初怀疑 `CIniFile` 是"array-of-self ⇒ 假阳性"，**读 asm 后推翻**：`add edi,4` 写 4 字节值（`gbVFile*[100]` 形态），0x4ED0 属一个 ~20.6KB 对象 ⇒ **该条是真阳性** ✓（与仓库既有裁定一致 ✓）⇒ 维度错的方向是**假阴性**（k·N>N 只会漏报 ✓）；但该工具 docstring 那句"可证明…必然不属于该类"**仍不成立**（无法区分"尺寸错"与"归属错"，必须靠第二判据消歧 ✓）
