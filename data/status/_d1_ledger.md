@@ -3,7 +3,7 @@
 | 任务 | 状态 | 证据 |
 |---|---|---|
 | **T1** advisory 挂到写盘路径 | **完成（带条件通过）**（评审者 `49c10b28`）（实现子代理 `cd5dfbbe` 已完成并提交）| commit **`18af81298`**（恰 2 文件 +63 行 ✓）；编排者**独立核实**：测试 **3/3 PASS** ✓、`check` **exit 0** ✓、helper **无 `sys.exit`** ✓、apply/export 各 1 次 ✓、tracked clean ✓、**无符号链接残留** ✓；评审者 `49c10b28` running |
-| T2 `??_L/??_M` 抽取器 | **完成 ✓（编排者独立复验通过）**（commit `2541ada27`）| 目标：`tools/audit_element_sizes.py` + 测试；**预检**：`original/PAL3.exe.asm` 存在(22.8MB) ✓ 且 `call ??_L@` 计数 **=133** ✓（编排者独立复现三路复核的数字 ✓）|
+| T2 `??_L/??_M` 抽取器 | **完成（带条件通过）**：`2541ada27` + 3 条条件修复中（子代理 `74dc8d70`）| 目标：`tools/audit_element_sizes.py` + 测试；**预检**：`original/PAL3.exe.asm` 存在(22.8MB) ✓ 且 `call ??_L@` 计数 **=133** ✓（编排者独立复现三路复核的数字 ✓）|
 | T3 133 站点核对 | 未开始 | — |
 | T4 三 fixture 裁定 | 未开始 | — |
 | T5 Spike 报告 | 未开始 | — |
@@ -141,3 +141,33 @@ monkeypatch `_check_ida`/`_run_ida`/`subprocess.run`，advisory rc=1 时 apply/e
 `/home/peng/workspace/aide/benchmarks/.../pytest-dev__pytest-7432` 的 dev 构建与 Python 3.10 `ast` 不兼容 ✓
 ⇒ **pytest 的 `monkeypatch` fixture 在本机不可用** ✗；新测试自带 `_MiniPatch` 兜底 + `__main__` runner ✓
 （与仓内既有测试文件的兜底约定一致 ✓）。**⇒ 后续写测试应沿用"自带 runner + 不依赖 pytest fixture"的约定** ✓。
+
+## T2 评审（`6069d9bf`）：**带条件通过** ✓ —— 且它抓到 2 个 major（其中 1 个已被 T3 固化 ✗）
+**评审者的独立证据（我采信，因其可复核 ✓）**：
+- **D1 取序**：按 asm 每行的**形参类型尾注**（`; void *` / `; unsigned int` / `; int` / `; void (__thiscall *)(void *)`）
+  对**全部 466 站点 × 5/4 字段逐位核对 ⇒ 0 处不符** ✓✓（**比我的 fixture 抽查强得多** ✓）；
+  反证：计划原代码跑其自身 fixture 得 `size='sub_411900'`、`ctor='0x2200'` ⇒ 其自测**双失败** ✓
+- **D3 数字**：尾注行 **精确 16601** ✓；且 `split(';',1)[0]` **安全**（push 行含单引号 = 0 行 ✓）
+- **D3 加码**：计划代码在真实 asm 上不是"133 全 incomplete"，而是 **ehl 90 incomplete + 43 条"完整但值全错"** ✗；
+  且在 **line 8679 `push offset aWidth`** 处直接 **`ValueError` 崩溃** ✗ ⇒ 实现的 `_HEX_LIT` 顺带修了一个**第 6 处崩溃级 bug**（实现者未列入自述 ✓）
+- **D4**：放宽正则**不引入假阳性** ✓（5 项结构检验：窗口内 `call`/`pop`/`add esp`/`sub esp` = **0/466** ✓、行集合完全一致 ✓、尾注 0 不符 ✓）；且窄版另有 **10 个站点元组错位** ✗（比"6 个 incomplete"更危险 ✓）
+
+### 两个 major（**必须在 T4/T5 消费前修** ✗）
+1. **[major-1] `site` 归属错 213/466（45.7%，全 ehm）** ✗ —— 那些站点在 **SEH unwind funclet**
+   （`; START OF FUNCTION CHUNK FOR sub_XXXX`，无自身 `proc near`）里 ⇒ 被挂到**最后一个 proc 名 `sub_55D67E`** ✗；
+   **已被 T3 固化进 tracked 产物**（`327416f10` ✗）。处方：新增 `_CHUNK` 正则并在循环里 `cur = c.group(1); continue` ✓
+   （评审者实测：213 个名字全部修正为真实宿主 ✓，其余字段与 `ehl=133/ehm=333/不完整=0` 不变 ✓）
+2. **[major-2] `ptr/ctor/dtor` 可为 `int`** ✗（`push 411900h`）⇒ T4 的 `a0.lower()` 会 **AttributeError**（已用合成 fixture 复现 ✗）；
+   另 `count` 有 **2/466** 行是 str ✗（违反自身 docstring 契约）。处方：出口统一 `size/count:int|None`、`ptr/ctor/dtor:str|None` ✓
+3. **[测试代表性]** 现有 3 用例 **0 个覆盖真实形态** ✗（fixture 的 push **没有 `; comment`** ← 正是计划翻车的坑 ✗）；
+   评审者另写 7 个用例（A–E **PASS** ✓、**F/G FAIL** ✗ 正好暴露 major-2 的 count 分支与 major-1 的归属 ✓）⇒ 并入 A–E、F/G 修后转正 ✓
+
+## ⚠️ 顺序风险与处置（第 9 轮）
+- **T4 实现子代理 `ade47587` 正在消费已固化的（错误归属的）站点产物** ✗；我已另派修复子代理 `74dc8d70`
+  修 major-1/2 + 并入 A–G + **重生成** `data/status/element_size_sites.json` ✓（两者**文件集不相交** ✓，
+  唯一交集是该产物=**T4 的输入** ✗）。
+- **处置（R7 裁决）**：T4 汇报后，**由我重跑一次裁定器**（`element_size_adjudicate.py` 是**确定性**的 ✓）
+  并重新提交其产物 ✓ ⇒ 保证 T4 输出基于**修正后**的输入 ✓；若 T4 尚未读取或已读取，结果都可被这次重跑覆盖 ✓。
+  *若错的代价*：一次重跑（秒级）+ 一次 amend 式提交 ✓，可撤销 ✓。
+- **R8 裁决**：T5 报告必须**显式记录**已知漏采（`ptr` 仅 2/133 为绝对地址 ✓、dtor 有 11+22 条为改编符号 ✓）
+  与**本轮的 213 条归属错误教训**（"没有 `proc near` 的 funclet 也要归属宿主" ✓）。
