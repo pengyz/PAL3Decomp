@@ -430,21 +430,19 @@ def _run_invariants_advisory():
 
 
 def cmd_check():
-    """Run check_annotations.py（并**advisory** 地跑 codegen_invariants）。"""
+    """Run check_annotations.py（并 advisory 地跑 codegen_invariants）。
+
+    缘起（2026-09-20 三路复核"先做一小步"#1）：该工具的默认检查集是 A/B/D，而**当前就已失败**
+    （实测 A=132/B=56/D=10 全 exit 1）⇒ 直接接会**立刻全红**、把整条工作流堵住 ✗。
+    advisory 只报告、恒 exit 0 ⇒ 先"看得见计数"，存量清零后去掉 `--advisory` 即可升为硬失败 ✓
+    （"逐闸毕业生效"）。
+
+    2026-09-21 F1（评审后续项）：此处原先有一份**内联副本**（由 f74edaa7b 引入），与
+    `_run_invariants_advisory()` 是同一逻辑两份 ⇒ 收敛为一处调用（DRY）。
+    """
     script = os.path.join(_PIPELINE_DIR, 'check_annotations.py')
     result = subprocess.run([sys.executable, script])
-    # 2026-09-20 三路复核"先做一小步"#1：把 `tools/codegen_invariants.py` **以 advisory 方式**接进来。
-    # 为什么不是直接接：它的默认检查集是 A/B/D，而**当前就已失败**（实测 A=132/B=56/D=10 全 exit 1 ✗）
-    # ⇒ 直接接会**立刻全红**，把整条工作流堵住 ✗。advisory 只报告、恒 exit 0 ⇒ 先"看得见计数"，
-    # 存量清零后去掉 `--advisory` 即可升为硬失败 ✓（"逐闸毕业生效"）。
-    _inv = os.path.join(_PROJECT_DIR, 'tools', 'codegen_invariants.py')
-    if os.path.exists(_inv):
-        print()
-        print("[Invariants] advisory 模式（只报告计数，不影响本命令退出码）...")
-        _r = subprocess.run([sys.executable, _inv, '--advisory'])
-        if _r.returncode != 0:
-            print("[WARN] codegen_invariants 在 advisory 模式下仍非零退出（%d）—— 不影响本命令结果，"
-                  "但说明该工具行为与预期不符 ✓" % _r.returncode)
+    _run_invariants_advisory()   # 返回值刻意丢弃：advisory 不得改变 check 退出码
     sys.exit(result.returncode)
 
 
