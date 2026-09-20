@@ -377,3 +377,22 @@ B `--force-overwrite` ⇒ exit 0、允许覆盖（graded=144）✓；随后 `git
 **遗留（未做）**：offset0 `_vftable`（挡住 getter 用 `Scene*` 正确类型；且 ctor 不装 vptr ⇒ 该成员**很可能无据**）；
 `Role` 的 ctor/dtor 对里 `sub_411CA0` 被注成 `~PalScript` ✗、`+0xE0` 元素的 ctor `sub_4236D0` 被注成
 `BINK::Reset` ✗（归属存疑）；`+0x784E4` 子对象类型未知 ⇒ 未注解。
+
+
+## 目标外续作 2：修复 **include 依赖分析缺口**（用户选 A）
+**背景**：上一批把 getter 返回类型改成正确的 `Scene*` 后，`UIAnimateCtrlEX.cpp` 多出 2 个错误
+（`C2027 use of undefined type 'Scene'` + `C2227 left of '->m_roles' ...`）。归因显示：该 .cpp 的
+include 列表**没有 `Scene.h`** ⇒ 返回类型是 `Scene*` 时，`->m_roles` 需要**完整定义** ✗。
+**根因**：`pipeline/gen/stages/emit_cpp.py::_detect_needed_includes()` 原有 **4 条**启发式
+（`X::` 静态调用 / `(X *)` 转换 / **类名字面量** / `globals.h` 前向声明解析）**都漏掉**
+"**函数调用结果被解引用**"这一形态 —— 而 `Scene` 在该代码里**不出现字面量**（只出现
+`UISceneUpdate()->m_roles`）✗
+**修复（新增第 5 条启发式）**：对出现在本单元的**函数名**，若其形态是"调用后立即 `->`/`.`/`[`"，
+则从 `store.free_func_sigs`/`method_sigs` 的**签名**解析返回类型，是已知类即 include 其头 ✓
+（性能：先用**子串**预筛函数名，再做正则 ⇒ 每单元只跑几条 ✓）
+**验证（同批一次管线 codegen→probe→match）**：
+`UIAnimateCtrlEX.cpp:10` 出现 **`#include "Scene/Scene.h"`** ✓；**总错误 2152 → 2150** ✓
+（那 2 个 C2027/C2227 消失，该单元 7→5 errors）；`probe all` **EXIT=0**；`新失败 0`；
+**L1 previous 34 -> current 34** ✓；`match` EXIT=0 ✓
+**⇒ 两全**：上一批的**正确注解**（`Scene*` + 移除幻影 `_vftable`）保留，且**总错误不再增加** ✓
+**副产物**：这个缺口是**通用**的 —— 任何"`f()->member`"形态的单元此前都会漏 include ✓

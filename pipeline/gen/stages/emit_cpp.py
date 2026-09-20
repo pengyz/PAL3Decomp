@@ -255,6 +255,37 @@ def _detect_needed_includes(cls_name, methods):
         if c != cls_name and c in known_headers and c not in needed_classes:
             needed_classes.add(c)
 
+    # 2026-09-20 修复（用户指派，A 项）：**函数调用结果的解引用**同样需要完整定义。
+    # 形态：`fn(...)->` / `fn()->` / `fn(...)[` —— 即"调用后立即成员访问/取下标"。
+    # 返回类型是**已知类**时，必须 include 该类的头；否则生成 `X->member` 而只有前向声明
+    # ⇒ `C2027 use of undefined type` + `C2227 left of '->m' must point to class`。
+    #
+    # 根因案例：`UIAnimateCtrlEX.cpp` 的 `(Role *)&UISceneUpdate()->m_roles[50]`
+    # —— 需要完整定义的是 **Scene**，但 `Scene` 在代码里**不出现字面量**，
+    # 故原有 4 条启发式（`X::` / `(X *)` / 类名字面量 / globals.h 前向声明）全部漏掉它。
+    #
+    # 性能：先用**子串**预筛（绝大多数函数名不会出现在本单元），再做正则 ⇒ 每单元只跑几条。
+    _sigs = {}
+    for _src in (getattr(store, 'free_func_sigs', None) or {},
+                 getattr(store, 'method_sigs', None) or {}):
+        try:
+            _sigs.update(_src)
+        except Exception:
+            pass
+    _DEREF_AFTER_CALL = r'\b%s\s*\([^;\n]{0,240}?\)\s*(?:->|\.|\[)'
+    for _fn, _sig in _sigs.items():
+        if not _fn or _fn == cls_name or _fn not in all_code_preview:
+            continue
+        if not re.search(_DEREF_AFTER_CALL % re.escape(_fn), all_code_preview):
+            continue
+        _rm = re.match(r'\s*(?:struct\s+|class\s+|enum\s+|union\s+)?([A-Za-z_]\w*)\s*(\**)',
+                       str(_sig))
+        if not _rm:
+            continue
+        _rt = _rm.group(1)
+        if _rt and _rt != cls_name and _rt in known_headers:
+            needed_classes.add(_rt)
+
     # Resolve indirect dependencies: check EACH header we're about to include
     # for forward-declared types. If a type is forward-declared in a header
     # we include AND that type name appears in the code, include its header too.
