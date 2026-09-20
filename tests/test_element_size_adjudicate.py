@@ -61,8 +61,13 @@ def test_role_size_evidenced_from_literal_and_raw_layer_stays_pure():
     assert row['size_unique'] is True
     oc = row['ownership_candidate']
     assert 'Role' in oc['candidate_classes']
-    assert oc['verified_class'] == 'Role'
-    assert oc['state'] == 'verified'
+    # 2026-09-20 P0 契约变更：verified 是循环论证 ⇒ 降级为 annotation_self_consistent
+    # 且不得再产出 verified_class（翻转旧断言，而非保留'现状'）
+    assert oc['verified_class'] is None
+    assert oc['state'] == 'annotation_self_consistent'
+    assert row['requires_second_criterion'] is True
+    # 本用例的 ctor/dtor 主张与 size **自洽** ⇒ contradiction 必须为 False
+    assert row['contradiction'] is False
     # 归属层整体是 lowered（注解派生）证据，永不冒充 class 级 A 证据
     assert oc['evidence_layer'] == 'lowered'
     assert oc['a_evidence'] is False
@@ -83,8 +88,12 @@ def test_role_size_not_unique_yields_ambiguous_and_shared_dtor_claim():
     assert row['size_unique'] is False
     oc = row['ownership_candidate']
     assert oc['candidate_classes'] == ['PalScript', 'Role', 'ScriptSystem']
-    assert oc['verified_class'] is None                     # ctor↔dtor 各指一个类 ⇒ 不可 verified
-    assert oc['state'] == 'ambiguous'
+    assert oc['verified_class'] is None                     # 已无 verified 概念（M1：循环论证）
+    # 2026-09-20 P0 契约变更（M1/M2）：dtor 的 PalScript(2176) 主张与 8704 字面量**不自洽**
+    # ⇒ 现在**直接判 conflict**（旧契约把它降级为 ambiguous ⇒ 属漏报 ✗，已修）
+    assert oc['state'] == 'conflict'
+    assert oc['state'] != 'ambiguous'  # 旧契约值，明确排除
+    assert row['contradiction'] is True
     # dtor 的 PalScript 主张与 8704 字面量不自洽 ⇒ 必须留下显式痕迹
     dtor = [c for c in oc['candidates'] if c['role'] == 'dtor'][0]
     assert dtor['class'] == 'PalScript' and dtor['size_consistent'] is False
@@ -127,7 +136,7 @@ def test_real_artifact_rows_complete_with_registers_and_mangled_symbols():
         assert set(r['raw_site']) == RAW_KEYS
         assert r['size_state'] in ('evidenced', 'unestablished')
         oc = r['ownership_candidate']
-        assert oc['state'] in ('verified', 'ambiguous', 'conflict', 'candidate', 'unestablished')
+        assert oc['state'] in ('annotation_self_consistent', 'ambiguous', 'conflict', 'candidate', 'unestablished')
         assert oc['evidence_layer'] == 'lowered' and oc['a_evidence'] is False
         assert isinstance(oc['candidates'], list)
         assert isinstance(oc['unresolved_operands'], dict)

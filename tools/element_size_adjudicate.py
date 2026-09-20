@@ -295,14 +295,22 @@ def adjudicate(sites, structs, retracted=None):
             state, verified = 'unestablished', None
         elif dual_refs:
             state, verified = 'conflict', None
+        elif inconsistent:
+            # M2（2026-09-20 P0）：最直接的自相矛盾（注解主张的类 size 与元素字面量不符）
+            # 原先要求 size_classes 非空才判 conflict，导致 26 行漏报（19 candidate + 7 ambiguous）。
+            # 现改为：只要 ctor/dtor 主张与 size 字面量不自洽即为 conflict（reasons 已含明细）。
+            state, verified = 'conflict', None
         elif claimed_classes and size_classes and not (set(claimed_classes) & set(size_classes)):
             state, verified = 'conflict', None
         elif len(size_classes) > 1 or len(claimed_classes) > 1:
             state, verified = 'ambiguous', None
         elif (len(claimed_classes) == 1 and size_classes == claimed_classes
               and not unresolved):
-            state, verified = 'verified', claimed_classes[0]
-            notes.append('size 与 ctor/dtor 归属互证（候选层判定，非 A 证据）')
+            # M1（2026-09-20 P0）：原 verified 是循环论证（比较的两边都来自注解）⇒ 降级为
+            # annotation_self_consistent，且不再产出 verified_class（消费前须取第二判据）。
+            state, verified = 'annotation_self_consistent', None
+            notes.append('仅注解内部自洽（非独立证据）——不得据此认定尺寸正确；'
+                         '消费前必须取得第二判据（requires_second_criterion）')
         else:
             state, verified = 'candidate', None
         assert state != 'conflict' or reasons, 'conflict 必须给出可复算的理由（可审计性）'
@@ -312,6 +320,8 @@ def adjudicate(sites, structs, retracted=None):
             'size_state': 'evidenced' if isinstance(size, int) else 'unestablished',
             'size_matches_classes': size_classes,
             'size_unique': len(size_classes) == 1,
+            'requires_second_criterion': state in ('annotation_self_consistent', 'candidate', 'ambiguous'),
+            'contradiction': bool(inconsistent),
             'ownership_candidate': {
                 'state': state,
                 'verified_class': verified,
