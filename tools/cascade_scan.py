@@ -49,6 +49,34 @@ def _bases(d):
     return names, mi_names
 
 
+def _children_map(structs):
+    """父类 -> 直接子类列表（含 base_class 的 str/list 与 bases 的 name）。"""
+    kids = {}
+    for name, sd in structs.items():
+        names, mi = _bases(sd)
+        for b in set(names) | set(mi):
+            kids.setdefault(b, []).append(name)
+    return kids
+
+
+def _descendants(target, structs):
+    """**递归**后代（BFS）：只走真实的父子边，绝不扫全库。
+
+    为什么必须递归（评审 e0ea83d9 查出的正确性 bug）：`UIStatic` 实为 5 个派生类 ——
+    漏掉 `UIStaticEXA`（`base_class=[UIStaticEX]`）会让"只改 4 个直接派生"的落地仍被 apply 越界拒绝 ✗。
+    """
+    kids = _children_map(structs)
+    out, seen, frontier = [], set(), list(kids.get(target, []))
+    while frontier:
+        n = frontier.pop(0)
+        if n in seen:
+            continue
+        seen.add(n)
+        out.append(n)
+        frontier.extend(kids.get(n, []))
+    return sorted(out)
+
+
 def _ctor_dtor_methods(d):
     nm = d.get('name')
     hits = []
@@ -66,14 +94,19 @@ def scan(target, new_size, structs):
     old_size = d.get('binary_size')
     delta = (new_size - old_size) if isinstance(old_size, int) and isinstance(new_size, int) else None
 
-    # ① SI 派生（直接）
+    # ① SI 派生（**递归**）
     derived = []
-    for name, sd in structs.items():
+    for name in _descendants(target, structs):
+        sd = structs[name]
         names, mi = _bases(sd)
-        if target in names or target in mi:
+        if True:
             base_size = sd.get('base_size')
             own = sd.get('binary_size')
-            if mi and target in mi:
+            if len(names) + len(mi) > 1:
+                # MI 护栏（评审 e0ea83d9）：只要声明了多个基类就降级 —— 原实现会因 base_size
+                # 恰好等于某个基类尺寸而误报 mechanical ✗（10 个 MI 类今天纯属运气才是 proposal）
+                state, why = 'unresolved_mi', '多基类声明（%d 个）⇒ 不自动推断' % (len(names) + len(mi))
+            elif mi and target in mi:
                 state, why = 'unresolved_mi', '多继承边（bases 偏移完整率低）⇒ 不自动推断'
             elif not isinstance(base_size, int):
                 state, why = 'unresolved', '派生类未声明 base_size ⇒ 无法机械推导平移'
@@ -94,11 +127,17 @@ def scan(target, new_size, structs):
             t = m.get('type')
             if not isinstance(t, str):
                 continue
+            elems = 1
             mt = _ARR.match(t)
+            if mt:
+                for dim in re.findall(r'\[(\d+)\]', t):
+                    elems *= int(dim)      # 元素连乘（评审 V2/E1：站点口径会低估 2–7× ✗）
             if mt and mt.group(1) == target:
-                arrays.append({'holder': holder, 'offset': off, 'name': m.get('name'), 'type': t})
+                arrays.append({'holder': holder, 'offset': off, 'name': m.get('name'),
+                               'type': t, 'elements': elems})
             elif t == target:
-                byvalue.append({'holder': holder, 'offset': off, 'name': m.get('name')})
+                byvalue.append({'holder': holder, 'offset': off, 'name': m.get('name'),
+                                'elements': elems})
     # ④ union reverse（泛化 check_union_member_triviality：找"按值变体是目标类"的 union）
     unions = []
     for holder, hd in structs.items():
@@ -121,8 +160,14 @@ def scan(target, new_size, structs):
         'union_byvalue_refs': unions,
         'target_ctor_dtor_methods': cdtor,
         'union_landmine': bool(unions) and bool(cdtor),
-        'counts': {'derived': len(derived), 'byvalue': len(byvalue),
-                   'arrays': len(arrays), 'unions': len(unions)},
+        'counts': {
+            'derived': len(derived),
+            'byvalue': len(byvalue), 'arrays': len(arrays), 'unions': len(unions),
+            'sites': len(byvalue) + len(arrays),
+            'holders': len({x['holder'] for x in byvalue} | {x['holder'] for x in arrays}),
+            'elements': sum(x['elements'] for x in byvalue) + sum(x['elements'] for x in arrays),
+            'bytes_if_delta': (sum(x['elements'] for x in byvalue) + sum(x['elements'] for x in arrays)) * (delta or 0),
+        },
         # 刻意区分：扫描器**能估计**的影响面 vs **历史观测**（不得把历史数伪装成预测 ✗）
         'estimated_exposed_tus': None,
         'historical_observation': {

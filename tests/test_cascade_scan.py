@@ -9,15 +9,26 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'
 import cascade_scan as cs
 
 
-def test_uistatic_reports_four_direct_derived():
-    """UIStatic 152->248：必须报出 4 个直接派生类（UIStaticCB/EX/Flip/RM ✓）且为 mechanical。"""
+def test_uistatic_reports_five_recursive_derived_and_four_columns():
+    """UIStatic 152->248：**递归**后代 = 5（含 UIStaticEXA ✗ 漏它会被 apply 拒）+ 四栏口径。
+
+    契约变更（评审 e0ea83d9）：原断言 4 个直接派生是**旧契约** ✗ ⇒ 改为 5（含传递派生 UIStaticEXA）。
+    """
     r = cs.scan('UIStatic', 248, cs._load())
     got = sorted(x['class'] for x in r['derived_direct'])
-    assert got == ['UIStaticCB', 'UIStaticEX', 'UIStaticFlip', 'UIStaticRM'], got
-    assert all(x['state'] == 'mechanical' for x in r['derived_direct']), r['derived_direct']
-    # 候选新尺寸 = 旧尺寸 + delta(96) ✓
+    assert got == ['UIStaticCB', 'UIStaticEX', 'UIStaticEXA', 'UIStaticFlip', 'UIStaticRM'], got
+    mech = {x['class'] for x in r['derived_direct'] if x['state'] == 'mechanical'}
+    assert mech == {'UIStaticCB', 'UIStaticEX', 'UIStaticFlip', 'UIStaticRM'}, mech
+    exa = [x for x in r['derived_direct'] if x['class'] == 'UIStaticEXA'][0]
+    assert exa['base_size'] == 184 and exa['state'] == 'proposal', exa
     d = {x['class']: x['binary_size'] for x in r['derived_direct']}
     assert d['UIStaticFlip'] == 156 and d['UIStaticEX'] == 184
+    # 四栏：元素数才能判断爆炸半径（站点口径低估 2-7x ✗）
+    c = r['counts']
+    assert c['sites'] == c['byvalue'] + c['arrays']
+    assert c['elements'] >= c['sites']
+    assert c['bytes_if_delta'] == c['elements'] * 96
+    assert c['elements'] > 400, 'UIStatic 按值元素数应远大于站点数'
 
 
 def test_b34_replay_reports_union_and_landmine():
