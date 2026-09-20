@@ -12,5 +12,10 @@ undname>=1.0.0
 # Test framework
 pytest>=7.0.0
 
+# Disassembly (byte_diff_explain.py, check_member_offsets.py) —— 2026-09-20 审计 P2-2
+# 缺它会 ModuleNotFoundError，使 Phase2 主力 byte_diff_explain.py 与 check_member_offsets.py
+# **完全不可运行**（审计实测）。安装: pip install -r requirements.txt
+capstone>=5.0.0
+
 # Optional: better diff output
 # colorama>=0.4.6

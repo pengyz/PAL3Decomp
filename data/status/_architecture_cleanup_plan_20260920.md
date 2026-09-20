@@ -125,3 +125,27 @@ P2-4 给 4 个"无 argparse 且写盘"的审计工具补 argparse
 **残留清单**（已存档 `data/status/_tools_argparse_hazard.json`）：仍有若干工具满足
 "会写盘 且 无 argparse 且 无严格护栏"，其中 `uses_argv=True` 的那些与 `misattribution_ledger.py`
 同型（会忽略未知开关），应在后续轮次按同一护栏修掉。
+
+## P2-4 残留（第 6 轮，已完成）
+给 4 个"会写盘但**忽略未知开关**"的同型工具加**严格拒绝未知开关**护栏：
+`sig_evidence.py`（**审计事故工具**）、`apply_vtable_fix.py`、`fix_all_vtables.py`、`fix_vtable_splits.py`。
+验证（`--help` 前后产物哈希）：三者 exit0 且**产物无变化** ✓；`sig_evidence.py`
+`--help` ⇒ exit0 + 产物不变 ✓，且**无参调用仍正常**（exit0，会按设计重写 pack）✓。
+
+**过程中我犯的错（记录）**：第一版补丁按 4 空格缩进插入，但 `sig_evidence.py` 的锚点是
+**模块级 `if __name__ == '__main__':` 内的 4 空格 `if`** —— 插入后 `IndentationError:351`
+把文件**改坏**。已 `git show HEAD:` 还原后，**按锚点实际缩进重插**并验证语法+行为 ✓。
+**教训：给已有文件插代码必须指定与锚点一致的缩进，且插入后必须跑 `py_compile`。**
+
+## P2-2（第 6 轮，已完成）
+`capstone` 未安装已在 `byte_diff_explain.py:38` / `check_member_offsets.py:30` 复现
+`ModuleNotFoundError` ⇒ 已补入 `requirements.txt`（`capstone>=5.0.0` + 理由注释）。
+**安装仍需操作者执行 `pip install -r requirements.txt`**（本环境未联网安装）。
+
+## 🆕 新发现（第 6 轮，登记为 **P2-5**，未修）
+**`tools/sig_evidence.py` 的默认（无参）运行会把受跟踪产物 `data/status/_sig_evidence_pack.json`
+从 6931 行砍到 1648 行（丢 76%）** —— 实测（本轮验证时无意触发，已 `git show` 还原，md5==HEAD）。
+这与审计观察到的"该 pack 被重写成 363→30 含 slots"一致，也印证工具自述的
+"**54 条 A-V2 是现行评分函数产不出的更高等级（别的版本写入）**"⇒ **当前工具无法忠实重建该产物**。
+**待做（P2-5）**：给该工具加**棘轮护栏**（新 pack 条目数远小于现有 ⇒ 拒绝覆盖并报警），
+或改为"必须显式开关才允许覆盖既有 pack"。**在修好之前，任何人不应无参运行 `sig_evidence.py`。**

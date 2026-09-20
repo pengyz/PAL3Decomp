@@ -157,6 +157,14 @@ def generate_fix(cls_name, cls_data):
 
 
 def main():
+    # 2026-09-20 审计 P2-4：本工具**会写盘**却**忽略未知开关** ⇒ `--help` 会被当作普通输入并执行全流程、覆盖产物
+    # （审计期间 `sig_evidence.py` 因此删掉 6020 行）。**严格拒绝未知开关。**
+    _UNKNOWN_FLAG_GUARD = set()
+    _unknown = [a for a in sys.argv[1:] if a.startswith('-') and a not in _UNKNOWN_FLAG_GUARD]
+    if _unknown:
+        print('[%s] 未知开关 %r ⇒ 不执行任何操作。已知开关: %s'
+              % (__file__.rsplit('/', 1)[-1], _unknown, sorted(_UNKNOWN_FLAG_GUARD) or '(无)'))
+        sys.exit(0)
     targets = sys.argv[1:]
     apply_mode = False
     if '--apply' in targets:

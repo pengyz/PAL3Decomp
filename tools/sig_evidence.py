@@ -335,6 +335,16 @@ def main():
 
 
 if __name__ == '__main__':
+    # 2026-09-20 审计 P2-4：本工具**会写盘**却**忽略未知开关** ⇒ `--help` 会被当作
+    # 普通输入并执行全流程、覆盖产物（审计期间本工具因此删掉 6020 行）。
+    # **严格拒绝未知开关**，已知开关只有 --repair-from-asm。
+    _UNKNOWN_FLAG_GUARD = {'--repair-from-asm'}
+    _unknown = [a for a in sys.argv[1:]
+                if a.startswith('-') and a not in _UNKNOWN_FLAG_GUARD]
+    if _unknown:
+        print('[sig_evidence.py] 未知开关 %r ⇒ 不执行任何操作。已知开关: %s'
+              % (_unknown, sorted(_UNKNOWN_FLAG_GUARD)))
+        sys.exit(0)
     if '--repair-from-asm' in sys.argv:
         _pack, _ch = repair_from_asm()
         print('修复条目数: %d' % len(_ch))
