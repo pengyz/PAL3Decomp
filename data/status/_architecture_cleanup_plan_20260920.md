@@ -19,6 +19,20 @@
 
 ## P1 进度
 
+### P1-5 第七批（第 16 轮）：`emit_headers.py` 的 **3 处 `template_bases.json` 归并**
+`emit_headers.py` 的 10 处直读中，**:1098 / :1311 / :2427 读的是同一个 `template_bases.json`**
+（两处结构逐字相同，第三处仅缩进不同）⇒ 本次归并为一个**带缓存**的读点。
+- `annotation_view` 新增 `template_bases()` / `template_bases_path()`；**语义严格保持**：
+  同样先 `exists` 守卫、**同样不捕获异常**（文件缺失/损坏时**抛出**，与原 `if exists: open/json.load`
+  一致 —— 原代码没有 try 包裹）；且与原代码一致**不指定 encoding**（逐字行为）。
+- 三处各自的**转换逻辑原样保留**（`_template_map` / `template_map` / `_template_concrete` 各取所需）。
+**验证**：快照 945 ⇒ `codegen all --skip-probe`（**EXIT=0**）⇒ `diff -rq` 差异仅
+`globals.cpp`/`globals.h`（已知非确定、排序多重集相同）⇒ **非 globals 差异 = 0**、945=945 ⇒ **字节中性** ✓
+**P1-5 累计 11 处**（stage4 1 · collect 1 · data.py 5 · ast_transform 1 · emit_headers 3）。
+**`emit_headers.py` 剩余 7 处**：`sdk_types.json`(:157)、`structs/*.json` 全量 glob(:726)、
+**4 处 `structs/<cls>.json`**(:975/:1375/:1616/:2234)、`globals.json`(:2911)。
+
+
 ### P1-5 第六批（第 15 轮）：`ast_transform.py` —— 1 处迁移 + **1 处边界裁定排除**
 - **迁移**：`_load_ret_slots()` 的**路径枚举** `sorted(os.listdir(_structs_dir))` + `endswith('.json')`
   ⇒ `annotation_view.iter_struct_files(_structs_dir)` ✓（等价）；**保留本处的容错策略**

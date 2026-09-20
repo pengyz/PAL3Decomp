@@ -1094,11 +1094,14 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
 
     # Load template map early — needed for data member analysis below
     _template_map = {}
-    _tpl_path = os.path.join(os.path.dirname(__file__), '..', '..', '..',
-                             'data', 'annotations', 'template_bases.json')
-    if os.path.exists(_tpl_path):
-        with open(_tpl_path) as _f:
-            _tpl_data = json.load(_f)
+    # 2026-09-20 审计 P1-5（第七批）：收敛到单一读点 annotation_view。
+    # 语义保持：同样先 `exists` 守卫、同样**不捕获异常**（损坏时抛出）。
+    try:
+        import annotation_view as _av
+    except ImportError:
+        from pipeline.gen import annotation_view as _av
+    if os.path.exists(_av.template_bases_path()):
+        _tpl_data = _av.template_bases()
         for _k, _v in _tpl_data.items():
             if not _k.startswith('_'):
                 _template_map[_k] = _v['template']
@@ -1307,11 +1310,13 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         template_map = _template_map
     except NameError:
         template_map = {}
-        _tpl_path = os.path.join(os.path.dirname(__file__), '..', '..', '..',
-                                 'data', 'annotations', 'template_bases.json')
-        if os.path.exists(_tpl_path):
-            with open(_tpl_path) as _f:
-                _tpl_data = json.load(_f)
+        # 2026-09-20 审计 P1-5（第七批）：同上，收敛到 annotation_view（语义保持）。
+        try:
+            import annotation_view as _av
+        except ImportError:
+            from pipeline.gen import annotation_view as _av
+        if os.path.exists(_av.template_bases_path()):
+            _tpl_data = _av.template_bases()
             for _k, _v in _tpl_data.items():
                 if not _k.startswith('_'):
                     template_map[_k] = _v['template']
@@ -2423,11 +2428,14 @@ def main():
     # Classes in this map are template instantiations whose headers should NOT
     # be generated (they use the template definition instead).
     _template_concrete = set()
-    _tpl_path = os.path.join(os.path.dirname(__file__), '..', '..', '..',
-                             'data', 'annotations', 'template_bases.json')
-    if os.path.exists(_tpl_path):
-        with open(_tpl_path) as _f:
-            _tpl_data = json.load(_f)
+    # 2026-09-20 审计 P1-5（第七批）：收敛到单一读点 annotation_view。
+    # 语义保持：同样先 `exists` 守卫、同样**不捕获异常**（损坏时抛出）。
+    try:
+        import annotation_view as _av
+    except ImportError:
+        from pipeline.gen import annotation_view as _av
+    if os.path.exists(_av.template_bases_path()):
+        _tpl_data = _av.template_bases()
         for _k, _v in _tpl_data.items():
             if not _k.startswith('_'):
                 _template_concrete.add(_k)

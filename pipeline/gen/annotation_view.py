@@ -101,9 +101,35 @@ def skip_functions(store=None):
     return d if isinstance(d, dict) else {}
 
 
+_TEMPLATE_BASES_CACHE = None
+
+
+def template_bases():
+    """`data/annotations/template_bases.json`（进程内缓存）。
+
+    **语义与三处原读取一致：不捕获异常** —— 文件缺失或损坏时**同样抛出**
+    （原代码是 `if exists: with open: json.load`，没有 try 包裹）。
+    这也意味着调用方仍需自行决定是否容错（本模块不替它们做决定）。
+    注意：与原代码一致，这里**不指定 encoding**（保持逐字行为）。
+    """
+    global _TEMPLATE_BASES_CACHE
+    if _TEMPLATE_BASES_CACHE is None:
+        path = os.path.join(os.path.dirname(structs_dir()), 'template_bases.json')
+        with open(path) as _f:
+            _TEMPLATE_BASES_CACHE = json.load(_f)
+    return _TEMPLATE_BASES_CACHE
+
+
+def template_bases_path():
+    """`template_bases.json` 的路径（供调用方先做 exists 判断，保持原有守卫语义）。"""
+    return os.path.join(os.path.dirname(structs_dir()), 'template_bases.json')
+
+
 def reset_caches():
     """测试用：清空进程内缓存。"""
     global _STRUCTS_CACHE, _MEMBER_NAMES_CACHE
     _STRUCTS_CACHE = None
     _MEMBER_NAMES_CACHE = None
     _ANNOTATION_JSON_CACHE.clear()
+    global _TEMPLATE_BASES_CACHE
+    _TEMPLATE_BASES_CACHE = None
