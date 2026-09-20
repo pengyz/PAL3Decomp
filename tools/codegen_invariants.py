@@ -285,6 +285,12 @@ def main():
     ap.add_argument('--strict', action='store_true',
                     help='把潜伏项 C 也算失败')
     ap.add_argument('--verbose', action='store_true')
+    # 2026-09-20（三路复核要求的"先做一小步"）：**advisory 模式**。
+    # 背景：本工具默认检查集是 A/B/D，而实测 A=132/B=56/D=10 **当前就失败** ⇒
+    # 直接把本工具接进门禁会**立刻全红** ✗。advisory 模式只报告、恒 exit 0，
+    # 使"存量未清零期间"也能把它接进门禁并**看见计数**；存量清零后再去掉该开关升为硬失败 ✓。
+    ap.add_argument('--advisory', action='store_true',
+                    help='只报告不失败（恒 exit 0）：存量未清零期间接门禁用')
     args = ap.parse_args()
 
     for c in args.check:                      # 修复：第一版静默忽略非法名字 ⇒ 假绿门禁
@@ -304,6 +310,9 @@ def main():
     print()
     print('编译阻塞项 %d；潜伏项 %d  => %s'
           % (hard, latent, 'FAIL' if (hard or (args.strict and latent)) else 'PASS'))
+    if args.advisory:
+        print('[ADVISORY] 计数如上，**本模式恒 exit 0** —— 存量清零后才可升为硬失败 ✓')
+        return 0
     return 1 if (hard or (args.strict and latent)) else 0
 
 
