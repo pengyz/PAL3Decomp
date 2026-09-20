@@ -50,7 +50,17 @@
       以**代码顺序**为准（已用 AST/行号核对）。
       顺手修了自己引入的 `%d` 未插值 bug。
 - [ ]
-      P1-4（复核 8 处 declared exception + 一致性校验）· P1-5（直读收敛）
+      **P1-4** 复核 `export_full.py` 的 8 处 `[t4-DECLARED-EXCEPTION]` + 一致性校验 ✓
+      复核结论：这 8 处是"高质量的已声明例外"，**不该删到合规**（头部声明块给出：IDB 无等价
+      可查询形式 / 承重且量化：1955 skip 地址与 3594 导出交集=0、475 virtual→442 签名前缀、
+      3276 mangled 名、686 struct 的 8979 条 _variants、1816 _skip_function_names / 
+      vtables+methods 与注解逐字段等值）。
+      新工具 `tools/check_export_annotation_consistency.py` 补上缺失的告警，判据只用
+      `vtables`+`methods`；`_variants` **仅提示**（两侧表示不同，比键会产出 742 个假阳性 ——
+      我第一版之错，已降级）。已**接入 `cmd_export` 尾部**（只读、无需 IDA、报警不阻断）。
+      验证：A 现状 exit 0（0 不一致 ⇒ 独立印证 export_full 自述的 761/761）；B 注入一处
+      methods 名 ⇒ exit 1 + ❌ ✓；C 还原后 exit 0 ✓。
+· **P1-5**（直读收敛）
 
 ## P1 结构（P0 后）
 P1-1 两条硬线注入式负例测试（L1 棘轮 / probe 不得刷新基线，均 `finally` 还原）
