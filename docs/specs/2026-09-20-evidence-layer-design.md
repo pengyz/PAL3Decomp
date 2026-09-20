@@ -194,3 +194,77 @@ pipeline/cli.py                        ← 新增 `evidence` 子命令（build /
 2. **固定"尺寸污染"口径**（38 / 4-or-0 / 14，**附命令与输入参数** ✓）
 3. **修 `tools/_land_sizes.py`**（**已修 ✓**：REVERT 分支不再重生成 + **真正的 `SystemExit(1)`** ✓ —— 初稿声称"非零退出"却**从未实现** ✗，系第三路复核发现 ✓）
 4. **Spike**：只读 `??_L` parser 抽全部 133 站点 + 手核 Role/tagRoleSlot/BINK 三例 + 最小 ledger schema + 复算 placeholder 并解释 91 vs 38 差异 ✓；**成功判据**：133/133 参数完整 ✓、**Role 可由独立证据解析而 BINK 错锚被判 unknown/conflict** ✓、不改注解/不改生成物/**不接硬门禁** ✓
+
+
+---
+
+# 补齐的 6 节（2026-09-20，按三路复核要求；**口径已锁定**）
+
+## §0 口径固定（唯一计算器）
+**"尺寸污染"的唯一权威定义与算法**：`tools/audit_layout.py::declared_size_geometry(name, struct, all_structs)`
+（**只读**；模块级无副作用，已用 AST 核实）。
+**复算命令**（可复跑，无写盘）：
+```bash
+python3 -c "import importlib.util as iu; spec=iu.spec_from_file_location('al','tools/audit_layout.py'); \
+ al=iu.module_from_spec(spec); spec.loader.exec_module(al); ann,_=al.load_annotations(); \
+ print(sum(1 for n,d in ann.items() if (al.declared_size_geometry(n,d,ann) or {}).get('ratio',0)>3.0))"
+```
+**锁定基线（2026-09-20，881 structs）**：
+| 量 | 值 | 口径 |
+|---|---|---|
+| `ratio > 3.0` | **38** | 三路一致 ✓ |
+| `ratio > 50.0`（HIGH）| **14** | 与 `data/status/_geometry_strict_report.json` 的 `high_count: 14` 对齐 ✓ |
+| `ratio == 2.0`（**四舍五入后**）| **4** | `AudioContext` / `ComposeUI` / `LinkerVersion` / `gbSingleton_gbGfxManager` |
+| `binary_size **精确** == 2×max_member_end` | **3** | 上述去掉 `ComposeUI` |
+**⇒ 复核分歧的裁定**：Kiro/主 agent 用"四舍五入比值"得 **4**；Codex 报 **0** 在**两种口径下都不可复现** ✓（其计算方式未记录，故**以本条口径为准**）。
+**⇒ 产物纪律**：任何写入 `data/status/` 的几何/尺寸产物**必须记录输入参数**（阈值环境变量、算法 commit、生成时刻）✓ ——
+反例：`_geometry_strict_report.json` 的 `warn_count: 6` **无任何阈值可复现** ✗（必然在某个**未记录**的
+`PAL3_GEOMETRY_WARN_RATIO` 下生成 ✗）⇒ 该产物**不得再作权威读数**，引用前必须按本条口径重算 ✓。
+
+## §2.5 ROI 前置归因（本规格**不解决**当前最贵的错误类别）
+**当前错误分布**（`data/status/baselines/latest.json`，206 单元 / 2150 错误）：
+**C2440 359（16.7%）· C2227 226 · C2660 202 · C2664 196 · C2039 152 · C2228 144 …**
+⇒ **射程外（(b) 通路错 / (c) codegen 改写错）合计 ≥1279/2150 ≈ 59%** ✗
+**本规格的受益面**：可机判的尺寸/归属类 = **O(10–38)** 个类 ✓（`alloc_sizeof.json` 仅 28 行：MISMATCH 17 / OK 8 / OPAQUE 3；`operator_new` 仅 10 ✓）
+**⇒ 两处必须改写**：
+1. 初稿拿 **C2208 型**论证"射程外"✗ —— 该 gotcha 的 `status` 已是 **`fixed`（2026-08-29 已修）** ✓，且 **C2208 现已 0 条**（不在前 22）✗ ⇒ **不得用已修复的事故论证射程** ✓
+2. 必须新增一句：**"本规格不得被当作'当前最贵问题'的解决方案"** ✓，并给出与 **C2440 型（359 条 / 71 文件 / 形态高度同构，前 6 种模板覆盖 134/359）** 的排序关系 ✓
+**前置动作**：把 38 条尺寸污染**归因到具体错误码并计数** ✓ —— 若归因不出足够错误码，须在规格明说"本设计的直接错误收益有限" ✓
+
+## §3.5 词汇治理（防"第 N 套等级词汇"）
+**现状：已并存 9 套**（不是 8 套 ✗）—— skill A–D · command A/A+/B/C/D · `sig_evidence.py` 机器判级 · `enum_promote.py` · `_pdb_nonauthority_notice.json` 的 1/2/3/X · 注解 `source` 前缀（**实测 417 条 `A:`/`A+:`/`B:`**）· commit-msg 门禁 · `_longterm_plan.md` 的 D/A/B/C 不变量图 · `docs/knowledge` 的 `confidence: 0-100`
+**⇒ 修订（强制）**：
+1. **`verified` 改名 `evidenced`/`corroborated`** ✗→✓ —— 它只证明"尺寸**等于**某值"，**不证明"正确"** ✓（规格 §7 自承 `??_L` 的 size **不唯一**：8704 同时匹配 `Role`/`RoleSystem` ✗），且与 skill/command 的 A 级（"偏移正确"）**语义对撞** ✗
+2. 降级为**闸输入侧的单一状态字段** `size_evidence_state ∈ {evidenced, conflicted, unestablished}` ✓ —— **只**作为消费点输出 `INCONCLUSIVE` 的判据 ✓，**不进"证据强度"语境、不写 change log、不进 commit message** ✓
+3. **提供映射表**（既有 9 套 → 新字段，允许多数为空映射 ✓），并以下列**三检验**为验收项：
+   **(a) 正交性**：不得与既有词在同一维度打架 ✗ —— **临床样本**：`Camera.json` 成员标 `source:"A:FPU_binary_evidence | ida_xref"` ✗ 而同类 `ratio 31.8×` ⇒ 新字段判 `unestablished` ⇒ **"A 级证据"与 `unestablished` 同时成立** ✗ ⇒ 必须显式给出**冲突解释规则** ✓
+   **(b) 覆盖性**：每类**恰好**落一个状态，不重不漏 ✓（初稿 `placeholder` 与 `unknown` 边界模糊 ✗ —— 规则1 `=2×` 与规则2 `无独立证据且>3×` 落在同一真实轴上 ✗ ⇒ 合并或机械化 ✓）
+   **(c) 机械映射**：能给出既有 9 套 → 新字段的函数（哪怕偏序/空映射）✓
+4. **grade 优先级**（必须进规格）：`前置失败(stale/missing) → conflicted → unestablished → evidenced → unknown` ✓
+
+## §4.5 消费点存在性验证（逐处核实，**已发现一处不符**）
+| # | 位置 | 实测用途 | 结论 |
+|---|---|---|---|
+| 1 | `pipeline/decomp_quality.py:121`（加载 `:21`）| 用 `binary_size` 作**上界** | ✓ 可低风险加 `INCONCLUSIVE`+计数 |
+| 2 | `tools/audit_layout.py:304`（读尺寸 `:251`）| 越界判断 | ✓ 可加 severity/count |
+| 3 | `pipeline/check_annotations.py:600`（另 `:606-615` 只查**单方向**）| 成员越界 | ✓ 可加 warning；**注意**：`binary_size` 的使用**不止此处**（globals/union/nested 也用 ✗）⇒ 改造**不能只 patch 一个 if** ✓ |
+| 4 | `tools/scan_misattribution.py:459`（加载 `:142`）| 尺寸参与 impossible 判断 | ✗ **初稿指错了位置**：`:142` **只是构建 dict** ✓；且该工具**默认写状态文件**（`:630`）✗ ⇒ 接入前须支持 stdout/explicit-out ✓ |
+| 5 | `tools/audit_structural_attribution.py:116`（加载 `:69`）| 尺寸比较 | ✗ **无机器可读通道**（全库模式只有 print + exit 0；仅 `--addr` 写 `/tmp` ✓）⇒ **必须先加 JSON/stdout 协议** ✓ |
+**独立性口径（三路一致）**：`ida_structs.json` 是**本地再生产物且被注解污染** ✓ ⇒ **不得当独立归属真值**，只能提供待核对线索 ✓
+
+## §5.5 闸的接线与活性（"逐闸毕业生效"的必要条件）
+1. **必须真的串到写盘路径** ✗→✓：`cmd_check()` 现在只 `subprocess.run(check_annotations.py)` ✓；**`cmd_apply`/`cmd_export` 不调用它** ✗ ⇒ **只改 `cmd_check` 就是空门** ✓；正面先例：`tools/apply_annotation_batch.py:241` 已先跑 `cli.py check` ✓
+2. **注入式负例升为验收必跑命令** ✓（不能只作 §4 表格一列 ✗）—— 元教训：两起 `--help` 事故的"回滚成功"**没有留下负例** ✗ ⇒ **"回滚成功" ≠ "门禁能防住下一次"** ✓
+3. **恒假检测** ✓：某闸连续 N 次运行呈"全 `INCONCLUSIVE` / 零判据"⇒ **报警**（而非报 PASS ✓）—— 否则"恒 INCONCLUSIVE"就是**新的"恒真"** ✗
+4. **单一责任人 = 用户本人** ✓（本仓为单人 + AI 会话；**AI 会话不得列为责任人** ✗ —— 会话结束即无人，这正是 `check-gstack.sh` 恒 deny 至今未修的原因 ✓）
+5. **接线实测状态（Codex）**：`codegen_invariants` 默认检查集 = **A/B/D 硬失败 ✗**（实测 **A=132 exit1 · B=56 exit1 · D=10 exit1**），**C 仅 strict 失败**（**C=27 exit0** ✓）⇒ **只能先接 C 为 advisory + whitelist** ✓，**A/B/D 须各自建存量清单、修复或 grandfather 后再逐项升硬** ✓ —— 初稿"29 条"**只数了 C** ✗，错了约 200 条 ✓
+
+## §7.5 本设计自身的沉淀与接线（防重演"审计→status→消失"）
+**病灶校正**：不是"没落盘"，而是**"落错面"** ✗ —— `data/status/` **373 文件 / 293 tracked** ✓，而知识库对它只有 `CLAUDE.md:159,162` 两处引用（且当"基线输入路径"✓，**非知识入口** ✗）；`docs/knowledge/README.md:13` 明令"门禁失效/流程漏洞"须写 gotcha，**审计的核心发现恰好全属此类却一条未进** ✗
+**四条可检查要求**：
+1. **哪类结论进 `docs/knowledge/`**：通用规律/门禁坑进 knowledge ✓；单字段证据仍归 `data/annotations/CHANGE_LOG.md` ✓；**证据台账跨了这条边界 ⇒ 必须显式指定归属** ✓
+2. **写入触发器**：台账某类的 `size_evidence_state` 发生**类别变化**时，由谁、在哪个 commit 提炼成 knowledge 条目 ✓
+3. **可发现性**：`evidence_ledger.json` **必须在 `docs/knowledge/MEMORY.md` 有入链条目** ✓，并登记进 README 的"引用前验证"清单 ✓
+4. **本纪律自身要落盘**：把"审计 → status → 消失"写成一条 **gotcha** ✓ —— 它现在只存在于 `data/status/_knowledge_process_diagnosis_20260920.md:56` ✗，**又一个"诊断只落在 status"的实例，递归证明本节必须加** ✓
+**台账 schema 强制字段**：`schema_version` / `input_hash`（输入=注解+tracked exe 快照 ✓）/ `generator_version` / `generated_at` ✓；**clean-checkout 可复现** ✗：`original/*.asm` 与 `asm/` **均 gitignore** ✓ ⇒ 台账必须能从 **tracked 输入**（exe）复验 ✓，**不得假设本地 asm/export 存在** ✓
+**单向红线**：`evidence_ledger.json` **禁止任何自动/半自动"按 ledger 回写注解"通路** ✗（否则绕一圈重建"同源污染" ✓）
