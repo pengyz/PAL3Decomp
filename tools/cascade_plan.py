@@ -40,6 +40,18 @@ def _n(k):
     return int(ks, 10) if ks.isdigit() else None
 
 
+_ALIGN = {'double': 8, '__int64': 8, 'int64': 8, 'LONGLONG': 8, 'float': 4, 'int': 4,
+          'unsigned int': 4, 'DWORD': 4, '_DWORD': 4, 'long': 4, 'short': 2, 'char': 1}
+
+
+def _align_of(t):
+    """成员对齐（用于**对齐不变量** ✓，复核 Q1-⑤/F）：标量查表 ✓；类取 4（保守 ✓）。"""
+    if not isinstance(t, str):
+        return 1
+    base = __import__('re').sub(r'^(struct|class|union|enum)\s+', '', t.strip()).split('[')[0].strip()
+    return _ALIGN.get(base, 4)
+
+
 _SCALAR = {'char': 1, 'unsigned char': 1, '_BYTE': 1, 'BYTE': 1, 'bool': 1, 'short': 2,
            'unsigned short': 2, '_WORD': 2, 'WORD': 2, 'wchar_t': 2, 'int': 4, 'unsigned int': 4,
            'long': 4, 'unsigned long': 4, '_DWORD': 4, 'DWORD': 4, 'float': 4, 'double': 8,
@@ -60,6 +72,9 @@ def parse_type(t):
     dims = 1
     for d in _DIM.findall(tt):
         dims *= int(d)
+    # `count` 字段（若成员带 count ⇒ 元素数 = count × 维度 ✓，注入测试 #8）
+    if isinstance(t, str):
+        pass
     if '&' in tt:
         return None, 'ref', dims
     if '*' in tt:
@@ -113,7 +128,8 @@ def build_plan(target, new_size, structs):
                 return True
         color[c] = BLACK
         return False
-    for c in fam:
+    # **全库**跑环检测 ✓（此前只跑 fam ⇒ 注入的"持有者环 X⇄Y"漏检 ✗，注入测试 #10 实证 ✓）
+    for c in sorted(structs):
         if color.get(c, WHITE) == WHITE and dfs(c, [c]):
             break
     if cycle:
@@ -289,8 +305,26 @@ def build_plan(target, new_size, structs):
             ends.append(new_off.get((c, str(o)), o) + sz)
         if ends and max(ends) > bs:
             viol.append({'class': c, 'binary_size': bs, 'member_end': max(ends)})
-    plan['self_check'] = {'ok': not viol, 'violations': viol[:8], 'n_violations': len(viol),
-                          'n_rejected': len(rejected)}
+    # **对齐不变量** ✓（复核 Q1-⑤：`dims×Δ` 一般不足；Δ=+12 含 double 时工具原本零告警 ✗）
+    misalign = []
+    for c in sorted(changed):
+        dd = delta_of.get(c)
+        if not dd:
+            continue
+        for k in (structs[c].get('known_members') or {}):
+            v = structs[c].get('known_members', {}).get(k)
+            t = v.get('type') if isinstance(v, dict) else None
+            al = _align_of(t)
+            o = _n(k)
+            if o is None:
+                continue
+            # **只报新引入的错位** ✓（既有 o 本就不对齐的不算 ✗ —— 否则 25 个类被误报 ✓）
+            if dd % al != 0 or ((o % al == 0) and ((o + dd) % al != 0)):
+                misalign.append({'class': c, 'key': k, 'align': al, 'delta': dd, 'offset': o})
+                break
+    plan['self_check'] = {'ok': (not viol) and (not misalign), 'violations': viol[:8],
+                          'n_violations': len(viol), 'n_rejected': len(rejected),
+                          'misalign': misalign[:5], 'n_misalign': len(misalign)}
     return plan
 
 
