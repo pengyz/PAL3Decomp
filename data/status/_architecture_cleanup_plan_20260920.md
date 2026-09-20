@@ -18,6 +18,20 @@
 | P0-5 | `tools/_land_sizes.py` 的 `git checkout --` ⇒ **仅报告 + 非零退出** | 构造未提交修改，确认文件未被自动改动 |
 
 ## P1 进度
+
+### P1-5 第四批（第 13 轮）：`data.py` 的 structs 遍历 + `globals.json`（两处一起）
+- `_load_struct_bases()`：`sorted(annotations_dir/"structs".glob("*.json"))` + 逐文件 `json.load`
+  （坏文件静默 continue）+ 名字回退 `_f.stem` ⇒ 改调 **`annotation_view.iter_structs(directory=...,)`**
+  （同样"排序 + 坏文件跳过"，路径 basename 去 `.json` 得同 stem）✓
+- `_load_annotated_globals()`：`project_root/"data"/"annotations"/"globals.json"` ⇒ 改调
+  **`annotation_view.load_annotation_json('globals.json', store=self)`**（读不出返回 None，
+  与原 `except: return` 同效）✓
+**验证**：快照 945 文件 ⇒ `codegen all --skip-probe`（**EXIT=0**，含 lint/compile_regression 通过）
+⇒ `diff -rq` 差异**仅 globals.cpp + globals.h**（已知非确定、排序行多重集相同）⇒
+**非 globals 差异 = 0**、文件数 945=945 ⇒ **字节中性** ✓
+**P1-5 累计 5/19**（stage4 成员名 · collect skip · data.py thunks · data.py structs · data.py globals）。
+剩余：`data.py` 的 vtables(`:240`)/functions(`:433`)、`ast_transform.py`(2)、`emit_headers.py`(10)。
+
 - [x] **P1-1** 两条硬线注入式负例测试 ✓✓ **两条都真跑并验证通过**
       · `tests/e2e/test_probe_baseline_injection.py`：注入 ok→fail ⇒
         `regression_detector --check` **退出码非 0** ✓ 且 `baselines/latest.json`

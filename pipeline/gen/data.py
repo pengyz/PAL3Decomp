@@ -279,15 +279,16 @@ class DataStore:
              （主基类子对象必在偏移 0），不是猜测；**其余基类不写入**，
              于是 `_fold_vftable_mask` 对它们保持"原样跳过"的旧行为。
         """
-        _dir = self.annotations_dir / "structs"
-        if not _dir.exists():
-            return
-        for _f in sorted(_dir.glob("*.json")):
-            try:
-                _ann = json.load(open(_f, encoding='utf-8'))
-            except Exception:
-                continue
-            _name = _ann.get('name') or _f.stem
+        # 2026-09-20 审计 P1-5（第四批）：直读收敛到单一读点 annotation_view。
+        # 逻辑逐字等价：原为 `annotations_dir/"structs"` 下 sorted glob + 逐文件 json.load
+        # （坏文件静默 continue），与方法名回退 `_f.stem`；iter_structs 提供同样的
+        # "排序 + 坏文件跳过"，路径用 basename 去掉 .json 得到同样的 stem。
+        try:
+            import annotation_view as _av
+        except ImportError:
+            from pipeline.gen import annotation_view as _av
+        for _f, _ann in _av.iter_structs(directory=str(self.annotations_dir / "structs")):
+            _name = _ann.get('name') or os.path.basename(str(_f))[:-5]
             _bases = _ann.get('bases')
             m = {}
             if isinstance(_bases, list) and _bases and isinstance(_bases[0], dict):
@@ -310,12 +311,15 @@ class DataStore:
 
     def _load_annotated_globals(self):
         """Load globals.json for extern generation of non-IDA globals."""
-        _ann_path = self.project_root / "data" / "annotations" / "globals.json"
-        if not _ann_path.exists():
-            return
+        # 2026-09-20 审计 P1-5（第四批）：同批收敛到 annotation_view。
+        # 等价：原路径 `<root>/data/annotations/globals.json` == annotation_view 的
+        # `load_annotation_json('globals.json', store=self)`（后者读不出时返回 None）。
         try:
-            _data = json.load(open(_ann_path, encoding='utf-8'))
-        except:
+            import annotation_view as _av
+        except ImportError:
+            from pipeline.gen import annotation_view as _av
+        _data = _av.load_annotation_json('globals.json', store=self)
+        if not _data:
             return
         ida_prefixes = ('dword_', 'byte_', 'word_', 'stru_', 'off_', 'unk_', 'flt_')
         for _addr_s, _info in _data.items():
