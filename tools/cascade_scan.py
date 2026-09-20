@@ -88,43 +88,79 @@ def _ctor_dtor_methods(d):
 
 
 def _shift_calibers(structs, target, old_size, derived, refs):
-    """需平移的自有成员 —— 四种口径并列（供对齐用 ✓）。
+    """需平移的成员 offset —— **语义正确口径**（独立复算 238b2ed8 裁定 ✓）+ 历史口径并列。
 
-    语义：基类/元素尺寸变化后，**落在变化区之后**的自有成员必须平移 ✓；之前的成员不动 ✓。
-    因此"正确的口径"与"范围选择"强相关 ⇒ 把范围×判据全部列出，避免双方各说各话 ✗。
+    正确判据（一句话）：**某成员 offset 要改 ⇔ 有"尺寸会变大的内嵌对象"整体位于它之前** ✓
+    ⇒ 用**每类首个内嵌位置 P_min** 分档（`o > P_min` ✓），**不是**全局旧尺寸 ✗；
+    P_min 处那个内嵌元素自身**不动** ✓，但其后**所有**成员（含后续元素声明 ✓）都要改 ✓。
+    范围：**族（自身+递归派生）+ "按值/数组包含"的传递闭包** ✓（传递性正是 54 vs 60 的差 ✗）。
+
+    并列保留历史口径（ge_old_size / 复核者的 960 口径），便于日后对齐 ✓。
     """
-    import re as _re
     def _n(k):
         ks = str(k)
-        if ks.startswith('0x') or ks.startswith('0X'):
+        if ks[:2].lower() == '0x':
             return int(ks, 16)
         if '_' in ks:
-            h = ks.split('_')[0]
-            return int(h, 10) if _re.fullmatch(r'\d+', h) else None
-        return int(ks, 10) if _re.fullmatch(r'\d+', ks) else None
-    holders = {r['holder']: [] for r in refs}
-    for r in refs:
-        v = _n(r['offset'])
-        if v is not None:
-            holders[r['holder']].append(v)
-    scope_self = {target} | set(derived)
-    out = {'ge_old_size': 0, 'derived_only_ge_old_size': 0,
-           'after_embedding': 0, 'unique_positions_ge_old_size': 0}
-    seen_pos = set()
-    for cls, d in structs.items():
-        ms = [( _n(k), k) for k in (d.get('known_members') or {})]
-        ms = [(o, k) for o, k in ms if o is not None]
-        if cls in scope_self or cls in holders:
-            out['ge_old_size'] += sum(1 for o, _ in ms if o >= old_size)
-            for o, _ in ms:
-                if o >= old_size:
-                    seen_pos.add((cls, o))
-        if cls in set(derived):
-            out['derived_only_ge_old_size'] += sum(1 for o, _ in ms if o >= old_size)
-        for p in holders.get(cls, []):
-            out['after_embedding'] += sum(1 for o, _ in ms if o >= p)
-    out['unique_positions_ge_old_size'] = len(seen_pos)
-    return out
+            ks = ks.split('_')[0]
+        return int(ks, 10) if ks.isdigit() else None
+
+    def _base_type(cls, k):
+        t = (structs[cls].get('known_members') or {}).get(k, {})
+        t = t.get('type') if isinstance(t, dict) else None
+        if not isinstance(t, str):
+            return None
+        m = _ARR.match(t)
+        return m.group(1) if m else t
+
+    fam = {target} | set(derived)
+    # 按值/数组包含的**传递闭包**（谁（直接或间接）把族里的类按值装进去 ✓）
+    changed = set(fam)
+    owners = set()
+    while True:
+        newc = {c for c in structs if c not in changed
+                and any(_base_type(c, k) in changed for k in (structs[c].get('known_members') or {}))}
+        if not newc:
+            break
+        owners |= newc
+        changed |= newc
+    # 每类 P_min 分档（含族内与持有者 ✓）
+    shift_keys = 0
+    for c in sorted(changed):
+        K = structs[c].get('known_members') or {}
+        if c in fam:
+            # 族内（目标 + 递归派生）：成员因**基类变大**而移动 ⇒ 判据是 offset ≥ 旧尺寸 ✓
+            # （它们内部并不一定"内嵌"了族对象 ⇒ 不能用 P_min 分档 ✗ —— 这正是 1421 vs 1442 差的 21 ✓）
+            shift_keys += sum(1 for k in K if (_n(k) is not None and _n(k) >= old_size))
+            continue
+        sites = [_n(k) for k in K if _base_type(c, k) in changed]
+        sites = [x for x in sites if x is not None]
+        if not sites:
+            continue
+        P = min(sites)
+        shift_keys += sum(1 for k in K if (_n(k) is not None and _n(k) > P))
+    # 历史口径（保持向后可比 ✓）
+    ge_old = sum(1 for c in sorted(changed) for k in (structs[c].get('known_members') or {})
+                 if (_n(k) is not None and _n(k) >= old_size))
+    holders_direct = {r['holder'] for r in refs}
+    r960 = 0
+    for c in sorted(holders_direct):
+        K = structs[c].get('known_members') or {}
+        sites = [_n(k) for k in K if _base_type(c, k) == target and _n(k) is not None]
+        if not sites:
+            continue
+        P = min(sites)
+        r960 += sum(1 for k in K
+                    if (_n(k) is not None and _n(k) >= P and _base_type(c, k) != target))
+    derived_only = sum(1 for c in set(derived) for k in (structs[c].get('known_members') or {})
+                       if (_n(k) is not None and _n(k) >= old_size))
+    return {
+        'shift_member_keys': shift_keys,        # **语义正确**（独立复算裁定 = 1442）✓
+        'scope_classes': len(changed),          # 传递闭包后的类数（= 60）✓
+        'r960_caliber': r960,                   # 复核者口径（排除元素、仅直接持有者）✓
+        'ge_old_size': ge_old,                  # 我原口径（多算后续元素与 P 前成员）✗
+        'derived_only_ge_old_size': derived_only,
+    }
 
 
 def scan(target, new_size, structs):
