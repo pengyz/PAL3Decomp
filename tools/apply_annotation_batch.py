@@ -104,6 +104,18 @@ def main():
             if not it.get('class') or not it.get('addr') or not (it.get('reason') or '').strip():
                 rejected.append((it, 'skip_method 需要 class + addr + reason'))
                 continue
+        if kind == 'add_method':
+            if not it.get('class') or not it.get('addr') or not it.get('new_name'):
+                rejected.append((it, 'add_method 需要 class + addr + new_name'))
+                continue
+            sig = (it.get('signature') or '').strip()
+            if not sig:
+                rejected.append((it, 'add_method 需要 signature'))
+                continue
+            # 与 set_signature 同源护栏：__thiscall 必须带 "::"
+            if '__thiscall' in sig and '::' not in sig:
+                rejected.append((it, 'add_method 的 __thiscall 签名缺少 "::"（会被发射成 static free function）'))
+                continue
         if kind == 'set_signature':
             sig = (it.get('new_signature') or '').strip()
             if not it.get('class') or not it.get('addr') or not sig:
@@ -151,6 +163,20 @@ def main():
             save_ann(src, sp)
             save_ann(dst, dp)
             print('   [重归属] %s: %s -> %s (%s)' % (it['addr'], it['from'], it['to'], it['new_name']))
+            done += 1
+        elif it['kind'] == 'add_method':
+            d, p2 = load_ann(it['class'])
+            if it['addr'] in (d.get('methods') or {}):
+                print('   [跳过] %s 已在 %s.methods' % (it['addr'], it['class']))
+                continue
+            d.setdefault('methods', {})[it['addr']] = {
+                'name': it['new_name'],
+                'signature': it['signature'],
+                'note': 'add_method: %s' % it['evidence'],
+                'name_evidence': it.get('name_evidence') or '',
+            }
+            save_ann(d, p2)
+            print('   [新增方法] %s.%s = %s' % (it['class'], it['addr'], it['new_name']))
             done += 1
         elif it['kind'] == 'rename':
             d, p = load_ann(it['class'])

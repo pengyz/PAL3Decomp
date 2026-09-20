@@ -126,6 +126,24 @@
     "0x00540A20": {
       "name": "GetTextureInfoByIndex",
       "signature": "_Texture_Info *__thiscall(int nIndex)"
+    },
+    "0x004B5570": {
+      "name": "_todo_4b5570",
+      "signature": "__int64 __thiscall TextureLibDataBase::_todo_4b5570(int, int, TextureLibDataBase *, int)",
+      "note": "add_method: 归属 A 级：调用者 0x004B4DC0=ScreenEffect::Apply 的同一 switch 里，case 4/6 调用已注解的同类成员 UpdateOrbitalMotion(0x4B5450)/UpdateLinearMotion(0x4B5750) 并把 this 强转成 TextureLibDataBase*；case 5/7/8 调用本函数时形态为 `mov ecx,esi`（esi 即该 TextureLibDataBase*）+ `retn 10h`（this+4 栈参）；地址与三个已注解姐妹 UpdateCircularMotion(0x4B5380)/Orbital/Linear 交错相邻。参数类型取自 IDB 原型的栈参 (int,int,TextureLibDataBase*,int)，未自造。",
+      "name_evidence": "含义未定：未读函数体，按规则用 _todo_ 占位名，禁止造名（语义名须按函数逻辑给出）。"
+    },
+    "0x004B5830": {
+      "name": "_todo_4b5830",
+      "signature": "__int64 __thiscall TextureLibDataBase::_todo_4b5830(int, int, TextureLibDataBase *, int)",
+      "note": "add_method: 同 0x004B5570：同一 switch 的 case 7，形态 `mov ecx,esi` + `retn 10h`；栈参类型取自 IDB 原型，未自造。",
+      "name_evidence": "含义未定：未读函数体，按规则用 _todo_ 占位名。"
+    },
+    "0x004B5BB0": {
+      "name": "_todo_4b5bb0",
+      "signature": "__int64 __thiscall TextureLibDataBase::_todo_4b5bb0(int, int, TextureLibDataBase *, int)",
+      "note": "add_method: 同 0x004B5570：同一 switch 的 case 8，形态 `mov ecx,esi` + `retn 10h`；栈参类型取自 IDB 原型，未自造。",
+      "name_evidence": "含义未定：未读函数体，按规则用 _todo_ 占位名。"
     }
   },
   "base_size": 4

@@ -3007,3 +3007,46 @@ case 6: (((TextureLibDataBase *)this))->TextureLibDataBase::UpdateLinearMotion(.
   在**拉取的那批代码改动**之后才暴露出来的（其"每轮 new_failures=0"是在它自己的单元集/IDB 状态下测的）；
 * 修法属于**纯 annotation 补全**（把这 3 个同类函数归到 `TextureLibDataBase`），**符合"annotation 质量"主线**；
 * 我未落盘（缺 `add_method` 通道 + `this` 类型待核），**状态干净**。
+
+---
+
+# 51. §50 方案**执行并验证通过**（−60 错误 / S2 +3 / L1 +2）
+
+## 51.1 执行
+
+1. `tools/apply_annotation_batch.py` 新增 **`add_method`**（含"`__thiscall` 签名必须带 `::`"的护栏）；
+2. 为 `TextureLibDataBase` 新增三条方法（`_todo_4b5570` / `_todo_4b5830` / `_todo_4b5bb0`），
+   签名 `__int64 __thiscall TextureLibDataBase::<name>(int, int, TextureLibDataBase *, int)`
+   —— **栈参类型取自 IDB 原型的栈参，未自造**；名字按规则用 `_todo_` 占位（未读函数体，禁止造名）；
+3. 按批处理纪律**只跑一次**管线：`apply → export → codegen all → probe all`（各步 EXIT=0）。
+
+## 51.2 先例验证（执行前）
+
+| | 姐妹函数（已注解） | 我们的三个（改动前） |
+|---|---|---|
+| 注解 | `__int64 __thiscall TextureLibDataBase::UpdateOrbitalMotion(char*, int, TextureLibDataBase*, int)` | **无** |
+| 生成头 | `TextureLibDataBase.h:26` **成员声明 4 参** | `free_functions.h:401` **自由函数 5 参**（含 `_this`） |
+| 调用点 | `->UpdateOrbitalMotion(v4,(int)v3,v6,(__int64)v5)` **4 实参 ✓ 匹配** | `sub_4B5570(v4,v3,v6,v7)` **4 实参 ✗** |
+
+⇒ 方案有**可用的先例**：按成员注解后，生成头是 4 参成员声明，与 4 实参调用匹配。
+
+## 51.3 验收（全部实测）
+
+| 指标 | 改动前 | 改动后 |
+|---|---|---|
+| **`Effect/ScreenEffect.cpp`** | 3 条 C2660 | **0** ✓ |
+| **总错误** | 2224 | **2164（−60）** |
+| **S2 ok** | 71 | **74（+3）** |
+| 单元数 | 205 | 205 |
+| **L1** | 32 | **34（+2，棘轮只升不降）** |
+| matched | 246/280 | **262/300** |
+| 门禁 | 新失败 2 | **新失败 1**（仅剩**有意未动**的 `UISystem.cpp` / `sub_421870`） |
+
+## 51.4 结论
+
+**§50 的诊断与归属方案被经验验证**：三个未注解的同类函数被当成 5 参自由函数，
+按"`TextureLibDataBase` 成员（this 隐式 + 4 栈参）"注解后，调用点与声明自洽，
+**目标文件清零、总错误 −60、S2 +3、L1 +2，且无回退**。
+
+**剩余**：`UISystem.cpp` 的 `sub_421870`（调用点 `mov ecx,eax`，`eax` 来自 `sub_4226F0`，
+宿主类未定）—— 需先查明 `sub_4226F0` 的返回对象属于哪个类。
