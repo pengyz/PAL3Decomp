@@ -113,7 +113,7 @@ def test_bink_wrong_anchor_is_conflict_not_verified():
 
 # ---------------------------------------------------------------- 真实产物形态
 def test_real_artifact_rows_complete_with_registers_and_mangled_symbols():
-    """裁定器必须吃下**真实产物**：466 站点、寄存器 ptr、改编符号 dtor、字符串 count。"""
+    """裁定器必须吃下**真实产物**：466 站点、寄存器 ptr、改编符号 dtor、count 为 int|None。"""
     with open(SITES_JSON, encoding='utf-8') as fh:
         payload = json.load(fh)
     sites = payload['sites']
@@ -153,10 +153,13 @@ def test_real_artifact_rows_complete_with_registers_and_mangled_symbols():
         assert r['ownership_candidate']['state'] != 'verified'
         assert r['ownership_candidate']['verified_class'] is None
 
-    # 字符串 count（真实产物有 2 条）也必须原样进 raw 层，不得抛异常
-    strcount = [r for r in rows if isinstance(r['raw_site']['count'], str)]
-    assert strcount, '真实产物应含字符串 count'
-    assert all(r['size_state'] == 'evidenced' for r in strcount)
+    # 契约（2026-09-20 T2 评审条件②）：count 恒为 int|None —— 原先有 2 条是 str
+    # （asm 行 300295 `push ecx`、300859 `push ebx`），现已归一化为 None ⇒ 正向验证：
+    bad = [r for r in rows if not (r['raw_site']['count'] is None or isinstance(r['raw_site']['count'], int))]
+    assert not bad, 'count 必须为 int|None，实得 %r' % [r['raw_site']['count'] for r in bad[:3]]
+    nones = [r for r in rows if r['raw_site']['count'] is None]
+    assert nones, '寄存器操作数的 count 应归一化为 None（真实产物应有 2 条）'
+    assert all(r['size_state'] == 'evidenced' for r in nones)
 
 
 def test_real_dual_source_address_0x411ca0_is_exposed():
