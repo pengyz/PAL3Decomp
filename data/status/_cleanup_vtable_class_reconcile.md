@@ -2929,3 +2929,81 @@ bool CCBSystem::PassCmdToTask(int nTaskIndex, int nThreadIndex)
   "移出"有据；目标类需按**成员归属 + 结构性落点**确定，确定不了就移出到待定；
 * 两条都攒够后**跑一次**管线（`apply_annotation_batch.py --run-pipeline`）并按 §46 的
   验证清单收尾（`new_failures` 0、**L1 不得回退**）。
+
+---
+
+# 50. `init --force` 后的 2 个新失败：**根因不是"IDB 丢签名"**（我的假设被推翻），而是**三个同类函数缺注解**
+
+## 50.1 我原先的假设（错）与更正
+
+我曾判断"`init --force` 重建后丢失了只存在于旧 IDB、未写进注解的签名"。
+**用备份的旧 IDB（`/tmp/PAL3.exe.i64.pre_init`）实读四个函数的原型 —— 与新 IDB 逐字相同**：
+
+```
+0x4B5570: __int64 __thiscall(int this, int, int, TextureLibDataBase *, int)
+0x4B5830: __int64 __thiscall(float *this, int, int, TextureLibDataBase *, int)
+0x4B5BB0: __int64 __thiscall(float *this, int, int, TextureLibDataBase *, int)
+0x421870: void __thiscall(_DWORD *this)
+```
+
+⇒ **重建没有丢签名，这四个函数没有"可迁移的 IDB 签名"。假设推翻。**
+
+## 50.2 真正的机制（已定位到指令级）
+
+生成物：
+
+```c
+// pal3/src/free_functions.h:401   ← 因为**没有注解**，被当成"自由函数"发射
+__int64 sub_4B5570(int _this, int a2, int a3, TextureLibDataBase *a4, int a5);   // 5 参
+// pal3/src/Effect/ScreenEffect.cpp:47
+sub_4B5570(v4, v3, v6, v7);                                                      // 只传 4 个 ⇒ C2660
+```
+
+而**同一个 switch 的相邻分支**是：
+
+```c
+case 4: (((TextureLibDataBase *)this))->TextureLibDataBase::UpdateOrbitalMotion(v4, (int)v3, v6, (__int64)v5);
+case 6: (((TextureLibDataBase *)this))->TextureLibDataBase::UpdateLinearMotion(...);
+```
+
+**⇒ 姐妹函数是 `TextureLibDataBase` 的成员（已注解 ⇒ 渲染成限定成员调用、`this` 隐式 ⇒ 实参个数自洽）；
+`sub_4B5570/4B5830/4B5BB0` 是同类却无注解 ⇒ 被发射成 5 参自由函数 ⇒ 调用点（4 实参）与声明不符。**
+
+## 50.3 归属证据（A 级，链条闭合）
+
+调用者 `0x004B4DC0` = **`ScreenEffect::Apply`**（`void __thiscall()`）：
+
+* 同一 switch 的 case 4/6 调用 **已注解的 `TextureLibDataBase` 成员**
+  （`0x4B5450 UpdateOrbitalMotion`、`0x4B5750 UpdateLinearMotion`），并把 `this` **强转成 `TextureLibDataBase*`**；
+* case 5/7/8 调用我们的三个函数，形态是 **`mov ecx, esi`**（`esi` 就是那个 `TextureLibDataBase*`）；
+* 三者地址 `0x4B5570/0x4B5830/0x4B5BB0` 与姐妹函数 **`0x4B5450`/`0x4B5750` 交错相邻**。
+
+⇒ **三个函数是 `TextureLibDataBase` 的成员**（attribution 由"调用约定 + 同一调用点的姐妹函数 + 地址相邻"三重支撑）。
+
+## 50.4 待办的迁移（下一步直接可做）
+
+1. 在注解里为 `TextureLibDataBase` **新增三条方法**：
+
+| 地址 | 建议签名 | 名字 |
+|---|---|---|
+| `0x4B5570` | `__int64 __thiscall TextureLibDataBase::M(int, int, TextureLibDataBase *, int)` | **`_todo_4b5570`**（含义未定；语义名须读函数体后按逻辑给） |
+| `0x4B5830` | 同上（`this` 类型 `float *` 待核） | `_todo_4b5830` |
+| `0x4B5BB0` | 同上 | `_todo_4b5bb0` |
+
+   **注意**：`this` 的**指针类型**三个各不相同（`int this` / `float *this` / `float *this`）——
+   那是 IDB 的推断，需按函数体用法核实；**签名里 `__thiscall` 必须带 `::`**
+   （否则会被发射成 `static` 自由函数，这是拉取的那批代码已加的护栏）。
+
+2. `0x421870`：调用点 `mov ecx, eax` 而 `eax` 来自 `sub_4226F0`（**不是 `this`**）
+   ⇒ 其宿主类**尚未确定**，需再查 `sub_4226F0` 的返回类型 / 该对象的构造点。**暂不动**。
+
+3. **工具缺口**：`tools/apply_annotation_batch.py` 目前只有 `reattribute`（搬**已存在**的条目）
+   与 `set_size`/`set_signature`/`skip_method`；**缺"新增方法"这一类**。要么加一个 `add_method`，
+   要么直接编辑 `data/annotations/structs/TextureLibDataBase.json` 后走标准管线。
+
+## 50.5 本轮结论
+
+* **`init --force` 本身没问题**（签名一字未变）；这 2 个新失败是**"缺注解的函数被当成自由函数"**这一类
+  在**拉取的那批代码改动**之后才暴露出来的（其"每轮 new_failures=0"是在它自己的单元集/IDB 状态下测的）；
+* 修法属于**纯 annotation 补全**（把这 3 个同类函数归到 `TextureLibDataBase`），**符合"annotation 质量"主线**；
+* 我未落盘（缺 `add_method` 通道 + `this` 类型待核），**状态干净**。
