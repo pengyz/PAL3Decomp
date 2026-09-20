@@ -95,8 +95,8 @@
   },
   "0x004226F0": {
     "name": "UISceneUpdate",
-    "signature": "struct SceneMgr *__cdecl()",
-    "source": "F61(2026-09-19) 原改为 SceneMgr*；2026-09-20 复核发现该类实为 Scene（元素尺寸 493156、7/7 成员吻合），但**单独**把返回类型改成 Scene* 会暴露既存缺口（Scene 注解在 offset0 有 _vftable 而头生成器按设计不发射它 ⇒ UIManager.cpp 出现 C2039，总错误 +3）。故本轮**分离实验**：先回退返回类型，只保留 Scene::_todo_421870 的归属（该方法归属由调用点 `mov ecx,eax` + [esi+84h]=Scene.m_geomnode 双重证据支撑）⇒ 待 offset0 缺口与 Scene 布局一并处理时再改。"
+    "signature": "struct Scene *__cdecl()",
+    "source": "2026-09-20 二次修正（F61 类型选择的最终裁定）：本 getter 返回 `0xC21FE8 + 状态*493156`（A 级：移位链算术 + 构造点三个字面量 `push 3`/`push 00078664h`/`push 00C21FE8h`），该数组的元素类经**7/7 成员偏移吻合 ctor 初始化**确认为 **Scene** ⇒ 返回类型应为 `Scene*`（F61 定成 `SceneMgr*` 是偏移巧合：0xe0e0 落在 493156 字节对象内部是另一个字段）。首次尝试改 `Scene*` 时暴露了`UIManager.cpp` 的 C2039（`'_vftable' is not a member of 'Scene'`），根因是 `Scene` 注解里**无据的 +0 _vftable**（其 ctor/dtor 都不装 vptr、`Scene.vtables=None`）—— 本批已同时移除该成员。"
   },
   "0x00422950": {
     "name": "LoadScene",
