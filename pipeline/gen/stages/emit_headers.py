@@ -116,6 +116,16 @@ def _get_underscore_aliases():
 PIPELINE_ROOT = Path(__file__).parent.parent.parent  # pipeline/
 PROJECT_ROOT = PIPELINE_ROOT.parent
 ANNOTATIONS_DIR = PROJECT_ROOT / "data" / "annotations"
+
+# 2026-09-20 审计 P1-5：注解直读的**单一读点**。
+# 别名用 `_annview`（**不是 `_av`**）：本文件多处函数体内曾有 `import ... as _av`
+# 形式的局部导入，会使 `_av` 变成**函数局部名**并遮蔽模块级别名 ⇒ 在函数内更早的位置
+# 引用它就会 `UnboundLocalError`（2026-09-20 实测：该错误被 `except Exception: pass`
+# 静默吞掉，导致 635 个类的 known_members 覆盖整体失效）。
+try:
+    import annotation_view as _annview
+except ImportError:
+    from pipeline.gen import annotation_view as _annview
 IDA_STRUCTS_FILE = PROJECT_ROOT / "asm" / "pal3" / "ida_structs.json"
 DECOMP_DIR = PROJECT_ROOT / "asm" / "pal3" / "decomp"
 OUTPUT_DIR = PROJECT_ROOT / "pal3" / "src"
@@ -972,11 +982,9 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             and ida_struct and ida_struct.get('data_members'):
         _overlaid = list(ida_struct['data_members'])
         try:
-            _ann_path = (PROJECT_ROOT / "data" / "annotations" / "structs"
-                         / ("%s.json" % cls_name))
+            _ann_json = _annview.struct_by_class(cls_name)
             _ann_km = {}
-            if _ann_path.exists():
-                _ann_json = json.loads(_ann_path.read_text(encoding='utf-8'))
+            if _ann_json:
                 _ann_km = _ann_json.get('known_members', {}) or {}
             if _ann_km:
                 _ann_sinfo = ida_struct
@@ -1010,8 +1018,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                             _m['type'] = _ao['type']
                         if isinstance(_ao.get('name'), str) and _ao['name']:
                             _m['name'] = _ao['name']
-        except Exception:
-            pass
+        except Exception as _ovl_e:
+            # P1-5 诊断（临时）：原先这里是 `except Exception: pass`，
+            # 会把"覆盖逻辑整体失效"这类事故**静默吞掉**。改为出声以定位。
+            import sys as _ovl_sys
+            print('[OVERLAY-DIAG] %s: overlay block raised %s: %s'
+                  % (cls_name, type(_ovl_e).__name__, _ovl_e), file=_ovl_sys.stderr)
 
     # Embed colliding enums (case-insensitive FS collision) before class definition
     if colliding_enums:
@@ -1096,12 +1108,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     _template_map = {}
     # 2026-09-20 审计 P1-5（第七批）：收敛到单一读点 annotation_view。
     # 语义保持：同样先 `exists` 守卫、同样**不捕获异常**（损坏时抛出）。
-    try:
-        import annotation_view as _av
-    except ImportError:
-        from pipeline.gen import annotation_view as _av
-    if os.path.exists(_av.template_bases_path()):
-        _tpl_data = _av.template_bases()
+    if os.path.exists(_annview.template_bases_path()):
+        _tpl_data = _annview.template_bases()
         for _k, _v in _tpl_data.items():
             if not _k.startswith('_'):
                 _template_map[_k] = _v['template']
@@ -1311,12 +1319,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     except NameError:
         template_map = {}
         # 2026-09-20 审计 P1-5（第七批）：同上，收敛到 annotation_view（语义保持）。
-        try:
-            import annotation_view as _av
-        except ImportError:
-            from pipeline.gen import annotation_view as _av
-        if os.path.exists(_av.template_bases_path()):
-            _tpl_data = _av.template_bases()
+        if os.path.exists(_annview.template_bases_path()):
+            _tpl_data = _annview.template_bases()
             for _k, _v in _tpl_data.items():
                 if not _k.startswith('_'):
                     template_map[_k] = _v['template']
@@ -1377,10 +1381,9 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # apply path does not apply here.
     try:
         _ann_json_base = None
-        _cls_ann_path = (PROJECT_ROOT / 'data' / 'annotations' / 'structs'
-                         / ('%s.json' % cls_name))
-        if _cls_ann_path.exists():
-            _cls_ann = json.loads(_cls_ann_path.read_text(encoding='utf-8'))
+        # P1-5（第八批）：收敛到 _annview.struct_by_class（exists 由原语内部处理）
+        _cls_ann = _annview.struct_by_class(cls_name)
+        if _cls_ann:
             _ann_json_base = _cls_ann.get('base_class')
         if _ann_json_base and not base_names:
             if isinstance(_ann_json_base, str):
@@ -1618,10 +1621,10 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             vtable_method_names |= _collect_base_vtable_names(bn)
 
         # Also include known_methods from annotation as vtable methods
-        _ann_path = PROJECT_ROOT / "data" / "annotations" / "structs" / ("%s.json" % cls_name)
-        if _ann_path.exists():
+        # P1-5（第八批）：收敛到 _annview.struct_by_class（保留本处 try 容错）
+        _ann_data = _annview.struct_by_class(cls_name)
+        if _ann_data:
             try:
-                _ann_data = json.loads(_ann_path.read_text(encoding='utf-8'))
                 for _slot, _minfo in _ann_data.get('known_methods', {}).items():
                     if isinstance(_minfo, dict) and _minfo.get('name'):
                         vtable_method_names.add(_minfo['name'])
@@ -2236,13 +2239,14 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # NOTE: the scalar-wrapper block above no longer emits operator int/=, so
     # no cross-block dedup flags are needed — the flags below only dedupe
     # within this loop.
-    _ann_file = PROJECT_ROOT / "data" / "annotations" / "structs" / ("%s.json" % cls_name)
+    # P1-5（第八批）：收敛到 _annview.struct_by_class
+    _ann_file_data = _annview.struct_by_class(cls_name)
     _has_op_int = False
     _has_op_assign = False
     _has_op_subscript = False
-    if _ann_file.exists():
+    if _ann_file_data:
         try:
-            _ann_data = json.loads(_ann_file.read_text(encoding='utf-8'))
+            _ann_data = _ann_file_data
             for _slot, _minfo in _ann_data.get('known_methods', {}).items():
                 if not isinstance(_minfo, dict):
                     continue
@@ -2430,12 +2434,8 @@ def main():
     _template_concrete = set()
     # 2026-09-20 审计 P1-5（第七批）：收敛到单一读点 annotation_view。
     # 语义保持：同样先 `exists` 守卫、同样**不捕获异常**（损坏时抛出）。
-    try:
-        import annotation_view as _av
-    except ImportError:
-        from pipeline.gen import annotation_view as _av
-    if os.path.exists(_av.template_bases_path()):
-        _tpl_data = _av.template_bases()
+    if os.path.exists(_annview.template_bases_path()):
+        _tpl_data = _annview.template_bases()
         for _k, _v in _tpl_data.items():
             if not _k.startswith('_'):
                 _template_concrete.add(_k)

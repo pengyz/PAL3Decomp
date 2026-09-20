@@ -19,6 +19,31 @@
 
 ## P1 进度
 
+### P1-5 第八批（第 17 轮）：`emit_headers.py` 的 4 处 per-class 读取 + **一个真实潜伏缺陷的定位与修复**
+**迁移**：`:975 known_members overlay` / `:1375 base_class` / `:1616 known_methods` / `:2234 operators`
+四处原先各自 `PROJECT_ROOT/"data"/"annotations"/"structs"/("<cls>.json")` + `.exists()` +
+`read_text(utf-8)` + `json.loads` ⇒ 统一到 `_annview.struct_by_class(cls)`（exists 由原语内部处理，
+**保留各处自己的 try 容错**）。同批把第七批遗留的 **3 处函数内 `import annotation_view as _av`
+去掉**（改用模块级别名）✓
+
+**⚠️ 过程中撞上一个真实潜伏缺陷（已定位 + 已修）**：
+- 现象：迁移后 **195 个非 globals 头文件产物变化**（`char X[29028]` ⇒ `_BYTE X[18740]` + `m_nTodo_*` + `_gap_*`）
+  ⇒ **注解的 `known_members` 覆盖整体失效** ✗
+- 隔离：回退 4 处 ⇒ 产物**恢复逐字节一致**（证确定性）；只应用 `:975` ⇒ 195 个差异复现 ⇒ **罪魁锁定** ✓
+- **定位手段**：把 `:975` 处外层的 `except Exception: pass` 临时改成**出声** ⇒ 一次跑出 **635 条**
+  `UnboundLocalError: local variable '_av' referenced before assignment` ✓✓
+- **根因**：**第七批**在 `generate_header` **函数体内**插入了 `import annotation_view as _av`
+  ⇒ `_av` 因此成为**该函数的局部名** ⇒ **第八批**的模块级别名 `_av` 被遮蔽，而 `:975` 位于那些
+  局部 import **之前** ⇒ 引用即 `UnboundLocalError` ⇒ 被 `except Exception: pass` **静默吞掉** ✓
+  **教训：① 别名 `_av` 太短、与函数内 import 冲突（我的错）；② `except: pass` 把整体失效藏了 635 个类。**
+- **修复**：别名改为 **`_annview`**；去掉 3 处函数内 import；**并把该 `except` 永久改为出声**
+  （这是**独立于本次迁移的健壮性改进**：今后任何该类异常都会显式报出，不再静默降级）✓
+**验证**：`codegen headers`（全部 739 个头重新生成）⇒ 诊断输出 **0 条 OVERLAY-DIAG**（不再抛错）✓
+⇒ `diff -rq` 与快照 **非 globals 差异 = 0** ✓、`codegen headers` EXIT=0 ✓ ⇒ **迁移字节中性** ✓
+**P1-5 累计 15 处**（stage4 1 · collect 1 · data.py 5 · ast_transform 1 · emit_headers **7**）。
+**`emit_headers.py` 剩余 3 处**：`sdk_types.json`(:157)、`structs/*.json` 全量 glob(:726)、`globals.json`(:2911)。
+
+
 ### P1-5 第七批（第 16 轮）：`emit_headers.py` 的 **3 处 `template_bases.json` 归并**
 `emit_headers.py` 的 10 处直读中，**:1098 / :1311 / :2427 读的是同一个 `template_bases.json`**
 （两处结构逐字相同，第三处仅缩进不同）⇒ 本次归并为一个**带缓存**的读点。
