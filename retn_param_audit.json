@@ -1,0 +1,2965 @@
+{
+ "checked": 1664,
+ "mismatches": [
+  {
+   "ea": "0x00401750",
+   "name": "AStarPathFinder::ResortNode",
+   "src": "structs/AStarPathFinder.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004031D0",
+   "name": "GRPinput::GetState",
+   "src": "structs/GRPinput.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall()",
+   "declared": 0,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x00407B50",
+   "name": "SceneObj::UpdateAutoDelete",
+   "src": "structs/SceneObj.json",
+   "cc": "__thiscall",
+   "sig": "char __thiscall(SceneObj *this, unsigned int deltatime)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x0040CCF0",
+   "name": "CCBStage::GetAlive",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "char *__thiscall(CCBStage *this, int thisa, int *pConfig)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0040CFE0",
+   "name": "CCBAI::GetTargetRole",
+   "src": "structs/CCBAI.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(void *pOut)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00411170",
+   "name": "Array::Insert",
+   "src": "structs/Array.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(void *pElem, void *pEnd)",
+   "declared": 2,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x004111E0",
+   "name": "Array::Erase",
+   "src": "structs/Array.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(int nIndex, int nCount)",
+   "declared": 2,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x00411E00",
+   "name": "RoleSystem::ApplyMoveStep",
+   "src": "structs/RoleSystem.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall RoleSystem::ApplyMoveStep(double fInput, int nVal, float fVal, char bCollide)",
+   "declared": 4,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00412230",
+   "name": "RoleSystem::SetMoveSpeed",
+   "src": "structs/RoleSystem.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(float fSpeed, int nRoleIndex, int nFlag)",
+   "declared": 3,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004125B0",
+   "name": "RoleSystem::NotifySceneChange",
+   "src": "structs/RoleSystem.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00412A90",
+   "name": "RoleSystem::MoveToTile",
+   "src": "structs/RoleSystem.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall RoleSystem::MoveToTile(__int64 tileXY, int nMode)",
+   "declared": 2,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x00413420",
+   "name": "RoleSystem::StepAlongPath",
+   "src": "structs/RoleSystem.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall RoleSystem::StepAlongPath(double fStepSize, float fVal)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00413CD0",
+   "name": "RoleSystem::PathFollowUpdate",
+   "src": "structs/RoleSystem.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00414350",
+   "name": "RoleSystem::UpdateMovement",
+   "src": "structs/RoleSystem.json",
+   "cc": "__thiscall",
+   "sig": "double __thiscall RoleSystem::UpdateMovement(double result, gbVec3D *pB)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00414E30",
+   "name": "RoleSystem::GetActionByIndex",
+   "src": "structs/RoleSystem.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int nParam)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00417C50",
+   "name": "RoleSystem::UpdateMoveSubMode",
+   "src": "structs/RoleSystem.json",
+   "cc": "__thiscall",
+   "sig": "double __thiscall RoleSystem::UpdateMoveSubMode(double result, float result_4)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00418130",
+   "name": "RoleSystem::GetMoveState",
+   "src": "structs/RoleSystem.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00418260",
+   "name": "UIBigMap::Update",
+   "src": "structs/UIBigMap.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall UIBigMap::Update__ovl_8260(int deltatime, float *haveinput)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00419090",
+   "name": "ScriptSystem::UpdatePositions",
+   "src": "structs/ScriptSystem.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall ScriptSystem::UpdatePositions()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00419200",
+   "name": "ScriptSystem::SmoothTrackTarget",
+   "src": "structs/ScriptSystem.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall ScriptSystem::SmoothTrackTarget(float fDeltaTime, float fMaxAccel, float fVal3, float fVal4)",
+   "declared": 4,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00419A20",
+   "name": "RoleSystem::GetActorState",
+   "src": "structs/RoleSystem.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(double thisa, int nVal, int nVal2, int nVal3)",
+   "declared": 4,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x0041B6A0",
+   "name": "Role::GetGfxManager",
+   "src": "structs/Role.json",
+   "cc": "__thiscall",
+   "sig": "gbGfxManager *__thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0041C900",
+   "name": "CCCTData::CalcDist",
+   "src": "structs/CCCTData.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(float fVal, float fVal2)",
+   "declared": 2,
+   "retn": 32,
+   "binary": 8
+  },
+  {
+   "ea": "0x00420430",
+   "name": "_sdtor_2",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(void *Block, char a2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00421020",
+   "name": "RoleSystem::CheckCollision",
+   "src": "structs/RoleSystem.json",
+   "cc": "__thiscall",
+   "sig": "BOOL __thiscall(int *pResult, int nFlag)",
+   "declared": 2,
+   "retn": 16,
+   "binary": 4
+  },
+  {
+   "ea": "0x00424C20",
+   "name": "ScriptVM::ExecuteBlock",
+   "src": "structs/ScriptVM.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 16,
+   "binary": 4
+  },
+  {
+   "ea": "0x0042A010",
+   "name": "RoleSystem::ProcessAction",
+   "src": "structs/RoleSystem.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0042B5B0",
+   "name": "PalScriptMgr::UpdateScriptRoles",
+   "src": "structs/PalScriptMgr.json",
+   "cc": "__thiscall",
+   "sig": "double __thiscall(double thisa, int nVal, int nVal2)",
+   "declared": 3,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x0042C6E0",
+   "name": "gbLightObj::GetGfxManager",
+   "src": "structs/gbLightObj.json",
+   "cc": "__thiscall",
+   "sig": "gbGfxManager *__thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0042C950",
+   "name": "ScriptVM::ExecuteOpcode",
+   "src": "structs/ScriptVM.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(void *pData, unsigned char nType, int nCount)",
+   "declared": 3,
+   "retn": 16,
+   "binary": 4
+  },
+  {
+   "ea": "0x0042E4D0",
+   "name": "PalScriptMgr::CmdRoleMoveSmooth",
+   "src": "structs/PalScriptMgr.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall PalScriptMgr::CmdRoleMoveSmooth(int nVal, unsigned __int8 pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0042FDC0",
+   "name": "Config::FormatSectionPath",
+   "src": "structs/Config.json",
+   "cc": "__thiscall",
+   "sig": "char *__thiscall(char *filename, char *key)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0042FDE0",
+   "name": "Config::ReadSectionAsInt",
+   "src": "structs/Config.json",
+   "cc": "__thiscall",
+   "sig": "bool __thiscall(char *filename, char *section)",
+   "declared": 2,
+   "retn": 16,
+   "binary": 4
+  },
+  {
+   "ea": "0x00431760",
+   "name": "PalScript::_sdtor_23",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "PalScript *__thiscall(PalScript *Block, char a2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00431C10",
+   "name": "PalScript::FindSaveStateString",
+   "src": "structs/PalScript.json",
+   "cc": "__thiscall",
+   "sig": "char __thiscall(PalScript *String1, char *String2, char *Destination, int nVal)",
+   "declared": 4,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x00434CA0",
+   "name": "PalScriptMgr::InitVtable",
+   "src": "structs/PalScriptMgr.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0043A1D0",
+   "name": "PalScript::_scalar_dtor",
+   "src": "structs/PalScript.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0043A7F0",
+   "name": "UICaption::_sdtor",
+   "src": "structs/UICaption.json",
+   "cc": "__thiscall",
+   "sig": "UIScene *__thiscall(UIScene *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0043AFA0",
+   "name": "CScreenMode::SetTooltipText",
+   "src": "structs/CScreenMode.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0043B4B0",
+   "name": "UICaption::_sdtor_5",
+   "src": "structs/UICaption.json",
+   "cc": "__thiscall",
+   "sig": "UICaption *__thiscall(UICaption *Block, char a2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0043D860",
+   "name": "UI3DCtrl::_scalar_dtor",
+   "src": "structs/UI3DCtrl.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0043DCF0",
+   "name": "UIListBox::_scalar_dtor",
+   "src": "structs/UIListBox.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(UIListBox *__hidden this)",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0043DD60",
+   "name": "UIListBox::SetSelTexture",
+   "src": "structs/UIListBox.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(UIListBox *this, int id, int pRect, int nVal, int nVal2, int nVal3)",
+   "declared": 5,
+   "retn": 24,
+   "binary": 6
+  },
+  {
+   "ea": "0x0043E100",
+   "name": "UIListBox::_scalar_dtor",
+   "src": "structs/UIListBox.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0043F5B0",
+   "name": "UIListBox::GetItem",
+   "src": "structs/UIListBox.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(UIListBox *this)",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0043F640",
+   "name": "UIListBox::SetLockSel",
+   "src": "structs/UIListBox.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0043F950",
+   "name": "UIButton::_scalar_dtor",
+   "src": "structs/UIButton.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(void *Block, char)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0043FA00",
+   "name": "UIScene::GetChildCount",
+   "src": "structs/UIScene.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall UIScene::GetChildCount()",
+   "declared": 0,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x0043FAE0",
+   "name": "UIScene::GetChildAt",
+   "src": "structs/UIScene.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall UIScene::GetChildAt()",
+   "declared": 0,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x0043FBC0",
+   "name": "UIScene::SetTextParam",
+   "src": "structs/UIScene.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall UIScene::SetTextParam()",
+   "declared": 0,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004407A0",
+   "name": "UIStatic::_scalar_dtor",
+   "src": "structs/UIStatic.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(void *Block, char)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00440960",
+   "name": "UIStatic::FormatText",
+   "src": "structs/UIStatic.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall UIStatic::FormatText()",
+   "declared": 0,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00440AE0",
+   "name": "UIStatic::LoadTexture",
+   "src": "structs/UIStatic.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall UIStatic::LoadTexture()",
+   "declared": 0,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00440CE0",
+   "name": "UIStatic::SetText",
+   "src": "structs/UIStatic.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall UIStatic::SetText()",
+   "declared": 0,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004411B0",
+   "name": "UIMap::_scalar_dtor",
+   "src": "structs/UIMap.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00441380",
+   "name": "CCBUI::ShowEffect",
+   "src": "structs/CCBUI.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int nY, int nWidth, int nHeight)",
+   "declared": 3,
+   "retn": 16,
+   "binary": 4
+  },
+  {
+   "ea": "0x00442060",
+   "name": "UIScene::SetFirstShow",
+   "src": "structs/UIScene.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall UIScene::SetFirstShow()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004420B0",
+   "name": "CCBUI::VirtualCall",
+   "src": "structs/CCBUI.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00442230",
+   "name": "CCBUI::SetSelection",
+   "src": "structs/CCBUI.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int nItemIndex)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00442370",
+   "name": "UIFrameWnd::_sdtor",
+   "src": "structs/UIFrameWnd.json",
+   "cc": "__thiscall",
+   "sig": "UIFrameWnd *__thiscall(UIFrameWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004427C0",
+   "name": "UICaption::SetEnable",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall UICaption::SetEnable(UICaption *this)",
+   "declared": 0,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00442D20",
+   "name": "UIFrameWnd::_sdtor_8",
+   "src": "structs/UIFrameWnd.json",
+   "cc": "__thiscall",
+   "sig": "UIFrameWnd *__thiscall(UIFrameWnd *Block, char a2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00442E60",
+   "name": "UIFrameWnd::_scalar_dtor",
+   "src": "structs/UIFrameWnd.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004431B0",
+   "name": "UIFrameWnd::_sdtor_call_dtor",
+   "src": "structs/UIFrameWnd.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(void *Block, char)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004433A0",
+   "name": "UIFrameWnd::_sdtor_thunk",
+   "src": "structs/UIFrameWnd.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(void *Block, char)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00443530",
+   "name": "UIFrameWnd::_sdtor_ovl",
+   "src": "structs/UIFrameWnd.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(void *Block, char)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004435A0",
+   "name": "UIFrameWnd::LoadFrameResources",
+   "src": "structs/UIFrameWnd.json",
+   "cc": "__thiscall",
+   "sig": "gbVFileSystem *__thiscall UIFrameWnd::LoadFrameResources()",
+   "declared": 0,
+   "retn": 36,
+   "binary": 9
+  },
+  {
+   "ea": "0x00443BA0",
+   "name": "CCBFiveNimbusWindow::IsHitLeft",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "bool __thiscall CCBFiveNimbusWindow::IsHitLeft(CCBFiveNimbusWindow *this)",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00444AA0",
+   "name": "UIFrameWnd::_sdtor_full",
+   "src": "structs/UIFrameWnd.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(void *Block, char)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00444FF0",
+   "name": "UITextArea::_sdtor_13",
+   "src": "structs/UITextArea.json",
+   "cc": "__thiscall",
+   "sig": "UITextArea *__thiscall(UITextArea *Block, char a2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00445170",
+   "name": "UITextArea::ProcessInput",
+   "src": "structs/UITextArea.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall UITextArea::ProcessInput()",
+   "declared": 0,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00445720",
+   "name": "UITextArea::ShowWindow",
+   "src": "structs/UITextArea.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00445930",
+   "name": "UIScene::SetState",
+   "src": "structs/UIScene.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall UIScene::SetState()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00446020",
+   "name": "NPC::UpdateAnim",
+   "src": "structs/NPC.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(NPC *this)",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004461D0",
+   "name": "CCBUIPanel::_scalar_dtor",
+   "src": "structs/CCBUIPanel.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall CCBUIPanel::_scalar_dtor()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0044A1B0",
+   "name": "CCBUIPanel::ProcessInput",
+   "src": "structs/CCBUIPanel.json",
+   "cc": "__thiscall",
+   "sig": "BOOL __thiscall CCBUIPanel::ProcessInput(double st7_0)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x0044A7D0",
+   "name": "UIWnd::_sdtor_14",
+   "src": "structs/UIWnd.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(void *Block, char a2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0044ACC0",
+   "name": "UITitle::_scalar_dtor",
+   "src": "structs/UITitle.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0044B8A0",
+   "name": "PalScript::SetDialogTemplate",
+   "src": "structs/PalScript.json",
+   "cc": "__thiscall",
+   "sig": "LPSTR __thiscall PalScript::SetDialogTemplate(CHAR *String1, CHAR *lpString2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0044BE00",
+   "name": "UICaption::_sdtor_24",
+   "src": "structs/UICaption.json",
+   "cc": "__thiscall",
+   "sig": "UICaption *__thiscall(UICaption *Block, char a2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0044E5C0",
+   "name": "scScriptInstance::_sdtor_25",
+   "src": "structs/scScriptInstance.json",
+   "cc": "__thiscall",
+   "sig": "scScriptInstance *__thiscall(scScriptInstance *Block, char a2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0044F030",
+   "name": "CGameData::_scalar_dtor",
+   "src": "structs/CGameData.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall CGameData::_scalar_dtor()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00450070",
+   "name": "UISceneMap::_scalar_dtor",
+   "src": "structs/UISceneMap.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00450370",
+   "name": "_sdtor_15",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(void *Block, char a2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00450550",
+   "name": "UIDialog::Show",
+   "src": "structs/UIDialog.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00450770",
+   "name": "UILoadingFrm::_scalar_dtor",
+   "src": "structs/UILoadingFrm.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00450AB0",
+   "name": "RoleCameraCtrl::_sdtor_26",
+   "src": "structs/RoleCameraCtrl.json",
+   "cc": "__thiscall",
+   "sig": "RoleCameraCtrl *__thiscall(RoleCameraCtrl *Block, char a2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00450B30",
+   "name": "UIDialog::Init",
+   "src": "structs/UIDialog.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00450E90",
+   "name": "UIWnd::_sdtor_27",
+   "src": "structs/UIWnd.json",
+   "cc": "__thiscall",
+   "sig": "UIWnd *__thiscall(UIWnd *Block, char a2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00451740",
+   "name": "RoleAtt::ShowWindow",
+   "src": "structs/RoleAtt.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004517A0",
+   "name": "BINK::SetVideoRect",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall BINK::SetVideoRect(BINK *this)",
+   "declared": 0,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004518E0",
+   "name": "UIWnd::_sdtor_28",
+   "src": "structs/UIWnd.json",
+   "cc": "__thiscall",
+   "sig": "UIWnd *__thiscall(UIWnd *Block, char a2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00451AA0",
+   "name": "UIListBox::OnMessage_ovl_1aa0",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(UIListBox *this)",
+   "declared": 0,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x00451D80",
+   "name": "UITitle_BBTY::_scalar_dtor",
+   "src": "structs/UITitle_BBTY.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004520A0",
+   "name": "UITitle_BBTY::UpdateFrame",
+   "src": "structs/UITitle_BBTY.json",
+   "cc": "__thiscall",
+   "sig": "double __thiscall UITitle_BBTY::UpdateFrame(double result, int arg0, int arg0a)",
+   "declared": 3,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004525E0",
+   "name": "UIListBox::_scalar_dtor",
+   "src": "structs/UIListBox.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00452830",
+   "name": "UIAnimateCtrlEX::_scalar_dtor",
+   "src": "structs/UIAnimateCtrlEX.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00453010",
+   "name": "SceneObj::_scalar_dtor",
+   "src": "structs/SceneObj.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00453E50",
+   "name": "CCBUIPanel::_scalar_dtor",
+   "src": "structs/CCBUIPanel.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00456B60",
+   "name": "CCBRoleState::_scalar_dtor",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00456C20",
+   "name": "CCBRoleState::~CCBRoleState",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall CCBRoleState::~CCBRoleState()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00456E20",
+   "name": "CScreenMode::PauseAllStreams",
+   "src": "structs/CScreenMode.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(void *pStreams, unsigned __int8 a2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00459240",
+   "name": "UISceneFrm::_scalar_dtor",
+   "src": "structs/UISceneFrm.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00459970",
+   "name": "UITitle_YXXX::LayoutWidgets",
+   "src": "structs/UITitle_YXXX.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall UITitle_YXXX::LayoutWidgets()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00459FA0",
+   "name": "CCBStage::sub_00459fa0",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "char __thiscall(CCBStage *this, int thisa, unsigned __int8 pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0045A020",
+   "name": "CCBStage::sub_0045a020",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "char __thiscall(CCBStage *this, int thisa, unsigned __int8 pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0045A0A0",
+   "name": "CCBStage::sub_0045a0a0",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "char __thiscall(CCBStage *this, int thisa, unsigned __int8 pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0045A120",
+   "name": "CCBStage::sub_0045a120",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "char __thiscall(CCBStage *this, int thisa, unsigned __int8 pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0045A1A0",
+   "name": "CCBStage::sub_0045a1a0",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "char __thiscall(CCBStage *this, int thisa, unsigned __int8 pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0045A4F0",
+   "name": "UISceneFrm::fill",
+   "src": "structs/UISceneFrm.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(RoleTask *a1, RoleTask *a2, RoleTask *a3)",
+   "declared": 3,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x0045A600",
+   "name": "UISceneFrm::_Construct_2",
+   "src": "structs/UISceneFrm.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(RoleTaskLine *a1, RoleTaskLine *a2)",
+   "declared": 2,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x0045AE40",
+   "name": "SaleUI::_scalar_dtor",
+   "src": "structs/SaleUI.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00460A90",
+   "name": "SaleUI::UpdateSkillPanel",
+   "src": "structs/SaleUI.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall()",
+   "declared": 0,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00469D50",
+   "name": "SaleUI::AddItem",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(PlayerMgr *this)",
+   "declared": 0,
+   "retn": 16,
+   "binary": 4
+  },
+  {
+   "ea": "0x0046D4C0",
+   "name": "PropUI::_scalar_dtor",
+   "src": "structs/PropUI.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(void *Block, char)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00470F20",
+   "name": "UIListBox::_scalar_dtor_0f20",
+   "src": "structs/UIListBox.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00478880",
+   "name": "UIFrameWnd::ProcessTimer",
+   "src": "structs/UIFrameWnd.json",
+   "cc": "__thiscall",
+   "sig": "BOOL __thiscall(BOOL bEnable, BOOL bReset, int nInterval, int nParam)",
+   "declared": 4,
+   "retn": 32,
+   "binary": 8
+  },
+  {
+   "ea": "0x00479660",
+   "name": "MainEquipUI::_scalar_dtor",
+   "src": "structs/MainEquipUI.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0047B3B0",
+   "name": "MainEquipUI::Render3DModel",
+   "src": "structs/MainEquipUI.json",
+   "cc": "__thiscall",
+   "sig": "BOOL __thiscall MainEquipUI::Render3DModel()",
+   "declared": 0,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x0047BD00",
+   "name": "UITitle_ArcSave::_scalar_dtor",
+   "src": "structs/UITitle_ArcSave.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0047C6E0",
+   "name": "ObjectCamera::SetCameraAtPosition",
+   "src": "structs/ObjectCamera.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(gbVec3D position, char pData)",
+   "declared": 2,
+   "retn": 16,
+   "binary": 4
+  },
+  {
+   "ea": "0x0047D9D0",
+   "name": "Object3D::SetupCamera",
+   "src": "structs/Object3D.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall()",
+   "declared": 0,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x0047DD70",
+   "name": "UITitle_YXXX::_scalar_dtor",
+   "src": "structs/UITitle_YXXX.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(void *Block, char)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0047E8F0",
+   "name": "LineupUI::_scalar_dtor",
+   "src": "structs/LineupUI.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall LineupUI::_scalar_dtor()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0047F970",
+   "name": "LineupUI::CleanupAndForwardInput",
+   "src": "structs/LineupUI.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall LineupUI::CleanupAndForwardInput()",
+   "declared": 0,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00480450",
+   "name": "StateUI::DispatchCmd",
+   "src": "structs/StateUI.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(StateUI *this, BOOL bFlag)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00483260",
+   "name": "StateUI::_scalar_dtor",
+   "src": "structs/StateUI.json",
+   "cc": "__thiscall",
+   "sig": "StateUI *__thiscall(StateUI *Block, char a2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00484360",
+   "name": "LineupUI::GetSlotRect",
+   "src": "structs/LineupUI.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall LineupUI::GetSlotRect(int nVal, unsigned int dwVal)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00485230",
+   "name": "StateUI::sub_485230",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(StateUI *this)",
+   "declared": 0,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00485DF0",
+   "name": "StateUI::OnRender",
+   "src": "structs/StateUI.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall StateUI::OnRender()",
+   "declared": 0,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x00486D00",
+   "name": "RenderTarget::_scalar_dtor",
+   "src": "structs/RenderTarget.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00487F80",
+   "name": "ArcSceneMonster::CreateInfoPanel",
+   "src": "structs/ArcSceneMonster.json",
+   "cc": "__thiscall",
+   "sig": "int *__thiscall(int nVal, int nVal2, int id, int *pnVal, int nVal3)",
+   "declared": 5,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004889E0",
+   "name": "UITitle_XJTM::LayoutGetRects",
+   "src": "structs/UITitle_XJTM.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall UITitle_XJTM::LayoutGetRects()",
+   "declared": 0,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x0048C520",
+   "name": "CameraCtrl::CalcStatPower",
+   "src": "structs/CameraCtrl.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall CameraCtrl::CalcStatPower(int nVal)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x0048F3A0",
+   "name": "RenderTarget::OnRender",
+   "src": "structs/RenderTarget.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall RenderTarget::OnRender()",
+   "declared": 0,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x00490E70",
+   "name": "UIBigMap::_scalar_dtor",
+   "src": "structs/UIBigMap.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00491F20",
+   "name": "ArcSceneMonster::CreateMonsterUI",
+   "src": "structs/ArcSceneMonster.json",
+   "cc": "__thiscall",
+   "sig": "int *__thiscall(int nVal, int nVal2, int id, int *pnVal, int nVal3)",
+   "declared": 5,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00498C70",
+   "name": "EquipUI::_scalar_dtor",
+   "src": "structs/EquipUI.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00499CC0",
+   "name": "ArcSceneMonster::CreateStatusPanel",
+   "src": "structs/ArcSceneMonster.json",
+   "cc": "__thiscall",
+   "sig": "int *__thiscall(int nVal, int nVal2, int id, int *pnVal, int nVal3)",
+   "declared": 5,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004A13F0",
+   "name": "UIRoleDialog::_sdtor",
+   "src": "structs/UIRoleDialog.json",
+   "cc": "__thiscall",
+   "sig": "UIItem * __thiscall(void *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004A14D0",
+   "name": "UIItem::SetData",
+   "src": "structs/UIItem.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIItem *this, char pData)",
+   "declared": 1,
+   "retn": 16,
+   "binary": 4
+  },
+  {
+   "ea": "0x004A16C0",
+   "name": "ARC_PlayerAtt::Create__ovl_1",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall ARC_PlayerAtt::Create(ARC_PlayerAtt *this)",
+   "declared": 0,
+   "retn": 20,
+   "binary": 5
+  },
+  {
+   "ea": "0x004A2150",
+   "name": "UIGameFrm::_scalar_dtor",
+   "src": "structs/UIGameFrm.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall UIGameFrm::_scalar_dtor()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004A2BD0",
+   "name": "StateUI::GetChildPtr",
+   "src": "structs/StateUI.json",
+   "cc": "__thiscall",
+   "sig": "UIWnd *__thiscall(int index)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004A2F90",
+   "name": "StateUI::FindChild",
+   "src": "structs/StateUI.json",
+   "cc": "__thiscall",
+   "sig": "UIWnd *__thiscall(int id)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004A48B0",
+   "name": "RoleStatePanel::InitSlots",
+   "src": "structs/RoleStatePanel.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004A4960",
+   "name": "RoleStatePanel::InitLayout",
+   "src": "structs/RoleStatePanel.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004A4A10",
+   "name": "RoleStatePanel::CreateWidgets",
+   "src": "structs/RoleStatePanel.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004A4AC0",
+   "name": "RoleStatePanel::SetSelectedData",
+   "src": "structs/RoleStatePanel.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall MagicUI::SetSelectedData()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004A4B70",
+   "name": "RoleStatePanel::Init",
+   "src": "structs/RoleStatePanel.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004A6960",
+   "name": "TextureLib::CreateFromFile",
+   "src": "structs/TextureLib.json",
+   "cc": "__thiscall",
+   "sig": "gbTexture *__thiscall()",
+   "declared": 0,
+   "retn": 36,
+   "binary": 9
+  },
+  {
+   "ea": "0x004A7670",
+   "name": "SystemUI::_scalar_dtor",
+   "src": "structs/SystemUI.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(void *Block, char)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004A8260",
+   "name": "SystemUI::CreateNoteEntry",
+   "src": "structs/SystemUI.json",
+   "cc": "__thiscall",
+   "sig": "char __thiscall SystemUI::CreateNoteEntry(int nVal, int nVal2, int nVal3, char pData, int nVal4, int nVal5, unsigned __int8 a8)",
+   "declared": 7,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004ADC30",
+   "name": "SystemUI::InitScreenUI",
+   "src": "structs/SystemUI.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int nVal, UIWnd *pWnd, int nVal2, char *pszBuf, int nVal3)",
+   "declared": 5,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x004B0520",
+   "name": "UITitle_JDHY::_scalar_dtor",
+   "src": "structs/UITitle_JDHY.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004B2750",
+   "name": "UITitle_JDHY::SaveData",
+   "src": "structs/UITitle_JDHY.json",
+   "cc": "__thiscall",
+   "sig": "FILE *__thiscall UITitle_JDHY::SaveData(double Data, int nVal)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004B4840",
+   "name": "RenderTarget::SetField084",
+   "src": "structs/RenderTarget.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall RenderTarget::SetField084()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004B48E0",
+   "name": "RenderTarget::SetSize",
+   "src": "structs/RenderTarget.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(int nHeight)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004B4910",
+   "name": "RenderTarget::SetState",
+   "src": "structs/RenderTarget.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004B4C60",
+   "name": "RenderTarget::Render",
+   "src": "structs/RenderTarget.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(int nY, int nWidth, int nHeight)",
+   "declared": 3,
+   "retn": 16,
+   "binary": 4
+  },
+  {
+   "ea": "0x004B4D80",
+   "name": "RenderTarget::SetOffset",
+   "src": "structs/RenderTarget.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(int nOffY)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004B4DA0",
+   "name": "RenderTarget::SetScale",
+   "src": "structs/RenderTarget.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(int nScaleY)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004B6C80",
+   "name": "RenderTarget3::_sdtor_with_dtor",
+   "src": "structs/RenderTarget3.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(void *Block, char)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004BB200",
+   "name": "UISceneFrm::ScreenToLocal",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(UISceneFrm *this, float *pOutX, float *pInX, float *pInY)",
+   "declared": 3,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004BE1A0",
+   "name": "ScreenEffectMgr::ProcessEffect",
+   "src": "structs/ScreenEffectMgr.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004BE830",
+   "name": "ScreenEffect::CopyParams",
+   "src": "structs/ScreenEffect.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(int *pParams)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004BE8F0",
+   "name": "CameraCtrl::_sdtor_17",
+   "src": "structs/CameraCtrl.json",
+   "cc": "__thiscall",
+   "sig": "CameraCtrl *__thiscall(CameraCtrl *Block, char a2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004C0510",
+   "name": "CEffSParticle::sub_4C0510",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(CEffSParticle *this)",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004C0610",
+   "name": "RenderTarget2::nullsub_75_override",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(RenderTarget2 *this)",
+   "declared": 0,
+   "retn": 16,
+   "binary": 4
+  },
+  {
+   "ea": "0x004C0640",
+   "name": "CEffAction::ResetState",
+   "src": "structs/CEffAction.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall CEffAction::ResetState()",
+   "declared": 0,
+   "retn": 16,
+   "binary": 4
+  },
+  {
+   "ea": "0x004C0920",
+   "name": "CEffAction::PrepareEffect",
+   "src": "structs/CEffAction.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004C09E0",
+   "name": "CEffAction::RenderScene",
+   "src": "structs/CEffAction.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004C1270",
+   "name": "CEffAction::sub_4C1270",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(CEffAction *this)",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004C1490",
+   "name": "RenderTarget2::BeginRenderPass",
+   "src": "structs/RenderTarget2.json",
+   "cc": "__thiscall",
+   "sig": "RenderTarget2 * __thiscall(void *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004C1F70",
+   "name": "RenderTarget2::DestroyEffAudio",
+   "src": "structs/RenderTarget2.json",
+   "cc": "__thiscall",
+   "sig": "RenderTarget2 *__thiscall RenderTarget2::DestroyEffAudio(void *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004C2700",
+   "name": "RenderTarget2::BeginNextPass",
+   "src": "structs/RenderTarget2.json",
+   "cc": "__thiscall",
+   "sig": "RenderTarget2 * __thiscall(void *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004C3340",
+   "name": "RenderTarget2::_scalar_dtor_Bink",
+   "src": "structs/RenderTarget2.json",
+   "cc": "__thiscall",
+   "sig": "RenderTarget2 *__thiscall RenderTarget2::_scalar_dtor_Bink(void *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004C3BB0",
+   "name": "RenderTarget2::AdvancePass",
+   "src": "structs/RenderTarget2.json",
+   "cc": "__thiscall",
+   "sig": "RenderTarget2 * __thiscall(void *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004C5740",
+   "name": "RenderTarget2::sub_4C5740",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(RenderTarget2 *this)",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004C5B90",
+   "name": "_Texture_uv::operator_",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "_Texture_uv __thiscall _Texture_uv::operator_(_Texture_uv *this, _Texture_uv*)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004C5BB0",
+   "name": "CombatEffectUpdate",
+   "src": "functions.json",
+   "cc": "__stdcall",
+   "sig": "int __stdcall(double pData)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004C5D50",
+   "name": "CEffectSystem::slot_0",
+   "src": "structs/CEffectSystem.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(void *Block, char)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004C5E80",
+   "name": "CEffectSystem::ProcessEffects",
+   "src": "structs/CEffectSystem.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(double time)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004C6260",
+   "name": "CEffectSystem::Reset",
+   "src": "structs/CEffectSystem.json",
+   "cc": "__thiscall",
+   "sig": "int *__thiscall(CEffectSystem *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004C6290",
+   "name": "CEffectSystem::Destroy",
+   "src": "structs/CEffectSystem.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 20,
+   "binary": 5
+  },
+  {
+   "ea": "0x004C87A0",
+   "name": "CEffgbParticle::Create",
+   "src": "structs/CEffgbParticle.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(CEffgbParticle *Block, char pType)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004CD930",
+   "name": "SceneMgr::_scalar_dtor",
+   "src": "structs/SceneMgr.json",
+   "cc": "__thiscall",
+   "sig": "SceneMgr *__thiscall SceneMgr::_scalar_dtor(void *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004D0390",
+   "name": "CEffModel::GetRenderNode",
+   "src": "structs/CEffModel.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004D03B0",
+   "name": "CEffModel::RenderModel",
+   "src": "structs/CEffModel.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004D0A80",
+   "name": "GeomNode::DestroyChildren",
+   "src": "structs/GeomNode.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall GeomNode::DestroyChildren()",
+   "declared": 0,
+   "retn": 24,
+   "binary": 6
+  },
+  {
+   "ea": "0x004D0BD0",
+   "name": "CEffModel::UpdateDuration",
+   "src": "structs/CEffModel.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004D17D0",
+   "name": "CEffect::sub_4D17D0",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(CEffect *this)",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004D3DC0",
+   "name": "CEffect::sub_4D3DC0",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(CEffect *this)",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004D4700",
+   "name": "CEffect::sub_4D4700",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(CEffect *this)",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004D4840",
+   "name": "CEffect::sub_4D4840",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(CEffect *this)",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004D5790",
+   "name": "CEffSParticle::SetTimeScale",
+   "src": "structs/CEffSParticle.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(CEffSParticle *Block, char fTimeScale)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004D6D30",
+   "name": "C3DSpark::Update",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall C3DSpark::Update(C3DSpark *this)",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004DB750",
+   "name": "CCBSystem::GetCmdData",
+   "src": "structs/CCBSystem.json",
+   "cc": "__thiscall",
+   "sig": "char *__thiscall(int idx)",
+   "declared": 1,
+   "retn": 16,
+   "binary": 4
+  },
+  {
+   "ea": "0x004DC5C0",
+   "name": "CCBControl::SetParam",
+   "src": "structs/CCBControl.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int nVal, int nVal2)",
+   "declared": 2,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x004DC650",
+   "name": "CCBSystem::FindFreeThread",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall CCBSystem::FindFreeThread(CCBSystem *this, int, int, int, int, int, int, int, int, int)",
+   "declared": 9,
+   "retn": 40,
+   "binary": 10
+  },
+  {
+   "ea": "0x004DC720",
+   "name": "CCBRoleState::IsAlive",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "BOOL __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004DC7A0",
+   "name": "CCBRoleState::InitCombatDialog",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall CCBRoleState::InitCombatDialog()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004DFAA0",
+   "name": "CCBStage::InitRound",
+   "src": "structs/CCBStage.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall()",
+   "declared": 0,
+   "retn": 16,
+   "binary": 4
+  },
+  {
+   "ea": "0x004DFED0",
+   "name": "CCBStage::EndTurnAndAdvance",
+   "src": "structs/CCBStage.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall()",
+   "declared": 0,
+   "retn": 20,
+   "binary": 5
+  },
+  {
+   "ea": "0x004E6020",
+   "name": "CCBStageCam::UpdateEditorState",
+   "src": "structs/CCBStageCam.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall CCBStageCam::UpdateEditorState()",
+   "declared": 0,
+   "retn": 20,
+   "binary": 5
+  },
+  {
+   "ea": "0x004F2910",
+   "name": "CCBRoleState::SetRoleHP",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx, int value)",
+   "declared": 2,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x004F2C30",
+   "name": "CCBRoleState::GetRole",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(int index)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004F2C70",
+   "name": "CCBRoleState::AddCommand",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int nCmdType, BOOL bImmediate, int nParam)",
+   "declared": 3,
+   "retn": 16,
+   "binary": 4
+  },
+  {
+   "ea": "0x004F3020",
+   "name": "CCBRoleState::CalcAttackPower",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x004F31C0",
+   "name": "CCBRoleState::CalcDefensePower",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x004F3380",
+   "name": "CCBRoleState::GetMaxHP",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x004F33D0",
+   "name": "CCBRoleState::GetMaxMP",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x004F3430",
+   "name": "CCBRoleState::CheckBuff",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "char __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004F34E0",
+   "name": "CCBRoleState::CanUseSkill",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "char __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004F3570",
+   "name": "CCBRoleState::CalcMagicAttack",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004F3620",
+   "name": "CCBRoleState::CalcMPRegen",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004F36D0",
+   "name": "CCBRoleState::CalcMagicDefense",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004F39A0",
+   "name": "CCBRoleState::GetRoleLevel",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004F39F0",
+   "name": "CCBRoleState::GetRoleExp",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004F3B90",
+   "name": "CCBRoleState::GetRoleMP",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x004F4AA0",
+   "name": "CCBStage::GetRole",
+   "src": "structs/CCBStage.json",
+   "cc": "__thiscall",
+   "sig": "CCBStageRole *__thiscall(int index)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x004F4DA0",
+   "name": "CCBRoleState::ProcessAttackResult",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x004F5070",
+   "name": "CCBRoleState::ProcessMagicResult",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x004F55D0",
+   "name": "CCBRoleState::CalcPhysicalDamage",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x004F57A0",
+   "name": "CCBRoleState::CalcMagicDamage",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x004F5970",
+   "name": "CCBRoleState::ProcessSkillEffect",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x004F5B70",
+   "name": "CCBRoleState::ProcessItemEffect",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x004F98B0",
+   "name": "CCBRoleState::ApplyDamage",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx, int dmg)",
+   "declared": 2,
+   "retn": 20,
+   "binary": 5
+  },
+  {
+   "ea": "0x004FA4E0",
+   "name": "CCBRoleState::FindSlotByHP",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(unsigned int nVal, unsigned int dwVal)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x004FA540",
+   "name": "CCBRoleState::CheckRoleStatus",
+   "src": "structs/CCBRoleState.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int roleIdx)",
+   "declared": 1,
+   "retn": 16,
+   "binary": 4
+  },
+  {
+   "ea": "0x004FCD50",
+   "name": "CCBStage::IsTaskValidButNotFinish",
+   "src": "structs/CCBStage.json",
+   "cc": "__stdcall",
+   "sig": "unsigned char *__stdcall(unsigned char *result, int eTask, int nVal)",
+   "declared": 3,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00500170",
+   "name": "CCBSystem::EndBattle",
+   "src": "structs/CCBSystem.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00503020",
+   "name": "CCBStage::ResetAll",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall CCBStage::ResetAll(CCBStage *this)",
+   "declared": 0,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00503680",
+   "name": "CCBStage::CalcSneakAttackVariance",
+   "src": "structs/CCBStage.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall CCBStage::CalcSneakAttackVariance()",
+   "declared": 0,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x0050A500",
+   "name": "CCBStage::LoadAction",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "bool __thiscall(CCBStage *this, gbRay nActIndex)",
+   "declared": 1,
+   "retn": 24,
+   "binary": 6
+  },
+  {
+   "ea": "0x0050D440",
+   "name": "CCBStage::CheckAllDone",
+   "src": "structs/CCBStage.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0050E0D0",
+   "name": "CCBStage::ProcessCommand",
+   "src": "structs/CCBStage.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0050F310",
+   "name": "CCBStage::AnimCallback_Throw",
+   "src": "structs/CCBStage.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall CCBStage::AnimCallback_Throw(int nVal, int nVal2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00512D40",
+   "name": "CCBSystem::ProcCoAttack",
+   "src": "structs/CCBSystem.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(CCBSystem *Block, char __formal)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00513060",
+   "name": "CCBSystem::CombatUpdate",
+   "src": "structs/CCBSystem.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(double dt)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00513330",
+   "name": "CCBSystem::GetRenderFlag",
+   "src": "structs/CCBSystem.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00513840",
+   "name": "CCBSystem::CheckBattleEnd",
+   "src": "structs/CCBSystem.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00515B20",
+   "name": "CCBSystem::CreateObj",
+   "src": "structs/CCBSystem.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int (__thiscall *a2)(int this, int a2), int nVal, int nVal2, int nVal3, const void *pData)",
+   "declared": 4,
+   "retn": 20,
+   "binary": 5
+  },
+  {
+   "ea": "0x00515DD0",
+   "name": "CCBSystem::DestroyObj",
+   "src": "structs/CCBSystem.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(CCBSystem *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00515DF0",
+   "name": "CCBSystem::DestroyObj_5df0",
+   "src": "structs/CCBSystem.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(CCBSystem *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00516100",
+   "name": "CCBProtectWindow::_sdtor_19",
+   "src": "structs/CCBProtectWindow.json",
+   "cc": "__thiscall",
+   "sig": "CCBProtectWindow *__thiscall(CCBProtectWindow *Block, char a2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00519400",
+   "name": "CCBUI::CreateImbibeNimbus",
+   "src": "structs/CCBUI.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(int nCount)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00519A10",
+   "name": "CCBUI::WriteNimbusToPlayerMgr",
+   "src": "structs/CCBUI.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 16,
+   "binary": 4
+  },
+  {
+   "ea": "0x0051A1D0",
+   "name": "CCBUI::LineMove",
+   "src": "structs/CCBUI.json",
+   "cc": "__thiscall",
+   "sig": "BOOL __thiscall(POINT *pStart, POINT *pEnd)",
+   "declared": 2,
+   "retn": 16,
+   "binary": 4
+  },
+  {
+   "ea": "0x0051A390",
+   "name": "CCBItemWindow::DoTask",
+   "src": "structs/CCBItemWindow.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0051AC90",
+   "name": "CCBControlWindow::HandleEnable",
+   "src": "structs/CCBControlWindow.json",
+   "cc": "__thiscall",
+   "sig": "UIWnd *__thiscall(CCBControlWindow *Block, char dir)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0051B160",
+   "name": "CCBItemWindow::_scalar_dtor",
+   "src": "structs/CCBItemWindow.json",
+   "cc": "__thiscall",
+   "sig": "UIWnd *__thiscall(CCBItemWindow *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0051B5D0",
+   "name": "CCBControlWindow::OnMessage",
+   "src": "structs/CCBControlWindow.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(CCBItemWindow *__hidden this, unsigned int a2, unsigned int, unsigned int)",
+   "declared": 3,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0051B670",
+   "name": "CCBItemWindow::CreateButtons",
+   "src": "structs/CCBItemWindow.json",
+   "cc": "__thiscall",
+   "sig": "UIWnd *__thiscall(CCBItemWindow *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0051C260",
+   "name": "CCBParabolaWindow::_scalar_dtor",
+   "src": "structs/CCBParabolaWindow.json",
+   "cc": "__thiscall",
+   "sig": "UIWnd *__thiscall(CCBSkillWindow *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0051CCE0",
+   "name": "CCBAIWindow::Destroy",
+   "src": "structs/CCBAIWindow.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0051F070",
+   "name": "CCBStage::UpdateWeaponSlots",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(CCBStage *this)",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0051F080",
+   "name": "CCBStage::SetWeaponSlotA",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(CCBStage *this)",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0051F090",
+   "name": "CCBStage::SetWeaponSlotB",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(CCBStage *this)",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x005231D0",
+   "name": "CUtil::WriteLog",
+   "src": "structs/CUtil.json",
+   "cc": "__thiscall",
+   "sig": "UIWnd *__thiscall(CUtil *Block, char format)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00523B90",
+   "name": "CUtil::sub_523B90",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(CUtil *this)",
+   "declared": 0,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x00524110",
+   "name": "CScreenMode::_scalar_dtor",
+   "src": "structs/CScreenMode.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x005249A0",
+   "name": "CScreenMode::OnRenderAlt",
+   "src": "structs/CScreenMode.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall CScreenMode::OnRenderAlt()",
+   "declared": 0,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x00525520",
+   "name": "CCBUI::_scalar_dtor",
+   "src": "structs/CCBUI.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x005279D0",
+   "name": "UIListBox::_scalar_dtor_79d0",
+   "src": "structs/UIListBox.json",
+   "cc": "__thiscall",
+   "sig": "UIListBox *__thiscall(UIListBox *Block, char a2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x005284C0",
+   "name": "JusticeBookUI::_scalar_dtor",
+   "src": "structs/JusticeBookUI.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00529770",
+   "name": "UIRoleSelectDialog::_scalar_dtor",
+   "src": "structs/UIRoleSelectDialog.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00529E40",
+   "name": "UIRoleSelectDialog::HandleInput",
+   "src": "structs/UIRoleSelectDialog.json",
+   "cc": "__thiscall",
+   "sig": "double __thiscall(double st6_0, double result, int arg0, int arg0a)",
+   "declared": 4,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x0052AAB0",
+   "name": "UIRoleSelectDialog::ProcessDialog",
+   "src": "structs/UIRoleSelectDialog.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall UIRoleSelectDialog::ProcessDialog()",
+   "declared": 0,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x0052B030",
+   "name": "UINote::CallVtableMethod",
+   "src": "structs/UINote.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(double pData)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x0052B050",
+   "name": "UI3DCtrl::LoadEncampModel",
+   "src": "structs/UI3DCtrl.json",
+   "cc": "__thiscall",
+   "sig": "char __thiscall(const char *pszModelName, const char *pszName)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0052B900",
+   "name": "MiniGame1Update",
+   "src": "functions.json",
+   "cc": "__stdcall",
+   "sig": "int __stdcall(double pData)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x0052BBB0",
+   "name": "UICoverFrm::_scalar_dtor",
+   "src": "structs/UICoverFrm.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0052C480",
+   "name": "UICoverFrm::UpdateStarAnimation",
+   "src": "structs/UICoverFrm.json",
+   "cc": "__thiscall",
+   "sig": "double __thiscall UICoverFrm::UpdateStarAnimation(int edi0, double result, int result_4, int nVal)",
+   "declared": 4,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x0052CD40",
+   "name": "UIScenePanel::LayoutSlot",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall UIScenePanel::LayoutSlot(UIScenePanel *this)",
+   "declared": 0,
+   "retn": 20,
+   "binary": 5
+  },
+  {
+   "ea": "0x00531E50",
+   "name": "RoleSystem::_scalar_dtor",
+   "src": "structs/RoleSystem.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(UIWnd *Block, char pData)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00532E10",
+   "name": "RoleSystem::ResetPathState",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall RoleSystem::ResetPathState(RoleSystem *this)",
+   "declared": 0,
+   "retn": 68,
+   "binary": 17
+  },
+  {
+   "ea": "0x00533250",
+   "name": "CScreenMode::LoadScreenScene",
+   "src": "structs/CScreenMode.json",
+   "cc": "__thiscall",
+   "sig": "double __thiscall(double result, float result_4)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00534810",
+   "name": "RoleAtt::UpdateDirectionalMotion",
+   "src": "structs/RoleAtt.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall RoleAtt::UpdateDirectionalMotion(gbVec3D pData, float fVal, float fVal2)",
+   "declared": 3,
+   "retn": 20,
+   "binary": 5
+  },
+  {
+   "ea": "0x00535710",
+   "name": "PalScript::LoadVisNode",
+   "src": "structs/PalScript.json",
+   "cc": "__thiscall",
+   "sig": "struct gbVFileSystem *__thiscall PalScript::LoadVisNode(double String2, char *pszBuf, char *pszBuf2)",
+   "declared": 3,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00535930",
+   "name": "UISceneFrm::LoadOverlayTexture",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall UISceneFrm::LoadOverlayTexture(UISceneFrm *this)",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00536160",
+   "name": "Actor::SetParam",
+   "src": "structs/Actor.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int nVal)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x005362F0",
+   "name": "SceneObj::Destructor",
+   "src": "structs/SceneObj.json",
+   "cc": "__thiscall",
+   "sig": "SceneObj * __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x005371B0",
+   "name": "Actor::SetVisible",
+   "src": "structs/Actor.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(int bVisible)",
+   "declared": 1,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x00537510",
+   "name": "Actor::StoreParam",
+   "src": "structs/Actor.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(int nVal, int nVal2)",
+   "declared": 2,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x005376E0",
+   "name": "Actor::LoadSaveData",
+   "src": "structs/Actor.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall Actor::LoadSaveData(char *pszSlotIdx)",
+   "declared": 1,
+   "retn": 8,
+   "binary": 2
+  },
+  {
+   "ea": "0x00537A90",
+   "name": "Actor::DoSceneTransition",
+   "src": "structs/Actor.json",
+   "cc": "__thiscall",
+   "sig": "FILE *__thiscall(double pData, int nVal)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00538D60",
+   "name": "PalScript::DestroyInstances",
+   "src": "structs/PalScript.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall PalScript::DestroyInstances(double nActionID, int *p_DWORD)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00539700",
+   "name": "Actor::GetAnimDataBuffer",
+   "src": "structs/Actor.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(void **Buffer, int Stream)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00539810",
+   "name": "UIBigMap::SetElementVisible",
+   "src": "structs/UIBigMap.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(FILE *Buffer, FILE *Stream)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0053ACA0",
+   "name": "Actor::ActVec_InsertRange",
+   "src": "structs/Actor.json",
+   "cc": "__thiscall",
+   "sig": "char *__thiscall(Actor *this, char *pszBuf, unsigned int dwVal, const void *pData, unsigned int nSize)",
+   "declared": 4,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x0053E310",
+   "name": "CCBStage::PlaySound",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall(CCBStage *this, char *name, int nVal)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0053EA80",
+   "name": "SoundMgr::PlayCPKStream",
+   "src": "structs/SoundMgr.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall SoundMgr::PlayCPKStream()",
+   "declared": 0,
+   "retn": 12,
+   "binary": 3
+  },
+  {
+   "ea": "0x0053F4D0",
+   "name": "_sdtor_20",
+   "src": "functions.json",
+   "cc": "__thiscall",
+   "sig": "void *__thiscall(void *Block, char a2)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x0053F5C0",
+   "name": "TextureLib::FreeAllTextures",
+   "src": "structs/TextureLib.json",
+   "cc": "__thiscall",
+   "sig": "int __thiscall(void *Block, char)",
+   "declared": 2,
+   "retn": 4,
+   "binary": 1
+  },
+  {
+   "ea": "0x00541710",
+   "name": "UIRenderObj::~UIRenderObj",
+   "src": "structs/UIRenderObj.json",
+   "cc": "__thiscall",
+   "sig": "void __thiscall()",
+   "declared": 0,
+   "retn": 4,
+   "binary": 1
+  }
+ ]
+}
