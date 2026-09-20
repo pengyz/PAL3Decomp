@@ -31,7 +31,9 @@ import idc
 import ida_funcs
 import ida_bytes
 
-REPO = r'D:\workspace\PAL3Decomp'
+REPO = os.environ.get('PAL3_REPO') or os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__)))  # 2026-09-20 修复：原为硬编码 Windows 路径 D:\\workspace\\PAL3Decomp，
+# 在非作者机器上必然 FileNotFoundError ⇒ 改为从脚本位置推导（可用 PAL3_REPO 覆盖）
 OUT_TXT = os.path.join(os.environ.get('TEMP', '.'), 'retn_param_audit.txt')
 OUT_JSON = os.path.join(os.environ.get('TEMP', '.'), 'retn_param_audit.json')
 RX_RETN = re.compile(r'\bretn\s+([0-9A-Fa-f]+h?|\d+)\b')
@@ -83,7 +85,7 @@ def binary_stack_args(ea):
     while cur > fn.start_ea and guard < 12:
         guard += 1
         prev = ida_bytes.prev_head(cur, fn.start_ea)
-        if prev == ida_bytes.BADADDR or prev >= cur:
+        if prev == idc.BADADDR or prev >= cur:
             break
         txt = idc.generate_disasm_line(prev, 0) or ''
         tail.append(txt.strip())
