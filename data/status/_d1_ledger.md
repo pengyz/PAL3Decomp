@@ -29,3 +29,14 @@
   *若错的代价*：T2 的产出若与 T1 评审结论冲突，可在 T2 评审时合并处理（可见、可撤销 ✓）。
 - **R4（预检前置）**：在分发 T2 前先核对**输入可用性**（asm 存在 ✓、`??_L` 计数=133 ✓）——
   避免子代理跑到一半才发现输入缺失 ✗（教训：`.asm`/`asm/` 均 gitignore ✓，clean checkout 后不存在 ✓）。
+
+## 第 4 轮追加
+- **已作废** `_structural_contradictions.json` ✓（commit `f30779802`）：重命名为
+  `_OBSOLETE_structural_contradictions.json` + 附 `_OBSOLETE_structural_contradictions.md` 声明 ✓
+  （理由：复核实测其偏移取自 decomp `this+N`，**量纲错 8×** —— 报 2571 vs asm 真值 `[ebp+505Ch]`=20572 ✓）。
+- **遗留引用（须后续清理）** ✗：实测仍有 **8 个文件**引用旧名 ——
+  `docs/specs/2026-09-20-evidence-layer-design.md`（本次规格自己 ✓）、`data/annotations/CHANGE_LOG.md`、
+  `data/status/{_cleanup_vtable_class_reconcile,_knowledge_process_diagnosis_20260920,_attribution_evidence_20260919,
+  _audit_toolchain_pipeline_20260920,_size_evidence_20260919,_architecture_cleanup_plan_20260920}.md`。
+  三路复核要求"把引用改指 asm 重算产物" ✗ ⇒ 列为**独立后续任务**（不宜在本轮批量改写历史 status 文档 ✗）。
+- **`_attribution_evidence_20260919.md` / `_size_evidence_20260919.md` 的 `max_offset` 数字同源失效** ✗（3/20 已过期）。
