@@ -191,10 +191,18 @@ class DataStore:
         self.skip_funcs = set(ida_structs.get('_skip_function_names', {}).get('_names', []))
 
         # 4. Thunks from skip_functions.json (manually curated thunk replacements)
-        _skip_path = self.project_root / "data" / "annotations" / "skip_functions.json"
-        if _skip_path.exists():
+        # 2026-09-20 审计 P1-5（第三批）：直读收敛到单一读点 annotation_view。
+        # 逻辑等价：原路径 `project_root/data/annotations/skip_functions.json` 与
+        # `annotation_view.structs_dir(self)` 的父目录相同（已实测确认）；
+        # 差别仅在于文件缺失/坏 JSON 时本版返回 {} 而原版抛异常被同层 except 吞掉
+        # —— 在文件存在且合法时**行为完全相同**，最终判据以 codegen 字节 diff 为准。
+        try:
+            import annotation_view as _av
+        except ImportError:
+            from pipeline.gen import annotation_view as _av
+        _skip_data = _av.skip_functions(store=self)
+        if _skip_data:
             try:
-                _skip_data = json.load(open(_skip_path, encoding='utf-8'))
                 for _addr_s, _tinfo in _skip_data.items():
                     if _tinfo.get('reason') != 'thunk':
                         continue
