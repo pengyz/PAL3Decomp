@@ -457,7 +457,19 @@ def cmd_check():
         _ug_rc = subprocess.run([sys.executable, _ug]).returncode
         if _ug_rc != 0:
             print("[FAIL] union 平凡性被破坏 —— 参见工具输出的处置建议（B34 曾因此 208 单元 C2620 ✗）", flush=True)
-    sys.exit(result.returncode or _ug_rc)
+    # 2026-09-21（方向复核 e0ea83d9 的 E6 建议）：注解级不变量闸「成员末端 < binary_size」✓
+    # 为什么硬失败：本闸**自身存量 = 0** ✓（实测 0 越界 / 0 解析失败），且它**正是 apply 拒绝的前置** ✓
+    # —— 一旦"成员末端 ≥ binary_size"，apply 会拒绝该 UDT ⇒ 生成头消失（UIStatic 152→248 那次
+    # 76 单元 C2079 的直接成因 ✓）。成对判别力已证：无注入 exit0 / --self-test 注入 exit1 ✓。
+    _me = os.path.join(_PROJECT_DIR, 'tools', 'check_member_extent.py')
+    _me_rc = 0
+    if os.path.exists(_me):
+        print(flush=True)
+        print("[MemberExtent] 检查「成员末端 < binary_size」（apply 拒绝的前置，存量=0 ⇒ 硬失败）...", flush=True)
+        _me_rc = subprocess.run([sys.executable, _me]).returncode
+        if _me_rc != 0:
+            print("[FAIL] 有类的成员末端越过 binary_size ⇒ apply 会拒绝该 UDT（生成头会消失 ✗）", flush=True)
+    sys.exit(result.returncode or _ug_rc or _me_rc)
 
 
 def cmd_codegen(args):
