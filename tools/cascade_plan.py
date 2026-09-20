@@ -13,6 +13,13 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cascade_scan as cs
 
 
+EV = ('A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；'
+      'operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；'
+      'ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。'
+      '配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），'
+      '独立复算裁定 1442 成员 offset / 60 个类。')
+
+
 def _n(k):
     ks = str(k)
     if ks[:2].lower() == '0x':
@@ -56,13 +63,13 @@ def build_plan(target, new_size, structs):
         row = {'class': c, 'depth': depth.get(c, 0), 'role': None, 'ops': []}
         if c == target:
             row['role'] = 'target'
-            row['ops'].append({'op': 'set_binary_size', 'from': old, 'to': new_size})
+            row['ops'].append({'kind': 'set_size', 'class': None, 'size': new_size, 'from': old, 'to': new_size, 'evidence': EV})
         elif c in der:
             row['role'] = 'derived'
             bs = structs[c].get('base_size'); own = structs[c].get('binary_size')
-            if isinstance(bs, int): row['ops'].append({'op': 'set_base_size', 'from': bs, 'to': new_size})
-            if isinstance(own, int): row['ops'].append({'op': 'set_binary_size', 'from': own, 'to': own + delta})
-            row['ops'] += [{'op': 'shift_offset', 'key': k, 'from': _n(k), 'to': _n(k) + delta}
+            if isinstance(bs, int): row['ops'].append({'kind': 'set_base_size', 'class': None, 'from': bs, 'to': new_size, 'evidence': EV})
+            if isinstance(own, int): row['ops'].append({'kind': 'set_size', 'class': None, 'size': own + delta, 'from': own, 'to': own + delta, 'evidence': EV})
+            row['ops'] += [{'kind': 'shift_offset', 'key': k, 'from': _n(k), 'to': _n(k) + delta, 'evidence': EV}
                            for k in K if _n(k) is not None and _n(k) >= old]
         else:
             row['role'] = 'holder'
@@ -75,8 +82,8 @@ def build_plan(target, new_size, structs):
                 o = _n(k)
                 if o is None or o <= P: continue
                 mult = sum(1 for s in ordered if s < o)
-                row['ops'].append({'op': 'shift_offset', 'key': k, 'from': o,
-                                   'to': o + delta * mult, 'mult': mult})
+                row['ops'].append({'kind': 'shift_offset', 'key': k, 'from': o,
+                                   'to': o + delta * mult, 'mult': mult, 'evidence': EV})
         if row['ops']: edits.append(row)
     return {'target': target, 'old_size': old, 'new_size': new_size, 'delta': delta,
             'classes': len(changed), 'total_ops': sum(len(e['ops']) for e in edits),

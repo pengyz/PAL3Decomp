@@ -48,6 +48,19 @@ BATCH = os.path.join(ROOT, 'data', 'status', 'annotation_fix_batch.json')
 NONSEM = ('_sdtor', '_scalar_dtor', '_vbase_dtor', 'sub_', 'unk_', 'loc_', '_todo', '_stub')
 
 
+def _norm_off_try(k):
+    """offset 键归一（十进制 / 0x… / NNN_N 后缀）。**禁用 int(k,0)** ✗（'50814_0' 会变 508140）。"""
+    ks = str(k)
+    if ks[:2].lower() == '0x':
+        try:
+            return int(ks, 16)
+        except ValueError:
+            return None
+    if '_' in ks:
+        ks = ks.split('_')[0]
+    return int(ks, 10) if ks.isdigit() else None
+
+
 def _looks_nonsemantic(name):
     import re
     n = str(name or '')
@@ -61,7 +74,15 @@ def load_ann(cls):
     return json.load(open(p, encoding='utf-8')), p
 
 
+# 2026-09-21：**全局 dry-run 闸** —— 起因：我最初只在新增分支里检查 args.dry_run，
+# 而既有的 set_size 分支不知道它 ⇒ 一次 --dry-run 竟然真落了 1453 条 ✗✗（已逐个 git show 回退 ✓）。
+# ⇒ 把守卫放到**唯一的落盘出口** save_ann 上，任何分支都无法绕过 ✓。
+_DRY_RUN = False
+
+
 def save_ann(d, p):
+    if _DRY_RUN:
+        return                      # dry-run：**绝不写盘** ✓（单点守卫，不可绕过 ✓）
     json.dump(d, open(p, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
     open(p, 'a').write('\n')
 
@@ -70,7 +91,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--batch', default=BATCH)
     ap.add_argument('--run-pipeline', action='store_true')
+    ap.add_argument('--dry-run', action='store_true', help='只计算并打印将做的修改，**不落盘**')
     args = ap.parse_args()
+
+    global _DRY_RUN
+
+    _DRY_RUN = bool(getattr(args, 'dry_run', False))
 
     if not os.path.exists(args.batch):
         print('[ERROR] 批次文件不存在: %s' % args.batch)
@@ -197,6 +223,40 @@ def main():
             save_ann(d, p)
             print('   [改名] %s.%s -> %s' % (it['class'], it['addr'], it['new_name']))
             done += 1
+        if it['kind'] in ('set_base_size', 'shift_offset'):
+            # A 窄核新增（2026-09-21）：set_base_size 与 shift_offset（含 mult 倍数）
+            # 依据：cascade_plan 的精确计划 —— 平移量**非常数**（第 k 个内嵌对象之后 +Δ×k ✓）
+            cls = it.get('class')
+            if not cls:
+                print('   [跳过] %s 缺 class' % kind); continue
+            p2 = os.path.join(ANN, '%s.json' % cls)
+            if not os.path.exists(p2):
+                print('   [跳过] %s 无注解: %s' % (it['kind'], cls)); continue
+            d, p2 = load_ann(cls)      # load_ann 返回 (dict, path) ✓
+            if it['kind'] == 'set_base_size':
+                frm, to = it.get('from'), it.get('to')
+                if d.get('base_size') != frm:
+                    print('   [拒绝] %s base_size 期望 %s 实得 %s（防陈旧计划 ✗）' % (cls, frm, d.get('base_size'))); continue
+                if not args.dry_run:
+                    d['base_size'] = to; save_ann(d, p2)
+                print('   [%s] %s base_size %s -> %s' % ('dry-run' if args.dry_run else '落盘', cls, frm, to))
+                done += 1
+            else:
+                key, frm, to = str(it.get('key')), it.get('from'), it.get('to')
+                km = d.get('known_members') or {}
+                if key not in km:
+                    print('   [拒绝] %s 无成员键 %s（防陈旧计划 ✗）' % (cls, key)); continue
+                newkm = {}
+                for k, v in km.items():
+                    o = _norm_off_try(k)
+                    if o is not None and frm is not None and o == frm:
+                        newkm[str(to)] = v
+                    else:
+                        newkm[k] = v
+                if not args.dry_run:
+                    d['known_members'] = newkm; save_ann(d, p2)
+                print('   [%s] %s offset %s -> %s (mult=%s)' % ('dry-run' if args.dry_run else '落盘', cls, frm, to, it.get('mult')))
+                done += 1
         elif it['kind'] == 'set_size':
             d, p = load_ann(it['class'])
             old = d.get('binary_size')
@@ -236,8 +296,11 @@ def main():
             done += 1
         else:
             print('   [跳过] 未知 kind: %s' % it.get('kind'))
-    print('\n落盘 %d 条' % done)
+    print('\n%s %d 条' % ('[dry-run] 计算' if _DRY_RUN else '落盘', done))
 
+    if _DRY_RUN:
+        print('[dry-run] **未写任何文件** ✓ —— 确认无误后去掉 --dry-run 再执行 ✓')
+        return 0
     rc = subprocess.call([sys.executable, 'pipeline/cli.py', 'check'], cwd=ROOT)
     if rc != 0:
         print('[ERROR] check 未通过')
