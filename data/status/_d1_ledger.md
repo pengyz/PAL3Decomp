@@ -547,3 +547,18 @@ BSS 真实占位 = 1108 ✓（0xDBB364 − 0xDBAF10 实测）
   ⇒ 两个实例**不可能同尺寸** ✓ 或其一注解错 ✗ ⇒ **值得独立取证** ✓（新发现 ✓）
 **⇒ 结论**：BSS 邻接是**强判据但需逐例确认相邻性** ✓；作为**批量**审计需换用**完整符号表**
 （`asm/pal3/ida_structs.json` 或 IDB 的全部数据符号 ✓，而非仅 `globals.json` ✗）。
+
+### UIStatic 落地第 4 次尝试：**我脚本里的一个 bug** ✗（已定位，非模型问题 ✓）
+**症状**：`UISceneMap.binary_size` 被批次的 `set_size` **从 1012 改成 1204** ✗，**覆盖了我先写的 916** ✓；
+⇒ 范围末端 `0xDBB3C4` ✗ **吞掉** `g_CCBEditorInst`(0xDBB364) ⇒ `check` **EXIT=1** ✗ ⇒ apply/export 亦 EXIT=1 ✗。
+**根因（我的脚本 bug ✓）**：`land4.sh` 里写的是
+`run python3 tools/cascade_plan.py UIStatic --new-size 248 --json` ✗ —— **没有重定向到文件** ✓
+⇒ `--json` 只打到 stdout ✓ ⇒ **磁盘上的计划 JSON 仍是旧的** ✗✗ ⇒ 批文件用的是**旧计划**
+（`from: 1012, to: 1204` 实测 ✓）⇒ 覆盖了 916 ✓。
+**⇒ 又是同族错误** ✗：**没有核实"实际产出的是什么"** ✓（R13 的同类 ✓ —— 这次是"产出没落盘" ✓）。
+**⇒ 正确做法** ✓：`python3 tools/cascade_plan.py UIStatic --new-size 248 --json > data/status/_uistatic_edit_plan_20260921.json` ✓
+（并在批生成前**断言** `set_size.from == 当前注解值` ✓ ⇒ 从机制上防止陈旧计划 ✗）。
+**⇒ 处置**：等 land4 结束 ⇒ 回退注解（`/tmp` 整目录备份 ✓）⇒ **补跑恢复链** ✓（只回退注解不够 ✗）
+⇒ 核 `census/baseline` 回到 76/2150/L1 34 ✓。
+**⇒ 第 5 次尝试的前置**（都已具备 ✓）：计划**正确落盘** ✓ + 批里 `UISceneMap` 应为 `from: 916, to: 1108` ✓
+（⇒ 范围**恰好止于** `0xDBB364` ✓ 零重叠 ✓）。
