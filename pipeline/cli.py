@@ -392,6 +392,19 @@ def cmd_export(fast=False):
         print("   The decomp JSON is stale/incomplete; codegen would produce source "
               "that does not match the IDB. Stopping the chain here.")
         sys.exit(1)
+    # 2026-09-20 审计 P1-4：export 有 8 处 [t4-DECLARED-EXCEPTION] 会把注解字段
+    # **透传**到 asm/pal3/ida_structs.json（取舍理由与量化证据见 export_full.py 头部声明块）。
+    # 风险：若有人手改 IDB 而没同步注解 ⇒ 产物与注解漂移，而下游（data.py 读
+    # ida_structs.json）**按注解值工作** ⇒ "看起来像 IDB 状态"的静默不一致。
+    # 此处加一道**只读**校验并**报警（不阻断）**：迁移期允许漂移，但必须看得见。
+    checker = os.path.join(_PROJECT_DIR, 'tools',
+                           'check_export_annotation_consistency.py')
+    if os.path.exists(checker):
+        print("\n[Consistency] 校验导出产物与注解的透传字段（vtables / methods）...")
+        chk = subprocess.run([sys.executable, checker])
+        if chk.returncode != 0:
+            print("[WARN] 导出产物与注解的透传字段不一致（详见上表）。下游按**注解**值"
+                  "工作 —— 请确认这是预期内的迁移期状态，否则先同步注解或 IDB。")
     print()
     print("Next: python pipeline/cli.py codegen all")
 
