@@ -68,8 +68,13 @@ IDA_STRUCTS_PATH = PROJECT_ROOT / 'asm' / 'pal3' / 'ida_structs.json'
 # Review thresholds for the IDB-independent declared-size geometry signal.
 # Basis: docs/specs/2026-09-15-cleanup-scan-architecture-rulings.md ruling (b)
 # uses exactly 3x / 50x on `binary_size vs max member offset`.
-GEOMETRY_WARN_RATIO = 3.0
-GEOMETRY_HIGH_RATIO = 50.0
+GEOMETRY_WARN_RATIO = float(os.environ.get('PAL3_GEOMETRY_WARN_RATIO', '3.0'))
+GEOMETRY_HIGH_RATIO = float(os.environ.get('PAL3_GEOMETRY_HIGH_RATIO', '50.0'))
+# 2026-09-20 审计 P1-3：`1b declared-size geometry` 是**唯一 IDB 无关**的尺寸信号
+# （check 1 是同源比较、恒等、无判别力，见 _print_evidence_limits）。
+# 此前它**只打印**、不影响退出码 ⇒ "强制检查点"名不副实。
+# 现加 `--strict-geometry`：开启后，超 HIGH 阈值的结构体使本工具**非零退出**。
+# 默认仍关闭（先观察一轮，避免立刻炸出历史遗留）；阈值可用上面两个环境变量覆盖。
 
 
 class PrerequisiteError(Exception):
@@ -492,7 +497,8 @@ def declared_size_geometry(sname, sdata, all_structs):
             'ratio': round(bs / max_end, 1)}
 
 
-def format_report(all_issues, verbose=False, size_scope=None, geometry=None):
+def format_report(all_issues, verbose=False, size_scope=None, geometry=None,
+                  strict_geometry=False):
     """Format the audit report
 
     size_scope: dict(match=, mismatch=, not_compared=) same-source size check coverage
@@ -548,6 +554,14 @@ def format_report(all_issues, verbose=False, size_scope=None, geometry=None):
 
     _print_evidence_limits(size_scope)
 
+    if strict_geometry:
+        over_high = [g for g in geometry if g['ratio'] > GEOMETRY_HIGH_RATIO]
+        if over_high:
+            print(f"\n❌ STRICT GEOMETRY: {len(over_high)} struct(s) with "
+                  f"binary_size > {GEOMETRY_HIGH_RATIO:g}x largest declared member end "
+                  f"(e.g. {', '.join(g['struct'] for g in over_high[:5])})")
+            print("   → 这些结构体的**声明尺寸**与成员几何严重不符，需按二进制证据修正尺寸或成员。")
+            return 1
     print(f"\n{'='*80}")
     if errors:
         print(f"❌ FAILED: {len(errors)} errors detected")
@@ -581,6 +595,8 @@ def main():
     parser.add_argument('--struct', help='Check specific struct only')
     parser.add_argument('--verbose', '-v', action='store_true', help='Verbose output')
     parser.add_argument('--json', action='store_true', help='Output as JSON')
+    parser.add_argument('--strict-geometry', action='store_true',
+                        help='IDB 无关的 1b 尺寸几何超 HIGH 阈值时非零退出（默认关，仅报警）')
     args = parser.parse_args()
 
     print("Loading annotations...")
@@ -685,7 +701,8 @@ def main():
         return 0 if output['errors'] == 0 else 1
     else:
         return format_report(all_issues, verbose=args.verbose,
-                             size_scope=size_scope, geometry=geometry)
+                             size_scope=size_scope, geometry=geometry,
+                             strict_geometry=args.strict_geometry)
 
 
 def _prerequisite_failure(err):

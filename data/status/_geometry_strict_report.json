@@ -1,0 +1,130 @@
+{
+ "generated_by": "tools/audit_layout.py --strict-geometry (2026-09-20, P1-3 启用后首跑)",
+ "rule": "binary_size > 50x largest DECLARED member end ⇒ 声明尺寸与成员几何严重不符（IDB 无关判据）",
+ "high_count": 14,
+ "warn_count": 6,
+ "high": [
+  {
+   "struct": "direction_emitter_graph",
+   "binary_size": 5300,
+   "max_member_end": 4,
+   "ratio": 1325.0
+  },
+  {
+   "struct": "elelife_emitter_graph",
+   "binary_size": 5300,
+   "max_member_end": 4,
+   "ratio": 1325.0
+  },
+  {
+   "struct": "elerandvec_emitter_graph",
+   "binary_size": 5300,
+   "max_member_end": 4,
+   "ratio": 1325.0
+  },
+  {
+   "struct": "emissionrate_emitter_graph",
+   "binary_size": 5300,
+   "max_member_end": 4,
+   "ratio": 1325.0
+  },
+  {
+   "struct": "rgbcolor_particle_graph",
+   "binary_size": 5300,
+   "max_member_end": 4,
+   "ratio": 1325.0
+  },
+  {
+   "struct": "rotation_particle_graph",
+   "binary_size": 5300,
+   "max_member_end": 4,
+   "ratio": 1325.0
+  },
+  {
+   "struct": "rotmulti_emitter_graph",
+   "binary_size": 5300,
+   "max_member_end": 4,
+   "ratio": 1325.0
+  },
+  {
+   "struct": "size_particle_graph",
+   "binary_size": 5300,
+   "max_member_end": 4,
+   "ratio": 1325.0
+  },
+  {
+   "struct": "sizemulti_emitter_graph",
+   "binary_size": 5300,
+   "max_member_end": 4,
+   "ratio": 1325.0
+  },
+  {
+   "struct": "vertexalpha_particle_graph",
+   "binary_size": 5300,
+   "max_member_end": 4,
+   "ratio": 1325.0
+  },
+  {
+   "struct": "CEffQuake",
+   "binary_size": 4272,
+   "max_member_end": 4,
+   "ratio": 1068.0
+  },
+  {
+   "struct": "tagRoleSlot",
+   "binary_size": 896,
+   "max_member_end": 2,
+   "ratio": 448.0
+  },
+  {
+   "struct": "st_Manager",
+   "binary_size": 244,
+   "max_member_end": 2,
+   "ratio": 122.0
+  },
+  {
+   "struct": "ConfigFile",
+   "binary_size": 260,
+   "max_member_end": 4,
+   "ratio": 65.0
+  }
+ ],
+ "warn": [
+  {
+   "struct": "Camera",
+   "binary_size": 12956,
+   "max_member_end": 408,
+   "ratio": 31.8
+  },
+  {
+   "struct": "CCBProtectWindow",
+   "binary_size": 2632,
+   "max_member_end": 96,
+   "ratio": 27.4
+  },
+  {
+   "struct": "PAL3",
+   "binary_size": 91024,
+   "max_member_end": 8716,
+   "ratio": 10.4
+  },
+  {
+   "struct": "TaskMgr_SceneObjParam_SceneObj",
+   "binary_size": 40,
+   "max_member_end": 4,
+   "ratio": 10.0
+  },
+  {
+   "struct": "CTaskTpl_tagEffTaskParam_CEffAction",
+   "binary_size": 36,
+   "max_member_end": 4,
+   "ratio": 9.0
+  },
+  {
+   "struct": "CTaskTpl_tagEffTaskParam_CEffAudio",
+   "binary_size": 36,
+   "max_member_end": 4,
+   "ratio": 9.0
+  }
+ ]
+}

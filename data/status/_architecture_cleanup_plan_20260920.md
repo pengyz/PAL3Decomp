@@ -29,7 +29,17 @@
         耗时约 5 分钟（e2e 固有成本），用 `PAL3_E2E_INJECTION=1` 开启以免拖慢日常套件。
 - [x] **P1-6** 两个回归门禁职责分工写入 `compile_regression.py` / `regression_detector.py`
       docstring + `CLAUDE.md`（含"检查点表缺 `probe` 一步"的明示）✓
-- [ ] P1-2（codegen 钩子插 probe）· P1-3（audit_layout 1b 提升为退出码）·
+- [x] **P1-3** `audit_layout` 的 `1b declared-size geometry` 从"仅打印"提升为**影响退出码** ✓
+      加 `--strict-geometry`（**默认关**）+ 阈值可环境覆盖（`PAL3_GEOMETRY_WARN_RATIO` /
+      `PAL3_GEOMETRY_HIGH_RATIO`，后者是**为了能被注入式验证**）。
+      验证：A 默认 ⇒ exit 0（行为不变，38 warnings）；B 注入 `HIGH=1.0`+strict ⇒ **exit 1** ✓
+      （门禁可被触发）；C strict+默认阈值 ⇒ **exit 1**（**14 个结构体 >50x**，这是真实发现）。
+      **新落地清单**：`data/status/_geometry_strict_report.json`（HIGH 14 个 / warn 38 个），
+      例：`CCBProtectWindow`(size 与成员几何严重不符)、`CEffQuake`、`CONTEXT`、
+      `CTaskTpl_tagEffTaskParam_CEff*` —— 与审计 §4 的"尺寸判据"发现互相印证
+      （我此前的 `_structural_contradictions` 也记过 `CCBProtectWindow 176→2632`）。
+      这批需**按二进制证据**修正尺寸或成员，属**独立 backlog**（不在本目标的 P0/P1 范围内）。
+- [ ] P1-2（codegen 钩子插 probe）·
       P1-4（复核 8 处 declared exception + 一致性校验）· P1-5（直读收敛）
 
 ## P1 结构（P0 后）
