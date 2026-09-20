@@ -76,8 +76,34 @@ def member_names(directory=None, store=None):
     return _MEMBER_NAMES_CACHE
 
 
+_ANNOTATION_JSON_CACHE = {}
+
+
+def load_annotation_json(name, store=None):
+    """读 `data/annotations/<name>`（如 `skip_functions.json` / `functions.json` /
+    `globals.json`）。坏文件返回 None —— 与历史各处的容错一致。
+
+    这是"**顶层注解 JSON**"的单一读点（structs/*.json 走 `iter_structs`）。
+    """
+    if name not in _ANNOTATION_JSON_CACHE:
+        base = structs_dir(store)
+        path = os.path.join(os.path.dirname(base), name)
+        try:
+            _ANNOTATION_JSON_CACHE[name] = json.loads(open(path, encoding='utf-8').read())
+        except Exception:
+            _ANNOTATION_JSON_CACHE[name] = None
+    return _ANNOTATION_JSON_CACHE[name]
+
+
+def skip_functions(store=None):
+    """`skip_functions.json` 的内容（dict）；不可读返回 `{}`（与调用方原语义一致）。"""
+    d = load_annotation_json('skip_functions.json', store=store)
+    return d if isinstance(d, dict) else {}
+
+
 def reset_caches():
     """测试用：清空进程内缓存。"""
     global _STRUCTS_CACHE, _MEMBER_NAMES_CACHE
     _STRUCTS_CACHE = None
     _MEMBER_NAMES_CACHE = None
+    _ANNOTATION_JSON_CACHE.clear()

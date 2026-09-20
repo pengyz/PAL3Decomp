@@ -211,3 +211,19 @@ B `--force-overwrite` ⇒ exit 0、允许覆盖（graded=144）✓；随后 `git
 
 **后续（P1-5 剩余）**：`emit_headers.py`（10 处）、`ast_transform.py`、`collect.py`、`data.py`
 的其余直读点，按**同样流程逐处迁移**（每处都过"逻辑等价 + `diff -r` 字节"两道验证）。
+
+## P1-5 第二批（第 11 轮）：`collect.py` 的 `skip_functions.json` 读取收敛
+**新增原语**：`annotation_view.load_annotation_json(name, store)` 与 `annotation_view.skip_functions(store)`
+（"顶层注解 JSON"的单一读点；structs/*.json 走已有的 `iter_structs`）。
+**迁移**：`pipeline/gen/stages/collect.py::_get_skip_classes()` 原先自读
+`store.annotations_dir/"skip_functions.json"` ⇒ 改调 `annotation_view.skip_functions(store=store)`。
+
+**验证（两层）**：
+1. **逻辑等价**：skip 集合 **124** 个、md5 `d77ffcf353` ⇒ 迁移前后**逐元素相同** ✓
+2. **产物字节**（权威）：快照 945 文件 ⇒ `codegen all --skip-probe` ⇒ `diff -rq` 差异
+   **恰为 2 条 = globals.cpp + globals.h**（已知非确定、排序多重集相同）⇒ **非 globals 差异 = 0**、
+   文件数 945=945 ✓
+
+**累计**：P1-5 已迁 2 处（`stage4._load_member_names`、`collect._get_skip_classes`），
+两处都过"逻辑等价 + 字节 diff"两道验证。**剩余**：`data.py`（5 处）、`ast_transform.py`（2 处）、
+`emit_headers.py`（10 处）—— 按同一流程逐处迁移。

@@ -94,9 +94,14 @@ def _get_skip_classes():
     skip = set(SKIP_CLASSES)
 
     # Add thunk class names from skip_functions.json
-    skip_path = store.annotations_dir / "skip_functions.json"
-    if skip_path.exists():
-        skip_data = json.load(open(skip_path, encoding='utf-8'))
+    # 2026-09-20 审计 P1-5（第二批）：直读收敛到单一读点 annotation_view。
+    # 逻辑逐字等价：原先读 store.annotations_dir/"skip_functions.json" 并遍历其 values()。
+    try:
+        import annotation_view as _av
+    except ImportError:
+        from pipeline.gen import annotation_view as _av
+    skip_data = _av.skip_functions(store=store)
+    if skip_data:
         for info in skip_data.values():
             if info.get('reason') == 'thunk':
                 name = info.get('name', '')
