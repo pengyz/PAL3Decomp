@@ -171,3 +171,30 @@ monkeypatch `_check_ida`/`_run_ida`/`subprocess.run`，advisory rc=1 时 apply/e
   *若错的代价*：一次重跑（秒级）+ 一次 amend 式提交 ✓，可撤销 ✓。
 - **R8 裁决**：T5 报告必须**显式记录**已知漏采（`ptr` 仅 2/133 为绝对地址 ✓、dtor 有 11+22 条为改编符号 ✓）
   与**本轮的 213 条归属错误教训**（"没有 `proc near` 的 funclet 也要归属宿主" ✓）。
+
+## T4 完成（`5dc5c17c6`）+ 编排者 R7 重跑（`6cf03c0d0`）✓
+**T4 自述的关键偏差（均以真实产物为证 ✓）**：
+1. **计划 `addr.lower()` 索引会全丢候选** ✗ —— 注解键是 `'0x00411900'`（8 位）而站点值是 `'0x411900'` ✗
+   ⇒ 466 站点的归属候选**全部为 0**；修为"去前导零 + 大小写不敏感" ✓
+2. `int` 形态兼容 ✓；3. 寄存器/改编符号/`nullsub_1` 不作地址假设（记入 `unresolved_operands` ✓）；
+4. **计划"步骤1测试"与"步骤3实现"互不相容** ✗（`set(list[dict])` unhashable + 合成 structs 无 methods ⇒
+   按计划实现候选恒空、断言不可能通过 ✓）；5. 状态机补"锚点被字面量否定 ⇒ conflict" ✓（每个 conflict 带可复算 `conflict_reasons` ✓）；
+6. **已撤回主张（`functions.json` type=skip）只暴露矛盾、不驱动行级 state** ✓。
+**它纠正了我的期望表两处事实错误** ✓：
+- 真实 8704 的两个类是 **`Role` + `ScriptSystem`** ✓（不是 `RoleSystem`；`RoleSystem.binary_size=4868` ✓）
+- `Role.json` 的 methods 里**没有** `0x411CA0` ✗ —— 该主张只存在于 `Scene.json` 的 **source 散文** ✓
+  ⇒ 它**拒绝把散文读成结构化主张**（"那会编造" ✓✓），改以 `address_conflicts` + `conflict_reasons` + `prose_mentions{structured:false}` 三处机械暴露 ✓
+**编排者独立复验**：提交恰 3 文件 ✓；`verified_class=='BINK'` 行数 **= 0** ✓；两 fixture 裁定与期望主判据一致 ✓；
+**但发现 T4 自述"10 passed"与我实测"9 passed, 1 failed"不符** ✗ ⇒ 见下。
+
+## ⚠️ 新发现（第 10 轮）：**测试会把"上游缺陷"固化成期望** ✗
+**现象**：T4 的 `test_real_artifact_rows_complete_with_registers_and_mangled_symbols` 断言
+**"真实产物应含字符串 count"** ✗ —— 而 T2 评审条件② 已把 `count` 定为 `int|None` ✓
+⇒ **该测试把当时的 bug 固化成了期望** ✓，于是修复上游后它**反而失败** ✗✓。
+**⇒ 处置（我做的）**：把断言**翻转为正向验证新契约** ✓（所有行 `raw_site.count` 必须是 `int|None` ✓；
+寄存器操作数那 2 条（asm 行 300295 `push ecx`、300859 `push ebx`）应为 `None` ✓）⇒ 现 **10/10 PASS** ✓。
+**⇒ 教训（值得沉淀）**：**"对着已知有缺陷的产物写断言"会把缺陷变成隐性规格** ✗ ——
+上游契约被纠正时，必须**主动搜索并翻转**那些"断言旧契约"的测试 ✓
+（这与 T2 评审的 A–G 用例是同一枚硬币：**测试必须断言契约，而不是断言现状** ✓）。
+**⇒ 与 R7 的合并流程（已实证可行 ✓）**：上游工具修好 ⇒ 重生成其产物 ⇒ **重跑下游确定性工具** ✓ ⇒
+翻转"断言旧契约"的测试 ✓ ⇒ 一起提交 ✓（本次两文件一并提交，未触碰并发 agent 的文件 ✓）。
