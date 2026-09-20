@@ -182,11 +182,15 @@ def _load_ret_slots():
                 return 0
         return None
 
-    for _f in sorted(os.listdir(_structs_dir)):
-        if not _f.endswith('.json'):
-            continue
+    # 2026-09-20 审计 P1-5（第六批）：**路径枚举**收敛到单一读点
+    # `annotation_view.iter_struct_files()`（排序 glob，与原 `sorted(listdir)+endswith`
+    # 等价）；**保留本处的容错策略**（坏文件打印 WARN 再 continue —— 不是静默跳过，
+    # 与 annotation_view 的"调用方保留各自容错"设计原则一致）。
+    import annotation_view as _av
+    for _path in _av.iter_struct_files(_structs_dir):
+        _f = os.path.basename(_path)
         try:
-            d = json.load(open(os.path.join(_structs_dir, _f), encoding='utf-8'))
+            d = json.load(open(_path, encoding='utf-8'))
         except Exception as _e:
             print('[WARN] ast_transform: skipping unreadable struct '
                   'annotation %s (%s)' % (_f, _e), file=_sys.stderr)
@@ -225,6 +229,11 @@ def _load_ret_slots():
     # which wrongly blocks the explicit-this gate). Pack entries are graded:
     # 'slots' exists only for unanimous, %4==0 rets, so ambiguous callees
     # stay unevidenced and the gate conservatively blocks.
+    # 2026-09-20 审计 P1-5（第六批）**边界裁定**：本处读的是 `data/status/` 的
+    # **状态产物**（`_sig_evidence_pack.json`），**不是注解** ⇒ **不纳入 P1-5 的
+    # "注解直读收敛"范围**（annotation_view 只管 data/annotations/**）。
+    # 且下方注释已说明：该 typed except 是**有意保留**的（C3b：冗余但非缺陷），
+    # 实测 335/335 个 pack 键已在 byte-scan 表中且 0 处冲突 ⇒ 损坏的 pack 不会改变判定。
     _pack_path = os.path.join(_proj, 'data', 'status', '_sig_evidence_pack.json')
     if os.path.isfile(_pack_path):
         # t6 §4: this typed except is KEPT on purpose and recorded as C3b

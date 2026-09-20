@@ -19,6 +19,21 @@
 
 ## P1 进度
 
+### P1-5 第六批（第 15 轮）：`ast_transform.py` —— 1 处迁移 + **1 处边界裁定排除**
+- **迁移**：`_load_ret_slots()` 的**路径枚举** `sorted(os.listdir(_structs_dir))` + `endswith('.json')`
+  ⇒ `annotation_view.iter_struct_files(_structs_dir)` ✓（等价）；**保留本处的容错策略**
+  （坏文件打印 **WARN** 再 continue —— 不是静默跳过），符合 annotation_view
+  "细粒度原语 + 调用方保留容错"的设计原则 ✓
+- **排除（边界裁定）**：同文件的 `_sig_evidence_pack.json`（`data/status/` 的**状态产物**，
+  **不是注解**）**不纳入 P1-5 的"注解直读收敛"范围**（annotation_view 只管 `data/annotations/**`）；
+  且其 typed except 已被前人记为**有意保留**（C3b：冗余但非缺陷，实测 335/335 键已在 byte-scan
+  表中、0 处冲突 ⇒ 损坏 pack 不改变判定）。**已就地写注释，避免后人重复讨论。**
+**验证**：快照 945 ⇒ `codegen all --skip-probe`（**EXIT=0**）⇒ `diff -rq` 差异仅
+`globals.cpp`/`globals.h`（已知非确定、排序多重集相同）⇒ **非 globals 差异 = 0**、945=945 ⇒ **字节中性** ✓
+**P1-5 累计 8/19**（口径：19 处 = 原审计点名的直读点；`_sig_evidence_pack` 一处经裁定不计入 ⇒ 实际待迁 11 处）。
+剩余：**`emit_headers.py` 10 处**（最重）+ `data.py`? no（已全收敛）。
+
+
 ### P1-5 第五批（第 14 轮）：`data.py` 的 vtables + `functions.json`（两处一起）→ **data.py 全部收敛**
 - `_load_vtables()`：`.exists()` 守卫 + `sorted(glob)` + 逐文件 `json.load`（坏文件 continue）
   ⇒ 改调 **`annotation_view.iter_structs(directory=...)`**（缺失目录返回空、同样排序与跳过）✓
