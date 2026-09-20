@@ -34,6 +34,17 @@ MARK = re.compile(
 
 def main():
     min_sites = 1
+    # 2026-09-20 审计 P2-4：本工具**会写盘**，但此前只识别 `--min-sites`，
+    # 对**未知开关一律忽略** ⇒ `python3 tools/misattribution_ledger.py --help`
+    # 会直接执行全流程并覆盖受跟踪的 data/status/misattribution_ledger.json
+    # （本次审计实测：197 cluster -> 3）。**严格拒绝未知开关。**
+    _KNOWN = {'--min-sites'}
+    _unknown = [a for a in sys.argv[1:] if a.startswith('-') and a not in _KNOWN]
+    if _unknown:
+        print('[misattribution_ledger.py] 未知开关 %r ⇒ 不执行任何操作（避免误写产物）。'
+              % _unknown)
+        print('已知开关: --min-sites <N>；不带开关即按默认运行。')
+        sys.exit(0)
     if '--min-sites' in sys.argv:
         min_sites = int(sys.argv[sys.argv.index('--min-sites') + 1])
 

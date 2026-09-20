@@ -16,6 +16,21 @@ Evidence (data/status/_round5_verdict.json):
 import json
 from pathlib import Path
 
+
+# ---- 2026-09-20 审计 P2-4：无参数解析工具的统一护栏 ----------------------------
+# 本工具**会写盘**且**没有任何 argparse/sys.argv 处理** ⇒ 传任何 `-` 开头的参数
+# （最典型的是 `--help`）此前会被当作普通输入，**执行全流程并覆盖产物**。
+# 本次审计期间已因此发生 **2 起事故**（`sig_evidence.py` 删掉 6020 行、
+# `misattribution_ledger.py` 把 197 cluster 改写成 3）。
+# 统一护栏：见到任何以 `-` 开头的参数即打印用法并**退出，不执行任何工作**。
+import sys as _sys_guard
+if any(_a.startswith('-') for _a in _sys_guard.argv[1:]):
+    print('[%s] 本工具不接受命令行开关；收到 %r ⇒ 不执行任何操作。'
+          % (__file__.rsplit('/', 1)[-1], _sys_guard.argv[1:]))
+    print('用法: python3 %s    # 无参数，直接运行' % __file__)
+    _sys_guard.exit(0)
+# ---------------------------------------------------------------------------
+
 ROOT = Path(__file__).parent.parent
 SDIR = ROOT / 'data' / 'annotations' / 'structs'
 FNS = ROOT / 'data' / 'annotations' / 'functions.json'

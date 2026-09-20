@@ -97,3 +97,31 @@ P2-4 给 4 个"无 argparse 且写盘"的审计工具补 argparse
       验证：`grep -n "git', 'checkout'" tools/_land_sizes.py` → 已移除 ✓
 - [ ] P1-1 … P1-6
 - [ ] P2-1 … P2-4
+
+## P2-4 执行记录（2026-09-20，第 5 轮）
+**问题**：本仓多个**会写盘**的工具**没有参数解析**（或只识别个别开关、**对未知开关一律忽略**）⇒
+`--help` 会被当作普通输入并**执行全流程、覆盖产物**。本次审计期间已因此发生 **2 起事故**。
+
+**做法**：给 **16 个**"会写盘且完全无 argv 处理"的工具统一插入护栏：
+见到任何 `-` 开头的参数即打印用法并 **exit 0，不执行任何工作**。
+文件清单见 commit；护栏文本统一带 `_sys_guard` 标记（可 grep 复查）。
+
+**验证（产物哈希，`--help` 前后必须不变）**：
+| 工具 | exit | 产物变化 |
+|---|---|---|
+| `alloc_sizeof.py` | 0 | **无** ✓ |
+| `audit_signature_consistency.py` | 0 | **无** ✓ |
+| `byte_diff_explain.py` | 0 | **无** ✓ |
+| `misattribution_ledger.py`（**审计事故工具**）| 0 | **无** ✓（修复后）|
+| `audit_retn_param_count.py` | 1 | 无（它 `import idc`，IDA 外本就跑不了 ⇒ 非回归）|
+
+**额外发现并修复**：`tools/misattribution_ledger.py` **不在**上述 16 个里 —— 它有**部分**
+`sys.argv` 处理（`:37` 的 `--min-sites`）却**忽略未知开关**，于是 `--help` 仍会执行并覆盖
+受跟踪的 `data/status/misattribution_ledger.json`（本轮实测哈希 `e90498be→4a1412d2`）。
+⇒ 已给它加**严格拒绝未知开关**的护栏，并用**合规方式**（`git show HEAD:<path> > <path>`，
+**非** `git checkout`）还原文件（还原后 md5 = HEAD ✓）。
+**教训：判据"完全无 argv"太窄；真正的危险类是"无严格开关校验"。**
+
+**残留清单**（已存档 `data/status/_tools_argparse_hazard.json`）：仍有若干工具满足
+"会写盘 且 无 argparse 且 无严格护栏"，其中 `uses_argv=True` 的那些与 `misattribution_ledger.py`
+同型（会忽略未知开关），应在后续轮次按同一护栏修掉。
