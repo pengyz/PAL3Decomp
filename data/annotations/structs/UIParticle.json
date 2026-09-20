@@ -238,6 +238,13 @@
       "note": "reattribute: 同 0x004B5570：同类 cluster（0x4B4DC0 的 case 8），复核证据 E1-E4 适用。",
       "name_evidence": "含义未定：按规则用 _todo_ 占位名。",
       "signature_note": "reattribute 同时改签名 (was: __int64 __thiscall TextureLibDataBase::_todo_4b5bb0(int, int, TextureLibDataBase *, int))"
+    },
+    "0x004B4DC0": {
+      "name": "Apply",
+      "signature": "void __thiscall UIParticle::Apply(int mode)",
+      "signature_note": "reattribute 同时改签名 (was: void __thiscall())",
+      "note": "reattribute: 归属 A 级：①UIParticle.binary_size=584，与 asm 187160-187172 的 eh-vector-ctor-iterator 元素尺寸 0x248=584 一致（且 0x1258+128*584=0x13658 算得精确）；②本函数 `mov esi,ecx`（this 在 ecx, __thiscall）且 13 处 `retn 4` ⇒ 恰 1 个栈参，并由 `mov ecx,[esp+10h+arg_0]` 读出作为 switch 的 mode；③它的 13 个分支调用的正是刚由独立复核确认为 UIParticle 的 _todo_4b5570/4b5830/4b5bb0（同一 this、同 `mov ecx,esi`）；④原注解 ScreenEffect 只有 24 字节（装不下 [esi+0x80/0x88/0x8c] 等访问），且 source=None（无来源；据复核其来源为 commit 19a64a498 PDB 单源）。",
+      "name_evidence": "保留原名 Apply：该名本身语义合理（按 mode 分派执行），且 UIParticle 现无同名成员；按规则不无据改名。签名补上此前被丢掉的栈参 mode（retn 4 为证），类型 int（作为 switch 索引、调用方 push 字面量 8/0Ah/0Bh/0Ch）。"
     }
   }
 }

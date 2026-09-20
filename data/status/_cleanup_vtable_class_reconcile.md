@@ -3112,3 +3112,44 @@ case 6: (((TextureLibDataBase *)this))->TextureLibDataBase::UpdateLinearMotion(.
    而 `globals.h` 把 `0xc21fe8` 注成 `PalScriptMgr`(9512B)、`functions.json` 把它注成 `SceneMgr*`(58692B)
    —— **两处注解都与 493156 步长冲突**，且没有任何注解类声明 `+0x78658` ⇒ 根在**调用点两处可疑注解**，
    不在 callee ⇒ **维持不动是对的**。
+
+---
+
+# 53. 采纳复核第①项：`0x4B4DC0` 迁 `UIParticle` 并补回 `mode` 形参（指标中性，语义/归属归正）
+
+## 53.1 我自己核对的证据
+
+| 检查 | 结果 |
+|---|---|
+| 调用约定 | `mov esi, ecx`（this 在 ecx ⇒ `__thiscall`）+ **13 处 `retn 4`** ⇒ **恰 1 个栈参** |
+| 该栈参的用途 | `mov ecx, [esp+10h+arg_0]` ⇒ 读出来作 **switch 的 mode** |
+| 原注解 | `ScreenEffect::Apply`、`void __thiscall()`、**`source=None`**（无来源）✗ |
+| **`UIParticle.binary_size`** | **584** ✓ 与复核 E1 的数组元素尺寸 `0x248=584` 一致（`0x1258+128×584=0x13658`） |
+| `UIParticle` 是否已有 `Apply` | 无 ⇒ 名字可沿用 |
+
+## 53.2 处置
+
+`reattribute 0x004B4DC0: ScreenEffect → UIParticle`，**保留语义名 `Apply`**（该名本身合理、且 `UIParticle` 无同名成员；按规则**不无据改名**），
+签名补上此前被丢掉的栈参：`void __thiscall UIParticle::Apply(int mode)`。
+
+## 53.3 验收（实测）
+
+| 指标 | 改动前 | 改动后 |
+|---|---|---|
+| 调用点渲染 | `ScreenEffect::Apply()`（无实参） | **`((UIParticle *)…)->UIParticle::Apply(8)` / `(7)` / `(11)` / `(10)`** ✓ mode 回来了 |
+| 总错误 | 2161 | **2161（±0）** |
+| S2 ok | 75 | 75 |
+| 变化单元 | — | **0** |
+| 新失败 | 1 | **1**（未引入回归） |
+
+**⇒ 指标中性，但归正了两处错误**：把一个 24 字节的 `ScreenEffect` 归属纠正为 `UIParticle`
+（与已确认的 cluster 同类），并**补回被 PDB 单源合并丢掉的 `mode` 形参**（`retn 4` 为证）。
+**这正是"编译通过 ≠ 归属正确"的反面：这次是"指标不动 ≠ 不值得做"** —— 错误归属与错误签名会持续污染
+后续所有依赖该函数类型的判断。
+
+## 53.4 剩余（复核第②项，未做）
+
+`UIParticle` 的**姐妹函数**：`UpdateCircularMotion(0x4B5380)` / `UpdateOrbitalMotion(0x4B5450)` /
+`UpdateLinearMotion(0x4B5750)` / `UpdateByMode(0x4B60F0)` 等目前仍注解在 `TextureLibDataBase`
+（复核报告称约 10 个）—— 与本次同属"cluster 熔进错误类名"，需**逐个**按同一套证据
+（`UIParticle` 584 布局 + ctor/dtor 写点 + `[esi+off]` 宽度吻合）确认后成批迁移。
