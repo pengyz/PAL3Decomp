@@ -20,6 +20,17 @@ EV = ('A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（su
       '独立复算裁定 1442 成员 offset / 60 个类。')
 
 
+_DIM = __import__('re').compile(r'\[(\d+)\]')
+
+
+def _elems_of(t):
+    """成员的元素数：数组维度**连乘** ✓（`UIStatic[10]` ⇒ 10；`X[6][5]` ⇒ 30 ✓）。"""
+    n = 1
+    for d in _DIM.findall(t or ''):
+        n *= int(d)
+    return n
+
+
 def _n(k):
     ks = str(k)
     if ks[:2].lower() == '0x':
@@ -79,16 +90,30 @@ def build_plan(target, new_size, structs):
             # 【系统性修复 1】持有者内嵌了 k 个变大的对象 ⇒ **它自己也要增长 k×Δ** ✓
             # （漏这步 ⇒ 成员越过 binary_size ⇒ apply 取不到按值成员尺寸 ⇒ invalid member_size FATAL ✗）
             own = structs[c].get('binary_size')
-            k_embed = sum(1 for x in sites)
-            if isinstance(own, int) and k_embed:
-                row['ops'].append({'kind': 'set_size', 'class': c, 'size': own + delta * k_embed,
-                                   'from': own, 'to': own + delta * k_embed, 'evidence': EV})
+            # **系统性修复 3**：必须用"**元素总数**"Σ dims ✓，不是"成员个数" ✗
+            # （UIStatic[10] 尺寸会涨 10×Δ ✓ ⇒ 其后成员应移 10×Δ ✓，不是 1×Δ ✗）
+            K2 = {k: (structs[c].get('known_members') or {}).get(k) for k in K}
+            def _elem_count_at(off):
+                tot = 0
+                for k2, v2 in K2.items():
+                    o2 = _n(k2)
+                    if o2 is None or o2 >= off:
+                        continue
+                    t2 = (v2 or {}).get('type') if isinstance(v2, dict) else None
+                    if isinstance(t2, str) and bt(c, k2) in changed:
+                        tot += _elems_of(t2)
+                return tot
+            total_elems = sum(_elems_of((K2[k] or {}).get('type') or '')
+                              for k in K if bt(c, k) in changed)
+            if isinstance(own, int) and total_elems:
+                grow = delta * total_elems          # Σ元素数 ✓
+                row['ops'].append({'kind': 'set_size', 'class': c, 'size': own + grow,
+                                   'from': own, 'to': own + grow, 'evidence': EV})
             # 第 k 个内嵌对象之后 ⇒ +delta*k（**平移量非常数** ✓，复核者实测分配 {0:591,96:249,…}）
-            ordered = sorted(sites)
             for k in K:
                 o = _n(k)
                 if o is None or o <= P: continue
-                mult = sum(1 for s in ordered if s < o)
+                mult = _elem_count_at(o)            # **元素总数** ✓（不是成员个数 ✗）
                 row['ops'].append({'kind': 'shift_offset', 'key': k, 'from': o,
                                    'to': o + delta * mult, 'mult': mult, 'evidence': EV})
         if row['ops']: edits.append(row)
@@ -111,13 +136,21 @@ def build_plan(target, new_size, structs):
         bs = new_size_of.get(c, structs[c].get('binary_size'))
         if not isinstance(bs, int):
             continue
+        def _size_of_type(t):
+            if not isinstance(t, str):
+                return 1
+            m = cs._ARR.match(t)
+            base, dims = (m.group(1), _elems_of(t)) if m else (t, 1)
+            bs2 = new_size_of.get(base, (structs.get(base) or {}).get('binary_size'))
+            return (bs2 * dims) if isinstance(bs2, int) else (1 * dims)
         ends = []
         for k in K:
             o = _n(k)
             if o is None:
                 continue
             o2 = new_off.get((c, str(o)), o)
-            ends.append(o2 + 1)
+            v = (K[k] or {}).get('type') if isinstance(K[k], dict) else None
+            ends.append(o2 + _size_of_type(v))       # **真实尺寸** ✓（含数组连乘 ✓）
         if ends and max(ends) > bs:
             viol.append({'class': c, 'binary_size': bs, 'member_end': max(ends)})
     plan['self_check'] = {'ok': not viol, 'violations': viol[:8], 'n_violations': len(viol)}
