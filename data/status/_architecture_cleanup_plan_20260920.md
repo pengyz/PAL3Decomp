@@ -177,6 +177,27 @@ P1-5 直读收敛到 `pipeline/gen/annotation_view.py`（验证：`codegen all` 
 P1-6 两个回归门禁职责分工写入 docstring + CLAUDE.md
 
 ## P2 清理（滚动）
+
+### P2-1 整链归档（第 19 轮）+ 死哨兵清理 ⇒ **目标全部项完成**
+**① P2-1 传递死链裁决（整链一次动）**：先画引用链 ⇒ 父件 `ida_master_pipeline.py` 与
+`run_pipeline.bat`、以及 7 个子件的引用者**只有** `docs/superpowers/2026-05-0*`（**历史规划文档**，
+描述早已被取代的 PAL3A/IDA 阶段）+ 本审计自己的 status 文档（作为候选提及）+ 链内互引
+（`pal3_strict_match.py` → `pal3a_dump_func_bytes`）。
+⇒ 判定**整链已死**，用 `git mv` 归档 **9 个文件**（父件 + `.bat` + 7 子件，其中含
+`pal3_strict_match.py`）：`ida_master_pipeline.py` / `run_pipeline.bat` / `ida_export_globals.py` /
+`ida_fix_boundaries.py` / `ida_import_pdb_types.py` / `ida_verify_and_export.py` /
+`pal3_import_structs.py` / `pal3a_dump_func_bytes.py` / `pal3_strict_match.py`（**不删**，历史保留 ✓）。
+验证：活跃代码（`tools/*.py` + `pipeline/**`）对这些文件**零引用**（`apply_annotation_batch.py` 的
+`args.run_pipeline` 是它**自己的开关**，已核对同名子串 ✓）；`check` PASS；`tool --list` 正常；
+`.bat` 零活跃引用 ✓。
+
+**② 死哨兵清理（`emit_headers.py` 原 `load_annotations_data()`）**：全仓 grep 证明它**从未被调用**
+⇒ 一道**永远不会触发的假防护**，且其宣称的"codegen 绝对禁止读 annotation"**与事实相反**（10 处已声明例外）。
+⇒ 换为**可检查的诚实规则**：codegen 侧读注解**必须经单一读点 `pipeline/gen/annotation_view.py`**
+（10 处已全部收敛并逐处验证字节不变）✓ 并**同步 `CLAUDE.md`** 的设计原则措辞（"绝对禁止" ⇒
+"必须经单一读点"，并写明已声明例外的出处）✓
+验证：`check` PASS、`codegen headers` EXIT=0、**0 条 OVERLAY-DIAG** ✓
+
 P2-1 归档失效脚本（先 `grep -rln` 确认零文档引用，移 `tools/archive/`）
 P2-2 `requirements.txt` 补 `capstone`（先复现 ImportError）
 P2-3 424MB Ghidra zip（**需用户明确同意**，不自行重写历史）

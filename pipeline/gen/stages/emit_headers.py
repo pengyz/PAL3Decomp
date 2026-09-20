@@ -244,11 +244,20 @@ def _ann_struct_path(name):
     return _get_ida_structs().get(name, None)
 
 
-def load_annotations_data():
-    raise RuntimeError(
-        "load_annotations_data() called from codegen — forbidden.\n"
-        "All data must come from export output (ida_structs.json + decomp JSON).\n"
-        "See export_full.py to add missing data to the export.")
+# 2026-09-20 审计（P1-5 收尾）：此处原有 `load_annotations_data()` —— 一道
+# "调用即抛 RuntimeError"的**绊线**，用来宣称"codegen 禁止读 annotation"。
+# 但它**从未被任何代码调用**（全仓 grep 只有定义本身）⇒ 是**永远不会触发的假防护**，
+# 且其宣称的"绝对禁止"与事实相反：本文件确有 10 处注解直读（审计 §2/§3），
+# 属于**已声明的例外**（取舍理由见 `pipeline/ida/export_full.py` 头部的
+# `[t4-DECLARED-EXCEPTION]` 声明块）。
+#
+# **实际生效的规则（可检查、非假防护）**：
+#   codegen 侧对 `data/annotations/**` 的读取**必须经单一读点**
+#   `pipeline/gen/annotation_view.py`（`iter_structs` / `struct_by_class` /
+#   `template_bases` / `annotation_json_path` / `load_annotation_json` …）。
+#   该文件的 10 处直读已于 2026-09-20 全部收敛到它，且每处都过了
+#   "逻辑/路径等价 + `codegen all` 产物 `diff -r` 字节相同"两道验证。
+# 旧绊线已删除：留着它只会给人"红线已被机械封死"的错觉。
 
 
 def class_vtable_slots(cls_name, with_addr=False, vtables=None, methods=None):
