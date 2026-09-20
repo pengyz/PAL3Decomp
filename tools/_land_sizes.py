@@ -84,13 +84,24 @@ for cls, size in UPDATES:
         # —— 它会静默丢弃未提交的标注修改。改为**仅报告 + 非零退出**。
         print('[REVERT-NEEDED] 以下文件需人工用 `git show HEAD:<path> > <path>` 还原（禁止 git checkout --）:')
         print('    data/annotations/structs/%s.json' % cls)
+        # 2026-09-20 修复（第三路独立复核指出）：此前只 append 到 _revert_needed 并**照旧调用
+        # codegen_headers()**，而 _revert_needed **从未被检查、全文没有 sys.exit**
+        # ⇒ 声称"非零退出"却实际 exit 0，且会**用尚未还原的注解重新生成头文件** ✗。
+        # 现改为：进入 REVERT 分支即**不重新生成**（保持盘面不变，交人工还原后自行重跑）✓
         _revert_needed.append(cls)
-        codegen_headers()
-        results.append((cls, size, 'REVERTED', s1, s2))
-        print('[REVERTED] %-20s size=%d  S1=%d/%d S2=%d/%d' % (cls, size, s1[0], s1[1], s2[0], s2[1]))
+        results.append((cls, size, 'REVERT_NEEDED', s1, s2))
+        print('[REVERT-NEEDED] %-18s size=%d（未重新生成头文件；请还原后自行重跑 codegen）' % (cls, size))
 
 print('\n=== SUMMARY ===')
 for r in results:
     print(r)
 json.dump([{'class': r[0], 'size': r[1], 'verdict': r[2], 's1': r[3], 's2': r[4]} for r in results],
           open(ROOT / 'data' / 'status' / '_size_landing_report.json', 'w'), indent=1)
+
+# 2026-09-20 修复：**真正的非零退出**（此前声称有、实际没有 ✗）
+if _revert_needed:
+    print("\n[EXIT 1] %d 个类需要人工还原（见上 [REVERT-NEEDED]）—— 还原命令（禁止 git checkout --）："
+          % len(_revert_needed))
+    for _c in _revert_needed:
+        print("    git show HEAD:data/annotations/structs/%s.json > data/annotations/structs/%s.json" % (_c, _c))
+    raise SystemExit(1)

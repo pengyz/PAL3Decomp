@@ -91,7 +91,7 @@ pipeline/cli.py                        ← 新增 `evidence` 子命令（build /
 **P1 建证据源（advisory，只读为主）**：`codegen_invariants` **接线** → `element_size.py` →
 `alloc_sizes.py` → `ledger.py`（分级+placeholder）→ `attribution.py` 的 `--scan`。
 **P2 逐闸清零（每批一次管线 ≈13 min；判据见 §6）**，顺序＝**由易到难**：
-`codegen_invariants` 29 条 → `alloc_sizeof` 17 条 → 归属双源 27 条 → **尺寸污染 38 条（最后，部分属长尾）**。
+`codegen_invariants` **A132/B56/C27/D10（Codex 实测 ✗ 初稿只数了 C 的 29）** → `alloc_sizeof` 17 条 → 归属双源 27 条 → **尺寸污染 38 条（最后，部分属长尾）**。
 **P3 逐闸升硬 + 挂 `cli.py check`**（`apply/export` 之前 ✓）＋ 作废 `_structural_contradictions.json` 及其派生数字 ✓
 ＋ 可选项 BSS 相邻上界 `binary_size(T) ≤ next_global_addr − this_addr` ✓。
 
@@ -151,3 +151,46 @@ pipeline/cli.py                        ← 新增 `evidence` 子命令（build /
 | B4 | `attribution.py` + `--scan` + 归属双源 27 条 | 27 条裁定 ✓ |
 | B5 | 尺寸污染 38 条（**先按"缺成员 vs 真错"二分** ✗ 再动手） | 分批清零 ✓ |
 `cli.py`/`CLAUDE.md` 的改动**随各批增量提交** ✓（不攒到最后 ✗）
+
+
+---
+
+# 附录：三路对抗性复核结论与**修订要求**（2026-09-20，Kiro + Codex + 内部）
+
+**三路一致裁定**：**带条件批准 / 需先改规格 + 先做一个窄 Spike** ✓ —— 核心诉求（需独立于注解的尺寸/归属证据源）
+被三路**独立证实** ✓；但**按原文不可直接实现** ✗。以下为**必须修**的项（按来源标注）。
+
+## A. Blocker（三路共同/各自）
+| # | 问题 | 来源 | 证据 | 修法 |
+|---|---|---|---|---|
+| **B1** | **`codegen_invariants` 接线会立刻红** ✗ | Codex 实测 | 默认检查集 A/B/D 均失败：**A=132 exit1 · B=56 exit1 · C=27 exit0 · D=10 exit1**；初稿"29 条"**只数 C** ✗ | P1 只接 **C 为 advisory + whitelist**；A/B/D 各自建存量清单、修复或 grandfather，再逐项升硬 ✓ |
+| **B2** | **ctor 归属循环污染尺寸证据** ✗ | Kiro(P7/D3) + Codex | `sub_4236D0` 被注成 **`BINK::Reset`** ✗（`BINK=932`）却作为 `Scene` 内嵌数组的 **ctor** 出现在 `??_L` ⇒ 用错锚会把 896 证据挂到 BINK ⇒ **假 conflict + 漏掉真 `tagRoleSlot`** ✗；`sub_411CA0` 同时被注成 `~PalScript` 与当作 `Role::~Role` 使用 ✗（**注解树里真实存在的双源矛盾，至今无闸捕获** ✓）| **ledger 分两层**：`raw_site`（仅地址/字节/size/count ✓）与 `ownership_candidate`（单独记证据 ✓）；**annotation-derived ctor 只能是 candidate，不得直接产生 class A 级尺寸** ✓；BINK/tagRoleSlot/sub_411CA0 作为 fixture ✓ |
+| **B3** | **placeholder 存量口径无共识** ✗ | 三路 + 我 | 三路复算：**>3× = 38**（一致 ✓）；**精确 2× = 4**（Kiro/我）vs **0**（Codex）✗ ⇒ **仍有分歧，必须固定唯一计算器与基线** ✓；AT-200 的 52 是**历史名单**，不能整批导入 ✓ | §0 写"唯一计算器 + 命令 + 期望输出 + 输入参数" ✓；复算并锁定 4 vs 0 ✓ |
+| **B4** | **台账生命周期未定义** ✗ | Codex | 现成反例：`misattribution_ledger.json` 生成于 9/14，而 `Scene.json` 9/20 又变 ⇒ **已 stale** ✓，且其生成器**写死 Windows 路径** ✗ | schema 加 `schema_version`/输入 hash/generator version/generated_at ✓；`evidence check` 每次从**当前 raw inputs 重建比对**，stale/missing ⇒ **exit 2（前置失败，不是假 PASS）** ✓；明确废弃或迁移 `misattribution_ledger.json` ✓ |
+
+## B. Major（必须写进规格）
+1. **`alloc_sizes.py` 并不独立** ✗（Codex E3）：只读现有 `alloc_sizeof.json` ⇒ **新增证据 = 0** ✓ ⇒ 必须**重算**并保留 raw exhibit + ownership candidate ✓；且**CCBUI 有两个不同尺寸** ⇒ **不能压成 `{class: sizeof}`** ✓
+2. **`audit_structural_attribution` 无机器可读通道** ✗（Codex E4）：全库模式只有 print + exit0 ⇒ 必须先加 JSON/stdout 协议 ✓
+3. **`scan_misattribution` 默认写状态文件** ✗ ⇒ 消费者接入前须支持 stdout/explicit-out ✓
+4. **grade 优先级未定义** ✗ ⇒ 建议：`invalid/stale prerequisite → conflict → placeholder → evidenced → unknown`（**必须进规格** ✓）
+5. **clean-checkout 可复现性** ✗：`original/*.asm` 与 `asm/` **均 gitignore** ✓ ⇒ 台账必须能从 **tracked** 输入（exe）或 tracked 快照复验 ✓，**不得假设本地 asm/export 存在** ✓
+6. **attribution scan 有已知漏采** ✗（indexed addressing / this 重载 / 中间指针）⇒ **全库结果只能给 candidate/signal，不能当"漏检为零"** ✓；且 `--scan` **不是一行改动** ✗（需先建 proc index，否则 4752 proc × 579k 行不可接受 ✓）
+7. **B 分类器精度未闭合** ✗ ⇒ 未校准前不得升硬 ✓
+8. **`??_M` 是四元组** ✗（`ptr,size,count,dtor`，**无 ctor**）⇒ 不得与 `??_L` 共用五元组描述 ✓
+9. **`test_smoke.py`**：三路之一（内部）把它列为 P0"恒真" ✗ —— **该前提已过期** ✓：P0-1 已改为 `assert`（`MIN_S2` 读基线），且注入 `PAL3_MIN_S2=9999` **实测失败** ✓（`_architecture_cleanup_plan_20260920.md` P0-1 ✓）⇒ **本条不适用** ✓
+
+## C. 三路共同要求的**结构与顺序修订**
+- **§0 口径固定**（唯一计算器 + 命令 + 输入参数 ✓）
+- **§2.5 ROI 前置归因**：**必须先把尺寸污染归因到具体错误码并计数** ✗ —— 否则无法判断是否"在便宜处用力"；内部复核实测：**射程外占 ≥1279/2150 ≈ 59%** ✗（C2440 359 + C2227 226 + C2660 202 + C2664 196 + C2039 152 + C2228 144 ✓），而 **C2208 现已 0 条**（`status: fixed` ✓）⇒ **初稿拿一个已修复的事故论证射程 ✗，必须改写** ✓
+- **§3.5 词汇治理**（内部复核 F1 的核心）：新 4 态与**已并存的 9 套词汇**（不是 8 套 ✗）**实测打架** ✗ —— **临床样本**：`Camera.json` 成员标 `source:"A:FPU_binary_evidence..."` ✗ 而同类 `ratio 31.8×` ⇒ 新体系判 `placeholder` ⇒ **"A 级证据"与 `placeholder` 同时成立** ✗ ⇒ **`verified` 必须改名 `evidenced`/`corroborated`** ✓（它只证明"等于某值"、不证明"正确" ✗，且与 skill/command 的 A 级对撞 ✓）；并要求 (a) 正交性 (b) 覆盖性 (c) 机械映射 三检验 ✓
+- **§4.5 消费点存在性验证**：内部复核实测**一处不符** ✗ —— `tools/scan_misattribution.py:142` **只是构建 dict** ✓，判据描述在 `:14`、尺寸参与判定在 `:459` ✓ ⇒ 照初稿改会**改错地方** ✓
+- **§5.5 闸的接线与活性**：① 必须**真的串到写盘路径** ✗（`cmd_check()` 只跑 `check_annotations.py` ✓；**`apply`/`export` 不调用它** ✗ ⇒ 只改 `cmd_check` 就是**空门** ✓）；② 注入式负例升为 **§6 必跑命令**（不能只作表格一列 ✗）；③ **恒假检测**（连续 N 次"全 INCONCLUSIVE"即报警 ✓）；④ **单一责任人 = 用户本人**（AI 会话**不得**列为责任人 ✓）
+- **§7.5 本设计自身的沉淀与接线**（内部 F4）：台账落 `data/status/`（**293 tracked / 373 文件** ✓，而知识库对它只有 `CLAUDE.md:159,162` 两处引用 ✗）⇒ **精确落在"沉淀死面"** ✗ ⇒ 必须规定：哪类结论进 `docs/knowledge/` ✓、写入触发器 ✓、**`MEMORY.md` 入链** ✓、并把"审计→status→消失"本身落成一条 `gotcha` ✓
+- **独立性口径**：`ida_structs.json` 是**本地再生产物且被注解污染** ✓ ⇒ **不能当独立归属真值**，只能提供待核对线索 ✓
+- **§8 拆分**：三路一致要求 **Spike-first + 拆 3 个交付** ✓（见 Codex 的依赖图与交付验收 ✓；核心：**raw evidence 与 adjudicated evidence 分层**，避免伪循环 ✓）
+
+## D. 三路的"先做一小步"（与我原 P1 不同 ✓）
+1. **接线 `codegen_invariants` 的 C 为 advisory + whitelist** ✓（分钟级；**不可直接接 A/B/D** ✗）
+2. **固定"尺寸污染"口径**（38 / 4-or-0 / 14，**附命令与输入参数** ✓）
+3. **修 `tools/_land_sizes.py`**（**已修 ✓**：REVERT 分支不再重生成 + **真正的 `SystemExit(1)`** ✓ —— 初稿声称"非零退出"却**从未实现** ✗，系第三路复核发现 ✓）
+4. **Spike**：只读 `??_L` parser 抽全部 133 站点 + 手核 Role/tagRoleSlot/BINK 三例 + 最小 ledger schema + 复算 placeholder 并解释 91 vs 38 差异 ✓；**成功判据**：133/133 参数完整 ✓、**Role 可由独立证据解析而 BINK 错锚被判 unknown/conflict** ✓、不改注解/不改生成物/**不接硬门禁** ✓
