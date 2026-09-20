@@ -723,7 +723,8 @@
     },
     "0x00423500": {
       "name": "ClearInactiveRoles",
-      "signature": "int __cdecl SceneMgr::ClearInactiveRoles()",
+      "signature": "struct SceneMgr *__cdecl SceneMgr::ClearInactiveRoles()",
+      "source": "F61(2026-09-19): 原为 int 返回 ⇒ Hex-Rays 把 result 钉成 int，只能发 *(int*)/*(_DWORD*) 裸指针算术，同一表达式两处符号性不一致（jl vs jb）。二进制 0x423500 尾部无 mov eax（eax 一直保留 UISceneUpdate() 的返回指针），故返回 SceneMgr* 与二进制相容；唯一引用者是 Logger.cpp:216 的取地址（cast 成 void(*)()，不受返回类型影响）。",
       "static": true
     },
     "0x0040FC70": {

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "gbengine/gbengine_export.h"
+
 #include "gbengine/gbVisNode.h"
 #include "gbengine/gbRenderEffect.h"
 #include "gbengine/gbTexture.h"
@@ -93,7 +95,7 @@ public:
 
 /* ======== gbActor ======== */
 
-class gbActor : public gbVisNode {
+class GBAPI gbActor : public gbVisNode {
 public:
     gbActor(gbActorDef* actorDef);
     gbActor(const gbActor& other);

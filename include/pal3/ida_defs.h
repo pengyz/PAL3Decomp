@@ -41,7 +41,7 @@
 #pragma warning(disable: 4133)  // incompatible pointer types
 
 #define LOBYTE(x)   (*((_BYTE*)&(x)))
-#define HIBYTE(x)   (*(((_BYTE*)&(x))+1))
+#define HIBYTE(x)   (*(((_BYTE*)&(x))+(sizeof(x)-1)))
 #define LOWORD(x)   (*((_WORD*)&(x)))
 #define HIWORD(x)   (*(((_WORD*)&(x))+1))
 #define LODWORD(x)  (*((_DWORD*)&(x)))
@@ -95,12 +95,12 @@ static void *retaddr = 0;
 #define COERCE_DOUBLE(x) (*(double*)&(x))
 #define __PAIR64__(high, low) (((unsigned __int64)(high) << 32) | (unsigned int)(low))
 
-// 【2026-09-15 加】上面三个宏内部对实参取地址（`&(x)`）⇒ **实参必须是 lvalue**。
-// 而 Hex-Rays 会产出 `COERCE_FLOAT(GetTickCount())` 这类**对 rvalue 取地址**的形态
-// ⇒ MSVC6 报 `C2102: '&' requires l-value`（实测 pal3/src/Misc/UI3DCtrl.cpp:384/389）。
-// 下面用**取值传参的 inline 函数**替代：形参本身即 lvalue ⇒ 语义等价（按位重解释），
-// 且 __forceinline 保证与宏一致的零开销（MSVC6 支持 __forceinline）。
-// ⚠️ 名字刻意避开双下划线开头（那是实现保留命名空间）。
+// 【2026-09-15 加】上面三个宏内部对实参取地址（`&(x)`）⇒ **实参必须是 lvalue**。 
+// 而 Hex-Rays 会产出 `COERCE_FLOAT(GetTickCount())` 这类**对 rvalue 取地址**的形态 
+// ⇒ MSVC6 报 `C2102: '&' requires l-value`（实测 pal3/src/Misc/UI3DCtrl.cpp:384/389）。 
+// 下面用**取值传参的 inline 函数**替代：形参本身即 lvalue ⇒ 语义等价（按位重解释）， 
+// 且 __forceinline 保证与宏一致的零开销（MSVC6 支持 __forceinline）。 
+// ⚠️ 名字刻意避开双下划线开头（那是实现保留命名空间）。 
 __forceinline float  _pal3_coerce_f32(unsigned long v) { return *(float *)&v; }
 __forceinline double _pal3_coerce_f64(unsigned __int64 v) { return *(double *)&v; }
 __forceinline long   _pal3_slo_dword(unsigned __int64 v) { return (long)(unsigned long)v; }
@@ -132,9 +132,24 @@ class gbSound3DNode;
 class UIWnd;
 
 // Common game functions (should be declared via annotations + codegen pipeline)
-// DO NOT add function declarations here — use data/annotations/functions.json
-void PushMatrixStacks(int nMode = 0);
-void PopMatrixStacks(int nMode = 0);
+// DO NOT add function declarations here - use data/annotations/functions.json
+//
+// F80 (round 138): these two stubs were declared `void f(int nMode = 0)`
+// (free function, argument passed on the STACK), which does not match the binary.
+// Evidence (IDA disassembly, A-level):
+//   * every one of the 22 call sites is `lea ecx, [esp+..]` / `mov ecx, ..`
+//     immediately followed by `call 0x00540F60 / 0x00540FA0` -> the argument
+//     travels in ECX, there is no `push` at all;
+//   * callee 0x00540F60: `mov ebx, ecx ... mov eax, ebx; retn` (no stack args,
+//     returns the value unchanged) -> the parameter is a POINTER, not an int.
+// Correct declaration is `void __fastcall f(void *a1)`: VC6 __fastcall puts the
+// first argument in ECX and the callee does its own `retn`. This both clears the
+// 11+11 `cannot convert parameter 1 from 'char [4]' / '.. *' to 'int'` errors and
+// makes the emitted call sequence (`lea ecx`, not the former `push`) match the
+// binary. NOTE: keep this comment ASCII-only - a UTF-8 Chinese comment read as
+// GBK can end a line with byte 0x5C and swallow the next line (documented gotcha).
+void __fastcall PushMatrixStacks(void *a1 = 0);
+void __fastcall PopMatrixStacks(void *a1 = 0);
 int UIRenderQuad(...);
 void UIQuadManager_Reset();
 

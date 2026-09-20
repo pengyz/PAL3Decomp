@@ -1,5 +1,7 @@
 #pragma once
 
+#include "gbengine/gbengine_export.h"
+
 #include "gbengine/gbengine_types.h"
 #include <d3d9.h>
 #include <d3dx9.h>
@@ -39,7 +41,7 @@ enum GBPARAMHANDLE {
 //   [9..16] m_ParamHandle[8] (D3DXHANDLE array)
 // ============================================================================
 // IDA-verified: inherits gbResource (which inherits gbRefObject)
-class gbRenderEffect : public gbResource {
+class GBAPI gbRenderEffect : public gbResource {
 public:
     friend class gbEffectMgr;
 
@@ -84,7 +86,7 @@ struct gbVertFormatEntry {
     // sizeof = 0x20 = 32
 };
 
-class gbEffectMgr : public gbResManager {
+class GBAPI gbEffectMgr : public gbResManager {
 public:
     // Layout verified from IDA (Init, RegisterVertexFormat, GetRenderEffect)
     // Total sizeof ~ 0x828 bytes

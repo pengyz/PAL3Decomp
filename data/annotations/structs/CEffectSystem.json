@@ -143,11 +143,6 @@
       "name": "CreateEffect",
       "signature": "int __thiscall CEffectSystem::CreateEffect__ovl_f580(CEffectSystem *pSrc, int nVal, CEffectSystem *pParam)"
     },
-    "0x004C5DE0": {
-      "name": "ReleaseParticle",
-      "signature": "void __thiscall()",
-      "ordinal": 3
-    },
     "0x004C5820": {
       "name": "Create",
       "signature": "CEffectSystem *__thiscall(int pGfxMgr)"
@@ -168,12 +163,6 @@
       "signature": "int()",
       "source": "vtable_migrated",
       "ordinal": 1
-    },
-    "0x004C5DB0": {
-      "name": "GetThreadHandle",
-      "signature": "int __thiscall()",
-      "source": "vtable_migrated",
-      "ordinal": 2
     },
     "0x004C5E80": {
       "name": "ProcessEffects",
@@ -198,6 +187,14 @@
       "signature": "int __thiscall(int, int)",
       "source": "vtable_evidence",
       "ordinal": 4
+    },
+    "0x004C5B90": {
+      "name": "SetEffectVisible",
+      "signature": "void __thiscall CEffectSystem::SetEffectVisible(int nIndex, unsigned char bVisible)",
+      "source": "pdb",
+      "note": "reattribute: asm 行 290910-290924 本体：mov eax,[esp+arg_0]（索引）; mov esi,ecx; push eax; call sub_4C5940（索引规范化）; mov ecx,[esi+eax*4+118h]; mov dl,[esp+4+arg_4]; mov [ecx+0Dh],dl。链路两侧都是精确成员： (1) +0x118 在 CEffectSystem 里是 known_members['280'] = m_pEffect，类型 CEffect *[8] —— 与 `[esi+eax*4+118h]`（4 字节指针数组取第 eax 个元素）完全吻合； (2) 写入目标是 [ecx+0Dh]，而 CEffect 的 known_members['13'] = m_bVisible，类型 unsigned char —— 与 byte 存储（mov dl → mov [ecx+0Dh],dl）吻合。原类 _Texture_uv 只有 u@0 / v@4（size=8），既无 +0x118 也无任何指针数组 ⇒ 不可能是宿主。原名字 operator= 与函数体无关（它收 (int, char) 并写一个字节，不是赋值运算符），已证伪。",
+      "name_evidence": "按函数逻辑定名：它按索引取出 CEffectSystem::m_pEffect[idx]，把该 effect 的 m_bVisible 置为传入字节 ⇒ SetEffectVisible。CEffectSystem 已有 IsVisible/SetVisible，为免重名用 SetEffectVisible。",
+      "signature_note": "set_signature: asm 行 290910-290924：`retn 8` ⇒ 2 个栈参数；第一参 `[esp+arg_0]` 作为索引传给 sub_4C5940 再用于 `[esi+eax*4+118h]`（取 m_pEffect[idx]）；第二参 `mov dl,[esp+4+arg_4]` 后 `mov [ecx+0Dh],dl` 是**字节存储**到 CEffect::m_bVisible ⇒ 第二参为字节、返回值为 void（函数未对 eax 作有效设置，调用方也不使用返回值）。搬移前该条带的是原类残留签名 `struct _Texture_uv & (_Texture_uv *)`，导致生成头把它发射成 `static struct _Texture_uv & SetEffectVisible(_Texture_uv *);`（pal3/src/Effect/CEffectSystem.h:44）—— 与函数体、与所属类均不符，已证伪。 (was: struct _Texture_uv & (_Texture_uv *))"
     }
   },
   "vtables": [

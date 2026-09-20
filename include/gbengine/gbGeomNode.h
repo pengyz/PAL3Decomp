@@ -1,5 +1,7 @@
 #pragma once
 
+#include "gbengine/gbengine_export.h"
+
 #include "gbengine/gbVisNode.h"
 #include "gbengine/gbMesh.h"
 #include "gbengine/gbRenderEffect.h"
@@ -24,7 +26,7 @@ public:
 
 // sizeof(gbGeomNode) = 0x118 = 280
 // IDA-verified: inherits gbVisNode (which inherits gbNBTreeNode → gbChain1DNode)
-class gbGeomNode : public gbVisNode {
+class GBAPI gbGeomNode : public gbVisNode {
 public:
     // gbVisNode base: 0x00-0x57 (88 bytes)
     gbMatrix4 worldTransform;              // +0x58 (64B) - GetCacheToWorld returns &this->worldTransform

@@ -1,4 +1,6 @@
 #pragma once
+
+#include "gbengine/gbengine_export.h"
 /**
  * gbengine_internal.h - Internal class definitions for gbengine
  * Classes that don't have their own public header but need definitions for compilation.
@@ -103,7 +105,7 @@ public:
 // gbGfxManager_D3D: full definition in gbGfxManager.h
 
 // ========= gbMatrixStack =========
-class gbMatrixStack {
+class GBAPI gbMatrixStack {
 public:
     struct gbMatrix4 *pStack;   // +0x00: pointer to array of gbMatrix4
     int maxDepth;               // +0x04: maximum stack depth
@@ -203,7 +205,7 @@ public:
 //   +0x58: gbMatrix4 localMatrix (local transform, 64 bytes)
 //   +0x98: gbMatrix4 worldMatrix (world transform, 64 bytes)
 //   +0xD8: gbVolumeModifier* pVolMod
-class gbVolModNode {
+class GBAPI gbVolModNode {
 public:
     char _base_visnode[0x54];       // base class data (after vfptr: chain+nbtree+visnode fields)
     gbMatrix4 localMatrix;          // +0x58: local transform matrix
@@ -243,7 +245,7 @@ struct gbLight {
 // ========= gbVolumeModifier =========
 // sizeof(gbVolumeModifier) == 0xD8 (216 bytes)
 // Base class for light objects and other volume modifiers
-class gbVolumeModifier : public gbRefObject {
+class GBAPI gbVolumeModifier : public gbRefObject {
 public:
     int m_LightType;          // +0x08: light type (0=point, 1=spot, 2=directional)
     gbColorFlt m_Color;       // +0x0C: diffuse color (16 bytes)

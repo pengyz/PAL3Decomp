@@ -1,5 +1,7 @@
 #pragma once
 
+#include "gbengine/gbengine_export.h"
+
 #include "gbengine/gbengine_types.h"
 
 // Forward declarations (defined later in this file)
@@ -9,7 +11,7 @@ class gbSound2DNode;
 
 /* ======== gbAudioMgrDesc ======== */
 
-struct gbAudioMgrDesc {
+struct GBAPI gbAudioMgrDesc {
     int freq;             // +0x00
     int bits;             // +0x04
     int channels;         // +0x08
@@ -66,7 +68,7 @@ struct gb2DSampleSlot {
 
 /* ======== gbSound3DNode ======== */
 
-class gbSound3DNode {
+class GBAPI gbSound3DNode {
 public:
     gbSoundData* soundData;   // +0x00
     void* sampleHandle;       // +0x04 (H3DSAMPLE) - non-null means attached
@@ -106,7 +108,7 @@ public:
 
 /* ======== gbSound2DNode ======== */
 
-class gbSound2DNode {
+class GBAPI gbSound2DNode {
 public:
     gbSoundData* soundData;   // +0x00
     void* sampleHandle;       // +0x04 (HSAMPLE)
@@ -147,7 +149,7 @@ struct gbResManagerStub {
 
 // Layout verified from IDA constructor at 0x10001120
 // sizeof = 0xF4 (streams + slots + volumes + listener + listenerPos + resManager)
-class gbAudioManager {
+class GBAPI gbAudioManager {
 public:
     void* streams[MAX_STREAMS];            // +0x00 (HSTREAM, DWORD[0..2])
     int streamStatus[MAX_STREAMS];         // +0x0C (DWORD[3..5])

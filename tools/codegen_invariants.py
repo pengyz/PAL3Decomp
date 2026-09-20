@@ -1,0 +1,311 @@
+#!/usr/bin/env python3
+"""生成代码的**内部不变量检查**（编译之前就能跑，秒级）。
+
+背景：项目的门禁（`probe`/`match`）要跑完 apply→export→codegen→probe 才能看见问题（一轮 ~15 分钟），
+而下面这几类缺陷**在生成物里就已可判定**。
+
+判据（经 2026-09-19 独立复核修正过，见 `data/status/_codegen_invariants_review.md`）：
+
+* **A. `__vftable` 残留（编译阻塞）**：任何生成头**都不声明 `__vftable`**（全 `pal3/**` 搜 `*.h` 为 0 命中），
+  而生成 C++ 里有 **150 行**（非注释）在用 `X.__vftable` / `X->__vftable` ⇒ 每一行都是编译错误。
+  `data/status/probe_census.json` 里 `C2039 '__vftable' : is not a member of ...` 覆盖 **27 个文件、≥94 条**
+  （7 个 unit 被 `--errorlimit` 截断在 102 条，故为下界）。
+  ⚠️ 不要用"bare / cast / other"当严重性分类：`cast` 恒 0，而"other"里 ≥79/134 本来就是 cast 形态。
+* **B. `sub_XXXX` 的「唯一声明的形参数」与「调用点实参数」不一致**（编译阻塞 C2660/C2664）。
+  ⚠️ 第一版判据（"同一 `sub_` 有多份声明"）**已证伪**：它把调用语句（同样以 `;` 结尾）当成了声明，
+  151 条 100% 假阳性。正确判据是"声明 1 份、调用 N 处，比较形参与实参个数"。
+* **C. 注解 `methods[addr].signature` 的 `__thiscall X::` 前缀 ≠ 该 JSON 的类名**（**潜伏**，不阻塞编译：
+  codegen 按 JSON 的类名落位、丢掉前缀 ⇒ 生成物仍合法）。已知 28 条真阳性 + 1 条待裁定。
+
+退出码：A/B 有问题 ⇒ 1；仅 C 有问题 ⇒ 0（除非 `--strict`）；参数错误 ⇒ 2。
+
+用法::
+
+    python tools/codegen_invariants.py                 # A+B（编译阻塞项）
+    python tools/codegen_invariants.py --strict        # 连 C（潜伏项）也判失败
+    python tools/codegen_invariants.py --check A       # 只跑 A（名字必须合法，否则 exit 2）
+"""
+import argparse
+import glob
+import json
+import os
+import re
+import sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SRC = os.path.join(ROOT, 'pal3', 'src')
+STRUCTS = os.path.join(ROOT, 'data', 'annotations', 'structs')
+VALID_CHECKS = ('A', 'B', 'C', 'D')
+
+ANY_VFT = re.compile(r'__vftable')
+SUBFN = re.compile(r'\bsub_[0-9A-Fa-f]{6}\b')
+DECL_LINE = re.compile(r'^\s*(?:extern\s+)?[\w\s\*&:<>,\[\]]+?\b(sub_[0-9A-Fa-f]{6})\s*\(')
+THISCLASS = re.compile(r'__thiscall\s+([A-Za-z_]\w*)::')
+
+
+def gen_files(exts=('.cpp', '.h')):
+    out = []
+    for e in exts:
+        out += glob.glob(os.path.join(SRC, '**', '*' + e), recursive=True)
+    return sorted(out)
+
+
+def strip_comments(text):
+    """只保留真实 code（去行注释、块注释、字符串字面量），返回等长文本（用空格占位）。
+
+    这样"某行是否含 code 位置的 __vftable"就等价于"该行在清理后的文本里是否还有 __vftable"，
+    不会像第一版那样把 `*(...)` 续行误当成注释（那会漏掉 5 条真错误）。
+    """
+    out = []
+    i, n = 0, len(text)
+    state = None  # None | 'line' | 'block' | 'str' | 'chr'
+    while i < n:
+        c = text[i]
+        nx = text[i + 1] if i + 1 < n else ''
+        if state is None:
+            if c == '/' and nx == '/':
+                state = 'line'
+                out.append('  ')
+                i += 2
+                continue
+            if c == '/' and nx == '*':
+                state = 'block'
+                out.append('  ')
+                i += 2
+                continue
+            if c == '"':
+                state = 'str'
+            elif c == "'":
+                state = 'chr'
+            out.append(c)
+            i += 1
+            continue
+        if state == 'line':
+            if c == '\n':
+                state = None
+                out.append('\n')
+            else:
+                out.append(' ')
+            i += 1
+            continue
+        if state == 'block':
+            if c == '*' and nx == '/':
+                state = None
+                out.append('  ')
+                i += 2
+                continue
+            out.append('\n' if c == '\n' else ' ')
+            i += 1
+            continue
+        # str / chr
+        if c == '\\':
+            out.append('  ')
+            i += 2
+            continue
+        if (state == 'str' and c == '"') or (state == 'chr' and c == "'"):
+            state = None
+        out.append(c)
+        i += 1
+    return ''.join(out)
+
+
+DECL_VFT = re.compile(r'^\s*(?:[\w:]+\s+)*[\w:]+\s*\*?\s*__vftable\s*(?:\[\d+\])?\s*;')
+
+
+def check_a(verbose=False):
+    hits = []
+    for p in gen_files():
+        raw = open(p, encoding='utf-8', errors='replace').read()
+        clean = strip_comments(raw)
+        for i, ln in enumerate(clean.split('\n'), 1):
+            if not ANY_VFT.search(ln):
+                continue
+            # 2026-09-19：P1 修好后，**头里的声明行** `void * __vftable; // +0x0` 是合法的，
+            # 不能再算违规（第一版把声明也算进去，P1 一改 A 就从 150 涨到 206，全是假阳性）。
+            if DECL_VFT.match(ln):
+                continue
+            hits.append((os.path.relpath(p, ROOT), i,
+                         raw.split('\n')[i - 1].strip()[:100]))
+    if hits:
+        files = sorted({h[0] for h in hits})
+        print('[A] FAIL：__vftable 出现在真实 code 位置 %d 行 / %d 个文件'
+              '（**结构性**指标：活代码位置的 __vftable 残留行数；不等于编译错误数 —— F11/F12 之后这些行多数已不再是错误）'
+              % (len(hits), len(files)))
+        per = {}
+        for f, i, s in hits:
+            per.setdefault(f, []).append(i)
+        for f in files:
+            print('    %-46s %2d 行（%s）' % (f, len(per[f]),
+                  ','.join(str(x) for x in per[f][:8]) + ('...' if len(per[f]) > 8 else '')))
+        if verbose:
+            for f, i, s in hits:
+                print('      %s:%d  %s' % (f, i, s))
+    else:
+        print('[A] PASS：没有任何 code 位置的 __vftable')
+    return len(hits)
+
+
+def _collect_sub_calls():
+    """→ {sym: {'decl': [(arity, where)], 'calls': [(arity, where)]}}（括号跨行配平）。"""
+    info = {}
+    for p in gen_files():
+        rel = os.path.relpath(p, ROOT)
+        txt = strip_comments(open(p, encoding='utf-8', errors='replace').read())
+        for m in SUBFN.finditer(txt):
+            sym = m.group(0)
+            j = m.end()
+            while j < len(txt) and txt[j] in ' \t':
+                j += 1
+            if j >= len(txt) or txt[j] != '(':
+                continue
+            depth, k = 0, j
+            while k < len(txt):
+                if txt[k] == '(':
+                    depth += 1
+                elif txt[k] == ')':
+                    depth -= 1
+                    if depth == 0:
+                        break
+                k += 1
+            args = txt[j + 1:k]
+            # `(void)` 在 C 里是**零参**（第一版把它算成 1 ⇒ 大面积"声明 1 参 vs 调用 0 实参"假阳性）
+            if args.strip() in ('', 'void'):
+                arity = 0
+            else:
+                arity = args.count(',') + 1
+            line = txt.count('\n', 0, m.start()) + 1
+            # 声明判定（独立复核后收紧）：生成的声明都在**文件作用域、列 0** 起（`__int64 sub_4B59B0(...)`），
+            # 而调用都在函数体内（有缩进）。第一版只看"`;` 结尾 + 前缀像类型"，把调用点也算了进来
+            # （`    sub_404350(v50, 1, pszBuf);`）⇒ 151 条 100% 假阳性。现要求列 0。
+            ls = txt.rfind('\n', 0, m.start()) + 1
+            prefix = txt[ls:m.start()]
+            is_decl = (not prefix.startswith((' ', '\t'))) and bool(prefix.strip()) and \
+                not re.match(r'\s*(?:return|=|,|\(|\[|if|while|for|switch|else)\b', prefix)
+            rec = info.setdefault(sym, {'decl': [], 'calls': []})
+            where = '%s:%d' % (rel, line)
+            (rec['decl'] if is_decl else rec['calls']).append((arity, where))
+    return info
+
+
+def check_b(verbose=False):
+    info = _collect_sub_calls()
+    bad = []
+    for sym, rec in sorted(info.items()):
+        decls = {a for a, _ in rec['decl']}
+        if len(decls) != 1:
+            if len(decls) > 1:
+                bad.append((sym, '多份声明形参数不一致 %s' % sorted(decls),
+                            [w for _, w in rec['decl']][:4]))
+            continue
+        d = decls.pop()
+        for a, w in rec['calls']:
+            if a != d:
+                bad.append((sym, '声明 %d 参 vs 调用 %d 实参' % (d, a), [w]))
+    if bad:
+        print('[B] FAIL：%d 处 声明形参数 与 调用实参数 不一致（C2660/C2664 的直接成因）' % len(bad))
+        for sym, why, where in bad:
+            print('    %s  %-28s %s' % (sym, why, ', '.join(where[:3])))
+    else:
+        print('[B] PASS：%d 个 sub_ 符号的声明/调用形参数全部一致' % len(info))
+    if verbose:
+        print('    [info] 见过 %d 个 sub_ 符号；其中多份声明的 %d 个'
+              % (len(info), len([r for r in info.values() if len({a for a, _ in r['decl']}) > 1])))
+    return len(bad)
+
+
+def check_c(verbose=False):
+    bad = []
+    for p in sorted(glob.glob(os.path.join(STRUCTS, '*.json'))):
+        cls = os.path.basename(p)[:-5]
+        d = json.load(open(p, encoding='utf-8'))
+        for addr, m in (d.get('methods') or {}).items():
+            if not isinstance(m, dict):
+                continue
+            sig = str(m.get('signature') or '')
+            mm = THISCLASS.search(sig)
+            if mm and mm.group(1) != cls:
+                bad.append((cls, addr, sig[:76]))
+    if bad:
+        print('[C] 潜伏（不阻塞编译）：注解签名类前缀 ≠ 所属类 %d 条' % len(bad))
+        for it in bad if verbose else bad[:12]:
+            print('    %-22s %-12s %s' % it)
+        if not verbose and len(bad) > 12:
+            print('    ...（--verbose 看全部）')
+    else:
+        print('[C] PASS：签名类前缀与所属类一致')
+    return len(bad)
+
+
+def check_d(verbose=False):
+    """D（根因前置检查，独立复核建议）：注解有 `vtables` 的类，生成头在 +0x0 必须是 vptr。
+
+    实测：80 个类有非空 `vtables`，其中 **64 个**的生成头把 +0x0 发射成 `char _gap_000[N]`
+    （`emit_headers` 只发射 `data_members`）⇒ 这些类的 .cpp 一旦出现 `X.__vftable` 就必编译失败。
+    这条在 .cpp 写出 `__vftable` **之前**就能报，覆盖面（64 类）大于 A（29 个文件）。
+
+    **2026-09-19 口径修正（长线计划第 1 条）**：类一旦声明 `virtual` 方法，MSVC 会在 +0
+    **隐式**放入 vfptr，头文件此时**必须不发射**显式占位（否则显式占位被挤到 +4、其后每个成员
+    偏 4 字节——实测 `AStarPathFinder::FindInOpen` 因此只有 94.1%）。所以判据改为
+    **「显式 vptr/占位」∨「声明了 virtual」二者之一成立即通过**；两者都没有才是真问题。
+    """
+    bad, ok = [], 0
+    for p in sorted(glob.glob(os.path.join(STRUCTS, '*.json'))):
+        cls = os.path.basename(p)[:-5]
+        d = json.load(open(p, encoding='utf-8'))
+        if not (d.get('vtables') or []):
+            continue
+        hdrs = glob.glob(os.path.join(SRC, '**', cls + '.h'), recursive=True)
+        if not hdrs:
+            bad.append((cls, '(未找到生成头)', d.get('binary_size')))
+            continue
+        htxt = open(hdrs[0], encoding='utf-8', errors='replace').read()
+        if '__vftable' in htxt:
+            ok += 1
+            continue
+        if re.search(r'^\s*virtual\s', htxt, re.M):
+            ok += 1          # 编译器提供 +0 的 vfptr，显式占位反而错
+            continue
+        m = re.search(r'char\s+_gap_000\[(\d+)\]', htxt)
+        bad.append((cls, ('_gap_000[%s] @+0x0' % m.group(1)) if m else '无 virtual、无 +0x0 vptr 也无 _gap_000',
+                    d.get('binary_size')))
+    if bad:
+        print('[D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **%d 个**' % len(bad))
+        for cls, why, size in (bad if verbose else bad[:15]):
+            print('    %-24s size=%-8s %s' % (cls, size, why))
+        if not verbose and len(bad) > 15:
+            print('    ...（--verbose 看全部；另 %d 个类的头里有 __vftable）' % ok)
+    else:
+        print('[D] PASS：%d 个有 vtables 的类，生成头 +0x0 都有 vptr' % ok)
+    return len(bad)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--check', action='append', default=[])
+    ap.add_argument('--strict', action='store_true',
+                    help='把潜伏项 C 也算失败')
+    ap.add_argument('--verbose', action='store_true')
+    args = ap.parse_args()
+
+    for c in args.check:                      # 修复：第一版静默忽略非法名字 ⇒ 假绿门禁
+        if c not in VALID_CHECKS:
+            print('[ERROR] --check 只接受 %s，收到 %r' % ('/'.join(VALID_CHECKS), c))
+            return 2
+    want = set(args.check) or {'A', 'B', 'D'}
+
+    hard = 0
+    if 'D' in want:
+        hard += check_d(args.verbose)
+    if 'A' in want:
+        hard += check_a(args.verbose)
+    if 'B' in want:
+        hard += check_b(args.verbose)
+    latent = check_c(args.verbose) if ('C' in want or args.strict) else 0
+    print()
+    print('编译阻塞项 %d；潜伏项 %d  => %s'
+          % (hard, latent, 'FAIL' if (hard or (args.strict and latent)) else 'PASS'))
+    return 1 if (hard or (args.strict and latent)) else 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

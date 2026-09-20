@@ -45,6 +45,15 @@ Example:
 """
 
 import argparse
+import sys
+
+# F52-bis（第 133 轮）：结论行用 emoji（⚠️/✅），GBK 控制台下 print 抛
+# `UnicodeEncodeError` ⇒ 门禁自己崩（报告已算完却以非零退出）。强制 UTF-8 stdout。
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
 import json
 import os
 import re

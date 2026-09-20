@@ -13,6 +13,7 @@
 #define PAL3_GLOBALS_H
 
 #include "pal3_types.h"
+#include "gbengine/gbengine_export.h"
 
 /* Forward declarations */
 struct gbGfxManager_D3D;
@@ -61,8 +62,8 @@ extern struct CCBSystem *PAL3_m_pCBSystem;
 /* 屏幕截图缓冲 @ 0x008ACC10 */
 extern struct gbImage2D PAL3_m_screenImg;
 
-/* 全局时间 (GBENGINE.dll + 0x1015D338) */
-extern double g_CurrentTime;
+/* 全局时间 (GBENGINE.dll + 0x1015D338) —— 从 gbengine.dll 导入，非本模块定义 */
+extern GBAPI double g_CurrentTime;
 
 /* ========================================================================
  * UI Globals
@@ -81,8 +82,9 @@ extern struct gbRenderEffect *ui_tex_color_gbf;
  * IO/Media Globals
  * ======================================================================== */
 
-/* 虚拟文件系统 (GBENGINE.dll + 0x1015D3A8) */
-extern struct gbVFileSystem *g_pVFileSys;
+/* 虚拟文件系统 (GBENGINE.dll + 0x1015D3A8) —— 从 gbengine.dll 导入的变量本身
+ * (PAL3.exe 只导入它，不定义；IDA: .idata/GBENGINE, IAT 槽 0x0056A598) */
+extern GBAPI struct gbVFileSystem *g_pVFileSys;
 
 /* Bink 视频播放器 @ 0x00A3A7D8 */
 extern struct gbBinkVideo g_bink;

@@ -1,4 +1,6 @@
 #pragma once
+
+#include "gbengine/gbengine_export.h"
 #pragma warning(disable: 4521) // multiple copy constructors (gbParticleUnit exports both)
 
 #include "gbengine/gbengine_types.h"
@@ -140,7 +142,7 @@ struct gbPartGroupParam {
 
 /* ======== gbPartEmitter ======== */
 
-class gbPartEmitter {
+class GBAPI gbPartEmitter {
 public:
     char configData[0x40];          // +0x00: emitter config (timing, repeat count etc.)
     gbVec3D basePosition;           // +0x40: emission origin
@@ -231,7 +233,7 @@ public:
 
 /* ======== gbParticleEffect ======== */
 
-class gbParticleEffect : public gbVisNodeBase {
+class GBAPI gbParticleEffect : public gbVisNodeBase {
 public:
     char _effectBaseData[64];              // +0x58: effect config data (read as block)
     int numGroups;                         // +0x98: number of particle groups
@@ -336,7 +338,7 @@ private:
 
 /* ======== gbRain ======== */
 
-class gbRain : public gbDropGroup {
+class GBAPI gbRain : public gbDropGroup {
 public:
     gbRain(int maxDrops, const gbDropDesc* dropDesc, const char* texName);
     gbRain(const gbRain& other);
@@ -351,7 +353,7 @@ private:
 
 /* ======== gbSnow ======== */
 
-class gbSnow : public gbDropGroup {
+class GBAPI gbSnow : public gbDropGroup {
 public:
     float swayAmplitude;         // +0x50 (IDA: this[20])
 

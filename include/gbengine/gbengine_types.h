@@ -23,27 +23,35 @@ struct gbVec3D {
     float x, y, z;
 
     // Methods (auto-generated)
+    // F70（第 127 轮）：GBAPI 按成员给 —— 只给 IAT 实测存在的 9 个成员
+    // （ctor×2 / operator= / operator*= / operator+= / CrossProduct / DotProduct / Length / Normalize）。
+    // 类级 GBAPI 对"引擎导出 + 游戏侧又实现"的类是错的：`Copy(int, gbVec3D*)` 由 **PAL3.exe 实现**
+    // （0x0042FD40 在 PAL3 的 .text 里）⇒ 类级 dllimport 下补声明会 C2491，且调用点拿不到该重载
+    // （实测 `C2661 'Copy' : no overloaded function takes 2 parameters` **×47**，是本族最大单条）。
 #ifndef GBVEC3D_NO_CTOR
-    gbVec3D();
-    gbVec3D(float p0, float p1, float p2);
+    GBAPI gbVec3D();
+    GBAPI gbVec3D(float p0, float p1, float p2);
 #endif
-    void operator=(struct gbVec3D const & p0);
+    GBAPI void operator=(struct gbVec3D const & p0);
     bool operator==(struct gbVec3D const & p0);
     struct gbVec3D operator-() const;
-    void operator*=(float p0);
-    void operator+=(struct gbVec3D const & p0);
+    GBAPI void operator*=(float p0);
+    GBAPI void operator+=(struct gbVec3D const & p0);
     void operator-=(struct gbVec3D const & p0);
     void operator/=(float p0);
-    void CrossProduct(struct gbVec3D const * p0, struct gbVec3D * p1) const;
-    float DotProduct(struct gbVec3D const * p0) const;
+    GBAPI void CrossProduct(struct gbVec3D const * p0, struct gbVec3D * p1) const;
+    GBAPI float DotProduct(struct gbVec3D const * p0) const;
     void Inverse();
     int IsNormal();
     bool IsValid() const;
-    float Length() const;
+    GBAPI float Length() const;
     float LengthSquare() const;
-    void Normalize();
+    GBAPI void Normalize();
     inline void Copy(const gbVec3D& src) { x = src.x; y = src.y; z = src.z; }
     inline void Copy(const gbVec3D* src) { x = src->x; y = src->y; z = src->z; }
+    // PAL3.exe 侧实现（decomp/注解 A 级）：`gbVec3D *__thiscall gbVec3D::Copy(int, gbVec3D*)` @0x0042FD40
+    // —— 47 条 C2661 的根：调用点就是两参形式（`gbVec3D::Copy(nSrcIndex, pSrc)`）。
+    gbVec3D * Copy(int nSrcIndex, gbVec3D *pSrc);
 #ifdef GBVEC3D_NO_CTOR
     inline void Zero() { z = 0.0f; y = 0.0f; x = 0.0f; }
 #else
@@ -55,7 +63,7 @@ struct gbVec4D {
     float x, y, z, w;
 };
 
-struct gbColorQuad {
+struct GBAPI gbColorQuad {
     union {
         struct {
             unsigned char Blue, Green, Red, Alpha;
@@ -72,7 +80,7 @@ struct gbColorQuad {
     struct gbColorQuad & operator=(struct gbColorQuad const & p0);
     struct gbColorQuad & operator=(unsigned long color) { *(unsigned long*)this = color; return *this; }
     operator unsigned long() const { return *(unsigned long*)this; }
-    static int ColorQuadFmt;
+    static int ColorQuadFmt;   // gbengine.dll import (IAT 0x0056A558); the class's GBAPI covers it
 };
 
 struct gbColorFlt {
@@ -87,7 +95,7 @@ struct gbColorFlt {
     void operator+=(struct gbColorFlt const & p0);
 };
 
-struct gbMatrix4 {
+struct GBAPI gbMatrix4 {
     union {
         struct {
             float xx, xy, xz, xw;
@@ -153,7 +161,7 @@ struct gbRotMatrix {
     void Rotate(struct gbVec3D * p0, struct gbVec3D * p1);
 };
 
-struct gbQuaternion {
+struct GBAPI gbQuaternion {
     float x, y, z, w;
 
     // Methods (auto-generated)
@@ -179,7 +187,7 @@ struct gbQuaternion {
     void Slerp(struct gbQuaternion * p0, struct gbQuaternion * p1, float p2);
 };
 
-struct gbRay {
+struct GBAPI gbRay {
     gbVec3D Origin;
     gbVec3D Direction;
 
@@ -196,7 +204,7 @@ struct gbRay {
     int IsColTriangle(struct gbVec3D & p0, struct gbVec3D & p1, struct gbVec3D & p2);
 };
 
-struct gbAABBox {
+struct GBAPI gbAABBox {
     gbVec3D vMin;
     gbVec3D vMax;
 
@@ -208,7 +216,7 @@ struct gbAABBox {
     void Transform(struct gbMatrix4 * p0);
 };
 
-struct gbOBBox {
+struct GBAPI gbOBBox {
     gbMatrix4 trans;
     float xlen, ylen, zlen;
 
@@ -302,5 +310,8 @@ public:
 };
 
 // Globals
-extern double g_CurrentTime;
+// Imported from gbengine.dll (IDA: PAL3.exe .idata entry for GBENGINE,
+// IAT slot 0x0056A4F4) -> must be dllimport so MSVC6 emits the IAT-indirect
+// access form the original binary used.
+extern GBAPI double g_CurrentTime;
 extern unsigned int g_CurrentTick;

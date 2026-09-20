@@ -1,335 +1,342 @@
 {
- "name": "CEffMgr",
- "binary_size": 43312,
- "known_members": {
-  "0": {
-   "name": "m_pDisplay",
-   "type": "gbGfxManager *",
-   "source": "annotation"
-  },
-  "4": {
-   "name": "m_pCBSystem",
-   "type": "CCBSystem *",
-   "source": "annotation"
-  },
-  "8": {
-   "name": "m_pAdditiveBlendNoZ",
-   "type": "gbRenderEffect *",
-   "source": "annotation"
-  },
-  "12": {
-   "name": "m_pAlphaBlendNoZ",
-   "type": "gbRenderEffect *",
-   "source": "annotation"
-  },
-  "16": {
-   "name": "m_pAdditiveBlend",
-   "type": "gbRenderEffect *",
-   "source": "annotation"
-  },
-  "20": {
-   "name": "m_pAlphaBlend",
-   "type": "gbRenderEffect *",
-   "source": "annotation"
-  },
-  "24": {
-   "name": "m_pCam",
-   "type": "gbCamera *",
-   "source": "annotation"
-  },
-  "28": {
-   "name": "m_EffClass",
-   "type": "tagEffClass[32]",
-   "source": "annotation"
-  },
-  "156": {
-   "name": "m_fEffParam",
-   "type": "float",
-   "source": "ida_decomp:_auto_4c9750 from a2+220, accumulated, 57 refs"
-  },
-  "160": {
-   "name": "m_fPosX",
-   "type": "float",
-   "source": "ida_decomp:_auto_4c9750 = a3+base, accumulated, 10 refs"
-  },
-  "164": {
-   "name": "m_fPosY",
-   "type": "float",
-   "source": "ida_decomp:_auto_4c9750 = a4+base, accumulated, 5 refs"
-  },
-  "168": {
-   "name": "m_fPosZ",
-   "type": "float",
-   "source": "ida_decomp:_auto_4c9750 = a5+base, accumulated, 5 refs"
-  },
-  "172": {
-   "name": "m_vecRotAxis",
-   "type": "float",
-   "source": "A:FPU_round3_0x4c44a9"
-  },
-  "176": {
-   "name": "m_nTodo_0B0",
-   "type": "float",
-   "source": "A:FPU_round3_0x4c44b9"
-  },
-  "180": {
-   "name": "m_nTodo_0B4",
-   "type": "float",
-   "source": "reverted_auto_semantic:1x_access|reverted:pseudo_semantic"
-  },
-  "188": {
-   "name": "m_nTodo_0BC",
-   "type": "int",
-   "source": "binary_discovery:1refs"
-  },
-  "196": {
-   "name": "m_fScaleX",
-   "type": "float",
-   "source": "ida_decomp:_auto_4c5350 to vertex buf, lerp endpoint, 3 refs"
-  },
-  "200": {
-   "name": "m_fScaleY",
-   "type": "float",
-   "source": "ida_decomp:_auto_4c5350 to vertex buf, 4 refs"
-  },
-  "204": {
-   "name": "m_fScaleZ",
-   "type": "float",
-   "source": "ida_decomp:_auto_4c5350 to vertex buf, lerp range, 3 refs"
-  },
-  "208": {
-   "name": "m_szEffectPath",
-   "type": "char[48]",
-   "source": "binary:(const char*)&g_EffMgr._todo_0D0+4 fopen path"
-  },
-  "256": {
-   "name": "m_szLogPath",
-   "type": "char[216]",
-   "source": "binary:(const char *)&g_EffMgr._todo_100+8 fopen path"
-  },
-  "472": {
-   "name": "m_nTodo_1D8",
-   "type": "int",
-   "source": "binary_discovery:1refs"
-  },
-  "740": {
-   "name": "m_nTodo_2E4",
-   "type": "int",
-   "source": "binary:disp32_1hits_1funcs"
-  },
-  "868": {
-   "name": "m_pFileCur",
-   "type": "char *",
-   "source": "usage: passed as FormatException(char *file) 2nd arg in C2DSpark.cpp xN (Logger::FormatException(char *msg, char *file, int line)); was m_nTodo_364 int (pseudo-semantic), binary_discovery:1refs"
-  },
-  "1024": {
-   "name": "m_nReset",
-   "type": "int",
-   "source": "binary:disp32_1hits_1funcs"
-  },
-  "1028": {
-   "name": "m_nTodo_404",
-   "type": "int",
-   "source": "binary:disp32_1hits_1funcs"
-  },
-  "1032": {
-   "name": "m_nTodo_408",
-   "type": "int",
-   "source": "reverted_auto_semantic_r3:1x(Reset)"
-  },
-  "2048": {
-   "name": "m_pEffectArray",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref2"
-  },
-  "2332": {
-   "name": "m_EffTable",
-   "type": "_BYTE[584]",
-   "source": "IDA export: _BYTE[584]"
-  },
-  "2916": {
-   "name": "m_nTargetSlot",
-   "type": "int",
-   "source": "auto:overlap_g_EffMgr_at_+0xB64"
-  },
-  "13168": {
-   "name": "roleIdx",
-   "type": "unsigned int",
-   "source": "auto:overlap_g_EffMgr_at_+0x3370"
-  },
-  "14264": {
-   "name": "m_sz5D8C3C",
-   "type": "char[29028]",
-   "source": "auto:extern_overlap_g_EffMgr_at_+0x37B8",
-   "note": "fixed from char[] to char[29028]"
-  },
-  "33004": {
-   "name": "m_nTodo_80EC",
-   "type": "int",
-   "source": "ida_gap_1refs"
-  },
-  "43292": {
-   "name": "m_nEff",
-   "type": "int",
-   "source": "annotation"
-  },
-  "43296": {
-   "name": "m_fCurTime",
-   "type": "float",
-   "source": "annotation"
-  },
-  "43300": {
-   "name": "m_fDeltaTime",
-   "type": "float",
-   "source": "annotation"
-  },
-  "43304": {
-   "name": "m_fTimer",
-   "type": "float",
-   "source": "annotation"
-  },
-  "43308": {
-   "name": "m_fTimeScale",
-   "type": "float",
-   "source": "annotation"
-  }
- },
- "methods": {
-  "0x004CE100": {
-   "name": "CEffMgr",
-   "signature": "void __thiscall()"
-  },
-  "0x004CE2A0": {
-   "name": "~CEffMgr",
-   "signature": "void __thiscall()"
-  },
-  "0x004CE340": {
-   "name": "Init",
-   "signature": "bool __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5)",
-   "source": "pdb_ret"
-  },
-  "0x004CE580": {
-   "name": "Render",
-   "signature": "void __thiscall(int nVal)",
-   "source": "pdb_ret"
-  },
-  "0x004CE5F0": {
-   "name": "SetTimeScale",
-   "signature": "void __thiscall(float fScale)",
-   "source": "pdb_ret"
-  },
-  "0x004CE690": {
-   "name": "CreateEff",
-   "signature": "char(const char *szEffTypeName, unsigned int dwRunID, float fx, float fy, float fz)",
-   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-  },
-  "0x004CEDA0": {
-   "name": "RunEffGroup",
-   "signature": "unsigned long(char *nGroup, float fx, char *fy, float fz, unsigned int dwID)",
-   "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-  },
-  "0x004CF100": {
-   "name": "IsAllEffGroupStop",
-   "signature": "bool __thiscall(char *pszBuf, int nVal, char *pszBuf2)",
-   "source": "pdb_ret"
-  },
-  "0x004CF7C0": {
-   "name": "CopyObjInGroup",
-   "signature": "void __thiscall(char *nGroup, int nObj, char *nObjType)",
-   "source": "pdb_ret"
-  },
-  "0x004D58A0": {
-   "name": "Reset",
-   "signature": "int *__thiscall(CEffMgr *this)"
-  },
-  "0x004CEA80": {
-   "name": "ReleaseCompletedEffects",
-   "signature": "char __thiscall CEffMgr::ReleaseCompletedEffects()"
-  },
-  "0x004B73D0": {
-   "name": "SetComponent",
-   "signature": "int __thiscall(int nVal)",
-   "_misattrib_evidence": "max_offset=92>class_size=4"
-  },
-  "0x004CDC50": {
-   "name": "SetEffectsTimeScale",
-   "signature": "char __thiscall CEffMgr::SetEffectsTimeScale(int nVal)"
-  },
-  "0x004CDED0": {
-   "name": "InitEffClass",
-   "signature": "int __thiscall()"
-  },
-  "0x004CEFE0": {
-   "name": "CreateSParticleEffect",
-   "signature": "int __thiscall CEffMgr::CreateSParticleEffect(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
-  },
-  "0x004CF220": {
-   "name": "CreateModelEffect",
-   "signature": "int __thiscall CEffMgr::CreateModelEffect(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
-  },
-  "0x004CF460": {
-   "name": "CreateEffectType3",
-   "signature": "int __thiscall CEffMgr::CreateEffectType3(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
-  },
-  "0x004CF6A0": {
-   "name": "CreateEffectType4",
-   "signature": "int __thiscall CEffMgr::CreateEffectType4(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
-  },
-  "0x004CF8E0": {
-   "name": "CreateEffectType5",
-   "signature": "int __thiscall CEffMgr::CreateEffectType5(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
-  },
-  "0x004CFB20": {
-   "name": "CreateShockEffect",
-   "signature": "int __thiscall CEffMgr::CreateShockEffect(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
-  },
-  "0x004B7340": {
-   "name": "UpdateTimedTrigger",
-   "signature": "void __thiscall CEffMgr::UpdateTimedTrigger(float fVal)"
-  },
-  "0x004B73F0": {
-   "name": "SetEffectClass",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
-  },
-  "0x004C2F30": {
-   "name": "ProcessEffectPass",
-   "signature": "int __thiscall CEffMgr::ProcessEffectPass(int nVal)"
-  },
-  "0x004C5350": {
-   "name": "UpdateParticlePositions",
-   "signature": "int __thiscall CEffMgr::UpdateParticlePositions()"
-  },
-  "0x004C7E60": {
-   "name": "EmitParticles",
-   "signature": "int __thiscall CEffMgr::EmitParticles()"
-  },
-  "0x004CDCA0": {
-   "name": "CreateEffect",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5)",
-   "local_vars": [
-    {
-     "from_name": "v14",
-     "name": "pEffObj",
-     "type": "tagEffObj *"
+  "name": "CEffMgr",
+  "binary_size": 43312,
+  "known_members": {
+    "0": {
+      "name": "m_pDisplay",
+      "type": "gbGfxManager *",
+      "source": "annotation"
+    },
+    "4": {
+      "name": "m_pCBSystem",
+      "type": "CCBSystem *",
+      "source": "annotation"
+    },
+    "8": {
+      "name": "m_pAdditiveBlendNoZ",
+      "type": "gbRenderEffect *",
+      "source": "annotation"
+    },
+    "12": {
+      "name": "m_pAlphaBlendNoZ",
+      "type": "gbRenderEffect *",
+      "source": "annotation"
+    },
+    "16": {
+      "name": "m_pAdditiveBlend",
+      "type": "gbRenderEffect *",
+      "source": "annotation"
+    },
+    "20": {
+      "name": "m_pAlphaBlend",
+      "type": "gbRenderEffect *",
+      "source": "annotation"
+    },
+    "24": {
+      "name": "m_pCam",
+      "type": "gbCamera *",
+      "source": "annotation"
+    },
+    "28": {
+      "name": "m_EffClass",
+      "type": "tagEffClass[32]",
+      "source": "annotation"
+    },
+    "156": {
+      "name": "m_fEffParam",
+      "type": "float",
+      "source": "ida_decomp:_auto_4c9750 from a2+220, accumulated, 57 refs"
+    },
+    "160": {
+      "name": "m_fPosX",
+      "type": "float",
+      "source": "ida_decomp:_auto_4c9750 = a3+base, accumulated, 10 refs"
+    },
+    "164": {
+      "name": "m_fPosY",
+      "type": "float",
+      "source": "ida_decomp:_auto_4c9750 = a4+base, accumulated, 5 refs"
+    },
+    "168": {
+      "name": "m_fPosZ",
+      "type": "float",
+      "source": "ida_decomp:_auto_4c9750 = a5+base, accumulated, 5 refs"
+    },
+    "172": {
+      "name": "m_vecRotAxis",
+      "type": "float",
+      "source": "A:FPU_round3_0x4c44a9"
+    },
+    "176": {
+      "name": "m_nTodo_0B0",
+      "type": "float",
+      "source": "A:FPU_round3_0x4c44b9"
+    },
+    "180": {
+      "name": "m_nTodo_0B4",
+      "type": "float",
+      "source": "reverted_auto_semantic:1x_access|reverted:pseudo_semantic"
+    },
+    "188": {
+      "name": "m_nTodo_0BC",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
+    "196": {
+      "name": "m_fScaleX",
+      "type": "float",
+      "source": "ida_decomp:_auto_4c5350 to vertex buf, lerp endpoint, 3 refs"
+    },
+    "200": {
+      "name": "m_fScaleY",
+      "type": "float",
+      "source": "ida_decomp:_auto_4c5350 to vertex buf, 4 refs"
+    },
+    "204": {
+      "name": "m_fScaleZ",
+      "type": "float",
+      "source": "ida_decomp:_auto_4c5350 to vertex buf, lerp range, 3 refs"
+    },
+    "208": {
+      "name": "m_szEffectPath",
+      "type": "char[48]",
+      "source": "binary:(const char*)&g_EffMgr._todo_0D0+4 fopen path"
+    },
+    "256": {
+      "name": "m_szLogPath",
+      "type": "char[216]",
+      "source": "binary:(const char *)&g_EffMgr._todo_100+8 fopen path"
+    },
+    "472": {
+      "name": "m_nTodo_1D8",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
+    "740": {
+      "name": "m_nTodo_2E4",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "868": {
+      "name": "m_pFileCur",
+      "type": "char *",
+      "source": "usage: passed as FormatException(char *file) 2nd arg in C2DSpark.cpp xN (Logger::FormatException(char *msg, char *file, int line)); was m_nTodo_364 int (pseudo-semantic), binary_discovery:1refs"
+    },
+    "1024": {
+      "name": "m_nReset",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "1028": {
+      "name": "m_nTodo_404",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "1032": {
+      "name": "m_nTodo_408",
+      "type": "int",
+      "source": "reverted_auto_semantic_r3:1x(Reset)"
+    },
+    "2048": {
+      "name": "m_pEffectArray",
+      "type": "int",
+      "source": "binary_discovery:1refs | ida_xref2"
+    },
+    "2332": {
+      "name": "m_EffTable",
+      "type": "_BYTE[584]",
+      "source": "IDA export: _BYTE[584]"
+    },
+    "2916": {
+      "name": "m_nTargetSlot",
+      "type": "int",
+      "source": "auto:overlap_g_EffMgr_at_+0xB64"
+    },
+    "13168": {
+      "name": "roleIdx",
+      "type": "unsigned int",
+      "source": "auto:overlap_g_EffMgr_at_+0x3370"
+    },
+    "14264": {
+      "name": "m_sz5D8C3C",
+      "type": "char[29028]",
+      "source": "auto:extern_overlap_g_EffMgr_at_+0x37B8",
+      "note": "fixed from char[] to char[29028]"
+    },
+    "33004": {
+      "name": "m_nTodo_80EC",
+      "type": "int",
+      "source": "ida_gap_1refs"
+    },
+    "43292": {
+      "name": "m_nEff",
+      "type": "int",
+      "source": "annotation"
+    },
+    "43296": {
+      "name": "m_fCurTime",
+      "type": "float",
+      "source": "annotation"
+    },
+    "43300": {
+      "name": "m_fDeltaTime",
+      "type": "float",
+      "source": "annotation"
+    },
+    "43304": {
+      "name": "m_fTimer",
+      "type": "float",
+      "source": "annotation"
+    },
+    "43308": {
+      "name": "m_fTimeScale",
+      "type": "float",
+      "source": "annotation"
     }
-   ]
   },
-  "0x004CDFD0": {
-   "name": "FindEffSlot",
-   "signature": "int __thiscall(int nVal)"
+  "methods": {
+    "0x004CE100": {
+      "name": "CEffMgr",
+      "signature": "void __thiscall()"
+    },
+    "0x004CE2A0": {
+      "name": "~CEffMgr",
+      "signature": "void __thiscall()"
+    },
+    "0x004CE340": {
+      "name": "Init",
+      "signature": "bool __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5)",
+      "source": "pdb_ret"
+    },
+    "0x004CE580": {
+      "name": "Render",
+      "signature": "void __thiscall(int nVal)",
+      "source": "pdb_ret"
+    },
+    "0x004CE5F0": {
+      "name": "SetTimeScale",
+      "signature": "void __thiscall(float fScale)",
+      "source": "pdb_ret"
+    },
+    "0x004CE690": {
+      "name": "CreateEff",
+      "signature": "char(const char *szEffTypeName, unsigned int dwRunID, float fx, float fy, float fz)",
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+    },
+    "0x004CEDA0": {
+      "name": "RunEffGroup",
+      "signature": "unsigned long(char *nGroup, float fx, char *fy, float fz, unsigned int dwID)",
+      "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+    },
+    "0x004CF100": {
+      "name": "IsAllEffGroupStop",
+      "signature": "bool __thiscall(char *pszBuf, int nVal, char *pszBuf2)",
+      "source": "pdb_ret"
+    },
+    "0x004CF7C0": {
+      "name": "CopyObjInGroup",
+      "signature": "void __thiscall(char *nGroup, int nObj, char *nObjType)",
+      "source": "pdb_ret"
+    },
+    "0x004D58A0": {
+      "name": "Reset",
+      "signature": "int *__thiscall(CEffMgr *this)"
+    },
+    "0x004CEA80": {
+      "name": "ReleaseCompletedEffects",
+      "signature": "char __thiscall CEffMgr::ReleaseCompletedEffects()"
+    },
+    "0x004B73D0": {
+      "name": "SetComponent",
+      "signature": "int __thiscall(int nVal)",
+      "_misattrib_evidence": "max_offset=92>class_size=4"
+    },
+    "0x004CDC50": {
+      "name": "SetEffectsTimeScale",
+      "signature": "char __thiscall CEffMgr::SetEffectsTimeScale(int nVal)"
+    },
+    "0x004CDED0": {
+      "name": "InitEffClass",
+      "signature": "int __thiscall()"
+    },
+    "0x004CEFE0": {
+      "name": "CreateSParticleEffect",
+      "signature": "int __thiscall CEffMgr::CreateSParticleEffect(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+    },
+    "0x004CF220": {
+      "name": "CreateModelEffect",
+      "signature": "int __thiscall CEffMgr::CreateModelEffect(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+    },
+    "0x004CF460": {
+      "name": "CreateEffectType3",
+      "signature": "int __thiscall CEffMgr::CreateEffectType3(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+    },
+    "0x004CF6A0": {
+      "name": "CreateEffectType4",
+      "signature": "int __thiscall CEffMgr::CreateEffectType4(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+    },
+    "0x004CF8E0": {
+      "name": "CreateEffectType5",
+      "signature": "int __thiscall CEffMgr::CreateEffectType5(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+    },
+    "0x004CFB20": {
+      "name": "CreateShockEffect",
+      "signature": "int __thiscall CEffMgr::CreateShockEffect(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+    },
+    "0x004B7340": {
+      "name": "UpdateTimedTrigger",
+      "signature": "void __thiscall CEffMgr::UpdateTimedTrigger(float fVal)"
+    },
+    "0x004B73F0": {
+      "name": "SetEffectClass",
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+    },
+    "0x004C2F30": {
+      "name": "ProcessEffectPass",
+      "signature": "int __thiscall CEffMgr::ProcessEffectPass(int nVal)"
+    },
+    "0x004C5350": {
+      "name": "UpdateParticlePositions",
+      "signature": "int __thiscall CEffMgr::UpdateParticlePositions()"
+    },
+    "0x004C7E60": {
+      "name": "EmitParticles",
+      "signature": "int __thiscall CEffMgr::EmitParticles()"
+    },
+    "0x004CDCA0": {
+      "name": "CreateEffect",
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5)",
+      "local_vars": [
+        {
+          "from_name": "v14",
+          "name": "pEffObj",
+          "type": "tagEffObj *"
+        }
+      ]
+    },
+    "0x004CDFD0": {
+      "name": "FindEffSlot",
+      "signature": "int __thiscall(int nVal)"
+    },
+    "0x004CE000": {
+      "name": "FindEffByID",
+      "signature": "int __thiscall(int nVal)"
+    },
+    "0x004D22F0": {
+      "name": "UpdateKeyframe",
+      "signature": "int __thiscall(int nVal)"
+    },
+    "0x004CCEF0": {
+      "name": "UpdateEffect",
+      "signature": "int __thiscall CEffMgr::UpdateEffect(float fVal, int nVal)"
+    },
+    "0x004CDAE0": {
+      "name": "ReleaseAllRefs",
+      "signature": "char __thiscall CEffMgr::ReleaseAllRefs()",
+      "signature_note": "reattribute 同时改签名 (was: char __thiscall gbRefObject::ReleaseAllRefs(gbRefObject **this))",
+      "note": "reattribute: asm 行 304120-304186 本体给出三段与 CEffMgr 逐项吻合的结构： (1) 开头对 [edi+8]/[edi+0Ch]/[edi+10h]/[edi+14h] 各调一次 gbRefObject::Release() —— CEffMgr 在这四个偏移上正好是 4 个 `gbRenderEffect *`（m_pAdditiveBlendNoZ/m_pAlphaBlendNoZ/m_pAdditiveBlend/m_pAlphaBlend），类型与调用吻合；在 894 个注解类中，同时具备'这 4 个偏移'且四者类型都是 gbRenderEffect* 的只有 CEffMgr 与 SceneMgr，而只有 CEffMgr 另有 32 元素数组（下一条）⇒ 唯一。 (2) 第一段循环：`lea esi,[edi+60h] ; mov ebx,20h`（32 次），元素内字段 +0/+1/+8，步长 `add esi,48h`=72 ⇒ 遍历 32 条 72 字节记录。 (3) 第二段循环：`lea esi,[edi+92Ch] ; mov edi,800h`（2048 次），步长 `add esi,14h`=20 = tagEffObj 的尺寸（tagEffObj.json binary_size=20），且 0x92C + 2048*20 = 0xA92C 恰好落在 CEffMgr 的 size=43312(0xA930) 之内 ⇒ 与 m_EffTable 区段的 tagEffObj[2048] 读法一致。 原类 gbRefObject 的 size=8（成员 m_refCount 等），不可能有 +0x14/+0x58/+0x92C ⇒ 归属错。",
+      "name_evidence": "沿用原注解名 ReleaseAllRefs：函数体正是'释放本对象持有的全部引用/效果槽'（4 次 Release + 两轮清理），语义与名字一致，不臆造新名。返回类型保留原注解的 char（PDB 来源，本次无证据推翻它）；只改类归属与 this 类型。"
+    }
   },
-  "0x004CE000": {
-   "name": "FindEffByID",
-   "signature": "int __thiscall(int nVal)"
-  },
-  "0x004D22F0": {
-   "name": "UpdateKeyframe",
-   "signature": "int __thiscall(int nVal)"
-  },
-  "0x004CCEF0": {
-   "name": "UpdateEffect",
-   "signature": "int __thiscall CEffMgr::UpdateEffect(float fVal, int nVal)"
-  }
- },
- "_flexible": true
+  "_flexible": true
 }

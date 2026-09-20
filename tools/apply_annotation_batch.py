@@ -82,15 +82,40 @@ def main():
         ev = (it.get('evidence') or '').strip()
         nm = it.get('new_name') or ''
         ne = (it.get('name_evidence') or '').strip()
+        kind = it.get('kind')
         if not ev:
             rejected.append((it, '缺少 evidence（硬约束 1）'))
             continue
         if nm and _looks_nonsemantic(nm) and not ne:
             rejected.append((it, '新名仍无语义且缺 name_evidence（硬约束 3）'))
             continue
-        if it.get('kind') == 'reattribute' and not ne:
+        if kind == 'reattribute' and not ne:
             rejected.append((it, '重归属缺 name_evidence（硬约束 2/3）'))
             continue
+        # set_size / skip_method（2026-09-19 新增，供 §49.4 尺寸与 thunk 类修正使用）
+        if kind == 'set_size':
+            if not it.get('class') or not isinstance(it.get('size'), int) or it['size'] <= 0:
+                rejected.append((it, 'set_size 需要 class + 正整数 size'))
+                continue
+            if not (it.get('evidence') or '').strip():
+                rejected.append((it, 'set_size 缺二进制证据'))
+                continue
+        if kind == 'skip_method':
+            if not it.get('class') or not it.get('addr') or not (it.get('reason') or '').strip():
+                rejected.append((it, 'skip_method 需要 class + addr + reason'))
+                continue
+        if kind == 'set_signature':
+            sig = (it.get('new_signature') or '').strip()
+            if not it.get('class') or not it.get('addr') or not sig:
+                rejected.append((it, 'set_signature 需要 class + addr + new_signature'))
+                continue
+            # 与 check_annotations 同源的护栏：__thiscall 必须带 "::"，否则会退化成
+            # "free function" 并被发射成 static（2026-09-19 实测：
+            #  0x004C5B90 搬类后残留旧签名 ⇒ pal3/src/Effect/CEffectSystem.h:44
+            #  出现 `static struct _Texture_uv & SetEffectVisible(_Texture_uv *);`）
+            if '__thiscall' in sig and '::' not in sig:
+                rejected.append((it, 'set_signature 的 __thiscall 签名缺少 "::"（会被发射成 static free function）'))
+                continue
         ok.append(it)
 
     print('批次 %d 条：通过 %d，拒绝 %d' % (len(items), len(ok), len(rejected)))
@@ -109,6 +134,16 @@ def main():
             if ent is None:
                 print('   [跳过] %s 不在 %s.methods' % (it['addr'], it['from']))
                 continue
+            # 2026-09-19 两次踩到：签名**不跟着搬**，旧类名留在 signature 里，
+            # 生成头会把它发射成原类的静态自由函数（如
+            # `static struct _Texture_uv & SetEffectVisible(_Texture_uv *)`）。
+            old_sig = str(ent.get('signature') or '')
+            if it['from'] in old_sig and not it.get('new_signature'):
+                print('   [WARN] %s 的旧签名仍含原类名 %r：%s' % (it['addr'], it['from'], old_sig))
+                print('          建议同时给 new_signature（否则生成头会用错类型/退化成 static）')
+            if it.get('new_signature'):
+                ent['signature'] = it['new_signature']
+                ent['signature_note'] = 'reattribute 同时改签名 (was: %s)' % old_sig
             ent['name'] = it['new_name']
             ent['note'] = 'reattribute: %s' % it['evidence']
             ent['name_evidence'] = it['name_evidence']
@@ -128,6 +163,43 @@ def main():
             ent['name_evidence'] = it['name_evidence']
             save_ann(d, p)
             print('   [改名] %s.%s -> %s' % (it['class'], it['addr'], it['new_name']))
+            done += 1
+        elif it['kind'] == 'set_size':
+            d, p = load_ann(it['class'])
+            old = d.get('binary_size')
+            d['binary_size'] = it['size']
+            # 证据不写进 struct JSON（避免引入未知顶层键）；按 CLAUDE.md 的归属，
+            # 单字段证据记 data/annotations/CHANGE_LOG.md。
+            save_ann(d, p)
+            print('   [尺寸] %s: %s -> %s  (evidence: %s)' % (it['class'], old, it['size'], it['evidence'][:80]))
+            done += 1
+        elif it['kind'] == 'skip_method':
+            d, p = load_ann(it['class'])
+            ent = (d.get('methods') or {}).get(it['addr'])
+            if ent is None:
+                print('   [跳过] %s 不在 %s.methods' % (it['addr'], it['class']))
+                continue
+            ent['type'] = 'skip'
+            ent['reason'] = it['reason']
+            ent['note'] = 'skip_method: %s' % it['evidence']
+            if it.get('new_name'):
+                ent['name'] = it['new_name']
+            if it.get('name_evidence'):
+                ent['name_evidence'] = it['name_evidence']
+            save_ann(d, p)
+            print('   [标 skip] %s.%s (%s)' % (it['class'], it['addr'], ent.get('name')))
+            done += 1
+        elif it['kind'] == 'set_signature':
+            d, p = load_ann(it['class'])
+            ent = (d.get('methods') or {}).get(it['addr'])
+            if ent is None:
+                print('   [跳过] %s 不在 %s.methods' % (it['addr'], it['class']))
+                continue
+            old = ent.get('signature')
+            ent['signature'] = it['new_signature']
+            ent['signature_note'] = 'set_signature: %s (was: %s)' % (it['evidence'], old)
+            save_ann(d, p)
+            print('   [签名] %s.%s: %s -> %s' % (it['class'], it['addr'], old, it['new_signature']))
             done += 1
         else:
             print('   [跳过] 未知 kind: %s' % it.get('kind'))

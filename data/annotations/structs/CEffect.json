@@ -165,6 +165,21 @@
     "0x004CFFB0": {
       "name": "_nearby_4cffb0",
       "signature": "virtual void __thiscall(CEffect *this, float a2)"
+    },
+    "0x004C5DB0": {
+      "name": "Activate",
+      "signature": "int __thiscall()",
+      "source": "vtable_migrated",
+      "ordinal": 2,
+      "note": "reattribute: asm 行 291202-291221 本体：mov byte ptr [esi+0Ch],1 ; mov byte ptr [esi+0Dh],1 ; call sub_4C6170 ; lea ecx,[esi+3A020h] ; 循环 mov [ecx],eax / inc eax / add ecx,4 / cmp eax,800h ⇒ 置位 +0xC/+0xD 并把 +0x3A020 起的 2048 个 int 清零。这三个偏移在 CEffect 里**精确命中具名成员**：+0xC m_bActive(unsigned char)、+0xD m_bVisible(unsigned char)、+0x3A020 m_nQ2PIndex(int[2048])（大小 2048*4=0x2000，与循环次数一致）。原类 CEffectSystem 的成员只到 +0x154（size=344），0x3A020 远超其尺寸 ⇒ 不可能是 CEffectSystem 的方法。原名字 GetThreadHandle 与函数体无关（不涉及任何线程/handle），已证伪。",
+      "name_evidence": "按函数逻辑定名：它把该 effect 实例置为 active+visible 并初始化索引数组，即'激活/启用实例'⇒ Activate。未沿用被证伪的 GetThreadHandle，也未用已被占用的 Reset（CEffect 已有 Reset）。"
+    },
+    "0x004C5DE0": {
+      "name": "ReleaseTextures",
+      "signature": "void __thiscall()",
+      "ordinal": 3,
+      "note": "reattribute: asm 行 291229-291251 本体：ecx=[esi+3C020h]；若非空则 gbRefObject::Release(ecx) 并把 [esi+3C020h] 置 0；再取 eax=[esi+3C024h]，若非空则 operator delete(eax) 并把 [esi+3C024h] 置 0。两个偏移在 CEffect 里**精确命中具名成员**：+0x3C020 m_pTexture(gbTexture *)、+0x3C024 m_pTextureArray(gbTextureArray *)——类型与两个动作（Release 引用计数对象 / operator delete 数组）完全吻合。原类 CEffectSystem（size=344，成员止于 +0x154）不可能有这两个偏移 ⇒ 归属错。原名字 ReleaseParticle 与函数体无关（它处理的是纹理，不是粒子），已证伪。",
+      "name_evidence": "按函数逻辑定名：释放并清空实例持有的两张纹理（m_pTexture 走引用计数释放、m_pTextureArray 走 operator delete）⇒ ReleaseTextures。未用已被占用的 ReleaseResources（那是另一个函数）。"
     }
   },
   "vtables": [

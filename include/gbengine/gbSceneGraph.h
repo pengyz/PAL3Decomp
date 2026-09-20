@@ -1,5 +1,7 @@
 #pragma once
 
+#include "gbengine/gbengine_export.h"
+
 #include "gbengine/gbengine_types.h"
 #include "gbengine/gbengine_internal.h"
 #include "gbengine/gbCamera.h"
@@ -74,7 +76,7 @@ struct gbRenderInfoObj {
 // gbLightObj - light object with virtual methods
 // Members inherited from gbVolumeModifier
 // ============================================================================
-class gbLightObj : public gbVolumeModifier {
+class GBAPI gbLightObj : public gbVolumeModifier {
 public:
     enum LIGHT_TYPE {
         LIGHT_POINT = 1,
@@ -113,7 +115,7 @@ public:
 //   [4809]  activeCamera
 //   [4810]  bladeMgr
 //   +19244  bSceneActive (byte flag)
-class gbSceneGraph {
+class GBAPI gbSceneGraph {
 public:
     void* renderObjPool;                      // +0x0000 [0]: malloc(0x70000) = 4096 gbRenderInfoObj
     int numRenderObjs;                        // +0x0004 [1]: current render obj count

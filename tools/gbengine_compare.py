@@ -288,6 +288,12 @@ def compare_bytes(compiled, original, func_name, verbose=True, relocs=None):
         'total': total,
         'match_pct': match_pct,
         'perfect': len(compiled) == len(original) and matches == total,
+        # ROI-1（2026-09-19，长线计划）：把差异**偏移**返回出去。
+        # 原先这里算完 `diffs`/`reloc_diffs` 就丢掉，是"没有任何工具能解释 partial"的根因
+        # （`compare_pal3.compare_units` 拿到 res 后只取 match_pct）。**只增字段，不改判据**。
+        'diffs': diffs,
+        'reloc_diffs': reloc_diffs,
+        'first_diff': diffs[0] if diffs else None,
     }
 
 

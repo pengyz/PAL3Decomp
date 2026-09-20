@@ -236,7 +236,7 @@ def main():
         print(f"Error: {PROBE_FILE} not found. Run probe_compile.py first.")
         sys.exit(1)
 
-    with open(PROBE_FILE) as f:
+    with open(PROBE_FILE, encoding='utf-8') as f:
         data = json.load(f)
 
     results = []

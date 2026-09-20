@@ -21,6 +21,7 @@ Output: data/status/s4_baseline.json + data/status/pal3_registry.jsonl
 """
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -349,9 +350,14 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
             # 显式计数，避免它被静默算进「可比对」的 matched 里。
             'unresolved_synth': 0}
 
+    # ROI-1（2026-09-19）：每个 partial 的字节差异明细。**写入独立文件**，
+    # 不改 `s4_baseline.json` / `pal3_registry.jsonl` 的形状（ratchet 必须保持可比）。
+    detail = {}
     for n, unit in enumerate(passing, 1):
         src = str(REPO / unit)
-        obj = os.path.join(pc.OBJ_DIR, 's4_%d.obj' % (abs(hash(unit)) % 10 ** 8))
+        # ROI-1：`.obj` 名改用**稳定哈希**。原来用内建 `hash(unit)`，受 PYTHONHASHSEED 影响
+        # ⇒ 跨进程找不到同一个 .obj，任何"事后解释某个 partial"的工具都无法复用产物。
+        obj = os.path.join(pc.OBJ_DIR, 's4_%s.obj' % hashlib.md5(unit.encode('utf-8')).hexdigest()[:8])
         out, hard = pc.run_cl(
             ['/Fo' + pc.wpath(obj), pc.wpath(src)]
             + ['/I' + pc.wpath(d) for d in pc.INCLUDE_DIRS],
@@ -406,6 +412,12 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
             rows.append({'file': unit, 'symbol': sym[:80], 'name': e['name'],
                          'va': '0x%08X' % e['va'], 'status': status,
                          'match_pct': round(res['match_pct'], 1), 'size': size})
+            if not res['perfect']:
+                detail.setdefault(unit, []).append({
+                    'symbol': sym[:80], 'name': e['name'], 'va': '0x%08X' % e['va'],
+                    'size': size, 'obj': obj, 'compiled_len': res['compiled_size'],
+                    'n_diff': len(res['diffs']), 'first_diff': res['first_diff'],
+                    'reloc_skipped': res['reloc_diffs'], 'diffs': res['diffs'][:64]})
         stats['match_L1'] += p1
         stats['partial'] += pp
         print('  [%3d] %-45s funcs=%3d matched=%3d L1=%2d partial=%2d'
@@ -421,7 +433,7 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
         print('L1 rate over matched: %d/%d = %.1f%%'
               % (stats['match_L1'], total, 100.0 * stats['match_L1'] / total))
 
-    return stats, rows
+    return stats, rows, detail
 
 
 def _flags_matrix(units, decomp_idx, mangled_map, base_idx, image_base, text, text_rva,
@@ -479,7 +491,7 @@ def main():
               file=sys.stderr)
         sys.exit(2)
     try:
-        census = json.loads(census_path.read_text())
+        census = json.loads(census_path.read_text(encoding='utf-8'))
     except (json.JSONDecodeError, UnicodeDecodeError, OSError) as e:
         print('[ERROR] probe census is unreadable/invalid: %s' % census_path, file=sys.stderr)
         print('  %s' % e, file=sys.stderr)
@@ -522,8 +534,8 @@ def main():
                              image_base, text, text_rva, text_raw_size)
 
     flags = args.flags.split() if args.flags else PROBE_FLAGS
-    stats, rows = compare_units(passing, flags, decomp_idx, mangled_map,
-                                base_idx, image_base, text, text_rva, text_raw_size)
+    stats, rows, detail = compare_units(passing, flags, decomp_idx, mangled_map,
+                                        base_idx, image_base, text, text_rva, text_raw_size)
 
     total = stats['match_L1'] + stats['partial']
     if total:
@@ -543,6 +555,13 @@ def main():
                                 'size': r.get('size')}, ensure_ascii=False) + '\n')
     print('report -> %s' % OUT_JSON)
     print('registry -> %s' % OUT_REG)
+    _detail_out = OUT_JSON.parent / 's4_diff_detail.json'
+    _detail_out.write_text(json.dumps(
+        {'generated_by': 'pipeline/compare_pal3.py (ROI-1 byte-diff detail)',
+         'flags': flags, 'l1': stats['match_L1'], 'partial': stats['partial'],
+         'units': detail}, indent=1, ensure_ascii=False))
+    print('diff detail -> %s (%d partial rows in %d units)'
+          % (_detail_out, sum(len(v) for v in detail.values()), len(detail)))
 
 
 if __name__ == '__main__':

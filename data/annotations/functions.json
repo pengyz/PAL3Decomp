@@ -95,7 +95,8 @@
   },
   "0x004226F0": {
     "name": "UISceneUpdate",
-    "signature": "int__cdecl()"
+    "signature": "struct SceneMgr *__cdecl()",
+    "source": "F61(2026-09-19): 返回值被当作对象基址使用（result+57568=SceneMgr.json m_nRoleCount、result+58204），原来标 int 使 Hex-Rays 只能发 *(int*)/*(_DWORD*) 裸指针算术，导致同一表达式两处渲染出不同符号性（`jl` vs `jb`，SceneMgr::ClearInactiveRoles n_diff=1）。"
   },
   "0x00422950": {
     "name": "LoadScene",
@@ -496,7 +497,7 @@
   "0x0053F4C0": {
     "name": "CScreenMode::_nearby_53f4c0",
     "class": "CScreenMode",
-    "signature": "_DWORD *__thiscall(_DWORD *)",
+    "signature": "_DWORD *__thiscall()",
     "source": "|fix:class_from_ida_analysis"
   },
   "0x0053F4F0": {
@@ -560,10 +561,6 @@
   "0x00445ed0": {
     "name": "sub_445ED0",
     "signature": "int __cdecl(int a2, int a3)"
-  },
-  "0x00445fa0": {
-    "name": "sub_445FA0",
-    "signature": "int __thiscall(void *a2)"
   },
   "0x00445fe0": {
     "name": "sub_445FE0",
@@ -815,12 +812,6 @@
   },
   "0x004D0CE0": {
     "name": "CEffModel_Reset",
-    "signature": "int __cdecl(int nVal)",
-    "type": "skip",
-    "reason": "misattributed in struct, removed"
-  },
-  "0x0043B4D0": {
-    "name": "UICaption_Destroy2",
     "signature": "int __cdecl(int nVal)",
     "type": "skip",
     "reason": "misattributed in struct, removed"
@@ -1838,10 +1829,6 @@
     "signature": "void __thiscall(UITitle *this)",
     "source": "|fix:class_from_ida_analysis"
   },
-  "0x0043b4d0": {
-    "name": "UICaption_Destroy2",
-    "signature": "void __cdecl()"
-  },
   "0x00445010": {
     "name": "UITextArea_Destroy",
     "signature": "void __cdecl()"
@@ -1959,7 +1946,8 @@
   },
   "0x0041C710": {
     "name": "ProcessKeyboard",
-    "signature": "void __thiscall InputSystem::ProcessKeyboard(InputSystem *this)",
+    "signature": "void __thiscall InputSystem::ProcessKeyboard(InputSystem *this, int a1)",
+    "sig_note": "F81 (round 139): the missing stack argument was restored. Binary evidence (A-level, IDA): callee 0x0041C710 ends `add esp,1Ch; retn 4` (exactly one 4-byte stack argument beyond `this`) and every call site is `push <int>; mov ecx,<InputSystem*>; call` (0x0041C526-28, 0x0041C9F5-F6). The previous spelling listed only `this`, so the IDB type had zero stack arguments, Hex-Rays rendered the calls as `InputSystem::ProcessKeyboard(this)` (dropping the pushed constant) and the generated C++ failed with C2664 against the class declaration `void ProcessKeyboard(int a1)`.",
     "class": "InputSystem"
   },
   "0x004B7AF0": {

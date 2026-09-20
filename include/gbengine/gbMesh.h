@@ -1,5 +1,7 @@
 #pragma once
 
+#include "gbengine/gbengine_export.h"
+
 #include "gbengine/gbengine_types.h"
 #include "gbengine/gbChain.h"
 #include "gbengine/gbTexture.h"
@@ -163,7 +165,7 @@ public:
 
 /* ======== gbVertPoolMgr ======== */
 
-class gbVertPoolMgr {
+class GBAPI gbVertPoolMgr {
 public:
     gbChain1D StaticPool[32];        // +0x000 (32*16=512 bytes, ends at +0x200)
     unsigned int vertPoolFVFs[32];        // +0x200 (32*4=128 bytes, ends at +0x280)
@@ -396,7 +398,7 @@ struct gbGeomQuad {
     int texid;
 };
 
-class gbDynVertBuf {
+class GBAPI gbDynVertBuf {
 public:
     gbDynVertBuf(unsigned int fvfFlags, int maxVertices);
     gbDynVertBuf(const gbDynVertBuf& other);

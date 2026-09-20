@@ -1,5 +1,7 @@
 #pragma once
 
+#include "gbengine/gbengine_export.h"
+
 #include "gbengine/gbengine_types.h"
 
 // Forward declarations
@@ -85,7 +87,7 @@ public:
 /* All method signatures match the original DLL exports exactly.            */
 /* ======================================================================== */
 
-class gbCamera {
+class GBAPI gbCamera {
 public:
     float fov;                      // +0x00
     float OrthoSize;                // +0x04

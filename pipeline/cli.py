@@ -43,6 +43,7 @@
 """
 import sys
 import os
+import re
 import shutil
 import subprocess
 from pathlib import Path
@@ -288,6 +289,23 @@ def cmd_init(force=False):
     ok = _run_ida('apply_annotations.py', cfg.idb_work)
     print("      -> %s" % ("OK" if ok else "WARN: non-zero exit"))
 
+    # Step 4b: second apply — REQUIRED on a freshly built IDB.
+    # 单趟走不完"造 item → 挂类型 → 命名"的依赖链：[2] 命名时 struct/item 还不存在，
+    # [6b3] 只补名字不补类型。同一 IDB 上实测（IDAPython 副本探测）：
+    #   1 趟后 0xC10968 = unk_C10968 (item size 1)；2 趟后 = g_palScript (size 2176)。
+    # 少这一趟的读数是 S2 67/201 · L1 20 · globals 2182/2151，
+    # 多这一趟是 S2 70/201 · L1 21 · globals 2743/2686。
+    # ⚠️ 2026-09-19 实测：**再加趟数（3/5 趟、以及 apply+fix_vtable 成对跑 5 趟）都停在
+    #    S2 70/201 · matched 222/256**，而"apply 与 export 交替多轮"的历史 IDB 是
+    #    71/201 · 225/259 ⇒ 收敛驱动**不是**单纯的 apply 趟数（疑与 export 也会改 IDB 有关），
+    #    该问题**仍开放**；在查清之前只保留"两趟"这一条已被验证的最小修复，不加更多趟数。
+    # 见 docs/knowledge/gotcha_apply_single_pass_leaves_globals_untyped.md
+    print()
+    print("[4b/4] Apply annotations AGAIN (fresh-IDB fixpoint; one pass leaves "
+          "globals unnamed/untyped) ...")
+    ok2 = _run_ida('apply_annotations.py', cfg.idb_work)
+    print("      -> %s" % ("OK" if ok2 else "WARN: non-zero exit"))
+
     # Step 5: Fix vtable types (post-processing)
     print("[5/5] Fix vtable types: setting __cppobj and typed vtable pointers ...")
     vtok = _run_ida('fix_vtable_types.py', cfg.idb_work)
@@ -296,12 +314,13 @@ def cmd_init(force=False):
     # Done
     print()
     print("=" * 55)
-    if not (ok_master and ok and vtok):
+    if not (ok_master and ok and ok2 and vtok):
         # Same defect class as cmd_apply: this used to print "INIT COMPLETE.
         # IDB is ready" even after a failed step, so export/codegen/match ran
         # against a half-built IDB and the numbers looked plausible.
         failed = [name for name, good in (('master_pipeline.py', ok_master),
                                           ('apply_annotations.py', ok),
+                                          ('apply_annotations.py (2nd pass)', ok2),
                                           ('fix_vtable_types.py', vtok)) if not good]
         print("INIT INCOMPLETE - failed step(s): %s" % ", ".join(failed))
         print("The IDB is NOT ready; fix the failure and re-run 'init' (or the")

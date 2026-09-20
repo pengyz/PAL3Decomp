@@ -824,18 +824,74 @@ def _classify_type_text(t):
     return (None, t, core)
 
 
+_globals_h_cache = None
+
+
+def _globals_h_types():
+    """`include/pal3/globals.h` 的 `extern <type> <name>;` → {name: type}。
+
+    生成代码里有一部分全局**只**在这个手写头里声明（不在 export/annotations 的
+    `store.global_types` 里），例如 `extern void * g_ArcSceneMonsterTable;`。
+    类型判据必须能看见它们，否则 `*(&g_X + n)` 这类元素访问判不出类型，
+    经函数指针 cast 的间接调用就永远补不上显式转换（第 133 轮实测：ArcSceneMonster.cpp
+    一族 42 条 C2664 全卡在这里）。读的是本仓自己的声明，不含任何猜测。
+    """
+    global _globals_h_cache
+    if _globals_h_cache is None:
+        import os
+        out = {}
+        p = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         '..', '..', '..', 'include', 'pal3', 'globals.h')
+        try:
+            with open(p, encoding='utf-8', errors='replace') as fh:
+                for line in fh:
+                    m = re.match(r'\s*extern\s+(.+?)\s+(\w+)\s*(\[[^\]]*\])?\s*;', line)
+                    if m:
+                        t = m.group(1).strip()
+                        if m.group(3):          # 数组：元素类型即声明类型
+                            out.setdefault(m.group(2), t)
+                        else:
+                            out.setdefault(m.group(2), t)
+        except OSError:
+            pass
+        _globals_h_cache = out
+    return _globals_h_cache
+
+
+def _type_text_of(decl):
+    """声明/形参的类型文本（把 `const struct gbVec3D *` 收成 `gbVec3D *`）。
+
+    F78 修正：`struct_specifier`（`struct gbVec3D *p` 这种拼法）以前完全没收进来 ——
+    只在**直接子节点**里找 `type_identifier` ⇒ `struct gbVec3D *ViewTarget;` 的类型文本
+    退化成 `'*'`，结构体名丢失 ⇒ 依赖"指针指向哪个类"的判据（F78）永远不成立。
+    这里改为只取 specifier 的 `name`（不递归进成员，避免把内联结构体的成员类型混进来），
+    指针层级按嵌套 `pointer_declarator` 计数。
+    """
+    parts = []
+
+    def walk(n):
+        for ch in n.children:
+            if ch.type in ('primitive_type', 'type_identifier', 'sized_type_specifier'):
+                parts.append(ch.text.decode('utf-8'))
+            elif ch.type in ('struct_specifier', 'enum_specifier', 'union_specifier'):
+                nm = ch.child_by_field_name('name')
+                if nm is not None:
+                    parts.append(nm.text.decode('utf-8'))
+                else:
+                    walk(ch)
+            elif ch.type == 'pointer_declarator':
+                parts.append('*')
+
+    walk(decl)
+    return ' '.join(parts)
+
+
 def _declared_local_types(tree, code_bytes):
     """Top-level function-scope locals: {name: type_text}."""
     out = {}
 
     def type_text_of(decl):
-        parts = []
-        for ch in decl.children:
-            if ch.type in ('primitive_type', 'type_identifier', 'sized_type_specifier'):
-                parts.append(ch.text.decode('utf-8'))
-            elif ch.type == 'pointer_declarator':
-                parts.append('*')
-        return ' '.join(parts)
+        return _type_text_of(decl)
 
     def walk(node):
         if node.type == 'declaration':
@@ -876,11 +932,40 @@ def _expr_type(node, locals_, ctx, depth=0):
             base = _expr_type(arg, locals_, ctx, depth + 1)
             if base[0] in ('integral', 'struct'):
                 return ('pointer', base[1], base[2])
-            return ('pointer', '', None)
+            # `&v19`（v19 是结构体实例）：`_classify_type_text('gbVec3D')` 返回
+            # `(None, 'gbVec3D', 'gbVec3D')` ⇒ base[0] 为 None，但**被指向的类名是已知的**。
+            # 丢掉它会让"&obj 是指向某类的指针"这一事实消失（F78 的 `*(&v19)` 判据就靠它）。
+            return ('pointer', '', base[2])
         base = _expr_type(arg, locals_, ctx, depth + 1)
         if base[0] == 'pointer':
             return _classify_type_text(base[1].rstrip('* ').strip() and
                                        base[1].rstrip().rstrip('*').strip() or 'int')
+        # `*(&X + n)` / `*(&X)`：Hex-Rays 用"取址 + 解引用"表达数组/全局的元素访问，
+        # 元素类型就是 **X 自身的类型**（不是 `&X` 的指针类型的 pointee 之外的猜测）。
+        # 该形状在经函数指针 cast 的间接调用里正是 C2664 的主角（第 133 轮量化 175 条）：
+        #   (*(void (**)(char *, _DWORD, int *, ArcSceneMonster *))(v22 + 16))(
+        #       v8 + 215804, *(&g_ArcSceneMonsterTable + nVal), &v39, this);
+        # 这里的第 2 实参 VC6 判为 `void *`（`q_ArcSceneMonsterTable` 是指针数组）而形参是
+        # `_DWORD` ⇒ 需要显式转换。原 `_expr_type` 落到 binary_expression 分支后只会返回
+        # 索引变量 `nVal` 的类型（integral），因此这族永远判不出来。
+        _inner = arg
+        # 剥括号
+        while _inner is not None and _inner.type == 'parenthesized_expression':
+            _inner = next((c for c in _inner.children if c.type != '(' and c.type != ')'),
+                          None)
+        if _inner is not None and _inner.type == 'binary_expression':
+            # `&X + n`：只看**左操作数**（右操作数是下标，与元素类型无关）
+            _inner = _inner.child_by_field_name('left')
+            while _inner is not None and _inner.type == 'parenthesized_expression':
+                _inner = next((c for c in _inner.children
+                               if c.type != '(' and c.type != ')'), None)
+        if _inner is not None and _inner.type == 'pointer_expression':
+            _op2 = _inner.child_by_field_name('operator')
+            if _op2 is not None and _op2.text == b'&':
+                _tgt = _inner.child_by_field_name('argument') or _inner.children[-1]
+                r = _expr_type(_tgt, locals_, ctx, depth + 1)
+                if r[0]:
+                    return r
         return (None, '', None)
     if nt == 'cast_expression':
         # type text sits between the first ( ) pair
@@ -895,7 +980,14 @@ def _expr_type(node, locals_, ctx, depth=0):
         gt = store.global_types.get(name)
         if gt:
             return _classify_type_text(gt)
+        gh = _globals_h_types().get(name)
+        if gh:
+            return _classify_type_text(gh)
         return (None, '', None)
+    if nt == 'this':
+        # 成员函数的 this 永远是指针（类型未知也不影响"是指针"这一事实）
+        return ('pointer', (ctx.cls_name + ' *') if (ctx and ctx.cls_name) else 'void *',
+                ctx.cls_name if ctx else None)
     if nt == 'field_expression':
         field = node.child_by_field_name('field')
         arg = node.child_by_field_name('argument')
@@ -972,14 +1064,543 @@ def _collect_ptr_cast_edits(code_bytes, tree, ctx):
     return edits
 
 
+# ============================================================
+# Indirect-call argument cast insertion (VC6 C2664)
+# ============================================================
+#
+# Hex-Rays renders an indirect vtable/function-pointer call as an explicit cast:
+#     (*(void (**)(char *, _DWORD, int *, ArcSceneMonster *))(v22 + 16))(
+#         v8 + 215804, *(&g_ArcSceneMonsterTable + nVal), &v39, this);
+# VC6 **type-checks the arguments against the cast prototype**, so an argument whose
+# recovered type is a pointer (`this`, `&x`, a pointer global) cannot be passed to a
+# parameter the cast spells as `_DWORD`/`unsigned long` ⇒ C2664
+#   'void (char *,unsigned long,int *,class ArcSceneMonster *)' :
+#       cannot convert parameter 2 from 'void *' to 'unsigned long'
+# 实测（第 133 轮量化）：报文里 callee 名是"类型串"的错误共 **175 条**（38 个文件），
+# 是当前剩余错误里最大的单一机制。原源码在这里带显式转换，Hex-Rays 把它丢了。
+# 重新插入显式转换是**字节等价**的（同一个 32 位值进同一个槽，转换本身不产码，
+# 与上面 C2440 赋值批同一判据）；且只在"实参/形参一边指针一边整数"时才插，
+# 因此在**能编译的单元里这些站点根本不存在** ⇒ 不可能改变已通过的字节。
+#
+# 形状（tree-sitter）：call_expression
+#   function → parenthesized_expression → pointer_expression → cast_expression
+#     cast_expression.type_descriptor → abstract_function_declarator → parameter_list
+#   arguments → argument_list（逐个实参节点）
+
+def _fnptr_param_texts(type_descriptor):
+    """`type_descriptor` → 形参类型文本列表（按 parameter_list 顺序）。"""
+    out = []
+    pl, stack = None, [type_descriptor]
+    while stack:
+        n = stack.pop()
+        if n.type == 'parameter_list':
+            pl = n
+            break
+        stack.extend(n.children)
+    if pl is None:
+        return out
+    for ch in pl.children:
+        if ch.type == 'parameter_declaration':
+            out.append(ch.text.decode('utf-8'))
+    return out
+
+
+def _declared_fnptr_params(tree):
+    """{变量名: [形参类型文本]} —— 只收"指向函数的指针"局部/全局声明。
+
+    例：`void ( ***v5)(_DWORD, int);` ⇒ {'v5': ['_DWORD', 'int']}。
+    这类间接调用（`(**v5)(v5, 1)`）与"显式 cast"形态是同一族 C2664，
+    但形参表在**变量声明**里；`_declared_local_types` 只记 '*'，把参数表丢了。
+    """
+    out = {}
+
+    def _pl(decl):
+        stack = [decl]
+        while stack:
+            n = stack.pop()
+            if n.type == 'function_declarator':
+                for ch in n.children:
+                    if ch.type == 'parameter_list':
+                        return [c.text.decode('utf-8') for c in ch.children
+                                if c.type == 'parameter_declaration']
+                return None
+            stack.extend(n.children)
+        return None
+
+    def walk(node):
+        if node.type == 'declaration':
+            pl = _pl(node)
+            if pl is not None:
+                nm = _declarator_name(node)
+                if nm:
+                    out.setdefault(nm, pl)
+        for ch in node.children:
+            walk(ch)
+
+    walk(tree.root_node)
+    return out
+
+
+def _collect_indirect_call_cast_edits(code_bytes, tree, ctx):
+    """给"经函数指针的间接调用"插入实参显式转换（指针 ←→ 整数）。
+
+    两种形态：
+      1. 显式 cast：`(*(void (**)(char *, _DWORD, ...))(EXPR))(A1, A2, ...)`
+      2. 函数指针变量：`(**v5)(v5, 1)`（形参表取自 `v5` 的声明）
+    """
+    edits = []
+    locals_ = _declared_local_types(tree, code_bytes)
+    for _pn, _pt in _param_types(tree).items():
+        locals_.setdefault(_pn, _pt)
+    fnptr = _declared_fnptr_params(tree)
+
+    SKIP = ('(', ')', ',', 'comment')
+
+    def _widen(pt, an, pk, ak):
+        if not pt or pk is None or ak is None:
+            return
+        if ((pk == 'integral' and ak == 'pointer')
+                or (pk == 'pointer' and ak == 'integral')):
+            edits.append((an.start_byte, an.start_byte,
+                          ('(%s)(' % pt).encode('utf-8')))
+            edits.append((an.end_byte, an.end_byte, b')'))
+
+    def _apply(ptypes, args):
+        anodes = [c for c in args.children if c.type not in SKIP]
+        if len(ptypes) != len(anodes):
+            return
+        for ptext, an in zip(ptypes, anodes):
+            pk, pt, _ = _classify_type_text(ptext)
+            # 形如 `void ( ***v5)(_DWORD, int);` 的声明，`_declared_local_types` 只看见
+            # 返回类型（`void`）⇒ 推断不出"是指针"。这类变量在 fnptr 表里，直接判为指针。
+            if an.text.decode('utf-8').strip() in fnptr:
+                ak = 'pointer'
+            else:
+                ak, _, _ = _expr_type(an, locals_, ctx)
+            _widen(pt, an, pk, ak)
+
+    def _callee_ident(node):
+        stack = [node]
+        while stack:
+            n = stack.pop()
+            if n.type == 'identifier':
+                return n.text.decode('utf-8')
+            for ch in n.children:
+                stack.append(ch)
+        return None
+
+    def visit(node):
+        if node.type == 'call_expression':
+            fn = node.child_by_field_name('function')
+            args = node.child_by_field_name('arguments')
+            if fn is not None and args is not None:
+                td = None
+                if fn.type == 'parenthesized_expression':
+                    ptr = next((c for c in fn.children
+                                if c.type == 'pointer_expression'), None)
+                    cast = None
+                    if ptr is not None:
+                        cast = next((c for c in ptr.children
+                                     if c.type == 'cast_expression'), None)
+                    if cast is not None:
+                        td = next((c for c in cast.children
+                                   if c.type == 'type_descriptor'), None)
+                if td is not None:
+                    _apply(_fnptr_param_texts(td), args)
+                else:
+                    nm = _callee_ident(fn)
+                    if nm and nm in fnptr:
+                        _apply(fnptr[nm], args)
+        for ch in node.children:
+            visit(ch)
+
+    visit(tree.root_node)
+    return edits
+
+
+
+# ============================================================
+# Float literal promotion (`x > 0.0` → `x > 0.0f` when x is float)
+# ============================================================
+#
+# In C++ a `float` compared against a *double* literal is promoted to
+# `double`, so MSVC6 emits a 64-bit compare:
+#       FCOMP qword ptr [__real@0000000000000000]    (DC 1D <reloc>)
+# The original source compared in float, so PAL3.exe has
+#       FCOMP dword ptr ds:flt_56A644                (D8 1D 44 A6 56 00)
+# (evidence: UIProgressBar::FindChildByName @0x0043FDF0, first 9 bytes
+#  `D9 41 7C D8 1D 44 A6 56 00` = FLD m32fp + FCOMP m32fp).
+#
+# The only thing to fix is the *type* of the literal. Appending `f` keeps the
+# comparison in float precision and is value-neutral **iff** the literal is
+# exactly representable as a float (`(double)(float)v == v`); for a non-exact
+# literal (`1.570796370506287`, `0.1`, `3.1415927`, …) `f` would round it and
+# test a different number, so those are left alone. Integer literals are never
+# touched: `float > int` converts the int to *float* (no double promotion), so
+# `x > 0` is already a 32-bit compare.
+#
+# Type-conditioned, never textual: the non-literal operand must be *provably*
+# `float` — a local, a parameter, `this->member`, `g_Global.member`, a
+# `(float)` / `*(float *)&…` cast, or a float subscript — resolved with the
+# same `_expr_type` machinery the C2440 cast pass above already uses. Anything
+# resolving to `double`, an integer, a pointer, or nothing at all is skipped.
+# Assignments are not touched either: for a float target MSVC6 already folds
+# the double literal to a 32-bit constant (measured: `float m; m = 0.0;`
+# emits `D9 05 <reloc>` = FLD m32fp in both arms).
+#
+# Every edit appends a single `f` to an existing number literal, so it cannot
+# alter the token stream in any other way.  Measured blast radius on the
+# committed tree: 272 sites in 44 files (0.0 ×220, 1.0 ×16, 255.0 ×16,
+# -700.0 ×4, 2.0 ×3, 20.0 ×2, 4.5/19.0/36.0/-36.0/160.0/200.0/270.0/358.5/
+# 359.0/360.0/470.0 ×1); 9 of them are in S2-passing units.
+
+_FLOAT_CMP_OPS = {'<', '>', '<=', '>=', '==', '!='}
+_FLOAT_LIT_SUFFIXES = ('f', 'F', 'l', 'L')
+
+
+def _is_exact_float_literal(text):
+    """True iff the C literal `text` may be rewritten as a float literal.
+
+    F67（第 114 轮）：**不再要求"精确可表示"**。原先只放行 `(double)(float)v == v` 的字面量
+    （0.0/1.0/255.0/…），把 `318.60001`、`0.0099999998`、`3.1415927` 这类**Hex-Rays 用 `%.7g`
+    打印出来的 float 值**排除在外——但它们恰恰就是原二进制里的 float 常量：Hex-Rays 把 float
+    渲染成 double 字面量，我们照抄成 double ⇒ 比较被提升为 64 位（`DC 1D` = FCOMP m64fp），
+    而二进制是 `D8 1D` = FCOMP **m32fp**。补 `f` 后编译器会把它舍入到**最近的 float**——
+    正是原常量的值。判据因此简化为"是浮点字面量（含 `.`/`e`）且无后缀"；整数字面量仍排除
+    （`float > int` 本来就不提升）。
+    """
+    t = text.strip()
+    if not t or t.endswith(_FLOAT_LIT_SUFFIXES):
+        return False
+    if '.' not in t and 'e' not in t and 'E' not in t:
+        return False            # integer literal -> int-to-float, no promotion
+    try:
+        float(t)
+    except ValueError:
+        return False
+    return True
+
+
+def _param_types(tree):
+    """{parameter_name: type_text} for the definition's parameter list.
+
+    Parameters are not `declaration` nodes, so `_declared_local_types` misses
+    them; without this a `float fValue` parameter would resolve to nothing and
+    the rule would silently skip it.  Bodies are not descended into (nested
+    lambdas would otherwise leak their parameters into this scope)."""
+    out = {}
+
+    def type_text_of(decl):
+        # 与 _declared_local_types 共用同一实现（F78：必须能收 `struct X *` 的拼法）
+        return _type_text_of(decl)
+
+    def walk(node):
+        if node.type == 'parameter_declaration':
+            ttext = type_text_of(node)
+            if ttext:
+                nm = _declarator_name(node)
+                if nm:
+                    out.setdefault(nm, ttext)
+            return
+        if node.type == 'compound_statement':
+            return
+        for ch in node.children:
+            walk(ch)
+
+    for ch in tree.root_node.children:
+        if ch.type in ('function_definition', 'declaration'):
+            walk(ch)
+    return out
+
+
+# ============================================================
+# CRT/Win32 call argument casts (VC6 C2664)
+# ============================================================
+#
+# 这几个函数的原型**不是我们的注解**，而是系统/CRT 的固定 API（A 级、可枚举），
+# 所以"注解改错"的解释不适用：错的是 Hex-Rays 给实参推断出的类型。
+# 例：
+#   MessageBoxA(hwnd, (int *)lpText, ...)   →  p2 应为 `const char *`
+#   sprintf(buf,    (int *)fmt,    ...)     →  p2 应为 `const char *`
+#   _mbsrchr((const unsigned __int8 *)s, c) →  p1 应为 `const unsigned char *`
+#   lstrcpyA((unsigned char *)dst, src)     →  p1 应为 `char *`
+# 插显式转换与 F74 同判据：同一寄存器/同一值进同一槽，转换本身不产码 ⇒ 字节等价；
+# 只对**指针/整数**实参插（结构体、浮点一律跳过 ⇒ 不可能出现非法转换），
+# 其中不兼容的那些站点本来编译不过；兼容站点最多得到一个恒等转换（不产码、不改字节）。
+_CRT_ARG_TYPES = {
+    'MessageBoxA': {2: 'const char *'},
+    'MessageBoxW': {2: 'const unsigned short *'},
+    'sprintf': {2: 'const char *'},
+    'lstrcpyA': {1: 'char *'},
+    'lstrcatA': {1: 'char *'},
+    'lstrlenA': {1: 'const char *'},
+    '_mbsrchr': {1: 'const unsigned char *'},
+    '_mbschr': {1: 'const unsigned char *'},
+    'strcpy': {1: 'char *', 2: 'const char *'},
+    'strcat': {1: 'char *', 2: 'const char *'},
+    'strlen': {1: 'const char *'},
+    'atoi': {1: 'const char *'},
+    'atof': {1: 'const char *'},
+}
+
+
+def _norm_ptr(t):
+    """指针类型文本归一化：`const unsigned char *` → `unsigned char`。"""
+    return re.sub(r'^const\s+', '', (t or '').rstrip('* ').strip()).strip()
+
+
+def _collect_crt_arg_cast_edits(code_bytes, tree, ctx):
+    """按固定 API 原型给 CRT/Win32 调用的实参插显式转换。"""
+    edits = []
+    locals_ = _declared_local_types(tree, code_bytes)
+    for _pn, _pt in _param_types(tree).items():
+        locals_.setdefault(_pn, _pt)
+
+    def visit(node):
+        if node.type == 'call_expression':
+            fn = node.child_by_field_name('function')
+            args = node.child_by_field_name('arguments')
+            if (fn is not None and args is not None and fn.type == 'identifier'):
+                table = _CRT_ARG_TYPES.get(fn.text.decode('utf-8'))
+                if table:
+                    anodes = [c for c in args.children
+                              if c.type not in ('(', ')', ',', 'comment')]
+                    for idx, ptext in table.items():
+                        if idx - 1 >= len(anodes):
+                            continue
+                        an = anodes[idx - 1]
+                        pk, _, _ = _classify_type_text(ptext)
+                        ak, at, _ = _expr_type(an, locals_, ctx)
+                        if pk != 'pointer' or ak is None:
+                            continue
+                        same = (ak == 'pointer'
+                                and _norm_ptr(at) == _norm_ptr(ptext))
+                        if same:
+                            continue
+                        if ak in ('pointer', 'integral'):
+                            edits.append((an.start_byte, an.start_byte,
+                                          ('(%s)' % ptext).encode('utf-8')))
+        for ch in node.children:
+            visit(ch)
+
+    visit(tree.root_node)
+    return edits
+
+
+# ============================================================
+# 引用形参 + 同类指针实参 ⇒ `*(arg)`（F78）
+# ============================================================
+#
+# F77 把 `??4gbVec3D@@QAEXABU0@@Z` 一类的导入槽类型从 `int __thiscall(_DWORD, _DWORD)`
+# 纠正成按修饰名的 `void (__thiscall *)(gbVec3D *, const gbVec3D *)` 之后，Hex-Rays 不再把
+# 实参降级成 `float *`（旧错误 `cannot convert parameter 1 from 'float *' to 'const gbVec3D &'`），
+# 而是原样传 `gbVec3D *` ⇒ 新错误 `... from 'const struct gbVec3D *' to 'const struct gbVec3D &'`。
+# 同一族 52 条只是换了报法（第 137 轮实测：消失 52 / 新增 52）。
+#
+# 为什么不在 IDA 侧把槽设成真正的引用：IDA 的 Python 类型 API **构造不出引用类型** ——
+# `ida_typeinf.parse_decl` 与 `idc.SetType` 都把 `T &` 落成 `T *`（实测 `dstr()` 打印为 `*`），
+# 也没有 `create_ref`。所以只能在生成侧做**地址等价**改写：
+# 传给 `const T &` 的 `*(p)` 与传给 `const T *` 的 `p` 是同一条指令、同一个地址 ⇒ 字节等价。
+# 门（防止把"形参本来就是指针"的站点改坏）：被调必须是**运算符**（C++ 约定取 `const T &`）、
+# 实参必须是指向**被调类自身**的指针、且不是显式 this 形态的接收者那一位。
+_REF_OPERATOR_RE = re.compile(r'([A-Za-z_]\w*)\s*::\s*(operator\s*[^\s(]*)')
+
+
+def _norm_struct_name(t):
+    """`const struct gbVec3D` → `gbVec3D`（去掉 const/struct/class 前缀）。"""
+    s = (t or '').strip()
+    while True:
+        m = re.match(r'^(?:const|volatile|struct|class|unsigned|signed)\s+(.*)$', s)
+        if not m:
+            return s
+        s = m.group(1).strip()
+
+
+def _collect_ref_arg_deref_edits(code_bytes, tree, ctx):
+    """引用形参 + 同类指针实参 ⇒ 加 `*`（见上方说明）。"""
+    edits = []
+    locals_ = _declared_local_types(tree, code_bytes)
+    for _pn, _pt in _param_types(tree).items():
+        locals_.setdefault(_pn, _pt)
+
+    def visit(node):
+        if node.type == 'call_expression':
+            fn = node.child_by_field_name('function')
+            args = node.child_by_field_name('arguments')
+            if fn is not None and args is not None:
+                ftxt = fn.text.decode('utf-8')
+                cls, meth, skip_first = None, None, False
+                m = _REF_OPERATOR_RE.search(ftxt)
+                if m and m.group(2).startswith('operator'):
+                    cls, meth = _norm_struct_name(m.group(1)), m.group(2)
+                    skip_first = ('->' not in ftxt)      # 显式 this：首参是接收者
+                else:
+                    # tree-sitter-cpp 对 `ptr->Class::method(args)` 这种**限定成员调用**
+                    # 会产出 ERROR 节点（`->gbVec3D::operator=`），此时 function 字段是
+                    # 接收者表达式、真正的方法名在 ERROR 子节点里（实测 AST：
+                    # call_expression → parenthesized_expression + ERROR + argument_list）。
+                    for ch in node.children:
+                        if ch.type == 'ERROR':
+                            m2 = re.search(
+                                r'->\s*([A-Za-z_]\w*)\s*::\s*(operator\s*[^\s(]*)',
+                                ch.text.decode('utf-8'))
+                            if m2:
+                                cls, meth = _norm_struct_name(m2.group(1)), m2.group(2)
+                                break
+                if cls and meth:
+                    anodes = [c for c in args.children
+                              if c.type not in ('(', ')', ',', 'comment')]
+                    if skip_first and anodes:
+                        anodes = anodes[1:]
+                    for an in anodes:
+                        if an.text.decode('utf-8').lstrip().startswith('*'):
+                            continue
+                        k, t, st = _expr_type(an, locals_, ctx)
+                        # 只要求"是指针且指向被调类自身"：`&v19`（v19 是 gbVec3D）由
+                        # `_expr_type` 的取址分支返回 ('pointer','gbVec3D','gbVec3D')，
+                        # 类型文本可能是类名而不是 `T *`，所以不再要求 endswith('*')。
+                        if k == 'pointer' and _norm_struct_name(st) == cls:
+                            edits.append((an.start_byte, an.start_byte, b'*('))
+                            edits.append((an.end_byte, an.end_byte, b')'))
+        for ch in node.children:
+            visit(ch)
+
+    visit(tree.root_node)
+    return edits
+
+
+def _collect_float_literal_promotion_edits(code_bytes, tree, ctx):
+    """Append `f` to double literals compared against a provably-float operand."""
+    edits = []
+    locals_ = _declared_local_types(tree, code_bytes)
+    for _pn, _pt in _param_types(tree).items():
+        locals_.setdefault(_pn, _pt)
+
+    def visit(node):
+        if node.type == 'binary_expression':
+            op = node.child_by_field_name('operator')
+            left = node.child_by_field_name('left')
+            right = node.child_by_field_name('right')
+            if (op is not None and left is not None and right is not None
+                    and op.text.decode('utf-8') in _FLOAT_CMP_OPS):
+                for lit, other in ((left, right), (right, left)):
+                    if lit.type != 'number_literal':
+                        continue
+                    if not _is_exact_float_literal(lit.text.decode('utf-8')):
+                        continue
+                    if _expr_type(other, locals_, ctx)[1].strip() != 'float':
+                        continue
+                    edits.append((lit.end_byte, lit.end_byte, b'f'))
+        for ch in node.children:
+            visit(ch)
+
+    visit(tree.root_node)
+    return edits
+
+
 def run(code, ctx):
     """Stage 4: pure AST-based identifier/type resolution."""
     code_bytes = code.encode('utf-8')
     tree = _parser.parse(code_bytes)
     edits = _collect_token_edits(code_bytes, tree, ctx)
     edits += _collect_ptr_cast_edits(code_bytes, tree, ctx)
+    edits += _collect_indirect_call_cast_edits(code_bytes, tree, ctx)
+    edits += _collect_crt_arg_cast_edits(code_bytes, tree, ctx)
+    edits += _collect_ref_arg_deref_edits(code_bytes, tree, ctx)
+    edits += _collect_float_literal_promotion_edits(code_bytes, tree, ctx)
     result = code_bytes
     for start, end, replacement in sorted(edits, reverse=True):
         result = result[:start] + replacement + result[end:]
-    result = result.decode('utf-8')
+    result = _fix_base_qualified_access(result.decode('utf-8'), ctx)
     return _fix_member_fn_callbacks(result, ctx)
+
+
+# ============================================================
+# 基类限定的成员访问：`this->Cls::Base::member` → `this->Base::member`（F79）
+# ============================================================
+#
+# **判定性实验（第 138 轮，用本仓自带 VC6）**：
+#     class A { public: int x; };
+#     class B : public A { };
+#     void f(B *p) { p->B::A::x = 1; }   // error C2039: 'A' : is not a member of 'B'
+#     void g(B *p) { p->A::x   = 1; }   // 合法
+# ⇒ `this->Cls::Base::member` 把基类名当成了**成员名**（C++ 里 `X::Y::Z` 的 `Y` 必须是 X 的成员），
+#   而 Hex-Rays 会用基类限定的写法表达"这个成员来自基类子对象"：正确拼法是 `this->Base::member`。
+#
+# 命中族（本轮 census）：`this->SceneObj::GlowObj::m_nTodo_000`（GlowObj 是 SceneObj 的基类）
+# 与 `this->SceneObj::TaskMgr_SceneObjParam_SceneObj::m_nTodo_000`（同为基类）。
+# 基类表直接读**生成头**的继承列表（编译器看到的就是它，与 IDB 侧 `store.struct_bases`
+# 只有单个基类的情况不同 —— 生成头里 SceneObj 有三个基类）。
+_CLASS_BASES_CACHE = None
+
+
+def _class_bases_index():
+    """{类名: {基类名}} —— 来自 `pal3/src/**/*.h` 的 `class X : public A, public B {`。"""
+    global _CLASS_BASES_CACHE
+    if _CLASS_BASES_CACHE is None:
+        import glob
+        import os
+        idx = {}
+        root = getattr(store, 'output_dir', None) or 'pal3/src'
+        for p in glob.glob(os.path.join(root, '**', '*.h'), recursive=True):
+            try:
+                with open(p, encoding='utf-8', errors='replace') as fh:
+                    txt = fh.read()
+            except OSError:
+                continue
+            for m in re.finditer(r'^\s*(?:class|struct)\s+(\w+)\s*:\s*([^{]+)\{',
+                                 txt, re.M):
+                bases = idx.setdefault(m.group(1), set())
+                for b in m.group(2).split(','):
+                    b = re.sub(r'\b(?:public|protected|private|virtual)\b', '', b)
+                    b = b.split('<')[0].strip()          # 去模板实参
+                    b = b.split('::')[-1].strip()         # 去命名空间前缀
+                    if b and b != m.group(1):
+                        bases.add(b)
+        _CLASS_BASES_CACHE = idx
+    return _CLASS_BASES_CACHE
+
+
+def _reachable_bases(idx, cls):
+    """cls 的全部直接/间接基类（闭包）。"""
+    out, stack = set(), list(idx.get(cls, ()))
+    while stack:
+        b = stack.pop()
+        if b in out or b == cls:
+            continue
+        out.add(b)
+        stack.extend(idx.get(b, ()))
+    return out
+
+
+def _fix_base_qualified_access(code, ctx):
+    """把 `this->X::Y::member` 改写成 `this->Y::member`（X 是当前类的基类、Y 是 X 的基类）。
+
+    实例（本轮 census）：当前类 `CCBRoleState : public SceneObj`，
+    `SceneObj : public PalScriptWaitObj, public GlowObj, public TaskMgr_SceneObjParam_SceneObj`；
+    Hex-Rays 写 `this->SceneObj::GlowObj::m_nTodo_000` ⇒ C2039。多级路径（`this->A::B::C::`）
+    逐轮收敛到 `this->C::`。
+    """
+    cls = getattr(ctx, 'cls_name', None) if ctx is not None else None
+    if not cls:
+        return code
+    idx = _class_bases_index()
+    reach = _reachable_bases(idx, cls)
+    if not reach:
+        return code
+    pairs = []
+    for x in [cls] + sorted(reach, key=len, reverse=True):
+        for y in sorted(idx.get(x, ()), key=len, reverse=True):
+            pairs.append((x, y))
+    if not pairs:
+        return code
+    out = code
+    for _ in range(3):                      # 最多收敛 3 层
+        before = out
+        for x, y in pairs:
+            pat = re.compile(r'\bthis\s*->\s*' + re.escape(x) + r'\s*::\s*'
+                             + re.escape(y) + r'\s*::')
+            out = pat.sub('this->%s::' % y, out)
+        if out == before:
+            break
+    return out

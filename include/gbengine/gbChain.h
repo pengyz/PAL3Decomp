@@ -1,12 +1,14 @@
 #pragma once
 
+#include "gbengine/gbengine_export.h"
+
 #include "gbengine/gbengine_types.h"
 
 
 /* ======== gbChain1DNode ======== */
 // Single-linked list node (8 bytes)
 
-class gbChain1DNode {
+class GBAPI gbChain1DNode {
 public:
     gbChain1DNode* next;   // +0x04: next node (vptr at +0x00 from virtual dtor)
 
@@ -21,7 +23,7 @@ public:
 /* ======== gbChain1D ======== */
 // Single-linked list (16 bytes)
 
-class gbChain1D {
+class GBAPI gbChain1D {
 public:
     gbChain1DNode* m_Head;        // +0x00
     gbChain1DNode* m_Tail;        // +0x04

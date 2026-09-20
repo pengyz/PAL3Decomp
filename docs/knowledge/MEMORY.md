@@ -7,10 +7,12 @@
 - [gbui 七槽 vtable 继承链](arch_gbui_seven_slot_vtables_inheritance_chain.md) — gbui 家族 vtable 的槽位与继承链关系
 
 ## Gotchas
+- [中文注释行末 GBK 次字节为 0x5C 会吞掉下一行](gotcha_gbk_comment_trailing_backslash_eats_next_line.md) — MSVC6 按 GBK 读 UTF-8 中文注释 ⇒ 行拼接吞掉下一行（本次吞掉一个 __forceinline 定义）；四条死路与决定性验证手法见文
 
 - [多重继承匿名成员渲染 bug](gotcha_codegen_multi_inheritance_anon_member.md) — 根因是 apply/export 两层自造限制（IDA 原生支持多基类），已修复并有单测+IDB 回归守卫；待重跑 codegen+compile 收口
 - [annotation hook 从未生效](gotcha_annotation_hook_never_wired.md) — validate-annotations.py 路径过期 + 未接入 settings.json，双重失效
 - [apply 静默失败（IDB 锁）](gotcha_apply_silent_fail_idb_lock.md) — 别的会话持有 IDB 锁时 cli.py apply 静默失败，cmd_apply 不以非零退出终止 && 链
+- [**init --force 后只跑一趟 apply 不够**](gotcha_apply_single_pass_leaves_globals_untyped.md) — 全局变量名字/类型不落地（`0xC10968` = `unk_C10968` size **1** 而非 `g_palScript` size 2176）⇒ S2 67/201 · L1 20 而非 70/201 · L1 21；**必须再 apply 一次**才算初始化完成
 - [字节匹配判据被 mangler 单点把关](gotcha_byte_match_metric_is_mangler_gated.md) — matched/L1/partial 全经 mangled_map；base_idx 回退只对非 '?' 符号生效；**名字命中 ≠ 参与比对**
 - [测量台复刻被测逻辑 + 比例须逐样本核验](gotcha_measurement_bench_replicating_subject_logic.md) — 复刻被测逻辑=测量另一个程序；"30% 边界错位"是我的 objdump 末行假象，实测 60/60 正常
   · 附二：**"改后读数"必须核验文件 mtime**（probe 遇退化拒绝刷新基线 ⇒ 读到的是改前值）
@@ -34,6 +36,7 @@
 
 - [无证据批量重命名](pattern_annotation_batch_rename_no_evidence.md) — A:cascade_sync 标记的伪语义重命名事故，check_annotations 通过 ≠ 标注质量真实提升
 - [**恢复多态基类的虚方法集合**](pattern_recover_polymorphic_base_virtual_methods.md) — 从二进制取证虚方法的完整方法链 + MSVC6 vtable 发射条件（定义本类虚函数才发射）+ ??_E/??_G 是同一函数
+- [**用 ctor 做二进制挂钩前先验本体**](pattern_verify_ctor_body_before_binary_hooks.md) — 注解里的"ctor"可能是静态初始化 thunk（实测 `0x51D6E0`）；真 ctor 的判据是 `mov [this], offset <自己的vtable>`；配方=vtable 归属 → 表的 DATA XREF → 写表者
 
 ## Debugging
 

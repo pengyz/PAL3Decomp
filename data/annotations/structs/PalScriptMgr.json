@@ -1264,6 +1264,13 @@
       "name": "RunCommand",
       "signature": "void __thiscall(int a1)",
       "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params"
+    },
+    "0x00525080": {
+      "name": "Get_m_nField_1490",
+      "signature": "int __thiscall PalScriptMgr::Get_m_nField_1490()",
+      "note": "reattribute: asm 行 441430-441432 本体只有两条指令：`mov eax, [ecx+1490h] ; retn` —— 即 `return this->[0x1490]`（4 字节读）。原类 UIWnd 的 size=68（成员止于 +0x44），不可能有 +0x1490 ⇒ 归属错。全部 894 个注解类里**唯一**在 +0x1490 上有成员的是 PalScriptMgr（size=9512）：known_members['5264'] = m_nField_1490，类型 int —— 与 4 字节读、与 `[ecx+1490h]` 精确吻合。这是一元访问器，单个偏移即函数全部行为，故证据完整。",
+      "name_evidence": "该函数就是成员 m_nField_1490 的取值器，直接以所取成员命名（Get_m_nField_1490），不做语义臆造；成员名本身仍是占位（m_nField_1490），含义未定，等有证据再改。",
+      "signature_note": "set_signature: asm 行 441430-441432：`mov eax,[ecx+1490h] ; retn` ⇒ 无栈参数（retn 无立即数）、返回 4 字节成员值。搬移时该条残留原类签名 `int __thiscall(UIWnd *this)`（含原类名 UIWnd），会让生成头把 this 当作 UIWnd ⇒ 与本条的宿主 PalScriptMgr 矛盾，已证伪。 (was: int __thiscall(UIWnd *this))"
     }
   },
   "vtables": [

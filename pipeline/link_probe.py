@@ -103,7 +103,7 @@ def main():
                     help='keep the scratch .obj directory for inspection')
     args = ap.parse_args()
 
-    census = json.loads(Path(args.census).read_text())
+    census = json.loads(Path(args.census).read_text(encoding='utf-8'))
     passing = [r['unit'] for r in census['s2']['results'] if r['status'] == 'ok']
     if args.limit:
         passing = passing[:args.limit]

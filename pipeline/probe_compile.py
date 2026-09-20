@@ -209,10 +209,10 @@ def main():
     report = {}
     if os.path.exists(args.out):
         try:
-            prev = json.load(open(args.out))
+            prev = json.load(open(args.out, encoding='utf-8'))
             if isinstance(prev, dict):
                 report = {k: prev[k] for k in prev if k in ('s1', 's2')}
-        except (json.JSONDecodeError, OSError):
+        except (json.JSONDecodeError, OSError, UnicodeDecodeError):
             pass
     report['generated_at'] = datetime.now().isoformat(timespec='seconds')
     report['compiler'] = ('MSVC6 SP0 native' if NATIVE_WIN
@@ -250,7 +250,7 @@ def main():
             print('  %-45s blocks %3d cpp' % (h, len(blocked)))
 
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
-    with open(args.out, 'w') as f:
+    with open(args.out, 'w', encoding='utf-8') as f:
         json.dump(report, f, indent=1, ensure_ascii=False)
     print('report -> %s' % args.out)
     shutil.rmtree(OBJ_DIR, ignore_errors=True)

@@ -1338,6 +1338,201 @@ def resolve_vtable_slots(struct_info, functions):
     return out
 
 
+def _split_param_list(text):
+    """按顶层逗号切分参数表（不切嵌套括号/尖括号内的逗号）。"""
+    out, depth, cur = [], 0, ''
+    for ch in text:
+        if ch in '(<[':
+            depth += 1
+        elif ch in ')>]':
+            depth -= 1
+        if ch == ',' and depth == 0:
+            out.append(cur)
+            cur = ''
+        else:
+            cur += ch
+    if cur.strip():
+        out.append(cur)
+    return [p.strip() for p in out if p.strip()]
+
+
+def _slot_param_count(t):
+    """槽类型里"显式写出的参数个数"；判断不了返回 None。
+
+    函数指针类型（含 `*`）的参数表在**最后一个**括号组；
+    IDA 给导入槽打印的裸函数类型（如 `void __thiscall(Class *__hidden this)`）
+    参数表在第一个括号组。
+    """
+    groups = re.findall(r'\(([^()]*)\)', t or '')
+    if not groups:
+        return None
+    inner = (groups[-1] if '*' in (t or '') else groups[0]).strip()
+    if not inner or inner == 'void':
+        return 0
+    return len(_split_param_list(inner))
+
+
+def _split_demangled_member(dem):
+    """把 IDA 的长解算串拆成 (ret, qual, params)；拆不开返回 None。
+
+    IDA 的长形态会带 `public: virtual __thiscall` 前缀，返回类型里又可能有空格
+    （`unsigned char *`），因此不能用一个正则一把梭：
+      1. 去掉访问修饰/`virtual` 前缀；
+      2. 参数表取**末尾那对括号**（含嵌套括号）之前的部分；
+      3. 限定名取"最后一个含 `::` 的 token"（`gbVec3D::operator+=` 也能匹配）。
+    """
+    if not dem:
+        return None
+    s = re.sub(r'^(?:public|protected|private):\s*', '', dem.strip())
+    s = re.sub(r'^virtual\s+', '', s)
+    depth, end = 0, -1
+    for i in range(len(s) - 1, -1, -1):
+        if s[i] == ')':
+            if depth == 0:
+                end = i
+            depth += 1
+        elif s[i] == '(':
+            depth -= 1
+            if depth == 0 and end != -1:
+                start = i
+                head, params = s[:start].strip(), s[start + 1:end].strip()
+                m = re.search(r'([A-Za-z_]\w*(?:::\w+)*::[^\s(]+)\s*$', head)
+                if not m:
+                    return None
+                ret = head[:m.start()].strip()
+                ret = re.sub(r'__(?:thiscall|cdecl|stdcall|fastcall)\s*$', '', ret).strip()
+                return (ret or 'void', m.group(1), params)
+    return None
+
+
+def _slot_param_text(t):
+    """槽类型里"显式写出的参数表文本"（与 `_slot_param_count` 同一取法）。"""
+    groups = re.findall(r'\(([^()]*)\)', t or '')
+    if not groups:
+        return ''
+    return (groups[-1] if '*' in (t or '') else groups[0]).strip()
+
+
+def _fix_gbengine_import_slots():
+    """F73（第 132 轮）：按修饰名纠正 gbengine 导入槽上的**退化原型**。
+
+    实测（A 级）：`?Read@gbVFileSystem@@QAEXPAXIPAVgbVFile@@@Z` 的 IAT 槽类型是
+    `void __thiscall(gbVFileSystem *__hidden this)` —— **零栈参**。Hex-Rays 对
+    `call ds:<slot>` 优先采用槽上的类型，于是该函数 33 处调用点的三个实参**全部丢失**：
+        gbVFileSystem::Read(g_pVFileSys);          # 生成 C++ 报 C2660，语义也丢了
+    对照证据：同类 `Seek`/`TellPos`/`Write`/`OpenFile` 的槽类型为空 ⇒ Hex-Rays 回退到
+    修饰名给出的签名 ⇒ 参数完整；而且 IDA 的反汇编注释里本来就写着
+    `gbVFileSystem::Read(void *,uint,gbVFile *)`，即槽类型才是那个错的东西。
+
+    签名来源 = **修饰名本身**（VC6 mangling 含完整参数表 + 调用约定），无任何猜测；
+    只改"显式参数个数少于修饰名"的成员槽，其余一律不碰（幂等、可重跑）。
+    """
+    import ida_nalt
+    til = ida_typeinf.get_idati()
+    fixed, seen, failed = 0, 0, 0
+    n_all, n_member, n_dem, n_regex = 0, 0, 0, 0
+    samples = []
+
+    def _cb(ea, name, ordinal):
+        nonlocal fixed, seen, failed, n_all, n_member, n_dem, n_regex
+        n_all += 1
+        # 注意：这里拿到的是**修饰名**（`?Read@gbVFileSystem@@QAEX...@Z`），
+        # 它本身不含括号；括号只出现在解算后的 C++ 串里。
+        if not name or '@@' not in name:
+            return True
+        grp = name.split('@@', 1)[1][:3]
+        # 只处理非静态成员（Q/U/I + ... + E=__thiscall）
+        if len(grp) < 3 or grp[0] not in 'QUI' or grp[2] != 'E':
+            return True
+        n_member += 1
+        try:
+            dem = idc.demangle_name(name, idc.get_inf_attr(idc.INF_LONG_DN)) or ''
+        except Exception as _e_dem:
+            if len(samples) < 3:
+                samples.append('demangle raised for %s: %s' % (name, _e_dem))
+            return True
+        if not dem:
+            if len(samples) < 3:
+                samples.append('demangle empty for %s' % name)
+            return True
+        n_dem += 1
+        parsed = _split_demangled_member(dem)
+        if not parsed:
+            if len(samples) < 3:
+                samples.append('split miss: %r' % dem)
+            return True
+        n_regex += 1
+        ret, qual, params = parsed
+        cls = qual.rsplit('::', 1)[0]
+        decl_params = _split_param_list(params)
+        if len(decl_params) == 1 and decl_params[0] == 'void':
+            decl_params = []
+        cur = idc.get_type(ea) or ''
+        n_cur = _slot_param_count(cur)
+        if n_cur is None:
+            return True
+        # 裸函数类型里 IDA 把 this 打印成 `__hidden this` ⇒ 参数个数要减 1
+        n_stack = n_cur - (1 if '__hidden this' in cur else 0)
+        # 另一种退化：参数个数碰巧够，但**调用约定写错**（如
+        # `?RenderGeomQuadViaStrip@gbDynVertBuf@@` 的槽被写成 `__stdcall`，
+        #  this 指针从参数表里消失）。修饰名 `@@QAE` 已确定是 __thiscall 成员。
+        conv_wrong = bool(cur) and '__thiscall' not in cur
+        # F77（第 137 轮）：第三种退化——**参数个数够，但形参类型是占位符**。
+        # 实例：`??4gbVec3D@@QAEXABU0@@Z`（`gbVec3D::operator=(gbVec3D const &)`）的槽是
+        # `int __thiscall(_DWORD, _DWORD)`。Hex-Rays 因此认为形参是个整数/指针，
+        # 于是把调用点写成 `gbVec3D::operator=(&v21.Direction, ViewTarget)`（直接传 `float *`），
+        # 而生成头里的声明是 `operator=(const gbVec3D &)` ⇒ 一整族 C2664（实测 48 条）。
+        # 判据仍是修饰名：槽里该位置是 `_DWORD`/`_UNKNOWN`，而修饰名在该位置是**指针或引用**。
+        _stored_params = [p for p in _split_param_list(
+            (_slot_param_text(cur) or '').replace('__hidden this', '')) if p.strip()]
+        # 槽里显式列出 this 时参数个数会比修饰名多 1（两种排版都见过：裸函数类型
+        # `int __thiscall(_DWORD, _DWORD)` 与函数指针类型 `void (__thiscall *)(Cls *, T&)`）
+        if len(_stored_params) == len(decl_params) + 1:
+            _stored_params = _stored_params[1:]
+        elif len(_stored_params) != len(decl_params):
+            _stored_params = []
+        ph_wrong = False
+        for _i, _p in enumerate(decl_params):
+            if _i >= len(_stored_params):
+                break
+            _sp = _stored_params[_i].strip()
+            if _sp in ('_DWORD', '_UNKNOWN', '_QWORD', 'int') and ('*' in _p or '&' in _p):
+                ph_wrong = True
+                break
+        seen += 1
+        if n_stack >= len(decl_params) and not conv_wrong and not ph_wrong:
+            return True
+        decl = '%s __thiscall __sigfix(%s);' % (
+            ret, ', '.join([cls + ' *'] + decl_params))
+        ftif = ida_typeinf.tinfo_t()
+        if not ida_typeinf.parse_decl(ftif, til, decl, ida_typeinf.PT_SIL):
+            failed += 1
+            log("  [!] import slot sig parse failed: %s -> %s" % (name, decl))
+            return True
+        ptr = ida_typeinf.tinfo_t()
+        ptr.create_ptr(ftif)
+        if ida_nalt.set_tinfo(ea, ptr):
+            fixed += 1
+            log("  [gb] slot sig fixed @%08X %s" % (ea, name))
+            log("       %s  ->  %s" % (cur, idc.get_type(ea)))
+        else:
+            failed += 1
+            log("  [!] import slot set_tinfo failed: %s" % name)
+        return True
+
+    for i in range(ida_nalt.get_import_module_qty()):
+        mod = ida_nalt.get_import_module_name(i)
+        if mod and 'gbengine' in mod.lower():
+            ida_nalt.enum_import_names(i, _cb)
+    # 计数全打出来：否则"0 个"无法区分"没有候选"和"过滤条件写错"
+    log("[gb] import slots: names=%d member=%d demangled=%d parsed=%d typed=%d "
+        "-> corrected=%d failed=%d"
+        % (n_all, n_member, n_dem, n_regex, seen, fixed, failed))
+    for s in samples:
+        log("     sample-reject: %s" % s)
+    return fixed
+
+
 def import_gbengine_types():
     """Import gbengine struct/enum definitions into IDA TIL.
 
@@ -2690,6 +2885,14 @@ def apply_annotations():
         if ida_name.set_name(addr, _expected, ida_name.SN_NOWARN | ida_name.SN_FORCE):
             _force_renamed += 1
     log("[11] Force-renamed %d/%d" % (_force_renamed, len(funcs)))
+
+    # --- F73（第 132 轮）：gbengine 导入槽的"退化原型"按修饰名纠正 ---
+    # 必须放在**最后**（其它所有类型写入之后）：这些槽上的错误类型会被 Hex-Rays
+    # 优先采用，从而吞掉真实参数（实测 33 处 `gbVFileSystem::Read`）。
+    try:
+        _fix_gbengine_import_slots()
+    except Exception as _e_slot:
+        log("[!] import slot signature pass raised: %s" % _e_slot)
 
     idc.save_database(idc.get_idb_path(), 0)
     log("[*] Done. Database saved.")

@@ -475,8 +475,28 @@ def _decode_vtbl_call(call_node):
     # object chain: the identifier chain immediately feeding __vftable
     mn = re.search(r'(\w+(?:\s*->\s*\w+)*)\s*->\s*__vftable\s*->\s*(\w+)', text)
     if mn:
+        # P1(b) 2026-09-19（长线计划）：**裸链没有 cast ⇒ ret/params 为 None ⇒ 第 591 行的
+        # stub 兜底被跳过 ⇒ 调用文本被原样保留（`__vftable` 残留 → C2227）**。
+        # 通用补救：用注解里该方法的一致签名补出 ret/params（不针对任何具体方法名）。
+        # `store.method_sigs` 的键是 "Class::Method"，值是 decomp 签名如
+        # `int __thiscall(int nVal, int nMsg, int wParam)`。
+        _synthetic_self = False
+        if ret is None:
+            _sigs = {s for k, s in store.method_sigs.items()
+                     if k.endswith('::' + mn.group(2))}
+            if len(_sigs) == 1:                      # 所有声明者签名一致才敢用
+                _m2 = re.match(r'^\s*(.*?)\s*\((.*)\)\s*$', _sigs.pop())
+                if _m2:
+                    _r = re.sub(r'\b(?:__thiscall|__cdecl|__stdcall|__fastcall)\b', '',
+                                _m2.group(1)).strip()
+                    ret = _r or 'void'
+                    _plist = _m2.group(2).strip()
+                    # stub 的形参表要把**对象指针**放首位（现有 `_vtbl_stub_names` 的约定）
+                    params = 'void *' + (', ' + _plist if _plist and _plist != 'void' else '')
+                    _synthetic_self = True
         return {'obj': mn.group(1), 'method': mn.group(2), 'offset': None,
-                'cls_hint': cls_hint, 'ret': ret, 'params': params}
+                'cls_hint': cls_hint, 'ret': ret, 'params': params,
+                'synthetic_self': _synthetic_self}
     mo = re.search(r'(\w+(?:\s*->\s*\w+)*)\s*->\s*__vftable\s*(?:\+\s*(\d+))?', text)
     if mo:
         return {'obj': mo.group(1), 'method': None,
@@ -503,6 +523,22 @@ def _resolve_vtbl_method(d):
     return None
 
 
+def _sanitize_stub_sig(ret, params):
+    """stub 签名清洗（2026-09-19，长线计划第 2 条）。
+
+    实测 `pal3/src/Combat/CCBUI.cpp:554/584` 发射的是
+    `static virtual int pal3_vtbl_unk_9349112a(void *, UIFrameWnd *this, void *Block, char a3)`
+    —— `virtual` 与 `static` 不能并用、`this` 不能作形参名，两者都是硬语法错误（C2059/C2143）。
+    签名里出现它们只可能来自反编译文本/cast 的转写，属于**纯清洗**，不改变任何调用语义。
+    """
+    ret = re.sub(r'\b(?:static|virtual|inline|explicit)\b\s*', '', str(ret or 'void')).strip()
+    pl = str(params or '')
+    # 形参名里的 C++ 关键字：`this` 只可能出现在**形参名**位置（类型名不可能是 this），
+    # 判定为"后面跟 , 或结尾（允许数组后缀）"。`UIFrameWnd *this` / `int this` 都要覆盖。
+    pl = re.sub(r'\bthis\b(\s*\[[^\]]*\])?\s*(?=,|$)', r'this_\1', pl)
+    return (ret or 'void'), pl.strip()
+
+
 def _vtbl_stub_name(ret, params):
     """stub 名由**签名**决定（不再是每函数从 0 开始的序号）。
 
@@ -514,12 +550,14 @@ def _vtbl_stub_name(ret, params):
     `C2556`(overloaded function differs only by return type)。
     改成签名哈希后，不同签名永不同名。
     """
+    ret, params = _sanitize_stub_sig(ret, params)
     key = '%s|%s' % (' '.join(str(ret).split()), ' '.join(str(params).split()))
     return 'pal3_vtbl_unk_%s' % _hashlib.md5(key.encode('utf-8')).hexdigest()[:8]
 
 
 def _vtbl_stub_names(ret, params, name):
     """Build thunk declaration+definition preserving cast signature."""
+    ret, params = _sanitize_stub_sig(ret, params)
     is_ptr = ret.rstrip().endswith('*')
     is_void = ret.strip() == 'void'
     is_scalar = any(k in ret for k in ('int', 'long', 'short', 'char', 'float',
@@ -604,11 +642,37 @@ def _resolve_vftable_calls_ast(code, ctx):
                                      '// %s original: %s'
                                      % (_VTBL_STUB_MARK,
                                         ' '.join(node.text.decode('utf-8', errors='replace').split()))))
+                            # P1(b)：裸链（无 cast）的实参里**没有对象**，
+                            # 而 stub 的形参表把对象放在首位 ⇒ 调用时要把对象补回去。
+                            _callargs = ', '.join(args)
+                            if d.get('synthetic_self'):
+                                _callargs = d['obj'] + (', ' + _callargs if _callargs else '')
                             repl = '%s(%s) /* %s */' % (
-                                name, ', '.join(args), _VTBL_STUB_MARK)
+                                name, _callargs, _VTBL_STUB_MARK)
                         else:
-                            # no cast info at all — leave for legacy fallbacks
-                            repl = None
+                            # 无 cast 信息（裸链 `RECV->__vftable->NAME(args)`：ret/params 都是 None）。
+                            # 本函数的设计意图是"未解析的虚调用改写为合成 stub"（见上方注释），
+                            # 这里原来直接放弃 ⇒ `__vftable` 文本残留 ⇒ C2039/C2227（21 文件/135 站点）。
+                            # 只在**语句位置**（返回值未被使用）补一个通用可变参数 stub：
+                            # 签名无关 ⇒ 必然可编译；它不是字节忠实的调用，但本来就没有可编译的写法。
+                            _par = getattr(node, 'parent', None)
+                            if d['method'] and _par is not None and \
+                                    _par.type == 'expression_statement':
+                                _reg = getattr(ctx, 'stub_registry', None)
+                                _va = 'pal3_vtbl_unk_va'
+                                if _reg is None or _va not in _reg:
+                                    if _reg is not None:
+                                        _reg.add(_va)
+                                    stub_items.append(
+                                        ('static void %s(...);' % _va,
+                                         'static void %s(...)\n{\n}' % _va,
+                                         '// %s original: %s'
+                                         % (_VTBL_STUB_MARK,
+                                            ' '.join(node.text.decode('utf-8', errors='replace').split()))))
+                                _callargs = ', '.join([d['obj']] + args)
+                                repl = '%s(%s) /* %s */' % (_va, _callargs, _VTBL_STUB_MARK)
+                            else:
+                                repl = None
                     if repl is not None:
                         edits.append((node.start_byte, node.end_byte, repl))
                         covered.append((node.start_byte, node.end_byte))

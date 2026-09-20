@@ -1,5 +1,7 @@
 #pragma once
 
+#include "gbengine/gbengine_export.h"
+
 #include "gbengine/gbengine_types.h"
 #include <d3d9.h>
 
@@ -9,7 +11,7 @@ class gbResManager;
 // ============================================================================
 // gbRefObject - reference-counted base
 // ============================================================================
-class gbRefObject {
+class GBAPI gbRefObject {
 public:
     int RefCount;       // +0x04 (vtable at +0x00)
 
@@ -73,7 +75,7 @@ struct gbImage2DInfo {
 // ============================================================================
 // gbImage2D - 2D bitmap image
 // ============================================================================
-class gbImage2D {
+class GBAPI gbImage2D {
 public:
     gbImage2DInfo ImgInfo;
     int Width;
@@ -148,7 +150,7 @@ public:
 // ============================================================================
 // gbTexture - base texture class (virtual)
 // ============================================================================
-class gbTexture : public gbResource {
+class GBAPI gbTexture : public gbResource {
 public:
 
     // gbTexture own fields
@@ -219,7 +221,7 @@ public:
 // ============================================================================
 // gbTexture_D3D - Direct3D 9 texture implementation
 // ============================================================================
-class gbTexture_D3D : public gbTexture {
+class GBAPI gbTexture_D3D : public gbTexture {
 public:
     IDirect3DBaseTexture9* pTex;
     IDirect3DSurface9* pDS;
@@ -263,7 +265,7 @@ public:
 // sizeof = 68 bytes (16 pointers + 1 int count)
 // Layout (IDA-verified): pTex[0..15] at [0..15], numTextures at [16]
 // ============================================================================
-struct gbTextureArray {
+struct GBAPI gbTextureArray {
     gbTexture* pTexPt[16];  // +0x00 [0..15]: texture pointers (PDB name)
     int nTex;               // +0x40 [16]: active texture count (PDB name)
 

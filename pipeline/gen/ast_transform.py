@@ -836,6 +836,36 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 _this_consistent = (
                                     _slots is not None
                                     and _slots == len(arg_nodes) - 1)
+                                if _op == '&' and re.match(
+                                        r'^[A-Za-z_][\w\.\[\]\->]*$', _ptr_inner):
+                                    # F71（第 131 轮）：显式取址的 this 形态。
+                                    # 与上面 identifier 分支同一条约定（Hex-Rays 的显式 this 习惯：
+                                    # 首参就是对象指针），而实测它正是 C2660 大家族的主因：
+                                    #   `gbVec3D::operator=(&v21.Direction, ViewTarget);`
+                                    #   `gbVec3D::SetParam(&…, …)` / `RenderGeomQuad` / `ReplaceTexture` …
+                                    # 第 129 轮的判定性实验已排除"靠改声明通过"的路线
+                                    # （VC6 对**任何**成员的 `Class::method(obj, args)` 都按普通函数
+                                    #   解析 ⇒ 必报 C2660），故只能在 codegen 侧改写。
+                                    # 改写为 `((Cls *)&obj)->Cls::method(rest)`：this 值不变、调用目标不变。
+                                    new_text = '(((%s *)%s))->%s::%s(%s)' % (
+                                        class_name, first_arg_text, class_name,
+                                        method_name, rest_str)
+                                    replacements.append(
+                                        (node.start_byte, node.end_byte, new_text))
+                                    return
+                                # F72（第 132 轮）：`*simple_expr` 形态同样按"Hex-Rays 显式 this 习惯"改写。
+                                # 原条件要求 `_this_consistent`（ret-N 证据），但**导入成员没有函数体** ⇒
+                                # 该证据恒为 None ⇒ 这一族永远改不动，实测剩下：
+                                #   `gbGeomNode::ReplaceTexture(*m_pCorpse, v11);`（C2661 ×12）
+                                # 与 `identifier`/`&obj` 两条 arm 一致：限定名 + 首参是对象指针表达式即可。
+                                if _op == '*' and not _this_consistent and re.match(
+                                        r'^[A-Za-z_][\w\.\[\]\->]*$', _ptr_inner):
+                                    new_text = '(%s)->%s::%s(%s)' % (
+                                        first_arg_text, class_name,
+                                        method_name, rest_str)
+                                    replacements.append(
+                                        (node.start_byte, node.end_byte, new_text))
+                                    return
                                 if _op == '*' and _this_consistent:
                                     new_text = '(%s)->%s::%s(%s)' % (
                                         first_arg_text, class_name,
@@ -903,6 +933,88 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
     _QUAL2 = re.compile(rb'->\s*(?:[A-Za-z_]\w*::){2,}([A-Za-z_~]\w*)\s*\(')
     result = _QUAL2.sub(rb'->\1(', result)
 
+    return _qualify_this_member_calls(result.decode('utf-8'), cls_name)
+
+
+# ============================================================
+# F82（第 141 轮）：非限定成员直调 `M(this, rest)` ⇒ `this->Cls::M(rest)`
+# ============================================================
+#
+# 实测链（§48）：Hex-Rays 对成员直调有时**不写类限定**（decomp 原文 `ProcessKeyboard(this, 1);`），
+# `transform_oop_calls` 只处理 `qualified_identifier` 被调方 ⇒ 这里原样输出；
+# 之后生成侧的名字解析把它**限定成** `InputSystem::ProcessKeyboard(this, 1)`
+# ——只加前缀、没动接收者，于是 VC6 按类作用域的 `void ProcessKeyboard(int a1)` 数两个实参 ⇒
+# `C2660 : function does not take 2 parameters`（实测 12 条）。
+#
+# 判据（不是猜测）：`Cls` 的**生成头**里确实声明了名为 `M` 的成员
+# （编译器将来就按那份声明检查 `Cls::M`），且首参就是 `this`。
+# 改写后 this 值不变、调用目标不变；`this->Cls::M(rest)` 是合法且非虚的直调形式。
+_METHOD_INDEX_CACHE = None
+
+
+def _class_method_index():
+    """{类名: {成员函数名}} —— 直接读生成头（`pal3/src/**/*.h` 的文件名即类名）。"""
+    global _METHOD_INDEX_CACHE
+    if _METHOD_INDEX_CACHE is None:
+        import os
+        import glob
+        idx = {}
+        root = os.path.join(os.path.dirname(os.path.dirname(
+            os.path.dirname(os.path.abspath(__file__)))), 'pal3', 'src')
+        for p in glob.glob(os.path.join(root, '**', '*.h'), recursive=True):
+            cls = os.path.basename(p)[:-2]
+            try:
+                with open(p, encoding='utf-8', errors='replace') as fh:
+                    txt = fh.read()
+            except OSError:
+                continue
+            names = set()
+            for line in txt.splitlines():
+                s = line.strip()
+                if not s or s.startswith('//') or s.startswith('#'):
+                    continue
+                m = re.match(r'^(?:virtual\s+)?[\w:<>\*&\s]+?\b(\w+)\s*\(', s)
+                if m and (';' in s or '{' in s):
+                    names.add(m.group(1))
+            if names:
+                idx.setdefault(cls, set()).update(names)
+        _METHOD_INDEX_CACHE = idx
+    return _METHOD_INDEX_CACHE
+
+
+def _qualify_this_member_calls(code, cls_name):
+    """把本类成员头里的 `M(this, rest)` 改写成 `this->Cls::M(rest)`。"""
+    if not cls_name:
+        return code
+    names = _class_method_index().get(cls_name)
+    if not names:
+        return code
+    code_bytes = code.encode('utf-8')
+    tree = _parser.parse(code_bytes)
+    replacements = []
+
+    def process_node(node):
+        if node.type == 'call_expression':
+            fn = node.child_by_field_name('function')
+            ar = node.child_by_field_name('arguments')
+            if fn is not None and ar is not None and fn.type == 'identifier':
+                mname = fn.text.decode('utf-8')
+                if mname in names:
+                    args = [c for c in ar.children
+                            if c.type not in ('(', ')', ',', 'comment')]
+                    if args and args[0].type == 'this':
+                        rest = ', '.join(a.text.decode('utf-8') for a in args[1:])
+                        new_text = 'this->%s::%s(%s)' % (cls_name, mname, rest)
+                        replacements.append((node.start_byte, node.end_byte, new_text))
+        for child in node.children:
+            process_node(child)
+
+    process_node(tree.root_node)
+    if not replacements:
+        return code
+    result = code_bytes
+    for start, end, new_text in sorted(replacements, reverse=True):
+        result = result[:start] + new_text.encode('utf-8') + result[end:]
     return result.decode('utf-8')
 
 

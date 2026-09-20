@@ -1,5 +1,7 @@
 #pragma once
 
+#include "gbengine/gbengine_export.h"
+
 #include "gbengine/gbChain.h"
 
 // Forward declarations (circular deps: gbGfxManager.h/gbSceneGraph.h include this indirectly)
@@ -27,7 +29,7 @@ enum NodeBlend {
 
 /* ======== gbVisNode ======== */
 
-class gbVisNode : public gbNBTreeNode {
+class GBAPI gbVisNode : public gbNBTreeNode {
 public:
     // gbNBTreeNode ends at +0x1B (7 DWORDs: vtable, pNext, pParent, children[4])
     gbNodeMsgObj* msgBuffer;     // +0x1C [7]: message queue buffer

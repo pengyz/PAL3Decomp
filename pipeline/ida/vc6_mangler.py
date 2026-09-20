@@ -117,6 +117,25 @@ def _mangle_class_chain(cls_name):
     return '@'.join(reversed(parts))
 
 
+def _self_ref_backref(code, cls_name):
+    """VC6 对"当前类自身"的类型引用用**回指**编码（`1@`），而不是把类名写全。
+
+    实测（F61，第 109 轮）：`static SceneMgr *SceneMgr::ClearInactiveRoles()` 的真实 obj 符号是
+    `?ClearInactiveRoles@SceneMgr@@SAPAV1@XZ`（返回类型 = `PAV1@`），而本 mangler 原先产出
+    `?ClearInactiveRoles@SceneMgr@@SAPAVSceneMgr@@XZ` ⇒ `compare_pal3.build_mangled_map` 的键
+    对不上 obj 符号 ⇒ 该函数被判 unmatched（实测 matched 249→248、unmatched 40→41）。
+    只处理**当前类自身**（`cls_name` 最后一段）：父类/嵌套类引用的编号语义无实测证据，保持原样。
+    """
+    if not cls_name:
+        return code
+    last = cls_name.split('::')[-1]
+    for tag in ('V', 'U'):
+        old = tag + last + '@@'
+        if code.endswith(old):
+            return code[:-len(old)] + tag + '1@'
+    return code
+
+
 def mangle(cls_name, method_name, sig, cv='', virtual_=False, static_=False):
     """Compute VC6 mangled name for a class method.
 
@@ -205,9 +224,10 @@ def mangle(cls_name, method_name, sig, cv='', virtual_=False, static_=False):
             r += ''.join(encode_type(strip_param_name(p)) for p in params) + '@Z'
         return r
 
-    r += encode_type(ret)
+    r += _self_ref_backref(encode_type(ret), cls_name)
     if not params:
         r += 'XZ'   # void parameter list: 'X' + 'Z' (no '@' terminator)
     else:
-        r += ''.join(encode_type(strip_param_name(p)) for p in params) + '@Z'
+        r += ''.join(_self_ref_backref(encode_type(strip_param_name(p)), cls_name)
+                     for p in params) + '@Z'
     return r

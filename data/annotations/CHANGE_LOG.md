@@ -5484,3 +5484,257 @@ Confidence: 80（名字层面可逆；若未来获得更强命名证据可整体
   - `apply`：`[3] Structs: 881/881 (fail=0)`、`FATAL=0`；`match` 棘轮 `previous 6 -> current 6`；
   - 判据：`ok = 54/198`（硬线 ≥53，**净提升**）、`L1 = 6`（≥5）、`oob = 0`。
 - **遗留（未验证）**: 其余 3 个被 skip 的 Concurrency 命名（`0x004790F0`/`0x00479250`/`0x004B4830`）需逐条函数体取证以判断真伪；`std::_Xlen`/`_Xran` 在 decomp 中**无同名函数记录**（属 Hex-Rays 在越界分支贴的库名），是否保留调用未逐条裁定。详见 `data/status/_cleanup_fix_flirt_misnamed_crt.md`。
+
+## 2026-09-19 · CCBProtectWindow 真实尺寸 176 → 2632（分配点 A 级证据；K）
+
+- **改动**: `data/annotations/structs/CCBProtectWindow.json` 的 `binary_size` 由 `176` 改为 `2632`。**仅此一项**（同批 3 条 thunk 修正因 L1 代价未落盘，见文末）。
+- **证据**:
+  1. **[A·分配点]** `original/PAL3.exe.asm` 行 413240-413249：`push 0A48h ; call ??2@YAPAXI@Z ; add esp,4 ; mov [esp+1018h+var_1010],eax ; test eax,eax ; jz ; push esi ; mov ecx,eax ; call sub_5160A0` ⇒ 被构造对象 **0xA48 = 2632** 字节。
+  2. **[A·ctor 归属]** `sub_5160A0`（行 419268）本体行 419290 写 `mov dword ptr [esi], offset off_5704A8`；`off_5704A8`（行 539364）的唯一代码 XREF 是 `sub_5160A0+2C`；vtable `0x005704A8` 在全部 struct 注解里**只有 `CCBProtectWindow` 声明**（7 槽），且槽 2/3 = `0x00518E30`/`0x005164D0` 与该注解现有方法表吻合。
+  3. **[反证]** 注解原先当作 ctor 的 `0x0051D6E0` 实为**静态初始化 thunk**（行 431130-431133：`mov eax, ds:dword_5705B0 ; mov dword_17AD59C, eax ; retn`，无 `this`）⇒ 不能拿它做任何二进制挂钩。
+- **验证**（本轮实测，A/B 控制实验；两条腿的 IDB 构建路径与 `apply` 次数已对齐）:
+  - 落地前：S2 `70/201`、matched `222/256`、L1 `21`、partial `173`；
+  - 落地后：S2 `70/201`、matched `222/256`、L1 `21`、partial `173` ⇒ **new_failures = 0、L1 无回退**（对全部稳定指标中性）。
+  - 总错误数**不作判据**——同一状态重跑得 2484 与 2466（±18），见 `docs/knowledge/gotcha_error_census_not_a_pure_function_of_the_tree.md`。
+- **性质**: 只改布局尺寸，不改任何成员偏移、名字、签名。
+- **同批未落盘（有证据但被 L1 门禁挡下）**: 把 `0x0051D6E0`/`0x0051D6F0`/`0x0051D700` 三条静态初始化 thunk 标 `skip` 并改名 `_static_init_*`。三者与本尺寸改动**合在一起**时 **S2 70→71（多修好 1 个文件）但 L1 21→20**；拆分测量显示 S2 的 +1 与 L1 的 −1 **都来自这三条**（只落尺寸时为中性）。按 CLAUDE.md「字节匹配 > 代码优雅」暂不落盘；证据与逐符号/逐文件拆分明细见 `data/status/_size_evidence_20260919.md`。
+
+## 2026-09-19 · UIRenderObj 真实尺寸 4 → 32（两侧夹逼；K）
+
+- **改动**: `data/annotations/structs/UIRenderObj.json` 的 `binary_size` 由 `4` 改为 `32`。
+- **证据（两侧夹逼，缺任何一侧都不成立）**:
+  1. **[A·对象首址]** 该类的对象是**函数内静态**：守卫 `sub_5415F0`（asm 行 485493-485510）`mov eax, offset dword_1894D90` 并返回它，首调用时 `mov ecx, offset dword_1894D90 ; call sub_541470 ; push offset … ; call _atexit`。
+  2. **[A·下界 ≥ 0x1E]** 真 ctor `sub_541640` 写 `[esi+0Ch]`、`[esi+1Ch]`、`[esi+1Dh]`、`[esi+ecx*4+10h]`，最大偏移 **0x1D**（asm 行 485546-485570）。
+  3. **[A·上界 ≤ 0x20]** `0x1894D90 + 0x20 = 0x1894DB0` 是**该静态变量自己的 MSVC 守卫字节**（同一守卫函数 `mov cl, byte_1894DB0` / `mov byte_1894DB0, dl` 读写在 asm 行 485495/485502），是**独立符号**、不属于本对象 ⇒ 对象不可能越过它。
+  4. 数据区一致：asm 行 578978-578980 `dword_1894D90 dd 8 dup(?)`（8×4 = 0x20）紧接 `byte_1894DB0`。
+- **验证**（本轮实测，走 `tools/apply_annotation_batch.py --run-pipeline`）:
+  - 落地前：S2 `70/201`、matched `222/256`、L1 `21`、partial `173`；
+  - 落地后：S2 `70/201`、matched `222/256`、L1 `21`、partial `173` ⇒ **new_failures = 0、L1 无回退**；
+  - 目标文件本身 `pal3/src/UI/UIRenderObj.cpp` 错误数 **4 → 3**（消失 1 条）。
+- **性质**: 只改布局尺寸，不改成员偏移/名字/签名。
+- **同源方法**：分配点分析只适用于堆分配对象；静态/嵌入对象须走「对象首址 + ctor 写入脚印（下界）+ 紧邻独立符号（上界）」两侧夹逼，见 `docs/knowledge/pattern_verify_ctor_body_before_binary_hooks.md` 与 `data/status/_size_evidence_20260919.md` §7。
+
+## 2026-09-19 · 三条函数归属纠正（CIniFile→CCBStage、CEffectSystem→CEffect ×2；K）
+
+数据来源：`data/status/_structural_contradictions.json` 中 `verdict=attribution_wrong` 的条目。
+工具：`tools/attribution_offset_match.py`（逐指令跟踪"此刻哪个寄存器装 this"，取 **asm 字节偏移**，
+再与各注解类的**成员起始偏移**做精确匹配）。
+
+> ⚠️ 方法前提：decomp 的 `this + N` **不可当字节偏移** —— `this` 的类型来自注解，
+> 归属错时类型就错，`this + N` 会按错误元素尺寸缩放（实测 `CIniFile* this + 2522` = 字节 **0x4ED0**，
+> asm 已独立确认）。归属取证必须读 asm 的 `[reg+imm]`。
+
+### 1. `0x00504240`：`CIniFile::LoadFullConfig` → **`CCBStage`**
+
+- **证据**：该函数 `this` 上的 7 个字节偏移**逐个精确命中 `CCBStage` 的具名成员起始**：
+  `0x1C4 m_fRotPitch(float)`、`0x1C8 m_fRotYaw(float)`、`0x1D0 m_fTimeAccum(float)`、
+  `0x1EC m_ActionAngles(float)`、`0x1F0 m_fTurnDelay(float)`、`0x1F4 m_nActionTimer(int)`、
+  `0x11E8 m_TurnBuffer(int)`（asm 行 393091-393242）。
+- **次优候选**：`tagPAL3GameState` 6/7、`CameraCtrl` 4/7（且都有一处落在空洞里）。
+- **"不在原类中"**：`CIniFile` 只有 `m_fp`@0、`m_bRead`@4 ⇒ 上述成员一个都不存在。
+- **名字**：保留 `LoadFullConfig`（读 `datascript\cbCam.ini` 并写入上述转动/相机字段，名字未被证据推翻）。
+
+### 2. `0x004C5DB0`：`CEffectSystem::GetThreadHandle` → **`CEffect::Activate`**（改名）
+
+- **证据**：asm 行 291202-291221 本体：`mov byte [esi+0Ch],1 ; mov byte [esi+0Dh],1 ; call sub_4C6170 ;
+  lea ecx,[esi+3A020h] ; 循环 0x800 次 mov [ecx],eax / add ecx,4`。
+  三个偏移在 `CEffect` 里精确命中具名成员：`+0xC m_bActive(unsigned char)`、`+0xD m_bVisible(unsigned char)`、
+  `+0x3A020 m_nQ2PIndex(int[2048])`（2048×4 = 0x2000，与循环次数**完全一致**）。
+- **"不在原类中"**：`CEffectSystem` 的成员止于 `+0x154`（size=344）⇒ `0x3A020` 不可能。
+- **名字**：原 `GetThreadHandle` 与函数体无关（无任何线程/handle 操作），已证伪；
+  按逻辑定名 `Activate`（置 active+visible 并初始化索引数组）。未用已被占用的 `Reset`。
+
+### 3. `0x004C5DE0`：`CEffectSystem::ReleaseParticle` → **`CEffect::ReleaseTextures`**（改名）
+
+- **证据**：asm 行 291229-291251 本体：`ecx=[esi+3C020h]` 非空则 `gbRefObject::Release(ecx)` 并清零；
+  `eax=[esi+3C024h]` 非空则 `operator delete(eax)` 并清零。
+  两个偏移在 `CEffect` 里精确命中具名成员：`+0x3C020 m_pTexture(gbTexture *)`、
+  `+0x3C024 m_pTextureArray(gbTextureArray *)` —— 类型与两个动作（引用计数释放 / operator delete）吻合。
+- **"不在原类中"**：同上，`CEffectSystem` 不可能有这两个偏移。
+- **名字**：原 `ReleaseParticle` 与函数体无关（处理的是纹理），已证伪 ⇒ `ReleaseTextures`。
+
+### 验证（本轮实测，`--run-pipeline` + `match`）
+
+| 指标 | 落地前 | 落地后 |
+|---|---|---|
+| S2 | 70/201 | **71/201**（`pal3/src/Effect/ScreenEffect.cpp` fail→ok） |
+| matched | 222/256 | **225/259**（三条函数重新正确发射/改名） |
+| **L1** | 21 | **21**（无回退） |
+| new_failures | — | **0** |
+
+⇒ 验证清单全部满足，且**首次出现正向收益**（此前两条尺寸修正均为中性）。
+
+## 2026-09-19 · 第 4 条归属纠正：`0x004C5B90` `_Texture_uv::operator=` → **`CEffectSystem::SetEffectVisible`**
+
+- **改动**：`data/annotations/structs/_Texture_uv.json` 删除 `0x004C5B90`；移入 `CEffectSystem.json` 并改名。
+- **证据（asm 行 290910-290924 本体，链路两端都是精确成员）**:
+  1. `mov ecx, [esi+eax*4+118h]` —— `+0x118` 在 `CEffectSystem` 里是 `known_members['280'] = m_pEffect`，
+     类型 **`CEffect *[8]`**；`[esi+eax*4+0x118]` 正是"4 字节指针数组取第 eax 个元素"的形态。
+  2. `mov [ecx+0Dh], dl` —— 写入目标是 `CEffect` 的 `known_members['13'] = m_bVisible`，类型 **`unsigned char`**，
+     与 `mov dl → mov [ecx+0Dh],dl` 的 **byte 存储**吻合。
+  3. 函数先 `push arg0; call sub_4C5940`（索引规范化），再取数组元素 ⇒ 语义为"按索引设置某个 effect 的可见性"。
+- **"不在原类中"**：`_Texture_uv` 只有 `u`@0 / `v`@4（size=8），既无 `+0x118` 也无任何指针数组。
+- **原名已证伪**：`operator=` 与函数体无关（它收 `(int, char)` 并写一个字节，不是赋值运算符）；
+  按逻辑改名 `SetEffectVisible`（`CEffectSystem` 已有 `IsVisible`/`SetVisible`，避免重名）。
+- **验证**：S2 `71/201`、matched `225/259`、**L1 `21`**、partial `176`、`new_failures = 0` —— 全部与落地前一致
+  （**中性**：本条是正确性修正，不产生可测收益）。
+
+### 附：搬类之后必须一起修签名（本次踩到并已修）
+
+`reattribute` 只搬 `methods[addr]` 这一条，**不带签名**。本条搬过去后残留原类的
+`signature: "struct _Texture_uv & (_Texture_uv *)"`，于是生成头把它发射成
+
+```cpp
+static struct _Texture_uv & SetEffectVisible(_Texture_uv *); // 0x004C5B90   ← 错
+```
+
+（还退化成了 `static` 自由函数）。已按 asm 证据改正为
+`void __thiscall CEffectSystem::SetEffectVisible(int nIndex, unsigned char bVisible)`
+（`retn 8` ⇒ 两个栈参；`mov dl,[esp+4+arg_4]` → `mov [ecx+0Dh],dl` 是字节存储 ⇒ 第二参为字节；无返回值）。
+改正后生成头为 `void SetEffectVisible(int nIndex, unsigned char bVisible); // 0x004C5B90`（行 43），
+验证同样中性（S2 `71/201`、matched `225/259`、L1 `21`、`new_failures 0`）。
+
+**工具侧护栏**：`tools/apply_annotation_batch.py` 新增 `set_signature` 种类，并拒绝
+"含 `__thiscall` 但缺 `::`"的签名（那正是会被发射成 `static` 自由函数、并在
+`check_annotations` 里报 WARN 的形态）。
+
+## 2026-09-19 · 第 5 条归属纠正：`0x00525080` `UIWnd::_todo_525080` → **`PalScriptMgr::Get_m_nField_1490`**
+
+- **改动**：`UIWnd.json` 删除 `0x00525080`；移入 `PalScriptMgr.json` 并改名。
+- **证据**:
+  1. **[A·函数体]** `original/PAL3.exe.asm` 行 441430-441432 只有两条指令：
+     `mov eax, [ecx+1490h] ; retn` ⇒ `return this->[0x1490]`（4 字节读）。一元访问器，**单个偏移即函数全部行为**。
+  2. **[A·"不在原类中"]** `UIWnd` 的 `binary_size = 68`（成员止于 +0x44）⇒ 不可能有 `+0x1490`。
+  3. **[A·目标类唯一]** 在全部 894 个注解类里，**唯一**在 `+0x1490` 上有成员的是
+     `PalScriptMgr`（size=9512）：`known_members['5264'] = m_nField_1490`，类型 `int`
+     —— 与 4 字节读、与 `[ecx+1490h]` 精确吻合。
+- **名字**：原名 `_todo_525080` 是诚实占位；该函数就是 `m_nField_1490` 的取值器，
+  以所取成员命名（`Get_m_nField_1490`），不臆造语义；成员名本身仍是占位，含义未定。
+- **验证**：S2 `71/201`、matched `225/259`、**L1 `21`**、partial `176`、`new_failures = 0` —— 与落地前一致
+  （**中性**：一元访问器的归属修正不产生可测收益）。
+- **附：又一次"签名不跟着搬"**（与第 4 条同型）：搬移后残留 `int __thiscall(UIWnd *this)`，
+  会把 this 当 UIWnd。已按 asm（`retn` 无立即数 ⇒ 无栈参、返回 4 字节）改为
+  `int __thiscall PalScriptMgr::Get_m_nField_1490()`；生成头现为
+  `int Get_m_nField_1490(); // 0x00525080`，验证同样中性。
+  **工具已加护栏**：`reattribute` 支持可选 `new_signature`，且当旧签名里出现原类名时会 **WARN**
+  并提示补 `new_signature`（两次踩到同一坑，故直接做成机制）。
+
+## 2026-09-19 · 第 6 条归属纠正：`0x004CDAE0` `gbRefObject::ReleaseAllRefs` → **`CEffMgr::ReleaseAllRefs`**
+
+- **改动**：`gbRefObject.json` 删除 `0x004CDAE0`；移入 `CEffMgr.json`，签名改为
+  `char __thiscall CEffMgr::ReleaseAllRefs()`（**只改类与 this**；返回类型保留原注解的 `char`——它来自 PDB，
+  本次没有推翻它的证据）。
+- **证据**（asm 行 304120-304186 本体，三段结构逐项吻合）:
+  1. 开头对 `[edi+8]`/`[edi+0Ch]`/`[edi+10h]`/`[edi+14h]` 各调一次 **`gbRefObject::Release()`** ——
+     `CEffMgr` 在这四个偏移上正好是 4 个 `gbRenderEffect *`（`m_pAdditiveBlendNoZ`/`m_pAlphaBlendNoZ`/
+     `m_pAdditiveBlend`/`m_pAlphaBlend`），类型与调用吻合。在 894 个注解类里，同时具备这四个偏移**且四者类型
+     都是 `gbRenderEffect *`** 的只有 `CEffMgr` 与 `SceneMgr`；而只有 `CEffMgr` 另有下面那条 32 元素数组 ⇒ **唯一**。
+  2. 第一段循环：`lea esi,[edi+60h] ; mov ebx,20h`（**32 次**），元素内字段 `+0/+1/+8`，
+     步长 `add esi,48h` = **72** ⇒ 遍历 32 条 72 字节记录。
+  3. 第二段循环：`lea esi,[edi+92Ch] ; mov edi,800h`（**2048 次**），步长 `add esi,14h` = **20 = `tagEffObj` 的尺寸**
+     （`tagEffObj.json` `binary_size=20`），且 `0x92C + 2048×20 = 0xA92C` 恰好落在 `CEffMgr` 的
+     `size=43312 (0xA930)` 之内 ⇒ 与 `m_EffTable` 区段历史上 `tagEffObj[2048]` 的读法一致。
+- **"不在原类中"**：`gbRefObject` 的 `size=8`，不可能有 `+0x14`/`+0x58`/`+0x92C`。
+- **验证**：S2 `71/201`、matched `225/259`、**L1 `21`**、partial `176`、`new_failures = 0`；
+  总错误 `2481 → 2477`（不作判据）。**中性**。
+
+## 2026-09-19 · 归属补录：`0x004B59B0` → **`TextureLibDataBase::sub_4B59B0`**（`__thiscall`，4 个栈参）
+
+- **改动**：`data/annotations/structs/TextureLibDataBase.json` 新增一条
+  `"0x004B59B0": {"name": "sub_4B59B0", "signature": "__int64 __thiscall(char *pszBuf, int nVal, TextureLibDataBase *p, int nVal2)"}`
+  —— 与同文件里已命名的 8 个兄弟**完全同形**（短名 + 非限定 `__thiscall(...)`，
+  避免触发 `codegen_invariants` 的 C 检查"签名类前缀 ≠ 所属类"）。
+- **要解决的问题**：`pal3/src/Effect/ScreenEffect.cpp:59` 报
+  `C2664 'sub_4B59B0' : cannot convert parameter 1 from 'char *' to 'float *'`，
+  这是本机相对发布基线 `20260919_000552` **最后一个新失败**。
+  根因是**同一个 ECX 值被 IDA 猜了两次且互相矛盾**：callee 侧签名
+  `__int64 __thiscall(float *this, int, TextureLibDataBase *, int, int)`（decomp JSON 的 `signature`），
+  caller 侧 `sub_4B59B0((char *)this, ...)`（decomp 文本）——两侧都没有注解，全是 IDA 推断。
+- **证据（A 级，全部来自 `original/PAL3.exe` 本体 `0x4B59B0..0x4B5BA5`）**：
+  1. `0x004B59BA mov esi, ecx` ⇒ `this` 走 ECX ⇒ **`__thiscall`**；
+  2. `0x004B5BA2 ret 0x10` ⇒ **恰好 4 个栈 dword** ⇒ 4 个显式形参（+this = 5 实参），与调用点实参数个数逐一吻合；
+  3. 成员访问全部落在 `TextureLibDataBase` 布局上：
+     `+0x08 / +0x0C / +0x1C / +0x28(b) / +0x29(b) / +0x57(b) / +0x7C..0x7F(b) / +0x80(b) / +0x84 / +0x88 / +0x8C / +0x90 / +0x94 / +0x98 / +0x9C / +0x1A0 / **+0x244**`，
+     其中 `+0x244 (=580)` 正是该类**唯一带直接二进制证据**的成员 `m_fScrollSpeed`（类 584B，580 不越界）；
+     而 `ScreenEffect` 的注解只有 **24B**（布局止于 +0x18），根本装不下这些访问；
+  4. **不是子对象偏移错**：`ScreenEffect::Apply` 的 13 个 switch 分支**形状逐字节相同**
+     （`83 EC 10 / mov ecx,esp / 4×mov [ecx+K],reg / mov ecx,esi / call 目标`），`esi` 只在入口
+     `0x004B4DC3 mov esi, ecx` 被设置一次，**没有任何分支对 esi 做 `lea ecx,[esi+K]` 调整** ⇒
+     `AutoScrollParticles` 与 `sub_4B59B0` 收到的是**同一个指针值** ⇒ 纯类型错（若真有子对象偏移，
+     编译器必须在至少一个分支发 `lea`）；
+  5. 兄弟对照：`0x4B4FE0/0x4B51A0/0x4B5380/0x4B5450/0x4B5750/0x4B5D20/0x4B5EE0/0x4B60F0/0x4B6300`
+     在同一 JSON 里统一是"`TextureLibDataBase *this` + 4 个栈参"，`0x4B59B0` 正落在这段连续区间内；
+     四个未注解兄弟（`4B5570/4B5830/4B59B0/4B5BB0`）的首参却被 IDA 猜成互不相同的
+     `int`/`float *`/`float *`/`float *` —— 正好反证这些 cast 不可信。
+- **验证（同谱系 A/B，含 apply + export + codegen + probe + match）**：
+  S2 **`70 → 73/201`**、**`new_failures 3 → 0`（硬线首次达成）**、FIXED 5、
+  matched `222/256`、**L1 `22`（不回退）**、partial `173`；
+  调用点现为 `(((TextureLibDataBase *)this))->TextureLibDataBase::sub_4B59B0(v4, (int)v3, v6, (__int64)v5);`
+  —— 与 case 1-4/6/10-13 的已编译形态完全同形，`free_functions.h` 里那条 5 参自由函数声明随之消失。
+  爆炸半径：**1 条注解、1 个调用点**（全仓唯一引用）。
+- **遗留（本轮明确不动，避免混做）**：`ScreenEffect::Apply` 自身也读 `[esi+0x80]/[esi+0x88]/[esi+0x8C]/[esi+0x18]/[esi+0x1C]`，
+  同样越出 24B 的 `ScreenEffect` 注解 ⇒ **`Apply` 的归属很可能也错**（更可能同属 `TextureLibDataBase`）。
+  这需要单独一轮 vtable/ctor 证据（ctor 写入的 vfptr、基类初始化序列），不与本次编译修复混做。
+
+## 2026-09-19 · 0x00445FA0 由自由函数移入 UIWnd::sub_445FA0（__thiscall）
+
+- 改动：functions.json 删 0x00445fa0；UIWnd.json 的 methods 增 0x00445FA0（name sub_445FA0 / signature int __thiscall(void *a2)）。
+- 问题：UIMap::OnMessage 只差 4 字节；生成物与 decomp 一致却与二进制不符 ⇒ 丢信息在 IDA 原型层。
+- 证据(A级)：调用点 mov esi,ecx / cmp edi,0x3fe / lea eax,[esi+0x10] / **lea ecx,[esi+0x48]** / call 0x445fa0；callee lea eax,[ecx+0x10] + 4×dword 拷贝（16B tagRECT，吻合 UIWnd::m_rect@+0x10）、mov eax,[ecx] + call [eax+0x18]（槽6，参数 1022,0,0 = CGameData::OnMessage）、ret 4。
+- 刻意不改：UIMap+0x48 保持 int m_screenWidth —— 改 68B UIWnd 子对象会与 0x4C..0x60 成员全部重叠、布局必崩；成员化后 ECX 自动重现。
+- 验证：S2 73/201 不变、new_failures 0、**L1 31 -> 32**、partial 188 -> 187；新增 L1 = UIMap::OnMessage(int,int,int)。
+
+## 2026-09-19 · 原型修正：CScreenMode::_nearby_53f4c0 去掉幻影形参（1 个栈参 → 0）
+
+- 改动：data/annotations/functions.json 里该条目的 signature 由 _DWORD *__thiscall(_DWORD *) 改为 _DWORD *__thiscall()。
+- 依据（A 级，反汇编 0x53F4C0 本体 9 字节）：8B C1 (mov eax,ecx) / C7 00 58 0A 57 00 (mov dword ptr [eax],0x570A58) / C3 (ret 无立即数 = 0 个栈参)。
+- 症状：调用点生成的调用多推一个实参（push ecx），与二进制 mov ecx,global; call 不符。
+- 验证（同谱系 A/B，含 apply+export+codegen+probe+match）：S2 73/201、new_failures 0、L1 32（中性）⇒ 与复核结论一致（原型/成员表修正属正确性收益，非字节收益）。
+
+## 2026-09-19 · 归属修正：0x0043B4D0 = UIScenePanel::~UIScenePanel（原 free `UICaption_Destroy2`）
+
+- **改动**：
+  1. `data/annotations/functions.json`：删除 0x0043B4D0 的两条自由函数条目（活动条目 `void __cdecl()`；
+     及其 skip 孪生条目 "misattributed in struct, removed"）。
+  2. `data/annotations/structs/UIScenePanel.json`：`methods` 增加
+     `"0x0043B4D0": {"name": "~UIScenePanel", "signature": "void __thiscall UIScenePanel::~UIScenePanel()"}`。
+- **A 级依据（本轮独立 IDA 只读探针，`%TEMP%\dd106\probe_dtor.py`）**：
+  - 0x0043B4D0 本体（0x43B4D0–0x43B4FE，47 字节）：
+    `push esi / mov esi,ecx / mov dword ptr [esi],offset stru_56AC90`（**vptr = 0x0056AC90**）
+    `/ mov eax,[esi+158h] / test / jz / push eax / call ??3@YAXPAX@Z (operator delete) / add esp,4
+    / mov dword ptr [esi+158h],0 / mov ecx,esi / call ?Destroy2@UICaption@@QAEXXZ（基类析构）/ pop esi / retn`。
+  - 0x0056AC90 正是**本类 vtables[0]**（`UIScenePanel.json` `vtables[0].addr`）。
+  - **同一个 vptr 0x56AC90 在整个 .text 里只有两处写入**：0x43B497（在 0x0043B3E0 内，即本类已有
+    methods 条目 `_UIScenePanel`）与 0x43B4D3（本函数）⇒ 二者是同一个类的 ctor/dtor 对。
+  - `[this+0x158]` = 344 = 本类 `known_members["344"]`(`m_SlotData`)，被删除并清零 ⇒ 与析构语义一致。
+  - 调用者：0x004461F0（`UICaption::DestroyPanel`，**`add ecx,0x60; jmp 0x43B4D0`**）与
+    0x0043B4B0（`??_GUICaption@@UAEPAXI@Z` 标量删除析构）；另有 8 处 `push offset` 取地址
+    （0x453D54/0x453F36/0x456AE4/0x456BC6/0x560DA4/0x560E74/0x5611D6/0x561226）。
+    `UICaption.binary_size = 96 = 0x60` ⇒ 多继承下 UIScenePanel 子对象位于 UICaption 之后，
+    该形式是 MSVC 的**子对象析构 adjustor thunk**（与 UITextArea::Destroy `add ecx,0x68` 同型）。
+- **为何此前被移出**：旧审计在 0x0043B3E0 上留了 `_misattrib_evidence: max_offset=372>class_size=96`，
+  其中 `class_size=96` 是 **UICaption** 的尺寸 —— 拿 UICaption 的尺寸去判 UICaption 名下函数，
+  故得出"misattributed … removed"。本轮用"同 vptr + 同成员 + ctor/dtor 对 + 调用者 thunk"四重证据翻案。
+
+## 2026-09-19 · 原型修正：UISceneUpdate 返回类型 int → SceneMgr*；SceneMgr::ClearInactiveRoles 返回类型 int → SceneMgr*（F61）
+
+- **改动**：
+  1. `data/annotations/functions.json`：`0x004226F0 UISceneUpdate` 的
+     `int __cdecl()` → `struct SceneMgr *__cdecl()`。
+  2. `data/annotations/structs/SceneMgr.json`：`0x00423500 ClearInactiveRoles` 的
+     `int __cdecl SceneMgr::ClearInactiveRoles()` → `struct SceneMgr *__cdecl SceneMgr::ClearInactiveRoles()`。
+- **依据（A 级）**：`SceneMgr::ClearInactiveRoles` @0x00423500 的返回值被当作对象基址使用
+  （`[eax+0xe0e0]` = `SceneMgr.json` 的 `m_nRoleCount`、`[eax+0xe35c]`），且函数尾部**没有** `mov eax,…`
+  ⇒ eax 一直保留被调用者 `UISceneUpdate()`（0x004226F0）的返回指针 ⇒ 两者都应是返回指针。
+  原标注 `int` 使 Hex-Rays 把 `result` 钉成 `int`，只能发 `*(int*)(result+57568)` / `*(_DWORD*)(result+57568)`
+  裸指针算术 —— 同一表达式两处**符号性不一致**，编译出 `jb` 而二进制是 `jl`。
+  改后反编译变成 `result->m_nRoleCount`（`int`，两处都带符号）✓ 与二进制的 `jl` 一致。
+  唯一引用者 `Logger.cpp:216` 是取地址（cast 成 `void(*)()`），不受返回类型影响。
+- **连带发现的工具缺陷（已修）**：`pipeline/ida/vc6_mangler.py` 对"当前类自身的类型引用"写全类名
+  （`SAPAVSceneMgr@@XZ`），而 VC6 实际符号是**回指** `SAPAV1@XZ`（取自本轮真实 .obj 符号）
+  ⇒ `compare_pal3` 的 mangled_map 键对不上 ⇒ 该函数判 unmatched。修 `_self_ref_backref()` 后
+  **matched 248 → 253、unmatched 41 → 36**。
+- **验证（同谱系 A/B，apply+export+codegen+probe+match）**：S2 **73/207**、**new_failures 0**、**L1 38（不回退）**；
+  `SceneMgr::ClearInactiveRoles` 的 n_diff 由 1 → **3**，首差从"条件跳转符号性"变成
+  **`mov ecx,[eax+0xe0e0]` vs 我们 `[eax+0xe0cc]`**（差 4 字节）——根因是 **SceneMgr 自身也中 F57/F59 的 +4 错位**
+  （它在注解里 `vtables=0`，因此 F59 的"有 vtable 才处理"门未命中），已列入第 110 轮 ROI。

@@ -1566,6 +1566,12 @@
     "0x0051F090": {
       "name": "SetWeaponSlotB",
       "signature": "int __thiscall(CCBStage *this)"
+    },
+    "0x00504240": {
+      "name": "LoadFullConfig",
+      "signature": "int __thiscall CIniFile::LoadFullConfig()",
+      "note": "reattribute: asm 字节偏移逐个落在 CCBStage 的具名成员起始处（7/7 精确命中，工具 tools/attribution_offset_match.py）：0x1C4 m_fRotPitch(float)、0x1C8 m_fRotYaw(float)、0x1D0 m_fTimeAccum(float)、0x1EC m_ActionAngles(float)、0x1F0 m_fTurnDelay(float)、0x1F4 m_nActionTimer(int)、0x11E8 m_TurnBuffer(int)（original/PAL3.exe.asm 行 393091-393242）。次优候选 tagPAL3GameState 6/7、CameraCtrl 4/7，且都有一处落在空洞里。原类 CIniFile 只有 m_fp@0 与 m_bRead@4，上述成员一个都不存在 ⇒ 不可能是 CIniFile 的方法。注意 decomp 里的 `this + N` 不可当字节偏移（this 类型来自错误注解，会按错误元素尺寸缩放）：本函数 decomp 的 (float*)this+1147 = 字节 0x11EC，asm 已独立确认。",
+      "name_evidence": "名字沿用原注解的 LoadFullConfig，不做臆造：该函数确为一个配置加载器（读 datascript/cbCam.ini，逐段 ReadSection/ReadLine 后写入 CCBStage 的转动/相机一族字段）。现有名字未被证据推翻，改名不是本次目的。"
     }
   },
   "vtables": [

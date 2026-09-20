@@ -7,6 +7,8 @@ Stage 4 - resolution:     AST-based identifier/type resolution (no text hacks)
 Stage 5 - fixup:          Compiler compatibility patches (text-level, no AST)
 """
 from dataclasses import dataclass
+import re
+
 from stages import stage1_structural, stage2_semantic, stage3_cleanup
 from stages import stage4_substitution, stage5_fixup
 
@@ -33,11 +35,81 @@ def make_context(cls_name, method_name, sig='', is_free=False, stub_registry=Non
         stub_registry=stub_registry)
 
 
+def _thunk_keep_tailjump(code, ctx, is_thunk):
+    """F20（2026-09-19，长线计划）：thunk（IDA `// attributes: thunk`）必须是 5 字节 `E9 rel32` 尾跳。
+
+    实测（独立复核，用仓库自带 CL.EXE + 项目同款 flags）：我们当前发射的形态（末句调用 /
+    `return call`）**本来就会**编译成 `E9 rel32`；真正的阻塞是 `/Ob2` 把 callee 在**同一个 TU** 内联掉，
+    函数体变成 callee 的副本（11~64 字节）。`#pragma inline_depth(0)` 是唯一能在**保留全局优化器**
+    （TCO 由它做）的同时阻止内联的局部手段：`auto_inline(off)`/`inline_recursion(off)` 都无效，
+    `optimize("g", off)` 会把 TCO 一起关掉（更糟）。
+    **门（实测必需）**：ctor/dtor 不算 —— dtor thunk 加 pragma 反而多出基类 dtor 调用 + EH 帧。
+    另：函数体必须只有一条调用语句（decomp 里带 `int result; … return result;` 的是**签名误标**产物，
+    属注解批，不在这里处理）。
+    """
+    if not is_thunk:
+        return code
+    if getattr(ctx, 'is_ctor', False) or getattr(ctx, 'is_dtor', False):
+        return code
+    # 只取**大括号之间**的语句：先把签名行/标记注释排除掉（首版用 split()[1:] 误把签名行当语句，
+    # 导致门恒不通过、stage6 完全空转——已由 A/B（L1 未变）暴露）。
+    _ls = code.split('\n')
+    _open = next((i for i, l in enumerate(_ls) if l.strip() == '{'), None)
+    _close = next((i for i in range(len(_ls) - 1, -1, -1) if _ls[i].strip() == '}'), None)
+    if _open is None or _close is None or _close <= _open:
+        return code
+    _body = [l.strip() for l in _ls[_open + 1:_close]
+             if l.strip() and not l.strip().startswith('//')]
+    if len(_body) != 1 or not _body[0].endswith(';'):
+        return code
+    return '#pragma inline_depth(0)\n%s\n#pragma inline_depth()' % code
+
+
+# --- F51: JUMPOUT(0xADDR) 还原成真正的尾调用 -------------------------------
+# `include/pal3/ida_defs.h` 里 `#define JUMPOUT(x)` 展开为**空**，于是 Hex-Rays 用来表示
+# "跳到一个不是函数入口的代码块" 的尾跳被整个丢掉。
+# 唯一活体：TextureLib::ClearAndJump @0x0053F550（10 字节）
+#   E8 rel32   call TextureLib::ClearGlobalVars (0x53F560)
+#   E9 rel32   jmp  0x53F570                     <- 真尾跳，0x53F570 是真实代码块
+# 我们原先生成 33 字节（/Ob2 把 ClearGlobalVars 内联进来 + 跳转消失）。
+# 两道闸（实测）：
+#   1) 目标必须落在 .text 映像内 —— PAL3.cpp:4042 的 0x2EE3E9A 是 IDA 伪造的 `je` 目标；
+#   2) 函数体里必须至少有一条非 JUMPOUT 语句 —— free_functions.cpp 的 4 处是 IDA 函数边界
+#      假函数（位于 `align 10h` 填充里，体只有 `JUMPOUT(自己的末尾)`）。
+# `#pragma inline_depth(0)` 与 F20 同机制，实测必需（否则前置调用仍被内联）。
+_TEXT_LO, _TEXT_HI = 0x401000, 0x56A000
+_JUMPOUT_RE = re.compile(r'JUMPOUT\(\s*(0x[0-9A-Fa-f]+)\s*\)')
+
+
+def _jumpout_to_tailcall(code):
+    """把 `JUMPOUT(0xNNN)` 改写成对真实代码块 `sub_NNN()` 的尾调用。"""
+    _m = _JUMPOUT_RE.search(code)
+    if _m is None:
+        return code
+    _t = int(_m.group(1), 16)
+    if not (_TEXT_LO <= _t < _TEXT_HI):
+        return code
+    _ls = code.split('\n')
+    _open = next((i for i, l in enumerate(_ls) if l.strip() == '{'), None)
+    _close = next((i for i in range(len(_ls) - 1, -1, -1) if _ls[i].strip() == '}'), None)
+    if _open is None or _close is None or _close <= _open:
+        return code
+    _stmts = [l.strip() for l in _ls[_open + 1:_close]
+              if l.strip() and not l.strip().startswith('//')]
+    if not [s for s in _stmts if not s.startswith('JUMPOUT(')]:
+        return code
+    code = _JUMPOUT_RE.sub(lambda mm: 'sub_%X()' % int(mm.group(1), 16), code)
+    return '#pragma inline_depth(0)\n%s\n#pragma inline_depth()' % code
+
+
 def run_transforms(code, ctx):
-    """Execute 5 stages in strict order."""
+    """Execute 5 stages in strict order (+ stage6: thunk 尾跳保持)."""
+    # thunk 判定取在**变换前**：防止某个阶段把标记注释/剥掉。
+    # 注意标记**不一定在第一行**（实测前面常有 `// 0x004EC480` 这类地址注释）⇒ 扫前几行。
+    _is_thunk = any('attributes: thunk' in _l for _l in code.split('\n')[:4])
     code = stage1_structural.run(code, ctx)
     code = stage2_semantic.run(code, ctx)
     code = stage3_cleanup.run(code, ctx)
     code = stage4_substitution.run(code, ctx)
     code = stage5_fixup.run(code, ctx)
-    return code
+    return _jumpout_to_tailcall(_thunk_keep_tailjump(code, ctx, _is_thunk))

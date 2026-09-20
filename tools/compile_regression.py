@@ -12,6 +12,16 @@ import sys
 from pathlib import Path
 from datetime import datetime
 
+# F52-bis（第 133 轮）：本脚本正文用 emoji（✅/⚠️/🎉）报结论，而 cmd/pwsh 的默认
+# stdout 编码是 GBK ⇒ `UnicodeEncodeError` 直接让**门禁自己崩掉**
+# （第 132/133 轮实测：报告已经算完并打印，最后一行 `✅ No regressions detected`
+#   抛异常 → 退出码 1，被 `cli.py` 当成"有退化"）。门禁工具的结论行必须能打印出来。
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
+
 PROJECT_ROOT = Path(__file__).parent.parent
 PROBE_FILE = PROJECT_ROOT / "data" / "status" / "probe_census.json"
 BASELINE_FILE = PROJECT_ROOT / "data" / "status" / "compile_baseline.json"
@@ -22,7 +32,7 @@ def load_current():
     if not PROBE_FILE.exists():
         print(f"Error: {PROBE_FILE} not found. Run probe_compile.py first.")
         sys.exit(1)
-    with open(PROBE_FILE) as f:
+    with open(PROBE_FILE, encoding='utf-8') as f:
         return json.load(f)
 
 

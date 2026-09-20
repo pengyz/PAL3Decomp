@@ -340,13 +340,30 @@ SKIP_CLASSES = {
 
 # Auto-detect classes defined in gbengine headers
 _GBENGINE_DIR = Path(__file__).parent.parent.parent.parent / "include" / "gbengine"
+
+# F53（第 105 轮）：gbengine 头用 `class GBAPI Foo` / `struct __declspec(dllimport) Foo`
+# 声明导出类型。扫描类型名时必须跳过导出宏/declspec，否则该类型不再被认作 gbengine 类型，
+# codegen 会为它再生成一份 pal3 侧头文件 ⇒ 与 include/gbengine 里的定义冲突（C2011）。
+_EXPORT_MACROS = ('GBAPI', 'DLLAPI', 'DLLEXPORT', 'DECLSPEC', 'EXPORT', 'API')
+_CLASS_DECL_RE = re.compile(r'^(?:class|struct|enum)\s+(\w+)')
+
+
+def _class_decl_name(line):
+    """`line` 声明的类型名；容忍 `__declspec(...)` 与导出宏前缀。"""
+    s = re.sub(r'__declspec\s*\([^)]*\)\s*', '', line)
+    for _mac in _EXPORT_MACROS:
+        s = re.sub(r'^(class|struct|enum)\s+%s\s+' % _mac, r'\1 ', s)
+    _m = _CLASS_DECL_RE.match(s)
+    return _m.group(1) if _m else None
+
+
 if _GBENGINE_DIR.exists():
     for _hf in _GBENGINE_DIR.glob("*.h"):
         with open(_hf, 'r', encoding='utf-8', errors='replace') as _fh:
             for _line in _fh:
-                _m = re.match(r'^(?:class|struct)\s+(\w+)', _line)
-                if _m:
-                    SKIP_CLASSES.add(_m.group(1))
+                _nm = _class_decl_name(_line)
+                if _nm:
+                    SKIP_CLASSES.add(_nm)
 
 # Prefix patterns for system/library types that should never be generated
 SKIP_PREFIXES = (
@@ -431,6 +448,18 @@ def parse_signature(sig):
     """
     if not sig:
         return 'int', '', '', ''
+    # F69（第 121 轮）：IDA/PDB 的 **thunk 渲染**会带反引号包装，例如
+    #   "[thunk]:class GetCGEntry `public: static class GetCGEntry * ()"
+    # 原样发射 ⇒ 生成头里出现**非法声明行**（含 `[thunk]:`、反引号 0x60、`public:`）
+    # 实测代价（对发布基线）：PalScriptMgr.cpp +18、ScriptVM.cpp +6 条
+    #   `C2039 'GetCGEntry' : is not a member of 'CG_Entry'`，
+    # 外加同一行的解析连锁错误 C2059 syntax error '['、C2334、C2018 unknown character 0x60、
+    # C2146、C2501 —— 单行合计约 30 条（这正是共享单元错误数 +21 的主要来源）。
+    # 处理：取最后一个反引号之后的部分（真正的声明），再去掉访问修饰与 [thunk]: 前缀。
+    if '`' in sig:
+        sig = sig.rsplit('`', 1)[-1]
+    sig = re.sub(r'^\s*\[thunk\]\s*:[^ ]*\s*', '', sig)
+    sig = re.sub(r'^\s*(public|protected|private)\s*:\s*', '', sig)
     # Normalize IDA __hidden this marker: apply_annotations writes method types as
     # `Cls *__hidden this` (IDA's official this-argument spelling, adopted as
     # definite by Hex-Rays). Codegen consumes the equivalent `Cls *this` form.
@@ -757,10 +786,14 @@ def simplify_stl_type(t, cls_name=None):
 
 def _estimate_member_size(mtype):
     """Estimate size of a member from its type string."""
-    # Pointer types
-    if '*' in mtype:
-        return 4
-    # Array types: "Type[N]" or "Type[0xN]" or "Type[N][M]"
+    # F68（第 120 轮）：**数组必须先于指针判断**。
+    # 原实现首行是 `if '*' in mtype: return 4`，于是 `gbTexture *[16]` 被判成 4 字节
+    # （只算一个指针，忽略 16 个元素）⇒ 循环的 gap 决策据此多补 60 字节。
+    # 实测（编译期探针 + 生成头）：`UITextureArray` 的 `m_ptex[16]`（64 字节）后又被补了
+    # `char _gap_004[60]; // +0x4`，使其 `m_num` 由注解 0x40 被推到 0x7C（+60）、
+    # 类尺寸 0x80（注解 0x44）—— 这就是本会话最后追到的"尺寸错类型级联链"的**唯一根**：
+    # UIListBox +96 ⇐ UIScrollBar +96 ⇐ `m_texarray`(UITextureArray) +96 ⇐ 本行。
+    # 数组分支内部会 `_estimate_member_size(base)` 递归，指针基类型仍返回 4 ✓。
     arr_match = re.search(r'\[((?:0x[0-9a-fA-F]+|\d+))\](?:\[((?:0x[0-9a-fA-F]+|\d+))\])?$', mtype)
     if arr_match:
         base = mtype[:arr_match.start()].strip()
@@ -769,6 +802,9 @@ def _estimate_member_size(mtype):
         count2_str = arr_match.group(2)
         count2 = int(count2_str, 16) if count2_str and count2_str.startswith('0x') else (int(count2_str) if count2_str else 1)
         return _estimate_member_size(base) * count * count2
+    # Pointer types (after arrays: `T *[N]` is an array of pointers, not a pointer)
+    if '*' in mtype:
+        return 4
     # Known sizes
     t = mtype.strip()
     if t in ('char', 'unsigned char', 'BYTE', '_BYTE', 'bool'):
@@ -1032,9 +1068,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         for hf in GBENGINE_HEADER_DIR.glob("*.h"):
             with open(hf, 'r', encoding='utf-8', errors='replace') as fh:
                 for line in fh:
-                    m = re.match(r'^(?:class|struct|enum)\s+(\w+)', line)
-                    if m:
-                        name = m.group(1)
+                    name = _class_decl_name(line)
+                    if name:
                         header_path = "gbengine/%s" % hf.name
                         is_definition = ('{' in line or ':' in line)
                         # Prefer headers with full definitions over forward declarations
@@ -1621,13 +1656,27 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # Data members
     # Determine base class size to skip inherited members
     base_size = 0
+    ann_data = {}
     if base_names:
         try:
             ann_data = _get_ida_structs()
             ann_struct = ann_data.get(cls_name, {})
             base_size = ann_struct.get('base_size', 0)
+            # F18 修正（2026-09-19）：`base_size` 在**导出数据里恒不存在**
+            # （实测 1031 个条目 **0 个**有该键）⇒ 原实现等于恒 0 ⇒ 把真实基类子对象当成
+            # "只有 vptr(4 字节)"，在其上重复补 `char _gap_00X[base_size-4]`，
+            # 其后每个成员实际偏移 = 注解值 + (base_size-4)。
+            # 唯一可靠来源是导出里的 `bases[]`（176 个类都有）+ 各基类自身的 `size`：
+            #     base_size = max(b.offset + size(b.name))
+            for _b in (ann_struct.get('bases') or []):
+                _bn = _b.get('name', '')
+                _bo = int(_b.get('offset', 0) or 0)
+                _bsz = int((ann_data.get(_bn, {}) or {}).get('size', 0) or 0)
+                base_size = max(base_size, _bo + _bsz)
         except:
             pass
+        # （原 F18 的注解回退块已删除：① codegen 不应读 data/annotations/；
+        #   ② 其中的 `binary_size` 回退是死代码——导出里没有该键。改用上面的 `bases[]` 推导。）
 
     # ida_structs.json 已经是 PDB + annotation 合并后的 IDB 导出，
     # 字段名已由 apply_annotations.py 写入 IDB。codegen 不应跨阶段
@@ -1653,6 +1702,17 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         ann_size = ann_struct_fb.get('size')
         if ann_members or ann_size:
             start_off = base_size
+            # P1（2026-09-19，长线计划）：**补发射 +0 的 vptr**。
+            # 实测链条：注解在 `known_members['0']` 标了 `__vftable`（source=vtable_fix），
+            # 但 IDB 结构的 `data_members` 里**没有** offset 0（UIWnd 从 offset 4 起）⇒ 这里只能
+            # 填 `char _gap_000[4]`，而 `stage3_cleanup` 仍在 .cpp 里发射 `__vftable` 访问
+            # ⇒ 80 个类的头都缺 vptr、29 个文件 150 行编译失败（C2039/C2227）。
+            # 判据：该类有 vtable 槽 **且** 首个成员不在 +0（若 +0 已有真实成员则不动）。
+            # 这是**加性**改动：填掉原本的 gap，类尺寸不变。
+            if base_size < 8 and class_vtable_slots(cls_name) and \
+                    (not ann_members or min(int(o) for o in ann_members) > 0):
+                lines.append("    void * __vftable; // +0x0")
+                start_off = max(start_off, 4)
             sorted_offsets = sorted(ann_members, key=lambda x: int(x))
 
             def _emit_member(m, off, mname, mtype):
@@ -1689,6 +1749,14 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 off = int(off_str)
                 if off < start_off:
                     continue
+                # F65（第 113 轮）调试开关：`PAL3_EMIT_TRACE=<ClassName>` 时打印每个成员的
+                # (注解偏移 off, 记账起点 start_off)，用来定位"记账与实际发射字节不一致"的成员
+                # —— SceneMgr 的 `_variants` 联合（注解 +0xC67E）被发射到 +0xC664 且 gap 未补，
+                # 说明某个成员的估计尺寸 > 实际发射尺寸（start_off 被提前推到 off 之上）。
+                if os.environ.get('PAL3_EMIT_TRACE') == cls_name:
+                    sys.stderr.write('TRACE %-16s off=0x%-5X start_off=0x%-5X %s\n' % (
+                        cls_name, off, start_off,
+                        (group[0].get('name') or '')[:32]))
 
                 if len(group) > 1:
                     # Union: multiple variants at same offset
@@ -1749,6 +1817,13 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                                 lines.insert(_insert_at, _il)
                     if _inline_dms:
                         _kind = "union" if _inline_data.get('kind') == 'union' else "struct"
+                        # F65（第 113 轮，**已回退**）：本 inline UDT 分支原先不补 gap（其余 union/struct
+                        # 分支都有），实测补齐后**确实把 SceneMgr 的 −26 修掉了**（头里出现
+                        # `char _gap_C664[26]; // +0xC664`），但**同时把更早的区域推多了**：
+                        # offset 工具复测 deltas 由 {−22,−20,+4} 变成 **{4,20,22,24}**、sizeof 0xE55C
+                        # （注解 0xE544，+24），首个漂移 `m_pCCBStageRoleFind` ann=0x2B54 → 0x2B68(+20)。
+                        # ⇒ 本分支的**尺寸记账另有问题**（内联体的 `member_size`/`start_off` 推进方式），
+                        # 必须与 gap 一起解决，否则按下葫芦浮起瓢。第 114 轮从这里继续。
                         lines.append("    %s { // +0x%X" % (_kind, off))
                         _inner_prev = off
                         for _idm in _inline_dms:
@@ -1851,6 +1926,15 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 if not _field_variants:
                     _field_variants = _ida_variants.get('0x%X' % off, {}).get('_variants', [])
                 if _field_variants:
+                    # F63（第 111 轮，**未生效/已回退**）：本分支与上面的多成员 union 分支不同，
+                    # 原先不补 gap。按 sibling 分支的写法补了 `if off > start_off` 的 gap，
+                    # 但对 SceneMgr **没有生效**（`m_nRoleCount` 仍编到 0xE0CC，注解 0xE0E0，−20）。
+                    # 进一步定位：SceneMgr.json 的 `known_members` 在 0xC660..0xC6A0 只有 `m_nTodo_C660`
+                    # (0xC660)，而 +0xC67E 的联合只存在于 IDA `_variants`；且该分支发射的内部 gap 名是
+                    # **十进制**（`char _gap_50814[2]` = 0xC67E），说明 offset **键格式混用（十进制/十六进制）**，
+                    # 外层的 `sorted_offsets` 与 `_variants.get(off_str)` 都按**字符串**处理
+                    # ⇒ 排序/查找会错位，`start_off` 记账随之漂移。正解是把所有 offset 键统一成 int
+                    # （排序 + 查找都用 int），再用 offsetof 探针复核。**本轮不做**（需整段重构 + 全量回归）。
                     lines.append("    union { // +0x%X" % off)
                     _emit_member(m, off, mname, mtype)
                     for v in _field_variants:
@@ -2204,6 +2288,47 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     if cls_name in _aliases:
         lines.append("typedef %s %s;" % (cls_name, _aliases[cls_name]))
         lines.append("")
+
+    # P1(a) 修正（2026-09-19，长线计划第 1 条）：**声明了 virtual 方法的类不能再有 +0 占位**。
+    # MSVC 会为有虚函数的类在 +0 隐式放入 vfptr；此时再显式发射一个 4 字节占位
+    # （`void * __vftable;` 或 `char _gap_000[4];`），它会被挤到 +4，**其后每个成员都偏 4 字节**。
+    # 实测（独立复核）：编译 `pal3/src/Misc/AStarPathFinder.cpp` 与二进制对比，
+    # `AStarPathFinder::FindInOpen` 只差 2/34 字节（`8B 49 08` vs `8B 49 04`）= 94.1%，
+    # 与 registry 记录的 94.1% 完全吻合。
+    # 占位当初是为了让 `.cpp` 里残留的 `X->__vftable` 能编译；但那些站点本来就产不出字节忠实的
+    # 代码（真修法是按二进制槽号发射虚调用），按"字节匹配 > 编译通过"的优先级，此处以布局正确为准。
+    if any('virtual ' in _l for _l in lines):
+        _ph = re.compile(r'^\s*(?:void \* __vftable;|char _gap_000\[4\];)\s*// \+0x0\s*$')
+        if any(_ph.match(_l) for _l in lines):
+            lines = [_l for _l in lines if not _ph.match(_l)]
+
+        # F59（第 108 轮）：同型错位的**另一半**——注解在 +0 标的是一个"真实成员"（不是占位符）。
+        # 有虚函数 + 注解带 vtable（本函数自己会发射 `// vtable (N methods…)`）⇒ 二进制里 +0 就是
+        # 编译器隐式 vfptr；若头里再声明一个 +0 数据成员，它会被挤到 +4，**其后每个成员整体偏 4**。
+        # 实测（编译期 offsetof 探针）：TextureLib `m_szPathBuf` 0xC→0x10、`m_nTexWidth` 0xB8→0xBC、
+        # `m_Image` 0xCC→0xD0、`sizeof` 0x214→0x218；而二进制 `TextureLib::LoadTexture` @0x4A6930
+        # 首条即 `8B B1 CC 00 00 00`（lea esi,[ecx+0xcc]）⇒ 注解偏移是**绝对**的。
+        # 直接删该成员会让生成代码里大量 `X->成员` 引用编译不过（实测 S2 73→72、L1 37→36），
+        # 因此改为把它声明成 **static 成员**：C++ 允许 `obj->静态成员`（VC6 实测可编译），
+        # 而静态成员**不占对象字节** ⇒ 编译器隐式 vfptr 独占 +0，其后成员偏移全部归位，
+        # 且所有既有引用仍可编译。语义上那些站点本来就是 vfptr 访问（真修法是按槽号发射虚调用）。
+        # F62（第 110 轮）：尝试把门放宽到"类声明了 virtual"（理由：只要类有虚函数，MSVC 必然在 +0
+        # 插入 vfptr，与注解是否带 vtable 无关；实测 SceneMgr 的 `_scalar_dtor` @0x004CD930 里有
+        # `mov dword ptr [esi], 0x56f9b4`（写 .rdata vtable）⇒ 它确实是多态类）。
+        # **但实测该放宽会让成员偏移更差**：`SceneMgr::ClearInactiveRoles` 里 `m_nRoleCount` 的
+        # 读偏移由 −4（0xe0cc vs 原始 0xe0e0）恶化到 **−24（0xe0c8）** ⇒ 说明 `static` 别名会打乱
+        # 生成器的 `_gap_` 记账（后续 gap 填充少算/多算），必须先修 gap 记账才能真正放宽。
+        # 故本轮回退到 F59 的窄门（仅"注解带 vtable"的类），F63 待做。
+        if any('// vtable (' in _l for _l in lines):
+            _m0 = re.compile(r'^(\s+)([A-Za-z_][\w:<>,\*&\s]*?[\w\]\*&])\s*(;\s*// \+0x0\s*)$')
+            _rewritten = []
+            for _l in lines:
+                _m = _m0.match(_l)
+                if _m and not _l.lstrip().startswith('static '):
+                    _l = '%sstatic %s; // +0x0 (vfptr slot; 布局由编译器隐式 vfptr 提供)' % (
+                        _m.group(1), _m.group(2))
+                _rewritten.append(_l)
+            lines = _rewritten
 
     return '\n'.join(lines)
 

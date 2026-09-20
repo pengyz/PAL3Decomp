@@ -1,5 +1,7 @@
 #pragma once
 
+#include "gbengine/gbengine_export.h"
+
 #include "gbengine/gbengine_types.h"
 #include <windows.h>
 
@@ -43,8 +45,8 @@ public:
 // ======== CRC32 Functions ========
 
 void gbCrc32Init(void);
-unsigned int gbCrc32Compute(const char* data, int len);
-unsigned int gbCrc32Compute(const char* str);
+GBAPI unsigned int gbCrc32Compute(const char* data, int len);
+GBAPI unsigned int gbCrc32Compute(const char* str);
 
 // ======== String Functions ========
 
@@ -63,8 +65,8 @@ int gbIsMultiCharTail(char* str, int pos);
 
 // ======== Time/Profiling Functions ========
 
-void gbTimeCounterInit(void);
-double gbUpdateCurTime(void);
+GBAPI void gbTimeCounterInit(void);
+GBAPI double gbUpdateCurTime(void);
 double gbGetCurTime(void);
 unsigned int gbGetCurTick(void);
 float gbGetDeltaTime(void);

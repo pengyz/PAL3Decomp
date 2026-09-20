@@ -2,6 +2,7 @@
 
 #include <windows.h>
 #include <stdio.h>
+#include "gbengine/gbengine_export.h"
 
 // ============================================================================
 // CPK Constants and Flags
@@ -118,30 +119,41 @@ public:
     // Static
     static int s_bCrcTableInitialized;
 
-    CPK();
-    ~CPK();
+    // F70（第 124 轮）：GBAPI 按成员给，**只给 IAT 里真实存在的方法**（A 级清单：GBENGINE 模块
+    // 的 9 个 CPK 符号 —— ctor/dtor/Load/IsValidCPK/Open/Close/DeCompress/Seek/SetOpenMode）。
+    // 类级 GBAPI 对"引擎导出 + 游戏侧又实现"的类是错的：`Init`/`InitPackFiles` 由 PAL3.exe 实现
+    // （0x0053DB90 / 0x0053C250，在 PAL3 的 .text 里）⇒ 类级 dllimport 让它们的定义变成
+    // "全局函数里的 this"（实测 C2673 ×16）。
+    GBAPI CPK();
+    GBAPI ~CPK();
     CPK& operator=(const CPK& other);
 
     // Public methods
-    bool Load(const char* filename);
+    GBAPI bool Load(const char* filename);
     bool Unload();
-    bool IsValidCPK(const char* filename);
+    GBAPI bool IsValidCPK(const char* filename);
     bool IsFileExist(const char* filename);
     bool IsLoaded();
-    CPKFile* Open(const char* filename);
-    bool Close(CPKFile* pFile);
+    GBAPI CPKFile* Open(const char* filename);
+    GBAPI bool Close(CPKFile* pFile);
     bool Read(void* buffer, unsigned long size, CPKFile* pFile);
     int  ReadChar(CPKFile* pFile);
     char* ReadLine(char* buffer, int maxLen, CPKFile* pFile);
     unsigned long LoadFile(void* buffer, const char* filename);
     unsigned long Compress(void* dst, void* src, unsigned long srcLen);
-    unsigned long DeCompress(void* dst, void* src, unsigned long srcLen);
+    GBAPI unsigned long DeCompress(void* dst, void* src, unsigned long srcLen);
     unsigned long GetSize(CPKFile* pFile);
     unsigned long GetCPKHandle();
-    unsigned long Seek(CPKFile* pFile, int offset, unsigned long origin);
+    GBAPI unsigned long Seek(CPKFile* pFile, int offset, unsigned long origin);
     unsigned long Tell(CPKFile* pFile);
     void Rewind(CPKFile* pFile);
-    void SetOpenMode(ECPKMode mode);
+    GBAPI void SetOpenMode(ECPKMode mode);
+
+    // PAL3.exe 侧实现（注解/IDA 类型，A 级）—— 不带 GBAPI：
+    //   CPK *__thiscall CPK::Init()          @0x0053DB90
+    //   CPK *__thiscall CPK::InitPackFiles() @0x0053C250
+    CPK* Init();
+    CPK* InitPackFiles();
 
 private:
     static unsigned long CrcTable[256];
@@ -227,7 +239,7 @@ enum gbVFSType {
 #define GBVFS_SEEK_CUR  2
 #define GBVFS_SEEK_END  3
 
-class gbVFileSystem {
+class GBAPI gbVFileSystem {
 public:
     int             IsInit;         // +0x00
     char*           rtDirectory;    // +0x04
@@ -259,37 +271,53 @@ public:
     int     FindItem(const char* filename);
 };
 
-// Global pointer to the virtual file system
-extern gbVFileSystem* g_pVFileSys;
+// Global pointer to the virtual file system.
+// PAL3.exe does NOT define it: it imports the variable from gbengine.dll
+// (IDA: PAL3.exe .idata entry for GBENGINE, IAT slot 0x0056A598). Without
+// __declspec(dllimport) MSVC6 emits a direct absolute store/load
+// (C7 05 <addr>) instead of the original IAT-indirect form
+// (8B 0D <addr> / 89 01), so every site that touches it differs by bytes.
+extern GBAPI gbVFileSystem* g_pVFileSys;
 
 // ============================================================================
 // CIniFile class - INI file reader/writer using gbVFileSystem
 // ============================================================================
 
+// F70（第 123 轮）：GBAPI（dllimport）**按成员给**，只给真正来自 gbengine.dll 的方法
+// （IAT 实测清单：%TEMP%\dd105\imports.json 的 GBENGINE 模块，A 级）。类级 GBAPI 对
+// "引擎导出 + 游戏侧又实现"的类是错的：`LoadData`/`LoadStructuredConfig` 由 **PAL3.exe 自己实现**
+// （0x004EC700 / 0x00504130 在 PAL3 的 .text 里），类级 dllimport 会让它们的定义触发 C2491 /
+// 退化成"全局函数里的 this"（实测 C2673 ×4 + C2039 连锁）。
 class CIniFile {
 public:
     gbVFile*    m_pFile;        // +0x00: file handle
     int         m_nState;       // +0x04: state (-1 = not opened)
 
-    CIniFile();
-    ~CIniFile();
+    GBAPI CIniFile();
+    GBAPI ~CIniFile();
     CIniFile& operator=(const CIniFile& other);
 
-    int  OpenFileRead(const char* filename);
-    int  OpenFileWrite(const char* filename);
+    GBAPI int  OpenFileRead(const char* filename);
+    GBAPI int  OpenFileWrite(const char* filename);
     void CloseFile();
-    int  ReadSection(char* sectionName);
-    void ReadStart();
-    int  ReadLine(const char* key, char* value, int maxLen);
-    int  ReadLine(const char* key, int* value);
-    int  ReadLine(const char* key, float* value);
-    int  ReadLine(const char* key, double* value);
-    void WriteLine(const char* key, const char* value);
+    GBAPI int  ReadSection(char* sectionName);
+    GBAPI void ReadStart();
+    GBAPI int  ReadLine(const char* key, char* value, int maxLen);
+    GBAPI int  ReadLine(const char* key, int* value);
+    GBAPI int  ReadLine(const char* key, float* value);
+    GBAPI int  ReadLine(const char* key, double* value);
+    GBAPI void WriteLine(const char* key, const char* value);
     void WriteLine(const char* key, int value);
     void WriteLine(const char* key, float value);
     void WriteLine(const char* key, double value);
     void WriteLineSeperator();
-    void WriteSection(const char* section);
+    GBAPI void WriteSection(const char* section);
     int  IfRead();
     gbVFile* GetFilePointer();
+
+    // PAL3.exe 侧实现（注解/IDA 类型，A 级）—— 不带 GBAPI：
+    //   char __thiscall CIniFile::LoadData()            @0x004EC700
+    //   void __thiscall CIniFile::LoadStructuredConfig() @0x00504130
+    char LoadData();
+    void LoadStructuredConfig();
 };

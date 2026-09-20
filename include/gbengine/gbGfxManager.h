@@ -1,5 +1,7 @@
 #pragma once
 
+#include "gbengine/gbengine_export.h"
+
 #include "gbengine/gbengine_types.h"
 #include "gbengine/gbCamera.h"
 #include "gbengine/gbMesh.h"
@@ -100,7 +102,8 @@ struct gbGfxDriverInfo {
 // sizeof = 0x5F0 (from PAL3A PDB), derived gbGfxManager_D3D = 0x8F0
 // Vtable: 29 slots (verified from binary). Only gbGfxManager_D3D is concrete.
 // ============================================================================
-class gbGfxManager {
+#pragma pack(push,4)  // F30: MSVC6 会因类含 double 而把 vptr 后的首成员推到 +8，原二进制是 +4
+class GBAPI gbGfxManager {
 public:
     // vtable implicit                          // +0x00
     int m_nState;                               // +0x04
@@ -206,6 +209,7 @@ public:
     gbVertPoolMgr* GetVertPoolMgr(void);
     int IsWireMode(void);
 };
+#pragma pack(pop)   // F30: 让该类回到 4 字节对齐（原工程无头部填充）
 
 // ============================================================================
 // gbGfxManager_D3D - D3D9 derived graphics manager
@@ -370,7 +374,7 @@ struct CD3DSettings {
 
 class gbCursorRes;
 
-class gbGfxManager_D3D : public gbGfxManager {
+class GBAPI gbGfxManager_D3D : public gbGfxManager {
 public:
     CD3DEnumeration m_d3dEnumeration;              // +0x5F0 (0x2C)
     int m_bWindowed;                               // +0x61C
