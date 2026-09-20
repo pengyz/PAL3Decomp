@@ -69,7 +69,12 @@ annotation_summary_*.txt
 build_*/
 
 # Tool binaries (downloaded separately)
-tools/ghidra/
+# Ghidra 第三方发行包（406M zip + 643M 解压目录）—— **未跟踪、仅本地**。
+# 2026-09-20 审计 P2-3：原规则忽略整个 tools/ghidra/，但该目录下**有 7 个项目脚本已被跟踪**
+# （load_pdb.py / export_*.py / run_headless_export.bat / README.md 等，规则加入前就跟踪了），
+# 形成"被跟踪文件落在被忽略路径"的不一致。收窄为只忽略 vendor 载荷。
+# 结论：**无需任何 git 历史重写**（zip 与解压目录本就不在历史里）。
+tools/ghidra/ghidra_11.2.1_PUBLIC*
 tools/mingw/
 tools/tcc/
 tools/tcc.zip

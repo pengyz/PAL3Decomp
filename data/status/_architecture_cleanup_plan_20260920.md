@@ -174,3 +174,17 @@ B `--force-overwrite` ⇒ exit 0、允许覆盖（graded=144）✓；随后 `git
 ⇒ 这 7 个属**传递死链**（`ida_master_pipeline.py` 自身仅被一个 Windows `.bat` 引用），
 需要一整条链的决策 + 文档更新，**留待后续轮次**（不做单点移动，避免"搬了子件、父件成孤儿"）。
 **审计估的"约 137 个"中，多数属此类传递死链，需逐链裁决，不是简单删除。**
+
+## P2-3（第 9 轮，只读分析 + 一处卫生修正）
+**结论：不需要任何 git 历史重写。** 事实：`tools/ghidra/ghidra_11.2.1_PUBLIC_20241105.zip`（**406M**）
+与解压目录 `ghidra_11.2.1_PUBLIC/`（**643M**）**都不被 git 跟踪**（`git ls-files` 均为 0），
+且 `.gitignore` 早有 `tools/ghidra/` 规则（在它们加入**之前**就存在）。⇒ 它们从未进历史。
+
+**唯一的不一致（已修）**：原规则忽略**整个** `tools/ghidra/`，但该目录下有 **7 个项目脚本
+已被跟踪**（`load_pdb.py`/`export_*.py`/`run_headless_export.bat`/`README.md` 等，规则加入前就跟踪了）
+⇒ 形成"被跟踪文件落在被忽略路径"。已把规则收窄为 `tools/ghidra/ghidra_11.2.1_PUBLIC*`
+（**不带尾斜杠**，同时匹配 zip 与解压目录 —— 第一版带 `*/` 只匹配目录、漏了 zip，已修正）。
+验证：vendor 目录与 zip 均被忽略 ✓；`load_pdb.py` **未被忽略** ✓；`git ls-files tools/ghidra` 仍为 **7** ✓。
+
+**本地磁盘**：这两个载荷合计约 **1.05GB**；因未跟踪，**删除它们对 git 无任何影响**
+（仅影响本机是否保留 Ghidra 路线）。是否删除由操作者按需决定。
