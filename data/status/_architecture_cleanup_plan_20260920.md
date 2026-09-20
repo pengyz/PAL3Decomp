@@ -152,3 +152,25 @@ P2-4 给 4 个"无 argparse 且写盘"的审计工具补 argparse
 **量化**：默认运行只产出 **144 条** graded，而现有 **456 条** ⇒ 原本会**丢 312 条（68%）**。
 验证：A 默认运行 ⇒ **exit 1** + `[RATCHET] 拒绝覆盖 …144 明显少于 456` 且 **pack 未变**（md5 比对）✓；
 B `--force-overwrite` ⇒ exit 0、允许覆盖（graded=144）✓；随后 `git show HEAD:` 还原，md5==HEAD ✓。
+
+## P2-1 归档（第 8 轮，第一批 9 个）
+**判据（严格三重）**：① 引用已不存在的 `asm/pal3a/` 或硬编码作者机 `D:\workspace`；
+② **零文档/知识库/status/CLAUDE.md 引用**（`grep -rl <basename>`）；③ **不被任何其它 .py import**。
+只有三条全过才移动，且用 `git mv`（**不删**）。
+
+**已归档 9 个 → `tools/archive/`**：
+`dia_export_bases.py`、`dia_export_structs.py`、`ghidra/export_known_functions.py`、
+`ida/manual_decompile.py`、`ida/pal3_apply_globals.py`、`ida/pal3_import_types.py`、
+`ida_class_cluster_match.py`、`ida_enhanced_order_match.py`、`pal3_strict_match_local.py`。
+
+**验证**：① 归档后**无任何 .py 再 import 这些模块**（逐个 grep，无输出=✓）；
+② `pipeline/cli.py check` PASS；③ `tool --list` 正常且被归档脚本**不再出现在清单**（grep 计数 0）；
+④ 活跃工具 `check_export_annotation_consistency.py` 仍 exit 0 ✓。
+
+**暂不动 7 个**（被 `tools/ida/ida_master_pipeline.py` import，或文档引用）：
+`ghidra/export_functions.py`、`ida/ida_export_globals.py`、`ida/ida_fix_boundaries.py`、
+`ida/ida_import_pdb_types.py`、`ida/ida_verify_and_export.py`、`ida/pal3_import_structs.py`、
+`ida/pal3a_dump_func_bytes.py`。
+⇒ 这 7 个属**传递死链**（`ida_master_pipeline.py` 自身仅被一个 Windows `.bat` 引用），
+需要一整条链的决策 + 文档更新，**留待后续轮次**（不做单点移动，避免"搬了子件、父件成孤儿"）。
+**审计估的"约 137 个"中，多数属此类传递死链，需逐链裁决，不是简单删除。**
