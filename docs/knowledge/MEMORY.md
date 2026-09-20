@@ -12,6 +12,10 @@
 - [多重继承匿名成员渲染 bug](gotcha_codegen_multi_inheritance_anon_member.md) — 根因是 apply/export 两层自造限制（IDA 原生支持多基类），已修复并有单测+IDB 回归守卫；待重跑 codegen+compile 收口
 - [annotation hook 从未生效](gotcha_annotation_hook_never_wired.md) — validate-annotations.py 路径过期 + 未接入 settings.json，双重失效
 - [apply 静默失败（IDB 锁）](gotcha_apply_silent_fail_idb_lock.md) — 别的会话持有 IDB 锁时 cli.py apply 静默失败，cmd_apply 不以非零退出终止 && 链
+- [计划代码片段必须在真实输入上验证](gotcha_plan_code_snippets_must_be_validated_on_real_input.md) — 只对着自造 fixture 写代码 ⇒ 真实 asm 上暴露 6 个 bug（2 致命：元组取反、16601 行尾注致锚点全失配）
+- [测试必须断言契约而非现状](gotcha_tests_must_assert_contract_not_status_quo.md) — 断言『真实产物应含字符串 count』把缺陷固化成隐性规格 ⇒ 上游修好后测试反而失败；附翻转清单与变异自检法
+- [asm funclet 需按 chunk 头归属宿主](gotcha_asm_funclets_without_proc_need_host_attribution.md) — SEH unwind funclet 无自身 `proc near` ⇒ 213/466 站点误挂最后一个 proc；且须在剥注释**之前**匹配、END 后失效安全
+- [本机 pytest 崩，用自带 runner](gotcha_local_pytest_collect_crashes_use_self_runner.md) — collect 阶段 TypeError（sys.path 混入 aide 的 pytest dev 构建）⇒ 仓内测试一律自带 `__main__` runner，不依赖 pytest fixture
 - [审计结论必须蒸馏进 knowledge](gotcha_audit_findings_must_be_distilled_into_knowledge.md) — 病灶不是"没落盘"而是"落错面"：`data/status/` 373 文件/293 tracked，而知识库只把它当"基线输入路径" ⇒ "审计 → status → 消失"；附 3 条可检查要求（落盘面/写入触发器/MEMORY 入链）
 - [审查动作会写坏工作区](gotcha_review_actions_can_clobber_the_workspace.md) — 两起 `--help` 探测无 argparse 工具覆盖受跟踪产物（sig_evidence −6020 行 / ledger 197→3）；另一起 `ln -s` + 重定向**写穿符号链接**静默覆盖工作区文件；附护栏范式与"真实复制到 /tmp"规范
 - [**init --force 后只跑一趟 apply 不够**](gotcha_apply_single_pass_leaves_globals_untyped.md) — 全局变量名字/类型不落地（`0xC10968` = `unk_C10968` size **1** 而非 `g_palScript` size 2176）⇒ S2 67/201 · L1 20 而非 70/201 · L1 21；**必须再 apply 一次**才算初始化完成
