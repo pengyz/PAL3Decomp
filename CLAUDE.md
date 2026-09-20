@@ -41,7 +41,12 @@ annotations → apply → IDB → Hex-Rays → decomp JSON → codegen → C++  
 2. **vtable 布局**：虚函数声明顺序、COMDAT 折叠、调整 thunk 必须精确匹配 MSVC 生成规则。
 3. **模板特化**：Hex-Rays 不支持模板，`template_bases.json` 做桥接映射。
 4. **优化反编译产物**：Hex-Rays 对优化后代码的反编译可能"看起来对但字节不对"。
-5. **无实时字节验证**：缺少自动对比机制，无法及时感知偏差。
+5. **（2026-09-20 更正：本条已过时，已删除该主张）** 曾经的状态是"无实时字节验证"；
+   现在**已有自动对比机制**：`pipeline/cli.py match`（`cmd_match`）+ `pipeline/compare_pal3.py`
+   + `data/status/s4_baseline.json`，且 `match` 是**强制检查点**（见下方检查点表）。
+   ⚠️ 但需注意：`match EXIT=1` 可能是**编译崩塌的下游现象**（S2 绿单元=0 时无可比对对象），
+   且 L1 棘轮会**回写基线**（`pipeline/cli.py` 的 ratchet 分支）⇒ **不能事后查基线文件判断退化**，
+   必须在同一管线运行中当场读输出 ✓。
 
 ### 设计原则
 
@@ -52,8 +57,13 @@ annotations → apply → IDB → Hex-Rays → decomp JSON → codegen → C++  
   历史上这条写作"codegen 不读 annotation（绝对禁止）"，但实测 codegen 侧有 10+ 处注解直读
   （`emit_headers.py` / `ast_transform.py` / `data.py` / `collect.py` / `stage4_substitution.py`），
   属**已声明的例外**（取舍见 `pipeline/ida/export_full.py` 头部 `[t4-DECLARED-EXCEPTION]`）。
-  2026-09-20 已把它们**全部收敛到该单一读点**，并逐处验证产物字节不变 ⇒
-  现在的规则是**可检查的**：新增注解直读必须走 `annotation_view`。
+  2026-09-20 已把**其中大部分**收敛到该单一读点，并逐处验证产物字节不变。
+  **【2026-09-20 更正（经独立复核证伪原措辞）】并非"全部收敛"** ✗ —— 实测**仍有 3 处直读**：
+  `pipeline/gen/stages/emit_headers.py:3259-3260`（`data/annotations/globals.json`）·
+  `pipeline/gen/ast_transform.py:336-342`（`structs/*.json`）·
+  `pipeline/gen/stages/stage3_cleanup.py:107-110`（`structs/<Cls>.json`，**此前不在任何违规清单里**）。
+  ⇒ **当前措辞应为"尚有 3 处"**；修完这 3 处后才可改回"全部收敛" ✓。
+  规则本身不变且**可检查**：新增注解直读必须走 `annotation_view`。
 - **编译错误不是问题本身**：C2440/C2664 等是标注错误的**表象**。盯着错误码修是治标不治本。真正的任务是理解原始代码的意图——内存布局、复用模式、生命周期——然后让 annotation 正确表达它。错误自然消失。
 - **禁止"试错式修改"**：不理解内存布局之前，不修改 annotation。先用 IDA 查全所有访问点，画出完整的使用图景，确认场景和约束，再动 annotation。
 
