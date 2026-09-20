@@ -19,6 +19,29 @@
 
 ## P1 进度
 
+### P1-5 第九批（第 18 轮，**收尾**）：`emit_headers.py` 最后 3 处 ⇒ **P1-5 完成**
+- `sdk_types.json`(:157)：只把**路径**收敛到 `_annview.annotation_json_path('sdk_types.json')`，
+  **精确 try 保持原样**（`except (OSError, json.JSONDecodeError, TypeError)`）。
+  为什么不换成 `load_annotation_json`：后者是**宽捕获 + 返回 None**，会改变语义 ✗
+  ⇒ 为此**新增路径原语** `annotation_json_path()`，让"需要自己保留精确容错"的调用点也能收敛路径 ✓
+- `structs/*.json` 全量 glob(:726)：`_ann_dir.glob("*.json")` + per-file `try/except: continue`
+  ⇒ `_annview.iter_structs(directory=...)`（**同样排序 + 同样静默跳过**）✓（循环体只用 `_ad`，`_jf` 未使用 ⇒ 类型变化无影响 ✓）
+- `globals.json`(:2911)：路径收敛到 `annotation_json_path('globals.json')`，**保留"此处无 try ⇒ 出错即抛"的原语义** ✓
+  并顺手清掉原先的局部别名 `import json as _ann_json` ✗
+
+**验证**：`codegen headers`（739 个 .h 重生成）⇒ **0 条 OVERLAY-DIAG**、EXIT=0 ✓
+⇒ `diff -rq` 与快照 **非 globals 差异 = 0** ✓ ⇒ **字节中性** ✓
+
+## 🏁 P1-5 完成（本轮里程碑）
+**18 处已迁移**：`stage4_substitution` 1 · `collect` 1 · **`data.py` 5（全部）** · `ast_transform` 1 ·
+**`emit_headers.py` 10（全部）**；另有 **1 处**（`_sig_evidence_pack.json`）经**边界裁定排除**
+（`data/status/` 状态产物、非注解）✓
+**⇒ 所有 codegen 侧的注解直读都已收敛到 `pipeline/gen/annotation_view.py`**，
+且**每一处都过了"逻辑/路径等价 + 产物字节 diff"两道验证** ✓
+**副产物**：定位并修复了一个**静默吞掉 635 个类"覆盖整体失效"的 `except: pass`**（改为出声）✓
+**⇒ P1 全部完成**（P1-1/2/3/4/5/6）；目标剩余只有 **P2-1 的传递死链裁决**。
+
+
 ### P1-5 第八批（第 17 轮）：`emit_headers.py` 的 4 处 per-class 读取 + **一个真实潜伏缺陷的定位与修复**
 **迁移**：`:975 known_members overlay` / `:1375 base_class` / `:1616 known_methods` / `:2234 operators`
 四处原先各自 `PROJECT_ROOT/"data"/"annotations"/"structs"/("<cls>.json")` + `.exists()` +

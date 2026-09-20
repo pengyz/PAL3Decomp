@@ -164,8 +164,9 @@ def _get_sdk_type_sizes():
     if _sdk_type_sizes_cache is not None:
         return _sdk_type_sizes_cache
     out = {}
-    path = ANNOTATIONS_DIR / "sdk_types.json"
-    if path.exists():
+    # P1-5（第九批）：路径收敛到单一读点；**精确 try 保持原样**（不换成宽捕获原语）
+    path = _annview.annotation_json_path('sdk_types.json')
+    if os.path.exists(path):
         try:
             with open(path, encoding='utf-8') as f:
                 data = json.load(f)
@@ -733,13 +734,10 @@ def collect_methods():
     # NOTE: Don't check seen_addrs — annotation known_methods are manually
     # curated and may reference the same address as a different class's method
     # (e.g. UIWnd::OnMessage at 0x445D10 = CGameData::OnMessage impl).
-    _ann_dir = PROJECT_ROOT / "data" / "annotations" / "structs"
-    if _ann_dir.exists():
-        for _jf in _ann_dir.glob("*.json"):
-            try:
-                _ad = json.loads(_jf.read_text(encoding='utf-8'))
-            except:
-                continue
+    # P1-5（第九批）：路径枚举收敛到 _annview.iter_structs（同样"排序 + 静默跳过坏文件"）
+    _ann_dir = _annview.structs_dir()
+    if os.path.isdir(_ann_dir):
+        for _jf, _ad in _annview.iter_structs(directory=_ann_dir):
             _ann_cls = _ad.get('name', '')
             if not _ann_cls:
                 continue
@@ -2915,10 +2913,10 @@ def generate_globals():
     # Load annotations to filter type=skip entries — unless the decompiler
     # still references the name (skip governs renaming, not silencing)
     _forced_names, _extra_entries = _forced_global_entries()
-    import json as _ann_json
-    _ann_path = PROJECT_ROOT / "data" / "annotations" / "globals.json"
-    if _ann_path.exists():
-        _ann_data = _ann_json.loads(_ann_path.read_text(encoding='utf-8'))
+    # P1-5（第九批）：路径收敛到单一读点；**保留原语义**（此处无 try ⇒ 出错即抛）
+    _ann_path = _annview.annotation_json_path('globals.json')
+    if os.path.exists(_ann_path):
+        _ann_data = json.loads(open(_ann_path, encoding='utf-8').read())
         _ann_skipped = 0
         _ann_filtered = []
         for _addr_s, _ginfo in sorted_globs:

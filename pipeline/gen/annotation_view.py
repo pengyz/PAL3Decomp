@@ -76,6 +76,17 @@ def member_names(directory=None, store=None):
     return _MEMBER_NAMES_CACHE
 
 
+
+def annotation_json_path(name, store=None):
+    """`data/annotations/<name>` 的路径（顶层注解 JSON，如 sdk_types/globals/functions）。
+
+    提供给调用方"**自己做 exists 与读取**"的场合 —— 有些调用点对异常的捕获是**精确**
+    的（例如只捕 `OSError/JSONDecodeError/TypeError`），用 `load_annotation_json`
+    （宽捕获 + 返回 None）会**改变语义**；这类调用点应改用本函数取路径，保留原读取与容错。
+    """
+    return os.path.join(os.path.dirname(structs_dir(store)), name)
+
+
 _ANNOTATION_JSON_CACHE = {}
 
 
