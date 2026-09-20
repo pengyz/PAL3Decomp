@@ -96,17 +96,19 @@ def save_ann(d, p):
 
 
 def main():
+    _write_rejected = 0
     ap = argparse.ArgumentParser()
     ap.add_argument('--batch', default=BATCH)
     ap.add_argument('--run-pipeline', action='store_true')
     ap.add_argument('--dry-run', action='store_true', help='只计算并打印将做的修改，**不落盘**')
     args = ap.parse_args()
 
-    global _DRY_RUN
+    global _DRY_RUN, _BUFFER      # **B4 修复**：原缺 _BUFFER ⇒ 赋值只建局部名 ⇒ save_ann 读到模块级 None
+                                  # ⇒ 逐条直写，"两阶段全或无"是假的 ✗（独立复核 bd0abcc1 反汇编实证：1×STORE_FAST/0×STORE_GLOBAL）
 
     _DRY_RUN = bool(getattr(args, 'dry_run', False))
 
-    _BUFFER = {} if not _DRY_RUN else None      # 非 dry-run ⇒ 启用两阶段缓冲 ✓
+    _BUFFER = {} if not _DRY_RUN else None      # 非 dry-run ⇒ 启用两阶段缓冲 ✓（现为真全局 ✓）
 
     if not os.path.exists(args.batch):
         print('[ERROR] 批次文件不存在: %s' % args.batch)
@@ -310,10 +312,15 @@ def main():
     if rejected:
         print('\n[ABORT] 有 %d 条被拒 ⇒ **整批不写** ✓（两阶段：校验未全过）' % len(rejected))
         return 1
+    # **B4 真正的全或无**：任一拒绝（校验阶段或写入阶段）⇒ **flush 之前就中止** ✓
+    # （前一版是"先 flush 再报失败" ✗ ⇒ 部分写入仍会发生 ✗，独立复核 bd0abcc1 指出的正是这一点）
+    if _write_rejected:
+        print('\n[ABORT] 写入阶段有 %d 条被拒 ⇒ **整批不写** ✓（缓冲丢弃，未 flush ✓）' % _write_rejected)
+        return 1
     if _BUFFER is not None and not _DRY_RUN:
         for path, data in sorted(_BUFFER.items()):
             json.dump(data, open(path, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
-        print('\n[flush] 统一落盘 %d 个文件（两阶段 ✓）' % len(_BUFFER))
+        print('\n[flush] 统一落盘 %d 个文件（两阶段 ✓ 全或无 ✓）' % len(_BUFFER))
     print('\n%s %d 条' % ('[dry-run] 计算' if _DRY_RUN else '落盘', done))
 
     if _DRY_RUN:
