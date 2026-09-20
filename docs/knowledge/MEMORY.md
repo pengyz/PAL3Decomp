@@ -12,6 +12,8 @@
 - [多重继承匿名成员渲染 bug](gotcha_codegen_multi_inheritance_anon_member.md) — 根因是 apply/export 两层自造限制（IDA 原生支持多基类），已修复并有单测+IDB 回归守卫；待重跑 codegen+compile 收口
 - [annotation hook 从未生效](gotcha_annotation_hook_never_wired.md) — validate-annotations.py 路径过期 + 未接入 settings.json，双重失效
 - [apply 静默失败（IDB 锁）](gotcha_apply_silent_fail_idb_lock.md) — 别的会话持有 IDB 锁时 cli.py apply 静默失败，cmd_apply 不以非零退出终止 && 链
+- [审计结论必须蒸馏进 knowledge](gotcha_audit_findings_must_be_distilled_into_knowledge.md) — 病灶不是"没落盘"而是"落错面"：`data/status/` 373 文件/293 tracked，而知识库只把它当"基线输入路径" ⇒ "审计 → status → 消失"；附 3 条可检查要求（落盘面/写入触发器/MEMORY 入链）
+- [审查动作会写坏工作区](gotcha_review_actions_can_clobber_the_workspace.md) — 两起 `--help` 探测无 argparse 工具覆盖受跟踪产物（sig_evidence −6020 行 / ledger 197→3）；另一起 `ln -s` + 重定向**写穿符号链接**静默覆盖工作区文件；附护栏范式与"真实复制到 /tmp"规范
 - [**init --force 后只跑一趟 apply 不够**](gotcha_apply_single_pass_leaves_globals_untyped.md) — 全局变量名字/类型不落地（`0xC10968` = `unk_C10968` size **1** 而非 `g_palScript` size 2176）⇒ S2 67/201 · L1 20 而非 70/201 · L1 21；**必须再 apply 一次**才算初始化完成
 - [字节匹配判据被 mangler 单点把关](gotcha_byte_match_metric_is_mangler_gated.md) — matched/L1/partial 全经 mangled_map；base_idx 回退只对非 '?' 符号生效；**名字命中 ≠ 参与比对**
 - [测量台复刻被测逻辑 + 比例须逐样本核验](gotcha_measurement_bench_replicating_subject_logic.md) — 复刻被测逻辑=测量另一个程序；"30% 边界错位"是我的 objdump 末行假象，实测 60/60 正常
