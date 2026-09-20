@@ -217,6 +217,27 @@
     "0x00529400": {
       "name": "CountActiveParticles",
       "signature": "int *__fastcall(int *p_DWORD)"
+    },
+    "0x004B5570": {
+      "name": "_todo_4b5570",
+      "signature": "__int64 __thiscall UIParticle::_todo_4b5570(int, int, TextureLibDataBase *, int)",
+      "note": "reattribute: 独立复核推翻原归属（TextureLibDataBase）⇒ 真类 UIParticle。A级证据：①元素尺寸 0x248=584：asm 187160-187172 `push 248h; call ??_L@YGXPAXIHP6EX0@Z1@Z` + `lea eax,[esi+1258h]`/`lea ecx,[esi+13658h]`，而 0x1258+128*584=0x13658 算得精确；②ctor/dtor(0x4B4690/0x4B47E0) 写点与 UIParticle 声明成员 47/47 覆盖且宽度一致（含 _element:UIStatic@0x1a4，420+152=572=_sizeX）；③本函数体的 [esi+off] 全落在 UIParticle 成员内且宽度吻合（fld/fild 读 float），用 TextureLibDataBase 解释则全落进 _libfolder char[512]@12 —— char 缓冲不可能被 fld 读；④生成物自证：改前渲染出 `_libfolder[124]=cos(_libfolder[32])*...`，换算即 `_x=cos(m_HelixAngle)*m_helix_rx+m_tempx`，逐条 UIParticle。原证据②（(TextureLibDataBase*)this 强转）是循环证据、③（地址相邻）是弱证据。另：仓库自身审计 data/status/_cleanup_scan_triage.json 的 AT-168..AT-178 早已把该 cluster 判 [MISATTRIBUTED]/NEED_EVIDENCE。",
+      "name_evidence": "含义未定：未读函数体语义命名；按规则用 _todo_ 占位名，禁止造名。签名首参 a4 的类型(TextureLibDataBase*)源自 IDA 猜测，存疑待核。",
+      "signature_note": "reattribute 同时改签名 (was: __int64 __thiscall TextureLibDataBase::_todo_4b5570(int, int, TextureLibDataBase *, int))"
+    },
+    "0x004B5830": {
+      "name": "_todo_4b5830",
+      "signature": "__int64 __thiscall UIParticle::_todo_4b5830(int, int, TextureLibDataBase *, int)",
+      "note": "reattribute: 同 0x004B5570：同类 cluster（0x4B4DC0 的 case 7，`mov ecx,esi`+`ret 0x10`），复核证据 E1-E4 适用。",
+      "name_evidence": "含义未定：按规则用 _todo_ 占位名。",
+      "signature_note": "reattribute 同时改签名 (was: __int64 __thiscall TextureLibDataBase::_todo_4b5830(int, int, TextureLibDataBase *, int))"
+    },
+    "0x004B5BB0": {
+      "name": "_todo_4b5bb0",
+      "signature": "__int64 __thiscall UIParticle::_todo_4b5bb0(int, int, TextureLibDataBase *, int)",
+      "note": "reattribute: 同 0x004B5570：同类 cluster（0x4B4DC0 的 case 8），复核证据 E1-E4 适用。",
+      "name_evidence": "含义未定：按规则用 _todo_ 占位名。",
+      "signature_note": "reattribute 同时改签名 (was: __int64 __thiscall TextureLibDataBase::_todo_4b5bb0(int, int, TextureLibDataBase *, int))"
     }
   }
 }

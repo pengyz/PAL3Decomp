@@ -3050,3 +3050,65 @@ case 6: (((TextureLibDataBase *)this))->TextureLibDataBase::UpdateLinearMotion(.
 
 **剩余**：`UISystem.cpp` 的 `sub_421870`（调用点 `mov ecx,eax`，`eax` 来自 `sub_4226F0`，
 宿主类未定）—— 需先查明 `sub_4226F0` 的返回对象属于哪个类。
+
+---
+
+# 52. 独立复核**推翻我的归属**：真实类是 `UIParticle`（不是 `TextureLibDataBase`）—— 已改归并验证
+
+## 52.1 复核结论（我逐条自验后采纳）
+
+| 我的命题 | 复核裁定 |
+|---|---|
+| 机制"缺注解 ⇒ 5 参自由函数 ⇒ 调用点 4 实参 ⇒ C2660" | **成立**（已实测修好） |
+| 归属 = `TextureLibDataBase` 成员 | **不成立** ⇒ 真类是 **`UIParticle`** |
+| 我的证据②（`(TextureLibDataBase*)this` 强转） | **循环证据**（该 cast 是姐妹函数已被注成 TLB 后才被逼出来的） |
+| 我的证据③（地址相邻） | **弱证据**（`0x4B4DC0` 夹在 RenderTarget 方法区与 `0x4BB050` 之间的空隙里） |
+
+**复核给的 A 级证据（我自验通过）**：
+
+1. **E4 生成物自证**：改归前函数体渲染成
+   `*(float*)&this->_libfolder[124] = cos(*(float*)&this->_libfolder[32]) * *(...)[44] + *(...)[36];`
+   —— `_libfolder` 在 **+12** ⇒ 真实偏移 = 12+N ⇒ `[124]→0x88=_x`、`[32]→0x2C=m_HelixAngle`、
+   `[44]→0x38=m_helix_rx`、`[36]→0x30=m_tempx` ⇒ 真语义 `_x = cos(m_HelixAngle)*m_helix_rx + m_tempx`
+   —— **逐条 UIParticle**。（我亲自读 `TextureLibDataBase.cpp:333-337` 核对）
+2. **E1 元素尺寸 584**：`asm:187160-187172` 的 `push 248h; call ??_L@YGXPAXIHP6EX0@Z1@Z`（eh vector ctor iterator）
+   + `lea eax,[esi+1258h]` / `lea ecx,[esi+13658h]`，而 **`0x1258 + 128×584 = 0x13658` 算得精确**
+   ⇒ 该类尺寸 584（我亲自核对该段 asm）。
+3. **E2**：ctor/dtor（`0x4B4690/0x4B47E0`）写点与 `UIParticle` 声明成员 **47/47 覆盖且宽度一致**
+   （含 `_element:UIStatic`@0x1a4，420+152=572=`_sizeX`）。
+4. **E3**：三个函数的 `[esi+off]` 全落在 `UIParticle` 成员内且**宽度吻合**（`fld/fild` 读 float）；
+   用 `TextureLibDataBase` 解释则 15~16 个 offset 全落进 **`_libfolder char[512] @+12`**
+   —— **char 缓冲不可能被 `fld` 读**（硬证据）。
+
+**还有一条我该早点查的**：仓库自身审计 `data/status/_cleanup_scan_triage.json` 的
+**AT-168..AT-178 早已把该 cluster 判 `[MISATTRIBUTED]` / grade B/C / NEED_EVIDENCE** ——
+我在 §50/§51 里写"归属 A 级"**与该记录冲突**。**教训：落归属前先查仓库自己的 triage 记录。**
+
+## 52.2 处置：保留编译修复，只改对目标类
+
+三条从 `TextureLibDataBase.json` **移入 `UIParticle.json`**（`reattribute` + `new_signature`
+`__int64 __thiscall UIParticle::_todo_<addr>(int, int, TextureLibDataBase *, int)`；
+占位名不变 —— 仍未读函数体语义，**不造名**）。
+
+## 52.3 验收（实测）
+
+| 指标 | 改归前 | 改归后 |
+|---|---|---|
+| **函数体渲染** | `_libfolder[124]=cos(_libfolder[32])*…`（伪视图） | **`this->_x = cos(this->m_HelixAngle)*this->m_helix_rx + this->m_tempx;`** ✓ |
+| 调用点 | `((TextureLibDataBase*)this)->…::_todo_4b5570(...)` | `((UIParticle *)this)->UIParticle::_todo_4b5570(...)` ✓ |
+| **`ScreenEffect.cpp` C2660** | 0 | **0**（编译修复保住） |
+| 总错误 | 2164 | **2161（−3）** |
+| S2 ok | 74 | **75（+1）** |
+| 单元数 | 205 | 206 |
+| 新失败 | 1 | **1**（仍只余有意未动的 `UISystem.cpp`） |
+
+## 52.4 交给后续的明确项（复核建议，我未擅自做）
+
+1. `0x4B4DC0`（现注为 `ScreenEffect::Apply`）**自身也错**：它有 `ret 0x4`（1 个栈参 mode，
+   调用方 `push 8/0Ah/0Bh/0Ch`）而注解写 `void __thiscall()`；来源是
+   commit `19a64a498 feat: merge PDB function definitions`（PDB 单源）⇒ 应迁到 `UIParticle` 并补 mode 形参；
+2. **10 个姐妹函数**（`UpdateCircularMotion/OrbitalMotion/LinearMotion` 等）同样可疑 ⇒ 另起一轮；
+3. `0x421870`：复核给出更精确的根因 —— `0x4226F0` 返回 `0xc21fe8 + 493156*state`（步长 `0x78664`），
+   而 `globals.h` 把 `0xc21fe8` 注成 `PalScriptMgr`(9512B)、`functions.json` 把它注成 `SceneMgr*`(58692B)
+   —— **两处注解都与 493156 步长冲突**，且没有任何注解类声明 `+0x78658` ⇒ 根在**调用点两处可疑注解**，
+   不在 callee ⇒ **维持不动是对的**。
