@@ -19,6 +19,21 @@
 
 ## P1 进度
 
+### P1-5 第五批（第 14 轮）：`data.py` 的 vtables + `functions.json`（两处一起）→ **data.py 全部收敛**
+- `_load_vtables()`：`.exists()` 守卫 + `sorted(glob)` + 逐文件 `json.load`（坏文件 continue）
+  ⇒ 改调 **`annotation_view.iter_structs(directory=...)`**（缺失目录返回空、同样排序与跳过）✓
+- `functions.json` 补录：`project_root/"data"/"annotations"/"functions.json"` ⇒ 改调
+  **`annotation_view.load_annotation_json('functions.json', store=self)`**（读不出 None ⇒ falsy，
+  与 `except: {}` 同效）✓
+**验证**：快照 945 ⇒ `codegen all --skip-probe`（**EXIT=0**）⇒ `diff -rq` 差异仅
+`globals.cpp`/`globals.h`（已知非确定、排序多重集相同）⇒ **非 globals 差异 = 0**、945=945 ⇒ **字节中性** ✓
+
+**里程碑**：`data.py` 原先直读 5 处（skip_functions / structs / globals / vtables / functions）
+**已全部经 `annotation_view`** —— 它自述的"the ONLY place codegen reads from annotations"
+现在**名实相符**（`pipeline/gen/annotation_view.py`）✓
+**P1-5 累计 7/19**。剩余：`ast_transform.py`(2) + `emit_headers.py`(10) = **12 处**。
+
+
 ### P1-5 第四批（第 13 轮）：`data.py` 的 structs 遍历 + `globals.json`（两处一起）
 - `_load_struct_bases()`：`sorted(annotations_dir/"structs".glob("*.json"))` + 逐文件 `json.load`
   （坏文件静默 continue）+ 名字回退 `_f.stem` ⇒ 改调 **`annotation_view.iter_structs(directory=...,)`**

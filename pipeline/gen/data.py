@@ -237,14 +237,14 @@ class DataStore:
         This is the ONLY place codegen reads from annotations (architectural exception).
         Vtable slot resolution requires method names that only exist in annotations.
         """
-        _structs_dir = self.annotations_dir / "structs"
-        if not _structs_dir.exists():
-            return
-        for _f in sorted(_structs_dir.glob("*.json")):
-            try:
-                _ann = json.load(open(_f, encoding='utf-8'))
-            except:
-                continue
+        # 2026-09-20 审计 P1-5（第五批）：同批收敛到 annotation_view。
+        # 等价：原为 `.exists()` 守卫 + sorted glob + 逐文件 json.load（坏文件 continue）；
+        # iter_structs 对缺失目录返回空、同样排序并跳过坏文件，名字仍取 `_ann['name']`。
+        try:
+            import annotation_view as _av
+        except ImportError:
+            from pipeline.gen import annotation_view as _av
+        for _f, _ann in _av.iter_structs(directory=str(self.annotations_dir / "structs")):
             _name = _ann.get('name', '')
             _vtables = _ann.get('vtables', [])
             _methods = _ann.get('methods', {})
@@ -434,12 +434,13 @@ class DataStore:
 
         # Supplement: functions.json annotations for free functions missing from decomp
         # (e.g. 1-byte empty functions like NullCallback that Hex-Rays cannot decompile)
-        _ann_func_path = self.project_root / "data" / "annotations" / "functions.json"
-        if _ann_func_path.exists():
-            try:
-                _ann_funcs = json.load(open(_ann_func_path, encoding='utf-8'))
-            except:
-                _ann_funcs = {}
+        # 2026-09-20 审计 P1-5（第五批）：同批收敛到 annotation_view（读不出时 None ⇒ {}）。
+        try:
+            import annotation_view as _av
+        except ImportError:
+            from pipeline.gen import annotation_view as _av
+        _ann_funcs = _av.load_annotation_json('functions.json', store=self)
+        if _ann_funcs:
             for _addr_s, _info in _ann_funcs.items():
                 if not isinstance(_info, dict):
                     continue
