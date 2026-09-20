@@ -125,3 +125,19 @@ monkeypatch `_check_ida`/`_run_ida`/`subprocess.run`，advisory rc=1 时 apply/e
 **⇒ 教训（值得单独沉淀）**：**计划的代码片段必须在其"真实输入"上验证过** ✗ ——
 本计划的两处致命 bug（取序、尾注锚点）都源于**只对着自造 fixture 写正则** ✓；
 而**子代理按"计划自身测试/fixture/判据"复算**才把它们逼出来 ✓（它的裁决方式值得沿用 ✓）。
+
+## T1 三条登记后续项：**全部完成并经编排者独立复验** ✓
+| 项 | commit | 编排者复验 |
+|---|---|---|
+| **F1** 消除 DRY（`cmd_check` 内联块改用 helper）| `aa96d87fa` | `cmd_check` 体**已不含** `codegen_invariants.py` 字面量 ✓；`check` **exit 0** ✓ |
+| **F2** 工具侧非门禁框定 + 结尾判定词 `ADVISORY-ONLY（不阻断）`｜caller 侧 `flush=True` | `0a47a3840` | 成对验证 ✓（`--check A` ⇒ exit1 且**无**框定 ✓；`--check A --advisory` ⇒ exit0 且**有**框定、计数仍 132 ✓）；`check` **exit 0** ✓ |
+| **F3** 行为级 monkeypatch 测试（替换冗余第 3 个测试）| `389d4d8f5` | 无变异 **4/4 PASS** ✓；**我自己施加变异**（`/tmp` 副本，`cmd_apply` 内改 `sys.exit(...)`）⇒ **3 passed, 1 failed** ✓✓ ⇒ **判别力真实存在** ✓ |
+**⇒ T1 评审的 3 条条件全部满足** ⇒ **T1 正式收口** ✓。
+**实现者的 2 条裁决（我裁定：均成立 ✓）**：
+1. F2 额外改了 `pipeline/cli.py` 的 2 处 `print(..., flush=True)` —— **属登记项 #2 明写的"caller 侧加 flush=True"** ✓ 不算越界 ✓（且**实测**了重定向乱序：框定行原本排到计数之后 ✗，正是"日志里假红失去前置框定" ✓）。
+2. F3 只替换冗余的第 3 个测试、保留 2 个源码形态检查并标注"非判别层" ✓ —— 任务原文只要求替换第 3 个 ✓，保留零成本 ✓。
+**环境发现（非本次引入，值得记录）** ✗：本机 `python3 -m pytest` 在**任何**测试文件上都在 collect 阶段崩
+（`TypeError: required field "lineno" missing from alias`），根因是 `sys.path` 混入
+`/home/peng/workspace/aide/benchmarks/.../pytest-dev__pytest-7432` 的 dev 构建与 Python 3.10 `ast` 不兼容 ✓
+⇒ **pytest 的 `monkeypatch` fixture 在本机不可用** ✗；新测试自带 `_MiniPatch` 兜底 + `__main__` runner ✓
+（与仓内既有测试文件的兜底约定一致 ✓）。**⇒ 后续写测试应沿用"自带 runner + 不依赖 pytest fixture"的约定** ✓。
