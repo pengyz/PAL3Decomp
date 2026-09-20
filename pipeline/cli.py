@@ -362,6 +362,7 @@ def cmd_apply():
         print("-> [WARN] fix_vtable_types.py exited non-zero: vtable pointer types in the")
         print("   IDB may be stale. Do not trust export/codegen/match output before")
         print("   re-running apply and verifying.")
+    _run_invariants_advisory()
     print()
     print("Next: python pipeline/cli.py export")
 
@@ -405,8 +406,27 @@ def cmd_export(fast=False):
         if chk.returncode != 0:
             print("[WARN] 导出产物与注解的透传字段不一致（详见上表）。下游按**注解**值"
                   "工作 —— 请确认这是预期内的迁移期状态，否则先同步注解或 IDB。")
+    _run_invariants_advisory()
     print()
     print("Next: python pipeline/cli.py codegen all")
+
+
+def _run_invariants_advisory():
+    """advisory 地跑 codegen_invariants：只报告计数，**不影响调用方的退出码**。
+
+    缘起：`cmd_check` 已接该工具，但 `cmd_check` 是手动命令；`apply`/`export` 才是写盘路径，
+    三路独立复核点名"只改 cmd_check 就是空门" ⇒ 本 helper 把它们也挂上（仍 advisory）。
+    """
+    inv = os.path.join(_PROJECT_DIR, 'tools', 'codegen_invariants.py')
+    if not os.path.exists(inv):
+        return 0
+    print()
+    print("[Invariants] advisory 模式（只报告计数，不影响退出码）...")
+    r = subprocess.run([sys.executable, inv, '--advisory'])
+    if r.returncode != 0:
+        print("[WARN] codegen_invariants 在 advisory 模式下仍非零退出（%d）—— 不影响本次结果，"
+              "但说明工具行为与预期不符 ✓" % r.returncode)
+    return r.returncode
 
 
 def cmd_check():
