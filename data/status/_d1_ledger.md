@@ -626,3 +626,33 @@ BSS 真实占位 = 1108 ✓（0xDBB364 − 0xDBAF10 实测）
 **`push N` 立即数是尺寸的 A 级证据** ✓；**单个 ctor 的 `[reg+imm]` 上界不是** ✗（取决于采样哪个函数 ✓）；
 **`alloc_sizeof.json` 的行须逐条用 IDB 的 `push N` 复核** ✓（本次已证 14236/3288/4004 为真 ✓，
 而 1060/232 为**假** ✗）⇒ **批1 的 9 个候选必须先全部过这一关** ✓。
+
+## 🎯 IDB V3：14 个候选**全部**拿到"归属到类"的尺寸（A 级 ✓）—— 方案据实修正
+工具：`tools/ida/forensics_alloc_per_class.py` ✓（判据：`push N ; call ??2@YAPAXI@Z ; … ; call <本类 ctor>` ✓
+⇒ N 归属该类 ✓，被调的 ctor 身份同时确定 ✓）
+| 类 | IDB push N | alloc 申报 | 注解 | 判定 |
+|---|---|---|---|---|
+| UITitle_ArcSave | **0FA4=4004** | 4004 | 4196 | ✅ 背书 |
+| **ScreenEffectNode** | **424** | 1060 ✗ | 220 | ❌ **申报推翻**（真值≈424）|
+| CCBUI | **0A48=2632** | 2632 | 2648 | ✅ |
+| CScreenMode | **1578=5496** | 5496 | 5880 | ✅ |
+| JusticeBookUI | **0DB80=56192** | 56192 | 58496 | ✅ |
+| UIRoleSelectDialog | **89C=2204** | 2204 | 2300 | ✅ |
+| UIListBox | **6E0=1760** | 1760 | 1208 | ✅ |
+| CCBUIPanel | **5660=22112**（`??0CCBUIPanel@@QAE@XZ` ✓）| 22112 | 22592 | ✅ |
+| UIScenePanel | **379C=14236** | 14236 | 14904 | ✅ |
+| CCBRoleState | **5058=20568** | 20568 | 22320 | ✅ |
+| UISceneFrm | **0CD8=3288** | 3288 | 4248 | ✅ |
+| CCBStageScene | **3CC=972** | 972 | 1012 | ✅ |
+| UICoverFrm | **329C=12956** | 12956 | 18504 | ✅ |
+| **UISceneMap** | **0E8=232** ✗ | 232 | 1204 | ❌ **误归属**（232 对本类不可能 —— 其成员已超 1012）|
+**⇒ 12 个获 IDB 背书（A 级 ✓）· 2 个被推翻/误归属（✗ ⇒ 剔除出批1 ✓）**
+### 批3（dual-ctor）**已解** ✓✓
+- `CCBUIPanel`：`??0CCBUIPanel@@QAE@XZ` ⇒ **22112** ✓ · `?ctor_3D10@CCBUIPanel` ⇒ **5312** ✓（两个 ctor 两个尺寸 ✓）
+- `CCBUI`：`?ctor@CCBUI@@QAEPAHH@Z` ⇒ **2632** ✓ · `?ctor@CCBUI@@QAEPAHXZ` ⇒ **74** ✓
+⇒ **vtable-store + `push N` 双证据** ⇒ 身份与尺寸一次定谳 ✓（无需离线推断 ✓）
+### 方案修正 ✗→✓
+1. **批1 的候选从 9 个改为 12 个** ✓（剔除 `ScreenEffectNode` ✗ 与 `UISceneMap` ✗）
+2. **`ScreenEffectNode`**：真值 **424** ✓ ⇒ **新裁决项**（此前申报 1060 ✗ 无据 ✓）
+3. **`UISceneMap`**：232 属**误归属** ✗ ⇒ 需重查它的真实分配点（或它根本不由 `operator new` 创建 ✓）
+4. **每个候选落地前**：以 **IDB 的 `push N` + ctor 身份**为唯一判据 ✓（**不用**离线推导 ✓）
