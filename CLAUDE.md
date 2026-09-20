@@ -149,6 +149,15 @@ union { // +0xN
    - 检测到类型大小不匹配时：对比 IDA 导出，修正 annotation 类型
    - 典型案例：`CEffMgr.m_EffTable` 从 `tagEffObj[2048]` 改回 `_BYTE[584]`
 
+4b. **两个回归门禁的分工（勿混用/勿误删）**：
+   - `tools/compile_regression.py` = **`codegen all` 之后的即时快照闸**（基线
+     `data/status/compile_baseline.json`，只比 ok/fail）。它读**缓存** `probe_census.json`，
+     故**未跑 `probe` 时其结论无意义**。
+   - `tools/regression_detector.py` = **`probe` 之后的正式对账闸**（基线
+     `data/status/baselines/latest.json`，`(code,msg)` 多重集 + 剔除 C1003 + churn 识别 +
+     `--before/--after`/`--self-test`）。
+   - **检查点表缺了一步**：`codegen all` 与 `compile_regression` 之间**必须先跑 `probe`**，
+     否则门禁验的是陈旧快照（见 `docs/knowledge/gotcha_compile_regression_reads_cached_census.md`）。
 4. **annotation diff**（`annotation_diff.py`）：
    - `apply` 后运行，显示本次变更摘要
    - 确认无意外修改（如指针级别变化、类型大小变化）

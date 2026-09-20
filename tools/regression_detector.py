@@ -1,8 +1,18 @@
 #!/usr/bin/env python3
 """
-编译回归检测工具
+编译回归检测工具（**正式对账闸**）
 
-自动检测codegen变更引入的新编译失败或退化。
+**职责分工（2026-09-20 审计 P1-6）**：本仓有两个"编译回归门禁"——
+* **本工具**：挂 `probe` 之后（`pipeline/cli.py:614`），基线 `data/status/baselines/latest.json`，
+  做 `(code,msg)` 多重集比较、剔除 C1003 截断单元、识别 churn，支持 `--before/--after`、
+  `--self-test`、`--save-baseline`。**这是"正式对账"入口**。
+* `tools/compile_regression.py`：挂 `codegen all` 之后（`cli.py:455`），基线
+  `data/status/compile_baseline.json`，只比 ok/fail，是"即时快照"闸；它读**缓存 census**，
+  未跑 probe 时结果无意义。
+两者**不是冗余**（触发时机与基线不同），但**命名未讲清**，清理时勿误删其一。
+
+功能：
+1. 存储和管理编译基线
 
 功能：
 1. 存储和管理编译基线

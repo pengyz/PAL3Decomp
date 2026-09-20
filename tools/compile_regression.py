@@ -3,6 +3,17 @@
 
 Compares current compilation results with a stored baseline to detect regressions.
 
+**职责分工（2026-09-20 审计 P1-6；本仓有两个"编译回归门禁"，勿混用/勿误删）**：
+
+* **本工具 = `codegen all` 之后的"即时快照"闸**：挂 `pipeline/cli.py:455`，
+  基线是 `data/status/compile_baseline.json`，只比 ok/fail 集合，轻量、跑得快。
+  ⚠️ **它读的是 `data/status/probe_census.json`（缓存）**，因此只有在 `probe` 之后
+  才有意义；`codegen all` 的钩子**并不自动跑 probe**（见审计 P1-2 待办）。
+  历史坑：`docs/knowledge/gotcha_compile_regression_reads_cached_census.md`。
+* **`tools/regression_detector.py` = `probe` 之后的"正式对账"闸**：挂 `pipeline/cli.py:614`，
+  基线是 `data/status/baselines/latest.json`，做 `(code,msg)` 多重集比较、剔除 C1003 截断单元、
+  识别 churn，并支持 `--before/--after`、`--self-test`、`--save-baseline`。
+
 Usage:
     python3 tools/compile_regression.py [--update-baseline]
 """

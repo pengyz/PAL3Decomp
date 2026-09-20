@@ -17,6 +17,21 @@
 | P0-4 | 同上（aide.toml 同款死路径一并修） | `grep -rn "pipeline/data/annotations" .` 归零 |
 | P0-5 | `tools/_land_sizes.py` 的 `git checkout --` ⇒ **仅报告 + 非零退出** | 构造未提交修改，确认文件未被自动改动 |
 
+## P1 进度
+- [x] **P1-1** 两条硬线注入式负例测试 ✓✓ **两条都真跑并验证通过**
+      · `tests/e2e/test_probe_baseline_injection.py`：注入 ok→fail ⇒
+        `regression_detector --check` **退出码非 0** ✓ 且 `baselines/latest.json`
+        **逐字节未变** ✓（"不得刷新基线"成立）。设计适配：`probe all` 会**重生成** census，
+        故注入打在 census 文件上、直接测 `cmd_probe` 判定所用的那一步（已注明）。
+      · `tests/e2e/test_l1_ratchet_injection.py`：注入 `s4_baseline.match_L1=35` ⇒
+        真跑 `pipeline/cli.py match` ⇒ **退出码非 0**（棘轮报警）✓ 且基线被**写回注入值**
+        （证明"退化时写回旧基线"，棘轮不会失忆）✓；`finally` 还原后实测 `match_L1=34` ✓。
+        耗时约 5 分钟（e2e 固有成本），用 `PAL3_E2E_INJECTION=1` 开启以免拖慢日常套件。
+- [x] **P1-6** 两个回归门禁职责分工写入 `compile_regression.py` / `regression_detector.py`
+      docstring + `CLAUDE.md`（含"检查点表缺 `probe` 一步"的明示）✓
+- [ ] P1-2（codegen 钩子插 probe）· P1-3（audit_layout 1b 提升为退出码）·
+      P1-4（复核 8 处 declared exception + 一致性校验）· P1-5（直读收敛）
+
 ## P1 结构（P0 后）
 P1-1 两条硬线注入式负例测试（L1 棘轮 / probe 不得刷新基线，均 `finally` 还原）
 P1-2 `cmd_codegen` 钩子插入 `probe_compile`（+`--skip-probe`）
