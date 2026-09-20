@@ -485,3 +485,30 @@ new_size(c) = old_size(c) + Σ_成员 ( dims × ( new_size(T) − old_size(T) ) 
 4. **④** 在 `Camera` 上跑通全流程 ✓（备份→dry-run→写盘→管线→当场读 L1/s2/check→回退 ✓）。
 **★ 阶段二唯一门槛**：`Δ(UISceneMap)=192` ✓（我的模型与复核者脚本一致 ✓）vs 真实间隙 **96** ✗
 ⇒ **需二进制证据**（`g_CCBEditorInst` 是否真邻接 +1108 ✓；UISceneMap 两个按值成员是否都真 ✓）✓
+
+## ★ 门槛裁决（阶段二前置）：**BSS 布局给出决定性证据** ✓✓
+**证据链（全部实测 ✓）**：
+1. `g_UISceneMapDlg = 0x00DBAF10`（type `UISceneMap` ✓）· `g_CCBEditorInst = 0x00DBB364`（type `CCBEditor` ✓）
+2. 地址差 = `0xDBB364 − 0xDBAF10 = 0x454 = **1108**` ✓
+3. 注解 `UISceneMap.binary_size = **1012**` ✗ ⇒ 差 **96** ✓
+4. **`0xDBAF10` 不在任何 section ⇒ BSS** ✓（`tools/pe_probe.py` 实测 ✓）⇒ 编译器**按真实尺寸**排布全局 ✓
+
+**⇒ 裁定**：BSS 中相邻全局的地址差**就是**前者的真实占位 ✓ ⇒
+**`g_UISceneMapDlg` 的真实尺寸 = 1108** ✗ ⇒ **注解的 1012 少了 96** ✗✓✓
+**⇒ 且模型给 +192（三轮 ×96 中的两轮）也不对** ✗ —— 真实只增 **96** ✓
+
+**更关键的发现** ✗✓：`UISceneMap` 有**三个** UIStatic 族**按值**成员（此前只看两个 ✓）：
+```
++412 m_base    : UIStatic       （+96?）
++564 m_compass : UIStaticEX     （+96?）
++748 m_mapbk   : UIStaticFlex   （+96?）
+```
+三轮各 +96 ⇒ 模型 +288 ✗ · 我的 Δ=192 ✗ · **真实 +96** ✓
+⇒ **三者中只有一个真的在增长** ✓（另两个或**不是真按值** ✗、或**归属/类型注解错** ✗、
+或 `UIStaticFlex` **不派生自 UIStatic** ✗ 因而不随其增长 ✓）
+**⇒ 下一步（有界 ✓）**：用**三个成员的构造证据/类型归属**定"哪一个是真按值 UIStatic 族" ✓
+（`m_base` 最可疑为真 ✓：名字与 `UISceneMap` 的基类语义相符 ✓）—— 这直接决定
+**UIStatic 级联闭包是否要重审** ✓（若 `UIStaticEX`/`UIStaticFlex` 不随 `UIStatic` 增长，
+则它们相关的 **37/60** 个类的平移量都要复核 ✗✓）。
+**⇒ 方法论收获** ✓：**BSS 相邻全局的地址差 = 真实尺寸的独立证据源** ✓✓ ——
+它**完全独立于注解**，可作为"整对象尺寸"的第二判据 ✓（比 `alloc(N)` 更普遍：BSS 全局天然带尺寸 ✓）。
