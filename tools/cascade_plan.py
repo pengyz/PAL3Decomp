@@ -151,15 +151,22 @@ def build_plan(target, new_size, structs):
     # ③ 逐类 Δ （拓扑序：leaf→root ⇒ 依赖先算 ✓）
     # 先算"受影响集合"（族 ∪ 按值/数组包含的传递闭包 ∪ 持有者的派生类 ✓）
     changed = set(fam)
+    import json as _json
     while True:
         newc = set()
         for c in structs:
             if c in changed:
                 continue
             for k in (structs[c].get('known_members') or {}):
-                base, kind, _d, _t = _bt(c, k)
+                base, kind, _d, t = _bt(c, k)
                 if kind == 'class' and base in changed:
                     newc.add(c); break
+                if kind == 'inline':
+                    # 内联 dict 的按值变体含 changed 类 ⇒ 也必须纳入（否则它**永远不被访问** ✗，
+                    # 于是 #4 的"拒绝"规则根本没机会触发 —— 测试抓出 ✓）
+                    blob = _json.dumps(t, ensure_ascii=False)
+                    if any(('"%s"' % x) in blob for x in changed):
+                        newc.add(c); break
         for c in list(newc):
             newc |= set(cs._descendants(c, structs))     # 持有者长大 ⇒ 其派生类也受影响 ✓
         if not newc:
@@ -251,6 +258,14 @@ def build_plan(target, new_size, structs):
             emb = []
             for k in K:
                 base, kind, dims, t = _bt(c, k)
+                if kind == 'inline':
+                    # #4（注入）：内联 union/struct 的**按值变体**含受影响类 ⇒ **拒绝** ✓
+                    #（与 derived 分支同规则；此前只补了 derived 分支 ⇒ holder 漏检 ✗，测试抓出 ✓）
+                    _blob = __import__('json').dumps(t, ensure_ascii=False)
+                    if any((('"%s"' % x) in _blob) or (('%s' % x) in _blob) for x in changed):
+                        rejected.append({'class': c, 'key': k,
+                                         'why': '内联 dict 的按值变体含受影响类 ⇒ 拒绝（不静默 ✗）'})
+                    continue
                 if kind == 'inline':
                     # #4（注入）：内联 union/struct 的**按值变体**若含 changed 类 ⇒ 必须**拒绝** ✓
                     # （此前只是跳过 ⇒ 影响面被静默漏掉 ✗）
