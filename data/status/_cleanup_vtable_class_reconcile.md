@@ -3153,3 +3153,54 @@ case 6: (((TextureLibDataBase *)this))->TextureLibDataBase::UpdateLinearMotion(.
 `UpdateLinearMotion(0x4B5750)` / `UpdateByMode(0x4B60F0)` 等目前仍注解在 `TextureLibDataBase`
 （复核报告称约 10 个）—— 与本次同属"cluster 熔进错误类名"，需**逐个**按同一套证据
 （`UIParticle` 584 布局 + ctor/dtor 写点 + `[esi+off]` 宽度吻合）确认后成批迁移。
+
+---
+
+# 54. 采纳复核第②项：**10 个姐妹函数成批迁入 `UIParticle`**（−10 错误，L1 不动）
+
+## 54.1 逐个证据（判据：**在 `_libfolder` 范围内做 float 运算**）
+
+`TextureLibDataBase` 的 `_libfolder` 是 **`char[512] @+0x0C`**（路径字符串缓冲）——
+**对它做 `fld/fst/fild` 在语义上不可能**；而这些偏移在 `UIParticle` 里都是 float 成员
+（`0x2C=m_HelixAngle`、`0x30=m_tempx`、`0x84=_fade`、`0x88=_x`、`0x8C=_y`、`0x244=_speed`）。
+
+| 函数 | 落在 `_libfolder` 内的 float 处数 | 判定 |
+|---|---|---|
+| `AutoScrollParticles(0x4B4FE0)` / `AutoScrollParticlesEx(0x4B51A0)` | 7 / 3 | **UIParticle** |
+| `UpdateCircularMotion(0x4B5380)` / `UpdateOrbitalMotion(0x4B5450)` / `UpdateLinearMotion(0x4B5750)` | 6 / 8 / 1 | **UIParticle** |
+| `sub_4B59B0(0x4B59B0)` / `RenderFrame(0x4B5D20)` | 7 / 8 | **UIParticle** |
+| `LoadLibrary(0x4B5EE0)` / `UpdateByMode(0x4B60F0)` / `GetTextureByName(0x4B6300)` | 8 / 8 / 1 | **UIParticle** |
+
+**未纳入本批（保持 TLB）**：`CountEntries(0x443A00)`（无 float）、
+**`CreateParentData(0x53FDD0)`**（访问 `_realNum/_m_pData/_isLoadTLI` = **TLB 专有成员** ✓）、
+`0x54xxxx` 那一族（TLB 自己的区域）。
+
+**旁证**：`UIParticle.binary_size=584` 与 asm 187160-187172 的 eh-vector-ctor-iterator 元素尺寸
+`0x248=584` 一致（`0x1258+128×584=0x13658`）；同簇的 `0x4B5570/5830/5BB0`、`0x4B4DC0` 已由独立复核确认属 UIParticle。
+
+## 54.2 处置
+
+`reattribute`（**只改类前缀，不动参数类型**；保留原有语义名；`sub_4B59B0` 无名 ⇒ `_todo_004b59b0` 占位）。
+
+## 54.3 过程中抓到我**自己工具的两处缺口**（都已修）
+
+1. **`reattribute` 分支没有校验 `new_signature`** —— 护栏原只加在 `add_method`/`set_signature`，
+   于是 3 条迁移条目带着"`__thiscall` 但无 `::`"的签名落盘（会被发射成 `static` 自由函数）⇒
+   **已给 `reattribute` 补上同一护栏**；
+2. **那 3 条原签名本身是"无名原型"**（`__int64 __thiscall(char *pszBuf, …`），插入类前缀后变成
+   `UIParticle::(` 语法坏掉 ⇒ **已补上成员名**。
+   所幸生成物未受影响：`apply_annotations/export` 从注解的 `name` 字段导出成员名，
+   `UIParticle.h:72/75/77` 声明**正确**。
+
+## 54.4 验收（实测）
+
+| 指标 | 迁移前 | 迁移后 |
+|---|---|---|
+| **`TextureLibDataBase.cpp`** | 11 | **1（−10）** ✓ |
+| **总错误** | 2161 | **2151（−10）** |
+| **L1** | 34 | **34（保持，未回退）** |
+| matched | 262/303 | 264/313 |
+| 新失败 | 1 | **1**（未引入回归） |
+| `check` | PASS | PASS（无名签名已清零）|
+
+**⇒ 指标与语义**双收益，且**没有回退**。

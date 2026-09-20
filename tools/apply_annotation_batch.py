@@ -92,6 +92,13 @@ def main():
         if kind == 'reattribute' and not ne:
             rejected.append((it, '重归属缺 name_evidence（硬约束 2/3）'))
             continue
+        # 2026-09-19 补：reattribute 也必须校验 new_signature（此前只管 add_method/set_signature，
+        # 结果 3 条迁移条目带着"__thiscall 但无 ::"的签名落盘，会被发射成 static 自由函数）
+        if kind == 'reattribute' and it.get('new_signature'):
+            _ns = it['new_signature']
+            if '__thiscall' in _ns and '::' not in _ns:
+                rejected.append((it, 'reattribute 的 new_signature 是 __thiscall 却缺 "::"（会被发射成 static free function）'))
+                continue
         # set_size / skip_method（2026-09-19 新增，供 §49.4 尺寸与 thunk 类修正使用）
         if kind == 'set_size':
             if not it.get('class') or not isinstance(it.get('size'), int) or it['size'] <= 0:
