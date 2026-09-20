@@ -39,7 +39,17 @@
       `CTaskTpl_tagEffTaskParam_CEff*` —— 与审计 §4 的"尺寸判据"发现互相印证
       （我此前的 `_structural_contradictions` 也记过 `CCBProtectWindow 176→2632`）。
       这批需**按二进制证据**修正尺寸或成员，属**独立 backlog**（不在本目标的 P0/P1 范围内）。
-- [ ] P1-2（codegen 钩子插 probe）·
+- [x] **P1-2** `codegen all` 钩子**先跑 `probe s2`**（默认开）+ `--skip-probe` 逃生 ✓
+      插入位置（代码行号确认）：**PROBE(L428) → SNAPSHOT(L455) → LINT(L474) → REGRESSION(L484)**
+      —— 让 `snapshot` 与 `compile_regression` 看**本次** codegen 的 census（此前它们看的是
+      "上一次不知何时跑的 probe 快照"）。
+      成本实测：`probe s2` **21 秒**（206 单元）⇒ 可接受，故默认开启。
+      验证：真跑 `codegen all` ⇒ 日志出现 `[Probe] Running probe s2 …`，并因**检出已知回归**
+      （`UISystem.cpp`/`sub_421870`）而**中断 exit 1** ✓（退出码已传播 ⇒ `&&` 链断开）。
+      注：日志里 snapshot 的输出**早于** probe 是父子进程 stdout **缓冲交错**的假象，
+      以**代码顺序**为准（已用 AST/行号核对）。
+      顺手修了自己引入的 `%d` 未插值 bug。
+- [ ]
       P1-4（复核 8 处 declared exception + 一致性校验）· P1-5（直读收敛）
 
 ## P1 结构（P0 后）

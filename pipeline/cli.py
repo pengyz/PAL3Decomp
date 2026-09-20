@@ -425,6 +425,33 @@ def cmd_codegen(args):
 
     # Auto-snapshot after 'codegen all'
     if args[0] == 'all' and '--no-snapshot' not in args:
+        # 2026-09-20 审计 P1-2：**先跑 probe s2**，再让 snapshot /
+        # compile_regression 去看 census。
+        #
+        # 为什么：`tools/compile_regression.py` 只读**缓存**的
+        # `data/status/probe_census.json`（`docs/knowledge/gotcha_compile_regression_reads_cached_census.md`），
+        # 而本钩子此前**从不调用 probe** ⇒ 它门禁的是"上一次不知何时跑的 probe 快照"，
+        # 不是本次 codegen 的实际编译结果。CLAUDE.md 的检查点表也缺了这一步。
+        #
+        # 成本实测：`probe s2` 约 21 秒（206 单元），可接受，故**默认开启**。
+        # 需要快速迭代时可传 `--skip-probe` 明确放弃这道门（此时 compile_regression
+        # 验的是陈旧快照，其结论无意义 —— 会在日志里明示）。
+        if '--skip-probe' in args:
+            print("\n[Probe] SKIPPED (--skip-probe)：compile_regression 将基于**陈旧** "
+                  "census 下结论，该结论无意义。")
+        else:
+            print("\n[Probe] Running probe s2 so compile_regression sees THIS codegen's census...")
+            probe = subprocess.run([sys.executable, os.path.join(_PIPELINE_DIR, 'cli.py'),
+                                    'probe', 's2'])
+            if probe.returncode != 0:
+                # 不吞掉：probe 非零既可能是"检出真退化"，也可能是工具错误。
+                # 两者都必须断链；操作者若确知当前状态可传 --skip-probe 继续。
+                print("[ERROR] probe s2 exited %d — 本次 codegen 的编译普查未通过"
+                      "（新失败/退化，或 probe 自身出错）。" % probe.returncode)
+                print("        修好退化后再跑；若确要只跑 codegen，可加 '--skip-probe'"
+                      "（会使 compile_regression 的结论失去意义）。")
+                sys.exit(probe.returncode if probe.returncode > 0 else 1)
+
         print("\n[Snapshot] Capturing compile baseline...")
         snap_script = os.path.join(_PIPELINE_DIR, 'snapshots', 'snapshot.py')
         snap = subprocess.run([sys.executable, snap_script, 'capture'])
