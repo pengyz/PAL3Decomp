@@ -101,6 +101,25 @@ def skip_functions(store=None):
     return d if isinstance(d, dict) else {}
 
 
+
+def struct_path(cls_name, store=None):
+    """`structs/<cls_name>.json` 的路径。"""
+    return os.path.join(structs_dir(store), '%s.json' % cls_name)
+
+
+def struct_by_class(cls_name, store=None):
+    """按类名读一个 struct JSON。
+
+    **语义**：与各处原写法 `if path.exists(): json.loads(path.read_text(encoding='utf-8'))`
+    一致 —— 内部完成 `exists` 守卫（**缺失返回 None**），**不捕获异常**（损坏时抛出，
+    由调用方自己的 `try` 决定是否容错）。故调用方应保留原有的 `try`/`if` 结构。
+    """
+    path = struct_path(cls_name, store=store)
+    if not os.path.exists(path):
+        return None
+    return json.loads(open(path, encoding='utf-8').read())
+
+
 _TEMPLATE_BASES_CACHE = None
 
 
