@@ -247,7 +247,7 @@
       "source": "binary_discovery:1refs;batch_fix:int_to_v*_LEA_embed"
     }
   },
-  "binary_size": 12956,
+  "binary_size": 544,
   "methods": {
     "0x004125D0": {
       "name": "InitFromScene",
@@ -284,5 +284,6 @@
       "name": "InitUIElements",
       "signature": "void __thiscall Camera::InitUIElements()"
     }
-  }
+  },
+  "binary_size_source": "P1 复核（12f09f9e）第三判据 + 编排者独立复验：① operator new(544) + call 0x41BE80（alloc_sizeof，exhibits 经复核者逐字节校验 28/28 OK）；② 0x41BE80 是 name==Camera 的真构造函数并写 off_56AA84；③ 该类 ctor ±0x2000 邻域 [reg+imm] 最大位移 = 544 = alloc（两个独立读数一致）；④ 47 个成员的 max offset=404 ⇒ 末端 408 < 544；⑤ cascade_scan：0 派生/0 按值/0 数组/0 union；⑥ base_class=None。原 12956 的膨胀来自错挂方法 0x52BEB0 InitUIElements（0x52Bxxx 区）。"
 }
