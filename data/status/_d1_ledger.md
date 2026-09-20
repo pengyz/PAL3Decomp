@@ -5,8 +5,8 @@
 | **T1** advisory 挂到写盘路径 | **完成（带条件通过）**（评审者 `49c10b28`）（实现子代理 `cd5dfbbe` 已完成并提交）| commit **`18af81298`**（恰 2 文件 +63 行 ✓）；编排者**独立核实**：测试 **3/3 PASS** ✓、`check` **exit 0** ✓、helper **无 `sys.exit`** ✓、apply/export 各 1 次 ✓、tracked clean ✓、**无符号链接残留** ✓；评审者 `49c10b28` running |
 | T2 `??_L/??_M` 抽取器 | **完成（带条件通过）**：`2541ada27` + 3 条条件修复中（子代理 `74dc8d70`）| 目标：`tools/audit_element_sizes.py` + 测试；**预检**：`original/PAL3.exe.asm` 存在(22.8MB) ✓ 且 `call ??_L@` 计数 **=133** ✓（编排者独立复现三路复核的数字 ✓）|
 | T3 133 站点核对 | 未开始 | — |
-| T4 三 fixture 裁定 | 未开始 | — |
-| T5 Spike 报告 | 未开始 | — |
+| T4 两层裁定器 | ✅ 完成 + R7 重跑（`5dc5c17c6` + `6cf03c0d0`）|
+| T5 Spike 报告 | ✅ 完成（`96363f1df`）|
 
 ## 裁决记录（Ruling）
 - **R1**：编排者**不得**在实现子代理 running 期间编辑同一文件 ✗ ⇒ 我对 `cmd_export` 的补丁被"已接线，勿重复"断言安全拒绝 ✓，**这是正确行为**（避免双写 ✓）。
@@ -198,3 +198,33 @@ monkeypatch `_check_ida`/`_run_ida`/`subprocess.run`，advisory rc=1 时 apply/e
 （这与 T2 评审的 A–G 用例是同一枚硬币：**测试必须断言契约，而不是断言现状** ✓）。
 **⇒ 与 R7 的合并流程（已实证可行 ✓）**：上游工具修好 ⇒ 重生成其产物 ⇒ **重跑下游确定性工具** ✓ ⇒
 翻转"断言旧契约"的测试 ✓ ⇒ 一起提交 ✓（本次两文件一并提交，未触碰并发 agent 的文件 ✓）。
+
+## D1 收尾总评审（`a6531c8f`）：**带条件通过（无 blocker）** ✓ —— 两个 MAJOR 推翻/修正了我报告的结论 ✗
+**M1（决定性反例）** ✗：`verified` 分支不只是"不可达"，而是**循环论证** —— 评审者把合成行灌进**真实注解**：
+`size=932` + `ctor=0x4236D0`(被注成 `BINK::Reset`) ⇒ 得 `state=verified, verified_class=BINK, reasons=[]` ✗
+**因为 size 与归属都来自注解**（`binary_size` vs 注解 ctor 类的 `binary_size`）✓。
+⇒ **报告 §2 原结论"`verified=0` ⇒ 真实注解与指令字面量尺寸普遍矛盾"不成立** ✗：本层**无法区分**
+"`binary_size` 被污染"与"ctor 归属错" ✓（而这正是 §3 自己讲的 91-vs-38 污染语境 ✗）。
+**正确表述**：`verified` 在真实语料上**结构性不可达**（`size_classes == claimed_classes(非空)` 的行数 = **0** ✓；
+446/466 行 size 字面量不唯一 ✓，如 `152` 有 176 个类、`584` 有 104 个 ✓）+ **该分支无独立判别力**，
+**必须配第二判据才可用** ✓。
+**M2（漏报）** ✗：状态机要求 `size_classes` 非空才算 conflict（`element_size_adjudicate.py:298` ✓）
+⇒ "**注解主张的类，其 `binary_size` ≠ 元素字面量**"这一**最直接**的矛盾，在没有别的类共享该字面量时
+被降级为 candidate/ambiguous ✗。实测 **401 行**带 `size_consistent:false`，但只有 **375 行** `state=conflict`
+⇒ **26 行（19 candidate + 7 ambiguous）明写"不自洽"却不叫 conflict** ✗；抽样全部是**真矛盾**
+（`UILoadingFrm 332≠1944`、`UITitle_XJTM 5052≠4892`、`UIBigMap 10248≠9980`、`UIRoleSelectDialog 2204≠1552` ✓）；
+只有 `sg_emitter` 那 2 行属实"判据不足" ✓。
+⇒ **D2 若把 candidate 当"待定"会丢掉 19 条已暴露的矛盾** ✗。
+**其它**：台账状态表陈旧 ✗（本轮已修 ✓）；`tests/test_advisory_wired_into_write_path.py:13-15` 的**变异处方失效** ✗
+（它 sed 的是 `cmd_check` 的调用点 `cli.py:447`，执行后 **4 passed 无失败** ✗ ⇒ 处方不可复现，须改 `cli.py:365` ✓）；
+**本层无任何注入式负例** ✗（规格 §4/§5.5 要求 ✓）—— 评审者已跑通 3 个：**N1** 注入错归属 ⇒ conflict ✓、
+**N2** 注入"自洽但错"对 ⇒ **假 verified** ✓（**必须成为负例** ✓）、**N3** 注入无类匹配的 size ⇒ ambiguous（**漏报** ✓）。
+**MINOR**：报告 §1 对 dtor 的分类措辞（33 条非地址 dtor 实含 **8 条纯寄存器** + `nullsub_3` ✓）；
+`tests/test_element_size_adjudicate.py:59` 注释与下一行 assert 自相矛盾；产物内嵌本机绝对路径 ✓。
+**Q5 排序（评审者建议，优于我原计划 ✓）**：**P0** 先修本层**判据表达**（`size_consistent:false` 直接升级为
+conflict 或新增 `contradiction` 字段 ✓；`verified` 语义降级为 `annotation-self-consistent` ✓）**+ 落 3 个注入式负例**
+（含 N2 假 verified ✓）——**这是 D2/D3 的前置** ✓；**P1** 做**第二判据**（vtable 写表签名 / ctor vfptr 安装次序 /
+`operator new(N)` / BSS 跨度）在 5–10 样例上定案 ⇒ 回答"401 条矛盾到底是 `binary_size` 错还是归属错" ✓；
+**P2** 才做 D2 ✓；**P3** 只清 P1 定案为归属错的行 ✓；**P4** D3 最后 ✓（其前置"存量清零+负例通过"在 P0/P3 前不成立 ✓）。
+**理由**：现在任何"毕业生效"或"清存量"都建立在**因果未定**的信号上 ✗ ⇒ 会浪费最大的一块人力 ✓。
+**⇒ 采纳**：D1 关闭（带 5 条件）；**下一步按 Q5 的 P0 做** ✓。
