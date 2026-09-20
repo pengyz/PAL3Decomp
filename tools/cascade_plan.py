@@ -58,6 +58,18 @@ _SCALAR = {'char': 1, 'unsigned char': 1, '_BYTE': 1, 'BYTE': 1, 'bool': 1, 'sho
            '__int64': 8, 'int64': 8}
 
 
+def member_dims(t, mdict=None):
+    """元素数 = `count` 字段（若有 ✓ 注入 #8）× 数组维度连乘 ✓。"""
+    _b, _k, dims = parse_type(t)
+    c = 1
+    if isinstance(mdict, dict):
+        try:
+            c = int(mdict.get('count') or 1)
+        except Exception:
+            c = 1
+    return dims * max(c, 1)
+
+
 def parse_type(t):
     """共享类型解析器 ✓（复核 7f6a52cd Q1/Q5 要求）：返回 (base, kind, dims)。
 
@@ -193,6 +205,16 @@ def build_plan(target, new_size, structs):
     # ⑤ 生成编辑（逐类型 Δ ✓；平移限 o ≥ base_size ✓；**拒绝**内联 dict / `_N` 重复 ✓）
     edits = []
     rejected = []
+    # #7（注入）：同 base offset 的 `_N` 变体键会**重复计数** ✗（复核 Q1-⑦）⇒ 检出即拒绝 ✓
+    _seen_base = {}
+    for c in sorted(changed):
+        for k in (structs[c].get('known_members') or {}):
+            base_off = str(k).split('_')[0]
+            if base_off in _seen_base and _seen_base[base_off] != str(k):
+                rejected.append({'class': c, 'key': k, 'why': '同 base offset 的 `_N` 变体键（%s）⇒ 拒绝以免重复计数 ✗'
+                                 % _seen_base[base_off]})
+            else:
+                _seen_base[base_off] = str(k)
     for c in sorted(changed, key=lambda x: (-dep(x,), x)):
         K = structs[c].get('known_members') or {}
         row = {'class': c, 'depth': dep(c), 'role': None, 'ops': []}
@@ -230,13 +252,18 @@ def build_plan(target, new_size, structs):
             for k in K:
                 base, kind, dims, t = _bt(c, k)
                 if kind == 'inline':
-                    rejected.append({'class': c, 'key': k, 'why': '内联 dict 成员 ⇒ 拒绝（不静默 ✗）'})
+                    # #4（注入）：内联 union/struct 的**按值变体**若含 changed 类 ⇒ 必须**拒绝** ✓
+                    # （此前只是跳过 ⇒ 影响面被静默漏掉 ✗）
+                    _blob = __import__('json').dumps(t, ensure_ascii=False)
+                    if any((('"%s"' % x) in _blob) or (': %s' % x) in _blob for x in changed):
+                        rejected.append({'class': c, 'key': k,
+                                         'why': '内联 dict 的按值变体含受影响类 ⇒ 拒绝（不静默 ✗）'})
                     continue
                 o = _n(k)
                 if o is None:
                     continue
                 if kind == 'class' and base in changed:
-                    emb.append((o, dims, base, t, k))
+                    emb.append((o, member_dims(t, (K[k] if isinstance(K[k], dict) else None)), base, t, k))
             if not emb:
                 continue
             own = structs[c].get('binary_size')
