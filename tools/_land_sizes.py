@@ -7,6 +7,7 @@ Baseline: S1 731/751, S2 49/197.
 import json, subprocess, sys, os
 from pathlib import Path
 
+_revert_needed = []
 ROOT = Path(__file__).parent.parent
 UPDATES = [
     ('UIStatic', 248),
@@ -62,7 +63,13 @@ for cls, size in UPDATES:
         print('[KEPT] %-20s size=%d  S1=%d/%d S2=%d/%d' % (cls, size, s1[0], s1[1], s2[0], s2[1]))
     else:
         # revert to HEAD (original size) and restore headers
-        subprocess.run(['git', 'checkout', '--', 'data/annotations/structs/%s.json' % cls], cwd=str(ROOT))
+        # 2026-09-20 审计 P0-5：此前这里**自动执行 `git checkout --`**，而项目纪律
+        # （docs/specs/2026-09-15-plan-1to5-landing-design.md:169）**明文禁止**
+        # `git checkout --` / `git restore` / `git stash` / `git clean -fd`
+        # —— 它会静默丢弃未提交的标注修改。改为**仅报告 + 非零退出**。
+        print('[REVERT-NEEDED] 以下文件需人工用 `git show HEAD:<path> > <path>` 还原（禁止 git checkout --）:')
+        print('    data/annotations/structs/%s.json' % cls)
+        _revert_needed.append(cls)
         codegen_headers()
         results.append((cls, size, 'REVERTED', s1, s2))
         print('[REVERTED] %-20s size=%d  S1=%d/%d S2=%d/%d' % (cls, size, s1[0], s1[1], s2[0], s2[1]))

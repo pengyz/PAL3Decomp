@@ -719,6 +719,9 @@ def cmd_compile():
         print("-> BUILD INCOMPLETE: some files failed (see errors above)")
         print("  Fix annotations or codegen, then re-run:")
         print("  python pipeline/cli.py compile")
+    # 2026-09-20 审计 P0-2：此前本函数**恒 exit 0**（只打印不传播），
+    # 使 `compile && ...` 链失效、门禁无法断链。
+    sys.exit(0 if result.returncode == 0 else 1)
 
 
 def main():

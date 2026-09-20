@@ -5,14 +5,14 @@
 # 任何对 annotations 目录的写入/编辑，先验证格式
 [[hooks]]
 event = "pre_tool_use"
-matcher = "Write(pipeline/data/annotations/**)"
+matcher = "Write(data/annotations/**)"
 [[hooks.hooks]]
 command = "cd /home/peng/workspace/PAL3Decomp && python3 pipeline/check_annotations.py || (echo '{\"reason\": \"Annotations 格式校验失败，请修正后重试\"}' && exit 2)"
 timeout_ms = 30000
 
 [[hooks]]
 event = "pre_tool_use"
-matcher = "Edit(pipeline/data/annotations/**)"
+matcher = "Edit(data/annotations/**)"
 [[hooks.hooks]]
 command = "cd /home/peng/workspace/PAL3Decomp && python3 pipeline/check_annotations.py || (echo '{\"reason\": \"Annotations 格式校验失败，请修正后重试\"}' && exit 2)"
 timeout_ms = 30000
@@ -52,7 +52,7 @@ timeout_ms = 5000
 # === Hook 4: 结构体偏移后置校验（警告不阻断） ===
 [[hooks]]
 event = "post_tool_use"
-matcher = "Write(pipeline/data/annotations/structs/*)"
+matcher = "Write(data/annotations/structs/*)"
 [[hooks.hooks]]
 command = """
 INPUT=$(cat)
@@ -63,7 +63,7 @@ timeout_ms = 15000
 
 [[hooks]]
 event = "post_tool_use"
-matcher = "Edit(pipeline/data/annotations/structs/*)"
+matcher = "Edit(data/annotations/structs/*)"
 [[hooks.hooks]]
 command = """
 INPUT=$(cat)

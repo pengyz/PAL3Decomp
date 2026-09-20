@@ -8,7 +8,7 @@ print(ti.get('file_path', ti.get('path', '')))
 " 2>/dev/null)
 [ -z "$file_path" ] && exit 0
 case "$file_path" in
-    */pipeline/data/annotations/*) exit 0 ;;
+    */data/annotations/*) exit 0 ;;
     */docs/*|*/.project/*) exit 0 ;;
 esac
 echo "{\"reason\": \"禁止修改管线脚本 ${file_path}。反编译迭代中只允许修改 annotations 数据。\"}"
