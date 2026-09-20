@@ -445,7 +445,19 @@ def cmd_check():
     script = os.path.join(_PIPELINE_DIR, 'check_annotations.py')
     result = subprocess.run([sys.executable, script])
     _run_invariants_advisory()   # 返回值刻意丢弃：advisory 不得改变 check 退出码
-    sys.exit(result.returncode)
+    # 2026-09-21 B34 复核（两路一致）：把 union 平凡性门禁**接进 check** ✓
+    # 为什么直接**硬失败**（而非像 invariants 那样 advisory）：本闸的**自身存量 = 0** ✓
+    # （实测"无 landmine"），按"逐闸毕业生效"规则可立即升硬 ✓ —— 一旦有人给 union 按值成员类
+    # 加 ctor/dtor（B34 的成因 ✗），本闸会**真的失败** ✓，而不是静默放过。
+    _ug = os.path.join(_PROJECT_DIR, 'tools', 'check_union_member_triviality.py')
+    _ug_rc = 0
+    if os.path.exists(_ug):
+        print(flush=True)
+        print("[UnionTriviality] 检查 union 按值成员的平凡性（B34 成因，存量=0 ⇒ 硬失败）...", flush=True)
+        _ug_rc = subprocess.run([sys.executable, _ug]).returncode
+        if _ug_rc != 0:
+            print("[FAIL] union 平凡性被破坏 —— 参见工具输出的处置建议（B34 曾因此 208 单元 C2620 ✗）", flush=True)
+    sys.exit(result.returncode or _ug_rc)
 
 
 def cmd_codegen(args):
