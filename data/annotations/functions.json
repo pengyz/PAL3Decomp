@@ -96,7 +96,7 @@
   "0x004226F0": {
     "name": "UISceneUpdate",
     "signature": "struct SceneMgr *__cdecl()",
-    "source": "F61(2026-09-19): 返回值被当作对象基址使用（result+57568=SceneMgr.json m_nRoleCount、result+58204），原来标 int 使 Hex-Rays 只能发 *(int*)/*(_DWORD*) 裸指针算术，导致同一表达式两处渲染出不同符号性（`jl` vs `jb`，SceneMgr::ClearInactiveRoles n_diff=1）。"
+    "source": "F61(2026-09-19) 原改为 SceneMgr*；2026-09-20 复核发现该类实为 Scene（元素尺寸 493156、7/7 成员吻合），但**单独**把返回类型改成 Scene* 会暴露既存缺口（Scene 注解在 offset0 有 _vftable 而头生成器按设计不发射它 ⇒ UIManager.cpp 出现 C2039，总错误 +3）。故本轮**分离实验**：先回退返回类型，只保留 Scene::_todo_421870 的归属（该方法归属由调用点 `mov ecx,eax` + [esi+84h]=Scene.m_geomnode 双重证据支撑）⇒ 待 offset0 缺口与 Scene 布局一并处理时再改。"
   },
   "0x00422950": {
     "name": "LoadScene",
