@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+"""只读：为"改某类 binary_size"生成**精确编辑计划**（A 窄核的输入 ✓，本工具**绝不写盘**）。
+
+计划内容（每条都可机械执行 ✓）：
+  * 目标/族：`binary_size`、`base_size` 如何改
+  * 持有者：哪些**成员 offset 键**要平移、平移多少（**按每类首个内嵌位置 P_min 分档** ✓）
+  * 次序：**leaf→root**（深度大的先 ✓）
+  * `0x` 归一 ✓（禁用 `int(k,0)` ✗）
+用法：python3 tools/cascade_plan.py <Class> --new-size N [--json]
+"""
+import argparse, json, os, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import cascade_scan as cs
+
+
+def _n(k):
+    ks = str(k)
+    if ks[:2].lower() == '0x':
+        return int(ks, 16)
+    if '_' in ks:
+        ks = ks.split('_')[0]
+    return int(ks, 10) if ks.isdigit() else None
+
+
+def build_plan(target, new_size, structs):
+    d = structs[target]
+    old = d.get('binary_size')
+    delta = new_size - old
+    der = cs._descendants(target, structs)
+    fam = [target] + der
+    kids = cs._children_map(structs)
+    depth = {}
+    def dep(n, stack=()):
+        if n in depth: return depth[n]
+        if n in stack: return 0
+        ps = [p for p, ks_ in kids.items() if n in ks_]
+        depth[n] = 0 if not ps else 1 + max(dep(p, stack + (n,)) for p in ps)
+        return depth[n]
+    for c in structs: dep(c)
+    # 按值/数组包含的传递闭包
+    def bt(c, k):
+        t = (structs[c].get('known_members') or {}).get(k, {})
+        t = t.get('type') if isinstance(t, dict) else None
+        if not isinstance(t, str): return None
+        m = cs._ARR.match(t)
+        return m.group(1) if m else t
+    changed = set(fam); owners = set()
+    while True:
+        newc = {c for c in structs if c not in changed
+                and any(bt(c, k) in changed for k in (structs[c].get('known_members') or {}))}
+        if not newc: break
+        owners |= newc; changed |= newc
+    edits = []
+    for c in sorted(changed, key=lambda x: (-depth.get(x, 0), x)):     # leaf→root ✓
+        K = structs[c].get('known_members') or {}
+        row = {'class': c, 'depth': depth.get(c, 0), 'role': None, 'ops': []}
+        if c == target:
+            row['role'] = 'target'
+            row['ops'].append({'op': 'set_binary_size', 'from': old, 'to': new_size})
+        elif c in der:
+            row['role'] = 'derived'
+            bs = structs[c].get('base_size'); own = structs[c].get('binary_size')
+            if isinstance(bs, int): row['ops'].append({'op': 'set_base_size', 'from': bs, 'to': new_size})
+            if isinstance(own, int): row['ops'].append({'op': 'set_binary_size', 'from': own, 'to': own + delta})
+            row['ops'] += [{'op': 'shift_offset', 'key': k, 'from': _n(k), 'to': _n(k) + delta}
+                           for k in K if _n(k) is not None and _n(k) >= old]
+        else:
+            row['role'] = 'holder'
+            sites = [_n(k) for k in K if bt(c, k) in changed and _n(k) is not None]
+            if not sites: continue
+            P = min(sites)
+            # 第 k 个内嵌对象之后 ⇒ +delta*k（**平移量非常数** ✓，复核者实测分配 {0:591,96:249,…}）
+            ordered = sorted(sites)
+            for k in K:
+                o = _n(k)
+                if o is None or o <= P: continue
+                mult = sum(1 for s in ordered if s < o)
+                row['ops'].append({'op': 'shift_offset', 'key': k, 'from': o,
+                                   'to': o + delta * mult, 'mult': mult})
+        if row['ops']: edits.append(row)
+    return {'target': target, 'old_size': old, 'new_size': new_size, 'delta': delta,
+            'classes': len(changed), 'total_ops': sum(len(e['ops']) for e in edits),
+            'leaf_to_root': [e['class'] for e in edits], 'edits': edits}
+
+
+def main(argv=None):
+    argv = sys.argv[1:] if argv is None else argv
+    known = {'--new-size', '--json'}
+    unk = [a for a in argv if a.startswith('-') and a.split('=')[0] not in known]
+    if unk:
+        print('[cascade_plan] 未知开关 %r ⇒ 不执行任何操作' % unk); return 0
+    ap = argparse.ArgumentParser()
+    ap.add_argument('class_name'); ap.add_argument('--new-size', type=int, required=True)
+    ap.add_argument('--json', action='store_true')
+    a = ap.parse_args(argv)
+    plan = build_plan(a.class_name, a.new_size, cs._load())
+    if a.json:
+        print(json.dumps(plan, ensure_ascii=False, indent=1)); return 0
+    print('== 编辑计划: %s %s->%s (delta=%+d) ==' % (plan['target'], plan['old_size'], plan['new_size'], plan['delta']))
+    print('  涉及类 %d · 总操作数 %d' % (plan['classes'], plan['total_ops']))
+    print('  leaf→root 前 8: %s' % plan['leaf_to_root'][:8])
+    for e in plan['edits'][:5]:
+        print('   %-22s depth=%d role=%-8s ops=%d 例:%s' % (e['class'], e['depth'], e['role'], len(e['ops']), e['ops'][:1]))
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())
