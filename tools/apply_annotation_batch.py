@@ -78,11 +78,19 @@ def load_ann(cls):
 # 而既有的 set_size 分支不知道它 ⇒ 一次 --dry-run 竟然真落了 1453 条 ✗✗（已逐个 git show 回退 ✓）。
 # ⇒ 把守卫放到**唯一的落盘出口** save_ann 上，任何分支都无法绕过 ✓。
 _DRY_RUN = False
+# 2026-09-21（复核 7f6a52cd Q5 / 阶段一 ③b）：**两阶段落盘** —— 原实现循环内逐条 save_ann ✗
+# 且 `[拒绝]` 只 continue ✗ ⇒ "1507/1507 通过"**不等于原子** ✗。
+# 现改为：**先在内存缓冲**（同一单点 save_ann ✓），末尾若无拒绝才**统一 flush** ✓；
+# 任一拒绝 ⇒ **整批不写 + 非零退出** ✓。
+_BUFFER = None          # None = 直写（兼容旧行为）；dict = 缓冲模式（path -> data）
 
 
 def save_ann(d, p):
     if _DRY_RUN:
         return                      # dry-run：**绝不写盘** ✓（单点守卫，不可绕过 ✓）
+    if _BUFFER is not None:
+        _BUFFER[p] = d              # 两阶段：先缓冲 ✓（校验通过后才 flush ✓）
+        return
     json.dump(d, open(p, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
     open(p, 'a').write('\n')
 
@@ -97,6 +105,8 @@ def main():
     global _DRY_RUN
 
     _DRY_RUN = bool(getattr(args, 'dry_run', False))
+
+    _BUFFER = {} if not _DRY_RUN else None      # 非 dry-run ⇒ 启用两阶段缓冲 ✓
 
     if not os.path.exists(args.batch):
         print('[ERROR] 批次文件不存在: %s' % args.batch)
@@ -296,6 +306,14 @@ def main():
             done += 1
         else:
             print('   [跳过] 未知 kind: %s' % it.get('kind'))
+    # **两阶段**：有拒绝 ⇒ 整批不写 + 非零退出 ✓（复核要求"先全量校验再统一落盘" ✓）
+    if rejected:
+        print('\n[ABORT] 有 %d 条被拒 ⇒ **整批不写** ✓（两阶段：校验未全过）' % len(rejected))
+        return 1
+    if _BUFFER is not None and not _DRY_RUN:
+        for path, data in sorted(_BUFFER.items()):
+            json.dump(data, open(path, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
+        print('\n[flush] 统一落盘 %d 个文件（两阶段 ✓）' % len(_BUFFER))
     print('\n%s %d 条' % ('[dry-run] 计算' if _DRY_RUN else '落盘', done))
 
     if _DRY_RUN:
