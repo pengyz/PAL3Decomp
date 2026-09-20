@@ -308,8 +308,14 @@ def main():
         hard += check_b(args.verbose)
     latent = check_c(args.verbose) if ('C' in want or args.strict) else 0
     print()
-    print('编译阻塞项 %d；潜伏项 %d  => %s'
-          % (hard, latent, 'FAIL' if (hard or (args.strict and latent)) else 'PASS'))
+    # 2026-09-21 F2（评审后续项·假红框定）：advisory 时**先**框定，避免读者/日志把
+    # `=> FAIL` 误判为门禁失败 —— 本模式下 exit 恒 0，判定词改 ADVISORY-ONLY（不阻断）✓。
+    # 非 advisory 时判定词保持原样 FAIL/PASS（不改检测强度，只改框定）✓。
+    if args.advisory:
+        print('[ADVISORY] 非门禁报告：以下计数不影响任何退出码')
+    verdict = ('ADVISORY-ONLY（不阻断）' if args.advisory
+               else ('FAIL' if (hard or (args.strict and latent)) else 'PASS'))
+    print('编译阻塞项 %d；潜伏项 %d  => %s' % (hard, latent, verdict))
     if args.advisory:
         print('[ADVISORY] 计数如上，**本模式恒 exit 0** —— 存量清零后才可升为硬失败 ✓')
         return 0

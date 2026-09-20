@@ -420,8 +420,10 @@ def _run_invariants_advisory():
     inv = os.path.join(_PROJECT_DIR, 'tools', 'codegen_invariants.py')
     if not os.path.exists(inv):
         return 0
-    print()
-    print("[Invariants] advisory 模式（只报告计数，不影响退出码）...")
+    # 2026-09-21 F2：flush=True —— stdout 被重定向时调用方的行缓冲会把本标题行排到
+    # 子进程输出**之后**（实测：块头出现在 `=> ADVISORY-ONLY` 之后 ✗），日志里框定失去前置性。
+    print(flush=True)
+    print("[Invariants] advisory 模式（只报告计数，不影响退出码）...", flush=True)
     r = subprocess.run([sys.executable, inv, '--advisory'])
     if r.returncode != 0:
         print("[WARN] codegen_invariants 在 advisory 模式下仍非零退出（%d）—— 不影响本次结果，"
