@@ -279,6 +279,54 @@ def test_json_written_only_to_given_path(tmp_path):
     assert payload['summary']['evidenced'] == 466
 
 
+# ---------------------------------------------------------------- 注入式负例（规格 §4/§5.5 要求）
+# N1/N2/N3 由交付 1 的总评审在 /tmp 跑通后转正；断言**契约**而非现状 ✓
+def test_N1_injected_wrong_owner_must_be_conflict():
+    """N1：注入**错误归属**的 ctor（BINK::Reset，932）到 896 的站点 ⇒ 必须报 conflict。"""
+    sites = [_site(site='sub_41F6F0', ptr='ecx', size=0x380, count=64,
+                   ctor='0x4236D0', dtor='0x423880', line=47092)]
+    structs = {'BINK': _struct('BINK', 932, {'0x004236D0': 'BINK::Reset'}),
+               'tagRoleSlot': _struct('tagRoleSlot', 896)}
+    row = a.adjudicate(sites, structs)[0]
+    oc = row['ownership_candidate']
+    assert row['size_state'] == 'evidenced'
+    assert oc['state'] == 'conflict', oc['state']
+    assert oc['verified_class'] is None
+    assert row['contradiction'] is True, '错误归属必须留下 contradiction 痕迹'
+
+
+def test_N2_self_consistent_but_wrong_must_not_be_consumable():
+    """N2：注入**自洽但错**的一对（size=932 且 ctor 指向 932 的那个类）⇒ 本层不得当作已确认。
+
+    修复前这里会得到 verified_class=BINK ✗（M1 的循环论证）⇒ 现契约：只能
+    annotation_self_consistent + verified_class=None + requires_second_criterion=True。
+    """
+    sites = [_site(site='sub_41F6F0', ptr='ecx', size=932, count=64,
+                   ctor='0x4236D0', dtor=None, line=47092)]
+    structs = {'BINK': _struct('BINK', 932, {'0x004236D0': 'BINK::Reset'})}
+    row = a.adjudicate(sites, structs)[0]
+    oc = row['ownership_candidate']
+    assert oc['state'] == 'annotation_self_consistent', oc['state']
+    assert oc['state'] != 'verified'
+    assert oc['verified_class'] is None
+    assert row['requires_second_criterion'] is True
+
+
+def test_N3_size_with_no_matching_class_is_not_consumable():
+    """N3：size 字面量无任何类匹配且无归属主张 ⇒ ambiguous，且标为不可消费。"""
+    sites = [_site(site='sub_X', ptr='eax', size=999, count=1, ctor=None, dtor=None, line=1)]
+    structs = {'SomeClass': _struct('SomeClass', 1234)}
+    row = a.adjudicate(sites, structs)[0]
+    oc = row['ownership_candidate']
+    assert row['size_state'] == 'evidenced'
+    # 契约（而非实现细节）：无匹配类 ⇒ 绝不可消费。具体态名（candidate/ambiguous）属实现细节，
+    # 故只要求"不是任何能冒充确认的态" + 必须标不可消费。
+    assert oc['state'] in ('candidate', 'ambiguous', 'unestablished'), oc['state']
+    assert oc['state'] not in ('annotation_self_consistent', 'verified')
+    assert row['requires_second_criterion'] is True
+    assert oc['verified_class'] is None
+
+
 if __name__ == '__main__':
     import inspect
     import shutil
