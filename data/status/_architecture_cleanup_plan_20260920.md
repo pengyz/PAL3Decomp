@@ -354,3 +354,26 @@ B `--force-overwrite` ⇒ exit 0、允许覆盖（graded=144）✓；随后 `git
 **累计**：P1-5 已迁 2 处（`stage4._load_member_names`、`collect._get_skip_classes`），
 两处都过"逻辑等价 + 字节 diff"两道验证。**剩余**：`data.py`（5 处）、`ast_transform.py`（2 处）、
 `emit_headers.py`（10 处）—— 按同一流程逐处迁移。
+
+
+## 目标外续作（用户指派）：`Scene` / `Role` 布局修正（**一批一管线**）
+**通胀链的根**：`Role.binary_size` 虚高（8928）⇒ `Scene.m_npc: Role[72]` 末端虚高到 1,099,748
+⇒ `Scene.binary_size` 被抬到 1100000 ✗。而构造函数证明的真实布局自洽于 **0x78664 = 493156**。
+**本批（一次 apply→export→codegen→probe→match）**：
+1. **`Role`: 8928 → 8704**（A 级：ctor `??_L(esi+0E0E4h, 0x2200, 0x32, sub_411900=Role, …)`
+   的**元素尺寸字面量 0x2200**；旁证：`Role` 末成员 0x21f4=8692 与 8704 相容、与 8928 不相容）
+2. **`Scene`: 1100000 → 493156**（三重 A 级：ctor 的三个字面量 `push 3/00078664h/00C21FE8h`；
+   BSS 跨度 493156×3 整除；getter 移位链算术）
+3. **移除 3 个无据/冲突成员**：`+0xE0 m_obj: SceneObj[256]`（与 ctor 的 **64×896** 冲突 ✗）、
+   `+0x6f8e0 m_numnpc`、`+0x6f8e4 m_npc: Role[72]`（二者**落在** ctor 的 `Role[50]` 区间
+   `[0xE0E4,0x784E4)` **之内** ✗）
+4. **新增 8 个指令级证据成员**：`+0xE0 m_roleSlots: tagRoleSlot[64]`（896 字节唯一匹配）、
+   `+0xE0E0`、`+0xE0E4 m_roles: Role[50]`、`+0x78650/54/58`、`+0x7865C(BYTE)`、`+0x78660`
+**自检**：成员末端 = **493156**，与 `binary_size` **恰好相等** ✓（布局完全自洽）
+**判据（注解修正用"无退化"而非"字节不变"）**：`probe all` **EXIT=0**、**新失败 0**、
+**总错误 2150 未增**、**L1 34→34 未回退**、`match` EXIT=0、partial **198→200** ✓
+**我自己的失误（已修）**：新增成员时**手算 hex→decimal 算错**（`0xE0E4` 写成 923876 ✗）
+⇒ 末端冲到 1,359,078 被 `check` 抓住 ⇒ 改为**用代码换算**（从此不再手算）✓
+**遗留（未做）**：offset0 `_vftable`（挡住 getter 用 `Scene*` 正确类型；且 ctor 不装 vptr ⇒ 该成员**很可能无据**）；
+`Role` 的 ctor/dtor 对里 `sub_411CA0` 被注成 `~PalScript` ✗、`+0xE0` 元素的 ctor `sub_4236D0` 被注成
+`BINK::Reset` ✗（归属存疑）；`+0x784E4` 子对象类型未知 ⇒ 未注解。

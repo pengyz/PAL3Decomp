@@ -1,6 +1,6 @@
 {
   "name": "Scene",
-  "binary_size": 1100000,
+  "binary_size": 493156,
   "known_members": {
     "0": {
       "name": "_vftable",
@@ -37,21 +37,6 @@
       "type": "int",
       "source": "annotation"
     },
-    "224": {
-      "name": "m_obj",
-      "type": "SceneObj[256]",
-      "source": "annotation"
-    },
-    "456928": {
-      "name": "m_numnpc",
-      "type": "int",
-      "source": "annotation"
-    },
-    "456932": {
-      "name": "m_npc",
-      "type": "Role[72]",
-      "source": "annotation"
-    },
     "4": {
       "name": "m_pDataBegin",
       "type": "char *",
@@ -73,6 +58,46 @@
       "name": "m_nReset",
       "type": "int",
       "source": "binary:disp32_26hits_6funcs"
+    },
+    "57568": {
+      "name": "m_nTodo_e0e0",
+      "type": "int",
+      "source": "ctor 0x0041F6F0: mov [esi+0E0E0h],0"
+    },
+    "493136": {
+      "name": "m_nTodo_78650",
+      "type": "int",
+      "source": "ctor 0x0041F6F0: mov [esi+78650h],0；sub_41F8C0 对其做虚调用"
+    },
+    "493140": {
+      "name": "m_nTodo_78654",
+      "type": "int",
+      "source": "ctor 0x0041F6F0: mov [esi+78654h],0"
+    },
+    "493144": {
+      "name": "m_nTodo_78658",
+      "type": "int",
+      "source": "sub_421870: mov ecx,[esi+78658h] / mov dword ptr [esi+78658h],0"
+    },
+    "493148": {
+      "name": "m_nTodo_7865c",
+      "type": "BYTE",
+      "source": "ctor 0x0041F6F0: mov byte ptr [esi+7865Ch],0FFh"
+    },
+    "493152": {
+      "name": "m_nTodo_78660",
+      "type": "int",
+      "source": "ctor 0x0041F6F0: mov [esi+78660h],0"
+    },
+    "224": {
+      "name": "m_roleSlots",
+      "type": "tagRoleSlot[64]",
+      "source": "ctor 0x0041F6F0: ??_L(esi+0E0h, 0x380, 0x40, sub_4236D0, sub_423880) ⇒ 64×896；896 字节的类唯一匹配 tagRoleSlot"
+    },
+    "57572": {
+      "name": "m_roles",
+      "type": "Role[50]",
+      "source": "ctor 0x0041F6F0: ??_L(esi+0E0E4h, 0x2200, 0x32, sub_411900=Role, sub_411CA0) ⇒ 50×Role(8704)；末端 0xE0E4+0x6A400=0x784E4 与紧随的子对象构造精确衔接"
     }
   },
   "methods": {
