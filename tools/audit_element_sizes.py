@@ -53,6 +53,7 @@ _PROC = re.compile(r'^([A-Za-z_]\w*)\s+proc near')
 # 但它们**没有自己的 `proc near`** ⇒ 不处理就会被挂到文件中最后一个 proc 名下。
 # ⚠️ 必须在**剥尾注之前**的 raw_line 上匹配：该行以 `;` 起头，剥注释后只剩空串 ⇒ 永不命中。
 _CHUNK = re.compile(r'^;\s*START OF FUNCTION CHUNK FOR\s+(\S+)')
+_CHUNK_END = re.compile(r'^;\s*END OF FUNCTION CHUNK FOR\s+(\S+)')
 _HEX_LIT = re.compile(r'^[0-9A-F][0-9A-Fa-f]*h$')
 _SYM_ADDR = re.compile(r'^([A-Za-z]\w*_)([0-9A-Fa-f]{4,})$')
 
@@ -126,6 +127,11 @@ def parse_sites(asm_text):
         c = _CHUNK.match(raw_line)               # funclet chunk：host 取自 chunk 头（raw_line！）
         if c:
             cur, buf = c.group(1), []
+            continue
+        if _CHUNK_END.match(raw_line):
+            # 失效安全：chunk 结束后若出现站点而**没有新边界**，宿主视为未知（None）
+            # —— 宁缺失也不误挂到上一个函数（同类于被修的 213/466 归属 bug）。
+            cur, buf = None, []
             continue
         m = _PROC.match(raw_line)
         if m:

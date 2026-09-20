@@ -124,6 +124,36 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASM_FILE = os.path.join(ROOT, 'original', 'PAL3.exe.asm')
 
 
+# ---------------------------------------------------------------- END 复位（失效安全）
+_ASM_END_RESET = """; START OF FUNCTION CHUNK FOR sub_AAA
+                push    offset sub_DEAD
+                push    offset sub_BEEF
+                push    1
+                push    10h
+                push    offset unk_1111
+                call    ??_L@YGXPAXIHP6EX0@Z1@Z
+; END OF FUNCTION CHUNK FOR sub_AAA
+                push    offset sub_CAFE
+                push    offset sub_FEED
+                push    2
+                push    20h
+                push    offset unk_2222
+                call    ??_L@YGXPAXIHP6EX0@Z1@Z
+"""
+
+
+def test_end_of_chunk_resets_host_failsafe():
+    """END OF FUNCTION CHUNK 之后、且无新 proc/chunk 边界时，宿主必须是 None。
+
+    失效安全取向：**宁缺失（site=None）也不误挂到上一个函数**（这正是被修的 213/466 bug 的同类）。
+    """
+    sites = a.parse_sites(_ASM_END_RESET)
+    assert len(sites) == 2, sites
+    assert sites[0]['site'] == 'sub_AAA', sites[0]
+    assert sites[1]['site'] is None, sites[1]
+    assert sites[0]['size'] == 0x10 and sites[1]['size'] == 0x20, sites
+
+
 def _real_sites():
     """非 gitignored asm 存在时返回全量站点，否则 None（调用方 SKIP）。"""
     if not os.path.exists(ASM_FILE):
