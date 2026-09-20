@@ -269,3 +269,44 @@ conflict 或新增 `contradiction` 字段 ✓；`verified` 语义降级为 `anno
 ### 它还发现的两点（我没问）
 - **"一批一管线"的隐性成本未评估** ✗：`cascade fix` 若需几次迭代收敛 ⇒ 每次 11–20 分钟 ✓ ⇒ 可能导致工具被弃用（比"不接线"更隐蔽 ✓）。
 - **判据的"过期检测"缺失** ✗：五类判据都从当前两起事故硬编码提炼 ✓；注解语料在演化 ✓ ⇒ 应加"定期用全量语料重新验证零误报/零漏报"的运维承诺 ✓。
+
+## cascade 工具规格 · Codex 复核（`subagent-105`）：**需先改规格，不建议按当前版本批准** ✗
+**4 个 blocker（与 Kiro 高度一致 ✓，并给出机理）**
+1. **UIStatic 因果与修复点错** ✗：按值 include **已在 `emit_headers.py:1158` 处理** ✓；真 blocker 是
+   **派生 UDT 布局过期** ✓ —— 基类 248 被塞进总长 **156** 的 UDT（`base_size=152` ✗）⇒ **apply 越界检查拒绝**
+   （`apply_annotations.py:914/920/926` + `:675/:681` ✓）⇒ 头文件消失 ✓ ⇒ **处方应为"派生布局 proposal + apply/export/codegen 验证"** ✓，
+   include **只作下游检查** ✓。
+2. **继承平移规则不完整** ✗：只改派生 `binary_size`/`base_size` **不够** ⇒ **SI 的自有成员 offset 也必须平移** ✓；
+   **MI 缺 `bases` 偏移时必须降级**（`bases` 完整仅 **11/179** ✓、MI 31 个中仅 10 个有完整偏移 ✓）⇒
+   输出三态 `mechanical / proposal / unresolved` ✓，**自动 apply 仅允许高置信 SI** ✓。
+3. **overlap 复用声明不成立** ✗（同 Kiro ✓）：没有"`type={"union":[…]}` 自动跳过"的显式规则 ✓；
+   实际是 **同 offset 变体 + 两个硬编码类 + source 文本含 `overlap` 的后门** ✓ ⇒ **cascade 必须自建区间代数** ✓，
+   **不得继承自由文本后门** ✗。
+4. **`fix --apply` 写入通道不足** ✗：现有 batch writer **只支持 `set_size`** ✓、**不支持 `set_base_size`/偏移平移** ✗，
+   且**非原子**（循环中逐文件保存 ⇒ 后期失败留部分落盘 ✗）⇒ **MVP 直接删掉 `--apply`** ✓。
+**majors（都很有价值 ✓）**
+- **我把 UIStatic 的派生类数写错了** ✗：直接子类是 **4 个**（`UIStaticEX`/`UIStaticFlip`/`UIStaticRM`/`UIStaticCB` ✓），**不是 2** ✗。
+- **`risk_units=208/76` 是历史编译普查结果，不是扫描器可推导的普适值** ✗ ⇒ 必须拆成
+  `estimated_exposed_tus` 与 `historical_observation` 两字段 ✓✓（**不得把历史数伪装成预测能力** ✓）。
+- **④还须覆盖生成器语义** ✗：codegen 会为 **scalar deleting destructor 自动生成 virtual dtor**
+  （`emit_headers.py:31/:2008` ✓）⇒ **只查注解方法名会漏掉生成器制造的非平凡成员** ✗。
+- **数组/inline 区间不得复用现有估算器** ✗：`check_annotations.py:54` 的 `total` 被循环覆盖 ⇒
+  **非同长二维数组会算错** ✗ ⇒ 需独立 `type_layout` 解析器 + 0x/十进制 offset 归一 ✓。
+- **`scan --json <path>` 与"scan 绝不写盘"自相矛盾** ✗ ⇒ 默认 JSON 到 **stdout** ✓。
+**它建议的 Spike（第三个变体，与 Kiro 趋同 ✓）**：只读；范围 = `annotation_view` 读入 + **④完整泛化** +
+**SI①最小实现** + ②③直接引用枚举；**不做 MI 推断 / 不做 overlap / 不做 `--apply` / 不挂 check** ✓。
+**成功判据**：B34 副本**必报** `tagRoleSlot → PalScript union` ✓；UIStatic 副本**必报 4 个直接派生类 + 8 个按值引用 + stale apply hazard** ✓；
+关掉任一扫描器 ⇒ 注入测试失败 ✓；**仓库零写入** ✓。
+**退出判据（很有价值 ✓）**：**若两个历史案例仍需依赖生成物或编译结果才能解释 ⇒ 收缩为手工 checklist，不建全量工具** ✓✓。
+**额外坑**：被删工具 `fedac64f1` 明确警告「**只改 annotation 不改 TIL 不安全、必须 leaf-to-root**」✓，
+且 `fb57ef3bf` 修过一批 **over-cascade** ✗ ⇒ **绝不能把 delta 自动加到组合类 owner 尺寸上** ✓（owner 只报影响 ✓）；
+`pal3/src` 生成物**可能陈旧** ⇒ 用它判定 include 图必须标 freshness ✓；export 侧 `_variants` 与注解 inline union
+是**两种表示** ✓（混用会漏报⑤ ✓）。
+
+## ⇒ 两路**一致**的结论（2026-09-20）
+**都判**：需先改规格；**都不建议直接实现完整五类工具** ✓；**都建议先做"只读 Spike"** ✓
+（Kiro：先接 union 门禁 + 几十行只读反查脚本，在 3 个历史级联上验证 ✓；
+Codex：只读 Spike = ④泛化 + SI①最小 + ②③枚举，含**退出判据**"若需生成物/编译结果才能解释 ⇒ 收缩为 checklist" ✓）。
+**两路共同推翻我的**：①P2 指错文件（按值 include 早已实现 ✗）②overlap 复用不成立（真后门是 source 文本 ✗）
+③`--apply` 写入通道不足且非原子 ✗ ④MI 平移规则不完整 ✗ ⑤风险单元数被伪装成预测能力 ✗
+⑥UIStatic 派生类数（我写 2，实为 4 ✗）。
