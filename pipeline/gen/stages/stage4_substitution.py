@@ -328,20 +328,14 @@ def _load_member_names():
     case `&x->Name` is legal C++ and must be left alone."""
     global _MEMBER_NAMES
     if _MEMBER_NAMES is None:
-        import json as _json
-        names = set()
+        # 2026-09-20 审计 P1-5（第一批）：直读收敛到单一读点
+        # `pipeline/gen/annotation_view.py`。逻辑**逐字等价**（只取 known_members 下
+        # 的 dict 且带 name 的条目；坏文件静默跳过）⇒ 产物必须字节不变。
         try:
-            for p in (store.annotations_dir / 'structs').glob('*.json'):
-                try:
-                    d = _json.loads(p.read_text(encoding='utf-8'))
-                except Exception:
-                    continue
-                for m in (d.get('known_members') or {}).values():
-                    if isinstance(m, dict) and m.get('name'):
-                        names.add(m['name'])
-        except Exception:
-            pass
-        _MEMBER_NAMES = names
+            import annotation_view as _av
+        except ImportError:
+            from pipeline.gen import annotation_view as _av
+        _MEMBER_NAMES = _av.member_names(store=store)
     return _MEMBER_NAMES
 
 

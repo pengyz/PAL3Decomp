@@ -188,3 +188,26 @@ B `--force-overwrite` ⇒ exit 0、允许覆盖（graded=144）✓；随后 `git
 
 **本地磁盘**：这两个载荷合计约 **1.05GB**；因未跟踪，**删除它们对 git 无任何影响**
 （仅影响本机是否保留 Ghidra 路线）。是否删除由操作者按需决定。
+
+## P1-5 第一批（第 10 轮）：直读收敛的**单一读点** + 一处迁移（字节验证通过）
+**做法**：新建 `pipeline/gen/annotation_view.py` 作为注解的**单一读取视图**
+（`structs_dir` / `iter_struct_files` / `load_struct` / `iter_structs` / `member_names`）。
+**设计原则**：不改"读不读"这个既成事实，只把散落直读**收敛到一个读点**；
+提供**细粒度原语**、由调用方保留自己的容错语义（**不做会改行为的"统一容错"合并**）。
+
+**第一处迁移**：`pipeline/gen/stages/stage4_substitution.py` 的 `_load_member_names()`
+（原先自己 glob `store.annotations_dir/structs/*.json`）⇒ 改调 `annotation_view.member_names(store=store)`。
+
+**验证（两层）**：
+1. **逻辑等价**：旧逻辑集合 **7001** 个成员名 == 新逻辑 **7001** 个，差集为空 ✓
+2. **产物字节**（权威）：先 `cp -r pal3/src /tmp/src_before_p15` 快照 945 个文件 ⇒
+   迁移后 `codegen all --skip-probe` ⇒ `diff -rq`：**差异恰为 2 条 = `globals.cpp` + `globals.h`**
+   （**已知非确定**的那对，其**排序行多重集相同**）⇒ **非 globals 差异 = 0**，文件数 945=945 ✓
+   ⇒ **本次迁移字节中性**。
+
+**过程中的自我纠错**：第一次做 `diff` 时看到 84 处"快照有、新产物没有"，差点误判为回退 ——
+查日志发现 **codegen 当时仍在写盘**（无 `EXIT=`、无钩子行），是**半成品目录**造成的假象。
+**教训：验证必须确认被验对象已完成，否则 diff 结论无效。** 等其完成后重测即通过。
+
+**后续（P1-5 剩余）**：`emit_headers.py`（10 处）、`ast_transform.py`、`collect.py`、`data.py`
+的其余直读点，按**同样流程逐处迁移**（每处都过"逻辑等价 + `diff -r` 字节"两道验证）。

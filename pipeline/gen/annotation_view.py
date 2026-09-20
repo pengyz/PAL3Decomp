@@ -1,0 +1,83 @@
+"""注解的**单一读取视图**（2026-09-20 审计 P1-5，第一批）。
+
+# 为什么需要它
+
+CLAUDE.md 的红线是「**codegen 不读 annotation**：codegen 只读 export 产物」，
+但实测该红线在 pipeline 里已被**违反 5 文件 19+ 处**（审计报告 §2/§3）：
+`emit_headers.py`（sdk_types / known_methods / template_bases / base_class / globals …）、
+`ast_transform.py`、`data.py`、`collect.py`、`stage4_substitution.py`。
+其中 `data.py` 自称"The ONLY place codegen reads from annotations"**已不成立**。
+
+**本模块不改变"读不读"这个既成事实**，只做一件事：把散落的直读**收敛到一个读点**，
+使"改一处字段名/路径就要动 N 处"变成"只动这里"。
+
+# 设计原则（避免语义漂移）
+
+* **逐处迁移、逐处验证**：每迁一处都要保证 `codegen all` 的产物**字节相同**
+  （`diff -r` 验），不符即回退该处。
+* 各调用点历史上对**缺字段/坏 JSON 的容错语义不同**（有的 `.get(x, {})`、有的
+  `if x in entry`、有的静默 `continue`），所以本模块提供**细粒度**原语，
+  由调用方保留自己的容错；**不做"统一容错"这种会改行为的合并**。
+* 本模块**只做读取**，不缓存跨 run 的可变状态（除进程内惰性缓存）。
+"""
+import json
+import os
+
+_STRUCTS_CACHE = None
+_MEMBER_NAMES_CACHE = None
+
+
+def structs_dir(store=None):
+    """注解 structs 目录。优先用 `store.annotations_dir`（唯一获准读注解的模块）。"""
+    if store is not None and getattr(store, 'annotations_dir', None):
+        return os.path.join(str(store.annotations_dir), 'structs')
+    return os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
+        os.path.abspath(__file__)))), 'data', 'annotations', 'structs')
+
+
+def iter_struct_files(directory):
+    """按文件名排序遍历 structs/*.json（排序与历史实现一致，避免产物顺序漂移）。"""
+    try:
+        return sorted(__import__('glob').glob(os.path.join(directory, '*.json')))
+    except Exception:
+        return []
+
+
+def load_struct(path):
+    """读一个 struct JSON；坏文件返回 None（调用方可自行决定是否 continue）。"""
+    try:
+        return json.loads(open(path, encoding='utf-8').read())
+    except Exception:
+        return None
+
+
+def iter_structs(directory, store=None):
+    """(path, dict) 生成器，跳过坏文件 —— 与原各处的"静默 continue"语义一致。"""
+    for p in iter_struct_files(directory if directory else structs_dir(store)):
+        d = load_struct(p)
+        if isinstance(d, dict):
+            yield p, d
+
+
+def member_names(directory=None, store=None):
+    """所有 struct 的 `known_members[*].name` 去重集合（进程内缓存）。
+
+    与 `stage4_substitution._load_member_names()` 的**原逻辑逐字等价**：
+    只看 `known_members` 的值里 `isinstance(dict) and m.get('name')`。
+    """
+    global _MEMBER_NAMES_CACHE
+    if _MEMBER_NAMES_CACHE is None:
+        names = set()
+        for _p, d in iter_structs(directory, store):
+            for m in (d.get('known_members') or {}).values():
+                if isinstance(m, dict) and m.get('name'):
+                    names.add(m['name'])
+        _MEMBER_NAMES_CACHE = names
+    return _MEMBER_NAMES_CACHE
+
+
+def reset_caches():
+    """测试用：清空进程内缓存。"""
+    global _STRUCTS_CACHE, _MEMBER_NAMES_CACHE
+    _STRUCTS_CACHE = None
+    _MEMBER_NAMES_CACHE = None
