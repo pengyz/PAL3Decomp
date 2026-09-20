@@ -42,8 +42,61 @@ def _dims(t):
     return n
 
 
+# 2026-09-21（复核 7f6a52cd 查出本闸**判别力=0** ✗）：原先成员尺寸 = 维度连乘 × **1 字节/元素** ✗
+# ⇒ `Note_Item[99]` 只算 99B ✗ ⇒ 实测 Baseline / 含 5 处真实超界的计划 **全部 0 越界** ✗。
+# 现改为**真实类型尺寸**：标量查常用表 ✓、类查 `binary_size` ✓、数组再乘维度 ✓。
+_SCALAR = {'char': 1, 'unsigned char': 1, '_BYTE': 1, 'BYTE': 1, 'bool': 1, 'short': 2,
+           'unsigned short': 2, '_WORD': 2, 'WORD': 2, 'wchar_t': 2, 'int': 4, 'unsigned int': 4,
+           'long': 4, 'unsigned long': 4, '_DWORD': 4, 'DWORD': 4, 'float': 4, 'unsigned __int64': 8,
+           '__int64': 8, 'double': 8, 'int64': 8}
+
+
+def _base_and_dims(t):
+    """拆出"基础类型 + 维度乘积"（`UIStatic[8][6][5]` ⇒ ('UIStatic', 240) ✓）。"""
+    if not isinstance(t, str):
+        return None, 1
+    m = __import__('re').match(r'^([A-Za-z_]\w*)', t.strip())
+    base = m.group(1) if m else None
+    return base, _dims(t)
+
+
+def _size_of(t, sizes):
+    """真实尺寸：类 ⇒ binary_size ✓；标量 ⇒ 表 ✓；数组 ⇒ × 维度 ✓；未知 ⇒ None（不猜 ✗）。
+
+    **指针/引用 ⇒ 4/跳过** ✓ —— 若不显式判，`CCBSystem *m_pCBSystem` 会被当成
+    `sizeof(CCBSystem)` ⇒ 假报超界（实测 CCBAI 假报 90852 ✗）。这是复核者 7f6a52cd
+    明确警告过的"须显式判 `*`/`&`" ✓。
+    """
+    if not isinstance(t, str):      # 内联 struct/union（type 是 dict）⇒ 跳过（不猜 ✗）
+        return None
+    tt = t.strip()
+    tt = __import__('re').sub(r'^(struct|class|union|enum)\s+', '', tt)   # 剥 `struct ` 前缀 ✓
+    if '&' in tt:
+        return None                      # 引用成员：不是内嵌对象 ✓ 跳过
+    if '*' in tt:
+        return 4                         # 指针：4 字节 ✓（32 位目标）
+    base, dims = _base_and_dims(tt)
+    if base is None:
+        return None
+    if base in sizes:
+        return sizes[base] * dims
+    if base in _SCALAR:
+        return _SCALAR[base] * dims
+    return None
+
+
 def check(structs, inject=()):
     """返回越界清单；`inject` 为 (类名, offset, 尺寸) 三元组，用于注入式自检 ✓。"""
+    # 先建立"类名 ⇒ binary_size"表（真实尺寸解析所需 ✓）
+    sizes = {}
+    for f in sorted(os.listdir(STRUCTS)) if os.path.isdir(STRUCTS) else []:
+        if f.endswith('.json'):
+            try:
+                d2 = json.load(open(os.path.join(STRUCTS, f), encoding='utf-8'))
+                if isinstance(d2.get('binary_size'), int):
+                    sizes[d2.get('name') or f[:-5]] = d2['binary_size']
+            except Exception:
+                pass
     inj = {}
     for cls, off, sz in inject:
         inj.setdefault(cls, []).append((off, sz))
@@ -64,8 +117,9 @@ def check(structs, inject=()):
             if off is None:
                 continue
             ty = (m or {}).get('type') if isinstance(m, dict) else None
-            # 成员尺寸：数组取维度乘积 × 元素 1 字节（保守下界 ✓，用于判"是否已越过" ✓）
-            sz = _dims(ty) if isinstance(ty, str) else 1
+            sz = _size_of(ty, sizes)
+            if sz is None:
+                continue          # 未知类型：不猜 ✗（宁可漏报也不假报 ✓）
             end = off + max(sz, 1)
             if worst is None or end > worst[1]:
                 worst = (off, end, (m or {}).get('name') if isinstance(m, dict) else None)
