@@ -1,95 +1,95 @@
 {
- "name": "UITitle_ArcSave",
- "binary_size": 4004,
- "known_members": {
-  "72": {
-   "name": "m_YesNo",
-   "type": "MUIDialog",
-   "source": "annotation"
-  },
-  "0": {
-   "name": "__vftable",
-   "type": "void *",
-   "source": "vtable_fix"
-  }
- },
- "base_class": [
-  "UIFrameWnd"
- ],
- "methods": {
-  "0x0047BBF0": {
-   "name": "ctor",
-   "signature": "int __thiscall()",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-  },
-  "0x0047BD20": {
-   "name": "UITitle_ArcSave",
-   "signature": "void __thiscall()"
-  },
-  "0x0047C3A0": {
-   "name": "ProcessPageAction",
-   "signature": "int __thiscall UITitle_ArcSave::ProcessPageAction(struct PalScript *p, int nVal)",
-   "ordinal": 2
-  },
-  "0x0047BD00": {
-   "name": "_scalar_dtor",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "ordinal": 5
-  },
-  "0x0047BDF0": {
-   "name": "Destroy",
-   "signature": "void __thiscall()",
-   "ordinal": 3
-  },
-  "0x0047C370": {
-   "name": "Render",
-   "signature": "void __thiscall()",
-   "ordinal": 1
-  },
-  "0x0047C430": {
-   "name": "OnMessage",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
-   "ordinal": 6
-  }
- },
- "vtables": [
-  {
-   "addr": "0x0056B850",
-   "base": "UIWnd",
-   "slots": [
-    {
-     "addr": "0x00445E70",
-     "from": "UIWnd"
+  "name": "UITitle_ArcSave",
+  "binary_size": 4196,
+  "known_members": {
+    "72": {
+      "name": "m_YesNo",
+      "type": "MUIDialog",
+      "source": "annotation"
     },
-    {
-     "addr": "0x0047C370",
-     "from": null
-    },
-    {
-     "addr": "0x0047C3A0",
-     "from": null
-    },
-    {
-     "addr": "0x0047BDF0",
-     "from": null
-    },
-    {
-     "addr": "0x00445B90",
-     "from": "UIWnd"
-    },
-    {
-     "addr": "0x0047BD00",
-     "from": null
-    },
-    {
-     "addr": "0x0047C430",
-     "from": null
+    "0": {
+      "name": "__vftable",
+      "type": "void *",
+      "source": "vtable_fix"
     }
-   ]
-  }
- ],
- "base_size": 72
+  },
+  "base_class": [
+    "UIFrameWnd"
+  ],
+  "methods": {
+    "0x0047BBF0": {
+      "name": "ctor",
+      "signature": "int __thiscall()",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+    },
+    "0x0047BD20": {
+      "name": "UITitle_ArcSave",
+      "signature": "void __thiscall()"
+    },
+    "0x0047C3A0": {
+      "name": "ProcessPageAction",
+      "signature": "int __thiscall UITitle_ArcSave::ProcessPageAction(struct PalScript *p, int nVal)",
+      "ordinal": 2
+    },
+    "0x0047BD00": {
+      "name": "_scalar_dtor",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
+    },
+    "0x0047BDF0": {
+      "name": "Destroy",
+      "signature": "void __thiscall()",
+      "ordinal": 3
+    },
+    "0x0047C370": {
+      "name": "Render",
+      "signature": "void __thiscall()",
+      "ordinal": 1
+    },
+    "0x0047C430": {
+      "name": "OnMessage",
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
+      "ordinal": 6
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056B850",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0047C370",
+          "from": null
+        },
+        {
+          "addr": "0x0047C3A0",
+          "from": null
+        },
+        {
+          "addr": "0x0047BDF0",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0047BD00",
+          "from": null
+        },
+        {
+          "addr": "0x0047C430",
+          "from": null
+        }
+      ]
+    }
+  ],
+  "base_size": 72
 }

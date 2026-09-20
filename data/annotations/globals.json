@@ -2420,7 +2420,11 @@
   "0x00DBB364": {
     "binary_size": 9624,
     "name": "g_CCBEditorInst",
-    "type": "CCBEditor"
+    "type": "CCBEditor",
+    "overlaps_with": [
+      "g_UISceneMapDlg"
+    ],
+    "overlap_evidence": "BSS 布局证据（2026-09-21）：g_UISceneMapDlg@0xDBAF10 的真实占位 = 1012+192 = 1204 ✓（模型 +192：m_base:UIStatic +96 ✓、m_compass:UIStaticEX +96 ✓；m_mapbk:UIStaticFlex 是 UIStatic 的兄弟不增长 ✓；原始注解自洽：成员末端 1012 == binary_size ✓）⇒ 其范围末端 = 0xDBAF10+1204 = 0xDBB3C4 ✗，而 g_CCBEditorInst@0xDBB364 落在其中 ✓ ⇒ 二者之间必有 **96B 无名/未标注全局** ✓（BSS 按尺寸排布，96B 远超对齐填充 ✓）⇒ 区间检查无法看到无名数据，故显式声明为**有意的重叠** ✓。注意：此前据\"地址差 1108\"推断\"注解大了 96\"是**错误的** ✗（1108−192=916 < 成员末端 1012 ⇒ 不可能 ✓）。"
   },
   "0x00DC0DE8": {
     "name": "g_pComposeUI",

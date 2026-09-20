@@ -1,487 +1,487 @@
 {
- "name": "CCBUIPanel",
- "binary_size": 22112,
- "base_class": "UIListBox",
- "base_size": 1208,
- "known_members": {
-  "21556": {
-   "name": "m_Data",
-   "type": "char[512]",
-   "size": 512,
-   "source": "ctor: sub_431870(this+5394), memset 0x200"
-  },
-  "1344": {
-   "name": "m_nPanelOffsetX",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref | fix:rename"
-  },
-  "1348": {
-   "name": "m_nPanelOffsetY",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref | fix:rename"
-  },
-  "1468": {
-   "name": "m_nPanelX",
-   "type": "int",
-   "source": "A:InitPanel: mov [esi+5BCh], 354h (852)"
-  },
-  "1472": {
-   "name": "m_nPanelY",
-   "type": "int",
-   "source": "A:InitPanel: mov [esi+5C0h], 239h (569)"
-  },
-  "1476": {
-   "name": "m_nChildX",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref"
-  },
-  "1480": {
-   "name": "m_nChildY",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref"
-  },
-  "1484": {
-   "name": "m_nChildW",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref"
-  },
-  "1488": {
-   "name": "m_nChildH",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref"
-  },
-  "1492": {
-   "name": "m_nBorderL",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref"
-  },
-  "1496": {
-   "name": "m_nBorderR",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref"
-  },
-  "1500": {
-   "name": "m_fPanelW",
-   "type": "float",
-   "source": "A:InitPanel: mov [esi+5DCh], 44550000h (852.0f)"
-  },
-  "1504": {
-   "name": "m_fPanelH",
-   "type": "float",
-   "source": "A:InitPanel: mov [esi+5E0h], 440E4000h (568.5f)"
-  },
-  "1508": {
-   "name": "m_nGridX",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref"
-  },
-  "1512": {
-   "name": "m_nGridY",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref"
-  },
-  "1516": {
-   "name": "m_nGridW",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref"
-  },
-  "1520": {
-   "name": "m_nGridH",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref"
-  },
-  "1524": {
-   "name": "m_nItemW",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref"
-  },
-  "1528": {
-   "name": "m_nItemH",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref"
-  },
-  "1532": {
-   "name": "m_nSpacingX",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref"
-  },
-  "1536": {
-   "name": "m_nSpacingY",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref"
-  },
-  "1540": {
-   "name": "m_nItemNum",
-   "type": "int"
-  },
-  "1544": {
-   "name": "m_nMaxItemNum",
-   "type": "int"
-  },
-  "1560": {
-   "name": "m_pVfTable",
-   "type": "char *",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "1792": {
-   "name": "m_Scene_1792",
-   "type": "UIScene",
-   "source": "dtor:ctor_3E70"
-  },
-  "2136": {
-   "name": "m_Static_2136",
-   "type": "UIStatic",
-   "source": "dtor:ctor_3E70"
-  },
-  "2288": {
-   "name": "m_Static_2288",
-   "type": "UIStatic",
-   "source": "dtor:ctor_3E70"
-  },
-  "2440": {
-   "name": "m_Static_2440",
-   "type": "UIStatic",
-   "source": "dtor:ctor_3E70"
-  },
-  "2592": {
-   "name": "m_Static_2592",
-   "type": "UIStatic",
-   "source": "dtor:ctor_3E70"
-  },
-  "2744": {
-   "name": "m_Static_2744",
-   "type": "UIStatic",
-   "source": "dtor:ctor_3E70"
-  },
-  "2896": {
-   "name": "m_Scene_2896",
-   "type": "UIScene",
-   "source": "dtor:ctor_3E70"
-  },
-  "3240": {
-   "name": "m_Scene_3240",
-   "type": "UIScene",
-   "source": "dtor:ctor_3E70"
-  },
-  "3584": {
-   "name": "m_Scene_3584",
-   "type": "UIScene",
-   "source": "dtor:ctor_3E70"
-  },
-  "3928": {
-   "name": "m_Item_3928",
-   "type": "UIItem",
-   "source": "ctor:ARC_PlayerAtt::Refresh(UIItem*)"
-  },
-  "4316": {
-   "name": "m_bActive",
-   "type": "unsigned char"
-  },
-  "20560": {
-   "name": "m_nTodo_5050",
-   "type": "int",
-   "source": "binary_discovery:2refs"
-  },
-  "20564": {
-   "name": "m_nTodo_5054",
-   "type": "int",
-   "source": "binary_discovery:1refs"
-  },
-  "20664": {
-   "name": "m_EmbedCaption",
-   "type": "void *",
-   "source": "binary_discovery:1refs;batch_fix:int_to_v*_LEA_embed;A:decomp_batch_rename_usage_pattern"
-  },
-  "4324": {
-   "name": "m_Slots",
-   "type": "CCBPanelSlot[30]",
-   "source": "InitPanel:stride476_vtable+92_30pure_slots"
-  },
-  "0": {
-   "name": "__vftable",
-   "type": "void *",
-   "source": "vtable_fix"
-  },
-  "18604": {
-   "name": "m_nTodo_48AC",
-   "type": "int",
-   "source": "ida_gap_5refs"
-  },
-  "18608": {
-   "name": "m_nTodo_48B0",
-   "type": "int",
-   "source": "ida_gap_3refs"
-  },
-  "18612": {
-   "name": "m_nTodo_48B4",
-   "type": "int",
-   "source": "ida_gap_3refs"
-  },
-  "18616": {
-   "name": "m_EmbedPalScript",
-   "type": "int",
-   "source": "ida_gap_8refs;A:decomp_batch_rename_usage_pattern"
-  },
-  "18780": {
-   "name": "m_nTodo_495C",
-   "type": "int",
-   "source": "ida_gap_7refs"
-  },
-  "18784": {
-   "name": "m_nTodo_4960",
-   "type": "int",
-   "source": "ida_gap_7refs"
-  },
-  "18788": {
-   "name": "m_nTodo_4964",
-   "type": "int",
-   "source": "ida_gap_5refs"
-  },
-  "18792": {
-   "name": "m_nTodo_4968",
-   "type": "int",
-   "source": "ida_gap_7refs"
-  },
-  "18796": {
-   "name": "m_nTodo_496C",
-   "type": "int",
-   "source": "ida_gap_1refs"
-  },
-  "18800": {
-   "name": "m_nTodo_4970",
-   "type": "int",
-   "source": "ida_gap_1refs"
-  },
-  "18804": {
-   "name": "m_nTodo_4974",
-   "type": "int",
-   "source": "ida_gap_3refs"
-  },
-  "18808": {
-   "name": "m_nTodo_4978",
-   "type": "int",
-   "source": "ida_gap_3refs"
-  },
-  "18824": {
-   "name": "m_nTodo_4988",
-   "type": "int",
-   "source": "ida_gap_6refs"
-  },
-  "18828": {
-   "name": "m_nTodo_498C",
-   "type": "int",
-   "source": "ida_gap_1refs"
-  },
-  "18832": {
-   "name": "m_nTodo_4990",
-   "type": "int",
-   "source": "ida_gap_3refs"
-  },
-  "18836": {
-   "name": "m_nTodo_4994",
-   "type": "int",
-   "source": "ida_gap_6refs"
-  },
-  "18840": {
-   "name": "m_EmbedPlayerAtt",
-   "type": "int",
-   "source": "ida_gap_5refs;A:decomp_batch_rename_usage_pattern"
-  },
-  "19296": {
-   "name": "m_nTodo_4B60",
-   "type": "int",
-   "source": "ida_gap_1refs"
-  },
-  "20208": {
-   "name": "m_nPlayerAttOverlay",
-   "type": "int",
-   "source": "A:decomp_ARC_PlayerAtt_refresh_create_cast_embed_subobj"
-  }
- },
- "methods": {
-  "0x00453E70": {
-   "name": "ctor",
-   "signature": "void __thiscall()",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-  },
-  "0x00454590": {
-   "name": "OnMessage",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
-  },
-  "0x004460D0": {
-   "name": "CCBUIPanel",
-   "signature": "int *__thiscall()"
-  },
-  "0x0044A540": {
-   "name": "OnMessage_a540",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
-   "ordinal": 6
-  },
-  "0x00453D10": {
-   "name": "ctor_3D10",
-   "signature": "int __thiscall()"
-  },
-  "0x00446200": {
-   "name": "ctor_6200",
-   "signature": "void __thiscall()"
-  },
-  "0x00449980": {
-   "name": "SetUserData",
-   "signature": "void __thiscall()",
-   "_misattrib_evidence": "max_offset=364>class_size=96"
-  },
-  "0x004461D0": {
-   "name": "_scalar_dtor",
-   "signature": "void __thiscall CCBUIPanel::_scalar_dtor()",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "ordinal": 5
-  },
-  "0x004462C0": {
-   "name": "InitPanel",
-   "signature": "void __thiscall()"
-  },
-  "0x00449B90": {
-   "name": "FocusCurrentRole",
-   "signature": "char __thiscall CCBUIPanel::FocusCurrentRole()"
-  },
-  "0x0044A1B0": {
-   "name": "ProcessInput",
-   "signature": "BOOL __thiscall CCBUIPanel::ProcessInput(double st7_0)",
-   "ordinal": 2
-  },
-  "0x00453E50": {
-   "name": "_scalar_dtor",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-  },
-  "0x00454550": {
-   "name": "RenderIfUnlocked",
-   "signature": "char __thiscall CCBUIPanel::RenderIfUnlocked()"
-  },
-  "0x00454560": {
-   "name": "ProcessInputIfUnlocked",
-   "signature": "BOOL __thiscall CCBUIPanel::ProcessInputIfUnlocked(int nVal, int nVal2)"
-  },
-  "0x00449AB0": {
-   "name": "CenterSlot",
-   "signature": "int __thiscall CCBUIPanel::CenterSlot(unsigned int nSlotIdx)",
-   "_misattrib_evidence": "max_offset=18792>class_size=456"
-  },
-  "0x00449C50": {
-   "name": "UpdateSlotClipping",
-   "signature": "int __thiscall CCBUIPanel::UpdateSlotClipping()",
-   "_misattrib_evidence": "max_offset=608>class_size=160"
-  },
-  "0x00449CF0": {
-   "name": "UpdateSlotPositions",
-   "signature": "char __thiscall CCBUIPanel::UpdateSlotPositions(int nVal)",
-   "_misattrib_evidence": "max_offset=18800>class_size=584"
-  },
-  "0x00449E60": {
-   "name": "EnsureSize",
-   "signature": "void __thiscall CCBUIPanel::EnsureSize(int nVal, int nVal2)",
-   "_misattrib_evidence": "max_offset=18832>class_size=204"
-  },
-  "0x0044A180": {
-   "name": "SetAllSlotsVisible",
-   "signature": "int __thiscall CCBUIPanel::SetAllSlotsVisible(unsigned __int8 bVisible)",
-   "_misattrib_evidence": "max_offset=608>class_size=160"
-  },
-  "0x0044A4F0": {
-   "name": "ActivateSlot",
-   "signature": "void __thiscall CCBUIPanel::ActivateSlot(unsigned int nSlotIdx)"
-  },
-  "0x004544F0": {
-   "name": "UpdateButtonVisibility",
-   "signature": "int __thiscall CCBUIPanel::UpdateButtonVisibility()",
-   "_misattrib_evidence": "max_offset=1416>class_size=352"
-  },
-  "0x0048A170": {
-   "name": "InitSlots",
-   "signature": "int __thiscall CCBUIPanel::InitSlots()"
-  },
-  "0x004A3EC0": {
-   "name": "InitScrollState",
-   "signature": "int __thiscall CCBUIPanel::InitScrollState()"
-  },
-  "0x00449990": {
-   "name": "Destroy",
-   "signature": "void __thiscall(UIListBox **this, int)",
-   "source": "vtable_migrated",
-   "ordinal": 3
-  }
- },
- "vtables": [
-  {
-   "addr": "0x0056AF80",
-   "base": "UIWnd",
-   "slots": [
-    {
-     "addr": "0x00445E70",
-     "from": "UIWnd"
+  "name": "CCBUIPanel",
+  "binary_size": 22592,
+  "base_class": "UIListBox",
+  "base_size": 1208,
+  "known_members": {
+    "22036": {
+      "name": "m_Data",
+      "type": "char[512]",
+      "size": 512,
+      "source": "ctor: sub_431870(this+5394), memset 0x200"
     },
-    {
-     "addr": "0x00449C20",
-     "from": null
+    "1344": {
+      "name": "m_nPanelOffsetX",
+      "type": "int",
+      "source": "binary_discovery:1refs | ida_xref | fix:rename"
     },
-    {
-     "addr": "0x0044A1B0",
-     "from": null
+    "1348": {
+      "name": "m_nPanelOffsetY",
+      "type": "int",
+      "source": "binary_discovery:1refs | ida_xref | fix:rename"
     },
-    {
-     "addr": "0x00449990",
-     "from": null
+    "1468": {
+      "name": "m_nPanelX",
+      "type": "int",
+      "source": "A:InitPanel: mov [esi+5BCh], 354h (852)"
     },
-    {
-     "addr": "0x00445B90",
-     "from": "UIWnd"
+    "1472": {
+      "name": "m_nPanelY",
+      "type": "int",
+      "source": "A:InitPanel: mov [esi+5C0h], 239h (569)"
     },
-    {
-     "addr": "0x004461D0",
-     "from": null
+    "1476": {
+      "name": "m_nChildX",
+      "type": "int",
+      "source": "binary_discovery:1refs | ida_xref"
     },
-    {
-     "addr": "0x0044A540",
-     "from": null
+    "1480": {
+      "name": "m_nChildY",
+      "type": "int",
+      "source": "binary_discovery:1refs | ida_xref"
+    },
+    "1484": {
+      "name": "m_nChildW",
+      "type": "int",
+      "source": "binary_discovery:1refs | ida_xref"
+    },
+    "1488": {
+      "name": "m_nChildH",
+      "type": "int",
+      "source": "binary_discovery:1refs | ida_xref"
+    },
+    "1492": {
+      "name": "m_nBorderL",
+      "type": "int",
+      "source": "binary_discovery:1refs | ida_xref"
+    },
+    "1496": {
+      "name": "m_nBorderR",
+      "type": "int",
+      "source": "binary_discovery:1refs | ida_xref"
+    },
+    "1500": {
+      "name": "m_fPanelW",
+      "type": "float",
+      "source": "A:InitPanel: mov [esi+5DCh], 44550000h (852.0f)"
+    },
+    "1504": {
+      "name": "m_fPanelH",
+      "type": "float",
+      "source": "A:InitPanel: mov [esi+5E0h], 440E4000h (568.5f)"
+    },
+    "1508": {
+      "name": "m_nGridX",
+      "type": "int",
+      "source": "binary_discovery:1refs | ida_xref"
+    },
+    "1512": {
+      "name": "m_nGridY",
+      "type": "int",
+      "source": "binary_discovery:1refs | ida_xref"
+    },
+    "1516": {
+      "name": "m_nGridW",
+      "type": "int",
+      "source": "binary_discovery:1refs | ida_xref"
+    },
+    "1520": {
+      "name": "m_nGridH",
+      "type": "int",
+      "source": "binary_discovery:1refs | ida_xref"
+    },
+    "1524": {
+      "name": "m_nItemW",
+      "type": "int",
+      "source": "binary_discovery:1refs | ida_xref"
+    },
+    "1528": {
+      "name": "m_nItemH",
+      "type": "int",
+      "source": "binary_discovery:1refs | ida_xref"
+    },
+    "1532": {
+      "name": "m_nSpacingX",
+      "type": "int",
+      "source": "binary_discovery:1refs | ida_xref"
+    },
+    "1536": {
+      "name": "m_nSpacingY",
+      "type": "int",
+      "source": "binary_discovery:1refs | ida_xref"
+    },
+    "1540": {
+      "name": "m_nItemNum",
+      "type": "int"
+    },
+    "1544": {
+      "name": "m_nMaxItemNum",
+      "type": "int"
+    },
+    "1560": {
+      "name": "m_pVfTable",
+      "type": "char *",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "1792": {
+      "name": "m_Scene_1792",
+      "type": "UIScene",
+      "source": "dtor:ctor_3E70"
+    },
+    "2136": {
+      "name": "m_Static_2136",
+      "type": "UIStatic",
+      "source": "dtor:ctor_3E70"
+    },
+    "2384": {
+      "name": "m_Static_2288",
+      "type": "UIStatic",
+      "source": "dtor:ctor_3E70"
+    },
+    "2632": {
+      "name": "m_Static_2440",
+      "type": "UIStatic",
+      "source": "dtor:ctor_3E70"
+    },
+    "2880": {
+      "name": "m_Static_2592",
+      "type": "UIStatic",
+      "source": "dtor:ctor_3E70"
+    },
+    "3128": {
+      "name": "m_Static_2744",
+      "type": "UIStatic",
+      "source": "dtor:ctor_3E70"
+    },
+    "3376": {
+      "name": "m_Scene_2896",
+      "type": "UIScene",
+      "source": "dtor:ctor_3E70"
+    },
+    "3720": {
+      "name": "m_Scene_3240",
+      "type": "UIScene",
+      "source": "dtor:ctor_3E70"
+    },
+    "4064": {
+      "name": "m_Scene_3584",
+      "type": "UIScene",
+      "source": "dtor:ctor_3E70"
+    },
+    "4408": {
+      "name": "m_Item_3928",
+      "type": "UIItem",
+      "source": "ctor:ARC_PlayerAtt::Refresh(UIItem*)"
+    },
+    "4796": {
+      "name": "m_bActive",
+      "type": "unsigned char"
+    },
+    "21040": {
+      "name": "m_nTodo_5050",
+      "type": "int",
+      "source": "binary_discovery:2refs"
+    },
+    "21044": {
+      "name": "m_nTodo_5054",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
+    "21144": {
+      "name": "m_EmbedCaption",
+      "type": "void *",
+      "source": "binary_discovery:1refs;batch_fix:int_to_v*_LEA_embed;A:decomp_batch_rename_usage_pattern"
+    },
+    "4804": {
+      "name": "m_Slots",
+      "type": "CCBPanelSlot[30]",
+      "source": "InitPanel:stride476_vtable+92_30pure_slots"
+    },
+    "0": {
+      "name": "__vftable",
+      "type": "void *",
+      "source": "vtable_fix"
+    },
+    "19084": {
+      "name": "m_nTodo_48AC",
+      "type": "int",
+      "source": "ida_gap_5refs"
+    },
+    "19088": {
+      "name": "m_nTodo_48B0",
+      "type": "int",
+      "source": "ida_gap_3refs"
+    },
+    "19092": {
+      "name": "m_nTodo_48B4",
+      "type": "int",
+      "source": "ida_gap_3refs"
+    },
+    "19096": {
+      "name": "m_EmbedPalScript",
+      "type": "int",
+      "source": "ida_gap_8refs;A:decomp_batch_rename_usage_pattern"
+    },
+    "19260": {
+      "name": "m_nTodo_495C",
+      "type": "int",
+      "source": "ida_gap_7refs"
+    },
+    "19264": {
+      "name": "m_nTodo_4960",
+      "type": "int",
+      "source": "ida_gap_7refs"
+    },
+    "19268": {
+      "name": "m_nTodo_4964",
+      "type": "int",
+      "source": "ida_gap_5refs"
+    },
+    "19272": {
+      "name": "m_nTodo_4968",
+      "type": "int",
+      "source": "ida_gap_7refs"
+    },
+    "19276": {
+      "name": "m_nTodo_496C",
+      "type": "int",
+      "source": "ida_gap_1refs"
+    },
+    "19280": {
+      "name": "m_nTodo_4970",
+      "type": "int",
+      "source": "ida_gap_1refs"
+    },
+    "19284": {
+      "name": "m_nTodo_4974",
+      "type": "int",
+      "source": "ida_gap_3refs"
+    },
+    "19288": {
+      "name": "m_nTodo_4978",
+      "type": "int",
+      "source": "ida_gap_3refs"
+    },
+    "19304": {
+      "name": "m_nTodo_4988",
+      "type": "int",
+      "source": "ida_gap_6refs"
+    },
+    "19308": {
+      "name": "m_nTodo_498C",
+      "type": "int",
+      "source": "ida_gap_1refs"
+    },
+    "19312": {
+      "name": "m_nTodo_4990",
+      "type": "int",
+      "source": "ida_gap_3refs"
+    },
+    "19316": {
+      "name": "m_nTodo_4994",
+      "type": "int",
+      "source": "ida_gap_6refs"
+    },
+    "19320": {
+      "name": "m_EmbedPlayerAtt",
+      "type": "int",
+      "source": "ida_gap_5refs;A:decomp_batch_rename_usage_pattern"
+    },
+    "19776": {
+      "name": "m_nTodo_4B60",
+      "type": "int",
+      "source": "ida_gap_1refs"
+    },
+    "20688": {
+      "name": "m_nPlayerAttOverlay",
+      "type": "int",
+      "source": "A:decomp_ARC_PlayerAtt_refresh_create_cast_embed_subobj"
     }
-   ]
   },
-  {
-   "addr": "0x0056B22C",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x00445E70",
-     "from": "UIWnd"
+  "methods": {
+    "0x00453E70": {
+      "name": "ctor",
+      "signature": "void __thiscall()",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
-    {
-     "addr": "0x00454550",
-     "from": "UIListBox"
+    "0x00454590": {
+      "name": "OnMessage",
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
     },
-    {
-     "addr": "0x00454560",
-     "from": "UIListBox"
+    "0x004460D0": {
+      "name": "CCBUIPanel",
+      "signature": "int *__thiscall()"
     },
-    {
-     "addr": "0x0043DE40",
-     "from": "UIListBox"
+    "0x0044A540": {
+      "name": "OnMessage_a540",
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
+      "ordinal": 6
     },
-    {
-     "addr": "0x00445B90",
-     "from": "UIWnd"
+    "0x00453D10": {
+      "name": "ctor_3D10",
+      "signature": "int __thiscall()"
     },
-    {
-     "addr": "0x00453E50",
-     "from": "UIListBox"
+    "0x00446200": {
+      "name": "ctor_6200",
+      "signature": "void __thiscall()"
     },
-    {
-     "addr": "0x00454590",
-     "from": "UIListBox"
+    "0x00449980": {
+      "name": "SetUserData",
+      "signature": "void __thiscall()",
+      "_misattrib_evidence": "max_offset=364>class_size=96"
+    },
+    "0x004461D0": {
+      "name": "_scalar_dtor",
+      "signature": "void __thiscall CCBUIPanel::_scalar_dtor()",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
+    },
+    "0x004462C0": {
+      "name": "InitPanel",
+      "signature": "void __thiscall()"
+    },
+    "0x00449B90": {
+      "name": "FocusCurrentRole",
+      "signature": "char __thiscall CCBUIPanel::FocusCurrentRole()"
+    },
+    "0x0044A1B0": {
+      "name": "ProcessInput",
+      "signature": "BOOL __thiscall CCBUIPanel::ProcessInput(double st7_0)",
+      "ordinal": 2
+    },
+    "0x00453E50": {
+      "name": "_scalar_dtor",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+    },
+    "0x00454550": {
+      "name": "RenderIfUnlocked",
+      "signature": "char __thiscall CCBUIPanel::RenderIfUnlocked()"
+    },
+    "0x00454560": {
+      "name": "ProcessInputIfUnlocked",
+      "signature": "BOOL __thiscall CCBUIPanel::ProcessInputIfUnlocked(int nVal, int nVal2)"
+    },
+    "0x00449AB0": {
+      "name": "CenterSlot",
+      "signature": "int __thiscall CCBUIPanel::CenterSlot(unsigned int nSlotIdx)",
+      "_misattrib_evidence": "max_offset=18792>class_size=456"
+    },
+    "0x00449C50": {
+      "name": "UpdateSlotClipping",
+      "signature": "int __thiscall CCBUIPanel::UpdateSlotClipping()",
+      "_misattrib_evidence": "max_offset=608>class_size=160"
+    },
+    "0x00449CF0": {
+      "name": "UpdateSlotPositions",
+      "signature": "char __thiscall CCBUIPanel::UpdateSlotPositions(int nVal)",
+      "_misattrib_evidence": "max_offset=18800>class_size=584"
+    },
+    "0x00449E60": {
+      "name": "EnsureSize",
+      "signature": "void __thiscall CCBUIPanel::EnsureSize(int nVal, int nVal2)",
+      "_misattrib_evidence": "max_offset=18832>class_size=204"
+    },
+    "0x0044A180": {
+      "name": "SetAllSlotsVisible",
+      "signature": "int __thiscall CCBUIPanel::SetAllSlotsVisible(unsigned __int8 bVisible)",
+      "_misattrib_evidence": "max_offset=608>class_size=160"
+    },
+    "0x0044A4F0": {
+      "name": "ActivateSlot",
+      "signature": "void __thiscall CCBUIPanel::ActivateSlot(unsigned int nSlotIdx)"
+    },
+    "0x004544F0": {
+      "name": "UpdateButtonVisibility",
+      "signature": "int __thiscall CCBUIPanel::UpdateButtonVisibility()",
+      "_misattrib_evidence": "max_offset=1416>class_size=352"
+    },
+    "0x0048A170": {
+      "name": "InitSlots",
+      "signature": "int __thiscall CCBUIPanel::InitSlots()"
+    },
+    "0x004A3EC0": {
+      "name": "InitScrollState",
+      "signature": "int __thiscall CCBUIPanel::InitScrollState()"
+    },
+    "0x00449990": {
+      "name": "Destroy",
+      "signature": "void __thiscall(UIListBox **this, int)",
+      "source": "vtable_migrated",
+      "ordinal": 3
     }
-   ]
-  }
- ]
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AF80",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00449C20",
+          "from": null
+        },
+        {
+          "addr": "0x0044A1B0",
+          "from": null
+        },
+        {
+          "addr": "0x00449990",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004461D0",
+          "from": null
+        },
+        {
+          "addr": "0x0044A540",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056B22C",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00454550",
+          "from": "UIListBox"
+        },
+        {
+          "addr": "0x00454560",
+          "from": "UIListBox"
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": "UIListBox"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00453E50",
+          "from": "UIListBox"
+        },
+        {
+          "addr": "0x00454590",
+          "from": "UIListBox"
+        }
+      ]
+    }
+  ]
 }

@@ -1,188 +1,188 @@
 {
- "name": "Comp_DonateUI",
- "binary_size": 46192,
- "known_members": {
-  "72": {
-   "name": "m_RoleId",
-   "type": "int",
-   "source": "annotation"
+  "name": "Comp_DonateUI",
+  "binary_size": 48400,
+  "known_members": {
+    "72": {
+      "name": "m_RoleId",
+      "type": "int",
+      "source": "annotation"
+    },
+    "76": {
+      "name": "m_CompDonate",
+      "type": "Comp_Donate_Detail[10]",
+      "source": "annotation"
+    },
+    "356": {
+      "name": "m_keynum",
+      "type": "int",
+      "source": "annotation"
+    },
+    "360": {
+      "name": "m_curitem",
+      "type": "int",
+      "source": "annotation"
+    },
+    "364": {
+      "name": "m_state",
+      "type": "Comp_DonateUI::CDState[10]",
+      "source": "annotation"
+    },
+    "404": {
+      "name": "m_lang",
+      "type": "char[256][16][5]",
+      "source": "annotation"
+    },
+    "20884": {
+      "name": "m_OutFrameT",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "21140": {
+      "name": "m_OutFrameR",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "21396": {
+      "name": "m_OutFrameL",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "21652": {
+      "name": "m_OutFrameB",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "21908": {
+      "name": "m_TopFrame",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "22164": {
+      "name": "m_ExitBtn",
+      "type": "UIButton",
+      "source": "annotation"
+    },
+    "22508": {
+      "name": "m_Btn",
+      "type": "UIButton[10]",
+      "source": "annotation"
+    },
+    "25948": {
+      "name": "m_BtnStatic",
+      "type": "UIStatic[10]",
+      "source": "annotation"
+    },
+    "28508": {
+      "name": "m_mouseon",
+      "type": "int",
+      "source": "annotation"
+    },
+    "28512": {
+      "name": "m_RoleDlg",
+      "type": "UIRoleDialog",
+      "source": "annotation"
+    },
+    "29328": {
+      "name": "m_SelectDlg",
+      "type": "UIRoleSelect",
+      "source": "annotation"
+    },
+    "30896": {
+      "name": "m_IfSel",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "30897": {
+      "name": "m_IfGetSel",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "30900": {
+      "name": "m_RoleDlgRc",
+      "type": "tagRECT",
+      "source": "annotation"
+    },
+    "30916": {
+      "name": "m_AddIntimacyDonate",
+      "type": "int[5]",
+      "source": "annotation"
+    },
+    "30936": {
+      "name": "m_AddIntimacyComp",
+      "type": "int[5]",
+      "source": "annotation"
+    },
+    "30956": {
+      "name": "m_RoleLang",
+      "type": "char[512][4][5]",
+      "source": "annotation"
+    },
+    "41196": {
+      "name": "m_SelBtn",
+      "type": "int",
+      "source": "annotation"
+    },
+    "41200": {
+      "name": "m_Msg",
+      "type": "MUIDialog",
+      "source": "annotation"
+    },
+    "42776": {
+      "name": "m_ActiveDlg",
+      "type": "MUIDialog",
+      "source": "annotation"
+    },
+    "44352": {
+      "name": "m_ExitDlg",
+      "type": "MUIDialog",
+      "source": "annotation"
+    },
+    "45928": {
+      "name": "m_IsActive",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "45929": {
+      "name": "m_IsOver",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "45932": {
+      "name": "m_LineupComp",
+      "type": "LineupComp",
+      "source": "annotation"
+    },
+    "47944": {
+      "name": "m_BK",
+      "type": "UIStatic",
+      "source": "annotation"
+    }
   },
-  "76": {
-   "name": "m_CompDonate",
-   "type": "Comp_Donate_Detail[10]",
-   "source": "annotation"
+  "base_class": [
+    "UIFrameWnd"
+  ],
+  "methods": {
+    "0x004A6030": {
+      "name": "ProcessInput",
+      "signature": "BOOL __thiscall(int a1)",
+      "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params"
+    }
   },
-  "356": {
-   "name": "m_keynum",
-   "type": "int",
-   "source": "annotation"
-  },
-  "360": {
-   "name": "m_curitem",
-   "type": "int",
-   "source": "annotation"
-  },
-  "364": {
-   "name": "m_state",
-   "type": "Comp_DonateUI::CDState[10]",
-   "source": "annotation"
-  },
-  "404": {
-   "name": "m_lang",
-   "type": "char[256][16][5]",
-   "source": "annotation"
-  },
-  "20884": {
-   "name": "m_OutFrameT",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "21044": {
-   "name": "m_OutFrameR",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "21204": {
-   "name": "m_OutFrameL",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "21364": {
-   "name": "m_OutFrameB",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "21524": {
-   "name": "m_TopFrame",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "21684": {
-   "name": "m_ExitBtn",
-   "type": "UIButton",
-   "source": "annotation"
-  },
-  "22028": {
-   "name": "m_Btn",
-   "type": "UIButton[10]",
-   "source": "annotation"
-  },
-  "25468": {
-   "name": "m_BtnStatic",
-   "type": "UIStatic[10]",
-   "source": "annotation"
-  },
-  "27068": {
-   "name": "m_mouseon",
-   "type": "int",
-   "source": "annotation"
-  },
-  "27072": {
-   "name": "m_RoleDlg",
-   "type": "UIRoleDialog",
-   "source": "annotation"
-  },
-  "27792": {
-   "name": "m_SelectDlg",
-   "type": "UIRoleSelect",
-   "source": "annotation"
-  },
-  "29360": {
-   "name": "m_IfSel",
-   "type": "unsigned char",
-   "source": "annotation"
-  },
-  "29361": {
-   "name": "m_IfGetSel",
-   "type": "unsigned char",
-   "source": "annotation"
-  },
-  "29364": {
-   "name": "m_RoleDlgRc",
-   "type": "tagRECT",
-   "source": "annotation"
-  },
-  "29380": {
-   "name": "m_AddIntimacyDonate",
-   "type": "int[5]",
-   "source": "annotation"
-  },
-  "29400": {
-   "name": "m_AddIntimacyComp",
-   "type": "int[5]",
-   "source": "annotation"
-  },
-  "29420": {
-   "name": "m_RoleLang",
-   "type": "char[512][4][5]",
-   "source": "annotation"
-  },
-  "39660": {
-   "name": "m_SelBtn",
-   "type": "int",
-   "source": "annotation"
-  },
-  "39664": {
-   "name": "m_Msg",
-   "type": "MUIDialog",
-   "source": "annotation"
-  },
-  "41048": {
-   "name": "m_ActiveDlg",
-   "type": "MUIDialog",
-   "source": "annotation"
-  },
-  "42432": {
-   "name": "m_ExitDlg",
-   "type": "MUIDialog",
-   "source": "annotation"
-  },
-  "43816": {
-   "name": "m_IsActive",
-   "type": "unsigned char",
-   "source": "annotation"
-  },
-  "43817": {
-   "name": "m_IsOver",
-   "type": "unsigned char",
-   "source": "annotation"
-  },
-  "43820": {
-   "name": "m_LineupComp",
-   "type": "LineupComp",
-   "source": "annotation"
-  },
-  "45832": {
-   "name": "m_BK",
-   "type": "UIStatic",
-   "source": "annotation"
+  "base_size": 72,
+  "nested_types": {
+    "CDState": {
+      "kind": "enum",
+      "binary_size": 4,
+      "values": {
+        "CD_NONE": 0,
+        "CD_HASKEY": 1,
+        "CD_DONATED": 2,
+        "CD_NOSOURCE": 3,
+        "CD_NOINTIMACY": 4,
+        "CD_CANCOMPOSE": 5,
+        "CD_COMPOSED": 6,
+        "CD_NUM": 7
+      }
+    }
   }
- },
- "base_class": [
-  "UIFrameWnd"
- ],
- "methods": {
-  "0x004A6030": {
-   "name": "ProcessInput",
-   "signature": "BOOL __thiscall(int a1)",
-   "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params"
-  }
- },
- "base_size": 72,
- "nested_types": {
-  "CDState": {
-   "kind": "enum",
-   "binary_size": 4,
-   "values": {
-    "CD_NONE": 0,
-    "CD_HASKEY": 1,
-    "CD_DONATED": 2,
-    "CD_NOSOURCE": 3,
-    "CD_NOINTIMACY": 4,
-    "CD_CANCOMPOSE": 5,
-    "CD_COMPOSED": 6,
-    "CD_NUM": 7
-   }
-  }
- }
 }

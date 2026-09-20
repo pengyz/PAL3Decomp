@@ -1,159 +1,159 @@
 {
- "name": "UISceneFrm",
- "binary_size": 3288,
- "known_members": {
-  "72": {
-   "name": "m_map",
-   "type": "UISceneMap",
-   "source": "annotation"
-  },
-  "1084": {
-   "name": "m_face",
-   "type": "UISceneFace",
-   "source": "PAL3patch_verified"
-  },
-  "0": {
-   "name": "__vftable",
-   "type": "void *",
-   "source": "vtable_fix"
-  }
- },
- "base_class": [
-  "UIFrameWnd"
- ],
- "methods": {
-  "0x004590D0": {
-   "name": "ctor",
-   "signature": "int __thiscall()",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-  },
-  "0x00459260": {
-   "name": "UISceneFrm",
-   "signature": "void __thiscall()"
-  },
-  "0x0045A4F0": {
-   "name": "fill",
-   "signature": "void __thiscall(RoleTask *a1, RoleTask *a2, RoleTask *a3)",
-   "ordinal": 2,
-   "source": "manual_fix_vtable+canonical_rename"
-  },
-  "0x00459240": {
-   "name": "_scalar_dtor",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "ordinal": 5
-  },
-  "0x00459360": {
-   "name": "Destroy",
-   "signature": "void __thiscall()",
-   "ordinal": 3
-  },
-  "0x0045A600": {
-   "name": "_Construct_2",
-   "signature": "void __thiscall(RoleTaskLine *a1, RoleTaskLine *a2)",
-   "ordinal": 6,
-   "source": "manual_fix_vtable+canonical_rename"
-  },
-  "0x0045A490": {
-   "name": "Render",
-   "signature": "void __thiscall()",
-   "ordinal": 1
-  },
-  "0x004BB330": {
-   "name": "InitGraph_Base",
-   "signature": "int __thiscall UISceneFrm::InitGraph_Base()"
-  },
-  "0x004BB4E0": {
-   "name": "InitGraph_Rotation",
-   "signature": "int __thiscall UISceneFrm::InitGraph_Rotation()"
-  },
-  "0x004BB690": {
-   "name": "InitGraph_VertexAlpha",
-   "signature": "int __thiscall UISceneFrm::InitGraph_VertexAlpha()"
-  },
-  "0x004BB830": {
-   "name": "InitGraph_RGBColor",
-   "signature": "int __thiscall UISceneFrm::InitGraph_RGBColor()"
-  },
-  "0x004BBA50": {
-   "name": "InitGraph_Direction",
-   "signature": "int __thiscall UISceneFrm::InitGraph_Direction()"
-  },
-  "0x004BBCA0": {
-   "name": "InitGraph_RandomVelocity",
-   "signature": "int __thiscall UISceneFrm::InitGraph_RandomVelocity()"
-  },
-  "0x004BBEB0": {
-   "name": "InitGraph_EmissionRate",
-   "signature": "int __thiscall UISceneFrm::InitGraph_EmissionRate()"
-  },
-  "0x004BC0C0": {
-   "name": "InitGraph_Lifetime",
-   "signature": "int __thiscall UISceneFrm::InitGraph_Lifetime()"
-  },
-  "0x004BC2D0": {
-   "name": "InitGraph_SizeMultiplier",
-   "signature": "int __thiscall UISceneFrm::InitGraph_SizeMultiplier()"
-  },
-  "0x004BC4E0": {
-   "name": "InitGraph_RotationMultiplier",
-   "signature": "int __thiscall UISceneFrm::InitGraph_RotationMultiplier()"
-  },
-  "0x00528CD0": {
-   "name": "CallFaceMethod",
-   "signature": "int __thiscall(int nVal, unsigned char pData)"
-  },
-  "0x00535630": {
-   "name": "ShowAndRelease",
-   "signature": "int __thiscall UISceneFrm::ShowAndRelease()",
-   "_misattrib_evidence": "max_offset=3216>class_size=1012"
-  },
-  "0x00535650": {
-   "name": "InitTemplateStrings",
-   "signature": "LPSTR __thiscall UISceneFrm::InitTemplateStrings()"
-  },
-  "0x004BB200": {
-   "name": "ScreenToLocal",
-   "signature": "void __thiscall(UISceneFrm *this, float *pOutX, float *pInX, float *pInY)"
-  }
- },
- "vtables": [
-  {
-   "addr": "0x0056B394",
-   "base": "UIWnd",
-   "slots": [
-    {
-     "addr": "0x00445E70",
-     "from": "UIWnd"
+  "name": "UISceneFrm",
+  "binary_size": 4248,
+  "known_members": {
+    "72": {
+      "name": "m_map",
+      "type": "UISceneMap",
+      "source": "annotation"
     },
-    {
-     "addr": "0x0045A490",
-     "from": null
+    "1276": {
+      "name": "m_face",
+      "type": "UISceneFace",
+      "source": "PAL3patch_verified"
     },
-    {
-     "addr": "0x0045A4F0",
-     "from": null
-    },
-    {
-     "addr": "0x00459360",
-     "from": null
-    },
-    {
-     "addr": "0x00445B90",
-     "from": "UIWnd"
-    },
-    {
-     "addr": "0x00459240",
-     "from": null
-    },
-    {
-     "addr": "0x0045A600",
-     "from": null
+    "0": {
+      "name": "__vftable",
+      "type": "void *",
+      "source": "vtable_fix"
     }
-   ]
-  }
- ],
- "base_size": 72
+  },
+  "base_class": [
+    "UIFrameWnd"
+  ],
+  "methods": {
+    "0x004590D0": {
+      "name": "ctor",
+      "signature": "int __thiscall()",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+    },
+    "0x00459260": {
+      "name": "UISceneFrm",
+      "signature": "void __thiscall()"
+    },
+    "0x0045A4F0": {
+      "name": "fill",
+      "signature": "void __thiscall(RoleTask *a1, RoleTask *a2, RoleTask *a3)",
+      "ordinal": 2,
+      "source": "manual_fix_vtable+canonical_rename"
+    },
+    "0x00459240": {
+      "name": "_scalar_dtor",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
+    },
+    "0x00459360": {
+      "name": "Destroy",
+      "signature": "void __thiscall()",
+      "ordinal": 3
+    },
+    "0x0045A600": {
+      "name": "_Construct_2",
+      "signature": "void __thiscall(RoleTaskLine *a1, RoleTaskLine *a2)",
+      "ordinal": 6,
+      "source": "manual_fix_vtable+canonical_rename"
+    },
+    "0x0045A490": {
+      "name": "Render",
+      "signature": "void __thiscall()",
+      "ordinal": 1
+    },
+    "0x004BB330": {
+      "name": "InitGraph_Base",
+      "signature": "int __thiscall UISceneFrm::InitGraph_Base()"
+    },
+    "0x004BB4E0": {
+      "name": "InitGraph_Rotation",
+      "signature": "int __thiscall UISceneFrm::InitGraph_Rotation()"
+    },
+    "0x004BB690": {
+      "name": "InitGraph_VertexAlpha",
+      "signature": "int __thiscall UISceneFrm::InitGraph_VertexAlpha()"
+    },
+    "0x004BB830": {
+      "name": "InitGraph_RGBColor",
+      "signature": "int __thiscall UISceneFrm::InitGraph_RGBColor()"
+    },
+    "0x004BBA50": {
+      "name": "InitGraph_Direction",
+      "signature": "int __thiscall UISceneFrm::InitGraph_Direction()"
+    },
+    "0x004BBCA0": {
+      "name": "InitGraph_RandomVelocity",
+      "signature": "int __thiscall UISceneFrm::InitGraph_RandomVelocity()"
+    },
+    "0x004BBEB0": {
+      "name": "InitGraph_EmissionRate",
+      "signature": "int __thiscall UISceneFrm::InitGraph_EmissionRate()"
+    },
+    "0x004BC0C0": {
+      "name": "InitGraph_Lifetime",
+      "signature": "int __thiscall UISceneFrm::InitGraph_Lifetime()"
+    },
+    "0x004BC2D0": {
+      "name": "InitGraph_SizeMultiplier",
+      "signature": "int __thiscall UISceneFrm::InitGraph_SizeMultiplier()"
+    },
+    "0x004BC4E0": {
+      "name": "InitGraph_RotationMultiplier",
+      "signature": "int __thiscall UISceneFrm::InitGraph_RotationMultiplier()"
+    },
+    "0x00528CD0": {
+      "name": "CallFaceMethod",
+      "signature": "int __thiscall(int nVal, unsigned char pData)"
+    },
+    "0x00535630": {
+      "name": "ShowAndRelease",
+      "signature": "int __thiscall UISceneFrm::ShowAndRelease()",
+      "_misattrib_evidence": "max_offset=3216>class_size=1012"
+    },
+    "0x00535650": {
+      "name": "InitTemplateStrings",
+      "signature": "LPSTR __thiscall UISceneFrm::InitTemplateStrings()"
+    },
+    "0x004BB200": {
+      "name": "ScreenToLocal",
+      "signature": "void __thiscall(UISceneFrm *this, float *pOutX, float *pInX, float *pInY)"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056B394",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0045A490",
+          "from": null
+        },
+        {
+          "addr": "0x0045A4F0",
+          "from": null
+        },
+        {
+          "addr": "0x00459360",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00459240",
+          "from": null
+        },
+        {
+          "addr": "0x0045A600",
+          "from": null
+        }
+      ]
+    }
+  ],
+  "base_size": 72
 }

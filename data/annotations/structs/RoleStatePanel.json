@@ -1,148 +1,148 @@
 {
- "name": "RoleStatePanel",
- "binary_size": 176256,
- "size_evidence": "operator new(0x2B080) at sub_44F130+0x44f1d5; HandleDeviceLostB writes +0x2B07C (size-4)",
- "vtables": [
-  {
-   "addr": "0x0056F040",
-   "base": "UIWnd",
-   "note": "installed by InitUI@0x4A1E40; slot ownership beyond slot0 unverified"
-  }
- ],
- "methods": {
-  "0x004a1e40": {
-   "name": "InitUI",
-   "signature": "int __thiscall EquipUI::InitUI()",
-   "_misattrib_evidence": "rolestatepanel: installs vtable 0x56F040 at this+0 (was EquipUI.InitUI)"
+  "name": "RoleStatePanel",
+  "binary_size": 185856,
+  "size_evidence": "operator new(0x2B080) at sub_44F130+0x44f1d5; HandleDeviceLostB writes +0x2B07C (size-4)",
+  "vtables": [
+    {
+      "addr": "0x0056F040",
+      "base": "UIWnd",
+      "note": "installed by InitUI@0x4A1E40; slot ownership beyond slot0 unverified"
+    }
+  ],
+  "methods": {
+    "0x004a1e40": {
+      "name": "InitUI",
+      "signature": "int __thiscall EquipUI::InitUI()",
+      "_misattrib_evidence": "rolestatepanel: installs vtable 0x56F040 at this+0 (was EquipUI.InitUI)"
+    },
+    "0x004a2450": {
+      "name": "~RoleStatePanel",
+      "signature": "int __thiscall MainEquipUI::~MainEquipUI()",
+      "_misattrib_evidence": "rolestatepanel: dtor; xref to vtable 0x56F040 at 0x4a246d (was MainEquipUI.~MainEquipUI)",
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+    },
+    "0x004a3900": {
+      "name": "SetItemData",
+      "signature": "int __thiscall(int id, unsigned int data)",
+      "_misattrib_evidence": "rolestatepanel: stride this+id*3788 = s_RoleState; fields +0x25E04.. (was UIBase.SetItemData)"
+    },
+    "0x004a4780": {
+      "name": "HandleDeviceLostB",
+      "signature": "int __thiscall MainEquipUI::HandleDeviceLostB()",
+      "_misattrib_evidence": "rolestatepanel: writes +0x2B07C/+0x2B078 (last fields, size 0x2B080) (was MainEquipUI.HandleDeviceLostB)"
+    },
+    "0x004a4820": {
+      "name": "Render",
+      "signature": "int __thiscall()",
+      "_misattrib_evidence": "rolestatepanel: max_offset 176252 = size-4 (was MainEquipUI.Render_4a4820)"
+    },
+    "0x004a4890": {
+      "name": "GetSelected",
+      "signature": "int __thiscall()",
+      "_misattrib_evidence": "rolestatepanel: scans +0x169[5] slot flags (was EquipUI.GetSelected)"
+    },
+    "0x004a48b0": {
+      "name": "InitSlots",
+      "signature": "void __thiscall()",
+      "_misattrib_evidence": "rolestatepanel: 0xa1 family; ecx=[parent+0x6E14] call chain (was EquipUI.InitSlots)"
+    },
+    "0x004a4960": {
+      "name": "InitLayout",
+      "signature": "int __thiscall()",
+      "_misattrib_evidence": "rolestatepanel: 0xa1 family (byte-identical variant) (was StateUI.InitLayout)"
+    },
+    "0x004a4a10": {
+      "name": "CreateWidgets",
+      "signature": "void __thiscall()",
+      "_misattrib_evidence": "rolestatepanel: 0xa1 family (was StateUI.CreateWidgets)"
+    },
+    "0x004a4ac0": {
+      "name": "SetSelectedData",
+      "signature": "int __thiscall MagicUI::SetSelectedData()",
+      "_misattrib_evidence": "rolestatepanel: 0xa1 family (was MagicUI.SetSelectedData)"
+    },
+    "0x004a4b70": {
+      "name": "Init",
+      "signature": "void __thiscall()",
+      "_misattrib_evidence": "rolestatepanel: 0xa1 family (was MagicUI.Init)"
+    },
+    "0x004a4c20": {
+      "name": "Create",
+      "signature": "int __thiscall EquipUI::Create()",
+      "_misattrib_evidence": "rolestatepanel: calls 0xa1 family on this (was EquipUI.Create)"
+    },
+    "0x004a4fc0": {
+      "name": "SetEquipSlotData",
+      "signature": "BOOL __thiscall()",
+      "_misattrib_evidence": "rolestatepanel: writes +0x2AFD4..0x2AFD9 (was MainEquipUI.SetEquipSlotData)"
+    },
+    "0x004a5930": {
+      "name": "RenderThrottled",
+      "signature": "int __thiscall MainEquipUI::RenderThrottled()",
+      "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.RenderThrottled)"
+    },
+    "0x004a5a80": {
+      "name": "LayoutHandleNav",
+      "signature": "int __thiscall MainEquipUI::LayoutHandleNav()",
+      "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.LayoutHandleNav)"
+    },
+    "0x004a5b30": {
+      "name": "UpdateCaptions",
+      "signature": "int __thiscall MainEquipUI::UpdateCaptions()",
+      "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.UpdateCaptions)"
+    }
   },
-  "0x004a2450": {
-   "name": "~RoleStatePanel",
-   "signature": "int __thiscall MainEquipUI::~MainEquipUI()",
-   "_misattrib_evidence": "rolestatepanel: dtor; xref to vtable 0x56F040 at 0x4a246d (was MainEquipUI.~MainEquipUI)",
-   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+  "known_members": {
+    "0x60": {
+      "name": "m_nScanIndex",
+      "type": "int",
+      "source": "GetSelected loop counter"
+    },
+    "0x169": {
+      "name": "m_bSlotFlags",
+      "type": "unsigned char[5]",
+      "source": "GetSelected 5-slot scan"
+    },
+    "0x25e04": {
+      "name": "m_roles",
+      "type": "s_RoleState[5]",
+      "source": "SetItemData stride 3788 x5"
+    },
+    "185660": {
+      "name": "m_pSubTab1",
+      "type": "void *",
+      "source": "0xa1 family sub-control (has vtable)"
+    },
+    "185664": {
+      "name": "m_pSubTab2",
+      "type": "void *",
+      "source": "0xa1 family sub-control (has vtable)"
+    },
+    "185684": {
+      "name": "m_nEquipSlot",
+      "type": "int",
+      "source": "SetEquipSlotData"
+    },
+    "185688": {
+      "name": "m_bFlag2afd8",
+      "type": "unsigned char",
+      "source": "SetEquipSlotData"
+    },
+    "185689": {
+      "name": "m_bFlag2afd9",
+      "type": "unsigned char",
+      "source": "SetEquipSlotData"
+    },
+    "185848": {
+      "name": "m_nDevLost1",
+      "type": "int",
+      "source": "HandleDeviceLostB (last fields)"
+    },
+    "185852": {
+      "name": "m_nDevLost2",
+      "type": "int",
+      "source": "HandleDeviceLostB (size-4 anchor)"
+    }
   },
-  "0x004a3900": {
-   "name": "SetItemData",
-   "signature": "int __thiscall(int id, unsigned int data)",
-   "_misattrib_evidence": "rolestatepanel: stride this+id*3788 = s_RoleState; fields +0x25E04.. (was UIBase.SetItemData)"
-  },
-  "0x004a4780": {
-   "name": "HandleDeviceLostB",
-   "signature": "int __thiscall MainEquipUI::HandleDeviceLostB()",
-   "_misattrib_evidence": "rolestatepanel: writes +0x2B07C/+0x2B078 (last fields, size 0x2B080) (was MainEquipUI.HandleDeviceLostB)"
-  },
-  "0x004a4820": {
-   "name": "Render",
-   "signature": "int __thiscall()",
-   "_misattrib_evidence": "rolestatepanel: max_offset 176252 = size-4 (was MainEquipUI.Render_4a4820)"
-  },
-  "0x004a4890": {
-   "name": "GetSelected",
-   "signature": "int __thiscall()",
-   "_misattrib_evidence": "rolestatepanel: scans +0x169[5] slot flags (was EquipUI.GetSelected)"
-  },
-  "0x004a48b0": {
-   "name": "InitSlots",
-   "signature": "void __thiscall()",
-   "_misattrib_evidence": "rolestatepanel: 0xa1 family; ecx=[parent+0x6E14] call chain (was EquipUI.InitSlots)"
-  },
-  "0x004a4960": {
-   "name": "InitLayout",
-   "signature": "int __thiscall()",
-   "_misattrib_evidence": "rolestatepanel: 0xa1 family (byte-identical variant) (was StateUI.InitLayout)"
-  },
-  "0x004a4a10": {
-   "name": "CreateWidgets",
-   "signature": "void __thiscall()",
-   "_misattrib_evidence": "rolestatepanel: 0xa1 family (was StateUI.CreateWidgets)"
-  },
-  "0x004a4ac0": {
-   "name": "SetSelectedData",
-   "signature": "int __thiscall MagicUI::SetSelectedData()",
-   "_misattrib_evidence": "rolestatepanel: 0xa1 family (was MagicUI.SetSelectedData)"
-  },
-  "0x004a4b70": {
-   "name": "Init",
-   "signature": "void __thiscall()",
-   "_misattrib_evidence": "rolestatepanel: 0xa1 family (was MagicUI.Init)"
-  },
-  "0x004a4c20": {
-   "name": "Create",
-   "signature": "int __thiscall EquipUI::Create()",
-   "_misattrib_evidence": "rolestatepanel: calls 0xa1 family on this (was EquipUI.Create)"
-  },
-  "0x004a4fc0": {
-   "name": "SetEquipSlotData",
-   "signature": "BOOL __thiscall()",
-   "_misattrib_evidence": "rolestatepanel: writes +0x2AFD4..0x2AFD9 (was MainEquipUI.SetEquipSlotData)"
-  },
-  "0x004a5930": {
-   "name": "RenderThrottled",
-   "signature": "int __thiscall MainEquipUI::RenderThrottled()",
-   "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.RenderThrottled)"
-  },
-  "0x004a5a80": {
-   "name": "LayoutHandleNav",
-   "signature": "int __thiscall MainEquipUI::LayoutHandleNav()",
-   "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.LayoutHandleNav)"
-  },
-  "0x004a5b30": {
-   "name": "UpdateCaptions",
-   "signature": "int __thiscall MainEquipUI::UpdateCaptions()",
-   "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.UpdateCaptions)"
-  }
- },
- "known_members": {
-  "0x60": {
-   "name": "m_nScanIndex",
-   "type": "int",
-   "source": "GetSelected loop counter"
-  },
-  "0x169": {
-   "name": "m_bSlotFlags",
-   "type": "unsigned char[5]",
-   "source": "GetSelected 5-slot scan"
-  },
-  "0x25e04": {
-   "name": "m_roles",
-   "type": "s_RoleState[5]",
-   "source": "SetItemData stride 3788 x5"
-  },
-  "0x2afbc": {
-   "name": "m_pSubTab1",
-   "type": "void *",
-   "source": "0xa1 family sub-control (has vtable)"
-  },
-  "0x2afc0": {
-   "name": "m_pSubTab2",
-   "type": "void *",
-   "source": "0xa1 family sub-control (has vtable)"
-  },
-  "0x2afd4": {
-   "name": "m_nEquipSlot",
-   "type": "int",
-   "source": "SetEquipSlotData"
-  },
-  "0x2afd8": {
-   "name": "m_bFlag2afd8",
-   "type": "unsigned char",
-   "source": "SetEquipSlotData"
-  },
-  "0x2afd9": {
-   "name": "m_bFlag2afd9",
-   "type": "unsigned char",
-   "source": "SetEquipSlotData"
-  },
-  "0x2b078": {
-   "name": "m_nDevLost1",
-   "type": "int",
-   "source": "HandleDeviceLostB (last fields)"
-  },
-  "0x2b07c": {
-   "name": "m_nDevLost2",
-   "type": "int",
-   "source": "HandleDeviceLostB (size-4 anchor)"
-  }
- },
- "_naming_note": "descriptive name (5-role state panel, equip/magic/state tabs); original source name unrecoverable — see _rolestatepanel_verdict.json"
+  "_naming_note": "descriptive name (5-role state panel, equip/magic/state tabs); original source name unrecoverable — see _rolestatepanel_verdict.json"
 }

@@ -7,18 +7,18 @@
       "type": "void *",
       "source": "gap_fill:ida_decomp_access | type_fix:float->int(vtable pointer)"
     },
-    "14528": {
+    "14624": {
       "name": "m_pDialog",
       "type": "char *",
       "source": "binary:Init _dF40 pattern | type_fix:int→void*(naming m_p)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
-    "14532": {
+    "14628": {
       "name": "m_pSceneObjRef",
       "type": "SceneObj *",
       "source": "binary:Render+manual_ida_load"
     },
-    "14536": {
+    "14632": {
       "name": "m_nPrevSceneState",
       "type": "int",
       "source": "binary:Render+manual_ida_load"
@@ -33,47 +33,47 @@
       "type": "UIWnd *",
       "source": "gen_headers_9.2+codegen_infer"
     },
-    "884": {
+    "980": {
       "name": "m_RoleDataA",
       "type": "CScreenMode *",
       "source": "ida_decomp:InitRoles vtable+28 call, &this passed, 4 refs+codegen_infer"
     },
-    "1228": {
+    "1324": {
       "name": "m_RoleDataB",
       "type": "CScreenMode *",
       "source": "ida_decomp:InitRoles vtable+28 call, same pattern, 4 refs+codegen_infer"
     },
-    "1572": {
+    "1668": {
       "name": "m_RoleDataC",
       "type": "CScreenMode *",
       "source": "ida_decomp:InitRoles vtable+28 call, same pattern, 4 refs+codegen_infer"
     },
-    "2228": {
+    "2324": {
       "name": "m_nInitItems",
       "type": "int",
       "source": "gen_headers_9.2"
     },
-    "2232": {
+    "2328": {
       "name": "m_nItemCount2",
       "type": "int",
       "source": "reverted_auto_semantic:1x"
     },
-    "2248": {
+    "2344": {
       "name": "m_nEquipCount",
       "type": "int",
       "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
     },
-    "2260": {
+    "2356": {
       "name": "m_nConsumableCount",
       "type": "int",
       "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
     },
-    "3288": {
+    "3384": {
       "name": "m_nTodo_CD8",
       "type": "int",
       "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
     },
-    "3904": {
+    "4000": {
       "name": "m_nRender",
       "type": "int",
       "source": "gen_headers_9.2"
@@ -95,93 +95,93 @@
       "type": "short",
       "source": "binary:raw_batch"
     },
-    "640": {
-      "name": "m_bFlag280",
-      "type": "unsigned char",
-      "source": "binary:5x abs refs, byte access (0x280)"
+    "832": {
+      "name": "m_nMissionState",
+      "type": "int",
+      "source": "binary:4x abs refs, dword access in PalScriptMgr"
     },
-    "641": {
+    "737": {
       "name": "m_bFlag281",
       "type": "unsigned char",
       "source": "binary:6x abs refs, byte access (0x281)"
     },
-    "642": {
+    "738": {
       "name": "m_bFlag282",
       "type": "unsigned char",
       "source": "binary:6x abs refs, byte access (0x282)"
     },
-    "3284": {
+    "3380": {
       "name": "m_bInitRoles",
       "type": "unsigned char",
       "source": "binary:raw_batch"
     },
-    "3304": {
+    "3400": {
       "name": "m_nTodo_CE8",
       "type": "unsigned char",
       "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
     },
-    "3305": {
+    "3401": {
       "name": "m_nTodo_CE9",
       "type": "unsigned char",
       "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
     },
-    "7412": {
+    "7508": {
       "name": "m_nScriptResult",
       "type": "int",
       "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
     },
-    "7416": {
+    "7512": {
       "name": "m_bScriptActive",
       "type": "unsigned char",
       "source": "reverted_auto_semantic_r3:1x(InitRoles)"
     },
-    "9488": {
+    "9584": {
       "name": "m_nScriptHandleA",
       "type": "int",
       "source": "ida_decomp:InitRoles = 0"
     },
-    "9492": {
+    "9588": {
       "name": "m_nScriptHandleB",
       "type": "int",
       "source": "ida_decomp:InitRoles = 0"
     },
-    "9496": {
+    "9592": {
       "name": "m_nScriptHandleC",
       "type": "int",
       "source": "ida_decomp:InitRoles = 0"
     },
-    "9500": {
+    "9596": {
       "name": "m_nScriptHandleD",
       "type": "int",
       "source": "ida_decomp:InitRoles = 0"
     },
-    "9504": {
+    "9600": {
       "name": "m_nScriptHandleE",
       "type": "int",
       "source": "ida_decomp:InitRoles = 0"
     },
-    "9508": {
+    "9604": {
       "name": "m_nScriptHandleF",
       "type": "int",
       "source": "ida_decomp:InitRoles = 0"
     },
-    "9512": {
+    "9608": {
       "name": "m_bScriptRunning",
       "type": "unsigned char",
       "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
     },
-    "28176": {
+    "28272": {
       "name": "m_pGameObj",
       "type": "char *",
       "source": "ida_decomp:Init=v3, Render vtable+4 call, Destroy delete, 5 refs | type_fix:int→void*(new/delete+vtable)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
-    "28180": {
+    "28276": {
       "name": "m_nMode",
       "type": "int",
       "source": "binary:raw_batch"
     },
-    "28184": {
+    "28280": {
       "name": "m_pGameObjB",
       "type": "char *",
       "source": "ida_decomp:Init = v12, Render deref[3829] byte check, 2 refs | type_fix:int→void*(deref pattern)",
@@ -202,42 +202,42 @@
       "type": "int",
       "source": "binary:10x abs refs (0x164)"
     },
-    "656": {
+    "752": {
       "name": "m_nGameMode",
       "type": "int",
       "source": "binary:17x abs refs (0x290)"
     },
-    "1916": {
+    "2012": {
       "name": "m_ItemSlotA",
       "type": "UIItem",
       "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer"
     },
-    "2220": {
+    "2316": {
       "name": "m_pItemArray",
       "type": "void *",
       "source": "binary:gap_r2;batch_fix:int_or_float_to_v*_LEA"
     },
-    "3308": {
+    "3404": {
       "name": "m_ItemSlotB",
       "type": "UIItem",
       "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer"
     },
-    "4676": {
+    "4772": {
       "name": "m_ItemSlotC",
       "type": "UIItem",
       "source": "ida_decomp:InitRoles UIItem::Create+SetData(18), 2 refs+codegen_infer"
     },
-    "5012": {
+    "5108": {
       "name": "m_UITitle",
       "type": "int",
       "source": "ida_decomp:ctor_F050 UITitle::ctor, Init InitRoles, 2 refs"
     },
-    "6044": {
+    "6140": {
       "name": "m_ItemSlotD",
       "type": "UIItem",
       "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer"
     },
-    "14544": {
+    "14640": {
       "name": "m_aItemData",
       "type": "int",
       "source": "ida_decomp:ctor_F050 eh_vector_dtor(0x8E0,6), Init InitItems loop, 2 refs"
@@ -247,62 +247,52 @@
       "type": "int",
       "source": "binary:gamedata_gap"
     },
-    "624": {
+    "720": {
       "name": "m_nPlayerMoney",
       "type": "int",
       "source": "binary:3x abs refs, store/load eax(dword)"
     },
-    "628": {
+    "724": {
       "name": "m_nMoneyAdd",
       "type": "int",
       "source": "binary:gamedata_gap"
     },
-    "632": {
-      "name": "m_nMoneySub",
-      "type": "int",
-      "source": "binary:gamedata_gap"
-    },
-    "636": {
-      "name": "m_nStorePriceMod",
-      "type": "int",
-      "source": "binary:gamedata_gap"
-    },
-    "644": {
-      "name": "m_nReputation",
-      "type": "int",
-      "source": "binary:gamedata_gap"
-    },
-    "648": {
-      "name": "m_nSceneLoadParam",
-      "type": "int",
-      "source": "binary:gamedata_gap+manual_ida_load"
-    },
-    "652": {
-      "name": "m_bSceneLoaded",
-      "type": "char",
-      "source": "manual_fix:shrink_to_gap | ida_xref"
-    },
-    "653": {
-      "name": "m_bSceneActive",
-      "type": "unsigned char",
-      "source": "binary:gamedata_gap | ida_xref"
-    },
-    "728": {
+    "824": {
       "name": "m_nBattleResult",
       "type": "int",
       "source": "binary:5x abs refs (0x2D8)"
     },
-    "736": {
-      "name": "m_nMissionState",
+    "732": {
+      "name": "m_nStorePriceMod",
       "type": "int",
-      "source": "binary:4x abs refs, dword access in PalScriptMgr"
+      "source": "binary:gamedata_gap"
     },
-    "3976": {
+    "740": {
+      "name": "m_nReputation",
+      "type": "int",
+      "source": "binary:gamedata_gap"
+    },
+    "744": {
+      "name": "m_nSceneLoadParam",
+      "type": "int",
+      "source": "binary:gamedata_gap+manual_ida_load"
+    },
+    "748": {
+      "name": "m_bSceneLoaded",
+      "type": "char",
+      "source": "manual_fix:shrink_to_gap | ida_xref"
+    },
+    "749": {
+      "name": "m_bSceneActive",
+      "type": "unsigned char",
+      "source": "binary:gamedata_gap | ida_xref"
+    },
+    "4072": {
       "name": "m_nUIFlags",
       "type": "int",
       "source": "binary:4x abs refs, A1(load eax) + others"
     },
-    "14524": {
+    "14620": {
       "name": "m_nGameFlags",
       "type": "int",
       "source": "binary:gamedata_gap"
@@ -352,112 +342,107 @@
       "type": "int",
       "source": "globals_merge"
     },
-    "1744": {
-      "name": "m_fAnimTimer",
-      "type": "float",
-      "source": "globals_merge"
-    },
-    "1748": {
-      "name": "m_fAnimSpeed",
-      "type": "float",
-      "source": "A:FPU_abs_addr_0xD8EB94@0x438C0B"
-    },
-    "1788": {
-      "name": "m_bAnimPaused",
-      "type": "unsigned char",
-      "source": "globals_merge"
-    },
-    "1840": {
+    "1936": {
       "name": "m_bAnimLoop",
       "type": "unsigned char",
       "source": "globals_merge"
     },
-    "2480": {
+    "1844": {
+      "name": "m_fAnimSpeed",
+      "type": "float",
+      "source": "A:FPU_abs_addr_0xD8EB94@0x438C0B"
+    },
+    "1884": {
+      "name": "m_bAnimPaused",
+      "type": "unsigned char",
+      "source": "globals_merge"
+    },
+    "2576": {
       "name": "m_fBGMVolume",
       "type": "float",
       "source": "globals_merge"
     },
-    "2484": {
+    "2580": {
       "name": "m_nBGMState",
       "type": "int",
       "source": "globals_merge"
     },
-    "3796": {
+    "3892": {
       "name": "m_nUIDialogId",
       "type": "int",
       "source": "globals_merge"
     },
-    "4448": {
+    "4544": {
       "name": "m_fUIColorR",
       "type": "float",
       "source": "globals_merge"
     },
-    "4452": {
+    "4548": {
       "name": "m_nUIColorMode",
       "type": "int",
       "source": "globals_merge"
     },
-    "5104": {
+    "5200": {
       "name": "m_fUITransition",
       "type": "float",
       "source": "globals_merge"
     },
-    "5760": {
+    "5856": {
       "name": "m_fUIFadeAlpha",
       "type": "float",
       "source": "globals_merge"
     },
-    "5764": {
+    "5860": {
       "name": "m_nUIFadeState",
       "type": "int",
       "source": "globals_merge"
     },
-    "6416": {
+    "6512": {
       "name": "m_fSceneTimer",
       "type": "float",
       "source": "globals_merge"
     },
-    "6420": {
+    "6516": {
       "name": "m_nSceneState",
       "type": "int",
       "source": "globals_merge"
     },
-    "7728": {
+    "7824": {
       "name": "m_fEffectTimer",
       "type": "float",
       "source": "globals_merge"
     },
-    "7732": {
+    "7828": {
       "name": "m_nEffectState",
       "type": "int",
       "source": "globals_merge"
     },
-    "10352": {
+    "10448": {
       "name": "m_fScriptTimer",
       "type": "float",
       "source": "globals_merge"
     },
-    "10364": {
+    "10460": {
       "name": "m_nScriptPhase",
       "type": "int",
       "source": "globals_merge"
     },
-    "11008": {
+    "11104": {
       "name": "m_fDialogTimer",
       "type": "float",
       "source": "globals_merge"
     },
-    "11012": {
+    "11108": {
       "name": "m_nDialogState",
       "type": "int",
       "source": "globals_merge"
     },
-    "17104": {
+    "17200": {
       "name": "m_nPostGame",
       "type": "int",
       "source": "globals_merge"
     },
-    "14540": {
+    "14636": {
       "name": "m_nSceneTransition",
       "type": "int",
       "source": "gap_fill:ida_decomp_access+manual_ida_load"
@@ -472,47 +457,47 @@
       "type": "int",
       "source": "binary_discovery:1refs+manual_ida_load"
     },
-    "768": {
+    "864": {
       "name": "m_nBattleCount",
       "type": "int",
       "source": "binary_discovery:1refs"
     },
-    "1024": {
+    "1120": {
       "name": "m_nWinCount",
       "type": "int",
       "source": "binary_discovery:1refs"
     },
-    "1280": {
+    "1376": {
       "name": "m_nLossCount",
       "type": "int",
       "source": "binary_discovery:1refs"
     },
-    "1536": {
+    "1632": {
       "name": "m_nEscapeCount",
       "type": "int",
       "source": "binary_discovery:1refs"
     },
-    "2304": {
+    "2400": {
       "name": "m_nKeyItemCount",
       "type": "int",
       "source": "binary_discovery:1refs"
     },
-    "3829": {
+    "3925": {
       "name": "m_bDialogActive",
       "type": "unsigned char",
       "source": "binary_discovery:1refs | ida_xref"
     },
-    "12992": {
+    "13088": {
       "name": "m_fUIColorParam",
       "type": "float",
       "source": "auto:overlap_g_GameData_at_+0x32C0"
     },
-    "16424": {
+    "16520": {
       "name": "m_bGameUpdating",
       "type": "unsigned char",
       "source": "auto:overlap_g_GameData_at_+0x4028"
     },
-    "7072": {
+    "7168": {
       "name": "m_fTimerC",
       "type": "float",
       "source": "auto:extern_overlap_g_GameData_at_+0x1BA0"
@@ -537,27 +522,27 @@
       "name": "m_nTodo_07C",
       "type": "UIWnd *"
     },
-    "0x3DC": {
+    "1084": {
       "name": "m_nTodo_3DC",
       "type": "int"
     },
-    "0x3E0": {
+    "1088": {
       "name": "m_nTodo_3E0",
       "type": "int"
     },
-    "0x534": {
+    "1428": {
       "name": "m_nTodo_534",
       "type": "int"
     },
-    "0x538": {
+    "1432": {
       "name": "m_nTodo_538",
       "type": "int"
     },
-    "0x68C": {
+    "1772": {
       "name": "m_nTodo_68C",
       "type": "int"
     },
-    "0x690": {
+    "1776": {
       "name": "m_nTodo_690",
       "type": "int"
     },
@@ -566,7 +551,7 @@
       "type": "UIStatic"
     }
   },
-  "binary_size": 28268,
+  "binary_size": 28364,
   "methods": {
     "0x0044ADE0": {
       "name": "InitRoles",
