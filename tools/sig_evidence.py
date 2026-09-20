@@ -329,6 +329,27 @@ def main():
 
     grades = Counter(g['grade'] for g in pack['graded'])
     print('grades:', dict(grades))
+
+    # 2026-09-20 审计 P2-5：**棘轮护栏**。
+    # 本工具**无法忠实重建**既有 pack —— 实测一次默认运行把受跟踪产物
+    # data/status/_sig_evidence_pack.json 从 6931 行砍到 1648 行（graded 456 条 → 远少于此）；
+    # 工具自述"54 条 A-V2 是**现行评分函数产不出的更高等级**（别的版本写入）"。
+    # ⇒ 新 pack 明显小于现有即**拒绝覆盖**并报警；确要覆盖须显式 `--force-overwrite`。
+    # 理由与本次审计观察到的"pack 被重写成 363→30 含 slots"一致。
+    try:
+        _old = json.load(open(OUT, encoding='utf-8'))
+        _old_n = len(_old.get('graded', [])) if isinstance(_old, dict) else len(_old)
+    except Exception:
+        _old_n = None
+    _new_n = len(pack['graded'])
+    if (_old_n and _new_n < 0.9 * _old_n
+            and '--force-overwrite' not in sys.argv):
+        print()
+        print('[RATCHET] 拒绝覆盖 %s：新 pack 的 graded 条目 %d 明显少于现有的 %d'
+              % (OUT, _new_n, _old_n))
+        print('          本工具**无法忠实重建**该产物（既有条目含现行评分函数产不出的更高等级，')
+        print('          例如 A-V2）。确要覆盖请显式加 --force-overwrite。')
+        sys.exit(1)
     json.dump(pack, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     print('pack ->', OUT)
     return pack
@@ -338,7 +359,7 @@ if __name__ == '__main__':
     # 2026-09-20 审计 P2-4：本工具**会写盘**却**忽略未知开关** ⇒ `--help` 会被当作
     # 普通输入并执行全流程、覆盖产物（审计期间本工具因此删掉 6020 行）。
     # **严格拒绝未知开关**，已知开关只有 --repair-from-asm。
-    _UNKNOWN_FLAG_GUARD = {'--repair-from-asm'}
+    _UNKNOWN_FLAG_GUARD = {'--repair-from-asm', '--force-overwrite'}
     _unknown = [a for a in sys.argv[1:]
                 if a.startswith('-') and a not in _UNKNOWN_FLAG_GUARD]
     if _unknown:
