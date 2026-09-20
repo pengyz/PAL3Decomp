@@ -4,7 +4,7 @@
  "new_size": 248,
  "delta": 96,
  "classes": 60,
- "total_ops": 1453,
+ "total_ops": 1507,
  "leaf_to_root": [
   "UIStaticEXA",
   "CCBRoleState",
@@ -40,6 +40,7 @@
   "UIStaticEX",
   "UIStaticFlip",
   "UIStaticRM",
+  "UITitle_ArcSave",
   "UITitle_BBTY",
   "UITitle_JDHY",
   "UITitle_QCYM",
@@ -108,6 +109,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "CCBRoleState",
+     "size": 22320,
+     "from": 22224,
+     "to": 22320,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "21960",
@@ -315,6 +324,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "CCBUIPanel",
+     "size": 22592,
+     "from": 22112,
+     "to": 22592,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "21556",
@@ -586,6 +603,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "CG_UI",
+     "size": 42120,
+     "from": 39240,
+     "to": 42120,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "524",
@@ -1034,6 +1059,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "ChoseCompose",
+     "size": 3866,
+     "from": 3770,
+     "to": 3866,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "744",
      "from": 744,
@@ -1048,6 +1081,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "Comp_DonateUI",
+     "size": 47248,
+     "from": 46192,
+     "to": 47248,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "21044",
@@ -1248,6 +1289,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "ComposeUI",
+     "size": 4184,
+     "from": 3896,
+     "to": 4184,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "240",
      "from": 240,
@@ -1302,6 +1351,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "DealUI",
+     "size": 3464,
+     "from": 3080,
+     "to": 3464,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "236",
@@ -1453,6 +1510,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "EquipUI",
+     "size": 122516,
+     "from": 120116,
+     "to": 122516,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "25680",
@@ -2037,6 +2102,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "JusticeBookUI",
+     "size": 57440,
+     "from": 56192,
+     "to": 57440,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "524",
      "from": 524,
@@ -2339,6 +2412,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "LineupUI",
+     "size": 173260,
+     "from": 171244,
+     "to": 173260,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "528",
@@ -2795,6 +2876,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "MUIDialog",
+     "size": 1480,
+     "from": 1288,
+     "to": 1480,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "464",
      "from": 464,
@@ -2841,6 +2930,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "MagicUI",
+     "size": 269988,
+     "from": 267300,
+     "to": 269988,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "42464",
@@ -3288,6 +3385,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "MainEquipUI",
+     "size": 208268,
+     "from": 204620,
+     "to": 208268,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "544",
@@ -3784,6 +3889,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "MainPropUI",
+     "size": 250664,
+     "from": 247976,
+     "to": 250664,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "824",
      "from": 824,
@@ -4239,6 +4352,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "PropUI",
+     "size": 31072,
+     "from": 29056,
+     "to": 31072,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "18304",
      "from": 18304,
@@ -4638,6 +4759,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "ProtectPanel",
+     "size": 1304,
+     "from": 1208,
+     "to": 1304,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "232",
      "from": 232,
@@ -4660,6 +4789,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "SaleUI",
+     "size": 107352,
+     "from": 105912,
+     "to": 107352,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "87076",
@@ -4971,6 +5108,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "StateUI",
+     "size": 164304,
+     "from": 162000,
+     "to": 164304,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "448",
@@ -5450,6 +5595,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "SwordUI",
+     "size": 392600,
+     "from": 388952,
+     "to": 392600,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "524",
@@ -6466,6 +6619,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "SystemUI",
+     "size": 518652,
+     "from": 516636,
+     "to": 518652,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "528",
      "from": 528,
@@ -6889,6 +7050,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "TaskBookUI",
+     "size": 145688,
+     "from": 143672,
+     "to": 145688,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "264",
      "from": 264,
@@ -7208,6 +7377,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "UIAnimateCtrlEX",
+     "size": 1108,
+     "from": 1012,
+     "to": 1108,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "564",
      "from": 564,
@@ -7246,6 +7423,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "UIBigMap",
+     "size": 10440,
+     "from": 10248,
+     "to": 10440,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "520",
@@ -7397,6 +7582,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "UICoverFrm",
+     "size": 16104,
+     "from": 14952,
+     "to": 16104,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "504",
@@ -7789,6 +7982,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "UIGameOver",
+     "size": 328,
+     "from": 232,
+     "to": 328,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "228",
      "from": 228,
@@ -7803,6 +8004,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "UIRoleDialog",
+     "size": 816,
+     "from": 720,
+     "to": 816,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "592",
@@ -7826,6 +8035,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "UIRoleSelectDialog",
+     "size": 2300,
+     "from": 2204,
+     "to": 2300,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "596",
@@ -7890,6 +8107,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "UISceneFrm",
+     "size": 3480,
+     "from": 3288,
+     "to": 3480,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "1084",
      "from": 1084,
@@ -7904,6 +8129,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "UIScenePanel",
+     "size": 14904,
+     "from": 14232,
+     "to": 14904,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "13832",
@@ -8656,10 +8889,33 @@
    ]
   },
   {
+   "class": "UITitle_ArcSave",
+   "depth": 2,
+   "role": "holder",
+   "ops": [
+    {
+     "kind": "set_size",
+     "class": "UITitle_ArcSave",
+     "size": 4100,
+     "from": 4004,
+     "to": 4100,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    }
+   ]
+  },
+  {
    "class": "UITitle_BBTY",
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "UITitle_BBTY",
+     "size": 5924,
+     "from": 5252,
+     "to": 5924,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "520",
@@ -8747,6 +9003,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "UITitle_JDHY",
+     "size": 378756,
+     "from": 377700,
+     "to": 378756,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "504",
@@ -8955,6 +9219,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "UITitle_QCYM",
+     "size": 18252,
+     "from": 17676,
+     "to": 18252,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "504",
      "from": 504,
@@ -9009,6 +9281,14 @@
    "depth": 2,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "UITitle_XJTM",
+     "size": 5916,
+     "from": 5052,
+     "to": 5916,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "256",
@@ -9169,6 +9449,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "UITitle_YXXX",
+     "size": 3144,
+     "from": 2472,
+     "to": 3144,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "248",
      "from": 248,
@@ -9248,6 +9536,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "_Item_List_Info",
+     "size": 6168,
+     "from": 5784,
+     "to": 6168,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "232",
      "from": 232,
@@ -9310,6 +9606,14 @@
    "depth": 1,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "UIChatRest",
+     "size": 10284,
+     "from": 9516,
+     "to": 10284,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "256",
@@ -9566,6 +9870,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "UIGameFrm",
+     "size": 28380,
+     "from": 28188,
+     "to": 28380,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "5012",
      "from": 5012,
@@ -9637,6 +9949,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "UISceneFace",
+     "size": 2068,
+     "from": 1780,
+     "to": 2068,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "1012",
      "from": 1012,
@@ -9675,6 +9995,14 @@
    "depth": 1,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "UISceneMap",
+     "size": 1204,
+     "from": 1012,
+     "to": 1204,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "564",
@@ -9729,6 +10057,14 @@
    "depth": 0,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "CCBRoleStatePanel",
+     "size": 5668,
+     "from": 4132,
+     "to": 5668,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "152",
@@ -9897,6 +10233,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "CCBRoleStatePanelM",
+     "size": 5668,
+     "from": 4132,
+     "to": 5668,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "152",
      "from": 152,
@@ -10064,6 +10408,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "CCBRoleStatePanelS",
+     "size": 5324,
+     "from": 3788,
+     "to": 5324,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "152",
      "from": 152,
@@ -10222,6 +10574,14 @@
    "depth": 0,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "CGameData",
+     "size": 28364,
+     "from": 28268,
+     "to": 28364,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "14528",
@@ -10926,6 +11286,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "CScreenMode",
+     "size": 5880,
+     "from": 5496,
+     "to": 5880,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "1244",
      "from": 1244,
@@ -11109,6 +11477,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "LineupPlank",
+     "size": 1000,
+     "from": 712,
+     "to": 1000,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "152",
      "from": 152,
@@ -11139,6 +11515,14 @@
    "depth": 0,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "Note_Item",
+     "size": 4424,
+     "from": 3560,
+     "to": 4424,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "512",
@@ -11219,6 +11603,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "RoleStatePanel",
+     "size": 176352,
+     "from": 176256,
+     "to": 176352,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "0x2afbc",
      "from": 176060,
@@ -11282,6 +11674,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "UIParticle",
+     "size": 680,
+     "from": 584,
+     "to": 680,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "572",
      "from": 572,
@@ -11312,6 +11712,14 @@
    "depth": 0,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "_CLOUD",
+     "size": 300,
+     "from": 204,
+     "to": 300,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "176",
@@ -11399,6 +11807,14 @@
    "depth": 0,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "m_RoleState",
+     "size": 5668,
+     "from": 4132,
+     "to": 5668,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "152",
@@ -11566,6 +11982,14 @@
    "depth": 0,
    "role": "holder",
    "ops": [
+    {
+     "kind": "set_size",
+     "class": "me_RoleState",
+     "size": 10716,
+     "from": 9372,
+     "to": 10716,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
     {
      "kind": "shift_offset",
      "key": "152",
@@ -11758,6 +12182,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "p_RoleState",
+     "size": 5668,
+     "from": 4132,
+     "to": 5668,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "152",
      "from": 152,
@@ -11925,6 +12357,14 @@
    "role": "holder",
    "ops": [
     {
+     "kind": "set_size",
+     "class": "s_RoleState",
+     "size": 5324,
+     "from": 3788,
+     "to": 5324,
+     "evidence": "A 级三重（2026-09-20/21）：??_L size=248 且 ctor=0x440740 ×3（sub_483280/sub_498820/sub_525120）；operator new(248)+call 0x440740（alloc_sizeof，exhibits 逐字节校验 28/28 OK）；ctor 0x440740 写入 0x56AD88 正是 UIStatic 自己声明的 vtable；成员位移上界 ≥200>152。配套改动由 tools/cascade_plan.py 生成（口径：每类首个内嵌位置 P_min 分档；族内用 ≥旧尺寸），独立复算裁定 1442 成员 offset / 60 个类。"
+    },
+    {
      "kind": "shift_offset",
      "key": "152",
      "from": 152,
@@ -12078,5 +12518,10 @@
     }
    ]
   }
- ]
+ ],
+ "self_check": {
+  "ok": true,
+  "violations": [],
+  "n_violations": 0
+ }
 }

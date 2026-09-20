@@ -76,6 +76,13 @@ def build_plan(target, new_size, structs):
             sites = [_n(k) for k in K if bt(c, k) in changed and _n(k) is not None]
             if not sites: continue
             P = min(sites)
+            # 【系统性修复 1】持有者内嵌了 k 个变大的对象 ⇒ **它自己也要增长 k×Δ** ✓
+            # （漏这步 ⇒ 成员越过 binary_size ⇒ apply 取不到按值成员尺寸 ⇒ invalid member_size FATAL ✗）
+            own = structs[c].get('binary_size')
+            k_embed = sum(1 for x in sites)
+            if isinstance(own, int) and k_embed:
+                row['ops'].append({'kind': 'set_size', 'class': c, 'size': own + delta * k_embed,
+                                   'from': own, 'to': own + delta * k_embed, 'evidence': EV})
             # 第 k 个内嵌对象之后 ⇒ +delta*k（**平移量非常数** ✓，复核者实测分配 {0:591,96:249,…}）
             ordered = sorted(sites)
             for k in K:
@@ -85,9 +92,36 @@ def build_plan(target, new_size, structs):
                 row['ops'].append({'kind': 'shift_offset', 'key': k, 'from': o,
                                    'to': o + delta * mult, 'mult': mult, 'evidence': EV})
         if row['ops']: edits.append(row)
-    return {'target': target, 'old_size': old, 'new_size': new_size, 'delta': delta,
+    plan = {'target': target, 'old_size': old, 'new_size': new_size, 'delta': delta,
             'classes': len(changed), 'total_ops': sum(len(e['ops']) for e in edits),
             'leaf_to_root': [e['class'] for e in edits], 'edits': edits}
+    # 【系统性修复 2】对自己产出的计划强制 E6 不变量 ✓
+    # 逐类模拟"应用后"的 max(成员末端) 与 new binary_size ⇒ 违反则该计划**无效** ✗
+    new_size_of = {}
+    new_off = {}
+    for e in edits:
+        for o in e['ops']:
+            if o['kind'] == 'set_size':
+                new_size_of[e['class']] = o['to']
+            elif o['kind'] == 'shift_offset':
+                new_off[(e['class'], str(o['from']))] = o['to']
+    viol = []
+    for c in sorted(changed):
+        K = structs[c].get('known_members') or {}
+        bs = new_size_of.get(c, structs[c].get('binary_size'))
+        if not isinstance(bs, int):
+            continue
+        ends = []
+        for k in K:
+            o = _n(k)
+            if o is None:
+                continue
+            o2 = new_off.get((c, str(o)), o)
+            ends.append(o2 + 1)
+        if ends and max(ends) > bs:
+            viol.append({'class': c, 'binary_size': bs, 'member_end': max(ends)})
+    plan['self_check'] = {'ok': not viol, 'violations': viol[:8], 'n_violations': len(viol)}
+    return plan
 
 
 def main(argv=None):
