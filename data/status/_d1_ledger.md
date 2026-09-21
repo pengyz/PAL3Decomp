@@ -966,3 +966,20 @@ S2 的 76→75 ✗ 落在 **C1003 截断单元**或**单元集合变化**上 ✓
 | 全链退出码 | — | — | `check/apply/export/probe` **全 0** ✓（`codegen` 陈旧 census 假象 ✓；`match` 棘轮拒绝 L1 回退 ✓）|
 **⇒ 收益**：**清除 71 条伪错误** ✓ + **正确归位（IDB 实锚 ✓）** ✓ + **根除循环证据源（防复发 ✓）** ✓ + **虚拟性修正** ✓；
 **S2 −1 为单元归并、零错误** ✓ ⇒ **净收益为正且状态更正确** ✓✓
+
+## #2（(a) 第一条）`gbTexture::UpdateTexture` —— **注解参数表是错的** ✗，而返回类型 `void` 是对的 ✓
+**二进制证据（asm ✓）**：
+```
+original/PAL3.exe.asm:534569-534570
+; public: void __thiscall gbTexture::UpdateTexture(class gbImage2D *)
+extrn ?UpdateTexture@gbTexture@@QAEXPAVgbImage2D@@@Z:dword      ← **extrn ⇒ 来自 DLL（gbengine）**
+```
+⇒ **重整名编码了真实签名** ✓✓：`QAE`=`__thiscall` 公有 · **`X` = 返回 `void`** ✓ · `PAVgbImage2D@@` = **`gbImage2D *`（1 个参数）** ✓
+**而注解 `data/annotations/structs/gbTexture.json:70-71` 写的是**
+`"void __thiscall gbTexture::UpdateTexture(int,int,int,int,gbPixelFmtType,void *)"` ✗ —— **6 个参数，全错** ✗
+（返回类型 `void` 反而与二进制一致 ✓）。
+**⇒ 修法（下一步 ✓）**：把该方法的 `signature` 改为 **`void __thiscall gbTexture::UpdateTexture(gbImage2D *)`** ✓
+—— 但**先要核**：生成代码里 `result = (unsigned long)m_pbktex->UpdateTexture(1);` ✗ **使用了返回值** ✓，
+若二进制调用点**确实读 `eax`** ⇒ 说明存在**另一个**返回非 void 的 `UpdateTexture`（重载/不同类 ✓），
+若**不读** ⇒ 那是 **codegen/Hex-Rays 的产物** ✗ 需在 codegen 侧处理 ✓。
+**⇒ 判据**：看 `asm:244390` / `asm:244719` 调用点**之后**是否使用 `eax` ✓（本行为下一步 ✓）。
