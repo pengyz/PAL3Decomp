@@ -1,6 +1,6 @@
 {
   "name": "UIPushButton",
-  "binary_size": 252,
+  "binary_size": 248,
   "known_members": {
     "68": {
       "name": "m_isDown",
@@ -51,21 +51,179 @@
       "name": "m_nTodo_0EC",
       "type": "int",
       "source": "binary_scan:1refs"
+    },
+    "0": {
+      "name": "__vftable",
+      "type": "void *",
+      "source": "annotation",
+      "note": "2026-09-21 拆名：本类拥有 vtable 0x56AD88（钉死复核 f314ccac）⇒ 按同族约定（UIWnd/UIStatic 均有 offset0 __vftable）补齐 vptr 声明 ✓"
     }
   },
   "base_class": [
     "UIWnd"
   ],
   "methods": {
-    "0x0043A090": {
-      "name": "SetAnimOffset",
-      "signature": "void __thiscall UIPushButton::SetAnimOffset(int this, int nVal, float fVal)"
+    "0x004407C0": {
+      "name": "~UIPushButton",
+      "signature": "void __thiscall()"
     },
-    "0x0043A0E0": {
-      "name": "SetParam",
-      "signature": "int __thiscall UIPushButton::SetParam(int nVal)",
-      "_misattrib_evidence": "max_offset=248>class_size=68"
+    "0x00440BA0": {
+      "name": "OnMessage",
+      "signature": "int __thiscall()",
+      "ordinal": 3
+    },
+    "0x004426B0": {
+      "name": "CreateFromTemplate",
+      "signature": "void __thiscall(UIPushButton *this, void *pTemplate, int nFlag)",
+      "source": "fix:C2660:retn 8 unanimous + caller push x2 (table ptr then flag; fresh-IDB re-verified); param types provisional"
+    },
+    "0x00440DD0": {
+      "name": "Update",
+      "signature": "BOOL __thiscall(float deltatime, int haveinput)",
+      "ordinal": 2
+    },
+    "0x00440F30": {
+      "name": "Render",
+      "signature": "void __thiscall()",
+      "ordinal": 1
+    },
+    "0x00440740": {
+      "name": "UIPushButton",
+      "signature": "void __thiscall UIPushButton::UIPushButton()"
+    },
+    "0x0044BE60": {
+      "name": "DestroyChainToBase",
+      "signature": "void __thiscall UIPushButton::DestroyChainToBase()"
+    },
+    "0x00440AE0": {
+      "name": "LoadTexture",
+      "signature": "void __thiscall UIPushButton::LoadTexture()"
+    },
+    "0x00440810": {
+      "name": "CreateWithTextures",
+      "signature": "gbVFileSystem *__thiscall UIPushButton::CreateWithTextures(int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData)",
+      "ordinal": 7
+    },
+    "0x00440960": {
+      "name": "FormatText",
+      "signature": "void __thiscall UIPushButton::FormatText()"
+    },
+    "0x00440A20": {
+      "name": "LoadResource",
+      "signature": "gbVFileSystem *__thiscall UIPushButton::LoadResource(LPCSTR lpString, char nFlags)"
+    },
+    "0x00440CE0": {
+      "name": "SetText",
+      "signature": "void __thiscall UIPushButton::SetText()"
+    },
+    "0x00442D00": {
+      "name": "CtorWithFlag",
+      "signature": "UIPushButton *__thiscall()"
+    },
+    "0x00443380": {
+      "name": "UIPushButton_Base",
+      "signature": "UIPushButton *__thiscall UIPushButton::UIPushButton_Base()"
+    },
+    "0x0043D920": {
+      "name": "Destroy",
+      "signature": "void __thiscall()"
+    },
+    "0x0043DAB0": {
+      "name": "RenderQuadSlice",
+      "signature": "void __thiscall(int *pnVal, int nVal)"
+    },
+    "0x00442480": {
+      "name": "LoadTextureByName",
+      "signature": "void __thiscall(LPCSTR lpString, char pData)"
+    },
+    "0x0044AA20": {
+      "name": "RenderTile",
+      "signature": "void __thiscall(int nVal, char pData)"
+    },
+    "0x004538D0": {
+      "name": "IsHidden",
+      "signature": "BOOL __thiscall UIPushButton::IsHidden()"
+    },
+    "0x004407A0": {
+      "name": "_scalar_dtor",
+      "signature": "int __thiscall(void *Block, char)",
+      "source": "vtable_migrated",
+      "ordinal": 5
     }
   },
-  "base_size": 68
+  "base_size": 68,
+  "vtables": [
+    {
+      "addr": "0x0056AD88",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00440F30",
+          "from": null
+        },
+        {
+          "addr": "0x00440DD0",
+          "from": null
+        },
+        {
+          "addr": "0x00440BA0",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004407A0",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00440810",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056AE48",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004433D0",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00442AD0",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00442420",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004433A0",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        }
+      ]
+    }
+  ],
+  "binary_size_source": "钉死复核 f314ccac：原生锚 push 0F8h + call sub_440740（3 处真 new）⇒ 248；且 PDB UIPushButton size=252 ⇒ PAL3 = 252−4 = 248（与 UIStatic 152=160−8 同属\"PAL3 少尾部字段\"模式）✓。⚠️ 本文件的 known_members 仍待重排（m_caption 记在 100 而真值 0x78=120；缺 0x4C/0x50/0x54/0x5C）—— 需独立取证，未在本批混入 ✗。"
 }
