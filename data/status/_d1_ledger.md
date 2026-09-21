@@ -1806,3 +1806,29 @@ Current  S2: 75/205
 4. **std::string 内部族（92 条 / 4.3%）**：需"内部 → 公开 API"映射表
 5. **F5 寄存器宏（167 条 / 7.8%）**：需逐函数类型或改 IDB 签名
 6. ⚠️ **评估任何改动都必须同时看**：总错误 · 逐码净增减 · **`status` 的截断表**（否则会被截断骗过）✓
+
+## 5. F3a 遗留 4 处的**精确机制**（已看现场 ✓，未做）
+
+`C2660 'ShowWindow' : does not take 2 parameters` 仍剩 4 处，**都在非截断单元**
+（`Data/CGameData.cpp:121/139` · `Misc/UIRoleDialog.cpp:86/102`）⇒ 修掉即可**直接减少总错误**（可见收益）✓。
+
+形态是**第三种**（既非名字遮蔽、也非"类限定+显式 this"）：
+
+```cpp
+// CGameData.cpp:121（上一行给出了类型线索）
+(((UIPushButton *)&this->m_nTodo_07C))->UIPushButton::CreateFromTemplate((void *)off_59BA88, 1);
+this->m_nTodo_07C->ShowWindow(&this->m_nTodo_07C, 0);          // ← 病灶
+// UIRoleDialog.cpp:86
+m_pfather->ShowWindow(&this->m_ani.m_pfather, 1);              // ← 病灶
+```
+
+**机制**：Hex-Rays 写成 `X->M(&X, rest)`，其中**对象是首实参 `&X`**（`X` 是嵌入缓冲区/指针字段，
+`&X` 才是真正的对象地址），而接收者 `X` 本身是错的 ⇒ 声明 1 参的 `UIWnd::ShowWindow(int)`
+收到 2 个实参 ⇒ C2660 ✓。
+
+**正确改写**应为 `((T *)&X)->M(rest)`，需要 **`X` 的字段类型 `T`**：
+* `CGameData.cpp` 有相邻行的 cast 线索（`(UIPushButton *)&this->m_nTodo_07C`）✓；
+* `UIRoleDialog.cpp` 需从注解/生成头取 `m_ani.m_pfather` 的类型 ⇒ **与 F3b 同一个前置**：
+  "按注解声明做改写"（`store.method_sigs` 不够用，见知识库 `gotcha_decomp_sig_vs_annotation_decl`）✓。
+
+⇒ 与 F3b 合并成一"**注解元数/字段类型可用后的改写批次**"更省事 ✓。
