@@ -180,6 +180,138 @@ def _fix_static_method_calls(code):
 
 
 # ============================================================
+# 显式 this 的类限定调用：`Cls::M(obj, rest...)` → `((Cls *)obj)->M(rest...)`
+#
+# 病灶层（2026-09-21 已只读验证 ✓）：**Hex-Rays 自己就这么输出** ——
+#     CCBControl::SetParam(*(CCBControl **)(... + 8), 513, -1);
+#     NPC::UpdateAnim((NPC *)(v3 + 156304));
+# 即它把 `__thiscall` 调用建模为"类限定名 + 显式 this 作首实参"。
+# codegen 从未把它适配成 C++ 成员调用语法 ⇒ MSVC 报
+#     C2660 'SetParam' : function does not take 3 parameters
+# 实测规模（基线普查）：**53 条 / 13 个名字**（SetParam 16 · GetCmdData 10 ·
+# ProcessKeyboard 10 · UpdateAnim 4 · EndTurnAndAdvance 3 · …）。
+#
+# **安全闸**：仅当签名是 `__thiscall` **且** `实参数 == 形参数 + 1` 时才改写。
+# 该闸天然豁免"声明/定义"站点（它们的实参数恰等于形参数 ✓），也豁免真正的
+# static 调用（形参数已对齐 ✓）与签名未知的符号（保守跳过 ✓）。
+# 回归守卫：tests/test_explicit_this_call.py（含真实样本与四条反面样本）
+# ============================================================
+
+def _sig_arity(sig):
+    """`'int __thiscall(int a, char *b)'` → `(2, True)`；取不到 → `(None, False)`。
+
+    返回值 = (形参数, 是否 `__thiscall`)。参数里的括号/逗号按配平处理。
+    """
+    if not sig or '__thiscall' not in sig:
+        return None, False
+    m = re.match(r'^\s*(.*?)\s*\((.*)\)\s*$', sig)
+    if not m:
+        return None, False
+    inner = m.group(2).strip()
+    if inner in ('', 'void'):
+        return 0, True
+    if inner == '...':
+        return None, True                       # 可变参 ⇒ 元数不限，不改写
+    depth, n, saw = 0, 1, False
+    for ch in inner:
+        if ch in '([':
+            depth += 1
+        elif ch in ')]':
+            depth -= 1
+        elif ch == ',' and depth == 0:
+            n += 1
+        if not ch.isspace():
+            saw = True
+    return (n if saw else 0), True
+
+
+def rewrite_explicit_this_call(cls, method, args_text, sig):
+    """**纯函数**：`Cls::M(a1, a2, …)` 的实参文本 + 声明签名 → 替换文本；不该改 ⇒ None。
+
+    只在"签名是 `__thiscall` 且 实参数 == 形参数 + 1"时改写，
+    并把首实参识别为 this：`((Cls *)a1)->M(a2, …)`。
+    顶层逗号切分（括号/方括号内不切），故实参含函数指针 cast 也安全。
+    """
+    decl, is_thiscall = _sig_arity(sig)
+    if not is_thiscall or decl is None:
+        return None
+    args, depth, cur = [], 0, ''
+    for ch in args_text:
+        if ch in '([':
+            depth += 1
+        elif ch in ')]':
+            depth -= 1
+        if ch == ',' and depth == 0:
+            args.append(cur.strip())
+            cur = ''
+        else:
+            cur += ch
+    if cur.strip():
+        args.append(cur.strip())
+    if not args or len(args) != decl + 1:
+        return None
+    obj = args[0]
+    rest = ', '.join(args[1:])
+    return '((%s *)%s)->%s(%s)' % (cls, obj, method, rest)
+
+
+def _fix_explicit_this_calls(code, sig_lookup=None):
+    """扫描并改写显式 this 的类限定调用（`sig_lookup(Cls, M) -> sig|None`）。
+
+    ⚠️⚠️ **尚未接线（已实现 + 19 项单测，但不被 run() 调用）** —— 2026-09-21 实测：
+    安全闸所需的"形参数"若取自 `store.method_sigs`（**decomp 侧**签名），与
+    **生成头（注解侧）声明**会不一致 ⇒ 两类独立误伤（真实样本见 tests/）：
+
+    * ① `A->Cls::M(explicit_this, args)`：对象是**前缀**，首实参不是 this
+      ⇒ 改写后成双解引用链 `A->((Cls *)B)->M(...)`，`CCBSystem.cpp` 35→102 条错；
+    * ② **函数定义头** `BOOL Cls::CreateObj(3 参)`：decomp 侧记 2 参 ⇒ 被改写成
+      `BOOL ((Cls *)CCBUI **ppUI)->CreateObj(...)` ⇒ C2199/C2143/C2447。
+
+    ① 已由下方 `CHAIN` 守卫修掉；② 的根治前提是**元数取自注解声明**（编译器实际读的那份）
+    —— 正是"先验证消费者实际读哪份声明"这条纪律的又一实例。
+    实测净效应（带①的守卫）：C2660 **0**、总错误 2150→2152 ⇒ 发布门禁拦下，故不接线。
+    """
+    if sig_lookup is None:
+        def sig_lookup(c, m):
+            return store.method_sigs.get('%s::%s' % (c, m))
+    pat = re.compile(r'\b([A-Za-z_]\w*)::([A-Za-z_]\w*)\s*\(')
+    CHAIN = ('>', '.', ':')          # `->` / `.` / `::` 之后 ⇒ 对象是前缀，不改写
+    out, i = [], 0
+    while True:
+        m = pat.search(code, i)
+        if not m:
+            out.append(code[i:])
+            break
+        j = m.end()                                  # 位于 '(' 之后
+        depth, k = 1, j
+        while k < len(code) and depth:
+            if code[k] == '(':
+                depth += 1
+            elif code[k] == ')':
+                depth -= 1
+            k += 1
+        if depth:                                    # 括号不配平 ⇒ 不碰
+            out.append(code[i:])
+            break
+        prev = code[i:m.start()].rstrip()            # 只看本段内、紧邻的非空字符
+        if prev and prev[-1] in CHAIN:
+            out.append(code[i:m.end()])
+            i = m.end()
+            continue
+        args_text = code[j:k - 1]
+        repl = rewrite_explicit_this_call(m.group(1), m.group(2), args_text,
+                                          sig_lookup(m.group(1), m.group(2)))
+        if repl is None:
+            out.append(code[i:m.end()])
+            i = m.end()
+        else:
+            out.append(code[i:m.start()])
+            out.append(repl)
+            i = k
+    return ''.join(out)
+
+
+# ============================================================
 # Register-this alias: _REG = this; _REG->x → this->x
 # ============================================================
 
@@ -920,6 +1052,18 @@ def _run_inner(code, ctx):
 
     # Static method call conversion
     code = _fix_static_method_calls(code)
+
+    # ⚠️ `_fix_explicit_this_calls` **已实现但故意不接线**（2026-09-21 实测后撤下）：
+    # 它的安全闸依赖"形参数"，而 `store.method_sigs` 是 **decomp 侧**签名，
+    # 与**生成头（注解侧）声明**实测**会不一致** ⇒ 两处独立误伤：
+    #   ① `A->Cls::M(explicit_this, args)`（对象是前缀）被当成"缺 this"
+    #      ⇒ 双解引用链，单文件 35→102 条错；
+    #   ② **函数定义头** `BOOL Cls::CreateObj(3 参)` 因 decomp 侧记 2 参而被改写成
+    #      `BOOL ((Cls *)CCBUI **ppUI)->CreateObj(...)` ⇒ C2199/C2143/C2447。
+    # 链式守卫已修 ①；② 的根治前提是**元数取自注解声明**（编译器实际读的那份），
+    # 即 R16"消费者实际读哪份声明"。实测净效应：C2660 **0**、总错误 +2 ⇒ 门禁拦下。
+    # 机制与守卫已固化为纯函数 + 19 项单测（tests/test_explicit_this_call.py）；
+    # 待"注解元数"可用后再接线。
 
     # Register-this alias elimination
     code = _fix_register_this_alias(code)

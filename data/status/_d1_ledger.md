@@ -1654,3 +1654,87 @@ Current  S2: 75/205
 2. `iterate` 仍是空槽：`loop` 只覆盖"跑一轮 + 断言"，**不含"改什么"的策略层** ✓
    （策略层目前就是本台账的 ROI 排序 ✓）。
 3. `Rn` 编号未重命名（重命名会破坏历史文档引用 ⇒ 改为"引用必须带路径"的约定 ✓）。
+
+---
+
+# 2026-09-21（第四轮）：棘轮修复落地 + F3b（显式 this 调用）实测撤下
+
+## 1. ✅ 两个陈旧棘轮已修（门禁信号恢复可用）
+
+| 棘轮 | 处置 | 实测 |
+|---|---|---|
+| `compile_baseline.json`（陈旧 76/206）| `tools/compile_regression.py --update-baseline`（先验真实回归 **0** ✓）| 重跑 ⇒ **`✅ No regressions detected`** · **exit 0** ✓ |
+| `s4_baseline.json`（L1 上限 38，出自 `symbols=372` 的树）| 新增 **`cli.py match --rebaseline "<理由>"`**（与 `compile_regression --update-baseline` **对称的显式入口**）| ⇒ `match_L1=35`，`rebaseline` 字段记下 `prev 38/372→cur 35/319` 与理由 ✓ |
+
+* **不擅自降数字**：先查出 `0d210faa3`（2026-09-20）标题即 `chore(baseline): L1 棘轮推进 34 → 38`，
+  当时 `matched=312 symbols=372`；实况 `matched=265 symbols=319` ⇒ **总体已变、两次 L1 不可比** ✓。
+  故 `cmd_match` 现在**总是打印总体对照**，并在总体变化时提示"不可直接比较" ✓；
+  `--rebaseline` 必须给理由，理由写入 `s4_baseline.json.rebaseline` ✓。
+* 结果：`pipeline/cli.py status` ⇒ **`已知恒红门禁（0 条）✓`** ⇒ `codegen all` / `match` 在干净树上
+  都 exit 0 ⇒ **自动化循环首次拥有可判定信号** ✓✓
+
+## 2. F3b 调查：把 202 条 C2660 按**源码形态**三分（不再按错误码看）
+
+| 子族 | 形态 | 条数 | 机制 |
+|---|---|---|---|
+| **F3a** | `ShowWindow(hWnd, 4)`（非限定）| **11** | **名字遮蔽**：成员函数内命中继承来的 `UIWnd::ShowWindow(int)`（**编译器实测复现** ✓）|
+| **F3b** | `Cls::M(explicit_this, args…)`（类限定 + 显式 this）| **53** / 13 名 | Hex-Rays 对 `__thiscall` 的建模形态（`CCBControl::SetParam(obj,513,-1)` 等）✓ |
+| 其余 | `->`/`.` 成员调用等 | 138 | 含 std::string 内部、`CreateFromMemory` 等 |
+
+**F3a/F3b 的病灶层已只读验证** ✓：`asm/pal3/decomp/*.json` 里 Hex-Rays **原文就是**这两种形态。
+
+## 3. ⚠️⚠️ F3b 实测：**两类独立误伤，净效应 0 ⇒ 撤下**（诚实记录）
+
+实现：安全闸 = 「实参数 == 形参数 + 1」且签名含 `__thiscall`；形参数取自 `store.method_sigs`。
+
+| 轮次 | 结果 |
+|---|---|
+| ① 无守卫 | `C2660 −30` **假象** + `CCBSystem.cpp 35→102` · 总数 **2150→2242** ⇒ 中止 |
+| ② 加链式守卫（不匹配紧跟 `->`/`.`/`::` 的限定名）| **C2660 净变化 = 0** · 总数 **2150→2152** · 新增 `C2199 syntax error : found 'BOOL (' at global scope` |
+
+**两类误伤（真实站点，均已固化为单测）**：
+
+1. `A->Cls::M(explicit_this, args)` —— **对象是前缀**，首实参不是 this
+   ⇒ 改成 `A->((Cls *)B)->M(...)` **双解引用链** ✗（链式守卫已修 ✓）
+2. **函数定义头** `BOOL CCBSystem::CreateObj(CCBUI **ppUI, const char*, UINT)`（3 参）
+   被 decomp 侧记 **2** 参 ⇒ `3 == 2+1` 开闸 ⇒ 头被吃掉：
+   `BOOL ((CCBSystem *)CCBUI **ppUI)->CreateObj(...)` ⇒ C2199/C2143/C2447 ✗
+
+**② 的根因 = 元数取错了来源** ✓✓：`method_sigs` 是 **decomp 侧**签名，编译器读的是
+**生成头（注解侧）声明**；实测两者会差 1（`DelTask(int)` vs `DelTask(int,_BYTE*,int*)`）。
+⇒ 这正是 R16"**消费者实际读哪份声明**"的又一实例 ✓。撤下前必须看**总错误 + 逐码净增减**：
+带误伤时的"C2660 −30"完全是损坏把 C2660 换成别码造成的**假象** ✗。
+
+顺带**证伪**一个假设 ✓：MSVC6 **接受** `p->Cls::M()`（`struct A{void M();}; p->A::M();` 编译 0 错误 ✓）
+⇒ `A->Cls::M(...)` 形态**无需**任何改写（当时对 C2059 的怀疑是错的 ✗）。
+
+**处置**：纯函数 `_sig_arity` / `rewrite_explicit_this_call` / `_fix_explicit_this_calls` 与
+**19 项单测**（`tests/test_explicit_this_call.py`，含两类误伤真实样本 + 四条反面样本）**保留**，
+但 **`run()` 里不接线**，并把"待注解元数可用后再接"写进 `stage5_fixup.py` 与知识库 ✓。
+
+## 4. 新候选（本轮量化，未做）
+
+**std::string 内部成员族：92 条（4.3%）/ 15 单元**
+（`C2248` 42 = `_Tidy` 33 + `_Split` 10 · `C2784` 20 · `C2660` 12 = `_Eos` 10 · `C2440` 12 · `C2039` 6）
+—— 生成代码在调 `std::basic_string` 的**私有内部**；需一张"内部 → 公开 API"映射表，
+属"hexrays 能力上限"类，成本中高、风险中。
+
+## 5. 本轮落地物
+
+| 类别 | 内容 |
+|---|---|
+| 棘轮 | `compile_baseline.json` 刷新 ✓ · `s4_baseline.json` 显式 rebaseline（含理由与总体记录）✓ |
+| 工具 | **`cli.py match --rebaseline "<理由>"`**（对称显式入口 + 总体对照打印 + 缺理由 exit 2）✓ |
+| 代码（**未接线**）| `stage5_fixup.py` 的显式-this 改写纯函数 + 双层守卫 + 停放说明 ✓ |
+| 单测 | `tests/test_explicit_this_call.py` **19/19** ✓ |
+| 知识库 | **51 → 52 条**（`gotcha_decomp_sig_vs_annotation_decl`）✓ + MEMORY 索引 ✓ |
+| 台账 | 本节 ✓ |
+
+## 6. 交接起点（更新 ROI 排序）
+
+1. **F3a（11 条）**：机制已由**编译器实测**证实、修法明确（`::ShowWindow`）、与其它族独立 ⇒ **最省力** ✓
+2. **F3b（53 条）**：**前置 = 注解侧形参数可得**（`annotation_view` 已能读 `methods[].signature`，
+   需加一个 store 表）；守卫与单测已就绪 ⇒ 接线即可测 ✓
+3. **F1/F2a/F2b**：前置 = 解析器的"成员存在性"发射决策（S2/S3）✓
+4. **std::string 内部族（92 条）**：需映射表，成本中高
+5. **F5 寄存器宏（167 条 / 7.8%）**：需逐函数类型或改 IDB 签名

@@ -16,7 +16,7 @@
   codegen cpp         只生成 .cpp
   compile             CMake 配置 + ninja 编译 (-k 0 全量)
   probe [s1|s2|all]   S1/S2 probe 编译普查 + 自动回归对账（vs latest 基线）
-  match               S4 字节匹配裁判（假设旗标组 + L1 棘轮检查）
+  match [--rebaseline R] S4 字节匹配裁判（假设旗标组 + L1 棘轮检查；--rebaseline 显式推进，需给理由）
   status [--strict]   只读状态预检：阶段顺序 / 三份基线对照 / 已知恒红门禁
   loop [opts]         一次跑完 apply→export→codegen→probe→match（可 --expect-* 断言基线）
                       --stages probe,match   只跑部分
@@ -653,18 +653,37 @@ def cmd_tool(args):
     sys.exit(result.returncode)
 
 
-def cmd_match():
+def cmd_match(args=()):
     """S4 byte-match referee: compile S2-green units with the calibrated
     hypothesis flags and diff function bytes against PAL3.exe .text.
-    L1 (perfect match) count is the ratchet: it must never regress."""
+    L1 (perfect match) count is the ratchet: it must never regress.
+
+    `--rebaseline "<reason>"`：**显式推进棘轮**（与 `tools/compile_regression.py
+    --update-baseline` 对称）。必须给理由，理由会写进 `s4_baseline.json` 的
+    `rebaseline` 字段。仅在确认退化已被理解/已接受时使用。
+    """
     import json
+    args = list(args)
+    rebase_reason = None
+    for i, a in enumerate(args):
+        if a == '--rebaseline' and i + 1 < len(args):
+            rebase_reason = args[i + 1]
+        elif a.startswith('--rebaseline='):
+            rebase_reason = a.split('=', 1)[1]
+    if '--rebaseline' in args and not rebase_reason:
+        print('[match] --rebaseline 需要理由，例：--rebaseline "总体从 372→319 符号，重新对齐可比集"')
+        sys.exit(2)
+
     s4 = Path('data/status/s4_baseline.json')
     prev_l1 = 0
     prev_text = None
+    prev_pop = (None, None)
     if s4.exists():
         try:
             prev_text = s4.read_text(encoding='utf-8')
-            prev_l1 = json.loads(prev_text).get('stats', {}).get('match_L1', 0)
+            _pd = json.loads(prev_text)
+            prev_l1 = _pd.get('stats', {}).get('match_L1', 0)
+            prev_pop = (_pd.get('stats', {}).get('matched'), _pd.get('stats', {}).get('symbols'))
         except (json.JSONDecodeError, OSError):
             pass
     script = os.path.join(_PIPELINE_DIR, 'compare_pal3.py')
@@ -683,10 +702,33 @@ def cmd_match():
 
     if s4.exists():
         try:
-            cur_l1 = json.loads(s4.read_text(encoding='utf-8')).get('stats', {}).get('match_L1', 0)
+            cur = json.loads(s4.read_text(encoding='utf-8'))
+            cur_l1 = cur.get('stats', {}).get('match_L1', 0)
+            cur_pop = (cur.get('stats', {}).get('matched'), cur.get('stats', {}).get('symbols'))
             print()
             print("[L1 ratchet] previous %d -> current %d" % (prev_l1, cur_l1))
-            if cur_l1 < prev_l1:
+            # 总体（matched/symbols）必须一并打印：L1 是"可比符号集内"的计数，
+            # 总体变了 ⇒ 两次 L1 **不可比**（2026-09-21：记录 38 出自 symbols=372 的树，
+            # 实况 symbols=319 ⇒ 38→35 很大程度是总体收缩，不是丢了逐字节函数）。
+            print("[L1 ratchet] population: previous matched=%s/%s -> current matched=%s/%s"
+                  % (prev_pop[0], prev_pop[1], cur_pop[0], cur_pop[1]))
+            pop_changed = prev_pop[1] is not None and cur_pop[1] is not None and prev_pop != cur_pop
+            if pop_changed:
+                print("[L1 ratchet] ⚠️ 可比总体**已变化** ⇒ 两次 L1 不可直接比较；"
+                      "若确认可接受，用 `cli.py match --rebaseline \"<理由>\"` 显式重新对齐")
+            if rebase_reason:
+                cur['rebaseline'] = {
+                    'reason': rebase_reason,
+                    'at': time.strftime('%Y-%m-%dT%H:%M:%S'),
+                    'prev_match_L1': prev_l1, 'cur_match_L1': cur_l1,
+                    'prev_population': {'matched': prev_pop[0], 'symbols': prev_pop[1]},
+                    'cur_population': {'matched': cur_pop[0], 'symbols': cur_pop[1]},
+                }
+                s4.write_text(json.dumps(cur, ensure_ascii=False, indent=1), encoding='utf-8')
+                print("[L1 ratchet] ✅ 已显式推进基线至 %d（理由已记入 s4_baseline.json.rebaseline）"
+                      % cur_l1)
+                print("[L1 ratchet]    理由: %s" % rebase_reason)
+            elif cur_l1 < prev_l1:
                 # 棘轮失忆修复（同 R1）：compare_pal3.py 在**脚本结尾**才覆盖
                 # s4_baseline.json，而棘轮判断在它之后 ⇒ 若不把旧内容写回，
                 # 下一轮 prev_l1 读到的就是**退化后**的值，棘轮永久滑落、不再报警。
@@ -1041,7 +1083,7 @@ def main():
     elif command == 'codegen':
         cmd_codegen(args[1:])
     elif command == 'match':
-        cmd_match()
+        cmd_match(args[1:])
     elif command == 'probe':
         cmd_probe(args[1:])
     elif command == 'status':
