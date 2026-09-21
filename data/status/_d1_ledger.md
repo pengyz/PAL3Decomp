@@ -1936,3 +1936,49 @@ m_pfather->ShowWindow(&this->m_ani.m_pfather, 1);              // ← 病灶
 ## 5. 本轮状态
 * 未改任何 codegen/annotation（仅 `/tmp` 实验 + 知识/台账）✓
 * 待办：IDA MCP 会话（`f703cd44`）仍持有工作 IDB ⇒ 要跑 `apply`/`export` 前需 `idb_close`。
+
+---
+
+# 2026-09-21（第八轮）：**字节优先 ROI 筛选** —— 找到唯一能把修复变成 L1 的入口
+
+## 1. 起因：按使用者判据检验"24 条可判定项"的第一条
+`ResetPathState` 调用点改写（`SceneProp.cpp:65`）做了**真字节判定实验**（在 `/tmp` 复制单元、不改仓内文件）：
+
+| | `SceneProp::CalculateWorldPos` | `CalcScreenPosition` |
+|---|---|---|
+| before | **5.5%** | 16.4% |
+| after（改为成员调用 `((RoleSystem*)this)->ResetPathState()`）| **5.2%**（略降，n_diff 141→142）| 16.4% |
+
+**决定性数字**：该函数**编译长度 160 / 原始 343 字节** ⇒ 重建只有一半 ⇒ 小修**不可能**有字节收益 ✗
+⇒ **"字节可判定"是必要条件、不充分**；充分条件是**该函数重建已接近完整**。
+
+## 2. 因此重排候选（用 s4 既有数据，零成本）
+> ⚠️ 我先读错字段（detail 行**没有** `match_pct`）⇒ 一度得到"全部 0.0%"的假象；与 `s4_baseline.json` join 后才是真的。
+
+* partial **198** 条；编译/原始长度比：`≥0.95` **135** · `0.8-0.95` 25 · `0.5-0.8` 33 · `<0.5` 5
+* **`match_pct ≥80%` 且比值≥0.95：10 条**；`≥50%`：27 条
+* **只差 1 个字节：3 条** ↓
+
+| 函数 | VA | size | 差异偏移 | 原始 → 我们 | 分类 |
+|---|---|---|---|---|---|
+| `AStarPathFinder::FindInOpen(int)` | `0x00401500` | 34 | **@22** | `8B 41 3C`(`[ecx+3Ch]`) → `8B 40 3C`(`[eax+3Ch]`) | **寄存器选择**（位移相同）|
+| `AStarPathFinder::FindInClosed(int)` | `0x00401530` | 34 | **@22** | 同上 | 同上 |
+| `UINote::GetEntryPtr(int)` | `0x00528D30` | 17 | **@10** | `lea eax,[eax+ecx+0D60h]` → `+0D90h` | **结构/归属**：0xD60 远超注解 `UINote` 的 **268** 字节 |
+
+另有 `RoleCamera::UpdateAudioListener`(95B,4) · `SceneMgr::ClearInactiveRoles`(58B,3) · `Scene::_todo_421870`(53B,4) 等。
+
+⇒ **这 10 条（尤其 3 条单字节）是"修了就能看到 L1 上升"的地方** ⇒ **L1 35 → 38 可达**（正是历史棘轮上限）；
+  其余 ~190 条匹配度 <50% ⇒ 小修**无字节收益** ✗
+
+## 3. 修正一处我自己的推断
+我先前从"位移字节不同"推断"成员偏移错 4" ✗ ⇒ 读出真实字节后纠正为 **寄存器基址选择不同**（位移同为 `3Ch`）✓
+⇒ **必须读实际字节再下结论**（不能只看差异偏移位置）。
+
+## 4. 本轮状态
+* **未改任何仓内代码/注解**（实验全在 `/tmp`）✓ HEAD=`91b9b368b`（本轮另有知识/台账提交）
+* 入库：`pattern_byte_first_roi_screening` ✓
+* ⚠️ IDA MCP 会话 `f703cd44` 仍持有工作 IDB ⇒ 跑 `apply`/`export` 前需 `idb_close`
+
+## 5. 下一步（明确、可判定）
+按 n_diff 升序逐条做：读 `diffs` 偏移 → MCP `disasm` 原指令 → 分类 → 改 → `loop` 读 `match_L1`。
+先做 `FindInOpen`/`FindInClosed`（寄存器选择）与 `GetEntryPtr`（结构/归属）。

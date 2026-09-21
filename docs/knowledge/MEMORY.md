@@ -50,6 +50,7 @@
 - [**codegen 输出路径未锚定 PROJECT_ROOT**](gotcha_codegen_output_path_not_anchored_to_project_root.md) — `emit_cpp` 用 `store.project_root`、`emit_headers` 用 `PIPELINE_ROOT.parent`，而 `pipeline.toml` 的输入路径是绝对的 ⇒ 在 `git worktree` 里跑 codegen 会**先 rmtree 再重建主仓库的 pal3/src**；不要用 worktree 做 A-B-A
 
 ## Patterns
+- [字节优先的 ROI 筛选（唯一能把修复变成 L1 的入口）](pattern_byte_first_roi_screening.md) — 候选须同时满足「S2 绿单元 + 编译/原始长度≈1.0 + n_diff 小」；当前 198 条 partial 里 **10 条 ≥80%**、**3 条只差 1 字节**（`FindInOpen`/`FindInClosed` 寄存器选择；`GetEntryPtr` 结构/归属）；其余 ~190 条匹配度<50% ⇒ 小修**不产生字节收益**；按 diffs 偏移 + MCP 原指令分类（偏移错/寄存器选择/结构）
 - [annotation fix batching](pattern_annotation_fix_batching.md) — (无 description)
 - [name and attribute from function logic](pattern_name_and_attribute_from_function_logic.md) — (无 description)
 
