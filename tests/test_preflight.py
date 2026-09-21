@@ -131,7 +131,36 @@ def test_render_surfaces_inconsistency_and_red_gates():
     assert '拼' in txt or '唯一权威顺序' in txt
 
 
-# ===== ⑥ 契约：与**真实生产者**产出的 `_loop_last.json` 对齐 =====
+# ===== ⑥ 截断单元：聚合指标失明 ⇒ 必须单独报出（含"列表内最大行号"）=====
+def _census_with_capped(unit, errs_before, max_line):
+    return {'s2': {'ok': 1, 'total': 1, 'results': [
+        {'unit': unit, 'status': 'fail',
+         'errors': [{'file': unit, 'line': 10 + i, 'code': 'C2660', 'msg': 'x'}
+                    for i in range(errs_before - 1)]
+                   + [{'file': unit, 'line': max_line, 'code': 'C1003', 'msg': 'stop'}]}]}}
+
+
+def test_truncated_units_reported_with_max_line():
+    st = {'live_census': _census_with_capped('pal3/src/X.cpp', 5, 3823)}
+    t = pf.truncated_units(st)
+    assert len(t) == 1 and t[0]['errors'] == 5 and t[0]['max_line'] == 3823, t
+
+
+def test_non_capped_units_not_reported():
+    cen = {'s2': {'results': [{'unit': 'u.cpp', 'status': 'fail',
+                               'errors': [{'file': 'u.cpp', 'line': 3, 'code': 'C1', 'msg': 'm'}]}]}}
+    assert pf.truncated_units({'live_census': cen}) == []
+
+
+def test_truncation_progress_is_visible_in_render():
+    """**F3a 的教训**：修掉早期错误后总数不变，但最大行号必须变大。"""
+    a = pf.render({'live_census': _census_with_capped('u.cpp', 3, 3389)})
+    b = pf.render({'live_census': _census_with_capped('u.cpp', 3, 3787)})
+    assert '列表内最大行号=3389' in a and '列表内最大行号=3787' in b, (a, b)
+    assert 'C1003 截断单元' in a
+
+
+# ===== ⑦ 契约：与**真实生产者**产出的 `_loop_last.json` 对齐 =====
 def test_real_loop_last_shape_matches_reader():
     """防"fixture 与真实文件形状不一致"（曾导致单测全绿而 --expect-l1 恒失败）。"""
     import json

@@ -1,6 +1,6 @@
 {
-  "name": "20260921_193306",
-  "timestamp": "2026-09-21T19:33:06.913443",
+  "name": "20260921_194222",
+  "timestamp": "2026-09-21T19:42:22.970405",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "fail",
@@ -953,24 +953,9 @@
           "line": 1158
         },
         {
-          "code": "C2660",
-          "msg": "'ShowWindow' : function does not take 2 parameters",
-          "line": 1189
-        },
-        {
-          "code": "C2660",
-          "msg": "'ShowWindow' : function does not take 2 parameters",
-          "line": 1190
-        },
-        {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
           "line": 1257
-        },
-        {
-          "code": "C2660",
-          "msg": "'ShowWindow' : function does not take 2 parameters",
-          "line": 1259
         },
         {
           "code": "C2660",
@@ -1428,9 +1413,24 @@
           "line": 3823
         },
         {
+          "code": "C2228",
+          "msg": "left of '.eMode' must have class/struct/union type",
+          "line": 3823
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(float)' to 'void *'",
+          "line": 3827
+        },
+        {
+          "code": "C2296",
+          "msg": "'*' : illegal, left operand has type 'class CCBStage *(__thiscall CCBStage::*)(void)'",
+          "line": 3855
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 3823
+          "line": 3855
         }
       ]
     },
@@ -1823,19 +1823,9 @@
           "line": 825
         },
         {
-          "code": "C2660",
-          "msg": "'ShowWindow' : function does not take 2 parameters",
-          "line": 826
-        },
-        {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
           "line": 844
-        },
-        {
-          "code": "C2660",
-          "msg": "'ShowWindow' : function does not take 2 parameters",
-          "line": 845
         },
         {
           "code": "C2664",
@@ -1843,19 +1833,9 @@
           "line": 860
         },
         {
-          "code": "C2660",
-          "msg": "'ShowWindow' : function does not take 2 parameters",
-          "line": 861
-        },
-        {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
           "line": 878
-        },
-        {
-          "code": "C2660",
-          "msg": "'ShowWindow' : function does not take 2 parameters",
-          "line": 879
         },
         {
           "code": "C2440",
@@ -1868,19 +1848,9 @@
           "line": 944
         },
         {
-          "code": "C2660",
-          "msg": "'ShowWindow' : function does not take 2 parameters",
-          "line": 945
-        },
-        {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
           "line": 956
-        },
-        {
-          "code": "C2660",
-          "msg": "'ShowWindow' : function does not take 2 parameters",
-          "line": 957
         },
         {
           "code": "C2440",
@@ -2238,9 +2208,39 @@
           "line": 3389
         },
         {
+          "code": "C2227",
+          "msg": "left of '->ShowWindow' must point to class/struct/union",
+          "line": 3483
+        },
+        {
+          "code": "C2664",
+          "msg": "'sub_445D20' : cannot convert parameter 1 from 'class CCBControlWindow *' to 'unsigned long *'",
+          "line": 3718
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'UIStatic'",
+          "line": 3784
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->ShowWindow' must point to class/struct/union",
+          "line": 3784
+        },
+        {
+          "code": "C2039",
+          "msg": "'__vftable' : is not a member of 'UIStatic'",
+          "line": 3787
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->ShowWindow' must point to class/struct/union",
+          "line": 3787
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 3389
+          "line": 3787
         }
       ]
     },

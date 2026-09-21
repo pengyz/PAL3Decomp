@@ -1738,3 +1738,71 @@ Current  S2: 75/205
 3. **F1/F2a/F2b**：前置 = 解析器的"成员存在性"发射决策（S2/S3）✓
 4. **std::string 内部族（92 条）**：需映射表，成本中高
 5. **F5 寄存器宏（167 条 / 7.8%）**：需逐函数类型或改 IDB 签名
+
+---
+
+# 2026-09-21（第五轮）：F3a 落地（`::ShowWindow`）+ **发现度量盲区**（C1003 截断）
+
+## 1. F3a：Win32 `ShowWindow` 被继承成员遮蔽 ⇒ 补 `::`（**已落地** ✓）
+
+* **机制**（真实 MSVC6 编译复现 ✓）：`class UIStatic : public UIWnd`，`UIWnd::ShowWindow(int)`（1 参）
+  在成员函数内**遮蔽** Win32 的 `::ShowWindow(HWND, int)` ⇒
+  `C2660 'ShowWindow' : function does not take 2 parameters`。
+* **安全性**（三条独立论证 ✓）：
+  ① 本仓所有 `ShowWindow` 声明都是 **0 或 1 参**（`CCBAIWindow.h:32` / `CCBStage.h:395` /
+     `RoleAtt.h:65` / `RoleCameraCtrl.h:27` / `UIWnd.h:26` / `UITextArea.h:18`）
+     ⇒ **任何 2 实参调用都不可能是成员** ✓；
+  ② `include/pal3/ida_defs.h:5` 即 `#include <windows.h>`，且每个生成 cpp 首位 include ⇒ `::ShowWindow` 可见 ✓；
+  ③ 实测 11 处非限定站点**全部 2 实参**、第 2 参为 4/5（`SW_*` 命令常量）✓。
+* **实现**：`stage5_fixup.py` 新增纯函数 `is_win32_showwindow` / `_qualify_win32_showwindow`
+  （lookbehind 排除 `\w>:.` ⇒ `->`/`.`/`::` 形态一律不动），接线于 `UIScene::GetSys` 补限定之后 ✓；
+  单测 `tests/test_showwindow_qualify.py` **9/9** ✓。
+
+## 2. ⚠️⚠️ 重大发现：**聚合指标对截断单元失明**（本轮最有价值的方法论收获）
+
+改完实测：**总错误 2150 → 2150**，`regression_detector` 报 **新错误 0 / 收敛 0** ——
+看起来"零效果"✗，但**逐条**对比后：
+
+| 项 | 结果 |
+|---|---|
+| **消失** | **9 × `C2660 'ShowWindow' : does not take 2 parameters`** ✓✓ |
+| **新增** | **9 条无关族错误**（`C2296`/`C2440` 成员函数指针、`C2039 __vftable`、`C2227`）|
+
+**机制**：`CCBStage.cpp` / `CCBUI.cpp` / `free_functions.cpp` 在 **~102 条**处被 **C1003** 停住
+（VC6 固定上限，**不可配**）⇒ 在截断单元里修掉早期错误，列表**立刻被隐藏的后续错误填满** ⇒ 聚合不变 ✗。
+
+**替代度量（实测有效 ✓）——"列表内最大错误行号"**：
+
+| 单元 | BEFORE | AFTER |
+|---|---|---|
+| `Combat/CCBUI.cpp` | 3389 | **3787** ✓（+398 行）|
+| `Combat/CCBStage.cpp` | 3823 | **3855** ✓（+32 行）|
+| `free_functions.cpp`（对照）| 2879 | 2879（未触及 ✓）|
+
+**"新增 9 条非本次造成"的证明**：改动只在 `ShowWindow(` 上插 `::` ⇒
+**不可能**产生"成员函数指针"类错误 ⇒ 那些必是**旧有隐藏**错误 ✓。
+⇒ 实用判据：**「新增错误是否与改动同族」+「截断进度是否前进」**。
+
+**工具落地**：`pipeline/preflight.py` 新增 `truncated_units()`，`cli.py status` 现打印
+截断单元表（errors + 列表内最大行号）；`CLAUDE.md` 新增"⚠️ 度量盲区：C1003 截断单元"节；
+单测 `tests/test_preflight.py` **17/17** ✓（+3 项截断测试）。
+
+## 3. 本轮落地物
+
+| 类别 | 内容 |
+|---|---|
+| **代码收益** | F3a：**−9 条 C2660**（真实 ✓，聚合不可见）；`stage5_fixup.py` 纯函数 + 接线 |
+| 单测 | `tests/test_showwindow_qualify.py` **9/9** ✓ · `tests/test_preflight.py` **17/17** ✓ |
+| 度量 | `status` 打印 C1003 截断表（含最大行号）✓ |
+| 文档 | `CLAUDE.md` 新增"度量盲区"节 ✓ · 知识库 **52 → 53 条** ✓ + MEMORY 索引 |
+| 台账 | 本节 ✓ |
+
+## 4. 交接起点（ROI 更新）
+
+1. **F3a 余量**：仍有 4 处 `C2660 'ShowWindow' N=2` 未修（`CGameData.cpp:121/139`、
+   `UIRoleDialog.cpp:86/102`）—— 形态不同于已修的 11 处，**需逐个看现场**（可能跨行或带 cast）✓
+2. **F3b（53 条）**：前置 = 元数取自**注解声明**（不是 `store.method_sigs`）；守卫与 19 项单测已就绪 ✓
+3. **F1/F2a/F2b**：前置 = 解析器"成员存在性"发射决策（S2/S3）✓
+4. **std::string 内部族（92 条 / 4.3%）**：需"内部 → 公开 API"映射表
+5. **F5 寄存器宏（167 条 / 7.8%）**：需逐函数类型或改 IDB 签名
+6. ⚠️ **评估任何改动都必须同时看**：总错误 · 逐码净增减 · **`status` 的截断表**（否则会被截断骗过）✓

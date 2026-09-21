@@ -7,6 +7,7 @@
 - [gbui 七槽 vtable 继承链](arch_gbui_seven_slot_vtables_inheritance_chain.md) — gbui 家族 vtable 的槽位与继承链关系
 
 ## Gotchas
+- [C1003 截断让总错误指标失明](gotcha_c1003_truncation_blinds_metric.md) — 在截断单元里修掉早期错误会被隐藏的后续错误填满 ⇒ 总错误与 (code,msg) 多重集**都可能完全不变**（实测：消失 9 条 C2660 同时露出 9 条**无关族**错误）；换看 **"列表内最大错误行号"**（CCBUI 3389→3787）；`cli.py status` 已打印截断表
 - [decomp 侧签名 ≠ 注解侧声明](gotcha_decomp_sig_vs_annotation_decl.md) — 以 `store.method_sigs`（decomp）为元数依据的改写会同时误伤调用点与**函数定义头**（真实两处：双解引用链致单文件 35→102；`C2199 found 'BOOL (' at global scope`）；**元数必须取编译器实际读的注解声明**；附"只看目标错误码会骗人"与 MSVC6 **接受** `p->Cls::M()` 的证伪
 - [三份互相矛盾的基线 ⇒ 门禁恒红](gotcha_three_competing_baselines.md) — `compile_baseline.json`(76/206) · `baselines/latest.json`(75/205) · `s4_baseline.json`(L1 38) 互不同步 ⇒ 干净 HEAD 上 `codegen all` 与 `match` **恒 exit 1**（真实回归 0）⇒ 循环分不清信号与噪声；已加 `cli.py status`（只读预检）与 `cli.py loop`（一键循环 + `--expect-*` 断言，恒红显式标 TOLERATED）
 - [C++ 的 `f(...)` 不是"1 参"而是"元数不限"](gotcha_variadic_prototype_is_not_one_param.md) — 把它当 1 参使 `codegen_invariants` 报出 **56 处假阳性**并曾被断言为 C2660 成因 ✗；真实 MSVC6 实测 `int sub_X(...)` + 任意实参 = **0 错误**；附**已实测证实的**真成因"名字遮蔽"（`CCBUI::DlgProcEditorMain` 里 `ShowWindow(hWnd,4)` 被继承的 `UIWnd::ShowWindow(int)` 遮蔽 = 14 条 C2660）

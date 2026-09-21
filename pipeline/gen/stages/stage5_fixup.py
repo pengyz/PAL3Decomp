@@ -180,6 +180,81 @@ def _fix_static_method_calls(code):
 
 
 # ============================================================
+# Win32 `ShowWindow` 被继承来的成员**遮蔽** ⇒ 补 `::`
+#
+# 病灶（2026-09-21，**编译器实测复现** ✓）：
+#   `class UIStatic : public UIWnd`，`UIWnd` 有 `virtual int ShowWindow(int nFlags)`
+#   ⇒ 成员函数内写 `ShowWindow(g_hMainWnd, 4)` 会命中**继承来的 1 参成员**，
+#     Win32 的 `::ShowWindow(HWND, int)` 被遮蔽 ⇒ MSVC：
+#       C2660 'ShowWindow' : function does not take 2 parameters
+#   （同一调用在命名空间作用域下是 C2065 —— 含 windows.h 时绑定 Win32 ✓）
+#
+# **为什么安全**：被遮蔽的成员是 **1 参**，故**任何 2 实参**的 `ShowWindow(...)`
+# 都不可能是该成员 ⇒ 补 `::` 不改变任何合法调用的语义 ✓。
+# `::ShowWindow` 可见性已证明：`include/pal3/ida_defs.h:5` 即 `#include <windows.h>`，
+# 且每个生成 .cpp 首位 include 它 ✓。
+#
+# 实测规模：生成树里**非限定**调用 **11 处，全部 2 实参**，第 2 参为 4/5（`SW_*` 命令常量）✓
+# 回归守卫：tests/test_showwindow_qualify.py
+# ============================================================
+
+def _split_top_args(args_text):
+    """顶层（括号/方括号外）逗号切分（纯函数）。"""
+    args, depth, cur = [], 0, ''
+    for ch in args_text:
+        if ch in '([':
+            depth += 1
+        elif ch in ')]':
+            depth -= 1
+        if ch == ',' and depth == 0:
+            args.append(cur.strip())
+            cur = ''
+        else:
+            cur += ch
+    if cur.strip():
+        args.append(cur.strip())
+    return args
+
+
+def is_win32_showwindow(args_text):
+    """**纯函数**：该实参表是否属于 Win32 `::ShowWindow(HWND, int)`（恰 2 实参）。"""
+    return len(_split_top_args(args_text)) == 2
+
+
+def _qualify_win32_showwindow(code):
+    """把**非限定**的 2 实参 `ShowWindow(...)` 补成 `::ShowWindow(...)`。
+
+    lookbehind 排除 `\\w`/`>`/`.`/`:` ⇒ `p->ShowWindow(` / `x.ShowWindow(` / `::ShowWindow(` 都不匹配 ✓
+    """
+    pat = re.compile(r'(?<![\w>:.])ShowWindow\s*\(')
+    out, i = [], 0
+    while True:
+        m = pat.search(code, i)
+        if not m:
+            out.append(code[i:])
+            break
+        j = m.end()
+        depth, k = 1, j
+        while k < len(code) and depth:
+            if code[k] == '(':
+                depth += 1
+            elif code[k] == ')':
+                depth -= 1
+            k += 1
+        if depth:
+            out.append(code[i:])
+            break
+        if is_win32_showwindow(code[j:k - 1]):
+            out.append(code[i:m.start()])
+            out.append('::ShowWindow(')
+            i = m.end()
+        else:
+            out.append(code[i:m.end()])
+            i = m.end()
+    return ''.join(out)
+
+
+# ============================================================
 # 显式 this 的类限定调用：`Cls::M(obj, rest...)` → `((Cls *)obj)->M(rest...)`
 #
 # 病灶层（2026-09-21 已只读验证 ✓）：**Hex-Rays 自己就这么输出** ——
@@ -1031,6 +1106,10 @@ def _run_inner(code, ctx):
 
     # UIScene::GetSys is a static method but Hex-Rays calls it without scope.
     code = re.sub(r'(?<!::)\bGetSys\s*\(', 'UIScene::GetSys(', code)
+
+    # Win32 `ShowWindow` 被继承来的 1 参成员遮蔽 ⇒ 非限定的 **2 实参**调用补 `::`
+    # （机制由真实 MSVC6 编译复现；安全性见该函数上方注释；11 处真实站点全部 2 实参）
+    code = _qualify_win32_showwindow(code)
 
     # Text-level substitutions (type aliases, suffixes, thunk classes)
     code = _apply_text_substitutions(code, ctx)

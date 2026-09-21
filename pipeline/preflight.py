@@ -64,6 +64,7 @@ def collect_state(status_dir=None):
                          'generated_at': cen.get('generated_at')}
     else:
         st['live_s2'] = None
+    st['live_census'] = cen if isinstance(cen, dict) else None
 
     for key, fn in (('compile_baseline', 'compile_baseline.json'),
                     ('latest_baseline', os.path.join('baselines', 'latest.json')),
@@ -72,6 +73,29 @@ def collect_state(status_dir=None):
 
     st['loop_last'] = _load(os.path.join(sd, '_loop_last.json'))
     return st
+
+
+def truncated_units(state):
+    """C1003 截断单元（**聚合指标对它们天然失明**）→ [{unit, errors, max_line}]。
+
+    2026-09-21 实测：`CCBStage.cpp` / `CCBUI.cpp` / `free_functions.cpp` 的编译在
+    ~102 条错误处被 MSVC 的 C1003 停住 ⇒ **在这些单元里修掉早期错误，列表会立刻被
+    原本隐藏的后续错误填满** ⇒ `总错误` 保持不变 ✗（F3a 实测：消失 9 条 C2660
+    `ShowWindow`，同时露出 9 条**无关族**错误 ⇒ 总数 2150→2150）。
+
+    可用的替代度量：**列表内最大错误行号** —— 修好早期错误后第 102 条错误会出现在
+    **更靠后的行**（实测 CCBUI.cpp 3389 → 3787、CCBStage.cpp 3823 → 3855）✓。
+    """
+    cen = state.get('live_census') or {}
+    out = []
+    for u in ((cen.get('s2') or {}).get('results') or []):
+        errs = u.get('errors') or []
+        if not any(e.get('code') == 'C1003' for e in errs):
+            continue
+        lines = [e.get('line') or 0 for e in errs]
+        out.append({'unit': u.get('unit'), 'errors': len(errs),
+                    'max_line': max(lines) if lines else 0})
+    return out
 
 
 def _s2_of_compile_baseline(d):
@@ -243,6 +267,15 @@ def render(state, width=78):
         else:
             L.append('  ⇒ ❌ **两份 S2 基线互相矛盾**（%s/%s vs %s/%s）' % (cok, ctot, lok, ltot))
     L.append('')
+
+    trunc = truncated_units(state)
+    if trunc:
+        L.append('⚠️ C1003 截断单元（%d 个）—— **聚合指标对它们失明**：修掉早期错误会被'
+                 '原本隐藏的后续错误填满 ⇒ 总数不变。请改看"列表内最大行号"（变大 = 有进展）：'
+                 % len(trunc))
+        for t in trunc:
+            L.append('  %-44s errors=%-4d 列表内最大行号=%d' % (t['unit'], t['errors'], t['max_line']))
+        L.append('')
 
     red = known_red_gates(state)
     L.append('已知恒红门禁（%d 条）—— 自动化循环必须先知道它们，否则分不清信号与噪声：' % len(red))
