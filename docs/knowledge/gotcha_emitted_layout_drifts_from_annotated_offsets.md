@@ -55,3 +55,21 @@ char c<N>[offsetof(Cls, member) == 0x<注解偏移> ? 1 : -1];
   否则漂移会继续静默累积 ✓
 * ⚠️ **验证因果再投资**（本会话教训）：先取一个漂移类（如 `SceneMgr`），
   只修布局、跑 `loop`、看该类的 partial 是否有字节改善；**改善了才铺开** ✓
+
+## ✅ 因果已用**字节**证明（2026-09-21，只改生成物、不动 codegen）
+
+删掉 `SceneMgr.h` 里注入的那一行 `virtual ~SceneMgr() {}`（⇒ 去掉非预期 vptr），跑 `probe`+`match`：
+
+| 函数 | before | **after** |
+|---|---|---|
+| **`SceneMgr::Create(int,int,int)`** | 25.5% | **80.6%**（**+55.1pp**）✓✓ |
+| `SceneMgr::RenderAll(void)` | 52.8% | 55.6%（+2.8）|
+| `SceneMgr::RenderUpdate(void)` | 52.8% | 55.6%（+2.8）|
+| `SceneMgr::GetCurrentNode(void)` | 4.3% | 2.9%（−1.4）|
+| 其余 6 个 | 不变 | 不变 |
+
+⇒ **漂移不只是理论问题**：单修 vptr 一项即带来 **+55 个百分点**的字节改善 ✓
+⇒ L1 未动，因为**第二个 bug（+0x124 → +0xE0E0 之间丢 0x28）**仍在 ⇒ 需继续定位（同一 `offsetof` 探测法可二分）
+
+**漂移曲线（实测）**：`SceneMgr` 从 class 起始到 `_gap_120`(+0x120) 漂移**恒 +4**（vptr）；
+到 `m_nRoleCount`(+0xE0E0) 变成 **−36** ⇒ 期间**丢了 0x28(40) 字节** ⇒ 至少两个独立成因 ✓

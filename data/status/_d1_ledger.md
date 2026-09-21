@@ -2083,3 +2083,27 @@ IDA Pro MCP 二进制校验可用并用于 5 项校验 ✓ · 识别并仪表化
    看 `SceneMgr.cpp` 的 partial 是否有**字节改善**；改善了才铺开 ✓
 2. **建门禁** `tools/check_layout_invariants.py`（编译器 oracle，逐类逐成员；advisory → hard）
 3. 之后才回到近失清单的逐条修补
+
+## 7. ✅✅ 因果已用字节证明（里程碑：本会话第一次可测量的字节收益）
+
+在生成物上**只删掉** `SceneMgr.h` 的注入行 `virtual ~SceneMgr() {}`（去掉非预期 vptr），跑 `probe`+`match`：
+
+| 函数 | before | after |
+|---|---|---|
+| **`SceneMgr::Create(int,int,int)`** | 25.5% | **80.6%（+55.1pp）** ✓✓ |
+| `SceneMgr::RenderAll` | 52.8% | 55.6%（+2.8）|
+| `SceneMgr::RenderUpdate` | 52.8% | 55.6%（+2.8）|
+| `SceneMgr::GetCurrentNode` | 4.3% | 2.9%（−1.4）|
+| 其余 6 个 | 不变 | 不变 |
+
+`L1 35 → 35`（第二 bug 未修）· 生成物已还原 ✓
+
+**漂移曲线实测**：class 起始 → `_gap_120`(+0x120) 漂移**恒 +4**（vptr）；
+到 `m_nRoleCount`(+0xE0E0) 为 **−36** ⇒ 期间**丢 0x28** ⇒ 两个独立成因 ✓
+
+## 8. 下一步（顺序明确）
+1. **在 emitter 里正修 vptr 问题**：当类在注解里**没有 vtables**（布局模型无 vptr）时，
+   **不得注入 `virtual ~Cls() {}`** —— 注入必须不改变布局 ✓
+2. **二分定位那 0x28 亏空**（+0x124 → +0xE0E0 之间某个成员被发小）⇒ 修后 `ClearInactiveRoles`(94.8%, 3 处 −0x24) 预期 **L1 +1**
+3. **建 `tools/check_layout_invariants.py` 门禁**（编译器 oracle，逐类逐成员；advisory→hard）⇒ 防复发
+4. 之后**重新筛 partial**：统计"落在漂移类里"的 partial 有多少 ⇒ 这才是本 bug 的真实爆炸半径 ✓
