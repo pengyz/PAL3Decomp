@@ -80,3 +80,33 @@ date: 2026-09-18
 所以在**不重跑 apply/export** 的前提下改注解名字，`.cpp` 里仍然写着 `__vftable` ——
 头里就必须有叫 `__vftable` 的成员才能编译。**要真正改名，必须走
 annotation → apply → export → codegen 全管线**。
+
+## 2026-09-21 更强的实例：连"尺寸证据"也被循环命名污染
+
+修 `UIStatic.binary_size 152→248` 时，我列了"三重 A 级证据"：
+① `??_L size=248 且 ctor=0x440740` ×3 · ② `operator new(248)+call 0x440740` · ③
+**"ctor 0x440740 写入 `0x56AD88`，正是 UIStatic *自己声明的* vtable"**。
+
+第三条里的引号就是漏洞 —— `0x56AD88` 在 IDB 里是**匿名 `stru_56AD88`**，
+**它是不是 UIStatic 的 vtable，只能靠注解回答**；前两条的"ctor 属于 UIStatic"同样来自注解命名。
+⇒ **三条证据全部回流到注解自己写进 IDB 的名字**，构成**自证循环** ✗。
+
+**用非循环锚一撞就碎**：`??0<Cls>@@QAE@XZ` 是**编译器原生重整名**，其唯一调用点前的 `push N` 给出真实尺寸：
+
+| 类 | 原生 ctor 符号 | 唯一调用点 | `push N` | 注解现值 | 判定 |
+|---|---|---|---|---|---|
+| `UIRoleSelectDialog` | `??0UIRoleSelectDialog@@QAE@XZ` | `CGameData::_init_44f8d0` | **0x89C = 2204** | 2300 | **注解多 96** ✗ |
+| `CScreenMode` | `??0CScreenMode@@QAE@XZ` | `CUtil::InitGameSystems` | **0x1578 = 5496** | 5880 | **注解多 384** ✗ |
+
+⇒ 这两个 `push N` 与 **`UIStatic=152`** 自洽，与 **248 矛盾** ✓；而 `248` 的"证据"是循环的 ✗。
+（注意：`UITitle_ArcSave`/`JusticeBookUI` 的原生 ctor **只被 `??_G…`（scalar dtor）调用、无 `push`** ⇒
+它们**从不被 `new`** ⇒ 任何"它们的分配尺寸"的说法都必须换锚 ✗。）
+
+## 规则（补充）
+
+- **凡"某符号属于某类"的判断，必须能追到一个编译器原生物**：
+  `??0<Cls>@@` / `??1<Cls>@@` / `??_7<Cls>@@6B@` / 重整名里的类名 ✓ —— **不是** IDB 里的
+  `?ctor@<Cls>@@…`（那是 `apply` 把注解写进 IDB 的结果 ✗）也不是匿名 `stru_` ✗。
+- 若某个类**只被 `??_G…`（scalar deleting dtor）引用、没有 `push N` 的 `new` 点** ⇒
+  **本次取证对它无效** ✓，必须明确写"该类的整对象尺寸本方法给不出" ✗，**不得**用别的类的 `push N` 顶上。
+- 与本仓 R 系列纪律配合：**两侧冲突时（模型说 X、IDB 说 Y）先问"两边各自依赖谁命名"** ✓。

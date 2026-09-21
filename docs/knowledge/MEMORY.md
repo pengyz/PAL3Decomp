@@ -52,3 +52,6 @@
 
 - [IDA MCP 本机搭建](reference_ida_mcp_setup.md) — headless ida-pro-mcp 独立 venv，启动/打开 IDB 命令
 - [SceneObj/UI 家族跨类调用是组合不是继承](decision_sceneobj_composition_not_inheritance.md) — base_size 钉死终裁；修复方向=transform 识别成员持有的跨类调用
+- [IDA 立即数是十六进制字面量](gotcha_ida_disasm_immediates_are_hex.md) — `push 424h` 被 `%s` 原样打印成 424 ⇒ 我据此"推翻"了正确的 1060 并写进台账；规则：一律 `int(x,16)` 且同时打印两形态，结论前回 asm 核对
+- [漏一个 global ⇒ "两阶段全或无"不存在](gotcha_missing_global_silently_disables_buffering.md) — `_BUFFER` 没写 `global` ⇒ 只建局部名 ⇒ 逐条直写；而"成对测试"因拒绝发生在校验阶段而变绿；规则：安全守卫必须落在唯一出口，测试必须让拒绝发生在被保护的那段
+- [先确认你量的是哪个状态](gotcha_measure_state_before_not_after_change.md) — 用"求变更"的工具诊断"变更前后"，在已应用状态下必得 Δ=0 ⇒ 本会话三次错误结论；规则：写结论前先声明数据是哪一刻的
