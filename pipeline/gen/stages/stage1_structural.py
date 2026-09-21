@@ -15,6 +15,52 @@ _lang = tree_sitter.Language(tscpp.language())
 _parser = tree_sitter.Parser(_lang)
 
 
+def free_function_has_this_param(code):
+    """函数头（首个 `{` 之前）里是否出现 **`this` 标识符**（纯函数，供单测）。
+
+    只对**自由函数**有意义（成员函数的 `Cls *this` 由各自的剥离逻辑处理）。
+    `_this`/`this_`/`this2` 都不匹配 ✓（`(?<![\w_])` / `(?![\w_])`）。
+    """
+    head = code.split('{', 1)[0]
+    return bool(re.search(r'(?<![\w_])this(?![\w_])', head))
+
+
+def rename_this_identifier(code, new='_this'):
+    """把 `this` **标识符**改名为 `new`，**跳过字符串/字符字面量与注释**（纯函数）。
+
+    为什么必须跳过：字符串里的 `"this"` 被改会**改数据** ⇒ 破坏字节匹配 ✗。
+    为什么整体改名是安全的：自由函数里 `this` 不是可用表达式，任何该标识符必指那个形参 ✓。
+    """
+    out, i, n = [], 0, len(code)
+    while i < n:
+        ch = code[i]
+        if ch == '"' or ch == "'":
+            q, j = ch, i + 1
+            while j < n:
+                if code[j] == '\\':
+                    j += 2
+                    continue
+                if code[j] == q:
+                    j += 1
+                    break
+                j += 1
+            out.append(code[i:j]); i = j; continue
+        if code.startswith('//', i):
+            j = code.find('\n', i)
+            j = n if j < 0 else j
+            out.append(code[i:j]); i = j; continue
+        if code.startswith('/*', i):
+            j = code.find('*/', i)
+            j = n if j < 0 else j + 2
+            out.append(code[i:j]); i = j; continue
+        if code.startswith('this', i) and \
+                (i == 0 or not (code[i-1].isalnum() or code[i-1] == '_')) and \
+                (i + 4 >= n or not (code[i+4].isalnum() or code[i+4] == '_')):
+            out.append(new); i += 4; continue
+        out.append(ch); i += 1
+    return ''.join(out)
+
+
 def run(code, ctx):
     """Apply structural transforms to function code."""
     # Filter IDA header comments
@@ -27,6 +73,17 @@ def run(code, ctx):
     if first_lines:
         first_lines[0] = re.sub(r'\b(__thiscall|__cdecl|__stdcall|__fastcall)\b', '', first_lines[0])
         code = '\n'.join(first_lines)
+
+    # 自由函数的形参名**不得是 `this`**（C++ 关键字 ⇒ MSVC 报
+    # `C2143 syntax error : missing ')' before 'this'`）。
+    # 声明侧 `emit_headers:2128` 早已把 `this`→`_this`，**体侧此前漏了** ⇒ 实测
+    # 34 处非法定义（全在 `pal3/src/free_functions.cpp`），而普查里只见 3 处
+    # （其余 31 处被 C1003 截断挡住，见 gotcha_c1003_truncation_blinds_metric）。
+    # 安全性：自由函数里 `this` **不是可用表达式** ⇒ 出现的该标识符必指那个形参
+    # ⇒ 改名是等价变换；但**必须跳过字符串/字符字面量与注释**（改了会改数据 ✗）。
+    # 审核工具：tools/audit_this_in_free_functions.py（[A] 段）；守卫：tests/test_free_function_this_rename.py
+    if getattr(ctx, 'is_free_function', False) and free_function_has_this_param(code):
+        code = rename_this_identifier(code)
 
     # Normalize Hex-Rays struct-return sret form so tree-sitter can parse the
     # definition: `RET *Cls::Method(RET *__return_ptr retstr, Cls *this, rest)`

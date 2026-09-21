@@ -1832,3 +1832,64 @@ m_pfather->ShowWindow(&this->m_ani.m_pfather, 1);              // ← 病灶
   "按注解声明做改写"（`store.method_sigs` 不够用，见知识库 `gotcha_decomp_sig_vs_annotation_decl`）✓。
 
 ⇒ 与 F3b 合并成一"**注解元数/字段类型可用后的改写批次**"更省事 ✓。
+
+---
+
+# 2026-09-21（第六轮）：IDA MCP 二进制校验 + 自由函数 `this` 审核与修复
+
+## 1. 使用者指令（两条，均为纪律）
+* **"必须用 IDA Pro MCP 做二进制校验"** ⇒ 已起服务（`~/.local/ida-mcp-venv` + `IDADIR=/home/peng/ida-pro-9.1`，
+  `idalib_supervisor --host 127.0.0.1 --port 13337 --unsafe`），`idb_open original/PAL3.exe.i64` ⇒
+  `session_id=f703cd44`，此后每次调用带 `database=<sid>` ✓。
+  ⚠️ DSH 侧虽注册 `mcp-idapro`（`failOnStartupError:false`），但会话启动时服务未跑 ⇒ 本会话未绑定原生工具，
+  改用其 **HTTP(JSON-RPC) 端点**调用**同一个 MCP 服务器**（工具集完全一致）✓。
+* **"自由函数的参数名不允许用 this，要改"** ⇒ 见 §3。
+
+## 2. MCP 校验结论（把离线推断变成二进制事实）
+
+| 查询 | 结果 |
+|---|---|
+| `export_funcs prototypes` | `0x00532E10 → void __thiscall(RoleSystem *this)`；`0x004517A0 → void __thiscall(BINK *this)`；`0x00479250 → int __thiscall(PAL_GDB *this)`；`0x005306A0 → void __thiscall(int this, char *)` ⇒ **IDB 里就是 `__thiscall`**，发射成 `__cdecl` 是 **ABI 错** ✓ |
+| `lookup_funcs 0x00532E10` | 名字 = `ResetPathState`（**自由名**）⇒ "重复发射"是**活的**，**不是陈旧 decomp JSON** ✓ |
+| `xrefs_to 0x00532E10` | **仅 1** 个 xref（`0x5331b2`，`?CalculateWorldPos@SceneProp@@QAEDM@Z`）|
+| `disasm 0x005331a0` | `5331ad: mov ecx, ebx ; this` → `5331b2: call ResetPathState` ⇒ **ECX = 调用方自己的 this** ⇒ 调用点按 thiscall 传参 ✓ |
+| 成员归属（注解检索）| `m_nPathState`∈RoleSystem · `m_fontcolor/m_wndcolor`∈UIWnd · `vecFling/parabola/pGeom`∈SceneProp ⇒ 被调函数访问 RoleSystem 成员（**注解归属 RoleSystem 是对的**），而调用方是 SceneProp 方法 ⇒ **两侧类不同，深层不一致待按偏移续裁** ✓ |
+
+## 3. 系统性审核（新工具 `tools/audit_this_in_free_functions.py`，只读）
+
+| 段 | 数量 | 内容 |
+|---|---|---|
+| **[A] 非法** | **34**（修复前）| 文件作用域函数形参名 == `this`（C++ 关键字 ⇒ 语法错）；**全在 `free_functions.cpp`**；普查里只见 **3** 处 ⇒ 其余 31 处被 **C1003 截断**挡住 ✗ |
+| [B] 可疑 | 55 → **90**（修复后）| 显式 `_this`/`*this` 形参（含新改名的 34 处）|
+| [C] decomp | **77** | 无 `::` 却带 this 槽：①已归属=纯重复发射 **28** · ②this类型=已知类 **11** · ③类型丢失 **38** |
+| [D] 现有代价 | **9** | `C2143 missing ')' before 'this'` |
+
+## 4. 修复落地（`stage1_structural`）+ 实测
+
+**不对称根因**：`stage4_substitution:597` 早已对**体里** `this` 表达式节点改名，但**没改形参名**
+⇒ 出现"体里 `_this`、形参 `this`" ⇒ 既非法又级联未声明 ✗。
+补在 `stage1_structural.run()` 公共前导（AST/正则两路径都继承）：`is_free_function` 且头部含
+`this` 标识符 ⇒ `rename_this_identifier()` 整体改名（**跳过字符串/字符/注释**，否则改数据 ✗）。
+
+| 指标 | before | after |
+|---|---|---|
+| `[A]` 非法 | 34 | **0** ✓ |
+| `C2143 … before 'this'` 族 | 9 | **0** ✓ |
+| free_functions.cpp 与 this 相关错 | 9 | 2（另一族 `C2440` 成员函数指针）|
+| S2 / L1 / 总错误 | 75/205 · 35 · 2150 | **不变**（C1003 吸收）|
+
+⚠️ **修正自造指标**：`gotcha_c1003_truncation_blinds_metric` 的"列表内最大行号"**非单调** ——
+本次 2879 → **2848 ↓**（错误变稀 ⇒ 第102条出现在更早的行）✗ ⇒
+判据应以「**目标族清零 + 有无同族新错**」为主，行号仅作辅助 ✓。
+
+单测：`tests/test_free_function_this_rename.py` **10/10** ✓（含字符串/字符/注释不得改、`_this`/`this_` 不得误改、幂等）。
+
+## 5. ⚠️ R14 补充（新发现）
+**IDA Pro MCP 的 idalib 会话自己持有 IDB**（`idb_open` 后）⇒ 开着 MCP 时**不得跑 `apply`/`export`**
+（与"管线持有 IDB 期间不得并发 idat"同源）。只跑 `codegen/probe/match` 安全（不读 IDB）✓。
+
+## 6. 下一步（按证据强度）
+1. **[C]① 28 条纯重复发射**：类来自**已归属的成员**、形参数来自**注解里那份已归一化的声明**
+   ⇒ `((Cls *)this_expr)->M(rest)` 改写**不需要新表、不需要 `method_sigs`** ✓（F3b 阻塞在此消解）
+2. **[C]③ 38 条类型丢失**：需 IDA 取证（逐条看是否真是成员、还是 static）
+3. **[B] 90 处显式 `_this` 形参**：ABI 正确性审查（逐条判"该归属到哪个类"）

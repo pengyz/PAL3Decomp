@@ -100,3 +100,28 @@ idb_open {input_path: original/PAL3.exe.i64, idle_ttl_sec: 7200}
 
 **规则（使用者定，2026-09-21）**：**自由函数的形参名不允许用 `this`，要改**。
 现状不对称：`emit_headers:2128` 只在**声明侧**把 `this`→`_this`，**函数体侧没改** ⇒ 34 处定义非法。
+
+## 处置与实测结果（2026-09-21，已落地）
+
+**规则**：自由函数的形参名不允许用 `this` ⇒ 改名 `_this`（合法标识符）。
+
+**落点与不对称根因**：`stage4_substitution:597` **早已**对体里的 `this` **表达式节点**改名
+（`node.type == 'this' and ctx.is_free_function`），但**没改形参名** ⇒ 实测出现"体里用 `_this`、
+形参却叫 `this`" ⇒ 既非法（`C2143`）又级联"未声明标识符" ✗。
+补在 `stage1_structural.run()` 的公共前导（两路径都继承）：`ctx.is_free_function` 且头部含
+`this` 标识符 ⇒ 用**跳过字符串/字符/注释**的纯函数 `rename_this_identifier()` 整体改名。
+
+| 指标 | before | after |
+|---|---|---|
+| `[A]` 非法（`tools/audit_this_in_free_functions.py`）| **34** | **0** ✓ |
+| `C2143 syntax error : missing ')' before 'this'` 族 | **9** | **0** ✓ |
+| free_functions.cpp 里与 this 相关的错 | 9 | 2（只剩另一族 `C2440` 成员函数指针）|
+| S2 / L1 / 总错误 | 75/205 · 35 · 2150 | **不变**（被 C1003 吸收）|
+
+⚠️ **修正我自己的一个指标**：`gotcha_c1003_truncation_blinds_metric` 里提的"列表内最大行号"**非单调**
+—— 本次它从 2879 **下降**到 2848：错误变稀后，第 102 条错误出现在**更早**的行 ✗。
+⇒ 该指标只在"错误密度不变、只往前推进"时可靠；**判据应以「目标族是否清零 + 有无同族新错」为主** ✓。
+
+⚠️ **R14 补充**：IDA Pro MCP 的 idalib 会话**自己也持有 IDB**（`idb_open` 后）
+⇒ 开着 MCP 时**不能跑 `apply`/`export`**（与"管线持有 IDB 期间不得并发 idat"同源）。
+只跑 `codegen/probe/match` 是安全的（它们不读 IDB）✓。
