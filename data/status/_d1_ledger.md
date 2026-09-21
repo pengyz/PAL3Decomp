@@ -849,3 +849,74 @@ PDB `UIStatic`（PAL3A, size **160**）字段：`m_bordersize@68` · `m_align@72
 - **不要**在 `/tmp` 跑 init/apply/export/codegen/probe/match ✗（不需要：两个状态都在 git + 计划文件里 ✓）
 - **不要**再用 `??0<Cls>@@` 作身份锚 ✗ ⇒ **A 级锚 = vtable 地址 + 分配点 `push N` + ctor 写域** ✓✓
 - **不要**在纠正"12"口径前估算 (a)/(b) 占比 ✗
+
+# ✅✅ 根因**已钉死**（独立复核 f314ccac + 我抽验 2/3 证实 ✓）—— 不留缺口
+
+## 一、最终定谳
+- **`UIStatic` = 那个 vtable 为 `0x56ADD0` 的类，PAL3 尺寸 = 152** ✓ **无可反驳**
+ （字段 **19/19** 命中 PAL3A PDB 的 `UIStatic` ✓；且它是**全库唯一**在 `0x60` 处有 `std::string` 的类 ✓
+  （dtor 做引用计数递减 + `operator delete` ✓）；**44 处** `??_L size=0x98` + ctor `sub_4422E0` ✓）
+- **248 / vtable `0x56AD88` / 方法块 `0x440xxx` = `UIPushButton`**（PAL3 248 = PDB **252 − 4**）✓✓
+ 证据：该 ctor 写域与 PDB `UIPushButton` **11/11 命中** ✓（`0x44/0x45` 两 uchar ✓ · `dword 1@0x4C`=`m_fonttype`（枚举按 dword ✓）·
+ 循环清 `0x54/0x58/0x5C/0x60` 恰是 `gbTexture*[2]`+`_PlugInfo*[2]` ✓ · **`rep stosd 0x20` 自 `0x78` = `char[128] m_caption`** ✓）；
+ **全库唯一**：`char[128]` 落在 `0x78` 的类只有 `UIPushButton` ✓（`UIButton` 的在 `0xD4` ✓）；
+ **vtable `0x56AD88` 无任何派生类** ✓（除自身 ctor/dtor 无第三方装载者 ✓）⇒ 叶子控件 ✓ = 按钮语义 ✓；尺寸 248=252−4 与
+ `UIStatic 152=160−8` 是**同一种"PAL3 比 PAL3A 少尾部字段"模式** ✓✓
+- **`UIStatic.json` 把两个类并成了一个名字** ✗（且**第三处**混入：`0x56AE48` 属 UIStatic 的**派生类** ✓，其 slot `from=UIFrameWnd` ✗，
+ 仓库原生 `req=156 > 152` 亦矛盾 ✓）
+
+## 二、错名的**来源链**（完整 ✓）
+1. **循环锚**：用 PAL3A PDB 的 `??0UIStatic@@QAE@XZ`（真地址 **`0x4CBB04`** ✓）去锚 PAL3 的 **`sub_440740`** ✗
+ （`grep -n "56AD88" asm` 只有 2 处 ✓：ctor 内 `mov [esi],offset off_56AD88` 与 vtable 定义 ✓）
+2. 记录进 `data/annotations/vtables.json`（`"class": "UIStatic"` ✗ —— 错名**早于**结构体文件迁移 ✓）
+3. `093431db5`（2026-06-02）**机械搬运**进 `structs/UIStatic.json` ✓（`git log -S"56AD88"` 唯一命中 ✓）
+4. `_cleanup_vtable_class_reconcile.md` **加固**了错名 ✗
+5. `vtable_reassign_todo.json`（45 条）**从未标记** `0x56AD88` ✗，却把 `0x56ADD0` 记在 `UIFrameWnd`（错 ✗）、`0x56AE48` 记在 `UIStatic`（错 ✗）
+**★ 而仓库自带工具早已量对** ✓✓（我抽验证实 ✓）：`data/status/_vtable_audit_global.json`
+   `0x56AD88 → declared:["UIStatic"], min_stride:248, measured:248, tier:"A(stride ×19)"` ✓
+   `0x56ADD0 → declared:[], min_stride:152, measured:152, tier:"A(stride ×192)"` ✓✓
+ ⇒ **数据一直是对的，被反向读成"UIStatic 声明太小（152），应改 248"** ✗✗
+
+## 三、为何 9-14 的"248 会破线"机制成立（**已离线机械复现** ✓）
+取 `2f0b16173^` 的 structs 副本（导出到 `/tmp` ✓），**只**把 `UIStatic.binary_size` 改为 248（**不做级联** ✓）⇒
+`check_member_extent.check()` 报 **17 条**成员末端越界（基线仅 1 条 ✓）：
+`UIGameOver.m_Blood` · `UIScenePanel.m_Static_14080` · `DealUI.m_BkWnd` · `UIParticle._element` · `UISceneFace.m_state` ·
+`_CLOUD._cloud` · `UITitle_XJTM.m_ItemInfo` · `Note_Item.m_NoteLv` · `StateUI.m_test` · `UIChatRest.m_BK` ·
+`CCBRoleStatePanel/M/S.*` · `m_RoleState/p_RoleState/s_RoleState` · + 既存 `Comp_DonateUI` ✓
+⇒ **16/17 纯由 `UIStatic=248` 造成** ✓ ⇒ 成员末端 > `binary_size` ⇒ apply 拒绝该 UDT ⇒ **生成头消失** ✓✓
+⚠️ **且 `cli.py check` 的 MemberExtent 闸已被显式降级为 advisory** ✗ ⇒ **`check EXIT=0` 不是"注解正确"的证据** ✓✓
+
+## 四、`2f0b16173^` 是**尺寸侧最强的自洽态** ✓（不是"整体已知正确" ✗）
+整族与 PDB **差额恒为 −8** ✓：`UIStatic 152/160` · `CB 156/164` · `EX 184/192` · `EXA 192/200` · `Flip 156/164` · `RM 180/188` ✓
+—— **尺寸与全部自有成员偏移同时平移同一常量 −8** ✓ = "PAL3 少一个 8 字节尾块"的**族级一致签名** ✓✓；
+而 `2f0b16173` 把它破坏成 **+88** ✗
+**⇒ 但该态仍含未解问题** ✗（①携带 A 的 vtable/方法 ✓ ②`0x56AE48` 是派生类的表 ✓ ③`UIPushButton.json` 自身 `known_members` 错位
+（`m_caption` 记在 100 而真值 **120** ✓；缺 `0x4C/0x50/0x54/0x5C` ✓）且 `binary_size=252` 用 PDB 值而非 PAL3 的 **248** ✗
+④`Comp_DonateUI` 越界两态皆在 ✓ ⑤45 条 vtable 待办未决 ✓ ⑥`UISceneMap` 三方互斥未裁 ✓
+⑦PAL3 存在一个 **208 字节的 UIStatic 派生类**（vtable `0x56B018`, ctor `sub_44BE60`, `??_L 0xD0×3`, 被 `UIScenePanel` 按值内嵌 6 次 ✓）
+而 **PDB 无 216 字节的对应派生类** ✗ ⑧三条既存缺陷未独立复核 ✓）
+
+## 五、G5 **确认**：级联算术上不自洽 ✓
+计划的 **1442 个 `shift_offset` 全部 = `mult × 96`** ✓（1421 条有 `mult` 的**全部成立、0 例外** ✓；余 21 条族内 = 96 ✓；
+`delta_of` 143 类**全为 96 的倍数** ✓）⇒ **"只回退族尺寸、保留持有者偏移"必然制造 1421 处不一致** ✗
+⚠️ **且 `self_check:ok` 只验内部算术、不验 Δ 的真伪** ✗ ⇒ **它 pass 不是真值证据** ✓
+
+## 六、**最终执行方案**（钉死后修订 ✓）
+**必须把"回退尺寸面"与"拆名/归位"放在同批** ✓✓ —— 否则 `UIStatic.json` 会**保留循环证据源** ✗，
+下一轮同一工具又会把它读成"UIStatic 应该是 248" ✓（这正是本轮发生的事 ✓）。
+1. **拆名/归位** ✓：把 `0x56AD88` + 方法块 `0x440xxx` + **248** 迁到 **`UIPushButton`** ✓；
+ 把 `0x56AE48` 迁到其**真正的派生类** ✓；修正 `UIPushButton.json` 自身错位（`m_caption` 100→**120** ✓ + 补 `0x4C/0x50/0x54/0x5C` ✓ + `binary_size` 252→**248** ✓）
+2. **回退尺寸面** ✓：整族的 `binary_size`/`base_size`/成员偏移回到 `2f0b16173^`（= PDB 常量 −8 态 ✓）——
+ **1442 条 shift 全部反向** ✓（算术已验证 ✓）
+3. **重新取证** ✓：`globals.json` 的 `overlaps_with`（其 `overlap_evidence` 明写 `m_base:UIStatic +96` ✓ ⇒ **被证伪** ✗）
+4. **修 (a) 三条** ✓（`UpdateTexture` void↔int ✓ / `m_rowenable` 真类型 ✓ / codegen owner 前缀 ✓）—— 预期 71→40 ✓
+5. **门禁** ✓：`check` 的 MemberExtent **必须恢复为硬失败或明确区分为 advisory** ✗（否则 `EXIT=0` 会继续误导 ✓）
+
+## 七、**残余未知**（显式 ✓，且写明"需要什么"✗）
+1. **A 的 PAL3 原生符号名** ✗（只能到"结构唯一性 + PDB 参考"级 ✓）
+2. **PAL3 的 208 字节 UIStatic 派生类**（`0x56B018`）**给不出类名** ✗
+3. **"12 处 `push 98h`+new"实测只有 10** ✗（12 的来源未解 ✓）
+4. `UISceneMap` 三方互斥（1012 / 232 / 1108）**未裁** ✗
+5. `UIStaticFlex` 的 192 **未取证** ✓（但**未被本批误动** ✓，且因非 UIStatic 派生而免疫 ✓）
+6. `_vtable_reconcile_20260917.json` 的 `req` 语义细节未读生成器 ✓
+7. probe/match 相关结论（71 条新错误、L1 非收益）**本轮不许跑 ⇒ 未独立复现** ✓
