@@ -1380,3 +1380,22 @@ gbTexture.methods = 4 个（全为槽位编码 0x1001xxxx ✓），含 CreateFro
 **哪个成员的注解类型是 `TextureLib *`** ✗？—— 在**那 33 个靶子站点**的接收者链上找 ✓
 （例：`(*p_pDebugTex)` 中 `p_pDebugTex` 的声明类型 ✓；`MainEquipUI.cpp:1341` 等 ✓）
 ⇒ 若确为 `TextureLib *` ✗ ⇒ **修该成员类型为 `gbTexture *`** ✓（**注释侧、单点、有据 ✓**）
+
+# 🎯🎯🎯🎯 真机制：**`gbTexture` 的声明来自 `gbengine/` 引擎头 —— 在本管线之外** ✓✓✓✓
+**状态自洽的单次读取** ✓（H6 → codegen → probe → **同状态**读证据 ✓）给出决定性事实：
+```
+① pal3/src/GameBase/PAL3.h:5,7        #include "gbengine/gbTexture.h"    ← ★ 引擎头
+② pal3/src/Misc/UITextureArray.h:9    gbTexture * m_ptex[16];          ← 接收者类型 = gbTexture*
+③ pal3/src/ 唯一的 CreateFromMemory 声明：TextureLib.h:75（**另一个类** ✓，3 参）
+④ 该状态下的真实调用行（1 参 ✓）：this->…m_ptex[3]->CreateFromMemory(pData);
+                                  (*v5)->CreateFromMemory(&…m_ptex[4], 1);   ← 2 参 ✗
+```
+**⇒ 机制** ✓✓：`gbTexture` 的类声明**来自 `gbengine/gbTexture.h`** ✓（**不在 `pal3/src`** ✗）；
+调用由其声明决定 ✓ ⇒ **改 `data/annotations/structs/gbTexture.json` 根本不参与编译** ✗✓
+（引擎头不由本管线发射 ✓）⇒ **⇒ 5 轮（①+② / S2×3 / 批J）改的东西**结构上不可能影响它** ✗✗ —— 这解释了全部零效果 ✓
+**⇒ 我此前 grep "没有 gbTexture 声明"**是错的**** ✗（**没搜 `gbengine/`** ✓）—— 又一次"半截 grep" ✗
+### ⇒ 真正的下一步（**只读** ✓）
+**`gbengine/gbTexture.h` 从哪来** ✗？—— 是**仓库内**的文件（可改 ✓）还是**外部依赖**（不可改 ✗）？
+（`ls gbengine/` / 查 include 路径 / 看它是否被 codegen 发射 ✓）
+⇒ 若可改 ⇒ **修那个头里的签名** ✓（**真正的单点修复** ✓）；若不可改 ⇒ 只能在 **codegen 侧改写该调用** ✓
+（限定名/强转 ✓）—— **两条路都有明确落点** ✓✓
