@@ -7,6 +7,8 @@
 - [gbui 七槽 vtable 继承链](arch_gbui_seven_slot_vtables_inheritance_chain.md) — gbui 家族 vtable 的槽位与继承链关系
 
 ## Gotchas
+- [vtable 派发改写丢解引用](gotcha_vftable_rewrite_drops_deref.md) — `(*ptr)->__vftable->M(*ptr,…)` 被改成 `ptr->M(…)` 丢掉 `*`（76 站点/29 文件）；**只修这一行必被门禁拦下**：实测 C2227 −41 但 C2039 +22、S2 ok 75→74、L1 35→34，因为"接收者类型对"≠"方法确是该类成员"；完整批次与自门控验收测试见文
+- [ida_defs.h 寄存器伪变量是字面量 0](gotcha_ida_defs_register_macros_are_zero.md) — `#define _EAX/_ESI/_ET1 0` 一个 hack = **167 条错误（7.8%）**，集中在 2 个单元共 150 条；且**无单一全局类型可修**（`void*` 会把 C2106 换成 C2036），根治在 IDB 签名/寄存器建模
 - [中文注释行末 GBK 次字节为 0x5C 会吞掉下一行](gotcha_gbk_comment_trailing_backslash_eats_next_line.md) — MSVC6 按 GBK 读 UTF-8 中文注释 ⇒ 行拼接吞掉下一行（本次吞掉一个 __forceinline 定义）；四条死路与决定性验证手法见文
 
 - [多重继承匿名成员渲染 bug](gotcha_codegen_multi_inheritance_anon_member.md) — 根因是 apply/export 两层自造限制（IDA 原生支持多基类），已修复并有单测+IDB 回归守卫；待重跑 codegen+compile 收口
@@ -45,6 +47,8 @@
 - [**用 ctor 做二进制挂钩前先验本体**](pattern_verify_ctor_body_before_binary_hooks.md) — 注解里的"ctor"可能是静态初始化 thunk（实测 `0x51D6E0`）；真 ctor 的判据是 `mov [this], offset <自己的vtable>`；配方=vtable 归属 → 表的 DATA XREF → 写表者
 
 ## Debugging
+
+- [两层定位"是谁改写了我这行文本"](debug_two_layer_localization.md) — `sys.settrace` 行级追踪（钉死源码行）+ 代理该模块命名空间里的 `re`（打印真正生效的 pattern/repl/before/after）；配合"先禁用可疑解析器做二分"；本会话用它把上一轮的 12 次猜测换成 1 次定位
 
 ## Decisions
 

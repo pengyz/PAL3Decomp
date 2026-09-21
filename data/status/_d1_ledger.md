@@ -1456,3 +1456,101 @@ gbTexture.methods = 4 个（全为槽位编码 0x1001xxxx ✓），含 CreateFro
    （`does not take 1 parameters` 不含类型信息 ✓）⇒ 若类型不一致 ⇒ **必须 A5 级统一** ✓
 2. **H6 的 −18 是真实的** ✓ ⇒ 与 A5 的同批落地即可转正 ✓（发布门禁：改善 ≥ 新增 ✓）
 3. **不要再做单点补丁** ✗ —— 12 次实证 ✓
+
+---
+
+# 2026-09-21（第二轮）：完整基线重跑 + **机制级 ROI 排序** ✓✓
+
+## 1. 完整基线（HEAD `6e1501e21` · 干净树 · 全链路实测 ✓）
+
+| 阶段 | 结果 | 耗时 |
+|---|---|---|
+| `check` | **PASS**（exit 0）· union 平凡性 0 · MemberExtent 仅既存 `Comp_DonateUI` advisory | — |
+| S1 | **720 / 740** | 65s（probe all）|
+| S2 | **75 / 205** · 错误 **2150** · 失败单元 130 | 同上 |
+| `match` | matched **265/319** · **L1 35** · partial 198 · unmatched 54 · unresolved-synth 32 | 174s |
+| `apply` / `export` / `codegen` | 11s / 156s / 145s | — |
+
+⇒ **与记录的基线逐条一致** ✓（75/205 · 2150）⇒ 可复现 ✓。
+（注：`s4_baseline.json` 里 `match_L1=38` 是**棘轮回写值** ✓；实况 **35** ✓。）
+
+## 2. ⚠️ 发现：`codegen all` 在 HEAD 上**恒 exit 1**（陈旧棘轮基线 ⇒ 假失败）
+
+```
+Compile Regression Report
+Baseline: 2026-09-20T13:26:45   ← data/status/compile_baseline.json
+Baseline S2: 76/204
+Current  S2: 75/205
+⚠️ REGRESSIONS (1 files): pal3/src/Misc/UIStatic.cpp
+```
+* 真实回归量 **0** ✓（同一 codegen 的正式对账闸：新失败 **0** · 真新增 **0** · 错误收敛 **0**）；
+* 假失败成因：旧基线文件集 **204** 个 cpp，现在 **205**（多出 `UIStatic.cpp`）⇒ 检测器把**新增文件**判为回归 ✗；
+* ⇒ 检查点表里"`codegen all` → `compile_regression`"这一步**当前不具可执行性** ✓ ——
+  要么刻意刷新（`python3 tools/compile_regression.py --update-baseline`），要么知道它是噪声 ✓。
+  **本次未刷新**（刷新棘轮基线是决策，应由使用者确认 ✓）。
+
+## 3. 机制级 ROI 排序（全部有**实测计数**，不是估计 ✓）
+
+| # | 机制 | 量化 | 修复成本 | 状态 |
+|---|---|---|---|---|
+| **F1** | `stage3_cleanup.py` Pattern 2 **丢掉 `(*ptr)` 解引用** | decomp **76 站点/29 文件**（ShowWindow 53 · Create 16 · `_sdtor_call_dtor` 7）| **1 行** | ⚠️ **单改被门禁拦下（已实测，见 §4）** |
+| **F2a** | 索引式 `X->__vftable[k].M` 未被解析 | **44 条 C2039** | 中（新解析分支）| 未做 |
+| **F2b** | 点号式 `X.__vftable->M` 未被解析 | **32 条 C2039** | 中 | 未做 |
+| **F2c** | 限定基类 `X->Base::__vftable` | **10 条 C2039** | 高（基类偏移未知）| 已声明不支持 ✓ |
+| **F3** | Win32 `ShowWindow` 被**继承来的成员**遮蔽 | decomp 12 站点 · **14 条 C2660** | 低中（`::` 限定）| 未做 |
+| **F5** | `include/pal3/ida_defs.h` 把寄存器伪变量 `#define _EAX 0` | **167 条（7.8%）** · 6 单元 · 2 个占 150（RoleSystem 88 + ScriptVM 62）| 中高（须逐函数类型或改 IDB 签名）| 未做 |
+| **F6** | `this = X;`（Hex-Rays 重赋 `this`）| **27 条 C2106** / 10 单元 | 中（须引入别名局部）| 未做 |
+
+**F1 与 F2a 同源** ✓：都属"vtable 解析器只覆盖部分语法形态" ✓ ——
+即 `docs/specs/2026-09-21-vtable-resolver-refactor-design.md` 的 S2/S3 内容 ✓。
+
+## 4. ⚠️⚠️ F1 单变量 A/B（**决定性：两个棘轮同时回退** ✓）
+
+改动 = `stage3_cleanup.py` Pattern 2 的 repl `\1->\2(\3)` → `(*\1)->\2(\3)`：
+
+| 指标 | before | after | 判定 |
+|---|---|---|---|
+| `C2227` | — | **−41** | ✓ 意图中的收益 |
+| `C2039` | — | **+22** | ✗ |
+| S2 ok | **75** | **74** | ✗ `Combat/CCBProtectWindow.cpp` ok→fail |
+| L1 | **35** | **34** | ✗（matained 265/319 → 256/309 ✗）|
+| 总错误 | 2150 | **−23** | 但两棘轮退 ⇒ **STOP** ✓ |
+
+**+22 的两个独立机制**（与 decomp 计数完全吻合 ✓）：
+1. **`Create` 16 站点** ⇒ `(*p)->Create(1)` 要求 `Create` 是该类成员 ✗。
+   `(*p)->ShowWindow(1)` 能编译只因 `class UIStatic : public UIWnd` 继承到 `virtual int ShowWindow(int)` ✓。
+   ⚠️ **不可靠恢复注解来修**：UIStatic 的 `methods`/`vtables` 是上一会话因真实 vtable(`0x56B018`)
+   未定而**刻意剥离** ✓（`_strip_note`）⇒ 恢复即违反"禁止猜测性修改" ✓。
+2. **`_sdtor_call_dtor` 7 站点** ⇒ 依赖 `stage5_fixup.py:892-898` 的 `delete \1` 规则，
+   而该规则**只接受裸标识符接收者** ⇒ `(*ptr)->_sdtor_call_dtor(1)` 不再被转成 `delete` ✓。
+   **这正是那唯一一个 ok→fail 单元** ✓（基线该行是 `delete p_m_pWHFace;` ✓）。
+
+⇒ **完整批次** = ①保留 `(*ptr)` **+** ②`stage5_fixup` 接受 `(*ident)` 形态
+  **+** ③目标类声明该方法，或"目标类没有该方法时回退到既有 stub 路径"（S2/S3 ✓）。
+
+## 5. 本轮定位手段（替换上一轮的"12 次猜测" ✓✓）
+
+* `sys.settrace` **行级追踪** ⇒ 钉死源码行（`stage3_cleanup.py:1242`）✓；
+* **代理该模块命名空间里的 `re`** ⇒ 打印**真正生效**的 `pattern/repl/before/after` ✓
+  （行号落在多行语句上有歧义 ⇒ 必须用这层补齐 ✓）；
+* **先禁用可疑解析器做二分** ⇒ 3 分钟排除整条 AST 路径 ✓（`_decode_vtbl_call` 的 SPY 全程无输出 ✓）。
+⇒ 已写入 `docs/knowledge/debug_two_layer_localization.md` ✓。
+
+## 6. 本轮落地物（全部已入库 ✓）
+
+| 类别 | 内容 |
+|---|---|
+| 就地警告注释 | `stage3_cleanup.py` 该 `re.sub` 上方：缺陷 + **全部实测数字** + 完整批次要求 ✓ |
+| 验收测试（**自门控** ✓）| `tests/test_vftable_deref_preserved.py` —— 批次未落地 ⇒ **SKIP**（附实测代价）✓；落地即生效 ✓；只落一半 ⇒ **FAIL** ✓；含阳性对照 ✓；自带 `__main__` runner（仓内约定 ✓）|
+| 知识库 | **46 → 49 条** ✓（`gotcha_vftable_rewrite_drops_deref` ✓ · `gotcha_ida_defs_register_macros_are_zero` ✓ · `debug_two_layer_localization` ✓）+ MEMORY 索引 ✓ |
+| 台账 | 本节 ✓ |
+| 代码 | **零行为改动** ✓（F1 已回退；`stage3_cleanup.py` 仅增注释 ⇒ 产物逐字节不变，待 §1 复跑确认 ✓）|
+
+## 7. 交接起点（按 ROI 排序 ✓）
+
+1. **F2a（44 条）** 最省力：`X->__vftable[k].M` 已带**方法名**与**槽位索引** ⇒ 语义可判 ✓；
+   且与 F1 同批可让 F1 转正 ✓（同一接收者形态 ✓）。
+2. **F5（167 条，7.8%）** 单簇最大，且集中 2 文件；但**须逐函数类型或改 IDB 签名** ✓
+   ⇒ 是"IDA 层能解决的在 IDA 层解决"的典型 ✓。
+3. **F1+F2a+F2b 同批** ⇒ 才可能同时满足"改善 ≥ 新增" ✓ 与"S2 ok 不回退" ✓。
+4. **F4（陈旧 `compile_baseline.json`）** 一行命令可恢复门禁信号，但属棘轮决策 ⇒ **需使用者确认** ✓。

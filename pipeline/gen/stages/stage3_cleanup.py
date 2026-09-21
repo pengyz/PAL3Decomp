@@ -1239,6 +1239,24 @@ def run(code, ctx):
         code
     )
     # Pattern 2: (*ptr)->__vftable->Method(*ptr, extra_args) → ptr->Method(extra_args)
+    #
+    # ⚠️ 2026-09-21 **已实测的缺陷（尚未修）**：这里的 repl `\1->\2(\3)` **丢掉了 `(*...)` 的
+    # 解引用层级**。`ptr` 的类型必然是多级指针/数组（`UIStatic **p_m_pBack`、`UIListBox *m_pMagicList[6]`），
+    # 丢掉 `*` 后接收者不是类类型 ⇒ C2227 `left of '->X' must point to class/struct/union`。
+    # decomp 语料里该形态 **76 站点 / 29 文件**（ShowWindow 53、Create 16、_sdtor_call_dtor 7）。
+    #
+    # **单改这一行会被门禁拦下**（2026-09-21 单变量 A/B 实测）：
+    #   C2227 −41 ✓ / C2039 +22 ✗ / S2 ok 75→74 ✗ / **L1 35→34 ✗** / matched 265/319→256/309 ✗
+    # 原因是"保留解引用"只解决**接收者类型**，不解决**方法是否是该类成员**：
+    #   `(*p)->ShowWindow(1)` 能编译（UIStatic : UIWnd，继承到 `virtual int ShowWindow(int)`），
+    #   但 `(*p)->Create(1)` / `(*p)->_sdtor_call_dtor(1)` 仍报 C2039 ——
+    #   `Create` 未在 UIStatic/UIPushButton/UIListBox/UIScene 里声明（UIStatic 的 methods/vtables
+    #   系上一会话因真实 vtable(0x56B018) 未定而**刻意剥离**，不可凭猜测恢复）；
+    #   `_sdtor_call_dtor` 则依赖 stage5_fixup.py:892-898 的 `delete \1` 规则，而该规则只接受**裸标识符**
+    #   接收者 ⇒ `(*ptr)->_sdtor_call_dtor(1)` 不再被转成 `delete`（这正是那个 1 个 ok→fail 单元）。
+    # ⇒ 要拿到收益，必须**同批**补齐：① stage5_fixup 的 `(*ident)` 形态；② 目标类对槽位方法名的声明
+    #   （或让解析器在"目标类没有该方法"时回退到既有 stub 路径 —— 即 vtable 解析器 S2/S3 的设计内容）。
+    # 验收测试（自门控，修好即生效）：tests/test_vftable_deref_preserved.py
     code = re.sub(
         r'\(\(\s*[\w\s]+(?:\s*\*)*\s*'               # ((type... (*
         r'\(\s*(?:__thiscall\s*)?\s*\*\s*\)'          # (__thiscall**)
