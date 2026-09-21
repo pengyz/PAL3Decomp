@@ -1317,3 +1317,27 @@ this->me_Role[1].…m_ptex[3]->CreateFromMemory(
 ### ⇒ 有效资产（可直接用于 A5 ✓）
 - **那 33 条的 file:line 已在 `/tmp/s2clean_after.json`** ✓ ⇒ **A5 的靶子清单现成** ✓
 - `tests/test_owner_self_drop.py` ✓（4/4 ✓）· `OwnerPath`/`render_owner`(S1 ✓) · 三次 A/B 快照 ✓
+
+## 🎯🎯 枚举定谳：**病灶在声明，不在 codegen** ✓✓（精确修复清单已出 ✓）
+### 33 个靶子的实参个数（= 路径指纹 ✓，取自 `/tmp/s2clean_after.json` ✓）
+```
+1 个实参: 33 条 ✓（self **早已被丢弃** ✓）  例 LineupUI.cpp:2472 · LineupUI.cpp:2640
+2 个实参: 10 条 ✗（self **未被丢弃** ✗）    例 TaskBookUI.cpp:114 · TaskBookUI.cpp:144
+```
+**⇒ "1 个实参"⇒ 再丢一次毫无作用 ✗✗ ⇒ 报错 `does not take 1 parameters` 的真正原因是
+**声明要 6 个参数** ✗ ⇒ **病灶 = 注解的槽位签名** ✓✓**（此前 4 轮我都以为是 codegen ✗）**
+### 所有"把对象放进调用实参"的发射点（枚举 ✓）
+| 行 | 代码 | 路径 |
+|---|---|---|
+| **696** | `repl = '%s->%s(%s)' % (d['obj'], method, ', '.join(keep))` | 已解析（成员）✓ |
+| **716-719** | `_callargs = ', '.join(args)`；`if synthetic_self: _callargs = d['obj'] + …` | stub（synthetic_self 前置对象 ✓）|
+| **741-742** | `_callargs = ', '.join([d['obj']] + args)` | 裸链 `_va`（前置对象 ✓）|
+| 1046/1048 | deref 形式 | 非调用发射点 |
+### ⇒ 精确修复清单（两处）
+| # | 修复 | 位置 | 消灭 |
+|---|---|---|---|
+| **①** | **注解签名**：`gbTexture::CreateFromMemory` 的 **6 参 → 1 参**（匹配调用 ✓）| `data/annotations/structs/gbTexture.json`（**单点** ✓）| **33 条** ✓✓ **（注释侧、独立、便宜 ✓）** |
+| **②** | **codegen 丢弃**：在 **716 / 741** 两条路径也做 self 丢弃 ✓ | `stage3_cleanup.py` ✓ | **10 条** ✓ |
+| 合计 | — | — | **43 条新 C2660 全消** ✓ ⇒ **净收益转正** ✓ |
+**⇒ 关键教训** ✓：前 4 轮我**默认病灶在 codegen** ✗ ⇒ 一直在错的地方打转 ✓；
+**本次枚举（看实参个数）一步定位** ✓✓ ⇒ **R16**：**先判定"病灶在哪一层"（注释 / codegen），再动手** ✓
