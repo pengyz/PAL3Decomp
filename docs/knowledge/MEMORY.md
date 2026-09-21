@@ -56,3 +56,5 @@
 - [漏一个 global ⇒ "两阶段全或无"不存在](gotcha_missing_global_silently_disables_buffering.md) — `_BUFFER` 没写 `global` ⇒ 只建局部名 ⇒ 逐条直写；而"成对测试"因拒绝发生在校验阶段而变绿；规则：安全守卫必须落在唯一出口，测试必须让拒绝发生在被保护的那段
 - [先确认你量的是哪个状态](gotcha_measure_state_before_not_after_change.md) — 用"求变更"的工具诊断"变更前后"，在已应用状态下必得 Δ=0 ⇒ 本会话三次错误结论；规则：写结论前先声明数据是哪一刻的
 - [互锁不变式让局部修复净亏](gotcha_interlocking_invariants_block_local_fixes.md) — vtable 解析里 owner 文本同时是 `_drop_self_arg` 的输入、又与 stub 签名约定耦合 ⇒ 只修"owner 前缀截断"两轮各净增 17 条 C2660（两层各测一次）；规则：改被别处当输入的字符串前先找全部消费者；局部净亏 ⇒ 回退并立为独立项目
+- [动手前先验证'病灶在哪一层'](gotcha_verify_the_layer_before_patching.md) — 跨层缺陷的病灶常在消费者侧；本会话 12 次假设驱动修补全部零效果，而每次只读验证（#include 链 + -I 顺序 + 临时 #error）都能一步定位；规则：先答'哪一层/消费者实际读哪个文件/报错还缺什么信息'再动手
+- [`does not take N parameters` 不含类型信息](gotcha_does_not_take_n_says_nothing_about_types.md) — 该报错只说实参数目 ⇒ 据此推断重载必然失败（本会话两次）；必须 grep 出调用点所在函数的签名取真实类型；多站点类型不一致 ⇒ 属发射侧统一
