@@ -7,6 +7,7 @@
 - [gbui 七槽 vtable 继承链](arch_gbui_seven_slot_vtables_inheritance_chain.md) — gbui 家族 vtable 的槽位与继承链关系
 
 ## Gotchas
+- [三份互相矛盾的基线 ⇒ 门禁恒红](gotcha_three_competing_baselines.md) — `compile_baseline.json`(76/206) · `baselines/latest.json`(75/205) · `s4_baseline.json`(L1 38) 互不同步 ⇒ 干净 HEAD 上 `codegen all` 与 `match` **恒 exit 1**（真实回归 0）⇒ 循环分不清信号与噪声；已加 `cli.py status`（只读预检）与 `cli.py loop`（一键循环 + `--expect-*` 断言，恒红显式标 TOLERATED）
 - [C++ 的 `f(...)` 不是"1 参"而是"元数不限"](gotcha_variadic_prototype_is_not_one_param.md) — 把它当 1 参使 `codegen_invariants` 报出 **56 处假阳性**并曾被断言为 C2660 成因 ✗；真实 MSVC6 实测 `int sub_X(...)` + 任意实参 = **0 错误**；附**已实测证实的**真成因"名字遮蔽"（`CCBUI::DlgProcEditorMain` 里 `ShowWindow(hWnd,4)` 被继承的 `UIWnd::ShowWindow(int)` 遮蔽 = 14 条 C2660）
 - [vtable 派发改写丢解引用](gotcha_vftable_rewrite_drops_deref.md) — `(*ptr)->__vftable->M(*ptr,…)` 被改成 `ptr->M(…)` 丢掉 `*`（76 站点/29 文件）；**只修这一行必被门禁拦下**：实测 C2227 −41 但 C2039 +22、S2 ok 75→74、L1 35→34，因为"接收者类型对"≠"方法确是该类成员"；完整批次与自门控验收测试见文
 - [ida_defs.h 寄存器伪变量是字面量 0](gotcha_ida_defs_register_macros_are_zero.md) — `#define _EAX/_ESI/_ET1 0` 一个 hack = **167 条错误（7.8%）**，集中在 2 个单元共 150 条；且**无单一全局类型可修**（`void*` 会把 C2106 换成 C2036），根治在 IDB 签名/寄存器建模

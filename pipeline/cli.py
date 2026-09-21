@@ -17,6 +17,11 @@
   compile             CMake 配置 + ninja 编译 (-k 0 全量)
   probe [s1|s2|all]   S1/S2 probe 编译普查 + 自动回归对账（vs latest 基线）
   match               S4 字节匹配裁判（假设旗标组 + L1 棘轮检查）
+  status [--strict]   只读状态预检：阶段顺序 / 三份基线对照 / 已知恒红门禁
+  loop [opts]         一次跑完 apply→export→codegen→probe→match（可 --expect-* 断言基线）
+                      --stages probe,match   只跑部分
+                      --dry-run              只打印计划
+                      --expect-s2 75/205 --expect-errors 2150 --expect-l1 35
   iterate [opts]      不可用（pipeline/iterate.py 不存在；会明确报错并退出 2）
   tool --list         列出所有可用工具脚本
   tool <name> [args]  运行 tools/ 下的脚本
@@ -43,9 +48,11 @@
 """
 import sys
 import os
+import json
 import re
 import shutil
 import subprocess
+import time
 from pathlib import Path
 
 _PIPELINE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -826,6 +833,191 @@ def cmd_compile():
     sys.exit(0 if result.returncode == 0 else 1)
 
 
+# ---------------------------------------------------------------------------
+# status / loop：把"可持续、可迭代"落到入口层（2026-09-21）
+#
+# 背景：`iterate` 是**空槽**（pipeline/iterate.py 不存在 ⇒ exit 2），全链路只能手工拼；
+# 且三份基线互相矛盾 ⇒ `codegen all` 与 `match` 在干净 HEAD 上**恒 exit 1**，
+# 自动化循环分不清信号与噪声。`status` 把状态如实打印出来，`loop` 把一轮跑成**一条命令**，
+# 并支持 `--expect-*`（把"先断言基线再测量"这条纪律**机械化**，不再靠人记得）。
+# ---------------------------------------------------------------------------
+
+def cmd_status(argv):
+    """只读状态预检（不刷新任何基线）。"""
+    from pipeline import preflight
+    state = preflight.collect_state()
+    print(preflight.render(state))
+    if '--strict' in argv:
+        rows = preflight.baseline_rows(state)
+        inconsistent = (rows[0]['ok'] is not None and rows[1]['ok'] is not None
+                        and (rows[0]['ok'], rows[0]['total']) != (rows[1]['ok'], rows[1]['total']))
+        if inconsistent or preflight.known_red_gates(state):
+            print('[status --strict] 基线不一致或存在恒红门禁 ⇒ exit 1')
+            sys.exit(1)
+    sys.exit(0)
+
+
+# 阶段 → 传给 cli.py 的参数；顺序即依赖顺序，不可乱序
+LOOP_STAGES = {
+    'apply': [],
+    'export': [],
+    'codegen': ['all'],
+    'probe': ['all'],
+    'match': [],
+}
+LOOP_ORDER = ['apply', 'export', 'codegen', 'probe', 'match']
+
+
+def _loop_parse(stage, text):
+    """从阶段输出里抽取关键读数（纯文本解析，容错：抽不到就返回 {}）。"""
+    out = {}
+    if stage == 'probe' or stage == 'codegen':
+        m = re.search(r'S2 cpp:\s*(\d+)/(\d+)\s*ok', text) or \
+            re.search(r'S2-passing units:\s*(\d+)', text)
+        if m:
+            if m.lastindex == 2:
+                out['s2_ok'], out['s2_total'] = int(m.group(1)), int(m.group(2))
+            else:
+                out['s2_ok'] = int(m.group(1))
+    if stage == 'match':
+        m = re.search(r'matched\s+(\d+)/(\d+)\s+symbols\s*\|\s*L1\s+(\d+)', text)
+        if m:
+            out['matched'], out['symbols'], out['L1'] = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        m2 = re.search(r'\[L1 ratchet\] previous (\d+) -> current (\d+)', text)
+        if m2:
+            out['L1_prev'], out['L1_cur'] = int(m2.group(1)), int(m2.group(2))
+    return out
+
+
+def cmd_loop(argv):
+    """一次跑完完整迭代（apply→export→codegen→probe→match），可选 `--expect-*` 断言基线。
+
+    用法::
+
+        python pipeline/cli.py loop                        # 全链路
+        python pipeline/cli.py loop --stages probe,match   # 只跑部分
+        python pipeline/cli.py loop --dry-run              # 只打印计划
+        python pipeline/cli.py loop --expect-s2 75/205 --expect-errors 2150 --expect-l1 35
+    """
+    from pipeline import preflight
+
+    if '--dry-run' in argv:
+        print('loop 计划（顺序即依赖顺序）：')
+        for i, s in enumerate(LOOP_ORDER, 1):
+            print('  %d. python pipeline/cli.py %s %s' % (i, s, ' '.join(LOOP_STAGES[s])))
+        sys.exit(0)
+
+    stages = LOOP_ORDER
+    for i, a in enumerate(argv):
+        if a == '--stages' and i + 1 < len(argv):
+            stages = [x.strip() for x in argv[i + 1].split(',') if x.strip()]
+        elif a.startswith('--stages='):
+            stages = [x.strip() for x in a.split('=', 1)[1].split(',') if x.strip()]
+    unknown = [s for s in stages if s not in LOOP_STAGES]
+    if unknown:
+        print('[loop] 未知阶段: %s（可选 %s）' % (', '.join(unknown), ', '.join(LOOP_ORDER)))
+        sys.exit(2)
+
+    def _opt(name):
+        for i, a in enumerate(argv):
+            if a == name and i + 1 < len(argv):
+                return argv[i + 1]
+            if a.startswith(name + '='):
+                return a.split('=', 1)[1]
+        return None
+
+    try:
+        exp = preflight.parse_expect(_opt('--expect-s2'), _opt('--expect-errors'),
+                                    _opt('--expect-l1'))
+    except ValueError as e:
+        print('[loop] %s' % e)
+        sys.exit(2)
+
+    # 跑之前先如实展示"已知恒红"，避免把这些当成真失败
+    red = preflight.known_red_gates(preflight.collect_state())
+    red_gates = {g['gate'].split(' → ')[0] for g in red}
+    if red:
+        print('[loop] 已知恒红门禁 %d 条（出现时会被标为 TOLERATED，不会被静默吞掉）：' % len(red))
+        for g in red:
+            print('   ❌ %s（记录 %s / 实况 %s）' % (g['gate'], g['recorded'], g['live_baseline']))
+    print()
+
+    logdir = os.path.join(_PROJECT_DIR, 'pipeline', '_logs')
+    os.makedirs(logdir, exist_ok=True)
+    report = {'stages': {}, 'expect': exp, 'tolerated': [], 'failed': []}
+    for name in stages:
+        cmd = [sys.executable, os.path.join(_PIPELINE_DIR, 'cli.py'), name] + LOOP_STAGES[name]
+        print('=' * 72)
+        print('[loop] %s: %s' % (name, ' '.join(cmd[2:])))
+        t0 = time.time()
+        proc = subprocess.run(cmd, cwd=_PROJECT_DIR, capture_output=True, text=True, errors='replace')
+        secs = round(time.time() - t0, 1)
+        text = (proc.stdout or '') + (proc.stderr or '')
+        logfile = os.path.join(logdir, 'loop_%s.log' % name)
+        try:
+            with open(logfile, 'w', encoding='utf-8') as f:
+                f.write(text)
+        except OSError:
+            logfile = None
+        entry = {'rc': proc.returncode, 'secs': secs, 'log': logfile}
+        entry.update(_loop_parse(name, text))
+        report['stages'][name] = entry
+
+        verdict = 'OK' if proc.returncode == 0 else 'RC=%d' % proc.returncode
+        if proc.returncode != 0:
+            # 该阶段是否属于"已知恒红"（按阶段名匹配 gate 前缀）
+            tolerated = name in red_gates
+            verdict += '  [TOLERATED: 已知恒红]' if tolerated else '  [FAIL]'
+            if tolerated:
+                report['tolerated'].append(name)
+            else:
+                report['failed'].append(name)
+            tail = [l for l in text.splitlines() if l.strip()][-12:]
+            print('[loop] %s EXIT=%d (%ss) —— 末尾 12 行：' % (name, proc.returncode, secs))
+            for l in tail:
+                print('    | %s' % l)
+        else:
+            print('[loop] %s EXIT=0 (%ss)' % (name, secs))
+        if entry.get('s2_ok') is not None and entry.get('s2_total'):
+            print('[loop]   S2 读数: %s/%s' % (entry['s2_ok'], entry['s2_total']))
+        if entry.get('L1') is not None:
+            print('[loop]   match 读数: matched %s/%s · L1 %s' % (entry.get('matched'),
+                                                                 entry.get('symbols'), entry['L1']))
+        if report['failed']:
+            print('[loop] 出现**非容错**失败（%s）⇒ 中止后续阶段' % ', '.join(report['failed']))
+            break
+
+    # 汇总 + 断言
+    print()
+    print('=' * 72)
+    print('[loop] 汇总: ' + ' · '.join(
+        '%s rc=%s/%ss' % (k, v['rc'], v['secs']) for k, v in report['stages'].items()))
+    if report['tolerated']:
+        print('[loop] 容错通过（已知恒红，非本次引入）: %s' % ', '.join(report['tolerated']))
+    # ⚠️ 必须**先落盘** `_loop_last.json` 再收集状态/断言 —— 否则 `--expect-l1` 读不到本次读数
+    #（2026-09-21 实测踩到：断言在落盘之前 ⇒ L1 恒失败）
+    try:
+        with open(os.path.join(_PROJECT_DIR, 'data', 'status', '_loop_last.json'), 'w',
+                  encoding='utf-8') as f:
+            json.dump(report, f, ensure_ascii=False, indent=1)
+        print('[loop] 已写入 data/status/_loop_last.json（供 `status` 显示实测耗时与 L1）')
+    except OSError as e:
+        print('[loop] 警告: 无法写入 _loop_last.json: %s' % e)
+    state = preflight.collect_state()
+    fails = preflight.check_expectations(state, exp)
+    if exp:
+        if fails:
+            print('[loop] ❌ 基线断言未满足：')
+            for f in fails:
+                print('      - %s' % f)
+        else:
+            print('[loop] ✓ 基线断言全部满足：%s' % exp)
+
+    if report['failed'] or fails:
+        sys.exit(1)
+    sys.exit(0)
+
+
 def main():
     args = sys.argv[1:]
     if not args or args[0] in ('-h', '--help', 'help'):
@@ -852,6 +1044,10 @@ def main():
         cmd_match()
     elif command == 'probe':
         cmd_probe(args[1:])
+    elif command == 'status':
+        cmd_status(args[1:])
+    elif command == 'loop':
+        cmd_loop(args[1:])
     elif command == 'snapshot':
         snap_script = os.path.join(_PIPELINE_DIR, 'snapshots', 'snapshot.py')
         sub = args[1] if len(args) > 1 else 'list'

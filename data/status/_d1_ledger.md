@@ -1581,3 +1581,76 @@ Current  S2: 75/205
 `ShowWindow(g_hMainWnd, 4)` 命中继承来的 `virtual int ShowWindow(int)` ⇒ 14 条 C2660 ✓；
 修法 `::ShowWindow(...)` **可编译性已证明**（`include/pal3/ida_defs.h:5` 就是 `#include <windows.h>`，
 且每个生成 cpp 首位 include 它 ✓）。
+
+---
+
+# 2026-09-21（第三轮）：**元问题审计** —— "病灶层检查"是否落地？工作流是否可持续/可迭代？
+
+> 触发：使用者直接问这两件事。以下全部为**可检查证据**，不是自评。
+
+## 1. "病灶层检查"落地状态：**已记录，未强制**（诚实结论）
+
+| 检查面 | 状态 | 证据 |
+|---|---|---|
+| 知识库条目 | ✅ 有，且可发现 | `docs/knowledge/gotcha_verify_the_layer_before_patching.md` + `debug_two_layer_localization.md`，两条都在 `MEMORY.md` 索引里（第 52/64 行）|
+| **`CLAUDE.md`（唯一被每个会话强制读取的文件）** | ❌ **原本 0 命中** | `grep -n "病灶\|哪一层\|先验证" CLAUDE.md` ⇒ 空 |
+| **机械强制**（hook / 门禁 / 测试） | ❌ 无 | `.git/hooks/*` 只检 annotation JSON 格式；无任何检查会因"未验证层就动手"失败 |
+| **规则编号可引用性** | ❌ **`Rn` 被重载** | 见 §3 |
+
+⇒ 结论：**靠人记得，不靠机制** ✗。本轮之前它在实践里生效（我确实先做了层验证），
+但那是我读了上一会话的知识条目，**不是系统保证的** ✗。
+
+## 2. 工作流可持续/可迭代状态：**入口与信号两层都缺**（诚实结论）
+
+| 缺口 | 证据 |
+|---|---|
+| **迭代入口是空槽** | `python3 pipeline/cli.py iterate` ⇒ `[ERROR] 'iterate' is UNAVAILABLE: pipeline/iterate.py does not exist` + `exit 2`；**设计预留、实现缺失** ✗ |
+| **无全流程入口** | 无任何脚本跑 `apply→export→codegen→probe→match`；本轮我**自己写了 2 个 `/tmp/run_*.sh`** ✗ |
+| **无状态查询** | `cli.py` 无 `status`/`preflight` 子命令 ✗ |
+| **信号不可判定** | 3 份基线互相矛盾 ⇒ **2 个阶段恒 exit 1**（真实回归 0）✗ —— 详见 `docs/knowledge/gotcha_three_competing_baselines.md` |
+| 快照无人引用 | `data/status/baselines/*.json` **110 个** |
+| 台账形态 | `_d1_ledger.md` **1583 行** append-only，规则散落其中 |
+| 一轮成本 | apply 11s · export 156s · codegen 145s · probe 60s · match 165~186s ≈ **9 min**；`check` **2.3s**（秒级闸可用 ✓）|
+
+## 3. ⚠️ `R1`–`R16` 不是一套统一编号（逐字证据）
+
+| 标签 | 含义 A | 含义 B |
+|---|---|---|
+| `R1` | 编排者不得在子代理 running 期间编辑同一文件（台账 `:12`）| **规格评审意见编号**（台账 `:1103`）|
+| `R3`/`R4`/`R5` | 并行推进 / 预检前置 / parity corpus（`:27`/`:30`）| 同为规格评审意见编号（`:1089`/`:1105`/`:1108`）|
+| `R10` | 台账里只是**问题标签** `Q3 R10`（`:261`，无定义）| 纪律定义在**另一个文件** `_batch_uistatic_reverted_20260920.md:29`；又在 `docs/specs/2026-09-15-plan-1to5-landing-design.md:555` 是步骤号 |
+| `R16` | 病灶层检查（`:1343`）| `docs/specs/2026-09-15-cv-layout-design.md` 的**理由编号** R13/R15/R16 |
+| `R9` | **全台账 0 命中 ⇒ 不存在** | — |
+
+⇒ "**R1–R16**"是**事后聚合的异质标签** ✗，其中**可逐字验证的通用纪律只有 7 条**：
+`R7` `R11` `R12` `R13` `R14` `R15` + 病灶层检查（`R16`）。
+（此前我在会话小结里写"方法论 R1–R16"是**夸大** ✓ —— 已更正。）
+
+## 4. 本轮落地（把"记录"变成"落地" ✓）
+
+| 落地物 | 内容 | 验证 |
+|---|---|---|
+| **`pipeline/cli.py status`** | 只读预检：唯一权威顺序 + 3 份基线对照 + **已知恒红门禁**（记录/实况/原因/处理）；`--strict` 不一致即 exit 1 | 实跑 ✓；`--strict` exit 1 ✓ |
+| **`pipeline/cli.py loop`** | 一键 `apply→export→codegen→probe→match`；`--expect-s2/--expect-errors/--expect-l1` **断言基线**；恒红显式标 `[TOLERATED]`；非容错失败即中止后续；耗时与 L1 落 `_loop_last.json` | 端到端实跑 ✓：`probe rc=0/59.9s` · `match rc=1/186s [TOLERATED]` · **`✓ 基线断言全部满足 {'s2':(75,205),'errors':2150,'l1':35}`** · **exit 0** ✓ |
+| `pipeline/preflight.py` | 上述逻辑的**纯函数**实现（`baseline_rows`/`known_red_gates`/`parse_expect`/`check_expectations`/`render`），只读、不刷新 | — |
+| `tests/test_preflight.py` | **14/14 PASS** ✓（含合成状态 + `loop` 输出解析 + **对真实 `_loop_last.json` 的形状契约测试**）| ✓ |
+| **`CLAUDE.md`** | 新增"**病灶层检查（动手前的第一件事）**"节 + 检查点表加两行（status / loop）+ "纪律编号现状"节（记下 `Rn` 重载事实）| 已生效 ✓ |
+| 知识库 | **50 → 51 条**（`gotcha_three_competing_baselines`）+ MEMORY 索引 | ✓ |
+| `.gitignore` | `data/status/_loop_last.json`（每机自测读数，不入库 ✓）| ✓ |
+
+### 过程中自查到的两个自身缺陷（都已修 ✓）
+
+1. **断言与落盘顺序反了**：`check_expectations` 在写 `_loop_last.json` **之前**执行 ⇒ `--expect-l1` 恒失败 ✗ ⇒ 已调整为先落盘 ✓。
+2. **fixture 与真实文件形状不一致**：我按 `{'match': {...}}` 写读取与单测 fixture，
+   而 `loop` 实际写 `{'stages': {'match': {...}}}` ⇒ **单测 13/13 全绿，而真实 `--expect-l1` 报 `实得 None`** ✗✗
+   —— 正是 `gotcha_plan_code_snippets_must_be_validated_on_real_input` 那条坑 ✓。
+   已加**对真实生产者文件的形状契约测试**（`test_real_loop_last_shape_matches_reader`）✓，并把
+   `_loop_match()` 的形状约定写进 docstring ✓。
+
+## 5. 仍未做 / 需使用者决策
+
+1. **刷新两份陈旧棘轮**（`compile_regression --update-baseline`；推进 L1 棘轮）——
+   会改变门禁判据 ⇒ **决策，需人确认** ✓（`status` 已把"怎么处理"打印出来 ✓）。
+2. `iterate` 仍是空槽：`loop` 只覆盖"跑一轮 + 断言"，**不含"改什么"的策略层** ✓
+   （策略层目前就是本台账的 ROI 排序 ✓）。
+3. `Rn` 编号未重命名（重命名会破坏历史文档引用 ⇒ 改为"引用必须带路径"的约定 ✓）。

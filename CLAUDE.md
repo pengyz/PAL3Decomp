@@ -139,13 +139,55 @@ union { // +0xN
 
 ### 强制检查点
 
+**先跑一次状态预检**（秒级、只读，不刷新任何基线）：`python3 pipeline/cli.py status`
+—— 它打印一次迭代的**唯一权威顺序**、三份基线的对照、以及**已知恒红门禁**。
+⚠️ 在干净 HEAD 上 `codegen all` 与 `match` 目前**恒 exit 1**（陈旧棘轮造成的假失败，见 status 输出）；
+不知道这一点就会把假失败当退化，或把真退化当噪声。
+
 | 时机 | 工具 | 命令 | 失败处理 |
 |------|------|------|----------|
+| **动手改任何东西之前** | **病灶层检查（必做）** | 见下节 | 答不出"病灶在哪一层 / 消费者实际读哪个文件·哪份声明"就**不许动手** |
+| **一轮完整迭代** | 一键循环 + 基线断言 | `python3 pipeline/cli.py loop --expect-s2 75/205 --expect-errors 2150 --expect-l1 35` | 断言不满足 ⇒ exit 1；恒红门禁被**显式标 TOLERATED**，不静默吞掉 |
 | **codegen all 后** | 编译回归检测 | `python3 tools/compile_regression.py` | 发现退化立即报警，不提交 |
 | **apply 后** | annotation diff | `python3 tools/annotation_diff.py` | 显示变更摘要，确认无意外修改 |
 | **probe_compile 后** | 错误分类 | `python3 tools/error_classifier.py --summary` | 输出根因分布，指导下一步修复方向 |
 | **probe_compile 后** | 字节匹配裁判 | `python3 pipeline/cli.py match` | L1（字节全同函数数）不得回退；partial 的字节 diff 是注解布局/归属错误的直接证据 |
 | **修改 struct annotation 后** | 布局验证 | `python3 tools/audit_layout.py` | 发现布局问题立即修复 |
+
+### 病灶层检查（动手前的第一件事）
+
+**规则**：在修改任何"跨层"代码（annotation / apply / export / codegen / stage1–5 / 宏头）之前，
+必须先**只读地**回答三个问题，并把答案写进 commit message：
+
+1. **病灶在哪一层？**（例：是 Hex-Rays 的原始输出就错，还是 codegen 某 stage 改坏的？）
+2. **消费者实际读的是哪个文件/哪份声明？**（`#include` 链、`/I` 顺序、同名声明谁先被找到）
+3. **报错还缺什么信息？**（例：`does not take N parameters` 只给个数、**不给类型** ⇒ 不能据此推断重载）
+
+**为什么必须**：本仓实测——**11 次**在没有这个验证时直接动手，**全部零效果或净回归** ✗；
+而每次只读验证（`grep` 声明 / 临时 `#error` 探 `#include` 链 / `sys.settrace` 行级追踪 +
+代理该模块的 `re`）都能**一步定位** ✓。详见
+`docs/knowledge/gotcha_verify_the_layer_before_patching.md` 与 `docs/knowledge/debug_two_layer_localization.md`。
+
+**配套**：定位完成后把**实测数字**写进被改代码旁的注释（例：`stage3_cleanup.py` 那个 `re.sub` 上方
+记录了 `C2227 −41 / C2039 +22 / S2 ok 75→74 / L1 35→34`），下一个会话不必重新测量。
+
+### 纪律编号现状（⚠️ 阅读前必看）
+
+本仓历史文档里的 **`R1`–`R16` 不是一套统一编号**，同一个标签**至少有两种含义**：
+
+| 标签 | 含义 A | 含义 B（同仓另一处） |
+|---|---|---|
+| `R1` | 编排者不得在子代理 running 期间编辑同一文件（`_d1_ledger.md:12`）| 规格评审意见编号（`_d1_ledger.md:1103`）|
+| `R3`/`R4`/`R5` | 并行推进 / 预检前置 / parity corpus | 同上：规格评审意见编号（`1089`/`1105`/`1108`）|
+| `R10` | 台账里是**问题标签** `Q3 R10`（`:261`）| 纪律定义在**另一个文件** `data/status/_batch_uistatic_reverted_20260920.md:29`；另在 `docs/specs/2026-09-15-plan-1to5-landing-design.md:555` 又是步骤号 |
+| `R16` | 病灶层检查（`_d1_ledger.md:1343`）| `docs/specs/2026-09-15-cv-layout-design.md` 的**理由编号** R13/R15/R16 |
+| `R9` | **不存在**（全台账 0 命中）| — |
+
+⇒ **引用 `Rn` 时必须带文件路径**；`R1–R16` 这个说法是**事后聚合的异质标签**，不是 16 条可检查的规则 ✗。
+可逐字验证的**通用纪律**只有：`R7`（确定性下游工具必须重跑）、`R11`（改工具必须跑其测试）、
+`R12`（中止必须杀整条进程链并复核 census/baseline）、`R13`（补丁落地必须 grep 核实）、
+`R14`（管线持有 IDB 期间不得并发 `idat`）、`R15`（新渲染/字符串逻辑先写纯函数单测）、
+**病灶层检查**（`R16`）——原文见 `data/status/_d1_ledger.md`。
 
 ### 工具使用规范
 
