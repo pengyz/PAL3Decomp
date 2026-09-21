@@ -107,7 +107,7 @@
       "type": "int",
       "source": "ida_decomp:SetProgress loaded twice, 2 refs"
     },
-    "1532": {
+    "1244": {
       "name": "m_nPageCounter",
       "type": "UIScene",
       "source": "ida_decomp:_init_529e40 ++, 7 refs | fix:binary_ctor_UIScene_stride344"
@@ -257,32 +257,32 @@
       "type": "unsigned char",
       "source": "decomp:LoadScreenScene_if(!x)+set_0"
     },
-    "4164": {
+    "3876": {
       "name": "m_RoleDialog",
       "type": "UIRoleDialog",
       "source": "ctor/dtor:ARC_PlayerAtt::Refresh+UIRoleDialog::_UIRoleDialog"
     },
-    "2908": {
+    "2620": {
       "name": "m_ScenePanel",
       "type": "UIScene",
       "source": "A:binary_ctor lea+call UIScene::Destroy2 stride=344"
     },
-    "3252": {
+    "2964": {
       "name": "m_ScenePanelB",
       "type": "UIScene",
       "source": "A:binary_ctor lea+call UIScene::Destroy2 stride=344"
     },
-    "3596": {
+    "3308": {
       "name": "m_ScenePanelC",
       "type": "UIScene",
       "source": "reverted_auto_semantic:4x_access|reverted:pseudo_semantic"
     },
-    "828": {
+    "636": {
       "type": "UIFrameWnd",
       "name": "_embed_UIFrameWnd_816",
       "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
     },
-    "920": {
+    "728": {
       "type": "UIFrameWnd",
       "name": "_embed_UIFrameWnd_968",
       "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
@@ -367,68 +367,83 @@
       "type": "UIStatic",
       "source": "decomp:_init_47be20_CreateFromTemplate+vtable16"
     },
-    "528": {
+    "432": {
       "name": "m_StaticArray",
       "type": "UIStatic",
       "source": "decomp:_init_47be20_loop_ptr+=152(UIStatic_array_start)"
     },
-    "1000": {
-      "name": "m_pAudioMgr",
-      "type": "gbAudioManager *",
-      "source": "decomp:Restore_dtor_call"
+    "616": {
+      "name": "m_nVolNode0",
+      "type": "int",
+      "source": "binary_scan:1refs"
     },
-    "1004": {
-      "name": "m_pSoundStream",
-      "type": "void *",
-      "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
+    "620": {
+      "name": "m_nVolNode1",
+      "type": "int",
+      "source": "binary_scan:1refs"
     },
-    "1008": {
-      "name": "m_Static_816",
-      "type": "UIStatic",
-      "source": "ctor:UIStatic::_UIStatic"
+    "624": {
+      "name": "m_nVolNode2",
+      "type": "int",
+      "source": "binary_scan:1refs"
     },
-    "820": {
+    "628": {
       "name": "m_nVolNode3",
       "type": "int",
       "source": "binary_scan:1refs"
     },
-    "824": {
+    "632": {
       "name": "m_nVolNode4",
       "type": "int",
       "source": "binary_scan:1refs"
     },
-    "2548": {
+    "808": {
+      "name": "m_pAudioMgr",
+      "type": "gbAudioManager *",
+      "source": "decomp:Restore_dtor_call"
+    },
+    "812": {
+      "name": "m_pSoundStream",
+      "type": "void *",
+      "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
+    },
+    "816": {
+      "name": "m_Static_816",
+      "type": "UIStatic",
+      "source": "ctor:UIStatic::_UIStatic"
+    },
+    "2260": {
       "name": "m_BtnTooltipC",
       "type": "UIButton",
       "source": "decomp:_init_4593c0_same_pattern(+344_from_1916)"
     },
-    "2896": {
+    "2608": {
       "name": "m_pGameUI",
       "type": "void *",
       "source": "binary_scan:2refs;batch_fix:int_to_v*_LEA_embed"
     },
-    "4156": {
+    "3868": {
       "name": "m_bActive",
       "type": "unsigned char",
       "source": "A:byte_toggle_1_0_in_ctor"
     },
-    "4160": {
+    "3872": {
       "name": "m_nScreenActive",
       "type": "int",
       "source": "binary_scan:1refs"
     },
-    "3976": {
+    "3688": {
       "name": "m_SceneBlock",
       "type": "int",
       "source": "decomp:BYTE+560_DWORD+141"
     },
-    "3948": {
+    "3660": {
       "name": "m_nAssistMode",
       "type": "int",
       "source": "decomp:+4_BYTE_CreateFromTemplate"
     }
   },
-  "binary_size": 5880,
+  "binary_size": 5496,
   "methods": {
     "0x0040EB10": {
       "name": "ProcessGameMode",
