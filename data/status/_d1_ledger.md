@@ -1183,3 +1183,30 @@ this->me_Role[1].…m_ptex[3]->CreateFromMemory(
  **先做 S4'（归因 +27）** ✓，**再**谈扩大 ✓；否则净亏 ✓
 - **A5 保留自由 thunk** ✓ 的决定不变 ✓（成员化与 H6 无关 ✓）
 **⇒ 实验改动已回退** ✓（`pipeline/gen` 回到 HEAD ✓）
+
+## ✅ S4' 定谳：**33/43 条新 C2660 来自同一个槽位误映射** ✓✓（可执行 ✓）
+**做法** ✓：保存基线 census（`/tmp/s4p/before_census.json` ✓）→ 施加合并修复 → 重建 → probe →
+ 存 after-census ✓ → **自动回退源码并重建恢复** ✓（`RESTORE_PROBE_EXIT=0` ✓ 基线已回 ✓）
+**逐条差分**（`(file,line,code,msg)` 集合 ✓）：新增 **225** 条 / 消失 **212** 条 ✓
+### 新增 43 条 C2660 的归类（★ 目标 ✓）
+| 条数 | msg |
+|---|---|
+| **26** | **`'CreateFromMemory' : function does not take 1 parameters`** ✗✗ |
+| **7** | `'CreateFromMemory' : does not take 2 parameters` ✗ |
+| 6 | `'PAL_GDB::~PAL_GDB' : does not take 1 parameters` ✗ |
+| 1×4 | `CCBLineupWindow::~CCBLineupWindow` · `Create` · `GetMouseRay` · `UpdateAnim` ✗ |
+**⇒ 33/43 = 77% 集中在 `CreateFromMemory` 一个方法** ✓✓
+### 消失条目的归类（收益 ✓，恰好印证因果 ✓）
+**25** × `left of '->ShowWindow' must point to class/struct/union` ✓ ·
+**9** × `left of '->CreateFromMemory' must point to class/struct/union` ✓ ·
+9 × `'__vftable' : is not a member of 'UIProgressBar'` ✓ · 11 语法错 · 10 非法间接 · 9 `'void *' unknown size` ✓
+⇒ **即把 9 条 `->CreateFromMemory` 的 C2227 转化成了 C2660** ✓（owner 已对 ✓、但实参个数不对 ✗）
+### 根因与可执行结论 ✓✓
+| 项 | 内容 |
+|---|---|
+| 注解 `gbTexture::CreateFromMemory` ✗ | addr=**0x1001BD30**（**槽位编码** ✗），签名 **6 个参数** ✗ |
+| `TextureLib::CreateFromMemory` ✓ | addr=**0x004A6CA0**（**真实代码地址** ✓），**3 个参数** ✓，已正确在 `TextureLib.h:75` ✓ |
+| asm | **无 `CreateFromMemory` 导入** ✗ ⇒ **只能经 vtable 调用** ✓ |
+⇒ **槽 `0x1001BD30` 的名字/签名与调用形态（1–2 实参 ✓）不符** ✗ ⇒ **与 `gbTexture` 第 6 槽同族** ✓✓
+⇒ **修对这一个槽 ⇒ 33 条新 C2660 消失** ✓ ⇒ **净收益从 +13 转为 −20** ✓✓
+⇒ **S4' 的下一步** = 用同族取证法（分配点/ctor 写域/调用形态 ✓）定该槽的**真实目标方法** ✓
