@@ -55,3 +55,4 @@
 - [IDA 立即数是十六进制字面量](gotcha_ida_disasm_immediates_are_hex.md) — `push 424h` 被 `%s` 原样打印成 424 ⇒ 我据此"推翻"了正确的 1060 并写进台账；规则：一律 `int(x,16)` 且同时打印两形态，结论前回 asm 核对
 - [漏一个 global ⇒ "两阶段全或无"不存在](gotcha_missing_global_silently_disables_buffering.md) — `_BUFFER` 没写 `global` ⇒ 只建局部名 ⇒ 逐条直写；而"成对测试"因拒绝发生在校验阶段而变绿；规则：安全守卫必须落在唯一出口，测试必须让拒绝发生在被保护的那段
 - [先确认你量的是哪个状态](gotcha_measure_state_before_not_after_change.md) — 用"求变更"的工具诊断"变更前后"，在已应用状态下必得 Δ=0 ⇒ 本会话三次错误结论；规则：写结论前先声明数据是哪一刻的
+- [互锁不变式让局部修复净亏](gotcha_interlocking_invariants_block_local_fixes.md) — vtable 解析里 owner 文本同时是 `_drop_self_arg` 的输入、又与 stub 签名约定耦合 ⇒ 只修"owner 前缀截断"两轮各净增 17 条 C2660（两层各测一次）；规则：改被别处当输入的字符串前先找全部消费者；局部净亏 ⇒ 回退并立为独立项目

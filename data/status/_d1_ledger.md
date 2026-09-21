@@ -997,3 +997,27 @@ extrn ?UpdateTexture@gbTexture@@QAEXPAVgbImage2D@@@Z:dword      ← **extrn ⇒ 
 （`gbTexture.vtables` 只列了 4 个 slot：`0x1001BD30/0x1001BEA0/0x1001BF80/0x1001C010` ✗ ⇒ **slot 表不完整** ✗）
 ⇒ **下一步**：从 IDB/asm 取 `gbTexture` 的完整 vtable（含第 6 槽 ✓），确认该槽的真实方法名与签名 ✓，
 再判断那 22 条 C2440 属于**注解问题**（槽声明错 ✓）还是 **codegen 问题**（名字改写用错 ✓）。
+
+## #2（(a) 第三条 · owner 前缀丢失）—— **根因已定位，但"局部修复"净亏 ⇒ 回退并立为独立项目** ✓
+**病灶** ✗：生成代码丢 owner 前缀（`MainEquipUI.cpp:314` `pDebugTex->IsLoaded` ✗ · `SaleUI.cpp:591` · `LineupUI.cpp:2726`
+—— 而 `LineupUI.cpp:1977` 却有前缀 ✓ ⇒ **时有时无 = 缺陷签名** ✓）。
+**根因** ✓✓：owner 链正则**只认 `\w` 与 `->`** ✗（不认 `.` 与 `[...]` ✓），且**无锚点** ✗ ⇒ 对
+`this->me_Role[2].m_RoleAttCng[0].pDebugTex->__vftable` **从 `pDebugTex` 处起匹配** ✗ ⇒ owner 截断 ✓。
+**同款正则共 8 处** ✓：**2 处在 AST 层**（`stage3_cleanup.py:476` named-slot / `:500` raw-offset ✓ —— **决定真正发射的 owner** ✓）·
+6 处在 legacy 正则层（`:90 / 1078 / 1110 / 1138 / 1165 / 1189` ✓ —— **决定哪些调用被匹配** ✗）。
+**对照单测** ✓（纯函数 ✓）：旧 `owner=pDebugTex` ✗ → 新 `owner=this->me_Role[2].m_RoleAttCng[0].pDebugTex` ✓；
+病例 A（简单成员）两版**完全一致** ✓ ⇒ 修复本身**精确** ✓。
+### ✗ 但**两次独立实验都净亏 +17 条**（C2660）
+| 尝试 | 改动 | 结果 |
+|---|---|---|
+| 1 | legacy 层四处 owner 模式 | 2150 → **2167** ✗（C2660×15 ✗）|
+| 2 | AST 层两处 owner 提取（**只改 owner** ✓）| 2150 → **2167** ✗（C2660×10 ✗；C2065 100→96 仅赚 4）|
+**机制** ✓：**owner 文本同时是另两条不变式的输入** ✗ ——
+①`_drop_self_arg(args, obj)`（:610 附近）用 **owner 文本**判断哪个实参是 self ✓
+②**stub 形参表约定"对象指针放首位"** ✓（:494 注释 ✓）
+⇒ owner 变完整后 **self 实参终于被正确丢掉** ✓ ⇒ **参数比 stub 少一个** ⇒ **C2660** ✓✓
+⇒ **三条不变式互锁**：①owner 提取 ②self 实参丢弃 ③stub 签名约定 ⇒ **只改一条必破平衡** ✓。
+### 决策（基于证据 ✓，非畏错 ✓）
+**回退** ✓（两次实验均已还原 ✓，`pipeline/gen/` 回到 HEAD ✓）+ **立为独立项目** ✓：
+**范围 = 统一 vtable 解析子系统**（合并 AST 层与 legacy 层 ✓ · 统一 stub 签名与 self 实参约定 ✓ ·
+owner 提取支持 `.`/`[...]` ✓）；**不是**一次性小修 ✗。
