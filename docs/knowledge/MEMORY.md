@@ -63,6 +63,7 @@
 - [两层定位"是谁改写了我这行文本"](debug_two_layer_localization.md) — `sys.settrace` 行级追踪（钉死源码行）+ 代理该模块命名空间里的 `re`（打印真正生效的 pattern/repl/before/after）；配合"先禁用可疑解析器做二分"；本会话用它把上一轮的 12 次猜测换成 1 次定位
 
 ## Decisions
+- [用目标指标规划，不用代理指标](decision_goal_metric_over_proxy_metric.md) — **会话复盘**：13 次提交/2 次真实修复，`match_L1` 全程 **35 不变**（两次修复都落在 C1003 截断单元 ⇒ 不可见），而"只差 1 字节"的 3 个函数**一次都没被碰过**；规则：唯一进度指标 = `match_L1`，候选只取「绿单元 + pct≥80% + 编译/原始≥0.95」的近失清单，仪表工作必须先绑定测量目标
 
 ## References
 
