@@ -75,6 +75,74 @@ def _is_vftable_call(node):
     return False
 
 
+# ===== S1（2026-09-21）：owner 的**唯一表示**与**唯一渲染器** =====
+# 目的（见 docs/specs/2026-09-21-vtable-resolver-refactor-design.md §3/§4 的 S1 ✓）：
+#   把散落在 9 处正则里的"owner 文本"收拢为**一个类型**，并使**文本只在 render_owner 里产生** ✓
+# **S1 的硬要求：零字节变化** ✗ —— 因此本阶段的 render_owner **默认返回 raw**
+#   （即**复刻旧的截断行为**，包括它的 bug ✗）；结构化渲染留到 S2 显式启用 ✓
+#   （这正是 codex 复核的提醒：S1 若"顺手改对"就会立刻打破零字节铁律 ✓）
+class OwnerPath(object):
+    """owner 链：(raw 原文, accessors 结构化访问器列表)。
+
+    raw      —— 旧正则实际匹配到的文本（S1 用它 ⇒ 输出逐字节不变 ✓）
+    accessors—— [(name, subscript_or_None), ...]，为 S2 的语义修正准备 ✓
+    """
+    __slots__ = ('raw', 'accessors')
+
+    def __init__(self, raw, accessors=None):
+        self.raw = raw
+        self.accessors = accessors if accessors is not None else []
+
+    @classmethod
+    def from_match(cls, text):
+        """从旧正则的 group 文本构造（保持 raw 不变 ✓）"""
+        raw = (text or '').strip()
+        return cls(raw, _parse_accessors(raw))
+
+    def render(self):
+        """**唯一**产生 owner 文本之处 ✓ —— S1：返回 raw（逐字节不变 ✓）"""
+        return self.raw
+
+    def __str__(self):
+        return self.render()
+
+
+def _parse_accessors(raw):
+    """把 owner 文本解析成访问器列表（**只读、不改写** ✓；供 S2 使用）"""
+    out, i, n = [], 0, len(raw)
+    cur = ''
+    while i < n:
+        ch = raw[i]
+        if ch in '.>' or (i + 1 < n and raw[i:i+2] == '->'):
+            name = (cur or '').strip()
+            if name:
+                out.append((name, None))
+            cur = ''
+            i += 2 if raw[i:i+2] == '->' else 1
+            continue
+        if ch == '[':
+            j = raw.find(']', i)
+            sub = raw[i+1:j] if j > 0 else ''
+            name = (cur or '').strip()
+            out.append((name, sub) if name else ('', sub))
+            cur = ''
+            i = (j + 1) if j > 0 else i + 1
+            continue
+        cur += ch
+        i += 1
+    name = cur.strip()
+    if name:
+        out.append((name, None))
+    return out
+
+
+def render_owner(path):
+    """模块级唯一渲染入口 ✓（其余各处一律通过它取文本 ✓）"""
+    if isinstance(path, OwnerPath):
+        return path.render()
+    return str(path)
+
+
 def _try_resolve_vftable(expr):
     """Resolve (*(void (**)(Type*))(obj->__vftable + N))(args) → obj->Method(args).
 
@@ -494,9 +562,10 @@ def _decode_vtbl_call(call_node):
                     # stub 的形参表要把**对象指针**放首位（现有 `_vtbl_stub_names` 的约定）
                     params = 'void *' + (', ' + _plist if _plist and _plist != 'void' else '')
                     _synthetic_self = True
-        return {'obj': mn.group(1), 'method': mn.group(2), 'offset': None,
+        return {'obj': OwnerPath.from_match(mn.group(1)).render(), 'method': mn.group(2), 'offset': None,
                 'cls_hint': cls_hint, 'ret': ret, 'params': params,
-                'synthetic_self': _synthetic_self}
+                'synthetic_self': _synthetic_self,
+                'owner': OwnerPath.from_match(mn.group(1))}
     mo = re.search(r'(\w+(?:\s*->\s*\w+)*)\s*->\s*__vftable\s*(?:\+\s*(\d+))?', text)
     if mo:
         return {'obj': mo.group(1), 'method': None,

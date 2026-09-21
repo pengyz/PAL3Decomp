@@ -1259,3 +1259,20 @@ this->me_Role[1].…m_ptex[3]->CreateFromMemory(
 ⇒ **两种形态来自**两条不同代码路径**** ✓✓，且**每条路径的形态与自己的约定自洽** ✗
 ⇒ **⇒ 单条路径上的归一是结构上不可能的** ✓✓ ⇒ **只有"统一约定"能解** ✓（= rev1 的方向 ✓，**现已有完整证据 ✓**）
 **⇒ 已回退** ✓（`pipeline/gen` 回到 HEAD ✓）
+
+## ✅ S1 完成（owner 的唯一表示 + 唯一渲染器）—— **零字节验收通过（作用域内 ✓）**
+**改动**（`pipeline/gen/stages/stage3_cleanup.py`，71 insertions ✓）：
+- 新增 **`OwnerPath`**（`raw` 原文 + `accessors` 结构化访问器列表 ✓）与 **`render_owner()`**（**唯一**产生 owner 文本之处 ✓）
+- AST 层 `_decode_vtbl_call` 的返回增加 `'owner': OwnerPath` ✓（`'obj'` 仍为 `render()` 结果 ⇒ **文本不变** ✓）
+- **S1 铁律已遵守** ✓：`render()` **默认返回 raw** —— 即**复刻旧的截断行为（含 bug）** ✗
+ （codex 复核的提醒：S1 若"顺手改对"会立刻破零字节铁律 ✓）
+**验收**（新鲜 A/B ✓）：等恢复链结束 → 快照 `pal3/src` → 重建 → `diff -rq` ✓
+⇒ **仅 2 个文件不同：`globals.cpp` / `globals.h`** ✗ —— **二者均非 `stage3_cleanup` 产出** ✓
+⇒ **所有 class .cpp 逐字节相同** ✓✓ ⇒ **S1 在其作用域内通过** ✓
+### ⚠️ 顺带发现（独立问题 ✓，与 S1 无关）
+`globals.cpp`/`globals.h` 的**全局变量集合/顺序**在两次 codegen 间**不稳定** ✗
+（一版 26 行、另一版 30 行 ✓；样例 `dword_D8C708` 等 ✓）⇒ 疑为**生成顺序非确定性** ✗
+⇒ **记录为待查** ✓（它会影响"逐字节 A/B"这类验收的可判定性 ✓）
+### ⇒ S2 的前置已具备 ✓
+`OwnerPath`/`render_owner` 已就位 ✓ ⇒ S2 = **`render_owner` 支持 `.`/`[...]`（改语义 ✓）+ `_drop_self_arg` 剥 `&`（H6 ✓）
++ **两条路径的约定统一** ✗** —— 且必须**同批** ✓（批 J 已证明单路径归一结构上不可能 ✓）
