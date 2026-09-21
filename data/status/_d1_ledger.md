@@ -2107,3 +2107,10 @@ IDA Pro MCP 二进制校验可用并用于 5 项校验 ✓ · 识别并仪表化
 2. **二分定位那 0x28 亏空**（+0x124 → +0xE0E0 之间某个成员被发小）⇒ 修后 `ClearInactiveRoles`(94.8%, 3 处 −0x24) 预期 **L1 +1**
 3. **建 `tools/check_layout_invariants.py` 门禁**（编译器 oracle，逐类逐成员；advisory→hard）⇒ 防复发
 4. 之后**重新筛 partial**：统计"落在漂移类里"的 partial 有多少 ⇒ 这才是本 bug 的真实爆炸半径 ✓
+
+## 9. ⚠️ 纪律补充：在**实验态**上跑管线会污染受跟踪的状态文件
+本次为验证布局因果，在"删掉虚析构"的生成物上跑了 `probe`+`match` ⇒
+`data/status/{s4_baseline.json, s4_diff_detail.json, baselines/latest.json, pal3_registry.jsonl}`
+**被写成实验态的值** ✗（受跟踪 ⇒ 会污染基线）。
+处置：按回退纪律 `git show HEAD:<path> > <path>` 逐个还原 ✓，生成物也还原 ✓，树已干净 ✓
+⇒ **规则**：任何"在改过的生成物上跑管线"的实验，结束后必须还原这 4 个状态文件（或先记下再还原）。
