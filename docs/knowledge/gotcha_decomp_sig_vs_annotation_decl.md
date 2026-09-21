@@ -1,6 +1,6 @@
 ---
 name: gotcha-decomp-signature-vs-annotation-declaration-can-disagree
-description: store.method_sigs（decomp 侧签名）与生成头（注解侧声明）会不一致 —— 以它为元数依据的改写会同时误伤调用点与**函数定义头**；实测两处独立误伤、净效应 0
+description: 不是"两套模型"而是"同一模型的副本缺归一化"——decomp 侧签名 99.2% 带显式 this（元数虚高 1），且 method_sigs 用裸名 key + setdefault 使重载塌缩（DelTask 2参/3参互相覆盖）⇒ 以它为元数依据的改写会同时误伤调用点与函数定义头
 type: gotcha
 created: 2026-09-21
 updated: 2026-09-21
@@ -35,6 +35,28 @@ NPC::UpdateAnim((NPC *)(v3 + 156304));                      // 声明 void Updat
 
 > ⚠️ 注意：带①误伤时的「C2660 −30」是**假象** —— 损坏把一批 C2660 变成了别的错误码。
 > 撤下前必须看**总错误**与**逐码净增减**，不能只看目标错误码。
+
+## ⚠️ 更正（2026-09-21 当晚，同一会话内进一步取证）
+
+初版把它写成"**decomp 模型 ≠ 注解模型**（两条独立数据链）" ✗ —— **不准确**。逐字取证后：
+
+| 事实 | 证据 |
+|---|---|
+| decomp 签名**一律带显式 `this` 形参** | `__thiscall` 签名 **3090/3116 = 99.2%** 首参形如 `Cls *this`（其余 26 条首参名为 `Block`/`parent`/`int this`，**仍是 this 槽**）|
+| `method_sigs` **按裸名索引 + first-overload-wins** | `data.py` 装载处注释原文：`index by the bare "Cls::M"; first overload wins (best-effort)`，用 `setdefault` |
+| **生成头把 `this` 正确剥掉了** | 注解 `bool __thiscall(CCBStage *this, int nIndex)` → 头 `bool DelTask(int nIndex);` ✓ |
+| 于是**两份文本的差异只是"归一化"** | `char *__thiscall(CCBStage *this, int, _BYTE*, int*)` → 头 `char * DelTask(int, _BYTE*, int*)`（3 参）✓ |
+
+**真正的两个缺陷都在 `method_sigs` 这一份副本上**，与"注解模型"无关：
+
+1. **元数虚高 1**：签名含 `this` 槽 ⇒ 文本元数 = 真实形参数 **+ 1**（99.2% 的 `__thiscall`）；
+2. **重载塌缩**：裸名 key + `setdefault` ⇒ 同名重载互相覆盖（`CCBStage::DelTask` 的
+   1 参与 3 参两个重载只留一个）⇒ 消费者无法知道"有哪些元数"。
+
+⇒ **结论修正**：不是"元数必须取注解声明"，而是"**元数必须取一份已归一化的声明**"——
+生成头/头生成器那份是对的，`method_sigs` 那份缺归一化。
+⇒ **不要新建平行表**（那会成为**第三份副本**，正是本会话诊断出的病）；
+应在**既有 loader 上**补：`__thiscall` 剥首参 + 记录**元数集合**（不覆盖既有 `method_sigs`，避免 3 个既有消费者受影响）。
 
 ## **为什么**
 
