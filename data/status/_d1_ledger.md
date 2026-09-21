@@ -1893,3 +1893,46 @@ m_pfather->ShowWindow(&this->m_ani.m_pfather, 1);              // ← 病灶
    ⇒ `((Cls *)this_expr)->M(rest)` 改写**不需要新表、不需要 `method_sigs`** ✓（F3b 阻塞在此消解）
 2. **[C]③ 38 条类型丢失**：需 IDA 取证（逐条看是否真是成员、还是 static）
 3. **[B] 90 处显式 `_this` 形参**：ABI 正确性审查（逐条判"该归属到哪个类"）
+
+---
+
+# 2026-09-21（第七轮）：F5 寄存器族——**第一性分析后否决**（附 MCP 汇编证据）
+
+## 1. 使用者两条指令
+* "可以用 ida mcp 读取二进制，从汇编层做对比" ⇒ 已做（见 §2）。
+* 先做第一性分析：Hex-Rays 为何输出寄存器？能否被 codegen 正确还原？做不到字节一致就不要做。
+
+## 2. MCP 汇编层证据链
+
+| 命题 | 证据 | 结论 |
+|---|---|---|
+| IDB 签名对不对 | `export_funcs`：5 个函数全是 `void __thiscall(RoleSystem *this, …)` | **正确** ⇒ 不是签名问题 |
+| `_ESI` 是什么 | `0x00411E00` 序言 `411e08 mov esi, ecx`；**全程仅此一次写 ESI**（另两次 `pop esi` 出口恢复）| **`_ESI` ≡ `this`** ✓ |
+| 逐函数来源 | 11 个含伪寄存器函数：`ESI=this` **8** · `EDI=this` **1** · 非 this **2**（`PAL3::Update`）| **必须逐函数取证**，不能全局假设 |
+| 为何 Hex-Rays 不折回 this | 函数内 6 个 call ⇒ 寄存器跨调用存活；签名已正确 | **Hex-Rays 变量分析局限** |
+
+⇒ **正确修法 = 替换为 `this`**（等价、即源码原貌）；
+**我上一轮提的"声明局部 `RoleSystem *_ESI`"是伪造** ✗（源码无此变量 ⇒ 额外存/取 ⇒ 字节不可能一致）——已撤回。
+
+## 3. 字节判定实验（scratch TU）——**实验本身证明了"不该做"**
+
+做法：把 `RoleSystem::ApplyMoveStep` 单独放入 TU，`_ESI`→`this`、临时量（`_EAX`=float*、`_ET1`=float）
+声明为局部，`#undef` 相关宏，用管线的 `/O2 /Ob2 /Oi /Ot /Oy /GF /Gy /GX /GR /MD /Gd` 编译，准备用
+`gbengine_compare.parse_coff_obj` + `compare_bytes` 与 `0x411E00`（size `0x156`）比对。
+
+**结果：函数无法编译** ⇒ 寄存器族修好后**立刻新增**
+`C2094 label 'var_C'/'var_10'/'var_4'… was undefined`（内联 `__asm` 的栈帧名）。
+
+**而真实文件编译时 `C2094` 为 0 条** ⇒ 该族**一直潜伏**，被 102 条寄存器错误
+**遮蔽**（MSVC 错误恢复跳过了 asm 检查）✓
+
+⇒ **"−150 条可见错误"是假位移**（修 A 族揭 B 族），且**字节判定拿不到**（函数仍不可编译 ⇒ 无法 `match`）✗
+
+## 4. 结论（按使用者判据：字节一致 > 不报错）
+**F5 不做**（至少不作为"减少错误数"的项目做）。要做的前提是：
+把**单个函数**的**所有**潜伏族一并修到能编译 ⇒ 让 `match` 给出**字节读数** ⇒ 再迭代字节。
+**做不到字节判定就不要做。** ✓ 已入库：`gotcha_register_pseudovar_provenance_first`
+
+## 5. 本轮状态
+* 未改任何 codegen/annotation（仅 `/tmp` 实验 + 知识/台账）✓
+* 待办：IDA MCP 会话（`f703cd44`）仍持有工作 IDB ⇒ 要跑 `apply`/`export` 前需 `idb_close`。
