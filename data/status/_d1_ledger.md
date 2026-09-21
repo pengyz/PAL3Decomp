@@ -2029,3 +2029,57 @@ IDA Pro MCP 二进制校验可用并用于 5 项校验 ✓ · 识别并仪表化
 ## 4. 立刻可做的目标推进（预计 **L1 35 → 38**，+3）
 `AStarPathFinder::FindInOpen` · `FindInClosed`（各 n_diff=1，寄存器选择）·
 `UINote::GetEntryPtr`（n_diff=1，结构/归属）→ 再做 `ClearInactiveRoles`(3) · `UpdateAudioListener`(4) · `_todo_421870`(4) …
+
+---
+
+# 2026-09-21（第十轮）：**发现系统性根因 —— 生成头实际布局 ≠ 注解偏移**
+
+## 1. 起点：从"3 个近失"往里挖
+按近失清单取 `SceneMgr::ClearInactiveRoles`（58B，n_diff=3）做**逐指令对比**（MCP 原始 vs objdump 我们）：
+
+| 地址 | 原始 | 我们 | 差 |
+|---|---|---|---|
+| `423505` | `mov ecx,[eax+0E0E0h]` | `[eax+0E0BCh]` | **−0x24** |
+| `423512` | `lea ecx,[eax+0E35Ch]` | `[eax+0E338h]` | **−0x24** |
+| `423527` | `mov esi,[eax+0E0E0h]` | `[eax+0E0BCh]` | **−0x24** |
+| 其余 | **逐字节相同** ✓ | | |
+
+且 `0xE0E0 + 0x27C(=159*4) = 0xE35C` ✓ 与源码 `&m_nRoleCount + 159` 完全吻合。
+
+## 2. 层判定（R16）：**注解是对的，生成布局错了**
+* 注解 `SceneMgr.json`：`"57568"` = **0xE0E0** ✓（`source: binary:*((_DWORD*)this+14392)`）
+* 生成头 `SceneMgr.h:195`：`int m_nRoleCount; // +0xE0E0` ✓（注释也对）
+* **但编译器实际把它放在 0xE0BC** ✗ ⇒ **是生成头/布局这一层**
+
+## 3. 编译器裁判：布局漂移是**系统性**的
+判定手段：逐成员 `char c[N][offsetof(Cls, m) == 0x<注解偏移> ? 1 : -1];` ⇒ 编译，C2118 即不匹配。
+
+| 类 | 成员数 | 不匹配 | 首个不匹配 |
+|---|---|---|---|
+| `SceneMgr` | 169 | **101（60%）** | `m_pGfxMgr`（+0x0）⇒ **从头就偏** |
+| `Scene` | 21 | 7（33%） | `_gap_784E4` |
+| `RoleSystem` | 192 | 22（11%） | `_gap_F20` |
+| `CGameData` | 177 | **0 ✓** | — |
+| `UIWnd` | 10 | **0 ✓** | — |
+
+**两个具体成因**：
+1. **注入 `virtual ~Cls() {}`**（32 个类）——其中 `SceneMgr` 注解 **`vtables: null`** ⇒ 编译器插 vptr ⇒ 全员 +4 ✗
+   （另 30 个类注解本有 `vtables`，需逐个核对）
+2. **成员被发小**：`m_nRoleCount` 注解 0xE0E0 / 实际 0xE0BC ⇒ 除 vptr(+4) 外还有 **−0x28** 亏空
+
+## 4. 严重性
+漂移点之后**每个成员访问都是错误位移** ⇒ 该类函数**不可能 L1** ✗；而**现有门禁看不见**
+（`codegen_invariants[D]` 只看"注解有 vtables 但 +0x0 非 vptr"，`check_member_extent` 只看"成员末端 < binary_size"）
+⇒ 很可能解释 **198 条 partial 的一大批**共同原因 ✓
+
+## 5. 本会话我自己第 3/4 个度量错误（记录）
+* `s4_diff_detail.json` 的 `compiled_len` 是**截断到原始 size 的切片长度** ⇒ 我据此算的"结构完整性 ratio"**无效** ✗
+  （`match_pct`/`n_diff` 不受影响 ✓）
+* 首轮字节比对**未排除重定位** ⇒ `E8 00 00 00 00` / `A1 00 00 00 00` 全是噪声 ✗（传 `relocs` 后消失）
+* 逐成员检查的**行号映射差 1**（includes 占 1-3 行）⇒ 一度把"首个不匹配"报成 `m_pSceneRoot` ✗
+
+## 6. 下一步（先验证因果，再投资 —— 本会话教训）
+1. **验证**：只修 `SceneMgr` 的布局（去掉注入的虚析构 / 修被发小的成员）⇒ 跑 `loop` ⇒
+   看 `SceneMgr.cpp` 的 partial 是否有**字节改善**；改善了才铺开 ✓
+2. **建门禁** `tools/check_layout_invariants.py`（编译器 oracle，逐类逐成员；advisory → hard）
+3. 之后才回到近失清单的逐条修补

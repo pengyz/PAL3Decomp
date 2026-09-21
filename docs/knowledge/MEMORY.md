@@ -7,6 +7,7 @@
 - [gbui 七槽 vtable 继承链](arch_gbui_seven_slot_vtables_inheritance_chain.md) — gbui 家族 vtable 的槽位与继承链关系
 
 ## Gotchas
+- [生成头实际布局 ≠ 注解偏移](gotcha_emitted_layout_drifts_from_annotated_offsets.md) — 用编译器 `offsetof` 裁判：**SceneMgr 101/169(60%)**、Scene 7/21、RoleSystem 22/192 不匹配 （CGameData/UIWnd 为 0 ✓）；成因含注入 `virtual ~Cls(){}` 带来非预期 vptr（SceneMgr 注解 vtables:null）+ 成员被发小；**漂移点之后每个成员访问都是错误位移 ⇒ 该类的函数永不可能字节一致**，而现有门禁看不见 ⇒ 应建 `check_layout_invariants`
 - [寄存器伪变量：先查来源指令，且"修一族 ≠ 有收益"](gotcha_register_pseudovar_provenance_first.md) — MCP 汇编校验：`mov esi,ecx` ⇒ `_ESI` **就是 `this`** ⇒ 应**替换为 `this`**（声明局部是**伪造**）；且修掉该族会**揭开**被遮蔽的 `C2094`（asm 栈帧名）⇒ "−150 错误"是假位移、**字节判定拿不到** ⇒ 判据是字节一致而非不报错
 - [`__thiscall` 的自由函数 = 模型错误，且对错误指标不可见](gotcha_thiscall_free_function_is_model_error.md) — 自由函数不可能有 `this`（**归属错**：28 纯重复发射/11 类型=类名/38 类型丢失，或**签名错**）；codegen 发成 `__cdecl` 自由函数 ⇒ **ABI 错 ⇒ 字节永不匹配**，而**编译错误指标看不见**（合法代码）；**已用 IDA Pro MCP 二进制校验**（IDB 里确为 `__thiscall`；`0x00532E10` 名字就是自由名 ⇒ 非陈旧 JSON）；审核工具 `tools/audit_this_in_free_functions.py`
 - [annotation authored names are claims not evidence](gotcha_annotation_authored_names_are_claims_not_evidence.md) — (无 description)
