@@ -2,61 +2,80 @@
   "name": "UIPushButton",
   "binary_size": 248,
   "known_members": {
-    "68": {
-      "name": "m_isDown",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "72": {
-      "name": "m_texarrayInfo",
-      "type": "_PlugInfo *[2]",
-      "source": "annotation"
-    },
-    "80": {
-      "name": "m_bOn",
-      "type": "BYTE",
-      "source": "annotation"
-    },
-    "84": {
-      "name": "m_onpic",
-      "type": "gbTexture *",
-      "source": "annotation"
-    },
-    "88": {
-      "name": "m_onpicInfo",
-      "type": "_PlugInfo *",
-      "source": "gen_headers_9.2"
-    },
-    "92": {
-      "name": "m_disablepic",
-      "type": "gbTexture *",
-      "source": "gen_headers_9.2"
-    },
-    "96": {
-      "name": "m_disablepicInfo",
-      "type": "_PlugInfo *",
-      "source": "gen_headers_9.2"
-    },
-    "228": {
-      "name": "m_TextTopOffset",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "100": {
-      "name": "m_caption",
-      "type": "char[128]",
-      "source": "pdb_fill_incomplete"
-    },
-    "236": {
-      "name": "m_nTodo_0EC",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
     "0": {
       "name": "__vftable",
       "type": "void *",
-      "source": "annotation",
-      "note": "2026-09-21 拆名：本类拥有 vtable 0x56AD88（钉死复核 f314ccac）⇒ 按同族约定（UIWnd/UIStatic 均有 offset0 __vftable）补齐 vptr 声明 ✓"
+      "source": "annotation"
+    },
+    "68": {
+      "name": "m_isDown",
+      "type": "unsigned char",
+      "source": "pdb+asm写域"
+    },
+    "69": {
+      "name": "m_isCtrl",
+      "type": "unsigned char",
+      "source": "pdb+asm写域"
+    },
+    "70": {
+      "name": "m_mouseoff",
+      "type": "unsigned char",
+      "source": "pdb"
+    },
+    "72": {
+      "name": "m_fontcolor",
+      "type": "gbColorQuad",
+      "source": "pdb"
+    },
+    "76": {
+      "name": "m_fonttype",
+      "type": "gbFontType",
+      "source": "pdb+asm(写整数1@0x4C)"
+    },
+    "80": {
+      "name": "m_state",
+      "type": "UIPUSHBUTTON_STATE",
+      "source": "pdb+asm(清0@0x50)"
+    },
+    "84": {
+      "name": "m_texarray",
+      "type": "gbTexture *[2]",
+      "source": "pdb+asm(清2个dword@0x54/0x58)"
+    },
+    "92": {
+      "name": "m_texarrayInfo",
+      "type": "_PlugInfo *[2]",
+      "source": "pdb+asm(清2个dword@0x5C/0x60)"
+    },
+    "100": {
+      "name": "m_bOn",
+      "type": "unsigned char",
+      "source": "pdb"
+    },
+    "104": {
+      "name": "m_pOnpic",
+      "type": "gbTexture *",
+      "source": "pdb(四指针之一)"
+    },
+    "108": {
+      "name": "m_pOnpicInfo",
+      "type": "_PlugInfo *",
+      "source": "pdb"
+    },
+    "112": {
+      "name": "m_pDownpic",
+      "type": "gbTexture *",
+      "source": "pdb"
+    },
+    "116": {
+      "name": "m_pDownpicInfo",
+      "type": "_PlugInfo *",
+      "source": "pdb"
+    },
+    "120": {
+      "name": "m_caption",
+      "type": "char[128]",
+      "source": "pdb+asm(rep stosd 0x20 自 0x78 = 128 字节)"
     }
   },
   "base_class": [
@@ -225,5 +244,6 @@
       ]
     }
   ],
-  "binary_size_source": "钉死复核 f314ccac：原生锚 push 0F8h + call sub_440740（3 处真 new）⇒ 248；且 PDB UIPushButton size=252 ⇒ PAL3 = 252−4 = 248（与 UIStatic 152=160−8 同属\"PAL3 少尾部字段\"模式）✓。⚠️ 本文件的 known_members 仍待重排（m_caption 记在 100 而真值 0x78=120；缺 0x4C/0x50/0x54/0x5C）—— 需独立取证，未在本批混入 ✗。"
+  "binary_size_source": "钉死复核 f314ccac：原生锚 push 0F8h + call sub_440740（3 处真 new）⇒ 248；且 PDB UIPushButton size=252 ⇒ PAL3 = 252−4 = 248（与 UIStatic 152=160−8 同属\"PAL3 少尾部字段\"模式）✓。⚠️ 本文件的 known_members 仍待重排（m_caption 记在 100 而真值 0x78=120；缺 0x4C/0x50/0x54/0x5C）—— 需独立取证，未在本批混入 ✗。",
+  "known_members_source": "2026-09-21 重排（钉死复核 f314ccac 的 #3 项 ✓）：依据 PAL3A PDB `UIPushButton`(252) 字段表 + **PAL3 asm 的 ctor 写域逐项吻合**（两字节写@0x44/0x45 ✓、dword 1@0x4C=m_fonttype ✓、清 0x54/0x58/0x5C/0x60 = gbTexture*[2]+_PlugInfo*[2] ✓、**rep stosd 0x20 自 0x78 = char[128] m_caption** ✓）⇒ 末端 0xF8 = **248** ✓✓ （PAL3 无尾部 m_TextTopOffset ⇒ 248 = PDB 252 − 4 ✓）。原表的名字整体错位 ✗（如 72 记作 m_texarrayInfo，应 m_fontcolor@0x48 ✓）。"
 }
