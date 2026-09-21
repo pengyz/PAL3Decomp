@@ -1073,3 +1073,48 @@ owner 提取支持 `.`/`[...]` ✓）；**不是**一次性小修 ✗。
 **这是全部后续设计的地基** ✓：若主因不是 H1 ⇒ **"S2 三项必须同批"这条铁律站不住** ⇒ R3 的设计选择本身都要重估 ✓。
 **必须补的实验**：①该判别实验 ✓ ②抽 5–10 个真实 `pal3_vtbl_unk_*` 站点核 `cls_hint` vs `ctx.cls_name` 是否一致 ✓
 （决定 R3 是否一开工就卡住 ✓）③S1 等价性验证脚本（`/tmp` 一次性 ✓）
+
+# ⛔ vtable 重构规格 · codex 路复核：**驳回** ✗ —— 与 kiro 实质一致，且找到**两处新的硬事实**（我已抽验 ✓）
+
+## 一、codex 的裁定与 blocker（3 条）
+**裁定：驳回** ✗。blocker：
+1. **P2 因果链错误** ✗（与 kiro **独立一致** ✓）——`_drop_self_arg` 只在已解析分支（`:624-627` ✓），
+ stub 分支直接 `_callargs = ', '.join(args)`（`:645-651` ✓）**根本不经过它** ✓；
+ 且 **`/tmp` 纯函数实测**：unresolved stub 的旧/新 owner 输出**完全相同** ✓（`pal3_vtbl_unk(..., this->A[2].B[0].p, 7)` ✓）；
+ 而 **resolved** 路径旧→新是 `p->Bar(this->A[2].B[0].p, 7)` → `this->A[2].B[0].p->Bar(7)` ✓
+ ⇒ **owner 修复使 resolved 正确丢 self**（方向与我的叙述**相反** ✗）；
+ 且**病灶本身反证 P2** ✗：`MainEquipUI.cpp:314` 首参是 `&this->…pDebugTex` ✓，而 `_drop_self_arg`（`:604-613` ✓）
+ **只剥 cast、不剥 `&`** ✗ ⇒ owner 变完整后**仍不会丢**该参数 ✓
+ ⇒ **两次 +17 是相关性证据，不是该机制的证据** ✓
+2. **R3 不可执行** ✗ —— 成员 stub 需把声明放进对象类型/接口 ✓，但规格声称**唯一改动目标是 `stage3_cleanup.py`** ✗
+ （现 stub 是**每 TU `static` 自由函数** ✓，`:572-574 / :691-705` ✓）⇒ **补 header emitter 设计，或降级为显式自由 thunk** ✓✓
+3. **验收不安全** ✗ —— 须补**固定快照** ✓ + **当场读取** ✓ + `new_failures=0 / new_errors=0 / increased_codes=[] / **C1003 单元不恶化**` ✓
+
+## 二、codex 的 major（含**两处新硬事实**，我已抽验 ✓✓）
+- **`:90` 是死代码** ✓✓：`_try_resolve_vftable`（带 vf ✓）**只有定义、无任何调用点** ✓
+ （legacy 实际用的是 `_try_resolve_vtable` ✗ —— 名字不同 ✓）⇒ **应直接删** ✓
+- **`probe_compile.py` 在编译失败时**不**返回非零** ✓✓（`main()` 末尾无 return ✓，`:252-260` ✓）
+ ⇒ **`probe` 的非零来自 regression detector** ✓ ⇒ 验收须写清 ✓
+- **我写的 L1=34 陈旧** ✓✓：`s4_baseline.json` = **38** ✓（live match 才是 34 ✓）⇒ 必须写明以哪个为准 ✓
+- **工作区已被我污染** ✓✓：`M data/status/baselines/latest.json` + 3 个 untracked ✓（fix_g/fix_i 遗留 ✓）
+ ⇒ **已清理** ✓（latest.json 还原 HEAD ✓；3 个快照移 `/tmp/polluted_baselines/` ✓）
+- 同款 owner 正则为 **9 处** ✓（漏 `:1194` ✓，与 kiro 一致 ✓）；且 **职责分类错** ✗：
+ `:90` 死代码 ✓ · `:1165/:1189/:1194` 是**后处理/已转换调用的 cleanup** ✓，不是"决定匹配集合" ✗
+- **R1 自相矛盾** ✗：`_decode_vtbl_call` 仍在 **node 文本上跑 regex** ✓（`:449/:476` ✓）⇒ "只用 AST" 不成立 ✗；
+ 且**未定义嵌套调用的 `covered` 策略** ✓（`:676-681` ✓）
+- **R4 覆盖不足** ✗：须含 `&owner` ✓ · cast ✓ · 指针层级 ✓ · **`synthetic_self`** ✓ · **varargs fallback** ✓（`:653-673` ✓）
+- **S1 须新鲜 A/B** ✓（比可能陈旧的 `pal3/src` **无效** ✗）；`render_owner` 必须保留旧空白与 `->` spelling ✓
+- **S2 可带 gate 三段切** ✓（①结构化+单测零输出 ✓ ②stub 约定与 self 同时启用、**复杂 owner 先 gate 为 unsupported** ✓ ③再启用复杂 owner ✓）
+- **R5 缺 parity corpus** ✓（仅看 `__vftable` 残留总数不足 ✗）
+- minor：P4 应改"顺序明确但职责重叠" ✓ · P5 应说明 AST 已做少量 cast/空白归一 ✓
+
+## 三、两路复核的**一致结论**（独立得出 ⇒ 强证据 ✓✓）
+| 议题 | kiro | codex |
+|---|---|---|
+| P2 因果链 | 证伪 ✗ | 不成立（blocker）✗ |
+| R3 成员化 | blocker ✗ | 不可执行 ✗ |
+| 验收口径 | 不足 ✗ | 不安全 ✗ |
+| S2 可切分 | ✓ | ✓（带 gate，更具体）|
+| S1 须新鲜 A/B | ✓ | ✓ |
+| 同款正则 | **9** ✓ | **9** ✓ |
+| 裁定 | 有条件批准 | **驳回** |
