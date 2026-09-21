@@ -983,3 +983,17 @@ extrn ?UpdateTexture@gbTexture@@QAEXPAVgbImage2D@@@Z:dword      ← **extrn ⇒ 
 若二进制调用点**确实读 `eax`** ⇒ 说明存在**另一个**返回非 void 的 `UpdateTexture`（重载/不同类 ✓），
 若**不读** ⇒ 那是 **codegen/Hex-Rays 的产物** ✗ 需在 codegen 侧处理 ✓。
 **⇒ 判据**：看 `asm:244390` / `asm:244719` 调用点**之后**是否使用 `eax` ✓（本行为下一步 ✓）。
+
+## #2（(a) 第一条）修正尝试：**对象错了** ✗（但修正是对的 ✓）—— 指标中性
+**已做**：把 `gbTexture.UpdateTexture` 的 6 参声明改为真实的 **`void(gbImage2D *)`** ✓
+（A 级证据 ✓：asm extrn + 重整名 `QAEX…` + 两调用点不用 `eax` ✓）。
+**结果**（fix_d 全链 ✓）：`check/apply/export/probe` **全 0** ✓ · `新失败 0` ✓ · **`真新增 0`** ✓ ·
+**`错误收敛 0`** ✗（**22 条 C2440 未消失** ✗）· 指标与批前**完全一致** ✓（S2 75/205 · 2150 · L1 34 ✓）
+**⇒ 为什么没用** ✓✓：复核者原文指出那 22 条来自
+`result = (*((int(__thiscall**)(...))m_ppic->__vftable + **6**))(...)` ⇒ codegen 改写为 `m_ppic->UpdateTexture(1000,0,0)`
+——**调用的是 `__vftable + 6`（第 6 槽）** ✗，而我修的是 `gbTexture.vtables` 的 **`0x1001BEA0`（第 1 槽）** ✗
+⇒ **不是同一个方法** ✓ ⇒ 我的修正对象错了 ✓（**该修正本身有据、是正确性改进 ✓，保留** ✓，但它不解决那 22 条 ✗）。
+**⇒ 修正后的目标** ✓：需要先**定出 `gbTexture` vtable 第 6 槽的地址与其真实方法** ✓
+（`gbTexture.vtables` 只列了 4 个 slot：`0x1001BD30/0x1001BEA0/0x1001BF80/0x1001C010` ✗ ⇒ **slot 表不完整** ✗）
+⇒ **下一步**：从 IDB/asm 取 `gbTexture` 的完整 vtable（含第 6 槽 ✓），确认该槽的真实方法名与签名 ✓，
+再判断那 22 条 C2440 属于**注解问题**（槽声明错 ✓）还是 **codegen 问题**（名字改写用错 ✓）。
