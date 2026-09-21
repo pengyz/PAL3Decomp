@@ -1363,3 +1363,20 @@ pal3/src/Render/TextureLib.h:75
 **或**在 codegen 侧把该调用**改写为不撞名的形式** ✓（限定名 / 强转后调用 ✓）
 **⇒ R16 的示范** ✓：**先问"编译器看到的是哪个声明"（只读 grep ✓），再动手** ✗ —— 一步定位 ✓；
 而我 5 轮（S0-b/批J/S2×3/①+②）**都在没有这个问题答案时动手** ✗
+
+## ✗→✓ 两处更正（只读问答 ✓，再次推翻我的机制 ✗）
+### Q1：**`gbTexture` **不**继承 `TextureLib`** ✗（我说的"经继承撞名"错 ✗）
+```
+gbTexture.base_class = ['gbResource']  ✗（非 TextureLib ✓）| base_size=24 | size=84
+gbTexture.methods = 4 个（全为槽位编码 0x1001xxxx ✓），含 CreateFromMemory（注解仍为 6 参 ✓）
+```
+**⇒ 因此"编译器经继承找到 3 参版本"不成立** ✗ ⇒ **⇒ `(*p_pDebugTex)` 的注解类型必然是 `TextureLib *`** ✗✓
+⇒ 于是 `TextureLib*->CreateFromMemory(0)` 只匹配 **3 参**版本 ⇒ **C2660** ✓✓
+**⇒ 真根因修正** ✓✓：**某个指针成员的注解类型写成 `TextureLib *`** ✗（实为 `gbTexture *` ✓ 或本应调另一个方法 ✓）
+### Q2：**槽位编码的方法**是**会**发射声明的** ✓（我上轮"不发射"的推断无依据 ✗）
+`emit_headers.py`：`:1600 # Virtual methods from vtable` ✓ · `:1630 # Also include known_methods from annotation as vtable methods` ✓ ·
+`:1642 if own_slots and not base_names:` ✓ ⇒ **vtable 方法会发射** ✓
+### ⇒ 下一个**只读**问题（决定修复 ✓）
+**哪个成员的注解类型是 `TextureLib *`** ✗？—— 在**那 33 个靶子站点**的接收者链上找 ✓
+（例：`(*p_pDebugTex)` 中 `p_pDebugTex` 的声明类型 ✓；`MainEquipUI.cpp:1341` 等 ✓）
+⇒ 若确为 `TextureLib *` ✗ ⇒ **修该成员类型为 `gbTexture *`** ✓（**注释侧、单点、有据 ✓**）
