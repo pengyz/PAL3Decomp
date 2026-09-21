@@ -1341,3 +1341,25 @@ this->me_Role[1].…m_ptex[3]->CreateFromMemory(
 | 合计 | — | — | **43 条新 C2660 全消** ✓ ⇒ **净收益转正** ✓ |
 **⇒ 关键教训** ✓：前 4 轮我**默认病灶在 codegen** ✗ ⇒ 一直在错的地方打转 ✓；
 **本次枚举（看实参个数）一步定位** ✓✓ ⇒ **R16**：**先判定"病灶在哪一层"（注释 / codegen），再动手** ✓
+
+## 🎯🎯🎯 真根因：**两个不同函数同名** ✓✓（①+② 零效果的原因 ✓；R16 的正确用法示范 ✓）
+**只读定位** ✓：`grep -rn CreateFromMemory pal3/src/ | grep '\.h:'` ⇒ **唯一声明**是
+```
+pal3/src/Render/TextureLib.h:75
+    gbTexture * CreateFromMemory(_BYTE *pData, int nSize, char nFormat);   // 0x004A6CA0（真实地址 ✓）
+```
+⇒ **`gbTexture::CreateFromMemory`（槽位编码 `0x1001BD30` ✗）**没有**任何发射的声明** ✗
+| 函数 | 地址 | 参数 | 来源 |
+|---|---|---|---|
+| **`gbTexture::CreateFromMemory`** ✓ | `0x1001BD30`（**槽位编码** ✗）| **1 参**（int 标志 ✓）| **DLL/gbengine 的虚函数** ✓ |
+| **`TextureLib::CreateFromMemory`** ✗ | `0x004A6CA0`（**真实地址** ✓）| **3 参** ✓ | **本 exe 的函数** ✓ |
+**⇒ 机制** ✓✓：生成代码写 `(*p_pDebugTex)->CreateFromMemory(0)` ✗（`(*p_pDebugTex)` 是 `gbTexture*` ✓）；
+编译器在 `gbTexture`（**继承自 `TextureLib`** ✓）里找到**唯一的** `CreateFromMemory`（**3 参** ✗）⇒ **1 参调用 ⇒ C2660** ✓✓
+**⇒ 为什么 ①（改 `gbTexture.methods` 的槽位项）+ ②（codegen 自丢）都零效果** ✓✓：
+① **槽位编码的方法条目不会被发射成声明** ✗ ⇒ 我改的地方**不参与编译** ✓；
+② 那 10 条 2 参调用即便丢了 self 也**仍是 1 参** ✗ ⇒ **照样撞 3 参声明** ✗
+**⇒ ⇒ 真正的修复方向** ✓✓（下一个只读问题 ✓）：**让 `gbTexture` 拥有**自己的** `CreateFromMemory` 声明**
+（1 参 ✓，与 DLL 的虚函数对应 ✓）—— 即**在生成的头里为"槽位编码的 DLL 虚函数"发射声明** ✗（当前不发射 ✓），
+**或**在 codegen 侧把该调用**改写为不撞名的形式** ✓（限定名 / 强转后调用 ✓）
+**⇒ R16 的示范** ✓：**先问"编译器看到的是哪个声明"（只读 grep ✓），再动手** ✗ —— 一步定位 ✓；
+而我 5 轮（S0-b/批J/S2×3/①+②）**都在没有这个问题答案时动手** ✗
