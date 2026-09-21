@@ -1554,3 +1554,30 @@ Current  S2: 75/205
    ⇒ 是"IDA 层能解决的在 IDA 层解决"的典型 ✓。
 3. **F1+F2a+F2b 同批** ⇒ 才可能同时满足"改善 ≥ 新增" ✓ 与"S2 ok 不回退" ✓。
 4. **F4（陈旧 `compile_baseline.json`）** 一行命令可恢复门禁信号，但属棘轮决策 ⇒ **需使用者确认** ✓。
+
+## 8. 追加：**门禁假阳性**修正（check B：56 → 1 ✓，附真实编译器证据）
+
+`tools/codegen_invariants.py` 的 **check B** 把 `int sub_X(...)`（**省略号占位原型**）当作 "1 参"
+⇒ 报出 **56 处**"声明 1 参 vs 调用 N 实参"，且其 docstring 断言这是 **`C2660/C2664` 的直接成因** ✗。
+
+**真实 MSVC6 实测**（`wine tools/compilers/msvc6.0/Bin/CL.EXE /nologo /TP /c`）：
+
+| 输入 | 结果 |
+|---|---|
+| `int sub_401070(...);` + `sub_401070(1,2,3,4,5)` / `(1,2,3,4,5,6)` / `(1)` | **0 错误** ✓ |
+| 成员函数内 `ShowWindow(h,4)`（基类有 1 参 `ShowWindow`）| `C2660 does not take 2 parameters` ✓ |
+| 同一调用在命名空间作用域（无 windows.h）| `C2065 undeclared` ✓ |
+
+⇒ C++ 里 **`(...)` 是合法可变参原型** ⇒ 元数不限 ⇒ 那 56 处**全部假阳性** ✓。
+旁证：**202 条 C2660 里指名叫省略号声明符号的 0 条** ✓（**报文里的符号名是一票否决的证据** ✓）。
+
+**修正**：新增纯函数 `_arity_of(args)`（`...` ⇒ `None`）并跳过比较；docstring 的因果断言删除并改注
+"**可编译但语义可疑**，不等于 C2660 成因"；报告 **编译阻塞项 198 → 143** ✓；退出码语义不变（A/B 有问题仍 exit 1）✓。
+**剩余 1 处 `sub_525090`（声明1参/调用2实参）才是真的** ✓。
+单测 `tests/test_codegen_invariants_arity.py` **4/4** ✓；`tests/test_advisory_wired_into_write_path.py` **4/4** ✓（无回归）。
+`docs/specs/2026-09-20-evidence-layer-design.md` 的 **B56 已就地更正为 B1** ✓。
+
+**同一批实验中确证的 F3 机制**：`class UIStatic : public UIWnd` ⇒ 成员函数内
+`ShowWindow(g_hMainWnd, 4)` 命中继承来的 `virtual int ShowWindow(int)` ⇒ 14 条 C2660 ✓；
+修法 `::ShowWindow(...)` **可编译性已证明**（`include/pal3/ida_defs.h:5` 就是 `#include <windows.h>`，
+且每个生成 cpp 首位 include 它 ✓）。

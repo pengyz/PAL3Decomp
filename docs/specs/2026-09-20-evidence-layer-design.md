@@ -92,6 +92,11 @@ pipeline/cli.py                        ← 新增 `evidence` 子命令（build /
 `alloc_sizes.py` → `ledger.py`（分级+placeholder）→ `attribution.py` 的 `--scan`。
 **P2 逐闸清零（每批一次管线 ≈13 min；判据见 §6）**，顺序＝**由易到难**：
 `codegen_invariants` **A132/B56/C27/D10（Codex 实测 ✗ 初稿只数了 C 的 29）** → `alloc_sizeof` 17 条 → 归属双源 27 条 → **尺寸污染 38 条（最后，部分属长尾）**。
+⚠️ **2026-09-21 更正：B56 → B1** ✓ —— 那 56 处是**假阳性** ✗。真实 MSVC6 实测（`wine CL.EXE /TP /c`）：
+`int sub_X(...);` + 任意个数实参调用 ⇒ **0 错误**（C++ 的 `(...)` 是**合法可变参原型**）；
+且 202 条 `C2660` 里指名叫省略号声明符号的 **0 条** ⇒ "B 是 C2660 成因"的断言**证伪** ✗。
+判据已改为"`(...)` = 元数不限"（`_arity_of` 返回 `None`），工具报告 198→143 阻塞项，退出码语义不变 ✓；
+单测 `tests/test_codegen_invariants_arity.py`(4/4) ✓。**B 项剩余 1 处（`sub_525090` 声明1参/调用2实参）才是真的** ✓。
 **P3 逐闸升硬 + 挂 `cli.py check`**（`apply/export` 之前 ✓）＋ 作废 `_structural_contradictions.json` 及其派生数字 ✓
 ＋ 可选项 BSS 相邻上界 `binary_size(T) ≤ next_global_addr − this_addr` ✓。
 

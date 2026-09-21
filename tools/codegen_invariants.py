@@ -11,9 +11,16 @@
   `data/status/probe_census.json` 里 `C2039 '__vftable' : is not a member of ...` 覆盖 **27 个文件、≥94 条**
   （7 个 unit 被 `--errorlimit` 截断在 102 条，故为下界）。
   ⚠️ 不要用"bare / cast / other"当严重性分类：`cast` 恒 0，而"other"里 ≥79/134 本来就是 cast 形态。
-* **B. `sub_XXXX` 的「唯一声明的形参数」与「调用点实参数」不一致**（编译阻塞 C2660/C2664）。
+* **B. `sub_XXXX` 的「唯一声明的形参数」与「调用点实参数」不一致**（**语义可疑，不是编译错误**）。
   ⚠️ 第一版判据（"同一 `sub_` 有多份声明"）**已证伪**：它把调用语句（同样以 `;` 结尾）当成了声明，
-  151 条 100% 假阳性。正确判据是"声明 1 份、调用 N 处，比较形参与实参个数"。
+  151 条 100% 假阳性。第二版改成"声明 1 份、调用 N 处，比较形参与实参个数"。
+  ⚠️⚠️ **2026-09-21 再证伪一层**：第二版把 `(...)` 当作 "1 参" ⇒ 报出 56 处"不一致"，
+  **全部是假阳性** ✗。真实 MSVC6 实测（`wine CL.EXE /TP /c`）：
+  `int sub_401070(...); int f(){ return sub_401070(1,2,3,4,5); }` ⇒ **0 错误** ✓
+  —— C++ 里 `(...)` 是**合法的可变参原型**，任意实参数都合法。
+  实测 202 条 `C2660` 里指名叫省略号声明符号的 **0 条** ✗。
+  ⇒ 现版本把 `(...)` 记为"元数不限"（`_arity_of` 返回 `None`）并跳过比较；
+  B 项剩余报出的是**真·形参/实参个数不一致**（可编译但语义可疑），**不得**再称其为 C2660 成因。
 * **C. 注解 `methods[addr].signature` 的 `__thiscall X::` 前缀 ≠ 该 JSON 的类名**（**潜伏**，不阻塞编译：
   codegen 按 JSON 的类名落位、丢掉前缀 ⇒ 生成物仍合法）。已知 28 条真阳性 + 1 条待裁定。
 
@@ -145,6 +152,27 @@ def check_a(verbose=False):
     return len(hits)
 
 
+def _arity_of(args):
+    """形参文本 → 元数；**`(...)` 返回 None = 可变参原型（元数不限）**。
+
+    2026-09-21 用真实 MSVC6 实测（`wine CL.EXE /TP /c`）：
+
+        int sub_401070(...);
+        int user_a(void) { return sub_401070(1, 2, 3, 4, 5); }   // ← 0 错误 ✓
+
+    C++ 里 `(...)` 是**合法的可变参声明**，任意个数实参都合法 ⇒ 它**永远不可能**
+    与调用点数不符。第一版把它当 "1 参" ⇒ 报出 56 处"声明/调用不一致"，
+    **全部是假阳性**，且其文档曾断言这是 "C2660/C2664 的直接成因" ✗
+    （实测：202 条 C2660 里指名叫省略号声明符号的 **0 条**）。
+    """
+    s = args.strip()
+    if s in ('', 'void'):
+        return 0
+    if s == '...':
+        return None                      # 可变参 ⇒ 元数不限，不参与一致性比较
+    return s.count(',') + 1
+
+
 def _collect_sub_calls():
     """→ {sym: {'decl': [(arity, where)], 'calls': [(arity, where)]}}（括号跨行配平）。"""
     info = {}
@@ -168,11 +196,8 @@ def _collect_sub_calls():
                         break
                 k += 1
             args = txt[j + 1:k]
-            # `(void)` 在 C 里是**零参**（第一版把它算成 1 ⇒ 大面积"声明 1 参 vs 调用 0 实参"假阳性）
-            if args.strip() in ('', 'void'):
-                arity = 0
-            else:
-                arity = args.count(',') + 1
+            # `(void)`/空 = 零参；`(...)` = 可变参（元数不限，返回 None）—— 见 `_arity_of` 的实测说明
+            arity = _arity_of(args)
             line = txt.count('\n', 0, m.start()) + 1
             # 声明判定（独立复核后收紧）：生成的声明都在**文件作用域、列 0** 起（`__int64 sub_4B59B0(...)`），
             # 而调用都在函数体内（有缩进）。第一版只看"`;` 结尾 + 前缀像类型"，把调用点也算了进来
@@ -190,8 +215,13 @@ def _collect_sub_calls():
 def check_b(verbose=False):
     info = _collect_sub_calls()
     bad = []
+    unbounded = 0
     for sym, rec in sorted(info.items()):
         decls = {a for a, _ in rec['decl']}
+        # 可变参原型（`int sub_X(...)`）**元数不限** ⇒ 不可能与调用点不一致（实测，见 `_arity_of`）
+        if None in decls:
+            unbounded += 1
+            continue
         if len(decls) != 1:
             if len(decls) > 1:
                 bad.append((sym, '多份声明形参数不一致 %s' % sorted(decls),
@@ -199,17 +229,22 @@ def check_b(verbose=False):
             continue
         d = decls.pop()
         for a, w in rec['calls']:
+            if a is None:                # 调用点也写成 `f(...)` ⇒ 无从比较
+                continue
             if a != d:
                 bad.append((sym, '声明 %d 参 vs 调用 %d 实参' % (d, a), [w]))
     if bad:
-        print('[B] FAIL：%d 处 声明形参数 与 调用实参数 不一致（C2660/C2664 的直接成因）' % len(bad))
+        print('[B] FAIL：%d 处 声明形参数 与 调用实参数 不一致（**可编译但语义可疑**；'
+              '不等于 C2660 成因）' % len(bad))
         for sym, why, where in bad:
             print('    %s  %-28s %s' % (sym, why, ', '.join(where[:3])))
     else:
-        print('[B] PASS：%d 个 sub_ 符号的声明/调用形参数全部一致' % len(info))
+        print('[B] PASS：%d 个 sub_ 符号的声明/调用形参数全部一致（另 %d 个是可变参原型 '
+              '`(...)`，元数不限 ⇒ 不参与比较）' % (len(info), unbounded))
     if verbose:
-        print('    [info] 见过 %d 个 sub_ 符号；其中多份声明的 %d 个'
-              % (len(info), len([r for r in info.values() if len({a for a, _ in r['decl']}) > 1])))
+        print('    [info] 见过 %d 个 sub_ 符号；可变参 %d 个；多份声明的 %d 个'
+              % (len(info), unbounded,
+                 len([r for r in info.values() if len({a for a, _ in r['decl']}) > 1])))
     return len(bad)
 
 
