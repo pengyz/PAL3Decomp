@@ -778,3 +778,74 @@ reason:"misattributed in struct, removed"` ✓（`functions.json` 实测 ✓）�
 4. **门禁口径** ✓：对账须用**落地前归档的 census** 走 `--before/--after` ✓
    （现 `cli.py:728-765` 比的是**停旧的** `latest.json`=76/2150 ✗ ⇒ 基线口径不一致 ✓）
 5. **验证** ✓：`E2` 单变量差分（**在 `/tmp` 副本**做：只抬尺寸不平移 vs 抬+级联 ✓，A-B-A ✓，**绝不在主仓跑** ✗）
+
+# ⛔⛔ 独立复核 f2225846 **推翻**我的最终定谳 ✓（我已抽验证实 ✓）—— 方向**反了**
+
+## 一、我的"原生锚"不是原生锚 ✗（抽验 ✓）
+- `original/PAL3.exe.asm:101039` 该函数是 **`sub_440740`** ✓（exe 里**没有** `??0UIStatic@@QAE@XZ` ✗）
+- `data/pdb/pdb_export.json` 里 `??0UIStatic@@QAE@XZ` 的 **address = 0x004CBB04** ✓，来源
+  `D:\**PAL3A**\PAL3\UI\UIStatic.cpp` ✓ ⇒ **PAL3A PDB + 移植推断** ✗ ⇒ 与注解自造名**同属一类** ✓
+- 且我的 V4 把 `push 98h/158h/248h` **假配对**了 ✗ —— 那些是 **`eh vector constructor iterator`（`??_L`）的 size 实参** ✓
+  （如 asm:431206-431212 `push offset sub_4422E0; push 6; push 98h; call ??_L@…` ✓）；
+  **真正的 `push N + operator new + call sub_440740` 只有 3 处，全是 `push 0F8h`** ✓
+
+## 二、248 与 152 是**两个兄弟类** ✓（不是继承 ✓）
+| | ctor | vtable | 末写 | 尺寸 |
+|---|---|---|---|---|
+| **A** | `sub_440740` | **`off_56AD88`** | `rep stosd 0x20` 自 `[esi+78h]` ⇒ 0xF8 | **248** ✓（3/3 new 全 `push 0F8h` ✓）|
+| **B** | `sub_4422E0` | **`off_56ADD0`** | `[esi+94h]+4` ⇒ 0x98 | **152** ✓（12 处 `push 98h`+new ✓；`add edi,98h` ×111 ✓）|
+两者都调同一基类 ctor `sub_445AA0` ✓ ⇒ **兄弟** ✓
+
+## 三、**`UIStatic` = B（152）** ✓✓ —— 字段级证据（抽验 ② 证实 size=160 ✓ ⇒ PAL3 版 152 ✓）
+PDB `UIStatic`（PAL3A, size **160**）字段：`m_bordersize@68` · `m_align@72` · **`m_ratiow@76 (float)`** ·
+`m_ratioh@80` · `m_textx@84` · `m_texty@88` · `m_fonttype@92` · `m_text@96` · `m_pbk@112`…`m_mouseoff@140 (uchar)` ·
+`m_FVF@144` · `m_nTextW@148`（160−8 = **152** ✓）
+**B 的 ctor 写域与之逐一吻合** ✓：`0x4C=3F800000h`(**float 1.0** ✓)· `0x8C=cl`(**uchar m_mouseoff** ✓)·
+`0x90=114h`(**m_FVF** ✓)· `0x94=−1`(**m_nTextW** ✓)；
+**A 相反**：`0x44/0x45` 写**字节**、`0x4C` 写**整数 1**（float 不可能 ✓）、**完全不碰 `0x60`(m_text)** ✓ ⇒ **A 不是 UIStatic** ✗
+容器侧同结论：`sub_523F30`(CScreenMode ctor) 用 **B** 连续构造 **6×0x98** ✓（asm:439951-439985 ✓），
+而 `CScreenMode.json` 把这些成员标成 `UIStatic` ✗ ⇒ **pre 的 152 在布局上是对的** ✓
+
+## 四、我此前"两条互斥 A 级事实"是**假矛盾** ✗
+152 是 **B 的步长** ✓，与 **A 的 248** 无关 ✓。`UIStatic.json` 真正的自相矛盾是：
+**`vtables=[0x56AD88(A)]` + `methods` 全在 `0x440xxx(A)`，而 `known_members` 是 B 的** ✗✓
+（`sub_4422E0` 根本不在 UIStatic 的 methods 里 ✓）⇒ **A 的 vtable/methods 被挂到了 B 的名字/成员表上** ✓
+⇒ **248 与成员末端 152 之间那 96B 空洞，正是级联 Δ 的来源** ✓✓
+
+## 五、"12 条"口径修正 ✓：**12 个单元 / genuine 合计 71 条**
+原始多重集差 **+128 / −130** ✓，新失败 **0** ✓，**fail→ok 3**（`RoleStatePanel`/`UIAnimateCtrlEX`/`UISceneFrm` ✓）；
+三条 (a) 缺陷覆盖 **31/71** ✓ ⇒ 修完**仍剩 40 条** ✓ ⇒ **修 (a) 不掩盖主因** ✓（但基数须改成 71 ✓）
+
+## 六、★ 我的 `0d210faa3`（"L1 棘轮推进 = 级联字节收益获独立确认"）**被证伪** ✗✗
+`git show 2f0b16173^:data/status/s4_baseline.json` vs HEAD：**38 个符号新进入比较集**，**全落在 3 个 fail→ok 单元**
+（`UISceneFrm` 17 / `RoleStatePanel` 15 / `UIAnimateCtrlEX` 6 ✓）；新的 `match_L1` 恰 **4 行**，**全在新建单元里的平凡标量删除析构**
+（`??_GUIWnd@@UAEPAXI@Z` ×2 · `??_GUISceneMap@@UAEPAXI@Z` · `??_GUISceneFrm@@UAEPAXI@Z` ✓）；
+**partial→L1 = 0；L1→partial = 0** ✓；**三个 `push 0F8h` 分配点所在函数无一进 L1** ✓
+⇒ **L1 34→38 不是字节收益** ✗（S2 76→79 是**真实编译增益** ✓ 但**不能**当作归属正确的证据 ✗）；
+且 `s4_baseline.json`(22:13) 已是**落地后且棘轮已写回** ✗ ⇒ 事后判 L1 **必须走 git** ✓
+
+## 七、"family header 消失"**不可复现** ✗
+8 个头全在 `pal3/src/Misc/` ✓（S1 全部 ok errs=0 ✓）；`UIStatic.cpp` 在 s2 **ok errs=0** ✓
+⇒ 那是更早 **`ad3e6fb00` 已回退**那次的**陈旧记录** ✗，却仍留在 `UIStatic.json.size_note` 里 ✓
+⇒ "248 可发布"**只在 S1 头编译层成立** ✓，**不代表归属正确** ✗
+
+## 八、**合理的下一步方案**（采纳复核者 ✓，优先只读 ✓）
+**0. 冻结口径**（零风险 ✓）：记录 `baselines/latest.json`(21:57:55, pre 76/2150) ·
+`probe_census.json`(22:09:10, post 79/2148) · `s4_baseline.json`(22:13, post) 的哈希 ✓；pre 快照存 `/tmp` ✓；
+对外一律用"**12 单元 / 71 条**" ✓
+**1. 归位尺寸（先不动成员偏移 ✓）**：`UIStatic.binary_size 248→152` ✓ + **消除 96B 空洞** ✓；
+族 `base_size/size` 回退（`EX 280→184` · `Flip 252→156` · `RM 276→180` · `CB 252→156` · `EXA 288→192` ✓；`Flex` 未被动 ✓）
+**判据**：`check` exit0 ✓ + `tools/audit_layout.py` 无 `MemberExtent` 失配 ✓ + 逐类 `binary_size` 回到 pre 值 ✓
+（可用 `data/status/_uistatic_edit_plan_20260921.json` 的 **60 条 edits 机械对账** ✓，**不需要跑 probe/match** ✓）
+⚠️ `globals.json` 那条 `overlaps_with` 建立在"元素=248/96B"上 ✗ ⇒ **一并标注为待重新取证** ✓
+**2. 给 A（248 / `off_56AD88` / `0x440xxx`）找主人**（只读取证 ✓）：把 **12 个无主 vtable** 与
+`alloc_sizeof.json` / `element_size_adjudication.json` 对账 ✓，产出候选+反证 ✓；**不得**再把 `56AD88` 挂给 `UIStatic` ✗
+**3.（可并行）修 (a) 三条** ✓，预期 **71→40** ✓
+
+## 九、**现在不应该做** ✗
+- **不要**回滚整个 `2f0b16173` ✓（平移面可能含**独立正确**的修正 ✓；`globals` 声明需单独裁决 ✓）⇒ **按类逐条回退尺寸面** ✓
+- **不要**继续推进"248 可发布" ✗
+- **不要**把 L1 34→38 / S2 76→79 当字节收益证据 ✗
+- **不要**在 `/tmp` 跑 init/apply/export/codegen/probe/match ✗（不需要：两个状态都在 git + 计划文件里 ✓）
+- **不要**再用 `??0<Cls>@@` 作身份锚 ✗ ⇒ **A 级锚 = vtable 地址 + 分配点 `push N` + ctor 写域** ✓✓
+- **不要**在纠正"12"口径前估算 (a)/(b) 占比 ✗
