@@ -920,3 +920,13 @@ PDB `UIStatic`（PAL3A, size **160**）字段：`m_bordersize@68` · `m_align@72
 5. `UIStaticFlex` 的 192 **未取证** ✓（但**未被本批误动** ✓，且因非 UIStatic 派生而免疫 ✓）
 6. `_vtable_reconcile_20260917.json` 的 `req` 语义细节未读生成器 ✓
 7. probe/match 相关结论（71 条新错误、L1 非收益）**本轮不许跑 ⇒ 未独立复现** ✓
+
+## R14（新纪律）：**管线持有 IDB 期间不得并发跑 `idat`** ✗
+**事故**：批 B 的管线正在 `apply`/`export`（持有 `original/PAL3.exe.i64` ✓）时，我并发启动了
+`idat -A -S"tools/ida/verify_uistatic_split.py"`（V5 ✓）⇒ **IDB 争用** ⇒ **V5 失败 `exit 4`、无输出** ✗。
+**影响**：**批 B 未受损** ✓（`apply_annotations` 日志 `[3] Structs: 881/881 imported successfully (fail=0)` ✓；
+`check`/`apply` 均 EXIT=0 ✓）—— 但这是**运气** ✓，不是设计 ✓。
+**⇒ R14**：① 任何 `idat`/IDA 查询**必须**在**无管线运行**时进行 ✓（先确认 `ps` 里无 `pipeline/cli.py` 与 `codegen` ✓）；
+② 反之亦然：**管线运行期间禁止 `idat`** ✓；③ **两个 IDA 会话不能同时开同一 IDB** ✓。
+**⇒ 处置**：V5 待批 B 完成后**重跑** ✓（脚本已就绪 `tools/ida/verify_uistatic_split.py` ✓）。
+（同族：本会话的 R12（中止必须杀整条进程链）✓、R13（补丁落地必须 grep 核实）✓ —— 都属"并发/落地未核实"类 ✓。）
