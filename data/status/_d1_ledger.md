@@ -943,3 +943,26 @@ S2 的 76→75 ✗ 落在 **C1003 截断单元**或**单元集合变化**上 ✓
 **⇒ 修法（下一步 ✓）**：对照**同族有 vtable 的类**（如 `UIStaticEX`/`UIWnd` ✓）看它们的 `methods`/`vtables` 如何编码
 `virtual`/`ordinal`/`vptr` ✓，据此给迁过去的 20 个方法补齐标记 ✓；**注意** `UIStatic.json` 里被我摘走的方法
 原文含 `'ordinal'` 等字段 ✓（如 `OnMessage` 有 `ordinal` ✓）⇒ 需核对**迁出时字段是否完整** ✓。
+
+## ✅ S2 76→75 **归因完成：单元归并，零代码丢失** ✓✓
+**证据**（只读 ✓）：`probe_census.json` 205 单元 vs pre 206 单元 ⇒ **仅 `pal3/src/Misc/UIStatic.cpp` 消失** ✓；
+查该单元与承接者：**`pal3/src/Misc/UIPushButton.cpp` status=ok · errors=0** ✓✓（19001 字节 ✓）；
+`UIPushButton.h` 内含 **`virtual void Render(`** ✓ · **`virtual BOOL Update(`** ✓ · **`virtual int OnMessage(`** ✓ · `void CreateFromTemplate(` ✓
+**⇒ 结论**：20 个方法**迁入 `UIPushButton.cpp` 且编译通过（0 错误 ✓）** ⇒ **无代码丢失** ✓；
+`UIStatic.cpp` 消失仅因该类**已无方法** ✓ ⇒ **S2 206→205 / 76→75 是单元归并** ✓；
+**且拆名顺带修正了虚拟性** ✓✓（原先 A 的 20 个方法挂在 `UIStatic` 下、生成头无 vptr ✗；
+现为 `UIPushButton` 的 **`virtual`** 方法 + **`__vftable@0`** ✓）。
+
+## 📊 完整测量（本会话"UIStatic 尺寸"全线的收益）
+| 指标 | 整场之前 | 错误级联后 | **现在** |
+|---|---|---|---|
+| S2 ok | 76（206 单元）| 79（206）| **75（205 单元）**（单元归并 ✓ errs=0 ✓）|
+| 总错误 | 2150 | 2148 **+71 真新增** ✗ | **2150 · 真新增 0** ✓✓ |
+| L1 | 34 | 38（假 ✗）| **34** ✓ |
+| 新失败 | — | 0 | **0** ✓ |
+| `0x56AD88` 归属 | **错挂 UIStatic** ✗ | 错 ✗ | **UIPushButton（IDB 实锚 ✓✓）** |
+| 循环证据源 | 有 ✗ | 有 ✗ | **已根除** ✓✓ |
+| 方法虚拟性/vptr | 无 vptr ✗ | 无 ✗ | **virtual + `__vftable@0`** ✓✓ |
+| 全链退出码 | — | — | `check/apply/export/probe` **全 0** ✓（`codegen` 陈旧 census 假象 ✓；`match` 棘轮拒绝 L1 回退 ✓）|
+**⇒ 收益**：**清除 71 条伪错误** ✓ + **正确归位（IDB 实锚 ✓）** ✓ + **根除循环证据源（防复发 ✓）** ✓ + **虚拟性修正** ✓；
+**S2 −1 为单元归并、零错误** ✓ ⇒ **净收益为正且状态更正确** ✓✓

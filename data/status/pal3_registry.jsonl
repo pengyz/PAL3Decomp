@@ -74,7 +74,7 @@
 {"addr": "0x00534E60", "name": "ExternalStatistics::UpdateFromRole(int,int)", "file": "pal3/src/Misc/ExternalStatistics.cpp", "status": "partial", "match_pct": 33.6, "size": 122}
 {"addr": "0x0044DA30", "name": "JusticeBookUI::UpdateFadeAnim(float)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 10.8, "size": 139}
 {"addr": "0x005282E0", "name": "JusticeBookUI::ctor(void)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 14.1, "size": 474}
-{"addr": "0x005284E0", "name": "JusticeBookUI::JusticeBookUI(void)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 34.1, "size": 367}
+{"addr": "0x005284E0", "name": "JusticeBookUI::JusticeBookUI(void)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 22.9, "size": 367}
 {"addr": "0x00450E90", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x005284C0", "name": "JusticeBookUI::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x0043F950", "name": "UIButton::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
@@ -142,32 +142,31 @@
 {"addr": "0x0043FDD0", "name": "UIProgressBar::GetHeight(int)", "file": "pal3/src/Misc/UIProgressBar.cpp", "status": "match_L1", "match_pct": 100.0, "size": 13}
 {"addr": "0x0043FDE0", "name": "UIProgressBar::GetPosition(int)", "file": "pal3/src/Misc/UIProgressBar.cpp", "status": "match_L1", "match_pct": 100.0, "size": 13}
 {"addr": "0x0043FDF0", "name": "UIProgressBar::FindChildByName(float)", "file": "pal3/src/Misc/UIProgressBar.cpp", "status": "partial", "match_pct": 25.2, "size": 159}
-{"addr": "0x0043A090", "name": "UIPushButton::SetAnimOffset(int,int,float)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 51.3, "size": 76}
+{"addr": "0x0043D920", "name": "UIPushButton::Destroy(void)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "match_L1", "match_pct": 100.0, "size": 25}
+{"addr": "0x0043DAB0", "name": "UIPushButton::RenderQuadSlice(int *,int)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 12.0, "size": 400}
+{"addr": "0x00440740", "name": "UIPushButton::UIPushButton(void)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 37.0, "size": 81}
+{"addr": "0x00450E90", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x004407A0", "name": "UIPushButton::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x00440960", "name": "UIPushButton::FormatText(void)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 39.0, "size": 187}
+{"addr": "0x00440A20", "name": "UIPushButton::LoadResource(char const *,char)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 58.3, "size": 187}
+{"addr": "0x00440AE0", "name": "UIPushButton::LoadTexture(void)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 36.9, "size": 187}
+{"addr": "0x00440BA0", "name": "UIPushButton::OnMessage(void)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 25.0, "size": 52}
+{"addr": "0x00440CE0", "name": "UIPushButton::SetText(void)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 41.7, "size": 230}
+{"addr": "0x00440F30", "name": "UIPushButton::Render(void)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 10.6, "size": 265}
+{"addr": "0x00442480", "name": "UIPushButton::LoadTextureByName(char const *,char)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 18.9, "size": 190}
+{"addr": "0x004426B0", "name": "UIPushButton::CreateFromTemplate(void *,int)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 23.8, "size": 227}
+{"addr": "0x00442D00", "name": "UIPushButton::CtorWithFlag(void)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 35.7, "size": 28}
+{"addr": "0x00443380", "name": "UIPushButton::UIPushButton_Base(void)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 38.9, "size": 18}
+{"addr": "0x0044AA20", "name": "UIPushButton::RenderTile(int,char)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 16.4, "size": 214}
+{"addr": "0x0044BE60", "name": "UIPushButton::DestroyChainToBase(void)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 33.3, "size": 12}
 {"addr": "0x004A1530", "name": "UIRoleSelect::SetByte(char)", "file": "pal3/src/Misc/UIRoleSelect.cpp", "status": "partial", "match_pct": 20.9, "size": 239}
 {"addr": "0x0052D010", "name": "UISceneFace::SetFaceVisible(int,uint)", "file": "pal3/src/Misc/UISceneFace.cpp", "status": "partial", "match_pct": 19.7, "size": 188}
 {"addr": "0x0052D0D0", "name": "UISceneFace::ResetAllSlots(void)", "file": "pal3/src/Misc/UISceneFace.cpp", "status": "match_L1", "match_pct": 100.0, "size": 25}
 {"addr": "0x0052D0F0", "name": "UISceneFace::UpdateFacePosition(void)", "file": "pal3/src/Misc/UISceneFace.cpp", "status": "partial", "match_pct": 30.8, "size": 260}
 {"addr": "0x0043FCA0", "name": "UIScrollBar::SetRange(float)", "file": "pal3/src/Misc/UIScrollBar.cpp", "status": "partial", "match_pct": 33.6, "size": 125}
-{"addr": "0x0043D920", "name": "UIStatic::Destroy(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 16.0, "size": 25}
-{"addr": "0x0043DAB0", "name": "UIStatic::RenderQuadSlice(int *,int)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 14.5, "size": 400}
-{"addr": "0x00440740", "name": "UIStatic::UIStatic(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 37.0, "size": 81}
-{"addr": "0x00450E90", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
-{"addr": "0x004407A0", "name": "UIStatic::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
-{"addr": "0x00440960", "name": "UIStatic::FormatText(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 39.0, "size": 187}
-{"addr": "0x00440A20", "name": "UIStatic::LoadResource(char const *,char)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 58.3, "size": 187}
-{"addr": "0x00440AE0", "name": "UIStatic::LoadTexture(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 36.9, "size": 187}
-{"addr": "0x00440BA0", "name": "UIStatic::OnMessage(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 25.0, "size": 52}
-{"addr": "0x00440CE0", "name": "UIStatic::SetText(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 40.4, "size": 230}
-{"addr": "0x00440F30", "name": "UIStatic::Render(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 10.2, "size": 265}
-{"addr": "0x00442480", "name": "UIStatic::LoadTextureByName(char const *,char)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 16.8, "size": 190}
-{"addr": "0x004426B0", "name": "UIStatic::CreateFromTemplate(void *,int)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 22.5, "size": 227}
-{"addr": "0x00442D00", "name": "UIStatic::CtorWithFlag(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 35.7, "size": 28}
-{"addr": "0x00443380", "name": "UIStatic::UIStatic_Base(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 38.9, "size": 18}
-{"addr": "0x0044AA20", "name": "UIStatic::RenderTile(int,char)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 13.6, "size": 214}
-{"addr": "0x0044BE60", "name": "UIStatic::DestroyChainToBase(void)", "file": "pal3/src/Misc/UIStatic.cpp", "status": "partial", "match_pct": 33.3, "size": 12}
 {"addr": "0x00532A80", "name": "UITabCtrl::InitAnimParams(void)", "file": "pal3/src/Misc/UITabCtrl.cpp", "status": "partial", "match_pct": 1.0, "size": 192}
 {"addr": "0x00445CD0", "name": "UITitle_BBTY::Render(void)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "partial", "match_pct": 57.1, "size": 49}
-{"addr": "0x00451CC0", "name": "UITitle_BBTY::UITitle_BBTY(void)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "partial", "match_pct": 39.1, "size": 184}
+{"addr": "0x00451CC0", "name": "UITitle_BBTY::UITitle_BBTY(void)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "partial", "match_pct": 35.3, "size": 184}
 {"addr": "0x00450E90", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x00451D80", "name": "UITitle_BBTY::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x0043F950", "name": "UIButton::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
