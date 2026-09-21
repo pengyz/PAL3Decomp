@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 """把**一批** annotation 修正一次性落到 JSON 上，然后（可选）只跑**一次**完整管线。
 
@@ -240,14 +241,17 @@ def main():
             # 依据：cascade_plan 的精确计划 —— 平移量**非常数**（第 k 个内嵌对象之后 +Δ×k ✓）
             cls = it.get('class')
             if not cls:
+                _write_rejected += 1
                 print('   [跳过] %s 缺 class' % kind); continue
             p2 = os.path.join(ANN, '%s.json' % cls)
             if not os.path.exists(p2):
+                _write_rejected += 1
                 print('   [跳过] %s 无注解: %s' % (it['kind'], cls)); continue
             d, p2 = load_ann(cls)      # load_ann 返回 (dict, path) ✓
             if it['kind'] == 'set_base_size':
                 frm, to = it.get('from'), it.get('to')
                 if d.get('base_size') != frm:
+                    _write_rejected += 1
                     print('   [拒绝] %s base_size 期望 %s 实得 %s（防陈旧计划 ✗）' % (cls, frm, d.get('base_size'))); continue
                 if not args.dry_run:
                     d['base_size'] = to; save_ann(d, p2)
@@ -257,6 +261,7 @@ def main():
                 key, frm, to = str(it.get('key')), it.get('from'), it.get('to')
                 km = d.get('known_members') or {}
                 if key not in km:
+                    _write_rejected += 1
                     print('   [拒绝] %s 无成员键 %s（防陈旧计划 ✗）' % (cls, key)); continue
                 newkm = {}
                 for k, v in km.items():
@@ -307,6 +312,7 @@ def main():
             print('   [签名] %s.%s: %s -> %s' % (it['class'], it['addr'], old, it['new_signature']))
             done += 1
         else:
+            _write_rejected += 1
             print('   [跳过] 未知 kind: %s' % it.get('kind'))
     # **两阶段**：有拒绝 ⇒ 整批不写 + 非零退出 ✓（复核要求"先全量校验再统一落盘" ✓）
     if rejected:
