@@ -7,6 +7,9 @@
 - [gbui 七槽 vtable 继承链](arch_gbui_seven_slot_vtables_inheritance_chain.md) — gbui 家族 vtable 的槽位与继承链关系
 
 ## Gotchas
+- [annotation authored names are claims not evidence](gotcha_annotation_authored_names_are_claims_not_evidence.md) — (无 description)
+- [import slot prototype overrides hexrays signature](gotcha_import_slot_prototype_overrides_hexrays_signature.md) — 导入槽（IAT）上残留的"退化原型"会**盖掉** Hex-Rays 从修饰名解出的签名，导致调用点实参被整段吞掉（伪代码 `gbVFileSystem::Read(g_pVFileSys);`）。改槽只能用 ida_nalt.set_tinfo（idc.SetType 失败），且必须 clear_cached_cfuncs 才看得到效果。32 处 C2660 的根因
+- [member name voting is confounded by transitive access](gotcha_member_name_voting_is_confounded_by_transitive_access.md) — (无 description)
 - [C1003 截断让总错误指标失明](gotcha_c1003_truncation_blinds_metric.md) — 在截断单元里修掉早期错误会被隐藏的后续错误填满 ⇒ 总错误与 (code,msg) 多重集**都可能完全不变**（实测：消失 9 条 C2660 同时露出 9 条**无关族**错误）；换看 **"列表内最大错误行号"**（CCBUI 3389→3787）；`cli.py status` 已打印截断表
 - [decomp 侧签名 ≠ 注解侧声明](gotcha_decomp_sig_vs_annotation_decl.md) — 以 `store.method_sigs`（decomp）为元数依据的改写会同时误伤调用点与**函数定义头**（真实两处：双解引用链致单文件 35→102；`C2199 found 'BOOL (' at global scope`）；**元数必须取编译器实际读的注解声明**；附"只看目标错误码会骗人"与 MSVC6 **接受** `p->Cls::M()` 的证伪
 - [三份互相矛盾的基线 ⇒ 门禁恒红](gotcha_three_competing_baselines.md) — `compile_baseline.json`(76/206) · `baselines/latest.json`(75/205) · `s4_baseline.json`(L1 38) 互不同步 ⇒ 干净 HEAD 上 `codegen all` 与 `match` **恒 exit 1**（真实回归 0）⇒ 循环分不清信号与噪声；已加 `cli.py status`（只读预检）与 `cli.py loop`（一键循环 + `--expect-*` 断言，恒红显式标 TOLERATED）
@@ -45,6 +48,8 @@
 - [**codegen 输出路径未锚定 PROJECT_ROOT**](gotcha_codegen_output_path_not_anchored_to_project_root.md) — `emit_cpp` 用 `store.project_root`、`emit_headers` 用 `PIPELINE_ROOT.parent`，而 `pipeline.toml` 的输入路径是绝对的 ⇒ 在 `git worktree` 里跑 codegen 会**先 rmtree 再重建主仓库的 pal3/src**；不要用 worktree 做 A-B-A
 
 ## Patterns
+- [annotation fix batching](pattern_annotation_fix_batching.md) — (无 description)
+- [name and attribute from function logic](pattern_name_and_attribute_from_function_logic.md) — (无 description)
 
 - [无证据批量重命名](pattern_annotation_batch_rename_no_evidence.md) — A:cascade_sync 标记的伪语义重命名事故，check_annotations 通过 ≠ 标注质量真实提升
 - [**恢复多态基类的虚方法集合**](pattern_recover_polymorphic_base_virtual_methods.md) — 从二进制取证虚方法的完整方法链 + MSVC6 vtable 发射条件（定义本类虚函数才发射）+ ??_E/??_G 是同一函数
