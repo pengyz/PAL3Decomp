@@ -1,225 +1,241 @@
 {
-  "name": "RoleCamera",
-  "binary_size": 692,
-  "known_members": {
-    "28": {
-      "name": "m_nStackIdx",
-      "type": "int",
-      "source": "A:decomp RoleCamera::PushState add/subtract 28(=sizeof RC_ARG), used as stack cursor into m_argstack"
-    },
-    "32": {
-      "name": "m_nStackSize",
-      "type": "int",
-      "source": "A:decomp RoleCamera::PushState stores 30(0x1E) as stack capacity for m_argstack"
-    },
-    "380": {
-      "name": "m_ptarget",
-      "type": "Role *",
-      "source": "annotation"
-    },
-    "384": {
-      "name": "m_pobj",
-      "type": "SceneObj *",
-      "source": "annotation"
-    },
-    "388": {
-      "name": "m_targetpos",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "400": {
-      "name": "m_lastFrom",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "412": {
-      "name": "m_fromVec",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "424": {
-      "name": "m_yaw",
-      "type": "float",
-      "source": "annotation"
-    },
-    "428": {
-      "name": "m_fCtrlYaw",
-      "type": "float",
-      "source": "annotation"
-    },
-    "432": {
-      "name": "m_dist",
-      "type": "int",
-      "source": "annotation"
-    },
-    "436": {
-      "name": "m_pitch",
-      "type": "float",
-      "source": "annotation"
-    },
-    "440": {
-      "name": "m_roll",
-      "type": "int",
-      "source": "annotation"
-    },
-    "444": {
-      "name": "m_nextYAW",
-      "type": "float",
-      "source": "annotation"
-    },
-    "448": {
-      "name": "m_lastYAW",
-      "type": "float",
-      "source": "annotation"
-    },
-    "452": {
-      "name": "m_camVelocity",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "464": {
-      "name": "m_argstack",
-      "type": "std::stack<RC_ARG,std::deque<RC_ARG,std::allocator<RC_ARG> > >",
-      "source": "annotation"
-    },
-    "500": {
-      "name": "m_nTodo_1F4",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "512": {
-      "name": "m_bFree",
-      "type": "int",
-      "source": "annotation"
-    },
-    "516": {
-      "name": "m_bLockForward",
-      "type": "int",
-      "source": "annotation"
-    },
-    "520": {
-      "name": "m_bLockCenter",
-      "type": "int",
-      "source": "annotation"
-    },
-    "524": {
-      "name": "m_bProcessCollision",
-      "type": "int",
-      "source": "annotation"
-    },
-    "528": {
-      "name": "m_CollideTriangleNum",
-      "type": "int",
-      "source": "annotation"
-    },
-    "532": {
-      "name": "polygonList",
-      "type": "char[16]",
-      "source": "annotation"
-    },
-    "548": {
-      "name": "polygonListBackup",
-      "type": "char[16]",
-      "source": "annotation"
-    },
-    "564": {
-      "name": "m_CollideData",
-      "type": "char[12]",
-      "source": "annotation"
-    },
-    "576": {
-      "name": "m_clientwidth",
-      "type": "int",
-      "source": "annotation"
-    },
-    "580": {
-      "name": "m_clientheight",
-      "type": "int",
-      "source": "annotation"
-    },
-    "584": {
-      "name": "CAMERA_LOCK_HALFRADIUS",
-      "type": "BYTE",
-      "source": "annotation"
-    },
-    "585": {
-      "name": "CAMERA_COLLIDE_METHOD",
-      "type": "BYTE",
-      "source": "annotation"
-    },
-    "588": {
-      "name": "m_lookat",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "600": {
-      "name": "m_from",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "612": {
-      "name": "m_forward",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "624": {
-      "name": "m_up",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "636": {
-      "name": "m_side",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "648": {
-      "name": "m_LockForward",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "660": {
-      "name": "m_LockCenter",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "672": {
-      "name": "m_bCollide",
-      "type": "BYTE",
-      "source": "annotation"
-    },
-    "676": {
-      "name": "m_roomHeight",
-      "type": "float",
-      "source": "annotation"
-    },
-    "680": {
-      "name": "m_lastUP",
-      "type": "gbVec3D",
-      "source": "annotation"
-    }
+ "name": "RoleCamera",
+ "binary_size": 692,
+ "known_members": {
+  "28": {
+   "name": "m_nStackIdx",
+   "type": "int",
+   "source": "A:decomp RoleCamera::PushState add/subtract 28(=sizeof RC_ARG), used as stack cursor into m_argstack"
   },
-  "base_class": [
-    "gbCamera"
-  ],
-  "methods": {
-    "0x004518FE": {
-      "name": "SetPitch",
-      "signature": "void (float)",
-      "source": "pdb"
-    },
-    "0x0044D180": {
-      "name": "InitParticles",
-      "signature": "int __thiscall RoleCamera::InitParticles()"
-    },
-    "0x00534CF0": {
-      "name": "UpdateAudioListener",
-      "signature": "void __thiscall(int nVal, int nVal2)"
-    },
-    "0x0041D410": {
-      "name": "PushState",
-      "signature": "int __thiscall()",
-      "_misattrib_evidence": "max_offset=444>class_size=36"
-    }
+  "32": {
+   "name": "m_nStackSize",
+   "type": "int",
+   "source": "A:decomp RoleCamera::PushState stores 30(0x1E) as stack capacity for m_argstack"
   },
-  "base_size": 376
+  "380": {
+   "name": "m_ptarget",
+   "type": "Role *",
+   "source": "annotation"
+  },
+  "384": {
+   "name": "m_pobj",
+   "type": "SceneObj *",
+   "source": "annotation"
+  },
+  "388": {
+   "name": "m_targetpos",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "400": {
+   "name": "m_lastFrom",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "412": {
+   "name": "m_fromVec",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "424": {
+   "name": "m_yaw",
+   "type": "float",
+   "source": "annotation"
+  },
+  "428": {
+   "name": "m_fCtrlYaw",
+   "type": "float",
+   "source": "annotation"
+  },
+  "432": {
+   "name": "m_dist",
+   "type": "int",
+   "source": "annotation"
+  },
+  "436": {
+   "name": "m_pitch",
+   "type": "float",
+   "source": "annotation"
+  },
+  "440": {
+   "name": "m_roll",
+   "type": "int",
+   "source": "annotation"
+  },
+  "444": {
+   "name": "m_nextYAW",
+   "type": "float",
+   "source": "annotation"
+  },
+  "448": {
+   "name": "m_lastYAW",
+   "type": "float",
+   "source": "annotation"
+  },
+  "452": {
+   "name": "m_camVelocity",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "500": {
+   "name": "m_nTodo_1F4",
+   "type": "int",
+   "source": "binary_scan:1refs"
+  },
+  "512": {
+   "name": "m_bFree",
+   "type": "int",
+   "source": "annotation"
+  },
+  "516": {
+   "name": "m_bLockForward",
+   "type": "int",
+   "source": "annotation"
+  },
+  "520": {
+   "name": "m_bLockCenter",
+   "type": "int",
+   "source": "annotation"
+  },
+  "524": {
+   "name": "m_bProcessCollision",
+   "type": "int",
+   "source": "annotation"
+  },
+  "528": {
+   "name": "m_CollideTriangleNum",
+   "type": "int",
+   "source": "annotation"
+  },
+  "532": {
+   "name": "polygonList",
+   "type": "char[16]",
+   "source": "annotation"
+  },
+  "548": {
+   "name": "polygonListBackup",
+   "type": "char[16]",
+   "source": "annotation"
+  },
+  "564": {
+   "name": "m_CollideData",
+   "type": "char[12]",
+   "source": "annotation"
+  },
+  "576": {
+   "name": "m_clientwidth",
+   "type": "int",
+   "source": "annotation"
+  },
+  "580": {
+   "name": "m_clientheight",
+   "type": "int",
+   "source": "annotation"
+  },
+  "584": {
+   "name": "CAMERA_LOCK_HALFRADIUS",
+   "type": "BYTE",
+   "source": "annotation"
+  },
+  "585": {
+   "name": "CAMERA_COLLIDE_METHOD",
+   "type": "BYTE",
+   "source": "annotation"
+  },
+  "588": {
+   "name": "m_lookat",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "600": {
+   "name": "m_from",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "612": {
+   "name": "m_forward",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "624": {
+   "name": "m_up",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "636": {
+   "name": "m_side",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "648": {
+   "name": "m_LockForward",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "660": {
+   "name": "m_LockCenter",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "672": {
+   "name": "m_bCollide",
+   "type": "BYTE",
+   "source": "annotation"
+  },
+  "676": {
+   "name": "m_roomHeight",
+   "type": "float",
+   "source": "annotation"
+  },
+  "680": {
+   "name": "m_lastUP",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "468": {
+   "name": "m_nTodo_1D4",
+   "type": "int",
+   "source": "binary:disasm@0x444000 (0x1D4 有 dword 写（二进制实测）)"
+  },
+  "480": {
+   "name": "m_nTodo_1E0",
+   "type": "int",
+   "source": "binary:disasm@0x444000 (0x1E0 有 dword 写（二进制实测）)"
+  },
+  "484": {
+   "name": "m_nTodo_1E4",
+   "type": "int",
+   "source": "binary:disasm@0x444000 (0x1E4 有 dword 写（二进制实测）)"
+  },
+  "488": {
+   "name": "m_nTodo_1E8",
+   "type": "int",
+   "source": "binary:disasm@0x444000 (0x1E8 有 dword 写（二进制实测）)"
+  }
+ },
+ "base_class": [
+  "gbCamera"
+ ],
+ "methods": {
+  "0x004518FE": {
+   "name": "SetPitch",
+   "signature": "void (float)",
+   "source": "pdb"
+  },
+  "0x0044D180": {
+   "name": "InitParticles",
+   "signature": "int __thiscall RoleCamera::InitParticles()"
+  },
+  "0x00534CF0": {
+   "name": "UpdateAudioListener",
+   "signature": "void __thiscall(int nVal, int nVal2)"
+  },
+  "0x0041D410": {
+   "name": "PushState",
+   "signature": "int __thiscall()",
+   "_misattrib_evidence": "max_offset=444>class_size=36"
+  }
+ },
+ "base_size": 376,
+ "_fix_note": "2026-09-22 删除编造的 std::stack 成员（@0x1D0，注解步长36 vs 发射48 ✗ ⇒ emit 报 +0xC）✓；二进制在该区间是标量 dword 写（0x1D4/0x1E0/0x1E4/0x1E8 ✓，非容器访问 ✗）⇒ 按实测补 4 个 int ✓（注意：**键是十进制** ⇒ 0x1D4=468 等 ✓；我先前误写成 212 等 ✗ 已更正）"
 }

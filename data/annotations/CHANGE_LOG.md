@@ -5857,3 +5857,11 @@ g_SceneMgr.m_nTodo_1428 = ((PAL_GDB *)&g_pGDB)->PAL_GDB::GDB_GetSkillNum(82301);
 **结论**：那 2 条 `C2664` 属 **Hex-Rays 间接调用原型伪影**（`hexrays_limit` 类 ✗）——
 代码形态为 `(**(void(***)(char*,int))&m_list.<…>)(&m_list.<…>, 1)`（经数据中的函数指针调用，原型为 Hex-Rays 猜测 ✓）
 ⇒ 它们是我的**布局修正使该函数被重新渲染**后**浮出**的 ✓，而非模型退化 ✓
+
+### 2026-09-22 · `RoleCamera`：删除编造的 `std::stack` 成员（emit 报 +0xC 的根因）
+
+**现象**：生成器持续报 `RoleCamera: member at +0x1F4 is behind bookkeeping (start_off=0x200, +0xC)` ✗
+**病灶**：注解 `+0x1D0 m_argstack: std::stack<RC_ARG,…>`（步长 36）vs 发射 **48** ✗ ⇒ 差 **0xC** ✓ 精确吻合
+**二进制裁定**：该区间（0x1D0..0x1F4）在二进制里是**标量 dword 写**（0x1D4/0x1E0/0x1E4/0x1E8 ✓），
+**不是容器**（容器只会经 `lea`+调用访问 ✗）⇒ 注解的 `std::stack` 是**编造** ✗
+**修法**：删除该成员 ✓（交由**中央补白**接管未访问字节，布局不变 ✓）+ 按实测补 4 个 `int` ✓
