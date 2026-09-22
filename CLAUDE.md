@@ -147,7 +147,7 @@ union { // +0xN
 | 时机 | 工具 | 命令 | 失败处理 |
 |------|------|------|----------|
 | **动手改任何东西之前** | **病灶层检查（必做）** | 见下节 | 答不出"病灶在哪一层 / 消费者实际读哪个文件·哪份声明"就**不许动手** |
-| **一轮完整迭代** | 一键循环 + 基线断言 | `python3 pipeline/cli.py loop --expect-s2 75/205 --expect-errors 2150 --expect-l1 35` | 断言不满足 ⇒ exit 1；恒红门禁被**显式标 TOLERATED**，不静默吞掉 |
+| **一轮完整迭代** | 一键循环 + 基线断言 | `python3 pipeline/cli.py loop --expect-s2 75/205 --expect-errors 2150 --expect-l1 36` | 断言不满足 ⇒ exit 1；恒红门禁被**显式标 TOLERATED**，不静默吞掉 |
 | **codegen all 后** | 编译回归检测 | `python3 tools/compile_regression.py` | 发现退化立即报警，不提交 |
 | **apply 后** | annotation diff | `python3 tools/annotation_diff.py` | 显示变更摘要，确认无意外修改 |
 | **probe_compile 后** | 错误分类 | `python3 tools/error_classifier.py --summary` | 输出根因分布，指导下一步修复方向 |
