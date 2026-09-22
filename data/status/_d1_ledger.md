@@ -2536,3 +2536,26 @@ g_SceneMgr.m_nTodo_1428 = ((PAL_GDB *)&g_pGDB)->PAL_GDB::GDB_GetSkillNum(82301);
    ⇒ 修完两条，`UIRoleDialog`(720) 与 `Comp_DonateUI`(46192) 自动恢复 ✓
 3. 另记：`UITextArea` 的 +0x50/+0x54 被**4 字节写** ⇒ `m_bInvalidate: BYTE` 需复核 ✗
    （⚠️ 但 MSVC 会**合并相邻字节写** ⇒ 单凭 dword 写**不能**断定字段宽度 ⇒ 需更多证据 ✓）
+
+## 5. 并行准备（复核子 agent 运行期间）—— 发现**空洞检查**陷阱 ✗
+为判断"改 shim `string`→12 是否布局安全"，枚举了全部 string 成员及其**后一成员**：
+
+| string 成员 | 步长 | 后一成员 | 含义 |
+|---|---|---|---|
+| `CParticleSystem._strParticleName` | 16 | `_dwParticleId`(4B) | 4 字节可能是对齐填充 ✓ |
+| `HeadMsg.m_szMsg` | 16 | `m_fTime`(4B) | 同上 ✓ |
+| `SoundMgr.m_szScriptMusic` | 16 | `m_nScriptLoop`(4B) | 同上 ✓ |
+| `_Item.title` / `_Item.info` | 16 | `info`(string) / **`bHasChild`(BYTE)** ✗ | **BYTE 无需 4 对齐** ⇒ 4 字节**不是**填充 ⇒ 可能是**真实字段（注解缺失）**或 string 真是 16 ✓ |
+| **`UITextArea.m_buf`** | **12** | `m_bInvalidate`(BYTE) | 二进制 dword 写 +0x50/+0x54 ⇒ 字符串 ≤12 ✓ |
+
+**然后对 5 处做"`[this+off+12]` 是否被访问"的检查 ⇒ 全部无命中** —— 但：
+* `CParticleSystem` **0 个方法** · `HeadMsg` **0** · `_Item` **0** · `SoundMgr` **2** ✗
+⇒ **该检查对其中 4 处是空洞的**（根本没搜到它们的代码）⇒ **不构成证据** ✓
+（"**未观测 ≠ 不存在**"的又一形态：这次是"检查本身是空的" ✗）
+
+**结论（诚实）**：
+* `UITextArea`：**有**独立证据支持 string=12 ✓
+* 其余 5 处：**无**独立证据 ✗ ⇒ 改 shim 为 12 对它们**未验证** ✗
+* 风险：若二进制 string 真是 16，则**内联字符串操作**（`/Ob2` 常见）会因类型变小而字节失配 ✗✗
+⇒ **改 shim 前需要更强的裁定**：找一处**确实操作该字符串**的代码，看其内部字段的读写宽度/偏移 ✓
+（`UITextArea` 已有 ✓；其余需另找：这些类的方法未归属 ⇒ 可能经**全局数组 + 下标**访问 ✗ ⇒ 单模式扫描不可行 ✗）
