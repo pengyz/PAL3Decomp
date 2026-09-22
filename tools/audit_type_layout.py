@@ -73,6 +73,41 @@ def parse_member_line(line):
     return m.group(1), int(m.group(3), 16)
 
 
+
+# ==================== 闭环分批：**重排目标**（测量 → 选 10 → 修 → 重新测量 ✓）====================
+# 为什么（2026-09-22 使用者确立的**闭环方法论**）：布局更新有**传播效应**（按值内嵌/DAG ✗）
+# ⇒ 每批修完**必须重新测量 + 重建问题规模 + 重新选目标** ✗（预排批次会立刻失真 ✗
+#    实测：旧清单里 SwordUI/PropUI/MainEquipUI 3 个"冲突"类已被此前的修复**顺带解决** ✗）
+
+
+def rank_targets(conflicts, embed, top=10):
+    """按 **杠杆（被按值内嵌次数）优先、冲突数次之** 重排目标 ✓
+
+    `conflicts`: {cls: 冲突成员数}（**当前测量** ✓，冲突数 0 的类被排除 ✓）
+    `embed`: {类型: [内嵌它的类…]} ✓（环安全 ✓）
+    → [(cls, conflicts, embeds)] ✓
+    """
+    rows = []
+    for c, n in (conflicts or {}).items():
+        if not n:
+            continue
+        rows.append((c, int(n), len((embed or {}).get(c) or [])))
+    rows.sort(key=lambda x: (-x[2], -x[1], x[0]))
+    return [(c, n, e) for c, n, e in rows[:max(0, int(top))]]
+
+
+def rank_from_report(report_path, embed, top=10):
+    """从**一次审计的 JSON 报告**重排（不重跑测量 ✓）"""
+    d = json.load(open(report_path, encoding='utf-8'))
+    conf = {c: (v or {}).get('conflicts') or 0 for c, v in d.items() if isinstance(v, dict)}
+    return rank_targets(conf, embed, top=top)
+
+
+def render_rank(cls, conflicts, embeds):
+    return '%-24s 冲突 %-6d 被按值内嵌 %d' % (cls, conflicts, embeds)
+
+
+
 def load_annotation_members(src=None):
     """→ {cls: (header_path, [(name, declared_offset), ...])}（只取带 `// +0x` 注释的成员）
 
