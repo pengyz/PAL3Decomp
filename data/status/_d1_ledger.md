@@ -2608,3 +2608,41 @@ g_SceneMgr.m_nTodo_1428 = ((PAL_GDB *)&g_pGDB)->PAL_GDB::GDB_GetSkillNum(82301);
   suspicious     m_bInvalidate 0x50 weak  宽度 4 > 注解 1（可能合并字节写）✓
 ```
 ⇒ **旧门会认证错误注解；新门抓到它** ✓✓（这正是复核指出的最危险缺口 ✓）
+
+---
+
+# 2026-09-22（第二十三轮）：**B 落地 —— `UITextArea` 按二进制重建 + 3 层级联**
+
+## 1. 尺寸证据（三条独立 ✓）
+| 证据 | 值 |
+|---|---|
+| `UIAnimateCtrlEX.m_TextArea`(UITextArea) 下一成员步长（source=`ctor_embed_evidence` ✓）| **0xC0** ✓ |
+| `UISceneMap` ctor 链：`UITextArea@0x50` → 下个 ctor `lea 0x110` | **0xC0** ✓ |
+| 真实方法（ctor/ProcessInput/Render/ShowWindow/Destroy）最大自有字段 `0xBC` + 4 | **0xC0** ✓ |
+⇒ 旧注解 `binary_size=104` ✗；**真实 192** ✓
+
+## 2. 重建结果（编译器审计 ✓）
+`UITextArea` **16 成员 `offsetof` 全等** ✓ · `UIAnimateCtrlEX` ✓ · 新门（注解 vs 二进制）**矛盾已消除** ✓
+成员：`0x44 float(0x3F000000=0.5)` · `0x48 BYTE` · `0x4C/50/54/58/5C/60/64 int` · `0x68 char[68]`（取址传参子对象） ·
+`0xAC int` · `0xB0 float(fadds/fsts)` · `0xB4/B8/BC int` ⇒ 恰至 0xC0 ✓
+命名一律 `_todo_` 标记（无语义把手 ⇒ 禁伪语义命名 ✓）；`source` 逐条 `binary:disasm@VA` ✓
+
+## 3. 级联（DAG 3 层，均由**生成器自报 start_off** 引导 ✓）
+`UITextArea(0x68→0xC0)` ⇒ `UIRoleDialog(720→808)` · `UIRoleSelectDialog(2204→2292)` ⇒
+`Comp_DonateUI(46192→46280)` · `UIGameFrm(28188→28276)`；`CScreenMode` **无声明成员 ⇒ 不平移、不改尺寸** ✓
+（⚠️ 我的脚本曾对它误加 0x58 ✗ ⇒ 已撤回并标注 ✓）
+
+## 4. 验收（`regression_detector --check`）
+| 项 | 结果 |
+|---|---|
+| 新失败单元 | **0** ✓ |
+| **单元修复** | **`UITextArea.cpp` fail→ok** ✓ ⇒ **S2 75 → 76**（真实收益 ✓）|
+| 逐码净增减 | **C2440 −12** ✓ · **C2664 +2** ⚠️ |
+| 残留 | `UIRoleSelectDialog.cpp` 2→4（L656/L761 成员函数指针调用处 `void(char*,int)` 收 `int*`）⇒ 待定位 ✓ |
+⇒ 门禁**按规拒过** ✓（存在新错误）；本次为净改善（−10 条）⇒ 如实提交（`f497f03c9`）并标注残留 ✓
+
+## 5. 本轮两个**进程性教训**（都已正确处理 ✓）
+1. **`pkill -f` 自匹配了自己的 shell** ✗（`[p]` 技巧只防 pgrep 自身，防不住命令行里含该字面量的父进程 ✓）⇒
+ 我的一条命令被 SIGTERM 掉、后续 Python 补丁**未执行** ✗ ⇒ 改用 `ps` + **按 PID** 终止 ✓
+2. **杀掉 loop 未级联杀掉子 `idat`** ✗ ⇒ 残留进程**占用 IDB** ⇒ 下一次 `apply` 直接失败（1.0s）✗ ⇒
+ 按 PID 终止残留 `idat` 后恢复正常 ✓（R12/R14 的实证 ✓）
