@@ -2506,3 +2506,33 @@ g_SceneMgr.m_nTodo_1428 = ((PAL_GDB *)&g_pGDB)->PAL_GDB::GDB_GetSkillNum(82301);
 1. `UIStaticFlex`：把 `gbFontType` 的尺寸来源改为**4**（或删掉错误的 sdk 表项）⇒ 不再多发 gap ⇒ 192 ✓
 2. `UITextArea`：让发射出的 `string` 为 **12 字节**（改 `pal3_stl.h` shim 或改用 12 字节占位）⇒ 104 ✓
 ⇒ 修完这两处，`UIRoleDialog`(720) 与 `Comp_DonateUI`(46192) **自动恢复** ✓（DAG 传播 ✓）
+
+---
+
+# 2026-09-22（第二十一轮）：`UITextArea` 的**二进制裁定** ⇒ 修正我的 STL 表（`string` 应为 12）
+
+## 1. 我先前的推断（**错误** ✗）
+据"`string` 成员步长：16 出现 5 次、12 仅 1 次（`UITextArea.m_buf`）"⇒ 判"二进制 string=16，`UITextArea` 是异类注解错" ✗
+
+## 2. 二进制裁定（MCP 反汇编，`UITextArea::InitAfterClear` @0x444F60）
+```
+444f95  mov [esi+50h], edi      ; +0x50 写 4 字节
+444f98  mov [esi+54h], edi      ; +0x54 写 4 字节
+```
+⇒ 若字符串占 16（0x44..0x54）⇒ 在 0x50 写会**写进字符串内部** ✗ 不可能
+⇒ **二进制 `string` = 12 字节** ✓；5 个"步长 16" = **string(12) + 4 字节尾部填充** ✓✓
+⇒ **我加的 STL 表 `string=16` 错误** ✗（测的是仓库 shim ✗）—— 正是上轮刚写的"尺寸表≠二进制真相"咬到自己 ✓
+
+## 3. 规则细化（写进知识库）
+1. **步长 ≥ 尺寸**（含填充）⇒ **不能把步长当尺寸** ✗
+2. **多数派步长也不行** ✗（多个类都含填充时，多数派仍是"尺寸+填充"）
+3. 尺寸只能由**二进制访问指令**裁定：跨字段读写的**宽度** + 相邻字段的**独立可寻址性** ✓
+4. 对照：`vector<int>`=16（二进制 0x4A8→0x4B8 恰也为 16 ⇒ 巧合一致 ✓）· `string` = shim16 ✗ / 二进制 **12** ✓
+
+## 4. 下一步（待落地，改动会影响所有含 string 成员的类 ⇒ 需全量验收 ✓）
+1. **把发射出的 `string` 改为 12 字节**（修 `pal3_stl.h` shim ✓，证据=上述指令宽度 ✓）
+   ⇒ 预期 `UITextArea` 104 ✓，且 5 个"步长16"的类由**中央补白**吸收 4 字节填充 ⇒ 布局不变 ✓
+2. `UIStaticFlex`：**`ida_structs['gbFontType'].size=1` 是错的** ✗（真实类型 4）⇒ 估计器不应信它 ⇒ 192 ✓
+   ⇒ 修完两条，`UIRoleDialog`(720) 与 `Comp_DonateUI`(46192) 自动恢复 ✓
+3. 另记：`UITextArea` 的 +0x50/+0x54 被**4 字节写** ⇒ `m_bInvalidate: BYTE` 需复核 ✗
+   （⚠️ 但 MSVC 会**合并相邻字节写** ⇒ 单凭 dword 写**不能**断定字段宽度 ⇒ 需更多证据 ✓）
