@@ -72,6 +72,20 @@ WIDTH_RX = [
 CORPUS_DIR = os.path.join(ROOT, 'asm', 'pal3', 'decomp')
 
 
+
+def _anno_type(cls, name):
+    """从注解里取该成员的 type（用于复合成员守卫）"""
+    try:
+        d = json.load(open(os.path.join(ROOT, 'data', 'annotations', 'structs', '%s.json' % cls),
+                           encoding='utf-8'))
+        for k, v in (d.get('known_members') or {}).items():
+            if isinstance(v, dict) and v.get('name') == name:
+                return v.get('type')
+    except Exception:
+        pass
+    return None
+
+
 def class_method_files(cls):
     """该类的**方法文件**列表（decomp 语料文件名含方法地址）—— 把证据搜索**限定在本类自己的代码**里 ✓
 
@@ -110,8 +124,12 @@ def corpus_evidence(cls, name, off, files=None):
     """
     if not os.path.isdir(CORPUS_DIR):
         return []
-    files = files if files is not None else class_method_files(cls)
-    if not files:
+    # ⚠️ 2026-09-22 反证修正：**成员名必须全局搜**（名字在全语料唯一；此前限定本类方法 ⇒
+    # 漏掉来自**其它单元**的访问 ⇒ 假阴性：`m_nTodo_1428` 实际在 PAL3.cpp 里被赋值 ✗）。
+    # 偏移模式仍是**本类范围**（避免跨类的偏移碰撞 ✗）。
+    files = files if files is not None else None
+    scan_files = files if files is not None else sorted(f for f in os.listdir(CORPUS_DIR) if f.endswith('.json'))
+    if not scan_files:
         return []
     hx = '%X' % off
     name_rx = re.compile(r'\b%s\b' % re.escape(name)) if name else None
@@ -119,7 +137,12 @@ def corpus_evidence(cls, name, off, files=None):
     if off > 0xFF:
         off_rx = re.compile(BASE_DISP_RX.pattern % (hx, hx), re.I)
     hits = []
-    for fn in files:
+    class_files = set(class_method_files(cls))
+    for fn in scan_files:
+        # 名字证据：全语料；偏移证据：只在本类方法文件里认（防跨类碰撞）
+        allow_disp = (files is not None) or (fn in class_files)
+        if not allow_disp and not name:
+            continue
         try:
             txt = open(os.path.join(CORPUS_DIR, fn), encoding='utf-8', errors='replace').read()
         except Exception:
@@ -129,7 +152,7 @@ def corpus_evidence(cls, name, off, files=None):
             m = name_rx.search(txt)
             if m:
                 found = (m, 'name')
-        if not found and off_rx:
+        if not found and off_rx and allow_disp:
             for m in off_rx.finditer(txt):
                 a = max(0, m.start() - 50)
                 if STACK_RX.search(txt[a:m.end() + 10]):
@@ -265,6 +288,24 @@ def main():
     ap.add_argument('--json', action='store_true')
     a = ap.parse_args()
 
+    # 复合成员守卫（2026-09-21 实测教训）：**按值内嵌的类成员**，其内部成员是经
+    # `[base + 外层偏移 + 内层偏移]` 访问的，本工具的"单偏移扫描"**看不见** ⇒ 会假阴性 ✗
+    # 例如 SceneMgr 的 `stru_C059A0`（按值 RoleSystem）绝不能因"无证据"被降级 ✗
+    # ⇒ 对这类成员只给 `COMPOSITE-SKIP`，交给专门的复合扫描（或人工）。
+    _IS = {}
+    try:
+        _IS = json.load(open(os.path.join(ROOT, 'asm', 'pal3', 'ida_structs.json'), encoding='utf-8'))
+    except Exception:
+        pass
+    _KNOWN = set(_IS) | set(A.load_annotation_members())
+
+    def is_composite(t):
+        t = str(t or '').strip()
+        if not t or '*' in t or '[' in t or t in ('int', 'unsigned int', 'float', 'double', 'void *',
+                                                  'char', 'unsigned char', '_BYTE', 'BYTE', 'bool', 'short'):
+            return False
+        return (t.replace('struct ', '').replace('class ', '').strip() in _KNOWN)
+
     members = A.load_annotation_members()
     if a.cls not in members:
         print('未找到类或其成员注释: %s' % a.cls)
@@ -283,6 +324,12 @@ def main():
     for name, off in todo:
         tag = pseudo_tag(name) or '-'
         # 语料证据**不需要 MCP** ⇒ 无 MCP 时也要照常出结论 ✓
+        if is_composite(_anno_type(a.cls, name)):
+            rows.append({'member': name, 'off': hex(off), 'tag': tag,
+                         'verdict': 'COMPOSITE-SKIP',
+                         'evidence': '按值复合成员：内部访问不可见 ⇒ 不做"无证据"结论'})
+            print('  %-26s +0x%-6X %-12s ⊘ 复合成员（不做无证据结论）' % (name, off, tag))
+            continue
         ce = corpus_evidence(a.cls, name, off)
         hits = find_hits(call, off) if call else []
         b_instr = None
@@ -319,8 +366,9 @@ def main():
     n_ev = sum(1 for r in rows if r['verdict'].startswith('EVIDENCE'))
     n_by = sum(1 for r in rows if r['verdict'].startswith('HITS'))
     print('=' * 84)
-    print('小结: 有证据 %d（本类代码 + 他处代码）· **无任何证据 %d**（应降级为 padding/未知，不得给类型与语义名）· 疑似假阳性 %d'
-          % (n_ev, n_no, n_by))
+    n_cs = sum(1 for r in rows if r['verdict'] == 'COMPOSITE-SKIP')
+    print('小结: 有证据 %d（本类代码 + 他处代码）· **无任何证据 %d**（应降级为 padding/未知，不得给类型与语义名）· 疑似假阳性 %d · 复合成员跳过 %d'
+          % (n_ev, n_no, n_by, n_cs))
     print('⇒ 人工确认后再改注解；每处必须带证据指针（VA:指令）✓')
     if a.json:
         print(json.dumps(rows, ensure_ascii=False, indent=1))
