@@ -801,6 +801,20 @@ def simplify_stl_type(t, cls_name=None):
     return t
 
 
+# STL/模板成员尺寸 —— **本工具链实测**（2026-09-22；不是猜）
+# 为什么必须：`_estimate_member_size` 原先对无法识别的类型一律 `return 4` ✗
+#   ⇒ `std::vector<int>`（真实 16）被当 4 ⇒ tail/gap 链错位
+#   ⇒ 实测 `UIListBox` 尺寸 1220 vs 注解 1208（**+12**），而它**被 26 个类按值内嵌** ⇒ 沿 DAG 传播 ✗
+# 实测命令与结果（MSVC6 SP0 + 本仓 `pal3_stl.h` shim）：
+#   vector<int>=16 · string=16 · stack<int>=48 · queue<int>=48 · deque<int>=48 · list<int>=12 ·
+#   map<int,int>=4096 · set<int>=4096（map/set 是 shim 的自定义实现 ⇒ 大但真实 ✓）
+_STL_MEMBER_SIZES = {
+    'vector': 16, 'string': 16, 'basic_string': 16,
+    'list': 12, 'stack': 48, 'queue': 48, 'deque': 48,
+    'map': 4096, 'set': 4096, 'multimap': 4096, 'multiset': 4096,
+}
+
+
 def _estimate_member_size(mtype):
     """Estimate size of a member from its type string."""
     # F68（第 120 轮）：**数组必须先于指针判断**。
@@ -865,6 +879,10 @@ def _estimate_member_size(mtype):
             return int(sz)
     except Exception:
         pass
+    # STL/模板成员：用**实测**尺寸（见 `_STL_MEMBER_SIZES` 注释）✓
+    _base = t.split('<')[0].strip().split('::')[-1].strip()
+    if _base in _STL_MEMBER_SIZES:
+        return _STL_MEMBER_SIZES[_base]
     # Default: assume 4 bytes (int-sized)
     return 4
 
