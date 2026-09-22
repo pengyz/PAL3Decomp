@@ -168,6 +168,51 @@ def corpus_evidence(cls, name, off, files=None):
     return hits
 
 
+
+# ===== 证据源③：经**全局对象**的成员访问（形态②，2026-09-22 反证后补）=====
+# 为什么必须有：`g_X.member` 编译成**绝对地址** `[g_X_addr + off]` ⇒ off **不作为独立 disp32 出现** ✗
+# ⇒ 仅靠"偏移模式扫描"与"语料名字搜索"都看不见（实测 `m_nTodo_1428` 被 PAL3.cpp 赋值却判"无证据" ✗）。
+# 补法：枚举**类型为该类**的全局对象，扫 `global_addr + off` 的 disp32 ✓
+# 优点：模式含**完整 32 位绝对地址** ⇒ 判别力极高、几乎无假阳性 ✓
+def globals_of_type(cls):
+    """→ [(addr, name)]：类型恰好是 cls 的**全局对象**（按值，非指针）"""
+    out = []
+    try:
+        d = json.load(open(os.path.join(ROOT, 'data', 'annotations', 'globals.json'), encoding='utf-8'))
+    except Exception:
+        return out
+    for a, v in (d.items() if isinstance(d, dict) else []):
+        if not isinstance(v, dict):
+            continue
+        t = str(v.get('type') or '').strip()
+        base = t.replace('struct ', '').replace('class ', '').strip()
+        if base == cls:
+            try:
+                out.append((int(str(a), 0), v.get('name')))
+            except Exception:
+                pass
+    return out
+
+
+def confirm_abs_access(instr, val):
+    """承载指令是否引用**绝对地址** val（形态②）✓
+
+    ⚠️ 实测（2026-09-22）：IDA 把绝对地址渲染成**符号名**（`dword_C057B4` / `off_xxxxxx`），
+    而不是 `0xC057B4` ⇒ 只查 `0x...` 形态**必然失配** ✗（曾据此误判 `m_nTodo_1428` 为"无证据"）。
+    因此必须同时接受：① `0x...` 十六进制形态 ② **内嵌该地址十六进制数字的符号名** ✓
+    """
+    t = (instr or '')
+    tl = t.lower()
+    forms = ['0x%x' % val, '%xh' % val, '0%xh' % val]
+    if any(f in tl for f in forms):
+        return True
+    # IDA 符号名内嵌地址（大小写两种都试；要求 ≥6 位十六进制，避免短数字误配 ✓）
+    for hx in ('%X' % val, '%08X' % val, '%x' % val):
+        if len(hx) >= 6 and hx in t:
+            return True
+    return False
+
+
 def pseudo_tag(name):
     for tag, rx in PSEUDO_RX:
         if rx.search(name or ''):
@@ -340,7 +385,29 @@ def main():
                         b_instr = l.get('instruction'); break
                 if b_instr:
                     break
-        if ce:
+        g_evid = None
+        if call and off is not None:
+            for gaddr, gname in globals_of_type(a.cls):
+                gval = gaddr + off
+                gh = find_hits(call, gval)
+                if not gh:
+                    continue
+                for h in gh[:2]:
+                    for l in disasm_around(call, h):
+                        if confirm_abs_access(l.get('instruction'), gval):
+                            g_evid = 'g_%s(0x%X)+0x%X = 0x%X :: %s' % (
+                                str(gname).replace('g_', ''), gaddr, off, gval,
+                                (l.get('instruction') or '')[:46])
+                            break
+                    if g_evid:
+                        break
+                if g_evid:
+                    break
+        if g_evid:
+            verdict = 'EVIDENCE-GLOBAL(全局对象)'
+            evid = g_evid
+            hint = type_hint(g_evid)
+        elif ce:
             verdict = 'EVIDENCE-CODE(本类代码)'
             evid = ce[0][0] + ' :: ' + ce[0][1][:60]
             hint = type_hint(evid)
@@ -355,7 +422,8 @@ def main():
         rows.append({'member': name, 'off': hex(off), 'tag': tag,
                      'verdict': verdict, 'type_hint': hint, 'evidence': evid,
                      'corpus_hits': len(ce), 'byte_hits': len(hits)})
-        mark = {'NO-EVIDENCE': '✗ 无证据（不得给类型/语义名）',
+        mark = {'EVIDENCE-GLOBAL(全局对象)': '✓ 经全局对象访问',
+                'NO-EVIDENCE': '✗ 无证据（不得给类型/语义名）',
                 'EVIDENCE-CODE(本类代码)': '✓ 本类代码使用',
                 'EVIDENCE-BYTES(他处代码访问)': '✓ 他处代码访问',
                 'HITS-UNCONFIRMED(疑似假阳性)': '? 命中未确认'}.get(verdict, '?')
