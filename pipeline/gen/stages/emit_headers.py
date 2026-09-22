@@ -961,6 +961,41 @@ def _emit_nested_struct(scope_node, nested_methods, is_data, parent_name, indent
     return lines
 
 
+
+# vptr 成员的命名（注解用 `__vftable`；IDA 导出里有的是 `_vftable`）—— 2026-09-21
+_VPTR_MEMBER_NAMES = ('__vftable', '_vftable', '__vfptr', '_vfptr')
+
+
+def _offset0_is_vptr_member(cls_name):
+    """注解是否**已在 offset 0 计入 vptr**（即 offset0 的成员是 vptr 本身）。
+
+    为什么需要（2026-09-21 实测，`tools/audit_type_layout.py` 的编译器裁判发现）：
+      * `vtables` 存在、offset0 = `__vftable`/`_vftable` ⇒ 注入虚析构**正确**
+        （`CGameData`/`RoleSystem`/`UIWnd` 等 30 个类：审计 **0 冲突** ✓）
+      * `vtables` 缺失、offset0 是**数据成员**（`SceneMgr.m_pGfxMgr` / `CCBCamControl.m_CCT` /
+        `CCBRoleState.m_sCombatDialog`）⇒ 注入虚析构会**引入 vptr 并覆盖该成员**，
+        使**全部成员偏移 +4** ✗（审计显示 `N/N` 全成员冲突）
+    实测因果：删掉 `SceneMgr` 那行注入后 `SceneMgr::Create` 字节匹配 **25.5% → 80.6%** ✓
+    """
+    s = _get_ida_structs().get(cls_name) or {}
+    # ① 注解声明了 vtables ⇒ 布局已计入 vptr ✓
+    if s.get('vtables'):
+        return True
+    # ② offset0 本身是 vptr 成员（`data_members` 不含 vptr，真正的 vptr 在 `_variants['0']`）
+    for dm in (s.get('data_members') or []):
+        if isinstance(dm, dict):
+            try:
+                off = int(dm.get('offset') or -1)
+            except (TypeError, ValueError):
+                off = -1
+            if off == 0 and str(dm.get('name') or '') in _VPTR_MEMBER_NAMES:
+                return True
+    v = (s.get('_variants') or {}).get('0')
+    if isinstance(v, dict) and str(v.get('name') or '') in _VPTR_MEMBER_NAMES:
+        return True
+    return False
+
+
 def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_names=None,
                     colliding_enums=None, template_expr=None, template_param_count=0,
                     nested_types=None, nested_methods=None, scope_node=None):
@@ -2007,7 +2042,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # Scan decomp JSONs to detect _scalar_dtor (same logic as data.py)
     # BUT only if the class doesn't already have an explicit destructor.
     _has_dtor = any(m for m, _, _ in (methods or []) if m == '~' + cls_name)
-    if cls_name in _get_scalar_dtor_classes() and not _has_dtor:
+    # ⚠️ 2026-09-21：注入虚析构会**引入 vptr** ⇒ 只有注解**已计入 vptr**（offset0 是 vptr 成员）
+    # 时才允许注入；否则会覆盖 offset0 的数据成员、把全部成员偏移推 +4 ✗
+    # （实测：SceneMgr 删掉注入后 Create 25.5%→80.6%；审计 N/N 全成员冲突即此症）
+    if cls_name in _get_scalar_dtor_classes() and not _has_dtor \
+            and _offset0_is_vptr_member(cls_name):
         lines.append("    virtual ~%s() {}" % cls_name)
         lines.append("")
 

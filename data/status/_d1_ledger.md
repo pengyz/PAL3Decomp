@@ -2188,3 +2188,45 @@ IDA Pro MCP 二进制校验可用并用于 5 项校验 ✓ · 识别并仪表化
 `ARC_PlayerAtt` 23/27 ⇒ **某成员被发错尺寸**）⇒ **与使用者"标注存在系统性错误"的判断一致** ✓
 
 ⇒ 修好后的**全量审计（712 类，DAG 序）已在后台重跑**，产出完整冲突清单 ⇒ 按 DAG 序**人工介入** ✓
+
+---
+
+# 2026-09-21（第十二轮）：**P1 落地** —— 注入闸门（+55.1pp 字节收益，零回归）
+
+## 1. 层判定与二进制裁决（R16 + 使用者"二进制为唯一 SoT"）
+`emit_headers.py:2006-2011` 会给 `_get_scalar_dtor_classes()` 里的类注入 `virtual ~Cls(){}`，
+**原意有实测依据**（注释：不注入则编译器不发射 `??_G` ⇒ `match` 匹配不到该符号 ⇒ 该类的 L1 丢失）。
+但注入会**引入 vptr** ⇒ 若注解**没有**在 offset0 计入 vptr，就会覆盖数据成员、把**全部成员偏移推 +4** ✗
+
+**二进制裁决（MCP，session `2411a623`）**：
+* 朴素检查会**误导**：IDB 里存在 `??_GSceneMgr@@UAEPAXI@Z@0x4cd930` ⇒ 看似"SceneMgr 有虚析构/有 vptr"；
+  但该函数反汇编是 `mov eax,[esi+1Ch]` **且** `mov dword ptr [esi], offset off_56F9B4`（**在 `[this+0]` 存 vptr**）
+  ⇒ 它与注解的 `m_aSceneSlots@0x1C`/`m_pGfxMgr@0` **布局相容**（真多态类不可能让成员落在0）
+  ⇒ **该名字是 PDB（PAL3A）带来的误名** ✓（仓规："PDB 只能作参考，不能单独作为证据"）
+* 而 SceneMgr 在**真实代码**里的访问 `mov ecx,[eax+0E0E0h]` 与注解 **0xE0E0 一致** ⇒ **无 vptr** ✓
+
+## 2. 判据（注解是否已计入 vptr）—— 实测可判别
+| 类 | `vtables` | offset0 | 审计 |
+|---|---|---|---|
+| `CGameData`/`RoleSystem`/`UIWnd`/`CEffCylinder`/`CCBUIPanel` | **有** | `__vftable`/`_vftable` | **✓ 0 冲突** |
+| **`SceneMgr`**/`UIGameFrm` | **无** | `m_pGfxMgr` 等**数据成员** | **✗ N/N 全成员冲突** |
+
+⇒ 闸门：**仅当注解已计入 vptr（`vtables` 非空 或 offset0 是 vptr 成员）才注入** ✓
+（`data_members` **不含** vptr —— vptr 在 `vtables` 列表与 `_variants['0']` 里，这是实现时的坑）
+
+## 3. 落地与实测（完整 loop，**这次在 codegen 里、不是实验态**）
+| 函数 | before | after |
+|---|---|---|
+| **`SceneMgr::Create(int,int,int)`** | 25.5% | **80.6%（+55.1pp）** ✓✓ |
+| `SceneMgr::RenderAll` / `RenderUpdate` | 52.8% | 55.6%（+2.8）|
+| `SceneMgr::GetCurrentNode` | 4.3% | 2.9%（−1.4，访问晚期成员）|
+
+`codegen rc=0 · probe rc=0 · S2 75/205 ✓ · L1 35 · partial 198 · matched 265`（**零回归** ✓）
+影响面 **恰好 2 个类**（`SceneMgr`+`UIGameFrm`）✓
+
+## 4. 为什么 L1 仍未动 + 下一步
+第二 bug（**+0x124 → +0xE0E0 之间丢 0x28**）仍在 ⇒ `ClearInactiveRoles`（94.8%、3 处 −0x24）差最后一步。
+⇒ 下一步：用**单值** `offsetof` 探测（**不能用批量扫描**，行号映射不可靠 —— 已修进工具）在该区间二分，
+定位"被发小 0x28"的成员；修后预期 **L1 35 → 36** ✓
+⇒ 另注：`CCBCamControl`/`CCBRoleState`/`CCBStageCam`（`vtables=False` 但不在注入集）的 `N/N` 是**另一子因**
+（发射头里声明了 `virtual` 方法 ⇒ 同样引入 vptr）⇒ 需**二进制裁决**该注解是否缺 `vtables`（P2）✓
