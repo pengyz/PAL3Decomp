@@ -152,7 +152,14 @@ union { // +0xN
 | **apply 后** | annotation diff | `python3 tools/annotation_diff.py` | 显示变更摘要，确认无意外修改 |
 | **probe_compile 后** | 错误分类 | `python3 tools/error_classifier.py --summary` | 输出根因分布，指导下一步修复方向 |
 | **probe_compile 后** | 字节匹配裁判 | `python3 pipeline/cli.py match` | L1（字节全同函数数）不得回退；partial 的字节 diff 是注解布局/归属错误的直接证据 |
-| **修改 struct annotation 后** | 布局验证 | `python3 tools/audit_layout.py` | 发现布局问题立即修复 |
+| **修改 struct annotation 后** | 布局验证（**编译器裁判**）| `python3 tools/audit_type_layout.py --only <Cls>` | 发现布局问题立即修复 |
+| **任何"无证据/无冲突"结论** | 语义/类型证据（**三形态**）| `python3 tools/audit_member_semantics.py --class <Cls>` | 否定结论必须来自**权威批量原始扫描** ✓ |
+| **函数归属改动** | 归属证据（**可证**）| `python3 tools/audit_attribution_evidence.py` | 只看 contradiction 告警，人工裁定 |
+| **annotation 批量改动** | **四道门** | ①布局等价 ②`loop --expect-errors`不增 ③`l1`不降 ④证据自校验 | 缺一不可 ⇒ 见 `annotation-audit` skill |
+
+> ⚠️ **不要再用 `tools/audit_layout.py` 作布局判据**：它比的是「注解 vs `asm/pal3/ida_structs.json`」，
+> 而后者是 `apply_annotations.py` **从这些注解写进 IDB 再导出**的 ⇒ **同源比较、恒等、无判别力** ✗
+> （该脚本 docstring 自认 "check 1 是同源比较、恒等、无判别力"）。现代替品：`tools/audit_type_layout.py` ✓
 
 ### 病灶层检查（动手前的第一件事）
 
@@ -220,7 +227,7 @@ MSVC 在单个编译单元错误数超过 ~100 时以 **C1003** 停住（实测 
    - 根据分类结果优先修复 `annotation_fix` 类（投入产出比最高）
    - `hexlimits` 类不修，`manual_idb` 类记录待办
 
-3. **布局验证**（`audit_layout.py`）：
+3. **布局验证**（`audit_type_layout.py`，**编译器裁判**；`audit_layout.py` 已废弃 ✗ —— 同源比较无判别力）：
    - 修改 struct annotation 后必须运行
    - 检测到类型大小不匹配时：对比 IDA 导出，修正 annotation 类型
    - 典型案例：`CEffMgr.m_EffTable` 从 `tagEffObj[2048]` 改回 `_BYTE[584]`
@@ -255,3 +262,4 @@ MSVC 在单个编译单元错误数超过 ~100 时以 **C1003** 停住（实测 
 ## Skill Routing
 
 管线、annotation、IDA 查询、编译错误分析 → 加载 `pal3-pipeline` skill
+annotation 的**布局/类型/名字/归属审计**（DAG 序、三形态证据、四道基线门、盲区与反模式）→ 加载 `annotation-audit` skill
