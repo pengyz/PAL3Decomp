@@ -2714,3 +2714,20 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 ⇒ 编译器插入 vptr ⇒ 269 个成员全部实际偏移 = 注解 +4 ✗（270/270 冲突 ✗）
 **二进制证据**：vtable `0x56ABB8`（6 槽 ✓）被 `0x434CA8: movl $0x56abb8,(%eax)` 存于 [this+0] ✓
 **修法**：`known_members` 补 `__vftable`@0x0 ✓ + 全部成员 +4 ✓（编译器 offsetof 确认 ✓）
+
+## 8. `PalScriptMgr` vptr 修复后的级联：`PalScript.cpp C2511`（1 条 ✗）
+**现象**：`PalScript.cpp(1667) C2511 'Destroy_28': overloaded member function 'void *(char)' not found` ✗
+**根因**：`PalScriptMgr` 补了 `__vftable` ⇒ 改变了继承布局 ⇒ PalScript 内引用 `PalScriptMgr` 的内联调用签名不匹配 ✗
+**性质**：`codegen_fix` / `hexrays_limit` 级 ✗（非 annotation_fix ✗）
+**决定**：容忍此 1 条 ✗（核心目标=布局清零已达成 ✓），后续 codegen 层修复 ✓
+
+## 9. 当前状态（goal round 5/40）
+| 指标 | 值 |
+|---|---|
+| **L1** | **38** ✓（会话初 35 ⇒ +3 ✓）|
+| S2 | **76/205** ✓（会话初 75 ✓）|
+| 总错误 | 2141（+1 ⚠️ 级联副作用，已归因 ✓）|
+| matched / 比对符号 | 270/325 ✓ |
+| 布局冲突类 | 已修：UITextArea · RoleCamera · CameraCtrl · PalScriptMgr（270 成员 ✓）·
+  Comp_DonateUI · UIRoleDialog · UIGameFrm · UIRoleSelectDialog（级联 ✓）· SaleUI · EquipUI · MagicUI · UIListBox ✓
+| 剩余冲突类 | ~87（progress 文件 ✓）|
