@@ -1,6 +1,6 @@
 {
-  "name": "20260922_160136",
-  "timestamp": "2026-09-22T16:01:36.594248",
+  "name": "20260922_uitarea_rebuild_accepted",
+  "timestamp": "2026-09-22T20:58:51.569768",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "fail",
@@ -7064,17 +7064,27 @@
     },
     "pal3/src/Misc/UIRoleSelectDialog.cpp": {
       "status": "fail",
-      "error_count": 2,
+      "error_count": 4,
       "errors": [
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__stdcall *)(const struct tagRECT *,struct tagPOINT)' to 'int (__cdecl *)(const struct tagRECT *,struct tagPOINT)'",
-          "line": 301
+          "line": 302
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__stdcall *)(const struct tagRECT *,struct tagPOINT)' to 'int (__cdecl *)(const struct tagRECT *,struct tagPOINT)'",
-          "line": 645
+          "line": 648
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (char *,int)' : cannot convert parameter 1 from 'int *' to 'char *'",
+          "line": 656
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (char *,unsigned long)' : cannot convert parameter 1 from 'int *' to 'char *'",
+          "line": 761
         }
       ]
     },
@@ -7382,70 +7392,9 @@
       "errors": []
     },
     "pal3/src/Misc/UITextArea.cpp": {
-      "status": "fail",
-      "error_count": 12,
-      "errors": [
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >' to 'unsigned long *'",
-          "line": 27
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >' to 'unsigned long *'",
-          "line": 29
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >' to 'unsigned long *'",
-          "line": 66
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >' to 'float *'",
-          "line": 71
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >' to 'float *'",
-          "line": 72
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >' to 'unsigned long *'",
-          "line": 74
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >' to 'float *'",
-          "line": 113
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >' to 'float *'",
-          "line": 114
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >' to 'unsigned long *'",
-          "line": 116
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >' to 'unsigned long *'",
-          "line": 254
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >' to 'unsigned long *'",
-          "line": 279
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >' to 'unsigned long *'",
-          "line": 286
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/UITitle.cpp": {
       "status": "fail",
@@ -8233,157 +8182,162 @@
         {
           "code": "C2065",
           "msg": "'SingletonThunk_0053D190' : undeclared identifier",
-          "line": 2389
+          "line": 2386
         },
         {
           "code": "C2227",
           "msg": "left of '->Render' must point to class/struct/union",
-          "line": 2462
+          "line": 2459
         },
         {
           "code": "C2065",
           "msg": "'nearby_53edd0' : undeclared identifier",
-          "line": 2464
+          "line": 2461
         },
         {
           "code": "C2227",
           "msg": "left of '->Render' must point to class/struct/union",
-          "line": 2464
+          "line": 2461
         },
         {
           "code": "C2227",
           "msg": "left of '->Render' must point to class/struct/union",
-          "line": 2464
+          "line": 2461
         },
         {
           "code": "C2227",
           "msg": "left of '->Render' must point to class/struct/union",
-          "line": 2466
+          "line": 2463
         },
         {
           "code": "C2227",
           "msg": "left of '->Destroy' must point to class/struct/union",
-          "line": 2466
+          "line": 2463
         },
         {
           "code": "C2227",
           "msg": "left of '->Render' must point to class/struct/union",
-          "line": 2470
+          "line": 2467
         },
         {
           "code": "C2227",
           "msg": "left of '->Render' must point to class/struct/union",
-          "line": 2474
+          "line": 2471
         },
         {
           "code": "C2227",
           "msg": "left of '->Update_2ff0' must point to class/struct/union",
-          "line": 2475
+          "line": 2472
         },
         {
           "code": "C2227",
           "msg": "left of '->Destroy' must point to class/struct/union",
-          "line": 2476
+          "line": 2473
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIStatic'",
-          "line": 2478
+          "line": 2475
         },
         {
           "code": "C2664",
           "msg": "'SetOpenMode' : cannot convert parameter 1 from 'const int' to 'enum ECPKMode'",
-          "line": 2546
+          "line": 2543
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 2650
+          "line": 2647
         },
         {
           "code": "C2227",
           "msg": "left of '->gbSound2DNode' must point to class/struct/union",
-          "line": 2650
+          "line": 2647
         },
         {
           "code": "C2653",
           "msg": "'gbSound2DNode' : is not a class or namespace name",
-          "line": 2650
+          "line": 2647
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 2670
+          "line": 2667
         },
         {
           "code": "C2248",
           "msg": "'_Tidy' : cannot access private member declared in class 'std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >'",
-          "line": 2671
+          "line": 2668
         },
         {
           "code": "C2248",
           "msg": "'_Tidy' : cannot access private member declared in class 'std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >'",
-          "line": 2726
+          "line": 2723
         },
         {
           "code": "C2248",
           "msg": "'_Tidy' : cannot access private member declared in class 'std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >'",
-          "line": 2739
+          "line": 2736
         },
         {
           "code": "C2248",
           "msg": "'_Tidy' : cannot access private member declared in class 'std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >'",
-          "line": 2746
+          "line": 2743
         },
         {
           "code": "C2660",
           "msg": "'Play' : function does not take 1 parameters",
-          "line": 2762
+          "line": 2759
         },
         {
           "code": "C2784",
           "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __cdecl std::operator +(const class std::basic_string<`template-parameter257',`template-parameter258',",
-          "line": 2775
+          "line": 2772
         },
         {
           "code": "C2784",
           "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __cdecl std::operator +(const class std::basic_string<`template-parameter257',`template-parameter258',",
-          "line": 2775
+          "line": 2772
         },
         {
           "code": "C2784",
           "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __cdecl std::operator +(const _E,const class std::basic_string<`template-parameter257',`template-param",
-          "line": 2775
+          "line": 2772
         },
         {
           "code": "C2784",
           "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __cdecl std::operator +(const _E *,const class std::basic_string<`template-parameter257',`template-par",
-          "line": 2775
+          "line": 2772
         },
         {
           "code": "C2784",
           "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __cdecl std::operator +(const class std::basic_string<`template-parameter257',`template-parameter258',",
-          "line": 2775
+          "line": 2772
         },
         {
           "code": "C2784",
           "msg": "'class std::reverse_iterator<`template-parameter257',`template-parameter258',`template-parameter259',`template-parameter260',`template-parameter261'> __cdecl std::operator +(_D,const class std::revers",
-          "line": 2775
+          "line": 2772
         },
         {
           "code": "C2676",
           "msg": "binary '+' : 'struct gbVec3D' does not define this operator or a conversion to a type acceptable to the predefined operator",
-          "line": 2775
+          "line": 2772
         },
         {
           "code": "C2248",
           "msg": "'_Tidy' : cannot access private member declared in class 'std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >'",
-          "line": 2890
+          "line": 2887
         },
         {
           "code": "C2248",
           "msg": "'_Tidy' : cannot access private member declared in class 'std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >'",
-          "line": 2903
+          "line": 2900
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->Create' must point to class/struct/union",
+          "line": 2943
         },
         {
           "code": "C2227",
@@ -8391,54 +8345,49 @@
           "line": 2946
         },
         {
-          "code": "C2227",
-          "msg": "left of '->Create' must point to class/struct/union",
-          "line": 2949
-        },
-        {
           "code": "C2660",
           "msg": "'gbSound2DNode::~gbSound2DNode' : function does not take 1 parameters",
-          "line": 2949
+          "line": 2946
         },
         {
           "code": "C2039",
           "msg": "'__vftable' : is not a member of 'UIStatic'",
-          "line": 2989
+          "line": 2986
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 2989
+          "line": 2986
         },
         {
           "code": "C2660",
           "msg": "'Stop' : function does not take 1 parameters",
-          "line": 2989
+          "line": 2986
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before '}'",
-          "line": 3112
+          "line": 3109
         },
         {
           "code": "C2440",
           "msg": "'return' : cannot convert from 'char ** ' to 'unsigned long *'",
-          "line": 3308
+          "line": 3305
         },
         {
           "code": "C2664",
           "msg": "'BinkOpen' : cannot convert parameter 1 from 'const char *' to 'void *'",
-          "line": 3422
+          "line": 3419
         },
         {
           "code": "C2664",
           "msg": "'BinkOpen' : cannot convert parameter 1 from 'int' to 'void *'",
-          "line": 3439
+          "line": 3436
         },
         {
           "code": "C2065",
           "msg": "'BinkSetVolume' : undeclared identifier",
-          "line": 3447
+          "line": 3444
         }
       ]
     },

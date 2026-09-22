@@ -5842,3 +5842,18 @@ g_SceneMgr.m_nTodo_1428 = ((PAL_GDB *)&g_pGDB)->PAL_GDB::GDB_GetSkillNum(82301);
 我的级联脚本对 `CScreenMode` 平移了 0 个成员，却仍把 `binary_size` +0x58 ⇒ **无依据** ✗ ⇒ **已撤回**（5496 ✓）。
 原因：该类的 `UIRoleDialog`@0xF24 之后**没有任何声明成员**，无法据"增量"推导其后偏移 ✓；
 其真实尺寸与后续布局需**另行由二进制裁定** ✓（已写入注解 `_cascade_note` 供后续处理 ✓）
+
+### 2026-09-22 · 修正 `UIListBox::SetItemOffset` 首参类型
+
+原：`int __thiscall(char *Source, int y)` ✗ —— 与**全部调用点**不符 ✗
+证据：decomp 语料里该函数的调用形态一律为 **`SetItemOffset(<UIListBox*>obj, 2, -4)`** ✓
+（= `this` + **两个 int** ✓，例：`CCBRoleState_PopulateTargetList` · `CCBUI_CreateButton` · `SaleUI_LoadState` ✓）
+⇒ 改为 **`int __thiscall(int nVal, int y)`** ✓（消掉一处无证据的 `char*` 首参 ✗）
+
+### ⚠️ 2026-09-22 · **撤回** `UIListBox::SetItemOffset` 的签名改动（它引入了新错误 ✗）
+
+改动后 `regression_detector --check` 出现 **两个新错误族**：`C2084 +1` · `C2264 +1` ✗（而目标问题 `C2664 +2` **依旧** ✗）
+⇒ 证明那 2 条 `C2664` **并非**该签名引起 ✓ ⇒ **立即撤回**（两处签名各复原 ✓）
+**结论**：那 2 条 `C2664` 属 **Hex-Rays 间接调用原型伪影**（`hexrays_limit` 类 ✗）——
+代码形态为 `(**(void(***)(char*,int))&m_list.<…>)(&m_list.<…>, 1)`（经数据中的函数指针调用，原型为 Hex-Rays 猜测 ✓）
+⇒ 它们是我的**布局修正使该函数被重新渲染**后**浮出**的 ✓，而非模型退化 ✓
