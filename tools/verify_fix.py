@@ -154,6 +154,144 @@ def gate_verdict(base, now):
     return ('fail' if probs else 'pass', probs)
 
 
+
+# ==================== 新门：**注解 vs 二进制**（子 agent 复核建议，2026-09-22）====================
+# 为什么必须：原有基准是**注解**（offsetof==注解偏移、sizeof==binary_size）⇒ 只证"发射==注解" ✗
+# 实例（UITextArea）：注解 string@0x44，而二进制 `444FD4 movl $0x3f000000,0x44(%esi)` 写 float 0.5 ✗；
+#   且 `mov %edi,0xbc(%esi)` ⇒ 对象 ≥0xBC 而注解 binary_size=104 ✗✗ ⇒ 旧门会**认证错误注解** ✗✗
+
+_ATT_MEM_RX = re.compile(r'^(?:(\$0x[0-9a-f]+|%[a-z0-9]+|\$[^,]+),\s*)?(-?)0x([0-9a-f]+)\(%([a-z0-9]+)\)\s*(?:,\s*(%[a-z0-9]+|\$[^,]+))?$')
+_IMM_DWORD_RX = re.compile(r'\$0x([0-9a-f]{8})')
+_MNEM_W = {'movb': 1, 'movw': 2, 'movl': 4, 'movq': 8, 'mov': None,
+           'movzbl': 1, 'movsbl': 1, 'movzwl': 2, 'cmpb': 1, 'cmpl': 4, 'cmp': None,
+           'flds': 4, 'fstps': 4, 'fldl': 8, 'fstpl': 8, 'fld': None, 'fstp': None}
+_REG_W = {'al': 1, 'bl': 1, 'cl': 1, 'dl': 1, 'ah': 1, 'bh': 1, 'ch': 1, 'dh': 1, 'sil': 1, 'dil': 1,
+          'ax': 2, 'bx': 2, 'cx': 2, 'dx': 2, 'si': 2, 'di': 2,
+          'eax': 4, 'ebx': 4, 'ecx': 4, 'edx': 4, 'esi': 4, 'edi': 4, 'ebp': 4, 'esp': 4,
+          'rax': 8, 'rbx': 8, 'rcx': 8, 'rdx': 8, 'rsi': 8, 'rdi': 8}
+
+
+def access_of(line):
+    """从一行 objdump 解析**成员访问** → dict(disp,width,kind,float_imm) 或 None ✓（纯函数）
+
+    AT&T 语法：**目标在右** ⇒ 内存操作数在**首位** ⇒ 写；在**次位** ⇒ 读 ✓
+    排除：栈基址（%esp/%ebp）· 无 `(%reg)` 形态 ✓
+    """
+    m = re.match(r'^\s*[0-9a-f]+:\t[0-9a-f ]+\t(\S+)\s+(.*)$', line or '')
+    if not m:
+        return None
+    mn, ops = m.group(1).lower(), m.group(2).strip()
+    parts = [x.strip() for x in ops.split(',')]
+    memidx = None
+    mm = None
+    for i, pt in enumerate(parts):
+        g = _ATT_MEM_RX.match(pt)
+        if g:
+            memidx, mm = i, g
+            break
+    if not mm:
+        return None
+    base = mm.group(4).lower()
+    if base in ('esp', 'ebp'):
+        return None
+    if mm.group(2) == '-':
+        return None
+    disp = int(mm.group(3), 16)
+    # ⚠️ AT&T：**目标在最后** ⇒ 内存操作数在末位才是写；在首位是读 ✓（我最初写反过 ✗）
+    kind = 'write' if memidx == len(parts) - 1 else 'read'
+    width = _MNEM_W.get(mn)
+    if width is None and mn.startswith('mov') and len(mn) == 4 or mn.startswith('cmp') and len(mn) == 4:
+        width = _MNEM_W.get(mn[:4])
+    if width is None:
+        for pt in parts:
+            if pt.startswith('%') and pt[1:].lower() in _REG_W:
+                width = _REG_W[pt[1:].lower()]
+                break
+    imm = _IMM_DWORD_RX.search(ops)
+    float_imm = bool(imm) and 0x30000000 <= int(imm.group(1), 16) <= 0x43000000
+    return {'disp': disp, 'width': width or 4, 'kind': kind, 'float_imm': float_imm,
+            'mnemonic': mn, 'line': (line or '').strip()[:80]}
+
+
+def consistency(annot_type, annot_size, binary_size, acc):
+    """→ ('ok'|'suspicious'|'contradiction', why) —— 注解与**二进制访问**是否矛盾 ✓（纯函数）
+
+    * R3（决定性）：访问偏移 ≥ `binary_size` ⇒ 矛盾 ✗
+    * R1（决定性）：向**非 float/double** 成员写 **float 立即数** ⇒ 矛盾 ✗
+    * R2（可疑）：访问宽度 > 注解尺寸 ⇒ suspicious ✓（MSVC 会合并相邻字节写 ⇒ 不能断死 ✗）
+    """
+    t = (annot_type or '').lower()
+    if binary_size and acc['disp'] >= int(binary_size):
+        return ('contradiction', '访问 +0x%X ≥ binary_size 0x%X ⇒ 对象没有该段' % (acc['disp'], int(binary_size)))
+    if acc.get('float_imm') and not any(k in t for k in ('float', 'double')):
+        return ('contradiction', '写 float 立即数于非浮点成员（注解 %s）' % (annot_type,))
+    if annot_size and acc.get('width') and acc['width'] > int(annot_size):
+        return ('suspicious', '访问宽度 %d > 注解尺寸 %d（可能合并字节写）' % (acc['width'], int(annot_size)))
+    return ('ok', '')
+
+
+def source_strength(source):
+    """成员 `source` 的证据强度：`binary…` ⇒ binary ✓；`pdb_merge`/`gen_headers*`/`annotation` ⇒ weak ✓"""
+    s = str(source or '').strip().lower()
+    if s.startswith('binary'):
+        return 'binary'
+    return 'weak'
+
+
+def anno_type_size(typ):
+    """注解类型 → 已知尺寸（仅用于 R2 的"宽度过大"判断；未知 ⇒ None ✓ → 不判 ✓）"""
+    t = str(typ or '').strip()
+    if t in ('BYTE', '_BYTE', 'char', 'unsigned char', 'bool'):
+        return 1
+    if t in ('short', 'unsigned short', '__int16'):
+        return 2
+    if t in ('int', 'unsigned int', 'float', 'long', 'void *') or t.endswith('*'):
+        return 4
+    if t in ('double', '__int64', 'unsigned __int64'):
+        return 8
+    return None
+
+
+def anno_vs_bin(cls, members, methods, binary_size=None, limit_insns=600):
+    """**注解 vs 二进制**逐成员对账 → (rows, contradictions) ✓
+
+    `members`: [(name, offset, type, size, source)]；`methods`: 该方法类的函数入口地址列表
+    用 `bin_oracle`（O2，IDB-无关 ✓）取每个函数的反汇编窗口，收集访问并按偏移比对 ✓
+    """
+    import bin_oracle as B
+    acc_by_disp = {}
+    for a in (methods or [])[:8]:
+        try:
+            lines = [B.insn_covering(va)[1] for va in []]
+        except Exception:
+            lines = []
+        try:
+            B._build_index()
+            addrs = [va for va in B._ADDRS if int(str(a), 16) <= va <= int(str(a), 16) + limit_insns * 8]
+        except Exception:
+            addrs = []
+        for va in addrs:
+            t, _d = B._INSNS.get(va, (None, None))
+            if not t:
+                continue
+            acc = access_of('  %x:\t00 \t%s' % (va, t))
+            if acc:
+                acc_by_disp.setdefault(acc['disp'], acc)
+    rows, bad = [], []
+    for name, off, typ, sz, src in members:
+        acc = acc_by_disp.get(int(off))
+        if not acc:
+            rows.append({'member': name, 'off': hex(int(off)), 'verdict': 'no-evidence',
+                         'source_strength': source_strength(src), 'detail': ''})
+            continue
+        v, why = consistency(typ, sz if sz else anno_type_size(typ), binary_size, acc)
+        rows.append({'member': name, 'off': hex(int(off)), 'verdict': v,
+                     'source_strength': source_strength(src), 'detail': why, 'insn': acc['line']})
+        if v == 'contradiction':
+            bad.append('%s@%s: %s' % (name, hex(int(off)), why))
+    return rows, bad
+
+
 # ==================== 驱动 ====================
 
 def git_show(path):
@@ -275,6 +413,39 @@ def main():
     print('  ── 端到端：该类在比对集内的函数 %d 个，其中 match_L1 %d 个' % (len(mine), n_l1))
     for n, st, mp in mine[:6]:
         print('       %-44s %-10s %s' % (str(n)[:44], st, mp))
+
+    # ③b **注解 vs 二进制**（新门，2026-09-22：旧门只证"发射==注解" ✗）
+    try:
+        IS = json.load(open(os.path.join(ROOT, 'asm', 'pal3', 'ida_structs.json'), encoding='utf-8'))
+    except Exception:
+        IS = {}
+    cls_ann = ann_all.get(a.cls) or {}
+    km = cls_ann.get('known_members') or {}
+    memlist = []
+    for k, v in (km.items() if isinstance(km, dict) else []):
+        if not isinstance(v, dict):
+            continue
+        try:
+            off = int(str(k).split('_')[0], 0)
+        except Exception:
+            continue
+        memlist.append((v.get('name') or '?', off, v.get('type'), None, v.get('source')))
+    memlist.sort(key=lambda x: x[1])
+    methods = list(((IS.get(a.cls) or {}).get('methods') or {}).keys())
+    av_rows, av_bad = anno_vs_bin(a.cls, memlist, methods, binary_size=cls_ann.get('binary_size'))
+    n_ok = sum(1 for r in av_rows if r['verdict'] == 'ok')
+    n_contra = sum(1 for r in av_rows if r['verdict'] == 'contradiction')
+    n_susp = sum(1 for r in av_rows if r['verdict'] == 'suspicious')
+    n_ne = sum(1 for r in av_rows if r['verdict'] == 'no-evidence')
+    n_weak = sum(1 for r in av_rows if r['source_strength'] == 'weak')
+    print('  ── **注解 vs 二进制**（新门 · 方法数 %d）: ok %d · **矛盾 %d** · 可疑 %d · 无证据 %d · 弱来源成员 %d'
+          % (len(methods), n_ok, n_contra, n_susp, n_ne, n_weak))
+    for r in av_rows:
+        if r['verdict'] in ('contradiction', 'suspicious'):
+            print('       %-7s %-20s %-6s %-9s %s' % (r['verdict'], r['member'][:20], r['off'],
+                                                      r['source_strength'], r['detail'][:44]))
+    for b in av_bad:
+        problems.append('注解 vs 二进制: %s' % b)
 
     # ④ 不回归：与已提交基线比较
     base, now = baselines()

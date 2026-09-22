@@ -2592,3 +2592,19 @@ g_SceneMgr.m_nTodo_1428 = ((PAL_GDB *)&g_pGDB)->PAL_GDB::GDB_GetSkillNum(82301);
 * 未取得"二进制 string=16"的**直接**访问证据（支撑=工具链 std::string=16 ✓ + 5 类步长 16 ✓ + `UITextArea` 被独立反证 ✓）⇒ **强支持、非终局** ✓
 * `lea 0x68(%esi)→call 0x445EA0` 的语义未证实（该 sub 伪代码为空 ✗）
 * `m_bInvalidate` 的真实偏移/宽度未定位（仅知 +0x48 byte、+0x4C/0x50/0x54 int ✓）
+
+## 5. 落地：**"注解 vs 二进制"新门**（子 agent 复核建议 ✓，TDD 10/10 ✓）
+* 三条判据（分级，不把弱证据当证明 ✓）：
+ * **R3（决定性）**：访问偏移 ≥ `binary_size` ⇒ **矛盾** ✗
+ * **R1（决定性）**：向**非 float/double** 成员写 **float 立即数** ⇒ **矛盾** ✗
+ * **R2（可疑，不断死）**：访问宽度 > 注解尺寸 ⇒ `suspicious` ✓（MSVC 会**合并相邻字节写** ✗）
+ * 另加**弱来源标注**（`pdb_merge`/`gen_headers*`/纯 `annotation` ⇒ weak ✓）
+* 实现：`access_of()`（AT&T 解析，**目标在最后** ⇒ 末位为写 ✓ —— 我最初写反过 ✗，测试抓出 ✓）·
+ `consistency()` · `source_strength()` · `anno_vs_bin()`（用 `bin_oracle`，**IDB-无关** ✓）
+* **验收（`verify_fix --class UITextArea`）**：
+```
+注解 vs 二进制（新门 · 方法数 8）: ok 0 · 矛盾 1 · 可疑 1 · 无证据 1 · 弱来源 3
+  contradiction  m_buf         0x44 weak  写 float 立即数于非浮点成员 ✗
+  suspicious     m_bInvalidate 0x50 weak  宽度 4 > 注解 1（可能合并字节写）✓
+```
+⇒ **旧门会认证错误注解；新门抓到它** ✓✓（这正是复核指出的最危险缺口 ✓）
