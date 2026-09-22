@@ -1794,11 +1794,24 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         lines.append("    %s %s; // +0x%X" % (mtype, mname, off))
                 return _estimate_member_size(mtype)
 
+            # ===== 单一记账 + 补白提顶（2026-09-21，第 4 次尝试；F63/F65 均因"在分支里补"而失败）=====
+            # 原状：补白逻辑在循环中部、其后还有三条 `continue` 分支 ⇒ 走分支的成员**跳过补白** ✗；
+            # 且 `if off < start_off: continue` 会在**前一个成员估算尺寸偏大**时把成员**整条丢掉** ✗
+            #（实测：RoleSystem 的按值 `UIWnd` 之后未补 pad ⇒ 其后全部成员 −16；SceneMgr 继承 −16 且尾部再 −24）
+            # 现改为**在循环顶部统一补白**（任何分支之前）⇒ 三类分支都不再绕过 ✓
+            # 并**不再跳过**任何成员（估算偏大只告警，不丢成员）✓
             for off_str in sorted_offsets:
                 group = ann_members[off_str]
                 off = int(off_str)
-                if off < start_off:
-                    continue
+                if off > start_off:
+                    _gap = off - start_off
+                    lines.append("    char _gap_%03X[%d]; // +0x%X" % (start_off, _gap, start_off))
+                    start_off = off
+                elif off < start_off:
+                    # 估算尺寸偏大 ⇒ 记账超前。**不丢成员**；告警留痕，交由审计工具裁决 ✓
+                    sys.stderr.write('[emit] %s: member at +0x%X is behind bookkeeping '
+                                     '(start_off=0x%X, +0x%X) — 不跳过，交由布局审计裁决\n'
+                                     % (cls_name, off, start_off, start_off - off))
                 # F65（第 113 轮）调试开关：`PAL3_EMIT_TRACE=<ClassName>` 时打印每个成员的
                 # (注解偏移 off, 记账起点 start_off)，用来定位"记账与实际发射字节不一致"的成员
                 # —— SceneMgr 的 `_variants` 联合（注解 +0xC67E）被发射到 +0xC664 且 gap 未补，
