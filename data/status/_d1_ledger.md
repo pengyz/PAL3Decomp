@@ -2559,3 +2559,36 @@ g_SceneMgr.m_nTodo_1428 = ((PAL_GDB *)&g_pGDB)->PAL_GDB::GDB_GetSkillNum(82301);
 * 风险：若二进制 string 真是 16，则**内联字符串操作**（`/Ob2` 常见）会因类型变小而字节失配 ✗✗
 ⇒ **改 shim 前需要更强的裁定**：找一处**确实操作该字符串**的代码，看其内部字段的读写宽度/偏移 ✓
 （`UITextArea` 已有 ✓；其余需另找：这些类的方法未归属 ⇒ 可能经**全局数组 + 下标**访问 ✗ ⇒ 单模式扫描不可行 ✗）
+
+---
+
+# 2026-09-22（第二十二轮）：子 agent 对抗式复核 —— **B 被反证撤销** + 三项结构性建议
+
+## 1. 复核结论（我随后**独立验证，全部成立** ✓）
+* **B（string→12）＝ 反证 ✗✗ 必须撤回**：
+ `444FD4 movl $0x3f000000,0x44(%esi)` ⇒ **+0x44 是 float 0.5** ✗（注解说是 string ✗）；
+ `mov %edi,0x4c/0x50/0x54` 是 **int 归零**（`xor edi,edi`）✗（我误读为"12 字节字符串之后的字段" ✗）；
+ `mov %al,0x48(%esi)` 是注解**缺失**的 BYTE ✗；`mov %edi,0xb0(%esi)` ⇒ **对象 ≥0xB0/0xBC** ✗ vs 注解 104 ✗✗
+ ⇒ `pal3_stl.h` 仅 `#include <string>` ⇒ **string=16 才是对的** ✓，`UITextArea` 是异类且**注解错** ✗
+ ⇒ 且 `m_buf` 的 `source=pdb_merge`、`m_bInvalidate=gen_headers_9.2` ⇒ **两者都无二进制证据** ✗（仓规：PDB 不能单独作证据✓）
+* **A（gbFontType）证据成立 ✓，但修法要改层**：
+ 真实类型是 **`enum gbFontType`**（`include/gbengine/gbPrintFont.h:87`）⇒ MSVC6 枚举 **4 字节** ✓；
+ 但 **`ida_structs` 里"空 struct 且 size=1"共 91 个，其中 15 个在仓内是 enum** ✗
+ ⇒ **不可一次性重排估计器偏好**（会同时改变 15 个类型的估计 ⇒ 波及大量类 ✗）；也**无法用 `sdk_types` 覆盖**（顺序在前 ✗）
+ ⇒ 应**只改数据**：逐个改正那 15 个类型的尺寸来源（每处附"仓内 enum 声明 + 步长"证据 ✓），**按类验收** ✓
+* **链条部分失真**：`UIStaticFlex +4` 是真 bug ✓；`UITextArea +4` 是**注解错** ✗ ⇒
+ `UIRoleDialog(728 vs 720)` 与 `Comp_DonateUI(46204 vs 46192)` 只有**一部分**归因于 A ✓
+* **★验收缺门（最危险）**：`verify_fix` 的基准是**注解**（`offsetof==注解偏移`、`sizeof==binary_size`）⇒
+ 它证明"**发射 == 注解**"，**不证明"注解 == 二进制"** ✗ ⇒ 注解本身错时（如 `UITextArea` ✗）会把错误**认证为通过** ✗✗
+
+## 2. 处置
+1. **撤回 B** ✓ 并**更正知识条目**（其中"string=12"的错误主张 ✗；追加"孤立指令片段会误导"的教训 ✓）
+2. **采纳"补门"建议**：在 `verify_fix` 增加**注解 vs 二进制**检查（对改动类逐成员找 `[reg+off]` 访问并核对宽度/种类是否矛盾 ✓），
+ 且 shim/类型表类改动另跑**全量布局审计**对比冲突类数 ✓
+3. **A 改为数据层、逐类型修**（15 个 enum 类型清单待建 ✓），不动估计器偏好 ✗
+4. **B 的替代**：**按二进制重建 `UITextArea` 成员图**（≥ `+0x44 float` · `+0x48 byte` · `+0x4C/0x50/0x54 int` · `+0x68` · `+0xB0/0xBC` ⇒ 对象 ≥0xBC ✓，`source: binary:disasm` ✓）
+
+## 3. 子 agent 诚实标注的未证部分（一并记录）
+* 未取得"二进制 string=16"的**直接**访问证据（支撑=工具链 std::string=16 ✓ + 5 类步长 16 ✓ + `UITextArea` 被独立反证 ✓）⇒ **强支持、非终局** ✓
+* `lea 0x68(%esi)→call 0x445EA0` 的语义未证实（该 sub 伪代码为空 ✗）
+* `m_bInvalidate` 的真实偏移/宽度未定位（仅知 +0x48 byte、+0x4C/0x50/0x54 int ✓）
