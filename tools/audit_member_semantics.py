@@ -256,6 +256,16 @@ def disp32_pattern(off):
     return ' '.join('%02X' % b for b in off.to_bytes(4, 'little', signed=False))
 
 
+def _bin_oracle():
+    """**O2（IDB-无关）** 二进制裁判 —— 取代 MCP 的字节路径 ✓（去会话脆弱性 + 不再占 IDB ✓）"""
+    try:
+        sys.path.insert(0, os.path.join(ROOT, 'tools'))
+        import bin_oracle
+        return bin_oracle
+    except Exception:
+        return None
+
+
 def find_hits_batch(call, values, limit=1):
     """**权威批量否定证据**：一次调用扫多个完整 disp32（成员偏移 + 各全局对象地址+偏移）✓
 
@@ -267,8 +277,21 @@ def find_hits_batch(call, values, limit=1):
     if not values:
         return {}
     pats = [' '.join('%02X' % b for b in int(v).to_bytes(4, 'little', signed=False)) for v in values]
-    txt = call('find_bytes', {'patterns': pats, 'limit': limit})
     out = {}
+    bo = _bin_oracle()
+    if bo is not None:
+        # O2 路径（首选）：直接扫原始 EXE ✓ 不需要 MCP ✓
+        for pat in pats:
+            try:
+                hits = bo.scan(bytes.fromhex(pat.replace(' ', '')), limit=limit)
+            except Exception:
+                hits = []
+            if hits:
+                out[pat] = ['0x%X' % h for h in hits]
+        return out
+    if not call:
+        return out
+    txt = call('find_bytes', {'patterns': pats, 'limit': limit})
     try:
         d = json.loads(txt)
         for x in d:
@@ -409,7 +432,7 @@ def main():
                     break
         g_evid = None
         g_raw = []
-        if call and off is not None:
+        if off is not None:      # ← 不再要求 MCP：O2(bin_oracle) 可独立完成 ✓
             gl = globals_of_type(a.cls)
             vals = [off] + [gaddr + off for gaddr, _ in gl]
             batch = find_hits_batch(call, vals)
@@ -420,7 +443,15 @@ def main():
                 gh = batch.get(pat(gval)) or []
                 if not gh:
                     continue
+                bo = _bin_oracle()
                 for h in gh[:2]:
+                    if bo is not None:
+                        # O2 路径：objdump 给的是**十六进制绝对地址** ✓（比 IDA 的符号名更直接 ✓）
+                        if bo.confirm_abs_access(int(str(h), 16) if isinstance(h, str) else h, gval):
+                            g_evid = 'g_%s(0x%X)+0x%X = 0x%X :: [O2] objdump 绝对地址命中' % (
+                                str(gname).replace('g_', ''), gaddr, off, gval)
+                            break
+                        continue
                     for l in disasm_around(call, h):
                         if confirm_abs_access(l.get('instruction'), gval):
                             g_evid = 'g_%s(0x%X)+0x%X = 0x%X :: %s' % (
@@ -440,7 +471,7 @@ def main():
             evid = ce[0][0] + ' :: ' + ce[0][1][:60]
             hint = type_hint(evid)
         elif b_instr:
-            verdict = 'EVIDENCE-BYTES(他处代码访问)'
+            verdict = 'EVIDENCE-BYTES(O2 原始字节·独立)'
             evid = '%s :: %s' % (hits[0], b_instr[:52])
             hint = type_hint(b_instr)
         elif g_raw or hits:
@@ -451,10 +482,10 @@ def main():
         rows.append({'member': name, 'off': hex(off), 'tag': tag,
                      'verdict': verdict, 'type_hint': hint, 'evidence': evid,
                      'corpus_hits': len(ce), 'byte_hits': len(hits)})
-        mark = {'EVIDENCE-GLOBAL(全局对象)': '✓ 经全局对象访问',
+        mark = {'EVIDENCE-GLOBAL(全局对象)': '✓ 经全局对象访问 [O2 独立]',
                 'NO-EVIDENCE': '✗ 无证据（不得给类型/语义名）',
-                'EVIDENCE-CODE(本类代码)': '✓ 本类代码使用',
-                'EVIDENCE-BYTES(他处代码访问)': '✓ 他处代码访问',
+                'EVIDENCE-CODE(O4 语料·非独立)': '? 语料命中（O4 非独立）',
+                'EVIDENCE-BYTES(O2 原始字节·独立)': '✓ 原始字节命中 [O2 独立]',
                 'HITS-UNCONFIRMED(疑似假阳性)': '? 命中未确认'}.get(verdict, '?')
         print('  %-26s +0x%-6X %-12s %s %s'
               % (name, off, tag, mark, ('%s | %s' % (evid, hint or ''))[:56]))
