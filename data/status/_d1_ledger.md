@@ -2230,3 +2230,35 @@ IDA Pro MCP 二进制校验可用并用于 5 项校验 ✓ · 识别并仪表化
 定位"被发小 0x28"的成员；修后预期 **L1 35 → 36** ✓
 ⇒ 另注：`CCBCamControl`/`CCBRoleState`/`CCBStageCam`（`vtables=False` 但不在注入集）的 `N/N` 是**另一子因**
 （发射头里声明了 `virtual` 方法 ⇒ 同样引入 vptr）⇒ 需**二进制裁决**该注解是否缺 `vtables`（P2）✓
+
+---
+
+# 2026-09-21（第十三轮）：沿 DAG 下探定位"成员补白被 continue 绕过"（**第三次尝试史**）
+
+## 1. DAG 逐层下探（数据链，全部用编译器裁判）
+| 层 | 事实 | 差 |
+|---|---|---|
+| `SceneMgr` | `sizeof` 58652 vs 注解 58692 | **−40** |
+| ↑ 按值内嵌 `RoleSystem stru_C059A0@0x1610` | `offsetof(SceneMgr, _gap_2914)`=0x2904 vs 注解 0x2914 | **−16**（继承自 RoleSystem）|
+| `RoleSystem` | `sizeof` 4852 vs 4868 · `_gap_F20` 0xF10 vs 0xF20 | **−16** |
+| ↑ 按值内嵌 `UIWnd m_StaticSlotArray@0xBAC` | `UIWnd` 自身 `sizeof`=68 = 注解 68 ✓；但 RoleSystem 期望它占 **84**（0xC00−0xBAC）| **−16** |
+| ⇒ 结论 | **注解内部矛盾**（UIWnd 68 vs 期望 84），而 `combat@0xC00` 的来源是 `binary_scan:5refs`（二进制派生）| |
+
+## 2. 结构性根因（并解释了 F63/F65 为何失败）
+`emit_headers.py` 的补白逻辑位于**循环中部（1928）**，其前有**三条 `continue` 分支（1910/1922/1926）**
+⇒ 走这些分支的成员**全部跳过补白** ✗；且各分支 `start_off` 推进口径不一（`off+member_size`/`off+4`/内联体 max）
+⇒ **记账 ≠ 真实发射末端** ✓
+
+**文件内已记录两次失败尝试**：
+* **F63**（111轮）：在 `_variants` 分支补 gap ⇒ 未生效/回退
+* **F65**（113轮）：在 inline UDT 分支补 gap ⇒ **修掉 −26，但同时 +24**（deltas {−22,−20,+4}→{4,20,22,24}，sizeof 0xE55C vs 0xE544）⇒ 回退；其结论原文："**尺寸记账另有问题…否则按下葫芦浮起瓢**"
+
+## 3. 第 4 次的正确修法（结构性）
+1. **单一记账路径**：每成员发射后 `start_off` = **真实发射末端**；
+2. **补白提到循环顶部**（任何 `continue` 之前）⇒ 所有分支都不再绕过 ✓；
+3. **双裁判验收**（前几轮缺的就是这个）：`tools/audit_type_layout.py`（成员偏移全对齐）+ `loop`（逐函数字节，
+   预期 `SceneMgr::ClearInactiveRoles` 达 **L1** ⇒ 35→36）✓
+
+## 4. 附带确认
+* 注解/导出的 offset **键格式混用**（十进制为主，少数带 `0x`：RoleSystem 2/152、SceneMgr 6/118）✓ 与 F63 诊断一致 ⇒ 宜在装载处归一为 int ✓
+* `UIWnd` 的 `binary_size=68` 与实测 `sizeof` **一致** ⇒ 该层无误；错在 **RoleSystem 对它的尺寸假设**（84）与**缺 pad** ✓
