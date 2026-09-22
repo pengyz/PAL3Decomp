@@ -256,6 +256,28 @@ def disp32_pattern(off):
     return ' '.join('%02X' % b for b in off.to_bytes(4, 'little', signed=False))
 
 
+def find_hits_batch(call, values, limit=1):
+    """**权威批量否定证据**：一次调用扫多个完整 disp32（成员偏移 + 各全局对象地址+偏移）✓
+
+    ⚠️ 2026-09-22 教训：单值 `find_hits` + "承载指令确认"会把**命中但未能确认指令**的情况
+    误当"无证据" ✗（实测 `m_nTodo_C660` 的全局形态 `0xC109F0` 在 .text 命中 1 次却被报无证据，
+    导致错误撤类型）。⇒ **否定结论必须来自本函数**（只要命中就不算"无证据"）✓
+    性能：12 个模式 0.06s ⇒ 每类一次调用即可覆盖全部成员 ✓
+    """
+    if not values:
+        return {}
+    pats = [' '.join('%02X' % b for b in int(v).to_bytes(4, 'little', signed=False)) for v in values]
+    txt = call('find_bytes', {'patterns': pats, 'limit': limit})
+    out = {}
+    try:
+        d = json.loads(txt)
+        for x in d:
+            out[x['pattern']] = x.get('matches') or []
+    except Exception:
+        pass
+    return out
+
+
 def find_hits(call, off, limit=8):
     txt = call('find_bytes', {'patterns': [disp32_pattern(off)], 'limit': limit})
     try:
@@ -386,10 +408,16 @@ def main():
                 if b_instr:
                     break
         g_evid = None
+        g_raw = []
         if call and off is not None:
-            for gaddr, gname in globals_of_type(a.cls):
+            gl = globals_of_type(a.cls)
+            vals = [off] + [gaddr + off for gaddr, _ in gl]
+            batch = find_hits_batch(call, vals)
+            pat = lambda v: ' '.join('%02X' % b for b in int(v).to_bytes(4, 'little', signed=False))
+            g_raw = batch.get(pat(off), []) + [h for gaddr, _ in gl for h in batch.get(pat(gaddr + off), [])]
+            for gaddr, gname in gl:
                 gval = gaddr + off
-                gh = find_hits(call, gval)
+                gh = batch.get(pat(gval)) or []
                 if not gh:
                     continue
                 for h in gh[:2]:
@@ -415,8 +443,9 @@ def main():
             verdict = 'EVIDENCE-BYTES(他处代码访问)'
             evid = '%s :: %s' % (hits[0], b_instr[:52])
             hint = type_hint(b_instr)
-        elif hits:
-            verdict, hint, evid = 'HITS-UNCONFIRMED(疑似假阳性)', None, 'bytes hit %s' % hits[0]
+        elif g_raw or hits:
+            # ⚠️ 有权威批量扫描的命中 ⇒ **不得**判"无证据"（未确认 ≠ 不存在）✓
+            verdict, hint, evid = 'HITS-UNCONFIRMED(有命中未确认)', None, 'raw-hit %s' % (g_raw or hits)[:1]
         else:
             verdict, hint, evid = 'NO-EVIDENCE', None, ''
         rows.append({'member': name, 'off': hex(off), 'tag': tag,
