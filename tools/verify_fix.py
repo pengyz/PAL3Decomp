@@ -210,7 +210,7 @@ def access_of(line):
     imm = _IMM_DWORD_RX.search(ops)
     float_imm = bool(imm) and 0x30000000 <= int(imm.group(1), 16) <= 0x43000000
     return {'disp': disp, 'width': width or 4, 'kind': kind, 'float_imm': float_imm,
-            'mnemonic': mn, 'line': (line or '').strip()[:80]}
+            'base': base, 'mnemonic': mn, 'line': (line or '').strip()[:80]}
 
 
 def consistency(annot_type, annot_size, binary_size, acc):
@@ -259,6 +259,9 @@ def anno_vs_bin(cls, members, methods, binary_size=None, limit_insns=600):
     用 `bin_oracle`（O2，IDB-无关 ✓）取每个函数的反汇编窗口，收集访问并按偏移比对 ✓
     """
     import bin_oracle as B
+    # ⚠️ 必须做 **this 追踪**：只按偏移匹配会把**其它对象**的访问误当成员访问 ✗
+    #   （入口 ECX=this；序言 `mov R, ecx` ⇒ R≡this；R 被覆盖 ⇒ 失效 ✓）
+    _MOV_RR = re.compile(r'^\s*mov\s+%([a-z0-9]+)\s*,\s*%([a-z0-9]+)\s*$')
     acc_by_disp = {}
     for a in (methods or [])[:8]:
         try:
@@ -270,12 +273,23 @@ def anno_vs_bin(cls, members, methods, binary_size=None, limit_insns=600):
             addrs = [va for va in B._ADDRS if int(str(a), 16) <= va <= int(str(a), 16) + limit_insns * 8]
         except Exception:
             addrs = []
+        this_regs = {'ecx'}
         for va in addrs:
             t, _d = B._INSNS.get(va, (None, None))
             if not t:
                 continue
+            mm = _MOV_RR.match(t)
+            if mm:
+                # ⚠️ objdump 是 **AT&T**：**源在前** `mov %src,%dst` ✗（Intel 才是目标在前）
+                #   ⇒ 必须 `src, dst = group(1), group(2)` ✓（写反会把 this 删掉 ⇒ 全漏 ✗，实测踩过 ✓）
+                src, dst = mm.group(1), mm.group(2)
+                if src in this_regs:
+                    this_regs.add(dst)
+                elif dst in this_regs:
+                    this_regs.discard(dst)
+                continue
             acc = access_of('  %x:\t00 \t%s' % (va, t))
-            if acc:
+            if acc and acc.get('base') in this_regs:
                 acc_by_disp.setdefault(acc['disp'], acc)
     rows, bad = [], []
     for name, off, typ, sz, src in members:
