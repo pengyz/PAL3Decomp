@@ -2646,3 +2646,15 @@ g_SceneMgr.m_nTodo_1428 = ((PAL_GDB *)&g_pGDB)->PAL_GDB::GDB_GetSkillNum(82301);
  我的一条命令被 SIGTERM 掉、后续 Python 补丁**未执行** ✗ ⇒ 改用 `ps` + **按 PID** 终止 ✓
 2. **杀掉 loop 未级联杀掉子 `idat`** ✗ ⇒ 残留进程**占用 IDB** ⇒ 下一次 `apply` 直接失败（1.0s）✗ ⇒
  按 PID 终止残留 `idat` 后恢复正常 ✓（R12/R14 的实证 ✓）
+
+## 6. ✅✅ 收尾：**全链路首次全绿 + 三项指标同时改善**
+```
+apply rc=0 · export rc=0 · codegen rc=0 · probe rc=0 · match rc=0   ← 五阶段全绿 ✓
+S2 76/205（会话初 75 ⇒ +1）· 总错误 2140（会话初 2150 ⇒ −10）
+matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
+```
+* **L1 37** 的两个来源：① 早先 `ClearInactiveRoles`（P1+补白+pack 链 ✓）② 本轮 `UITextArea` 重建使该单元转绿 ⇒
+ 比对符号由 319 → **325**（+6 ✓）且其中 1 个达 `match_L1` ✓
+* `SetItemOffset` 签名改动**实测有害** ✗（引入 C2084/C2264）⇒ **已撤回** ✓；残留 2 条 `C2664` 已逐条归因（`hexrays_limit` ✓）
+* 基线按仓内授权路径显式刷新（`regression_detector --save-baseline` ✓）⇒ `--check` 0 新失败/0 新错误 ✓
+* CLAUDE.md 检查点示例基线同步为 **S2 76/205 · 错误 2140 · L1 37** ✓
