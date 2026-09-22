@@ -5865,3 +5865,12 @@ g_SceneMgr.m_nTodo_1428 = ((PAL_GDB *)&g_pGDB)->PAL_GDB::GDB_GetSkillNum(82301);
 **二进制裁定**：该区间（0x1D0..0x1F4）在二进制里是**标量 dword 写**（0x1D4/0x1E0/0x1E4/0x1E8 ✓），
 **不是容器**（容器只会经 `lea`+调用访问 ✗）⇒ 注解的 `std::stack` 是**编造** ✗
 **修法**：删除该成员 ✓（交由**中央补白**接管未访问字节，布局不变 ✓）+ 按实测补 4 个 `int` ✓
+
+### 2026-09-22 · `CameraCtrl`：删除编造的 `std::stack` 成员（emit 报 +0x2C 的根因）
+
+**现象**：生成器持续报 `CameraCtrl: member at +0x1D4 is behind bookkeeping (start_off=0x200, +0x2C)` ✗
+**病灶**：注解 `+0x1D0 m_argstack: std::stack<…>`（**步长 4** ✗✗）vs 发射 **48** ✗ ⇒ 差 **0x2C** ✓ 精确吻合
+（`source: annotation` ✗ ⇒ 无二进制证据 ✓）
+**二进制裁定**：`0x1D0` 处是**浮点访问**（`fadds`/`fstps` ✓）⇒ 不是容器 ✗ ⇒ 编造 ✓
+**修法**：删除该成员 ✓ + 按实测补 `float` @0x1D0 ✓（⚠️ 键为十进制：`0x1D0` = **464** ✓）
+**其余成员**：步长均 ≥ 尺寸 ✓（`m_nAsCurrent` 12 · `m_vecLookAt` 24 · `m_vecUpDir` 40 均为**缺口** ✓ 无害 ✓）
