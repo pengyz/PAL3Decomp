@@ -2731,3 +2731,10 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 | 布局冲突类 | 已修：UITextArea · RoleCamera · CameraCtrl · PalScriptMgr（270 成员 ✓）·
   Comp_DonateUI · UIRoleDialog · UIGameFrm · UIRoleSelectDialog（级联 ✓）· SaleUI · EquipUI · MagicUI · UIListBox ✓
 | 剩余冲突类 | ~87（progress 文件 ✓）|
+
+## 9. `UIChatRest` 类型修正尝试 ⇒ **撤回**（+2 C2664 ✗）
+* 尝试：`m_pt: tagPOINT(8B)` → `int(4B)` ✓（类型与注解步长一致 ✓）
+* 结果：`UIChatRest` 审计 ✓ 一致 ✓ 但 **+2 C2664** ✗（Hex-Rays 重新渲染暴露的间接调用不匹配 ✗）
+* 决定：**撤回** ✓（字节匹配 > 语义正确 ✓ 仓规：字节匹配是第一优先级 ✓）
+* 教训：**"修正注解"并不总是改善** ✗ —— 有时暴露的编译错误比修掉的更多 ✓ ⇒ 必须跑 loop 后才能决定 ✓
+* 后续：**留待手工 Phase2 修正** ✓（`m_pt` 类型可疑 ✓ 但改它需要同步改 Hex-Rays 的间接调用原型 ✗）
