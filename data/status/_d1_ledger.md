@@ -2708,3 +2708,9 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
    但 SceneMgr 的 169 检查里仍混入非法 offsetof ⇒ 需查 `load_annotation_members` 的行过滤 ✗
 2. **诊断 PalScriptMgr**（269/269 ✗ 从 +0x1 就偏 ⇒ 疑注入虚析构/基类尺寸 ✗）
 3. 批 1 收尾后 ⇒ 重新测量 + 重建规模 ⇒ 选批 2 的 10 个 ✓
+
+## 7. PalScriptMgr 根因+修法（goal 第 3 轮 ✓）
+**根因**：注解 `vtables: True` ✓ 但 `known_members` **漏了 `__vftable`@0x0** ✗
+⇒ 编译器插入 vptr ⇒ 269 个成员全部实际偏移 = 注解 +4 ✗（270/270 冲突 ✗）
+**二进制证据**：vtable `0x56ABB8`（6 槽 ✓）被 `0x434CA8: movl $0x56abb8,(%eax)` 存于 [this+0] ✓
+**修法**：`known_members` 补 `__vftable`@0x0 ✓ + 全部成员 +4 ✓（编译器 offsetof 确认 ✓）

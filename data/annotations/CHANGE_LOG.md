@@ -5874,3 +5874,11 @@ g_SceneMgr.m_nTodo_1428 = ((PAL_GDB *)&g_pGDB)->PAL_GDB::GDB_GetSkillNum(82301);
 **二进制裁定**：`0x1D0` 处是**浮点访问**（`fadds`/`fstps` ✓）⇒ 不是容器 ✗ ⇒ 编造 ✓
 **修法**：删除该成员 ✓ + 按实测补 `float` @0x1D0 ✓（⚠️ 键为十进制：`0x1D0` = **464** ✓）
 **其余成员**：步长均 ≥ 尺寸 ✓（`m_nAsCurrent` 12 · `m_vecLookAt` 24 · `m_vecUpDir` 40 均为**缺口** ✓ 无害 ✓）
+
+### 2026-09-22 · **PalScriptMgr 补 vptr**（269 成员 +4 ✗ → 全部对齐 ✓）
+
+**根因**：注解 `vtables: True` ✓（类有多态 ✓）但 `known_members` **没有 `__vftable`@0x0** ✗
+⇒ 编译器插入 vptr ⇒ **全部成员实际位置 = 注解偏移 +4** ✗（270/270 冲突 ✗）
+**二进制证据**：vtable `0x56ABB8`（6 槽 ✓）被 ctor `0x434CA8: movl $0x56abb8,(%eax)` 存于 **[this+0]** ✓
+**修法**：`known_members` 补 `__vftable@0x0` ✓ + 全部成员偏移 **+4** ✓（等值传播，编译器 offsetof 确认 ✓）
+**验证**：`m_script` 注解 0x4 → 编译器 0x8 ✓ ✓ · `m_scefile` 0x14 → 0x18 ✓ ✓
