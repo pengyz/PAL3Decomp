@@ -155,6 +155,7 @@ union { // +0xN
 | **修改 struct annotation 后** | 布局验证（**编译器裁判**）| `python3 tools/audit_type_layout.py --only <Cls>` | 发现布局问题立即修复 |
 | **任何"无证据/无冲突"结论** | 语义/类型证据（**三形态**）| `python3 tools/audit_member_semantics.py --class <Cls>` | 否定结论必须来自**权威批量原始扫描** ✓ |
 | **函数归属改动** | 归属证据（**可证**）| `python3 tools/audit_attribution_evidence.py` | 只看 contradiction 告警，人工裁定 |
+| **任何修复提交前** | **证物报告** | `python3 tools/verify_fix.py --class <Cls>` | 成员偏移+**sizeof**+传递依赖+端到端+基线；有问题 ⇒ 不提交 |
 | **annotation 批量改动** | **四道门** | ①布局等价 ②`loop --expect-errors`不增 ③`l1`不降 ④证据自校验 | 缺一不可 ⇒ 见 `annotation-audit` skill |
 
 > ⚠️ **不要再用 `tools/audit_layout.py` 作布局判据**：它比的是「注解 vs `asm/pal3/ida_structs.json`」，

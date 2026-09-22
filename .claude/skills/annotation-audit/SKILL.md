@@ -47,7 +47,8 @@ rejects: "只是要跑管线 CLI/判证据等级/CRT 边界 → pal3-pipeline；
 4. **归属证据**：`tools/audit_attribution_evidence.py`（vtable 槽位 + 祖先关系 + ctor vptr）
 5. **出具证据表 ⇒ 人工确认**（工具**只报警**）✓
 6. **一类一批改动**（等值优先：**尺寸不变 ⇒ 布局不变** ✓）
-7. **过四道门**（见 §3）⇒ 通过才提交
+7. **出证物报告** `python3 tools/verify_fix.py --class <Cls>`（成员偏移 + **sizeof** + 传递依赖 + 端到端字节 + 基线）
+8. **过四道门**（见 §3）⇒ 通过才提交
 8. **留痕**：`data/annotations/CHANGE_LOG.md` 记**逐成员证据 + 盲区披露** ✓
 9. **提交**：annotation 变更必须含 `Evidence:` 与 `Confidence:`（**pre-commit hook 强制** ✓）
 
@@ -59,6 +60,7 @@ rejects: "只是要跑管线 CLI/判证据等级/CRT 边界 → pal3-pipeline；
 | ② **编译错误** | `python3 pipeline/cli.py loop --expect-s2 75/205 --expect-errors 2150 --expect-l1 36` 的 **errors 不得增** | **实测抓到过假阴性**：撤类型后 `PAL3.cpp:2725 C2440`（+1）⇒ 该成员其实被使用 ✗ |
 | ③ **L1 棘轮** | 同上，**`l1` 不得降** | 字节匹配是最终目标 ✓ |
 | ④ **证据自校验** | 否定结论来自**权威批量原始扫描**（§2 步骤3）；"**未确认 ≠ 不存在**" | **实测：编译门 ✓ 但 5 个里撤错 2 个** ✗（`m_nTodo_C660/C848` 的全局形态有命中）|
+| ⑤ **证物** | `tools/verify_fix.py --class <Cls>`：成员偏移 + **`sizeof`==`binary_size`** + **传递**依赖闭包 + 端到端字节 + 与 **HEAD** 基线比较 + **残余未知披露** | 只查成员偏移不够 ✗（`UIListBox` 的 +12 是**尺寸**问题）；探针**上界给足**，命中上界必须判 `unknown` ✗ |
 
 补充：
 - **C1003 例外**：3 个截断单元（`Combat/CCBStage.cpp`、`Combat/CCBUI.cpp`、`free_functions.cpp`）错误计数不可靠 ⇒
