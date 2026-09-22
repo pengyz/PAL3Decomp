@@ -1,99 +1,165 @@
 {
-  "name": "UITextArea",
-  "binary_size": 104,
-  "known_members": {
-    "68": {
-      "name": "m_buf",
-      "type": "std::basic_string<char,std::char_traits<char>,std::allocator<char> >",
-      "source": "pdb_merge"
-    },
-    "80": {
-      "name": "m_bInvalidate",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "0": {
-      "name": "__vftable",
-      "type": "void *",
-      "source": "vtable_fix"
-    }
+ "name": "UITextArea",
+ "binary_size": 192,
+ "known_members": {
+  "0": {
+   "name": "__vftable",
+   "type": "void *",
+   "source": "vtable_fix"
   },
-  "base_class": [
-    "UIWnd"
-  ],
-  "methods": {
-    "0x00445920": {
-      "name": "Destroy",
-      "signature": "int __thiscall()",
-      "ordinal": 3
-    },
-    "0x00444F60": {
-      "name": "InitAfterClear",
-      "signature": "int __thiscall UITextArea::InitAfterClear()"
-    },
-    "0x00445760": {
-      "name": "UpdateChildLayout",
-      "signature": "void __thiscall(RECT *pRect, unsigned int nFlags)"
-    },
-    "0x00445170": {
-      "name": "ProcessInput",
-      "signature": "int __thiscall UITextArea::ProcessInput()",
-      "ordinal": 2
-    },
-    "0x00445500": {
-      "name": "Render",
-      "signature": "void __thiscall()",
-      "ordinal": 1
-    },
-    "0x00445720": {
-      "name": "ShowWindow",
-      "signature": "void __thiscall()",
-      "ordinal": 0
-    },
-    "0x004B7AF0": {
-      "name": "ReleaseAllTextures",
-      "signature": "void __thiscall()"
-    },
-    "0x00444FF0": {
-      "name": "_sdtor_13",
-      "signature": "UITextArea *__thiscall(UITextArea *Block, char a2)"
-    }
+  "68": {
+   "name": "m_fTodo_44",
+   "type": "float",
+   "source": "binary:disasm@0x444FD4 (movl $0x3f000000 = float 0.5)"
   },
-  "vtables": [
+  "72": {
+   "name": "m_bTodo_48",
+   "type": "BYTE",
+   "source": "binary:disasm@0x444F8F (mov %al,0x48(%esi))"
+  },
+  "76": {
+   "name": "m_nTodo_4C",
+   "type": "int",
+   "source": "binary:disasm@0x444F92 (dword 写（xor edi,edi 归零）)"
+  },
+  "80": {
+   "name": "m_nTodo_50",
+   "type": "int",
+   "source": "binary:disasm@0x444F95 (dword 写)"
+  },
+  "84": {
+   "name": "m_nTodo_54",
+   "type": "int",
+   "source": "binary:disasm@0x444F98 (dword 写)"
+  },
+  "88": {
+   "name": "m_nTodo_58",
+   "type": "int",
+   "source": "binary:disasm@0x445500 (Render 高频读)"
+  },
+  "92": {
+   "name": "m_nTodo_5C",
+   "type": "int",
+   "source": "binary:disasm@0x445135 (_sdtor 内有 incl（计数器）)"
+  },
+  "96": {
+   "name": "m_nTodo_60",
+   "type": "int",
+   "source": "binary:disasm@0x445500 (写/读)"
+  },
+  "100": {
+   "name": "m_nTodo_64",
+   "type": "int",
+   "source": "binary:disasm@0x445500 (读写最多)"
+  },
+  "104": {
+   "name": "m_todo_68",
+   "type": "char[68]",
+   "source": "binary:disasm@0x444F9B (lea 0x68(%esi)->call 0x445EA0 ⇒ 取址传参的子对象；内部布局未知 ⇒ 占位)"
+  },
+  "172": {
+   "name": "m_nTodo_AC",
+   "type": "int",
+   "source": "binary:disasm@0x445194 (ProcessInput 读写)"
+  },
+  "176": {
+   "name": "m_fTodo_B0",
+   "type": "float",
+   "source": "binary:disasm@0x4451AE (fadds/fsts ⇒ 浮点)"
+  },
+  "180": {
+   "name": "m_nTodo_B4",
+   "type": "int",
+   "source": "binary:disasm@0x4456F9 (Render 读)"
+  },
+  "184": {
+   "name": "m_nTodo_B8",
+   "type": "int",
+   "source": "binary:disasm@0x445519 (Render 写)"
+  },
+  "188": {
+   "name": "m_nTodo_BC",
+   "type": "int",
+   "source": "binary:disasm@0x445201 (ProcessInput cmp)"
+  }
+ },
+ "base_class": [
+  "UIWnd"
+ ],
+ "methods": {
+  "0x00445920": {
+   "name": "Destroy",
+   "signature": "int __thiscall()",
+   "ordinal": 3
+  },
+  "0x00444F60": {
+   "name": "InitAfterClear",
+   "signature": "int __thiscall UITextArea::InitAfterClear()"
+  },
+  "0x00445760": {
+   "name": "UpdateChildLayout",
+   "signature": "void __thiscall(RECT *pRect, unsigned int nFlags)"
+  },
+  "0x00445170": {
+   "name": "ProcessInput",
+   "signature": "int __thiscall UITextArea::ProcessInput()",
+   "ordinal": 2
+  },
+  "0x00445500": {
+   "name": "Render",
+   "signature": "void __thiscall()",
+   "ordinal": 1
+  },
+  "0x00445720": {
+   "name": "ShowWindow",
+   "signature": "void __thiscall()",
+   "ordinal": 0
+  },
+  "0x004B7AF0": {
+   "name": "ReleaseAllTextures",
+   "signature": "void __thiscall()"
+  },
+  "0x00444FF0": {
+   "name": "_sdtor_13",
+   "signature": "UITextArea *__thiscall(UITextArea *Block, char a2)"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x0056AEA4",
+   "base": "UIWnd",
+   "slots": [
     {
-      "addr": "0x0056AEA4",
-      "base": "UIWnd",
-      "slots": [
-        {
-          "addr": "0x00445720",
-          "from": null
-        },
-        {
-          "addr": "0x00445500",
-          "from": null
-        },
-        {
-          "addr": "0x00445170",
-          "from": null
-        },
-        {
-          "addr": "0x00445920",
-          "from": null
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x00444FF0",
-          "from": "UIAnimateCtrlEX"
-        },
-        {
-          "addr": "0x00445D10",
-          "from": "UIWnd"
-        }
-      ]
+     "addr": "0x00445720",
+     "from": null
+    },
+    {
+     "addr": "0x00445500",
+     "from": null
+    },
+    {
+     "addr": "0x00445170",
+     "from": null
+    },
+    {
+     "addr": "0x00445920",
+     "from": null
+    },
+    {
+     "addr": "0x00445B90",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x00444FF0",
+     "from": "UIAnimateCtrlEX"
+    },
+    {
+     "addr": "0x00445D10",
+     "from": "UIWnd"
     }
-  ],
-  "base_size": 68
+   ]
+  }
+ ],
+ "base_size": 68,
+ "_rebuild_note": "2026-09-22 按二进制重建：原注解 m_buf(string)@0x44 ✗（实为 float 0.5）· m_bInvalidate(BYTE)@0x50 ✗（实为 dword）· binary_size 104 ✗（实为 192）；size 由三条独立证据定：UIAnimateCtrlEX.m_TextArea 步长 0xC0 · UISceneMap ctor 链 0xC0 · 真实方法最大自有字段 0xBC+4=0xC0 ✓；高偏移 0xA0/0xEC/0xF0 来自 ReleaseAllTextures@0x4B7AF0（疑误归属 ✗）"
 }

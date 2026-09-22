@@ -1,163 +1,164 @@
 {
-  "name": "UIGameFrm",
-  "binary_size": 28188,
-  "known_members": {
-    "76": {
-      "name": "m_bigMapElement",
-      "type": "unsigned int[16]",
-      "source": "pdb_merge"
-    },
-    "140": {
-      "name": "m_newbigmap",
-      "type": "unsigned char[16]",
-      "source": "pdb_merge"
-    },
-    "260": {
-      "name": "m_cap",
-      "type": "UICaption",
-      "source": "PAL3patch_verified"
-    },
-    "356": {
-      "name": "m_note",
-      "type": "UINote",
-      "source": "PAL3patch_verified"
-    },
-    "624": {
-      "name": "m_SmeltChatScript",
-      "type": "unsigned int",
-      "source": "PAL3patch_verified"
-    },
-    "628": {
-      "name": "m_HockShopScript",
-      "type": "unsigned int",
-      "source": "PAL3patch_verified"
-    },
-    "632": {
-      "name": "m_EncampFlag",
-      "type": "unsigned int",
-      "source": "PAL3patch_verified"
-    },
-    "636": {
-      "name": "m_ExitRow",
-      "type": "unsigned int",
-      "source": "PAL3patch_verified"
-    },
-    "640": {
-      "name": "m_SDTY",
-      "type": "unsigned char",
-      "source": "PAL3patch_verified"
-    },
-    "641": {
-      "name": "m_APPR",
-      "type": "unsigned char",
-      "source": "PAL3patch_verified"
-    },
-    "642": {
-      "name": "m_SKEE",
-      "type": "unsigned char",
-      "source": "PAL3patch_verified"
-    },
-    "644": {
-      "name": "m_ExitSkee",
-      "type": "unsigned int",
-      "source": "PAL3patch_verified"
-    },
-    "648": {
-      "name": "eft",
-      "type": "ScreenEffect *",
-      "source": "PAL3patch_verified"
-    },
-    "652": {
-      "name": "m_isFadeOut",
-      "type": "unsigned char",
-      "source": "PAL3patch_verified"
-    },
-    "653": {
-      "name": "m_overFade",
-      "type": "unsigned char",
-      "source": "PAL3patch_verified"
-    },
-    "656": {
-      "name": "m_seldlg",
-      "type": "UIRoleSelect",
-      "source": "PAL3patch_verified"
-    },
-    "2144": {
-      "name": "m_headdlg",
-      "type": "UIHeadDialog[5]",
-      "source": "PAL3patch_verified"
-    },
-    "3904": {
-      "name": "m_roledlg",
-      "type": "UIRoleDialog",
-      "source": "PAL3patch_verified"
-    },
-    "5012": {
-      "name": "m_ChatRest",
-      "type": "UIChatRest",
-      "source": "PAL3patch_verified"
-    },
-    "14528": {
-      "name": "m_ChatRestStatus",
-      "type": "unsigned int",
-      "source": "PAL3patch_verified"
-    },
-    "14532": {
-      "name": "m_curfrm",
-      "type": "UIFrameWnd *",
-      "source": "PAL3patch_verified"
-    },
-    "14536": {
-      "name": "m_curfrmid",
-      "type": "int",
-      "source": "PAL3patch_verified"
-    },
-    "14540": {
-      "name": "m_lastfrmid",
-      "type": "int",
-      "source": "PAL3patch_verified"
-    },
-    "14544": {
-      "name": "m_emote",
-      "type": "UIEmote[6]",
-      "source": "PAL3patch_verified"
-    },
-    "28176": {
-      "name": "m_scenefrm",
-      "type": "UISceneFrm *",
-      "source": "PAL3patch_verified"
-    },
-    "28180": {
-      "name": "m_sysfrm",
-      "type": "StateUI *",
-      "source": "PAL3patch_verified"
-    },
-    "256": {
-      "name": "m_nTodo_100",
-      "type": "int",
-      "source": "ida_gap_1refs"
-    }
+ "name": "UIGameFrm",
+ "binary_size": 28276,
+ "known_members": {
+  "76": {
+   "name": "m_bigMapElement",
+   "type": "unsigned int[16]",
+   "source": "pdb_merge"
   },
-  "base_class": [
-    "UIWnd",
-    "PalScriptWaitObj"
-  ],
-  "methods": {
-    "0x004A2150": {
-      "name": "_scalar_dtor",
-      "signature": "void __thiscall UIGameFrm::_scalar_dtor()",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-    },
-    "0x004A6120": {
-      "name": "OnMessage",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
-    },
-    "0x004A6600": {
-      "name": "Destroy",
-      "signature": "int __thiscall()",
-      "_misattrib_evidence": "max_offset=176080>class_size=28188"
-    }
+  "140": {
+   "name": "m_newbigmap",
+   "type": "unsigned char[16]",
+   "source": "pdb_merge"
   },
-  "base_size": 76
+  "260": {
+   "name": "m_cap",
+   "type": "UICaption",
+   "source": "PAL3patch_verified"
+  },
+  "356": {
+   "name": "m_note",
+   "type": "UINote",
+   "source": "PAL3patch_verified"
+  },
+  "624": {
+   "name": "m_SmeltChatScript",
+   "type": "unsigned int",
+   "source": "PAL3patch_verified"
+  },
+  "628": {
+   "name": "m_HockShopScript",
+   "type": "unsigned int",
+   "source": "PAL3patch_verified"
+  },
+  "632": {
+   "name": "m_EncampFlag",
+   "type": "unsigned int",
+   "source": "PAL3patch_verified"
+  },
+  "636": {
+   "name": "m_ExitRow",
+   "type": "unsigned int",
+   "source": "PAL3patch_verified"
+  },
+  "640": {
+   "name": "m_SDTY",
+   "type": "unsigned char",
+   "source": "PAL3patch_verified"
+  },
+  "641": {
+   "name": "m_APPR",
+   "type": "unsigned char",
+   "source": "PAL3patch_verified"
+  },
+  "642": {
+   "name": "m_SKEE",
+   "type": "unsigned char",
+   "source": "PAL3patch_verified"
+  },
+  "644": {
+   "name": "m_ExitSkee",
+   "type": "unsigned int",
+   "source": "PAL3patch_verified"
+  },
+  "648": {
+   "name": "eft",
+   "type": "ScreenEffect *",
+   "source": "PAL3patch_verified"
+  },
+  "652": {
+   "name": "m_isFadeOut",
+   "type": "unsigned char",
+   "source": "PAL3patch_verified"
+  },
+  "653": {
+   "name": "m_overFade",
+   "type": "unsigned char",
+   "source": "PAL3patch_verified"
+  },
+  "656": {
+   "name": "m_seldlg",
+   "type": "UIRoleSelect",
+   "source": "PAL3patch_verified"
+  },
+  "2144": {
+   "name": "m_headdlg",
+   "type": "UIHeadDialog[5]",
+   "source": "PAL3patch_verified"
+  },
+  "3904": {
+   "name": "m_roledlg",
+   "type": "UIRoleDialog",
+   "source": "PAL3patch_verified"
+  },
+  "5100": {
+   "name": "m_ChatRest",
+   "type": "UIChatRest",
+   "source": "PAL3patch_verified"
+  },
+  "14616": {
+   "name": "m_ChatRestStatus",
+   "type": "unsigned int",
+   "source": "PAL3patch_verified"
+  },
+  "14620": {
+   "name": "m_curfrm",
+   "type": "UIFrameWnd *",
+   "source": "PAL3patch_verified"
+  },
+  "14624": {
+   "name": "m_curfrmid",
+   "type": "int",
+   "source": "PAL3patch_verified"
+  },
+  "14628": {
+   "name": "m_lastfrmid",
+   "type": "int",
+   "source": "PAL3patch_verified"
+  },
+  "14632": {
+   "name": "m_emote",
+   "type": "UIEmote[6]",
+   "source": "PAL3patch_verified"
+  },
+  "28264": {
+   "name": "m_scenefrm",
+   "type": "UISceneFrm *",
+   "source": "PAL3patch_verified"
+  },
+  "28268": {
+   "name": "m_sysfrm",
+   "type": "StateUI *",
+   "source": "PAL3patch_verified"
+  },
+  "256": {
+   "name": "m_nTodo_100",
+   "type": "int",
+   "source": "ida_gap_1refs"
+  }
+ },
+ "base_class": [
+  "UIWnd",
+  "PalScriptWaitObj"
+ ],
+ "methods": {
+  "0x004A2150": {
+   "name": "_scalar_dtor",
+   "signature": "void __thiscall UIGameFrm::_scalar_dtor()",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+  },
+  "0x004A6120": {
+   "name": "OnMessage",
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+  },
+  "0x004A6600": {
+   "name": "Destroy",
+   "signature": "int __thiscall()",
+   "_misattrib_evidence": "max_offset=176080>class_size=28188"
+  }
+ },
+ "base_size": 76,
+ "_cascade_note": "2026-09-22 级联平移 +0x58：内嵌 UIRoleDialog 尺寸 720→808 ✓"
 }

@@ -5793,3 +5793,52 @@ g_SceneMgr.m_nTodo_1428 = ((PAL_GDB *)&g_pGDB)->PAL_GDB::GDB_GetSkillNum(82301);
 **已排除**：`m_nTodo_1428`（**经全局对象 `g_SceneMgr(0xC04390)+0x1428 = 0xC057B8` 被访问** ⇒ 有证据 ✓）
 · `stru_C059A0`（按值复合成员 ⇒ 内部访问不可见，不做结论 ✓）· 9 个 `_gap_*`（本就是 padding ✓）
 **仍存盲区（披露）**：批量拷贝/序列化（`memcpy/memset` 覆盖区间）不可见 ⇒ 若编译门报警，即为此类 ✓
+
+### 2026-09-22 · **UITextArea 按二进制重建**（原注解整体失真 ✗）
+
+**原注解问题**（`source` 分别为 `pdb_merge` / `gen_headers_9.2` ⇒ 均**无二进制证据** ✗）：
+| 原声明 | 二进制事实 |
+|---|---|
+| `m_buf: std::basic_string` **@0x44** | +0x44 是 **float**（`0x444FD4 movl $0x3f000000` = 0.5 ✓；另有 `fdivs`/`fcomps` ✓）✗ |
+| `m_bInvalidate: BYTE` **@0x50** | +0x4C/0x50/0x54 是 **dword** 写（`mov %edi`，edi=0）✗ |
+| `binary_size = 104 (0x68)` | **192 (0xC0)** ✗ |
+
+**尺寸证据（三条独立）** ✓：① `UIAnimateCtrlEX.m_TextArea` 下一成员步长 **0xC0** ✓
+② `UISceneMap` ctor 链 `UITextArea@0x50` → 下一 ctor `lea 0x110` ⇒ **0xC0** ✓
+③ 该类的**真实方法**（ctor/ProcessInput/Render/ShowWindow/Destroy 5 个）最大自有字段 **0xBC + 4 = 0xC0** ✓
+
+**重建后的成员**（自有字段，基类 `UIWnd` 占 0x00..0x44 ✓）：`0x44 float` · `0x48 BYTE` · `0x4C/0x50/0x54/0x58/0x5C/0x60/0x64 int` ·
+`0x68 char[68]`（取址传参的子对象，内部未知 ⇒ 占位 ✓）· `0xAC int` · `0xB0 float`（`fadds/fsts` ✓）· `0xB4/B8/BC int` ⇒ 恰好到 **0xC0** ✓
+命名一律 `_todo_` 标记（无语义把手 ⇒ 仓规禁伪语义命名 ✓），`source` 逐条记 `binary:disasm@VA` ✓
+
+**已知待办（级联）**：嵌入该类的 `UIRoleDialog.m_static`@0x250（步长 0x68 ✗）与 `UIRoleSelectDialog.m_static`@0x254 的偏移**需同步重算** ✗
+（`UIAnimateCtrlEX.m_TextArea` 步长 0xC0 ✓ 已正确 ⇒ 无需改 ✓）
+
+### 2026-09-22 · UITextArea 重建的**级联修正**（2 个按值内嵌者）
+
+`UITextArea` 真实尺寸 0xC0（旧注解 0x68 ✗）⇒ 其后成员整体后移 **+0x58**：
+| 类 | 内嵌偏移 | 平移成员数 | `binary_size` |
+|---|---|---|---|
+| `UIRoleDialog` | +0x250 | 1 个成员（`timeclose`）| 720 → **808**（=0x2B8+24 ✓ 与平移后自洽 ✓）|
+| `UIRoleSelectDialog` | +0x254 | 6 个成员 | 2204 → **2292**（=2204+0x58 ✓；先前笔误写 2268 ✗ 已更正）|
+
+**依据**：① UITextArea 尺寸 0xC0 有三条独立证据 ✓ ② 生成器自报 `UIRoleDialog: member at +0x2B8 is behind bookkeeping (start_off=0x310)` ✓
+⇒ 即内嵌对象结束于 `0x250+0xC0 = 0x310`，故紧随其后成员的正确偏移为 0x310（增量 = 0xC0−0x68 = 0x58 ✓）✓
+**未受影响**：`UIAnimateCtrlEX.m_TextArea` 步长本就 0xC0 ✓；`CEffMgr`/`CameraCtrl`/`RoleCamera`/`UIChatRest` 的
+"behind bookkeeping" 告警与本次无关（它们**不内嵌** UITextArea ✓，是既有问题 ✗）
+
+### 2026-09-22 · 级联第 2 层：`Comp_DonateUI`
+
+内嵌 `UIRoleDialog`（`m_RoleDlg`@0x69C0，其尺寸 720→**808** ✓）⇒ 其后成员整体后移 **+0x58**，
+`binary_size` 46192 → **46280** ✓。依据：生成器自报 `member at +0x6C90 is behind bookkeeping (start_off=0x6CE8)` ✓
+（DAG 链完整：`UITextArea`(0x68→0xC0) → `UIRoleDialog`(720→808) → `Comp_DonateUI`(46192→46280) ✓）
+
+### 2026-09-22 · 级联第 3 层：`UIGameFrm` / `CScreenMode`
+
+两者均按值内嵌 `UIRoleDialog`（@0xF40 / @0xF24），后者尺寸 720→**808** ⇒ 其后成员整体后移 **+0x58**，`binary_size` 各 +0x58 ✓
+
+### ⚠️ 2026-09-22 · 更正：`CScreenMode` **不做平移**
+
+我的级联脚本对 `CScreenMode` 平移了 0 个成员，却仍把 `binary_size` +0x58 ⇒ **无依据** ✗ ⇒ **已撤回**（5496 ✓）。
+原因：该类的 `UIRoleDialog`@0xF24 之后**没有任何声明成员**，无法据"增量"推导其后偏移 ✓；
+其真实尺寸与后续布局需**另行由二进制裁定** ✓（已写入注解 `_cascade_note` 供后续处理 ✓）
