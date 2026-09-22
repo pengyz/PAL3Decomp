@@ -13,9 +13,22 @@
 ## 当前基线（2026-09-22 晚）
 S2 **76/205** ✓ · 总错误 **2140** ✓ · **L1 38** ✓ · matched 270/325 ✓ · 全链路**五阶段全绿** ✓
 
-## 批次进度
-| 批 | 类 | 状态 |
-|---|---|---|
-| 1 | PalScriptMgr(269/269 ✗ 从+0x1 就偏=疑 vptr/基类尺寸) · SceneMgr(1/167 ✗ `_gap_C812` 尾部=UITextArea 重建的级联尾巴 ✓) · SwordUI ✓ · PropUI ✓ · MainEquipUI ✓ | **进行中**（校准后真实目标=2 个 ✓）|
+## 当前状态（2026-09-22 晚 · goal round 5 ✓）
+
+### ✅ 已清零（布局审计 ✓ 一致）
+UITextArea(192 ✓) · RoleCamera(✓) · CameraCtrl(✓) · PalScriptMgr(✓ 补 vptr) ·
+UIListBox · SaleUI · EquipUI · UIRoleSelect · MagicUI · SwordUI · PropUI · MainEquipUI · UIAnimateCtrlEX ✓
+
+### ⚠️ 级联待修（UITextArea 0x68→0xC0 的传播 ✗）
+UIRoleDialog(720→需808 ✗ 未改注解) · UIRoleSelectDialog(2204→需2292 ✗ 未改) · Comp_DonateUI(46192→需46280 ✗ 未改) · UIGameFrm(28188→需28276 ✗ 未改)
+
+### 🔧 可修（有方法 ⇒ O2 可扫 ✓）
+SceneMgr(1/167 ✗ `_gap_C812` 尾部=级联尾巴 ✓)
+
+### 🚫 不可修（无方法 ⇒ `manual_idb` ✗）
+UIChatRest(47/48 ✗ · 0 个 IDB 方法) · CParticleSystem · HeadMsg 等数据/状态容器
+
+### 📋 剩余冲突类
+~75 个（去掉已清和不可修后 ✓）—— 按 DAG 序+杠杆选下一批 ✓
 
 > ⚠️ 批次**不预排** ✗：每批修完 ⇒ 重新测量 ⇒ **重新确定问题规模与目标** ✓（按值内嵌的传播会改变清单 ✓）
