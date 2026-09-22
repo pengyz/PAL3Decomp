@@ -1826,6 +1826,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     if off > start_off:
                         gap_size = off - start_off
                         lines.append("    char _gap_%03X[%d]; // +0x%X" % (start_off, gap_size, start_off))
+                    # 2026-09-21：注解的内联 union/struct 描述的是**字节级布局**（IDA 视图），
+                    # 其成员偏移可能不满足 C++ 的自然对齐（实测 SceneMgr 的 +0xC67E：
+                    # `int[100]` 相对偏移 2 ⇒ 编译器把联合体推到 0xC680 并内部补白 ⇒ 其后全部 +4）。
+                    # 按 1 字节打包才能复现注解的字节级偏移 ✓（外层中央补白会吸收余量）
+                    lines.append("#pragma pack(push,1)")
                     lines.append("    union { // +0x%X" % off)
                     union_sizes = []
                     for m in group:
@@ -1833,6 +1838,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         _sz = _emit_member(m, off, mname, m.get('type', 'int'))
                         union_sizes.append(_sz)
                     lines.append("    };")
+                    lines.append("#pragma pack(pop)")
                     member_size = max(union_sizes, default=4)
                     start_off = off + member_size
                     continue
@@ -1887,6 +1893,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         # （注解 0xE544，+24），首个漂移 `m_pCCBStageRoleFind` ann=0x2B54 → 0x2B68(+20)。
                         # ⇒ 本分支的**尺寸记账另有问题**（内联体的 `member_size`/`start_off` 推进方式），
                         # 必须与 gap 一起解决，否则按下葫芦浮起瓢。第 114 轮从这里继续。
+                        lines.append("#pragma pack(push,1)")   # 同上：按字节级布局打包
                         lines.append("    %s { // +0x%X" % (_kind, off))
                         _inner_prev = off
                         for _idm in _inline_dms:
@@ -1930,6 +1937,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                                 lines.append("        %s %s; // +0x%X" % (_it, _in, _iab))
                             _inner_prev = _iab + _estimate_member_size(_it)
                         lines.append("    } %s;" % mname)
+                        lines.append("#pragma pack(pop)")
                         member_size = _inline_data.get('size', 4)
                         start_off = off + member_size
                         continue
