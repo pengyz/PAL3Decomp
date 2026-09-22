@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 """**函数归属审计**（只读、证据分级、人工确认）—— 用"成员访问集合的唯一相容性"判归属。
 
+## ⚠️ 状态：**判据已 TDD 验证，但证据提取器尚不可用于下结论**（实验性）
+纯判据 `verdict_bounded` 有 20 项测试覆盖 ✓；但 `accessed_offsets` 的 **naive this-tracking 会过度归属** ✗：
+实测 `SceneMgr::Create` 同时访问了 `this`(SceneMgr) 与**另一个对象**(`CEffMgr`，其字段 0xA91C… ≈ 0x0A930)
+⇒ 把别人的字段算成自己的成员 ⇒ 得出"唯一相容 CEffMgr"这种**问题问错了**的结论 ✗✗
+⇒ **要用于决策，必须先实现"按基对象分离"的寄存器来源分析（真 provenance）** ✓
+在那之前：**只把本工具用于"contradiction"告警的线索，不得据其改归属** ✗
+
 ## 判据（本会话确立；可证性清晰）
 
 取函数体内 `[this+off]` 的**成员访问集合**，与各候选类的成员偏移表比对：
@@ -61,6 +68,40 @@ def verdict(accessed, candidates):
     return ('contradiction', [])
 
 
+MATCH_MIN = 0.6      # 匹配率下限：低于此值说明多半落在 gap 里 ⇒ 不足以下结论 ✓
+MARGIN_MIN = 0.2     # 领先第二名的幅度下限：太小 ⇒ 不可区分 ⇒ ambiguous ✓
+
+
+def verdict_bounded(accessed, classes):
+    """精化判据（尺寸边界 + 匹配率/领先幅度）→ 同 `verdict` 的四态
+
+    `classes`: {cls: {'members': set[int], 'size': int}}
+
+    **为什么不能用朴素包含判据**（2026-09-22 实测）：大类的成员表**稀疏**
+    （SceneMgr 169 个成员 vs 数万字节），落在对象范围内但未声明的偏移应视为**相容**（gap/未知）；
+    而小类只要"凑上"几个偏移就可能唯一 ⇒ 判别力必须来自 **① 尺寸边界 ② 匹配率 ③ 领先幅度** ✓
+    （实测教训：朴素判据把 `SceneMgr::Create` 判成"唯一相容 CEffMgr" ✗）
+    """
+    if not accessed or not classes:
+        return ('no-evidence', None)
+    mx = max(accessed)
+    cands = [c for c, d in classes.items() if mx < int(d.get('size') or 0)]
+    if not cands:
+        return ('contradiction', [])
+    if len(cands) == 1:
+        return ('unique', cands[0])
+    rates = {}
+    for c in cands:
+        mem = set(classes[c].get('members') or ())
+        rates[c] = len(accessed & mem) / float(len(accessed))
+    order = sorted(rates.items(), key=lambda kv: (-kv[1], kv[0]))
+    best, brate = order[0]
+    second = order[1][1] if len(order) > 1 else 0.0
+    if brate >= MATCH_MIN and (brate - second) >= MARGIN_MIN:
+        return ('unique', best)
+    return ('ambiguous', sorted(cands))
+
+
 def render_line(func, cls, v):
     """人读一行 ✓"""
     kind, who = v
@@ -93,6 +134,12 @@ def _disp_val(raw):
         return None
 
 
+# 镜像数据段起始 VA（实测本 exe 的全局在 0x56F9B4 / 0xC04390 / 0xC057B8 一带）⇒
+# disp ≥ 本阈值 ⇒ 不是"成员偏移"而是**绝对地址访问**（全局对象）⇒ 必须排除 ✓
+# 依据：本仓所有类的成员偏移 < 0x40000（最大者 RoleStatePanel +0x2AFD8 ✓）
+ABS_ADDR_MIN = 0x400000
+
+
 def accessed_offsets(lines):
     """从反汇编行提取**经 this 寄存器**的成员访问偏移集合 ✓
 
@@ -114,7 +161,8 @@ def accessed_offsets(lines):
         d = DISP_RX.search(ins) or DISP8_RX.search(ins)
         if d and d.group(1).lower() in this_regs:
             v = _disp_val(d.group(2))
-            if v is not None:
+            # ⚠️ 排除**绝对地址访问**（全局对象 g_X.member ⇒ disp = 全局地址+偏移 ✗）
+            if v is not None and v < ABS_ADDR_MIN:
                 offs.add(v)
     return offs
 
@@ -184,6 +232,17 @@ def main():
     a = ap.parse_args()
 
     cands = candidate_offsets()
+    classes = {}
+    for c, offs in cands.items():
+        try:
+            sz = A.load_annotation_members()[c][0]
+            import re as _re
+            txt = open(sz, encoding='utf-8', errors='replace').read()
+            m = _re.search(r'// total size: 0x([0-9A-F]+)', txt)
+            size = int(m.group(1), 16) if m else (max(offs) + 4)
+        except Exception:
+            size = max(offs) + 4
+        classes[c] = {'members': offs, 'size': size}
     print('=' * 92)
     print('函数归属审计（成员集合唯一相容性）· 候选类 %d · 判据: unique 可证 / ambiguous 不可证 / contradiction 最强告警'
           % len(cands))
@@ -204,7 +263,7 @@ def main():
         lines = func_insns(call, addr)
         offs = accessed_offsets(lines)
         # 候选集：现归类 + 其它类（多类比对）✓
-        v = verdict(offs, cands)
+        v = verdict_bounded(offs, classes)
         rows.append({'func': name, 'addr': addr, 'class': a.cls,
                      'n_offsets': len(offs), 'verdict': v[0],
                      'who': v[1] if v[1] else None})
