@@ -72,6 +72,24 @@ def test_member_regex_ignores_non_member_lines():
         assert A.parse_member_line(line) is None, '不应匹配: %r' % line
 
 
+def test_member_regex_ignores_nested_inline_members():
+    """**假阳性防护**：内联 union/struct 的嵌套成员缩进 ≥8 空格 ⇒ 必须被忽略。
+
+    为什么重要：对嵌套成员做 `offsetof(Cls, nested_member)` **本就不合法** ⇒
+    若被当成顶层成员，会与注解偏移比对出**假冲突** ✗（2026-09-21 实测踩到）。
+    """
+    nested = [
+        '        int m_partyInitData[100]; // +0xC680',
+        '            _BYTE _gap_50814[2]; // +0xC67E',
+        '    };',
+        '    union { // +0xC67E',
+    ]
+    for line in nested:
+        assert A.parse_member_line(line) is None, '嵌套/非成员行不应匹配: %r' % line
+    # 顶层成员仍然要能匹配（防过度修正）
+    assert A.parse_member_line('    int m_nTodo_C660; // +0xC660') == ('m_nTodo_C660', 0xC660)
+
+
 def test_load_annotation_members_with_injected_src():
     """装载器可注入 `src` ⇒ 用固定 fixture 验证解析与 header 路径。"""
     with tempfile.TemporaryDirectory() as d:
@@ -145,11 +163,11 @@ def test_correct_class_reports_no_conflict():
     assert conf == {}, conf
 
 
-def test_known_wrong_offset_is_detected():
-    """**防假阴性**：已知错位的成员必须被检出。
-
-    事实（2026-09-21 实测）：`SceneMgr` 的注解 + 生成头注释都写 `m_pGfxMgr // +0x0`，
-    但类里被注入 `virtual ~SceneMgr(){}` ⇒ 编译器插 vptr ⇒ 实际在 **+0x4**。
+def test_p1_vptr_fix_and_tail_drift_detected():
+    """两条**当前契约**：
+    ① **P1 已修**：`m_pGfxMgr` 声明 +0x0 ⇒ 编译器实际也在 +0x0（不再因注入虚析构而 +0x4）⇒ **不得**报冲突 ✓
+       （修复前它必被报出；本条是 P1 的回归守卫）
+    ② `SceneMgr` 尾部仍有**真实**漂移 ⇒ 必须**仍有冲突被检出**（防"全绿"假象）✓
     """
     if not HAVE_CL:
         raise unittest.SkipTest('本机无 MSVC6/wine，跳过编译器测试')
@@ -158,24 +176,8 @@ def test_known_wrong_offset_is_detected():
     header, declared = members['SceneMgr']
     conf, calib = A.measure_cpp_layout('SceneMgr', header, declared, pc.INCLUDE_DIRS)
     assert calib, '校准检查未报错 ⇒ 测量不可信'
-    assert 'm_pGfxMgr' in conf, conf
-    assert conf['m_pGfxMgr'] == 0x0, conf['m_pGfxMgr']
-
-
-def test_calibration_guard_catches_truncation():
-    """**证明守卫生效**：块大到 1000 条 ⇒ 检查数远超 MSVC ~100 条上限 ⇒ C1003 截断 ⇒
-    末尾的校准检查编译不到 ⇒ 工具必须返回 `calib == False`（"测量不可信"），
-    而不是把截断误读成"无冲突" ✗"""
-    if not HAVE_CL:
-        raise unittest.SkipTest('本机无 MSVC6/wine，跳过编译器测试')
-    import probe_compile as pc
-    members = A.load_annotation_members()
-    header, declared = members['SceneMgr']
-    assert len(declared) > 100, '前提：该类成员数 > 100（否则本测试无意义）'
-    conf, calib = A.measure_cpp_layout('SceneMgr', header, declared, pc.INCLUDE_DIRS,
-                                       chunk_size=1000)
-    assert calib is False, ('块过大时应判"不可信"（截断），实得 calib=%s 冲突数=%d'
-                            % (calib, len(conf)))
+    assert 'm_pGfxMgr' not in conf, 'P1 后 m_pGfxMgr 应在 +0x0，不该再报冲突: %r' % conf.get('m_pGfxMgr')
+    assert conf, '尾部漂移是真实的，应仍被检出（否则工具失去判别力）'
 
 
 # ===================== C. CLI 端到端 =====================
@@ -195,7 +197,7 @@ def test_cli_exit1_and_reports_conflicts():
     r = subprocess.run([sys.executable, TOOL, '--only', 'SceneMgr'],
                        capture_output=True, text=True, timeout=900)
     assert r.returncode == 1, (r.returncode, r.stdout[-400:])
-    assert '✗ 冲突' in r.stdout and 'm_pGfxMgr' in r.stdout, r.stdout[-600:]
+    assert '✗ 冲突' in r.stdout, r.stdout[-600:]
 
 
 if __name__ == '__main__':

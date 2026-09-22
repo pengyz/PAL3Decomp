@@ -47,8 +47,12 @@ sys.path.insert(0, os.path.join(ROOT, 'pipeline'))
 SRC = os.path.join(ROOT, 'pal3', 'src')
 STRUCTS = os.path.join(ROOT, 'data', 'annotations', 'structs')
 
+# ⚠️ 必须**恰好 4 空格**缩进：内联 union/struct 的**嵌套成员**缩进 ≥8 空格，
+# 而 `[\w:<>,\* ]` 字符类里包含空格 ⇒ 旧写法会把嵌套成员也当顶层成员 ✗
+# 对嵌套成员做 `offsetof(Cls, nested)` **本就不合法** ⇒ 会产生**假冲突** ✗
+# （2026-09-21 实测：SceneMgr 的 78 处"冲突"里有相当一部分是这种假阳性）
 MEMBER_RE = re.compile(
-    r'^\s{4}[\w:<>,\* ]+?\b([A-Za-z_]\w*)\s*(\[[^\]]*\])?\s*;\s*//\s*\+0x([0-9A-Fa-f]+)')
+    r'^ {4}(?! )[\w:<>,\* ]+?\b([A-Za-z_]\w*)\s*(\[[^\]]*\])?\s*;\s*//\s*\+0x([0-9A-Fa-f]+)')
 # ⚠️ 这些**不占实例布局**（static 没有实例偏移；typedef/嵌套类型/访问修饰等更不是成员）
 # ⇒ 若被当成成员，会和 `offsetof` 比对出**假冲突** ✗（2026-09-21 由单测抓到）
 NOT_A_MEMBER_PREFIX = re.compile(
