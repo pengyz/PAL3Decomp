@@ -49,38 +49,66 @@ STRUCTS = os.path.join(ROOT, 'data', 'annotations', 'structs')
 
 MEMBER_RE = re.compile(
     r'^\s{4}[\w:<>,\* ]+?\b([A-Za-z_]\w*)\s*(\[[^\]]*\])?\s*;\s*//\s*\+0x([0-9A-Fa-f]+)')
+# ⚠️ 这些**不占实例布局**（static 没有实例偏移；typedef/嵌套类型/访问修饰等更不是成员）
+# ⇒ 若被当成成员，会和 `offsetof` 比对出**假冲突** ✗（2026-09-21 由单测抓到）
+NOT_A_MEMBER_PREFIX = re.compile(
+    r'\b(static|typedef|friend|using|enum|union|struct|class|virtual|inline|extern|template)\b')
 
 
-def load_annotation_members():
-    """→ {cls: [(name, declared_offset), ...]}（只取生成头里带 `// +0x` 注释的成员）"""
+def parse_member_line(line):
+    """**唯一**的成员行解析入口 → (name, offset) 或 None。
+
+    先过 `MEMBER_RE`，再过 `NOT_A_MEMBER_PREFIX`（前缀里出现 static/typedef/… 一律拒绝）✓
+    """
+    m = MEMBER_RE.match(line)
+    if not m:
+        return None
+    prefix = line[:m.start(1)]
+    if NOT_A_MEMBER_PREFIX.search(prefix):
+        return None
+    return m.group(1), int(m.group(3), 16)
+
+
+def load_annotation_members(src=None):
+    """→ {cls: (header_path, [(name, declared_offset), ...])}（只取带 `// +0x` 注释的成员）
+
+    `src` 可注入（默认 `pal3/src`）⇒ 便于单测用固定 fixture ✓
+    """
     out = {}
-    for h in sorted(glob.glob(os.path.join(SRC, '**', '*.h'), recursive=True)):
+    for h in sorted(glob.glob(os.path.join(src or SRC, '**', '*.h'), recursive=True)):
         cls = os.path.basename(h)[:-2]
         ms = []
         for line in open(h, encoding='utf-8', errors='replace'):
-            m = MEMBER_RE.match(line)
-            if m:
-                ms.append((m.group(1), int(m.group(3), 16)))
+            pm = parse_member_line(line)
+            if pm:
+                ms.append(pm)
         if ms:
             out[cls] = (h, ms)
     return out
 
 
-def dag_order(types):
+def load_annotations_from_disk():
+    """→ {cls: annotation_json}（`STRUCTS` 目录下全部）"""
+    out = {}
+    for p in glob.glob(os.path.join(STRUCTS, '*.json')):
+        cls = os.path.basename(p)[:-5]
+        try:
+            out[cls] = json.load(open(p, encoding='utf-8'))
+        except Exception:
+            continue
+    return out
+
+
+def dag_order(types, ann=None):
     """按按值成员依赖做拓扑排序（叶子在前）。→ (order, cycles)
 
     "按值成员"判定：成员的 `type` 里出现某个已知类型名且**不含 `*`**（指针不决定布局）。
     依据：注解 JSON 的 `known_members[offset].type`。
     """
     deps = {}
-    ann = {}
-    for p in glob.glob(os.path.join(STRUCTS, '*.json')):
-        cls = os.path.basename(p)[:-5]
-        try:
-            d = json.load(open(p, encoding='utf-8'))
-        except Exception:
-            continue
-        ann[cls] = d
+    if ann is None:
+        ann = load_annotations_from_disk()
+    for cls, d in ann.items():
         km = d.get('known_members') or {}
         items = km.values() if isinstance(km, dict) else km
         dset = set()
@@ -116,11 +144,15 @@ def dag_order(types):
     return order, cycles
 
 
-def _measure_chunk(cls, header, chunk, include_dirs, timeout, tag):
+def _measure_chunk(cls, header, chunk, include_dirs, timeout, tag,
+                   fallback_includes=None):
     """测量一块（<100 检查，避免 C1003 截断）→ (conflicts, calibration_ok)"""
     import probe_compile as pc
-    rel = os.path.relpath(header, SRC).replace('\\', '/')
-    lines = ['#include "pal3/ida_defs.h"', '#include "globals.h"', '#include "%s"' % rel]
+    if fallback_includes:
+        lines = list(fallback_includes)
+    else:
+        rel = os.path.relpath(header, SRC).replace('\\', '/')
+        lines = ['#include "pal3/ida_defs.h"', '#include "globals.h"', '#include "%s"' % rel]
     line2member = {}
     for n, (name, off) in enumerate(chunk):
         ln = 10000 + n
@@ -144,7 +176,23 @@ def _measure_chunk(cls, header, chunk, include_dirs, timeout, tag):
             calib_ln in bad)
 
 
-def measure_cpp_layout(cls, header, declared, include_dirs, timeout=180, chunk_size=60):
+def unit_includes_for(cls, src=None):
+    """类 X 的**编译单元 include 集**（`<src>/**/X.cpp` 的前若干 `#include` 行）。
+
+    ⚠️ 为什么需要：只 include `ida_defs.h`+`globals.h`+`X.h` 时，**头不自包含**的类会编译失败
+    ⇒ 校准检查也编不到 ⇒ 被误判为"测量不可信" ✗（实测 314 类里有 24 个）。
+    用该 .cpp 的 include 集就与**管线真实编译口径一致** ✓
+    """
+    for c in glob.glob(os.path.join(src or SRC, '**', '%s.cpp' % cls), recursive=True):
+        incs = [l.strip() for l in open(c, encoding='utf-8', errors='replace')
+                .read().split('\n')[:40] if l.strip().startswith('#include')]
+        if incs:
+            return incs
+    return None
+
+
+def measure_cpp_layout(cls, header, declared, include_dirs, timeout=180, chunk_size=60,
+                       fallback_includes=None):
     """编译器裁判（**分块 + 每块自校准**）→ (conflicts, calibration_ok)
 
     为什么分块：MSVC 在单次编译 ~100 条错误处 C1003 截断 ⇒ 大类的检查会在**末尾之前**
@@ -154,7 +202,8 @@ def measure_cpp_layout(cls, header, declared, include_dirs, timeout=180, chunk_s
     conflicts, ok = {}, True
     for i in range(0, len(declared), chunk_size):
         chunk = declared[i:i + chunk_size]
-        c, calib = _measure_chunk(cls, header, chunk, include_dirs, timeout, 'c%d' % i)
+        c, calib = _measure_chunk(cls, header, chunk, include_dirs, timeout, 'c%d' % i,
+                                  fallback_includes=fallback_includes)
         conflicts.update(c)
         ok = ok and calib
     return conflicts, ok
@@ -211,7 +260,8 @@ def main():
     report, n_conf = [], 0
     for cls in todo:
         header, declared = members[cls]
-        conf, calib = measure_cpp_layout(cls, header, declared, pc.INCLUDE_DIRS)
+        conf, calib = measure_cpp_layout(cls, header, declared, pc.INCLUDE_DIRS,
+                                         fallback_includes=unit_includes_for(cls))
         if not calib:
             print('  %-22s ⚠️ **测量不可信**（校准检查未报错）⇒ 跳过' % cls)
             report.append({'cls': cls, 'error': 'calibration_failed'})
