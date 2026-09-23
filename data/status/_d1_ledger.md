@@ -3101,3 +3101,14 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   * Create@0x4A16C0 写集（0x48/0x4C/0x50-0x74/0x130/0x1C8/0x260-0x278/0x2DC/0x3D0/0x434/0x52C/0x540-0x555）
   * 消费链入口图谱（本条）
   * 不变式：总尺寸 852=0x354 不变
+
+## 2026-09-24（goal r28）esp/arg_seeds 扩展尝试未通过测试 ⇒ 回退稳定版（诚实记录）
+- 尝试为 provenance.py 加 esp 相对追踪 + 栈参种子（arg_seeds）以自动化分发器分析
+- 增量补丁造成分支重复/复制方向反转等多处回归 ⇒ 多轮修复后测试仍不过 ⇒ **回退到 r25 稳定版**
+  （6/6 全绿 ✓；全部五套测试绿 ✓ 树干净）
+- 保留资产：esp_delta/stack_tags/arg_seeds 的**设计思路**已在本台账与本文件历史（8ca26cfae 之后的
+  中间版本可从 git 历史找回——未提交即丢失，故本条目记录设计要点）：
+  * sub/add $N,%esp ⇒ esp_delta ∓ N；call ⇒ +4；push/pop ⇒ ∓4
+  * [esp+disp] 读取的有效偏移 = disp + esp_delta ⇒ 查 stack_tags（入口相对）
+  * arg_seeds={入口偏移: owner} 标记栈参指针（如 {8:'ARC_PlayerAtt'}）
+- 分发器（0x445D10）的字段取证改回人工逐指令路径（与 ReleaseObject 定案同法——人工分析可靠 ✓）
