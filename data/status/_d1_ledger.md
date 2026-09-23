@@ -3198,3 +3198,26 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - CTrail：无 CTrail.cpp 编译单元 ⇒ 不参与编译/比对 ⇒ 2/13 冲突零管线影响 ⇒ 降级重建队列末位
 - Param1：同理核查中（疑同为 header-only）
 - 主线收敛：**有编译单元的真实冲突类**才是可行动目标（PAL3/CUtil/CEffectSystem/CEffect/ArcLocale/CCBCamControl 已清/CEffMgr/TaskMgr/DIDEVICE 豁免）
+
+## 2026-09-25（goal r40/40 配额末轮）会话收官账本 —— 完整状态与交接清单
+### 指标终态（会话初 → 末）
+- L1 38→41（+3）✓ · S2 75/204 ✓ · 总错误 2150→2111（必要暴露 +5 已记账）✓
+- 比对集 319→336 符号 · 冲突类 81→14 · 冲突成员 1094→~250
+- 全链路五阶段绿 ✓ · 八套测试全绿 ✓ · 提交 ~40 次全部推送 ✓
+### 本会话核心方法论资产（全部已制度化入台账/CLAUDE.md/skill）
+1. 确定性架构：头文件只发成员声明 + 编译期布局断言；sizeof 由类型定义确定
+2. 证据可靠性排序：vtable 存储反查 > 调用约定 > 槽位函数群 > 邻居推断 > 调用点强转类型 ✗
+3. 全局语义改动必须过 L1 棘轮实测；落地单位 = 类型 + 内嵌级联闭包
+4. audit 一致 ≠ 布局正确（注解⇄编译头可自洽地一致错）⇒ ctor 逐指令为最终裁判
+5. 无编译单元的类不参与管线 ⇒ 优先级降级
+### 剩余冲突类交接清单（按病灶族，证据状态标注）
+- [vptr 接缝] CCBRoleState(86)/SceneObj(50)：**前置 = ReleaseObject 矛盾 provenance 裁定**
+  （PalScriptWaitObj 多态性证据冲突：ctor 存 vtable vs ReleaseObject 资源指针写入）
+- [竞技场/欠模型] CEffectSystem(14,+8,operator new 0x10C0 铁证)·CEffect(13,+8200)·
+  CG_Scene(+1028)·ARC_PlayerAtt(+4)·CUtil(+4)·PAL3(87,+8 全局单例)·ArcLocale(13/20)·CEffMgr(7/48)
+- [SDK 头] DIDEVICEOBJECTINSTANCEA(9/15)·DIDEVICEINSTANCEA(4/9)：dinput.h 权威
+- [模板测量限制/豁免] TaskMgr(8/8)·CTaskTpl(8/8)·SceneMgr(1/167 噪声)
+- [Phase 2 引用点] CScreenMode C2440 ×6 + UIRoleDialog C2227 ×1（已记账）
+### 目标状态
+40 轮配额用尽，目标未完成（14 类剩余，多数为多轮/类的重建级工程）。
+方法论与工具链已闭环，后续会话可按交接清单逐类推进。
