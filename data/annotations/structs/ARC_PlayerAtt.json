@@ -131,5 +131,12 @@
   "base_class": [
     "ARC_RoleAtt"
   ],
-  "base_size": 852
+  "base_size": 852,
+  "methods": {
+    "0x004A16C0": {
+      "name": "Create",
+      "signature": "int __cdecl(ARC_PlayerAtt *buf, int id, int nVal)",
+      "_attribution_evidence": "CUtil::InitGameSystems@0x52333E: push $0xABCD00; call 0x4A16C0（首参=&g_PlayerAttBuffer2）⇒ cdecl 栈参，IDA thiscall 签名错误 ✗；函数序言 sub $0x308 取栈参 ✓；写 [buf+0x48]/[0x4C]/[0x52C] 为 ARC_PlayerAtt 头部成员"
+    }
+  }
 }

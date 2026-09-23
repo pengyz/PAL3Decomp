@@ -2945,3 +2945,13 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   然后从 ARC_PlayerAtt::Create 真地址重新取证 —— 本轮不落地任何注解改动（动则盲改 ✗）
 - 方法论：func_bounds/decomp 的方法名不可独立采信 ✗——ctor 必须以"存 vtable = 自身 vtable 地址"闭环验证
   （本轮 vtable 反查一举定性 ✓ 与 UITextArea::InitAfterClear 误名先例同型）
+
+## 2026-09-24（goal r18）归属纠正批门禁全净 + 二次反转存档 + RoleAttr 探测入队
+- 0x4A16C0 二次纠正：CUtil::InitGameSystems@0x52333E `push $0xABCD00; call 0x4A16C0` 且函数序言取栈参
+  ⇒ **cdecl，首参=&ARC_PlayerAtt** ⇒ 真身 = ARC_PlayerAtt::Create(栈参，IDA thiscall 签名错误 ✗)
+  ⇒ 从 UIRoleDialog 移回 ARC_PlayerAtt（r18 初次的 UIRoleDialog 归属二次反转，教训：调用约定先于邻居推断）
+- 0x4A12F0 = UIRoleDialog ctor 获第二独立证据：CUtil ctor @0x523179 `lea 0x170(%esi),%ecx; call 0x4a12f0`
+  ⇒ CUtil@+0x170 内嵌 UIRoleDialog（CUtil 注解 `_embed_UIItem_368 UIItem@0x170` 名实皆误 ✗，归 CUtil 重建批）
+- 门禁：new_failures 0 · new_errors 0（对基线全净 ✓）· 单元 205→204（ARC_PlayerAtt.cpp 假单元消失 ✓）
+- 📋 入队：ARC_RoleAtt(852B) 布局探测未做——Create 写 [buf+0x48/0x4C/0x52C] 落在注解 Remark[512] 区间内可疑；
+  ARC_PlayerAtt 真身重建依赖此探测
