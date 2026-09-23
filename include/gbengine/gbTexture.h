@@ -153,13 +153,15 @@ public:
 class GBAPI gbTexture : public gbResource {
 public:
 
-    // gbTexture own fields
-    gbGfxManager* pGfxMgr;  // +0 union with vfptr/gbResource fields
-    int Width;
-    int Height;
-    gbImage2D* pTexImage;
-    gbPixelFormat InFmt;
-    int nLevels;
+    // gbTexture own fields（2026-09-24 按 IDB 绝对偏移重排：Width@0x18..nLevels@0x50，
+    // 0x28..0x50 为 IDB 偏移区（字段未知，_todo 标注）；pGfxMgr 无 IDB 证据已移除——
+    // 相关 .cpp 引用经重渲染自动更新 ✓；旧 "+0 union with vfptr" 注释为推测 ✗）
+    int Width;              // +0x18
+    int Height;             // +0x1C
+    gbImage2D* pTexImage;   // +0x20
+    gbPixelFormat InFmt;    // +0x24
+    char _todo_28[40];      // +0x28..0x50（未建模区）
+    int nLevels;            // +0x50
 
     // 0x10020370 (37B) - Constructor
     gbTexture(void);
