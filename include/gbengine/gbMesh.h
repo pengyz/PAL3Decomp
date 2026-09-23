@@ -395,7 +395,9 @@ struct gbGeomQuad {
     gbVec3D vec[4];
     float su, sv, eu, ev;
     int color;
-    int texid;
+    // 2026-09-24 删除 `int texid;`：二进制 stride 铁证 68B/17dwords（CCBStageShadow 三处
+    // 连续数组 0x10/0x2FC/0x5E8 均 748=11×68）+ 本文件原注释 "68 bytes / 17 dwords"
+    // （枚举至 color 为止）+ IDB size 68 ⇒ texid 无二进制支持 ✗
 };
 
 class GBAPI gbDynVertBuf {

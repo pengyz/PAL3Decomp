@@ -2900,3 +2900,13 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - EffModeParam/tagShowItem 2-4 冲突：enum 已正确供 4 字节 ⇒ 冲突另有其因，待查（同批下轮）
 - 方法论（用户质疑的制度化）："抑制/估计"类启发式全部退役 ✗；
   确定性路线 = 类型定义证据（stride 铁证）+ 编译期断言，落地单位 = 类型 + 内嵌级联
+
+## 2026-09-24（goal r13）小类三连清 —— 9 类布局一致（枚举类 4B + texid 删除 + D3DX 兑现）
+- 枚举类 4 字节发射（EffModeParam/tagShowItem 根因）：枚举类 wrapper 之前发 1 字节
+  （`char _tail_000[1]` + `*(char*)this`）⇒ 后续成员整体 −3 ✗；两处 override（成员记账 + scalar-wrapper ctor）
+  按 enums.json 判定 4B ⇒ ctor 也升级为 `*(int*)this` ✓
+- gbGeomQuad texid 删除：二进制 stride 铁证 68/17dwords（CCBStageShadow 0x10/0x2FC/0x5E8 三数组）
+  vs gbengine 头定义 72B（含 texid）且**源码自注释** "68 bytes / 17 dwords"（枚举至 color 止）⇒ texid 无支持 ⇒ 删
+- D3DX 尺寸兑现：sg_customshape/sg_emitter/sg_particle_scene/sg_particle_data 全一致 ✓
+- 验收：9 类审计一致 ✓ · loop 绿 S2 76/205 · errors 2105 · L1 41 ✓
+- 方法论：枚举 4B 修复当年只落在"尺寸记账"层没落在"类型发射"层 ⇒ 修复必须**打穿所有消费点** ✗

@@ -1855,6 +1855,10 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     try:
         ann_data_fb = _get_ida_structs()
         ann_struct_fb = ann_data_fb.get(cls_name, {})
+        # ★ 枚举尺寸修正（2026-09-24）：MSVC6 enum = int(4B)；ida size=1 是 IDB 导入伪影 ✗
+        # （实测 EffModeParam.ePos/tagShowItem.eKind：1 字节枚举类 ⇒ 后续成员整体 −3 ✗）
+        if _is_known_enum(cls_name) and ann_struct_fb.get('size') == 1:
+            ann_struct_fb = dict(ann_struct_fb, size=4)
         # Convert data_members list to offset-keyed dict of lists for member iteration
         # (same-offset members = union variants)
         ann_members = {}
@@ -2419,6 +2423,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # real initialization code at every declaration site.
     _isd_opaque = _get_ida_structs().get(cls_name, {})
     _isd_size = _isd_opaque.get('size') or 0
+    if _isd_size == 1 and _is_known_enum(cls_name):
+        _isd_size = 4   # MSVC6 enum = int(4B)；IDA size=1 伪影 ✗
     _isd_real_members = [m for m in (_isd_opaque.get('data_members') or [])
                          if not str(m.get('name', '')).startswith('_tail')]
     if _isd_size and _isd_size <= 16 and not _isd_real_members:
