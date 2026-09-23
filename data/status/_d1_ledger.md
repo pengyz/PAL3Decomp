@@ -2799,3 +2799,17 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
     ⇒ 疑模板基类（注解仅 __vftable@0）真实尺寸/vptr 与发射不符；待 ctor 逐指令裁定（0x4C3DD0 起始地址待核）
   * sg_* 粒子家族（7 类）· CCB 家族（4 类）· ComboAttack 家族（3 类）· DIDEVICE SDK 结构（2 类）
 - 分诊器读数：CEffectSystem +8 · CUtil +4（单例守卫 BYTE@0 已证实，重建级单列）· CEffect +8200
+
+## 2026-09-23（goal r5）CEff 家族首攻失败 —— 已回退，证据冲突挂起
+- 尝试：① 注入门拓宽（offset0 vptr 占位 ∧ 无 vtable 槽 ⇒ 注入虚析构 + 尾部预留 4）
+  ② CEffObj offset0 m_nTodo_000 → __vftable 改名
+- 结果：S2 崩到 0/205 · 错误 2639 ⇒ **灾难级回归** ⇒ 全部回退 ✓（HEAD 复验五阶段全绿 ✓）
+- 根因未完全查明（诚实挂起）：回退后未逐项 A-B 隔离 (a)_has_dtor 前移 (b) 尾部预留 (c) 注入门拓宽
+  三改动中谁是元凶；可疑点：注入激增令大量"vptr 占位类"变多态 ⇒ 广含头连锁破坏
+- 🔴 证据冲突（下轮必须先解决）：CEffCylinder ctor 0x4C3DD0 实测双 vptr（0x56F7C8→this+0，
+  0x56F7BC→this+12，bin_oracle 正确映射 + func_bounds 归属 ✓✓）⇒ 支持CEffObj offset0=vfptr；
+  但 CEffObj offset0 旧 note 记"对象指针而非 vfptr"（依据是 GlowObj 系的强转/存储检查 + "整库无
+  vtable 装载"）⇒ 两者不能同真。**我先前的改名覆盖了旧证据 note ✗（已恢复）** ——
+  正解方向：CEffObj offset0 可能是 union{vfptr, 对象指针}（派生类复用差异）或 GlowObj 系检查
+  不适用于 CEffObj；下轮须逐派生类 ctor 取证后再动注解
+- 方法论重申：**注入门是全局开关** ✗ 不能在未逐类核对其布局影响时拓宽（F62 已有前科 ✗ 我又犯 ✗）
