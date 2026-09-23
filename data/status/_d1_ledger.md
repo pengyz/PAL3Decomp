@@ -2877,3 +2877,14 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   ⇒ 定为独立子项目：ARC_PlayerItem 级联批（仿 UITextArea/UITextArea 级联先例）
 - 保留落地：D3DX 尺寸 8 条（sdk_types，无 ida_structs 冲突、无内嵌翻转、纯收益 ✓）
 - 教训：语义正确的全局改动 ≠ 可安全落地——**落地单位=注解级联闭包**，不是发射器开关
+
+## 2026-09-24（goal r11）ARC_PlayerItem 级联批侦察 —— 判定为整类重建级，不盲改
+- 枚举：ARC_PlayerItem 全库仅被 ARC_PlayerAtt 内嵌（4 处）
+- 🔴 发现 ARC_PlayerAtt 注解**内部矛盾**：cloth@0x360→shoes@0x36C 隐含 stride 12 ✓、
+  wear[2]@0x378→nScriptCounter@0x38C 却隐含 **10** ✗（同一注解三种 stride 共存）
+- Refresh decomp 证据：注解大量成员是**兜底字符缓冲**（name/Remark/byMagicUseTime…），
+  Hex-Rays 经 `Remark[106]` 偏移访问内嵌 UITextArea、`Remark[298]/[450]` 访问其他子对象
+  ⇒ 偏移体系不可靠 ⇒ ARC_PlayerItem 10→12 翻转无法独立修复本类 ✗
+- 判定：ARC_PlayerAtt = **整类重建级**（UITextArea 先例），与 CUtil 同队列；
+  ARC_PlayerItem 类型修正(10→12，C++ 对齐必然 ✓ + ARC_PlayerAtt stride12 部分证据)随该重建一并落地
+- 本轮不落地（遵守：盲改注解 ✗；批粒度管线 ✓）
