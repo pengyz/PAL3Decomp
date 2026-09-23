@@ -3165,3 +3165,12 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - CTrail(2/13)：m_eft@0x340/m_OriginSurface@0x344 漂移 ⇒ 疑 gbTexture_D3D 编译尺寸 ≠96
   （含 align-8 成员？gbTexture_D3D.h 未在生成树中找到 ⇒ 待定位其发射来源）
 - 方法论：模板类/缺失头 ⇒ audit 测量受限 ⇒ 逐类豁免标注或补发射来源
+
+## 2026-09-25（goal r36）豁免归类：DIDEVICE*/SceneMgr/CTaskTpl ⇒ 真实目标 12 类
+- DIDEVICEOBJECTINSTANCEA(9/15)/DIDEVICEINSTANCEA(4/9)：SDK 类型由 dinput.h 定义，
+  audit 探针 include 集与真实编译不同 ⇒ 测量伪影 ✗ 豁免（emitted 头 tszName[324] 注解自洽 ✓）
+- SceneMgr 1/167：已证审计噪声（内联 union 误计 + 直接探测布局正确）✓ 豁免
+- CTaskTpl 8/8：通用模板死头（offsetof 无法作用于未实例化模板）✓ 豁免
+- ⇒ 真实剩余冲突类 = 12（PAL3 87 · CCBRoleState 86 · CCBCamControl 47 · GRPinput 27 ·
+  CUtil 24 · CEffectSystem 14 · ArcLocale 13 · CEffect 13 · TaskMgr 8(部分豁免) ·
+  CEffMgr 7 · Param1 4 · CTrail 2）
