@@ -1,6 +1,6 @@
 {
   "name": "ARC_PlayerAtt",
-  "binary_size": 1408,
+  "binary_size": 1412,
   "known_members": {
     "852": {
       "name": "hat",
@@ -22,102 +22,102 @@
       "type": "ARC_PlayerItem[2]",
       "source": "annotation"
     },
-    "912": {
+    "916": {
       "name": "weapon",
       "type": "ARC_PlayerItem",
       "source": "annotation"
     },
-    "924": {
+    "928": {
       "name": "maxrolevalue",
       "type": "int[12]",
       "source": "annotation"
     },
-    "972": {
+    "976": {
       "name": "currolevalue",
       "type": "int[12]",
       "source": "annotation"
     },
-    "1020": {
+    "1024": {
       "name": "dwWeaponSkillID",
       "type": "unsigned int",
       "source": "annotation"
     },
-    "1024": {
+    "1028": {
       "name": "dwCleanCent",
       "type": "unsigned int",
       "source": "annotation"
     },
-    "1028": {
+    "1032": {
       "name": "fWeaponSkillMass",
       "type": "float",
       "source": "annotation"
     },
-    "1032": {
+    "1036": {
       "name": "dwSkillID",
       "type": "unsigned int[6]",
       "source": "annotation"
     },
-    "1056": {
+    "1060": {
       "name": "bSkillMastered",
       "type": "unsigned char[6]",
       "source": "annotation"
     },
-    "1064": {
+    "1068": {
       "name": "dwMagicID",
       "type": "unsigned int[8][6]",
       "source": "annotation"
     },
-    "1256": {
+    "1260": {
       "name": "bMagicMastered",
       "type": "unsigned char[8][6]",
       "source": "annotation"
     },
-    "1304": {
+    "1308": {
       "name": "byMagicUseTime",
       "type": "unsigned char[8][6]",
       "source": "annotation"
     },
-    "1352": {
+    "1356": {
       "name": "byMagicLevel",
       "type": "unsigned char[8][6]",
       "source": "annotation"
     },
-    "1400": {
+    "1404": {
       "name": "bAutoCtrl",
       "type": "unsigned char",
       "source": "annotation"
     },
-    "1401": {
+    "1405": {
       "name": "bAIAttack",
       "type": "unsigned char",
       "source": "annotation"
     },
-    "1402": {
+    "1406": {
       "name": "bAIMagic",
       "type": "unsigned char",
       "source": "annotation"
     },
-    "1403": {
+    "1407": {
       "name": "bAISkill",
       "type": "unsigned char",
       "source": "annotation"
     },
-    "1404": {
+    "1408": {
       "name": "bAIUseItem",
       "type": "unsigned char",
       "source": "annotation"
     },
-    "1405": {
+    "1409": {
       "name": "bAINegative",
       "type": "unsigned char",
       "source": "annotation"
     },
-    "1406": {
+    "1410": {
       "name": "byLineup",
       "type": "unsigned char",
       "source": "annotation"
     },
-    "908": {
+    "912": {
       "name": "nScriptCounter",
       "type": "int",
       "source": "binary:RunScript_0x4100A0"
@@ -131,5 +131,6 @@
   "base_class": [
     "ARC_RoleAtt"
   ],
-  "base_size": 852
+  "base_size": 852,
+  "_cascade_note": "2026-09-24: ARC_PlayerItem=12（stride 铁证）⇒ wear[2] 后成员 +4 平移；binary_size 1408→1412（编译 sizeof 实测吻合）"
 }

@@ -3127,3 +3127,15 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 验收：ARC_RoleAtt 审计一致 ✓ sizeof 852==852 ✓ · check PASS · 五阶段全绿
 - 门禁收敛：必要暴露 +5（CScreenMode C2440 ×6 + UIRoleDialog C2227）已入基线（2110）· UIRoleDialog C2660 ×2 消除（部分兑现）
 - 最终状态：S2 75/204 · errors 2110 · L1 41 · 比对集 272/336
+
+## 2026-09-24（goal r31）ARC_PlayerItem 逐类型修（12）+ 全局取整回退 —— L1 棘轮拦截归因
+- L1 −1 归因：对齐取整全局翻转改变了 SceneMgr 头链中某结构尺寸 ⇒ SceneMgr.cpp L1 2→1 ✗
+  ⇒ 按棘轮政策回退全局取整；改用**逐类型定点修**（ARC_PlayerItem binary_size 10→12 + stride 铁证）
+- ARC_PlayerItem ✓ 审计一致（stride 铁证：ARC_PlayerAtt cloth→shoes→wear 连续 12）
+- ARC_PlayerAtt 仍 18/24 + sizeof +4 ⇒ 内部布局需全类重建（已入队列，与 CUtil/CG_Scene 同级）
+- 教训重申：全局语义改动 vs 逐类型定点修——**全局改动必须过 L1 棘轮实测**（本轮棘轮成功拦截 ✗→✓）
+
+## 2026-09-25（goal r31 续）ARC 系级联完成 —— ARC_PlayerAtt/ARC_PlayerMgrInfo/ARC_PlayerItem 三类清零
+- 级联：ARC_PlayerMgrInfo ≥0x1BA0 +20（ARC_PlayerAtt[5] 内嵌随 12-stride 更新）
+- 验收：三类审计一致 ✓ · verify_fix sizeof 全等（1412/7396）✓ · check PASS
+- 五阶段全绿 S2 75/204 · errors 2110 · L1 41 · 比对集 272/336 ✓
