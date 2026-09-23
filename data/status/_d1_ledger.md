@@ -3052,3 +3052,19 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   ② UIRoleDialog.cpp:61 C2227 `m_static.__vftable->Render`
      = __vftable 被发为 void* ⇒ 需 typed vtbl 指针成员（vtbl_UIRoleDialog 模式）或 [VFTABLE-STUB] 化
 - 捷径候选：UIWnd.h 的 static __vftable 模式与 UITitle_BBTY::Render [ROWTABLE] 机制（本文件已有先例 ✓）
+
+## 2026-09-24（goal r25）provenance 扫描器落地 + ReleaseObject 矛盾定案
+- 工具：tools/provenance.py（TDD 6/6 ✓）——AT&T 指令流的寄存器 provenance 追踪：
+  入口 ecx=this（可配）· call 清调用方保存寄存器 · esp 相对读=栈参 · lea/复制传播标签
+- ReleaseObject@0x4A68D0 逐指令定案（this=esi 溯源 ✓）：
+  * 读 [this+0]→非零则经全局函数指针 call *0x56A58C 释放 → 写 [this+0]=0
+  * this+4 子对象 gbImage2D::Release/LoadImageFile
+  * 读 gfxMgr 全局虚调用取纹理 → **mov %eax,(%esi) 写回 this+0**
+  ⇒ **PalScriptWaitObj offset0 = 资源指针（gbTexture*/gbRefObject*），非虚调度槽 ✗ 非多态**
+  （其虚调用全走全局函数指针 call *0x56A58C/0x56A254/0x56A37C——不是 [this] 槽）
+- SceneObj 侧：ctor 写 0x56B200 于 this+0 ⇒ SceneObj 多态 ✓（vptr 覆盖 PalScriptWaitObj 首槽——
+  C++ 规则：多态派生类 vptr@0，其值由派生 vtable 给出 ⇒ 二进制行为自洽 ✓）
+- **复用槽裁定**：两种用途分属两个对象生命周期层——PalScriptWaitObj 独立实例（EquipUI 系）用资源指针，
+  SceneObj 系实例用 vptr ⇒ C++ 建模（Phase 1）：**SceneObj 注解保持 __vftable@0 ✓**；
+  PalScriptWaitObj 保持非多态 ✓（现注解 vtables=False ✓ 不动）
+- SceneObj 剩余 +4（sizeof 1788 vs 1784）的归因转为纯布局问题（基类接缝），下轮专攻
