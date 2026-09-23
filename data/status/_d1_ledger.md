@@ -2765,3 +2765,16 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 管线：五阶段全绿 ✓ S2 76/205 · errors 2141 · **L1 39**（38→39 ✓）· matched 270/325
 - 教训：**用户领域知识（gbengine 源码在仓内）直接把 B 级推断升级为 A 级证据** ✓；
   闭环重测再次暴露旧结论失真（重测发现的"仍冲突"其实是同一根因未除 ✓）
+
+## 2026-09-23（goal r2）PalScript 布局清零 + 内联体数组记账 bug 修复
+- 诊断：PalScript 13/87 冲突 · sizeof 2400 vs binary 2176（+224）；漂移起点 +0x50C
+- 根因（emit_headers 内联体记账）：`_iip/_inner_prev = iiab + _estimate_member_size(已剥数组后缀的类型)`
+  ⇒ `float[48]` 只记 4 字节、`char[256]` 只记 1 字节 ⇒ 之后的 gap 与数组尾部**重叠**
+  ⇒ pack(1) 顺序布局被撑大 ✗（探针实测确认渲染分支为 Branch-A inline_udt）
+- 修法：新增 `_type_extent(t)`（基类型尺寸 × 全部数组维度），三处记账全部改用它（含 _variants 分支）
+- TDD：tests/test_emit_member_size_enum.py 增 test_type_extent_includes_arrays（RED→GREEN，6/6）
+- 结果：PalScript 审计 **0/87** ✓ · sizeof 2176 == binary 2176 ✓（+224 → 0）
+  管线五阶段全绿 ✓ S2 76/205 · errors 2141 · L1 39 · matched 270/325（零回归 ✓）
+- 过程记录：第一次修补未生效（变量已被剥后缀）⇒ 加探针实 `[NESTED] iiab=230 iip=234` 定位真因
+  ⇒ 再次证明**探针实测优于静态推理** ✓（病灶层检查的循环内版本）
+- 待查：CEffect(13/14)/CEffectSystem(14/14) 疑似同类（sizeof 待 verify_fix 确认）· CUtil 需整类重建（0x0 vptr vs m_bCanWarp 竞争 + 疑 UIWnd 基类）

@@ -428,6 +428,23 @@ def _is_known_enum(t):
     return t in _get_annotation_enums() or t in _GBENGINE_ENUMS
 
 
+def _type_extent(t):
+    """类型的**完整字节数**（含数组维度）✓
+
+    2026-09-23（PalScript +224 漂移根因）：内联体记账原先用 `_estimate_member_size(t)`，
+    它对 `float[48]` 只返回元素尺寸 4 ⇒ 记账超前 ⇒ 之后的 gap 与数组尾部**重叠**
+    ⇒ pack(1) 顺序布局被撑大 ✗。这里必须乘上全部数组维度。
+    """
+    t = (t or '').strip()
+    n = 1
+    dims = re.findall(r'\[(?:0x[0-9a-fA-F]+|\d+)\]', t)
+    if dims:
+        t = re.sub(r'\[(?:0x[0-9a-fA-F]+|\d+)\]', '', t).strip()
+        for d in dims:
+            n *= int(d[1:-1], 0)
+    return _estimate_member_size(t) * n
+
+
 # Prefix patterns for system/library types that should never be generated
 SKIP_PREFIXES = (
     'D3D', '_D3D', 'ID3D', 'IDirect', 'IUnknown',
@@ -1967,6 +1984,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                                 lines.append("        char _gap_%03X[%d]; // +0x%X" % (_inner_prev, _iab - _inner_prev, _inner_prev))
                             _it = _idm.get('type', 'int')
                             _in = _idm.get('name', '?')
+                            _it_full = _it
                             if isinstance(_it, str) and ('::' in _it):
                                 _inner_data = _get_ida_structs().get(_it, {})
                                 _inner_dms = _inner_data.get('data_members', [])
@@ -1981,6 +1999,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                                             lines.append("            char _gap_%03X[%d];" % (_iip, _iiab - _iip))
                                         _iit = _iidm.get('type', 'int')
                                         _iin = _iidm.get('name', '?')
+                                        _iit_full = _iit
                                         _iarr = re.search(r'^(.*?)((?:\[(?:0x[0-9a-fA-F]+|\d+)\])+)$', _iit)
                                         if _iarr:
                                             _iit = _iarr.group(1).strip()
@@ -1988,7 +2007,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                                             lines.append("            %s %s%s; // +0x%X" % (_iit, _iin, _ia, _iiab))
                                         else:
                                             lines.append("            %s %s; // +0x%X" % (_iit, _iin, _iiab))
-                                        _iip = _iiab + _estimate_member_size(_iit)
+                                        _iip = _iiab + _type_extent(_iit_full)
                                     lines.append("        } %s;" % _in)
                                     _inner_prev = _iab + _inner_data.get('size', 4)
                                     continue
@@ -1999,7 +2018,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                                 lines.append("        %s %s%s; // +0x%X" % (_it, _in, _ia, _iab))
                             else:
                                 lines.append("        %s %s; // +0x%X" % (_it, _in, _iab))
-                            _inner_prev = _iab + _estimate_member_size(_it)
+                            _inner_prev = _iab + _type_extent(_it_full)
                         lines.append("    } %s;" % mname)
                         lines.append("#pragma pack(pop)")
                         member_size = _inline_data.get('size', 4)
@@ -2083,6 +2102,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                                     lines.append("            char _gap_%03X[%d];" % (_inner_prev, _abs - _inner_prev))
                                 _t = mem.get('type', 'int')
                                 _n = mem.get('name', '?')
+                                _t_full = _t
                                 _arr = re.search(r'^(.*?)((?:\[(?:0x[0-9a-fA-F]+|\d+)\])+)$', _t)
                                 if _arr:
                                     _t = _arr.group(1).strip()
@@ -2090,7 +2110,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                                     lines.append("            %s %s%s; // +0x%X" % (_t, _n, _a, _abs))
                                 else:
                                     lines.append("            %s %s; // +0x%X" % (_t, _n, _abs))
-                                _inner_prev = _abs + _estimate_member_size(_t)
+                                _inner_prev = _abs + _type_extent(_t_full)
                             lines.append("        };")
                         else:
                             lines.append("        %s __%s;" % (ref_type, ref_type))

@@ -61,6 +61,21 @@ def test_unknown_type_still_defaults_4():
     assert E._estimate_member_size('SomeUnknownType') == 4
 
 
+def test_type_extent_includes_arrays():
+    """内联体记账必须含数组维度（PalScript +224 漂移的根因 ✓）
+
+    旧 bug：`_inner_prev = off + _estimate_member_size(t)` 把 `float[48]` 记成 4 字节
+    ⇒ 之后的 gap 与数组尾部重叠 ⇒ pack(1) 顺序布局被撑大 ✗
+    """
+    assert E._type_extent('float') == 4
+    assert E._type_extent('float[48]') == 192
+    assert E._type_extent('char[256]') == 256
+    assert E._type_extent('unsigned char') == 1
+    assert E._type_extent('int[2][3]') == 24
+    assert E._type_extent('void *') == 4
+
+
+
 if __name__ == '__main__':
     ok = fail = 0
     for nm, fn in sorted(list(globals().items())):
@@ -71,3 +86,17 @@ if __name__ == '__main__':
                 print('  FAIL %s: %s: %s' % (nm, type(e).__name__, e)); fail += 1
     print('Results: %d passed, %d failed' % (ok, fail))
     sys.exit(1 if fail else 0)
+
+
+def test_type_extent_includes_arrays():
+    """内联体记账必须含数组维度（PalScript +224 漂移的根因 ✓）
+
+    旧 bug：`_inner_prev = off + _estimate_member_size(t)` 把 `float[48]` 记成 4 字节
+    ⇒ 之后的 gap 与数组尾部重叠 ⇒ pack(1) 顺序布局被撑大 ✗
+    """
+    assert E._type_extent('float') == 4
+    assert E._type_extent('float[48]') == 192
+    assert E._type_extent('char[256]') == 256
+    assert E._type_extent('unsigned char') == 1
+    assert E._type_extent('int[2][3]') == 24
+    assert E._type_extent('void *') == 4
