@@ -3112,3 +3112,12 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   * [esp+disp] 读取的有效偏移 = disp + esp_delta ⇒ 查 stack_tags（入口相对）
   * arg_seeds={入口偏移: owner} 标记栈参指针（如 {8:'ARC_PlayerAtt'}）
 - 分发器（0x445D10）的字段取证改回人工逐指令路径（与 ReleaseObject 定案同法——人工分析可靠 ✓）
+
+## 2026-09-24（goal r29）证伪：0x445D10 = 空桩（5 字节 xor/ret）——TaskBookUI 消费链无字段证据
+- 实测：0x445D10-0x445D15 = `xor %eax,%eax; ret $0xc` ⇒ 空实现（返回 0）
+- PDB 名 OnMessage@CGameData 为折叠/共享桩误名 ✗ ⇒ TaskBookUI::CreateEntry 的 &buffer 传递
+  **不构成 ARC_RoleAtt 字段读取证据** ✗（上轮把它当分发器入口 ✗ 修正）
+- ARC_RoleAtt 现有证据 = Create@0x4A16C0 写集（唯一强证据）：
+  0x48/0x4C（参数写）· 0x50（填充目标）· 0x54 读 · 0x58/0x5C/0x64/0x68/0x6C/0x70/0x74 ·
+  0x130/0x1C8/0x260/0x264/0x268/0x26C/0x270/0x274/0x278/0x2DC/0x3D0/0x434/0x52C/0x540/0x544/0x555
+- 下一个真实消费方候选：PAL_GDB::InitSkillDisplay（0xAA0B00 ×8 push @0x5286cb-0x528a7b）——下轮追
