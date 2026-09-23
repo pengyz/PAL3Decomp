@@ -2778,3 +2778,24 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 过程记录：第一次修补未生效（变量已被剥后缀）⇒ 加探针实 `[NESTED] iiab=230 iip=234` 定位真因
   ⇒ 再次证明**探针实测优于静态推理** ✓（病灶层检查的循环内版本）
 - 待查：CEffect(13/14)/CEffectSystem(14/14) 疑似同类（sizeof 待 verify_fix 确认）· CUtil 需整类重建（0x0 vptr vs m_bCanWarp 竞争 + 疑 UIWnd 基类）
+
+## 2026-09-23（goal r3）批量 sizeof 侦察 + CUtil 诊断
+- sizeof 侦察：CEffectSystem +8（疑 vptr+double 对齐，但 CreateEffect 显示 72 字节步长数组遍历 ⇒ 深度重建级）
+  · CEffect +8200（m_Partical 数组元素尺寸错，重建级）· CUtil +4（见下）
+- CUtil 二进制裁定（O2 ctor 0x523130 逐指令）：
+  * `mov %ecx,%ebx; cmpb $0x0,(%ebx); je...; ret 4` ⇒ **m_bCanWarp BYTE@0 是真的**（单例初始化守卫 ✓✓）
+  * `lea 0x4(%ebx),%esi; mov %esi,%ecx; call 0x4328B0` ⇒ this+4 上调用辅助函数；
+    0x4328B0 首指令 `mov $0xd8c348,%ecx` 引用全局 ⇒ **非 UIListBox 构造**，
+    Hex-Rays 的 `UIListBox::UIListBox((UIListBox*)this)` 是误归属 ✗（方法归属错误传染渲染）
+  * ⇒ CUtil 需整类重建（UITextArea 级工作量），且先修 UIListBox 方法的误归属
+- 方法论：sizeof 侦察（verify_fix 逐类 +8200/+8/+4）是**分诊器** ✓——先修最小漂移，重建级单列
+
+## 2026-09-23（goal r4）全量重测校准 + CEff* 家族诊断开启
+- 全量重测（712 类）：冲突类 73 → **67** · 冲突成员 874（此前修复的级联净化持续兑现 ✓）
+- 杠杆指标（被按值内嵌次数）已耗尽：剩余多为叶类 ⇒ 分批策略改为**疾病家族**（同根因一次修一批）
+- 家族清单（首批诊断）：
+  * **CEff\* 家族（~13 类）**：CEffCylinder/Meteor/Grid/Model/SParticle/gbParticle/Track*/Action/Quake/Mgr
+    共同结构 `: CEffObj(12B) + CTaskTpl_tagEffTaskParam_X`；CEffCylinder 实测 +4、35/35 全冲突
+    ⇒ 疑模板基类（注解仅 __vftable@0）真实尺寸/vptr 与发射不符；待 ctor 逐指令裁定（0x4C3DD0 起始地址待核）
+  * sg_* 粒子家族（7 类）· CCB 家族（4 类）· ComboAttack 家族（3 类）· DIDEVICE SDK 结构（2 类）
+- 分诊器读数：CEffectSystem +8 · CUtil +4（单例守卫 BYTE@0 已证实，重建级单列）· CEffect +8200
