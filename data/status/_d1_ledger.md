@@ -3068,3 +3068,12 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   SceneObj 系实例用 vptr ⇒ C++ 建模（Phase 1）：**SceneObj 注解保持 __vftable@0 ✓**；
   PalScriptWaitObj 保持非多态 ✓（现注解 vtables=False ✓ 不动）
 - SceneObj 剩余 +4（sizeof 1788 vs 1784）的归因转为纯布局问题（基类接缝），下轮专攻
+
+## 2026-09-24（goal r26 续）SceneObj/CCBRoleState 清零落地 —— 名字保真 static 槽位
+- 修复：PalScriptWaitObj offset0 m_nTodo_000 加 vfptr_slot 标记 + 发射器 static 槽位分支
+  触发条件拓宽（标记 ∨ vptr 名 ∨ _todo_/m_nTodo_ 前缀）；**名字保真**（保留 m_nTodo_000，
+  不统一改名 __vftable——避免 MI 双链同名二义，r8 教训 ✓）；虚析构注入（多态化）
+- 效果：SceneObj 50/50→0 ✓ · CCBRoleState 86/86→0 ✓ · PalScriptWaitObj ✓
+  （sizeof 回归 1784/22224 二进制真值 ✓）
+- 比对集：271/329 → 272/336（CCBRoleState 单元 +7 可比函数，冻结收益开始兑现 ✓）
+- 遗留：SceneObj 内部 0x50-0x70 的 32B 未建模区 + GlowObj/TaskMgr 槽位语义（下轮可选深挖）

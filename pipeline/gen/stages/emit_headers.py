@@ -1077,6 +1077,25 @@ def _offset0_is_vptr_member(cls_name):
     return False
 
 
+import os as _os_annotations
+
+def _vfptr_slot_marked(cls_name):
+    """注解 offset0 成员是否带 vfptr_slot 标记（取证后的显式声明，优先级最高）✓"""
+    try:
+        _p = _os_annotations.path.join(
+            _os_annotations.path.dirname(_os_annotations.path.dirname(
+                _os_annotations.path.dirname(_os_annotations.path.dirname(
+                    _os_annotations.path.abspath(__file__))))),
+            'data', 'annotations', 'structs', cls_name + '.json')
+        ann = json.load(open(_p, encoding='utf-8'))
+        for k, v in (ann.get('known_members') or {}).items():
+            if int(k, 0) == 0 and isinstance(v, dict) and v.get('vfptr_slot'):
+                return True
+    except Exception:
+        pass
+    return False
+
+
 def _offset0_vptr_placeholder(cls_name):
     """offset0 成员是否恰为**标准 vptr 占位**（vptr 名 ∧ void* ∧ 无 vtable 槽）✓
 
@@ -1847,10 +1866,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     _has_dtor = any(m for m, _, _ in (methods or []) if m == '~' + cls_name)
     # 注入判定提前（成员循环需要用它决定 +0 成员是否走 static 槽位形式 ✓）。
     # ⚠️ 模板特化（template_expr）跳过注入：`virtual ~扁平名()` 与特化类名不匹配 ⇒ C2523 ✗
-    _will_inject_vptr = (not _has_dtor) and not template_expr \
-        and _offset0_is_vptr_member(cls_name) and (
+    _will_inject_vptr = (not _has_dtor) and not template_expr and (
+        _vfptr_slot_marked(cls_name)
+        or (_offset0_is_vptr_member(cls_name) and (
             cls_name in _get_scalar_dtor_classes()
-            or _offset0_vptr_placeholder(cls_name))
+            or _offset0_vptr_placeholder(cls_name))))
     # Generate members from annotation known_members (sole source of truth)
     try:
         ann_data_fb = _get_ida_structs()
@@ -1923,7 +1943,9 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 # vptr 占位成员改为 static（不占对象字节）⇒ 编译器隐式 vptr 独占 +0，
                 # 既有 `X->__vftable` 引用仍可编译（F59 同型先例 ✓）
                 if _will_inject_vptr and off == 0 and len(group) == 1 and (
-                        str(group[0].get('name')) in _VPTR_MEMBER_NAMES):
+                        str(group[0].get('name')) in _VPTR_MEMBER_NAMES
+                        or str(group[0].get('name')).startswith(('m_nTodo_', '_todo_'))
+                        or _vfptr_slot_marked(cls_name)):
                     lines.append("    static %s %s; // +0x0 (vfptr slot; 布局由编译器隐式 vfptr 提供)"
                                  % (group[0].get('type', 'void *'), group[0].get('name')))
                     start_off = max(start_off, 4)

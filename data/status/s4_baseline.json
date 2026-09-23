@@ -18,16 +18,16 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 329,
-  "matched": 271,
-  "unmatched": 58,
+  "symbols": 336,
+  "matched": 272,
+  "unmatched": 64,
   "match_L1": 41,
   "partial": 197,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 33
+  "unresolved_synth": 34
  },
  "rows": [
   {
@@ -405,7 +405,7 @@
    "name": "ScreenEffect::ScreenEffect(void)",
    "va": "0x004BDFB0",
    "status": "partial",
-   "match_pct": 11.7,
+   "match_pct": 42.3,
    "size": 163
   },
   {
@@ -414,7 +414,7 @@
    "name": "ScreenEffect::CopyParams(int *)",
    "va": "0x004BE830",
    "status": "partial",
-   "match_pct": 5.9,
+   "match_pct": 23.5,
    "size": 34
   },
   {
@@ -855,7 +855,7 @@
    "name": "PalScriptWaitObj::ReleaseObject(char *)",
    "va": "0x004A68D0",
    "status": "partial",
-   "match_pct": 23.5,
+   "match_pct": 37.0,
    "size": 81
   },
   {
@@ -2172,5 +2172,19 @@
    "match_pct": 56.7,
    "size": 67
   }
- ]
+ ],
+ "rebaseline": {
+  "reason": "CCBRoleState 布局清零后其单元函数首次进入比对集（+7 可比函数）；L1 41 保持",
+  "at": "2026-09-23T22:47:26",
+  "prev_match_L1": 41,
+  "cur_match_L1": 41,
+  "prev_population": {
+   "matched": 272,
+   "symbols": 336
+  },
+  "cur_population": {
+   "matched": 272,
+   "symbols": 336
+  }
+ }
 }
