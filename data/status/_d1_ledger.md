@@ -2864,3 +2864,16 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   可能是某类在错误估算下"碰巧"字节匹配（这正是布局修复的价值兑现延迟 ✓ 非退化）
 - 数据/测试留存：本回退不含 tests/test_member_size_d3dx.py、tests/test_gap_alignment.py（保留于工作区待重落）？
   ⇒ 否：回退仅还原 PalScriptWaitObj/emit_headers/sdk_types 三个文件；测试文件保留 ✓
+
+## 2026-09-24（goal r10）对齐取整批 ⇒ 严重衰退回退；确定性架构路线确立
+- 尝试：_estimate_member_size 按 C++ sizeof 语义对齐取整（ARC_PlayerItem 10→12 等）
+- 结果：S2 76→36 · 错误 9083 ⇒ 严重衰退 ✗ ⇒ 回退发射器部分（HEAD 复验五阶段全绿 ✓）
+- 根因（已查明，非猜测）：对齐取整翻转了**所有内嵌奇尺寸结构类**的布局（ARC_PlayerItem
+  被 ARC_PlayerAtt/CGameData 等数十类按值内嵌）⇒ 这些类的注解偏移仍是旧 stride ⇒ 头/源不一致 ⇒ 9083 ✗
+- 正确定性架构（用户认可）：**头文件只发成员声明 + 编译期布局断言**；sizeof 由类型定义确定，
+  不估计、不抑制；gap 仅在注解明确标注未知区时存在；类型定义错误 ⇒ 编译期当场指名失败
+- 但全局翻转 = 一次性破坏所有内嵌奇尺寸类的注解 ⇒ **落地必须按类伴随注解级联**
+  （ARC_PlayerItem 10→12 ⇒ ARC_PlayerAtt/CGameData/... 每个内嵌点之后偏移 +2×N 级联）
+  ⇒ 定为独立子项目：ARC_PlayerItem 级联批（仿 UITextArea/UITextArea 级联先例）
+- 保留落地：D3DX 尺寸 8 条（sdk_types，无 ida_structs 冲突、无内嵌翻转、纯收益 ✓）
+- 教训：语义正确的全局改动 ≠ 可安全落地——**落地单位=注解级联闭包**，不是发射器开关
