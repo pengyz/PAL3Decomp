@@ -3077,3 +3077,16 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   （sizeof 回归 1784/22224 二进制真值 ✓）
 - 比对集：271/329 → 272/336（CCBRoleState 单元 +7 可比函数，冻结收益开始兑现 ✓）
 - 遗留：SceneObj 内部 0x50-0x70 的 32B 未建模区 + GlowObj/TaskMgr 槽位语义（下轮可选深挖）
+
+## 2026-09-24（goal r27）CEffectSystem/CEffect 重分类为"欠模型竞技场族" + 会话队列盘点
+- 铁证：CEffect ctor 0x4C6940 `operator new(0x10C0u)` = CEffectSystem 分配 4288B vs 注解 binary_size 344 ✗
+  （CreateEffect decomp 直接证据）⇒ CEffectSystem/CEffect 与 ARC_PlayerAtt/PAL_GDB 同族：**巨型欠模型类**
+- 重分类后剩余冲突类（20）的真实构成：
+  * 竞技场/欠模型重建（需逐 ctor 取证，多轮/类）：CG_Scene(+1028) · CEffect(+8200) ·
+    CEffectSystem(+8) · ARC_PlayerAtt(+4) · CUtil(+4) · PAL3(+8) · CCBCamControl(+4) · GRPinput(+4) ·
+    TaskMgr · CEffMgr · ARC_PlayerMgrInfo · PAL_GDB 系
+  * SDK 头尺寸：DIDEVICEOBJECTINSTANCEA/DIDEVICEINSTANCEA（dinput.h 对齐，Windows SDK 权威可解）
+  * 死头豁免：CTaskTpl（通用模板，无实例化）
+  * 噪声豁免：SceneMgr 1/167（已证布局正确）
+- 方法论沉淀：verify_fix sizeof 分诊（+4/+8/+1028/+8200）是分类器 ✓——
+  小漂移=接缝/单点，大漂移=竞技场欠模型，两类工作量差一个量级
