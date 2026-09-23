@@ -3174,3 +3174,10 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - ⇒ 真实剩余冲突类 = 12（PAL3 87 · CCBRoleState 86 · CCBCamControl 47 · GRPinput 27 ·
   CUtil 24 · CEffectSystem 14 · ArcLocale 13 · CEffect 13 · TaskMgr 8(部分豁免) ·
   CEffMgr 7 · Param1 4 · CTrail 2）
+
+## 2026-09-25（goal r37）CTrail 根因闭合：gbengine 接口头 gbTexture 链缺 32B ⇒ CTrail 2/13
+- 编译实测：sizeof(gbTexture_D3D)=64（继承探针法），二进制 stride 铁证 96（CTrail m_texRT[8]@0x40→m_eft@0x340=768=8×96）
+- ⇒ include/gbengine 接头（gbRefObject→gbResource→gbTexture→gbTexture_D3D）缺 32B 成员/字段 ✗
+- 修法（下轮，需 DLL 布局取证）：include/gbengine/gbTexture.h 补 gbResource/gbTexture 缺失字段
+  （gbResource pName@8 之前的 4B、gbTexture NameCrc32 后的字段等）⇒ 96 ✓ ⇒ CTrail 清零
+- 影响面：gbTexture 系内嵌者（CTrail 2/13 等）+ gbRefObject/gbResource 链同查
