@@ -3139,3 +3139,7 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 级联：ARC_PlayerMgrInfo ≥0x1BA0 +20（ARC_PlayerAtt[5] 内嵌随 12-stride 更新）
 - 验收：三类审计一致 ✓ · verify_fix sizeof 全等（1412/7396）✓ · check PASS
 - 五阶段全绿 S2 75/204 · errors 2110 · L1 41 · 比对集 272/336 ✓
+
+## 2026-09-25（goal r32）全量重测：20 → 15 冲突类（ARC 系/复用槽涟漪 ~5 类连带清零）
+- 冲突成员 465 → 268 ✓ · 榜单刷新 data/status/_layout_conflicts_current.md
+- CG_Scene(+1028)/ARC_PlayerAtt 退出冲突榜 ⇒ 前序 ARC 系修复的远级联兑现 ✓

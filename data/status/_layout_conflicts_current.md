@@ -1,36 +1,40 @@
-# 布局冲突榜单（2026-09-24 goal r14 全量重测后）
+# 布局冲突榜单（2026-09-25 goal r32 全量重测）
 
-冲突类 20 / 712 · 冲突成员 465 · 会话累计：81 → 20 类
+冲突类 15 / 712 · 冲突成员 268 · 会话累计 81 → 15 类
 
-## 剩余清单（按冲突数）
+## 剩余清单
+
 - PAL3: 87/87
-- CCBRoleState: 86/86
-- SceneObj: 50/50
 - CCBCamControl: 47/47
-- CG_Scene: 31/38
 - GRPinput: 27/40
 - CUtil: 24/24
-- ARC_PlayerAtt: 23/27
 - CEffectSystem: 14/14
 - ArcLocale: 13/20
 - CEffect: 13/13
 - DIDEVICEOBJECTINSTANCEA: 9/15
 - CTaskTpl: 8/8
 - TaskMgr: 8/9
-- ARC_PlayerMgrInfo: 7/11
 - CEffMgr: 7/48
 - DIDEVICEINSTANCEA: 4/9
 - Param1: 4/5
 - CTrail: 2/13
 - SceneMgr: 1/167
 
-## 家族归类（已知病灶）
+## 豁免/噪声（不计入）
+
+- SceneMgr 1/167：审计噪声（内联 union 成员误计），直接探测已证布局正确 ✓
+- CTaskTpl 8/8：通用模板死头（全被特化 typedef 覆盖，无实例化）⇒ 无布局影响
+
+## 已知病灶族
 
 - PAL3(87,+8) 全局单例：独立专查
-- CCBRoleState(86)/SceneObj(50)：复用槽批——前置=ReleaseObject 矛盾的 provenance 扫描（r9 发现反证）
-- CCBCamControl(47,+4)/GRPinput(27,+4)：vptr/基类尺寸族
-- CG_Scene(31,+1028)/CUtil(24)/ARC_PlayerAtt(23)：整类重建队列
-- CEffectSystem(14,+8)/CEffect(13,+8200)：尺寸/重建
-- DIDEVICEOBJECTINSTANCEA(9/15)/DIDEVICEINSTANCEA(4/9)：SDK 头尺寸
-- CTaskTpl(8/8)：通用模板死头（全被特化 typedef 覆盖）⇒ 无布局影响，建议豁免
-- TaskMgr(8/9)/ARC_PlayerMgrInfo(7/11)/CEffMgr(7/48)/Param1(4/5)：待诊
+- CCBCamControl(47,+4)/GRPinput(27,+4)/CUtil(24,+4)：vptr 接缝族（同 SceneObj 模式：首基 vfptr 槽）
+- CEffectSystem(14,+8)/CEffect(13,+8200)：竞技场/欠模型族（operator new 0x10C0 铁证）
+- ArcLocale(13/20)：待诊
+- DIDEVICEOBJECTINSTANCEA/DIDEVICEINSTANCEA：dinput.h SDK 头尺寸（Windows SDK 权威）
+- TaskMgr(8/9)/Param1(4/5)/CEffMgr(7/48)/CTrail(2/13)：小漂移待诊
+
+## 方法论（已制度化）
+- 唯一 SoT：vtable 存储反查 + 调用约定 + stride 铁证；调用点强转类型/邻居/PDB 名 ✗
+- 全局语义改动必须过 L1 棘轮；落地单位 = 类型 + 内嵌级联闭包
+- audit 一致 ≠ 布局正确（注解⇄编译头可自洽地一致错）⇒ ctor 逐指令为最终裁判
