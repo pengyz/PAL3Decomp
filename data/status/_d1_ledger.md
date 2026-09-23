@@ -3017,3 +3017,16 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 保留：binary_size 1368 ✓（stride 双对 + ctor 最大写 0x555 双证不变）
 - 方法论：**audit 一致 ✗≠ 布局正确**——audit 只证"注解⇄编译头"自洽；二进制 ctor 才是最终裁判
   （r20 的 verify_fix sizeof 全等同样只是必要条件）
+
+## 2026-09-24（goal r22）0x4A16C0 定案 = 通用子对象初始化 helper（不归属任何类）+ 级联回滚
+- 决定性证据：Create__ovl_1 的调用点用**完全不同的类型**强转同一地址
+  （ARC_PlayerAtt*(CGameData×4/TaskBookUI/EquipUI/UIRoleDialog…) / UIItem*(SetData 配对)）
+  ⇒ 它是**通用子对象初始化 helper**，参数类型强转不可作归属证据 ✗
+- 连带收回：r20 "UIRoleDialog=1368"证据链塌（建立在 Create 构造 UIRoleDialog 的假设上）✗
+  ⇒ UIRoleDialog binary_size 回滚 1368→808（注解⇄编译头自洽 ✓）；Comp_DonateUI −560/UIGameFrm −172 级联回滚
+- 回退后：check PASS · 五阶段全绿 S2 75/204 · errors 2105 · L1 41 · 三类审计一致 ✓
+- 保留的坚实结论：0x4A12F0 = UIRoleDialog ctor（vtable 0x56E190 槽位闭环 + CUtil@+0x170 调用点 ✓✓ 不受影响）
+- UIRoleDialog 真布局悬案（ctor 子对象序列 0x70/0x130/0x1C8/0x278/0x3D0 vs 注解 0x50/0x110/0x1B4/0x250/0x310）
+  ⇒ 全类重建仍是正解，但需先解决：①通用 helper 的调用点不可作类型证据后，从哪取 UIRoleDialog 的真布局？
+  ②ctor 序列的子对象类身份（UITextArea ✓ / 0x4422E0 无名(152B,vtable 0x56ADD0 UIFrameWnd 系折叠) / UICaption(344)）
+- 方法论：**调用点强转类型 ≠ 参数真实类型** ✗（Hex-Rays 渲染随 IDB 状态漂移）；helper 函数不可归属 ✗

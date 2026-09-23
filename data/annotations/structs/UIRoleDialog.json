@@ -1,6 +1,6 @@
 {
   "name": "UIRoleDialog",
-  "binary_size": 1368,
+  "binary_size": 808,
   "known_members": {
     "80": {
       "name": "m_bk",
@@ -90,11 +90,6 @@
       "name": "UIRoleDialog",
       "signature": "void __thiscall UIRoleDialog::UIRoleDialog()",
       "_attribution_evidence": "ctor stores own vtable 0x56E190 at this+0 (0x4a13c1); vtable slots = UIRoleDialog::RemoveChild/_sdtor/OnCommand/ProcessFrame (func_bounds); PDB 名 Refresh@ARC_PlayerAtt 为误归属 ✗"
-    },
-    "0x004A16C0": {
-      "name": "Create",
-      "signature": "int __thiscall UIRoleDialog::Create(int id, int nVal)",
-      "_attribution_evidence": "成员偏移重叠：Create 访问 0x130/0x1C8/0x260/0x264/0x278/0x3D0 与 ctor 0x4A12F0 写集完全重叠 ⇒ 同一对象；无 vtable 存储 ⇒ 对象已构造；调用点 ecx=edi ⇒ thiscall"
     }
   },
   "vtables": [
@@ -135,5 +130,5 @@
   ],
   "base_size": 80,
   "_cascade_note": "2026-09-22 级联平移 +0x58：内嵌 UITextArea 的真实尺寸为 0xC0（旧注解 0x68 ✗）⇒ 其后成员整体后移（emit 报 start_off 由 0x310 起 ✓）。证据：UITextArea 尺寸三线独立证明 ✓",
-  "_size_evidence": "stride 双对铁证：EquipUI 400080/401448 + TaskBookUI 130364/131732 两对相邻构造步长均 1368=0x558；ctor 最大写 0x555(byte)⇒align 后 0x558 ✓（原 808 欠模型 560B，0x328..0x558 未建模区待逐成员重建）"
+  "_note": "binary_size 808：内部注解⇄编译头自洽 ✓；但 ctor(0x4A12F0) 证据表明子对象真布局在 0x70/0x130/0x1C8/0x278/0x3D0 ⇒ 全类重建挂起（r21 判定），binary_size 待重建后复核"
 }
