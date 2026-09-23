@@ -3189,3 +3189,7 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   （头中 pGfxMgr/Width/Height/pTexImage/InFmt/nLevels 连排 vs IDB nLevels@0x50 ⇒ 0x28..0x50 缺 40B 中仅部分被头的排布吸收）
 - 修法（下轮，含 DLL 布局取证）：include/gbengine/gbTexture.h 的 gbTexture own-fields 按 IDB 偏移补 _todo 填充
   ⇒ gbTexture 84 ⇒ gbTexture_D3D 96 ⇒ CTrail 清零
+
+## 2026-09-25（goal r35 补记）CTrail 无独立编译单元 ⇒ 低优先级
+- CTrail.cpp 不存在（类无归属方法）⇒ 不参与编译比对 ⇒ 其 2/13 冲突无 L1/错误影响
+- 优先级降级：CTrail/无单元类归"重建队列末位"；主线保持在有单元的类
