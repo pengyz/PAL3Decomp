@@ -1,6 +1,6 @@
 {
-  "name": "20260924_000932",
-  "timestamp": "2026-09-24T00:09:32.573432",
+  "name": "20260924_010444",
+  "timestamp": "2026-09-24T01:04:44.757236",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "fail",
@@ -46,17 +46,17 @@
         {
           "code": "C2664",
           "msg": "'Init' : cannot convert parameter 1 from 'const int' to 'enum gbLightObj::LIGHT_TYPE'",
-          "line": 903
+          "line": 879
         },
         {
           "code": "C2664",
           "msg": "'Init' : cannot convert parameter 1 from 'const int' to 'enum gbLightObj::LIGHT_TYPE'",
-          "line": 967
+          "line": 943
         },
         {
           "code": "C2039",
           "msg": "'m_pModObj' : is not a member of 'gbVolModNode'",
-          "line": 992
+          "line": 968
         }
       ]
     },
@@ -4717,7 +4717,7 @@
     },
     "pal3/src/Misc/CCBUIPanel.cpp": {
       "status": "fail",
-      "error_count": 3,
+      "error_count": 4,
       "errors": [
         {
           "code": "C2228",
@@ -4733,6 +4733,11 @@
           "code": "C2660",
           "msg": "'Destroy' : function does not take 0 parameters",
           "line": 2020
+        },
+        {
+          "code": "C2039",
+          "msg": "'m_PanelSlots' : is not a member of 'CCBUIPanel'",
+          "line": 2055
         }
       ]
     },

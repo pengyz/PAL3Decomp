@@ -3143,3 +3143,10 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 ## 2026-09-25（goal r32）全量重测：20 → 15 冲突类（ARC 系/复用槽涟漪 ~5 类连带清零）
 - 冲突成员 465 → 268 ✓ · 榜单刷新 data/status/_layout_conflicts_current.md
 - CG_Scene(+1028)/ARC_PlayerAtt 退出冲突榜 ⇒ 前序 ARC 系修复的远级联兑现 ✓
+
+## 2026-09-25（goal r33 续）CCBCamControl 清零（47/47→0 · sizeof 430256 全等）
+- 根因：误归属的 virtual Render@0x449C20 ⇒ 编译器 vptr@0 ⇒ 全体 +4 ✗（47/47 全冲突特征签名）
+- 修法：移除误归属方法（该类无 IDB vtable、无 RTTI、IDA size 430256 = 无 vptr 布局 ⇒ 非多态）
+- 验收：CCBCamControl 审计一致 ✓ sizeof 全等 ✓ · 残 +1 C2039 m_PanelSlots（CCBUIPanel.cpp:2055，重渲染暴露，Phase 2 队列）
+- 教训（第 N 次）：**PDB 方法名/虚标记不可独立采信**——func_bounds 的 5 字节"ctor"实为 thunk、
+  Render 为误归属 ⇒ 多态判定必须以"IDA size 与编译 sizeof 差 = 4 ⇒ 有 vptr 插入"的实证为准

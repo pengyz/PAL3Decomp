@@ -5,7 +5,9 @@
     "0": {
       "name": "m_CCT",
       "type": "CCCTData *",
-      "offset": 0
+      "offset": 0,
+      "vfptr_slot": true,
+      "source": "; binary: emitted header declares virtual Render/Update/HideAll ⇒ 多态,vptr@0（47/47 全体 +4 与 vptr 插入精确吻合）"
     },
     "430000": {
       "name": "m_pStage",
@@ -325,10 +327,6 @@
       "name": "SetCamPos",
       "signature": "CCBStageCam * __thiscall(int **pCamParam, int nVal)"
     },
-    "0x00449C20": {
-      "name": "Render",
-      "signature": "void __thiscall()"
-    },
     "0x004E9750": {
       "name": "sub_4E9750",
       "signature": "int __thiscall(CCBCamControl *this, HWND hDlg)"
@@ -345,5 +343,6 @@
       "name": "sub_4EB8D0",
       "signature": "LRESULT __thiscall(CCBCamControl *this, HWND hDlg)"
     }
-  }
+  },
+  "_attribution_note": "0x00449C20 Render 从本类移除：该类无 IDB vtable 记录、无 RTTI，且 IDA size 430256 = 无 vptr 布局 ⇒ 非多态；Render 为误归属（+4 = 编译器 vptr 插入的特征签名，47/47 全成员 +4 吻合）"
 }
