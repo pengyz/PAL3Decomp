@@ -1,51 +1,40 @@
-"""对齐感知 gap 抑制 —— sg_* / ARC_PlayerAtt 家族漂移根因（TDD）。
+"""对齐语义测试 —— ARC_PlayerAtt / sg_* 家族（TDD 留存，实现待落）。
 
-旧 bug 两型：
-① `_estimate_member_size('ARC_PlayerItem')` 取 ida_structs size=10 ✗
-   —— C++ 编译器按对齐(4)补足为 12 ⇒ 之后的显式 gap 与自然填充叠加 ⇒ +4 ✗
-② gap 小于下一成员对齐 ⇒ 编译器本来就会自然填充 ⇒ 显式 gap 反而多余 ✗
+问题定义（确定性）：C++ struct 布局由成员类型与顺序唯一决定。
+`ARC_PlayerItem`（DWORD+int+short=10 字节）按对齐 4 编译实占 **12**，
+发射器若按 ida_structs['size']=10 记账 ⇒ 0x36A 错误 gap ⇒ +4 漂移 ✗。
 
-判据：`_gap_needed(start_off, off, next_type)` = off-start_off 是否**大于**
-编译器自然填充量（(-start_off) % align(next_type)）；自然填充已覆盖 ⇒ 不发 gap ✓
+已验证 ✗ 的路线（r10，勿重复）：
+- `_estimate_member_size` 全局对齐取整 ⇒ S2 76→36 灾难（内嵌奇尺寸类布局翻转无级联）
+- `_gap_needed` 自然填充抑制 ⇒ Role 42/47（对齐推断 ≠ 真实打包）
+⇒ 正解：**逐类型证据落地**（如 ARC_PlayerItem binary_size 10→12 须伴随 ARC_PlayerAtt 级联，
+  而该类注解内部 stride 自相矛盾 ⇒ 判定整类重建，见 ledger goal r11）。
+
+本文件暂存对齐语义断言，待实现落地时启用（当前部分 RED 属预期）。
+运行：`python3 tests/test_gap_alignment.py`
 """
 import sys
 from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT)); sys.path.insert(0, str(PROJECT_ROOT/'pipeline')); sys.path.insert(0, str(PROJECT_ROOT/'pipeline'/'gen'))
 from stages import emit_headers as E
+import unittest
 
-def test_type_align_primitives():
-    assert E._type_align('char') == 1
-    assert E._type_align('BYTE') == 1
-    assert E._type_align('short') == 2
-    assert E._type_align('int') == 4
-    assert E._type_align('float') == 4
-    assert E._type_align('void *') == 4
+@unittest.skip("对齐取整实现待按类级联落地（r10 回退，见 ledger）")
+class TestPending(unittest.TestCase):
+    def test_estimate_uses_aligned_size(self):
+        self.assertEqual(E._estimate_member_size('ARC_PlayerItem'), 12)
 
-def test_type_align_d3dx():
-    assert E._type_align('D3DXVECTOR3') == 4
-    assert E._type_align('D3DXCOLOR') == 4
+class TestLanded(unittest.TestCase):
+    def test_d3dx_estimate(self):
+        """D3DX 类型尺寸（已落地 ✓ sdk_types 8 条）"""
+        self.assertEqual(E._estimate_member_size('D3DXVECTOR3'), 12)
+        self.assertEqual(E._estimate_member_size('D3DXCOLOR'), 16)
 
-def test_type_align_struct_from_ida():
-    """ida_structs 有成员的类型 ⇒ 对齐 = 成员对齐最大值（上限 8）✓"""
-    # ARC_PlayerItem: DWORD+int+short ⇒ align 4
-    assert E._type_align('ARC_PlayerItem') == 4
-
-def test_gap_needed_natural_pad_covers():
-    """start=0x36A, next off=0x36C, next align=4 ⇒ 自然填充 2 恰好覆盖 gap 2 ⇒ 不发 ✗→✓"""
-    assert E._gap_needed(0x36A, 0x36C, 'ARC_PlayerItem') is False
-
-def test_gap_needed_real_gap():
-    """真正缺字节时仍要发 gap ✓"""
-    assert E._gap_needed(0x40, 0x4C, 'D3DXVECTOR3') is True   # 缺 12，自然填充 0
-
-def test_gap_needed_exact_zero_gap():
-    assert E._gap_needed(0x4C, 0x4C, 'int') is False
+    def test_primitives_unchanged(self):
+        assert E._estimate_member_size('int') == 4
+        assert E._estimate_member_size('unsigned char') == 1
+        assert E._estimate_member_size('void *') == 4
 
 if __name__ == '__main__':
-    ok=fail=0
-    for nm,fn in sorted(list(globals().items())):
-        if nm.startswith('test_') and callable(fn):
-            try: fn(); print('  PASS',nm); ok+=1
-            except Exception as e: print('  FAIL',nm,type(e).__name__,e); fail+=1
-    print('Results: %d passed, %d failed'%(ok,fail)); sys.exit(1 if fail else 0)
+    unittest.main(verbosity=2)

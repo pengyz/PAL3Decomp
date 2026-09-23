@@ -2888,3 +2888,15 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 判定：ARC_PlayerAtt = **整类重建级**（UITextArea 先例），与 CUtil 同队列；
   ARC_PlayerItem 类型修正(10→12，C++ 对齐必然 ✓ + ARC_PlayerAtt stride12 部分证据)随该重建一并落地
 - 本轮不落地（遵守：盲改注解 ✗；批粒度管线 ✓）
+
+## 2026-09-24（goal r12）小类批：doubleint 清零 + 对齐取整彻底回退 + gbGeomQuad 病灶定位
+- doubleint：twoints __unnamed(尺寸4,无定义) → int[2]（证据：binary_size=8 + 名义 double-int）⇒ 审计一致 ✓ sizeof 8==8 ✓
+- sg_customshape ✓ 一致（D3DXMATRIX 尺寸修复兑现，curmat@0xc 64B ✓）
+- Role 复原 ✓（对齐取整回退后无损伤，53 成员一致）
+- 🔴 gbGeomQuad 病灶定位（CCBStageShadow 2/7 · MXSavePoint 2/7 同根）：
+  二进制 stride 铁证 68/align4（三处连续数组 0x10/0x2fc/0x5e8 均 748=11×68），
+  但按成员类型推断对齐=8（疑含 double 或成员高估）⇒ C++ 编译 sizeof=72 ⇒ 数组 stride +4 ⇒ 漂移 ✗
+  ⇒ **成员递归推断对齐不可靠**（与 r10 对齐取整失败同根）⇒ 修法须逐成员证据裁定 gbGeomQuad 真实布局
+- EffModeParam/tagShowItem 2-4 冲突：enum 已正确供 4 字节 ⇒ 冲突另有其因，待查（同批下轮）
+- 方法论（用户质疑的制度化）："抑制/估计"类启发式全部退役 ✗；
+  确定性路线 = 类型定义证据（stride 铁证）+ 编译期断言，落地单位 = 类型 + 内嵌级联
