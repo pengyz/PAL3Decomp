@@ -2840,3 +2840,12 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   ② Object 同款改名（Role 基类，C2039 ×8 的根）
   ③ C2660 ValidateState 归因（CGameData）
   ④ 整批一次管线（批粒度纪律 ✓）
+
+## 2026-09-23（goal r8）SceneObj 批二攻 —— 布局三类一致 ✓ 但 MI 静态名歧义 +4 ⇒ 回退
+- 本批（批粒度管线 ✓）：PalScriptWaitObj 改名重放 + 槽位名统一 __vftable + 特化 static __vftable
+- 成果：SceneObj/CCBRoleState/PalScriptWaitObj 审计一致 ✓✓ · CEff 系 C2039 全清 ✓
+- 但净 +4 ✗：**MI 静态名歧义** —— C2385 'UIRoleDialog::__vftable' ambiguous
+  （两条基链各声明 static __vftable，派生类未重声明 ⇒ 二义）⇒ C2227 计算调用群 ×8 · C2660 ×3
+- 下轮修法（已定向）：静态 __vftable 只由**层次中首个多态基**声明；派生类若自身有 vtable 槽
+  则重声明（隐藏基类名），纯透传类不声明（继承即可）⇒ 消歧
+- 回退已验证基线：S2 76/205 · errors 2105 · L1 41（上轮断言，本轮复跑待下轮首验）
