@@ -2827,3 +2827,16 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 残余 +11 = C2036 void* 算术（__vftable 静态化后必要暴露，按用户裁定接受；codegen_fix 级待清）
 - CTaskTpl 通用模板 8/8 冲突 = 死头（全被特化 typedef 覆盖，无实例化）⇒ 无布局影响
 - 教训：全局开关改动必须**指纹化迭代**（C2523→C2039→C2036 每轮收敛）✗ 不许一次放完
+
+## 2026-09-23（goal r7）PalScriptWaitObj 重命名批 —— 布局证实但回退；复用槽设计挂起
+- 布局证实 ✓：SceneObj 50/50→一致 · CCBRoleState 86/86→一致（改 PalScriptWaitObj offset0=__vftable 即清两类）
+- 但 +32 错误 ⇒ 回退 ✗：SceneObj offset0 是**复用槽**（构造期 vtable ⇄ 运行期 m_sCombatDialog[4] 字符串）
+  ⇒ static 化 __vftable 挤掉 m_sCombatDialog 视图 ⇒ C2227（->ShowWindow/->OnMessage/->Destroy 计算调用群）
+  + Object/Role（Role 的基 Object 同款 m_nTodo_000@0，C2039 ×8）+ C2660 ValidateState ×3
+- 回退后需复验绿（下轮首件事）
+- 下轮设计（按批）：
+  ① 复用槽建模：+0 static __vftable（引用兼容）**＋** union 视图成员（m_sCombatDialog[4]）亦 static
+     —— 字节语义让位 Phase 2，先保布局与编译
+  ② Object 同款改名（Role 基类，C2039 ×8 的根）
+  ③ C2660 ValidateState 归因（CGameData）
+  ④ 整批一次管线（批粒度纪律 ✓）
