@@ -2910,3 +2910,10 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - D3DX 尺寸兑现：sg_customshape/sg_emitter/sg_particle_scene/sg_particle_data 全一致 ✓
 - 验收：9 类审计一致 ✓ · loop 绿 S2 76/205 · errors 2105 · L1 41 ✓
 - 方法论：枚举 4B 修复当年只落在"尺寸记账"层没落在"类型发射"层 ⇒ 修复必须**打穿所有消费点** ✗
+
+## 2026-09-24（goal r14）全量重测：52 → 20 类（texid+枚举涟漪 ~32 类连带清零）
+- 冲突成员 666 → 465 ✓ · 新榜单 data/status/_layout_conflicts_current.md
+- 连带清零示例：FightInfo/DealData/graph/RoleShadow/ComboAttack 族/JusticeBookUI/SwordUI/
+  UISceneMap/UISceneFrm/CScreenMode/SceneMgr/UINote/ScriptObj/CEffTrack* 等
+- 剩余 20 类按病灶归类：全局单例 1 · 复用槽批 2 · +4 族 2 · 整类重建 3 · SDK 头 2 ·
+  死头 1（CTaskTpl 建议豁免）· 待诊 6
