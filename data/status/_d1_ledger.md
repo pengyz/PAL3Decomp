@@ -3041,3 +3041,14 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - L1 41 保持 · matched 271/329 · 基线已刷新（单元归并 205→204 + 本批）
 - MCP 说明：idapro server 本会话断连 ⇒ 二进制证据走 O2/bin_oracle（vtable 身份经 PE 节表映射
   + 槽位函数闭环达成等效证据强度）；MCP 重连后应回补 IDB 侧交叉验证
+
+## 2026-09-24（goal r24）Phase 2 修复队列固化（必要暴露 +5 的站点清单）
+- L1 41 保持 ✓（matched 271/329）· 基线已含单元归并（204）
+- 队列（由 UIRoleDialog 重建暴露的旧模型引用点）：
+  ① CScreenMode.cpp:640/647/654/665/688/705 C2440 void*→char ×6
+     = `this->m_RoleDialog.m_static.m_id` 引用（m_id 在 UITextArea 新模型中不存在）
+     ⇒ 修法：从 CScreenMode 对应函数反推 m_id 真实偏移（CScreenMode_m_RoleDialog 基址+0x70+m_id）
+       ⇒ 若落在 UITextArea 内 ⇒ 补注解成员（带二进制证据）；若在外 ⇒ 撤引用归 manual
+  ② UIRoleDialog.cpp:61 C2227 `m_static.__vftable->Render`
+     = __vftable 被发为 void* ⇒ 需 typed vtbl 指针成员（vtbl_UIRoleDialog 模式）或 [VFTABLE-STUB] 化
+- 捷径候选：UIWnd.h 的 static __vftable 模式与 UITitle_BBTY::Render [ROWTABLE] 机制（本文件已有先例 ✓）
