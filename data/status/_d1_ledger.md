@@ -3157,3 +3157,11 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 验收：GRPinput 审计一致 ✓（40→39 成员，_gap_034 吸收归位）· 五阶段全绿 · L1 41 ✓
 - 残 +1 必要暴露记账（GRPinput 重渲染）
 - 冲突类 15 → **14**
+
+## 2026-09-25（goal r35）小漂移族诊断 —— 三类各需一层深挖
+- TaskMgr(8/9)：__vftable@0 已补（注解）；但 TaskMgr 为**通用模板**，offsetof 探针测量受限
+  （真布局 = 各特化：TaskMgr_SceneObjParam_SceneObj=40 ✓ 已一致 等）⇒ 归"模板测量限制"豁免候选
+- Param1(4/5)：loc 的类型 localVar1(idb 28B) ⇒ retAddr@0x1C 之间 0x1c/28=对齐齐 ⇒ 漂移另有其因待查
+- CTrail(2/13)：m_eft@0x340/m_OriginSurface@0x344 漂移 ⇒ 疑 gbTexture_D3D 编译尺寸 ≠96
+  （含 align-8 成员？gbTexture_D3D.h 未在生成树中找到 ⇒ 待定位其发射来源）
+- 方法论：模板类/缺失头 ⇒ audit 测量受限 ⇒ 逐类豁免标注或补发射来源
