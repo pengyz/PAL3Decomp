@@ -1,6 +1,6 @@
 {
-  "name": "20260923_213014",
-  "timestamp": "2026-09-23T21:30:14.621876",
+  "name": "20260923_233332",
+  "timestamp": "2026-09-23T23:33:32.278541",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "fail",
@@ -6918,22 +6918,17 @@
     },
     "pal3/src/Misc/UIRoleDialog.cpp": {
       "status": "fail",
-      "error_count": 3,
+      "error_count": 2,
       "errors": [
         {
-          "code": "C2660",
-          "msg": "'ShowWindow' : function does not take 2 parameters",
-          "line": 111
-        },
-        {
-          "code": "C2660",
-          "msg": "'ShowWindow' : function does not take 2 parameters",
-          "line": 127
+          "code": "C2227",
+          "msg": "left of '->Render' must point to class/struct/union",
+          "line": 61
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'const double' to 'void *'",
-          "line": 262
+          "line": 257
         }
       ]
     },
@@ -7922,7 +7917,7 @@
     },
     "pal3/src/Render/CScreenMode.cpp": {
       "status": "fail",
-      "error_count": 61,
+      "error_count": 67,
       "errors": [
         {
           "code": "C2036",
@@ -7950,9 +7945,39 @@
           "line": 570
         },
         {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void *' to 'char'",
+          "line": 640
+        },
+        {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
           "line": 642
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void *' to 'char'",
+          "line": 647
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void *' to 'char'",
+          "line": 654
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void *' to 'char'",
+          "line": 665
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void *' to 'char'",
+          "line": 688
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void *' to 'char'",
+          "line": 705
         },
         {
           "code": "C2065",
@@ -8032,202 +8057,202 @@
         {
           "code": "C2065",
           "msg": "'SingletonThunk_0053D190' : undeclared identifier",
-          "line": 2384
+          "line": 2387
         },
         {
           "code": "C2227",
           "msg": "left of '->Render' must point to class/struct/union",
-          "line": 2457
+          "line": 2460
         },
         {
           "code": "C2065",
           "msg": "'nearby_53edd0' : undeclared identifier",
-          "line": 2459
+          "line": 2462
         },
         {
           "code": "C2227",
           "msg": "left of '->Render' must point to class/struct/union",
-          "line": 2459
+          "line": 2462
         },
         {
           "code": "C2227",
           "msg": "left of '->Render' must point to class/struct/union",
-          "line": 2459
+          "line": 2462
         },
         {
           "code": "C2227",
           "msg": "left of '->Render' must point to class/struct/union",
-          "line": 2461
+          "line": 2464
         },
         {
           "code": "C2227",
           "msg": "left of '->Destroy' must point to class/struct/union",
-          "line": 2461
+          "line": 2464
         },
         {
           "code": "C2227",
           "msg": "left of '->Render' must point to class/struct/union",
-          "line": 2465
+          "line": 2468
         },
         {
           "code": "C2227",
           "msg": "left of '->Render' must point to class/struct/union",
-          "line": 2469
+          "line": 2472
         },
         {
           "code": "C2227",
           "msg": "left of '->Update_2ff0' must point to class/struct/union",
-          "line": 2470
+          "line": 2473
         },
         {
           "code": "C2227",
           "msg": "left of '->Destroy' must point to class/struct/union",
-          "line": 2471
+          "line": 2474
         },
         {
           "code": "C2664",
           "msg": "'SetOpenMode' : cannot convert parameter 1 from 'const int' to 'enum ECPKMode'",
-          "line": 2541
+          "line": 2544
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 2645
+          "line": 2648
         },
         {
           "code": "C2227",
           "msg": "left of '->gbSound2DNode' must point to class/struct/union",
-          "line": 2645
+          "line": 2648
         },
         {
           "code": "C2653",
           "msg": "'gbSound2DNode' : is not a class or namespace name",
-          "line": 2645
+          "line": 2648
         },
         {
           "code": "C2227",
           "msg": "left of '->ShowWindow' must point to class/struct/union",
-          "line": 2665
+          "line": 2668
         },
         {
           "code": "C2248",
           "msg": "'_Tidy' : cannot access private member declared in class 'std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >'",
-          "line": 2666
+          "line": 2669
         },
         {
           "code": "C2248",
           "msg": "'_Tidy' : cannot access private member declared in class 'std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >'",
-          "line": 2721
+          "line": 2724
         },
         {
           "code": "C2248",
           "msg": "'_Tidy' : cannot access private member declared in class 'std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >'",
-          "line": 2734
+          "line": 2737
         },
         {
           "code": "C2248",
           "msg": "'_Tidy' : cannot access private member declared in class 'std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >'",
-          "line": 2741
+          "line": 2744
         },
         {
           "code": "C2660",
           "msg": "'Play' : function does not take 1 parameters",
-          "line": 2757
+          "line": 2760
         },
         {
           "code": "C2784",
           "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __cdecl std::operator +(const class std::basic_string<`template-parameter257',`template-parameter258',",
-          "line": 2770
+          "line": 2773
         },
         {
           "code": "C2784",
           "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __cdecl std::operator +(const class std::basic_string<`template-parameter257',`template-parameter258',",
-          "line": 2770
+          "line": 2773
         },
         {
           "code": "C2784",
           "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __cdecl std::operator +(const _E,const class std::basic_string<`template-parameter257',`template-param",
-          "line": 2770
+          "line": 2773
         },
         {
           "code": "C2784",
           "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __cdecl std::operator +(const _E *,const class std::basic_string<`template-parameter257',`template-par",
-          "line": 2770
+          "line": 2773
         },
         {
           "code": "C2784",
           "msg": "'class std::basic_string<`template-parameter257',`template-parameter258',`template-parameter259'> __cdecl std::operator +(const class std::basic_string<`template-parameter257',`template-parameter258',",
-          "line": 2770
+          "line": 2773
         },
         {
           "code": "C2784",
           "msg": "'class std::reverse_iterator<`template-parameter257',`template-parameter258',`template-parameter259',`template-parameter260',`template-parameter261'> __cdecl std::operator +(_D,const class std::revers",
-          "line": 2770
+          "line": 2773
         },
         {
           "code": "C2676",
           "msg": "binary '+' : 'struct gbVec3D' does not define this operator or a conversion to a type acceptable to the predefined operator",
-          "line": 2770
+          "line": 2773
         },
         {
           "code": "C2248",
           "msg": "'_Tidy' : cannot access private member declared in class 'std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >'",
-          "line": 2885
+          "line": 2888
         },
         {
           "code": "C2248",
           "msg": "'_Tidy' : cannot access private member declared in class 'std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >'",
-          "line": 2898
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->Create' must point to class/struct/union",
-          "line": 2941
+          "line": 2901
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
           "line": 2944
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->Create' must point to class/struct/union",
+          "line": 2947
         },
         {
           "code": "C2660",
           "msg": "'gbSound2DNode::~gbSound2DNode' : function does not take 1 parameters",
-          "line": 2944
+          "line": 2947
         },
         {
           "code": "C2227",
           "msg": "left of '->Create' must point to class/struct/union",
-          "line": 2984
+          "line": 2987
         },
         {
           "code": "C2660",
           "msg": "'Stop' : function does not take 1 parameters",
-          "line": 2984
+          "line": 2987
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before '}'",
-          "line": 3107
+          "line": 3110
         },
         {
           "code": "C2440",
           "msg": "'return' : cannot convert from 'char ** ' to 'unsigned long *'",
-          "line": 3303
+          "line": 3306
         },
         {
           "code": "C2664",
           "msg": "'BinkOpen' : cannot convert parameter 1 from 'const char *' to 'void *'",
-          "line": 3417
+          "line": 3420
         },
         {
           "code": "C2664",
           "msg": "'BinkOpen' : cannot convert parameter 1 from 'int' to 'void *'",
-          "line": 3434
+          "line": 3437
         },
         {
           "code": "C2065",
           "msg": "'BinkSetVolume' : undeclared identifier",
-          "line": 3442
+          "line": 3445
         }
       ]
     },

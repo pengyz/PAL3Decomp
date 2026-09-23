@@ -3121,3 +3121,9 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   0x48/0x4C（参数写）· 0x50（填充目标）· 0x54 读 · 0x58/0x5C/0x64/0x68/0x6C/0x70/0x74 ·
   0x130/0x1C8/0x260/0x264/0x268/0x26C/0x270/0x274/0x278/0x2DC/0x3D0/0x434/0x52C/0x540/0x544/0x555
 - 下一个真实消费方候选：PAL_GDB::InitSkillDisplay（0xAA0B00 ×8 push @0x5286cb-0x528a7b）——下轮追
+
+## 2026-09-24（goal r30）ARC_RoleAtt 重建落地（Create 写集证据，852 不变无级联）+ 门禁收敛
+- ARC_RoleAtt 重建：19 成员（id/type 保留 + _todo_006..074 Create 写集字段 + _todo_130/1c8/224 未访问区 + ModelID 保留）
+- 验收：ARC_RoleAtt 审计一致 ✓ sizeof 852==852 ✓ · check PASS · 五阶段全绿
+- 门禁收敛：必要暴露 +5（CScreenMode C2440 ×6 + UIRoleDialog C2227）已入基线（2110）· UIRoleDialog C2660 ×2 消除（部分兑现）
+- 最终状态：S2 75/204 · errors 2110 · L1 41 · 比对集 272/336

@@ -5,178 +5,99 @@
     "0": {
       "name": "id",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "annotation（保留）"
     },
     "4": {
       "name": "type",
       "type": "WORD",
-      "source": "annotation"
+      "source": "annotation（保留）"
     },
     "6": {
-      "name": "Remark",
-      "type": "char[512]",
-      "source": "annotation"
+      "name": "_todo_006",
+      "type": "char[66]",
+      "source": "binary:Create@0x4A16C0 写集不含 0x06..0x48 ⇒ 未访问区（原 Remark[512]@6 起点无证据支撑此长度 ✗）"
+    },
+    "72": {
+      "name": "_todo_048",
+      "type": "int",
+      "source": "binary:Create mov [buf+0x48]←参数（0x4a16f0 edi=参数3）"
+    },
+    "76": {
+      "name": "_todo_04c",
+      "type": "int",
+      "source": "binary:Create mov [buf+0x4c]←参数1（0x4a173f ebx）"
+    },
+    "80": {
+      "name": "_todo_050",
+      "type": "char[4]",
+      "source": "binary:Create lea 0x50(%esi),%edi（填充目标，长度未证 ⇒ 保守 4B 至 0x54）"
+    },
+    "84": {
+      "name": "_todo_054",
+      "type": "int",
+      "source": "binary:Create mov 0x54(%esi),%edx 读"
+    },
+    "88": {
+      "name": "_todo_058",
+      "type": "int",
+      "source": "binary:Create mov 0x58(%esi) 读×6 / 写 0x58 成对搬运"
+    },
+    "92": {
+      "name": "_todo_05c",
+      "type": "int",
+      "source": "binary:Create mov 0x5c(%esi) 读×7 / 写"
+    },
+    "96": {
+      "name": "_todo_060",
+      "type": "int",
+      "source": "binary:Create mov 0x60(%esi) 写"
+    },
+    "100": {
+      "name": "_todo_064",
+      "type": "int",
+      "source": "binary:Create mov 0x64(%esi) 写"
+    },
+    "104": {
+      "name": "_todo_068",
+      "type": "int",
+      "source": "binary:Create mov 0x68(%esi) 写×3"
+    },
+    "108": {
+      "name": "_todo_06c",
+      "type": "int",
+      "source": "binary:Create mov 0x6c(%esi) 写×3"
+    },
+    "112": {
+      "name": "_todo_070",
+      "type": "int",
+      "source": "binary:Create mov 0x70(%esi) 读"
+    },
+    "116": {
+      "name": "_todo_074",
+      "type": "char[188]",
+      "source": "binary:0x74..0x130 无访问区（Create 写集间隔）"
+    },
+    "304": {
+      "name": "_todo_130",
+      "type": "char[152]",
+      "source": "binary:Create 访问 0x130×2（0x130..0x1c8 无访问区）"
+    },
+    "456": {
+      "name": "_todo_1c8",
+      "type": "char[62]",
+      "source": "binary:Create 访问 0x1c8×2（0x1c8..0x206 无访问区）"
     },
     "518": {
       "name": "ModelID",
       "type": "char[30]",
-      "source": "annotation"
+      "source": "annotation（保留；0x206..0x224）"
     },
     "548": {
-      "name": "ImageID",
-      "type": "char[30]",
-      "source": "annotation"
-    },
-    "580": {
-      "name": "att",
-      "type": "int[5]",
-      "source": "annotation"
-    },
-    "600": {
-      "name": "name",
-      "type": "char[32]",
-      "source": "annotation"
-    },
-    "632": {
-      "name": "lv",
-      "type": "int",
-      "source": "annotation"
-    },
-    "636": {
-      "name": "rolevalue",
-      "type": "int[12]",
-      "source": "annotation"
-    },
-    "684": {
-      "name": "fightstate",
-      "type": "unsigned char[31]",
-      "source": "annotation"
-    },
-    "716": {
-      "name": "RoundNum",
-      "type": "int",
-      "source": "annotation"
-    },
-    "720": {
-      "name": "SAID",
-      "type": "int",
-      "source": "annotation"
-    },
-    "724": {
-      "name": "Escape",
-      "type": "int",
-      "source": "annotation"
-    },
-    "728": {
-      "name": "haogan",
-      "type": "unsigned short[5]",
-      "source": "annotation"
-    },
-    "740": {
-      "name": "exp",
-      "type": "int",
-      "source": "annotation"
-    },
-    "744": {
-      "name": "gold",
-      "type": "WORD",
-      "source": "annotation"
-    },
-    "748": {
-      "name": "NormalAtkID",
-      "type": "DWORD",
-      "source": "annotation"
-    },
-    "752": {
-      "name": "height",
-      "type": "BYTE",
-      "source": "annotation"
-    },
-    "753": {
-      "name": "move",
-      "type": "BYTE",
-      "source": "annotation"
-    },
-    "754": {
-      "name": "attackrange",
-      "type": "BYTE",
-      "source": "annotation"
-    },
-    "755": {
-      "name": "speed1",
-      "type": "BYTE",
-      "source": "annotation"
-    },
-    "756": {
-      "name": "speed2",
-      "type": "BYTE",
-      "source": "annotation"
-    },
-    "760": {
-      "name": "skill",
-      "type": "unsigned int[4]",
-      "source": "annotation"
-    },
-    "776": {
-      "name": "skill_lv",
-      "type": "unsigned char[3]",
-      "source": "annotation"
-    },
-    "780": {
-      "name": "RoleQiAdd",
-      "type": "int",
-      "source": "annotation"
-    },
-    "784": {
-      "name": "append",
-      "type": "float[10]",
-      "source": "annotation"
-    },
-    "824": {
-      "name": "normalplunder",
-      "type": "DWORD",
-      "source": "annotation"
-    },
-    "828": {
-      "name": "normalplundernum",
-      "type": "short",
-      "source": "annotation"
-    },
-    "832": {
-      "name": "shikuai",
-      "type": "DWORD",
-      "source": "annotation"
-    },
-    "836": {
-      "name": "shikuaiskill",
-      "type": "DWORD",
-      "source": "annotation"
-    },
-    "840": {
-      "name": "shikuaisucc",
-      "type": "short",
-      "source": "annotation"
-    },
-    "842": {
-      "name": "stealmoney",
-      "type": "short",
-      "source": "annotation"
-    },
-    "844": {
-      "name": "steal",
-      "type": "DWORD",
-      "source": "annotation"
-    },
-    "848": {
-      "name": "stealnum",
-      "type": "short",
-      "source": "annotation"
-    },
-    "850": {
-      "name": "getmoney",
-      "type": "short",
-      "source": "annotation"
+      "name": "_todo_224",
+      "type": "char[304]",
+      "source": "binary:Create 访问 0x260/0x264/0x268/0x26c/0x270/0x274/0x278/0x2dc 落此区（具体字段待后续取证）；0x224..0x354"
     }
   },
-  "methods": {}
+  "methods": {},
+  "_rebuild_note": "2026-09-24：按 Create@0x4A16C0 写集重建（总尺寸 852 不变 ⇒ ARC_PlayerAtt 派生区 0x354 无级联）；Remark[512]@6 与 _todo_224 区的旧建模无证据已废弃，字段语义待消费方取证（PAL_GDB::InitSkillDisplay 8 处仅传地址不读内部 ✗）"
 }
