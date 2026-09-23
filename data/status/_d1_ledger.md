@@ -2750,3 +2750,18 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 全链路五阶段全绿 ✓：S2 76/205 · errors 2141 · L1 38 · matched 270/325（无回归 ✓）
 - 教训入库：**门禁红灯必须 A-B-A 归因后再决定 revert** ✗——上次凭"+2 新错误"直接撤回，
   实际那些错误与改动无关且 HEAD 本身就红 ✗✗（"编译器是第三个裁判"的反面：编译错误数也可能是基线陈旧的假信号）
+
+## 2026-09-23 枚举尺寸修复（goal r1）：一处数据层修复清掉 19 个类 + L1 38→39
+- 病灶：`ida_structs.json` 把枚举记 size=1（**IDB 枚举导入伪影** ✗）⇒ emitter 在枚举成员后
+  插 `char _gap_XXX[3]` ⇒ MSVC6 把枚举编译为 int(4B，无 sized enum) ⇒ gap 与本体碰撞 ⇒ 后续 +4 沿 DAG 传播 ✗
+- 证据链：gbengine 真源码（include/gbengine/gbPrintFont.h `enum gbFontType{0..3}`，用户指出 gb* 属独立项目 ✓✓）
+  · W4 mangled · 步长 0x4C→0x50→0x54 · UIStaticFlex_State 先例 size=4
+- 修法（数据层，非估计器特判）：`_estimate_member_size` 先查枚举知识源
+  （data/annotations/enums.json 66 项 + 嵌套键后缀索引 + include/gbengine 头 enum 12 项）⇒ 命中即 4 ✓
+- TDD：tests/test_emit_member_size_enum.py 先 RED（ACTION_KIND 实得 1）后 GREEN 5/5；STL 回归 4/4 ✓
+- 效果（全量重测 712 类）：冲突类 81 → 73（−8 类净 · **19 类被清** ✓）· 冲突成员 1094 → 906（−188）
+  被清家族含此前"级联已修但仍冲突"的 UITextArea 级联全家族（Comp_DonateUI/UIGameFrm/UIRoleDialog/
+  UIRoleSelectDialog/UIStaticFlex/UISceneMap/FontPrint*）——疑团解开：它们当时被本枚举问题**二次遮蔽** ✗
+- 管线：五阶段全绿 ✓ S2 76/205 · errors 2141 · **L1 39**（38→39 ✓）· matched 270/325
+- 教训：**用户领域知识（gbengine 源码在仓内）直接把 B 级推断升级为 A 级证据** ✓；
+  闭环重测再次暴露旧结论失真（重测发现的"仍冲突"其实是同一根因未除 ✓）

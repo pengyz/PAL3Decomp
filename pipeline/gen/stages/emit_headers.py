@@ -385,6 +385,49 @@ if _GBENGINE_DIR.exists():
                 if _nm:
                     SKIP_CLASSES.add(_nm)
 
+# 枚举识别（2026-09-23）：MSVC6 无 sized enum ⇒ **枚举恒为 int（4 字节）**。
+# `ida_structs.json` 把枚举记为 size=1 是 **IDB 枚举导入伪影** ✗（实测：UIStaticFlex 的
+# `gbFontType m_fonttype@0xA0` 被当成 1 字节后插 `_gap_0A1[3]` ⇒ 与 4 字节枚举本体碰撞
+# ⇒ 后续成员整体 +4 ✗ 并沿 DAG 传播）。知识源（数据层，非估计器特判 ✓）：
+#   ① `data/annotations/enums.json`（66 项，values 已登记）
+#   ② `include/gbengine/*.h` 的 `enum` 声明（gbengine 是独立项目，源码在本仓 ✓✓）
+# 证据：W4 mangled（`?SetFontType@UIPushButton@@QAEXW4gbFontType@@@Z`）+ 步长
+# （m_fonttype@0x4C → m_state@0x50 → m_texarray@0x54 均为 4）+ MSVC6 ABI。
+_ANNOTATION_ENUMS_PATH = _GBENGINE_DIR.parent.parent / "data" / "annotations" / "enums.json"
+_ANNOTATION_ENUMS = None
+
+_GBENGINE_ENUMS = set()
+if _GBENGINE_DIR.exists():
+    for _hf in _GBENGINE_DIR.glob("*.h"):
+        with open(_hf, 'r', encoding='utf-8', errors='replace') as _fh:
+            for _line in _fh:
+                _m = re.match(r'enum\s+(\w+)', _line.strip())
+                if _m:
+                    _GBENGINE_ENUMS.add(_m.group(1))
+
+
+def _get_annotation_enums():
+    global _ANNOTATION_ENUMS
+    if _ANNOTATION_ENUMS is None:
+        try:
+            import json as _json
+            with open(_ANNOTATION_ENUMS_PATH, 'r', encoding='utf-8') as _f:
+                _ANNOTATION_ENUMS = set(_json.load(_f).keys())
+            # 嵌套枚举键（`Cls::ENUM`）同时按 `::` 后缀索引 ⇒ 成员类型只写短名也能命中 ✓
+            _ANNOTATION_ENUMS |= {k.rsplit('::', 1)[-1] for k in _ANNOTATION_ENUMS if '::' in k}
+        except Exception:
+            _ANNOTATION_ENUMS = set()
+    return _ANNOTATION_ENUMS
+
+
+def _is_known_enum(t):
+    """该类型名是否为已知枚举（enums.json 或 gbengine 头）✓"""
+    t = (t or '').strip()
+    if '::' in t:
+        t = t.rsplit('::', 1)[-1].strip()
+    return t in _get_annotation_enums() or t in _GBENGINE_ENUMS
+
+
 # Prefix patterns for system/library types that should never be generated
 SKIP_PREFIXES = (
     'D3D', '_D3D', 'ID3D', 'IDirect', 'IUnknown',
@@ -851,6 +894,9 @@ def _estimate_member_size(mtype):
     # Strip nested class prefix: C2DSpark::tagSpark -> tagSpark
     if '::' in t:
         t = t.rsplit('::', 1)[-1]
+    # 枚举恒 4 字节（MSVC6 ABI；ida_structs 的 size=1 是 IDB 导入伪影 ✗，见 _GBENGINE_ENUMS 处注释）
+    if _is_known_enum(t):
+        return 4
     # Struct/class 尺寸来源必须**穷尽**，否则 gap 决策会系统性错。
     #
     # F1（2026-09-15 独立复核 `761ba967` 发现，captain 定位并修正）：
