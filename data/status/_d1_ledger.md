@@ -3181,3 +3181,11 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 修法（下轮，需 DLL 布局取证）：include/gbengine/gbTexture.h 补 gbResource/gbTexture 缺失字段
   （gbResource pName@8 之前的 4B、gbTexture NameCrc32 后的字段等）⇒ 96 ✓ ⇒ CTrail 清零
 - 影响面：gbTexture 系内嵌者（CTrail 2/13 等）+ gbRefObject/gbResource 链同查
+
+## 2026-09-25（goal r38）gbTexture 链 20B 缺口定位（IDB 绝对偏移铁证）
+- IDB 绝对偏移（apply 后导出）：gbRefObject=8(vptr@0+RefCount@4) · gbResource=24(pName@8/pMgr@0x14) ·
+  gbTexture=84(Width@0x18..nLevels@0x50) · gbTexture_D3D 自有字段 pTex@0x54/pDS@0x58/m_ImgFormat@0x5C ⇒ 96 ✓
+- include/gbengine 头编译链 = 64 ⇒ **缺 20B**：gbTexture own-fields 与 IDB 偏移不齐
+  （头中 pGfxMgr/Width/Height/pTexImage/InFmt/nLevels 连排 vs IDB nLevels@0x50 ⇒ 0x28..0x50 缺 40B 中仅部分被头的排布吸收）
+- 修法（下轮，含 DLL 布局取证）：include/gbengine/gbTexture.h 的 gbTexture own-fields 按 IDB 偏移补 _todo 填充
+  ⇒ gbTexture 84 ⇒ gbTexture_D3D 96 ⇒ CTrail 清零
