@@ -1,128 +1,138 @@
 {
- "name": "UIRoleDialog",
- "binary_size": 808,
- "known_members": {
-  "80": {
-   "name": "m_bk",
-   "type": "UIStaticFlex",
-   "source": "annotation"
-  },
-  "72": {
-   "name": "baseclass2",
-   "type": "PalScriptWaitObj",
-   "source": "PAL3patch_verified"
-  },
-  "272": {
-   "name": "m_ani",
-   "type": "UIAnimateCtrl",
-   "source": "PAL3patch_verified"
-  },
-  "436": {
-   "name": "m_face",
-   "type": "UIStaticFlip",
-   "source": "PAL3patch_verified"
-  },
-  "592": {
-   "name": "m_static",
-   "type": "UITextArea",
-   "source": "PAL3patch_verified"
-  },
-  "784": {
-   "name": "timeclose",
-   "type": "char[24]",
-   "source": "PAL3patch_verified | fix:truncated_UIStatic_to_char24_binary_size_720"
-  },
-  "0": {
-   "name": "__vftable",
-   "type": "void *",
-   "source": "vtable_fix"
-  }
- },
- "base_class": [
-  "UIDialog",
-  "PalScriptWaitObj"
- ],
- "methods": {
-  "0x004A1410": {
-   "name": "~UIRoleDialog",
-   "signature": "void __thiscall()"
-  },
-  "0x004BEF50": {
-   "name": "~UIWnd",
-   "signature": "void __thiscall()",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-  },
-  "0x004A1A80": {
-   "name": "RemoveChild",
-   "signature": "void *__thiscall UIRoleDialog::RemoveChild(void *pChild, char bDelete)",
-   "ordinal": 1
-  },
-  "0x004A1AA0": {
-   "name": "ProcessFrame",
-   "signature": "BOOL __thiscall UIRoleDialog::ProcessFrame(int nVal, int nVal2)",
-   "ordinal": 2
-  },
-  "0x004A13F0": {
-   "name": "_sdtor",
-   "signature": "UIItem * __thiscall(void *Block, char pData)",
-   "ordinal": 5
-  },
-  "0x004A1D10": {
-   "name": "OnCommand",
-   "signature": "int __thiscall UIRoleDialog::OnCommand(int nVal, int nVal2, int nVal3)",
-   "ordinal": 6
-  },
-  "0x004BF1C0": {
-   "name": "Create",
-   "signature": "void __thiscall(int nVal)",
-   "source": "pdb_ret"
-  },
-  "0x004BF1D0": {
-   "name": "Destroy",
-   "signature": "int __thiscall(int nVal)"
-  },
-  "0x004BF260": {
-   "name": "Render",
-   "signature": "void __thiscall(int nVal)"
-  }
- },
- "vtables": [
-  {
-   "addr": "0x0056E190",
-   "base": "UIWnd",
-   "slots": [
-    {
-     "addr": "0x00445E70",
-     "from": "UIWnd"
+  "name": "UIRoleDialog",
+  "binary_size": 808,
+  "known_members": {
+    "80": {
+      "name": "m_bk",
+      "type": "UIStaticFlex",
+      "source": "annotation"
     },
-    {
-     "addr": "0x004A1A80",
-     "from": null
+    "72": {
+      "name": "baseclass2",
+      "type": "PalScriptWaitObj",
+      "source": "PAL3patch_verified"
     },
-    {
-     "addr": "0x004A1AA0",
-     "from": null
+    "272": {
+      "name": "m_ani",
+      "type": "UIAnimateCtrl",
+      "source": "PAL3patch_verified"
     },
-    {
-     "addr": "0x004A14C0",
-     "from": "UIWnd"
+    "436": {
+      "name": "m_face",
+      "type": "UIStaticFlip",
+      "source": "PAL3patch_verified"
     },
-    {
-     "addr": "0x00445B90",
-     "from": "UIWnd"
+    "592": {
+      "name": "m_static",
+      "type": "UITextArea",
+      "source": "PAL3patch_verified"
     },
-    {
-     "addr": "0x004A13F0",
-     "from": null
+    "784": {
+      "name": "timeclose",
+      "type": "char[24]",
+      "source": "PAL3patch_verified | fix:truncated_UIStatic_to_char24_binary_size_720"
     },
-    {
-     "addr": "0x004A1D10",
-     "from": null
+    "0": {
+      "name": "__vftable",
+      "type": "void *",
+      "source": "vtable_fix"
     }
-   ]
-  }
- ],
- "base_size": 80,
- "_cascade_note": "2026-09-22 级联平移 +0x58：内嵌 UITextArea 的真实尺寸为 0xC0（旧注解 0x68 ✗）⇒ 其后成员整体后移（emit 报 start_off 由 0x310 起 ✓）。证据：UITextArea 尺寸三线独立证明 ✓"
+  },
+  "base_class": [
+    "UIDialog",
+    "PalScriptWaitObj"
+  ],
+  "methods": {
+    "0x004A1410": {
+      "name": "~UIRoleDialog",
+      "signature": "void __thiscall()"
+    },
+    "0x004BEF50": {
+      "name": "~UIWnd",
+      "signature": "void __thiscall()",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+    },
+    "0x004A1A80": {
+      "name": "RemoveChild",
+      "signature": "void *__thiscall UIRoleDialog::RemoveChild(void *pChild, char bDelete)",
+      "ordinal": 1
+    },
+    "0x004A1AA0": {
+      "name": "ProcessFrame",
+      "signature": "BOOL __thiscall UIRoleDialog::ProcessFrame(int nVal, int nVal2)",
+      "ordinal": 2
+    },
+    "0x004A13F0": {
+      "name": "_sdtor",
+      "signature": "UIItem * __thiscall(void *Block, char pData)",
+      "ordinal": 5
+    },
+    "0x004A1D10": {
+      "name": "OnCommand",
+      "signature": "int __thiscall UIRoleDialog::OnCommand(int nVal, int nVal2, int nVal3)",
+      "ordinal": 6
+    },
+    "0x004BF1C0": {
+      "name": "Create",
+      "signature": "void __thiscall(int nVal)",
+      "source": "pdb_ret"
+    },
+    "0x004BF1D0": {
+      "name": "Destroy",
+      "signature": "int __thiscall(int nVal)"
+    },
+    "0x004BF260": {
+      "name": "Render",
+      "signature": "void __thiscall(int nVal)"
+    },
+    "0x004A12F0": {
+      "name": "UIRoleDialog",
+      "signature": "void __thiscall UIRoleDialog::UIRoleDialog()",
+      "_attribution_evidence": "ctor stores own vtable 0x56E190 at this+0 (0x4a13c1); vtable slots = UIRoleDialog::RemoveChild/_sdtor/OnCommand/ProcessFrame (func_bounds); PDB 名 Refresh@ARC_PlayerAtt 为误归属 ✗"
+    },
+    "0x004A16C0": {
+      "name": "Create",
+      "signature": "int __thiscall UIRoleDialog::Create(int id, int nVal)",
+      "_attribution_evidence": "位于 UIRoleDialog 方法群（0x4A12F0-0x4A1A7C，紧邻 RemoveChild@0x4A1A80）；原 PDB 名 Create@ARC_PlayerAtt 误归属"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056E190",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004A1A80",
+          "from": null
+        },
+        {
+          "addr": "0x004A1AA0",
+          "from": null
+        },
+        {
+          "addr": "0x004A14C0",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004A13F0",
+          "from": null
+        },
+        {
+          "addr": "0x004A1D10",
+          "from": null
+        }
+      ]
+    }
+  ],
+  "base_size": 80,
+  "_cascade_note": "2026-09-22 级联平移 +0x58：内嵌 UITextArea 的真实尺寸为 0xC0（旧注解 0x68 ✗）⇒ 其后成员整体后移（emit 报 start_off 由 0x310 起 ✓）。证据：UITextArea 尺寸三线独立证明 ✓"
 }
