@@ -2999,3 +2999,21 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - **编译器终验**：Comp_DonateUI sizeof 46840==binary ✓ · UIGameFrm sizeof 28448==binary ✓
   UIRoleDialog sizeof 1368==1368 ✓ —— 编译器独立复算了级联后的尺寸并与二进制全等
   ⇒ 1368 的正确性获得编译器+stride 双对+ctor 三重闭环 ✓✓✓
+
+## 2026-09-24（goal r21）UIRoleDialog ctor 字段图 —— 判定需全类重建（子对象身份解析前置）
+- ctor 0x4A12F0 子对象构造序列（ecx=this 溯源，全 45 指令）：
+  * base UIFrameWnd ctor @0x43bb70（先于一切）
+  * UITextArea ctor @+0x70（0x444F60，arg=1；0x70→0x130 = 0xC0=192 ✓ 与 UITextArea 重建尺寸一致 ✓✓）
+  * 子对象 X1 @+0x130（ctor 0x4422E0，arg=2；0x130→0x1C8 = 0x98=152）
+  * 子对象 X2 @+0x1C8（ctor 0x4422E0，arg=3；0x1C8→0x278 = 0xB0=176）
+  * 子对象 X3 @+0x278（ctor 0x43A770，arg=4；0x278→0x3D0 = 0x158=344）
+  * 子对象 X4 @+0x3D0（ctor 0x43A770，arg=5；Create 读 [0x3D0] dword）
+  * 标量群：0x528(dw)=0 · 0x530=-1 · 0x534=0xD0 · 0x538=0x67 · 0x53C/0x53D/0x550(byte)=0 ·
+    0x548/0x54C(dw)=0（Create 补写 0x52C/0x540/0x544/0x555）
+- 🔴 与现注解冲突：现注解子对象 0x50(UIStaticFlex)/0x110(UIAnimateCtrl)/0x1B4(UIStaticFlip)/
+  0x250(UITextArea)/0x310 与 ctor 序列**整体不同** ⇒ 现注解错 ✗
+  （审计一致是因为"注解⇄编译头"自洽地一致错——审计不校验二进制 ctor ✗ 盲区已识别）
+- 全类重建前置：解析 0x4422E0/0x43A770 的类身份（这两个 ctor 构造的子对象类型）+ UIFrameWnd 基类尺寸
+- 保留：binary_size 1368 ✓（stride 双对 + ctor 最大写 0x555 双证不变）
+- 方法论：**audit 一致 ✗≠ 布局正确**——audit 只证"注解⇄编译头"自洽；二进制 ctor 才是最终裁判
+  （r20 的 verify_fix sizeof 全等同样只是必要条件）
