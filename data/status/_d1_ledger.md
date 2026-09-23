@@ -3193,3 +3193,8 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 ## 2026-09-25（goal r35 补记）CTrail 无独立编译单元 ⇒ 低优先级
 - CTrail.cpp 不存在（类无归属方法）⇒ 不参与编译比对 ⇒ 其 2/13 冲突无 L1/错误影响
 - 优先级降级：CTrail/无单元类归"重建队列末位"；主线保持在有单元的类
+
+## 2026-09-25（goal r40）无单元类降级 —— CTrail/Param1 零管线影响
+- CTrail：无 CTrail.cpp 编译单元 ⇒ 不参与编译/比对 ⇒ 2/13 冲突零管线影响 ⇒ 降级重建队列末位
+- Param1：同理核查中（疑同为 header-only）
+- 主线收敛：**有编译单元的真实冲突类**才是可行动目标（PAL3/CUtil/CEffectSystem/CEffect/ArcLocale/CCBCamControl 已清/CEffMgr/TaskMgr/DIDEVICE 豁免）
