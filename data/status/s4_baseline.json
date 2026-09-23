@@ -18,16 +18,16 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 325,
-  "matched": 270,
-  "unmatched": 55,
-  "match_L1": 39,
-  "partial": 199,
+  "symbols": 330,
+  "matched": 272,
+  "unmatched": 58,
+  "match_L1": 41,
+  "partial": 198,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 32
+  "unresolved_synth": 33
  },
  "rows": [
   {
@@ -333,7 +333,7 @@
    "name": "CEffShock::GetEditorTaskDescription(int)",
    "va": "0x004D3280",
    "status": "partial",
-   "match_pct": 36.2,
+   "match_pct": 63.8,
    "size": 58
   },
   {
@@ -342,7 +342,7 @@
    "name": "CEffShock::CEffShock(void)",
    "va": "0x004D3910",
    "status": "partial",
-   "match_pct": 14.8,
+   "match_pct": 44.4,
    "size": 27
   },
   {
@@ -378,7 +378,7 @@
    "name": "CEffShock::LoadTexture(int,int,int,int *,int,int)",
    "va": "0x004D4B50",
    "status": "partial",
-   "match_pct": 9.4,
+   "match_pct": 9.9,
    "size": 213
   },
   {
@@ -737,6 +737,15 @@
    "symbol": "??_GJusticeBookUI@@UAEPAXI@Z",
    "name": "JusticeBookUI::`scalar deleting destructor'(uint)",
    "va": "0x005284C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/JusticeBookUI.cpp",
+   "symbol": "??_GUIFrameWnd@@UAEPAXI@Z",
+   "name": "UIFrameWnd::`scalar deleting destructor'(uint)",
+   "va": "0x00442E60",
    "status": "match_L1",
    "match_pct": 100.0,
    "size": 30
@@ -1952,8 +1961,8 @@
    "symbol": "?_todo_421870@Scene@@QAEXXZ",
    "name": "Scene::_todo_421870(void)",
    "va": "0x00421870",
-   "status": "partial",
-   "match_pct": 92.5,
+   "status": "match_L1",
+   "match_pct": 100.0,
    "size": 53
   },
   {

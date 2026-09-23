@@ -2813,3 +2813,17 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   正解方向：CEffObj offset0 可能是 union{vfptr, 对象指针}（派生类复用差异）或 GlowObj 系检查
   不适用于 CEffObj；下轮须逐派生类 ctor 取证后再动注解
 - 方法论重申：**注入门是全局开关** ✗ 不能在未逐类核对其布局影响时拓宽（F62 已有前科 ✗ 我又犯 ✗）
+
+## 2026-09-23（goal r6）CEff* 家族修复落地 —— L1 39→41 · 错误 2141→2105
+- 三轮迭代（每次失败都有精确指纹）：
+  ① 宽门注入 ⇒ C2523 ×446（特化类析构名不匹配）+ S2 0/205 灾难 ⇒ 回退
+  ② 排除特化 ⇒ C2039 __vftable ×69（引用无声明）⇒ 补 static 槽位
+  ③ 幻影删除改 **static 化**（F59 同型）+ CTaskTpl 通用模板补 __vftable@0 ⇒ 净 −36 ✓
+- 最终机制（发射器）：注入门 = 无显式析构 ∧ offset0 计 vptr ∧（scalar dtor 证据 ∨ 标准 vptr 占位[名字+void*+无 vtable 槽]）
+  ∧ 非模板特化；占位成员发 **static**（无存储，引用兼容）；尾部预留 4
+- 注解：CEffObj offset0 m_nTodo_000 → __vftable（双证据并存：CEffCylinder ctor 双 vptr ✓ + GlowObj 系反证存档 ✗ 互不推断）
+- 验收：CEff 家族审计全一致 ✓（Cylinder/Meteor/Grid/Model/SParticle/gbParticle/CEffObj）
+  五阶段全绿 ✓ S2 76/205 · **errors 2105（−36）** · **L1 41（+2）** · matched 270/325
+- 残余 +11 = C2036 void* 算术（__vftable 静态化后必要暴露，按用户裁定接受；codegen_fix 级待清）
+- CTaskTpl 通用模板 8/8 冲突 = 死头（全被特化 typedef 覆盖，无实例化）⇒ 无布局影响
+- 教训：全局开关改动必须**指纹化迭代**（C2523→C2039→C2036 每轮收敛）✗ 不许一次放完

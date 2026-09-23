@@ -1077,6 +1077,29 @@ def _offset0_is_vptr_member(cls_name):
     return False
 
 
+def _offset0_vptr_placeholder(cls_name):
+    """offset0 成员是否恰为**标准 vptr 占位**（vptr 名 ∧ void* ∧ 无 vtable 槽）✓
+
+    2026-09-23（CEff* 家族注入门）：只对"占位可被 F59 幻影清除机制精确移除"的类注入
+    虚析构 —— 上一轮宽门把 +0 成员不是 void* 型 vptr 占位的类也注入了 ⇒ 占位数据 +
+    隐式 vptr 双占 ⇒ S2 0/205 灾难 ✗（已回退）。影响面实测 52 类，全为 CEff* 家族 ✓
+    """
+    s = _get_ida_structs().get(cls_name) or {}
+    if s.get('vtables'):
+        return False
+    cand = None
+    for dm in (s.get('data_members') or []):
+        if isinstance(dm, dict) and int(dm.get('offset') or -1) == 0:
+            cand = dm
+            break
+    if cand is None:
+        v = (s.get('_variants') or {}).get('0')
+        if isinstance(v, dict):
+            cand = v
+    return bool(cand) and str(cand.get('name') or '') in _VPTR_MEMBER_NAMES \
+        and str(cand.get('type') or '') == 'void *'
+
+
 def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_names=None,
                     colliding_enums=None, template_expr=None, template_param_count=0,
                     nested_types=None, nested_methods=None, scope_node=None):
@@ -1820,6 +1843,14 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     except:
         _ann_s = {}
 
+    # dtor 存在性（尾部 vptr 预留与虚析构注入共用；必须在 try 块之前定义 ✓）
+    _has_dtor = any(m for m, _, _ in (methods or []) if m == '~' + cls_name)
+    # 注入判定提前（成员循环需要用它决定 +0 成员是否走 static 槽位形式 ✓）。
+    # ⚠️ 模板特化（template_expr）跳过注入：`virtual ~扁平名()` 与特化类名不匹配 ⇒ C2523 ✗
+    _will_inject_vptr = (not _has_dtor) and not template_expr \
+        and _offset0_is_vptr_member(cls_name) and (
+            cls_name in _get_scalar_dtor_classes()
+            or _offset0_vptr_placeholder(cls_name))
     # Generate members from annotation known_members (sole source of truth)
     try:
         ann_data_fb = _get_ida_structs()
@@ -1884,6 +1915,15 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             for off_str in sorted_offsets:
                 group = ann_members[off_str]
                 off = int(off_str)
+                # ★ static 槽位形式（2026-09-23，CEff* 家族）：注入虚析构的类，其 +0 的
+                # vptr 占位成员改为 static（不占对象字节）⇒ 编译器隐式 vptr 独占 +0，
+                # 既有 `X->__vftable` 引用仍可编译（F59 同型先例 ✓）
+                if _will_inject_vptr and off == 0 and len(group) == 1 and (
+                        str(group[0].get('name')) in _VPTR_MEMBER_NAMES):
+                    lines.append("    static %s %s; // +0x0 (vfptr slot; 布局由编译器隐式 vfptr 提供)"
+                                 % (group[0].get('type', 'void *'), group[0].get('name')))
+                    start_off = max(start_off, 4)
+                    continue
                 if off > start_off:
                     _gap = off - start_off
                     lines.append("    char _gap_%03X[%d]; // +0x%X" % (start_off, _gap, start_off))
@@ -2134,8 +2174,15 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 start_off = off + member_size
             # Tail padding to reach total size
             if ann_size and ann_size != '?' and int(ann_size) > start_off:
+                # ★ vptr 预留（2026-09-23）：注入虚析构的类，编译器隐式 vptr 独占 +0
+                # ⇒ 尾部从 4 起算（total−4），否则类尺寸 +4 ✗（CEff* 家族实测）
+                if _will_inject_vptr:
+                    start_off = max(start_off, 4)
+                if template_expr and _offset0_vptr_placeholder(cls_name):
+                    lines.append("    static void * __vftable; // +0x0 (vfptr slot; 引用兼容，无存储)")
                 tail_size = int(ann_size) - start_off
-                lines.append("    char _tail_%03X[%d]; // +0x%X" % (start_off, tail_size, start_off))
+                if tail_size > 0:
+                    lines.append("    char _tail_%03X[%d]; // +0x%X" % (start_off, tail_size, start_off))
             if ann_size and ann_size != '?':
                 lines.append("    // total size: 0x%X (%d)" % (int(ann_size), int(ann_size)))
             lines.append("")
@@ -2146,12 +2193,15 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # filtered out (compiler generates it automatically from the declaration).
     # Scan decomp JSONs to detect _scalar_dtor (same logic as data.py)
     # BUT only if the class doesn't already have an explicit destructor.
-    _has_dtor = any(m for m, _, _ in (methods or []) if m == '~' + cls_name)
     # ⚠️ 2026-09-21：注入虚析构会**引入 vptr** ⇒ 只有注解**已计入 vptr**（offset0 是 vptr 成员）
     # 时才允许注入；否则会覆盖 offset0 的数据成员、把全部成员偏移推 +4 ✗
     # （实测：SceneMgr 删掉注入后 Create 25.5%→80.6%；审计 N/N 全成员冲突即此症）
-    if cls_name in _get_scalar_dtor_classes() and not _has_dtor \
-            and _offset0_is_vptr_member(cls_name):
+    # 2026-09-23：拓宽 ②——offset0 恰为 void* 型 vptr 占位（无 vtable 槽）的纯载体类
+    # （CEff* 家族）也注入；占位行由 F59 幻影清除机制移除，vptr 独占 +0 ✓
+    # ⚠️ 模板特化类（template_expr 非空）跳过注入：注入的 `virtual ~扁平名()`
+    # 与特化类名（CTaskTpl<...>）不匹配 ⇒ C2523 ×446 全库崩 ✗（2026-09-23 实测）。
+    # 特化类的 36 字节按数据发射本就与二进制布局等价（其虚调用经 ret-N 槽号机制发射）✓
+    if _will_inject_vptr:
         lines.append("    virtual ~%s() {}" % cls_name)
         lines.append("")
 
@@ -2458,9 +2508,17 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # 占位当初是为了让 `.cpp` 里残留的 `X->__vftable` 能编译；但那些站点本来就产不出字节忠实的
     # 代码（真修法是按二进制槽号发射虚调用），按"字节匹配 > 编译通过"的优先级，此处以布局正确为准。
     if any('virtual ' in _l for _l in lines):
-        _ph = re.compile(r'^\s*(?:void \* __vftable;|char _gap_000\[4\];)\s*// \+0x0\s*$')
-        if any(_ph.match(_l) for _l in lines):
-            lines = [_l for _l in lines if not _ph.match(_l)]
+        # 2026-09-23（CEff* 家族）：占位行不再**删除**而改为 **static 化** ——
+        # 删除会让 .cpp 里既有 `X->__vftable` 引用编译失败（C2039，实测 +69 ✗）；
+        # static 成员不占对象字节 ⇒ 布局效果与删除相同，且引用可编译（F59 先例 ✓）
+        _ph = re.compile(r'^(\s*)(void \* __vftable;|char _gap_000\[4\];)\s*// \+0x0\s*$')
+        _rewritten = []
+        for _l in lines:
+            _m = _ph.match(_l)
+            _rewritten.append(
+                '%sstatic %s // +0x0 (vfptr slot; 布局由编译器隐式 vfptr 提供)' % (_m.group(1), _m.group(2))
+                if _m else _l)
+        lines = _rewritten
 
         # F59（第 108 轮）：同型错位的**另一半**——注解在 +0 标的是一个"真实成员"（不是占位符）。
         # 有虚函数 + 注解带 vtable（本函数自己会发射 `// vtable (N methods…)`）⇒ 二进制里 +0 就是
