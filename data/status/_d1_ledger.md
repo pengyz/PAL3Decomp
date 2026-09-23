@@ -2980,3 +2980,22 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 推论链（高置信但未闭合）：UIRoleDialog 注解 binary_size=808 疑似欠模型 ⇒ 真值疑为 0x558=1368
   （0x328..0x558 为未建模区）——动 UIRoleDialog 注解前须闭合上一条
 - 方法论：**相邻同型全局 ≠ 尺寸上界** ✗（r16 结论修正）；stride 双实例对 ≥ 单对 ⇒ 多点交叉才可定尺寸 ✓
+
+## 2026-09-24（goal r20）0x4A16C0 归属定案（三次反转后）+ UIRoleDialog 尺寸闭合 808→1368
+- 定案证据（成员偏移重叠法）：Create@0x4A16C0 访问集 0x130/0x1C8/0x260/0x264/0x278/0x3D0
+  与 ctor 0x4A12F0 写集**完全重叠** ⇒ 同一对象布局 ⇒ 同类 = UIRoleDialog ✓
+  （无 vtable 存储 ⇒ 对象已由 ctor 构造 ✓；调用点 ecx=edi ⇒ thiscall ✓ —— r19 的 cdecl 判断 ✗）
+- UIRoleDialog binary_size 808 → **1368**（stride 双对铁证：EquipUI 400080/401448 + TaskBookUI
+  130364/131732；ctor 最大写 0x555⇒align 0x558）；0x328..0x558 = 未建模区（待逐成员重建，_tail 承接）
+- 验收：UIRoleDialog 审计一致 ✓ · verify_fix sizeof 1368==1368 ✓ · 门禁全净 ✓
+- 单元归并：ARC_PlayerAtt.cpp 假单元消失（205→204；其唯一函数为 11.8% partial 的错误函数，
+  随归属纠正从比对集移除：matched 272/330→271/329 ✓ 假函数出清）
+- 教训：归属翻转 ×3 的根因 = 每次只用了单点证据 ✗；定案证据 = **多访问点与已知锚点的偏移重叠分析** ✓
+  （与 vtable 槽位闭环、调用约定层共同构成三重验证）
+
+## 2026-09-24（goal r20 续）级联落地 + 编译器终验 ✓✓
+- checker 引导级联 1 轮收敛：Comp_DonateUI ≥0x6CE8 +560（15 成员）· UIGameFrm ≥0x13EC +172（8 成员）
+- 验收全绿：check_annotations PASS · 五阶段全绿（S2 75/204 · errors 2105 · L1 41）
+- **编译器终验**：Comp_DonateUI sizeof 46840==binary ✓ · UIGameFrm sizeof 28448==binary ✓
+  UIRoleDialog sizeof 1368==1368 ✓ —— 编译器独立复算了级联后的尺寸并与二进制全等
+  ⇒ 1368 的正确性获得编译器+stride 双对+ctor 三重闭环 ✓✓✓
