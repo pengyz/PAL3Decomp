@@ -2917,3 +2917,14 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   UISceneMap/UISceneFrm/CScreenMode/SceneMgr/UINote/ScriptObj/CEffTrack* 等
 - 剩余 20 类按病灶归类：全局单例 1 · 复用槽批 2 · +4 族 2 · 整类重建 3 · SDK 头 2 ·
   死头 1（CTaskTpl 建议豁免）· 待诊 6
+
+## 2026-09-24（goal r16）绿单元冲突清点收官 —— ARC_PlayerAtt 判定巨型的据（115200B）
+- 绿单元∩冲突类清点：仅 SceneMgr（1/167=已证噪声 ✗ 布局正确）与 ARC_PlayerAtt（23/27）
+- ARC_PlayerAtt 尺寸 A 级证据：相邻全局 g_PlayerAttBuffer(0xAA0B00)/g_PlayerAttBuffer2(0xABCD00)
+  均由 ARC_PlayerAtt::Create(&buf,nVal) 直接构造（globals.json source）⇒ stride=0x1C200=**115200**
+  vs 注解 binary_size=1408 ⇒ **巨型数据竞技场类**（与 PAL_GDB 814KB 同族；ARC_* 前缀家族）✗ 1408 严重欠模型
+- Refresh decomp 佐证：Refresh 内访问 byMagicUseTime/byMagicLevel @0x518-0x57e（只占竞技场头部）
+  ⇒ 成员表只建模了头部，其余 ~113KB 为未建模数据区
+- **战略结论**：绿单元内的布局冲突已清零（ARC_PlayerAtt 移入巨型竞技场重建队列，与 PAL_GDB 同族）⇒
+  此后 L1 增益只能来自**把失败单元变绿**（每绿一个单元，其冻结的布局收益整体兑现）
+  ⇒ 工作重心正式从"绿单元内修类"转入"修类以让单元变绿"
