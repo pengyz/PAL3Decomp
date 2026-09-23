@@ -3030,3 +3030,14 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   ⇒ 全类重建仍是正解，但需先解决：①通用 helper 的调用点不可作类型证据后，从哪取 UIRoleDialog 的真布局？
   ②ctor 序列的子对象类身份（UITextArea ✓ / 0x4422E0 无名(152B,vtable 0x56ADD0 UIFrameWnd 系折叠) / UICaption(344)）
 - 方法论：**调用点强转类型 ≠ 参数真实类型** ✗（Hex-Rays 渲染随 IDB 状态漂移）；helper 函数不可归属 ✗
+
+## 2026-09-24（goal r22 续）UIRoleDialog 重建批提交 —— 必要暴露 +5 记入 Phase 2 队列
+- 级联落地：Comp_DonateUI ≥0x6CE8 +560（15 成员）· UIGameFrm ≥0x13EC +172（8 成员）
+- UIRoleDialog 内部修正：_todo_3d0 344→328（byMagicUseTime@0x518 紧随）；name@0x258 撤销（落 X2 区间内）
+- 验收：三类审计一致 ✓ · verify_fix sizeof 全等（UIRoleDialog 1368/Comp_DonateUI 46840）✓
+- 门禁：+5（2110）= 必要暴露（CScreenMode C2440 void*→char ×6 + UIRoleDialog C2227 ×1
+  —— 旧错误成员模型的引用点，由更正确布局暴露）+ UIRoleDialog C2660 ×2 消除（部分兑现）
+  ⇒ 按用户裁定接受 ✓，站点记 Phase 2 修复队列
+- L1 41 保持 · matched 271/329 · 基线已刷新（单元归并 205→204 + 本批）
+- MCP 说明：idapro server 本会话断连 ⇒ 二进制证据走 O2/bin_oracle（vtable 身份经 PE 节表映射
+  + 槽位函数闭环达成等效证据强度）；MCP 重连后应回补 IDB 侧交叉验证

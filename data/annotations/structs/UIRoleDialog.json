@@ -1,41 +1,81 @@
 {
   "name": "UIRoleDialog",
-  "binary_size": 808,
+  "binary_size": 1368,
   "known_members": {
-    "80": {
-      "name": "m_bk",
-      "type": "UIStaticFlex",
-      "source": "annotation"
+    "0": {
+      "name": "__vftable",
+      "type": "void *",
+      "source": "vtable_fix"
     },
     "72": {
       "name": "baseclass2",
       "type": "PalScriptWaitObj",
       "source": "PAL3patch_verified"
     },
-    "272": {
-      "name": "m_ani",
-      "type": "UIAnimateCtrl",
-      "source": "PAL3patch_verified"
+    "80": {
+      "name": "_todo_050",
+      "type": "char[32]",
+      "source": "binary:ctor 0x4A12F0 无此区构造，0x50..0x70 未建模区（PalScriptWaitObj 之后、UITextArea 之前）"
     },
-    "436": {
-      "name": "m_face",
-      "type": "UIStaticFlip",
-      "source": "PAL3patch_verified"
-    },
-    "592": {
+    "112": {
       "name": "m_static",
       "type": "UITextArea",
-      "source": "PAL3patch_verified"
+      "source": "binary:ctor 0x4A12F0 lea 0x70(%esi),%ecx; call 0x444F60（UITextArea ctor，arg=1）⇒ 内嵌 UITextArea@0x70（192B，与 UITextArea 重建尺寸互证 ✓）"
     },
-    "784": {
-      "name": "timeclose",
-      "type": "char[24]",
-      "source": "PAL3patch_verified | fix:truncated_UIStatic_to_char24_binary_size_720"
+    "304": {
+      "name": "_todo_130",
+      "type": "char[152]",
+      "source": "binary:ctor lea 0x130(%esi),%ecx; call 0x4422E0（arg=2，无名 ctor，存 vtable 0x56ADD0=UIFrameWnd 系折叠槽）"
     },
-    "0": {
-      "name": "__vftable",
-      "type": "void *",
-      "source": "vtable_fix"
+    "456": {
+      "name": "_todo_1c8",
+      "type": "char[176]",
+      "source": "binary:ctor lea 0x1c8(%esi),%ecx; call 0x4422E0（arg=3）"
+    },
+    "632": {
+      "name": "_todo_278",
+      "type": "char[344]",
+      "source": "binary:ctor lea 0x278(%esi),%ecx; call 0x43A770（arg=4；0x43A770 存 vtable 0x56AC70=UICaption）"
+    },
+    "976": {
+      "name": "_todo_3d0",
+      "type": "char[328]",
+      "source": "binary:ctor lea 0x3d0(%esi),%ecx; call 0x43A770（arg=5；Create 读 [0x3D0] dword）；X4=0x3D0..0x518（328B，byMagicUseTime@0x518 紧随）"
+    },
+    "1304": {
+      "name": "byMagicUseTime",
+      "type": "unsigned char[8][6]",
+      "source": "保留：ctor 写 0x528/0x530/0x534/0x538 全落在 [0x518..0x548) ✓ 与 Hex-Rays byMagicUseTime[4][0]=-1/[4][4]=208 等精确吻合"
+    },
+    "1352": {
+      "name": "_todo_548",
+      "type": "int",
+      "source": "binary:ctor mov %eax,0x548(%esi)=0"
+    },
+    "1356": {
+      "name": "_todo_54c",
+      "type": "int",
+      "source": "binary:ctor mov %eax,0x54c(%esi)=0"
+    },
+    "1360": {
+      "name": "_todo_550",
+      "type": "unsigned char",
+      "source": "binary:ctor mov %al,0x550(%esi)=0"
+    },
+    "1361": {
+      "name": "_gap_551",
+      "type": "char[4]",
+      "source": "binary:0x551..0x555 未访问区"
+    },
+    "1365": {
+      "name": "_todo_555",
+      "type": "unsigned char",
+      "source": "binary:Create movb $1,0x555(%esi)"
+    },
+    "1366": {
+      "name": "_tail_556",
+      "type": "char[2]",
+      "source": "binary:binary_size=1368 尾部填充"
     }
   },
   "base_class": [
@@ -130,5 +170,6 @@
   ],
   "base_size": 80,
   "_cascade_note": "2026-09-22 级联平移 +0x58：内嵌 UITextArea 的真实尺寸为 0xC0（旧注解 0x68 ✗）⇒ 其后成员整体后移（emit 报 start_off 由 0x310 起 ✓）。证据：UITextArea 尺寸三线独立证明 ✓",
-  "_note": "binary_size 808：内部注解⇄编译头自洽 ✓；但 ctor(0x4A12F0) 证据表明子对象真布局在 0x70/0x130/0x1C8/0x278/0x3D0 ⇒ 全类重建挂起（r21 判定），binary_size 待重建后复核"
+  "_note": "binary_size 808：内部注解⇄编译头自洽 ✓；但 ctor(0x4A12F0) 证据表明子对象真布局在 0x70/0x130/0x1C8/0x278/0x3D0 ⇒ 全类重建挂起（r21 判定），binary_size 待重建后复核",
+  "_rebuild_note": "2026-09-24 全类重建（ctor 0x4A12F0 序列为纲）：旧注解 0x50-0x310 子对象布局与 ctor 矛盾已废弃（m_bk/m_ani/m_face/旧 m_static@0x250/timeclose 待 PDB 对账）；0x328..0x558 未建模区已按 ctor/Create 写集填充"
 }
