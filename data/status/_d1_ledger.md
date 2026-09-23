@@ -2968,3 +2968,15 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   ×8 / UITitle_QCYM_OnMsgSaveData 均以 0xAA0B00/0xABCD00 为参读取缓冲）—— Remark 的既有引用
   必须先映射，否则拆 Remark 会破坏编译/语义（ARC_PlayerAtt 派生区 0x354+ 依赖 ARC_RoleAtt=852 不变 ✓）
 - 保留不变式：ARC_RoleAtt 总尺寸 852=0x354（ARC_PlayerAtt 派生区起点依赖 ✓）
+
+## 2026-09-24（goal r19）1368 步长双证据 + 收回"115200 竞技场"误判
+- 新证据（TaskBookUI::CreateEntry 尾部）：Create__ovl_1 于 v2+130364 与 v2+131732 连续构造
+  ⇒ 步长 **1368 = 0x558**，与 EquipUI 对（400080/401448）完全一致 ⇒ 两对四实例同同类 ✓✓
+- 交叉验证：0x4A12F0（该类 ctor）最大写 0x555（byte）⇒ 对齐后 0x558 = 1368 精确吻合 ✓✓
+- **收回 r16 "115200 竞技场"判断 ✗**：globals 相邻不构成尺寸上界（链接器可插入其他数据）；
+  g_PlayerAttBuffer/Buffer2 的真实类型归属存疑（IDA 类型可能同样是误标）
+- 待解（超出本轮预算）：0x4A16C0 调用点 `mov %edi,%ecx; call` 的 this 语义
+  （edi=调用者的 this ⇒ 可能是调用者类的方法而非独立类方法）⇒ 需函数级完整 provenance
+- 推论链（高置信但未闭合）：UIRoleDialog 注解 binary_size=808 疑似欠模型 ⇒ 真值疑为 0x558=1368
+  （0x328..0x558 为未建模区）——动 UIRoleDialog 注解前须闭合上一条
+- 方法论：**相邻同型全局 ≠ 尺寸上界** ✗（r16 结论修正）；stride 双实例对 ≥ 单对 ⇒ 多点交叉才可定尺寸 ✓
