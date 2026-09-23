@@ -2955,3 +2955,16 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 门禁：new_failures 0 · new_errors 0（对基线全净 ✓）· 单元 205→204（ARC_PlayerAtt.cpp 假单元消失 ✓）
 - 📋 入队：ARC_RoleAtt(852B) 布局探测未做——Create 写 [buf+0x48/0x4C/0x52C] 落在注解 Remark[512] 区间内可疑；
   ARC_PlayerAtt 真身重建依赖此探测
+
+## 2026-09-24（goal r18）ARC_RoleAtt 布局探测完成（Create 字段图）——重建待消费方取证
+- 方法：Create@0x4A16C0（956B/294 指令）全量 this-溯源（esi=buf，0x4a16df 设置，无中途重置）
+- 字段图（buf 相对，均为 dword 级）：
+  * 0x48 ←参数3 · 0x4C ←参数1 · 0x54 读 · 0x64 写
+  * 0x58/0x5C ⇄ 0x68/0x6C 成对搬运（两个 8 字节结构或 int 对）· 0x50 = rep-stos 填充目标（lea 取址）
+  * 远区：0x130/0x1C8/0x260-0x278/0x2DC/0x3D0/0x434/0x52C/0x540/0x544/0x555
+- 🔴 与现注解冲突：0x48..0x74 密集字段落在 Remark[512]@6..0x206 区间内 ⇒ **Remark[512] 建模错误**
+  （Remark 实际 ≤ 0x42 字节，或偏移体系不同）
+- 重建未落地的依赖：需先取**消费方**偏移证据（TaskBookUI::CreateEntry / PAL_GDB::InitSkillDisplay
+  ×8 / UITitle_QCYM_OnMsgSaveData 均以 0xAA0B00/0xABCD00 为参读取缓冲）—— Remark 的既有引用
+  必须先映射，否则拆 Remark 会破坏编译/语义（ARC_PlayerAtt 派生区 0x354+ 依赖 ARC_RoleAtt=852 不变 ✓）
+- 保留不变式：ARC_RoleAtt 总尺寸 852=0x354（ARC_PlayerAtt 派生区起点依赖 ✓）
