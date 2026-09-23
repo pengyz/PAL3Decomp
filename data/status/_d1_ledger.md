@@ -2849,3 +2849,18 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 下轮修法（已定向）：静态 __vftable 只由**层次中首个多态基**声明；派生类若自身有 vtable 槽
   则重声明（隐藏基类名），纯透传类不声明（继承即可）⇒ 消歧
 - 回退已验证基线：S2 76/205 · errors 2105 · L1 41（上轮断言，本轮复跑待下轮首验）
+
+## 2026-09-23（goal r9）D3DX/对齐批 —— L1 −1 未归因 ⇒ 回退待归因；两路对抗复核结论收敛
+- 本批组合：D3DX 尺寸表（sdk_types +8 条，步长证据 ✓）+ 对齐感知 gap 抑制（_type_align/_gap_needed，TDD 6/6）
+  + PalScriptWaitObj 改名重放 + 槽位名归一 ⇒ 管线：S2/errors 持平但 **L1 40（−1）** ⇒ ratchet 拦截 ⇒ 回退
+- 两路独立对抗复核收敛（改名方案否决）：
+  * C2385 二义真因 = 改名引入第二个同名 static + UIRoleDialog 有显式析构未重声明（叠加）
+  * 正确修法 = **原名静态化 + 标记门**：注解保留 m_nTodo_000 + `vfptr_slot:true` 标记；
+    发射器按标记发 `static void * m_nTodo_000;`（原名）——布局等价、Hex-Rays 不翻转、MI 天然消歧
+  * export 会把 offset0 从 data_members 丢掉 ⇒ static 分支必须读 _variants（已实现，保留）
+  * 反证存档：GlowObj 系 offset0 被当数据指针用（疑 this-tracking 误归属）；动 GlowObj/Object 前须逐访问溯源
+  * 新发现：SceneObj 析构对 m_fTime@0x58 做 operator delete(ptr-1) ⇒ float 类型错误（引用计数串指针，独立修复项）
+- 待归因：D3DX/对齐批为何 L1 −1（哪些函数从 match 退 partial）——下轮用 match --verbose 对比定位；
+  可能是某类在错误估算下"碰巧"字节匹配（这正是布局修复的价值兑现延迟 ✓ 非退化）
+- 数据/测试留存：本回退不含 tests/test_member_size_d3dx.py、tests/test_gap_alignment.py（保留于工作区待重落）？
+  ⇒ 否：回退仅还原 PalScriptWaitObj/emit_headers/sdk_types 三个文件；测试文件保留 ✓
