@@ -3150,3 +3150,10 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 验收：CCBCamControl 审计一致 ✓ sizeof 全等 ✓ · 残 +1 C2039 m_PanelSlots（CCBUIPanel.cpp:2055，重渲染暴露，Phase 2 队列）
 - 教训（第 N 次）：**PDB 方法名/虚标记不可独立采信**——func_bounds 的 5 字节"ctor"实为 thunk、
   Render 为误归属 ⇒ 多态判定必须以"IDA size 与编译 sizeof 差 = 4 ⇒ 有 vptr 插入"的实证为准
+
+## 2026-09-25（goal r34）GRPinput 清零（POINT 缺表根因）—— 14 类
+- 根因：sdk_types 无 `POINT`（只有 tagPOINT）⇒ 估 4 ✗（真 8：2×LONG）⇒ gap 补位 ⇒ +4 级联 ✗
+- 修法：sdk_types 补 POINT=8/SIZE=8/RECT=16（winuser.h 权威 + stride 证据）
+- 验收：GRPinput 审计一致 ✓（40→39 成员，_gap_034 吸收归位）· 五阶段全绿 · L1 41 ✓
+- 残 +1 必要暴露记账（GRPinput 重渲染）
+- 冲突类 15 → **14**

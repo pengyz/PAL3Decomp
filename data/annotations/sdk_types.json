@@ -192,5 +192,29 @@
     "binary_size": 16,
     "known_members": {},
     "source": "DirectX8 SDK + 二进制步长（sg_emitter 0x40→0x4C=12 · sg_particle_data 0x44→0x54=16）"
+  },
+  {
+    "name": "POINT",
+    "binary_size": 8,
+    "known_members": {
+      "0": {
+        "name": "x",
+        "type": "long",
+        "source": "sdk"
+      }
+    },
+    "source": "Windows SDK winuser.h（POINT = 2×LONG = 8B）+ GRPinput stride（m_mouseX@0x38 等 long 链）"
+  },
+  {
+    "name": "SIZE",
+    "binary_size": 8,
+    "known_members": {},
+    "source": "Windows SDK winuser.h（POINT = 2×LONG = 8B）+ GRPinput stride（m_mouseX@0x38 等 long 链）"
+  },
+  {
+    "name": "RECT",
+    "binary_size": 16,
+    "known_members": {},
+    "source": "Windows SDK winuser.h（POINT = 2×LONG = 8B）+ GRPinput stride（m_mouseX@0x38 等 long 链）"
   }
 ]
