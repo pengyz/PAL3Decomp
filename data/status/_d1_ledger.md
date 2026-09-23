@@ -3090,3 +3090,14 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   * 噪声豁免：SceneMgr 1/167（已证布局正确）
 - 方法论沉淀：verify_fix sizeof 分诊（+4/+8/+1028/+8200）是分类器 ✓——
   小漂移=接缝/单点，大漂移=竞技场欠模型，两类工作量差一个量级
+
+## 2026-09-24（goal r27）ARC_RoleAtt 消费链映射至分发器入口（取证阶段性成果）
+- 消费链闭环：TaskBookUI::CreateEntry → push &g_PlayerAttBuffer2 → 虚调用 UIScene vtable
+  slot7（0x56ACD8[6]=0x43D7A0）→ **0x445D10 消息分发器**（PDB 名 CGameData::OnMessage）
+- 0x43D7A0 = 纯转发 thunk（mov 0xc(%esp)/0x8(%esp) 传参 → call 0x445D10）
+- 分发器内部按消息 id 分支 ⇒ buffer 的字段读取分散在多个处理分支 ⇒
+  完整字段取证 = 分发器全分支 provenance 扫描（独立大工程，已图谱化挂起）
+- ARC_RoleAtt 重建的证据基础已就位：
+  * Create@0x4A16C0 写集（0x48/0x4C/0x50-0x74/0x130/0x1C8/0x260-0x278/0x2DC/0x3D0/0x434/0x52C/0x540-0x555）
+  * 消费链入口图谱（本条）
+  * 不变式：总尺寸 852=0x354 不变
