@@ -2928,3 +2928,20 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - **战略结论**：绿单元内的布局冲突已清零（ARC_PlayerAtt 移入巨型竞技场重建队列，与 PAL_GDB 同族）⇒
   此后 L1 增益只能来自**把失败单元变绿**（每绿一个单元，其冻结的布局收益整体兑现）
   ⇒ 工作重心正式从"绿单元内修类"转入"修类以让单元变绿"
+
+## 2026-09-24（goal r17）🔴 重大发现：ARC_PlayerAtt::Refresh@0x4A12F0 实为 UIRoleDialog ctor —— ARC_PlayerAtt 注解整体张冠李戴
+- ctor 逐指令解码（bin_oracle 正确映射，esi=this 溯源完整，45 条指令全读）：
+  * 0x4a130d call 0x43bb70           ⇒ 基类 UIFrameWnd ctor
+  * 0x4a1312 lea 0x70(%esi); call 0x444f60 ⇒ 内嵌 UITextArea@0x70（0x444F60=UITextArea ctor，与 UITextArea 重建互证 ✓✓）
+  * 0x4a1322/0x4a1332/0x4a1342/0x4a1366 lea 0x130/0x1c8/0x278/0x3d0 ⇒ 四个内嵌子对象（ctor 0x4422e0×2、0x43a770×2）
+  * 0x4a134d/0x4a1357 movl $0x5a/$0x1a,0x260/0x264 ⇒ name@0x258（decomp name[8]=90/name[12]=26 精确吻合 ✓）
+  * 0x4a13c1 movl $0x56e190,(%esi)   ⇒ **vtable = 0x56E190 = UIRoleDialog 的 vtable**（idb vtables 记录在案）
+  ⇒ 该函数 = UIRoleDialog ctor（func_bounds 的 ?Refresh@ARC_PlayerAtt@@ 为误归属/PDB 误名 ✗✗）
+- 推论：ARC_PlayerAtt 现注解（hat@0x354 cloth/shoes/wear/byMagic* 等 25 成员）实为 **UIRoleDialog 布局**的误归属产物
+  ⇒ 解释了 r11 发现的注解内部 stride 矛盾（12/12/10 共存）与 23/27 冲突
+- ARC_PlayerAtt 真身待查：ARC_PlayerAtt::Create（globals source 引用，真地址未定）·
+  CUtil 内嵌 @0x368（decomp 渲染名同样可能误名）· EquipUI @400080/@401448
+- 结论：ARC_PlayerAtt 23/27 冲突的修复前置 = **方法归属纠正**（0x4A12F0 → UIRoleDialog），
+  然后从 ARC_PlayerAtt::Create 真地址重新取证 —— 本轮不落地任何注解改动（动则盲改 ✗）
+- 方法论：func_bounds/decomp 的方法名不可独立采信 ✗——ctor 必须以"存 vtable = 自身 vtable 地址"闭环验证
+  （本轮 vtable 反查一举定性 ✓ 与 UITextArea::InitAfterClear 误名先例同型）
