@@ -3567,3 +3567,16 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 已知 _tail_000 所在类（从 grep 上下文推断）：gbGfxManager · CEffgbParticle ·
   CTaskTpl 系列 · UIWnd 族 · 具体需逐个确认
 - 这是逐类五维重建的一部分，不可独立于类重建单独做
+
+## 2026-09-25 vtable R12 —— S2 恢复 75/204 ✓✓✓
+### 里程碑
+- S2 从 72 → **75/204** ✓（vtable 过渡期结束）
+- _tail_000 兼容转换（stage3）修复了 3 个断裂单元：CCBStageShadow · PalScriptWaitObj · UI3DCtrl
+- errors 2071→2470（+399：恢复的单元暴露完整错误列表，C1003 截断解除）
+### 修复方法
+- `gfxMgr->_tail_000` → `*(void**)(gfxMgr)` 语义等价（读 vptr = 读 offset 0）
+- stage3_cleanup 一行正则：`re.sub(r'(\w+)->_tail_000\b', r'*(void**)(\1)', code)`
+### P4 进度
+- S2 ≥75 ✓ 达标
+- L1 ≥41 待验证
+- errors ≤2111：2470→2111 需 -359（新暴露错误的逐步修复）
