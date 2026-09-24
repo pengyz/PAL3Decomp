@@ -3317,3 +3317,12 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   均受级联影响 ⇒ **根修 = 完善 include/gbengine 接头尺寸**
 - 工程量：需逐个 gbengine 类型与 IDB/stride 交叉验证 ⇒ 多轮/族
 - 同族影响：GRPinput(m_lpDI IDirectInput8*) · CTrail(gbTexture_D3D) · CCBCamControl(gbVec3D)
+
+## 2026-09-25（goal r50 续）ArcLocale 判定：无编译单元 + 类型未定义 ⇒ 零管线影响
+- ArcLocale.cpp 不存在 ⇒ 不参与编译/比对 ⇒ 13/20 冲突零管线影响 ⇒ 降级
+- 发射头 `PlayerMgr::PoisonState * pstate` 类型未定义 ⇒ 任何 include 均编译失败
+  ⇒ 但因无单元 ⇒ 不影响管线（仅 audit 探针上下文受影响）
+- 剩余冲突类的管线影响分级：
+  * **有单元**：CEffectSystem(14/14) · CEffect(13/13) · TaskMgr(8/8) · CEffMgr(7/48) · Param1(4/5) ⇒ 可行动
+  * **无单元**：ArcLocale(13/20) · CTrail(2/13) · PAL3(87/87 全局变量不影响) ⇒ 零影响，降级
+  * **豁免**：DIDEVICE×2 · CTaskTpl · SceneMgr
