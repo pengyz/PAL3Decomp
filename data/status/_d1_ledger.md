@@ -3509,3 +3509,25 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 ### 当前状态
 - _tail_000 引用仍存在（CCBStageShadow 1 处）⇒ 待 til→struct 同步
 - S2=72 · errors=2071（过渡期基线，允许）
+
+## 2026-09-25 vtable R8 —— 稳定性总结 + 下步交接
+### 当前稳定态（vtable 过渡期基线）
+- S2=72/204 · errors=2071 · L1=41(待验证) · 0 dirty files
+- 相比 vtable 项目前(S2=75, errors=2110)：-3 单元 · -39 错误
+### 已完成
+- P1 ✓ 发射器过滤器修复（virtual 强制 9/9）
+- P2 ✓ 二进制 vtable 全量应用（80 类）
+- P3 ✓ 赋值自动解决
+- 工具：vtable_mapper · 继承树 · check_member_extent 修复
+### P4 待做（下会话）
+- 7 个丢失绿单元中 4 个被新增绿单元抵消（净 -3）
+- 需要逐个修复：CCBStageShadow(1 err: _tail_000) · C2DSpark · C3DSpark · PalScriptWaitObj · UI3DCtrl · UIPushButton · s_RoleState
+- 根因统一：gbengine 头链中 gbGfxManager 双模型断裂（C++ 有 virtual / IDA 有 _tail_000）
+- 修复 = gbengine 头+annotation methods 表同步（上轮方案）
+### 架构资产（保留）
+- _read_vtable_from_binary ✓
+- _get_vtable_addr ✓
+- vtable 占位生成 + virtual 强制 ✓
+- vtable_mapper 门禁 ✓
+- 继承树 _inheritance_tree.json ✓
+- check_member_extent 嵌套修复 ✓
