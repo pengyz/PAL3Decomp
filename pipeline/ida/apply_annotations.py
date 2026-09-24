@@ -313,7 +313,7 @@ def _import_gbengine_headers():
             content = re.sub(r'^\s*#include.*$', '', content, flags=re.MULTILINE)
             content = re.sub(r'^\s*#pragma.*$', '', content, flags=re.MULTILINE)
             full = prelude + '\n' + content
-            result = ida_typeinf.parse_decls(til, full, None, ida_typeinf.PT_SIL)
+            result = ida_typeinf.parse_decls(til, full, None, ida_typeinf.PT_SIL | ida_typeinf.PT_REPLACE)
             imported += 1
             log("  [gbengine] %s (parse=%d)" % (hdr_name, result))
         except Exception as e:
