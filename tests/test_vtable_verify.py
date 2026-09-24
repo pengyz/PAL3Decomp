@@ -37,6 +37,7 @@ import tempfile
 import unittest
 from contextlib import redirect_stdout
 from pathlib import Path
+from unittest import mock
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / 'tools'))
@@ -77,6 +78,8 @@ from vtable_verify import (  # noqa: E402
     bin_table_from_image,
     bin_vbtable,
 )
+# C1 修复轮 R=1 新增件（**在各自测试内导入**：让其余测试在实现前也能跑出真实红灯）
+# from vtable_verify import name_to_va_index, strip_param_list
 
 LIVE = os.environ.get('VTV_LIVE') == '1'
 EXE = PROJECT_ROOT / 'original' / 'PAL3.exe'
@@ -720,6 +723,29 @@ def test_force_emit_live_concrete_and_abstract():
         assert '??_7CAbsNoDtor@@6B@' in ra.symbols, ra.attempts
 
 
+def test_force_emit_live_dummy_ctor_strategy():
+    """真机端到端（`VTV_LIVE=1`）：**无虚析构 + 声明了 ctor** 的抽象类走 `dummy ctor` 策略。
+
+    真机复现（e3.cpp 形态）：`struct AC{AC();virtual int p()=0;virtual int r();};`
+    + `AC::AC(){}` ⇒ `??_7AC@@6B@` 出现（/Od 与 /O2 都出现）。此前这条策略只有**合成
+    编译器**覆盖（`test_force_emit_retries_next_strategy_until_vtable_present`），
+    R=1 顺带项 I2 补真机覆盖：断言 `res.strategy` **就是** dummy ctor（不是"某条策略过了"）。
+    """
+    if not LIVE:
+        raise unittest.SkipTest('设 VTV_LIVE=1 才跑真机编译测试')
+    with tempfile.TemporaryDirectory() as d:
+        with open(os.path.join(d, 'probe.h'), 'w') as f:
+            f.write('struct CAbsCtor { CAbsCtor(); virtual int p() = 0;'
+                    ' virtual int r(); int x; };\n'
+                    'inline int CAbsCtor::r() { return x; }\n')
+        spec = ProbeSpec(cls='CAbsCtor', header='probe.h', abstract=True,
+                         has_virtual_dtor=False, ctor_declared=True,
+                         pure_virtuals=('int p()',))
+        res = force_emit(spec, d, include_dirs=[d], flags=['/Od'])
+        assert res.strategy == PROBE_STRATEGY_DUMMY_CTOR, res.attempts
+        assert '??_7CAbsCtor@@6B@' in res.symbols, res.attempts
+
+
 def test_force_emit_live_o2_dead_store_caught():
     """/O2 死存储消除：派生 shim 写派生 vptr 会吃掉基类 vptr 写 ⇒ 基类表**不发射**。
 
@@ -898,8 +924,9 @@ def test_dynamic_tuple_compared_as_triple():
 def test_va_reduction_identity_prefers_va():
     """两侧都能归约到 VA 时，身份判据用 **VA**（简报"归约到函数 VA 对比"）。
 
-    名字键只是**归约的中间量**：真正的身份是 VA。这里同时验证 `va_of` 注入两条路径
-    （obj 侧按符号名键映射、bin 侧按表槽 VA 反查目标函数 VA）。
+    名字键只是**归约的中间量**：真正的身份是 VA。注入两条路径：.obj 侧按**符号名键**映射到
+    VA（.obj 不知道自己会被链到哪，只能靠名字）；bin 侧**直接**取已知真实 VA
+    （普通槽 = 槽自身，thunk 槽 = `jmp` 目标）——C1 修复轮 R=1 后 bin 侧**不再**名字反查。
     """
     with tempfile.TemporaryDirectory() as d:
         p = fixture_obj(os.path.join(d, 'f.obj'))
@@ -910,9 +937,9 @@ def test_va_reduction_identity_prefers_va():
         mapping = {'D3::ff': 0x401000, 'A3::onlyA': 0x401010}
         o = normalize_obj_slots(vt['??_7D3@@6BA3@@@'], art, va_of=mapping)
         tbl = BinTable(base=IMG_BASE, end=IMG_BASE + 8, slots=(at['ffD3'], at['onlyA']))
-        b = normalize_bin_slots(tbl, img, idx, va_of=mapping)
+        b = normalize_bin_slots(tbl, img, idx)
         assert [s.va for s in o] == [0x401000, 0x401010], o
-        assert [s.va for s in b] == [0x401000, 0x401010], b
+        assert [s.va for s in b] == [at['ffD3'], at['onlyA']], b
         res = compare_tables(o, b)
         assert res.identity_mode == 'va', res.identity_mode
         assert res.ok, res.deviations
@@ -996,6 +1023,390 @@ def test_cli_compare_without_bin_base_is_usage_error():
             rc = main(['--obj', p, '--cls', 'D3', '--bin-base', '0x0'])
         # --bin-base 0x0 非法（不在镜像里）⇒ 退出码 2，而不是假装比过
         assert rc == 2, (rc, buf.getvalue())
+
+
+# =====================================================================================
+# 6. C1 修复轮 R=1：符号名 → VA 归约序列（decomp 名**带参数表** ↔ .obj mangled 键）
+# =====================================================================================
+#
+# 评审 R=1 的 C1：`main()` 对比模式两侧都**没接 VA 归约** ⇒ `NormSlot.identity` 恒退化
+# 成名字文本 ⇒ 真机 decomp 名带参数表（`gbLightObj::GetGfxManager(void)`）、.obj 侧
+# 从 mangled 归约出来的键不带（`gbLightObj::GetGfxManager`）⇒ **表完全正确也逐槽误报**
+# （评审真机量化：189 表 / 639 槽中 ≥552 槽必误报）。
+#
+# 本节夹具逐项复现真机 0x56AB28（gbLightObj 主表）形态：
+#   0x42C6A0 `gbLightObj::GetAABBox(gbAABBox *)`  普通槽
+#   0x42C6E0 `gbLightObj::GetGfxManager(void)`    普通槽
+#   0x42C8D0 `83 e9 08; e9 88 6f ff ff`          静态 adjustor thunk（**名字挂 thunk、
+#                                                  其 jmp 目标 0x423860 在 idx 里无名字**）
+
+NAMED_CLS = 'gbLightObj'
+NAMED_VT_SYM = '??_7gbLightObj@@6B@'                 # 表符号（真机同表**无 RTTI COL**）
+NAMED_FUNC_AABBOX = '?GetAABBox@gbLightObj@@UAEXXZ'
+NAMED_FUNC_GFX = '?GetGfxManager@gbLightObj@@UAEXXZ'
+NAMED_FUNC_OTHER = '?GetOtherFn@gbLightObj@@UAEXXZ'
+NAMED_THUNK_CGENTRY = '?GetCGEntry@gbLightObj@@W7AEXXZ'
+NAMED_TARGET_CGENTRY = '?GetCGEntry@gbLightObj@@UAEXXZ'
+
+NAMED_VA = {'aabbox': 0x401000,      # 普通函数（真机 0x42C6A0）
+            'gfx': 0x401010,         # 普通函数（真机 0x42C6E0）
+            'cgentry': 0x401020,     # thunk 的 jmp 目标（真机 0x423860，idx 里**无名字**）
+            'thunk': 0x401100}       # thunk 本体（真机 0x42C8D0，idx 里**有名字**）
+NAMED_BASE = 0x402000                # 表 address point
+
+
+def named_code():
+    """.text 原始字节（VA 0x401000 起）：2 个普通函数 + 1 个真机同形静态 adjustor thunk。"""
+    code = bytearray()
+
+    def emit(va, data):
+        code.extend(b'\x90' * (va - (0x401000 + len(code))))
+        code.extend(data)
+
+    emit(NAMED_VA['aabbox'], b'\x8b\x41\x10\xc3')          # mov eax,[ecx+0x10]; ret
+    emit(NAMED_VA['gfx'], b'\x8b\x41\x08\xc3')
+    emit(NAMED_VA['cgentry'], b'\x8b\x41\x04\xc3')         # thunk 目标本体
+    # 真机 0x42C8D0 = `83 e9 08; e9 88 6f ff ff`（sub ecx,8; jmp 0x423860）同形：
+    emit(NAMED_VA['thunk'], b'\x83\xe9\x08\xe9\x18\xff\xff\xff')      # jmp 0x401020
+    return bytes(code)
+
+
+def named_table_bytes():
+    """表内容（3 槽，**无 COL 前缀**）：[GetAABBox][GetGfxManager][GetCGEntry thunk]。"""
+    return struct.pack('<III', NAMED_VA['aabbox'], NAMED_VA['gfx'], NAMED_VA['thunk'])
+
+
+def fixture_named_image():
+    """内存镜像（与真机 gbLightObj 主表同形）。"""
+    img = BytesImage(image_base=0x400000)
+    img.add_section('.text', 0x1000, named_code(), executable=True)
+    img.add_section('.rdata', 0x2000, named_table_bytes())
+    return img
+
+
+def fixture_named_index():
+    """VA→名字（**真机 decomp 形态：带参数表**）；thunk VA 有名字、其目标函数无名字。"""
+    return {NAMED_VA['aabbox']: 'gbLightObj::GetAABBox(gbAABBox *)',
+            NAMED_VA['gfx']: 'gbLightObj::GetGfxManager(void)',
+            NAMED_VA['thunk']: 'gbLightObj::GetCGEntry(char)'}
+
+
+def fixture_named_obj(path, second=NAMED_FUNC_GFX):
+    """`.obj` 侧：`??_7gbLightObj@@6B@` 3 槽（2 普通 + 1 静态 adjustor），与真机同形。"""
+    b = CoffBuilder()
+    text = bytearray()
+    off = {}
+
+    def emit(name, data):
+        off[name] = len(text)
+        text.extend(data)
+        while len(text) % 4:
+            text.append(0x90)
+
+    emit(NAMED_FUNC_AABBOX, b'\x8b\x41\x10\xc3')
+    emit(NAMED_FUNC_GFX, b'\x8b\x41\x08\xc3')
+    emit(NAMED_FUNC_OTHER, b'\x8b\x41\x0c\xc3')
+    emit(NAMED_TARGET_CGENTRY, b'\x8b\x41\x04\xc3')
+    emit(NAMED_THUNK_CGENTRY, b'\x83\xe9\x08' + _jmp(0))    # sub ecx,8; jmp <reloc 目标>
+    ti = b.add_section('.text', bytes(text), chars=0x60000020)
+    b.add_reloc(ti, off[NAMED_THUNK_CGENTRY] + 4, NAMED_TARGET_CGENTRY)
+    for nm in (NAMED_FUNC_AABBOX, NAMED_FUNC_GFX, NAMED_FUNC_OTHER,
+               NAMED_TARGET_CGENTRY, NAMED_THUNK_CGENTRY):
+        b.add_symbol(nm, ti, off[nm])
+    rd = b.add_section('.rdata', b'\x00' * 12)
+    b.add_symbol(NAMED_VT_SYM, rd, 0)                        # 无 COL ⇒ address point 偏移 0
+    b.add_reloc(rd, 0, NAMED_FUNC_AABBOX)
+    b.add_reloc(rd, 4, second)
+    b.add_reloc(rd, 8, NAMED_THUNK_CGENTRY)
+    return b.write(path)
+
+
+def named_sides(second=NAMED_FUNC_GFX):
+    """同形两侧（.obj 夹具 ↔ 内存镜像）+ 真机形态名字索引。"""
+    d = tempfile.mkdtemp()
+    p = fixture_named_obj(os.path.join(d, 'gb.obj'), second=second)
+    art = parse_obj_artifacts(p)
+    vt = obj_vtables(p)[NAMED_VT_SYM]
+    img = fixture_named_image()
+    idx = fixture_named_index()
+    bt = BinTable(base=NAMED_BASE, end=NAMED_BASE + 12,
+                  slots=(NAMED_VA['aabbox'], NAMED_VA['gfx'], NAMED_VA['thunk']))
+    return p, art, vt, img, idx, bt
+
+
+#: `name_to_va_index(fixture_named_index(), fixture_named_image())` 的期望输出
+#: （**参数表剥离 + thunk 名字重定向**；构造本身另有测试覆盖）
+NAMED_MAPPING = {'gbLightObj::GetAABBox': NAMED_VA['aabbox'],
+                 'gbLightObj::GetGfxManager': NAMED_VA['gfx'],
+                 'gbLightObj::GetCGEntry': NAMED_VA['cgentry']}
+
+
+def write_min_pe(path, sections, image_base=0x400000):
+    """写一个**最小但真实**的 PE32（头部 + 原始节数据）—— 让 CLI 对比路径走真 `PEImage`。
+
+    sections: `[(节名, RVA, 原始字节, 是否可执行)]`（RVA 相对 image_base）。
+    """
+    pe, optsz = 0x40, 0xE0
+    so = pe + 24 + optsz
+    offs = []
+    cur = 0x400
+    for _nm, _rva, data, _ex in sections:
+        offs.append(cur)
+        cur = _align(cur + len(data), 0x200)
+    out = bytearray(cur)
+    struct.pack_into('<H', out, 0, 0x5A4D)                        # MZ
+    struct.pack_into('<I', out, 0x3c, pe)                        # e_lfanew
+    out[pe:pe + 4] = b'PE\x00\x00'
+    struct.pack_into('<HHIIIHH', out, pe + 4, 0x14c, len(sections), 0, 0, 0, optsz,
+                     0x0102)
+    struct.pack_into('<I', out, pe + 24 + 28, image_base)        # ImageBase
+    for i, (nm, rva, data, ex) in enumerate(sections):
+        o = so + 40 * i
+        out[o:o + 8] = nm.encode('ascii')[:8].ljust(8, b'\x00')
+        struct.pack_into('<IIII', out, o + 8, len(data), rva, len(data), offs[i])
+        struct.pack_into('<I', out, o + 36, 0x40000040 | (0x20000000 if ex else 0))
+        out[offs[i]:offs[i] + len(data)] = data
+    with open(path, 'wb') as f:
+        f.write(bytes(out))
+    return path
+
+
+def named_pe(path):
+    """与 `fixture_named_image()` 同布局的真 PE 文件（CLI 路径用）。"""
+    return write_min_pe(path, [('.text', 0x1000, named_code(), True),
+                               ('.rdata', 0x2000, named_table_bytes(), False)])
+
+
+def test_strip_param_list_normalizes_decomp_names_to_obj_key_space():
+    """参数表剥离归一：decomp 名（带参数表）→ 与 .obj 侧 mangled 归约键同一空间。"""
+    from vtable_verify import strip_param_list
+    assert strip_param_list('gbLightObj::GetCGEntry(char)') == 'gbLightObj::GetCGEntry'
+    assert strip_param_list('gbLightObj::GetGfxManager(void)') == 'gbLightObj::GetGfxManager'
+    assert strip_param_list('gbLightObj::GetAABBox(gbAABBox *)') == 'gbLightObj::GetAABBox'
+    assert strip_param_list('AStarPathFinder::ReleaseAll(void)') == 'AStarPathFinder::ReleaseAll'
+    assert strip_param_list('UIWnd::OnKeyDown(int,unsigned int)') == 'UIWnd::OnKeyDown'
+    assert strip_param_list('CEffCylinder::Create(char const *)') == 'CEffCylinder::Create'
+    assert strip_param_list('D3::ff') == 'D3::ff'            # 无参数表 ⇒ 原样
+    assert strip_param_list('??_7D3@@6BA3@@@') == '??_7D3@@6BA3@@@'
+    assert strip_param_list('?GetCGEntry@gbLightObj@@W7AEXXZ') == \
+        '?GetCGEntry@gbLightObj@@W7AEXXZ'
+    assert strip_param_list('') == '' and strip_param_list(None) == ''
+
+
+def test_name_to_va_index_strips_params_and_redirects_thunk_names_to_target():
+    """名字→VA 映射：**参数表剥离** + thunk VA 上的名字**重定向到 jmp 目标** + 歧义剔除。
+
+    真机 0x42C8D0 的 idx 名是 `gbLightObj::GetCGEntry(char)`——名字挂在 **thunk** 上，
+    而它的 jmp 目标 0x423860 在 idx 里**没有名字**。不重定向就会把 .obj 侧指到 thunk 地址，
+    于是"表完全正确"时反而报 slot_key（评审实测 8 处，全是 adjustor thunk）。
+    """
+    from vtable_verify import name_to_va_index
+    idx = fixture_named_index()
+    img = fixture_named_image()
+    m = name_to_va_index(idx, img)
+    assert m['gbLightObj::GetAABBox'] == NAMED_VA['aabbox']
+    assert m['gbLightObj::GetGfxManager'] == NAMED_VA['gfx']
+    assert m['gbLightObj::GetCGEntry'] == NAMED_VA['cgentry'], m    # 重定向到 jmp 目标
+    # 不给镜像 ⇒ 不重定向：重定向是**字节证据**驱动的（`decode_adjustor_chain`），不是猜的
+    assert name_to_va_index(idx)['gbLightObj::GetCGEntry'] == NAMED_VA['thunk']
+    # 归一后同名多 VA（重载）⇒ **剔除**（不猜），退回名字判据
+    amb = {0x401000: 'Cls::m(void)', 0x401010: 'Cls::m(int)', 0x401020: 'Cls::n(void)'}
+    m2 = name_to_va_index(amb, img)
+    assert 'Cls::m' not in m2 and m2['Cls::n'] == 0x401020, m2
+
+
+def test_bin_slot_va_is_known_target_or_slot_va_never_name_lookup():
+    """bin 侧 `va` = **已知的真实 VA**：普通槽 = 槽自身 VA；thunk 槽 = `jmp` 目标。
+
+    修复前走 `resolve(key)` 名字反查（且两侧都没注入映射）⇒ 恒 None
+    （同源缺陷：丢弃真实已知的目标 VA）。
+    """
+    img = fixture_named_image()
+    idx = fixture_named_index()
+    bt = BinTable(base=NAMED_BASE, end=NAMED_BASE + 12,
+                  slots=(NAMED_VA['aabbox'], NAMED_VA['gfx'], NAMED_VA['thunk']))
+    slots = normalize_bin_slots(bt, img, idx)
+    assert [s.va for s in slots] == [NAMED_VA['aabbox'], NAMED_VA['gfx'],
+                                     NAMED_VA['cgentry']], slots
+    # 原始名字保留（报告可读）；参数表剥离后的 `name_id` 是**名字判据**空间
+    assert slots[2].key == 'gbLightObj::GetCGEntry(char)', slots[2].key
+    assert slots[2].name_id == 'gbLightObj::GetCGEntry'
+    assert slots[2].kind == KIND_ADJUSTOR_STATIC and slots[2].offset == 8, slots[2]
+
+
+def test_obj_slots_resolve_va_from_param_stripped_decomp_name_index():
+    """.obj 侧接上**名字→VA** 映射 ⇒ 3 槽全部归约到真实 VA（含 thunk 槽，经重定向）。"""
+    _p, art, vt, _img, _idx, _bt = named_sides()
+    slots = normalize_obj_slots(vt, art, va_of=dict(NAMED_MAPPING))
+    assert [s.key for s in slots] == ['gbLightObj::GetAABBox', 'gbLightObj::GetGfxManager',
+                                      'gbLightObj::GetCGEntry'], [s.key for s in slots]
+    assert [s.va for s in slots] == [NAMED_VA['aabbox'], NAMED_VA['gfx'],
+                                     NAMED_VA['cgentry']], slots
+    assert all(s.resolution == 'va' for s in slots), [s.resolution for s in slots]
+
+
+def test_compare_decomp_param_names_vs_mangled_obj_is_ok():
+    """**C1 核心**（评审引作真机证据的 0x56AB28 形态）：表完全正确 ⇒ **零偏差**。
+
+    .obj：`gbLightObj::GetAABBox` / `GetGfxManager` / `GetCGEntry`（mangled 归约，无参数表）
+    bin：`gbLightObj::GetAABBox(gbAABBox *)` / `GetGfxManager(void)` / `GetCGEntry(char)`
+    修复前：两侧 va 恒 None ⇒ identity 恒「名字文本」⇒ 3 槽全报 slot_key。
+    """
+    _p, art, vt, img, idx, bt = named_sides()
+    o = normalize_obj_slots(vt, art, va_of=dict(NAMED_MAPPING))
+    b = normalize_bin_slots(bt, img, idx)
+    res = compare_tables(o, b)
+    assert res.ok, res.deviations
+    assert res.identity_mode == 'va', res.identity_mode
+    assert 'identity=va' in render_report(res), render_report(res)
+
+
+def test_compare_passes_by_param_stripped_name_when_va_unavailable():
+    """VA 不可解析时的**次优判据**：参数表剥离后的名字（.obj 键不带参数表）。"""
+    _p, art, vt, img, idx, bt = named_sides()
+    res = compare_tables(normalize_obj_slots(vt, art), normalize_bin_slots(bt, img, idx))
+    assert res.ok, res.deviations
+    assert res.identity_mode == 'name', res.identity_mode
+
+
+def test_compare_still_reports_wrong_target_with_decomp_style_names():
+    """**修复不得变成放行**：.obj 槽装了同类族的别的函数 ⇒ 仍报 slot_key（定位到槽位）。"""
+    _p, art, vt, img, idx, bt = named_sides(second=NAMED_FUNC_OTHER)
+    res = compare_tables(normalize_obj_slots(vt, art, va_of=dict(NAMED_MAPPING)),
+                         normalize_bin_slots(bt, img, idx))
+    assert not res.ok
+    assert [(d.kind, d.index) for d in res.deviations] == [('slot_key', 1)], res.deviations
+
+
+def test_inherited_alias_hint_survives_param_list():
+    """`A3::onlyA` vs `D3::onlyA(char)`：MI 继承槽的**提示**必须还在（参数表不得吃掉它）。"""
+    a = NormSlot(side='obj', raw='?onlyA@A3@@UAEXXZ', key='A3::onlyA', kind=KIND_FN)
+    b = NormSlot(side='bin', raw='0x401000', key='D3::onlyA(char)', kind=KIND_FN)
+    res = compare_tables([a], [b])
+    assert not res.ok
+    dev = [d for d in res.deviations if d.kind == 'slot_key'][0]
+    assert '仅归属类不同' in dev.detail, dev.detail
+
+
+def test_cli_compare_path_resolves_va_identity():
+    """**CLI 对比路径**（C1 全绿漏过的病因：此前无任何测试走 `main()` 对比模式）。
+
+    .obj mangled 键 + bin decomp 带参数表名字 + 名字→VA 归约 ⇒ 退出码 0、零偏差、identity=va。
+    """
+    import vtable_verify as mod
+    with tempfile.TemporaryDirectory() as d:
+        obj = fixture_named_obj(os.path.join(d, 'gb.obj'))
+        pe = named_pe(os.path.join(d, 'min.exe'))
+        idx = fixture_named_index()
+        with mock.patch.object(mod, 'EXE', pe), \
+                mock.patch.object(mod, 'load_va_index', lambda: idx), \
+                mock.patch.object(mod, 'load_bin_targets', lambda: (NAMED_BASE,)):
+            buf = io.StringIO()
+            with redirect_stdout(buf):
+                rc = main(['--obj', obj, '--cls', NAMED_CLS,
+                           '--bin-base', '0x402000', '--json'])
+        out = buf.getvalue()
+        assert rc == 0, (rc, out)
+        data = json.loads(out)
+        assert data['deviations'] == [], data['deviations']
+        assert data['identity_mode'] == 'va', data
+        assert (data['obj_count'], data['bin_count']) == (3, 3), data
+
+
+def test_cli_compare_path_reports_wrong_slot_target():
+    """CLI 对比路径的**反向控制**：.obj 槽 1 装了别的函数 ⇒ 退出码 1 + slot 1 / slot_key。"""
+    import vtable_verify as mod
+    with tempfile.TemporaryDirectory() as d:
+        obj = fixture_named_obj(os.path.join(d, 'bad.obj'), second=NAMED_FUNC_OTHER)
+        pe = named_pe(os.path.join(d, 'min.exe'))
+        idx = fixture_named_index()
+        with mock.patch.object(mod, 'EXE', pe), \
+                mock.patch.object(mod, 'load_va_index', lambda: idx), \
+                mock.patch.object(mod, 'load_bin_targets', lambda: (NAMED_BASE,)):
+            buf = io.StringIO()
+            with redirect_stdout(buf):
+                rc = main(['--obj', obj, '--cls', NAMED_CLS, '--bin-base', '0x402000'])
+        out = buf.getvalue()
+        assert rc == 1, (rc, out)
+        assert 'slot 1' in out and 'slot_key' in out, out
+
+
+def test_cli_compare_real_gblightobj_table_is_clean():
+    """**真机端到端**（评审 R=1 引作 C1 证据的 gbLightObj 主表 0x56AB28）：
+
+    真 `load_va_index()` / 真 ctor 表起始 / 真 thunk（0x42C8D0 ⇒ 0x423860，delta 8）
+    ⇒ 零偏差 + `identity=va`。修复前该表 3 槽全报 slot_key。
+    """
+    if not EXE.exists():
+        raise unittest.SkipTest('PAL3.exe 不存在')
+    with tempfile.TemporaryDirectory() as d:
+        obj = fixture_named_obj(os.path.join(d, 'gb.obj'))
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            rc = main(['--obj', obj, '--cls', NAMED_CLS, '--bin-base', '0x56AB28'])
+        out = buf.getvalue()
+        assert rc == 0, out
+        assert 'identity=va' in out, out
+        assert '逐槽一致' in out, out
+
+
+def test_real_binary_slot_identity_index_is_self_consistent():
+    """真机全库：**名字→VA 索引与槽真实 VA 自洽**（"表完全正确"假设下零冲突）。
+
+    做法：对每个真机槽，把 .obj 侧键取成 bin 键的**参数表剥离形态**（表正确 ⇒ 两侧同一
+    函数），用 `name_to_va_index` 归约 .obj 侧 VA，再要求它 == bin 侧真实 VA
+    （普通槽 = 槽自身；thunk 槽 = jmp 目标）。
+
+    修复前实测 **8 处冲突**（全是 adjustor thunk：名字挂在 thunk VA 上、其目标函数在 idx
+    里没有名字）⇒ 这就是 C1 的"同源缺陷"在真机上的形态。
+    """
+    from vtable_verify import load_bin_targets, load_va_index, name_to_va_index
+    if not EXE.exists():
+        raise unittest.SkipTest('PAL3.exe 不存在')
+    img = PEImage(str(EXE))
+    idx = load_va_index()
+    targets = load_bin_targets()
+    mapping = name_to_va_index(idx, img)
+    tables = slots = resolved = 0
+    conflicts = []
+    for base in targets:
+        if not img.can_read(base, 4):
+            continue
+        bt = bin_table_from_image(img, base, idx=idx, targets=targets)
+        if not bt.slots:
+            continue
+        tables += 1
+        for s in normalize_bin_slots(bt, img, idx):
+            slots += 1
+            ova = mapping.get(s.name_id)
+            if ova is None:
+                continue
+            resolved += 1
+            if ova != s.va:
+                conflicts.append((hex(base), hex(s.va), s.key, hex(ova)))
+    assert not conflicts, conflicts[:5]
+    assert tables >= 180 and slots >= 600, (tables, slots)
+    assert resolved >= 400, (resolved, slots)
+
+
+def test_compare_notes_when_name_criterion_has_unnamed_side():
+    """bin 侧无名字（`0x<VA>` 占位）时**必须留痕**：名字判据不可用，绝不静默放过。
+
+    真机 146 槽如此（79 槽是 import stub `ff 25 <IAT>`，其余是未命名函数本体）；
+    `.obj` 侧名字在 idx 里无覆盖 ⇒ VA 判据也归约不出来 ⇒ 仍按 slot_key 保守报，
+    但报告必须写明原因（否则无法与"真差异"区分）。
+    """
+    a = NormSlot(side='obj', raw='?ff@D3@@UAEXXZ', key='D3::ff', kind=KIND_FN)
+    b = NormSlot(side='bin', raw='0x402BD0', key='0x00402BD0', kind=KIND_FN, va=0x402BD0)
+    res = compare_tables([a], [b])
+    assert not res.ok
+    assert [d.kind for d in res.deviations] == ['slot_key'], res.deviations
+    assert any('无名字' in n for n in res.notes), res.notes
+    assert '无名字' in render_report(res), render_report(res)
+    # 两侧**都**无名字且相等 ⇒ 没有 slot_key 就不该留"保守报"的痕（留痕必须与偏差对应）
+    same = compare_tables([NormSlot(side='obj', raw='x', key='0x1', kind=KIND_FN)],
+                          [NormSlot(side='bin', raw='0x1', key='0x1', kind=KIND_FN)])
+    assert same.ok and not same.notes, same.notes
 
 
 if __name__ == '__main__':

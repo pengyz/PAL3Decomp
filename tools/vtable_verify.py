@@ -20,8 +20,20 @@ thunk 归一错（`this` 调整量错）都能让 L1 全绿而二进制不等。
 两侧归一成同一 `NormSlot`：
 
     (目标函数键, kind)                          —— 普通槽
-    (目标函数键, kind, this 调整量)              —— 静态 adjustor thunk（二元组）
+    (目标函数键, kind, this 调整量)              —— 静态 adjustor thunk（二元组语义）
     (目标函数键, kind, 'dynamic', const)         —— 动态 delta（**三元组**，见 B-4）
+
+**身份判据是 VA，不是名字文本**（C1 修复轮 R=1 的结论）：名字键只是归约的中间量，
+两侧键空间本就不同——`.obj` 侧从 mangled 归约**永远不带参数表**（`gbLightObj::GetGfxManager`），
+而二进制侧 `va_index()` 的名字**带参数表**（`gbLightObj::GetGfxManager(void)`，真机 3618 条
+里 3185 条如此）⇒ 只比名字文本时"表完全正确"也逐槽假报 `slot_key`（真机量化：189 表 /
+639 槽中 ≥552 槽必误报）。故：
+
+1. `.obj` 侧由 `name_to_va_index(idx, image)` 造 **名字→VA** 映射（参数表剥离 + thunk 名字
+   重定向到 `jmp` 目标 + 歧义名剔除），`main()` 对比模式必须传入；
+2. 二进制侧 `va` **直接取已知真实 VA**（普通槽 = 槽自身，thunk 槽 = `jmp` 目标），
+   **不做名字反查**（反查会把真实 VA 丢掉）；
+3. 两侧都有 VA ⇒ 比 VA；否则比 `strip_param_list` 后的名字（次优判据）。混比两种判据必然假报。
 
 `kind` 词表复用 Task 2 的 `vtable_slot_classifier.classify_slot`（6 种：
 `fn`/`deleting_dtor`/`adjustor_static`/`adjustor_vbase`/`purecall`/`composite`）——
@@ -105,7 +117,8 @@ __all__ = [
     'KIND_FN', 'KIND_DELETING_DTOR', 'KIND_ADJUSTOR_STATIC', 'KIND_ADJUSTOR_VBASE',
     'KIND_PURECALL', 'KIND_COMPOSITE',
     'SIDE_OBJ', 'SIDE_BIN', 'DYNAMIC_MARK',
-    'name_key', 'mangled_class_token', 'is_thunk_symbol',
+    'name_key', 'mangled_class_token', 'is_thunk_symbol', 'strip_param_list',
+    'name_to_va_index',
     'ObjSlot', 'ObjVTable', 'ObjArtifacts', 'parse_obj_artifacts',
     'obj_vtables', 'obj_vbtables', 'resolve_obj_thunk',
     'AdjustorChain', 'decode_adjustor_chain', 'image_thunk',
@@ -204,6 +217,26 @@ def name_key(name):
 def mangled_class_token(cls):
     """`Outer::Inner` → `Inner@Outer`（MSVC vftable 符号里的类令牌）。"""
     return '@'.join(reversed([p for p in cls.split('::') if p]))
+
+
+#: 参数表后缀（`GetGfxManager(void)` / `GetCGEntry(char)` / `OnKeyDown(int,unsigned int)`）
+_PARAM_LIST_RE = re.compile(r'\(.*\)\s*$')
+
+
+def strip_param_list(name):
+    """`Cls::Func(void)` / `Cls::Func(gbAABBox *)` → `Cls::Func`（**参数表剥离归一**）。
+
+    为什么必须有：**decomp JSON / 注解里的名字带参数表**（真机 `va_index()` 3618 条里
+    3185 条带参数表），而 .obj 侧从 mangled 符号归约出来的键**永远不带**（`name_key` 只取
+    类令牌链 + 函数名）⇒ 两侧若不归一到同一名字空间，**表完全正确也会逐槽误报 `slot_key`**
+    （评审 R=1 真机量化：189 表 / 639 槽中 406 槽带参数表 + 146 槽无名字 ⇒ ≥552 槽必误报）。
+
+    只剥**末尾整段**参数表：mangled 名（`?GetCGEntry@gbLightObj@@W7AEXXZ`）不含括号尾，
+    原样返回；`__purecall` / `D3::ff` 亦然。
+    """
+    if not name:
+        return ''
+    return _PARAM_LIST_RE.sub('', name).strip()
 
 
 def is_thunk_symbol(name):
@@ -713,11 +746,47 @@ def _va_resolver(va_of):
     return lambda key: va_of.get(key)
 
 
+def name_to_va_index(index, image=None):
+    """VA→名字索引 → **名字→VA**（.obj 侧 VA 归约用；`index` = `load_va_index()` 的产物）。
+
+    三条规则（每条都有真机证据，**不猜**）：
+
+    1. **参数表剥离**（`strip_param_list`）：`gbLightObj::GetCGEntry(char)` ⇒
+       `gbLightObj::GetCGEntry`——.obj 侧 mangled 归约键的形态。
+    2. **thunk 名字重定向到 jmp 目标**（给了 `image` 时）：真机 0x42C8D0 的 idx 名是
+       `gbLightObj::GetCGEntry(char)`（名字挂在 **thunk 自身**上），而它的 jmp 目标
+       0x423860 在 idx 里**没有名字** ⇒ 不重定向就会把 .obj 侧指到 thunk 地址，
+       于是"表完全正确"时反而报 `slot_key`（真机实测 8 处，全是 adjustor thunk）。
+       重定向由 `decode_adjustor_chain` 的**字节**决定（`jmp rel32` 目标），不是名字猜测。
+       ⚠️ 真机另有 79 条 `e9 <rel>; padding` 形态（ILT/跳转桩）同样命中此规则，
+       bin 侧 `image_thunk()` 对它们给出**同一目标** ⇒ 两侧判据一致。
+    3. **歧义名剔除**：同一归一名的多个目标 VA（如重载 `CCBStage::DoTask` 真机 53 例、
+       `_sdtor_*`）⇒ **不归约**（返回时不含该名）⇒ 该槽退回名字判据，而不是猜一个 VA。
+    """
+    groups = {}
+    for va, name in (index or {}).items():
+        if not name:
+            continue
+        key = strip_param_list(name_key(name))
+        if not key:
+            continue
+        target = va
+        if image is not None:
+            chain = decode_adjustor_chain(image.read, va)
+            if chain.ok and chain.target_va:
+                target = chain.target_va
+        groups.setdefault(key, set()).add(target)
+    return {k: next(iter(v)) for k, v in groups.items() if len(v) == 1}
+
+
 @dataclass(frozen=True)
 class NormSlot:
     """归一化后的一个槽（两侧同构，可比）。
 
     key       名字键（`Cls::Func`）——两侧归约到同一键空间
+    name_id   `key` 的**参数表剥离形态**（`GetCGEntry(char)` ⇒ `GetCGEntry`）：
+              VA 不可解析时的次优判据；两侧键空间本来就不同（decomp 带参数表、
+              mangled 不带），不剥就恒不等 ⇒ 表正确也误报
     va        该槽**目标函数**的 VA（能归约出来时填；两侧都有 ⇒ 身份判据用 VA）
     kind      Task 2 词表（fn/deleting_dtor/adjustor_static/adjustor_vbase/purecall/composite）
     offset    this 调整量。纯静态链 = 子对象偏移（`sub ecx,N` ⇒ +N）；
@@ -737,12 +806,25 @@ class NormSlot:
     resolution: str = 'name'
 
     @property
+    def name_id(self):
+        """名字身份 = `key` 的**参数表剥离**形态（VA 不可解析时的判据）。"""
+        return strip_param_list(self.key)
+
+    @property
     def identity(self):
-        return ('va', self.va) if self.va is not None else ('key', self.key)
+        """**单侧**身份（VA 优先，退化到名字身份）。两侧判等请用 `compare_tables`
+        （它就是为此存在的：一侧有 VA、另一侧没有时**不可**拿两种判据互比）。"""
+        return ('va', self.va) if self.va is not None else ('key', self.name_id)
 
     @property
     def normalized(self):
-        """归一化元组（简报 §3.6）：普通 (key,kind)｜静态三元｜动态 **三元组**（B-4）。"""
+        """归一化元组（简报 §3.6）：普通 `(key,kind)`｜静态/复合 `(key,kind,offset)`
+        ｜动态 `(key,kind,'dynamic',const)`。
+
+        ⚠️ 静态 adjustor 这里是**三元组**（`(目标函数, 槽型, this 调整量)`），简报 §3.6 的
+        "二元组"指 `(目标函数, this 调整量)` 这一**语义**——多出的 `kind` 维是 Task 2 词表
+        要求的归一分量（复合槽与静态槽必须可比），两者语义等价，故保持三元组。
+        """
         if self.dynamic:
             return (self.key, self.kind, DYNAMIC_MARK, self.offset)
         if self.kind in (KIND_ADJUSTOR_STATIC, KIND_ADJUSTOR_VBASE, KIND_COMPOSITE):
@@ -768,7 +850,12 @@ class NormSlot:
 
 
 def normalize_obj_slots(table, artifacts, va_of=None):
-    """编译产物侧 → list[NormSlot]（thunk 归一 + kind 分类 + VA 归约）。"""
+    """编译产物侧 → list[NormSlot]（thunk 归一 + kind 分类 + VA 归约）。
+
+    `va_of` = **名字→VA** 映射（`main()` 用 `name_to_va_index(idx, image)` 造，键是
+    **参数表剥离**后的名字）。.obj 是**可重定位**产物、自己不知道会被链到哪 ⇒ 只能靠
+    符号名键查真实 VA；查不到就留 `va=None`，对比时退回名字判据（`name_id`）。
+    """
     resolve = _va_resolver(va_of)
     out = []
     for i, slot in enumerate(table.slots):
@@ -790,6 +877,9 @@ def normalize_obj_slots(table, artifacts, va_of=None):
             notes.extend(chain.notes)
         key = name_key(target)
         va = resolve(key)
+        if va is None and strip_param_list(key) != key:
+            # 文本名带参数表时（非 mangled 符号）也尝试剥离形态
+            va = resolve(strip_param_list(key))
         out.append(NormSlot(side=SIDE_OBJ, raw=slot.name, key=key, kind=cl.kind,
                             offset=(chain.static_delta if chain and chain.ok else 0),
                             dynamic=bool(chain and chain.ok and chain.dynamic),
@@ -812,12 +902,16 @@ def image_thunk(image, addr, index=None):
     return replace(chain, kind=cl.kind, key=key, notes=tuple(chain.notes) + tuple(cl.notes))
 
 
-def normalize_bin_slots(table, image, index=None, va_of=None):
-    """二进制侧 → list[NormSlot]（thunk 归一 + kind 分类）。
+def normalize_bin_slots(table, image, index=None):
+    """二进制侧 → list[NormSlot]（thunk 归一 + kind 分类 + **已知真实 VA**）。
 
-    普通槽直接按 `va_index()` 的名字归约；thunk 槽按**目标函数**归约（与 .obj 侧一致）。
+    `va` **直接取已知的真实 VA**：thunk 槽 = `jmp` 目标（`th.target_va`），普通槽 = 槽自身 VA。
+
+    ⚠️ **刻意不做名字反查**（C1 修复轮 R=1 的同源缺陷）：反查要么依赖外部映射、
+    要么把**已经算出来的真实 VA 丢掉**（真机 146 槽在 idx 里没有名字 ⇒ 反查必得 None），
+    于是两侧 `va` 恒为 None、身份判据退化成名字文本 ⇒ 表正确也误报。
+    这里的 VA 是**字节证据**（槽指针 + `jmp rel32`），不依赖名字，也不依赖 idx 覆盖。
     """
-    resolve = _va_resolver(va_of)
     out = []
     for i, va in enumerate(table.slots):
         name = (index or {}).get(va, '')
@@ -829,6 +923,7 @@ def normalize_bin_slots(table, image, index=None, va_of=None):
             notes = th.notes
             dyn = th.dynamic
             off = th.static_delta
+            tva = th.target_va                       # jmp 目标 = 真实目标函数 VA
         else:
             cl = _classifier_kind(name, '', ())
             key = name_key(name) or '0x%08X' % va
@@ -836,11 +931,10 @@ def normalize_bin_slots(table, image, index=None, va_of=None):
             notes = tuple(cl.notes)
             dyn = False
             off = 0
-        tva = resolve(key)
+            tva = va                                 # 普通槽：它自己就是目标函数
         out.append(NormSlot(side=SIDE_BIN, raw='0x%08X' % va, key=key, kind=kind,
                             offset=off, dynamic=dyn, va=tva, slot_index=i,
-                            notes=notes,
-                            resolution='va' if tva is not None else 'name'))
+                            notes=notes, resolution='va'))
     return out
 
 
@@ -894,12 +988,22 @@ def _inherited_alias_hint(k1, k2):
     MI 下继承槽在 .obj 侧保留**基类** mangled 归属，而二进制侧名字可能来自注解/IDA
     显示名（写派生类）⇒ 逐槽对比会在这里报 `slot_key`。**不自动判等**：把
     `A3::ff` 当成 `D3::ff` 会放过"表里装了错误基类函数"的真错，故只留痕。
+
+    比较前**剥参数表**（C1 修复轮 R=1）：bin 侧真机名形如 `D3::onlyA(char)`，不剥就
+    `onlyA` ≠ `onlyA(char)` ⇒ 连提示都不留。
     """
+    k1, k2 = strip_param_list(k1), strip_param_list(k2)
     if not k1 or not k2 or '::' not in k1 or '::' not in k2:
         return ''
     if k1.rsplit('::', 1)[1] == k2.rsplit('::', 1)[1]:
         return '（方法名一致、仅归属类不同 ⇒ 可能是 MI 继承槽的名字归属差异，需人工核）'
     return ''
+
+
+def _name_id_unknown(key):
+    """名字键是 `0x<VA>` 占位（idx 里没有名字）⇒ 名字判据不可用（真机 146 槽）。"""
+    return bool(key) and key.startswith('0x') and all(
+        c in '0123456789ABCDEFabcdefx' for c in key)
 
 
 def compare_vbtable(obj_vals, bin_vals, obj_label='obj', bin_label='bin'):
@@ -923,7 +1027,18 @@ def compare_tables(obj_slots, bin_slots, *, obj_col=None, bin_col=None,
                    obj_label='obj', bin_label='bin',
                    obj_vbtable=None, bin_vbtable=None,
                    obj_address_point_offset=None, bin_address_point_offset=None):
-    """两侧归一槽序列对比 → CompareResult（逐槽 + 槽数 + COL + vbtable）。"""
+    """两侧归一槽序列对比 → CompareResult（逐槽 + 槽数 + COL + vbtable）。
+
+    **逐槽身份判据**（C1 修复轮 R=1）：
+      * 两侧都有 `va` ⇒ 比 **VA**（唯一真身份；`identity_mode='va'`）
+      * 否则 ⇒ 比 `name_id`（**参数表剥离**后的名字键；`identity_mode='name'`）
+
+    混用两种判据**不可**（一侧有 VA 一侧没有时拿 `('va',N)` 与 `('key','X')` 比恒不等
+    ⇒ 必然假报），这正是修复前的退化形态。
+
+    `address_point_offset` 只**留痕**不参与判定：COL 的存在性已由 `address_point_rtti`
+    判据覆盖（两侧 COL 都存在时偏移差异是 0 vs 0），单独判定会与那条判据重复报同一事实。
+    """
     obj_slots = list(obj_slots or [])
     bin_slots = list(bin_slots or [])
     devs = []
@@ -942,14 +1057,24 @@ def compare_tables(obj_slots, bin_slots, *, obj_col=None, bin_col=None,
                               '槽数不同：obj %d ≠ bin %d' % (len(obj_slots), len(bin_slots))))
 
     votes = set()
+    unnamed = 0
     for i in range(min(len(obj_slots), len(bin_slots))):
         o, b = obj_slots[i], bin_slots[i]
-        votes.add('va' if (o.va is not None and b.va is not None) else 'name')
-        if o.identity != b.identity:
+        use_va = o.va is not None and b.va is not None
+        votes.add('va' if use_va else 'name')
+        if use_va:
+            same = (o.va == b.va)
+            crit = 'VA'
+        else:
+            same = (o.name_id == b.name_id)
+            crit = '名字'
+        if not same:
+            if not use_va and (_name_id_unknown(o.name_id) or _name_id_unknown(b.name_id)):
+                unnamed += 1
             hint = _inherited_alias_hint(o.key, b.key)
             devs.append(Deviation('slot_key', i, o.key, b.key,
-                                  'slot %d 目标不同：obj=%s bin=%s %s'
-                                  % (i, o.key, b.key, hint)))
+                                  'slot %d 目标不同（%s判据）：obj=%s bin=%s %s'
+                                  % (i, crit, o.key, b.key, hint)))
             continue
         if o.kind != b.kind:
             devs.append(Deviation('slot_kind', i, o.kind, b.kind,
@@ -959,6 +1084,11 @@ def compare_tables(obj_slots, bin_slots, *, obj_col=None, bin_col=None,
                                   (b.offset, b.dynamic),
                                   'slot %d this 归一不同：obj=%s bin=%s'
                                   % (i, o.normalized, b.normalized)))
+
+    if unnamed:
+        notes.append('%d 槽的名字判据失败且**至少一侧无名字**（idx 无覆盖的槽，真机多为 '
+                     'import thunk `ff 25 <IAT>` / CRT）⇒ VA 与名字两条判据都不可用，'
+                     '按 slot_key 保守留痕，不静默放过' % unnamed)
 
     if obj_vbtable is not None and bin_vbtable is not None:
         devs.extend(compare_vbtable(obj_vbtable, bin_vbtable, obj_label, bin_label).deviations)
@@ -1335,7 +1465,10 @@ def main(argv=None):
     idx = load_va_index()
     targets = load_bin_targets()
     bt = bin_table_from_image(image, base, idx=idx, targets=targets)
-    obj_slots = normalize_obj_slots(tbl, art)
+    # C1 修复轮 R=1：由**已加载的 idx** 造 名字→VA 映射（参数表剥离 + thunk 名字重定向）
+    # 传给 .obj 侧 —— 不传就是修复前的形态：两侧 va 恒 None、判据退化成名字文本。
+    namemap = name_to_va_index(idx, image)
+    obj_slots = normalize_obj_slots(tbl, art, va_of=namemap)
     bin_slots = normalize_bin_slots(bt, image, idx)
     obj_vb = _vbtable_for_table(obj_vbtables(args.obj, art), tbl.symbol)
     bin_vb = None
