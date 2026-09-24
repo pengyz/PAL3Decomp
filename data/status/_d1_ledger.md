@@ -3301,3 +3301,12 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   ⇒ _gap_001 现在落在 vptr 区间内 ⇒ 成员发射位置错位 ⇒ 24/24 全冲突 ✗
 - 修法：CUtil 注解重建——删除 _gap_001，按 vptr 后布局重排（首个真实成员 m_nRandHolder@0x4 ✓）
 - 影响面：CUtil 24 成员 + 内嵌 UIRoleDialog@0x170 + ARC_PlayerAtt 等子对象偏移需同步验证
+
+## 2026-09-25（goal r48 补记）CUtil 全类重建判定 —— 逐个 gap 修补不足
+- CUtil 24/24 全冲突 · sizeof +4：根因 = 编译器 vptr@0 与注解 m_bCanWarp@0 冲突
+- 删 _gap_001 不足 ⇒ 整个偏移体系基于"offset0=数据"假设建立 ✗
+- 正解：**全类重建**（从 ctor 0x5081D0/0x453030 逐指令重推偏移体系）
+  CUtil 嵌套 UIRoleDialog@0x170（0x4A12F0=UIRoleDialog ctor ✓）
+  ⇒ 全类偏移需按 UIRoleDialog 子对象 + 其后成员重新布局
+- 工程量：与 UIRoleDialog 重建同级（多轮）⇒ 归入重建队列
+- 与 ARC_PlayerAtt 同模式：PDB 名为旧布局产物，ctor 为二进制真值
