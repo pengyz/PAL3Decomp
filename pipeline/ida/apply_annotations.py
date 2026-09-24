@@ -283,6 +283,45 @@ def log(msg):
     print(msg)
 
 
+
+
+def _import_gbengine_headers():
+    """从 include/gbengine/*.h 直接导入 gbengine 类型到 IDB local types。
+    单一真相源：gbengine 类型只在头文件中定义，annotation JSON 不再重复。
+    (2026-09-25 消除双数据源同步问题)"""
+    import glob
+    import ida_typeinf
+    root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    inc_dir = os.path.join(root, 'include', 'gbengine')
+    prelude_path = os.path.join(root, 'data', 'annotations', 'gbengine_prelude.h')
+    
+    if not os.path.isdir(inc_dir):
+        log("  [gbengine] include dir not found: %s" % inc_dir)
+        return 0
+    
+    prelude = ''
+    if os.path.exists(prelude_path):
+        prelude = open(prelude_path, encoding='utf-8').read()
+    
+    til = ida_typeinf.get_idati()
+    imported = 0
+    headers = sorted(glob.glob(os.path.join(inc_dir, '*.h')))
+    for hdr_path in headers:
+        hdr_name = os.path.basename(hdr_path)
+        try:
+            content = open(hdr_path, encoding='utf-8').read()
+            content = re.sub(r'^\s*#include.*$', '', content, flags=re.MULTILINE)
+            content = re.sub(r'^\s*#pragma.*$', '', content, flags=re.MULTILINE)
+            full = prelude + '\n' + content
+            result = ida_typeinf.parse_decls(til, full, None, ida_typeinf.PT_SIL)
+            imported += 1
+            log("  [gbengine] %s (parse=%d)" % (hdr_name, result))
+        except Exception as e:
+            log("  [gbengine] ERROR %s: %s" % (hdr_name, e))
+    
+    log("  [gbengine] done: %d/%d headers" % (imported, len(headers)))
+    return imported
+
 def _make_vtable_method_type(ann_sig, vm_short, til, cls_name=None):
     """从 annotation 签名创建 vtable 方法类型，纯 API 不用 parse_decl。"""
     if '(' not in ann_sig:
@@ -2243,6 +2282,9 @@ def apply_annotations():
             # _vt_off > 0 but create_udt failed — log it
             pass
     log("[3a] Vtable structs pre-created: %d/%d" % (vt_pre, len(vtable_jobs)))
+    log("[3] Importing gbengine headers (single source of truth)...")
+    _import_gbengine_headers()
+    
     log("[3a] Starting TAUDT_FIXED struct import...")
 
     # --- TAUDT_FIXED struct import: precise offsets from annotation ---

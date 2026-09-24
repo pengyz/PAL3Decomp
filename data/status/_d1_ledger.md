@@ -3480,3 +3480,19 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 ### 注意
 - gbGfxManager 在 gbengine.dll 中，vtable 地址在 DLL 空间不在 PAL3.exe
 - 需要 gbengine.dll 的 IDB 或导出表来获取函数地址
+
+## 2026-09-25 vtable R5 — 单源架构实现（gbengine 头直接导入 IDB）
+### 用户架构决策
+- include/gbengine/*.h = gbengine 类型的唯一真相源
+- apply 直接用 ida_typeinf.parse_decls 导入头文件到 IDB
+- 消除双数据源同步问题（gbTexture 64 vs 96、gbGfxManager _tail_000 等）
+
+### 实现
+1. data/annotations/gbengine_prelude.h：IDA 解析前置声明（59 行）
+2. apply_annotations.py._import_gbengine_headers()：遍历 include/gbengine/*.h → parse_decls
+3. 在 struct 导入之前调用
+### PoC 验证
+- parse_decls 返回 0 ✓ · gbTestStruct 大小 12 ✓ · idat TVHEADLESS=1 headless 运行 ✓
+### 下轮
+- 实际运行 apply 验证 gbengine 头导入效果
+- 验证 decomp 是否用虚函数名替代 _tail_000
