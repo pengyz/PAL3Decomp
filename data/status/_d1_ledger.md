@@ -3466,3 +3466,17 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 断裂原因：新增 virtual 声明改变了类的多态性 → 下游引用签名/偏移变化 → 编译错误
 - 修复方向：逐个断裂单元定位 virtual 签名冲突（C2555）→ 修正基类/派生类 virtual 签名
 - 目标允许过程衰退 ✓，下轮开始修复过渡期断裂
+
+## 2026-09-25 vtable R4 — gbGfxManager 双模型断裂分析 + 修复路径
+### 根因
+- C++ 头 include/gbengine/gbGfxManager.h: 28 virtual 函数 ✓（编译器自动 vptr@0）
+- IDA 模型（annotation→apply→IDB）: offset0 = _tail_000 数据成员 ✗
+- decomp 引用 IDA 模型的 _tail_000 ⇒ C++ 类不存在 ⇒ C2039
+### 修复路径（下轮）
+1. 从 C++ 头提取 28 个 virtual 函数签名
+2. 写入 gbGfxManager annotation 的 methods 表（address=gbengine.dll 函数地址）
+3. 重跑 apply → export → codegen ⇒ decomp 用虚函数名而非 _tail_000
+4. 同理处理其他 gbengine 类（gbTexture 链等）
+### 注意
+- gbGfxManager 在 gbengine.dll 中，vtable 地址在 DLL 空间不在 PAL3.exe
+- 需要 gbengine.dll 的 IDB 或导出表来获取函数地址
