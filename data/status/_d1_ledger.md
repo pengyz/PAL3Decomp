@@ -3261,3 +3261,15 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   (5)类型：按操作数宽度+运算+上下文确定（非 void*/BYTE 占位）
 - 八步闭环：取证→字段图→归属纠正→语义命名→类型修正→尺寸闭合→级联→管线验证
 - 优先级不变：CEffectSystem/CEffect 竞技场族 → SceneObj/CCBRoleState 五维完善 → PAL3 → CUtil → ...
+
+## 2026-09-25（goal r42）CEffectSystem/CEffect 竞技场族确认多轮工程 ⇒ 目标重排
+- CEffectSystem ctor 0x4C61A0 provenance：仅 2 访问（+0x3C020 rw / +0x3C024 w）
+  ⇒ this+245KB 级偏移 ⇒ 竞技场类确认（与 operator new(0x10C0) 不一致 ⇒ 可能 allocation 包含子结构而非单类）
+- CEffect(13/13,+8200) 同理：m_Partical 数组元素尺寸待裁（大型数组为主）
+- 工程量评估：每个 ≥ 多轮专攻（全 ctor+全方法 provenance+分配链+子对象归属）
+- **目标重排**：竞技场族降为中优先级（工作量大但影响面窄），上升：
+  (1) CCBRoleState/SceneObj 五维完善（已清布局 ✓，五维度中命名/类型/归属待完善——86 成员的重建质量提升）
+  (2) CCBRoleState 86 成员的 Create 写集已有 → 字段图可直接生成
+  (3) PAL3(87/87,+8) 全局单例
+  (4) CUtil(24/24,+4)
+  (5) GRPinput(27/40,+4)
