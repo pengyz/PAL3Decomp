@@ -26,12 +26,18 @@ vtable_health[class] = 已验证槽数 / 总槽数
 | `count_health` | 命中声明数 / (声明数 + 无地址声明数 + 未覆盖槽数) | 多声明、少声明、`virtual ~C() {}` 这类不可定位声明 |
 | `sig_health` | 签名无矛盾 / 有签名证据 | 声明与二进制序言/调用序列矛盾 |
 
-外加**第 4 类：验证面规模**（`slots` = 该类的二进制槽数 · `count_denom` = 槽数项的验证面）。
+外加**第 4 类：验证面规模**（`_SURFACE_METRICS` = `slots` = 该类的二进制槽数）。
 **只比比值会奖励"缩小分母"**：删掉一个未声明槽 ⇒ `slot_health 0.5 → 1.0` ⇒ 旧实现判
 `improved` 并回写基线；同时删声明与其槽（`slots_total 3 → 1`）⇒ 三个比值全 `same` ⇒ 放行。
 基线一旦被写成 1.0，**把缺失证据补回来**（完备性修复）反而让 `slot_health` 下降 ⇒ BLOCKED
 ⇒ 门禁拦住**正确的修复**。⇒ 规模本身必须单调不降（`_SURFACE_METRICS`），与"整类消失 =
 `missing` ⇒ 阻塞"同一语义：**验证面不得缩小**。
+
+⚠️ **R=2 降级**：`count_denom`（声明数 = `声明数 + 无地址声明数 + 未覆盖槽数`）**不入**
+`_SURFACE_METRICS` —— 它合法地随**声明清理**变化（删冗余/错误的 `virtual ~C() {}`
+注入虚析构时，本工具自己判 `count_ok False→True`、`count_health 0.5→1.0`），把它当
+验证面会**拦住正确的清理**（过严路径）。Q1 两洞由 `slots` **单分量**封死：删未声明槽
+⇒ `slots 2 → 1 down`；删声明+槽 3→1 ⇒ `slots 3 → 1 down`。
 
 `slot_health` 就是规格里的 `vtable_health`；任一分量**下降**即阻塞（`ratchet_decide`），
 阻塞优先于 `improved`（被阻塞的运行不得同时报"改善"）。
@@ -207,10 +213,14 @@ METRIC_SLOT = 'slot_health'
 METRIC_COUNT = 'count_health'
 METRIC_SIG = 'sig_health'
 _METRICS = (METRIC_SLOT, METRIC_COUNT, METRIC_SIG)
-#: 第 4 类单调分量 = **验证面**（证据规模），见 `ratchet_decide` 的 Q1 说明。
+#: 第 4 类单调分量 = **验证面**（证据规模），见 `ratchet_decide` 的 Q1/Q7 说明。
+#: ⚠️ R=2（降级）：只留 `slots`。`count_denom`（声明数）**不是**验证面 —— 它合法地随
+#: **声明清理**变化（删掉冗余/错误的 `virtual ~C() {}` 注入虚析构时，工具自己判
+#: `count_ok False→True`、`count_health 0.5→1.0`，却会被 `count_denom 8→7 down` 判 blocked
+#: ⇒ 拦住正确清理）。`slots` 单分量已足够封死 Q1 两洞（删未声明槽 / 删声明+槽 3→1）。
 METRIC_SLOTS = 'slots'
 METRIC_COUNT_DENOM = 'count_denom'
-_SURFACE_METRICS = (METRIC_SLOTS, METRIC_COUNT_DENOM)
+_SURFACE_METRICS = (METRIC_SLOTS,)
 _RATCHET_METRICS = _METRICS + _SURFACE_METRICS
 _EPS = 1e-9
 
@@ -1212,12 +1222,11 @@ def build_baseline(result, generated_at=None):
 
 
 def ratchet_decide(baseline, current):
-    """棘轮判定：**四类分量（5 个可比值）任一不得下降**（无阈值、无硬门禁）。
+    """棘轮判定：**四类分量（4 个可比值）任一不得下降**（无阈值、无硬门禁）。
 
-    分量 = 三个 health（`_METRICS`）+ 两个**验证面规模**（`_SURFACE_METRICS`：
+    分量 = 三个 health（`_METRICS`）+ 一个**验证面规模**（`_SURFACE_METRICS`：
 
     * `slots` = 该类的二进制槽数（注解 `vtables[].slots` 的证据规模）
-    * `count_denom` = 槽数项的验证面（`声明数 + 无地址声明数 + 未覆盖槽数`）
 
     **为什么必须有第 4 类**（R=1 修复的语义洞）：只比**比值**时，缩小分母会被奖励 ——
     删掉一个**未声明**槽 ⇒ `slot_health 0.5 → 1.0` ⇒ 判 `improved` 并回写基线；同时
@@ -1225,6 +1234,17 @@ def ratchet_decide(baseline, current):
     把缺失证据**补回来**（完备性修复）反而让 `slot_health` 下降 ⇒ BLOCKED ⇒ 门禁拦住**正确
     的修复**（与 CLAUDE.md 的"假失败"同型）。⇒ 规模本身必须单调不降 —— 与"整类消失 =
     `missing` ⇒ 阻塞"是同一语义：**验证面不得缩小**。
+
+    ⚠️ **R=2 降级（去 `count_denom`）**：R=1 曾把 `count_denom`（`声明数 + 无地址声明数 +
+    未覆盖槽数`）也当验证面 ⇒ **过严**：它把"删任何声明"一律判 `down`，包括**正确清理
+    冗余/错误声明**。实测反例：删 `CGameData.h` 中重复表达的注入虚析构
+    `virtual ~CGameData() {}`（无地址、槽表里没有它）⇒ 本工具自己判 `count_ok False→True`、
+    `count_health 0.875 → 1.0`（改善）、`slot_health`/`slots` 不变，却被
+    `count_denom 8 → 7 down` 判 `blocked`/`updated=None`；R=1 之前的实现对该改动是
+    `pass` 并回写基线 ⇒ **新增过严路径**。理由：`count_denom`（声明数）合法地随声明清理
+    变化，真正的验证面是注解 vtables 槽数（`slots`）；而 `slots` 单分量**已能**捕获 Q1
+    两洞（删未声明槽 ⇒ `slots 2 → 1 down`；删声明+槽 3→1 ⇒ `slots 3 → 1 down`）。
+    `count_denom` 仍在报告/baseline JSON 里（可观测），只是**不参与棘轮判定**。
 
     * 任一分量下降 ⇒ `down` ⇒ 阻塞
     * 基线里有、当前没有的类 ⇒ `missing` ⇒ 阻塞（整类的验证面消失同样是倒退）
@@ -1234,9 +1254,11 @@ def ratchet_decide(baseline, current):
       - 基线**有值** → 当前 `None` ⇒ `down` ⇒ **阻塞**（证据源丢失是倒退：例如漏传
         `--pending` ⇒ 整个签名维度的验证悄悄消失）
 
-    ⚠️ 有意的验证面缩小（删掉确认是错的声明/槽）会与本棘轮冲突：语义上"缩小验证面"必须
+    ⚠️ 有意的验证面缩小（删掉确认是错的**槽**）会与本棘轮冲突：语义上"缩小验证面"必须
     显式重建基线（`--baseline` 指向新路径、或先移除旧基线文件）——这是棘轮制的固有代价，
     不是 bug（无阈值、无硬门禁的代价是不接受静默缩水）。
+    **但删除冗余/错误声明不再属于此类**（R=2）：声明数不参与判定，只留 `slots`；
+    删声明本身不阻塞，只有"删到槽也少"才阻塞。
     """
     base_classes = (baseline or {}).get('classes') or {}
     cur_classes = (current or {}).get('classes') or {}

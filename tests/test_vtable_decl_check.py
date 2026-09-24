@@ -37,6 +37,12 @@
 | Q5 | `--json`/`--baseline` 目标目录不存在 ⇒ 未捕获 traceback + exit 1（与阻塞同信号） | `TestCli.test_cli_write_failure_to_missing_dir_is_exit_2` |
 | Q6 | 声明级 `purecall` 不得被当成合成单槽组 | `test_decl_slot_order_kind_purecall_is_func` |
 
+## R=2（修复轮）新增：R=1 引入的**过严**路径
+
+| 洞 | 语义 | 测试 |
+|---|---|---|
+| Q7 | R=1 把 `count_denom`（声明数）也当单调"验证面" ⇒ **删任何声明**一律判 `down` ⇒ 拦住**正确清理冗余/错误声明**（`virtual ~C() {}` 无地址注入虚析构：工具自己 `count_ok False→True`、`count_health` 上升、`slots`/`slot_health` 不变，却被 `count_denom` down 判 blocked —— 真实 `CGameData` 为 `0.875→1.0` / `8→7`，夹具为同构的 `0.5→1.0` / `2→1`）。裁定：验证面 = `slots` 单分量 | `test_ratchet_redundant_addrless_decl_removal_is_not_blocked` |
+
 运行：`python3 tests/test_vtable_decl_check.py` 或 `pytest tests/test_vtable_decl_check.py`
 （本机 pytest 恒崩 —— `_pytest/assertion/rewrite.py` 的 `TypeError: required field "lineno"
 missing from alias`，与 Task 1/2/3/4 记录一致 ⇒ 用文件内独立运行器。）
@@ -54,6 +60,7 @@ sys.path.insert(0, str(PROJECT_ROOT / 'tools'))
 
 from vtable_decl_check import (  # noqa: E402
     KIND_FN,
+    METRIC_COUNT,
     METRIC_COUNT_DENOM,
     METRIC_SLOTS,
     MODEL_CHAIN,
@@ -912,7 +919,10 @@ def test_ratchet_undeclared_slot_removal_is_not_improved():
     这是最危险的洞：基线被写成 1.0 后，Task 8 把缺失证据**补回来**（正确修复）反而让
     `slot_health` 下降 ⇒ `BLOCKED` ⇒ 门禁拦住正确的修复（与 CLAUDE.md 的"假失败"同型）。
 
-    ⇒ 棘轮必须把**规模**（`slots` / `count_denom`）也纳入单调分量：删槽 = 验证面缩小 = 倒退。
+    ⇒ 棘轮必须把**规模**（`slots`）纳入单调分量：删槽 = 验证面缩小 = 倒退。
+
+    【R=2 降级】R=1 曾同时把 `count_denom`（声明数）当验证面 ⇒ 过严（见 Q7）；
+    本洞由 `slots` **单分量**封死（此处 `slots 2 → 1 down`）。
     """
     decls = {'C': _cd('C', [_d('f', '', 0x1000)])}
     full = {'C': [BinaryView(0x56A000, None, (0x1000, 0x1010))]}     # 1 声明 / 2 槽
@@ -940,6 +950,11 @@ def test_ratchet_declaration_and_slot_removal_does_not_pass():
     ⇒ 旧实现放行（`slots_total 3 → 1` 完全不参与对比）。
 
     验证面缩小必须阻塞（与"整类消失 = missing ⇒ 阻塞"同一语义）。
+
+    【R=2 降级】本洞原先由 `slots` + `count_denom` **两个**分量共同封死；裁定后
+    `count_denom` 不再是棘轮分量（见 Q7）⇒ 这里必须证明 **`slots` 单分量足够**：
+    `slots_total 3 → 1 down` ⇒ blocked。同时断言 `count_denom` **不再参与**判定
+    （否则本洞的封死理由会悄悄退回到那条过严路径上）。
     """
     full_decls = {'C': _cd('C', [_d('f', '', 0x1000), _d('g', '', 0x1010), _d('h', '', 0x1020)])}
     one_decl = {'C': _cd('C', [_d('f', '', 0x1000)])}
@@ -956,8 +971,55 @@ def test_ratchet_declaration_and_slot_removal_does_not_pass():
     assert d.passed is False and d.blocked is True
     assert d.improved is False and d.updated is None
     assert any(c.metric == METRIC_SLOTS and c.status == 'down' for c in d.components), d.components
-    assert any(c.metric == METRIC_COUNT_DENOM and c.status == 'down' for c in d.components), \
-        d.components
+    # `slots` **单分量**必须足够：`count_denom` 已不是棘轮分量（R=2 裁定），
+    # 不得再出现在 components 里 —— 否则本洞的封死靠的又是那条过严路径。
+    assert not any(c.metric == METRIC_COUNT_DENOM for c in d.components), d.components
+
+
+def test_ratchet_redundant_addrless_decl_removal_is_not_blocked():
+    """Q7（R=1 引入的**过严**路径）：`count_denom`（声明数）单调 ⇒ "删任何声明"一律判 down。
+
+    **实测反例**（真实 CGameData.h）：删掉重复表达的注入虚析构 `virtual ~CGameData() {}`
+    （**无地址注释**、二进制槽表里没有它）时（实测数字 `slots 7` / `decl_addr 7` /
+    `decl_addrless 1` / `count_denom 8`）：
+
+    * 工具**自己**判 `count_ok False → True`、`count_health 0.875 → 1.0` —— 这是**改善**
+    * `slot_health` 不变（1.0）、槽数验证面 `slots` 不变（7）
+    * 却被 `count_denom 8 → 7 down` 判 `blocked` / `updated=None`
+
+    ⇒ **拦住正确清理**（R=1 之前的实现对该改动是 `pass` 并回写基线）⇒ 新增过严路径。
+    `count_denom`（声明数）合法地随声明清理变化，不是"验证面"；真正的验证面是
+    **注解 vtables 槽数**（`slots`）⇒ 裁定降级为 `_SURFACE_METRICS = (METRIC_SLOTS,)`。
+
+    下面用**同构夹具**钉死（`count_denom 2 → 1`、`count_health 0.5 → 1.0`，与真实数据
+    同型、数值更小以便于逐字断言）。
+    """
+    redundant = {'C': _cd('C', [_d('~C', '', None, ret='', kind='deleting_dtor'),
+                                _d('f', '', 0x1000)])}
+    cleaned = {'C': _cd('C', [_d('f', '', 0x1000)])}
+    views = {'C': [BinaryView(0x56A000, None, (0x1000,))]}
+    base = build_baseline(check_all(redundant, views))
+    cur = build_baseline(check_all(cleaned, views))
+    # 前提：这是工具**自己**认定的改善，且槽数验证面不变（否则本用例不成立）
+    assert base['classes']['C']['count_ok'] is False
+    assert cur['classes']['C']['count_ok'] is True
+    assert base['classes']['C']['count_health'] < cur['classes']['C']['count_health']
+    assert base['classes']['C']['count_denom'] == 2 and cur['classes']['C']['count_denom'] == 1
+    assert base['classes']['C']['slots'] == cur['classes']['C']['slots'] == 1
+    assert base['classes']['C']['slot_health'] == cur['classes']['C']['slot_health'] == 1.0
+
+    d = ratchet_decide(base, cur)
+    assert d.blocked is False and d.passed is True, d.components      # 正确清理不得被拦
+    assert d.improved is True and d.updated is not None, d.components  # 且应回写基线
+    assert not any(c.metric == METRIC_COUNT_DENOM for c in d.components), d.components
+
+    # 反向守卫：从清理后的基线出发，把冗余声明**加回来**（count_denom 回升）不得读成"改善"：
+    # 它真实地压低 `count_health`（比值分量下降）⇒ 仍应 blocked，只是理由从"验证面缩小"
+    # 换成"比值下降"（不得因为降级而给"加冗余声明"开口子）。
+    d2 = ratchet_decide(cur, base)
+    assert d2.blocked is True and d2.passed is False, d2.components
+    assert d2.improved is False and d2.updated is None, d2.components
+    assert any(c.metric == METRIC_COUNT and c.status == 'down' for c in d2.components), d2.components
 
 
 def test_ratchet_evidence_source_lost_is_blocked():
