@@ -3362,3 +3362,9 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   * 冲突成员 1094→196（-82%）✓ · 工具+测试八套全绿 ✓
   * 8 个类完整清零（UITextArea/CEff*/ARC系/SceneObj/CCBRoleState/GRPinput/PalScriptMgr 等）
   * 发射器两项根修（枚举4B/内联体数组维度）影响全局 ✓
+
+## 2026-09-25（goal r57）CCBRoleState m_nState_XXX 命名限制分析
+- CCBRoleState.cpp 零 m_nState_ 引用 ⇒ Hex-Rays 用内部变量名渲染
+- 命名需要偏移级逆向（decomp 中 v1/v2 等到 struct offset 的映射），无法从文本匹配批量执行
+- 第一批 10 个命名是通过方法调用链语义推断（非偏移追踪）⇒ 置信度 90
+- 后续命名需要：逐方法 decomp 偏移追踪 + 上下文分析（深度人工/半自动工作）
