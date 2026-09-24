@@ -3425,3 +3425,20 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 ### 虚函数表知识
 - CEffectSystem: 16 槽=9 唯一+7 重复（析构对/继承别名）
 - 继承树 vtable 一致性：86 真继承 + 195 覆写 + 0 问题 ✓
+
+## 2026-09-25 vtable 专项 P1 交接（发射器过滤器调试）
+### 已确认根因
+- CEffectSystem 9 唯一虚函数只发 5 个 ⇒ 4 个被发射循环过滤器吞掉
+- methods 列表来源 = decomp JSONs（非 annotation methods 表）
+- 未反编译的虚函数不在 decomp ⇒ 不在 methods ⇒ 不发射
+- annotation methods 表补充代码已写但路径/条件需调试
+### 下轮步骤
+1. 在 emit_headers.py generate_header 的方法循环中加 _vt_debug 追踪
+2. 逐方法打印 emit/skip 决策（seen_methods dedup / invalid name / vtbl_ ref / userpurge）
+3. 修好后移除 debug，验证 virtual count == binary unique slots count
+4. 全量应用到 80 类
+### 关键文件
+- pipeline/gen/stages/emit_headers.py: generate_header() 方法发射循环
+- pipeline/gen/stages/stage3_cleanup.py: _strip_vftable_member_access ✓
+- tools/vtable_mapper.py: 闭环验证门禁 ✓
+- data/status/vtable_baseline.json: 基线（302 缺口）
