@@ -3412,3 +3412,16 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 ### 下步
 - 分析重复地址的构成（析构对？继承别名？空实现？）
 - 决定 C++ 表达策略（别名 thunk / 忽略多余槽 / 其他）
+
+## 2026-09-25（goal r59 补3）vtable 映射机制实现 + 剩余问题
+### 已实现 ✓
+- _read_vtable_from_binary: 二进制直读 16 slots ✓
+- _get_vtable_addr: annotation vtables[0].addr ✓
+- 占位生成（去重后）：唯一地址 ⇒ slot_N ✓
+- stage3 regex: __vftable->Method ⇒ 直接方法调用 ✓
+### 剩余问题（下轮专项）
+- 发射器过滤器吞掉部分 virtual 方法（5/9），需定位具体是哪个 skip 条件
+- vtable 重复地址=MSVC 析构对（7 组），已确认只需声明唯一地址
+### 虚函数表知识
+- CEffectSystem: 16 槽=9 唯一+7 重复（析构对/继承别名）
+- 继承树 vtable 一致性：86 真继承 + 195 覆写 + 0 问题 ✓

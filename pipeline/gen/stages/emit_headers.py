@@ -2315,10 +2315,14 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 _method_addrs.add(int(_ma, 16) if isinstance(_ma, str) else _ma)
             except (ValueError, TypeError):
                 pass
+        # ★ 按唯一地址生成占位（同一函数在多个槽位出现 = MSVC 析构对/继承别名）
+        _seen_slot_addrs = set()
         for _vi, _sn in enumerate(_all_vtable_slots):
             _slot_addr = int(_sn[0], 16)
+            if _slot_addr in _seen_slot_addrs:
+                continue  # 重复地址：同一函数的另一个槽位，不重复声明
+            _seen_slot_addrs.add(_slot_addr)
             if _slot_addr not in _method_addrs:
-                # 占位方法：名字 = slot_N，签名 = void __thiscall()（最简）
                 methods.append(
                     (f'slot_{_vi}', 'void __thiscall()', hex(_slot_addr)))
         def _method_sort_key(item):
