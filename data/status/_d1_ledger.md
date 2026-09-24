@@ -3337,3 +3337,18 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 发射器 behind-bookkeeping (start_off=0xA91C, +0x2830) = buffer 端点与嵌套成员冲突的直接后果
 - 修法 = CEffMgr 字段图重建（需确定 29028B 缓冲区的真实边界和内容）
 - 工程量：与 CUtil/ARC_PlayerAtt 同级（多轮/类）⇒ 重建队列
+
+## 2026-09-25（goal r55）CCBRoleState 五维命名第一批 —— 10 个成员语义重命名
+- 从 CCBRoleState 方法调用链 decomp 证据给 m_nState_XXX 重命名：
+  * m_nState_004 → m_nRoundCounter（ProcessRound 递增/比较）
+  * m_nState_008 → m_nCurrentRound（GetTotalRounds）
+  * m_nState_00C → m_nActiveRoleIdx（当前行动角色索引）
+  * m_nState_010 → m_nPhase（相位状态检查）
+  * m_nState_064 → m_nCombatResult（CalcCombatDamage 返回值）
+  * m_nState_094 → m_nTargetRoleIdx（AISelectTarget 目标索引）
+  * m_nState_09C → m_nSelectedAction（DispatchCombatAction 命令类型）
+  * m_nState_0A0 → m_nSelectedTarget（目标列表索引）
+  * m_nState_0A4 → m_nSelectedItem（AISelectItem 物品索引）
+  * m_nState_118 → m_nDamageThisRound（ApplyDamage 累计伤害）
+- 证据源：CCBRoleState 方法 decomp 调用链（每个名称标注 _rename_evidence ✓）
+- 剩余 m_nState_XXX 待下批（需更多 decomp 方法分析）

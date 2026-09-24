@@ -388,24 +388,28 @@
       "offset": 11992
     },
     "4": {
-      "name": "m_nState_004",
+      "name": "m_nRoundCounter",
       "type": "int",
-      "source": "ida_gap_13refs"
+      "source": "ida_gap_13refs",
+      "_rename_evidence": "decomp:ProcessRound/VarianceRoundCounter 递增/比较 ⇒ 回合计数"
     },
     "8": {
-      "name": "m_nState_008",
+      "name": "m_nCurrentRound",
       "type": "int",
-      "source": "ida_gap_3refs"
+      "source": "ida_gap_3refs",
+      "_rename_evidence": "decomp:GetTotalRounds 返回当前回合值"
     },
     "12": {
-      "name": "m_nState_00C",
+      "name": "m_nActiveRoleIdx",
       "type": "int",
-      "source": "ida_gap_6refs"
+      "source": "ida_gap_6refs",
+      "_rename_evidence": "decomp:ProcessCombatAction 首参数=当前行动角色索引"
     },
     "16": {
-      "name": "m_nState_010",
+      "name": "m_nPhase",
       "type": "int",
-      "source": "ida_gap_3refs"
+      "source": "ida_gap_3refs",
+      "_rename_evidence": "decomp:UpdateSpringAnim 检查相位状态"
     },
     "20": {
       "name": "m_nState_014",
@@ -448,9 +452,10 @@
       "source": "ida_gap_1refs"
     },
     "100": {
-      "name": "m_nState_064",
+      "name": "m_nCombatResult",
       "type": "int",
-      "source": "ida_gap_10refs"
+      "source": "ida_gap_10refs",
+      "_rename_evidence": "decomp:CalcCombatDamage 返回值存储"
     },
     "132": {
       "name": "m_nState_084",
@@ -473,9 +478,10 @@
       "source": "ida_gap_1refs"
     },
     "148": {
-      "name": "m_nState_094",
+      "name": "m_nTargetRoleIdx",
       "type": "int",
-      "source": "ida_gap_10refs"
+      "source": "ida_gap_10refs",
+      "_rename_evidence": "decomp:AISelectTarget 返回目标角色索引"
     },
     "152": {
       "name": "m_nState_098",
@@ -483,19 +489,22 @@
       "source": "ida_gap_5refs"
     },
     "156": {
-      "name": "m_nState_09C",
+      "name": "m_nSelectedAction",
       "type": "int",
-      "source": "ida_gap_16refs"
+      "source": "ida_gap_16refs",
+      "_rename_evidence": "decomp:DispatchCombatAction 按此分发命令类型"
     },
     "160": {
-      "name": "m_nState_0A0",
+      "name": "m_nSelectedTarget",
       "type": "int",
-      "source": "ida_gap_10refs"
+      "source": "ida_gap_10refs",
+      "_rename_evidence": "decomp:PopulateTargetList 填充目标列表索引"
     },
     "164": {
-      "name": "m_nState_0A4",
+      "name": "m_nSelectedItem",
       "type": "int",
-      "source": "ida_gap_11refs"
+      "source": "ida_gap_11refs",
+      "_rename_evidence": "decomp:AISelectItem 选择物品索引"
     },
     "168": {
       "name": "m_nState_0A8",
@@ -583,9 +592,10 @@
       "source": "ida_gap_1refs"
     },
     "280": {
-      "name": "m_nState_118",
+      "name": "m_nDamageThisRound",
       "type": "int",
-      "source": "ida_gap_9refs"
+      "source": "ida_gap_9refs",
+      "_rename_evidence": "decomp:ApplyDamage/CalcDamage 累计伤害"
     },
     "288": {
       "name": "m_nState_120",
@@ -1540,5 +1550,6 @@
       "name": "SceneObj",
       "offset": 0
     }
-  ]
+  ],
+  "_rename_note": "2026-09-25: 10 个 m_nState_XXX 通过 decomp 方法调用链证据重命名"
 }
