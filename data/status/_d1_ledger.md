@@ -3368,3 +3368,18 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 命名需要偏移级逆向（decomp 中 v1/v2 等到 struct offset 的映射），无法从文本匹配批量执行
 - 第一批 10 个命名是通过方法调用链语义推断（非偏移追踪）⇒ 置信度 90
 - 后续命名需要：逐方法 decomp 偏移追踪 + 上下文分析（深度人工/半自动工作）
+
+## 2026-09-25（goal r59）__vftable 清理实验结论 —— 需系统性重设计
+### 实验记录
+- 清理 122 文件的 __vftable 成员 ⇒ S2 75→72（3 单元断裂）⇒ 回退 ✗
+- 修改发射器 _will_inject_vptr 加 vtable_slots 检测 ⇒ codegen rc=1 ⇒ 修复变量引用 ⇒ S2 仍 72 ⇒ 不够 ✗
+- stage3 加 __vftable->Method 正则 ⇒ 与其他修改叠加 ⇒ S2 71 errors 2309 ⇒ 全回退 ✗
+### 结论
+1. __vftable 在当前架构下是承重的（start_off=4 信号 + 虚析构注入信号）
+2. 正确移除需要系统性重设计：
+   a. 发射器：从 class_vtable_slots() 独立检测多态（不依赖注解成员名）
+   b. 发射器：有 vtable slots ⇒ start_off=4 + 注入 virtual dtor（无需注解 __vftable）
+   c. codegen：__vftable->Method ⇒ 直接方法调用（174+ 处）
+   d. 以上三步必须同时落地，缺一都会造成布局偏移或编译失败
+3. 当前架构稳定：S2=75 errors=2154 L1=41 ✓ 保持不变
+4. 门禁已加（WARNING 级）：检测到 __vftable 声明时记录待改进项
