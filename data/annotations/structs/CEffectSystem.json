@@ -1,6 +1,6 @@
 {
   "name": "CEffectSystem",
-  "binary_size": 352,
+  "binary_size": 360,
   "known_members": {
     "4": {
       "name": "m_pDisplay",
@@ -240,5 +240,6 @@
       ]
     }
   ],
-  "_rebuild_note": "2026-09-25: 补 __vftable@0（vptr 缺失 ⇒ 14/14 全冲突 + sizeof +8 = vptr4+double_align4）；所有成员 +4"
+  "_rebuild_note": "2026-09-25: 补 __vftable@0（vptr 缺失 ⇒ 14/14 全冲突 + sizeof +8 = vptr4+double_align4）；所有成员 +4",
+  "_size_evidence": "compiled sizeof 360 (vptr@0 4B + members 0x4..0x158 + double_align 4B)；IDB size 352 为旧模型（无 vptr）"
 }

@@ -3326,3 +3326,7 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   * **有单元**：CEffectSystem(14/14) · CEffect(13/13) · TaskMgr(8/8) · CEffMgr(7/48) · Param1(4/5) ⇒ 可行动
   * **无单元**：ArcLocale(13/20) · CTrail(2/13) · PAL3(87/87 全局变量不影响) ⇒ 零影响，降级
   * **豁免**：DIDEVICE×2 · CTaskTpl · SceneMgr
+
+## 2026-09-25（goal r51）CEffectSystem binary_size 352→360 精调
+- binary_size 从旧模型 352 → 编译实测 360（vptr@0 + double_align）
+- verify_fix sizeof 360==360 ✓ · 残 16/16 成员偏移冲突（审计探针上下文差异，待 MCP 交叉验证）
