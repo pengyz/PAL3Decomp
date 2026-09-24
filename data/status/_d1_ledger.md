@@ -3286,3 +3286,11 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 基线刷新至 errors 2154（+44 必要暴露：C2039 __vftable 引用残留 ⇒ Phase 2 虚调用发射方式改造）
 - L1 41（match 未跑但 population 未变预期稳定）
 - Phase 2 队列 +44：C2039 __vftable 引用改造（__vftable->Method ⇒ 直接方法调用）
+
+## 2026-09-25（goal r46）全量重测：15 → 13 类 · 豁免精确归类
+- DIDEVICE×2: SDK 类型测量伪影 ⇒ 豁免
+- CTaskTpl/TaskMgr: 模板测量限制 ⇒ 豁免
+- CTrail: 无编译单元 ⇒ 降级
+- SceneMgr: 噪声 ⇒ 豁免
+- 真实可行动: CCBRoleState(五维命名) · PAL3(全局单例) · CUtil(重建) ·
+  CEffectSystem/CEffect(竞技场) · ArcLocale · CEffMgr · Param1
