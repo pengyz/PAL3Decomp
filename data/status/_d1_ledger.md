@@ -3310,3 +3310,10 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   ⇒ 全类偏移需按 UIRoleDialog 子对象 + 其后成员重新布局
 - 工程量：与 UIRoleDialog 重建同级（多轮）⇒ 归入重建队列
 - 与 ARC_PlayerAtt 同模式：PDB 名为旧布局产物，ctor 为二进制真值
+
+## 2026-09-25（goal r47）ArcLocale 诊断——gbengine 头链级联根因
+- ArcLocale 13/20 冲突 ⇒ 依赖 gbengine 头链（gbFogParam/gbVec3D/gbPixelFormat 等）
+- gbengine 接头整体欠完善（r37 已证 gbTexture 链缺 20B）⇒ ArcLocale 等使用 gbengine 类型的类
+  均受级联影响 ⇒ **根修 = 完善 include/gbengine 接头尺寸**
+- 工程量：需逐个 gbengine 类型与 IDB/stride 交叉验证 ⇒ 多轮/族
+- 同族影响：GRPinput(m_lpDI IDirectInput8*) · CTrail(gbTexture_D3D) · CCBCamControl(gbVec3D)
