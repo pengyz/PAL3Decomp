@@ -3531,3 +3531,18 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - vtable_mapper 门禁 ✓
 - 继承树 _inheritance_tree.json ✓
 - check_member_extent 嵌套修复 ✓
+
+## 2026-09-25 vtable R9 —— _tail_000 规模度量 + 方案设计
+### 度量
+- _tail_000 引用：716 处/40 文件（最大 CEffgbParticle 137、CEffCylinder 81）
+- 模式统一：`(*(ret(**)(Class*,...))(*(_DWORD*)obj->_tail_000 + OFFSET))(obj, args)`
+- OFFSET/4 = vtable slot index → 可映射到方法名
+### 方案（需要独立实现，不可 regex hack）
+- 写一个 **vtable call 解析器**（AST 或精确 pattern match）
+- 输入：vtable 偏移 → 查 vtable 映射 → 方法名
+- 输出：`obj->MethodName(args)` 替换间接调用
+- 集成到 stage3_cleanup 或独立后处理
+### 前置条件
+- gbGfxManager 的 28 个虚函数已在 include 头声明 ✓
+- 需要确认：gbengine.dll 中函数地址（从 DLL 的 IDB/导出表获取）
+- 或用 slot_index 方法名映射（gbGfxManager vtable 顺序已从头文件提取 ✓）
