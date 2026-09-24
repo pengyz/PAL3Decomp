@@ -5,6 +5,8 @@ No regex is used for pattern recognition — only for simple text substitution
 where no structural understanding is needed (e.g., __thiscall removal).
 """
 import hashlib as _hashlib
+import json
+import os
 import re
 import struct as _struct
 import sys
@@ -592,6 +594,489 @@ def _resolve_vtbl_method(d):
     return None
 
 
+# ============================================================
+# 虚调用转换：三形态识别（Task 7）
+# 规格：docs/superpowers/specs/2026-09-25-vtable-mapping-design.md §4.3
+# ============================================================
+# 目标形态恒为直接虚调用 `obj->MethodName(args)`。三形态（都在本解码分支内处理）：
+#   1 inline            (*(R (__thiscall **)(Cls *, ...))(*(T *)OBJ + N))(OBJ, args)
+#   2 局部 vftable 变量  v5 = *(T *)OBJ; … (*(R …)(v5 + N))(OBJ, args)
+#   3 裸 vptr 读         (*(R …)(*(void **)(OBJ)))(OBJ)          —— 偏移 0
+#
+# **字节偏移语义（二进制实证，勿再引入 `//4` 之外的猜测）**：
+#   `*(_DWORD *)X + 8` 里的 8 是**字节偏移**，槽下标 = 8/4 = 2。
+#   证据（original/PAL3.exe.asm）：C2DSpark::C2DSpark @0x4D5AB0
+#       mov ecx, dword_BFDA60 ; mov edx,[ecx] ; call dword ptr [edx+8]
+#   ⇔ decomp `(*(int (__thiscall **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))(gfxMgr, aTga)`
+#   ⇒ 槽2 = gbGfxManager::NewTexture(char const *)（实参 aTga 与之相符）。
+#   对照：AStarPathFinder::TryExpand @0x4012A0 `call dword ptr [eax+4]` ⇔ `*(_DWORD *)this + 4`
+#   （槽1 = IsInBounds，实参 (this,nTileX,nTileY) 相符）。
+#   （`obj->__vftable + N` 是另一族：那里 N 是**槽下标**（vtable 结构体指针运算），
+#     仍由 `_decode_vtbl_call` / `_resolve_vtbl_method` 处理，本段不改其语义。）
+#
+# **名称解析链（不用 mangling）**：
+#   类名(cast 首参) → 注解 `vtables[0].addr` → IDB `vtbl_<ADDR>.data_members`
+#   → 注解 `methods[槽地址].name`（缺省回落 IDB `data_members[i].name`）
+#   `vtables[]` 是唯一的多态声明点（无 ⇒ 未声明为多态 ⇒ 不转换，记账）。
+#   `::` 限定一律剥掉 ⇒ **绝不发射 `obj->Base::Method()`**（限定调用抑制虚派发 ⇒ 字节必不匹配）。
+#
+# **失败输出契约**：识别为虚调用却**无法转换**时 ⇒ **原文本逐字保留**（绝不伪造
+#   `_tail_00N` / 伪成员这类裸偏移形态），并记账到 `data/status/vtable_transform_failures.md`。
+#   既有 `__vftable` 路径的 stub 语义（`pal3_vtbl_unk_*`）**逐字不变**（本段是**并列**分支，
+#   不进入 legacy 分支的判定）。
+
+# vptr 读的 cast 目标类型白名单（只认标量/void 指针；带括号的嵌套 cast 不属于三形态）
+_VTBL_VPTR_TYPES = frozenset((
+    '_DWORD', 'void', 'int', 'char', '_BYTE', '_WORD',
+    'unsigned int', 'unsigned __int8', 'unsigned __int16', 'unsigned',
+))
+
+# 非类 hint（cast 首参不是类，而是标量/typedef）——单独归因，便于台账分流
+_VTBL_NON_CLASS_HINTS = frozenset((
+    'int', 'char', '_DWORD', '_BYTE', '_WORD', 'void', 'float', 'double',
+    'LONG', 'DWORD', 'unsigned int', 'unsigned __int8', 'unsigned __int16',
+    'unsigned', 'bool', 'short', 'long', 'size_t', 'BOOL',
+))
+
+# IDB/注解里的"占位名"：不是方法名，不能发射成 `obj->_tail_000()`
+_VTBL_PLACEHOLDER_NAME = re.compile(
+    r'^(?:_tail_\d+|sub_[0-9A-Fa-f]+|unknown\w*|nullsub\w*|nullsub_\d+|'
+    r'j_[A-Za-z_]\w*|loc_[0-9A-Fa-f]+|unk_\w+|dword_[0-9A-Fa-f]+)$')
+# 合法方法名：标识符（可带 ~ 前缀 = 析构）或 operator 形式
+_VTBL_NAME_OK = re.compile(r'^(?:~?[A-Za-z_]\w*|operator\s*\S+)$')
+
+_VTBL_FAILURE_LOG_DEFAULT = ('data', 'status', 'vtable_transform_failures.md')
+_VTBL_FAILURE_HEADER = (
+    '# 虚调用转换失败台账（Task 7）\n'
+    '\n'
+    '生成物 —— 由 `pipeline/gen/stages/stage3_cleanup.py` 在**识别为虚调用但无法转换**时追加。\n'
+    '规格：`docs/superpowers/specs/2026-09-25-vtable-mapping-design.md` §4.3。\n'
+    '\n'
+    '契约：失败时**原文逐字保留**（不降级为裸偏移形态），并在此记账。每行一个\n'
+    '`(方法, 形态, cls_hint, 字节偏移, 原因)` 唯一站点（幂等：重复运行不重复追加）。\n'
+    '\n'
+    '| 位置 | 形态 | cls_hint(cast 首参) | 字节偏移 | 原因 | 原始调用文本 |\n'
+    '|---|---|---|---|---|---|\n'
+)
+# 行格式必须与上面的表头列一一对应（`_load_failure_keys` 靠它做跨进程幂等）
+_VTBL_FAILURE_ROW = '| `%s::%s` | %s | `%s` | %d | %s | `%s` |\n'
+
+_VTBL_INDEX = None              # 懒加载的解析链索引（测试直接注入）
+_VTBL_FAILURE_WRITTEN = set()   # 已写入的 key（含从既有文件恢复的）
+_VTBL_FAILURE_LOADED = set()    # 已做过"既有行恢复"的台账路径
+
+_VTBL_FN_CAST = re.compile(
+    r'^(?P<ret>.*?)\(\s*(?:__thiscall|__stdcall|__cdecl|__fastcall)?\s*'
+    r'(?P<stars>\*+)\s*\)\s*\((?P<params>.*)\)\s*$', re.S)
+_VTBL_VPTR_READ = re.compile(
+    r'^\*+\s*\(\s*(?P<vt>[A-Za-z_][\w ]*?)\s*\*+\s*\)\s*(?P<obj>.+)$', re.S)
+_VTBL_TAIL_MEMBER = re.compile(r'^(?P<obj>.+?)\s*->\s*_tail_\d+$', re.S)
+_VTBL_ROW = re.compile(
+    r'^\|\s*`(?P<loc>[^`]*)`\s*\|\s*(?P<form>\S+)\s*\|\s*`(?P<hint>[^`]*)`\s*\|'
+    r'\s*(?P<off>\d+)\s*\|\s*(?P<reason>\w+)\s*\|')
+
+
+def _vtbl_method_name(name):
+    """方法名归一：剥 `::` 限定（禁止 `obj->Base::Method()`）+ 拒绝占位名。
+
+    返回 '' 表示这个名字不可用（由调用方决定回落或记账）。
+    """
+    n = str(name or '').strip()
+    if not n:
+        return ''
+    n = n.split('::')[-1].strip()          # 只管剥限定，不做任何拼写猜测
+    if not n or _VTBL_PLACEHOLDER_NAME.match(n) or not _VTBL_NAME_OK.match(n):
+        return ''
+    return n
+
+
+def _load_vtbl_index():
+    """建名称解析链的三张表。
+
+    返回 {'class_addr': {cls: addr}, 'by_addr': {addr: {slot: name}},
+          'idb_members': {addr: [name（按槽下标，缺槽为 '')]}}。
+
+    数据源（都是**只读**）：
+      * `data/annotations/structs/*.json` 的 `vtables[0].addr` / `slots[i].addr` / `methods[addr].name`
+        —— 已声明的多态类与其槽位方法名；
+      * `asm/pal3/ida_structs.json` 的 `vtbl_<ADDR>` —— IDB 侧的 vtable 结构（槽存在性的二进制侧确认）。
+    **不使用 mangling**。
+    """
+    root = os.path.dirname(os.path.dirname(os.path.dirname(
+        os.path.dirname(os.path.abspath(__file__)))))
+    class_addr, by_addr = {}, {}
+    class_slot_addrs, class_decl = {}, {}
+    structs_dir = os.path.join(root, 'data', 'annotations', 'structs')
+    if os.path.isdir(structs_dir):
+        for fn in sorted(os.listdir(structs_dir)):
+            if not fn.endswith('.json'):
+                continue
+            try:
+                with open(os.path.join(structs_dir, fn), encoding='utf-8') as fh:
+                    ann = json.load(fh)
+            except (OSError, ValueError):
+                continue
+            if not isinstance(ann, dict):
+                continue
+            vtables = ann.get('vtables') or []
+            if not vtables or not isinstance(vtables[0], dict):
+                continue
+            cls = ann.get('name') or fn[:-5]
+            addr = str(vtables[0].get('addr') or '').lower()
+            if not addr:
+                continue
+            methods = ann.get('methods') or {}
+            slot_map = {}
+            slot_addrs = {}
+            for i, slot in enumerate(vtables[0].get('slots') or []):
+                if not isinstance(slot, dict):
+                    continue
+                saddr = str(slot.get('addr') or '').lower()
+                if saddr:
+                    slot_addrs[i] = saddr
+                entry = methods.get(slot.get('addr', '')) or {}
+                name = _vtbl_method_name(entry.get('name', ''))
+                if name:
+                    slot_map[i] = name
+            class_addr[cls] = addr
+            by_addr.setdefault(addr, {}).update(slot_map)
+            class_slot_addrs[cls] = slot_addrs
+            # 类的**声明名表**（name → 声明地址集合）——头文件一致性的护栏依据。
+            # 头文件的名字来源（emit_headers.collect_methods）：
+            #   ① decomp JSON 的 `Cls::Method`（**取不到**：不做 3598 文件扫描，故本护栏宁可保守）
+            #   ② IDB 类结构的 methods    ③ 注解 known_methods（人工策展，如 UIWnd::OnMessage）
+            #   ④ 注解 methods
+            decl = {}
+            for maddr, entry in methods.items():
+                if isinstance(entry, dict):
+                    nm = _vtbl_method_name(entry.get('name', ''))
+                    if nm:
+                        decl.setdefault(nm, set()).add(str(maddr).lower())
+            for entry in (ann.get('known_methods') or {}).values():
+                if isinstance(entry, dict):
+                    nm = _vtbl_method_name(entry.get('name', ''))
+                    if nm and entry.get('address'):
+                        decl.setdefault(nm, set()).add(str(entry['address']).lower())
+            class_decl[cls] = decl
+    idb_members = {}
+    ida_path = os.path.join(root, 'asm', 'pal3', 'ida_structs.json')
+    if os.path.exists(ida_path):
+        try:
+            with open(ida_path, encoding='utf-8') as fh:
+                ida = json.load(fh)
+        except (OSError, ValueError):
+            ida = {}
+        if isinstance(ida, dict):
+            for key, ent in ida.items():
+                if not isinstance(key, str) or not key.lower().startswith('vtbl_'):
+                    continue
+                if not isinstance(ent, dict):
+                    continue
+                members = ent.get('data_members') or []
+                slots = []
+                for dm in members:
+                    if not isinstance(dm, dict):
+                        continue
+                    try:
+                        idx = int(dm.get('offset', 0)) // 4
+                    except (TypeError, ValueError):
+                        continue
+                    if idx < 0 or idx > 4096:
+                        continue
+                    while len(slots) <= idx:
+                        slots.append('')
+                    slots[idx] = str(dm.get('name') or '')
+                if slots:
+                    idb_members['0x' + key[5:].lower()] = slots
+            # 头文件名字来源 ②：IDB **类结构**的 methods（collect_methods 的 supplement）
+            for cname, ent in ida.items():
+                if cname not in class_decl or not isinstance(ent, dict):
+                    continue
+                for maddr, entry in (ent.get('methods') or {}).items():
+                    if not isinstance(entry, dict):
+                        continue
+                    nm = _vtbl_method_name(entry.get('name', ''))
+                    if nm:
+                        class_decl[cname].setdefault(nm, set()).add(str(maddr).lower())
+    return {'class_addr': class_addr, 'by_addr': by_addr,
+            'idb_members': idb_members,
+            'class_slot_addrs': class_slot_addrs, 'class_decl': class_decl}
+
+
+def _vtbl_index():
+    """懒加载索引（测试通过 `_VTBL_INDEX` 注入夹具）。"""
+    global _VTBL_INDEX
+    if _VTBL_INDEX is None:
+        _VTBL_INDEX = _load_vtbl_index()
+    return _VTBL_INDEX
+
+
+def _resolve_vtbl_name_chain(cls_hint, byte_off):
+    """名称解析链 → (method_name, None) 或 (None, 原因)。
+
+    链：类名(cast 首参) → 注解 vtables[0].addr → IDB `vtbl_<ADDR>.data_members`
+        → 注解 methods[槽地址].name（缺省回落 IDB data_members[i].name）
+
+    **头文件一致性护栏**（实测必需，2026-09-25）：
+    头文件只为"该类声明过的方法名"发 virtual（占位槽发 `slot_<i>`）。
+    真实反例：`UIWnd` 槽3（0x00442420）在 IDB `vtbl_0056AE2C` 里叫 `Destroy`，
+    而该类的 `Destroy` **声明在 0x0043BBB0 且非 virtual**（`pal3/src/UI/UIWnd.h:45`），
+    槽3 在头文件里是 `virtual void slot_3()` ⇒ 若发射 `p->Destroy(...)` 会绑定到
+    **非虚**的另一个函数（直接调用 ⇒ 字节必不匹配）。故名字必须在本类**声明于该槽地址**。
+    （已知保守处：decomp JSON 是头文件的头号名字来源，本索引不扫 3598 个 decomp 文件 ⇒
+      个别"仅 decomp 声明"的名字会被记进台账而不是转换；宁可少转不可错转。）
+
+    原因取值：no_class_hint / non_class_hint / no_vtables_declaration /
+              no_idb_vtbl_struct / slot_out_of_range / no_method_name /
+              name_declared_at_other_address / name_not_declared_for_class
+    """
+    if not cls_hint:
+        return None, 'no_class_hint'
+    if cls_hint in _VTBL_NON_CLASS_HINTS:
+        return None, 'non_class_hint'
+    idx = _vtbl_index()
+    addr = idx.get('class_addr', {}).get(cls_hint)
+    if not addr:
+        return None, 'no_vtables_declaration'
+    members = idx.get('idb_members', {}).get(addr)
+    if members is None:
+        return None, 'no_idb_vtbl_struct'
+    try:
+        slot = int(byte_off) // 4
+    except (TypeError, ValueError):
+        return None, 'no_method_name'
+    if slot < 0 or slot >= len(members):
+        return None, 'slot_out_of_range'
+    name = _vtbl_method_name((idx.get('by_addr', {}).get(addr) or {}).get(slot, ''))
+    if not name:
+        name = _vtbl_method_name(members[slot])
+    if not name:
+        return None, 'no_method_name'
+    # ★ 头文件一致性护栏
+    slot_addr = (idx.get('class_slot_addrs', {}).get(cls_hint) or {}).get(slot, '')
+    decl = idx.get('class_decl', {}).get(cls_hint) or {}
+    decl_addrs = decl.get(name)
+    if decl_addrs:
+        if slot_addr and slot_addr not in decl_addrs:
+            return None, 'name_declared_at_other_address'
+    elif slot_addr:
+        # 该名字在本类没有任何声明 ⇒ 头文件不会发它（会发占位 `slot_<i>`，
+        # 或在该地址声明了**别的**名字）⇒ 发射必然是 C2039
+        return None, 'name_not_declared_for_class'
+    return name, None
+
+
+def _strip_outer_parens(text):
+    """剥掉**完整包裹**在最外层的圆括号（`(a) + (b)` 这类不剥）。"""
+    s = str(text or '').strip()
+    while s.startswith('(') and s.endswith(')'):
+        depth, complete = 0, True
+        for i, ch in enumerate(s):
+            if ch == '(':
+                depth += 1
+            elif ch == ')':
+                depth -= 1
+                if depth == 0 and i != len(s) - 1:
+                    complete = False
+                    break
+        if not complete or depth != 0:
+            break
+        s = s[1:-1].strip()
+    return s
+
+
+def _split_expr_offset(text):
+    """`EXPR + N` → (EXPR, N)；末尾无整数偏移时 N = None。"""
+    s = str(text or '').strip()
+    m = re.match(r'^(?P<head>.*?)\s*\+\s*(?P<off>0x[0-9A-Fa-f]+|\d+)\s*$', s, re.S)
+    if not m:
+        return s, None
+    try:
+        return m.group('head').strip(), int(m.group('off'), 0)
+    except ValueError:
+        return s, None
+
+
+def _vptr_read_of(text, vptr_locals=None):
+    """把 slot base 文本译成 (对象表达式, 字节偏移, 形态) 或 None。
+
+    只接受**有显式 vptr 读**的形态：`*(T *)OBJ [± N]`、`*(T *)OBJ->_tail_NN`、
+    以及（形态 2）已知持有 vptr 的局部变量 `V [± N]`。
+    **裸标识符/成员链一律返回 None** —— 那些是函数指针成员或 COM 接口表
+    （实测：`this->m_NewItem[7].fnHP`、`m_pData`），把它们当虚调用会改坏语义。
+    """
+    if not text:
+        return None
+    # 先剥完整外层括号：tree-sitter 的 slot base 常是 parenthesized_expression
+    # （`(*(_DWORD *)this + 4)`），不剥则末尾 `+ N` 与 `)` 争位 ⇒ 解析不到偏移。
+    head, off = _split_expr_offset(_strip_outer_parens(text))
+    if not head:
+        return None
+    m = _VTBL_VPTR_READ.match(head)
+    if m:
+        if ' '.join(m.group('vt').split()) not in _VTBL_VPTR_TYPES:
+            return None
+        obj = _strip_outer_parens(m.group('obj'))
+        tm = _VTBL_TAIL_MEMBER.match(obj)          # 形态 3 的输入侧：`OBJ->_tail_000` 即偏移 0 的 vptr
+        if tm:
+            obj = _strip_outer_parens(tm.group('obj'))
+        if not obj:
+            return None
+        if off is None:
+            return obj, 0, 'vptr_read'
+        return obj, off, 'inline'
+    if vptr_locals:
+        bare = _strip_outer_parens(head)
+        if bare in vptr_locals:
+            return vptr_locals[bare], (off or 0), 'vftable_local'
+    return None
+
+
+def _fn_cast_of(call_node):
+    """取「函数指针 cast」三元组 (cast_node, value_node, 解引用层数)。"""
+    func = call_node.child_by_field_name('function')
+    n, stars = func, 0
+    while n is not None and n.type == 'parenthesized_expression':
+        kids = n.named_children
+        n = kids[0] if kids else None
+    while n is not None and n.type == 'pointer_expression':
+        stars += 1
+        n = n.child_by_field_name('argument')
+        while n is not None and n.type == 'parenthesized_expression':
+            kids = n.named_children
+            n = kids[0] if kids else None
+    if n is None or n.type != 'cast_expression':
+        return None, None, 0
+    return n, n.child_by_field_name('value'), stars
+
+
+def _decode_vptr_dispatch(call_node, vptr_locals=None):
+    """三形态解码器（形态 1/2/3）。返回与 `_decode_vtbl_call` 兼容的 dict + dispatch/form。"""
+    cast, value, stars = _fn_cast_of(call_node)
+    if cast is None or value is None or stars < 1:
+        return None
+    type_node = cast.child_by_field_name('type')
+    if type_node is None:
+        return None
+    ctype = ' '.join(type_node.text.decode('utf-8', 'replace').split())
+    m = _VTBL_FN_CAST.match(ctype)
+    if not m or len(m.group('stars')) < 2:         # 必须是指向成员函数指针的指针
+        return None
+    ret = ' '.join(m.group('ret').split()) or 'void'
+    params = ' '.join(m.group('params').split())
+    cls_hint = None
+    first = params.split(',')[0].strip() if params else ''
+    if first and first != 'void':
+        cls_hint = re.sub(r'\*+\s*$', '', first).replace('const ', '').strip()
+    base = _vptr_read_of(' '.join(value.text.decode('utf-8', 'replace').split()),
+                         vptr_locals)
+    if base is None:
+        return None
+    obj, off, form = base
+    return {'obj': obj, 'method': None, 'offset': off, 'cls_hint': cls_hint,
+            'ret': ret, 'params': params, 'dispatch': True, 'form': form}
+
+
+def _collect_vptr_locals(tree):
+    """形态 2：`V = <vptr 读>` ⇒ V 是局部 vftable 变量，值来源的对象即虚调用的对象。"""
+    out = {}
+    stack = [tree.root_node]
+    while stack:
+        n = stack.pop()
+        if n.type == 'assignment_expression':
+            left = n.child_by_field_name('left')
+            right = n.child_by_field_name('right')
+            if left is not None and right is not None and left.type == 'identifier':
+                rhs = ' '.join(right.text.decode('utf-8', 'replace').split())
+                src = _vptr_read_of(rhs)
+                if src is None:                     # `V = OBJ->__vftable` 也是 vptr 源
+                    vm = re.match(r'^(?P<obj>.+?)\s*->\s*__vftable$', rhs, re.S)
+                    if vm:
+                        src = (_strip_outer_parens(vm.group('obj')), 0, 'vptr_read')
+                if src is not None and src[1] == 0 and src[0]:
+                    out[left.text.decode('utf-8', 'replace')] = src[0]
+        stack.extend(n.children)
+    return out
+
+
+def _same_self_arg(args, obj):
+    """首个实参是否就是 vptr 的持有者（`this` 必须一致，否则不敢判定）。"""
+    if not args:
+        return False
+    first = ' '.join(args[0].split())
+    o = ' '.join(str(obj).split())
+    if first == o or _strip_outer_parens(first) == o:
+        return True
+    return re.sub(r'^\(\s*[\w: ]+\*+\s*\)\s*', '', first).strip() == o
+
+
+def _vtable_failure_log_path(ctx):
+    """台账路径：ctx 注入 > 环境变量 > 仓库默认 `data/status/vtable_transform_failures.md`。"""
+    p = getattr(ctx, 'vtable_failure_log', None) if ctx is not None else None
+    if p:
+        return str(p)
+    env = os.environ.get('PAL3_VTABLE_FAILURE_LOG')
+    if env:
+        return env
+    root = os.path.dirname(os.path.dirname(os.path.dirname(
+        os.path.dirname(os.path.abspath(__file__)))))
+    return os.path.join(root, *_VTBL_FAILURE_LOG_DEFAULT)
+
+
+def _load_failure_keys(path):
+    """把既有台账行恢复进 `_VTBL_FAILURE_WRITTEN` ⇒ 跨进程幂等（重复运行不重复追加）。"""
+    try:
+        with open(path, encoding='utf-8', errors='replace') as fh:
+            for line in fh:
+                m = _VTBL_ROW.match(line)
+                if not m:
+                    continue
+                loc = m.group('loc')
+                loc_cls, _, loc_m = loc.rpartition('::')
+                _VTBL_FAILURE_WRITTEN.add(
+                    (path, loc_cls, loc_m, m.group('form'), m.group('hint'),
+                     m.group('off'), m.group('reason')))
+    except OSError:
+        return
+
+
+def _record_vtable_failure(ctx, d, reason, call_text=''):
+    """失败记账（追加 + 幂等）。I/O 失败只报 stderr，绝不吞掉其它异常。"""
+    try:
+        path = _vtable_failure_log_path(ctx)
+    except Exception:                                # ctx 形状异常不该打断 codegen
+        return
+    cls = str(getattr(ctx, 'cls_name', '') or '')
+    method = str(getattr(ctx, 'method_name', '') or '')
+    try:
+        off = int(d.get('offset') or 0)
+    except (TypeError, ValueError):
+        off = 0
+    key = (path, cls, method, str(d.get('form', '')), str(d.get('cls_hint', '') or ''),
+           str(off), str(reason))
+    if path not in _VTBL_FAILURE_LOADED:
+        _VTBL_FAILURE_LOADED.add(path)
+        _load_failure_keys(path)
+    if key in _VTBL_FAILURE_WRITTEN:
+        return
+    _VTBL_FAILURE_WRITTEN.add(key)
+    try:
+        fresh = (not os.path.exists(path)) or os.path.getsize(path) == 0
+        d_dir = os.path.dirname(path)
+        if d_dir and not os.path.isdir(d_dir):
+            os.makedirs(d_dir, exist_ok=True)
+        with open(path, 'a', encoding='utf-8') as fh:
+            if fresh:
+                fh.write(_VTBL_FAILURE_HEADER)
+            fh.write(_VTBL_FAILURE_ROW % (
+                cls, method, str(d.get('form', '')), str(d.get('cls_hint', '') or ''),
+                off, str(reason),
+                ' '.join(str(call_text).split()).replace('|', '\\|')[:180]))
+    except OSError as _e:
+        sys.stderr.write('[stage3] vtable failure ledger write failed (%s): %r\n'
+                         % (path, _e))
+
+
 def _sanitize_stub_sig(ret, params):
     """stub 签名清洗（2026-09-19，长线计划第 2 条）。
 
@@ -646,6 +1131,8 @@ def _vtbl_stub_names(ret, params, name):
 
 def _resolve_vftable_calls_ast(code, ctx):
     tree = _parser.parse(code.encode('utf-8'))
+    # Task 7 形态 2：本函数内的 `V = <vptr 读>` 表（`run()` 的一次调用 = 一个函数）
+    vptr_locals = _collect_vptr_locals(tree)
     edits = []          # (start_byte, end_byte, replacement)
     stub_items = []     # (decl, definition) in emission order
     covered = []        # byte ranges already replaced (skip nested nodes)
@@ -684,68 +1171,95 @@ def _resolve_vftable_calls_ast(code, ctx):
     def visit(node):
         if node.type == 'call_expression' and not _inside_covered(node):
             func = node.child_by_field_name('function')
-            if func is not None and _find_vftable_in_subtree(func):
-                d = _decode_vtbl_call(node)
-                if d is not None:
-                    args_node = node.child_by_field_name('arguments')
-                    raw_args = args_node.text.decode('utf-8', errors='replace')
-                    args = _split_args(raw_args[1:-1] if raw_args.startswith('(') else raw_args)
-                    method = _resolve_vtbl_method(d)
+            d = None
+            if func is not None:
+                if _find_vftable_in_subtree(func):
+                    d = _decode_vtbl_call(node)
+                if d is None:
+                    # Task 7：三形态（inline / 局部 vftable 变量 / 裸 vptr 读）。
+                    # 与 legacy `__vftable` 分支**并列** ⇒ legacy 语义不受影响。
+                    d = _decode_vptr_dispatch(node, vptr_locals)
+            if d is not None and d.get('dispatch'):
+                args_node = node.child_by_field_name('arguments')
+                if args_node is None:            # 语法树残缺：不猜，直接放行到子节点
+                    for child in node.children:
+                        visit(child)
+                    return
+                raw_args = args_node.text.decode('utf-8', errors='replace')
+                args = _split_args(raw_args[1:-1] if raw_args.startswith('(') else raw_args)
+                _call_text = node.text.decode('utf-8', errors='replace')
+                if not _same_self_arg(args, d['obj']):
+                    # vptr 持有者 ≠ 自身实参 ⇒ this 不同（子对象/偏移视图）⇒ 不敢判定
+                    _record_vtable_failure(ctx, d, 'self_arg_mismatch', _call_text)
+                else:
+                    method, _why = _resolve_vtbl_name_chain(d['cls_hint'], d['offset'])
                     if method:
-                        keep = _drop_self_arg(args, d['obj'])
-                        repl = '%s->%s(%s)' % (d['obj'], method, ', '.join(keep))
+                        repl = '%s->%s(%s)' % (d['obj'], method, ', '.join(args[1:]))
+                        edits.append((node.start_byte, node.end_byte, repl))
+                        covered.append((node.start_byte, node.end_byte))
+                        return          # don't descend into replaced node
+                    # 失败输出契约：原文逐字保留（绝不伪造裸偏移形态）+ 记账
+                    _record_vtable_failure(ctx, d, _why or 'unresolved', _call_text)
+            elif d is not None:
+                args_node = node.child_by_field_name('arguments')
+                raw_args = args_node.text.decode('utf-8', errors='replace')
+                args = _split_args(raw_args[1:-1] if raw_args.startswith('(') else raw_args)
+                method = _resolve_vtbl_method(d)
+                if method:
+                    keep = _drop_self_arg(args, d['obj'])
+                    repl = '%s->%s(%s)' % (d['obj'], method, ', '.join(keep))
+                else:
+                    if d['ret'] is not None and d['params'] is not None:
+                        name = _vtbl_stub_name(d['ret'], d['params'])
+                        # 同文件去重：同一个签名在**本输出文件**里只发射一次
+                        # 声明+定义（第二次起调用点仍引用该名字，声明已在其上方）。
+                        # registry 由 emit_cpp 按输出文件创建并传入（见 TransformContext.
+                        # stub_registry）；未传时退化为"每次都发射"（旧行为，安全）。
+                        _reg = getattr(ctx, 'stub_registry', None)
+                        if _reg is None or name not in _reg:
+                            if _reg is not None:
+                                _reg.add(name)
+                            decl, definition = _vtbl_stub_names(d['ret'], d['params'], name)
+                            stub_items.append(
+                                (decl, definition,
+                                 '// %s original: %s'
+                                 % (_VTBL_STUB_MARK,
+                                    ' '.join(node.text.decode('utf-8', errors='replace').split()))))
+                        # P1(b)：裸链（无 cast）的实参里**没有对象**，
+                        # 而 stub 的形参表把对象放在首位 ⇒ 调用时要把对象补回去。
+                        _callargs = ', '.join(args)
+                        if d.get('synthetic_self'):
+                            _callargs = d['obj'] + (', ' + _callargs if _callargs else '')
+                        repl = '%s(%s) /* %s */' % (
+                            name, _callargs, _VTBL_STUB_MARK)
                     else:
-                        if d['ret'] is not None and d['params'] is not None:
-                            name = _vtbl_stub_name(d['ret'], d['params'])
-                            # 同文件去重：同一个签名在**本输出文件**里只发射一次
-                            # 声明+定义（第二次起调用点仍引用该名字，声明已在其上方）。
-                            # registry 由 emit_cpp 按输出文件创建并传入（见 TransformContext.
-                            # stub_registry）；未传时退化为"每次都发射"（旧行为，安全）。
+                        # 无 cast 信息（裸链 `RECV->__vftable->NAME(args)`：ret/params 都是 None）。
+                        # 本函数的设计意图是"未解析的虚调用改写为合成 stub"（见上方注释），
+                        # 这里原来直接放弃 ⇒ `__vftable` 文本残留 ⇒ C2039/C2227（21 文件/135 站点）。
+                        # 只在**语句位置**（返回值未被使用）补一个通用可变参数 stub：
+                        # 签名无关 ⇒ 必然可编译；它不是字节忠实的调用，但本来就没有可编译的写法。
+                        _par = getattr(node, 'parent', None)
+                        if d['method'] and _par is not None and \
+                                _par.type == 'expression_statement':
                             _reg = getattr(ctx, 'stub_registry', None)
-                            if _reg is None or name not in _reg:
+                            _va = 'pal3_vtbl_unk_va'
+                            if _reg is None or _va not in _reg:
                                 if _reg is not None:
-                                    _reg.add(name)
-                                decl, definition = _vtbl_stub_names(d['ret'], d['params'], name)
+                                    _reg.add(_va)
                                 stub_items.append(
-                                    (decl, definition,
+                                    ('static void %s(...);' % _va,
+                                     'static void %s(...)\n{\n}' % _va,
                                      '// %s original: %s'
                                      % (_VTBL_STUB_MARK,
                                         ' '.join(node.text.decode('utf-8', errors='replace').split()))))
-                            # P1(b)：裸链（无 cast）的实参里**没有对象**，
-                            # 而 stub 的形参表把对象放在首位 ⇒ 调用时要把对象补回去。
-                            _callargs = ', '.join(args)
-                            if d.get('synthetic_self'):
-                                _callargs = d['obj'] + (', ' + _callargs if _callargs else '')
-                            repl = '%s(%s) /* %s */' % (
-                                name, _callargs, _VTBL_STUB_MARK)
+                            _callargs = ', '.join([d['obj']] + args)
+                            repl = '%s(%s) /* %s */' % (_va, _callargs, _VTBL_STUB_MARK)
                         else:
-                            # 无 cast 信息（裸链 `RECV->__vftable->NAME(args)`：ret/params 都是 None）。
-                            # 本函数的设计意图是"未解析的虚调用改写为合成 stub"（见上方注释），
-                            # 这里原来直接放弃 ⇒ `__vftable` 文本残留 ⇒ C2039/C2227（21 文件/135 站点）。
-                            # 只在**语句位置**（返回值未被使用）补一个通用可变参数 stub：
-                            # 签名无关 ⇒ 必然可编译；它不是字节忠实的调用，但本来就没有可编译的写法。
-                            _par = getattr(node, 'parent', None)
-                            if d['method'] and _par is not None and \
-                                    _par.type == 'expression_statement':
-                                _reg = getattr(ctx, 'stub_registry', None)
-                                _va = 'pal3_vtbl_unk_va'
-                                if _reg is None or _va not in _reg:
-                                    if _reg is not None:
-                                        _reg.add(_va)
-                                    stub_items.append(
-                                        ('static void %s(...);' % _va,
-                                         'static void %s(...)\n{\n}' % _va,
-                                         '// %s original: %s'
-                                         % (_VTBL_STUB_MARK,
-                                            ' '.join(node.text.decode('utf-8', errors='replace').split()))))
-                                _callargs = ', '.join([d['obj']] + args)
-                                repl = '%s(%s) /* %s */' % (_va, _callargs, _VTBL_STUB_MARK)
-                            else:
-                                repl = None
-                    if repl is not None:
-                        edits.append((node.start_byte, node.end_byte, repl))
-                        covered.append((node.start_byte, node.end_byte))
-                        return  # don't descend into replaced node
+                            repl = None
+                if repl is not None:
+                    edits.append((node.start_byte, node.end_byte, repl))
+                    covered.append((node.start_byte, node.end_byte))
+                    return  # don't descend into replaced node
         for child in node.children:
             visit(child)
 
