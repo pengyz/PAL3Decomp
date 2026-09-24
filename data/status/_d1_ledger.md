@@ -3330,3 +3330,10 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 ## 2026-09-25（goal r51）CEffectSystem binary_size 352→360 精调
 - binary_size 从旧模型 352 → 编译实测 360（vptr@0 + double_align）
 - verify_fix sizeof 360==360 ✓ · 残 16/16 成员偏移冲突（审计探针上下文差异，待 MCP 交叉验证）
+
+## 2026-09-25（goal r53）CEffMgr 根因闭合 —— 注解自重叠（buffer 内嵌套成员）
+- m_sz5D8C3C char[29028] @0x37B8 → ends 0xA91C
+- m_nTodo_80EC int @0x80EC **在 buffer 范围内** ⇒ 注解自重叠 ✗
+- 发射器 behind-bookkeeping (start_off=0xA91C, +0x2830) = buffer 端点与嵌套成员冲突的直接后果
+- 修法 = CEffMgr 字段图重建（需确定 29028B 缓冲区的真实边界和内容）
+- 工程量：与 CUtil/ARC_PlayerAtt 同级（多轮/类）⇒ 重建队列
