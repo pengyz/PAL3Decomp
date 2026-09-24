@@ -81,12 +81,17 @@ CLI（只读输入 → 只写 --out 指定的旁路文件，**永不**写 data/a
     python3 tools/vtable_sig_infer.py --slots slots.json [--out pending.json]
     # slots.json: {"slots": [{"addr","name?","symbol?","disasm","call_sites?": [...]}]}
 
-输入契约（全分支最终评审 M-2a/M-2b 收口）：
+输入契约（全分支最终评审 M-2a/M-2b + R=4 M-3/符号链接收口）：
 * `--slots` / `--struct` **只接受槽证据 JSON**（`slots` 列表 / 裸列表 / 单槽对象）。
   其他形状（典型：注解 JSON 的 `methods`/`known_members`/`vtables`）⇒ **报错退出 rc=1**，
   不再静默产出键为 `""` 的伪候选 `? unknown _slot()`。
-* 拒写判据是**路径分量级**（`commonpath`）：`data/annotations/**` 拒写，**兄弟目录**
-  （如 `data/annotations_bak_probe/**`）放行 —— `startswith` 会把后者误判为真相源。
+* 槽证据是**逐项**校验的（M-3）：顶层是列表/含 `slots` **不等于**条目有证据 ——
+  `[{"methods":{}}]` / `{"slots":[{"methods":{}}]}` 照样 rc=1。每个条目必须有 `addr`
+  或 `disasm`；混入无证据条目时**整体拒收**（不静默跳过）。`name`/`symbol`/`signature`
+  **不单独**构成槽证据。
+* 拒写判据是**路径分量级 + 符号链接解析**：`data/annotations/**` 拒写（含经
+  `data/annotations_link -> data/annotations` 这类**符号链接**到达的路径，R=4 实测破环）；
+  **兄弟目录**（如 `data/annotations_bak_probe/**`）放行 —— `startswith` 会把后者误判为真相源。
 """
 import copy
 import json
@@ -1451,26 +1456,50 @@ _TRUTH_SOURCE_DIR = os.path.abspath(os.path.join(_HERE, '..', 'data', 'annotatio
 
 
 def _is_under_truth_source(path):
-    """`path` 是否**在 `data/annotations/` 目录之内**（路径分量级判定）。
+    """`path` 是否**写入**真相源目录 `data/annotations/`（路径分量级 + **解析符号链接**）。
 
     ⚠️ **不得**用 `str.startswith`：`data/annotations_bak_probe/o.json` 也以
     `…/data/annotations` 为前缀 ⇒ 兄弟目录被误拒（全分支最终评审 M-2b 实测）。
     `os.path.commonpath` 按**路径分量**比较，`…/annotations_bak_probe` 的公共前缀是
     `…/data` ⇒ 正确放行；`…/annotations/x.json` 的公共前缀恰是真相源目录 ⇒ 正确拒写。
+
+    ⚠️ **不得**只看词法路径（R=4 新增破环）：`data/annotations_link -> data/annotations`
+    时 `data/annotations_link/x.json` 的**词法**父目录不是真相源，却**真的写进**真相源
+    （实测：纯词法 `commonpath` ⇒ 拒=False，旁路候选落进 `data/annotations/`）。
+    ⇒ 先用 `os.path.realpath` 解析符号链接，再 `commonpath`。
+
+    两条判据取**或**（任一为真即拒，两条都为假才放行）：
+      * **词法**路径在真源内 ⇒ 拒 —— 覆盖"链接**位于**真源树内、指向外部"（树内挂载点：
+        只按 realpath 会放行，而它仍会把文件写进真源树，保守拒之）；
+      * **解析后**路径在真源内 ⇒ 拒 —— 覆盖"外部链接指向真源"（本次破环）。
+    阴性对照（兄弟目录 `data/annotations_bak_probe/**`）两条均为假 ⇒ 仍放行（M-2b 保持）。
     """
-    p = os.path.abspath(path)
+    lexical = os.path.abspath(path)
+    resolved = os.path.realpath(path)
+    truth = _TRUTH_SOURCE_DIR
+    truth_resolved = os.path.realpath(truth)
     try:
-        return os.path.commonpath([p, _TRUTH_SOURCE_DIR]) == _TRUTH_SOURCE_DIR
-    except ValueError:          # 不同盘符（Windows）⇒ 不可能在真相源内
+        if os.path.commonpath([lexical, truth]) == truth:
+            return True
+    except ValueError:          # 不同盘符（Windows）⇒ 词法上不可能在真相源内
+        pass
+    try:
+        return os.path.commonpath([resolved, truth_resolved]) == truth_resolved
+    except ValueError:
         return False
 
 
 def _slot_evidence_kind(data):
-    """输入形态判定：`'slots'`（含 slots 列表）/ `'list'` / `'single'` / `None`（**无槽证据**）。
+    """**顶层形状**判定：`'slots'`（含 slots 列表）/ `'list'` / `'single'` / `None`（**无槽证据**）。
 
     `None` 说明输入不是槽证据 JSON（典型：**注解 JSON** —— `methods`/`known_members`/
     `vtables`）。此类输入若继续走 `_slots_from_json`，会被当成"单个槽"，产出**键为 `""`
     的伪候选**（`? unknown _slot()`）且 exit 0 —— 全分支最终评审 M-2a。
+
+    ⚠️ 本函数**只判顶层形状**：`'list'` 只说明"这是一个列表"，**不说明列表项**是槽证据。
+    `[{"methods": {}}]` / `{"slots": [{"methods": {}}]}` 都能拿到合法顶层形状却被当成
+    "单个槽" ⇒ 空地址伪候选（评审 R=4 实测）⇒ 顶层门之后**必须**再逐项校验
+    （`_slot_items_without_evidence`）。
     """
     if isinstance(data, dict) and isinstance(data.get('slots'), list):
         return 'slots'
@@ -1479,6 +1508,51 @@ def _slot_evidence_kind(data):
     if isinstance(data, dict) and ('addr' in data or 'disasm' in data):
         return 'single'
     return None
+
+
+def _slot_entry_lacks_evidence(item):
+    """单个 slot 条目**自身**是否不含槽证据（M-3：逐项校验，而非只看顶层形状）。
+
+    判据（**必须有真证据**，不是"有名字"）：
+      * `str`  —— 原始反汇编文本（Ruling 1 的"裸列表"形态）⇒ 非空白即算证据；
+      * `dict` —— `addr`（地址键，str/int）或 `disasm`（原始反汇编文本）之一非空；
+      * 其他类型（数字/None/嵌套列表/…) —— 一律无证据。
+
+    `name`/`symbol`/`signature` **不单独**构成槽证据：注解 JSON 的 `known_members` 条目
+    就带 `name`（`{"offset":0,"name":"m_x","type":"int"}`），若算证据就会重新打开
+    "空地址 + `? unknown _slot()`"通道；而 `signature` 单独给出时 `_slots_from_json`
+    仍会产出**地址为空的**记录（本工具的输入契约要求原始指令字节，见模块 docstring）。
+
+    为什么必须逐项：顶层形状 `list` 只说明"这是一个列表"，不说明**列表项**是槽证据 ——
+    `[{"methods": {}}]` / `{"slots": [{"methods": {}}]}` 过顶层门后被当成"单个槽"
+    ⇒ 静默产出键为 `""` 的伪候选（评审 R=4 实测，exit 0）。
+    """
+    if isinstance(item, str):
+        return not item.strip()
+    if isinstance(item, dict):
+        addr = item.get('addr')
+        if isinstance(addr, bool):                      # bool 是 int 的子类，但不是地址
+            return True
+        if isinstance(addr, int) or (isinstance(addr, str) and addr.strip()):
+            return False
+        disasm = item.get('disasm')
+        return not (isinstance(disasm, str) and disasm.strip())
+    return True
+
+
+def _slot_items_without_evidence(data):
+    """→ 无槽证据条目的 **1-based 序号**列表（顶层形状已合法时逐项校验）。
+
+    `[]` ⇒ 每个条目都带槽证据（或列表为空）。非空 ⇒ 调用方**必须拒收**（fail-closed：
+    不得"悄悄跳过坏的、只出好的"——那会让调用方以为整份输入都被处理了）。
+    """
+    if isinstance(data, dict) and isinstance(data.get('slots'), list):
+        items = data['slots']
+    elif isinstance(data, list):
+        items = data
+    else:
+        items = [data]                                  # 单槽对象
+    return [i for i, it in enumerate(items, 1) if _slot_entry_lacks_evidence(it)]
 
 
 def _slots_from_json(data):
@@ -1536,6 +1610,16 @@ def main(argv=None):
             '`--struct`/`--slots` 都只接受**槽证据 JSON**（反汇编文本）；注解 JSON 的候选'
             '应读 `methods_pending` 旁路字段（见 `iter_candidates`），不是本工具的输入。'
             % (src, _keys))
+    # M-3（R=4 收口）：顶层形状合法 ≠ **条目**是槽证据 ⇒ **逐项**校验（fail-closed）。
+    _gaps = _slot_items_without_evidence(data)
+    if _gaps:
+        _shown = '/'.join(str(i) for i in _gaps[:8]) + ('…' if len(_gaps) > 8 else '')
+        raise SystemExit(
+            '输入 %s 的第 %s 个条目不含槽证据（既无 `addr` 也无 `disasm`）⇒ 拒绝把它当成'
+            '"单个槽"并产出键为 `""` 的伪候选 `? unknown _slot()`。'
+            '合法槽证据 JSON = `{"slots":[{"addr","disasm",…}]}` / 裸列表（**每个**条目都要有 '
+            '`addr` 或 `disasm`）/ 单槽对象；`name`/`symbol`/`signature` **不单独**构成槽证据。'
+            % (src, _shown))
     evs = _slots_from_json(data)
     by_addr = {}
     for ev in evs:

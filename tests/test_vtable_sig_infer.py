@@ -93,6 +93,7 @@ from vtable_sig_infer import (  # noqa: E402
     sanitize_pe_relocs,
 )
 from vtable_sig_infer import main as cli_main  # noqa: E402
+from vtable_sig_infer import _is_under_truth_source  # noqa: E402  (R=4 拒写守卫，直测谓词)
 
 
 def E(**kw):
@@ -1765,6 +1766,241 @@ def test_full_review_struct_input_with_slots_still_processed():
         data = json.loads(buf.getvalue())
         assert sorted(data['methods_pending']) == ['0x004C5D50'], data['methods_pending']
         assert '' not in data['methods_pending'], data['methods_pending']
+
+
+# =====================================================================================
+# R=4 收口：M-3「`--struct` 门只看顶层形状」+ 新增破环「拒写守卫经符号链接绕过」
+# =====================================================================================
+
+def _struct_cli(src, *args):
+    """跑一遍 CLI 并把 (rc, stdout) 交回；`SystemExit` 的**原因文本**也要能被断言。"""
+    import io
+    from contextlib import redirect_stdout
+
+    buf = io.StringIO()
+    try:
+        with redirect_stdout(buf):
+            rc = cli_main(list(args) + [src])
+    except SystemExit as e:
+        return None, buf.getvalue(), str(e)
+    return rc, buf.getvalue(), None
+
+
+def test_r4_bare_list_entries_without_slot_evidence_error():
+    """🟡 M-3（R=4，NOT ADDRESSED 部分收口）：`[{"methods": {}}]` —— 顶层是**裸列表**
+    ⇒ `_slot_evidence_kind` 返回 `'list'` 即放行，但**条目本身**没有槽证据 ⇒
+    被当成"单个槽"产出键为 `""` 的伪候选 `? unknown _slot()` 且 exit 0（评审实测）。
+
+    逐项校验后：必须 rc≠0，且 stdout 不得出现空地址伪候选。
+    """
+    import json
+    import os
+    import tempfile
+
+    with tempfile.TemporaryDirectory() as d:
+        src = os.path.join(d, 'bare_list.json')
+        with open(src, 'w', encoding='utf-8') as fh:
+            json.dump([{'methods': {}}], fh)
+        rc, out, err = _struct_cli(src, '--struct')
+        assert rc is None, '无槽证据的裸列表条目必须报错退出（实测 exit 0）；stdout=%r' % out[:200]
+        assert err and '槽证据' in err, err
+        assert '"": ' not in out and 'methods_pending' not in out, \
+            '不得产出空地址伪候选：%r' % out[:300]
+
+
+def test_r4_nested_slots_entries_without_slot_evidence_error():
+    """🟡 M-3：`{"slots": [{"methods": {}}]}` —— **含 `slots`** 但条目无槽证据 ⇒
+    旧实现照样静默产出 `"methods_pending": {"": … "? unknown _slot()"}` 且 exit 0。
+
+    "含 `slots` 不误伤"指的是**条目有证据**时行为不变（见 `…_positive…`），
+    不是"含 `slots` 三个字就免检"。
+    """
+    import json
+    import os
+    import tempfile
+
+    with tempfile.TemporaryDirectory() as d:
+        src = os.path.join(d, 'nested.json')
+        with open(src, 'w', encoding='utf-8') as fh:
+            json.dump({'slots': [{'methods': {}}]}, fh)
+        rc, out, err = _struct_cli(src, '--struct')
+        assert rc is None, '无槽证据的 nested slots 条目必须报错退出（实测 exit 0）；stdout=%r' % out[:200]
+        assert err and '槽证据' in err, err
+        assert '"": ' not in out and 'methods_pending' not in out, \
+            '不得产出空地址伪候选：%r' % out[:300]
+
+
+def test_r4_mixed_list_is_fail_closed_not_silently_dropped():
+    """🟡 M-3：混入无证据条目时**整体拒收**（fail-closed），不得"悄悄跳过坏的、只出好的"
+    ——静默排除会让调用方以为整份输入都被处理了。
+
+    反例 2 用**注解条目形状**（`known_members` 的 `{"offset","name","type"}`）钉住
+    "`name`/`symbol`/`signature` **不单独**构成槽证据"这条判据：它带 `name`，
+    若算证据就会重新打开空地址伪候选通道。
+    """
+    import json
+    import os
+    import tempfile
+
+    good = {'addr': '0x4C5D50', 'name': 'unused', 'symbol': '?unused@S@@UAEXHH@Z',
+            'disasm': C1_UNUSED}
+    with tempfile.TemporaryDirectory() as d:
+        for name, payload in (('mixed_member.json', [good, {'methods': {}}]),
+                              ('ann_member.json', [{'offset': 0, 'name': 'm_x', 'type': 'int'}]),
+                              ('nested_mixed.json', {'slots': [good, {'methods': {}}]})):
+            src = os.path.join(d, name)
+            with open(src, 'w', encoding='utf-8') as fh:
+                json.dump(payload, fh)
+            rc, out, err = _struct_cli(src, '--slots')
+            assert rc is None, '%s：含无证据条目必须整体拒收（实测 rc=%r）；stdout=%r' \
+                % (name, rc, out[:200])
+            assert err and '槽证据' in err, (name, err)
+
+
+def test_r4_slot_evidence_positive_cases_still_processed():
+    """M-3 阴性对照（**不误伤**）：条目**真有**槽证据时三种合法形态都必须照旧 rc=0 ——
+    ① `slots` 列表；② 裸列表 + dict 条目（`addr`+`disasm`）；③ 裸列表 + **字符串**条目
+    （Ruling 1 的原始反汇编文本；地址空缺 ⇒ 键为 `""`，这是既有契约）。
+
+    ③ 与本次缺陷态的区别必须钉住：字符串条目产出的是**真推断**
+    （`? __thiscall _slot(?,?)`，本模块实测 B 级），**不是** `? unknown _slot()` 伪候选
+    —— "键为 `""`"本身不是缺陷判据，"无证据却被当成槽"才是。
+    """
+    import json
+    import os
+    import tempfile
+
+    slot = {'addr': '0x4C5D50', 'name': 'unused', 'symbol': '?unused@S@@UAEXHH@Z',
+            'disasm': C1_UNUSED}
+    with tempfile.TemporaryDirectory() as d:
+        cases = (('slots_obj.json', {'slots': [slot]}, ['0x004C5D50']),
+                 ('bare_dict.json', [slot], ['0x004C5D50']),
+                 ('bare_str.json', [C1_UNUSED], ['']))
+        for name, payload, keys in cases:
+            src = os.path.join(d, name)
+            with open(src, 'w', encoding='utf-8') as fh:
+                json.dump(payload, fh)
+            rc, out, err = _struct_cli(src, '--struct')
+            assert rc == 0, '%s：有槽证据必须放行，err=%r' % (name, err)
+            data = json.loads(out)
+            assert sorted(data['methods_pending']) == keys, (name, data['methods_pending'])
+            assert data['methods'] == {}, name
+            for key in keys:
+                cands = data['methods_pending'][key]['candidates']
+                assert cands, (name, key, data)
+                assert all('? unknown _slot()' != c['signature'] for c in cands), \
+                    '%s：有证据时不得产出 `? unknown _slot()` 伪候选：%r' % (name, cands)
+            if keys == ['0x004C5D50']:
+                assert data['methods_pending']['0x004C5D50']['candidates'][0]['grade'] \
+                    in ('A', 'B'), data
+
+
+def test_r4_truth_source_refusal_resolves_symlinks():
+    """🟡 R=4 新增破环：`_is_under_truth_source()` 改用**纯词法** `commonpath` 后，
+    `data/annotations_link -> data/annotations` 这条**符号链接**路径不再被拒
+    （评审实测：`data/annotations_link/x.json` 旧拒=True → 新拒=False）⇒
+    CLI 会把旁路候选**写进真相源**。
+
+    修法 = 先 `os.path.realpath`（解析符号链接）再 `commonpath` ⇒ 拒写 + **不落盘**；
+    兄弟目录 `data/annotations_bak_probe/**` 仍放行（M-2b 修法不得被作废）。
+    """
+    import io
+    import json
+    import os
+    import tempfile
+    from contextlib import redirect_stdout
+
+    link = PROJECT_ROOT / 'data' / 'annotations_link'
+    truth = PROJECT_ROOT / 'data' / 'annotations'
+    target = truth / '__r4_symlink_must_never_write.json'
+    if os.path.islink(str(link)):                       # 上一轮残留 ⇒ 先清（R=2 测试卫生）
+        os.unlink(str(link))
+    assert not os.path.exists(str(link)), '测试前置：%s 不得存在' % link
+    if target.exists():
+        target.unlink()
+    payload = {'slots': [{'addr': '0x4C5D50', 'name': 'unused',
+                          'symbol': '?unused@S@@UAEXHH@Z', 'disasm': C1_UNUSED}]}
+    with tempfile.TemporaryDirectory() as d:
+        src = os.path.join(d, 'slots.json')
+        with open(src, 'w', encoding='utf-8') as fh:
+            json.dump(payload, fh)
+        os.symlink(str(truth), str(link))
+        try:
+            assert _is_under_truth_source(str(link / 'x.json')) is True, \
+                '符号链接路径 %s 实际写入真相源，必须判为真源内' % (link / 'x.json')
+            try:
+                with redirect_stdout(io.StringIO()):
+                    cli_main(['--slots', src, '--out', str(link / target.name)])
+            except SystemExit as e:
+                assert 'data' in str(e) and 'annotations' in str(e), e
+            else:
+                raise AssertionError('经符号链接写真相源必须被拒（实测写了）')
+            assert not target.exists(), '拒写后**不得**落盘：%s' % target
+
+            # 兄弟目录仍放行：realpath 不得把 M-2b（分量级判定）作废
+            sibling = PROJECT_ROOT / 'data' / 'annotations_bak_probe'
+            sibling.mkdir(parents=True, exist_ok=True)
+            dest = sibling / 'o.json'
+            existed = dest.exists()
+            try:
+                assert _is_under_truth_source(str(dest)) is False, dest
+                with redirect_stdout(io.StringIO()):
+                    rc = cli_main(['--slots', src, '--out', str(dest)])
+                assert rc == 0 and dest.exists(), '兄弟目录必须放行并落盘：%s' % dest
+                written = json.loads(dest.read_text(encoding='utf-8'))
+                assert sorted(written['methods_pending']) == ['0x004C5D50'], written
+            finally:
+                if dest.exists() and not existed:
+                    dest.unlink()
+                try:
+                    sibling.rmdir()                 # 只在空目录时成功 ⇒ 无残余
+                except OSError:
+                    pass
+        finally:
+            if os.path.islink(str(link)):
+                os.unlink(str(link))
+            if target.exists():
+                target.unlink()
+    assert not os.path.islink(str(link)) and not target.exists(), '测试不得留残余'
+    assert not (PROJECT_ROOT / 'data' / 'annotations_bak_probe').exists(), '兄弟目录不得留残余'
+
+
+def test_r4_truth_source_internal_symlink_pointing_out_is_still_refused():
+    """R=4 守卫的第二条判据（**保守**）：链接**位于**真相源内部、指向外部时，
+    词法位置已落在真相源树内 ⇒ 仍拒写（只按 realpath 会放行这种"树内挂载点"）。
+    """
+    import io
+    import json
+    import os
+    import tempfile
+    from contextlib import redirect_stdout
+
+    truth = PROJECT_ROOT / 'data' / 'annotations'
+    inner = truth / '__r4_out_link'
+    if os.path.islink(str(inner)):
+        os.unlink(str(inner))
+    assert not os.path.exists(str(inner)), '测试前置：%s 不得存在' % inner
+    payload = {'slots': [{'addr': '0x4C5D50', 'name': 'unused',
+                          'symbol': '?unused@S@@UAEXHH@Z', 'disasm': C1_UNUSED}]}
+    with tempfile.TemporaryDirectory() as d:
+        src = os.path.join(d, 'slots.json')
+        with open(src, 'w', encoding='utf-8') as fh:
+            json.dump(payload, fh)
+        os.symlink(d, str(inner))
+        try:
+            assert _is_under_truth_source(str(inner / 'o.json')) is True, inner
+            try:
+                with redirect_stdout(io.StringIO()):
+                    cli_main(['--slots', src, '--out', str(inner / 'o.json')])
+            except SystemExit as e:
+                assert 'data' in str(e) and 'annotations' in str(e), e
+            else:
+                raise AssertionError('真相源树内的链接不得成为写旁路出口')
+            assert not os.path.exists(os.path.join(d, 'o.json')), '拒写后不得落盘'
+        finally:
+            if os.path.islink(str(inner)):
+                os.unlink(str(inner))
+    assert not os.path.islink(str(inner)) and not os.path.exists(str(inner)), '不得留残余'
 
 
 def test_full_review_truth_source_refusal_does_not_reject_sibling_dirs():
