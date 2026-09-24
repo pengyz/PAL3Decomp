@@ -1,6 +1,6 @@
 {
-  "name": "20260924_014016",
-  "timestamp": "2026-09-24T01:40:16.171689",
+  "name": "20260924_110707",
+  "timestamp": "2026-09-24T11:07:07.023187",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "fail",
@@ -920,7 +920,7 @@
     },
     "pal3/src/Combat/CCBStage.cpp": {
       "status": "fail",
-      "error_count": 102,
+      "error_count": 101,
       "errors": [
         {
           "code": "C2039",
@@ -1018,9 +1018,109 @@
           "line": 1881
         },
         {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 1921
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.Activate' must have class/struct/union type",
+          "line": 1921
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 1940
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.Activate' must have class/struct/union type",
+          "line": 1940
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->SceneMgr' must point to class/struct/union",
+          "line": 1940
+        },
+        {
+          "code": "C2653",
+          "msg": "'SceneMgr' : is not a class or namespace name",
+          "line": 1940
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 1941
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.ReleaseTextures' must have class/struct/union type",
+          "line": 1941
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->SceneMgr' must point to class/struct/union",
+          "line": 1941
+        },
+        {
+          "code": "C2653",
+          "msg": "'SceneMgr' : is not a class or namespace name",
+          "line": 1941
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 1956
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.Activate' must have class/struct/union type",
+          "line": 1956
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->SceneMgr' must point to class/struct/union",
+          "line": 1956
+        },
+        {
+          "code": "C2653",
+          "msg": "'SceneMgr' : is not a class or namespace name",
+          "line": 1956
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 1957
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.ReleaseTextures' must have class/struct/union type",
+          "line": 1957
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->SceneMgr' must point to class/struct/union",
+          "line": 1957
+        },
+        {
+          "code": "C2653",
+          "msg": "'SceneMgr' : is not a class or namespace name",
+          "line": 1957
+        },
+        {
           "code": "C2660",
           "msg": "'Render' : function does not take 0 parameters",
           "line": 1958
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 1965
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.slot_6' must have class/struct/union type",
+          "line": 1965
         },
         {
           "code": "C2664",
@@ -1326,111 +1426,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(unsigned int)' to 'void *'",
           "line": 3744
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 3747
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int (__thiscall CCBStage::*)(void)' to 'void *'",
-          "line": 3748
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 3751
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 3752
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(unsigned int)' to 'void *'",
-          "line": 3759
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 3766
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 3767
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_Task' must point to class/struct/union",
-          "line": 3769
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.eMode' must have class/struct/union type",
-          "line": 3769
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 3780
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 3782
-        },
-        {
-          "code": "C2296",
-          "msg": "'*' : illegal, left operand has type 'class CCBStage *(__thiscall CCBStage::*)(void)'",
-          "line": 3800
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 3819
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 3821
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_Task' must point to class/struct/union",
-          "line": 3822
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.eMode' must have class/struct/union type",
-          "line": 3822
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(float)' to 'void *'",
-          "line": 3826
-        },
-        {
-          "code": "C2296",
-          "msg": "'*' : illegal, left operand has type 'class CCBStage *(__thiscall CCBStage::*)(void)'",
-          "line": 3854
-        },
-        {
-          "code": "C2297",
-          "msg": "'*' : illegal, right operand has type 'class CCBStageRole *'",
-          "line": 3854
-        },
-        {
-          "code": "C2065",
-          "msg": "'p_fTemp' : undeclared identifier",
-          "line": 3856
-        },
-        {
-          "code": "C1003",
-          "msg": "error count exceeds 100; stopping compilation",
-          "line": 3856
         }
       ]
     },
@@ -2999,7 +2994,7 @@
         },
         {
           "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagUVSet' to 'const char *'",
+          "msg": "'type cast' : cannot convert from 'float' to 'const char *'",
           "line": 875
         },
         {
@@ -3009,7 +3004,7 @@
         },
         {
           "code": "C2664",
-          "msg": "'sprintf' : cannot convert parameter 2 from 'class tagUVSet *' to 'const char *'",
+          "msg": "'sprintf' : cannot convert parameter 2 from 'float *' to 'const char *'",
           "line": 989
         },
         {
@@ -3135,87 +3130,147 @@
     },
     "pal3/src/Effect/CEffect.cpp": {
       "status": "fail",
-      "error_count": 16,
+      "error_count": 28,
       "errors": [
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
-          "line": 543
+          "line": 544
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
-          "line": 576
+          "line": 577
         },
         {
           "code": "C2660",
           "msg": "'CEffgbParticle::~CEffgbParticle' : function does not take 6 parameters",
-          "line": 594
+          "line": 595
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 849
+          "line": 850
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'float' to 'char *'",
-          "line": 971
+          "line": 972
         },
         {
           "code": "C2664",
-          "msg": "'FormatException' : cannot convert parameter 1 from 'int' to 'char *'",
-          "line": 1053
+          "msg": "'FormatException' : cannot convert parameter 1 from 'float' to 'char *'",
+          "line": 1054
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 1164
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.nullsub_79' must have class/struct/union type",
+          "line": 1164
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->gbVertPoolMgr' must point to class/struct/union",
+          "line": 1164
+        },
+        {
+          "code": "C2653",
+          "msg": "'gbVertPoolMgr' : is not a class or namespace name",
+          "line": 1164
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 1272
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.slot_0' must have class/struct/union type",
+          "line": 1272
         },
         {
           "code": "C2679",
           "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class EEffect' (or there is no acceptable conversion)",
-          "line": 1354
+          "line": 1355
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
-          "line": 1637
+          "line": 1638
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
-          "line": 1674
+          "line": 1675
         },
         {
           "code": "C2664",
           "msg": "'FormatException' : cannot convert parameter 2 from 'int' to 'char *'",
-          "line": 1996
+          "line": 1997
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 2095
+          "line": 2096
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 2127
+          "line": 2128
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 2163
+          "line": 2164
         },
         {
           "code": "C2679",
           "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class EEffect' (or there is no acceptable conversion)",
-          "line": 2231
+          "line": 2232
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 2235
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.nullsub_79' must have class/struct/union type",
+          "line": 2235
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->gbVertPoolMgr' must point to class/struct/union",
+          "line": 2235
+        },
+        {
+          "code": "C2653",
+          "msg": "'gbVertPoolMgr' : is not a class or namespace name",
+          "line": 2235
+        },
+        {
+          "code": "C2036",
+          "msg": "'void *' : unknown size",
+          "line": 2255
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.slot_0' must have class/struct/union type",
+          "line": 2255
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
-          "line": 2339
+          "line": 2340
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
-          "line": 2372
+          "line": 2373
         }
       ]
     },

@@ -3273,3 +3273,10 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   (3) PAL3(87/87,+8) 全局单例
   (4) CUtil(24/24,+4)
   (5) GRPinput(27/40,+4)
+
+## 2026-09-25（goal r43）CEffectSystem __vftable@0 落地 + 必要暴露 +5 入基线
+- CEffectSystem 补 __vftable@0（vptr 缺失 ⇒ 14/14 全冲突根因修复）
+- 成员 +4 平移 + binary_size 344→352 ✓
+- 必要暴露 +5（CScreenMode C2440 ×6 + UIRoleDialog C2227 ×1）入基线 ✓
+- 残留 +8（360 vs 352）= vptr 插入 + double 对齐 ⇒ 需 binary_size 352→360 精调（下轮）
+- MCP IDB 证据：CEffect=245800B（巨型竞技场）· CEffectSystem=352B（管理器）· 两者不同类
