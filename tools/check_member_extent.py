@@ -78,6 +78,11 @@ def _size_of(t, sizes):
     base, dims = _base_and_dims(tt)
     if base is None:
         return None
+    # ★ 嵌套类型（含 ::）⇒ 无法确定独立尺寸 ⇒ 不猜（2026-09-25 修复：原代码把
+    #   命名空间前缀 Comp_DonateUI 当类型名查表 ⇒ 拿宿主 binary_size 46840 ⇒
+    #   CDState[10] 假报 468400 ✗）
+    if '::' in tt:              # ★ 检查原始类型串（_base_and_dims 会剥 :: 后部分 ✗）
+        return None
     if base in sizes:
         return sizes[base] * dims
     if base in _SCALAR:
