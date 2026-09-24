@@ -3251,3 +3251,13 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 注解 14 成员/344B 是头部快照，其余 ~245KB 为未建模数据区
 - CEffect(13/13,+8200) 同族待查（CEffect 的 m_Partical 数组等大型成员）
 - 重建工程量：245KB 字段图 = 多轮/类（与 PAL_GDB 同级）⇒ 暂缓，转入下优先级
+
+## 2026-09-25 目标升级：逐类完整重建（UITextArea 级质量标准）
+- 从"修布局冲突"升级为**五维度完整重建**：
+  (1)尺寸：binary_size 从分配/stride 铁证确认
+  (2)布局：成员偏移从 ctor 逐指令解码
+  (3)函数归属：纠正 PDB 误名（如 Refresh@ARC_PlayerAtt→UIRoleDialog ctor）
+  (4)变量名：有语义证据给真名，无证据保留 _todo_
+  (5)类型：按操作数宽度+运算+上下文确定（非 void*/BYTE 占位）
+- 八步闭环：取证→字段图→归属纠正→语义命名→类型修正→尺寸闭合→级联→管线验证
+- 优先级不变：CEffectSystem/CEffect 竞技场族 → SceneObj/CCBRoleState 五维完善 → PAL3 → CUtil → ...
