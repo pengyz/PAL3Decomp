@@ -49,9 +49,9 @@ __all__ = [
     'KIND_PURECALL', 'KIND_COMPOSITE', 'ALL_KINDS',
     'FEATURE_DELETING_DTOR', 'FEATURE_ADJUSTOR_STATIC', 'FEATURE_ADJUSTOR_VBASE',
     'FEATURE_PURECALL', 'ALL_FEATURES',
-    'Operand', 'Insn', 'SlotEvidence', 'SlotClassification',
-    'parse_disasm', 'normalize_signature', 'is_deleting_dtor_signature',
-    'normalize_kind', 'slot_order_kind', 'classify_slot',
+    'Operand', 'Insn', 'ParseReport', 'SlotEvidence', 'SlotClassification',
+    'parse_disasm', 'parse_disasm_report', 'normalize_signature',
+    'is_deleting_dtor_signature', 'normalize_kind', 'slot_order_kind', 'classify_slot',
 ]
 
 KIND_FN = 'fn'
@@ -284,15 +284,48 @@ _OBJDUMP_HDR = re.compile(r'^\s*[0-9A-Fa-f]*\s*<[^>]*>:\s*$')
 _NDISASM_LINE = re.compile(r'^\s*[0-9A-Fa-f]{4,}\s+[0-9A-Fa-f]{2,}\s\s+([A-Za-z].*)$')
 _TEXT_LINE = re.compile(r'^\s*([A-Za-z][A-Za-z0-9._]*)\s*(.*)$')
 
+# 重定位注释行（`objdump -dr` 的 `R_386_PC32 <sym>` / `R_IA64_PCREL21B <sym>` 等）：
+# **无指令语义**，带不带 `offset:` 前缀都算。若被当指令解析，会抢占末位使尾 jmp 不再位于
+# 末位 ⇒ 真 adjustor thunk 被误判成静默 fn（零 notes）。故按 `R_<ARCH>_<TYPE>` 通用匹配。
+_RELOC_LINE = re.compile(r'^\s*(?:[0-9A-Fa-f]{1,16}:\s*)?R_[A-Za-z0-9_]+\b')
+
+# IDA 粘贴形态的**地址列前缀**：`CODE:00401000 ` / `.text:00401000 ` / `00401000  `。
+_IDA_ADDR_COL = re.compile(
+    r'^(?:[A-Za-z_.$][A-Za-z0-9_.$]*:\s*)?(?:0x)?([0-9A-Fa-f]{4,16})(?=\s|$)')
+
+
+def _strip_ida_addr_column(text):
+    """剥 IDA 地址列前缀 → (剩余文本, 是否剥过)。
+
+    纯十六进制字母词（如 x87 `fadd`，4 个 hex 字母）**不是**地址列 ⇒ 不剥，避免吞掉真指令。
+    地址列可能重复（`CODE:00401000 00401000 sub …`），故循环剥到不再命中。
+    """
+    s = text.strip()
+    matched = False
+    while True:
+        m = _IDA_ADDR_COL.match(s)
+        if not m or not any(c.isdigit() for c in m.group(1)):
+            return s, matched
+        matched = True
+        s = s[m.end():].lstrip()
+
 
 def _split_objdump_rest(rest):
-    """objdump 行的字节列与指令文本分离（指令文本首词不会是「2 位十六进制 + 空白」）。"""
+    """objdump 行的字节列与指令文本分离（指令文本首词不会是「2 位十六进制 + 空白」）。
+
+    纯**数据**字节行（如 `  16:\\t00`、`  16:\\t00 00 00 00`，无指令文本）⇒ 返回 ''（视作
+    纯字节续行跳过）。实测 PE-COFF 清单里这类行占比可到 ~4%，若计成"丢弃"会让数据密集的
+    COMDAT 切片误报 `partially_parsed`。
+    """
     s = rest.strip()
     while True:
         m = re.match(r'^[0-9A-Fa-f]{2}\s+', s)
         if not m:
-            return s
+            break
         s = s[m.end():].lstrip()
+    if re.fullmatch(r'[0-9A-Fa-f]{2}', s):        # 末字节后无空白（整行皆字节）
+        return ''
+    return s
 
 
 def _parse_insn_text(text):
@@ -311,40 +344,114 @@ def _parse_insn_text(text):
     return Insn(mnem=mnem, ops=ops, raw=text.strip())
 
 
+@dataclass(frozen=True)
+class ParseReport:
+    """反汇编文本的**解析完整性报告**（防"解析器静默失败"回流成静默 fn）。
+
+    content_lines: 去掉空行/纯注释行后的**非空行数**（= 分母）
+    parsed_lines:  成功解析出指令的行数
+    skipped_lines: **有意跳过**的结构行（空行 / 节符号头 / 横幅 / 纯字节续行 / 重定位行 /
+                   仅地址列行）——不算"丢弃"
+    dropped_lines: 非空、非结构行，但**解析不出指令**的行（= 真丢弃）
+    """
+    insns: tuple = ()
+    raw_lines: int = 0
+    content_lines: int = 0
+    parsed_lines: int = 0
+    skipped_lines: int = 0
+    dropped_lines: int = 0
+    dropped_examples: tuple = ()
+
+    @property
+    def insufficient_evidence(self):
+        """非空输入却一条指令都没解析出来 ⇒ 证据不足（不得静默回落 fn）。"""
+        return self.content_lines > 0 and self.parsed_lines == 0
+
+    @property
+    def partially_parsed(self):
+        """丢弃行占比 > 50% ⇒ 解析不完整，结论不可信。"""
+        return self.content_lines > 0 and self.dropped_lines * 2 > self.content_lines
+
+
+def parse_disasm_report(text):
+    """解析反汇编文本 → `ParseReport`（指令 + 解析完整性计数）。
+
+    逐行处理顺序（顺序即语义，改前先读"静默失败"三例）：
+      1. 剥 `;` 行尾注释（IDA 语法；分号在字符串中的情形本场景忽略）
+      2. 空行 / 节·符号头（冒号结尾）/ objdump 横幅 ⇒ **跳过**
+      3. 重定位注释行（`R_386_*` / `R_IA64_*` …）⇒ **跳过**
+      4. objdump 形态（`offset:` + 字节列）；纯字节续行/reloc 体 ⇒ 跳过
+      5. ndisasm 形态（地址列 + 字节列 + 指令）
+      6. 其余：剥 IDA 地址列前缀后解析（仅地址列行 ⇒ 跳过）
+    解析不出指令的非结构行计入 `dropped_lines`（≥1 行即留痕，见 `classify_slot`）。
+    """
+    insns, examples = [], []
+    raw_lines = content_lines = parsed = skipped = dropped = 0
+    for raw in text.splitlines():
+        raw_lines += 1
+        line = raw.split(';', 1)[0]               # 1. `;` 注释剥离
+        s = line.strip()
+        if not s:
+            skipped += 1
+            continue
+        content_lines += 1
+        if (s.endswith(':') or _OBJDUMP_HDR.match(line)      # 2. 结构行
+                or '文件格式' in s or 'file format' in s):
+            skipped += 1
+            continue
+        if _RELOC_LINE.match(s):                  # 3. 重定位注释行
+            skipped += 1
+            continue
+        m = _OBJDUMP_LINE.match(line)             # 4. objdump
+        if m:
+            body = _split_objdump_rest(m.group(2))
+            if not body or _RELOC_LINE.match(body):   # 纯字节续行 / reloc 体
+                skipped += 1
+                continue
+            ins = _parse_insn_text(body)
+        else:
+            m2 = _NDISASM_LINE.match(line)        # 5. ndisasm
+            if m2:
+                ins = _parse_insn_text(m2.group(1))
+            else:                                 # 6. IDA 裸文本 / 地址列前缀
+                body, _had_col = _strip_ida_addr_column(line)
+                if not body:
+                    skipped += 1                  # 仅地址列、无指令文本
+                    continue
+                ins = _parse_insn_text(body)
+        if ins is not None:
+            insns.append(ins)
+            parsed += 1
+        else:
+            dropped += 1
+            if len(examples) < 3:
+                examples.append(s)
+    return ParseReport(insns=tuple(insns), raw_lines=raw_lines, content_lines=content_lines,
+                       parsed_lines=parsed, skipped_lines=skipped, dropped_lines=dropped,
+                       dropped_examples=tuple(examples))
+
+
 def parse_disasm(text):
-    """解析反汇编文本 → tuple[Insn]。
+    """解析反汇编文本 → tuple[Insn]（= `parse_disasm_report(text).insns`；完整性计数见报告）。
 
     接受三种逐字工具输出/手写形态：
       * objdump（AT&T）：`  0:\\t83 e9 08\\t\\tsub    $0x8,%ecx`（偏移 + 字节列 + 指令）
       * ndisasm（Intel）：`00000000  2B49FC            sub ecx,[ecx-0x4]`
-      * 裸指令文本（IDA 语法）：`sub     ecx, [ecx-4]`
-    空行、节/符号/标签头（以冒号结尾的行）、objdump 横幅行、纯字节续行一律跳过——
-    这些行若被误解析成伪指令，会打断 thunk 调整链（端到端核对实测踩过）。
+      * IDA 裸文本：`sub     ecx, [ecx-4]`（可带 `CODE:00401000 ` / `00401000  ` 地址列前缀，
+        可带 `;` 行尾注释）
+    空行、节/符号/标签头（以冒号结尾的行）、objdump 横幅行、纯字节续行、**重定位注释行**
+    （`R_386_PC32 <sym>` 等）一律跳过——这些行若被误解析成伪指令，会打断 thunk 调整链
+    （端到端核对与"静默失败"三例实测均踩过）。
     """
-    insns = []
-    for line in text.splitlines():
-        s = line.strip()
-        if (not s or s.endswith(':') or _OBJDUMP_HDR.match(line)
-                or '文件格式' in s or 'file format' in s):
-            continue
-        m = _OBJDUMP_LINE.match(line)
-        if m:
-            body = _split_objdump_rest(m.group(2))
-            if not body:
-                continue                      # 纯字节续行
-            ins = _parse_insn_text(body)
-        else:
-            m2 = _NDISASM_LINE.match(line)
-            ins = _parse_insn_text(m2.group(1) if m2 else line)
-        if ins is not None:
-            insns.append(ins)
-    return tuple(insns)
+    return parse_disasm_report(text).insns
 
 
-def _as_insns(instructions):
+def _as_insns_and_report(instructions):
+    """→ (insns, ParseReport|None)。报告仅在文本输入时可得（已解析序列无线索可计）。"""
     if isinstance(instructions, str):
-        return parse_disasm(instructions)
-    return tuple(instructions)
+        report = parse_disasm_report(instructions)
+        return report.insns, report
+    return tuple(instructions), None
 
 
 # ---------------- 特征判据 ----------------
@@ -517,12 +624,19 @@ class SlotClassification:
         return slot_order_kind(self.kind)
 
 
+def _example_suffix(report):
+    """丢弃行的示例后缀（诊断用，最多 3 条在报告里，这里取首条）。"""
+    if not report.dropped_examples:
+        return ''
+    return '，如 %r' % (report.dropped_examples[0],)
+
+
 def classify_slot(evidence):
     """按二进制可观测形态分类槽内容 → SlotClassification。
 
     特征集合命中 0 条 = fn；1 条 = 该特征同名词面；≥2 条 = composite（需人工定性）。
     """
-    insns = _as_insns(evidence.instructions)
+    insns, report = _as_insns_and_report(evidence.instructions)
     names = tuple(evidence.symbols) + ((evidence.external_symbol,) if evidence.external_symbol else ())
     notes, features = [], set()
 
@@ -575,4 +689,17 @@ def classify_slot(evidence):
         kind = sorted(features)[0]
     else:
         kind = KIND_FN
+
+    # --- 解析完整性痕迹：解析器静默失败不得回流成"静默 fn（零 notes）" ---
+    if report is not None:
+        if report.insufficient_evidence:
+            notes.append('insufficient_evidence: %d 行非空反汇编文本解析出 0 条指令'
+                         '（丢弃 %d 行%s）⇒ 证据不足，回落 fn 不可信，需 IDA 人工复核'
+                         % (report.content_lines, report.dropped_lines,
+                            _example_suffix(report)))
+        elif report.partially_parsed:
+            notes.append('partially_parsed: 丢弃 %d/%d 行非空反汇编文本（>50%%）⇒ 解析不完整，'
+                         'kind=%s 结论不可信，需 IDA 人工复核%s'
+                         % (report.dropped_lines, report.content_lines, kind,
+                            _example_suffix(report)))
     return SlotClassification(kind=kind, features=frozenset(features), notes=tuple(notes))

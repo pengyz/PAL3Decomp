@@ -434,6 +434,126 @@ Disassembly of section .data:
     assert classify_slot(E(instructions=listing)).kind == KIND_ADJUSTOR_STATIC
 
 
+# ================= 9. 解析器健壮性（静默失败缺陷修复，先红后绿） =================
+#
+# 三条实测缺陷（均为"解析器静默丢弃 ⇒ 真 adjustor thunk 误判成静默 fn（零 notes）"）：
+#   例 1 `objdump -dr` 的**重定位注释行**被当成指令 ⇒ 尾 jmp 不在末位 ⇒ fn
+#   例 2 IDA 粘贴的**地址列前缀**（`CODE:00401000` / `00401000`）⇒ 整段丢弃或伪指令 ⇒ fn
+#   例 3 IDA 文本的 `;` 注释未剥离 ⇒ 操作数解析成 `other` ⇒ 调整链断裂 ⇒ fn
+# 另加"非空输入但解析不出指令时必须留痕"（不得静默回落 fn）。
+
+# 例 1 —— `objdump -dr` 逐字形态：指令行 + 紧随其后的重定位注释行
+# （`?o@D@@$4PPPPPPPM@A@AEXXZ` 即 abi README #5 动态 vbase adjustor）
+OBJDUMP_DR_VBASE_WITH_RELOC = """
+  0:  2b 49 fc              sub    -0x4(%ecx),%ecx
+  3:  e9 00 00 00 00        jmp    0x8
+  3: R_386_PC32  ?o@D@@$4PPPPPPPM@A@AEXXZ
+"""
+
+# 同上形态的 `R_IA64_*` 家族（判据必须按 `R_<ARCH>_<TYPE>` 通用匹配，不写死 x86）
+OBJDUMP_DR_STATIC_WITH_RELOC_IA64 = """
+  0:  83 e9 08              sub    $0x8,%ecx
+  3:  e9 00 00 00 00        jmp    0x8
+  4: R_IA64_PCREL21B  ?ff@D3@@W7AEHXZ
+"""
+
+# 例 2 —— IDA 粘贴的地址列前缀三形态（同一 thunk 的逐字形态）
+IDA_ADDR_COLUMN_CODE = """
+CODE:00401000 sub ecx,[ecx-4]
+CODE:00401003 jmp loc_body
+"""
+IDA_ADDR_COLUMN_BARE = """
+00401000  sub ecx,[ecx-4]
+00401003  jmp loc_body
+"""
+IDA_ADDR_COLUMN_TEXT_SEG = """
+.text:00401000  sub ecx,[ecx-4]
+.text:00401003  jmp loc_body
+"""
+
+# 例 3 —— IDA 文本带 `;` 行尾注释
+IDA_SEMICOLON_COMMENT = """
+sub ecx,[ecx-4]  ; adjust this
+jmp loc_body    ; tail
+"""
+
+# 非空但**完全无法解析**的本体（既非指令，也无地址列/字节列）
+UNPARSEABLE_BODY = """
+@@@ not an instruction
+=== still not one ===
+"""
+
+
+def test_objdump_reloc_annotation_lines_are_skipped():
+    """缺陷例 1：`objdump -dr` 的重定位注释行（`R_386_*` / `R_IA64_*` 家族）**不是指令** ⇒
+    必须跳过；否则它抢占末位、尾 jmp 不再在末位 ⇒ 真 adjustor thunk 静默判成 fn"""
+    for text, kind, feats in (
+            (OBJDUMP_DR_VBASE_WITH_RELOC, KIND_ADJUSTOR_VBASE, {FEATURE_ADJUSTOR_VBASE}),
+            (OBJDUMP_DR_STATIC_WITH_RELOC_IA64, KIND_ADJUSTOR_STATIC, {FEATURE_ADJUSTOR_STATIC})):
+        assert [i.mnem for i in parse_disasm(text)] == ['sub', 'jmp'], parse_disasm(text)
+        res = classify_slot(E(instructions=text))
+        assert res.kind == kind, (text, res)
+        assert res.features == frozenset(feats), res.features
+
+
+def test_reloc_and_structural_lines_are_not_counted_as_dropped():
+    """重定位行/节头/**纯数据字节行**是**有意跳过**的结构行，不属"丢弃" ⇒ 不得因此触发
+    partially_parsed（否则正常 `objdump -dr` 清单、数据密集的 COMDAT 切片会被误标解析不完整）"""
+    data_run = OBJDUMP_DR_VBASE_WITH_RELOC + "  6:\t00 00 00 00\n  10:\t00\n"
+    res = classify_slot(E(instructions=data_run))
+    assert res.kind == KIND_ADJUSTOR_VBASE, res
+    joined = ' | '.join(res.notes)
+    assert 'partially_parsed' not in joined, res.notes
+    assert 'insufficient_evidence' not in joined, res.notes
+
+
+def test_ida_address_column_prefix_is_stripped():
+    """缺陷例 2：IDA 粘贴形态 `CODE:00401000 instr` / `00401000  instr` / `.text:00401000 instr`
+    的地址列前缀必须剥掉 ⇒ 与裸指令文本同结论（原实现整段丢弃 ⇒ insns 为空 ⇒ fn）"""
+    for text in (IDA_ADDR_COLUMN_CODE, IDA_ADDR_COLUMN_BARE, IDA_ADDR_COLUMN_TEXT_SEG):
+        assert [i.mnem for i in parse_disasm(text)] == ['sub', 'jmp'], (text, parse_disasm(text))
+        res = classify_slot(E(instructions=text))
+        assert res.kind == KIND_ADJUSTOR_VBASE, (text, res)
+        assert res.features == frozenset({FEATURE_ADJUSTOR_VBASE}), res.features
+
+
+def test_ida_semicolon_comment_is_stripped_before_operand_parse():
+    """缺陷例 3：`;` 行尾注释必须剥离 ⇒ 操作数仍解析成 `mem`（base=ecx, disp=-4）而非 `other`，
+    调整链不断 ⇒ adjustor_vbase"""
+    ins = parse_disasm(IDA_SEMICOLON_COMMENT)
+    assert [i.mnem for i in ins] == ['sub', 'jmp'], ins
+    src = ins[0].ops[1]
+    assert (src.kind, src.base, src.disp) == ('mem', 'ecx', -4), src
+    assert not any(o.kind == 'other' for i in ins for o in i.ops), ins
+    res = classify_slot(E(instructions=IDA_SEMICOLON_COMMENT))
+    assert res.kind == KIND_ADJUSTOR_VBASE, res
+
+
+def test_unparseable_body_leaves_insufficient_evidence_trace():
+    """非空输入但解析出 0 条指令 ⇒ **必须**在 notes 里留 `insufficient_evidence` 痕迹
+    （原实现静默返回零 notes 的 fn —— 真 thunk 就这样消失）"""
+    res = classify_slot(E(instructions=UNPARSEABLE_BODY))
+    assert res.kind == KIND_FN, res
+    assert res.notes, '非空输入零解析不得静默返回空 notes'
+    assert any('insufficient_evidence' in n for n in res.notes), res.notes
+
+
+def test_mostly_dropped_body_leaves_partially_parsed_trace():
+    """丢弃行占比 > 50% ⇒ 留 `partially_parsed` 痕迹（解析不完整时 fn 结论不可信）"""
+    text = '\n'.join(['sub ecx,[ecx-4]', '@@@ junk 1', '=== junk 2 ===', '%%% junk 3 %%%'])
+    res = classify_slot(E(instructions=text))
+    assert res.kind == KIND_FN, res
+    assert any('partially_parsed' in n for n in res.notes), res.notes
+
+
+def test_empty_input_has_no_evidence_trace():
+    """空输入（无任何非空行）不属"证据不足"——不得凭空产生痕迹"""
+    for text in ('', '\n\n   \n'):
+        res = classify_slot(E(instructions=text))
+        assert res.notes == (), (text, res.notes)
+        assert res.kind == KIND_FN, (text, res)
+
+
 if __name__ == '__main__':
     ok = fail = skip = 0
     for nm, fn in sorted(list(globals().items())):
