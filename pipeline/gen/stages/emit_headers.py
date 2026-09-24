@@ -2367,6 +2367,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             is_static = not is_thiscall and not is_ctor and not is_dtor
 
             # Strip register annotations
+            # ★ vtable 槽位方法必须 virtual（2026-09-25）
+            _addr_int_vt = int(addr, 16) if isinstance(addr, str) else addr
+            _is_vt_method = _addr_int_vt in _vtable_addr_order
+            if _is_vt_method:
+                is_static = False  # vtable 方法不可能是 static
+
             params = re.sub(r'@<\w+>', '', params)
 
             # Remove this pointer from params (always first param for __thiscall)
@@ -2451,12 +2457,19 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     ret = re.sub(r'\bvirtual\b', '', ret).strip()
                     decl = "    static %s %s(%s)%s;" % (ret, _mn, params, ret_right)
                 else:
-                    decl = "    %s %s(%s)%s;" % (ret, _mn, params, ret_right)
+                    if _addr_int_vt in _vtable_addr_order and not ret.startswith('virtual'):
+                        decl = "    virtual %s %s(%s)%s;" % (ret, _mn, params, ret_right)
+                    else:
+                        decl = "    %s %s(%s)%s;" % (ret, _mn, params, ret_right)
             elif is_static:
                 ret = re.sub(r'\bvirtual\b', '', ret).strip()
                 decl = "    static %s %s(%s);" % (ret, _mn, params)
             else:
-                decl = "    %s %s(%s);" % (ret, _mn, params)
+                # ★ vtable 方法强制 virtual（编译器 vptr 分发）
+                if _addr_int_vt in _vtable_addr_order and not ret.startswith('virtual'):
+                    decl = "    virtual %s %s(%s);" % (ret, _mn, params)
+                else:
+                    decl = "    %s %s(%s);" % (ret, _mn, params)
 
             # Virtual override: method inherited from base vtable but this class has its own impl.
             # Don't add virtual keyword — subclasses may have different return types (C2555 risk).

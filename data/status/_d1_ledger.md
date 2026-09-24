@@ -3442,3 +3442,13 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - pipeline/gen/stages/stage3_cleanup.py: _strip_vftable_member_access ✓
 - tools/vtable_mapper.py: 闭环验证门禁 ✓
 - data/status/vtable_baseline.json: 基线（302 缺口）
+
+## 2026-09-25 vtable P1 突破 —— 9/9 virtual 全部正确发射 ✓
+### 根因
+- 发射器 `is_static = not is_thiscall` ⇒ 签名缺 __thiscall 的方法被误判为 static ⇒ 不发 virtual
+### 修复
+- 在发射循环中加 vtable 槽位检测：`_addr_int_vt in _vtable_addr_order` ⇒ 强制 `is_static=False` + 加 `virtual` 前缀
+- `ret_right` 分支同步修复
+### 验证
+- CEffectSystem: 5 → **9** virtual 声明（7 named + 2 placeholder）✓
+- 全部 9 个唯一 vtable 地址都有 virtual 声明 ✓
