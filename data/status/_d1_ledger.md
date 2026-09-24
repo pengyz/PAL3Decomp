@@ -3241,3 +3241,13 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - vtable 存储反查 > 调用约定 > 槽位函数群 > 邻居推断 ✗ > 调用点强转类型 ✗
 - 全局语义改动必须过 L1 棘轮；落地单位 = 类型 + 内嵌级联闭包
 - audit 一致 ≠ 布局正确；ctor 逐指令 = 最终裁判
+
+## 2026-09-25（goal r41）CEffectSystem 重大发现：真尺寸 ≥ 0x3C020（非 344）⇒ 竞技场类确认
+- CEffect ctor 0x4C6940 decomp: `v1 = operator new(0x10C0u); CEffectSystem::FillDefaultUVSet(v1)`
+  ⇒ CEffect 内部分配 0x10C0=4288B 作为 CEffectSystem 实例
+- CEffectSystem ctor 0x4C61A0（provenance 扫描）：`mov %eax,0x3c020(%esi)` + `mov %eax,0x3c024(%esi)`
+  ⇒ this+0x3C020/0x3C024 写入 ⇒ 真布局 ≥ 0x3C028 = 245800 ✗ vs 注解 binary_size 344
+- ⇒ CEffectSystem = **巨型竞技场类**（245KB+），与 ARC_PlayerAtt(115KB)/PAL_GDB(814KB) 同族
+- 注解 14 成员/344B 是头部快照，其余 ~245KB 为未建模数据区
+- CEffect(13/13,+8200) 同族待查（CEffect 的 m_Partical 数组等大型成员）
+- 重建工程量：245KB 字段图 = 多轮/类（与 PAL_GDB 同级）⇒ 暂缓，转入下优先级
