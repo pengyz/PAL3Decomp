@@ -29,11 +29,25 @@ thunk 归一错（`this` 调整量错）都能让 L1 全绿而二进制不等。
 里 3185 条如此）⇒ 只比名字文本时"表完全正确"也逐槽假报 `slot_key`（真机量化：189 表 /
 639 槽中 ≥552 槽必误报）。故：
 
-1. `.obj` 侧由 `name_to_va_index(idx, image)` 造 **名字→VA** 映射（参数表剥离 + thunk 名字
-   重定向到 `jmp` 目标 + 歧义名剔除），`main()` 对比模式必须传入；
+1. `.obj` 侧由 `name_to_va_candidates(idx, image)` 造 **名字→候选 VA 集**（参数表剥离 +
+   thunk 名字重定向到 `jmp` 目标 + **歧义名保留**），`main()` 对比模式必须传入；
 2. 二进制侧 `va` **直接取已知真实 VA**（普通槽 = 槽自身，thunk 槽 = `jmp` 目标），
    **不做名字反查**（反查会把真实 VA 丢掉）；
-3. 两侧都有 VA ⇒ 比 VA；否则比 `strip_param_list` 后的名字（次优判据）。混比两种判据必然假报。
+3. 两侧都有单一 VA ⇒ 比 VA；一侧单一 VA、另一侧**候选集** ⇒ 要求 `VA ∈ 候选集`；
+   两侧都无 VA 信息 ⇒ 才比 `strip_param_list` 后的名字（次优判据）。混比两种判据必然假报。
+
+**R=2 修复轮（歧义名不得静默放行）**：R=1 的歧义名剔除留下一个新假通过面——真机
+**24/639 槽（3.8%）** 的 `name_id` 在 idx 里对应 **≥2 个 VA**（评审实测 24/24 候选体各不
+相同 ⇒ 真重载），`.obj` 侧 va 退为 None ⇒ 退回名字判据，而 `name_key` **抹掉参数编码**
+（`?DestroyEffBase@RenderTarget2@@UAEXD@Z` 与 `...UAEXXZ` 都归约成
+`RenderTarget2::DestroyEffBase`）⇒ 两侧被判相同。真机实证（本工具复现，坐标经
+`func_bounds` 双证）：表 `0x56F674` 槽 0 是 `DestroyEffBase(char)`@`0x4C1640`，`.obj`
+装 `(void)`（真值 `0x4C1660`）时**修复前 ok=True、零偏差**。故：
+
+* 候选集**不丢弃**，并用 `.obj` 符号**自身的参数编码**（`idx 参数文本 → mangled 参数
+  后缀`，借管线的 `vc6_mangler.encode_type`）把候选集**收敛**到具体重载；
+* 收敛不了（idx 名同签名 / 编码不可确定）⇒ 退回**包含判据** `bin.va ∈ 候选集`；
+* **只有**两侧都没有任何 VA 信息时才退回纯名字判据。
 
 `kind` 词表复用 Task 2 的 `vtable_slot_classifier.classify_slot`（6 种：
 `fn`/`deleting_dtor`/`adjustor_static`/`adjustor_vbase`/`purecall`/`composite`）——
@@ -118,7 +132,7 @@ __all__ = [
     'KIND_PURECALL', 'KIND_COMPOSITE',
     'SIDE_OBJ', 'SIDE_BIN', 'DYNAMIC_MARK',
     'name_key', 'mangled_class_token', 'is_thunk_symbol', 'strip_param_list',
-    'name_to_va_index',
+    'name_to_va_index', 'name_to_va_candidates',
     'ObjSlot', 'ObjVTable', 'ObjArtifacts', 'parse_obj_artifacts',
     'obj_vtables', 'obj_vbtables', 'resolve_obj_thunk',
     'AdjustorChain', 'decode_adjustor_chain', 'image_thunk',
@@ -248,6 +262,173 @@ def is_thunk_symbol(name):
     if not name or not name.startswith('?'):
         return False
     return '@@W' in name or '@@$' in name or '$4' in name
+
+
+# =====================================================================================
+# 1b. 重载判别：idx 参数文本 → mangled **参数编码后缀**（R=2 的候选集收敛判据）
+# =====================================================================================
+#
+# 用途只有一个：`.obj` 符号是 mangled 名（**参数编码在里面**），idx 侧名字是
+# `Cls::Func(char)`（**参数文本**）——两者唯一的桥是"把参数文本编成 mangled 后缀，
+# 再看它是不是 `.obj` 符号的后缀"。判不出来就**不收敛**（退回包含判据），绝不猜。
+
+#: 参数编码的**类型别名归一**（idx 文本 → mangler 认识的拼写）。
+#: 只加实测需要的：真机 idx 的重载组里大量出现 `(uint)`，而 `vc6_mangler._TC` 只有
+#: `unsigned int`/`UINT` ⇒ 不归一会把 `uint` 兜底成 `int`（`H`），真名却是 `I`
+#: （实测：真机 24 个歧义槽里 5 个 `_sdtor_*(uint)` 组因此编码失败 ⇒ 收敛不可用）。
+_PARAM_TYPE_ALIASES = {'uint': 'unsigned int'}
+
+_MANGLER = None
+
+
+def _vc6_mangler():
+    """`pipeline/ida/vc6_mangler`（**只借它的 `encode_type` / `strip_param_name`**）。
+
+    复用它而不是在工具里再写一份类型编码表：同一份"VC6 类型 → 编码"知识两处维护必然
+    漂移，而那份表是 `tools/mangler_bench.py` 离线复测过的（matched 139）。
+    导入失败（工具被单独拷走）⇒ 返回 None ⇒ 收敛判据整体关闭、退回包含判据（绝不猜）。
+    """
+    global _MANGLER
+    if _MANGLER is None:
+        try:
+            sys.path.insert(0, os.path.join(ROOT, 'pipeline', 'ida'))
+            import vc6_mangler as m
+            _MANGLER = m
+        except Exception:                      # noqa: BLE001  可选依赖：拿不到就降级
+            _MANGLER = False
+    return _MANGLER or None
+
+
+def _split_top_level(text):
+    """按**顶层**逗号切分参数表（跳过 `<>()[]` 嵌套 ⇒ 模板/函数指针不会切错）。"""
+    out, depth, cur = [], 0, ''
+    for ch in text:
+        if ch in '<([{':
+            depth += 1
+        elif ch in '>)]}':
+            depth -= 1
+        if ch == ',' and depth == 0:
+            out.append(cur)
+            cur = ''
+        else:
+            cur += ch
+    out.append(cur)
+    return [p.strip() for p in out if p.strip()]
+
+
+def _swap_class_tag(code):
+    """类名编码的 `V`/`U` tag → 另一个（`PAV_BYTE@@` → `PAU_BYTE@@`）；非类名编码 ⇒ None。
+
+    ⚠️ 为什么不能靠 `encode_type('struct ' + p)`：`vc6_mangler.encode_type` 里
+    `ptr > 0` 分支**先于** tag 分支（第 75 行 vs 第 87 行）⇒ `struct X *` 仍然编成
+    `PAVX@@`（tag 被丢掉）。实测代价（真机）：
+    `CCBStage::DelTask(int,_BYTE *,int *)` 的 V 变体编成 `HPAV_BYTE@@PAH@Z`，真名却是
+    `HPAU_BYTE@@PAH@Z` ⇒ 该候选**收敛失败**，另一个候选 `(int)`（`H@Z`，恰好是长名的
+    后缀）被判成唯一命中 ⇒ **把正确重载误报成错装**（真机 1/112 候选命中此坑）。
+    类名编码的形态固定是 `[PABQ]*[VU]<名>@@` ⇒ tag 就在第一个非前缀字符处。
+    """
+    i = 0
+    while i < len(code) and code[i] in 'PABQ':
+        i += 1
+    if i < len(code) and code[i] in 'VU':
+        return code[:i] + ('U' if code[i] == 'V' else 'V') + code[i + 1:]
+    return None
+
+
+def _param_code_variants(vm, text, cls=''):
+    """单个参数的**可接受编码集**（如 `{'PAVgbVec3D@@', 'PAUgbVec3D@@'}`）。
+
+    为什么收两个 tag 变体：MSVC 对 `class` 用 `V`、对 `struct` 用 `U`，而 decomp/idx 的
+    签名文本里**拿不到这个区分**（`vc6_mangler` 同款已知限制：真机符号 `PAV : PAU` = 8:2）
+    ⇒ 只收一种会把正确重载判成"编码失败"，收两种才不漏（漏判正确重载 = 假报）。
+
+    不可**确定**编码的形式（数组/函数指针/引用/模板/可变参）⇒ 返回 None（不收敛）。
+    """
+    p = vm.strip_param_name(text.strip()) if text else ''
+    if not p or any(t in p for t in ('[', ']', '&', '<', '>', '...', '(*')):
+        return None
+    toks = [_PARAM_TYPE_ALIASES.get(t, t) for t in p.replace('*', ' * ').split()]
+    p = ' '.join(toks).replace(' * ', '*')
+    try:
+        code = vm.encode_type(p)
+    except Exception:                          # noqa: BLE001  编码器不认识 ⇒ 不收敛
+        return None
+    out = {code}
+    alt = _swap_class_tag(code)
+    if alt:
+        out.add(alt)
+    backref = getattr(vm, '_self_ref_backref', None)
+    if backref is not None and cls:
+        # 本类引用有**两种**真机形态：回指 `1@`（mangler 实测规则 F61，返回类型处）与
+        # 全名 `PAUCEffgbParticle@@`（实测：`?Create@CEffgbParticle@@QAEPAXPAUCEffgbParticle@@D@Z`
+        # 的**参数**就是全名）。只收一种会把另一种判成"编码失败"⇒ 正确重载收敛不出来。
+        out |= {backref(c, cls) for c in out}
+    return frozenset(out)
+
+
+def _param_suffix_variants(name_text, cls=''):
+    """idx 名（**带参数表**）→ 该重载可接受的 mangled **参数编码后缀**集合。
+
+    `RenderTarget2::DestroyEffBase(char)` ⇒ `{'D@Z'}`；
+    `RenderTarget2::DestroyEffBase(void)` ⇒ `{'XZ'}`（无参数形态）；
+    名字不带参数表 / 任一个参数编码不可确定 ⇒ None（调用方**不收敛**）。
+    """
+    vm = _vc6_mangler()
+    if vm is None or not name_text:
+        return None
+    if '(' not in name_text or not name_text.rstrip().endswith(')'):
+        return None
+    body = name_text[name_text.find('(') + 1:name_text.rfind(')')].strip()
+    if body in ('', 'void'):
+        return frozenset({'XZ'})
+    params = _split_top_level(body)
+    if not params:
+        return None
+    variants = ['']
+    for p in params:
+        pv = _param_code_variants(vm, p, cls)
+        if pv is None:
+            return None
+        variants = [a + b for a in variants for b in pv]
+        if len(variants) > 64:                 # 变体爆炸 ⇒ 判不了，别硬撑
+            return None
+    return frozenset(v + '@Z' for v in variants)
+
+
+def _refine_candidates_by_symbol(symbol, key, candmap):
+    """`.obj` 符号 + 名字键 + 候选集 → **收敛后的候选子集**（收敛不了 ⇒ 原样返回）。
+
+    收敛前提（**三个都必须成立**，否则原样返回走包含判据）：
+
+    1. 候选名**都**带参数表且编码可确定；
+    2. 各候选的编码**互不相同**（同签名重载如 `_sdtor_*(uint)` ⇒ 本来就不该收敛）；
+    3. 恰好**一个**候选的编码是 `.obj` 符号的后缀。
+
+    宁可少一分特异性，不可多一分假报：编码表拿不准的类型一律判"不可确定"。
+    """
+    if not symbol or not symbol.startswith('?') or len(candmap) < 2:
+        return candmap
+    cls = key.rsplit('::', 1)[0] if '::' in key else ''
+    codes = {}
+    for va, text in candmap.items():
+        variants = _param_suffix_variants(text, cls)
+        if not variants:
+            return candmap
+        codes[va] = variants
+    if len({frozenset(v) for v in codes.values()}) != len(codes):
+        return candmap
+    hit = {va for va, v in codes.items() if any(symbol.endswith(c) for c in v)}
+    if 0 < len(hit) < len(candmap):
+        return {va: candmap[va] for va in hit}
+    return candmap
+
+
+def _hex_va(va):
+    return '0x%08X' % va if va is not None else '—'
+
+
+def _fmt_vas(vas):
+    return '{%s}' % ', '.join('0x%08X' % v for v in (vas or ()))
 
 
 # =====================================================================================
@@ -746,8 +927,8 @@ def _va_resolver(va_of):
     return lambda key: va_of.get(key)
 
 
-def name_to_va_index(index, image=None):
-    """VA→名字索引 → **名字→VA**（.obj 侧 VA 归约用；`index` = `load_va_index()` 的产物）。
+def _name_candidate_groups(index, image=None):
+    """VA→名字索引 → `{名字键: {目标 VA: 该候选的 idx 名}}`（**歧义名不丢弃**）。
 
     三条规则（每条都有真机证据，**不猜**）：
 
@@ -760,8 +941,11 @@ def name_to_va_index(index, image=None):
        重定向由 `decode_adjustor_chain` 的**字节**决定（`jmp rel32` 目标），不是名字猜测。
        ⚠️ 真机另有 79 条 `e9 <rel>; padding` 形态（ILT/跳转桩）同样命中此规则，
        bin 侧 `image_thunk()` 对它们给出**同一目标** ⇒ 两侧判据一致。
-    3. **歧义名剔除**：同一归一名的多个目标 VA（如重载 `CCBStage::DoTask` 真机 53 例、
-       `_sdtor_*`）⇒ **不归约**（返回时不含该名）⇒ 该槽退回名字判据，而不是猜一个 VA。
+    3. **同名多目标全部保留**（R=2）：真机 53 组歧义名（24 槽命中、3.8%）里 43 组是
+       **真重载**（`(char)`/`(void)`）、10 组**同签名**（`_sdtor_*`）——候选 VA 集是这两个
+       场景唯一的可比信息；丢掉它，判据就退化成**抹掉参数编码**的名字文本 ⇒ 真重载被
+       静默放行（`?DestroyEffBase@RenderTarget2@@UAEXD@Z` 与 `...UAEXXZ` 同名）。
+       同一目标 VA 有多个来源名时优先留**带参数表**的那个：它是收敛判据的输入。
     """
     groups = {}
     for va, name in (index or {}).items():
@@ -775,8 +959,33 @@ def name_to_va_index(index, image=None):
             chain = decode_adjustor_chain(image.read, va)
             if chain.ok and chain.target_va:
                 target = chain.target_va
-        groups.setdefault(key, set()).add(target)
-    return {k: next(iter(v)) for k, v in groups.items() if len(v) == 1}
+        cur = groups.setdefault(key, {})
+        old = cur.get(target)
+        if old is None or ('(' in name and '(' not in old):
+            cur[target] = name
+    return groups
+
+
+def name_to_va_candidates(index, image=None):
+    """VA→名字索引 → **名字→候选 VA 集**：`{名字键: {VA: 该候选的 idx 名}}`。
+
+    R=1 的 `name_to_va_index` 只能表达单值 ⇒ 歧义名整体剔除；而这些槽（真机 24/639）
+    的 `.obj` 侧随即 `va=None` ⇒ 退回**抹掉参数**的名字判据 ⇒ 真重载被静默放行（R=2
+    要挡的失效模式）。本函数保留候选集，让 `normalize_obj_slots` 能用 `.obj` 符号
+    **自身的参数编码**收敛到具体重载；收敛不了则由 `compare_tables` 用包含判据判。
+    """
+    return _name_candidate_groups(index, image)
+
+
+def name_to_va_index(index, image=None):
+    """VA→名字索引 → **名字→单一 VA**（`{名字键: VA}`）——歧义名仍然剔除。
+
+    规则见 `_name_candidate_groups`。歧义名（真机 53 组）**不进**这张单值表：单值投影
+    无法表达"多个可能目标"，猜一个就是造假证据。需要候选集请用 `name_to_va_candidates`
+    （R=2 起 `main()` 对比路径走它）。
+    """
+    return {k: next(iter(v)) for k, v in _name_candidate_groups(index, image).items()
+            if len(v) == 1}
 
 
 @dataclass(frozen=True)
@@ -788,6 +997,10 @@ class NormSlot:
               VA 不可解析时的次优判据；两侧键空间本来就不同（decomp 带参数表、
               mangled 不带），不剥就恒不等 ⇒ 表正确也误报
     va        该槽**目标函数**的 VA（能归约出来时填；两侧都有 ⇒ 身份判据用 VA）
+    va_candidates
+              该槽名字键在 idx 里对应的**全部候选 VA**（≥2 才填，R=2）：名字歧义
+              （真重载/同签名多目标）时 `.obj` 侧只能靠它 + 参数编码收敛来判身份，
+              **不可**退回抹掉参数的名字文本
     kind      Task 2 词表（fn/deleting_dtor/adjustor_static/adjustor_vbase/purecall/composite）
     offset    this 调整量。纯静态链 = 子对象偏移（`sub ecx,N` ⇒ +N）；
               **动态链上它是链里的常量部分**（B-4 三元组的 const 维），
@@ -801,6 +1014,7 @@ class NormSlot:
     offset: int = 0
     dynamic: bool = False
     va: int = None
+    va_candidates: tuple = ()
     slot_index: int = -1
     notes: tuple = ()
     resolution: str = 'name'
@@ -813,7 +1027,8 @@ class NormSlot:
     @property
     def identity(self):
         """**单侧**身份（VA 优先，退化到名字身份）。两侧判等请用 `compare_tables`
-        （它就是为此存在的：一侧有 VA、另一侧没有时**不可**拿两种判据互比）。"""
+        （它就是为此存在的：一侧有 VA、另一侧没有时**不可**拿两种判据互比；
+        `va_candidates` 非空时更不可——名字键抹掉了参数编码）。"""
         return ('va', self.va) if self.va is not None else ('key', self.name_id)
 
     @property
@@ -844,19 +1059,42 @@ class NormSlot:
             d['dynamic_const'] = self.offset
         if self.va is not None:
             d['va'] = '0x%08X' % self.va
+        if self.va_candidates:
+            d['va_candidates'] = ['0x%08X' % v for v in self.va_candidates]
         if self.notes:
             d['notes'] = list(self.notes)
         return d
 
 
-def normalize_obj_slots(table, artifacts, va_of=None):
+def _candidate_resolver(cands_of):
+    """`va_candidates_of` → 解析函数 `名字键 → {VA: idx 名}`（值给 VA 序列也接受）。"""
+    if cands_of is None:
+        return lambda key: None
+    get = cands_of if callable(cands_of) else (lambda key: (cands_of or {}).get(key))
+
+    def f(key):
+        v = get(key)
+        if not v:
+            return None
+        if isinstance(v, dict):
+            return dict(v)
+        return {va: None for va in v}
+    return f
+
+
+def normalize_obj_slots(table, artifacts, va_of=None, va_candidates_of=None):
     """编译产物侧 → list[NormSlot]（thunk 归一 + kind 分类 + VA 归约）。
 
-    `va_of` = **名字→VA** 映射（`main()` 用 `name_to_va_index(idx, image)` 造，键是
-    **参数表剥离**后的名字）。.obj 是**可重定位**产物、自己不知道会被链到哪 ⇒ 只能靠
-    符号名键查真实 VA；查不到就留 `va=None`，对比时退回名字判据（`name_id`）。
+    `va_of` = **名字→单一 VA** 映射（R=1 路径；键是参数表剥离后的名字）。
+    `va_candidates_of` = **名字→候选 VA 集**（`name_to_va_candidates()` 的产物；
+    值可为 `{VA: idx 名}` 或 VA 序列）。`.obj` 是**可重定位**产物、自己不知道会被链到
+    哪 ⇒ 只能靠符号名键查真实 VA；查不到就退：**歧义名（≥2 候选）**先用 `.obj` 符号
+    **自身的参数编码**收敛（`_refine_candidates_by_symbol`），收敛不了就把候选集记进
+    `NormSlot.va_candidates` 交给 `compare_tables` 的**包含判据**（R=2）；
+    两侧都没有任何 VA 信息时才退回名字判据。
     """
     resolve = _va_resolver(va_of)
+    cand_of = _candidate_resolver(va_candidates_of)
     out = []
     for i, slot in enumerate(table.slots):
         if slot.is_literal:
@@ -876,15 +1114,34 @@ def normalize_obj_slots(table, artifacts, va_of=None):
         if chain and chain.ok:
             notes.extend(chain.notes)
         key = name_key(target)
+        keyid = strip_param_list(key)
         va = resolve(key)
-        if va is None and strip_param_list(key) != key:
+        if va is None and keyid != key:
             # 文本名带参数表时（非 mangled 符号）也尝试剥离形态
-            va = resolve(strip_param_list(key))
+            va = resolve(keyid)
+        cands = ()
+        if va is None:
+            cm = cand_of(keyid) or cand_of(key)
+            if cm and len(cm) >= 2:
+                cands = tuple(sorted(cm))
+                narrowed = _refine_candidates_by_symbol(target, keyid or key, cm)
+                if len(narrowed) == 1:
+                    va = next(iter(narrowed))
+                    notes.append('名字歧义（同一 name_id 对应 %d 个候选 VA %s）：按 .obj 符号'
+                                 '%s 的参数编码收敛到 %s'
+                                 % (len(cm), _fmt_vas(cands), target, _hex_va(va)))
+                else:
+                    notes.append('名字歧义（同一 name_id 对应 %d 个候选 VA %s）：参数编码不可'
+                                 '收敛 ⇒ 由 compare_tables 用**包含判据**判（不退回名字）'
+                                 % (len(cm), _fmt_vas(cands)))
+            elif cm and len(cm) == 1:
+                va = next(iter(cm))
         out.append(NormSlot(side=SIDE_OBJ, raw=slot.name, key=key, kind=cl.kind,
                             offset=(chain.static_delta if chain and chain.ok else 0),
                             dynamic=bool(chain and chain.ok and chain.dynamic),
-                            va=va, slot_index=i, notes=tuple(notes),
-                            resolution='va' if va is not None else 'name'))
+                            va=va, va_candidates=cands, slot_index=i, notes=tuple(notes),
+                            resolution=('va' if va is not None
+                                        else ('candidates' if cands else 'name'))))
     return out
 
 
@@ -991,11 +1248,17 @@ def _inherited_alias_hint(k1, k2):
 
     比较前**剥参数表**（C1 修复轮 R=1）：bin 侧真机名形如 `D3::onlyA(char)`，不剥就
     `onlyA` ≠ `onlyA(char)` ⇒ 连提示都不留。
+
+    ⚠️ **归属类必须真的不同**（R=2）：真重载（`Cls::m(char)` vs `Cls::m(void)`）方法名
+    相同、类相同，此时提示"仅归属类不同"是**误导**（会把操作员引到 MI 归属方向，而真因
+    是重载装错）。
     """
     k1, k2 = strip_param_list(k1), strip_param_list(k2)
     if not k1 or not k2 or '::' not in k1 or '::' not in k2:
         return ''
-    if k1.rsplit('::', 1)[1] == k2.rsplit('::', 1)[1]:
+    c1, f1 = k1.rsplit('::', 1)
+    c2, f2 = k2.rsplit('::', 1)
+    if f1 == f2 and c1 != c2:
         return '（方法名一致、仅归属类不同 ⇒ 可能是 MI 继承槽的名字归属差异，需人工核）'
     return ''
 
@@ -1004,6 +1267,31 @@ def _name_id_unknown(key):
     """名字键是 `0x<VA>` 占位（idx 里没有名字）⇒ 名字判据不可用（真机 146 槽）。"""
     return bool(key) and key.startswith('0x') and all(
         c in '0123456789ABCDEFabcdefx' for c in key)
+
+
+def _slot_identity_decision(o, b):
+    """逐槽身份判据 → `(same, crit, used_va_info)`。
+
+    判据优先级（C1 R=1 + R=2）：
+
+    1. 两侧都有**单一 VA** ⇒ 比 VA（唯一真身份）；
+    2. 一侧单一 VA、另一侧**候选集** ⇒ 要求 `VA ∈ 候选集`（**包含判据**）；
+    3. 两侧都只有**候选集** ⇒ 要求两集**交集非空**；
+    4. 两侧都没有任何 VA 信息 ⇒ 才比 `name_id`（参数表剥离后的名字，次优判据）。
+
+    ⚠️ 候选集非空时**绝不**退回名字判据：`name_key` 抹掉参数编码，真重载会被判相同
+    （真机 `?DestroyEffBase@RenderTarget2@@UAEXD@Z` vs `...UAEXXZ` ⇒ 静默放行）。
+    ⚠️ 只有 `.obj` 侧可能有候选集：bin 侧 `va` 一定是已知真实 VA（字节证据）。
+    """
+    if o.va is not None and b.va is not None:
+        return (o.va == b.va), 'VA', True
+    if o.va is not None and b.va_candidates:
+        return (o.va in b.va_candidates), '候选集', True
+    if b.va is not None and o.va_candidates:
+        return (b.va in o.va_candidates), '候选集', True
+    if o.va_candidates and b.va_candidates:
+        return bool(set(o.va_candidates) & set(b.va_candidates)), '候选集', True
+    return (o.name_id == b.name_id), '名字', False
 
 
 def compare_vbtable(obj_vals, bin_vals, obj_label='obj', bin_label='bin'):
@@ -1029,12 +1317,14 @@ def compare_tables(obj_slots, bin_slots, *, obj_col=None, bin_col=None,
                    obj_address_point_offset=None, bin_address_point_offset=None):
     """两侧归一槽序列对比 → CompareResult（逐槽 + 槽数 + COL + vbtable）。
 
-    **逐槽身份判据**（C1 修复轮 R=1）：
-      * 两侧都有 `va` ⇒ 比 **VA**（唯一真身份；`identity_mode='va'`）
-      * 否则 ⇒ 比 `name_id`（**参数表剥离**后的名字键；`identity_mode='name'`）
+    **逐槽身份判据**（C1 修复轮 R=1 + R=2）：见 `_slot_identity_decision`——两侧都有单一
+    VA ⇒ 比 VA；一侧单一 VA、另一侧候选集 ⇒ 包含判据；两侧都只有候选集 ⇒ 交集非空；
+    **只有**两侧都没有任何 VA 信息时才比 `name_id`（参数表剥离后的名字）。
 
     混用两种判据**不可**（一侧有 VA 一侧没有时拿 `('va',N)` 与 `('key','X')` 比恒不等
-    ⇒ 必然假报），这正是修复前的退化形态。
+    ⇒ 必然假报），这正是修复前的退化形态。名字判据更**不可**用于有候选集的槽：名字键
+    抹掉参数编码 ⇒ 真重载被判相同（R=2 的真机实证：表 `0x56F674` 槽 0 是
+    `DestroyEffBase(char)`@`0x4C1640`，`.obj` 装 `(void)` 时修复前零偏差）。
 
     `address_point_offset` 只**留痕**不参与判定：COL 的存在性已由 `address_point_rtti`
     判据覆盖（两侧 COL 都存在时偏移差异是 0 vs 0），单独判定会与那条判据重复报同一事实。
@@ -1058,23 +1348,26 @@ def compare_tables(obj_slots, bin_slots, *, obj_col=None, bin_col=None,
 
     votes = set()
     unnamed = 0
+    cand_slots = 0
     for i in range(min(len(obj_slots), len(bin_slots))):
         o, b = obj_slots[i], bin_slots[i]
-        use_va = o.va is not None and b.va is not None
-        votes.add('va' if use_va else 'name')
-        if use_va:
-            same = (o.va == b.va)
-            crit = 'VA'
-        else:
-            same = (o.name_id == b.name_id)
-            crit = '名字'
+        same, crit, used_va = _slot_identity_decision(o, b)
+        votes.add('va' if used_va else 'name')
+        if crit == '候选集':
+            cand_slots += 1
         if not same:
-            if not use_va and (_name_id_unknown(o.name_id) or _name_id_unknown(b.name_id)):
+            if crit == '名字' and (_name_id_unknown(o.name_id) or _name_id_unknown(b.name_id)):
                 unnamed += 1
+            detail = 'slot %d 目标不同（%s判据）：obj=%s bin=%s' % (i, crit, o.key, b.key)
+            if crit == 'VA':
+                detail += '（VA obj=%s bin=%s）' % (_hex_va(o.va), _hex_va(b.va))
+            elif crit == '候选集':
+                detail += '（候选集 %s；obj VA=%s bin VA=%s）' % (
+                    _fmt_vas(o.va_candidates or b.va_candidates), _hex_va(o.va), _hex_va(b.va))
             hint = _inherited_alias_hint(o.key, b.key)
-            devs.append(Deviation('slot_key', i, o.key, b.key,
-                                  'slot %d 目标不同（%s判据）：obj=%s bin=%s %s'
-                                  % (i, crit, o.key, b.key, hint)))
+            if hint:
+                detail += ' ' + hint
+            devs.append(Deviation('slot_key', i, o.key, b.key, detail))
             continue
         if o.kind != b.kind:
             devs.append(Deviation('slot_kind', i, o.kind, b.kind,
@@ -1084,6 +1377,11 @@ def compare_tables(obj_slots, bin_slots, *, obj_col=None, bin_col=None,
                                   (b.offset, b.dynamic),
                                   'slot %d this 归一不同：obj=%s bin=%s'
                                   % (i, o.normalized, b.normalized)))
+
+    if cand_slots:
+        notes.append('%d 槽以**候选集判据**判定（同一 name_id 对应多个 VA：真重载/同签名'
+                     '多目标；参数编码不可收敛时用它，**绝不**退回抹掉参数的名字文本）'
+                     % cand_slots)
 
     if unnamed:
         notes.append('%d 槽的名字判据失败且**至少一侧无名字**（idx 无覆盖的槽，真机多为 '
@@ -1467,8 +1765,10 @@ def main(argv=None):
     bt = bin_table_from_image(image, base, idx=idx, targets=targets)
     # C1 修复轮 R=1：由**已加载的 idx** 造 名字→VA 映射（参数表剥离 + thunk 名字重定向）
     # 传给 .obj 侧 —— 不传就是修复前的形态：两侧 va 恒 None、判据退化成名字文本。
-    namemap = name_to_va_index(idx, image)
-    obj_slots = normalize_obj_slots(tbl, art, va_of=namemap)
+    # R=2 修复轮：改用**候选集**映射 —— 同一 name_id 对应多个 VA（真重载，真机 24/639 槽）
+    # 时单值映射只能整体剔除，该槽随即退回**抹掉参数编码**的名字判据 ⇒ 真重载静默放行。
+    cands = name_to_va_candidates(idx, image)
+    obj_slots = normalize_obj_slots(tbl, art, va_candidates_of=cands)
     bin_slots = normalize_bin_slots(bt, image, idx)
     obj_vb = _vbtable_for_table(obj_vbtables(args.obj, art), tbl.symbol)
     bin_vb = None

@@ -1409,6 +1409,280 @@ def test_compare_notes_when_name_criterion_has_unnamed_side():
     assert same.ok and not same.notes, same.notes
 
 
+# =====================================================================================
+# 7. R=2 修复轮：歧义名（真重载）不得静默放行 —— **候选集 + 参数编码收敛**
+# =====================================================================================
+#
+# R=1 的 C1 把「符号名 → VA」接进交付路径（`name_to_va_index`），但它的**歧义名剔除**
+# 留下一个新的假通过面：真机实测 **24/639 槽（3.8%）** 的 `name_id` 在 idx 里对应
+# **≥2 个 VA**（评审实测 24/24 候选体各不相同 ⇒ 真重载，不是字节相同的别名），
+# `.obj` 侧 va 退为 None ⇒ 走名字判据，而 `name_key` **抹掉参数编码**：
+#
+#     ?DestroyEffBase@RenderTarget2@@UAEXD@Z  →  RenderTarget2::DestroyEffBase   (char)
+#     ?DestroyEffBase@RenderTarget2@@UAEXXZ   →  RenderTarget2::DestroyEffBase   (void)
+#
+# ⇒ 两者被判相同。**真机实证**（本文件夹具逐字复现，坐标经 func_bounds 双证）：
+#   表 `0x56F674` 槽 0 装 `DestroyEffBase(char)`@`0x4C1640`
+#   （真名 `?DestroyEffBase@RenderTarget2@@QAEPADD@Z`，`D@Z` = char 参数）；
+#   若 .obj 装 `(void)`（真值 `0x4C1660`，`?DestroyEffBase@RenderTarget2@@QAEHXZ`，
+#   `XZ` = 无参数）⇒ 修复前 `compare_tables` 返回 **ok=True、零偏差**（静默放行）。
+#
+# 修法：歧义名**保留候选集**，并用 .obj 符号**自身的参数编码**把候选集收敛到正确重载；
+# 收敛不了（idx 名同签名 / 编码不确定）⇒ 退回**包含判据** `bin.va ∈ 候选集`；
+# 只有两侧都没有任何 VA 信息时才退回纯名字判据。
+OVER_CLS = 'RenderTarget2'
+OVER_VT_SYM = '??_7RenderTarget2@@6B@'
+OVER_FUNC_CHAR = '?DestroyEffBase@RenderTarget2@@UAEXD@Z'     # (char)：bin 槽 0 真值
+OVER_FUNC_VOID = '?DestroyEffBase@RenderTarget2@@UAEXXZ'      # (void)：真重载（错装即假通过）
+OVER_FUNC_ALLOC = '?AllocTargets@RenderTarget2@@UAEXH@Z'      # (int)：同表槽 1（非歧义）
+OVER_VA = {'char': 0x4C1640, 'void': 0x4C1660, 'alloc': 0x4C2170}
+OVER_BASE = 0x56F674          # 真机表 address point（2 槽；真值 [char, AllocTargets(int)]）
+
+
+def over_idx():
+    """VA→名字（**真机 idx 原文**）：两个真重载 + 同表槽 1（`AllocTargets(int)`）。"""
+    return {OVER_VA['char']: 'RenderTarget2::DestroyEffBase(char)',
+            OVER_VA['void']: 'RenderTarget2::DestroyEffBase(void)',
+            OVER_VA['alloc']: 'RenderTarget2::AllocTargets(int)'}
+
+
+def over_code():
+    """.text 原始字节：三个普通函数体（都不是 thunk ⇒ bin 侧 va 取槽自身）。"""
+    code = bytearray()
+
+    def emit(va, data):
+        code.extend(b'\x90' * (va - (OVER_VA['char'] + len(code))))
+        code.extend(data)
+
+    emit(OVER_VA['char'], b'\x8b\x41\x10\xc3')
+    emit(OVER_VA['void'], b'\x8b\x41\x08\xc3')
+    emit(OVER_VA['alloc'], b'\x8b\x41\x0c\xc3')
+    code.extend(b'\x90' * 4)                  # 保证 0x4C2170+4 可读
+    return bytes(code)
+
+
+def fixture_over_image():
+    """内存镜像（与真机表 `0x56F674` 同形：槽 0 = char 重载，槽 1 = AllocTargets）。"""
+    img = BytesImage(image_base=0x400000)
+    img.add_section('.text', OVER_VA['char'] - 0x400000, over_code(), executable=True)
+    img.add_section('.rdata', OVER_BASE - 0x400000,
+                    struct.pack('<II', OVER_VA['char'], OVER_VA['alloc']))
+    return img
+
+
+def fixture_over_obj(path, slot0=OVER_FUNC_CHAR):
+    """`.obj` 侧 `??_7RenderTarget2@@6B@` 2 槽（槽 0 可换成**错装的重载**）。"""
+    b = CoffBuilder()
+    text = bytearray()
+    off = {}
+
+    def emit(name, data):
+        off[name] = len(text)
+        text.extend(data)
+        while len(text) % 4:
+            text.append(0x90)
+
+    for nm, body in ((OVER_FUNC_CHAR, b'\x8b\x41\x10\xc3'),
+                     (OVER_FUNC_VOID, b'\x8b\x41\x08\xc3'),
+                     (OVER_FUNC_ALLOC, b'\x8b\x41\x0c\xc3')):
+        emit(nm, body)
+    ti = b.add_section('.text', bytes(text), chars=0x60000020)
+    for nm in (OVER_FUNC_CHAR, OVER_FUNC_VOID, OVER_FUNC_ALLOC):
+        b.add_symbol(nm, ti, off[nm])
+    rd = b.add_section('.rdata', b'\x00' * 8)
+    b.add_symbol(OVER_VT_SYM, rd, 0)
+    b.add_reloc(rd, 0, slot0)
+    b.add_reloc(rd, 4, OVER_FUNC_ALLOC)
+    return b.write(path)
+
+
+def over_sides(slot0=OVER_FUNC_CHAR):
+    """同形两侧：真机表 `0x56F674` = [DestroyEffBase(char)@0x4C1640, AllocTargets(int)]。"""
+    d = tempfile.mkdtemp()
+    p = fixture_over_obj(os.path.join(d, 'rt2.obj'), slot0=slot0)
+    art = parse_obj_artifacts(p)
+    vt = obj_vtables(p)[OVER_VT_SYM]
+    img = fixture_over_image()
+    bt = BinTable(base=OVER_BASE, end=OVER_BASE + 8,
+                  slots=(OVER_VA['char'], OVER_VA['alloc']))
+    return p, art, vt, img, bt
+
+
+def fixture_one_slot_obj(path, sym, vt_sym='??_7CCBStage@@6B@'):
+    """`.obj` 侧**单槽**表（把 `sym` 装进槽 0）——重载假报回归用。"""
+    b = CoffBuilder()
+    ti = b.add_section('.text', b'\x8b\x41\x10\xc3', chars=0x60000020)
+    b.add_symbol(sym, ti, 0)
+    rd = b.add_section('.rdata', b'\x00' * 4)
+    b.add_symbol(vt_sym, rd, 0)
+    b.add_reloc(rd, 0, sym)
+    return b.write(path)
+
+
+def test_name_to_va_candidates_keeps_ambiguous_overloads():
+    """**候选集保留**：同一 `name_id` 的多个 VA（真重载）不得被剔除（R=1 单值投影仍剔除）。"""
+    from vtable_verify import name_to_va_candidates, name_to_va_index
+    idx, img = over_idx(), fixture_over_image()
+    cand = name_to_va_candidates(idx, img)
+    grp = cand['RenderTarget2::DestroyEffBase']
+    assert set(grp) == {OVER_VA['char'], OVER_VA['void']}, cand
+    # 每个候选 VA 带**自己的** idx 名（参数表是收敛判据的输入）
+    assert grp[OVER_VA['char']].endswith('(char)') and grp[OVER_VA['void']].endswith('(void)'), grp
+    # 非歧义名照旧是单元素候选集
+    assert set(cand['RenderTarget2::AllocTargets']) == {OVER_VA['alloc']}, cand
+    # R=1 契约不变：单值投影（在线自洽测试用它）仍然剔除歧义名
+    assert 'RenderTarget2::DestroyEffBase' not in name_to_va_index(idx, img)
+    assert name_to_va_index(idx, img)['RenderTarget2::AllocTargets'] == OVER_VA['alloc']
+
+
+def test_ambiguous_slot_with_wrong_overload_reports_deviation():
+    """**R=2 核心（红 → 绿）**：.obj 槽 0 装 `(void)`、bin 槽 0 是 `(char)`@`0x4C1640`
+    ⇒ **必须报** slot 0 的 `slot_key`（修复前：参数编码被抹掉 ⇒ ok=True、零偏差）。"""
+    from vtable_verify import name_to_va_candidates
+    _p, art, vt, img, bt = over_sides(slot0=OVER_FUNC_VOID)
+    idx = over_idx()
+    o = normalize_obj_slots(vt, art, va_candidates_of=name_to_va_candidates(idx, img))
+    b = normalize_bin_slots(bt, img, idx)
+    res = compare_tables(o, b)
+    assert not res.ok, res.deviations
+    assert [(d.kind, d.index) for d in res.deviations] == [('slot_key', 0)], res.deviations
+    dev = res.deviations[0]
+    # 偏差报告必须能读出"哪个重载错装了"：obj 收敛到 0x4C1660、bin 是 0x4C1640
+    assert '0x004C1660' in dev.detail and '0x004C1640' in dev.detail, dev.detail
+    # 候选集留痕 + 收敛留痕（人工核时可追）
+    assert o[0].va_candidates == (OVER_VA['char'], OVER_VA['void']), o[0].va_candidates
+    assert o[0].va == OVER_VA['void'] and o[1].va == OVER_VA['alloc'], [s.va for s in o]
+    assert any('候选' in n for n in o[0].notes), o[0].notes
+    # 报告不得把"真重载装错"误导成"MI 归属差异"（归属类相同 ⇒ 提示必须闭嘴）
+    assert '仅归属类不同' not in dev.detail, dev.detail
+    assert '0x004C1660' in render_report(res), render_report(res)
+
+
+def test_ambiguous_slot_with_correct_overload_passes():
+    """**不得变成放行以外的伤害**：.obj 装**正确重载** ⇒ 零偏差 + `identity=va`。"""
+    from vtable_verify import name_to_va_candidates
+    _p, art, vt, img, bt = over_sides()
+    idx = over_idx()
+    o = normalize_obj_slots(vt, art, va_candidates_of=name_to_va_candidates(idx, img))
+    res = compare_tables(o, normalize_bin_slots(bt, img, idx))
+    assert res.ok, res.deviations
+    assert res.identity_mode == 'va', res.identity_mode
+    assert [s.va for s in o] == [OVER_VA['char'], OVER_VA['alloc']], [s.va for s in o]
+    assert all(s.resolution == 'va' for s in o), [s.resolution for s in o]
+
+
+def test_ambiguous_slot_falls_back_to_candidate_containment():
+    """编码不可收敛（idx 名**同签名**，真机 `_sdtor_*` 组形态）⇒ **包含判据**：
+    `bin.va ∈ 候选集` 通过；`bin.va ∉ 候选集` 报偏差（绝不静默放行）。"""
+    o = NormSlot(side='obj', raw='?m@Cls@@UAEXXZ', key='Cls::m', kind=KIND_FN,
+                 va_candidates=(0xA000, 0xB000))
+    ok_b = NormSlot(side='bin', raw='0xA000', key='Cls::m(uint)', kind=KIND_FN, va=0xA000)
+    res = compare_tables([o], [ok_b])
+    assert res.ok, res.deviations
+    assert res.identity_mode == 'va', res.identity_mode
+    bad_b = NormSlot(side='bin', raw='0xC000', key='Cls::m(char)', kind=KIND_FN, va=0xC000)
+    res2 = compare_tables([o], [bad_b])
+    assert not res2.ok, res2.deviations
+    assert [(d.kind, d.index) for d in res2.deviations] == [('slot_key', 0)], res2.deviations
+    assert '候选集' in res2.deviations[0].detail, res2.deviations[0].detail
+
+
+def test_both_sides_candidates_require_nonempty_intersection():
+    """两侧**都只有候选集** ⇒ 交集非空才算同（不得退回名字判据）。"""
+    a = NormSlot(side='obj', raw='x', key='Cls::m', kind=KIND_FN, va_candidates=(1, 2))
+    hit = NormSlot(side='bin', raw='y', key='Cls::m(void)', kind=KIND_FN, va_candidates=(2, 3))
+    assert compare_tables([a], [hit]).ok
+    miss = NormSlot(side='bin', raw='y', key='Cls::m(void)', kind=KIND_FN, va_candidates=(3, 4))
+    res = compare_tables([a], [miss])
+    assert not res.ok, res.deviations
+    assert [(d.kind, d.index) for d in res.deviations] == [('slot_key', 0)], res.deviations
+    assert '候选集' in res.deviations[0].detail, res.deviations[0].detail
+
+
+def test_cli_overload_path_reports_wrong_variant_on_real_table():
+    """**CLI 交付路径 + 真机表**（修复前这里静默 rc=0）：真 `PAL3.exe` 表 `0x56F674`
+    槽 0 = `DestroyEffBase(char)`@`0x4C1640`（真 idx）；.obj 装 `(void)` ⇒ rc=1 + slot 0。"""
+    if not EXE.exists():
+        raise unittest.SkipTest('PAL3.exe 不存在')
+    with tempfile.TemporaryDirectory() as d:
+        obj = fixture_over_obj(os.path.join(d, 'rt2.obj'), slot0=OVER_FUNC_VOID)
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            rc = main(['--obj', obj, '--cls', OVER_CLS, '--bin-base', '0x56F674'])
+        out = buf.getvalue()
+        assert rc == 1, (rc, out)
+        assert 'slot 0' in out and 'slot_key' in out, out
+        assert '0x004C1660' in out and '0x004C1640' in out, out
+
+
+def test_cli_overload_path_passes_correct_variant_on_real_table():
+    """**反向控制**（真机表）：.obj 装**正确重载** ⇒ rc=0 + `identity=va` + 逐槽一致。"""
+    if not EXE.exists():
+        raise unittest.SkipTest('PAL3.exe 不存在')
+    with tempfile.TemporaryDirectory() as d:
+        obj = fixture_over_obj(os.path.join(d, 'rt2.obj'))
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            rc = main(['--obj', obj, '--cls', OVER_CLS, '--bin-base', '0x56F674'])
+        out = buf.getvalue()
+        assert rc == 0, (rc, out)
+        assert 'identity=va' in out and '逐槽一致' in out, out
+
+
+def test_correct_struct_pointer_overload_is_not_false_reported():
+    """**假报回归**（真机 `CCBStage::DelTask`，112 个有真名候选里 1 例）：
+
+    `(int,_BYTE *,int *)` 的候选真名是 `...HPAU_BYTE@@PAH@Z`（**struct** tag `U`），而
+    `vc6_mangler.encode_type` 的 `ptr > 0` 分支**先于** tag 分支 ⇒ `struct X *` 仍编成
+    `PAVX@@`（tag 被丢掉）。只收一个 tag 变体时该候选编码失败，另一个 `(int)` 候选
+    （`H@Z`，恰好是长名的后缀）成了唯一命中 ⇒ 收敛到**错的**那个 VA ⇒ 把「正确重载」
+    误报成错装。修法：类名编码的 `V/U` tag **两个变体都收**（`_swap_class_tag`）。
+    """
+    from vtable_verify import name_to_va_candidates
+    idx = {0x4FC9C0: 'CCBStage::DelTask(int,_BYTE *,int *)',
+           0x50A8E0: 'CCBStage::DelTask(int)'}
+    cands = name_to_va_candidates(idx)
+
+    def obj_slot(sym, fname):
+        d = tempfile.mkdtemp()
+        p = fixture_one_slot_obj(os.path.join(d, fname), sym)
+        return normalize_obj_slots(obj_vtables(p)['??_7CCBStage@@6B@'],
+                                   parse_obj_artifacts(p), va_candidates_of=cands)[0]
+
+    def bin_slot(va, key):
+        return NormSlot(side='bin', raw=hex(va), key=key, kind=KIND_FN, va=va)
+
+    # ① 真值方向：obj 符号 = 该槽自己的真名 ⇒ **不得**收敛到别的候选（否则就是假报）
+    o_struct = obj_slot('?DelTask@CCBStage@@QAEPADHPAU_BYTE@@PAH@Z', 'del_struct.obj')
+    assert o_struct.va != 0x50A8E0, (o_struct.va, o_struct.notes)
+    assert compare_tables([o_struct],
+                          [bin_slot(0x4FC9C0, 'CCBStage::DelTask(int,_BYTE *,int *)')]).ok
+    o_int = obj_slot('?DelTask@CCBStage@@QAE_NH@Z', 'del_int.obj')
+    assert o_int.va != 0x4FC9C0, (o_int.va, o_int.notes)
+    assert compare_tables([o_int], [bin_slot(0x50A8E0, 'CCBStage::DelTask(int)')]).ok
+    # ② 错装方向：`(int)` 真名装进 `(int,_BYTE *,int *)` 的槽 ⇒ 必须报（不得静默放行）
+    res = compare_tables([o_int], [bin_slot(0x4FC9C0, 'CCBStage::DelTask(int,_BYTE *,int *)')])
+    assert not res.ok, res.deviations
+    assert [(d.kind, d.index) for d in res.deviations] == [('slot_key', 0)], res.deviations
+    assert '0x0050A8E0' in res.deviations[0].detail, res.deviations[0].detail
+
+
+def test_real_ambiguous_name_candidates_cover_render_target_overloads():
+    """真机锚点：`RenderTarget2::DestroyEffBase` 在真 idx 里确实是**两个真重载**
+    （0x4C1640 `(char)` / 0x4C1660 `(void)`）——候选集必须两个都在。"""
+    from vtable_verify import load_va_index, name_to_va_candidates, name_to_va_index
+    if not EXE.exists():
+        raise unittest.SkipTest('PAL3.exe 不存在')
+    idx = load_va_index()
+    img = PEImage(str(EXE))
+    cand = name_to_va_candidates(idx, img)
+    grp = cand.get('RenderTarget2::DestroyEffBase')
+    assert grp is not None, '真机 idx 里该名必须存在（否则夹具与真机脱节）'
+    assert set(grp) == {0x4C1640, 0x4C1660}, grp
+    assert grp[0x4C1640].endswith('(char)') and grp[0x4C1660].endswith('(void)'), grp
+    assert 'RenderTarget2::DestroyEffBase' not in name_to_va_index(idx, img)
+
+
 if __name__ == '__main__':
     ok = fail = skip = 0
     for nm, fn in sorted(list(globals().items())):
