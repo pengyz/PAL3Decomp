@@ -3496,3 +3496,16 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 ### 下轮
 - 实际运行 apply 验证 gbengine 头导入效果
 - 验证 decomp 是否用虚函数名替代 _tail_000
+
+## 2026-09-25 vtable R6 —— 单源架构生效 + 剩余同步步骤
+### ✓ gbengine 头导入已生效
+- apply 日志：13+ 个 gbengine .h 文件全部被 ida_typeinf.parse_decls 解析导入
+- gbGfxManager.h parse=3 · gbParticle.h parse=20 · gbPrintFont.h parse=0(完美)
+- 单源架构在 IDB local types (til) 层面已生效 ✓
+### 剩余步骤
+- parse_decls 导入到 local types (til)，但 Hex-Rays decomp 使用 IDB struct 列表
+- 需要 til→struct 同步：或让 Hex-Rays 直接使用 til 中的类型
+- 可选方案：ida_typeinf.sync_tif / tinfo_t.set_named_type 同步到 struct
+### 当前状态
+- _tail_000 引用仍存在（CCBStageShadow 1 处）⇒ 待 til→struct 同步
+- S2=72 · errors=2071（过渡期基线，允许）
