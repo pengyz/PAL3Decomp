@@ -877,3 +877,26 @@ Controller: 提交 progress.md 的 R=3 段（延期 minor ⑧）+ 修正 task-8-
 ### 事实更正（仓库卫生，本轮实测）
 - 历轮"`.superpowers/sdd/` 被 gitignore ⇒ 不入库"**为假**，且机制已定位：本计划文件早已**入库**（`git ls-files` 17 命中；`948fc786d` 入库报告、`212f53b02` 入库 R=3 台账段）；`git add <该路径>` 会把**已跟踪**文件的改动**确实暂存**（`git status` 显示 `M `）**却 exit 1**（`.superpowers/sdd/.gitignore` 的 `*` 打 advice）⇒ `git add … && git commit …` 链式命令**静默跳过提交** —— "不入库"是提交没跑，不是 ignore 生效
 - 本轮按 R=3 先例拆 ①代码+测试 ②报告/台账 两个提交（docs 提交直接提交已暂存内容，不再链式 `&&`）
+
+## R=4 最终收口完成（2 项 Minor）
+
+提交：8f23b6ebb（代码：vtable_sig_infer.py +100/−8、test +236）· 4269a5570（文档：task8 报告 §14 + 台账 R=4 段）
+测试：test_vtable_sig_infer **77 passed**（71→77，+6）；前序 8 套 73/35/38/77/88/61+3skip/35/22+8skip 全 0 failed
+先写测试 ⇒ 4 条 RED ⇒ 改后 GREEN
+
+### M-3（逐项槽证据门）—— ADDRESSED
+- 病灶：`_slot_evidence_kind()` 只判顶层形状（唯一消费者 main()），下游 `_slots_from_json` 把 `{"methods":{}}` 当单槽 ⇒ 键 "" 伪候选
+- 新增 `_slot_entry_lacks_evidence()`（条目须有 `addr` 或 `disasm`；`name`/`symbol`/`signature` **不单独**构成证据）+ `_slot_items_without_evidence()`（1-based 序号）+ `main()` **fail-closed** 门（混入坏条目整体拒收 rc=1）
+- 反例 `[{"methods":{}}]`、`{"slots":[{"methods":{}}]}` 改前 exit 0 + `"": … "? unknown _slot()` → 改后 **rc=1**
+- 阴性对照钉三种合法形态仍 rc=0，且断言字符串条目产出真推断而非伪候选
+
+### 符号链接破环 —— ADDRESSED
+- `os.path.realpath` 后再 `commonpath`，与词法 commonpath 取**或**
+- `data/annotations_link/x.json` 改前 拒=False → 改后 **拒=True**；兄弟目录仍 False 且真的落盘
+- 独立 shell 复证：链接写 exit 1 不落盘 · 直写真源拒 · 兄弟目录落盘 · 多级链拒
+
+Ruling: 顾虑1（简报字面复现命令不成立：`--struct` 是文件路径参数，实测 FileNotFoundError exit 1 而非 exit 0；实质复现按文件内容）— 接受：缺陷为真，未新增内联 JSON 入口（超范围）— 若错：需内联入口则另立
+Ruling: 顾虑2（两条判据取"或"是超出简报的加严）— 接受（额外拒"真源树内挂载点指向外部"，有测试钉住）— 若错：无
+Ruling: 顾虑3（signature 不再单独构成证据）— 接受（收紧方向；旧行为会产**空地址**记录）— 若错：只给 signature 的条目被拒
+Ruling: 顾虑4（addr-only 单槽仍放行 ⇒ `? unknown _slot()` + insufficient_evidence 痕迹）— 这是 Ruling 2 契约（非本次空地址缺陷态）⇒ 接受
+★★ Controller 更正：**此前"`.superpowers/sdd/` 被 gitignore ⇒ 不入库"为假** — 机制已定位：文件早已入库（`git ls-files` 17 命中），而 `git add <该路径>` 会把已跟踪文件改动**确实暂存**（`git status` 显示 `M `）**却 exit 1**（`.superpowers/sdd/.gitignore` 的 `*` 打 advice）⇒ `git add … && git commit …` 链式**静默跳过提交**（R=3 轮即如此）。本轮 docs 提交改为直接提交已暂存内容

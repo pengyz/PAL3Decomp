@@ -1,3 +1,9 @@
+> ⚠️ **更正（2026-09-25，最后收口轮）**：本报告多处（`:4/:350/:399/:491/:583`）曾称
+> "本报告在 `.superpowers/sdd/` 下、该目录被 `.gitignore` 忽略 ⇒ 不入库"。**该说法已过时**：
+> 设计与计划、SDD 台账、task-1..8-brief/report **均已入库**（`948fc786d`、`212f53b02`、`4269a5570`）。
+> 机制说明：文件早已被跟踪，而 `git add <该路径>` 会暂存改动却因 `.superpowers/sdd/.gitignore` 的 `*`
+> 打印 advice 并 **exit 1** ⇒ `git add … && git commit …` 链式静默跳过提交。请以 `git ls-files` 为准。
+
 # Task 8 报告：端到端验证（L1 + `.rdata` 双裁判）
 
 - **状态**：DONE_WITH_CONCERNS
