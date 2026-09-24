@@ -3383,3 +3383,17 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
    d. 以上三步必须同时落地，缺一都会造成布局偏移或编译失败
 3. 当前架构稳定：S2=75 errors=2154 L1=41 ✓ 保持不变
 4. 门禁已加（WARNING 级）：检测到 __vftable 声明时记录待改进项
+
+## 2026-09-25（goal r59）vtable 闭环验证工具 + 方法论重设计
+### 用户方向的架构设计（vtable 处理正确方法）
+1. annotation 层：has_vtable 布尔值（不是成员声明）
+2. 头文件：无 vtable 声明；virtual 函数声明让编译器自动生成 vtable
+3. 关键机制：**vtable 映射**——vtable 有几个虚函数，头文件就必须声明几个 virtual，顺序和签名对应
+4. codegen 层：vtable 的访问（读取/赋值）都需 OOP 化处理
+5. 门禁：禁止 annotation 中声明 vtable；vtable 映射闭环验证
+
+### vtable_mapper.py 工具落地
+- 闭环验证：annotation vtables[].slots ⇒ methods 表 ⇒ virtual 声明 ⇒ 编译器 vtable ⇒ 与二进制一致
+- 当前度量：80 类有 vtable · 841 槽 · **539 已解析 · 302 未解析** · 72 类有缺口 · 20 类完整
+- 302 缺口 = annotation methods 表缺条目 ⇒ 是准确的标注工作量度量
+- 修复路径：逐类补 methods 条目 → 门禁逐步收紧
