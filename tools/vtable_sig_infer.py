@@ -10,6 +10,8 @@
     第 1 步 合成槽分类：交 Task 2 `vtable_slot_classifier.classify_slot`（**传原始文本**）
                        非 `fn`（adjustor/deleting_dtor/purecall/composite）⇒ **跳过**，不推断
     第 2 步 调用约定：ecx 入口 this 证据 / edx 入口寄存器实参证据 / ret N 与裸 ret
+                       （deref 形态单凭字节不可判 ⇒ 仅此时用 `symbol` 的 mangling
+                        成员前缀作旁证判开；无旁证则 B 级，见已知局限 6）
     第 3 步 参数个数：[ebp+8..]（或 esp 跟踪）读取集 = 下界；ret N = 栈槽数上界；
                        sret 隐藏首参扣除；double/int64 占双槽
     第 4 步 返回宽度：epilogue 前最后一次 eax/st(0) 物化（宽度可测才声称）
@@ -29,15 +31,16 @@
 * **Ruling 5** BOOL **不**与 int 字节等价（调用点 `setcc` 物化 +5B）⇒ BOOL/char/short
   单独成类；`param_class_equiv('bool','i32') is False`
 * **Ruling 6** sret（返回 >8B 结构的隐藏首参）必须扣除，否则参数整体错位；
-  识别用"单基址寄存器 ≥9 字节连续 store-through + epilogue 前最后一次 eax 载入该槽"，
-  多基址寄存器 ⇒ 只标 `sret_ambiguous` + 降级（不猜）
+  识别用"单基址寄存器**相对首址连续** ≥9 字节 store-through + epilogue 前最后一次 eax 载入该槽"；
+  多基址寄存器 ⇒ 只标 `sret_ambiguous` + 降级（不猜）；覆盖**不连续**（相对首址有窟窿，
+  如 `/Od ?poff` 只写 `+0xc`）⇒ 不是结构复制，**不判** sret（修复轮 R=1 / I2）
 
 ## 分级（spec §4.2 逐字）
 
 | 级 | 条件 |
 |---|---|
 | **A** | 调用约定 + 参数个数 + **返回宽度**全部确定（无隐藏参数嫌疑 / 无 ICF / 无约定推定） |
-| **B** | 缺返回宽度，或有隐藏参数嫌疑，或 ICF 折叠，或约定系推定（无正面寄存器证据） |
+| **B** | 缺返回宽度，或有隐藏参数嫌疑，或 ICF 折叠 / **同地址多候选**，或约定系推定（无正面寄存器证据），或解析不完整（`partially_parsed`） |
 | **C** | 参数个数不确定（变参 / cdecl 读集为空 / 证据不足 / 栈基址不可定位） |
 
 ⚠️ **A 级不保证参数等价类**（`param_class_undetermined`）：callee 字节对 int/指针/float/
@@ -55,6 +58,16 @@ BOOL 常常不可分（C-5/C-6 实测）⇒ A 级只保证"约定 + 个数 + 返
 4. 多返回路径函数只取**最后**一个 `ret` 的 N；尾部 `jmp` 尾调用形态不看。
 5. `this` 归属：vtable 槽恒为成员函数（`is_member=True`），cdecl/fastcall 的 `this` 约定按
    ABI 扣除；若某槽实际是自由函数（非 vtable 场景）需显式 `is_member=False`。
+6. **deref 形态的 this 归属单凭字节不可判**（修复轮 R=1 / C1）："首槽值被解引用"同时符合
+   「__thiscall 的**首个指针参数**」与「__stdcall/__cdecl 成员的 this」。真机 `/O2 /Ob2 /Oi
+   /Ot /Oy` 实测 `?wr2@Rn6@@UAEHPAUInnerV@@@Z`（真值 __thiscall / 1 指针参 / int）与
+   `?g@C@@UAGHXZ`（真值 __stdcall 成员 / 0 参 / int）**逐字节相同**：
+   `8b 44 24 04 / c7 40 04 01… / c7 40 0c 03… / 33 c0 / c2 04 00`。
+   ⇒ 无 mangling 旁证时只给 `cc_provisional` + B；有 mangling 虚成员前缀
+   （`convention_from_symbol`：`UAE`=__thiscall / `UAG`=__stdcall / `UAA`=__cdecl /
+   `UAI`=__fastcall，且**排除** `S`=static 的返回类型码）时才能判开（标 `cc_from_mangling`）。
+7. `convention_from_symbol` 只认实证形态的**成员**前缀；模板类（类名内含 `@`）、自由函数、
+   析构（`??_G…`）、静态成员（`S`，第 3 字符是返回类型码）一律返回 `None`（不猜）。
 
 用法：
     from vtable_sig_infer import SigEvidence, infer_signature, infer_address_record, \\
@@ -99,12 +112,12 @@ __all__ = [
     'FEATURE_SKIPPED_SYNTHETIC_SLOT', 'FEATURE_CALL_SITE_MISMATCH',
     'FEATURE_RET_CONTRADICTION', 'FEATURE_STACK_BASE_UNKNOWN', 'FEATURE_NO_PROLOGUE',
     'FEATURE_REAL_PARAM_BLIND_SPOT', 'FEATURE_SRET_AMBIGUOUS', 'FEATURE_SLOT0_DEREF',
-    'FEATURE_PARSER_ERROR', 'sanitize_pe_relocs',
+    'FEATURE_PARSER_ERROR', 'FEATURE_CC_FROM_MANGLING', 'sanitize_pe_relocs',
     'ParamCandidate', 'SigEvidence', 'SignatureCandidate', 'PendingRecord',
     'CallSiteEvidence',
     'infer_signature', 'infer_address_record', 'find_icf_groups', 'body_key',
     'build_methods_pending', 'iter_candidates', 'analyze_call_sites',
-    'param_class_equiv', 'param_class_family',
+    'param_class_equiv', 'param_class_family', 'convention_from_symbol',
 ]
 
 # ---------------- 分级 / 调用约定 / 返回宽度 ----------------
@@ -184,6 +197,30 @@ def param_class_equiv(a, b):
     return param_class_family(a) == param_class_family(b)
 
 
+# MSVC 成员函数 mangling：`?<name>@<Class>@@<access>A<conv><return><params>@Z`
+#   `<conv>` 第 3 字符 = 调用约定（真机 MSVC 6.0 SP0 + objdump -t 实证）：
+#     ?v_cdecl@M@@UAEXXZ 默认成员 __thiscall · ?v_std@M@@UAGHH@Z __stdcall
+#     ?v_fast@M@@UAIHH@Z __fastcall      · ?v_cd@M@@UAAHH@Z  __cdecl
+#     ?nv_plain@M@@QAEXXZ 非虚 public    · ?pv@P@@MAEXXZ protected virtual
+#     ?priv@Q@@AAEXXZ private 非虚
+#   `<access>` ∈ {Q,U,M,E,I,A} = 成员函数（public/protected/private × 虚/非虚）；
+#   `S` = **static** 成员 —— 它的第 3 字符是**返回类型码**
+#     （?sf_i@N@@SAIXZ = static unsigned int()；?sf_c@N@@SAEXZ；?sf_s@N@@SAGXZ）
+#   ⇒ 若不排除 `S`，静态函数会被凭空读成 __fastcall/__thiscall/__stdcall（已实测）。
+_MANGLING_CC = {'A': CC_CDECL, 'E': CC_THISCALL, 'G': CC_STDCALL, 'I': CC_FASTCALL}
+_MANGLING_MEMBER_RE = re.compile(r'^\?[A-Za-z_][A-Za-z0-9_]*@[^@]*@@[QUMEIA]A([AEGI])')
+
+
+def convention_from_symbol(symbol):
+    """从 MSVC mangling 的**虚/非虚成员前缀**解出调用约定；无证据 ⇒ `None`（绝不猜）。
+
+    只认实证形态 `<access>A<conv>`（含 `S`=static 一律拒绝，见上表）；
+    自由函数（`?f@@YA…`）、模板类（类名内含 `@`）、析构（`??_G…`）等形态一律 `None`。
+    """
+    m = _MANGLING_MEMBER_RE.match(symbol or '')
+    return _MANGLING_CC[m.group(1)] if m else None
+
+
 # ---------------- 特征词表（写进候选/记录，供 Task 5 诊断） ----------------
 
 FEATURE_ECX_THIS = 'ecx_this'
@@ -207,6 +244,7 @@ FEATURE_REAL_PARAM_BLIND_SPOT = 'real_param_blind_spot'
 FEATURE_SLOT0_DEREF = 'slot0_deref'
 FEATURE_PARSER_ERROR = 'parser_error'
 FEATURE_SRET_AMBIGUOUS = 'sret_ambiguous'
+FEATURE_CC_FROM_MANGLING = 'cc_from_mangling'
 
 
 # ---------------- 数据结构 ----------------
@@ -793,7 +831,9 @@ def _scan(insns):
     if not reads:
         features.add(FEATURE_READ_SET_EMPTY)
 
-    # --- sret：epilogue 前最后一次 eax 载入**首槽** + 单基址寄存器 ≥9 字节 store-through ---
+    # --- sret：epilogue 前最后一次 eax 载入**首槽** + 单基址寄存器（相对首址）**连续**
+    # ≥9 字节 store-through（I2 修复轮 R=1：只查 `max(covered) >= 8` 会把"相对首址有窟窿"
+    # 的散写（如 /Od `?poff` 只写 +0xc）误判成 sret ⇒ 必须要求 covered 从 0 起连续） ---
     sret_slot = None
     sret_ambiguous = False
     terminal_eax = last_eax_idx >= 0 and not any(
@@ -804,7 +844,10 @@ def _scan(insns):
         for (s, b), offs in store_through.items():
             if s == 0:
                 covered |= offs
-        if covered and max(covered) >= 8:
+        # "连续"= 从首址 0 起逐字节覆盖到 max ⇒ 结构体逐字段复制（真 sret）的形态；
+        # 散写（0 与 0xc、或只有 0xc）不是结构复制 ⇒ 不判 sret（连"含糊"都不标）
+        contiguous = bool(covered) and covered == set(range(max(covered) + 1))
+        if contiguous and max(covered) >= 8:
             if len(bases) == 1:
                 sret_slot = 0
             else:
@@ -1037,7 +1080,8 @@ def infer_signature(ev):
                      '（丢弃 %d 行）⇒ 证据不足，不得回落成"0 参 void"'
                      % (report.content_lines, report.dropped_lines))
     if report.partially_parsed:
-        notes.append('partially_parsed: 丢弃 %d/%d 行（>50%%）⇒ 结论不可信，需 IDA 复核'
+        notes.append('partially_parsed: 丢弃 %d/%d 行（>50%%）⇒ 解析不完整、结论不可信'
+                     '⇒ 至多 B 级（I3 修复轮 R=1），需 IDA 复核'
                      % (report.dropped_lines, report.content_lines))
     if insufficient:
         return SignatureCandidate(
@@ -1069,10 +1113,38 @@ def infer_signature(ev):
     elif scan.ecx_this:
         cc = CC_THISCALL
     elif scan.this_deref:
-        this_on_stack = True
-        cc = CC_CDECL if scan.bare_ret else CC_STDCALL
-        notes.append('解引用证据 + %s ⇒ 成员 this 在首栈槽'
-                     % ('裸 ret（caller 清栈）' if scan.bare_ret else 'ret N（callee 清栈）'))
+        # C1（修复轮 R=1）：deref 只证明"首槽值是**指针对象基址**"，它同时符合
+        # 「__thiscall 的**首个指针参数**」与「__stdcall/__cdecl 成员的 this」两种真值
+        # —— /O2 实测 `?wr2@Rn6@@UAEHPAUInnerV@@@Z`（真值 __thiscall / 1 指针参 / int）
+        # 与 `?g@C@@UAGHXZ`（真值 __stdcall 成员 / 0 参 / int）**逐字节相同**：
+        # `8b 44 24 04 / c7 40 04 01… / c7 40 0c 03… / 33 c0 / c2 04 00`
+        # ⇒ 单凭字节**不得**给 A；唯一能判开的是 mangling 虚成员前缀（`UAE`/`UAG`）。
+        mangled_cc = convention_from_symbol(ev.symbol)
+        if mangled_cc == CC_THISCALL and not scan.bare_ret:
+            # mangling 权威且与 ret 形态自洽 ⇒ ecx=this，被解引用的首槽是**指针参数**
+            cc = CC_THISCALL
+            features.add(FEATURE_CC_FROM_MANGLING)
+            notes.append('cc_from_mangling: mangling 成员前缀 = __thiscall（且 callee 清栈自洽）'
+                         '⇒ ecx=this，被解引用的首槽是**首个指针参数**而非 this'
+                         '（C1：deref 单凭字节分不出 this 归属）')
+        elif mangled_cc in (CC_STDCALL, CC_CDECL) \
+                and scan.bare_ret == (mangled_cc == CC_CDECL):
+            # stdcall 成员 ⇒ 必是 `ret N`；cdecl 成员 ⇒ 必是裸 ret（清栈方必须自洽）
+            this_on_stack = True
+            cc = mangled_cc
+            features.add(FEATURE_CC_FROM_MANGLING)
+            notes.append('cc_from_mangling: mangling 成员前缀 = %s（与 %s 清栈形态自洽）'
+                         '⇒ this 在首栈槽（该槽被解引用 = 成员访问）'
+                         % (mangled_cc, 'caller' if scan.bare_ret else 'callee'))
+        else:
+            # 无 mangling 旁证（或旁证与字节矛盾）⇒ 只给**推定**，降级 B（C1 必修）
+            this_on_stack = True
+            cc = CC_CDECL if scan.bare_ret else CC_STDCALL
+            cc_provisional = True
+            notes.append('cc_provisional: deref 只证明首槽是**指针对象基址**，与'
+                         '「__thiscall 的首个指针参数」和「%s 成员的 this」两种真值**同形**'
+                         '（C1 实测 ?wr2 与 ?g 逐字节相同）⇒ 推定 this 在首栈槽，降级 B'
+                         % cc)
     elif ev.is_member and not scan.bare_ret and scan.ret_bytes > 0:
         # 无 ecx 证据但 callee 清栈：MSVC 成员默认 __thiscall（this 未使用 ⇒ 无痕）；
         # 备选读法是 __stdcall 成员（this@首槽）⇒ 结论只是**推定**
@@ -1199,7 +1271,9 @@ def infer_signature(ev):
     if arity is None or cc == CC_UNKNOWN:
         grade = GRADE_C
     elif (hidden or scan.sret_ambiguous or ret_kind == RET_UNKNOWN
-          or cc_provisional or arity_is_lower):
+          or cc_provisional or arity_is_lower or report.partially_parsed):
+        # `report.partially_parsed`（I3 修复轮 R=1）：>50% 非空行没解析成指令 ⇒
+        # 指令层证据不完整，notes 说"不可信"就不能同时给 A
         grade = GRADE_B
     else:
         grade = GRADE_A
@@ -1256,15 +1330,16 @@ def _cap_grade(cand, floor):
     if order[cand.grade] >= order[floor]:
         return cand
     return replace(cand, grade=floor,
-                   notes=cand.notes + ('grade_capped: 同地址存在多签名（ICF 折叠）'
+                   notes=cand.notes + ('grade_capped: 同地址存在多签名（ICF 折叠 / 多次声明）'
                                        '⇒ 不得给 A 级',))
 
 
 def infer_address_record(addr, evidences):
     """一个**地址**的全部证据 → `PendingRecord`（多候选 + ICF 标记）。
 
-    C-5 契约：`methods_pending[addr]` 的键值**必须**能放多签名（列表），
-    ICF 折叠时降级到 B 并标 `icf_folded`/`ambiguous`。
+    C-5 契约：`methods_pending[addr]` 的键值**必须**能放多签名（列表）；
+    **只要候选数 > 1** 就降级到 B 并标 `ambiguous`（I4 修复轮 R=1：旧实现只在
+    `distinct_bodies == 1`（ICF）时降级，体不同的多候选仍会给 A ⇒ 同样不得给 A）。
     """
     evidences = tuple(evidences)
     cands = []
@@ -1276,13 +1351,16 @@ def infer_address_record(addr, evidences):
     keys = [body_key(ev.disasm) for ev in evidences if isinstance(ev.disasm, str)]
     distinct_bodies = set(keys)
     icf = len(evidences) > 1 and len(distinct_bodies) == 1
-    if icf:
+    if len(cands) > 1:
         cands = [_cap_grade(c, GRADE_B) for c in cands]
     notes, features = [], set()
     if icf:
         features.add(FEATURE_ICF_FOLDED)
         notes.append('icf_folded: 同地址 %d 个符号共享**完全相同**的函数体 ⇒ ICF 折叠；'
                      '一地址对多签名 ⇒ 必须由 IDA/调用点证据定性' % len(evidences))
+    elif len(cands) > 1:
+        notes.append('multi_candidate: 同地址 %d 个候选（函数体**不同**，非 ICF 折叠）⇒ '
+                     '一地址对多签名同样不得给 A 级，须由 IDA/调用点证据定性' % len(cands))
     skipped = not cands and bool(evidences)
     if skipped:
         features.add(FEATURE_SKIPPED_SYNTHETIC_SLOT)

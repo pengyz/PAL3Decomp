@@ -77,17 +77,22 @@ from vtable_sig_infer import (  # noqa: E402
     FEATURE_THIS_ON_STACK,
     FEATURE_VARIADIC,
     FEATURE_PARSER_ERROR,
+    FEATURE_CC_FROM_MANGLING,
+    FEATURE_SLOT0_DEREF,
     SigEvidence,
     analyze_call_sites,
     body_key,
     build_methods_pending,
+    convention_from_symbol,
     find_icf_groups,
     infer_address_record,
     infer_signature,
+    iter_candidates,
     param_class_equiv,
     param_class_family,
     sanitize_pe_relocs,
 )
+from vtable_sig_infer import main as cli_main  # noqa: E402
 
 
 def E(**kw):
@@ -1315,6 +1320,292 @@ def test_infer_address_record_survives_pe_coff_reloc_text():
                                        E(addr='0x0', disasm=PE_RELOC_TEXT)])
     assert rec.icf_folded is True, rec
     assert len(rec.candidates) == 2, rec
+
+
+# ==========================================================================
+# 13. 修复轮 R=1（评审：Critical C1 + Important I2/I3/I4/I5）
+# ==========================================================================
+
+# ---- C1：deref 形态的**两种真值逐字节相同**（真机 /O2 /Ob2 /Oi /Ot /Oy /GR） ----
+# 复现（探针源见下，未入库；与既有 probe 同法）：
+#   tools/wine_cl.sh /c /O2 /Ob2 /Oi /Ot /Oy /GR \
+#       /Itools/compilers/msvc6.0/Include /Fo/tmp/deref_form.obj deref_form.cpp
+#   objdump -dr /tmp/deref_form.obj
+#
+#   struct InnerV { int a; int b; int c; int d; };       // 无 vptr ⇒ b@+4, d@+0xc
+#   struct Rn6 { virtual int wr2(InnerV* p); };          // 真值 __thiscall / 1 指针参 / int
+#   int Rn6::wr2(InnerV* p) { p->b = 1; p->d = 3; return 0; }
+#   struct C { int p0; int p1; int p2; virtual int __stdcall g(); };  // 含 vptr ⇒ p0@+4, p2@+0xc
+#   int __stdcall C::g() { this->p0 = 1; this->p2 = 3; return 0; }    // 真值 __stdcall 成员 / 0 参
+#
+# 两者**逐字节相同**（`8b 44 24 04 / c7 40 04 01… / c7 40 0c 03… / 33 c0 / c2 04 00`）：
+#   ?wr2@Rn6@@UAEHPAUInnerV@@@Z      ?g@C@@UAGHXZ
+C1_R1_DEREF_SAME_BYTES = """
+  0:  8b 44 24 04           mov    0x4(%esp),%eax
+  4:  c7 40 04 01 00 00 00  movl   $0x1,0x4(%eax)
+  b:  c7 40 0c 03 00 00 00  movl   $0x3,0xc(%eax)
+ 12:  33 c0                 xor    %eax,%eax
+ 14:  c2 04 00              ret    $0x4
+"""
+
+# ---- I2：store-through **不连续**（单基址但相对首址有窟窿）不得判 sret ----
+# 复现（真机 /Od /GR）：
+#   struct RnA { virtual int poff(int* p); };            // 真值 __thiscall / 1 指针参 / int
+#   int RnA::poff(int* p) { p[3] = 3; return (int)p; }   // 只写 +0xc
+# objdump -dr：单基址 eax，covered={0xc..0xf} ⇒ `max(covered)=15 ≥ 8` 但**不连续**
+C1_R1_POFF_GAP = """
+  0:  55                    push   %ebp
+  1:  8b ec                 mov    %esp,%ebp
+  3:  51                    push   %ecx
+  4:  89 4d fc              mov    %ecx,-0x4(%ebp)
+  7:  8b 45 08              mov    0x8(%ebp),%eax
+  a:  c7 40 0c 03 00 00 00  movl   $0x3,0xc(%eax)
+ 11:  8b 45 08              mov    0x8(%ebp),%eax
+ 14:  8b e5                 mov    %esp,%ebp
+ 16:  5d                    pop    %ebp
+ 17:  c2 04 00              ret    $0x4
+"""
+
+# ---- I3：COMDAT 切片混入数据行 ⇒ 丢弃 >50% 非空行（解析不完整） ----
+C1_R1_PARTIALLY_PARSED = RW1_RI + '\n'.join(
+    '@@@ junk %d' % i for i in range(1, 11)) + '\n'
+
+# ---- I2 阴性对照：连续性判据**不得**误杀"带填充的真 sret" ----
+# 复现（真机 /Od /GR）：struct Pad16 { char c; double d; };  // sizeof 16（1..7 填充）
+#   struct Rn11 { virtual Pad16 mkp(); virtual int pwrite(Pad16* q); };
+#   Pad16 Rn11::mkp() { Pad16 p; p.c='a'; p.d=1.5; return p; }
+#   int Rn11::pwrite(Pad16* q) { q->d = 2.5; return 0; }
+# MSVC 6 /Od 连**填充一起复制**（4×dword）⇒ covered={0..15} 连续 ⇒ 必须仍判 sret；
+# 而 `pwrite` 只写 +0x8/+0xc（单基址 eax，max=15）⇒ 不得判 sret（旧实现误判）。
+C1_R1_PAD_SRET = """
+  0:  55                    push   %ebp
+  1:  8b ec                 mov    %esp,%ebp
+  3:  83 ec 14              sub    $0x14,%esp
+  6:  89 4d ec              mov    %ecx,-0x14(%ebp)
+  9:  c6 45 f0 61           movb   $0x61,-0x10(%ebp)
+  d:  c7 45 f8 00 00 00 00  movl   $0x0,-0x8(%ebp)
+ 14:  c7 45 fc 00 00 f8 3f  movl   $0x3ff80000,-0x4(%ebp)
+ 1b:  8b 45 08              mov    0x8(%ebp),%eax
+ 1e:  8b 4d f0              mov    -0x10(%ebp),%ecx
+ 21:  89 08                 mov    %ecx,(%eax)
+ 23:  8b 55 f4              mov    -0xc(%ebp),%edx
+ 26:  89 50 04              mov    %edx,0x4(%eax)
+ 29:  8b 4d f8              mov    -0x8(%ebp),%ecx
+ 2c:  89 48 08              mov    %ecx,0x8(%eax)
+ 2f:  8b 55 fc              mov    -0x4(%ebp),%edx
+ 32:  89 50 0c              mov    %edx,0xc(%eax)
+ 35:  8b 45 08              mov    0x8(%ebp),%eax
+ 38:  8b e5                 mov    %esp,%ebp
+ 3a:  5d                    pop    %ebp
+ 3b:  c2 04 00              ret    $0x4
+"""
+
+C1_R1_PWRITE_NOT_SRET = """
+  0:  55                    push   %ebp
+  1:  8b ec                 mov    %esp,%ebp
+  3:  51                    push   %ecx
+  4:  89 4d fc              mov    %ecx,-0x4(%ebp)
+  7:  8b 45 08              mov    0x8(%ebp),%eax
+  a:  c7 40 08 00 00 00 00  movl   $0x0,0x8(%eax)
+ 11:  c7 40 0c 00 00 04 40  movl   $0x40040000,0xc(%eax)
+ 18:  33 c0                 xor    %eax,%eax
+ 1a:  8b e5                 mov    %esp,%ebp
+ 1c:  5d                    pop    %ebp
+ 1d:  c2 04 00              ret    $0x4
+"""
+
+
+def test_fix_r1_c1_deref_branch_without_symbol_is_provisional_not_grade_a():
+    """🔴 C1：deref 只证明"首槽是**指针对象基址**"，不能定 this 归属
+    ⇒ 无 mangling 旁证时必须 `cc_provisional=True` 且**不得给 A 级**（旧实现给 A）"""
+    cand = infer_signature(E(addr='0x0', name='x', disasm=C1_R1_DEREF_SAME_BYTES))
+    assert cand.cc_provisional is True, cand
+    assert cand.grade != GRADE_A, cand
+    assert cand.grade == GRADE_B, cand
+    assert FEATURE_SLOT0_DEREF in cand.features, cand.features
+    assert 'cc_provisional' in notes_of(cand), cand.notes
+
+
+def test_fix_r1_c1_identical_bodies_two_truths_mangling_disambiguates():
+    """🔴 C1：同一段字节的两种真值 —— mangling 虚成员前缀可判开
+    （`UAE`=__thiscall ⇒ 首槽是**指针参数**；`UAG`=__stdcall 成员 ⇒ 首槽是 this）"""
+    wr2 = infer_signature(E(addr='0x0', name='wr2',
+                            symbol='?wr2@Rn6@@UAEHPAUInnerV@@@Z',
+                            disasm=C1_R1_DEREF_SAME_BYTES))
+    g = infer_signature(E(addr='0x0', name='g', symbol='?g@C@@UAGHXZ',
+                          disasm=C1_R1_DEREF_SAME_BYTES))
+    # 前提：两条证据的字节完全相同（body_key 是唯一体判据）
+    assert body_key(C1_R1_DEREF_SAME_BYTES) == body_key(C1_R1_DEREF_SAME_BYTES)
+    assert wr2 is not None and g is not None
+    assert (wr2.convention, wr2.arity, wr2.this_on_stack) == (CC_THISCALL, 1, False), wr2
+    assert (g.convention, g.arity, g.this_on_stack) == (CC_STDCALL, 0, True), g
+    assert wr2.cc_provisional is False and g.cc_provisional is False, (wr2, g)
+    assert wr2.grade == GRADE_A and g.grade == GRADE_A, (wr2, g)
+    assert FEATURE_CC_FROM_MANGLING in wr2.features, wr2.features
+    assert FEATURE_CC_FROM_MANGLING in g.features, g.features
+    assert 'cc_from_mangling' in notes_of(wr2), wr2.notes
+    # 旧实现把两者输出成同一个 `int __stdcall <name>()`/arity 0 —— 至少真值必须分开
+    assert wr2.signature != g.signature, (wr2.signature, g.signature)
+
+
+def test_fix_r1_c1_static_mangling_return_codes_are_not_read_as_conventions():
+    """C1 旁证解码器：**静态**成员的第三个字符是返回类型码
+    （`E`=unsigned char / `G`=unsigned short / `I`=unsigned int）⇒ 不得误读成约定
+    （真机 mangle.cpp / mangle2.cpp：`?sf_i@N@@SAIXZ` 是 static unsigned int()，非 fastcall）"""
+    assert convention_from_symbol('?v_cdecl@M@@UAEXXZ') == CC_THISCALL
+    assert convention_from_symbol('?v_std@M@@UAGHH@Z') == CC_STDCALL
+    assert convention_from_symbol('?v_fast@M@@UAIHH@Z') == CC_FASTCALL
+    assert convention_from_symbol('?v_cd@M@@UAAHH@Z') == CC_CDECL
+    assert convention_from_symbol('?nv_plain@M@@QAEXXZ') == CC_THISCALL
+    assert convention_from_symbol('?pv@P@@MAEXXZ') == CC_THISCALL
+    assert convention_from_symbol('?priv@Q@@AAEXXZ') == CC_THISCALL
+    for static_sym in ('?sf_i@N@@SAIXZ', '?sf_c@N@@SAEXZ', '?sf_s@N@@SAGXZ',
+                       '?st_std@M@@SGHH@Z', '?st_plain@M@@SAXXZ'):
+        assert convention_from_symbol(static_sym) is None, static_sym
+    assert convention_from_symbol('??_GV@@UAEPAXI@Z') is None
+    assert convention_from_symbol('?o@E@@UAEXH@Z') == CC_THISCALL
+    assert convention_from_symbol('') is None
+    assert convention_from_symbol(None) is None
+
+
+def test_fix_r1_i2_sret_requires_contiguous_store_through():
+    """🟡 I2：单基址 + `max(covered) >= 8` 不足 —— 必须是**相对首址连续**的 ≥9 字节写
+    （`?poff@RnA@@UAEHPAH@Z` 真机 /Od：只写 +0xc ⇒ 旧实现误扣隐藏首参 ⇒ arity 0）"""
+    cand = infer_signature(E(addr='0x0', name='poff', symbol='?poff@RnA@@UAEHPAH@Z',
+                             disasm=C1_R1_POFF_GAP))
+    assert FEATURE_SRET not in cand.features, cand.features
+    assert FEATURE_SRET_AMBIGUOUS not in cand.features, cand.features
+    assert cand.return_kind != RET_SRET, cand
+    assert cand.arity == 1, cand
+    assert cand.convention == CC_THISCALL, cand
+    # 阴性对照仍在：真 sret（连续 store-through）不得被这次收紧误杀
+    mk0 = infer_signature(E(addr='0x0', name='mk0', disasm=RW4_MK0))
+    assert FEATURE_SRET in mk0.features and mk0.arity == 0, mk0
+    # 带**填充**的真 sret（新探针，真机 /Od）：MSVC 连填充一起复制 ⇒ covered 连续
+    # ⇒ 收紧后必须仍判 sret（否则把真 sret 误杀成 arity 偏大 1 的 A 级）
+    pad = infer_signature(E(addr='0x0', name='mkp', symbol='?mkp@Rn11@@UAE?AUPad16@@XZ',
+                            disasm=C1_R1_PAD_SRET))
+    assert FEATURE_SRET in pad.features, pad.features
+    assert (pad.return_kind, pad.arity, pad.grade) == (RET_SRET, 0, GRADE_A), pad
+    # 同一 TU 的单基址散写（`q->d = 2.5` 只写 +0x8/+0xc，max=15）⇒ 也不得判 sret
+    pw = infer_signature(E(addr='0x0', name='pwrite', symbol='?pwrite@Rn11@@UAEHPAUPad16@@@Z',
+                           disasm=C1_R1_PWRITE_NOT_SRET))
+    assert FEATURE_SRET not in pw.features, pw.features
+    assert (pw.return_kind, pw.arity) == (RET_I32, 1), pw
+
+
+def test_fix_r1_i3_partially_parsed_forces_downgrade():
+    """🟡 I3：丢弃 >50% 非空行（解析不完整）时 notes 说"不可信"却仍给 A
+    ⇒ 必须至少降级 B（同一字节在完整文本下就是 A，证明降级来自解析不完整）"""
+    rep = parse_disasm_report(C1_R1_PARTIALLY_PARSED)
+    assert rep.partially_parsed is True, (rep.content_lines, rep.dropped_lines)
+    full = infer_signature(E(addr='0x0', name='ri', disasm=RW1_RI))
+    partial = infer_signature(E(addr='0x0', name='ri', disasm=C1_R1_PARTIALLY_PARSED))
+    assert full.grade == GRADE_A, full
+    assert partial.grade != GRADE_A, partial
+    assert partial.grade == GRADE_B, partial
+    assert 'partially_parsed' in notes_of(partial), partial.notes
+
+
+def test_fix_r1_i4_multi_candidate_different_bodies_are_capped_to_b():
+    """🟡 I4：一地址多候选**体不同**（非 ICF）时 `ambiguous=True` 却仍可给 A
+    ⇒ 只要有多个候选就必须 cap（旧实现只在 `distinct_bodies==1` 时 cap）"""
+    rec = infer_address_record('0x0', [E(addr='0x0', symbol='?ri@Rn@@UAEHH@Z', disasm=RW1_RI),
+                                       E(addr='0x0', symbol='?rc@Rn@@UAEDH@Z', disasm=RW1_RC)])
+    assert rec.icf_folded is False, rec
+    assert rec.ambiguous is True, rec
+    assert [c.symbol for c in rec.candidates] == sorted(['?ri@Rn@@UAEHH@Z',
+                                                         '?rc@Rn@@UAEDH@Z']), rec.candidates
+    assert all(c.grade != GRADE_A for c in rec.candidates), rec.candidates
+    assert all(c.grade == GRADE_B for c in rec.candidates), rec.candidates
+    assert all('grade_capped' in notes_of(c) for c in rec.candidates), rec.candidates
+    assert any('multi_candidate' in n for n in rec.notes), rec.notes
+    # 单候选地址不受影响（RW1_RI 本身是 A）
+    solo = infer_address_record('0x0', [E(addr='0x0', symbol='?ri@Rn@@UAEHH@Z', disasm=RW1_RI)])
+    assert solo.candidates[0].grade == GRADE_A, solo
+
+
+def test_fix_r1_i5_iter_candidates_is_the_task5_traversal_face():
+    """🟡 I5：`iter_candidates` 是 Task 5 的稳定遍历面（此前 0 测试）——
+    yield (addr, candidate_dict)、跳过无候选的合成槽、接受整 struct 或裸 pending"""
+    recs = [infer_address_record('0x0', [E(addr='0x0', name='unused', disasm=C1_UNUSED)]),
+            infer_address_record('0x401000', [E(addr='0x401000', name='ri', disasm=RW1_RI)]),
+            infer_address_record('0x402000', [E(addr='0x402000', disasm=ADJ_STATIC_FF)])]
+    out = build_methods_pending({'name': 'S', 'methods': {}}, recs)
+    assert sorted(out['methods_pending']) == ['0x00000000', '0x00401000', '0x00402000']
+    pairs = list(iter_candidates(out))
+    assert [a for a, _ in pairs] == ['0x00000000', '0x00401000'], pairs
+    assert pairs == [(a, out['methods_pending'][a]['candidates'][0])
+                     for a in ('0x00000000', '0x00401000')], pairs
+    assert list(iter_candidates(out['methods_pending'])) == pairs      # 裸 pending 亦可
+    assert list(iter_candidates({})) == [] and list(iter_candidates(None)) == []
+    # 一地址多候选 ⇒ 每个候选各一行（Task 5 不得假设"一地址一候选"）
+    multi = build_methods_pending({'methods': {}}, [infer_address_record(
+        '0x0', [E(addr='0x0', symbol='?o@E@@UAEXH@Z', disasm=C5_O_INT),
+                E(addr='0x0', symbol='?o@E@@UAEXPAX@Z', disasm=C5_O_INT)])])
+    assert len(list(iter_candidates(multi))) == 2
+
+
+def test_fix_r1_i5_cli_only_writes_bypass_and_refuses_truth_source():
+    """🟡 I5：CLI 此前 0 测试 —— stdout/`--out` 只产出旁路（`methods` 逐字不动），
+    且**拒绝**写 `data/annotations/**`（真相源）"""
+    import io
+    import json
+    import os
+    import tempfile
+    from contextlib import redirect_stdout
+
+    slots = {'slots': [
+        {'addr': '0x4C5D50', 'name': 'unused', 'symbol': '?unused@S@@UAEXHH@Z',
+         'disasm': C1_UNUSED},
+        {'addr': '0x4C5D60', 'name': 'o', 'symbol': '?o@E@@UAEXH@Z', 'disasm': C5_O_INT},
+        {'addr': '0x4C5D60', 'name': 'o2', 'symbol': '?o@E@@UAEXPAX@Z', 'disasm': C5_O_INT},
+    ]}
+    with tempfile.TemporaryDirectory() as d:
+        src = os.path.join(d, 'slots.json')
+        with open(src, 'w', encoding='utf-8') as fh:
+            json.dump(slots, fh)
+
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            rc = cli_main(['--slots', src])
+        assert rc == 0, rc
+        data = json.loads(buf.getvalue())
+        assert data['methods'] == {}, data['methods']
+        assert sorted(data['methods_pending']) == ['0x004C5D50', '0x004C5D60']
+        assert len(data['methods_pending']['0x004C5D60']['candidates']) == 2
+        assert data['methods_pending']['0x004C5D60']['icf_folded'] is True
+
+        out_path = os.path.join(d, 'pending.json')
+        summary = io.StringIO()
+        with redirect_stdout(summary):
+            rc = cli_main(['--slots', src, '--out', out_path])
+        assert rc == 0, rc
+        assert summary.getvalue().startswith('[vtable_sig_infer] 2 地址 / 3 候选 → '), \
+            summary.getvalue()
+        with open(out_path, encoding='utf-8') as fh:
+            written = json.load(fh)
+        assert written == data, (written, data)
+
+        # 未知参数 ⇒ 报错退出（不静默忽略）
+        try:
+            with redirect_stdout(io.StringIO()):
+                cli_main(['--slots', src, '--bogus'])
+        except SystemExit as e:
+            assert '未知参数' in str(e), e
+        else:
+            raise AssertionError('未知参数必须 SystemExit')
+
+        # 拒绝写真相源目录（且**不得**留下文件）
+        forbidden = PROJECT_ROOT / 'data' / 'annotations' / '__r1_cli_must_never_write.json'
+        try:
+            with redirect_stdout(io.StringIO()):
+                cli_main(['--slots', src, '--out', str(forbidden)])
+        except SystemExit as e:
+            assert 'data' in str(e) and 'annotations' in str(e), e
+        else:
+            raise AssertionError('必须拒绝写 data/annotations（真相源）')
+        assert not forbidden.exists(), forbidden
 
 
 if __name__ == '__main__':
