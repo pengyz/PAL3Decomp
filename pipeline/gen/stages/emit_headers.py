@@ -368,6 +368,60 @@ _EXPORT_MACROS = ('GBAPI', 'DLLAPI', 'DLLEXPORT', 'DECLSPEC', 'EXPORT', 'API')
 _CLASS_DECL_RE = re.compile(r'^(?:class|struct|enum)\s+(\w+)')
 
 
+
+
+def _get_vtable_addr(cls_name):
+    """从 annotation vtables[0].addr 获取 vtable 地址。"""
+    try:
+        _d = _get_ida_structs().get(cls_name, {})
+        vts = _d.get('vtables') or []
+        if vts and isinstance(vts[0], dict):
+            return vts[0].get('addr')
+    except: pass
+    # 回退到 annotation 文件
+    try:
+        _p = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
+            os.path.abspath(__file__))), '..', '..', 'data', 'annotations', 'structs', f'{cls_name}.json'))
+        import json as _json
+        _d = _json.load(open(_p, encoding='utf-8'))
+        vts = _d.get('vtables') or []
+        if vts and isinstance(vts[0], dict):
+            return vts[0].get('addr')
+    except: pass
+    return None
+
+def _read_vtable_from_binary(vt_addr, max_slots=64):
+    """直接从二进制读 vtable 槽位（不依赖 annotation/IDB 完整性）。
+    返回 [(addr_hex, name_or_None), ...]。"""
+    import struct
+    _d = os.path.dirname(os.path.abspath(__file__))
+    _bin = os.path.join(_d, '..', '..', '..', 'original', 'PAL3.exe')
+    _bin = os.path.normpath(_bin)
+    if not os.path.exists(_bin):
+        return []
+    def _va2off(va):
+        if va >= 0x56A000: return va - 0x56A000 + 0x16A000
+        if va >= 0x401000: return va - 0x401000 + 0x1000
+        return va
+    if isinstance(vt_addr, str):
+        vt_addr = int(vt_addr, 16)
+    slots = []
+    try:
+        with open(_bin, 'rb') as f:
+            f.seek(_va2off(vt_addr))
+            for i in range(max_slots):
+                data = f.read(4)
+                if len(data) < 4: break
+                a = struct.unpack('<I', data)[0]
+                if 0x401000 <= a < 0x56A000:
+                    slots.append((hex(a), None))
+                else:
+                    break
+    except Exception:
+        pass
+    return slots
+
+
 def _class_decl_name(line):
     """`line` 声明的类型名；容忍 `__declspec(...)` 与导出宏前缀。"""
     s = re.sub(r'__declspec\s*\([^)]*\)\s*', '', line)
@@ -2243,8 +2297,30 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     if methods:
         # Sort: vtable methods first (in slot order by address), then non-vtable by addr
         _vtable_addr_order = {}
-        for _vi, _sn in enumerate(class_vtable_slots(cls_name, with_addr=True)):
+        # ★ 用二进制完整 vtable 替代 annotation 记录（annotation 可能不完整）
+        _vt_addr = _get_vtable_addr(cls_name)
+        if _vt_addr:
+            _all_vtable_slots = _read_vtable_from_binary(_vt_addr)
+        else:
+            _all_vtable_slots = class_vtable_slots(cls_name, with_addr=True)
+        for _vi, _sn in enumerate(_all_vtable_slots):
             _vtable_addr_order[int(_sn[0], 16)] = _vi
+
+        # ★ vtable 映射完整性：确保每个 vtable 槽位都有对应的 virtual 声明。
+        # 缺失的槽位（地址不在 methods 列表中）补占位条目，
+        # 否则编译器 vtable 槽位数 < 二进制 vtable 槽位数 ⇒ 布局/调用不匹配 ✗
+        _method_addrs = set()
+        for _mn, _ms, _ma in methods:
+            try:
+                _method_addrs.add(int(_ma, 16) if isinstance(_ma, str) else _ma)
+            except (ValueError, TypeError):
+                pass
+        for _vi, _sn in enumerate(_all_vtable_slots):
+            _slot_addr = int(_sn[0], 16)
+            if _slot_addr not in _method_addrs:
+                # 占位方法：名字 = slot_N，签名 = void __thiscall()（最简）
+                methods.append(
+                    (f'slot_{_vi}', 'void __thiscall()', hex(_slot_addr)))
         def _method_sort_key(item):
             _addr = int(item[2], 16) if isinstance(item[2], str) else item[2]
             if _addr in _vtable_addr_order:
@@ -2265,7 +2341,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 lines.insert(1, '')
                 lines.insert(1, _ul)
 
-        seen_methods = set()  # track "name(params)" to deduplicate
+        seen_methods = set()
         for method_name, sig, addr in sorted(methods, key=_method_sort_key):
             # Strip Hex-Rays annotations before parsing: __userpurge/@<eax>/@<ecx>
             sig = re.sub(r'@<\w+>', '', sig)

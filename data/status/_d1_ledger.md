@@ -3397,3 +3397,18 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 当前度量：80 类有 vtable · 841 槽 · **539 已解析 · 302 未解析** · 72 类有缺口 · 20 类完整
 - 302 缺口 = annotation methods 表缺条目 ⇒ 是准确的标注工作量度量
 - 修复路径：逐类补 methods 条目 → 门禁逐步收紧
+
+## 2026-09-25（goal r59 补2）vtable 映射机制进展 + 新挑战
+### 已实现
+- _read_vtable_from_binary: 从二进制直接读完整 vtable（不依赖 annotation 完整性）✓ 16 slots
+- _get_vtable_addr: 从 annotation vtables[0].addr 获取地址 ✓
+- 占位 virtual 生成：未解析槽位发 slot_N ✓
+- 接入方法发射循环 ✓
+
+### 新挑战：vtable 重复地址
+- CEffectSystem 16 槽中存在重复地址（slot[2]=slot[10]=0x4c5db0 等）
+- C++ 不允许同名同签名 virtual 重复声明 ⇒ seen_methods 去重导致只发一个
+- 需要分析：重复地址是 MSVC 析构函数对（complete+deleting）、还是真正复用
+### 下步
+- 分析重复地址的构成（析构对？继承别名？空实现？）
+- 决定 C++ 表达策略（别名 thunk / 忽略多余槽 / 其他）
