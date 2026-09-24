@@ -668,8 +668,17 @@ _VTBL_FAILURE_LOADED = set()    # 已做过"既有行恢复"的台账路径
 _VTBL_FN_CAST = re.compile(
     r'^(?P<ret>.*?)\(\s*(?:__thiscall|__stdcall|__cdecl|__fastcall)?\s*'
     r'(?P<stars>\*+)\s*\)\s*\((?P<params>.*)\)\s*$', re.S)
+# 评审 R=1 M1：前缀收紧为**单** `*`。原 `^\*+` 会把 `**(int **)this`（双解引用：
+# `this` → vptr → slot0 指针，两次 load）误读成"一次 vptr 读" ⇒ 发射 `this->M()`
+# 会**丢掉一次 load**（语义/字节必不同）。实测该形态在当前语料有 30 个文本命中
+# （`**( _DWORD **)this + N` 等），其中 12 个原本被误记为 `self_arg_mismatch`；
+# 收紧后**全语料输出 0 字节变化**（3598 文件逐文件比对：changed=0），只让台账
+# 少 12 条误报、露出 2 条原本被幂等键压掉的真行 ⇒ 零风险 + 假阳性收口。
+# 说明：`**(_DWORD **)&this->m_X` 这类 `&` 形态在运行时其实只有一次 load
+# （`&` 不读内存），但当前解码器把 obj 写成 `&this->m_X`（未剥 `&`）⇒ 本就不能正确
+# 转换（首参比对必失配）；收紧后它们只是从"误识别"变为"未识别"，无转换损失。
 _VTBL_VPTR_READ = re.compile(
-    r'^\*+\s*\(\s*(?P<vt>[A-Za-z_][\w ]*?)\s*\*+\s*\)\s*(?P<obj>.+)$', re.S)
+    r'^\*\s*\(\s*(?P<vt>[A-Za-z_][\w ]*?)\s*\*+\s*\)\s*(?P<obj>.+)$', re.S)
 _VTBL_TAIL_MEMBER = re.compile(r'^(?P<obj>.+?)\s*->\s*_tail_\d+$', re.S)
 _VTBL_ROW = re.compile(
     r'^\|\s*`(?P<loc>[^`]*)`\s*\|\s*(?P<form>\S+)\s*\|\s*`(?P<hint>[^`]*)`\s*\|'
@@ -706,16 +715,22 @@ def _load_vtbl_index():
         os.path.dirname(os.path.abspath(__file__)))))
     class_addr, by_addr = {}, {}
     class_slot_addrs, class_decl = {}, {}
-    structs_dir = os.path.join(root, 'data', 'annotations', 'structs')
+    # 单一读点：`annotation_view`（CLAUDE.md 红线：「新增注解直读必须走 annotation_view」）。
+    # 评审 R=1 I-2：原实现 `os.listdir` + `json.load(data/annotations/structs/*.json)`
+    # 绕过读点。替换为 `structs_dir()` + `iter_structs()`，语义逐字等价：
+    #   * `iter_struct_files` = `sorted(glob('*.json'))`（原 `sorted(listdir)` + 后缀过滤，同序）；
+    #   * `iter_structs` 跳过坏 JSON/非 dict（原 `except (OSError, ValueError): continue`
+    #     + `isinstance(ann, dict)`；宽捕获仍只是"坏文件即跳过"）；
+    #   * 路径来源同为 `<root>/data/annotations/structs`（`structs_dir()` 无 store 时逐字如此）。
+    # 等价性有全量实测：替换前后 `_load_vtbl_index()` 的索引逐字段相同 + 27 条原测试全绿。
+    try:
+        import annotation_view as _av
+    except ImportError:                             # pragma: no cover
+        from pipeline.gen import annotation_view as _av
+    structs_dir = _av.structs_dir()
     if os.path.isdir(structs_dir):
-        for fn in sorted(os.listdir(structs_dir)):
-            if not fn.endswith('.json'):
-                continue
-            try:
-                with open(os.path.join(structs_dir, fn), encoding='utf-8') as fh:
-                    ann = json.load(fh)
-            except (OSError, ValueError):
-                continue
+        for path, ann in _av.iter_structs(structs_dir):
+            fn = os.path.basename(path)
             if not isinstance(ann, dict):
                 continue
             vtables = ann.get('vtables') or []
@@ -828,7 +843,8 @@ def _resolve_vtbl_name_chain(cls_hint, byte_off):
 
     原因取值：no_class_hint / non_class_hint / no_vtables_declaration /
               no_idb_vtbl_struct / slot_out_of_range / no_method_name /
-              name_declared_at_other_address / name_not_declared_for_class
+              no_slot_addr / name_declared_at_other_address /
+              name_not_declared_for_class
     """
     if not cls_hint:
         return None, 'no_class_hint'
@@ -853,13 +869,27 @@ def _resolve_vtbl_name_chain(cls_hint, byte_off):
     if not name:
         return None, 'no_method_name'
     # ★ 头文件一致性护栏
+    # 评审 R=1 I-1：`slot_addr` 缺失时必须 **fail-closed**。原实现把 `slot_addr`
+    # 当内层判定的**前置条件**（`if slot_addr and slot_addr not in decl_addrs`），
+    # 于是槽地址缺失时 `if decl_addrs:` 的内层判定与 `elif slot_addr:` **双双跳过**
+    # ⇒ 直接 `return name`（既没查声明地址，也没查"名字在本类是否声明过"）。
+    # 实测暴露 10 个 (类, 槽)：`CCBPanelSlot` 槽3-6（Destroy/Create/_sdtor_call_dtor/
+    # OnMessage，本类均无声明）、`PalScriptMgr` 槽0-5；例如
+    # `_resolve_vtbl_name_chain('PalScriptMgr', 12)` 原样返回 `('Destroy_3', None)`
+    # —— 头文件与注解都没有这个名字 ⇒ 一旦有调用点即发射凭空名 C2039；而
+    # `PalScriptMgr` 的 IDB `vtbl_0056ABB8` 槽名与二进制槽序**已实证错位**
+    # （IDB offset0='Destroy'，二进制 0x56ABB8 slot0=0x434D50，注解 Destroy=0x00432170）
+    # ⇒ 走 IDB 回落的会是字节错误的虚调用。当前语料 0 次触发（907 次解析全量计量），
+    # 故这是**潜伏**缺陷：触发即 Critical ⇒ 判据不完整时一律拒绝。
     slot_addr = (idx.get('class_slot_addrs', {}).get(cls_hint) or {}).get(slot, '')
+    if not slot_addr:
+        return None, 'no_slot_addr'
     decl = idx.get('class_decl', {}).get(cls_hint) or {}
     decl_addrs = decl.get(name)
     if decl_addrs:
-        if slot_addr and slot_addr not in decl_addrs:
+        if slot_addr not in decl_addrs:
             return None, 'name_declared_at_other_address'
-    elif slot_addr:
+    else:
         # 该名字在本类没有任何声明 ⇒ 头文件不会发它（会发占位 `slot_<i>`，
         # 或在该地址声明了**别的**名字）⇒ 发射必然是 C2039
         return None, 'name_not_declared_for_class'

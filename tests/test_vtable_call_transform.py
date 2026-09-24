@@ -389,6 +389,110 @@ def test_name_chain_reports_reasons():
             assert name is None and reason == want, (cls, off, name, reason)
 
 
+def test_name_chain_reports_no_class_hint():
+    """M7：cast 首参取不到类名（空串/None）⇒ `no_class_hint`（链在第一步就断）。"""
+    with tempfile.TemporaryDirectory() as td, _Harness(_index(), td):
+        assert s3._resolve_vtbl_name_chain('', 8) == (None, 'no_class_hint')
+        assert s3._resolve_vtbl_name_chain(None, 8) == (None, 'no_class_hint')
+
+
+def test_name_chain_reports_non_class_hint():
+    """M7：cast 首参是标量/typedef ⇒ `non_class_hint`（全语料最大族，240 行台账）。
+
+    这些 hint 必须**在查索引之前**就被归因，否则会被误报成
+    `no_vtables_declaration`（误导注解补全的工单方向）。
+    """
+    with tempfile.TemporaryDirectory() as td, _Harness(_index(), td):
+        for hint in ('int', 'char', '_DWORD', 'void', 'unsigned int', 'BOOL'):
+            assert s3._resolve_vtbl_name_chain(hint, 4) == (None, 'non_class_hint'), hint
+
+
+def test_name_chain_rejects_missing_slot_addr_when_name_is_declared():
+    """I-1（评审 R=1）：注解 `slots[i]` 缺 `addr` ⇒ **必须 fail-closed**，返回 `no_slot_addr`。
+
+    旧实现（`stage3_cleanup.py:855-866`）：`if decl_addrs:` 的内层判定把 `slot_addr`
+    当**前置条件**（`if slot_addr and slot_addr not in decl_addrs`）⇒ 槽地址缺失时
+    内层判定与 `elif slot_addr:` **双双跳过**，直接 `return name`（既不看声明地址，
+    也不看名字是否在本类声明过）。触发即发射凭空名 ⇒ C2039 /（若走 IDB 回落）字节错。
+    """
+    idx = _index(slot_addrs={}, decl={'GetHeuristicIdx': ['0x004014f0']})
+    with tempfile.TemporaryDirectory() as td, _Harness(idx, td):
+        name, reason = s3._resolve_vtbl_name_chain('AStarPathFinder', 8)
+    assert name is None and reason == 'no_slot_addr', (name, reason)
+
+
+def test_name_chain_rejects_missing_slot_addr_when_name_is_undeclared():
+    """I-1 的另一半旁路：槽地址缺失 **且** 名字在本类无任何声明 ⇒ 旧实现同样放行。
+
+    实测暴露的 10 个 (类, 槽) 正是这一支：`CCBPanelSlot` 槽3-6
+    （Destroy/Create/_sdtor_call_dtor/OnMessage，本类均无声明）、`PalScriptMgr` 槽0-5。
+    """
+    idx = _index(slot_addrs={}, decl={})
+    with tempfile.TemporaryDirectory() as td, _Harness(idx, td):
+        name, reason = s3._resolve_vtbl_name_chain('AStarPathFinder', 8)
+    assert name is None and reason == 'no_slot_addr', (name, reason)
+
+
+def test_missing_slot_addr_call_fails_closed_with_ledger():
+    """I-1 端到端：`PalScriptMgr` 形状（有 `vtables[]` 声明但 `slots[i]` 缺 `addr`）。
+
+    识别为虚调用但护栏判据失效 ⇒ **原文逐字保留** + 记 `no_slot_addr`，
+    绝不发射凭空名（`PalScriptMgr` 的头文件与注解都没有 `Destroy_3` 之类名字）。
+    """
+    idx = _index(cls='PalScriptMgr', addr='0x0056abb8',
+                 by_addr={'0x0056abb8': {0: 'Destroy'}},
+                 idb={'0x0056abb8': {0: 'Destroy'}},
+                 slot_addrs={}, decl={})
+    body = ("  (*(void (__thiscall **)(PalScriptMgr *, int))"
+            "(*(_DWORD *)this))(this, 1);")
+    with tempfile.TemporaryDirectory() as td, _Harness(idx, td) as h:
+        ctx = h.ctx()
+        out = stage3_run(_wrap(body), ctx)
+        log = _ledger(ctx)
+    assert _strip_cc(body).strip() in out, out          # 原文保留（不降级）
+    assert '->Destroy(' not in out, out                 # 不发射名字
+    assert 'no_slot_addr' in log, log
+    assert 'PalScriptMgr' in log, log
+
+
+def test_load_vtbl_index_reads_structs_through_annotation_view():
+    """I-2（评审 R=1）：`_load_vtbl_index` 必须走**单一读点** `annotation_view`。
+
+    CLAUDE.md 红线：「新增注解直读必须走 `annotation_view`」。旧实现直接
+    `os.listdir` + `json.load(data/annotations/structs/*.json)` ⇒ 绕过读点。
+    本测试把 `annotation_view.iter_structs` 换成探针：**索引只能从探针给出的条目**
+    取数据（探针是唯一数据源 ⇒ 真实语料一个都进不来）。探针未被调用 ⇒ 仍在直读。
+    """
+    import annotation_view as av
+    ann = {
+        'name': 'SpyCls',
+        'vtables': [{'addr': '0x0056abcd', 'slots': [
+            {'addr': '0x00401000'}, {'addr': '0x00401010'}]}],
+        'methods': {'0x00401010': {'name': 'SpyMethod'}},
+    }
+    seen = []
+
+    def fake_iter_structs(directory, store=None):
+        seen.append(directory)
+        yield '/tmp/spy_struct.json', ann
+
+    real = av.iter_structs
+    av.iter_structs = fake_iter_structs
+    saved_index = s3._VTBL_INDEX
+    s3._VTBL_INDEX = None
+    try:
+        idx = s3._load_vtbl_index()
+    finally:
+        av.iter_structs = real
+        s3._VTBL_INDEX = saved_index
+    assert seen, 'annotation_view.iter_structs 未被调用 ⇒ 仍在直读注解文件'
+    assert idx['class_addr'].get('SpyCls') == '0x0056abcd', idx['class_addr'].get('SpyCls')
+    assert idx['by_addr']['0x0056abcd'].get(1) == 'SpyMethod', idx['by_addr'].get('0x0056abcd')
+    assert idx['class_slot_addrs']['SpyCls'] == {0: '0x00401000', 1: '0x00401010'}
+    # 探针是唯一来源 ⇒ 真实语料的类不得混入
+    assert set(idx['class_addr']) == {'SpyCls'}, sorted(idx['class_addr'])[:5]
+
+
 def test_qualified_method_name_is_never_emitted():
     """禁止 `obj->Base::Method()`（限定调用抑制虚派发 ⇒ 字节必不匹配）。"""
     idx = _index(by_addr={VTBL_ADDR: {1: 'UIWnd::IsInBounds'}})
@@ -516,6 +620,34 @@ def test_double_deref_function_pointer_member_is_left_alone():
         log = _ledger(ctx)
     assert 'm_Slots[17].m_Widget)(this->m_Slots[17].m_Widget, 0);' in out, out
     assert 'm_Slots[17].m_Widget->' not in out, out
+    assert log == '', log
+
+
+def test_double_deref_vptr_read_is_not_decoded_as_single_deref():
+    """M1：`**(int **)this` 是**双解引用**（`this`→vptr→slot0 指针，两次 load），
+    不是"一次 vptr 读"（旧 `^\\*+` 会误读，发射时丢掉一次 load）。"""
+    assert s3._vptr_read_of('**(int **)this') is None
+    assert s3._vptr_read_of('(**(int **)this + 4)') is None
+    assert s3._vptr_read_of('(**( _DWORD **)this + 16)') is None
+    # 单解引用形态必须照旧可用（三形态不受影响）
+    assert s3._vptr_read_of('*(int **)this') == ('this', 0, 'vptr_read')
+    assert s3._vptr_read_of('(*(_DWORD *)this + 4)') == ('this', 4, 'inline')
+
+
+def test_double_deref_dispatch_is_left_alone_end_to_end():
+    """M1 端到端：双解引用间接调用**原样保留**且**不记账**（未被识别为虚调用）。
+
+    全语料实测（3598 文件）：该收紧对 `_resolve_vftable_calls_ast` 输出
+    **0 字节变化**（changed=0），仅台账少 12 条误报。
+    """
+    body = ("  (*(void (__thiscall **)(AStarPathFinder *, int))"
+            "(**(int **)this + 4))(this, 1);")
+    with tempfile.TemporaryDirectory() as td, _Harness(_index(), td) as h:
+        ctx = h.ctx()
+        out = stage3_run(_wrap(body), ctx)
+        log = _ledger(ctx)
+    assert _strip_cc(body).strip() in out, out
+    assert '->IsInBounds(' not in out, out
     assert log == '', log
 
 
