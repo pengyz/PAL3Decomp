@@ -3294,3 +3294,10 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - SceneMgr: 噪声 ⇒ 豁免
 - 真实可行动: CCBRoleState(五维命名) · PAL3(全局单例) · CUtil(重建) ·
   CEffectSystem/CEffect(竞技场) · ArcLocale · CEffMgr · Param1
+
+## 2026-09-25（goal r48）CUtil +4 根因定位 —— vptr 静态槽位化后遗留 _gap_001 双重占用
+- m_bCanWarp@0 已 static 化（vfptr slot ✓）⇒ 编译器 vptr@0（4B）
+- 但注解遗留 _gap_001@0x1 char[3]（原填充 m_bCanWarp 1B 到 0x4 的间隙）
+  ⇒ _gap_001 现在落在 vptr 区间内 ⇒ 成员发射位置错位 ⇒ 24/24 全冲突 ✗
+- 修法：CUtil 注解重建——删除 _gap_001，按 vptr 后布局重排（首个真实成员 m_nRandHolder@0x4 ✓）
+- 影响面：CUtil 24 成员 + 内嵌 UIRoleDialog@0x170 + ARC_PlayerAtt 等子对象偏移需同步验证
