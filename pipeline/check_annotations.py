@@ -710,6 +710,17 @@ def check():
     return errors, warnings
 
 
+
+def _run_vtable_check(structs):
+    """调用 vtable_mapper 做闭环验证。"""
+    import importlib.util
+    _project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    vm_path = os.path.join(_project_root, 'tools', 'vtable_mapper.py')
+    spec = importlib.util.spec_from_file_location('vtable_mapper', vm_path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod.check(structs=structs)
+
 if __name__ == '__main__':
     errors, warnings = check()
 
@@ -717,6 +728,24 @@ if __name__ == '__main__':
         print(f"WARN: {w}")
     for e in errors:
         print(f"ERROR: {e}")
+
+    # vtable 闭环验证门禁（2026-09-25）：基线对比模式
+    try:
+        _ann_data = load_annotations()
+        _vt_errors, _, _vt_stats = _run_vtable_check(_ann_data.get('structs', {}))
+        _vt_base_path = os.path.join(os.path.dirname(ANN_DIR), 'status', 'vtable_baseline.json')
+        if os.path.exists(_vt_base_path):
+            _vt_base = json.load(open(_vt_base_path, encoding='utf-8'))
+            _old_u = _vt_base.get('unresolved', 0)
+            _new_u = _vt_stats.get('own_unresolved', 0)
+            if _new_u > _old_u:
+                errors.append(
+                    f"vtable: {_new_u} unresolved (baseline {_old_u}, +{_new_u-_old_u} REGRESSION) — "
+                    "新增未解析 vtable 槽位 ⇒ annotation bug")
+            elif _new_u < _old_u:
+                print(f"[vtable] 改进: {_old_u} → {_new_u} (update vtable_baseline.json)")
+    except Exception as _vt_err:
+        warnings.append(f'vtable check skipped: {_vt_err}')
 
     if errors:
         print(f"\n{len(errors)} errors, {len(warnings)} warnings — FAIL")
