@@ -3546,3 +3546,9 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - gbGfxManager 的 28 个虚函数已在 include 头声明 ✓
 - 需要确认：gbengine.dll 中函数地址（从 DLL 的 IDB/导出表获取）
 - 或用 slot_index 方法名映射（gbGfxManager vtable 顺序已从头文件提取 ✓）
+
+## 2026-09-25 vtable R10 —— vtable call 转换器 v1
+- tools/vtable_call_transform.py 创建 ✓
+- dry-run: 58/749 transforms（regex 窄模式，需扩展覆盖）
+- 当前可转换的 58 处分布在 7 个断裂单元的核心区域
+- 完整覆盖需要处理更多 decomp 输出变体
