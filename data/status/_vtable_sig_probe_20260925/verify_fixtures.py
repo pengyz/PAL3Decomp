@@ -37,6 +37,8 @@ PROBES = {
     'deref_form': ['/O2', '/Ob2', '/Oi', '/Ot', '/Oy', '/GR'],
     'rw5': ['/Od', '/GR'],
     'rw6': ['/Od', '/GR'],
+    # R=2 新增探针（源入库于本轮）
+    'rw7': ['/Od', '/GR'],
 }
 #: 攻击用例（Task 1/2 目录，本任务复用）
 ATTACK = os.path.join(REPO, 'data', 'status', '_vtable_attack_cases_20260925')
@@ -56,6 +58,7 @@ FIXTURES = {
     'C6_FI': ('attack:b1', '?fi@SB@@UAEXH@Z'),
     'S3_TWO': ('attack:s3', '?two@SC@@UAEXHN@Z'),
     'RW1_RI': ('rw1', '?ri@Rn@@UAEHH@Z'),
+    'C1_R2_MULTI_BASE_GAP': ('rw7', '?mwp@Rn7@@UAEHPAUInnerV@@@Z'),
     'RW1_RC': ('rw1', '?rc@Rn@@UAEDH@Z'),
     'RW1_RS': ('rw1', '?rs@Rn@@UAEFH@Z'),
     'RW1_RF': ('rw1', '?rf@Rn@@UAEMH@Z'),
