@@ -3221,3 +3221,23 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 ### 目标状态
 40 轮配额用尽，目标未完成（14 类剩余，多数为多轮/类的重建级工程）。
 方法论与工具链已闭环，后续会话可按交接清单逐类推进。
+
+## 2026-09-25 目标重订：逐类重建五步闭环（非批量扫描）
+### 五步闭环（每类独立执行）
+1. **取证**：provenance 扫描器（寄存器级基对象归属）+ 逐 ctor 全量反汇编 + sizeof 分诊（verify_fix）
+2. **字段图**：偏移→宽度→读写 三元组表 + 交叉验证（IDB 绝对偏移 / stride 铁证 / 操作数宽度）
+3. **重建**：注解 known_members 重写（_todo_ 命名 + source 逐条 binary:disasm@VA 证据）
+4. **级联**：checker 引导（member overlap → 平移 → 复检直至 clean）+ 内嵌者递归
+5. **管线验证**：五阶段 loop（S2/errors/L1）+ verify_fix sizeof 全等 + audit 一致
+### 优先级（证据成本升序）
+(1) CEffectSystem/CEffect 竞技场族（0x10C0 铁证已有）
+(2) CCBRoleState/SceneObj 复用槽批（前置=PalScriptWaitObj 多态性 provenance 裁定）
+(3) PAL3 全局单例独立专查
+(4) CUtil/GRPinput +4 接缝族
+(5) ArcLocale/CEffMgr/TaskMgr/Param1/CTrail 待诊
+### 禁令
+- 禁止批量扫荡 ✗ · 禁止无证据改动 ✗ · 禁止邻居推断作归属证据 ✗ · 禁止调用点强转类型作归属证据 ✗
+### 铁律
+- vtable 存储反查 > 调用约定 > 槽位函数群 > 邻居推断 ✗ > 调用点强转类型 ✗
+- 全局语义改动必须过 L1 棘轮；落地单位 = 类型 + 内嵌级联闭包
+- audit 一致 ≠ 布局正确；ctor 逐指令 = 最终裁判
