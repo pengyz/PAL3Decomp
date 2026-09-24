@@ -33,6 +33,10 @@ PROBES = {
     'rw4': ['/Od', '/GR'],
     'opt1': ['/O2', '/Ob2', '/Oi', '/Ot', '/Oy', '/GR'],
     'opt2': ['/O2', '/Ob2', '/Oi', '/Ot', '/Oy', '/GR'],
+    # R=1/R=2 新增探针（源入库于 0a2f8bdc4）
+    'deref_form': ['/O2', '/Ob2', '/Oi', '/Ot', '/Oy', '/GR'],
+    'rw5': ['/Od', '/GR'],
+    'rw6': ['/Od', '/GR'],
 }
 #: 攻击用例（Task 1/2 目录，本任务复用）
 ATTACK = os.path.join(REPO, 'data', 'status', '_vtable_attack_cases_20260925')
@@ -77,6 +81,11 @@ FIXTURES = {
     'OPT2_FE': ('opt2', '?fe@Os@@UAIXH@Z'),
     'OPT2_FU': ('opt2', '?fu@Os@@UAIXH@Z'),
     'OPT2_T2': ('opt2', '?t2@Os@@UAEHHH@Z'),
+    # ---- R=1 新夹具（deref_form.cpp / rw5.cpp / rw6.cpp） ----
+    'C1_R1_DEREF_SAME_BYTES': ('deref_form', '?wr2@Rn6@@UAEHPAUInnerV@@@Z'),
+    'C1_R1_POFF_GAP': ('rw5', '?poff@RnA@@UAEHPAH@Z'),
+    'C1_R1_PAD_SRET': ('rw6', '?mkp@Rn11@@UAE?AUPad16@@XZ'),
+    'C1_R1_PWRITE_NOT_SRET': ('rw6', '?pwrite@Rn11@@UAEHPAUPad16@@@Z'),
 }
 #: 调用点片段 → (obj 键, 所在函数)
 CALL_FIXTURES = {

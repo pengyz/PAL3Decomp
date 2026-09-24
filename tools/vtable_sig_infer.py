@@ -32,8 +32,9 @@
   单独成类；`param_class_equiv('bool','i32') is False`
 * **Ruling 6** sret（返回 >8B 结构的隐藏首参）必须扣除，否则参数整体错位；
   识别用"单基址寄存器**相对首址连续** ≥9 字节 store-through + epilogue 前最后一次 eax 载入该槽"；
-  多基址寄存器 ⇒ 只标 `sret_ambiguous` + 降级（不猜）；覆盖**不连续**（相对首址有窟窿，
-  如 `/Od ?poff` 只写 `+0xc`）⇒ 不是结构复制，**不判** sret（修复轮 R=1 / I2）
+  **不连续**（相对首址有窟窿）时就**不是**结构复制 ⇒ 单基址（如 `/Od ?poff` 只写 `+0xc`）
+  不判 sret、不留痕（修复轮 R=1 / I2）；但**多基址**（如 `/Od ?mwp` 写 `0` 与 `+0x8`）仍与
+  `?retp` 同属"判不出" ⇒ 只标 `sret_ambiguous` + 降级（不猜，修复轮 R=2 恢复此安全网）
 
 ## 分级（spec §4.2 逐字）
 
@@ -833,7 +834,8 @@ def _scan(insns):
 
     # --- sret：epilogue 前最后一次 eax 载入**首槽** + 单基址寄存器（相对首址）**连续**
     # ≥9 字节 store-through（I2 修复轮 R=1：只查 `max(covered) >= 8` 会把"相对首址有窟窿"
-    # 的散写（如 /Od `?poff` 只写 +0xc）误判成 sret ⇒ 必须要求 covered 从 0 起连续） ---
+    # 的散写（如 /Od `?poff` 只写 +0xc）误判成 sret ⇒ 必须要求 covered 从 0 起连续）。
+    # R=2：连续性只对**单基址**是判据 —— 多基址无论连续与否都判不出（见下方 elif） ---
     sret_slot = None
     sret_ambiguous = False
     terminal_eax = last_eax_idx >= 0 and not any(
@@ -852,6 +854,13 @@ def _scan(insns):
                 sret_slot = 0
             else:
                 sret_ambiguous = True
+        elif len(bases) > 1 and max(covered) >= 8:
+            # R=2：I2 的连续性判据**不得**让上面那条"多基址 ⇒ 含糊"的安全网不可达 ——
+            # 多基址 + >8B + **不连续**（实测 /Od `?mwp@Rn7@@UAEHPAUInnerV@@@Z`：
+            # eax/ecx 两基址，covered={0..3}∪{8..0xb}）既不是真 sret 也不是单基址散写
+            # （`?poff`），与 `?retp` 同属"判不出" ⇒ 不扣除但**必须留痕降级**
+            # （否则同输入会从 B+痕迹 静默退化成 A+无痕迹，违反 A 级契约）
+            sret_ambiguous = True
     if sret_slot is not None:
         features.add(FEATURE_SRET)
         notes.append('sret: 返回 >8B 结构 ⇒ 首槽 %d 是隐藏 sret 指针（单基址寄存器 %s 连续写 '

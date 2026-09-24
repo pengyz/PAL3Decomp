@@ -1361,7 +1361,7 @@ C1_R1_POFF_GAP = """
   7:  8b 45 08              mov    0x8(%ebp),%eax
   a:  c7 40 0c 03 00 00 00  movl   $0x3,0xc(%eax)
  11:  8b 45 08              mov    0x8(%ebp),%eax
- 14:  8b e5                 mov    %esp,%ebp
+ 14:  8b e5                 mov    %ebp,%esp
  16:  5d                    pop    %ebp
  17:  c2 04 00              ret    $0x4
 """
@@ -1395,7 +1395,7 @@ C1_R1_PAD_SRET = """
  2f:  8b 55 fc              mov    -0x4(%ebp),%edx
  32:  89 50 0c              mov    %edx,0xc(%eax)
  35:  8b 45 08              mov    0x8(%ebp),%eax
- 38:  8b e5                 mov    %esp,%ebp
+ 38:  8b e5                 mov    %ebp,%esp
  3a:  5d                    pop    %ebp
  3b:  c2 04 00              ret    $0x4
 """
@@ -1409,10 +1409,64 @@ C1_R1_PWRITE_NOT_SRET = """
   a:  c7 40 08 00 00 00 00  movl   $0x0,0x8(%eax)
  11:  c7 40 0c 00 00 04 40  movl   $0x40040000,0xc(%eax)
  18:  33 c0                 xor    %eax,%eax
- 1a:  8b e5                 mov    %esp,%ebp
+ 1a:  8b e5                 mov    %ebp,%esp
  1c:  5d                    pop    %ebp
  1d:  c2 04 00              ret    $0x4
 """
+
+# ---- R=2：I2 的"连续性"判据不得让「多基址 + >8B + **不连续**」这条安全网**不可达** ----
+# 复现（真机 /Od /GR，临时探针；与本目录 RW4_WR `?wr@Rn2@@UAEXPAUInner@@@Z` 同形，
+# 只把第 2 次写从 +0x4 挪到 +0x8 造出窟窿）：
+#   struct InnerV { int a; int b; int c; int d; };
+#   struct Rn7 { virtual int mwp(InnerV* p); };
+#   int Rn7::mwp(InnerV* p) { p->a = 1; p->c = 2; return (int)p; }
+#   tools/wine_cl.sh /c /Od /GR /Itools/compilers/msvc6.0/Include /Fo/tmp/rw7.obj /tmp/rw7.cpp
+# objdump -dr：**多基址**（eax/ecx）+ covered={0..3}∪{8..0xb}（max=11 ≥ 8 但**不连续**）。
+# 形态既不是真 sret（连续复制）也不是单基址散写（`?poff`）⇒ 与 `?retp` 同属"判不出"，
+# 必须留 `sret_ambiguous` 痕迹并降级（R=1 的 I2 修复让这条安全网**不可达** ⇒ 退化成 A、无痕迹）
+C1_R2_MULTI_BASE_GAP = """
+   0:  55                    push   %ebp
+   1:  8b ec                 mov    %esp,%ebp
+   3:  51                    push   %ecx
+   4:  89 4d fc              mov    %ecx,-0x4(%ebp)
+   7:  8b 45 08              mov    0x8(%ebp),%eax
+   a:  c7 00 01 00 00 00     movl   $0x1,(%eax)
+  10:  8b 4d 08              mov    0x8(%ebp),%ecx
+  13:  c7 41 08 02 00 00 00  movl   $0x2,0x8(%ecx)
+  1a:  8b 45 08              mov    0x8(%ebp),%eax
+  1d:  8b e5                 mov    %ebp,%esp
+  1f:  5d                    pop    %ebp
+  20:  c2 04 00              ret    $0x4
+"""
+
+#: CLI 拒绝写入的真相源路径（测试专用探针名）；上一轮残留会伪装成"CLI 写了真相源"
+TRUTH_SOURCE_FORBIDDEN = (PROJECT_ROOT / 'data' / 'annotations'
+                          / '__r1_cli_must_never_write.json')
+
+
+def _cli_refuses_truth_source_write(src):
+    """走一遍 CLI「拒绝写 `data/annotations/**`」路径，并断言**不留文件**。
+
+    R=2 测试卫生：清理必须在**调用前** —— 上一轮残留的
+    `data/annotations/__r1_cli_must_never_write.json` 会让
+    `assert not forbidden.exists()` **假失败**（实测 65 passed / 1 failed）；
+    而清理若只放在断言**前**，断言就是空的（清理会把 CLI 真写的文件一起删掉）。
+    """
+    import io
+    from contextlib import redirect_stdout
+
+    forbidden = TRUTH_SOURCE_FORBIDDEN
+    forbidden.parent.mkdir(parents=True, exist_ok=True)
+    if forbidden.exists():
+        forbidden.unlink()
+    try:
+        with redirect_stdout(io.StringIO()):
+            cli_main(['--slots', src, '--out', str(forbidden)])
+    except SystemExit as e:
+        assert 'data' in str(e) and 'annotations' in str(e), e
+    else:
+        raise AssertionError('必须拒绝写 data/annotations（真相源）')
+    assert not forbidden.exists(), forbidden
 
 
 def test_fix_r1_c1_deref_branch_without_symbol_is_provisional_not_grade_a():
@@ -1597,15 +1651,58 @@ def test_fix_r1_i5_cli_only_writes_bypass_and_refuses_truth_source():
             raise AssertionError('未知参数必须 SystemExit')
 
         # 拒绝写真相源目录（且**不得**留下文件）
-        forbidden = PROJECT_ROOT / 'data' / 'annotations' / '__r1_cli_must_never_write.json'
-        try:
-            with redirect_stdout(io.StringIO()):
-                cli_main(['--slots', src, '--out', str(forbidden)])
-        except SystemExit as e:
-            assert 'data' in str(e) and 'annotations' in str(e), e
-        else:
-            raise AssertionError('必须拒绝写 data/annotations（真相源）')
-        assert not forbidden.exists(), forbidden
+        # R=2 测试卫生：改走 `_cli_refuses_truth_source_write`（清理在**调用前**）——
+        # 残留文件会让 `assert not forbidden.exists()` 假失败（实测 65 passed / 1 failed）
+        _cli_refuses_truth_source_write(src)
+
+
+def test_fix_r2_sret_ambiguous_survives_non_contiguous_multi_base():
+    """🔴 R=2：I2 的连续性判据使「多基址 + >8B + **不连续**」这条安全网**不可达**
+    ⇒ 同一输入从"B + `sret_ambiguous` 痕迹"退化成"**A + 无痕迹**"（实测
+    `int __thiscall mwp(?)` / A / {ecx_this, slot0_deref, ambiguous_param_class}），
+    违反 A 级契约（A = 约定 + 个数 + 返回宽度全确定，无隐藏参数嫌疑）——
+    Task 5 的 grade 棘轮会把这条错误结论当"确定"消费。"""
+    cand = infer_signature(E(addr='0x0', name='mwp', symbol='?mwp@Rn7@@UAEHPAUInnerV@@@Z',
+                             disasm=C1_R2_MULTI_BASE_GAP))
+    assert FEATURE_SRET not in cand.features, cand.features        # 不扣除（不猜）
+    assert FEATURE_SRET_AMBIGUOUS in cand.features, cand.features  # 但必须留痕
+    assert FEATURE_HIDDEN_PARAM_SUSPICION in cand.features, cand.features
+    assert cand.grade == GRADE_B, cand
+    assert cand.return_kind != RET_SRET, cand
+    assert any('sret_ambiguous' in n for n in cand.notes), cand.notes
+    # 阳性对照：真 sret（单基址**连续**复制，Ruling 6）不受这条安全网影响
+    mk0 = infer_signature(E(addr='0x0', name='mk0', disasm=RW4_MK0))
+    assert (FEATURE_SRET in mk0.features, FEATURE_SRET_AMBIGUOUS not in mk0.features,
+            mk0.arity) == (True, True, 0), mk0
+    # 阴性对照：**单**基址散写（`?poff` 只写 +0xc）不得被拉成 B ⇒ 仍 A
+    poff = infer_signature(E(addr='0x0', name='poff', symbol='?poff@RnA@@UAEHPAH@Z',
+                             disasm=C1_R1_POFF_GAP))
+    assert FEATURE_SRET_AMBIGUOUS not in poff.features, poff.features
+    assert FEATURE_HIDDEN_PARAM_SUSPICION not in poff.features, poff.features
+    assert (poff.grade, poff.arity) == (GRADE_A, 1), poff
+
+
+def test_fix_r2_truth_source_refusal_is_immune_to_residue():
+    """🟡 R=2 测试卫生：拒绝写真相源的断言必须对**残留文件**免疫 ——
+    实测残留 `data/annotations/__r1_cli_must_never_write.json`（上一轮遗留）会让
+    `assert not forbidden.exists()` **假失败**（65 passed / 1 failed）。
+    本测试**主动制造残留**：若清理缺失或只放在断言前（空断言），本测试即红。"""
+    import json
+    import os
+    import tempfile
+
+    forbidden = TRUTH_SOURCE_FORBIDDEN
+    forbidden.parent.mkdir(parents=True, exist_ok=True)
+    forbidden.write_text('{"residue": "上一轮遗留"}\n', encoding='utf-8')
+    try:
+        with tempfile.TemporaryDirectory() as d:
+            src = os.path.join(d, 'slots.json')
+            with open(src, 'w', encoding='utf-8') as fh:
+                json.dump({'slots': []}, fh)
+            _cli_refuses_truth_source_write(src)     # 内部：调用**前**清残留 + 拒绝 + 断言
+    finally:
+        if forbidden.exists():                       # 失败也不留污染
+            forbidden.unlink()
 
 
 if __name__ == '__main__':
