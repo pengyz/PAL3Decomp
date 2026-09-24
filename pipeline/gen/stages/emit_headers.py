@@ -1897,7 +1897,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             # 这是**加性**改动：填掉原本的 gap，类尺寸不变。
             if base_size < 8 and class_vtable_slots(cls_name) and \
                     (not ann_members or min(int(o) for o in ann_members) > 0):
-                lines.append("    void * __vftable; // +0x0")
+                # vfptr 由编译器隐式提供（virtual 方法 ⇒ 自动 vptr@0）——不手动声明 ✗
                 start_off = max(start_off, 4)
             sorted_offsets = sorted(ann_members, key=lambda x: int(x))
 

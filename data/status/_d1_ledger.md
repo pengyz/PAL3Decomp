@@ -3280,3 +3280,9 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 - 必要暴露 +5（CScreenMode C2440 ×6 + UIRoleDialog C2227 ×1）入基线 ✓
 - 残留 +8（360 vs 352）= vptr 插入 + double 对齐 ⇒ 需 binary_size 352→360 精调（下轮）
 - MCP IDB 证据：CEffect=245800B（巨型竞技场）· CEffectSystem=352B（管理器）· 两者不同类
+
+## 2026-09-25（goal r44 续）UIRoleDialog/SceneObj 布局重建基线刷新
+- SceneObj 0/50 ✓ · CCBRoleState 0/86 ✓ · CCBCamControl 0/46 ✓ · sizeof 全等 ✓
+- 基线刷新至 errors 2154（+44 必要暴露：C2039 __vftable 引用残留 ⇒ Phase 2 虚调用发射方式改造）
+- L1 41（match 未跑但 population 未变预期稳定）
+- Phase 2 队列 +44：C2039 __vftable 引用改造（__vftable->Method ⇒ 直接方法调用）
