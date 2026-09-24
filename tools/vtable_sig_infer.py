@@ -80,6 +80,13 @@ BOOL 常常不可分（C-5/C-6 实测）⇒ A 级只保证"约定 + 个数 + 返
 CLI（只读输入 → 只写 --out 指定的旁路文件，**永不**写 data/annotations）：
     python3 tools/vtable_sig_infer.py --slots slots.json [--out pending.json]
     # slots.json: {"slots": [{"addr","name?","symbol?","disasm","call_sites?": [...]}]}
+
+输入契约（全分支最终评审 M-2a/M-2b 收口）：
+* `--slots` / `--struct` **只接受槽证据 JSON**（`slots` 列表 / 裸列表 / 单槽对象）。
+  其他形状（典型：注解 JSON 的 `methods`/`known_members`/`vtables`）⇒ **报错退出 rc=1**，
+  不再静默产出键为 `""` 的伪候选 `? unknown _slot()`。
+* 拒写判据是**路径分量级**（`commonpath`）：`data/annotations/**` 拒写，**兄弟目录**
+  （如 `data/annotations_bak_probe/**`）放行 —— `startswith` 会把后者误判为真相源。
 """
 import copy
 import json
@@ -1439,6 +1446,41 @@ def iter_candidates(pending_or_struct):
 
 # ---------------- CLI（只读输入 → 只写 --out 旁路文件） ----------------
 
+#: 真相源目录（**精确**判定用；见 `_is_under_truth_source`）。
+_TRUTH_SOURCE_DIR = os.path.abspath(os.path.join(_HERE, '..', 'data', 'annotations'))
+
+
+def _is_under_truth_source(path):
+    """`path` 是否**在 `data/annotations/` 目录之内**（路径分量级判定）。
+
+    ⚠️ **不得**用 `str.startswith`：`data/annotations_bak_probe/o.json` 也以
+    `…/data/annotations` 为前缀 ⇒ 兄弟目录被误拒（全分支最终评审 M-2b 实测）。
+    `os.path.commonpath` 按**路径分量**比较，`…/annotations_bak_probe` 的公共前缀是
+    `…/data` ⇒ 正确放行；`…/annotations/x.json` 的公共前缀恰是真相源目录 ⇒ 正确拒写。
+    """
+    p = os.path.abspath(path)
+    try:
+        return os.path.commonpath([p, _TRUTH_SOURCE_DIR]) == _TRUTH_SOURCE_DIR
+    except ValueError:          # 不同盘符（Windows）⇒ 不可能在真相源内
+        return False
+
+
+def _slot_evidence_kind(data):
+    """输入形态判定：`'slots'`（含 slots 列表）/ `'list'` / `'single'` / `None`（**无槽证据**）。
+
+    `None` 说明输入不是槽证据 JSON（典型：**注解 JSON** —— `methods`/`known_members`/
+    `vtables`）。此类输入若继续走 `_slots_from_json`，会被当成"单个槽"，产出**键为 `""`
+    的伪候选**（`? unknown _slot()`）且 exit 0 —— 全分支最终评审 M-2a。
+    """
+    if isinstance(data, dict) and isinstance(data.get('slots'), list):
+        return 'slots'
+    if isinstance(data, list):
+        return 'list'
+    if isinstance(data, dict) and ('addr' in data or 'disasm' in data):
+        return 'single'
+    return None
+
+
 def _slots_from_json(data):
     if isinstance(data, dict) and 'slots' in data:
         slots = data['slots']
@@ -1484,6 +1526,16 @@ def main(argv=None):
         raise SystemExit('必须给 --slots <json>')
     with open(src, encoding='utf-8') as fh:
         data = json.load(fh)
+    # M-2a（全分支最终评审）：没有槽证据 ⇒ **报错退出**，不得静默产出键为 "" 的伪候选。
+    _kind = _slot_evidence_kind(data)
+    if _kind is None:
+        _keys = sorted(data)[:8] if isinstance(data, dict) else type(data).__name__
+        raise SystemExit(
+            '输入 %s 不含槽证据（无 `slots` 列表 / 非列表 / 非单槽对象；顶层键=%s）⇒ '
+            '拒绝静默产出空地址伪候选（`? unknown _slot()`）。'
+            '`--struct`/`--slots` 都只接受**槽证据 JSON**（反汇编文本）；注解 JSON 的候选'
+            '应读 `methods_pending` 旁路字段（见 `iter_candidates`），不是本工具的输入。'
+            % (src, _keys))
     evs = _slots_from_json(data)
     by_addr = {}
     for ev in evs:
@@ -1492,8 +1544,7 @@ def main(argv=None):
     payload = build_methods_pending({'methods': {}}, records)
     text = json.dumps(payload, ensure_ascii=False, indent=1, sort_keys=False)
     if out:
-        if os.path.abspath(out).startswith(os.path.abspath(
-                os.path.join(_HERE, '..', 'data', 'annotations'))):
+        if _is_under_truth_source(out):
             raise SystemExit('拒绝写入真相源目录 data/annotations（本工具只产出旁路候选）')
         with open(out, 'w', encoding='utf-8') as fh:
             fh.write(text + '\n')

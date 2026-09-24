@@ -1,13 +1,32 @@
 {
  "generated_by": "tests/test_vtable_e2e.py",
- "generated_at": "2026-09-25T01:26:10",
+ "generated_at": "2026-09-25T02:12:33",
  "meta": {
   "l1_flags": [
    "/nologo",
    "/TP",
    "/c",
+   "/W3",
+   "/O2",
+   "/Ob2",
+   "/Oi",
+   "/Ot",
+   "/Oy",
+   "/GF",
+   "/Gy",
+   "/GX",
+   "/GR",
+   "/MD",
+   "/Gd"
+  ],
+  "l1_flags_source": "data/status/s4_baseline.json.flags（生产 match 口径）",
+  "l1_flags_probe_default": [
+   "/nologo",
+   "/TP",
+   "/c",
    "/W3"
   ],
+  "l1_caliber_note": "主判词 l1 = 生产 match 口径；l1_probe_default = compare_pal3 probe 默认口径（不含 /O2、不含 /GR）——两者不可混读",
   "decomp_entries": 3584,
   "s2_units": "n/a"
  },
@@ -19,6 +38,85 @@
    "binary_polymorphic": false,
    "binary_evidence_note": "ctor 0x511EE0 无 vptr 写（字节级扫描）+ PDB 成员自 +0 起（无 vfptr 空隙）",
    "l1": {
+    "stage": "l1",
+    "status": "l1_partial",
+    "note": "6/8 个已比对函数体字节不同（partial）",
+    "rate": 0.25,
+    "match_L1": 2,
+    "partial": 6,
+    "matched": 9,
+    "symbols": 10,
+    "unmatched": 1,
+    "unresolved_synth": 1,
+    "oob": 0,
+    "compile_skip": 0,
+    "unit": "pal3/src/Combat/CCBStageShadow.cpp",
+    "flags": [
+     "/nologo",
+     "/TP",
+     "/c",
+     "/W3",
+     "/O2",
+     "/Ob2",
+     "/Oi",
+     "/Ot",
+     "/Oy",
+     "/GF",
+     "/Gy",
+     "/GX",
+     "/GR",
+     "/MD",
+     "/Gd"
+    ],
+    "caliber": "production-match",
+    "flags_source": "data/status/s4_baseline.json.flags",
+    "partial_rows": [
+     {
+      "symbol": "?UpdateShadowMesh@CCBStageShadow@@QAEPAMXZ",
+      "va": "0x00511E80",
+      "status": "partial",
+      "match_pct": 22.7,
+      "size": 88
+     },
+     {
+      "symbol": "??0CCBStageShadow@@QAE@XZ",
+      "va": "0x00511EE0",
+      "status": "partial",
+      "match_pct": 28.7,
+      "size": 167
+     },
+     {
+      "symbol": "?Reset@CCBStageShadow@@QAEXXZ",
+      "va": "0x00511FC0",
+      "status": "partial",
+      "match_pct": 15.7,
+      "size": 178
+     },
+     {
+      "symbol": "?Create@CCBStageShadow@@QAEXXZ",
+      "va": "0x00512080",
+      "status": "partial",
+      "match_pct": 15.0,
+      "size": 440
+     },
+     {
+      "symbol": "?Destroy@CCBStageShadow@@QAEPAMXZ",
+      "va": "0x00512240",
+      "status": "partial",
+      "match_pct": 9.1,
+      "size": 110
+     },
+     {
+      "symbol": "?Render@CCBStageShadow@@QAEXXZ",
+      "va": "0x005122F0",
+      "status": "partial",
+      "match_pct": 45.5,
+      "size": 11
+     }
+    ],
+    "log_tail": "L1 rate over matched: 2/8 = 25.0%"
+   },
+   "l1_probe_default": {
     "stage": "l1",
     "status": "l1_partial",
     "note": "8/8 个已比对函数体字节不同（partial）",
@@ -38,6 +136,8 @@
      "/c",
      "/W3"
     ],
+    "caliber": "probe-default",
+    "flags_source": "pipeline/compare_pal3.py:PROBE_FLAGS",
     "partial_rows": [
      {
       "symbol": "?UpdateShadowMesh@CCBStageShadow@@QAEPAMXZ",
@@ -127,6 +227,50 @@
     "match_L1": 0,
     "partial": 1,
     "matched": 1,
+    "symbols": 1,
+    "unmatched": 0,
+    "unresolved_synth": 0,
+    "oob": 0,
+    "compile_skip": 0,
+    "unit": "pal3/src/Misc/PalScriptWaitObj.cpp",
+    "flags": [
+     "/nologo",
+     "/TP",
+     "/c",
+     "/W3",
+     "/O2",
+     "/Ob2",
+     "/Oi",
+     "/Ot",
+     "/Oy",
+     "/GF",
+     "/Gy",
+     "/GX",
+     "/GR",
+     "/MD",
+     "/Gd"
+    ],
+    "caliber": "production-match",
+    "flags_source": "data/status/s4_baseline.json.flags",
+    "partial_rows": [
+     {
+      "symbol": "?ReleaseObject@PalScriptWaitObj@@QAEDPAD@Z",
+      "va": "0x004A68D0",
+      "status": "partial",
+      "match_pct": 71.6,
+      "size": 81
+     }
+    ],
+    "log_tail": "L1 rate over matched: 0/1 = 0.0%"
+   },
+   "l1_probe_default": {
+    "stage": "l1",
+    "status": "l1_partial",
+    "note": "1/1 个已比对函数体字节不同（partial）",
+    "rate": 0.0,
+    "match_L1": 0,
+    "partial": 1,
+    "matched": 1,
     "symbols": 3,
     "unmatched": 2,
     "unresolved_synth": 0,
@@ -139,6 +283,8 @@
      "/c",
      "/W3"
     ],
+    "caliber": "probe-default",
+    "flags_source": "pipeline/compare_pal3.py:PROBE_FLAGS",
     "partial_rows": [
      {
       "symbol": "?ReleaseObject@PalScriptWaitObj@@QAEDPAD@Z",
@@ -174,6 +320,113 @@
    "l1": {
     "stage": "l1",
     "status": "l1_partial",
+    "note": "10/12 个已比对函数体字节不同（partial）",
+    "rate": 0.16666666666666666,
+    "match_L1": 2,
+    "partial": 10,
+    "matched": 14,
+    "symbols": 16,
+    "unmatched": 2,
+    "unresolved_synth": 2,
+    "oob": 0,
+    "compile_skip": 0,
+    "unit": "pal3/src/Misc/UI3DCtrl.cpp",
+    "flags": [
+     "/nologo",
+     "/TP",
+     "/c",
+     "/W3",
+     "/O2",
+     "/Ob2",
+     "/Oi",
+     "/Ot",
+     "/Oy",
+     "/GF",
+     "/Gy",
+     "/GX",
+     "/GR",
+     "/MD",
+     "/Gd"
+    ],
+    "caliber": "production-match",
+    "flags_source": "data/status/s4_baseline.json.flags",
+    "partial_rows": [
+     {
+      "symbol": "??0UI3DCtrl@@QAE@XZ",
+      "va": "0x0043D830",
+      "status": "partial",
+      "match_pct": 43.2,
+      "size": 37
+     },
+     {
+      "symbol": "?ctor@UI3DCtrl@@QAEXXZ",
+      "va": "0x0043D880",
+      "status": "partial",
+      "match_pct": 36.4,
+      "size": 11
+     },
+     {
+      "symbol": "?CreateWithTexture@UI3DCtrl@@UAEPAVgbVFileSystem@@HPAXHIH@Z",
+      "va": "0x0043D890",
+      "status": "partial",
+      "match_pct": 10.9,
+      "size": 138
+     },
+     {
+      "symbol": "?Render@UI3DCtrl@@UAEXXZ",
+      "va": "0x0043D940",
+      "status": "partial",
+      "match_pct": 9.0,
+      "size": 357
+     },
+     {
+      "symbol": "?LoadModel@UI3DCtrl@@QAEDPBD@Z",
+      "va": "0x0052AF20",
+      "status": "partial",
+      "match_pct": 12.2,
+      "size": 147
+     },
+     {
+      "symbol": "?UpdateRotation@UI3DCtrl@@QAENXZ",
+      "va": "0x0052E8C0",
+      "status": "partial",
+      "match_pct": 34.7,
+      "size": 121
+     },
+     {
+      "symbol": "?UpdateOscillation@UI3DCtrl@@QAENXZ",
+      "va": "0x0052E940",
+      "status": "partial",
+      "match_pct": 34.7,
+      "size": 121
+     },
+     {
+      "symbol": "?UpdateOscillationX@UI3DCtrl@@QAENXZ",
+      "va": "0x0052E9C0",
+      "status": "partial",
+      "match_pct": 34.7,
+      "size": 121
+     },
+     {
+      "symbol": "?UpdateOscillationY@UI3DCtrl@@QAENXZ",
+      "va": "0x0052EA40",
+      "status": "partial",
+      "match_pct": 34.7,
+      "size": 121
+     },
+     {
+      "symbol": "?UpdateTransform@UI3DCtrl@@QAEDH@Z",
+      "va": "0x0052EAC0",
+      "status": "partial",
+      "match_pct": 13.5,
+      "size": 288
+     }
+    ],
+    "log_tail": "L1 rate over matched: 2/12 = 16.7%"
+   },
+   "l1_probe_default": {
+    "stage": "l1",
+    "status": "l1_partial",
     "note": "12/12 个已比对函数体字节不同（partial）",
     "rate": 0.0,
     "match_L1": 0,
@@ -191,6 +444,8 @@
      "/c",
      "/W3"
     ],
+    "caliber": "probe-default",
+    "flags_source": "pipeline/compare_pal3.py:PROBE_FLAGS",
     "partial_rows": [
      {
       "symbol": "??0UI3DCtrl@@QAE@XZ",
@@ -630,7 +885,7 @@
    "target_has_col": false,
    "byte_match_possible": false,
    "verdict": "GR_IS_STRUCTURAL_BLOCKER",
-   "recommendation": "移除管线 /GR：cmake/MSVCSettings.cmake:89 · pipeline/compare.py:69/81 · pipeline/cli.py:690；vtable 维度的探针产物也必须无 /GR（tools/vtable_verify.py:161 DEFAULT_PROBE_FLAGS 现为 ('/Od','/GR')，与无 RTTI 的目标不一致）。保留 /GR 时的替代口径：vtable 维度只做**归一化**槽对比（槽序列仍可比），并把 address_point_rtti 偏差读作\"目标无 COL\"的已知差异，**不得**声称 byte-match。",
+   "recommendation": "移除管线 /GR：cmake/MSVCSettings.cmake:89 · pipeline/compare.py:69/81 · pipeline/cli.py:690；vtable 维度的探针产物也必须无 /GR（tools/vtable_verify.py:161 DEFAULT_PROBE_FLAGS 现为 ('/Od','/GR')，与无 RTTI 的目标不一致）。保留 /GR 时的替代口径：vtable 维度只做**归一化**槽对比（槽序列仍可比），并把 address_point_rtti 偏差读作\"目标无 COL\"的已知差异，**不得**声称 byte-match。⚠️ /GR 同在生产 L1 口径里（`pipeline/cli.py:690` 的 flags 串 = `s4_baseline.json.flags`）⇒ 移除 /GR **会改变生产 L1 编译标志**，L1 基线**须重测**，不得假定\"L1 口径不变 / .text 比对不受影响\"。",
    "obj_value_no_gr": 0,
    "obj_value_gr": 4,
    "col_gr": "??_R4AStarPathFinder@@6B@",

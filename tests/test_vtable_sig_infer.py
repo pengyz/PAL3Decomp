@@ -1705,6 +1705,114 @@ def test_fix_r2_truth_source_refusal_is_immune_to_residue():
             forbidden.unlink()
 
 
+# =====================================================================================
+# 全分支最终评审 Minor 收口（M-2）：`--struct` 静默伪候选 + 兄弟目录误拒
+# =====================================================================================
+
+def test_full_review_struct_input_without_slot_evidence_errors_not_silent():
+    """🟡 最终评审 M-2a：`--struct <注解 JSON>` 此前把注解 JSON 当**槽证据**喂进
+    `_slots_from_json` ⇒ 静默产出**键为 `""` 的伪候选**（评审实测 `? unknown D()`；
+    本测试的合成输入实测 `? unknown _slot()`）且 **exit 0**。
+
+    本测试用真实注解形状（`methods`/`known_members`，无 `slots`）作输入 ⇒
+    必须**报错退出（rc≠0）**，且 stdout **不得**出现 `"": ` 伪候选。
+    """
+    import io
+    import json
+    import os
+    import tempfile
+    from contextlib import redirect_stdout
+
+    ann = {'cls': 'D', 'methods': {'0x4C5D50': {'signature': 'void D::o(int)'}},
+           'known_members': [{'offset': 0, 'name': 'm_x', 'type': 'int'}]}
+    with tempfile.TemporaryDirectory() as d:
+        src = os.path.join(d, 'D.json')
+        with open(src, 'w', encoding='utf-8') as fh:
+            json.dump(ann, fh)
+        buf = io.StringIO()
+        try:
+            with redirect_stdout(buf):
+                cli_main(['--struct', src])
+        except SystemExit as e:
+            assert str(e), '报错必须带原因'
+        else:
+            raise AssertionError(
+                '--struct 无槽证据必须报错退出（rc≠0），实测静默 exit 0；'
+                'stdout=%r' % buf.getvalue()[:200])
+        out = buf.getvalue()
+        assert '"": ' not in out and 'methods_pending' not in out, \
+            '不得产出空地址伪候选：%r' % out[:300]
+
+
+def test_full_review_struct_input_with_slots_still_processed():
+    """`--struct` 若输入**确实是**槽证据（含 `slots`）⇒ 行为与 `--slots` 一致（不误伤）。"""
+    import io
+    import json
+    import os
+    import tempfile
+    from contextlib import redirect_stdout
+
+    payload = {'slots': [{'addr': '0x4C5D50', 'name': 'unused',
+                          'symbol': '?unused@S@@UAEXHH@Z', 'disasm': C1_UNUSED}]}
+    with tempfile.TemporaryDirectory() as d:
+        src = os.path.join(d, 'slots.json')
+        with open(src, 'w', encoding='utf-8') as fh:
+            json.dump(payload, fh)
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            rc = cli_main(['--struct', src])
+        assert rc == 0, rc
+        data = json.loads(buf.getvalue())
+        assert sorted(data['methods_pending']) == ['0x004C5D50'], data['methods_pending']
+        assert '' not in data['methods_pending'], data['methods_pending']
+
+
+def test_full_review_truth_source_refusal_does_not_reject_sibling_dirs():
+    """🟡 最终评审 M-2b：拒写判据用 `startswith` ⇒ **兄弟目录**
+    `data/annotations_bak_probe/` 被误拒（实测）。改为路径分量级判定（`commonpath`）后：
+
+    * `data/annotations/**` 仍**必须**拒写（真相源）；
+    * `data/annotations_bak_probe/o.json`（兄弟目录）**必须放行**并真的落盘。
+    """
+    import io
+    import json
+    import os
+    import tempfile
+    from contextlib import redirect_stdout
+
+    payload = {'slots': [{'addr': '0x4C5D50', 'name': 'unused',
+                          'symbol': '?unused@S@@UAEXHH@Z', 'disasm': C1_UNUSED}]}
+    with tempfile.TemporaryDirectory() as d:
+        src = os.path.join(d, 'slots.json')
+        with open(src, 'w', encoding='utf-8') as fh:
+            json.dump(payload, fh)
+        # ① 真相源（严格派生目录）仍拒写
+        _cli_refuses_truth_source_write(src)
+        # ② 兄弟目录 `data/annotations_bak_probe/` 必须放行（不是真相源）
+        sibling_dir = PROJECT_ROOT / 'data' / 'annotations_bak_probe'
+        sibling_dir.mkdir(parents=True, exist_ok=True)
+        dest = sibling_dir / 'o.json'
+        existed = dest.exists()
+        try:
+            try:
+                with redirect_stdout(io.StringIO()):
+                    rc = cli_main(['--slots', src, '--out', str(dest)])
+            except SystemExit as e:                  # 修前：兄弟目录被误拒
+                raise AssertionError('兄弟目录 %s 不是真相源，不得拒写：%s'
+                                     % (sibling_dir, e))
+            assert rc == 0, rc
+            assert dest.exists(), '兄弟目录必须被放行并落盘：%s' % dest
+            written = json.loads(dest.read_text(encoding='utf-8'))
+            assert sorted(written['methods_pending']) == ['0x004C5D50'], written
+        finally:
+            if dest.exists() and not existed:
+                dest.unlink()
+            try:
+                sibling_dir.rmdir()          # 只在空目录时成功，不留残余
+            except OSError:
+                pass
+
+
 if __name__ == '__main__':
     ok = fail = skip = 0
     for nm, fn in sorted(list(globals().items())):

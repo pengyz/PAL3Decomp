@@ -15,11 +15,27 @@ Task 8 把两者接起来，并对**3 个已知断裂单元**给出可复现的�
 
 ## 三个断裂单元（本文件的花名册，均为已确认存在的真实 TU）
 
-| 单元 | 类 | 双裁判实测判词（2026-09-25） |
+| 单元 | 类 | 双裁判实测判词（2026-09-25，**L1 = 生产 match 口径**，见下"口径"节） |
 |---|---|---|
-| `pal3/src/Combat/CCBStageShadow.cpp` | `CCBStageShadow` | L1 破（0 字节全同 / 8 partial）；`.rdata` **不适用**（两侧都非多态：头 0 virtual + ctor `0x511EE0` 无 vptr 写）⇒ 该单元只有 L1 一个裁判有判词 |
-| `pal3/src/Misc/PalScriptWaitObj.cpp` | `PalScriptWaitObj` | L1 破（0/1）；`.rdata` **结构性缺失**：头 0 virtual 而二进制要求 vfptr（PDB size 8 且 `RoleCameraCtrl` 成员自 +8 起；Task 4 编译器裁判 PMF=8）⇒ `rdata_missing_vtable` |
-| `pal3/src/Misc/UI3DCtrl.cpp` | `UI3DCtrl` | L1 破（0/12）；`.rdata` 真破：编译产物 **26 槽 vs 二进制 8 槽**（基类块 21 槽同下标对齐、其中 `slot_2`/`slot_3`/`slot_4` 同名在位覆写；发射器把 UIWnd 的 virtual 抄进派生头，自家 `slot_0` 被**追加**到 21 而不是覆盖 `ShowWindow`@12）|
+| `pal3/src/Combat/CCBStageShadow.cpp` | `CCBStageShadow` | L1 破（**2 字节全同 / 6 partial**）；`.rdata` **不适用**（两侧都非多态：头 0 virtual + ctor `0x511EE0` 无 vptr 写）⇒ 该单元只有 L1 一个裁判有判词 |
+| `pal3/src/Misc/PalScriptWaitObj.cpp` | `PalScriptWaitObj` | L1 破（**0/1**）；`.rdata` **结构性缺失**：头 0 virtual 而二进制要求 vfptr（PDB size 8 且 `RoleCameraCtrl` 成员自 +8 起；Task 4 编译器裁判 PMF=8）⇒ `rdata_missing_vtable` |
+| `pal3/src/Misc/UI3DCtrl.cpp` | `UI3DCtrl` | L1 破（**2/12**）；`.rdata` 真破：编译产物 **26 槽 vs 二进制 8 槽**（基类块 21 槽同下标对齐、其中 `slot_2`/`slot_3`/`slot_4` 同名在位覆写；发射器把 UIWnd 的 virtual 抄进派生头，自家 `slot_0` 被**追加**到 21 而不是覆盖 `ShowWindow`@12）|
+
+## ⚠️ L1 判词的**口径**（全分支最终评审 Critical 的收口）
+
+L1 主判词跑在**生产 `match` 口径**上（`production_l1_flags()` =
+`data/status/s4_baseline.json.flags` = `pipeline/cli.py:690` 传给
+`compare_pal3.py --flags` 的同一串：`/nologo /TP /c /W3 /O2 … /GR /MD /Gd`）。
+
+* 上表数字即该口径；`run_e2e` 同时并列记下 **probe 默认口径**
+  （`compare_pal3.PROBE_FLAGS` = `/nologo /TP /c /W3`，**不含 `/O2`、不含 `/GR`**）
+  的判词为 `l1_probe_default`，便于对照。
+* 本裁判**此前**误用 probe 默认口径却声称"与生产 L1 同一口径"⇒ 非优化、无 RTTI 的产物
+  与 `/O2` 原二进制逐字节比，L1 结构性塌成 0（probe 口径实测 **0/8 · 0/1 · 0/12**）；
+  生产口径下 CCBStageShadow 与 UI3DCtrl **各 2 条函数体逐字节全同** ⇒ "该维度不具判别力"
+  的结论是口径错误造成的假象，不是 L1 的性质。
+* 连带更正：**移除 `/GR` 会改变生产 L1 编译标志**（`/GR` 就在该 flags 串里）⇒
+  移除后 **L1 基线须重测**，不得假定"L1 口径不变 / `.text` 比对不受直接影响"（见 T1）。
 
 ## 判词是**数据派生**的，不钉死当前缺陷状态
 
@@ -49,7 +65,21 @@ Task 5 评审 Q4 的教训：把"当前缺陷状态"写死成必须成立，会�
    * `identity_mode='va'` **含包含判据**（一侧单一 VA、另一侧候选集 ⇒ `used_va` 置位），
      不能读作"两侧都有单一 VA"。
 
-运行：`python3 tests/test_vtable_e2e.py`（离线，毫秒级；LIVE 用例 skip）
+## 端到端串联的落点（规格 §5 数据流；全分支最终评审 Minor-1 的**显式声明**）
+
+**本仓没有独立驱动器脚本**（`tools/`、`pipeline/`、Makefile、CI 中无脚本串联这 8 个工具；
+实测 grep 0 命中）。串联由**两处**承担，已逐条核实（非声明式导入）：
+
+| 落点 | 串联哪些任务 | 实证 |
+|---|---|---|
+| **库级 import 调用链** | T1·T2·T3 → **T5**；T2 → **T6**、T2 → **T3** | `tools/vtable_decl_check.py:113`（T1 `match_key`）`:122`（T2 分类器）`:134`（T3 `methods_pending`，`:642` 消费）；`tools/vtable_verify.py:119`（T2 槽型词表）；`tools/vtable_sig_infer.py:102`（T2 原始文本分类） |
+| **本文件的 `run_e2e()`** | T4 → T5 → T6 (+ L1 裁判 `compare_pal3`) | `verify_wiring()`→`layout_assert_gen`(T4) · `refresh_baselines()`→`vtable_decl_check`(T5) · `judge_rdata()`/`bin_table_census()`/`run_gr_spike()`→`vtable_verify`(T6) · `judge_l1()`→`compare_pal3` |
+
+**未串进来的**：T7（`pipeline/gen/stages/stage3_cleanup.py` 的 vftable 调用转换）不由上述任一
+落点驱动 —— 它是 **codegen stage**，由管线自身（`codegen all`）与 `tests/test_vtable_call_transform.py`
+覆盖；本 harness 只在 `judge_l1` 里间接受益于生成头。⇒ **不得**把本 harness 说成"8 工具全链"。
+
+## 运行：`python3 tests/test_vtable_e2e.py`（离线，毫秒级；LIVE 用例 skip）
 真机：`PAL3_E2E_LIVE=1 python3 tests/test_vtable_e2e.py`（**不写**入库报告）
 出报告：`PAL3_E2E_LIVE=1 python3 tests/test_vtable_e2e.py --e2e --out data/status/vtable_e2e_report.json`
 （`--no-write` 则只打印、不落盘）
@@ -84,6 +114,12 @@ SPIKE_HEADER = 'Misc/AStarPathFinder.h'
 REPORT_OUT = PROJECT_ROOT / 'data' / 'status' / 'vtable_e2e_report.json'
 RATCHET_BASELINE = PROJECT_ROOT / 'data' / 'status' / 'vtable_ratchet_baseline.json'
 MAPPER_BASELINE = PROJECT_ROOT / 'data' / 'status' / 'vtable_baseline.json'
+# 生产 L1（`match`）口径的**唯一权威来源**：`pipeline/cli.py cmd_match` 用
+# `compare_pal3.py --flags "<字面量>"` 跑出来的那份基线（含 /O2 … /GR /MD /Gd）。
+S4_BASELINE = PROJECT_ROOT / 'data' / 'status' / 's4_baseline.json'
+# 基线文件缺失/损坏时的兜底字面量 —— 与 `pipeline/cli.py` 的 flags 字符串逐字相同。
+PROD_MATCH_FLAGS_FALLBACK = ['/nologo', '/TP', '/c', '/W3', '/O2', '/Ob2', '/Oi', '/Ot',
+                             '/Oy', '/GF', '/Gy', '/GX', '/GR', '/MD', '/Gd']
 WORKDIR = Path(os.environ.get('PAL3_E2E_WORKDIR', '/tmp/pal3_e2e'))
 
 # =====================================================================================
@@ -139,6 +175,34 @@ ALL_L1 = (L1_GREEN, L1_PARTIAL, L1_SKIP, L1_NO_SYMBOLS)
 # =====================================================================================
 # 纯分析层（离线可证）：判词 / 分歧分类 / 报告
 # =====================================================================================
+
+def production_l1_flags():
+    """**生产 L1 口径**的编译标志（纯函数，离线可证）。
+
+    权威来源 = `data/status/s4_baseline.json` 的 `flags` 字段：生产 `match` 的唯一调用点
+    `pipeline/cli.py`（`cmd_match`）把
+    `/nologo /TP /c /W3 /O2 /Ob2 /Oi /Ot /Oy /GF /Gy /GX /GR /MD /Gd`
+    传给 `compare_pal3.py --flags`，该脚本把收到的 `flags` 原样写进基线。
+
+    ⚠️ **这不等价于** `compare_pal3.PROBE_FLAGS`（`/nologo /TP /c /W3`，**不含 `/O2`、
+    不含 `/GR`**）：后者只是 `compare_pal3` 的 probe 默认口径；拿它编译再与 `/O2` 原二进制
+    逐字节比，L1 会**塌成 0**（实测 CCBStageShadow 0 vs 生产口径 2、UI3DCtrl 0 vs 2）⇒
+    那不是"生产 L1 判词"，也**不是**该维度不具判别力的证据。
+    """
+    try:
+        d = json.loads(S4_BASELINE.read_text(encoding='utf-8'))
+        fl = d.get('flags')
+        if isinstance(fl, list) and fl:
+            return list(fl)
+    except (OSError, ValueError):
+        pass
+    return list(PROD_MATCH_FLAGS_FALLBACK)
+
+
+def l1_flags(flags=None):
+    """L1 判词用哪套口径：显式传入优先，否则 = 生产 `match` 口径。"""
+    return list(flags) if flags else production_l1_flags()
+
 
 def l1_verdict(stats):
     """L1 裁判判词（纯函数）。`stats` = `compare_pal3.compare_units` 的 stats。"""
@@ -254,7 +318,10 @@ def gr_spike_analysis(ev):
             '（tools/vtable_verify.py:161 DEFAULT_PROBE_FLAGS 现为 (\'/Od\',\'/GR\')，'
             '与无 RTTI 的目标不一致）。保留 /GR 时的替代口径：vtable 维度只做**归一化**槽'
             '对比（槽序列仍可比），并把 address_point_rtti 偏差读作"目标无 COL"的已知差异，'
-            '**不得**声称 byte-match。')
+            '**不得**声称 byte-match。'
+            '⚠️ /GR 同在生产 L1 口径里（`pipeline/cli.py:690` 的 flags 串 = '
+            '`s4_baseline.json.flags`）⇒ 移除 /GR **会改变生产 L1 编译标志**，'
+            'L1 基线**须重测**，不得假定"L1 口径不变 / .text 比对不受影响"。')
     elif col_injected and target_has_col:
         verdict = 'GR_MATCHED_BOTH_SIDES'
         recommendation = '两侧都有 COL ⇒ /GR 与目标一致，无需改动；byte-match 口径成立。'
@@ -449,22 +516,35 @@ def _decomp_sizes():
 _DECOMP_SIZES = None
 
 
-def judge_l1(unit, ctx=None):
+def judge_l1(unit, ctx=None, flags=None):
     """L1 裁判：编译单元 + 逐函数体字节比对（`pipeline/compare_pal3` 原语）。
 
-    与生产 L1 同一口径：`compare_pal3.PROBE_FLAGS`（`/nologo /TP /c /W3`，
-    **不含 /O2、不含 /GR**）。
+    **口径 = 生产 `match` 口径**（`production_l1_flags()`，即
+    `data/status/s4_baseline.json.flags`：`/nologo /TP /c /W3 /O2 /Ob2 /Oi /Ot /Oy
+    /GF /Gy /GX /GR /MD /Gd`）。**不是** `compare_pal3.PROBE_FLAGS`
+    （`/nologo /TP /c /W3`，不含 `/O2`、不含 `/GR`）——那是 probe 默认口径，用它编译
+    再与 `/O2` 原二进制逐字节比，L1 会塌成 0（全分支最终评审 Critical：本裁判此前正是
+    在 probe 口径上跑，却声称与生产 L1 同一口径）。`flags=` 可显式传别的口径做对照
+    （`run_e2e` 就用它并列记下 probe 默认口径，便于对照）。
     """
     ctx = ctx or l1_context()
     cp = ctx['cp']
+    use_flags = l1_flags(flags)
     buf = io.StringIO()
     with contextlib.redirect_stdout(buf):
         stats, rows, _detail = cp.compare_units(
-            [unit], cp.PROBE_FLAGS, ctx['di'], ctx['mm'], ctx['bi'],
+            [unit], use_flags, ctx['di'], ctx['mm'], ctx['bi'],
             ctx['ib'], ctx['text'], ctx['trva'], ctx['trs'])
     v = l1_verdict(stats)
     v['unit'] = unit
-    v['flags'] = list(cp.PROBE_FLAGS)
+    v['flags'] = list(use_flags)
+    v['caliber'] = ('probe-default' if use_flags == list(cp.PROBE_FLAGS)
+                    else ('production-match' if use_flags == production_l1_flags()
+                          else 'explicit'))
+    v['flags_source'] = ('data/status/s4_baseline.json.flags'
+                         if v['caliber'] == 'production-match'
+                         else 'pipeline/compare_pal3.py:PROBE_FLAGS'
+                         if v['caliber'] == 'probe-default' else 'explicit --flags')
     v['partial_rows'] = [{'symbol': r.get('symbol'), 'va': r.get('va'),
                           'status': r.get('status'), 'match_pct': r.get('match_pct'),
                           'size': r.get('size')}
@@ -1009,16 +1089,23 @@ def run_e2e(write=False, workdir=None, out_path=None):
     ctx = l1_context()
     units = []
     for t in TARGETS:
+        # 主判词 = **生产 `match` 口径**（全分支最终评审 Critical）；probe 默认口径并列留痕，
+        # 因为入库报告的历史数字（L1=0）正是 probe 口径产物，读者需要能对照两者。
         l1 = judge_l1(t['unit'], ctx)
+        l1_probe = judge_l1(t['unit'], ctx, flags=ctx['cp'].PROBE_FLAGS)
         rd = judge_rdata(t, workdir=(Path(workdir) / ('rdata_' + t['cls'])
                                      if workdir else None))
         units.append({'unit': t['unit'], 'cls': t['cls'], 'header': t['header'],
                       'binary_polymorphic': t['binary_polymorphic'],
                       'binary_evidence_note': t['evidence'],
-                      'l1': l1, 'rdata': rd,
+                      'l1': l1, 'l1_probe_default': l1_probe, 'rdata': rd,
                       'divergence': classify_divergence(l1['status'], rd['status'])})
     rep = build_report(units, meta={
-        'l1_flags': list(ctx['cp'].PROBE_FLAGS),
+        'l1_flags': production_l1_flags(),
+        'l1_flags_source': 'data/status/s4_baseline.json.flags（生产 match 口径）',
+        'l1_flags_probe_default': list(ctx['cp'].PROBE_FLAGS),
+        'l1_caliber_note': ('主判词 l1 = 生产 match 口径；l1_probe_default = compare_pal3 '
+                            'probe 默认口径（不含 /O2、不含 /GR）——两者不可混读'),
         'decomp_entries': len(ctx['di']),
         's2_units': 'n/a'})
     rep['gr_spike'] = run_gr_spike(workdir=(Path(workdir) / 'gr_spike') if workdir else None)
@@ -1070,6 +1157,60 @@ def test_l1_verdict_keeps_coverage_gaps_visible():
     v = l1_verdict(_l1(matched=2, symbols=5, unmatched=3, unresolved_synth=1))
     assert v['matched'] == 2 and v['symbols'] == 5
     assert v['unmatched'] == 3 and v['unresolved_synth'] == 1
+
+
+# ---------------------------------------------------------------------------------------
+# 全分支最终评审 Critical：L1 判词的**口径**必须是生产 match 口径
+# ---------------------------------------------------------------------------------------
+def test_l1_caliber_is_production_match_flags_not_probe_defaults():
+    """L1 判词必须跑在**生产 `match` 口径**上（`s4_baseline.json.flags`，含 /O2 与 /GR），
+    而不是 `compare_pal3.PROBE_FLAGS`（probe 默认，`/nologo /TP /c /W3`）。
+
+    （此前 `judge_l1` 用的是 `PROBE_FLAGS` 却声称"与生产 L1 同一口径" ⇒ 非优化/无 RTTI
+    产物与 /O2 原二进制逐字节比，L1 塌成 0：实测 CCBStageShadow 0 vs 生产 2、
+    UI3DCtrl 0 vs 生产 2。）
+    """
+    import compare_pal3 as cp
+    fl = production_l1_flags()
+    # ① 唯一权威来源 = 生产基线写下的 flags（逐字）
+    if S4_BASELINE.exists():
+        base = json.loads(S4_BASELINE.read_text(encoding='utf-8'))['flags']
+        assert fl == base, (fl, base)
+    # ② 生产口径**含** /O2 与 /GR —— 这正是它区别于 probe 默认的地方
+    assert '/O2' in fl and '/GR' in fl, fl
+    # ③ 不得等于 probe 默认口径（否则又回到"非优化产物比优化二进制"）
+    assert fl != list(cp.PROBE_FLAGS), fl
+    # ④ 兜底路径（基线缺失）**不得**悄悄退回 probe 口径 —— 直接走一遍降级分支
+    assert '/O2' in PROD_MATCH_FLAGS_FALLBACK and '/GR' in PROD_MATCH_FLAGS_FALLBACK, \
+        PROD_MATCH_FLAGS_FALLBACK
+    assert PROD_MATCH_FLAGS_FALLBACK != list(cp.PROBE_FLAGS), PROD_MATCH_FLAGS_FALLBACK
+    saved = globals()['S4_BASELINE']
+    try:
+        globals()['S4_BASELINE'] = Path('/nonexistent_s4_baseline.json')
+        assert production_l1_flags() == PROD_MATCH_FLAGS_FALLBACK, production_l1_flags()
+    finally:
+        globals()['S4_BASELINE'] = saved
+
+
+def test_l1_flags_helper_prefers_explicit_then_production():
+    """`l1_flags`：显式传入优先（供对照口径），否则 = 生产口径。"""
+    import compare_pal3 as cp
+    assert l1_flags() == production_l1_flags(), l1_flags()
+    assert l1_flags(cp.PROBE_FLAGS) == list(cp.PROBE_FLAGS)
+    assert l1_flags([]) == production_l1_flags()          # 空列表 ≠ "用空 flags 编译"
+
+
+def test_judge_l1_defaults_to_production_caliber():
+    """`judge_l1` 的 `flags` 默认必须是 None（⇒ 走 `l1_flags(None)` = 生产口径），
+    且文档不得再把 probe 默认口径说成生产口径。"""
+    import inspect
+    default = inspect.signature(judge_l1).parameters['flags'].default
+    assert default is None, default
+    doc = judge_l1.__doc__ or ''
+    assert 's4_baseline.json' in doc, doc
+    # 既点出 PROBE_FLAGS，又明确它**不是**生产口径
+    assert 'PROBE_FLAGS' in doc and '不是' in doc, doc
+    assert '同一口径：`compare_pal3.PROBE_FLAGS`' not in doc, doc
 
 
 def test_rdata_verdict_clean_and_deviations():
@@ -1292,12 +1433,18 @@ def _need_live():
 def test_live_l1_judge_three_units():
     _need_live()
     ctx = l1_context()
+    prod = production_l1_flags()
     for t in TARGETS:
         v = judge_l1(t['unit'], ctx)
         assert v['status'] in ALL_L1, v
         assert v['symbols'] > 0, v
         assert v['compile_skip'] == 0, v
         assert v['matched'] > 0, v
+        # 全分支最终评审 Critical：判词必须落在**生产 match 口径**上（含 /O2 与 /GR），
+        # 而不是 probe 默认口径（否则 L1 结构性塌成 0，见 test_l1_caliber_...）
+        assert v['flags'] == prod, (t['cls'], v['flags'], prod)
+        assert v['caliber'] == 'production-match', v['caliber']
+        assert '/O2' in v['flags'] and '/GR' in v['flags'], v['flags']
 
 
 def test_live_rdata_judge_three_units():
@@ -1445,12 +1592,23 @@ def test_live_dual_judge_report_end_to_end():
     dest = tmp_dir / 'vtable_e2e_report.json'
     rep = run_e2e(write=True, out_path=dest)
     assert len(rep['units']) == 3, rep['units']
+    prod = production_l1_flags()
+    # 全分支最终评审 Critical：主判词口径 = 生产 match 口径；probe 默认口径并列留痕对照
+    assert rep['meta']['l1_flags'] == prod, rep['meta']
+    assert '/O2' in rep['meta']['l1_flags'] and '/GR' in rep['meta']['l1_flags'], rep['meta']
+    assert rep['meta']['l1_flags'] != rep['meta']['l1_flags_probe_default'], rep['meta']
     for t in TARGETS:
         u = rep['units'][t['unit']]
         assert u['l1']['status'] in (L1_GREEN, L1_PARTIAL), u['l1']
+        assert u['l1']['flags'] == prod and u['l1']['caliber'] == 'production-match', u['l1']
+        assert u['l1_probe_default']['flags'] == list(rep['meta']['l1_flags_probe_default']), u
+        assert u['l1_probe_default']['caliber'] == 'probe-default', u['l1_probe_default']
         assert u['rdata']['status'] in ALL_RD, u['rdata']
         assert u['rdata']['status'] != RD_NO_EVIDENCE, u['rdata']
         assert u['divergence'] in DIVERGENCES, u
+        print('  [口径对照] %-14s 生产 L1=%s/partial=%s · probe 默认 L1=%s/partial=%s'
+              % (t['cls'], u['l1']['match_L1'], u['l1']['partial'],
+                 u['l1_probe_default']['match_L1'], u['l1_probe_default']['partial']))
     assert rep['gr_spike']['analysis']['verdict'] == 'GR_IS_STRUCTURAL_BLOCKER'
     assert rep['wiring']['decision']['verdict'] == 'wired_and_enforced'
     # 族判据 ⊆ raw（**关系**断言；I-5：不得把族判据的当前缺陷输出 639 钉死）
