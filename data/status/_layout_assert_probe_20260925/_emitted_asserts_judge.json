@@ -1,0 +1,105 @@
+{
+ "total": 140,
+ "pass": 132,
+ "false_kill": [],
+ "unreliable": [],
+ "assert_error": [],
+ "header_error": [
+  {
+   "cls": "CCBParabolaWindow",
+   "condition": "sizeof(void (CCBParabolaWindow::*)()) == 4",
+   "root": "pal3/src",
+   "header": "Combat/CCBParabolaWindow.h",
+   "errors": [
+    "C2555@32"
+   ],
+   "output": "Z:\\home\\peng\\workspace\\PAL3Decomp\\pal3\\src\\Combat/CCBParabolaWindow.h(32) : error C2555: 'CCBParabolaWindow::OnMessage' : overriding virtual function differs from 'UIWnd::OnMessage' only by return type or calling convention",
+   "control": false
+  },
+  {
+   "cls": "CEffTrackCustomShape",
+   "condition": "sizeof(void (CEffTrackCustomShape::*)()) == 8",
+   "root": "pal3/src",
+   "header": "Misc/CEffTrackCustomShape.h",
+   "errors": [
+    "C2584@7"
+   ],
+   "output": "Z:\\home\\peng\\workspace\\PAL3Decomp\\pal3\\src\\Misc/CEffTrackCustomShape.h(7) : error C2584: 'CEffTrackCustomShape' : direct base 'CEffObj' is inaccessible; already a base of 'CEffCustomShape'",
+   "control": false
+  },
+  {
+   "cls": "CEffTrackCylinder",
+   "condition": "sizeof(void (CEffTrackCylinder::*)()) == 8",
+   "root": "pal3/src",
+   "header": "Misc/CEffTrackCylinder.h",
+   "errors": [
+    "C2584@7"
+   ],
+   "output": "Z:\\home\\peng\\workspace\\PAL3Decomp\\pal3\\src\\Misc/CEffTrackCylinder.h(7) : error C2584: 'CEffTrackCylinder' : direct base 'CEffObj' is inaccessible; already a base of 'CEffCylinder'",
+   "control": false
+  },
+  {
+   "cls": "CEffTrackGrid",
+   "condition": "sizeof(void (CEffTrackGrid::*)()) == 8",
+   "root": "pal3/src",
+   "header": "Misc/CEffTrackGrid.h",
+   "errors": [
+    "C2584@7"
+   ],
+   "output": "Z:\\home\\peng\\workspace\\PAL3Decomp\\pal3\\src\\Misc/CEffTrackGrid.h(7) : error C2584: 'CEffTrackGrid' : direct base 'CEffObj' is inaccessible; already a base of 'CEffGrid'",
+   "control": false
+  },
+  {
+   "cls": "CEffTrackModel",
+   "condition": "sizeof(void (CEffTrackModel::*)()) == 8",
+   "root": "pal3/src",
+   "header": "Misc/CEffTrackModel.h",
+   "errors": [
+    "C2584@7"
+   ],
+   "output": "Z:\\home\\peng\\workspace\\PAL3Decomp\\pal3\\src\\Misc/CEffTrackModel.h(7) : error C2584: 'CEffTrackModel' : direct base 'CEffObj' is inaccessible; already a base of 'CEffModel'",
+   "control": false
+  },
+  {
+   "cls": "CEffTrackQuad",
+   "condition": "sizeof(void (CEffTrackQuad::*)()) == 8",
+   "root": "pal3/src",
+   "header": "Misc/CEffTrackQuad.h",
+   "errors": [
+    "C2584@7"
+   ],
+   "output": "Z:\\home\\peng\\workspace\\PAL3Decomp\\pal3\\src\\Misc/CEffTrackQuad.h(7) : error C2584: 'CEffTrackQuad' : direct base 'CEffObj' is inaccessible; already a base of 'CEffQuad'",
+   "control": false
+  },
+  {
+   "cls": "CEffTrackSParticle",
+   "condition": "sizeof(void (CEffTrackSParticle::*)()) == 8",
+   "root": "pal3/src",
+   "header": "Misc/CEffTrackSParticle.h",
+   "errors": [
+    "C2584@7"
+   ],
+   "output": "Z:\\home\\peng\\workspace\\PAL3Decomp\\pal3\\src\\Misc/CEffTrackSParticle.h(7) : error C2584: 'CEffTrackSParticle' : direct base 'CEffObj' is inaccessible; already a base of 'CEffSParticle'",
+   "control": false
+  },
+  {
+   "cls": "PlayerAtt",
+   "condition": "sizeof(void (PlayerAtt::*)()) == 4",
+   "root": "pal3/src",
+   "header": "Misc/PlayerAtt.h",
+   "errors": [
+    "C2061@91"
+   ],
+   "output": "Z:\\home\\peng\\workspace\\PAL3Decomp\\pal3\\src\\Misc/RoleAtt.h(91) : error C2061: syntax error : identifier 'gbVec3D'",
+   "control": false
+  }
+ ],
+ "no_header": [],
+ "spec_header": [],
+ "by_root": {
+  "pal3/src": 140
+ },
+ "gate": {
+  "active": 140
+ }
+}

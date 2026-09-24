@@ -9,17 +9,30 @@
 探针与逐字错误输出：`data/status/_layout_assert_probe_20260925/README.md`
 （`p3.cpp` 复现 E-4，`shape.cpp` / `off.cpp` 为本任务新增的边界实测）。
 
-1. **PMF 尺寸封闭规则（E-4）**：`sizeof(void (Cls::*)())` 是**继承形状**的函数：
+1. **PMF 尺寸封闭规则（E-4）**：`sizeof(void (Cls::*)())` 是**继承形状 + vfptr 引入点**的函数：
    ```
-   继承闭包内有虚基 ⇒ 12；否则闭包内出现多继承分支 ⇒ 8；否则 ⇒ 4
+   继承闭包内有虚基 ⇒ 12；否则闭包内出现多继承分支 ⇒ 8；
+   否则**最基层 vfptr 载体有直接基** ⇒ 8；否则 ⇒ 4
    ```
    * 多虚基仍是 12（不是 16）；
    * ★ **判据必须走传递闭包**：`DERofMI2 : MI2`（单直接基、但基类是多继承类）实测 **8**，
      只看直接基个数会预测 4 ⇒ 假 C2118 ⇒ 管线停摆（`shape.cpp:28/29` 逐字）。
+   * ★ **R=1（C-3）vfptr 引入点**：4 字节 PMF 要求 vfptr 在**偏移 0**；基类非多态而派生类自己
+     引入 vfptr 时 MSVC 把 vfptr 排在基类子对象之后 ⇒ 8（`pmf_intro.cpp` 实测
+     `INTRO : NP_A {virtual f}` ⇒ 8，而 `SI_P : P_A` ⇒ 4；真实例
+     `RoleCameraCtrl : PalScriptWaitObj` ⇒ 8，R=0 给 4 ⇒ 真实发射头 **C2118** 假杀）。
+     载体判据是注解 `vtables`（codegen 据此发射 `virtual`，`emit_headers.py:2460`），
+     **不是** `methods`（`PalScriptWaitObj.h` 只有 methods ⇒ 发射头 0 virtual）。
+   * ★ **兜底**：外部类（默认前缀 `gb*`，声明来自 spec 头）与 `--declared-classes` 名单外的类
+     （含闭包内出现者）⇒ 形状/一致性断言**不可证 ⇒ SUSPECT**（`gbTexture` 规范头真值 4，
+     而按注解链套载体规则会算 8 ⇒ 过判）。
 2. **`offsetof` 虚基区域不可用（E-3）**：虚基成员（`p3.cpp:28` ⇒ C2057）、以及虚基的
    非虚基之成员（`off.cpp:18` ⇒ C2057）**都不是常量表达式** ⇒ 必须跳过；
    而"有虚基的类里，本类成员 / 非虚基成员"的 offsetof **是常量**（`off.cpp` o3/o4/o6
    只有 C2118 值不符，无 C2057）⇒ 只跳过**虚基区域**。
+   * ★ **R=1（C-1）必须走整个闭包**：`VB2 : virtual V1;  IVB : VB2` 里 V1 是**间接**虚基，
+     只看直接虚基会返回空集 ⇒ `offsetof(IVB, vv)` 生效 ⇒ **C2057+C2466 停摆**
+     （`ivb.cpp:22` 逐字）；非虚基 VB2 的成员仍是常量，不得进跳过集合。
 3. **`offsetof` 需要 `#include <stddef.h>`**：`p2.cpp` 缺它 ⇒ C2065 'offsetof' undeclared。
 
 ## 常量可信度（E-1 / E-2：不要把生成器变成"判死正确注解"的凶器）
@@ -29,8 +42,11 @@
 | `trusted` | 形态 A **且** 独立于 annotation **且** 未被疑误归属 | 生成生效断言 |
 | `same-source` | 形态 A 但**与 annotation 同源** ⇒ 零判别力（E-2：错误注解照样编译通过） | 注释留痕（`[SAME-SOURCE]`） |
 | `suspect` | 形态非 A，或已疑误归属（E-1：被污染的 A 级常量判死正确注解 ⇒ C2118） | 注释留痕（`[SUSPECT]`） |
+| `consistency-only` | R=1（I-2）：size/offset 常量同源（零真理判别力），但断言比的是 "codegen **声明** vs 注解常量" ⇒ 能抓 stage 漂移 | 仅 `--untrusted-policy consistency-only` 下生效，行带 `[CONSISTENCY-ONLY]` |
 
-`--untrusted-policy` 可切 `comment`（默认，留痕不生效）/ `skip`（完全不写）/ `assert`（生效，风险自担）。
+`--untrusted-policy` 可切 `comment`（默认，留痕不生效）/ `skip`（完全不写）/
+`assert`（生效，风险自担）/ `consistency-only`（I-2：只放开"声明 vs 注解一致性"的 size/offset，
+已疑误归属与外部/无发射头的类仍留痕）。
 **A 级是证据形态等级，不是独立性等级** —— 这条写进头文件的错误处理表（branch 2）。
 
 ## 用法
@@ -63,7 +79,7 @@ import argparse
 import json
 import re
 import sys
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 
@@ -80,6 +96,10 @@ GRADE_C = 'C'               # 证据形态：decomp / 猜测 / 无
 TRUST_TRUSTED = 'trusted'
 TRUST_SAME_SOURCE = 'same-source'
 TRUST_SUSPECT = 'suspect'
+#: 一致性档（R=1，I-2）：常量与 annotation **同源** ⇒ 零"真理"判别力（E-2），
+#: 但断言比的是"codegen 发射声明 vs 注解常量"，故能抓 **stage 漂移**。
+#: 只在 `--untrusted-policy consistency-only` 下出现（默认口径逐字不变）。
+TRUST_CONSISTENCY_ONLY = 'consistency-only'
 
 KIND_SHAPE = 'shape'
 KIND_SIZE = 'size'
@@ -92,10 +112,18 @@ STATUS_OMITTED = 'omitted'
 POLICY_COMMENT = 'comment'
 POLICY_SKIP = 'skip'
 POLICY_ASSERT = 'assert'
-ALL_POLICIES = (POLICY_COMMENT, POLICY_SKIP, POLICY_ASSERT)
+#: 第 4 档（R=1，I-2）：仅把"声明 vs 注解一致性"断言（size/offset，未疑误归属，
+#: 且声明由注解发射）放开生效；形状与已疑误归属的常量仍按原档处理。
+POLICY_CONSISTENCY = 'consistency-only'
+ALL_POLICIES = (POLICY_COMMENT, POLICY_SKIP, POLICY_ASSERT, POLICY_CONSISTENCY)
 
 MARK_SUSPECT = '[SUSPECT]'
 MARK_SAME_SOURCE = '[SAME-SOURCE]'
+MARK_CONSISTENCY_ONLY = '[CONSISTENCY-ONLY]'
+
+#: 外部/规范头类名前缀（默认 gb：gbengine 独立库的声明来自 `include/gbengine/*`
+#: 手写 spec 头，可能自行引入虚函数/基类 ⇒ 注解的 vfptr 载体判定不成立）。
+DEFAULT_EXTERNAL_PREFIXES = ('gb',)
 
 #: 形状断言的常量出处：MSVC6 探针（独立于 annotation，A 形态）
 SHAPE_EVIDENCE_DETAIL = ('MSVC6 SP0 实测矩阵 E-4：虚基⇒12 / 多继承分支⇒8 / 单继承⇒4'
@@ -165,6 +193,12 @@ class ClassLayout:
     size_evidence: Evidence = EVIDENCE_DEFAULT
     bases_known: bool = True              # False = 注解/继承树都没有该类的基类信息
     polymorphic: bool = False             # 有 methods/vtables（漏注基类的风险最高，必须有断言）
+    #: ★ R=1（C-3）：注解 `vtables` 非空 ⇒ 该类**是 vfptr 载体**。判据只能用它，
+    #: 不能用 `methods`（codegen 发射 `virtual` 的判据就是 `vtables` 槽位：
+    #: `emit_headers.py:2460` `_addr_int_vt in _vtable_addr_order` ⇒ 只有 methods 的类
+    #: 在发射头里**没有** virtual，实测 `PalScriptWaitObj.h`）。
+    has_vtables: bool = False
+    has_methods: bool = False
     source_file: str = ''
 
 
@@ -177,6 +211,10 @@ class ShapeInfo:
     unresolved: frozenset = frozenset()
     reason: str = ''
     proven: bool = True
+    #: ★ R=1（C-3）：最基层 vfptr 载体（注解有 `vtables` 且无载体祖先）。
+    #: 它有直接基 ⇒ MSVC6 把 vfptr 排在非多态基类子对象之后（不在偏移 0）⇒ PMF 8。
+    carrier: Optional[str] = None
+    carrier_unproven: bool = False
 
 
 @dataclass(frozen=True)
@@ -207,6 +245,13 @@ class GenOptions:
     require_closed_world_shape: bool = False
     #: 只**渲染**这些类（闭包查表仍用全部布局 —— 否则形状会被误判为"闭包不完整"）
     only: Optional[frozenset] = None
+    #: ★ R=1（C-3 兜底）：外部/规范头类名前缀 ⇒ 声明不是注解发射的 ⇒ 形状一律 SUSPECT。
+    external_prefixes: Tuple[str, ...] = DEFAULT_EXTERNAL_PREFIXES
+    #: ★ R=1（C-3 兜底）：发射头名单（None = 不校验）。名单外的类（及其闭包内的类）
+    #: ⇒ 声明可能来自 spec 头/模板 ⇒ 形状/一致性断言不可证。
+    declared_classes: Optional[frozenset] = None
+    #: ★ R=1（I-2）：是否启用 consistency-only 档（由 POLICY_CONSISTENCY 置位）。
+    consistency_only: bool = False
 
 
 @dataclass
@@ -300,8 +345,45 @@ def _closure_of_bases(bases: Sequence[BaseSpec],
     return frozenset(seen)
 
 
+def vfptr_carrier(layout: ClassLayout, layouts: Mapping[str, ClassLayout],
+                  closure: Optional[frozenset] = None) -> Tuple[Optional[str], bool]:
+    """最基层 vfptr 载体（R=1，C-3）⇒ `(载体名 or None, 判定是否可证)`。
+
+    **载体** = 注解 `vtables` 非空（★ 判据只能用它，不能用 `methods`）。codegen 发射 `virtual`
+    的判据就是注解 `vtables` 的槽位（`pipeline/gen/stages/emit_headers.py:2460`
+    `_addr_int_vt in _vtable_addr_order`）⇒ 只有 `methods` 的类在**发射头**里没有 virtual
+    （实测 `pal3/src/Misc/PalScriptWaitObj.h`：`char ReleaseObject(char *pszBuf);` 非虚）。
+
+    **最基层** = `{自身} ∪ 闭包` 中没有任何"载体祖先"的那个载体（单链里唯一）。
+    它有直接基 ⇒ MSVC6 把 vfptr 排在非多态基类子对象之后（不在偏移 0）⇒ PMF 8。
+    """
+    cl = closure if closure is not None else _closure_of_bases(layout.bases, layouts)
+    carriers: set = set()
+    if layout.has_vtables:
+        carriers.add(layout.name)
+    for b in cl:
+        bl = layouts.get(b)
+        if bl is not None and bl.has_vtables:
+            carriers.add(b)
+    if not carriers:
+        return None, True
+    roots = sorted(c for c in carriers if not (transitive_bases(c, layouts) & carriers))
+    if not roots:                       # 继承图成环/自指 ⇒ 判据不成立
+        return None, False
+    return roots[0], True
+
+
 def shape_info(layout: ClassLayout, layouts: Mapping[str, ClassLayout]) -> ShapeInfo:
-    """按实际继承形状算 PMF 尺寸（E-4 封闭规则，走传递闭包）。"""
+    """按实际继承形状 + **vfptr 引入点**算 PMF 尺寸（E-4 封闭规则 + R=1 的 C-3）。
+
+    规则（真机 MSVC6 逐条实测，`shape.cpp` / `p3.cpp` / 本轮 `pmf_intro.cpp`）：
+    ```
+    闭包内有虚基                      ⇒ 12
+    否则闭包内出现多继承分支          ⇒ 8
+    否则最基层 vfptr 载体**有直接基** ⇒ 8   （vfptr 不在偏移 0）
+    否则                              ⇒ 4
+    ```
+    """
     closure = _closure_of_bases(layout.bases, layouts)
     unresolved = {b for b in closure if b not in layouts}
 
@@ -316,9 +398,20 @@ def shape_info(layout: ClassLayout, layouts: Mapping[str, ClassLayout]) -> Shape
         if len(_direct_bases(bl)) > 1:
             branching = True
 
+    carrier, carrier_ok = vfptr_carrier(layout, layouts, closure)
+    if carrier is None:
+        vfptr_at_zero = True                     # 无 vfptr ⇒ 与 4 字节表示相容
+    elif carrier == layout.name:
+        vfptr_at_zero = not layout.bases         # 载体是自身（探针类不在 layouts 里）
+    else:
+        carrier_layout = layouts.get(carrier)
+        vfptr_at_zero = carrier_layout is not None and not carrier_layout.bases
+
     if has_virtual:
         pmf = PMF_SIZE_VIRTUAL
     elif branching:
+        pmf = PMF_SIZE_MULTIPLE
+    elif carrier is not None and not vfptr_at_zero:
         pmf = PMF_SIZE_MULTIPLE
     else:
         pmf = PMF_SIZE_SINGLE
@@ -330,7 +423,7 @@ def shape_info(layout: ClassLayout, layouts: Mapping[str, ClassLayout]) -> Shape
         proven = False
         reason = '继承闭包不完整：未知基类 %s ⇒ 形状不可证' % ','.join(sorted(unresolved))
     else:
-        proven = True
+        proven = carrier_ok
         vbs = {b.name for b in _direct_bases(layout) if b.is_virtual}
         vbs |= {b for b in closure
                 if b in layouts and any(x.is_virtual for x in _direct_bases(layouts[b]))}
@@ -339,16 +432,26 @@ def shape_info(layout: ClassLayout, layouts: Mapping[str, ClassLayout]) -> Shape
                       % ','.join(sorted(vbs)))
         elif branching:
             reason = '继承闭包内有多继承分支 ⇒ 8（★ 单直接基但基类是多继承类时也是 8）'
+        elif carrier is not None and not vfptr_at_zero:
+            reason = ('最基层 vfptr 载体 %s 有直接基 ⇒ vfptr 不在偏移 0（MSVC6 把 vfptr 排在非多态'
+                      '基类子对象之后）⇒ 8（pmf_intro.cpp 实测 INTRO:NP_A ⇒ 8，RoleCameraCtrl ⇒ 8）'
+                      % carrier)
+        elif carrier is None:
+            reason = '单继承链且闭包内无 vfptr 载体 ⇒ 4'
         else:
-            reason = '单继承链 ⇒ 4'
+            reason = ('单继承链且 vfptr 载体 %s 无直接基（vfptr 在偏移 0）⇒ 4' % carrier)
     return ShapeInfo(pmf_size=pmf, has_virtual_base=has_virtual, branching=branching,
                      closure=closure, unresolved=frozenset(unresolved), reason=reason,
-                     proven=proven)
+                     proven=proven, carrier=carrier, carrier_unproven=not carrier_ok)
 
 
-def pmf_size_for(bases: Sequence[BaseSpec], layouts: Mapping[str, ClassLayout]) -> int:
-    """给定直接基列表，返回 MSVC6 的 `sizeof(void (Cls::*)())`。"""
-    probe = ClassLayout(name='<probe>', bases=tuple(bases))
+def pmf_size_for(bases: Sequence[BaseSpec], layouts: Mapping[str, ClassLayout],
+                 has_vtables: bool = False) -> int:
+    """给定直接基列表，返回 MSVC6 的 `sizeof(void (Cls::*)())`。
+
+    `has_vtables`：被探测的类**自己**是否是 vfptr 载体（C-3 的载体规则需要）。
+    """
+    probe = ClassLayout(name='<probe>', bases=tuple(bases), has_vtables=has_vtables)
     return shape_info(probe, layouts).pmf_size
 
 
@@ -356,13 +459,51 @@ def virtual_base_region(layout: ClassLayout, layouts: Mapping[str, ClassLayout])
     """必须跳过 offsetof 的类集合 = 各虚基 + 它们的传递闭包（E-3）。
 
     这些类里的成员 offset 需运行期查 vbtable ⇒ 不是常量表达式（C2057）。
+
+    ★ R=1（C-1）：必须遍历**整个闭包**找虚基，不能只看**直接**虚基。实测反例
+    （评审 + `data/status/_layout_assert_probe_20260925/README.md` §2.1）：
+        `struct VB2 : virtual V1;  struct IVB : VB2;`  ⇒  `offsetof(IVB, vv)` **C2057 + C2466**
+    而 R=0 只看 IVB 的直接虚基（VB2 是**非虚**基）⇒ 返回 `[]` ⇒ 断言生效 ⇒ 编译停摆。
+    同时（off.cpp o3 实测）**非虚**基的成员仍是常量 ⇒ 不得把 VB2 本身放进集合。
     """
     region: set = set()
-    for b in _direct_bases(layout):
-        if b.is_virtual:
-            region.add(b.name)
-            region |= transitive_bases(b.name, layouts)
+    visited: set = set()
+    stack = [layout]
+    while stack:
+        cur = stack.pop()
+        if cur.name in visited:
+            continue
+        visited.add(cur.name)
+        for b in _direct_bases(cur):
+            if b.is_virtual:
+                region.add(b.name)
+                region |= transitive_bases(b.name, layouts)
+            bl = layouts.get(b.name)
+            if bl is not None:
+                stack.append(bl)
     return frozenset(region)
+
+
+def declaration_faithful(layout: ClassLayout, options: GenOptions) -> Tuple[bool, str]:
+    """该类的**声明**是否由 codegen 从注解发射 ⇒ `(可否依赖, 原因)`（R=1，C-3 兜底）。
+
+    形状断言与一致性断言比的都是"codegen 发射的声明 vs 注解常量"；若声明来自别处
+    （spec 头 / 独立库 / 模板），注解里的 `vtables`/基类可能与真实声明不符 ⇒ 断言会**假杀**。
+
+    实测（评审 + 本轮）：`gbTexture` 的声明在 `include/gbengine/gbTexture.h`（手写 spec 头，
+    `gbRefObject` 自带 `virtual ~`）⇒ 真值 **4**，而按注解链（`gbResource`/`gbRefObject`
+    没有 `vtables`）套载体规则会算成 **8** ⇒ 过判。故外部前缀（gb*）与"无发射头"一律降级。
+    """
+    name = layout.name or ''
+    for prefix in tuple(options.external_prefixes or ()):
+        if prefix and name.startswith(prefix):
+            return False, ('外部类（%s*：声明来自 spec 头/独立库，可自行引入虚函数或基类 ⇒ 注解的 '
+                           'vfptr 载体与真实声明不符：gbTexture 规范头实测真值 4，而注解规则给 8）'
+                           '⇒ 不可证' % prefix)
+    if options.declared_classes is not None and name not in options.declared_classes:
+        return False, ('无发射头（%s 不在 --declared-classes 名单内）⇒ 声明可能来自 spec 头/模板'
+                       '（可自行补基类或虚函数）⇒ 不可证' % name)
+    return True, ''
 
 
 def _shape_proven_under_options(layout: ClassLayout, layouts: Mapping[str, ClassLayout],
@@ -373,6 +514,16 @@ def _shape_proven_under_options(layout: ClassLayout, layouts: Mapping[str, Class
     if embedding:
         return False, ('该类把多继承建模成内嵌基类成员（%s）⇒ 声明的继承形状 ≠ 注解形状 ⇒ '
                        'PMF 断言不可证' % embedding)
+    if info.carrier_unproven:
+        return False, 'vfptr 载体判定不可证（继承图成环/自指）⇒ 形状不可证'
+    # ★ R=1（C-3 兜底）：闭包内每个类的声明都必须是"注解发射"的 —— 载体判定依赖闭包内
+    # 每个类的 `vtables`；spec/外部基类可自行引入虚函数 ⇒ 判定不成立。
+    for lay in [layout] + [layouts[b] for b in sorted(info.closure) if b in layouts]:
+        ok, why = declaration_faithful(lay, options)
+        if not ok:
+            if lay.name != layout.name:
+                why = '闭包内 %s：%s' % (lay.name, why)
+            return False, why
     if options.require_closed_world_shape:
         for b in info.closure:
             bl = layouts.get(b)
@@ -476,7 +627,9 @@ def build_assertions(layouts, options: GenOptions = GenOptions()) -> List[Assert
 
 
 def _status_for(trust: str, policy: str) -> str:
-    if trust == TRUST_TRUSTED:
+    # consistency-only 只在 `--untrusted-policy consistency-only` 下出现，
+    # 出现即意味着"该档已启用"（I-2）⇒ 直接生效。
+    if trust in (TRUST_TRUSTED, TRUST_CONSISTENCY_ONLY):
         return STATUS_ACTIVE
     if policy == POLICY_ASSERT:
         return STATUS_ACTIVE
@@ -485,9 +638,27 @@ def _status_for(trust: str, policy: str) -> str:
     return STATUS_COMMENTED
 
 
+def _assertion_trust(ev: Evidence, options: GenOptions,
+                     consistency_ok: bool = True) -> Tuple[str, str]:
+    """size/offset 断言的 `(trust, reason)`；I-2 的 consistency-only 档在此生效。"""
+    trust = evidence_trust(ev)
+    if (options.consistency_only and consistency_ok
+            and trust != TRUST_TRUSTED and not ev.misattributed):
+        return TRUST_CONSISTENCY_ONLY, (
+            '一致性断言：常量与注解同源 ⇒ 零真理判别力（E-2）；只用于捕获 codegen **声明**'
+            '相对注解常量的 stage 漂移，不得当作布局真值证据')
+    return trust, _trust_reason(ev)
+
+
 def _plan(layouts, options: GenOptions
           ) -> Tuple[List[Assertion], List[str], List[str], List[str]]:
-    """→ (assertions, skipped 描述, warnings, offset_skipped 键)"""
+    """→ (assertions, skipped 描述, warnings, offset_skipped 键)
+
+    单一咽喉点：`--untrusted-policy consistency-only` 即等价于打开 consistency-only 档
+    （I-2），API 与 CLI 两条路径行为一致。
+    """
+    if options.untrusted_policy == POLICY_CONSISTENCY and not options.consistency_only:
+        options = replace(options, consistency_only=True)
     norm, warnings = _normalize_layouts(layouts)
     registry = NameRegistry()
     assertions: List[Assertion] = []
@@ -499,6 +670,8 @@ def _plan(layouts, options: GenOptions
             continue
         layout = norm[cls_name]
         san = sanitize_ident(cls_name)
+        #: 一致性档（I-2）的前提：该类的声明由注解发射（否则比的不是"声明 vs 注解"）
+        consistency_ok = declaration_faithful(layout, options)[0]
 
         # --- 继承形状（PMF 尺寸）---
         # 无基类信息且非多态的 POD 结构体（RECT/tag* 之类）不生成形状断言：
@@ -521,14 +694,14 @@ def _plan(layouts, options: GenOptions
         # --- sizeof ---
         if options.emit_size and layout.binary_size is not None:
             ev = layout.size_evidence
-            trust = evidence_trust(ev)
+            trust, reason = _assertion_trust(ev, options, consistency_ok)
             assertions.append(Assertion(
                 kind=KIND_SIZE, cls=cls_name,
                 name=registry.reserve('_a_%s_size' % san),
                 condition='sizeof(%s) == %d' % (cls_name, layout.binary_size),
                 expected=int(layout.binary_size), evidence=ev, trust=trust,
                 status=_status_for(trust, options.untrusted_policy),
-                reason=_trust_reason(ev),
+                reason=reason,
             ))
 
         # --- 成员偏移 ---
@@ -541,14 +714,14 @@ def _plan(layouts, options: GenOptions
                     offset_skipped.append('%s::%s' % (cls_name, m.name or '<unnamed>'))
                     continue
                 ev = m.evidence
-                trust = evidence_trust(ev)
+                trust, reason = _assertion_trust(ev, options, consistency_ok)
                 assertions.append(Assertion(
                     kind=KIND_OFFSET, cls=cls_name, member=m.name,
                     name=registry.reserve('_a_%s_%s' % (san, sanitize_ident(m.name))),
                     condition='offsetof(%s, %s) == %d' % (cls_name, m.name, m.offset),
                     expected=int(m.offset), evidence=ev, trust=trust,
                     status=_status_for(trust, options.untrusted_policy),
-                    reason=_trust_reason(ev),
+                    reason=reason,
                 ))
     return assertions, skipped, warnings, offset_skipped
 
@@ -572,6 +745,7 @@ def _census(assertions: Sequence[Assertion], skipped: Sequence[str]) -> Dict[str
         TRUST_TRUSTED: by_trust.get(TRUST_TRUSTED, 0),
         TRUST_SAME_SOURCE: by_trust.get(TRUST_SAME_SOURCE, 0),
         TRUST_SUSPECT: by_trust.get(TRUST_SUSPECT, 0),
+        TRUST_CONSISTENCY_ONLY: by_trust.get(TRUST_CONSISTENCY_ONLY, 0),
         'by_kind': by_kind,
         'by_trust': by_trust,
         'skip_reasons': skip_reasons,
@@ -597,6 +771,12 @@ _ERROR_TABLE = """\
  *  branch 3  C2057 'expected constant expression' / C2466（offsetof 于虚基区域）
  *            ⇒ 生成器本应跳过该类成员（E-3：p3.cpp:28 与 off.cpp:18 实测虚基成员、
  *              虚基的非虚基之成员都不是常量表达式）⇒ 报生成器缺陷，不要手删断言了事。
+ *              注：虚基区域走**整个继承闭包**（R=1 C-1：`VB2 : virtual V1; IVB : VB2`
+ *              的 `offsetof(IVB, vv)` 实测 C2057+C2466，只看直接虚基会漏）。
+ *  branch 4  生效行带 [CONSISTENCY-ONLY] 断言失败（`--untrusted-policy consistency-only`）
+ *            ⇒ 常量与注解同源，失败意味着 **codegen 发射的声明与注解常量漂移**
+ *              （stage 变换 / F59 static 化 / 多继承内嵌建模），不是布局真值错误：
+ *              先查 stage，再决定改注解还是改 stage；该档**不得**当作布局真值证据（E-2）。
  *
  * 另：本文件必须在**全部类声明之后**包含（sizeof/offsetof 需要完整类型）；
  *     若报 C2027 'use of undefined type' ⇒ include 位置不对，不是布局错误。
@@ -608,6 +788,8 @@ _ERROR_TABLE = """\
 def _render_assertion(a: Assertion) -> str:
     body = 'typedef char %s[(%s) ? 1 : -1];' % (a.name, a.condition)
     tail_bits = [a.kind, a.trust]
+    if a.trust == TRUST_CONSISTENCY_ONLY:
+        tail_bits.insert(0, MARK_CONSISTENCY_ONLY)
     detail = (a.evidence.detail or '').replace('*/', '* /').replace('\n', ' ')
     if a.reason:
         tail_bits.append(a.reason)
@@ -616,7 +798,12 @@ def _render_assertion(a: Assertion) -> str:
     tail = ' /* %s */' % ' | '.join(tail_bits)
     if a.status == STATUS_ACTIVE:
         return body + tail
-    mark = MARK_SUSPECT if a.trust == TRUST_SUSPECT else MARK_SAME_SOURCE
+    if a.trust == TRUST_SUSPECT:
+        mark = MARK_SUSPECT
+    elif a.trust == TRUST_CONSISTENCY_ONLY:
+        mark = MARK_CONSISTENCY_ONLY
+    else:
+        mark = MARK_SAME_SOURCE
     return '// %s %s%s' % (mark, body, tail)
 
 
@@ -642,8 +829,9 @@ def render_header(res: HeaderResult, options: GenOptions,
     lines.append(' * 统计: total=%s active=%s commented=%s omitted=%s skipped=%s'
                  % (c.get('total'), c.get('active'), c.get('commented'),
                     c.get('omitted'), c.get('skipped')))
-    lines.append(' *   trusted=%s same-source=%s suspect=%s'
-                 % (c.get(TRUST_TRUSTED), c.get(TRUST_SAME_SOURCE), c.get(TRUST_SUSPECT)))
+    lines.append(' *   trusted=%s same-source=%s suspect=%s consistency-only=%s'
+                 % (c.get(TRUST_TRUSTED), c.get(TRUST_SAME_SOURCE), c.get(TRUST_SUSPECT),
+                    c.get(TRUST_CONSISTENCY_ONLY, 0)))
     if options.generated_note:
         lines.append(' * 注记: %s' % options.generated_note.replace('\n', ' '))
     lines.append(' */')
@@ -745,6 +933,17 @@ def load_virtual_bases(path) -> Dict[str, List[str]]:
     return out
 
 
+def load_declared_classes(path) -> frozenset:
+    """发射头名单（R=1，C-3 兜底）：JSON **数组** `["Cls", ...]` 或**对象** `{"Cls": "头文件"}`。
+
+    名单语义 = "该类的声明由 codegen 从注解发射"（Task 8 可由 `pal3/src/**` 反查生成）。
+    名单之外 ⇒ 形状/一致性断言降级（声明可能来自 spec 头/模板，会自行补基类或虚函数）。
+    """
+    data = json.loads(Path(path).read_text(encoding='utf-8'))
+    keys = data.keys() if isinstance(data, dict) else (data or [])
+    return frozenset(str(k) for k in keys if k)
+
+
 def load_evidence(path) -> Dict[str, Dict[str, object]]:
     """独立证据文件：`{"Cls": {"size": {...}, "members": {...}, "shape": {...}}}`。"""
     data = json.loads(Path(path).read_text(encoding='utf-8'))
@@ -801,6 +1000,24 @@ def load_struct_layouts(structs_dir, tree_path=None, virtual_bases=None,
             if b.get('is_virtual') or b.get('virtual'):
                 vb_from_obj.add(bn)
         vb = set(virtual_bases.get(name, [])) | vb_from_obj
+        # ★ R=1（C-2）：`--virtual-bases` 的名字必须**加入** bases。
+        # R=0 的写法（`is_virtual=bn in vb`，bn 只遍历 base_names）等于把 vb 与 base_names
+        # **求交** ⇒ 注解 `base_class` 里没有的虚基被**静默丢弃**（零 warning）：
+        # 实测喂 `{'D': ['V1']}`（V1 是 D 的间接虚基、D 的 base_class=['VB2']）
+        # ⇒ `D.bases=[('VB2',False)]`、pmf=4（应 12）、region=[] —— 而这是 Task 8 唯一的
+        # 虚基回填入口 ⇒ 整条虚基判据失效。
+        extra = [bn for bn in sorted(vb) if bn not in base_names]
+        if extra:
+            base_names = list(base_names) + extra
+            bases_known = True
+            for bn in extra:
+                if bn not in objs and bn not in tree:
+                    warnings.append('%s: --virtual-bases 的虚基 %s 不在 base_class/继承树/注解中 ⇒ '
+                                    '已加入 bases，但它没有布局信息 ⇒ 形状不可证（断言降级）'
+                                    % (name, bn))
+                else:
+                    warnings.append('%s: --virtual-bases 的虚基 %s 不在 base_class/继承树中 ⇒ '
+                                    '已加入 bases（虚基）' % (name, bn))
         bases = tuple(BaseSpec(name=bn, offset=offsets.get(bn), is_virtual=bn in vb)
                       for bn in base_names)
 
@@ -836,6 +1053,7 @@ def load_struct_layouts(structs_dir, tree_path=None, virtual_bases=None,
             binary_size=int(size) if size is not None else None,
             size_evidence=size_evidence, bases_known=bases_known,
             polymorphic=bool(obj.get('methods') or obj.get('vtables')),
+            has_vtables=bool(obj.get('vtables')), has_methods=bool(obj.get('methods')),
             source_file=str(structs_dir))
     load_struct_layouts.warnings = warnings        # 供 CLI/报告读取（不改变返回值契约）
     return layouts
@@ -855,6 +1073,10 @@ def _build_argparser() -> argparse.ArgumentParser:
                    help='虚基覆盖 JSON：{"Cls": ["Base", ...]}')
     p.add_argument('--evidence', default=None,
                    help='独立证据 JSON：{"Cls": {"size": {...}, "members": {...}}}')
+    p.add_argument('--declared-classes', default=None,
+                   help='发射头名单 JSON（数组或 {类名: 头文件}）：名单外的类形状/一致性断言降级')
+    p.add_argument('--external-prefix', default=','.join(DEFAULT_EXTERNAL_PREFIXES),
+                   help='外部/规范头类名前缀（逗号分隔，默认 gb；空串关闭）')
     p.add_argument('--out', default='_layout_asserts.h')
     p.add_argument('--untrusted-policy', choices=ALL_POLICIES, default=POLICY_COMMENT)
     p.add_argument('--only', default=None, help='逗号分隔的类名白名单')
@@ -879,6 +1101,8 @@ def main(argv=None) -> int:
 
     vb = load_virtual_bases(args.virtual_bases) if args.virtual_bases else None
     ev = load_evidence(args.evidence) if args.evidence else None
+    declared = load_declared_classes(args.declared_classes) if args.declared_classes else None
+    external = tuple(s.strip() for s in (args.external_prefix or '').split(',') if s.strip())
     layouts = load_struct_layouts(args.structs, tree_path=args.tree,
                                   virtual_bases=vb, evidence=ev)
     if args.only:
@@ -895,8 +1119,11 @@ def main(argv=None) -> int:
         emit_shape=not args.no_shape, emit_size=not args.no_size,
         emit_offset=not args.no_offset, include_stddef=not args.no_stddef,
         require_closed_world_shape=args.require_closed_world_shape,
-        generated_note='--structs %s%s' % (args.structs,
-                                           '' if not keep else ' --only %s' % ','.join(sorted(keep))),
+        consistency_only=(args.untrusted_policy == POLICY_CONSISTENCY),
+        external_prefixes=external, declared_classes=declared,
+        generated_note='--structs %s%s%s' % (args.structs,
+                                             '' if not keep else ' --only %s' % ','.join(sorted(keep)),
+                                             '' if declared is None else ' --declared-classes(%d)' % len(declared)),
         only=keep,
     )
     res = generate(layouts, options)

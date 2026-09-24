@@ -32,6 +32,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / 'tools'))
 
 from layout_assert_gen import (  # noqa: E402
+    ALL_POLICIES,
     EVIDENCE_DEFAULT,
     GRADE_A,
     GRADE_B,
@@ -39,6 +40,7 @@ from layout_assert_gen import (  # noqa: E402
     KIND_OFFSET,
     KIND_SHAPE,
     KIND_SIZE,
+    MARK_CONSISTENCY_ONLY,
     MARK_SAME_SOURCE,
     MARK_SUSPECT,
     PMF_SIZE_MULTIPLE,
@@ -46,10 +48,12 @@ from layout_assert_gen import (  # noqa: E402
     PMF_SIZE_VIRTUAL,
     POLICY_ASSERT,
     POLICY_COMMENT,
+    POLICY_CONSISTENCY,
     POLICY_SKIP,
     STATUS_ACTIVE,
     STATUS_COMMENTED,
     STATUS_OMITTED,
+    TRUST_CONSISTENCY_ONLY,
     TRUST_SAME_SOURCE,
     TRUST_SUSPECT,
     TRUST_TRUSTED,
@@ -59,6 +63,7 @@ from layout_assert_gen import (  # noqa: E402
     GenOptions,
     MemberSpec,
     NameRegistry,
+    _build_argparser,
     build_assertions,
     evidence_from_source,
     evidence_trust,
@@ -97,10 +102,13 @@ def _m(name, offset, owner=None, in_vbase=False, ev=None, type_='int'):
                       type=type_, evidence=ev if ev is not None else EVIDENCE_DEFAULT)
 
 
-def _cls(name, bases=(), members=(), size=None, size_ev=None):
+def _cls(name, bases=(), members=(), size=None, size_ev=None,
+         vtables=False, methods=False):
     return ClassLayout(name=name, bases=tuple(bases), members=tuple(members),
                        binary_size=size,
-                       size_evidence=size_ev if size_ev is not None else EVIDENCE_DEFAULT)
+                       size_evidence=size_ev if size_ev is not None else EVIDENCE_DEFAULT,
+                       polymorphic=bool(vtables or methods), has_vtables=vtables,
+                       has_methods=methods)
 
 
 def _names(text):
@@ -658,6 +666,406 @@ def test_real_data_generates_header_with_active_shape_asserts():
     assert '#include <stddef.h>' in res.text
     names = _names(res.text)
     assert len(names) == len(set(names))
+
+
+# ========= 7. C-1（R=1 评审）：间接虚基必须遍历**整个闭包** =========
+
+def test_indirect_virtual_base_region_covers_whole_closure():
+    """★★ C-1 实测反例：`VB2 : virtual V1` / `IVB : VB2` ⇒ V1 是 IVB 的**间接**虚基。
+
+    评审实测 `offsetof(IVB, vv)`（vv 声明在 V1）⇒ **C2057 + C2466**；而 R=0 的
+    `virtual_base_region` 只看 IVB 的**直接**虚基（VB2 非虚）⇒ 返回 `[]`、
+    `member_offset_assertable(IVB, vv, owner='V1')` 返回 True ⇒ 断言生效 ⇒ 编译停摆。
+    """
+    layouts = {
+        'V1': _cls('V1', members=[_m('vv', 4)]),
+        'VB2': _cls('VB2', bases=[_b('V1', virtual=True)], members=[_m('x', 8)]),
+        'IVB': _cls('IVB', bases=[_b('VB2')], members=[_m('dm', 4)]),
+    }
+    region = virtual_base_region(layouts['IVB'], layouts)
+    assert 'V1' in region, region
+    # VB2 是 IVB 的**非虚**基 ⇒ 其成员偏移仍是常量（off.cpp o3 实测）⇒ 不得进跳过集合
+    assert 'VB2' not in region, region
+    ok, reason = member_offset_assertable(layouts['IVB'], _m('vv', 12, owner='V1'), layouts)
+    assert ok is False, reason
+    assert 'C2057' in reason or '虚基' in reason, reason
+    ok2, reason2 = member_offset_assertable(layouts['IVB'], _m('x', 8, owner='VB2'), layouts)
+    assert ok2 is True, reason2
+
+
+def test_indirect_virtual_base_member_never_yields_active_offset_assert():
+    """C-1 端到端：间接虚基成员不得出现在**生效**的 offset 断言里。"""
+    layouts = {
+        'V1': _cls('V1', members=[_m('vv', 4, ev=_ev())], size=8, size_ev=_ev()),
+        'VB2': _cls('VB2', bases=[_b('V1', virtual=True)], members=[_m('x', 8, ev=_ev())],
+                    size=16, size_ev=_ev()),
+        'IVB': _cls('IVB', bases=[_b('VB2')],
+                    members=[_m('dm', 4, ev=_ev()),
+                             _m('vv', 12, owner='V1', ev=_ev())],
+                    size=24, size_ev=_ev()),
+    }
+    res = generate(layouts, GenOptions())
+    active = [a for a in res.assertions
+              if a.kind == KIND_OFFSET and a.status == STATUS_ACTIVE]
+    # V1/VB2 **自己**的成员断言是合法的（在那个类里 offsetof 是常量）；
+    # 但 IVB 上看 V1 的成员（间接虚基区域）必须被跳过。
+    assert not [a for a in active if a.cls == 'IVB' and a.member == 'vv'], active
+    assert [a for a in active if a.cls == 'IVB' and a.member == 'dm'], active
+    assert res.offset_skipped and any('IVB::vv' in k for k in res.offset_skipped), res.offset_skipped
+
+
+def test_deep_indirect_virtual_base_region_is_transitive():
+    """更深一层的间接虚基（V1 的非虚基 NP 之成员）同样非常量（E-3/off.cpp:18 的闭包版）。"""
+    layouts = {
+        'NP': _cls('NP', members=[_m('w', 4)]),
+        'V1': _cls('V1', bases=[_b('NP')], members=[_m('vv', 8)]),
+        'VB2': _cls('VB2', bases=[_b('V1', virtual=True)], members=[_m('x', 12)]),
+        'IVB': _cls('IVB', bases=[_b('VB2')], members=[_m('dm', 4)]),
+    }
+    region = virtual_base_region(layouts['IVB'], layouts)
+    assert {'V1', 'NP'} <= region, region
+    ok, reason = member_offset_assertable(layouts['IVB'], _m('w', 16, owner='NP'), layouts)
+    assert ok is False and ('C2057' in reason or '虚基' in reason), reason
+
+
+# ========= 8. C-2（R=1 评审）：`--virtual-bases` 必须**加入** bases =========
+
+def test_virtual_bases_override_adds_missing_base_instead_of_intersecting():
+    """★★ C-2：`virtual_bases={'D': ['V1']}` 而 D 的 `base_class` 只有 `['VB2']`
+    ⇒ R=0 把 `vb` 与 `base_names` **求交** ⇒ V1 被静默丢弃：
+    `D.bases=[('VB2',False)]`、`pmf=4`（应 12）、`region=[]`、**零 warning**。
+    这是 Task 8 唯一的虚基回填入口 ⇒ 静默失效 = 整条虚基判据失效。
+    """
+    with tempfile.TemporaryDirectory() as tmp:
+        d = Path(tmp) / 'structs'
+        d.mkdir()
+        _write(d, 'V1.json', {'name': 'V1', 'binary_size': 8})
+        _write(d, 'VB2.json', {'name': 'VB2', 'binary_size': 16, 'base_class': ['V1']})
+        _write(d, 'D.json', {'name': 'D', 'binary_size': 32, 'base_class': ['VB2']})
+        layouts = load_struct_layouts(d, virtual_bases={'D': ['V1']})
+        names = [b.name for b in layouts['D'].bases]
+        assert names == ['VB2', 'V1'], names
+        got = [b for b in layouts['D'].bases if b.name == 'V1'][0]
+        assert got.is_virtual is True
+        assert pmf_size_for(layouts['D'].bases, layouts) == PMF_SIZE_VIRTUAL
+        assert 'V1' in virtual_base_region(layouts['D'], layouts)
+
+
+def test_virtual_bases_override_unknown_name_is_added_and_warned():
+    """未知名也必须**加入** bases（否则又变成静默丢弃）+ 必须 WARN（标出"无布局信息"）。"""
+    with tempfile.TemporaryDirectory() as tmp:
+        d = Path(tmp) / 'structs'
+        d.mkdir()
+        _write(d, 'A.json', {'name': 'A', 'binary_size': 8})
+        _write(d, 'D.json', {'name': 'D', 'binary_size': 16, 'base_class': ['A']})
+        layouts = load_struct_layouts(d, virtual_bases={'D': ['GhostVBase']})
+        assert [b.name for b in layouts['D'].bases] == ['A', 'GhostVBase']
+        assert [b for b in layouts['D'].bases if b.name == 'GhostVBase'][0].is_virtual is True
+        warns = list(load_struct_layouts.warnings)
+        assert any('GhostVBase' in w for w in warns), warns
+        # 未知基 ⇒ 形状不可证 ⇒ 断言必须降级（不得假 C2118）
+        res = generate(layouts, GenOptions())
+        shape = [a for a in res.assertions if a.kind == KIND_SHAPE and a.cls == 'D'][0]
+        assert shape.trust == TRUST_SUSPECT and shape.status == STATUS_COMMENTED
+
+
+def test_virtual_bases_override_on_real_annotation_files_is_honored():
+    """annotation 目录形态的回归：覆盖文件改的虚基必须真正改变 bases/region/pmf。"""
+    with tempfile.TemporaryDirectory() as tmp:
+        d = Path(tmp) / 'structs'
+        d.mkdir()
+        _write(d, 'V1.json', {'name': 'V1', 'binary_size': 8,
+                              'known_members': {'4': {'name': 'vv', 'type': 'int'}}})
+        _write(d, 'VB2.json', {'name': 'VB2', 'binary_size': 16, 'base_class': ['V1'],
+                               'known_members': {'8': {'name': 'x', 'type': 'int'}}})
+        _write(d, 'IVB.json', {'name': 'IVB', 'binary_size': 32, 'base_class': ['VB2'],
+                               'known_members': {'4': {'name': 'dm', 'type': 'int'}}})
+        layouts = load_struct_layouts(d, virtual_bases={'IVB': ['V1']})
+        assert 'V1' in [b.name for b in layouts['IVB'].bases]
+        res = generate(layouts, GenOptions())
+        assert not [a for a in res.assertions
+                    if a.kind == KIND_OFFSET and a.status == STATUS_ACTIVE
+                    and a.cls == 'IVB' and a.member == 'vv']
+
+
+# ========= 9. C-3（R=1 评审）：PMF 还取决于 **vfptr 引入点** =========
+
+def test_pmf_vfptr_introduced_by_derived_over_nonvirtual_base_is_8():
+    """★★ C-3 核心：非多态基 + 派生类**自己**引入 vfptr ⇒ PMF **8**（不是 4）。
+
+    真机 MSVC6 实测（`pmf_intro.cpp`，`/O2 /GR` + `/FAs` 读编译器自己算的常量）：
+    `INTRO : NP_A {virtual f}` ⇒ 8；`INTRO_D : INTRO` ⇒ 8；`INTRO_MID : NP_MID {virtual f}` ⇒ 8；
+    而 `SI_P : P_A`（基类自己带 vfptr）⇒ 4。⇒ 4 字节 PMF 要求 **vfptr 在偏移 0**；
+    基类非多态时 MSVC 把 vfptr **排在基类子对象之后**（同实测 `sizeof` 也 +4）。
+    """
+    layouts = {'NP': _cls('NP')}
+    intro = _cls('INTRO', bases=[_b('NP')], vtables=True)
+    assert shape_info(intro, layouts).pmf_size == PMF_SIZE_MULTIPLE
+    assert shape_info(intro, layouts).carrier == 'INTRO'
+    assert shape_info(intro, layouts).reason
+    layouts['INTRO'] = intro
+    deep = _cls('DEEP', bases=[_b('INTRO')])
+    layouts['DEEP'] = deep
+    assert shape_info(deep, layouts).pmf_size == PMF_SIZE_MULTIPLE
+
+
+def test_pmf_polymorphic_base_chain_stays_4():
+    """基类自己带 vfptr（注解 `vtables`）⇒ vfptr 在偏移 0 ⇒ 单链仍是 **4**（实测 SI_P/PD2）。"""
+    layouts = {'PB': _cls('PB', vtables=True), 'D': _cls('D', bases=[_b('PB')])}
+    assert shape_info(layouts['D'], layouts).pmf_size == PMF_SIZE_SINGLE
+    assert shape_info(layouts['D'], layouts).carrier == 'PB'
+    layouts['D2'] = _cls('D2', bases=[_b('PB')], vtables=True)
+    assert shape_info(layouts['D2'], layouts).pmf_size == PMF_SIZE_SINGLE
+
+
+def test_pmf_carrier_is_decided_by_vtables_not_methods():
+    """★★ C-3 根因：`polymorphic` 混用 `methods`/`vtables` ⇒ 载体判定必须**只看 vtables**。
+
+    codegen 发射 `virtual` 的判据是注解 `vtables` 的槽位（`emit_headers.py:2460`
+    `_addr_int_vt in _vtable_addr_order`）⇒ 只有 `methods` 的基类在发射头里**没有** virtual
+    （`PalScriptWaitObj.h` 实测 `char ReleaseObject(char *pszBuf);` 非虚）⇒ 它不是载体。
+    """
+    base = _cls('NB', methods=True)                    # 只有 methods，无 vtables
+    layouts = {'NB': base, 'PD': _cls('PD', bases=[_b('NB')], vtables=True)}
+    assert shape_info(layouts['PD'], layouts).carrier == 'PD'
+    assert shape_info(layouts['PD'], layouts).pmf_size == PMF_SIZE_MULTIPLE
+    # 同一形状，但基类 annotated 为**载体** ⇒ 4
+    layouts2 = {'NB': _cls('NB', methods=True, vtables=True),
+                'PD': _cls('PD', bases=[_b('NB')], vtables=True)}
+    assert shape_info(layouts2['PD'], layouts2).carrier == 'NB'
+    assert shape_info(layouts2['PD'], layouts2).pmf_size == PMF_SIZE_SINGLE
+
+
+def test_pmf_multi_inheritance_still_wins_over_carrier_rule():
+    """优先级不变：虚基(12) > 多继承分支(8) > 载体不在偏移 0(8) > 4。"""
+    layouts = {'A': _cls('A', vtables=True), 'B': _cls('B', vtables=True),
+               'M': _cls('M', bases=[_b('A'), _b('B')])}
+    assert shape_info(layouts['M'], layouts).pmf_size == PMF_SIZE_MULTIPLE
+    layouts['V'] = _cls('V', vtables=True)
+    layouts['MV'] = _cls('MV', bases=[_b('A'), _b('B'), _b('V', virtual=True)])
+    assert shape_info(layouts['MV'], layouts).pmf_size == PMF_SIZE_VIRTUAL
+
+
+def test_pmf_non_polymorphic_single_chain_stays_4():
+    layouts = {'NP': _cls('NP'), 'D': _cls('D', bases=[_b('NP')])}
+    info = shape_info(layouts['D'], layouts)
+    assert info.pmf_size == PMF_SIZE_SINGLE and info.carrier is None
+
+
+def test_role_camera_ctrl_real_scenario_is_8_not_4():
+    """★★ C-3 实测反例（**真实注解**）：`RoleCameraCtrl : public PalScriptWaitObj`。
+
+    `PalScriptWaitObj` 注解只有 `methods`（发射头 `PalScriptWaitObj.h` 实测 0 个 virtual）
+    ⇒ 不是 vfptr 载体；`RoleCameraCtrl` 注解有 `vtables` 且有直接基
+    ⇒ MSVC6 的 `sizeof(void (RoleCameraCtrl::*)())` = **8**
+    （评审真机四段编译 + 本轮 `pmf_intro.cpp` 复现），而 R=0 规则给 4 且 `active/trusted`
+    ⇒ 真实发射头编译 **C2118**（假杀）。
+    """
+    layouts = load_struct_layouts(REAL_STRUCTS, tree_path=REAL_TREE)
+    info = shape_info(layouts['RoleCameraCtrl'], layouts)
+    assert info.pmf_size == PMF_SIZE_MULTIPLE, info.reason
+    assert info.carrier == 'RoleCameraCtrl', info.carrier
+    assert 'vfptr' in info.reason or '载体' in info.reason, info.reason
+    res = generate(layouts, GenOptions(only=frozenset({'RoleCameraCtrl'})))
+    shape = [a for a in res.assertions if a.kind == KIND_SHAPE][0]
+    assert shape.expected == 8 and shape.status == STATUS_ACTIVE
+    assert 'sizeof(void (RoleCameraCtrl::*)()) == 8' in res.text
+    assert 'sizeof(void (RoleCameraCtrl::*)()) == 4' not in res.text
+
+
+def test_external_prefix_class_shape_is_suspect():
+    """★ C-3 兜底：外部类（gb*：声明来自 spec 头/独立库）⇒ 形状**一律 SUSPECT**。
+
+    实测 `gbTexture`（`include/gbengine/gbTexture.h`，`gbRefObject` 自带 `virtual ~`）真值 **4**，
+    而注解链（`gbResource`/`gbRefObject` 无 `vtables`）会让"载体规则"给 **8** ⇒ 过判。
+    """
+    layouts = {'P': _cls('P'), 'gbFoo': _cls('gbFoo', bases=[_b('P')], vtables=True)}
+    res = generate(layouts, GenOptions(emit_size=False, emit_offset=False))
+    shape = [a for a in res.assertions if a.kind == KIND_SHAPE and a.cls == 'gbFoo'][0]
+    assert shape.trust == TRUST_SUSPECT and shape.status == STATUS_COMMENTED
+    assert '外部' in shape.reason, shape.reason
+    # 前缀可关（--external-prefix ""）⇒ 恢复可证
+    res2 = generate(layouts, GenOptions(emit_size=False, emit_offset=False,
+                                        external_prefixes=()))
+    shape2 = [a for a in res2.assertions if a.kind == KIND_SHAPE and a.cls == 'gbFoo'][0]
+    assert shape2.status == STATUS_ACTIVE and shape2.expected == 8
+
+
+def test_declared_classes_gate_marks_undeclared_shape_suspect():
+    """★ C-3 兜底：给了 `declared_classes`（发射头名单）时，名单外 ⇒ SUSPECT；名单内 ⇒ 可信。"""
+    layouts = {'A': _cls('A', vtables=True), 'B': _cls('B', bases=[_b('A')]),
+               'C': _cls('C', bases=[_b('A')])}
+    res = generate(layouts, GenOptions(emit_size=False, emit_offset=False,
+                                       declared_classes=frozenset({'A', 'B'})))
+    by = {a.cls: a for a in res.assertions if a.kind == KIND_SHAPE}
+    assert by['B'].status == STATUS_ACTIVE
+    assert by['C'].trust == TRUST_SUSPECT and '发射头' in by['C'].reason
+
+
+def test_declared_gate_applies_to_closure_too():
+    """闭包内出现"无发射头"的基类 ⇒ 载体判定依赖不可靠的注解 ⇒ 整条链 SUSPECT。"""
+    layouts = {'SpecBase': _cls('SpecBase', vtables=True),
+               'EmittedD': _cls('EmittedD', bases=[_b('SpecBase')])}
+    res = generate(layouts, GenOptions(emit_size=False, emit_offset=False,
+                                       declared_classes=frozenset({'EmittedD'})))
+    shape = [a for a in res.assertions if a.kind == KIND_SHAPE and a.cls == 'EmittedD'][0]
+    assert shape.trust == TRUST_SUSPECT, shape.reason
+    assert 'SpecBase' in shape.reason
+
+
+def test_real_data_gb_classes_have_no_active_assertions():
+    """★ 真实数据不变量：23 个 gb*（gbengine 规范头，非发射头）不得有任何生效断言。"""
+    layouts = load_struct_layouts(REAL_STRUCTS, tree_path=REAL_TREE)
+    res = generate(layouts, GenOptions())
+    active_gb = sorted({a.cls for a in res.assertions
+                        if a.status == STATUS_ACTIVE and a.cls.startswith('gb')})
+    assert active_gb == [], active_gb
+    gbt = [a for a in res.assertions if a.cls == 'gbTexture' and a.kind == KIND_SHAPE][0]
+    assert gbt.trust == TRUST_SUSPECT and gbt.status == STATUS_COMMENTED
+
+
+# ========= 10. I-2（R=1 评审）：consistency-only 档 =========
+
+def test_consistency_only_tier_activates_size_and_offset():
+    """I-2：`--untrusted-policy consistency-only` ⇒ size/offset 以**声明 vs 注解一致性**口径生效。"""
+    layouts = {'A': _cls('A', members=[_m('a', 4)], size=8)}
+    res = generate(layouts, GenOptions(untrusted_policy=POLICY_CONSISTENCY))
+    assert res.census[TRUST_CONSISTENCY_ONLY] == 2, res.census
+    assert res.census['active'] == 3, res.census          # shape + size + offset
+    assert MARK_CONSISTENCY_ONLY in res.text
+    assert 'consistency-only' in res.text
+
+
+def test_consistency_only_tier_keeps_misattributed_suspect():
+    """已疑误归属（E-1）的常量**不得**借一致性档生效（size 与 offset 两条都要挡）。"""
+    layouts = {'A': _cls('A', members=[_m('a', 12, ev=_ev(misattributed=True))], size=8,
+                         size_ev=_ev(misattributed=True))}
+    res = generate(layouts, GenOptions(untrusted_policy=POLICY_CONSISTENCY,
+                                       emit_shape=False))
+    assert res.census[TRUST_CONSISTENCY_ONLY] == 0
+    assert res.census['active'] == 0 and res.census['commented'] == 2
+
+
+def test_consistency_only_tier_skips_external_and_undeclared_classes():
+    """一致性档的前提是"声明由注解发射"⇒ 外部类（gb*）/ 无发射头类不得进入该档。"""
+    layouts = {'gbFoo': _cls('gbFoo', members=[_m('a', 4)], size=8),
+               'NoHdr': _cls('NoHdr', members=[_m('a', 4)], size=8)}
+    res = generate(layouts, GenOptions(untrusted_policy=POLICY_CONSISTENCY,
+                                       emit_shape=False,
+                                       declared_classes=frozenset({'gbFoo'})))
+    assert res.census[TRUST_CONSISTENCY_ONLY] == 0, res.census
+    assert res.census['active'] == 0
+
+
+def test_consistency_only_tier_leaves_shape_rules_untouched():
+    """一致性档**只**作用于 size/offset：形状仍走 E-4/vfptr 规则（不可证 ⇒ SUSPECT）。"""
+    layouts = {'D': _cls('D', bases=[_b('UnknownBase')], members=[_m('d', 4)], size=16)}
+    res = generate(layouts, GenOptions(untrusted_policy=POLICY_CONSISTENCY))
+    shape = [a for a in res.assertions if a.kind == KIND_SHAPE][0]
+    assert shape.trust == TRUST_SUSPECT and shape.status == STATUS_COMMENTED
+    assert res.census[TRUST_CONSISTENCY_ONLY] == 2      # size + offset
+
+
+def test_default_policy_has_no_consistency_only_tier():
+    """默认口径（comment）行为逐字不变（R=0 的 46 条测试不得回退）。"""
+    layouts = {'A': _cls('A', members=[_m('a', 4)], size=8)}
+    res = generate(layouts, GenOptions())
+    assert res.census.get(TRUST_CONSISTENCY_ONLY, 0) == 0
+    assert not [a for a in res.assertions if a.trust == TRUST_CONSISTENCY_ONLY]
+    # 标记只出现在头文件的错误处理表里（文档），绝不出现在任何断言行上
+    assert all(MARK_CONSISTENCY_ONLY not in l
+               for l in res.text.splitlines() if 'typedef char' in l)
+    assert res.census['active'] == 1 and res.census['commented'] == 2
+    assert POLICY_CONSISTENCY in ALL_POLICIES
+
+
+def test_consistency_only_policy_is_a_cli_choice():
+    p = _build_argparser().parse_args(['--untrusted-policy', 'consistency-only'])
+    assert p.untrusted_policy == POLICY_CONSISTENCY
+
+
+# ========= 11. C-3 端到端裁判：真实生效断言 × 真实发射头 =========
+
+_JUDGE = None
+
+
+def _judge():
+    """加载 `data/status/_layout_assert_probe_20260925/verify_emitted_asserts.py`。"""
+    global _JUDGE
+    if _JUDGE is None:
+        import importlib.util
+        path = (PROJECT_ROOT / 'data' / 'status' / '_layout_assert_probe_20260925'
+                / 'verify_emitted_asserts.py')
+        spec = importlib.util.spec_from_file_location('verify_emitted_asserts', path)
+        mod = importlib.util.module_from_spec(spec)
+        sys.modules['verify_emitted_asserts'] = mod
+        spec.loader.exec_module(mod)
+        _JUDGE = mod
+    return _JUDGE
+
+
+def _msvc6_available():
+    return _judge().wine_cl_available()
+
+
+def test_judge_classify_detects_false_kill_on_assertion_line():
+    """裁判的判别力：断言行 C2118 ⇒ false_kill。"""
+    j = _judge()
+    out = ('t.cpp\n'
+           'Z:\\tmp\\t.cpp(3) : error C2118: negative subscript or subscript is too large\n')
+    assert j.classify_result(out, 3) == 'false_kill'
+
+
+def test_judge_classify_does_not_blame_generator_for_broken_header():
+    """头文件自身编不过（错误不在断言行）⇒ header_error，不算生成器假杀。"""
+    j = _judge()
+    out = 'Z:\\tmp\\inc.h(12) : error C2065: \'foo\' : undeclared identifier\n'
+    assert j.classify_result(out, 3) == 'header_error'
+    # 断言行报其它错（类根本没声明/类型不全）⇒ assert_error，同样不是"值不符"
+    out2 = 'Z:\\tmp\\t.cpp(3) : error C2065: \'X\' : undeclared identifier\n'
+    assert j.classify_result(out2, 3) == 'assert_error'
+    assert j.classify_result('t.cpp\n', 3) == 'pass'
+    # 断言行 C2118，但**头本身也编不过** ⇒ unreliable（连锁噪声，不得判生成器假杀）
+    out3 = ('Z:\\tmp\\t.cpp(3) : error C2118: negative subscript or subscript is too large\n'
+            'Z:\\tmp\\inc.h(7) : error C2584: \'X\' : direct base class invalid\n')
+    assert j.classify_result(out3, 3) == 'unreliable'
+
+
+def test_judge_scan_declared_classes_handles_macros_bases_and_forward_decls():
+    j = _judge()
+    with tempfile.TemporaryDirectory() as tmp:
+        p = Path(tmp) / 'x.h'
+        p.write_text('class GBAPI gbRefObject {\npublic:\n    int RefCount;\n};\n'
+                     'class gbTexture : public gbResource {\n    int x;\n};\n'
+                     'struct tagCmdData { int a; };\n'
+                     'class FwdOnly;\n', encoding='utf-8')
+        got = j.scan_declared_classes(Path(tmp))
+        assert 'gbRefObject' in got and 'gbTexture' in got and 'tagCmdData' in got
+        assert 'FwdOnly' not in got
+
+
+def test_judge_detects_injected_false_kill_end_to_end():
+    """负相自检：故意把 RoleCameraCtrl 的 PMF 断言写成 4096 ⇒ 真机编译必须报 false_kill。"""
+    if not _msvc6_available():
+        raise unittest.SkipTest('MSVC6/wine 不可用')
+    j = _judge()
+    rep = j.judge_emitted(only=frozenset({'RoleCameraCtrl'}), verbose=False,
+                          negative_controls=[('RoleCameraCtrl',
+                                              'sizeof(void (RoleCameraCtrl::*)()) == 4096')])
+    assert len(rep['false_kill']) == 1, rep
+    assert rep['false_kill'][0]['cls'] == 'RoleCameraCtrl'
+
+
+def test_real_emitted_asserts_have_no_false_kill():
+    """★★ C-3 端到端裁判：真实生效断言（`declared_classes`=真实发射头）× 真实发射头
+    ⇒ MSVC6 编译 **0 假杀**。这是唯一能抓到"规则与真机不符"的手段。"""
+    if not _msvc6_available():
+        raise unittest.SkipTest('MSVC6/wine 不可用')
+    j = _judge()
+    rep = j.judge_emitted(jobs=6, verbose=False)
+    assert rep['false_kill'] == [], rep['false_kill']
+    assert rep['total'] >= 100, rep['total']
+    assert rep['pass'] >= 100, rep['pass']
 
 
 if __name__ == '__main__':

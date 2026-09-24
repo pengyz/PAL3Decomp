@@ -1,7 +1,7 @@
 /* _layout_asserts.h —— 数据布局的编译期校验（由 tools/layout_assert_gen.py 生成，请勿手改）
  * 生成口径: untrusted-policy=comment
  * 统计: total=190 active=5 commented=185 omitted=0 skipped=0
- *   trusted=5 same-source=1 suspect=184
+ *   trusted=5 same-source=1 suspect=184 consistency-only=0
  * 注记: --structs data/annotations/structs --only CCBUI,CEffSParticle,MUIDialog,Role,SceneObj,UIEmote
  */
 /* ============================ 错误处理表 ============================
@@ -19,6 +19,12 @@
  *  branch 3  C2057 'expected constant expression' / C2466（offsetof 于虚基区域）
  *            ⇒ 生成器本应跳过该类成员（E-3：p3.cpp:28 与 off.cpp:18 实测虚基成员、
  *              虚基的非虚基之成员都不是常量表达式）⇒ 报生成器缺陷，不要手删断言了事。
+ *              注：虚基区域走**整个继承闭包**（R=1 C-1：`VB2 : virtual V1; IVB : VB2`
+ *              的 `offsetof(IVB, vv)` 实测 C2057+C2466，只看直接虚基会漏）。
+ *  branch 4  生效行带 [CONSISTENCY-ONLY] 断言失败（`--untrusted-policy consistency-only`）
+ *            ⇒ 常量与注解同源，失败意味着 **codegen 发射的声明与注解常量漂移**
+ *              （stage 变换 / F59 static 化 / 多继承内嵌建模），不是布局真值错误：
+ *              先查 stage，再决定改注解还是改 stage；该档**不得**当作布局真值证据（E-2）。
  *
  * 另：本文件必须在**全部类声明之后**包含（sizeof/offsetof 需要完整类型）；
  *     若报 C2027 'use of undefined type' ⇒ include 位置不对，不是布局错误。
@@ -30,7 +36,7 @@
 
 #include <stddef.h>   /* offsetof */
 
-/* ===== CCBUI ===== bases: UIFrameWnd | pmf(CCBUI) = 4 | 单继承链 ⇒ 4 */
+/* ===== CCBUI ===== bases: UIFrameWnd | pmf(CCBUI) = 4 | 单继承链且 vfptr 载体 UIWnd 无直接基（vfptr 在偏移 0）⇒ 4 */
 // [SUSPECT] typedef char _a_CCBUI_m_pAttackSequenBack[(offsetof(CCBUI, m_pAttackSequenBack) == 72) ? 1 : -1]; /* offset | suspect | 常量可疑: 证据形态等级 C（非 reg+disp32/绝对地址） */
 // [SUSPECT] typedef char _a_CCBUI_pPanel[(offsetof(CCBUI, pPanel) == 76) ? 1 : -1]; /* offset | suspect | 常量可疑: 证据形态等级 C（非 reg+disp32/绝对地址） */
 // [SUSPECT] typedef char _a_CCBUI_m_pBattleFieldAttr[(offsetof(CCBUI, m_pBattleFieldAttr) == 80) ? 1 : -1]; /* offset | suspect | 常量可疑: 证据形态等级 C（非 reg+disp32/绝对地址） */
