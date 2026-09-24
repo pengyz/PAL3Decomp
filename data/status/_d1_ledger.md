@@ -3352,3 +3352,13 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
   * m_nState_118 → m_nDamageThisRound（ApplyDamage 累计伤害）
 - 证据源：CCBRoleState 方法 decomp 调用链（每个名称标注 _rename_evidence ✓）
 - 剩余 m_nState_XXX 待下批（需更多 decomp 方法分析）
+
+## 2026-09-25（goal r56）CEffectSystem 探针上下文判定 + 阶段总结
+- CEffectSystem 生成头偏移与注解完全吻合（0x4..0x158），audit 16/16 可能是探针 include 上下文差异
+  （类似 DIDEVICE 的 SDK 类型冲突——探针编译上下文 ≠ 真实编译）
+- **待 MCP 重连后 IDB 交叉验证**（idb_open → type_inspect → 确认 IDB 成员偏移）
+- 阶段总结（goal 56 轮）：
+  * L1 38→41（+3）✓ · 总错误 2150→2111（-39）✓ · 冲突类 81→13（-84%）✓
+  * 冲突成员 1094→196（-82%）✓ · 工具+测试八套全绿 ✓
+  * 8 个类完整清零（UITextArea/CEff*/ARC系/SceneObj/CCBRoleState/GRPinput/PalScriptMgr 等）
+  * 发射器两项根修（枚举4B/内联体数组维度）影响全局 ✓
