@@ -810,3 +810,49 @@ Ruling: 顾虑（`production_l1_flags()` 以 `s4_baseline.json` 为权威来源�
 - **sha256 实测**：`29fa63a59c77…`（`git show HEAD~1:…`）→ `e67d1278af21…`（工作树）
 - **工作树**：LIVE / `--e2e` / `--e2e --out /tmp` 三种运行后均无 modified tracked 文件；`data/annotations_bak_probe/` 无残留
 - **提交**：`244f0ea12` 仅 4 文件（`git diff --cached --name-only` 核对）
+
+## R=3 收口修复完成（全分支最终评审的 Critical + Important + 4 Minor）
+
+提交：244f0ea12（4 files）· 测试：离线 22/0/8skip · LIVE 30/0/0 · 前序 8 套 35/38/71/73/88/61+3skip/35/22+8skip 全 0 failed
+
+### ★ Critical（L1 口径）ADDRESSED —— 且实测证明原结论是口径产物
+- `judge_l1(..., flags=None)` 默认 = `production_l1_flags()`（读 `s4_baseline.json.flags`，含 /O2 /GR；缺失退回与 cli.py 逐字相同的兜底常量，**不退 probe 口径**）；判词加 caliber/flags_source；docstring+文件头删失实措辞
+- `run_e2e` 双口径并列：主判词 l1=生产口径、l1_probe_default=probe 对比口径
+- **按生产口径重跑 3 单元**：CCBStageShadow **L1=2/partial=6**（probe 0/8）· UI3DCtrl **L1=2/partial=10**（probe 0/12）· PalScriptWaitObj 0/1
+  ⇒ 原"L1 近乎结构性必为 0 ⇒ 不具判别力"**是口径造成**；生产口径下前两单元各有 **2 条函数体逐字节全同** ⇒ 该维度**有判别力**
+- 刷新报告 JSON：sha256 29fa63a5… → **e67d1278af21**…；复核重跑与入库 JSON 除 generated_at 外完全相同
+- 连带更正：task-8-report §1/§2 建议①「移除后 L1 口径不变」判为**假**；台账 :308 内联更正；**T1 写明"移除 /GR 会改变生产 L1 编译标志 ⇒ L1 基线须重测"**
+
+### Important I-2 ADDRESSED
+task-6-report §2.1 补全完整 `--list` 输出（vt3 4 张 / c2 --cls D 3 张）+ 更正注
+
+### 4 Minor 全部 ADDRESSED
+1. 无端到端驱动器 → 显式声明（不补脚本）；写入已入库测试文件头 + 台账：串联=①库级 import 链 ②run_e2e()；**T7 不由本 harness 驱动**，不得声称"8 工具全链"
+2. 飞行前扫描 2 条假边 → 划除 + 实测 import 证据 + 补记两条真实边（T2→T5、T2→T6）
+3. `--struct` 静默伪候选 → 新增 `_slot_evidence_kind()` 门，无槽证据报错 **rc=1**
+4. CLI 前缀拒写 → `os.path.commonpath` 分量级判定（annotations/** 仍拒、兄弟目录放行）
+5. 台账 :344/:346 加撤销标注
+
+Ruling: 顾虑1（production_l1_flags 以 s4_baseline.json 为权威，而该文件会被 ratchet 回写）— 接受：若基线被写成 probe 口径，新断言**响亮报红**（非静默降级），故意如此 — 若错：基线口径污染时会红
+Ruling: 顾虑3（本轮更正落在 .superpowers/sdd/ gitignore 区）— **控制器已 force-add 入库**（commit 948fc786d，19 文件含设计/计划/台账/8 报告）— 因为 docs/superpowers/ 已有 35 个文件被跟踪（项目惯例），且工单 T1-T6 是可执行的下一步，仅存本地会丢失
+
+## R=3 收口复审结果
+
+C1（Critical）**ADDRESSED** —— 独立按生产口径编译三方一致：
+- 口径权威源独立核对：`s4_baseline.json.flags` = [/nologo /TP /c /W3 **/O2 /Ob2 /Oi /Ot /Oy /GF /Gy /GX /GR** /MD /Gd]，与 `cli.py:690` 逐字相同；`PROBE_FLAGS`=[/nologo /TP /c /W3]（probe 默认，非生产）
+- **独立自写脚本按生产口径编译**（直接用 compare_pal3 原语，flags 从 s4_baseline 读取，不经 harness）：
+  CCBStageShadow **L1=2/partial=6**（matched 9/10）· UI3DCtrl **L1=2/partial=10**（matched 14/16）· PalScriptWaitObj **0/1**（matched 1/1）
+  ⇒ 与实现者声称、入库 JSON **三方逐数字一致**；同脚本 probe 口径得 0/8 · 0/12 · 0/1
+- 失实措辞已删（全仓 grep "同一口径" 仅剩 4 处，3 处为更正性自我描述、1 处为 `.rdata` /Od 口径且为真）
+- T1 四处一致写明"移除 /GR 会改变生产 L1 编译标志 ⇒ L1 基线须重测"
+- JSON 已刷新且可复现（sha256 e67d1278af21…；重跑与入库除 generated_at 外完全相同）
+- `.rdata` 裁判未受影响（仍显式 /Od；rdata/divergence/summary/bin_census/wiring/baselines/attribution 与 9479c3a7e **逐键全同**）
+I-2 ADDRESSED（独立重建探针：vt3 4 张 / c2 --cls D 3 张，逐字一致）
+M-1/M-2/M-4/M-5 ADDRESSED
+M-3 **NOT ADDRESSED（部分收口，Minor）**：注解 JSON 对象已修（rc=1），但 `--struct '[{"methods":{…}}]'`（裸 JSON 数组）与 `--struct '{"slots":[{"methods":{}}]}'` 仍 exit 0 静默产出 `{"": … "? unknown _slot()"}`；`_slot_evidence_kind()` 只判顶层形状（任意 list ⇒ 放行），无逐项校验
+新增破环 1（Minor）：`_is_under_truth_source()` 改纯词法 commonpath 后，经**符号链接**写真相源不再被拒（`data/annotations_link -> data/annotations` 时旧拒=True 新拒=False）⇒ 建议补 `os.path.realpath` 后再 commonpath
+
+延期 minor（11 条）：`targets_slots_raw == 1164` 观察口径 · 降级记录缺 bin_slots（KeyError）· 两层降级粒度 · `production_l1_flags()` 以 ratchet 可回写的基线为权威 · 双口径令 LIVE 翻倍 · 报告含 generated_at · **task-8-report 多处仍称"被 gitignore 忽略 ⇒ 不入库"（已过时——`948fc786d` 已入库）** · **progress.md R=3 段未提交** · T1-T6 · §5 .rdata 边界①-⑨ · §7 潜伏项
+
+Ruling: R=4 收口 2 项 Minor（M-3 逐项校验 + 符号链接 realpath）— 均为有界小修，且 M-3 是"声称已修但实际部分收口"（不同于新增 Minor）— 若错：一次多余修复轮
+Controller: 提交 progress.md 的 R=3 段（延期 minor ⑧）+ 修正 task-8-report 的过时"不入库"表述（⑦）
