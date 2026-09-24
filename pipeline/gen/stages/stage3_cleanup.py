@@ -1503,5 +1503,5 @@ def _fix_ref_params(code):
         code = ''.join(result)
     
     # _tail_000 兼容转换（2026-09-25）：gbGfxManager offset0 旧 IDA 名 → 裸偏移
-    code = re.sub(r'(\w+)->_tail_000\b', r'*(void**)(\1)', code)
+    code = re.sub(r'(\w+)->_tail_000\b(?!\[)', r'*(void**)(\1)', code)
     return code

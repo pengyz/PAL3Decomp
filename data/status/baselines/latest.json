@@ -1,6 +1,6 @@
 {
-  "name": "20260924_153636",
-  "timestamp": "2026-09-24T15:36:36.895833",
+  "name": "20260924_165919",
+  "timestamp": "2026-09-24T16:59:19.309761",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "fail",
@@ -186,22 +186,12 @@
     },
     "pal3/src/Combat/CCBParabolaWindow.cpp": {
       "status": "fail",
-      "error_count": 8,
+      "error_count": 6,
       "errors": [
         {
           "code": "C2555",
           "msg": "'CCBParabolaWindow::OnMessage' : overriding virtual function differs from 'UIWnd::OnMessage' only by return type or calling convention",
           "line": 32
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 49
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 56
         },
         {
           "code": "C2660",
@@ -685,317 +675,307 @@
         {
           "code": "C2039",
           "msg": "'GlowObj' : is not a member of 'SceneObj'",
-          "line": 976
+          "line": 978
         },
         {
           "code": "C2385",
           "msg": "'CCBRoleState::m_nTodo_000' is ambiguous",
-          "line": 976
+          "line": 978
         },
         {
           "code": "C2556",
           "msg": "'int __thiscall CCBStage::Reset(void)' : overloaded function differs only by return type from 'void __thiscall CCBStage::Reset(void)'",
-          "line": 1123
+          "line": 1125
         },
         {
           "code": "C2371",
           "msg": "'Reset' : redefinition; different basic types",
-          "line": 1123
+          "line": 1125
         },
         {
           "code": "C2084",
           "msg": "function 'void __thiscall CCBStage::Reset(void)' already has a body",
-          "line": 1123
+          "line": 1125
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 1157
+          "line": 1159
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 1256
+          "line": 1258
         },
         {
           "code": "C2660",
           "msg": "'PAL_GDB::~PAL_GDB' : function does not take 1 parameters",
-          "line": 1345
+          "line": 1347
         },
         {
           "code": "C2660",
           "msg": "'PAL_GDB::~PAL_GDB' : function does not take 1 parameters",
-          "line": 1424
+          "line": 1426
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 1432
+          "line": 1434
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 1447
+          "line": 1449
         },
         {
           "code": "C2248",
           "msg": "'do_always_noconv' : cannot access protected member declared in class 'std::codecvt_base'",
-          "line": 1567
+          "line": 1569
         },
         {
           "code": "C2065",
           "msg": "'j_j_codecvt_base' : undeclared identifier",
-          "line": 1579
+          "line": 1581
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 1579
+          "line": 1581
         },
         {
           "code": "C2653",
           "msg": "'j_j_codecvt_base' : is not a class or namespace name",
-          "line": 1579
+          "line": 1581
         },
         {
           "code": "C2248",
           "msg": "'do_always_noconv' : cannot access protected member declared in class 'std::codecvt_base'",
-          "line": 1586
+          "line": 1588
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'float' to 'class CEffectSystem *'",
-          "line": 1881
+          "line": 1883
         },
         {
           "code": "C2227",
           "msg": "left of '->CEffectSystem' must point to class/struct/union",
-          "line": 1881
+          "line": 1883
         },
         {
           "code": "C2653",
           "msg": "'CEffectSystem' : is not a class or namespace name",
-          "line": 1881
+          "line": 1883
         },
         {
           "code": "C2660",
           "msg": "'Render' : function does not take 0 parameters",
-          "line": 1958
+          "line": 1960
         },
         {
           "code": "C2664",
           "msg": "'int __thiscall CCBSystem::CreateObj(class CCBUI ** ,const char *,unsigned int)' : cannot convert parameter 1 from 'int *' to 'class CCBUI ** '",
-          "line": 2014
+          "line": 2016
         },
         {
           "code": "C2664",
           "msg": "'char __cdecl CCBStage::GetTaskState(int,class ECBStageTaskState *)' : cannot convert parameter 1 from 'bool *' to 'int'",
-          "line": 2232
+          "line": 2234
         },
         {
           "code": "C2446",
           "msg": "'==' : no conversion from 'unsigned int (__thiscall CCBStage::*)(int)' to 'unsigned int (__cdecl *)(class CCBStage *,int)'",
-          "line": 2242
+          "line": 2244
         },
         {
           "code": "C2040",
           "msg": "'==' : 'unsigned int (__cdecl *)(class CCBStage *,int)' differs in levels of indirection from 'unsigned int (__thiscall CCBStage::*)(int)'",
-          "line": 2242
+          "line": 2244
         },
         {
           "code": "C2446",
           "msg": "'==' : no conversion from 'void (__thiscall CCBStage::*)(int)' to 'void (__cdecl *)(class CCBStage *,int)'",
-          "line": 2330
+          "line": 2332
         },
         {
           "code": "C2040",
           "msg": "'==' : 'void (__cdecl *)(class CCBStage *,int)' differs in levels of indirection from 'void (__thiscall CCBStage::*)(int)'",
-          "line": 2330
+          "line": 2332
         },
         {
           "code": "C2660",
           "msg": "'EndTurnAndAdvance' : function does not take 1 parameters",
-          "line": 2490
+          "line": 2492
         },
         {
           "code": "C2660",
           "msg": "'EndTurnAndAdvance' : function does not take 1 parameters",
-          "line": 2626
+          "line": 2628
         },
         {
           "code": "C2065",
           "msg": "'v18' : undeclared identifier",
-          "line": 2716
+          "line": 2718
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 2716
+          "line": 2718
         },
         {
           "code": "C2296",
           "msg": "'*' : illegal, left operand has type 'class CCBStage *(__thiscall CCBStage::*)(void)'",
-          "line": 2716
+          "line": 2718
         },
         {
           "code": "C2065",
           "msg": "'v25' : undeclared identifier",
-          "line": 2723
+          "line": 2725
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 2723
+          "line": 2725
         },
         {
           "code": "C2296",
           "msg": "'*' : illegal, left operand has type 'class CCBStage *(__thiscall CCBStage::*)(void)'",
-          "line": 2723
+          "line": 2725
         },
         {
           "code": "C2065",
           "msg": "'v27' : undeclared identifier",
-          "line": 2725
+          "line": 2727
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 2725
+          "line": 2727
         },
         {
           "code": "C2296",
           "msg": "'*' : illegal, left operand has type 'class CCBStage *(__thiscall CCBStage::*)(void)'",
-          "line": 2725
+          "line": 2727
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 2828
+          "line": 2830
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 2836
+          "line": 2838
         },
         {
           "code": "C2227",
           "msg": "left of '->m_bShowWeapon' must point to class/struct/union",
-          "line": 2836
+          "line": 2838
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 2837
+          "line": 2839
         },
         {
           "code": "C2227",
           "msg": "left of '->m_bFlash' must point to class/struct/union",
-          "line": 2837
+          "line": 2839
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 2841
+          "line": 2843
         },
         {
           "code": "C2227",
           "msg": "left of '->m_bShowWeapon' must point to class/struct/union",
-          "line": 2841
+          "line": 2843
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 2842
+          "line": 2844
         },
         {
           "code": "C2227",
           "msg": "left of '->m_bFlash' must point to class/struct/union",
-          "line": 2842
+          "line": 2844
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 2885
+          "line": 2887
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 2890
+          "line": 2892
         },
         {
           "code": "C2227",
           "msg": "left of '->m_bShowWeapon' must point to class/struct/union",
-          "line": 2890
+          "line": 2892
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 2891
+          "line": 2893
         },
         {
           "code": "C2227",
           "msg": "left of '->m_bFlash' must point to class/struct/union",
-          "line": 2891
+          "line": 2893
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 2911
+          "line": 2913
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 2916
+          "line": 2918
         },
         {
           "code": "C2227",
           "msg": "left of '->m_bShowWeapon' must point to class/struct/union",
-          "line": 2916
+          "line": 2918
         },
         {
           "code": "C2100",
           "msg": "illegal indirection",
-          "line": 2917
+          "line": 2919
         },
         {
           "code": "C2227",
           "msg": "left of '->m_bFlash' must point to class/struct/union",
-          "line": 2917
+          "line": 2919
         },
         {
           "code": "C2660",
           "msg": "'UpdateAnim' : function does not take 1 parameters",
-          "line": 3332
+          "line": 3334
         },
         {
           "code": "C2664",
           "msg": "'sub_445D20' : cannot convert parameter 1 from 'class UIProgressBar *' to 'unsigned long *'",
-          "line": 3334
+          "line": 3336
         },
         {
           "code": "C2065",
           "msg": "'v7' : undeclared identifier",
-          "line": 3358
+          "line": 3360
         },
         {
           "code": "C2296",
           "msg": "'*' : illegal, left operand has type 'class CCBStage *(__thiscall CCBStage::*)(void)'",
-          "line": 3358
+          "line": 3360
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 3366
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_bCatching' must point to class/struct/union",
-          "line": 3367
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_bDelAllTask' must point to class/struct/union",
-          "line": 3367
+          "line": 3368
         },
         {
           "code": "C2227",
@@ -1003,200 +983,210 @@
           "line": 3369
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 3453
+          "code": "C2227",
+          "msg": "left of '->m_bDelAllTask' must point to class/struct/union",
+          "line": 3369
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->m_bCatching' must point to class/struct/union",
+          "line": 3371
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 3465
+          "line": 3455
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int (__thiscall CCBStage::*)(int)' to 'void *'",
+          "line": 3467
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(unsigned int)' to 'void *'",
-          "line": 3477
+          "line": 3479
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 3481
+          "line": 3483
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 3484
+          "line": 3486
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CCBStage::*)(void)' to 'void *'",
-          "line": 3501
+          "line": 3503
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 3510
+          "line": 3512
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'int (__thiscall CCBStage::*)(int)' to 'unsigned int'",
-          "line": 3647
+          "line": 3649
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'int (__thiscall CCBStage::*)(int)' to 'unsigned int'",
-          "line": 3673
+          "line": 3675
         },
         {
           "code": "C2065",
           "msg": "'v8' : undeclared identifier",
-          "line": 3690
+          "line": 3692
         },
         {
           "code": "C2296",
           "msg": "'*' : illegal, left operand has type 'class CCBStage *(__thiscall CCBStage::*)(void)'",
-          "line": 3690
+          "line": 3692
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 3713
+          "line": 3715
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(float)' to 'void *'",
-          "line": 3714
+          "line": 3716
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 3717
+          "line": 3719
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(unsigned int)' to 'void *'",
-          "line": 3718
+          "line": 3720
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 3721
+          "line": 3723
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CCBStage::*)(void)' to 'void *'",
-          "line": 3722
+          "line": 3724
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 3725
+          "line": 3727
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 3726
+          "line": 3728
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(unsigned int)' to 'void *'",
-          "line": 3733
+          "line": 3735
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 3740
+          "line": 3742
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 3741
+          "line": 3743
         },
         {
           "code": "C2227",
           "msg": "left of '->m_Task' must point to class/struct/union",
-          "line": 3743
+          "line": 3745
         },
         {
           "code": "C2228",
           "msg": "left of '.eMode' must have class/struct/union type",
-          "line": 3743
+          "line": 3745
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 3754
+          "line": 3756
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 3756
+          "line": 3758
         },
         {
           "code": "C2296",
           "msg": "'*' : illegal, left operand has type 'class CCBStage *(__thiscall CCBStage::*)(void)'",
-          "line": 3774
+          "line": 3776
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(int)' to 'void *'",
-          "line": 3793
+          "line": 3795
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 3795
+          "line": 3797
         },
         {
           "code": "C2227",
           "msg": "left of '->m_Task' must point to class/struct/union",
-          "line": 3796
+          "line": 3798
         },
         {
           "code": "C2228",
           "msg": "left of '.eMode' must have class/struct/union type",
-          "line": 3796
+          "line": 3798
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(float)' to 'void *'",
-          "line": 3800
+          "line": 3802
         },
         {
           "code": "C2296",
           "msg": "'*' : illegal, left operand has type 'class CCBStage *(__thiscall CCBStage::*)(void)'",
-          "line": 3828
+          "line": 3830
         },
         {
           "code": "C2297",
           "msg": "'*' : illegal, right operand has type 'class CCBStageRole *'",
-          "line": 3828
+          "line": 3830
         },
         {
           "code": "C2065",
           "msg": "'p_fTemp' : undeclared identifier",
-          "line": 3830
+          "line": 3832
         },
         {
           "code": "C2296",
           "msg": "'*' : illegal, left operand has type 'class CCBStage *(__thiscall CCBStage::*)(void)'",
-          "line": 3830
+          "line": 3832
         },
         {
           "code": "C2065",
           "msg": "'v16' : undeclared identifier",
-          "line": 3836
+          "line": 3838
         },
         {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 3836
+          "line": 3838
         }
       ]
     },
     "pal3/src/Combat/CCBStageCam.cpp": {
       "status": "fail",
-      "error_count": 8,
+      "error_count": 9,
       "errors": [
         {
           "code": "C2653",
@@ -1222,6 +1212,11 @@
           "code": "C2664",
           "msg": "'MessageBoxA' : cannot convert parameter 3 from 'int *' to 'const char *'",
           "line": 1377
+        },
+        {
+          "code": "C2664",
+          "msg": "'EditBoxGetFloat' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
+          "line": 1888
         },
         {
           "code": "C2440",
@@ -1253,22 +1248,12 @@
     },
     "pal3/src/Combat/CCBStageScene.cpp": {
       "status": "fail",
-      "error_count": 11,
+      "error_count": 9,
       "errors": [
         {
           "code": "C2248",
           "msg": "'do_always_noconv' : cannot access protected member declared in class 'std::codecvt_base'",
           "line": 167
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 384
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 401
         },
         {
           "code": "C2065",
@@ -1313,15 +1298,9 @@
       ]
     },
     "pal3/src/Combat/CCBStageShadow.cpp": {
-      "status": "fail",
-      "error_count": 1,
-      "errors": [
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 58
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Combat/CCBSystem.cpp": {
       "status": "fail",
@@ -1496,7 +1475,7 @@
     },
     "pal3/src/Combat/CCBUI.cpp": {
       "status": "fail",
-      "error_count": 52,
+      "error_count": 54,
       "errors": [
         {
           "code": "C2555",
@@ -1627,6 +1606,16 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void (__cdecl *)(struct HWND__ *,unsigned int,unsigned int,long)' to 'void (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
           "line": 1727
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (struct HWND__ *,unsigned int,unsigned int,long)' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
+          "line": 1731
+        },
+        {
+          "code": "C2664",
+          "msg": "'SendMessageA' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
+          "line": 1858
         },
         {
           "code": "C2440",
@@ -2286,66 +2275,14 @@
       ]
     },
     "pal3/src/Effect/C2DSpark.cpp": {
-      "status": "fail",
-      "error_count": 5,
-      "errors": [
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 47
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 73
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 99
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 125
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 150
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Effect/C3DSpark.cpp": {
-      "status": "fail",
-      "error_count": 5,
-      "errors": [
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 52
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 77
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 102
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 127
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 152
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Effect/CEffCylinder.cpp": {
       "status": "fail",
@@ -2712,7 +2649,7 @@
     },
     "pal3/src/Effect/CEffectSystem.cpp": {
       "status": "fail",
-      "error_count": 6,
+      "error_count": 2,
       "errors": [
         {
           "code": "C2660",
@@ -2723,26 +2660,6 @@
           "code": "C2065",
           "msg": "'SingletonThunk_004C6450' : undeclared identifier",
           "line": 283
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 308
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 310
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 325
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 382
         }
       ]
     },
@@ -2844,7 +2761,7 @@
     },
     "pal3/src/Effect/ScreenEffectMgr.cpp": {
       "status": "fail",
-      "error_count": 6,
+      "error_count": 2,
       "errors": [
         {
           "code": "C2065",
@@ -2852,29 +2769,9 @@
           "line": 341
         },
         {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 661
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 667
-        },
-        {
-          "code": "C2660",
-          "msg": "'EnableShadow' : function does not take 2 parameters",
-          "line": 845
-        },
-        {
           "code": "C2660",
           "msg": "'GetAABBox' : function does not take 2 parameters",
           "line": 854
-        },
-        {
-          "code": "C2660",
-          "msg": "'GetBoundSphere' : function does not take 2 parameters",
-          "line": 863
         }
       ]
     },
@@ -3143,26 +3040,6 @@
         },
         {
           "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 735
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 739
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 794
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 798
-        },
-        {
-          "code": "C2039",
           "msg": "'SceneRenderWithRotation' : is not a member of 'gbMatrixStack'",
           "line": 869
         },
@@ -3170,11 +3047,6 @@
           "code": "C2039",
           "msg": "'SceneRenderWithRotation' : is not a member of 'gbMatrixStack'",
           "line": 869
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 952
         },
         {
           "code": "C2065",
@@ -3185,11 +3057,6 @@
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'float' to 'void *'",
           "line": 1002
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 1014
         },
         {
           "code": "C2065",
@@ -3322,29 +3189,14 @@
           "line": 1410
         },
         {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 1467
-        },
-        {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned char *' to 'unsigned __int8 *'",
           "line": 1477
         },
         {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 1496
-        },
-        {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned char *' to 'unsigned __int8 *'",
           "line": 1498
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 1601
         },
         {
           "code": "C2664",
@@ -3433,12 +3285,12 @@
         },
         {
           "code": "C2040",
-          "msg": "'pNewBuffer' : 'char *' differs in levels of indirection from 'int'",
+          "msg": "'pNewBuffer' : 'struct gbVec3D *' differs in levels of indirection from 'int'",
           "line": 2150
         },
         {
           "code": "C2040",
-          "msg": "'pSceneName' : 'int' differs in levels of indirection from 'char *'",
+          "msg": "'pSceneName' : 'int' differs in levels of indirection from 'struct gbVec3D *'",
           "line": 2152
         },
         {
@@ -3568,18 +3420,63 @@
         },
         {
           "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'int'",
+          "msg": "'=' : cannot convert from 'struct gbVec3D *' to 'int'",
           "line": 2974
         },
         {
           "code": "C2440",
-          "msg": "'=' : cannot convert from 'char *' to 'int'",
+          "msg": "'=' : cannot convert from 'struct gbVec3D *' to 'int'",
           "line": 2975
         },
         {
           "code": "C2664",
           "msg": "'Insert' : cannot convert parameter 1 from 'int' to 'void *'",
           "line": 2983
+        },
+        {
+          "code": "C2446",
+          "msg": "'!=' : no conversion from 'int' to 'struct gbVec3D *'",
+          "line": 2986
+        },
+        {
+          "code": "C2040",
+          "msg": "'!=' : 'struct gbVec3D *' differs in levels of indirection from 'int'",
+          "line": 2986
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'char *' to 'int'",
+          "line": 2998
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int' to 'struct gbVec3D *'",
+          "line": 3015
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int' to 'struct gbVec3D *'",
+          "line": 3016
+        },
+        {
+          "code": "C2664",
+          "msg": "'Insert' : cannot convert parameter 2 from 'int' to 'void *'",
+          "line": 3023
+        },
+        {
+          "code": "C2665",
+          "msg": "'delete' : none of the 2 overloads can convert parameter 1 from type 'int'",
+          "line": 3025
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int *' to 'class gbRenderEffect *'",
+          "line": 3026
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'struct gbVec3D *' to 'int'",
+          "line": 3028
         }
       ]
     },
@@ -4884,15 +4781,9 @@
       ]
     },
     "pal3/src/Misc/PalScriptWaitObj.cpp": {
-      "status": "fail",
-      "error_count": 1,
-      "errors": [
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 20
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/Parent_Data.cpp": {
       "status": "ok",
@@ -6228,15 +6119,9 @@
       "errors": []
     },
     "pal3/src/Misc/UI3DCtrl.cpp": {
-      "status": "fail",
-      "error_count": 1,
-      "errors": [
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 48
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/UI3DModelNode.cpp": {
       "status": "ok",
@@ -6481,23 +6366,8 @@
     },
     "pal3/src/Misc/UIFrameWnd.cpp": {
       "status": "fail",
-      "error_count": 10,
+      "error_count": 6,
       "errors": [
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 131
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 161
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 167
-        },
         {
           "code": "C2274",
           "msg": "'function-style cast' : illegal as right side of '.' operator",
@@ -6512,11 +6382,6 @@
           "code": "C2274",
           "msg": "'function-style cast' : illegal as right side of '.' operator",
           "line": 271
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 692
         },
         {
           "code": "C2248",
@@ -6584,80 +6449,9 @@
       "errors": []
     },
     "pal3/src/Misc/UIPushButton.cpp": {
-      "status": "fail",
-      "error_count": 14,
-      "errors": [
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 180
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 189
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 226
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 233
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 261
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 268
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 298
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 306
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 361
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 368
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 540
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 547
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 580
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 588
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/UIRoleDialog.cpp": {
       "status": "fail",
@@ -7092,22 +6886,22 @@
         {
           "code": "C2664",
           "msg": "'WriteRegistry' : cannot convert parameter 1 from 'unsigned long' to 'char *'",
-          "line": 841
+          "line": 842
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 926
+          "line": 927
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 928
+          "line": 929
         },
         {
           "code": "C2664",
           "msg": "'WriteRegistry' : cannot convert parameter 1 from 'unsigned long' to 'char *'",
-          "line": 946
+          "line": 947
         }
       ]
     },
@@ -7595,7 +7389,7 @@
     },
     "pal3/src/Render/CScreenMode.cpp": {
       "status": "fail",
-      "error_count": 81,
+      "error_count": 78,
       "errors": [
         {
           "code": "C2440",
@@ -7798,21 +7592,6 @@
           "line": 2149
         },
         {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 2167
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 2181
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 2185
-        },
-        {
           "code": "C2664",
           "msg": "'BinkDoFrame' : cannot convert parameter 1 from 'int' to 'void *'",
           "line": 2209
@@ -8006,7 +7785,7 @@
     },
     "pal3/src/Render/RenderTarget.cpp": {
       "status": "fail",
-      "error_count": 15,
+      "error_count": 6,
       "errors": [
         {
           "code": "C2661",
@@ -8019,19 +7798,9 @@
           "line": 1066
         },
         {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 1404
-        },
-        {
           "code": "C2664",
           "msg": "'memcpy' : cannot convert parameter 2 from 'const struct gbMatrix4' to 'const void *'",
           "line": 1773
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 1780
         },
         {
           "code": "C2664",
@@ -8047,57 +7816,17 @@
           "code": "C2039",
           "msg": "'nAlivePart' : is not a member of 'gbParticleGroup'",
           "line": 2180
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 2252
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 2260
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 2302
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 2308
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 2325
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 2329
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 2354
         }
       ]
     },
     "pal3/src/Render/RenderTarget2.cpp": {
       "status": "fail",
-      "error_count": 18,
+      "error_count": 16,
       "errors": [
         {
           "code": "C2664",
           "msg": "'int (unsigned long,int,int,int,int,char *,unsigned long)' : cannot convert parameter 6 from 'unsigned char *' to 'char *'",
           "line": 208
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 416
         },
         {
           "code": "C2440",
@@ -8153,11 +7882,6 @@
           "code": "C2664",
           "msg": "'Rotate' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 3229
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from '' to 'int (__cdecl *)(int,float *)'",
-          "line": 3234
         },
         {
           "code": "C2664",
@@ -9291,7 +9015,7 @@
     },
     "pal3/src/Script/PalScript.cpp": {
       "status": "fail",
-      "error_count": 82,
+      "error_count": 80,
       "errors": [
         {
           "code": "C2065",
@@ -9692,16 +9416,6 @@
           "code": "C2036",
           "msg": "'void *' : unknown size",
           "line": 5943
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 5972
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 5979
         }
       ]
     },
@@ -10418,13 +10132,8 @@
     },
     "pal3/src/UI/UIDialog.cpp": {
       "status": "fail",
-      "error_count": 2,
+      "error_count": 1,
       "errors": [
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 27
-        },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
@@ -10444,17 +10153,12 @@
     },
     "pal3/src/UI/UIListBox.cpp": {
       "status": "fail",
-      "error_count": 15,
+      "error_count": 9,
       "errors": [
         {
           "code": "C2273",
           "msg": "'function-style cast' : illegal as right side of '->' operator",
           "line": 62
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 96
         },
         {
           "code": "C2273",
@@ -10467,16 +10171,6 @@
           "line": 188
         },
         {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 280
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 288
-        },
-        {
           "code": "C2274",
           "msg": "'function-style cast' : illegal as right side of '.' operator",
           "line": 305
@@ -10485,16 +10179,6 @@
           "code": "C2274",
           "msg": "'function-style cast' : illegal as right side of '.' operator",
           "line": 321
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 336
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 485
         },
         {
           "code": "C2440",
@@ -10512,11 +10196,6 @@
           "line": 523
         },
         {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 563
-        },
-        {
           "code": "C2065",
           "msg": "'UIDestorySystem' : undeclared identifier",
           "line": 697
@@ -10525,7 +10204,7 @@
     },
     "pal3/src/UI/UIManager.cpp": {
       "status": "fail",
-      "error_count": 9,
+      "error_count": 8,
       "errors": [
         {
           "code": "C2440",
@@ -10544,18 +10223,13 @@
         },
         {
           "code": "C2440",
-          "msg": "'type cast' : cannot convert from '' to 'void (__cdecl *)(unsigned long,unsigned long,unsigned long)'",
-          "line": 120
+          "msg": "'type cast' : cannot convert from 'class UIManager' to 'class gbRenderEffect *'",
+          "line": 117
         },
         {
           "code": "C2661",
           "msg": "'SetVariant' : no overloaded function takes 3 parameters",
           "line": 123
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 142
         },
         {
           "code": "C2440",
@@ -10585,19 +10259,13 @@
       "errors": []
     },
     "pal3/src/UI/UIRenderObj.cpp": {
-      "status": "fail",
-      "error_count": 1,
-      "errors": [
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 52
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/UI/UIScene.cpp": {
       "status": "fail",
-      "error_count": 23,
+      "error_count": 13,
       "errors": [
         {
           "code": "C2660",
@@ -10658,56 +10326,6 @@
           "code": "C2106",
           "msg": "'+=' : left operand must be l-value",
           "line": 184
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 617
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 623
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 947
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 954
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 1596
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 1602
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 1639
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 1645
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 1681
-        },
-        {
-          "code": "C2039",
-          "msg": "'_tail_000' : is not a member of 'gbGfxManager'",
-          "line": 1687
         },
         {
           "code": "C2660",
