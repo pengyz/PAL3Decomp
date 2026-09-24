@@ -704,92 +704,108 @@ def attribution_evidence():
                                       family_of=lambda va: None)
         return ann, base, raw
 
-    # --- CGameData：二进制**有**析构槽，发射器**重复注入**该槽 ---
-    ann, base, raw = _base_raw('CGameData')
-    dtor_va = 0x44F030
-    meth = _ann_method(ann, dtor_va)
-    cg_path = PROJECT_ROOT / 'pal3' / 'src' / 'Data' / 'CGameData.h'
-    facts = header_facts(cg_path)
-    # 头里**具名** virtual 的槽地址注释（排除重复注入的 `virtual ~`）——与二进制 7 槽
-    # **逐槽同序**比对：这是"7 条具名与 7 槽 1:1（含析构槽）"的可证形式
-    named_vas = []
-    for line in cg_path.read_text(encoding='utf-8', errors='replace').splitlines():
-        if 'virtual' not in line or 'virtual ~' in line:
-            continue
-        m = re.search(r'//\s*(0x[0-9a-fA-F]+)', line)
-        if m:
-            named_vas.append('0x%08X' % int(m.group(1), 16))
-    bin_slots = ['0x%08X' % v for v in raw.slots]
-    out['CGameData'] = {
-        'finding': ('重复注入：注解已把二进制槽 5 建模为具名方法 %s，发射器又注入一条 '
-                    'virtual ~CGameData()（不是"凭空多一槽"）' % (meth.get('name') or '?')),
-        'binary_table': '0x%08X' % base,
-        'bin_slots': len(raw.slots),
-        'bin_slots_list': bin_slots,
-        'bin_dtor_slot_index': (list(raw.slots).index(dtor_va)
-                                if dtor_va in list(raw.slots) else None),
-        'bin_dtor_va': '0x%08X' % dtor_va,
-        'bin_dtor_name': idx.get(dtor_va, ''),
-        'annotation_scalar_dtor_name': meth.get('name'),
-        'annotation_scalar_dtor_ordinal': meth.get('ordinal'),
-        'header': 'Data/CGameData.h',
-        'header_virtuals': facts['virtuals'],
-        'header_has_virtual_dtor': facts['has_virtual_dtor'],
-        'named_virtuals': facts['virtuals'] - (1 if facts['has_virtual_dtor'] else 0),
-        'header_named_vas': named_vas,
-        'header_named_matches_binary_order': named_vas == bin_slots,
-    }
-    # 编译产物侧实际多出几个槽（重复注入的直接后果）——**留痕**，不硬钉：
-    # 现在 = 8（二进制 7 + 重复注入的 `virtual ~` 1）；T4 修好后应回到 7。
-    try:
-        cg_obj = _emit_obj_table('CGameData', 'Data/CGameData.h')
-        out['CGameData']['obj_slots'] = cg_obj['slots']
-        out['CGameData']['obj_slot_keys'] = cg_obj['keys']
-    except Exception as e:                                  # 发射失败不掩盖归因
-        out['CGameData']['obj_slots'] = None
-        out['CGameData']['obj_slot_keys'] = []
-        out['CGameData']['obj_emit_error'] = str(e)[:200]
+    def _degraded_or(cls, fn):
+        """记录构建失败 ⇒ **降级留痕**，不让 `run_e2e` 直接抛异常（对齐下面
+        `_emit_obj_table` 段的异常处理：只是不再崩，不掩盖失败原因）。"""
+        try:
+            return fn()
+        except Exception as e:                              # 缺文件 / 坏 JSON / 坏 addr
+            return {'cls': cls, 'degraded': True,
+                    'error': '%s: %s' % (type(e).__name__, str(e)[:200])}
 
-    # --- CEffectSystem：ordinal 未被遵循 + 硬上界截短（真实边界） ---
-    ann, base, raw = _base_raw('CEffectSystem')
-    reset_va = 0x004C6260
-    meth = _ann_method(ann, reset_va)
-    vt = (ann.get('vtables') or [{}])[0]
-    aslots = [int(str(s.get('addr')), 16) for s in (vt.get('slots') or [])]
-    nxt = [t for t in targets if t > base]
-    hard_end = nxt[0] if nxt else None
-    # 注解声称的 9 槽**逐个**与镜像 dword 对得上（且都是代码指针）——这就是"9 个代码指针"的
-    # 可证形式（**不能**用"连续代码指针一直数下去"：下一张表紧挨着，会一直数下去）
-    bytes_match = bool(aslots) and all(
-        image.can_read(base + 4 * i, 4)
-        and image.dword(base + 4 * i) == va
-        and image.in_code(va)
-        for i, va in enumerate(aslots))
-    hpath = PROJECT_ROOT / 'pal3' / 'src' / 'Effect' / 'CEffectSystem.h'
-    hdr = hpath.read_text(encoding='utf-8', errors='replace')
-    vdecls = [m.group(1) for m in re.finditer(r'virtual\s+[^;]*?(\w+)\s*\(', hdr)]
-    hf = header_facts(hpath)
-    out['CEffectSystem'] = {
-        'finding': ('发射器未遵循注解 ordinal（Reset 带 ordinal=8 却排在声明第 2 位 ⇒ 8 处错位）；'
-                    '表长边界 = **硬上界截短**（下一个 ctor 实写目标 0x56F844 落在本表内部，'
-                    '恰是槽 8 的地址 ⇒ 只读到 8 槽；**不是** `nxt[0]` 未排序）'),
-        'binary_table': '0x%08X' % base,
-        'annotation_slots': len(aslots),
-        'annotation_slots_match_bytes': bytes_match,
-        'annotation_slot8_addr': ('0x%08X' % aslots[8]) if len(aslots) > 8 else None,
-        'annotation_reset_name': meth.get('name'),
-        'annotation_reset_ordinal': meth.get('ordinal'),
-        'header': 'Effect/CEffectSystem.h',
-        'header_virtuals': hf['virtuals'],
-        'header_reset_decl_index': (vdecls.index('Reset') if 'Reset' in vdecls else None),
-        'hard_end': ('0x%08X' % hard_end) if hard_end else None,
-        'hard_end_slots': ((hard_end - base) // 4) if hard_end else None,
-        'slot8_addr': '0x%08X' % (base + 8 * 4),
-        'dword_at_hard_end': ('0x%08X' % image.dword(hard_end)) if hard_end else None,
-        'dword_at_hard_end_is_code': (image.in_code(image.dword(hard_end))
-                                      if hard_end else None),
-        'raw_slots': len(raw.slots),
-    }
+    def _cg_record():
+        # --- CGameData：二进制**有**析构槽，发射器**重复注入**该槽 ---
+        ann, base, raw = _base_raw('CGameData')
+        dtor_va = 0x44F030
+        meth = _ann_method(ann, dtor_va)
+        cg_path = PROJECT_ROOT / 'pal3' / 'src' / 'Data' / 'CGameData.h'
+        facts = header_facts(cg_path)
+        # 头里**具名** virtual 的槽地址注释（排除重复注入的 `virtual ~`）——与二进制 7 槽
+        # **逐槽同序**比对：这是"7 条具名与 7 槽 1:1（含析构槽）"的可证形式
+        named_vas = []
+        for line in cg_path.read_text(encoding='utf-8', errors='replace').splitlines():
+            if 'virtual' not in line or 'virtual ~' in line:
+                continue
+            m = re.search(r'//\s*(0x[0-9a-fA-F]+)', line)
+            if m:
+                named_vas.append('0x%08X' % int(m.group(1), 16))
+        bin_slots = ['0x%08X' % v for v in raw.slots]
+        rec = {
+            'finding': ('重复注入：注解已把二进制槽 5 建模为具名方法 %s，发射器又注入一条 '
+                        'virtual ~CGameData()（不是"凭空多一槽"）' % (meth.get('name') or '?')),
+            'binary_table': '0x%08X' % base,
+            'bin_slots': len(raw.slots),
+            'bin_slots_list': bin_slots,
+            'bin_dtor_slot_index': (list(raw.slots).index(dtor_va)
+                                    if dtor_va in list(raw.slots) else None),
+            'bin_dtor_va': '0x%08X' % dtor_va,
+            'bin_dtor_name': idx.get(dtor_va, ''),
+            'annotation_scalar_dtor_name': meth.get('name'),
+            'annotation_scalar_dtor_ordinal': meth.get('ordinal'),
+            'header': 'Data/CGameData.h',
+            'header_virtuals': facts['virtuals'],
+            'header_has_virtual_dtor': facts['has_virtual_dtor'],
+            'named_virtuals': facts['virtuals'] - (1 if facts['has_virtual_dtor'] else 0),
+            'header_named_vas': named_vas,
+            'header_named_matches_binary_order': named_vas == bin_slots,
+        }
+        # 编译产物侧实际多出几个槽（重复注入的直接后果）——**留痕**，不硬钉：
+        # 现在 = 8（二进制 7 + 重复注入的 `virtual ~` 1）；T4 修好后应回到 7。
+        try:
+            cg_obj = _emit_obj_table('CGameData', 'Data/CGameData.h')
+            rec['obj_slots'] = cg_obj['slots']
+            rec['obj_slot_keys'] = cg_obj['keys']
+        except Exception as e:                                  # 发射失败不掩盖归因
+            rec['obj_slots'] = None
+            rec['obj_slot_keys'] = []
+            rec['obj_emit_error'] = str(e)[:200]
+        return rec
+
+    def _ce_record():
+        # --- CEffectSystem：ordinal 未被遵循 + 硬上界截短（真实边界） ---
+        ann, base, raw = _base_raw('CEffectSystem')
+        reset_va = 0x004C6260
+        meth = _ann_method(ann, reset_va)
+        vt = (ann.get('vtables') or [{}])[0]
+        aslots = [int(str(s.get('addr')), 16) for s in (vt.get('slots') or [])]
+        nxt = [t for t in targets if t > base]
+        hard_end = nxt[0] if nxt else None
+        # 注解声称的 9 槽**逐个**与镜像 dword 对得上（且都是代码指针）——这就是"9 个代码指针"的
+        # 可证形式（**不能**用"连续代码指针一直数下去"：下一张表紧挨着，会一直数下去）
+        bytes_match = bool(aslots) and all(
+            image.can_read(base + 4 * i, 4)
+            and image.dword(base + 4 * i) == va
+            and image.in_code(va)
+            for i, va in enumerate(aslots))
+        hpath = PROJECT_ROOT / 'pal3' / 'src' / 'Effect' / 'CEffectSystem.h'
+        hdr = hpath.read_text(encoding='utf-8', errors='replace')
+        vdecls = [m.group(1) for m in re.finditer(r'virtual\s+[^;]*?(\w+)\s*\(', hdr)]
+        hf = header_facts(hpath)
+        rec = {
+            'finding': ('发射器未遵循注解 ordinal（Reset 带 ordinal=8 却排在声明第 2 位 ⇒ 8 处错位）；'
+                        '表长边界 = **硬上界截短**（下一个 ctor 实写目标 0x56F844 落在本表内部，'
+                        '恰是槽 8 的地址 ⇒ 只读到 8 槽；**不是** `nxt[0]` 未排序）'),
+            'binary_table': '0x%08X' % base,
+            'annotation_slots': len(aslots),
+            'annotation_slots_match_bytes': bytes_match,
+            'annotation_slot8_addr': ('0x%08X' % aslots[8]) if len(aslots) > 8 else None,
+            'annotation_reset_name': meth.get('name'),
+            'annotation_reset_ordinal': meth.get('ordinal'),
+            'header': 'Effect/CEffectSystem.h',
+            'header_virtuals': hf['virtuals'],
+            'header_reset_decl_index': (vdecls.index('Reset') if 'Reset' in vdecls else None),
+            'hard_end': ('0x%08X' % hard_end) if hard_end else None,
+            'hard_end_slots': ((hard_end - base) // 4) if hard_end else None,
+            'slot8_addr': '0x%08X' % (base + 8 * 4),
+            'dword_at_hard_end': ('0x%08X' % image.dword(hard_end)) if hard_end else None,
+            'dword_at_hard_end_is_code': (image.in_code(image.dword(hard_end))
+                                          if hard_end else None),
+            'raw_slots': len(raw.slots),
+        }
+        return rec
+
+    out['CGameData'] = _degraded_or('CGameData', _cg_record)
+    out['CEffectSystem'] = _degraded_or('CEffectSystem', _ce_record)
     return out
 
 
@@ -1355,7 +1371,9 @@ def test_live_bin_table_census_quantifies_family_rule_truncation():
     改为三条**不会因修好而报错**的断言：
     ① **raw 界定不变量**：raw 分母只由"非代码指针即断"决定（族判据不参与 ⇒ 应稳定）；
     ② **关系断言**：`family_rule ≤ raw`（族判据是 raw 的**子集**，只会更短不会更长）；
-    ③ 例证自洽：每条 truncation 例子都满足 `family_rule < raw`。
+    ③ 例证自洽（**条件式**）：**若** `examples` 非空，则每条 truncation 例子都满足
+    `family_rule < raw`；`examples` 为空（= 族判据已修好、无截断）**同样合法** ⇒ 该断言
+    不会因 T3 修好而报红（R=2：R=1 曾以 `assert c['examples']` 非空断言重新引入 I-5 危害）。
     当前值（639 / 76）只**留痕**（打印 + 机读报告 `bin_census`），不作硬断言。
     """
     _need_live()
@@ -1369,7 +1387,11 @@ def test_live_bin_table_census_quantifies_family_rule_truncation():
     assert c['annotated_tables'] >= 50, c
     assert 0 <= c['annotated_truncated'] <= c['annotated_tables'], c
     # ③ 例证自洽（截断例的族判据槽数严格小于 raw）
-    assert c['examples'], c
+    #    ⚠️ **条件式**（R=2 / I-5 二次修复）：**不得**写 `assert c['examples']` ——
+    #    `examples` 只在族判据**确实截断**时才非空，非空断言等于要求"截断缺陷继续存在"
+    #    （与 head docstring"T3 修好族判据后两者应相等"自相矛盾）：T3 落地后族判据修好 ⇒
+    #    `examples == []` ⇒ 该断言**必红，尽管一切变好**。因此只保留"若有 example 则逐例自洽"：
+    #    为空（族判据已修好）与为非空（尚未修好）**同样合法**。
     for e in c['examples']:
         assert e['family_rule'] < e['raw'], e
     # 留痕（**不是**断言）：当前缺陷态的量（Task 6 发表的"189 表/639 槽"即此被截断值）
