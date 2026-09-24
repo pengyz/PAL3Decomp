@@ -219,7 +219,13 @@ def _att_operand(text, branch):
     indirect = text.startswith('*')
     t = text[1:].strip() if indirect else text.strip()
     if t.startswith('$'):
-        return Operand('imm', value=_parse_int(t[1:]), text=text)
+        # `$` 后**非数字** ⇒ 未解析的符号引用（如裸文本 `push $SG240`：objdump 一般把它放在
+        # 单独的重定位注释行里，但手抄/其他反汇编器可能内联）⇒ 回落 `other`。**不得抛异常**：
+        # 一次 `_parse_int('sg240')` 会毁掉整段解析、抹掉该槽全部证据。
+        body = t[1:].strip()
+        if not _INT_RE.match(body):
+            return Operand('other', text=text)
+        return Operand('imm', value=_parse_int(body), text=text)
     if t.startswith('%'):
         return Operand('reg', reg=t[1:].split('(')[0].lower(), text=text)
     if t.endswith(')') and '(' in t:
@@ -284,10 +290,19 @@ _OBJDUMP_HDR = re.compile(r'^\s*[0-9A-Fa-f]*\s*<[^>]*>:\s*$')
 _NDISASM_LINE = re.compile(r'^\s*[0-9A-Fa-f]{4,}\s+[0-9A-Fa-f]{2,}\s\s+([A-Za-z].*)$')
 _TEXT_LINE = re.compile(r'^\s*([A-Za-z][A-Za-z0-9._]*)\s*(.*)$')
 
-# 重定位注释行（`objdump -dr` 的 `R_386_PC32 <sym>` / `R_IA64_PCREL21B <sym>` 等）：
-# **无指令语义**，带不带 `offset:` 前缀都算。若被当指令解析，会抢占末位使尾 jmp 不再位于
-# 末位 ⇒ 真 adjustor thunk 被误判成静默 fn（零 notes）。故按 `R_<ARCH>_<TYPE>` 通用匹配。
-_RELOC_LINE = re.compile(r'^\s*(?:[0-9A-Fa-f]{1,16}:\s*)?R_[A-Za-z0-9_]+\b')
+# 重定位注释行：**无指令语义**，带不带 `offset:` 前缀都算。若被当指令解析，会抢占末位使尾 jmp
+# 不再位于末位 ⇒ 真 adjustor thunk 被误判成静默 fn（零 notes）。两种书写形态：
+#   1. GNU ELF：`objdump -dr` 的 `R_386_PC32 <sym>` / `R_IA64_PCREL21B <sym>` ⇒ `R_<ARCH>_<TYPE>`
+#   2. PE-COFF：打印 howto **类型名**而非 `R_*` 前缀（binutils 2.38 pe-i386 实测，
+#      MSVC 6.0 SP0 `/Od` 编译的 `_main`）：
+#        `\t\t\t2f: dir32\t$SG240` / `\t\t\t37: DISP32\t?log@S@@UAEHPBDH@Z`
+#      x86 PE 的字符串符号**带 `$` 前缀** ⇒ 被当指令解析时 `_att_operand('$SG240')`
+#      → `_parse_int('sg240')` → `ValueError`（崩溃，非静默误判）。`off32` 为任务指定的第三
+#      形态（本机 objdump 未发射，同族）；`secrel32` 实测存在于 libbfd-2.38 同名表。
+#      这些名字不可能与任何 x86 助记符重名，故按名字家族通用匹配。
+_RELOC_LINE = re.compile(
+    r'^\s*(?:[0-9A-Fa-f]{1,16}:\s*)?'
+    r'(?:R_[A-Za-z0-9_]+\b|(?i:dir32|disp32|off32|secrel32)\b)')
 
 # IDA 粘贴形态的**地址列前缀**：`CODE:00401000 ` / `.text:00401000 ` / `00401000  `。
 _IDA_ADDR_COL = re.compile(

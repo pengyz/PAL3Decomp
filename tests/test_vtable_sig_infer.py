@@ -1262,15 +1262,25 @@ def test_optimized_thiscall_two_params_from_esp_reads():
 
 
 # ==========================================================================
-# 15. Task 2 解析器的 PE-COFF 重定位行缺口（发现项）—— 本工具必须不崩且留痕
+# 15. Task 2 解析器的 PE-COFF 重定位行缺口 —— **根因已修**（Task 2 R=2，2026-09-25）
 # ==========================================================================
+#
+# 本节原为"发现项留证"：`dir32 $SG263`/`DISP32 ?sym` 让 Task 2 `parse_disasm_report`
+# 抛 `ValueError`。Task 2 R=2 已把该形态收进 `_RELOC_LINE`（PE-COFF howto 名家族）⇒ 原始
+# 文本直接可解析。此处**必须翻转**断言的用例，否则会把已修复的缺陷固化下来。
+#
+# 后果（记录，不修本工具）：`_PE_RELOC_LINE` 能 sanitize 的行集合是 Task 2 `_RELOC_LINE` 的
+# **子集**（`R_386_`/`R_IA64_`/`R_X86_64_` ⊆ `R_*`；DISP32/dir32/off32 大小写不敏感重复覆盖）
+# ⇒ 不再存在"Task 2 抛异常、Task 3 能 sanitize 掉"的行 ⇒ `FEATURE_PARSER_ERROR` 分支对本节
+# 输入成为**不可达的纵深防御**（保留，覆盖不到；见 Task 2 R=2 报告"顾虑"）。
 
-def test_task2_parser_raises_on_pe_coff_dir32_reloc_line():
-    """**发现项留证**：`dir32\t$SG263`（PE-COFF 重定位注释行）让 Task 2 解析器抛
-    `ValueError`（`_parse_int('sg263')`）—— 真实 objdump 文本里凡"字符串地址压栈"
-    的函数都有这种行 ⇒ Task 3 必须防御。"""
-    with unittest.TestCase().assertRaises(ValueError):
-        parse_disasm_report(PE_RELOC_TEXT)
+def test_task2_parser_no_longer_raises_on_pe_coff_dir32_reloc_line():
+    """**发现项已闭合**（原断言 `assertRaises(ValueError)` 已翻转）：PE-COFF 重定位注释行
+    被 Task 2 正确跳过 —— 6 条真指令、0 行丢弃、2 行有意跳过。"""
+    rep = parse_disasm_report(PE_RELOC_TEXT)
+    assert [i.mnem for i in rep.insns] == ['push', 'push', 'lea', 'push', 'call', 'add'], rep.insns
+    assert rep.skipped_lines == 3, rep          # 首行空行 + 2 行重定位注释
+    assert rep.dropped_lines == 0, rep.dropped_examples
 
 
 def test_pe_coff_reloc_lines_are_sanitized_without_semantic_change():
@@ -1283,14 +1293,20 @@ def test_pe_coff_reloc_lines_are_sanitized_without_semantic_change():
     assert len(body_key(clean)) == 6, body_key(clean)      # 6 条真指令（push/push/lea/push/call/add）
 
 
-def test_infer_does_not_crash_on_pe_coff_reloc_text_and_leaves_trace():
-    """喂含 PE-COFF 重定位行的**原始**文本：不得崩，必须留 parser_error 痕迹，
-    并给 C 级（这不是函数本体，证据不足）"""
-    cand = infer_signature(E(addr='0x0', name='log_region', disasm=PE_RELOC_TEXT))
-    assert cand is not None, cand
-    assert FEATURE_PARSER_ERROR in cand.features, cand.features
-    assert 'parser_error' in notes_of(cand), cand.notes
-    assert cand.grade == GRADE_C, (cand.grade, cand.notes)
+def test_infer_accepts_pe_coff_reloc_text_without_parser_error():
+    """喂含 PE-COFF 重定位行的**原始**文本：根因修复后不再触发 `parser_error` 防御；
+    原材料与 `sanitize_pe_relocs` 后结论**逐字相同**（sanitize 成为冗余的纵深防御）。
+    片段不是函数本体 ⇒ 仍必须给 C 级（证据不足），不得当"0 参 void"的安全默认。"""
+    raw = infer_signature(E(addr='0x0', name='log_region', disasm=PE_RELOC_TEXT))
+    clean, n = sanitize_pe_relocs(PE_RELOC_TEXT)
+    san = infer_signature(E(addr='0x0', name='log_region', disasm=clean))
+    assert n == 2, n
+    assert raw is not None, raw
+    assert FEATURE_PARSER_ERROR not in raw.features, raw.features
+    assert 'parser_error' not in notes_of(raw), raw.notes
+    assert (raw.grade, raw.arity, raw.convention, raw.return_kind, set(raw.features)) == \
+           (san.grade, san.arity, san.convention, san.return_kind, set(san.features)), (raw, san)
+    assert raw.grade == GRADE_C, (raw.grade, raw.notes)
 
 
 def test_infer_address_record_survives_pe_coff_reloc_text():

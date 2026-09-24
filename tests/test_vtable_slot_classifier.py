@@ -42,6 +42,7 @@ from vtable_slot_classifier import (  # noqa: E402
     normalize_kind,
     normalize_signature,
     parse_disasm,
+    parse_disasm_report,
     slot_order_kind,
 )
 
@@ -552,6 +553,106 @@ def test_empty_input_has_no_evidence_trace():
         res = classify_slot(E(instructions=text))
         assert res.notes == (), (text, res.notes)
         assert res.kind == KIND_FN, (text, res)
+
+
+# ============ 10. PE-COFF objdump 重定位注释行（`dir32` / `DISP32` / `off32`） ============
+#
+# 缺陷例 4（**新**，本轮实测）：PE-COFF 的 `objdump -dr` 不打印 GNU 的 `R_<ARCH>_<TYPE>`，
+# 而打印 howto **类型名**：`\t\t\t<offset>: dir32\t$SG240`。x86 PE 的字符串符号**带 `$` 前缀**
+# ⇒ 该行被当指令解析时 `_att_operand('$SG240')` → `_parse_int('sg240')`
+# → `ValueError: invalid literal for int() with base 10: 'sg240'`（真机崩溃，非静默误判）。
+# 影响面：真实二进制里凡"字符串地址压栈"的函数都有这种行。
+
+# 逐字夹具 —— MSVC 6.0 SP0（cl 12.00.8168）`/Od` 编译下述源码，再
+# `objdump -dr p1.obj`（GNU binutils 2.38，pe-i386），取 `_main` 本体：
+#   int printf(const char *, ...);
+#   struct S { virtual int log(const char *s, int v); };
+#   int g(void);
+#   int main() { S s; s.log("a", 1); return g(); }
+# 复现命令：tools/wine_cl.sh /c /nologo /Od /GR /Fo/tmp/p1.obj p1.cpp && objdump -dr p1.obj
+PE_COFF_DIR32_MAIN = (
+    '  2c:\t6a 01                \tpush   $0x1\n'
+    '  2e:\t68 00 00 00 00       \tpush   $0x0\n'
+    '\t\t\t2f: dir32\t$SG240\n'
+    '  33:\t8d 4d fc             \tlea    -0x4(%ebp),%ecx\n'
+    '  36:\te8 00 00 00 00       \tcall   3b <_main+0x1b>\n'
+    '\t\t\t37: DISP32\t?log@S@@UAEHPBDH@Z\n'
+    '  3b:\te8 00 00 00 00       \tcall   40 <_main+0x20>\n'
+    '\t\t\t3c: DISP32\t?g@@YAHXZ\n'
+    '  40:\t8b e5                \tmov    %ebp,%esp\n'
+    '  42:\t5d                   \tpop    %ebp\n'
+    '  43:\tc3                   \tret    ')
+
+
+def test_pe_coff_dir32_reloc_line_is_skipped_not_parsed_as_insn():
+    """缺陷例 4（方案 A 主用例）：PE-COFF `dir32` 重定位注释行**无指令语义** ⇒ 必须跳过。
+
+    修前：`ValueError`（`_parse_int('sg240')`）—— 整段解析崩掉，证据全丢。
+    修后：8 条真指令逐条对齐，3 条重定位行计入 `skipped_lines`（有意跳过，非丢弃）。
+    """
+    rep = parse_disasm_report(PE_COFF_DIR32_MAIN)
+    assert [i.mnem for i in rep.insns] == ['push', 'push', 'lea', 'call', 'call',
+                                          'mov', 'pop', 'ret'], rep.insns
+    assert rep.content_lines == 11, rep
+    assert rep.parsed_lines == 8, rep
+    assert rep.skipped_lines == 3, rep          # 2f: dir32 / 37: DISP32 / 3c: DISP32
+    assert rep.dropped_lines == 0, rep.dropped_examples
+    assert not rep.partially_parsed, rep
+    assert not rep.insufficient_evidence, rep
+
+
+def test_pe_coff_reloc_type_name_forms_are_all_skipped():
+    """方案 A：PE-COFF 重定位类型名三形态 `dir32` / `DISP32` / `off32`（大小写不敏感）
+    都是**注释行**，不得当指令。
+
+    `off32` 为任务指定的第三形态：本机 objdump 2.38 pe-i386 **未发射**该名（弱证据），
+    但同属 PE-COFF howto 家族、不可能与任何 x86 助记符重名，故一并列入通用匹配。
+
+    `secrel32` 是**实测存在**的第四个名（`grep -a -o -E 'dir32|secrel32' libbfd-2.38-system.so`
+    ⇒ 两个命中），属同一 howto 家族；漏掉它不会崩（符号操作数回落 other）但会**静默多出一条
+    伪指令** ⇒ 可抢占末位（本模块最忌讳的失效模式），故一并列入。
+    """
+    for name in ('dir32', 'DISP32', 'disp32', 'off32', 'secrel32'):
+        text = ('  36:\te8 00 00 00 00       \tcall   3b <_main+0x1b>\n'
+                '\t\t\t37: ' + name + '\t?log@S@@UAEHPBDH@Z\n'
+                '  3b:\tc3                   \tret    ')
+        rep = parse_disasm_report(text)
+        assert [i.mnem for i in rep.insns] == ['call', 'ret'], (name, rep.insns)
+        assert rep.skipped_lines == 1, (name, rep)
+        assert rep.dropped_lines == 0, (name, rep.dropped_examples)
+
+
+def test_pe_coff_reloc_line_does_not_steal_last_insn_position():
+    """重定位行若被当指令，会抢占**末位** ⇒ 尾 jmp 不再在末位 ⇒ 真 adjustor thunk
+    静默判成 fn（与既有 `R_386_*` 缺陷**同一失效模式**，此处用真实 `dir32` 名复现）。
+
+    `dir32 $SG240` 的 `$` 前缀使修前形态是**崩溃**而非静默误判。
+    """
+    text = ('  0:\t2b 49 fc             \tsub    -0x4(%ecx),%ecx\n'
+            '  3:\te9 00 00 00 00       \tjmp    0x8\n'
+            '\t\t\t4: dir32\t$SG240')
+    res = classify_slot(E(instructions=text))
+    assert res.kind == KIND_ADJUSTOR_VBASE, res
+    assert res.features == frozenset({FEATURE_ADJUSTOR_VBASE}), res.features
+    assert 'partially_parsed' not in ' | '.join(res.notes), res.notes
+
+
+def test_dollar_prefixed_non_numeric_operand_falls_back_to_other():
+    """方案 B 兜底：`$` 后**非数字**（未解析符号，如裸文本 `push $SG240`；objdump 通常另起
+    重定位行，但手抄/其他反汇编器可能内联）⇒ 回落 `Operand('other')`，**不得抛异常**
+    （一次异常毁掉整段解析 ⇒ 该槽证据全丢）。
+
+    数字立即数 `$0x8` 语义**不变**（仍为 imm=8），不得因兜底放宽而回退。
+    """
+    ins = parse_disasm('push $SG240\njmp 0x8')
+    assert [i.mnem for i in ins] == ['push', 'jmp'], ins
+    assert (ins[0].ops[0].kind, ins[0].ops[0].text) == ('other', '$SG240'), ins[0].ops
+    imm = parse_disasm('sub $0x8,%ecx')
+    assert (imm[0].ops[1].kind, imm[0].ops[1].value) == ('imm', 8), imm[0].ops
+    # 十进制 / `h` 后缀 / 负号写法都仍走 imm（兜底不得吞掉真立即数）
+    for lit, val in (('$8', 8), ('$0fh', 15), ('$-1', -1), ('$0xfffffff8', -8)):
+        got = parse_disasm('push ' + lit)
+        assert (got[0].ops[0].kind, got[0].ops[0].value) == ('imm', val), (lit, got[0].ops)
 
 
 if __name__ == '__main__':
