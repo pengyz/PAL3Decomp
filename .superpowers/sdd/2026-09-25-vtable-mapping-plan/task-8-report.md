@@ -593,3 +593,116 @@ CCBStageShadow 与 UI3DCtrl **各有 2 条函数体逐字节全同**（UI3DCtrl 
 * **工作树**：`LIVE 套件`、`--e2e`、`--e2e --out /tmp/…` 三种运行后 `git status --porcelain` 均**无 modified tracked 文件**
   （棘轮基线重写字节相同）；`data/annotations_bak_probe/` 测试后**无残留**。
 * **提交内容**：`244f0ea12` 仅 4 文件（`git diff --cached --name-only` 核对），无 JSON 脏化、无临时文件入库。
+
+---
+
+# 14. R=4 收口修复轮（本项目**最后一个修复轮**）：M-3 + 新增破环（拒写守卫符号链接）
+
+- **范围**：`tools/vtable_sig_infer.py` + `tests/test_vtable_sig_infer.py`（唯一改动面）
+- **状态**：M-3 **ADDRESSED**（含 2 条评审反例）+ 符号链接破环 **ADDRESSED**
+- **一行测试摘要**：`python3 tests/test_vtable_sig_infer.py` → **77 passed / 0 failed / 0 skipped**（71 → 77，**+6**）；前序 8 套 **73 / 35 / 38 / 77 / 88 / 61(+3 skip) / 35 / 22(+8 skip)** 全 exit 0 / 0 failed
+
+## 14.1 病灶层检查（动手前，逐问作答）
+
+| 问 | 答（可复核） |
+|---|---|
+| 病灶在哪一层？ | **工具自身的输入校验层**（`_slot_evidence_kind` 只判顶层形状），不在 T2 分类器 / 推断器。顶层 `list` 放行后，`_slots_from_json`（`vtable_sig_infer.py:1484` 分支 `elif isinstance(data, list): slots = data`）把 `{"methods":{}}` 当**单槽** ⇒ `SigEvidence(addr='')` ⇒ 键 `""` |
+| 消费者实际读哪个文件/哪份声明？ | `_slot_evidence_kind()` 的**唯一调用点**是 `main()`（grep 全仓 1 命中）；下游链 `main()` → `_slots_from_json` → `infer_address_record` → `build_methods_pending`。无第二消费者，故门只需在 `main()` 收紧 |
+| 报错还缺什么信息？ | 旧 `SystemExit` 只说"顶层形状不含槽证据"，**不指出哪个条目**坏 —— 逐项门给出 1-based 条目序号（`_slot_items_without_evidence`），调用方可直接改 |
+
+### ⚠️ 简报复现命令的**字面**形态是 `open()` 失败（事实更正，不影响修法）
+
+简报给的是 `python3 tools/vtable_sig_infer.py --struct '[{"methods":{}}]'`。实测该形态把 JSON 文本
+当**文件路径**（`main()` 只有 `open(src)`，无内联 JSON 形态）：
+
+```
+$ python3 tools/vtable_sig_infer.py --struct '[{"methods":{}}]'
+FileNotFoundError: [Errno 2] No such file or directory: '[{"methods":{}}]'      # exit 1（traceback）
+```
+
+⇒ "静默 exit 0 + 空地址伪候选"的**实质**复现是**文件内容**为该 JSON（本轮按此复现，`/tmp/r4/a.json`、
+`/tmp/r4/b.json`，改前 exit 0 + `"methods_pending": {"": … "? unknown _slot()"}`）。缺陷本身为真，
+仅命令写法需要落到文件上；本轮**未**新增"内联 JSON"入口（超出工单范围）。
+
+## 14.2 M-3：`--struct` 门的**逐项**缺口（ADDRESSED）
+
+**根因**（与评审一致）：`_slot_evidence_kind()` 只判**顶层形状**（任意 `list` ⇒ `'list'` 即放行），
+**无逐项校验**；其 docstring 又把"裸列表"列为合法输入 ⇒ 门有缺口。
+
+**修法**（`tools/vtable_sig_infer.py`，新增 2 个私有判据 + `main()` 一处门）：
+
+* `_slot_entry_lacks_evidence(item)`：条目**自身**必须带槽证据才放行 ——
+  `str` 非空白（Ruling 1 原始反汇编文本，即"裸列表"形态）**或** `dict` 的 `addr`（str/int）
+  **或** `disasm`（str）之一非空；其他类型一律无证据。
+  `name`/`symbol`/`signature` **不单独**构成证据 —— 注解 `known_members` 条目就带 `name`
+  （`{"offset":0,"name":"m_x","type":"int"}`），若算证据会重新打开空地址伪候选通道。
+* `_slot_items_without_evidence(data)`：返回无证据条目的 **1-based 序号**列表。
+* `main()`：顶层门（M-2a）之后**再**逐项校验，非空 ⇒ `SystemExit`（**rc=1**），消息含条目序号 +
+  合法形态说明；**fail-closed**：混入坏条目时**整体拒收**，不"悄悄跳过坏的、只出好的"。
+
+**TDD（可复跑）**：先写 4 条测试 ⇒ HEAD RED **3 条**（`[{"methods":{}}]` / `{"slots":[{"methods":{}}]}`
+均 stdout 含 `"methods_pending": {\n  "": {` 且 exit 0；混入坏条目亦 rc=0）⇒ 改后 GREEN。
+
+**"含 `slots` 不误伤"的双向证据**：`test_r4_slot_evidence_positive_cases_still_processed` 钉三种合法形态
+仍 rc=0（① `slots` 列表 ② 裸列表 dict 条目 ③ 裸列表**字符串**条目）；③ 的键仍是 `""`，但它产出的是
+**真推断**（实测 `? __thiscall _slot(?,?)`，B 级）而非 `? unknown _slot()` ⇒ 断言显式排除伪候选
+（"键为 `""`"本身不是缺陷判据，"无证据却被当成槽"才是）。
+
+**边界（不夸大）**：单槽对象只给 `addr`（无 `disasm`）仍放行 ⇒ 产出**真实地址**上的
+`? unknown _slot()` / C 级 + `insufficient_evidence` 痕迹 —— 这是 Ruling 2 的**契约**
+（证据不足 ⇒ C + 留痕，不得当安全默认），**非**本次空地址伪候选缺陷态。
+
+## 14.3 新增破环：拒写守卫经**符号链接**绕过（ADDRESSED）
+
+**复现**（改前实测，`data/annotations_link -> data/annotations`）：
+
+| 路径 | 期望 | 改前（纯词法 `commonpath`） | 改后 |
+|---|---|---|---|
+| `data/annotations/x.json` | 拒 | True | True |
+| `data/annotations_bak_probe/o.json` | 放行 | False | **False**（M-2b 保持） |
+| `data/annotations_link/x.json` | 拒 | **False ✗** | **True ✓** |
+
+**修法**（`_is_under_truth_source`）：`os.path.abspath` + **`os.path.realpath`**（解析符号链接）后各自
+`commonpath`，两条判据取**或**（任一为真即拒）：① 词法在真源内（覆盖"链接**位于**真源树内、指向外部"
+的树内挂载点，纯 realpath 会放行）；② 解析后在真源内（覆盖本次破环）。兄弟目录两条均为假 ⇒ 仍放行。
+
+**测试**（2 条）：`test_r4_truth_source_refusal_resolves_symlinks`（符号链接 ⇒ 拒 + **目标文件不落盘** +
+兄弟目录仍放行**并真的落盘**）· `test_r4_truth_source_internal_symlink_pointing_out_is_still_refused`
+（树内链接指向外部 ⇒ 仍拒且不落盘）。清理用 `try/finally` + `os.path.islink` 判定。
+
+**独立 shell 复证**（非单测口径，改后实测）：A) `--out data/annotations_link/…` ⇒ exit 1 且目标文件不存在 ·
+B) 直写真源 ⇒ 拒 · C) 兄弟目录 ⇒ `[vtable_sig_infer] 1 地址 / 1 候选 → …` exit 0 · D) **多级链**
+`/tmp/link2 -> data/annotations_link -> data/annotations` ⇒ 拒。
+
+## 14.4 仓库卫生与事实更正
+
+* **无残留**：测试跑两遍结果逐字相同（77/0/0）；`ls -d data/annotations*` 只有 `data/annotations`，
+  `data/annotations_link` / `data/annotations_bak_probe` / `data/annotations/__r4_*` 均**不存在**。
+* **事实更正（本轮实测）**：历轮报告/台账写的"`.superpowers/sdd/` 被 gitignore ⇒ 不入库"**为假**，
+  且**假的具体机制已定位**（这正是它骗过人两轮的原因）：
+
+  ```
+  $ git ls-files .superpowers | wc -l                # 17 —— 本计划文件早已入库
+  $ git add .superpowers/sdd/…/progress.md           # 已跟踪文件，改动**确实进了索引**
+  $ echo $?                                          # 1  ← 因 .superpowers/sdd/.gitignore 的 `*` 打 advice 并 exit 1
+  $ git status --short .superpowers                  # M  …/progress.md  ← 已在索引里
+  ```
+
+  ⇒ `git add <该目录> && git commit …` 这种**链式**命令会因 `add` 退出码 1 而**静默跳过提交**
+  （R=3 轮即如此，随后才由 `212f53b02` 单独补入库 R=3 台账段）——"不入库"是**提交没跑**的现象，
+  不是 gitignore 的效果。本轮按 R=3 先例**分两个提交**：①代码+测试 ②报告/台账（docs，用
+  `git commit` 直接提交**已暂存**内容，不再链式 `&&`）。**未**修改任何管线 / annotation / 其他工具。
+
+## 14.5 顾虑（诚实披露）
+
+1. **两条判据取"或"是超出简报的加严**（简报只说 realpath 后再 commonpath）：额外拒掉"真源树内挂载点
+   指向外部"这一形态。理由是拒写守卫应保守（该形态仍会往真源树写文件），且它与 M-2b 无冲突
+   （分量级比较不受影响，兄弟目录两条判据均为假）——有专门测试钉住该分支。
+2. **`signature` 不单独构成证据**是新增判据（原 `_slots_from_json` 接受 `signature` 字段）：单独给
+   `signature` 而无 `addr`/`disasm` 的条目现在被拒（旧行为会产出**空地址**记录）。这是收紧而非放宽，
+   与"输入契约要求原始指令字节"一致；若将来需要"只给签名"的旁路入口，应显式加 `addr`。
+3. **未新增内联 JSON 入口**：简报字面命令（`--struct '<json>'`）在本工具是文件路径参数（见 §14.1）。
+   本轮只修"文件内容为坏 JSON"的实质缺陷，不改 CLI 参数语义 —— 若评审希望支持内联 JSON，属新功能。
+4. **`data/annotations_link` 这类临时符号链接由测试自建自清**：测试在仓库 `data/` 下建链接（复刻评审
+   现场），若进程被强杀可能残留一个**符号链接**（非文件、不影响真源内容）；已用 `islink` 前置清理 +
+   `finally` 兜底，实测两遍无残留。

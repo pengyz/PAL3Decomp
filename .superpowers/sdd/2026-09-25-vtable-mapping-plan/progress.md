@@ -856,3 +856,24 @@ M-3 **NOT ADDRESSED（部分收口，Minor）**：注解 JSON 对象已修（rc=
 
 Ruling: R=4 收口 2 项 Minor（M-3 逐项校验 + 符号链接 realpath）— 均为有界小修，且 M-3 是"声称已修但实际部分收口"（不同于新增 Minor）— 若错：一次多余修复轮
 Controller: 提交 progress.md 的 R=3 段（延期 minor ⑧）+ 修正 task-8-report 的过时"不入库"表述（⑦）
+
+## R=4 收口修复完成（本项目**最后一个修复轮**：M-3 + 拒写守卫符号链接破环）
+
+提交：见下（①代码+测试 ②报告/台账）· 测试：`test_vtable_sig_infer` **77 passed / 0 failed / 0 skipped**（71→77，+6）· 前序 8 套 **73 / 35 / 38 / 77 / 88 / 61(+3 skip) / 35 / 22(+8 skip)** 全 0 failed（仅 sig_infer 计数 +6，其余逐套同基线）
+
+### 🟡 M-3（NOT ADDRESSED 部分收口）—— ADDRESSED
+- **病灶层**：工具自身**输入校验层**（`_slot_evidence_kind` 只判顶层形状），唯一消费者 = `main()`；下游 `_slots_from_json` 把 `{"methods":{}}` 当单槽 ⇒ 键 `""` 伪候选
+- **修法**：`_slot_entry_lacks_evidence()` 逐项校验（条目须有 `addr` 或 `disasm`；`name`/`symbol`/`signature` **不单独**构成证据）+ `_slot_items_without_evidence()` 给条目序号 + `main()` fail-closed 门（带坏条目 ⇒ rc=1，不静默跳过）
+- **TDD**：先写测试 ⇒ 3 条 RED（`[{"methods":{}}]` / `{"slots":[{"methods":{}}]}` 改前 exit 0 + stdout 含 `"methods_pending": { "": {`；混入坏条目亦 rc=0）⇒ 改后 GREEN；阴性对照钉三种合法形态（`slots` 列表 / 裸列表 dict / 裸列表字符串）仍 rc=0
+- **事实更正**：简报字面命令 `--struct '[{…}]'` 在本工具是**文件路径**参数 ⇒ 实测 `FileNotFoundError`(exit 1)；实质复现按**文件内容**为该 JSON（缺陷为真，命令写法需落到文件；本轮不加内联 JSON 入口）
+
+### 🟡 新增破环（拒写守卫经符号链接绕过）—— ADDRESSED
+- **复现**：`data/annotations_link -> data/annotations` ⇒ `data/annotations_link/x.json` 改前 拒=**False**（纯词法 `commonpath`）→ 改后 拒=**True**；兄弟目录 `data/annotations_bak_probe/o.json` 仍 **False**（M-2b 保持）
+- **修法**：`os.path.realpath` 后再 `commonpath`，与词法 `commonpath` 取**或**（保守覆盖"真源树内挂载点指向外部"）
+- **TDD**：符号链接反例（拒 + **目标文件不落盘** + 兄弟目录仍放行并落盘）+ 树内链接指向外部反例
+- **独立 shell 复证**：A 链接写 ⇒ exit 1 且目标不存在 · B 直写真源 ⇒ 拒 · C 兄弟目录 ⇒ exit 0 落盘 · D 多级链 `/tmp/link2 -> data/annotations_link -> data/annotations` ⇒ 拒
+- **无残留**：两遍跑结果逐字相同；`data/annotations_link` / `data/annotations_bak_probe` / `data/annotations/__r4_*` 实测均不存在
+
+### 事实更正（仓库卫生，本轮实测）
+- 历轮"`.superpowers/sdd/` 被 gitignore ⇒ 不入库"**为假**，且机制已定位：本计划文件早已**入库**（`git ls-files` 17 命中；`948fc786d` 入库报告、`212f53b02` 入库 R=3 台账段）；`git add <该路径>` 会把**已跟踪**文件的改动**确实暂存**（`git status` 显示 `M `）**却 exit 1**（`.superpowers/sdd/.gitignore` 的 `*` 打 advice）⇒ `git add … && git commit …` 链式命令**静默跳过提交** —— "不入库"是提交没跑，不是 ignore 生效
+- 本轮按 R=3 先例拆 ①代码+测试 ②报告/台账 两个提交（docs 提交直接提交已暂存内容，不再链式 `&&`）
