@@ -1,0 +1,711 @@
+{
+ "generated_by": "tests/test_vtable_e2e.py",
+ "generated_at": "2026-09-25T00:56:53",
+ "meta": {
+  "l1_flags": [
+   "/nologo",
+   "/TP",
+   "/c",
+   "/W3"
+  ],
+  "decomp_entries": 3584,
+  "s2_units": "n/a"
+ },
+ "units": {
+  "pal3/src/Combat/CCBStageShadow.cpp": {
+   "unit": "pal3/src/Combat/CCBStageShadow.cpp",
+   "cls": "CCBStageShadow",
+   "header": "Combat/CCBStageShadow.h",
+   "binary_polymorphic": false,
+   "binary_evidence_note": "ctor 0x511EE0 无 vptr 写（字节级扫描）+ PDB 成员自 +0 起（无 vfptr 空隙）",
+   "l1": {
+    "stage": "l1",
+    "status": "l1_partial",
+    "note": "8/8 个已比对函数体字节不同（partial）",
+    "rate": 0.0,
+    "match_L1": 0,
+    "partial": 8,
+    "matched": 9,
+    "symbols": 13,
+    "unmatched": 4,
+    "unresolved_synth": 1,
+    "oob": 0,
+    "compile_skip": 0,
+    "unit": "pal3/src/Combat/CCBStageShadow.cpp",
+    "flags": [
+     "/nologo",
+     "/TP",
+     "/c",
+     "/W3"
+    ],
+    "partial_rows": [
+     {
+      "symbol": "?UpdateShadowMesh@CCBStageShadow@@QAEPAMXZ",
+      "va": "0x00511E80",
+      "status": "partial",
+      "match_pct": 6.8,
+      "size": 88
+     },
+     {
+      "symbol": "??0CCBStageShadow@@QAE@XZ",
+      "va": "0x00511EE0",
+      "status": "partial",
+      "match_pct": 30.5,
+      "size": 167
+     },
+     {
+      "symbol": "?Reset@CCBStageShadow@@QAEXXZ",
+      "va": "0x00511FC0",
+      "status": "partial",
+      "match_pct": 12.9,
+      "size": 178
+     },
+     {
+      "symbol": "?Create@CCBStageShadow@@QAEXXZ",
+      "va": "0x00512080",
+      "status": "partial",
+      "match_pct": 6.6,
+      "size": 440
+     },
+     {
+      "symbol": "?Destroy@CCBStageShadow@@QAEPAMXZ",
+      "va": "0x00512240",
+      "status": "partial",
+      "match_pct": 1.8,
+      "size": 110
+     },
+     {
+      "symbol": "?Update@CCBStageShadow@@QAEXXZ",
+      "va": "0x005122E0",
+      "status": "partial",
+      "match_pct": 0.0,
+      "size": 5
+     },
+     {
+      "symbol": "?Render@CCBStageShadow@@QAEXXZ",
+      "va": "0x005122F0",
+      "status": "partial",
+      "match_pct": 18.2,
+      "size": 11
+     },
+     {
+      "symbol": "?FillShadowQuad@CCBStageShadow@@QAEXXZ",
+      "va": "0x00512300",
+      "status": "partial",
+      "match_pct": 0.0,
+      "size": 5
+     }
+    ],
+    "log_tail": "L1 rate over matched: 0/8 = 0.0%"
+   },
+   "rdata": {
+    "stage": "rdata",
+    "header_virtuals": 0,
+    "binary_table": null,
+    "binary_polymorphic": false,
+    "probe_ok": false,
+    "obj_slots": null,
+    "bin_slots": null,
+    "bin_slots_family_rule": null,
+    "deviations": [],
+    "status": "rdata_not_applicable",
+    "note": "发射头 0 virtual 且二进制无多态证据 ⇒ vtable 维度不适用"
+   },
+   "divergence": "l1_broken_rdata_na"
+  },
+  "pal3/src/Misc/PalScriptWaitObj.cpp": {
+   "unit": "pal3/src/Misc/PalScriptWaitObj.cpp",
+   "cls": "PalScriptWaitObj",
+   "header": "Misc/PalScriptWaitObj.h",
+   "binary_polymorphic": true,
+   "binary_evidence_note": "PDB size 8 / RoleCameraCtrl 成员自 +8 起 + Task4 编译器裁判 sizeof(PMF)=8",
+   "l1": {
+    "stage": "l1",
+    "status": "l1_partial",
+    "note": "1/1 个已比对函数体字节不同（partial）",
+    "rate": 0.0,
+    "match_L1": 0,
+    "partial": 1,
+    "matched": 1,
+    "symbols": 3,
+    "unmatched": 2,
+    "unresolved_synth": 0,
+    "oob": 0,
+    "compile_skip": 0,
+    "unit": "pal3/src/Misc/PalScriptWaitObj.cpp",
+    "flags": [
+     "/nologo",
+     "/TP",
+     "/c",
+     "/W3"
+    ],
+    "partial_rows": [
+     {
+      "symbol": "?ReleaseObject@PalScriptWaitObj@@QAEDPAD@Z",
+      "va": "0x004A68D0",
+      "status": "partial",
+      "match_pct": 24.7,
+      "size": 81
+     }
+    ],
+    "log_tail": "L1 rate over matched: 0/1 = 0.0%"
+   },
+   "rdata": {
+    "stage": "rdata",
+    "header_virtuals": 0,
+    "binary_table": null,
+    "binary_polymorphic": true,
+    "probe_ok": false,
+    "obj_slots": null,
+    "bin_slots": null,
+    "bin_slots_family_rule": null,
+    "deviations": [],
+    "status": "rdata_missing_vtable",
+    "note": "发射头 0 virtual 而二进制有多态证据 ⇒ vtable 维度**结构性缺失**（vptr 根本不被建模）"
+   },
+   "divergence": "both_broken"
+  },
+  "pal3/src/Misc/UI3DCtrl.cpp": {
+   "unit": "pal3/src/Misc/UI3DCtrl.cpp",
+   "cls": "UI3DCtrl",
+   "header": "Misc/UI3DCtrl.h",
+   "binary_polymorphic": true,
+   "binary_evidence_note": "ctor 0x43D83A `movl $0x56ACFC,(%esi)` + 注解 vtables[0].addr 同址",
+   "l1": {
+    "stage": "l1",
+    "status": "l1_partial",
+    "note": "12/12 个已比对函数体字节不同（partial）",
+    "rate": 0.0,
+    "match_L1": 0,
+    "partial": 12,
+    "matched": 14,
+    "symbols": 21,
+    "unmatched": 7,
+    "unresolved_synth": 2,
+    "oob": 0,
+    "compile_skip": 0,
+    "unit": "pal3/src/Misc/UI3DCtrl.cpp",
+    "flags": [
+     "/nologo",
+     "/TP",
+     "/c",
+     "/W3"
+    ],
+    "partial_rows": [
+     {
+      "symbol": "??0UI3DCtrl@@QAE@XZ",
+      "va": "0x0043D830",
+      "status": "partial",
+      "match_pct": 37.8,
+      "size": 37
+     },
+     {
+      "symbol": "??_GUI3DCtrl@@UAEPAXI@Z",
+      "va": "0x0043D860",
+      "status": "partial",
+      "match_pct": 16.7,
+      "size": 30
+     },
+     {
+      "symbol": "??_GUIWnd@@UAEPAXI@Z",
+      "va": "0x00450E90",
+      "status": "partial",
+      "match_pct": 16.7,
+      "size": 30
+     },
+     {
+      "symbol": "?ctor@UI3DCtrl@@QAEXXZ",
+      "va": "0x0043D880",
+      "status": "partial",
+      "match_pct": 0.0,
+      "size": 11
+     },
+     {
+      "symbol": "?CreateWithTexture@UI3DCtrl@@UAEPAVgbVFileSystem@@HPAXHIH@Z",
+      "va": "0x0043D890",
+      "status": "partial",
+      "match_pct": 15.9,
+      "size": 138
+     },
+     {
+      "symbol": "?Render@UI3DCtrl@@UAEXXZ",
+      "va": "0x0043D940",
+      "status": "partial",
+      "match_pct": 7.3,
+      "size": 357
+     },
+     {
+      "symbol": "?LoadModel@UI3DCtrl@@QAEDPBD@Z",
+      "va": "0x0052AF20",
+      "status": "partial",
+      "match_pct": 16.3,
+      "size": 147
+     },
+     {
+      "symbol": "?UpdateRotation@UI3DCtrl@@QAENXZ",
+      "va": "0x0052E8C0",
+      "status": "partial",
+      "match_pct": 11.6,
+      "size": 121
+     },
+     {
+      "symbol": "?UpdateOscillation@UI3DCtrl@@QAENXZ",
+      "va": "0x0052E940",
+      "status": "partial",
+      "match_pct": 11.6,
+      "size": 121
+     },
+     {
+      "symbol": "?UpdateOscillationX@UI3DCtrl@@QAENXZ",
+      "va": "0x0052E9C0",
+      "status": "partial",
+      "match_pct": 11.6,
+      "size": 121
+     },
+     {
+      "symbol": "?UpdateOscillationY@UI3DCtrl@@QAENXZ",
+      "va": "0x0052EA40",
+      "status": "partial",
+      "match_pct": 13.2,
+      "size": 121
+     },
+     {
+      "symbol": "?UpdateTransform@UI3DCtrl@@QAEDH@Z",
+      "va": "0x0052EAC0",
+      "status": "partial",
+      "match_pct": 12.2,
+      "size": 288
+     }
+    ],
+    "log_tail": "L1 rate over matched: 0/12 = 0.0%"
+   },
+   "rdata": {
+    "stage": "rdata",
+    "header_virtuals": 9,
+    "binary_table": "0x0056ACFC",
+    "binary_polymorphic": true,
+    "probe_ok": true,
+    "obj_slots": 26,
+    "bin_slots": 8,
+    "bin_slots_family_rule": 1,
+    "deviations": [
+     {
+      "kind": "slot_count",
+      "index": 8,
+      "obj": 26,
+      "bin": 8,
+      "detail": "槽数不同：obj 26 ≠ bin 8"
+     },
+     {
+      "kind": "slot_key",
+      "index": 0,
+      "obj": "UI3DCtrl::~UI3DCtrl",
+      "bin": "UIWnd::ShowWindow(int)",
+      "detail": "slot 0 目标不同（名字判据）：obj=UI3DCtrl::~UI3DCtrl bin=UIWnd::ShowWindow(int)"
+     },
+     {
+      "kind": "slot_key",
+      "index": 1,
+      "obj": "UIWnd::slot_1",
+      "bin": "UI3DCtrl::Render(void)",
+      "detail": "slot 1 目标不同（名字判据）：obj=UIWnd::slot_1 bin=UI3DCtrl::Render(void)"
+     },
+     {
+      "kind": "slot_key",
+      "index": 2,
+      "obj": "UI3DCtrl::slot_2",
+      "bin": "SceneObj::Update(int,int)",
+      "detail": "slot 2 目标不同（名字判据）：obj=UI3DCtrl::slot_2 bin=SceneObj::Update(int,int)"
+     },
+     {
+      "kind": "slot_key",
+      "index": 3,
+      "obj": "UIWnd::slot_5",
+      "bin": "UIPushButton::Destroy(void)",
+      "detail": "slot 3 目标不同（名字判据）：obj=UIWnd::slot_5 bin=UIPushButton::Destroy(void)"
+     },
+     {
+      "kind": "slot_key",
+      "index": 4,
+      "obj": "UIWnd::LayoutAndRender",
+      "bin": "CCBItemWindow::Create(int,tagRECT *,int)",
+      "detail": "slot 4 目标不同（VA判据）：obj=UIWnd::LayoutAndRender bin=CCBItemWindow::Create(int,tagRECT *,int)（VA obj=0x004433D0 bin=0x00445B90）"
+     },
+     {
+      "kind": "slot_key",
+      "index": 5,
+      "obj": "UIWnd::slot_9",
+      "bin": "UI3DCtrl::`scalar deleting destructor'(uint)",
+      "detail": "slot 5 目标不同（名字判据）：obj=UIWnd::slot_9 bin=UI3DCtrl::`scalar deleting destructor'(uint)"
+     },
+     {
+      "kind": "slot_key",
+      "index": 6,
+      "obj": "UIWnd::slot_12",
+      "bin": "CGameData::OnMessage(int,int,int)",
+      "detail": "slot 6 目标不同（名字判据）：obj=UIWnd::slot_12 bin=CGameData::OnMessage(int,int,int)"
+     },
+     {
+      "kind": "slot_key",
+      "index": 7,
+      "obj": "UIWnd::slot_15",
+      "bin": "UI3DCtrl::CreateWithTexture(int,void *,int,uint,int)",
+      "detail": "slot 7 目标不同（名字判据）：obj=UIWnd::slot_15 bin=UI3DCtrl::CreateWithTexture(int,void *,int,uint,int)"
+     }
+    ],
+    "status": "rdata_deviations",
+    "note": "9 处偏差：obj 26 槽 vs bin 8 槽（identity=mixed）",
+    "cls": "UI3DCtrl",
+    "unit": "pal3/src/Misc/UI3DCtrl.cpp",
+    "header_facts": {
+     "path": "pal3/src/Misc/UI3DCtrl.h",
+     "cls": "UI3DCtrl",
+     "virtuals": 9,
+     "has_virtual_dtor": true,
+     "ctor_declared": true,
+     "pure_virtuals": 0,
+     "lines": 57
+    },
+    "binary_evidence": {
+     "annotated": [
+      "0x0056ACFC"
+     ],
+     "ctor_scan": [
+      {
+       "method_va": "0x0043D830",
+       "name": "UI3DCtrl",
+       "window": 64,
+       "hits": [
+        {
+         "offset": 10,
+         "target": "0x0056ACFC",
+         "bytes": "c7 06 fc ac 56 00"
+        }
+       ]
+      },
+      {
+       "method_va": "0x0043D860",
+       "name": "_scalar_dtor",
+       "window": 64,
+       "hits": [
+        {
+         "offset": 32,
+         "target": "0x0056ACFC",
+         "bytes": "c7 01 fc ac 56 00"
+        }
+       ]
+      },
+      {
+       "method_va": "0x0043D880",
+       "name": "ctor",
+       "window": 64,
+       "hits": [
+        {
+         "offset": 0,
+         "target": "0x0056ACFC",
+         "bytes": "c7 01 fc ac 56 00"
+        }
+       ]
+      },
+      {
+       "method_va": "0x0052B050",
+       "name": "LoadEncampModel",
+       "window": 273,
+       "hits": [
+        {
+         "offset": 120,
+         "target": "0x0056A66C",
+         "bytes": "c7 06 6c a6 56 00"
+        }
+       ]
+      }
+     ],
+     "ctor_targets": [
+      "0x0056A66C",
+      "0x0056ACFC"
+     ],
+     "annotated_without_ctor_write": [],
+     "primary": "0x0056ACFC",
+     "source": "annotation"
+    },
+    "probe": {
+     "ok": true,
+     "obj_slots": 26,
+     "obj": "/tmp/pal3_e2e/rdata_UI3DCtrl/UI3DCtrl_object.obj",
+     "strategy": "object",
+     "symbol": "??_7UI3DCtrl@@6B@",
+     "col_symbol": null,
+     "error": null
+    },
+    "compare": {
+     "ok": false,
+     "obj_slots": 26,
+     "bin_slots": 8,
+     "bin_slots_raw": 8,
+     "bin_slots_family_rule": 1,
+     "identity_mode": "mixed",
+     "bin_confidence": "high",
+     "bin_broken_at": null,
+     "deviations": [
+      {
+       "kind": "slot_count",
+       "index": 8,
+       "obj": 26,
+       "bin": 8,
+       "detail": "槽数不同：obj 26 ≠ bin 8"
+      },
+      {
+       "kind": "slot_key",
+       "index": 0,
+       "obj": "UI3DCtrl::~UI3DCtrl",
+       "bin": "UIWnd::ShowWindow(int)",
+       "detail": "slot 0 目标不同（名字判据）：obj=UI3DCtrl::~UI3DCtrl bin=UIWnd::ShowWindow(int)"
+      },
+      {
+       "kind": "slot_key",
+       "index": 1,
+       "obj": "UIWnd::slot_1",
+       "bin": "UI3DCtrl::Render(void)",
+       "detail": "slot 1 目标不同（名字判据）：obj=UIWnd::slot_1 bin=UI3DCtrl::Render(void)"
+      },
+      {
+       "kind": "slot_key",
+       "index": 2,
+       "obj": "UI3DCtrl::slot_2",
+       "bin": "SceneObj::Update(int,int)",
+       "detail": "slot 2 目标不同（名字判据）：obj=UI3DCtrl::slot_2 bin=SceneObj::Update(int,int)"
+      },
+      {
+       "kind": "slot_key",
+       "index": 3,
+       "obj": "UIWnd::slot_5",
+       "bin": "UIPushButton::Destroy(void)",
+       "detail": "slot 3 目标不同（名字判据）：obj=UIWnd::slot_5 bin=UIPushButton::Destroy(void)"
+      },
+      {
+       "kind": "slot_key",
+       "index": 4,
+       "obj": "UIWnd::LayoutAndRender",
+       "bin": "CCBItemWindow::Create(int,tagRECT *,int)",
+       "detail": "slot 4 目标不同（VA判据）：obj=UIWnd::LayoutAndRender bin=CCBItemWindow::Create(int,tagRECT *,int)（VA obj=0x004433D0 bin=0x00445B90）"
+      },
+      {
+       "kind": "slot_key",
+       "index": 5,
+       "obj": "UIWnd::slot_9",
+       "bin": "UI3DCtrl::`scalar deleting destructor'(uint)",
+       "detail": "slot 5 目标不同（名字判据）：obj=UIWnd::slot_9 bin=UI3DCtrl::`scalar deleting destructor'(uint)"
+      },
+      {
+       "kind": "slot_key",
+       "index": 6,
+       "obj": "UIWnd::slot_12",
+       "bin": "CGameData::OnMessage(int,int,int)",
+       "detail": "slot 6 目标不同（名字判据）：obj=UIWnd::slot_12 bin=CGameData::OnMessage(int,int,int)"
+      },
+      {
+       "kind": "slot_key",
+       "index": 7,
+       "obj": "UIWnd::slot_15",
+       "bin": "UI3DCtrl::CreateWithTexture(int,void *,int,uint,int)",
+       "detail": "slot 7 目标不同（名字判据）：obj=UIWnd::slot_15 bin=UI3DCtrl::CreateWithTexture(int,void *,int,uint,int)"
+      }
+     ],
+     "notes": []
+    },
+    "probe_flags": [
+     "/Od"
+    ]
+   },
+   "divergence": "both_broken"
+  }
+ },
+ "summary": {
+  "agree_clean": 0,
+  "agree_nonpolymorphic": 0,
+  "l1_blind_rdata_broken": 0,
+  "both_broken": 2,
+  "rdata_clean_l1_broken": 0,
+  "l1_broken_rdata_na": 1,
+  "rdata_unavailable": 0
+ },
+ "gr_spike": {
+  "cls": "AStarPathFinder",
+  "header": "Misc/AStarPathFinder.h",
+  "obj_value_no_gr": 0,
+  "col_no_gr": null,
+  "obj_size_no_gr": 1290,
+  "section_len_no_gr": 8,
+  "section_name_no_gr": ".rdata",
+  "symbols_no_gr": [
+   "??_7AStarPathFinder@@6B@"
+  ],
+  "obj_value_gr": 4,
+  "col_gr": "??_R4AStarPathFinder@@6B@",
+  "obj_size_gr": 2100,
+  "section_len_gr": 12,
+  "section_name_gr": ".rdata",
+  "symbols_gr": [
+   "??_7AStarPathFinder@@6B@"
+  ],
+  "bin_base": "0x56A600",
+  "bin_base_minus4": 1065353216,
+  "bin_base_minus4_in_code": false,
+  "bin_base_minus4_in_rdata": false,
+  "bin_col": null,
+  "bin_slots": [
+   "0x00401030",
+   "0x004014E0",
+   "0x004014F0"
+  ],
+  "bin_address_point_offset": 0,
+  "analysis": {
+   "col_injected": true,
+   "target_has_col": false,
+   "byte_match_possible": false,
+   "verdict": "GR_IS_STRUCTURAL_BLOCKER",
+   "recommendation": "移除管线 /GR：cmake/MSVCSettings.cmake:89 · pipeline/compare.py:69/81 · pipeline/cli.py:690；vtable 维度的探针产物也必须无 /GR（tools/vtable_verify.py:161 DEFAULT_PROBE_FLAGS 现为 ('/Od','/GR')，与无 RTTI 的目标不一致）。保留 /GR 时的替代口径：vtable 维度只做**归一化**槽对比（槽序列仍可比），并把 address_point_rtti 偏差读作\"目标无 COL\"的已知差异，**不得**声称 byte-match。",
+   "obj_value_no_gr": 0,
+   "obj_value_gr": 4,
+   "col_gr": "??_R4AStarPathFinder@@6B@",
+   "bin_col": null,
+   "bin_base_minus4": 1065353216,
+   "bin_base_minus4_in_code": false
+  }
+ },
+ "wiring": {
+  "cls": "CCBStageShadow",
+  "generator_rc": 0,
+  "assertions": 9,
+  "header": "/tmp/pal3_e2e/wiring/_layout_asserts_CCBStageShadow.h",
+  "census": {
+   "census": {
+    "total": 9,
+    "active": 8,
+    "commented": 1,
+    "omitted": 0,
+    "skipped": 0,
+    "trusted": 0,
+    "same-source": 0,
+    "suspect": 1,
+    "consistency-only": 8,
+    "by_kind": {
+     "shape": 1,
+     "size": 1,
+     "offset": 7
+    },
+    "by_trust": {
+     "suspect": 1,
+     "consistency-only": 8
+    },
+    "skip_reasons": {}
+   },
+   "warnings": [],
+   "skipped": []
+  },
+  "include_relative": "Combat/CCBStageShadow.h",
+  "positive_rc": 0,
+  "positive_output": "wire_CCBStageShadow.cpp\n",
+  "mutated": "sizeof(CCBStageShadow) == 1556",
+  "negative_rc": 2,
+  "negative_output": "wire_CCBStageShadow_bad.cpp\n/tmp/pal3_e2e/wiring/_layout_asserts_CCBStageShadow.bad.h(48) : error C2118: negative subscript or subscript is too large\n",
+  "decision": {
+   "verdict": "wired_and_enforced",
+   "header_virtuals": 0,
+   "assertions": 9,
+   "note": "正相 0 错误 ∧ 负相 C2118 ⇒ 断言在编译中真实生效"
+  },
+  "force_include_rc": 2,
+  "force_include_output": "s_CCBStageShadow.h(8) : error C2143: syntax error : missing ';' before '-'\nZ:\\tmp\\pal3_e2e\\wiring\\_layout_asserts_CCBStageShadow.h(9) : error C2059: syntax error : ')'\nZ:\\tmp\\pal3_e2e\\wiring\\_layout_asserts_CCBStageShadow.h(9) : error C2143: syntax error : missing ';' before '-'\nZ:\\tmp\\pal3_e2e\\wiring\\_layout_asserts_CCBStageShadow.h(11) : error C2118: negative subscript or subscript is too large\n",
+  "plan": {
+   "problem": "Task 4 的 _layout_asserts.h 无消费者 ⇒ 今天没有一条断言在编译中生效（I-3）",
+   "placement": "生成器自身契约：本文件必须在**全部类声明之后**包含（sizeof/offsetof 需要完整类型）⇒ 自然接线点是 codegen 发射的 .cpp 的 include 块**末尾**（emit_headers 追加 #include \"_layout_asserts.h\"），不是文件头。",
+   "force_include_not_viable": "/FI 强包含发生在 TU 自身 include 之前 ⇒ 类类型尚未声明，实测报 C2059/C2143/C2118（本文件 verify_wiring 记录）——即使 VC6 支持 /FI 也不可用于本头。",
+   "rollout": "按类试运行：layout_assert_gen --only <Cls> --untrusted-policy consistency-only，逐类接入（本文件 verify_wiring 即该口径）；真实数据一次性全开会产生 64 假杀 + 71 C2039（Task 4 评审实测），⇒ 禁止全量开启。",
+   "gate": "每接一类必须同时给正相（编过）与负相（篡改常量 ⇒ C2118）两条证据，缺一即\"未生效\"（wiring_decision）。",
+   "trust_caveat": "consistency-only 档是**漂移探测器**不是布局真值证据（E-2 同源）：它只捕获 codegen 声明相对注解常量的 stage 漂移。"
+  }
+ },
+ "bin_census": {
+  "targets": 189,
+  "targets_slots_raw": 1164,
+  "targets_slots_family_rule": 639,
+  "truncated_family_rule": 92,
+  "annotated_tables": 94,
+  "annotated_truncated": 76,
+  "examples": [
+   {
+    "base": "0x56A9A4",
+    "family_rule": 2,
+    "raw": 3,
+    "broken_at": "ScriptObj(0x41BE30)"
+   },
+   {
+    "base": "0x56ABB8",
+    "family_rule": 1,
+    "raw": 3,
+    "broken_at": "PalScriptMgr(0x434CC0)"
+   },
+   {
+    "base": "0x56ABC4",
+    "family_rule": 1,
+    "raw": 3,
+    "broken_at": "PalScriptMgr(0x434D20)"
+   },
+   {
+    "base": "0x56ABD4",
+    "family_rule": 1,
+    "raw": 3,
+    "broken_at": "filebuf(0x438100)"
+   },
+   {
+    "base": "0x56ABE0",
+    "family_rule": 1,
+    "raw": 3,
+    "broken_at": "filebuf(0x438100)"
+   },
+   {
+    "base": "0x56AC20",
+    "family_rule": 1,
+    "raw": 7,
+    "broken_at": "UIProgressBar(0x439410)"
+   },
+   {
+    "base": "0x56AC4C",
+    "family_rule": 1,
+    "raw": 7,
+    "broken_at": "PalScript(0x43A270)"
+   },
+   {
+    "base": "0x56AC70",
+    "family_rule": 1,
+    "raw": 8,
+    "broken_at": "UICaption(0x43AD40)"
+   }
+  ]
+ },
+ "baselines": {
+  "ratchet_path": "/home/peng/workspace/PAL3Decomp/data/status/vtable_ratchet_baseline.json",
+  "ratchet_rc": 0,
+  "write_without_baseline_rc": 2,
+  "ratchet_classes": 78,
+  "ratchet_slots_total": 841,
+  "mapper_stats": {
+   "total_slots": 841,
+   "resolved": 539,
+   "own_unresolved": 302,
+   "pass": 20,
+   "fail": 72
+  },
+  "mapper_baseline": {
+   "total_slots": 841,
+   "resolved": 539,
+   "pass": 20,
+   "fail": 72,
+   "order_mismatch": 0
+  },
+  "mapper_drift": {},
+  "mapper_baseline_stale": false,
+  "mapper_baseline_refresh": "与今日一致（无需刷新）"
+ }
+}
