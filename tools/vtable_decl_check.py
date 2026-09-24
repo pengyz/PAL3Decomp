@@ -26,8 +26,20 @@ vtable_health[class] = 已验证槽数 / 总槽数
 | `count_health` | 命中声明数 / (声明数 + 无地址声明数 + 未覆盖槽数) | 多声明、少声明、`virtual ~C() {}` 这类不可定位声明 |
 | `sig_health` | 签名无矛盾 / 有签名证据 | 声明与二进制序言/调用序列矛盾 |
 
-`slot_health` 就是规格里的 `vtable_health`；三者任一**下降**即阻塞（`ratchet_decide`）。
+外加**第 4 类：验证面规模**（`slots` = 该类的二进制槽数 · `count_denom` = 槽数项的验证面）。
+**只比比值会奖励"缩小分母"**：删掉一个未声明槽 ⇒ `slot_health 0.5 → 1.0` ⇒ 旧实现判
+`improved` 并回写基线；同时删声明与其槽（`slots_total 3 → 1`）⇒ 三个比值全 `same` ⇒ 放行。
+基线一旦被写成 1.0，**把缺失证据补回来**（完备性修复）反而让 `slot_health` 下降 ⇒ BLOCKED
+⇒ 门禁拦住**正确的修复**。⇒ 规模本身必须单调不降（`_SURFACE_METRICS`），与"整类消失 =
+`missing` ⇒ 阻塞"同一语义：**验证面不得缩小**。
+
+`slot_health` 就是规格里的 `vtable_health`；任一分量**下降**即阻塞（`ratchet_decide`），
+阻塞优先于 `improved`（被阻塞的运行不得同时报"改善"）。
 **没有任何阈值参数**（v2 规格曾把不等号写反："未解析 < 阈值 ⇒ 阻塞"，导致 0 未解析反而阻塞 ✗）。
+
+`None` 的处理是**方向性**的：基线未测 → 当前有值 = 新证据（`unmeasured`，不阻塞）；
+基线**有值** → 当前 `None` = **证据源丢失**（`down`，阻塞；例如漏传 `--pending` 会让整个
+签名维度悄悄消失）。
 
 ## 证据独立性（Ruling 5）
 
@@ -69,10 +81,14 @@ python3 tools/vtable_decl_check.py --decls pal3/src --structs data/annotations/s
     --pending /tmp/methods_pending.json --baseline data/status/vtable_decl_health.json
 ```
 
-退出码：`0` 放行 · `1` 棘轮阻塞（health 下降）· `2` 输入/写入错误。
+退出码：`0` 放行 · `1` 棘轮阻塞（health 下降 / 验证面缩小）· `2` 输入/写入错误与用法错误。
 
 `--write-baseline` 是**显式**开关（规格语义"上升 ⇒ 更新基线"由 `ratchet_decide().updated`
 提供）：本仓常有多个实现者并行，默认不落盘以免争用同一基线文件。
+⚠️ `--write-baseline` **必须**与 `--baseline` 同时给出（否则基线永不落盘 ⇒ 无基线可比 ⇒
+`decision is None` ⇒ 一切运行恒 exit 0 = 门禁永久静默关闭）；缺一则 **rc=2**。
+⚠️ `--json` / `--baseline` 的**目标目录**不存在时报 **rc=2**，不得以 exit 1（= 棘轮阻塞的
+同信号）退场。
 """
 import argparse
 import json
@@ -152,7 +168,7 @@ __all__ = [
     'SIG_OK', 'SIG_SYNTHETIC_OK', 'SIG_CONTRADICTION', 'SIG_UNCHECKED', 'SIG_WEAK',
     'MODEL_FLAT', 'MODEL_CHAIN',
     'RATCHET_PASS', 'RATCHET_IMPROVED', 'RATCHET_BLOCKED',
-    'METRIC_SLOT', 'METRIC_COUNT', 'METRIC_SIG',
+    'METRIC_SLOT', 'METRIC_COUNT', 'METRIC_SIG', 'METRIC_SLOTS', 'METRIC_COUNT_DENOM',
     # 数据
     'DeclSpec', 'ClassDecls', 'BinaryView', 'SlotResult', 'ViewCheck', 'ClassHealth',
     'CheckResult', 'SigVerdict', 'RatchetComponent', 'RatchetDecision',
@@ -191,6 +207,11 @@ METRIC_SLOT = 'slot_health'
 METRIC_COUNT = 'count_health'
 METRIC_SIG = 'sig_health'
 _METRICS = (METRIC_SLOT, METRIC_COUNT, METRIC_SIG)
+#: 第 4 类单调分量 = **验证面**（证据规模），见 `ratchet_decide` 的 Q1 说明。
+METRIC_SLOTS = 'slots'
+METRIC_COUNT_DENOM = 'count_denom'
+_SURFACE_METRICS = (METRIC_SLOTS, METRIC_COUNT_DENOM)
+_RATCHET_METRICS = _METRICS + _SURFACE_METRICS
 _EPS = 1e-9
 
 #: 声明级"合成槽"种类（Task 1 单槽组语义）。注意 `purecall` **不在**此列：
@@ -1191,12 +1212,31 @@ def build_baseline(result, generated_at=None):
 
 
 def ratchet_decide(baseline, current):
-    """棘轮判定：**三个分量任一不得下降**（无阈值、无硬门禁）。
+    """棘轮判定：**四类分量（5 个可比值）任一不得下降**（无阈值、无硬门禁）。
 
-    * 分量下降 ⇒ `down` ⇒ 阻塞
+    分量 = 三个 health（`_METRICS`）+ 两个**验证面规模**（`_SURFACE_METRICS`：
+
+    * `slots` = 该类的二进制槽数（注解 `vtables[].slots` 的证据规模）
+    * `count_denom` = 槽数项的验证面（`声明数 + 无地址声明数 + 未覆盖槽数`）
+
+    **为什么必须有第 4 类**（R=1 修复的语义洞）：只比**比值**时，缩小分母会被奖励 ——
+    删掉一个**未声明**槽 ⇒ `slot_health 0.5 → 1.0` ⇒ 判 `improved` 并回写基线；同时
+    删声明与其槽（`slots_total 3 → 1`）⇒ 三个比值**全 same** ⇒ 放行。基线一旦被写成 1.0，
+    把缺失证据**补回来**（完备性修复）反而让 `slot_health` 下降 ⇒ BLOCKED ⇒ 门禁拦住**正确
+    的修复**（与 CLAUDE.md 的"假失败"同型）。⇒ 规模本身必须单调不降 —— 与"整类消失 =
+    `missing` ⇒ 阻塞"是同一语义：**验证面不得缩小**。
+
+    * 任一分量下降 ⇒ `down` ⇒ 阻塞
     * 基线里有、当前没有的类 ⇒ `missing` ⇒ 阻塞（整类的验证面消失同样是倒退）
     * 当前新增的类 ⇒ `new` ⇒ 不算倒退（算改善）
-    * 基线未测（None）而当前有值 ⇒ `unmeasured` ⇒ 不阻塞（新证据出现不得倒打一耙）
+    * `None` 的处理**方向性**（R=1 修复 Q3）：
+      - 基线 `None` → 当前有值 ⇒ `unmeasured` ⇒ **不**阻塞（新证据出现不得倒打一耙）
+      - 基线**有值** → 当前 `None` ⇒ `down` ⇒ **阻塞**（证据源丢失是倒退：例如漏传
+        `--pending` ⇒ 整个签名维度的验证悄悄消失）
+
+    ⚠️ 有意的验证面缩小（删掉确认是错的声明/槽）会与本棘轮冲突：语义上"缩小验证面"必须
+    显式重建基线（`--baseline` 指向新路径、或先移除旧基线文件）——这是棘轮制的固有代价，
+    不是 bug（无阈值、无硬门禁的代价是不接受静默缩水）。
     """
     base_classes = (baseline or {}).get('classes') or {}
     cur_classes = (current or {}).get('classes') or {}
@@ -1223,14 +1263,23 @@ def ratchet_decide(baseline, current):
             improved = True
             continue
         b, c = base_classes[cls], cur_classes[cls]
-        for metric in _METRICS:
+        for metric in _RATCHET_METRICS:
             bv, cv = b.get(metric), c.get(metric)
             if bv is None and cv is None:
                 continue
-            if bv is None or cv is None:
-                comps.append(RatchetComponent(klass=cls, metric=metric, base=bv, current=cv,
+            if cv is None:
+                # 基线**有值**而当前测不出 ⇒ 证据源丢失（如漏传 --pending）⇒ 倒退，必须阻塞。
+                comps.append(RatchetComponent(klass=cls, metric=metric, base=bv, current=None,
+                                              status='down'))
+                notes.append('%s.%s 证据源丢失：%s → 无证据（基线有值而当前测不出 ⇒ 视为倒退，'
+                             '不是 unmeasured）' % (cls, metric, bv))
+                blocked = True
+                continue
+            if bv is None:
+                # 基线未测而当前有值 ⇒ 新证据出现不得倒打一耙 ⇒ 不阻塞。
+                comps.append(RatchetComponent(klass=cls, metric=metric, base=None, current=cv,
                                               status='unmeasured'))
-                notes.append('%s.%s: 基线未测（%s → %s）⇒ 不阻塞' % (cls, metric, bv, cv))
+                notes.append('%s.%s: 基线未测（None → %s）⇒ 不阻塞' % (cls, metric, cv))
                 continue
             if cv > bv + _EPS:
                 status = 'up'
@@ -1238,13 +1287,21 @@ def ratchet_decide(baseline, current):
             elif cv < bv - _EPS:
                 status = 'down'
                 blocked = True
-                notes.append('%s.%s 下降：%.6f → %.6f（允许的只有持平或上升）'
-                             % (cls, metric, bv, cv))
+                if metric in _SURFACE_METRICS:
+                    notes.append('%s.%s 验证面缩小：%s → %s（证据规模只允许持平或上升；'
+                                 '如需有意缩小请显式重建基线）' % (cls, metric, bv, cv))
+                else:
+                    notes.append('%s.%s 下降：%.6f → %.6f（允许的只有持平或上升）'
+                                 % (cls, metric, bv, cv))
             else:
                 status = 'same'
             comps.append(RatchetComponent(klass=cls, metric=metric, base=bv, current=cv,
                                           status=status))
-    updated = current if (improved and not blocked) else None
+    # 阻塞优先级最高：被阻塞的运行**不得**同时报 `improved`（否则"删一个槽换更高比值"
+    # 这种缩水会被 `improved=True` 读成"被奖励"，虽然 `updated` 已经因阻塞而不写）。
+    # 想知道"哪些分量上升"请看 `components` 里 status=='up' 的条目。
+    improved = improved and not blocked
+    updated = current if improved else None
     return RatchetDecision(passed=not blocked, improved=improved, blocked=blocked,
                            components=tuple(comps), updated=updated, notes=tuple(notes),
                            baseline_present=bool(baseline))
@@ -1344,10 +1401,19 @@ def main(argv=None):
     ap.add_argument('--model', choices=(MODEL_FLAT, MODEL_CHAIN), default=MODEL_FLAT)
     ap.add_argument('--baseline', default=None, help='棘轮基线 JSON（存在即对比）')
     ap.add_argument('--write-baseline', action='store_true',
-                    help='放行时写回基线（上升/持平）。默认不写：并行环境下避免争用同一文件')
+                    help='放行时写回基线（上升/持平）。默认不写：并行环境下避免争用同一文件'
+                         '；**必须**与 --baseline 同时给出')
     ap.add_argument('--json', dest='json_out', default=None, help='报告 JSON 输出路径')
     ap.add_argument('--quiet', '-q', action='store_true')
     args = ap.parse_args(argv)
+
+    if args.write_baseline and not args.baseline:
+        # Q2（静默关闸）：旧实现下 `--write-baseline` 无 `--baseline` ⇒ exit 0、不落盘、
+        # 无告警；而无基线 ⇒ decision is None ⇒ **一切运行恒 exit 0**（门禁永久静默关闭）。
+        print('ERROR: --write-baseline 必须与 --baseline 同时给出'
+              '（否则基线永不落盘 ⇒ 无基线可比 ⇒ 棘轮静默关闭、一切运行恒放行）',
+              file=sys.stderr)
+        return 2
 
     for p in (args.decls, args.structs):
         if not Path(p).is_dir():
@@ -1383,15 +1449,27 @@ def main(argv=None):
         sys.stdout.write(render_report(result, decision))
 
     if args.json_out:
-        Path(args.json_out).write_text(
-            json.dumps(report_to_dict(result, decision), ensure_ascii=False, indent=2, sort_keys=True),
-            encoding='utf-8')
+        # Q5：目标目录不存在必须归 rc=2（输入/写入错误），不得抛未捕获 FileNotFoundError
+        # 并以 exit 1 退场 —— 那与"棘轮阻塞（rc=1）"**同信号**（假红/假阻塞）。
+        try:
+            Path(args.json_out).write_text(
+                json.dumps(report_to_dict(result, decision), ensure_ascii=False, indent=2,
+                           sort_keys=True),
+                encoding='utf-8')
+        except OSError as e:
+            print('ERROR: 报告写入失败（%s）：%s' % (args.json_out, e), file=sys.stderr)
+            return 2
 
     if args.write_baseline and args.baseline:
         if decision is None or decision.passed:
             payload = build_baseline(result, generated_at=date.today().isoformat())
-            Path(args.baseline).write_text(
-                json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True), encoding='utf-8')
+            try:
+                Path(args.baseline).write_text(
+                    json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True),
+                    encoding='utf-8')
+            except OSError as e:
+                print('ERROR: 基线写入失败（%s）：%s' % (args.baseline, e), file=sys.stderr)
+                return 2
             if not args.quiet:
                 print('[棘轮] 已写基线 %s' % args.baseline)
         elif not args.quiet:

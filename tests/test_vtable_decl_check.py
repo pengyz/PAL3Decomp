@@ -22,8 +22,20 @@
 ## 判别力（负向/变异测试）
 
 `test_mutation_*` 故意改**槽序 / 槽数 / 签名**，断言校验必须报警且棘轮必须阻塞
-（否则门禁无判别力）。另有真实数据锚点：`CEffectSystem` 的 `0x4C6260` 在生成头里排在第 2 位、
-二进制却排在最后 —— 实测真差异，必须被报为 `order_mismatch`。
+（否则门禁无判别力）。真实数据锚点（**不劣化关系 + 条件断言**，见第 14 节）：`CEffectSystem`
+的 `0x4C6260` 在生成头里排在第 2 位、二进制却排在最后 —— 该错位一旦存在必须被报为
+`order_mismatch`；被修好（发射器排序属 Task 8 归因项）时只要求"全对"，不得为正确改动报红。
+
+## R=1（修复轮）新增：棘轮语义洞
+
+| 洞 | 语义 | 测试 |
+|---|---|---|
+| Q1 | 只比**比值** ⇒ 删未声明槽（`0.5→1.0`）被奖励回写基线；删声明+槽（3→1 槽）⇒ 三分量全 `same` 放行 | `test_ratchet_undeclared_slot_removal_is_not_improved` · `test_ratchet_declaration_and_slot_removal_does_not_pass` |
+| Q2 | `--write-baseline` 无 `--baseline` ⇒ exit 0、不落盘、无告警 ⇒ 门禁恒静默关闭 | `TestCli.test_cli_write_baseline_without_baseline_is_usage_error` |
+| Q3 | `unmeasured` 把两个方向合并 ⇒ 基线有值 / 当前 `None`（证据源丢失）不阻塞 | `test_ratchet_evidence_source_lost_is_blocked` |
+| Q4 | 真实数据锚点把"当前缺陷状态"钉死（`total == 841`、恰 7 条声明、必须有 `health==0` 的类、错位必须存在）⇒ 会拦住 Task 8 的正确修复 | 第 14 节（不劣化关系 + 条件断言） |
+| Q5 | `--json`/`--baseline` 目标目录不存在 ⇒ 未捕获 traceback + exit 1（与阻塞同信号） | `TestCli.test_cli_write_failure_to_missing_dir_is_exit_2` |
+| Q6 | 声明级 `purecall` 不得被当成合成单槽组 | `test_decl_slot_order_kind_purecall_is_func` |
 
 运行：`python3 tests/test_vtable_decl_check.py` 或 `pytest tests/test_vtable_decl_check.py`
 （本机 pytest 恒崩 —— `_pytest/assertion/rewrite.py` 的 `TypeError: required field "lineno"
@@ -42,6 +54,8 @@ sys.path.insert(0, str(PROJECT_ROOT / 'tools'))
 
 from vtable_decl_check import (  # noqa: E402
     KIND_FN,
+    METRIC_COUNT_DENOM,
+    METRIC_SLOTS,
     MODEL_CHAIN,
     MODEL_FLAT,
     ORDER_ALIAS,
@@ -73,6 +87,7 @@ from vtable_decl_check import (  # noqa: E402
     cpp_return_kind,
     cpp_type_param_class,
     decl_arity,
+    decl_slot_order_kind,
     load_decl_dir,
     load_pending,
     load_structs_dir,
@@ -334,6 +349,18 @@ def test_ruling4_naive_pass_through_would_misorder():
     good = compute_slot_order([], [VirtualDecl('o', '()', 'func'),
                                    VirtualDecl('o', '(int)', 'func')])
     assert [e.decl.sig for e in good] == ['(int)', '()']        # 逆序（对）
+
+
+def test_decl_slot_order_kind_purecall_is_func():
+    """Q6（Ruling 4 守卫）：声明级 `purecall` **不是**合成单槽组 —— 纯虚函数在声明级是
+    普通虚函数（参与同名分组），只是槽内容指向 CRT purecall stub（见 `_SYNTHETIC_DECL_KINDS`
+    的注释）。只有 `deleting_dtor` / `adjustor_static` / `adjustor_vbase` / `composite`
+    才是合成单槽组。"""
+    from vtable_slot_order import KIND_FUNC
+    assert decl_slot_order_kind('purecall') == KIND_FUNC == 'func'
+    assert decl_slot_order_kind(KIND_FN) == KIND_FUNC
+    for k in ('deleting_dtor', 'adjustor_static', 'adjustor_vbase', 'composite'):
+        assert decl_slot_order_kind(k) != KIND_FUNC, k
 
 
 # ================= 4. §1 槽数数 =================
@@ -876,6 +903,90 @@ def test_ratchet_baseline_roundtrips_json():
     assert d.passed is True
 
 
+# ---- 11b. Q1：**验证面不得缩小**（第 4 类单调分量，R=1 修复） ----
+
+def test_ratchet_undeclared_slot_removal_is_not_improved():
+    """Q1-a（证据缩水被奖励）：删掉注解里一个**未声明**槽 ⇒ `slot_health 0.5 → 1.0`
+    （比值"变好"）⇒ 旧实现判 `improved` 并**回写基线**。
+
+    这是最危险的洞：基线被写成 1.0 后，Task 8 把缺失证据**补回来**（正确修复）反而让
+    `slot_health` 下降 ⇒ `BLOCKED` ⇒ 门禁拦住正确的修复（与 CLAUDE.md 的"假失败"同型）。
+
+    ⇒ 棘轮必须把**规模**（`slots` / `count_denom`）也纳入单调分量：删槽 = 验证面缩小 = 倒退。
+    """
+    decls = {'C': _cd('C', [_d('f', '', 0x1000)])}
+    full = {'C': [BinaryView(0x56A000, None, (0x1000, 0x1010))]}     # 1 声明 / 2 槽
+    shrunk = {'C': [BinaryView(0x56A000, None, (0x1000,))]}          # 删掉未声明槽 0x1010
+    base = build_baseline(check_all(decls, full))
+    cur = build_baseline(check_all(decls, shrunk))
+    assert base['classes']['C']['slot_health'] == 0.5
+    assert cur['classes']['C']['slot_health'] == 1.0                 # 比值确实"上升"
+    d = ratchet_decide(base, cur)
+    assert d.improved is False, d.components                         # 不得被奖励
+    assert d.passed is False and d.blocked is True
+    assert d.updated is None                                         # 不得回写基线
+    assert any(c.metric == METRIC_SLOTS and c.status == 'down'
+               and (c.base, c.current) == (2, 1) for c in d.components), d.components
+    # 反向守卫：不从这条"假改善"基线出发 ⇒ 正确修复（补声明）必须**放行**（不是 BLOCKED）
+    honest = build_baseline(check_all({'C': _cd('C', [_d('f', '', 0x1000), _d('g', '', 0x1010)])},
+                                      full))
+    d2 = ratchet_decide(base, honest)
+    assert d2.blocked is False and d2.improved is True, d2.components
+    assert d2.updated['classes']['C']['slot_health'] == 1.0
+
+
+def test_ratchet_declaration_and_slot_removal_does_not_pass():
+    """Q1-b（同时删声明与其槽）：3 槽 3 声明 ⇒ 1 槽 1 声明，三个 health 分量**全 same**
+    ⇒ 旧实现放行（`slots_total 3 → 1` 完全不参与对比）。
+
+    验证面缩小必须阻塞（与"整类消失 = missing ⇒ 阻塞"同一语义）。
+    """
+    full_decls = {'C': _cd('C', [_d('f', '', 0x1000), _d('g', '', 0x1010), _d('h', '', 0x1020)])}
+    one_decl = {'C': _cd('C', [_d('f', '', 0x1000)])}
+    full = {'C': [BinaryView(0x56A000, None, (0x1000, 0x1010, 0x1020))]}
+    shrunk = {'C': [BinaryView(0x56A000, None, (0x1000,))]}
+    base = build_baseline(check_all(full_decls, full))
+    cur = build_baseline(check_all(one_decl, shrunk))
+    # 前提：三个 health 分量完全相同（这正是旧实现看不见的原因）
+    for m in ('slot_health', 'count_health', 'sig_health'):
+        assert base['classes']['C'][m] == cur['classes']['C'][m], m
+    assert base['classes']['C']['slot_health'] == 1.0
+    assert base['overall']['slots_total'] == 3 and cur['overall']['slots_total'] == 1
+    d = ratchet_decide(base, cur)
+    assert d.passed is False and d.blocked is True
+    assert d.improved is False and d.updated is None
+    assert any(c.metric == METRIC_SLOTS and c.status == 'down' for c in d.components), d.components
+    assert any(c.metric == METRIC_COUNT_DENOM and c.status == 'down' for c in d.components), \
+        d.components
+
+
+def test_ratchet_evidence_source_lost_is_blocked():
+    """Q3（签名分量单向 unmeasured）：base `sig_health=1.0` → 当前 `None`
+    （漏传 `--pending` / 签名旁路文件丢失）⇒ 旧实现记 `unmeasured`、**不阻塞**。
+
+    **证据源丢失**是倒退（方向性：基线有值而当前测不出），必须阻塞；
+    反方向（基线未测 → 当前有值 = 新证据出现）才是不阻塞的 `unmeasured`。
+    """
+    decls = {'C': _cd('C', [_d('g', '(int)', 0x2000, ret='int')])}
+    views = {'C': [BinaryView(0x56A000, None, (0x2000,))]}
+    ok = _pending({'0x2000': {'candidates': [_cand('int(int)', 1, 'i32', [_p(1, ('i32',))])]}})
+    base = build_baseline(check_all(decls, views, pending=ok))
+    cur = build_baseline(check_all(decls, views))
+    assert base['classes']['C']['sig_health'] == 1.0
+    assert cur['classes']['C']['sig_health'] is None
+
+    d = ratchet_decide(base, cur)
+    assert d.blocked is True and d.passed is False and d.updated is None
+    comp = [c for c in d.components if c.metric == 'sig_health']
+    assert comp and comp[0].status == 'down' and comp[0].current is None, d.components
+
+    # 反方向：基线未测 → 当前有值 ⇒ unmeasured、不阻塞（新证据不得倒打一耙）
+    d2 = ratchet_decide(cur, base)
+    assert d2.blocked is False and d2.passed is True
+    assert any(c.metric == 'sig_health' and c.status == 'unmeasured' for c in d2.components), \
+        d2.components
+
+
 # ================= 12. 报告与确定性 =================
 
 def test_render_report_mentions_three_check_items_and_health():
@@ -949,49 +1060,107 @@ class TestCli(_Tmp):
     def test_cli_usage_error_on_missing_inputs(self):
         assert main(['--decls', str(self.tmp / 'nope'), '--structs', str(self.tmp / 'nope2')]) == 2
 
+    def test_cli_write_baseline_without_baseline_is_usage_error(self):
+        """Q2（静默关闸）：`--write-baseline` 若不与 `--baseline` 同时给出，旧实现
+        **exit 0、不落盘、无任何告警** ⇒ 无基线 ⇒ `decision is None` ⇒ 一切运行恒 exit 0
+        （门禁永久静默关闭）。Task 8 漏写 `--baseline` 会得到"永远绿"的假门禁。
+        ⇒ 必须显式报错（rc=2），不得静默。"""
+        args = self._fixture()
+        assert main(list(args) + ['--write-baseline']) == 2
 
-# ================= 14. 真实数据锚点 =================
+    def test_cli_write_failure_to_missing_dir_is_exit_2(self):
+        """Q5：`--json` / `--baseline` 目标目录不存在 ⇒ 旧实现抛未捕获 `FileNotFoundError`
+        traceback 且 exit 1 —— 与"棘轮阻塞（rc=1）"**同信号** ⇒ 必须归 rc=2（写入类错误）。"""
+        args = self._fixture()
+        missing_json = self.tmp / 'no_dir' / 'r.json'
+        assert main(list(args) + ['--json', str(missing_json)]) == 2
+        assert not missing_json.exists()
+        missing_base = self.tmp / 'no_dir2' / 'b.json'
+        assert main(list(args) + ['--baseline', str(missing_base), '--write-baseline']) == 2
+        assert not missing_base.exists()
+
+
+# ================= 14. 真实数据锚点（**不劣化关系**，Q4/R=1） =================
+#
+# ⚠️ 本节的原先写法把"当前缺陷状态"钉死成必须成立（`total == 841`、CUtil 恰 7 条声明、
+# 至少 1 个 health==0 的类、CEffectSystem 错位必须存在）。Task 8 的归因项正是
+# **注解完备性修复**与**发射器排序** ⇒ 那套写法会为**正确改动**报红（假失败）。
+# ⇒ 锚点一律改为：① 与 `data/status/vtable_baseline.json` 的**不劣化**关系；
+# ② 缺陷存在性用**条件断言**（存在则必须被报出；消失 = 已修复 ⇒ 不得报红）。
+# ⚠️ `TestRealDataMutation` 用真实头 + 真实表做**变异**（不是绝对计数），设计正确，**保留**。
+
+REAL_ANCHOR = PROJECT_ROOT / 'data' / 'status' / 'vtable_baseline.json'
+
+
+def _real_anchor():
+    """Task 1/3 的真实数据基线（`total_slots` 等）—— 用作**下界**，不是当前状态快照。"""
+    return json.loads(REAL_ANCHOR.read_text(encoding='utf-8'))
+
 
 def test_real_headers_parse():
     decls = load_decl_dir(REAL_DECLS)
     assert len(decls) >= 60, len(decls)
     # 生成头里的地址注释形如 `// 0x445e70`；CUtil 是 7 槽单继承样本
     assert 'CUtil' in decls
-    assert len(decls['CUtil'].decls) == 7
-    assert decls['CUtil'].decls[0].addr == 0x445E70
+    # 不钉死"恰 7 条"：完备性修复会**增加**声明 ⇒ 用下界 + 成员判定（顺序无关）
+    assert len(decls['CUtil'].decls) >= 7, len(decls['CUtil'].decls)
+    assert any(d.addr == 0x445E70 for d in decls['CUtil'].decls), \
+        ['0x%08x' % d.addr for d in decls['CUtil'].decls if d.addr]
 
 
 def test_real_structs_load_all_slots():
     structs = load_structs_dir(REAL_STRUCTS)
     assert len(structs) >= 70, len(structs)
     total = sum(len(v.slot_addrs) for vs in structs.values() for v in vs)
-    assert total == 841, total          # 与 data/status/vtable_baseline.json 的 total_slots 一致
+    # 不劣化关系（原写法是 `total == 841` 的当前状态快照）
+    lower = _real_anchor()['total_slots']
+    assert total >= lower, (total, lower)
 
 
 def test_real_data_check_runs_and_reports_nonvacuous_health():
+    """真实数据上的**判别力**（不依赖当前缺陷状态）：度量活着（均值有下界、有全对类），
+    且验证面不劣化于 Task 1/3 基线。当前缺陷（health==0 的类、均值 <1）会随完备性修复
+    消失 ⇒ **不得**硬要求其存在（原写法要求 `mean <= 0.95` 且至少 1 个 0 ⇒ 修复即报红）。"""
     decls = load_decl_dir(REAL_DECLS)
     structs = load_structs_dir(REAL_STRUCTS)
     res = check_all(decls, structs)
     hs = [h.slot_health for h in res.classes.values()]
     assert len(hs) >= 50, len(hs)
     mean = sum(hs) / len(hs)
-    # 判别力下界/上界：不能恒 1（无判别力）也不能恒 0（度量已死）
-    assert 0.4 <= mean <= 0.95, mean
+    # 下界 = 度量没死；上界 1.0 是满分的合法取值（修好就该满分）
+    assert 0.4 <= mean <= 1.0, mean
     assert sum(1 for h in hs if h == 1.0) >= 10
-    assert sum(1 for h in hs if h == 0.0) >= 1
+    # 不劣化：槽面不得小于 Task 1/3 基线
+    assert res.stats['slots_total'] >= _real_anchor()['total_slots'], res.stats['slots_total']
+    # 缺陷存在性：**条件**断言（一致即可，不要求缺陷存在）
+    n_zero = sum(1 for h in hs if h == 0.0)
+    if n_zero:
+        assert mean < 1.0, mean
+    else:
+        assert mean > 0.95, mean          # 无全错类 ⇒ 必须确实接近全对
+    assert res.stats['classes'] == len(hs)
 
 
-def test_real_data_ceffectsystem_known_order_mismatch_is_reported():
-    """实测真差异：CEffectSystem 生成头把 `0x4C6260` 排在槽 1，二进制排在最后 ⇒
-    必须报 order_mismatch（若这条不报，说明 §2 槽序校验对真实数据失效）。"""
+def test_real_data_ceffectsystem_order_is_self_consistent():
+    """实测真差异：CEffectSystem 生成头把 `0x4C6260` 排在槽 1、二进制排在最后 ⇒
+    当前必须报 `order_mismatch`（若这条不报，说明 §2 槽序校验对真实数据失效）。
+
+    ⚠️ 但报告把"发射器排序"列为 **Task 8 归因项** ⇒ 修好后该错位会消失 ⇒
+    缺陷存在性用**关系式/条件断言**，不用"必须存在"（否则会拦住正确修复）。"""
     decls = load_decl_dir(REAL_DECLS)
     structs = load_structs_dir(REAL_STRUCTS)
     res = check_all(decls, structs)
     assert 'CEffectSystem' in res.views
     slots = [s for v in res.views['CEffectSystem'] for s in v.slots]
-    assert any(s.order == ORDER_MISMATCH for s in slots), slots
+    assert slots
     assert all(s.order != ORDER_UNDECLARED for s in slots)
-    assert res.classes['CEffectSystem'].slot_health < 1.0
+    health = res.classes['CEffectSystem'].slot_health
+    n_bad = sum(1 for s in slots if s.order in (ORDER_MISMATCH, ORDER_VIEW_UNMATCHED))
+    if n_bad:
+        assert health < 1.0, (health, n_bad)        # 有错位 ⇒ 分数必须被拉下来
+    else:
+        assert health == 1.0, health                # 排序修好 ⇒ 必须全对（不得残留假失败）
+        assert all(s.order in (ORDER_OK, ORDER_ALIAS) for s in slots)
 
 
 def test_real_data_deterministic_output():
