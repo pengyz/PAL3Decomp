@@ -3862,3 +3862,35 @@ vtable 映射机制从设计到落地完全正确 ✓
 - S2 87 / L1 60 / 错误 1798 持平（本轮为基建轮，无错误清偿目标）
 - L1 试点校准结论：n_diff=1 差异 = 表达式形态族（渲染层），字节完美匹配的
   尾差需要源级表达式形态恢复，非注解可尽修
+
+## 2026-09-25 长线战役开账：类维度字节对照·第一批（Role +4 布局根因链）
+### 长线目标（用户设定）
+按类逐函数二进制一致 + 语义可读。五维收获记账：函数归属/签名/变量类型/常量偏移/命名。
+批次纪律：一批修复一次完整管线；错误披露→继续修；每类一张五维账。
+### 第一批普查（21 个 n_diff≤8 近匹配函数）
+- size-11/5 族 9 个：三类根因——动态初始化器 stub 被映射成 ctor（×4，PDB 漂移）、
+  JMP thunk（×1 ObjectCamera，真身在跳转目标）、真函数体实差（×4）
+- 散件 12 个：fdiff 逐个定位
+### 核心发现：Role +4 布局错误链（字节对照独有的检出）
+- Scene::_todo_421870 访问成员 +0x78720 vs 原始 +0x78658（差 0xC8=200）
+- 链条：Scene 内嵌 `Role m_roles[50]`，MSVC sizeof(Role)=8708 vs 注解 8704（+4/元素
+  ×50=+200）⇒ Role 自有成员整体 +4 ⇒ 全部从 m_bInView（注解 0x90，实际 0x94）起
+- 二分定谳：**Role 的 11 个 virtual 成员声明触发 MSVC6 在基类后插入 4 字节
+  vptr**（删 virtual 后 m_cmdqueue 回 0x60、sizeof=8704 实测）
+  ⇒ 推论：原始源码中这些虚函数是**基类声明的覆写**（Object 链 vtable），
+  我们发射头文件时把它们归属到了 Role ⇒ **虚函数声明归属错误**（归属维度）
+- 另证：三基类（Object 56/PSW 8/Glow 32）内部布局逐成员全对，无虚继承
+### 其余裁定
+- FindInOpen/Closed ±1 字节 = 表达式形态族（已定性，立账）
+- GetUIElements fcomp dword/qword = float/double 类型宽（lvar/成员类型可修，下批）
+- IRender fld qword vs mov ecx/edx 双字 = 同族（全局 double 类型，下批）
+### 工具与方法沉淀
+- tools/fdiff.py 检视器（parse_coff_obj 同源提取 + capstone 并排 + reloc/截断标注）
+  ——本批全部发现由它直接产出
+- "MSVC 真实布局读取器"方法：探针 TU（每成员一函数返回偏移）+ dumpbin 解析
+  （标签 `_off_name@`、`mov eax, IMM`）——可脚本化推广到任意类
+### 下一批（立账）
+1. 虚函数声明归属裁定：用 vtable_mapper/二进制 vtable 槽位归属，把 Role 的
+   slot_3..slot_10/_sdtor_22 等归属到正确声明层（Object 链）⇒ 消 +4
+2. Scene.cpp 其余 fdiff（+0xC8 修后应消失）
+3. GetUIElements/IRender 的 float/double 类型修
