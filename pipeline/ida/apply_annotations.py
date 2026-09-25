@@ -1509,6 +1509,26 @@ def _fix_gbengine_import_slots():
         cur = idc.get_type(ea) or ''
         n_cur = _slot_param_count(cur)
         if n_cur is None:
+            # F73b（2026-09-25 拆解实证）：空槽**不再跳过**。实证链：fresh init 的槽
+            # 全空 ⇒ export/Hex-Rays 用调用点推断的**退化原型回写**（Read 被写成
+            # `void __thiscall(__hidden this)`、RenderGeomQuad 被写成 __stdcall 丢
+            # this）⇒ Hex-Rays 下一轮导出采用坏型丢参；修复要拖到**下一轮 apply**，
+            # plain init 永远一次不成型。修饰名含完整签名（零猜测），空槽直接写全。
+            decl = '%s __thiscall __sigfix(%s);' % (
+                ret, ', '.join([cls + ' *'] + decl_params))
+            ftif = ida_typeinf.tinfo_t()
+            if not ida_typeinf.parse_decl(ftif, til, decl, ida_typeinf.PT_SIL):
+                failed += 1
+                log("  [!] import slot sig parse failed: %s -> %s" % (name, decl))
+                return True
+            ptr = ida_typeinf.tinfo_t()
+            ptr.create_ptr(ftif)
+            if ida_nalt.set_tinfo(ea, ptr):
+                fixed += 1
+                log("  [gb] empty slot sig set @%08X %s" % (ea, name))
+            else:
+                failed += 1
+                log("  [!] import slot set_tinfo failed (empty): %s" % name)
             return True
         # 裸函数类型里 IDA 把 this 打印成 `__hidden this` ⇒ 参数个数要减 1
         n_stack = n_cur - (1 if '__hidden this' in cur else 0)
@@ -1682,7 +1702,6 @@ def import_gbengine_types():
             "void __thiscall(gbVFileSystem *, void *, unsigned int, gbVFile *);",
     }
     import ida_nalt
-    import ida_funcs
     gb_sig_ok = 0
     gb_sig_try = 0
     nimps = ida_nalt.get_import_module_qty()
@@ -1694,14 +1713,26 @@ def import_gbengine_types():
             nonlocal gb_sig_ok, gb_sig_try
             if name and name in _GB_IMPORT_SIGS:
                 gb_sig_try += 1
-                # fresh IDB: import thunk may not be a function yet → SetType 静默失败
-                if ida_funcs.get_func(ea) is None:
-                    ida_funcs.add_func(ea)
-                if idc.SetType(ea, _GB_IMPORT_SIGS[name]):
+                # IAT 槽是**数据地址**（非函数）：SetType 写裸函数类型会被拒。
+                # 必须写"函数指针类型"到槽上（与 F73 同款）——Hex-Rays 反编译
+                # `call ds:<slot>` 时从槽读指向类型。实证（2026-09-25 拆解）：
+                # 裸 SetType 21 条只成 1 条；槽空着时 export 会用调用点推断的
+                # 退化原型回写（RenderGeomQuad 被写成 stdcall ⇒ 丢 this ⇒ 少参）。
+                sig = _GB_IMPORT_SIGS[name]
+                decl = sig.rstrip(';') + ';'
+                ftif = ida_typeinf.tinfo_t()
+                if not ida_typeinf.parse_decl(ftif, til, decl, ida_typeinf.PT_SIL):
+                    log("  [!] gb import sig parse failed: %s -> %s" % (name, decl))
+                    return True
+                ptr = ida_typeinf.tinfo_t()
+                ptr.create_ptr(ftif)
+                if ida_nalt.set_tinfo(ea, ptr):
                     gb_sig_ok += 1
+                else:
+                    log("  [!] gb import slot set_tinfo failed: %s" % name)
             return True
         ida_nalt.enum_import_names(i, _set_import_type)
-    print("[gb] gbengine import function types set: %d/%d" % (gb_sig_ok, gb_sig_try))
+    log("[gb] import sig types set: %d/%d" % (gb_sig_ok, gb_sig_try))
 
 
 # ============================================================

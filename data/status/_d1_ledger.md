@@ -3658,3 +3658,33 @@ vtable 映射机制从设计到落地完全正确 ✓
 | vtable 门禁 | 64 pass/28 fail（resolved 781） | **88 pass/4 fail（resolved 835/841，unresolved 6）** |
 ### 残余 6 槽 / 4 类
 - CEffect · MainPropUI · filebuf（CRT 产物，建议 SKIP）· gbLightObj（SDK 单源，改走 SDK 头声明路线）
+
+## 2026-09-25 flake 收口——init 一次成型（拆解实证 + 双修复）
+### 拆解实证（探针逐哨兵槽 0x56A230/26C/30C/540/584，五步重放 S0→S6）
+| 阶段 | 槽态 |
+|---|---|
+| S0 raw 复制 | 全空·非函数·mangled 名（typed 6/233） |
+| S3 +master_pipeline(PDB) | 无变化（PDB 不写槽） |
+| S4a/S4b +apply×2 | 无变化（旧 SetType 写**数据槽**失败：21 条只成 1） |
+| S5 +fix_vtable_types | 无变化（不碰导入槽） |
+| S6 +**export** | **typed 7→19：Hex-Rays 用调用点推断的退化原型回写空槽**——Read=`void __thiscall(__hidden this)`、RenderGeomQuad=`__stdcall(...)` 丢 this、operator==`int(_DWORD,_DWORD)` |
+| 后置 apply（healing） | F73 见到退化型才修 ⇒ **永远晚一拍**，plain init 永远一次不成型 |
+### 双修复（apply_annotations.py）
+1. **签名块 SetType→函数指针 set_tinfo**：`parse_decl→create_ptr→ida_nalt.set_tinfo(ea, ptr)`
+   （IAT 槽是数据地址，裸函数类型 SetType 被拒；与 F73 同款）；print→log() 进日志
+2. **F73b 空槽不跳过**：`n_cur is None` 分支改为按修饰名解析直接写全签名
+   （修饰名含完整签名零猜测；消灭"空→export 回写退化→下轮才修"的一拍滞后）
+### 验证
+- V1（fresh init 第一次 apply）：**233/233 全 typed**，哨兵全为正确 `void (__thiscall *)(Cls *, ...)`
+- V3（apply×2+fix_vtable+export 后）：**类型不再被回写**（已正确则 Hex-Rays 保持）
+- 一轮 codegen：**S2 84/206**（不再需要补救 apply）
+### 诚实红对账（vs 补救态 85/1893——那态是"半定型"路标而非终点）
+- S2 −1：CEffQuad 翻红（Rotate 正确 `gbVec3D&` 型 ⇒ Hex-Rays 渲染 `*stru_17A7BB0` ⇒ C2100——
+  **stru_ 全局解引用作引用实参的重写缺口**，新账）
+- 错误 +133：C2410 洪水（ScriptVM 74/RoleSystem 59/UIScene 区）= 封顶重债区渲染位移，
+  解析器健全性已抽查（51 可疑全为 ctor/dtor/操作符的 const 引用渲染误报，语义全对）
+- matched −7（327/391）· L1 51 持平
+### 新 honest-red 工作清单（下轮）
+① stru_/data 全局解引用作引用实参的 stage4/5 重写 ② 效果族显式 this 静态形式
+（EnableShadow/GetAABBox C2660 = cast 形式缺失族）③ 封顶区真签名矛盾逐站点
+（sub_4B43E0 ×9 等——现在每槽都有真型，C2660 可机械 join）
