@@ -3894,3 +3894,32 @@ vtable 映射机制从设计到落地完全正确 ✓
    slot_3..slot_10/_sdtor_22 等归属到正确声明层（Object 链）⇒ 消 +4
 2. Scene.cpp 其余 fdiff（+0xC8 修后应消失）
 3. GetUIElements/IRender 的 float/double 类型修
+
+## 2026-09-25 长线战役批次1：Scene +200 根因链闭合——Object 非多态发射（假设已钉，MCP 考古待下批）
+### 案例（fdiff 检出 → S2 从未报警的隐藏错误）
+- Scene::_todo_421870 访问成员 +0x78720 vs 原始 +0x78658（Δ+0xC8=200，读写各一处）
+- 注解与二进制一致（m_nTodo_78658@0x78658 ✓）⇒ 错在**发射布局**：MSVC 把 Scene 尾部
+  整体 +200 ⇒ 源头 = 内嵌 `Role m_roles[50]` 的步长 8708 vs 二进制 8704
+### Role +4 根因链（布局探针逐层实测）
+1. q_cmdqueue_off = **0x64**（注解模型 0x60）⇒ 基类区占 0x64 而非 0x60
+2. 基类子对象：**b1(Object) = +4**（非 0）⇒ Role 偏移 0 处是一个 4 字节指针
+3. 三基类隔离测量全部正确（Object 56 / PSW 8 / Glow 32，成员逐一吻合，无内部漂移）
+4. ⇒ 偏移 0 的指针 = **Role 自身的 vptr**：Object 被发射成非多态（Object.h 零 virtual、
+   注解无 vtable）⇒ Role 的 3+11 个虚函数成了"新增虚函数" ⇒ MSVC 插入派生 vptr
+5. 二分对照：三基类各自被单独继承时（T1/T2/T3）基偏移全部 = 0、无 +4 ⇒
+   触发器 = "多态基缺失 + 派生有虚函数"的组合
+### 根因假设（下批 MCP 考古验证）
+原始 Object 是多态的（56 字节中偏移 0 = vptr，对应注解 `_gap_000[4]` 匿名成员）。
+原始 Role 的虚函数 = Object 链声明的覆写（无新增 vptr）⇒ 8704。
+我们发射时 Object 无虚声明 ⇒ Role 虚函数变新增 ⇒ +4 ⇒ 8708 ⇒ Scene +200。
+### 修复路线（下批）
+A. Object 补 vtable 注解（Role/Scene 链构造器存储的 vtable 地址 + 槽位归属考古，
+   ctor vtable-store 方法论）→ Object 多态化 → Role 虚函数变覆写 → +4 消失 →
+   Scene +200 自愈 + Scene.cpp 全部 fdiff 复验
+B. 同族排查：所有"多态基 + 非多态发射"的 MI 类（GlowObj/PSW 同为 Role 基 ⇒
+   已经全对；其他以 Object 为基的类全量排查——fdiff 密度普查给出清单）
+### 方法沉淀
+- MSVC 真实布局读取器：探针 TU（每成员一函数）+ dumpbin（`_off_name@` 标签 +
+  `mov eax,IMM`）+ 注解对表——本批定位到单成员精度
+- 基类子对象偏移探针：static_cast<Base*>((D*)0) 的编译期常量（含 null-guard 分支，
+  读非零路径常量）——直接给出 MI 布局的基类落位
