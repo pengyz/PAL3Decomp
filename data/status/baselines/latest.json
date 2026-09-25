@@ -1,6 +1,6 @@
 {
-  "name": "20260925_223221",
-  "timestamp": "2026-09-25T22:32:21.858286",
+  "name": "20260926_010343",
+  "timestamp": "2026-09-26T01:03:43.112340",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "fail",
@@ -3447,7 +3447,7 @@
         },
         {
           "code": "C2065",
-          "msg": "'pProbeNode' : undeclared identifier",
+          "msg": "'pNode' : undeclared identifier",
           "line": 16
         },
         {
@@ -3983,12 +3983,12 @@
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
-          "line": 362
+          "line": 353
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall CEffect::*)(int)' to 'int (__cdecl *)(class CEffect *,int)'",
-          "line": 395
+          "line": 386
         }
       ]
     },
@@ -4415,6 +4415,11 @@
           "line": 22
         }
       ]
+    },
+    "pal3/src/Misc/Object.cpp": {
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/OpenBaseFile.cpp": {
       "status": "ok",
@@ -7860,6 +7865,11 @@
         }
       ]
     },
+    "pal3/src/Role/_q2.cpp": {
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
+    },
     "pal3/src/Scene/Camera.cpp": {
       "status": "fail",
       "error_count": 1,
@@ -9396,102 +9406,87 @@
         {
           "code": "C2373",
           "msg": "'ArraySort' : redefinition; different type modifiers",
-          "line": 147
+          "line": 148
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall gbVFileSystem::*)(char *)' to 'int (__cdecl *)(class gbVFileSystem *,char *)'",
-          "line": 210
+          "line": 211
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__thiscall gbVFileSystem::*)(char *)' to 'int (__cdecl *)(class gbVFileSystem *,char *)'",
-          "line": 219
+          "line": 220
         },
         {
           "code": "C2373",
           "msg": "'StrCopyRange' : redefinition; different type modifiers",
-          "line": 267
+          "line": 268
         },
         {
           "code": "C2065",
           "msg": "'pData_0' : undeclared identifier",
-          "line": 425
+          "line": 426
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'int *'",
-          "line": 629
+          "line": 630
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'float' to 'int *'",
-          "line": 785
+          "line": 786
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'int *'",
-          "line": 891
+          "line": 892
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char *' to 'char'",
-          "line": 1098
+          "line": 1099
         },
         {
           "code": "C2039",
           "msg": "'_nearby_4b6ca0' : is not a member of 'RenderTarget3'",
-          "line": 1667
+          "line": 1668
         },
         {
           "code": "C2039",
           "msg": "'_nearby_4b6ca0' : is not a member of 'RenderTarget3'",
-          "line": 1667
+          "line": 1668
         },
         {
           "code": "C2819",
           "msg": "type 'gbOBBox' does not have an overloaded member 'operator ->'",
-          "line": 1690
+          "line": 1691
         },
         {
           "code": "C2227",
           "msg": "left of '->gbMatrix4' must point to class/struct/union",
-          "line": 1690
+          "line": 1691
         },
         {
           "code": "C2664",
           "msg": "'IsColOBB' : cannot convert parameter 1 from 'struct gbOBBox' to 'struct gbOBBox *'",
-          "line": 1696
+          "line": 1697
         },
         {
           "code": "C2027",
           "msg": "use of undefined type '_Console'",
-          "line": 1755
+          "line": 1756
         },
         {
           "code": "C2227",
           "msg": "left of '->m_cmd' must point to class/struct/union",
-          "line": 1755
+          "line": 1756
         },
         {
           "code": "C2228",
           "msg": "left of '._tail_000' must have class/struct/union type",
-          "line": 1755
-        },
-        {
-          "code": "C2027",
-          "msg": "use of undefined type '_Console'",
-          "line": 1758
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_cmd' must point to class/struct/union",
-          "line": 1758
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '._tail_000' must have class/struct/union type",
-          "line": 1758
+          "line": 1756
         },
         {
           "code": "C2027",
@@ -9511,32 +9506,32 @@
         {
           "code": "C2027",
           "msg": "use of undefined type '_Console'",
-          "line": 1764
+          "line": 1760
         },
         {
           "code": "C2227",
           "msg": "left of '->m_cmd' must point to class/struct/union",
-          "line": 1764
+          "line": 1760
         },
         {
           "code": "C2228",
           "msg": "left of '._tail_000' must have class/struct/union type",
-          "line": 1764
+          "line": 1760
         },
         {
           "code": "C2027",
           "msg": "use of undefined type '_Console'",
-          "line": 1767
+          "line": 1765
         },
         {
           "code": "C2227",
           "msg": "left of '->m_cmd' must point to class/struct/union",
-          "line": 1767
+          "line": 1765
         },
         {
           "code": "C2228",
           "msg": "left of '._tail_000' must have class/struct/union type",
-          "line": 1767
+          "line": 1765
         },
         {
           "code": "C2027",
@@ -9556,47 +9551,47 @@
         {
           "code": "C2027",
           "msg": "use of undefined type '_Console'",
-          "line": 1771
+          "line": 1769
         },
         {
           "code": "C2227",
           "msg": "left of '->m_cmd' must point to class/struct/union",
-          "line": 1771
+          "line": 1769
         },
         {
           "code": "C2228",
           "msg": "left of '._tail_000' must have class/struct/union type",
-          "line": 1771
+          "line": 1769
         },
         {
           "code": "C2027",
           "msg": "use of undefined type '_Console'",
-          "line": 1774
+          "line": 1772
         },
         {
           "code": "C2227",
           "msg": "left of '->m_cmd' must point to class/struct/union",
-          "line": 1774
+          "line": 1772
         },
         {
           "code": "C2228",
           "msg": "left of '._tail_000' must have class/struct/union type",
-          "line": 1774
+          "line": 1772
         },
         {
           "code": "C2027",
           "msg": "use of undefined type '_Console'",
-          "line": 1774
+          "line": 1775
         },
         {
           "code": "C2227",
           "msg": "left of '->m_cmd' must point to class/struct/union",
-          "line": 1774
+          "line": 1775
         },
         {
           "code": "C2228",
           "msg": "left of '._tail_000' must have class/struct/union type",
-          "line": 1774
+          "line": 1775
         },
         {
           "code": "C2027",
@@ -9631,21 +9626,6 @@
         {
           "code": "C2027",
           "msg": "use of undefined type '_Console'",
-          "line": 1776
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_cmd' must point to class/struct/union",
-          "line": 1776
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '._tail_000' must have class/struct/union type",
-          "line": 1776
-        },
-        {
-          "code": "C2027",
-          "msg": "use of undefined type '_Console'",
           "line": 1777
         },
         {
@@ -9702,91 +9682,116 @@
           "code": "C2228",
           "msg": "left of '._tail_000' must have class/struct/union type",
           "line": 1778
+        },
+        {
+          "code": "C2027",
+          "msg": "use of undefined type '_Console'",
+          "line": 1779
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->m_cmd' must point to class/struct/union",
+          "line": 1779
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '._tail_000' must have class/struct/union type",
+          "line": 1779
+        },
+        {
+          "code": "C2027",
+          "msg": "use of undefined type '_Console'",
+          "line": 1779
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->m_cmd' must point to class/struct/union",
+          "line": 1779
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '._tail_000' must have class/struct/union type",
+          "line": 1779
         },
         {
           "code": "C2660",
           "msg": "'ProcessKeyboard' : function does not take 2 parameters",
-          "line": 1779
+          "line": 1780
         },
         {
           "code": "C2373",
           "msg": "'InputUpdate' : redefinition; different type modifiers",
-          "line": 1784
+          "line": 1785
         },
         {
           "code": "C2660",
           "msg": "'ProcessKeyboard' : function does not take 2 parameters",
-          "line": 1890
+          "line": 1891
         },
         {
           "code": "C2511",
           "msg": "'ProcessKeyboard' : overloaded member function 'void (struct InputSystem *,int)' not found in 'InputSystem'",
-          "line": 1896
+          "line": 1897
         },
         {
           "code": "C2660",
           "msg": "'ProcessKeyboard' : function does not take 2 parameters",
-          "line": 2069
+          "line": 2070
         },
         {
           "code": "C2065",
           "msg": "'VFileSystem' : undeclared identifier",
-          "line": 2209
+          "line": 2210
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 2209
+          "line": 2210
         },
         {
           "code": "C2653",
           "msg": "'VFileSystem' : is not a class or namespace name",
-          "line": 2209
+          "line": 2210
         },
         {
           "code": "C2027",
           "msg": "use of undefined type '_Console'",
-          "line": 2272
+          "line": 2273
         },
         {
           "code": "C2227",
           "msg": "left of '->_Console' must point to class/struct/union",
-          "line": 2272
+          "line": 2273
         },
         {
           "code": "C2653",
           "msg": "'_Console' : is not a class or namespace name",
-          "line": 2272
+          "line": 2273
         },
         {
           "code": "C2065",
           "msg": "'scAsmDecoder' : undeclared identifier",
-          "line": 2276
+          "line": 2277
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 2276
+          "line": 2277
         },
         {
           "code": "C2653",
           "msg": "'scAsmDecoder' : is not a class or namespace name",
-          "line": 2276
+          "line": 2277
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 2278
+          "line": 2279
         },
         {
           "code": "C2660",
           "msg": "'SetTimeScale' : function does not take 2 parameters",
-          "line": 2368
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 2822
+          "line": 2369
         },
         {
           "code": "C2679",
@@ -9874,9 +9879,14 @@
           "line": 2839
         },
         {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2840
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 2839
+          "line": 2840
         }
       ]
     },

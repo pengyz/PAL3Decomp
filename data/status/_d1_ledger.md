@@ -3947,3 +3947,24 @@ B. 同族排查：所有"多态基 + 非多态发射"的 MI 类（GlowObj/PSW �
 - Object 多态化波及所有 Object 派生类（Role/NPC/...）：有自声明虚函数的类
   （当前各自 +4）回归正位；无虚函数的类布局不变（vptr 并入 Object 首槽）
 - 全量 fdiff 普查在修复后重跑（预期大面积收敛）
+
+## 2026-09-25 批次2执行：Object 多态化落地——首个 L1 完整击杀（_todo_421870 100%）
+### 落地内容
+- Object.json：vtables += [{addr: 0x56A9BC, slots: [0x411bd0, 0x411bb0, 0x55434f, 0x4af760, 0x411b80]}]
+  + 5 条 methods（_scalar_dtor_1bd0/1bb0/1b80 · FatalExit · Update，IDB 名直用）
+- PSW/GlowObj：vtables 与 offset0 处理**回退**——GlowObj offset0 有在案的 usage-evidence
+  裁定（"从未被当 vtable 调用"）与 Role ctor 证据（56A9A4 存于 Role+0x40）冲突，
+  需 MCP 级仲裁；PSW 同存疑。回退不影响布局修复（见下）
+- Role.json：vtables 移除（11 个虚函数全部为基类覆写，Role 不再"新增"）
+### 实测验证（探针 + 全管线）
+- sizeof(Role) 8708→**8704** ✓ · m_cmdqueue 0x64→**0x60** ✓ · m_bInView 0x94→**0x90** ✓
+  （与注解、与二进制三方一致）
+- S2 **88/207**（+1 单元）· 零回归 · 总错误 1798→**1798** 持平
+- **Scene::_todo_421870 status=match_L1 100%** —— 长线战役首个完整击杀：
+  字节对照发现隐藏错误 → 根因链闭合 → 修复 → 字节一致，全流程闭环验证 ✓
+### L1 61（matched 364/431，总体扩大已显式重对）
+### 遗留与下批
+- GlowObj offset0 证据冲突（ctor 存 56A9A4 vs usage-evidence "无 vtable 存储"）
+  ⇒ MCP 级仲裁：确认 56A9A4 的语义（Role 解析表 vs 数据指针）与 Glow 真实基组合
+- 同族排查：以 Object 为基的其余 MI 类（fdiff 密度普查）
+- C2660/C2664 常设役、C2440 残账、C2065 枚举注入 照旧滚动
