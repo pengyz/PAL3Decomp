@@ -1,198 +1,213 @@
 {
-  "name": "CEffShock",
-  "binary_size": 4272,
-  "known_members": {
-    "48": {
-      "name": "m_DefaultUVSet",
-      "type": "tagUV[256]",
-      "source": "annotation"
-    },
-    "4144": {
-      "name": "m_pTexture",
-      "type": "gbTexture *",
-      "source": "annotation"
-    },
-    "4148": {
-      "name": "m_pTextureArray",
-      "type": "gbTextureArray *",
-      "source": "annotation"
-    },
-    "4152": {
-      "name": "m_nMaxGeomQuad",
-      "type": "int",
-      "source": "annotation"
-    },
-    "4156": {
-      "name": "m_pGeomQuad",
-      "type": "gbGeomQuad *",
-      "source": "annotation"
-    },
-    "4160": {
-      "name": "m_pShock",
-      "type": "tagShockUnit *",
-      "source": "annotation"
-    },
-    "4164": {
-      "name": "m_bVisible",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "4165": {
-      "name": "m_bAdditiveBlend",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "4166": {
-      "name": "m_bNoZTest",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "4168": {
-      "name": "m_fFramePerSec",
-      "type": "float",
-      "source": "annotation"
-    },
-    "4172": {
-      "name": "m_byMaxFrame",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "4176": {
-      "name": "m_nRequireLoops",
-      "type": "int",
-      "source": "annotation"
-    },
-    "4180": {
-      "name": "m_nLoops",
-      "type": "int",
-      "source": "annotation"
-    },
-    "4184": {
-      "name": "m_fCurFrame",
-      "type": "float",
-      "source": "annotation"
-    },
-    "4188": {
-      "name": "m_dwStartColor",
-      "type": "unsigned int",
-      "source": "annotation"
-    },
-    "4192": {
-      "name": "m_fAlpha",
-      "type": "float",
-      "source": "annotation"
-    },
-    "4196": {
-      "name": "m_fRed",
-      "type": "float",
-      "source": "annotation"
-    },
-    "4200": {
-      "name": "m_fGreen",
-      "type": "float",
-      "source": "annotation"
-    },
-    "4204": {
-      "name": "m_fBlue",
-      "type": "float",
-      "source": "annotation"
-    },
-    "4208": {
-      "name": "m_fSize",
-      "type": "float",
-      "source": "annotation"
-    },
-    "4212": {
-      "name": "m_vecRot",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "4224": {
-      "name": "m_vecPos",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "4236": {
-      "name": "m_vecOffsetPos",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "4248": {
-      "name": "m_nNodeOfShock",
-      "type": "int",
-      "source": "annotation"
-    },
-    "4252": {
-      "name": "m_nCascade",
-      "type": "int",
-      "source": "annotation"
-    },
-    "4256": {
-      "name": "m_fWidthOfNode",
-      "type": "float",
-      "source": "annotation"
-    },
-    "4260": {
-      "name": "m_fHeightOfNode",
-      "type": "float",
-      "source": "annotation"
-    },
-    "4264": {
-      "name": "m_fSpeedOfDisappear",
-      "type": "float",
-      "source": "annotation"
-    },
-    "4268": {
-      "name": "m_fInterleaving",
-      "type": "float",
-      "source": "annotation"
-    }
+ "name": "CEffShock",
+ "binary_size": 4272,
+ "known_members": {
+  "48": {
+   "name": "m_DefaultUVSet",
+   "type": "tagUV[256]",
+   "source": "annotation"
   },
-  "base_class": [
-    "CEffObj",
-    "CTaskTpl_tagEffTaskParam_CEffShock"
-  ],
-  "methods": {
-    "0x004D45D0": {
-      "name": "StartShock",
-      "signature": "void __thiscall(int nRequireLoops)",
-      "source": "pdb_ret"
-    },
-    "0x004D49F0": {
-      "name": "CreateGeom",
-      "signature": "void __thiscall(int nVal, int nVal2)",
-      "source": "pdb_ret"
-    },
-    "0x004D4B50": {
-      "name": "LoadTexture",
-      "signature": "void __thiscall(int pFileName, int nVal, int nVal2, int *p_DWORD, int nVal3, int nVal4)",
-      "source": "pdb_ret"
-    },
-    "0x004D4570": {
-      "name": "UpdateSegment",
-      "signature": "int __thiscall(int nVal)"
-    },
-    "0x004D3280": {
-      "name": "GetEditorTaskDescription",
-      "signature": "const char *__thiscall(int nIndex)"
-    },
-    "0x004D3910": {
-      "name": "CEffShock",
-      "signature": "CEffShock *__thiscall(CEffShock *__hidden this)",
-      "source": "vtable_evidence+pdb_correct",
-      "ordinal": 7
-    }
+  "4144": {
+   "name": "m_pTexture",
+   "type": "gbTexture *",
+   "source": "annotation"
   },
-  "base_size": 16,
-  "bases": [
-    {
-      "name": "CEffObj",
-      "offset": 0
-    },
-    {
-      "name": "CTaskTpl_tagEffTaskParam_CEffShock",
-      "offset": 12
-    }
-  ],
-  "bases_source": "A: ctor `mov [reg+0Ch], offset <vtable>` (CEffModel sub_4CFC70 / CEffCylinder sub_4C3DD0)；PDB 全族 CTaskTpl 基 = 12；template_bases.json 记载 18 个 CEff* 共享该模板布局；二进制另有 58 处 `sub ecx,0Ch` 的 this 调整"
+  "4148": {
+   "name": "m_pTextureArray",
+   "type": "gbTextureArray *",
+   "source": "annotation"
+  },
+  "4152": {
+   "name": "m_nMaxGeomQuad",
+   "type": "int",
+   "source": "annotation"
+  },
+  "4156": {
+   "name": "m_pGeomQuad",
+   "type": "gbGeomQuad *",
+   "source": "annotation"
+  },
+  "4160": {
+   "name": "m_pShock",
+   "type": "tagShockUnit *",
+   "source": "annotation"
+  },
+  "4164": {
+   "name": "m_bVisible",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "4165": {
+   "name": "m_bAdditiveBlend",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "4166": {
+   "name": "m_bNoZTest",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "4168": {
+   "name": "m_fFramePerSec",
+   "type": "float",
+   "source": "annotation"
+  },
+  "4172": {
+   "name": "m_byMaxFrame",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "4176": {
+   "name": "m_nRequireLoops",
+   "type": "int",
+   "source": "annotation"
+  },
+  "4180": {
+   "name": "m_nLoops",
+   "type": "int",
+   "source": "annotation"
+  },
+  "4184": {
+   "name": "m_fCurFrame",
+   "type": "float",
+   "source": "annotation"
+  },
+  "4188": {
+   "name": "m_dwStartColor",
+   "type": "unsigned int",
+   "source": "annotation"
+  },
+  "4192": {
+   "name": "m_fAlpha",
+   "type": "float",
+   "source": "annotation"
+  },
+  "4196": {
+   "name": "m_fRed",
+   "type": "float",
+   "source": "annotation"
+  },
+  "4200": {
+   "name": "m_fGreen",
+   "type": "float",
+   "source": "annotation"
+  },
+  "4204": {
+   "name": "m_fBlue",
+   "type": "float",
+   "source": "annotation"
+  },
+  "4208": {
+   "name": "m_fSize",
+   "type": "float",
+   "source": "annotation"
+  },
+  "4212": {
+   "name": "m_vecRot",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "4224": {
+   "name": "m_vecPos",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "4236": {
+   "name": "m_vecOffsetPos",
+   "type": "gbVec3D",
+   "source": "annotation"
+  },
+  "4248": {
+   "name": "m_nNodeOfShock",
+   "type": "int",
+   "source": "annotation"
+  },
+  "4252": {
+   "name": "m_nCascade",
+   "type": "int",
+   "source": "annotation"
+  },
+  "4256": {
+   "name": "m_fWidthOfNode",
+   "type": "float",
+   "source": "annotation"
+  },
+  "4260": {
+   "name": "m_fHeightOfNode",
+   "type": "float",
+   "source": "annotation"
+  },
+  "4264": {
+   "name": "m_fSpeedOfDisappear",
+   "type": "float",
+   "source": "annotation"
+  },
+  "4268": {
+   "name": "m_fInterleaving",
+   "type": "float",
+   "source": "annotation"
+  }
+ },
+ "base_class": [
+  "CEffObj",
+  "CTaskTpl_tagEffTaskParam_CEffShock"
+ ],
+ "methods": {
+  "0x004D45D0": {
+   "name": "StartShock",
+   "signature": "void __thiscall(int nRequireLoops)",
+   "source": "pdb_ret"
+  },
+  "0x004D49F0": {
+   "name": "CreateGeom",
+   "signature": "void __thiscall(int nVal, int nVal2)",
+   "source": "pdb_ret"
+  },
+  "0x004D4B50": {
+   "name": "LoadTexture",
+   "signature": "void __thiscall(int pFileName, int nVal, int nVal2, int *p_DWORD, int nVal3, int nVal4)",
+   "source": "pdb_ret"
+  },
+  "0x004D4570": {
+   "name": "UpdateSegment",
+   "signature": "int __thiscall(int nVal)"
+  },
+  "0x004D3280": {
+   "name": "GetEditorTaskDescription",
+   "signature": "const char *__thiscall(int nIndex)"
+  },
+  "0x004D3910": {
+   "name": "CEffShock",
+   "signature": "CEffShock *__thiscall(CEffShock *__hidden this)",
+   "source": "vtable_evidence+pdb_correct",
+   "ordinal": 7
+  },
+  "0x004D3930": {
+   "name": "_scalar_dtor_3930",
+   "signature": "void __thiscall()",
+   "source": "vtable_gap_fill_v1(IDB:_sdtor_40)"
+  },
+  "0x004D3DC0": {
+   "name": "sub_4D3DC0",
+   "signature": "void __thiscall(int)",
+   "source": "vtable_gap_fill_v1(IDB:?sub_4D3DC0@CEffect@@QAEHXZ)"
+  },
+  "0x004D4110": {
+   "name": "sub_4D4110",
+   "signature": "int __thiscall()",
+   "source": "vtable_gap_fill_v1(IDB:?sub_4D4110@CEffect@@QAEHXZ)"
+  }
+ },
+ "base_size": 16,
+ "bases": [
+  {
+   "name": "CEffObj",
+   "offset": 0
+  },
+  {
+   "name": "CTaskTpl_tagEffTaskParam_CEffShock",
+   "offset": 12
+  }
+ ],
+ "bases_source": "A: ctor `mov [reg+0Ch], offset <vtable>` (CEffModel sub_4CFC70 / CEffCylinder sub_4C3DD0)；PDB 全族 CTaskTpl 基 = 12；template_bases.json 记载 18 个 CEff* 共享该模板布局；二进制另有 58 处 `sub ecx,0Ch` 的 this 调整"
 }

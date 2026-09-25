@@ -61,6 +61,17 @@ def _apply_text_substitutions(code, ctx):
     # Remove redundant 'struct' before template function pointer params
     code = re.sub(r'struct\s+([A-Za-z_]\w*(?:<[^>]*>)?)\s*\(', r'\1 (', code)
 
+    # F80（2026-09-25）：`this = expr` 渲染守卫。Hex-Rays 把"存放 this 的寄存器被
+    # 复用"渲染成对 this 的赋值（CEffShock dtor 槽定型时实测 3 处 ⇒ C2106，MSVC6
+    # 视 this 不可赋值）。忠实重写 = 函数体内 this 全部换名 _this（Hex-Rays 的
+    # 寄存器复用视图），首行注入 `Cls *_this = this;`；签名内的 this 形参不动。
+    if ctx.cls_name and not ctx.is_free_function and re.search(r'\bthis\s*=[^=]', code):
+        i = code.find('{')
+        if i != -1:
+            head, body = code[:i + 1], code[i + 1:]
+            body = re.sub(r'\bthis\b', '_this', body)
+            code = head + ('\n    %s *_this = this;' % ctx.cls_name) + body
+
     return code
 
 
@@ -428,6 +439,36 @@ _GB_REF_PARAM_FUNCS = {
     'RightMultiply': {0},
 }
 
+# F81（2026-09-25）：引用参数的**实参类型**（SDK 头权威，include/gbengine）。
+# 供 Case 2b 把 `*stru_XXXX`（无型数据全局被解引用作引用实参）重写为
+# `*(T *)&stru_XXXX` —— MSVC6 的 T& 只绑同型左值，无 T 则 C2100。
+# 键 (func, arg_idx)；未录入的组合保持原行为（保守不变）。返回类型差异
+# （如 RightMultiply 的 gbMatrix4/gbQuaternion 两载）不录入，防错型。
+_GB_REF_PARAM_TYPES = {
+    ('Rotate', 1): 'struct gbVec3D',        # gbengine_internal.h:149 Rotate(float, gbVec3D&)
+    ('Translate', 0): 'struct gbVec3D',     # :158 Translate(gbVec3D&)
+    ('Scale', 0): 'struct gbVec3D',         # :154 Scale(gbVec3D&)
+    ('LeftTranslate', 0): 'struct gbVec3D', # gbengine_types.h:128
+    ('RightTranslate', 0): 'struct gbVec3D',
+    ('MakeMatrix', 0): 'struct gbVec3D',    # gbengine_types.h:131
+    ('MakeMatrix', 1): 'struct gbVec3D',
+    ('MakeMatrix', 2): 'struct gbVec3D',
+    ('LeftMultiply', 0): 'struct gbMatrix4',
+    ('IntersectPlane', 0): 'struct gbVec3D',  # gbengine_types.h:197
+    ('IntersectPlane', 1): 'struct gbVec3D',
+    ('IsColAABB', 0): 'struct gbAABBox',
+    ('IsColOBB', 0): 'struct gbOBBox',
+    ('IsColOBB_H', 0): 'struct gbOBBox',
+    ('IsColQuad', 0): 'struct gbVec3D',
+    ('IsColQuad', 1): 'struct gbVec3D',
+    ('IsColQuad', 2): 'struct gbVec3D',
+    ('IsColSphere', 0): 'struct gbSphere',
+    ('IsColTriangle', 0): 'struct gbVec3D',
+    ('IsColTriangle', 1): 'struct gbVec3D',
+    ('IsColTriangle', 2): 'struct gbVec3D',
+    ('IsColTriangle', 3): 'struct gbVec3D',
+}
+
 # NOTE (F1b): 'SetAxisAngle': {0} was WRONG and has been deleted.
 # `gbengine/gbengine.def` (authoritative, compiler-emitted mangled names):
 #   ?SetAxisAngle@gbQuaternion@@QAEXPAUgbVec3D@@M@Z  -> (gbVec3D *, float)  = POINTER
@@ -485,14 +526,14 @@ def _fix_ref_params(code, ctx=None):
                     if depth == 0:
                         arg = code[arg_start:i]
                         if arg_idx in ref_indices:
-                            arg = _fix_single_ref_arg(arg, vt)
+                            arg = _fix_single_ref_arg(arg, vt, ref_type=_GB_REF_PARAM_TYPES.get((func_name, arg_idx)))
                         result.append(arg)
                         result.append(')')
                         break
                 elif ch == ',' and depth == 1:
                     arg = code[arg_start:i]
                     if arg_idx in ref_indices:
-                        arg = _fix_single_ref_arg(arg, vt)
+                        arg = _fix_single_ref_arg(arg, vt, ref_type=_GB_REF_PARAM_TYPES.get((func_name, arg_idx)))
                     result.append(arg)
                     result.append(', ')
                     arg_idx += 1
@@ -503,11 +544,12 @@ def _fix_ref_params(code, ctx=None):
     return code
 
 
-def _fix_single_ref_arg(arg, vt=None):
+def _fix_single_ref_arg(arg, vt=None, ref_type=None):
     """Fix a single argument for a reference parameter.
 
     Case 1: starts with '&'  → strip '&'
     Case 2: cast-to-pointer  → add '*' before the cast: (T*)x → *(T*)x
+    Case 2b (F81): `*IDA-artifact global` with known ref type → *(T *)&global
     Case 3: plain identifier  → add '*':  pBox → *pBox  **only with evidence**
 
     Case 3 evidence gate (F1a).  Case 3 used to fire on the *text shape*
@@ -546,6 +588,12 @@ def _fix_single_ref_arg(arg, vt=None):
     cast_m = re.match(r'^(\s*\([^)]*\*\)\s*)', arg)
     if cast_m:
         return '*' + arg
+    # Case 2b (F81): `*无型数据全局` 作引用实参 —— Hex-Rays 对未定型 stru_/dword_
+    # 等全局渲染裸解引用，MSVC6 的 T& 只绑同型左值 ⇒ C2100。用被调方 SDK 头的
+    # 参数类型重写为 `*(T *)&全局`（同一对象的再解释绑定，语义等价）。
+    deref_m = re.match(r'^\s*\*\s*((?:stru|byte|word|dword|flt|dbl|unk)_[0-9A-Fa-f]+)\s*$', arg)
+    if deref_m and ref_type:
+        return '*(%s *)&%s' % (ref_type, deref_m.group(1))
     # Case 3: plain identifier (simple variable name, NOT numeric constants)
     ident_m = re.match(r'^(\s*)(\w+)\s*$', arg)
     if ident_m and not ident_m.group(2).isdigit():
@@ -555,6 +603,17 @@ def _fix_single_ref_arg(arg, vt=None):
             # Positive evidence this is not a pointer: the `&` stage 3 removed
             # was the reference-taking one.  Leave the object expression.
             return arg
+        # F81b: the identifier is an already-typed global - decide based on the emitted type. Example: stru_17A7E78 is
+        # `struct gbVec3D` in globals.h (object not pointer), and the reference binding of Rotate(_, gbVec3D&)
+        # wants the object itself => bare name; only pointer slots (`T *`) get `*` added.
+        if ref_type:
+            _gt = (store.global_types.get(ident_m.group(2)) or '').strip()
+            if _gt:
+                _norm = lambda t: re.sub(r'^(?:struct|class|enum|union)\s+', '', t.strip())
+                if not _gt.endswith('*') and _norm(_gt) == _norm(ref_type):
+                    return arg  # object-type global: bare name binds reference
+                if _gt.endswith('*'):
+                    return ident_m.group(1) + '*' + ident_m.group(2)
         return ident_m.group(1) + '*' + ident_m.group(2)
     # Unknown pattern — leave unchanged to be safe
     return arg

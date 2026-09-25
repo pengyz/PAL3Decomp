@@ -3715,3 +3715,33 @@ vtable 映射机制从设计到落地完全正确 ✓
   已有红单元内的正常暴露，单元净错误皆降 ⇒ 接受 + 记账，不回退
 ### vtable 门禁终态
 **90 pass / 1 fail**（仅 CEffect[1] 三槽挂起）· unresolved 6→**3** · sdk_route 18 · filebuf 出闸
+
+## 2026-09-25 vtable 批次 W——门禁 91/91 全绿 · unresolved=0 · S2 87 · L1 53
+### 不匹配分族（修正审计器 parser 后的真相）
+- delta≥1（证据要求更多参数）= 可机械填充族；delta=-1（132 个）= this 别名（`Block`）
+  未剥的审计器分类问题（签名本身没错，归 parser 精化）；delta≤-2（8 个）= 真冲突
+  （retn 0 vs 渲染 2 参），归 B-SLOTMISMATCH 常设役
+### 批次 W 落地
+- W1：35 条填充 / 41 地址（delta≥1、ret-N 唯一证据；16 个同地址异 arity 冲突地址按
+  一致性纪律跳过并记账）
+- W2：CEffect[1]←CEffShock 三槽重落地（0x4D3930 dtor 占位 + 0x4D3DC0/0x4D4110 sub_ 成员）
+- stage5 **F80** `this = expr` 渲染守卫（Hex-Rays 寄存器复用渲染 ⇒ MSVC6 C2106；
+  忠实重写 = 函数体 this→_this 换名 + 首行 `Cls *_this = this;`）
+- stage5 **F81/F81b** 引用实参裁决：`_GB_REF_PARAM_TYPES`（SDK 头权威的参数类型表）
+  + Case 2b（`*无型全局` → `*(T *)&全局`）+ **Case 3 精化**（已定型全局按
+  `store.global_types` 裁决：对象型 ⇒ 裸名绑引用、指针槽 ⇒ 补 `*`）
+### 排障记录（F81 首发未生效的定位）
+- `_fix_single_ref_arg` 的 `*全局` 其实是 **stage3 剥 `&` + Case 3 补 `*` 的合成产物**
+  （raw decomp 是 `&stru_`）——Case 2b 永远看不到 `*全局`；真判据在 Case 3 的证据分派
+- 测试串笔误（`Case2b` vs `Case 2b`）曾误判"模块未更新"——字符串验证要用文件 grep
+### 一轮验证（全绿：codegen/probe/match 三段 rc=0 零回归）
+| 指标 | 批次 V 后 | 批次 W 后 |
+|---|---|---|
+| S2 | 84/206 | **87/206**（CEffShock+CEffQuad 复绿） |
+| L1 | 52（matched 327/391） | **53**（matched 338/404） |
+| 总错误 | 2018 | **1975** |
+| C2106（this 赋值族） | — | **−27**（F80 守卫） |
+| vtable 门禁 | 90 过/1 败 | **91 过/0 败 · unresolved 0** |
+### 残余台账
+- delta≤-2 真冲突 8 槽 + delta=-1 别名精化 + B-SLOTMISMATCH 273 → C2660 常设役
+- 119 不匹配中的 sret/varargs 甄别待 pack v4
