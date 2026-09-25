@@ -3986,3 +3986,25 @@ B. 同族排查：所有"多态基 + 非多态发射"的 MI 类（GlowObj/PSW �
 - 最大差异函数 ≠ 全是标注错误：约半数是寄存器分配形状差（语义可能已对）
 - 但其中**CEff 家族的一致 +4 位移**是明确的类级注解信号 ⇒ 下一批主攻
 - 方法论：对齐直方图分诊 → 位移族进注解修复队列 → 形状族进源级恢复队列
+
+## 2026-09-25 批次3执行：CEff 家族折点定位——CEffObj 非多态（同 Role 根因）
+### 布局探针实测（tools/layout_probe.py 首战）
+- CEffQuad：m_bActive 注解 0x30 → MSVC 实际 **0x34**（+4，首个分歧，其后全体 +4）
+- CEffShock：m_DefaultUVSet 0x48 → 0x4C（+4，同构）
+- C3DSpark / CEffExplosive：布局自洽（零漂移——其差异另有原因，下批分别定性）
+### 最小复现双重验证
+- 无 virtual：m_bActive = 0x30 ✓（MSVC 不插 vptr）
+- 加 `virtual sub_4D1300/sub_4D17D0`：m_bActive = **0x34** ✓ 复现
+- sizeof(CEffObj) = 12 恒定（vptr 4 + m_pEM 4 + m_bIdle 4，注解自洽）
+### 根因定谳
+- **CEffObj 注解无 vtables、发射无虚声明 ⇒ 非多态** ⇒ CEffQuad 的两个虚函数
+  （sub_4D1300/sub_4D17D0，二进制 vtable 0x56FA48 共 12 槽）成为"新增虚函数"
+  ⇒ MSVC 插独立 vptr ⇒ 全员 +4 ⇒ 原始二进制 0x30-0x35 成员访问全错位
+- 原始 CEffObj 必为多态（成员 m_pEM@4/m_bIdle@8 与 vptr@0 自洽，12 = 4+4+4）
+### 修复方案（下批，需 MCP）
+- CEffObj 补 vtable 注解：vtable 地址需从 CEffQuad 构造器的 CEffObj 部分构造序列
+  反编译读取（0x56FA48 经寄存器间接存储，asm 无直接 offset 引用）⇒ MCP GUI 轮
+- 12 槽中 CEffObj 级 vs CEffQuad 级的归属由 vtable_mapper 继承归属裁定
+- 修复预期：CEff 家族（Quad/Shock/Explosive/...）+4 全消，SceneInfo 等下游跟随
+### 同族甄别（本轮补充）
+- C3DSpark/CEffExplosive 布局自洽 ⇒ 其大差异非布局错误（分别定性，立账）
