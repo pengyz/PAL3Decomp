@@ -108,7 +108,88 @@ def _apply_text_substitutions(code, ctx):
         if _i != -1:
             code = code[:_i + 1] + '\n' + _decls + code[_i + 1:]
 
+    # F84（2026-09-25）：raw vtable 间接调用 `(**(RET (***)(P1,P2))X)(a1,a2)` 与
+    # 裸形态 `(**v)(v,a)` 的实参类型合规。Hex-Rays 对无类型槽位渲染该形态——间接
+    # 调用 = 字节忠实，必须保留（限定直呼会压制虚机制破坏字节）。实参里的指针
+    # 表达式隐式转整型被 MSVC6 拒绝 ⇒ C2664（实测 24 处）。逐实参按 fnptr 声明
+    # 参数类型补 cast（取声明文本逐字 cast，位保留，兼容 _DWORD/char* 混合参数表）；
+    # 裸形态的参数表从 _build_var_types 的 fnptr 局部声明取。
+    # 判定记录（用户质疑驱动）：UIWnd slot0=ShowWindow 标注经函数体反汇编确认
+    # 正确（去重消息发送非析构）——cast 是类型系统合规，非洗白；devirt 扩展
+    # （非限定虚调用）为后续路线。
+    _pos = 0
+    _out84 = []
+    _vt84 = None
+    while True:
+        _k = code.find('(**', _pos)
+        if _k == -1:
+            _out84.append(code[_pos:])
+            break
+        # 组1：`(**` 之后的平衡组——带型 `((RET (***)(P1,P2))X)` / 裸 `(**NAME)`
+        _d = 0; _i1 = _k
+        while _i1 < len(code):
+            if code[_i1] == '(': _d += 1
+            elif code[_i1] == ')':
+                _d -= 1
+                if _d == 0: break
+            _i1 += 1
+        if _i1 >= len(code):
+            _out84.append(code[_pos:]); break
+        _g1 = code[_k:_i1 + 1]
+        _pm = re.search(r'\*\*\*\s*\)\s*\(([^()]*)\)', _g1)
+        _bare = _pm is None
+        if _bare:
+            _bm = re.match(r'^\(\*\*\s*(\w+)\s*\)$', _g1)
+            if _bm:
+                if _vt84 is None:
+                    _vt84 = _build_var_types(code, ctx)
+                _vi = _vt84.get(_bm.group(1)) or {}
+                if _vi.get('kind') == 'fnptr':
+                    _pm = re.match(r'^(.*)$', _vi.get('params') or '')
+        # 组2：实参表（紧跟包装组闭合后的平衡组）
+        _a_open = _i1 + 1
+        if _a_open >= len(code) or code[_a_open] != '(':
+            _out84.append(code[_pos:_i1 + 1]); _pos = _i1 + 1; continue
+        _d = 1; _m = _a_open + 1
+        while _m < len(code) and _d > 0:
+            if code[_m] == '(': _d += 1
+            elif code[_m] == ')': _d -= 1
+            _m += 1
+        _args = code[_a_open + 1:_m - 1]
+        _alist = _split_toplevel(_args)
+        if _pm:
+            _plist = [x.strip() for x in _pm.group(1).split(',') if x.strip()]
+            if len(_plist) == len(_alist):
+                _new_args = ', '.join(
+                    '(%s)(%s)' % (_plist[i], a.strip()) if a.strip() else a
+                    for i, a in enumerate(_alist))
+                _out84.append(code[_pos:_a_open + 1])
+                _out84.append(_new_args)
+                _pos = _m - 1
+                continue
+        _out84.append(code[_pos:_m]); _pos = _m
+    code = ''.join(_out84)
+
     return code
+
+
+def _split_toplevel(args):
+    """按顶层逗号切分实参串（括号深度感知）。"""
+    parts, depth, last = [], 0, 0
+    for i, ch in enumerate(args):
+        if ch in '([':
+            depth += 1
+        elif ch in ')]':
+            depth -= 1
+        elif ch == ',' and depth == 0:
+            parts.append(args[last:i]); last = i + 1
+    parts.append(args[last:])
+    return parts
+
+
+
+
+
 
 
 # ============================================================
