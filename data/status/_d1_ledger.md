@@ -3923,3 +3923,27 @@ B. 同族排查：所有"多态基 + 非多态发射"的 MI 类（GlowObj/PSW �
   `mov eax,IMM`）+ 注解对表——本批定位到单成员精度
 - 基类子对象偏移探针：static_cast<Base*>((D*)0) 的编译期常量（含 null-guard 分支，
   读非零路径常量）——直接给出 MI 布局的基类落位
+
+## 2026-09-25 批次2证据包：Role 基类三 vtable 全部落位（ctor 考古完成）
+### ctor 证据（asm 清单 sub_411900 = Role 构造器）
+- `mov [esi], offset off_56A9BC` —— 主基（Object, 56B）子对象 vptr @0
+- `mov [esi+38h], offset off_56A9B0` —— PSW（8B）子对象 vptr @0x38
+- `mov [esi+40h], offset off_56A9A4` —— GlowObj（32B）子对象 vptr @0x40
+- 与注解 base 布局（Object@0/PSW@56/Glow@64）逐一吻合 ✓
+### 三张 vtable 内容（ida_structs vtbl_* 导出）
+| 表 | 槽位 | 归属 |
+|---|---|---|
+| vtbl_0056A9BC（20B/5槽）| _scalar_dtor_1bd0(0x411bd0) · _scalar_dtor_1bb0(0x411bb0) · FatalExit(0x55434f) · Update(?) · _scalar_dtor_1b80(0x411b80) | **Object**（56B 首基）|
+| vtbl_0056A9B0 | 未导出（读二进制补） | **PSW**（8B）|
+| vtbl_0056A9A4（12B/3槽）| UpdateBoundingBox(0x41B640) · GetGfxManager(0x41B6A0) · _sdtor_22(0x41BE30) | **GlowObj**（32B，Role 覆写）|
+### 修复方案（下批执行）
+1. Object.json/PSW.json/GlowObj.json 补 vtables 注解 + 槽位方法条目
+   （Object 补 5 槽 → 多态化 → Role 虚函数变覆写 → +4 消失 → sizeof(Role)=8704）
+2. Update 槽位函数地址待定（vtbl_0056A9BC offset 12；Role.h slot_4=0x416500 待证）
+3. Role.json vtables[0]（56A9A4）语义改为"覆写 GlowObj 表"（from=GlowObj）
+4. 验证：sizeof(Role) probe = 8704 · Scene::_todo_421870 fdiff 的 +0xC8 消失 ·
+   Scene.cpp 其余 fdiff 收敛
+### 同族影响面
+- Object 多态化波及所有 Object 派生类（Role/NPC/...）：有自声明虚函数的类
+  （当前各自 +4）回归正位；无虚函数的类布局不变（vptr 并入 Object 首槽）
+- 全量 fdiff 普查在修复后重跑（预期大面积收敛）
