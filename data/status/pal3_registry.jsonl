@@ -7,13 +7,16 @@
 {"addr": "0x004DC560", "name": "CCBControl::GetState(void)", "file": "pal3/src/Combat/CCBControl.cpp", "status": "partial", "match_pct": 6.8, "size": 74}
 {"addr": "0x004DC5B0", "name": "CCBControl::GetControl(void)", "file": "pal3/src/Combat/CCBControl.cpp", "status": "match_L1", "match_pct": 100.0, "size": 4}
 {"addr": "0x004DC5C0", "name": "CCBControl::SetParam(int,int)", "file": "pal3/src/Combat/CCBControl.cpp", "status": "partial", "match_pct": 57.6, "size": 59}
+{"addr": "0x0043D920", "name": "CCBProtectWindow::Destroy_D920(void)", "file": "pal3/src/Combat/CCBProtectWindow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 25}
 {"addr": "0x00449BE0", "name": "CCBProtectWindow::ValidateSlot(uint)", "file": "pal3/src/Combat/CCBProtectWindow.cpp", "status": "partial", "match_pct": 15.9, "size": 63}
-{"addr": "0x005164D0", "name": "CCBProtectWindow::Destroy(void)", "file": "pal3/src/Combat/CCBProtectWindow.cpp", "status": "partial", "match_pct": 4.6, "size": 1123}
+{"addr": "0x0044A820", "name": "CCBProtectWindow::GetUIElements(float,int)", "file": "pal3/src/Combat/CCBProtectWindow.cpp", "status": "partial", "match_pct": 98.6, "size": 74}
+{"addr": "0x0044A870", "name": "CCBProtectWindow::RenderText(void)", "file": "pal3/src/Combat/CCBProtectWindow.cpp", "status": "partial", "match_pct": 24.1, "size": 245}
+{"addr": "0x005164D0", "name": "CCBProtectWindow::Destroy(void)", "file": "pal3/src/Combat/CCBProtectWindow.cpp", "status": "partial", "match_pct": 5.7, "size": 1123}
 {"addr": "0x0051D6E0", "name": "CCBProtectWindow::CCBProtectWindow(void)", "file": "pal3/src/Combat/CCBProtectWindow.cpp", "status": "partial", "match_pct": 45.5, "size": 11}
 {"addr": "0x00516120", "name": "CCBProtectWindow::`scalar deleting destructor'(uint)", "file": "pal3/src/Combat/CCBProtectWindow.cpp", "status": "partial", "match_pct": 11.4, "size": 79}
-{"addr": "0x00450E90", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Combat/CCBProtectWindow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x0044E5C0", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Combat/CCBProtectWindow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x0051D700", "name": "CCBProtectWindow::Reset(void)", "file": "pal3/src/Combat/CCBProtectWindow.cpp", "status": "partial", "match_pct": 33.3, "size": 15}
-{"addr": "0x0051F0A0", "name": "CCBProtectWindow::OnCommand(int,int)", "file": "pal3/src/Combat/CCBProtectWindow.cpp", "status": "partial", "match_pct": 85.0, "size": 133}
+{"addr": "0x0051F0A0", "name": "CCBProtectWindow::OnCommand(int,int)", "file": "pal3/src/Combat/CCBProtectWindow.cpp", "status": "partial", "match_pct": 94.0, "size": 133}
 {"addr": "0x00511E80", "name": "CCBStageShadow::UpdateShadowMesh(void)", "file": "pal3/src/Combat/CCBStageShadow.cpp", "status": "partial", "match_pct": 22.7, "size": 88}
 {"addr": "0x00511EE0", "name": "CCBStageShadow::CCBStageShadow(void)", "file": "pal3/src/Combat/CCBStageShadow.cpp", "status": "partial", "match_pct": 28.7, "size": 167}
 {"addr": "0x00511FC0", "name": "CCBStageShadow::Reset(void)", "file": "pal3/src/Combat/CCBStageShadow.cpp", "status": "partial", "match_pct": 15.7, "size": 178}
@@ -22,6 +25,8 @@
 {"addr": "0x005122E0", "name": "CCBStageShadow::Update(void)", "file": "pal3/src/Combat/CCBStageShadow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 5}
 {"addr": "0x005122F0", "name": "CCBStageShadow::Render(void)", "file": "pal3/src/Combat/CCBStageShadow.cpp", "status": "partial", "match_pct": 45.5, "size": 11}
 {"addr": "0x00512300", "name": "CCBStageShadow::FillShadowQuad(void)", "file": "pal3/src/Combat/CCBStageShadow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 5}
+{"addr": "0x0040CCD0", "name": "Combat::GetSlotCount(void)", "file": "pal3/src/Combat/Combat.cpp", "status": "partial", "match_pct": 21.9, "size": 32}
+{"addr": "0x004CDB60", "name": "Combat::ReleaseCompletedEffects(void)", "file": "pal3/src/Combat/Combat.cpp", "status": "match_L1", "match_pct": 100.0, "size": 8}
 {"addr": "0x004D5AB0", "name": "C2DSpark::C2DSpark(int,int)", "file": "pal3/src/Effect/C2DSpark.cpp", "status": "partial", "match_pct": 26.9, "size": 770}
 {"addr": "0x004D5EC0", "name": "C2DSpark::CreateSingle(void const *)", "file": "pal3/src/Effect/C2DSpark.cpp", "status": "partial", "match_pct": 8.4, "size": 83}
 {"addr": "0x004D5F40", "name": "C2DSpark::SetEnableMouseTrack(int,int)", "file": "pal3/src/Effect/C2DSpark.cpp", "status": "partial", "match_pct": 27.1, "size": 262}
@@ -63,12 +68,13 @@
 {"addr": "0x004236D0", "name": "BINK::Reset(void)", "file": "pal3/src/Misc/BINK.cpp", "status": "partial", "match_pct": 3.3, "size": 396}
 {"addr": "0x004243E0", "name": "BINK::Destroy(void)", "file": "pal3/src/Misc/BINK.cpp", "status": "partial", "match_pct": 19.5, "size": 389}
 {"addr": "0x00443200", "name": "CCBPanelSlot::Render(void)", "file": "pal3/src/Misc/CCBPanelSlot.cpp", "status": "partial", "match_pct": 18.8, "size": 378}
+{"addr": "0x00445E70", "name": "CCBPanelSlot::ShowWindow(int)", "file": "pal3/src/Misc/CCBPanelSlot.cpp", "status": "partial", "match_pct": 86.5, "size": 37}
 {"addr": "0x004B72E0", "name": "CEffGroupNode::CEffGroupNode(void)", "file": "pal3/src/Misc/CEffGroupNode.cpp", "status": "partial", "match_pct": 68.4, "size": 38}
 {"addr": "0x00450F90", "name": "CJ_FindFile::Create(int,void *,int,char *)", "file": "pal3/src/Misc/CJ_FindFile.cpp", "status": "partial", "match_pct": 16.9, "size": 610}
-{"addr": "0x0053D3A0", "name": "CScreenModeNode::CScreenModeNode(void)", "file": "pal3/src/Misc/CScreenModeNode.cpp", "status": "partial", "match_pct": 60.0, "size": 45}
+{"addr": "0x0053D3A0", "name": "CScreenModeNode::CScreenModeNode(void)", "file": "pal3/src/Misc/CScreenModeNode.cpp", "status": "partial", "match_pct": 68.9, "size": 45}
 {"addr": "0x0044C970", "name": "ChoseCompose::Init(int)", "file": "pal3/src/Misc/ChoseCompose.cpp", "status": "partial", "match_pct": 13.9, "size": 417}
 {"addr": "0x004549A0", "name": "ChoseCompose::DestroyScene(void)", "file": "pal3/src/Misc/ChoseCompose.cpp", "status": "partial", "match_pct": 14.1, "size": 256}
-{"addr": "0x00450E90", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/ChoseCompose.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x0044E5C0", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/ChoseCompose.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x00455570", "name": "ChoseCompose::LayoutItems(int,int,int,int,int)", "file": "pal3/src/Misc/ChoseCompose.cpp", "status": "partial", "match_pct": 11.5, "size": 530}
 {"addr": "0x004A2170", "name": "ChoseCompose::InitCompose(void)", "file": "pal3/src/Misc/ChoseCompose.cpp", "status": "partial", "match_pct": 24.4, "size": 361}
 {"addr": "0x004A22E0", "name": "ChoseCompose::DestroySubWindows(void)", "file": "pal3/src/Misc/ChoseCompose.cpp", "status": "partial", "match_pct": 23.4, "size": 364}
@@ -83,7 +89,7 @@
 {"addr": "0x0044DA30", "name": "JusticeBookUI::UpdateFadeAnim(float)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 10.8, "size": 139}
 {"addr": "0x005282E0", "name": "JusticeBookUI::ctor(void)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 13.7, "size": 474}
 {"addr": "0x005284E0", "name": "JusticeBookUI::JusticeBookUI(void)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 22.9, "size": 367}
-{"addr": "0x00450E90", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x0044E5C0", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x005284C0", "name": "JusticeBookUI::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x0043F950", "name": "UIButton::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x00528ED0", "name": "JusticeBookUI::JusticeBookUI_Render", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 18.4, "size": 125}
@@ -104,13 +110,13 @@
 {"addr": "0x0053FEB0", "name": "Parent_Data::spstr(void)", "file": "pal3/src/Misc/Parent_Data.cpp", "status": "partial", "match_pct": 33.3, "size": 15}
 {"addr": "0x0053FEC0", "name": "Parent_Data::NewEffect(void)", "file": "pal3/src/Misc/Parent_Data.cpp", "status": "match_L1", "match_pct": 100.0, "size": 224}
 {"addr": "0x00407DC0", "name": "PathObj::CalcLength(void)", "file": "pal3/src/Misc/PathObj.cpp", "status": "partial", "match_pct": 14.7, "size": 251}
-{"addr": "0x0041F120", "name": "PathObj::GetPosition(float,float *,int *)", "file": "pal3/src/Misc/PathObj.cpp", "status": "partial", "match_pct": 6.0, "size": 299}
+{"addr": "0x0041F120", "name": "PathObj::GetPosition(float,float *,int *)", "file": "pal3/src/Misc/PathObj.cpp", "status": "partial", "match_pct": 8.4, "size": 299}
 {"addr": "0x0043A690", "name": "PlayerAtt::CheckCurRV(void)", "file": "pal3/src/Misc/PlayerAtt.cpp", "status": "partial", "match_pct": 63.6, "size": 44}
 {"addr": "0x004BD830", "name": "RenderTargetNode::RenderTargetNode(void)", "file": "pal3/src/Misc/RenderTargetNode.cpp", "status": "partial", "match_pct": 0.0, "size": 25}
 {"addr": "0x0044D180", "name": "RoleCamera::InitParticles(void)", "file": "pal3/src/Misc/RoleCamera.cpp", "status": "partial", "match_pct": 20.7, "size": 266}
 {"addr": "0x00534CF0", "name": "RoleCamera::UpdateAudioListener(int,int)", "file": "pal3/src/Misc/RoleCamera.cpp", "status": "match_L1", "match_pct": 100.0, "size": 95}
 {"addr": "0x004A1E40", "name": "RoleStatePanel::InitUI(void)", "file": "pal3/src/Misc/RoleStatePanel.cpp", "status": "partial", "match_pct": 14.0, "size": 784}
-{"addr": "0x00450E90", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/RoleStatePanel.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x0044E5C0", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/RoleStatePanel.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x004A3900", "name": "RoleStatePanel::SetItemData(int,uint)", "file": "pal3/src/Misc/RoleStatePanel.cpp", "status": "partial", "match_pct": 21.3, "size": 395}
 {"addr": "0x004A4780", "name": "RoleStatePanel::HandleDeviceLostB(void)", "file": "pal3/src/Misc/RoleStatePanel.cpp", "status": "partial", "match_pct": 33.3, "size": 159}
 {"addr": "0x004A4820", "name": "RoleStatePanel::Render(void)", "file": "pal3/src/Misc/RoleStatePanel.cpp", "status": "partial", "match_pct": 8.6, "size": 105}
@@ -139,10 +145,12 @@
 {"addr": "0x00533DA0", "name": "SceneObjParam::FlushCommands(void)", "file": "pal3/src/Misc/SceneObjParam.cpp", "status": "partial", "match_pct": 36.4, "size": 11}
 {"addr": "0x005330F0", "name": "SceneProp::CalculateWorldPos(float)", "file": "pal3/src/Misc/SceneProp.cpp", "status": "partial", "match_pct": 5.5, "size": 343}
 {"addr": "0x00533BC0", "name": "SceneProp::CalcScreenPosition(void)", "file": "pal3/src/Misc/SceneProp.cpp", "status": "partial", "match_pct": 16.4, "size": 116}
+{"addr": "0x0053C340", "name": "SoundMgr::InitCPK(int,int)", "file": "pal3/src/Misc/SoundMgr.cpp", "status": "partial", "match_pct": 19.7, "size": 223}
+{"addr": "0x0053EA80", "name": "SoundMgr::PlayCPKStream(void)", "file": "pal3/src/Misc/SoundMgr.cpp", "status": "partial", "match_pct": 21.4, "size": 201}
 {"addr": "0x004AAD90", "name": "SwordUI::RenderSword(void)", "file": "pal3/src/Misc/SwordUI.cpp", "status": "partial", "match_pct": 19.6, "size": 1290}
 {"addr": "0x00431870", "name": "TxtFile::TxtFile(void)", "file": "pal3/src/Misc/TxtFile.cpp", "status": "match_L1", "match_pct": 100.0, "size": 36}
 {"addr": "0x0043D830", "name": "UI3DCtrl::UI3DCtrl(void)", "file": "pal3/src/Misc/UI3DCtrl.cpp", "status": "partial", "match_pct": 43.2, "size": 37}
-{"addr": "0x00450E90", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UI3DCtrl.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x0044E5C0", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UI3DCtrl.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x0043D860", "name": "UI3DCtrl::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UI3DCtrl.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x0043D880", "name": "UI3DCtrl::ctor(void)", "file": "pal3/src/Misc/UI3DCtrl.cpp", "status": "partial", "match_pct": 36.4, "size": 11}
 {"addr": "0x0043D890", "name": "UI3DCtrl::CreateWithTexture(int,void *,int,uint,int)", "file": "pal3/src/Misc/UI3DCtrl.cpp", "status": "partial", "match_pct": 10.9, "size": 138}
@@ -154,21 +162,30 @@
 {"addr": "0x0052EA40", "name": "UI3DCtrl::UpdateOscillationY(void)", "file": "pal3/src/Misc/UI3DCtrl.cpp", "status": "partial", "match_pct": 34.7, "size": 121}
 {"addr": "0x0052EAC0", "name": "UI3DCtrl::UpdateTransform(int)", "file": "pal3/src/Misc/UI3DCtrl.cpp", "status": "partial", "match_pct": 13.5, "size": 288}
 {"addr": "0x00479260", "name": "UIAnimateCtrl::GetRoleBySlot(uint)", "file": "pal3/src/Misc/UIAnimateCtrl.cpp", "status": "partial", "match_pct": 11.1, "size": 36}
+{"addr": "0x0043AB00", "name": "UICaption::Destroy(void)", "file": "pal3/src/Misc/UICaption.cpp", "status": "match_L1", "match_pct": 100.0, "size": 20}
+{"addr": "0x0043AD40", "name": "UICaption::Render(void)", "file": "pal3/src/Misc/UICaption.cpp", "status": "partial", "match_pct": 7.4, "size": 593}
+{"addr": "0x004461F0", "name": "UICaption::DestroyPanel(void)", "file": "pal3/src/Misc/UICaption.cpp", "status": "match_L1", "match_pct": 100.0, "size": 8}
+{"addr": "0x0044BDA0", "name": "UICaption::DestroyAll(void)", "file": "pal3/src/Misc/UICaption.cpp", "status": "partial", "match_pct": 4.2, "size": 95}
+{"addr": "0x00450320", "name": "UICaption::LayoutDefault(void)", "file": "pal3/src/Misc/UICaption.cpp", "status": "partial", "match_pct": 0.0, "size": 68}
 {"addr": "0x004A6120", "name": "UIGameFrm::OnMessage(int,int,int)", "file": "pal3/src/Misc/UIGameFrm.cpp", "status": "partial", "match_pct": 24.0, "size": 1082}
+{"addr": "0x004410F0", "name": "UIMap::ctor(void)", "file": "pal3/src/Misc/UIMap.cpp", "status": "partial", "match_pct": 12.4, "size": 185}
+{"addr": "0x004412C0", "name": "UIMap::Create(int,void *,int,char *,int,char)", "file": "pal3/src/Misc/UIMap.cpp", "status": "partial", "match_pct": 35.8, "size": 179}
+{"addr": "0x004414D0", "name": "UIMap::Destroy(void)", "file": "pal3/src/Misc/UIMap.cpp", "status": "match_L1", "match_pct": 100.0, "size": 23}
+{"addr": "0x004414F0", "name": "UIMap::Render(void)", "file": "pal3/src/Misc/UIMap.cpp", "status": "partial", "match_pct": 8.9, "size": 573}
+{"addr": "0x004420C0", "name": "UIMap::OnMessage(int,int,int)", "file": "pal3/src/Misc/UIMap.cpp", "status": "match_L1", "match_pct": 100.0, "size": 51}
 {"addr": "0x004B4DC0", "name": "UIParticle::Apply(int)", "file": "pal3/src/Misc/UIParticle.cpp", "status": "partial", "match_pct": 23.4, "size": 491}
 {"addr": "0x004B5D20", "name": "UIParticle::RenderFrame(int,int,int,int)", "file": "pal3/src/Misc/UIParticle.cpp", "status": "partial", "match_pct": 9.5, "size": 444}
 {"addr": "0x004B60F0", "name": "UIParticle::UpdateByMode(char *,int,TextureLibDataBase *,int)", "file": "pal3/src/Misc/UIParticle.cpp", "status": "partial", "match_pct": 20.3, "size": 507}
 {"addr": "0x00439030", "name": "UIProgressBar::ctor(void)", "file": "pal3/src/Misc/UIProgressBar.cpp", "status": "partial", "match_pct": 9.6, "size": 209}
-{"addr": "0x00439410", "name": "UIProgressBar::Render(void)", "file": "pal3/src/Misc/UIProgressBar.cpp", "status": "partial", "match_pct": 18.1, "size": 814}
+{"addr": "0x00439410", "name": "UIProgressBar::Render(void)", "file": "pal3/src/Misc/UIProgressBar.cpp", "status": "partial", "match_pct": 20.3, "size": 814}
 {"addr": "0x00439810", "name": "UIProgressBar::Destroy(void)", "file": "pal3/src/Misc/UIProgressBar.cpp", "status": "partial", "match_pct": 72.6, "size": 62}
 {"addr": "0x0043FDC0", "name": "UIProgressBar::GetWidth(int)", "file": "pal3/src/Misc/UIProgressBar.cpp", "status": "match_L1", "match_pct": 100.0, "size": 13}
 {"addr": "0x0043FDD0", "name": "UIProgressBar::GetHeight(int)", "file": "pal3/src/Misc/UIProgressBar.cpp", "status": "match_L1", "match_pct": 100.0, "size": 13}
 {"addr": "0x0043FDE0", "name": "UIProgressBar::GetPosition(int)", "file": "pal3/src/Misc/UIProgressBar.cpp", "status": "match_L1", "match_pct": 100.0, "size": 13}
 {"addr": "0x0043FDF0", "name": "UIProgressBar::FindChildByName(float)", "file": "pal3/src/Misc/UIProgressBar.cpp", "status": "partial", "match_pct": 25.2, "size": 159}
-{"addr": "0x0043D920", "name": "UIPushButton::Destroy(void)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "match_L1", "match_pct": 100.0, "size": 25}
 {"addr": "0x0043DAB0", "name": "UIPushButton::RenderQuadSlice(int *,int)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 12.0, "size": 400}
 {"addr": "0x00440740", "name": "UIPushButton::UIPushButton(void)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 37.0, "size": 81}
-{"addr": "0x00450E90", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x0044E5C0", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x004407A0", "name": "UIPushButton::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x00440960", "name": "UIPushButton::FormatText(void)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 36.4, "size": 187}
 {"addr": "0x00440A20", "name": "UIPushButton::LoadResource(char const *,char)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 55.6, "size": 187}
@@ -193,7 +210,7 @@
 {"addr": "0x00445500", "name": "UITextArea::Render(void)", "file": "pal3/src/Misc/UITextArea.cpp", "status": "partial", "match_pct": 15.7, "size": 536}
 {"addr": "0x00445720", "name": "UITextArea::ShowWindow(void)", "file": "pal3/src/Misc/UITextArea.cpp", "status": "partial", "match_pct": 54.4, "size": 57}
 {"addr": "0x00445920", "name": "UITextArea::Destroy(void)", "file": "pal3/src/Misc/UITextArea.cpp", "status": "match_L1", "match_pct": 100.0, "size": 8}
-{"addr": "0x00450E90", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UITitle.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x0044E5C0", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UITitle.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x0044ACC0", "name": "UITitle::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UITitle.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x0044B0F0", "name": "UITitle::RunFrame(PalScript *,int)", "file": "pal3/src/Misc/UITitle.cpp", "status": "partial", "match_pct": 27.2, "size": 878}
 {"addr": "0x0044B460", "name": "UITitle::UITitle_Render(void)", "file": "pal3/src/Misc/UITitle.cpp", "status": "match_L1", "match_pct": 100.0, "size": 5}
@@ -201,7 +218,7 @@
 {"addr": "0x004A14C0", "name": "UITitle::HideAll(void)", "file": "pal3/src/Misc/UITitle.cpp", "status": "match_L1", "match_pct": 100.0, "size": 5}
 {"addr": "0x00445CD0", "name": "UITitle_BBTY::Render(void)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "partial", "match_pct": 57.1, "size": 49}
 {"addr": "0x00451CC0", "name": "UITitle_BBTY::UITitle_BBTY(void)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "partial", "match_pct": 35.3, "size": 184}
-{"addr": "0x00450E90", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x0044E5C0", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x00451D80", "name": "UITitle_BBTY::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x0043F950", "name": "UIButton::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x00451DA0", "name": "UITitle_BBTY::ctor(void)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "partial", "match_pct": 10.5, "size": 172}
@@ -263,3 +280,11 @@
 {"addr": "0x005415F0", "name": "UIQuadManager::GetInstance(void)", "file": "pal3/src/UI/UIQuadManager.cpp", "status": "partial", "match_pct": 68.6, "size": 51}
 {"addr": "0x00541640", "name": "UIRenderObj::UIRenderObj(void)", "file": "pal3/src/UI/UIRenderObj.cpp", "status": "partial", "match_pct": 9.9, "size": 203}
 {"addr": "0x00422DF0", "name": "UISystem::Destroy(void)", "file": "pal3/src/UI/UISystem.cpp", "status": "partial", "match_pct": 56.7, "size": 67}
+{"addr": "0x0043BBB0", "name": "UIWnd::Destroy(void)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 0.0, "size": 11}
+{"addr": "0x00445B40", "name": "UIWnd::_UIWnd(void)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 10.0, "size": 80}
+{"addr": "0x00445F20", "name": "UIWnd::MoveWindow(void)", "file": "pal3/src/UI/UIWnd.cpp", "status": "match_L1", "match_pct": 100.0, "size": 52}
+{"addr": "0x00445FA0", "name": "UIWnd::sub_445FA0(void *)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 86.5, "size": 52}
+{"addr": "0x00450390", "name": "UIWnd::DelegateRender(void)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 0.0, "size": 34}
+{"addr": "0x00450440", "name": "UIWnd::RenderContent(void)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 9.0, "size": 266}
+{"addr": "0x00451730", "name": "UIWnd::_todo_451730(void)", "file": "pal3/src/UI/UIWnd.cpp", "status": "match_L1", "match_pct": 100.0, "size": 7}
+{"addr": "0x004D5950", "name": "UIWnd::BringWindowToTop(void)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 10.2, "size": 166}

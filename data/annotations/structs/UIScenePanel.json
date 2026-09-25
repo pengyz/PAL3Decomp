@@ -426,6 +426,16 @@
       "name": "~UIScenePanel",
       "signature": "void __thiscall UIScenePanel::~UIScenePanel()",
       "source": "A-evidence: 本函数与 ctor 0x0043B3E0(已在本类 methods) 写同一个 vptr 0x0056AC90(本类 vtables[0])；析构 [this+0x158](=known_members[344] m_SlotData) 并清零；被 0x004461F0(UICaption::DestroyPanel, add ecx,0x60; jmp) 与 0x0043B4B0(??_GUICaption 标量删除析构) 调用。多继承下 UIScenePanel 子对象位于 UICaption(binary_size=96=0x60) 之后。"
+    },
+    "0x0043A870": {
+      "name": "CreateChildWidget",
+      "signature": "gbVFileSystem *__thiscall UIScene::CreateChildWidget(int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData, char pData2)",
+      "source": "vtable_gap_fill_v1(from UICaption.json)"
+    },
+    "0x0043AD40": {
+      "name": "Render_AD40",
+      "signature": "void __thiscall()",
+      "source": "vtable_gap_fill_v1(from UICaption.json)"
     }
   },
   "vtables": [

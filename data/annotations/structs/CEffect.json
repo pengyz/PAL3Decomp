@@ -180,6 +180,26 @@
       "ordinal": 3,
       "note": "reattribute: asm 行 291229-291251 本体：ecx=[esi+3C020h]；若非空则 gbRefObject::Release(ecx) 并把 [esi+3C020h] 置 0；再取 eax=[esi+3C024h]，若非空则 operator delete(eax) 并把 [esi+3C024h] 置 0。两个偏移在 CEffect 里**精确命中具名成员**：+0x3C020 m_pTexture(gbTexture *)、+0x3C024 m_pTextureArray(gbTextureArray *)——类型与两个动作（Release 引用计数对象 / operator delete 数组）完全吻合。原类 CEffectSystem（size=344，成员止于 +0x154）不可能有这两个偏移 ⇒ 归属错。原名字 ReleaseParticle 与函数体无关（它处理的是纹理，不是粒子），已证伪。",
       "name_evidence": "按函数逻辑定名：释放并清空实例持有的两张纹理（m_pTexture 走引用计数释放、m_pTextureArray 走 operator delete）⇒ ReleaseTextures。未用已被占用的 ReleaseResources（那是另一个函数）。"
+    },
+    "0x004AF760": {
+      "name": "Update",
+      "signature": "int __thiscall(int)",
+      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+    },
+    "0x004C0500": {
+      "name": "OnTest",
+      "signature": "int()",
+      "source": "vtable_gap_fill_v1(from CEffAction.json)"
+    },
+    "0x004C15D0": {
+      "name": "UpdateParticles",
+      "signature": "void __thiscall()",
+      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+    },
+    "0x004D3910": {
+      "name": "CEffShock",
+      "signature": "CEffShock *__thiscall(CEffShock *__hidden this)",
+      "source": "vtable_gap_fill_v1(from CEffShock.json)"
     }
   },
   "vtables": [

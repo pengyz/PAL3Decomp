@@ -1668,6 +1668,18 @@ def import_gbengine_types():
         # gbDynVertBuf render functions (fixes struct #136 = gbRenderEffect)
         "?RenderGeomQuadViaStrip@gbDynVertBuf@@QAEXPAUgbGeomQuad@@HPAVgbRenderEffect@@PAUgbTextureArray@@K@Z":
             "void __thiscall(gbDynVertBuf *, gbGeomQuad *, int, gbRenderEffect *, gbTextureArray *, unsigned long);",
+        # 缺参簇补齐（签名权威 = include/gbengine_api.h；无类型导入会让 Hex-Rays
+        # 丢参/丢解引用，如 C3DSpark RenderGeomQuad 3/4 参、CCBStageShadow operator= float*）
+        "?RenderGeomQuad@gbDynVertBuf@@QAEXPAUgbGeomQuad@@HPAVgbRenderEffect@@PAUgbTextureArray@@@Z":
+            "void __thiscall(gbDynVertBuf *, gbGeomQuad *, int, gbRenderEffect *, gbTextureArray *);",
+        "??4gbMatrix4@@QAEXABU0@@Z":
+            "void __thiscall(gbMatrix4 *, const gbMatrix4 &);",
+        "?LoadFromFile@gbGeomNode@@QAEHPBD0P6AXHH@Z@Z":
+            "int __thiscall(gbGeomNode *, const char *, const char *, void (__cdecl *)(int, int));",
+        "?GetTotalOBBox@gbGeomNode@@QAEPAUgbOBBox@@PAU2@@Z":
+            "gbOBBox *__thiscall(gbGeomNode *, gbOBBox *);",
+        "?Read@gbVFileSystem@@QAEXPAXIPAVgbVFile@@@Z":
+            "void __thiscall(gbVFileSystem *, void *, unsigned int, gbVFile *);",
     }
     import ida_nalt
     gb_sig_ok = 0

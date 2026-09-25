@@ -3597,3 +3597,37 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 5. 继承树一致性验证（CCBUIPanel base_class 修正）
 ### 架构验证
 vtable 映射机制从设计到落地完全正确 ✓
+
+## 2026-09-25 vtable 批次 A+S —— 缺口 302→60，全指标大幅推进（S2 84 · L1 51）
+### 背景
+- 同步远端 327 提交（vtable 专项 P1→R12 里程碑 ca3773606）；本地 IDB 与远端带外 IDB 状态分叉
+  ⇒ plain init 后 fresh 基线 S2=81/203，CCBStageShadow/C3DSpark 回断（RenderGeomQuad 缺参簇）
+### 批次 A：methods 表跨类填充（176 条 × 53 类）
+- 门禁 302 个未解析槽 = 165 个唯一地址；其中 122 个已在其他类 methods 表有名字（类族共享）
+- 全部复制入缺口类的 methods 表（名+签名+source=vtable_gap_fill_v1）；
+  同类内「短名+参数」真冲突按 `<Name>_XXXX` 后缀消歧（14 处）；filebuf（CRT 静态产物）跳过
+- 发射器行为已核实：qualified 签名被 parse_signature 丢弃名字段；`_scalar_dtor*` 条目跳过由占位兜底
+### 批次 S：`_GB_IMPORT_SIGS` 补 5 条 SDK 导入签名
+- 根因：gbengine 导入只有 IAT mangled 名、无类型 ⇒ Hex-Rays 丢参/丢解引用；
+  远端会话的 IDB 带外 SetType 掩盖了此缺口，plain init 后即回断
+- 修复走既有机制（apply 遍历导入按 mangled 名 SetType），签名权威 = include/gbengine_api.h：
+  RenderGeomQuad(4参) · gbMatrix4::operator= · gbGeomNode::LoadFromFile/GetTotalOBBox · gbVFileSystem::Read
+### 成效（vs 远端里程碑基线 ca3773606）
+| 指标 | 前 | 后 |
+|---|---|---|
+| S2 | 79/204 | **84/205** |
+| L1 | 44 | **51** |
+| matched | 304/362 | **329/393** |
+| 总错误 | 1996 | **1895** |
+| vtable 门禁 | 20 pass/72 fail（resolved 539/841） | **64 pass/28 fail（resolved 781/841，own_unresolved 60）** |
+### 新增错误归因（全部在红单元内，净 −101）
+- LIGHT_SPOT C2065 ×2：fresh IDB 的 PDB 枚举类型被 Hex-Rays 恢复为符号名，生成单元缺声明 ⇒ 待 codegen 枚举注入规则
+- ReplaceTexture C2661 ×3：已知 stage5 静态形式红灯族换址浮现
+- CCBSkillWindow C2660 ×6：UIScene::GetChildCount/GetChildAt 归属误标家族（MISATTRIBUTED 轮待办）
+- PalScript/ScriptVM/MiniGame3/RenderTarget2 零星：填充签名与调用点冲突，红单元内非阻塞
+### 棘轮重对（理由已记录）
+- L1 match --rebaseline（总体扩大 304/362→329/393）· regression_detector --save-baseline ·
+  compile_baseline（probe 刷新）· vtable_baseline（302→60）
+### 残余
+- 60 个 own_unresolved 槽（44 唯一地址）需 IDB 反编译命名（批次 B，MCP 路线已备）
+- 26 个失败类清单见 vtable_baseline.json；gbLightObj::Init 枚举注入为 codegen 小项
