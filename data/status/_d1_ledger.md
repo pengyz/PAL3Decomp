@@ -3745,3 +3745,23 @@ vtable 映射机制从设计到落地完全正确 ✓
 ### 残余台账
 - delta≤-2 真冲突 8 槽 + delta=-1 别名精化 + B-SLOTMISMATCH 273 → C2660 常设役
 - 119 不匹配中的 sret/varargs 甄别待 pack v4
+
+## 2026-09-25 F82 __asm 成员引用烘焙——C2410 清零，双封顶单元解封
+### 机理
+- Hex-Rays 对浮点指令序列渲染原生 `__asm { fst [esp+…+var_D0.x] }`（13 个 decomp 文件）；
+  asm 符号（var_D0）无 C 声明 ⇒ MSVC6 内联汇编解析 `.x` 成员名歧义 ⇒ C2410（234 条，
+  集中 ScriptVM/UIScene/RoleSystem 三个封顶单元）
+### 修复（stage5 F82）
+- `__asm {}` 块内 `符号.x/.y/.z/.w` → 数字偏移（gbVec3D/四元数 x/y/z/w=0/4/8/12，两类布局一致）；
+  带名成员（m_xxx）偏移不定 ⇒ 不动（诚实账面）；块外 C 代码不受影响
+### 一轮验证
+- **C2410 234→0**；UIScene 102(封顶)→**19 解封**、ScriptVM 101→73 解封、RoleSystem 59→?
+- ScriptVM 新增 46 条（C2440 20/C2106 9/C2109 8/C2100 5…）= **揭盖效应**：封顶解除后编译器
+  前进暴露更深债务层（L333/369+），非修复错误（F82 只动 asm 文本）⇒ 裁决接受
+- S2 87 持平 · L1 53 持平 · 总错误 1975→**1863**
+### L1 近匹配侦察（搭车项结论）
+- n_diff=1 三例（GetUIElements、FindInOpen/FindInClosed）逐字节定位：`mov eax,[ecx+0x3C]`
+  (原始) vs `[eax+0x3C]` (我们) —— Hex-Rays 寄存器复用渲染差（原始重读 this，我们复用 eax）
+  ⇒ **语义恢复级工作**，非机械收割；size-11 ctor 族（~10 个同形态）同理待形态归因
+- 方法论沉淀：COFF obj 字节提取（sym_ptr/str_ptr/aux=rec[17]/节表紧跟文件头无指针）已跑通，
+  逐函数 obj-vs-binary 字节 diff 可复用

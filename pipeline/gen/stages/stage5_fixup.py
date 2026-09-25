@@ -72,6 +72,26 @@ def _apply_text_substitutions(code, ctx):
             body = re.sub(r'\bthis\b', '_this', body)
             code = head + ('\n    %s *_this = this;' % ctx.cls_name) + body
 
+    # F82（2026-09-25）：__asm 块内 `符号.x/.y/.z/.w` 烘焙为数字偏移。Hex-Rays 对
+    # 浮点指令序列渲染原生 __asm，成员引用（gbVec3D/四元数的 x/y/z/w=0/4/8/12）
+    # 在 MSVC6 内联汇编里因符号无 C 声明 ⇒ 成员名歧义 C2410（实测 234 条，集中在
+    # ScriptVM/UIScene/RoleSystem 三个封顶单元）。x/y/z/w 布局在两个类里一致；
+    # 带名成员（m_xxx）偏移不定，不动（保持诚实账面）。
+    _asm_chunks = re.split(r'(__asm\s*\{)', code)
+    if len(_asm_chunks) > 1:
+        _off = {'x': 0, 'y': 4, 'z': 8, 'w': 12}
+        _rebuilt = [_asm_chunks[0]]
+        for _i in range(1, len(_asm_chunks), 2):
+            _asm_txt = _asm_chunks[_i + 1]
+            _end = _asm_txt.find('}')
+            _in_asm, _rest = (_asm_txt[:_end], _asm_txt[_end:]) if _end != -1 else (_asm_txt, '')
+            _in_asm = re.sub(
+                r'(\w+)\.(x|y|z|w)\b',
+                lambda m: m.group(1) + ('' if _off[m.group(2)] == 0 else '+%d' % _off[m.group(2)]),
+                _in_asm)
+            _rebuilt.append(_asm_chunks[_i]); _rebuilt.append(_in_asm); _rebuilt.append(_rest)
+        code = ''.join(_rebuilt)
+
     return code
 
 
