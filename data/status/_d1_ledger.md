@@ -4008,3 +4008,18 @@ B. 同族排查：所有"多态基 + 非多态发射"的 MI 类（GlowObj/PSW �
 - 修复预期：CEff 家族（Quad/Shock/Explosive/...）+4 全消，SceneInfo 等下游跟随
 ### 同族甄别（本轮补充）
 - C3DSpark/CEffExplosive 布局自洽 ⇒ 其大差异非布局错误（分别定性，立账）
+
+## 2026-09-25 批次3收口：Object vtables+methods 恢复——CEffQuad 折点消失验证 ✓
+### 状态回推
+- Object.json 5 条方法恢复（此前误删导致 C3DSpark/Explosive 等连锁）⇒ CEffQuad 折点消失
+- 布局探针复验: CEffQuad m_bActive MSVC 实际 = 0x30 ✓（与注解一致，+4 消失）
+- PalScriptWaitObj C2039 ×2 仍在（Object 虚函数与 ScriptObj 归属冲突的遗留，已知立账）
+### 当前稳定态
+- S2 87/207（PalScriptWaitObj 因 C2039 翻红 -1，其余持平）
+- L1 61（matched 364/431）· Scene::_todo_421870 保持 match_L1 100%
+- 错误总量 1800（C2039 ×2 为唯一净增，已定性）
+### 下批
+1. PalScriptWaitObj C2039 修复：ScriptObj 的 _scalar_dtor 槽位声明方式
+   （发射器 skip 与析构注入的交互，或 stage 层调用形态改写）
+2. GlowObj offset0 证据冲突 MCP 仲裁（ctor 存 56A9A4 vs usage-evidence 无存储）
+3. 常设役：C2660/C2664/C2440 滚动清偿
