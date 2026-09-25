@@ -1,516 +1,521 @@
 {
-  "name": "SaleUI",
-  "binary_size": 105912,
-  "known_members": {
-    "72": {
-      "name": "bkWidth",
-      "type": "int",
-      "source": "annotation"
-    },
-    "76": {
-      "name": "bkHeight",
-      "type": "int",
-      "source": "annotation"
-    },
-    "80": {
-      "name": "buf",
-      "type": "char[256]",
-      "source": "annotation"
-    },
-    "336": {
-      "name": "remarkbuf",
-      "type": "char[256]",
-      "source": "annotation"
-    },
-    "592": {
-      "name": "m_SelNum",
-      "type": "int",
-      "source": "annotation"
-    },
-    "596": {
-      "name": "m_data",
-      "type": "st_Manager",
-      "source": "annotation"
-    },
-    "18100": {
-      "name": "m_sort",
-      "type": "SaleUI_SortData[299][5]",
-      "source": "annotation"
-    },
-    "30060": {
-      "name": "m_ListSelNum",
-      "type": "int[299][5]",
-      "source": "annotation"
-    },
-    "36040": {
-      "name": "m_Max",
-      "type": "int[299][5]",
-      "source": "annotation"
-    },
-    "42020": {
-      "name": "m_Sum",
-      "type": "int[5]",
-      "source": "annotation"
-    },
-    "42040": {
-      "name": "_isCreatable",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "42044": {
-      "name": "m_SaleData",
-      "type": "PlayerItem[299][5]",
-      "source": "annotation"
-    },
-    "59984": {
-      "name": "m_TempData",
-      "type": "PlayerItem[158]",
-      "source": "span-fix: IDB 偏移序列给出真实跨度 = m_bNGHS@0xF1B8 − m_TempData@0xEA50 = 1896；sizeof(PlayerItem)=12 ⇒ 1896/12=158 整除。原 `PlayerItem[299][5]`(=17940B) 超出跨度 9.5×，导致发射器 start_off 越过 0xF1B8，把 m_bNGHS/m_bWPXS 静默吞掉（71 条 C2039）。"
-    },
-    "77924": {
-      "name": "m_NotesNull",
-      "type": "int[299][5]",
-      "source": "annotation"
-    },
-    "83904": {
-      "name": "m_IsEquip",
-      "type": "unsigned char[299][5]",
-      "source": "annotation"
-    },
-    "85399": {
-      "name": "m_TempIsEquip",
-      "type": "unsigned char[299][5]",
-      "source": "annotation"
-    },
-    "86896": {
-      "name": "x",
-      "type": "int",
-      "source": "annotation"
-    },
-    "86900": {
-      "name": "rc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "86916": {
-      "name": "m_Frame",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "87076": {
-      "name": "m_FrameBar",
-      "type": "UIFlexBar",
-      "source": "annotation"
-    },
-    "87160": {
-      "name": "m_Flag",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "87320": {
-      "name": "m_OutFrameT",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "87480": {
-      "name": "m_OutFrameR",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "87640": {
-      "name": "m_OutFrameL",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "87800": {
-      "name": "m_OutFrameB",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "87960": {
-      "name": "mb_Exit",
-      "type": "UIButton",
-      "source": "annotation"
-    },
-    "88304": {
-      "name": "m_ExitRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "88320": {
-      "name": "m_ani",
-      "type": "UIAnimateCtrl",
-      "source": "annotation"
-    },
-    "88484": {
-      "name": "m_Role",
-      "type": "UIStatic[5]",
-      "source": "annotation"
-    },
-    "89284": {
-      "name": "m_RoleRc",
-      "type": "tagRECT[5]",
-      "source": "annotation"
-    },
-    "89364": {
-      "name": "RoleX",
-      "type": "int",
-      "source": "annotation"
-    },
-    "89368": {
-      "name": "RoleY",
-      "type": "int",
-      "source": "annotation"
-    },
-    "89372": {
-      "name": "HeadW",
-      "type": "int",
-      "source": "annotation"
-    },
-    "89376": {
-      "name": "HeadH",
-      "type": "int",
-      "source": "annotation"
-    },
-    "89380": {
-      "name": "m_Is",
-      "type": "unsigned char[5]",
-      "source": "annotation"
-    },
-    "89388": {
-      "name": "m_Msg",
-      "type": "MUIDialog",
-      "source": "annotation"
-    },
-    "90772": {
-      "name": "m_3DObj",
-      "type": "UI3DCtrl",
-      "source": "annotation"
-    },
-    "91080": {
-      "name": "m_FlagRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "91096": {
-      "name": "m_TalkFrame",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "91256": {
-      "name": "m_Ready",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "91416": {
-      "name": "m_ReadyRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "91432": {
-      "name": "m_entryTalk",
-      "type": "char[256]",
-      "source": "annotation"
-    },
-    "91688": {
-      "name": "m_btn",
-      "type": "UIButton[5]",
-      "source": "annotation"
-    },
-    "93408": {
-      "name": "m_TabRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "93424": {
-      "name": "m_ListSaleTitle",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "93584": {
-      "name": "m_ListEquipTitleRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "93600": {
-      "name": "m_Icon",
-      "type": "UIStaticRM[5][5]",
-      "source": "annotation"
-    },
-    "98300": {
-      "name": "m_ListFrame",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "98460": {
-      "name": "m_ScrollHB",
-      "type": "UIStatic",
-      "source": "annotation"
-    },
-    "98620": {
-      "name": "m_ListGrid",
-      "type": "UIStatic[14]",
-      "source": "annotation"
-    },
-    "100860": {
-      "name": "m_ListRc",
-      "type": "tagRECT",
-      "source": "annotation"
-    },
-    "100876": {
-      "name": "ml_ResumeList",
-      "type": "UIListBox",
-      "source": "annotation"
-    },
-    "102164": {
-      "name": "ResumeNum",
-      "type": "int",
-      "source": "annotation"
-    },
-    "102168": {
-      "name": "ml_TreasureList",
-      "type": "UIListBox",
-      "source": "annotation"
-    },
-    "103456": {
-      "name": "TreasureNum",
-      "type": "int",
-      "source": "annotation"
-    },
-    "103460": {
-      "name": "ml_AttackList",
-      "type": "UIListBox",
-      "source": "annotation"
-    },
-    "104748": {
-      "name": "AttackNum",
-      "type": "int",
-      "source": "annotation"
-    },
-    "16": {
-      "name": "m_underctrl",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "20": {
-      "name": "m_bStartNGHEffect",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "24": {
-      "name": "m_nHuaYingMode",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "1160": {
-      "name": "m_inventory",
-      "type": "Inventory",
-      "source": "gen_headers_9.2"
-    },
-    "1200": {
-      "name": "m_reoccupy",
-      "type": "Reoccupy",
-      "source": "gen_headers_9.2"
-    },
-    "1216": {
-      "name": "dwWeaponWU",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "61880": {
-      "name": "m_bNGHS",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "61884": {
-      "name": "m_bWPXS",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    }
+ "name": "SaleUI",
+ "binary_size": 105912,
+ "known_members": {
+  "72": {
+   "name": "bkWidth",
+   "type": "int",
+   "source": "annotation"
   },
-  "base_class": [
-    "UIFrameWnd"
-  ],
-  "methods": {
-    "0x00525120": {
-      "name": "InitUI",
-      "signature": "int __thiscall SaleUI::InitUI()"
-    },
-    "0x00526A40": {
-      "name": "OnMessage",
-      "signature": "int __thiscall(int this, UIWnd *a2, char *nMsg, int wParam)"
-    },
-    "0x0045A7B0": {
-      "name": "SaleUI",
-      "signature": "int __thiscall SaleUI::SaleUI()"
-    },
-    "0x004615F0": {
-      "name": "DestroySubFrames",
-      "signature": "int __thiscall SaleUI::DestroySubFrames()"
-    },
-    "0x0046ACD0": {
-      "name": "ConsumeItems",
-      "signature": "int __thiscall SaleUI::ConsumeItems()"
-    },
-    "0x0046A8B0": {
-      "name": "Update",
-      "signature": "int __thiscall SaleUI::Update(int deltatime, int haveinput)"
-    },
-    "0x0046B040": {
-      "name": "ProcessCellAnimations",
-      "signature": "int __thiscall SaleUI::ProcessCellAnimations(int deltatime, int haveinput)",
-      "ordinal": 2
-    },
-    "0x004AB5E0": {
-      "name": "InitColumnWidths",
-      "signature": "int __thiscall ()",
-      "_misattrib_evidence": "max_offset=383296>class_size=111488"
-    },
-    "0x005263C0": {
-      "name": "ResetGridState",
-      "signature": "int __thiscall SaleUI::ResetGridState()"
-    },
-    "0x0045AE40": {
-      "name": "_scalar_dtor",
-      "signature": "void *__thiscall(UIWnd *Block, char pData)"
-    },
-    "0x0046B4B0": {
-      "name": "OnMessage",
-      "signature": "int __thiscall(int nVal, char *pszBuf, int nVal2)"
-    },
-    "0x00462220": {
-      "name": "GetValue",
-      "signature": "int __thiscall(unsigned char nIndex)",
-      "_misattrib_evidence": "saleui-slider: accesses +0x1795C(96,604) > PAL3 size; SaleUI ctor inits same layout"
-    },
-    "0x00462080": {
-      "name": "SetRange",
-      "signature": "int __thiscall(unsigned char nMax)",
-      "_misattrib_evidence": "saleui-slider: accesses +0x192AC/+0x18E70 — exactly the offsets SaleUI ctor initializes"
-    },
-    "0x00461FD0": {
-      "name": "SetValue",
-      "signature": "int __thiscall(unsigned char nValue)",
-      "_misattrib_evidence": "saleui-slider: alloc 0x19DB8 + PDB ctor ??0SaleUI inits same layout; PAL3(91024B) too small"
-    },
-    "0x0045ae60": {
-      "name": "~SaleUI",
-      "signature": "void __thiscall()",
-      "_misattrib_evidence": "round5: installs vtable 0x56B5CC at 0x45ae81 and tears members down descending (+0x19DB4 first); sole caller is ?_scalar_dtor@SaleUI@@ 0x45ae43 - this is ~SaleUI, IDA had it as ?ctor@PlayerMgr (no PDB mangled PlayerMgr exists)"
-    },
-    "0x0045b7a0": {
-      "name": "LoadState",
-      "signature": "unsigned __int8 __thiscall PlayerMgr::LoadState(const void *arg0)",
-      "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
-    },
-    "0x0045b990": {
-      "name": "InitCombatUI",
-      "signature": "int __thiscall(int nVal)",
-      "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
-    },
-    "0x00461c50": {
-      "name": "InitMode",
-      "signature": "void __thiscall PlayerMgr::InitMode(int nVal)",
-      "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
-    },
-    "0x004620e0": {
-      "name": "SendInputToRole",
-      "signature": "int __thiscall(unsigned char pData)",
-      "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
-    },
-    "0x00462120": {
-      "name": "SetSelectionFlags",
-      "signature": "int __thiscall PlayerMgr::SetSelectionFlags(int nFlags)",
-      "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
-    },
-    "0x004623a0": {
-      "name": "CreatePanelElements",
-      "signature": "int __thiscall(CCBUIPanel *arg0)",
-      "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
-    },
-    "0x00469d50": {
-      "name": "AddItem",
-      "signature": "int __thiscall(PlayerMgr *this)",
-      "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
-    },
-    "0x00469d90": {
-      "name": "SetupPlayerDisplay",
-      "signature": "void __thiscall PlayerMgr::SetupPlayerDisplay(int nVal)",
-      "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
-    },
-    "0x00469eb0": {
-      "name": "HandleInput",
-      "signature": "BOOL __thiscall(int nInputID, int nParam, int nFlags)",
-      "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
-    },
-    "0x00471220": {
-      "name": "ToggleSlot0",
-      "signature": "char __thiscall PlayerMgr::ToggleSlot0(unsigned __int8 pData)",
-      "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
-    },
-    "0x004712d0": {
-      "name": "ToggleSlot1",
-      "signature": "char __thiscall PlayerMgr::ToggleSlot1(unsigned __int8 pData)",
-      "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
-    },
-    "0x00471380": {
-      "name": "ToggleSlot2",
-      "signature": "char __thiscall PlayerMgr::ToggleSlot2(unsigned __int8 pData)",
-      "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
-    },
-    "0x00471430": {
-      "name": "ToggleSlot3",
-      "signature": "char __thiscall PlayerMgr::ToggleSlot3(unsigned __int8 pData)",
-      "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
-    },
-    "0x004714e0": {
-      "name": "ToggleSlot4",
-      "signature": "char __thiscall PlayerMgr::ToggleSlot4(unsigned __int8 pData)",
-      "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
-    },
-    "0x00460a90": {
-      "name": "UpdateSkillPanel",
-      "signature": "int __thiscall()",
-      "_misattrib_evidence": "round5: max this-offset 0x19DA8 fits SaleUI 0x19DB8; block-adjacent to PDB ?DestroySubFrames@SaleUI@@ 0x4615F0; callers are SaleUI methods"
-    }
+  "76": {
+   "name": "bkHeight",
+   "type": "int",
+   "source": "annotation"
   },
-  "vtables": [
+  "80": {
+   "name": "buf",
+   "type": "char[256]",
+   "source": "annotation"
+  },
+  "336": {
+   "name": "remarkbuf",
+   "type": "char[256]",
+   "source": "annotation"
+  },
+  "592": {
+   "name": "m_SelNum",
+   "type": "int",
+   "source": "annotation"
+  },
+  "596": {
+   "name": "m_data",
+   "type": "st_Manager",
+   "source": "annotation"
+  },
+  "18100": {
+   "name": "m_sort",
+   "type": "SaleUI_SortData[299][5]",
+   "source": "annotation"
+  },
+  "30060": {
+   "name": "m_ListSelNum",
+   "type": "int[299][5]",
+   "source": "annotation"
+  },
+  "36040": {
+   "name": "m_Max",
+   "type": "int[299][5]",
+   "source": "annotation"
+  },
+  "42020": {
+   "name": "m_Sum",
+   "type": "int[5]",
+   "source": "annotation"
+  },
+  "42040": {
+   "name": "_isCreatable",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "42044": {
+   "name": "m_SaleData",
+   "type": "PlayerItem[299][5]",
+   "source": "annotation"
+  },
+  "59984": {
+   "name": "m_TempData",
+   "type": "PlayerItem[158]",
+   "source": "span-fix: IDB 偏移序列给出真实跨度 = m_bNGHS@0xF1B8 − m_TempData@0xEA50 = 1896；sizeof(PlayerItem)=12 ⇒ 1896/12=158 整除。原 `PlayerItem[299][5]`(=17940B) 超出跨度 9.5×，导致发射器 start_off 越过 0xF1B8，把 m_bNGHS/m_bWPXS 静默吞掉（71 条 C2039）。"
+  },
+  "77924": {
+   "name": "m_NotesNull",
+   "type": "int[299][5]",
+   "source": "annotation"
+  },
+  "83904": {
+   "name": "m_IsEquip",
+   "type": "unsigned char[299][5]",
+   "source": "annotation"
+  },
+  "85399": {
+   "name": "m_TempIsEquip",
+   "type": "unsigned char[299][5]",
+   "source": "annotation"
+  },
+  "86896": {
+   "name": "x",
+   "type": "int",
+   "source": "annotation"
+  },
+  "86900": {
+   "name": "rc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "86916": {
+   "name": "m_Frame",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "87076": {
+   "name": "m_FrameBar",
+   "type": "UIFlexBar",
+   "source": "annotation"
+  },
+  "87160": {
+   "name": "m_Flag",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "87320": {
+   "name": "m_OutFrameT",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "87480": {
+   "name": "m_OutFrameR",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "87640": {
+   "name": "m_OutFrameL",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "87800": {
+   "name": "m_OutFrameB",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "87960": {
+   "name": "mb_Exit",
+   "type": "UIButton",
+   "source": "annotation"
+  },
+  "88304": {
+   "name": "m_ExitRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "88320": {
+   "name": "m_ani",
+   "type": "UIAnimateCtrl",
+   "source": "annotation"
+  },
+  "88484": {
+   "name": "m_Role",
+   "type": "UIStatic[5]",
+   "source": "annotation"
+  },
+  "89284": {
+   "name": "m_RoleRc",
+   "type": "tagRECT[5]",
+   "source": "annotation"
+  },
+  "89364": {
+   "name": "RoleX",
+   "type": "int",
+   "source": "annotation"
+  },
+  "89368": {
+   "name": "RoleY",
+   "type": "int",
+   "source": "annotation"
+  },
+  "89372": {
+   "name": "HeadW",
+   "type": "int",
+   "source": "annotation"
+  },
+  "89376": {
+   "name": "HeadH",
+   "type": "int",
+   "source": "annotation"
+  },
+  "89380": {
+   "name": "m_Is",
+   "type": "unsigned char[5]",
+   "source": "annotation"
+  },
+  "89388": {
+   "name": "m_Msg",
+   "type": "MUIDialog",
+   "source": "annotation"
+  },
+  "90772": {
+   "name": "m_3DObj",
+   "type": "UI3DCtrl",
+   "source": "annotation"
+  },
+  "91080": {
+   "name": "m_FlagRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "91096": {
+   "name": "m_TalkFrame",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "91256": {
+   "name": "m_Ready",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "91416": {
+   "name": "m_ReadyRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "91432": {
+   "name": "m_entryTalk",
+   "type": "char[256]",
+   "source": "annotation"
+  },
+  "91688": {
+   "name": "m_btn",
+   "type": "UIButton[5]",
+   "source": "annotation"
+  },
+  "93408": {
+   "name": "m_TabRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "93424": {
+   "name": "m_ListSaleTitle",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "93584": {
+   "name": "m_ListEquipTitleRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "93600": {
+   "name": "m_Icon",
+   "type": "UIStaticRM[5][5]",
+   "source": "annotation"
+  },
+  "98300": {
+   "name": "m_ListFrame",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "98460": {
+   "name": "m_ScrollHB",
+   "type": "UIStatic",
+   "source": "annotation"
+  },
+  "98620": {
+   "name": "m_ListGrid",
+   "type": "UIStatic[14]",
+   "source": "annotation"
+  },
+  "100860": {
+   "name": "m_ListRc",
+   "type": "tagRECT",
+   "source": "annotation"
+  },
+  "100876": {
+   "name": "ml_ResumeList",
+   "type": "UIListBox",
+   "source": "annotation"
+  },
+  "102164": {
+   "name": "ResumeNum",
+   "type": "int",
+   "source": "annotation"
+  },
+  "102168": {
+   "name": "ml_TreasureList",
+   "type": "UIListBox",
+   "source": "annotation"
+  },
+  "103456": {
+   "name": "TreasureNum",
+   "type": "int",
+   "source": "annotation"
+  },
+  "103460": {
+   "name": "ml_AttackList",
+   "type": "UIListBox",
+   "source": "annotation"
+  },
+  "104748": {
+   "name": "AttackNum",
+   "type": "int",
+   "source": "annotation"
+  },
+  "16": {
+   "name": "m_underctrl",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "20": {
+   "name": "m_bStartNGHEffect",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "24": {
+   "name": "m_nHuaYingMode",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "1160": {
+   "name": "m_inventory",
+   "type": "Inventory",
+   "source": "gen_headers_9.2"
+  },
+  "1200": {
+   "name": "m_reoccupy",
+   "type": "Reoccupy",
+   "source": "gen_headers_9.2"
+  },
+  "1216": {
+   "name": "dwWeaponWU",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "61880": {
+   "name": "m_bNGHS",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  },
+  "61884": {
+   "name": "m_bWPXS",
+   "type": "int",
+   "source": "gen_headers_9.2"
+  }
+ },
+ "base_class": [
+  "UIFrameWnd"
+ ],
+ "methods": {
+  "0x00525120": {
+   "name": "InitUI",
+   "signature": "int __thiscall SaleUI::InitUI()"
+  },
+  "0x00526A40": {
+   "name": "OnMessage",
+   "signature": "int __thiscall(int this, UIWnd *a2, char *nMsg, int wParam)"
+  },
+  "0x0045A7B0": {
+   "name": "SaleUI",
+   "signature": "int __thiscall SaleUI::SaleUI()"
+  },
+  "0x004615F0": {
+   "name": "DestroySubFrames",
+   "signature": "int __thiscall SaleUI::DestroySubFrames()"
+  },
+  "0x0046ACD0": {
+   "name": "ConsumeItems",
+   "signature": "int __thiscall SaleUI::ConsumeItems()"
+  },
+  "0x0046A8B0": {
+   "name": "Update",
+   "signature": "int __thiscall SaleUI::Update(int deltatime, int haveinput)"
+  },
+  "0x0046B040": {
+   "name": "ProcessCellAnimations",
+   "signature": "int __thiscall SaleUI::ProcessCellAnimations(int deltatime, int haveinput)",
+   "ordinal": 2
+  },
+  "0x004AB5E0": {
+   "name": "InitColumnWidths",
+   "signature": "int __thiscall ()",
+   "_misattrib_evidence": "max_offset=383296>class_size=111488"
+  },
+  "0x005263C0": {
+   "name": "ResetGridState",
+   "signature": "int __thiscall SaleUI::ResetGridState()"
+  },
+  "0x0045AE40": {
+   "name": "_scalar_dtor",
+   "signature": "void *__thiscall(UIWnd *Block, char pData)"
+  },
+  "0x0046B4B0": {
+   "name": "OnMessage",
+   "signature": "int __thiscall(int nVal, char *pszBuf, int nVal2)"
+  },
+  "0x00462220": {
+   "name": "GetValue",
+   "signature": "int __thiscall(unsigned char nIndex)",
+   "_misattrib_evidence": "saleui-slider: accesses +0x1795C(96,604) > PAL3 size; SaleUI ctor inits same layout"
+  },
+  "0x00462080": {
+   "name": "SetRange",
+   "signature": "int __thiscall(unsigned char nMax)",
+   "_misattrib_evidence": "saleui-slider: accesses +0x192AC/+0x18E70 — exactly the offsets SaleUI ctor initializes"
+  },
+  "0x00461FD0": {
+   "name": "SetValue",
+   "signature": "int __thiscall(unsigned char nValue)",
+   "_misattrib_evidence": "saleui-slider: alloc 0x19DB8 + PDB ctor ??0SaleUI inits same layout; PAL3(91024B) too small"
+  },
+  "0x0045ae60": {
+   "name": "~SaleUI",
+   "signature": "void __thiscall()",
+   "_misattrib_evidence": "round5: installs vtable 0x56B5CC at 0x45ae81 and tears members down descending (+0x19DB4 first); sole caller is ?_scalar_dtor@SaleUI@@ 0x45ae43 - this is ~SaleUI, IDA had it as ?ctor@PlayerMgr (no PDB mangled PlayerMgr exists)"
+  },
+  "0x0045b7a0": {
+   "name": "LoadState",
+   "signature": "unsigned __int8 __thiscall PlayerMgr::LoadState(const void *arg0)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x0045b990": {
+   "name": "InitCombatUI",
+   "signature": "int __thiscall(int nVal)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x00461c50": {
+   "name": "InitMode",
+   "signature": "void __thiscall PlayerMgr::InitMode(int nVal)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x004620e0": {
+   "name": "SendInputToRole",
+   "signature": "int __thiscall(unsigned char pData)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x00462120": {
+   "name": "SetSelectionFlags",
+   "signature": "int __thiscall PlayerMgr::SetSelectionFlags(int nFlags)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x004623a0": {
+   "name": "CreatePanelElements",
+   "signature": "int __thiscall(CCBUIPanel *arg0)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x00469d50": {
+   "name": "AddItem",
+   "signature": "int __thiscall(PlayerMgr *this)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x00469d90": {
+   "name": "SetupPlayerDisplay",
+   "signature": "void __thiscall PlayerMgr::SetupPlayerDisplay(int nVal)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x00469eb0": {
+   "name": "HandleInput",
+   "signature": "BOOL __thiscall(int nInputID, int nParam, int nFlags)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x00471220": {
+   "name": "ToggleSlot0",
+   "signature": "char __thiscall PlayerMgr::ToggleSlot0(unsigned __int8 pData)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x004712d0": {
+   "name": "ToggleSlot1",
+   "signature": "char __thiscall PlayerMgr::ToggleSlot1(unsigned __int8 pData)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x00471380": {
+   "name": "ToggleSlot2",
+   "signature": "char __thiscall PlayerMgr::ToggleSlot2(unsigned __int8 pData)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x00471430": {
+   "name": "ToggleSlot3",
+   "signature": "char __thiscall PlayerMgr::ToggleSlot3(unsigned __int8 pData)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x004714e0": {
+   "name": "ToggleSlot4",
+   "signature": "char __thiscall PlayerMgr::ToggleSlot4(unsigned __int8 pData)",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+  },
+  "0x00460a90": {
+   "name": "UpdateSkillPanel",
+   "signature": "int __thiscall()",
+   "_misattrib_evidence": "round5: max this-offset 0x19DA8 fits SaleUI 0x19DB8; block-adjacent to PDB ?DestroySubFrames@SaleUI@@ 0x4615F0; callers are SaleUI methods"
+  },
+  "0x0043DDF0": {
+   "name": "CCBControlWindow::Render",
+   "signature": "virtual void __thiscall(CCBMagicWindow *this)",
+   "source": "vtable_decl_only_fill(copied from CCBControlWindow.json)"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x0056B5CC",
+   "base": "UIListBox",
+   "slots": [
     {
-      "addr": "0x0056B5CC",
-      "base": "UIListBox",
-      "slots": [
-        {
-          "addr": "0x00445E70",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0043DDF0",
-          "from": "UIListBox"
-        },
-        {
-          "addr": "0x0046B040",
-          "from": null
-        },
-        {
-          "addr": "0x0043DE40",
-          "from": "UIListBox"
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0045AE40",
-          "from": "UIBigMap"
-        },
-        {
-          "addr": "0x0046B4B0",
-          "from": "UIListBox"
-        }
-      ]
+     "addr": "0x00445E70",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x0043DDF0",
+     "from": "UIListBox"
+    },
+    {
+     "addr": "0x0046B040",
+     "from": null
+    },
+    {
+     "addr": "0x0043DE40",
+     "from": "UIListBox"
+    },
+    {
+     "addr": "0x00445B90",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x0045AE40",
+     "from": "UIBigMap"
+    },
+    {
+     "addr": "0x0046B4B0",
+     "from": "UIListBox"
     }
-  ],
-  "base_size": 72,
-  "size_evidence": "operator new(0x19DB8)=105,912 at CScreenMode::InitGameUI+0x459724 followed by ctor 0x45A7B0; cross-check: ~SaleUI teardown touches +0x19DB4 (=size-4 last dword). NOTE: an earlier session recorded 105,656 - decimal conversion error, fixed 2026-09-14. 2026-09-15 round6 cleanup: deleted 32 out-of-bounds known_members (offset>=105912, max was m_SaleAtt@111276) plus 2 member-overlap intruders (pNGHVarianceParticle@88408, m_nDataPoolBase@88540) — all were unverified gen_headers_9.2/PlayerMgr-import debris (see CHANGE_LOG 2026-09-15 entry, data/status/_cleanup_fix_saleui.json). Ctor 0x45A7B0 last write is [esi+19DB4h] (byte, =105908); dtor 0x45AE60 descending teardown starts at [esi+19AECh]=105196 then jumps straight to vtable-install/base-dtor — neither function ever touches an offset >=105912. binary_size is NOT changed; it remains the hard ctor/alloc-anchored 105912.",
-  "_naming_note": "类名标签 \"SaleUI\" 源自非权威 PDB 导出（data/pdb 版本与二进制不符），仅作标识符使用。类身份由二进制证据钉死：分配 0x19DB8（CScreenMode::InitGameUI）、ctor 升序初始化、~dtor 降序拆除（0x45AE60，scalar_dtor 调用链）、vtable 0x56B5CC 同表安装。幻影 \"PlayerMgr\" 注解已于 2026-09-14 解散并入（_round5_verdict.json）。2026-09-15 round6：round5 合并 PlayerMgr 时把其 20 个 known_members 整批带入，其中 10 个落在 105912 界外、2 个落在 m_ani/m_Role 内造成 overlap，均未逐条验证 this-offset 是否真被 SaleUI 的 ctor/dtor 访问——本轮复核确认 ctor(0x45A7B0)/dtor(0x45AE60) 均止步于 <105912，故予以删除（保留另外 8 个界内但落在 m_data/m_TempData 数组间隙、checker 未标记为 overlap 的同源字段，标为待查，未删除，见 _cleanup_fix_saleui.json）。"
+   ]
+  }
+ ],
+ "base_size": 72,
+ "size_evidence": "operator new(0x19DB8)=105,912 at CScreenMode::InitGameUI+0x459724 followed by ctor 0x45A7B0; cross-check: ~SaleUI teardown touches +0x19DB4 (=size-4 last dword). NOTE: an earlier session recorded 105,656 - decimal conversion error, fixed 2026-09-14. 2026-09-15 round6 cleanup: deleted 32 out-of-bounds known_members (offset>=105912, max was m_SaleAtt@111276) plus 2 member-overlap intruders (pNGHVarianceParticle@88408, m_nDataPoolBase@88540) — all were unverified gen_headers_9.2/PlayerMgr-import debris (see CHANGE_LOG 2026-09-15 entry, data/status/_cleanup_fix_saleui.json). Ctor 0x45A7B0 last write is [esi+19DB4h] (byte, =105908); dtor 0x45AE60 descending teardown starts at [esi+19AECh]=105196 then jumps straight to vtable-install/base-dtor — neither function ever touches an offset >=105912. binary_size is NOT changed; it remains the hard ctor/alloc-anchored 105912.",
+ "_naming_note": "类名标签 \"SaleUI\" 源自非权威 PDB 导出（data/pdb 版本与二进制不符），仅作标识符使用。类身份由二进制证据钉死：分配 0x19DB8（CScreenMode::InitGameUI）、ctor 升序初始化、~dtor 降序拆除（0x45AE60，scalar_dtor 调用链）、vtable 0x56B5CC 同表安装。幻影 \"PlayerMgr\" 注解已于 2026-09-14 解散并入（_round5_verdict.json）。2026-09-15 round6：round5 合并 PlayerMgr 时把其 20 个 known_members 整批带入，其中 10 个落在 105912 界外、2 个落在 m_ani/m_Role 内造成 overlap，均未逐条验证 this-offset 是否真被 SaleUI 的 ctor/dtor 访问——本轮复核确认 ctor(0x45A7B0)/dtor(0x45AE60) 均止步于 <105912，故予以删除（保留另外 8 个界内但落在 m_data/m_TempData 数组间隙、checker 未标记为 overlap 的同源字段，标为待查，未删除，见 _cleanup_fix_saleui.json）。"
 }

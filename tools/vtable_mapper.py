@@ -17,6 +17,30 @@ import json, os, re, sys
 
 STRUCTS = 'data/annotations/structs'
 
+# CRT 静态链接产物类（/MT 把 libcmt 的类链进 PAL3）：其 vtable 槽指向 CRT 代码，
+# 不是本项目标注对象 ⇒ 门禁跳过（filebuf 0x438100 实例，2026-09-25）。
+CRT_GATE_SKIP = {'filebuf'}
+
+_sdk_class_cache = None
+
+def _sdk_class_names():
+    """include/gbengine/*.h 里声明的类名集合（SDK 单源类：槽位覆盖由 SDK 头承担）。"""
+    global _sdk_class_cache
+    if _sdk_class_cache is not None:
+        return _sdk_class_cache
+    names = set()
+    gd = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                      'include', 'gbengine')
+    if os.path.isdir(gd):
+        rx = re.compile(r'^(?:class|struct)\s+(?:GBAPI\s+|__declspec\([^)]*\)\s+)?(\w+)',
+                        re.M)
+        for f in os.listdir(gd):
+            if f.endswith(('.h', '.hpp')):
+                names |= set(rx.findall(open(os.path.join(gd, f), encoding='utf-8',
+                                             errors='replace').read()))
+    _sdk_class_cache = names
+    return names
+
 def load_all():
     structs = {}
     for f in sorted(os.listdir(STRUCTS)):
@@ -37,8 +61,19 @@ def check(cls_name=None, structs=None, verbose=False):
     for cn in targets:
         d = structs.get(cn)
         if not d: continue
+        if cn in CRT_GATE_SKIP:
+            continue
         vts = d.get('vtables') or []
         if not vts: continue
+        if cn in _sdk_class_names():
+            # SDK 单源类（F53/105 轮架构）：类声明由 include/gbengine 头承担，
+            # pal3 侧不生成该类头文件 ⇒ 注解 methods 表不适用；槽位覆盖走 SDK 头路线
+            _n = sum(len(vt.get('slots') or []) for vt in vts if isinstance(vt, dict))
+            stats['checked'] += sum(1 for vt in vts if isinstance(vt, dict) and vt.get('slots'))
+            stats['total_slots'] += _n
+            stats['sdk_route'] = stats.get('sdk_route', 0) + _n
+            stats['pass'] += sum(1 for vt in vts if isinstance(vt, dict) and vt.get('slots'))
+            continue
         methods = d.get('methods') or {}
         base_class = d.get('base_class')
         if isinstance(base_class, list): base_class = base_class[0] if base_class else None

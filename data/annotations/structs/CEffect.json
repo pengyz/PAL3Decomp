@@ -1,354 +1,354 @@
 {
-  "name": "CEffect",
-  "binary_size": 245800,
-  "known_members": {
-    "0": {
-      "name": "m_pES",
-      "type": "CEffectSystem *[2]",
-      "source": "annotation"
-    },
-    "8": {
-      "name": "m_eKind",
-      "type": "EEffect",
-      "source": "annotation"
-    },
-    "12": {
-      "name": "m_bActive",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "13": {
-      "name": "m_bVisible",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "16": {
-      "name": "m_DeltaTime",
-      "type": "double",
-      "source": "annotation"
-    },
-    "24": {
-      "name": "m_nPartical",
-      "type": "int",
-      "source": "annotation"
-    },
-    "28": {
-      "name": "m_Partical",
-      "type": "tagPartical[2048]",
-      "source": "annotation"
-    },
-    "98332": {
-      "name": "m_nQuad",
-      "type": "int",
-      "source": "annotation"
-    },
-    "98336": {
-      "name": "m_QuadBuffer",
-      "type": "gbGeomQuad[2048]",
-      "source": "annotation"
-    },
-    "237600": {
-      "name": "m_nQ2PIndex",
-      "type": "int[2048]",
-      "source": "annotation"
-    },
-    "245792": {
-      "name": "m_pTexture",
-      "type": "gbTexture *",
-      "source": "annotation"
-    },
-    "245796": {
-      "name": "m_pTextureArray",
-      "type": "gbTextureArray *",
-      "source": "annotation"
-    }
+ "name": "CEffect",
+ "binary_size": 245800,
+ "known_members": {
+  "0": {
+   "name": "m_pES",
+   "type": "CEffectSystem *[2]",
+   "source": "annotation"
   },
-  "methods": {
-    "0x004C6940": {
-      "name": "CEffect",
-      "signature": "void __thiscall()"
-    },
-    "0x004C6A70": {
-      "name": "Reset",
-      "signature": "void __thiscall(float *pfVal, float fVal, float fVal2, float fVal3)"
-    },
-    "0x004C7150": {
-      "name": "CreateOnePartical",
-      "signature": "void __thiscall(float pPartical)"
-    },
-    "0x004C7450": {
-      "name": "FillQuadByPartical",
-      "signature": "void __thiscall(int *nParticalIndex)"
-    },
-    "0x004CA400": {
-      "name": "SetParam",
-      "signature": "int __thiscall(int nVal)"
-    },
-    "0x004D0D70": {
-      "name": "SetTimeScale",
-      "signature": "CEffect *__thiscall()",
-      "ordinal": 7
-    },
-    "0x004D0EC0": {
-      "name": "ProcInitTask",
-      "signature": "int __thiscall(float *dwParam, float fVal, float fVal2, float fVal3)",
-      "ordinal": 2
-    },
-    "0x004D1090": {
-      "name": "Create",
-      "signature": "char __thiscall(tagEffObjType *pEffObjType)",
-      "ordinal": 1
-    },
-    "0x004D2080": {
-      "name": "CreateTask",
-      "signature": "int __thiscall(int *p)",
-      "ordinal": 12
-    },
-    "0x004D3A50": {
-      "name": "Init",
-      "signature": "int __thiscall(float *pType, float fx, float fy, float fz)",
-      "ordinal": 2
-    },
-    "0x004D3AD0": {
-      "name": "Create_3ad0",
-      "signature": "char __thiscall(tagEffObjType *pEffObjType)",
-      "ordinal": 1
-    },
-    "0x004CE460": {
-      "name": "Render",
-      "signature": "int __thiscall(int nVal)"
-    },
-    "0x004D4340": {
-      "name": "CreateTarget",
-      "signature": "void __thiscall CEffect::CreateTarget(int *pnVal)",
-      "ordinal": 12
-    },
-    "0x0048E780": {
-      "name": "CreateFromTemplate",
-      "signature": "int __thiscall CEffect::CreateFromTemplate(int f)"
-    },
-    "0x0048E950": {
-      "name": "UpdateState",
-      "signature": "char __thiscall CEffect::UpdateState(int nVal)",
-      "_misattrib_evidence": "max_offset=4672>class_size=200"
-    },
-    "0x004BB190": {
-      "name": "SetRenderParam",
-      "signature": "int __thiscall(int nVal)"
-    },
-    "0x004BD7A0": {
-      "name": "SetQuadParam",
-      "signature": "int *__thiscall CEffect::SetQuadParam(int nVal)"
-    },
-    "0x004D0DB0": {
-      "name": "UpdateCallback",
-      "signature": "void __fastcall(CEffect *this)"
-    },
-    "0x004D3950": {
-      "name": "DestroyCallback",
-      "signature": "void __fastcall(CEffect *this)"
-    },
-    "0x0053D580": {
-      "name": "ReleaseResources",
-      "signature": "void __thiscall()"
-    },
-    "0x004D2ED0": {
-      "name": "GetEffectSubType",
-      "signature": "int __thiscall(int)",
-      "source": "vtable_migrated",
-      "ordinal": 14
-    },
-    "0x004CFE20": {
-      "name": "_nearby_4cfe20",
-      "signature": "virtual int __thiscall(CEffect *this, int a2, float a3, float a4, float a5)"
-    },
-    "0x004CFFB0": {
-      "name": "_nearby_4cffb0",
-      "signature": "virtual void __thiscall(CEffect *this, float a2)"
-    },
-    "0x004C5DB0": {
-      "name": "Activate",
-      "signature": "int __thiscall()",
-      "source": "vtable_migrated",
-      "ordinal": 2,
-      "note": "reattribute: asm 行 291202-291221 本体：mov byte ptr [esi+0Ch],1 ; mov byte ptr [esi+0Dh],1 ; call sub_4C6170 ; lea ecx,[esi+3A020h] ; 循环 mov [ecx],eax / inc eax / add ecx,4 / cmp eax,800h ⇒ 置位 +0xC/+0xD 并把 +0x3A020 起的 2048 个 int 清零。这三个偏移在 CEffect 里**精确命中具名成员**：+0xC m_bActive(unsigned char)、+0xD m_bVisible(unsigned char)、+0x3A020 m_nQ2PIndex(int[2048])（大小 2048*4=0x2000，与循环次数一致）。原类 CEffectSystem 的成员只到 +0x154（size=344），0x3A020 远超其尺寸 ⇒ 不可能是 CEffectSystem 的方法。原名字 GetThreadHandle 与函数体无关（不涉及任何线程/handle），已证伪。",
-      "name_evidence": "按函数逻辑定名：它把该 effect 实例置为 active+visible 并初始化索引数组，即'激活/启用实例'⇒ Activate。未沿用被证伪的 GetThreadHandle，也未用已被占用的 Reset（CEffect 已有 Reset）。"
-    },
-    "0x004C5DE0": {
-      "name": "ReleaseTextures",
-      "signature": "void __thiscall()",
-      "ordinal": 3,
-      "note": "reattribute: asm 行 291229-291251 本体：ecx=[esi+3C020h]；若非空则 gbRefObject::Release(ecx) 并把 [esi+3C020h] 置 0；再取 eax=[esi+3C024h]，若非空则 operator delete(eax) 并把 [esi+3C024h] 置 0。两个偏移在 CEffect 里**精确命中具名成员**：+0x3C020 m_pTexture(gbTexture *)、+0x3C024 m_pTextureArray(gbTextureArray *)——类型与两个动作（Release 引用计数对象 / operator delete 数组）完全吻合。原类 CEffectSystem（size=344，成员止于 +0x154）不可能有这两个偏移 ⇒ 归属错。原名字 ReleaseParticle 与函数体无关（它处理的是纹理，不是粒子），已证伪。",
-      "name_evidence": "按函数逻辑定名：释放并清空实例持有的两张纹理（m_pTexture 走引用计数释放、m_pTextureArray 走 operator delete）⇒ ReleaseTextures。未用已被占用的 ReleaseResources（那是另一个函数）。"
-    },
-    "0x004AF760": {
-      "name": "Update",
-      "signature": "int __thiscall(int)",
-      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
-    },
-    "0x004C0500": {
-      "name": "OnTest",
-      "signature": "int()",
-      "source": "vtable_gap_fill_v1(from CEffAction.json)"
-    },
-    "0x004C15D0": {
-      "name": "UpdateParticles",
-      "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
-    },
-    "0x004D3910": {
-      "name": "CEffShock",
-      "signature": "CEffShock *__thiscall(CEffShock *__hidden this)",
-      "source": "vtable_gap_fill_v1(from CEffShock.json)"
-    },
-    "0x004C0510": {
-      "name": "sub_4C0510",
-      "signature": "int __thiscall()",
-      "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ)"
-    },
-    "0x004D4700": {
-      "name": "sub_4D4700",
-      "signature": "int __thiscall()",
-      "source": "vtable_gap_fill_v1(IDB:?sub_4D4700@CEffect@@QAEHXZ)"
-    },
-    "0x004D4840": {
-      "name": "sub_4D4840",
-      "signature": "int __thiscall()",
-      "source": "vtable_gap_fill_v1(IDB:?sub_4D4840@CEffect@@QAEHXZ)"
-    }
+  "8": {
+   "name": "m_eKind",
+   "type": "EEffect",
+   "source": "annotation"
   },
-  "vtables": [
+  "12": {
+   "name": "m_bActive",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "13": {
+   "name": "m_bVisible",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "16": {
+   "name": "m_DeltaTime",
+   "type": "double",
+   "source": "annotation"
+  },
+  "24": {
+   "name": "m_nPartical",
+   "type": "int",
+   "source": "annotation"
+  },
+  "28": {
+   "name": "m_Partical",
+   "type": "tagPartical[2048]",
+   "source": "annotation"
+  },
+  "98332": {
+   "name": "m_nQuad",
+   "type": "int",
+   "source": "annotation"
+  },
+  "98336": {
+   "name": "m_QuadBuffer",
+   "type": "gbGeomQuad[2048]",
+   "source": "annotation"
+  },
+  "237600": {
+   "name": "m_nQ2PIndex",
+   "type": "int[2048]",
+   "source": "annotation"
+  },
+  "245792": {
+   "name": "m_pTexture",
+   "type": "gbTexture *",
+   "source": "annotation"
+  },
+  "245796": {
+   "name": "m_pTextureArray",
+   "type": "gbTextureArray *",
+   "source": "annotation"
+  }
+ },
+ "methods": {
+  "0x004C6940": {
+   "name": "CEffect",
+   "signature": "void __thiscall()"
+  },
+  "0x004C6A70": {
+   "name": "Reset",
+   "signature": "void __thiscall(float *pfVal, float fVal, float fVal2, float fVal3)"
+  },
+  "0x004C7150": {
+   "name": "CreateOnePartical",
+   "signature": "void __thiscall(float pPartical)"
+  },
+  "0x004C7450": {
+   "name": "FillQuadByPartical",
+   "signature": "void __thiscall(int *nParticalIndex)"
+  },
+  "0x004CA400": {
+   "name": "SetParam",
+   "signature": "int __thiscall(int nVal)"
+  },
+  "0x004D0D70": {
+   "name": "SetTimeScale",
+   "signature": "CEffect *__thiscall()",
+   "ordinal": 7
+  },
+  "0x004D0EC0": {
+   "name": "ProcInitTask",
+   "signature": "int __thiscall(float *dwParam, float fVal, float fVal2, float fVal3)",
+   "ordinal": 2
+  },
+  "0x004D1090": {
+   "name": "Create",
+   "signature": "char __thiscall(tagEffObjType *pEffObjType)",
+   "ordinal": 1
+  },
+  "0x004D2080": {
+   "name": "CreateTask",
+   "signature": "int __thiscall(int *p)",
+   "ordinal": 12
+  },
+  "0x004D3A50": {
+   "name": "Init",
+   "signature": "int __thiscall(float *pType, float fx, float fy, float fz)",
+   "ordinal": 2
+  },
+  "0x004D3AD0": {
+   "name": "Create_3ad0",
+   "signature": "char __thiscall(tagEffObjType *pEffObjType)",
+   "ordinal": 1
+  },
+  "0x004CE460": {
+   "name": "Render",
+   "signature": "int __thiscall(int nVal)"
+  },
+  "0x004D4340": {
+   "name": "CreateTarget",
+   "signature": "void __thiscall CEffect::CreateTarget(int *pnVal)",
+   "ordinal": 12
+  },
+  "0x0048E780": {
+   "name": "CreateFromTemplate",
+   "signature": "int __thiscall CEffect::CreateFromTemplate(int f)"
+  },
+  "0x0048E950": {
+   "name": "UpdateState",
+   "signature": "char __thiscall CEffect::UpdateState(int nVal)",
+   "_misattrib_evidence": "max_offset=4672>class_size=200"
+  },
+  "0x004BB190": {
+   "name": "SetRenderParam",
+   "signature": "int __thiscall(int nVal)"
+  },
+  "0x004BD7A0": {
+   "name": "SetQuadParam",
+   "signature": "int *__thiscall CEffect::SetQuadParam(int nVal)"
+  },
+  "0x004D0DB0": {
+   "name": "UpdateCallback",
+   "signature": "void __fastcall(CEffect *this)"
+  },
+  "0x004D3950": {
+   "name": "DestroyCallback",
+   "signature": "void __fastcall(CEffect *this)"
+  },
+  "0x0053D580": {
+   "name": "ReleaseResources",
+   "signature": "void __thiscall()"
+  },
+  "0x004D2ED0": {
+   "name": "GetEffectSubType",
+   "signature": "int __thiscall(int)",
+   "source": "vtable_migrated",
+   "ordinal": 14
+  },
+  "0x004CFE20": {
+   "name": "_nearby_4cfe20",
+   "signature": "virtual int __thiscall(CEffect *this, int a2, float a3, float a4, float a5)"
+  },
+  "0x004CFFB0": {
+   "name": "_nearby_4cffb0",
+   "signature": "virtual void __thiscall(CEffect *this, float a2)"
+  },
+  "0x004C5DB0": {
+   "name": "Activate",
+   "signature": "int __thiscall()",
+   "source": "vtable_migrated",
+   "ordinal": 2,
+   "note": "reattribute: asm 行 291202-291221 本体：mov byte ptr [esi+0Ch],1 ; mov byte ptr [esi+0Dh],1 ; call sub_4C6170 ; lea ecx,[esi+3A020h] ; 循环 mov [ecx],eax / inc eax / add ecx,4 / cmp eax,800h ⇒ 置位 +0xC/+0xD 并把 +0x3A020 起的 2048 个 int 清零。这三个偏移在 CEffect 里**精确命中具名成员**：+0xC m_bActive(unsigned char)、+0xD m_bVisible(unsigned char)、+0x3A020 m_nQ2PIndex(int[2048])（大小 2048*4=0x2000，与循环次数一致）。原类 CEffectSystem 的成员只到 +0x154（size=344），0x3A020 远超其尺寸 ⇒ 不可能是 CEffectSystem 的方法。原名字 GetThreadHandle 与函数体无关（不涉及任何线程/handle），已证伪。",
+   "name_evidence": "按函数逻辑定名：它把该 effect 实例置为 active+visible 并初始化索引数组，即'激活/启用实例'⇒ Activate。未沿用被证伪的 GetThreadHandle，也未用已被占用的 Reset（CEffect 已有 Reset）。"
+  },
+  "0x004C5DE0": {
+   "name": "ReleaseTextures",
+   "signature": "void __thiscall()",
+   "ordinal": 3,
+   "note": "reattribute: asm 行 291229-291251 本体：ecx=[esi+3C020h]；若非空则 gbRefObject::Release(ecx) 并把 [esi+3C020h] 置 0；再取 eax=[esi+3C024h]，若非空则 operator delete(eax) 并把 [esi+3C024h] 置 0。两个偏移在 CEffect 里**精确命中具名成员**：+0x3C020 m_pTexture(gbTexture *)、+0x3C024 m_pTextureArray(gbTextureArray *)——类型与两个动作（Release 引用计数对象 / operator delete 数组）完全吻合。原类 CEffectSystem（size=344，成员止于 +0x154）不可能有这两个偏移 ⇒ 归属错。原名字 ReleaseParticle 与函数体无关（它处理的是纹理，不是粒子），已证伪。",
+   "name_evidence": "按函数逻辑定名：释放并清空实例持有的两张纹理（m_pTexture 走引用计数释放、m_pTextureArray 走 operator delete）⇒ ReleaseTextures。未用已被占用的 ReleaseResources（那是另一个函数）。"
+  },
+  "0x004AF760": {
+   "name": "Update",
+   "signature": "int __thiscall(int)",
+   "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+  },
+  "0x004C0500": {
+   "name": "OnTest",
+   "signature": "int()",
+   "source": "vtable_gap_fill_v1(from CEffAction.json)"
+  },
+  "0x004C15D0": {
+   "name": "UpdateParticles",
+   "signature": "void __thiscall()",
+   "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+  },
+  "0x004D3910": {
+   "name": "CEffShock",
+   "signature": "CEffShock *__thiscall(CEffShock *__hidden this)",
+   "source": "vtable_gap_fill_v1(from CEffShock.json)"
+  },
+  "0x004C0510": {
+   "name": "sub_4C0510",
+   "signature": "int __thiscall(int)",
+   "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4)"
+  },
+  "0x004D4700": {
+   "name": "sub_4D4700",
+   "signature": "int __thiscall(int)",
+   "source": "vtable_gap_fill_v1(IDB:?sub_4D4700@CEffect@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4)"
+  },
+  "0x004D4840": {
+   "name": "sub_4D4840",
+   "signature": "int __thiscall(int)",
+   "source": "vtable_gap_fill_v1(IDB:?sub_4D4840@CEffect@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4)"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x0056FA30",
+   "base": "CEffQuad",
+   "slots": [
     {
-      "addr": "0x0056FA30",
-      "base": "CEffQuad",
-      "slots": [
-        {
-          "addr": "0x004D0D90",
-          "from": "CEffQuad"
-        },
-        {
-          "addr": "0x004D1090",
-          "from": null
-        },
-        {
-          "addr": "0x004D0EC0",
-          "from": null
-        },
-        {
-          "addr": "0x00408BD0",
-          "from": "CEffAction"
-        },
-        {
-          "addr": "0x00408BD0",
-          "from": "CEffAction"
-        },
-        {
-          "addr": "0x004D17D0",
-          "from": "CEffQuad"
-        },
-        {
-          "addr": "0x004D1300",
-          "from": "CEffQuad"
-        },
-        {
-          "addr": "0x004D0D70",
-          "from": null
-        },
-        {
-          "addr": "0x004C0500",
-          "from": null
-        },
-        {
-          "addr": "0x004AF760",
-          "from": null
-        },
-        {
-          "addr": "0x004C0510",
-          "from": null
-        },
-        {
-          "addr": "0x004AF760",
-          "from": null
-        },
-        {
-          "addr": "0x004D2080",
-          "from": null
-        },
-        {
-          "addr": "0x004C15D0",
-          "from": null
-        },
-        {
-          "addr": "0x004D2ED0",
-          "from": null
-        }
-      ]
+     "addr": "0x004D0D90",
+     "from": "CEffQuad"
     },
     {
-      "addr": "0x0056FADC",
-      "base": null,
-      "slots": [
-        {
-          "addr": "0x004D3930",
-          "from": "CEffShock"
-        },
-        {
-          "addr": "0x004D3AD0",
-          "from": null
-        },
-        {
-          "addr": "0x004D3A50",
-          "from": null
-        },
-        {
-          "addr": "0x00408BD0",
-          "from": "CEffAction"
-        },
-        {
-          "addr": "0x00408BD0",
-          "from": "CEffAction"
-        },
-        {
-          "addr": "0x004D3DC0",
-          "from": "CEffShock"
-        },
-        {
-          "addr": "0x004D4110",
-          "from": "CEffShock"
-        },
-        {
-          "addr": "0x004D3910",
-          "from": null
-        },
-        {
-          "addr": "0x004C0500",
-          "from": null
-        },
-        {
-          "addr": "0x004AF760",
-          "from": null
-        },
-        {
-          "addr": "0x004D4840",
-          "from": null
-        },
-        {
-          "addr": "0x004AF760",
-          "from": null
-        },
-        {
-          "addr": "0x004D4340",
-          "from": null
-        },
-        {
-          "addr": "0x004C15D0",
-          "from": null
-        },
-        {
-          "addr": "0x004D4700",
-          "from": null
-        }
-      ]
+     "addr": "0x004D1090",
+     "from": null
+    },
+    {
+     "addr": "0x004D0EC0",
+     "from": null
+    },
+    {
+     "addr": "0x00408BD0",
+     "from": "CEffAction"
+    },
+    {
+     "addr": "0x00408BD0",
+     "from": "CEffAction"
+    },
+    {
+     "addr": "0x004D17D0",
+     "from": "CEffQuad"
+    },
+    {
+     "addr": "0x004D1300",
+     "from": "CEffQuad"
+    },
+    {
+     "addr": "0x004D0D70",
+     "from": null
+    },
+    {
+     "addr": "0x004C0500",
+     "from": null
+    },
+    {
+     "addr": "0x004AF760",
+     "from": null
+    },
+    {
+     "addr": "0x004C0510",
+     "from": null
+    },
+    {
+     "addr": "0x004AF760",
+     "from": null
+    },
+    {
+     "addr": "0x004D2080",
+     "from": null
+    },
+    {
+     "addr": "0x004C15D0",
+     "from": null
+    },
+    {
+     "addr": "0x004D2ED0",
+     "from": null
     }
-  ]
+   ]
+  },
+  {
+   "addr": "0x0056FADC",
+   "base": null,
+   "slots": [
+    {
+     "addr": "0x004D3930",
+     "from": "CEffShock"
+    },
+    {
+     "addr": "0x004D3AD0",
+     "from": null
+    },
+    {
+     "addr": "0x004D3A50",
+     "from": null
+    },
+    {
+     "addr": "0x00408BD0",
+     "from": "CEffAction"
+    },
+    {
+     "addr": "0x00408BD0",
+     "from": "CEffAction"
+    },
+    {
+     "addr": "0x004D3DC0",
+     "from": "CEffShock"
+    },
+    {
+     "addr": "0x004D4110",
+     "from": "CEffShock"
+    },
+    {
+     "addr": "0x004D3910",
+     "from": null
+    },
+    {
+     "addr": "0x004C0500",
+     "from": null
+    },
+    {
+     "addr": "0x004AF760",
+     "from": null
+    },
+    {
+     "addr": "0x004D4840",
+     "from": null
+    },
+    {
+     "addr": "0x004AF760",
+     "from": null
+    },
+    {
+     "addr": "0x004D4340",
+     "from": null
+    },
+    {
+     "addr": "0x004C15D0",
+     "from": null
+    },
+    {
+     "addr": "0x004D4700",
+     "from": null
+    }
+   ]
+  }
+ ]
 }

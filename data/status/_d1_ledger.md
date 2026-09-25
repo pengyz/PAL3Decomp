@@ -3688,3 +3688,30 @@ vtable 映射机制从设计到落地完全正确 ✓
 ① stru_/data 全局解引用作引用实参的 stage4/5 重写 ② 效果族显式 this 静态形式
 （EnableShadow/GetAABBox C2660 = cast 形式缺失族）③ 封顶区真签名矛盾逐站点
 （sub_4B43E0 ×9 等——现在每槽都有真型，C2660 可机械 join）
+
+## 2026-09-25 vtable 统一修复轮——工具链判定 + 批次 V（批量修复·单轮验证）
+### 工具链支撑性判定（结论：验证与修复全链支撑，缺口已补）
+- 新建 `tools/ida/ret_n_batch_dump.py`：idat 批量 dump 函数尾 retn（指令级，424/463 槽地址有证据）
+- 新建 `tools/vtable_slot_audit.py`：841 槽逐槽「声明签名 × ret-N」核对，按地址分组提案
+  （继承/decl-only/泛型/dtor 占位分层；同地址跨类一致性检查）
+- 门禁扩展（vtable_mapper）：CRT_GATE_SKIP（filebuf）+ SDK 单源类路由（gbLightObj 等
+  include/gbengine 声明类，槽位覆盖归 SDK 头，sdk_route 计数）
+- 血泪：① insn_t 操作数在 IDA9 是 `.ops[i]` 非 `.Operands`；② idat 内 print 不进捕获，
+  自留日志文件是唯一可靠通道；③ 审计器 parser 短路 return 跳过 this 剥离 ⇒ arity=字符串长度
+  （分层数字曾虚高，修复后 named/OK 546）
+### 批次 V（一轮验证）
+- A. 泛型签名升级：35 条（25 地址，ret-N 唯一证据，int 占位符惯例，全库同地址一致）
+- C. decl-only 填充：0x0043DDF0 → CCBLineupWindow/PropUI/SaleUI（复制既有条目）
+- B. MainPropUI slot6 from 重指向 _misattrib_UIBigMap → UIBigMap（OnMessage 条目已在）
+- 挂起：CEffect[1]←CEffShock 三槽（dtor 注入×stage4 `this=v23` 渲染交互，归属轮前置）
+### 签名验证总账（841 槽）
+- **546 named/OK（65%，ret-N 证据支持）** · 119 named/ARITY-MISMATCH（= 已立案 B-SLOTMISMATCH
+  族在槽粒度重现，sret/varargs 噪声待甄别，属 C2660 常设役）· 40 证据缺失 · 16 签名不可解析
+  （空签名/cdecl 形）· 77 dtor 占位（by-design）· 3 decl-only→已清 · 3 未解析（挂起项）
+### 一轮验证结果
+- S2 84/206 持平 · L1 51→**52**（+1，总体不变）· 净错误 C2660 **−14**（UITitle_JDHY 17→8
+  = 签名升级让调用点对齐的直接收益；UIBigMap −6；ScreenEffectMgr 5→3）
+- 裁决：三组新增（PalScript +10 / ScreenEffectMgr +1 / CCBUI +1）均为类型传播涟漪在
+  已有红单元内的正常暴露，单元净错误皆降 ⇒ 接受 + 记账，不回退
+### vtable 门禁终态
+**90 pass / 1 fail**（仅 CEffect[1] 三槽挂起）· unresolved 6→**3** · sdk_route 18 · filebuf 出闸

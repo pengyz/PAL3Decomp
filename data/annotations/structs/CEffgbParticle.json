@@ -1,258 +1,258 @@
 {
-  "name": "CEffgbParticle",
-  "binary_size": 80,
-  "known_members": {
-    "48": {
-      "name": "m_pEffect",
-      "type": "ParticleEffect *",
-      "source": "annotation"
-    },
-    "52": {
-      "name": "m_fSize",
-      "type": "float",
-      "source": "annotation"
-    },
-    "56": {
-      "name": "m_fX",
-      "type": "float",
-      "source": "annotation"
-    },
-    "60": {
-      "name": "m_fY",
-      "type": "float",
-      "source": "annotation"
-    },
-    "64": {
-      "name": "m_fZ",
-      "type": "float",
-      "source": "annotation"
-    },
-    "68": {
-      "name": "m_fPX",
-      "type": "float",
-      "source": "annotation"
-    },
-    "72": {
-      "name": "m_fPY",
-      "type": "float",
-      "source": "annotation"
-    },
-    "76": {
-      "name": "m_fPZ",
-      "type": "float",
-      "source": "annotation"
-    }
+ "name": "CEffgbParticle",
+ "binary_size": 80,
+ "known_members": {
+  "48": {
+   "name": "m_pEffect",
+   "type": "ParticleEffect *",
+   "source": "annotation"
   },
-  "base_class": [
-    "CEffObj",
-    "CTaskTpl_tagEffTaskParam_CEffgbParticle"
-  ],
-  "methods": {
-    "0x004C6C10": {
-      "name": "Create",
-      "signature": "char __thiscall(tagEffObjType *pType)"
-    },
-    "0x004C6F20": {
-      "name": "Destroy",
-      "signature": "void __thiscall()"
-    },
-    "0x004C7A70": {
-      "name": "GetEditorTaskDescription",
-      "signature": "const char *__thiscall(int nIndex)"
-    },
-    "0x004C7B70": {
-      "name": "GetEditorObjDescription",
-      "signature": "const char *__thiscall(int nIndex)"
-    },
-    "0x004C8650": {
-      "name": "~CEffgbParticle",
-      "signature": "void __thiscall(int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)"
-    },
-    "0x004C87A0": {
-      "name": "Create",
-      "signature": "void *__thiscall(CEffgbParticle *Block, char pType)"
-    },
-    "0x004C8830": {
-      "name": "Init",
-      "signature": "int __thiscall(int pType)"
-    },
-    "0x004C88C0": {
-      "name": "Attach",
-      "signature": "char *__thiscall(char pData)"
-    },
-    "0x004C88D0": {
-      "name": "Render",
-      "signature": "int *__thiscall()"
-    },
-    "0x004C8930": {
-      "name": "SetTimeScale",
-      "signature": "CEffgbParticle *__thiscall()",
-      "ordinal": 7
-    },
-    "0x004C8970": {
-      "name": "Destroy__fastcall",
-      "signature": "void __thiscall()"
-    },
-    "0x004C8A40": {
-      "name": "CreateTask",
-      "signature": "char __thiscall(tagEffTaskParam *p)",
-      "ordinal": 1
-    },
-    "0x004C8BF0": {
-      "name": "ProcCommonTask",
-      "signature": "void __thiscall(float dwParam)",
-      "ordinal": 5
-    },
-    "0x004C8E10": {
-      "name": "GetEditorTaskDescription",
-      "signature": "void __thiscall()",
-      "ordinal": 6
-    },
-    "0x004C9540": {
-      "name": "DestroyEffect",
-      "signature": "char *__thiscall(char pData)"
-    },
-    "0x004CEB60": {
-      "name": "CreateInstance",
-      "signature": "int __thiscall CEffgbParticle::CreateInstance(CEffgbParticle *pSrc, int nVal, CEffgbParticle *pParam)"
-    },
-    "0x004C6980": {
-      "name": "ReleaseEffect",
-      "signature": "void __fastcall(CEffgbParticle *this)"
-    },
-    "0x004D0A60": {
-      "name": "DestroyEffect",
-      "signature": "void __thiscall CEffgbParticle::DestroyEffect__ovl_0a60()",
-      "ordinal": 3
-    },
-    "0x004C8B80": {
-      "name": "slot_2",
-      "signature": "int __thiscall(int, float, float, float)",
-      "source": "vtable_migrated",
-      "ordinal": 2
-    },
-    "0x004C8E80": {
-      "name": "GetEffect",
-      "signature": "int __thiscall(int)",
-      "source": "vtable_migrated",
-      "ordinal": 11
-    },
-    "0x004C8E90": {
-      "name": "RenderEffectPass",
-      "signature": "int __thiscall(int a2)",
-      "source": "vtable_migrated",
-      "ordinal": 12
-    },
-    "0x004C9260": {
-      "name": "GetParticleType",
-      "signature": "int __thiscall(int)",
-      "source": "vtable_migrated",
-      "ordinal": 14
-    },
-    "0x004AF760": {
-      "name": "Update",
-      "signature": "int __thiscall(int)",
-      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
-    },
-    "0x004C0500": {
-      "name": "OnTest",
-      "signature": "int()",
-      "source": "vtable_gap_fill_v1(from CEffAction.json)"
-    },
-    "0x004C15D0": {
-      "name": "UpdateParticles",
-      "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
-    },
-    "0x004C0510": {
-      "name": "sub_4C0510",
-      "signature": "int __thiscall()",
-      "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ)"
-    },
-    "0x004C8950": {
-      "name": "DestroyEffect_8950",
-      "signature": "char *__thiscall(char)",
-      "source": "vtable_gap_fill_v1(IDB:?DestroyEffect@CEffgbParticle@@QAEPADD@Z)"
-    }
+  "52": {
+   "name": "m_fSize",
+   "type": "float",
+   "source": "annotation"
   },
-  "vtables": [
+  "56": {
+   "name": "m_fX",
+   "type": "float",
+   "source": "annotation"
+  },
+  "60": {
+   "name": "m_fY",
+   "type": "float",
+   "source": "annotation"
+  },
+  "64": {
+   "name": "m_fZ",
+   "type": "float",
+   "source": "annotation"
+  },
+  "68": {
+   "name": "m_fPX",
+   "type": "float",
+   "source": "annotation"
+  },
+  "72": {
+   "name": "m_fPY",
+   "type": "float",
+   "source": "annotation"
+  },
+  "76": {
+   "name": "m_fPZ",
+   "type": "float",
+   "source": "annotation"
+  }
+ },
+ "base_class": [
+  "CEffObj",
+  "CTaskTpl_tagEffTaskParam_CEffgbParticle"
+ ],
+ "methods": {
+  "0x004C6C10": {
+   "name": "Create",
+   "signature": "char __thiscall(tagEffObjType *pType)"
+  },
+  "0x004C6F20": {
+   "name": "Destroy",
+   "signature": "void __thiscall()"
+  },
+  "0x004C7A70": {
+   "name": "GetEditorTaskDescription",
+   "signature": "const char *__thiscall(int nIndex)"
+  },
+  "0x004C7B70": {
+   "name": "GetEditorObjDescription",
+   "signature": "const char *__thiscall(int nIndex)"
+  },
+  "0x004C8650": {
+   "name": "~CEffgbParticle",
+   "signature": "void __thiscall(int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)"
+  },
+  "0x004C87A0": {
+   "name": "Create",
+   "signature": "void *__thiscall(CEffgbParticle *Block, char pType)"
+  },
+  "0x004C8830": {
+   "name": "Init",
+   "signature": "int __thiscall(int pType)"
+  },
+  "0x004C88C0": {
+   "name": "Attach",
+   "signature": "char *__thiscall(char pData)"
+  },
+  "0x004C88D0": {
+   "name": "Render",
+   "signature": "int *__thiscall()"
+  },
+  "0x004C8930": {
+   "name": "SetTimeScale",
+   "signature": "CEffgbParticle *__thiscall()",
+   "ordinal": 7
+  },
+  "0x004C8970": {
+   "name": "Destroy__fastcall",
+   "signature": "void __thiscall()"
+  },
+  "0x004C8A40": {
+   "name": "CreateTask",
+   "signature": "char __thiscall(tagEffTaskParam *p)",
+   "ordinal": 1
+  },
+  "0x004C8BF0": {
+   "name": "ProcCommonTask",
+   "signature": "void __thiscall(float dwParam)",
+   "ordinal": 5
+  },
+  "0x004C8E10": {
+   "name": "GetEditorTaskDescription",
+   "signature": "void __thiscall()",
+   "ordinal": 6
+  },
+  "0x004C9540": {
+   "name": "DestroyEffect",
+   "signature": "char *__thiscall(char pData)"
+  },
+  "0x004CEB60": {
+   "name": "CreateInstance",
+   "signature": "int __thiscall CEffgbParticle::CreateInstance(CEffgbParticle *pSrc, int nVal, CEffgbParticle *pParam)"
+  },
+  "0x004C6980": {
+   "name": "ReleaseEffect",
+   "signature": "void __fastcall(CEffgbParticle *this)"
+  },
+  "0x004D0A60": {
+   "name": "DestroyEffect",
+   "signature": "void __thiscall CEffgbParticle::DestroyEffect__ovl_0a60()",
+   "ordinal": 3
+  },
+  "0x004C8B80": {
+   "name": "slot_2",
+   "signature": "int __thiscall(int, float, float, float)",
+   "source": "vtable_migrated",
+   "ordinal": 2
+  },
+  "0x004C8E80": {
+   "name": "GetEffect",
+   "signature": "int __thiscall(int)",
+   "source": "vtable_migrated",
+   "ordinal": 11
+  },
+  "0x004C8E90": {
+   "name": "RenderEffectPass",
+   "signature": "int __thiscall(int a2)",
+   "source": "vtable_migrated",
+   "ordinal": 12
+  },
+  "0x004C9260": {
+   "name": "GetParticleType",
+   "signature": "int __thiscall(int)",
+   "source": "vtable_migrated",
+   "ordinal": 14
+  },
+  "0x004AF760": {
+   "name": "Update",
+   "signature": "int __thiscall(int)",
+   "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+  },
+  "0x004C0500": {
+   "name": "OnTest",
+   "signature": "int()",
+   "source": "vtable_gap_fill_v1(from CEffAction.json)"
+  },
+  "0x004C15D0": {
+   "name": "UpdateParticles",
+   "signature": "void __thiscall()",
+   "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+  },
+  "0x004C0510": {
+   "name": "sub_4C0510",
+   "signature": "int __thiscall(int)",
+   "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4)"
+  },
+  "0x004C8950": {
+   "name": "DestroyEffect_8950",
+   "signature": "char *__thiscall(char)",
+   "source": "vtable_gap_fill_v1(IDB:?DestroyEffect@CEffgbParticle@@QAEPADD@Z)"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x0056F8CC",
+   "base": "CEffAction",
+   "slots": [
     {
-      "addr": "0x0056F8CC",
-      "base": "CEffAction",
-      "slots": [
-        {
-          "addr": "0x004C8950",
-          "from": null
-        },
-        {
-          "addr": "0x004C8A40",
-          "from": null
-        },
-        {
-          "addr": "0x004C8B80",
-          "from": null
-        },
-        {
-          "addr": "0x004D0A60",
-          "from": null
-        },
-        {
-          "addr": "0x00408BD0",
-          "from": "CEffAction"
-        },
-        {
-          "addr": "0x004C8BF0",
-          "from": null
-        },
-        {
-          "addr": "0x004C8E10",
-          "from": null
-        },
-        {
-          "addr": "0x004C8930",
-          "from": null
-        },
-        {
-          "addr": "0x004C0500",
-          "from": null
-        },
-        {
-          "addr": "0x004AF760",
-          "from": null
-        },
-        {
-          "addr": "0x004C0510",
-          "from": null
-        },
-        {
-          "addr": "0x004C8E80",
-          "from": null
-        },
-        {
-          "addr": "0x004C8E90",
-          "from": null
-        },
-        {
-          "addr": "0x004C15D0",
-          "from": null
-        },
-        {
-          "addr": "0x004C9260",
-          "from": null
-        }
-      ]
-    }
-  ],
-  "base_size": 16,
-  "bases": [
-    {
-      "name": "CEffObj",
-      "offset": 0
+     "addr": "0x004C8950",
+     "from": null
     },
     {
-      "name": "CTaskTpl_tagEffTaskParam_CEffgbParticle",
-      "offset": 12
+     "addr": "0x004C8A40",
+     "from": null
+    },
+    {
+     "addr": "0x004C8B80",
+     "from": null
+    },
+    {
+     "addr": "0x004D0A60",
+     "from": null
+    },
+    {
+     "addr": "0x00408BD0",
+     "from": "CEffAction"
+    },
+    {
+     "addr": "0x004C8BF0",
+     "from": null
+    },
+    {
+     "addr": "0x004C8E10",
+     "from": null
+    },
+    {
+     "addr": "0x004C8930",
+     "from": null
+    },
+    {
+     "addr": "0x004C0500",
+     "from": null
+    },
+    {
+     "addr": "0x004AF760",
+     "from": null
+    },
+    {
+     "addr": "0x004C0510",
+     "from": null
+    },
+    {
+     "addr": "0x004C8E80",
+     "from": null
+    },
+    {
+     "addr": "0x004C8E90",
+     "from": null
+    },
+    {
+     "addr": "0x004C15D0",
+     "from": null
+    },
+    {
+     "addr": "0x004C9260",
+     "from": null
     }
-  ],
-  "bases_source": "A: ctor `mov [reg+0Ch], offset <vtable>` (CEffModel sub_4CFC70 / CEffCylinder sub_4C3DD0)；PDB 全族 CTaskTpl 基 = 12；template_bases.json 记载 18 个 CEff* 共享该模板布局；二进制另有 58 处 `sub ecx,0Ch` 的 this 调整"
+   ]
+  }
+ ],
+ "base_size": 16,
+ "bases": [
+  {
+   "name": "CEffObj",
+   "offset": 0
+  },
+  {
+   "name": "CTaskTpl_tagEffTaskParam_CEffgbParticle",
+   "offset": 12
+  }
+ ],
+ "bases_source": "A: ctor `mov [reg+0Ch], offset <vtable>` (CEffModel sub_4CFC70 / CEffCylinder sub_4C3DD0)；PDB 全族 CTaskTpl 基 = 12；template_bases.json 记载 18 个 CEff* 共享该模板布局；二进制另有 58 处 `sub ecx,0Ch` 的 this 调整"
 }

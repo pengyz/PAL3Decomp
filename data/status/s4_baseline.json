@@ -21,8 +21,8 @@
   "symbols": 391,
   "matched": 327,
   "unmatched": 64,
-  "match_L1": 51,
-  "partial": 237,
+  "match_L1": 52,
+  "partial": 236,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
@@ -941,11 +941,11 @@
   },
   {
    "file": "pal3/src/Misc/ParabolaCalculator.cpp",
-   "symbol": "?sub_523B90@ParabolaCalculator@@UAEHXZ",
-   "name": "ParabolaCalculator::sub_523B90(void)",
+   "symbol": "?sub_523B90@ParabolaCalculator@@UAEHHHH@Z",
+   "name": "ParabolaCalculator::sub_523B90(int,int,int)",
    "va": "0x00523B90",
    "status": "partial",
-   "match_pct": 30.7,
+   "match_pct": 32.9,
    "size": 283
   },
   {
@@ -1886,11 +1886,11 @@
   },
   {
    "file": "pal3/src/Misc/UITextArea.cpp",
-   "symbol": "?ShowWindow@UITextArea@@UAEXXZ",
-   "name": "UITextArea::ShowWindow(void)",
+   "symbol": "?ShowWindow@UITextArea@@UAEXH@Z",
+   "name": "UITextArea::ShowWindow(int)",
    "va": "0x00445720",
-   "status": "partial",
-   "match_pct": 54.4,
+   "status": "match_L1",
+   "match_pct": 100.0,
    "size": 57
   },
   {
@@ -2534,11 +2534,11 @@
   },
   {
    "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "?sub_439110@UIWnd@@UAEXXZ",
-   "name": "UIWnd::sub_439110(void)",
+   "symbol": "?sub_439110@UIWnd@@UAEXH@Z",
+   "name": "UIWnd::sub_439110(int)",
    "va": "0x00439110",
    "status": "partial",
-   "match_pct": 26.7,
+   "match_pct": 80.0,
    "size": 30
   },
   {
@@ -2579,11 +2579,11 @@
   },
   {
    "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "?sub_44E980@UIWnd@@UAEXXZ",
-   "name": "UIWnd::sub_44E980(void)",
+   "symbol": "?sub_44E980@UIWnd@@UAEXHH@Z",
+   "name": "UIWnd::sub_44E980(int,int)",
    "va": "0x0044E980",
    "status": "partial",
-   "match_pct": 12.4,
+   "match_pct": 19.6,
    "size": 97
   },
   {
@@ -2622,19 +2622,5 @@
    "match_pct": 10.2,
    "size": 166
   }
- ],
- "rebaseline": {
-  "reason": "flake收口：apply签名块改函数指针set_tinfo(数据槽SetType失败修复)+F73b空槽按修饰名写全签名——init一次成型(不再需要补救apply)；全量233槽真定型使封顶区渲染位移(诚实红) matched 334/398->327/391",
-  "at": "2026-09-25T17:12:40",
-  "prev_match_L1": 51,
-  "cur_match_L1": 51,
-  "prev_population": {
-   "matched": 327,
-   "symbols": 391
-  },
-  "cur_population": {
-   "matched": 327,
-   "symbols": 391
-  }
- }
+ ]
 }

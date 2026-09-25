@@ -1,212 +1,212 @@
 {
-  "name": "CEffModel",
-  "binary_size": 104,
-  "known_members": {
-    "64": {
-      "name": "m_vecOffsetPos",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "76": {
-      "name": "m_vecRot",
-      "type": "gbVec3D",
-      "source": "annotation"
-    },
-    "88": {
-      "name": "m_bVisible",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "89": {
-      "name": "m_bAdditiveBlend",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "90": {
-      "name": "m_bNoZTest",
-      "type": "unsigned char",
-      "source": "annotation"
-    },
-    "92": {
-      "name": "m_fSizeX",
-      "type": "float",
-      "source": "annotation"
-    },
-    "96": {
-      "name": "m_fSizeY",
-      "type": "float",
-      "source": "annotation"
-    },
-    "100": {
-      "name": "m_fSizeZ",
-      "type": "float",
-      "source": "annotation"
-    },
-    "48": {
-      "name": "m_pGeomNode",
-      "type": "gbGeomNode *",
-      "source": "template_base_fix"
-    }
+ "name": "CEffModel",
+ "binary_size": 104,
+ "known_members": {
+  "64": {
+   "name": "m_vecOffsetPos",
+   "type": "gbVec3D",
+   "source": "annotation"
   },
-  "base_class": [
-    "CEffObj",
-    "CTaskTpl_tagEffTaskParam_CEffModel"
-  ],
-  "methods": {
-    "0x004CFFA0": {
-      "name": "DestroyEffect",
-      "signature": "void __thiscall()"
-    },
-    "0x004D0CE0": {
-      "name": "Reset",
-      "signature": "int *__thiscall CEffModel::Reset()",
-      "_misattrib_evidence": "max_offset=4268>class_size=104"
-    },
-    "0x004CEC80": {
-      "name": "CreateInstance",
-      "signature": "int __thiscall CEffModel::CreateInstance(CEffModel *pSrc, int nVal, CEffModel *pParam)"
-    },
-    "0x004CFEB0": {
-      "name": "LoadFromNode",
-      "signature": "bool __thiscall CEffModel::LoadFromNode(int nVal)",
-      "ordinal": 1
-    },
-    "0x004D01C0": {
-      "name": "RenderScenePass",
-      "signature": "void __thiscall()",
-      "ordinal": 4
-    },
-    "0x004CFC70": {
-      "name": "CEffModel",
-      "signature": "CEffModel *__thiscall()"
-    },
-    "0x004D0BD0": {
-      "name": "UpdateDuration",
-      "signature": "void __thiscall()"
-    },
-    "0x004CFD00": {
-      "name": "CreateEffModel",
-      "signature": "int __cdecl()",
-      "source": "vtable_migrated",
-      "static": true
-    },
-    "0x004D0390": {
-      "name": "GetRenderNode",
-      "signature": "void __thiscall()",
-      "source": "manual_fix_vtable+manual_ida_body",
-      "ordinal": 11
-    },
-    "0x004D03B0": {
-      "name": "RenderModel",
-      "signature": "void __thiscall()",
-      "source": "manual_fix_vtable+manual_ida_body",
-      "ordinal": 12
-    },
-    "0x004D0850": {
-      "name": "GetModelType",
-      "signature": "int __thiscall(int nVal)",
-      "source": "vtable_migrated",
-      "ordinal": 14
-    },
-    "0x004AF760": {
-      "name": "Update",
-      "signature": "int __thiscall(int)",
-      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
-    },
-    "0x004C0500": {
-      "name": "OnTest",
-      "signature": "int()",
-      "source": "vtable_gap_fill_v1(from CEffAction.json)"
-    },
-    "0x004C15D0": {
-      "name": "UpdateParticles",
-      "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
-    },
-    "0x004C0510": {
-      "name": "sub_4C0510",
-      "signature": "int __thiscall()",
-      "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ)"
-    }
+  "76": {
+   "name": "m_vecRot",
+   "type": "gbVec3D",
+   "source": "annotation"
   },
-  "vtables": [
+  "88": {
+   "name": "m_bVisible",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "89": {
+   "name": "m_bAdditiveBlend",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "90": {
+   "name": "m_bNoZTest",
+   "type": "unsigned char",
+   "source": "annotation"
+  },
+  "92": {
+   "name": "m_fSizeX",
+   "type": "float",
+   "source": "annotation"
+  },
+  "96": {
+   "name": "m_fSizeY",
+   "type": "float",
+   "source": "annotation"
+  },
+  "100": {
+   "name": "m_fSizeZ",
+   "type": "float",
+   "source": "annotation"
+  },
+  "48": {
+   "name": "m_pGeomNode",
+   "type": "gbGeomNode *",
+   "source": "template_base_fix"
+  }
+ },
+ "base_class": [
+  "CEffObj",
+  "CTaskTpl_tagEffTaskParam_CEffModel"
+ ],
+ "methods": {
+  "0x004CFFA0": {
+   "name": "DestroyEffect",
+   "signature": "void __thiscall()"
+  },
+  "0x004D0CE0": {
+   "name": "Reset",
+   "signature": "int *__thiscall CEffModel::Reset()",
+   "_misattrib_evidence": "max_offset=4268>class_size=104"
+  },
+  "0x004CEC80": {
+   "name": "CreateInstance",
+   "signature": "int __thiscall CEffModel::CreateInstance(CEffModel *pSrc, int nVal, CEffModel *pParam)"
+  },
+  "0x004CFEB0": {
+   "name": "LoadFromNode",
+   "signature": "bool __thiscall CEffModel::LoadFromNode(int nVal)",
+   "ordinal": 1
+  },
+  "0x004D01C0": {
+   "name": "RenderScenePass",
+   "signature": "void __thiscall()",
+   "ordinal": 4
+  },
+  "0x004CFC70": {
+   "name": "CEffModel",
+   "signature": "CEffModel *__thiscall()"
+  },
+  "0x004D0BD0": {
+   "name": "UpdateDuration",
+   "signature": "void __thiscall()"
+  },
+  "0x004CFD00": {
+   "name": "CreateEffModel",
+   "signature": "int __cdecl()",
+   "source": "vtable_migrated",
+   "static": true
+  },
+  "0x004D0390": {
+   "name": "GetRenderNode",
+   "signature": "void __thiscall(int)",
+   "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4)",
+   "ordinal": 11
+  },
+  "0x004D03B0": {
+   "name": "RenderModel",
+   "signature": "void __thiscall(int)",
+   "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4)",
+   "ordinal": 12
+  },
+  "0x004D0850": {
+   "name": "GetModelType",
+   "signature": "int __thiscall(int nVal)",
+   "source": "vtable_migrated",
+   "ordinal": 14
+  },
+  "0x004AF760": {
+   "name": "Update",
+   "signature": "int __thiscall(int)",
+   "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+  },
+  "0x004C0500": {
+   "name": "OnTest",
+   "signature": "int()",
+   "source": "vtable_gap_fill_v1(from CEffAction.json)"
+  },
+  "0x004C15D0": {
+   "name": "UpdateParticles",
+   "signature": "void __thiscall()",
+   "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+  },
+  "0x004C0510": {
+   "name": "sub_4C0510",
+   "signature": "int __thiscall(int)",
+   "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4)"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x0056F9DC",
+   "base": "CEffCustomShape",
+   "slots": [
     {
-      "addr": "0x0056F9DC",
-      "base": "CEffCustomShape",
-      "slots": [
-        {
-          "addr": "0x004CFD20",
-          "from": "CEffCustomShape"
-        },
-        {
-          "addr": "0x004CFEB0",
-          "from": null
-        },
-        {
-          "addr": "0x004CFE20",
-          "from": "CEffCustomShape"
-        },
-        {
-          "addr": "0x004CFFA0",
-          "from": "CEffCustomShape"
-        },
-        {
-          "addr": "0x004D01C0",
-          "from": null
-        },
-        {
-          "addr": "0x004CFFB0",
-          "from": "CEffCustomShape"
-        },
-        {
-          "addr": "0x00408BD0",
-          "from": "CEffAction"
-        },
-        {
-          "addr": "0x004CFD00",
-          "from": null
-        },
-        {
-          "addr": "0x004C0500",
-          "from": null
-        },
-        {
-          "addr": "0x004AF760",
-          "from": null
-        },
-        {
-          "addr": "0x004C0510",
-          "from": null
-        },
-        {
-          "addr": "0x004D0390",
-          "from": null
-        },
-        {
-          "addr": "0x004D03B0",
-          "from": null
-        },
-        {
-          "addr": "0x004C15D0",
-          "from": null
-        },
-        {
-          "addr": "0x004D0850",
-          "from": null
-        }
-      ]
-    }
-  ],
-  "base_size": 16,
-  "bases": [
-    {
-      "name": "CEffObj",
-      "offset": 0
+     "addr": "0x004CFD20",
+     "from": "CEffCustomShape"
     },
     {
-      "name": "CTaskTpl_tagEffTaskParam_CEffModel",
-      "offset": 12
+     "addr": "0x004CFEB0",
+     "from": null
+    },
+    {
+     "addr": "0x004CFE20",
+     "from": "CEffCustomShape"
+    },
+    {
+     "addr": "0x004CFFA0",
+     "from": "CEffCustomShape"
+    },
+    {
+     "addr": "0x004D01C0",
+     "from": null
+    },
+    {
+     "addr": "0x004CFFB0",
+     "from": "CEffCustomShape"
+    },
+    {
+     "addr": "0x00408BD0",
+     "from": "CEffAction"
+    },
+    {
+     "addr": "0x004CFD00",
+     "from": null
+    },
+    {
+     "addr": "0x004C0500",
+     "from": null
+    },
+    {
+     "addr": "0x004AF760",
+     "from": null
+    },
+    {
+     "addr": "0x004C0510",
+     "from": null
+    },
+    {
+     "addr": "0x004D0390",
+     "from": null
+    },
+    {
+     "addr": "0x004D03B0",
+     "from": null
+    },
+    {
+     "addr": "0x004C15D0",
+     "from": null
+    },
+    {
+     "addr": "0x004D0850",
+     "from": null
     }
-  ],
-  "bases_source": "A: ctor `mov [reg+0Ch], offset <vtable>` (CEffModel sub_4CFC70 / CEffCylinder sub_4C3DD0)；PDB 全族 CTaskTpl 基 = 12；template_bases.json 记载 18 个 CEff* 共享该模板布局；二进制另有 58 处 `sub ecx,0Ch` 的 this 调整"
+   ]
+  }
+ ],
+ "base_size": 16,
+ "bases": [
+  {
+   "name": "CEffObj",
+   "offset": 0
+  },
+  {
+   "name": "CTaskTpl_tagEffTaskParam_CEffModel",
+   "offset": 12
+  }
+ ],
+ "bases_source": "A: ctor `mov [reg+0Ch], offset <vtable>` (CEffModel sub_4CFC70 / CEffCylinder sub_4C3DD0)；PDB 全族 CTaskTpl 基 = 12；template_bases.json 记载 18 个 CEff* 共享该模板布局；二进制另有 58 处 `sub ecx,0Ch` 的 this 调整"
 }
