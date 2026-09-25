@@ -1682,21 +1682,26 @@ def import_gbengine_types():
             "void __thiscall(gbVFileSystem *, void *, unsigned int, gbVFile *);",
     }
     import ida_nalt
+    import ida_funcs
     gb_sig_ok = 0
+    gb_sig_try = 0
     nimps = ida_nalt.get_import_module_qty()
     for i in range(nimps):
         mod = ida_nalt.get_import_module_name(i)
         if not mod or 'gbengine' not in mod.lower():
             continue
         def _set_import_type(ea, name, ordinal):
-            nonlocal gb_sig_ok
+            nonlocal gb_sig_ok, gb_sig_try
             if name and name in _GB_IMPORT_SIGS:
+                gb_sig_try += 1
+                # fresh IDB: import thunk may not be a function yet → SetType 静默失败
+                if ida_funcs.get_func(ea) is None:
+                    ida_funcs.add_func(ea)
                 if idc.SetType(ea, _GB_IMPORT_SIGS[name]):
                     gb_sig_ok += 1
             return True
         ida_nalt.enum_import_names(i, _set_import_type)
-    if gb_sig_ok:
-        print("[gb] gbengine import function types set: %d" % gb_sig_ok)
+    print("[gb] gbengine import function types set: %d/%d" % (gb_sig_ok, gb_sig_try))
 
 
 # ============================================================

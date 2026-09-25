@@ -18,11 +18,11 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 393,
-  "matched": 329,
+  "symbols": 398,
+  "matched": 334,
   "unmatched": 64,
   "match_L1": 51,
-  "partial": 239,
+  "partial": 244,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
@@ -410,11 +410,29 @@
   },
   {
    "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?sub_4D1300@CEffQuad@@UAEHXZ",
+   "name": "CEffQuad::sub_4D1300(void)",
+   "va": "0x004D1300",
+   "status": "partial",
+   "match_pct": 19.2,
+   "size": 1182
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?sub_4D17D0@CEffQuad@@UAEHXZ",
+   "name": "CEffQuad::sub_4D17D0(void)",
+   "va": "0x004D17D0",
+   "status": "partial",
+   "match_pct": 8.4,
+   "size": 1032
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
    "symbol": "?DestroyOneQuad@CEffQuad@@QAEXPBX@Z",
    "name": "CEffQuad::DestroyOneQuad(void const *)",
    "va": "0x004D1BE0",
    "status": "partial",
-   "match_pct": 10.0,
+   "match_pct": 8.9,
    "size": 180
   },
   {
@@ -423,7 +441,7 @@
    "name": "CEffQuad::SetQuad(int)",
    "va": "0x004D1CA0",
    "status": "partial",
-   "match_pct": 98.1,
+   "match_pct": 91.1,
    "size": 428
   },
   {
@@ -450,7 +468,7 @@
    "name": "CEffQuad::ProcessDestroyPass(int)",
    "va": "0x004D2E10",
    "status": "partial",
-   "match_pct": 75.0,
+   "match_pct": 70.2,
    "size": 188
   },
   {
@@ -983,6 +1001,15 @@
    "status": "partial",
    "match_pct": 71.6,
    "size": 81
+  },
+  {
+   "file": "pal3/src/Misc/ParabolaCalculator.cpp",
+   "symbol": "?sub_523B90@ParabolaCalculator@@UAEHXZ",
+   "name": "ParabolaCalculator::sub_523B90(void)",
+   "va": "0x00523B90",
+   "status": "partial",
+   "match_pct": 30.7,
+   "size": 283
   },
   {
    "file": "pal3/src/Misc/Parent_Data.cpp",
@@ -2570,6 +2597,15 @@
   },
   {
    "file": "pal3/src/UI/UIWnd.cpp",
+   "symbol": "?sub_439110@UIWnd@@UAEXXZ",
+   "name": "UIWnd::sub_439110(void)",
+   "va": "0x00439110",
+   "status": "partial",
+   "match_pct": 26.7,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/UI/UIWnd.cpp",
    "symbol": "?Destroy@UIWnd@@QAEXXZ",
    "name": "UIWnd::Destroy(void)",
    "va": "0x0043BBB0",
@@ -2603,6 +2639,15 @@
    "status": "partial",
    "match_pct": 86.5,
    "size": 52
+  },
+  {
+   "file": "pal3/src/UI/UIWnd.cpp",
+   "symbol": "?sub_44E980@UIWnd@@UAEXXZ",
+   "name": "UIWnd::sub_44E980(void)",
+   "va": "0x0044E980",
+   "status": "partial",
+   "match_pct": 12.4,
+   "size": 97
   },
   {
    "file": "pal3/src/UI/UIWnd.cpp",
@@ -2642,17 +2687,17 @@
   }
  ],
  "rebaseline": {
-  "reason": "vtable批次A(176条跨类methods填充)+批次S(5条SDK导入签名): S2 79->84, matched 304/362->329/393, L1 44->51, 总体扩大故显式重对",
-  "at": "2026-09-25T15:12:06",
+  "reason": "vtable批次B(52条IDB证据填充)+F73导入槽add_func修复: matched 329/393->334/398, L1 51 保持, 总体再扩大故显式重对",
+  "at": "2026-09-25T16:20:05",
   "prev_match_L1": 51,
   "cur_match_L1": 51,
   "prev_population": {
-   "matched": 329,
-   "symbols": 393
+   "matched": 334,
+   "symbols": 398
   },
   "cur_population": {
-   "matched": 329,
-   "symbols": 393
+   "matched": 334,
+   "symbols": 398
   }
  }
 }

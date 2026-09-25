@@ -3631,3 +3631,30 @@ vtable 映射机制从设计到落地完全正确 ✓
 ### 残余
 - 60 个 own_unresolved 槽（44 唯一地址）需 IDB 反编译命名（批次 B，MCP 路线已备）
 - 26 个失败类清单见 vtable_baseline.json；gbLightObj::Init 枚举注入为 codegen 小项
+
+## 2026-09-25 vtable 批次 B —— 门禁逼近闭合：resolved 835/841，未解析仅剩 6（88 过/4 败）
+### 批次 B：IDB 证据填充（52 条，MCP 路线）
+- 剩余缺口 44 唯一地址 → GUI ida.exe + start_mcp_server.py + tools/mcp_query.py 批量取证
+- PDB 修饰名即权威证据：`?CreateTask@CEffSParticle@@QAEPADD@Z` → CreateTask(char*) 返回 char*；
+  gbVisNode 三虚方法（RenderShadowVolume/Reset/Update）用 include/gbengine/gbVisNode.h 权威签名
+- dtor 族（??_G/_sdtor/scalar_deleting_dtor）统一命名 `_scalar_dtor_XXXX`（发射器跳过、占位兜底）
+- 同类名冲突 2 处按 `_XXXX` 消歧
+### 回退与修复（本轮引入，已自纠）
+- CEffShock 3 条回退：dtor 槽命名触发发射器 virtual ~Cls() 注入 × stage4 交互 ⇒ `this = v23` C2106，绿转红
+- gbLightObj GetCGEntry 回退：SDK 单源类（gbSceneGraph.h）注解加 methods ⇒ 生成调用无声明（C2039/C2673）
+  ⇒ **教训：SDK 单源类不进注解 methods 表，槽位证据走 SDK 头声明**
+### 发现的机制 bug（已修，待下轮 init 复现验证）
+- `_GB_IMPORT_SIGS` 的 SetType 在 fresh IDB 导入槽上静默失败（槽非函数）⇒ 补 `ida_funcs.add_func`
+  + 强制打印 `set/try` 计数
+- init 时序 flake：init 后（PDB 写入退化槽型）→ F73 判 `corrected=0`（空型/非函数槽被跳过）→
+  Hex-Rays 丢参；任何一次**后置 apply** 即修复（本态 = 第 3 次 apply 后 export）
+  ⇒ 下轮：init 的 4b fixpoint 应置于 fix_vtable_types 后再补一轮，或 F73 对空型槽直接按修饰名写全签名
+### 成效（vs 批次 A+S 后基线 79eb382fe）
+| 指标 | 前 | 后 |
+|---|---|---|
+| S2 | 84/205 | **85/206** |
+| L1 | 51（matched 329/393） | **51（matched 334/398）** |
+| 总错误 | 1895 | **1893** |
+| vtable 门禁 | 64 pass/28 fail（resolved 781） | **88 pass/4 fail（resolved 835/841，unresolved 6）** |
+### 残余 6 槽 / 4 类
+- CEffect · MainPropUI · filebuf（CRT 产物，建议 SKIP）· gbLightObj（SDK 单源，改走 SDK 头声明路线）
