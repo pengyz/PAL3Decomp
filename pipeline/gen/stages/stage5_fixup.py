@@ -92,6 +92,22 @@ def _apply_text_substitutions(code, ctx):
             _rebuilt.append(_asm_chunks[_i]); _rebuilt.append(_in_asm); _rebuilt.append(_rest)
         code = ''.join(_rebuilt)
 
+    # F83（2026-09-25）：寄存器伪名**赋值**⇒ 变量提升。ida_defs.h 把 _EAX 等定义为
+    # 字面量 0（只读约定），但 Hex-Rays 在寄存器被复用时渲染 `_EAX = expr` ⇒ 展开
+    # 成 `0 = expr`（C2440/C2106，实测 67 处/8 单元；ScriptVM 解封后 +39）。忠实重写 =
+    # 体被赋值的伪名全部换名 reg_XX 并首行注入 `unsigned long reg_XX = 0;`
+    # （初值 0 保持"赋值前读 0"的旧语义；纯读未赋值的伪名不动，仍走宏常量）。
+    # 指针值 RHS 的 cast 由后续 C2440 pass 补（reg_XX 是值局部 ⇒ DWORD 槽路线）。
+    _assigned_regs = set(re.findall(r'\b(_E[A-Z]{2})\s*=[^=]', code))
+    if _assigned_regs:
+        for _p in sorted(_assigned_regs):
+            code = re.sub(r'\b%s\b' % _p, 'reg_' + _p[1:], code)
+        _decls = ''.join('    unsigned long reg_%s = 0;\n' % _p[1:]
+                         for _p in sorted(_assigned_regs))
+        _i = code.find('{')
+        if _i != -1:
+            code = code[:_i + 1] + '\n' + _decls + code[_i + 1:]
+
     return code
 
 
