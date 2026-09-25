@@ -3785,3 +3785,22 @@ vtable 映射机制从设计到落地完全正确 ✓
 ### 伪名赋值面（F83 前普查）
 - 67 处/8 单元（ScriptVM 39 · RoleSystem 16 · UIScene 7）· 伪名种：
   _EAX 20/_EDI 25/_EBP 7/_EBX 6/_ESI 4/_ECX 3/_EDX 2
+
+## 2026-09-25 批次 X——A级签名修正 7 条 · L1 53→60 · matched +25
+### 流程
+- 重跑 sig_evidence 证据包（当前 163 条 C2660）：A 10 / B-SLOTMISMATCH 17 / C-NOADDR 34
+- 10 条 A 中 7 条证据方向一致落地（ResortNode +1、SetParam 2→3、GetRenderFlag +1、
+  UpdateAnim +1、InitStruct fastcall→thiscall、ExecuteOpcode +1、DestroyContent
+  fastcall→thiscall）；3 条跳过立账（C3DSpark::Render cdecl/sret 歧义、Logger::Write
+  cdecl 变参 ret-N 不适用、GetMouseRay sret 双载）
+### 一轮验证
+- C2660 **−10**（调用点清偿）· 总错误 1846→**1838** · S2 87 持平
+- **L1 53→60（+7）· matched 338/404→363/430** —— 签名修正使 Hex-Rays 渲染更准，
+  字节匹配面显著扩大（签名修正→渲染准→L1 涨的杠杆第三次得到验证）
+- 新失败 4 条 = 已知静态形式渲染族显形（SetAsCurrent ×3/GetOBBox ×1：
+  `Cls::M(obj,x)` 缺 cast 包裹，F73b 定型后渲染更准使其可见）+ Comp_DonateUI j_NPC
+  涟漪 2 条 ⇒ 裁决：正常暴露，接受，归静态形式/常设役
+### 事故记录
+- 批次 X 首轮 apply 秒败：MCP GUI IDA 未关锁住 IDB（流程：MCP 取证完毕必须关闭再跑循环）
+- C2664 普查（搭车）：头名 = 函数指针槽类型 `void(ulong,ulong)` ×24 = 残账 F3
+  desc 表重定型族；IsColOBB ×6 = F81 邻族

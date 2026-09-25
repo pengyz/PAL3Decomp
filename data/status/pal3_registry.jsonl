@@ -3,10 +3,21 @@
 {"addr": "0x0051CD90", "name": "CCBAIWindow::OnMessage(UIListBox * *)", "file": "pal3/src/Combat/CCBAIWindow.cpp", "status": "partial", "match_pct": 19.4, "size": 175}
 {"addr": "0x0051CE40", "name": "CCBAIWindow::Update(CCBUI * *)", "file": "pal3/src/Combat/CCBAIWindow.cpp", "status": "partial", "match_pct": 20.2, "size": 178}
 {"addr": "0x0051CF00", "name": "CCBAIWindow::ShowWindow(CCBControlWindow * *)", "file": "pal3/src/Combat/CCBAIWindow.cpp", "status": "partial", "match_pct": 18.9, "size": 175}
+{"addr": "0x004DB5C0", "name": "CCBAttackSequen::ResetTimers(void)", "file": "pal3/src/Combat/CCBAttackSequen.cpp", "status": "partial", "match_pct": 6.1, "size": 115}
+{"addr": "0x004DB640", "name": "CCBAttackSequen::CalcSpeed(int,int)", "file": "pal3/src/Combat/CCBAttackSequen.cpp", "status": "match_L1", "match_pct": 100.0, "size": 22}
+{"addr": "0x004DB660", "name": "CCBAttackSequen::GetCmdSlot(int)", "file": "pal3/src/Combat/CCBAttackSequen.cpp", "status": "partial", "match_pct": 37.8, "size": 45}
+{"addr": "0x004DB7A0", "name": "CCBAttackSequen::ProcessAllCmds(void)", "file": "pal3/src/Combat/CCBAttackSequen.cpp", "status": "partial", "match_pct": 75.2, "size": 266}
+{"addr": "0x004DB910", "name": "CCBAttackSequen::SetPause(char)", "file": "pal3/src/Combat/CCBAttackSequen.cpp", "status": "partial", "match_pct": 30.8, "size": 13}
+{"addr": "0x004DBA60", "name": "CCBAttackSequen::ProcessQueue(void)", "file": "pal3/src/Combat/CCBAttackSequen.cpp", "status": "partial", "match_pct": 31.4, "size": 185}
+{"addr": "0x004DBB20", "name": "CCBAttackSequen::CheckComplete(void)", "file": "pal3/src/Combat/CCBAttackSequen.cpp", "status": "partial", "match_pct": 65.9, "size": 91}
+{"addr": "0x004DBB80", "name": "CCBAttackSequen::CalcTurnOrder(void)", "file": "pal3/src/Combat/CCBAttackSequen.cpp", "status": "partial", "match_pct": 18.8, "size": 442}
+{"addr": "0x004DBD40", "name": "CCBAttackSequen::AdvanceStep(void)", "file": "pal3/src/Combat/CCBAttackSequen.cpp", "status": "partial", "match_pct": 14.2, "size": 274}
+{"addr": "0x004DBE60", "name": "CCBAttackSequen::InitCombatSlot(int)", "file": "pal3/src/Combat/CCBAttackSequen.cpp", "status": "partial", "match_pct": 46.1, "size": 167}
+{"addr": "0x005270C0", "name": "CCBAttackSequen::FindSequenceSlot(int)", "file": "pal3/src/Combat/CCBAttackSequen.cpp", "status": "partial", "match_pct": 74.8, "size": 103}
 {"addr": "0x004DC240", "name": "CCBControl::GetActiveAttackCount(void)", "file": "pal3/src/Combat/CCBControl.cpp", "status": "partial", "match_pct": 0.0, "size": 13}
 {"addr": "0x004DC560", "name": "CCBControl::GetState(void)", "file": "pal3/src/Combat/CCBControl.cpp", "status": "partial", "match_pct": 6.8, "size": 74}
 {"addr": "0x004DC5B0", "name": "CCBControl::GetControl(void)", "file": "pal3/src/Combat/CCBControl.cpp", "status": "match_L1", "match_pct": 100.0, "size": 4}
-{"addr": "0x004DC5C0", "name": "CCBControl::SetParam(int,int)", "file": "pal3/src/Combat/CCBControl.cpp", "status": "partial", "match_pct": 57.6, "size": 59}
+{"addr": "0x004DC5C0", "name": "CCBControl::SetParam(int,int,int)", "file": "pal3/src/Combat/CCBControl.cpp", "status": "partial", "match_pct": 57.6, "size": 59}
 {"addr": "0x0043D920", "name": "CCBProtectWindow::Destroy_D920(void)", "file": "pal3/src/Combat/CCBProtectWindow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 25}
 {"addr": "0x00449BE0", "name": "CCBProtectWindow::ValidateSlot(uint)", "file": "pal3/src/Combat/CCBProtectWindow.cpp", "status": "partial", "match_pct": 15.9, "size": 63}
 {"addr": "0x0044A820", "name": "CCBProtectWindow::GetUIElements(float,int)", "file": "pal3/src/Combat/CCBProtectWindow.cpp", "status": "partial", "match_pct": 98.6, "size": 74}
@@ -64,13 +75,33 @@
 {"addr": "0x004014E0", "name": "AStarPathFinder::IsInBounds(int,int)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "match_L1", "match_pct": 100.0, "size": 5}
 {"addr": "0x00401500", "name": "AStarPathFinder::FindInOpen(int)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 97.1, "size": 34}
 {"addr": "0x00401530", "name": "AStarPathFinder::FindInClosed(int)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 97.1, "size": 34}
-{"addr": "0x00401750", "name": "AStarPathFinder::ResortNode(void)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 15.0, "size": 40}
+{"addr": "0x00401750", "name": "AStarPathFinder::ResortNode(int)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 27.5, "size": 40}
 {"addr": "0x004017A0", "name": "AStarPathFinder::Reset(void)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "match_L1", "match_pct": 100.0, "size": 36}
 {"addr": "0x00533B50", "name": "ArcPastScene::LoadCityData(void)", "file": "pal3/src/Misc/ArcPastScene.cpp", "status": "partial", "match_pct": 19.3, "size": 109}
 {"addr": "0x00534F50", "name": "ArcPastScene::ResetCityName(void)", "file": "pal3/src/Misc/ArcPastScene.cpp", "status": "partial", "match_pct": 5.4, "size": 93}
 {"addr": "0x00534FB0", "name": "ArcPastScene::FreeChildList(void)", "file": "pal3/src/Misc/ArcPastScene.cpp", "status": "partial", "match_pct": 9.9, "size": 81}
 {"addr": "0x004236D0", "name": "BINK::Reset(void)", "file": "pal3/src/Misc/BINK.cpp", "status": "partial", "match_pct": 3.3, "size": 396}
 {"addr": "0x004243E0", "name": "BINK::Destroy(void)", "file": "pal3/src/Misc/BINK.cpp", "status": "partial", "match_pct": 19.5, "size": 389}
+{"addr": "0x00439740", "name": "CCBFiveNimbusWindow::CreateScriptAndCamera(int,int)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "partial", "match_pct": 12.3, "size": 195}
+{"addr": "0x0043A070", "name": "CCBFiveNimbusWindow::SetFloatParam(float)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "partial", "match_pct": 18.8, "size": 32}
+{"addr": "0x0043FD20", "name": "CCBFiveNimbusWindow::CalcHitAngle(int)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "partial", "match_pct": 19.4, "size": 103}
+{"addr": "0x004438F0", "name": "CCBFiveNimbusWindow::Destroy_38f0(void)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 85}
+{"addr": "0x00443950", "name": "CCBFiveNimbusWindow::Render(void)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 24}
+{"addr": "0x00443AF0", "name": "CCBFiveNimbusWindow::UpdateDisplay(void)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "partial", "match_pct": 10.2, "size": 166}
+{"addr": "0x00443BF0", "name": "CCBFiveNimbusWindow::IsAboveThreshold(float)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "partial", "match_pct": 24.4, "size": 41}
+{"addr": "0x00443C20", "name": "CCBFiveNimbusWindow::IsHitRight(float)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "partial", "match_pct": 1.4, "size": 69}
+{"addr": "0x00443C70", "name": "CCBFiveNimbusWindow::IsHitBottom(float)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "partial", "match_pct": 24.4, "size": 41}
+{"addr": "0x00519B40", "name": "CCBFiveNimbusWindow::GetNimbusColor(int)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "partial", "match_pct": 13.3, "size": 30}
+{"addr": "0x0044E5C0", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x00450E90", "name": "CCBFiveNimbusWindow::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x00519F50", "name": "CCBFiveNimbusWindow::Destroy(void)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "partial", "match_pct": 7.6, "size": 132}
+{"addr": "0x00519FE0", "name": "CCBFiveNimbusWindow::HandleInput(int,uint,int)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "partial", "match_pct": 26.0, "size": 173}
+{"addr": "0x0051C9B0", "name": "CCBFiveNimbusWindow::OnMessage(uint,uint,uint)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 64}
+{"addr": "0x0052E2F0", "name": "CCBFiveNimbusWindow::UpdateAnimation(int)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "partial", "match_pct": 9.3, "size": 517}
+{"addr": "0x0052F300", "name": "CCBFiveNimbusWindow::GetValue(int)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 13}
+{"addr": "0x0052FBB0", "name": "CCBFiveNimbusWindow::GetSlotA(int)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 20}
+{"addr": "0x0052FC30", "name": "CCBFiveNimbusWindow::GetSlotB(int)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 20}
+{"addr": "0x00530BC0", "name": "CCBFiveNimbusWindow::ApplySelection(int)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 26}
 {"addr": "0x00443200", "name": "CCBPanelSlot::Render(void)", "file": "pal3/src/Misc/CCBPanelSlot.cpp", "status": "partial", "match_pct": 21.2, "size": 378}
 {"addr": "0x00445E70", "name": "CCBPanelSlot::ShowWindow(int)", "file": "pal3/src/Misc/CCBPanelSlot.cpp", "status": "partial", "match_pct": 86.5, "size": 37}
 {"addr": "0x004C29A0", "name": "CEffAudio::UpdateInternal(float)", "file": "pal3/src/Misc/CEffAudio.cpp", "status": "partial", "match_pct": 5.7, "size": 508}
@@ -92,7 +123,7 @@
 {"addr": "0x00534DD0", "name": "ExternalStatistics::CheckKeyPress(int)", "file": "pal3/src/Misc/ExternalStatistics.cpp", "status": "partial", "match_pct": 38.6, "size": 83}
 {"addr": "0x00534E30", "name": "ExternalStatistics::Reset(int)", "file": "pal3/src/Misc/ExternalStatistics.cpp", "status": "partial", "match_pct": 18.4, "size": 38}
 {"addr": "0x00534E60", "name": "ExternalStatistics::UpdateFromRole(int,int)", "file": "pal3/src/Misc/ExternalStatistics.cpp", "status": "partial", "match_pct": 33.6, "size": 122}
-{"addr": "0x0044DA30", "name": "JusticeBookUI::UpdateFadeAnim(float)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 10.8, "size": 139}
+{"addr": "0x0044DA30", "name": "JusticeBookUI::UpdateFadeAnim(float)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 17.3, "size": 139}
 {"addr": "0x005282E0", "name": "JusticeBookUI::ctor(void)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 13.7, "size": 474}
 {"addr": "0x005284E0", "name": "JusticeBookUI::JusticeBookUI(void)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 22.9, "size": 367}
 {"addr": "0x0044E5C0", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
@@ -102,8 +133,6 @@
 {"addr": "0x00528F50", "name": "JusticeBookUI::ProcessInput(int,int)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 36.5, "size": 449}
 {"addr": "0x00529120", "name": "JusticeBookUI::OnMessage(int,char *,int)", "file": "pal3/src/Misc/JusticeBookUI.cpp", "status": "partial", "match_pct": 23.7, "size": 688}
 {"addr": "0x004B8200", "name": "Math::RandomLerp(float,float)", "file": "pal3/src/Misc/Math.cpp", "status": "partial", "match_pct": 47.0, "size": 66}
-{"addr": "0x0052FC60", "name": "MatrixStack::BeginScene(void)", "file": "pal3/src/Misc/MatrixStack.cpp", "status": "partial", "match_pct": 22.9, "size": 459}
-{"addr": "0x00530350", "name": "MatrixStack::RenderScenePass(void)", "file": "pal3/src/Misc/MatrixStack.cpp", "status": "partial", "match_pct": 78.6, "size": 98}
 {"addr": "0x0043A770", "name": "NameSys::GetSys(void)", "file": "pal3/src/Misc/NameSys.cpp", "status": "partial", "match_pct": 11.1, "size": 126}
 {"addr": "0x00401F50", "name": "OpenBaseFile::OpenBaseFile(void)", "file": "pal3/src/Misc/OpenBaseFile.cpp", "status": "match_L1", "match_pct": 100.0, "size": 25}
 {"addr": "0x00401F90", "name": "OpenNULLFile::OpenNULLFile(void)", "file": "pal3/src/Misc/OpenNULLFile.cpp", "status": "partial", "match_pct": 45.5, "size": 11}
@@ -183,13 +212,6 @@
 {"addr": "0x004B4DC0", "name": "UIParticle::Apply(int)", "file": "pal3/src/Misc/UIParticle.cpp", "status": "partial", "match_pct": 23.4, "size": 491}
 {"addr": "0x004B5D20", "name": "UIParticle::RenderFrame(int,int,int,int)", "file": "pal3/src/Misc/UIParticle.cpp", "status": "partial", "match_pct": 9.5, "size": 444}
 {"addr": "0x004B60F0", "name": "UIParticle::UpdateByMode(char *,int,TextureLibDataBase *,int)", "file": "pal3/src/Misc/UIParticle.cpp", "status": "partial", "match_pct": 20.3, "size": 507}
-{"addr": "0x00439030", "name": "UIProgressBar::ctor(void)", "file": "pal3/src/Misc/UIProgressBar.cpp", "status": "partial", "match_pct": 9.6, "size": 209}
-{"addr": "0x00439410", "name": "UIProgressBar::Render(void)", "file": "pal3/src/Misc/UIProgressBar.cpp", "status": "partial", "match_pct": 20.3, "size": 814}
-{"addr": "0x00439810", "name": "UIProgressBar::Destroy(void)", "file": "pal3/src/Misc/UIProgressBar.cpp", "status": "partial", "match_pct": 72.6, "size": 62}
-{"addr": "0x0043FDC0", "name": "UIProgressBar::GetWidth(int)", "file": "pal3/src/Misc/UIProgressBar.cpp", "status": "match_L1", "match_pct": 100.0, "size": 13}
-{"addr": "0x0043FDD0", "name": "UIProgressBar::GetHeight(int)", "file": "pal3/src/Misc/UIProgressBar.cpp", "status": "match_L1", "match_pct": 100.0, "size": 13}
-{"addr": "0x0043FDE0", "name": "UIProgressBar::GetPosition(int)", "file": "pal3/src/Misc/UIProgressBar.cpp", "status": "match_L1", "match_pct": 100.0, "size": 13}
-{"addr": "0x0043FDF0", "name": "UIProgressBar::FindChildByName(float)", "file": "pal3/src/Misc/UIProgressBar.cpp", "status": "partial", "match_pct": 25.2, "size": 159}
 {"addr": "0x0043DAB0", "name": "UIPushButton::RenderQuadSlice(int *,int)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 12.0, "size": 400}
 {"addr": "0x00440740", "name": "UIPushButton::UIPushButton(void)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "partial", "match_pct": 37.0, "size": 81}
 {"addr": "0x0044E5C0", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UIPushButton.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
@@ -229,7 +251,7 @@
 {"addr": "0x00451D80", "name": "UITitle_BBTY::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x0043F950", "name": "UIButton::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
 {"addr": "0x00451DA0", "name": "UITitle_BBTY::ctor(void)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "partial", "match_pct": 10.5, "size": 172}
-{"addr": "0x004520A0", "name": "UITitle_BBTY::UpdateFrame(double,int,int)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "partial", "match_pct": 23.7, "size": 861}
+{"addr": "0x004520A0", "name": "UITitle_BBTY::UpdateFrame(double,int,int)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "partial", "match_pct": 21.7, "size": 861}
 {"addr": "0x00452420", "name": "UITitle_BBTY::OnMessage(int,int,int)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "partial", "match_pct": 27.3, "size": 139}
 {"addr": "0x00529BE0", "name": "UITitle_QCYM::HandleDeviceLostC(void)", "file": "pal3/src/Misc/UITitle_QCYM.cpp", "status": "partial", "match_pct": 32.1, "size": 159}
 {"addr": "0x0053B720", "name": "VideoPlayer::SetRegion(int,int)", "file": "pal3/src/Misc/VideoPlayer.cpp", "status": "partial", "match_pct": 8.6, "size": 336}
