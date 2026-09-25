@@ -3827,3 +3827,38 @@ vtable 映射机制从设计到落地完全正确 ✓
 ### 一轮验证
 - **C2664 198→157（-41）** · 总错误 1838→**1798** · S2 87 持平 · L1 60 持平 · 零新失败
 - +1 C2440（PAL3.cpp 红单元涟漪）接受
+
+## 2026-09-25 工具落地：fdiff 检视器 + lvar 注解层（方向 2 基建）
+### 背景（用户定调）
+- 双方向关系：错误清偿给红单元开门（编译不过无产物），字节对照给开门单元验收
+  （不报错≠正确）⇒ 类维度字节对照闭环：选类→编译对照→diff 检视→修注解→复验
+### 工具 1：tools/fdiff.py（函数级字节 diff 检视器）
+- obj 产物（compare_pal3 稳定哈希名）经 gbengine_compare.parse_coff_obj 提取
+  （code 节+EXTERNAL+function 过滤，与 n_diff 计数同源）× 二进制 .text 切片
+- capstone 双侧反汇编并排 + 差异行标注 + reloc `[r]` 标注 + detail 歧义列出
+- 试点首杀：AStarPathFinder FindInOpen 1 字节差异 = 原始 for-update 写
+  `i = OPEN->next`（经 ecx），Hex-Rays 规范化成 `i = i->next`（经 eax）——
+  语义恒等的表达式形态差，注解不可修（校准了预期：L1 尾差需要表达式形态恢复）
+### 工具 2：lvar 注解层（用户点名的"变量类型和命名"基建）
+- schema：data/annotations/lvars.json — 函数 VA → [{stkoff, name, type}]
+  （栈变量按 stkoff 键；寄存器 lvar 的 vdloc API 无 reg 访问器，v1 不支持，记台账）
+- export 钩子：渲染前按注解设置 cfunc.lvars 的 name/set_lvar_type；
+  注解应用置于 restore_user_lvar_settings **之后**（注解优先级最高）
+- 机制验证：PushOpen pNode→pProbeNode 探针经全链 export 后渲染生效 ✓（探针已还原）
+### 事故两起（均已修复并记台账）
+1. lvars.json 首版含 JSON 不支持的 `+` 拼接 ⇒ 加载静默失败（fail-soft 路径吞错）
+   ⇒ 教训：新注解文件落地必须先过 json.load 再进管线
+2. 钩子 v1 的 `vdloc_t.reg()` 触发异常未包裹 ⇒ **FindInOpen 整函数从导出消失**
+   （重演"循环必须断言导出计数"的旧训）⇒ 修复：per-spec 异常隔离 + regidx 探明
+### 子 agent 对抗复核（1.47M tokens）
+- fdiff 初版判 **FAIL**（符号子串+最长匹配在 12 对同单元前缀碰撞上静默选错函数、
+  字节提取与 n_diff 不同源）⇒ 重写：parse_coff_obj 复用 + detail 行精确 mangled
+  符号键查 + 歧义列出 + 边界检查；全部复核项修复并通过清单核对
+- export 钩子 PASS-WITH-RISKS ⇒ 修复：注解块移到 restore 之后（否则 IDB 交互态
+  按索引覆盖 name 注解）、lvars.json 顶层非 dict 校验（防全量导出清零）、
+  类型解析失败/set 拒绝日志、每函数无条件 applied 计数
+- lvars.json PASS（无校验冲突；check_annotations 纳入为后续项）
+### 账面
+- S2 87 / L1 60 / 错误 1798 持平（本轮为基建轮，无错误清偿目标）
+- L1 试点校准结论：n_diff=1 差异 = 表达式形态族（渲染层），字节完美匹配的
+  尾差需要源级表达式形态恢复，非注解可尽修
