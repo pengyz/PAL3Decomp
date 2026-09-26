@@ -4053,3 +4053,22 @@ B. 同族排查：所有"多态基 + 非多态发射"的 MI 类（GlowObj/PSW �
 ### 台账
 - Role 链三基全部多态化完成：Object（56A9BC 5槽）✓ PSW（56A9B0 3槽）✓ GlowObj（56A9A4 3槽）✓
 - 下批：CEffObj 链（CEffQuad/Shock 的 +4）同法考古（CEffObj ctor 的 vtable 地址）
+
+## 2026-09-25 CEff +4 机制定谳：CEffObj 非多态发射 ⇒ 派生 vptr 前插
+### 布局实测（CEffQuad 成员真实偏移）
+- [0..4] = vptr（CEffQuad 自己的，因 CEffObj 非多态无法合并）
+- [4..16] = CEffObj 子对象（m_pEM@8, m_bIdle@12 —— 注解 @4/@8 整体 +4）
+- [16..52] = CTaskTpl（36B）· [52..] = CEffQuad 自有成员（m_bActive@0x34 ✓ 探针实测）
+### 原始布局（二进制真值）
+- [0..4] = vptr（**CEffObj 的**，合并进基链）· [4..16] = CEffObj · [16..52] = CTaskTpl
+- [52..] = 成员 —— m_bActive@0x30 ✓ 注解与二进制一致
+### 差异根源
+- 发射的 CEffObj.h 无虚声明 ⇒ CEffObj 非多态 ⇒ CEffQuad 的虚函数（sub_4D1300/sub_4D17D0）
+  成为"新增虚函数" ⇒ MSVC 插派生 vptr 在偏移 0 ⇒ 全员 +4
+- 最小复现：无 virtual → 0x30 ✓；加 2 个 virtual → 0x34 ✓ 双向验证
+### 修复方案（下批）
+- CEffObj.json 补 vtable 注解：CEffObj 层虚函数 = CEff 家族各表（CEffQuad 0x56FA30
+  12 槽等）的公共槽位（非覆写部分）⇒ CEffObj 多态化 ⇒ 派生 vptr 并入 CEffObj 的
+  vptr 位（偏移 0）⇒ +4 消失 ⇒ 家族布局全部回正
+- 方法论：布局探针（成员真实偏移逐个测量）+ 基类子对象落位测量
+  （`&((D*)0)->base_member`）= MI 布局问题的标准定位法（本轮两次实战验证）
