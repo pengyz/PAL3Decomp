@@ -29,5 +29,41 @@
       "source": "annotation"
     }
   },
-  "methods": {}
+  "methods": {
+    "0x41b640": {
+      "name": "UpdateBoundingBox",
+      "signature": "virtual void __thiscall(gbAABBox *pBox)",
+      "source": "vtable_owner_fix(Glow 层虚函数, Role ctor [esi+40h] 存储证据)"
+    },
+    "0x41b6a0": {
+      "name": "GetGfxManager",
+      "signature": "virtual gbGfxManager *__thiscall()",
+      "source": "vtable_owner_fix(Glow 层虚函数)"
+    },
+    "0x41be30": {
+      "name": "_sdtor_22",
+      "signature": "virtual ScriptObj *__thiscall(char a2)",
+      "source": "vtable_owner_fix(Glow 层虚函数)"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x56A9A4",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x41b640",
+          "from": null
+        },
+        {
+          "addr": "0x41b6a0",
+          "from": null
+        },
+        {
+          "addr": "0x41be30",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

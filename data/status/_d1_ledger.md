@@ -4039,3 +4039,17 @@ B. 同族排查：所有"多态基 + 非多态发射"的 MI 类（GlowObj/PSW �
 ### 命名维度备注
 - `_scalar_dtor_1bd0` 类 IDB 名 = 函数身份名（可接受）；语义精化（如 dtor 语义名）
   属命名维度持续工作
+
+## 2026-09-25 GlowObj 多态化落地——offset0 冲突仲裁裁决 + 零回归
+### 仲裁（ctor 直接证据 vs usage-evidence 的适用范围）
+- Role ctor：`mov dword ptr [esi+40h], offset off_56A9A4` —— Glow 子对象位（+0x40）
+  的 vtable 存储，指令级直接证据 ✓
+- usage-evidence 的反证扫描位移为 8/0x28（错位），未覆盖 0x40 ⇒ 反证不成立
+- ⇒ Glow+0 = vptr（56A9A4），Glow 层虚函数 = UpdateBoundingBox/GetGfxManager/_sdtor_22
+### 落地
+- GlowObj.json：vtables（56A9A4 3槽）+ 3 条方法（签名与 Role 覆写逐字一致，C2555 防线）
+### 验证
+- S2 88/207 · 零回归 · PalScriptWaitObj 保持翻绿 · L1 61 · matched 364/431 · 错误 1798
+### 台账
+- Role 链三基全部多态化完成：Object（56A9BC 5槽）✓ PSW（56A9B0 3槽）✓ GlowObj（56A9A4 3槽）✓
+- 下批：CEffObj 链（CEffQuad/Shock 的 +4）同法考古（CEffObj ctor 的 vtable 地址）

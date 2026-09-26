@@ -18,9 +18,9 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 434,
+  "symbols": 431,
   "matched": 364,
-  "unmatched": 70,
+  "unmatched": 67,
   "match_L1": 61,
   "partial": 261,
   "oob": 0,
@@ -108,7 +108,7 @@
    "name": "CCBAttackSequen::ProcessAllCmds(void)",
    "va": "0x004DB7A0",
    "status": "partial",
-   "match_pct": 75.2,
+   "match_pct": 75.9,
    "size": 266
   },
   {
@@ -144,7 +144,7 @@
    "name": "CCBAttackSequen::CalcTurnOrder(void)",
    "va": "0x004DBB80",
    "status": "partial",
-   "match_pct": 18.8,
+   "match_pct": 19.0,
    "size": 442
   },
   {
@@ -162,7 +162,7 @@
    "name": "CCBAttackSequen::InitCombatSlot(int)",
    "va": "0x004DBE60",
    "status": "partial",
-   "match_pct": 46.1,
+   "match_pct": 46.7,
    "size": 167
   },
   {
@@ -1256,7 +1256,7 @@
   },
   {
    "file": "pal3/src/Misc/Object.cpp",
-   "symbol": "?Update@Object@@UAEHH@Z",
+   "symbol": "?Update@Object@@UAEXXZ",
    "name": "Object::Update(void)",
    "va": "0x004AF760",
    "status": "partial",
@@ -2928,5 +2928,19 @@
    "match_pct": 10.2,
    "size": 166
   }
- ]
+ ],
+ "rebaseline": {
+  "reason": "GlowObj 多态化(56A9A4 3槽 vtable 注解, Role ctor [esi+40h] 直接证据): 总体 364/431->364/431 微调, L1 保持 60",
+  "at": "2026-09-26T10:50:59",
+  "prev_match_L1": 61,
+  "cur_match_L1": 61,
+  "prev_population": {
+   "matched": 364,
+   "symbols": 431
+  },
+  "cur_population": {
+   "matched": 364,
+   "symbols": 431
+  }
+ }
 }
