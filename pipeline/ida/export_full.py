@@ -438,7 +438,10 @@ def main():
                                 if 'stkoff' in _spec and _lv.location.is_stkoff():
                                     _hit = (_lv.location.stkoff() == int(_spec['stkoff']))
                                 elif 'reg' in _spec and _lv.location.is_reg():
-                                    _hit = (str(_lv.location.regidx()) == str(_spec['reg']))
+                                    # vdloc_t 无 regidx()（2026-09-25 事故遗留死代码，
+                                    # 2026-09-26 FPU 探针实证）——真实 API 是 reg1()
+                                    # （mreg_t；x87 st0-st7 = 160..175，st7=172）。
+                                    _hit = (str(_lv.location.reg1()) == str(_spec['reg']))
                                 if _hit:
                                     if _spec.get('name'):
                                         _lv.name = _spec['name']
@@ -516,7 +519,8 @@ def main():
                             if loc.is_stkoff():
                                 entry["stack_offset"] = loc.stkoff()
                             elif loc.is_reg():
-                                entry["register"] = loc.regidx()
+                                # vdloc_t 真实 API 是 reg1()（见上 lvar 应用处注释）
+                                entry["register"] = loc.reg1()
                             lvar_info.append(entry)
                         except:
                             # Skip individual problematic variables

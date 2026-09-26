@@ -1160,6 +1160,199 @@ def _fix_line_plain_var_assign(line, vt, ctx):
     return line
 
 
+_SDK_MEMBER_INDEX = None
+
+def _sdk_member_type(cls, member):
+    """SDK（gbengine）类的成员声明类型，来自 include/gbengine/*.h（SoT）。
+
+    ida_structs 不含 SDK 类（DLL 导入侧），成员类型只能从头文件本身取。
+    按行解析 `float ScaleX; // +0x30` 形态的成员声明。不可知返回 None。
+    """
+    global _SDK_MEMBER_INDEX
+    if _SDK_MEMBER_INDEX is None:
+        import os as _os
+        idx = {}
+        root = _os.path.dirname(_os.path.dirname(_os.path.dirname(
+            _os.path.dirname(_os.path.abspath(__file__)))))
+        gdir = _os.path.join(root, 'include', 'gbengine')
+        if _os.path.isdir(gdir):
+            for fn in sorted(_os.listdir(gdir)):
+                if not fn.endswith('.h'):
+                    continue
+                cur = None
+                for ln in open(_os.path.join(gdir, fn), encoding='utf-8',
+                               errors='replace'):
+                    cm = re.match(r'(?:class|struct)\s+(?:GBAPI\s+)?(\w+)', ln)
+                    if cm and '{' in ln:
+                        cur = cm.group(1)
+                        continue
+                    dm = re.match(r'\s+(?:GBAPI\s+|static\s+|mutable\s+)*'
+                                  r'([A-Za-z_][\w:]*(?:\s+)*\**)\s+(\w+)\s*(?:\[[^\]]*\])?\s*;',
+                                  ln)
+                    if dm and cur and not ln.strip().startswith(('virtual', '//')):
+                        t = dm.group(1).strip()
+                        if t and t not in ('return', 'class', 'struct'):
+                            idx.setdefault(cur, {})[dm.group(2)] = t
+        _SDK_MEMBER_INDEX = idx
+    return _SDK_MEMBER_INDEX.get(cls, {}).get(member)
+
+
+def _member_type_path(path, vt, ctx):
+    """沿 `base->m1.m2` 路径解析最终成员的声明类型文本；不可知返回 None。"""
+    parts = re.split(r'(?:->|\.)', path.strip())
+    parts = [re.sub(r'\s*\[[^\]]*\]', '', p).strip() for p in parts]
+    base = parts[0]
+    if base == 'this':
+        cls = ctx.cls_name
+    else:
+        t = vt.get(base)
+        if not t or not t.get('base'):
+            return None
+        cls = t['base']
+    mt = None
+    for member in parts[1:]:
+        if not member:
+            return None
+        # ida_structs 优先；SDK 类（DLL 导入侧不在 IDB）落 gbengine 头索引
+        mt = _member_type(cls, member)
+        if mt is None:
+            mt = _sdk_member_type(cls, member)
+        if mt is None:
+            return None
+        mt = re.sub(r'\s*\[[^\]]*\]\s*$', '', str(mt).strip())
+        cls = mt
+    return mt
+
+
+def _inline_single_use_fpu_vars(code, ctx):
+    """单用途 FPU 伪变量内联（FPU 批次，2026-09-26）。
+
+    Hex-Rays 对 x87 寄存器变量恒物化成具名局部（`float v2; // st7`），但原始
+    编译器让值全程驻留 x87 寄存器、fstp 直落最终目标——物化局部会让 VC6 多出
+    栈槽（帧尺寸 +4/+8 ⇒ 全帧偏移错位）和多余的 fld/fstp 对。当变量恰好
+    单定义、单使用、且 def→use 区间无线性外分支时，把定义表达式代入使用点并
+    删除声明/定义行——VC6 随后把表达式直接算进 fstp，与原始同形。
+    """
+    lines = code.split('\n')
+    # 收集 FPU 伪变量声明行: `  float v2; // st7`
+    decl_re = re.compile(r'^(\s*)(float|double)\s+(v[A-Za-z0-9_]+);\s*//\s*st(\d+)\s*$')
+    changed = True
+    while changed:
+        changed = False
+        # 函数边界守卫（列 0 非空行 = 新顶层块起点）：var 的 decl/def/use 必须同块。
+        # fid 必须在每轮 while 内重算——删除行后 lines 位移，陈旧 fid 会让后续
+        # 匹配跨函数错配（UICamera C2065 事故）。
+        # 标签行（`LABEL_33:`）在函数【内部】但位于列 0，会把一个函数劈成多个块
+        # ⇒ def/use 计数漏数误删（StateUI C2065 事故）——fid 增量必须跳过标签行。
+        fid = []
+        _c = 0
+        for _ln in lines:
+            if _ln and not _ln[0].isspace() and _ln.strip() \
+                    and not re.match(r'^[A-Za-z_][A-Za-z0-9_]*:\s*$', _ln):
+                _c += 1
+            fid.append(_c)
+        for i, ln in enumerate(lines):
+            dm = decl_re.match(ln)
+            if not dm:
+                continue
+            var = dm.group(3)
+            blk = fid[i]
+            # 唯一定义行
+            def_re = re.compile(r'^(\s*)%s\s*=(?!=)\s*(.+?);\s*$' % re.escape(var))
+            defs = [(j, def_re.match(l2)) for j, l2 in enumerate(lines)
+                    if fid[j] == blk and def_re.match(l2)]
+            defs = [(j, mm) for j, mm in defs if mm]
+            if len(defs) != 1:
+                continue
+            j, dmm = defs[0]
+            if j < i:
+                continue
+            # 使用点按【出现次数】计数（`v12 * v12` 一行两次使用曾因按行计数
+            # 被误判单用，count=1 替换后第二个 v12 成孤儿 ⇒ C2065），恰一次才内联
+            use_re = re.compile(r'\b%s\b' % re.escape(var))
+            uses = [(k, len(use_re.findall(l2))) for k, l2 in enumerate(lines)
+                    if k not in (i, j) and fid[k] == blk and use_re.search(l2)]
+            if sum(c for _, c in uses) != 1:
+                continue
+            k = uses[0][0]
+            if k < j:
+                continue
+            # def→use 区间必须线性（无分支/标签），且期间不得再引用 var
+            region = lines[j+1:k]
+            if any(re.match(r'^\s*(if|for|while|switch|do|goto)\b|:\s*$', r2) for r2 in region):
+                continue
+            if any(use_re.search(r2) for r2 in region):
+                continue
+            expr = dmm.group(2).strip()
+            # 纯度守卫：表达式含函数调用（可能有副作用）时不允许跨语句位置搬运
+            # （def 在分支外、use 在分支内的内联会把调用搬进/搬出执行路径）
+            if re.search(r'\w+\s*\(', expr):
+                continue
+            lines[k] = use_re.sub('(%s)' % expr, lines[k], count=1)
+            del lines[j]
+            lines.pop(i)
+            changed = True
+            break
+    return '\n'.join(lines)
+
+
+def _fix_float_literal_form(code, ctx):
+    """浮点字面量形态（FPU 批次组件 3.5，2026-09-26）。
+
+    Hex-Rays 把 x87 中间值默认定型 double，赋给 float 目标时表达式仍渲染成
+    double 域（`fv = 32.0 / (double)x;`）⇒ VC6 发 fdivr qword + qword 常量
+    编码，而原始是 float 域（fdivr dword + dword 常量——原始 x87 内存操作
+    数尺寸即本规则的二进制证据）。当赋值目标为 float 局部变量时，把 RHS 的
+    无后缀浮点字面量改写为最近 float 的 f 后缀字面量、`(double)` cast 改
+    `(float)`——改写后 VC6 重新发出 float 编码，且字面量位型与原始一致。
+    范围：单行赋值，目标是 **float 局部变量**（vt 表）或 **float 类型成员**
+    （`path->member` / `path.member`，经 _member_type 沿路径解析成员类型）。
+    """
+    import struct as _struct
+    vt = _build_var_types(code, ctx)
+    out = []
+    _NUM = re.compile(r'(?<![\w.])(\d+\.\d+(?:[eE][+-]?\d+)?)(?![fF\w])')
+
+    def _lhs_is_float(lhs_text):
+        m2 = re.match(r'^([A-Za-z_]\w*)$', lhs_text)
+        if m2:
+            t = vt.get(m2.group(1))
+            return bool(t) and t.get('base') == 'float'
+        # 成员路径 `a->b.c` / `this->m_x`——最终成员声明类型为 float 即改写
+        # （类型证据：ida_structs / gbengine SDK 头）；_path_is_pointer 的
+        # None（路径不可知）不拦 SDK 类，直接由 _member_type_path 裁决。
+        m2 = re.match(r'^([A-Za-z_][\w>.\-\[\]]*(?:->|\.)([A-Za-z_]\w*))\s*$', lhs_text)
+        if m2:
+            mt = _member_type_path(m2.group(1), vt, ctx)
+            return bool(mt) and mt.strip() == 'float'
+        return False
+
+    for line in code.split('\n'):
+        # 注意：不要在 match 里消费 RHS（如 `([^=].*)$`）——m.end() 之后的
+        # 文本才是 RHS，吞掉会导致空 RHS 无字面量可改。
+        m = re.match(r'^(\s*)(.+?)\s*=(?!=)\s*', line)
+        if m:
+            if _lhs_is_float(m.group(2).strip()):
+                rhs_start = m.end()
+                rhs = line[rhs_start:]
+
+                def _to_f32(mo):
+                    try:
+                        val = float(mo.group(1))
+                        f32 = _struct.unpack('f', _struct.pack('f', val))[0]
+                        return repr(f32) + 'f'
+                    except Exception:
+                        return mo.group(0)
+
+                new_rhs = _NUM.sub(_to_f32, rhs)
+                if '(double)' in new_rhs:
+                    new_rhs = new_rhs.replace('(double)', '(float)')
+                if new_rhs != rhs:
+                    line = line[:rhs_start] + new_rhs
+        out.append(line)
+    return '\n'.join(out)
+
+
 def _fix_c2440_casts(code, ctx):
     """Insert explicit casts where Hex-Rays relies on implicit pointer
     conversions MSVC6 rejects (C2440).
@@ -1354,6 +1547,16 @@ def _run_inner(code, ctx):
 
     # C2440 cast insertion: pointer RHS into DWORD slots + ptr/ptr sign
     code = _fix_c2440_casts(code, ctx)
+
+    # 浮点字面量形态：float 目标赋值表达式的 double 字面量/cast → float 形态
+    # （原始 x87 dword 操作数尺寸为证据；FPU 批次组件 3.5）
+    code = _fix_float_literal_form(code, ctx)
+
+    # 单用途 FPU 伪变量内联：【停用】（2026-09-26 Render2 实验：原始源码本身
+    # 使用具名 float 临时——ORIG 先算 height 除法后算 width 的求值顺序即证据；
+    # 内联翻转求值序 nd 257→261。类型注解+字面量形态已足够复现 FPU 编码。
+    # 保留实现供未来有字节证据支持的个别函数手动启用。）
+    # code = _inline_single_use_fpu_vars(code, ctx)
 
     # Empty if-body before else
     code = re.sub(

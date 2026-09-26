@@ -1,3 +1,9 @@
 {
- "_schema": "函数局部变量注解。键=函数 VA（0x 十六进制）；条目按 loc 定位 lvar：栈变量用 stkoff（与 decomp JSON local_vars 的 stack_offset 同源）。name/type 均可选；type 为 C 类型文本（如 'gbTile *'、'int[4]'）。注解决定论：export 每次渲染都会应用，不依赖会被 init 清掉的 IDB 交互态。v1 仅支持栈变量（寄存器 lvar 的 vdloc API 缺 reg 访问器，见台账）；示例：\"0x00401560\": [{\"stkoff\": 8, \"name\": \"pNode\", \"type\": \"AStarPathFinder::NODE *\"}]"
+ "_schema": "函数局部变量注解。键=函数 VA（0x 十六进制）；条目按 loc 定位 lvar：栈变量用 stkoff、寄存器变量用 reg（vdloc_t.reg1() 的 mreg 值；x87 st0-st7=160..175）。name/type 均可选；type 为 C 类型文本。注解决定论：export 每次渲染都会应用，不依赖会被 init 清掉的 IDB 交互态。2026-09-26 FPU 批次：寄存器变量分支修复（regidx() 死代码→reg1()）+ FPU 伪变量类型恢复（x87 操作数尺寸证据裁决 float/double）。",
+ "0x0040C7D0": [
+  {
+   "reg": "172",
+   "type": "float"
+  }
+ ]
 }

@@ -1,6 +1,6 @@
 {
-  "name": "20260926_181847",
-  "timestamp": "2026-09-26T18:18:47.411654",
+  "name": "20260926_212001",
+  "timestamp": "2026-09-26T21:20:01.561862",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "fail",
@@ -5874,7 +5874,7 @@
         },
         {
           "code": "C2440",
-          "msg": "'=' : cannot convert from 'const double' to 'void *'",
+          "msg": "'=' : cannot convert from 'const float' to 'void *'",
           "line": 243
         }
       ]
@@ -9360,6 +9360,21 @@
         },
         {
           "code": "C2440",
+          "msg": "'=' : cannot convert from 'int' to 'int *'",
+          "line": 629
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'float' to 'int *'",
+          "line": 785
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'int' to 'int *'",
+          "line": 891
+        },
+        {
+          "code": "C2440",
           "msg": "'=' : cannot convert from 'char *' to 'char'",
           "line": 1098
         },
@@ -9809,24 +9824,9 @@
           "line": 2841
         },
         {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 2842
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 2843
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 2844
-        },
-        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 2844
+          "line": 2841
         }
       ]
     },
