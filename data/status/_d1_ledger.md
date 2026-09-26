@@ -4072,3 +4072,15 @@ B. 同族排查：所有"多态基 + 非多态发射"的 MI 类（GlowObj/PSW �
   vptr 位（偏移 0）⇒ +4 消失 ⇒ 家族布局全部回正
 - 方法论：布局探针（成员真实偏移逐个测量）+ 基类子对象落位测量
   （`&((D*)0)->base_member`）= MI 布局问题的标准定位法（本轮两次实战验证）
+
+## 2026-09-26 ScriptObj dtor 语义名修复——PalScriptWaitObj 翻绿·S2 89
+### 修复
+- ScriptObj.json 0x00411BD0: 恢复方法条目 + 语义名 `~ScriptObj`
+  （发射器 is_dtor 路径 → ScriptObj.h 声明 `virtual ~ScriptObj()` ✓
+  ⇒ PalScriptWaitObj.cpp 的 `ScriptObj::~ScriptObj()` 调用解析 ✓ C2039 清除）
+### 验证
+- S2 **89/208**（+1 单元）· 零新失败 · PalScriptWaitObj 保持翻绿
+- L1 61（matched 365/432）· 总错误 1798（C2039 清除后持平）
+### 命名纪律执行
+- `~ScriptObj` = 语义名（C++ 析构语义 + 二进制 scalar deleting dtor 位置证据）
+- 此前 slot_0 改名已被用户纪律否决 → 改为语义名正确路径

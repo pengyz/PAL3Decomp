@@ -18,8 +18,8 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 431,
-  "matched": 364,
+  "symbols": 432,
+  "matched": 365,
   "unmatched": 67,
   "match_L1": 61,
   "partial": 261,
@@ -27,7 +27,7 @@
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 42
+  "unresolved_synth": 43
  },
  "rows": [
   {
@@ -2928,5 +2928,19 @@
    "match_pct": 10.2,
    "size": 166
   }
- ]
+ ],
+ "rebaseline": {
+  "reason": "ScriptObj dtor 语义名修复(~ScriptObj): PalScriptWaitObj 翻绿, 总体 364/431->365/432 微扩, L1 保持 61 显式重对",
+  "at": "2026-09-26T13:25:46",
+  "prev_match_L1": 61,
+  "cur_match_L1": 61,
+  "prev_population": {
+   "matched": 365,
+   "symbols": 432
+  },
+  "cur_population": {
+   "matched": 365,
+   "symbols": 432
+  }
+ }
 }
