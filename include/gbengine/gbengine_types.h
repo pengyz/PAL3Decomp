@@ -28,10 +28,13 @@ struct gbVec3D {
     // 类级 GBAPI 对"引擎导出 + 游戏侧又实现"的类是错的：`Copy(int, gbVec3D*)` 由 **PAL3.exe 实现**
     // （0x0042FD40 在 PAL3 的 .text 里）⇒ 类级 dllimport 下补声明会 C2491，且调用点拿不到该重载
     // （实测 `C2661 'Copy' : no overloaded function takes 2 parameters` **×47**，是本族最大单条）。
-#ifndef GBVEC3D_NO_CTOR
-    GBAPI gbVec3D();
+    // 2026-09-26 字节对照（Scene::Render2 reloc 表）：dllimport 默认构造 `??0gbVec3D@@QAE@XZ`
+    // 在 PAL3.exe 导入串中 **0 次出现** ⇒ 原始代码从未调用过 ⇒ 不能声明为 dllimport
+    // （每个局部 gbVec3D 都会插 lea+call[__imp_] 构造调用）。但又不能完全不声明——
+    // 三参构造仍在，类非 POD，局部声明 C2512。折衷 = 内联空构造：VC6 对空内联构造
+    // 零代码发射，局部声明处与无构造字节等价。
+    gbVec3D() {}
     GBAPI gbVec3D(float p0, float p1, float p2);
-#endif
     GBAPI void operator=(struct gbVec3D const & p0);
     bool operator==(struct gbVec3D const & p0);
     struct gbVec3D operator-() const;
@@ -57,6 +60,7 @@ struct gbVec3D {
 #else
     void Zero();
 #endif
+// GBVEC3D_NO_CTOR 闸门已无意义（默认构造已删），仅为兼容保留 #else 分支
 };
 
 struct gbVec4D {
