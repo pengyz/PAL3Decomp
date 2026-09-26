@@ -4105,3 +4105,22 @@ B. 同族排查：所有"多态基 + 非多态发射"的 MI 类（GlowObj/PSW �
 ### 下批
 - 常设役：C2660/C2664/C2440 滚动清偿
 - C3DSpark/CEffExplosive 的非布局差异定性
+
+## 2026-09-25 批次3深度调研：RoleStatePanel +4 归因级问题（深水区立账）
+### 发现
+- RoleStatePanel::UpdateCaptions 8 处成员访问全部 +4（0x60→0x64 等）
+- 发射的 RoleStatePanel.h 声明了 virtual 方法 ⇒ MSVC 加 vptr@0 ⇒ 全员 +4
+- 原始二进制同一成员在 0x60（无 vptr 偏移）⇒ 原始无此 vptr
+### 归因级问题（深水区）
+- RoleStatePanel 在原始中是嵌入大容器的子对象（0x4A1E40 容器内 0x2B080）
+- 其虚分派通过容器 vtable 进行，不是独立多态类
+- 我们的发射把它当独立类 + virtual 方法 ⇒ 隐式 vptr ⇒ +4 ⇒ 布局错位
+- 修复需要：①确认 RoleStatePanel 的真实基链与容器关系 ②决定发射层是否
+  应该声明 virtual（若原始是嵌入对象则不应声明虚方法）
+### 同类模式
+- CEff 家族 +4 同理（CEffObj 非多态 ⇒ 派生虚函数变新增 ⇒ vptr 前插）
+- 两者共同本质：**发射头声明了原始源码中没有的 virtual 方法** ⇒ MSVC 插 vptr
+### 下批
+- ①CEffObj 多态化方案（CEffObj.h 声明虚函数使 vptr 合并）
+- ②RoleStatePanel 归属裁定（嵌入对象 vs 独立类）
+- ③常设役滚动
