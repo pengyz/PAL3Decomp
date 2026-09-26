@@ -547,6 +547,15 @@ def should_skip_class(name):
         return True
     if name.startswith(SKIP_PREFIXES):
         return True
+    # 2026-09-26：IDA 侧伪类工件，非真实 C++ 类型（无任何消费方）：
+    # ① `*_vtbl` 后缀 = vtable 基建批次写入 IDB 的每类 vtable 辅助结构体
+    #    （成员类型带 `__hidden this` 等 IDA 伪语法，VC6 无法编译）；
+    # ② `gbSingleton*` = 模板特化结构体（PDB/vtable 导入产物），
+    #    生成的显式特化语法 MSVC6 报 C2913。
+    if name.endswith('_vtbl'):
+        return True
+    if name.startswith('gbSingleton'):
+        return True
     if name.startswith('_inline_'):
         return True
     return False
@@ -1371,7 +1380,22 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             base = _resolve_ordinal_type(base)
             if not base or base == cls_name or base in PRIMITIVES or base in SYSTEM_TYPES:
                 continue
-            if '::' in base or '<' in base:
+            # 2026-09-26：嵌套限定类型（如 CParticleSystem::EmitterAttribute、
+            # PlayerMgr::PoisonState）此前被直接跳过——既不 include 也不前向声明，
+            # 导致 CEmitter.h/KeyFrame.h/ArcLocale.h S1 失败（C2146/C2501）。
+            # 嵌套类型必须随容器完整定义（值成员需要定义，指针成员的
+            # `struct Cls::Nested;` 前向声明语法也不可用）⇒ include 容器头。
+            # 注意：此处不能调用 _valid_type_name（它在本函数后段才定义，
+            # NameError 会被外层 except: pass 静默吞掉整个扫描）⇒ 内联校验。
+            if '::' in base:
+                cont = base.split('::')[0].strip()
+                if (cont and cont != cls_name and cont not in PRIMITIVES
+                        and cont not in SYSTEM_TYPES
+                        and re.match(r'^[A-Za-z_][A-Za-z0-9_]*$', cont)
+                        and '$' not in cont):
+                    include_types.add(cont)
+                continue
+            if '<' in base:
                 continue
             if base.startswith('_inline_'):
                 continue
@@ -1963,6 +1987,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         mtype = mtype.replace(ida_type, c_type)
                 # Fix C99 flexible array
                 mtype = re.sub(r'\[\]', '[1]', mtype)
+                # MSVC6 拒绝函数指针声明符上的显式 __thiscall（C4234）——
+                # 与下方 template_expr 路径同款规则：剥掉即语义保持
+                # （指针尺寸/ABI 不变，调用点自带约定）。2026-09-26：
+                # tagNewItem.h/CCBEditor.h S1 失败根因。置于 arr_match 之前
+                # ⇒ 数组型函数指针成员（`int (__thiscall *fn[4])(...)`）同样覆盖。
+                mtype = re.sub(r'\b__thiscall\s+\*', '*', mtype)
                 comment = m.get('comment', '') or m.get('description', '')
                 if comment:
                     lines.append("    // %s" % comment)
@@ -1973,7 +2003,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     lines.append("    %s %s%s; // +0x%X" % (base_type, mname, arr_part, off))
                 else:
                     # Fix function pointer member syntax:
-                    # "int (__thiscall *)(void)" → "int (__thiscall *name)(void)"
+                    # "int (__thiscall *)(void)" → "int (*name)(void)"
                     _fp_match = re.search(r'\(([^)]*\*)\)\s*\(', mtype)
                     if _fp_match:
                         _inner = _fp_match.group(1)
@@ -2455,6 +2485,9 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             elif ret_right:
                 if is_static:
                     ret = re.sub(r'\bvirtual\b', '', ret).strip()
+                    # IDA [thunk] 签名自带 'static'（如 GetCGEntry）——is_static 分支
+                    # 已显式加 static，不剥会成 `static static`（C2159，CG_Entry.h）。
+                    ret = re.sub(r'\bstatic\b\s*', '', ret).strip()
                     decl = "    static %s %s(%s)%s;" % (ret, _mn, params, ret_right)
                 else:
                     if _addr_int_vt in _vtable_addr_order and not ret.startswith('virtual'):
@@ -2463,6 +2496,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         decl = "    %s %s(%s)%s;" % (ret, _mn, params, ret_right)
             elif is_static:
                 ret = re.sub(r'\bvirtual\b', '', ret).strip()
+                ret = re.sub(r'\bstatic\b\s*', '', ret).strip()
                 decl = "    static %s %s(%s);" % (ret, _mn, params)
             else:
                 # ★ vtable 方法强制 virtual（编译器 vptr 分发）

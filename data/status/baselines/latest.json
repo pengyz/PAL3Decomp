@@ -1,6 +1,6 @@
 {
-  "name": "20260926_155727",
-  "timestamp": "2026-09-26T15:57:27.915660",
+  "name": "20260926_181847",
+  "timestamp": "2026-09-26T18:18:47.411654",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "fail",
@@ -145,13 +145,8 @@
     },
     "pal3/src/Combat/CCBParabolaWindow.cpp": {
       "status": "fail",
-      "error_count": 5,
+      "error_count": 4,
       "errors": [
-        {
-          "code": "C2555",
-          "msg": "'CCBParabolaWindow::OnMessage' : overriding virtual function differs from 'UIWnd::OnMessage' only by return type or calling convention",
-          "line": 32
-        },
         {
           "code": "C2660",
           "msg": "'Release' : function does not take 1 parameters",
@@ -170,7 +165,7 @@
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void' to 'int'",
-          "line": 204
+          "line": 211
         }
       ]
     },
@@ -197,13 +192,8 @@
     },
     "pal3/src/Combat/CCBRoleState.cpp": {
       "status": "fail",
-      "error_count": 67,
+      "error_count": 66,
       "errors": [
-        {
-          "code": "C2555",
-          "msg": "'CCBParabolaWindow::OnMessage' : overriding virtual function differs from 'UIWnd::OnMessage' only by return type or calling convention",
-          "line": 32
-        },
         {
           "code": "C2274",
           "msg": "'function-style cast' : illegal as right side of '.' operator",
@@ -1218,17 +1208,12 @@
     },
     "pal3/src/Combat/CCBSystem.cpp": {
       "status": "fail",
-      "error_count": 31,
+      "error_count": 30,
       "errors": [
         {
           "code": "C2664",
           "msg": "'sub_4DB940' : cannot convert parameter 1 from 'class CCBSystem *const ' to 'char *'",
           "line": 394
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
-          "line": 518
         },
         {
           "code": "C2660",
@@ -1379,13 +1364,8 @@
     },
     "pal3/src/Combat/CCBUI.cpp": {
       "status": "fail",
-      "error_count": 39,
+      "error_count": 37,
       "errors": [
-        {
-          "code": "C2555",
-          "msg": "'CCBParabolaWindow::OnMessage' : overriding virtual function differs from 'UIWnd::OnMessage' only by return type or calling convention",
-          "line": 32
-        },
         {
           "code": "C2273",
           "msg": "'function-style cast' : illegal as right side of '->' operator",
@@ -1570,11 +1550,6 @@
           "code": "C2228",
           "msg": "left of '.ExceptionList' must have class/struct/union type",
           "line": 4133
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
-          "line": 4208
         }
       ]
     },
@@ -5061,13 +5036,8 @@
     },
     "pal3/src/Misc/ScriptVM.cpp": {
       "status": "fail",
-      "error_count": 69,
+      "error_count": 68,
       "errors": [
-        {
-          "code": "C2159",
-          "msg": "more than one storage class specified",
-          "line": 31
-        },
         {
           "code": "C2039",
           "msg": "'_nearby_4b6ca0' : is not a member of 'RenderTarget3'",
@@ -5953,7 +5923,7 @@
     },
     "pal3/src/Misc/UISceneMap.cpp": {
       "status": "fail",
-      "error_count": 5,
+      "error_count": 4,
       "errors": [
         {
           "code": "C2039",
@@ -5969,11 +5939,6 @@
           "code": "C2273",
           "msg": "'function-style cast' : illegal as right side of '->' operator",
           "line": 161
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
-          "line": 162
         },
         {
           "code": "C2273",
@@ -7339,11 +7304,6 @@
       "error_count": 101,
       "errors": [
         {
-          "code": "C2159",
-          "msg": "more than one storage class specified",
-          "line": 31
-        },
-        {
           "code": "C2273",
           "msg": "'function-style cast' : illegal as right side of '->' operator",
           "line": 121
@@ -7842,6 +7802,11 @@
           "code": "C2664",
           "msg": "'_strcmpi' : cannot convert parameter 2 from 'int' to 'const char *'",
           "line": 2827
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
+          "line": 2961
         }
       ]
     },
@@ -8501,13 +8466,8 @@
     },
     "pal3/src/Script/PalScriptMgr.cpp": {
       "status": "fail",
-      "error_count": 17,
+      "error_count": 16,
       "errors": [
-        {
-          "code": "C2159",
-          "msg": "more than one storage class specified",
-          "line": 31
-        },
         {
           "code": "C2664",
           "msg": "'IsColOBB' : cannot convert parameter 1 from 'struct gbOBBox' to 'struct gbOBBox *'",
@@ -9359,11 +9319,6 @@
       "error_count": 102,
       "errors": [
         {
-          "code": "C2555",
-          "msg": "'CCBParabolaWindow::OnMessage' : overriding virtual function differs from 'UIWnd::OnMessage' only by return type or calling convention",
-          "line": 32
-        },
-        {
           "code": "C2143",
           "msg": "syntax error : missing ';' before '*'",
           "line": 52
@@ -9377,11 +9332,6 @@
           "code": "C2501",
           "msg": "'m_pFightInfo' : missing storage-class or type specifiers",
           "line": 52
-        },
-        {
-          "code": "C2159",
-          "msg": "more than one storage class specified",
-          "line": 31
         },
         {
           "code": "C2373",
@@ -9864,26 +9814,26 @@
           "line": 2842
         },
         {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2843
+        },
+        {
+          "code": "C2679",
+          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
+          "line": 2844
+        },
+        {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 2842
+          "line": 2844
         }
       ]
     },
     "pal3/src/globals.cpp": {
       "status": "fail",
-      "error_count": 51,
+      "error_count": 49,
       "errors": [
-        {
-          "code": "C4234",
-          "msg": "nonstandard extension used : '__thiscall' keyword reserved for future use",
-          "line": 8
-        },
-        {
-          "code": "C4234",
-          "msg": "nonstandard extension used : '__thiscall' keyword reserved for future use",
-          "line": 9
-        },
         {
           "code": "C2440",
           "msg": "'initializing' : cannot convert from 'const float' to 'float [8]'",

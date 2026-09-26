@@ -1130,7 +1130,18 @@ def _fix_line_plain_var_assign(line, vt, ctx):
     rhs = line[rhs_start:rhs_end]
     if rhs.strip().startswith('('):
         return line
+    # 2026-09-26：`vN = sub_XXXX(...);`——自由函数（无名 sub_）的返回类型
+    # _expr_is_pointer 无签名可证（Hex-Rays 只在 C 语义下省略 void*→T* 的
+    # cast，重导出后返回型变的站点触发 C2440）。此时 Hex-Rays 省略 cast
+    # 本身即指针兼容证据 ⇒ 直接以 LHS 声明类型插 cast（指针→指针，字节中性）。
     if not _expr_is_pointer(rhs, vt, ctx):
+        if t.get('kind') == 'ptr' and re.match(r'^sub_[0-9A-Fa-f]+\s*\(', rhs):
+            base = t.get('base')
+            if base and re.match(r'^[A-Za-z_][\w:]*$', base):
+                cast = '(%s %s)' % (base, '*' * max(t.get('stars', 1), 1))
+                if _needs_parens(rhs):
+                    rhs = '(%s)' % rhs
+                return line[:rhs_start] + cast + rhs + line[rhs_end:]
         return line
     if _needs_parens(rhs):
         rhs_wrapped = '(%s)' % rhs
