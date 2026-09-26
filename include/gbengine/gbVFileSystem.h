@@ -3,6 +3,10 @@
 #include <windows.h>
 #include <stdio.h>
 #include "gbengine/gbengine_export.h"
+// 2026-09-26: 消费方（RoleAtt.h 等）按值使用 gbVec3D 却只经本头取 SDK 声明——
+// 本头此前不引入 gbengine_types.h，导致含链上 gbVec3D 未声明（C2061，
+// RoleAtt/PAL_GDB/DealData/PlayerAtt 四个 S1 失败头的共同根因）。
+#include "gbengine/gbengine_types.h"
 
 // ============================================================================
 // CPK Constants and Flags

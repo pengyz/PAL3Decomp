@@ -954,6 +954,11 @@ def _expr_is_pointer(e, vt, ctx):
     if c0 == '"' or c0 == '&':
         return True
     if c0 == '*':
+        # *(T **)expr — 解引用"指针的指针"型 cast，结果必为指针（cast 内 ≥2 颗星）。
+        # 注意 *(T *)expr 结果是 T 值（一颗星），不可判定，不在此列。
+        m2 = re.match(r'\*\s*\(\s*[\w\s:]*\*\s*\*[\s\*]*\)', e)
+        if m2:
+            return True
         m = re.match(r'\*\s*(\w+)', e)
         if m:
             t = vt.get(m.group(1))
@@ -1056,6 +1061,10 @@ def _fix_line_dword_slots(line, vt, ctx):
         return line
     cand = []
     for m in _SLOT_LHS_RE.finditer(line):
+        # 槽位构造若位于未闭合 '[' 之内 ⇒ 它其实在下标表达式里（假阳性，
+        # 如 `arr[3 * *(_DWORD *)&x] = rhs` 的真实左值是 arr），不得插 cast。
+        if line.count('[', 0, m.start()) > line.count(']', 0, m.start()):
+            continue
         # m.end() is right after the assignment '='
         p = m.end()
         while p < len(line) and line[p] in ' \t':
