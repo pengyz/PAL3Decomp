@@ -176,3 +176,147 @@ def test_census_annotation_cross():
     # 大小写归一口径为 4（复核 agent 口径），两口径都已记录在案。
     n_mismatch = sum(1 for r in rows if r['in_annotations'] and not r['anno_name_matches'])
     assert 15 <= n_mismatch <= 25
+
+
+# ---------- 阶段 2：非重叠分区树 ----------
+
+def test_partition_containment():
+    """包含关系：inner 成为 outer 的成员，不再出现在顶层。"""
+    anchors = [
+        {'base': 0x1000, 'end': 0x2000, 'name': 'outer', 'type': 'A'},
+        {'base': 0x1100, 'end': 0x1200, 'name': 'inner', 'type': 'B'},
+    ]
+    p = gra.build_partition(anchors)
+    tops = [t['name'] for t in p['top_levels']]
+    assert tops == ['outer']
+    assert p['members'][0]['name'] == 'inner'
+    assert p['members'][0]['parent'] == 'outer'
+    assert p['conflicts'] == []
+
+
+def test_partition_disjoint_and_adjacent():
+    """不相交与相邻（[1000,1010)+[1010,1020)）都是顶层。"""
+    anchors = [
+        {'base': 0x1000, 'end': 0x1010, 'name': 'a', 'type': 'A'},
+        {'base': 0x1010, 'end': 0x1020, 'name': 'b', 'type': 'A'},
+        {'base': 0x3000, 'end': 0x3010, 'name': 'c', 'type': 'A'},
+    ]
+    p = gra.build_partition(anchors)
+    assert sorted(t['name'] for t in p['top_levels']) == ['a', 'b', 'c']
+    assert p['conflicts'] == []
+
+
+def test_partition_partial_overlap_conflict():
+    """部分重叠 → 双双冻结进 conflicts（B9），不进顶层。"""
+    anchors = [
+        {'base': 0x1000, 'end': 0x2000, 'name': 'x', 'type': 'A'},
+        {'base': 0x1800, 'end': 0x2800, 'name': 'y', 'type': 'A'},
+    ]
+    p = gra.build_partition(anchors)
+    assert p['top_levels'] == []
+    assert len(p['conflicts']) == 2
+    assert {c['name'] for c in p['conflicts']} == {'x', 'y'}
+
+
+def test_partition_identical_extents_conflict():
+    """完全相同 extent → 冲突（归属二义），不是静默包含。"""
+    anchors = [
+        {'base': 0x1000, 'end': 0x2000, 'name': 'x', 'type': 'A'},
+        {'base': 0x1000, 'end': 0x2000, 'name': 'y', 'type': 'A'},
+    ]
+    p = gra.build_partition(anchors)
+    assert p['top_levels'] == []
+    assert len(p['conflicts']) == 2
+
+
+def test_partition_same_base_containment():
+    """同基不同尺寸：大的顶层，小的成员。"""
+    anchors = [
+        {'base': 0x1000, 'end': 0x1400, 'name': 'small', 'type': 'A'},
+        {'base': 0x1000, 'end': 0x2000, 'name': 'big', 'type': 'A'},
+    ]
+    p = gra.build_partition(anchors)
+    assert [t['name'] for t in p['top_levels']] == ['big']
+    assert p['members'][0]['name'] == 'small'
+
+
+def test_partition_deterministic():
+    a1 = [
+        {'base': 0x1000, 'end': 0x2000, 'name': 'outer', 'type': 'A'},
+        {'base': 0x1100, 'end': 0x1200, 'name': 'inner', 'type': 'B'},
+        {'base': 0x5000, 'end': 0x5100, 'name': 'z', 'type': 'C'},
+    ]
+    p1 = gra.build_partition(a1)
+    p2 = gra.build_partition(list(reversed([dict(x) for x in a1])))
+    assert json.dumps(p1, sort_keys=True) == json.dumps(p2, sort_keys=True)
+    assert [t['base'] for t in p1['top_levels']] == sorted(t['base'] for t in p1['top_levels'])
+
+
+def test_partition_chain_overlap_no_silent_top(S=None):
+    """S1 回归：A-B 冲突冻结后，与 frozen-B 重叠的 C 不得无声顶层化。
+
+    A[1000,2000) vs B[1800,2800) 冲突；C[2600,3600) 与 B 重叠 → C 必须冻结
+    （链式传染），顶层必须为空。实现缺陷时 C 会无声成为顶层（B9 安全网漏报）。
+    """
+    anchors = [
+        {'base': 0x1000, 'end': 0x2000, 'name': 'A', 'type': 'A'},
+        {'base': 0x1800, 'end': 0x2800, 'name': 'B', 'type': 'A'},
+        {'base': 0x2600, 'end': 0x3600, 'name': 'C', 'type': 'A'},
+    ]
+    p = gra.build_partition(anchors)
+    assert p['top_levels'] == []
+    frozen_names = {c['name'] for c in p['conflicts']}
+    assert frozen_names == {'A', 'B', 'C'}
+
+
+def test_partition_parent_frozen_members_suspended():
+    """S3 回归：顶层被冻结后，其成员随父挂起（不得指向不存在的顶层）。"""
+    anchors = [
+        {'base': 0x1000, 'end': 0x2000, 'name': 'X', 'type': 'A'},
+        {'base': 0x1100, 'end': 0x1200, 'name': 'I', 'type': 'A'},   # X 的成员
+        {'base': 0x1800, 'end': 0x2800, 'name': 'Y', 'type': 'A'},   # 与 X 部分重叠
+    ]
+    p = gra.build_partition(anchors)
+    top_names = {t['name'] for t in p['top_levels']}
+    # X 被冻结；成员 I 的 parent 不得指向已不存在的顶层
+    dangling = [m for m in p['members'] if m['parent'] not in top_names]
+    assert dangling == [], dangling
+    # I 的处置必须是显式的（随父挂起进 conflicts 或有 parent 仍在顶层）
+
+
+def test_partition_three_level_nesting_tightest_host():
+    """S4 回归：A⊃B⊃C 三层嵌套，C 挂最紧包含者 B（成员可嵌套树语义）。"""
+    anchors = [
+        {'base': 0x1000, 'end': 0x3000, 'name': 'A', 'type': 'A'},
+        {'base': 0x1200, 'end': 0x2800, 'name': 'B', 'type': 'A'},
+        {'base': 0x1400, 'end': 0x1600, 'name': 'C', 'type': 'A'},
+    ]
+    p = gra.build_partition(anchors)
+    tops = {t['name'] for t in p['top_levels']}
+    assert tops == {'A'}
+    host_of = {m['name']: m['parent'] for m in p['members']}
+    assert host_of.get('B') == 'A'
+    assert host_of.get('C') == 'B'
+
+
+def test_partition_real_anchors_known_facts():
+    """真实锚的已知事实（对抗复核实测）：ScriptSystemData 顶层吞洲 1；
+    g_RoleSlotBuf 与 g_palScript 是 g_SceneMgr 的成员（重叠 3 对中的 2 对）；
+    g_vRotateAxis 是 ScriptSystemData 的成员。"""
+    anchors = gra.collect_anchor_containers()
+    names = {a['name'] for a in anchors}
+    assert 'g_ScriptSystemData' in names and 'g_SceneMgr' in names
+    p = gra.build_partition(anchors)
+    tops = {t['name']: t for t in p['top_levels']}
+    ssd = tops['g_ScriptSystemData']
+    assert ssd['base'] == 0xD8B318 and ssd['end'] == 0xD8B318 + 12624
+    members_by_parent = {}
+    for m in p['members']:
+        members_by_parent.setdefault(m['parent'], []).append(m['name'])
+    assert 'g_RoleSlotBuf' in members_by_parent.get('g_SceneMgr', [])
+    assert 'g_palScript' in members_by_parent.get('g_SceneMgr', [])
+    assert 'g_vRotateAxis' in members_by_parent.get('g_ScriptSystemData', [])
+    # 门禁：顶层零重叠
+    tops_sorted = sorted(p['top_levels'], key=lambda t: t['base'])
+    for a, b in zip(tops_sorted, tops_sorted[1:]):
+        assert a['end'] <= b['base'], (a['name'], b['name'])
