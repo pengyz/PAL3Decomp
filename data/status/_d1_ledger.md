@@ -4023,3 +4023,19 @@ B. 同族排查：所有"多态基 + 非多态发射"的 MI 类（GlowObj/PSW �
    （发射器 skip 与析构注入的交互，或 stage 层调用形态改写）
 2. GlowObj offset0 证据冲突 MCP 仲裁（ctor 存 56A9A4 vs usage-evidence 无存储）
 3. 常设役：C2660/C2664/C2440 滚动清偿
+
+## 2026-09-25 命名纪律 + ScriptObj 双重归因清除——S2 88 零回归 ✓
+### 用户命名纪律（立账）
+- slot_N / todo_xxx / m_nTodo_ADDR 类占位名**不可作为最终名**——命名必须有语义
+  （证据支持的函数/变量语义名）；占位名仅限临时定位，收敛过程逐步替换
+### ScriptObj 双重归因清除
+- 0x411BD0 曾同时存在于 ScriptObj.json（slot_0，前轮 vtable 实验残留）与
+  Object.json（_scalar_dtor_1bd0，vtable_owner_fix）⇒ apply 顺序决定 IDB 终名
+  ⇒ decomp 渲染的类限定词翻覆 ⇒ PalScriptWaitObj.cpp C2039 翻覆（非确定性）
+- 修复：移除 ScriptObj.json 的重复条目；Object.json 的 5 条保留（vtable 属主）
+### 验证
+- 零回归 · PalScriptWaitObj 2 errors → **0 errors 翻绿** · S2 88/207 · 错误 1798
+- 渲染: `((Object *)((ScriptObj *)this - 14))->Object::_scalar_dtor_1bd0()` ✓
+### 命名维度备注
+- `_scalar_dtor_1bd0` 类 IDB 名 = 函数身份名（可接受）；语义精化（如 dtor 语义名）
+  属命名维度持续工作
