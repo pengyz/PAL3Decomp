@@ -271,9 +271,8 @@ struct GBAPI gbTextureArray {
     gbTexture* pTexPt[16];  // +0x00 [0..15]: texture pointers (PDB name)
     int nTex;               // +0x40 [16]: active texture count (PDB name)
 
-    gbTextureArray(void);
+    gbTextureArray(void) {}  // 虚构声明改内联空（exe 导入串 0 次，VC6 零代码发射）
     gbTextureArray(gbTexture* tex0);
-    gbTextureArray(gbTexture* tex0, gbTexture* tex1);
     void SetTexture(gbTexture* tex);
     gbTextureArray& operator=(const gbTextureArray& other);
 };

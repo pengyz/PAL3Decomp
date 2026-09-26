@@ -91,9 +91,6 @@ struct gbColorFlt {
     float Red, Green, Blue, Alpha;
 
     // Methods (auto-generated)
-    gbColorFlt(float p0, float p1, float p2);
-    gbColorFlt(float p0, float p1, float p2, float p3);
-    gbColorFlt();
     struct gbColorFlt & operator=(struct gbColorFlt const & p0);
     int operator!=(struct gbColorFlt & p0);
     void operator+=(struct gbColorFlt const & p0);
@@ -156,7 +153,6 @@ struct gbRotMatrix {
     float m[3][3];
 
     // Methods (auto-generated)
-    gbRotMatrix();
     void operator=(struct gbRotMatrix & p0);
     void operator*=(struct gbRotMatrix & p0);
     bool const IsOrthonormal();
@@ -169,7 +165,6 @@ struct GBAPI gbQuaternion {
     float x, y, z, w;
 
     // Methods (auto-generated)
-    gbQuaternion();
     struct gbQuaternion & operator=(struct gbQuaternion const & p0);
     void GetAxisAngle(struct gbVec3D * p0, float * p1);
     void GetMatrix(struct gbMatrix4 * p0) const;
@@ -196,7 +191,6 @@ struct GBAPI gbRay {
     gbVec3D Direction;
 
     // Methods (auto-generated)
-    gbRay();
     struct gbRay & operator=(struct gbRay const & p0);
     float IntersectPlane(struct gbVec3D & p0, struct gbVec3D & p1);
     int IsColAABB(struct gbAABBox & p0);
@@ -241,7 +235,6 @@ struct gbSphere {
     gbVec3D center;
 
     // Methods (auto-generated)
-    gbSphere();
     struct gbSphere & operator=(struct gbSphere const & p0);
     int IsColPoint(struct gbVec3D & p0);
     int IsColSphere(struct gbVec3D & p0, float p1);
@@ -253,7 +246,6 @@ struct gbPlane {
     float d;
 
     // Methods (auto-generated)
-    gbPlane();
     struct gbPlane & operator=(struct gbPlane const & p0);
     int IsColAABB(struct gbAABBox & p0);
     int IsColOBB(struct gbOBBox & p0);
