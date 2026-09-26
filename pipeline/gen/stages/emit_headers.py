@@ -3120,6 +3120,21 @@ def _referenced_identifiers():
     return names
 
 
+def _interior_member_resolvable(addr, name=None):
+    """stage4 会把该名字改写成容器成员路径吗？（= 外部可退役判据）
+
+    v2 修正：不再自判 offset 命中（那比 stage4 的真实解析弱——byte 前缀 ×
+    int 成员等前缀语义不匹配时 stage4 返回 None，退役过冲产生 C2065），
+    直接调用 stage4 自己的解析器。解析成功 ⇒ 改写后裸名不再被引用 ⇒ 可退役。
+    """
+    # 与同文件 stage4 引用（:2419）同款导入路径——双路径 import 会创建
+    # 第二个模块实例（store 空载）⇒ 解析恒 None ⇒ 退役全停摆
+    from stages.stage4_substitution import _try_struct_member_resolution
+    # name 提供 prefix 语义（byte_/dword_/…）；仅有地址时按 dword_ 保守尝试
+    prefix_name = name or ('dword_%X' % addr)
+    return _try_struct_member_resolution(prefix_name) is not None
+
+
 def _forced_global_entries():
     """Decomp-referenced globals that current skip filters would silence.
 
@@ -3139,11 +3154,22 @@ def _forced_global_entries():
     extra = []
     for nm in ref:
         if nm in {g.get('name') for g in _glbs.values()}:
+            # 2026-09-27 全局退役机制：stage4 能解析成成员路径的名字，
+            # 改写后裸名不再被引用 ⇒ 放行幻影过滤退役（extern 数棘轮递减）。
+            _ga = None
+            for _as_, _gi in _glbs.items():
+                if _gi.get('name') == nm:
+                    _ga = int(_as_, 16)
+                    break
+            if _ga is not None and _interior_member_resolvable(_ga, nm):
+                continue
             forced.add(nm)
             continue
         m = _IDA_NAME_ADDR_RE.match(nm)
         if m:
             addr = int(m.group(1), 16)
+            if _interior_member_resolvable(addr, nm):
+                continue
             t = _prefix_type(nm)
             if t and 0x401000 <= addr < 0x580000 + 0x900000:
                 forced.add(nm)

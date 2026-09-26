@@ -99,6 +99,8 @@ def cmd_clean():
 
 def cmd_headers():
     """Generate header files from annotations."""
+    from data import store
+    store.load()
     from stages.emit_headers import run_header_generation
     run_header_generation()
 
