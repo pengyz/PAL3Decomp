@@ -29,6 +29,24 @@
    "type": "CEffMgr"
   },
   {
+   "base": 6340040,
+   "end": 6340044,
+   "name": "dword_60BDC8",
+   "type": "unknown"
+  },
+  {
+   "base": 7258016,
+   "end": 7258020,
+   "name": "g_VFileSystem",
+   "type": "unknown"
+  },
+  {
+   "base": 8175992,
+   "end": 8175996,
+   "name": "g_BaseVFileSystem",
+   "type": "unknown"
+  },
+  {
    "base": 9096176,
    "end": 9187200,
    "name": "g_PAL3_Instance",
@@ -38,6 +56,12 @@
    "base": 9920216,
    "end": 9920220,
    "name": "g_pGDB",
+   "type": "unknown"
+  },
+  {
+   "base": 10725112,
+   "end": 10725116,
+   "name": "g_pVolModNode",
    "type": "unknown"
   },
   {
@@ -236,6 +260,13 @@
    "parent": "g_PAL3_Instance"
   },
   {
+   "base": 9096208,
+   "end": 9096212,
+   "name": "g_xcu_008ACC10",
+   "type": "unknown",
+   "parent": "g_PAL3_Instance"
+  },
+  {
    "base": 9096496,
    "end": 9096500,
    "name": "g_xcu_008ACD30",
@@ -348,6 +379,13 @@
    "parent": "g_gamefrm"
   },
   {
+   "base": 14589104,
+   "end": 14589108,
+   "name": "g_xcu_00DE9CB0",
+   "type": "unknown",
+   "parent": "g_PAL3"
+  },
+  {
    "base": 24855016,
    "end": 24855020,
    "name": "g_CScreenMode#1",
@@ -356,34 +394,6 @@
   }
  ],
  "conflicts": [
-  {
-   "name": "dword_60BDC8",
-   "base": 6340040,
-   "end": 6340044,
-   "with": "dword_60BDC8#1",
-   "kind": "top"
-  },
-  {
-   "name": "dword_60BDC8#1",
-   "base": 6340040,
-   "end": 6340044,
-   "with": "dword_60BDC8",
-   "kind": "top"
-  },
-  {
-   "name": "g_BaseVFileSystem",
-   "base": 8175992,
-   "end": 8175996,
-   "with": "g_BaseVFileSystem#1",
-   "kind": "top"
-  },
-  {
-   "name": "g_BaseVFileSystem#1",
-   "base": 8175992,
-   "end": 8175996,
-   "with": "g_BaseVFileSystem",
-   "kind": "top"
-  },
   {
    "name": "g_PlayerAttBuffer",
    "base": 11143936,
@@ -411,62 +421,6 @@
    "end": 11643284,
    "with": "g_ScreenMode",
    "kind": "same_base"
-  },
-  {
-   "name": "g_VFileSystem",
-   "base": 7258016,
-   "end": 7258020,
-   "with": "g_VFileSystem#1",
-   "kind": "top"
-  },
-  {
-   "name": "g_VFileSystem#1",
-   "base": 7258016,
-   "end": 7258020,
-   "with": "g_VFileSystem",
-   "kind": "top"
-  },
-  {
-   "name": "g_pVolModNode",
-   "base": 10725112,
-   "end": 10725116,
-   "with": "g_pVolModNode#1",
-   "kind": "top"
-  },
-  {
-   "name": "g_pVolModNode#1",
-   "base": 10725112,
-   "end": 10725116,
-   "with": "g_pVolModNode",
-   "kind": "top"
-  },
-  {
-   "name": "g_xcu_008ACC10",
-   "base": 9096208,
-   "end": 9096212,
-   "with": "g_xcu_008ACC10#1",
-   "kind": "member_partial"
-  },
-  {
-   "name": "g_xcu_008ACC10#1",
-   "base": 9096208,
-   "end": 9096212,
-   "with": "g_xcu_008ACC10",
-   "kind": "member"
-  },
-  {
-   "name": "g_xcu_00DE9CB0",
-   "base": 14589104,
-   "end": 14589108,
-   "with": "g_xcu_00DE9CB0#1",
-   "kind": "member_partial"
-  },
-  {
-   "name": "g_xcu_00DE9CB0#1",
-   "base": 14589104,
-   "end": 14589108,
-   "with": "g_xcu_00DE9CB0",
-   "kind": "member"
   }
  ]
 }

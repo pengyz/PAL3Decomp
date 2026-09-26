@@ -422,6 +422,9 @@ def merge_anchors(base_anchors, evidence_anchors):
     for a in evidence_anchors:
         if (a['base'], a['end'], a['type']) in identity:
             continue
+        # 循环内更新 identity——否则证据-证据同身份（ff25 孪生站点相距 0x20
+        # 注册两次）不去重，产生成对伪冲突（复核 2026-09-27：B9 7 行中 4 行噪声）
+        identity.add((a['base'], a['end'], a['type']))
         name = a['name']
         i = 1
         while name in seen_names:

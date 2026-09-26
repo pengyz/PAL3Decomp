@@ -338,7 +338,7 @@ def test_scan_singletons_real_sample():
 def test_scan_singletons_corpus_count():
     """全语料：可解析全局名的 E 类三元组（实测 1）。
 
-    局限记录：15 个 guard+atexit+self-ctor 函数里 24/25 的 ctor 首参是
+    局限记录：14 个 guard+atexit+self-ctor 函数里 23 站点中 21 的 ctor 首参是
     Hex-Rays 局部渲染（&v25——静态对象地址未显形），decomp 文本不可解析；
     这批的地址归属走 D 类二进制链（atexit 注册桩→thunk→全局），
     两类证据互为补充。
