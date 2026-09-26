@@ -18,16 +18,16 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 432,
-  "matched": 365,
-  "unmatched": 67,
-  "match_L1": 61,
+  "symbols": 436,
+  "matched": 367,
+  "unmatched": 69,
+  "match_L1": 62,
   "partial": 261,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 43
+  "unresolved_synth": 44
  },
  "rows": [
   {
@@ -513,7 +513,7 @@
    "name": "CEffQuad::sub_4D1300(void)",
    "va": "0x004D1300",
    "status": "partial",
-   "match_pct": 23.4,
+   "match_pct": 23.6,
    "size": 1182
   },
   {
@@ -531,7 +531,7 @@
    "name": "CEffQuad::DestroyOneQuad(void const *)",
    "va": "0x004D1BE0",
    "status": "partial",
-   "match_pct": 8.9,
+   "match_pct": 10.0,
    "size": 180
   },
   {
@@ -540,7 +540,7 @@
    "name": "CEffQuad::SetQuad(int)",
    "va": "0x004D1CA0",
    "status": "partial",
-   "match_pct": 91.1,
+   "match_pct": 98.1,
    "size": 428
   },
   {
@@ -567,7 +567,7 @@
    "name": "CEffQuad::ProcessDestroyPass(int)",
    "va": "0x004D2E10",
    "status": "partial",
-   "match_pct": 70.2,
+   "match_pct": 75.0,
    "size": 188
   },
   {
@@ -576,7 +576,7 @@
    "name": "CEffShock::GetEditorTaskDescription(int)",
    "va": "0x004D3280",
    "status": "partial",
-   "match_pct": 46.6,
+   "match_pct": 63.8,
    "size": 58
   },
   {
@@ -585,8 +585,17 @@
    "name": "CEffShock::CEffShock(void)",
    "va": "0x004D3910",
    "status": "partial",
-   "match_pct": 14.8,
+   "match_pct": 44.4,
    "size": 27
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "symbol": "??_GCEffShock@@UAEPAXI@Z",
+   "name": "CEffShock::`scalar deleting destructor'(uint)",
+   "va": "0x004D3930",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
   },
   {
    "file": "pal3/src/Effect/CEffShock.cpp",
@@ -594,7 +603,7 @@
    "name": "CEffShock::sub_4D3DC0(int)",
    "va": "0x004D3DC0",
    "status": "partial",
-   "match_pct": 9.8,
+   "match_pct": 9.2,
    "size": 834
   },
   {
@@ -621,7 +630,7 @@
    "name": "CEffShock::StartShock(int)",
    "va": "0x004D45D0",
    "status": "partial",
-   "match_pct": 23.9,
+   "match_pct": 24.3,
    "size": 301
   },
   {
@@ -639,7 +648,7 @@
    "name": "CEffShock::LoadTexture(int,int,int,int *,int,int)",
    "va": "0x004D4B50",
    "status": "partial",
-   "match_pct": 10.8,
+   "match_pct": 11.3,
    "size": 213
   },
   {
@@ -990,7 +999,7 @@
    "name": "CEffAudio::UpdateInternal(float)",
    "va": "0x004C29A0",
    "status": "partial",
-   "match_pct": 5.7,
+   "match_pct": 5.9,
    "size": 508
   },
   {
@@ -2930,17 +2939,17 @@
   }
  ],
  "rebaseline": {
-  "reason": "ScriptObj dtor 语义名修复(~ScriptObj): PalScriptWaitObj 翻绿, 总体 364/431->365/432 微扩, L1 保持 61 显式重对",
-  "at": "2026-09-26T13:25:46",
-  "prev_match_L1": 61,
-  "cur_match_L1": 61,
+  "reason": "CEffObj 多态化(vfptr_slot@0): CEff 家族 +4 消失, matched 365/432->367/436 微扩, L1 61 保持",
+  "at": "2026-09-26T13:39:57",
+  "prev_match_L1": 62,
+  "cur_match_L1": 62,
   "prev_population": {
-   "matched": 365,
-   "symbols": 432
+   "matched": 367,
+   "symbols": 436
   },
   "cur_population": {
-   "matched": 365,
-   "symbols": 432
+   "matched": 367,
+   "symbols": 436
   }
  }
 }

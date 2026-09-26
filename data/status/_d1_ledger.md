@@ -4084,3 +4084,24 @@ B. 同族排查：所有"多态基 + 非多态发射"的 MI 类（GlowObj/PSW �
 ### 命名纪律执行
 - `~ScriptObj` = 语义名（C++ 析构语义 + 二进制 scalar deleting dtor 位置证据）
 - 此前 slot_0 改名已被用户纪律否决 → 改为语义名正确路径
+
+## 2026-09-26 CEffObj 多态化落地——CEff 家族 +4 全消·零回归·L1 62
+### 修复
+- CEffObj.json known_members offset 0 加 `vfptr_slot: true` 标记
+  ⇒ 发射器 `_vfptr_slot_marked` ✓ → 注入 `virtual ~CEffObj()` → CEffObj 多态化
+  ⇒ vptr@0 合并进基链 ⇒ CEffQuad 的 m_bActive 0x34→**0x30** ✓
+### 验证
+- S2 **89/208**（+1 单元）· 零新失败 · 总错误 1798
+- **L1 62**（matched 367/436）· probe + fdiff 全绿
+### CEff 家族 +4 修复验证
+- CEffQuad m_bActive = 0x30 ✓（此前 0x34）
+- sizeof(CEffQuad) = 4272 ✓（二进制一致）
+### Role 链 + CEff 链状态总表
+| 链 | 基类 | vtable | 多态化 |
+|---|---|---|---|
+| Role 链 | Object(56A9BC 5槽) + PSW(56A9B0 3槽) + Glow(56A9A4 3槽) | 三基全多态 ✓ |
+| CEff 链 | CEffObj(12B) + CTaskTpl(36B blob) | CEffObj vfptr_slot ✓ |
+| ScriptObj | slot_0(0x411bd0 ~ScriptObj) + 4 槽 | vtables + slot_0 语义名 ✓ |
+### 下批
+- 常设役：C2660/C2664/C2440 滚动清偿
+- C3DSpark/CEffExplosive 的非布局差异定性
