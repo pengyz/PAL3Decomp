@@ -107,15 +107,95 @@
    "type": "int",
    "source": "binary:stru_D8B318_gap"
   },
+  "2216": {
+   "name": "m_fTimerA",
+   "type": "float",
+   "source": "auto:extern_overlap_g_ScriptSystemData_at_+0x8A8"
+  },
   "2260": {
    "name": "m_nGameMode",
    "type": "int",
    "source": "binary: compared to 2 in game mode checks; dword_D8BBEC"
   },
+  "2264": {
+   "name": "m_nTodo_8D8",
+   "type": "int",
+   "source": "phantom:C2065_fix"
+  },
+  "2268": {
+   "name": "m_nTodo_8DC",
+   "type": "int",
+   "source": "phantom:C2065_fix"
+  },
+  "2272": {
+   "name": "m_nTodo_8E0",
+   "type": "int",
+   "source": "phantom:C2065_fix"
+  },
+  "2276": {
+   "name": "m_nTodo_8E4",
+   "type": "int",
+   "source": "phantom:C2065_fix"
+  },
+  "2280": {
+   "name": "m_nTodo_8E8",
+   "type": "int",
+   "source": "phantom:C2065_fix"
+  },
+  "2284": {
+   "name": "m_nTodo_8EC",
+   "type": "int",
+   "source": "phantom:C2065_fix"
+  },
+  "2288": {
+   "name": "m_nTodo_8F0",
+   "type": "int",
+   "source": "phantom:C2065_fix"
+  },
+  "2292": {
+   "name": "m_nTodo_8F4",
+   "type": "int",
+   "source": "phantom:C2065_fix"
+  },
+  "2296": {
+   "name": "m_nTodo_8F8",
+   "type": "int",
+   "source": "phantom:C2065_fix"
+  },
+  "2300": {
+   "name": "m_nTodo_8FC",
+   "type": "int",
+   "source": "phantom:C2065_fix"
+  },
+  "2304": {
+   "name": "m_nTodo_900",
+   "type": "int",
+   "source": "phantom:C2065_fix"
+  },
   "2312": {
    "name": "g_vRotateAxis",
    "type": "gbVec3D",
    "source": "codegen:global_overlap_detection"
+  },
+  "2324": {
+   "name": "m_bMapRenderFlags",
+   "type": "unsigned char",
+   "source": "auto:overlap_g_ScriptSystemData_at_+0x914"
+  },
+  "2328": {
+   "name": "m_nScriptCounter0",
+   "type": "int",
+   "source": "auto:overlap_g_ScriptSystemData_at_+0x918"
+  },
+  "2332": {
+   "name": "m_nScriptCounter1",
+   "type": "int",
+   "source": "auto:overlap_g_ScriptSystemData_at_+0x91C"
+  },
+  "2336": {
+   "name": "m_nScriptFlag",
+   "type": "int",
+   "source": "auto:overlap_g_ScriptSystemData_at_+0x920"
   },
   "2380": {
    "name": "m_fScriptTimer1",
@@ -141,6 +221,16 @@
    "name": "m_g_fTimeDelta",
    "type": "float",
    "source": "globals_merge"
+  },
+  "3028": {
+   "name": "m_D8BEEC",
+   "type": "RoleSystem *",
+   "source": "region-audit: interior extern @0xD8BEEC"
+  },
+  "3032": {
+   "name": "m_fTimerB",
+   "type": "float",
+   "source": "auto:extern_overlap_g_ScriptSystemData_at_+0xBD8"
   },
   "3076": {
    "name": "m_nVarPoolSize",
@@ -342,6 +432,11 @@
    "type": "int",
    "source": "binary:stru_D8B318_gap"
   },
+  "3684": {
+   "name": "m_fScriptTileSize2",
+   "type": "float",
+   "source": "auto:overlap_g_ScriptSystemData_at_+0xE64"
+  },
   "3732": {
    "name": "m_String",
    "type": "char[96]",
@@ -489,32 +584,6 @@
    "type": "short",
    "source": "binary:4x abs refs (0xFD0)"
   },
-  "4080": {
-   "name": "m_pCmdTableFF0",
-   "type": "char *",
-   "source": "binary:5x abs refs, B9=mov ecx,addr (base load for array) | type_fix:int→void*(array base)",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "4112": {
-   "name": "m_CmdObjArray0",
-   "type": "PtrArray",
-   "source": "CRT:PtrArray::Clear_confirmed"
-  },
-  "4128": {
-   "name": "m_nCmdParam24",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4144": {
-   "name": "m_nScriptMode",
-   "type": "int",
-   "source": "binary:6x abs refs, dword access (0x1030)"
-  },
-  "4160": {
-   "name": "m_nCmdParam26",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
   "4052": {
    "name": "m_nCmdParam19",
    "type": "int",
@@ -539,6 +608,12 @@
    "name": "m_bCmdFlag5",
    "type": "unsigned char",
    "source": "binary:stru_D8B318_gap"
+  },
+  "4080": {
+   "name": "m_pCmdTableFF0",
+   "type": "char *",
+   "source": "binary:5x abs refs, B9=mov ecx,addr (base load for array) | type_fix:int→void*(array base)",
+   "note": "replaced void* with char* (IDB struct compat)"
   },
   "4084": {
    "name": "m_nCmdParam22",
@@ -565,6 +640,16 @@
    "type": "unsigned char",
    "source": "binary:10x abs refs, byte access 8A/88 (0x100C)"
   },
+  "4112": {
+   "name": "m_CmdObjArray0",
+   "type": "PtrArray",
+   "source": "CRT:PtrArray::Clear_confirmed"
+  },
+  "4128": {
+   "name": "m_nCmdParam24",
+   "type": "short",
+   "source": "binary:stru_D8B318_gap"
+  },
   "4132": {
    "name": "m_nCmdParam25",
    "type": "int",
@@ -579,6 +664,11 @@
    "name": "m_bCmdFlag6",
    "type": "unsigned char",
    "source": "binary:stru_D8B318_gap"
+  },
+  "4144": {
+   "name": "m_nScriptMode",
+   "type": "int",
+   "source": "binary:6x abs refs, dword access (0x1030)"
   },
   "4148": {
    "name": "m_nCmd1034",
@@ -598,6 +688,11 @@
   "4154": {
    "name": "m_bCmdFlag9",
    "type": "unsigned char",
+   "source": "binary:stru_D8B318_gap"
+  },
+  "4160": {
+   "name": "m_nCmdParam26",
+   "type": "short",
    "source": "binary:stru_D8B318_gap"
   },
   "4164": {
@@ -921,95 +1016,155 @@
    "type": "tagScriptCmd[213]",
    "source": "binary:stride16_abs_addr_pattern"
   },
-  "2324": {
-   "name": "m_bMapRenderFlags",
+  "7840": {
+   "name": "m_D8D1B8",
+   "type": "int",
+   "source": "region-audit: interior extern @0xD8D1B8"
+  },
+  "7844": {
+   "name": "m_D8D1BC",
    "type": "unsigned char",
-   "source": "auto:overlap_g_ScriptSystemData_at_+0x914"
+   "source": "region-audit: interior extern @0xD8D1BC"
   },
-  "2328": {
-   "name": "m_nScriptCounter0",
+  "7845": {
+   "name": "m_D8D1BD",
+   "type": "unsigned char",
+   "source": "region-audit: interior extern @0xD8D1BD"
+  },
+  "7846": {
+   "name": "m_D8D1BE",
+   "type": "unsigned char",
+   "source": "region-audit: interior extern @0xD8D1BE"
+  },
+  "7847": {
+   "name": "m_D8D1BF",
+   "type": "unsigned char",
+   "source": "region-audit: interior extern @0xD8D1BF"
+  },
+  "7852": {
+   "name": "m_D8D1C4",
+   "type": "unsigned short",
+   "source": "region-audit: interior extern @0xD8D1C4"
+  },
+  "7856": {
+   "name": "m_D8D1C8",
    "type": "int",
-   "source": "auto:overlap_g_ScriptSystemData_at_+0x918"
+   "source": "region-audit: interior extern @0xD8D1C8"
   },
-  "2332": {
-   "name": "m_nScriptCounter1",
+  "7860": {
+   "name": "m_D8D1CC",
+   "type": "unsigned char",
+   "source": "region-audit: interior extern @0xD8D1CC"
+  },
+  "7861": {
+   "name": "m_D8D1CD",
+   "type": "unsigned char",
+   "source": "region-audit: interior extern @0xD8D1CD"
+  },
+  "7862": {
+   "name": "m_D8D1CE",
+   "type": "unsigned char",
+   "source": "region-audit: interior extern @0xD8D1CE"
+  },
+  "7863": {
+   "name": "m_D8D1CF",
+   "type": "unsigned char",
+   "source": "region-audit: interior extern @0xD8D1CF"
+  },
+  "7868": {
+   "name": "m_D8D1D4",
+   "type": "unsigned short",
+   "source": "region-audit: interior extern @0xD8D1D4"
+  },
+  "7968": {
+   "name": "m_D8D238",
    "type": "int",
-   "source": "auto:overlap_g_ScriptSystemData_at_+0x91C"
+   "source": "region-audit: interior extern @0xD8D238"
   },
-  "2336": {
-   "name": "m_nScriptFlag",
+  "7972": {
+   "name": "m_D8D23C",
+   "type": "unsigned char",
+   "source": "region-audit: interior extern @0xD8D23C"
+  },
+  "7980": {
+   "name": "m_D8D244",
+   "type": "unsigned short",
+   "source": "region-audit: interior extern @0xD8D244"
+  },
+  "8432": {
+   "name": "m_D8D408",
    "type": "int",
-   "source": "auto:overlap_g_ScriptSystemData_at_+0x920"
+   "source": "region-audit: interior extern @0xD8D408"
   },
-  "3684": {
-   "name": "m_fScriptTileSize2",
-   "type": "float",
-   "source": "auto:overlap_g_ScriptSystemData_at_+0xE64"
+  "8436": {
+   "name": "m_D8D40C",
+   "type": "unsigned char",
+   "source": "region-audit: interior extern @0xD8D40C"
   },
-  "2216": {
-   "name": "m_fTimerA",
-   "type": "float",
-   "source": "auto:extern_overlap_g_ScriptSystemData_at_+0x8A8"
+  "8444": {
+   "name": "m_D8D414",
+   "type": "unsigned short",
+   "source": "region-audit: interior extern @0xD8D414"
   },
-  "3032": {
-   "name": "m_fTimerB",
-   "type": "float",
-   "source": "auto:extern_overlap_g_ScriptSystemData_at_+0xBD8"
-  },
-  "2264": {
-   "name": "m_nTodo_8D8",
+  "8448": {
+   "name": "m_D8D418",
    "type": "int",
-   "source": "phantom:C2065_fix"
+   "source": "region-audit: interior extern @0xD8D418"
   },
-  "2268": {
-   "name": "m_nTodo_8DC",
-   "type": "int",
-   "source": "phantom:C2065_fix"
+  "8452": {
+   "name": "m_D8D41C",
+   "type": "unsigned char",
+   "source": "region-audit: interior extern @0xD8D41C"
   },
-  "2272": {
-   "name": "m_nTodo_8E0",
-   "type": "int",
-   "source": "phantom:C2065_fix"
+  "8460": {
+   "name": "m_D8D424",
+   "type": "unsigned short",
+   "source": "region-audit: interior extern @0xD8D424"
   },
-  "2276": {
-   "name": "m_nTodo_8E4",
+  "10192": {
+   "name": "m_D8DAE8",
    "type": "int",
-   "source": "phantom:C2065_fix"
+   "source": "region-audit: interior extern @0xD8DAE8"
   },
-  "2280": {
-   "name": "m_nTodo_8E8",
-   "type": "int",
-   "source": "phantom:C2065_fix"
+  "10196": {
+   "name": "m_D8DAEC",
+   "type": "unsigned char",
+   "source": "region-audit: interior extern @0xD8DAEC"
   },
-  "2284": {
-   "name": "m_nTodo_8EC",
-   "type": "int",
-   "source": "phantom:C2065_fix"
+  "10197": {
+   "name": "m_D8DAED",
+   "type": "unsigned char",
+   "source": "region-audit: interior extern @0xD8DAED"
   },
-  "2288": {
-   "name": "m_nTodo_8F0",
-   "type": "int",
-   "source": "phantom:C2065_fix"
+  "10198": {
+   "name": "m_D8DAEE",
+   "type": "unsigned char",
+   "source": "region-audit: interior extern @0xD8DAEE"
   },
-  "2292": {
-   "name": "m_nTodo_8F4",
-   "type": "int",
-   "source": "phantom:C2065_fix"
+  "10199": {
+   "name": "m_D8DAEF",
+   "type": "unsigned char",
+   "source": "region-audit: interior extern @0xD8DAEF"
   },
-  "2296": {
-   "name": "m_nTodo_8F8",
-   "type": "int",
-   "source": "phantom:C2065_fix"
+  "10200": {
+   "name": "m_D8DAF0",
+   "type": "unsigned char",
+   "source": "region-audit: interior extern @0xD8DAF0"
   },
-  "2300": {
-   "name": "m_nTodo_8FC",
-   "type": "int",
-   "source": "phantom:C2065_fix"
+  "10201": {
+   "name": "m_D8DAF1",
+   "type": "unsigned char",
+   "source": "region-audit: interior extern @0xD8DAF1"
   },
-  "2304": {
-   "name": "m_nTodo_900",
-   "type": "int",
-   "source": "phantom:C2065_fix"
+  "10202": {
+   "name": "m_D8DAF2",
+   "type": "unsigned char",
+   "source": "region-audit: interior extern @0xD8DAF2"
+  },
+  "10204": {
+   "name": "m_D8DAF4",
+   "type": "unsigned short",
+   "source": "region-audit: interior extern @0xD8DAF4"
   }
  },
  "methods": {},
