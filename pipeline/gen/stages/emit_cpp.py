@@ -177,6 +177,22 @@ def generate_forward_decls(all_code):
             _nullsub_stubs.add(u)
 
     if undef:
+        # 2026-09-27：extern 块里的自定义类类型（如 RoleCameraCtrl）在该 TU
+        # 可能无定义 ⇒ extern 不完整类型前置声明（合法且足以链接）。
+        # 复核：3 cpp 的 C2146/C2373 即缺此声明。
+        _class_type_externs = []
+        for u in sorted(undef):
+            gt = store.global_types.get(u, '')
+            if gt and re.match(r'^[A-Z]\w+$', gt) and gt not in ('int', 'float', 'char'):
+                _class_type_externs.append((u, gt))
+        if _class_type_externs:
+            seen_t = set()
+            for _u, _t in _class_type_externs:
+                if _t in seen_t:
+                    continue
+                seen_t.add(_t)
+                lines.append('class %s;' % _t)
+            lines.append('')
         lines.append("// Unnamed globals (extern)")
         for u in sorted(undef):
             if u in atexit_funcs:
