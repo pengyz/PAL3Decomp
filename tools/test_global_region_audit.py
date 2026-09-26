@@ -320,3 +320,72 @@ def test_partition_real_anchors_known_facts():
     tops_sorted = sorted(p['top_levels'], key=lambda t: t['base'])
     for a, b in zip(tops_sorted, tops_sorted[1:]):
         assert a['end'] <= b['base'], (a['name'], b['name'])
+
+
+# ---------- 阶段 3：E 类单例三元组 + D 类动态初始化器锚 ----------
+
+def test_scan_singletons_real_sample():
+    """真实样本：CCBStage::DoTask 的 gbMatrix4 静态局部构造三元组。"""
+    triplets = gra.scan_singleton_triplets(os.path.join(ROOT, 'asm', 'pal3', 'decomp'))
+    by_name = {}
+    for t in triplets:
+        by_name.setdefault(t['global_name'], t)
+    t = by_name['stru_17AB828']
+    assert t['class'] == 'gbMatrix4'
+    assert t['func_file'].startswith('CCBStage_DoTask')
+
+
+def test_scan_singletons_corpus_count():
+    """全语料：可解析全局名的 E 类三元组（实测 1）。
+
+    局限记录：15 个 guard+atexit+self-ctor 函数里 24/25 的 ctor 首参是
+    Hex-Rays 局部渲染（&v25——静态对象地址未显形），decomp 文本不可解析；
+    这批的地址归属走 D 类二进制链（atexit 注册桩→thunk→全局），
+    两类证据互为补充。
+    """
+    triplets = gra.scan_singleton_triplets(os.path.join(ROOT, 'asm', 'pal3', 'decomp'))
+    assert len(triplets) >= 1
+    names = {r['name'] for r in gra.build_census()['rows']}
+    unresolved = [t for t in triplets if t['global_name'] not in names]
+    assert unresolved == [], unresolved[:5]
+
+
+def test_singleton_anchor_extent():
+    """类尺寸解析：ida_structs 的 IDB UDT size 优先（gbMatrix4=64 实测）。"""
+    size = gra.class_size('gbMatrix4')
+    assert size == 64
+
+
+def test_scan_xcu_real_anchor():
+    """D 类：g_palScript @0xC10968 的 atexit 注册桩→析构 thunk→vtable 反解链。
+
+    实测三元组布局（0x4086C0/0x4086D0/0x4086E0）：初始化 thunk
+    (mov ecx,&g; jmp ctor) + atexit 注册桩 + 析构 thunk。0x43A1F0 为析构。
+    """
+    sites = gra.scan_xcu_initializers(os.path.join(ROOT, 'original', 'PAL3.exe'))
+    pal = [s for s in sites if s['global_addr'] == 0xC10968]
+    assert pal, [hex(s['global_addr']) for s in sites]
+    assert any(s.get('class') == 'PalScript' for s in pal)
+    assert any(s.get('vtable') == 0x56AC4C for s in pal)
+
+
+def test_scan_xcu_corpus_and_vtable_class():
+    """D 类语料规模 + vtable→类反解（ctor 体写自身 vtable 的证据链）。"""
+    sites = gra.scan_xcu_initializers(os.path.join(ROOT, 'original', 'PAL3.exe'))
+    assert len(sites) >= 10                       # 复核实测 60 站点/18 全局（窗口差异）
+    assert len({s['global_addr'] for s in sites}) >= 8
+    # 至少一个站点能经 vtable 反解出类名
+    with_class = [s for s in sites if s.get('class')]
+    assert with_class, 'vtable 反解全空——vtables 注解映射断了'
+
+
+def test_partition_with_evidence_anchors():
+    """证据锚并入分区：E/D 锚不与既有顶层冲突（当前数据），总数不减。"""
+    base_anchors = gra.collect_anchor_containers()
+    ev = gra.collect_evidence_anchors()
+    merged = gra.merge_anchors(base_anchors, ev)
+    assert len(merged) >= len(base_anchors)
+    p = gra.build_partition(merged)
+    tops_sorted = sorted(p['top_levels'], key=lambda t: t['base'])
+    for a, b in zip(tops_sorted, tops_sorted[1:]):
+        assert a['end'] <= b['base'], (a['name'], b['name'])

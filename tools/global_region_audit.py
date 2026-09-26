@@ -165,6 +165,266 @@ def build_census(globals_h=GLOBALS_H, exe_path=PAL3_EXE):
     }
 
 
+def _load_class_sizes():
+    """类名 → 字节尺寸：ida_structs 的 IDB UDT size 优先，structs 注解 binary_size 兜底。"""
+    sizes = {}
+    ida_path = os.path.join(ROOT, 'asm', 'pal3', 'ida_structs.json')
+    if os.path.exists(ida_path):
+        ida = json.load(open(ida_path, encoding='utf-8'))
+        for sname, sinfo in ida.items():
+            if sname.startswith('_'):
+                continue
+            sz = sinfo.get('size', 0)
+            if sz:
+                sizes[sname] = int(sz)
+    sdir = os.path.join(ROOT, 'data', 'annotations', 'structs')
+    if os.path.isdir(sdir):
+        for fn in sorted(os.listdir(sdir)):
+            if not fn.endswith('.json'):
+                continue
+            d = json.load(open(os.path.join(sdir, fn), encoding='utf-8'))
+            cls = d.get('name') or fn[:-5]
+            sz = d.get('binary_size')
+            if sz and cls not in sizes:
+                sizes[cls] = int(sz)
+    return sizes
+
+
+def class_size(cls):
+    return _load_class_sizes().get(cls)
+
+
+def _vtable_to_class_map():
+    """vtable 地址 → 类名（data/annotations/structs/*.json 的 vtables[].addr）。"""
+    m = {}
+    sdir = os.path.join(ROOT, 'data', 'annotations', 'structs')
+    for fn in sorted(os.listdir(sdir)):
+        if not fn.endswith('.json'):
+            continue
+        d = json.load(open(os.path.join(sdir, fn), encoding='utf-8'))
+        cls = d.get('name') or fn[:-5]
+        for vt in d.get('vtables', []) or []:
+            va = vt.get('addr')
+            if va:
+                m.setdefault(int(va, 16) if isinstance(va, str) else va, cls)
+    return m
+
+
+_SELF_CTOR_RE = re.compile(r'\b(\w+)::\1\(\s*&?([A-Za-z_]\w*)')
+_ATEXIT_RE = re.compile(r'atexit\(\s*(\w+)\s*\)')
+
+
+def scan_singleton_triplets(decomp_dir=None):
+    """E 类：函数内静态对象的三元组（guard&1 + Cls::Cls(&global) + atexit）。
+
+    证据形态（CCBStage::DoTask 实例）：
+        if ( (g_nCBRoleHitTable[0] & 1) == 0 ) {
+            gbMatrix4::gbMatrix4(&stru_17AB828);
+            atexit(nullsub_37);
+        }
+    ctor 首参 &global 的名字必须能在 census 分母里对到地址（局部变量跳过）。
+    返回 [{global_name, global_addr, class, atexit_target, func_file}]。
+    """
+    decomp_dir = decomp_dir or os.path.join(ROOT, 'asm', 'pal3', 'decomp')
+    census_names = {r['name']: r['addr'] for r in build_census()['rows']}
+    out = []
+    for fn in sorted(os.listdir(decomp_dir)):
+        if not fn.endswith('.json'):
+            continue
+        try:
+            d = json.load(open(os.path.join(decomp_dir, fn), encoding='utf-8'))
+        except Exception:
+            continue
+        body = d.get('decompiled_c', '')
+        if 'atexit(' not in body:
+            continue
+        atexit_target = None
+        ma = _ATEXIT_RE.search(body)
+        if ma:
+            atexit_target = ma.group(1)
+        for m in _SELF_CTOR_RE.finditer(body):
+            cls, gname = m.group(1), m.group(2)
+            addr = census_names.get(gname)
+            if addr is None:
+                continue          # 局部变量/未知名——非全局静态
+            out.append({'global_name': gname, 'global_addr': addr,
+                        'class': cls, 'atexit_target': atexit_target,
+                        'func_file': fn})
+    # 同名去重（多函数初始化同一静态：取首个）
+    dedup = {}
+    for t in out:
+        dedup.setdefault(t['global_name'], t)
+    return sorted(dedup.values(), key=lambda t: t['global_addr'])
+
+
+def scan_xcu_initializers(exe_path=PAL3_EXE):
+    """D 类：动态初始化/析构的二进制指纹（thunk 三元组，2026-09-27 实证形态）。
+
+    g_palScript 样本（0x4086C0/0x4086D0/0x4086E0 三连）：
+        mov ecx, 0xc10968 ; jmp ctor        ← 初始化 thunk（ Placement ctor 转发）
+        push 0x4086e0 ; call 0x553041 ; pop ecx ; ret   ← atexit 注册桩
+        mov ecx, 0xc10968 ; jmp dtor        ← 析构 thunk
+    检测链：
+      A) atexit 注册桩指纹 `push imm32; call CRT_HELPER; pop ecx; ret`
+         （CRT_HELPER 取同形态 call 目标的众数，0x553041 实证）→ callback 地址
+      B) callback 体 = `mov ecx, <全局>; jmp <dtor>` ⇒ 全局地址 + 析构目标
+      C) 类身份 = dtor 体开头写自身 vtable（mov dword ptr [ecx], imm ∈ .rdata）
+         经 vtables 注解反解
+    另收直呼形态 `mov ecx, <全局>; call <目标>` 且【目标体写自身 vtable】
+    （无 vtable 写 = 普通方法调用，剔除——此前 47 伪站点即此污染）。
+    返回 [{global_addr, target, vtable, class, via}]。
+    """
+    import capstone
+    import hashlib
+    secs = load_pe_sections(exe_path)
+    text = [s for s in secs if s['name'] == '.text'][0]
+    data_sec = [s for s in secs if s['name'] == '.data'][0]
+    rd = [s for s in secs if s['name'] == '.rdata'][0]
+    data = open(exe_path, 'rb').read()
+    code = data[text['roff']:text['roff'] + text['rsz']]
+    base = text['va']
+    md = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
+
+    def rdata_va(x):
+        return rd['va'] <= x < rd['va'] + rd['rsz']
+
+    # A) atexit 注册桩：68 imm32 / E8 rel32 / 59 / C3
+    atexit_calls = {}
+    callbacks = []
+    for i, ins in enumerate(md.disasm(code, base)):
+        if ins.mnemonic != 'push' or not ins.op_str.startswith('0x'):
+            continue
+        win = code[ins.address - base: ins.address - base + 12]
+        if len(win) < 12 or win[0] != 0x68:
+            continue
+        cb = struct.unpack_from('<I', win, 1)[0]
+        if win[5] != 0xE8:
+            continue
+        rel = struct.unpack_from('<i', win, 6)[0]
+        callee = ins.address + 5 + rel
+        nxt = win[10:12]
+        if nxt != b'\x59\xc3':
+            continue
+        atexit_calls[callee] = atexit_calls.get(callee, 0) + 1
+        callbacks.append((ins.address, cb, callee))
+    helper = max(atexit_calls, key=atexit_calls.get) if atexit_calls else None
+
+    # B) thunk 体解析：B9 imm32 (global) + E9 rel32 (jmp target)
+    def thunk_body(addr):
+        off = addr - base
+        if off < 0 or off + 6 > len(code) or code[off] != 0xB9 or code[off+5] != 0xE9:
+            return None
+        g = struct.unpack_from('<I', code, off + 1)[0]
+        rel = struct.unpack_from('<i', code, off + 6)[0]
+        tgt = addr + 10 + rel
+        return g, tgt
+
+    _VTBL_STORE = re.compile(r'^dword ptr \[\w+\], 0x([0-9A-Fa-f]+)')
+
+    def first_vtable_store(addr, max_insns=16):
+        off = addr - base
+        if off < 0:
+            return None
+        for k, ci in enumerate(md.disasm(code[off:off + 96], addr)):
+            if k >= max_insns:
+                break
+            # dtor/ctor 的 vtable 写可经任意寄存器（PalScript dtor 用 [esi]；
+            # SEH 序言的 fs:[0]/[esp+..] 无 imm 不误报）
+            mvt = _VTBL_STORE.match(ci.op_str) if ci.mnemonic == 'mov' else None
+            if mvt:
+                vt = int(mvt.group(1), 16)
+                return vt if rdata_va(vt) else None
+        return None
+
+    vt2cls = _vtable_to_class_map()
+    sites = []
+    seen = set()
+
+    def emit(gaddr, target, via):
+        key = (gaddr, target, via)
+        if key in seen:
+            return
+        seen.add(key)
+        vt = first_vtable_store(target)
+        sites.append({'global_addr': gaddr, 'target': target,
+                      'vtable': vt, 'class': vt2cls.get(vt) if vt else None,
+                      'via': via})
+
+    for addr, cb, callee in callbacks:
+        if helper is not None and callee != helper:
+            continue
+        body = thunk_body(cb)
+        if body:
+            g, dtor = body
+            if data_sec['va'] <= g < data_sec['va'] + data_sec['vsz']:
+                emit(g, dtor, 'atexit_thunk')
+    # 直呼形态：mov ecx,imm + call target 且目标体写自身 vtable（非方法调用）
+    insns = list(md.disasm(code, base))
+    for i, ins in enumerate(insns):
+        if not (ins.mnemonic == 'mov' and ins.op_str.startswith('ecx, 0x')):
+            continue
+        try:
+            g = int(ins.op_str.split(', ')[1], 16)
+        except (ValueError, IndexError):
+            continue
+        if not (data_sec['va'] <= g < data_sec['va'] + data_sec['vsz']):
+            continue
+        for j in range(i + 1, min(i + 4, len(insns))):
+            if insns[j].mnemonic == 'call':
+                try:
+                    tgt = int(insns[j].op_str, 16)
+                except ValueError:
+                    break
+                if first_vtable_store(tgt) is not None:
+                    emit(g, tgt, 'direct_call')
+                break
+            if insns[j].mnemonic in ('ret', 'jmp'):
+                break
+    sites.sort(key=lambda s: (s['global_addr'], s['target']))
+    return sites
+
+
+def collect_evidence_anchors():
+    """E/D 证据锚并入统一形态（与容器锚同结构），类尺寸可解者才产出。"""
+    sizes = _load_class_sizes()
+    census_names = {r['name']: r['addr'] for r in build_census()['rows']}
+    anchors = []
+    for t in scan_singleton_triplets():
+        sz = sizes.get(t['class'])
+        if not sz:
+            continue
+        anchors.append({'base': t['global_addr'], 'end': t['global_addr'] + sz,
+                        'name': t['global_name'], 'type': t['class'],
+                        'evidence': 'E:singleton:%s' % t['func_file']})
+    for s in scan_xcu_initializers():
+        nm = None
+        for r_name, r_addr in census_names.items():
+            if r_addr == s['global_addr']:
+                nm = r_name
+                break
+        if nm is None:
+            nm = 'g_xcu_%08X' % s['global_addr']
+        cls = s.get('class')
+        sz = sizes.get(cls) if cls else None
+        anchors.append({'base': s['global_addr'],
+                        'end': s['global_addr'] + (sz or 4),
+                        'name': nm, 'type': cls or 'int',
+                        'evidence': 'D:xcu:target_%X' % s['target']})
+    return anchors
+
+
+def merge_anchors(base_anchors, evidence_anchors):
+    """容器锚 ∪ 证据锚：按名去重（容器锚优先），证据锚带 evidence 字段。"""
+    seen = {a['name'] for a in base_anchors}
+    merged = [dict(a) for a in base_anchors]
+    for a in evidence_anchors:
+        if a['name'] not in seen:
+            merged.append(a)
+            seen.add(a['name'])
+    merged.sort(key=lambda a: (a['base'], -a['end'], a['name']))
+    return merged
+
+
 def collect_anchor_containers():
     """容器锚收集：globals.json 条目 type 命中 IDB UDT size 者 + 结构数组整体跨度。
 
@@ -357,9 +617,13 @@ def main(argv):
         return 0
     if cmd == 'partition':
         anchors = collect_anchor_containers()
-        p = build_partition(anchors)
+        ev = collect_evidence_anchors()
+        merged = merge_anchors(anchors, ev)
+        p = build_partition(merged)
         with open(PARTITION_PATH, 'w', encoding='utf-8', newline='') as f:
-            json.dump({'_meta': {'anchors': len(anchors)}, **p},
+            json.dump({'_meta': {'container_anchors': len(anchors),
+                                 'evidence_anchors': len(ev)},
+                       **p},
                       f, ensure_ascii=False, indent=1)
         # 分区结果回写 census
         census = build_census()
@@ -367,7 +631,8 @@ def main(argv):
         with open(CENSUS_PATH, 'w', encoding='utf-8', newline='') as f:
             json.dump(census, f, ensure_ascii=False, indent=1)
         from collections import Counter
-        print('anchors: %d' % len(anchors))
+        print('anchors: container=%d evidence=%d merged=%d' % (
+            len(anchors), len(ev), len(merged)))
         print('top_levels: %d  members: %d  conflicts: %d' % (
             len(p['top_levels']), len(p['members']), len(p['conflicts'])))
         print('bucket:', dict(Counter(r['bucket'] for r in census['rows'])))

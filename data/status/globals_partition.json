@@ -1,6 +1,7 @@
 {
  "_meta": {
-  "anchors": 38
+  "container_anchors": 38,
+  "evidence_anchors": 11
  },
  "top_levels": [
   {
@@ -34,6 +35,12 @@
    "type": "PAL3"
   },
   {
+   "base": 9920216,
+   "end": 9920220,
+   "name": "g_pGDB",
+   "type": "int"
+  },
+  {
    "base": 10725336,
    "end": 10730832,
    "name": "g_ScreenMode",
@@ -52,6 +59,12 @@
    "type": "ARC_PlayerAtt"
   },
   {
+   "base": 12561248,
+   "end": 12561252,
+   "name": "g_ScriptSlots",
+   "type": "int"
+  },
+  {
    "base": 12561776,
    "end": 12572360,
    "name": "g_Input",
@@ -62,6 +75,12 @@
    "end": 12572544,
    "name": "g_DrvInfo",
    "type": "gbGfxDriverInfo"
+  },
+  {
+   "base": 12573360,
+   "end": 12573552,
+   "name": "dword_BFDAB0",
+   "type": "UITextArea"
   },
   {
    "base": 12573616,
@@ -196,6 +215,12 @@
    "type": "tagCombatTaskData"
   },
   {
+   "base": 24819752,
+   "end": 24819816,
+   "name": "stru_17AB828",
+   "type": "gbMatrix4"
+  },
+  {
    "base": 24820832,
    "end": 24820992,
    "name": "g_StageRoleData",
@@ -216,10 +241,31 @@
  ],
  "members": [
   {
+   "base": 9096496,
+   "end": 9096500,
+   "name": "g_xcu_008ACD30",
+   "type": "int",
+   "parent": "g_PAL3_Instance"
+  },
+  {
+   "base": 9096512,
+   "end": 9096516,
+   "name": "g_xcu_008ACD40",
+   "type": "int",
+   "parent": "g_PAL3_Instance"
+  },
+  {
    "base": 12600224,
    "end": 12605092,
    "name": "g_RoleSlotBuf",
    "type": "RoleSystem",
+   "parent": "g_SceneMgr"
+  },
+  {
+   "base": 12650848,
+   "end": 12650852,
+   "name": "g_xcu_00C10960",
+   "type": "int",
    "parent": "g_SceneMgr"
   },
   {
