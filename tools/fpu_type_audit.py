@@ -79,7 +79,18 @@ def main():
     write = '--write' in sys.argv
     data, va2off = exe_text_image()
     lv = json.load(open(LVARS, encoding='utf-8'))
-    existing = {k for k in lv if not k.startswith('_')}
+    # 自动条目索引：本工具产出的键可安全重生成（删除后重发）；手写键永不覆盖
+    all_keys = {k for k in lv if not k.startswith('_')}
+    if '_auto_keys' in lv:
+        auto_keys = set(lv.get('_auto_keys', []))
+    else:
+        # 一次性迁移：索引字段建立前本工具已产出 326 键（2026-09-26 首轮批量），
+        # 除手写键外全部视为自动条目移交索引管理
+        auto_keys = all_keys - {'0x0040C7D0'}
+    existing = all_keys - auto_keys
+    # 先摘除旧自动条目（本轮可能产出更多变量，如 long double 扩展）
+    for k in auto_keys:
+        lv.pop(k, None)
 
     emit, skip_mixed, skip_noev, skip_existing = [], [], [], 0
     tot_dbl_vars = 0
@@ -94,9 +105,23 @@ def main():
         if key in existing:
             skip_existing += 1
             continue
-        cands = [(x['name'], x['register']) for x in d.get('local_vars', [])
-                 if x.get('type') == 'double' and x.get('register') is not None
-                 and x.get('name')]
+        # 候选来源（2026-09-26 v3）：
+        # ① 纯净类型 = 当前 decomp 中 double/long double 的寄存器变量
+        #   （float 是注解的效果而非候选——错注的 float 会自证循环，
+        #   SceneProp CalculateWorldPos 事故：eax 指针变量被错注 float）；
+        # ② 记忆类型 = 本工具此前注解过的函数，沿用存储的名字
+        #   （注解后 decomp 显示 float，重跑时靠 _auto_keys 记忆保持幂等）。
+        stored = {x.get('name') for x in lv.get(key, []) if x.get('name')} \
+            if key in auto_keys else set()
+        cands = []
+        seen = set()
+        for x in d.get('local_vars', []):
+            nm, reg = x.get('name'), x.get('register')
+            if not nm or reg is None or nm in seen:
+                continue
+            if x.get('type') in ('double', 'long double') or nm in stored:
+                cands.append((nm, reg))
+                seen.add(nm)
         if not cands:
             continue
         tot_dbl_vars += len(cands)
@@ -130,10 +155,14 @@ def main():
         print('\n(dry-run — 加 --write 落盘 lvars.json)')
         return
     for key, f, c, cands in emit:
-        lv[key] = [{'reg': str(reg), 'type': 'float'} for _, reg in cands]
+        # 寄存器变量按【名】匹配（函数内唯一）：同一 reg1 被 Hex-Rays 顺序复用
+        # （st7 上多个变量），reg 键会注错对象（SceneProp C2440 事故）
+        lv[key] = [{'name': name, 'type': 'float'} for name, _ in cands]
+    lv['_auto_keys'] = sorted(e[0] for e in emit)
     open(LVARS, 'w', encoding='utf-8', newline='').write(
         json.dumps(lv, ensure_ascii=False, indent=1))
-    print('\n写入 %s：%d 个函数键（总数 %d）' % (os.path.relpath(LVARS, ROOT), len(emit), len([k for k in lv if not k.startswith('_')])))
+    print('\n写入 %s：%d 个自动函数键（手写键保留；总数 %d）' % (
+        os.path.relpath(LVARS, ROOT), len(emit), len([k for k in lv if not k.startswith('_')])))
 
 
 if __name__ == '__main__':

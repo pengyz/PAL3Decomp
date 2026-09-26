@@ -442,6 +442,12 @@ def main():
                                     # 2026-09-26 FPU 探针实证）——真实 API 是 reg1()
                                     # （mreg_t；x87 st0-st7 = 160..175，st7=172）。
                                     _hit = (str(_lv.location.reg1()) == str(_spec['reg']))
+                                elif 'name' in _spec and 'stkoff' not in _spec and 'reg' not in _spec:
+                                    # 寄存器变量按名匹配（2026-09-26）：同一 reg1 被
+                                    # Hex-Rays 顺序复用（st7 上 v3/v4/v7…多个变量），
+                                    # reg 键会命中第一个并 break ⇒ 注错对象
+                                    #（SceneProp CalculateWorldPos 事故）。函数内名唯一。
+                                    _hit = (_lv.name == _spec['name'])
                                 if _hit:
                                     if _spec.get('name'):
                                         _lv.name = _spec['name']
