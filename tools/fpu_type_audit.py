@@ -75,6 +75,15 @@ def x87_census(data, va2off, va, size):
     return census
 
 
+# 经验排除清单：批量注解实测 nd 恶化的函数（形状主导型对注解敏感——
+# 2026-09-26 实测 CEffQuad 双函数 no-annotation 903/945 vs annotated 918/955）。
+# 逐函数否决是批量启发式的合法组成；加入前必须有 before/after 测量。
+EXCLUDE_FUNCS = {
+    '0x004D1300',  # CEffQuad::sub_4D1300
+    '0x004D17D0',  # CEffQuad::sub_4D17D0
+}
+
+
 def main():
     write = '--write' in sys.argv
     data, va2off = exe_text_image()
@@ -87,9 +96,16 @@ def main():
         # 一次性迁移：索引字段建立前本工具已产出 326 键（2026-09-26 首轮批量），
         # 除手写键外全部视为自动条目移交索引管理
         auto_keys = all_keys - {'0x0040C7D0'}
+    auto_keys -= EXCLUDE_FUNCS
     existing = all_keys - auto_keys
-    # 先摘除旧自动条目（本轮可能产出更多变量，如 long double 扩展）
+    # 先摘除旧自动条目（本轮可能产出更多变量，如 long double 扩展）——
+    # 摘除前必须留档：stored 记忆要从旧条目读名字（读 lv.get(key) 会拿空集
+    # ⇒ 清空全部自动条目的事故）
+    auto_entries = {k: lv.get(k, []) for k in auto_keys}
     for k in auto_keys:
+        lv.pop(k, None)
+    # 排除清单函数：连旧条目一起删除（注解实测负收益）
+    for k in EXCLUDE_FUNCS:
         lv.pop(k, None)
 
     emit, skip_mixed, skip_noev, skip_existing = [], [], [], 0
@@ -106,20 +122,24 @@ def main():
             skip_existing += 1
             continue
         # 候选来源（2026-09-26 v3）：
-        # ① 纯净类型 = 当前 decomp 中 double/long double 的寄存器变量
+        # ① 纯净类型 = 当前 decomp 中 double 的寄存器变量
         #   （float 是注解的效果而非候选——错注的 float 会自证循环，
         #   SceneProp CalculateWorldPos 事故：eax 指针变量被错注 float）；
+        #   【long double 不纳入】（2026-09-26 CEffQuad 实验）：long double
+        #   变量可能是纯寄存器存留的 80 位值——无内存编码可反驳，all-dword
+        #   census 不构成 float 证据；强行 float 化实测 nd 反升（sub_4D1300
+        #   903→918、sub_4D17D0 945→955）；
         # ② 记忆类型 = 本工具此前注解过的函数，沿用存储的名字
         #   （注解后 decomp 显示 float，重跑时靠 _auto_keys 记忆保持幂等）。
-        stored = {x.get('name') for x in lv.get(key, []) if x.get('name')} \
-            if key in auto_keys else set()
+        stored = {x.get('name') for x in auto_entries.get(key, []) if x.get('name')} \
+            if key in auto_entries else set()
         cands = []
         seen = set()
         for x in d.get('local_vars', []):
             nm, reg = x.get('name'), x.get('register')
             if not nm or reg is None or nm in seen:
                 continue
-            if x.get('type') in ('double', 'long double') or nm in stored:
+            if x.get('type') == 'double' or nm in stored:
                 cands.append((nm, reg))
                 seen.add(nm)
         if not cands:
