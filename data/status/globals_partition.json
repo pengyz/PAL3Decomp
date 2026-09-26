@@ -1,7 +1,7 @@
 {
  "_meta": {
   "container_anchors": 38,
-  "evidence_anchors": 11
+  "evidence_anchors": 34
  },
  "top_levels": [
   {
@@ -38,31 +38,13 @@
    "base": 9920216,
    "end": 9920220,
    "name": "g_pGDB",
-   "type": "int"
-  },
-  {
-   "base": 10725336,
-   "end": 10730832,
-   "name": "g_ScreenMode",
-   "type": "CScreenMode"
-  },
-  {
-   "base": 11143936,
-   "end": 11145348,
-   "name": "g_PlayerAttBuffer",
-   "type": "ARC_PlayerAtt"
-  },
-  {
-   "base": 11259136,
-   "end": 11260548,
-   "name": "g_PlayerAttBuffer2",
-   "type": "ARC_PlayerAtt"
+   "type": "unknown"
   },
   {
    "base": 12561248,
    "end": 12561252,
    "name": "g_ScriptSlots",
-   "type": "int"
+   "type": "unknown"
   },
   {
    "base": 12561776,
@@ -155,22 +137,16 @@
    "type": "ScriptSystemData"
   },
   {
-   "base": 14393952,
-   "end": 14395160,
-   "name": "g_UIListBoxDlg",
-   "type": "UIListBox"
+   "base": 14214336,
+   "end": 14214340,
+   "name": "g_GameData",
+   "type": "unknown"
   },
   {
-   "base": 14397200,
-   "end": 14398212,
-   "name": "g_UISceneMapDlg",
-   "type": "UISceneMap"
-  },
-  {
-   "base": 14398308,
-   "end": 14407932,
-   "name": "g_CCBEditorInst",
-   "type": "CCBEditor"
+   "base": 14393296,
+   "end": 14421564,
+   "name": "g_gamefrm",
+   "type": "CGameData"
   },
   {
    "base": 14576856,
@@ -233,26 +209,52 @@
    "type": "Actor"
   },
   {
+   "base": 24846016,
+   "end": 24846020,
+   "name": "g_InputState",
+   "type": "unknown"
+  },
+  {
    "base": 24855016,
    "end": 24860512,
    "name": "g_CScreenMode",
    "type": "CScreenMode"
+  },
+  {
+   "base": 25774968,
+   "end": 25775500,
+   "name": "stru_1894B78",
+   "type": "TextureLib"
   }
  ],
  "members": [
   {
+   "base": 9096176,
+   "end": 9096180,
+   "name": "g_PAL3_Instance#1",
+   "type": "unknown",
+   "parent": "g_PAL3_Instance"
+  },
+  {
    "base": 9096496,
    "end": 9096500,
    "name": "g_xcu_008ACD30",
-   "type": "int",
+   "type": "unknown",
    "parent": "g_PAL3_Instance"
   },
   {
    "base": 9096512,
    "end": 9096516,
    "name": "g_xcu_008ACD40",
-   "type": "int",
+   "type": "unknown",
    "parent": "g_PAL3_Instance"
+  },
+  {
+   "base": 12561776,
+   "end": 12561780,
+   "name": "g_Input#1",
+   "type": "unknown",
+   "parent": "g_Input"
   },
   {
    "base": 12600224,
@@ -265,7 +267,7 @@
    "base": 12650848,
    "end": 12650852,
    "name": "g_xcu_00C10960",
-   "type": "int",
+   "type": "unknown",
    "parent": "g_SceneMgr"
   },
   {
@@ -276,12 +278,195 @@
    "parent": "g_SceneMgr"
   },
   {
+   "base": 12652016,
+   "end": 12652020,
+   "name": "g_xcu_00C10DF0",
+   "type": "unknown",
+   "parent": "g_palScript"
+  },
+  {
+   "base": 12653624,
+   "end": 12653628,
+   "name": "unk_C11438",
+   "type": "unknown",
+   "parent": "g_SceneMgr"
+  },
+  {
+   "base": 12654424,
+   "end": 12654428,
+   "name": "unk_C11758",
+   "type": "unknown",
+   "parent": "g_SceneMgr"
+  },
+  {
+   "base": 14203192,
+   "end": 14203196,
+   "name": "unk_D8B938",
+   "type": "unknown",
+   "parent": "g_ScriptSystemData"
+  },
+  {
    "base": 14203936,
    "end": 14203948,
    "name": "g_vRotateAxis",
    "type": "gbVec3D",
    "parent": "g_ScriptSystemData"
+  },
+  {
+   "base": 14205752,
+   "end": 14205756,
+   "name": "unk_D8C338",
+   "type": "unknown",
+   "parent": "g_ScriptSystemData"
+  },
+  {
+   "base": 14205784,
+   "end": 14205788,
+   "name": "unk_D8C358",
+   "type": "unknown",
+   "parent": "g_ScriptSystemData"
+  },
+  {
+   "base": 14393952,
+   "end": 14395160,
+   "name": "g_UIListBoxDlg",
+   "type": "UIListBox",
+   "parent": "g_gamefrm"
+  },
+  {
+   "base": 14397200,
+   "end": 14398212,
+   "name": "g_UISceneMapDlg",
+   "type": "UISceneMap",
+   "parent": "g_gamefrm"
+  },
+  {
+   "base": 14398308,
+   "end": 14407932,
+   "name": "g_CCBEditorInst",
+   "type": "CCBEditor",
+   "parent": "g_gamefrm"
+  },
+  {
+   "base": 24855016,
+   "end": 24855020,
+   "name": "g_CScreenMode#1",
+   "type": "unknown",
+   "parent": "g_CScreenMode"
   }
  ],
- "conflicts": []
+ "conflicts": [
+  {
+   "name": "dword_60BDC8",
+   "base": 6340040,
+   "end": 6340044,
+   "with": "dword_60BDC8#1",
+   "kind": "top"
+  },
+  {
+   "name": "dword_60BDC8#1",
+   "base": 6340040,
+   "end": 6340044,
+   "with": "dword_60BDC8",
+   "kind": "top"
+  },
+  {
+   "name": "g_BaseVFileSystem",
+   "base": 8175992,
+   "end": 8175996,
+   "with": "g_BaseVFileSystem#1",
+   "kind": "top"
+  },
+  {
+   "name": "g_BaseVFileSystem#1",
+   "base": 8175992,
+   "end": 8175996,
+   "with": "g_BaseVFileSystem",
+   "kind": "top"
+  },
+  {
+   "name": "g_PlayerAttBuffer",
+   "base": 11143936,
+   "end": 11145348,
+   "with": "g_ScreenMode#1",
+   "kind": "frozen_host"
+  },
+  {
+   "name": "g_PlayerAttBuffer2",
+   "base": 11259136,
+   "end": 11260548,
+   "with": "g_ScreenMode#1",
+   "kind": "frozen_host"
+  },
+  {
+   "name": "g_ScreenMode",
+   "base": 10725336,
+   "end": 10730832,
+   "with": "g_ScreenMode#1",
+   "kind": "same_base"
+  },
+  {
+   "name": "g_ScreenMode#1",
+   "base": 10725336,
+   "end": 11643284,
+   "with": "g_ScreenMode",
+   "kind": "same_base"
+  },
+  {
+   "name": "g_VFileSystem",
+   "base": 7258016,
+   "end": 7258020,
+   "with": "g_VFileSystem#1",
+   "kind": "top"
+  },
+  {
+   "name": "g_VFileSystem#1",
+   "base": 7258016,
+   "end": 7258020,
+   "with": "g_VFileSystem",
+   "kind": "top"
+  },
+  {
+   "name": "g_pVolModNode",
+   "base": 10725112,
+   "end": 10725116,
+   "with": "g_pVolModNode#1",
+   "kind": "top"
+  },
+  {
+   "name": "g_pVolModNode#1",
+   "base": 10725112,
+   "end": 10725116,
+   "with": "g_pVolModNode",
+   "kind": "top"
+  },
+  {
+   "name": "g_xcu_008ACC10",
+   "base": 9096208,
+   "end": 9096212,
+   "with": "g_xcu_008ACC10#1",
+   "kind": "member_partial"
+  },
+  {
+   "name": "g_xcu_008ACC10#1",
+   "base": 9096208,
+   "end": 9096212,
+   "with": "g_xcu_008ACC10",
+   "kind": "member"
+  },
+  {
+   "name": "g_xcu_00DE9CB0",
+   "base": 14589104,
+   "end": 14589108,
+   "with": "g_xcu_00DE9CB0#1",
+   "kind": "member_partial"
+  },
+  {
+   "name": "g_xcu_00DE9CB0#1",
+   "base": 14589104,
+   "end": 14589108,
+   "with": "g_xcu_00DE9CB0",
+   "kind": "member"
+  }
+ ]
 }

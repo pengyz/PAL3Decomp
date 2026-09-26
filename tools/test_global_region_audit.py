@@ -389,3 +389,66 @@ def test_partition_with_evidence_anchors():
     tops_sorted = sorted(p['top_levels'], key=lambda t: t['base'])
     for a, b in zip(tops_sorted, tops_sorted[1:]):
         assert a['end'] <= b['base'], (a['name'], b['name'])
+
+
+def test_scan_xcu_byte_level_coverage():
+    """复核修正：线性 disasm 在 0x408E18 停机漏 16 锚（覆盖率 2.2% 事故）——
+    字节级重同步扫描必须回收全部真实锚（复核实测 26 个唯一 (全局,dtor) 对）。"""
+    sites = gra.scan_xcu_initializers(os.path.join(ROOT, 'original', 'PAL3.exe'))
+    uniq = {(s['global_addr'], s['target']) for s in sites}
+    assert len(uniq) >= 20, len(uniq)
+    ga = {s['global_addr'] for s in sites}
+    for known in (0x17B41E8,   # g_CScreenMode 真单例（dtor 0x53DC50）
+                  0xDB9FD0,    # g_gamefrm
+                  0xD8E4C0,    # g_GameData
+                  0x17B1EC0,   # g_InputState
+                  0xC10968):   # g_palScript
+        assert known in ga, hex(known)
+
+
+def test_scan_xcu_helper_pinned():
+    """off-by-5 修正：CRT helper 实证 0x553041（push [esp+4]/call 0x552FD4 形态）。"""
+    sites = gra.scan_xcu_initializers(os.path.join(ROOT, 'original', 'PAL3.exe'))
+    assert sites, 'no sites'
+    assert gra.detect_atexit_helper(os.path.join(ROOT, 'original', 'PAL3.exe')) == 0x553041
+
+
+def test_partition_same_base_identity_conflict():
+    """同基不同 extent/type = 身份矛盾 → B9（CPK@0xA3A7D8 vs g_ScreenMode 事故）。"""
+    anchors = [
+        {'base': 0x1000, 'end': 0x2400, 'name': 'g_Small', 'type': 'CScreenMode'},
+        {'base': 0x1000, 'end': 0xB1A994 - 0xA3A7D8 + 0x1000, 'name': 'g_Big', 'type': 'CPK'},
+    ]
+    p = gra.build_partition(anchors)
+    kinds = {c['kind'] for c in p['conflicts']}
+    assert 'same_base' in kinds
+    assert p['top_levels'] == []
+
+
+def test_partition_frozen_host_and_member_partial():
+    """S1/S3 残余：冻结宿主上再到的 contained 锚 → 冻结（frozen_host）；
+    与成员态区间的部分重叠 → 双方冻结。"""
+    anchors = [
+        {'base': 0x1000, 'end': 0x2000, 'name': 'X', 'type': 'A'},
+        {'base': 0x1800, 'end': 0x2800, 'name': 'Y', 'type': 'A'},
+        {'base': 0x2000, 'end': 0x2400, 'name': 'C', 'type': 'A'},  # ⊂ frozen-Y
+        {'base': 0x2100, 'end': 0x2300, 'name': 'D', 'type': 'A'},  # ⊂ C(frozen)
+    ]
+    p = gra.build_partition(anchors)
+    top_names = {t['name'] for t in p['top_levels']}
+    assert top_names == set(), top_names
+    kinds = {c['name']: c['kind'] for c in p['conflicts']}
+    assert kinds.get('C') == 'frozen_host'
+    assert kinds.get('D') == 'frozen_host'
+    # 成员态区间（无）——member partial 用另例
+    anchors2 = [
+        {'base': 0x5000, 'end': 0x6000, 'name': 'T', 'type': 'A'},
+        {'base': 0x5100, 'end': 0x5200, 'name': 'M', 'type': 'A'},   # T 的成员
+        {'base': 0x5180, 'end': 0x5300, 'name': 'P', 'type': 'A'},   # 与 M 部分重叠
+    ]
+    p2 = gra.build_partition(anchors2)
+    kinds2 = {c['name']: c['kind'] for c in p2['conflicts']}
+    # kind=冲突语境：新到者 P 记 'member'（对方是成员态）；
+    # 成员 M 记 'member_partial'（被卷入时的自身状态）
+    assert kinds2.get('P') == 'member'
+    assert kinds2.get('M') == 'member_partial'

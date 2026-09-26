@@ -257,25 +257,37 @@ def scan_singleton_triplets(decomp_dir=None):
     return sorted(dedup.values(), key=lambda t: t['global_addr'])
 
 
-def scan_xcu_initializers(exe_path=PAL3_EXE):
-    """D 类：动态初始化/析构的二进制指纹（thunk 三元组，2026-09-27 实证形态）。
+def detect_atexit_helper(exe_path=PAL3_EXE):
+    """atexit 注册桩的 CRT helper 地址：`push imm32; call rel32; pop ecx; ret`
+    形态的字节级全扫，取 call 目标众数。实证 0x553041
+    （push [esp+4]/call 0x552FD4 的 _atexit 包装）。"""
+    secs = load_pe_sections(exe_path)
+    text = [s for s in secs if s['name'] == '.text'][0]
+    data = open(exe_path, 'rb').read()
+    code = data[text['roff']:text['roff'] + text['rsz']]
+    from collections import Counter
+    cnt = Counter()
+    for m in re.finditer(b'\x68(....)\xe8(....)\x59\xc3', code, re.DOTALL):
+        p = m.start()
+        callee = text['va'] + p + 10 + struct.unpack_from('<i', code, p + 6)[0]
+        cnt[callee] += 1
+    return cnt.most_common(1)[0][0] if cnt else None
 
-    g_palScript 样本（0x4086C0/0x4086D0/0x4086E0 三连）：
-        mov ecx, 0xc10968 ; jmp ctor        ← 初始化 thunk（ Placement ctor 转发）
-        push 0x4086e0 ; call 0x553041 ; pop ecx ; ret   ← atexit 注册桩
-        mov ecx, 0xc10968 ; jmp dtor        ← 析构 thunk
-    检测链：
-      A) atexit 注册桩指纹 `push imm32; call CRT_HELPER; pop ecx; ret`
-         （CRT_HELPER 取同形态 call 目标的众数，0x553041 实证）→ callback 地址
-      B) callback 体 = `mov ecx, <全局>; jmp <dtor>` ⇒ 全局地址 + 析构目标
-      C) 类身份 = dtor 体开头写自身 vtable（mov dword ptr [ecx], imm ∈ .rdata）
-         经 vtables 注解反解
-    另收直呼形态 `mov ecx, <全局>; call <目标>` 且【目标体写自身 vtable】
-    （无 vtable 写 = 普通方法调用，剔除——此前 47 伪站点即此污染）。
+
+def scan_xcu_initializers(exe_path=PAL3_EXE):
+    """D 类：动态初始化/析构的二进制指纹（thunk 三元组；v3 字节级重同步扫描）。
+
+    v2 缺陷（复核 2026-09-27）：md.disasm 线性扫描在 0x408E18 无效字节处停机，
+    26 个真实锚只报 10（覆盖率 2.2%）。v3 = 字节模式全扫：
+      A) atexit 注册桩：68 imm32 | E8 rel32 | 59 | C3  → callback 地址
+         （call 目标 = VA(p+10)+rel32；v2 的 +5 为 off-by-5）
+      B) callback 体 = B9 imm32(全局) + E9 rel32(dtor)
+      C) 类身份 = dtor 体开头写自身 vtable（mov dword ptr [reg], imm ∈ .rdata）
+      D) 直呼形态：B9 imm32 + E8（call），目标体写自身 vtable 才收
+      E) ff25 导入跳转形态：B9 imm32 + FF 25（jmp [iat]），class 不可解仍记锚
     返回 [{global_addr, target, vtable, class, via}]。
     """
     import capstone
-    import hashlib
     secs = load_pe_sections(exe_path)
     text = [s for s in secs if s['name'] == '.text'][0]
     data_sec = [s for s in secs if s['name'] == '.data'][0]
@@ -284,52 +296,20 @@ def scan_xcu_initializers(exe_path=PAL3_EXE):
     code = data[text['roff']:text['roff'] + text['rsz']]
     base = text['va']
     md = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
+    helper = detect_atexit_helper(exe_path)
 
     def rdata_va(x):
         return rd['va'] <= x < rd['va'] + rd['rsz']
-
-    # A) atexit 注册桩：68 imm32 / E8 rel32 / 59 / C3
-    atexit_calls = {}
-    callbacks = []
-    for i, ins in enumerate(md.disasm(code, base)):
-        if ins.mnemonic != 'push' or not ins.op_str.startswith('0x'):
-            continue
-        win = code[ins.address - base: ins.address - base + 12]
-        if len(win) < 12 or win[0] != 0x68:
-            continue
-        cb = struct.unpack_from('<I', win, 1)[0]
-        if win[5] != 0xE8:
-            continue
-        rel = struct.unpack_from('<i', win, 6)[0]
-        callee = ins.address + 5 + rel
-        nxt = win[10:12]
-        if nxt != b'\x59\xc3':
-            continue
-        atexit_calls[callee] = atexit_calls.get(callee, 0) + 1
-        callbacks.append((ins.address, cb, callee))
-    helper = max(atexit_calls, key=atexit_calls.get) if atexit_calls else None
-
-    # B) thunk 体解析：B9 imm32 (global) + E9 rel32 (jmp target)
-    def thunk_body(addr):
-        off = addr - base
-        if off < 0 or off + 6 > len(code) or code[off] != 0xB9 or code[off+5] != 0xE9:
-            return None
-        g = struct.unpack_from('<I', code, off + 1)[0]
-        rel = struct.unpack_from('<i', code, off + 6)[0]
-        tgt = addr + 10 + rel
-        return g, tgt
 
     _VTBL_STORE = re.compile(r'^dword ptr \[\w+\], 0x([0-9A-Fa-f]+)')
 
     def first_vtable_store(addr, max_insns=16):
         off = addr - base
-        if off < 0:
+        if off < 0 or off >= len(code):
             return None
         for k, ci in enumerate(md.disasm(code[off:off + 96], addr)):
             if k >= max_insns:
                 break
-            # dtor/ctor 的 vtable 写可经任意寄存器（PalScript dtor 用 [esi]；
-            # SEH 序言的 fs:[0]/[esp+..] 无 imm 不误报）
             mvt = _VTBL_STORE.match(ci.op_str) if ci.mnemonic == 'mov' else None
             if mvt:
                 vt = int(mvt.group(1), 16)
@@ -350,35 +330,50 @@ def scan_xcu_initializers(exe_path=PAL3_EXE):
                       'vtable': vt, 'class': vt2cls.get(vt) if vt else None,
                       'via': via})
 
-    for addr, cb, callee in callbacks:
+    # A) atexit 注册桩（字节级；字节模式用非 raw 字节串拼装避免转义层事故）
+    atexit_pat = b'\x68' + b'(....)' + b'\xe8' + b'(....)' + b'\x59\xc3'
+    for m in re.finditer(atexit_pat, code, re.DOTALL):
+        p = m.start()
+        cb = struct.unpack_from('<I', code, p + 1)[0]
+        callee = base + p + 10 + struct.unpack_from('<i', code, p + 6)[0]
         if helper is not None and callee != helper:
             continue
-        body = thunk_body(cb)
-        if body:
-            g, dtor = body
+        # B) callback 体：B9 imm32 + E9 rel32
+        coff = cb - base
+        if 0 <= coff and coff + 10 <= len(code) and code[coff] == 0xB9 and code[coff + 5] == 0xE9:
+            g = struct.unpack_from('<I', code, coff + 1)[0]
+            rel = struct.unpack_from('<i', code, coff + 6)[0]
+            dtor = cb + 10 + rel
             if data_sec['va'] <= g < data_sec['va'] + data_sec['vsz']:
                 emit(g, dtor, 'atexit_thunk')
-    # 直呼形态：mov ecx,imm + call target 且目标体写自身 vtable（非方法调用）
-    insns = list(md.disasm(code, base))
-    for i, ins in enumerate(insns):
-        if not (ins.mnemonic == 'mov' and ins.op_str.startswith('ecx, 0x')):
-            continue
-        try:
-            g = int(ins.op_str.split(', ')[1], 16)
-        except (ValueError, IndexError):
-            continue
+
+    # C/D/E) B9 imm32 开头的全部候选位（mov ecx,imm 的字节级枚举）
+    b9_pat = b'\xb9' + b'(....)'
+    for m in re.finditer(b9_pat, code, re.DOTALL):
+        p = m.start()
+        g = struct.unpack_from('<I', code, p + 1)[0]
         if not (data_sec['va'] <= g < data_sec['va'] + data_sec['vsz']):
             continue
-        for j in range(i + 1, min(i + 4, len(insns))):
-            if insns[j].mnemonic == 'call':
+        # 窗口内 capstone 验证指令边界（B9 自身即边界）
+        win = list(md.disasm(code[p:p + 24], base + p))
+        cnt = 0
+        for ins in win:
+            cnt += 1
+            if cnt > 3:
+                break
+            if ins.mnemonic == 'call':
                 try:
-                    tgt = int(insns[j].op_str, 16)
+                    tgt = int(ins.op_str, 16)
                 except ValueError:
                     break
-                if first_vtable_store(tgt) is not None:
+                if text['va'] <= tgt < text['va'] + text['rsz'] \
+                        and first_vtable_store(tgt) is not None:
                     emit(g, tgt, 'direct_call')
                 break
-            if insns[j].mnemonic in ('ret', 'jmp'):
+            if ins.mnemonic == 'jmp':
+                # ff25 导入跳转形态（jmp [iat]）——外部类，class 不可解仍记锚
+                if ins.bytes[:2] == b'\xff\x25':
+                    emit(g, ins.address + 6, 'ff25')
                 break
     sites.sort(key=lambda s: (s['global_addr'], s['target']))
     return sites
@@ -406,21 +401,36 @@ def collect_evidence_anchors():
             nm = 'g_xcu_%08X' % s['global_addr']
         cls = s.get('class')
         sz = sizes.get(cls) if cls else None
+        # class 未知 ⇒ type='unknown'（≠'int'：与容器基址同位时是佐证非矛盾）
         anchors.append({'base': s['global_addr'],
                         'end': s['global_addr'] + (sz or 4),
-                        'name': nm, 'type': cls or 'int',
+                        'name': nm, 'type': cls or 'unknown',
                         'evidence': 'D:xcu:target_%X' % s['target']})
     return anchors
 
 
 def merge_anchors(base_anchors, evidence_anchors):
-    """容器锚 ∪ 证据锚：按名去重（容器锚优先），证据锚带 evidence 字段。"""
-    seen = {a['name'] for a in base_anchors}
+    """容器锚 ∪ 证据锚。
+
+    去重语义（2026-09-27 复核修正）：完全同身份（base+end+type 相同）才丢弃；
+    **同名但身份不同者保留**并加序号后缀——按名丢弃曾把 CPK@0xA3A7D8（D 类
+    vtable 实证）静默吞掉，分区无从报 same_base 身份矛盾。冲突交 build_partition。
+    """
     merged = [dict(a) for a in base_anchors]
+    identity = {(a['base'], a['end'], a['type']) for a in base_anchors}
+    seen_names = {a['name'] for a in base_anchors}
     for a in evidence_anchors:
-        if a['name'] not in seen:
-            merged.append(a)
-            seen.add(a['name'])
+        if (a['base'], a['end'], a['type']) in identity:
+            continue
+        name = a['name']
+        i = 1
+        while name in seen_names:
+            name = '%s#%d' % (a['name'], i)
+            i += 1
+        a = dict(a)
+        a['name'] = name
+        merged.append(a)
+        seen_names.add(name)
     merged.sort(key=lambda a: (a['base'], -a['end'], a['name']))
     return merged
 
@@ -516,6 +526,31 @@ def build_partition(anchors):
                    if k in ('partial', 'identical')]
         hosts = [(nm, iv) for nm, (k, iv) in rel.items() if k == 'contained']
         absorbs = [(nm, iv) for nm, (k, iv) in rel.items() if k == 'contains']
+        # 残余规则（复核 2026-09-27）：
+        # ① 同基不同 extent/type = 身份矛盾 → same_base 冲突（不得按包含消解——
+        #    CPK@0xA3A7D8 vs g_ScreenMode 事故）
+        # ② 与冻结态/成员态区间的部分重叠 → 双方冻结（成员态 counterpart 也冻结）
+        # ③ 被冻结区间包含 → 本锚冻结（frozen_host），不得挂冻结宿主
+        # same_base 冲突仅限【异类】：同类同基不同尺寸 = extent 修订（良性包含）；
+        # 异类同基 = 身份矛盾（CPK vs g_ScreenMode 事故）
+        same_base = [(nm, iv) for nm, (k, iv) in rel.items()
+                     if k == 'contained' and iv['base'] == a['base']
+                     and iv.get('type') != a['type']
+                     and 'unknown' not in (iv.get('type'), a.get('type'))]
+        if same_base:
+            for nm, iv in same_base:
+                conflicts.append({'name': a['name'], 'base': a['base'],
+                                  'end': a['end'], 'with': nm, 'kind': 'same_base'})
+                conflicts.append({'name': nm, 'base': iv['base'], 'end': iv['end'],
+                                  'with': a['name'], 'kind': 'same_base'})
+                frozen_conflict.add(a['name'])
+                frozen_conflict.add(nm)
+                if iv['state'] == 'top':
+                    ivs[nm]['state'] = 'frozen'
+            ivs[a['name']] = {'base': a['base'], 'end': a['end'],
+                              'type': a['type'], 'state': 'frozen',
+                              'parent': None}
+            continue
         if clashes:
             for nm, iv in clashes:
                 conflicts.append({'name': a['name'], 'base': a['base'],
@@ -525,6 +560,11 @@ def build_partition(anchors):
                     conflicts.append({'name': nm, 'base': iv['base'],
                                       'end': iv['end'], 'with': a['name'],
                                       'kind': iv['state']})
+                    frozen_conflict.add(nm)
+                elif iv['state'] == 'member':
+                    conflicts.append({'name': nm, 'base': iv['base'],
+                                      'end': iv['end'], 'with': a['name'],
+                                      'kind': 'member_partial'})
                     frozen_conflict.add(nm)
             # 顶层被冻结 ⇒ 其成员随父挂起（S3）：转入 frozen 态，
             # 不再出现在 members（dangling parent 指向已不存在的顶层）
@@ -537,8 +577,20 @@ def build_partition(anchors):
                     frozen_conflict.add(nm)
                     iv['state'] = 'frozen'
             for nm, iv in clashes:
-                if iv['state'] == 'top':
+                if iv['state'] in ('top', 'member'):
                     ivs[nm]['state'] = 'frozen'
+            ivs[a['name']] = {'base': a['base'], 'end': a['end'],
+                              'type': a['type'], 'state': 'frozen',
+                              'parent': None}
+            continue
+        # ③ 冻结宿主：被冻结区间包含 → 本锚冻结
+        frozen_host = next((nm for nm, (k, iv) in rel.items()
+                            if k == 'contained' and iv['state'] == 'frozen'), None)
+        if frozen_host is not None:
+            conflicts.append({'name': a['name'], 'base': a['base'],
+                              'end': a['end'], 'with': frozen_host,
+                              'kind': 'frozen_host'})
+            frozen_conflict.add(a['name'])
             ivs[a['name']] = {'base': a['base'], 'end': a['end'],
                               'type': a['type'], 'state': 'frozen',
                               'parent': None}
