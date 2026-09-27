@@ -65,6 +65,12 @@
    "type": "unknown"
   },
   {
+   "base": 10725336,
+   "end": 11643284,
+   "name": "g_CPKPackFiles",
+   "type": "CPK"
+  },
+  {
    "base": 12561248,
    "end": 12561252,
    "name": "g_ScriptSlots",
@@ -168,9 +174,27 @@
   },
   {
    "base": 14393296,
-   "end": 14421564,
+   "end": 14393297,
    "name": "g_gamefrm",
    "type": "CGameData"
+  },
+  {
+   "base": 14393952,
+   "end": 14395160,
+   "name": "g_UIListBoxDlg",
+   "type": "UIListBox"
+  },
+  {
+   "base": 14397200,
+   "end": 14398212,
+   "name": "g_UISceneMapDlg",
+   "type": "UISceneMap"
+  },
+  {
+   "base": 14398308,
+   "end": 14407932,
+   "name": "g_CCBEditorInst",
+   "type": "CCBEditor"
   },
   {
    "base": 14576856,
@@ -281,6 +305,20 @@
    "parent": "g_PAL3_Instance"
   },
   {
+   "base": 11143936,
+   "end": 11145348,
+   "name": "g_PlayerAttBuffer",
+   "type": "ARC_PlayerAtt",
+   "parent": "g_CPKPackFiles"
+  },
+  {
+   "base": 11259136,
+   "end": 11260548,
+   "name": "g_PlayerAttBuffer2",
+   "type": "ARC_PlayerAtt",
+   "parent": "g_CPKPackFiles"
+  },
+  {
    "base": 12561776,
    "end": 12561780,
    "name": "g_Input#1",
@@ -353,30 +391,9 @@
   {
    "base": 14205784,
    "end": 14205788,
-   "name": "unk_D8C358",
+   "name": "stru_D8C358",
    "type": "unknown",
    "parent": "g_ScriptSystemData"
-  },
-  {
-   "base": 14393952,
-   "end": 14395160,
-   "name": "g_UIListBoxDlg",
-   "type": "UIListBox",
-   "parent": "g_gamefrm"
-  },
-  {
-   "base": 14397200,
-   "end": 14398212,
-   "name": "g_UISceneMapDlg",
-   "type": "UISceneMap",
-   "parent": "g_gamefrm"
-  },
-  {
-   "base": 14398308,
-   "end": 14407932,
-   "name": "g_CCBEditorInst",
-   "type": "CCBEditor",
-   "parent": "g_gamefrm"
   },
   {
    "base": 14589104,
@@ -393,34 +410,5 @@
    "parent": "g_CScreenMode"
   }
  ],
- "conflicts": [
-  {
-   "name": "g_PlayerAttBuffer",
-   "base": 11143936,
-   "end": 11145348,
-   "with": "g_ScreenMode#1",
-   "kind": "frozen_host"
-  },
-  {
-   "name": "g_PlayerAttBuffer2",
-   "base": 11259136,
-   "end": 11260548,
-   "with": "g_ScreenMode#1",
-   "kind": "frozen_host"
-  },
-  {
-   "name": "g_ScreenMode",
-   "base": 10725336,
-   "end": 10730832,
-   "with": "g_ScreenMode#1",
-   "kind": "same_base"
-  },
-  {
-   "name": "g_ScreenMode#1",
-   "base": 10725336,
-   "end": 11643284,
-   "with": "g_ScreenMode",
-   "kind": "same_base"
-  }
- ]
+ "conflicts": []
 }

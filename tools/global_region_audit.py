@@ -25,8 +25,10 @@ _EXTERN_RE = re.compile(
     r'^extern\s+(?P<type>.+?)\s+(?P<name>\w+)'
     r'(?P<dims>(?:\[\d*\])+)?\s*;\s*//\s*(?P<addr>0x[0-9A-Fa-f]+)\s*$')
 
-# 分母口径常量（完备性门禁——漂移即测试红）
-DENOMINATOR = 2734
+# 分母口径常量（完备性门禁——漂移即测试红）。
+# 棘轮轨迹：2734（退役前）→ 2034（退役第一波 -700）→ 2035（+1 = aDatascriptScen_0
+# 合成名漂移，伪函数清除改变去重顺序的附带产物，已归因非真实新增）
+DENOMINATOR = 2035
 
 # 基型字节数（size_bytes 估算用；未知基型 → None）
 _BASE_SIZES = {
@@ -436,6 +438,61 @@ def merge_anchors(base_anchors, evidence_anchors):
         seen_names.add(name)
     merged.sort(key=lambda a: (a['base'], -a['end'], a['name']))
     return merged
+
+
+
+_SEMANTIC_NAME_RE = re.compile(r'^(?!dword_|byte_|word_|flt_|unk_|off_|stru_)\w+$')
+
+
+def build_member_patch(container_base, known_members, interior_rows,
+                       container_size, existing_base=None):
+    """阶段 4：B2 内部 extern → known_members 补丁（复核报告 §五.4）。
+
+    - 偏移 = addr - container_base（容器相对）；
+    - 跳过：基址行、已在 known_members 的偏移、落入已知成员跨度内者
+      （跨度按 best-effort 尺寸表估算，未知尺寸按最小 4 字节——保守）；
+    - 命名：语义名（非 dword_/byte_/unk_ 前缀）优先原样用；
+      否则偏移派生占位名 m_<绝对地址Hex>（中间名，语义命名是后续人工活）；
+    - 每条带 source 证据字段（绝对地址访问形态）。
+    """
+    existing_base = container_base
+    _ = existing_base
+    # 偏移键双格式兼容：十进制（ScriptSystemData 系）与 '0x..' 十六进制（CGameData 系）
+    known_offs = {int(k, 16) if str(k).startswith('0x') else int(k) for k in known_members}
+    # 已知成员跨度（best-effort）：有尺寸信息者按尺寸，否则按 4 字节
+    spans = []
+    for k, v in known_members.items():
+        off = int(k, 16) if str(k).startswith('0x') else int(k)
+        t = v.get('type', 'int')
+        marr = re.match(r'^(\w+)\[(\d+)\]$', t)
+        sz = _load_class_sizes().get(t) if marr is None else None
+        if sz is None:
+            base_t = marr.group(1) if marr else t.strip()
+            # 元素尺寸：IDB UDT 优先（SceneMapPlayer=392 实证），基型表兜底
+            sz = _load_class_sizes().get(base_t) or _BASE_SIZES.get(base_t, 4)
+            if marr:
+                sz *= int(marr.group(2))
+        elif marr:
+            sz *= int(marr.group(2))
+        spans.append((off, off + max(sz, 1)))
+    patch = []
+    for r in interior_rows:
+        addr = r['addr']
+        if addr < container_base or addr >= container_base + container_size:
+            continue
+        rel = addr - container_base
+        if rel in known_offs:
+            continue
+        if any(lo <= rel < hi for lo, hi in spans):
+            continue
+        nm = r['name']
+        if not _SEMANTIC_NAME_RE.match(nm):
+            nm = 'm_%X' % addr
+        patch.append({'offset': str(rel), 'name': nm,
+                      'type': r['type'],
+                      'source': 'region-audit: interior extern @0x%X' % addr})
+    patch.sort(key=lambda p2: int(p2['offset']))
+    return patch
 
 
 def collect_anchor_containers():

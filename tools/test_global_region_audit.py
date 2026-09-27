@@ -34,7 +34,7 @@ def test_parse_count_matches_file():
         if ln.startswith('extern') and '//' in ln and '0x' in ln:
             raw += 1
     assert len(entries) == raw
-    assert len(entries) == 2734
+    assert len(entries) == 2035  # 退役棘轮：2734→2034→2035（+1=aDatascriptScen_0 合成名漂移已归因）
 
 
 def test_parse_array_and_scalar():
@@ -92,7 +92,7 @@ def test_classify_known_addresses():
 def test_census_total_and_buckets():
     census = gra.build_census(GLOBALS_H, os.path.join(ROOT, 'original', 'PAL3.exe'))
     rows = census['rows']
-    assert len(rows) == 2734
+    assert len(rows) == 2035
     # 完备门（阶段 1 形态）：每行有 section 与 bucket；rdata 即 B7，
     # 其余为 pending（最终 bucket 由分区/锚定阶段细分——完备性在全部阶段后达成）
     for r in rows:
@@ -103,8 +103,8 @@ def test_census_total_and_buckets():
     for r in rows:
         by_sec.setdefault(r['section'], []).append(r)
     assert all(r['bucket'] == 'B7' for r in by_sec.get('rdata', []))
-    assert len(by_sec.get('data_init', [])) == 937
-    assert len(by_sec.get('bss', [])) == 1642
+    assert len(by_sec.get('data_init', [])) == 929
+    assert len(by_sec.get('bss', [])) == 951
 
 
 def test_census_deterministic(tmp_path):
@@ -452,3 +452,107 @@ def test_partition_frozen_host_and_member_partial():
     # 成员 M 记 'member_partial'（被卷入时的自身状态）
     assert kinds2.get('P') == 'member'
     assert kinds2.get('M') == 'member_partial'
+
+
+# ---------- 阶段 4：B2 成员化（known_members 补丁生成）----------
+
+def test_memberize_patch_basic():
+    """成员化生成：偏移换算、语义名优先、占位名规则、已有成员跳过。"""
+    km = {'0': {'name': 'm_mapPlayer', 'type': 'SceneMapPlayer[4]'},
+          '1568': {'name': 'm_scriptArray', 'type': 'PtrArray'}}
+    interior = [
+        {'addr': 0xD8B318 + 0,     'name': 'g_ScriptSystemData', 'type': 'ScriptSystemData'},
+        {'addr': 0xD8B318 + 100,   'name': 'dword_D8B37C', 'type': 'int'},      # ⊂ m_mapPlayer 跨度
+        {'addr': 0xD8B318 + 1700,  'name': 'dword_D8B9C4', 'type': 'int'},      # 空档
+        {'addr': 0xD8B318 + 2312,  'name': 'g_vRotateAxis', 'type': 'gbVec3D'}, # 语义名
+    ]
+    patch = gra.build_member_patch(0xD8B318, km, interior,
+                                   existing_base=0xD8B318,
+                                   container_size=12624)
+    adds = {p2['offset']: p2 for p2 in patch}
+    # 基址行与已覆盖偏移跳过
+    assert '0' not in adds and '1568' not in adds
+    assert '100' not in adds
+    # 空档位产出：偏移派生占位名
+    assert adds['1700']['name'].startswith('m_')
+    # 语义名优先
+    assert adds['2312']['name'] == 'g_vRotateAxis'
+    # 偏移为容器相对值
+    assert all(int(k) < 12624 for k in adds)
+
+
+def test_memberize_source_field():
+    """补丁条目带证据源字段（三形态第一形态：绝对地址访问）。"""
+    km = {}
+    interior = [{'addr': 0xD8B318 + 1700, 'name': 'dword_D8B9C4', 'type': 'int'}]
+    patch = gra.build_member_patch(0xD8B318, km, interior,
+                                   existing_base=0xD8B318, container_size=12624)
+    assert patch[0]['source'].startswith('region-audit:')
+    assert '0xD8B9C4' in patch[0]['source']
+
+
+# ---------- 阶段 4：B2 成员化（known_members 补丁生成）----------
+
+def test_memberize_patch_basic():
+    """成员化生成：偏移换算、语义名优先、占位名规则、已有成员跳过。"""
+    km = {'0': {'name': 'm_mapPlayer', 'type': 'SceneMapPlayer[4]'},
+          '1568': {'name': 'm_scriptArray', 'type': 'PtrArray'}}
+    interior = [
+        {'addr': 0xD8B318 + 0,     'name': 'g_ScriptSystemData', 'type': 'ScriptSystemData'},
+        {'addr': 0xD8B318 + 100,   'name': 'dword_D8B37C', 'type': 'int'},      # ⊂ m_mapPlayer 跨度
+        {'addr': 0xD8B318 + 1700,  'name': 'dword_D8B9C4', 'type': 'int'},      # 空档
+        {'addr': 0xD8B318 + 2312,  'name': 'g_vRotateAxis', 'type': 'gbVec3D'}, # 语义名
+    ]
+    patch = gra.build_member_patch(0xD8B318, km, interior,
+                                   container_size=12624)
+    adds = {p2['offset']: p2 for p2 in patch}
+    # 基址行与已覆盖偏移跳过
+    assert '0' not in adds and '1568' not in adds
+    assert '100' not in adds
+    # 空档位产出：偏移派生占位名
+    assert adds['1700']['name'].startswith('m_')
+    # 语义名优先
+    assert adds['2312']['name'] == 'g_vRotateAxis'
+    # 偏移为容器相对值
+    assert all(int(k) < 12624 for k in adds)
+
+
+def test_memberize_source_field():
+    """补丁条目带证据源字段（三形态第一形态：绝对地址访问）。"""
+    km = {}
+    interior = [{'addr': 0xD8B318 + 1708, 'name': 'dword_D8B9C4', 'type': 'int'}]
+    patch = gra.build_member_patch(0xD8B318, km, interior,
+                                   container_size=12624)
+    assert patch[0]['source'].startswith('region-audit:')
+    assert '0xD8B9C4' in patch[0]['source']
+    assert patch[0]['offset'] == '1708'
+
+
+def test_memberize_hex_offset_keys():
+    """回归：CGameData 系注解的 known_members 偏移键是十六进制（'0x4C'），
+    生成器必须双格式兼容（十进制/0x 十六进制）。"""
+    km = {'0x4C': {'name': 'm_existing', 'type': 'int'}}
+    interior = [
+        {'addr': 0xDB9FD0 + 0x4C, 'name': 'dword_DBA01C', 'type': 'int'},  # 已覆盖
+        {'addr': 0xDB9FD0 + 0x200, 'name': 'dword_DBA1D0', 'type': 'int'}, # 空档
+    ]
+    patch = gra.build_member_patch(0xDB9FD0, km, interior, container_size=28268)
+    offs = {p['offset'] for p in patch}
+    assert '512' in offs
+    assert not any(p['offset'] == '76' for p in patch)  # 0x4C 已覆盖不重发
+
+
+def test_cpk_adjudication_annotation():
+    """B9 裁决（2026-09-27）：0xA3A7D8 四条二进制证据链（vtable 0x570A04=CPK、
+    dtor 0x53C2D0 写 [esi]←vt、InitPackFiles thunk 0x4044F0 成对、
+    CScreenMode::GetInstance 返回 &g_CScreenMode@0x17B41E8）⇒ 该地址是
+    CPK 类全局，注解 g_ScreenMode/CScreenMode 为命名漂移，已改正。"""
+    import json
+    g = json.load(open(os.path.join(ROOT, 'data', 'annotations', 'globals.json'),
+                       encoding='utf-8'))
+    e = g.get('0x00A3A7D8')
+    assert e is not None
+    assert e['name'] == 'g_CPKPackFiles'
+    assert e['type'] == 'CPK'
+    assert e['binary_size'] == 917948
+    assert 'vtable' in e.get('naming_note', '') or '0x570A04' in e.get('naming_note', '')
