@@ -556,3 +556,32 @@ def test_cpk_adjudication_annotation():
     assert e['type'] == 'CPK'
     assert e['binary_size'] == 917948
     assert 'vtable' in e.get('naming_note', '') or '0x570A04' in e.get('naming_note', '')
+
+
+# ---------- 阶段 A2：pending 分类 ----------
+
+def test_classify_pending_rules():
+    """分类规则：数组维度→B5；存 .text 指针→B6；其余→B8 独立标量。"""
+    secs = gra.load_pe_sections(os.path.join(ROOT, 'original', 'PAL3.exe'))
+    # g_nStatePanelL int[4] 有维度 → B5
+    e = {'addr': 0x56FCC8, 'name': 'g_nStatePanelL', 'type': 'int', 'array': 4, 'dims': [4]}
+    assert gra.classify_pending(e, secs, open(os.path.join(ROOT, 'original', 'PAL3.exe'), 'rb').read()) == 'B5'
+    # 无维度 → 按二进制内容判 B6/B8
+    e2 = {'addr': 0x56C568, 'name': 'g_MonsterEntryTable', 'type': 'int', 'array': None, 'dims': None}
+    r = gra.classify_pending(e2, secs, open(os.path.join(ROOT, 'original', 'PAL3.exe'), 'rb').read())
+    assert r in ('B5', 'B6', 'B8')
+
+
+def test_classify_pending_all_bucketed():
+    """完备门：全量跑完后 census 无 pending。"""
+    census = gra.build_census()
+    secs = gra.load_pe_sections(os.path.join(ROOT, 'original', 'PAL3.exe'))
+    exe = open(os.path.join(ROOT, 'original', 'PAL3.exe'), 'rb').read()
+    from collections import Counter
+    buckets = Counter()
+    for r in census['rows']:
+        if r['bucket'] == 'pending':
+            r['bucket'] = gra.classify_pending(r, secs, exe)
+        buckets[r['bucket']] += 1
+    assert 'pending' not in buckets
+    assert sum(buckets.values()) == 2035

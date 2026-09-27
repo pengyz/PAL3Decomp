@@ -495,6 +495,31 @@ def build_member_patch(container_base, known_members, interior_rows,
     return patch
 
 
+
+_TEXT_LO, _TEXT_HI = 0x401000, 0x56A000
+
+
+def classify_pending(row, secs, exe_data=None):
+    """pending → B5/B6/B8（证据规则，二进制直读）。
+
+    - 声明带维度（array/dims）⇒ B5 数组/缓冲区；
+    - 该地址的首 dword 指向 .text ⇒ B6 函数指针（表）；
+    - 其余 ⇒ B8 独立标量（诚实出口：无身份证据，按标量保留）。
+    """
+    if row.get('array') is not None or row.get('dims'):
+        return 'B5'
+    if exe_data is not None:
+        for s in secs:
+            if s['name'] == '.data' and s['va'] <= row['addr'] < s['va'] + s['rsz']:
+                off = s['roff'] + (row['addr'] - s['va'])
+                if off + 4 <= len(exe_data):
+                    val = struct.unpack_from('<I', exe_data, off)[0]
+                    if _TEXT_LO <= val < _TEXT_HI:
+                        return 'B6'
+                break
+    return 'B8'
+
+
 def collect_anchor_containers():
     """容器锚收集：globals.json 条目 type 命中 IDB UDT size 者 + 结构数组整体跨度。
 
@@ -757,6 +782,20 @@ def main(argv):
             for c in p['conflicts'][:10]:
                 print('  ', c)
         print('partition -> %s' % os.path.relpath(PARTITION_PATH, ROOT))
+        # A2: pending 分类（B5/B6/B8）——完备门 Σ==分母、无 pending
+        from collections import Counter as _C2
+        exe_data = open(PAL3_EXE, 'rb').read()
+        _c = 0
+        for r in census['rows']:
+            if r['bucket'] == 'pending':
+                r['bucket'] = classify_pending(r, load_pe_sections(PAL3_EXE), exe_data)
+                _c += 1
+        with open(CENSUS_PATH, 'w', encoding='utf-8', newline='') as f:
+            json.dump(census, f, ensure_ascii=False, indent=1)
+        bk = _C2(r['bucket'] for r in census['rows'])
+        print('classify: %d pending → %s' % (_c, dict(bk)))
+        assert 'pending' not in bk
+        assert sum(bk.values()) == census['_meta']['denominator']
         return 0
     print(__doc__)
     return 1
