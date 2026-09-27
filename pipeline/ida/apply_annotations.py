@@ -76,6 +76,14 @@ _PRIMITIVE_BTF = {
     '_DWORD': ida_typeinf.BTF_UINT32,
     '_BYTE': ida_typeinf.BTF_BYTE,
     '_WORD': ida_typeinf.BTF_UINT16,
+    # 2026-09-27：Hex-Rays 惯用拼写补全（g_pSceneTransitionEnd 'unsigned __int8 *'
+    # 过不了 _resolve_member_type ⇒ apply FATAL 阻断全链）
+    '__int8': ida_typeinf.BTF_INT8,
+    'unsigned __int8': ida_typeinf.BTF_BYTE,
+    '__int16': ida_typeinf.BTF_INT16,
+    'unsigned __int16': ida_typeinf.BTF_UINT16,
+    '__int32': ida_typeinf.BTF_INT32,
+    'unsigned __int32': ida_typeinf.BTF_UINT32,
 }
 
 

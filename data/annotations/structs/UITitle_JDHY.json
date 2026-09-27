@@ -243,6 +243,11 @@
   "0x004B0520": {
    "name": "_scalar_dtor",
    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+  },
+  "0x004B43E0": {
+   "name": "InitPageState",
+   "signature": "int __thiscall UITitle_JDHY::InitPageState(int nPage)",
+   "naming_note": "2026-09-27 归属证据：① 9 个调用点全在 UITitle_JDHY_OnMessage 的 switch(nVal) 分支内、UISceneMap::ShowPage/StateUI::SaveData 之前按页索引 0-8 调用；② 函数体 lea edx,[ecx+0x25B70] 偏移落在 UITitle_JDHY extent（377,700B）内；③ 函数地址 0x4B43E0 位于 UITitle_JDHY 方法块（0x4B3xxx 调用者邻接）。ret 4 = __thiscall 1 栈参，与调用点吻合。"
   }
  },
  "vtables": [
