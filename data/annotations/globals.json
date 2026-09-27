@@ -1726,11 +1726,17 @@
   "type": "gbVolModNode *"
  },
  "0x00A3A7D8": {
-  "name": "g_CPKPackFiles",
-  "type": "CPK",
+  "name": "g_ScreenMode",
+  "type": "CScreenMode",
   "binary_size": 917948,
   "naming_note": "2026-09-27 B9 裁决：dtor 0x53C2D0 写自身 vtable 0x570A04（vtables 注解反解=CPK）；初始化 thunk 0x4044F0→jmp CPK::InitPackFiles 与 dtor 成对管理同一对象；CScreenMode::GetInstance(0x53DF70) 返回 &g_CScreenMode@0x17B41E8（真 CScreenMode 另址）。原名 g_ScreenMode/CScreenMode 为 IDB 命名漂移（0x53C2-0x53F4 区 CPK 方法被误名 CScreenMode::*）。",
-  "source": "region-audit: D:xcu atexit_thunk 链 + vtable 反解"
+  "source": "region-audit: D:xcu atexit_thunk 链 + vtable 反解",
+  "rename_deferred": {
+   "reason": "改名需成批迁移：ida_structs _globals 同步 + 0x53C2-0x53F4 区 CPK 方法簇（PlayVideo/CreateDevice/CloseBinkVideo/WaitBinkFrame/IsSceneReady/CheckFieldReady 被误名 CScreenMode::*）+ 引用点改写。复核 agent_aafbe56e/20d9a2a7 裁定中间态不可扩大，故挂起待专项批次。",
+   "target_name": "g_CPKPackFiles",
+   "target_type": "CPK",
+   "target_size": 917948
+  }
  },
  "0x00AA0B00": {
   "name": "g_PlayerAttBuffer",

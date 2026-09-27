@@ -552,10 +552,13 @@ def test_cpk_adjudication_annotation():
                        encoding='utf-8'))
     e = g.get('0x00A3A7D8')
     assert e is not None
-    assert e['name'] == 'g_CPKPackFiles'
-    assert e['type'] == 'CPK'
-    assert e['binary_size'] == 917948
-    assert 'vtable' in e.get('naming_note', '') or '0x570A04' in e.get('naming_note', '')
+    # A1 复核裁定：改名需成批迁移（CPK 方法簇误名 CScreenMode::*），挂起；
+    # 证据以 naming_note 保留，rename_deferred 记录目标身份。
+    assert e['name'] == 'g_ScreenMode' and e['type'] == 'CScreenMode'
+    assert e['rename_deferred']['target_name'] == 'g_CPKPackFiles'
+    assert e['rename_deferred']['target_type'] == 'CPK'
+    assert e['rename_deferred']['target_size'] == 917948
+    assert '0x570A04' in e.get('naming_note', '')
 
 
 # ---------- 阶段 A2：pending 分类 ----------
