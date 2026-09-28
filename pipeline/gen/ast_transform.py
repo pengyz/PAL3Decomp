@@ -461,6 +461,27 @@ def _load_va_by_method():
     return _VA_BY_METHOD
 
 
+def _is_this_expr(s):
+    """W6（复核 0cc3dbf0 裁决）：显式 this 的对象指针表达式可为复杂形
+    （`**((gbCamera ***)this + 552)` 族）。词法安全=括号/方括号配平 + 禁赋值/语句字符
+    （`=`/`;`/`{`/`}`）；AST 层已豁免定义头与字符串/注释，此处不重复。"""
+    if not s or len(s) > 400:
+        return False
+    if not re.match(r'^[\w\s\.\+\-\*/%&\|^~!?:<>=()\[\]]+$', s):
+        return False
+    bal = 0
+    for ch in s:
+        if ch in '([':
+            bal += 1
+        elif ch in ')]':
+            bal -= 1
+            if bal < 0:
+                return False
+        elif ch in '=;{}':
+            return False
+    return bal == 0
+
+
 def transform_oop_calls(code, static_methods=None, cls_name=None):
     """
     Transform Class::Method(obj, args) -> obj->Method(args)
@@ -867,17 +888,26 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 # 该证据恒为 None ⇒ 这一族永远改不动，实测剩下：
                                 #   `gbGeomNode::ReplaceTexture(*m_pCorpse, v11);`（C2661 ×12）
                                 # 与 `identifier`/`&obj` 两条 arm 一致：限定名 + 首参是对象指针表达式即可。
-                                if _op == '*' and not _this_consistent and re.match(
-                                        r'^[A-Za-z_][\w\.\[\]\->]*$', _ptr_inner):
-                                    new_text = '(%s)->%s::%s(%s)' % (
-                                        first_arg_text, class_name,
+                                # W6（复核 0cc3dbf0 裁决）：放宽到**复杂 `*expr`/`**expr`**——
+                                #   `gbCamera::SetAsCurrent(**((gbCamera ***)this + 552), 3);`
+                                #   `gbCamera::SetAsCurrent(*((gbCamera **)this + 73), 3);`
+                                #   `gbGeomNode::GetOBBox(*(gbCamera **)&v3[144], …)`
+                                # AST 层天然豁免定义头/字符串/注释；此处词法安全=括号配平+禁赋值。
+                                # W6-修正（codegen 实测 6×C2227）：`*expr` 臂必须**带 cast 重建**
+                                # （与 :901 规则 c 同一保真形态）——`*(_DWORD*)(slot)` 一族解引用出的
+                                # 是无类型槽值，裸 `->` 必 C2227；cast 恢复 this 契约类型，字节零差。
+                                if _op == '*' and not _this_consistent and (
+                                        re.match(r'^[A-Za-z_][\w\.\[\]\->]*$', _ptr_inner)
+                                        or _is_this_expr(_ptr_inner)):
+                                    new_text = '(((%s *)%s))->%s::%s(%s)' % (
+                                        class_name, first_arg_text, class_name,
                                         method_name, rest_str)
                                     replacements.append(
                                         (node.start_byte, node.end_byte, new_text))
                                     return
                                 if _op == '*' and _this_consistent:
-                                    new_text = '(%s)->%s::%s(%s)' % (
-                                        first_arg_text, class_name,
+                                    new_text = '(((%s *)%s))->%s::%s(%s)' % (
+                                        class_name, first_arg_text, class_name,
                                         method_name, rest_str)
                                     replacements.append((
                                         node.start_byte, node.end_byte, new_text))

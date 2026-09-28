@@ -1,4 +1,4 @@
-﻿"""C++ file generation stage.
+"""C++ file generation stage.
 
 Transforms decomp output through the pipeline and emits .cpp files
 organized by class and free functions.
@@ -183,7 +183,11 @@ def generate_forward_decls(all_code):
         _class_type_externs = []
         for u in sorted(undef):
             gt = store.global_types.get(u, '')
-            if gt and re.match(r'^[A-Z]\w+$', gt) and gt not in ('int', 'float', 'char'):
+            # W3 修 2（复核 695bcbb4，2026-09-28）：**全大写形态=typedef 惯例**
+            # （LPCSTR/HWND/HANDLE 族，windows.h 已定义）⇒ 不得发 class 前向声明——
+            # 曾把 LPCSTR 当类前向 ⇒ 与 typedef 冲突 = C2040 'class LPCSTR' 族根因。
+            if gt and re.match(r'^[A-Z]\w+$', gt) and gt not in ('int', 'float', 'char') \
+                    and not gt.isupper():
                 _class_type_externs.append((u, gt))
         if _class_type_externs:
             seen_t = set()
@@ -218,22 +222,24 @@ def generate_forward_decls(all_code):
                     lines.append("extern float %s[];" % u)
                 else:
                     lines.append("extern float %s;" % u)
+            # W3 类型源统一（复核 695bcbb4 条件②，2026-09-28）：前缀启发回退**必须走
+            # emit_headers._prefix_type 同一函数**——此前本块自带 byte_→'char' 而
+            # globals.h 侧是 'unsigned char' ⇒ C2371 redefinition×N。同源后即便
+            # globals.h 与就地 extern 同名并存也是**相容重复声明**（无错）。
             elif u.startswith('asc_'):
                 lines.append("extern char %s[];" % u)
-            elif u.startswith('byte_'):
-                if re.search(r'\b' + re.escape(u) + r'\s*\[', all_code):
-                    lines.append("extern char %s[];" % u)
-                else:
-                    lines.append("extern char %s;" % u)
-            elif u.startswith('off_'):
-                lines.append("extern void *%s;" % u)
-                _undeclared_off_globals.add(u)
-            elif u.startswith('a') and len(u) > 1 and u[1].isupper():
-                lines.append('extern char %s[];' % u)
-            elif re.search(r'\b' + re.escape(u) + r'\s*\[', all_code):
-                lines.append("extern int %s[];" % u)
             else:
-                lines.append("extern int %s;" % u)
+                from stages.emit_headers import _prefix_type
+                if u.startswith('off_'):
+                    _undeclared_off_globals.add(u)      # 保留原状态记账
+                _pt = _prefix_type(u) or 'int'
+                _is_arr = bool(re.search(r'\b' + re.escape(u) + r'\s*\[', all_code)) \
+                    or _pt.endswith('[]')
+                _base = _pt[:-2].strip() if _pt.endswith('[]') else _pt
+                if _is_arr:
+                    lines.append("extern %s %s[];" % (_base, u))
+                else:
+                    lines.append("extern %s %s;" % (_pt, u))
         lines.append("")
 
     return '\n'.join(lines)

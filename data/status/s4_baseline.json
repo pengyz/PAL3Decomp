@@ -18,16 +18,16 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 438,
-  "matched": 367,
-  "unmatched": 71,
-  "match_L1": 63,
-  "partial": 260,
+  "symbols": 468,
+  "matched": 395,
+  "unmatched": 73,
+  "match_L1": 68,
+  "partial": 280,
   "oob": 0,
-  "compile_skip": 0,
+  "compile_skip": 1,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 44
+  "unresolved_synth": 47
  },
  "rows": [
   {
@@ -209,6 +209,105 @@
    "status": "partial",
    "match_pct": 57.6,
    "size": 59
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?OnMessage@CCBMagicWindow@@UAEHHHH@Z",
+   "name": "CCBMagicWindow::OnMessage(int,int,int)",
+   "va": "0x0051B860",
+   "status": "partial",
+   "match_pct": 95.2,
+   "size": 83
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "??0CCBMagicWindow@@QAE@HHPAH@Z",
+   "name": "CCBMagicWindow::CCBMagicWindow(int,int,int *)",
+   "va": "0x0051B9F0",
+   "status": "partial",
+   "match_pct": 21.3,
+   "size": 178
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x0044E5C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "??_GCCBMagicWindow@@UAEPAXI@Z",
+   "name": "CCBMagicWindow::`scalar deleting destructor'(uint)",
+   "va": "0x0051B690",
+   "status": "partial",
+   "match_pct": 11.4,
+   "size": 79
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?Reset@CCBMagicWindow@@QAEXHH@Z",
+   "name": "CCBMagicWindow::Reset(int,int)",
+   "va": "0x0051BB00",
+   "status": "partial",
+   "match_pct": 86.8,
+   "size": 53
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?Create@CCBMagicWindow@@QAE_NH@Z",
+   "name": "CCBMagicWindow::Create(int)",
+   "va": "0x0051BB40",
+   "status": "partial",
+   "match_pct": 70.0,
+   "size": 10
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?ForbidPage@CCBMagicWindow@@QAEPAVUIListBox@@XZ",
+   "name": "CCBMagicWindow::ForbidPage(void)",
+   "va": "0x0051BB90",
+   "status": "partial",
+   "match_pct": 1.4,
+   "size": 73
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?ClearMagicData@CCBMagicWindow@@QAEHXZ",
+   "name": "CCBMagicWindow::ClearMagicData(void)",
+   "va": "0x0051BC50",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 27
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?CreateButton@CCBMagicWindow@@QAE_NPAHH@Z",
+   "name": "CCBMagicWindow::CreateButton(int *,int)",
+   "va": "0x0051BC70",
+   "status": "partial",
+   "match_pct": 27.3,
+   "size": 1184
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?Destroy@CCBMagicWindow@@UAEXXZ",
+   "name": "CCBMagicWindow::Destroy(void)",
+   "va": "0x0051C110",
+   "status": "partial",
+   "match_pct": 8.7,
+   "size": 150
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?GetActivePage@CCBMagicWindow@@QAEPAVUIListBox@@XZ",
+   "name": "CCBMagicWindow::GetActivePage(void)",
+   "va": "0x0051C210",
+   "status": "partial",
+   "match_pct": 5.5,
+   "size": 73
   },
   {
    "file": "pal3/src/Combat/CCBProtectWindow.cpp",
@@ -652,24 +751,6 @@
    "size": 213
   },
   {
-   "file": "pal3/src/Effect/CMeteorChain.cpp",
-   "symbol": "??0CMeteorChain@@QAE@XZ",
-   "name": "CMeteorChain::CMeteorChain(void)",
-   "va": "0x004CD0A0",
-   "status": "partial",
-   "match_pct": 78.3,
-   "size": 46
-  },
-  {
-   "file": "pal3/src/Effect/CMeteorChain.cpp",
-   "symbol": "?Update@CMeteorChain@@QAEXHHHPAHHH@Z",
-   "name": "CMeteorChain::Update(int,int,int,int *,int,int)",
-   "va": "0x004CD7E0",
-   "status": "partial",
-   "match_pct": 8.5,
-   "size": 213
-  },
-  {
    "file": "pal3/src/Effect/ScreenEffect.cpp",
    "symbol": "??0ScreenEffect@@QAE@XZ",
    "name": "ScreenEffect::ScreenEffect(void)",
@@ -686,6 +767,42 @@
    "status": "partial",
    "match_pct": 5.9,
    "size": 34
+  },
+  {
+   "file": "pal3/src/GameBase/InputSystem.cpp",
+   "symbol": "?ProcessFrame@InputSystem@@SAXPAD@Z",
+   "name": "InputSystem::ProcessFrame(char *)",
+   "va": "0x00410360",
+   "status": "partial",
+   "match_pct": 26.0,
+   "size": 204
+  },
+  {
+   "file": "pal3/src/GameBase/InputSystem.cpp",
+   "symbol": "?ProcessMouse@InputSystem@@SAXH@Z",
+   "name": "InputSystem::ProcessMouse(int)",
+   "va": "0x0041C540",
+   "status": "partial",
+   "match_pct": 14.1,
+   "size": 234
+  },
+  {
+   "file": "pal3/src/GameBase/InputSystem.cpp",
+   "symbol": "?SetCameraTransition@InputSystem@@QAEHHHHHHHH@Z",
+   "name": "InputSystem::SetCameraTransition(int,int,int,int,int,int,int)",
+   "va": "0x0041C9A0",
+   "status": "partial",
+   "match_pct": 28.7,
+   "size": 136
+  },
+  {
+   "file": "pal3/src/GameBase/SoundSystem.cpp",
+   "symbol": "?Init@SoundSystem@@QAEHXZ",
+   "name": "SoundSystem::Init(void)",
+   "va": "0x0041ED00",
+   "status": "partial",
+   "match_pct": 21.9,
+   "size": 306
   },
   {
    "file": "pal3/src/Misc/AStarPathFinder.cpp",
@@ -1253,6 +1370,24 @@
    "status": "partial",
    "match_pct": 47.0,
    "size": 66
+  },
+  {
+   "file": "pal3/src/Misc/MatrixStack.cpp",
+   "symbol": "?BeginScene@MatrixStack@@QAEXXZ",
+   "name": "MatrixStack::BeginScene(void)",
+   "va": "0x0052FC60",
+   "status": "partial",
+   "match_pct": 34.0,
+   "size": 459
+  },
+  {
+   "file": "pal3/src/Misc/MatrixStack.cpp",
+   "symbol": "?RenderScenePass@MatrixStack@@QAEXXZ",
+   "name": "MatrixStack::RenderScenePass(void)",
+   "va": "0x00530350",
+   "status": "partial",
+   "match_pct": 78.6,
+   "size": 98
   },
   {
    "file": "pal3/src/Misc/NameSys.cpp",
@@ -1973,6 +2108,69 @@
    "status": "partial",
    "match_pct": 18.9,
    "size": 507
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?ctor@UIProgressBar@@QAEPAHXZ",
+   "name": "UIProgressBar::ctor(void)",
+   "va": "0x00439030",
+   "status": "partial",
+   "match_pct": 9.6,
+   "size": 209
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?Render@UIProgressBar@@UAEXXZ",
+   "name": "UIProgressBar::Render(void)",
+   "va": "0x00439410",
+   "status": "partial",
+   "match_pct": 27.6,
+   "size": 814
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?Destroy@UIProgressBar@@UAEXXZ",
+   "name": "UIProgressBar::Destroy(void)",
+   "va": "0x00439810",
+   "status": "partial",
+   "match_pct": 72.6,
+   "size": 62
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?GetWidth@UIProgressBar@@QAEXH@Z",
+   "name": "UIProgressBar::GetWidth(int)",
+   "va": "0x0043FDC0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 13
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?GetHeight@UIProgressBar@@QAEXH@Z",
+   "name": "UIProgressBar::GetHeight(int)",
+   "va": "0x0043FDD0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 13
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?GetPosition@UIProgressBar@@QAEXH@Z",
+   "name": "UIProgressBar::GetPosition(int)",
+   "va": "0x0043FDE0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 13
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?FindChildByName@UIProgressBar@@QAEXM@Z",
+   "name": "UIProgressBar::FindChildByName(float)",
+   "va": "0x0043FDF0",
+   "status": "partial",
+   "match_pct": 23.3,
+   "size": 159
   },
   {
    "file": "pal3/src/Misc/UIPushButton.cpp",
@@ -2767,6 +2965,33 @@
    "size": 22
   },
   {
+   "file": "pal3/src/UI/UIDialog.cpp",
+   "symbol": "?Create@UIDialog@@QAEXHHHHPAD@Z",
+   "name": "UIDialog::Create(int,int,int,int,char *)",
+   "va": "0x004503D0",
+   "status": "partial",
+   "match_pct": 40.6,
+   "size": 106
+  },
+  {
+   "file": "pal3/src/UI/UIDialog.cpp",
+   "symbol": "?Show@UIDialog@@QAEXXZ",
+   "name": "UIDialog::Show(void)",
+   "va": "0x00450550",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 10
+  },
+  {
+   "file": "pal3/src/UI/UIDialog.cpp",
+   "symbol": "?Init@UIDialog@@QAEHXZ",
+   "name": "UIDialog::Init(void)",
+   "va": "0x00450B30",
+   "status": "partial",
+   "match_pct": 83.8,
+   "size": 130
+  },
+  {
    "file": "pal3/src/UI/UIItem.cpp",
    "symbol": "?SetData@UIItem@@QAEPAXD@Z",
    "name": "UIItem::SetData(char)",
@@ -2937,5 +3162,19 @@
    "match_pct": 10.2,
    "size": 166
   }
- ]
+ ],
+ "rebaseline": {
+  "reason": "W 序列+全局清理工程收官：S2 95/208·错误 1784→1657·L1 68；语料增长型变化显式对齐（b827549e 结报口径）",
+  "at": "2026-09-28T14:16:55",
+  "prev_match_L1": 68,
+  "cur_match_L1": 68,
+  "prev_population": {
+   "matched": 397,
+   "symbols": 470
+  },
+  "cur_population": {
+   "matched": 395,
+   "symbols": 468
+  }
+ }
 }

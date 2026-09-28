@@ -588,15 +588,15 @@
    "type": "unsigned char",
    "source": "A:binary_mov_byte_[eax+0D9h]_0"
   },
-  "0x2A8": {
+  "680": {
    "name": "m_InnerActor",
    "type": "void *",
-   "source": "overlap: 4-byte workspace. Used via (Actor *)&this->m_InnerActor to access m_pact@+0x10 and m_dwMatMsg@+0x21C."
+   "source": "overlap: 4-byte workspace. Used via (Actor *)&this->m_InnerActor to access m_pact@+0x10 and m_dwMatMsg@+0x21C. | normalize_key: 0x2A8 -> 680"
   },
-  "0x274": {
+  "628": {
    "name": "_overlap_RoleSystem_m_partyActor_m_nState",
    "type": "int",
-   "source": "NOT A REAL FIELD. Actor::SetActionByName calls ((RoleSystem*)this)->NotifySceneChange() which writes this->m_partyActor.m_nState @ +0x1A8++0xCC=0x274. Actor has no vtable; RoleSystem methods are non-virtual. This is a C-style cast hack, not inheritance or composition."
+   "source": "NOT A REAL FIELD. Actor::SetActionByName calls ((RoleSystem*)this)->NotifySceneChange() which writes this->m_partyActor.m_nState @ +0x1A8++0xCC=0x274. Actor has no vtable; RoleSystem methods are non-virtual. This is a C-style cast hack, not inheritance or composition. | normalize_key: 0x274 -> 628"
   }
  },
  "methods": {

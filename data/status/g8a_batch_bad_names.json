@@ -1,0 +1,41 @@
+[
+  {
+    "kind": "delete_global",
+    "addr": "0x00C04368",
+    "disposal": "Array 块对象（g_SceneMgrPrefix 0xC04350 区 5×16B 记录）承接——begin/end/capacity 语义字段",
+    "evidence": "G8-a：VA 0x00C04368（名=end，8 站点）落 g_SceneMgrPrefix Array 块记录区内部（84fd2ef7 旧案：'address within g_SceneMgr range, not an independent global'；add dword_C04398,0Ch 步进）——非独立全局；本地变量式名冒充全局语义=伪语义命名违禁"
+  },
+  {
+    "kind": "delete_global",
+    "addr": "0x00C04378",
+    "disposal": "Array 块对象（g_SceneMgrPrefix 0xC04350 区 5×16B 记录）承接——begin/end/capacity 语义字段",
+    "evidence": "G8-a：VA 0x00C04378（名=elem，32 站点）落 g_SceneMgrPrefix Array 块记录区内部（84fd2ef7 旧案：'address within g_SceneMgr range, not an independent global'；add dword_C04398,0Ch 步进）——非独立全局；本地变量式名冒充全局语义=伪语义命名违禁"
+  },
+  {
+    "kind": "delete_global",
+    "addr": "0x00C04398",
+    "disposal": "Array 块对象（g_SceneMgrPrefix 0xC04350 区 5×16B 记录）承接——begin/end/capacity 语义字段",
+    "evidence": "G8-a：VA 0x00C04398（名=pEnd，25 站点）落 g_SceneMgrPrefix Array 块记录区内部（84fd2ef7 旧案：'address within g_SceneMgr range, not an independent global'；add dword_C04398,0Ch 步进）——非独立全局；本地变量式名冒充全局语义=伪语义命名违禁"
+  },
+  {
+    "kind": "global_rename",
+    "addr": "0x00BFD774",
+    "new_name": "g_todo_BFD774",
+    "name_evidence": "命名律：不确定含义保留 _todo_（禁伪语义）——原名局部变量式短名冒充全局语义",
+    "evidence": "G8-a 坏名纠正：原名 hWnd 局部变量式短名冒充全局语义（违'禁伪语义命名'）；xref 角色谱已采（2 站点，句柄/标志形态）但身份证据不足 ⇒ 改 _todo_ 诚实形待实证命名"
+  },
+  {
+    "kind": "global_rename",
+    "addr": "0x00BFDA4C",
+    "new_name": "g_todo_BFDA4C",
+    "name_evidence": "命名律：不确定含义保留 _todo_（禁伪语义）——原名局部变量式短名冒充全局语义",
+    "evidence": "G8-a 坏名纠正：原名 b 局部变量式短名冒充全局语义（违'禁伪语义命名'）；xref 角色谱已采（37 站点，句柄/标志形态）但身份证据不足 ⇒ 改 _todo_ 诚实形待实证命名"
+  },
+  {
+    "kind": "global_rename",
+    "addr": "0x00BFDA50",
+    "new_name": "g_todo_BFDA50",
+    "name_evidence": "命名律：不确定含义保留 _todo_（禁伪语义）——原名局部变量式短名冒充全局语义",
+    "evidence": "G8-a 坏名纠正：原名 hDlg 局部变量式短名冒充全局语义（违'禁伪语义命名'）；xref 角色谱已采（10 站点，句柄/标志形态）但身份证据不足 ⇒ 改 _todo_ 诚实形待实证命名"
+  }
+]

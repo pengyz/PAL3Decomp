@@ -1,0 +1,160 @@
+[
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "50648",
+    "evidence": "W2-SceneMgr 归属纠正【组A·最硬】：A 级锚=ctor thunk 0x4086C0(mov ecx,0xC10968;jmp 0x43A160=PalScript::PalScript 写 vtable 0x56AC4C)+dtor 0x4086E0(→0x43A1F0)+push@0x4086D0 atexit 注册；9 处 this 物化调用（UIWnd::Create/UIScene::LoadResource/PalScript::UpdateTimer/RenderUI…）；锚对象 span=2176B(=PalScript.binary_size 0x880，max access +0x768)。成员类型 CameraCtrl* 与锚类 PalScript 矛盾=同址异类。处置闭合=g_palScript 条目在案（0x00C10968，source 齐）"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "50640",
+    "evidence": "W2-SceneMgr 归属纠正【组A】：真实用途=RoleSystem 数组末端哨兵（13 站点全 cmp 立即数形态：mov esi,0xC05F60/0xC08160;add esi,0x2200;cmp esi,0xC10960，stride 0x2200=RoleSystem 尺寸），**零数据访问**；锚=Iostream_init 形态 thunk 0x408700→0x408BC0(ctor=mov eax,ecx;ret)+dtor 0x408720（=ret 空体）+push@0x408710，span≈1B。处置闭合=0xC10960 现有 pData 条目（type=skip）语义自相矛盾已知——本批删归属后由 W5 命名清扫重裁该条目（登记在案）"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "51808",
+    "evidence": "W2-SceneMgr 归属纠正【组A·组合证据】：锚=ctor thunk 0x4117A0→0x408390(call AStarPathFinder::AStarPathFinder@0x401000+写 vtable 0x56A6D0+写 +0x20 ⇒ span≥33B)+dtor 0x4117C0→0x4083D0+push@0x4117B0；3 处 this 物化调用（0x408460）。组合否定：成员形态 [reg+0xCA60]=0 站点 + g_SceneMgr 基址 0xC04390 无任何 ctor 锚（20 个 this 物化全是 Array::Insert/Erase/Size）⇒ 容器归属不成立（同址 A 锚同类型形态的独立定罪限制已注明）。处置闭合=同批 global_add 0x00C10DF0"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "54216",
+    "evidence": "W2-SceneMgr 归属纠正【组A】：锚=UIManager 实例——ctor thunk 0x41F2D0→0x41F300（55×0x44B 槽循环初始化+写 vtable 0x56AAC4）+dtor 0x41F2F0→0x41F360+push@0x41F2E0；锚 span≥0x95C(2396B)>成员声称 2000B 字节全覆盖；2 处 this 物化→UIManager::LoadShadowTexture 0x41F5E0/UIManager::Render。原 source 的 'stride=0x880' 已证伪（全 .text 无该 stride 立即数）⇒ 该成员本属臆造。处置闭合=同批 global_add 0x00C11758"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "54068",
+    "evidence": "W2-SceneMgr 归属纠正【组B】：归属级否定证据=**同址已有独立全局视图 g_fTileSize** + 访问形态实测=绝对地址形态（[0xC116xx] 无基址）且 [reg+disp] 成员形态=0 站点 ⇒ 多函数非 this 访问（fbe198d4 语义：地址活性≠归属）；强承接（真名+binary: Camera_IsT…源，fpu 4 站点）。处置闭合=既有全局条目承接"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "54108",
+    "evidence": "W2-SceneMgr 归属纠正【组B】：归属级否定证据=**同址已有独立全局视图 g_pRoleSystem** + 访问形态实测=绝对地址形态（[0xC116xx] 无基址）且 [reg+disp] 成员形态=0 站点 ⇒ 多函数非 this 访问（fbe198d4 语义：地址活性≠归属）；中承接（128 mov_load+1 store+1 cmp、30+ 函数；形态=mov edx,[0xC116EC];mov [edx+4],ecx = 全局指针角色：加载→解引用→判空）。处置闭合=既有全局条目承接"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "54116",
+    "evidence": "W2-SceneMgr 归属纠正【组B】：归属级否定证据=**同址已有独立全局视图 g_pCurrentBGM** + 访问形态实测=绝对地址形态（[0xC116xx] 无基址）且 [reg+disp] 成员形态=0 站点 ⇒ 多函数非 this 访问（fbe198d4 语义：地址活性≠归属）；强承接（真名+binary: UIPostUpda…源）。处置闭合=既有全局条目承接"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "54120",
+    "evidence": "W2-SceneMgr 归属纠正【组B】：归属级否定证据=**同址已有独立全局视图 g_fCameraBlendWeight** + 访问形态实测=绝对地址形态（[0xC116xx] 无基址）且 [reg+disp] 成员形态=0 站点 ⇒ 多函数非 this 访问（fbe198d4 语义：地址活性≠归属）；强承接（真名+binary: CameraCtrl…源）。处置闭合=既有全局条目承接"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "54128",
+    "evidence": "W2-SceneMgr 归属纠正【组B】：归属级否定证据=**同址已有独立全局视图 g_nPartyRoles** + 访问形态实测=绝对地址形态（[0xC116xx] 无基址）且 [reg+disp] 成员形态=0 站点 ⇒ 多函数非 this 访问（fbe198d4 语义：地址活性≠归属）；中承接（push 地址传参 6 次）。处置闭合=既有全局条目承接"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "17108",
+    "evidence": "W2-SceneMgr 归属纠正【组B】：归属级否定证据=**同址已有独立全局视图 g_nScriptObjectCount** + 访问形态实测=绝对地址形态（[0xC116xx] 无基址）且 [reg+disp] 成员形态=0 站点 ⇒ 多函数非 this 访问（fbe198d4 语义：地址活性≠归属）；中承接（2 load@ScriptSystem::UpdateObjects）。处置闭合=既有全局条目承接"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "54106",
+    "evidence": "W2-SceneMgr 归属纠正【组B】：归属级否定证据=**同址已有独立全局视图 m_bPathEnabled** + 访问形态实测=绝对地址形态（[0xC116xx] 无基址）且 [reg+disp] 成员形态=0 站点 ⇒ 多函数非 this 访问（fbe198d4 语义：地址活性≠归属）；弱承接→同批 global_rename→g_bPathEnabled（m_ 前缀伪成员名当全局名）。处置闭合=既有全局条目承接"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "54152",
+    "evidence": "W2-SceneMgr 归属纠正【组B】：归属级否定证据=**同址已有独立全局视图 dword_C11718** + 访问形态实测=绝对地址形态（[0xC116xx] 无基址）且 [reg+disp] 成员形态=0 站点 ⇒ 多函数非 this 访问（fbe198d4 语义：地址活性≠归属）；弱承接→同批 global_rename→g_nPartyCount（IDA 自动名；8 站点 3 函数 PAL_GDB::PartySetupDialogProc×6）。处置闭合=既有全局条目承接"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "54196",
+    "evidence": "W2-SceneMgr 归属纠正【组B】：归属级否定证据=**同址已有独立全局视图 g_nMonsterType** + 访问形态实测=绝对地址形态（[0xC116xx] 无基址）且 [reg+disp] 成员形态=0 站点 ⇒ 多函数非 this 访问（fbe198d4 语义：地址活性≠归属）；中承接（真名）。处置闭合=既有全局条目承接"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "54212",
+    "evidence": "W2-SceneMgr 归属纠正【组B】：归属级否定证据=**同址已有独立全局视图 g_pCombatRole** + 访问形态实测=绝对地址形态（[0xC116xx] 无基址）且 [reg+disp] 成员形态=0 站点 ⇒ 多函数非 this 访问（fbe198d4 语义：地址活性≠归属）；弱承接（source='CRT init: converted from skip' 弱源；type=int 与 Role* 指针语义不符——v1 禁指针填型，类型记账留 CHANGE_LOG/W5）。处置闭合=既有全局条目承接"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "51500",
+    "evidence": "W2-SceneMgr 归属纠正【组C·区间覆盖人工裁定】：VA 0xC10CBC 落 g_palScript A 级锚 span [0xC10968,0xC111E8) 内（=0xC92C-0xC10968 < 0x880=PalScript.binary_size；实测 max access +0x768+ctor 字段写吻合）；访问形态=纯绝对地址、[reg+0xC92C] 成员形态=0 站点（宽度剖面与现类型吻合）⇒ SceneMgr 归属不成立（W1 exists 仅证地址活性）。处置闭合=落 m_RoleSlotArray(+0x18C..0x510 union 区) 未具名槽——**本批仅删 SceneMgr 归属，具名留 PalScript 建模批**（渲染降级 _gap_/in-place extern 自动名，字节不变）"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "51504",
+    "evidence": "W2-SceneMgr 归属纠正【组C·区间覆盖人工裁定】：VA 0xC10CC0 落 g_palScript A 级锚 span [0xC10968,0xC111E8) 内（=0xC930-0xC10968 < 0x880=PalScript.binary_size；实测 max access +0x768+ctor 字段写吻合）；访问形态=纯绝对地址、[reg+0xC930] 成员形态=0 站点（宽度剖面与现类型吻合）⇒ SceneMgr 归属不成立（W1 exists 仅证地址活性）。处置闭合=落 m_RoleSlotArray(+0x18C..0x510 union 区) 未具名槽——**本批仅删 SceneMgr 归属，具名留 PalScript 建模批**（渲染降级 _gap_/in-place extern 自动名，字节不变）"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "51505",
+    "evidence": "W2-SceneMgr 归属纠正【组C·区间覆盖人工裁定】：VA 0xC10CC1 落 g_palScript A 级锚 span [0xC10968,0xC111E8) 内（=0xC931-0xC10968 < 0x880=PalScript.binary_size；实测 max access +0x768+ctor 字段写吻合）；访问形态=纯绝对地址、[reg+0xC931] 成员形态=0 站点（宽度剖面与现类型吻合）⇒ SceneMgr 归属不成立（W1 exists 仅证地址活性）。处置闭合=落 m_RoleSlotArray(+0x18C..0x510 union 区) 未具名槽——**本批仅删 SceneMgr 归属，具名留 PalScript 建模批**（渲染降级 _gap_/in-place extern 自动名，字节不变）"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "51512",
+    "evidence": "W2-SceneMgr 归属纠正【组C·区间覆盖人工裁定】：VA 0xC10CC8 落 g_palScript A 级锚 span [0xC10968,0xC111E8) 内（=0xC938-0xC10968 < 0x880=PalScript.binary_size；实测 max access +0x768+ctor 字段写吻合）；访问形态=纯绝对地址、[reg+0xC938] 成员形态=0 站点（宽度剖面与现类型吻合）⇒ SceneMgr 归属不成立（W1 exists 仅证地址活性）。处置闭合=落 m_RoleSlotArray(+0x18C..0x510 union 区) 未具名槽——**本批仅删 SceneMgr 归属，具名留 PalScript 建模批**（渲染降级 _gap_/in-place extern 自动名，字节不变）"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "51520",
+    "evidence": "W2-SceneMgr 归属纠正【组C·区间覆盖人工裁定】：VA 0xC10CD0 落 g_palScript A 级锚 span [0xC10968,0xC111E8) 内（=0xC940-0xC10968 < 0x880=PalScript.binary_size；实测 max access +0x768+ctor 字段写吻合）；访问形态=纯绝对地址、[reg+0xC940] 成员形态=0 站点（宽度剖面与现类型吻合）⇒ SceneMgr 归属不成立（W1 exists 仅证地址活性）。处置闭合=落 m_RoleSlotArray(+0x18C..0x510 union 区) 未具名槽——**本批仅删 SceneMgr 归属，具名留 PalScript 建模批**（渲染降级 _gap_/in-place extern 自动名，字节不变）"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "53200",
+    "evidence": "W2-SceneMgr 归属纠正【Q5 补】：同址独立全局视图 g_pBGMTable（gbSound2DNode*[24]，memset_size_0x60_confirmed_via_IDA）；W1 原 exists 系 mov reg,imm 地址物化误计数据访问（84fd2ef7 Q5 缺陷已修）⇒ 归属否定=同址视图+非 this 访问。处置闭合=g_pBGMTable 承接"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "53296",
+    "evidence": "W2-SceneMgr 归属纠正【Q5 补】：同址独立全局视图 g_pAmbientTable；同上分类缺陷修正。处置闭合=g_pAmbientTable 承接"
+  },
+  {
+    "kind": "delete_member",
+    "class": "SceneMgr",
+    "key": "52492",
+    "evidence": "W2-SceneMgr 归属纠正【Q5 补】：同址 g_fSceneTileSize=PalScript+0x734 字段（70 refs 强证据）；落在 g_palScript A 级锚 span 内 ⇒ 处置=PalScript 字段视图承接（具名留 PalScript 建模批）"
+  },
+  {
+    "kind": "global_add",
+    "addr": "0x00C10DF0",
+    "name": "g_pathFinder",
+    "type": "AStarPathFinder",
+    "evidence": "W2-SceneMgr 处置闭合（84fd2ef7 Q1-3）：ctor thunk 0x4117A0→0x408390（call AStarPathFinder::AStarPathFinder@0x401000+写 vtable 0x56A6D0）+dtor 0x4117C0→0x4083D0+push@0x4117B0；3 处 this 物化。span≥33B 下界（精确 sizeof 留 W5 核）"
+  },
+  {
+    "kind": "global_add",
+    "addr": "0x00C11758",
+    "name": "g_UIManager",
+    "type": "UIManager",
+    "evidence": "W2-SceneMgr 处置闭合（84fd2ef7 Q1-4）：ctor thunk 0x41F2D0→0x41F300（55×0x44B 槽循环初始化+vtable 0x56AAC4）+dtor+push@0x41F2E0；2 处 this 物化（UIManager::LoadShadowTexture 0x41F5E0/UIManager::Render）；span≥0x95C"
+  },
+  {
+    "kind": "global_rename",
+    "addr": "0x00C116EA",
+    "new_name": "g_bPathEnabled",
+    "evidence": "W2-SceneMgr 可追溯性（84fd2ef7 Q2）：m_ 前缀伪成员名当全局名不合格——按 g_ 规约正名"
+  },
+  {
+    "kind": "global_rename",
+    "addr": "0x00C11718",
+    "new_name": "g_nPartyCount",
+    "evidence": "W2-SceneMgr 可追溯性（84fd2ef7 Q2）：IDA 自动名 dword_C11718 正名（8 站点 3 函数 PAL_GDB::PartySetupDialogProc×6 计数角色）"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "kind": "global_tombstone",
+    "addr": "0x00C04364",
+    "disposal": "Array 块对象（g_SceneMgrPrefix 0xC04350 区 5x16B 记录）承接",
+    "evidence": "G8-b：arr@0xC04364 落 g_SceneMgrPrefix Array 块记录区内部（+0x14=记录内部字段）——G6 同族；名 arr=局部变量式伪语义"
+  },
+  {
+    "kind": "global_rename",
+    "addr": "0x00C11420",
+    "new_name": "g_fCheckCollision1Out",
+    "name_evidence": "xref 角色实证：Camera::CheckCollision1 第二实参按地址传出（out 参数形态）+返回值以 float 位消费（LODWORD(pfVal.x)=X）——碰撞检测输出位；类型标注 int 系存疑（float 位消费）",
+    "evidence": "G8-b 正名：out-param 角色+float 位消费双证"
+  },
+  {
+    "kind": "global_add",
+    "addr": "0x00D8C2B8",
+    "new_name": "g_InputStateBuf",
+    "name_evidence": "xref 角色实证：GRPinput::PollInputState(&X, v3) 唯一用法=按地址传出供输入轮询填充——输入状态缓冲；byte 型吻合",
+    "evidence": "G8-b 正名（ida-only 条目改 global_add 注册）：GRPinput::PollInputState(&X,v3) 唯一用法=输入轮询填充目标——输入状态缓冲",
+    "name": "g_InputStateBuf",
+    "type": "unsigned char"
+  }
+]

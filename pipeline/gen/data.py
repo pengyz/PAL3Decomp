@@ -148,7 +148,20 @@ class DataStore:
                     mtype = dm.get('type', 'int')
                     off = dm['offset']
                     # Restore annotation-preserved array type (IDA truncates arrays to span)
-                    var_info = variants.get(str(off)) or variants.get(str(int(off)))
+                    # W5 键纪律修（2026-09-28）：旧式 `get(str(off)) or get(str(int(off)))` 两查恒同
+                    # （第二查空转）⇒ N_N/hex 键形成员的数组型回填静默丢失。归一化：键去 N_N
+                    # 后缀解析基数（含 hex 形），基数命中即取其数组型。
+                    var_info = None
+                    for vk, vv in variants.items():
+                        try:
+                            vbase = int(str(vk).split('_')[0], 0)
+                        except Exception:
+                            continue
+                        if vbase == off:
+                            _vt = (vv or {}).get('type', '')
+                            if isinstance(_vt, str) and _vt.endswith(']') and '[' in _vt:
+                                var_info = vv
+                                break
                     if var_info:
                         vt = var_info.get('type', '')
                         if isinstance(vt, str) and vt.endswith(']') and '[' in vt:

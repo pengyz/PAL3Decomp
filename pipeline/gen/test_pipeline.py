@@ -516,8 +516,137 @@ class TestVftableFallback(unittest.TestCase):
         self.assertNotIn("action == 'insert'", executable)
 
 
-if __name__ == '__main__':
-    unittest.main(verbosity=2)
+class TestPackedInlineSize(unittest.TestCase):
+    """W4-C0b 打包尺寸公式（复核 c34f38aa A1 裁定）：
+    union=max(子)；struct=max(off+子打包)（非求和）；数组=维积×元素；具名类型查表禁递归求和。"""
+
+    def setUp(self):
+        from stages import emit_headers as eh
+        self.eh = eh
+        self._old = eh._get_ida_structs
+        self.ida = {}
+        eh._get_ida_structs = lambda: self.ida
+
+    def tearDown(self):
+        self.eh._get_ida_structs = self._old
+
+    def test_union_max(self):
+        self.assertEqual(self.eh._packed_inline_size({
+            'kind': 'union', 'data_members': [
+                {'offset': 0, 'type': 'int', 'name': 'a'},
+                {'offset': 0, 'type': 'double', 'name': 'b'}]}), 8)
+
+    def test_struct_max_off_plus_size_not_sum(self):
+        self.assertEqual(self.eh._packed_inline_size({
+            'kind': 'struct', 'data_members': [
+                {'offset': 0, 'type': 'int', 'name': 'a'},
+                {'offset': 8, 'type': 'int', 'name': 'b'}]}), 12)   # 12 非 8
+
+    def test_multidim_array(self):
+        self.assertEqual(self.eh._packed_inline_size({
+            'kind': 'struct', 'data_members': [
+                {'offset': 0, 'type': 'float[2][3]', 'name': 'a'}]}), 24)
+
+    def test_named_type_table_not_member_sum(self):
+        # tagTeamSlotsBOverlay 教训：查表 800，成员和 607 禁用
+        self.ida['tagTeamSlotsBOverlay'] = {
+            'size': 800,
+            'data_members': [{'offset': i * 4, 'type': 'int', 'name': 'm%d' % i}
+                             for i in range(160)]}
+        self.assertEqual(self.eh._packed_inline_size({
+            'kind': 'union', 'data_members': [
+                {'offset': 0, 'type': 'tagTeamSlotsBOverlay', 'name': 'v'}]}), 800)
+
+    def test_nested_inline_recursion_beats_export_size(self):
+        self.ida['_inline_inner'] = {
+            'kind': 'struct', 'size': 999,      # export size 故意错
+            'data_members': [{'offset': 0, 'type': 'int', 'name': 'x'},
+                             {'offset': 8, 'type': 'int', 'name': 'y'}]}
+        self.assertEqual(self.eh._packed_inline_size({
+            'kind': 'struct', 'data_members': [
+                {'offset': 0, 'type': '_inline_inner', 'name': 'inner'},
+                {'offset': 20, 'type': 'char', 'name': 'tail'}]}), 21)   # 12/21 非 1000
+
+    def test_real_scenemgr_inline_is_402(self):
+        # 集成锚：真实 _inline_SceneMgr_ 打包=402（export 404 ⇒ _gap_C812[54] 虚报 2B 的根）
+        # P2-4（复核 6dc45d18）：数据缺失必须 fail 不得 skip（防换快照静默降级）
+        real = self._old()
+        rec = real.get('_inline_SceneMgr_')
+        self.assertIsNotNone(rec, '真数据必须含 _inline_SceneMgr_（快照变更需显式处理）')
+        self.eh._get_ida_structs = self._old
+        self.assertEqual(self.eh._packed_inline_size(rec), 402)
+
+
+class TestW6ComplexThisExpr(unittest.TestCase):
+    """W6（复核 0cc3dbf0 裁决）：F72 放宽到复杂 `*expr`/`**expr`（导入成员无 ret-N 证据路径）。
+    正面=三个目标站点形态；负面=定义头/字符串/赋值/static 头不得改。"""
+
+    def test_complex_double_deref(self):
+        out = transform_oop_calls(
+            'void F() { gbCamera::SetAsCurrent(**((gbCamera ***)this + 552), 3); }',
+            static_methods=set(), cls_name=None)
+        self.assertIn('((gbCamera *)**((gbCamera ***)this + 552)))->gbCamera::SetAsCurrent(3)', out)
+
+    def test_complex_single_deref(self):
+        out = transform_oop_calls(
+            'void F() { gbCamera::SetAsCurrent(*((gbCamera **)this + 73), 3); }',
+            static_methods=set(), cls_name=None)
+        self.assertIn('(((gbCamera *)*((gbCamera **)this + 73)))->gbCamera::SetAsCurrent(3)', out)
+
+    def test_complex_cast_array(self):
+        out = transform_oop_calls(
+            'void F() { gbGeomNode::GetOBBox(*(gbOBBox **)&v3[144], &x); }',
+            static_methods=set(), cls_name=None)
+        self.assertIn('(((gbGeomNode *)*(gbOBBox **)&v3[144]))->gbGeomNode::GetOBBox(&x)', out)
+
+    def test_untyped_slot_deref_gets_cast(self):
+        # W6-修正：`*(_DWORD*)(slot)` 族解引用出无类型槽值——裸 -> 必 C2227（实测 6 站点），
+        # 改写必须带 cast 重建（规则 c）。
+        out = transform_oop_calls(
+            'void F() { Cls::UpdateCamera(*(_DWORD *)(v69 + 12)); }',
+            static_methods=set(), cls_name=None)
+        self.assertIn('(((Cls *)*(_DWORD *)(v69 + 12)))->Cls::UpdateCamera()', out)
+
+    def test_simple_form_unchanged_behavior(self):
+        out = transform_oop_calls(
+            'void F() { gbGeomNode::ReplaceTexture(*m_pCorpse, v11); }',
+            static_methods=set(), cls_name=None)
+        self.assertIn('->gbGeomNode::ReplaceTexture(v11)', out)
+        self.assertIn('(gbGeomNode *)', out, 'cast 重建（规则 c）')
+
+    def test_definition_head_untouched(self):
+        for src in ('int CCBRoleState::Update(int roleIdx) { return 0; }',
+                    'static char GetTaskState(int a, ECBStageTaskState *b) { return 0; }',
+                    'void Cls::Zero(void) { }'):
+            out = transform_oop_calls(src, static_methods=set(), cls_name=None)
+            self.assertNotIn('->', out, '定义头不得改写：%s' % src)
+
+    def test_string_and_assignment_untouched(self):
+        out = transform_oop_calls('void F() { log("Cls::M(obj, 1)"); }',
+                                  static_methods=set(), cls_name=None)
+        self.assertNotIn('->', out, '字符串内不得改写')
+        out2 = transform_oop_calls('void F() { Cls::M(*(a = b), 1); }',
+                                   static_methods=set(), cls_name=None)
+        self.assertNotIn('->', out2, '赋值表达式不得改写（词法安全闸）')
+
+
+class TestW3ExternTypeSource(unittest.TestCase):
+    """W3 类型源统一（复核 695bcbb4 条件②）：①前缀回退走 _prefix_type 同一函数（C2371 根除）；
+    ②全大写 typedef 形态（LPCSTR 族）不得发 class 前向声明（C2040 根除）。"""
+
+    def test_prefix_fallback_matches_prefix_type(self):
+        from stages.emit_headers import _prefix_type
+        self.assertEqual(_prefix_type('byte_X'), 'unsigned char')   # 与 globals.h 同源
+        self.assertEqual(_prefix_type('word_X'), 'unsigned short')
+        self.assertEqual(_prefix_type('off_X'), 'void *')
+
+    def test_no_class_forward_for_uppercase_typedef(self):
+        # LPCSTR 全大写 ⇒ 不发 class 前向（windows.h typedef 已定义）
+        import stages.emit_cpp as ec
+        src = open(ec.__file__, encoding='utf-8').read()
+        self.assertIn("not gt.isupper()", src, '全大写 typedef 形态豁免必须在')
+        # 自定义混合大小写类仍应前向声明（RoleCameraCtrl 语义保留）
+        self.assertIn("class %s;", src)
 
 
 if __name__ == '__main__':

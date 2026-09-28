@@ -443,8 +443,11 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
     if not members and not size:
         return None
 
+    # 复核 5560c6c5 P1：键可带 N_N 数组后缀 —— int('50814_0',0)=508140（Py 下划线
+    # 数字分隔符语义）会把键读成 508140 ⇒ 先 split('_')[0] 再解析（与 :986 同款）。
     sorted_members = sorted(
-        [(int(off, 0), info) for off, info in members.items() if int(off, 0) >= base_size],
+        [(int(str(off).split('_')[0], 0), info) for off, info in members.items()
+         if int(str(off).split('_')[0], 0) >= base_size],
         key=lambda x: x[0]
     )
 
@@ -623,7 +626,9 @@ def create_fixed_struct_diff(name, struct_info, til):
     deleted = set(struct_info.get("deleted_members", []))
     overrides = {}
     for k, v in struct_info.get("known_members", {}).items():
-        overrides[int(k.split('_')[0])] = v
+        # 复核 75f6709b C3 同批：键可 hex/N_N（键谱系 dec 9745/hex 51/N_N 4）——
+        # split('_')[0] 去数组后缀 + base=0 认 hex（旧 int(...)=十进制强制，hex 键 ValueError）
+        overrides[int(str(k).split('_')[0], 0)] = v
     is_union = struct_info.get("is_union", False)
 
     # 加载 PDB struct
@@ -1007,7 +1012,9 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             # STL/template types: flatten to char[span] (TIL API can't handle template syntax)
             _is_stl = 'std::' in mtype_str or '<' in mtype_str
             if _is_stl:
-                sorted_offs = sorted(int(o, 0) for o in members if int(o, 0) > offset)
+                # 复核 75f6709b C3 同批：N_N 键去后缀（int('50814_0',0)=508140 坑）
+                sorted_offs = sorted(int(str(o).split('_')[0], 0) for o in members
+                                     if int(str(o).split('_')[0], 0) > offset)
                 span = min(sorted_offs) - offset if sorted_offs else binary_size - offset
                 if span <= 0:
                     span = 4

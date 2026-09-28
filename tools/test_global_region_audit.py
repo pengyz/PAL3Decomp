@@ -34,7 +34,10 @@ def test_parse_count_matches_file():
         if ln.startswith('extern') and '//' in ln and '0x' in ln:
             raw += 1
     assert len(entries) == raw
-    assert len(entries) == 2035  # 退役棘轮：2734→2034→2035（+1=aDatascriptScen_0 合成名漂移已归因）
+    assert len(entries) == 2232  # 合同刷新（2026-09-28 用户授权）：2035→2232（+197）
+    # 归因：W2 幻影清理**释放波**合法增发此前被容器声称吞掉的全局（PAL3 收缩 +56 /
+    # SceneMgr 成分拆分 +151 等 ≈ +207）减 G 系删除/墓碑 −12 ≈ +197。原"退役棘轮
+    # 2734→2034"合同假设 extern 只减——被释放波推翻（b827549e/fcce0c24 双结报 N1）。
 
 
 def test_parse_array_and_scalar():
@@ -92,7 +95,7 @@ def test_classify_known_addresses():
 def test_census_total_and_buckets():
     census = gra.build_census(GLOBALS_H, os.path.join(ROOT, 'original', 'PAL3.exe'))
     rows = census['rows']
-    assert len(rows) == 2035
+    assert len(rows) == 2232     # 同 :37 合同刷新（释放波 +197 归因在案）
     # 完备门（阶段 1 形态）：每行有 section 与 bucket；rdata 即 B7，
     # 其余为 pending（最终 bucket 由分区/锚定阶段细分——完备性在全部阶段后达成）
     for r in rows:
@@ -103,8 +106,13 @@ def test_census_total_and_buckets():
     for r in rows:
         by_sec.setdefault(r['section'], []).append(r)
     assert all(r['bucket'] == 'B7' for r in by_sec.get('rdata', []))
-    assert len(by_sec.get('data_init', [])) == 929
-    assert len(by_sec.get('bss', [])) == 951
+    assert len(by_sec.get('data_init', [])) == 928
+    # 合同刷新（2026-09-28）：929→928——G 系墓碑抑制的合法位移（1 条非 forced 引用条目
+    # 经 skip 墓碑出列；fcce0c24 Q3 实证 forced 兜底 9/12 保留、3 条全灭）
+    assert len(by_sec.get('bss', [])) == 1149
+    # 合同刷新（2026-09-28）：951→1149（+198）——释放波主体落 bss（未初始化数据对象：
+    # PAL3 收缩/SceneMgr 成分拆分释放的全局多为 bss 项）与 :37 的 +197 归因闭合
+    # （rdata 155 / data_init 928 / bss 1149 = 2232 ✓）
 
 
 def test_census_deterministic(tmp_path):
@@ -175,7 +183,9 @@ def test_census_annotation_cross():
     # 信号，大小写差异也算——如 dword_58619c vs dword_58619C）。复核实测 19；
     # 大小写归一口径为 4（复核 agent 口径），两口径都已记录在案。
     n_mismatch = sum(1 for r in rows if r['in_annotations'] and not r['anno_name_matches'])
-    assert 15 <= n_mismatch <= 25
+    assert 15 <= n_mismatch <= 30
+    # 合同刷新（2026-09-28）：上界 25→30——G8-b 命名清扫（13 正名）+墓碑化（12）造成的
+    # 注解/生成头名差合法增到 27（fcce0c24 N1 附注）；随命名收敛会回落。
 
 
 # ---------- 阶段 2：非重叠分区树 ----------
@@ -587,4 +597,4 @@ def test_classify_pending_all_bucketed():
             r['bucket'] = gra.classify_pending(r, secs, exe)
         buckets[r['bucket']] += 1
     assert 'pending' not in buckets
-    assert sum(buckets.values()) == 2035
+    assert sum(buckets.values()) == 2232   # 同 :37 合同刷新（释放波 +197 归因在案）

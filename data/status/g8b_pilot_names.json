@@ -1,0 +1,16 @@
+[
+  {
+    "kind": "global_rename",
+    "addr": "0x017A7E50",
+    "new_name": "g_nQuakeEffectSeq",
+    "name_evidence": "xref 角色实证：序列号生成器形态（v=++X; if(!X||v>=0x7FFFFFFF) X=1 回绕保护）×3 块，消费函数 100% 集中 CEffQuake::RenderEffectPass——与 W2 g_nSoundTargetSeq 族同证据级",
+    "evidence": "G8-b 试点命名：命名律'角色证据充分即名'——Seq 生成器角色+消费者函数双证"
+  },
+  {
+    "kind": "global_rename",
+    "addr": "0x00BFDAAC",
+    "new_name": "g_fRoleGridScale",
+    "name_evidence": "xref 角色实证：坐标量化/反量化对偶（(x-ref)/X 与 (i+0.5)*X+ref 成对出现）——RoleSystem::BindRoleToScene 内角色定位网格标度；float 型吻合",
+    "evidence": "G8-b 试点命名：网格标度角色+量化对偶形态+使用上下文三证"
+  }
+]

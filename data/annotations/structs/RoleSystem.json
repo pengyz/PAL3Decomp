@@ -460,8 +460,8 @@
   },
   "1288": {
    "name": "m_nTransformState",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
+   "type": "float",
+   "source": "B:naming_m_n+FPU_misattrib | type_change: type-evidence T1:  | T1b: 0x00412740 this+0x508(store); 0x00412A69 this+0x508(store); 0x00412A75 this+0x508(store); 0x004133D8 this+0x508(store)"
   },
   "1292": {
    "name": "m_fMovement",
@@ -485,8 +485,8 @@
   },
   "1308": {
    "name": "m_nMovement",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
+   "type": "float",
+   "source": "B:naming_m_n+FPU_misattrib | type_change: type-evidence T1:  | T1b: 0x00412760 this+0x51C(store); 0x00412D69 this+0x51C(store); 0x004133A9 this+0x51C(load); 0x004133CB this+0x51C(store)"
   },
   "1312": {
    "name": "m_fSavedRotX",
@@ -745,15 +745,15 @@
    "type": "int[29]",
    "source": "decomp ref C2039"
   },
-  "0x68C": {
+  "1676": {
    "name": "m_nTodo_68C",
    "type": "int",
-   "source": "Actor::UpdatePhysics accesses via this[1].m_nRoleState1+0x1B0"
+   "source": "Actor::UpdatePhysics accesses via this[1].m_nRoleState1+0x1B0 | normalize_key: 0x68C -> 1676"
   },
-  "0x690": {
+  "1680": {
    "name": "m_nTodo_690",
    "type": "float",
-   "source": "Actor::UpdatePhysics accesses via this[1].m_pEquipAtt0+0x1B4"
+   "source": "Actor::UpdatePhysics accesses via this[1].m_pEquipAtt0+0x1B4 | normalize_key: 0x690 -> 1680"
   },
   "1684_0": {
    "name": "m_teamSlotOverlay",

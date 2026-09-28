@@ -138,12 +138,24 @@ _ELEM_SIZES = {'int': 4, 'float': 4, 'unsigned int': 4, 'unsigned long': 4,
                'short': 2, 'unsigned short': 2, 'double': 8, 'long long': 8}
 
 
+def _anon_aggregate(mtype):
+    """inline union/struct 递归引用形——emit_headers._keep_anonymous 同族谓词
+    （2026-09-28 bDestRole/_field_C67E 双层实证：匿名聚合内层名提升，不得合成外层名）。"""
+    t = (mtype or '').strip()
+    return t.startswith('_inline_') or '::$' in t
+
+
 def _resolve_offset(type_name, offset, prefix):
-    """Recursively resolve an offset within a type to '.member' or '.member[N]'."""
+    """Recursively resolve an offset within a type to '.member' or '.member[N]'。
+    2026-09-28 修（悬空渲染根因）：导出 data_members 可带 **空串 name**（匿名 union 族）
+    ⇒ `'.%s' % ''` 产出 `g_SceneMgr.` 悬空。合成实名（与 emit_headers 同公式
+    `_field_%04X % off` ⇒ 头文件与渲染同名一致）；**匿名聚合体豁免合成**（内层名提升）。"""
     members = store.struct_members.get(type_name, {})
     info = members.get(offset)
     if info:
         mname, mtype = info
+        if not mname and not _anon_aggregate(mtype):
+            mname = '_field_%04X' % offset          # 标量空名合成
         mt = mtype.strip().lower()
         if prefix == 'byte' and not any(t in mt for t in ('char', 'byte', 'bool')) and '*' not in mtype:
             pass
@@ -154,8 +166,10 @@ def _resolve_offset(type_name, offset, prefix):
         elif prefix == 'flt' and 'float' not in mt:
             pass
         else:
-            return '.%s' % mname
+            return ('.%s' % mname) if mname else None    # 匿名聚合无路径分量（内层名另行提升）
     for moff, (mname, mtype) in sorted(members.items(), reverse=True):
+        if not mname and not _anon_aggregate(mtype):
+            mname = '_field_%04X' % moff       # 标量空名合成（匿名聚合豁免，同上）
         if moff > offset:
             continue
         rel = offset - moff
@@ -181,16 +195,16 @@ def _resolve_offset(type_name, offset, prefix):
                 if sub_rel == 0:
                     if _is_primitive:
                         continue  # byte-level array, try structured array
-                    return '.%s[%d]' % (mname, idx)
+                    return (('.%s[%d]' % (mname, idx)) if mname else None)   # 空名数组形态保守弃
                 if not _is_primitive:
                     sub_members = store.struct_members.get(elem_type)
                     if sub_members:
                         sub = _resolve_offset(elem_type, sub_rel, prefix)
                         if sub:
-                            return '.%s[%d]%s' % (mname, idx, sub)
+                            return (('.%s[%d]%s' % (mname, idx, sub)) if mname else sub)
                 if _is_primitive:
                     continue
-                return '.%s[%d]' % (mname, idx)
+                return (('.%s[%d]' % (mname, idx)) if mname else None)
         embedded = store.struct_members.get(mtype.strip().rstrip('*').strip())
         if embedded and '*' not in mtype:
             # Use struct's full size as threshold (not primitive default 0x1000)
@@ -200,7 +214,7 @@ def _resolve_offset(type_name, offset, prefix):
             if rel < _struct_sz:
                 sub = _resolve_offset(mtype.strip(), rel, prefix)
                 if sub:
-                    return '.%s%s' % (mname, sub)
+                    return (('.%s%s' % (mname, sub)) if mname else sub)   # 匿名聚合：内层名提升直用
     return None
 
 
