@@ -3406,6 +3406,9 @@ def generate_globals():
             # G1 分区：category 字段随注解流入（发射分区用；globals.cpp 不消费）
             if _ann_entry.get('category'):
                 _ginfo['category'] = _ann_entry['category']
+            # 墓碑原类型传导（复活型解析源——W3 类型源律）
+            if _ann_entry.get('orig_type'):
+                _ginfo['orig_type'] = _ann_entry['orig_type']
             _ann_filtered.append((_addr_s, _ginfo))
         sorted_globs = _ann_filtered
         if _ann_skipped:
@@ -3496,9 +3499,10 @@ def generate_globals():
             h_lines.append('// ==== %s ====' % _SECTION_NAMES.get(_s, 'UNCLASSIFIED'))
         if typ == 'skip':
             # export-layer skip — resurrect when the decompiler references
-            # the name (derive a type from the IDA naming convention)
+            # the name（W3 类型源律：墓碑 orig_type 优先 → 名字启发仅最后回退——
+            # 头/定义两侧必须同源解析，否则 extern int vs 定义 void*/int[5] 相撞 C2040）
             if name in _forced_names:
-                typ = _prefix_type(name) or 'int'
+                typ = g.get('orig_type') or _prefix_type(name) or 'int'
                 g = dict(g, type=typ)
             else:
                 continue  # known-unnameable: don't emit extern declaration
@@ -3812,7 +3816,9 @@ def generate_globals_cpp():
         if tp == 'skip':
             if nm not in _forced_names:
                 continue
-            tp = _prefix_type(nm) or 'int'
+            # 复活型解析（W3 类型源律）：注解 orig_type（墓碑原类型）优先 →
+            # 名字启发仅最后回退（pEnd/dword_C057EC 曾被 int 吞 void*/int[5] ⇒ C2664/C2109）
+            tp = (ann_info or {}).get('orig_type') or _prefix_type(nm) or 'int'
             info = dict(info, type=tp)
         if _should_skip_global(addr, nm, tp, ann_info):
             continue

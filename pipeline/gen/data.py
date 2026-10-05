@@ -360,7 +360,8 @@ class DataStore:
             for _df in sorted(_decomp_dir.glob("*.json")):
                 try:
                     _dd = json.load(open(_df, encoding='utf-8'))
-                except:
+                except Exception as _e:
+                    print("  [data-ERR] %s: %s" % (_df.name, _e))
                     continue
                 _name = _dd.get('name', '')
                 if '::' in _name:
@@ -374,10 +375,15 @@ class DataStore:
             for _df in sorted(_decomp_dir.glob("*.json")):
                 try:
                     _dd = json.load(open(_df, encoding='utf-8'))
-                except:
+                except Exception as _e:
+                    print("  [data-ERR] %s: %s" % (_df.name, _e))
                     continue
                 _name = _dd.get('name', '')
                 _sig = _dd.get('signature', '')
+                # N1 注记（回退教训 2026-09-29）：曾加"成员地址不进 free_func_sigs"排除——
+                # 拆掉生成代码裸调用（SetEnable/RemoveAt 族）的声明拐杖 ⇒ C2065 +75 / S2 100→67
+                # 洪泛。free_func_sigs 对**限定调用无害**（重载决议走类声明）且是裸调用的唯一声明源
+                # ⇒ **不排除成员函数**；N1 的正确闭合在调用形转写（rewrite_unqualified_member_call）。
                 # Normalize IDA __hidden this marker (apply_annotations writes
                 # method types as `Cls *__hidden this`; consume as `Cls *this`)
                 _sig = _re2.sub(r'\b__hidden\s+', '', _sig)

@@ -62,6 +62,12 @@ def collect_undefined_refs(code):
     # IDA named but unresolved
     refs.update(re.findall(r'\b(nullsub_\d+)\b', code))
     refs.update(re.findall(r'\b(unknown_libname_\d+)\b', code))
+    # 【批 11 全撤（2026-09-29 零回归门）】函数形未声明名收集——生产实测 C2668 +79
+    # （`int name(...)` 幻影声明与 free_functions.h 真声明成歧义重载）+C2199/C2059
+    # 族 31 真新增。**声明面合成与 free_functions/globals/macros 互连过深**——
+    # 三轮 review 全过但生产即爆（review 静态面≠生产实效面第三次实证）。
+    # DllMain C2065 挂账：真修法=渲染面名字统一（0x445D10 真身 CGameData::OnMessage，
+    # Hex-Rays 调用点别名缓存）——非声明面。
     return refs
 
 

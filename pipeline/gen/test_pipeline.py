@@ -49,13 +49,13 @@ class TestOopTransform(unittest.TestCase):
         keeps the direct-call semantics Hex-Rays reported."""
         code = "int test() { Foo::DoSomething(ptr, 1, 2); return 0; }"
         result = transform_oop_calls(code)
-        self.assertIn('((Foo *)ptr)->Foo::DoSomething(1, 2)', result)
+        self.assertIn('(((Foo *)ptr))->Foo::DoSomething(1, 2)', result)
 
     def test_complex_expr_as_first_arg(self):
         """Class::Method(ptr->field, ...) -> ((Class *)ptr->field)->Class::Method(...)"""
         code = "int test() { Foo::DoSomething(obj->field, 1); return 0; }"
         result = transform_oop_calls(code)
-        self.assertIn('((Foo *)obj->field)->Foo::DoSomething(1)', result)
+        self.assertIn('(((Foo *)obj->field))->Foo::DoSomething(1)', result)
 
     def test_qualified_destructor(self):
         """Class::_Class(this) -> this->~Class()"""
@@ -118,10 +118,12 @@ class TestOopTransform(unittest.TestCase):
                 "AStarPathFinder::GetHeuristicIdx((AStarPathFinder *)this, 1, 2, 3); "
                 "return 0; }")
         result = transform_oop_calls(code, cls_name='Foo')
-        self.assertIn('/* [MISATTRIBUTED] AStarPathFinder on Foo::this',
+        # 【设计演进 2026-09】候选①·复核者反例：门未开时不再打 [MISATTRIBUTED] 标记，
+        # 而是保留 cast 与 IDB 归属只补对象解引用。⚠️ 该形与门开形在"带 cast 首参"时
+        # **文本全同**（单测可见区分已失——设计盲点挂账）；门的语义靠 ret-N/vtable
+        # 证据缓存在集成面验证。
+        self.assertIn('(((AStarPathFinder *)this))->AStarPathFinder::GetHeuristicIdx(1, 2, 3)',
                       result)
-        self.assertIn('AStarPathFinder::GetHeuristicIdx((AStarPathFinder *)this, '
-                      '1, 2, 3)', result)
 
     def test_rowtable_cast_this_form(self):
         """t6 (`:421` ROWTABLE emission): a family class called on our own
@@ -162,7 +164,8 @@ class TestTrack1EvidenceGate(unittest.TestCase):
                "AStarPathFinder::GetHeuristicIdx((AStarPathFinder *)this, 1, 2, 3); "
                "return 0; }")
         r = transform_oop_calls(bad, cls_name='Foo')
-        self.assertIn('[MISATTRIBUTED]', r)
+        # 设计演进（候选①）：门未开=保留 cast 补解引用，不再打 [MISATTRIBUTED] 标记
+        self.assertIn('(((AStarPathFinder *)this))->AStarPathFinder::GetHeuristicIdx(1, 2, 3)', r)
         # (b) both facts true -> clean cast+qualified form, marker gone
         good = ("int Foo::Bar() { "
                 "AStarPathFinder::GetHeuristicIdx((AStarPathFinder *)this, 1, 2); "
@@ -205,7 +208,8 @@ class TestTrack1EvidenceGate(unittest.TestCase):
             code = ("int Foo::Bar() { "
                     "FakeCls::_FakeCls((FakeCls *)this, 1); return 0; }")
             result = transform_oop_calls(code, cls_name='Foo')
-            self.assertIn('[MISATTRIBUTED]', result)
+            # 设计演进（候选①）：ctor/dtor 门不开 ⇒ 候选①形（不再打 [MISATTRIBUTED]）
+            self.assertIn('(((FakeCls *)this))->FakeCls::_FakeCls(1)', result)
         finally:
             _at._RET_SLOTS_CACHE = saved_ret
             _at._VA_BY_METHOD = saved_va

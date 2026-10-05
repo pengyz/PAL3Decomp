@@ -1,348 +1,349 @@
 {
- "name": "RoleAtt",
- "binary_size": 852,
- "known_members": {
-  "0": {
-   "name": "id",
-   "type": "DWORD",
-   "source": "annotation"
-  },
-  "4": {
-   "name": "type",
-   "type": "WORD",
-   "source": "annotation"
-  },
-  "6": {
-   "name": "Remark",
-   "type": {
-    "union": [
-     {
+  "name": "RoleAtt",
+  "binary_size": 852,
+  "known_members": {
+    "0": {
+      "name": "id",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "4": {
+      "name": "type",
+      "type": "WORD",
+      "source": "annotation"
+    },
+    "6": {
+      "name": "Remark",
       "type": {
-       "struct": [
+        "union": [
+          {
+            "type": {
+              "struct": [
+                {
+                  "offset": 290,
+                  "name": "nSkillCount1",
+                  "type": "int"
+                },
+                {
+                  "offset": 294,
+                  "name": "nSkillCount2",
+                  "type": "int"
+                }
+              ]
+            },
+            "name": "skillCount"
+          }
+        ]
+      },
+      "source": "annotation"
+    },
+    "518": {
+      "name": "ModelID",
+      "type": "char[30]",
+      "source": "annotation"
+    },
+    "548": {
+      "name": "ImageID",
+      "type": "char[30]",
+      "source": "annotation"
+    },
+    "580": {
+      "name": "att",
+      "type": "int[5]",
+      "source": "annotation"
+    },
+    "600": {
+      "name": "name",
+      "type": "char[32]",
+      "source": "annotation"
+    },
+    "632": {
+      "name": "lv",
+      "type": "float",
+      "source": "annotation"
+    },
+    "636": {
+      "name": "rolevalue",
+      "type": "int[12]",
+      "source": "annotation"
+    },
+    "684": {
+      "name": "fightstate",
+      "type": "unsigned char[31]",
+      "source": "annotation"
+    },
+    "716": {
+      "name": "RoundNum",
+      "type": "float",
+      "source": "annotation"
+    },
+    "720": {
+      "name": "SAID",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "724": {
+      "name": "Escape",
+      "type": "float",
+      "source": "annotation"
+    },
+    "728": {
+      "name": "haogan",
+      "type": "unsigned short[5]",
+      "source": "annotation"
+    },
+    "740": {
+      "name": "exp",
+      "type": "float",
+      "source": "annotation"
+    },
+    "744": {
+      "name": "gold",
+      "type": "WORD",
+      "source": "annotation"
+    },
+    "748": {
+      "name": "NormalAtkID",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "752": {
+      "name": "height",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "753": {
+      "name": "move",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "754": {
+      "name": "attackrange",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "755": {
+      "name": "speed1",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "756": {
+      "name": "speed2",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "760": {
+      "name": "skill",
+      "type": "unsigned int[4]",
+      "source": "annotation"
+    },
+    "776": {
+      "name": "skill_lv",
+      "type": "unsigned char[3]",
+      "source": "annotation"
+    },
+    "780": {
+      "name": "RoleQiAdd",
+      "type": "int",
+      "source": "annotation"
+    },
+    "784": {
+      "name": "append",
+      "type": "float[10]",
+      "source": "annotation"
+    },
+    "824": {
+      "name": "normalplunder",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "828": {
+      "name": "normalplundernum",
+      "type": "short",
+      "source": "annotation"
+    },
+    "832": {
+      "name": "shikuai",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "836": {
+      "name": "shikuaiskill",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "840": {
+      "name": "shikuaisucc",
+      "type": "short",
+      "source": "annotation"
+    },
+    "842": {
+      "name": "stealmoney",
+      "type": "short",
+      "source": "annotation"
+    },
+    "844": {
+      "name": "steal",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "848": {
+      "name": "stealnum",
+      "type": "short",
+      "source": "annotation"
+    },
+    "850": {
+      "name": "getmoney",
+      "type": "short",
+      "source": "annotation"
+    }
+  },
+  "methods": {
+    "0x004512F0": {
+      "name": "Render",
+      "signature": "void **__thiscall()",
+      "ordinal": 1
+    },
+    "0x00451320": {
+      "name": "Destroy",
+      "signature": "void __thiscall()",
+      "ordinal": 3
+    },
+    "0x005310C0": {
+      "name": "UpdateTimedBuff",
+      "signature": "void __thiscall RoleAtt::UpdateTimedBuff(float fDelta)"
+    },
+    "0x00450EB0": {
+      "name": "~RoleAtt",
+      "signature": "void __fastcall RoleAtt::~RoleAtt(UIWnd *pWnd)",
+      "source": " | 析构名误挂改名 2026-09-29：~RoleAtt→_todo_00450EB0（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形） | 撤误改名 2026-09-29：`UIWnd *pWnd`=this 形参（名非字面 this 但为此call this 槽）⇒ 真析构形（判别器只剥字面 this 名的漏洞——挂账修）"
+    },
+    "0x00450F80": {
+      "name": "IsValid",
+      "signature": "BOOL __thiscall RoleAtt::IsValid()"
+    },
+    "0x004515A0": {
+      "name": "OnMessage",
+      "signature": "int __thiscall(int nVal, LPCSTR lpString1, int nVal2)",
+      "ordinal": 6
+    },
+    "0x004515E0": {
+      "name": "HandleInput",
+      "signature": "int __thiscall RoleAtt::HandleInput(int nVal, int nVal2)",
+      "ordinal": 2
+    },
+    "0x00451740": {
+      "name": "ShowWindow",
+      "signature": "void __thiscall(int)",
+      "ordinal": 0,
+      "source": "vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
+    },
+    "0x00457F90": {
+      "name": "FormatAttributeText",
+      "signature": "void __thiscall()"
+    },
+    "0x00530810": {
+      "name": "LoadModelAndInit",
+      "signature": "void __thiscall RoleAtt::LoadModelAndInit()"
+    },
+    "0x00530960": {
+      "name": "SetSAIDAndImage",
+      "signature": "int __thiscall(int *pnVal)"
+    },
+    "0x00531010": {
+      "name": "ApplySpeedFactor",
+      "signature": "void __thiscall RoleAtt::ApplySpeedFactor(float fVal)"
+    },
+    "0x00531160": {
+      "name": "InterpolateStats",
+      "signature": "char __thiscall(int nVal)"
+    },
+    "0x005322D0": {
+      "name": "SetPageParam",
+      "signature": "int __thiscall RoleAtt::SetPageParam(int nVal)",
+      "_misattrib_evidence": "max_offset=1308>class_size=332"
+    },
+    "0x005322E0": {
+      "name": "SetPageParam2",
+      "signature": "int __thiscall RoleAtt::SetPageParam2(int nVal)",
+      "_misattrib_evidence": "max_offset=1312>class_size=332"
+    },
+    "0x005322F0": {
+      "name": "SwitchPage",
+      "signature": "int __thiscall RoleAtt::SwitchPage(int nPageIdx, int nParam)"
+    },
+    "0x00533DB0": {
+      "name": "ResetNameField",
+      "signature": "int __thiscall RoleAtt::ResetNameField()"
+    },
+    "0x00533FE0": {
+      "name": "UpdatePosition",
+      "signature": "void __thiscall RoleAtt::UpdatePosition(float fX, float fY, float fZ)"
+    },
+    "0x00534210": {
+      "name": "SetPositionFromInts",
+      "signature": "void __thiscall RoleAtt::SetPositionFromInts(int nX, int nY, int nZ)"
+    },
+    "0x00534450": {
+      "name": "InterpolateMotion",
+      "signature": "void __thiscall RoleAtt::InterpolateMotion(float f1, float f2, float f3, float f4, float f5)"
+    },
+    "0x00534810": {
+      "name": "UpdateDirectionalMotion",
+      "signature": "void __thiscall RoleAtt::UpdateDirectionalMotion(gbVec3D pData, float fVal, float fVal2)"
+    },
+    "0x00534BA0": {
+      "name": "SetFightState",
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, char pData, char pData2)"
+    },
+    "0x00534BF0": {
+      "name": "ResetFightState",
+      "signature": "int __thiscall()"
+    },
+    "0x00534C50": {
+      "name": "UpdateOscillation",
+      "signature": "double __thiscall RoleAtt::UpdateOscillation()"
+    },
+    "0x0052F8E0": {
+      "name": "LoadGeomNode",
+      "signature": "gbVFileSystem *__thiscall (int nVal)",
+      "_misattrib_evidence": "max_offset=3100>class_size=852"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056B14C",
+      "base": "UIWnd",
+      "slots": [
         {
-         "offset": 290,
-         "name": "nSkillCount1",
-         "type": "int"
+          "addr": "0x00451740",
+          "from": null
         },
         {
-         "offset": 294,
-         "name": "nSkillCount2",
-         "type": "int"
+          "addr": "0x004512F0",
+          "from": null
+        },
+        {
+          "addr": "0x004515E0",
+          "from": null
+        },
+        {
+          "addr": "0x00451320",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00450E90",
+          "from": "CCBFiveNimbusWindow"
+        },
+        {
+          "addr": "0x004515A0",
+          "from": null
         }
-       ]
-      },
-      "name": "skillCount"
-     }
-    ]
-   },
-   "source": "annotation"
-  },
-  "518": {
-   "name": "ModelID",
-   "type": "char[30]",
-   "source": "annotation"
-  },
-  "548": {
-   "name": "ImageID",
-   "type": "char[30]",
-   "source": "annotation"
-  },
-  "580": {
-   "name": "att",
-   "type": "int[5]",
-   "source": "annotation"
-  },
-  "600": {
-   "name": "name",
-   "type": "char[32]",
-   "source": "annotation"
-  },
-  "632": {
-   "name": "lv",
-   "type": "float",
-   "source": "annotation"
-  },
-  "636": {
-   "name": "rolevalue",
-   "type": "int[12]",
-   "source": "annotation"
-  },
-  "684": {
-   "name": "fightstate",
-   "type": "unsigned char[31]",
-   "source": "annotation"
-  },
-  "716": {
-   "name": "RoundNum",
-   "type": "float",
-   "source": "annotation"
-  },
-  "720": {
-   "name": "SAID",
-   "type": "unsigned char",
-   "source": "annotation"
-  },
-  "724": {
-   "name": "Escape",
-   "type": "float",
-   "source": "annotation"
-  },
-  "728": {
-   "name": "haogan",
-   "type": "unsigned short[5]",
-   "source": "annotation"
-  },
-  "740": {
-   "name": "exp",
-   "type": "float",
-   "source": "annotation"
-  },
-  "744": {
-   "name": "gold",
-   "type": "WORD",
-   "source": "annotation"
-  },
-  "748": {
-   "name": "NormalAtkID",
-   "type": "DWORD",
-   "source": "annotation"
-  },
-  "752": {
-   "name": "height",
-   "type": "BYTE",
-   "source": "annotation"
-  },
-  "753": {
-   "name": "move",
-   "type": "BYTE",
-   "source": "annotation"
-  },
-  "754": {
-   "name": "attackrange",
-   "type": "BYTE",
-   "source": "annotation"
-  },
-  "755": {
-   "name": "speed1",
-   "type": "BYTE",
-   "source": "annotation"
-  },
-  "756": {
-   "name": "speed2",
-   "type": "BYTE",
-   "source": "annotation"
-  },
-  "760": {
-   "name": "skill",
-   "type": "unsigned int[4]",
-   "source": "annotation"
-  },
-  "776": {
-   "name": "skill_lv",
-   "type": "unsigned char[3]",
-   "source": "annotation"
-  },
-  "780": {
-   "name": "RoleQiAdd",
-   "type": "int",
-   "source": "annotation"
-  },
-  "784": {
-   "name": "append",
-   "type": "float[10]",
-   "source": "annotation"
-  },
-  "824": {
-   "name": "normalplunder",
-   "type": "DWORD",
-   "source": "annotation"
-  },
-  "828": {
-   "name": "normalplundernum",
-   "type": "short",
-   "source": "annotation"
-  },
-  "832": {
-   "name": "shikuai",
-   "type": "DWORD",
-   "source": "annotation"
-  },
-  "836": {
-   "name": "shikuaiskill",
-   "type": "DWORD",
-   "source": "annotation"
-  },
-  "840": {
-   "name": "shikuaisucc",
-   "type": "short",
-   "source": "annotation"
-  },
-  "842": {
-   "name": "stealmoney",
-   "type": "short",
-   "source": "annotation"
-  },
-  "844": {
-   "name": "steal",
-   "type": "DWORD",
-   "source": "annotation"
-  },
-  "848": {
-   "name": "stealnum",
-   "type": "short",
-   "source": "annotation"
-  },
-  "850": {
-   "name": "getmoney",
-   "type": "short",
-   "source": "annotation"
-  }
- },
- "methods": {
-  "0x004512F0": {
-   "name": "Render",
-   "signature": "void **__thiscall()",
-   "ordinal": 1
-  },
-  "0x00451320": {
-   "name": "Destroy",
-   "signature": "void __thiscall()",
-   "ordinal": 3
-  },
-  "0x005310C0": {
-   "name": "UpdateTimedBuff",
-   "signature": "void __thiscall RoleAtt::UpdateTimedBuff(float fDelta)"
-  },
-  "0x00450EB0": {
-   "name": "~RoleAtt",
-   "signature": "void __fastcall RoleAtt::~RoleAtt(UIWnd *pWnd)"
-  },
-  "0x00450F80": {
-   "name": "IsValid",
-   "signature": "BOOL __thiscall RoleAtt::IsValid()"
-  },
-  "0x004515A0": {
-   "name": "OnMessage",
-   "signature": "int __thiscall(int nVal, LPCSTR lpString1, int nVal2)",
-   "ordinal": 6
-  },
-  "0x004515E0": {
-   "name": "HandleInput",
-   "signature": "int __thiscall RoleAtt::HandleInput(int nVal, int nVal2)",
-   "ordinal": 2
-  },
-  "0x00451740": {
-   "name": "ShowWindow",
-   "signature": "void __thiscall(int)",
-   "ordinal": 0,
-   "source": "vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
-  },
-  "0x00457F90": {
-   "name": "FormatAttributeText",
-   "signature": "void __thiscall()"
-  },
-  "0x00530810": {
-   "name": "LoadModelAndInit",
-   "signature": "void __thiscall RoleAtt::LoadModelAndInit()"
-  },
-  "0x00530960": {
-   "name": "SetSAIDAndImage",
-   "signature": "int __thiscall(int *pnVal)"
-  },
-  "0x00531010": {
-   "name": "ApplySpeedFactor",
-   "signature": "void __thiscall RoleAtt::ApplySpeedFactor(float fVal)"
-  },
-  "0x00531160": {
-   "name": "InterpolateStats",
-   "signature": "char __thiscall(int nVal)"
-  },
-  "0x005322D0": {
-   "name": "SetPageParam",
-   "signature": "int __thiscall RoleAtt::SetPageParam(int nVal)",
-   "_misattrib_evidence": "max_offset=1308>class_size=332"
-  },
-  "0x005322E0": {
-   "name": "SetPageParam2",
-   "signature": "int __thiscall RoleAtt::SetPageParam2(int nVal)",
-   "_misattrib_evidence": "max_offset=1312>class_size=332"
-  },
-  "0x005322F0": {
-   "name": "SwitchPage",
-   "signature": "int __thiscall RoleAtt::SwitchPage(int nPageIdx, int nParam)"
-  },
-  "0x00533DB0": {
-   "name": "ResetNameField",
-   "signature": "int __thiscall RoleAtt::ResetNameField()"
-  },
-  "0x00533FE0": {
-   "name": "UpdatePosition",
-   "signature": "void __thiscall RoleAtt::UpdatePosition(float fX, float fY, float fZ)"
-  },
-  "0x00534210": {
-   "name": "SetPositionFromInts",
-   "signature": "void __thiscall RoleAtt::SetPositionFromInts(int nX, int nY, int nZ)"
-  },
-  "0x00534450": {
-   "name": "InterpolateMotion",
-   "signature": "void __thiscall RoleAtt::InterpolateMotion(float f1, float f2, float f3, float f4, float f5)"
-  },
-  "0x00534810": {
-   "name": "UpdateDirectionalMotion",
-   "signature": "void __thiscall RoleAtt::UpdateDirectionalMotion(gbVec3D pData, float fVal, float fVal2)"
-  },
-  "0x00534BA0": {
-   "name": "SetFightState",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, char pData, char pData2)"
-  },
-  "0x00534BF0": {
-   "name": "ResetFightState",
-   "signature": "int __thiscall()"
-  },
-  "0x00534C50": {
-   "name": "UpdateOscillation",
-   "signature": "double __thiscall RoleAtt::UpdateOscillation()"
-  },
-  "0x0052F8E0": {
-   "name": "LoadGeomNode",
-   "signature": "gbVFileSystem *__thiscall (int nVal)",
-   "_misattrib_evidence": "max_offset=3100>class_size=852"
-  }
- },
- "vtables": [
-  {
-   "addr": "0x0056B14C",
-   "base": "UIWnd",
-   "slots": [
-    {
-     "addr": "0x00451740",
-     "from": null
-    },
-    {
-     "addr": "0x004512F0",
-     "from": null
-    },
-    {
-     "addr": "0x004515E0",
-     "from": null
-    },
-    {
-     "addr": "0x00451320",
-     "from": null
-    },
-    {
-     "addr": "0x00445B90",
-     "from": "UIWnd"
-    },
-    {
-     "addr": "0x00450E90",
-     "from": "CCBFiveNimbusWindow"
-    },
-    {
-     "addr": "0x004515A0",
-     "from": null
+      ]
     }
-   ]
-  }
- ]
+  ]
 }

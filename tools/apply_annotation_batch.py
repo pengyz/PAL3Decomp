@@ -442,10 +442,17 @@ def main():
                 k = '0x%08X' % _want          # 墓碑可创建（复活抑制载体）
             ent = d.get(k) or {}
             if ent.get('type') == 'skip' and ent.get('deleted'):
+                if it.get('orig_type') and not ent.get('orig_type'):
+                    ent['orig_type'] = it['orig_type']   # 回填原类型（复活型解析用）
+                    save_ann(d, p)
+                    print('   [墓碑补型] %s orig_type=%s' % (k, it['orig_type']))
+                    done += 1
+                    continue
                 print('   [no-op] %s 墓碑已立' % k)
                 done += 1
                 continue
             _old = ent.get('name')
+            ent['orig_type'] = it.get('orig_type') or ent.get('type')   # 原型保存（复活型解析源）
             ent['type'] = 'skip'               # 抑制载体（skip=改名治理不静音语义的反向利用）
             ent['deleted'] = it['disposal']
             ent['category'] = ent.get('category') or 'object_interior'

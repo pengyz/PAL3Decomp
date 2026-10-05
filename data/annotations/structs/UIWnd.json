@@ -1,300 +1,300 @@
 {
- "name": "UIWnd",
- "binary_size": 68,
- "known_members": {
-  "4": {
-   "name": "m_fontcolor",
-   "type": "gbColorQuad",
-   "source": "annotation"
-  },
-  "8": {
-   "name": "m_wndcolor",
-   "type": "gbColorQuad",
-   "source": "annotation"
-  },
-  "12": {
-   "name": "m_id",
-   "type": "void *",
-   "source": "annotation"
-  },
-  "16": {
-   "name": "m_rect",
-   "type": "tagRECT",
-   "source": "annotation"
-  },
-  "32": {
-   "name": "m_pfather",
-   "type": "UIWnd *",
-   "source": "annotation"
-  },
-  "36": {
-   "name": "m_childs",
-   "type": "PtrArray",
-   "source": "annotation"
-  },
-  "52": {
-   "name": "m_bcreateok",
-   "type": "int",
-   "source": "annotation"
-  },
-  "56": {
-   "name": "m_bvisible",
-   "type": "int",
-   "source": "annotation"
-  },
-  "60": {
-   "name": "m_benable",
-   "type": "int",
-   "source": "annotation"
-  },
-  "64": {
-   "name": "m_bfocus",
-   "type": "int",
-   "source": "annotation"
-  }
- },
- "methods": {
-  "0x00445FA0": {
-   "name": "sub_445FA0",
-   "signature": "int __thiscall(void *a2)"
-  },
-  "0x0043BB90": {
-   "name": "_scalar_dtor"
-  },
-  "0x00445B40": {
-   "name": "_UIWnd",
-   "signature": "void __thiscall()"
-  },
-  "0x004D589C": {
-   "name": "SetRect",
-   "signature": "void (tagRECT *)",
-   "source": "pdb"
-  },
-  "0x004D5950": {
-   "name": "BringWindowToTop",
-   "signature": "void ()",
-   "source": "pdb"
-  },
-  "0x004433D0": {
-   "name": "LayoutAndRender",
-   "signature": "int __thiscall()",
-   "source": "vtable_migrated+manual_ida_body",
-   "ordinal": 15
-  },
-  "0x00457340": {
-   "name": "CleanupScript",
-   "signature": "void __thiscall()",
-   "_misattrib_evidence": "max_offset=805416>class_size=68"
-  },
-  "0x00445F20": {
-   "name": "MoveWindow",
-   "signature": "int __thiscall(void)"
-  },
-  "0x00450440": {
-   "name": "RenderContent",
-   "signature": "void __thiscall()",
-   "source": "ida_xref:sub_fix_from_decomp_this_type"
-  },
-  "0x0043BBB0": {
-   "name": "Destroy",
-   "signature": "void __thiscall()",
-   "source": "batch:sub_fix_from_decomp_this_type"
-  },
-  "0x00450390": {
-   "name": "DelegateRender",
-   "signature": "void __thiscall()",
-   "source": "batch:sub_fix_from_decomp_this_type"
-  },
-  "0x00450E90": {
-   "name": "_sdtor_27",
-   "signature": "UIWnd *__thiscall(UIWnd *Block, char a2)"
-  },
-  "0x004518E0": {
-   "name": "_sdtor_28",
-   "signature": "UIWnd *__thiscall(UIWnd *Block, char a2)"
-  },
-  "0x00445E70": {
-   "name": "ShowWindow",
-   "signature": "int __thiscall(int nFlags)"
-  },
-  "0x0044A870": {
-   "name": "RenderText",
-   "signature": "virtual void __thiscall()"
-  },
-  "0x0044A820": {
-   "name": "GetUIElements",
-   "signature": "int __thiscall(float fVal, int nVal)"
-  },
-  "0x0044A7D0": {
-   "name": "_sdtor_14",
-   "signature": "void *__thiscall(void *Block, char a2)",
-   "type": "skip",
-   "reason": "compiler-generated scalar deleting destructor for UIWnd"
-  },
-  "0x00451730": {
-   "name": "_todo_451730",
-   "signature": "int __thiscall(UIWnd *this)"
-  },
-  "0x00445B90": {
-   "name": "Create",
-   "signature": "int __thiscall(int id, tagRECT *pRect, int parent)",
-   "source": "vtable_gap_fill_v1(from CCBItemWindow.json)"
-  },
-  "0x00445C10": {
-   "name": "HideAll",
-   "signature": "void __thiscall UIWnd::HideAll()",
-   "source": "vtable_gap_fill_v1(from SceneObj.json)"
-  },
-  "0x00445C60": {
-   "name": "Update",
-   "signature": "int __thiscall(int a2, int a3)",
-   "source": "vtable_gap_fill_v1(from SceneObj.json)"
-  },
-  "0x00445CD0": {
-   "name": "Render",
-   "signature": "void __thiscall()",
-   "source": "vtable_gap_fill_v1(from UITitle_BBTY.json)"
-  },
-  "0x00445D10": {
-   "name": "OnMessage",
-   "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
-   "source": "vtable_gap_fill_v1(from CGameData.json)"
-  },
-  "0x0044E5C0": {
-   "name": "_sdtor_25",
-   "signature": "scScriptInstance *__thiscall(scScriptInstance *Block, char a2)",
-   "source": "vtable_gap_fill_v1(from scScriptInstance.json)"
-  },
-  "0x004A14C0": {
-   "name": "HideAll_14C0",
-   "signature": "void __thiscall()",
-   "source": "vtable_gap_fill_v1(from UITitle.json)"
-  },
-  "0x00439110": {
-   "name": "sub_439110",
-   "signature": "void __thiscall(int)",
-   "source": "vtable_gap_fill_v1(IDB:sub_439110) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
-  },
-  "0x00445B20": {
-   "name": "_scalar_dtor_5b20",
-   "signature": "void __thiscall()",
-   "source": "vtable_gap_fill_v1(IDB:UIWnd::scalar_deleting_dtor_ovl_5b20)"
-  },
-  "0x0044E980": {
-   "name": "sub_44E980",
-   "signature": "void __thiscall(int, int)",
-   "source": "vtable_gap_fill_v1(IDB:sub_44E980) | vtable_sig_arity_fill(ret-N=8) | vtable_sig_arity_fill(ret-N=8)"
-  }
- },
- "vtables": [
-  {
-   "addr": "0x0056AE2C",
-   "slots": [
-    {
-     "addr": "0x00445E70",
-     "from": null
+  "name": "UIWnd",
+  "binary_size": 68,
+  "known_members": {
+    "4": {
+      "name": "m_fontcolor",
+      "type": "gbColorQuad",
+      "source": "annotation"
     },
-    {
-     "addr": "0x00443200",
-     "from": "UIFrameWnd"
+    "8": {
+      "name": "m_wndcolor",
+      "type": "gbColorQuad",
+      "source": "annotation"
     },
-    {
-     "addr": "0x00442FF0",
-     "from": "UIFrameWnd"
+    "12": {
+      "name": "m_id",
+      "type": "unsigned int",
+      "source": "annotation|fix:void_star_to_unsigned_int:s_RoleState L141/144 双证（m_id 存取均为 DWORD 容器：`(void*)*(v3+1)` 入/`*(_DWORD*)` 出）2026-09-29"
     },
-    {
-     "addr": "0x00442420",
-     "from": "UIFrameWnd"
+    "16": {
+      "name": "m_rect",
+      "type": "tagRECT",
+      "source": "annotation"
     },
-    {
-     "addr": "0x00445B90",
-     "from": null
+    "32": {
+      "name": "m_pfather",
+      "type": "UIWnd *",
+      "source": "annotation"
     },
-    {
-     "addr": "0x004431B0",
-     "from": "UIFrameWnd"
+    "36": {
+      "name": "m_childs",
+      "type": "PtrArray",
+      "source": "annotation"
     },
-    {
-     "addr": "0x00445D10",
-     "from": null
+    "52": {
+      "name": "m_bcreateok",
+      "type": "int",
+      "source": "annotation"
+    },
+    "56": {
+      "name": "m_bvisible",
+      "type": "int",
+      "source": "annotation"
+    },
+    "60": {
+      "name": "m_benable",
+      "type": "int",
+      "source": "annotation"
+    },
+    "64": {
+      "name": "m_bfocus",
+      "type": "int",
+      "source": "annotation"
     }
-   ]
   },
-  {
-   "addr": "0x0056AFB0",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x00445E70",
-     "from": null
+  "methods": {
+    "0x00445FA0": {
+      "name": "sub_445FA0",
+      "signature": "int __thiscall(void *a2)"
     },
-    {
-     "addr": "0x0044A870",
-     "from": "CCBProtectWindow"
+    "0x0043BB90": {
+      "name": "_scalar_dtor"
     },
-    {
-     "addr": "0x0044A820",
-     "from": "CCBProtectWindow"
+    "0x00445B40": {
+      "name": "_UIWnd",
+      "signature": "void __thiscall()"
     },
-    {
-     "addr": "0x0043D920",
-     "from": "CCBProtectWindow"
+    "0x004D589C": {
+      "name": "SetRect",
+      "signature": "void (tagRECT *)",
+      "source": "pdb"
     },
-    {
-     "addr": "0x00445B90",
-     "from": null
+    "0x004D5950": {
+      "name": "BringWindowToTop",
+      "signature": "void ()",
+      "source": "pdb"
     },
-    {
-     "addr": "0x0044A7D0",
-     "from": "CCBProtectWindow"
+    "0x004433D0": {
+      "name": "LayoutAndRender",
+      "signature": "int __thiscall()",
+      "source": "vtable_migrated+manual_ida_body",
+      "ordinal": 15
     },
-    {
-     "addr": "0x00445D10",
-     "from": null
+    "0x00457340": {
+      "name": "CleanupScript",
+      "signature": "void __thiscall()",
+      "_misattrib_evidence": "max_offset=805416>class_size=68"
+    },
+    "0x00445F20": {
+      "name": "MoveWindow",
+      "signature": "int __thiscall(void)"
+    },
+    "0x00450440": {
+      "name": "RenderContent",
+      "signature": "void __thiscall()",
+      "source": "ida_xref:sub_fix_from_decomp_this_type"
+    },
+    "0x0043BBB0": {
+      "name": "Destroy",
+      "signature": "void __thiscall()",
+      "source": "batch:sub_fix_from_decomp_this_type"
+    },
+    "0x00450390": {
+      "name": "DelegateRender",
+      "signature": "void __thiscall()",
+      "source": "batch:sub_fix_from_decomp_this_type"
+    },
+    "0x00450E90": {
+      "name": "_sdtor_27",
+      "signature": "UIWnd *__thiscall(UIWnd *Block, char a2)"
+    },
+    "0x004518E0": {
+      "name": "_sdtor_28",
+      "signature": "UIWnd *__thiscall(UIWnd *Block, char a2)"
+    },
+    "0x00445E70": {
+      "name": "ShowWindow",
+      "signature": "int __thiscall(int nFlags)"
+    },
+    "0x0044A870": {
+      "name": "RenderText",
+      "signature": "virtual void __thiscall()"
+    },
+    "0x0044A820": {
+      "name": "GetUIElements",
+      "signature": "int __thiscall(float fVal, int nVal)"
+    },
+    "0x0044A7D0": {
+      "name": "_sdtor_14",
+      "signature": "void *__thiscall(void *Block, char a2)",
+      "type": "skip",
+      "reason": "compiler-generated scalar deleting destructor for UIWnd"
+    },
+    "0x00451730": {
+      "name": "_todo_451730",
+      "signature": "int __thiscall(UIWnd *this)"
+    },
+    "0x00445B90": {
+      "name": "Create",
+      "signature": "int __thiscall(int id, tagRECT *pRect, int parent)",
+      "source": "vtable_gap_fill_v1(from CCBItemWindow.json)"
+    },
+    "0x00445C10": {
+      "name": "HideAll",
+      "signature": "void __thiscall UIWnd::HideAll()",
+      "source": "vtable_gap_fill_v1(from SceneObj.json)"
+    },
+    "0x00445C60": {
+      "name": "Update",
+      "signature": "int __thiscall(int a2, int a3)",
+      "source": "vtable_gap_fill_v1(from SceneObj.json)"
+    },
+    "0x00445CD0": {
+      "name": "Render",
+      "signature": "void __thiscall()",
+      "source": "vtable_gap_fill_v1(from UITitle_BBTY.json)"
+    },
+    "0x00445D10": {
+      "name": "OnMessage",
+      "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
+      "source": "vtable_gap_fill_v1(from CGameData.json)"
+    },
+    "0x0044E5C0": {
+      "name": "_sdtor_25",
+      "signature": "scScriptInstance *__thiscall(scScriptInstance *Block, char a2)",
+      "source": "vtable_gap_fill_v1(from scScriptInstance.json)"
+    },
+    "0x004A14C0": {
+      "name": "HideAll_14C0",
+      "signature": "void __thiscall()",
+      "source": "vtable_gap_fill_v1(from UITitle.json)"
+    },
+    "0x00439110": {
+      "name": "sub_439110",
+      "signature": "void __thiscall(int)",
+      "source": "vtable_gap_fill_v1(IDB:sub_439110) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
+    },
+    "0x00445B20": {
+      "name": "_scalar_dtor_5b20",
+      "signature": "void __thiscall()",
+      "source": "vtable_gap_fill_v1(IDB:UIWnd::scalar_deleting_dtor_ovl_5b20)"
+    },
+    "0x0044E980": {
+      "name": "sub_44E980",
+      "signature": "void __thiscall(int, int)",
+      "source": "vtable_gap_fill_v1(IDB:sub_44E980) | vtable_sig_arity_fill(ret-N=8) | vtable_sig_arity_fill(ret-N=8)"
     }
-   ]
   },
-  {
-   "addr": "0x0056AEC8",
-   "base": null,
-   "slots": [
+  "vtables": [
     {
-     "addr": "0x00445E70",
-     "from": null
+      "addr": "0x0056AE2C",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": null
+        },
+        {
+          "addr": "0x00443200",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00442FF0",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00442420",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": null
+        },
+        {
+          "addr": "0x004431B0",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00445D10",
+          "from": null
+        }
+      ]
     },
     {
-     "addr": "0x00445CD0",
-     "from": null
+      "addr": "0x0056AFB0",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": null
+        },
+        {
+          "addr": "0x0044A870",
+          "from": "CCBProtectWindow"
+        },
+        {
+          "addr": "0x0044A820",
+          "from": "CCBProtectWindow"
+        },
+        {
+          "addr": "0x0043D920",
+          "from": "CCBProtectWindow"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": null
+        },
+        {
+          "addr": "0x0044A7D0",
+          "from": "CCBProtectWindow"
+        },
+        {
+          "addr": "0x00445D10",
+          "from": null
+        }
+      ]
     },
     {
-     "addr": "0x00445C60",
-     "from": null
-    },
-    {
-     "addr": "0x00445C10",
-     "from": null
-    },
-    {
-     "addr": "0x00445B90",
-     "from": null
-    },
-    {
-     "addr": "0x00445B20",
-     "from": null
-    },
-    {
-     "addr": "0x00445D10",
-     "from": null
+      "addr": "0x0056AEC8",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": null
+        },
+        {
+          "addr": "0x00445CD0",
+          "from": null
+        },
+        {
+          "addr": "0x00445C60",
+          "from": null
+        },
+        {
+          "addr": "0x00445C10",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": null
+        },
+        {
+          "addr": "0x00445B20",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": null
+        }
+      ]
     }
-   ]
+  ],
+  "known_methods": {
+    "6": {
+      "name": "OnMessage",
+      "signature": "int __thiscall OnMessage(int nMsg, int wParam, int lParam)",
+      "address": "0x00445D10",
+      "source": "manual:vtable slot 6, C2039 fix for 31 hits"
+    }
   }
- ],
- "known_methods": {
-  "6": {
-   "name": "OnMessage",
-   "signature": "int __thiscall OnMessage(int nMsg, int wParam, int lParam)",
-   "address": "0x00445D10",
-   "source": "manual:vtable slot 6, C2039 fix for 31 hits"
-  }
- }
 }

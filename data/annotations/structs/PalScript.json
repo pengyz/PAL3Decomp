@@ -1558,7 +1558,8 @@
     },
     "0x00445E10": {
       "name": "OffsetRect",
-      "signature": "int *__thiscall(int *p_DWORD)"
+      "signature": "int *__thiscall(long *p_DWORD)",
+      "source": " | sig-type-fix 2026-09-28: int*→long*（调用点全 &RECT.left 型 long*（CCBItemWindow:34 等 RECT 坐标族）——4B 同槽字节等价；证据: 多调用点 B 级）"
     },
     "0x0052BE40": {
       "name": "LoadEncampConfig",

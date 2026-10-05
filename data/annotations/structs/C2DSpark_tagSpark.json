@@ -37,10 +37,10 @@
       "type": "gbTexture *",
       "source": " | normalize_key: 0x18 -> 24"
     },
-    "0x1c": {
+    "28": {
       "name": "pTextureWrap4",
       "type": "int",
-      "source": "|fix:pointer_level:void *"
+      "source": "|fix:pointer_level:void * | normalize_key: 0x1c -> 28"
     },
     "32": {
       "name": "pTexture5",
@@ -61,11 +61,6 @@
       "name": "pRenderEffect",
       "type": "int",
       "source": " | normalize_key: 0x2C -> 44"
-    },
-    "0x1C": {
-      "name": "nState",
-      "type": "int",
-      "source": "spark[471]+28 = -1"
     }
   },
   "note": "C2DSpark nested struct, originally C2DSpark::tagSpark. Size=48 from array stride (24576/512).",

@@ -2575,8 +2575,14 @@ def apply_annotations():
                     # 成员函数上不生效（HandleMessage 案例：SetType 报成功但
                     # 反编译仍为无参形态）。
                     if _cc_is_thiscall and re.match(r'^\w+$', name):
+                        # E-3（e1472de2）：签名自带类限定的条目（`RET __thiscall Cls::M(...)`
+                        # 形）_before 已含限定名与 cc——直接拼 _qsig 双拼
+                        # （`Cls::M __thiscall Cls::M(...)`）⇒ _before 先剥限定名与调用约定。
+                        _b2 = _before
+                        _b2 = re.sub(r'\b(?:__thiscall|__cdecl|__stdcall|__fastcall)\s*', ' ', _b2)
+                        _b2 = re.sub(r'\s*\w+\s*::\s*\w+\s*$', '', _b2).strip()
                         _qsig = '%s __thiscall %s::%s%s' % (
-                            _before, _cls, name,
+                            _b2, _cls, name,
                             _new_params.replace('__hidden ', ''))
                         if _apply_func_type_parse(addr, _qsig, til):
                             sig_ok += 1

@@ -181,8 +181,9 @@ union { // +0xN
 
 ### ⚠️ 度量盲区：C1003 截断单元（评估改动前必看）
 
-MSVC 在单个编译单元错误数超过 ~100 时以 **C1003** 停住（实测 3 个单元：
-`Combat/CCBStage.cpp` · `Combat/CCBUI.cpp` · `free_functions.cpp`，各 102 条）。
+MSVC 在单个编译单元错误数超过 ~100 时以 **C1003** 停住（**2026-09-28 复核更新：现 2 个**
+`Combat/CCBStage.cpp` · `free_functions.cpp`，各 102 条；`Combat/CCBUI.cpp` 已退出截断
+——原文"实测 3 个"过时，33c45090 复核实证）。
 后果：**在这些单元里修掉早期错误，列表会立刻被原本隐藏的后续错误填满** ⇒
 `总错误` 与 `(code,msg)` 多重集**都可能完全不变** ✗。
 

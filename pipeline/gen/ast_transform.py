@@ -482,6 +482,311 @@ def _is_this_expr(s):
     return bal == 0
 
 
+def _mask_strings_comments(code):
+    """E-1（c1e92014）：字符串/字符字面量与注释**同长遮蔽**（保位移）——
+    匹配与计数在掩码上做、替换落回原文，根治'字符串内调用形被改写'类孔。
+    5a7a3b86：E-2 `_expand_pair64_double` 同用此掩码（掩码纪律贯彻全族）。"""
+    out = list(code)
+    i, n = 0, len(code)
+    while i < n:
+        ch = code[i]
+        if ch in '"\'':
+            q = ch
+            j = i + 1
+            while j < n and code[j] != q:
+                if code[j] == '\\':
+                    out[j] = 'x'
+                    j += 1
+                out[j] = 'x'
+                j += 1
+            if j < n:
+                out[j] = q
+            i = j + 1
+        elif ch == '/' and i + 1 < n and code[i + 1] == '/':
+            while i < n and code[i] != '\n':
+                out[i] = 'x'
+                i += 1
+        elif ch == '/' and i + 1 < n and code[i + 1] == '*':
+            out[i] = out[i + 1] = 'x'
+            i += 2
+            while i < n and not (code[i] == '*' and i + 1 < n and code[i + 1] == '/'):
+                out[i] = 'x'
+                i += 1
+            if i < n:
+                out[i] = out[i + 1] = 'x'
+                i += 2
+        else:
+            i += 1
+    return ''.join(out)
+
+
+def drop_call_echo_arg(code, sig_slots_by_method):
+    """批 E C2660 族（Comp_DonateUI:41 UpdateAnim 双参 vs retn 4=1 参铁证）：
+    调用形回波首参剔除。**词法化三证据门**（E-1，c1e92014 残孔全封）：
+    ①槽数相等 ②回波形（`(int)<x>` 铸形**或**裸标识符∈外层**真定义头**形参集
+    （控制流头/else/宏头不入、数字/浮点/十六进制字面量不入）③匹配与 argc 计数
+    **全程掩码**（字符串/字符字面量/`//`/`/* */` 同长遮蔽——根治字面量内容被改写）。"""
+    if not sig_slots_by_method:
+        return code
+    masked = _mask_strings_comments(code)
+    # 外层函数真定义头形参集（掩码上提取——注释/宏头污染根治）
+    fn_params = set()
+    for mdef in re.finditer(r'^([\w:\*~& ]+)\(([^)]*)\)\s*$', masked, re.MULTILINE):
+        head = mdef.group(1).strip()
+        if re.match(r'^(if|else|while|for|switch|return|sizeof|catch)\b', head):
+            continue
+        if not re.match(r'^[\w:\*~& ]+$', head):
+            continue                       # 宏头（ASSERT 等）非定义头
+        for pm in re.finditer(r'\b(\w+)\s*(?:\[[^\]]*\])?\s*(?=,|$)', mdef.group(2)):
+            # 字面量守卫（07fe8e00 残孔补：0x10i64/100i64 MSVC __int64 后缀、(int)0x10u 铸形）
+            _v = pm.group(1)
+            if re.match(r'^(0[xX][0-9a-fA-F]+[uUlL]*(?:i64|ui64)?|\d+[uUlLfF]*(?:i64|ui64)?'
+                        r'|\d+\.\d+[fF]?|\d+[eE][+-]?\d+[fF]?)$', _v):
+                continue
+            fn_params.add(_v)
+
+    def _echo_ok(first):
+        f = first.strip()
+        # (int) 铸形回波：07fe8e00 G9 残孔——`(int)0x10u` 等**字面量铸形**不是回波（真参！）
+        m = re.match(r'^\(\s*int\s*\)\s*([\w\->.\[\]]+)$', f)
+        if m:
+            return not re.match(r'^(0[xX][0-9a-fA-F]+|\d+)', m.group(1))
+        return re.match(r'^\w+$', f) is not None and f in fn_params
+
+    pat = re.compile(
+        r'(?<!\w)(?P<method>\w+)\s*\((?P<first>[^(),]+(?:\([^()]*\)[^(),]*)*'
+        r'|\([^()]*\)[^(),]*)\s*,\s*')
+    edits = []
+    for m in pat.finditer(masked):
+        method = m.group('method')
+        slots = sig_slots_by_method.get(method)
+        if slots is None or slots < 1 or not _echo_ok(m.group('first')):
+            # slots<1（0 槽数签名）=证据不足不动（2026-09-29：SetVideoRect/LayoutSlot 族
+            # 0 槽数签名把唯一实参当回波剔掉 ⇒ C2660 "does not take 0 parameters"）
+            continue
+        start = m.end()
+        depth, argc = 1, 1
+        i = start
+        while i < len(masked) and depth:
+            ch = masked[i]
+            if ch == '(':
+                depth += 1
+            elif ch == ')':
+                depth -= 1
+            elif ch == ',' and depth == 1:
+                argc += 1
+            i += 1
+        if argc + 1 == slots + 1:
+            edits.append((m.start(), m.end(), '%s(' % method))
+    out = code
+    for s, e, rep in reversed(edits):
+        out = out[:s] + rep + out[e:]
+    return out
+
+
+def collect_struct_value_members(member_type_pairs):
+    """批 3 成员集判别（6e90d6f0 清账条件1+2：提纯函数+N-a 廉价收窄）。
+    判别：类/结构体/union **值**（含 `Cls[N]` 数组、dict 形内联）才入集。
+    **廉价收窄（N-a）**：同名任一实例是标量/指针/别名 ⇒ 该名整体不入集
+    （类域数据源挂账前的保守替代——实测消除 4 处语义反转误修：m_pScene/fp/m_texarray）。"""
+    _SCALARS = {'int', 'float', 'double', 'char', 'bool', 'void', 'long', 'short',
+                'DWORD', 'BYTE', 'UINT', 'WORD', 'BOOL', 'HWND', 'INT', 'LONG',
+                'FLOAT', 'CHAR', 'UCHAR', 'USHORT', 'ULONG', 'SIZE_T', 'WPARAM',
+                'LPARAM', 'HRESULT', 'HANDLE', 'COLORREF', 'RECT', 'POINT',
+                'PVOID', 'PSCOPETABLE_ENTRY'}
+    name_all = {}      # name -> True 若出现过标量/指针实例
+    name_ok = set()
+    for name, t in member_type_pairs:
+        if not name:
+            continue
+        if isinstance(t, dict):
+            name_ok.add(name)                # inline union/struct 值
+            continue
+        ts = str(t)
+        base = re.sub(r'\s*\[[^\]]*\]\s*$', '', ts).strip()
+        if not base or '*' in base or ts.strip().endswith('*'):
+            name_all[name] = True            # 指针实例 ⇒ 该名出局
+            continue
+        b2 = base.lstrip('const ').strip()
+        if b2 in _SCALARS or base in _SCALARS:
+            name_all[name] = True            # 标量实例 ⇒ 该名出局
+            continue
+        if re.match(r'^(?:const\s+)?[A-Z]\w*$', base):
+            name_ok.add(name)
+    return {n for n in name_ok if not name_all.get(n)}
+
+
+def fix_struct_value_casts(code, struct_member_names, cls=None, base_map=None):
+    """批 3 返工（d8ca4fd2 须返工判）：结构体值铸标量的 &-补全。
+    等价前提（返工收窄）：表达式**终止于** `m_X[i]`（其后无 `.`/`->`）且成员是类/结构体/union
+    **值**（含 `Cls[N]` 数组）——子成员/变体/指针/前缀碰撞形全不动。
+    ①掩码全程（_mask_strings_comments——E-1 纪律）②名字**双侧词界** ③类域化（cls+base_map）
+    ④铸前缀形 `(int)(T*)v->m_X` 不动（补 & 优先级错=C2102）⑤须 expr 终止于 [i]/m_X。"""
+    if not struct_member_names:
+        return code
+    try:
+        masked = _mask_strings_comments(code)
+    except Exception:
+        masked = code
+    # 类域化：cls 的成员集 ∩ 全局结构体值集（跨类同名标量防误伤）
+    names = set(struct_member_names)
+    if cls and base_map:
+        scope = set()
+        for c in [cls] + list(base_map.get(cls) or ()):
+            scope |= set(base_map.get(c + ':members') or ())
+        if scope:
+            names &= scope
+    if not names:
+        return code
+    alt = '|'.join(re.escape(n) for n in sorted(names, key=len, reverse=True))
+    # 双侧词界 + 终止判别 + 铸前缀形**结构性免疫**（6e90d6f0 N-c：接收者形 `(?:this|\w+)`
+    # 不可能从 `(T*)` 起匹配 ⇒ 铸前缀守卫不可达已删——测试断言结构而非死守卫）
+    pat = re.compile(
+        r'(\(\s*(?:int|unsigned long|DWORD|unsigned int)\s*\))'
+        r'((?:this|\w+)(?:\s*(?:->|\.)\s*\w+)*\s*(?:->|\.)\s*'
+        r'(' + alt + r')(?:\s*\[[^\]]*\])?)'
+        r'(?![\w])'                                  # 名字右词界
+        r'(?!\s*(?:->|\.|\[))'                       # 终止判别（未吞的下标=表达式续）
+        )
+    def _sub(m):
+        cast, target = m.group(1), m.group(2)
+        if target.lstrip().startswith('&'):
+            return m.group(0)
+        return '%s&%s' % (cast, target)
+    # edits 逆序落原文（掩码仅定位——替换增长度，splice 长度校验法不可用）
+    edits = []
+    for m in pat.finditer(masked):
+        rep = _sub(m)
+        if rep != m.group(0):
+            edits.append((m.start(), m.end(), rep))
+    out = code
+    for s, e, rep in reversed(edits):
+        out = out[:s] + rep + out[e:]
+    return out
+
+
+def build_ref_arg_context(cls_member_names, var_types):
+    """批 16 构造器（复核四反例防线）：fix_ref_arg_calls 的 struct_value_exprs 构造。
+    集 = **成员名**（struct_value 成员）+ **裸 lvar 名**（kind=value 且 base 为类/结构体型）。
+    四反例防线实证（复核 Q1）：`this`/指针变量/字面量/数组名 不入集。
+    类型判别：标识符形 base（**含小写起首**——gbVec3D/gbTexture 真实类名形）排除标量表。"""
+    _SCALARS = {'int', 'float', 'double', 'char', 'bool', 'void', 'long', 'short',
+                'DWORD', 'BYTE', 'UINT', 'WORD', 'BOOL', 'HWND', 'INT', 'LONG',
+                'FLOAT', 'CHAR', 'UCHAR', 'USHORT', 'ULONG', 'SIZE_T', 'WPARAM',
+                'LPARAM', 'HRESULT', 'HANDLE', 'COLORREF', 'RECT', 'POINT'}
+    exprs = set()
+    for n in (cls_member_names or ()):
+        if n and not re.match(r'^(?:this|0[xX]|[\d.])', str(n)):
+            exprs.add(str(n))
+    for name, t in (var_types or {}).items():
+        if not name or name == 'this':
+            continue
+        if not isinstance(t, dict):
+            continue
+        base = str(t.get('base', '')).lstrip('const ').strip()
+        if t.get('kind') == 'value' and base and base not in _SCALARS \
+                and re.match(r'^[A-Za-z_]\w*$', base):
+            exprs.add(name)
+    return exprs
+
+
+def fix_ref_arg_calls(code, sig_params, struct_value_exprs):
+    """批 15 返工（复核 B-1/B-2）：实参位丢 & 补全。
+    **纯插入式**（B-1：重建式回写泄掩码毁字符串注释）：掩码仅定位——`&` 以**偏移插入点**
+    落原文（天然不重叠 ⇒ B-2 嵌套拼接错位根治），逆序应用。
+    等价前提：签名形参 T&/T* 且实参为已知结构体值表达式（alts 全匹）⇒ 取址。
+    保守：已取址/值形形参/嵌套实参/数字字面量/**元数不符** 不动；解引用/铸解引用形为
+    显式非目标（val_pat 拒）。残余风险：同名多签名撞车（'Rotate' 4 真签名）——
+    ptr 位重合时侥幸、不重合时漏修（保守向）。"""
+    if not sig_params or not struct_value_exprs:
+        return code
+    try:
+        masked = _mask_strings_comments(code)
+    except Exception:
+        return code                     # 掩码不可用=不动（E-1 纪律——禁静默降级）
+    alts = '^(?:%s)$' % '|'.join(re.escape(x) for x in sorted(struct_value_exprs, key=len, reverse=True))
+    alts_re = re.compile(alts)
+    val_pat = re.compile(r'^(?:this|[\w\)\]]+)(?:\s*(?:->|\.)\s*\w+)*(?:\s*\[[^\]]*\])?$')
+    inserts = []                        # (offset) 纯插入——不重建
+    for fn, ptypes in sig_params.items():
+        # 【N1 修正（批 16 复核）】仅 **`T*` 指针参**补 &——`T&` 引用参 lvalue 直绑
+        # 不需 &（且 &-临时量非法）；C2664 `to 'T *'` 真相=临时量绑非 const 引用失败。
+        ptr_idx = {i for i, t in enumerate(ptypes)
+                   if isinstance(t, str) and t.rstrip().endswith('*')}
+        if not ptr_idx:
+            continue
+        call_pat = re.compile(r'(?<!\w)' + re.escape(fn) + r'\s*\(')
+        for m in call_pat.finditer(masked):
+            start = m.end()
+            depth, spans, cur_start, i = 1, [], start, start
+            while i < len(masked) and depth:
+                ch = masked[i]
+                if ch == '(':
+                    depth += 1
+                elif ch == ')':
+                    depth -= 1
+                    if depth == 0:
+                        break
+                elif ch == ',' and depth == 1:
+                    spans.append((cur_start, i))
+                    cur_start = i + 1
+                    i += 1
+                    continue
+                i += 1
+            if depth != 0:
+                continue
+            spans.append((cur_start, i))
+            if len(spans) != len(ptypes):
+                continue                # 元数门（复核修件3）
+            for k, (a, b) in enumerate(spans):
+                if k not in ptr_idx:
+                    continue
+                ast = masked[a:b].strip()
+                if not ast or ast.startswith('&'):
+                    continue
+                if re.match(r'^(?:0[xX][0-9a-fA-F]+|\d+(?:\.\d+)?)[uUlLfF]*$', ast):
+                    continue            # 数字字面量（&0.5f 非法——复核实证）
+                if not val_pat.match(ast):
+                    continue
+                # alts 全匹：全表达式（裸 lvar）或**末段**（成员链——`this->m_v` 的 m_v）
+                last = re.sub(r'\s*\[[^\]]*\]\s*$', '', ast.split('->')[-1].split('.')[-1]).strip()
+                if not (alts_re.match(ast) or alts_re.match(last)):
+                    continue
+                ins_off = a + (len(masked[a:b]) - len(masked[a:b].lstrip()))
+                inserts.append(ins_off)
+    out = code
+    for off in sorted(set(inserts), reverse=True):
+        out = out[:off] + '&' + out[off:]
+    return out
+
+
+def rewrite_unqualified_member_call(code, methods_by_cls, exclude=None, slots_by_method=None):
+    """批 E C2065#1：Hex-Rays 丢类限定的成员调用等价转写。
+
+    `name((T *)recv, ...)` 且 name ∈ methods_by_cls[T] ⇒ `(((T *)recv))->T::name(...)`
+    证据门：①name ∈ T.methods ②exclude（static_methods）不转。
+    ⚠️ 槽数门已撤（5a7a3b86 假门清）；slots_by_method 参数保留接口兼容但不参与判定。"""
+    if not methods_by_cls:
+        return code
+    ex = exclude or set()
+    sl = slots_by_method or {}
+    pat = re.compile(
+        r'(?<![\w:>])(?P<name>\w+)\s*\(\s*\(\s*(?P<cls>\w+)\s*\*\s*\)\s*'
+        r'(?P<recv>[\w\->.\[\]]+)\s*(?P<rest>,[^;]*)?\)')
+
+    def _sub(m):
+        cls, name = m.group('cls'), m.group('name')
+        if name in ex:
+            return m.group(0)
+        if name not in (methods_by_cls.get(cls) or ()):
+            return m.group(0)
+        rest = m.group('rest') or ''
+        return '(((%s *)%s))->%s::%s(%s)' % (
+            cls, m.group('recv'), cls, name, rest.lstrip(', '))
+
+    return pat.sub(_sub, code)
+
+
 def transform_oop_calls(code, static_methods=None, cls_name=None):
     """
     Transform Class::Method(obj, args) -> obj->Method(args)

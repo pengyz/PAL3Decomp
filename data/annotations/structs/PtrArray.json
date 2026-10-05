@@ -47,7 +47,8 @@
     },
     "0x004343F0": {
       "name": "RemoveAt",
-      "signature": "void __thiscall(const char *nIndex)"
+      "signature": "void __thiscall(const char *pszName)",
+      "source": " | sig-type-fix 2026-09-28: const char *→int（参数名 nIndex+调用点全 int 实参（UIListBox:1221 等）+sibling RemoveAt(int nIndex,int nCount) 同名同义——PDB 残留型订正；证据: 多调用点 B 级） | 返工 2026-09-28（d0643565 反证）：撤 int 订正——被调体 strcmp((const char*)nIndex,v3) 证明实参是名字串；nIndex 更名 pszName；调用点 (int) 铸形系签名渲染产物（循环论证）另解"
     },
     "0x00434490": {
       "name": "Remove",
@@ -55,7 +56,8 @@
     },
     "0x004344F0": {
       "name": "InsertAt",
-      "signature": "void __thiscall(const char *nIndex)"
+      "signature": "void __thiscall(const char *pszName)",
+      "source": " | E-3 2026-09-28：nIndex→pszName（RemoveAt 同证据类 strcmp 系改名一致性）"
     },
     "0x0044BD60": {
       "name": "PtrArray",

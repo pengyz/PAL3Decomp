@@ -107,6 +107,12 @@ def _apply_text_substitutions(code, ctx):
         _i = code.find('{')
         if _i != -1:
             code = code[:_i + 1] + '\n' + _decls + code[_i + 1:]
+        # 【批 5 回退（2026-09-29 零回归门）】cast_reg_assignments 接线撤销——
+        # 实测真新增 15（UIScene +13：类值/指针链 RHS 铸坏成员访问 C2227/2228；
+        # PAL3 +2：类值铸 C2679；ScriptVM 60→102 级联）⇒ 无条件 `(unsigned long)` 铸
+        # 对**类值/指针链 RHS** 不是恒等（显式铸改变重载决议/成员访问语法）。
+        # 纯函数+测保留（test_cast_reg_assignments.py）——精确化（类值豁免/型判别铸）
+        # 后再接线；40 件 reg_ 指针族留批 F。
 
     # F84（2026-09-25）：raw vtable 间接调用 `(**(RET (***)(P1,P2))X)(a1,a2)` 与
     # 裸形态 `(**v)(v,a)` 的实参类型合规。Hex-Rays 对无类型槽位渲染该形态——间接
@@ -719,6 +725,10 @@ def _fix_single_ref_arg(arg, vt=None, ref_type=None):
         if kind in _NON_POINTER_LOCAL_KINDS:
             # Positive evidence this is not a pointer: the `&` stage 3 removed
             # was the reference-taking one.  Leave the object expression.
+            # 【批 E】array 形补 [0]（Camera:165 pTarget gbVec3D[2]→gbVec3D& C2664
+            # 缺角）：数组实参绑引用=首元素绑定，`arg[0]` 与基址传递字节等价。
+            if kind == 'array':
+                return ident_m.group(1) + ident_m.group(2) + '[0]'
             return arg
         # F81b: the identifier is an already-typed global - decide based on the emitted type. Example: stru_17A7E78 is
         # `struct gbVec3D` in globals.h (object not pointer), and the reference binding of Rotate(_, gbVec3D&)
@@ -729,6 +739,9 @@ def _fix_single_ref_arg(arg, vt=None, ref_type=None):
                 _norm = lambda t: re.sub(r'^(?:struct|class|enum|union)\s+', '', t.strip())
                 if not _gt.endswith('*') and _norm(_gt) == _norm(ref_type):
                     return arg  # object-type global: bare name binds reference
+                # 【批 E】全局数组型→引用参：`gbVec3D [2]` 形补 [0]（同局部 array 分支）
+                if re.match(r'^%s\s*\[[0-9]+\]$' % re.escape(_norm(ref_type)), _norm(_gt)):
+                    return ident_m.group(1) + ident_m.group(2) + '[0]'
                 if _gt.endswith('*'):
                     return ident_m.group(1) + '*' + ident_m.group(2)
         return ident_m.group(1) + '*' + ident_m.group(2)
@@ -796,7 +809,9 @@ def _split_top_commas(s):
 
 
 def _build_var_types(code, ctx):
-    """Map local/param names to declared types for pointer-ness decisions."""
+    """Map local/param names to declared types for pointer-ness decisions.
+    批 8 修（vt 跨函数混淆）：同名多 kind ⇒ 标 ambiguous（判别保守 False——
+    不按别的函数的声明裁决本函数表达式）。"""
     vt = {}
     # fnptr locals:  int ( **v12)(CEffect *, int);
     for m in re.finditer(r'^\s+([A-Za-z_]\w*)\s*\(\s*(\*+)\s*(\w+)\s*\)\s*\(([^()]*)\)\s*;',
@@ -809,9 +824,11 @@ def _build_var_types(code, ctx):
         if m.group(1) not in _DECL_KEYWORDS:
             vt.setdefault(m.group(3), {'kind': 'ptr', 'base': m.group(1),
                                        'stars': len(m.group(2))})
-    # value locals:  int v10;  unsigned long v3;
+    # value locals:  int v10;  unsigned long v3;  unsigned long reg_EDI = 0;（含初始化）
+    # 批 7（2026-09-29）：初始化形补——F83 注入的 `unsigned long reg_X = 0;` 此前不入 vt
+    # ⇒ reg_ 族 C2440 精确铸不触发（三判别器仅 vt 间隙，实测定位）
     for m in re.finditer(r'^\s+((?:(?:unsigned|signed|const|struct|class|enum)\s+)*[A-Za-z_]\w*)'
-                         r'\s+(\w+)\s*;', code, re.M):
+                         r'\s+(\w+)\s*(?:=\s*[^;]+)?;', code, re.M):
         if m.group(1) not in _DECL_KEYWORDS:
             vt.setdefault(m.group(2), {'kind': 'value', 'base': m.group(1), 'stars': 0})
     # array locals:  unsigned long v10[4];  (element type = base)
@@ -1007,6 +1024,10 @@ def _expr_is_pointer(e, vt, ctx):
         t = vt.get(m.group(1))
         return bool(t) and t['kind'] in ('ptr', 'fnptr')
     # top-level +/- : pointer arithmetic preserves pointer-ness
+    # 【批 8 回退（2026-09-29 零回归门）】箭头豁免/单星=值/歧义保守三修件全撤——
+    # 生产实测真新增 2（SceneObj L292 撤载重铸 C2440 复发；CEffCustomShape L32 撤载重铸
+    # 新失败）——"冗余铸"主张被生产证伪：(unsigned long) 对**指针 RHS 是载重**（隐式
+    # 转换本非法）⇒ 撤铸方向不安全。教训：**撤铸同样不是恒等**（与批 5 补铸陷阱对偶）。
     depth = 0
     for i, ch in enumerate(e):
         if ch in '([':
@@ -1681,6 +1702,61 @@ def _run_inner(code, ctx):
                 code = re.sub(r'\b' + re.escape(_flag_name) + r'\b', '1', code)
 
     return code
+
+
+def cast_reg_assignments(code):
+    """批 5 返工（复核 B1/B2）：reg_ 伪名赋值 RHS `(unsigned long)` 显式铸统一。
+    等价变换：原码隐式转换的显式化（整型 RHS 恒等铸、指针 RHS 为原意显式化——
+    cl 单案裁判：8/16/32 位/bool/__int64/浮点/指针/函数返回全恒等）。
+    返工封堵：①`=` 边界 `(?<![=!<>])(?!=)`（`reg_X == y` 不吃）②顶层逗号 rhs 不动
+    （B2 语义反转）③掩码字符串/注释（E-1 纪律）④链式赋号保守不动。"""
+    try:
+        from ast_transform import _mask_strings_comments as _msc
+        masked = _msc(code)
+    except Exception:
+        masked = code
+    pat = re.compile(
+        r'(\breg_\w+\s*(?<![=!<>])=(?!=)\s*)'
+        r'(?!\s*\(unsigned long\))'
+        r'([^;]+?)\s*;')
+    edits = []
+    for m in pat.finditer(masked):
+        rhs = m.group(2).strip()
+        if re.match(r'^(?:-?(?:0[xX][0-9a-fA-F]+|\d+)[uUlL]*)$', rhs):
+            continue
+        if re.match(r'^reg_\w+$', rhs):
+            continue
+        # B2：顶层逗号 ⇒ 保守不动；括号不平（depth<0/收尾≠0）同样保守
+        depth, comma, neg = 0, False, False
+        for ch in rhs:
+            if ch == '(':
+                depth += 1
+            elif ch == ')':
+                depth -= 1
+                if depth < 0:
+                    neg = True
+                    break
+            elif ch == ',' and depth == 0:
+                comma = True
+                break
+        if comma or neg or depth != 0:
+            continue
+        # 链式赋号（rhs 含裸 =）保守不动
+        if re.search(r'(?<![=!<>])=(?!=)', rhs):
+            continue
+        # 语句边界（A8/A9：非边界错捕保守不动）——match 起点须为行首/`;{}` 后
+        pre = masked[max(0, m.start() - 2):m.start()]
+        if pre.strip() and not pre.rstrip().endswith((';', '{', '}')):
+            continue
+        # rhs 从**原文**取（掩码 x 替身毁字面量教训——复判 M5）
+        rhs_orig = code[m.start(2):m.end(2)].strip()
+        prefix = code[m.start():m.start(2)]
+        edits.append((m.start(), m.end(),
+                      '%s(unsigned long)(%s);' % (prefix, rhs_orig)))
+    out = code
+    for s, e, rep in reversed(edits):
+        out = out[:s] + rep + out[e:]
+    return out
 
 
 def run(code, ctx):

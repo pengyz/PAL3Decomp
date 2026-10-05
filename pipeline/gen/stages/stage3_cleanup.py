@@ -965,7 +965,14 @@ def _qualified_vftable_offset(qual_text, cls_name):
             continue
         if p in _base_names_of(cur):
             return ('skip', None)        # 是基类，但偏移未知 —— 不猜
-        return ('strip', None)           # 根本不是基类 —— 限定符是残留
+        # 'strip' 需正证（test_qualified_vftable_left_alone：6 存量红测根因）：
+        # 限定名必须是**已知类名**（struct_bases 注册过）才能断言"类限定残留"
+        # （UIScrollBar/UIListBox 尺寸反证族 ✓）；若是**成员名**（GlowObj=成员 +8）
+        # 或未知名 —— `X->Mem::__vftable` 是成员子对象限定，盲折偏移 0=**静默错址写**
+        # ⇒ 'skip' 原样保留（编译错可见、错址写不可见——W1 优先级律）。
+        if p in store.struct_bases:
+            return ('strip', None)       # 已知类名但非基类 —— 限定符是残留
+        return ('skip', None)            # 成员名/未知 —— 不猜不折
     return ('offset', off)
 
 
@@ -1073,6 +1080,118 @@ def _fold_vftable_mask(code, ctx=None):
     return raw.decode('utf-8')
 
 
+def _expand_pair64_double(code):
+    """(double)__PAIR64__(H, L) → ((double)(unsigned int)(H) * 4294967296.0
+                                    + (double)(unsigned int)(L))
+    （批 E 单点：MSVC6 无 unsigned __int64→double，C2520；等价展开双精无损。
+    d0643565 反例：H 有符号负值无铸形不等价——**双侧 (unsigned int) 铸**对齐宏语义。
+    07fe8e00 返工：**外层匹配改扫描器**（原正则在字符串内 `)` 处截断 ⇒ 内层跳串逻辑
+    看不到完整参数）——`(double)__PAIR64__(` 起点后逐字符扫真闭括号（跳字符串/字符
+    字面量/`//`/`/* */`）；`//` 尾注释形保换行（l.strip() 剥换行致 `));` 被注释的洞）。"""
+    def _scan_close(s, i):
+        """从 s[i]（左括号后）扫到配对右括号位（跳字面量/注释）；无配对返回 None。"""
+        depth, n = 1, len(s)
+        while i < n:
+            ch = s[i]
+            if ch in '"\'':
+                q = ch
+                i += 1
+                while i < n and s[i] != q:
+                    i += 2 if s[i] == '\\' else 1
+                i += 1
+                continue
+            if ch == '/' and i + 1 < n and s[i + 1] == '/':
+                while i < n and s[i] != '\n':
+                    i += 1
+                continue
+            if ch == '/' and i + 1 < n and s[i + 1] == '*':
+                i += 2
+                while i + 1 < n and not (s[i] == '*' and s[i + 1] == '/'):
+                    i += 1
+                i += 2
+                continue
+            if ch == '(':
+                depth += 1
+            elif ch == ')':
+                depth -= 1
+                if depth == 0:
+                    return i
+            i += 1
+        return None
+
+    def _split_top(inner):
+        """顶层逗号位（跳字面量/注释）；无则 None。"""
+        depth, n = 0, len(inner)
+        i = 0
+        while i < n:
+            ch = inner[i]
+            if ch in '"\'':
+                q = ch
+                i += 1
+                while i < n and inner[i] != q:
+                    i += 2 if inner[i] == '\\' else 1
+                i += 1
+                continue
+            if ch == '/' and i + 1 < n and inner[i + 1] == '/':
+                while i < n and inner[i] != '\n':
+                    i += 1
+                continue
+            if ch == '/' and i + 1 < n and inner[i + 1] == '*':
+                i += 2
+                while i + 1 < n and not (inner[i] == '*' and inner[i + 1] == '/'):
+                    i += 1
+                i += 2
+                continue
+            if ch == '(':
+                depth += 1
+            elif ch == ')':
+                depth -= 1
+            elif ch == ',' and depth == 0:
+                return i
+            i += 1
+        return None
+
+    out = []
+    pos = 0
+    # 5a7a3b86 新洞-2：pat.search 须在**掩码**上做（串/注释内形改写=字节风险、T15 真崩）
+    # ——E-1 的 _mask_strings_comments 同长遮蔽贯彻 E-2（替换落回原文保位移）。
+    try:
+        from ast_transform import _mask_strings_comments as _msc
+    except Exception:
+        try:
+            from gen.stages.ast_transform import _mask_strings_comments as _msc
+        except Exception:
+            _msc = None
+    masked = _msc(code) if _msc else code
+    pat = re.compile(r'\(double\)\s*__PAIR64__\(')
+    while True:
+        m = pat.search(masked, pos)
+        if not m:
+            out.append(code[pos:])
+            break
+        inner_start = m.end()
+        close = _scan_close(masked, inner_start)
+        if close is None:
+            out.append(code[pos:])
+            break
+        inner = code[inner_start:close]
+        comma = _split_top(inner)
+        if comma is None:
+            out.append(code[pos:close + 1])   # 单参畸形形：原样保留
+        else:
+            h, l = inner[:comma], inner[comma + 1:]
+            # 尾注释保换行（C8）——**h/l 双侧**（5a7a3b86 新洞-1：h 侧漏致语法崩）
+            def _keep(x):
+                if re.search(r'//[^\n]*$', x.strip()):
+                    return x.rstrip() + '\n'
+                return x.strip()
+            out.append(code[pos:m.start()])
+            out.append('((double)(unsigned int)(%s) * 4294967296.0'
+                       ' + (double)(unsigned int)(%s))' % (_keep(h), _keep(l)))
+        pos = close + 1
+    return ''.join(out)
+
+
 def run(code, ctx):
     """Stage 3: post-OOP cleanup."""
     cls_name = ctx.cls_name
@@ -1092,6 +1211,18 @@ def run(code, ctx):
 
     # Hex-Rays ".0" member access (offset-0 field): obj[N].0 → obj[N], obj.member.0 → obj.member
     code = re.sub(r'(?<=[\]a-zA-Z_])\.0\b', '', code)
+
+    # 基类名后缀访问等价重写（批 E 族 1）——**接线已回退**（2026-09-28 链验 C2102 +286
+    # /S2 95→86 净回归：`&recv.Base` 取址形与调用形未覆盖 ⇒ 纯文本重写上下文盲）。
+    # 纯函数与 7 测保留（test_base_suffix_rewrite.py）；重设计=AST 级/全上下文形（挂账）。
+    # try:
+    #     from gen.stages.base_suffix_rewrite import apply_base_suffix_rewrite as _bsr
+    #     _st = getattr(ctx, 'store', None)
+    #     if _st is None:
+    #         from data import store as _st
+    #     code = _bsr(code, _st)
+    # except Exception:
+    #     pass
 
     # COERCE_FLOAT
     def _fix_coerce(m):
@@ -1371,6 +1502,9 @@ def run(code, ctx):
     code = _re_loc.sub(r'\b_L\d+\b', '((void*)0)', code)
     # Replace __SPAIR64__ IDA macro with equivalent
     code = code.replace('__SPAIR64__', '__PAIR64__')
+    # 批 E 单点（TextureLibDataBase:391 C2520）：MSVC6 无 unsigned __int64→double 转换
+    # ——(double)__PAIR64__(H,L) 等价展开 H*4294967296.0+L（双精对 32+32 位无损）。
+    code = _expand_pair64_double(code)
 
     # Comment out Hex-Rays "->0" / "->0 + N" vtable dispatch (invalid C syntax).
     # Root cause: structs lack vfptr member at offset 0 in exported data_members.
