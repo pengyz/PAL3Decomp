@@ -1531,18 +1531,28 @@ def run(code, ctx):
             for _b in (_bs or {}):
                 _pairs.add((_c, _b))
         if not _pairs:
-            # 备选源：注解 base_class/baseName（store.struct_bases 懒加载空时）
-            _gm = getattr(store, 'game_classes', ()) or ()
-            for _sname, _offs in (getattr(store, 'struct_members', None) or {}).items():
-                pass
-            # 直构：known_bases（store 加载后应有）/annotation view
-            _kb = getattr(store, 'known_bases', None) or {}
-            for _c, _bs in _kb.items():
-                for _b in (_bs or []):
-                    if isinstance(_b, dict):
-                        _b = _b.get('baseName') or _b.get('name')
-                    if _b:
-                        _pairs.add((_c, _b))
+            # 备选源：注解 base_class 直读（struct_bases 懒加载空时——declared-exception 族）
+            import glob as _glob
+            import json as _json
+            import os as _os
+            for _f in _glob.glob(_os.path.join(
+                    getattr(store, 'PROJECT_ROOT', r'D:\workspace\PAL3Decomp'),
+                    'data', 'annotations', 'structs', '*.json')):
+                try:
+                    _d = _json.load(open(_f, encoding='utf-8'))
+                    _c = _d.get('name') or _os.path.basename(_f)[:-5]
+                    for _b in (_d.get('base_class') or []):
+                        if isinstance(_b, dict):
+                            _b = _b.get('baseName') or _b.get('name')
+                        if _b:
+                            _pairs.add((_c, _b))
+                    for _b in (_d.get('bases') or []):
+                        if isinstance(_b, dict):
+                            _b = _b.get('baseName') or _b.get('name')
+                        if _b:
+                            _pairs.add((_c, _b))
+                except Exception:
+                    continue
         if _pairs:
             result = drop_redundant_mid_qualifier(result, pairs=_pairs)
     except Exception:
