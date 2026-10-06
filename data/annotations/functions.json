@@ -2019,11 +2019,6 @@
     "signature": "bool __thiscall CCCTData::Create(CCCTData *this, void *param)",
     "source": "fix:C2660:CCBCamControl_Create_param_count"
   },
-  "0x00522030": {
-    "name": "CCBStage::CCBStageRole",
-    "signature": "CCBStage *__thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
   "0x00522120": {
     "name": "CCBStage::CleanupScript",
     "signature": "void __thiscall(CCBStage *this)",
