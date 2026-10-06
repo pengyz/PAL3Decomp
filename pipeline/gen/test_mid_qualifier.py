@@ -43,6 +43,30 @@ class TestDropRedundantMidQualifier(unittest.TestCase):
         self.assertIn('/*c*/', out)              # 注释保真
         self.assertNotIn('mxxx', out)             # 无静默改名
 
+    def test_legal_triple_untouched(self):
+        # 接线三清账①：判别器（合法三段形不动——非基链 pairs）
+        from ast_transform import drop_redundant_mid_qualifier
+        pairs = {('CCBRoleState', 'SceneObj'), ('SceneObj', 'GlowObj')}
+        s = 'x.Outer::Inner::m = 1;'             # A::B 非基链——判别器拒
+        self.assertEqual(drop_redundant_mid_qualifier(s, pairs=pairs), s)
+
+    def test_three_level_converges(self):
+        # 接线三清账②：3 级链收敛（≤3 轮循环）
+        from ast_transform import drop_redundant_mid_qualifier
+        s = 'x->A::B::C::m;'
+        out = drop_redundant_mid_qualifier(s)
+        self.assertIn('x->C::m', out)            # 收敛到单层
+
+    def test_discriminator_base_chain(self):
+        # 接线三清账①：判别器（A∈接收者基链∧B∈A 基类才删）
+        from ast_transform import drop_redundant_mid_qualifier
+        pairs = {('CCBRoleState', 'SceneObj'), ('SceneObj', 'GlowObj')}
+        s = 'm_pRoleState->SceneObj::GlowObj::m_nTodo_000 = v7;'
+        out = drop_redundant_mid_qualifier(s, pairs=pairs)
+        self.assertIn('m_pRoleState->GlowObj::m_nTodo_000', out)
+        s2 = 'x.Outer::Inner::m = 1;'
+        self.assertEqual(drop_redundant_mid_qualifier(s2, pairs=pairs), s2)  # 非基链不动
+
     def test_idempotent(self):
         from ast_transform import drop_redundant_mid_qualifier
         s = 'm_pRoleState->SceneObj::GlowObj::m_nTodo_000 = v7;'
