@@ -211,8 +211,8 @@
     },
     "292": {
       "name": "m_nTodo_124",
-      "type": "void *",
-      "source": "reverted_auto_semantic:3x_access|reverted:pseudo_semantic | 批7 2026-10-07：+16 成员访问+deref（*(gbVisNode**)）=指针语义——int 型证伪（C2100 6 件根因）"
+      "type": "gbVisNode **",
+      "source": "reverted_auto_semantic:3x_access|reverted:pseudo_semantic | 批7 2026-10-07：+16 成员访问+deref（*(gbVisNode**)）=指针语义——int 型证伪（C2100 6 件根因） | 批8 2026-10-07：型精化（gbVisNode** 用法证——(T**)x 铸形消）"
     },
     "296": {
       "name": "m_CamParams",
