@@ -645,6 +645,10 @@ def normalize_deref_cast_parens(code):
     edits = []
     for m in pat.finditer(masked):
         orig = m.group(0)
+        # 窄形（回滚教训 2026-10-07）：仅病灶形——操作数含 member-chain（this->X / X->Y）
+        _operand = masked[m.end():m.end() + 60]
+        if not re.match(r'\s*(?:this->|[\w\[\]]+->)', _operand):
+            continue
         # `*(T**)` → `*((T**)` + 末尾配 `)`——形：*(T**)( → *((T**)( ... )
         if 'x' * 3 in masked[m.start():m.end()] and 'x' * 3 not in code[m.start():m.end()]:
             continue

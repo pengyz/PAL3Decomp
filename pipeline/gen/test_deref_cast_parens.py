@@ -16,9 +16,15 @@ class TestDerefCastParens(unittest.TestCase):
 
     def test_nested_operand(self):
         from ast_transform import normalize_deref_cast_parens
-        s = 'x = *(int *)(a + (b * 2));'
+        s = 'x = *(int *)(this->m_p + (b * 2));'    # 病灶形（member-chain 操作数）
         out = normalize_deref_cast_parens(s)
-        self.assertIn('*((int *)(a + (b * 2)))', out)
+        self.assertIn('*((int *)(this->m_p + (b * 2)))', out)
+
+    def test_non_member_operand_untouched(self):
+        # 窄形范围：非 member-chain 操作数不动（回滚教训——宽形误伤）
+        from ast_transform import normalize_deref_cast_parens
+        s = 'x = *(int *)(a + (b * 2));'
+        self.assertEqual(normalize_deref_cast_parens(s), s)
 
     def test_plain_deref_untouched(self):
         from ast_transform import normalize_deref_cast_parens
