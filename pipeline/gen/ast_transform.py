@@ -634,6 +634,62 @@ def collect_struct_value_members(member_type_pairs, base_names=None):
     return {n for n in name_ok if not name_all.get(n)}
 
 
+def resolve_method_identity(addr, ann_structs=None, functions=None, decomp=None,
+                            ida_methods=None, allowlist=None):
+    """A′ 身份决议器（复核修订案·TDD 9 样张）：同址多源身份决议。
+    优先级：structs methods > functions.json > decomp > ida_structs（注解权威）。
+    ①坏名拒收 ②归一化等价 ③同名异址不合并 ④跨类豁免 ⑤同址多源幂等。"""
+    a = ann_structs or {}
+    f = functions or {}
+    d = decomp or {}
+    im = ida_methods or {}
+    allow = allowlist or {'0x00445D10'}
+
+    def _norm(n):
+        # 返工（复核：vector-dtor bug+__ovl_ 分叉）——对齐 collect/emit_headers 三处规则
+        n = (n or '').split('(')[0].strip()
+        if n.startswith('`') and n.endswith("'"):
+            if 'deleting' in n:
+                n = '_vector_dtor' if 'vector' in n else '_scalar_dtor'
+            else:
+                n = n.strip('`').strip("'")
+        n = re.sub(r'__ovl_[0-9a-fA-F]+$', '', n)     # 去序号（collect 同款——非保序）
+        return n
+
+    def _bad(cls, name):
+        if '::' in name:
+            parts = name.split('::')
+            if len(parts) >= 3:
+                return True
+            if cls and parts[0] != cls:
+                return True
+        return False
+
+    if addr in a:
+        e = a[addr]
+        cls, name = e.get('cls'), _norm(e.get('name'))
+        if addr in allow:
+            return (cls, name, e.get('sig'), 'allowlist_cross_class')
+        if _bad(cls, name):
+            return (cls, name, e.get('sig'), 'rejected_bad_name')
+        return (cls, name, e.get('sig'), 'structs')
+    if addr in f:
+        e = f[addr]
+        nm = _norm(e.get('name'))
+        cls = nm.split('::')[0] if '::' in nm else None
+        name = nm.split('::')[-1] if '::' in nm else nm
+        return (cls, name, e.get('sig'), 'functions')
+    if d:
+        nm = _norm(d.get('name'))
+        cls = nm.split('::')[0] if '::' in nm else None
+        name = nm.split('::')[-1] if '::' in nm else nm
+        return (cls, name, d.get('sig'), 'decomp')
+    if addr in im:
+        e = im[addr]
+        return (e.get('cls'), _norm(e.get('name')), e.get('sig'), 'ida')
+    return (None, None, None, 'unknown')
+
+
 def fix_struct_value_casts(code, struct_member_names, cls=None, base_map=None):
     """挂账② B1 步 1（2026-10-06 方案复核证伪 &-插入）：结构体值铸标量的 **重解释重写**。
     等价依据（复核四站实证）：`(int)x.Base`＝**首 DWORD 装载**（孪生 `*(_DWORD *)&x.Base`
