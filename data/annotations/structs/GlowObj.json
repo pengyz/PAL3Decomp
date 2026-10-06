@@ -5,7 +5,7 @@
     "0": {
       "name": "m_nTodo_000",
       "type": "void *",
-      "source": "usage_evidence",
+      "source": "usage_evidence | 清账③ 2026-10-07：二进制定谳（无 vtable 装载）——对象指针成员",
       "note": "usage-evidence: offset0 是**对象指针**而非 vfptr —— (1) `GlowObj::__vftable` 全库被强转为 CCBStage* 38 次 / char* 17 / _DWORD* 5 / CCBSystem* 2，**从未被当 vtable 调用**；(2) Actor_DoSceneTransition 往里存的是对象指针（v17=(Actor*)strlen(v66)）；(3) 整库无任何指令把 vtable 装到该偏移（带 lea/寄存器装载形态复核：位移 8、0x28 不存在）；(4) IDA 从未在 offset0 建模成员。⇒ 按惯例命名 m_nTodo_000（含义未知、类型为指针），原 `__vftable` 是 source=annotation 的自造名。"
     },
     "4": {
@@ -46,24 +46,5 @@
       "source": "vtable_owner_fix(Glow 层虚函数)"
     }
   },
-  "vtables": [
-    {
-      "addr": "0x56A9A4",
-      "base": null,
-      "slots": [
-        {
-          "addr": "0x41b640",
-          "from": null
-        },
-        {
-          "addr": "0x41b6a0",
-          "from": null
-        },
-        {
-          "addr": "0x41be30",
-          "from": null
-        }
-      ]
-    }
-  ]
+  "source_note": "清账③定谳 2026-10-07：Role ctor 0x453030 实证 mov [esi],0x56B200=this+0（Role 自身 vfptr）·无 [esi+40h] 存储——GlowObj +0=对象指针成员 ✓（note 正确）·vtables 条目=证据误引撤"
 }
