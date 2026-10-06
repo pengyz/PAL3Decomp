@@ -134,7 +134,7 @@
 {"addr": "0x00509060", "name": "CCBStageEffect::Destroy(void)", "file": "pal3/src/Combat/CCBStageEffect.cpp", "status": "partial", "match_pct": 36.4, "size": 11}
 {"addr": "0x00509070", "name": "CCBStageEffect::Init(void)", "file": "pal3/src/Combat/CCBStageEffect.cpp", "status": "match_L1", "match_pct": 100.0, "size": 5}
 {"addr": "0x00509080", "name": "CCBStageEffect::GetLinkerIndex(void)", "file": "pal3/src/Combat/CCBStageEffect.cpp", "status": "partial", "match_pct": 33.3, "size": 15}
-{"addr": "0x00509090", "name": "CCBStageEffect::PreLoadEffGroup(void)", "file": "pal3/src/Combat/CCBStageEffect.cpp", "status": "partial", "match_pct": 60.0, "size": 5}
+{"addr": "0x00509090", "name": "CCBStageEffect::PreLoadEffGroup(void)", "file": "pal3/src/Combat/CCBStageEffect.cpp", "status": "match_L1", "match_pct": 100.0, "size": 5}
 {"addr": "0x005090E0", "name": "CCBStageEffect::LoadLinker(void)", "file": "pal3/src/Combat/CCBStageEffect.cpp", "status": "match_L1", "match_pct": 100.0, "size": 5}
 {"addr": "0x00511E80", "name": "CCBStageShadow::UpdateShadowMesh(void)", "file": "pal3/src/Combat/CCBStageShadow.cpp", "status": "partial", "match_pct": 2.3, "size": 88}
 {"addr": "0x00511EE0", "name": "CCBStageShadow::CCBStageShadow(void)", "file": "pal3/src/Combat/CCBStageShadow.cpp", "status": "partial", "match_pct": 32.3, "size": 167}
@@ -184,6 +184,7 @@
 {"addr": "0x0041C9A0", "name": "InputSystem::SetCameraTransition(int,int,int,int,int,int,int)", "file": "pal3/src/GameBase/InputSystem.cpp", "status": "partial", "match_pct": 28.7, "size": 136}
 {"addr": "0x0041ED00", "name": "SoundSystem::Init(void)", "file": "pal3/src/GameBase/SoundSystem.cpp", "status": "partial", "match_pct": 21.9, "size": 306}
 {"addr": "0x00401000", "name": "AStarPathFinder::AStarPathFinder(void)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 43.6, "size": 39}
+{"addr": "0x00401030", "name": "AStarPathFinder::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 26.7, "size": 30}
 {"addr": "0x00401050", "name": "AStarPathFinder::ReleaseAll(void)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 42.9, "size": 28}
 {"addr": "0x004014E0", "name": "AStarPathFinder::IsInBounds(int,int)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "match_L1", "match_pct": 100.0, "size": 5}
 {"addr": "0x00401500", "name": "AStarPathFinder::FindInOpen(int)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 97.1, "size": 34}
@@ -404,6 +405,13 @@
 {"addr": "0x004520A0", "name": "UITitle_BBTY::UpdateFrame(double,int,int)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "partial", "match_pct": 26.4, "size": 861}
 {"addr": "0x00452420", "name": "UITitle_BBTY::OnMessage(int,int,int)", "file": "pal3/src/Misc/UITitle_BBTY.cpp", "status": "partial", "match_pct": 27.3, "size": 139}
 {"addr": "0x00529BE0", "name": "UITitle_QCYM::HandleDeviceLostC(void)", "file": "pal3/src/Misc/UITitle_QCYM.cpp", "status": "partial", "match_pct": 32.1, "size": 159}
+{"addr": "0x00459970", "name": "UITitle_YXXX::LayoutWidgets(void)", "file": "pal3/src/Misc/UITitle_YXXX.cpp", "status": "partial", "match_pct": 10.5, "size": 1451}
+{"addr": "0x0047DCA0", "name": "UITitle_YXXX::Create(void)", "file": "pal3/src/Misc/UITitle_YXXX.cpp", "status": "partial", "match_pct": 6.3, "size": 189}
+{"addr": "0x0044E5C0", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UITitle_YXXX.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x0047DD70", "name": "UITitle_YXXX::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UITitle_YXXX.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x0047DE40", "name": "UITitle_YXXX::Init(void)", "file": "pal3/src/Misc/UITitle_YXXX.cpp", "status": "partial", "match_pct": 15.0, "size": 494}
+{"addr": "0x0047E3E0", "name": "UITitle_YXXX::Update(int,int)", "file": "pal3/src/Misc/UITitle_YXXX.cpp", "status": "partial", "match_pct": 23.6, "size": 254}
+{"addr": "0x004AF770", "name": "UITitle_YXXX::CreateTitle(char *,uint,int)", "file": "pal3/src/Misc/UITitle_YXXX.cpp", "status": "partial", "match_pct": 8.7, "size": 808}
 {"addr": "0x0053B720", "name": "VideoPlayer::SetRegion(int,int)", "file": "pal3/src/Misc/VideoPlayer.cpp", "status": "partial", "match_pct": 8.6, "size": 336}
 {"addr": "0x0041C170", "name": "_Console::SetActive(int)", "file": "pal3/src/Misc/_Console.cpp", "status": "partial", "match_pct": 84.4, "size": 32}
 {"addr": "0x004A3A90", "name": "s_RoleState::LoadAndSetupRole(void)", "file": "pal3/src/Misc/s_RoleState.cpp", "status": "partial", "match_pct": 17.3, "size": 1071}
@@ -484,7 +492,7 @@
 {"addr": "0x0052AFF0", "name": "UINote::RenderWithStack(gbMatrixStack *)", "file": "pal3/src/UI/UINote.cpp", "status": "partial", "match_pct": 73.7, "size": 57}
 {"addr": "0x0052B030", "name": "UINote::CallVtableMethod(double)", "file": "pal3/src/UI/UINote.cpp", "status": "partial", "match_pct": 0.0, "size": 22}
 {"addr": "0x005415F0", "name": "UIQuadManager::GetInstance(void)", "file": "pal3/src/UI/UIQuadManager.cpp", "status": "partial", "match_pct": 68.6, "size": 51}
-{"addr": "0x00541640", "name": "UIRenderObj::UIRenderObj(void)", "file": "pal3/src/UI/UIRenderObj.cpp", "status": "partial", "match_pct": 9.9, "size": 203}
+{"addr": "0x00541640", "name": "UIRenderObj::UIRenderObj(void)", "file": "pal3/src/UI/UIRenderObj.cpp", "status": "partial", "match_pct": 10.8, "size": 203}
 {"addr": "0x00422DF0", "name": "UISystem::Destroy(void)", "file": "pal3/src/UI/UISystem.cpp", "status": "partial", "match_pct": 56.7, "size": 67}
 {"addr": "0x00439110", "name": "UIWnd::sub_439110(int)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 80.0, "size": 30}
 {"addr": "0x0043BBB0", "name": "UIWnd::Destroy(void)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 0.0, "size": 11}

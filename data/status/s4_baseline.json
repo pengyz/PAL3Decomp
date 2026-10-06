@@ -18,16 +18,16 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 657,
-  "matched": 561,
-  "unmatched": 96,
-  "match_L1": 89,
-  "partial": 409,
+  "symbols": 669,
+  "matched": 571,
+  "unmatched": 98,
+  "match_L1": 92,
+  "partial": 414,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 63
+  "unresolved_synth": 65
  },
  "rows": [
   {
@@ -1259,8 +1259,8 @@
    "symbol": "?PreLoadEffGroup@CCBStageEffect@@QAEXXZ",
    "name": "CCBStageEffect::PreLoadEffGroup(void)",
    "va": "0x00509090",
-   "status": "partial",
-   "match_pct": 60.0,
+   "status": "match_L1",
+   "match_pct": 100.0,
    "size": 5
   },
   {
@@ -1703,6 +1703,15 @@
    "status": "partial",
    "match_pct": 43.6,
    "size": 39
+  },
+  {
+   "file": "pal3/src/Misc/AStarPathFinder.cpp",
+   "symbol": "??_GAStarPathFinder@@UAEPAXI@Z",
+   "name": "AStarPathFinder::`scalar deleting destructor'(uint)",
+   "va": "0x00401030",
+   "status": "partial",
+   "match_pct": 26.7,
+   "size": 30
   },
   {
    "file": "pal3/src/Misc/AStarPathFinder.cpp",
@@ -3685,6 +3694,69 @@
    "size": 159
   },
   {
+   "file": "pal3/src/Misc/UITitle_YXXX.cpp",
+   "symbol": "?LayoutWidgets@UITitle_YXXX@@QAEHXZ",
+   "name": "UITitle_YXXX::LayoutWidgets(void)",
+   "va": "0x00459970",
+   "status": "partial",
+   "match_pct": 10.5,
+   "size": 1451
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_YXXX.cpp",
+   "symbol": "?Create@UITitle_YXXX@@QAEXXZ",
+   "name": "UITitle_YXXX::Create(void)",
+   "va": "0x0047DCA0",
+   "status": "partial",
+   "match_pct": 6.3,
+   "size": 189
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_YXXX.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x0044E5C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_YXXX.cpp",
+   "symbol": "??_GUITitle_YXXX@@UAEPAXI@Z",
+   "name": "UITitle_YXXX::`scalar deleting destructor'(uint)",
+   "va": "0x0047DD70",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_YXXX.cpp",
+   "symbol": "?Init@UITitle_YXXX@@QAEXXZ",
+   "name": "UITitle_YXXX::Init(void)",
+   "va": "0x0047DE40",
+   "status": "partial",
+   "match_pct": 15.0,
+   "size": 494
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_YXXX.cpp",
+   "symbol": "?Update@UITitle_YXXX@@UAEHHH@Z",
+   "name": "UITitle_YXXX::Update(int,int)",
+   "va": "0x0047E3E0",
+   "status": "partial",
+   "match_pct": 23.6,
+   "size": 254
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_YXXX.cpp",
+   "symbol": "?CreateTitle@UITitle_YXXX@@QAEPAHPADIH@Z",
+   "name": "UITitle_YXXX::CreateTitle(char *,uint,int)",
+   "va": "0x004AF770",
+   "status": "partial",
+   "match_pct": 8.7,
+   "size": 808
+  },
+  {
    "file": "pal3/src/Misc/VideoPlayer.cpp",
    "symbol": "?SetRegion@VideoPlayer@@SAXHH@Z",
    "name": "VideoPlayer::SetRegion(int,int)",
@@ -4410,7 +4482,7 @@
    "name": "UIRenderObj::UIRenderObj(void)",
    "va": "0x00541640",
    "status": "partial",
-   "match_pct": 9.9,
+   "match_pct": 10.8,
    "size": 203
   },
   {
@@ -4512,5 +4584,19 @@
    "match_pct": 10.2,
    "size": 166
   }
- ]
+ ],
+ "rebaseline": {
+  "reason": "挂账清理工程收官后全管线：S2 108/209·28 件解禁语料入册·可比集对齐",
+  "at": "2026-10-06T15:41:39",
+  "prev_match_L1": 89,
+  "cur_match_L1": 92,
+  "prev_population": {
+   "matched": 561,
+   "symbols": 657
+  },
+  "cur_population": {
+   "matched": 571,
+   "symbols": 669
+  }
+ }
 }
