@@ -16,6 +16,7 @@ from data import store
 
 _SLOTS_CACHE = None
 _STRUCT_MEM_CACHE = None
+_BASE_MAP_CACHE = None
 
 
 def run(code, ctx):
@@ -47,14 +48,53 @@ def run(code, ctx):
                 import annotation_view as _av
                 from ast_transform import collect_struct_value_members
                 _pairs = []
+                _base_names = set()
                 for _f, _ann in _av.iter_structs(directory=str(store.annotations_dir / 'structs')):
+                    _cn = str(_ann.get('name') or _f[:-5])
                     for _mi in (_ann.get('known_members') or {}).values():
                         _pairs.append((str((_mi or {}).get('name') or ''),
-                                       (_mi or {}).get('type')))
-                _STRUCT_MEM_CACHE = collect_struct_value_members(_pairs)
+                                       (_mi or {}).get('type'), _cn))
+                    # 挂账② B1 步 2：+0 首基类名入集（非零偏移基类保守排除）
+                    _bs = _ann.get('bases')
+                    if isinstance(_bs, list):
+                        for _bi, _b in enumerate(_bs):
+                            if isinstance(_b, dict):
+                                _off = _b.get('offset', 0 if _bi == 0 else None)
+                                if _off == 0 and _b.get('name'):
+                                    _base_names.add(str(_b['name']))
+                    _bc = _ann.get('base_class')
+                    if _bc:
+                        # N-F1 修（复核）：list 形（159/179）取 [0]——str.split 产垃圾名
+                        if isinstance(_bc, list):
+                            if _bc and _bc[0]:
+                                _base_names.add(str(_bc[0]).split('::')[-1])
+                        else:
+                            _base_names.add(str(_bc).split('::')[-1])
+                _STRUCT_MEM_CACHE = collect_struct_value_members(_pairs, _base_names)
             except Exception:
                 pass
         code = fix_struct_value_casts(code, _STRUCT_MEM_CACHE)
+        # 【挂账⑥类域数据源接线（复核 N-F2）】cls/base_map 生产启用——类域化收窄
+        # （跨类同名标量防误伤的精确版；N-a 廉价收窄为兜底）
+        _cls = getattr(ctx, 'cls_name', None) if ctx is not None else None
+        if _cls and _STRUCT_MEM_CACHE:
+            global _BASE_MAP_CACHE
+            if _BASE_MAP_CACHE is None:
+                _BASE_MAP_CACHE = {}
+                try:
+                    for _c, _bs in (getattr(store, 'struct_bases', None) or {}).items():
+                        _BASE_MAP_CACHE[_c] = list((_bs or {}).keys())
+                    import annotation_view as _av2
+                    for _f, _ann in _av2.iter_structs(directory=str(store.annotations_dir / 'structs')):
+                        _cn = str(_ann.get('name') or _f[:-5])
+                        _BASE_MAP_CACHE[_cn + ':members'] = [
+                            str((m or {}).get('name') or '')
+                            for m in (_ann.get('known_members') or {}).values()]
+                except Exception:
+                    _BASE_MAP_CACHE = {}
+            if _BASE_MAP_CACHE:
+                code = fix_struct_value_casts(code, _STRUCT_MEM_CACHE,
+                                              cls=_cls, base_map=_BASE_MAP_CACHE)
     except Exception:
         pass
     # 【批 E C2065#1】丢类限定的成员调用转写（ReleaseTexture((UIScene*)this) 族）

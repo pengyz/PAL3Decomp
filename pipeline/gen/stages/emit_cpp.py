@@ -66,8 +66,10 @@ def collect_undefined_refs(code):
     # （`int name(...)` 幻影声明与 free_functions.h 真声明成歧义重载）+C2199/C2059
     # 族 31 真新增。**声明面合成与 free_functions/globals/macros 互连过深**——
     # 三轮 review 全过但生产即爆（review 静态面≠生产实效面第三次实证）。
-    # DllMain C2065 挂账：真修法=渲染面名字统一（0x445D10 真身 CGameData::OnMessage，
-    # Hex-Rays 调用点别名缓存）——非声明面。
+    # DllMain C2065 挂账【2026-10-06 方案复核翻案订正】：旧叙事"Hex-Rays 别名缓存"是错的——
+    # `return DllMain(...)` 的渲染名属于 0x47E536/0x5329BE **另一函数**（jz 尾跳桩
+    # `mov eax,1; retn 0xC`）——原名 _DllMain@12_* 无权威源（PAL3 字节串/PDB/FLIRT 三处
+    # 零命中）。已按 E 案改名 _todo_+实参形收编（functions.json）。
     return refs
 
 

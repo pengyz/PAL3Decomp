@@ -2733,24 +2733,21 @@
     "signature": "void __cdecl(...)",
     "source": "批12 收编 2026-09-29：skip_functions crt_runtime 误标转正（?UIDestorySystem@@YAXXZ 同解） | 订正 2026-09-29：同上（调用点 6 元数/读 [esp+0x38..0x44] 证） | 变参形 2026-09-29：参数型无证（skip 件未反编译）——调用点形参级证据逐参积累前用变参形（C++ `void f(...)` 合法）；真签名待批 A 解禁后按渲染订正"
   },
-  "0x00540F60": {
-    "name": "PushMatrixStacks",
-    "signature": "void __cdecl(...)",
-    "source": "批13 收编 2026-09-29：skip 件（带址）转正——渲染调用名未册族（批12 同手法）；变参形=证据安全（回值证冲突 void 形混——Logger C2440 面另账）"
-  },
-  "0x00540FA0": {
-    "name": "PopMatrixStacks",
-    "signature": "void __cdecl(...)",
-    "source": "批13 收编 2026-09-29：skip 件（带址）转正——渲染调用名未册族（批12 同手法）；变参形=证据安全（回值证冲突 void 形混——Logger C2440 面另账）"
-  },
-  "0x005541EE": {
-    "name": "CRT_set_new_handler",
-    "signature": "void __cdecl(...)",
-    "source": "批13 收编 2026-09-29：skip 件（带址）转正——渲染调用名未册族（批12 同手法）；变参形=证据安全（回值证冲突 void 形混——Logger C2440 面另账）"
-  },
   "0x005090A0": {
     "name": "compiler_init_005090A0",
-    "signature": "void __cdecl()",
-    "source": "批18 收编 2026-09-29：函数体证据（全访问全局址/零参数读）⇒ 0 参；CRT 初始化数组间接调用（.CRT$XCU）无直调点——调用点清理证据法失效（定谳）"
+    "signature": "void __cdecl(...)",
+    "source": "批18 收编 2026-09-29：函数体证据（全访问全局址/零参数读）⇒ 0 参；CRT 初始化数组间接调用（.CRT$XCU）无直调点——调用点清理证据法失效（定谳） | 变参形 2026-10-06：调用点渲染名带 this 实参（0 参体证 vs 1 实参渲染）——变参形收（回波参待渲染面统一后订正）"
+  },
+  "0x0047E536": {
+    "name": "_todo_0047E536",
+    "signature": "int __stdcall(int, int, int)",
+    "source": "挂账③ E 案 2026-10-06：0x47E4E0 jz 尾跳目标（mov eax,1; retn 0xC）=stdcall 3 参回 1 桩——原名 _DllMain@12_* 无任何权威源（PAL3 字节串/PDB/FLIRT 三处零命中）疑跨库泄漏；改 _todo_ 真名未知形+实参形声明（元数=retn 0xC A 级；型保守 int 形）",
+    "declaration_only": true
+  },
+  "0x005329BE": {
+    "name": "_todo_005329BE",
+    "signature": "int __stdcall(int, int, int)",
+    "source": "挂账③ E 案 2026-10-06：0x47E4E0 jz 尾跳目标（mov eax,1; retn 0xC）=stdcall 3 参回 1 桩——原名 _DllMain@12_* 无任何权威源（PAL3 字节串/PDB/FLIRT 三处零命中）疑跨库泄漏；改 _todo_ 真名未知形+实参形声明（元数=retn 0xC A 级；型保守 int 形）",
+    "declaration_only": true
   }
 }

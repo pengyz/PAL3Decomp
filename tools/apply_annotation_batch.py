@@ -652,6 +652,44 @@ def main():
             save_ann(d, p)
             print('   [标 skip] %s.%s (%s)' % (it['class'], it['addr'], ent.get('name')))
             done += 1
+        elif it['kind'] == 'unskip':
+            # 【挂账④ checklist 5】unskip（skip_functions 体排除解除）+单源双向校验
+            sk_p = os.path.join(ROOT, 'data', 'annotations', 'skip_functions.json')
+            sk = json.load(open(sk_p, encoding='utf-8'))
+            if it['addr'] not in sk:
+                _write_rejected += 1
+                print('   [拒绝] %s 不在 skip_functions' % it['addr'])
+                continue
+            ent = sk.pop(it['addr'])
+            ent['unskipped'] = '2026-10-06'
+            ent['unskip_evidence'] = it.get('evidence', '')
+            # 单源校验：解禁后不得同时在 functions.json/struct methods 有定义意图注册
+            # 【同批配对放行】register_func+unskip 同批=原子解禁（签名源+体收）——合法组合
+            _paired = any(x.get('kind') == 'register_func' and x.get('addr') == it['addr']
+                          for x in items)
+            _fj_p = os.path.join(ROOT, 'data', 'annotations', 'functions.json')
+            _fj = json.load(open(_fj_p, encoding='utf-8'))
+            _reg = _fj.get(it['addr'])
+            if _reg and not _paired and not (_reg.get('declaration_only') or
+                             str(_reg.get('signature', '')).rstrip().endswith('(...)')):
+                print('   [拒绝] %s 解禁后与 functions.json 定义意图双注（单源）' % it['addr'])
+                sk[it['addr']] = ent
+                continue
+            json.dump(sk, open(sk_p, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
+            print('   [解禁] %s %s（原 reason=%s）' % (it['addr'], ent.get('name'), ent.get('reason')))
+            done += 1
+        elif it['kind'] == 'register_func':
+            # 【挂账④ checklist 5】functions.json 注册（声明收编形——变参/实参形）
+            _fj_p = os.path.join(ROOT, 'data', 'annotations', 'functions.json')
+            _fj = json.load(open(_fj_p, encoding='utf-8'))
+            _fj[it['addr']] = {
+                'name': it['name'], 'signature': it['signature'],
+                'source': 'register_func: %s' % it.get('evidence', ''),
+                'declaration_only': bool(it.get('declaration_only')),
+            }
+            json.dump(_fj, open(_fj_p, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
+            print('   [注册] %s %s %s' % (it['addr'], it['name'], it['signature'][:40]))
+            done += 1
         elif it['kind'] == 'set_signature':
             d, p = load_ann(it['class'])
             ent = (d.get('methods') or {}).get(it['addr'])

@@ -1542,15 +1542,16 @@ def run(code, ctx):
 # Key = method name, Value = set of 0-based param indices (excluding this).
 _GB_REF_PARAM_FUNCS = {
     'Translate': {0},
-    'Rotate': {1},  # Rotate(float, gbVec3D&) - param 1 is ref
     'Scale': {0},
     'LeftTranslate': {0},
     'RightTranslate': {0},
     'MakeMatrix': {0, 1, 2},
     'IntersectPlane': {0, 1},
     'IsColAABB': {0},
-    'IsColOBB': {0},
     'IsColOBB_H': {0},
+    # 【B 修同款（方案复核）】PAU 指针形出表/AAU 引用形留表——限定键+元数感知
+    'gbMatrixStack::Rotate': {2: {1}, 1: {0}},
+    'gbRay::IsColOBB': {0}, 'gbPlane::IsColOBB': {0},
     'IsColPoint': {0},
     'IsColQuad': {0, 1, 2},
     'IsColSphere': {0},
@@ -1584,7 +1585,11 @@ def _fix_ref_params(code):
     for func_name, ref_indices in _GB_REF_PARAM_FUNCS.items():
         # Match: ->FuncName( or ::FuncName( followed by arguments
         # Pattern finds the function call and we process arguments
-        pattern = r'(?:->|::|\.)' + _re.escape(func_name) + r'\s*\('
+        # 【B 修】限定键（Cls::fn）与裸名双形+元数感知（PAU/AAU 分流随行）
+        if '::' in func_name:
+            pattern = _re.escape(func_name) + r'\s*\('
+        else:
+            pattern = r'(?:->|::|\.)' + _re.escape(func_name) + r'\s*\('
         
         pos = 0
         result = []
@@ -1597,6 +1602,21 @@ def _fix_ref_params(code):
             # Add everything up to the opening paren
             call_start = pos + m.end()
             result.append(code[pos:call_start])
+            # 【B 修】元数预数（dict 形 ref_indices 需 arity 定位）
+            if isinstance(ref_indices, dict):
+                _d, _j, _na = 1, call_start, 1
+                while _j < len(code) and _d > 0:
+                    _c = code[_j]
+                    if _c == '(':
+                        _d += 1
+                    elif _c == ')':
+                        _d -= 1
+                    elif _c == ',' and _d == 1:
+                        _na += 1
+                    _j += 1
+                ref_positions = ref_indices.get(_na, set())
+            else:
+                ref_positions = ref_indices
             
             # Parse arguments (track parenthesis depth)
             depth = 1
@@ -1612,7 +1632,7 @@ def _fix_ref_params(code):
                     if depth == 0:
                         # Process last argument
                         arg = code[arg_start:i]
-                        if arg_idx in ref_indices:
+                        if arg_idx in ref_positions:
                             arg = arg.lstrip()
                             if arg.startswith('&') and not arg.startswith('&&'):
                                 arg = arg[1:]
@@ -1622,7 +1642,7 @@ def _fix_ref_params(code):
                 elif ch == ',' and depth == 1:
                     # Process this argument
                     arg = code[arg_start:i]
-                    if arg_idx in ref_indices:
+                    if arg_idx in ref_positions:
                         arg = arg.lstrip()
                         if arg.startswith('&') and not arg.startswith('&&'):
                             arg = arg[1:]

@@ -29,6 +29,13 @@ class TransformContext:
 def make_context(cls_name, method_name, sig='', is_free=False, stub_registry=None):
     is_ctor = (method_name == cls_name) if cls_name else False
     is_dtor = (method_name == '~%s' % cls_name) if cls_name else False
+    # 【挂账③ F 案（2026-10-06）】deleting-dtor 剥参豁免——`void*` 回值+标志参形
+    # （scalar deleting destructor）**不是**纯析构：剥参/常量代入/去回值会语义损坏
+    # （AStarPathFinder `(1 & 1)` 指纹实证——flag 被代成 1）。判定：~名+回值非纯 void。
+    if is_dtor and sig:
+        _ret = sig.split('(')[0].strip()
+        if 'void' not in _ret or '*' in _ret:
+            is_dtor = False
     return TransformContext(
         cls_name=cls_name, method_name=method_name, sig=sig,
         is_ctor=is_ctor, is_dtor=is_dtor, is_free_function=is_free,

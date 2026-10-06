@@ -1,290 +1,290 @@
 {
- "name": "UITitle_JDHY",
- "binary_size": 377700,
- "known_members": {
-  "72": {
-   "name": "rc",
-   "type": "tagRECT",
-   "source": "annotation"
-  },
-  "88": {
-   "name": "buf",
-   "type": "char[256]",
-   "source": "annotation"
-  },
-  "344": {
-   "name": "m_OutFrameT",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "504": {
-   "name": "m_OutFrameR",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "664": {
-   "name": "m_OutFrameL",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "824": {
-   "name": "m_OutFrameB",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "984": {
-   "name": "m_background",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "1144": {
-   "name": "m_exit",
-   "type": "UIButton",
-   "source": "annotation"
-  },
-  "1488": {
-   "name": "m_isItemShow",
-   "type": "unsigned char[99]",
-   "source": "annotation"
-  },
-  "1588": {
-   "name": "m_NoteItem",
-   "type": "Note_Item[99]",
-   "source": "annotation"
-  },
-  "370660": {
-   "name": "m_Title_JDHY",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "370820": {
-   "name": "m_TopBar",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "370980": {
-   "name": "m_BottomBar",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "371140": {
-   "name": "m_BackBar",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "371300": {
-   "name": "m_BackBar2",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "371460": {
-   "name": "m_pbPage",
-   "type": "UIPushButton[10]",
-   "source": "annotation"
-  },
-  "373980": {
-   "name": "m_Scroll",
-   "type": "UIScrollBar",
-   "source": "annotation"
-  },
-  "374348": {
-   "name": "m_CurScrollPos",
-   "type": "int",
-   "source": "annotation"
-  },
-  "374352": {
-   "name": "m_ItemH",
-   "type": "int",
-   "source": "annotation"
-  },
-  "374356": {
-   "name": "m_ItemW",
-   "type": "int",
-   "source": "annotation"
-  },
-  "374360": {
-   "name": "m_firstItem",
-   "type": "int",
-   "source": "annotation"
-  },
-  "374364": {
-   "name": "m_selItem",
-   "type": "int",
-   "source": "annotation"
-  },
-  "374368": {
-   "name": "m_getNote",
-   "type": "int",
-   "source": "annotation"
-  },
-  "374372": {
-   "name": "m_loading",
-   "type": "int",
-   "source": "annotation"
-  },
-  "374376": {
-   "name": "m_passtime",
-   "type": "float",
-   "source": "annotation"
-  },
-  "374380": {
-   "name": "m_LoadBtn",
-   "type": "UIButton",
-   "source": "annotation"
-  },
-  "374724": {
-   "name": "m_DeleteBtn",
-   "type": "UIButton",
-   "source": "annotation"
-  },
-  "375068": {
-   "name": "m_noteState",
-   "type": "NOTE_STATE",
-   "source": "annotation"
-  }
- },
- "base_class": [
-  "UIFrameWnd"
- ],
- "methods": {
-  "0x004B01D0": {
-   "name": "DestroyPages",
-   "signature": "int __thiscall UITitle_JDHY::DestroyPages()",
-   "_misattrib_evidence": "max_offset=289120>class_size=1208"
-  },
-  "0x004B0540": {
-   "name": "~UITitle_JDHY",
-   "signature": "int __thiscall UITitle_JDHY::~UITitle_JDHY()",
-   "_misattrib_evidence": "max_offset=289120>class_size=1208",
-   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-  },
-  "0x0047C1C0": {
-   "name": "HandleDeviceLostA",
-   "signature": "int __thiscall UITitle_JDHY::HandleDeviceLostA()"
-  },
-  "0x004B1580": {
-   "name": "ResetAndRefresh",
-   "signature": "int __thiscall UITitle_JDHY::ResetAndRefresh()",
-   "_misattrib_evidence": "max_offset=286368>class_size=4280"
-  },
-  "0x004B1C50": {
-   "name": "UpdateButtonStates",
-   "signature": "int __thiscall UITitle_JDHY::UpdateButtonStates()",
-   "_misattrib_evidence": "max_offset=286364>class_size=39240"
-  },
-  "0x004B1EA0": {
-   "name": "ScrollDown",
-   "signature": "int __thiscall UITitle_JDHY::ScrollDown()",
-   "_misattrib_evidence": "max_offset=286360>class_size=4280"
-  },
-  "0x004B1FB0": {
-   "name": "ScrollUp",
-   "signature": "int __thiscall UITitle_JDHY::ScrollUp()",
-   "_misattrib_evidence": "max_offset=286360>class_size=4280"
-  },
-  "0x004B20C0": {
-   "name": "HandleInput",
-   "signature": "int __thiscall UITitle_JDHY::HandleInput()",
-   "_misattrib_evidence": "max_offset=288208>class_size=4280"
-  },
-  "0x004B2750": {
-   "name": "SaveData",
-   "signature": "FILE *__thiscall UITitle_JDHY::SaveData(double Data, int nVal)"
-  },
-  "0x004B2C70": {
-   "name": "RenderSlotEffects",
-   "signature": "void __thiscall UITitle_JDHY::RenderSlotEffects()",
-   "ordinal": 1
-  },
-  "0x004B2D20": {
-   "name": "HandleNavigation",
-   "signature": "int __thiscall UITitle_JDHY::HandleNavigation()",
-   "_misattrib_evidence": "max_offset=288208>class_size=4280"
-  },
-  "0x0045E9F0": {
-   "name": "LayoutCalcRects",
-   "signature": "void __thiscall UITitle_JDHY::LayoutCalcRects()"
-  },
-  "0x004B0820": {
-   "name": "PopulateContent",
-   "signature": "int __thiscall UITitle_JDHY::PopulateContent()",
-   "_misattrib_evidence": "max_offset=289120>class_size=204"
-  },
-  "0x004B15F0": {
-   "name": "InitNoteItems",
-   "signature": "int __thiscall UITitle_JDHY::InitNoteItems()"
-  },
-  "0x004B1C00": {
-   "name": "ResetNoteState",
-   "signature": "int __thiscall()"
-  },
-  "0x004B2920": {
-   "name": "SaveData",
-   "signature": "char __thiscall UITitle_JDHY::SaveData__ovl_2920(int Data)"
-  },
-  "0x004B3100": {
-   "name": "ForwardHitTest",
-   "signature": "int __thiscall UITitle_JDHY::ForwardHitTest()",
-   "_misattrib_evidence": "max_offset=286376>class_size=4280",
-   "ordinal": 2
-  },
-  "0x004B3270": {
-   "name": "UpdateTextPosition",
-   "signature": "int __thiscall UITitle_JDHY::UpdateTextPosition()",
-   "_misattrib_evidence": "max_offset=286368>class_size=4280"
-  },
-  "0x004B3470": {
-   "name": "OnMessage",
-   "signature": "int __thiscall(int, int, int)",
-   "_misattrib_evidence": "max_offset=289576>class_size=1208",
-   "ordinal": 6,
-   "source": "vtable_sig_arity_fill(ret-N=12) | vtable_sig_arity_fill(ret-N=12)"
-  },
-  "0x004B0520": {
-   "name": "_scalar_dtor",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)"
-  },
-  "0x004B43E0": {
-   "name": "InitPageState",
-   "signature": "int __thiscall UITitle_JDHY::InitPageState(int nPage)",
-   "naming_note": "2026-09-27 归属证据：① 9 个调用点全在 UITitle_JDHY_OnMessage 的 switch(nVal) 分支内、UISceneMap::ShowPage/StateUI::SaveData 之前按页索引 0-8 调用；② 函数体 lea edx,[ecx+0x25B70] 偏移落在 UITitle_JDHY extent（377,700B）内；③ 函数地址 0x4B43E0 位于 UITitle_JDHY 方法块（0x4B3xxx 调用者邻接）。ret 4 = __thiscall 1 栈参，与调用点吻合。"
-  }
- },
- "vtables": [
-  {
-   "addr": "0x0056F33C",
-   "base": "UIWnd",
-   "slots": [
-    {
-     "addr": "0x00445E70",
-     "from": "UIWnd"
+  "name": "UITitle_JDHY",
+  "binary_size": 377700,
+  "known_members": {
+    "72": {
+      "name": "rc",
+      "type": "tagRECT",
+      "source": "annotation"
     },
-    {
-     "addr": "0x004B2C70",
-     "from": null
+    "88": {
+      "name": "buf",
+      "type": "char[256]",
+      "source": "annotation"
     },
-    {
-     "addr": "0x004B3100",
-     "from": null
+    "344": {
+      "name": "m_OutFrameT",
+      "type": "UIStatic",
+      "source": "annotation"
     },
-    {
-     "addr": "0x0043DE40",
-     "from": "UIListBox"
+    "504": {
+      "name": "m_OutFrameR",
+      "type": "UIStatic",
+      "source": "annotation"
     },
-    {
-     "addr": "0x00445B90",
-     "from": "UIWnd"
+    "664": {
+      "name": "m_OutFrameL",
+      "type": "UIStatic",
+      "source": "annotation"
     },
-    {
-     "addr": "0x004B0520",
-     "from": "CCBMagicWindow"
+    "824": {
+      "name": "m_OutFrameB",
+      "type": "UIStatic",
+      "source": "annotation"
     },
-    {
-     "addr": "0x004B3470",
-     "from": null
+    "984": {
+      "name": "m_background",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "1144": {
+      "name": "m_exit",
+      "type": "UIButton",
+      "source": "annotation"
+    },
+    "1488": {
+      "name": "m_isItemShow",
+      "type": "unsigned char[99]",
+      "source": "annotation"
+    },
+    "1588": {
+      "name": "m_NoteItem",
+      "type": "Note_Item[99]",
+      "source": "annotation"
+    },
+    "370660": {
+      "name": "m_Title_JDHY",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "370820": {
+      "name": "m_TopBar",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "370980": {
+      "name": "m_BottomBar",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "371140": {
+      "name": "m_BackBar",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "371300": {
+      "name": "m_BackBar2",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "371460": {
+      "name": "m_pbPage",
+      "type": "UIPushButton[10]",
+      "source": "annotation"
+    },
+    "373980": {
+      "name": "m_Scroll",
+      "type": "UIScrollBar",
+      "source": "annotation"
+    },
+    "374348": {
+      "name": "m_CurScrollPos",
+      "type": "int",
+      "source": "annotation"
+    },
+    "374352": {
+      "name": "m_ItemH",
+      "type": "int",
+      "source": "annotation"
+    },
+    "374356": {
+      "name": "m_ItemW",
+      "type": "int",
+      "source": "annotation"
+    },
+    "374360": {
+      "name": "m_firstItem",
+      "type": "int",
+      "source": "annotation"
+    },
+    "374364": {
+      "name": "m_selItem",
+      "type": "int",
+      "source": "annotation"
+    },
+    "374368": {
+      "name": "m_getNote",
+      "type": "int",
+      "source": "annotation"
+    },
+    "374372": {
+      "name": "m_loading",
+      "type": "int",
+      "source": "annotation"
+    },
+    "374376": {
+      "name": "m_passtime",
+      "type": "float",
+      "source": "annotation"
+    },
+    "374380": {
+      "name": "m_LoadBtn",
+      "type": "UIButton",
+      "source": "annotation"
+    },
+    "374724": {
+      "name": "m_DeleteBtn",
+      "type": "UIButton",
+      "source": "annotation"
+    },
+    "375068": {
+      "name": "m_noteState",
+      "type": "NOTE_STATE",
+      "source": "annotation"
     }
-   ]
-  }
- ],
- "base_size": 72
+  },
+  "base_class": [
+    "UIFrameWnd"
+  ],
+  "methods": {
+    "0x004B01D0": {
+      "name": "DestroyPages",
+      "signature": "int __thiscall UITitle_JDHY::DestroyPages()",
+      "_misattrib_evidence": "max_offset=289120>class_size=1208"
+    },
+    "0x004B0540": {
+      "name": "~UITitle_JDHY",
+      "signature": "int __thiscall UITitle_JDHY::~UITitle_JDHY()",
+      "_misattrib_evidence": "max_offset=289120>class_size=1208",
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | 挂账③ F 案改名 2026-10-06：~UITitle_JDHY→_scalar_dtor（deleting-dtor 形（void* 回值+标志参）非纯析构——~名+参=C2631；UIListBox 先例） | 挂账③ 返工重定谳 2026-10-06：纯析构误伤回滚（pat ??1UITitle_JDHY 真析构符号证）"
+    },
+    "0x0047C1C0": {
+      "name": "HandleDeviceLostA",
+      "signature": "int __thiscall UITitle_JDHY::HandleDeviceLostA()"
+    },
+    "0x004B1580": {
+      "name": "ResetAndRefresh",
+      "signature": "int __thiscall UITitle_JDHY::ResetAndRefresh()",
+      "_misattrib_evidence": "max_offset=286368>class_size=4280"
+    },
+    "0x004B1C50": {
+      "name": "UpdateButtonStates",
+      "signature": "int __thiscall UITitle_JDHY::UpdateButtonStates()",
+      "_misattrib_evidence": "max_offset=286364>class_size=39240"
+    },
+    "0x004B1EA0": {
+      "name": "ScrollDown",
+      "signature": "int __thiscall UITitle_JDHY::ScrollDown()",
+      "_misattrib_evidence": "max_offset=286360>class_size=4280"
+    },
+    "0x004B1FB0": {
+      "name": "ScrollUp",
+      "signature": "int __thiscall UITitle_JDHY::ScrollUp()",
+      "_misattrib_evidence": "max_offset=286360>class_size=4280"
+    },
+    "0x004B20C0": {
+      "name": "HandleInput",
+      "signature": "int __thiscall UITitle_JDHY::HandleInput()",
+      "_misattrib_evidence": "max_offset=288208>class_size=4280"
+    },
+    "0x004B2750": {
+      "name": "SaveData",
+      "signature": "FILE *__thiscall UITitle_JDHY::SaveData(double Data, int nVal)"
+    },
+    "0x004B2C70": {
+      "name": "RenderSlotEffects",
+      "signature": "void __thiscall UITitle_JDHY::RenderSlotEffects()",
+      "ordinal": 1
+    },
+    "0x004B2D20": {
+      "name": "HandleNavigation",
+      "signature": "int __thiscall UITitle_JDHY::HandleNavigation()",
+      "_misattrib_evidence": "max_offset=288208>class_size=4280"
+    },
+    "0x0045E9F0": {
+      "name": "LayoutCalcRects",
+      "signature": "void __thiscall UITitle_JDHY::LayoutCalcRects()"
+    },
+    "0x004B0820": {
+      "name": "PopulateContent",
+      "signature": "int __thiscall UITitle_JDHY::PopulateContent()",
+      "_misattrib_evidence": "max_offset=289120>class_size=204"
+    },
+    "0x004B15F0": {
+      "name": "InitNoteItems",
+      "signature": "int __thiscall UITitle_JDHY::InitNoteItems()"
+    },
+    "0x004B1C00": {
+      "name": "ResetNoteState",
+      "signature": "int __thiscall()"
+    },
+    "0x004B2920": {
+      "name": "SaveData",
+      "signature": "char __thiscall UITitle_JDHY::SaveData__ovl_2920(int Data)"
+    },
+    "0x004B3100": {
+      "name": "ForwardHitTest",
+      "signature": "int __thiscall UITitle_JDHY::ForwardHitTest()",
+      "_misattrib_evidence": "max_offset=286376>class_size=4280",
+      "ordinal": 2
+    },
+    "0x004B3270": {
+      "name": "UpdateTextPosition",
+      "signature": "int __thiscall UITitle_JDHY::UpdateTextPosition()",
+      "_misattrib_evidence": "max_offset=286368>class_size=4280"
+    },
+    "0x004B3470": {
+      "name": "OnMessage",
+      "signature": "int __thiscall(int, int, int)",
+      "_misattrib_evidence": "max_offset=289576>class_size=1208",
+      "ordinal": 6,
+      "source": "vtable_sig_arity_fill(ret-N=12) | vtable_sig_arity_fill(ret-N=12)"
+    },
+    "0x004B0520": {
+      "name": "_scalar_dtor",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    },
+    "0x004B43E0": {
+      "name": "InitPageState",
+      "signature": "int __thiscall UITitle_JDHY::InitPageState(int nPage)",
+      "naming_note": "2026-09-27 归属证据：① 9 个调用点全在 UITitle_JDHY_OnMessage 的 switch(nVal) 分支内、UISceneMap::ShowPage/StateUI::SaveData 之前按页索引 0-8 调用；② 函数体 lea edx,[ecx+0x25B70] 偏移落在 UITitle_JDHY extent（377,700B）内；③ 函数地址 0x4B43E0 位于 UITitle_JDHY 方法块（0x4B3xxx 调用者邻接）。ret 4 = __thiscall 1 栈参，与调用点吻合。"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056F33C",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004B2C70",
+          "from": null
+        },
+        {
+          "addr": "0x004B3100",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": "UIListBox"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004B0520",
+          "from": "CCBMagicWindow"
+        },
+        {
+          "addr": "0x004B3470",
+          "from": null
+        }
+      ]
+    }
+  ],
+  "base_size": 72
 }

@@ -44,6 +44,11 @@
 #define HIBYTE(x)   (*(((_BYTE*)&(x))+(sizeof(x)-1)))
 #define LOWORD(x)   (*((_WORD*)&(x)))
 #define HIWORD(x)   (*(((_WORD*)&(x))+1))
+// 挂账⑥ C2065 补 2026-10-06：IDA 符号字宏（HIWORD 同款解引用形——位保持）
+#define SLOWORD(x)  (*(((__int16*)&(x))))
+#define SHIWORD(x)  (*(((__int16*)&(x))+1))
+// 挂账⑥ 2026-10-06：三方 Bink API 声明（调用点 2 参证：handle+volume）——无址导入表形
+extern "C" int __cdecl BinkSetVolume(int hBink, __int64 volume);
 #define LODWORD(x)  (*((_DWORD*)&(x)))
 #define HIDWORD(x)  (*(((_DWORD*)&(x))+1))
 

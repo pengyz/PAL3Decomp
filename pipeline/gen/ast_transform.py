@@ -584,19 +584,30 @@ def drop_call_echo_arg(code, sig_slots_by_method):
     return out
 
 
-def collect_struct_value_members(member_type_pairs):
+def collect_struct_value_members(member_type_pairs, base_names=None):
     """批 3 成员集判别（6e90d6f0 清账条件1+2：提纯函数+N-a 廉价收窄）。
     判别：类/结构体/union **值**（含 `Cls[N]` 数组、dict 形内联）才入集。
-    **廉价收窄（N-a）**：同名任一实例是标量/指针/别名 ⇒ 该名整体不入集
-    （类域数据源挂账前的保守替代——实测消除 4 处语义反转误修：m_pScene/fp/m_texarray）。"""
+    **N-a 收窄**：同名任一实例是标量/指针/别名 ⇒ 该名整体不入集。
+    【挂账⑥】`base_names`：+0 首基类名入集。
+    【挂账⑥ N-a 类域化】member_type_pairs 元素可为 (name, type) 或 (name, type, cls)——
+    三元组时 N-a **按类**收窄（同类同名标量才出局——desc/Remark/yaw 三件类域恢复）。
+    """
     _SCALARS = {'int', 'float', 'double', 'char', 'bool', 'void', 'long', 'short',
                 'DWORD', 'BYTE', 'UINT', 'WORD', 'BOOL', 'HWND', 'INT', 'LONG',
                 'FLOAT', 'CHAR', 'UCHAR', 'USHORT', 'ULONG', 'SIZE_T', 'WPARAM',
                 'LPARAM', 'HRESULT', 'HANDLE', 'COLORREF', 'RECT', 'POINT',
                 'PVOID', 'PSCOPETABLE_ENTRY'}
-    name_all = {}      # name -> True 若出现过标量/指针实例
+    name_all = {}      # name(或 cls|name) -> True 若出现过标量/指针实例
     name_ok = set()
-    for name, t in member_type_pairs:
+    scoped = False
+    for item in member_type_pairs:
+        if len(item) >= 3:
+            name, t, cls = item[0], item[1], item[2]
+            scoped = True
+            key = '%s|%s' % (cls, name)
+        else:
+            name, t = item[0], item[1]
+            key = name
         if not name:
             continue
         if isinstance(t, dict):
@@ -605,23 +616,32 @@ def collect_struct_value_members(member_type_pairs):
         ts = str(t)
         base = re.sub(r'\s*\[[^\]]*\]\s*$', '', ts).strip()
         if not base or '*' in base or ts.strip().endswith('*'):
-            name_all[name] = True            # 指针实例 ⇒ 该名出局
+            name_all[key] = True             # 指针实例 ⇒ 该名出局
             continue
         b2 = base.lstrip('const ').strip()
         if b2 in _SCALARS or base in _SCALARS:
-            name_all[name] = True            # 标量实例 ⇒ 该名出局
+            name_all[key] = True             # 标量实例 ⇒ 该名出局
             continue
         if re.match(r'^(?:const\s+)?[A-Z]\w*$', base):
             name_ok.add(name)
+    for bn in (base_names or ()):
+        if bn and not name_all.get(bn):
+            name_ok.add(bn)
+    if scoped:
+        # 类域 N-a：任一类同名标量出局（保守向——跨类不救）
+        bad = {k.split('|', 1)[1] for k, v in name_all.items() if v}
+        return {n for n in name_ok if n not in bad}
     return {n for n in name_ok if not name_all.get(n)}
 
 
 def fix_struct_value_casts(code, struct_member_names, cls=None, base_map=None):
-    """批 3 返工（d8ca4fd2 须返工判）：结构体值铸标量的 &-补全。
-    等价前提（返工收窄）：表达式**终止于** `m_X[i]`（其后无 `.`/`->`）且成员是类/结构体/union
-    **值**（含 `Cls[N]` 数组）——子成员/变体/指针/前缀碰撞形全不动。
-    ①掩码全程（_mask_strings_comments——E-1 纪律）②名字**双侧词界** ③类域化（cls+base_map）
-    ④铸前缀形 `(int)(T*)v->m_X` 不动（补 & 优先级错=C2102）⑤须 expr 终止于 [i]/m_X。"""
+    """挂账② B1 步 1（2026-10-06 方案复核证伪 &-插入）：结构体值铸标量的 **重解释重写**。
+    等价依据（复核四站实证）：`(int)x.Base`＝**首 DWORD 装载**（孪生 `*(_DWORD *)&x.Base`
+    同值——CCBUIPanel v57/v60 对照）——`&`-插入是 lea≠mov 语义反转（m_Slots −27 先例
+    =错误数降+字节污染，已回修）。
+    等价前提（收窄不变）：表达式终止于 `m_X[i]`/`m_X` 且成员是类/结构体/union 值。
+    ①掩码全程 ②名字双侧词界 ③类域化（cls+base_map）④铸前缀形不动
+    ⑤终止判别含 `::`（限定形 `x.Base::m` 是值用法不重写——复核守卫洞实证）⑥重解释形。"""
     if not struct_member_names:
         return code
     try:
@@ -639,21 +659,24 @@ def fix_struct_value_casts(code, struct_member_names, cls=None, base_map=None):
     if not names:
         return code
     alt = '|'.join(re.escape(n) for n in sorted(names, key=len, reverse=True))
-    # 双侧词界 + 终止判别 + 铸前缀形**结构性免疫**（6e90d6f0 N-c：接收者形 `(?:this|\w+)`
-    # 不可能从 `(T*)` 起匹配 ⇒ 铸前缀守卫不可达已删——测试断言结构而非死守卫）
+    # 双侧词界 + 终止判别（含 ::）+ 铸前缀形结构性免疫
     pat = re.compile(
         r'(\(\s*(?:int|unsigned long|DWORD|unsigned int)\s*\))'
         r'((?:this|\w+)(?:\s*(?:->|\.)\s*\w+)*\s*(?:->|\.)\s*'
         r'(' + alt + r')(?:\s*\[[^\]]*\])?)'
         r'(?![\w])'                                  # 名字右词界
-        r'(?!\s*(?:->|\.|\[))'                       # 终止判别（未吞的下标=表达式续）
+        r'(?!\s*(?:->|\.|\[|::))'                    # 终止判别（含 :: 限定形守卫）
         )
     def _sub(m):
         cast, target = m.group(1), m.group(2)
         if target.lstrip().startswith('&'):
             return m.group(0)
-        return '%s&%s' % (cast, target)
-    # edits 逆序落原文（掩码仅定位——替换增长度，splice 长度校验法不可用）
+        if m.group(0).lstrip().startswith('*('):     # 已重解释形幂等
+            return m.group(0)
+        inner = cast.strip()[1:-1].strip()           # (int) → int
+        # B1：重解释装载形 `*(T*)&expr`（首 DWORD 装载语义——等价变换）
+        return '*(%s *)&%s' % (inner, target)
+    # edits 逆序落原文（掩码仅定位）
     edits = []
     for m in pat.finditer(masked):
         rep = _sub(m)

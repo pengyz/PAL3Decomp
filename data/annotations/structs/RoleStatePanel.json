@@ -17,9 +17,9 @@
     },
     "0x004a2450": {
       "name": "~RoleStatePanel",
-      "signature": "int __thiscall MainEquipUI::~MainEquipUI()",
+      "signature": "void __thiscall()",
       "_misattrib_evidence": "rolestatepanel: dtor; xref to vtable 0x56F040 at 0x4a246d (was MainEquipUI.~MainEquipUI)",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | 挂账③ F 案改名 2026-10-06：~RoleStatePanel→_scalar_dtor（deleting-dtor 形（void* 回值+标志参）非纯析构——~名+参=C2631；UIListBox 先例） | 挂账③ 返工重定谳 2026-10-06：纯析构误伤回滚（体=成员析构逆序级联+基类析构） | 订正 2026-10-06：体证=纯析构（成员析构逆序级联+基类析构收尾）——原 sig int __thiscall MainEquipUI::~MainEquipUI() 串类脏数据→void __thiscall() 纯析构形"
     },
     "0x004a3900": {
       "name": "SetItemData",

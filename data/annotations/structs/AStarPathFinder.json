@@ -1,191 +1,192 @@
 {
- "name": "AStarPathFinder",
- "binary_size": 24,
- "known_members": {
-  "4": {
-   "name": "OPEN",
-   "type": "AStarPathFinder::NODE *",
-   "source": "A:decomp_TryExpand_Reset"
-  },
-  "8": {
-   "name": "CLOSED",
-   "type": "AStarPathFinder::NODE *",
-   "source": "A:decomp_TryExpand_Reset"
-  },
-  "12": {
-   "name": "PATH",
-   "type": "AStarPathFinder::NODE *",
-   "source": "A:decomp_TryExpand_Reset"
-  },
-  "16": {
-   "name": "Stack",
-   "type": "AStarPathFinder::STACK *",
-   "source": "A:decomp_TryExpand"
-  },
-  "20": {
-   "name": "m_TestTimer",
-   "type": "int",
-   "source": "A:decomp_TryExpand"
-  }
- },
- "vtables": [
-  {
-   "addr": "0x0056A600",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x00401030",
-     "from": null
-    },
-    {
-     "addr": "0x004014E0",
-     "from": null
-    },
-    {
-     "addr": "0x004014F0",
-     "from": null
-    }
-   ]
-  }
- ],
- "nested_types": {
-  "NODE": {
-   "kind": "struct",
-   "binary_size": 64,
-   "known_members": {
-    "0": {
-     "name": "f",
-     "type": "float",
-     "source": "A:decomp_TryExpand:*v14=v15+v19"
-    },
+  "name": "AStarPathFinder",
+  "binary_size": 24,
+  "known_members": {
     "4": {
-     "name": "h",
-     "type": "float",
-     "source": "A:decomp_TryExpand:v14[1]=v15"
+      "name": "OPEN",
+      "type": "AStarPathFinder::NODE *",
+      "source": "A:decomp_TryExpand_Reset"
     },
     "8": {
-     "name": "g",
-     "type": "float",
-     "source": "A:decomp_TryExpand:v14[2]=v19"
+      "name": "CLOSED",
+      "type": "AStarPathFinder::NODE *",
+      "source": "A:decomp_TryExpand_Reset"
     },
     "12": {
-     "name": "x",
-     "type": "int",
-     "source": "A:decomp_TryExpand:*((_DWORD*)v14+3)=nVal2"
+      "name": "PATH",
+      "type": "AStarPathFinder::NODE *",
+      "source": "A:decomp_TryExpand_Reset"
     },
     "16": {
-     "name": "y",
-     "type": "int",
-     "source": "A:decomp_TryExpand:*((_DWORD*)v14+4)=nVal3"
+      "name": "Stack",
+      "type": "AStarPathFinder::STACK *",
+      "source": "A:decomp_TryExpand"
     },
     "20": {
-     "name": "key",
-     "type": "int",
-     "source": "A:decomp_TryExpand:*((_DWORD*)v14+5)=x+y*512"
-    },
-    "24": {
-     "name": "parent",
-     "type": "AStarPathFinder::NODE *",
-     "source": "A:decomp_TryExpand:*((_DWORD*)v14+6)=nVal"
-    },
-    "28": {
-     "name": "stack",
-     "type": "AStarPathFinder::NODE *[8]",
-     "source": "A:decomp_TryExpand:nVal+28_loop_to_8"
-    },
-    "60": {
-     "name": "next",
-     "type": "AStarPathFinder::NODE *",
-     "source": "A:decomp_FindInOpen:OPEN->stack[8]==next/i=*(_DWORD*)(i+60)"
+      "name": "m_TestTimer",
+      "type": "int",
+      "source": "A:decomp_TryExpand"
     }
-   }
   },
-  "STACK": {
-   "kind": "struct",
-   "binary_size": 8,
-   "known_members": {
-    "0": {
-     "name": "sp",
-     "type": "int",
-     "source": "A:ctor:calloc(1,8)_Stack"
-    },
-    "4": {
-     "name": "top",
-     "type": "AStarPathFinder::NODE *",
-     "source": "A:decomp_UpdateNeighbors:Stack[1]="
-    }
-   }
-  }
- },
- "methods": {
-  "0x00401000": {
-   "name": "AStarPathFinder",
-   "signature": "void __thiscall()"
-  },
-  "0x00401030": {
-   "name": "~AStarPathFinder",
-   "signature": "void *__thiscall(char a2)"
-  },
-  "0x00401050": {
-   "name": "ReleaseAll",
-   "signature": "void __thiscall()"
-  },
-  "0x004014E0": {
-   "name": "IsInBounds",
-   "signature": "int __thiscall(int nX, int nY)"
-  },
-  "0x004014F0": {
-   "name": "GetHeuristicIdx",
-   "signature": "unsigned char __thiscall(int nX, int nY)"
-  },
-  "0x004012A0": {
-   "name": "TryExpand",
-   "signature": "int __thiscall(AStarPathFinder::NODE *pNode, int nTileX, int nTileY, int nGoalX, int nGoalY)",
-   "local_vars": [
+  "vtables": [
     {
-     "from_name": "v14",
-     "type": "AStarPathFinder::NODE *"
+      "addr": "0x0056A600",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00401030",
+          "from": null
+        },
+        {
+          "addr": "0x004014E0",
+          "from": null
+        },
+        {
+          "addr": "0x004014F0",
+          "from": null
+        }
+      ]
     }
-   ]
-  },
-  "0x00401500": {
-   "name": "FindInOpen",
-   "signature": "int __thiscall(int nTileIdx)"
-  },
-  "0x00401530": {
-   "name": "FindInClosed",
-   "signature": "int __thiscall(int nTileIdx)"
-  },
-  "0x00401560": {
-   "name": "PushOpen",
-   "signature": "int __thiscall(AStarPathFinder::NODE *pNode)"
-  },
-  "0x00401590": {
-   "name": "Release",
-   "signature": "int __thiscall(AStarPathFinder::NODE *pNode)"
-  },
-  "0x004015B0": {
-   "name": "UpdateNeighbors",
-   "signature": "int __thiscall(AStarPathFinder::NODE *pNode)",
-   "local_vars": [
-    {
-     "from_name": "v10",
-     "type": "AStarPathFinder::NODE *"
+  ],
+  "nested_types": {
+    "NODE": {
+      "kind": "struct",
+      "binary_size": 64,
+      "known_members": {
+        "0": {
+          "name": "f",
+          "type": "float",
+          "source": "A:decomp_TryExpand:*v14=v15+v19"
+        },
+        "4": {
+          "name": "h",
+          "type": "float",
+          "source": "A:decomp_TryExpand:v14[1]=v15"
+        },
+        "8": {
+          "name": "g",
+          "type": "float",
+          "source": "A:decomp_TryExpand:v14[2]=v19"
+        },
+        "12": {
+          "name": "x",
+          "type": "int",
+          "source": "A:decomp_TryExpand:*((_DWORD*)v14+3)=nVal2"
+        },
+        "16": {
+          "name": "y",
+          "type": "int",
+          "source": "A:decomp_TryExpand:*((_DWORD*)v14+4)=nVal3"
+        },
+        "20": {
+          "name": "key",
+          "type": "int",
+          "source": "A:decomp_TryExpand:*((_DWORD*)v14+5)=x+y*512"
+        },
+        "24": {
+          "name": "parent",
+          "type": "AStarPathFinder::NODE *",
+          "source": "A:decomp_TryExpand:*((_DWORD*)v14+6)=nVal"
+        },
+        "28": {
+          "name": "stack",
+          "type": "AStarPathFinder::NODE *[8]",
+          "source": "A:decomp_TryExpand:nVal+28_loop_to_8"
+        },
+        "60": {
+          "name": "next",
+          "type": "AStarPathFinder::NODE *",
+          "source": "A:decomp_FindInOpen:OPEN->stack[8]==next/i=*(_DWORD*)(i+60)"
+        }
+      }
+    },
+    "STACK": {
+      "kind": "struct",
+      "binary_size": 8,
+      "known_members": {
+        "0": {
+          "name": "sp",
+          "type": "int",
+          "source": "A:ctor:calloc(1,8)_Stack"
+        },
+        "4": {
+          "name": "top",
+          "type": "AStarPathFinder::NODE *",
+          "source": "A:decomp_UpdateNeighbors:Stack[1]="
+        }
+      }
     }
-   ]
   },
-  "0x00401750": {
-   "name": "ResortNode",
-   "signature": "int __thiscall(int)",
-   "source": "sig_evidence_A(ret-N arity)"
-  },
-  "0x00401780": {
-   "name": "PopStack",
-   "signature": "AStarPathFinder::NODE * __thiscall()"
-  },
-  "0x004017A0": {
-   "name": "Reset",
-   "signature": "int __thiscall()"
+  "methods": {
+    "0x00401000": {
+      "name": "AStarPathFinder",
+      "signature": "void __thiscall()"
+    },
+    "0x00401030": {
+      "name": "_scalar_dtor",
+      "signature": "void *__thiscall(char a2)",
+      "source": " | 挂账③ F 案 2026-10-06：deleting-dtor 形（void* 回值+char 标志参+operator delete 体）→_scalar_dtor 族名（~名+参=C2631）"
+    },
+    "0x00401050": {
+      "name": "ReleaseAll",
+      "signature": "void __thiscall()"
+    },
+    "0x004014E0": {
+      "name": "IsInBounds",
+      "signature": "int __thiscall(int nX, int nY)"
+    },
+    "0x004014F0": {
+      "name": "GetHeuristicIdx",
+      "signature": "unsigned char __thiscall(int nX, int nY)"
+    },
+    "0x004012A0": {
+      "name": "TryExpand",
+      "signature": "int __thiscall(AStarPathFinder::NODE *pNode, int nTileX, int nTileY, int nGoalX, int nGoalY)",
+      "local_vars": [
+        {
+          "from_name": "v14",
+          "type": "AStarPathFinder::NODE *"
+        }
+      ]
+    },
+    "0x00401500": {
+      "name": "FindInOpen",
+      "signature": "int __thiscall(int nTileIdx)"
+    },
+    "0x00401530": {
+      "name": "FindInClosed",
+      "signature": "int __thiscall(int nTileIdx)"
+    },
+    "0x00401560": {
+      "name": "PushOpen",
+      "signature": "int __thiscall(AStarPathFinder::NODE *pNode)"
+    },
+    "0x00401590": {
+      "name": "Release",
+      "signature": "int __thiscall(AStarPathFinder::NODE *pNode)"
+    },
+    "0x004015B0": {
+      "name": "UpdateNeighbors",
+      "signature": "int __thiscall(AStarPathFinder::NODE *pNode)",
+      "local_vars": [
+        {
+          "from_name": "v10",
+          "type": "AStarPathFinder::NODE *"
+        }
+      ]
+    },
+    "0x00401750": {
+      "name": "ResortNode",
+      "signature": "int __thiscall(int)",
+      "source": "sig_evidence_A(ret-N arity)"
+    },
+    "0x00401780": {
+      "name": "PopStack",
+      "signature": "AStarPathFinder::NODE * __thiscall()"
+    },
+    "0x004017A0": {
+      "name": "Reset",
+      "signature": "int __thiscall()"
+    }
   }
- }
 }

@@ -418,7 +418,8 @@ class DataStore:
                         self.static_methods.add(_name.split('(')[0])
                 else:
                     # Free function: build forward declaration
-                    if _name.startswith('_') or _name.startswith('$') or _name.startswith('?'):
+                    if (_name.startswith('_') and not _name.startswith('_todo_')) \
+                            or _name.startswith('$') or _name.startswith('?'):
                         continue
                     if 'unknown_libname' in _name or 'nullsub' in _name:
                         continue
@@ -471,8 +472,9 @@ class DataStore:
                     continue  # class method, not a free function
                 if _name in self.free_func_sigs:
                     continue  # already have it from decomp
-                # Same filters as above
-                if _name.startswith('_') or _name.startswith('$') or _name.startswith('?'):
+                # Same filters as above（_todo_ 豁免——真名未知许可形（挂账③ E 接线））
+                if (_name.startswith('_') and not _name.startswith('_todo_')) \
+                        or _name.startswith('$') or _name.startswith('?'):
                     continue
                 # NOTE: do NOT filter unknown_libname/nullsub here — annotation
                 # entries are manually curated and may reference such functions

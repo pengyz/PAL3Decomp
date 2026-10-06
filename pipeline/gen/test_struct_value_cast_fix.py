@@ -11,15 +11,16 @@ from ast_transform import fix_struct_value_casts
 
 class TestStructValueCastFix(unittest.TestCase):
     def test_m_slots_addr_fix(self):
+        # 【B1 重解释形】(int)x.Base＝首 DWORD 装载——`*(int*)&` 等价（&-插入=lea≠mov 已证伪）
         s = 'v18 = (int)this->m_Slots[20];'
         out = fix_struct_value_casts(s, {'m_Slots'})
-        self.assertIn('(int)&this->m_Slots[20]', out)
+        self.assertIn('*(int *)&this->m_Slots[20]', out)
 
     def test_dword_and_uint_variants(self):
         for cast in ('unsigned long', 'DWORD', 'unsigned int'):
             s = 'x = (%s)a->m_Slots[3];' % cast
             out = fix_struct_value_casts(s, {'m_Slots'})
-            self.assertIn('(%s)&a->m_Slots[3]' % cast, out, cast)
+            self.assertIn('*(%s *)&a->m_Slots[3]' % cast, out, cast)
 
     def test_plain_member_untouched(self):
         s = 'x = (int)this->m_nCount;'
@@ -56,7 +57,22 @@ class TestStructValueCastFix(unittest.TestCase):
     def test_no_index_form(self):
         s = 'v = (int)this->m_Slots;'
         out = fix_struct_value_casts(s, {'m_Slots'})
-        self.assertIn('(int)&this->m_Slots;', out)
+        self.assertIn('*(int *)&this->m_Slots;', out)
+
+    def test_colon_guard(self):
+        # 挂账②复核 M2 零守护补测：`::` 限定形（值用法）不重写
+        for s in ('v = (int)this->m_X.Base::m;', 'v = (int)a->Base::m;',
+                  'v = (int)x.A::B::m;'):
+            out = fix_struct_value_casts(s, {'Base', 'A'})
+            self.assertEqual(out, s, s)
+
+    def test_base_names_collected(self):
+        # 挂账②复核 M3 零守护补测：base_names 入集+N-a 同适用
+        from ast_transform import collect_struct_value_members
+        self.assertIn('UIWnd', collect_struct_value_members([], {'UIWnd'}))
+        # N-a：同名标量实例整名出局（基类名同适用）
+        out = collect_struct_value_members([('UIWnd', 'int')], {'UIWnd'})
+        self.assertNotIn('UIWnd', out)
 
     def test_m_bactive_scalar_not_in_set(self):
         # 6e90d6f0 N-f：型注错标量反例（m_bActive 同名任一实例为标量 ⇒ 整名出局）

@@ -543,10 +543,10 @@ def _fix_register_this_alias(code):
 # ============================================================
 
 _GB_REF_PARAM_FUNCS = {
-    'Translate': {0}, 'Rotate': {1}, 'Scale': {0},
+    'Translate': {0}, 'Scale': {0},
     'LeftTranslate': {0}, 'RightTranslate': {0},
     'MakeMatrix': {0, 1, 2}, 'IntersectPlane': {0, 1},
-    'IsColAABB': {0}, 'IsColOBB': {0}, 'IsColOBB_H': {0},
+    'IsColAABB': {0}, 'IsColOBB_H': {0},
     'IsColPoint': {0}, 'IsColQuad': {0, 1, 2},
     'IsColSphere': {0}, 'IsColTriangle': {0, 1, 2, 3},
     'GetAABBox': {0}, 'GetSphere': {0}, 'GetCollideOBB': {0},
@@ -558,8 +558,13 @@ _GB_REF_PARAM_FUNCS = {
     'GetViewPort': {0, 1, 2, 3},
     'PointWorldToScr': {1, 2},  # (gbVec3D*, float&, float&)
     'GetBlend': {0}, 'SetBlend': {0},
-    # 'SetAxisAngle' REMOVED — see the F1b note below.
     'RightMultiply': {0},
+    # 【B 修（方案复核判须修订）】PAU/AAU 分流（gbengine_registry 签名 A 级证）：
+    # 指针形出表（gbMatrix4::Rotate(gbVec3D const*,gbVec3D*)=PAU 出；gbOBBox::IsColOBB
+    # (gbOBBox*)=PAU 出）——裸名键拆限定键（同名跨类形参形态相反：指针/引用混同=病灶根因）
+    'gbMatrixStack::Rotate': {2: {1}, 1: {0}},  # (float,gbVec3D&) 2 元 ref@1；
+    #   (gbQuaternion&) 1 元 ref@0 ——元数感知（_ref_positions 按实参数选位）
+    'gbRay::IsColOBB': {0}, 'gbPlane::IsColOBB': {0},   # (gbOBBox&) 引用形留表
 }
 
 # F81（2026-09-25）：引用参数的**实参类型**（SDK 头权威，include/gbengine）。
@@ -568,7 +573,7 @@ _GB_REF_PARAM_FUNCS = {
 # 键 (func, arg_idx)；未录入的组合保持原行为（保守不变）。返回类型差异
 # （如 RightMultiply 的 gbMatrix4/gbQuaternion 两载）不录入，防错型。
 _GB_REF_PARAM_TYPES = {
-    ('Rotate', 1): 'struct gbVec3D',        # gbengine_internal.h:149 Rotate(float, gbVec3D&)
+    ('gbMatrixStack::Rotate', 1): 'struct gbVec3D',  # B 修键随迁（失配致 Case2b 不触发 C2100 +24 实证）
     ('Translate', 0): 'struct gbVec3D',     # :158 Translate(gbVec3D&)
     ('Scale', 0): 'struct gbVec3D',         # :154 Scale(gbVec3D&)
     ('LeftTranslate', 0): 'struct gbVec3D', # gbengine_types.h:128
@@ -580,7 +585,7 @@ _GB_REF_PARAM_TYPES = {
     ('IntersectPlane', 0): 'struct gbVec3D',  # gbengine_types.h:197
     ('IntersectPlane', 1): 'struct gbVec3D',
     ('IsColAABB', 0): 'struct gbAABBox',
-    ('IsColOBB', 0): 'struct gbOBBox',
+    ('gbRay::IsColOBB', 0): 'struct gbOBBox', ('gbPlane::IsColOBB', 0): 'struct gbOBBox',
     ('IsColOBB_H', 0): 'struct gbOBBox',
     ('IsColQuad', 0): 'struct gbVec3D',
     ('IsColQuad', 1): 'struct gbVec3D',
@@ -626,7 +631,16 @@ def _fix_ref_params(code, ctx=None):
     """
     vt = _build_var_types(code, ctx) if ctx is not None else {}
     for func_name, ref_indices in _GB_REF_PARAM_FUNCS.items():
-        pattern = r'(?:->|::|\.)' + re.escape(func_name) + r'\s*\('
+        # B 修：限定键（`Cls::fn`）与裸名双形——限定形按全名匹配（类消歧），
+        # 元数感知值（dict{arity:set}）按实参数选位（gbMatrixStack::Rotate 双载）
+        if '::' in func_name:
+            pattern = re.escape(func_name) + r'\s*\('
+        else:
+            pattern = r'(?:->|::|\.)' + re.escape(func_name) + r'\s*\('
+        def _ref_positions(nargs, ref_idx=ref_indices):
+            if isinstance(ref_idx, dict):
+                return ref_idx.get(nargs, set())
+            return ref_idx
         pos = 0
         result = []
         while True:
@@ -640,6 +654,21 @@ def _fix_ref_params(code, ctx=None):
             arg_start = call_start
             arg_idx = 0
             i = call_start
+            # B 修：元数预数（dict 形 ref_indices 需 arity 定位）
+            if isinstance(ref_indices, dict):
+                _d, _j, _na = 1, call_start, 1
+                while _j < len(code) and _d > 0:
+                    _c = code[_j]
+                    if _c == '(':
+                        _d += 1
+                    elif _c == ')':
+                        _d -= 1
+                    elif _c == ',' and _d == 1:
+                        _na += 1
+                    _j += 1
+                ref_positions = ref_indices.get(_na, set())
+            else:
+                ref_positions = ref_indices
             while i < len(code) and depth > 0:
                 ch = code[i]
                 if ch == '(':
@@ -648,14 +677,14 @@ def _fix_ref_params(code, ctx=None):
                     depth -= 1
                     if depth == 0:
                         arg = code[arg_start:i]
-                        if arg_idx in ref_indices:
+                        if arg_idx in ref_positions:
                             arg = _fix_single_ref_arg(arg, vt, ref_type=_GB_REF_PARAM_TYPES.get((func_name, arg_idx)))
                         result.append(arg)
                         result.append(')')
                         break
                 elif ch == ',' and depth == 1:
                     arg = code[arg_start:i]
-                    if arg_idx in ref_indices:
+                    if arg_idx in ref_positions:
                         arg = _fix_single_ref_arg(arg, vt, ref_type=_GB_REF_PARAM_TYPES.get((func_name, arg_idx)))
                     result.append(arg)
                     result.append(', ')

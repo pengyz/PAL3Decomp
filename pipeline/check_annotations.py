@@ -696,15 +696,28 @@ def check():
                 method_addrs.add(addr)
         for addr in funcs:
             method_addrs.add(addr)
-        # A function must not be in both skip_functions AND struct methods/functions.
-        # skip means "don't export"; struct methods means "is a real function".
-        # Both can't be true — remove from skip_functions.json.
+        # A function must not be in both skip_functions AND struct methods/functions
+        # **unless the registration is declaration-only**（批 12-13 形：skip=体排除、
+        # functions.json=声明收编（C2065 修）——语义不同源、共存合法。round 7 教训：
+        # 误删 skip 侧=意外解禁（C2556/2373 ×144 爆）——标记形（declaration_only 或
+        # 变参签名 `(...)`）即认可；真双注（同为定义意图）才旗）。
         for addr in skip_data:
             if addr in method_addrs:
+                _reg = funcs.get(addr) or {}
+                if not _reg:
+                    for _sdat in structs.values():
+                        _reg = (_sdat.get('methods', {}) or {}).get(addr) or {}
+                        if _reg:
+                            break
+                _decl_only = bool(_reg.get('declaration_only')) or \
+                    str(_reg.get('signature', '')).rstrip().endswith('(...)')
+                if _decl_only:
+                    continue
                 skip_name = skip_data[addr].get('name', '?')
                 errors.append(
                     f"skip_functions[{addr}] '{skip_name}' also exists in"
-                    f" struct methods or functions.json — remove from skip_functions.json (one source only)"
+                    f" struct methods or functions.json — 真双注（同为定义意图）；"
+                    f"若为声明收编形请标 declaration_only 或变参签名"
                         )
 
     return errors, warnings
