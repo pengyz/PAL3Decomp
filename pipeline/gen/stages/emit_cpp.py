@@ -584,6 +584,11 @@ def run_cpp_generation(filter_classes=None):
         safe_name = cls_name.replace('<', '_').replace('>', '_').replace(':', '_').replace('"', '_').replace('?', '_').replace('*', '_').replace('|', '_').replace('\\', '_').replace('/', '_').strip()
         out_path = out_dir / ("%s.cpp" % safe_name)
         content = generate_class_cpp(cls_name, methods)
+        try:
+            from ast_transform import normalize_deref_cast_parens
+            content = normalize_deref_cast_parens(content)
+        except Exception:
+            pass
         with open(out_path, 'w', encoding='utf-8') as f:
             f.write(content)
         generated += 1
