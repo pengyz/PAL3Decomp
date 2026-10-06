@@ -634,6 +634,37 @@ def collect_struct_value_members(member_type_pairs, base_names=None):
     return {n for n in name_ok if not name_all.get(n)}
 
 
+def drop_redundant_mid_qualifier(code):
+    """B1 限定链最小修（复核修订 1-B·TDD 5 测）：`recv->A::Base::m` → `recv->Base::m`。
+    删冗余中间限定词（单层 `recv->Base::m` 现绿据——N5 越墙最小面）。
+    保守：单层不动·掩码纪律（E-1）·幂等。"""
+    try:
+        masked = _mask_strings_comments(code)
+    except Exception:
+        masked = code
+    # 形：recv->A::B::rest（≥2 级限定）——删中间段 A::（保留末级 Base::）
+    pat = re.compile(
+        r'((?:->|\.))'          # recv 分隔
+        r'([A-Za-z_]\w*)'       # 中间限定段 A
+        r'::([A-Za-z_]\w*::)'   # 末级 Base::
+        r'((?:(?:::)?[A-Za-z_~]\w*)+)'  # 成员面（多段保）
+        )
+    edits = []
+    for m in pat.finditer(masked):
+        # 返工（验收红线）：替换从**原文**切片（掩码 x 字节禁入替换——注释腐蚀/静默改名教训）
+        sep, base, rest = m.group(1), m.group(3), m.group(4)
+        rep = sep + base + rest
+        # 校验：rep 不含掩码 x 段（跨掩码 match 拒绝）
+        if 'x' * 3 in masked[m.start():m.end()] and 'x' * 3 not in code[m.start():m.end()]:
+            continue
+        if rep != m.group(0):
+            edits.append((m.start(), m.end(), rep))
+    out = code
+    for s, e, rep in reversed(edits):
+        out = out[:s] + rep + out[e:]
+    return out
+
+
 def dedupe_identical_lvars(decls):
     """A 簇 lvar 归并（返工 R-A/R-C）：全等去重 + **同名裁决闭环**。
     归并键=(func,loc,name,type) 全等去重；同 (func,loc,name) 异型 ⇒ 单留原声明+冲突报出
