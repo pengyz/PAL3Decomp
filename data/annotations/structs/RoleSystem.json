@@ -1,1600 +1,1607 @@
 {
- "name": "RoleSystem",
- "known_members": {
-  "68": {
-   "name": "m_pVtable",
-   "type": "char *",
-   "source": "A:decomp CCBRoleState::ProcessActions uses this->m_pSceneMgr->m_rect.left as RoleSystem* -- offset 0 is vtable ptr, not int",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "72": {
-   "name": "m_fStateX",
-   "type": "float",
-   "source": "A+:decomp *(float*)&this->_field_048 explicit_float_cast"
-  },
-  "76": {
-   "name": "m_fStateY",
-   "type": "float",
-   "source": "gap_fill:ida_decomp_access"
-  },
-  "80": {
-   "name": "m_nStateMode",
-   "type": "unsigned char",
-   "source": "ida_decomp:_auto_42b510 ==2/if(this), 2 refs"
-  },
-  "84": {
-   "name": "m_nTimerDuration",
-   "type": "int",
-   "source": "A:decomp LODWORD(this->_field_054) = 600 (10s at 60fps)"
-  },
-  "88": {
-   "name": "m_fDirX",
-   "type": "float",
-   "source": "binary:raw_batch"
-  },
-  "92": {
-   "name": "m_fDirY",
-   "type": "float",
-   "source": "A:FPU_disp8_in_class_method"
-  },
-  "96": {
-   "name": "m_fDirZ",
-   "type": "float",
-   "source": "fix:span=4_next_hits=53_ptr"
-  },
-  "100": {
-   "name": "m_pPathPoints",
-   "type": "char *",
-   "source": "B:naming_m_p+FPU_misattrib",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "104": {
-   "name": "m_nPathCount",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "108": {
-   "name": "m_pPathCurrent",
-   "type": "char *",
-   "source": "B:naming_m_p+FPU_misattrib",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "112": {
-   "name": "m_pPathNext",
-   "type": "char *",
-   "source": "binary:raw_path_next | type_fix:int鈫抳oid*(naming m_p)",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "116": {
-   "name": "m_nTodo_074",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "120": {
-   "name": "m_nPathFlag",
-   "type": "int",
-   "source": "A:decomp_set_to_0_path_waypoint_flag_17refs"
-  },
-  "124": {
-   "name": "m_nPathField7C",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "128": {
-   "name": "m_fMoveX",
-   "type": "float",
-   "source": "B:naming_m_n+FPU_misattrib | ida_xref"
-  },
-  "132": {
-   "name": "m_nPathState",
-   "type": "int",
-   "source": "binary_scan:1refs | ida_xref2"
-  },
-  "136": {
-   "name": "m_fMoveZ",
-   "type": "float",
-   "source": "binary_scan:50refs | ida_xref"
-  },
-  "140": {
-   "name": "m_pPathListHead",
-   "type": "char *",
-   "source": "binary:raw_path_list | type_fix:int鈫抳oid*(naming m_p)",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "144": {
-   "name": "m_nActionResult",
-   "type": "int",
-   "source": "B:decomp this->_todo_090 = Actor::DispatchAction(...)"
-  },
-  "148": {
-   "name": "m_nDispFontColor",
-   "type": "int",
-   "source": "B:decomp this->_todo_094 = this->m_fontcolor.Color"
-  },
-  "152": {
-   "name": "m_nDispWndColor",
-   "type": "int",
-   "source": "B:decomp this->_todo_098 = this->m_wndcolor.Color"
-  },
-  "156": {
-   "name": "m_nField9C",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "160": {
-   "name": "m_fPosX",
-   "type": "float",
-   "source": "gen_headers_9.2"
-  },
-  "164": {
-   "name": "m_fPosY",
-   "type": "float",
-   "source": "gen_headers_9.2"
-  },
-  "168": {
-   "name": "m_fPosZ",
-   "type": "float",
-   "source": "gen_headers_9.2"
-  },
-  "172": {
-   "name": "m_nFacing",
-   "type": "char",
-   "source": "gen_headers_9.2"
-  },
-  "173": {
-   "name": "m_nActionState",
-   "type": "char",
-   "source": "gen_headers_9.2"
-  },
-  "174": {
-   "name": "m_nAnimState",
-   "type": "char",
-   "source": "gen_headers_9.2"
-  },
-  "175": {
-   "name": "m_bActionPause",
-   "type": "unsigned char",
-   "source": "ida_decomp:_auto_42ad40 copied to +209, if(!this), 2 refs"
-  },
-  "176": {
-   "name": "m_szModelName",
-   "type": "int",
-   "source": "binary:disp32_auto_42ad40"
-  },
-  "180": {
-   "name": "m_mapData",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access | annotate_todo"
-  },
-  "184": {
-   "name": "m_fScale",
-   "type": "float",
-   "source": "binary_scan:3refs | ida_xref"
-  },
-  "188": {
-   "name": "m_nImageIdx",
-   "type": "int",
-   "source": "binary_scan:2refs | ida_xref"
-  },
-  "192": {
-   "name": "m_fMoveSpd",
-   "type": "float",
-   "source": "A:FPU_post_reattrib_0x40c9cf | ida_xref"
-  },
-  "206": {
-   "name": "m_byStateArray",
-   "type": "unsigned char",
-   "source": "decomp:_nearby_417040_byte_loop_32entries"
-  },
-  "208": {
-   "name": "m_bFlags",
-   "type": "char",
-   "source": "manual_fix:shrink_to_gap | ida_xref"
-  },
-  "209": {
-   "name": "m_bActionState",
-   "type": "unsigned char",
-   "source": "decomp:_auto_42ad40_LOBYTE_set_from_multiple_sources(action_state_byte)"
-  },
-  "216": {
-   "name": "m_fAngle",
-   "type": "float",
-   "source": "binary:disp32_auto_42ad40"
-  },
-  "220": {
-   "name": "m_fTileHeight",
-   "type": "float",
-   "source": "ida_decomp:_auto_420a10 if(Tile>=this), 7 refs"
-  },
-  "224": {
-   "name": "m_nSpawnData",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "228": {
-   "name": "m_nActionType",
-   "type": "int",
-   "source": "binary_scan:4refs | ida_xref"
-  },
-  "232": {
-   "name": "m_nActionStep",
-   "type": "int",
-   "source": "binary_scan:2refs | ida_xref"
-  },
-  "236": {
-   "name": "m_fActionParam",
-   "type": "float",
-   "source": "A:FPU_post_reattrib_0x44ce84 | ida_xref"
-  },
-  "240": {
-   "name": "m_nSpawnFlags",
-   "type": "unsigned char",
-   "source": "A:mov_byte_ptr_in_class_method"
-  },
-  "244": {
-   "name": "m_nRoleAction",
-   "type": "unsigned char",
-   "source": "ida_decomp:_nearby_417040 =byte(a2+72), ProcessAction switch"
-  },
-  "246": {
-   "name": "m_nRoleSlot",
-   "type": "unsigned char",
-   "source": "ida_decomp:ProcessAction GetRolePtr(scene+16, byte(this))"
-  },
-  "248": {
-   "name": "m_fWaypointX",
-   "type": "float",
-   "source": "ida_decomp:_nearby_417040 =a2+76, _nearby_417420 delta=this+4-this"
-  },
-  "252": {
-   "name": "m_fWaypointZ",
-   "type": "float",
-   "source": "ida_decomp:_nearby_417040 =a2+80, delta=z-this"
-  },
-  "256": {
-   "name": "m_nActionParam",
-   "type": "unsigned char",
-   "source": "ida_decomp:_nearby_417040 =byte(a2+84)"
-  },
-  "260": {
-   "name": "m_nInitMoveMode",
-   "type": "unsigned char",
-   "source": "A:mov_byte_ptr_disp32_in_class_method"
-  },
-  "264": {
-   "name": "m_nSpawnExtra",
-   "type": "int",
-   "source": "ida_decomp:_nearby_417040 = a2+92, copied to a2+24, 2 refs"
-  },
-  "268": {
-   "name": "m_nSpawnParam2",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "272": {
-   "name": "m_szModelPath",
-   "type": "int",
-   "source": "ida_decomp:_nearby_417040 Actor::call(this+680, (char*)this, 0)"
-  },
-  "276": {
-   "name": "m_pWaypointWnd",
-   "type": "UIWnd *",
-   "source": "binary:gap_access+codegen_infer | ida_xref"
-  },
-  "288": {
-   "name": "m_nParamArray",
-   "type": "int",
-   "source": "decomp:_nearby_417040_DWORD_loop_copy"
-  },
-  "300": {
-   "name": "m_bSpawnByteA",
-   "type": "unsigned char",
-   "source": "ida_decomp:_nearby_417040 = byte(a2+128)"
-  },
-  "301": {
-   "name": "m_bSpawnByteB",
-   "type": "unsigned char",
-   "source": "ida_decomp:_nearby_417040 = byte(a2+129)"
-  },
-  "304": {
-   "name": "m_nSpawnParam",
-   "type": "int",
-   "source": "ida_decomp:_nearby_417040 =a2+132"
-  },
-  "308": {
-   "name": "m_nActionTimer",
-   "type": "int",
-   "source": "ida_decomp:_sub_416FA0/416FE0 = 0"
-  },
-  "312": {
-   "name": "m_vecPosArray",
-   "type": "gbVec3D",
-   "source": "decomp:_nearby_417040_p+=3(12byte_stride)_gbVec3D_array"
-  },
-  "328": {
-   "name": "m_nMoveSrc",
-   "type": "int",
-   "source": "binary_scan:2refs | ida_xref"
-  },
-  "332": {
-   "name": "m_nMoveDst",
-   "type": "int",
-   "source": "binary_scan:3refs | ida_xref"
-  },
-  "336": {
-   "name": "m_nMoveStep",
-   "type": "int",
-   "source": "binary_scan:2refs | ida_xref"
-  },
-  "352": {
-   "name": "m_nSavedState",
-   "type": "int",
-   "source": "ida_decomp:ctor_1D20 =0, _method_532710 =v7, 3 refs"
-  },
-  "356": {
-   "name": "m_nVisState",
-   "type": "int",
-   "source": "ida_decomp:ctor_1D20 =0, _method_532710 = v7"
-  },
-  "360": {
-   "name": "m_bVisFlag",
-   "type": "unsigned char",
-   "source": "ida_decomp:ctor_1D20 =0, _method_532710 if(!this)"
-  },
-  "361": {
-   "name": "_gap_169",
-   "type": "unsigned char[3]",
-   "source": "fix:gap_fill_for_decomp_naming"
-  },
-  "364": {
-   "name": "m_pWndFrame",
-   "type": "char *",
-   "source": "ida_decomp:ctor_1D20 UIFrameWnd init, GetChild, 3 refs | fix:int_to_ptr(decomp_vtable_dispatch_via_bvisible+4) | fix:ptr_type_for_vtable_target",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "368": {
-   "name": "m_nTodo_170",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "380": {
-   "name": "m_nActive",
-   "type": "int",
-   "source": "binary:gap_access"
-  },
-  "384": {
-   "name": "m_fInactiveTime",
-   "type": "float",
-   "source": "reverted_auto_semantic:2x | ida_xref"
-  },
-  "400": {
-   "name": "m_pCmdQueue",
-   "type": "void *",
-   "source": "A:decomp RoleSystem::FlushCommandQueue lea as block base ptr; allocator pattern gap between m_fInactiveTime and m_partyActor"
-  },
-  "404": {
-   "name": "m_pCmdQueueEnd",
-   "type": "void *",
-   "source": "A:decomp RoleSystem::FlushCommandQueue lea as block end ptr; paired with m_pCmdQueue"
-  },
-  "408": {
-   "name": "m_fCmdInterval",
-   "type": "float",
-   "source": "A:decomp init=0x3F800000=1.0f; FlushCommandQueue cmp as interval/threshold"
-  },
-  "412": {
-   "name": "m_fCmdTimer",
-   "type": "float",
-   "source": "A:decomp init=0x3F800000=1.0f; FlushCommandQueue load/store as timer accumulator"
-  },
-  "416": {
-   "name": "m_pPathNodeIter",
-   "type": "char *",
-   "source": "binary:gap_access | type_fix:int鈫抳oid*(naming m_p)",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "420": {
-   "name": "m_nCmdQueuePos",
-   "type": "int",
-   "source": "A:decomp RoleSystem::FlushCommandQueue lea+store as queue cursor; matches allocator pattern"
-  },
-  "424": {
-   "name": "m_partyActor",
-   "type": "Actor",
-   "source": "A+:decomp Actor::DispatchAction((Actor*)&this->_todo_1A8) embedded_Actor + member_access(.m_pSelfAtt,.m_pEquipAtt*,.m_dwMatMsg)"
-  },
-  "1244": {
-   "name": "m_fPathTargetY",
-   "type": "float",
-   "source": "gen_headers_9.2"
-  },
-  "1248": {
-   "name": "m_fPathTargetZ",
-   "type": "float",
-   "source": "gen_headers_9.2"
-  },
-  "1252": {
-   "name": "m_fPathAngle",
-   "type": "float",
-   "source": "ida_decomp:PathFind sqrt((v26+50+v26+50)/490)+v25, 10 refs"
-  },
-  "1256": {
-   "name": "m_fPathSpeed",
-   "type": "float",
-   "source": "gen_headers_9.2"
-  },
-  "1260": {
-   "name": "m_nPrevMoveMode",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "1264": {
-   "name": "m_nMoveMode",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "1268": {
-   "name": "m_nMoveSubMode",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "1272": {
-   "name": "m_nCollisionState",
-   "type": "int",
-   "source": "ida_decomp:_sub_413850 checked, _nearby_41bad0 =0, 2 refs"
-  },
-  "1276": {
-   "name": "m_nCollisionParam",
-   "type": "int",
-   "source": "ida_decomp:_nearby_4150c0 loaded, _nearby_41bad0 =1, 2 refs"
-  },
-  "1280": {
-   "name": "m_bPathActive",
-   "type": "unsigned char",
-   "source": "ida_decomp:_nearby_414f90 =0, _nearby_4150c0 =1, 6 refs"
-  },
-  "1284": {
-   "name": "m_nCoreState",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "1288": {
-   "name": "m_nTransformState",
-   "type": "float",
-   "source": "B:naming_m_n+FPU_misattrib | type_change: type-evidence T1:  | T1b: 0x00412740 this+0x508(store); 0x00412A69 this+0x508(store); 0x00412A75 this+0x508(store); 0x004133D8 this+0x508(store)"
-  },
-  "1292": {
-   "name": "m_fMovement",
-   "type": "float",
-   "source": "gen_headers_9.2"
-  },
-  "1296": {
-   "name": "m_fRotAxisX",
-   "type": "float",
-   "source": "gen_headers_9.2"
-  },
-  "1300": {
-   "name": "m_fRotAxisY",
-   "type": "float",
-   "source": "gen_headers_9.2"
-  },
-  "1304": {
-   "name": "m_fRotAxisZ",
-   "type": "float",
-   "source": "gen_headers_9.2"
-  },
-  "1308": {
-   "name": "m_nMovement",
-   "type": "float",
-   "source": "B:naming_m_n+FPU_misattrib | type_change: type-evidence T1:  | T1b: 0x00412760 this+0x51C(store); 0x00412D69 this+0x51C(store); 0x004133A9 this+0x51C(load); 0x004133CB this+0x51C(store)"
-  },
-  "1312": {
-   "name": "m_fSavedRotX",
-   "type": "float",
-   "source": "A:FPU_disp32_0x41353e"
-  },
-  "1316": {
-   "name": "m_FrameA",
-   "type": "UIFrameWnd",
-   "source": "decomp:ctor_UIFrameWnd_shared_init(was_m_fPathDirX_float_WRONG)"
-  },
-  "1388": {
-   "name": "m_nActiveRole",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "1392": {
-   "name": "m_nRoleCount",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "1396": {
-   "name": "m_nAnimation",
-   "type": "int",
-   "source": "binary:raw_batch"
-  },
-  "1400": {
-   "name": "m_nAnimCopy1",
-   "type": "int",
-   "source": "ida_decomp:UpdateAnimation = v19, copied to role+1268, 3 refs"
-  },
-  "1404": {
-   "name": "m_nAnimCopy2",
-   "type": "int",
-   "source": "ida_decomp:UpdateAnimation = v18[321], 3 refs"
-  },
-  "1408": {
-   "name": "m_nAnimCopy3",
-   "type": "int",
-   "source": "ida_decomp:UpdateAnimation = v18[2172], UpdateMovement param, 3 refs"
-  },
-  "1412": {
-   "name": "m_pLinkedRole",
-   "type": "Object3D *",
-   "source": "ida_decomp:_nearby_4150c0 deref+264, _nearby_4189c0 = a7, 5 refs+codegen_infer"
-  },
-  "1416": {
-   "name": "m_nTransformMode",
-   "type": "int",
-   "source": "ida_decomp:UpdateTransform ==1, _nearby_417040 =0, 8 refs"
-  },
-  "1420": {
-   "name": "m_pLinkedSystem",
-   "type": "char *",
-   "source": "ida_decomp:UpdateTransform deref+756 byte, 6 refs | type_fix:int鈫抳oid*(deref pattern)",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "1424": {
-   "name": "m_fAnimSpeed",
-   "type": "float",
-   "source": "binary:raw_1126170624=3.0f"
-  },
-  "1428": {
-   "name": "m_fMoveRadius",
-   "type": "float",
-   "source": "ida_decomp:_nearby_417040 =v25, _nearby_417420 Length<=this, 3 refs"
-  },
-  "1432": {
-   "name": "m_fMoveSpeed",
-   "type": "float",
-   "source": "ida_decomp:_nearby_417040 =dword_58B314, *1.4>=Length, 3 refs"
-  },
-  "1436": {
-   "name": "m_nMoveReset",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "1440": {
-   "name": "m_pRenderObj",
-   "type": "gbGeomNode *",
-   "source": "gen_headers_9.2"
-  },
-  "1444": {
-   "name": "m_bRenderFlag1",
-   "type": "int",
-   "source": "binary:*(_DWORD*)&m_bRenderFlag1=0 writes 4 bytes"
-  },
-  "1448": {
-   "name": "m_bRenderFlag2",
-   "type": "char",
-   "source": "gen_headers_9.2"
-  },
-  "1452": {
-   "name": "m_nTodo_5AC",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access"
-  },
-  "1456": {
-   "name": "m_pCtrlPoint",
-   "type": "char *",
-   "source": "binary:raw_final | type_fix:int鈫抳oid*(naming m_p)",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "1460": {
-   "name": "m_nMoveRole",
-   "type": "int",
-   "source": "binary:raw_batch"
-  },
-  "1464": {
-   "name": "m_nRetryCount",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "1468": {
-   "name": "m_fCachePosX",
-   "type": "float",
-   "source": "A:FPU_disp32_0x413a53"
-  },
-  "1472": {
-   "name": "m_fCachePosY",
-   "type": "float",
-   "source": "A:FPU_disp32_0x413a46"
-  },
-  "1476": {
-   "name": "m_fCachePosZ",
-   "type": "float",
-   "source": "binary:raw_cached_pos"
-  },
-  "1480": {
-   "name": "m_fMoveTargetX",
-   "type": "float",
-   "source": "gen_headers_9.2"
-  },
-  "1484": {
-   "name": "m_fMoveTargetY",
-   "type": "int",
-   "source": "gen_headers_9.2 | type_fix:float鈫抜nt_raw_decomp"
-  },
-  "1488": {
-   "name": "m_fMoveTargetZ",
-   "type": "float",
-   "source": "gen_headers_9.2"
-  },
-  "1492": {
-   "name": "m_fMoveRole",
-   "type": "float",
-   "source": "binary:raw_batch"
-  },
-  "1496": {
-   "name": "m_fMoveParamY",
-   "type": "float",
-   "source": "ida_decomp:MoveRole = a2[1]"
-  },
-  "1500": {
-   "name": "m_fMoveParamZ",
-   "type": "float",
-   "source": "ida_decomp:MoveRole = a2[2]"
-  },
-  "1564": {
-   "name": "m_nTodo_61C",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access"
-  },
-  "1572": {
-   "name": "_embed_UIWnd_624",
-   "type": "UIWnd",
-   "source": "A+:decomp_UIWnd::GetRect((UIWnd*)&field)_cast_confirm_embed,span=88,no_overlap"
-  },
-  "2960": {
-   "name": "m_nTodo_B90",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access"
-  },
-  "2968": {
-   "name": "m_wndPanel",
-   "type": "int",
-   "source": "ida_decomp:ctor_1D20, _method_532410 vtable call, 2 refs"
-  },
-  "2988": {
-   "name": "m_StaticSlotArray",
-   "type": "UIWnd",
-   "source": "decomp:_method_532410_vtable_call+p+=38(152=UIStatic_stride)"
-  },
-  "4028": {
-   "name": "m_pScriptBuf",
-   "type": "int",
-   "source": "binary_scan:4refs | ida_xref2"
-  },
-  "4068": {
-   "name": "m_nField_FE4",
-   "type": "int",
-   "source": "binary:gap_r3"
-  },
-  "4088": {
-   "name": "m_nTodo_FF8",
-   "type": "void *",
-   "source": "binary_scan:1refs;batch_fix:int_to_v*_LEA_embed"
-  },
-  "4096": {
-   "name": "m_configData",
-   "type": "int[96]",
-   "source": "binary_scan:3refs|FullInit: array access indices 0-32, gap 384 bytes to _todo_1198"
-  },
-  "4484": {
-   "name": "m_nTodo_1184",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access"
-  },
-  "4488": {
-   "name": "m_nTodo_1188",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access"
-  },
-  "4492": {
-   "name": "m_nMoveState1",
-   "type": "int",
-   "source": "binary:_method_532410"
-  },
-  "4496": {
-   "name": "m_nMoveState2",
-   "type": "int",
-   "source": "binary:_method_532710"
-  },
-  "4500": {
-   "name": "m_nMoveState3",
-   "type": "int",
-   "source": "binary:_method_532710"
-  },
-  "4504": {
-   "name": "m_bMoveFlag1",
-   "type": "unsigned char",
-   "source": "binary:_method_532410"
-  },
-  "4508": {
-   "name": "m_nMoveParam1",
-   "type": "int",
-   "source": "binary:_method_532710"
-  },
-  "4512": {
-   "name": "m_nMoveParam2",
-   "type": "int",
-   "source": "binary:_method_532710"
-  },
-  "4516": {
-   "name": "m_bMoveFlag2",
-   "type": "unsigned char",
-   "source": "binary:_method_532710"
-  },
-  "4520": {
-   "name": "m_partyUI3",
-   "type": "UIItem",
-   "source": "A:LEA_ECX+CALL_UIItem::ctor"
-  },
-  "4752": {
-   "name": "m_teamData3",
-   "type": "int[29]",
-   "source": "decomp ref C2039"
-  },
-  "1676": {
-   "name": "m_nTodo_68C",
-   "type": "int",
-   "source": "Actor::UpdatePhysics accesses via this[1].m_nRoleState1+0x1B0 | normalize_key: 0x68C -> 1676"
-  },
-  "1680": {
-   "name": "m_nTodo_690",
-   "type": "float",
-   "source": "Actor::UpdatePhysics accesses via this[1].m_pEquipAtt0+0x1B4 | normalize_key: 0x690 -> 1680"
-  },
-  "1684_0": {
-   "name": "m_teamSlotOverlay",
-   "type": {
-    "union": [
-     {
-      "type": "int[307]",
-      "name": "m_teamSlots"
-     },
-     {
+  "name": "RoleSystem",
+  "known_members": {
+    "68": {
+      "name": "m_pVtable",
+      "type": "char *",
+      "source": "A:decomp CCBRoleState::ProcessActions uses this->m_pSceneMgr->m_rect.left as RoleSystem* -- offset 0 is vtable ptr, not int",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "72": {
+      "name": "m_fStateX",
+      "type": "float",
+      "source": "A+:decomp *(float*)&this->_field_048 explicit_float_cast"
+    },
+    "76": {
+      "name": "m_fStateY",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "80": {
+      "name": "m_nStateMode",
+      "type": "unsigned char",
+      "source": "ida_decomp:_auto_42b510 ==2/if(this), 2 refs"
+    },
+    "84": {
+      "name": "m_nTimerDuration",
+      "type": "int",
+      "source": "A:decomp LODWORD(this->_field_054) = 600 (10s at 60fps)"
+    },
+    "88": {
+      "name": "m_fDirX",
+      "type": "float",
+      "source": "binary:raw_batch"
+    },
+    "92": {
+      "name": "m_fDirY",
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
+    },
+    "96": {
+      "name": "m_fDirZ",
+      "type": "float",
+      "source": "fix:span=4_next_hits=53_ptr"
+    },
+    "100": {
+      "name": "m_pPathPoints",
+      "type": "char *",
+      "source": "B:naming_m_p+FPU_misattrib",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "104": {
+      "name": "m_nPathCount",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "108": {
+      "name": "m_pPathCurrent",
+      "type": "char *",
+      "source": "B:naming_m_p+FPU_misattrib",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "112": {
+      "name": "m_pPathNext",
+      "type": "char *",
+      "source": "binary:raw_path_next | type_fix:int鈫抳oid*(naming m_p)",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "116": {
+      "name": "m_nTodo_074",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "120": {
+      "name": "m_nPathFlag",
+      "type": "int",
+      "source": "A:decomp_set_to_0_path_waypoint_flag_17refs"
+    },
+    "124": {
+      "name": "m_nPathField7C",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "128": {
+      "name": "m_fMoveX",
+      "type": "float",
+      "source": "B:naming_m_n+FPU_misattrib | ida_xref"
+    },
+    "132": {
+      "name": "m_nPathState",
+      "type": "int",
+      "source": "binary_scan:1refs | ida_xref2"
+    },
+    "136": {
+      "name": "m_fMoveZ",
+      "type": "float",
+      "source": "binary_scan:50refs | ida_xref"
+    },
+    "140": {
+      "name": "m_pPathListHead",
+      "type": "char *",
+      "source": "binary:raw_path_list | type_fix:int鈫抳oid*(naming m_p)",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "144": {
+      "name": "m_nActionResult",
+      "type": "int",
+      "source": "B:decomp this->_todo_090 = Actor::DispatchAction(...)"
+    },
+    "148": {
+      "name": "m_nDispFontColor",
+      "type": "int",
+      "source": "B:decomp this->_todo_094 = this->m_fontcolor.Color"
+    },
+    "152": {
+      "name": "m_nDispWndColor",
+      "type": "int",
+      "source": "B:decomp this->_todo_098 = this->m_wndcolor.Color"
+    },
+    "156": {
+      "name": "m_nField9C",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "160": {
+      "name": "m_fPosX",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "164": {
+      "name": "m_fPosY",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "168": {
+      "name": "m_fPosZ",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "172": {
+      "name": "m_nFacing",
+      "type": "char",
+      "source": "gen_headers_9.2"
+    },
+    "173": {
+      "name": "m_nActionState",
+      "type": "char",
+      "source": "gen_headers_9.2"
+    },
+    "174": {
+      "name": "m_nAnimState",
+      "type": "char",
+      "source": "gen_headers_9.2"
+    },
+    "175": {
+      "name": "m_bActionPause",
+      "type": "unsigned char",
+      "source": "ida_decomp:_auto_42ad40 copied to +209, if(!this), 2 refs"
+    },
+    "176": {
+      "name": "m_szModelName",
+      "type": "int",
+      "source": "binary:disp32_auto_42ad40"
+    },
+    "180": {
+      "name": "m_mapData",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
+    },
+    "184": {
+      "name": "m_fScale",
+      "type": "float",
+      "source": "binary_scan:3refs | ida_xref"
+    },
+    "188": {
+      "name": "m_nImageIdx",
+      "type": "int",
+      "source": "binary_scan:2refs | ida_xref"
+    },
+    "192": {
+      "name": "m_fMoveSpd",
+      "type": "float",
+      "source": "A:FPU_post_reattrib_0x40c9cf | ida_xref"
+    },
+    "206": {
+      "name": "m_byStateArray",
+      "type": "unsigned char",
+      "source": "decomp:_nearby_417040_byte_loop_32entries"
+    },
+    "208": {
+      "name": "m_bFlags",
+      "type": "char",
+      "source": "manual_fix:shrink_to_gap | ida_xref"
+    },
+    "209": {
+      "name": "m_bActionState",
+      "type": "unsigned char",
+      "source": "decomp:_auto_42ad40_LOBYTE_set_from_multiple_sources(action_state_byte)"
+    },
+    "216": {
+      "name": "m_fAngle",
+      "type": "float",
+      "source": "binary:disp32_auto_42ad40"
+    },
+    "220": {
+      "name": "m_fTileHeight",
+      "type": "float",
+      "source": "ida_decomp:_auto_420a10 if(Tile>=this), 7 refs"
+    },
+    "224": {
+      "name": "m_nSpawnData",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "228": {
+      "name": "m_nActionType",
+      "type": "int",
+      "source": "binary_scan:4refs | ida_xref"
+    },
+    "232": {
+      "name": "m_nActionStep",
+      "type": "int",
+      "source": "binary_scan:2refs | ida_xref"
+    },
+    "236": {
+      "name": "m_fActionParam",
+      "type": "float",
+      "source": "A:FPU_post_reattrib_0x44ce84 | ida_xref"
+    },
+    "240": {
+      "name": "m_nSpawnFlags",
+      "type": "unsigned char",
+      "source": "A:mov_byte_ptr_in_class_method"
+    },
+    "244": {
+      "name": "m_nRoleAction",
+      "type": "unsigned char",
+      "source": "ida_decomp:_nearby_417040 =byte(a2+72), ProcessAction switch"
+    },
+    "246": {
+      "name": "m_nRoleSlot",
+      "type": "unsigned char",
+      "source": "ida_decomp:ProcessAction GetRolePtr(scene+16, byte(this))"
+    },
+    "248": {
+      "name": "m_fWaypointX",
+      "type": "float",
+      "source": "ida_decomp:_nearby_417040 =a2+76, _nearby_417420 delta=this+4-this"
+    },
+    "252": {
+      "name": "m_fWaypointZ",
+      "type": "float",
+      "source": "ida_decomp:_nearby_417040 =a2+80, delta=z-this"
+    },
+    "256": {
+      "name": "m_nActionParam",
+      "type": "unsigned char",
+      "source": "ida_decomp:_nearby_417040 =byte(a2+84)"
+    },
+    "260": {
+      "name": "m_nInitMoveMode",
+      "type": "unsigned char",
+      "source": "A:mov_byte_ptr_disp32_in_class_method"
+    },
+    "264": {
+      "name": "m_nSpawnExtra",
+      "type": "int",
+      "source": "ida_decomp:_nearby_417040 = a2+92, copied to a2+24, 2 refs"
+    },
+    "268": {
+      "name": "m_nSpawnParam2",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "272": {
+      "name": "m_szModelPath",
+      "type": "int",
+      "source": "ida_decomp:_nearby_417040 Actor::call(this+680, (char*)this, 0)"
+    },
+    "276": {
+      "name": "m_pWaypointWnd",
+      "type": "UIWnd *",
+      "source": "binary:gap_access+codegen_infer | ida_xref"
+    },
+    "288": {
+      "name": "m_nParamArray",
+      "type": "int",
+      "source": "decomp:_nearby_417040_DWORD_loop_copy"
+    },
+    "300": {
+      "name": "m_bSpawnByteA",
+      "type": "unsigned char",
+      "source": "ida_decomp:_nearby_417040 = byte(a2+128)"
+    },
+    "301": {
+      "name": "m_bSpawnByteB",
+      "type": "unsigned char",
+      "source": "ida_decomp:_nearby_417040 = byte(a2+129)"
+    },
+    "304": {
+      "name": "m_nSpawnParam",
+      "type": "int",
+      "source": "ida_decomp:_nearby_417040 =a2+132"
+    },
+    "308": {
+      "name": "m_nActionTimer",
+      "type": "int",
+      "source": "ida_decomp:_sub_416FA0/416FE0 = 0"
+    },
+    "312": {
+      "name": "m_vecPosArray",
+      "type": "gbVec3D",
+      "source": "decomp:_nearby_417040_p+=3(12byte_stride)_gbVec3D_array"
+    },
+    "328": {
+      "name": "m_nMoveSrc",
+      "type": "int",
+      "source": "binary_scan:2refs | ida_xref"
+    },
+    "332": {
+      "name": "m_nMoveDst",
+      "type": "int",
+      "source": "binary_scan:3refs | ida_xref"
+    },
+    "336": {
+      "name": "m_nMoveStep",
+      "type": "int",
+      "source": "binary_scan:2refs | ida_xref"
+    },
+    "352": {
+      "name": "m_nSavedState",
+      "type": "int",
+      "source": "ida_decomp:ctor_1D20 =0, _method_532710 =v7, 3 refs"
+    },
+    "356": {
+      "name": "m_nVisState",
+      "type": "int",
+      "source": "ida_decomp:ctor_1D20 =0, _method_532710 = v7"
+    },
+    "360": {
+      "name": "m_bVisFlag",
+      "type": "unsigned char",
+      "source": "ida_decomp:ctor_1D20 =0, _method_532710 if(!this)"
+    },
+    "361": {
+      "name": "_gap_169",
+      "type": "unsigned char[3]",
+      "source": "fix:gap_fill_for_decomp_naming"
+    },
+    "364": {
+      "name": "m_pWndFrame",
+      "type": "char *",
+      "source": "ida_decomp:ctor_1D20 UIFrameWnd init, GetChild, 3 refs | fix:int_to_ptr(decomp_vtable_dispatch_via_bvisible+4) | fix:ptr_type_for_vtable_target",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "368": {
+      "name": "m_nTodo_170",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "380": {
+      "name": "m_nActive",
+      "type": "int",
+      "source": "binary:gap_access"
+    },
+    "384": {
+      "name": "m_fInactiveTime",
+      "type": "float",
+      "source": "reverted_auto_semantic:2x | ida_xref"
+    },
+    "400": {
+      "name": "m_pCmdQueue",
+      "type": "void *",
+      "source": "A:decomp RoleSystem::FlushCommandQueue lea as block base ptr; allocator pattern gap between m_fInactiveTime and m_partyActor"
+    },
+    "404": {
+      "name": "m_pCmdQueueEnd",
+      "type": "void *",
+      "source": "A:decomp RoleSystem::FlushCommandQueue lea as block end ptr; paired with m_pCmdQueue"
+    },
+    "408": {
+      "name": "m_fCmdInterval",
+      "type": "float",
+      "source": "A:decomp init=0x3F800000=1.0f; FlushCommandQueue cmp as interval/threshold"
+    },
+    "412": {
+      "name": "m_fCmdTimer",
+      "type": "float",
+      "source": "A:decomp init=0x3F800000=1.0f; FlushCommandQueue load/store as timer accumulator"
+    },
+    "416": {
+      "name": "m_pPathNodeIter",
+      "type": "char *",
+      "source": "binary:gap_access | type_fix:int鈫抳oid*(naming m_p)",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "420": {
+      "name": "m_nCmdQueuePos",
+      "type": "int",
+      "source": "A:decomp RoleSystem::FlushCommandQueue lea+store as queue cursor; matches allocator pattern"
+    },
+    "424": {
+      "name": "m_partyActor",
+      "type": "Actor",
+      "source": "A+:decomp Actor::DispatchAction((Actor*)&this->_todo_1A8) embedded_Actor + member_access(.m_pSelfAtt,.m_pEquipAtt*,.m_dwMatMsg)"
+    },
+    "1244": {
+      "name": "m_fPathTargetY",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "1248": {
+      "name": "m_fPathTargetZ",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "1252": {
+      "name": "m_fPathAngle",
+      "type": "float",
+      "source": "ida_decomp:PathFind sqrt((v26+50+v26+50)/490)+v25, 10 refs"
+    },
+    "1256": {
+      "name": "m_fPathSpeed",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "1260": {
+      "name": "m_nPrevMoveMode",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1264": {
+      "name": "m_nMoveMode",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1268": {
+      "name": "m_nMoveSubMode",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1272": {
+      "name": "m_nCollisionState",
+      "type": "int",
+      "source": "ida_decomp:_sub_413850 checked, _nearby_41bad0 =0, 2 refs"
+    },
+    "1276": {
+      "name": "m_nCollisionParam",
+      "type": "int",
+      "source": "ida_decomp:_nearby_4150c0 loaded, _nearby_41bad0 =1, 2 refs"
+    },
+    "1280": {
+      "name": "m_bPathActive",
+      "type": "unsigned char",
+      "source": "ida_decomp:_nearby_414f90 =0, _nearby_4150c0 =1, 6 refs"
+    },
+    "1284": {
+      "name": "m_nCoreState",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1288": {
+      "name": "m_nTransformState",
+      "type": "float",
+      "source": "B:naming_m_n+FPU_misattrib | type_change: type-evidence T1:  | T1b: 0x00412740 this+0x508(store); 0x00412A69 this+0x508(store); 0x00412A75 this+0x508(store); 0x004133D8 this+0x508(store)"
+    },
+    "1292": {
+      "name": "m_fMovement",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "1296": {
+      "name": "m_fRotAxisX",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "1300": {
+      "name": "m_fRotAxisY",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "1304": {
+      "name": "m_fRotAxisZ",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "1308": {
+      "name": "m_nMovement",
+      "type": "float",
+      "source": "B:naming_m_n+FPU_misattrib | type_change: type-evidence T1:  | T1b: 0x00412760 this+0x51C(store); 0x00412D69 this+0x51C(store); 0x004133A9 this+0x51C(load); 0x004133CB this+0x51C(store)"
+    },
+    "1312": {
+      "name": "m_fSavedRotX",
+      "type": "float",
+      "source": "A:FPU_disp32_0x41353e"
+    },
+    "1316": {
+      "name": "m_FrameA",
+      "type": "UIFrameWnd",
+      "source": "decomp:ctor_UIFrameWnd_shared_init(was_m_fPathDirX_float_WRONG)"
+    },
+    "1388": {
+      "name": "m_nActiveRole",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1392": {
+      "name": "m_nRoleCount",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1396": {
+      "name": "m_nAnimation",
+      "type": "int",
+      "source": "binary:raw_batch"
+    },
+    "1400": {
+      "name": "m_nAnimCopy1",
+      "type": "int",
+      "source": "ida_decomp:UpdateAnimation = v19, copied to role+1268, 3 refs"
+    },
+    "1404": {
+      "name": "m_nAnimCopy2",
+      "type": "int",
+      "source": "ida_decomp:UpdateAnimation = v18[321], 3 refs"
+    },
+    "1408": {
+      "name": "m_nAnimCopy3",
+      "type": "int",
+      "source": "ida_decomp:UpdateAnimation = v18[2172], UpdateMovement param, 3 refs"
+    },
+    "1412": {
+      "name": "m_pLinkedRole",
+      "type": "Object3D *",
+      "source": "ida_decomp:_nearby_4150c0 deref+264, _nearby_4189c0 = a7, 5 refs+codegen_infer"
+    },
+    "1416": {
+      "name": "m_nTransformMode",
+      "type": "int",
+      "source": "ida_decomp:UpdateTransform ==1, _nearby_417040 =0, 8 refs"
+    },
+    "1420": {
+      "name": "m_pLinkedSystem",
+      "type": "char *",
+      "source": "ida_decomp:UpdateTransform deref+756 byte, 6 refs | type_fix:int鈫抳oid*(deref pattern)",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "1424": {
+      "name": "m_fAnimSpeed",
+      "type": "float",
+      "source": "binary:raw_1126170624=3.0f"
+    },
+    "1428": {
+      "name": "m_fMoveRadius",
+      "type": "float",
+      "source": "ida_decomp:_nearby_417040 =v25, _nearby_417420 Length<=this, 3 refs"
+    },
+    "1432": {
+      "name": "m_fMoveSpeed",
+      "type": "float",
+      "source": "ida_decomp:_nearby_417040 =dword_58B314, *1.4>=Length, 3 refs"
+    },
+    "1436": {
+      "name": "m_nMoveReset",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "1440": {
+      "name": "m_pRenderObj",
+      "type": "gbGeomNode *",
+      "source": "gen_headers_9.2"
+    },
+    "1444": {
+      "name": "m_bRenderFlag1",
+      "type": "int",
+      "source": "binary:*(_DWORD*)&m_bRenderFlag1=0 writes 4 bytes"
+    },
+    "1448": {
+      "name": "m_bRenderFlag2",
+      "type": "char",
+      "source": "gen_headers_9.2"
+    },
+    "1452": {
+      "name": "m_nTodo_5AC",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "1456": {
+      "name": "m_pCtrlPoint",
+      "type": "char *",
+      "source": "binary:raw_final | type_fix:int鈫抳oid*(naming m_p)",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "1460": {
+      "name": "m_nMoveRole",
+      "type": "int",
+      "source": "binary:raw_batch"
+    },
+    "1464": {
+      "name": "m_nRetryCount",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "1468": {
+      "name": "m_fCachePosX",
+      "type": "float",
+      "source": "A:FPU_disp32_0x413a53"
+    },
+    "1472": {
+      "name": "m_fCachePosY",
+      "type": "float",
+      "source": "A:FPU_disp32_0x413a46"
+    },
+    "1476": {
+      "name": "m_fCachePosZ",
+      "type": "float",
+      "source": "binary:raw_cached_pos"
+    },
+    "1480": {
+      "name": "m_fMoveTargetX",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "1484": {
+      "name": "m_fMoveTargetY",
+      "type": "int",
+      "source": "gen_headers_9.2 | type_fix:float鈫抜nt_raw_decomp"
+    },
+    "1488": {
+      "name": "m_fMoveTargetZ",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "1492": {
+      "name": "m_fMoveRole",
+      "type": "float",
+      "source": "binary:raw_batch"
+    },
+    "1496": {
+      "name": "m_fMoveParamY",
+      "type": "float",
+      "source": "ida_decomp:MoveRole = a2[1]"
+    },
+    "1500": {
+      "name": "m_fMoveParamZ",
+      "type": "float",
+      "source": "ida_decomp:MoveRole = a2[2]"
+    },
+    "1564": {
+      "name": "m_nTodo_61C",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "1572": {
+      "name": "_embed_UIWnd_624",
+      "type": "UIWnd",
+      "source": "A+:decomp_UIWnd::GetRect((UIWnd*)&field)_cast_confirm_embed,span=88,no_overlap"
+    },
+    "2960": {
+      "name": "m_nTodo_B90",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "2968": {
+      "name": "m_wndPanel",
+      "type": "int",
+      "source": "ida_decomp:ctor_1D20, _method_532410 vtable call, 2 refs"
+    },
+    "2988": {
+      "name": "m_StaticSlotArray",
+      "type": "UIWnd",
+      "source": "decomp:_method_532410_vtable_call+p+=38(152=UIStatic_stride)"
+    },
+    "4028": {
+      "name": "m_pScriptBuf",
+      "type": "int",
+      "source": "binary_scan:4refs | ida_xref2"
+    },
+    "4068": {
+      "name": "m_nField_FE4",
+      "type": "int",
+      "source": "binary:gap_r3"
+    },
+    "4088": {
+      "name": "m_nTodo_FF8",
+      "type": "void *",
+      "source": "binary_scan:1refs;batch_fix:int_to_v*_LEA_embed"
+    },
+    "4096": {
+      "name": "m_configData",
+      "type": "int[96]",
+      "source": "binary_scan:3refs|FullInit: array access indices 0-32, gap 384 bytes to _todo_1198"
+    },
+    "4484": {
+      "name": "m_nTodo_1184",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "4488": {
+      "name": "m_nTodo_1188",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "4492": {
+      "name": "m_nMoveState1",
+      "type": "int",
+      "source": "binary:_method_532410"
+    },
+    "4496": {
+      "name": "m_nMoveState2",
+      "type": "int",
+      "source": "binary:_method_532710"
+    },
+    "4500": {
+      "name": "m_nMoveState3",
+      "type": "int",
+      "source": "binary:_method_532710"
+    },
+    "4504": {
+      "name": "m_bMoveFlag1",
+      "type": "unsigned char",
+      "source": "binary:_method_532410"
+    },
+    "4508": {
+      "name": "m_nMoveParam1",
+      "type": "int",
+      "source": "binary:_method_532710"
+    },
+    "4512": {
+      "name": "m_nMoveParam2",
+      "type": "int",
+      "source": "binary:_method_532710"
+    },
+    "4516": {
+      "name": "m_bMoveFlag2",
+      "type": "unsigned char",
+      "source": "binary:_method_532710"
+    },
+    "4520": {
+      "name": "m_partyUI3",
+      "type": "UIItem",
+      "source": "A:LEA_ECX+CALL_UIItem::ctor"
+    },
+    "4752": {
+      "name": "m_teamData3",
+      "type": "int[29]",
+      "source": "decomp ref C2039"
+    },
+    "1676": {
+      "name": "m_nTodo_68C",
+      "type": "int",
+      "source": "Actor::UpdatePhysics accesses via this[1].m_nRoleState1+0x1B0 | normalize_key: 0x68C -> 1676"
+    },
+    "1680": {
+      "name": "m_nTodo_690",
+      "type": "float",
+      "source": "Actor::UpdatePhysics accesses via this[1].m_pEquipAtt0+0x1B4 | normalize_key: 0x690 -> 1680"
+    },
+    "1684_0": {
+      "name": "m_teamSlotOverlay",
       "type": {
-       "struct": [
-        {
-         "offset": 4,
-         "name": "m_fCBTimer",
-         "type": "float"
-        },
-        {
-         "offset": 8,
-         "name": "m_nTodo_69C",
-         "type": "int"
-        },
-        {
-         "offset": 84,
-         "name": "m_nTodo_6E8",
-         "type": "float"
-        },
-        {
-         "offset": 88,
-         "name": "m_nTodo_6EC",
-         "type": "float"
-        },
-        {
-         "offset": 92,
-         "name": "m_nTodo_6F0",
-         "type": "float"
-        },
-        {
-         "offset": 104,
-         "name": "m_nTodo_6FC",
-         "type": "float"
-        },
-        {
-         "offset": 108,
-         "name": "m_nTodo_700",
-         "type": "float"
-        },
-        {
-         "offset": 112,
-         "name": "m_nTodo_704",
-         "type": "float"
-        },
-        {
-         "offset": 868,
-         "name": "pfVal",
-         "type": "float"
-        },
-        {
-         "offset": 872,
-         "name": "m_CCBStageCamBuffer",
-         "type": "char"
-        }
-       ]
+        "union": [
+          {
+            "type": "int[307]",
+            "name": "m_teamSlots"
+          },
+          {
+            "type": {
+              "struct": [
+                {
+                  "offset": 4,
+                  "name": "m_fCBTimer",
+                  "type": "float"
+                },
+                {
+                  "offset": 8,
+                  "name": "m_nTodo_69C",
+                  "type": "int"
+                },
+                {
+                  "offset": 84,
+                  "name": "m_nTodo_6E8",
+                  "type": "float"
+                },
+                {
+                  "offset": 88,
+                  "name": "m_nTodo_6EC",
+                  "type": "float"
+                },
+                {
+                  "offset": 92,
+                  "name": "m_nTodo_6F0",
+                  "type": "float"
+                },
+                {
+                  "offset": 104,
+                  "name": "m_nTodo_6FC",
+                  "type": "float"
+                },
+                {
+                  "offset": 108,
+                  "name": "m_nTodo_700",
+                  "type": "float"
+                },
+                {
+                  "offset": 112,
+                  "name": "m_nTodo_704",
+                  "type": "float"
+                },
+                {
+                  "offset": 868,
+                  "name": "pfVal",
+                  "type": "float"
+                },
+                {
+                  "offset": 872,
+                  "name": "m_CCBStageCamBuffer",
+                  "type": "char"
+                }
+              ]
+            },
+            "name": "m_state"
+          }
+        ]
       },
-      "name": "m_state"
-     }
-    ]
-   },
-   "source": "overlap:team_slots_with_role_system_state"
-  },
-  "3072": {
-   "name": "m_teamSlotsB",
-   "type": {
-    "union": [
-     {
-      "type": "tagTeamSlotsBOverlay",
-      "name": "combat"
-     }
-    ]
-   },
-   "source": "binary_scan:5refs|FullInit: array access indices 94-190"
-  }
- },
- "binary_size": 4868,
- "base_size": 68,
- "base_class": "UIWnd",
- "note": " | binary_size set to 8704 (stride from binary, was 8908)",
- "methods": {
-  "0x0040BE50": {
-   "name": "Init",
-   "signature": "int *__thiscall()"
-  },
-  "0x0040BE80": {
-   "name": "RecalcAggregatedStats",
-   "signature": "int __thiscall(char pData)"
-  },
-  "0x00410E40": {
-   "name": "CheckVisible",
-   "signature": "int __cdecl()",
-   "static": true
-  },
-  "0x00412400": {
-   "name": "RenderRole",
-   "signature": "void __thiscall(gbMatrixStack *pStack, int nVal)"
-  },
-  "0x00412710": {
-   "name": "UpdateTransform",
-   "signature": "int __thiscall()"
-  },
-  "0x00412E60": {
-   "name": "MoveRole",
-   "signature": "int __thiscall(float *pPos, int nVal, int nVal2, int nVal3)"
-  },
-  "0x00413010": {
-   "name": "UpdateRole",
-   "signature": "char __thiscall(float *pfVal, int nVal, int nVal2)"
-  },
-  "0x00414A30": {
-   "name": "PathFind",
-   "signature": "int __thiscall(float *pTarget)"
-  },
-  "0x00416790": {
-   "name": "UpdateAnimation",
-   "signature": "void __thiscall(float *pfVal)"
-  },
-  "0x00416F10": {
-   "name": "GetActiveRole",
-   "signature": "int __thiscall()"
-  },
-  "0x00419A80": {
-   "name": "GetDirection",
-   "signature": "int __thiscall(float *pOut)"
-  },
-  "0x0041BBE0": {
-   "name": "GetCount",
-   "signature": "int __thiscall()"
-  },
-  "0x00420F30": {
-   "name": "GetRolePtr",
-   "signature": "int __thiscall(int index)"
-  },
-  "0x00412D90": {
-   "name": "BindPartyToScene",
-   "signature": "char __thiscall RoleSystem::BindPartyToScene(float *pfVal, int nVal)"
-  },
-  "0x00531E70": {
-   "name": "ctor",
-   "signature": "void __thiscall()",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-  },
-  "0x00416220": {
-   "name": "CheckMoveCollisionDist",
-   "signature": "void __thiscall(int this, float *pfVal)"
-  },
-  "0x004142E0": {
-   "name": "NotifyMoveComplete",
-   "signature": "int __thiscall()"
-  },
-  "0x004181E0": {
-   "name": "Notify",
-   "signature": "int __thiscall()"
-  },
-  "0x00531D20": {
-   "name": "ctor_1D20",
-   "signature": "int __thiscall()"
-  },
-  "0x0042A010": {
-   "name": "ProcessAction",
-   "signature": "void __thiscall()"
-  },
-  "0x004122C0": {
-   "name": "UpdatePosition",
-   "signature": "void __thiscall()"
-  },
-  "0x00412230": {
-   "name": "SetMoveSpeed",
-   "signature": "void __thiscall(float fSpeed, int nRoleIndex, int nFlag)"
-  },
-  "0x00418130": {
-   "name": "GetMoveState",
-   "signature": "int __thiscall()"
-  },
-  "0x00421020": {
-   "name": "CheckCollision",
-   "signature": "BOOL __thiscall(int *pResult, int nFlag)"
-  },
-  "0x00412B60": {
-   "name": "SetMoveTarget",
-   "signature": "void __thiscall(float *pTargetPos, int nFlags)"
-  },
-  "0x00416550": {
-   "name": "IsPathComplete",
-   "signature": "void __thiscall(float *pTargetPos, int nMode)"
-  },
-  "0x00416620": {
-   "name": "UpdateMovement",
-   "signature": "int __thiscall(float fDeltaTime, int nMode)"
-  },
-  "0x00413CD0": {
-   "name": "PathFollowUpdate",
-   "signature": "void __thiscall()"
-  },
-  "0x00416490": {
-   "name": "SetTargetRotation",
-   "signature": "void __thiscall(gbVec3D *pTarget)"
-  },
-  "0x004125B0": {
-   "name": "NotifySceneChange",
-   "signature": "int __thiscall()"
-  },
-  "0x00414E30": {
-   "name": "GetActionByIndex",
-   "signature": "int __thiscall(int nParam)"
-  },
-  "0x00412A50": {
-   "name": "StartHalfSpeedMovement",
-   "signature": "int __thiscall()"
-  },
-  "0x004178A0": {
-   "name": "CheckVisibility",
-   "signature": "BOOL __thiscall()"
-  },
-  "0x0041ABE0": {
-   "name": "UpdateFollowVelocity",
-   "signature": "void __thiscall()"
-  },
-  "0x0041AD40": {
-   "name": "UpdateFollowVelocityEx",
-   "signature": "void __thiscall()"
-  },
-  "0x00411E00": {
-   "name": "ApplyMoveStep",
-   "signature": "void __thiscall RoleSystem::ApplyMoveStep(double fInput, int nVal, float fVal, char bCollide)"
-  },
-  "0x00412A90": {
-   "name": "MoveToTile",
-   "signature": "void __thiscall RoleSystem::MoveToTile(__int64 tileXY, int nMode)"
-  },
-  "0x00413420": {
-   "name": "StepAlongPath",
-   "signature": "int __thiscall RoleSystem::StepAlongPath(double fStepSize, float fVal)"
-  },
-  "0x00413850": {
-   "name": "AdvanceToTarget",
-   "signature": "double __thiscall RoleSystem::AdvanceToTarget(double fDelta)"
-  },
-  "0x00414350": {
-   "name": "UpdateMovement",
-   "signature": "double __thiscall RoleSystem::UpdateMovement(double result, gbVec3D *pB)"
-  },
-  "0x004150C0": {
-   "name": "UpdateActionState",
-   "signature": "void __thiscall(float fVal)"
-  },
-  "0x00416FA0": {
-   "name": "InitPathTracking",
-   "signature": "void __thiscall(float *nFlags)"
-  },
-  "0x00416FE0": {
-   "name": "RestoreMoveMode",
-   "signature": "void __thiscall(float *nFlags)"
-  },
-  "0x00417420": {
-   "name": "UpdateTransform",
-   "signature": "void __thiscall RoleSystem::UpdateTransform__ovl_7420(float arg0)"
-  },
-  "0x00417850": {
-   "name": "EnterSubMode6",
-   "signature": "int __thiscall()"
-  },
-  "0x00417C50": {
-   "name": "UpdateMoveSubMode",
-   "signature": "double __thiscall RoleSystem::UpdateMoveSubMode(double result, float result_4)"
-  },
-  "0x0041A1A0": {
-   "name": "ScanMoveDirections",
-   "signature": "void __thiscall RoleSystem::ScanMoveDirections(float fRadius)"
-  },
-  "0x0041A450": {
-   "name": "UpdateFollowerMovement",
-   "signature": "void __thiscall(float fVal)"
-  },
-  "0x00420320": {
-   "name": "GetCurrentID",
-   "signature": "int __thiscall(int *pnVal, char pData)"
-  },
-  "0x00420A10": {
-   "name": "IsTileInBounds",
-   "signature": "int *__thiscall(int nVal, int nY, int nVal2)"
-  },
-  "0x00420A90": {
-   "name": "SetRoleGridPosition",
-   "signature": "void __thiscall(float fVal, int nVal, float fVal2, int nVal2)"
-  },
-  "0x00420FB0": {
-   "name": "CheckMoveCollision",
-   "signature": "BOOL __thiscall(int *index, float *pfVal, int nVal)"
-  },
-  "0x00421150": {
-   "name": "IsTilePassable",
-   "signature": "BOOL __thiscall RoleSystem::IsTilePassable(char nTileType, int nSceneIdx, int nX, int nY)"
-  },
-  "0x004214B0": {
-   "name": "ValidatePathIndex",
-   "signature": "BOOL __thiscall(int index, int nY, int nVal)"
-  },
-  "0x00421BF0": {
-   "name": "NotifyPathEnd",
-   "signature": "char *__thiscall(int nVal)"
-  },
-  "0x0042A950": {
-   "name": "CheckScriptTrigger",
-   "signature": "BOOL __thiscall RoleSystem::CheckScriptTrigger(struct gbVec3D *p)"
-  },
-  "0x0042B510": {
-   "name": "UpdateStateMode",
-   "signature": "void __thiscall()"
-  },
-  "0x0042C0C0": {
-   "name": "SetTileTypeVisible",
-   "signature": "int *__thiscall RoleSystem::SetTileTypeVisible(int nTileType, int bVisible)"
-  },
-  "0x0042D9F0": {
-   "name": "ExecScriptDataCmd",
-   "signature": "int __thiscall RoleSystem::ExecScriptDataCmd(int *p_DWORD)"
-  },
-  "0x0042E870": {
-   "name": "ExecScriptDataIdx",
-   "signature": "int __thiscall RoleSystem::ExecScriptDataIdx(int nVal)"
-  },
-  "0x004083E0": {
-   "name": "CheckSceneCollision",
-   "signature": "BOOL __thiscall(int *nFlag, int nVal)"
-  },
-  "0x00410430": {
-   "name": "RenderMainRole",
-   "signature": "void __cdecl RoleSystem::RenderMainRole(void *pMatrixStack)",
-   "static": true
-  },
-  "0x004132B0": {
-   "name": "MoveToTileCheck",
-   "signature": "char __thiscall RoleSystem::MoveToTileCheck(int nTileX, int nTileY, int nMode)"
-  },
-  "0x00413390": {
-   "name": "InterpolateMoveFrame",
-   "signature": "void __thiscall(float fVal)"
-  },
-  "0x00417040": {
-   "name": "SetupMoveState",
-   "signature": "void __thiscall RoleSystem::SetupMoveState(float *pfVal)"
-  },
-  "0x00417BC0": {
-   "name": "StopAndResetPath",
-   "signature": "void __thiscall()"
-  },
-  "0x004189C0": {
-   "name": "StartPathMove",
-   "signature": "int __thiscall RoleSystem::StartPathMove(char *pszBuf, int nVal, char *pszBuf2, int nVal2, float fVal, int nVal3)"
-  },
-  "0x00419A20": {
-   "name": "GetActorState",
-   "signature": "void __thiscall(double thisa, int nVal, int nVal2, int nVal3)"
-  },
-  "0x00419B30": {
-   "name": "UpdateFollowBehavior",
-   "signature": "void __thiscall RoleSystem::UpdateFollowBehavior(float fDelta)"
-  },
-  "0x0041A150": {
-   "name": "SetActorTexture",
-   "signature": "void __thiscall(const char *pszName)"
-  },
-  "0x0041B6C0": {
-   "name": "ApproachTarget",
-   "signature": "char __thiscall RoleSystem::ApproachTarget(int nVal)"
-  },
-  "0x00420290": {
-   "name": "RoleSystem",
-   "signature": "void __thiscall()"
-  },
-  "0x00420930": {
-   "name": "InitInternal",
-   "signature": "void __thiscall RoleSystem::InitInternal()"
-  },
-  "0x00420940": {
-   "name": "CopyRoleToSlot",
-   "signature": "int __thiscall(RoleSystem *pRoleSystem, int index)"
-  },
-  "0x00420F70": {
-   "name": "IsRoleInRange",
-   "signature": "BOOL __thiscall(int index, int *pnVal, int nVal)"
-  },
-  "0x00421440": {
-   "name": "SetRoleParam",
-   "signature": "void __thiscall(int index, float *pfVal, int *pnVal, int *p_DWORD)"
-  },
-  "0x004215B0": {
-   "name": "AdvanceOnPath",
-   "signature": "int __thiscall(int *pResult, char *nFlag, int nVal, char *pszBuf, int nVal2)"
-  },
-  "0x00421710": {
-   "name": "ValidatePath",
-   "signature": "int __thiscall(int *pResult, int *nFlag, int *pnVal, int nVal, int nVal2, int **a7)"
-  },
-  "0x004218B0": {
-   "name": "GetPathTarget",
-   "signature": "BOOL __thiscall(int *pResult, int *nFlag, int *pnVal, char *pszBuf, int nVal, int **a7)"
-  },
-  "0x00421A90": {
-   "name": "UpdatePathProgress",
-   "signature": "int __thiscall(char arg0, int index, char *pszBuf, int nVal, char *pszBuf2, int nVal2)"
-  },
-  "0x00421D10": {
-   "name": "BuildPathSegment",
-   "signature": "int *__thiscall(int *pnVal, char pData)"
-  },
-  "0x00421EA0": {
-   "name": "ResetTransition",
-   "signature": "void __thiscall()"
-  },
-  "0x0042DBD0": {
-   "name": "ExecScriptDataA",
-   "signature": "int __thiscall RoleSystem::ExecScriptDataA()"
-  },
-  "0x0042DD80": {
-   "name": "ExecScriptDataB",
-   "signature": "int __thiscall RoleSystem::ExecScriptDataB()"
-  },
-  "0x0042EA30": {
-   "name": "ExecScriptDataC",
-   "signature": "int __thiscall RoleSystem::ExecScriptDataC()"
-  },
-  "0x00531E50": {
-   "name": "_scalar_dtor",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "ordinal": 5
-  },
-  "0x00408460": {
-   "name": "BindRoleToScene",
-   "signature": "int __thiscall(int index, float *pfVal, float *pfVal2, int nVal, char pData)"
-  },
-  "0x0040C9A0": {
-   "name": "ForceStopRole",
-   "signature": "int __cdecl(int nVal)",
-   "static": true
-  },
-  "0x004126D0": {
-   "name": "GetAnimOffset",
-   "signature": "int __cdecl RoleSystem::GetAnimOffset(int nType, unsigned __int8 nMode)",
-   "static": true
-  },
-  "0x00412C30": {
-   "name": "SetPathWaypoint",
-   "signature": "int __thiscall(float fVal)"
-  },
-  "0x00413C00": {
-   "name": "PlaceAtRegion",
-   "signature": "int __thiscall RoleSystem::PlaceAtRegion(int nSceneIdx, int nRegion)"
-  },
-  "0x004148C0": {
-   "name": "UpdateMoveInterpolation",
-   "signature": "float *__thiscall(float *pfVal, float *pfVal2)"
-  },
-  "0x00414A10": {
-   "name": "UpdateMoveTimer",
-   "signature": "void __thiscall()"
-  },
-  "0x00414F90": {
-   "name": "PlayAction",
-   "signature": "int __thiscall RoleSystem::PlayAction(char *pszAction, int nMode)"
-  },
-  "0x004164E0": {
-   "name": "IsPathMoving",
-   "signature": "BOOL __thiscall()"
-  },
-  "0x00416500": {
-   "name": "IsActionBlocked",
-   "signature": "int __thiscall()"
-  },
-  "0x00416BC0": {
-   "name": "ProcessInteraction",
-   "signature": "void __thiscall RoleSystem::ProcessInteraction()"
-  },
-  "0x004180B0": {
-   "name": "CheckWidgetReady",
-   "signature": "int __thiscall(gbRay *pRay)"
-  },
-  "0x00418970": {
-   "name": "AddVec3ToTarget",
-   "signature": "void __thiscall(int nVal, int nVal2)"
-  },
-  "0x00418D90": {
-   "name": "IsInBounds",
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
-  },
-  "0x00418DC0": {
-   "name": "TryMoveToTarget",
-   "signature": "char __thiscall RoleSystem::TryMoveToTarget(__int16 pData, int nVal)"
-  },
-  "0x00419030": {
-   "name": "ResetPathParams",
-   "signature": "int __thiscall(int nVal)"
-  },
-  "0x00419790": {
-   "name": "ProcessMoveCommand",
-   "signature": "int __thiscall(int *p_DWORD)"
-  },
-  "0x004198C0": {
-   "name": "StartLinearMove",
-   "signature": "void __thiscall RoleSystem::StartLinearMove(int *pTargetPos, int nMode)"
-  },
-  "0x00419AE0": {
-   "name": "NotifyAndSetMode6",
-   "signature": "int __thiscall()"
-  },
-  "0x00419B10": {
-   "name": "SetCollisionRadius",
-   "signature": "__int64 __thiscall()"
-  },
-  "0x00419EF0": {
-   "name": "AdvancePathStep",
-   "signature": "BOOL __thiscall RoleSystem::AdvancePathStep(float *pfVal)"
-  },
-  "0x0041AEA0": {
-   "name": "SetBlendMode",
-   "signature": "void __thiscall(float fAlpha)"
-  },
-  "0x0041AEE0": {
-   "name": "SetTransform",
-   "signature": "int __thiscall(int *p_DWORD)"
-  },
-  "0x0041AF50": {
-   "name": "AllocPathPage",
-   "signature": "int __thiscall RoleSystem::AllocPathPage(int nVal, int nVal2)"
-  },
-  "0x0041B120": {
-   "name": "StopPathMovement",
-   "signature": "int __thiscall(int nVal)"
-  },
-  "0x0041B420": {
-   "name": "LoadWeaponModel",
-   "signature": "void __thiscall(char *pszRoleName)"
-  },
-  "0x0041BA10": {
-   "name": "InterpolateHeight",
-   "signature": "BOOL __thiscall(float *pfVal)"
-  },
-  "0x0041BAD0": {
-   "name": "InitDefaultState",
-   "signature": "int __thiscall()"
-  },
-  "0x0041BC30": {
-   "name": "ExportRoleData",
-   "signature": "int __thiscall(float *pfVal)"
-  },
-  "0x0041BD40": {
-   "name": "ClearColors",
-   "signature": "int *__thiscall(_BYTE *p_BYTE)"
-  },
-  "0x0041C090": {
-   "name": "FlushCommandQueue",
-   "signature": "int __thiscall RoleSystem::FlushCommandQueue()"
-  },
-  "0x0041C190": {
-   "name": "SetInactive",
-   "signature": "int __thiscall(int nVal)"
-  },
-  "0x0041D220": {
-   "name": "AddCameraKeyframe",
-   "signature": "int __thiscall RoleSystem::AddCameraKeyframe()"
-  },
-  "0x004209E0": {
-   "name": "ResetState",
-   "signature": "void __thiscall RoleSystem::ResetState()",
-   "ordinal": 3
-  },
-  "0x00420F50": {
-   "name": "GetMapNodePtr",
-   "signature": "char *__thiscall RoleSystem::GetMapNodePtr(int nIndex)"
-  },
-  "0x00421DD0": {
-   "name": "ClearWaypointBuffer",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3, char pData)"
-  },
-  "0x00421F20": {
-   "name": "GetFontColor",
-   "signature": "size_t __thiscall(FILE *Stream)"
-  },
-  "0x00421F70": {
-   "name": "ClearPathData",
-   "signature": "char __thiscall(FILE *Buffer)"
-  },
-  "0x00422000": {
-   "name": "BuildModelPath",
-   "signature": "BOOL __thiscall(const char *pszName)"
-  },
-  "0x00422140": {
-   "name": "ResetModelPaths",
-   "signature": "int *__thiscall()"
-  },
-  "0x00422430": {
-   "name": "SetAnimBlend",
-   "signature": "char __cdecl(int nVal)",
-   "static": true
-  },
-  "0x00422540": {
-   "name": "SetAnimFrame",
-   "signature": "void __thiscall()"
-  },
-  "0x00422740": {
-   "name": "ResetGlobalPos",
-   "signature": "void __thiscall()"
-  },
-  "0x004234A0": {
-   "name": "SetCameraMode",
-   "signature": "int __cdecl(int nVal)",
-   "static": true
-  },
-  "0x0042AD40": {
-   "name": "SetActionState",
-   "signature": "int __thiscall(int nVal, char pData)"
-  },
-  "0x0044B470": {
-   "name": "ProcessWaypoint",
-   "signature": "int __thiscall RoleSystem::ProcessWaypoint()"
-  },
-  "0x0044CD90": {
-   "name": "InitUICtrlArray",
-   "signature": "int __thiscall()"
-  },
-  "0x0044CEC0": {
-   "name": "InitDefaultPositions",
-   "signature": "int __thiscall RoleSystem::InitDefaultPositions()",
-   "_misattrib_evidence": "max_offset=4224>class_size=180"
-  },
-  "0x0044D380": {
-   "name": "InitRandomParticles",
-   "signature": "int __thiscall RoleSystem::InitRandomParticles()"
-  },
-  "0x00531F50": {
-   "name": "InitAllSystems",
-   "signature": "int __thiscall RoleSystem::InitAllSystems()",
-   "_misattrib_evidence": "max_offset=7432>class_size=232"
-  },
-  "0x00532360": {
-   "name": "ApplyRotationAxis",
-   "signature": "int __thiscall(int nVal, char pData)"
-  },
-  "0x00532410": {
-   "name": "ShowHideUI",
-   "signature": "int __thiscall(char pData)"
-  },
-  "0x005326A0": {
-   "name": "StartBlinkUI",
-   "signature": "int __thiscall()"
-  },
-  "0x005326E0": {
-   "name": "StopBlinkUI",
-   "signature": "int __thiscall()"
-  },
-  "0x00532710": {
-   "name": "UpdateTimer",
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
-   "ordinal": 2
-  },
-  "0x00532960": {
-   "name": "ScaleValue",
-   "signature": "int __cdecl(int nVal, int *pnVal, int *p_DWORD)",
-   "static": true
-  },
-  "0x005329A0": {
-   "name": "HandleMsgDLL",
-   "signature": "int __thiscall RoleSystem::HandleMsgDLL(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)",
-   "ordinal": 6
-  },
-  "0x00532C80": {
-   "name": "AdjustHeight",
-   "signature": "void __thiscall(int nVal)"
-  },
-  "0x00532D30": {
-   "name": "GetStateMode",
-   "signature": "int __thiscall RoleSystem::GetStateMode()"
-  },
-  "0x00532E10": {
-   "name": "ResetPathState",
-   "signature": "char __thiscall RoleSystem::ResetPathState()"
-  },
-  "0x00414250": {
-   "name": "NormalizeDirection",
-   "signature": "void __thiscall(float *pfDir)"
-  },
-  "0x004161E0": {
-   "name": "ScaleVector",
-   "signature": "void __cdecl(float *pVec, float fScale)",
-   "static": true
-  },
-  "0x004207D0": {
-   "name": "LoadRoleImage",
-   "signature": "unsigned char *__thiscall(int nIndex, const char *pszPath)"
-  },
-  "0x004163B0": {
-   "name": "CalcTileDistance",
-   "signature": "int __thiscall(int nTileX, int nTileY)"
-  },
-  "0x0041B300": {
-   "name": "GetCurrentTile",
-   "signature": "int __thiscall()"
-  },
-  "0x004203C0": {
-   "name": "InitRoleImage",
-   "signature": "void __thiscall()"
-  },
-  "0x00532D40": {
-   "name": "NegateStateMode",
-   "signature": "void __thiscall RoleSystem::NegateStateMode()"
-  },
-  "0x0041BD70": {
-   "name": "GetRoleName",
-   "signature": "const char *__thiscall(unsigned int nRoleIndex)"
-  },
-  "0x00414980": {
-   "name": "GetPosition",
-   "signature": "void __thiscall(float *pOut, int nVal)"
-  },
-  "0x00417AC0": {
-   "name": "SetState",
-   "signature": "void __thiscall(int state)",
-   "source": "pdb_ret"
-  },
-  "0x004209F0": {
-   "name": "GetTile",
-   "signature": "char __thiscall(int nX, int nY)"
-  },
-  "0x00412940": {
-   "name": "UpdatePath",
-   "signature": "int __thiscall(int nVal)"
-  },
-  "0x004208A0": {
-   "name": "Reset",
-   "signature": "void __thiscall()"
-  },
-  "0x004202A0": {
-   "name": "AllocSlotData",
-   "signature": "void *__thiscall(int nVal)"
-  },
-  "0x0043DE40": {
-   "name": "CCBRoleState::Destroy",
-   "signature": "int __thiscall Destroy(int nMode)",
-   "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
-  },
-  "0x00524970": {
-   "name": "CCBRoleState::Render",
-   "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
-   "source": "vtable_gap_fill_v1(from CCBStage.json)"
-  },
-  "0x00420910": {
-   "name": "sub_420910",
-   "signature": "void __thiscall(int)",
-   "source": "vtable_gap_fill_v1(IDB:sub_420910) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
-  }
- },
- "vtables": [
-  {
-   "addr": "0x00570890",
-   "base": "UIWnd",
-   "slots": [
-    {
-     "addr": "0x00445E70",
-     "from": "UIWnd"
+      "source": "overlap:team_slots_with_role_system_state"
     },
-    {
-     "addr": "0x00524970",
-     "from": null
-    },
-    {
-     "addr": "0x00532710",
-     "from": null
-    },
-    {
-     "addr": "0x0043DE40",
-     "from": null
-    },
-    {
-     "addr": "0x00445B90",
-     "from": "UIWnd"
-    },
-    {
-     "addr": "0x00531E50",
-     "from": null
-    },
-    {
-     "addr": "0x005329A0",
-     "from": null
+    "3072": {
+      "name": "m_teamSlotsB",
+      "type": {
+        "union": [
+          {
+            "type": "tagTeamSlotsBOverlay",
+            "name": "combat"
+          }
+        ]
+      },
+      "source": "binary_scan:5refs|FullInit: array access indices 94-190"
     }
-   ]
   },
-  {
-   "addr": "0x0056AAD8",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x004202F0",
-     "from": "gbRenderEffect"
+  "binary_size": 4868,
+  "base_size": 68,
+  "base_class": "UIWnd",
+  "note": " | binary_size set to 8704 (stride from binary, was 8908)",
+  "methods": {
+    "0x0040BE50": {
+      "name": "Init",
+      "signature": "int *__thiscall()"
     },
-    {
-     "addr": "0x004202A0",
-     "from": "gbRenderEffect"
+    "0x0040BE80": {
+      "name": "RecalcAggregatedStats",
+      "signature": "int __thiscall(char pData)"
     },
-    {
-     "addr": "0x00420270",
-     "from": "gbRenderEffect"
+    "0x00410E40": {
+      "name": "CheckVisible",
+      "signature": "int __cdecl()",
+      "static": true
     },
-    {
-     "addr": "0x004208A0",
-     "from": "gbRenderEffect"
+    "0x00412400": {
+      "name": "RenderRole",
+      "signature": "void __thiscall(gbMatrixStack *pStack, int nVal)"
     },
-    {
-     "addr": "0x004202A0",
-     "from": "gbRenderEffect"
+    "0x00412710": {
+      "name": "UpdateTransform",
+      "signature": "int __thiscall()"
     },
-    {
-     "addr": "0x00420430",
-     "from": "gbRenderEffect"
+    "0x00412E60": {
+      "name": "MoveRole",
+      "signature": "int __thiscall(float *pPos, int nVal, int nVal2, int nVal3)"
     },
-    {
-     "addr": "0x004209E0",
-     "from": "gbRenderEffect"
+    "0x00413010": {
+      "name": "UpdateRole",
+      "signature": "char __thiscall(float *pfVal, int nVal, int nVal2)"
     },
-    {
-     "addr": "0x004202A0",
-     "from": null
+    "0x00414A30": {
+      "name": "PathFind",
+      "signature": "int __thiscall(float *pTarget)"
     },
-    {
-     "addr": "0x00420910",
-     "from": null
+    "0x00416790": {
+      "name": "UpdateAnimation",
+      "signature": "void __thiscall(float *pfVal)"
+    },
+    "0x00416F10": {
+      "name": "GetActiveRole",
+      "signature": "int __thiscall()"
+    },
+    "0x00419A80": {
+      "name": "GetDirection",
+      "signature": "int __thiscall(float *pOut)"
+    },
+    "0x0041BBE0": {
+      "name": "GetCount",
+      "signature": "int __thiscall()"
+    },
+    "0x00420F30": {
+      "name": "GetRolePtr",
+      "signature": "int __thiscall(int index)"
+    },
+    "0x00412D90": {
+      "name": "BindPartyToScene",
+      "signature": "char __thiscall RoleSystem::BindPartyToScene(float *pfVal, int nVal)"
+    },
+    "0x00531E70": {
+      "name": "ctor",
+      "signature": "void __thiscall()",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+    },
+    "0x00416220": {
+      "name": "CheckMoveCollisionDist",
+      "signature": "void __thiscall(int this, float *pfVal)"
+    },
+    "0x004142E0": {
+      "name": "NotifyMoveComplete",
+      "signature": "int __thiscall()"
+    },
+    "0x004181E0": {
+      "name": "Notify",
+      "signature": "int __thiscall()"
+    },
+    "0x00531D20": {
+      "name": "ctor_1D20",
+      "signature": "int __thiscall()"
+    },
+    "0x0042A010": {
+      "name": "ProcessAction",
+      "signature": "void __thiscall()"
+    },
+    "0x004122C0": {
+      "name": "UpdatePosition",
+      "signature": "void __thiscall()"
+    },
+    "0x00412230": {
+      "name": "SetMoveSpeed",
+      "signature": "void __thiscall(float fSpeed, int nRoleIndex, int nFlag)"
+    },
+    "0x00418130": {
+      "name": "GetMoveState",
+      "signature": "int __thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x00421020": {
+      "name": "CheckCollision",
+      "signature": "BOOL __thiscall(int *pResult, int nFlag)",
+      "source": " | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 2——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x00412B60": {
+      "name": "SetMoveTarget",
+      "signature": "void __thiscall(float *pTargetPos, int nFlags)"
+    },
+    "0x00416550": {
+      "name": "IsPathComplete",
+      "signature": "void __thiscall(float *pTargetPos, int nMode)"
+    },
+    "0x00416620": {
+      "name": "UpdateMovement",
+      "signature": "int __thiscall(float fDeltaTime, int nMode)"
+    },
+    "0x00413CD0": {
+      "name": "PathFollowUpdate",
+      "signature": "void __thiscall()"
+    },
+    "0x00416490": {
+      "name": "SetTargetRotation",
+      "signature": "void __thiscall(gbVec3D *pTarget)"
+    },
+    "0x004125B0": {
+      "name": "NotifySceneChange",
+      "signature": "int __thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x00414E30": {
+      "name": "GetActionByIndex",
+      "signature": "int __thiscall(int nParam)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x00412A50": {
+      "name": "StartHalfSpeedMovement",
+      "signature": "int __thiscall()"
+    },
+    "0x004178A0": {
+      "name": "CheckVisibility",
+      "signature": "BOOL __thiscall()"
+    },
+    "0x0041ABE0": {
+      "name": "UpdateFollowVelocity",
+      "signature": "void __thiscall()"
+    },
+    "0x0041AD40": {
+      "name": "UpdateFollowVelocityEx",
+      "signature": "void __thiscall()"
+    },
+    "0x00411E00": {
+      "name": "ApplyMoveStep",
+      "signature": "void __thiscall RoleSystem::ApplyMoveStep(double fInput, int nVal, float fVal, char bCollide)"
+    },
+    "0x00412A90": {
+      "name": "MoveToTile",
+      "signature": "void __thiscall RoleSystem::MoveToTile(__int64 tileXY, int nMode)"
+    },
+    "0x00413420": {
+      "name": "StepAlongPath",
+      "signature": "int __thiscall RoleSystem::StepAlongPath(double fStepSize, float fVal)"
+    },
+    "0x00413850": {
+      "name": "AdvanceToTarget",
+      "signature": "double __thiscall RoleSystem::AdvanceToTarget(double fDelta)"
+    },
+    "0x00414350": {
+      "name": "UpdateMovement",
+      "signature": "double __thiscall RoleSystem::UpdateMovement(double result, gbVec3D *pB)"
+    },
+    "0x004150C0": {
+      "name": "UpdateActionState",
+      "signature": "void __thiscall(float fVal)"
+    },
+    "0x00416FA0": {
+      "name": "InitPathTracking",
+      "signature": "void __thiscall(float *nFlags)"
+    },
+    "0x00416FE0": {
+      "name": "RestoreMoveMode",
+      "signature": "void __thiscall(float *nFlags)"
+    },
+    "0x00417420": {
+      "name": "UpdateTransform",
+      "signature": "void __thiscall RoleSystem::UpdateTransform__ovl_7420(float arg0)"
+    },
+    "0x00417850": {
+      "name": "EnterSubMode6",
+      "signature": "int __thiscall()"
+    },
+    "0x00417C50": {
+      "name": "UpdateMoveSubMode",
+      "signature": "double __thiscall RoleSystem::UpdateMoveSubMode(double result, float result_4)"
+    },
+    "0x0041A1A0": {
+      "name": "ScanMoveDirections",
+      "signature": "void __thiscall RoleSystem::ScanMoveDirections(float fRadius)"
+    },
+    "0x0041A450": {
+      "name": "UpdateFollowerMovement",
+      "signature": "void __thiscall(float fVal)"
+    },
+    "0x00420320": {
+      "name": "GetCurrentID",
+      "signature": "int __thiscall(int *pnVal, char pData)"
+    },
+    "0x00420A10": {
+      "name": "IsTileInBounds",
+      "signature": "int *__thiscall(int nVal, int nY, int nVal2)"
+    },
+    "0x00420A90": {
+      "name": "SetRoleGridPosition",
+      "signature": "void __thiscall(float fVal, int nVal, float fVal2, int nVal2)"
+    },
+    "0x00420FB0": {
+      "name": "CheckMoveCollision",
+      "signature": "BOOL __thiscall(int *index, float *pfVal, int nVal)"
+    },
+    "0x00421150": {
+      "name": "IsTilePassable",
+      "signature": "BOOL __thiscall RoleSystem::IsTilePassable(char nTileType, int nSceneIdx, int nX, int nY)"
+    },
+    "0x004214B0": {
+      "name": "ValidatePathIndex",
+      "signature": "BOOL __thiscall(int index, int nY, int nVal)"
+    },
+    "0x00421BF0": {
+      "name": "NotifyPathEnd",
+      "signature": "char *__thiscall(int nVal)"
+    },
+    "0x0042A950": {
+      "name": "CheckScriptTrigger",
+      "signature": "BOOL __thiscall RoleSystem::CheckScriptTrigger(struct gbVec3D *p)"
+    },
+    "0x0042B510": {
+      "name": "UpdateStateMode",
+      "signature": "void __thiscall()"
+    },
+    "0x0042C0C0": {
+      "name": "SetTileTypeVisible",
+      "signature": "int *__thiscall RoleSystem::SetTileTypeVisible(int nTileType, int bVisible)"
+    },
+    "0x0042D9F0": {
+      "name": "ExecScriptDataCmd",
+      "signature": "int __thiscall RoleSystem::ExecScriptDataCmd(int *p_DWORD)"
+    },
+    "0x0042E870": {
+      "name": "ExecScriptDataIdx",
+      "signature": "int __thiscall RoleSystem::ExecScriptDataIdx(int nVal)"
+    },
+    "0x004083E0": {
+      "name": "CheckSceneCollision",
+      "signature": "BOOL __thiscall(int *nFlag, int nVal)"
+    },
+    "0x00410430": {
+      "name": "RenderMainRole",
+      "signature": "void __cdecl RoleSystem::RenderMainRole(void *pMatrixStack)",
+      "static": true
+    },
+    "0x004132B0": {
+      "name": "MoveToTileCheck",
+      "signature": "char __thiscall RoleSystem::MoveToTileCheck(int nTileX, int nTileY, int nMode)"
+    },
+    "0x00413390": {
+      "name": "InterpolateMoveFrame",
+      "signature": "void __thiscall(float fVal)"
+    },
+    "0x00417040": {
+      "name": "SetupMoveState",
+      "signature": "void __thiscall RoleSystem::SetupMoveState(float *pfVal)"
+    },
+    "0x00417BC0": {
+      "name": "StopAndResetPath",
+      "signature": "void __thiscall()"
+    },
+    "0x004189C0": {
+      "name": "StartPathMove",
+      "signature": "int __thiscall RoleSystem::StartPathMove(char *pszBuf, int nVal, char *pszBuf2, int nVal2, float fVal, int nVal3)"
+    },
+    "0x00419A20": {
+      "name": "GetActorState",
+      "signature": "void __thiscall(double thisa, int nVal, int nVal2, int nVal3)"
+    },
+    "0x00419B30": {
+      "name": "UpdateFollowBehavior",
+      "signature": "void __thiscall RoleSystem::UpdateFollowBehavior(float fDelta)"
+    },
+    "0x0041A150": {
+      "name": "SetActorTexture",
+      "signature": "void __thiscall(const char *pszName)"
+    },
+    "0x0041B6C0": {
+      "name": "ApproachTarget",
+      "signature": "char __thiscall RoleSystem::ApproachTarget(int nVal)"
+    },
+    "0x00420290": {
+      "name": "RoleSystem",
+      "signature": "void __thiscall()"
+    },
+    "0x00420930": {
+      "name": "InitInternal",
+      "signature": "void __thiscall RoleSystem::InitInternal(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x00420940": {
+      "name": "CopyRoleToSlot",
+      "signature": "int __thiscall(RoleSystem *pRoleSystem, int index)"
+    },
+    "0x00420F70": {
+      "name": "IsRoleInRange",
+      "signature": "BOOL __thiscall(int index, int *pnVal, int nVal)"
+    },
+    "0x00421440": {
+      "name": "SetRoleParam",
+      "signature": "void __thiscall(int index, float *pfVal, int *pnVal, int *p_DWORD)"
+    },
+    "0x004215B0": {
+      "name": "AdvanceOnPath",
+      "signature": "int __thiscall(int *pResult, char *nFlag, int nVal, char *pszBuf, int nVal2)"
+    },
+    "0x00421710": {
+      "name": "ValidatePath",
+      "signature": "int __thiscall(int *pResult, int *nFlag, int *pnVal, int nVal, int nVal2, int **a7)"
+    },
+    "0x004218B0": {
+      "name": "GetPathTarget",
+      "signature": "BOOL __thiscall(int *pResult, int *nFlag, int *pnVal, char *pszBuf, int nVal, int **a7)"
+    },
+    "0x00421A90": {
+      "name": "UpdatePathProgress",
+      "signature": "int __thiscall(char arg0, int index, char *pszBuf, int nVal, char *pszBuf2, int nVal2)"
+    },
+    "0x00421D10": {
+      "name": "BuildPathSegment",
+      "signature": "int *__thiscall(int *pnVal, char pData)"
+    },
+    "0x00421EA0": {
+      "name": "ResetTransition",
+      "signature": "void __thiscall()"
+    },
+    "0x0042DBD0": {
+      "name": "ExecScriptDataA",
+      "signature": "int __thiscall RoleSystem::ExecScriptDataA()"
+    },
+    "0x0042DD80": {
+      "name": "ExecScriptDataB",
+      "signature": "int __thiscall RoleSystem::ExecScriptDataB()"
+    },
+    "0x0042EA30": {
+      "name": "ExecScriptDataC",
+      "signature": "int __thiscall RoleSystem::ExecScriptDataC()"
+    },
+    "0x00531E50": {
+      "name": "_scalar_dtor",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
+    },
+    "0x00408460": {
+      "name": "BindRoleToScene",
+      "signature": "int __thiscall(int index, float *pfVal, float *pfVal2, int nVal, char pData)"
+    },
+    "0x0040C9A0": {
+      "name": "ForceStopRole",
+      "signature": "int __cdecl(int nVal)",
+      "static": true
+    },
+    "0x004126D0": {
+      "name": "GetAnimOffset",
+      "signature": "int __cdecl RoleSystem::GetAnimOffset(int nType, unsigned __int8 nMode)",
+      "static": true
+    },
+    "0x00412C30": {
+      "name": "SetPathWaypoint",
+      "signature": "int __thiscall(float fVal)"
+    },
+    "0x00413C00": {
+      "name": "PlaceAtRegion",
+      "signature": "int __thiscall RoleSystem::PlaceAtRegion(int nSceneIdx, int nRegion)"
+    },
+    "0x004148C0": {
+      "name": "UpdateMoveInterpolation",
+      "signature": "float *__thiscall(float *pfVal, float *pfVal2)"
+    },
+    "0x00414A10": {
+      "name": "UpdateMoveTimer",
+      "signature": "void __thiscall()"
+    },
+    "0x00414F90": {
+      "name": "PlayAction",
+      "signature": "int __thiscall RoleSystem::PlayAction(char *pszAction, int nMode)"
+    },
+    "0x004164E0": {
+      "name": "IsPathMoving",
+      "signature": "BOOL __thiscall()"
+    },
+    "0x00416500": {
+      "name": "IsActionBlocked",
+      "signature": "int __thiscall()"
+    },
+    "0x00416BC0": {
+      "name": "ProcessInteraction",
+      "signature": "void __thiscall RoleSystem::ProcessInteraction()"
+    },
+    "0x004180B0": {
+      "name": "CheckWidgetReady",
+      "signature": "int __thiscall(gbRay *pRay)"
+    },
+    "0x00418970": {
+      "name": "AddVec3ToTarget",
+      "signature": "void __thiscall(int nVal, int nVal2)"
+    },
+    "0x00418D90": {
+      "name": "IsInBounds",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)"
+    },
+    "0x00418DC0": {
+      "name": "TryMoveToTarget",
+      "signature": "char __thiscall RoleSystem::TryMoveToTarget(__int16 pData, int nVal)"
+    },
+    "0x00419030": {
+      "name": "ResetPathParams",
+      "signature": "int __thiscall(int nVal)"
+    },
+    "0x00419790": {
+      "name": "ProcessMoveCommand",
+      "signature": "int __thiscall(int *p_DWORD)"
+    },
+    "0x004198C0": {
+      "name": "StartLinearMove",
+      "signature": "void __thiscall RoleSystem::StartLinearMove(int *pTargetPos, int nMode)"
+    },
+    "0x00419AE0": {
+      "name": "NotifyAndSetMode6",
+      "signature": "int __thiscall()"
+    },
+    "0x00419B10": {
+      "name": "SetCollisionRadius",
+      "signature": "__int64 __thiscall()"
+    },
+    "0x00419EF0": {
+      "name": "AdvancePathStep",
+      "signature": "BOOL __thiscall RoleSystem::AdvancePathStep(float *pfVal)"
+    },
+    "0x0041AEA0": {
+      "name": "SetBlendMode",
+      "signature": "void __thiscall(float fAlpha)"
+    },
+    "0x0041AEE0": {
+      "name": "SetTransform",
+      "signature": "int __thiscall(int *p_DWORD)"
+    },
+    "0x0041AF50": {
+      "name": "AllocPathPage",
+      "signature": "int __thiscall RoleSystem::AllocPathPage(int nVal, int nVal2)"
+    },
+    "0x0041B120": {
+      "name": "StopPathMovement",
+      "signature": "int __thiscall(int nVal)"
+    },
+    "0x0041B420": {
+      "name": "LoadWeaponModel",
+      "signature": "void __thiscall(char *pszRoleName)"
+    },
+    "0x0041BA10": {
+      "name": "InterpolateHeight",
+      "signature": "BOOL __thiscall(float *pfVal)"
+    },
+    "0x0041BAD0": {
+      "name": "InitDefaultState",
+      "signature": "int __thiscall()"
+    },
+    "0x0041BC30": {
+      "name": "ExportRoleData",
+      "signature": "int __thiscall(float *pfVal)"
+    },
+    "0x0041BD40": {
+      "name": "ClearColors",
+      "signature": "int *__thiscall(_BYTE *p_BYTE)"
+    },
+    "0x0041C090": {
+      "name": "FlushCommandQueue",
+      "signature": "int __thiscall RoleSystem::FlushCommandQueue()"
+    },
+    "0x0041C190": {
+      "name": "SetInactive",
+      "signature": "int __thiscall(int nVal)"
+    },
+    "0x0041D220": {
+      "name": "AddCameraKeyframe",
+      "signature": "int __thiscall RoleSystem::AddCameraKeyframe()"
+    },
+    "0x004209E0": {
+      "name": "ResetState",
+      "signature": "void __thiscall RoleSystem::ResetState(int nVal1)",
+      "ordinal": 3,
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x00420F50": {
+      "name": "GetMapNodePtr",
+      "signature": "char *__thiscall RoleSystem::GetMapNodePtr(int nIndex)"
+    },
+    "0x00421DD0": {
+      "name": "ClearWaypointBuffer",
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, char pData)"
+    },
+    "0x00421F20": {
+      "name": "GetFontColor",
+      "signature": "size_t __thiscall(FILE *Stream)"
+    },
+    "0x00421F70": {
+      "name": "ClearPathData",
+      "signature": "char __thiscall(FILE *Buffer)"
+    },
+    "0x00422000": {
+      "name": "BuildModelPath",
+      "signature": "BOOL __thiscall(const char *pszName)"
+    },
+    "0x00422140": {
+      "name": "ResetModelPaths",
+      "signature": "int *__thiscall()"
+    },
+    "0x00422430": {
+      "name": "SetAnimBlend",
+      "signature": "char __cdecl(int nVal)",
+      "static": true
+    },
+    "0x00422540": {
+      "name": "SetAnimFrame",
+      "signature": "void __thiscall()"
+    },
+    "0x00422740": {
+      "name": "ResetGlobalPos",
+      "signature": "void __thiscall()"
+    },
+    "0x004234A0": {
+      "name": "SetCameraMode",
+      "signature": "int __cdecl(int nVal)",
+      "static": true
+    },
+    "0x0042AD40": {
+      "name": "SetActionState",
+      "signature": "int __thiscall(int nVal, char pData)"
+    },
+    "0x0044B470": {
+      "name": "ProcessWaypoint",
+      "signature": "int __thiscall RoleSystem::ProcessWaypoint()"
+    },
+    "0x0044CD90": {
+      "name": "InitUICtrlArray",
+      "signature": "int __thiscall()"
+    },
+    "0x0044CEC0": {
+      "name": "InitDefaultPositions",
+      "signature": "int __thiscall RoleSystem::InitDefaultPositions()",
+      "_misattrib_evidence": "max_offset=4224>class_size=180"
+    },
+    "0x0044D380": {
+      "name": "InitRandomParticles",
+      "signature": "int __thiscall RoleSystem::InitRandomParticles()"
+    },
+    "0x00531F50": {
+      "name": "InitAllSystems",
+      "signature": "int __thiscall RoleSystem::InitAllSystems()",
+      "_misattrib_evidence": "max_offset=7432>class_size=232"
+    },
+    "0x00532360": {
+      "name": "ApplyRotationAxis",
+      "signature": "int __thiscall(int nVal, char pData)"
+    },
+    "0x00532410": {
+      "name": "ShowHideUI",
+      "signature": "int __thiscall(char pData)"
+    },
+    "0x005326A0": {
+      "name": "StartBlinkUI",
+      "signature": "int __thiscall()"
+    },
+    "0x005326E0": {
+      "name": "StopBlinkUI",
+      "signature": "int __thiscall()"
+    },
+    "0x00532710": {
+      "name": "UpdateTimer",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
+      "ordinal": 2
+    },
+    "0x00532960": {
+      "name": "ScaleValue",
+      "signature": "int __cdecl(int nVal, int *pnVal, int *p_DWORD)",
+      "static": true
+    },
+    "0x005329A0": {
+      "name": "HandleMsgDLL",
+      "signature": "int __thiscall RoleSystem::HandleMsgDLL(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)",
+      "ordinal": 6
+    },
+    "0x00532C80": {
+      "name": "AdjustHeight",
+      "signature": "void __thiscall(int nVal)"
+    },
+    "0x00532D30": {
+      "name": "GetStateMode",
+      "signature": "int __thiscall RoleSystem::GetStateMode()"
+    },
+    "0x00532E10": {
+      "name": "ResetPathState",
+      "signature": "char __thiscall RoleSystem::ResetPathState(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 68/4=17 参 vs 签名 0——补 17 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x00414250": {
+      "name": "NormalizeDirection",
+      "signature": "void __thiscall(float *pfDir)"
+    },
+    "0x004161E0": {
+      "name": "ScaleVector",
+      "signature": "void __cdecl(float *pVec, float fScale)",
+      "static": true
+    },
+    "0x004207D0": {
+      "name": "LoadRoleImage",
+      "signature": "unsigned char *__thiscall(int nIndex, const char *pszPath)"
+    },
+    "0x004163B0": {
+      "name": "CalcTileDistance",
+      "signature": "int __thiscall(int nTileX, int nTileY)"
+    },
+    "0x0041B300": {
+      "name": "GetCurrentTile",
+      "signature": "int __thiscall()"
+    },
+    "0x004203C0": {
+      "name": "InitRoleImage",
+      "signature": "void __thiscall()"
+    },
+    "0x00532D40": {
+      "name": "NegateStateMode",
+      "signature": "void __thiscall RoleSystem::NegateStateMode()"
+    },
+    "0x0041BD70": {
+      "name": "GetRoleName",
+      "signature": "const char *__thiscall(unsigned int nRoleIndex)"
+    },
+    "0x00414980": {
+      "name": "GetPosition",
+      "signature": "void __thiscall(float *pOut, int nVal)"
+    },
+    "0x00417AC0": {
+      "name": "SetState",
+      "signature": "void __thiscall(int state)",
+      "source": "pdb_ret"
+    },
+    "0x004209F0": {
+      "name": "GetTile",
+      "signature": "char __thiscall(int nX, int nY)"
+    },
+    "0x00412940": {
+      "name": "UpdatePath",
+      "signature": "int __thiscall(int nVal)"
+    },
+    "0x004208A0": {
+      "name": "Reset",
+      "signature": "void __thiscall()"
+    },
+    "0x004202A0": {
+      "name": "AllocSlotData",
+      "signature": "void *__thiscall(int nVal)"
+    },
+    "0x0043DE40": {
+      "name": "CCBRoleState::Destroy",
+      "signature": "int __thiscall Destroy(int nMode)",
+      "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+    },
+    "0x00524970": {
+      "name": "CCBRoleState::Render",
+      "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
+      "source": "vtable_gap_fill_v1(from CCBStage.json)"
+    },
+    "0x00420910": {
+      "name": "sub_420910",
+      "signature": "void __thiscall(int)",
+      "source": "vtable_gap_fill_v1(IDB:sub_420910) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
     }
-   ]
-  }
- ],
- "_change_log": [],
- "size_note": "Type/size under re-adjudication (round 6b/7): the global g_RoleSlotBuf @0xC043A0 shows a 5-slot x 1408B structure (raw decomp &::Buffer+1408*elem; slot-boundary instance starts at 2x/4x/5x1408). RoleSystem size 4868 does not tile 5 slots - either the global type is wrong or RoleSystem layout needs the slot-row model. Access-radius census: data/status/_buffer_zone_census.json"
+  },
+  "vtables": [
+    {
+      "addr": "0x00570890",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00524970",
+          "from": null
+        },
+        {
+          "addr": "0x00532710",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00531E50",
+          "from": null
+        },
+        {
+          "addr": "0x005329A0",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056AAD8",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004202F0",
+          "from": "gbRenderEffect"
+        },
+        {
+          "addr": "0x004202A0",
+          "from": "gbRenderEffect"
+        },
+        {
+          "addr": "0x00420270",
+          "from": "gbRenderEffect"
+        },
+        {
+          "addr": "0x004208A0",
+          "from": "gbRenderEffect"
+        },
+        {
+          "addr": "0x004202A0",
+          "from": "gbRenderEffect"
+        },
+        {
+          "addr": "0x00420430",
+          "from": "gbRenderEffect"
+        },
+        {
+          "addr": "0x004209E0",
+          "from": "gbRenderEffect"
+        },
+        {
+          "addr": "0x004202A0",
+          "from": null
+        },
+        {
+          "addr": "0x00420910",
+          "from": null
+        }
+      ]
+    }
+  ],
+  "_change_log": [],
+  "size_note": "Type/size under re-adjudication (round 6b/7): the global g_RoleSlotBuf @0xC043A0 shows a 5-slot x 1408B structure (raw decomp &::Buffer+1408*elem; slot-boundary instance starts at 2x/4x/5x1408). RoleSystem size 4868 does not tile 5 slots - either the global type is wrong or RoleSystem layout needs the slot-row model. Access-radius census: data/status/_buffer_zone_census.json"
 }

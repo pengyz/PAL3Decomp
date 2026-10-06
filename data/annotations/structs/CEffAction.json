@@ -1,167 +1,168 @@
 {
- "name": "CEffAction",
- "binary_size": 52,
- "known_members": {
-  "48": {
-   "name": "m_nController",
-   "type": "int",
-   "source": "annotation"
-  }
- },
- "base_class": [
-  "CEffObj",
-  "CTaskTpl_tagEffTaskParam_CEffAction"
- ],
- "methods": {
-  "0x004C0740": {
-   "name": "UpdateFrame",
-   "signature": "void __thiscall(float fVal)",
-   "ordinal": 5,
-   "source": "manual_fix_vtable"
-  },
-  "0x004C0640": {
-   "name": "ResetState",
-   "signature": "void __thiscall CEffAction::ResetState()",
-   "ordinal": 2
-  },
-  "0x00408BD0": {
-   "name": "NullCallback",
-   "signature": "void __thiscall (void *pData)",
-   "source": "vtable_migrated",
-   "ordinal": 3
-  },
-  "0x004C0520": {
-   "name": "AllocRenderTarget",
-   "signature": "void __thiscall()",
-   "source": "manual_fix_vtable+manual_ida_body",
-   "ordinal": 7
-  },
-  "0x004C0500": {
-   "name": "OnTest",
-   "signature": "int()",
-   "source": "vtable_migrated",
-   "ordinal": 8
-  },
-  "0x004C0920": {
-   "name": "PrepareEffect",
-   "signature": "void __thiscall(int)",
-   "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
-   "ordinal": 9
-  },
-  "0x004C09E0": {
-   "name": "RenderScene",
-   "signature": "void __thiscall(int)",
-   "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
-   "ordinal": 12
-  },
-  "0x004C0540": {
-   "name": "ExecutePasses",
-   "signature": "char *__thiscall(char a2)"
-  },
-  "0x004AF760": {
-   "name": "Update",
-   "signature": "int __thiscall(int)",
-   "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
-  },
-  "0x004C0650": {
-   "name": "AllocSegments",
-   "signature": "char __thiscall CEffAction::AllocSegments(int nVal)",
-   "source": "vtable_gap_fill_v1(from CEffQuake.json)"
-  },
-  "0x004C15D0": {
-   "name": "UpdateParticles",
-   "signature": "void __thiscall()",
-   "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
-  },
-  "0x004C0510": {
-   "name": "sub_4C0510",
-   "signature": "int __thiscall(int)",
-   "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
-  },
-  "0x004C1270": {
-   "name": "sub_4C1270",
-   "signature": "int __thiscall(int)",
-   "source": "vtable_gap_fill_v1(IDB:?sub_4C1270@CEffAction@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
-  }
- },
- "vtables": [
-  {
-   "addr": "0x0056F5E4",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x004C0540",
-     "from": null
-    },
-    {
-     "addr": "0x004C0650",
-     "from": null
-    },
-    {
-     "addr": "0x004C0640",
-     "from": null
-    },
-    {
-     "addr": "0x00408BD0",
-     "from": null
-    },
-    {
-     "addr": "0x00408BD0",
-     "from": null
-    },
-    {
-     "addr": "0x004C0740",
-     "from": null
-    },
-    {
-     "addr": "0x00408BD0",
-     "from": null
-    },
-    {
-     "addr": "0x004C0520",
-     "from": null
-    },
-    {
-     "addr": "0x004C0500",
-     "from": null
-    },
-    {
-     "addr": "0x004C0920",
-     "from": null
-    },
-    {
-     "addr": "0x004C0510",
-     "from": null
-    },
-    {
-     "addr": "0x004AF760",
-     "from": null
-    },
-    {
-     "addr": "0x004C09E0",
-     "from": null
-    },
-    {
-     "addr": "0x004C15D0",
-     "from": null
-    },
-    {
-     "addr": "0x004C1270",
-     "from": null
+  "name": "CEffAction",
+  "binary_size": 52,
+  "known_members": {
+    "48": {
+      "name": "m_nController",
+      "type": "int",
+      "source": "annotation"
     }
-   ]
-  }
- ],
- "base_size": 52,
- "bases": [
-  {
-   "name": "CEffObj",
-   "offset": 0
   },
-  {
-   "name": "CTaskTpl_tagEffTaskParam_CEffAction",
-   "offset": 12
-  }
- ],
- "bases_source": "A: ctor `mov [reg+0Ch], offset <vtable>` (CEffModel sub_4CFC70 / CEffCylinder sub_4C3DD0)；PDB 全族 CTaskTpl 基 = 12；template_bases.json 记载 18 个 CEff* 共享该模板布局；二进制另有 58 处 `sub ecx,0Ch` 的 this 调整"
+  "base_class": [
+    "CEffObj",
+    "CTaskTpl_tagEffTaskParam_CEffAction"
+  ],
+  "methods": {
+    "0x004C0740": {
+      "name": "UpdateFrame",
+      "signature": "void __thiscall(float fVal)",
+      "ordinal": 5,
+      "source": "manual_fix_vtable"
+    },
+    "0x004C0640": {
+      "name": "ResetState",
+      "signature": "void __thiscall CEffAction::ResetState(int nVal1)",
+      "ordinal": 2,
+      "source": " | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x00408BD0": {
+      "name": "NullCallback",
+      "signature": "void __thiscall (void *pData)",
+      "source": "vtable_migrated",
+      "ordinal": 3
+    },
+    "0x004C0520": {
+      "name": "AllocRenderTarget",
+      "signature": "void __thiscall()",
+      "source": "manual_fix_vtable+manual_ida_body",
+      "ordinal": 7
+    },
+    "0x004C0500": {
+      "name": "OnTest",
+      "signature": "int()",
+      "source": "vtable_migrated",
+      "ordinal": 8
+    },
+    "0x004C0920": {
+      "name": "PrepareEffect",
+      "signature": "void __thiscall(int)",
+      "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
+      "ordinal": 9
+    },
+    "0x004C09E0": {
+      "name": "RenderScene",
+      "signature": "void __thiscall(int)",
+      "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
+      "ordinal": 12
+    },
+    "0x004C0540": {
+      "name": "ExecutePasses",
+      "signature": "char *__thiscall(char a2)"
+    },
+    "0x004AF760": {
+      "name": "Update",
+      "signature": "int __thiscall(int)",
+      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+    },
+    "0x004C0650": {
+      "name": "AllocSegments",
+      "signature": "char __thiscall CEffAction::AllocSegments(int nVal)",
+      "source": "vtable_gap_fill_v1(from CEffQuake.json)"
+    },
+    "0x004C15D0": {
+      "name": "UpdateParticles",
+      "signature": "void __thiscall()",
+      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+    },
+    "0x004C0510": {
+      "name": "sub_4C0510",
+      "signature": "int __thiscall(int)",
+      "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
+    },
+    "0x004C1270": {
+      "name": "sub_4C1270",
+      "signature": "int __thiscall(int)",
+      "source": "vtable_gap_fill_v1(IDB:?sub_4C1270@CEffAction@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056F5E4",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004C0540",
+          "from": null
+        },
+        {
+          "addr": "0x004C0650",
+          "from": null
+        },
+        {
+          "addr": "0x004C0640",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C0740",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C0520",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004C0920",
+          "from": null
+        },
+        {
+          "addr": "0x004C0510",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C09E0",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004C1270",
+          "from": null
+        }
+      ]
+    }
+  ],
+  "base_size": 52,
+  "bases": [
+    {
+      "name": "CEffObj",
+      "offset": 0
+    },
+    {
+      "name": "CTaskTpl_tagEffTaskParam_CEffAction",
+      "offset": 12
+    }
+  ],
+  "bases_source": "A: ctor `mov [reg+0Ch], offset <vtable>` (CEffModel sub_4CFC70 / CEffCylinder sub_4C3DD0)；PDB 全族 CTaskTpl 基 = 12；template_bases.json 记载 18 个 CEff* 共享该模板布局；二进制另有 58 处 `sub ecx,0Ch` 的 this 调整"
 }

@@ -66,6 +66,15 @@ def _get_scalar_dtor_classes():
 
 # Module-level cache for underscore-to-bare typedef aliases (populated lazily)
 _underscore_aliases = None  # dict: '_Texture_Info' -> 'Texture_Info', etc.
+# 批B 2026-10-06：模块级白名单（_Console 等真类型——方法发射路径（:909）与类型路径（:2813）共用）
+_UNDERSCORE_TYPES = {
+    '_Texture_Info', '_Console', '_Texture_uv', '_Tex_uv',
+    '_Item_List_Info', '_MapElement', '_Item', '_UIPOS',
+    '_PlugInfo', '_FLOORPARAM', '_PURGE_INFO', '_TimeMgr',
+    '_btnOPTDATA', '_CLOUD', '_CONTEXT', '_SAMPLE',
+    '_STREAM', '_SUBMAP', '_FLTPROVIDER', '_DIG_DRIVER',
+    '_Collvec', '_Console__ConCmd', '_Btn_BtnID',
+}
 
 def _get_underscore_aliases():
     """Detect _X -> X typedef aliases from decomp filename/signal evidence.
@@ -906,7 +915,10 @@ def collect_methods():
         if not _sinfo.get('methods'):
             continue
         # Filter out system/nested types (same critera as collect.py)
-        if _sname.startswith('_') or '<' in _sname or '$' in _sname:
+        # 批B 修 2026-10-06：白名单豁免（_Console 等真类型——:2813 同名单）
+        if _sname.startswith('_') and _sname not in _UNDERSCORE_TYPES:
+            continue
+        if '<' in _sname or '$' in _sname:
             continue
         for _addr_str, _minfo in _sinfo['methods'].items():
             if _addr_str in seen_addrs:
@@ -2810,14 +2822,7 @@ def main():
                 # (_D3D*, _DI*, _IMAGE*, _EXCEPTION_*, etc.) that should
                 # NOT get generated headers. Project-internal types like
                 # _Texture_Info and _Console DO need headers — whitelist.
-                _UNDERSCORE_WHITELIST = {
-                    '_Texture_Info', '_Console', '_Texture_uv', '_Tex_uv',
-                    '_Item_List_Info', '_MapElement', '_Item', '_UIPOS',
-                    '_PlugInfo', '_FLOORPARAM', '_PURGE_INFO', '_TimeMgr',
-                    '_btnOPTDATA', '_CLOUD', '_CONTEXT', '_SAMPLE',
-                    '_STREAM', '_SUBMAP', '_FLTPROVIDER', '_DIG_DRIVER',
-                    '_Collvec', '_Console__ConCmd', '_Btn_BtnID',
-                }
+                _UNDERSCORE_WHITELIST = _UNDERSCORE_TYPES   # 批B：模块级共用（去重）
                 if sname.startswith('_') and sname not in _UNDERSCORE_WHITELIST:
                     continue
                 if size <= 0 or size == 0xFFFFFFFFFFFFFFFF:

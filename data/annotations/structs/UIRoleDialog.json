@@ -134,19 +134,19 @@
     "0x00542102": {
       "name": "RenderShadowVolume",
       "signature": "void __thiscall(gbRenderInfoObj *)",
-      "source": "vtable_gap_fill_v1(IDB:?RenderShadowVolume@gbVisNode@@UAEXPAUgbRenderInfoObj@@@Z)",
+      "source": "vtable_gap_fill_v1(IDB:?RenderShadowVolume@gbVisNode@@UAEXPAUgbRenderInfoObj@@@Z) | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
       "declaration_only": true
     },
     "0x00542114": {
       "name": "Reset",
       "signature": "void __thiscall(float)",
-      "source": "vtable_gap_fill_v1(IDB:?Reset@gbVisNode@@UAEXM@Z)",
+      "source": "vtable_gap_fill_v1(IDB:?Reset@gbVisNode@@UAEXM@Z) | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
       "declaration_only": true
     },
     "0x0054211A": {
       "name": "Update",
-      "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(IDB:?Update@gbVisNode@@UAEXXZ)",
+      "signature": "void __thiscall(int nVal1)",
+      "source": "vtable_gap_fill_v1(IDB:?Update@gbVisNode@@UAEXXZ) | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
       "declaration_only": true
     }
   },

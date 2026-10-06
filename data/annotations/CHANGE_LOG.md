@@ -5882,3 +5882,10 @@ g_SceneMgr.m_nTodo_1428 = ((PAL_GDB *)&g_pGDB)->PAL_GDB::GDB_GetSkillNum(82301);
 **二进制证据**：vtable `0x56ABB8`（6 槽 ✓）被 ctor `0x434CA8: movl $0x56abb8,(%eax)` 存于 **[this+0]** ✓
 **修法**：`known_members` 补 `__vftable@0x0` ✓ + 全部成员偏移 **+4** ✓（等值传播，编译器 offsetof 确认 ✓）
 **验证**：`m_script` 注解 0x4 → 编译器 0x8 ✓ ✓ · `m_scefile` 0x14 → 0x18 ✓ ✓
+
+## 2026-10-06 批 B（free_functions C1003 解除批）
+- **ScriptSystemData.m_CmdTable**：	agScriptCmd[213]→int[852]（用法证：int 字面量赋值
+  L2852-2877×26+PalScript.cpp:1624 函数指针 4 字节槽索引（硬证）——命令 ID/函数指针表。
+  跨度 3408B=852×4 ✓ 与 binary_size 吻合）——C2679 −26 全清·free_functions C1003 解除
+  （102→101 全可见·最大行号 2877→5170）。
+- emit_headers _UNDERSCORE_TYPES 白名单（复核定：实效 0=前瞻性卫生改动——非生产收益）。

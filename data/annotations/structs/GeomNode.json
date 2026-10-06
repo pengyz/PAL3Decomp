@@ -55,7 +55,8 @@
     },
     "0x004D0A80": {
       "name": "DestroyChildren",
-      "signature": "void __thiscall GeomNode::DestroyChildren()"
+      "signature": "void __thiscall GeomNode::DestroyChildren(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 24/4=6 参 vs 签名 0——补 6 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     }
   }
 }

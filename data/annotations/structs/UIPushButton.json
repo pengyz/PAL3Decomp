@@ -111,7 +111,8 @@
     },
     "0x00440AE0": {
       "name": "LoadTexture",
-      "signature": "void __thiscall UIPushButton::LoadTexture()"
+      "signature": "void __thiscall UIPushButton::LoadTexture(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00440810": {
       "name": "CreateWithTextures",
@@ -120,7 +121,8 @@
     },
     "0x00440960": {
       "name": "FormatText",
-      "signature": "void __thiscall UIPushButton::FormatText()"
+      "signature": "void __thiscall UIPushButton::FormatText(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00440A20": {
       "name": "LoadResource",

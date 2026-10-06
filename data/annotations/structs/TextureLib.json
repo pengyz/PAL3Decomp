@@ -237,7 +237,8 @@
     },
     "0x004A6960": {
       "name": "CreateFromFile",
-      "signature": "gbTexture *__thiscall()"
+      "signature": "gbTexture *__thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 36/4=9 参 vs 签名 0——补 9 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004A6CA0": {
       "name": "CreateFromMemory",

@@ -92,6 +92,8 @@ def _apply_text_substitutions(code, ctx):
             _rebuilt.append(_asm_chunks[_i]); _rebuilt.append(_in_asm); _rebuilt.append(_rest)
         code = ''.join(_rebuilt)
 
+    # C′ R1：别名修复**前置**（F83 前——删 `_ESI = this;` 后 _assigned_regs 不见 ⇒ 无悬挂声明）
+    code = _fix_register_this_alias(code)
     # F83（2026-09-25）：寄存器伪名**赋值**⇒ 变量提升。ida_defs.h 把 _EAX 等定义为
     # 字面量 0（只读约定），但 Hex-Rays 在寄存器被复用时渲染 `_EAX = expr` ⇒ 展开
     # 成 `0 = expr`（C2440/C2106，实测 67 处/8 单元；ScriptVM 解封后 +39）。忠实重写 =
@@ -102,8 +104,18 @@ def _apply_text_substitutions(code, ctx):
     if _assigned_regs:
         for _p in sorted(_assigned_regs):
             code = re.sub(r'\b%s\b' % _p, 'reg_' + _p[1:], code)
-        _decls = ''.join('    unsigned long reg_%s = 0;\n' % _p[1:]
-                         for _p in sorted(_assigned_regs))
+        # 【C′ A（方案复核判 C′·R2 证据序）】别名证据（reg_X = this）⇒ 类型化声明
+        # `<Cls> *reg_X = this;`（R3 位移门：[N] 按 sizeof(Cls) 缩放——8692 恒等式证）
+        # 无别名证 ⇒ `unsigned long reg_X = 0;`（现行为——R2 末位形态扫描留批）
+        _cls = getattr(ctx, 'cls_name', None) if ctx is not None else None
+        _decls = []
+        for _p in sorted(_assigned_regs):
+            _rn = 'reg_' + _p[1:]
+            if _cls and re.search(r'\b%s\s*=\s*this\s*;' % re.escape(_rn), code):
+                _decls.append('    %s *%s = this;\n' % (_cls, _rn))
+            else:
+                _decls.append('    unsigned long %s = 0;\n' % _rn)
+        _decls = ''.join(_decls)
         _i = code.find('{')
         if _i != -1:
             code = code[:_i + 1] + '\n' + _decls + code[_i + 1:]
@@ -525,16 +537,23 @@ def _fix_explicit_this_calls(code, sig_lookup=None):
 # ============================================================
 
 def _fix_register_this_alias(code):
-    """Replace register-variable aliases for 'this' with direct this-> access.
-    
-    Hex-Rays generates: _REG = this; ... _REG->field. MSVC6 may not handle
-    the register alias correctly when _REG is a register variable.
-    """
+    """C′ R1（复核判须修订·别名恢复）：寄存器 this 别名改写——**全用法形**改 this，
+    赋值删除（F83 前置运行 ⇒ 无 _ESI 赋值则无悬挂声明）。
+    前版只改 `alias->` 形 ⇒ `alias[1].x`/`(T*)alias`/`alias+C` 悬挂（C2228/C2109 57 件根因）。"""
     m = re.search(r'^\s*(\w+)\s*=\s*this\s*;\s*$', code, re.MULTILINE)
     if m:
         alias = m.group(1)
-        code = re.sub(r'\b' + re.escape(alias) + r'\s*->', 'this->', code)
-        code = re.sub(r'\s*' + re.escape(alias) + r'\s*=\s*this\s*;\s*', '\n', code)
+        a = re.escape(alias)
+        # 全用法形改写（R1 收窄——复核 R3 位移门）：`->`/`(T*)` 形改 this（安全）；
+        # `+=`/`[` 形**不动**（stride/可赋性——`(char*)this +=` 语法炸实证 MatrixStack C2106）
+        # 保留赋值 ⇒ F83 声明路径接管（后续 C′ A 受限定型）
+        code = re.sub(r'\b' + a + r'\s*->', 'this->', code)
+        code = re.sub(r'\(\s*([\w\s:*]+?)\s*\*\s*\)\s*' + a + r'\b(?!\s*\[)', r'(\1 *)this', code)
+        # 赋值保留（仅当别名有 `+=`/`[` 残留用法时——否则删除（无用声明））
+        if re.search(r'\b' + a + r'\s*(?:\+=|\[)', code):
+            pass                       # 保留 `alias = this;`（F83 接管声明）
+        else:
+            code = re.sub(r'\s*' + a + r'\s*=\s*this\s*;\s*', '\n', code)
     return code
 
 

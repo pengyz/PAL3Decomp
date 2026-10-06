@@ -602,7 +602,8 @@
   "methods": {
     "0x00536160": {
       "name": "SetParam",
-      "signature": "int __thiscall(int nVal)"
+      "signature": "int __thiscall(int nVal)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00536220": {
       "name": "GetDefaultFOV_thunk",
@@ -674,7 +675,8 @@
     },
     "0x00536FB0": {
       "name": "QueryState",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00536FC0": {
       "name": "DispatchAction",
@@ -784,7 +786,8 @@
     },
     "0x00537510": {
       "name": "StoreParam",
-      "signature": "int __thiscall(int nVal, int nVal2)"
+      "signature": "int __thiscall(int nVal, int nVal2)",
+      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x005375B0": {
       "name": "ClearArrayEntry",
@@ -796,7 +799,8 @@
     },
     "0x005376E0": {
       "name": "LoadSaveData",
-      "signature": "int __thiscall Actor::LoadSaveData(char *pszSlotIdx)"
+      "signature": "int __thiscall Actor::LoadSaveData(char *pszSlotIdx)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00537770": {
       "name": "LoadActions",
@@ -996,7 +1000,7 @@
     "0x0053D190": {
       "name": "_todo_0053D190",
       "signature": "void __thiscall(int)",
-      "source": "挂账④ 放量批3 2026-10-06：thiscall 序言+偏移[4,16,20]=Actor.m_actarray_begin+m_pact+m_name 三偏移齐证"
+      "source": "挂账④ 放量批3 2026-10-06：thiscall 序言+偏移[4,16,20]=Actor.m_actarray_begin+m_pact+m_name 三偏移齐证 | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004BA230": {
       "name": "_todo_004BA230",
@@ -1010,8 +1014,8 @@
     },
     "0x004B72C0": {
       "name": "_todo_004B72C0",
-      "signature": "void __thiscall(int)",
-      "source": "挂账④ 放量批4 2026-10-06：thiscall 序言+偏移[0,92,96,100,104,108,112] Actor 多偏移簇证（七偏移簇）"
+      "signature": "void __thiscall __thiscall()",
+      "source": "挂账④ 放量批4 2026-10-06：thiscall 序言+偏移[0,92,96,100,104,108,112] Actor 多偏移簇证（七偏移簇） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）"
     },
     "0x004B72D0": {
       "name": "_todo_004B72D0",
@@ -1045,8 +1049,8 @@
     },
     "0x00532A20": {
       "name": "_todo_00532A20",
-      "signature": "void __thiscall(int)",
-      "source": "挂账④ 放量批7 2026-10-06：thiscall 序言+深窗偏移[12,16,20,24,28,32] Actor 六连簇证"
+      "signature": "void __thiscall __thiscall()",
+      "source": "挂账④ 放量批7 2026-10-06：thiscall 序言+深窗偏移[12,16,20,24,28,32] Actor 六连簇证 | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）"
     },
     "0x004C9470": {
       "name": "_todo_004C9470",
@@ -1096,7 +1100,7 @@
     "0x004083D0": {
       "name": "_todo_004083D0",
       "signature": "void __thiscall(int)",
-      "source": "挂账④ 放量批10 2026-10-06：thiscall 序言+深窗偏移[0,24,28,32] Actor 多偏移簇证"
+      "source": "挂账④ 放量批10 2026-10-06：thiscall 序言+深窗偏移[0,24,28,32] Actor 多偏移簇证 | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004B7560": {
       "name": "_todo_004B7560",

@@ -413,8 +413,9 @@
     },
     "0x00485DF0": {
       "name": "OnRender",
-      "signature": "int __thiscall StateUI::OnRender()",
-      "ordinal": 6
+      "signature": "int __thiscall StateUI::OnRender(int nVal1)",
+      "ordinal": 6,
+      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x0048A310": {
       "name": "SelectSubTab1",

@@ -164,8 +164,9 @@
     },
     "0x004B1580": {
       "name": "ResetAndRefresh",
-      "signature": "int __thiscall UITitle_JDHY::ResetAndRefresh()",
-      "_misattrib_evidence": "max_offset=286368>class_size=4280"
+      "signature": "int __thiscall UITitle_JDHY::ResetAndRefresh(int nVal1)",
+      "_misattrib_evidence": "max_offset=286368>class_size=4280",
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004B1C50": {
       "name": "UpdateButtonStates",
@@ -174,13 +175,15 @@
     },
     "0x004B1EA0": {
       "name": "ScrollDown",
-      "signature": "int __thiscall UITitle_JDHY::ScrollDown()",
-      "_misattrib_evidence": "max_offset=286360>class_size=4280"
+      "signature": "int __thiscall UITitle_JDHY::ScrollDown(int nVal1)",
+      "_misattrib_evidence": "max_offset=286360>class_size=4280",
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004B1FB0": {
       "name": "ScrollUp",
-      "signature": "int __thiscall UITitle_JDHY::ScrollUp()",
-      "_misattrib_evidence": "max_offset=286360>class_size=4280"
+      "signature": "int __thiscall UITitle_JDHY::ScrollUp(int nVal1)",
+      "_misattrib_evidence": "max_offset=286360>class_size=4280",
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004B20C0": {
       "name": "HandleInput",
@@ -224,9 +227,10 @@
     },
     "0x004B3100": {
       "name": "ForwardHitTest",
-      "signature": "int __thiscall UITitle_JDHY::ForwardHitTest()",
+      "signature": "int __thiscall UITitle_JDHY::ForwardHitTest(int nVal1)",
       "_misattrib_evidence": "max_offset=286376>class_size=4280",
-      "ordinal": 2
+      "ordinal": 2,
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004B3270": {
       "name": "UpdateTextPosition",

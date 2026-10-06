@@ -72,8 +72,8 @@
     },
     "0x004D5950": {
       "name": "BringWindowToTop",
-      "signature": "void ()",
-      "source": "pdb"
+      "signature": "void (int nVal1)",
+      "source": "pdb | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004433D0": {
       "name": "LayoutAndRender",
@@ -97,8 +97,8 @@
     },
     "0x0043BBB0": {
       "name": "Destroy",
-      "signature": "void __thiscall()",
-      "source": "batch:sub_fix_from_decomp_this_type"
+      "signature": "void __thiscall(int nVal1)",
+      "source": "batch:sub_fix_from_decomp_this_type | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00450390": {
       "name": "DelegateRender",
@@ -167,8 +167,8 @@
     },
     "0x004A14C0": {
       "name": "HideAll_14C0",
-      "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(from UITitle.json)"
+      "signature": "void __thiscall __thiscall()",
+      "source": "vtable_gap_fill_v1(from UITitle.json) | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）"
     },
     "0x00439110": {
       "name": "sub_439110",
@@ -177,8 +177,8 @@
     },
     "0x00445B20": {
       "name": "_scalar_dtor_5b20",
-      "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(IDB:UIWnd::scalar_deleting_dtor_ovl_5b20)",
+      "signature": "void __thiscall(int nVal1)",
+      "source": "vtable_gap_fill_v1(IDB:UIWnd::scalar_deleting_dtor_ovl_5b20) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
       "declaration_only": true
     },
     "0x0044E980": {

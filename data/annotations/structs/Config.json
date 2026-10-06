@@ -20,7 +20,8 @@
     },
     "0x0042FDE0": {
       "name": "ReadSectionAsInt",
-      "signature": "bool __thiscall(char *filename, char *section)"
+      "signature": "bool __thiscall(char *filename, char *section)",
+      "source": " | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 2——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x0042FF40": {
       "name": "ReadFloatArray",

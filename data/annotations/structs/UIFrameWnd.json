@@ -41,7 +41,8 @@
     },
     "0x004431D0": {
       "name": "DestroyCallingCtor",
-      "signature": "void __thiscall UIFrameWnd::DestroyCallingCtor()"
+      "signature": "void __thiscall UIFrameWnd::DestroyCallingCtor(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00442890": {
       "name": "CalculateLayout",
@@ -129,8 +130,8 @@
     },
     "0x00442D40": {
       "name": "_UIFrameWnd_ovl_00442d40",
-      "signature": "void __thiscall UIFrameWnd::~UIFrameWnd()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "signature": "void __thiscall UIFrameWnd::~UIFrameWnd(int nVal1)",
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00442E90": {
       "name": "RenderWithTexture",

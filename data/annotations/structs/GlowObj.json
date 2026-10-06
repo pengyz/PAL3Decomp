@@ -37,8 +37,8 @@
     },
     "0x41b6a0": {
       "name": "GetGfxManager",
-      "signature": "virtual gbGfxManager *__thiscall()",
-      "source": "vtable_owner_fix(Glow 层虚函数)"
+      "signature": "virtual gbGfxManager *__thiscall(int nVal1)",
+      "source": "vtable_owner_fix(Glow 层虚函数) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x41be30": {
       "name": "_sdtor_22",

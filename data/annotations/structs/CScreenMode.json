@@ -1,808 +1,810 @@
 {
- "name": "CScreenMode",
- "known_members": {
-  "4": {
-   "name": "m_bRenderAlt",
-   "type": "unsigned char",
-   "source": "A:mov_byte_ptr_in_class_method | ida_xref"
-  },
-  "8": {
-   "name": "m_nScreenFlags",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "12": {
-   "name": "m_nField0C",
-   "type": "int",
-   "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)"
-  },
-  "16": {
-   "name": "m_fFadeStart",
-   "type": "float",
-   "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)"
-  },
-  "20": {
-   "name": "m_fFadeTarget",
-   "type": "float",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "24": {
-   "name": "m_nFadeState",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "72": {
-   "name": "m_nPosY",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "244": {
-   "name": "m_nBarTotalSize",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "272": {
-   "name": "m_nArrayCapacity",
-   "type": "int",
-   "source": "ida_decomp:_init_52ed30 = 62, new(4*this), 3 refs"
-  },
-  "276": {
-   "name": "m_pArrayData",
-   "type": "char *",
-   "source": "ida_decomp:_init_52ed30 = void*, freed, 4 refs | type_fix:int→void*(pointer assignment+free semantics)",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "0": {
-   "name": "m_pEnumeration",
-   "type": "char *",
-   "source": "type_fix:float->void*(naming_convention:prefix m_p indicates pointer)"
-  },
-  "128": {
-   "name": "m_nProgressPos",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "132": {
-   "name": "m_nProgress",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "136": {
-   "name": "m_nBarWidth",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "140": {
-   "name": "m_nBarHeight",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "144": {
-   "name": "m_nBarPosX",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "148": {
-   "name": "m_nBarPosY",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "220": {
-   "name": "m_fProgressRatio",
-   "type": "float",
-   "source": "ida_decomp:SetProgress = a2/v3, 5 refs"
-  },
-  "224": {
-   "name": "m_fProgressMax",
-   "type": "float",
-   "source": "ida_decomp:SetProgress divisor, 8 refs"
-  },
-  "232": {
-   "name": "m_fProgress",
-   "type": "float",
-   "source": "reverted:fild_alone_insufficient(m_f_prefix_confirms_float)"
-  },
-  "268": {
-   "name": "m_nBarParam",
-   "type": "int",
-   "source": "ida_decomp:SetProgress loaded twice, 2 refs"
-  },
-  "1244": {
-   "name": "m_nPageCounter",
-   "type": "UIScene",
-   "source": "ida_decomp:_init_529e40 ++, 7 refs | fix:binary_ctor_UIScene_stride344"
-  },
-  "68": {
-   "name": "m_nPosX",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "212": {
-   "name": "m_szTooltip",
-   "type": "char[8]",
-   "source": "fix:span=8_next_hits=5"
-  },
-  "236": {
-   "name": "m_fProgressParam",
-   "type": "float",
-   "source": "binary:disp32_8hits_1funcs"
-  },
-  "248": {
-   "name": "m_fBarOffsetX",
-   "type": "float",
-   "source": "ida_decomp:SetProgress added to layout calc, 2 refs"
-  },
-  "252": {
-   "name": "m_fBarOffsetY",
-   "type": "float",
-   "source": "ida_decomp:SetProgress added to layout calc, 2 refs"
-  },
-  "256": {
-   "name": "m_fBarOffsetW",
-   "type": "float",
-   "source": "ida_decomp:SetProgress added to layout calc, 2 refs"
-  },
-  "28": {
-   "name": "m_fFadeAlpha",
-   "type": "float",
-   "source": "ida_decomp:_init_533250 >= v47 compare, 10 refs"
-  },
-  "36": {
-   "name": "m_fFadeSpeed",
-   "type": "float",
-   "source": "ida_decomp:_init_533250 += this+12, accumulated, 3 refs"
-  },
-  "40": {
-   "name": "m_fCountdown",
-   "type": "float",
-   "source": "ida_decomp:_init_533250 -= 0.5, 8 refs"
-  },
-  "44": {
-   "name": "m_fFadeParam",
-   "type": "float",
-   "source": "ida_decomp:_init_533250 = this+20 + this, accumulated, 3 refs"
-  },
-  "48": {
-   "name": "m_fFadeProgress",
-   "type": "float",
-   "source": "reverted_auto_semantic:2x_access"
-  },
-  "52": {
-   "name": "m_VolMod",
-   "type": "int",
-   "source": "decomp:gbVolModNode_SetVolModObj(embedded_volmod)"
-  },
-  "60": {
-   "name": "m_bFadeActive",
-   "type": "unsigned char",
-   "source": "ida_decomp:_init_533250 byte toggle 1/0, 3 refs"
-  },
-  "64": {
-   "name": "m_fScreenTimer",
-   "type": "float",
-   "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
-  },
-  "76": {
-   "name": "m_nLayoutParam",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "80": {
-   "name": "m_nUIState",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "84": {
-   "name": "m_nUIMode",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "88": {
-   "name": "m_nScreenWidth",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "92": {
-   "name": "m_nScreenHeight",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "96": {
-   "name": "m_nProgressBase",
-   "type": "int",
-   "source": "ida_decomp:SetProgress loaded, 10 refs"
-  },
-  "100": {
-   "name": "m_nLayoutState",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "104": {
-   "name": "m_nLayoutOffX",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "108": {
-   "name": "m_nLayoutOffY",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "120": {
-   "name": "m_nProgressValA",
-   "type": "int",
-   "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)"
-  },
-  "124": {
-   "name": "m_nProgressValB",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "152": {
-   "name": "m_bCameraInit",
-   "type": "int",
-   "source": "decomp:InitCamera_set_0,_init_set_1"
-  },
-  "164": {
-   "name": "m_wndAssistA",
-   "type": "float",
-   "source": "A:FPU_disp32_0x52c513"
-  },
-  "56": {
-   "name": "m_fFadeMaxAlpha",
-   "type": "float",
-   "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
-  },
-  "113": {
-   "name": "m_bLoadFlag",
-   "type": "unsigned char",
-   "source": "decomp:LoadScreenScene_if(!x)+set_0"
-  },
-  "3876": {
-   "name": "m_RoleDialog",
-   "type": "UIRoleDialog",
-   "source": "ctor/dtor:ARC_PlayerAtt::Refresh+UIRoleDialog::_UIRoleDialog"
-  },
-  "2620": {
-   "name": "m_ScenePanel",
-   "type": "UIScene",
-   "source": "A:binary_ctor lea+call UIScene::Destroy2 stride=344"
-  },
-  "2964": {
-   "name": "m_ScenePanelB",
-   "type": "UIScene",
-   "source": "A:binary_ctor lea+call UIScene::Destroy2 stride=344"
-  },
-  "3308": {
-   "name": "m_ScenePanelC",
-   "type": "UIScene",
-   "source": "reverted_auto_semantic:4x_access|reverted:pseudo_semantic"
-  },
-  "636": {
-   "type": "UIFrameWnd",
-   "name": "_embed_UIFrameWnd_816",
-   "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
-  },
-  "728": {
-   "type": "UIFrameWnd",
-   "name": "_embed_UIFrameWnd_968",
-   "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
-  },
-  "32": {
-   "name": "m_nFadeCounter",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "160": {
-   "name": "m_fVolume",
-   "type": "float",
-   "source": "binary_scan:3refs | ida_xref"
-  },
-  "168": {
-   "name": "m_nAudioHandle",
-   "type": "int",
-   "source": "binary_scan:2refs | ida_xref"
-  },
-  "172": {
-   "name": "m_pfnPlayVideo",
-   "type": "int",
-   "source": "binary_scan:6refs | ida_xref"
-  },
-  "176": {
-   "name": "m_nAudioState",
-   "type": "int",
-   "source": "binary_scan:1refs | ida_xref"
-  },
-  "180": {
-   "name": "m_fAudioVolume",
-   "type": "float",
-   "source": "binary_scan:2refs | ida_xref"
-  },
-  "184": {
-   "name": "m_nAudioFileId",
-   "type": "int",
-   "source": "binary_scan:1refs | ida_xref"
-  },
-  "192": {
-   "name": "m_nVideoState",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "196": {
-   "name": "m_fSceneVolume",
-   "type": "float",
-   "source": "binary_scan:2refs | ida_xref"
-  },
-  "204": {
-   "name": "m_fPan",
-   "type": "float",
-   "source": "binary_scan:1refs | ida_xref"
-  },
-  "208": {
-   "name": "m_fProgressD",
-   "type": "float",
-   "source": "binary_scan:1refs"
-  },
-  "228": {
-   "name": "m_fProgressCur",
-   "type": "float",
-   "source": "decomp:SetProgress_divided_by_max"
-  },
-  "240": {
-   "name": "m_fProgressNorm",
-   "type": "float",
-   "source": "decomp:SetProgress_normalized"
-  },
-  "260": {
-   "name": "m_fAccum",
-   "type": "float",
-   "source": "A:FPU_fadd_2x_[esi+104h]_confirmed_float"
-  },
-  "264": {
-   "name": "m_nProgressTimer",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "280": {
-   "name": "m_FrameB",
-   "type": "UIStatic",
-   "source": "decomp:_init_47be20_CreateFromTemplate+vtable16"
-  },
-  "432": {
-   "name": "m_StaticArray",
-   "type": "UIStatic",
-   "source": "decomp:_init_47be20_loop_ptr+=152(UIStatic_array_start)"
-  },
-  "616": {
-   "name": "m_nVolNode0",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "620": {
-   "name": "m_nVolNode1",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "624": {
-   "name": "m_nVolNode2",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "628": {
-   "name": "m_nVolNode3",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "632": {
-   "name": "m_nVolNode4",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "808": {
-   "name": "m_pAudioMgr",
-   "type": "gbAudioManager *",
-   "source": "decomp:Restore_dtor_call"
-  },
-  "812": {
-   "name": "m_pSoundStream",
-   "type": "void *",
-   "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
-  },
-  "816": {
-   "name": "m_Static_816",
-   "type": "UIStatic",
-   "source": "ctor:UIStatic::_UIStatic"
-  },
-  "2260": {
-   "name": "m_BtnTooltipC",
-   "type": "UIButton",
-   "source": "decomp:_init_4593c0_same_pattern(+344_from_1916)"
-  },
-  "2608": {
-   "name": "m_pGameUI",
-   "type": "void *",
-   "source": "binary_scan:2refs;batch_fix:int_to_v*_LEA_embed"
-  },
-  "3868": {
-   "name": "m_bActive",
-   "type": "unsigned char",
-   "source": "A:byte_toggle_1_0_in_ctor"
-  },
-  "3872": {
-   "name": "m_nScreenActive",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "3688": {
-   "name": "m_SceneBlock",
-   "type": "int",
-   "source": "decomp:BYTE+560_DWORD+141"
-  },
-  "3660": {
-   "name": "m_nAssistMode",
-   "type": "int",
-   "source": "decomp:+4_BYTE_CreateFromTemplate"
-  }
- },
- "binary_size": 5496,
- "methods": {
-  "0x0040EB10": {
-   "name": "ProcessGameMode",
-   "signature": "void __cdecl(int nVal, int nVal2)",
-   "static": true
-  },
-  "0x0043AFA0": {
-   "name": "SetTooltipText",
-   "signature": "void __thiscall()"
-  },
-  "0x0043DC40": {
-   "name": "SetPosition",
-   "signature": "void __thiscall(int nX, int nY)"
-  },
-  "0x0044E8B0": {
-   "name": "HideUIBars",
-   "signature": "void __thiscall CScreenMode::HideUIBars(int nVal, unsigned int dwVal)"
-  },
-  "0x00454980": {
-   "name": "_scalar_dtor_0"
-  },
-  "0x00456280": {
-   "name": "GetMouseScroll",
-   "signature": "char __thiscall()"
-  },
-  "0x00456E20": {
-   "name": "PauseAllStreams",
-   "signature": "void __thiscall(void *pStreams, unsigned __int8 a2)",
-   "source": " | param1 fn-ptr-table -> void *: body iterates 52 objects of 0x178 bytes dispatching vtable slot 0 with the flag — an object pointer with unknown class, void * per generalization rule"
-  },
-  "0x004593C0": {
-   "name": "InitGameUI",
-   "signature": "void __thiscall CScreenMode::InitGameUI()"
-  },
-  "0x0047BE20": {
-   "name": "InitEquipScreen",
-   "signature": "void __thiscall CScreenMode::InitEquipScreen()"
-  },
-  "0x00493290": {
-   "name": "GetPlayerAttByIndex",
-   "signature": "void __thiscall(int nIndex)"
-  },
-  "0x004B30C0": {
-   "name": "GetMouseDelta",
-   "signature": "char __thiscall()"
-  },
-  "0x00523F30": {
-   "name": "CScreenMode",
-   "signature": "void __thiscall()"
-  },
-  "0x00524110": {
-   "name": "_scalar_dtor",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "ordinal": 5,
-   "source": "+canonical_rename"
-  },
-  "0x00524130": {
-   "name": "_CScreenMode",
-   "signature": "void __thiscall()"
-  },
-  "0x00524980": {
-   "name": "ForwardMessage",
-   "signature": "int __thiscall(int nVal, int nVal2)",
-   "ordinal": 2
-  },
-  "0x005249A0": {
-   "name": "OnRenderAlt",
-   "signature": "int __thiscall CScreenMode::OnRenderAlt()",
-   "ordinal": 6
-  },
-  "0x00527F50": {
-   "name": "InitSceneAudio",
-   "signature": "int __thiscall CScreenMode::InitSceneAudio(int nVal)"
-  },
-  "0x0052D230": {
-   "name": "InitPlayerData",
-   "signature": "char __thiscall CScreenMode::InitPlayerData()"
-  },
-  "0x0052DF40": {
-   "name": "InitCamera",
-   "signature": "void __thiscall(struct gbGfxManager *pGfx)"
-  },
-  "0x0052ED30": {
-   "name": "InitEndScreen",
-   "signature": "void __thiscall CScreenMode::InitEndScreen()"
-  },
-  "0x00530440": {
-   "name": "CreateVolModNode",
-   "signature": "int __thiscall()"
-  },
-  "0x00530660": {
-   "name": "FreeNPCBuffer",
-   "signature": "void __thiscall()"
-  },
-  "0x00533250": {
-   "name": "LoadScreenScene",
-   "signature": "double __thiscall(double result, float result_4)"
-  },
-  "0x0053C420": {
-   "name": "CloseBinkVideo",
-   "signature": "int __thiscall CScreenMode::CloseBinkVideo()"
-  },
-  "0x0053C440": {
-   "name": "CreateDevice",
-   "signature": "int __thiscall(int a, int b, int c, int d)"
-  },
-  "0x0053C460": {
-   "name": "WaitBinkFrame",
-   "signature": "int __thiscall CScreenMode::WaitBinkFrame()"
-  },
-  "0x0053C470": {
-   "name": "IsSceneReady",
-   "signature": "int __thiscall()"
-  },
-  "0x0053C530": {
-   "name": "CheckFieldReady",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6)"
-  },
-  "0x0053C5A0": {
-   "name": "PlayVideo",
-   "signature": "int __thiscall(int nVal)"
-  },
-  "0x0053C6F0": {
-   "name": "SetViewport",
-   "signature": "int __thiscall(int x, int y)"
-  },
-  "0x0053C710": {
-   "name": "GetWidth",
-   "signature": "int __thiscall()"
-  },
-  "0x0053C720": {
-   "name": "GetHeight",
-   "signature": "int __thiscall()"
-  },
-  "0x0053C8C0": {
-   "name": "InitDisplayState",
-   "signature": "int __thiscall CScreenMode::InitDisplayState()"
-  },
-  "0x0053CDD0": {
-   "name": "SetState",
-   "signature": "int __thiscall(int state)"
-  },
-  "0x0053D150": {
-   "name": "GetSoundList",
-   "signature": "PtrArray * __thiscall CScreenMode::GetSoundList()"
-  },
-  "0x0053D1E0": {
-   "name": "SetAudioParam",
-   "signature": "void __thiscall()"
-  },
-  "0x0053D2D0": {
-   "name": "IsAudioReady",
-   "signature": "char __thiscall()"
-  },
-  "0x0053DC50": {
-   "name": "CleanupSoundList",
-   "signature": "void __thiscall CScreenMode::CleanupSoundList()"
-  },
-  "0x0053DD70": {
-   "name": "SetMode",
-   "signature": "void __thiscall(int mode)"
-  },
-  "0x0053DEF0": {
-   "name": "Restore",
-   "signature": "void __thiscall()"
-  },
-  "0x0053DF80": {
-   "name": "GetByteParam",
-   "signature": "BOOL __cdecl(int nVal, int nVal2)",
-   "static": true
-  },
-  "0x0053DFB0": {
-   "name": "PlaySoundStream",
-   "signature": "int __thiscall CScreenMode::PlaySoundStream(const void *pData)"
-  },
-  "0x0053E2E0": {
-   "name": "AudioSetPosition",
-   "signature": "void __thiscall(CScreenMode *this, const void *pData, int nVal)"
-  },
-  "0x0053E490": {
-   "name": "AudioUpdate",
-   "signature": "void __thiscall()"
-  },
-  "0x0053E4E0": {
-   "name": "PlaySoundIfEnabled",
-   "signature": "void __thiscall CScreenMode::PlaySoundIfEnabled(void *pSound, int nMode)"
-  },
-  "0x0053E500": {
-   "name": "GetAudioManager",
-   "signature": "int __thiscall()"
-  },
-  "0x0053E510": {
-   "name": "PlaySceneMusic",
-   "signature": "void __thiscall CScreenMode::PlaySceneMusic(char *pszScene, const char *pszArea, int nVal)"
-  },
-  "0x0053E680": {
-   "name": "PlayCombatMusic",
-   "signature": "void __thiscall CScreenMode::PlayCombatMusic(char *pszSceneName)"
-  },
-  "0x0053E720": {
-   "name": "StopAllAudio",
-   "signature": "unsigned int __thiscall CScreenMode::StopAllAudio()"
-  },
-  "0x0053E740": {
-   "name": "PlayAmbientSound",
-   "signature": "void __thiscall CScreenMode::PlayAmbientSound(char *pszName, gbAudioManager *pAudioMgr)"
-  },
-  "0x0053E890": {
-   "name": "ApplyColorFilter",
-   "signature": "void __thiscall()"
-  },
-  "0x0053E950": {
-   "name": "AudioStopAll",
-   "signature": "void __thiscall()"
-  },
-  "0x0053E970": {
-   "name": "StopAll",
-   "signature": "unsigned int __thiscall()"
-  },
-  "0x0053EA60": {
-   "name": "AudioFadeOut",
-   "signature": "void __thiscall()"
-  },
-  "0x0053EB50": {
-   "name": "IterateChildList",
-   "signature": "int __thiscall()"
-  },
-  "0x0053EB90": {
-   "name": "AddSoundEntry",
-   "signature": "int __thiscall CScreenMode::AddSoundEntry(char *pszBuf, char *pszBuf2)"
-  },
-  "0x0053ED70": {
-   "name": "GetSoundCount",
-   "signature": "int __thiscall CScreenMode::GetSoundCount()"
-  },
-  "0x0053EDA0": {
-   "name": "DestroyString",
-   "signature": "void __thiscall(int *p_DWORD, int *p_DWORD2)"
-  },
-  "0x0053EDE0": {
-   "name": "FreeSoundBuffer",
-   "signature": "void __thiscall CScreenMode::FreeSoundBuffer(void *Block, int nVal)"
-  },
-  "0x0053EDF0": {
-   "name": "ComparePointers",
-   "signature": "int * __thiscall(int *p_DWORD, int *p_DWORD2, int *p_DWORD3)"
-  },
-  "0x0053EE30": {
-   "name": "InitSceneObjects",
-   "signature": "void __thiscall(int *p_DWORD, int nVal, int *p_DWORD2)"
-  },
-  "0x0053F220": {
-   "name": "UpdateRenderState",
-   "signature": "char __thiscall CScreenMode::UpdateRenderState(int *lpString)"
-  },
-  "0x00569320": {
-   "name": "LoadAudioFromFile",
-   "signature": "int __cdecl CScreenMode::LoadAudioFromFile(int *p_DWORD, FILE *Stream, int *p_DWORD2)",
-   "static": true
-  },
-  "0x005694F0": {
-   "name": "OpenBinkVideo",
-   "signature": "int __cdecl CScreenMode::OpenBinkVideo(CScreenMode *pScreen, const char *szFilename, int nVal, int nVal2, int nFlags)"
-  },
-  "0x0043C550": {
-   "name": "SetProgress",
-   "signature": "void __thiscall(float fProgress)",
-   "source": "pdb_ret"
-  },
-  "0x0053EDD0": {
-   "name": "GetPrevIndex",
-   "signature": "int __stdcall(int)"
-  },
-  "0x0053F4C0": {
-   "name": "GetEnumeration",
-   "signature": "_DWORD *__thiscall(_DWORD *)"
-  },
-  "0x0053DF70": {
-   "name": "GetInstance",
-   "signature": "CScreenMode *__cdecl()",
-   "static": true
-  },
-  "0x00494250": {
-   "name": "ResetProgressList",
-   "signature": "int __thiscall(CScreenMode *this)"
-  },
-  "0x0043DE40": {
-   "name": "CCBRoleState::Destroy",
-   "signature": "int __thiscall Destroy(int nMode)",
-   "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
-  },
-  "0x00456500": {
-   "name": "OnMsgHandleNav",
-   "signature": "int __thiscall LineupUI::OnMsgHandleNav(unsigned int uMsg, unsigned int wParam, int lParam)",
-   "source": "vtable_gap_fill_v1(from LineupUI.json)"
-  },
-  "0x004568C0": {
-   "name": "OnMsgSaveData",
-   "signature": "int __thiscall UITitle_QCYM::OnMsgSaveData(unsigned int uMsg, unsigned int wParam, int lParam)",
-   "source": "vtable_gap_fill_v1(from UITitle_QCYM.json)"
-  },
-  "0x00483260": {
-   "name": "_scalar_dtor",
-   "signature": "StateUI *__thiscall(StateUI *Block, char a2)",
-   "source": "vtable_gap_fill_v1(from StateUI.json)"
-  },
-  "0x00485230": {
-   "name": "StateUI::sub_485230",
-   "signature": "void __thiscall(int, int)",
-   "source": "vtable_gap_fill_v1(from functions.json) | vtable_sig_arity_fill(ret-N=8) | vtable_sig_arity_fill(ret-N=8)"
-  },
-  "0x00524970": {
-   "name": "CCBRoleState::Render",
-   "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
-   "source": "vtable_gap_fill_v1(from CCBStage.json)"
-  },
-  "0x004850E0": {
-   "name": "sub_4850E0",
-   "signature": "int __thiscall()",
-   "source": "vtable_gap_fill_v1(IDB:?sub_4850E0@StateUI@@QAEHXZ)"
-  }
- },
- "vtables": [
-  {
-   "addr": "0x00570630",
-   "base": "UIWnd",
-   "slots": [
-    {
-     "addr": "0x00445E70",
-     "from": "UIWnd"
+  "name": "CScreenMode",
+  "known_members": {
+    "4": {
+      "name": "m_bRenderAlt",
+      "type": "unsigned char",
+      "source": "A:mov_byte_ptr_in_class_method | ida_xref"
     },
-    {
-     "addr": "0x00524970",
-     "from": null
+    "8": {
+      "name": "m_nScreenFlags",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
     },
-    {
-     "addr": "0x00524980",
-     "from": null
+    "12": {
+      "name": "m_nField0C",
+      "type": "int",
+      "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)"
     },
-    {
-     "addr": "0x0043DE40",
-     "from": null
+    "16": {
+      "name": "m_fFadeStart",
+      "type": "float",
+      "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)"
     },
-    {
-     "addr": "0x00445B90",
-     "from": "UIWnd"
+    "20": {
+      "name": "m_fFadeTarget",
+      "type": "float",
+      "source": "B:naming_m_n+FPU_misattrib"
     },
-    {
-     "addr": "0x00524110",
-     "from": null
+    "24": {
+      "name": "m_nFadeState",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
     },
-    {
-     "addr": "0x005249A0",
-     "from": null
+    "72": {
+      "name": "m_nPosY",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "244": {
+      "name": "m_nBarTotalSize",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "272": {
+      "name": "m_nArrayCapacity",
+      "type": "int",
+      "source": "ida_decomp:_init_52ed30 = 62, new(4*this), 3 refs"
+    },
+    "276": {
+      "name": "m_pArrayData",
+      "type": "char *",
+      "source": "ida_decomp:_init_52ed30 = void*, freed, 4 refs | type_fix:int→void*(pointer assignment+free semantics)",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "0": {
+      "name": "m_pEnumeration",
+      "type": "char *",
+      "source": "type_fix:float->void*(naming_convention:prefix m_p indicates pointer)"
+    },
+    "128": {
+      "name": "m_nProgressPos",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "132": {
+      "name": "m_nProgress",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "136": {
+      "name": "m_nBarWidth",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "140": {
+      "name": "m_nBarHeight",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "144": {
+      "name": "m_nBarPosX",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "148": {
+      "name": "m_nBarPosY",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "220": {
+      "name": "m_fProgressRatio",
+      "type": "float",
+      "source": "ida_decomp:SetProgress = a2/v3, 5 refs"
+    },
+    "224": {
+      "name": "m_fProgressMax",
+      "type": "float",
+      "source": "ida_decomp:SetProgress divisor, 8 refs"
+    },
+    "232": {
+      "name": "m_fProgress",
+      "type": "float",
+      "source": "reverted:fild_alone_insufficient(m_f_prefix_confirms_float)"
+    },
+    "268": {
+      "name": "m_nBarParam",
+      "type": "int",
+      "source": "ida_decomp:SetProgress loaded twice, 2 refs"
+    },
+    "1244": {
+      "name": "m_nPageCounter",
+      "type": "UIScene",
+      "source": "ida_decomp:_init_529e40 ++, 7 refs | fix:binary_ctor_UIScene_stride344"
+    },
+    "68": {
+      "name": "m_nPosX",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "212": {
+      "name": "m_szTooltip",
+      "type": "char[8]",
+      "source": "fix:span=8_next_hits=5"
+    },
+    "236": {
+      "name": "m_fProgressParam",
+      "type": "float",
+      "source": "binary:disp32_8hits_1funcs"
+    },
+    "248": {
+      "name": "m_fBarOffsetX",
+      "type": "float",
+      "source": "ida_decomp:SetProgress added to layout calc, 2 refs"
+    },
+    "252": {
+      "name": "m_fBarOffsetY",
+      "type": "float",
+      "source": "ida_decomp:SetProgress added to layout calc, 2 refs"
+    },
+    "256": {
+      "name": "m_fBarOffsetW",
+      "type": "float",
+      "source": "ida_decomp:SetProgress added to layout calc, 2 refs"
+    },
+    "28": {
+      "name": "m_fFadeAlpha",
+      "type": "float",
+      "source": "ida_decomp:_init_533250 >= v47 compare, 10 refs"
+    },
+    "36": {
+      "name": "m_fFadeSpeed",
+      "type": "float",
+      "source": "ida_decomp:_init_533250 += this+12, accumulated, 3 refs"
+    },
+    "40": {
+      "name": "m_fCountdown",
+      "type": "float",
+      "source": "ida_decomp:_init_533250 -= 0.5, 8 refs"
+    },
+    "44": {
+      "name": "m_fFadeParam",
+      "type": "float",
+      "source": "ida_decomp:_init_533250 = this+20 + this, accumulated, 3 refs"
+    },
+    "48": {
+      "name": "m_fFadeProgress",
+      "type": "float",
+      "source": "reverted_auto_semantic:2x_access"
+    },
+    "52": {
+      "name": "m_VolMod",
+      "type": "int",
+      "source": "decomp:gbVolModNode_SetVolModObj(embedded_volmod)"
+    },
+    "60": {
+      "name": "m_bFadeActive",
+      "type": "unsigned char",
+      "source": "ida_decomp:_init_533250 byte toggle 1/0, 3 refs"
+    },
+    "64": {
+      "name": "m_fScreenTimer",
+      "type": "float",
+      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
+    },
+    "76": {
+      "name": "m_nLayoutParam",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "80": {
+      "name": "m_nUIState",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "84": {
+      "name": "m_nUIMode",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "88": {
+      "name": "m_nScreenWidth",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "92": {
+      "name": "m_nScreenHeight",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "96": {
+      "name": "m_nProgressBase",
+      "type": "int",
+      "source": "ida_decomp:SetProgress loaded, 10 refs"
+    },
+    "100": {
+      "name": "m_nLayoutState",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "104": {
+      "name": "m_nLayoutOffX",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "108": {
+      "name": "m_nLayoutOffY",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "120": {
+      "name": "m_nProgressValA",
+      "type": "int",
+      "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)"
+    },
+    "124": {
+      "name": "m_nProgressValB",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "152": {
+      "name": "m_bCameraInit",
+      "type": "int",
+      "source": "decomp:InitCamera_set_0,_init_set_1"
+    },
+    "164": {
+      "name": "m_wndAssistA",
+      "type": "float",
+      "source": "A:FPU_disp32_0x52c513"
+    },
+    "56": {
+      "name": "m_fFadeMaxAlpha",
+      "type": "float",
+      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
+    },
+    "113": {
+      "name": "m_bLoadFlag",
+      "type": "unsigned char",
+      "source": "decomp:LoadScreenScene_if(!x)+set_0"
+    },
+    "3876": {
+      "name": "m_RoleDialog",
+      "type": "UIRoleDialog",
+      "source": "ctor/dtor:ARC_PlayerAtt::Refresh+UIRoleDialog::_UIRoleDialog"
+    },
+    "2620": {
+      "name": "m_ScenePanel",
+      "type": "UIScene",
+      "source": "A:binary_ctor lea+call UIScene::Destroy2 stride=344"
+    },
+    "2964": {
+      "name": "m_ScenePanelB",
+      "type": "UIScene",
+      "source": "A:binary_ctor lea+call UIScene::Destroy2 stride=344"
+    },
+    "3308": {
+      "name": "m_ScenePanelC",
+      "type": "UIScene",
+      "source": "reverted_auto_semantic:4x_access|reverted:pseudo_semantic"
+    },
+    "636": {
+      "type": "UIFrameWnd",
+      "name": "_embed_UIFrameWnd_816",
+      "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
+    },
+    "728": {
+      "type": "UIFrameWnd",
+      "name": "_embed_UIFrameWnd_968",
+      "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
+    },
+    "32": {
+      "name": "m_nFadeCounter",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "160": {
+      "name": "m_fVolume",
+      "type": "float",
+      "source": "binary_scan:3refs | ida_xref"
+    },
+    "168": {
+      "name": "m_nAudioHandle",
+      "type": "int",
+      "source": "binary_scan:2refs | ida_xref"
+    },
+    "172": {
+      "name": "m_pfnPlayVideo",
+      "type": "int",
+      "source": "binary_scan:6refs | ida_xref"
+    },
+    "176": {
+      "name": "m_nAudioState",
+      "type": "int",
+      "source": "binary_scan:1refs | ida_xref"
+    },
+    "180": {
+      "name": "m_fAudioVolume",
+      "type": "float",
+      "source": "binary_scan:2refs | ida_xref"
+    },
+    "184": {
+      "name": "m_nAudioFileId",
+      "type": "int",
+      "source": "binary_scan:1refs | ida_xref"
+    },
+    "192": {
+      "name": "m_nVideoState",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "196": {
+      "name": "m_fSceneVolume",
+      "type": "float",
+      "source": "binary_scan:2refs | ida_xref"
+    },
+    "204": {
+      "name": "m_fPan",
+      "type": "float",
+      "source": "binary_scan:1refs | ida_xref"
+    },
+    "208": {
+      "name": "m_fProgressD",
+      "type": "float",
+      "source": "binary_scan:1refs"
+    },
+    "228": {
+      "name": "m_fProgressCur",
+      "type": "float",
+      "source": "decomp:SetProgress_divided_by_max"
+    },
+    "240": {
+      "name": "m_fProgressNorm",
+      "type": "float",
+      "source": "decomp:SetProgress_normalized"
+    },
+    "260": {
+      "name": "m_fAccum",
+      "type": "float",
+      "source": "A:FPU_fadd_2x_[esi+104h]_confirmed_float"
+    },
+    "264": {
+      "name": "m_nProgressTimer",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "280": {
+      "name": "m_FrameB",
+      "type": "UIStatic",
+      "source": "decomp:_init_47be20_CreateFromTemplate+vtable16"
+    },
+    "432": {
+      "name": "m_StaticArray",
+      "type": "UIStatic",
+      "source": "decomp:_init_47be20_loop_ptr+=152(UIStatic_array_start)"
+    },
+    "616": {
+      "name": "m_nVolNode0",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "620": {
+      "name": "m_nVolNode1",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "624": {
+      "name": "m_nVolNode2",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "628": {
+      "name": "m_nVolNode3",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "632": {
+      "name": "m_nVolNode4",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "808": {
+      "name": "m_pAudioMgr",
+      "type": "gbAudioManager *",
+      "source": "decomp:Restore_dtor_call"
+    },
+    "812": {
+      "name": "m_pSoundStream",
+      "type": "void *",
+      "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
+    },
+    "816": {
+      "name": "m_Static_816",
+      "type": "UIStatic",
+      "source": "ctor:UIStatic::_UIStatic"
+    },
+    "2260": {
+      "name": "m_BtnTooltipC",
+      "type": "UIButton",
+      "source": "decomp:_init_4593c0_same_pattern(+344_from_1916)"
+    },
+    "2608": {
+      "name": "m_pGameUI",
+      "type": "void *",
+      "source": "binary_scan:2refs;batch_fix:int_to_v*_LEA_embed"
+    },
+    "3868": {
+      "name": "m_bActive",
+      "type": "unsigned char",
+      "source": "A:byte_toggle_1_0_in_ctor"
+    },
+    "3872": {
+      "name": "m_nScreenActive",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "3688": {
+      "name": "m_SceneBlock",
+      "type": "int",
+      "source": "decomp:BYTE+560_DWORD+141"
+    },
+    "3660": {
+      "name": "m_nAssistMode",
+      "type": "int",
+      "source": "decomp:+4_BYTE_CreateFromTemplate"
     }
-   ]
-  }
- ],
- "_cascade_note": "2026-09-22 复核：该类内嵌 UIRoleDialog@0xF24，但其后**无声明成员** ⇒ **不做平移、不改尺寸** ✗（先前脚本误加 0x58 已撤回 ✓）；其真实尺寸需另行由二进制裁定 ✓"
+  },
+  "binary_size": 5496,
+  "methods": {
+    "0x0040EB10": {
+      "name": "ProcessGameMode",
+      "signature": "void __cdecl(int nVal, int nVal2)",
+      "static": true
+    },
+    "0x0043AFA0": {
+      "name": "SetTooltipText",
+      "signature": "void __thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x0043DC40": {
+      "name": "SetPosition",
+      "signature": "void __thiscall(int nX, int nY)"
+    },
+    "0x0044E8B0": {
+      "name": "HideUIBars",
+      "signature": "void __thiscall CScreenMode::HideUIBars(int nVal, unsigned int dwVal)"
+    },
+    "0x00454980": {
+      "name": "_scalar_dtor_0"
+    },
+    "0x00456280": {
+      "name": "GetMouseScroll",
+      "signature": "char __thiscall()"
+    },
+    "0x00456E20": {
+      "name": "PauseAllStreams",
+      "signature": "void __thiscall(void *pStreams, unsigned __int8 a2)",
+      "source": " | param1 fn-ptr-table -> void *: body iterates 52 objects of 0x178 bytes dispatching vtable slot 0 with the flag — an object pointer with unknown class, void * per generalization rule"
+    },
+    "0x004593C0": {
+      "name": "InitGameUI",
+      "signature": "void __thiscall CScreenMode::InitGameUI()"
+    },
+    "0x0047BE20": {
+      "name": "InitEquipScreen",
+      "signature": "void __thiscall CScreenMode::InitEquipScreen()"
+    },
+    "0x00493290": {
+      "name": "GetPlayerAttByIndex",
+      "signature": "void __thiscall(int nIndex)"
+    },
+    "0x004B30C0": {
+      "name": "GetMouseDelta",
+      "signature": "char __thiscall()"
+    },
+    "0x00523F30": {
+      "name": "CScreenMode",
+      "signature": "void __thiscall()"
+    },
+    "0x00524110": {
+      "name": "_scalar_dtor",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5,
+      "source": "+canonical_rename"
+    },
+    "0x00524130": {
+      "name": "_CScreenMode",
+      "signature": "void __thiscall()"
+    },
+    "0x00524980": {
+      "name": "ForwardMessage",
+      "signature": "int __thiscall(int nVal, int nVal2)",
+      "ordinal": 2
+    },
+    "0x005249A0": {
+      "name": "OnRenderAlt",
+      "signature": "int __thiscall CScreenMode::OnRenderAlt(int nVal1)",
+      "ordinal": 6,
+      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x00527F50": {
+      "name": "InitSceneAudio",
+      "signature": "int __thiscall CScreenMode::InitSceneAudio(int nVal)"
+    },
+    "0x0052D230": {
+      "name": "InitPlayerData",
+      "signature": "char __thiscall CScreenMode::InitPlayerData()"
+    },
+    "0x0052DF40": {
+      "name": "InitCamera",
+      "signature": "void __thiscall(struct gbGfxManager *pGfx)"
+    },
+    "0x0052ED30": {
+      "name": "InitEndScreen",
+      "signature": "void __thiscall CScreenMode::InitEndScreen()"
+    },
+    "0x00530440": {
+      "name": "CreateVolModNode",
+      "signature": "int __thiscall()"
+    },
+    "0x00530660": {
+      "name": "FreeNPCBuffer",
+      "signature": "void __thiscall()"
+    },
+    "0x00533250": {
+      "name": "LoadScreenScene",
+      "signature": "double __thiscall(double result, float result_4)"
+    },
+    "0x0053C420": {
+      "name": "CloseBinkVideo",
+      "signature": "int __thiscall CScreenMode::CloseBinkVideo()"
+    },
+    "0x0053C440": {
+      "name": "CreateDevice",
+      "signature": "int __thiscall(int a, int b, int c, int d)"
+    },
+    "0x0053C460": {
+      "name": "WaitBinkFrame",
+      "signature": "int __thiscall CScreenMode::WaitBinkFrame()"
+    },
+    "0x0053C470": {
+      "name": "IsSceneReady",
+      "signature": "int __thiscall()"
+    },
+    "0x0053C530": {
+      "name": "CheckFieldReady",
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6)"
+    },
+    "0x0053C5A0": {
+      "name": "PlayVideo",
+      "signature": "int __thiscall(int nVal)"
+    },
+    "0x0053C6F0": {
+      "name": "SetViewport",
+      "signature": "int __thiscall(int x, int y)"
+    },
+    "0x0053C710": {
+      "name": "GetWidth",
+      "signature": "int __thiscall()"
+    },
+    "0x0053C720": {
+      "name": "GetHeight",
+      "signature": "int __thiscall()"
+    },
+    "0x0053C8C0": {
+      "name": "InitDisplayState",
+      "signature": "int __thiscall CScreenMode::InitDisplayState()"
+    },
+    "0x0053CDD0": {
+      "name": "SetState",
+      "signature": "int __thiscall(int state)"
+    },
+    "0x0053D150": {
+      "name": "GetSoundList",
+      "signature": "PtrArray * __thiscall CScreenMode::GetSoundList()"
+    },
+    "0x0053D1E0": {
+      "name": "SetAudioParam",
+      "signature": "void __thiscall()"
+    },
+    "0x0053D2D0": {
+      "name": "IsAudioReady",
+      "signature": "char __thiscall()"
+    },
+    "0x0053DC50": {
+      "name": "CleanupSoundList",
+      "signature": "void __thiscall CScreenMode::CleanupSoundList()"
+    },
+    "0x0053DD70": {
+      "name": "SetMode",
+      "signature": "void __thiscall(int mode)"
+    },
+    "0x0053DEF0": {
+      "name": "Restore",
+      "signature": "void __thiscall()"
+    },
+    "0x0053DF80": {
+      "name": "GetByteParam",
+      "signature": "BOOL __cdecl(int nVal, int nVal2)",
+      "static": true
+    },
+    "0x0053DFB0": {
+      "name": "PlaySoundStream",
+      "signature": "int __thiscall CScreenMode::PlaySoundStream(const void *pData)"
+    },
+    "0x0053E2E0": {
+      "name": "AudioSetPosition",
+      "signature": "void __thiscall(CScreenMode *this, const void *pData, int nVal)"
+    },
+    "0x0053E490": {
+      "name": "AudioUpdate",
+      "signature": "void __thiscall()"
+    },
+    "0x0053E4E0": {
+      "name": "PlaySoundIfEnabled",
+      "signature": "void __thiscall CScreenMode::PlaySoundIfEnabled(void *pSound, int nMode)"
+    },
+    "0x0053E500": {
+      "name": "GetAudioManager",
+      "signature": "int __thiscall()"
+    },
+    "0x0053E510": {
+      "name": "PlaySceneMusic",
+      "signature": "void __thiscall CScreenMode::PlaySceneMusic(char *pszScene, const char *pszArea, int nVal)"
+    },
+    "0x0053E680": {
+      "name": "PlayCombatMusic",
+      "signature": "void __thiscall CScreenMode::PlayCombatMusic(char *pszSceneName)"
+    },
+    "0x0053E720": {
+      "name": "StopAllAudio",
+      "signature": "unsigned int __thiscall CScreenMode::StopAllAudio()"
+    },
+    "0x0053E740": {
+      "name": "PlayAmbientSound",
+      "signature": "void __thiscall CScreenMode::PlayAmbientSound(char *pszName, gbAudioManager *pAudioMgr)"
+    },
+    "0x0053E890": {
+      "name": "ApplyColorFilter",
+      "signature": "void __thiscall()"
+    },
+    "0x0053E950": {
+      "name": "AudioStopAll",
+      "signature": "void __thiscall()"
+    },
+    "0x0053E970": {
+      "name": "StopAll",
+      "signature": "unsigned int __thiscall()"
+    },
+    "0x0053EA60": {
+      "name": "AudioFadeOut",
+      "signature": "void __thiscall()"
+    },
+    "0x0053EB50": {
+      "name": "IterateChildList",
+      "signature": "int __thiscall()"
+    },
+    "0x0053EB90": {
+      "name": "AddSoundEntry",
+      "signature": "int __thiscall CScreenMode::AddSoundEntry(char *pszBuf, char *pszBuf2)"
+    },
+    "0x0053ED70": {
+      "name": "GetSoundCount",
+      "signature": "int __thiscall CScreenMode::GetSoundCount()"
+    },
+    "0x0053EDA0": {
+      "name": "DestroyString",
+      "signature": "void __thiscall(int *p_DWORD, int *p_DWORD2)"
+    },
+    "0x0053EDE0": {
+      "name": "FreeSoundBuffer",
+      "signature": "void __thiscall CScreenMode::FreeSoundBuffer(void *Block, int nVal)"
+    },
+    "0x0053EDF0": {
+      "name": "ComparePointers",
+      "signature": "int * __thiscall(int *p_DWORD, int *p_DWORD2, int *p_DWORD3)"
+    },
+    "0x0053EE30": {
+      "name": "InitSceneObjects",
+      "signature": "void __thiscall(int *p_DWORD, int nVal, int *p_DWORD2)"
+    },
+    "0x0053F220": {
+      "name": "UpdateRenderState",
+      "signature": "char __thiscall CScreenMode::UpdateRenderState(int *lpString)"
+    },
+    "0x00569320": {
+      "name": "LoadAudioFromFile",
+      "signature": "int __cdecl CScreenMode::LoadAudioFromFile(int *p_DWORD, FILE *Stream, int *p_DWORD2)",
+      "static": true
+    },
+    "0x005694F0": {
+      "name": "OpenBinkVideo",
+      "signature": "int __cdecl CScreenMode::OpenBinkVideo(CScreenMode *pScreen, const char *szFilename, int nVal, int nVal2, int nFlags)"
+    },
+    "0x0043C550": {
+      "name": "SetProgress",
+      "signature": "void __thiscall(float fProgress)",
+      "source": "pdb_ret"
+    },
+    "0x0053EDD0": {
+      "name": "GetPrevIndex",
+      "signature": "int __stdcall(int)"
+    },
+    "0x0053F4C0": {
+      "name": "GetEnumeration",
+      "signature": "_DWORD *__thiscall(_DWORD *)"
+    },
+    "0x0053DF70": {
+      "name": "GetInstance",
+      "signature": "CScreenMode *__cdecl()",
+      "static": true
+    },
+    "0x00494250": {
+      "name": "ResetProgressList",
+      "signature": "int __thiscall(CScreenMode *this)"
+    },
+    "0x0043DE40": {
+      "name": "CCBRoleState::Destroy",
+      "signature": "int __thiscall Destroy(int nMode)",
+      "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+    },
+    "0x00456500": {
+      "name": "OnMsgHandleNav",
+      "signature": "int __thiscall LineupUI::OnMsgHandleNav(unsigned int uMsg, unsigned int wParam, int lParam)",
+      "source": "vtable_gap_fill_v1(from LineupUI.json)"
+    },
+    "0x004568C0": {
+      "name": "OnMsgSaveData",
+      "signature": "int __thiscall UITitle_QCYM::OnMsgSaveData(unsigned int uMsg, unsigned int wParam, int lParam)",
+      "source": "vtable_gap_fill_v1(from UITitle_QCYM.json)"
+    },
+    "0x00483260": {
+      "name": "_scalar_dtor",
+      "signature": "StateUI *__thiscall(StateUI *Block, char a2)",
+      "source": "vtable_gap_fill_v1(from StateUI.json)"
+    },
+    "0x00485230": {
+      "name": "StateUI::sub_485230",
+      "signature": "void __thiscall(int, int)",
+      "source": "vtable_gap_fill_v1(from functions.json) | vtable_sig_arity_fill(ret-N=8) | vtable_sig_arity_fill(ret-N=8)"
+    },
+    "0x00524970": {
+      "name": "CCBRoleState::Render",
+      "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
+      "source": "vtable_gap_fill_v1(from CCBStage.json)"
+    },
+    "0x004850E0": {
+      "name": "sub_4850E0",
+      "signature": "int __thiscall()",
+      "source": "vtable_gap_fill_v1(IDB:?sub_4850E0@StateUI@@QAEHXZ)"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x00570630",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00524970",
+          "from": null
+        },
+        {
+          "addr": "0x00524980",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00524110",
+          "from": null
+        },
+        {
+          "addr": "0x005249A0",
+          "from": null
+        }
+      ]
+    }
+  ],
+  "_cascade_note": "2026-09-22 复核：该类内嵌 UIRoleDialog@0xF24，但其后**无声明成员** ⇒ **不做平移、不改尺寸** ✗（先前脚本误加 0x58 已撤回 ✓）；其真实尺寸需另行由二进制裁定 ✓"
 }

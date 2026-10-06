@@ -610,7 +610,8 @@
   "methods": {
     "0x004DFAA0": {
       "name": "InitRound",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004DFE00": {
       "name": "AddTextLabel",
@@ -619,7 +620,8 @@
     },
     "0x004DFED0": {
       "name": "EndTurnAndAdvance",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 20/4=5 参 vs 签名 0——补 5 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004FB9A0": {
       "name": "CCBStage",
@@ -651,7 +653,8 @@
     },
     "0x004FC6F0": {
       "name": "Render",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall __thiscall()",
+      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）"
     },
     "0x004FC700": {
       "name": "GetRoleIndex",
@@ -864,7 +867,8 @@
     },
     "0x0050E0D0": {
       "name": "ProcessCommand",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004FC0A0": {
       "name": "Update",
@@ -873,7 +877,8 @@
     },
     "0x004F4AA0": {
       "name": "GetRole",
-      "signature": "CCBStageRole *__thiscall(int index)"
+      "signature": "CCBStageRole *__thiscall(int index)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004FF560": {
       "name": "ProcTaskSlot",
@@ -1244,7 +1249,8 @@
     },
     "0x0050A500": {
       "name": "LoadAction",
-      "signature": "bool __thiscall(CCBStage *this, gbRay nActIndex)"
+      "signature": "bool __thiscall(CCBStage *this, gbRay nActIndex)",
+      "source": " | 签名缺参批量 2026-10-06：ret 24/4=6 参 vs 签名 2——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x0050A520": {
       "name": "GetStatus",

@@ -652,8 +652,8 @@
     },
     "0x004C0640": {
       "name": "ResetState",
-      "signature": "void __thiscall CEffAction::ResetState()",
-      "source": "vtable_gap_fill_v1(from CEffAction.json)"
+      "signature": "void __thiscall CEffAction::ResetState(int nVal1)",
+      "source": "vtable_gap_fill_v1(from CEffAction.json) | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004C0650": {
       "name": "AllocSegments",
@@ -742,8 +742,8 @@
     },
     "0x004C0620": {
       "name": "_scalar_dtor_0620",
-      "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(IDB:RenderTarget2::scalar_deleting_dtor)",
+      "signature": "void __thiscall(int nVal1)",
+      "source": "vtable_gap_fill_v1(IDB:RenderTarget2::scalar_deleting_dtor) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
       "declaration_only": true
     },
     "0x004C1270": {
@@ -753,8 +753,8 @@
     },
     "0x004C34B0": {
       "name": "_scalar_dtor_34b0",
-      "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(IDB:??_GRenderTarget2@@UAEPAXI@Z)"
+      "signature": "void __thiscall(int nVal1)",
+      "source": "vtable_gap_fill_v1(IDB:??_GRenderTarget2@@UAEPAXI@Z) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004C3C70": {
       "name": "sub_4C3C70",
@@ -763,8 +763,8 @@
     },
     "0x004C3DB0": {
       "name": "_scalar_dtor_3db0",
-      "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(IDB:??_GCEffCylinder@@UAEPAXI@Z)"
+      "signature": "void __thiscall(int nVal1)",
+      "source": "vtable_gap_fill_v1(IDB:??_GCEffCylinder@@UAEPAXI@Z) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004C5740": {
       "name": "sub_4C5740",
@@ -773,8 +773,8 @@
     },
     "0x004C5800": {
       "name": "sub_4C5800",
-      "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(IDB:sub_4C5800)"
+      "signature": "void __thiscall(int nVal1)",
+      "source": "vtable_gap_fill_v1(IDB:sub_4C5800) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     }
   },
   "vtables": [

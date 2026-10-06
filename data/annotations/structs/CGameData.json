@@ -1,682 +1,683 @@
 {
- "name": "CGameData",
- "note": "Large game data container. Not in PAL3A PDB. Size estimated from offset analysis.",
- "known_members": {
-  "0": {
-   "name": "_vftable",
-   "type": "void *",
-   "source": "gap_fill:ida_decomp_access | type_fix:float->int(vtable pointer)"
-  },
-  "14528": {
-   "name": "m_pDialog",
-   "type": "char *",
-   "source": "binary:Init _dF40 pattern | type_fix:int→void*(naming m_p)",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "14532": {
-   "name": "m_pSceneObjRef",
-   "type": "SceneObj *",
-   "source": "binary:Render+manual_ida_load"
-  },
-  "14536": {
-   "name": "m_nPrevSceneState",
-   "type": "int",
-   "source": "binary:Render+manual_ida_load"
-  },
-  "260": {
-   "name": "m_nInit",
-   "type": "UIWnd *",
-   "source": "gen_headers_9.2+codegen_infer"
-  },
-  "276": {
-   "name": "m_nInitRoles",
-   "type": "UIWnd *",
-   "source": "gen_headers_9.2+codegen_infer"
-  },
-  "884": {
-   "name": "m_RoleDataA",
-   "type": "CScreenMode *",
-   "source": "ida_decomp:InitRoles vtable+28 call, &this passed, 4 refs+codegen_infer"
-  },
-  "1228": {
-   "name": "m_RoleDataB",
-   "type": "CScreenMode *",
-   "source": "ida_decomp:InitRoles vtable+28 call, same pattern, 4 refs+codegen_infer"
-  },
-  "1572": {
-   "name": "m_RoleDataC",
-   "type": "CScreenMode *",
-   "source": "ida_decomp:InitRoles vtable+28 call, same pattern, 4 refs+codegen_infer"
-  },
-  "2228": {
-   "name": "m_nInitItems",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "2232": {
-   "name": "m_nItemCount2",
-   "type": "int",
-   "source": "reverted_auto_semantic:1x"
-  },
-  "2248": {
-   "name": "m_nEquipCount",
-   "type": "int",
-   "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
-  },
-  "2260": {
-   "name": "m_nConsumableCount",
-   "type": "int",
-   "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
-  },
-  "3288": {
-   "name": "m_nTodo_CD8",
-   "type": "int",
-   "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
-  },
-  "3904": {
-   "name": "m_nRender",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "24": {
-   "name": "m_pItemData",
-   "type": "char *",
-   "source": "binary:raw_this6 | type_fix:int→void*(naming m_p)",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "28": {
-   "name": "m_pMagicData",
-   "type": "char *",
-   "source": "binary:raw_this7 | type_fix:int→void*(naming m_p)",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "256": {
-   "name": "m_nStartPos",
-   "type": "short",
-   "source": "binary:raw_batch"
-  },
-  "640": {
-   "name": "m_bFlag280",
-   "type": "unsigned char",
-   "source": "binary:5x abs refs, byte access (0x280)"
-  },
-  "641": {
-   "name": "m_bFlag281",
-   "type": "unsigned char",
-   "source": "binary:6x abs refs, byte access (0x281)"
-  },
-  "642": {
-   "name": "m_bFlag282",
-   "type": "unsigned char",
-   "source": "binary:6x abs refs, byte access (0x282)"
-  },
-  "3284": {
-   "name": "m_bInitRoles",
-   "type": "unsigned char",
-   "source": "binary:raw_batch"
-  },
-  "3304": {
-   "name": "m_nTodo_CE8",
-   "type": "unsigned char",
-   "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
-  },
-  "3305": {
-   "name": "m_nTodo_CE9",
-   "type": "unsigned char",
-   "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
-  },
-  "7412": {
-   "name": "m_nScriptResult",
-   "type": "int",
-   "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
-  },
-  "7416": {
-   "name": "m_bScriptActive",
-   "type": "unsigned char",
-   "source": "reverted_auto_semantic_r3:1x(InitRoles)"
-  },
-  "9488": {
-   "name": "m_nScriptHandleA",
-   "type": "int",
-   "source": "ida_decomp:InitRoles = 0"
-  },
-  "9492": {
-   "name": "m_nScriptHandleB",
-   "type": "int",
-   "source": "ida_decomp:InitRoles = 0"
-  },
-  "9496": {
-   "name": "m_nScriptHandleC",
-   "type": "int",
-   "source": "ida_decomp:InitRoles = 0"
-  },
-  "9500": {
-   "name": "m_nScriptHandleD",
-   "type": "int",
-   "source": "ida_decomp:InitRoles = 0"
-  },
-  "9504": {
-   "name": "m_nScriptHandleE",
-   "type": "int",
-   "source": "ida_decomp:InitRoles = 0"
-  },
-  "9508": {
-   "name": "m_nScriptHandleF",
-   "type": "int",
-   "source": "ida_decomp:InitRoles = 0"
-  },
-  "9512": {
-   "name": "m_bScriptRunning",
-   "type": "unsigned char",
-   "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
-  },
-  "28176": {
-   "name": "m_pGameObj",
-   "type": "char *",
-   "source": "ida_decomp:Init=v3, Render vtable+4 call, Destroy delete, 5 refs | type_fix:int→void*(new/delete+vtable)",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "28180": {
-   "name": "m_nMode",
-   "type": "int",
-   "source": "binary:raw_batch"
-  },
-  "28184": {
-   "name": "m_pGameObjB",
-   "type": "char *",
-   "source": "ida_decomp:Init = v12, Render deref[3829] byte check, 2 refs | type_fix:int→void*(deref pattern)",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "68": {
-   "name": "m_nField_044",
-   "type": "int",
-   "source": "binary:gap_r2"
-  },
-  "244": {
-   "name": "m_pStartScene",
-   "type": "UIScene *",
-   "source": "binary:gap_r2"
-  },
-  "356": {
-   "name": "m_nSaveSlot",
-   "type": "int",
-   "source": "binary:10x abs refs (0x164)"
-  },
-  "656": {
-   "name": "m_nGameMode",
-   "type": "int",
-   "source": "binary:17x abs refs (0x290)"
-  },
-  "1916": {
-   "name": "m_ItemSlotA",
-   "type": "UIItem",
-   "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer"
-  },
-  "2220": {
-   "name": "m_pItemArray",
-   "type": "void *",
-   "source": "binary:gap_r2;batch_fix:int_or_float_to_v*_LEA"
-  },
-  "3308": {
-   "name": "m_ItemSlotB",
-   "type": "UIItem",
-   "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer"
-  },
-  "4676": {
-   "name": "m_ItemSlotC",
-   "type": "UIItem",
-   "source": "ida_decomp:InitRoles UIItem::Create+SetData(18), 2 refs+codegen_infer"
-  },
-  "5012": {
-   "name": "m_UITitle",
-   "type": "int",
-   "source": "ida_decomp:ctor_F050 UITitle::ctor, Init InitRoles, 2 refs"
-  },
-  "6044": {
-   "name": "m_ItemSlotD",
-   "type": "UIItem",
-   "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer"
-  },
-  "14544": {
-   "name": "m_aItemData",
-   "type": "int",
-   "source": "ida_decomp:ctor_F050 eh_vector_dtor(0x8E0,6), Init InitItems loop, 2 refs"
-  },
-  "328": {
-   "name": "m_nField_148",
-   "type": "int",
-   "source": "binary:gamedata_gap"
-  },
-  "624": {
-   "name": "m_nPlayerMoney",
-   "type": "int",
-   "source": "binary:3x abs refs, store/load eax(dword)"
-  },
-  "628": {
-   "name": "m_nMoneyAdd",
-   "type": "int",
-   "source": "binary:gamedata_gap"
-  },
-  "632": {
-   "name": "m_nMoneySub",
-   "type": "int",
-   "source": "binary:gamedata_gap"
-  },
-  "636": {
-   "name": "m_nStorePriceMod",
-   "type": "int",
-   "source": "binary:gamedata_gap"
-  },
-  "644": {
-   "name": "m_nReputation",
-   "type": "int",
-   "source": "binary:gamedata_gap"
-  },
-  "648": {
-   "name": "m_nSceneLoadParam",
-   "type": "int",
-   "source": "binary:gamedata_gap+manual_ida_load"
-  },
-  "652": {
-   "name": "m_bSceneLoaded",
-   "type": "char",
-   "source": "manual_fix:shrink_to_gap | ida_xref"
-  },
-  "653": {
-   "name": "m_bSceneActive",
-   "type": "unsigned char",
-   "source": "binary:gamedata_gap | ida_xref"
-  },
-  "728": {
-   "name": "m_nBattleResult",
-   "type": "int",
-   "source": "binary:5x abs refs (0x2D8)"
-  },
-  "736": {
-   "name": "m_nMissionState",
-   "type": "int",
-   "source": "binary:4x abs refs, dword access in PalScriptMgr"
-  },
-  "3976": {
-   "name": "m_nUIFlags",
-   "type": "int",
-   "source": "binary:4x abs refs, A1(load eax) + others"
-  },
-  "14524": {
-   "name": "m_nGameFlags",
-   "type": "int",
-   "source": "binary:gamedata_gap"
-  },
-  "4": {
-   "name": "m_nRoleCount",
-   "type": "int",
-   "source": "globals_merge"
-  },
-  "8": {
-   "name": "m_nItemCount",
-   "type": "int",
-   "source": "globals_merge"
-  },
-  "12": {
-   "name": "m_nMagicCount",
-   "type": "int",
-   "source": "globals_merge"
-  },
-  "16": {
-   "name": "m_nSceneCount",
-   "type": "int",
-   "source": "globals_merge"
-  },
-  "20": {
-   "name": "m_nStateFlags",
-   "type": "int",
-   "source": "globals_merge"
-  },
-  "52": {
-   "name": "m_bDataLoaded",
-   "type": "int",
-   "source": "globals_merge"
-  },
-  "60": {
-   "name": "m_nLoadResult",
-   "type": "int",
-   "source": "globals_merge"
-  },
-  "64": {
-   "name": "m_nGameTick",
-   "type": "int",
-   "source": "globals_merge"
-  },
-  "72": {
-   "name": "m_nDataCRC",
-   "type": "int",
-   "source": "globals_merge"
-  },
-  "1744": {
-   "name": "m_fAnimTimer",
-   "type": "float",
-   "source": "globals_merge"
-  },
-  "1748": {
-   "name": "m_fAnimSpeed",
-   "type": "float",
-   "source": "A:FPU_abs_addr_0xD8EB94@0x438C0B"
-  },
-  "1788": {
-   "name": "m_bAnimPaused",
-   "type": "unsigned char",
-   "source": "globals_merge"
-  },
-  "1840": {
-   "name": "m_bAnimLoop",
-   "type": "unsigned char",
-   "source": "globals_merge"
-  },
-  "2480": {
-   "name": "m_fBGMVolume",
-   "type": "float",
-   "source": "globals_merge"
-  },
-  "2484": {
-   "name": "m_nBGMState",
-   "type": "int",
-   "source": "globals_merge"
-  },
-  "3796": {
-   "name": "m_nUIDialogId",
-   "type": "int",
-   "source": "globals_merge"
-  },
-  "4448": {
-   "name": "m_fUIColorR",
-   "type": "float",
-   "source": "globals_merge"
-  },
-  "4452": {
-   "name": "m_nUIColorMode",
-   "type": "int",
-   "source": "globals_merge"
-  },
-  "5104": {
-   "name": "m_fUITransition",
-   "type": "float",
-   "source": "globals_merge"
-  },
-  "5760": {
-   "name": "m_fUIFadeAlpha",
-   "type": "float",
-   "source": "globals_merge"
-  },
-  "5764": {
-   "name": "m_nUIFadeState",
-   "type": "int",
-   "source": "globals_merge"
-  },
-  "6416": {
-   "name": "m_fSceneTimer",
-   "type": "float",
-   "source": "globals_merge"
-  },
-  "6420": {
-   "name": "m_nSceneState",
-   "type": "int",
-   "source": "globals_merge"
-  },
-  "7728": {
-   "name": "m_fEffectTimer",
-   "type": "float",
-   "source": "globals_merge"
-  },
-  "7732": {
-   "name": "m_nEffectState",
-   "type": "int",
-   "source": "globals_merge"
-  },
-  "10352": {
-   "name": "m_fScriptTimer",
-   "type": "float",
-   "source": "globals_merge"
-  },
-  "10364": {
-   "name": "m_nScriptPhase",
-   "type": "int",
-   "source": "globals_merge"
-  },
-  "11008": {
-   "name": "m_fDialogTimer",
-   "type": "float",
-   "source": "globals_merge"
-  },
-  "11012": {
-   "name": "m_nDialogState",
-   "type": "int",
-   "source": "globals_merge"
-  },
-  "17104": {
-   "name": "m_nPostGame",
-   "type": "int",
-   "source": "globals_merge"
-  },
-  "14540": {
-   "name": "m_nSceneTransition",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access+manual_ida_load"
-  },
-  "32": {
-   "name": "m_nDataVersion",
-   "type": "int",
-   "source": "binary_discovery:1refs"
-  },
-  "408": {
-   "name": "m_nSceneTransFlag",
-   "type": "int",
-   "source": "binary_discovery:1refs+manual_ida_load"
-  },
-  "768": {
-   "name": "m_nBattleCount",
-   "type": "int",
-   "source": "binary_discovery:1refs"
-  },
-  "1024": {
-   "name": "m_nWinCount",
-   "type": "int",
-   "source": "binary_discovery:1refs"
-  },
-  "1280": {
-   "name": "m_nLossCount",
-   "type": "int",
-   "source": "binary_discovery:1refs"
-  },
-  "1536": {
-   "name": "m_nEscapeCount",
-   "type": "int",
-   "source": "binary_discovery:1refs"
-  },
-  "2304": {
-   "name": "m_nKeyItemCount",
-   "type": "int",
-   "source": "binary_discovery:1refs"
-  },
-  "3829": {
-   "name": "m_bDialogActive",
-   "type": "unsigned char",
-   "source": "binary_discovery:1refs | ida_xref"
-  },
-  "12992": {
-   "name": "m_fUIColorParam",
-   "type": "float",
-   "source": "auto:overlap_g_GameData_at_+0x32C0"
-  },
-  "16424": {
-   "name": "m_bGameUpdating",
-   "type": "unsigned char",
-   "source": "auto:overlap_g_GameData_at_+0x4028"
-  },
-  "7072": {
-   "name": "m_fTimerC",
-   "type": "float",
-   "source": "auto:extern_overlap_g_GameData_at_+0x1BA0"
-  },
-  "76": {
-   "name": "m_rcWindow",
-   "type": "tagRECT",
-   "source": " | normalize_key: 0x4C -> 76"
-  },
-  "92": {
-   "name": "m_rcWidgetRect",
-   "type": "tagRECT",
-   "source": " | normalize_key: 0x5C -> 92"
-  },
-  "108": {
-   "name": "m_nTodo_06C",
-   "type": "int",
-   "source": " | normalize_key: 0x6C -> 108"
-  },
-  "112": {
-   "name": "m_nTodo_070",
-   "type": "int",
-   "source": " | normalize_key: 0x70 -> 112"
-  },
-  "124": {
-   "name": "m_nTodo_07C",
-   "type": "UIWnd *",
-   "source": " | normalize_key: 0x7C -> 124"
-  },
-  "988": {
-   "name": "m_nTodo_3DC",
-   "type": "int",
-   "source": " | normalize_key: 0x3DC -> 988"
-  },
-  "992": {
-   "name": "m_nTodo_3E0",
-   "type": "int",
-   "source": " | normalize_key: 0x3E0 -> 992"
-  },
-  "1332": {
-   "name": "m_nTodo_534",
-   "type": "int",
-   "source": " | normalize_key: 0x534 -> 1332"
-  },
-  "1336": {
-   "name": "m_nTodo_538",
-   "type": "int",
-   "source": " | normalize_key: 0x538 -> 1336"
-  },
-  "1676": {
-   "name": "m_nTodo_68C",
-   "type": "int",
-   "source": " | normalize_key: 0x68C -> 1676"
-  },
-  "1680": {
-   "name": "m_nTodo_690",
-   "type": "int",
-   "source": " | normalize_key: 0x690 -> 1680"
-  },
-  "428": {
-   "name": "m_subObjA",
-   "type": "UIStatic",
-   "source": " | normalize_key: 0x1AC -> 428"
-  },
-  "220": {
-   "name": "g_pSceneTransitionEnd",
-   "type": "unsigned __int8 *",
-   "source": "region-audit: interior extern @0xDBA0AC"
-  }
- },
- "binary_size": 28268,
- "methods": {
-  "0x0044ADE0": {
-   "name": "InitRoles",
-   "signature": "int __thiscall(int nVal)"
-  },
-  "0x0044E660": {
-   "name": "InitItems",
-   "signature": "int __thiscall(int nVal)"
-  },
-  "0x0044F5B0": {
-   "name": "ProcessDialog",
-   "signature": "int __thiscall CGameData::ProcessDialog()",
-   "ordinal": 1
-  },
-  "0x0044F8A0": {
-   "name": "SetMode",
-   "signature": "int __thiscall(int nVal)"
-  },
-  "0x0044F430": {
-   "name": "Cleanup",
-   "signature": "void __thiscall CGameData::Cleanup()",
-   "ordinal": 3
-  },
-  "0x0044F610": {
-   "name": "Load",
-   "signature": "int __thiscall(CGameData *this, CUtil *pUtil)"
-  },
-  "0x0044F050": {
-   "name": "ctor",
-   "signature": "void __thiscall()",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-  },
-  "0x0044FF60": {
-   "name": "GetMode",
-   "signature": "int __thiscall()"
-  },
-  "0x0044F030": {
-   "name": "_scalar_dtor",
-   "signature": "void __thiscall CGameData::_scalar_dtor()",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "ordinal": 5
-  },
-  "0x00445A60": {
-   "name": "SetDefaultColors",
-   "signature": "char __thiscall()"
-  },
-  "0x0044F4C0": {
-   "name": "SceneUpdate",
-   "signature": "int __thiscall(int nVal, int nVal2)",
-   "source": "vtable_migrated",
-   "ordinal": 2
-  },
-  "0x00445D10": {
-   "name": "OnMessage",
-   "signature": "int __thiscall(int nVal, int nMsg, int wParam)"
-  }
- },
- "vtables": [
-  {
-   "addr": "0x0056B094",
-   "base": "UIWnd",
-   "slots": [
-    {
-     "addr": "0x00445E70",
-     "from": "UIWnd"
+  "name": "CGameData",
+  "note": "Large game data container. Not in PAL3A PDB. Size estimated from offset analysis.",
+  "known_members": {
+    "0": {
+      "name": "_vftable",
+      "type": "void *",
+      "source": "gap_fill:ida_decomp_access | type_fix:float->int(vtable pointer)"
     },
-    {
-     "addr": "0x0044F5B0",
-     "from": null
+    "14528": {
+      "name": "m_pDialog",
+      "type": "char *",
+      "source": "binary:Init _dF40 pattern | type_fix:int→void*(naming m_p)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
-    {
-     "addr": "0x0044F4C0",
-     "from": null
+    "14532": {
+      "name": "m_pSceneObjRef",
+      "type": "SceneObj *",
+      "source": "binary:Render+manual_ida_load"
     },
-    {
-     "addr": "0x0044F430",
-     "from": null
+    "14536": {
+      "name": "m_nPrevSceneState",
+      "type": "int",
+      "source": "binary:Render+manual_ida_load"
     },
-    {
-     "addr": "0x00445B90",
-     "from": "UIWnd"
+    "260": {
+      "name": "m_nInit",
+      "type": "UIWnd *",
+      "source": "gen_headers_9.2+codegen_infer"
     },
-    {
-     "addr": "0x0044F030",
-     "from": null
+    "276": {
+      "name": "m_nInitRoles",
+      "type": "UIWnd *",
+      "source": "gen_headers_9.2+codegen_infer"
     },
-    {
-     "addr": "0x00445D10",
-     "from": "UIWnd"
+    "884": {
+      "name": "m_RoleDataA",
+      "type": "CScreenMode *",
+      "source": "ida_decomp:InitRoles vtable+28 call, &this passed, 4 refs+codegen_infer"
+    },
+    "1228": {
+      "name": "m_RoleDataB",
+      "type": "CScreenMode *",
+      "source": "ida_decomp:InitRoles vtable+28 call, same pattern, 4 refs+codegen_infer"
+    },
+    "1572": {
+      "name": "m_RoleDataC",
+      "type": "CScreenMode *",
+      "source": "ida_decomp:InitRoles vtable+28 call, same pattern, 4 refs+codegen_infer"
+    },
+    "2228": {
+      "name": "m_nInitItems",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "2232": {
+      "name": "m_nItemCount2",
+      "type": "int",
+      "source": "reverted_auto_semantic:1x"
+    },
+    "2248": {
+      "name": "m_nEquipCount",
+      "type": "int",
+      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
+    },
+    "2260": {
+      "name": "m_nConsumableCount",
+      "type": "int",
+      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
+    },
+    "3288": {
+      "name": "m_nTodo_CD8",
+      "type": "int",
+      "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
+    },
+    "3904": {
+      "name": "m_nRender",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "24": {
+      "name": "m_pItemData",
+      "type": "char *",
+      "source": "binary:raw_this6 | type_fix:int→void*(naming m_p)",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "28": {
+      "name": "m_pMagicData",
+      "type": "char *",
+      "source": "binary:raw_this7 | type_fix:int→void*(naming m_p)",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "256": {
+      "name": "m_nStartPos",
+      "type": "short",
+      "source": "binary:raw_batch"
+    },
+    "640": {
+      "name": "m_bFlag280",
+      "type": "unsigned char",
+      "source": "binary:5x abs refs, byte access (0x280)"
+    },
+    "641": {
+      "name": "m_bFlag281",
+      "type": "unsigned char",
+      "source": "binary:6x abs refs, byte access (0x281)"
+    },
+    "642": {
+      "name": "m_bFlag282",
+      "type": "unsigned char",
+      "source": "binary:6x abs refs, byte access (0x282)"
+    },
+    "3284": {
+      "name": "m_bInitRoles",
+      "type": "unsigned char",
+      "source": "binary:raw_batch"
+    },
+    "3304": {
+      "name": "m_nTodo_CE8",
+      "type": "unsigned char",
+      "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
+    },
+    "3305": {
+      "name": "m_nTodo_CE9",
+      "type": "unsigned char",
+      "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
+    },
+    "7412": {
+      "name": "m_nScriptResult",
+      "type": "int",
+      "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
+    },
+    "7416": {
+      "name": "m_bScriptActive",
+      "type": "unsigned char",
+      "source": "reverted_auto_semantic_r3:1x(InitRoles)"
+    },
+    "9488": {
+      "name": "m_nScriptHandleA",
+      "type": "int",
+      "source": "ida_decomp:InitRoles = 0"
+    },
+    "9492": {
+      "name": "m_nScriptHandleB",
+      "type": "int",
+      "source": "ida_decomp:InitRoles = 0"
+    },
+    "9496": {
+      "name": "m_nScriptHandleC",
+      "type": "int",
+      "source": "ida_decomp:InitRoles = 0"
+    },
+    "9500": {
+      "name": "m_nScriptHandleD",
+      "type": "int",
+      "source": "ida_decomp:InitRoles = 0"
+    },
+    "9504": {
+      "name": "m_nScriptHandleE",
+      "type": "int",
+      "source": "ida_decomp:InitRoles = 0"
+    },
+    "9508": {
+      "name": "m_nScriptHandleF",
+      "type": "int",
+      "source": "ida_decomp:InitRoles = 0"
+    },
+    "9512": {
+      "name": "m_bScriptRunning",
+      "type": "unsigned char",
+      "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
+    },
+    "28176": {
+      "name": "m_pGameObj",
+      "type": "char *",
+      "source": "ida_decomp:Init=v3, Render vtable+4 call, Destroy delete, 5 refs | type_fix:int→void*(new/delete+vtable)",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "28180": {
+      "name": "m_nMode",
+      "type": "int",
+      "source": "binary:raw_batch"
+    },
+    "28184": {
+      "name": "m_pGameObjB",
+      "type": "char *",
+      "source": "ida_decomp:Init = v12, Render deref[3829] byte check, 2 refs | type_fix:int→void*(deref pattern)",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "68": {
+      "name": "m_nField_044",
+      "type": "int",
+      "source": "binary:gap_r2"
+    },
+    "244": {
+      "name": "m_pStartScene",
+      "type": "UIScene *",
+      "source": "binary:gap_r2"
+    },
+    "356": {
+      "name": "m_nSaveSlot",
+      "type": "int",
+      "source": "binary:10x abs refs (0x164)"
+    },
+    "656": {
+      "name": "m_nGameMode",
+      "type": "int",
+      "source": "binary:17x abs refs (0x290)"
+    },
+    "1916": {
+      "name": "m_ItemSlotA",
+      "type": "UIItem",
+      "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer"
+    },
+    "2220": {
+      "name": "m_pItemArray",
+      "type": "void *",
+      "source": "binary:gap_r2;batch_fix:int_or_float_to_v*_LEA"
+    },
+    "3308": {
+      "name": "m_ItemSlotB",
+      "type": "UIItem",
+      "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer"
+    },
+    "4676": {
+      "name": "m_ItemSlotC",
+      "type": "UIItem",
+      "source": "ida_decomp:InitRoles UIItem::Create+SetData(18), 2 refs+codegen_infer"
+    },
+    "5012": {
+      "name": "m_UITitle",
+      "type": "int",
+      "source": "ida_decomp:ctor_F050 UITitle::ctor, Init InitRoles, 2 refs"
+    },
+    "6044": {
+      "name": "m_ItemSlotD",
+      "type": "UIItem",
+      "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer"
+    },
+    "14544": {
+      "name": "m_aItemData",
+      "type": "int",
+      "source": "ida_decomp:ctor_F050 eh_vector_dtor(0x8E0,6), Init InitItems loop, 2 refs"
+    },
+    "328": {
+      "name": "m_nField_148",
+      "type": "int",
+      "source": "binary:gamedata_gap"
+    },
+    "624": {
+      "name": "m_nPlayerMoney",
+      "type": "int",
+      "source": "binary:3x abs refs, store/load eax(dword)"
+    },
+    "628": {
+      "name": "m_nMoneyAdd",
+      "type": "int",
+      "source": "binary:gamedata_gap"
+    },
+    "632": {
+      "name": "m_nMoneySub",
+      "type": "int",
+      "source": "binary:gamedata_gap"
+    },
+    "636": {
+      "name": "m_nStorePriceMod",
+      "type": "int",
+      "source": "binary:gamedata_gap"
+    },
+    "644": {
+      "name": "m_nReputation",
+      "type": "int",
+      "source": "binary:gamedata_gap"
+    },
+    "648": {
+      "name": "m_nSceneLoadParam",
+      "type": "int",
+      "source": "binary:gamedata_gap+manual_ida_load"
+    },
+    "652": {
+      "name": "m_bSceneLoaded",
+      "type": "char",
+      "source": "manual_fix:shrink_to_gap | ida_xref"
+    },
+    "653": {
+      "name": "m_bSceneActive",
+      "type": "unsigned char",
+      "source": "binary:gamedata_gap | ida_xref"
+    },
+    "728": {
+      "name": "m_nBattleResult",
+      "type": "int",
+      "source": "binary:5x abs refs (0x2D8)"
+    },
+    "736": {
+      "name": "m_nMissionState",
+      "type": "int",
+      "source": "binary:4x abs refs, dword access in PalScriptMgr"
+    },
+    "3976": {
+      "name": "m_nUIFlags",
+      "type": "int",
+      "source": "binary:4x abs refs, A1(load eax) + others"
+    },
+    "14524": {
+      "name": "m_nGameFlags",
+      "type": "int",
+      "source": "binary:gamedata_gap"
+    },
+    "4": {
+      "name": "m_nRoleCount",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "8": {
+      "name": "m_nItemCount",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "12": {
+      "name": "m_nMagicCount",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "16": {
+      "name": "m_nSceneCount",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "20": {
+      "name": "m_nStateFlags",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "52": {
+      "name": "m_bDataLoaded",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "60": {
+      "name": "m_nLoadResult",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "64": {
+      "name": "m_nGameTick",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "72": {
+      "name": "m_nDataCRC",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "1744": {
+      "name": "m_fAnimTimer",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "1748": {
+      "name": "m_fAnimSpeed",
+      "type": "float",
+      "source": "A:FPU_abs_addr_0xD8EB94@0x438C0B"
+    },
+    "1788": {
+      "name": "m_bAnimPaused",
+      "type": "unsigned char",
+      "source": "globals_merge"
+    },
+    "1840": {
+      "name": "m_bAnimLoop",
+      "type": "unsigned char",
+      "source": "globals_merge"
+    },
+    "2480": {
+      "name": "m_fBGMVolume",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "2484": {
+      "name": "m_nBGMState",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "3796": {
+      "name": "m_nUIDialogId",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "4448": {
+      "name": "m_fUIColorR",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "4452": {
+      "name": "m_nUIColorMode",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "5104": {
+      "name": "m_fUITransition",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "5760": {
+      "name": "m_fUIFadeAlpha",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "5764": {
+      "name": "m_nUIFadeState",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "6416": {
+      "name": "m_fSceneTimer",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "6420": {
+      "name": "m_nSceneState",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "7728": {
+      "name": "m_fEffectTimer",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "7732": {
+      "name": "m_nEffectState",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "10352": {
+      "name": "m_fScriptTimer",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "10364": {
+      "name": "m_nScriptPhase",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "11008": {
+      "name": "m_fDialogTimer",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "11012": {
+      "name": "m_nDialogState",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "17104": {
+      "name": "m_nPostGame",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "14540": {
+      "name": "m_nSceneTransition",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access+manual_ida_load"
+    },
+    "32": {
+      "name": "m_nDataVersion",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
+    "408": {
+      "name": "m_nSceneTransFlag",
+      "type": "int",
+      "source": "binary_discovery:1refs+manual_ida_load"
+    },
+    "768": {
+      "name": "m_nBattleCount",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
+    "1024": {
+      "name": "m_nWinCount",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
+    "1280": {
+      "name": "m_nLossCount",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
+    "1536": {
+      "name": "m_nEscapeCount",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
+    "2304": {
+      "name": "m_nKeyItemCount",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
+    "3829": {
+      "name": "m_bDialogActive",
+      "type": "unsigned char",
+      "source": "binary_discovery:1refs | ida_xref"
+    },
+    "12992": {
+      "name": "m_fUIColorParam",
+      "type": "float",
+      "source": "auto:overlap_g_GameData_at_+0x32C0"
+    },
+    "16424": {
+      "name": "m_bGameUpdating",
+      "type": "unsigned char",
+      "source": "auto:overlap_g_GameData_at_+0x4028"
+    },
+    "7072": {
+      "name": "m_fTimerC",
+      "type": "float",
+      "source": "auto:extern_overlap_g_GameData_at_+0x1BA0"
+    },
+    "76": {
+      "name": "m_rcWindow",
+      "type": "tagRECT",
+      "source": " | normalize_key: 0x4C -> 76"
+    },
+    "92": {
+      "name": "m_rcWidgetRect",
+      "type": "tagRECT",
+      "source": " | normalize_key: 0x5C -> 92"
+    },
+    "108": {
+      "name": "m_nTodo_06C",
+      "type": "int",
+      "source": " | normalize_key: 0x6C -> 108"
+    },
+    "112": {
+      "name": "m_nTodo_070",
+      "type": "int",
+      "source": " | normalize_key: 0x70 -> 112"
+    },
+    "124": {
+      "name": "m_nTodo_07C",
+      "type": "UIWnd *",
+      "source": " | normalize_key: 0x7C -> 124"
+    },
+    "988": {
+      "name": "m_nTodo_3DC",
+      "type": "int",
+      "source": " | normalize_key: 0x3DC -> 988"
+    },
+    "992": {
+      "name": "m_nTodo_3E0",
+      "type": "int",
+      "source": " | normalize_key: 0x3E0 -> 992"
+    },
+    "1332": {
+      "name": "m_nTodo_534",
+      "type": "int",
+      "source": " | normalize_key: 0x534 -> 1332"
+    },
+    "1336": {
+      "name": "m_nTodo_538",
+      "type": "int",
+      "source": " | normalize_key: 0x538 -> 1336"
+    },
+    "1676": {
+      "name": "m_nTodo_68C",
+      "type": "int",
+      "source": " | normalize_key: 0x68C -> 1676"
+    },
+    "1680": {
+      "name": "m_nTodo_690",
+      "type": "int",
+      "source": " | normalize_key: 0x690 -> 1680"
+    },
+    "428": {
+      "name": "m_subObjA",
+      "type": "UIStatic",
+      "source": " | normalize_key: 0x1AC -> 428"
+    },
+    "220": {
+      "name": "g_pSceneTransitionEnd",
+      "type": "unsigned __int8 *",
+      "source": "region-audit: interior extern @0xDBA0AC"
     }
-   ]
-  }
- ]
+  },
+  "binary_size": 28268,
+  "methods": {
+    "0x0044ADE0": {
+      "name": "InitRoles",
+      "signature": "int __thiscall(int nVal)"
+    },
+    "0x0044E660": {
+      "name": "InitItems",
+      "signature": "int __thiscall(int nVal)"
+    },
+    "0x0044F5B0": {
+      "name": "ProcessDialog",
+      "signature": "int __thiscall CGameData::ProcessDialog()",
+      "ordinal": 1
+    },
+    "0x0044F8A0": {
+      "name": "SetMode",
+      "signature": "int __thiscall(int nVal)"
+    },
+    "0x0044F430": {
+      "name": "Cleanup",
+      "signature": "void __thiscall CGameData::Cleanup()",
+      "ordinal": 3
+    },
+    "0x0044F610": {
+      "name": "Load",
+      "signature": "int __thiscall(CGameData *this, CUtil *pUtil)"
+    },
+    "0x0044F050": {
+      "name": "ctor",
+      "signature": "void __thiscall()",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+    },
+    "0x0044FF60": {
+      "name": "GetMode",
+      "signature": "int __thiscall()"
+    },
+    "0x0044F030": {
+      "name": "_scalar_dtor",
+      "signature": "void __thiscall CGameData::_scalar_dtor(int nVal1)",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5,
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x00445A60": {
+      "name": "SetDefaultColors",
+      "signature": "char __thiscall()"
+    },
+    "0x0044F4C0": {
+      "name": "SceneUpdate",
+      "signature": "int __thiscall(int nVal, int nVal2)",
+      "source": "vtable_migrated",
+      "ordinal": 2
+    },
+    "0x00445D10": {
+      "name": "OnMessage",
+      "signature": "int __thiscall(int nVal, int nMsg, int wParam)"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056B094",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0044F5B0",
+          "from": null
+        },
+        {
+          "addr": "0x0044F4C0",
+          "from": null
+        },
+        {
+          "addr": "0x0044F430",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0044F030",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        }
+      ]
+    }
+  ]
 }

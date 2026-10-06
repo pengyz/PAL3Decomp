@@ -1,62 +1,62 @@
 {
- "name": "gbRenderEffect",
- "binary_size": 68,
- "known_members": {
-  "24": {
-   "name": "m_pEffect",
-   "type": "ID3DXEffect *",
-   "source": "annotation"
+  "name": "gbRenderEffect",
+  "binary_size": 68,
+  "known_members": {
+    "24": {
+      "name": "m_pEffect",
+      "type": "ID3DXEffect *",
+      "source": "annotation"
+    },
+    "28": {
+      "name": "m_Flags",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "32": {
+      "name": "m_DeclHandle",
+      "type": "IDirect3DVertexDeclaration9 *",
+      "source": "annotation"
+    },
+    "36": {
+      "name": "m_ParamHandle",
+      "type": "unsigned int[8]",
+      "source": "annotation"
+    }
   },
-  "28": {
-   "name": "m_Flags",
-   "type": "unsigned int",
-   "source": "annotation"
-  },
-  "32": {
-   "name": "m_DeclHandle",
-   "type": "IDirect3DVertexDeclaration9 *",
-   "source": "annotation"
-  },
-  "36": {
-   "name": "m_ParamHandle",
-   "type": "unsigned int[8]",
-   "source": "annotation"
+  "base_class": [
+    "gbResource"
+  ],
+  "base_size": 24,
+  "methods": {
+    "0x004202A0": {
+      "name": "AllocSlotData",
+      "signature": "void *__thiscall(int nVal)",
+      "source": "vtable_gap_fill_v1(from RoleSystem.json)"
+    },
+    "0x00420430": {
+      "name": "_sdtor_2",
+      "signature": "void __thiscall(int nVal1)",
+      "source": "vtable_gap_fill_v1(from functions.json) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x004208A0": {
+      "name": "Reset",
+      "signature": "void __thiscall()",
+      "source": "vtable_gap_fill_v1(from RoleSystem.json)"
+    },
+    "0x004209E0": {
+      "name": "ResetState",
+      "signature": "void __thiscall RoleSystem::ResetState(int nVal1)",
+      "source": "vtable_gap_fill_v1(from RoleSystem.json) | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x00420270": {
+      "name": "sub_420270",
+      "signature": "void __thiscall(int)",
+      "source": "vtable_gap_fill_v1(IDB:sub_420270) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
+    },
+    "0x004202F0": {
+      "name": "sub_4202F0",
+      "signature": "int __thiscall()",
+      "source": "vtable_gap_fill_v1(IDB:?sub_4202F0@RoleSystem@@QAEHXZ)"
+    }
   }
- },
- "base_class": [
-  "gbResource"
- ],
- "base_size": 24,
- "methods": {
-  "0x004202A0": {
-   "name": "AllocSlotData",
-   "signature": "void *__thiscall(int nVal)",
-   "source": "vtable_gap_fill_v1(from RoleSystem.json)"
-  },
-  "0x00420430": {
-   "name": "_sdtor_2",
-   "signature": "void __thiscall()",
-   "source": "vtable_gap_fill_v1(from functions.json)"
-  },
-  "0x004208A0": {
-   "name": "Reset",
-   "signature": "void __thiscall()",
-   "source": "vtable_gap_fill_v1(from RoleSystem.json)"
-  },
-  "0x004209E0": {
-   "name": "ResetState",
-   "signature": "void __thiscall RoleSystem::ResetState()",
-   "source": "vtable_gap_fill_v1(from RoleSystem.json)"
-  },
-  "0x00420270": {
-   "name": "sub_420270",
-   "signature": "void __thiscall(int)",
-   "source": "vtable_gap_fill_v1(IDB:sub_420270) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
-  },
-  "0x004202F0": {
-   "name": "sub_4202F0",
-   "signature": "int __thiscall()",
-   "source": "vtable_gap_fill_v1(IDB:?sub_4202F0@RoleSystem@@QAEHXZ)"
-  }
- }
 }
