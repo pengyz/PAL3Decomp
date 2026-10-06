@@ -1520,6 +1520,12 @@ def run(code, ctx):
     for start, end, replacement in sorted(edits, reverse=True):
         result = result[:start] + replacement + result[end:]
     result = _fix_base_qualified_access(result.decode('utf-8'), ctx)
+    # 窄形接线 2026-10-07（回滚教训——member-chain 限定）：C2100 形归一
+    try:
+        from ast_transform import normalize_deref_cast_parens
+        result = normalize_deref_cast_parens(result)
+    except Exception:
+        pass
     # 接线批 2026-10-07（三清账全备）：限定链冗余中间段删除（C2039 通路）
     # pairs=基链（类→基类）——判别器（合法三段形拒）。pairs 源：struct_bases（载后）+
     # 注解 base_class 直构（懒加载空时备选——2026-10-07 no-op 实证修）
