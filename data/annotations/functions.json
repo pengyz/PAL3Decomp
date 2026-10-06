@@ -1,8 +1,4 @@
 {
-  "0x00401800": {
-    "name": "_todo_401800",
-    "signature": "void __cdecl()"
-  },
   "0x00401810": {
     "name": "ArraySort",
     "signature": "int __stdcall(int base, int count, int elemSize, int compareFunc)"
@@ -2744,5 +2740,17 @@
     "signature": "int __stdcall(int, int, int)",
     "source": "挂账③ E 案 2026-10-06：0x47E4E0 jz 尾跳目标（mov eax,1; retn 0xC）=stdcall 3 参回 1 桩——原名 _DllMain@12_* 无任何权威源（PAL3 字节串/PDB/FLIRT 三处零命中）疑跨库泄漏；改 _todo_ 真名未知形+实参形声明（元数=retn 0xC A 级；型保守 int 形）",
     "declaration_only": true
+  },
+  "0x00509230": {
+    "name": "compiler_init_00509230",
+    "signature": "void __cdecl()",
+    "declaration_only": true,
+    "source": "批5 返工 2026-10-07：0 参实参形（atexit void(*)() 兼容——变参形×atexit 参型爆教训）"
+  },
+  "0x00401800": {
+    "name": "j_j_codecvt_base",
+    "signature": "void __cdecl()",
+    "declaration_only": true,
+    "source": "批5 返工 2026-10-07：0 参实参形（atexit void(*)() 兼容——变参形×atexit 参型爆教训）"
   }
 }
