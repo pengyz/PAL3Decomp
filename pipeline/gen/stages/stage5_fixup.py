@@ -1808,11 +1808,4 @@ def cast_reg_assignments(code):
 
 
 def run(code, ctx):
-    out = _run_inner(code, ctx)
-    # 钩子后置 2026-10-07（stage4 钩子位错实证——形产于 stage5 铸机后）：C2100 形归一
-    try:
-        from ast_transform import normalize_deref_cast_parens
-        out = normalize_deref_cast_parens(out)
-    except Exception:
-        pass
-    return out
+    return _run_inner(code, ctx)
