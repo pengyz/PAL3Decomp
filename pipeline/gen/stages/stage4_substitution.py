@@ -1520,6 +1520,33 @@ def run(code, ctx):
     for start, end, replacement in sorted(edits, reverse=True):
         result = result[:start] + replacement + result[end:]
     result = _fix_base_qualified_access(result.decode('utf-8'), ctx)
+    # 接线批 2026-10-07（三清账全备）：限定链冗余中间段删除（C2039 通路）
+    # pairs=基链（类→基类）——判别器（合法三段形拒）。pairs 源：struct_bases（载后）+
+    # 注解 base_class 直构（懒加载空时备选——2026-10-07 no-op 实证修）
+    try:
+        from ast_transform import drop_redundant_mid_qualifier
+        _pairs = set()
+        _bm = getattr(store, 'struct_bases', None) or {}
+        for _c, _bs in _bm.items():
+            for _b in (_bs or {}):
+                _pairs.add((_c, _b))
+        if not _pairs:
+            # 备选源：注解 base_class/baseName（store.struct_bases 懒加载空时）
+            _gm = getattr(store, 'game_classes', ()) or ()
+            for _sname, _offs in (getattr(store, 'struct_members', None) or {}).items():
+                pass
+            # 直构：known_bases（store 加载后应有）/annotation view
+            _kb = getattr(store, 'known_bases', None) or {}
+            for _c, _bs in _kb.items():
+                for _b in (_bs or []):
+                    if isinstance(_b, dict):
+                        _b = _b.get('baseName') or _b.get('name')
+                    if _b:
+                        _pairs.add((_c, _b))
+        if _pairs:
+            result = drop_redundant_mid_qualifier(result, pairs=_pairs)
+    except Exception:
+        pass
     return _fix_member_fn_callbacks(result, ctx)
 
 
