@@ -634,6 +634,57 @@ def collect_struct_value_members(member_type_pairs, base_names=None):
     return {n for n in name_ok if not name_all.get(n)}
 
 
+def dedupe_identical_lvars(decls):
+    """A 簇 lvar 归并（返工 R-A/R-C）：全等去重 + **同名裁决闭环**。
+    归并键=(func,loc,name,type) 全等去重；同 (func,loc,name) 异型 ⇒ 单留原声明+冲突报出
+    （C2371 防——复核实证：语料 9 组同槽同名异型）。出口不变量：每 (func,name) 至多一条。
+    ④ live-range match=接线批待办（复核 R-D 显式降级）。"""
+    seen = set()
+    out = []
+    by_name = {}
+    conflicts = []
+    for d in decls or ():
+        if not d.get('name'):
+            continue                       # 空名滤（复核新发现4）
+        t = d.get('type')
+        tkey = json.dumps(t, sort_keys=True, default=str) if isinstance(t, (dict, list)) else t
+        key = (d.get('func'), d.get('loc'), d.get('name'), tkey)
+        if key in seen:
+            continue
+        seen.add(key)
+        nk = (d.get('func'), d.get('loc'), d.get('name'))
+        if nk in by_name:
+            conflicts.append((nk, by_name[nk].get('type'), t))
+            continue                       # 同名单留（R-A：C2371 防）
+        by_name[nk] = d
+        out.append(d)
+    return out, conflicts
+
+
+def adjudicate_lvar_type(location, uses_evidence):
+    """A 簇型仲裁（返工 R-B）：证据一致性分类器——**返回域封闭**。
+    返回 'consistent'（同型证据一致）/ 'keep_original'（无证据/缺 scale/越域）/ 'conflict'。
+    注：证据标签（ptr_scale_N）不等于 C 类型——stride→sizeof 注册表解析=接线批（复核 R-B）。"""
+    kinds = set()
+    for u in uses_evidence or ():
+        if not isinstance(u, dict):
+            return 'keep_original'
+        if u.get('kind') == 'ptr_scale':
+            sc = u.get('scale')
+            if not isinstance(sc, int):
+                return 'keep_original'      # 缺 scale/字符串 scale=非证据
+            kinds.add('ptr_scale_%d' % sc)
+        elif u.get('kind'):
+            kinds.add(str(u.get('kind')))
+        else:
+            return 'keep_original'          # 空 kind=非证据（返回域封闭）
+    if not kinds:
+        return 'keep_original'
+    if len(kinds) == 1:
+        return 'consistent'
+    return 'conflict'
+
+
 def resolve_method_identity(addr, ann_structs=None, functions=None, decomp=None,
                             ida_methods=None, allowlist=None):
     """A′ 身份决议器（复核修订案·TDD 9 样张）：同址多源身份决议。
