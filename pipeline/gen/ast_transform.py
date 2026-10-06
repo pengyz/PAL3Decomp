@@ -634,6 +634,42 @@ def collect_struct_value_members(member_type_pairs, base_names=None):
     return {n for n in name_ok if not name_all.get(n)}
 
 
+def normalize_deref_cast_parens(code):
+    """C2100 形归一（TDD）：`*(T**)(x)` → `*((T**)(x))`（显式括号——双括号歧义防）。
+    MSVC6 对 `*(T**)(x)` 的 `*` 解析歧义（乘法/间接）——显式括号形消歧。"""
+    try:
+        masked = _mask_strings_comments(code)
+    except Exception:
+        masked = code
+    pat = re.compile(r'\*\s*\(\s*(?:[A-Za-z_]\w*(?:\s+|\s*\*\s*)?)+\s*\*\s*\)\s*\(')
+    edits = []
+    for m in pat.finditer(masked):
+        orig = m.group(0)
+        # `*(T**)` → `*((T**)` + 末尾配 `)`——形：*(T**)( → *((T**)( ... )
+        if 'x' * 3 in masked[m.start():m.end()] and 'x' * 3 not in code[m.start():m.end()]:
+            continue
+        start = m.end() - 1
+        depth = 0
+        end = None
+        for i in range(start, len(masked)):
+            if masked[i] == '(':
+                depth += 1
+            elif masked[i] == ')':
+                depth -= 1
+                if depth == 0:
+                    end = i
+                    break
+        if end is None:
+            continue
+        rep = orig.replace('*(', '*((', 1)
+        edits.append((m.start(), m.end(), rep, end))
+    out = code
+    for s, e, rep, close in reversed(edits):
+        out = out[:s] + rep + out[e:close] + ')' + out[close:]
+        # 末尾补 )——从 match 后找表达式末（简化：在 rep 后第一个 `)` 后插 `)`
+    return out
+
+
 def drop_redundant_mid_qualifier(code, pairs=None):
     """B1 限定链修（接线三清账版·TDD 9 测）：`recv->A::Base::m` → `recv->Base::m`。
     ①判别器（pairs：A∈基链∧B∈A 基类才删——合法三段形不动）②≤3 轮收敛 ③掩码红线。
