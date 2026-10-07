@@ -766,6 +766,47 @@ def adjudicate_lvar_type(location, uses_evidence):
     return 'conflict'
 
 
+def build_member_index_from_headers(hdrs, cls=None):
+    """member_index 构建（TDD 3 测·复核"生成头为准"）：成员声明解析+继承链传递。
+    hdrs={类名: 头文本}——编译器视图（生成头）。cls 给定时传递基类链成员。"""
+    import re as _re
+    members = {}
+    bases = {}
+    for cname, txt in (hdrs or {}).items():
+        ms = set()
+        for m in _re.finditer(r'^\s*(?:virtual\s+)?[\w:*<>,\s&]+?\s+(\w+)\s*\([^;]*\)\s*;',
+                             txt, _re.M):
+            ms.add(m.group(1))
+        for m in _re.finditer(r'^\s*[\w:*<>,\s&]+?\s+(\w+)\s*(?:\[[^\]]*\])?\s*;\s*(?://.*)?$',
+                             txt, _re.M):
+            ms.add(m.group(1))
+        members[cname] = ms
+        bm = _re.search(r'^\s*(?:class|struct)\s+\w+\s*:\s*([^{]+)\{', txt, _re.M)
+        if bm:
+            bases[cname] = set()
+            for b in bm.group(1).split(','):
+                b = _re.sub(r'\b(?:public|protected|private|virtual)\b', '', b)
+                b = b.split('<')[0].strip().split('::')[-1].strip()
+                if b and b != cname:
+                    bases[cname].add(b)
+    if cls:
+        # 基类链传递（风险 2 修）
+        chain = set()
+        stack = [cls]
+        while stack:
+            c = stack.pop()
+            if c in chain:
+                continue
+            chain.add(c)
+            for b in (bases.get(c) or ()):
+                stack.append(b)
+        merged = set()
+        for c in chain:
+            merged |= members.get(c, set())
+        return {cls: merged}
+    return members
+
+
 def resolve_method_identity(addr, ann_structs=None, functions=None, decomp=None,
                             ida_methods=None, allowlist=None):
     """A′ 身份决议器（复核修订案·TDD 9 样张）：同址多源身份决议。
