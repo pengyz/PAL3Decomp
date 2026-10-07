@@ -1,5 +1,4 @@
-"""conftest：编码根因修（env 方案——PYTHONIOENCODING 强制）。
-注：open() 默认 encoding 的根修=测试文件的显式 encoding（逐件）——覆盖方案脆（参数冲突）故撤。"""
+"""conftest：编码根治（P1——复核方案：PYTHONUTF8=1 启动层）。
+PYTHONIOENCODING 不影响 open() 默认 encoding（locale GBK）——撤换为 UTF-8 mode。"""
 import os
-
-os.environ.setdefault('PYTHONIOENCODING', 'utf-8')
+os.environ['PYTHONUTF8'] = '1'

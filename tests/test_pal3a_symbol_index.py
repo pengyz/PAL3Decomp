@@ -1,5 +1,4 @@
 ﻿import pytest
-pytestmark = pytest.mark.skip(reason="P2 pal3a ref-lib")
 import json
 import subprocess
 import sys
