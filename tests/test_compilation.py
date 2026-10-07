@@ -1,4 +1,4 @@
-"""Test that PAL3 decompilation project compiles without errors.
+﻿"""Test that PAL3 decompilation project compiles without errors.
 
 This test verifies the build system works correctly by:
 1. Configuring CMake with the appropriate generator
@@ -150,3 +150,4 @@ def test_verify_build_rejects_unknown_target(project_root):
     )
     assert result.returncode == 1
     assert 'Unknown target(s): not-a-target' in result.stdout
+
