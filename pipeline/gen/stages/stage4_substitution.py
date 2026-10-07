@@ -1520,6 +1520,12 @@ def run(code, ctx):
     for start, end, replacement in sorted(edits, reverse=True):
         result = result[:start] + replacement + result[end:]
     result = _fix_base_qualified_access(result.decode('utf-8'), ctx)
+    # fn-ptr 限定形接线 2026-10-07（C2273 族——子对象引用形）
+    try:
+        from ast_transform import fix_fnptr_qualified_call
+        result = fix_fnptr_qualified_call(result, base_names={'UIWnd', 'gbRefObject', 'ObjectInfoBase'})
+    except Exception:
+        pass
     # F2 offset 形接线 2026-10-07（非零基类——复核 N4/N5 通路）
     try:
         from ast_transform import rewrite_base_offset_read
