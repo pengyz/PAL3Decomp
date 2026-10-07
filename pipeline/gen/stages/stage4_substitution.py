@@ -1520,6 +1520,12 @@ def run(code, ctx):
     for start, end, replacement in sorted(edits, reverse=True):
         result = result[:start] + replacement + result[end:]
     result = _fix_base_qualified_access(result.decode('utf-8'), ctx)
+    # C2036 形修 2026-10-07：(void*)p+N → (char*)p+N（字节算术等价）
+    try:
+        from ast_transform import fix_void_ptr_arith_cast
+        result = fix_void_ptr_arith_cast(result)
+    except Exception:
+        pass
     # B′ 窄形接线 2026-10-07（C2100 教训——this-> 链限定）
     global _BASE_NAMES_CACHE
     try:

@@ -766,6 +766,27 @@ def adjudicate_lvar_type(location, uses_evidence):
     return 'conflict'
 
 
+def fix_void_ptr_arith_cast(code):
+    """C2036 形修（TDD）：`(void *)p + N` → `(char *)p + N`（字节算术等价形）。
+    MSVC void* 算术=C2036——char* 字节指针等价（宽度同）·指针算术语义保。"""
+    import re as _re
+    try:
+        masked = _mask_strings_comments(code)
+    except Exception:
+        masked = code
+    pat = _re.compile(r'\(\s*void\s*\*\s*\)\s*([\w\)\]]+(?:\[[^\]]*\])*)\s*(\+|-)\s*(\d+)')
+    edits = []
+    for m in pat.finditer(masked):
+        if 'x' * 3 in masked[m.start():m.end()] and 'x' * 3 not in code[m.start():m.end()]:
+            continue
+        rep = '(char *)%s %s %s' % (m.group(1), m.group(2), m.group(3))
+        edits.append((m.start(), m.end(), rep))
+    out = code
+    for s, e, rep in reversed(edits):
+        out = out[:s] + rep + out[e:]
+    return out
+
+
 def rewrite_base_suffix_bare_form(code, base_names=None, base_sizes=None,
                                   nonzero_offsets=None):
     """B′ 形扩展（复核样张表·TDD 5 测）：F1 裸值形基类后缀重写。
