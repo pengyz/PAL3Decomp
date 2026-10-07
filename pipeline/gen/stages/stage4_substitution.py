@@ -1577,6 +1577,7 @@ def run(code, ctx):
 # 基类表直接读**生成头**的继承列表（编译器看到的就是它，与 IDB 侧 `store.struct_bases`
 # 只有单个基类的情况不同 —— 生成头里 SceneObj 有三个基类）。
 _CLASS_BASES_CACHE = None
+_BASE_NAMES_CACHE = None
 
 
 def _class_bases_index():
