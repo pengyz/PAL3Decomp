@@ -766,6 +766,43 @@ def adjudicate_lvar_type(location, uses_evidence):
     return 'conflict'
 
 
+def rewrite_base_suffix_bare_form(code, base_names=None, base_sizes=None,
+                                  nonzero_offsets=None):
+    """B′ 形扩展（复核样张表·TDD 5 测）：F1 裸值形基类后缀重写。
+    `recv.Base = V` → `*(W *)&recv = V`（W=基类 size 证据）。
+    "+0 全称"守卫：混偏移名（任一接收者非 +0）不动。`::` 守卫·词界·掩码。"""
+    bn = base_names or set()
+    bs = base_sizes or {}
+    nz = nonzero_offsets or {}
+    if not bn:
+        return code
+    try:
+        masked = _mask_strings_comments(code)
+    except Exception:
+        masked = code
+    edits = []
+    for name in sorted(bn, key=len, reverse=True):
+        # 混偏移守卫（+0 全称）
+        if any(nb == name for (_t, nb) in nz):
+            continue
+        w = bs.get(name, 4)
+        typ = '_DWORD' if w == 4 else 'int'
+        pat = re.compile(
+            r'(?<![\w])([\w]+(?:\[[^\]]*\])*(?:(?:->|\.)[\w]+(?:\[[^\]]*\])*)*?)(?=\.' + re.escape(name) + r'(?![\w:]))'
+            r'\.' + re.escape(name) + r'(?![\w:])'
+            r'(\s*(?:=[^=]|;))')
+        for m in pat.finditer(masked):
+            recv, tail = m.group(1), m.group(2)
+            if 'x' * 3 in masked[m.start():m.end()] and 'x' * 3 not in code[m.start():m.end()]:
+                continue
+            rep = '*(%s *)&%s%s' % (typ, recv, tail)
+            edits.append((m.start(), m.end(), rep))
+    out = code
+    for s, e, rep in reversed(edits):
+        out = out[:s] + rep + out[e:]
+    return out
+
+
 def build_member_index_from_headers(hdrs, cls=None):
     """member_index 构建（TDD 3 测·复核"生成头为准"）：成员声明解析+继承链传递。
     hdrs={类名: 头文本}——编译器视图（生成头）。cls 给定时传递基类链成员。"""
