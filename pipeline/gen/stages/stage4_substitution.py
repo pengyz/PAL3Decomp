@@ -1521,15 +1521,26 @@ def run(code, ctx):
         result = result[:start] + replacement + result[end:]
     result = _fix_base_qualified_access(result.decode('utf-8'), ctx)
     # 参铸接线 2026-10-07（C2664 族通解——元数门保守）
+    # 根因修（96 轮）：sig=**被调函数** sig（非含函数）——method_sigs 查表
     try:
         from ast_transform import fix_arg_type_casts
-        _sig = getattr(ctx, 'sig', '') or ''
-        _sp = []
-        if '(' in _sig:
+        import re as _re
+        _ms = getattr(store, 'method_sigs', None) or {}
+        def _callee_sig(name):
+            for k, v in _ms.items():
+                if k.endswith('::' + name) or k == name:
+                    return v or ''
+            return ''
+        for _cm in _re.finditer(r'(?:->|\.)(\w+)\([^;]*\)\s*;', result):
+            _nm = _cm.group(1)
+            _sig = _callee_sig(_nm)
+            if '(' not in _sig:
+                continue
             _inner = _sig[_sig.find('(') + 1:_sig.rfind(')')]
             _sp = [x.strip() for x in _inner.split(',') if x.strip() and x.strip() != 'void']
-        if _sp:
-            result = fix_arg_type_casts(result, sig_params=_sp)
+            if _sp:
+                result = fix_arg_type_casts(result, sig_params=_sp)
+                break
     except Exception:
         pass
     # C2036 形修 2026-10-07：(void*)p+N → (char*)p+N（字节算术等价）
