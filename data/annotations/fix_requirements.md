@@ -33,7 +33,7 @@
 
 **Status**: ✅ Completed by engineer-codegen (t4)
 
-**Tool Location**: `tools/audit_layout.py`
+**Tool Location**: `tools/audit_type_layout.py`
 
 **Features**:
 - Compares annotation structs with IDA exported structs
@@ -75,7 +75,7 @@
 ### 3.2 Post-Fix Verification
 1. Run `check_annotations.py` → 0 errors
 2. Run `audit_signature_consistency.py` → 0 signature conflicts
-3. Run `audit_layout.py` → 0 layout conflicts
+3. Run `audit_type_layout.py` → 0 layout conflicts
 4. Run `apply_annotations.py` → successful apply
 5. Run `export_full.py` → successful export
 6. Run `codegen` → successful compilation

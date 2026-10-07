@@ -27,7 +27,7 @@
 | `original/PAL3.exe.raw.i64` | `init` 步骤 1（`idat -B PAL3.exe`） | 否 | `init` 从 exe 重建（最慢的一步） |
 | `original/PAL3.exe.i64`（work IDB） | `init` / `apply`（IDA 保存时写） | 否 | 各命令报 `Work IDB not found` 并退出 1 |
 | `asm/pal3/decomp/*.json` | `export`（`export_full.py`） | 否 | `codegen cpp/all` 退出 1 |
-| `asm/pal3/ida_structs.json` | `export`（`export_full.py:520`/`:787`） | 否 | `tools/audit_layout.py` **退出 2**（2026-09-15 起；此前是 WARN+exit 0 假通过） |
+| `asm/pal3/ida_structs.json` | `export`（`export_full.py:520`/`:787`） | 否 | `tools/audit_type_layout.py` **退出 2**（2026-09-15 起；此前是 WARN+exit 0 假通过） |
 | `data/status/probe_census.json` | `probe s1/s2` | 是 | `compare_pal3.py` 退出 2；`compile_regression.py` 退出 1 |
 | `pipeline.toml` | 人工 `cp pipeline.toml.example pipeline.toml` | 否（设计上 gitignored） | `pipeline/config.py:132-139` 打印 `PIPELINE CONFIG ERROR` 并退出 1（**无 traceback**） |
 | `tools/vc6/{Include,Lib}` 小写 shim | `bash tools/setup_wine_vc6.sh` | 否（`.gitignore:87-88` 刻意排除） | `source tools/wine_vc6.sh` 打印缺哪个 shim 并返回 2；漏跑 setup 时 probe 会报 `C1083: Cannot open include file: 'windows.h'` |
@@ -113,7 +113,7 @@ python pipeline/cli.py match;       echo "match=$?"
 
 | 命令 | 0 | 非 0 |
 |---|---|---|
-| `tools/audit_layout.py` | 无 ERROR 级问题（可含 WARNING） | 1 = 有 ERROR；**2 = 缺 `asm/pal3/ida_structs.json` 等前置产物（拒绝假通过）** |
+| `tools/audit_type_layout.py` | 无 ERROR 级问题（可含 WARNING） | 1 = 有 ERROR；**2 = 缺 `asm/pal3/ida_structs.json` 等前置产物（拒绝假通过）** |
 | `pipeline/decomp_quality.py --threshold` | 无回归告警 | 1 = 有回归告警 |
 | `tools/annotation_diff.py` | git 可读（报告 `verdict: clean|changed`） | **3 = git/commit 不可读（≠「无变更」）**；2 = 其它错误 |
 | `pipeline/compare_pal3.py` | 正常 | **2 = `probe_census.json` 缺失/畸形/条目缺字段** |
@@ -125,7 +125,7 @@ python pipeline/cli.py match;       echo "match=$?"
 
 ## 5. 已知「看起来通过、其实没查」的地方（诚实清单）
 
-- `audit_layout.py` 的 `binary_size vs IDA size`：annotation → apply → IDB → export 是
+- `audit_type_layout.py` 的 `binary_size vs IDA size`：annotation → apply → IDB → export 是
   **同一条数据通路**，相等是构造必然。实测 818/818 相等、0 不等 → **该检查无判别力**，
   只把"不等"当作 stale-IDB 信号；尺寸正确性必须用 IDB 无关来源
   （指令级 `reg+disp32` 访问上界、分配点尺寸）判断。见
@@ -134,7 +134,7 @@ python pipeline/cli.py match;       echo "match=$?"
   `gbVFileSystem`（917972）与 `SoundMgr`（918796）在任何倍率下阈值都不可达
   （且 `gbVFileSystem` 在 decomp 里 **0 个函数**、`SoundMgr` 的 2 个函数没有任何
   `this+N` 裸偏移）。收紧倍率（`*2 → *1`）能恢复 7→16 的检出，但**不能**覆盖这两个类。
-- `audit_layout.py` 新增的"声明尺寸几何"信号（`binary_size > 3×` 声明成员末端）是
+- `audit_type_layout.py` 新增的"声明尺寸几何"信号（`binary_size > 3×` 声明成员末端）是
   **待复核标记而非证据**，且有一个已知盲区：当尺寸被"按值嵌套成员"一致地撑大时
   （例：`gbVFileSystem = 24 + sizeof(CPK 917948)`）比值为 1.0，看不到问题。
 - `pipeline/gen/` 读 `data/annotations/` 的红线违规（裁决 (a)）仍未收口。
