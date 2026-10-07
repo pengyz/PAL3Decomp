@@ -1,4 +1,6 @@
-"""Cross-check annotation names against decomp JSON names."""
+"""Cross-check annotation names against decomp JSON names.
+死闸标注 2026-10-07（工作流梳理——零引用）：待接线（generic 逻辑可搬）。
+用法: python tools/check_annotation_names.py（python 统一——python3 文档债修）"""
 import json, os
 
 def load_json(path):
