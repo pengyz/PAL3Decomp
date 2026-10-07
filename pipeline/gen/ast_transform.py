@@ -816,6 +816,44 @@ def fix_void_ptr_arith_cast(code):
     return out
 
 
+def fix_arg_type_casts(code, sig_params=None):
+    """codegen 参铸扩展（TDD 4 测·C2664 族通解）：签名参型 vs 实参型铸补。
+    `X->M(&recv)` vs `const char*` → `(const char*)&recv`。元数门（复核结论）：参不齐不动。
+    已铸/无签名/元数异=保守不动。"""
+    sp = sig_params or []
+    if not sp:
+        return code
+    try:
+        masked = _mask_strings_comments(code)
+    except Exception:
+        masked = code
+    pat = re.compile(r'((?:->|\.))(\w+)\(([^;]*?)\)\s*;')
+    edits = []
+    for m in pat.finditer(masked):
+        args = m.group(3)
+        # 元数门
+        if args.count(',') + 1 != len(sp):
+            continue
+        # 仅首参（实参形 &x 无铸）补铸
+        arg0 = args.split(',')[0].strip()
+        if arg0.startswith('('):
+            continue                    # 已铸
+        if not arg0.startswith('&'):
+            continue                    # 非取址形
+        typ = sp[0]
+        if 'x' * 3 in masked[m.start():m.end()] and 'x' * 3 not in code[m.start():m.end()]:
+            continue
+        # 替换取原文（掩码红线）
+        arg0_o = code[m.start(3):m.start(3) + len(arg0)]
+        rep = '(%s)%s' % (typ, arg0_o)
+        new_args = rep + args[len(arg0):]
+        edits.append((m.start(3), m.end(3), new_args))
+    out = code
+    for s, e, rep in reversed(edits):
+        out = out[:s] + rep + out[e:]
+    return out
+
+
 def rewrite_base_suffix_bare_form(code, base_names=None, base_sizes=None,
                                   nonzero_offsets=None):
     """B′ 形扩展（复核样张表·TDD 5 测）：F1 裸值形基类后缀重写。
