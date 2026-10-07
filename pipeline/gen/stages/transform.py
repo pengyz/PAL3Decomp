@@ -37,35 +37,8 @@ def make_context(cls_name, method_name, sig='', is_free=False, stub_registry=Non
             is_dtor = False
     # 路由数据流 2026-10-07（复核 R-C）：member_index（类+基类链成员·生成头为准）+
     # classless_names（functions.json classless 条目——32 带 class 排除）
-    member_index = {}
-    classless_names = set()
-    try:
-        from data import store as _st
-        _sm = getattr(_st, 'struct_members', None) or {}
-        _sb = getattr(_st, 'struct_bases', None) or {}
-        _chain = set()
-        if cls_name:
-            _chain.add(cls_name)
-            for _b in (_sb.get(cls_name) or {}):
-                _chain.add(_b)
-        member_index = {c: set((_sm.get(c) or {}).keys()) for c in _chain}
-        for _c, _bs in _sb.items():
-            for _b in (_bs or {}):
-                if _c in _chain:
-                    member_index.setdefault(_b, set()).update((_sm.get(_b) or {}).keys())
-    except Exception:
-        pass
-    try:
-        import json as _json
-        import os as _os
-        _fp = _os.path.join(getattr(_st, 'PROJECT_ROOT', r'D:\workspace\PAL3Decomp'),
-                            'data', 'annotations', 'functions.json')
-        _fd = _json.load(open(_fp, encoding='utf-8'))
-        for _k, _v in _fd.items():
-            if isinstance(_v, dict) and not _v.get('class') and _v.get('name'):
-                classless_names.add(str(_v['name']).split('(')[0])
-    except Exception:
-        pass
+    member_index = None
+    classless_names = None
     return TransformContext(
         cls_name=cls_name, method_name=method_name, sig=sig,
         is_ctor=is_ctor, is_dtor=is_dtor, is_free_function=is_free,
