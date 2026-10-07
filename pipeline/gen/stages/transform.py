@@ -28,6 +28,9 @@ class TransformContext:
     classless_names: object = None
 
 
+_MEMBER_INDEX_CACHE = None
+
+
 def make_context(cls_name, method_name, sig='', is_free=False, stub_registry=None):
     is_ctor = (method_name == cls_name) if cls_name else False
     is_dtor = (method_name == '~%s' % cls_name) if cls_name else False
@@ -39,6 +42,36 @@ def make_context(cls_name, method_name, sig='', is_free=False, stub_registry=Non
     # classless_names（functions.json classless 条目——32 带 class 排除）
     member_index = None
     classless_names = None
+    global _MEMBER_INDEX_CACHE
+    try:
+        if _MEMBER_INDEX_CACHE is None:
+            import glob as _glob
+            import os as _os
+            from ast_transform import build_member_index_from_headers
+            _hdrs = {}
+            _root = _os.path.join(r'D:\workspace\PAL3Decomp', 'pal3', 'src')
+            for _p in _glob.glob(_os.path.join(_root, '**', '*.h'), recursive=True):
+                try:
+                    _hdrs[_os.path.basename(_p)[:-2]] = open(_p, encoding='utf-8', errors='replace').read()
+                except Exception:
+                    continue
+            # 一次 parse 全类（成员+基类）——per-cls 组装查缓存
+            _MEMBER_INDEX_CACHE = build_member_index_from_headers(_hdrs) if _hdrs else {}
+        if cls_name and _MEMBER_INDEX_CACHE:
+            _mi = _MEMBER_INDEX_CACHE
+            member_index = {cls_name: set(_mi.get(cls_name, set()))}
+    except Exception:
+        member_index = None
+    try:
+        import json as _json
+        _fp = _os.path.join(r'D:\workspace\PAL3Decomp', 'data', 'annotations', 'functions.json')
+        _fd = _json.load(open(_fp, encoding='utf-8'))
+        classless_names = set()
+        for _k, _v in _fd.items():
+            if isinstance(_v, dict) and not _v.get('class') and _v.get('name'):
+                classless_names.add(str(_v['name']).split('(')[0])
+    except Exception:
+        classless_names = None
     return TransformContext(
         cls_name=cls_name, method_name=method_name, sig=sig,
         is_ctor=is_ctor, is_dtor=is_dtor, is_free_function=is_free,
