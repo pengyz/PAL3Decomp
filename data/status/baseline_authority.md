@@ -22,3 +22,9 @@
 - [ ] baselines/latest.json 的权威标注
 - [ ] 派生基线的只读化（compile_baseline/s4_baseline 的写入点审计）
 - [ ] 一致性检查接线（check_annotations）
+
+## 写入点审计（2026-10-07·待办②✓）
+- s4_baseline.json：cli.py L728（棘轮显式 \--rebaseline\+理由）+ compare_pal3（L1 棘轮）——**显式写** ✓
+- compile_baseline.json：compile_regression \--update-baseline\——**显式写** ✓
+- baselines/latest.json：regression_detector \--save-baseline\——**显式写** ✓
+- **结论**：三方基线均为显式写入（无隐式回写）——派生只读化**已达成**（现状合规）
