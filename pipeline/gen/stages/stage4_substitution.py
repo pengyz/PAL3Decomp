@@ -1520,6 +1520,13 @@ def run(code, ctx):
     for start, end, replacement in sorted(edits, reverse=True):
         result = result[:start] + replacement + result[end:]
     result = _fix_base_qualified_access(result.decode('utf-8'), ctx)
+    # F2 offset 形接线 2026-10-07（非零基类——复核 N4/N5 通路）
+    try:
+        from ast_transform import rewrite_base_offset_read
+        _bo = {('CCBRoleState', 'TaskMgr_SceneObjParam_SceneObj'): 40}
+        result = rewrite_base_offset_read(result, base_offsets=_bo)
+    except Exception:
+        pass
     # 参铸接线 2026-10-07（C2664 族通解——元数门保守）
     # 根因修（96 轮）：sig=**被调函数** sig（非含函数）——method_sigs 查表
     try:
