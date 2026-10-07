@@ -891,20 +891,24 @@ def fix_arg_type_casts(code, sig_params=None):
         # 元数门
         if args.count(',') + 1 != len(sp):
             continue
-        # 仅首参（实参形 &x 无铸）补铸
-        arg0 = args.split(',')[0].strip()
-        if arg0.startswith('('):
-            continue                    # 已铸
-        if not arg0.startswith('&'):
-            continue                    # 非取址形
-        typ = sp[0]
-        if 'x' * 3 in masked[m.start():m.end()] and 'x' * 3 not in code[m.start():m.end()]:
+        # 多参铸补（族级扩展）
+        parts = args.split(',')
+        new_parts = []
+        changed = False
+        for i, p in enumerate(parts):
+            arg_o = p.strip()
+            if arg_o.startswith('(') or not arg_o.startswith('&'):
+                new_parts.append(p)
+                continue
+            typ = sp[i] if i < len(sp) else sp[-1]
+            # 替换取原文（掩码红线）
+            idx = m.start(3) + args.find(arg_o)
+            arg_real = code[idx:idx + len(arg_o)]
+            new_parts.append(p.replace(arg_o, '(%s)%s' % (typ, arg_real), 1))
+            changed = True
+        if not changed:
             continue
-        # 替换取原文（掩码红线）
-        arg0_o = code[m.start(3):m.start(3) + len(arg0)]
-        rep = '(%s)%s' % (typ, arg0_o)
-        new_args = rep + args[len(arg0):]
-        edits.append((m.start(3), m.end(3), new_args))
+        edits.append((m.start(3), m.end(3), ','.join(new_parts)))
     out = code
     for s, e, rep in reversed(edits):
         out = out[:s] + rep + out[e:]
