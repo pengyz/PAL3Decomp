@@ -804,7 +804,11 @@ def fix_void_ptr_arith_cast(code):
     for m in pat.finditer(masked):
         if 'x' * 3 in masked[m.start():m.end()] and 'x' * 3 not in code[m.start():m.end()]:
             continue
-        rep = '(char *)%s %s %s' % (m.group(1), m.group(2), m.group(3))
+        # 红线修（根因分析）：替换取**原文**切片（掩码 x 禁入——arabo 教训）
+        g1 = code[m.start(1):m.end(1)]
+        g2 = code[m.start(2):m.end(2)]
+        g3 = code[m.start(3):m.end(3)]
+        rep = '(char *)%s %s %s' % (g1, g2, g3)
         edits.append((m.start(), m.end(), rep))
     out = code
     for s, e, rep in reversed(edits):
