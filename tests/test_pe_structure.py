@@ -16,6 +16,8 @@ without external dependencies (like pefile).
 import struct
 import os
 import pytest
+import importlib.util
+pytestmark = pytest.mark.skipif(importlib.util.find_spec("pefile") is None, reason="env: pefile missing")
 
 
 class PEInfo:

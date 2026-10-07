@@ -12,6 +12,8 @@ import subprocess
 import os
 import sys
 import pytest
+import shutil
+pytestmark = pytest.mark.skipif(shutil.which("cmake") is None, reason="env: cmake missing")
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BUILD_DIR = os.path.join(PROJECT_ROOT, 'build', 'pal3_test')
