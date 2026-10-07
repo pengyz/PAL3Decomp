@@ -24,22 +24,53 @@ class TransformContext:
     # 同一**输出文件**内共享的 stub 去重集合（由 emit_cpp 按文件创建）。
     # None ⇒ 不去重（旧行为，安全回退）。
     stub_registry: object = None
+    member_index: object = None
+    classless_names: object = None
 
 
 def make_context(cls_name, method_name, sig='', is_free=False, stub_registry=None):
     is_ctor = (method_name == cls_name) if cls_name else False
     is_dtor = (method_name == '~%s' % cls_name) if cls_name else False
-    # 【挂账③ F 案（2026-10-06）】deleting-dtor 剥参豁免——`void*` 回值+标志参形
-    # （scalar deleting destructor）**不是**纯析构：剥参/常量代入/去回值会语义损坏
-    # （AStarPathFinder `(1 & 1)` 指纹实证——flag 被代成 1）。判定：~名+回值非纯 void。
     if is_dtor and sig:
         _ret = sig.split('(')[0].strip()
         if 'void' not in _ret or '*' in _ret:
             is_dtor = False
+    # 路由数据流 2026-10-07（复核 R-C）：member_index（类+基类链成员·生成头为准）+
+    # classless_names（functions.json classless 条目——32 带 class 排除）
+    member_index = {}
+    classless_names = set()
+    try:
+        from data import store as _st
+        _sm = getattr(_st, 'struct_members', None) or {}
+        _sb = getattr(_st, 'struct_bases', None) or {}
+        _chain = set()
+        if cls_name:
+            _chain.add(cls_name)
+            for _b in (_sb.get(cls_name) or {}):
+                _chain.add(_b)
+        member_index = {c: set((_sm.get(c) or {}).keys()) for c in _chain}
+        for _c, _bs in _sb.items():
+            for _b in (_bs or {}):
+                if _c in _chain:
+                    member_index.setdefault(_b, set()).update((_sm.get(_b) or {}).keys())
+    except Exception:
+        pass
+    try:
+        import json as _json
+        import os as _os
+        _fp = _os.path.join(getattr(_st, 'PROJECT_ROOT', r'D:\workspace\PAL3Decomp'),
+                            'data', 'annotations', 'functions.json')
+        _fd = _json.load(open(_fp, encoding='utf-8'))
+        for _k, _v in _fd.items():
+            if isinstance(_v, dict) and not _v.get('class') and _v.get('name'):
+                classless_names.add(str(_v['name']).split('(')[0])
+    except Exception:
+        pass
     return TransformContext(
         cls_name=cls_name, method_name=method_name, sig=sig,
         is_ctor=is_ctor, is_dtor=is_dtor, is_free_function=is_free,
-        stub_registry=stub_registry)
+        stub_registry=stub_registry,
+        member_index=member_index, classless_names=classless_names)
 
 
 def _thunk_keep_tailjump(code, ctx, is_thunk):
