@@ -2887,7 +2887,8 @@ def apply_annotations():
                 ann_by_name[fn] = lv_ann
             sk = lv_ann.get("stack_offset")
             if sk is not None:
-                ann_by_stkoff[sk] = lv_ann
+                # ordinal 支持 2026-10-07（复核 R4）：同址多 lvar——列表化
+                ann_by_stkoff.setdefault(sk, []).append(lv_ann)
         if not ann_by_name and not ann_by_stkoff:
             lvar_fail += len(lvars_ann)
             continue
@@ -2907,6 +2908,7 @@ def apply_annotations():
             continue
 
         modified = False
+        _stk_ordinal = {}
         for lvar in list(cfunc.lvars):
             is_reg = lvar.is_reg_var()
             ann = ann_by_name.get(lvar.name)
@@ -2914,7 +2916,11 @@ def apply_annotations():
                 try:
                     if lvar.is_stk_var():
                         soff = lvar.get_stkoff()
-                        ann = ann_by_stkoff.get(soff)
+                        lst = ann_by_stkoff.get(soff) or []
+                        if lst:
+                            _i = _stk_ordinal.get(soff, 0)
+                            ann = lst[_i] if _i < len(lst) else lst[-1]
+                            _stk_ordinal[soff] = _i + 1
                 except:
                     pass
             if ann is None:
