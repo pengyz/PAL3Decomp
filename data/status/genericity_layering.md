@@ -51,3 +51,8 @@
 ## check_*/fix_* 族三问分类（2026-10-07）
 - **generic**：check_annotation_names/check_member_extent/check_member_offsets/check_union_member_triviality
 - **project-specific**：check_export_annotation_consistency/fix_all_vtables/fix_annotation_names/fix_vtable_splits
+
+## compare/vtable/progress 族三问分类（2026-10-07）——16 件
+- **generic**（14）：byte_diff_explain/compare/compare_exe/compare_function/fdiff/progress/progress_pal3/
+  topo_compare/vtable_call_transform/vtable_class_reconcile/vtable_compare/vtable_mapper/vtable_scanner/vtable_slot_audit
+- **project-specific**（2）：gbengine_compare/gbengine_progress（gbengine=项目引擎）
