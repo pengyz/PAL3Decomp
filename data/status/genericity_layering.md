@@ -47,3 +47,7 @@
 - **generic**（逻辑可搬）：audit_element_sizes/audit_member_semantics/audit_type_layout
 - **project-specific**（PAL3 判据）：audit_attribution/audit_attribution_evidence/audit_method_attribution/
   audit_retn_param_count/audit_signature_consistency/audit_structural_attribution/audit_this_in_free_functions/audit_vftable_offset0
+
+## check_*/fix_* 族三问分类（2026-10-07）
+- **generic**：check_annotation_names/check_member_extent/check_member_offsets/check_union_member_triviality
+- **project-specific**：check_export_annotation_consistency/fix_all_vtables/fix_annotation_names/fix_vtable_splits
