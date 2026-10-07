@@ -1652,7 +1652,19 @@ def _run_inner(code, ctx):
     # 本替换的语义只适用**未限定**的自调用 `Method((int)this)`，故加负向后顾排除
     # `\w` `:` `.` `>`：限定形态交给 ast_transform 的显式-this 分支处理（它会给出
     # `(obj)->Cls::Method(rest)` 或实施静态调用，都比畸形文本可读且报错准确）。
-    code = re.sub(r'(?<![\w:.>])(\w+)\(\(int\)this\)', r'this->\1()', code)
+    # 路由门控 2026-10-07（复核 R-A/B/C）：成员形仅当类+基类链有成员——否则还原原文（保实参）
+    def _route_sub(m):
+        name = m.group(1)
+        try:
+            v = call_route(name, getattr(ctx, 'cls_name', None),
+                           member_index=getattr(ctx, 'member_index', None),
+                           classless=getattr(ctx, 'classless_names', None))
+        except Exception:
+            v = 'member'
+        if v == 'member':
+            return 'this->%s()' % name
+        return '%s((int)this)' % name       # R-B：还原实参（非 0 参形）
+    code = re.sub(r'(?<![\w:.>])(\w+)\(\(int\)this\)', _route_sub, code)
 
     # !this null check → (this == NULL)
     code = re.sub(r'\b!this\b', '(this == NULL)', code)
@@ -1813,6 +1825,8 @@ def call_route(name, cls, member_index=None, classless=None):
     全无命中⇒'keep'（不编造）。R-B：还原 `(int)this` 实参（非 0 参形）。"""
     mi = member_index or {}
     cl = classless or set()
+    if not mi and not cl:
+        return 'member'          # 数据缺——保守（旧行为·真自调用保）
     # 封闭类+基类链成员检查
     for _c, _ms in mi.items():
         if name in (_ms or ()):
