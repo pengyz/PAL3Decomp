@@ -816,6 +816,45 @@ def fix_void_ptr_arith_cast(code):
     return out
 
 
+CPP_KEYWORDS = {
+    'int', 'void', 'char', 'short', 'long', 'float', 'double', 'bool', 'signed', 'unsigned',
+    'const', 'static', 'extern', 'register', 'volatile', 'auto', 'inline', 'virtual',
+    'class', 'struct', 'union', 'enum', 'typedef', 'template', 'namespace', 'using',
+    'public', 'private', 'protected', 'operator', 'new', 'delete', 'this', 'return',
+    'if', 'else', 'for', 'while', 'do', 'switch', 'case', 'default', 'break', 'continue',
+    'goto', 'sizeof', 'typeof', 'try', 'catch', 'throw', 'true', 'false', 'nullptr',
+}
+
+
+def is_valid_identifier(name):
+    """codegen 关键字守卫（Phase 2·TDD 3 测）：标识符合法性（关键字/非法形拒收）。
+    毒名（int/void 当函数名——批 21 事故）拒收·响亮计数。"""
+    if not name or not re.match(r'^[A-Za-z_]\w*$', name):
+        return False
+    return name not in CPP_KEYWORDS
+
+
+def fix_macro_safe_decl(code):
+    """宏规避形修（TDD 3 测）：`int (Name)(...)` → `int Name_(...)`（宏安全后缀）。
+    Win32 宏（CreateDialog 型）规避形 `int (Name)(...)` 语法错（C2629）——后缀形替代。"""
+    try:
+        masked = _mask_strings_comments(code)
+    except Exception:
+        masked = code
+    pat = re.compile(r'\b(?:int|void|bool|char|float|double|[\w:]+\s*\*?)\s*\((\w+)\)\s*\(')
+    edits = []
+    for m in pat.finditer(masked):
+        name = code[m.start(1):m.end(1)]
+        if 'x' * 3 in masked[m.start():m.end()] and 'x' * 3 not in code[m.start():m.end()]:
+            continue
+        rep = m.group(0).replace('(%s)' % name, '%s_' % name)
+        edits.append((m.start(), m.end(), rep))
+    out = code
+    for s, e, rep in reversed(edits):
+        out = out[:s] + rep + out[e:]
+    return out
+
+
 def fix_fnptr_qualified_call(code, base_names=None):
     """C2273 fn-ptr 限定形（TDD 3 测）：`recv->Base(args)` → `((Base&)recv).M(args)`（子对象形）。
     fn-ptr 调用渲染名=基类名——子对象引用形（复核真形 f3d 编译器证）·分号保全。"""
