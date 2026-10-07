@@ -1537,8 +1537,8 @@ def run(code, ctx):
                 try:
                     _d = _j.load(open(_p, encoding='utf-8'))
                     for _b in (_d.get('base_class') or []):
-                        if isinstance(_b, str):
-                            _bn.add(_b)
+                        if isinstance(_b, str) and len(_b) >= 3:
+                            _bn.add(_b)      # 短/泛名拒（B 型污染教训 2026-10-07）
                             _bs[_b] = 4
                 except Exception:
                     continue

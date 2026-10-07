@@ -845,7 +845,10 @@ def rewrite_base_suffix_bare_form(code, base_names=None, base_sizes=None,
             recv, tail = m.group(1), m.group(2)
             if 'x' * 3 in masked[m.start():m.end()] and 'x' * 3 not in code[m.start():m.end()]:
                 continue
-            rep = '*(%s *)&%s%s' % (typ, recv, tail)
+            # 红线修（arabo 复发）：替换取**原文**切片（掩码 x 禁入）
+            recv_o = code[m.start(1):m.end(1)]
+            tail_o = code[m.start(2):m.end(2)]
+            rep = '*(%s *)&%s%s' % (typ, recv_o, tail_o)
             edits.append((m.start(), m.end(), rep))
     out = code
     for s, e, rep in reversed(edits):
