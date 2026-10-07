@@ -1807,5 +1807,20 @@ def cast_reg_assignments(code):
     return out
 
 
+def call_route(name, cls, member_index=None, classless=None):
+    """调用路由判别（复核 R-C·TDD 4 测）：成员形/保留原文。
+    判别序：封闭类+基类链成员（生成头为准）⇒ 'member'；classless 注册⇒'keep'（还原原文）；
+    全无命中⇒'keep'（不编造）。R-B：还原 `(int)this` 实参（非 0 参形）。"""
+    mi = member_index or {}
+    cl = classless or set()
+    # 封闭类+基类链成员检查
+    for _c, _ms in mi.items():
+        if name in (_ms or ()):
+            return 'member'
+    if name in cl:
+        return 'keep'
+    return 'keep'
+
+
 def run(code, ctx):
     return _run_inner(code, ctx)
