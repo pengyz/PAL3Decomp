@@ -1520,6 +1520,18 @@ def run(code, ctx):
     for start, end, replacement in sorted(edits, reverse=True):
         result = result[:start] + replacement + result[end:]
     result = _fix_base_qualified_access(result.decode('utf-8'), ctx)
+    # 参铸接线 2026-10-07（C2664 族通解——元数门保守）
+    try:
+        from ast_transform import fix_arg_type_casts
+        _sig = getattr(ctx, 'sig', '') or ''
+        _sp = []
+        if '(' in _sig:
+            _inner = _sig[_sig.find('(') + 1:_sig.rfind(')')]
+            _sp = [x.strip() for x in _inner.split(',') if x.strip() and x.strip() != 'void']
+        if _sp:
+            result = fix_arg_type_casts(result, sig_params=_sp)
+    except Exception:
+        pass
     # C2036 形修 2026-10-07：(void*)p+N → (char*)p+N（字节算术等价）
     try:
         from ast_transform import fix_void_ptr_arith_cast
