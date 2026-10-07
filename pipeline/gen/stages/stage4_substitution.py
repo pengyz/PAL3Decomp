@@ -1525,7 +1525,20 @@ def run(code, ctx):
     try:
         from ast_transform import fix_arg_type_casts
         import re as _re
-        _ms = getattr(store, 'method_sigs', None) or {}
+        # sig 源=注解直读（懒加载修——method_sigs 空实证）
+        global _SIG_CACHE
+        if _SIG_CACHE is None:
+            import glob as _g, os as _o, json as _j
+            _SIG_CACHE = {}
+            for _p in _g.glob(_o.path.join(r'D:\workspace\PAL3Decomp', 'data', 'annotations', 'structs', '*.json')):
+                try:
+                    _d = _j.load(open(_p, encoding='utf-8'))
+                    for _mk, _mv in (_d.get('methods') or {}).items():
+                        if isinstance(_mv, dict) and _mv.get('name') and _mv.get('signature'):
+                            _SIG_CACHE[str(_mv['name']).split('(')[0]] = _mv['signature']
+                except Exception:
+                    continue
+        _ms = _SIG_CACHE
         def _callee_sig(name):
             for k, v in _ms.items():
                 if k.endswith('::' + name) or k == name:
@@ -1630,6 +1643,7 @@ def run(code, ctx):
 # 只有单个基类的情况不同 —— 生成头里 SceneObj 有三个基类）。
 _CLASS_BASES_CACHE = None
 _BASE_NAMES_CACHE = None
+_SIG_CACHE = None
 
 
 def _class_bases_index():
