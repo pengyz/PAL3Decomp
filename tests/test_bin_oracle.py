@@ -1,4 +1,6 @@
 ﻿import pytest
+import os
+pytestmark = pytest.mark.skipif(not os.path.exists(r"D:\workspace\PAL3Decomp\original\PAL3.exe"), reason="env: PAL3.exe missing")
 """`tools/bin_oracle.py` 的测试 —— **先写测试**（TDD）。
 
 ## 为什么需要（2026-09-22 工具链来源审计的结论）
