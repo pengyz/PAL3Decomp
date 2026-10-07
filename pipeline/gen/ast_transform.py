@@ -766,6 +766,31 @@ def adjudicate_lvar_type(location, uses_evidence):
     return 'conflict'
 
 
+def position_lvar_by_ordinal(lvars, stkoff, ordinal):
+    """per-lvar ordinal 定位（TDD 3 测·复核 R4）：同址第 N 个 lvar 定位（0 基）。
+    同址多 lvar（FullInit 14 件）——ordinal 区分（apply/export 的批量改名修正）。"""
+    hits = [v for v in (lvars or ()) if v.get('stkoff') == stkoff]
+    if 0 <= ordinal < len(hits):
+        return hits[ordinal]
+    return None
+
+
+def split_lvar_names_by_addr(lvars):
+    """跨址同名拆名（TDD·复核 M1）：pSceneName 型跨址（56/60）——按址归名。"""
+    seen = {}
+    out = []
+    for v in (lvars or ()):
+        addr = v.get('stkoff')
+        base = v.get('name')
+        if base in seen and seen[base] != addr:
+            v = dict(v)
+            v['name'] = '%s_%d' % (base, addr)   # 跨址拆名（语义名+址后缀）
+        else:
+            seen[base] = addr
+        out.append(v)
+    return out
+
+
 def fix_void_ptr_arith_cast(code):
     """C2036 形修（TDD）：`(void *)p + N` → `(char *)p + N`（字节算术等价形）。
     MSVC void* 算术=C2036——char* 字节指针等价（宽度同）·指针算术语义保。"""
