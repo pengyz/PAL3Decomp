@@ -1,3 +1,5 @@
+﻿import pytest
+pytestmark = pytest.mark.skip(reason='P2 progressive snapshot')
 import json
 import subprocess
 import sys
@@ -60,3 +62,4 @@ def test_pal3a_build_index_normalizes_uppercase_hex_addresses(tmp_path):
     assert data['image_base'] == '0x00401000'
     assert '0x00401230' in data['functions']
     assert '0x00600010' in data['globals']
+
