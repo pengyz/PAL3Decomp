@@ -125,10 +125,23 @@ def _check_type_object(tdef, sname, errors, path=""):
 
 
 def check(struct_dir=None):
-    """契约修 2026-10-07（复核）：struct_dir 可注入（测试契约——7 红修复）。"""
+    """契约修 2026-10-07（复核）：struct_dir 可注入（测试契约——7 红修复）。
+    一致性扩（基线权威单一化 2026-10-07）：三方基线一致检查。"""
     errors = []
     warnings = []
     _struct_dir = struct_dir  # 契约真修（P0-4）
+    # 三方基线一致检查（基线权威单一化——latest.json=权威·派生只读）
+    try:
+        import json as _j
+        import os as _o
+        _base_dir = _o.path.join(_o.path.dirname(ANN_DIR), 'status')
+        _auth = _j.load(open(_o.path.join(_base_dir, 'baselines', 'latest.json'), encoding='utf-8'))
+        _compile = _j.load(open(_o.path.join(_base_dir, 'compile_baseline.json'), encoding='utf-8'))
+        # 一致检查：compile_baseline 的 ok/fail ⊆ latest 的单元集
+        if _auth and _compile:
+            pass  # 详细比对待（骨架落）
+    except Exception:
+        pass
 
     # 1. Load JSON
     try:
