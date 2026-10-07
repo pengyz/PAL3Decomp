@@ -876,7 +876,7 @@ def rewrite_base_suffix_bare_form(code, base_names=None, base_sizes=None,
         w = bs.get(name, 4)
         typ = '_DWORD' if w == 4 else 'int'
         pat = re.compile(
-            r'(?<![\w])((?:this->)[\w]+(?:\[[^\]]*\])*(?:(?:->|\.)[\w]+(?:\[[^\]]*\])*)*?)(?=\.' + re.escape(name) + r'(?![\w:]))'
+            r'(?<![\w])((?:this->|[\w]+->)[\w]+(?:\[[^\]]*\])*(?:(?:->|\.)[\w]+(?:\[[^\]]*\])*)*?)(?=\.' + re.escape(name) + r'(?![\w:]))'
             r'\.' + re.escape(name) + r'(?![\w:])'
             r'(\s*(?:=[^=]|;))')
         for m in pat.finditer(masked):
