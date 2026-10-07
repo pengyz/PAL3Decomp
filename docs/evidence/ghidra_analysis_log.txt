@@ -1,0 +1,109 @@
+=== Ghidra Analysis Log for PAL3.exe ===
+Date: 2026-05-01
+Status: PENDING (Awaiting manual Ghidra analysis)
+Analyzer: Claude Code (automated setup complete)
+
+PROJECT SETUP STATUS
+====================
+
+Step 1: Directory Creation
+  [✓] Created asm/pal3/ directory
+  [✓] Created docs/pal3/ directory
+
+Step 2: Ghidra Installation
+  [✓] Installed Java JDK 17.0.8 at C:\Java\jdk-17.0.8+7
+  [✓] Installed Ghidra 11.2.1 at D:\workspace\project-x\tools\ghidra
+  [✓] Verified Java runtime working
+
+Step 3: Environment Setup
+  [✓] Configured Ghidra Java home
+  [✓] Created project structure
+
+NEXT STEPS FOR MANUAL ANALYSIS
+================================
+
+1. Open Ghidra GUI:
+   cd D:\workspace\project-x\tools\ghidra
+   ghidraRun.bat
+
+2. Create new project:
+   - File → New Project
+   - Type: Non-Shared Project
+   - Location: D:\workspace\project-x\asm\pal3
+   - Name: PAL3
+
+3. Import PAL3.exe:
+   - File → Import File
+   - Select: D:\workspace\project-x\original\PAL3.exe
+   - Format: Portable Executable (PE)
+   - Language: x86:LE:32:default
+
+4. Run Analysis:
+   - Double-click PAL3.exe to open CodeBrowser
+   - Click "Analyze" when prompted
+   - Enable key analyzers:
+     [✓] RTTI Analyzer
+     [✓] Decompiler Parameter ID
+     [✓] Function Start Search
+     [✓] Windows x86 PE Exception Handling
+     [✓] Stack Analysis
+     [✓] Reference Analysis
+
+5. Wait for analysis to complete (10-30 minutes)
+
+ANALYSIS RESULTS (TO BE FILLED IN AFTER MANUAL COMPLETION)
+===========================================================
+
+Total Functions Identified: [TO BE FILLED]
+  - Internal: [TO BE FILLED]
+  - External (imports): [TO BE FILLED]
+  - Thunks: [TO BE FILLED]
+
+Expected Range: 3000-5000 functions
+
+Analysis Quality Checks:
+  [?] Function count >= 2000: [TO BE VERIFIED]
+  [?] No critical errors: [TO BE VERIFIED]
+  [?] Key functions identified: [TO BE VERIFIED]
+  [?] RTTI analysis successful: [TO BE VERIFIED]
+
+Key Functions to Verify:
+  - WinMain or wWinMain
+  - DirectX/D3D device initialization
+  - Game main loop
+  - Script engine functions
+
+COMPLETION CHECKLIST
+====================
+
+After manual analysis in Ghidra:
+
+[ ] Ghidra project created at asm/pal3/
+[ ] PAL3.exe imported successfully
+[ ] Analysis completed without errors
+[ ] Function count in expected range (2000-5000)
+[ ] Project saved (asm/pal3/PAL3.gpr exists)
+[ ] Repository directory exists (asm/pal3/PAL3.rep/)
+
+After running export script:
+
+[ ] Run: python tools/ghidra_stats_export.py asm/pal3 docs/pal3/ghidra_analysis_log.txt
+[ ] Statistics updated in this file
+[ ] Analysis log committed to git
+
+REFERENCE INFORMATION
+====================
+
+PAL3.exe Characteristics:
+  - Executable: PAL3.exe
+  - Size: 2.17 MB (unpacked)
+  - Base Address: 0x00400000 (standard Windows PE)
+  - Compiler: MSVC 7.0 (Visual Studio .NET 2003)
+  - Platform: 32-bit Windows x86
+  - EntryPoint: approx 0x00401000
+
+Expected Analysis Time: 10-30 minutes (depending on CPU)
+Recommended Memory: 4GB+
+Disk Space Needed: 500MB (for Ghidra project)
+
+For detailed instructions, see: docs/pal3/GHIDRA_SETUP_INSTRUCTIONS.md
