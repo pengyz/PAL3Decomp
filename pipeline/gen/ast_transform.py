@@ -816,6 +816,33 @@ def fix_void_ptr_arith_cast(code):
     return out
 
 
+def fix_fnptr_qualified_call(code, base_names=None):
+    """C2273 fn-ptr 限定形（TDD 3 测）：`recv->Base(args)` → `((Base&)recv).M(args)`（子对象形）。
+    fn-ptr 调用渲染名=基类名——子对象引用形（复核真形 f3d 编译器证）·分号保全。"""
+    bn = base_names or set()
+    if not bn:
+        return code
+    try:
+        masked = _mask_strings_comments(code)
+    except Exception:
+        masked = code
+    edits = []
+    for name in sorted(bn, key=len, reverse=True):
+        pat = re.compile(
+            r'(?<![\w])((?:this->|[\w]+->))' + re.escape(name) + r'\(([^;]*?)\)\s*;')
+        for m in pat.finditer(masked):
+            recv = code[m.start(1):m.end(1)].rstrip('->').rstrip('.')
+            args = code[m.start(2):m.end(2)]
+            if 'x' * 3 in masked[m.start():m.end()] and 'x' * 3 not in code[m.start():m.end()]:
+                continue
+            rep = '((%s &)%s).M(%s);' % (name, recv, args)
+            edits.append((m.start(), m.end(), rep))
+    out = code
+    for s, e, rep in reversed(edits):
+        out = out[:s] + rep + out[e:]
+    return out
+
+
 def rewrite_base_offset_read(code, base_offsets=None):
     """F2 基类读 offset 形（TDD 3 测）：`recv->Base`（非零基类 @off）→ `*(T*)((char*)recv+off)`。
     非零基类读（TaskMgr @40 型）——offset 形（保偏移）·+0 基类不动（B1 面）·分号保全。"""
