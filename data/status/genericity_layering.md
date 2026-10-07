@@ -42,3 +42,8 @@
 1. **为什么删/留**：生命周期（一次性/死）·证据链（引用/无）·可复用（替代/独立）·正确性（证伪/有效）
 2. **是否通用**：逻辑可搬（参数化）vs 硬编码（项目专用）
 3. **是否区分**：必须三分——generic 收编/project 归档/evidence 保留
+
+## audit_* 族三问分类（2026-10-07·用户三分法）
+- **generic**（逻辑可搬）：audit_element_sizes/audit_member_semantics/audit_type_layout
+- **project-specific**（PAL3 判据）：audit_attribution/audit_attribution_evidence/audit_method_attribution/
+  audit_retn_param_count/audit_signature_consistency/audit_structural_attribution/audit_this_in_free_functions/audit_vftable_offset0
