@@ -1,16 +1,16 @@
-"""End-to-end smoke test for PAL3 decompilation pipeline.
+﻿"""End-to-end smoke test for PAL3 decompilation pipeline.
 
-2026-09-20 修复（审计 P0-1）：本文件原先的 4 个 `test_*` 全部用
-`return True/False, msg` 返回结果，**没有任何断言** —— 在 pytest 下，
-`test_*` 函数只要不抛异常就算 PASS（返回非 None 仅触发
-`PytestReturnNotNoneWarning`），所以这些用例**恒通过**，是典型的"死门禁"；
-而 `MIN_S2 = 58` 也早已过期（实际值 75）。
+2026-09-20 淇锛堝璁?P0-1锛夛細鏈枃浠跺師鍏堢殑 4 涓?`test_*` 鍏ㄩ儴鐢?
+`return True/False, msg` 杩斿洖缁撴灉锛?*娌℃湁浠讳綍鏂█** 鈥斺€?鍦?pytest 涓嬶紝
+`test_*` 鍑芥暟鍙涓嶆姏寮傚父灏辩畻 PASS锛堣繑鍥為潪 None 浠呰Е鍙?
+`PytestReturnNotNoneWarning`锛夛紝鎵€浠ヨ繖浜涚敤渚?*鎭掗€氳繃**锛屾槸鍏稿瀷鐨?姝婚棬绂?锛?
+鑰?`MIN_S2 = 58` 涔熸棭宸茶繃鏈燂紙瀹為檯鍊?75锛夈€?
 
-现在：
-  * 每个 `test_*` 用 **assert**，pytest 下能真正失败；
-  * `MIN_S2` 默认取**编译基线的记录值**（棘轮语义：不得低于基线），
-    可用环境变量 `PAL3_MIN_S2` 覆盖；
-  * `python tests/e2e/test_smoke.py` 仍可直接运行（`main()` 捕获取证失败并汇总）。
+鐜板湪锛?
+  * 姣忎釜 `test_*` 鐢?**assert**锛宲ytest 涓嬭兘鐪熸澶辫触锛?
+  * `MIN_S2` 榛樿鍙?*缂栬瘧鍩虹嚎鐨勮褰曞€?*锛堟杞涔夛細涓嶅緱浣庝簬鍩虹嚎锛夛紝
+    鍙敤鐜鍙橀噺 `PAL3_MIN_S2` 瑕嗙洊锛?
+  * `python tests/e2e/test_smoke.py` 浠嶅彲鐩存帴杩愯锛坄main()` 鎹曡幏鍙栬瘉澶辫触骞舵眹鎬伙級銆?
 """
 import json
 import os
@@ -27,9 +27,9 @@ CLASSIFIER_TOOL = PROJECT_ROOT / "tools" / "error_classifier.py"
 
 
 def _min_s2():
-    """S2 下限：优先环境变量，否则取编译基线的记录值（棘轮），最后退回 0。
+    """S2 涓嬮檺锛氫紭鍏堢幆澧冨彉閲忥紝鍚﹀垯鍙栫紪璇戝熀绾跨殑璁板綍鍊硷紙妫樿疆锛夛紝鏈€鍚庨€€鍥?0銆?
 
-    绝不硬编码过期的常量 —— 旧的 `MIN_S2 = 58` 远低于真实值 75，形同虚设。
+    缁濅笉纭紪鐮佽繃鏈熺殑甯搁噺 鈥斺€?鏃х殑 `MIN_S2 = 58` 杩滀綆浜庣湡瀹炲€?75锛屽舰鍚岃櫄璁俱€?
     """
     env = os.environ.get("PAL3_MIN_S2")
     if env and env.isdigit():
@@ -56,39 +56,39 @@ def run_cmd(cmd, timeout=300):
 
 
 def test_probe_compile():
-    """S2 编译通过数不得低于基线（棘轮）。"""
+    """S2 缂栬瘧閫氳繃鏁颁笉寰椾綆浜庡熀绾匡紙妫樿疆锛夈€?""
     assert PROBE_FILE.exists(), "probe_census.json not found"
     with open(PROBE_FILE, encoding="utf-8") as f:
         data = json.load(f)
     s2_ok = data.get("s2", {}).get("ok", 0)
     total = data.get("s2", {}).get("total", 0)
     floor = _min_s2()
-    assert s2_ok >= floor, f"S2 {s2_ok}/{total} < 下限 {floor}"
+    assert s2_ok >= floor, f"S2 {s2_ok}/{total} < 涓嬮檺 {floor}"
 
 
 def test_layout_audit():
-    """layout 审计必须成功执行（其自身已标注部分检查无判别力，见工具头注）。"""
-    ok, output = run_cmd(["python3", str(LAYOUT_TOOL)], timeout=120)
-    assert ok, f"audit_layout.py 执行失败: {output[:300]}"
+    """layout 瀹¤蹇呴』鎴愬姛鎵ц锛堝叾鑷韩宸叉爣娉ㄩ儴鍒嗘鏌ユ棤鍒ゅ埆鍔涳紝瑙佸伐鍏峰ご娉級銆?""
+    ok, output = run_cmd(["sys.executable", str(LAYOUT_TOOL)], timeout=120)
+    assert ok, f"audit_layout.py 鎵ц澶辫触: {output[:300]}"
 
 
 def test_compile_regression():
-    """相对编译基线不得有退化。
+    """鐩稿缂栬瘧鍩虹嚎涓嶅緱鏈夐€€鍖栥€?
 
-    判据用**工具退出码**（regression_detector 检出退化时非零），
-    不用字符串匹配 —— 该工具在"有改善"时输出 `🎉 IMPROVEMENTS`、
-    在"无变化"时输出 `No regressions`，只匹配后者会误报。
+    鍒ゆ嵁鐢?*宸ュ叿閫€鍑虹爜**锛坮egression_detector 妫€鍑洪€€鍖栨椂闈為浂锛夛紝
+    涓嶇敤瀛楃涓插尮閰?鈥斺€?璇ュ伐鍏峰湪"鏈夋敼鍠?鏃惰緭鍑?`馃帀 IMPROVEMENTS`銆?
+    鍦?鏃犲彉鍖?鏃惰緭鍑?`No regressions`锛屽彧鍖归厤鍚庤€呬細璇姤銆?
     """
     if not BASELINE_FILE.exists():
-        return  # 无基线 ⇒ 跳过（不算失败）
-    ok, output = run_cmd(["python3", str(REGRESSION_TOOL)], timeout=180)
-    assert ok, f"检出退化（regression_detector 退出码非 0）: {output[-300:]}"
+        return  # 鏃犲熀绾?鈬?璺宠繃锛堜笉绠楀け璐ワ級
+    ok, output = run_cmd(["sys.executable", str(REGRESSION_TOOL)], timeout=180)
+    assert ok, f"妫€鍑洪€€鍖栵紙regression_detector 閫€鍑虹爜闈?0锛? {output[-300:]}"
 
 
 def test_error_classifier():
-    """error_classifier 必须能跑出汇总（工具自身健全，此前只是未接线）。"""
-    ok, output = run_cmd(["python3", str(CLASSIFIER_TOOL)], timeout=60)
-    assert ok and "Total failed files:" in output, f"classifier 失败: {output[:300]}"
+    """error_classifier 蹇呴』鑳借窇鍑烘眹鎬伙紙宸ュ叿鑷韩鍋ュ叏锛屾鍓嶅彧鏄湭鎺ョ嚎锛夈€?""
+    ok, output = run_cmd(["sys.executable", str(CLASSIFIER_TOOL)], timeout=60)
+    assert ok and "Total failed files:" in output, f"classifier 澶辫触: {output[:300]}"
 
 
 TESTS = [
@@ -106,17 +106,18 @@ def main():
     for name, fn in TESTS:
         try:
             fn()
-            print(f"  ✅ {name}")
+            print(f"  鉁?{name}")
             passed += 1
         except AssertionError as e:
-            print(f"  ❌ {name}: {e}")
+            print(f"  鉂?{name}: {e}")
             failed += 1
         except Exception as e:
-            print(f"  ⚠️  {name}: {type(e).__name__}: {e}")
+            print(f"  鈿狅笍  {name}: {type(e).__name__}: {e}")
             failed += 1
-    print(f"\nResults: {passed} passed, {failed} failed  (S2 下限 = {_min_s2()})")
+    print(f"\nResults: {passed} passed, {failed} failed  (S2 涓嬮檺 = {_min_s2()})")
     return 1 if failed else 0
 
 
 if __name__ == "__main__":
     sys.exit(main())
+

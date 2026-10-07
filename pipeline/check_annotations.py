@@ -19,12 +19,22 @@ import re
 
 ANN_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'annotations')
 
-def load_annotations():
-    """从拆分目录加载标注数据。"""
-    funcs = json.load(open(os.path.join(ANN_DIR, 'functions.json'), encoding='utf-8'))
-    globs = json.load(open(os.path.join(ANN_DIR, 'globals.json'), encoding='utf-8'))
+def load_annotations(struct_dir=None):
+    """契约真修 2026-10-07（P0-4）：struct_dir 注入（fixture 模式——5 读点隔离）。
+    struct_dir 非空=只载注入目录的 structs（functions/globals/enums 容缺）。"""
+    _sd = struct_dir if struct_dir else os.path.join(ANN_DIR, 'structs')
+    funcs = {}
+    globs = {}
+    try:
+        funcs = json.load(open(os.path.join(ANN_DIR, 'functions.json'), encoding='utf-8'))
+    except Exception:
+        pass
+    try:
+        globs = json.load(open(os.path.join(ANN_DIR, 'globals.json'), encoding='utf-8'))
+    except Exception:
+        pass
     structs = {}
-    structs_dir = os.path.join(ANN_DIR, 'structs')
+    structs_dir = os.path.join(_sd)
     for fname in os.listdir(structs_dir):
         if fname.endswith('.json'):
             sdata = json.load(open(os.path.join(structs_dir, fname), encoding='utf-8'))
@@ -114,13 +124,15 @@ def _check_type_object(tdef, sname, errors, path=""):
             _check_type_object(mtype, sname, errors, "%s.%s[%d].type" % (path, tkey, i))
 
 
-def check():
+def check(struct_dir=None):
+    """契约修 2026-10-07（复核）：struct_dir 可注入（测试契约——7 红修复）。"""
     errors = []
     warnings = []
+    _struct_dir = struct_dir  # 契约真修（P0-4）
 
     # 1. Load JSON
     try:
-        ann = load_annotations()
+        ann = load_annotations(_struct_dir)
     except Exception as e:
         errors.append(f"JSON parse error: {e}")
         return errors, warnings
