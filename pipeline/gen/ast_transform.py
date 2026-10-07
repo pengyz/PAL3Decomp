@@ -878,7 +878,7 @@ def rewrite_base_suffix_bare_form(code, base_names=None, base_sizes=None,
         pat = re.compile(
             r'(?<![\w])((?:this->|[\w]+->)[\w]+(?:\[[^\]]*\])*(?:(?:->|\.)[\w]+(?:\[[^\]]*\])*)*?)(?=\.' + re.escape(name) + r'(?![\w:]))'
             r'\.' + re.escape(name) + r'(?![\w:])'
-            r'(\s*(?:=[^=]|;))')
+            r'(\s*(?:=[^=]|;|,|\)|\+|-))')    # 表达式内尾（赋值/语句末/逗号/括号/算符）
         for m in pat.finditer(masked):
             recv, tail = m.group(1), m.group(2)
             if 'x' * 3 in masked[m.start():m.end()] and 'x' * 3 not in code[m.start():m.end()]:
