@@ -16,7 +16,6 @@ without external dependencies (like pefile).
 import struct
 import os
 import pytest
-pytestmark = pytest.mark.skip(reason='P2 env-dep')
 
 
 class PEInfo:

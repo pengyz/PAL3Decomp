@@ -1,5 +1,4 @@
 ﻿import pytest
-pytestmark = pytest.mark.skip(reason='P2 progressive snapshot')
 import json
 import subprocess
 import sys

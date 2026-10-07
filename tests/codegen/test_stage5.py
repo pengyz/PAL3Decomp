@@ -1,5 +1,4 @@
 ﻿import pytest
-pytestmark = pytest.mark.skip(reason='P2 expectation refresh')
 """Codegen stage tests - verify key transformations work correctly."""
 import sys
 from pathlib import Path

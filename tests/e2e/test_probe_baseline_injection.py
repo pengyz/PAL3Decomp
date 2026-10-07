@@ -1,5 +1,4 @@
 ﻿import pytest
-pytestmark = pytest.mark.skip(reason='P2 expectation refresh')
 """注入式负例：**probe 侧检出退化时不得刷新基线**（审计 P1-1 的另一半）。
 
 设计上的必要适配（诚实说明）：`pipeline/cli.py probe all` 会**重新生成**

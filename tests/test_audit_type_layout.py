@@ -1,5 +1,4 @@
 ﻿import pytest
-pytestmark = pytest.mark.skip(reason='P2 expectation refresh')
 """`tools/audit_type_layout.py` 的测试 —— **证明这个布局审计工具可用**。
 
 分三层，逐层加强：

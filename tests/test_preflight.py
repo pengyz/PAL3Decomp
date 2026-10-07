@@ -1,5 +1,4 @@
 ﻿import pytest
-pytestmark = pytest.mark.skip(reason='P2 progressive snapshot')
 """`pipeline/preflight.py` + `cli.py loop` 的读数/断言单元测试。
 
 # 背景（2026-09-21）

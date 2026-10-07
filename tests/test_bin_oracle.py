@@ -1,5 +1,4 @@
 ﻿import pytest
-pytestmark = pytest.mark.skip(reason='P2 expectation refresh')
 """`tools/bin_oracle.py` 的测试 —— **先写测试**（TDD）。
 
 ## 为什么需要（2026-09-22 工具链来源审计的结论）
