@@ -816,6 +816,36 @@ def fix_void_ptr_arith_cast(code):
     return out
 
 
+def rewrite_base_offset_read(code, base_offsets=None):
+    """F2 基类读 offset 形（TDD 3 测）：`recv->Base`（非零基类 @off）→ `*(T*)((char*)recv+off)`。
+    非零基类读（TaskMgr @40 型）——offset 形（保偏移）·+0 基类不动（B1 面）·分号保全。"""
+    bo = base_offsets or {}
+    if not bo:
+        return code
+    try:
+        masked = _mask_strings_comments(code)
+    except Exception:
+        masked = code
+    edits = []
+    for (cls, name), off in bo.items():
+        if off == 0:
+            continue
+        pat = re.compile(
+            r'(?<![\w])((?:this->|[\w]+->))' + re.escape(name) + r'(?![\w:])'
+            r'(\s*(?:=[^=]|;))')
+        for m in pat.finditer(masked):
+            recv = code[m.start(1):m.end(1)]
+            tail = code[m.start(2):m.end(2)]
+            if 'x' * 3 in masked[m.start():m.end()] and 'x' * 3 not in code[m.start():m.end()]:
+                continue
+            rep = '(%s)((char *)%s + %d)%s' % (name, recv.rstrip('->').rstrip('.'), off, tail)
+            edits.append((m.start(), m.end(), rep))
+    out = code
+    for s, e, rep in reversed(edits):
+        out = out[:s] + rep + out[e:]
+    return out
+
+
 def fix_arg_type_casts(code, sig_params=None):
     """codegen 参铸扩展（TDD 4 测·C2664 族通解）：签名参型 vs 实参型铸补。
     `X->M(&recv)` vs `const char*` → `(const char*)&recv`。元数门（复核结论）：参不齐不动。
