@@ -56,3 +56,12 @@
 - **generic**（14）：byte_diff_explain/compare/compare_exe/compare_function/fdiff/progress/progress_pal3/
   topo_compare/vtable_call_transform/vtable_class_reconcile/vtable_compare/vtable_mapper/vtable_scanner/vtable_slot_audit
 - **project-specific**（2）：gbengine_compare/gbengine_progress（gbengine=项目引擎）
+
+## 剩余 50 件模式分类（2026-10-07）——三问批量
+- **generic**（6）：annotation_diff/bin_oracle/codegen_invariants/codegen_param_lint/compile_regression/error_classifier
+- **project-specific**（39）：access_map/access_radius/alloc_*/apply_vtable_fix/attribution_offset_match/
+  benchmark_eval/bucket_classifier/cascade_*/coff_vtable/completeness_census/create_pal3_sig/detect_vtable_splits/
+  element_size_adjudicate/...（PAL3 判据/地址/类名）
+- **test**（5）：test_*.py 自测——收编域（tools/ 自测不被 pytest 收集）
+## 分层总账（85+8+11+8+16+50=按类）
+- generic ~27 件·project-specific ~53 件·特定任务 8 件（已归档）·test 5 件
