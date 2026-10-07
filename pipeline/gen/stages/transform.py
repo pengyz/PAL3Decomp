@@ -49,7 +49,7 @@ def make_context(cls_name, method_name, sig='', is_free=False, stub_registry=Non
             import os as _os
             from ast_transform import build_member_index_from_headers
             _hdrs = {}
-            _root = _os.path.join(r'D:\workspace\PAL3Decomp', 'pal3', 'src')
+            _root = _os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'pal3', 'src')
             for _p in _glob.glob(_os.path.join(_root, '**', '*.h'), recursive=True):
                 try:
                     _hdrs[_os.path.basename(_p)[:-2]] = open(_p, encoding='utf-8', errors='replace').read()
@@ -64,7 +64,7 @@ def make_context(cls_name, method_name, sig='', is_free=False, stub_registry=Non
         member_index = None
     try:
         import json as _json
-        _fp = _os.path.join(r'D:\workspace\PAL3Decomp', 'data', 'annotations', 'functions.json')
+        _fp = _os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'data', 'annotations', 'functions.json')
         _fd = _json.load(open(_fp, encoding='utf-8'))
         classless_names = set()
         for _k, _v in _fd.items():

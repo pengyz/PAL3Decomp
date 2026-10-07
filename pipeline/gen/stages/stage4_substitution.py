@@ -1543,7 +1543,7 @@ def run(code, ctx):
         if _SIG_CACHE is None:
             import glob as _g, os as _o, json as _j
             _SIG_CACHE = {}
-            for _p in _g.glob(_o.path.join(r'D:\workspace\PAL3Decomp', 'data', 'annotations', 'structs', '*.json')):
+            for _p in _g.glob(_o.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'data', 'annotations', 'structs', '*.json')):
                 try:
                     _d = _j.load(open(_p, encoding='utf-8'))
                     for _mk, _mv in (_d.get('methods') or {}).items():
@@ -1582,7 +1582,7 @@ def run(code, ctx):
             import glob as _g, os as _o, json as _j
             _bn = set()
             _bs = {}
-            for _p in _g.glob(_o.path.join(r'D:\workspace\PAL3Decomp', 'data', 'annotations', 'structs', '*.json')):
+            for _p in _g.glob(_o.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'data', 'annotations', 'structs', '*.json')):
                 try:
                     _d = _j.load(open(_p, encoding='utf-8'))
                     for _b in (_d.get('base_class') or []):
@@ -1614,7 +1614,7 @@ def run(code, ctx):
             import json as _json
             import os as _os
             for _f in _glob.glob(_os.path.join(
-                    getattr(store, 'PROJECT_ROOT', r'D:\workspace\PAL3Decomp'),
+                    getattr(store, 'PROJECT_ROOT', os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))),
                     'data', 'annotations', 'structs', '*.json')):
                 try:
                     _d = _json.load(open(_f, encoding='utf-8'))
