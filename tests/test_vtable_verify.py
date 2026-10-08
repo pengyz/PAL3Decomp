@@ -1367,11 +1367,16 @@ def test_real_binary_slot_identity_index_is_self_consistent():
     idx = load_va_index()
     targets = load_bin_targets()
     mapping = name_to_va_index(idx, img)
-    tables = slots = resolved = 0
+    tables = slots = resolved = raw_slots = 0
     conflicts = []
     for base in targets:
         if not img.can_read(base, 4):
             continue
+        # raw 界定（family_of 恒 None ⇒ 仅"非代码指针即断"，**不读注解**）
+        # —— 非空守卫用它，理由见函数尾注。
+        br = bin_table_from_image(img, base, idx=None, targets=targets,
+                                  family_of=lambda *a, **k: None)
+        raw_slots += len(br.slots)
         bt = bin_table_from_image(img, base, idx=idx, targets=targets)
         if not bt.slots:
             continue
@@ -1385,8 +1390,15 @@ def test_real_binary_slot_identity_index_is_self_consistent():
             if ova != s.va:
                 conflicts.append((hex(base), hex(s.va), s.key, hex(ova)))
     assert not conflicts, conflicts[:5]
-    assert tables >= 180 and slots >= 600, (tables, slots)
-    assert resolved >= 400, (resolved, slots)
+    # 非空守卫**不钉族判据截断率**：族判据（`family_of`）槽数随**注解数据**变化
+    # —— 2026-10 merge 远端 126 个注解文件后实测 639→511（raw 恒 1164），
+    #   因注解变 ⇒ `idx`（VA→名字）变 ⇒ 类族判据变 ⇒ 截断率变。
+    # ⇒ 下界改用 **raw**（只依赖 EXE、注解无关）作稳定锚；族判据只需非空 + 量级合理。
+    #   族判据**过度截断**已立账工单 T3（`.superpowers/sdd/2026-09-25-vtable-mapping-plan/`
+    #   task-8-report.md §5①：实测 92/189 表被截短 ⇒ 双裁判改用 raw 作槽数分母）。
+    assert raw_slots >= 1000, raw_slots
+    assert tables >= 180 and slots >= 400, (tables, slots)
+    assert resolved >= 300, (resolved, slots)
 
 
 def test_compare_notes_when_name_criterion_has_unnamed_side():
