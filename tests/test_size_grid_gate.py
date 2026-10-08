@@ -22,15 +22,23 @@ class TestSizeGridGate(unittest.TestCase):
         )
         self.assertTrue(ok, reason)
 
-    def test_base_size_must_match_first_base(self):
-        """base_size 必须 == 首基尺寸。"""
+    def test_mi_positive_accepted(self):
+        """MI 正向：Role 场景（56+8+32=96）应通过。"""
         ok, reason = check_chain(
-            derived_size=1784,
-            base_sizes=[68],
-            declared_base_size=100,  # 与基类之和 68 不符
+            derived_size=8704,
+            base_sizes=[56, 8, 32],
+            declared_base_size=96,
         )
-        self.assertFalse(ok)
-        self.assertIn('base_size', reason)
+        self.assertTrue(ok, reason)
+
+    def test_declared_base_size_not_enforced(self):
+        """base_size 语义不一致（CEffSParticle 反例）⇒ 仅 informational，不硬拒。"""
+        ok, reason = check_chain(
+            derived_size=100,
+            base_sizes=[12, 36],
+            declared_base_size=16,   # ≠ sum(48)，但本仓有此类不自洽
+        )
+        self.assertTrue(ok, 'declared_base_size 不应硬拒')
 
 
 if __name__ == '__main__':
