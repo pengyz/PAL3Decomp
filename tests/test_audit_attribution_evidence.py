@@ -148,6 +148,26 @@ def test_owner_side_contradiction_for_unrelated_class():
     assert v == 'contradiction' and 'Base' in d, (v, d)
 
 
+def test_reconcile_detects_self_comparison_vulnerability():
+    """owner=current 时不得仅凭自包含关系判 consistent（自比对漏洞）。
+
+    场景：CGameData 的 methods 声明 0x00445D10，但 CGameData 自己的 vtable 槽
+    标 from='UIWnd'，而 CGameData 与 UIWnd 无祖先关系。此时槽级 from 证据应报
+    contradiction，而不是被 owner==current 的祖先自包含判断吞掉。
+    """
+    addr = '0x00445D10'
+    ida = {
+        'CGameData': {
+            'bases': [],
+            'methods': {addr: {'name': 'method'}},
+            'vtables': [{'slots': [{'addr': addr, 'from': 'UIWnd'}]}],
+        },
+        'UIWnd': {'bases': []},
+    }
+    verdict, detail = E.reconcile(addr, 'CGameData', ida)
+    assert verdict == 'contradiction' and 'from=UIWnd' in detail, (verdict, detail)
+
+
 if __name__ == '__main__':
     ok = fail = skip = 0
     for nm, fn in sorted(list(globals().items())):

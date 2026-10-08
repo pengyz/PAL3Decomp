@@ -77,7 +77,9 @@ def vtable_evidence(ida):
                     ai = int(str(a), 16)
                 except Exception:
                     continue
-                src = s.get('from') or cls
+                src = s.get('from')
+                if not src:
+                    src = cls
                 out.setdefault(ai, []).append((cls, src))
     return out
 
@@ -124,6 +126,11 @@ def reconcile(addr, current_cls, ida, ev=None):
     # 证据：`0x43A7F0` 只出现在 `UICaption` 的 vtable 里（UIScene 的 vtable 无此槽）
     #   ⇒ 它就是 UICaption 的实现 ⇒ 判据应为 `current ∈ ancestors(owner)` ✓
     #   （旧写法拿 `from` 与 current 的祖先比 ⇒ 把"重写基类虚函数"全误判 ✗）
+    # owner==current 时不能用“current ∈ ancestors(current)”自比对直接放行；
+    # 显式 from 的来源也必须位于 owner 继承链内，否则是槽级矛盾 ✓
+    for owner, src in claims:
+        if owner == current_cls and src not in ancestors(owner, ida):
+            return ('contradiction', 'current=%s · slot-from=%s' % (current_cls, src))
     for owner, src in claims:
         if current_cls in ancestors(owner, ida):
             return ('consistent', 'owner=%s(from=%s)' % (owner, src))
