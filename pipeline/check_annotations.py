@@ -773,12 +773,9 @@ def _run_vtable_check(structs):
 if __name__ == '__main__':
     errors, warnings = check()
 
-    for w in warnings:
-        print(f"WARN: {w}")
-    for e in errors:
-        print(f"ERROR: {e}")
-
     # vtable 闭环验证门禁（2026-09-25）：基线对比模式
+    # ⚠️ 必须在打印循环之前：否则 errors.append 的项只计数不显示，
+    #    pre-commit 报 "N errors ... FAIL" 但不显示是什么错误（2026-10-08 撞到）
     try:
         _ann_data = load_annotations()
         _vt_errors, _, _vt_stats = _run_vtable_check(_ann_data.get('structs', {}))
@@ -795,6 +792,11 @@ if __name__ == '__main__':
                 print(f"[vtable] 改进: {_old_u} → {_new_u} (update vtable_baseline.json)")
     except Exception as _vt_err:
         warnings.append(f'vtable check skipped: {_vt_err}')
+
+    for w in warnings:
+        print(f"WARN: {w}")
+    for e in errors:
+        print(f"ERROR: {e}")
 
     if errors:
         print(f"\n{len(errors)} errors, {len(warnings)} warnings — FAIL")
