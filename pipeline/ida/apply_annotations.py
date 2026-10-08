@@ -1346,7 +1346,7 @@ def load_annotations():
         # Merge struct methods into functions dict (class methods not in functions.json)
         # Class name derived from file name; name field stores short method name only.
         for addr, minfo in sdata.get("methods", {}).items():
-            if addr not in functions:
+            if addr not in functions or minfo.get("owner") == sname:
                 # Strip any lingering ClassName:: prefix (safety for old-format entries)
                 _raw = minfo.get("name", "")
                 if "::" in _raw:
