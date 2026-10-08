@@ -287,7 +287,12 @@ def main():
                         _sd = _json.load(_fh)
                     _sname = _sd.get('name', _sf.replace('.json', ''))
                     for _addr, _info in _sd.get('methods', {}).items():
-                        if _addr not in _ann_funcs:
+                        # owner 加权（2026-10-08）：与 apply_annotations.load_annotations 一致。
+                        # 否则首合并者胜 ⇒ export 的 mangler pre-pass 会用错误类名重新
+                        # set_name，**覆盖 apply 的正确命名**（病灶：0x00445D10 被命名为
+                        # CGameData::OnMessage 而非 UIWnd::OnMessage ⇒ ast_transform 落
+                        # broken 形 ⇒ C2660）。实测 13 个 ok→fail 单元的根因。
+                        if _addr not in _ann_funcs or _info.get('owner') == _sname:
                             _mn = _info.get('name', '')
                             # After method name migration (2026-06), names are short
                             # (no ClassName:: prefix). Reconstruct for mangler.
