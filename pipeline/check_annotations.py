@@ -13,7 +13,6 @@
 """
 
 import json
-import sys
 import os
 import re
 import sys
@@ -21,9 +20,17 @@ import sys
 _PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, _PROJECT_ROOT)
 
-from pipeline.gen.annotation_view import iter_structs
+from pipeline.gen.annotation_view import iter_struct_files, iter_structs, load_struct
 
 ANN_DIR = os.path.join(_PROJECT_ROOT, 'data', 'annotations')
+
+
+def _strict_struct_entries(directory):
+    for path in iter_struct_files(directory):
+        struct_data = load_struct(path)
+        if not isinstance(struct_data, dict):
+            raise ValueError('%s: struct annotation must be a JSON object' % path)
+    return list(iter_structs(directory))
 
 def load_annotations(struct_dir=None):
     """契约真修 2026-10-07（P0-4）：struct_dir 注入（fixture 模式——5 读点隔离）。
@@ -40,7 +47,7 @@ def load_annotations(struct_dir=None):
     except Exception:
         pass
     structs = {}
-    for fname, sdata in iter_structs(_sd):
+    for fname, sdata in _strict_struct_entries(_sd):
         fname = os.path.basename(fname)
         sname = sdata.pop('name', fname.replace('.json', ''))
         structs[sname] = sdata

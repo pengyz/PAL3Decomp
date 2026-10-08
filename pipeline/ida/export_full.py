@@ -13,7 +13,15 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 sys.path.insert(0, PROJECT_ROOT)
 OUTPUT_DIR = os.path.join(PROJECT_ROOT, "asm", "pal3", "decomp")
 
-from pipeline.gen.annotation_view import iter_structs
+from pipeline.gen.annotation_view import iter_struct_files, iter_structs, load_struct
+
+
+def _strict_struct_entries(directory):
+    for path in iter_struct_files(directory):
+        struct_data = load_struct(path)
+        if not isinstance(struct_data, dict):
+            raise ValueError('%s: struct annotation must be a JSON object' % path)
+    return list(iter_structs(directory))
 
 # After apply_annotations changes types, Hex-Rays cache is stale — need dirty mark.
 # After init --force (fresh IDB), no cache exists — dirty mark is harmless but redundant.
@@ -196,7 +204,7 @@ def main():
         _addr_to_class = {}       # int(addr) -> class_name (own slots only)
         _structs_dir = os.path.join(PROJECT_ROOT, "data", "annotations", "structs")
         if os.path.isdir(_structs_dir):
-            for _sf, _sd in iter_structs(_structs_dir):
+            for _sf, _sd in _strict_struct_entries(_structs_dir):
                 _sname = _sd.get('name', '')
                 for _addr, _minfo in _sd.get('methods', {}).items():
                     if 'ordinal' in _minfo:
@@ -216,7 +224,7 @@ def main():
             # Also attribute non-virtual methods from annotation struct methods dict.
             # These have names like "ClassName::MethodName" that encode the class.
             _method_attributed = 0
-            for _sf, _sd in iter_structs(_structs_dir):
+            for _sf, _sd in _strict_struct_entries(_structs_dir):
                 for _addr, _minfo in _sd.get('methods', {}).items():
                     if 'ordinal' in _minfo:
                         continue  # virtual methods already handled above

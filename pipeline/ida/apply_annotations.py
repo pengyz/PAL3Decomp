@@ -35,7 +35,15 @@ LOG_DIR = os.path.join(SCRIPT_DIR, "_logs")
 LOG_FILE = os.path.join(LOG_DIR, "apply_annotations_log.txt")
 PDB_EXPORT = os.path.join(PROJECT_ROOT, "data", "pdb", "pdb_export.json")
 
-from pipeline.gen.annotation_view import iter_structs
+from pipeline.gen.annotation_view import iter_struct_files, iter_structs, load_struct
+
+
+def _strict_struct_entries(directory):
+    for path in iter_struct_files(directory):
+        struct_data = load_struct(path)
+        if not isinstance(struct_data, dict):
+            raise ValueError('%s: struct annotation must be a JSON object' % path)
+    return list(iter_structs(directory))
 
 log_lines = []
 
@@ -1331,7 +1339,7 @@ def load_annotations():
     with open(os.path.join(ANNOTATIONS_DIR, "globals.json"), "r", encoding="utf-8") as f:
         globals_data = json.load(f)
     structs = {}
-    for fname, sdata in iter_structs(os.path.join(ANNOTATIONS_DIR, "structs")):
+    for fname, sdata in _strict_struct_entries(os.path.join(ANNOTATIONS_DIR, "structs")):
         fname = os.path.basename(fname)
         sname = sdata.pop("name", fname.replace(".json", ""))
         structs[sname] = sdata
