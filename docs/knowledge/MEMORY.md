@@ -68,6 +68,7 @@
 - [两层定位"是谁改写了我这行文本"](debug_two_layer_localization.md) — `sys.settrace` 行级追踪（钉死源码行）+ 代理该模块命名空间里的 `re`（打印真正生效的 pattern/repl/before/after）；配合"先禁用可疑解析器做二分"；本会话用它把上一轮的 12 次猜测换成 1 次定位
 
 ## Decisions
+- **decision_sceneobj_composition_not_inheritance.md**（v4 终裁）：SceneObj 是**组合**而非继承；行表不是继承。现行 `[ROWTABLE]` 分支 + `_rowtable_family.json`（63 类）是该终裁的落地。
 - [步长是二进制真相，尺寸表只是兜底](decision_stride_is_binary_truth_over_size_table.md) — 记账以**注解步长**为准、估计>步长时须改类型；
  **含两次自我纠正**：① `string` 曾被误判 12（实为 **16**，`pal3_stl.h` 仅 `#include <string>`）✗
  ② 教训：**孤立指令片段会误导**（把 int 归零读成"字符串后字段"）⇒ 裁定布局必须看**整条函数的完整字段图** ✓；

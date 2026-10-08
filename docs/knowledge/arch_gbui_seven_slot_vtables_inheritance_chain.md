@@ -2,8 +2,20 @@
 title: gbUI 窗口类为 7 槽紧凑 vtable（非行表），继承树断裂是 MISATTRIBUTED 主因
 type: architecture
 date: 2026-09-13
-confidence: 85
+confidence: 20   # 原 85，2026-10-08 勘误后降级（链被 objdump 证伪）
 ---
+
+> ⚠️ **勘误（2026-10-08，经两路对抗复核 + objdump 实证）**：
+> 本文的继承链 **`CCBResultWindow → UIFrameWnd → UIWnd → SceneObj → CGameData(根)`** 被证伪：
+> - `0x445aa0` UIWnd ctor：先 `lea ecx,[esi+0x24]; call 0x432660`（**成员子对象** ctor）后 `mov [esi],0x56AEC8` ⇒ **UIWnd 是根**（size 68）
+> - `0x452fd0` SceneObj ctor：`call 0x445aa0`（UIWnd ctor）**之后**才 `mov [esi],0x56B200`，自有成员从 +0x44=68 起 ⇒ **`SceneObj : public UIWnd @0`**（**与本文方向相反**）
+> - `0x44f065` CGameData ctor：先 `mov [esi],0x56b094`、**无基类 ctor 调用** ⇒ **CGameData 也是根**（size 28268）
+> - 尺寸算术：68 ≥ 1784 ≥ 28268 **不成立**
+>
+> **正确关系**：`SceneObj : public UIWnd`（非 `UIWnd : SceneObj`）；`CGameData` 是独立的根。
+> **本文的"~500 MISATTRIBUTED"收益估计量错了对象**：当前 `[ROWTABLE]`=544、`[MISATTRIBUTED]`=9、`C2352=0`；"83"是误引（`_cleanup_review_c2660_independent.md:147` 的历史 347 子集）。
+> **终裁见** `docs/knowledge/decision_sceneobj_composition_not_inheritance.md`（v4，明文"不是 base_class"）。
+> 本文的 confidence 85 **降为 20**（待证伪）。
 
 # gbUI 窗口类 = 7 槽紧凑 C++ vtable；继承链断裂 → MISATTRIBUTED 主因
 
