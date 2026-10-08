@@ -243,6 +243,21 @@
     "PalScriptWaitObj",
     "GlowObj"
   ],
+  "bases": [
+    {
+      "name": "Object",
+      "offset": 0
+    },
+    {
+      "name": "PalScriptWaitObj",
+      "offset": 56
+    },
+    {
+      "name": "GlowObj",
+      "offset": 64
+    }
+  ],
+  "bases_source": "A: Role ctor sub_411900 installs derived vptrs at Object@0 (0x411B30: 0x56A9BC), PalScriptWaitObj@0x38 (0x411B36: 0x56A9B0), GlowObj@0x40 (0x411B3D: 0x56A9A4); GlowObj vtable 0x56A9A4 slot2 is thunk 0x41BE30 (`sub ecx,40h; jmp 0x411BD0`); dtor sub_411CA0 calls 0x4B6CA0 with this=Role+0x40, then restores PSW 0x56A9C0 and Object 0x56A9CC.",
   "methods": {
     "0x00408D10": {
       "name": "CalcXueJianInit",

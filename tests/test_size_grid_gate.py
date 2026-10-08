@@ -27,7 +27,7 @@ class TestSizeGridGate(unittest.TestCase):
         ok, reason = check_chain(
             derived_size=1784,
             base_sizes=[68],
-            declared_base_size=44,   # 与首基 68 不符
+            declared_base_size=100,  # 与基类之和 68 不符
         )
         self.assertFalse(ok)
         self.assertIn('base_size', reason)

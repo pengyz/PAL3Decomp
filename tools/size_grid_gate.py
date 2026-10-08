@@ -20,7 +20,9 @@ def check_chain(derived_size: int,
         if derived_size < bs:
             return False, (f'derived size {derived_size} < base size {bs} — '
                            '派生类必须包含基类子对象')
-    if declared_base_size is not None and declared_base_size != base_sizes[0]:
+    # MI 约定：base_size = 所有基类之和（Role: 56+8+32=96 实证）
+    _expected = sum(base_sizes)
+    if declared_base_size is not None and declared_base_size != _expected:
         return False, (f'declared base_size {declared_base_size} != '
-                       f'first base size {base_sizes[0]}')
+                       f'sum of base sizes {_expected}')
     return True, 'ok'
