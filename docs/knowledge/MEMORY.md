@@ -68,7 +68,7 @@
 - [两层定位"是谁改写了我这行文本"](debug_two_layer_localization.md) — `sys.settrace` 行级追踪（钉死源码行）+ 代理该模块命名空间里的 `re`（打印真正生效的 pattern/repl/before/after）；配合"先禁用可疑解析器做二分"；本会话用它把上一轮的 12 次猜测换成 1 次定位
 
 ## Decisions
-- **decision_sceneobj_composition_not_inheritance.md**（v4 终裁）：SceneObj 是**组合**而非继承；行表不是继承。现行 `[ROWTABLE]` 分支 + `_rowtable_family.json`（63 类）是该终裁的落地。
+- **decision_sceneobj_composition_not_inheritance.md**（v4 终裁）：gbUI 跨类调用是**行表注册制（非继承非组合）**；正文 :34 明文"不是 base_class（行表不是继承），不是成员组合"。现行 `[ROWTABLE]` 分支 + `_rowtable_family.json`（63 类）是该终裁的落地。
 - [步长是二进制真相，尺寸表只是兜底](decision_stride_is_binary_truth_over_size_table.md) — 记账以**注解步长**为准、估计>步长时须改类型；
  **含两次自我纠正**：① `string` 曾被误判 12（实为 **16**，`pal3_stl.h` 仅 `#include <string>`）✗
  ② 教训：**孤立指令片段会误导**（把 int 归零读成"字符串后字段"）⇒ 裁定布局必须看**整条函数的完整字段图** ✓；
@@ -80,7 +80,7 @@
 ## References
 
 - [IDA MCP 本机搭建](reference_ida_mcp_setup.md) — headless ida-pro-mcp 独立 venv，启动/打开 IDB 命令
-- [SceneObj/UI 家族跨类调用是组合不是继承](decision_sceneobj_composition_not_inheritance.md) — base_size 钉死终裁；修复方向=transform 识别成员持有的跨类调用
+- [SceneObj/UI 家族跨类调用是行表注册制（非继承非组合）](decision_sceneobj_composition_not_inheritance.md) — base_size 钉死终裁；修复方向=transform 识别行表注册的跨类调用
 - [IDA 立即数是十六进制字面量](gotcha_ida_disasm_immediates_are_hex.md) — `push 424h` 被 `%s` 原样打印成 424 ⇒ 我据此"推翻"了正确的 1060 并写进台账；规则：一律 `int(x,16)` 且同时打印两形态，结论前回 asm 核对
 - [漏一个 global ⇒ "两阶段全或无"不存在](gotcha_missing_global_silently_disables_buffering.md) — `_BUFFER` 没写 `global` ⇒ 只建局部名 ⇒ 逐条直写；而"成对测试"因拒绝发生在校验阶段而变绿；规则：安全守卫必须落在唯一出口，测试必须让拒绝发生在被保护的那段
 - [先确认你量的是哪个状态](gotcha_measure_state_before_not_after_change.md) — 用"求变更"的工具诊断"变更前后"，在已应用状态下必得 Δ=0 ⇒ 本会话三次错误结论；规则：写结论前先声明数据是哪一刻的
