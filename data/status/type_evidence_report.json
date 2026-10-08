@@ -1,0 +1,4372 @@
+{
+ "_meta": {
+  "tool": "type_evidence.py",
+  "version": 3,
+  "batch": "B",
+  "scope": "W = 容器类 known_members 占位成员（B2 行仅旁证，多实例全 VA 取证）",
+  "candidates": 64,
+  "by_class": {
+   "RoleSystem": 64
+  },
+  "grades": {
+   "A": 38,
+   "B": 9,
+   "C": 1,
+   "0": 16
+  },
+  "width4_matched": 36,
+  "fills": {
+   "float": 3
+  },
+  "diags": {
+   "dups": [],
+   "multi_instance": {
+    "PAL3": [
+     "g_PAL3_Instance@0x8ACBF0",
+     "g_PAL3@0xDE7AA0"
+    ],
+    "RoleSystem": [
+     "g_RoleSystemExtra0@0xBFDBB0",
+     "g_RoleSystemExtra1@0xBFFDB0",
+     "g_RoleSystemMain@0xC020F8",
+     "g_RoleSystemInstance@0xC12B48",
+     "g_RoleSystemCombat@0x17A8AE8"
+    ],
+    "Array": [
+     "g_SceneMgrPrefix@0xC04350",
+     "g_RoleTeamArray@0xC04360",
+     "g_nSceneFlags@0xC04370",
+     "g_SceneArray@0xC04380"
+    ]
+   },
+   "extent_anomalies": [
+    "g_gamefrm(CGameData) extent=1"
+   ]
+  },
+  "func_ranges": 3608,
+  "boundaries": 342417,
+  "coverage_note": "T1 单源实测覆盖 25-30%（this+off 盲区 ~70%）；disp32(T1b) 是后续扩展",
+  "gates": "python tools/apply_annotation_batch.py --batch <batch> --dry-run → 落盘 → tools/annotation_diff.py → apply_annotations → export_full（不回灌不生效！）→ codegen → audit_type_layout --only <Cls> → verify_fix --class <Cls> → loop --expect-errors 不增 → L1 不降"
+ },
+ "results": [
+  {
+   "cls": "RoleSystem",
+   "offset": 84,
+   "key": "84",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDC04",
+    "g_RoleSystemExtra1:0x00BFFE04",
+    "g_RoleSystemMain:0x00C0214C",
+    "g_RoleSystemInstance:0x00C12B9C",
+    "g_RoleSystemCombat:0x017A8B3C"
+   ],
+   "name": "m_nTimerDuration",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:2",
+    "4 字节 2 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00531F7A",
+     "mnemonic": "mov",
+     "op_str": "this+0x54(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00531F81",
+     "mnemonic": "mov",
+     "op_str": "this+0x54(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": null
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 104,
+   "key": "104",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDC18",
+    "g_RoleSystemExtra1:0x00BFFE18",
+    "g_RoleSystemMain:0x00C02160",
+    "g_RoleSystemInstance:0x00C12BB0",
+    "g_RoleSystemCombat:0x017A8B50"
+   ],
+   "name": "m_nPathCount",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:4",
+    "4 字节 4 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x0041B322",
+     "mnemonic": "mov",
+     "op_str": "this+0x68(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041B364",
+     "mnemonic": "cmp",
+     "op_str": "this+0x68(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041B395",
+     "mnemonic": "mov",
+     "op_str": "this+0x68(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041B3D1",
+     "mnemonic": "mov",
+     "op_str": "this+0x68(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 3,
+    "hints": {}
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 116,
+   "key": "116",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDC24",
+    "g_RoleSystemExtra1:0x00BFFE24",
+    "g_RoleSystemMain:0x00C0216C",
+    "g_RoleSystemInstance:0x00C12BBC",
+    "g_RoleSystemCombat:0x017A8B5C"
+   ],
+   "name": "m_nTodo_074",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:3",
+    "地址物化 1 站点（当指针用，不定型）",
+    "4 字节 2 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x0041B39E",
+     "mnemonic": "lea",
+     "op_str": "this+0x74(load)",
+     "op_size": 4,
+     "kind": "addr",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041B3A1",
+     "mnemonic": "mov",
+     "op_str": "this+0x74(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0044B4A0",
+     "mnemonic": "mov",
+     "op_str": "this+0x74(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 6,
+    "hints": {}
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 120,
+   "key": "120",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDC28",
+    "g_RoleSystemExtra1:0x00BFFE28",
+    "g_RoleSystemMain:0x00C02170",
+    "g_RoleSystemInstance:0x00C12BC0",
+    "g_RoleSystemCombat:0x017A8B60"
+   ],
+   "name": "m_nPathFlag",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:6",
+    "4 字节 6 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x0041AF74",
+     "mnemonic": "mov",
+     "op_str": "this+0x78(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041B13F",
+     "mnemonic": "mov",
+     "op_str": "this+0x78(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041B3AB",
+     "mnemonic": "mov",
+     "op_str": "this+0x78(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0044B491",
+     "mnemonic": "mov",
+     "op_str": "this+0x78(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0044B510",
+     "mnemonic": "mov",
+     "op_str": "this+0x78(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0044B579",
+     "mnemonic": "mov",
+     "op_str": "this+0x78(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 17,
+    "hints": {
+     "dword": 8
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 124,
+   "key": "124",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDC2C",
+    "g_RoleSystemExtra1:0x00BFFE2C",
+    "g_RoleSystemMain:0x00C02174",
+    "g_RoleSystemInstance:0x00C12BC4",
+    "g_RoleSystemCombat:0x017A8B64"
+   ],
+   "name": "m_nPathField7C",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:7",
+    "地址物化 1 站点（当指针用，不定型）",
+    "4 字节 6 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x0041AF71",
+     "mnemonic": "mov",
+     "op_str": "this+0x7C(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041AF80",
+     "mnemonic": "mov",
+     "op_str": "this+0x7C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041B13C",
+     "mnemonic": "mov",
+     "op_str": "this+0x7C(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041B14B",
+     "mnemonic": "mov",
+     "op_str": "this+0x7C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041B3AE",
+     "mnemonic": "mov",
+     "op_str": "this+0x7C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0044B479",
+     "mnemonic": "lea",
+     "op_str": "this+0x7C(load)",
+     "op_size": 4,
+     "kind": "addr",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0044B48A",
+     "mnemonic": "mov",
+     "op_str": "this+0x7C(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 43,
+    "hints": {
+     "dword": 20,
+     "byte": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 132,
+   "key": "132",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDC34",
+    "g_RoleSystemExtra1:0x00BFFE34",
+    "g_RoleSystemMain:0x00C0217C",
+    "g_RoleSystemInstance:0x00C12BCC",
+    "g_RoleSystemCombat:0x017A8B6C"
+   ],
+   "name": "m_nPathState",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "C",
+   "notes": [
+    "T1:0 T1b:2",
+    "CONFLICT: 整型多宽度 {4: 1, 1: 1}（1/2B vs 4B）"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x0041B3A4",
+     "mnemonic": "mov",
+     "op_str": "this+0x84(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00532E58",
+     "mnemonic": "mov",
+     "op_str": "this+0x84(store)",
+     "op_size": 1,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 9,
+    "hints": {
+     "float": 1,
+     "byte": 4
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 144,
+   "key": "144",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDC40",
+    "g_RoleSystemExtra1:0x00BFFE40",
+    "g_RoleSystemMain:0x00C02188",
+    "g_RoleSystemInstance:0x00C12BD8",
+    "g_RoleSystemCombat:0x017A8B78"
+   ],
+   "name": "m_nActionResult",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:4",
+    "4 字节 4 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x004124D6",
+     "mnemonic": "mov",
+     "op_str": "this+0x90(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00414FA8",
+     "mnemonic": "mov",
+     "op_str": "this+0x90(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041742B",
+     "mnemonic": "cmp",
+     "op_str": "this+0x90(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041BAFC",
+     "mnemonic": "mov",
+     "op_str": "this+0x90(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 5,
+    "hints": {
+     "byte": 1,
+     "float": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 148,
+   "key": "148",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDC44",
+    "g_RoleSystemExtra1:0x00BFFE44",
+    "g_RoleSystemMain:0x00C0218C",
+    "g_RoleSystemInstance:0x00C12BDC",
+    "g_RoleSystemCombat:0x017A8B7C"
+   ],
+   "name": "m_nDispFontColor",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:3",
+    "4 字节 3 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00412243",
+     "mnemonic": "mov",
+     "op_str": "this+0x94(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00412286",
+     "mnemonic": "mov",
+     "op_str": "this+0x94(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041AF20",
+     "mnemonic": "mov",
+     "op_str": "this+0x94(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 8,
+    "hints": {
+     "float": 3,
+     "dword": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 152,
+   "key": "152",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDC48",
+    "g_RoleSystemExtra1:0x00BFFE48",
+    "g_RoleSystemMain:0x00C02190",
+    "g_RoleSystemInstance:0x00C12BE0",
+    "g_RoleSystemCombat:0x017A8B80"
+   ],
+   "name": "m_nDispWndColor",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": "float",
+   "grade": "B",
+   "notes": [
+    "T1:0 T1b:5",
+    "x87/SSE dword 浮点 1 站点（+整型触碰 4 兼容）"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x0041224E",
+     "mnemonic": "mov",
+     "op_str": "this+0x98(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041227C",
+     "mnemonic": "fstp",
+     "op_str": "this+0x98(store)",
+     "op_size": 4,
+     "kind": "float",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00412292",
+     "mnemonic": "mov",
+     "op_str": "this+0x98(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00418D98",
+     "mnemonic": "cmp",
+     "op_str": "this+0x98(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041AF2C",
+     "mnemonic": "mov",
+     "op_str": "this+0x98(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 8,
+    "hints": {
+     "float": 3
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 156,
+   "key": "156",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDC4C",
+    "g_RoleSystemExtra1:0x00BFFE4C",
+    "g_RoleSystemMain:0x00C02194",
+    "g_RoleSystemInstance:0x00C12BE4",
+    "g_RoleSystemCombat:0x017A8B84"
+   ],
+   "name": "m_nField9C",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:4",
+    "4 字节 4 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x0041225D",
+     "mnemonic": "mov",
+     "op_str": "this+0x9C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041229E",
+     "mnemonic": "mov",
+     "op_str": "this+0x9C(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00418DA8",
+     "mnemonic": "cmp",
+     "op_str": "this+0x9C(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041AF38",
+     "mnemonic": "mov",
+     "op_str": "this+0x9C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 9,
+    "hints": {
+     "float": 2,
+     "dword": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 176,
+   "key": "176",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDC60",
+    "g_RoleSystemExtra1:0x00BFFE60",
+    "g_RoleSystemMain:0x00C021A8",
+    "g_RoleSystemInstance:0x00C12BF8",
+    "g_RoleSystemCombat:0x017A8B98"
+   ],
+   "name": "m_szModelName",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "B",
+   "notes": [
+    "T1:0 T1b:2",
+    "地址物化 2 站点（当指针用，不定型）",
+    "T1 无宽度证据（2 站点全为地址物化/未解码/歧义）+ T2 渲染 3 站点 ⇒ 疑经指针访问（T1 盲区），宽度不可证，不填"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x0042A036",
+     "mnemonic": "lea",
+     "op_str": "this+0xB0(load)",
+     "op_size": 4,
+     "kind": "addr",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0042AD50",
+     "mnemonic": "lea",
+     "op_str": "this+0xB0(load)",
+     "op_size": 4,
+     "kind": "addr",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 3,
+    "hints": {
+     "byte": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 180,
+   "key": "180",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDC64",
+    "g_RoleSystemExtra1:0x00BFFE64",
+    "g_RoleSystemMain:0x00C021AC",
+    "g_RoleSystemInstance:0x00C12BFC",
+    "g_RoleSystemCombat:0x017A8B9C"
+   ],
+   "name": "m_mapData",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "B",
+   "notes": [
+    "T1 无宽度证据（0 站点全为地址物化/未解码/歧义）+ T2 渲染 6 站点 ⇒ 疑经指针访问（T1 盲区），宽度不可证，不填"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 6,
+    "hints": {
+     "byte": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 188,
+   "key": "188",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDC6C",
+    "g_RoleSystemExtra1:0x00BFFE6C",
+    "g_RoleSystemMain:0x00C021B4",
+    "g_RoleSystemInstance:0x00C12C04",
+    "g_RoleSystemCombat:0x017A8BA4"
+   ],
+   "name": "m_nImageIdx",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:2",
+    "4 字节 2 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00420819",
+     "mnemonic": "mov",
+     "op_str": "this+0xBC(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00420848",
+     "mnemonic": "mov",
+     "op_str": "this+0xBC(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 2,
+    "hints": {
+     "dword": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 224,
+   "key": "224",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDC90",
+    "g_RoleSystemExtra1:0x00BFFE90",
+    "g_RoleSystemMain:0x00C021D8",
+    "g_RoleSystemInstance:0x00C12C28",
+    "g_RoleSystemCombat:0x017A8BC8"
+   ],
+   "name": "m_nSpawnData",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "B",
+   "notes": [
+    "T1 无宽度证据（0 站点全为地址物化/未解码/歧义）+ T2 渲染 5 站点 ⇒ 疑经指针访问（T1 盲区），宽度不可证，不填"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 5,
+    "hints": {}
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 228,
+   "key": "228",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDC94",
+    "g_RoleSystemExtra1:0x00BFFE94",
+    "g_RoleSystemMain:0x00C021DC",
+    "g_RoleSystemInstance:0x00C12C2C",
+    "g_RoleSystemCombat:0x017A8BCC"
+   ],
+   "name": "m_nActionType",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "B",
+   "notes": [
+    "T1 无宽度证据（0 站点全为地址物化/未解码/歧义）+ T2 渲染 2 站点 ⇒ 疑经指针访问（T1 盲区），宽度不可证，不填"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 2,
+    "hints": {}
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 232,
+   "key": "232",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDC98",
+    "g_RoleSystemExtra1:0x00BFFE98",
+    "g_RoleSystemMain:0x00C021E0",
+    "g_RoleSystemInstance:0x00C12C30",
+    "g_RoleSystemCombat:0x017A8BD0"
+   ],
+   "name": "m_nActionStep",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "0",
+   "notes": [
+    "无 T1/T2 证据"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": null
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 264,
+   "key": "264",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDCB8",
+    "g_RoleSystemExtra1:0x00BFFEB8",
+    "g_RoleSystemMain:0x00C02200",
+    "g_RoleSystemInstance:0x00C12C50",
+    "g_RoleSystemCombat:0x017A8BF0"
+   ],
+   "name": "m_nSpawnExtra",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:2",
+    "4 字节 2 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x004170C0",
+     "mnemonic": "mov",
+     "op_str": "this+0x108(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041BC85",
+     "mnemonic": "mov",
+     "op_str": "this+0x108(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 2,
+    "hints": {
+     "float": 2,
+     "byte": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 268,
+   "key": "268",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDCBC",
+    "g_RoleSystemExtra1:0x00BFFEBC",
+    "g_RoleSystemMain:0x00C02204",
+    "g_RoleSystemInstance:0x00C12C54",
+    "g_RoleSystemCombat:0x017A8BF4"
+   ],
+   "name": "m_nSpawnParam2",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:1",
+    "4 字节 1 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x004170CB",
+     "mnemonic": "mov",
+     "op_str": "this+0x10C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 1,
+    "hints": {
+     "byte": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 272,
+   "key": "272",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDCC0",
+    "g_RoleSystemExtra1:0x00BFFEC0",
+    "g_RoleSystemMain:0x00C02208",
+    "g_RoleSystemInstance:0x00C12C58",
+    "g_RoleSystemCombat:0x017A8BF8"
+   ],
+   "name": "m_szModelPath",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "B",
+   "notes": [
+    "T1:0 T1b:4",
+    "地址物化 3 站点（当指针用，不定型）",
+    "byte 1 站点但符号位不可证（movzx/movsx 缺失） ⇒ 不填"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00417099",
+     "mnemonic": "lea",
+     "op_str": "this+0x110(load)",
+     "op_size": 4,
+     "kind": "addr",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004170D3",
+     "mnemonic": "mov",
+     "op_str": "this+0x110(store)",
+     "op_size": 1,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00417254",
+     "mnemonic": "lea",
+     "op_str": "this+0x110(load)",
+     "op_size": 4,
+     "kind": "addr",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0042214B",
+     "mnemonic": "lea",
+     "op_str": "this+0x110(load)",
+     "op_size": 4,
+     "kind": "addr",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 5,
+    "hints": {
+     "float": 1,
+     "byte": 1,
+     "dword": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 288,
+   "key": "288",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDCD0",
+    "g_RoleSystemExtra1:0x00BFFED0",
+    "g_RoleSystemMain:0x00C02218",
+    "g_RoleSystemInstance:0x00C12C68",
+    "g_RoleSystemCombat:0x017A8C08"
+   ],
+   "name": "m_nParamArray",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:2",
+    "地址物化 1 站点（当指针用，不定型）",
+    "4 字节 1 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x004170DE",
+     "mnemonic": "lea",
+     "op_str": "this+0x120(load)",
+     "op_size": 4,
+     "kind": "addr",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004170E9",
+     "mnemonic": "mov",
+     "op_str": "this+0x120(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 1,
+    "hints": {}
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 304,
+   "key": "304",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDCE0",
+    "g_RoleSystemExtra1:0x00BFFEE0",
+    "g_RoleSystemMain:0x00C02228",
+    "g_RoleSystemInstance:0x00C12C78",
+    "g_RoleSystemCombat:0x017A8C18"
+   ],
+   "name": "m_nSpawnParam",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:3",
+    "地址物化 1 站点（当指针用，不定型）",
+    "4 字节 2 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00417111",
+     "mnemonic": "lea",
+     "op_str": "this+0x130(load)",
+     "op_size": 4,
+     "kind": "addr",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041711B",
+     "mnemonic": "mov",
+     "op_str": "this+0x130(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004172BE",
+     "mnemonic": "mov",
+     "op_str": "this+0x130(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 11,
+    "hints": {
+     "byte": 1,
+     "float": 1,
+     "dword": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 308,
+   "key": "308",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDCE4",
+    "g_RoleSystemExtra1:0x00BFFEE4",
+    "g_RoleSystemMain:0x00C0222C",
+    "g_RoleSystemInstance:0x00C12C7C",
+    "g_RoleSystemCombat:0x017A8C1C"
+   ],
+   "name": "m_nActionTimer",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:2",
+    "地址物化 1 站点（当指针用，不定型）",
+    "4 字节 1 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x004172D0",
+     "mnemonic": "lea",
+     "op_str": "this+0x134(load)",
+     "op_size": 4,
+     "kind": "addr",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004172E3",
+     "mnemonic": "rep movsd",
+     "op_str": "this+0x134(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 12,
+    "hints": {
+     "dword": 2,
+     "float": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 328,
+   "key": "328",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDCF8",
+    "g_RoleSystemExtra1:0x00BFFEF8",
+    "g_RoleSystemMain:0x00C02240",
+    "g_RoleSystemInstance:0x00C12C90",
+    "g_RoleSystemCombat:0x017A8C30"
+   ],
+   "name": "m_nMoveSrc",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "0",
+   "notes": [
+    "无 T1/T2 证据"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": null
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 332,
+   "key": "332",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDCFC",
+    "g_RoleSystemExtra1:0x00BFFEFC",
+    "g_RoleSystemMain:0x00C02244",
+    "g_RoleSystemInstance:0x00C12C94",
+    "g_RoleSystemCombat:0x017A8C34"
+   ],
+   "name": "m_nMoveDst",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "0",
+   "notes": [
+    "无 T1/T2 证据"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": null
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 336,
+   "key": "336",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDD00",
+    "g_RoleSystemExtra1:0x00BFFF00",
+    "g_RoleSystemMain:0x00C02248",
+    "g_RoleSystemInstance:0x00C12C98",
+    "g_RoleSystemCombat:0x017A8C38"
+   ],
+   "name": "m_nMoveStep",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "0",
+   "notes": [
+    "无 T1/T2 证据"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": null
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 352,
+   "key": "352",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDD10",
+    "g_RoleSystemExtra1:0x00BFFF10",
+    "g_RoleSystemMain:0x00C02258",
+    "g_RoleSystemInstance:0x00C12CA8",
+    "g_RoleSystemCombat:0x017A8C48"
+   ],
+   "name": "m_nSavedState",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:3",
+    "4 字节 3 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00531D55",
+     "mnemonic": "mov",
+     "op_str": "this+0x160(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x005327E2",
+     "mnemonic": "mov",
+     "op_str": "this+0x160(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00532801",
+     "mnemonic": "mov",
+     "op_str": "this+0x160(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 3,
+    "hints": {
+     "byte": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 356,
+   "key": "356",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDD14",
+    "g_RoleSystemExtra1:0x00BFFF14",
+    "g_RoleSystemMain:0x00C0225C",
+    "g_RoleSystemInstance:0x00C12CAC",
+    "g_RoleSystemCombat:0x017A8C4C"
+   ],
+   "name": "m_nVisState",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:4",
+    "4 字节 4 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00531D4F",
+     "mnemonic": "mov",
+     "op_str": "this+0x164(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x005327E8",
+     "mnemonic": "mov",
+     "op_str": "this+0x164(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x005327F7",
+     "mnemonic": "mov",
+     "op_str": "this+0x164(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00532815",
+     "mnemonic": "mov",
+     "op_str": "this+0x164(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 7,
+    "hints": {}
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 368,
+   "key": "368",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDD20",
+    "g_RoleSystemExtra1:0x00BFFF20",
+    "g_RoleSystemMain:0x00C02268",
+    "g_RoleSystemInstance:0x00C12CB8",
+    "g_RoleSystemCombat:0x017A8C58"
+   ],
+   "name": "m_nTodo_170",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "B",
+   "notes": [
+    "T1 无宽度证据（0 站点全为地址物化/未解码/歧义）+ T2 渲染 1 站点 ⇒ 疑经指针访问（T1 盲区），宽度不可证，不填"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 1,
+    "hints": {
+     "float": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 380,
+   "key": "380",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDD2C",
+    "g_RoleSystemExtra1:0x00BFFF2C",
+    "g_RoleSystemMain:0x00C02274",
+    "g_RoleSystemInstance:0x00C12CC4",
+    "g_RoleSystemCombat:0x017A8C64"
+   ],
+   "name": "m_nActive",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:1",
+    "4 字节 1 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x0041C194",
+     "mnemonic": "mov",
+     "op_str": "this+0x17C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 1,
+    "hints": {}
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 420,
+   "key": "420",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFDD54",
+    "g_RoleSystemExtra1:0x00BFFF54",
+    "g_RoleSystemMain:0x00C0229C",
+    "g_RoleSystemInstance:0x00C12CEC",
+    "g_RoleSystemCombat:0x017A8C8C"
+   ],
+   "name": "m_nCmdQueuePos",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:2",
+    "地址物化 1 站点（当指针用，不定型）",
+    "4 字节 1 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x0041C10F",
+     "mnemonic": "lea",
+     "op_str": "this+0x1A4(load)",
+     "op_size": 4,
+     "kind": "addr",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041C115",
+     "mnemonic": "mov",
+     "op_str": "this+0x1A4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 1,
+    "hints": {}
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1260,
+   "key": "1260",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE09C",
+    "g_RoleSystemExtra1:0x00C0029C",
+    "g_RoleSystemMain:0x00C025E4",
+    "g_RoleSystemInstance:0x00C13034",
+    "g_RoleSystemCombat:0x017A8FD4"
+   ],
+   "name": "m_nPrevMoveMode",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:14",
+    "4 字节 14 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00414A52",
+     "mnemonic": "mov",
+     "op_str": "this+0x4EC(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00414FBE",
+     "mnemonic": "mov",
+     "op_str": "this+0x4EC(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416655",
+     "mnemonic": "mov",
+     "op_str": "this+0x4EC(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416FBF",
+     "mnemonic": "mov",
+     "op_str": "this+0x4EC(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416FEC",
+     "mnemonic": "mov",
+     "op_str": "this+0x4EC(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041701C",
+     "mnemonic": "mov",
+     "op_str": "this+0x4EC(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004173BF",
+     "mnemonic": "mov",
+     "op_str": "this+0x4EC(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00417BCD",
+     "mnemonic": "mov",
+     "op_str": "this+0x4EC(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00418143",
+     "mnemonic": "mov",
+     "op_str": "this+0x4EC(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00418160",
+     "mnemonic": "mov",
+     "op_str": "this+0x4EC(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041821E",
+     "mnemonic": "mov",
+     "op_str": "this+0x4EC(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00419059",
+     "mnemonic": "mov",
+     "op_str": "this+0x4EC(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004198D2",
+     "mnemonic": "mov",
+     "op_str": "this+0x4EC(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041BBED",
+     "mnemonic": "mov",
+     "op_str": "this+0x4EC(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 33,
+    "hints": {
+     "float": 4,
+     "dword": 2
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1264,
+   "key": "1264",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE0A0",
+    "g_RoleSystemExtra1:0x00C002A0",
+    "g_RoleSystemMain:0x00C025E8",
+    "g_RoleSystemInstance:0x00C13038",
+    "g_RoleSystemCombat:0x017A8FD8"
+   ],
+   "name": "m_nMoveMode",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:6 T1b:32",
+    "4 字节 38 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [
+    {
+     "insn_va": "0x004092B0",
+     "mnemonic": "mov",
+     "op_str": "dword ptr [0xbfe0a0], ebp",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "disp"
+    },
+    {
+     "insn_va": "0x0040C2D6",
+     "mnemonic": "cmp",
+     "op_str": "dword ptr [0xbfe0a0], ebp",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "disp"
+    },
+    {
+     "insn_va": "0x00409275",
+     "mnemonic": "mov",
+     "op_str": "dword ptr [0xc002a0], ebp",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "disp"
+    },
+    {
+     "insn_va": "0x0040C2AB",
+     "mnemonic": "cmp",
+     "op_str": "dword ptr [0xc002a0], ebp",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "disp"
+    },
+    {
+     "insn_va": "0x00409216",
+     "mnemonic": "mov",
+     "op_str": "dword ptr [0xc025e8], ebx",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "disp"
+    },
+    {
+     "insn_va": "0x0040F085",
+     "mnemonic": "mov",
+     "op_str": "dword ptr [0xc025e8], eax",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "disp"
+    }
+   ],
+   "t1b": [
+    {
+     "insn_va": "0x00412473",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00414A3B",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00414A5C",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00414F99",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00414FD3",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004164E0",
+     "mnemonic": "cmp",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416640",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041666F",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416FA0",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416FCC",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416FE3",
+     "mnemonic": "cmp",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416FF2",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416FFD",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041702B",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041720E",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004173AF",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004173B9",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00417BD3",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00418138",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00418149",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00418166",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00418213",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00418227",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041822F",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00419030",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00419069",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004198C7",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004198DA",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00419AE8",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041BAE3",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041BBE0",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041BBF3",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 112,
+    "hints": {
+     "byte": 2,
+     "dword": 7,
+     "float": 16
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1268,
+   "key": "1268",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE0A4",
+    "g_RoleSystemExtra1:0x00C002A4",
+    "g_RoleSystemMain:0x00C025EC",
+    "g_RoleSystemInstance:0x00C1303C",
+    "g_RoleSystemCombat:0x017A8FDC"
+   ],
+   "name": "m_nMoveSubMode",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:7 T1b:19",
+    "4 字节 26 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [
+    {
+     "insn_va": "0x0040C256",
+     "mnemonic": "mov",
+     "op_str": "eax, dword ptr [0xc025ec]",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "disp"
+    },
+    {
+     "insn_va": "0x0040C9F9",
+     "mnemonic": "cmp",
+     "op_str": "dword ptr [0xc025ec], 0xa",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "disp"
+    },
+    {
+     "insn_va": "0x0040E755",
+     "mnemonic": "cmp",
+     "op_str": "dword ptr [0xc025ec], 0xa",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "disp"
+    },
+    {
+     "insn_va": "0x0040F07A",
+     "mnemonic": "mov",
+     "op_str": "dword ptr [0xc025ec], ecx",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "disp"
+    },
+    {
+     "insn_va": "0x0040F09F",
+     "mnemonic": "mov",
+     "op_str": "dword ptr [0xc025ec], 0xa",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "disp"
+    },
+    {
+     "insn_va": "0x0040F0B5",
+     "mnemonic": "mov",
+     "op_str": "dword ptr [0xc025ec], ecx",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "disp"
+    },
+    {
+     "insn_va": "0x00410430",
+     "mnemonic": "cmp",
+     "op_str": "dword ptr [0xc025ec], 0xa",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "disp"
+    }
+   ],
+   "t1b": [
+    {
+     "insn_va": "0x004122C6",
+     "mnemonic": "cmp",
+     "op_str": "this+0x4F4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00412A58",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00412BB7",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00412C41",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00412E8A",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F4(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00413CD8",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F4(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00413DA5",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004142E6",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004149DE",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00417231",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00417249",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004172B3",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00417319",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004175B8",
+     "mnemonic": "cmp",
+     "op_str": "this+0x4F4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041765A",
+     "mnemonic": "cmp",
+     "op_str": "this+0x4F4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041785C",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004197D9",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00419BBB",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041BC45",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F4(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 61,
+    "hints": {
+     "float": 13,
+     "byte": 2,
+     "dword": 3,
+     "double": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1272,
+   "key": "1272",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE0A8",
+    "g_RoleSystemExtra1:0x00C002A8",
+    "g_RoleSystemMain:0x00C025F0",
+    "g_RoleSystemInstance:0x00C13040",
+    "g_RoleSystemCombat:0x017A8FE0"
+   ],
+   "name": "m_nCollisionState",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:3",
+    "4 字节 3 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00414329",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F8(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00414333",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F8(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041BB9E",
+     "mnemonic": "mov",
+     "op_str": "this+0x4F8(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 5,
+    "hints": {
+     "dword": 1,
+     "byte": 2,
+     "float": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1276,
+   "key": "1276",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE0AC",
+    "g_RoleSystemExtra1:0x00C002AC",
+    "g_RoleSystemMain:0x00C025F4",
+    "g_RoleSystemInstance:0x00C13044",
+    "g_RoleSystemCombat:0x017A8FE4"
+   ],
+   "name": "m_nCollisionParam",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:1",
+    "4 字节 1 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x0041BBC9",
+     "mnemonic": "mov",
+     "op_str": "this+0x4FC(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 5,
+    "hints": {
+     "dword": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1284,
+   "key": "1284",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE0B4",
+    "g_RoleSystemExtra1:0x00C002B4",
+    "g_RoleSystemMain:0x00C025FC",
+    "g_RoleSystemInstance:0x00C1304C",
+    "g_RoleSystemCombat:0x017A8FEC"
+   ],
+   "name": "m_nCoreState",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:1 T1b:18",
+    "4 字节 19 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [
+    {
+     "insn_va": "0x0040CA23",
+     "mnemonic": "mov",
+     "op_str": "dword ptr [0xc025fc], 0",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "disp"
+    }
+   ],
+   "t1b": [
+    {
+     "insn_va": "0x00412710",
+     "mnemonic": "mov",
+     "op_str": "this+0x504(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00412724",
+     "mnemonic": "mov",
+     "op_str": "this+0x504(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041272A",
+     "mnemonic": "mov",
+     "op_str": "this+0x504(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041277E",
+     "mnemonic": "mov",
+     "op_str": "this+0x504(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004129CC",
+     "mnemonic": "mov",
+     "op_str": "this+0x504(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00412A5E",
+     "mnemonic": "mov",
+     "op_str": "this+0x504(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004142EC",
+     "mnemonic": "mov",
+     "op_str": "this+0x504(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004149A5",
+     "mnemonic": "mov",
+     "op_str": "this+0x504(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00414DD8",
+     "mnemonic": "mov",
+     "op_str": "this+0x504(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00414FCD",
+     "mnemonic": "mov",
+     "op_str": "this+0x504(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00417866",
+     "mnemonic": "mov",
+     "op_str": "this+0x504(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00417C80",
+     "mnemonic": "cmp",
+     "op_str": "this+0x504(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00417C9E",
+     "mnemonic": "mov",
+     "op_str": "this+0x504(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004181ED",
+     "mnemonic": "mov",
+     "op_str": "this+0x504(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00419940",
+     "mnemonic": "mov",
+     "op_str": "this+0x504(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00419B83",
+     "mnemonic": "mov",
+     "op_str": "this+0x504(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00419BAC",
+     "mnemonic": "mov",
+     "op_str": "this+0x504(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041A488",
+     "mnemonic": "mov",
+     "op_str": "this+0x504(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 71,
+    "hints": {
+     "float": 11,
+     "dword": 3,
+     "double": 4,
+     "byte": 2
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1288,
+   "key": "1288",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE0B8",
+    "g_RoleSystemExtra1:0x00C002B8",
+    "g_RoleSystemMain:0x00C02600",
+    "g_RoleSystemInstance:0x00C13050",
+    "g_RoleSystemCombat:0x017A8FF0"
+   ],
+   "name": "m_nTransformState",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": "float",
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:10",
+    "x87/SSE dword 浮点 7 站点（+整型触碰 3 兼容）"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00412740",
+     "mnemonic": "mov",
+     "op_str": "this+0x508(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00412A69",
+     "mnemonic": "fld",
+     "op_str": "this+0x508(store)",
+     "op_size": 4,
+     "kind": "float",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00412A75",
+     "mnemonic": "fstp",
+     "op_str": "this+0x508(store)",
+     "op_size": 4,
+     "kind": "float",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004133D8",
+     "mnemonic": "fdivr",
+     "op_str": "this+0x508(store)",
+     "op_size": 4,
+     "kind": "float",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00413528",
+     "mnemonic": "fld",
+     "op_str": "this+0x508(store)",
+     "op_size": 4,
+     "kind": "float",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004149C4",
+     "mnemonic": "fld",
+     "op_str": "this+0x508(store)",
+     "op_size": 4,
+     "kind": "float",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416693",
+     "mnemonic": "mov",
+     "op_str": "this+0x508(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004176BE",
+     "mnemonic": "mov",
+     "op_str": "this+0x508(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041999F",
+     "mnemonic": "fdiv",
+     "op_str": "this+0x508(store)",
+     "op_size": 4,
+     "kind": "float",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041A3F3",
+     "mnemonic": "fld",
+     "op_str": "this+0x508(store)",
+     "op_size": 4,
+     "kind": "float",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 30,
+    "hints": {
+     "float": 17,
+     "dword": 3
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1308,
+   "key": "1308",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE0CC",
+    "g_RoleSystemExtra1:0x00C002CC",
+    "g_RoleSystemMain:0x00C02614",
+    "g_RoleSystemInstance:0x00C13064",
+    "g_RoleSystemCombat:0x017A9004"
+   ],
+   "name": "m_nMovement",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": "float",
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:22",
+    "地址物化 2 站点（当指针用，不定型）",
+    "x87/SSE dword 浮点 9 站点（+整型触碰 11 兼容）"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00412760",
+     "mnemonic": "mov",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00412D69",
+     "mnemonic": "mov",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004133A9",
+     "mnemonic": "lea",
+     "op_str": "this+0x51C(load)",
+     "op_size": 4,
+     "kind": "addr",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004133CB",
+     "mnemonic": "fstp",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "float",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004133E3",
+     "mnemonic": "fmul",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "float",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004133E5",
+     "mnemonic": "fstp",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "float",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004133F9",
+     "mnemonic": "fmul",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "float",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004133FB",
+     "mnemonic": "fstp",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "float",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041350E",
+     "mnemonic": "mov",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00413530",
+     "mnemonic": "fmul",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "float",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00413536",
+     "mnemonic": "fstp",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "float",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00413DBD",
+     "mnemonic": "mov",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041430B",
+     "mnemonic": "mov",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041498F",
+     "mnemonic": "lea",
+     "op_str": "this+0x51C(load)",
+     "op_size": 4,
+     "kind": "addr",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00414995",
+     "mnemonic": "mov",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004149CC",
+     "mnemonic": "fmul",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "float",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004149CE",
+     "mnemonic": "fstp",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "float",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004166BB",
+     "mnemonic": "mov",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0044CF3E",
+     "mnemonic": "mov",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00531E2D",
+     "mnemonic": "mov",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x005322B3",
+     "mnemonic": "mov",
+     "op_str": "this+0x51C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x005328E5",
+     "mnemonic": "mov",
+     "op_str": "this+0x51C(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 34,
+    "hints": {
+     "float": 19,
+     "byte": 4,
+     "dword": 2
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1388,
+   "key": "1388",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE11C",
+    "g_RoleSystemExtra1:0x00C0031C",
+    "g_RoleSystemMain:0x00C02664",
+    "g_RoleSystemInstance:0x00C130B4",
+    "g_RoleSystemCombat:0x017A9054"
+   ],
+   "name": "m_nActiveRole",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:5",
+    "4 字节 5 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x004167C5",
+     "mnemonic": "mov",
+     "op_str": "this+0x56C(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004167DF",
+     "mnemonic": "mov",
+     "op_str": "this+0x56C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416F19",
+     "mnemonic": "mov",
+     "op_str": "this+0x56C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00417C5A",
+     "mnemonic": "cmp",
+     "op_str": "this+0x56C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041BB0C",
+     "mnemonic": "mov",
+     "op_str": "this+0x56C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 17,
+    "hints": {
+     "byte": 5,
+     "dword": 3,
+     "float": 7
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1392,
+   "key": "1392",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE120",
+    "g_RoleSystemExtra1:0x00C00320",
+    "g_RoleSystemMain:0x00C02668",
+    "g_RoleSystemInstance:0x00C130B8",
+    "g_RoleSystemCombat:0x017A9058"
+   ],
+   "name": "m_nRoleCount",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:12",
+    "4 字节 12 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x004167CF",
+     "mnemonic": "cmp",
+     "op_str": "this+0x570(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004167EB",
+     "mnemonic": "mov",
+     "op_str": "this+0x570(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416830",
+     "mnemonic": "mov",
+     "op_str": "this+0x570(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041687D",
+     "mnemonic": "mov",
+     "op_str": "this+0x570(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416BC9",
+     "mnemonic": "mov",
+     "op_str": "this+0x570(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416F13",
+     "mnemonic": "mov",
+     "op_str": "this+0x570(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416F51",
+     "mnemonic": "mov",
+     "op_str": "this+0x570(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416F6A",
+     "mnemonic": "mov",
+     "op_str": "this+0x570(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416F75",
+     "mnemonic": "mov",
+     "op_str": "this+0x570(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416F80",
+     "mnemonic": "mov",
+     "op_str": "this+0x570(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00416F90",
+     "mnemonic": "mov",
+     "op_str": "this+0x570(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041BB06",
+     "mnemonic": "mov",
+     "op_str": "this+0x570(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 55,
+    "hints": {
+     "dword": 17,
+     "byte": 7,
+     "float": 17,
+     "double": 2
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1396,
+   "key": "1396",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE124",
+    "g_RoleSystemExtra1:0x00C00324",
+    "g_RoleSystemMain:0x00C0266C",
+    "g_RoleSystemInstance:0x00C130BC",
+    "g_RoleSystemCombat:0x017A905C"
+   ],
+   "name": "m_nAnimation",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:1",
+    "4 字节 1 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00416894",
+     "mnemonic": "mov",
+     "op_str": "this+0x574(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 9,
+    "hints": {
+     "float": 3
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1400,
+   "key": "1400",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE128",
+    "g_RoleSystemExtra1:0x00C00328",
+    "g_RoleSystemMain:0x00C02670",
+    "g_RoleSystemInstance:0x00C130C0",
+    "g_RoleSystemCombat:0x017A9060"
+   ],
+   "name": "m_nAnimCopy1",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:1",
+    "4 字节 1 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00416F57",
+     "mnemonic": "mov",
+     "op_str": "this+0x578(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 11,
+    "hints": {
+     "byte": 5,
+     "dword": 3,
+     "float": 2
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1404,
+   "key": "1404",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE12C",
+    "g_RoleSystemExtra1:0x00C0032C",
+    "g_RoleSystemMain:0x00C02674",
+    "g_RoleSystemInstance:0x00C130C4",
+    "g_RoleSystemCombat:0x017A9064"
+   ],
+   "name": "m_nAnimCopy2",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:1",
+    "4 字节 1 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00416F43",
+     "mnemonic": "mov",
+     "op_str": "this+0x57C(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 10,
+    "hints": {
+     "byte": 7,
+     "dword": 4
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1408,
+   "key": "1408",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE130",
+    "g_RoleSystemExtra1:0x00C00330",
+    "g_RoleSystemMain:0x00C02678",
+    "g_RoleSystemInstance:0x00C130C8",
+    "g_RoleSystemCombat:0x017A9068"
+   ],
+   "name": "m_nAnimCopy3",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:1",
+    "4 字节 1 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00416F63",
+     "mnemonic": "mov",
+     "op_str": "this+0x580(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 7,
+    "hints": {
+     "float": 2
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1416,
+   "key": "1416",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE138",
+    "g_RoleSystemExtra1:0x00C00338",
+    "g_RoleSystemMain:0x00C02680",
+    "g_RoleSystemInstance:0x00C130D0",
+    "g_RoleSystemCombat:0x017A9070"
+   ],
+   "name": "m_nTransformMode",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:9",
+    "4 字节 9 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00417334",
+     "mnemonic": "mov",
+     "op_str": "this+0x588(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00417441",
+     "mnemonic": "mov",
+     "op_str": "this+0x588(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041748B",
+     "mnemonic": "mov",
+     "op_str": "this+0x588(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00417576",
+     "mnemonic": "mov",
+     "op_str": "this+0x588(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004175AD",
+     "mnemonic": "mov",
+     "op_str": "this+0x588(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004175C2",
+     "mnemonic": "mov",
+     "op_str": "this+0x588(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004175F7",
+     "mnemonic": "mov",
+     "op_str": "this+0x588(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00417631",
+     "mnemonic": "mov",
+     "op_str": "this+0x588(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041BB1C",
+     "mnemonic": "mov",
+     "op_str": "this+0x588(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 10,
+    "hints": {
+     "byte": 1,
+     "dword": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1436,
+   "key": "1436",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE14C",
+    "g_RoleSystemExtra1:0x00C0034C",
+    "g_RoleSystemMain:0x00C02694",
+    "g_RoleSystemInstance:0x00C130E4",
+    "g_RoleSystemCombat:0x017A9084"
+   ],
+   "name": "m_nMoveReset",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:3",
+    "4 字节 3 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00414FE9",
+     "mnemonic": "mov",
+     "op_str": "this+0x59C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00417323",
+     "mnemonic": "mov",
+     "op_str": "this+0x59C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041BB65",
+     "mnemonic": "mov",
+     "op_str": "this+0x59C(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 16,
+    "hints": {
+     "float": 8,
+     "dword": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1444,
+   "key": "1444",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE154",
+    "g_RoleSystemExtra1:0x00C00354",
+    "g_RoleSystemMain:0x00C0269C",
+    "g_RoleSystemInstance:0x00C130EC",
+    "g_RoleSystemCombat:0x017A908C"
+   ],
+   "name": "m_bRenderFlag1",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "B",
+   "notes": [
+    "T1:0 T1b:9",
+    "byte 9 站点但符号位不可证（movzx/movsx 缺失） ⇒ 不填"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00412542",
+     "mnemonic": "mov",
+     "op_str": "this+0x5A4(load)",
+     "op_size": 1,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004129EA",
+     "mnemonic": "mov",
+     "op_str": "this+0x5A4(store)",
+     "op_size": 1,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041B4AE",
+     "mnemonic": "mov",
+     "op_str": "this+0x5A4(store)",
+     "op_size": 1,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041B4CA",
+     "mnemonic": "mov",
+     "op_str": "this+0x5A4(store)",
+     "op_size": 1,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041B4DB",
+     "mnemonic": "mov",
+     "op_str": "this+0x5A4(store)",
+     "op_size": 1,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041B4FA",
+     "mnemonic": "mov",
+     "op_str": "this+0x5A4(store)",
+     "op_size": 1,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041B530",
+     "mnemonic": "mov",
+     "op_str": "this+0x5A4(store)",
+     "op_size": 1,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041B548",
+     "mnemonic": "mov",
+     "op_str": "this+0x5A4(store)",
+     "op_size": 1,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041BBB6",
+     "mnemonic": "mov",
+     "op_str": "this+0x5A4(store)",
+     "op_size": 1,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 20,
+    "hints": {
+     "byte": 20,
+     "dword": 2
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1452,
+   "key": "1452",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE15C",
+    "g_RoleSystemExtra1:0x00C0035C",
+    "g_RoleSystemMain:0x00C026A4",
+    "g_RoleSystemInstance:0x00C130F4",
+    "g_RoleSystemCombat:0x017A9094"
+   ],
+   "name": "m_nTodo_5AC",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "0",
+   "notes": [
+    "无 T1/T2 证据"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": null
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1460,
+   "key": "1460",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE164",
+    "g_RoleSystemExtra1:0x00C00364",
+    "g_RoleSystemMain:0x00C026AC",
+    "g_RoleSystemInstance:0x00C130FC",
+    "g_RoleSystemCombat:0x017A909C"
+   ],
+   "name": "m_nMoveRole",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:6",
+    "4 字节 6 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00412E99",
+     "mnemonic": "mov",
+     "op_str": "this+0x5B4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00413858",
+     "mnemonic": "mov",
+     "op_str": "this+0x5B4(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00417580",
+     "mnemonic": "mov",
+     "op_str": "this+0x5B4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041763B",
+     "mnemonic": "mov",
+     "op_str": "this+0x5B4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x00418248",
+     "mnemonic": "mov",
+     "op_str": "this+0x5B4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041BB92",
+     "mnemonic": "mov",
+     "op_str": "this+0x5B4(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 10,
+    "hints": {
+     "dword": 2,
+     "float": 1,
+     "byte": 1
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1464,
+   "key": "1464",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE168",
+    "g_RoleSystemExtra1:0x00C00368",
+    "g_RoleSystemMain:0x00C026B0",
+    "g_RoleSystemInstance:0x00C13100",
+    "g_RoleSystemCombat:0x017A90A0"
+   ],
+   "name": "m_nRetryCount",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:2",
+    "4 字节 2 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x00412EB3",
+     "mnemonic": "mov",
+     "op_str": "this+0x5B8(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0041BB8C",
+     "mnemonic": "mov",
+     "op_str": "this+0x5B8(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 5,
+    "hints": {
+     "byte": 4
+    }
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1484,
+   "key": "1484",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE17C",
+    "g_RoleSystemExtra1:0x00C0037C",
+    "g_RoleSystemMain:0x00C026C4",
+    "g_RoleSystemInstance:0x00C13114",
+    "g_RoleSystemCombat:0x017A90B4"
+   ],
+   "name": "m_fMoveTargetY",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:2",
+    "地址物化 1 站点（当指针用，不定型）",
+    "4 字节 1 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x004172F8",
+     "mnemonic": "lea",
+     "op_str": "this+0x5CC(load)",
+     "op_size": 4,
+     "kind": "addr",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x004172FE",
+     "mnemonic": "mov",
+     "op_str": "this+0x5CC(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 3,
+    "hints": {}
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1564,
+   "key": "1564",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE1CC",
+    "g_RoleSystemExtra1:0x00C003CC",
+    "g_RoleSystemMain:0x00C02714",
+    "g_RoleSystemInstance:0x00C13164",
+    "g_RoleSystemCombat:0x017A9104"
+   ],
+   "name": "m_nTodo_61C",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "0",
+   "notes": [
+    "无 T1/T2 证据"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": null
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 1676,
+   "key": "1676",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE23C",
+    "g_RoleSystemExtra1:0x00C0043C",
+    "g_RoleSystemMain:0x00C02784",
+    "g_RoleSystemInstance:0x00C131D4",
+    "g_RoleSystemCombat:0x017A9174"
+   ],
+   "name": "m_nTodo_68C",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "B",
+   "notes": [
+    "T1 无宽度证据（0 站点全为地址物化/未解码/歧义）+ T2 渲染 1 站点 ⇒ 疑经指针访问（T1 盲区），宽度不可证，不填"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 1,
+    "hints": {}
+   }
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 2960,
+   "key": "2960",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE740",
+    "g_RoleSystemExtra1:0x00C00940",
+    "g_RoleSystemMain:0x00C02C88",
+    "g_RoleSystemInstance:0x00C136D8",
+    "g_RoleSystemCombat:0x017A9678"
+   ],
+   "name": "m_nTodo_B90",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "0",
+   "notes": [
+    "无 T1/T2 证据"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": null
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 2968,
+   "key": "2968",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFE748",
+    "g_RoleSystemExtra1:0x00C00948",
+    "g_RoleSystemMain:0x00C02C90",
+    "g_RoleSystemInstance:0x00C136E0",
+    "g_RoleSystemCombat:0x017A9680"
+   ],
+   "name": "m_wndPanel",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "0",
+   "notes": [
+    "无 T1/T2 证据"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": null
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 4028,
+   "key": "4028",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFEB6C",
+    "g_RoleSystemExtra1:0x00C00D6C",
+    "g_RoleSystemMain:0x00C030B4",
+    "g_RoleSystemInstance:0x00C13B04",
+    "g_RoleSystemCombat:0x017A9AA4"
+   ],
+   "name": "m_pScriptBuf",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "0",
+   "notes": [
+    "无 T1/T2 证据"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": null
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 4068,
+   "key": "4068",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFEB94",
+    "g_RoleSystemExtra1:0x00C00D94",
+    "g_RoleSystemMain:0x00C030DC",
+    "g_RoleSystemInstance:0x00C13B2C",
+    "g_RoleSystemCombat:0x017A9ACC"
+   ],
+   "name": "m_nField_FE4",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "0",
+   "notes": [
+    "无 T1/T2 证据"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": null
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 4484,
+   "key": "4484",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFED34",
+    "g_RoleSystemExtra1:0x00C00F34",
+    "g_RoleSystemMain:0x00C0327C",
+    "g_RoleSystemInstance:0x00C13CCC",
+    "g_RoleSystemCombat:0x017A9C6C"
+   ],
+   "name": "m_nTodo_1184",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "0",
+   "notes": [
+    "无 T1/T2 证据"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": null
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 4488,
+   "key": "4488",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFED38",
+    "g_RoleSystemExtra1:0x00C00F38",
+    "g_RoleSystemMain:0x00C03280",
+    "g_RoleSystemInstance:0x00C13CD0",
+    "g_RoleSystemCombat:0x017A9C70"
+   ],
+   "name": "m_nTodo_1188",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "0",
+   "notes": [
+    "无 T1/T2 证据"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": null
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 4492,
+   "key": "4492",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFED3C",
+    "g_RoleSystemExtra1:0x00C00F3C",
+    "g_RoleSystemMain:0x00C03284",
+    "g_RoleSystemInstance:0x00C13CD4",
+    "g_RoleSystemCombat:0x017A9C74"
+   ],
+   "name": "m_nMoveState1",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "0",
+   "notes": [
+    "无 T1/T2 证据"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": null
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 4496,
+   "key": "4496",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFED40",
+    "g_RoleSystemExtra1:0x00C00F40",
+    "g_RoleSystemMain:0x00C03288",
+    "g_RoleSystemInstance:0x00C13CD8",
+    "g_RoleSystemCombat:0x017A9C78"
+   ],
+   "name": "m_nMoveState2",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "0",
+   "notes": [
+    "无 T1/T2 证据"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": null
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 4500,
+   "key": "4500",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFED44",
+    "g_RoleSystemExtra1:0x00C00F44",
+    "g_RoleSystemMain:0x00C0328C",
+    "g_RoleSystemInstance:0x00C13CDC",
+    "g_RoleSystemCombat:0x017A9C7C"
+   ],
+   "name": "m_nMoveState3",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "0",
+   "notes": [
+    "无 T1/T2 证据"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": null
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 4508,
+   "key": "4508",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFED4C",
+    "g_RoleSystemExtra1:0x00C00F4C",
+    "g_RoleSystemMain:0x00C03294",
+    "g_RoleSystemInstance:0x00C13CE4",
+    "g_RoleSystemCombat:0x017A9C84"
+   ],
+   "name": "m_nMoveParam1",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "0",
+   "notes": [
+    "无 T1/T2 证据"
+   ],
+   "t1": [],
+   "t1b": [],
+   "t1_raw_only": [],
+   "t2": null
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": 4512,
+   "key": "4512",
+   "vas": [
+    "g_RoleSystemExtra0:0x00BFED50",
+    "g_RoleSystemExtra1:0x00C00F50",
+    "g_RoleSystemMain:0x00C03298",
+    "g_RoleSystemInstance:0x00C13CE8",
+    "g_RoleSystemCombat:0x017A9C88"
+   ],
+   "name": "m_nMoveParam2",
+   "b2_ref": null,
+   "cur_type": "int",
+   "src": "member-placeholder",
+   "proposal": null,
+   "grade": "A",
+   "notes": [
+    "T1:0 T1b:6",
+    "4 字节 6 站点 ⇒ 占位 int **宽度**已正确（int/float/指针 不可分；符号位：不可证）",
+    "WIDTH-4-MATCHED"
+   ],
+   "t1": [],
+   "t1b": [
+    {
+     "insn_va": "0x005322A2",
+     "mnemonic": "mov",
+     "op_str": "this+0x11A0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x0053244B",
+     "mnemonic": "mov",
+     "op_str": "this+0x11A0(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x005328D2",
+     "mnemonic": "mov",
+     "op_str": "this+0x11A0(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x005328DB",
+     "mnemonic": "mov",
+     "op_str": "this+0x11A0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x005328ED",
+     "mnemonic": "mov",
+     "op_str": "this+0x11A0(store)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    },
+    {
+     "insn_va": "0x005328FF",
+     "mnemonic": "mov",
+     "op_str": "this+0x11A0(load)",
+     "op_size": 4,
+     "kind": "int",
+     "sign": null,
+     "note": "this+disp"
+    }
+   ],
+   "t1_raw_only": [],
+   "t2": {
+    "sites": 9,
+    "hints": {
+     "byte": 2
+    }
+   }
+  }
+ ]
+}

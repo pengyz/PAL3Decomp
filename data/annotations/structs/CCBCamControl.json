@@ -183,10 +183,11 @@
       "type": "int",
       "source": "A+:decomp_cmp_-1+index_into_cam_array_5refs"
     },
-    "0x260": {
+    "608": {
       "name": "m_PanelSlots",
       "type": "CCBPanelSlot",
-      "count": 38
+      "count": 38,
+      "source": " | normalize_key: 0x260 -> 608"
     }
   },
   "methods": {
@@ -309,8 +310,8 @@
     },
     "0x005058E0": {
       "name": "SwitchEditorCamPos",
-      "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "signature": "bool __thiscall(int nVal1)",
+      "source": "pdb_ret | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00505820": {
       "name": "ProcCamMove",

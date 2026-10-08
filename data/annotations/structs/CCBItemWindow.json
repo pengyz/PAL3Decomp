@@ -1,156 +1,162 @@
 {
-  "name": "CCBItemWindow",
-  "binary_size": 188,
-  "known_members": {
-    "72": {
-      "name": "m_pBack",
-      "type": "UIStatic *",
-      "offset": 72
-    },
-    "76": {
-      "name": "m_pDescription",
-      "type": "UIStatic *",
-      "offset": 76
-    },
-    "80": {
-      "name": "m_pItemList",
-      "type": "UIListBox *[3]",
-      "offset": 80
-    },
-    "92": {
-      "name": "m_pButtonRecover",
-      "type": "UIPushButton *",
-      "offset": 92
-    },
-    "96": {
-      "name": "m_pButtonAttack",
-      "type": "UIPushButton *",
-      "offset": 96
-    },
-    "100": {
-      "name": "m_pButtonTreasure",
-      "type": "UIPushButton *",
-      "offset": 100
-    },
-    "104": {
-      "name": "m_nActivePage",
-      "type": "int",
-      "offset": 104
-    }
+ "name": "CCBItemWindow",
+ "binary_size": 188,
+ "known_members": {
+  "72": {
+   "name": "m_pBack",
+   "type": "UIStatic *",
+   "offset": 72
   },
-  "base_class": [
-    "UIFrameWnd"
-  ],
-  "methods": {
-    "0x0051A3B0": {
-      "name": "~CCBItemWindow",
-      "signature": "void __thiscall()"
-    },
-    "0x0051B160": {
-      "name": "_scalar_dtor",
-      "signature": "UIWnd *__thiscall(CCBItemWindow *Block, char pData)",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "ordinal": 19
-    },
-    "0x0051B1D0": {
-      "name": "Reset",
-      "signature": "void __thiscall()",
-      "source": "pdb_ret"
-    },
-    "0x0051B210": {
-      "name": "Create",
-      "signature": "bool __thiscall(int *pRect, int parent)",
-      "source": "pdb_ret"
-    },
-    "0x0051B4B0": {
-      "name": "Destroy",
-      "signature": "void __thiscall(CCBItemWindow *__hidden this)",
-      "source": "vtable_migrated",
-      "ordinal": 24
-    },
-    "0x0051B570": {
-      "name": "HandleInput",
-      "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "ordinal": 16
-    },
-    "0x0051B620": {
-      "name": "Update",
-      "signature": "UIListBox * __thiscall()"
-    },
-    "0x0051B670": {
-      "name": "CreateButtons",
-      "signature": "UIWnd *__thiscall(CCBItemWindow *Block, char pData)"
-    },
-    "0x004461B0": {
-      "name": "CCBItemWindow",
-      "signature": "void __thiscall CCBItemWindow::CCBItemWindow()"
-    },
-    "0x00450650": {
-      "name": "SetItemName",
-      "signature": "char *__thiscall CCBItemWindow::SetItemName(char *pszName)"
-    },
-    "0x0051C9B0": {
-      "name": "CCBFiveNimbusWindow::OnMessage",
-      "signature": "int __thiscall(CCBSkillWindow *__hidden this, unsigned int, unsigned int a2, unsigned int)",
-      "source": "vtable_migrated",
-      "ordinal": 20
-    },
-    "0x0051A880": {
-      "name": "Destroy",
-      "signature": "void __thiscall()"
-    },
-    "0x00445B90": {
-      "name": "Create",
-      "signature": "int __thiscall(int id, tagRECT *pRect, int parent)"
-    },
-    "0x0051A390": {
-      "name": "DoTask",
-      "signature": "void __thiscall()"
-    },
-    "0x0051A930": {
-      "name": "HandleMessage",
-      "signature": "int __thiscall(int nVal, unsigned int nMsg, int wParam)"
-    }
+  "76": {
+   "name": "m_pDescription",
+   "type": "UIStatic *",
+   "offset": 76
   },
-  "vtables": [
+  "80": {
+   "name": "m_pItemList",
+   "type": "UIListBox *[3]",
+   "offset": 80
+  },
+  "92": {
+   "name": "m_pButtonRecover",
+   "type": "UIPushButton *",
+   "offset": 92
+  },
+  "96": {
+   "name": "m_pButtonAttack",
+   "type": "UIPushButton *",
+   "offset": 96
+  },
+  "100": {
+   "name": "m_pButtonTreasure",
+   "type": "UIPushButton *",
+   "offset": 100
+  },
+  "104": {
+   "name": "m_nActivePage",
+   "type": "int",
+   "offset": 104
+  }
+ },
+ "base_class": [
+  "UIFrameWnd"
+ ],
+ "methods": {
+  "0x0051A3B0": {
+   "name": "~CCBItemWindow",
+   "signature": "void __thiscall()"
+  },
+  "0x0051B160": {
+   "name": "_scalar_dtor",
+   "signature": "UIWnd *__thiscall(CCBItemWindow *Block, char pData)",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+   "ordinal": 19
+  },
+  "0x0051B1D0": {
+   "name": "Reset",
+   "signature": "void __thiscall()",
+   "source": "pdb_ret"
+  },
+  "0x0051B210": {
+   "name": "Create",
+   "signature": "bool __thiscall(int *pRect, int parent)",
+   "source": "pdb_ret"
+  },
+  "0x0051B4B0": {
+   "name": "Destroy",
+   "signature": "void __thiscall(CCBItemWindow *__hidden this)",
+   "source": "vtable_migrated",
+   "ordinal": 24
+  },
+  "0x0051B570": {
+   "name": "HandleInput",
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "ordinal": 16
+  },
+  "0x0051B620": {
+   "name": "Update",
+   "signature": "UIListBox * __thiscall()"
+  },
+  "0x0051B670": {
+   "name": "CreateButtons",
+   "signature": "UIWnd *__thiscall(CCBItemWindow *Block, char pData)"
+  },
+  "0x004461B0": {
+   "name": "CCBItemWindow",
+   "signature": "void __thiscall CCBItemWindow::CCBItemWindow()"
+  },
+  "0x00450650": {
+   "name": "SetItemName",
+   "signature": "char *__thiscall CCBItemWindow::SetItemName(char *pszName)"
+  },
+  "0x0051C9B0": {
+   "name": "CCBFiveNimbusWindow::OnMessage",
+   "signature": "int __thiscall(CCBSkillWindow *__hidden this, unsigned int, unsigned int a2, unsigned int)",
+   "source": "vtable_migrated",
+   "ordinal": 20
+  },
+  "0x0051A880": {
+   "name": "Destroy",
+   "signature": "void __thiscall()"
+  },
+  "0x00445B90": {
+   "name": "Create",
+   "signature": "int __thiscall(int id, tagRECT *pRect, int parent)"
+  },
+  "0x0051A390": {
+   "name": "DoTask",
+   "signature": "void __thiscall(int)",
+   "source": "vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
+  },
+  "0x0051A930": {
+   "name": "HandleMessage",
+   "signature": "int __thiscall(int nVal, unsigned int nMsg, int wParam)"
+  },
+  "0x0051B5D0": {
+   "name": "OnMessage",
+   "signature": "int __thiscall(CCBItemWindow *__hidden this, unsigned int a2, unsigned int, unsigned int)",
+   "source": "vtable_gap_fill_v1(from CCBControlWindow.json)"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x00570500",
+   "slots": [
     {
-      "addr": "0x00570500",
-      "slots": [
-        {
-          "addr": "0x00445E70",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0043DDF0",
-          "from": "CCBUI"
-        },
-        {
-          "addr": "0x0051AB00",
-          "from": "CCBUI"
-        },
-        {
-          "addr": "0x0051A880",
-          "from": "CCBUI"
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0051A390",
-          "from": "CCBUI"
-        },
-        {
-          "addr": "0x0051A930",
-          "from": null
-        },
-        {
-          "addr": "0x00445E70",
-          "from": "UIWnd"
-        }
-      ]
+     "addr": "0x00445E70",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x0043DDF0",
+     "from": "CCBUI"
+    },
+    {
+     "addr": "0x0051AB00",
+     "from": "CCBUI"
+    },
+    {
+     "addr": "0x0051A880",
+     "from": "CCBUI"
+    },
+    {
+     "addr": "0x00445B90",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x0051A390",
+     "from": "CCBUI"
+    },
+    {
+     "addr": "0x0051A930",
+     "from": null
+    },
+    {
+     "addr": "0x00445E70",
+     "from": "UIWnd"
     }
-  ],
-  "base_size": 72
+   ]
+  }
+ ],
+ "base_size": 72
 }

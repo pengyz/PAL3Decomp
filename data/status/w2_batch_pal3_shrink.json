@@ -1,0 +1,8 @@
+[
+  {
+    "kind": "set_size",
+    "class": "PAL3",
+    "size": 4936,
+    "evidence": "W2-① 容器范围收缩：91024→0x1348(4936)。证据链：①0x4C0F6C/0x4C1043 static-init guard+atexit 三元组块写 0xDE8DE8..0xDE8E24（=g_PAL3+0x1348..0x1388）=函数内 static 存储，编译器 static 不落对象内 ⇒ 对象末端 ≤0x1348；②末真实成员 0xF9C(key 3996,binary:disp32)；③g_PAL3_Instance 同型小对象佐证；④census size_bytes=None 零外部锚，91024 系 blob 自我闭合（acfd56b8 勘误表）"
+  }
+]

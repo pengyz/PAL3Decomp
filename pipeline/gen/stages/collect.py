@@ -113,6 +113,17 @@ def _get_skip_classes():
     return skip
 
 
+def _annotation_class_map():
+    """[5a7a3b86 残渣清理] 此函数已无调用点（N1 路由已撤）——保留空壳仅为外部引用兼容。"""
+    return {}
+
+
+_ANN_CLS_MAP = None
+
+
+_ANN_CLS_MAP = None
+
+
 def collect_functions(decomp_dir=None):
     """Collect all functions from decomp, grouped by class and free functions.
 
@@ -136,7 +147,10 @@ def collect_functions(decomp_dir=None):
         try:
             with open(f, 'r', encoding='utf-8') as fh:
                 d = json.load(fh)
-        except Exception:
+        except Exception as _e:
+            # 5a7a3b86 硬债①：解析失败**显式报错**（8 个零填充坏文件曾被裸 except 静默吞
+            # ⇒ 7 函数体丢失+UIQuadManager TU 蒸发——R12 中断残留的静默面）
+            print("  [collect-ERR] %s: %s" % (f.name, _e))
             continue
 
         name = d.get('name', '')
@@ -176,6 +190,9 @@ def collect_functions(decomp_dir=None):
             parts = name.rsplit('::', 1)
             cls = parts[0]
             method = parts[1].split('(')[0] if '(' in parts[1] else parts[1]
+        # N1 注记（回退教训 2026-09-29）：曾加"渲染首行/注解映射回退路由成员"——
+        # 30 函数改类后裸调用失 free_func_sigs 声明 ⇒ C2065 洪泛（S2 100→91）。
+        # **分类保持 name 形原判**；N1 的正确闭合在调用形转写层（挂账）。
 
         # IDA same-name dedup suffix (__ovl_1 / __ovl_2 / ...) is a decompiler
         # bookkeeping artifact — the original C++ source never had such

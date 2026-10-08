@@ -179,8 +179,9 @@
       "signature": "void __thiscall()"
     },
     "0x0047CB90": {
-      "name": "~Object3D",
-      "signature": "OpenNULLFile *__thiscall(const char *pszName, int actionIdx)"
+      "name": "_todo_0047CB90",
+      "signature": "OpenNULLFile *__thiscall(const char *pszName, int actionIdx)",
+      "source": " | 析构名误挂改名 2026-09-29：~Object3D→_todo_0047CB90（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）"
     },
     "0x0047CD70": {
       "name": "LoadObject",
@@ -226,7 +227,8 @@
     },
     "0x0047D9D0": {
       "name": "SetupCamera",
-      "signature": "void *__thiscall()"
+      "signature": "void *__thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x0047DA60": {
       "name": "Update",
@@ -280,7 +282,8 @@
     "0x0047FD90": {
       "name": "LoadActorModel",
       "signature": "void *__thiscall(int nParam)",
-      "_misattrib_evidence": "max_offset=162708>class_size=152"
+      "_misattrib_evidence": "max_offset=162708>class_size=152",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     }
   }
 }

@@ -1,3 +1,4 @@
+﻿import pytest
 """Test emit_headers.py handles :: nested types correctly."""
 import sys, os, json
 sys.path.insert(0, 'pipeline/gen')
@@ -33,3 +34,4 @@ if __name__ == '__main__':
     test_nested_type_declaration()
     test_no_nested_types()
     print("All tests passed!")
+

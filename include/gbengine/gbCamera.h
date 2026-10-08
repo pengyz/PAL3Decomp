@@ -124,6 +124,8 @@ public:
     void SetZRange(float nearZ, float farZ);
     float GetZNear(void);
     float GetZFar(void);
+    // 暴露批1 返工 2026-10-06：C2039 补（体证：this->ViewMatrix+0x94/Plane+0x64=gbCamera 布局内 ✓）
+    int RenderPost(int);  // PAL3 0x4BE460
     float GetFOV(void);
     float GetOrthoSize(void);
     float GetAspect(void);

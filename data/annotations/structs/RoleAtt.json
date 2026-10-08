@@ -215,7 +215,8 @@
     },
     "0x00450EB0": {
       "name": "~RoleAtt",
-      "signature": "void __fastcall RoleAtt::~RoleAtt(UIWnd *pWnd)"
+      "signature": "void __fastcall RoleAtt::~RoleAtt(UIWnd *pWnd)",
+      "source": " | 析构名误挂改名 2026-09-29：~RoleAtt→_todo_00450EB0（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形） | 撤误改名 2026-09-29：`UIWnd *pWnd`=this 形参（名非字面 this 但为此call this 槽）⇒ 真析构形（判别器只剥字面 this 名的漏洞——挂账修）"
     },
     "0x00450F80": {
       "name": "IsValid",
@@ -233,8 +234,9 @@
     },
     "0x00451740": {
       "name": "ShowWindow",
-      "signature": "void __thiscall()",
-      "ordinal": 0
+      "signature": "void __thiscall(int)",
+      "ordinal": 0,
+      "source": "vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
     },
     "0x00457F90": {
       "name": "FormatAttributeText",

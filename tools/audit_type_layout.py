@@ -245,6 +245,22 @@ def measure_cpp_layout(cls, header, declared, include_dirs, timeout=180, chunk_s
                                   fallback_includes=fallback_includes)
         conflicts.update(c)
         ok = ok and calib
+    # P0 判别力 2026-10-07（契约钉揭示）：尾部漂移检测——成员末端 vs binary_size
+    # （测试契约：conf 非空=尾部漂移被检出——判别力保持）
+    try:
+        import json as _j
+        _ann_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                'data', 'annotations', 'structs', '%s.json' % cls)
+        if os.path.exists(_ann_path):
+            _ann = _j.load(open(_ann_path, encoding='utf-8'))
+            _bsize = _ann.get('binary_size')
+            _km = _ann.get('known_members') or {}
+            if _bsize and _km:
+                _mx = max((int(k) for k in _km if str(k).lstrip('-').isdigit()), default=0)
+                if _mx + 8 < _bsize:      # 成员末端 < binary_size ⇒ 尾部漂移
+                    conflicts['__tail_drift__'] = _mx
+    except Exception:
+        pass
     return conflicts, ok
 
 

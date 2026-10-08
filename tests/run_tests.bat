@@ -36,7 +36,7 @@ if errorlevel 1 (
 REM Run pytest with all arguments passed through
 echo Running tests...
 echo.
-python -m pytest tests/ -v --tb=short %*
+python -m pytest -v --tb=short %*
 
 REM Capture exit code
 set EXITCODE=%ERRORLEVEL%

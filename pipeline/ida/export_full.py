@@ -230,6 +230,23 @@ def main():
             log("[*] Loaded %d virtual methods, %d class-attributable addresses (methods=%d)" % (
                 len(_virtual_addrs), len(_addr_to_class), _method_attributed))
 
+        # lvar 注解层（2026-09-25）：data/annotations/lvars.json — 函数 VA → lvar 规格
+        # （栈变量按 stkoff 定位、寄存器变量按 reg 定位；name/type 可选）。export 在
+        # 渲染前应用到 cfunc.lvars ⇒ 注解决定论，不依赖会被 init 清掉的 IDB 交互态。
+        _LVAR_ANN = {}
+        _lvar_ann_path = os.path.join(PROJECT_ROOT, 'data', 'annotations', 'lvars.json')
+        if os.path.exists(_lvar_ann_path):
+            try:
+                with open(_lvar_ann_path, encoding='utf-8') as _lf:
+                    _loaded = json.load(_lf)
+                if not isinstance(_loaded, dict):
+                    raise ValueError('top-level must be an object, got %s' % type(_loaded).__name__)
+                _LVAR_ANN = _loaded
+                log("[*] lvar annotations: %d functions" % sum(
+                    1 for _k in _LVAR_ANN if not _k.startswith('_')))
+            except Exception as _e:
+                log("[!] lvar annotations load failed: %s" % _e)
+
         # Load skip list
         # [t4-DECLARED-EXCEPTION] skip_functions.json → skip_addrs(1955)；
         # apply 会为这些地址 add_func（apply:1686-1687）但**不留 skip 标记**，
@@ -393,6 +410,7 @@ def main():
                     log("[!] SKIP 0x%08X %s: decompile returned None" % (ea, name[:50]))
                     continue
 
+
                 # Restore user lvar settings (index-based: deterministic order)
                 try:
                     lvinf = ida_hexrays.lvar_uservec_t()
@@ -403,6 +421,57 @@ def main():
                 except:
                     pass
 
+                # lvar 注解应用（2026-09-25）：注解决定论——restore（IDB 交互态）
+                # 之后应用 ⇒ 注解优先级最高（复核 R1：restore 按索引覆盖 name 会
+                # 静默覆盖注解 name）。渲染前按注解设置局部变量的 name/type
+                _ann_lvars = _LVAR_ANN.get('0x%08X' % ea)
+                if _ann_lvars:
+                    _applied = 0
+                    for _spec in _ann_lvars:
+                        # 单条 spec 的任何异常只丢弃该条，绝不传染函数导出
+                        #（2026-09-25 事故：vdloc_t.reg() 不存在 ⇒ FindInOpen 整函数消失）
+                        try:
+                            if not isinstance(_spec, dict):
+                                continue
+                            for _lv in cfunc.lvars:
+                                _hit = False
+                                if 'stkoff' in _spec and _lv.location.is_stkoff():
+                                    _hit = (_lv.location.stkoff() == int(_spec['stkoff']))
+                                elif 'reg' in _spec and _lv.location.is_reg():
+                                    # vdloc_t 无 regidx()（2026-09-25 事故遗留死代码，
+                                    # 2026-09-26 FPU 探针实证）——真实 API 是 reg1()
+                                    # （mreg_t；x87 st0-st7 = 160..175，st7=172）。
+                                    _hit = (str(_lv.location.reg1()) == str(_spec['reg']))
+                                elif 'name' in _spec and 'stkoff' not in _spec and 'reg' not in _spec:
+                                    # 寄存器变量按名匹配（2026-09-26）：同一 reg1 被
+                                    # Hex-Rays 顺序复用（st7 上 v3/v4/v7…多个变量），
+                                    # reg 键会命中第一个并 break ⇒ 注错对象
+                                    #（SceneProp CalculateWorldPos 事故）。函数内名唯一。
+                                    _hit = (_lv.name == _spec['name'])
+                                if _hit:
+                                    if _spec.get('name'):
+                                        _lv.name = _spec['name']
+                                    if _spec.get('type'):
+                                        import ida_typeinf as _ti
+                                        _tif = _ti.tinfo_t()
+                                        if _ti.parse_decl(_tif, _ti.get_idati(),
+                                                          '%s __lv_ann;' % _spec['type'],
+                                                          _ti.PT_SIL):
+                                            if _lv.set_lvar_type(_tif):
+                                                _applied += 1
+                                            else:
+                                                log("[!] lvar type set rejected @%08X %s: %s"
+                                                    % (ea, _lv.name, _spec['type']))
+                                        else:
+                                            log("[!] lvar type parse failed @%08X: %r"
+                                                % (ea, _spec['type']))
+                                    elif _spec.get('name'):
+                                        _applied += 1
+                                    break
+                        except Exception as _se:
+                            log("[!] lvar ann spec failed @%08X %s: %s" % (
+                                ea, json.dumps(_spec), _se))
+                    log("  [lvar] %08X: %d/%d applied" % (ea, _applied, len(_ann_lvars)))
                 code = str(cfunc)
                 code = resolve_orphan_ordinals(code)
                 code = _normalize_ida_type(code)
@@ -456,7 +525,8 @@ def main():
                             if loc.is_stkoff():
                                 entry["stack_offset"] = loc.stkoff()
                             elif loc.is_reg():
-                                entry["register"] = loc.reg()
+                                # vdloc_t 真实 API 是 reg1()（见上 lvar 应用处注释）
+                                entry["register"] = loc.reg1()
                             lvar_info.append(entry)
                         except:
                             # Skip individual problematic variables

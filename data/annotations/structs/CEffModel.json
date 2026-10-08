@@ -82,7 +82,8 @@
     },
     "0x004D0BD0": {
       "name": "UpdateDuration",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004CFD00": {
       "name": "CreateEffModel",
@@ -92,14 +93,14 @@
     },
     "0x004D0390": {
       "name": "GetRenderNode",
-      "signature": "void __thiscall()",
-      "source": "manual_fix_vtable+manual_ida_body",
+      "signature": "void __thiscall(int)",
+      "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
       "ordinal": 11
     },
     "0x004D03B0": {
       "name": "RenderModel",
-      "signature": "void __thiscall()",
-      "source": "manual_fix_vtable+manual_ida_body",
+      "signature": "void __thiscall(int)",
+      "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
       "ordinal": 12
     },
     "0x004D0850": {
@@ -107,6 +108,26 @@
       "signature": "int __thiscall(int nVal)",
       "source": "vtable_migrated",
       "ordinal": 14
+    },
+    "0x004AF760": {
+      "name": "Update",
+      "signature": "int __thiscall(int)",
+      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+    },
+    "0x004C0500": {
+      "name": "OnTest",
+      "signature": "int()",
+      "source": "vtable_gap_fill_v1(from CEffAction.json)"
+    },
+    "0x004C15D0": {
+      "name": "UpdateParticles",
+      "signature": "void __thiscall()",
+      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+    },
+    "0x004C0510": {
+      "name": "sub_4C0510",
+      "signature": "int __thiscall(int)",
+      "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
     }
   },
   "vtables": [

@@ -1,4 +1,4 @@
-﻿"""C++ file generation stage.
+"""C++ file generation stage.
 
 Transforms decomp output through the pipeline and emits .cpp files
 organized by class and free functions.
@@ -62,6 +62,14 @@ def collect_undefined_refs(code):
     # IDA named but unresolved
     refs.update(re.findall(r'\b(nullsub_\d+)\b', code))
     refs.update(re.findall(r'\b(unknown_libname_\d+)\b', code))
+    # 【批 11 全撤（2026-09-29 零回归门）】函数形未声明名收集——生产实测 C2668 +79
+    # （`int name(...)` 幻影声明与 free_functions.h 真声明成歧义重载）+C2199/C2059
+    # 族 31 真新增。**声明面合成与 free_functions/globals/macros 互连过深**——
+    # 三轮 review 全过但生产即爆（review 静态面≠生产实效面第三次实证）。
+    # DllMain C2065 挂账【2026-10-06 方案复核翻案订正】：旧叙事"Hex-Rays 别名缓存"是错的——
+    # `return DllMain(...)` 的渲染名属于 0x47E536/0x5329BE **另一函数**（jz 尾跳桩
+    # `mov eax,1; retn 0xC`）——原名 _DllMain@12_* 无权威源（PAL3 字节串/PDB/FLIRT 三处
+    # 零命中）。已按 E 案改名 _todo_+实参形收编（functions.json）。
     return refs
 
 
@@ -177,6 +185,26 @@ def generate_forward_decls(all_code):
             _nullsub_stubs.add(u)
 
     if undef:
+        # 2026-09-27：extern 块里的自定义类类型（如 RoleCameraCtrl）在该 TU
+        # 可能无定义 ⇒ extern 不完整类型前置声明（合法且足以链接）。
+        # 复核：3 cpp 的 C2146/C2373 即缺此声明。
+        _class_type_externs = []
+        for u in sorted(undef):
+            gt = store.global_types.get(u, '')
+            # W3 修 2（复核 695bcbb4，2026-09-28）：**全大写形态=typedef 惯例**
+            # （LPCSTR/HWND/HANDLE 族，windows.h 已定义）⇒ 不得发 class 前向声明——
+            # 曾把 LPCSTR 当类前向 ⇒ 与 typedef 冲突 = C2040 'class LPCSTR' 族根因。
+            if gt and re.match(r'^[A-Z]\w+$', gt) and gt not in ('int', 'float', 'char') \
+                    and not gt.isupper():
+                _class_type_externs.append((u, gt))
+        if _class_type_externs:
+            seen_t = set()
+            for _u, _t in _class_type_externs:
+                if _t in seen_t:
+                    continue
+                seen_t.add(_t)
+                lines.append('class %s;' % _t)
+            lines.append('')
         lines.append("// Unnamed globals (extern)")
         for u in sorted(undef):
             if u in atexit_funcs:
@@ -202,22 +230,24 @@ def generate_forward_decls(all_code):
                     lines.append("extern float %s[];" % u)
                 else:
                     lines.append("extern float %s;" % u)
+            # W3 类型源统一（复核 695bcbb4 条件②，2026-09-28）：前缀启发回退**必须走
+            # emit_headers._prefix_type 同一函数**——此前本块自带 byte_→'char' 而
+            # globals.h 侧是 'unsigned char' ⇒ C2371 redefinition×N。同源后即便
+            # globals.h 与就地 extern 同名并存也是**相容重复声明**（无错）。
             elif u.startswith('asc_'):
                 lines.append("extern char %s[];" % u)
-            elif u.startswith('byte_'):
-                if re.search(r'\b' + re.escape(u) + r'\s*\[', all_code):
-                    lines.append("extern char %s[];" % u)
-                else:
-                    lines.append("extern char %s;" % u)
-            elif u.startswith('off_'):
-                lines.append("extern void *%s;" % u)
-                _undeclared_off_globals.add(u)
-            elif u.startswith('a') and len(u) > 1 and u[1].isupper():
-                lines.append('extern char %s[];' % u)
-            elif re.search(r'\b' + re.escape(u) + r'\s*\[', all_code):
-                lines.append("extern int %s[];" % u)
             else:
-                lines.append("extern int %s;" % u)
+                from stages.emit_headers import _prefix_type
+                if u.startswith('off_'):
+                    _undeclared_off_globals.add(u)      # 保留原状态记账
+                _pt = _prefix_type(u) or 'int'
+                _is_arr = bool(re.search(r'\b' + re.escape(u) + r'\s*\[', all_code)) \
+                    or _pt.endswith('[]')
+                _base = _pt[:-2].strip() if _pt.endswith('[]') else _pt
+                if _is_arr:
+                    lines.append("extern %s %s[];" % (_base, u))
+                else:
+                    lines.append("extern %s %s;" % (_pt, u))
         lines.append("")
 
     return '\n'.join(lines)

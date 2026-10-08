@@ -277,7 +277,8 @@
     },
     "0x0043F640": {
       "name": "SetLockSel",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x0043FE90": {
       "name": "GetCurSel",
@@ -380,7 +381,8 @@
     },
     "0x00451900": {
       "name": "DestroyContent",
-      "signature": "void __fastcall(UIWnd *pWnd)"
+      "signature": "void __thiscall()",
+      "source": "sig_evidence_A(ret-N arity)"
     },
     "0x00451B40": {
       "name": "ResizeToContent",
@@ -457,6 +459,46 @@
       "name": "CreateChild",
       "signature": "int __thiscall()",
       "_misattrib_evidence": "round4: 33 xrefs all UIListBox block (physically adjacent); offsets +0x1B0/+0x45C/+0x460 fit UIListBox(1208B) not NPC(1152B) usage zone"
+    },
+    "0x0043D7A0": {
+      "name": "ForwardOnMessage",
+      "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
+      "source": "vtable_gap_fill_v1(from RoleCameraCtrl.json)"
+    },
+    "0x0043DE40": {
+      "name": "CCBRoleState::Destroy",
+      "signature": "int __thiscall Destroy(int nMode)",
+      "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+    },
+    "0x00445C60": {
+      "name": "Update_5C60",
+      "signature": "int __thiscall(int a2, int a3)",
+      "source": "vtable_gap_fill_v1(from SceneObj.json)"
+    },
+    "0x00453E50": {
+      "name": "_scalar_dtor_3E50",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "source": "vtable_gap_fill_v1(from CCBUIPanel.json)"
+    },
+    "0x00454550": {
+      "name": "RenderIfUnlocked",
+      "signature": "char __thiscall CCBUIPanel::RenderIfUnlocked()",
+      "source": "vtable_gap_fill_v1(from CCBUIPanel.json)"
+    },
+    "0x00454560": {
+      "name": "ProcessInputIfUnlocked",
+      "signature": "BOOL __thiscall CCBUIPanel::ProcessInputIfUnlocked(int nVal, int nVal2)",
+      "source": "vtable_gap_fill_v1(from CCBUIPanel.json)"
+    },
+    "0x00454590": {
+      "name": "OnMessage_4590",
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
+      "source": "vtable_gap_fill_v1(from CCBUIPanel.json)"
+    },
+    "0x0046B4B0": {
+      "name": "OnMessage",
+      "signature": "int __thiscall(int nVal, char *pszBuf, int nVal2)",
+      "source": "vtable_gap_fill_v1(from SaleUI.json)"
     }
   },
   "vtables": [

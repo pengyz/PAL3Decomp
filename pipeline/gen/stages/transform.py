@@ -24,15 +24,59 @@ class TransformContext:
     # 同一**输出文件**内共享的 stub 去重集合（由 emit_cpp 按文件创建）。
     # None ⇒ 不去重（旧行为，安全回退）。
     stub_registry: object = None
+    member_index: object = None
+    classless_names: object = None
+
+
+_MEMBER_INDEX_CACHE = None
 
 
 def make_context(cls_name, method_name, sig='', is_free=False, stub_registry=None):
     is_ctor = (method_name == cls_name) if cls_name else False
     is_dtor = (method_name == '~%s' % cls_name) if cls_name else False
+    if is_dtor and sig:
+        _ret = sig.split('(')[0].strip()
+        if 'void' not in _ret or '*' in _ret:
+            is_dtor = False
+    # 路由数据流 2026-10-07（复核 R-C）：member_index（类+基类链成员·生成头为准）+
+    # classless_names（functions.json classless 条目——32 带 class 排除）
+    member_index = None
+    classless_names = None
+    global _MEMBER_INDEX_CACHE
+    try:
+        if _MEMBER_INDEX_CACHE is None:
+            import glob as _glob
+            import os as _os
+            from ast_transform import build_member_index_from_headers
+            _hdrs = {}
+            _root = _os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'pal3', 'src')
+            for _p in _glob.glob(_os.path.join(_root, '**', '*.h'), recursive=True):
+                try:
+                    _hdrs[_os.path.basename(_p)[:-2]] = open(_p, encoding='utf-8', errors='replace').read()
+                except Exception:
+                    continue
+            # 一次 parse 全类（成员+基类）——per-cls 组装查缓存
+            _MEMBER_INDEX_CACHE = build_member_index_from_headers(_hdrs) if _hdrs else {}
+        if cls_name and _MEMBER_INDEX_CACHE:
+            _mi = _MEMBER_INDEX_CACHE
+            member_index = {cls_name: set(_mi.get(cls_name, set()))}
+    except Exception:
+        member_index = None
+    try:
+        import json as _json
+        _fp = _os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'data', 'annotations', 'functions.json')
+        _fd = _json.load(open(_fp, encoding='utf-8'))
+        classless_names = set()
+        for _k, _v in _fd.items():
+            if isinstance(_v, dict) and not _v.get('class') and _v.get('name'):
+                classless_names.add(str(_v['name']).split('(')[0])
+    except Exception:
+        classless_names = None
     return TransformContext(
         cls_name=cls_name, method_name=method_name, sig=sig,
         is_ctor=is_ctor, is_dtor=is_dtor, is_free_function=is_free,
-        stub_registry=stub_registry)
+        stub_registry=stub_registry,
+        member_index=member_index, classless_names=classless_names)
 
 
 def _thunk_keep_tailjump(code, ctx, is_thunk):

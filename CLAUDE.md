@@ -139,7 +139,7 @@ union { // +0xN
 
 ### 强制检查点
 
-**先跑一次状态预检**（秒级、只读，不刷新任何基线）：`python3 pipeline/cli.py status`
+**先跑一次状态预检**（秒级、只读，不刷新任何基线）：`python pipeline/cli.py status`
 —— 它打印一次迭代的**唯一权威顺序**、三份基线的对照、以及**已知恒红门禁**。
 ⚠️ 在干净 HEAD 上 `codegen all` 与 `match` 目前**恒 exit 1**（陈旧棘轮造成的假失败，见 status 输出）；
 不知道这一点就会把假失败当退化，或把真退化当噪声。
@@ -147,15 +147,15 @@ union { // +0xN
 | 时机 | 工具 | 命令 | 失败处理 |
 |------|------|------|----------|
 | **动手改任何东西之前** | **病灶层检查（必做）** | 见下节 | 答不出"病灶在哪一层 / 消费者实际读哪个文件·哪份声明"就**不许动手** |
-| **一轮完整迭代** | 一键循环 + 基线断言 | `python3 pipeline/cli.py loop --expect-s2 76/205 --expect-errors 2140 --expect-l1 38` | 断言不满足 ⇒ exit 1；恒红门禁被**显式标 TOLERATED**，不静默吞掉 |
-| **codegen all 后** | 编译回归检测 | `python3 tools/compile_regression.py` | 发现退化立即报警，不提交 |
-| **apply 后** | annotation diff | `python3 tools/annotation_diff.py` | 显示变更摘要，确认无意外修改 |
-| **probe_compile 后** | 错误分类 | `python3 tools/error_classifier.py --summary` | 输出根因分布，指导下一步修复方向 |
-| **probe_compile 后** | 字节匹配裁判 | `python3 pipeline/cli.py match` | L1（字节全同函数数）不得回退；partial 的字节 diff 是注解布局/归属错误的直接证据 |
-| **修改 struct annotation 后** | 布局验证（**编译器裁判**）| `python3 tools/audit_type_layout.py --only <Cls>` | 发现布局问题立即修复 |
-| **任何"无证据/无冲突"结论** | 语义/类型证据（**三形态**）| `python3 tools/audit_member_semantics.py --class <Cls>` | 否定结论必须来自**权威批量原始扫描** ✓ |
-| **函数归属改动** | 归属证据（**可证**）| `python3 tools/audit_attribution_evidence.py` | 只看 contradiction 告警，人工裁定 |
-| **任何修复提交前** | **证物报告** | `python3 tools/verify_fix.py --class <Cls>` | 成员偏移+**sizeof**+传递依赖+端到端+基线；有问题 ⇒ 不提交 |
+| **一轮完整迭代** | 一键循环 + 基线断言 | `python pipeline/cli.py loop --expect-s2 76/205 --expect-errors 2140 --expect-l1 38` | 断言不满足 ⇒ exit 1；恒红门禁被**显式标 TOLERATED**，不静默吞掉 |
+| **codegen all 后** | 编译回归检测 | `python tools/compile_regression.py` | 发现退化立即报警，不提交 |
+| **apply 后** | annotation diff | `python tools/annotation_diff.py` | 显示变更摘要，确认无意外修改 |
+| **probe_compile 后** | 错误分类 | `python tools/error_classifier.py --summary` | 输出根因分布，指导下一步修复方向 |
+| **probe_compile 后** | 字节匹配裁判 | `python pipeline/cli.py match` | L1（字节全同函数数）不得回退；partial 的字节 diff 是注解布局/归属错误的直接证据 |
+| **修改 struct annotation 后** | 布局验证（**编译器裁判**）| `python tools/audit_type_layout.py --only <Cls>` | 发现布局问题立即修复 |
+| **任何"无证据/无冲突"结论** | 语义/类型证据（**三形态**）| `python tools/audit_member_semantics.py --class <Cls>` | 否定结论必须来自**权威批量原始扫描** ✓ |
+| **函数归属改动** | 归属证据（**可证**）| `python tools/audit_attribution_evidence.py` | 只看 contradiction 告警，人工裁定 |
+| **任何修复提交前** | **证物报告** | `python tools/verify_fix.py --class <Cls>` | 成员偏移+**sizeof**+传递依赖+端到端+基线；有问题 ⇒ 不提交 |
 | **annotation 批量改动** | **四道门** | ①布局等价 ②`loop --expect-errors`不增 ③`l1`不降 ④证据自校验 | 缺一不可 ⇒ 见 `annotation-audit` skill |
 
 > ⚠️ **不要再用 `tools/audit_layout.py` 作布局判据**：它比的是「注解 vs `asm/pal3/ida_structs.json`」，
@@ -181,8 +181,9 @@ union { // +0xN
 
 ### ⚠️ 度量盲区：C1003 截断单元（评估改动前必看）
 
-MSVC 在单个编译单元错误数超过 ~100 时以 **C1003** 停住（实测 3 个单元：
-`Combat/CCBStage.cpp` · `Combat/CCBUI.cpp` · `free_functions.cpp`，各 102 条）。
+MSVC 在单个编译单元错误数超过 ~100 时以 **C1003** 停住（**2026-09-28 复核更新：现 2 个**
+`Combat/CCBStage.cpp` · `free_functions.cpp`，各 102 条；`Combat/CCBUI.cpp` 已退出截断
+——原文"实测 3 个"过时，33c45090 复核实证）。
 后果：**在这些单元里修掉早期错误，列表会立刻被原本隐藏的后续错误填满** ⇒
 `总错误` 与 `(code,msg)` 多重集**都可能完全不变** ✗。
 
@@ -192,7 +193,7 @@ MSVC 在单个编译单元错误数超过 ~100 时以 **C1003** 停住（实测 
 
 ⇒ 评估任何改动时，除 `总错误`/逐码净增减外，**必须同时看**：
 
-* `python3 pipeline/cli.py status` 打印的 **C1003 截断单元表**（含"列表内最大行号"）；
+* `python pipeline/cli.py status` 打印的 **C1003 截断单元表**（含"列表内最大行号"）；
 * **最大行号变大 = 有真实进展**（上例 `CCBUI.cpp` 3389 → **3787**、`CCBStage.cpp` 3823 → **3855**）✓。
 
 ⇒ 发布门禁"改善 ≥ 新增"在**截断单元**上会**误判为中性**；此时以"新增错误是否与改动**同族**"+
@@ -215,6 +216,9 @@ MSVC 在单个编译单元错误数超过 ~100 时以 **C1003** 停住（实测 
 `R12`（中止必须杀整条进程链并复核 census/baseline）、`R13`（补丁落地必须 grep 核实）、
 `R14`（管线持有 IDB 期间不得并发 `idat`）、`R15`（新渲染/字符串逻辑先写纯函数单测）、
 **病灶层检查**（`R16`）——原文见 `data/status/_d1_ledger.md`。
+
+### Rn 统一引用格式（2026-10-07 文档债修）
+引用 Rn 时必须带文件路径（例：R7（data/status/_d1_ledger.md））——异质标签不可裸引。
 
 ### 工具使用规范
 

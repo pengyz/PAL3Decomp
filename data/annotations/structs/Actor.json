@@ -1,977 +1,1151 @@
 {
- "name": "Actor",
- "binary_size": 820,
- "known_members": {
-  "0": {
-   "name": "m_actarray_type",
-   "type": "unsigned char",
-   "source": "decomp:FastInit=m_actarray[0]=HIBYTE(this)/InitAction=actionType"
-  },
-  "4": {
-   "name": "m_actarray_begin",
-   "type": "Actor *",
-   "source": "decomp:IterateActiveActors=m_actarray[4]|fix:pointer_level:Actor **"
-  },
-  "8": {
-   "name": "m_actarray_end",
-   "type": "Actor *",
-   "source": "decomp:IterateActiveActors=m_actarray[8]|fix:pointer_level:Actor **"
-  },
-  "12": {
-   "name": "m_actarray_capacity_end",
-   "type": "Actor *",
-   "source": "PDB:m_actarray_size_16_hint:ActVec_Insert_char[ecx+0xC]|fix:pointer_level:Actor **"
-  },
-  "16": {
-   "name": "m_pact",
-   "type": "gbActor *",
-   "source": "annotation"
-  },
-  "20": {
-   "name": "m_name",
-   "type": "char[8]",
-   "source": "annotation"
-  },
-  "280": {
-   "name": "m_szTexture",
-   "type": "char[28]",
-   "source": "annotation"
-  },
-  "540": {
-   "name": "m_dwMatMsg",
-   "type": "unsigned int[11]",
-   "source": "annotation"
-  },
-  "584": {
-   "name": "m_bChangedMat",
-   "type": "unsigned char",
-   "source": "annotation"
-  },
-  "585": {
-   "name": "m_curact",
-   "type": "char[8]",
-   "source": "annotation"
-  },
-  "28": {
-   "name": "m_fMoveSpeed",
-   "type": "float",
-   "source": "transfer_from_RoleSystem_off_452"
-  },
-  "32": {
-   "name": "m_fMoveRange",
-   "type": "float",
-   "source": "transfer_from_RoleSystem_off_456"
-  },
-  "36": {
-   "name": "m_pAllocBuf",
-   "type": "char *",
-   "source": "decomp:operator_delete+set_0(pointer_not_float)",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "40": {
-   "name": "m_fTransitionSpeed",
-   "type": "float",
-   "source": "transfer_from_RoleSystem_off_464"
-  },
-  "44": {
-   "name": "m_fTransitionPos",
-   "type": "float",
-   "source": "transfer_from_RoleSystem_off_468"
-  },
-  "48": {
-   "name": "m_nRoleParam0",
-   "type": "int",
-   "source": "decomp:transfer_from_nVal+48"
-  },
-  "52": {
-   "name": "m_fRoleParam1",
-   "type": "float",
-   "source": "decomp:transfer_from_nVal+52_float",
-   "note": "Discovered by member_scan after disp8 fix."
-  },
-  "56": {
-   "name": "m_fRoleParam",
-   "type": "float",
-   "source": "transfer_from_RoleSystem_off_480"
-  },
-  "60": {
-   "name": "m_fRoleParam2",
-   "type": "float",
-   "source": "transfer_from_RoleSystem_off_484"
-  },
-  "64": {
-   "name": "m_fRoleParam3",
-   "type": "float",
-   "source": "transfer_from_RoleSystem_off_488"
-  },
-  "68": {
-   "name": "m_nRoleParam2",
-   "type": "int",
-   "source": "decomp:transfer_from_nVal+68",
-   "note": "Discovered by member_scan after disp8 fix."
-  },
-  "72": {
-   "name": "m_pRoleParam3",
-   "type": "char *",
-   "source": "decomp:transfer_from_nVal+72_ptr",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "76": {
-   "name": "m_nCachedA",
-   "type": "int",
-   "source": "transfer_from_RoleSystem_off_500"
-  },
-  "80": {
-   "name": "m_nCachedB",
-   "type": "unsigned char",
-   "source": "A:mov_byte_ptr_in_class_method"
-  },
-  "84": {
-   "name": "m_nTransform",
-   "type": "int",
-   "source": "transfer_from_RoleSystem_off_508"
-  },
-  "88": {
-   "name": "m_nRoleState0",
-   "type": "int",
-   "source": "decomp:transfer_from_RoleSystem"
-  },
-  "92": {
-   "name": "m_bUIFlagA",
-   "type": "unsigned char",
-   "source": "transfer_from_RoleSystem_off_516"
-  },
-  "93": {
-   "name": "m_bUIFlagB",
-   "type": "unsigned char",
-   "source": "transfer_from_RoleSystem_off_517"
-  },
-  "96": {
-   "name": "m_fAnimParam",
-   "type": "float",
-   "source": "A:FPU_disp8_in_class_method"
-  },
-  "100": {
-   "name": "m_szText",
-   "type": "float",
-   "source": "A:FPU_disp8_in_class_method"
-  },
-  "112": {
-   "name": "m_pResource",
-   "type": "void *",
-   "source": "decomp:operator_delete_on_derived_ptr"
-  },
-  "116": {
-   "name": "m_nModelId",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "128": {
-   "name": "m_nAnimParam0",
-   "type": "int",
-   "source": "decomp:_nearby_53b890_from_nVal+128"
-  },
-  "132": {
-   "name": "m_nAnimParam1",
-   "type": "int",
-   "source": "decomp:_nearby_53b890_from_nVal+132"
-  },
-  "136": {
-   "name": "m_vecBonePos",
-   "type": "gbVec3D",
-   "source": "decomp:_nearby_53b890_gbVec3D_operator=_loop(p+=3)"
-  },
-  "148": {
-   "name": "m_nPathBuffer",
-   "type": "int",
-   "source": "binary_scan:11refs"
-  },
-  "152": {
-   "name": "m_nAnimBuffer",
-   "type": "int",
-   "source": "transfer_from_RoleSystem_off_576"
-  },
-  "156": {
-   "name": "m_nParticleBuffer",
-   "type": "int",
-   "source": "transfer_from_RoleSystem_off_580"
-  },
-  "160": {
-   "name": "m_vecTargetPos",
-   "type": "gbVec3D",
-   "source": "decomp:SetActionByName_float_from_pbyName+4(target_position_XYZ)"
-  },
-  "172": {
-   "name": "m_fInterpStart",
-   "type": "float",
-   "source": "binary_scan:2refs"
-  },
-  "176": {
-   "name": "m_fInterpEnd",
-   "type": "float",
-   "source": "binary_scan:2refs"
-  },
-  "180": {
-   "name": "m_nInterpFrames",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "184": {
-   "name": "m_fActionSpeed",
-   "type": "float",
-   "source": "binary_scan:3refs | ida_xref2"
-  },
-  "188": {
-   "name": "m_nInterpCurrent",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "192": {
-   "name": "m_nInterpState",
-   "type": "int",
-   "source": "transfer_from_RoleSystem_off_616"
-  },
-  "196": {
-   "name": "m_fInterpSpeed",
-   "type": "float",
-   "source": "A:FPU_post_reattrib_0x53ac79"
-  },
-  "200": {
-   "name": "m_nModelLoadState",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "204": {
-   "name": "m_nState",
-   "type": "int",
-   "source": "transfer_from_RoleSystem_off_628"
-  },
-  "208": {
-   "name": "m_pRoleObj",
-   "type": "char *",
-   "source": "B:naming_m_p+FPU_misattrib",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "212": {
-   "name": "m_nPathEnabled",
-   "type": "int",
-   "source": "transfer_from_RoleSystem_off_636"
-  },
-  "216": {
-   "name": "m_fScale",
-   "type": "unsigned char",
-   "source": "transfer_from_RoleSystem_off_640|A:binary_mov_byte_[eax+0D8h]_1"
-  },
-  "220": {
-   "name": "m_fMatrixA",
-   "type": "float",
-   "source": "transfer_from_RoleSystem_off_644|A:binary_mov_dword_0DC_0xA28_init"
-  },
-  "224": {
-   "name": "m_fMatrixB",
-   "type": "unsigned char",
-   "source": "transfer_from_RoleSystem_off_648|A:binary_mov_byte_[eax+0E0h]_0"
-  },
-  "228": {
-   "name": "m_fMatrixC",
-   "type": "float",
-   "source": "transfer_from_RoleSystem_off_652"
-  },
-  "232": {
-   "name": "m_nMatrixParam",
-   "type": "int",
-   "source": "transfer_from_RoleSystem_off_656"
-  },
-  "236": {
-   "name": "m_fMatrixParamA",
-   "type": "float",
-   "source": "A:FPU_post_reattrib_0x53b84e"
-  },
-  "240": {
-   "name": "m_fMatrixParamB",
-   "type": "float",
-   "source": "transfer_from_RoleSystem_off_664"
-  },
-  "244": {
-   "name": "m_fMatrixE",
-   "type": "float",
-   "source": "transfer_from_RoleSystem_off_668"
-  },
-  "248": {
-   "name": "m_fMatrixF",
-   "type": "float",
-   "source": "transfer_from_RoleSystem_off_672"
-  },
-  "252": {
-   "name": "m_fMatrixParamC",
-   "type": "float",
-   "source": "A:FPU_post_reattrib_0x5368f5"
-  },
-  "256": {
-   "name": "m_Actor",
-   "type": "Actor *",
-   "source": "transfer_from_RoleSystem_off_680"
-  },
-  "264": {
-   "name": "m_nCmdParam",
-   "type": "int",
-   "source": "decomp:SetActionByName_from_pbyName+24"
-  },
-  "272": {
-   "name": "m_pActor",
-   "type": "gbActor *",
-   "source": "transfer_from_RoleSystem_off_696"
-  },
-  "308": {
-   "name": "m_vecLocalPos",
-   "type": "gbVec3D",
-   "source": "A:lea+ctor_call(gbVec3D::default_ctor@0x4119C3)"
-  },
-  "328": {
-   "name": "m_nAnimState",
-   "type": "short",
-   "source": "decomp:_nearby_53b890_LOWORD_from_nVal+328"
-  },
-  "332": {
-   "name": "m_nActionType",
-   "type": "unsigned char",
-   "source": "binary:raw_action"
-  },
-  "333": {
-   "name": "m_bActionFlag1",
-   "type": "unsigned char",
-   "source": "binary:raw_CompareAction"
-  },
-  "336": {
-   "name": "m_nActionParam",
-   "type": "unsigned char",
-   "source": "binary:raw_action"
-  },
-  "337": {
-   "name": "m_bActionFlag2",
-   "type": "unsigned char",
-   "source": "binary:raw"
-  },
-  "338": {
-   "name": "m_bActionFlag3",
-   "type": "unsigned char",
-   "source": "binary:raw"
-  },
-  "339": {
-   "name": "m_bActionActive",
-   "type": "unsigned char",
-   "source": "binary:raw_7votes"
-  },
-  "340": {
-   "name": "m_nActionState",
-   "type": "int",
-   "source": "binary:raw_action"
-  },
-  "344": {
-   "name": "m_nActionResult",
-   "type": "unsigned char",
-   "source": "binary:raw_action"
-  },
-  "345": {
-   "name": "m_bInitialized",
-   "type": "unsigned char",
-   "source": "binary:raw_InitComponents"
-  },
-  "348": {
-   "name": "m_nHP",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "352": {
-   "name": "m_nMaxHP",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "356": {
-   "name": "m_bHPVisible",
-   "type": "unsigned char",
-   "source": "binary:raw_hp_check"
-  },
-  "360": {
-   "name": "m_nHandleEvent",
-   "type": "int",
-   "source": "binary:gap_r2"
-  },
-  "364": {
-   "name": "m_vecPos",
-   "type": "gbVec3D",
-   "source": "binary:gap_r2 | annotate_todo"
-  },
-  "376": {
-   "name": "m_vecRot",
-   "type": "gbVec3D",
-   "source": "binary:gap_r2 | annotate_todo"
-  },
-  "388": {
-   "name": "m_nCloneParam",
-   "type": "int",
-   "source": "ida_decomp:_nearby_53b890 = *(a2+388), 4 refs"
-  },
-  "392": {
-   "name": "m_fActionAssignParam",
-   "type": "float",
-   "source": "A:FPU_disp32_0x41c23e"
-  },
-  "396": {
-   "name": "m_nCloneParamB",
-   "type": "int",
-   "source": "transfer_from_RoleSystem_off_820"
-  },
-  "400": {
-   "name": "m_nCloneState",
-   "type": "int",
-   "source": "ida_decomp:_nearby_53b890 = *(a2+400), 6 refs"
-  },
-  "404": {
-   "name": "m_nCloneFlag1",
-   "type": "int",
-   "source": "ida_decomp:_nearby_53b890 = *(a2+404), 4 refs"
-  },
-  "408": {
-   "name": "m_nCloneFlag2",
-   "type": "int",
-   "source": "ida_decomp:_nearby_53b890 = *(a2+408), 4 refs"
-  },
-  "412": {
-   "name": "m_fFacingAngle",
-   "type": "float",
-   "source": "binary:gap_r2 | type_fix:int->float(A+:decomp *(float*)&this->_field_19C-m_vecRot.z in UpdateFrame (3x)) | name:m_fFacingAngle(A+:decomp =90.0 + used as rotation_delta_base)"
-  },
-  "420": {
-   "name": "m_nModelParamA",
-   "type": "int",
-   "source": "binary:gap_r2"
-  },
-  "428": {
-   "name": "m_nModelParamB",
-   "type": "int",
-   "source": "binary:gap_r2"
-  },
-  "432": {
-   "name": "m_nRoleState1",
-   "type": "int",
-   "source": "decomp:transfer_from_RoleSystem"
-  },
-  "436": {
-   "name": "m_pEquipAtt0",
-   "type": "RoleAtt *",
-   "source": "binary:1_store_at_0x1B4,distinct_fields_at_0x1B8/0x1BC/0x1C0"
-  },
-  "440": {
-   "name": "m_nAnimFrames",
-   "type": "int",
-   "source": "binary:distinct_fields_at_0x1B8/0x1BC(LEA)/0x1C0,each_4B"
-  },
-  "444": {
-   "name": "m_nTransitionParam",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "448": {
-   "name": "m_pEquipAtt1",
-   "type": "RoleAtt *[3]",
-   "source": "transfer_from_RoleSystem_off_872"
-  },
-  "460": {
-   "name": "m_pEquipAtt2",
-   "type": "RoleAtt *[3]",
-   "source": "transfer_from_RoleSystem_off_884"
-  },
-  "484": {
-   "name": "m_fBlendWeight",
-   "type": "float",
-   "source": "ida_decomp:_auto_5309a0 *0.333 + self, 3 refs"
-  },
-  "488": {
-   "name": "m_obbox",
-   "type": "int",
-   "source": "binary:gap_r3 | fix:gbOBBox(76)>span(8),revert_to_int+codegen_infer"
-  },
-  "496": {
-   "name": "m_pSelfAtt",
-   "type": "void*",
-   "source": "transfer_from_RoleSystem_off_920; type_fix:m_p*_int_to_void*"
-  },
-  "500": {
-   "name": "m_nAnimFrame",
-   "type": "short",
-   "source": "A:66_prefix_word_access"
-  },
-  "512": {
-   "name": "m_pParticleData",
-   "type": "void *",
-   "source": "A+:decomp *(float*)&this->_field_200 (1 occurrences);batch_fix:int_to_v*_LEA_embed"
-  },
-  "536": {
-   "name": "m_fAnimDelta",
-   "type": "float",
-   "source": "A+:decomp gbVec3D::operator=(&this->_todo_218, nVal+364)"
-  },
-  "632": {
-   "name": "m_fDirX",
-   "type": "float",
-   "source": "A:decomp Actor::UpdateFrame"
-  },
-  "636": {
-   "name": "m_fDirY",
-   "type": "float",
-   "source": "A:decomp Actor::UpdateFrame"
-  },
-  "640": {
-   "name": "m_fDirZ",
-   "type": "float",
-   "source": "A:decomp Actor::UpdateFrame"
-  },
-  "644": {
-   "name": "m_fNormX",
-   "type": "float",
-   "source": "A:decomp Actor::UpdateFrame"
-  },
-  "648": {
-   "name": "m_fNormY",
-   "type": "float",
-   "source": "A:decomp Actor::UpdateFrame"
-  },
-  "652": {
-   "name": "m_fNormZ",
-   "type": "float",
-   "source": "A:decomp Actor::UpdateFrame"
-  },
-  "656": {
-   "name": "m_fDistAccum",
-   "type": "float",
-   "source": "A:decomp Actor::UpdateFrame"
-  },
-  "660": {
-   "name": "m_fSpeed",
-   "type": "float",
-   "source": "A:decomp Actor::UpdateFrame"
-  },
-  "676": {
-   "name": "m_fAngleDeg",
-   "type": "float",
-   "source": "A:decomp Actor::UpdateFrame"
-  },
-  "684": {
-   "name": "m_bDirFlag",
-   "type": "unsigned char",
-   "source": "A:decomp Actor::UpdateFrame"
-  },
-  "724": {
-   "name": "m_nAnimCounter",
-   "type": "int",
-   "source": "A:decomp Actor::UpdateFrame"
-  },
-  "773": {
-   "name": "m_bStateFlag",
-   "type": "unsigned char",
-   "source": "A:decomp Actor::UpdateFrame"
-  },
-  "776": {
-   "name": "m_pRoleState",
-   "type": "char *",
-   "source": "A:decomp Actor::UpdateFrame",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "784": {
-   "name": "m_nUpdateMode",
-   "type": "int",
-   "source": "A:decomp Actor::UpdateFrame"
-  },
-  "217": {
-   "name": "m_bParamFlag",
-   "type": "unsigned char",
-   "source": "A:binary_mov_byte_[eax+0D9h]_0"
-  },
-  "0x2A8": {
-   "name": "m_InnerActor",
-   "type": "void *",
-   "source": "overlap: 4-byte workspace. Used via (Actor *)&this->m_InnerActor to access m_pact@+0x10 and m_dwMatMsg@+0x21C."
-  },
-  "0x274": {
-   "name": "_overlap_RoleSystem_m_partyActor_m_nState",
-   "type": "int",
-   "source": "NOT A REAL FIELD. Actor::SetActionByName calls ((RoleSystem*)this)->NotifySceneChange() which writes this->m_partyActor.m_nState @ +0x1A8++0xCC=0x274. Actor has no vtable; RoleSystem methods are non-virtual. This is a C-style cast hack, not inheritance or composition."
+  "name": "Actor",
+  "binary_size": 820,
+  "known_members": {
+    "0": {
+      "name": "m_actarray_type",
+      "type": "unsigned char",
+      "source": "decomp:FastInit=m_actarray[0]=HIBYTE(this)/InitAction=actionType"
+    },
+    "4": {
+      "name": "m_actarray_begin",
+      "type": "Actor *",
+      "source": "decomp:IterateActiveActors=m_actarray[4]|fix:pointer_level:Actor **"
+    },
+    "8": {
+      "name": "m_actarray_end",
+      "type": "Actor *",
+      "source": "decomp:IterateActiveActors=m_actarray[8]|fix:pointer_level:Actor **"
+    },
+    "12": {
+      "name": "m_actarray_capacity_end",
+      "type": "Actor *",
+      "source": "PDB:m_actarray_size_16_hint:ActVec_Insert_char[ecx+0xC]|fix:pointer_level:Actor **"
+    },
+    "16": {
+      "name": "m_pact",
+      "type": "gbActor *",
+      "source": "annotation"
+    },
+    "20": {
+      "name": "m_name",
+      "type": "char[8]",
+      "source": "annotation"
+    },
+    "280": {
+      "name": "m_szTexture",
+      "type": "char[28]",
+      "source": "annotation"
+    },
+    "540": {
+      "name": "m_dwMatMsg",
+      "type": "unsigned int[11]",
+      "source": "annotation"
+    },
+    "584": {
+      "name": "m_bChangedMat",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "585": {
+      "name": "m_curact",
+      "type": "char[8]",
+      "source": "annotation"
+    },
+    "28": {
+      "name": "m_fMoveSpeed",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_452"
+    },
+    "32": {
+      "name": "m_fMoveRange",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_456"
+    },
+    "36": {
+      "name": "m_pAllocBuf",
+      "type": "char *",
+      "source": "decomp:operator_delete+set_0(pointer_not_float)",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "40": {
+      "name": "m_fTransitionSpeed",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_464"
+    },
+    "44": {
+      "name": "m_fTransitionPos",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_468"
+    },
+    "48": {
+      "name": "m_nRoleParam0",
+      "type": "int",
+      "source": "decomp:transfer_from_nVal+48"
+    },
+    "52": {
+      "name": "m_fRoleParam1",
+      "type": "float",
+      "source": "decomp:transfer_from_nVal+52_float",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "56": {
+      "name": "m_fRoleParam",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_480"
+    },
+    "60": {
+      "name": "m_fRoleParam2",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_484"
+    },
+    "64": {
+      "name": "m_fRoleParam3",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_488"
+    },
+    "68": {
+      "name": "m_nRoleParam2",
+      "type": "int",
+      "source": "decomp:transfer_from_nVal+68",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "72": {
+      "name": "m_pRoleParam3",
+      "type": "char *",
+      "source": "decomp:transfer_from_nVal+72_ptr",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "76": {
+      "name": "m_nCachedA",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_500"
+    },
+    "80": {
+      "name": "m_nCachedB",
+      "type": "unsigned char",
+      "source": "A:mov_byte_ptr_in_class_method"
+    },
+    "84": {
+      "name": "m_nTransform",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_508"
+    },
+    "88": {
+      "name": "m_nRoleState0",
+      "type": "int",
+      "source": "decomp:transfer_from_RoleSystem"
+    },
+    "92": {
+      "name": "m_bUIFlagA",
+      "type": "unsigned char",
+      "source": "transfer_from_RoleSystem_off_516"
+    },
+    "93": {
+      "name": "m_bUIFlagB",
+      "type": "unsigned char",
+      "source": "transfer_from_RoleSystem_off_517"
+    },
+    "96": {
+      "name": "m_fAnimParam",
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
+    },
+    "100": {
+      "name": "m_szText",
+      "type": "char",
+      "source": "A:FPU_disp8_in_class_method | 订正 2026-10-06：复核定型错标（名 sz=字符串区非 float——ByteContent 证）——char 形"
+    },
+    "112": {
+      "name": "m_pResource",
+      "type": "void *",
+      "source": "decomp:operator_delete_on_derived_ptr"
+    },
+    "116": {
+      "name": "m_nModelId",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "128": {
+      "name": "m_nAnimParam0",
+      "type": "int",
+      "source": "decomp:_nearby_53b890_from_nVal+128"
+    },
+    "132": {
+      "name": "m_nAnimParam1",
+      "type": "int",
+      "source": "decomp:_nearby_53b890_from_nVal+132"
+    },
+    "136": {
+      "name": "m_vecBonePos",
+      "type": "gbVec3D",
+      "source": "decomp:_nearby_53b890_gbVec3D_operator=_loop(p+=3)"
+    },
+    "148": {
+      "name": "m_nPathBuffer",
+      "type": "int",
+      "source": "binary_scan:11refs"
+    },
+    "152": {
+      "name": "m_nAnimBuffer",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_576"
+    },
+    "156": {
+      "name": "m_nParticleBuffer",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_580"
+    },
+    "160": {
+      "name": "m_vecTargetPos",
+      "type": "gbVec3D",
+      "source": "decomp:SetActionByName_float_from_pbyName+4(target_position_XYZ)"
+    },
+    "172": {
+      "name": "m_fInterpStart",
+      "type": "float",
+      "source": "binary_scan:2refs"
+    },
+    "176": {
+      "name": "m_fInterpEnd",
+      "type": "float",
+      "source": "binary_scan:2refs"
+    },
+    "180": {
+      "name": "m_nInterpFrames",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "184": {
+      "name": "m_fActionSpeed",
+      "type": "float",
+      "source": "binary_scan:3refs | ida_xref2"
+    },
+    "188": {
+      "name": "m_nInterpCurrent",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "192": {
+      "name": "m_nInterpState",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_616"
+    },
+    "196": {
+      "name": "m_fInterpSpeed",
+      "type": "float",
+      "source": "A:FPU_post_reattrib_0x53ac79"
+    },
+    "200": {
+      "name": "m_nModelLoadState",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "204": {
+      "name": "m_nState",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_628"
+    },
+    "208": {
+      "name": "m_pRoleObj",
+      "type": "char *",
+      "source": "B:naming_m_p+FPU_misattrib",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "212": {
+      "name": "m_nPathEnabled",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_636"
+    },
+    "216": {
+      "name": "m_fScale",
+      "type": "unsigned char",
+      "source": "transfer_from_RoleSystem_off_640|A:binary_mov_byte_[eax+0D8h]_1"
+    },
+    "220": {
+      "name": "m_fMatrixA",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_644|A:binary_mov_dword_0DC_0xA28_init"
+    },
+    "224": {
+      "name": "m_fMatrixB",
+      "type": "unsigned char",
+      "source": "transfer_from_RoleSystem_off_648|A:binary_mov_byte_[eax+0E0h]_0"
+    },
+    "228": {
+      "name": "m_fMatrixC",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_652"
+    },
+    "232": {
+      "name": "m_nMatrixParam",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_656"
+    },
+    "236": {
+      "name": "m_fMatrixParamA",
+      "type": "float",
+      "source": "A:FPU_post_reattrib_0x53b84e"
+    },
+    "240": {
+      "name": "m_fMatrixParamB",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_664"
+    },
+    "244": {
+      "name": "m_fMatrixE",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_668"
+    },
+    "248": {
+      "name": "m_fMatrixF",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_672"
+    },
+    "252": {
+      "name": "m_fMatrixParamC",
+      "type": "float",
+      "source": "A:FPU_post_reattrib_0x5368f5"
+    },
+    "256": {
+      "name": "m_Actor",
+      "type": "Actor *",
+      "source": "transfer_from_RoleSystem_off_680"
+    },
+    "264": {
+      "name": "m_nCmdParam",
+      "type": "int",
+      "source": "decomp:SetActionByName_from_pbyName+24"
+    },
+    "272": {
+      "name": "m_pActor",
+      "type": "gbActor *",
+      "source": "transfer_from_RoleSystem_off_696"
+    },
+    "308": {
+      "name": "m_vecLocalPos",
+      "type": "gbVec3D",
+      "source": "A:lea+ctor_call(gbVec3D::default_ctor@0x4119C3)"
+    },
+    "328": {
+      "name": "m_nAnimState",
+      "type": "short",
+      "source": "decomp:_nearby_53b890_LOWORD_from_nVal+328"
+    },
+    "332": {
+      "name": "m_nActionType",
+      "type": "unsigned char",
+      "source": "binary:raw_action"
+    },
+    "333": {
+      "name": "m_bActionFlag1",
+      "type": "unsigned char",
+      "source": "binary:raw_CompareAction"
+    },
+    "336": {
+      "name": "m_nActionParam",
+      "type": "unsigned char",
+      "source": "binary:raw_action"
+    },
+    "337": {
+      "name": "m_bActionFlag2",
+      "type": "unsigned char",
+      "source": "binary:raw"
+    },
+    "338": {
+      "name": "m_bActionFlag3",
+      "type": "unsigned char",
+      "source": "binary:raw"
+    },
+    "339": {
+      "name": "m_bActionActive",
+      "type": "unsigned char",
+      "source": "binary:raw_7votes"
+    },
+    "340": {
+      "name": "m_nActionState",
+      "type": "int",
+      "source": "binary:raw_action"
+    },
+    "344": {
+      "name": "m_nActionResult",
+      "type": "unsigned char",
+      "source": "binary:raw_action"
+    },
+    "345": {
+      "name": "m_bInitialized",
+      "type": "unsigned char",
+      "source": "binary:raw_InitComponents"
+    },
+    "348": {
+      "name": "m_nHP",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "352": {
+      "name": "m_nMaxHP",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "356": {
+      "name": "m_bHPVisible",
+      "type": "unsigned char",
+      "source": "binary:raw_hp_check"
+    },
+    "360": {
+      "name": "m_nHandleEvent",
+      "type": "int",
+      "source": "binary:gap_r2"
+    },
+    "364": {
+      "name": "m_vecPos",
+      "type": "gbVec3D",
+      "source": "binary:gap_r2 | annotate_todo"
+    },
+    "376": {
+      "name": "m_vecRot",
+      "type": "gbVec3D",
+      "source": "binary:gap_r2 | annotate_todo"
+    },
+    "388": {
+      "name": "m_nCloneParam",
+      "type": "int",
+      "source": "ida_decomp:_nearby_53b890 = *(a2+388), 4 refs"
+    },
+    "392": {
+      "name": "m_fActionAssignParam",
+      "type": "float",
+      "source": "A:FPU_disp32_0x41c23e"
+    },
+    "396": {
+      "name": "m_nCloneParamB",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_820"
+    },
+    "400": {
+      "name": "m_nCloneState",
+      "type": "int",
+      "source": "ida_decomp:_nearby_53b890 = *(a2+400), 6 refs"
+    },
+    "404": {
+      "name": "m_nCloneFlag1",
+      "type": "int",
+      "source": "ida_decomp:_nearby_53b890 = *(a2+404), 4 refs"
+    },
+    "408": {
+      "name": "m_nCloneFlag2",
+      "type": "int",
+      "source": "ida_decomp:_nearby_53b890 = *(a2+408), 4 refs"
+    },
+    "412": {
+      "name": "m_fFacingAngle",
+      "type": "float",
+      "source": "binary:gap_r2 | type_fix:int->float(A+:decomp *(float*)&this->_field_19C-m_vecRot.z in UpdateFrame (3x)) | name:m_fFacingAngle(A+:decomp =90.0 + used as rotation_delta_base)"
+    },
+    "420": {
+      "name": "m_nModelParamA",
+      "type": "int",
+      "source": "binary:gap_r2"
+    },
+    "428": {
+      "name": "m_nModelParamB",
+      "type": "int",
+      "source": "binary:gap_r2"
+    },
+    "432": {
+      "name": "m_nRoleState1",
+      "type": "int",
+      "source": "decomp:transfer_from_RoleSystem"
+    },
+    "436": {
+      "name": "m_pEquipAtt0",
+      "type": "RoleAtt *",
+      "source": "binary:1_store_at_0x1B4,distinct_fields_at_0x1B8/0x1BC/0x1C0"
+    },
+    "440": {
+      "name": "m_nAnimFrames",
+      "type": "int",
+      "source": "binary:distinct_fields_at_0x1B8/0x1BC(LEA)/0x1C0,each_4B"
+    },
+    "444": {
+      "name": "m_nTransitionParam",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "448": {
+      "name": "m_pEquipAtt1",
+      "type": "RoleAtt *[3]",
+      "source": "transfer_from_RoleSystem_off_872"
+    },
+    "460": {
+      "name": "m_pEquipAtt2",
+      "type": "RoleAtt *[3]",
+      "source": "transfer_from_RoleSystem_off_884"
+    },
+    "484": {
+      "name": "m_fBlendWeight",
+      "type": "float",
+      "source": "ida_decomp:_auto_5309a0 *0.333 + self, 3 refs"
+    },
+    "488": {
+      "name": "m_obbox",
+      "type": "int",
+      "source": "binary:gap_r3 | fix:gbOBBox(76)>span(8),revert_to_int+codegen_infer"
+    },
+    "496": {
+      "name": "m_pSelfAtt",
+      "type": "void*",
+      "source": "transfer_from_RoleSystem_off_920; type_fix:m_p*_int_to_void*"
+    },
+    "500": {
+      "name": "m_nAnimFrame",
+      "type": "short",
+      "source": "A:66_prefix_word_access"
+    },
+    "512": {
+      "name": "m_pParticleData",
+      "type": "void *",
+      "source": "A+:decomp *(float*)&this->_field_200 (1 occurrences);batch_fix:int_to_v*_LEA_embed"
+    },
+    "536": {
+      "name": "m_fAnimDelta",
+      "type": "float",
+      "source": "A+:decomp gbVec3D::operator=(&this->_todo_218, nVal+364)"
+    },
+    "632": {
+      "name": "m_fDirX",
+      "type": "float",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "636": {
+      "name": "m_fDirY",
+      "type": "float",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "640": {
+      "name": "m_fDirZ",
+      "type": "float",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "644": {
+      "name": "m_fNormX",
+      "type": "float",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "648": {
+      "name": "m_fNormY",
+      "type": "float",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "652": {
+      "name": "m_fNormZ",
+      "type": "float",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "656": {
+      "name": "m_fDistAccum",
+      "type": "float",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "660": {
+      "name": "m_fSpeed",
+      "type": "float",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "676": {
+      "name": "m_fAngleDeg",
+      "type": "float",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "684": {
+      "name": "m_bDirFlag",
+      "type": "unsigned char",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "724": {
+      "name": "m_nAnimCounter",
+      "type": "int",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "773": {
+      "name": "m_bStateFlag",
+      "type": "unsigned char",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "776": {
+      "name": "m_pRoleState",
+      "type": "char *",
+      "source": "A:decomp Actor::UpdateFrame",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "784": {
+      "name": "m_nUpdateMode",
+      "type": "int",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "217": {
+      "name": "m_bParamFlag",
+      "type": "unsigned char",
+      "source": "A:binary_mov_byte_[eax+0D9h]_0"
+    },
+    "680": {
+      "name": "m_InnerActor",
+      "type": "void *",
+      "source": "overlap: 4-byte workspace. Used via (Actor *)&this->m_InnerActor to access m_pact@+0x10 and m_dwMatMsg@+0x21C. | normalize_key: 0x2A8 -> 680"
+    },
+    "628": {
+      "name": "_overlap_RoleSystem_m_partyActor_m_nState",
+      "type": "int",
+      "source": "NOT A REAL FIELD. Actor::SetActionByName calls ((RoleSystem*)this)->NotifySceneChange() which writes this->m_partyActor.m_nState @ +0x1A8++0xCC=0x274. Actor has no vtable; RoleSystem methods are non-virtual. This is a C-style cast hack, not inheritance or composition. | normalize_key: 0x274 -> 628"
+    }
+  },
+  "methods": {
+    "0x00536160": {
+      "name": "SetParam",
+      "signature": "int __thiscall(int nVal)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x00536220": {
+      "name": "GetDefaultFOV_thunk",
+      "signature": "int __thiscall()",
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+    },
+    "0x00536230": {
+      "name": "SetDefaultFOV",
+      "signature": "int __thiscall()",
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+    },
+    "0x00536240": {
+      "name": "GetDefaultDist_thunk",
+      "signature": "int __thiscall()",
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+    },
+    "0x00536250": {
+      "name": "SetDefaultDist",
+      "signature": "void __thiscall()",
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+    },
+    "0x00536310": {
+      "name": "DestroyInternalData",
+      "signature": "void __thiscall()"
+    },
+    "0x005363A0": {
+      "name": "ResetDefaultState",
+      "signature": "int __thiscall()"
+    },
+    "0x00536A40": {
+      "name": "GetDefaultFOV2_thunk",
+      "signature": "int __thiscall()",
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+    },
+    "0x00536A50": {
+      "name": "SetDefaultFOV2",
+      "signature": "int __thiscall()",
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+    },
+    "0x00536A60": {
+      "name": "GetDefaultDist2_thunk",
+      "signature": "int __thiscall()",
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+    },
+    "0x00536A70": {
+      "name": "SetDefaultDist2",
+      "signature": "void __thiscall()",
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+    },
+    "0x00536A80": {
+      "name": "FastInit",
+      "signature": "void __thiscall()"
+    },
+    "0x00536C50": {
+      "name": "CompareActionName",
+      "signature": "int __thiscall(int actionIdx, int nVal)"
+    },
+    "0x00536CC0": {
+      "name": "GetAnimDuration",
+      "signature": "unsigned int __thiscall(int animId)"
+    },
+    "0x00536CE0": {
+      "name": "EnableTransition",
+      "signature": "void __thiscall(int nVal, int nVal2)"
+    },
+    "0x00536D00": {
+      "name": "SetTimeScale",
+      "signature": "void __thiscall(float scale)"
+    },
+    "0x00536FB0": {
+      "name": "QueryState",
+      "signature": "int __thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x00536FC0": {
+      "name": "DispatchAction",
+      "signature": "int __thiscall(int actionId)"
+    },
+    "0x00536FD0": {
+      "name": "PlayAction",
+      "signature": "int __thiscall(int actionId)"
+    },
+    "0x00536FF0": {
+      "name": "UpdateAllActions",
+      "signature": "int __thiscall()"
+    },
+    "0x005371B0": {
+      "name": "SetVisible",
+      "signature": "void __thiscall(int bVisible)"
+    },
+    "0x00536AC0": {
+      "name": "SetMaterialName",
+      "signature": "int __thiscall Actor::SetMaterialName(void *name, int a2)",
+      "sig_note": "ret-N adjudication (round 10): callee cleans 8 bytes; caller args = 2; prev 1 params"
+    },
+    "0x00539540": {
+      "name": "AddActionByName",
+      "signature": "int __thiscall Actor::AddActionByName(const char *pszName, const char *pszName2, int nVal)"
+    },
+    "0x0053A0C0": {
+      "name": "InsertAction",
+      "signature": "int __thiscall Actor::InsertAction(int *p_DWORD, char **nY)"
+    },
+    "0x0053AF30": {
+      "name": "FindMatchingEntry",
+      "signature": "int __thiscall(int nY, int nVal, int nX)"
+    },
+    "0x0053AF70": {
+      "name": "SetVideoRegions",
+      "signature": "void __thiscall(int nX, int nVal, int nY)"
+    },
+    "0x0041B9F0": {
+      "name": "GetInnerAnimDuration",
+      "signature": "unsigned int __thiscall Actor::GetInnerAnimDuration(int animId)"
+    },
+    "0x0050ACF0": {
+      "name": "GetAnimDurationByIndex",
+      "signature": "unsigned int __thiscall(int nVal)"
+    },
+    "0x00531260": {
+      "name": "UpdateFrame",
+      "signature": "void __thiscall(float arg0)"
+    },
+    "0x00537A90": {
+      "name": "DoSceneTransition",
+      "signature": "FILE *__thiscall(double pData, int nVal)"
+    },
+    "0x00539E70": {
+      "name": "InsertAnimFrame",
+      "signature": "char *__thiscall(float fVal)"
+    },
+    "0x0053B2A0": {
+      "name": "SelectPointer",
+      "signature": "int *__cdecl(int *pnVal, int *pnVal2, int *pnVal3)",
+      "static": true
+    },
+    "0x00419690": {
+      "name": "UpdatePhysics",
+      "signature": "void __thiscall(float fVal)"
+    },
+    "0x0044CB30": {
+      "name": "InitParticles",
+      "signature": "int __thiscall Actor::InitParticles()"
+    },
+    "0x00456EE0": {
+      "name": "ApplyStateArray",
+      "signature": "int __thiscall Actor::ApplyStateArray()"
+    },
+    "0x00456F10": {
+      "name": "SaveState",
+      "signature": "char * __thiscall()"
+    },
+    "0x005309A0": {
+      "name": "ResetTransformState",
+      "signature": "int __thiscall()"
+    },
+    "0x00530C00": {
+      "name": "UpdateAnimState",
+      "signature": "bool __thiscall(char pData)"
+    },
+    "0x00530F70": {
+      "name": "BlendAnimation",
+      "signature": "void __thiscall(float fVal)"
+    },
+    "0x005370E0": {
+      "name": "ValidateInput",
+      "signature": "int __thiscall(int nVal, int nVal2)"
+    },
+    "0x00537120": {
+      "name": "SetTextureName",
+      "signature": "void __thiscall(const char *pszName)"
+    },
+    "0x005372B0": {
+      "name": "GetArrayCount",
+      "signature": "int __thiscall Actor::GetArrayCount()"
+    },
+    "0x005372D0": {
+      "name": "LoadActionSequence",
+      "signature": "int *__thiscall(int *p_DWORD, unsigned int dwVal, int *p_DWORD2)"
+    },
+    "0x00537510": {
+      "name": "StoreParam",
+      "signature": "int __thiscall(int nVal, int nVal2)",
+      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x005375B0": {
+      "name": "ClearArrayEntry",
+      "signature": "int __fastcall(int nVal)"
+    },
+    "0x005375F0": {
+      "name": "ClearPathBuffer",
+      "signature": "void __thiscall()"
+    },
+    "0x005376E0": {
+      "name": "LoadSaveData",
+      "signature": "int __thiscall Actor::LoadSaveData(char *pszSlotIdx)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x00537770": {
+      "name": "LoadActions",
+      "signature": "int __thiscall Actor::LoadActions(FILE *Stream, int *pnVal)"
+    },
+    "0x00537A30": {
+      "name": "ClearAllocBuffers",
+      "signature": "void __thiscall()"
+    },
+    "0x005381D0": {
+      "name": "InitAnimSequence",
+      "signature": "char *__thiscall()"
+    },
+    "0x00538320": {
+      "name": "EnsureDirectory",
+      "signature": "BOOL __thiscall()"
+    },
+    "0x00538500": {
+      "name": "LoadActorModel",
+      "signature": "BOOL __thiscall(int nVal)"
+    },
+    "0x00538CE0": {
+      "name": "ClearActionFlags",
+      "signature": "int __thiscall()"
+    },
+    "0x00538D20": {
+      "name": "CompareModelName",
+      "signature": "BOOL __cdecl(char *String1, char *String2)",
+      "static": true
+    },
+    "0x005392C0": {
+      "name": "ActionEntry_Assign",
+      "signature": "char *__thiscall Actor::ActionEntry_Assign(int nVal)"
+    },
+    "0x005394D0": {
+      "name": "ClearActionArrays",
+      "signature": "int *__thiscall()"
+    },
+    "0x00539700": {
+      "name": "GetAnimDataBuffer",
+      "signature": "void __thiscall(void **Buffer, int Stream)"
+    },
+    "0x005399E0": {
+      "name": "IterateActiveActors",
+      "signature": "void __thiscall()"
+    },
+    "0x00539A90": {
+      "name": "SearchAnimByIndex",
+      "signature": "char __thiscall(char *String1, char *pszBuf)"
+    },
+    "0x00539AF0": {
+      "name": "RegisterAnim",
+      "signature": "void __thiscall Actor::RegisterAnim(char *pszName, char *pszBuf)"
+    },
+    "0x00539D60": {
+      "name": "ClearAllActions",
+      "signature": "int *__thiscall Actor::ClearAllActions()"
+    },
+    "0x0053A020": {
+      "name": "IterateAllocBuffer",
+      "signature": "char __thiscall(int nVal)"
+    },
+    "0x0053A060": {
+      "name": "InitAction",
+      "signature": "int *__thiscall Actor::InitAction(_BYTE *pActionType)"
+    },
+    "0x0053A080": {
+      "name": "GetActionArrayEnd",
+      "signature": "_WORD *__thiscall(_WORD *p_WORD, short *pnVal)"
+    },
+    "0x0053A2E0": {
+      "name": "GetActionCount",
+      "signature": "int __thiscall()"
+    },
+    "0x0053A310": {
+      "name": "DestroyActionRange",
+      "signature": "void __thiscall(int nVal, int nVal2)"
+    },
+    "0x0053A670": {
+      "name": "CopyActionData",
+      "signature": "int *__thiscall(int nVal)"
+    },
+    "0x0053AFA0": {
+      "name": "CopyBufferBlocks",
+      "signature": "char *__thiscall Actor::CopyBufferBlocks(char *pszDst, char *pszSrc, char *pszBuf3)"
+    },
+    "0x0053AFE0": {
+      "name": "CopyIfValid",
+      "signature": "char * __thiscall(char *pszBuf, char *pszBuf2, const void *pData)"
+    },
+    "0x0053B230": {
+      "name": "GetCount",
+      "signature": "int __thiscall()"
+    },
+    "0x0053B260": {
+      "name": "CompareBuffers",
+      "signature": "char * __thiscall(char *pszBuf, char *pszBuf2, char *pszBuf3)"
+    },
+    "0x0053B890": {
+      "name": "SetCurrentAction",
+      "signature": "char *__thiscall Actor::SetCurrentAction(int nVal)"
+    },
+    "0x0053BAE0": {
+      "name": "ActArray_Assign",
+      "signature": "int *__thiscall Actor::ActArray_Assign(int *p_DWORD)"
+    },
+    "0x0053BD30": {
+      "name": "BoneIndexVec_Assign",
+      "signature": "int *__thiscall Actor::BoneIndexVec_Assign(int *pnVal)"
+    },
+    "0x0041BCA0": {
+      "name": "ExecuteAction",
+      "signature": "int __thiscall(tagActionCommand *pCmd)"
+    },
+    "0x00530F20": {
+      "name": "GetBoundRadius",
+      "signature": "bool __thiscall()"
+    },
+    "0x00538FA0": {
+      "name": "BuildCollisionMesh",
+      "signature": "void __thiscall(int *pOut)"
+    },
+    "0x0053BEB0": {
+      "name": "GetActionCountEx",
+      "signature": "int __thiscall()"
+    },
+    "0x005363E0": {
+      "name": "SetActorAction",
+      "signature": "void __thiscall(int actionId)",
+      "_misattrib_evidence": "max_offset=3340>class_size=596"
+    },
+    "0x005364B0": {
+      "name": "InitActorComponents",
+      "signature": "int __thiscall()",
+      "_misattrib_evidence": "max_offset=3340>class_size=596"
+    },
+    "0x00536560": {
+      "name": "ProcessActorFrame",
+      "signature": "char __thiscall()",
+      "_misattrib_evidence": "max_offset=3340>class_size=596"
+    },
+    "0x0053A340": {
+      "name": "ActVec_Insert_char",
+      "signature": "void __thiscall(Actor *this, char *pszBuf, unsigned int dwVal, char *pszBuf2)"
+    },
+    "0x0053A6C0": {
+      "name": "ActVec_Insert_word",
+      "signature": "_WORD *__thiscall(Actor *this, _WORD *p_WORD, unsigned int dwVal, _WORD *p_WORD2)"
+    },
+    "0x0053A8D0": {
+      "name": "ActVec_InsertN",
+      "signature": "unsigned int __thiscall(Actor *this, char *pszBuf, unsigned int nX, char *nY)"
+    },
+    "0x0053ACA0": {
+      "name": "ActVec_InsertRange",
+      "signature": "char *__thiscall(Actor *this, char *pszBuf, unsigned int dwVal, const void *pData, unsigned int nSize)"
+    },
+    "0x0053B6E0": {
+      "name": "CopyConstruct_1C",
+      "signature": "void __cdecl(void *pDst, const void *pSrc)",
+      "static": true
+    },
+    "0x0053B700": {
+      "name": "CopyConstruct_290",
+      "signature": "void __cdecl(void *pDst, const void *pSrc, int nVal)",
+      "static": true
+    },
+    "0x0053B870": {
+      "name": "CopyConstruct_40",
+      "signature": "void __cdecl(void *pDst, const void *pSrc, int nVal)",
+      "static": true
+    },
+    "0x00536D20": {
+      "name": "sub_536D20",
+      "signature": "void __thiscall(Actor *this, const char *a2, int a3)"
+    },
+    "0x0041F360": {
+      "name": "_todo_0041F360",
+      "signature": "void __thiscall(int, int)",
+      "source": "挂账④ 放量批1 2026-10-06：thiscall 序言(this=ebx)+偏移[4,64] Actor 多偏移证+调用点 2 push 元数"
+    },
+    "0x004B7330": {
+      "name": "_todo_004B7330",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批1 2026-10-06：thiscall 序言(this=esi)+偏移[92,96,100,104,108,112] Actor 连续块证+调用点 1 push"
+    },
+    "0x004503C0": {
+      "name": "_todo_004503C0",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批2 2026-10-06：thiscall 序言(this=esi)+偏移[84,88]=Actor.m_nTransform+m_nRoleState0 双偏移证"
+    },
+    "0x004BE5D0": {
+      "name": "_todo_004BE5D0",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批2 2026-10-06：thiscall 序言+偏移[116,148]=Actor.m_nModelId+m_nPathBuffer 双偏移证"
+    },
+    "0x0053D190": {
+      "name": "_todo_0053D190",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批3 2026-10-06：thiscall 序言+偏移[4,16,20]=Actor.m_actarray_begin+m_pact+m_name 三偏移齐证 | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x004BA230": {
+      "name": "_todo_004BA230",
+      "signature": "void __thiscall(int, int, int, int, int)",
+      "source": "挂账④ 放量批3 2026-10-06：thiscall 序言+偏移[280]=Actor.m_szTexture+调用点 5 push 元数"
+    },
+    "0x00496190": {
+      "name": "_todo_00496190",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批4 2026-10-06：thiscall 序言+偏移[72,76,80,84,88,92] Actor 多偏移簇证（六连偏移）"
+    },
+    "0x004B72C0": {
+      "name": "_todo_004B72C0",
+      "signature": "void __thiscall __thiscall()",
+      "source": "挂账④ 放量批4 2026-10-06：thiscall 序言+偏移[0,92,96,100,104,108,112] Actor 多偏移簇证（七偏移簇） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）"
+    },
+    "0x004B72D0": {
+      "name": "_todo_004B72D0",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批4 2026-10-06：thiscall 序言+偏移[0,92,96,100,104,108,112] Actor 多偏移簇证（七偏移簇）"
+    },
+    "0x004B7490": {
+      "name": "_todo_004B7490",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批5 2026-10-06：thiscall 序言+偏移[0,92,96,100,104,232,236,240] Actor 八偏移簇证"
+    },
+    "0x0041F2D0": {
+      "name": "_todo_0041F2D0",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批6 2026-10-06：thiscall 序言+深窗偏移[0,4,8,12,16,64] Actor 证（六偏移簇）"
+    },
+    "0x004B7260": {
+      "name": "_todo_004B7260",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批6 2026-10-06：thiscall 序言+深窗偏移[0,92,96,100,104,108,112] Actor 证（七偏移簇）"
+    },
+    "0x0051DFD0": {
+      "name": "_todo_0051DFD0",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批7 2026-10-06：thiscall 序言+深窗偏移[72,76,80,84,88,92] Actor 六连簇证"
+    },
+    "0x0053DB10": {
+      "name": "_todo_0053DB10",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批7 2026-10-06：thiscall 序言+深窗偏移[0,4,8,12,16,20] Actor 六连簇证"
+    },
+    "0x00532A20": {
+      "name": "_todo_00532A20",
+      "signature": "void __thiscall __thiscall()",
+      "source": "挂账④ 放量批7 2026-10-06：thiscall 序言+深窗偏移[12,16,20,24,28,32] Actor 六连簇证 | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）"
+    },
+    "0x004C9470": {
+      "name": "_todo_004C9470",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批8 2026-10-06：thiscall 序言+深窗偏移[0,12,28,32] Actor 同形簇证（五件同形）"
+    },
+    "0x004CB280": {
+      "name": "_todo_004CB280",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批8 2026-10-06：thiscall 序言+深窗偏移[0,12,28,32] Actor 同形簇证（五件同形）"
+    },
+    "0x004D3160": {
+      "name": "_todo_004D3160",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批8 2026-10-06：thiscall 序言+深窗偏移[0,12,28,32] Actor 同形簇证（五件同形）"
+    },
+    "0x004D37A0": {
+      "name": "_todo_004D37A0",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批8 2026-10-06：thiscall 序言+深窗偏移[0,12,28,32] Actor 同形簇证（五件同形）"
+    },
+    "0x004D4CA0": {
+      "name": "_todo_004D4CA0",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批8 2026-10-06：thiscall 序言+深窗偏移[0,12,28,32] Actor 同形簇证（五件同形）"
+    },
+    "0x004B65E0": {
+      "name": "_todo_004B65E0",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批9 2026-10-06：thiscall 序言+深窗偏移[0,4,16,20] Actor 多偏移簇证"
+    },
+    "0x004BDB50": {
+      "name": "_todo_004BDB50",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批9 2026-10-06：thiscall 序言+深窗偏移[0,4,100,196] Actor 多偏移簇证"
+    },
+    "0x004C5B50": {
+      "name": "_todo_004C5B50",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批9 2026-10-06：thiscall 序言+深窗偏移[0,276,280,312,316,320,328,332] Actor 多偏移簇证"
+    },
+    "0x0053D390": {
+      "name": "_todo_0053D390",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批10 2026-10-06：thiscall 序言+深窗偏移[0,12,28,88,112,116] Actor 多偏移簇证"
+    },
+    "0x004083D0": {
+      "name": "_todo_004083D0",
+      "signature": "void __thiscall(int)",
+      "source": "挂账④ 放量批10 2026-10-06：thiscall 序言+深窗偏移[0,24,28,32] Actor 多偏移簇证 | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x004B7560": {
+      "name": "_todo_004B7560",
+      "signature": "void __thiscall(int)",
+      "source": "深证批1 2026-10-06：A 级 vtable 槽（0x56f404 Actor 簇）+偏移[0,92,104,168,232] Actor 多偏移证（ctor 装配实证表）"
+    },
+    "0x004B7590": {
+      "name": "_todo_004B7590",
+      "signature": "void __thiscall(int)",
+      "source": "深证批1 2026-10-06：A 级 vtable 槽（0x56f404 Actor 簇）+偏移[92,100,104,168,232] Actor 多偏移证（ctor 装配实证表）"
+    },
+    "0x004B7650": {
+      "name": "_todo_004B7650",
+      "signature": "void __thiscall(int)",
+      "source": "深证批1 2026-10-06：A 级 vtable 槽（0x56f404 Actor 簇）+偏移[244] Actor 多偏移证（ctor 装配实证表）"
+    },
+    "0x004B7980": {
+      "name": "_todo_004B7980",
+      "signature": "void __thiscall(int)",
+      "source": "深证批1 2026-10-06：A 级 vtable 槽（0x56f404 Actor 簇）+偏移[100,104] Actor 多偏移证（ctor 装配实证表）"
+    },
+    "0x004B73E0": {
+      "name": "_todo_004B73E0",
+      "signature": "void __thiscall(int)",
+      "source": "深证批1 2026-10-06：A 级 vtable 槽（0x56f404 Actor 簇）+偏移[92,96,100,104,108] Actor 多偏移证（ctor 装配实证表）"
+    },
+    "0x004B7D30": {
+      "name": "_todo_004B7D30",
+      "signature": "void __thiscall(int)",
+      "source": "深证批2 2026-10-06：A 级 vtable 槽（0x56f3xx 簇）+偏移[96,160,164,168] Actor 证"
+    },
+    "0x004B80C0": {
+      "name": "_todo_004B80C0",
+      "signature": "void __thiscall(int)",
+      "source": "深证批2 2026-10-06：A 级 vtable 槽（0x56f3xx 簇）+偏移[92,96,168] Actor 证"
+    },
+    "0x004B8030": {
+      "name": "_todo_004B8030",
+      "signature": "void __thiscall(int)",
+      "source": "深证批2 2026-10-06：A 级 vtable 槽（0x56f3xx 簇）+偏移[72] Actor 证"
+    },
+    "0x0053D5D0": {
+      "name": "_todo_0053D5D0",
+      "signature": "void __thiscall(int)",
+      "source": "深证批4 2026-10-06：A 级 vtable 槽+偏移[88,112,116,120] Actor×3 非低偏移证（净判别力筛）"
+    }
   }
- },
- "methods": {
-  "0x00536160": {
-   "name": "SetParam",
-   "signature": "int __thiscall(int nVal)"
-  },
-  "0x00536220": {
-   "name": "GetDefaultFOV_thunk",
-   "signature": "int __thiscall()",
-   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-  },
-  "0x00536230": {
-   "name": "SetDefaultFOV",
-   "signature": "int __thiscall()",
-   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-  },
-  "0x00536240": {
-   "name": "GetDefaultDist_thunk",
-   "signature": "int __thiscall()",
-   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-  },
-  "0x00536250": {
-   "name": "SetDefaultDist",
-   "signature": "void __thiscall()",
-   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-  },
-  "0x00536310": {
-   "name": "DestroyInternalData",
-   "signature": "void __thiscall()"
-  },
-  "0x005363A0": {
-   "name": "ResetDefaultState",
-   "signature": "int __thiscall()"
-  },
-  "0x00536A40": {
-   "name": "GetDefaultFOV2_thunk",
-   "signature": "int __thiscall()",
-   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-  },
-  "0x00536A50": {
-   "name": "SetDefaultFOV2",
-   "signature": "int __thiscall()",
-   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-  },
-  "0x00536A60": {
-   "name": "GetDefaultDist2_thunk",
-   "signature": "int __thiscall()",
-   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-  },
-  "0x00536A70": {
-   "name": "SetDefaultDist2",
-   "signature": "void __thiscall()",
-   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-  },
-  "0x00536A80": {
-   "name": "FastInit",
-   "signature": "void __thiscall()"
-  },
-  "0x00536C50": {
-   "name": "CompareActionName",
-   "signature": "int __thiscall(int actionIdx, int nVal)"
-  },
-  "0x00536CC0": {
-   "name": "GetAnimDuration",
-   "signature": "unsigned int __thiscall(int animId)"
-  },
-  "0x00536CE0": {
-   "name": "EnableTransition",
-   "signature": "void __thiscall(int nVal, int nVal2)"
-  },
-  "0x00536D00": {
-   "name": "SetTimeScale",
-   "signature": "void __thiscall(float scale)"
-  },
-  "0x00536FB0": {
-   "name": "QueryState",
-   "signature": "int __thiscall()"
-  },
-  "0x00536FC0": {
-   "name": "DispatchAction",
-   "signature": "int __thiscall(int actionId)"
-  },
-  "0x00536FD0": {
-   "name": "PlayAction",
-   "signature": "int __thiscall(int actionId)"
-  },
-  "0x00536FF0": {
-   "name": "UpdateAllActions",
-   "signature": "int __thiscall()"
-  },
-  "0x005371B0": {
-   "name": "SetVisible",
-   "signature": "void __thiscall(int bVisible)"
-  },
-  "0x00536AC0": {
-   "name": "SetMaterialName",
-   "signature": "int __thiscall Actor::SetMaterialName(void *name, int a2)",
-   "sig_note": "ret-N adjudication (round 10): callee cleans 8 bytes; caller args = 2; prev 1 params"
-  },
-  "0x00539540": {
-   "name": "AddActionByName",
-   "signature": "int __thiscall Actor::AddActionByName(const char *pszName, const char *pszName2, int nVal)"
-  },
-  "0x0053A0C0": {
-   "name": "InsertAction",
-   "signature": "int __thiscall Actor::InsertAction(int *p_DWORD, char **nY)"
-  },
-  "0x0053AF30": {
-   "name": "FindMatchingEntry",
-   "signature": "int __thiscall(int nY, int nVal, int nX)"
-  },
-  "0x0053AF70": {
-   "name": "SetVideoRegions",
-   "signature": "void __thiscall(int nX, int nVal, int nY)"
-  },
-  "0x0041B9F0": {
-   "name": "GetInnerAnimDuration",
-   "signature": "unsigned int __thiscall Actor::GetInnerAnimDuration(int animId)"
-  },
-  "0x0050ACF0": {
-   "name": "GetAnimDurationByIndex",
-   "signature": "unsigned int __thiscall(int nVal)"
-  },
-  "0x00531260": {
-   "name": "UpdateFrame",
-   "signature": "void __thiscall(float arg0)"
-  },
-  "0x00537A90": {
-   "name": "DoSceneTransition",
-   "signature": "FILE *__thiscall(double pData, int nVal)"
-  },
-  "0x00539E70": {
-   "name": "InsertAnimFrame",
-   "signature": "char *__thiscall(float fVal)"
-  },
-  "0x0053B2A0": {
-   "name": "SelectPointer",
-   "signature": "int *__cdecl(int *pnVal, int *pnVal2, int *pnVal3)",
-   "static": true
-  },
-  "0x00419690": {
-   "name": "UpdatePhysics",
-   "signature": "void __thiscall(float fVal)"
-  },
-  "0x0044CB30": {
-   "name": "InitParticles",
-   "signature": "int __thiscall Actor::InitParticles()"
-  },
-  "0x00456EE0": {
-   "name": "ApplyStateArray",
-   "signature": "int __thiscall Actor::ApplyStateArray()"
-  },
-  "0x00456F10": {
-   "name": "SaveState",
-   "signature": "char * __thiscall()"
-  },
-  "0x005309A0": {
-   "name": "ResetTransformState",
-   "signature": "int __thiscall()"
-  },
-  "0x00530C00": {
-   "name": "UpdateAnimState",
-   "signature": "bool __thiscall(char pData)"
-  },
-  "0x00530F70": {
-   "name": "BlendAnimation",
-   "signature": "void __thiscall(float fVal)"
-  },
-  "0x005370E0": {
-   "name": "ValidateInput",
-   "signature": "int __thiscall(int nVal, int nVal2)"
-  },
-  "0x00537120": {
-   "name": "SetTextureName",
-   "signature": "void __thiscall(const char *pszName)"
-  },
-  "0x005372B0": {
-   "name": "GetArrayCount",
-   "signature": "int __thiscall Actor::GetArrayCount()"
-  },
-  "0x005372D0": {
-   "name": "LoadActionSequence",
-   "signature": "int *__thiscall(int *p_DWORD, unsigned int dwVal, int *p_DWORD2)"
-  },
-  "0x00537510": {
-   "name": "StoreParam",
-   "signature": "int __thiscall(int nVal, int nVal2)"
-  },
-  "0x005375B0": {
-   "name": "ClearArrayEntry",
-   "signature": "int __fastcall(int nVal)"
-  },
-  "0x005375F0": {
-   "name": "ClearPathBuffer",
-   "signature": "void __thiscall()"
-  },
-  "0x005376E0": {
-   "name": "LoadSaveData",
-   "signature": "int __thiscall Actor::LoadSaveData(char *pszSlotIdx)"
-  },
-  "0x00537770": {
-   "name": "LoadActions",
-   "signature": "int __thiscall Actor::LoadActions(FILE *Stream, int *pnVal)"
-  },
-  "0x00537A30": {
-   "name": "ClearAllocBuffers",
-   "signature": "void __thiscall()"
-  },
-  "0x005381D0": {
-   "name": "InitAnimSequence",
-   "signature": "char *__thiscall()"
-  },
-  "0x00538320": {
-   "name": "EnsureDirectory",
-   "signature": "BOOL __thiscall()"
-  },
-  "0x00538500": {
-   "name": "LoadActorModel",
-   "signature": "BOOL __thiscall(int nVal)"
-  },
-  "0x00538CE0": {
-   "name": "ClearActionFlags",
-   "signature": "int __thiscall()"
-  },
-  "0x00538D20": {
-   "name": "CompareModelName",
-   "signature": "BOOL __cdecl(char *String1, char *String2)",
-   "static": true
-  },
-  "0x005392C0": {
-   "name": "ActionEntry_Assign",
-   "signature": "char *__thiscall Actor::ActionEntry_Assign(int nVal)"
-  },
-  "0x005394D0": {
-   "name": "ClearActionArrays",
-   "signature": "int *__thiscall()"
-  },
-  "0x00539700": {
-   "name": "GetAnimDataBuffer",
-   "signature": "void __thiscall(void **Buffer, int Stream)"
-  },
-  "0x005399E0": {
-   "name": "IterateActiveActors",
-   "signature": "void __thiscall()"
-  },
-  "0x00539A90": {
-   "name": "SearchAnimByIndex",
-   "signature": "char __thiscall(char *String1, char *pszBuf)"
-  },
-  "0x00539AF0": {
-   "name": "RegisterAnim",
-   "signature": "void __thiscall Actor::RegisterAnim(char *pszName, char *pszBuf)"
-  },
-  "0x00539D60": {
-   "name": "ClearAllActions",
-   "signature": "int *__thiscall Actor::ClearAllActions()"
-  },
-  "0x0053A020": {
-   "name": "IterateAllocBuffer",
-   "signature": "char __thiscall(int nVal)"
-  },
-  "0x0053A060": {
-   "name": "InitAction",
-   "signature": "int *__thiscall Actor::InitAction(_BYTE *pActionType)"
-  },
-  "0x0053A080": {
-   "name": "GetActionArrayEnd",
-   "signature": "_WORD *__thiscall(_WORD *p_WORD, short *pnVal)"
-  },
-  "0x0053A2E0": {
-   "name": "GetActionCount",
-   "signature": "int __thiscall()"
-  },
-  "0x0053A310": {
-   "name": "DestroyActionRange",
-   "signature": "void __thiscall(int nVal, int nVal2)"
-  },
-  "0x0053A670": {
-   "name": "CopyActionData",
-   "signature": "int *__thiscall(int nVal)"
-  },
-  "0x0053AFA0": {
-   "name": "CopyBufferBlocks",
-   "signature": "char *__thiscall Actor::CopyBufferBlocks(char *pszDst, char *pszSrc, char *pszBuf3)"
-  },
-  "0x0053AFE0": {
-   "name": "CopyIfValid",
-   "signature": "char * __thiscall(char *pszBuf, char *pszBuf2, const void *pData)"
-  },
-  "0x0053B230": {
-   "name": "GetCount",
-   "signature": "int __thiscall()"
-  },
-  "0x0053B260": {
-   "name": "CompareBuffers",
-   "signature": "char * __thiscall(char *pszBuf, char *pszBuf2, char *pszBuf3)"
-  },
-  "0x0053B890": {
-   "name": "SetCurrentAction",
-   "signature": "char *__thiscall Actor::SetCurrentAction(int nVal)"
-  },
-  "0x0053BAE0": {
-   "name": "ActArray_Assign",
-   "signature": "int *__thiscall Actor::ActArray_Assign(int *p_DWORD)"
-  },
-  "0x0053BD30": {
-   "name": "BoneIndexVec_Assign",
-   "signature": "int *__thiscall Actor::BoneIndexVec_Assign(int *pnVal)"
-  },
-  "0x0041BCA0": {
-   "name": "ExecuteAction",
-   "signature": "int __thiscall(tagActionCommand *pCmd)"
-  },
-  "0x00530F20": {
-   "name": "GetBoundRadius",
-   "signature": "bool __thiscall()"
-  },
-  "0x00538FA0": {
-   "name": "BuildCollisionMesh",
-   "signature": "void __thiscall(int *pOut)"
-  },
-  "0x0053BEB0": {
-   "name": "GetActionCountEx",
-   "signature": "int __thiscall()"
-  },
-  "0x005363E0": {
-   "name": "SetActorAction",
-   "signature": "void __thiscall(int actionId)",
-   "_misattrib_evidence": "max_offset=3340>class_size=596"
-  },
-  "0x005364B0": {
-   "name": "InitActorComponents",
-   "signature": "int __thiscall()",
-   "_misattrib_evidence": "max_offset=3340>class_size=596"
-  },
-  "0x00536560": {
-   "name": "ProcessActorFrame",
-   "signature": "char __thiscall()",
-   "_misattrib_evidence": "max_offset=3340>class_size=596"
-  },
-  "0x0053A340": {
-   "name": "ActVec_Insert_char",
-   "signature": "void __thiscall(Actor *this, char *pszBuf, unsigned int dwVal, char *pszBuf2)"
-  },
-  "0x0053A6C0": {
-   "name": "ActVec_Insert_word",
-   "signature": "_WORD *__thiscall(Actor *this, _WORD *p_WORD, unsigned int dwVal, _WORD *p_WORD2)"
-  },
-  "0x0053A8D0": {
-   "name": "ActVec_InsertN",
-   "signature": "unsigned int __thiscall(Actor *this, char *pszBuf, unsigned int nX, char *nY)"
-  },
-  "0x0053ACA0": {
-   "name": "ActVec_InsertRange",
-   "signature": "char *__thiscall(Actor *this, char *pszBuf, unsigned int dwVal, const void *pData, unsigned int nSize)"
-  },
-  "0x0053B6E0": {
-   "name": "CopyConstruct_1C",
-   "signature": "void __cdecl(void *pDst, const void *pSrc)",
-   "static": true
-  },
-  "0x0053B700": {
-   "name": "CopyConstruct_290",
-   "signature": "void __cdecl(void *pDst, const void *pSrc, int nVal)",
-   "static": true
-  },
-  "0x0053B870": {
-   "name": "CopyConstruct_40",
-   "signature": "void __cdecl(void *pDst, const void *pSrc, int nVal)",
-   "static": true
-  },
-  "0x00536D20": {
-   "name": "sub_536D20",
-   "signature": "void __thiscall(Actor *this, const char *a2, int a3)"
-  }
- }
 }

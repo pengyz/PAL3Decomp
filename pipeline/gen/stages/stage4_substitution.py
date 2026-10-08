@@ -138,12 +138,24 @@ _ELEM_SIZES = {'int': 4, 'float': 4, 'unsigned int': 4, 'unsigned long': 4,
                'short': 2, 'unsigned short': 2, 'double': 8, 'long long': 8}
 
 
+def _anon_aggregate(mtype):
+    """inline union/struct 递归引用形——emit_headers._keep_anonymous 同族谓词
+    （2026-09-28 bDestRole/_field_C67E 双层实证：匿名聚合内层名提升，不得合成外层名）。"""
+    t = (mtype or '').strip()
+    return t.startswith('_inline_') or '::$' in t
+
+
 def _resolve_offset(type_name, offset, prefix):
-    """Recursively resolve an offset within a type to '.member' or '.member[N]'."""
+    """Recursively resolve an offset within a type to '.member' or '.member[N]'。
+    2026-09-28 修（悬空渲染根因）：导出 data_members 可带 **空串 name**（匿名 union 族）
+    ⇒ `'.%s' % ''` 产出 `g_SceneMgr.` 悬空。合成实名（与 emit_headers 同公式
+    `_field_%04X % off` ⇒ 头文件与渲染同名一致）；**匿名聚合体豁免合成**（内层名提升）。"""
     members = store.struct_members.get(type_name, {})
     info = members.get(offset)
     if info:
         mname, mtype = info
+        if not mname and not _anon_aggregate(mtype):
+            mname = '_field_%04X' % offset          # 标量空名合成
         mt = mtype.strip().lower()
         if prefix == 'byte' and not any(t in mt for t in ('char', 'byte', 'bool')) and '*' not in mtype:
             pass
@@ -154,8 +166,10 @@ def _resolve_offset(type_name, offset, prefix):
         elif prefix == 'flt' and 'float' not in mt:
             pass
         else:
-            return '.%s' % mname
+            return ('.%s' % mname) if mname else None    # 匿名聚合无路径分量（内层名另行提升）
     for moff, (mname, mtype) in sorted(members.items(), reverse=True):
+        if not mname and not _anon_aggregate(mtype):
+            mname = '_field_%04X' % moff       # 标量空名合成（匿名聚合豁免，同上）
         if moff > offset:
             continue
         rel = offset - moff
@@ -181,16 +195,16 @@ def _resolve_offset(type_name, offset, prefix):
                 if sub_rel == 0:
                     if _is_primitive:
                         continue  # byte-level array, try structured array
-                    return '.%s[%d]' % (mname, idx)
+                    return (('.%s[%d]' % (mname, idx)) if mname else None)   # 空名数组形态保守弃
                 if not _is_primitive:
                     sub_members = store.struct_members.get(elem_type)
                     if sub_members:
                         sub = _resolve_offset(elem_type, sub_rel, prefix)
                         if sub:
-                            return '.%s[%d]%s' % (mname, idx, sub)
+                            return (('.%s[%d]%s' % (mname, idx, sub)) if mname else sub)
                 if _is_primitive:
                     continue
-                return '.%s[%d]' % (mname, idx)
+                return (('.%s[%d]' % (mname, idx)) if mname else None)
         embedded = store.struct_members.get(mtype.strip().rstrip('*').strip())
         if embedded and '*' not in mtype:
             # Use struct's full size as threshold (not primitive default 0x1000)
@@ -200,7 +214,7 @@ def _resolve_offset(type_name, offset, prefix):
             if rel < _struct_sz:
                 sub = _resolve_offset(mtype.strip(), rel, prefix)
                 if sub:
-                    return '.%s%s' % (mname, sub)
+                    return (('.%s%s' % (mname, sub)) if mname else sub)   # 匿名聚合：内层名提升直用
     return None
 
 
@@ -1506,6 +1520,121 @@ def run(code, ctx):
     for start, end, replacement in sorted(edits, reverse=True):
         result = result[:start] + replacement + result[end:]
     result = _fix_base_qualified_access(result.decode('utf-8'), ctx)
+    # fn-ptr 限定形接线 2026-10-07（C2273 族——子对象引用形）
+    try:
+        from ast_transform import fix_fnptr_qualified_call
+        result = fix_fnptr_qualified_call(result, base_names={'UIWnd', 'gbRefObject', 'ObjectInfoBase'})
+    except Exception:
+        pass
+    # F2 offset 形接线 2026-10-07（非零基类——复核 N4/N5 通路）
+    try:
+        from ast_transform import rewrite_base_offset_read
+        _bo = {('CCBRoleState', 'TaskMgr_SceneObjParam_SceneObj'): 40}
+        result = rewrite_base_offset_read(result, base_offsets=_bo)
+    except Exception:
+        pass
+    # 参铸接线 2026-10-07（C2664 族通解——元数门保守）
+    # 根因修（96 轮）：sig=**被调函数** sig（非含函数）——method_sigs 查表
+    try:
+        from ast_transform import fix_arg_type_casts
+        import re as _re
+        # sig 源=注解直读（懒加载修——method_sigs 空实证）
+        global _SIG_CACHE
+        if _SIG_CACHE is None:
+            import glob as _g, os as _o, json as _j
+            _SIG_CACHE = {}
+            for _p in _g.glob(_o.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'data', 'annotations', 'structs', '*.json')):
+                try:
+                    _d = _j.load(open(_p, encoding='utf-8'))
+                    for _mk, _mv in (_d.get('methods') or {}).items():
+                        if isinstance(_mv, dict) and _mv.get('name') and _mv.get('signature'):
+                            _SIG_CACHE[str(_mv['name']).split('(')[0]] = _mv['signature']
+                except Exception:
+                    continue
+        _ms = _SIG_CACHE
+        def _callee_sig(name):
+            for k, v in _ms.items():
+                if k.endswith('::' + name) or k == name:
+                    return v or ''
+            return ''
+        for _cm in _re.finditer(r'(?:->|\.)(\w+)\([^;]*\)\s*;', result):
+            _nm = _cm.group(1)
+            _sig = _callee_sig(_nm)
+            if '(' not in _sig:
+                continue
+            _inner = _sig[_sig.find('(') + 1:_sig.rfind(')')]
+            _sp = [x.strip() for x in _inner.split(',') if x.strip() and x.strip() != 'void']
+            if _sp:
+                result = fix_arg_type_casts(result, sig_params=_sp)
+                break
+    except Exception:
+        pass
+    # C2036 形修 2026-10-07：(void*)p+N → (char*)p+N（字节算术等价）
+    try:
+        from ast_transform import fix_void_ptr_arith_cast
+        result = fix_void_ptr_arith_cast(result)
+    except Exception:
+        pass
+    # B′ 窄形接线 2026-10-07（C2100 教训——this-> 链限定）
+    global _BASE_NAMES_CACHE
+    try:
+        if _BASE_NAMES_CACHE is None:
+            import glob as _g, os as _o, json as _j
+            _bn = set()
+            _bs = {}
+            for _p in _g.glob(_o.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'data', 'annotations', 'structs', '*.json')):
+                try:
+                    _d = _j.load(open(_p, encoding='utf-8'))
+                    for _b in (_d.get('base_class') or []):
+                        if isinstance(_b, str) and len(_b) >= 3:
+                            _bn.add(_b)      # 短/泛名拒（B 型污染教训 2026-10-07）
+                            _bs[_b] = 4
+                except Exception:
+                    continue
+            _BASE_NAMES_CACHE = (_bn, _bs)
+        _bn, _bs = _BASE_NAMES_CACHE
+        if _bn:
+            from ast_transform import rewrite_base_suffix_bare_form
+            result = rewrite_base_suffix_bare_form(result, base_names=_bn, base_sizes=_bs)
+    except Exception:
+        pass
+    # 接线批 2026-10-07（三清账全备）：限定链冗余中间段删除（C2039 通路）
+    # pairs=基链（类→基类）——判别器（合法三段形拒）。pairs 源：struct_bases（载后）+
+    # 注解 base_class 直构（懒加载空时备选——2026-10-07 no-op 实证修）
+    try:
+        from ast_transform import drop_redundant_mid_qualifier
+        _pairs = set()
+        _bm = getattr(store, 'struct_bases', None) or {}
+        for _c, _bs in _bm.items():
+            for _b in (_bs or {}):
+                _pairs.add((_c, _b))
+        if not _pairs:
+            # 备选源：注解 base_class 直读（struct_bases 懒加载空时——declared-exception 族）
+            import glob as _glob
+            import json as _json
+            import os as _os
+            for _f in _glob.glob(_os.path.join(
+                    getattr(store, 'PROJECT_ROOT', os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))),
+                    'data', 'annotations', 'structs', '*.json')):
+                try:
+                    _d = _json.load(open(_f, encoding='utf-8'))
+                    _c = _d.get('name') or _os.path.basename(_f)[:-5]
+                    for _b in (_d.get('base_class') or []):
+                        if isinstance(_b, dict):
+                            _b = _b.get('baseName') or _b.get('name')
+                        if _b:
+                            _pairs.add((_c, _b))
+                    for _b in (_d.get('bases') or []):
+                        if isinstance(_b, dict):
+                            _b = _b.get('baseName') or _b.get('name')
+                        if _b:
+                            _pairs.add((_c, _b))
+                except Exception:
+                    continue
+        if _pairs:
+            result = drop_redundant_mid_qualifier(result, pairs=_pairs)
+    except Exception:
+        pass
     return _fix_member_fn_callbacks(result, ctx)
 
 
@@ -1526,6 +1655,8 @@ def run(code, ctx):
 # 基类表直接读**生成头**的继承列表（编译器看到的就是它，与 IDB 侧 `store.struct_bases`
 # 只有单个基类的情况不同 —— 生成头里 SceneObj 有三个基类）。
 _CLASS_BASES_CACHE = None
+_BASE_NAMES_CACHE = None
+_SIG_CACHE = None
 
 
 def _class_bases_index():

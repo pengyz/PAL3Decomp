@@ -1,3 +1,4 @@
+﻿import pytest
 """限定形 `this->A::B::__vftable` 的**三态判定**回归测试。
 
 背景：`_fold_vftable_mask` 原先整块跳过限定形（docstring 记为

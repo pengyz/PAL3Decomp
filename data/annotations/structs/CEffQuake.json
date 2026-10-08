@@ -46,6 +46,31 @@
     "0x004C29A0": {
       "name": "UpdateInternal",
       "signature": "void __thiscall(float fVal)"
+    },
+    "0x004AF760": {
+      "name": "Update",
+      "signature": "int __thiscall(int)",
+      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+    },
+    "0x004C0500": {
+      "name": "OnTest",
+      "signature": "int()",
+      "source": "vtable_gap_fill_v1(from CEffAction.json)"
+    },
+    "0x004C15D0": {
+      "name": "UpdateParticles",
+      "signature": "void __thiscall()",
+      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+    },
+    "0x004C0510": {
+      "name": "sub_4C0510",
+      "signature": "int __thiscall(int)",
+      "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
+    },
+    "0x004D32E0": {
+      "name": "_scalar_dtor_32e0",
+      "signature": "void __thiscall(int nVal1)",
+      "source": "vtable_gap_fill_v1(IDB:??_GCEffQuake@@UAEPAXI@Z) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     }
   },
   "vtables": [

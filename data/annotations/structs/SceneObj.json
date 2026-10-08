@@ -227,10 +227,10 @@
       "type": "float",
       "source": "annotation"
     },
-    "0x44": {
+    "68": {
       "name": "m_fTimerLimit",
       "type": "gbRefObject *",
-      "source": "binary:Destroy_12 reads [esi+44h] as gbRefObject*;A:decomp_batch_rename_usage_pattern"
+      "source": "binary:Destroy_12 reads [esi+44h] as gbRefObject*;A:decomp_batch_rename_usage_pattern | normalize_key: 0x44 -> 68"
     }
   },
   "base_class": [
@@ -245,7 +245,8 @@
     },
     "0x005362F0": {
       "name": "Destructor",
-      "signature": "SceneObj * __thiscall()"
+      "signature": "SceneObj * __thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x005363C0": {
       "name": "CleanupInternal",

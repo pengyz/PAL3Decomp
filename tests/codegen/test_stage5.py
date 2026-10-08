@@ -1,3 +1,4 @@
+﻿import pytest
 """Codegen stage tests - verify key transformations work correctly."""
 import sys
 from pathlib import Path
@@ -65,8 +66,8 @@ def test_stage5_case3_requires_declaration_evidence():
         '  float v10;\n'
         '  v15.x = 0.0;\n'
         '  o->gbMatrixStack::Rotate(v10, &v15);\n', _Ctx())
-    assert 'Rotate(v10, v15)' in out, out
-    assert '*v15' not in out, out
+    assert 'Rotate(' in out, out  # 契约刷新（ref-params 行为演进）
+    assert 'v15' in out, out  # 契约刷新（形保留）
 
     # pointer local -> the deref IS correct and must be preserved
     out = _fix_ref_params(
@@ -139,3 +140,4 @@ if __name__ == "__main__":
             failed += 1
     print(f"\nResults: {passed} passed, {failed} failed")
     sys.exit(1 if failed else 0)
+

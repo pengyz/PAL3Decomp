@@ -61,7 +61,153 @@ def _apply_text_substitutions(code, ctx):
     # Remove redundant 'struct' before template function pointer params
     code = re.sub(r'struct\s+([A-Za-z_]\w*(?:<[^>]*>)?)\s*\(', r'\1 (', code)
 
+    # F80（2026-09-25）：`this = expr` 渲染守卫。Hex-Rays 把"存放 this 的寄存器被
+    # 复用"渲染成对 this 的赋值（CEffShock dtor 槽定型时实测 3 处 ⇒ C2106，MSVC6
+    # 视 this 不可赋值）。忠实重写 = 函数体内 this 全部换名 _this（Hex-Rays 的
+    # 寄存器复用视图），首行注入 `Cls *_this = this;`；签名内的 this 形参不动。
+    if ctx.cls_name and not ctx.is_free_function and re.search(r'\bthis\s*=[^=]', code):
+        i = code.find('{')
+        if i != -1:
+            head, body = code[:i + 1], code[i + 1:]
+            body = re.sub(r'\bthis\b', '_this', body)
+            code = head + ('\n    %s *_this = this;' % ctx.cls_name) + body
+
+    # F82（2026-09-25）：__asm 块内 `符号.x/.y/.z/.w` 烘焙为数字偏移。Hex-Rays 对
+    # 浮点指令序列渲染原生 __asm，成员引用（gbVec3D/四元数的 x/y/z/w=0/4/8/12）
+    # 在 MSVC6 内联汇编里因符号无 C 声明 ⇒ 成员名歧义 C2410（实测 234 条，集中在
+    # ScriptVM/UIScene/RoleSystem 三个封顶单元）。x/y/z/w 布局在两个类里一致；
+    # 带名成员（m_xxx）偏移不定，不动（保持诚实账面）。
+    _asm_chunks = re.split(r'(__asm\s*\{)', code)
+    if len(_asm_chunks) > 1:
+        _off = {'x': 0, 'y': 4, 'z': 8, 'w': 12}
+        _rebuilt = [_asm_chunks[0]]
+        for _i in range(1, len(_asm_chunks), 2):
+            _asm_txt = _asm_chunks[_i + 1]
+            _end = _asm_txt.find('}')
+            _in_asm, _rest = (_asm_txt[:_end], _asm_txt[_end:]) if _end != -1 else (_asm_txt, '')
+            _in_asm = re.sub(
+                r'(\w+)\.(x|y|z|w)\b',
+                lambda m: m.group(1) + ('' if _off[m.group(2)] == 0 else '+%d' % _off[m.group(2)]),
+                _in_asm)
+            _rebuilt.append(_asm_chunks[_i]); _rebuilt.append(_in_asm); _rebuilt.append(_rest)
+        code = ''.join(_rebuilt)
+
+    # C′ R1：别名修复**前置**（F83 前——删 `_ESI = this;` 后 _assigned_regs 不见 ⇒ 无悬挂声明）
+    code = _fix_register_this_alias(code)
+    # F83（2026-09-25）：寄存器伪名**赋值**⇒ 变量提升。ida_defs.h 把 _EAX 等定义为
+    # 字面量 0（只读约定），但 Hex-Rays 在寄存器被复用时渲染 `_EAX = expr` ⇒ 展开
+    # 成 `0 = expr`（C2440/C2106，实测 67 处/8 单元；ScriptVM 解封后 +39）。忠实重写 =
+    # 体被赋值的伪名全部换名 reg_XX 并首行注入 `unsigned long reg_XX = 0;`
+    # （初值 0 保持"赋值前读 0"的旧语义；纯读未赋值的伪名不动，仍走宏常量）。
+    # 指针值 RHS 的 cast 由后续 C2440 pass 补（reg_XX 是值局部 ⇒ DWORD 槽路线）。
+    _assigned_regs = set(re.findall(r'\b(_E[A-Z]{2})\s*=[^=]', code))
+    if _assigned_regs:
+        for _p in sorted(_assigned_regs):
+            code = re.sub(r'\b%s\b' % _p, 'reg_' + _p[1:], code)
+        # 【C′ A（方案复核判 C′·R2 证据序）】别名证据（reg_X = this）⇒ 类型化声明
+        # `<Cls> *reg_X = this;`（R3 位移门：[N] 按 sizeof(Cls) 缩放——8692 恒等式证）
+        # 无别名证 ⇒ `unsigned long reg_X = 0;`（现行为——R2 末位形态扫描留批）
+        _cls = getattr(ctx, 'cls_name', None) if ctx is not None else None
+        _decls = []
+        for _p in sorted(_assigned_regs):
+            _rn = 'reg_' + _p[1:]
+            if _cls and re.search(r'\b%s\s*=\s*this\s*;' % re.escape(_rn), code):
+                _decls.append('    %s *%s = this;\n' % (_cls, _rn))
+            else:
+                _decls.append('    unsigned long %s = 0;\n' % _rn)
+        _decls = ''.join(_decls)
+        _i = code.find('{')
+        if _i != -1:
+            code = code[:_i + 1] + '\n' + _decls + code[_i + 1:]
+        # 【批 5 回退（2026-09-29 零回归门）】cast_reg_assignments 接线撤销——
+        # 实测真新增 15（UIScene +13：类值/指针链 RHS 铸坏成员访问 C2227/2228；
+        # PAL3 +2：类值铸 C2679；ScriptVM 60→102 级联）⇒ 无条件 `(unsigned long)` 铸
+        # 对**类值/指针链 RHS** 不是恒等（显式铸改变重载决议/成员访问语法）。
+        # 纯函数+测保留（test_cast_reg_assignments.py）——精确化（类值豁免/型判别铸）
+        # 后再接线；40 件 reg_ 指针族留批 F。
+
+    # F84（2026-09-25）：raw vtable 间接调用 `(**(RET (***)(P1,P2))X)(a1,a2)` 与
+    # 裸形态 `(**v)(v,a)` 的实参类型合规。Hex-Rays 对无类型槽位渲染该形态——间接
+    # 调用 = 字节忠实，必须保留（限定直呼会压制虚机制破坏字节）。实参里的指针
+    # 表达式隐式转整型被 MSVC6 拒绝 ⇒ C2664（实测 24 处）。逐实参按 fnptr 声明
+    # 参数类型补 cast（取声明文本逐字 cast，位保留，兼容 _DWORD/char* 混合参数表）；
+    # 裸形态的参数表从 _build_var_types 的 fnptr 局部声明取。
+    # 判定记录（用户质疑驱动）：UIWnd slot0=ShowWindow 标注经函数体反汇编确认
+    # 正确（去重消息发送非析构）——cast 是类型系统合规，非洗白；devirt 扩展
+    # （非限定虚调用）为后续路线。
+    _pos = 0
+    _out84 = []
+    _vt84 = None
+    while True:
+        _k = code.find('(**', _pos)
+        if _k == -1:
+            _out84.append(code[_pos:])
+            break
+        # 组1：`(**` 之后的平衡组——带型 `((RET (***)(P1,P2))X)` / 裸 `(**NAME)`
+        _d = 0; _i1 = _k
+        while _i1 < len(code):
+            if code[_i1] == '(': _d += 1
+            elif code[_i1] == ')':
+                _d -= 1
+                if _d == 0: break
+            _i1 += 1
+        if _i1 >= len(code):
+            _out84.append(code[_pos:]); break
+        _g1 = code[_k:_i1 + 1]
+        _pm = re.search(r'\*\*\*\s*\)\s*\(([^()]*)\)', _g1)
+        _bare = _pm is None
+        if _bare:
+            _bm = re.match(r'^\(\*\*\s*(\w+)\s*\)$', _g1)
+            if _bm:
+                if _vt84 is None:
+                    _vt84 = _build_var_types(code, ctx)
+                _vi = _vt84.get(_bm.group(1)) or {}
+                if _vi.get('kind') == 'fnptr':
+                    _pm = re.match(r'^(.*)$', _vi.get('params') or '')
+        # 组2：实参表（紧跟包装组闭合后的平衡组）
+        _a_open = _i1 + 1
+        if _a_open >= len(code) or code[_a_open] != '(':
+            _out84.append(code[_pos:_i1 + 1]); _pos = _i1 + 1; continue
+        _d = 1; _m = _a_open + 1
+        while _m < len(code) and _d > 0:
+            if code[_m] == '(': _d += 1
+            elif code[_m] == ')': _d -= 1
+            _m += 1
+        _args = code[_a_open + 1:_m - 1]
+        _alist = _split_toplevel(_args)
+        if _pm:
+            _plist = [x.strip() for x in _pm.group(1).split(',') if x.strip()]
+            if len(_plist) == len(_alist):
+                _new_args = ', '.join(
+                    '(%s)(%s)' % (_plist[i], a.strip()) if a.strip() else a
+                    for i, a in enumerate(_alist))
+                _out84.append(code[_pos:_a_open + 1])
+                _out84.append(_new_args)
+                _pos = _m - 1
+                continue
+        _out84.append(code[_pos:_m]); _pos = _m
+    code = ''.join(_out84)
+
     return code
+
+
+def _split_toplevel(args):
+    """按顶层逗号切分实参串（括号深度感知）。"""
+    parts, depth, last = [], 0, 0
+    for i, ch in enumerate(args):
+        if ch in '([':
+            depth += 1
+        elif ch in ')]':
+            depth -= 1
+        elif ch == ',' and depth == 0:
+            parts.append(args[last:i]); last = i + 1
+    parts.append(args[last:])
+    return parts
+
+
+
+
+
 
 
 # ============================================================
@@ -391,16 +537,23 @@ def _fix_explicit_this_calls(code, sig_lookup=None):
 # ============================================================
 
 def _fix_register_this_alias(code):
-    """Replace register-variable aliases for 'this' with direct this-> access.
-    
-    Hex-Rays generates: _REG = this; ... _REG->field. MSVC6 may not handle
-    the register alias correctly when _REG is a register variable.
-    """
+    """C′ R1（复核判须修订·别名恢复）：寄存器 this 别名改写——**全用法形**改 this，
+    赋值删除（F83 前置运行 ⇒ 无 _ESI 赋值则无悬挂声明）。
+    前版只改 `alias->` 形 ⇒ `alias[1].x`/`(T*)alias`/`alias+C` 悬挂（C2228/C2109 57 件根因）。"""
     m = re.search(r'^\s*(\w+)\s*=\s*this\s*;\s*$', code, re.MULTILINE)
     if m:
         alias = m.group(1)
-        code = re.sub(r'\b' + re.escape(alias) + r'\s*->', 'this->', code)
-        code = re.sub(r'\s*' + re.escape(alias) + r'\s*=\s*this\s*;\s*', '\n', code)
+        a = re.escape(alias)
+        # 全用法形改写（R1 收窄——复核 R3 位移门）：`->`/`(T*)` 形改 this（安全）；
+        # `+=`/`[` 形**不动**（stride/可赋性——`(char*)this +=` 语法炸实证 MatrixStack C2106）
+        # 保留赋值 ⇒ F83 声明路径接管（后续 C′ A 受限定型）
+        code = re.sub(r'\b' + a + r'\s*->', 'this->', code)
+        code = re.sub(r'\(\s*([\w\s:*]+?)\s*\*\s*\)\s*' + a + r'\b(?!\s*\[)', r'(\1 *)this', code)
+        # 赋值保留（仅当别名有 `+=`/`[` 残留用法时——否则删除（无用声明））
+        if re.search(r'\b' + a + r'\s*(?:\+=|\[)', code):
+            pass                       # 保留 `alias = this;`（F83 接管声明）
+        else:
+            code = re.sub(r'\s*' + a + r'\s*=\s*this\s*;\s*', '\n', code)
     return code
 
 
@@ -409,10 +562,10 @@ def _fix_register_this_alias(code):
 # ============================================================
 
 _GB_REF_PARAM_FUNCS = {
-    'Translate': {0}, 'Rotate': {1}, 'Scale': {0},
+    'Translate': {0}, 'Scale': {0},
     'LeftTranslate': {0}, 'RightTranslate': {0},
     'MakeMatrix': {0, 1, 2}, 'IntersectPlane': {0, 1},
-    'IsColAABB': {0}, 'IsColOBB': {0}, 'IsColOBB_H': {0},
+    'IsColAABB': {0}, 'IsColOBB_H': {0},
     'IsColPoint': {0}, 'IsColQuad': {0, 1, 2},
     'IsColSphere': {0}, 'IsColTriangle': {0, 1, 2, 3},
     'GetAABBox': {0}, 'GetSphere': {0}, 'GetCollideOBB': {0},
@@ -424,8 +577,43 @@ _GB_REF_PARAM_FUNCS = {
     'GetViewPort': {0, 1, 2, 3},
     'PointWorldToScr': {1, 2},  # (gbVec3D*, float&, float&)
     'GetBlend': {0}, 'SetBlend': {0},
-    # 'SetAxisAngle' REMOVED — see the F1b note below.
     'RightMultiply': {0},
+    # 【B 修（方案复核判须修订）】PAU/AAU 分流（gbengine_registry 签名 A 级证）：
+    # 指针形出表（gbMatrix4::Rotate(gbVec3D const*,gbVec3D*)=PAU 出；gbOBBox::IsColOBB
+    # (gbOBBox*)=PAU 出）——裸名键拆限定键（同名跨类形参形态相反：指针/引用混同=病灶根因）
+    'gbMatrixStack::Rotate': {2: {1}, 1: {0}},  # (float,gbVec3D&) 2 元 ref@1；
+    #   (gbQuaternion&) 1 元 ref@0 ——元数感知（_ref_positions 按实参数选位）
+    'gbRay::IsColOBB': {0}, 'gbPlane::IsColOBB': {0},   # (gbOBBox&) 引用形留表
+}
+
+# F81（2026-09-25）：引用参数的**实参类型**（SDK 头权威，include/gbengine）。
+# 供 Case 2b 把 `*stru_XXXX`（无型数据全局被解引用作引用实参）重写为
+# `*(T *)&stru_XXXX` —— MSVC6 的 T& 只绑同型左值，无 T 则 C2100。
+# 键 (func, arg_idx)；未录入的组合保持原行为（保守不变）。返回类型差异
+# （如 RightMultiply 的 gbMatrix4/gbQuaternion 两载）不录入，防错型。
+_GB_REF_PARAM_TYPES = {
+    ('gbMatrixStack::Rotate', 1): 'struct gbVec3D',  # B 修键随迁（失配致 Case2b 不触发 C2100 +24 实证）
+    ('Translate', 0): 'struct gbVec3D',     # :158 Translate(gbVec3D&)
+    ('Scale', 0): 'struct gbVec3D',         # :154 Scale(gbVec3D&)
+    ('LeftTranslate', 0): 'struct gbVec3D', # gbengine_types.h:128
+    ('RightTranslate', 0): 'struct gbVec3D',
+    ('MakeMatrix', 0): 'struct gbVec3D',    # gbengine_types.h:131
+    ('MakeMatrix', 1): 'struct gbVec3D',
+    ('MakeMatrix', 2): 'struct gbVec3D',
+    ('LeftMultiply', 0): 'struct gbMatrix4',
+    ('IntersectPlane', 0): 'struct gbVec3D',  # gbengine_types.h:197
+    ('IntersectPlane', 1): 'struct gbVec3D',
+    ('IsColAABB', 0): 'struct gbAABBox',
+    ('gbRay::IsColOBB', 0): 'struct gbOBBox', ('gbPlane::IsColOBB', 0): 'struct gbOBBox',
+    ('IsColOBB_H', 0): 'struct gbOBBox',
+    ('IsColQuad', 0): 'struct gbVec3D',
+    ('IsColQuad', 1): 'struct gbVec3D',
+    ('IsColQuad', 2): 'struct gbVec3D',
+    ('IsColSphere', 0): 'struct gbSphere',
+    ('IsColTriangle', 0): 'struct gbVec3D',
+    ('IsColTriangle', 1): 'struct gbVec3D',
+    ('IsColTriangle', 2): 'struct gbVec3D',
+    ('IsColTriangle', 3): 'struct gbVec3D',
 }
 
 # NOTE (F1b): 'SetAxisAngle': {0} was WRONG and has been deleted.
@@ -462,7 +650,16 @@ def _fix_ref_params(code, ctx=None):
     """
     vt = _build_var_types(code, ctx) if ctx is not None else {}
     for func_name, ref_indices in _GB_REF_PARAM_FUNCS.items():
-        pattern = r'(?:->|::|\.)' + re.escape(func_name) + r'\s*\('
+        # B 修：限定键（`Cls::fn`）与裸名双形——限定形按全名匹配（类消歧），
+        # 元数感知值（dict{arity:set}）按实参数选位（gbMatrixStack::Rotate 双载）
+        if '::' in func_name:
+            pattern = re.escape(func_name) + r'\s*\('
+        else:
+            pattern = r'(?:->|::|\.)' + re.escape(func_name) + r'\s*\('
+        def _ref_positions(nargs, ref_idx=ref_indices):
+            if isinstance(ref_idx, dict):
+                return ref_idx.get(nargs, set())
+            return ref_idx
         pos = 0
         result = []
         while True:
@@ -476,6 +673,21 @@ def _fix_ref_params(code, ctx=None):
             arg_start = call_start
             arg_idx = 0
             i = call_start
+            # B 修：元数预数（dict 形 ref_indices 需 arity 定位）
+            if isinstance(ref_indices, dict):
+                _d, _j, _na = 1, call_start, 1
+                while _j < len(code) and _d > 0:
+                    _c = code[_j]
+                    if _c == '(':
+                        _d += 1
+                    elif _c == ')':
+                        _d -= 1
+                    elif _c == ',' and _d == 1:
+                        _na += 1
+                    _j += 1
+                ref_positions = ref_indices.get(_na, set())
+            else:
+                ref_positions = ref_indices
             while i < len(code) and depth > 0:
                 ch = code[i]
                 if ch == '(':
@@ -484,15 +696,15 @@ def _fix_ref_params(code, ctx=None):
                     depth -= 1
                     if depth == 0:
                         arg = code[arg_start:i]
-                        if arg_idx in ref_indices:
-                            arg = _fix_single_ref_arg(arg, vt)
+                        if arg_idx in ref_positions:
+                            arg = _fix_single_ref_arg(arg, vt, ref_type=_GB_REF_PARAM_TYPES.get((func_name, arg_idx)))
                         result.append(arg)
                         result.append(')')
                         break
                 elif ch == ',' and depth == 1:
                     arg = code[arg_start:i]
-                    if arg_idx in ref_indices:
-                        arg = _fix_single_ref_arg(arg, vt)
+                    if arg_idx in ref_positions:
+                        arg = _fix_single_ref_arg(arg, vt, ref_type=_GB_REF_PARAM_TYPES.get((func_name, arg_idx)))
                     result.append(arg)
                     result.append(', ')
                     arg_idx += 1
@@ -503,11 +715,12 @@ def _fix_ref_params(code, ctx=None):
     return code
 
 
-def _fix_single_ref_arg(arg, vt=None):
+def _fix_single_ref_arg(arg, vt=None, ref_type=None):
     """Fix a single argument for a reference parameter.
 
     Case 1: starts with '&'  → strip '&'
     Case 2: cast-to-pointer  → add '*' before the cast: (T*)x → *(T*)x
+    Case 2b (F81): `*IDA-artifact global` with known ref type → *(T *)&global
     Case 3: plain identifier  → add '*':  pBox → *pBox  **only with evidence**
 
     Case 3 evidence gate (F1a).  Case 3 used to fire on the *text shape*
@@ -546,6 +759,12 @@ def _fix_single_ref_arg(arg, vt=None):
     cast_m = re.match(r'^(\s*\([^)]*\*\)\s*)', arg)
     if cast_m:
         return '*' + arg
+    # Case 2b (F81): `*无型数据全局` 作引用实参 —— Hex-Rays 对未定型 stru_/dword_
+    # 等全局渲染裸解引用，MSVC6 的 T& 只绑同型左值 ⇒ C2100。用被调方 SDK 头的
+    # 参数类型重写为 `*(T *)&全局`（同一对象的再解释绑定，语义等价）。
+    deref_m = re.match(r'^\s*\*\s*((?:stru|byte|word|dword|flt|dbl|unk)_[0-9A-Fa-f]+)\s*$', arg)
+    if deref_m and ref_type:
+        return '*(%s *)&%s' % (ref_type, deref_m.group(1))
     # Case 3: plain identifier (simple variable name, NOT numeric constants)
     ident_m = re.match(r'^(\s*)(\w+)\s*$', arg)
     if ident_m and not ident_m.group(2).isdigit():
@@ -554,7 +773,25 @@ def _fix_single_ref_arg(arg, vt=None):
         if kind in _NON_POINTER_LOCAL_KINDS:
             # Positive evidence this is not a pointer: the `&` stage 3 removed
             # was the reference-taking one.  Leave the object expression.
+            # 【批 E】array 形补 [0]（Camera:165 pTarget gbVec3D[2]→gbVec3D& C2664
+            # 缺角）：数组实参绑引用=首元素绑定，`arg[0]` 与基址传递字节等价。
+            if kind == 'array':
+                return ident_m.group(1) + ident_m.group(2) + '[0]'
             return arg
+        # F81b: the identifier is an already-typed global - decide based on the emitted type. Example: stru_17A7E78 is
+        # `struct gbVec3D` in globals.h (object not pointer), and the reference binding of Rotate(_, gbVec3D&)
+        # wants the object itself => bare name; only pointer slots (`T *`) get `*` added.
+        if ref_type:
+            _gt = (store.global_types.get(ident_m.group(2)) or '').strip()
+            if _gt:
+                _norm = lambda t: re.sub(r'^(?:struct|class|enum|union)\s+', '', t.strip())
+                if not _gt.endswith('*') and _norm(_gt) == _norm(ref_type):
+                    return arg  # object-type global: bare name binds reference
+                # 【批 E】全局数组型→引用参：`gbVec3D [2]` 形补 [0]（同局部 array 分支）
+                if re.match(r'^%s\s*\[[0-9]+\]$' % re.escape(_norm(ref_type)), _norm(_gt)):
+                    return ident_m.group(1) + ident_m.group(2) + '[0]'
+                if _gt.endswith('*'):
+                    return ident_m.group(1) + '*' + ident_m.group(2)
         return ident_m.group(1) + '*' + ident_m.group(2)
     # Unknown pattern — leave unchanged to be safe
     return arg
@@ -620,7 +857,9 @@ def _split_top_commas(s):
 
 
 def _build_var_types(code, ctx):
-    """Map local/param names to declared types for pointer-ness decisions."""
+    """Map local/param names to declared types for pointer-ness decisions.
+    批 8 修（vt 跨函数混淆）：同名多 kind ⇒ 标 ambiguous（判别保守 False——
+    不按别的函数的声明裁决本函数表达式）。"""
     vt = {}
     # fnptr locals:  int ( **v12)(CEffect *, int);
     for m in re.finditer(r'^\s+([A-Za-z_]\w*)\s*\(\s*(\*+)\s*(\w+)\s*\)\s*\(([^()]*)\)\s*;',
@@ -633,9 +872,11 @@ def _build_var_types(code, ctx):
         if m.group(1) not in _DECL_KEYWORDS:
             vt.setdefault(m.group(3), {'kind': 'ptr', 'base': m.group(1),
                                        'stars': len(m.group(2))})
-    # value locals:  int v10;  unsigned long v3;
+    # value locals:  int v10;  unsigned long v3;  unsigned long reg_EDI = 0;（含初始化）
+    # 批 7（2026-09-29）：初始化形补——F83 注入的 `unsigned long reg_X = 0;` 此前不入 vt
+    # ⇒ reg_ 族 C2440 精确铸不触发（三判别器仅 vt 间隙，实测定位）
     for m in re.finditer(r'^\s+((?:(?:unsigned|signed|const|struct|class|enum)\s+)*[A-Za-z_]\w*)'
-                         r'\s+(\w+)\s*;', code, re.M):
+                         r'\s+(\w+)\s*(?:=\s*[^;]+)?;', code, re.M):
         if m.group(1) not in _DECL_KEYWORDS:
             vt.setdefault(m.group(2), {'kind': 'value', 'base': m.group(1), 'stars': 0})
     # array locals:  unsigned long v10[4];  (element type = base)
@@ -778,6 +1019,11 @@ def _expr_is_pointer(e, vt, ctx):
     if c0 == '"' or c0 == '&':
         return True
     if c0 == '*':
+        # *(T **)expr — 解引用"指针的指针"型 cast，结果必为指针（cast 内 ≥2 颗星）。
+        # 注意 *(T *)expr 结果是 T 值（一颗星），不可判定，不在此列。
+        m2 = re.match(r'\*\s*\(\s*[\w\s:]*\*\s*\*[\s\*]*\)', e)
+        if m2:
+            return True
         m = re.match(r'\*\s*(\w+)', e)
         if m:
             t = vt.get(m.group(1))
@@ -826,6 +1072,10 @@ def _expr_is_pointer(e, vt, ctx):
         t = vt.get(m.group(1))
         return bool(t) and t['kind'] in ('ptr', 'fnptr')
     # top-level +/- : pointer arithmetic preserves pointer-ness
+    # 【批 8 回退（2026-09-29 零回归门）】箭头豁免/单星=值/歧义保守三修件全撤——
+    # 生产实测真新增 2（SceneObj L292 撤载重铸 C2440 复发；CEffCustomShape L32 撤载重铸
+    # 新失败）——"冗余铸"主张被生产证伪：(unsigned long) 对**指针 RHS 是载重**（隐式
+    # 转换本非法）⇒ 撤铸方向不安全。教训：**撤铸同样不是恒等**（与批 5 补铸陷阱对偶）。
     depth = 0
     for i, ch in enumerate(e):
         if ch in '([':
@@ -880,6 +1130,10 @@ def _fix_line_dword_slots(line, vt, ctx):
         return line
     cand = []
     for m in _SLOT_LHS_RE.finditer(line):
+        # 槽位构造若位于未闭合 '[' 之内 ⇒ 它其实在下标表达式里（假阳性，
+        # 如 `arr[3 * *(_DWORD *)&x] = rhs` 的真实左值是 arr），不得插 cast。
+        if line.count('[', 0, m.start()) > line.count(']', 0, m.start()):
+            continue
         # m.end() is right after the assignment '='
         p = m.end()
         while p < len(line) and line[p] in ' \t':
@@ -945,7 +1199,18 @@ def _fix_line_plain_var_assign(line, vt, ctx):
     rhs = line[rhs_start:rhs_end]
     if rhs.strip().startswith('('):
         return line
+    # 2026-09-26：`vN = sub_XXXX(...);`——自由函数（无名 sub_）的返回类型
+    # _expr_is_pointer 无签名可证（Hex-Rays 只在 C 语义下省略 void*→T* 的
+    # cast，重导出后返回型变的站点触发 C2440）。此时 Hex-Rays 省略 cast
+    # 本身即指针兼容证据 ⇒ 直接以 LHS 声明类型插 cast（指针→指针，字节中性）。
     if not _expr_is_pointer(rhs, vt, ctx):
+        if t.get('kind') == 'ptr' and re.match(r'^sub_[0-9A-Fa-f]+\s*\(', rhs):
+            base = t.get('base')
+            if base and re.match(r'^[A-Za-z_][\w:]*$', base):
+                cast = '(%s %s)' % (base, '*' * max(t.get('stars', 1), 1))
+                if _needs_parens(rhs):
+                    rhs = '(%s)' % rhs
+                return line[:rhs_start] + cast + rhs + line[rhs_end:]
         return line
     if _needs_parens(rhs):
         rhs_wrapped = '(%s)' % rhs
@@ -962,6 +1227,199 @@ def _fix_line_plain_var_assign(line, vt, ctx):
     if t.get('kind') == 'value' and t.get('base') in _DWORD_SLOT_BASES:
         return line[:rhs_start] + '(unsigned long)' + rhs_wrapped + line[rhs_end:]
     return line
+
+
+_SDK_MEMBER_INDEX = None
+
+def _sdk_member_type(cls, member):
+    """SDK（gbengine）类的成员声明类型，来自 include/gbengine/*.h（SoT）。
+
+    ida_structs 不含 SDK 类（DLL 导入侧），成员类型只能从头文件本身取。
+    按行解析 `float ScaleX; // +0x30` 形态的成员声明。不可知返回 None。
+    """
+    global _SDK_MEMBER_INDEX
+    if _SDK_MEMBER_INDEX is None:
+        import os as _os
+        idx = {}
+        root = _os.path.dirname(_os.path.dirname(_os.path.dirname(
+            _os.path.dirname(_os.path.abspath(__file__)))))
+        gdir = _os.path.join(root, 'include', 'gbengine')
+        if _os.path.isdir(gdir):
+            for fn in sorted(_os.listdir(gdir)):
+                if not fn.endswith('.h'):
+                    continue
+                cur = None
+                for ln in open(_os.path.join(gdir, fn), encoding='utf-8',
+                               errors='replace'):
+                    cm = re.match(r'(?:class|struct)\s+(?:GBAPI\s+)?(\w+)', ln)
+                    if cm and '{' in ln:
+                        cur = cm.group(1)
+                        continue
+                    dm = re.match(r'\s+(?:GBAPI\s+|static\s+|mutable\s+)*'
+                                  r'([A-Za-z_][\w:]*(?:\s+)*\**)\s+(\w+)\s*(?:\[[^\]]*\])?\s*;',
+                                  ln)
+                    if dm and cur and not ln.strip().startswith(('virtual', '//')):
+                        t = dm.group(1).strip()
+                        if t and t not in ('return', 'class', 'struct'):
+                            idx.setdefault(cur, {})[dm.group(2)] = t
+        _SDK_MEMBER_INDEX = idx
+    return _SDK_MEMBER_INDEX.get(cls, {}).get(member)
+
+
+def _member_type_path(path, vt, ctx):
+    """沿 `base->m1.m2` 路径解析最终成员的声明类型文本；不可知返回 None。"""
+    parts = re.split(r'(?:->|\.)', path.strip())
+    parts = [re.sub(r'\s*\[[^\]]*\]', '', p).strip() for p in parts]
+    base = parts[0]
+    if base == 'this':
+        cls = ctx.cls_name
+    else:
+        t = vt.get(base)
+        if not t or not t.get('base'):
+            return None
+        cls = t['base']
+    mt = None
+    for member in parts[1:]:
+        if not member:
+            return None
+        # ida_structs 优先；SDK 类（DLL 导入侧不在 IDB）落 gbengine 头索引
+        mt = _member_type(cls, member)
+        if mt is None:
+            mt = _sdk_member_type(cls, member)
+        if mt is None:
+            return None
+        mt = re.sub(r'\s*\[[^\]]*\]\s*$', '', str(mt).strip())
+        cls = mt
+    return mt
+
+
+def _inline_single_use_fpu_vars(code, ctx):
+    """单用途 FPU 伪变量内联（FPU 批次，2026-09-26）。
+
+    Hex-Rays 对 x87 寄存器变量恒物化成具名局部（`float v2; // st7`），但原始
+    编译器让值全程驻留 x87 寄存器、fstp 直落最终目标——物化局部会让 VC6 多出
+    栈槽（帧尺寸 +4/+8 ⇒ 全帧偏移错位）和多余的 fld/fstp 对。当变量恰好
+    单定义、单使用、且 def→use 区间无线性外分支时，把定义表达式代入使用点并
+    删除声明/定义行——VC6 随后把表达式直接算进 fstp，与原始同形。
+    """
+    lines = code.split('\n')
+    # 收集 FPU 伪变量声明行: `  float v2; // st7`
+    decl_re = re.compile(r'^(\s*)(float|double)\s+(v[A-Za-z0-9_]+);\s*//\s*st(\d+)\s*$')
+    changed = True
+    while changed:
+        changed = False
+        # 函数边界守卫（列 0 非空行 = 新顶层块起点）：var 的 decl/def/use 必须同块。
+        # fid 必须在每轮 while 内重算——删除行后 lines 位移，陈旧 fid 会让后续
+        # 匹配跨函数错配（UICamera C2065 事故）。
+        # 标签行（`LABEL_33:`）在函数【内部】但位于列 0，会把一个函数劈成多个块
+        # ⇒ def/use 计数漏数误删（StateUI C2065 事故）——fid 增量必须跳过标签行。
+        fid = []
+        _c = 0
+        for _ln in lines:
+            if _ln and not _ln[0].isspace() and _ln.strip() \
+                    and not re.match(r'^[A-Za-z_][A-Za-z0-9_]*:\s*$', _ln):
+                _c += 1
+            fid.append(_c)
+        for i, ln in enumerate(lines):
+            dm = decl_re.match(ln)
+            if not dm:
+                continue
+            var = dm.group(3)
+            blk = fid[i]
+            # 唯一定义行
+            def_re = re.compile(r'^(\s*)%s\s*=(?!=)\s*(.+?);\s*$' % re.escape(var))
+            defs = [(j, def_re.match(l2)) for j, l2 in enumerate(lines)
+                    if fid[j] == blk and def_re.match(l2)]
+            defs = [(j, mm) for j, mm in defs if mm]
+            if len(defs) != 1:
+                continue
+            j, dmm = defs[0]
+            if j < i:
+                continue
+            # 使用点按【出现次数】计数（`v12 * v12` 一行两次使用曾因按行计数
+            # 被误判单用，count=1 替换后第二个 v12 成孤儿 ⇒ C2065），恰一次才内联
+            use_re = re.compile(r'\b%s\b' % re.escape(var))
+            uses = [(k, len(use_re.findall(l2))) for k, l2 in enumerate(lines)
+                    if k not in (i, j) and fid[k] == blk and use_re.search(l2)]
+            if sum(c for _, c in uses) != 1:
+                continue
+            k = uses[0][0]
+            if k < j:
+                continue
+            # def→use 区间必须线性（无分支/标签），且期间不得再引用 var
+            region = lines[j+1:k]
+            if any(re.match(r'^\s*(if|for|while|switch|do|goto)\b|:\s*$', r2) for r2 in region):
+                continue
+            if any(use_re.search(r2) for r2 in region):
+                continue
+            expr = dmm.group(2).strip()
+            # 纯度守卫：表达式含函数调用（可能有副作用）时不允许跨语句位置搬运
+            # （def 在分支外、use 在分支内的内联会把调用搬进/搬出执行路径）
+            if re.search(r'\w+\s*\(', expr):
+                continue
+            lines[k] = use_re.sub('(%s)' % expr, lines[k], count=1)
+            del lines[j]
+            lines.pop(i)
+            changed = True
+            break
+    return '\n'.join(lines)
+
+
+def _fix_float_literal_form(code, ctx):
+    """浮点字面量形态（FPU 批次组件 3.5，2026-09-26）。
+
+    Hex-Rays 把 x87 中间值默认定型 double，赋给 float 目标时表达式仍渲染成
+    double 域（`fv = 32.0 / (double)x;`）⇒ VC6 发 fdivr qword + qword 常量
+    编码，而原始是 float 域（fdivr dword + dword 常量——原始 x87 内存操作
+    数尺寸即本规则的二进制证据）。当赋值目标为 float 局部变量时，把 RHS 的
+    无后缀浮点字面量改写为最近 float 的 f 后缀字面量、`(double)` cast 改
+    `(float)`——改写后 VC6 重新发出 float 编码，且字面量位型与原始一致。
+    范围：单行赋值，目标是 **float 局部变量**（vt 表）或 **float 类型成员**
+    （`path->member` / `path.member`，经 _member_type 沿路径解析成员类型）。
+    """
+    import struct as _struct
+    vt = _build_var_types(code, ctx)
+    out = []
+    _NUM = re.compile(r'(?<![\w.])(\d+\.\d+(?:[eE][+-]?\d+)?)(?![fF\w])')
+
+    def _lhs_is_float(lhs_text):
+        m2 = re.match(r'^([A-Za-z_]\w*)$', lhs_text)
+        if m2:
+            t = vt.get(m2.group(1))
+            return bool(t) and t.get('base') == 'float'
+        # 成员路径 `a->b.c` / `this->m_x`——最终成员声明类型为 float 即改写
+        # （类型证据：ida_structs / gbengine SDK 头）；_path_is_pointer 的
+        # None（路径不可知）不拦 SDK 类，直接由 _member_type_path 裁决。
+        m2 = re.match(r'^([A-Za-z_][\w>.\-\[\]]*(?:->|\.)([A-Za-z_]\w*))\s*$', lhs_text)
+        if m2:
+            mt = _member_type_path(m2.group(1), vt, ctx)
+            return bool(mt) and mt.strip() == 'float'
+        return False
+
+    for line in code.split('\n'):
+        # 注意：不要在 match 里消费 RHS（如 `([^=].*)$`）——m.end() 之后的
+        # 文本才是 RHS，吞掉会导致空 RHS 无字面量可改。
+        m = re.match(r'^(\s*)(.+?)\s*=(?!=)\s*', line)
+        if m:
+            if _lhs_is_float(m.group(2).strip()):
+                rhs_start = m.end()
+                rhs = line[rhs_start:]
+
+                def _to_f32(mo):
+                    try:
+                        val = float(mo.group(1))
+                        f32 = _struct.unpack('f', _struct.pack('f', val))[0]
+                        return repr(f32) + 'f'
+                    except Exception:
+                        return mo.group(0)
+
+                new_rhs = _NUM.sub(_to_f32, rhs)
+                if '(double)' in new_rhs:
+                    new_rhs = new_rhs.replace('(double)', '(float)')
+                if new_rhs != rhs:
+                    line = line[:rhs_start] + new_rhs
+        out.append(line)
+    return '\n'.join(out)
 
 
 def _fix_c2440_casts(code, ctx):
@@ -1159,6 +1617,16 @@ def _run_inner(code, ctx):
     # C2440 cast insertion: pointer RHS into DWORD slots + ptr/ptr sign
     code = _fix_c2440_casts(code, ctx)
 
+    # 浮点字面量形态：float 目标赋值表达式的 double 字面量/cast → float 形态
+    # （原始 x87 dword 操作数尺寸为证据；FPU 批次组件 3.5）
+    code = _fix_float_literal_form(code, ctx)
+
+    # 单用途 FPU 伪变量内联：【停用】（2026-09-26 Render2 实验：原始源码本身
+    # 使用具名 float 临时——ORIG 先算 height 除法后算 width 的求值顺序即证据；
+    # 内联翻转求值序 nd 257→261。类型注解+字面量形态已足够复现 FPU 编码。
+    # 保留实现供未来有字节证据支持的个别函数手动启用。）
+    # code = _inline_single_use_fpu_vars(code, ctx)
+
     # Empty if-body before else
     code = re.sub(
         r'^(\s*)if\s*\((.*?)\)\s*\n\s*else\b',
@@ -1184,7 +1652,19 @@ def _run_inner(code, ctx):
     # 本替换的语义只适用**未限定**的自调用 `Method((int)this)`，故加负向后顾排除
     # `\w` `:` `.` `>`：限定形态交给 ast_transform 的显式-this 分支处理（它会给出
     # `(obj)->Cls::Method(rest)` 或实施静态调用，都比畸形文本可读且报错准确）。
-    code = re.sub(r'(?<![\w:.>])(\w+)\(\(int\)this\)', r'this->\1()', code)
+    # 路由门控 2026-10-07（复核 R-A/B/C）：成员形仅当类+基类链有成员——否则还原原文（保实参）
+    def _route_sub(m):
+        name = m.group(1)
+        try:
+            v = call_route(name, getattr(ctx, 'cls_name', None),
+                           member_index=getattr(ctx, 'member_index', None),
+                           classless=getattr(ctx, 'classless_names', None))
+        except Exception:
+            v = 'member'
+        if v == 'member':
+            return 'this->%s()' % name
+        return '%s((int)this)' % name       # R-B：还原实参（非 0 参形）
+    code = re.sub(r'(?<![\w:.>])(\w+)\(\(int\)this\)', _route_sub, code)
 
     # !this null check → (this == NULL)
     code = re.sub(r'\b!this\b', '(this == NULL)', code)
@@ -1282,6 +1762,78 @@ def _run_inner(code, ctx):
                 code = re.sub(r'\b' + re.escape(_flag_name) + r'\b', '1', code)
 
     return code
+
+
+def cast_reg_assignments(code):
+    """批 5 返工（复核 B1/B2）：reg_ 伪名赋值 RHS `(unsigned long)` 显式铸统一。
+    等价变换：原码隐式转换的显式化（整型 RHS 恒等铸、指针 RHS 为原意显式化——
+    cl 单案裁判：8/16/32 位/bool/__int64/浮点/指针/函数返回全恒等）。
+    返工封堵：①`=` 边界 `(?<![=!<>])(?!=)`（`reg_X == y` 不吃）②顶层逗号 rhs 不动
+    （B2 语义反转）③掩码字符串/注释（E-1 纪律）④链式赋号保守不动。"""
+    try:
+        from ast_transform import _mask_strings_comments as _msc
+        masked = _msc(code)
+    except Exception:
+        masked = code
+    pat = re.compile(
+        r'(\breg_\w+\s*(?<![=!<>])=(?!=)\s*)'
+        r'(?!\s*\(unsigned long\))'
+        r'([^;]+?)\s*;')
+    edits = []
+    for m in pat.finditer(masked):
+        rhs = m.group(2).strip()
+        if re.match(r'^(?:-?(?:0[xX][0-9a-fA-F]+|\d+)[uUlL]*)$', rhs):
+            continue
+        if re.match(r'^reg_\w+$', rhs):
+            continue
+        # B2：顶层逗号 ⇒ 保守不动；括号不平（depth<0/收尾≠0）同样保守
+        depth, comma, neg = 0, False, False
+        for ch in rhs:
+            if ch == '(':
+                depth += 1
+            elif ch == ')':
+                depth -= 1
+                if depth < 0:
+                    neg = True
+                    break
+            elif ch == ',' and depth == 0:
+                comma = True
+                break
+        if comma or neg or depth != 0:
+            continue
+        # 链式赋号（rhs 含裸 =）保守不动
+        if re.search(r'(?<![=!<>])=(?!=)', rhs):
+            continue
+        # 语句边界（A8/A9：非边界错捕保守不动）——match 起点须为行首/`;{}` 后
+        pre = masked[max(0, m.start() - 2):m.start()]
+        if pre.strip() and not pre.rstrip().endswith((';', '{', '}')):
+            continue
+        # rhs 从**原文**取（掩码 x 替身毁字面量教训——复判 M5）
+        rhs_orig = code[m.start(2):m.end(2)].strip()
+        prefix = code[m.start():m.start(2)]
+        edits.append((m.start(), m.end(),
+                      '%s(unsigned long)(%s);' % (prefix, rhs_orig)))
+    out = code
+    for s, e, rep in reversed(edits):
+        out = out[:s] + rep + out[e:]
+    return out
+
+
+def call_route(name, cls, member_index=None, classless=None):
+    """调用路由判别（复核 R-C·TDD 4 测）：成员形/保留原文。
+    判别序：封闭类+基类链成员（生成头为准）⇒ 'member'；classless 注册⇒'keep'（还原原文）；
+    全无命中⇒'keep'（不编造）。R-B：还原 `(int)this` 实参（非 0 参形）。"""
+    mi = member_index or {}
+    cl = classless or set()
+    if not mi and not cl:
+        return 'member'          # 数据缺——保守（旧行为·真自调用保）
+    # 封闭类+基类链成员检查
+    for _c, _ms in mi.items():
+        if name in (_ms or ()):
+            return 'member'
+    if name in cl:
+        return 'keep'
+    return 'keep'
 
 
 def run(code, ctx):

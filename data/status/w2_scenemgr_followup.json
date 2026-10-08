@@ -1,0 +1,14 @@
+[
+  {
+    "kind": "global_retype",
+    "addr": "0x00C10960",
+    "new_type": "int",
+    "evidence": "W2-SceneMgr 处置闭合补（84fd2ef7 Q1-1 门(d) 实证断链）：pData 条目 type=skip 未发射 ⇒ LineupUI `&g_SceneMgr.` 悬空点。真实角色=RoleSystem 数组末端哨兵（13 站点 cmp 立即数 mov esi,0xC05F60/0xC08160;add esi,0x2200;cmp esi,0xC10960，stride 0x2200=RoleSystem 尺寸）——int 尺寸=哨兵符号承载（地址语义由 & 运算承载）"
+  },
+  {
+    "kind": "global_rename",
+    "addr": "0x00C10960",
+    "new_name": "g_RoleSystemArrayEnd",
+    "evidence": "同上：pData 名实不闭合（84fd2ef7 判自相矛盾），按哨兵角色正名（g_ 规约）"
+  }
+]

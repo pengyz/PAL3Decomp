@@ -29,7 +29,8 @@
   "methods": {
     "0x004BE830": {
       "name": "CopyParams",
-      "signature": "void __thiscall(int *pParams)"
+      "signature": "void __thiscall(int *pParams)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004BDFB0": {
       "name": "ScreenEffect",

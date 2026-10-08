@@ -145,9 +145,10 @@
   "methods": {
     "0x004A2150": {
       "name": "_scalar_dtor",
-      "signature": "void __thiscall UIGameFrm::_scalar_dtor()",
+      "signature": "void __thiscall UIGameFrm::_scalar_dtor(int nVal1)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004A6120": {
       "name": "OnMessage",

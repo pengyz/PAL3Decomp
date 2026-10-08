@@ -7,31 +7,58 @@
     "0x0041BE30": {
       "name": "_sdtor_22",
       "signature": "ScriptObj *__thiscall(char a2)"
+    },
+    "0x004AF760": {
+      "name": "Update",
+      "signature": "int __thiscall(int)",
+      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+    },
+    "0x0055434F": {
+      "name": "FatalExit",
+      "signature": "void __thiscall()",
+      "source": "vtable_gap_fill_v1(from RenderTarget2.json)"
+    },
+    "0x00411B80": {
+      "name": "_scalar_dtor_1b80",
+      "signature": "void __thiscall(int nVal1)",
+      "source": "vtable_gap_fill_v1(IDB:ScriptObj::scalar_deleting_dtor) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "declaration_only": true
+    },
+    "0x00411BB0": {
+      "name": "_scalar_dtor_1bb0",
+      "signature": "void __thiscall(int nVal1)",
+      "source": "vtable_gap_fill_v1(IDB:ScriptObj::scalar_deleting_dtor_0) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "declaration_only": true
+    },
+    "0x00411BD0": {
+      "name": "~ScriptObj",
+      "signature": "virtual void __thiscall(int nVal1)",
+      "source": "vtable_owner_fix(ScriptObj 主 vtable 0x56A9BC 槽位0 = scalar deleting dtor; 语义名=虚析构; PalScriptWaitObj 调用点 C2039 修复) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     }
   },
   "vtables": [
     {
-      "addr": "0x0056A9BC",
+      "addr": "0x56A9BC",
       "base": null,
       "slots": [
         {
-          "addr": "0x00411BD0",
+          "addr": "0x411bd0",
           "from": null
         },
         {
-          "addr": "0x00411BB0",
+          "addr": "0x411bb0",
           "from": null
         },
         {
-          "addr": "0x0055434F",
+          "addr": "0x55434f",
           "from": null
         },
         {
-          "addr": "0x004AF760",
+          "addr": "0x4af760",
           "from": null
         },
         {
-          "addr": "0x00411B80",
+          "addr": "0x411b80",
           "from": null
         }
       ]

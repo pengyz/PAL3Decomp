@@ -286,7 +286,8 @@
     },
     "0x00500170": {
       "name": "EndBattle",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00512310": {
       "name": "HandleInput",
@@ -370,7 +371,8 @@
     },
     "0x00513060": {
       "name": "CombatUpdate",
-      "signature": "int __thiscall(double dt)"
+      "signature": "int __thiscall(double dt)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00513120": {
       "name": "RenderCheck",
@@ -382,8 +384,8 @@
     },
     "0x00513330": {
       "name": "GetRenderFlag",
-      "signature": "int __thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "signature": "int __thiscall(int)",
+      "source": "sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | sig_evidence_A(ret-N arity)"
     },
     "0x00513380": {
       "name": "ProcUseItem",
@@ -470,11 +472,6 @@
       "signature": "bool(int nTaskIndex, int nThreadIndex)",
       "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
-    "0x00515760": {
-      "name": "PassCmdViaThread",
-      "signature": "bool(int nDestThread, int nSrcThread)",
-      "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-    },
     "0x00515940": {
       "name": "CreateObj",
       "signature": "int __thiscall(int nVal)"
@@ -542,7 +539,8 @@
     },
     "0x004DC650": {
       "name": "FindFreeThread",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6, int nVal7, int nVal8, int nVal9)"
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6, int nVal7, int nVal8, int nVal9)",
+      "source": " | 签名缺参批量 2026-10-06：ret 40/4=10 参 vs 签名 9——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004F7050": {
       "name": "IsMagicSlotMsg",
@@ -618,7 +616,13 @@
     },
     "0x004DB750": {
       "name": "GetCmdData",
-      "signature": "char *__thiscall(int idx)"
+      "signature": "char *__thiscall(int idx)",
+      "source": " | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 1——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x00515760": {
+      "name": "PassCmdViaThread",
+      "signature": "bool __thiscall(CCBSystem *this, int nDestThread, int nSrcThread)",
+      "source": "翻转撤销 2026-09-29（终裁）：二进制序言 `mov edi,ecx`+`[edi+0x90]` 成员访问 ⇒ __thiscall 实例成员（PDB ?PassCmdViaThread@CCBSystem@@AAE_NHH@Z AAE=private thiscall 印证）。教训：归属否定证据须二进制级（ECX 序言判别），渲染 this-> 文本计数不可靠（接收者名可能非 this）"
     }
   }
 }

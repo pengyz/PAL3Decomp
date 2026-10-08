@@ -211,8 +211,8 @@
     },
     "292": {
       "name": "m_nTodo_124",
-      "type": "int",
-      "source": "reverted_auto_semantic:3x_access|reverted:pseudo_semantic"
+      "type": "gbVisNode **",
+      "source": "reverted_auto_semantic:3x_access|reverted:pseudo_semantic | 批7 2026-10-07：+16 成员访问+deref（*(gbVisNode**)）=指针语义——int 型证伪（C2100 6 件根因） | 批8 2026-10-07：型精化（gbVisNode** 用法证——(T**)x 铸形消）"
     },
     "296": {
       "name": "m_CamParams",
@@ -610,7 +610,8 @@
   "methods": {
     "0x004DFAA0": {
       "name": "InitRound",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004DFE00": {
       "name": "AddTextLabel",
@@ -619,15 +620,17 @@
     },
     "0x004DFED0": {
       "name": "EndTurnAndAdvance",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 20/4=5 参 vs 签名 0——补 5 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004FB9A0": {
       "name": "CCBStage",
       "signature": "int *__thiscall(int pCBSystem)"
     },
     "0x004FB9F0": {
-      "name": "~CCBStage",
-      "signature": "unsigned int __thiscall()"
+      "name": "_todo_004FB9F0",
+      "signature": "unsigned int __thiscall()",
+      "source": " | 挂账③ F 案改名 2026-10-06：~CCBStage→_scalar_dtor（deleting-dtor 形（void* 回值+标志参）非纯析构——~名+参=C2631；UIListBox 先例） | 挂账③ 返工重定谳 2026-10-06：非析构（体=初始化/Reset 语义）——真名未知留 _todo_"
     },
     "0x004FBE50": {
       "name": "Create",
@@ -650,7 +653,8 @@
     },
     "0x004FC6F0": {
       "name": "Render",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall __thiscall()",
+      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）"
     },
     "0x004FC700": {
       "name": "GetRoleIndex",
@@ -863,7 +867,8 @@
     },
     "0x0050E0D0": {
       "name": "ProcessCommand",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004FC0A0": {
       "name": "Update",
@@ -872,7 +877,8 @@
     },
     "0x004F4AA0": {
       "name": "GetRole",
-      "signature": "CCBStageRole *__thiscall(int index)"
+      "signature": "CCBStageRole *__thiscall(int index)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004FF560": {
       "name": "ProcTaskSlot",
@@ -1113,8 +1119,9 @@
       "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
     },
     "0x00508930": {
-      "name": "~CCBStageRole",
-      "signature": "void __thiscall(CCBStage *this, int nVal, int nVal2, int *p_DWORD)"
+      "name": "_todo_00508930",
+      "signature": "void __thiscall(CCBStage *this, int nVal, int nVal2, int *p_DWORD)",
+      "source": " | 析构名误挂改名 2026-09-29：~CCBStageRole→_todo_00508930（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）"
     },
     "0x005090F0": {
       "name": "Proceed",
@@ -1242,7 +1249,8 @@
     },
     "0x0050A500": {
       "name": "LoadAction",
-      "signature": "bool __thiscall(CCBStage *this, gbRay nActIndex)"
+      "signature": "bool __thiscall(CCBStage *this, gbRay nActIndex)",
+      "source": " | 签名缺参批量 2026-10-06：ret 24/4=6 参 vs 签名 2——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x0050A520": {
       "name": "GetStatus",
@@ -1526,10 +1534,6 @@
       "signature": "bool __cdecl(int nVal)",
       "static": true
     },
-    "0x00522030": {
-      "name": "CCBStageRole",
-      "signature": "CCBStage *__thiscall(CCBStage *this)"
-    },
     "0x005220E0": {
       "name": "ClearRoleState",
       "signature": "int *__thiscall(CCBStage *this)"
@@ -1572,6 +1576,16 @@
       "signature": "int __thiscall CIniFile::LoadFullConfig()",
       "note": "reattribute: asm 字节偏移逐个落在 CCBStage 的具名成员起始处（7/7 精确命中，工具 tools/attribution_offset_match.py）：0x1C4 m_fRotPitch(float)、0x1C8 m_fRotYaw(float)、0x1D0 m_fTimeAccum(float)、0x1EC m_ActionAngles(float)、0x1F0 m_fTurnDelay(float)、0x1F4 m_nActionTimer(int)、0x11E8 m_TurnBuffer(int)（original/PAL3.exe.asm 行 393091-393242）。次优候选 tagPAL3GameState 6/7、CameraCtrl 4/7，且都有一处落在空洞里。原类 CIniFile 只有 m_fp@0 与 m_bRead@4，上述成员一个都不存在 ⇒ 不可能是 CIniFile 的方法。注意 decomp 里的 `this + N` 不可当字节偏移（this 类型来自错误注解，会按错误元素尺寸缩放）：本函数 decomp 的 (float*)this+1147 = 字节 0x11EC，asm 已独立确认。",
       "name_evidence": "名字沿用原注解的 LoadFullConfig，不做臆造：该函数确为一个配置加载器（读 datascript/cbCam.ini，逐段 ReadSection/ReadLine 后写入 CCBStage 的转动/相机一族字段）。现有名字未被证据推翻，改名不是本次目的。"
+    },
+    "0x0051F0A0": {
+      "name": "OnCommand",
+      "signature": "int __thiscall(int nVal, int nVal2)",
+      "source": "vtable_gap_fill_v1(from CCBProtectWindow.json)"
+    },
+    "0x0051DD80": {
+      "name": "CCBProtectWindow_Destroy",
+      "signature": "void __thiscall(int)",
+      "source": "vtable_gap_fill_v1(IDB:CCBProtectWindow_Destroy) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
     }
   },
   "vtables": [

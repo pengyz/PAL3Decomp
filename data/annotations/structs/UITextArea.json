@@ -84,8 +84,9 @@
   "methods": {
     "0x00445920": {
       "name": "Destroy",
-      "signature": "int __thiscall()",
-      "ordinal": 3
+      "signature": "int __thiscall(int nVal1)",
+      "ordinal": 3,
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00444F60": {
       "name": "InitAfterClear",
@@ -97,8 +98,9 @@
     },
     "0x00445170": {
       "name": "ProcessInput",
-      "signature": "int __thiscall UITextArea::ProcessInput()",
-      "ordinal": 2
+      "signature": "int __thiscall UITextArea::ProcessInput(int nVal1)",
+      "ordinal": 2,
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00445500": {
       "name": "Render",
@@ -107,8 +109,9 @@
     },
     "0x00445720": {
       "name": "ShowWindow",
-      "signature": "void __thiscall()",
-      "ordinal": 0
+      "signature": "void __thiscall(int)",
+      "ordinal": 0,
+      "source": "vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
     },
     "0x004B7AF0": {
       "name": "ReleaseAllTextures",

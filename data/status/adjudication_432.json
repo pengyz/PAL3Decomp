@@ -1,0 +1,1475 @@
+{
+ "_meta": {
+  "purpose": "§〇前置交付件：432 矛盾裁决表（missing_funcs'需注解' vs skip_functions'跳过' 两造对撞逐条裁定）",
+  "criteria": "D 合成体名形 → A 序言指纹(thiscall/GCC 对齐) → C 调用图(游戏区<0x542000/库尾)",
+  "verdicts": {
+   "third_party_gcc": 25,
+   "undecided": 40,
+   "game_thiscall": 21,
+   "library": 22,
+   "game_suspect": 20
+  },
+  "verdicts_final": "game 54（thiscall 21+game_suspect 20+game_caller_edge 6+game_thisbody 7）/ 库三方 71（third_party_gcc 25+library 22+lib_fpu_kernel 13+lib_mmx_kernel 11）/ 薄体 3（undecided_thin）",
+  "method": "D 名形 → A 序言指纹 → C 出边 → C' 入边显示名 → A' 全函数体征(this 引用/fpu/sse 核)",
+  "coverage_note": "432=missing_funcs_report 清单总量；rows=128=其中与 skip_functions 对撞子集（逐条实证面）；余 304=不在 skip 集（28 已解禁+无对撞）",
+  "n1_fix": "undecided 40 旧口径已并入 game_caller_edge 6+体征裁定（33c45090 N1 指认的 40 vs 34 不一致已消）"
+ },
+ "rows": [
+  {
+   "va": "0x0054A36F",
+   "size": 1690,
+   "name": "double::_nearby_54a36f",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x0054AA09",
+   "size": 1424,
+   "name": "double::_nearby_54aa09",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 1,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x00548F41",
+   "size": 1395,
+   "name": "double::_nearby_548f41",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x0054F72B",
+   "size": 1332,
+   "name": "__m64::_static_54F72B",
+   "verdict": "lib_mmx_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 1,
+    "sse": 314
+   }
+  },
+  {
+   "va": "0x00430C30",
+   "size": 1029,
+   "name": "string::_auto_430c30",
+   "verdict": "game_thiscall",
+   "skip_reason": "std_library",
+   "game_calls": 4,
+   "lib_calls": 0,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x0055005A",
+   "size": 1016,
+   "name": "__m64::_static_55005A",
+   "verdict": "lib_mmx_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 3,
+    "sse": 232
+   }
+  },
+  {
+   "va": "0x00550452",
+   "size": 820,
+   "name": "__m64::_static_550452",
+   "verdict": "lib_mmx_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 0,
+    "sse": 216
+   }
+  },
+  {
+   "va": "0x0054FD78",
+   "size": 738,
+   "name": "__m64::_static_54FD78",
+   "verdict": "lib_mmx_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 1,
+    "sse": 184
+   }
+  },
+  {
+   "va": "0x005481F2",
+   "size": 679,
+   "name": "double::_static_5481F2",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x0054740C",
+   "size": 634,
+   "name": "__m64::_static_54740C",
+   "verdict": "library",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 1,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x004221D0",
+   "size": 608,
+   "name": "VFileSystem::_auto_4221d0",
+   "verdict": "library",
+   "skip_reason": "gbVFileSystem_external_class",
+   "game_calls": 2,
+   "lib_calls": 3,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x00549D36",
+   "size": 568,
+   "name": "double::_nearby_549d36",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 2,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x0054B79B",
+   "size": 568,
+   "name": "double::_nearby_54b79b",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 2,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x0054ED17",
+   "size": 562,
+   "name": "__m64::_static_54ED17",
+   "verdict": "lib_mmx_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 2,
+    "sse": 124
+   }
+  },
+  {
+   "va": "0x0054A13E",
+   "size": 561,
+   "name": "double::_nearby_54a13e",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 2,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x0054BBA3",
+   "size": 561,
+   "name": "double::_nearby_54bba3",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 2,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x0054D976",
+   "size": 540,
+   "name": "__m64::_static_54D976",
+   "verdict": "undecided_thin",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 1,
+    "fpu": 4,
+    "sse": 119
+   }
+  },
+  {
+   "va": "0x0054DB92",
+   "size": 533,
+   "name": "__m64::_static_54DB92",
+   "verdict": "undecided_thin",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 1,
+    "fpu": 4,
+    "sse": 118
+   }
+  },
+  {
+   "va": "0x00550EE7",
+   "size": 518,
+   "name": "__m64::_static_550EE7",
+   "verdict": "library",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 13,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x00549732",
+   "size": 515,
+   "name": "double::_nearby_549732",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 2,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x0054B197",
+   "size": 515,
+   "name": "double::_nearby_54b197",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 2,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x00551F2D",
+   "size": 489,
+   "name": "__m128::_static_551F2D",
+   "verdict": "lib_mmx_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 0,
+    "sse": 68
+   }
+  },
+  {
+   "va": "0x00549F6E",
+   "size": 464,
+   "name": "double::_nearby_549f6e",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 2,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x0054B9D3",
+   "size": 464,
+   "name": "double::_nearby_54b9d3",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 2,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x00550B93",
+   "size": 455,
+   "name": "__m64::_sub_550B93",
+   "verdict": "lib_mmx_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 1,
+    "sse": 112
+   }
+  },
+  {
+   "va": "0x0054F586",
+   "size": 421,
+   "name": "__m64::_sub_54F586",
+   "verdict": "library",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 3,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x00549935",
+   "size": 395,
+   "name": "double::_nearby_549935",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 2,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x0054B39A",
+   "size": 395,
+   "name": "double::_nearby_54b39a",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 2,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x0055110D",
+   "size": 381,
+   "name": "__m64::_static_55110D",
+   "verdict": "library",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 4,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x00551400",
+   "size": 379,
+   "name": "__m64::_static_551400",
+   "verdict": "library",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 1,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x005495B8",
+   "size": 378,
+   "name": "double::_nearby_5495b8",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x00547042",
+   "size": 376,
+   "name": "__m128::_static_547042",
+   "verdict": "game_thisbody",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 4,
+    "fpu": 0,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x005471BA",
+   "size": 366,
+   "name": "__m128::_static_5471BA",
+   "verdict": "game_thisbody",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 4,
+    "fpu": 0,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x00550D5F",
+   "size": 360,
+   "name": "__m64::_static_550D5F",
+   "verdict": "library",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 6,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x00549AC0",
+   "size": 358,
+   "name": "double::_nearby_549ac0",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 2,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x0054B525",
+   "size": 358,
+   "name": "double::_nearby_54b525",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 2,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x0054849A",
+   "size": 326,
+   "name": "double::_static_54849A",
+   "verdict": "lib_mmx_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 0,
+    "sse": 82
+   }
+  },
+  {
+   "va": "0x00552116",
+   "size": 326,
+   "name": "__m128i::_static_552116",
+   "verdict": "lib_mmx_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 0,
+    "sse": 69
+   }
+  },
+  {
+   "va": "0x00426EB0",
+   "size": 11026,
+   "name": "sub_426EB0",
+   "verdict": "game_suspect",
+   "skip_reason": "between_std_methods",
+   "game_calls": 200,
+   "lib_calls": 13,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x00506340",
+   "size": 4767,
+   "name": "sub_506340",
+   "verdict": "game_suspect",
+   "skip_reason": "between_std_methods",
+   "game_calls": 12,
+   "lib_calls": 0,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x0051DFD0",
+   "size": 4247,
+   "name": "sub_51DFD0",
+   "verdict": "game_suspect",
+   "skip_reason": "between_std_methods",
+   "game_calls": 84,
+   "lib_calls": 0,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x00496190",
+   "size": 3124,
+   "name": "sub_496190",
+   "verdict": "game_suspect",
+   "skip_reason": "between_std_methods",
+   "game_calls": 44,
+   "lib_calls": 2,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x0054E2DE",
+   "size": 2617,
+   "name": "sub_54E2DE",
+   "verdict": "library",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 10,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x004B8890",
+   "size": 2377,
+   "name": "sub_4B8890",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 3,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x0053D5D0",
+   "size": 1270,
+   "name": "sub_53D5D0",
+   "verdict": "game_thisbody",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 30,
+    "fpu": 141,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x00495CA0",
+   "size": 1256,
+   "name": "sub_495CA0",
+   "verdict": "game_suspect",
+   "skip_reason": "between_std_methods",
+   "game_calls": 20,
+   "lib_calls": 1,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x00494880",
+   "size": 1234,
+   "name": "sub_494880",
+   "verdict": "game_suspect",
+   "skip_reason": "between_std_methods",
+   "game_calls": 21,
+   "lib_calls": 0,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x00546667",
+   "size": 1034,
+   "name": "sub_546667",
+   "verdict": "library",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 6,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x0054628D",
+   "size": 986,
+   "name": "sub_54628D",
+   "verdict": "library",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 14,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x004BA800",
+   "size": 957,
+   "name": "sub_4BA800",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 7,
+   "lib_calls": 4,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x005435A4",
+   "size": 927,
+   "name": "sub_5435A4",
+   "verdict": "library",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 1,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x0041FA90",
+   "size": 914,
+   "name": "sub_41FA90",
+   "verdict": "game_suspect",
+   "skip_reason": "between_std_methods",
+   "game_calls": 16,
+   "lib_calls": 7,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x00546B0E",
+   "size": 817,
+   "name": "sub_546B0E",
+   "verdict": "library",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 6,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x00545B40",
+   "size": 794,
+   "name": "sub_545B40",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 11,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x004B7650",
+   "size": 787,
+   "name": "sub_4B7650",
+   "verdict": "library",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 1,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x004CAD10",
+   "size": 746,
+   "name": "sub_4CAD10",
+   "verdict": "game_caller_edge",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "in_edge_callers": "CEffCylinder::UpdateGeometry"
+  },
+  {
+   "va": "0x004CD500",
+   "size": 731,
+   "name": "sub_4CD500",
+   "verdict": "game_suspect",
+   "skip_reason": "between_std_methods",
+   "game_calls": 2,
+   "lib_calls": 2,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x00407790",
+   "size": 689,
+   "name": "sub_407790",
+   "verdict": "game_suspect",
+   "skip_reason": "crt_init",
+   "game_calls": 17,
+   "lib_calls": 0,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x00545E5A",
+   "size": 666,
+   "name": "sub_545E5A",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 11,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x004B9B80",
+   "size": 656,
+   "name": "sub_4B9B80",
+   "verdict": "library",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 1,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x004B8300",
+   "size": 624,
+   "name": "sub_4B8300",
+   "verdict": "game_suspect",
+   "skip_reason": "between_std_methods",
+   "game_calls": 5,
+   "lib_calls": 3,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x0041FE30",
+   "size": 613,
+   "name": "sub_41FE30",
+   "verdict": "library",
+   "skip_reason": "between_std_methods",
+   "game_calls": 3,
+   "lib_calls": 7,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x004B9920",
+   "size": 606,
+   "name": "sub_4B9920",
+   "verdict": "game_thisbody",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 3,
+    "fpu": 62,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x00516170",
+   "size": 596,
+   "name": "sub_516170",
+   "verdict": "game_caller_edge",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "in_edge_callers": "CCBProtectWindow dtor/CCBUI ctor"
+  },
+  {
+   "va": "0x004204B0",
+   "size": 573,
+   "name": "sub_4204B0",
+   "verdict": "library",
+   "skip_reason": "between_std_methods",
+   "game_calls": 1,
+   "lib_calls": 6,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x00543098",
+   "size": 566,
+   "name": "sub_543098",
+   "verdict": "lib_fpu_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 192,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x0054335B",
+   "size": 566,
+   "name": "sub_54335B",
+   "verdict": "lib_fpu_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 192,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x004B94A0",
+   "size": 565,
+   "name": "sub_4B94A0",
+   "verdict": "game_thisbody",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 4,
+    "fpu": 51,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x004B96E0",
+   "size": 565,
+   "name": "sub_4B96E0",
+   "verdict": "game_thisbody",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 4,
+    "fpu": 51,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x00401070",
+   "size": 552,
+   "name": "sub_401070",
+   "verdict": "game_suspect",
+   "skip_reason": "crt_init",
+   "game_calls": 11,
+   "lib_calls": 3,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x00545820",
+   "size": 529,
+   "name": "sub_545820",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 5,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x00408190",
+   "size": 499,
+   "name": "sub_408190",
+   "verdict": "game_thisbody",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 3,
+    "fpu": 65,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x0054547A",
+   "size": 480,
+   "name": "sub_54547A",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 4,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x00554722",
+   "size": 467,
+   "name": "sub_554722",
+   "verdict": "library",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 9,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x004B7D30",
+   "size": 459,
+   "name": "sub_4B7D30",
+   "verdict": "game_suspect",
+   "skip_reason": "between_std_methods",
+   "game_calls": 3,
+   "lib_calls": 1,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x004BACA0",
+   "size": 438,
+   "name": "sub_4BACA0",
+   "verdict": "game_suspect",
+   "skip_reason": "between_std_methods",
+   "game_calls": 4,
+   "lib_calls": 0,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x004C90C0",
+   "size": 407,
+   "name": "sub_4C90C0",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 2,
+   "lib_calls": 0,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x0054567A",
+   "size": 390,
+   "name": "sub_54567A",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 4,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x00434760",
+   "size": 379,
+   "name": "sub_434760",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 4,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x005452ED",
+   "size": 365,
+   "name": "sub_5452ED",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 3,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x004B7980",
+   "size": 363,
+   "name": "sub_4B7980",
+   "verdict": "library",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 2,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x004B9330",
+   "size": 359,
+   "name": "sub_4B9330",
+   "verdict": "library",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 1,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x004CCDA0",
+   "size": 335,
+   "name": "sub_4CCDA0",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x004BA270",
+   "size": 334,
+   "name": "sub_4BA270",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 2,
+   "lib_calls": 1,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x004019F0",
+   "size": 330,
+   "name": "sub_4019F0",
+   "verdict": "game_caller_edge",
+   "skip_reason": "crt_init",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "in_edge_callers": "UIScene::NotifyRender"
+  },
+  {
+   "va": "0x004B70C0",
+   "size": 329,
+   "name": "sub_4B70C0",
+   "verdict": "game_suspect",
+   "skip_reason": "between_std_methods",
+   "game_calls": 5,
+   "lib_calls": 5,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x00407EC0",
+   "size": 321,
+   "name": "sub_407EC0",
+   "verdict": "game_thiscall",
+   "skip_reason": "crt_init",
+   "game_calls": 1,
+   "lib_calls": 0,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x004D48B0",
+   "size": 313,
+   "name": "sub_4D48B0",
+   "verdict": "game_caller_edge",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "in_edge_callers": "CEffect::Create"
+  },
+  {
+   "va": "0x00544127",
+   "size": 308,
+   "name": "sub_544127",
+   "verdict": "lib_fpu_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 61,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x004BA3D0",
+   "size": 306,
+   "name": "sub_4BA3D0",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 3,
+   "lib_calls": 0,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x0054C8AE",
+   "size": 298,
+   "name": "sub_54C8AE",
+   "verdict": "lib_fpu_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 53,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x0041F8C0",
+   "size": 294,
+   "name": "sub_41F8C0",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 6,
+   "lib_calls": 0,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x004CD3D0",
+   "size": 292,
+   "name": "sub_4CD3D0",
+   "verdict": "game_caller_edge",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "in_edge_callers": "CEffMeteor::CreateTask"
+  },
+  {
+   "va": "0x0053D460",
+   "size": 277,
+   "name": "sub_53D460",
+   "verdict": "game_suspect",
+   "skip_reason": "between_std_methods",
+   "game_calls": 3,
+   "lib_calls": 1,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x004C5980",
+   "size": 276,
+   "name": "sub_4C5980",
+   "verdict": "game_suspect",
+   "skip_reason": "between_std_methods",
+   "game_calls": 2,
+   "lib_calls": 1,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x004B9FA0",
+   "size": 261,
+   "name": "sub_4B9FA0",
+   "verdict": "game_suspect",
+   "skip_reason": "between_std_methods",
+   "game_calls": 7,
+   "lib_calls": 0,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x00543C48",
+   "size": 258,
+   "name": "sub_543C48",
+   "verdict": "library",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 1,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x004B91E0",
+   "size": 257,
+   "name": "sub_4B91E0",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 4,
+   "lib_calls": 0,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x004B9EA0",
+   "size": 252,
+   "name": "sub_4B9EA0",
+   "verdict": "game_suspect",
+   "skip_reason": "between_std_methods",
+   "game_calls": 9,
+   "lib_calls": 2,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x004018B0",
+   "size": 250,
+   "name": "sub_4018B0",
+   "verdict": "game_suspect",
+   "skip_reason": "crt_init",
+   "game_calls": 2,
+   "lib_calls": 1,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x00552340",
+   "size": 245,
+   "name": "sub_552340",
+   "verdict": "lib_mmx_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 0,
+    "sse": 57
+   }
+  },
+  {
+   "va": "0x005163D0",
+   "size": 244,
+   "name": "sub_5163D0",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 14,
+   "lib_calls": 0,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x00542C93",
+   "size": 243,
+   "name": "sub_542C93",
+   "verdict": "lib_fpu_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 80,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x00542A71",
+   "size": 240,
+   "name": "sub_542A71",
+   "verdict": "lib_fpu_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 78,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x00552640",
+   "size": 233,
+   "name": "sub_552640",
+   "verdict": "lib_mmx_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 0,
+    "sse": 53
+   }
+  },
+  {
+   "va": "0x00543ED6",
+   "size": 230,
+   "name": "sub_543ED6",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 3,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x00544777",
+   "size": 227,
+   "name": "sub_544777",
+   "verdict": "lib_fpu_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 74,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x00543D5D",
+   "size": 226,
+   "name": "sub_543D5D",
+   "verdict": "lib_fpu_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 80,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x004BABC0",
+   "size": 224,
+   "name": "sub_4BABC0",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 2,
+   "lib_calls": 2,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x004B80C0",
+   "size": 223,
+   "name": "sub_4B80C0",
+   "verdict": "undecided_thin",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 2,
+    "fpu": 3,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x004CB3A0",
+   "size": 223,
+   "name": "sub_4CB3A0",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x0054520E",
+   "size": 223,
+   "name": "sub_54520E",
+   "verdict": "library",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 1,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x004BA150",
+   "size": 221,
+   "name": "sub_4BA150",
+   "verdict": "game_suspect",
+   "skip_reason": "between_std_methods",
+   "game_calls": 6,
+   "lib_calls": 0,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x005460F4",
+   "size": 218,
+   "name": "sub_5460F4",
+   "verdict": "library",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 1,
+   "prologue": "cdecl/other"
+  },
+  {
+   "va": "0x0054430B",
+   "size": 217,
+   "name": "sub_54430B",
+   "verdict": "lib_fpu_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 55,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x00543FE7",
+   "size": 215,
+   "name": "sub_543FE7",
+   "verdict": "third_party_gcc",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 3,
+   "prologue": "gcc_aligned"
+  },
+  {
+   "va": "0x00408010",
+   "size": 214,
+   "name": "sub_408010",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 1,
+   "lib_calls": 0,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x004C55F0",
+   "size": 213,
+   "name": "sub_4C55F0",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x004C9320",
+   "size": 213,
+   "name": "sub_4C9320",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x004CB130",
+   "size": 213,
+   "name": "sub_4CB130",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x004D3010",
+   "size": 213,
+   "name": "sub_4D3010",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x004D36C0",
+   "size": 213,
+   "name": "sub_4D36C0",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "thiscall"
+  },
+  {
+   "va": "0x0054263B",
+   "size": 209,
+   "name": "sub_54263B",
+   "verdict": "lib_fpu_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 67,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x00542B98",
+   "size": 209,
+   "name": "sub_542B98",
+   "verdict": "lib_fpu_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 72,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x004CE8A0",
+   "size": 206,
+   "name": "sub_4CE8A0",
+   "verdict": "game_caller_edge",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "in_edge_callers": "CCBStageCam::UpdateStageCamera"
+  },
+  {
+   "va": "0x00542FBB",
+   "size": 202,
+   "name": "sub_542FBB",
+   "verdict": "lib_fpu_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 75,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x005478A7",
+   "size": 202,
+   "name": "sub_5478A7",
+   "verdict": "lib_fpu_kernel",
+   "skip_reason": "crt_runtime",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "cdecl/other",
+   "body_fingerprint": {
+    "this_refs": 0,
+    "fpu": 29,
+    "sse": 0
+   }
+  },
+  {
+   "va": "0x004CE970",
+   "size": 200,
+   "name": "sub_4CE970",
+   "verdict": "game_thiscall",
+   "skip_reason": "between_std_methods",
+   "game_calls": 0,
+   "lib_calls": 0,
+   "prologue": "thiscall"
+  }
+ ]
+}

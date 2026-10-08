@@ -43,8 +43,9 @@
       "signature": "void __thiscall(CCBControlWindow **a2)"
     },
     "0x0051D070": {
-      "name": "~CCBLineupWindow",
-      "signature": "void __thiscall(CCBItemWindow **a2)"
+      "name": "_todo_0051D070",
+      "signature": "void __thiscall(CCBItemWindow **a2)",
+      "source": " | 析构名误挂改名 2026-09-29：~CCBLineupWindow→_todo_0051D070（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）"
     },
     "0x0051D120": {
       "name": "Reset",
@@ -100,6 +101,16 @@
     "0x0051D6D0": {
       "name": "RefreshFacePos",
       "signature": "CCBProtectWindow *__thiscall()"
+    },
+    "0x0051B570": {
+      "name": "HandleInput",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
+      "source": "vtable_gap_fill_v1(from CCBItemWindow.json)"
+    },
+    "0x0043DDF0": {
+      "name": "CCBControlWindow::Render",
+      "signature": "virtual void __thiscall(CCBMagicWindow *this)",
+      "source": "vtable_decl_only_fill(copied from CCBControlWindow.json)"
     }
   },
   "vtables": [

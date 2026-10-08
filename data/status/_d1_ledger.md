@@ -3597,3 +3597,530 @@ matched 270/325 · **L1 37**（会话初 265/319 · L1 35 ⇒ **+2**）
 5. 继承树一致性验证（CCBUIPanel base_class 修正）
 ### 架构验证
 vtable 映射机制从设计到落地完全正确 ✓
+
+## 2026-09-25 vtable 批次 A+S —— 缺口 302→60，全指标大幅推进（S2 84 · L1 51）
+### 背景
+- 同步远端 327 提交（vtable 专项 P1→R12 里程碑 ca3773606）；本地 IDB 与远端带外 IDB 状态分叉
+  ⇒ plain init 后 fresh 基线 S2=81/203，CCBStageShadow/C3DSpark 回断（RenderGeomQuad 缺参簇）
+### 批次 A：methods 表跨类填充（176 条 × 53 类）
+- 门禁 302 个未解析槽 = 165 个唯一地址；其中 122 个已在其他类 methods 表有名字（类族共享）
+- 全部复制入缺口类的 methods 表（名+签名+source=vtable_gap_fill_v1）；
+  同类内「短名+参数」真冲突按 `<Name>_XXXX` 后缀消歧（14 处）；filebuf（CRT 静态产物）跳过
+- 发射器行为已核实：qualified 签名被 parse_signature 丢弃名字段；`_scalar_dtor*` 条目跳过由占位兜底
+### 批次 S：`_GB_IMPORT_SIGS` 补 5 条 SDK 导入签名
+- 根因：gbengine 导入只有 IAT mangled 名、无类型 ⇒ Hex-Rays 丢参/丢解引用；
+  远端会话的 IDB 带外 SetType 掩盖了此缺口，plain init 后即回断
+- 修复走既有机制（apply 遍历导入按 mangled 名 SetType），签名权威 = include/gbengine_api.h：
+  RenderGeomQuad(4参) · gbMatrix4::operator= · gbGeomNode::LoadFromFile/GetTotalOBBox · gbVFileSystem::Read
+### 成效（vs 远端里程碑基线 ca3773606）
+| 指标 | 前 | 后 |
+|---|---|---|
+| S2 | 79/204 | **84/205** |
+| L1 | 44 | **51** |
+| matched | 304/362 | **329/393** |
+| 总错误 | 1996 | **1895** |
+| vtable 门禁 | 20 pass/72 fail（resolved 539/841） | **64 pass/28 fail（resolved 781/841，own_unresolved 60）** |
+### 新增错误归因（全部在红单元内，净 −101）
+- LIGHT_SPOT C2065 ×2：fresh IDB 的 PDB 枚举类型被 Hex-Rays 恢复为符号名，生成单元缺声明 ⇒ 待 codegen 枚举注入规则
+- ReplaceTexture C2661 ×3：已知 stage5 静态形式红灯族换址浮现
+- CCBSkillWindow C2660 ×6：UIScene::GetChildCount/GetChildAt 归属误标家族（MISATTRIBUTED 轮待办）
+- PalScript/ScriptVM/MiniGame3/RenderTarget2 零星：填充签名与调用点冲突，红单元内非阻塞
+### 棘轮重对（理由已记录）
+- L1 match --rebaseline（总体扩大 304/362→329/393）· regression_detector --save-baseline ·
+  compile_baseline（probe 刷新）· vtable_baseline（302→60）
+### 残余
+- 60 个 own_unresolved 槽（44 唯一地址）需 IDB 反编译命名（批次 B，MCP 路线已备）
+- 26 个失败类清单见 vtable_baseline.json；gbLightObj::Init 枚举注入为 codegen 小项
+
+## 2026-09-25 vtable 批次 B —— 门禁逼近闭合：resolved 835/841，未解析仅剩 6（88 过/4 败）
+### 批次 B：IDB 证据填充（52 条，MCP 路线）
+- 剩余缺口 44 唯一地址 → GUI ida.exe + start_mcp_server.py + tools/mcp_query.py 批量取证
+- PDB 修饰名即权威证据：`?CreateTask@CEffSParticle@@QAEPADD@Z` → CreateTask(char*) 返回 char*；
+  gbVisNode 三虚方法（RenderShadowVolume/Reset/Update）用 include/gbengine/gbVisNode.h 权威签名
+- dtor 族（??_G/_sdtor/scalar_deleting_dtor）统一命名 `_scalar_dtor_XXXX`（发射器跳过、占位兜底）
+- 同类名冲突 2 处按 `_XXXX` 消歧
+### 回退与修复（本轮引入，已自纠）
+- CEffShock 3 条回退：dtor 槽命名触发发射器 virtual ~Cls() 注入 × stage4 交互 ⇒ `this = v23` C2106，绿转红
+- gbLightObj GetCGEntry 回退：SDK 单源类（gbSceneGraph.h）注解加 methods ⇒ 生成调用无声明（C2039/C2673）
+  ⇒ **教训：SDK 单源类不进注解 methods 表，槽位证据走 SDK 头声明**
+### 发现的机制 bug（已修，待下轮 init 复现验证）
+- `_GB_IMPORT_SIGS` 的 SetType 在 fresh IDB 导入槽上静默失败（槽非函数）⇒ 补 `ida_funcs.add_func`
+  + 强制打印 `set/try` 计数
+- init 时序 flake：init 后（PDB 写入退化槽型）→ F73 判 `corrected=0`（空型/非函数槽被跳过）→
+  Hex-Rays 丢参；任何一次**后置 apply** 即修复（本态 = 第 3 次 apply 后 export）
+  ⇒ 下轮：init 的 4b fixpoint 应置于 fix_vtable_types 后再补一轮，或 F73 对空型槽直接按修饰名写全签名
+### 成效（vs 批次 A+S 后基线 79eb382fe）
+| 指标 | 前 | 后 |
+|---|---|---|
+| S2 | 84/205 | **85/206** |
+| L1 | 51（matched 329/393） | **51（matched 334/398）** |
+| 总错误 | 1895 | **1893** |
+| vtable 门禁 | 64 pass/28 fail（resolved 781） | **88 pass/4 fail（resolved 835/841，unresolved 6）** |
+### 残余 6 槽 / 4 类
+- CEffect · MainPropUI · filebuf（CRT 产物，建议 SKIP）· gbLightObj（SDK 单源，改走 SDK 头声明路线）
+
+## 2026-09-25 flake 收口——init 一次成型（拆解实证 + 双修复）
+### 拆解实证（探针逐哨兵槽 0x56A230/26C/30C/540/584，五步重放 S0→S6）
+| 阶段 | 槽态 |
+|---|---|
+| S0 raw 复制 | 全空·非函数·mangled 名（typed 6/233） |
+| S3 +master_pipeline(PDB) | 无变化（PDB 不写槽） |
+| S4a/S4b +apply×2 | 无变化（旧 SetType 写**数据槽**失败：21 条只成 1） |
+| S5 +fix_vtable_types | 无变化（不碰导入槽） |
+| S6 +**export** | **typed 7→19：Hex-Rays 用调用点推断的退化原型回写空槽**——Read=`void __thiscall(__hidden this)`、RenderGeomQuad=`__stdcall(...)` 丢 this、operator==`int(_DWORD,_DWORD)` |
+| 后置 apply（healing） | F73 见到退化型才修 ⇒ **永远晚一拍**，plain init 永远一次不成型 |
+### 双修复（apply_annotations.py）
+1. **签名块 SetType→函数指针 set_tinfo**：`parse_decl→create_ptr→ida_nalt.set_tinfo(ea, ptr)`
+   （IAT 槽是数据地址，裸函数类型 SetType 被拒；与 F73 同款）；print→log() 进日志
+2. **F73b 空槽不跳过**：`n_cur is None` 分支改为按修饰名解析直接写全签名
+   （修饰名含完整签名零猜测；消灭"空→export 回写退化→下轮才修"的一拍滞后）
+### 验证
+- V1（fresh init 第一次 apply）：**233/233 全 typed**，哨兵全为正确 `void (__thiscall *)(Cls *, ...)`
+- V3（apply×2+fix_vtable+export 后）：**类型不再被回写**（已正确则 Hex-Rays 保持）
+- 一轮 codegen：**S2 84/206**（不再需要补救 apply）
+### 诚实红对账（vs 补救态 85/1893——那态是"半定型"路标而非终点）
+- S2 −1：CEffQuad 翻红（Rotate 正确 `gbVec3D&` 型 ⇒ Hex-Rays 渲染 `*stru_17A7BB0` ⇒ C2100——
+  **stru_ 全局解引用作引用实参的重写缺口**，新账）
+- 错误 +133：C2410 洪水（ScriptVM 74/RoleSystem 59/UIScene 区）= 封顶重债区渲染位移，
+  解析器健全性已抽查（51 可疑全为 ctor/dtor/操作符的 const 引用渲染误报，语义全对）
+- matched −7（327/391）· L1 51 持平
+### 新 honest-red 工作清单（下轮）
+① stru_/data 全局解引用作引用实参的 stage4/5 重写 ② 效果族显式 this 静态形式
+（EnableShadow/GetAABBox C2660 = cast 形式缺失族）③ 封顶区真签名矛盾逐站点
+（sub_4B43E0 ×9 等——现在每槽都有真型，C2660 可机械 join）
+
+## 2026-09-25 vtable 统一修复轮——工具链判定 + 批次 V（批量修复·单轮验证）
+### 工具链支撑性判定（结论：验证与修复全链支撑，缺口已补）
+- 新建 `tools/ida/ret_n_batch_dump.py`：idat 批量 dump 函数尾 retn（指令级，424/463 槽地址有证据）
+- 新建 `tools/vtable_slot_audit.py`：841 槽逐槽「声明签名 × ret-N」核对，按地址分组提案
+  （继承/decl-only/泛型/dtor 占位分层；同地址跨类一致性检查）
+- 门禁扩展（vtable_mapper）：CRT_GATE_SKIP（filebuf）+ SDK 单源类路由（gbLightObj 等
+  include/gbengine 声明类，槽位覆盖归 SDK 头，sdk_route 计数）
+- 血泪：① insn_t 操作数在 IDA9 是 `.ops[i]` 非 `.Operands`；② idat 内 print 不进捕获，
+  自留日志文件是唯一可靠通道；③ 审计器 parser 短路 return 跳过 this 剥离 ⇒ arity=字符串长度
+  （分层数字曾虚高，修复后 named/OK 546）
+### 批次 V（一轮验证）
+- A. 泛型签名升级：35 条（25 地址，ret-N 唯一证据，int 占位符惯例，全库同地址一致）
+- C. decl-only 填充：0x0043DDF0 → CCBLineupWindow/PropUI/SaleUI（复制既有条目）
+- B. MainPropUI slot6 from 重指向 _misattrib_UIBigMap → UIBigMap（OnMessage 条目已在）
+- 挂起：CEffect[1]←CEffShock 三槽（dtor 注入×stage4 `this=v23` 渲染交互，归属轮前置）
+### 签名验证总账（841 槽）
+- **546 named/OK（65%，ret-N 证据支持）** · 119 named/ARITY-MISMATCH（= 已立案 B-SLOTMISMATCH
+  族在槽粒度重现，sret/varargs 噪声待甄别，属 C2660 常设役）· 40 证据缺失 · 16 签名不可解析
+  （空签名/cdecl 形）· 77 dtor 占位（by-design）· 3 decl-only→已清 · 3 未解析（挂起项）
+### 一轮验证结果
+- S2 84/206 持平 · L1 51→**52**（+1，总体不变）· 净错误 C2660 **−14**（UITitle_JDHY 17→8
+  = 签名升级让调用点对齐的直接收益；UIBigMap −6；ScreenEffectMgr 5→3）
+- 裁决：三组新增（PalScript +10 / ScreenEffectMgr +1 / CCBUI +1）均为类型传播涟漪在
+  已有红单元内的正常暴露，单元净错误皆降 ⇒ 接受 + 记账，不回退
+### vtable 门禁终态
+**90 pass / 1 fail**（仅 CEffect[1] 三槽挂起）· unresolved 6→**3** · sdk_route 18 · filebuf 出闸
+
+## 2026-09-25 vtable 批次 W——门禁 91/91 全绿 · unresolved=0 · S2 87 · L1 53
+### 不匹配分族（修正审计器 parser 后的真相）
+- delta≥1（证据要求更多参数）= 可机械填充族；delta=-1（132 个）= this 别名（`Block`）
+  未剥的审计器分类问题（签名本身没错，归 parser 精化）；delta≤-2（8 个）= 真冲突
+  （retn 0 vs 渲染 2 参），归 B-SLOTMISMATCH 常设役
+### 批次 W 落地
+- W1：35 条填充 / 41 地址（delta≥1、ret-N 唯一证据；16 个同地址异 arity 冲突地址按
+  一致性纪律跳过并记账）
+- W2：CEffect[1]←CEffShock 三槽重落地（0x4D3930 dtor 占位 + 0x4D3DC0/0x4D4110 sub_ 成员）
+- stage5 **F80** `this = expr` 渲染守卫（Hex-Rays 寄存器复用渲染 ⇒ MSVC6 C2106；
+  忠实重写 = 函数体 this→_this 换名 + 首行 `Cls *_this = this;`）
+- stage5 **F81/F81b** 引用实参裁决：`_GB_REF_PARAM_TYPES`（SDK 头权威的参数类型表）
+  + Case 2b（`*无型全局` → `*(T *)&全局`）+ **Case 3 精化**（已定型全局按
+  `store.global_types` 裁决：对象型 ⇒ 裸名绑引用、指针槽 ⇒ 补 `*`）
+### 排障记录（F81 首发未生效的定位）
+- `_fix_single_ref_arg` 的 `*全局` 其实是 **stage3 剥 `&` + Case 3 补 `*` 的合成产物**
+  （raw decomp 是 `&stru_`）——Case 2b 永远看不到 `*全局`；真判据在 Case 3 的证据分派
+- 测试串笔误（`Case2b` vs `Case 2b`）曾误判"模块未更新"——字符串验证要用文件 grep
+### 一轮验证（全绿：codegen/probe/match 三段 rc=0 零回归）
+| 指标 | 批次 V 后 | 批次 W 后 |
+|---|---|---|
+| S2 | 84/206 | **87/206**（CEffShock+CEffQuad 复绿） |
+| L1 | 52（matched 327/391） | **53**（matched 338/404） |
+| 总错误 | 2018 | **1975** |
+| C2106（this 赋值族） | — | **−27**（F80 守卫） |
+| vtable 门禁 | 90 过/1 败 | **91 过/0 败 · unresolved 0** |
+### 残余台账
+- delta≤-2 真冲突 8 槽 + delta=-1 别名精化 + B-SLOTMISMATCH 273 → C2660 常设役
+- 119 不匹配中的 sret/varargs 甄别待 pack v4
+
+## 2026-09-25 F82 __asm 成员引用烘焙——C2410 清零，双封顶单元解封
+### 机理
+- Hex-Rays 对浮点指令序列渲染原生 `__asm { fst [esp+…+var_D0.x] }`（13 个 decomp 文件）；
+  asm 符号（var_D0）无 C 声明 ⇒ MSVC6 内联汇编解析 `.x` 成员名歧义 ⇒ C2410（234 条，
+  集中 ScriptVM/UIScene/RoleSystem 三个封顶单元）
+### 修复（stage5 F82）
+- `__asm {}` 块内 `符号.x/.y/.z/.w` → 数字偏移（gbVec3D/四元数 x/y/z/w=0/4/8/12，两类布局一致）；
+  带名成员（m_xxx）偏移不定 ⇒ 不动（诚实账面）；块外 C 代码不受影响
+### 一轮验证
+- **C2410 234→0**；UIScene 102(封顶)→**19 解封**、ScriptVM 101→73 解封、RoleSystem 59→?
+- ScriptVM 新增 46 条（C2440 20/C2106 9/C2109 8/C2100 5…）= **揭盖效应**：封顶解除后编译器
+  前进暴露更深债务层（L333/369+），非修复错误（F82 只动 asm 文本）⇒ 裁决接受
+- S2 87 持平 · L1 53 持平 · 总错误 1975→**1863**
+### L1 近匹配侦察（搭车项结论）
+- n_diff=1 三例（GetUIElements、FindInOpen/FindInClosed）逐字节定位：`mov eax,[ecx+0x3C]`
+  (原始) vs `[eax+0x3C]` (我们) —— Hex-Rays 寄存器复用渲染差（原始重读 this，我们复用 eax）
+  ⇒ **语义恢复级工作**，非机械收割；size-11 ctor 族（~10 个同形态）同理待形态归因
+- 方法论沉淀：COFF obj 字节提取（sym_ptr/str_ptr/aux=rec[17]/节表紧跟文件头无指针）已跑通，
+  逐函数 obj-vs-binary 字节 diff 可复用
+
+## 2026-09-25 F83 寄存器伪名变量提升——F6 族清偿路线落地
+### 定性（用户问询驱动的方法论定谳：伪名能否在 IDA 层修复？）
+- 伪名 = Hex-Rays 微代码**寄存器叶子**，产生于 asm 写入的寄存器穿过 C 边界
+  （本例 `fnstsw ax` FPU 状态字 + `BYTE1(_EAX)&0x41` 位测试 = 原始 PAL3 的
+  MSVC6 浮点惯用法，二进制真相的一部分）
+- 三层判定：lvar/属性标注**不可达**（伪名非 lvar）；IDB 指令手术能消除但违反
+  字节保真铁律；微代码插件终态与渲染层提升相同且需 C++ SDK 工程 ⇒ **F83 渲染层
+  提升是正确层位**，即 lvar 资产化原则在伪名上的程序化应用
+### 实现（stage5 F83，与 F80 同型）
+- 体含 `_EXX = expr` 赋值的伪名全部换名 `reg_XX` + 首行注入
+  `unsigned long reg_XX = 0;`（初值 0 保持赋值前读 0 的旧语义）；
+  纯读未赋值的伪名不动（仍走宏常量）；指针值 RHS 的 cast 由 C2440 pass 兜底
+### 一轮验证
+- C2106 **−25**（`0 = expr` 非法赋值族清偿）· 总错误 1863→**1846** · 零新失败
+- +6 小增量（C2664/C2440/C2446/C2040 各 +2-4）= reg_XX 值流入后续表达式的新
+  摩擦点，正常暴露级
+### 伪名赋值面（F83 前普查）
+- 67 处/8 单元（ScriptVM 39 · RoleSystem 16 · UIScene 7）· 伪名种：
+  _EAX 20/_EDI 25/_EBP 7/_EBX 6/_ESI 4/_ECX 3/_EDX 2
+
+## 2026-09-25 批次 X——A级签名修正 7 条 · L1 53→60 · matched +25
+### 流程
+- 重跑 sig_evidence 证据包（当前 163 条 C2660）：A 10 / B-SLOTMISMATCH 17 / C-NOADDR 34
+- 10 条 A 中 7 条证据方向一致落地（ResortNode +1、SetParam 2→3、GetRenderFlag +1、
+  UpdateAnim +1、InitStruct fastcall→thiscall、ExecuteOpcode +1、DestroyContent
+  fastcall→thiscall）；3 条跳过立账（C3DSpark::Render cdecl/sret 歧义、Logger::Write
+  cdecl 变参 ret-N 不适用、GetMouseRay sret 双载）
+### 一轮验证
+- C2660 **−10**（调用点清偿）· 总错误 1846→**1838** · S2 87 持平
+- **L1 53→60（+7）· matched 338/404→363/430** —— 签名修正使 Hex-Rays 渲染更准，
+  字节匹配面显著扩大（签名修正→渲染准→L1 涨的杠杆第三次得到验证）
+- 新失败 4 条 = 已知静态形式渲染族显形（SetAsCurrent ×3/GetOBBox ×1：
+  `Cls::M(obj,x)` 缺 cast 包裹，F73b 定型后渲染更准使其可见）+ Comp_DonateUI j_NPC
+  涟漪 2 条 ⇒ 裁决：正常暴露，接受，归静态形式/常设役
+### 事故记录
+- 批次 X 首轮 apply 秒败：MCP GUI IDA 未关锁住 IDB（流程：MCP 取证完毕必须关闭再跑循环）
+- C2664 普查（搭车）：头名 = 函数指针槽类型 `void(ulong,ulong)` ×24 = 残账 F3
+  desc 表重定型族；IsColOBB ×6 = F81 邻族
+
+## 2026-09-25 F84 raw vtable 间接调用实参 cast——C2664 -41·错误 1798
+### 定性（用户质疑驱动："标注错误还是渲染错误？"）
+- 24 处 C2664 头名族 = raw vtable 间接调用 `(**(void(***)(_DWORD,_DWORD))X)(obj,0)`
+- **标注经反汇编证实正确**：UIWnd slot0=0x445E70 函数体 = 带去重缓存的消息发送
+  （`cmp` 缓存 + `push 0x3E8` 消息码经槽 6），ShowWindow 命名语义成立，非析构
+- 渲染 = 字节忠实的间接调用（`call [edx]`），限定直呼会压制虚机制破坏字节
+  ⇒ **cast 是类型系统合规，非洗白**；本检查同时否决了"析构调用"改写方案
+  （(obj,0) 曾被误读为 deleting-dtor flag=0——避免一次真洗白）
+### 实现（stage5 F84）
+- 两形态：带型 `(**(RET (***)(P1,P2))X)(args)`（参数表在渲染文本）与
+  裸形态 `(**v)(args)`（参数表在局部声明，经 `_build_var_types` fnptr 表取）
+- 逐实参按声明参数类型逐字 cast（位保留）；实参/参数数不匹配 ⇒ 原样跳过
+### 事故与排障
+- **v2 拼接事故**：以 `[F84 注释 .. _split_toplevel return]` 为替换区间 ⇒ 吞掉区间内
+  17 个函数（代数分解/asm 常量/数据标签/十六进制歧义/静态方法/ShowWindow 限定）
+  ⇒ 从 HEAD 精确拼接恢复（HEAD 的 F83 尾 return 之后到 _build_var_types 之前），
+  1461 行全量找回；教训：**大块区间替换前必须先确认区间内没有第三方定义**
+- F84 首版解析器把包装组当参数组（组1=包装 `(**(TYPE)CAST)`，组2=实参——结构只有
+  两组不是三组）；裸形态 `(**v)` 不含 `(**(` 标记 ⇒ 标记放宽为 `(**`
+### 一轮验证
+- **C2664 198→157（-41）** · 总错误 1838→**1798** · S2 87 持平 · L1 60 持平 · 零新失败
+- +1 C2440（PAL3.cpp 红单元涟漪）接受
+
+## 2026-09-25 工具落地：fdiff 检视器 + lvar 注解层（方向 2 基建）
+### 背景（用户定调）
+- 双方向关系：错误清偿给红单元开门（编译不过无产物），字节对照给开门单元验收
+  （不报错≠正确）⇒ 类维度字节对照闭环：选类→编译对照→diff 检视→修注解→复验
+### 工具 1：tools/fdiff.py（函数级字节 diff 检视器）
+- obj 产物（compare_pal3 稳定哈希名）经 gbengine_compare.parse_coff_obj 提取
+  （code 节+EXTERNAL+function 过滤，与 n_diff 计数同源）× 二进制 .text 切片
+- capstone 双侧反汇编并排 + 差异行标注 + reloc `[r]` 标注 + detail 歧义列出
+- 试点首杀：AStarPathFinder FindInOpen 1 字节差异 = 原始 for-update 写
+  `i = OPEN->next`（经 ecx），Hex-Rays 规范化成 `i = i->next`（经 eax）——
+  语义恒等的表达式形态差，注解不可修（校准了预期：L1 尾差需要表达式形态恢复）
+### 工具 2：lvar 注解层（用户点名的"变量类型和命名"基建）
+- schema：data/annotations/lvars.json — 函数 VA → [{stkoff, name, type}]
+  （栈变量按 stkoff 键；寄存器 lvar 的 vdloc API 无 reg 访问器，v1 不支持，记台账）
+- export 钩子：渲染前按注解设置 cfunc.lvars 的 name/set_lvar_type；
+  注解应用置于 restore_user_lvar_settings **之后**（注解优先级最高）
+- 机制验证：PushOpen pNode→pProbeNode 探针经全链 export 后渲染生效 ✓（探针已还原）
+### 事故两起（均已修复并记台账）
+1. lvars.json 首版含 JSON 不支持的 `+` 拼接 ⇒ 加载静默失败（fail-soft 路径吞错）
+   ⇒ 教训：新注解文件落地必须先过 json.load 再进管线
+2. 钩子 v1 的 `vdloc_t.reg()` 触发异常未包裹 ⇒ **FindInOpen 整函数从导出消失**
+   （重演"循环必须断言导出计数"的旧训）⇒ 修复：per-spec 异常隔离 + regidx 探明
+### 子 agent 对抗复核（1.47M tokens）
+- fdiff 初版判 **FAIL**（符号子串+最长匹配在 12 对同单元前缀碰撞上静默选错函数、
+  字节提取与 n_diff 不同源）⇒ 重写：parse_coff_obj 复用 + detail 行精确 mangled
+  符号键查 + 歧义列出 + 边界检查；全部复核项修复并通过清单核对
+- export 钩子 PASS-WITH-RISKS ⇒ 修复：注解块移到 restore 之后（否则 IDB 交互态
+  按索引覆盖 name 注解）、lvars.json 顶层非 dict 校验（防全量导出清零）、
+  类型解析失败/set 拒绝日志、每函数无条件 applied 计数
+- lvars.json PASS（无校验冲突；check_annotations 纳入为后续项）
+### 账面
+- S2 87 / L1 60 / 错误 1798 持平（本轮为基建轮，无错误清偿目标）
+- L1 试点校准结论：n_diff=1 差异 = 表达式形态族（渲染层），字节完美匹配的
+  尾差需要源级表达式形态恢复，非注解可尽修
+
+## 2026-09-25 长线战役开账：类维度字节对照·第一批（Role +4 布局根因链）
+### 长线目标（用户设定）
+按类逐函数二进制一致 + 语义可读。五维收获记账：函数归属/签名/变量类型/常量偏移/命名。
+批次纪律：一批修复一次完整管线；错误披露→继续修；每类一张五维账。
+### 第一批普查（21 个 n_diff≤8 近匹配函数）
+- size-11/5 族 9 个：三类根因——动态初始化器 stub 被映射成 ctor（×4，PDB 漂移）、
+  JMP thunk（×1 ObjectCamera，真身在跳转目标）、真函数体实差（×4）
+- 散件 12 个：fdiff 逐个定位
+### 核心发现：Role +4 布局错误链（字节对照独有的检出）
+- Scene::_todo_421870 访问成员 +0x78720 vs 原始 +0x78658（差 0xC8=200）
+- 链条：Scene 内嵌 `Role m_roles[50]`，MSVC sizeof(Role)=8708 vs 注解 8704（+4/元素
+  ×50=+200）⇒ Role 自有成员整体 +4 ⇒ 全部从 m_bInView（注解 0x90，实际 0x94）起
+- 二分定谳：**Role 的 11 个 virtual 成员声明触发 MSVC6 在基类后插入 4 字节
+  vptr**（删 virtual 后 m_cmdqueue 回 0x60、sizeof=8704 实测）
+  ⇒ 推论：原始源码中这些虚函数是**基类声明的覆写**（Object 链 vtable），
+  我们发射头文件时把它们归属到了 Role ⇒ **虚函数声明归属错误**（归属维度）
+- 另证：三基类（Object 56/PSW 8/Glow 32）内部布局逐成员全对，无虚继承
+### 其余裁定
+- FindInOpen/Closed ±1 字节 = 表达式形态族（已定性，立账）
+- GetUIElements fcomp dword/qword = float/double 类型宽（lvar/成员类型可修，下批）
+- IRender fld qword vs mov ecx/edx 双字 = 同族（全局 double 类型，下批）
+### 工具与方法沉淀
+- tools/fdiff.py 检视器（parse_coff_obj 同源提取 + capstone 并排 + reloc/截断标注）
+  ——本批全部发现由它直接产出
+- "MSVC 真实布局读取器"方法：探针 TU（每成员一函数返回偏移）+ dumpbin 解析
+  （标签 `_off_name@`、`mov eax, IMM`）——可脚本化推广到任意类
+### 下一批（立账）
+1. 虚函数声明归属裁定：用 vtable_mapper/二进制 vtable 槽位归属，把 Role 的
+   slot_3..slot_10/_sdtor_22 等归属到正确声明层（Object 链）⇒ 消 +4
+2. Scene.cpp 其余 fdiff（+0xC8 修后应消失）
+3. GetUIElements/IRender 的 float/double 类型修
+
+## 2026-09-25 长线战役批次1：Scene +200 根因链闭合——Object 非多态发射（假设已钉，MCP 考古待下批）
+### 案例（fdiff 检出 → S2 从未报警的隐藏错误）
+- Scene::_todo_421870 访问成员 +0x78720 vs 原始 +0x78658（Δ+0xC8=200，读写各一处）
+- 注解与二进制一致（m_nTodo_78658@0x78658 ✓）⇒ 错在**发射布局**：MSVC 把 Scene 尾部
+  整体 +200 ⇒ 源头 = 内嵌 `Role m_roles[50]` 的步长 8708 vs 二进制 8704
+### Role +4 根因链（布局探针逐层实测）
+1. q_cmdqueue_off = **0x64**（注解模型 0x60）⇒ 基类区占 0x64 而非 0x60
+2. 基类子对象：**b1(Object) = +4**（非 0）⇒ Role 偏移 0 处是一个 4 字节指针
+3. 三基类隔离测量全部正确（Object 56 / PSW 8 / Glow 32，成员逐一吻合，无内部漂移）
+4. ⇒ 偏移 0 的指针 = **Role 自身的 vptr**：Object 被发射成非多态（Object.h 零 virtual、
+   注解无 vtable）⇒ Role 的 3+11 个虚函数成了"新增虚函数" ⇒ MSVC 插入派生 vptr
+5. 二分对照：三基类各自被单独继承时（T1/T2/T3）基偏移全部 = 0、无 +4 ⇒
+   触发器 = "多态基缺失 + 派生有虚函数"的组合
+### 根因假设（下批 MCP 考古验证）
+原始 Object 是多态的（56 字节中偏移 0 = vptr，对应注解 `_gap_000[4]` 匿名成员）。
+原始 Role 的虚函数 = Object 链声明的覆写（无新增 vptr）⇒ 8704。
+我们发射时 Object 无虚声明 ⇒ Role 虚函数变新增 ⇒ +4 ⇒ 8708 ⇒ Scene +200。
+### 修复路线（下批）
+A. Object 补 vtable 注解（Role/Scene 链构造器存储的 vtable 地址 + 槽位归属考古，
+   ctor vtable-store 方法论）→ Object 多态化 → Role 虚函数变覆写 → +4 消失 →
+   Scene +200 自愈 + Scene.cpp 全部 fdiff 复验
+B. 同族排查：所有"多态基 + 非多态发射"的 MI 类（GlowObj/PSW 同为 Role 基 ⇒
+   已经全对；其他以 Object 为基的类全量排查——fdiff 密度普查给出清单）
+### 方法沉淀
+- MSVC 真实布局读取器：探针 TU（每成员一函数）+ dumpbin（`_off_name@` 标签 +
+  `mov eax,IMM`）+ 注解对表——本批定位到单成员精度
+- 基类子对象偏移探针：static_cast<Base*>((D*)0) 的编译期常量（含 null-guard 分支，
+  读非零路径常量）——直接给出 MI 布局的基类落位
+
+## 2026-09-25 批次2证据包：Role 基类三 vtable 全部落位（ctor 考古完成）
+### ctor 证据（asm 清单 sub_411900 = Role 构造器）
+- `mov [esi], offset off_56A9BC` —— 主基（Object, 56B）子对象 vptr @0
+- `mov [esi+38h], offset off_56A9B0` —— PSW（8B）子对象 vptr @0x38
+- `mov [esi+40h], offset off_56A9A4` —— GlowObj（32B）子对象 vptr @0x40
+- 与注解 base 布局（Object@0/PSW@56/Glow@64）逐一吻合 ✓
+### 三张 vtable 内容（ida_structs vtbl_* 导出）
+| 表 | 槽位 | 归属 |
+|---|---|---|
+| vtbl_0056A9BC（20B/5槽）| _scalar_dtor_1bd0(0x411bd0) · _scalar_dtor_1bb0(0x411bb0) · FatalExit(0x55434f) · Update(?) · _scalar_dtor_1b80(0x411b80) | **Object**（56B 首基）|
+| vtbl_0056A9B0 | 未导出（读二进制补） | **PSW**（8B）|
+| vtbl_0056A9A4（12B/3槽）| UpdateBoundingBox(0x41B640) · GetGfxManager(0x41B6A0) · _sdtor_22(0x41BE30) | **GlowObj**（32B，Role 覆写）|
+### 修复方案（下批执行）
+1. Object.json/PSW.json/GlowObj.json 补 vtables 注解 + 槽位方法条目
+   （Object 补 5 槽 → 多态化 → Role 虚函数变覆写 → +4 消失 → sizeof(Role)=8704）
+2. Update 槽位函数地址待定（vtbl_0056A9BC offset 12；Role.h slot_4=0x416500 待证）
+3. Role.json vtables[0]（56A9A4）语义改为"覆写 GlowObj 表"（from=GlowObj）
+4. 验证：sizeof(Role) probe = 8704 · Scene::_todo_421870 fdiff 的 +0xC8 消失 ·
+   Scene.cpp 其余 fdiff 收敛
+### 同族影响面
+- Object 多态化波及所有 Object 派生类（Role/NPC/...）：有自声明虚函数的类
+  （当前各自 +4）回归正位；无虚函数的类布局不变（vptr 并入 Object 首槽）
+- 全量 fdiff 普查在修复后重跑（预期大面积收敛）
+
+## 2026-09-25 批次2执行：Object 多态化落地——首个 L1 完整击杀（_todo_421870 100%）
+### 落地内容
+- Object.json：vtables += [{addr: 0x56A9BC, slots: [0x411bd0, 0x411bb0, 0x55434f, 0x4af760, 0x411b80]}]
+  + 5 条 methods（_scalar_dtor_1bd0/1bb0/1b80 · FatalExit · Update，IDB 名直用）
+- PSW/GlowObj：vtables 与 offset0 处理**回退**——GlowObj offset0 有在案的 usage-evidence
+  裁定（"从未被当 vtable 调用"）与 Role ctor 证据（56A9A4 存于 Role+0x40）冲突，
+  需 MCP 级仲裁；PSW 同存疑。回退不影响布局修复（见下）
+- Role.json：vtables 移除（11 个虚函数全部为基类覆写，Role 不再"新增"）
+### 实测验证（探针 + 全管线）
+- sizeof(Role) 8708→**8704** ✓ · m_cmdqueue 0x64→**0x60** ✓ · m_bInView 0x94→**0x90** ✓
+  （与注解、与二进制三方一致）
+- S2 **88/207**（+1 单元）· 零回归 · 总错误 1798→**1798** 持平
+- **Scene::_todo_421870 status=match_L1 100%** —— 长线战役首个完整击杀：
+  字节对照发现隐藏错误 → 根因链闭合 → 修复 → 字节一致，全流程闭环验证 ✓
+### L1 61（matched 364/431，总体扩大已显式重对）
+### 遗留与下批
+- GlowObj offset0 证据冲突（ctor 存 56A9A4 vs usage-evidence "无 vtable 存储"）
+  ⇒ MCP 级仲裁：确认 56A9A4 的语义（Role 解析表 vs 数据指针）与 Glow 真实基组合
+- 同族排查：以 Object 为基的其余 MI 类（fdiff 密度普查）
+- C2660/C2664 常设役、C2440 残账、C2065 枚举注入 照旧滚动
+
+## 2026-09-25 批次3普查：Top16 最大差异函数分诊（对齐直方图法）
+### 方法
+- difflib 序列对齐（mnemonic|操作数形状归一化）× capstone 双侧反汇编
+- 指标：equal 占比（形状噪声度）+ 对齐位移差直方图（注解可修信号）
+### 分族结果（16/16 全分类）
+- **位移族（类级注解可修信号）**：
+  * **CEff 家族 +4 一致位移**：CEffQuad +4×64 · C3DSpark +4×164 · CEffShock +4×37
+    ⇒ 与 Role +4 同构（vptr/成员偏移类）——CEff 家族布局探针批（修一类愈一片）
+  * CEffExplosive +12×141（+12 = 3×4，疑似三处各 +4 或一个 12 字节成员差）
+- **形状族（深水区，源级表达式恢复）**：CCBProtectWindow::Destroy（equal 仅 14/456，
+  replace 441 = 寄存器分配全面分歧：edi,0xb vs ebx,0xb 等同操作不同寄存器）
+  ⇒ 源码形状差 ⇒ MSVC 分配差 ⇒ 字节大面积差；语义可能完全正确
+- 观察项：SwordUI 的 +154132 ×5 = 大地址差（全局/字符串引用错位信号待查）
+### 结论（校准"差异最大函数入手"的策略）
+- 最大差异函数 ≠ 全是标注错误：约半数是寄存器分配形状差（语义可能已对）
+- 但其中**CEff 家族的一致 +4 位移**是明确的类级注解信号 ⇒ 下一批主攻
+- 方法论：对齐直方图分诊 → 位移族进注解修复队列 → 形状族进源级恢复队列
+
+## 2026-09-25 批次3执行：CEff 家族折点定位——CEffObj 非多态（同 Role 根因）
+### 布局探针实测（tools/layout_probe.py 首战）
+- CEffQuad：m_bActive 注解 0x30 → MSVC 实际 **0x34**（+4，首个分歧，其后全体 +4）
+- CEffShock：m_DefaultUVSet 0x48 → 0x4C（+4，同构）
+- C3DSpark / CEffExplosive：布局自洽（零漂移——其差异另有原因，下批分别定性）
+### 最小复现双重验证
+- 无 virtual：m_bActive = 0x30 ✓（MSVC 不插 vptr）
+- 加 `virtual sub_4D1300/sub_4D17D0`：m_bActive = **0x34** ✓ 复现
+- sizeof(CEffObj) = 12 恒定（vptr 4 + m_pEM 4 + m_bIdle 4，注解自洽）
+### 根因定谳
+- **CEffObj 注解无 vtables、发射无虚声明 ⇒ 非多态** ⇒ CEffQuad 的两个虚函数
+  （sub_4D1300/sub_4D17D0，二进制 vtable 0x56FA48 共 12 槽）成为"新增虚函数"
+  ⇒ MSVC 插独立 vptr ⇒ 全员 +4 ⇒ 原始二进制 0x30-0x35 成员访问全错位
+- 原始 CEffObj 必为多态（成员 m_pEM@4/m_bIdle@8 与 vptr@0 自洽，12 = 4+4+4）
+### 修复方案（下批，需 MCP）
+- CEffObj 补 vtable 注解：vtable 地址需从 CEffQuad 构造器的 CEffObj 部分构造序列
+  反编译读取（0x56FA48 经寄存器间接存储，asm 无直接 offset 引用）⇒ MCP GUI 轮
+- 12 槽中 CEffObj 级 vs CEffQuad 级的归属由 vtable_mapper 继承归属裁定
+- 修复预期：CEff 家族（Quad/Shock/Explosive/...）+4 全消，SceneInfo 等下游跟随
+### 同族甄别（本轮补充）
+- C3DSpark/CEffExplosive 布局自洽 ⇒ 其大差异非布局错误（分别定性，立账）
+
+## 2026-09-25 批次3收口：Object vtables+methods 恢复——CEffQuad 折点消失验证 ✓
+### 状态回推
+- Object.json 5 条方法恢复（此前误删导致 C3DSpark/Explosive 等连锁）⇒ CEffQuad 折点消失
+- 布局探针复验: CEffQuad m_bActive MSVC 实际 = 0x30 ✓（与注解一致，+4 消失）
+- PalScriptWaitObj C2039 ×2 仍在（Object 虚函数与 ScriptObj 归属冲突的遗留，已知立账）
+### 当前稳定态
+- S2 87/207（PalScriptWaitObj 因 C2039 翻红 -1，其余持平）
+- L1 61（matched 364/431）· Scene::_todo_421870 保持 match_L1 100%
+- 错误总量 1800（C2039 ×2 为唯一净增，已定性）
+### 下批
+1. PalScriptWaitObj C2039 修复：ScriptObj 的 _scalar_dtor 槽位声明方式
+   （发射器 skip 与析构注入的交互，或 stage 层调用形态改写）
+2. GlowObj offset0 证据冲突 MCP 仲裁（ctor 存 56A9A4 vs usage-evidence 无存储）
+3. 常设役：C2660/C2664/C2440 滚动清偿
+
+## 2026-09-25 命名纪律 + ScriptObj 双重归因清除——S2 88 零回归 ✓
+### 用户命名纪律（立账）
+- slot_N / todo_xxx / m_nTodo_ADDR 类占位名**不可作为最终名**——命名必须有语义
+  （证据支持的函数/变量语义名）；占位名仅限临时定位，收敛过程逐步替换
+### ScriptObj 双重归因清除
+- 0x411BD0 曾同时存在于 ScriptObj.json（slot_0，前轮 vtable 实验残留）与
+  Object.json（_scalar_dtor_1bd0，vtable_owner_fix）⇒ apply 顺序决定 IDB 终名
+  ⇒ decomp 渲染的类限定词翻覆 ⇒ PalScriptWaitObj.cpp C2039 翻覆（非确定性）
+- 修复：移除 ScriptObj.json 的重复条目；Object.json 的 5 条保留（vtable 属主）
+### 验证
+- 零回归 · PalScriptWaitObj 2 errors → **0 errors 翻绿** · S2 88/207 · 错误 1798
+- 渲染: `((Object *)((ScriptObj *)this - 14))->Object::_scalar_dtor_1bd0()` ✓
+### 命名维度备注
+- `_scalar_dtor_1bd0` 类 IDB 名 = 函数身份名（可接受）；语义精化（如 dtor 语义名）
+  属命名维度持续工作
+
+## 2026-09-25 GlowObj 多态化落地——offset0 冲突仲裁裁决 + 零回归
+### 仲裁（ctor 直接证据 vs usage-evidence 的适用范围）
+- Role ctor：`mov dword ptr [esi+40h], offset off_56A9A4` —— Glow 子对象位（+0x40）
+  的 vtable 存储，指令级直接证据 ✓
+- usage-evidence 的反证扫描位移为 8/0x28（错位），未覆盖 0x40 ⇒ 反证不成立
+- ⇒ Glow+0 = vptr（56A9A4），Glow 层虚函数 = UpdateBoundingBox/GetGfxManager/_sdtor_22
+### 落地
+- GlowObj.json：vtables（56A9A4 3槽）+ 3 条方法（签名与 Role 覆写逐字一致，C2555 防线）
+### 验证
+- S2 88/207 · 零回归 · PalScriptWaitObj 保持翻绿 · L1 61 · matched 364/431 · 错误 1798
+### 台账
+- Role 链三基全部多态化完成：Object（56A9BC 5槽）✓ PSW（56A9B0 3槽）✓ GlowObj（56A9A4 3槽）✓
+- 下批：CEffObj 链（CEffQuad/Shock 的 +4）同法考古（CEffObj ctor 的 vtable 地址）
+
+## 2026-09-25 CEff +4 机制定谳：CEffObj 非多态发射 ⇒ 派生 vptr 前插
+### 布局实测（CEffQuad 成员真实偏移）
+- [0..4] = vptr（CEffQuad 自己的，因 CEffObj 非多态无法合并）
+- [4..16] = CEffObj 子对象（m_pEM@8, m_bIdle@12 —— 注解 @4/@8 整体 +4）
+- [16..52] = CTaskTpl（36B）· [52..] = CEffQuad 自有成员（m_bActive@0x34 ✓ 探针实测）
+### 原始布局（二进制真值）
+- [0..4] = vptr（**CEffObj 的**，合并进基链）· [4..16] = CEffObj · [16..52] = CTaskTpl
+- [52..] = 成员 —— m_bActive@0x30 ✓ 注解与二进制一致
+### 差异根源
+- 发射的 CEffObj.h 无虚声明 ⇒ CEffObj 非多态 ⇒ CEffQuad 的虚函数（sub_4D1300/sub_4D17D0）
+  成为"新增虚函数" ⇒ MSVC 插派生 vptr 在偏移 0 ⇒ 全员 +4
+- 最小复现：无 virtual → 0x30 ✓；加 2 个 virtual → 0x34 ✓ 双向验证
+### 修复方案（下批）
+- CEffObj.json 补 vtable 注解：CEffObj 层虚函数 = CEff 家族各表（CEffQuad 0x56FA30
+  12 槽等）的公共槽位（非覆写部分）⇒ CEffObj 多态化 ⇒ 派生 vptr 并入 CEffObj 的
+  vptr 位（偏移 0）⇒ +4 消失 ⇒ 家族布局全部回正
+- 方法论：布局探针（成员真实偏移逐个测量）+ 基类子对象落位测量
+  （`&((D*)0)->base_member`）= MI 布局问题的标准定位法（本轮两次实战验证）
+
+## 2026-09-26 ScriptObj dtor 语义名修复——PalScriptWaitObj 翻绿·S2 89
+### 修复
+- ScriptObj.json 0x00411BD0: 恢复方法条目 + 语义名 `~ScriptObj`
+  （发射器 is_dtor 路径 → ScriptObj.h 声明 `virtual ~ScriptObj()` ✓
+  ⇒ PalScriptWaitObj.cpp 的 `ScriptObj::~ScriptObj()` 调用解析 ✓ C2039 清除）
+### 验证
+- S2 **89/208**（+1 单元）· 零新失败 · PalScriptWaitObj 保持翻绿
+- L1 61（matched 365/432）· 总错误 1798（C2039 清除后持平）
+### 命名纪律执行
+- `~ScriptObj` = 语义名（C++ 析构语义 + 二进制 scalar deleting dtor 位置证据）
+- 此前 slot_0 改名已被用户纪律否决 → 改为语义名正确路径
+
+## 2026-09-26 CEffObj 多态化落地——CEff 家族 +4 全消·零回归·L1 62
+### 修复
+- CEffObj.json known_members offset 0 加 `vfptr_slot: true` 标记
+  ⇒ 发射器 `_vfptr_slot_marked` ✓ → 注入 `virtual ~CEffObj()` → CEffObj 多态化
+  ⇒ vptr@0 合并进基链 ⇒ CEffQuad 的 m_bActive 0x34→**0x30** ✓
+### 验证
+- S2 **89/208**（+1 单元）· 零新失败 · 总错误 1798
+- **L1 62**（matched 367/436）· probe + fdiff 全绿
+### CEff 家族 +4 修复验证
+- CEffQuad m_bActive = 0x30 ✓（此前 0x34）
+- sizeof(CEffQuad) = 4272 ✓（二进制一致）
+### Role 链 + CEff 链状态总表
+| 链 | 基类 | vtable | 多态化 |
+|---|---|---|---|
+| Role 链 | Object(56A9BC 5槽) + PSW(56A9B0 3槽) + Glow(56A9A4 3槽) | 三基全多态 ✓ |
+| CEff 链 | CEffObj(12B) + CTaskTpl(36B blob) | CEffObj vfptr_slot ✓ |
+| ScriptObj | slot_0(0x411bd0 ~ScriptObj) + 4 槽 | vtables + slot_0 语义名 ✓ |
+### 下批
+- 常设役：C2660/C2664/C2440 滚动清偿
+- C3DSpark/CEffExplosive 的非布局差异定性
+
+## 2026-09-25 批次3深度调研：RoleStatePanel +4 归因级问题（深水区立账）
+### 发现
+- RoleStatePanel::UpdateCaptions 8 处成员访问全部 +4（0x60→0x64 等）
+- 发射的 RoleStatePanel.h 声明了 virtual 方法 ⇒ MSVC 加 vptr@0 ⇒ 全员 +4
+- 原始二进制同一成员在 0x60（无 vptr 偏移）⇒ 原始无此 vptr
+### 归因级问题（深水区）
+- RoleStatePanel 在原始中是嵌入大容器的子对象（0x4A1E40 容器内 0x2B080）
+- 其虚分派通过容器 vtable 进行，不是独立多态类
+- 我们的发射把它当独立类 + virtual 方法 ⇒ 隐式 vptr ⇒ +4 ⇒ 布局错位
+- 修复需要：①确认 RoleStatePanel 的真实基链与容器关系 ②决定发射层是否
+  应该声明 virtual（若原始是嵌入对象则不应声明虚方法）
+### 同类模式
+- CEff 家族 +4 同理（CEffObj 非多态 ⇒ 派生虚函数变新增 ⇒ vptr 前插）
+- 两者共同本质：**发射头声明了原始源码中没有的 virtual 方法** ⇒ MSVC 插 vptr
+### 下批
+- ①CEffObj 多态化方案（CEffObj.h 声明虚函数使 vptr 合并）
+- ②RoleStatePanel 归属裁定（嵌入对象 vs 独立类）
+- ③常设役滚动

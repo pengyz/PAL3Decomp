@@ -66,6 +66,15 @@ def _get_scalar_dtor_classes():
 
 # Module-level cache for underscore-to-bare typedef aliases (populated lazily)
 _underscore_aliases = None  # dict: '_Texture_Info' -> 'Texture_Info', etc.
+# 批B 2026-10-06：模块级白名单（_Console 等真类型——方法发射路径（:909）与类型路径（:2813）共用）
+_UNDERSCORE_TYPES = {
+    '_Texture_Info', '_Console', '_Texture_uv', '_Tex_uv',
+    '_Item_List_Info', '_MapElement', '_Item', '_UIPOS',
+    '_PlugInfo', '_FLOORPARAM', '_PURGE_INFO', '_TimeMgr',
+    '_btnOPTDATA', '_CLOUD', '_CONTEXT', '_SAMPLE',
+    '_STREAM', '_SUBMAP', '_FLTPROVIDER', '_DIG_DRIVER',
+    '_Collvec', '_Console__ConCmd', '_Btn_BtnID',
+}
 
 def _get_underscore_aliases():
     """Detect _X -> X typedef aliases from decomp filename/signal evidence.
@@ -482,6 +491,66 @@ def _is_known_enum(t):
     return t in _get_annotation_enums() or t in _GBENGINE_ENUMS
 
 
+def _packed_inline_size(data, _depth=0):
+    """inline union/struct 的 **pack(1) 打包尺寸**（W4-C0b；复核 c34f38aa A1 公式，
+    复核 6dc45d18 全语料 A/B：953/956 逐字节等价 + SceneMgr 404→402 唯一修正 + 21 记录全表）：
+    - union = max(子打包尺寸)；struct = **max(offset + 子打包尺寸)**（非求和——
+      内部空洞由发射器 _gap 填充后等价）；
+    - 数组 = 各维积 × 元素（hex 维含 0X 大写）；
+    - **具名类型查自身 size**（禁递归求和：tagTeamSlotsBOverlay 成员和 607 vs 真实 800 实证）；
+    - `_inline_*`/`::$` 合成类型按 data_members 递归打包（export size 可能是自然对齐值：
+      _inline_SceneMgr_ 404 vs 402 ⇒ `_gap_C812[54]` 虚报 2B）；dict 型 type 直接递归（P1-1）。
+    返回整数字节；无 data_members ⇒ None（调用方回退 export size）。
+    共享承诺（复核 6dc45d18 Q8 修订为将来时）：**待守卫 add_member 落地时须复用本函数**
+    （推荐抽叶子模块 pipeline/gen/inline_size.py + ida 表参数注入 + 同函数断言测试；
+    现在时承诺已撤——tools 反向 import 有双模块身份分裂风险）。"""
+    if _depth > 8:                      # P2-3 递归护栏（真实 synth 引用图无环，防御性）
+        return None
+    dms = (data or {}).get('data_members') or []
+    if not dms:
+        return None
+    is_union = (data or {}).get('kind') == 'union'
+    ida = _get_ida_structs()
+    total = 0
+    for d in dms:
+        if not isinstance(d, dict):     # P1-2 附件（6dc45d18）：非 dict 成员项防崩
+            continue
+        off = d.get('offset', 0) or 0
+        t_raw = d.get('type') or 'int'
+        if isinstance(t_raw, dict):     # P1-1：dict 型 type = 注解 inline union 形态，直接递归
+            sub0 = _packed_inline_size(t_raw, _depth + 1)
+            sz0 = sub0 if sub0 is not None else 4
+            total = max(total, sz0) if is_union else max(total, off + sz0)
+            continue
+        t = str(t_raw).strip()
+        n = 1
+        dims = re.findall(r'\[(?:0[xX][0-9a-fA-F]+|\d+)\]', t)   # P3-2：0X 大写维
+        if dims:
+            t = re.sub(r'\[(?:0[xX][0-9a-fA-F]+|\d+)\]', '', t).strip()
+            for dd in dims:
+                n *= int(dd[1:-1], 0)
+        # P1-2（6dc45d18）：查表前去 `struct `/`union `/`class ` 前缀；键序=精确→
+        # 展平(X::Y→X_Y，真实语料 C2DSpark_tagSpark 是展平键)→base 后缀。
+        t_norm = re.sub(r'^(?:struct|union|class)\s+', '', t).strip()
+        base_norm = t_norm.rsplit('::', 1)[-1] if '::' in t_norm else t_norm
+        rec = ida.get(t_norm) or ida.get(t_norm.replace('::', '_')) \
+            or ida.get(base_norm) or {}
+        synth = t_norm.startswith('_inline_') or '::$' in t_norm
+        _sz_raw = rec.get('size')
+        _sz_ok = isinstance(_sz_raw, int) or (isinstance(_sz_raw, str) and _sz_raw.isdigit())
+        if _sz_ok and not synth:
+            sz = int(_sz_raw) * n            # 具名类型查表（禁递归求和）
+        elif rec.get('data_members'):
+            sub = _packed_inline_size(rec, _depth + 1)
+            sz = (int(_sz_raw) if (_sz_ok and sub is None) else (sub or 4)) * n
+        elif _sz_ok:                         # P2-1：synth 有 size 无成员 ⇒ size 回退
+            sz = int(_sz_raw) * n
+        else:
+            sz = _type_extent(t_raw)         # P3-1：'?' 等非法 size 不进 int()（_sz_ok 拦）
+        total = max(total, sz) if is_union else max(total, off + sz)
+    return total or None
+
+
 def _type_extent(t):
     """类型的**完整字节数**（含数组维度）✓
 
@@ -546,6 +615,15 @@ def should_skip_class(name):
         # the SDK versions are ground truth for code MSVC6 built.
         return True
     if name.startswith(SKIP_PREFIXES):
+        return True
+    # 2026-09-26：IDA 侧伪类工件，非真实 C++ 类型（无任何消费方）：
+    # ① `*_vtbl` 后缀 = vtable 基建批次写入 IDB 的每类 vtable 辅助结构体
+    #    （成员类型带 `__hidden this` 等 IDA 伪语法，VC6 无法编译）；
+    # ② `gbSingleton*` = 模板特化结构体（PDB/vtable 导入产物），
+    #    生成的显式特化语法 MSVC6 报 C2913。
+    if name.endswith('_vtbl'):
+        return True
+    if name.startswith('gbSingleton'):
         return True
     if name.startswith('_inline_'):
         return True
@@ -837,7 +915,10 @@ def collect_methods():
         if not _sinfo.get('methods'):
             continue
         # Filter out system/nested types (same critera as collect.py)
-        if _sname.startswith('_') or '<' in _sname or '$' in _sname:
+        # 批B 修 2026-10-06：白名单豁免（_Console 等真类型——:2813 同名单）
+        if _sname.startswith('_') and _sname not in _UNDERSCORE_TYPES:
+            continue
+        if '<' in _sname or '$' in _sname:
             continue
         for _addr_str, _minfo in _sinfo['methods'].items():
             if _addr_str in seen_addrs:
@@ -1371,7 +1452,22 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             base = _resolve_ordinal_type(base)
             if not base or base == cls_name or base in PRIMITIVES or base in SYSTEM_TYPES:
                 continue
-            if '::' in base or '<' in base:
+            # 2026-09-26：嵌套限定类型（如 CParticleSystem::EmitterAttribute、
+            # PlayerMgr::PoisonState）此前被直接跳过——既不 include 也不前向声明，
+            # 导致 CEmitter.h/KeyFrame.h/ArcLocale.h S1 失败（C2146/C2501）。
+            # 嵌套类型必须随容器完整定义（值成员需要定义，指针成员的
+            # `struct Cls::Nested;` 前向声明语法也不可用）⇒ include 容器头。
+            # 注意：此处不能调用 _valid_type_name（它在本函数后段才定义，
+            # NameError 会被外层 except: pass 静默吞掉整个扫描）⇒ 内联校验。
+            if '::' in base:
+                cont = base.split('::')[0].strip()
+                if (cont and cont != cls_name and cont not in PRIMITIVES
+                        and cont not in SYSTEM_TYPES
+                        and re.match(r'^[A-Za-z_][A-Za-z0-9_]*$', cont)
+                        and '$' not in cont):
+                    include_types.add(cont)
+                continue
+            if '<' in base:
                 continue
             if base.startswith('_inline_'):
                 continue
@@ -1963,6 +2059,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         mtype = mtype.replace(ida_type, c_type)
                 # Fix C99 flexible array
                 mtype = re.sub(r'\[\]', '[1]', mtype)
+                # MSVC6 拒绝函数指针声明符上的显式 __thiscall（C4234）——
+                # 与下方 template_expr 路径同款规则：剥掉即语义保持
+                # （指针尺寸/ABI 不变，调用点自带约定）。2026-09-26：
+                # tagNewItem.h/CCBEditor.h S1 失败根因。置于 arr_match 之前
+                # ⇒ 数组型函数指针成员（`int (__thiscall *fn[4])(...)`）同样覆盖。
+                mtype = re.sub(r'\b__thiscall\s+\*', '*', mtype)
                 comment = m.get('comment', '') or m.get('description', '')
                 if comment:
                     lines.append("    // %s" % comment)
@@ -1973,7 +2075,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     lines.append("    %s %s%s; // +0x%X" % (base_type, mname, arr_part, off))
                 else:
                     # Fix function pointer member syntax:
-                    # "int (__thiscall *)(void)" → "int (__thiscall *name)(void)"
+                    # "int (__thiscall *)(void)" → "int (*name)(void)"
                     _fp_match = re.search(r'\(([^)]*\*)\)\s*\(', mtype)
                     if _fp_match:
                         _inner = _fp_match.group(1)
@@ -2035,8 +2137,13 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     lines.append("    union { // +0x%X" % off)
                     union_sizes = []
                     for m in group:
-                        mname = m.get('name', '_field_%04X' % off)
+                        mname = (m.get('name') or ('' if _keep_anonymous(m)
+                                                   else '_field_%04X' % off))   # 匿名 union/struct 保持匿名（内层名提升）
                         _sz = _emit_member(m, off, mname, m.get('type', 'int'))
+                        _mt = str(m.get('type', 'int'))
+                        if _mt.startswith('_inline_') or '::$' in _mt:
+                            # 2073 顺带对齐（复核 c34f38aa）：合成类型的打包尺寸
+                            _sz = _packed_inline_size(_get_ida_structs().get(_mt, {})) or _sz
                         union_sizes.append(_sz)
                     lines.append("    };")
                     lines.append("#pragma pack(pop)")
@@ -2045,7 +2152,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     continue
 
                 m = group[0]
-                mname = m.get('name', '_field_%04X' % int(off_str))
+                mname = (m.get('name') or ('' if _keep_anonymous(m)
+                                           else '_field_%04X' % int(off_str)))   # 匿名 union/struct 保持匿名（tagCmdData bDestRole 提升实证）
                 mtype = m.get('type', 'int')
                 _ann_var = _get_ida_structs().get(cls_name, {}).get('_variants', {}).get(off_str, {}).get('type', '')
                 if _ann_var and '[' in _ann_var and _ann_var.count('[') <= 1:
@@ -2103,7 +2211,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                             if _iab > _inner_prev:
                                 lines.append("        char _gap_%03X[%d]; // +0x%X" % (_inner_prev, _iab - _inner_prev, _inner_prev))
                             _it = _idm.get('type', 'int')
-                            _in = _idm.get('name', '?')
+                            _in = (_idm.get('name') or ('' if _keep_anonymous(_idm)
+                                                         else '_in_%03X' % (_idm.get('offset', 0))))   # 匿名变体保持匿名
                             _it_full = _it
                             if isinstance(_it, str) and ('::' in _it):
                                 _inner_data = _get_ida_structs().get(_it, {})
@@ -2118,7 +2227,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                                         if _iiab > _iip:
                                             lines.append("            char _gap_%03X[%d];" % (_iip, _iiab - _iip))
                                         _iit = _iidm.get('type', 'int')
-                                        _iin = _iidm.get('name', '?')
+                                        _iin = (_iidm.get('name') or ('' if _keep_anonymous(_iidm)
+                                                                      else '_iin_%03X' % (_iidm.get('offset', 0))))   # 匿名变体保持匿名
                                         _iit_full = _iit
                                         _iarr = re.search(r'^(.*?)((?:\[(?:0x[0-9a-fA-F]+|\d+)\])+)$', _iit)
                                         if _iarr:
@@ -2129,7 +2239,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                                             lines.append("            %s %s; // +0x%X" % (_iit, _iin, _iiab))
                                         _iip = _iiab + _type_extent(_iit_full)
                                     lines.append("        } %s;" % _in)
-                                    _inner_prev = _iab + _inner_data.get('size', 4)
+                                    _inner_prev = _iab + (_packed_inline_size(_inner_data)
+                                                         or _inner_data.get('size', 4))   # W4-C0b
                                     continue
                             _arr = re.search(r'^(.*?)((?:\[(?:0x[0-9a-fA-F]+|\d+)\])+)$', _it)
                             if _arr:
@@ -2141,7 +2252,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                             _inner_prev = _iab + _type_extent(_it_full)
                         lines.append("    } %s;" % mname)
                         lines.append("#pragma pack(pop)")
-                        member_size = _inline_data.get('size', 4)
+                        member_size = _packed_inline_size(_inline_data) \
+                            or _inline_data.get('size', 4)   # W4-C0b：打包尺寸（402 非 404）
                         start_off = off + member_size
                         continue
                 # Skip vfptr at +0 for classes with vtables (compiler-generated)
@@ -2455,6 +2567,9 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             elif ret_right:
                 if is_static:
                     ret = re.sub(r'\bvirtual\b', '', ret).strip()
+                    # IDA [thunk] 签名自带 'static'（如 GetCGEntry）——is_static 分支
+                    # 已显式加 static，不剥会成 `static static`（C2159，CG_Entry.h）。
+                    ret = re.sub(r'\bstatic\b\s*', '', ret).strip()
                     decl = "    static %s %s(%s)%s;" % (ret, _mn, params, ret_right)
                 else:
                     if _addr_int_vt in _vtable_addr_order and not ret.startswith('virtual'):
@@ -2463,6 +2578,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         decl = "    %s %s(%s)%s;" % (ret, _mn, params, ret_right)
             elif is_static:
                 ret = re.sub(r'\bvirtual\b', '', ret).strip()
+                ret = re.sub(r'\bstatic\b\s*', '', ret).strip()
                 decl = "    static %s %s(%s);" % (ret, _mn, params)
             else:
                 # ★ vtable 方法强制 virtual（编译器 vptr 分发）
@@ -2706,14 +2822,7 @@ def main():
                 # (_D3D*, _DI*, _IMAGE*, _EXCEPTION_*, etc.) that should
                 # NOT get generated headers. Project-internal types like
                 # _Texture_Info and _Console DO need headers — whitelist.
-                _UNDERSCORE_WHITELIST = {
-                    '_Texture_Info', '_Console', '_Texture_uv', '_Tex_uv',
-                    '_Item_List_Info', '_MapElement', '_Item', '_UIPOS',
-                    '_PlugInfo', '_FLOORPARAM', '_PURGE_INFO', '_TimeMgr',
-                    '_btnOPTDATA', '_CLOUD', '_CONTEXT', '_SAMPLE',
-                    '_STREAM', '_SUBMAP', '_FLTPROVIDER', '_DIG_DRIVER',
-                    '_Collvec', '_Console__ConCmd', '_Btn_BtnID',
-                }
+                _UNDERSCORE_WHITELIST = _UNDERSCORE_TYPES   # 批B：模块级共用（去重）
                 if sname.startswith('_') and sname not in _UNDERSCORE_WHITELIST:
                     continue
                 if size <= 0 or size == 0xFFFFFFFFFFFFFFFF:
@@ -2996,7 +3105,8 @@ def main():
         lines.append('class %s {' % base_name)
         lines.append('public:')
         for m in members:
-            mname = m.get('name', '_unk_%04X' % m.get('offset', 0))
+            mname = (m.get('name') or ('' if _keep_anonymous(m)
+                                       else '_unk_%04X' % m.get('offset', 0)))   # 匿名 union/struct 保持匿名
             mtype = m.get('type', 'int')
             moffset = m.get('offset', 0)
             # Simplify template types in members
@@ -3045,6 +3155,16 @@ _REFERENCED_CACHE = None
 _IDA_NAME_ADDR_RE = re.compile(r'^(?:dword|byte|word|qword|off|unk|flt)_([0-9A-Fa-f]{6,8})$')
 
 
+def _keep_anonymous(m):
+    """匿名聚合体判定（2026-09-28 tagCmdData bDestRole 回归实证）：
+    空名的 inline union/struct 成员是**故意匿名**（内层名提升到外层类作用域）——
+    合成名字会切断提升。聚合体形态：type 是 dict，或 `_inline_*`/`::$` 递归引用名
+    （导出把 dict 归一成字符串引用形，isinstance 判不出）。"""
+    t = m.get('type')
+    return isinstance(t, dict) or (isinstance(t, str) and
+                                   (t.startswith('_inline_') or '::$' in t))
+
+
 def _prefix_type(name):
     """Type for IDA-convention data names (used when resurrecting silenced
     globals the decompiler still references)."""
@@ -3086,6 +3206,21 @@ def _referenced_identifiers():
     return names
 
 
+def _interior_member_resolvable(addr, name=None):
+    """stage4 会把该名字改写成容器成员路径吗？（= 外部可退役判据）
+
+    v2 修正：不再自判 offset 命中（那比 stage4 的真实解析弱——byte 前缀 ×
+    int 成员等前缀语义不匹配时 stage4 返回 None，退役过冲产生 C2065），
+    直接调用 stage4 自己的解析器。解析成功 ⇒ 改写后裸名不再被引用 ⇒ 可退役。
+    """
+    # 与同文件 stage4 引用（:2419）同款导入路径——双路径 import 会创建
+    # 第二个模块实例（store 空载）⇒ 解析恒 None ⇒ 退役全停摆
+    from stages.stage4_substitution import _try_struct_member_resolution
+    # name 提供 prefix 语义（byte_/dword_/…）；仅有地址时按 dword_ 保守尝试
+    prefix_name = name or ('dword_%X' % addr)
+    return _try_struct_member_resolution(prefix_name) is not None
+
+
 def _forced_global_entries():
     """Decomp-referenced globals that current skip filters would silence.
 
@@ -3105,11 +3240,22 @@ def _forced_global_entries():
     extra = []
     for nm in ref:
         if nm in {g.get('name') for g in _glbs.values()}:
+            # 2026-09-27 全局退役机制：stage4 能解析成成员路径的名字，
+            # 改写后裸名不再被引用 ⇒ 放行幻影过滤退役（extern 数棘轮递减）。
+            _ga = None
+            for _as_, _gi in _glbs.items():
+                if _gi.get('name') == nm:
+                    _ga = int(_as_, 16)
+                    break
+            if _ga is not None and _interior_member_resolvable(_ga, nm):
+                continue
             forced.add(nm)
             continue
         m = _IDA_NAME_ADDR_RE.match(nm)
         if m:
             addr = int(m.group(1), 16)
+            if _interior_member_resolvable(addr, nm):
+                continue
             t = _prefix_type(nm)
             if t and 0x401000 <= addr < 0x580000 + 0x900000:
                 forced.add(nm)
@@ -3262,6 +3408,12 @@ def generate_globals():
             # Override name from globals.json if available (but not type - too risky)
             if _ann_entry.get('name'):
                 _ginfo['name'] = _ann_entry['name']
+            # G1 分区：category 字段随注解流入（发射分区用；globals.cpp 不消费）
+            if _ann_entry.get('category'):
+                _ginfo['category'] = _ann_entry['category']
+            # 墓碑原类型传导（复活型解析源——W3 类型源律）
+            if _ann_entry.get('orig_type'):
+                _ginfo['orig_type'] = _ann_entry['orig_type']
             _ann_filtered.append((_addr_s, _ginfo))
         sorted_globs = _ann_filtered
         if _ann_skipped:
@@ -3284,6 +3436,34 @@ def generate_globals():
         _seen_names.add(_nm)
         _dedup.append((_addr_s, _ginfo))
     sorted_globs = _dedup
+    # N2（fcce0c24）：类别图回退**在 _extra_entries 合成之后**——否则合成条目永远拿不到类别
+    # （UNCLASSIFIED 364 事故根因）；顺序=注解 category → 合成合并 → 类别图回退 → 分区。
+    _catmap_path = os.path.join(os.path.dirname(_ann_path), '..', 'status', 'global_categories.json')
+    _catmap = {}
+    if os.path.exists(_catmap_path):
+        try:
+            _catmap = json.loads(open(_catmap_path, encoding='utf-8').read())
+        except Exception:
+            _catmap = {}
+    if _catmap:
+        for _addr_s, _ginfo in sorted_globs:
+            if not _ginfo.get('category'):
+                _c = _catmap.get('0x%08X' % int(_addr_s, 16))
+                if _c:
+                    _ginfo['category'] = _c
+    # **组内保持地址序**；globals.cpp 定义序不动（:3763 地址序）⇒ CRT/静态初始化序不变。
+    _SECTION_ORDER = {'game_state': 0, 'anchor_object': 1, 'function_static': 2,
+                      'const_data': 3, 'ptr_table': 4, 'string_literal': 5,
+                      'unreferenced': 6, 'object_interior': 6, 'pending': 7}
+    _SECTION_NAMES = {0: 'GAME STATE（可变全局——真变量面）', 1: 'GLOBAL OBJECTS（锚对象本体）',
+                      2: 'FUNCTION STATICS', 3: 'CONST DATA（只读数据/初值）',
+                      4: 'POINTER TABLES（vtable/跳转/导入槽）', 5: 'STRING LITERALS（字面量）',
+                      6: 'UNREFERENCED / TABLE FRAGMENTS', 7: 'UNCLASSIFIED'}
+
+    def _sect_of(gi):
+        return _SECTION_ORDER.get(gi.get('category'), 8)
+    sorted_globs = sorted(sorted_globs, key=lambda x: (_sect_of(x[1]), int(x[0], 16)))
+    _cur_sect = [None]
 
     # Generate globals.h (extern declarations)
     h_lines = [
@@ -3317,11 +3497,17 @@ def generate_globals():
         typ = g.get('type', 'int')
         if not name:
             continue
+        _s = _sect_of(g)
+        if _s != _cur_sect[0]:
+            _cur_sect[0] = _s
+            h_lines.append('')
+            h_lines.append('// ==== %s ====' % _SECTION_NAMES.get(_s, 'UNCLASSIFIED'))
         if typ == 'skip':
             # export-layer skip — resurrect when the decompiler references
-            # the name (derive a type from the IDA naming convention)
+            # the name（W3 类型源律：墓碑 orig_type 优先 → 名字启发仅最后回退——
+            # 头/定义两侧必须同源解析，否则 extern int vs 定义 void*/int[5] 相撞 C2040）
             if name in _forced_names:
-                typ = _prefix_type(name) or 'int'
+                typ = g.get('orig_type') or _prefix_type(name) or 'int'
                 g = dict(g, type=typ)
             else:
                 continue  # known-unnameable: don't emit extern declaration
@@ -3635,7 +3821,9 @@ def generate_globals_cpp():
         if tp == 'skip':
             if nm not in _forced_names:
                 continue
-            tp = _prefix_type(nm) or 'int'
+            # 复活型解析（W3 类型源律）：注解 orig_type（墓碑原类型）优先 →
+            # 名字启发仅最后回退（pEnd/dword_C057EC 曾被 int 吞 void*/int[5] ⇒ C2664/C2109）
+            tp = (ann_info or {}).get('orig_type') or _prefix_type(nm) or 'int'
             info = dict(info, type=tp)
         if _should_skip_global(addr, nm, tp, ann_info):
             continue
@@ -3656,7 +3844,13 @@ def generate_globals_cpp():
                 inc += 1
                 continue
         if not _is_pod_type(tp.split('[')[0].strip()):
-            lines.append(f'{tp} {nm};')
+            # 2026-09-28 实测：非 POD 路径漏数组拆分 ⇒ `_DWORD[1] dword_X;` 语法错（C2143）
+            # ——与下方 POD 路径（:3797）同款拆分对齐。
+            _am = _re.match(r'(.+?)((?:\[[^\]]*\])+)$', tp)
+            if _am:
+                lines.append(f'{_am.group(1).strip()} {nm}{_am.group(2)};')
+            else:
+                lines.append(f'{tp} {nm};')
             inc += 1
             continue
 

@@ -1,8 +1,4 @@
 {
-  "0x00401800": {
-    "name": "_todo_401800",
-    "signature": "void __cdecl()"
-  },
   "0x00401810": {
     "name": "ArraySort",
     "signature": "int __stdcall(int base, int count, int elemSize, int compareFunc)"
@@ -12,12 +8,14 @@
     "signature": "int __cdecl()"
   },
   "0x00401DA0": {
-    "name": "?FileSysDestory@@YAXXZ",
-    "signature": "gbVFileSystem *()"
+    "name": "FileSysDestory",
+    "signature": "gbVFileSystem *()",
+    "source": " | 批12 改名 2026-09-29：?FileSysDestory@@YAXXZ→FileSysDestory（mangled 名不匹渲染调用形——自由函数纯名正确）"
   },
   "0x004023D0": {
-    "name": "?EnumJoystick@@YGHPBUDIDEVICEINSTANCEA@@PAX@Z",
-    "signature": "int __stdcall()"
+    "name": "EnumJoystick",
+    "signature": "int __stdcall()",
+    "source": " | 批12 改名 2026-09-29：?EnumJoystick@@YGHPBUDIDEVICEINSTANCEA@@PAX@Z→EnumJoystick（mangled 名不匹渲染调用形——自由函数纯名正确）"
   },
   "0x00404310": {
     "name": "StrCopyRange",
@@ -529,10 +527,6 @@
     "signature": "int(int *a1)",
     "type": "skip",
     "reason": "decompilation artifact (size=0B, body=return uninit var)"
-  },
-  "0x00450A25": {
-    "name": "RoleCameraCtrl",
-    "signature": "void __cdecl()"
   },
   "0x004518FE": {
     "name": "SetPitch",
@@ -2021,11 +2015,6 @@
     "signature": "bool __thiscall CCCTData::Create(CCCTData *this, void *param)",
     "source": "fix:C2660:CCBCamControl_Create_param_count"
   },
-  "0x00522030": {
-    "name": "CCBStage::CCBStageRole",
-    "signature": "CCBStage *__thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
   "0x00522120": {
     "name": "CCBStage::CleanupScript",
     "signature": "void __thiscall(CCBStage *this)",
@@ -2714,5 +2703,66 @@
     "signature": "int __thiscall PAL_GDB::GDB_GetItemNum(PAL_GDB *this)",
     "class": "PAL_GDB",
     "_flirt_correction": "FLIRT 曾误命名为 Conformance Runtime 命名空间函数（原名 ?GetProxy@InternalContextBase@details@Concurrency@@UAEPAUIThreadProxy@3@XZ）。判定为误命名的依据：PE 静态读（tools/pe_probe.py，与 idat 探针逐字节互证）实测函数体；MSVC6(1998) 二进制不含 VS2010 才有的 Concurrency Runtime；调用者全在游戏区、this 为游戏对象、邻居为游戏函数。见 data/status/_cleanup_review_abc_plan.json。 命名依据：0x479250 = 8B 81 9C 00 00 00 C3 = `mov eax,[ecx+0x9C]; retn`（7B getter）。夹在 GDB_GetItemNum 与 GetRoleBySlot 之间；调用者 CCBRoleState/CCBCamControl，返回值作计数。"
+  },
+  "0x00445E10": {
+    "name": "OffsetRect",
+    "signature": "int *__thiscall PalScript::OffsetRect(long *p_DWORD)",
+    "source": "N1 条目复置（S2-100 实证形：无 class、有类限定签名——喂 method_sigs 窄 map 供重写触发）"
+  },
+  "0x004343F0": {
+    "name": "RemoveAt",
+    "signature": "void __thiscall PtrArray::RemoveAt(const char *pszName)",
+    "source": "同上（体证据 strcmp）"
+  },
+  "0x00540B20": {
+    "name": "UIInitSystem",
+    "signature": "void __cdecl(...)",
+    "source": "批12 收编 2026-09-29：skip_functions crt_runtime 误标转正（?UIInitSystem@@YAXXZ=void __cdecl(void) 修饰解读） | 订正 2026-09-29：YAXXZ(=PAL3A void(void)) 与 PAL3 调用点 5 元数/读 [esp+0x10] 证不符——按调用点元数订正（PAL3A 分歧实例） | 变参形 2026-09-29：参数型无证（skip 件未反编译）——调用点形参级证据逐参积累前用变参形（C++ `void f(...)` 合法）；真签名待批 A 解禁后按渲染订正"
+  },
+  "0x00540C60": {
+    "name": "UIDestorySystem",
+    "signature": "void __cdecl(...)",
+    "source": "批12 收编 2026-09-29：skip_functions crt_runtime 误标转正（?UIDestorySystem@@YAXXZ 同解） | 订正 2026-09-29：同上（调用点 6 元数/读 [esp+0x38..0x44] 证） | 变参形 2026-09-29：参数型无证（skip 件未反编译）——调用点形参级证据逐参积累前用变参形（C++ `void f(...)` 合法）；真签名待批 A 解禁后按渲染订正"
+  },
+  "0x005090A0": {
+    "name": "compiler_init_005090A0",
+    "signature": "void __cdecl(...)",
+    "source": "批18 收编 2026-09-29：函数体证据（全访问全局址/零参数读）⇒ 0 参；CRT 初始化数组间接调用（.CRT$XCU）无直调点——调用点清理证据法失效（定谳） | 变参形 2026-10-06：调用点渲染名带 this 实参（0 参体证 vs 1 实参渲染）——变参形收（回波参待渲染面统一后订正）"
+  },
+  "0x0047E536": {
+    "name": "_todo_0047E536",
+    "signature": "int __stdcall(int, int, int)",
+    "source": "挂账③ E 案 2026-10-06：0x47E4E0 jz 尾跳目标（mov eax,1; retn 0xC）=stdcall 3 参回 1 桩——原名 _DllMain@12_* 无任何权威源（PAL3 字节串/PDB/FLIRT 三处零命中）疑跨库泄漏；改 _todo_ 真名未知形+实参形声明（元数=retn 0xC A 级；型保守 int 形）",
+    "declaration_only": true
+  },
+  "0x005329BE": {
+    "name": "_todo_005329BE",
+    "signature": "int __stdcall(int, int, int)",
+    "source": "挂账③ E 案 2026-10-06：0x47E4E0 jz 尾跳目标（mov eax,1; retn 0xC）=stdcall 3 参回 1 桩——原名 _DllMain@12_* 无任何权威源（PAL3 字节串/PDB/FLIRT 三处零命中）疑跨库泄漏；改 _todo_ 真名未知形+实参形声明（元数=retn 0xC A 级；型保守 int 形）",
+    "declaration_only": true
+  },
+  "0x00509230": {
+    "name": "compiler_init_00509230",
+    "signature": "void __cdecl()",
+    "declaration_only": true,
+    "source": "批5 返工 2026-10-07：0 参实参形（atexit void(*)() 兼容——变参形×atexit 参型爆教训）"
+  },
+  "0x00401800": {
+    "name": "j_j_codecvt_base",
+    "signature": "void __cdecl()",
+    "declaration_only": true,
+    "source": "批5 返工 2026-10-07：0 参实参形（atexit void(*)() 兼容——变参形×atexit 参型爆教训）"
+  },
+  "0x00401820": {
+    "name": "j_InputSystem",
+    "signature": "void __cdecl()",
+    "declaration_only": true,
+    "source": "批9 2026-10-07：桩名收编（0 参实参形——批5 atexit 教训）"
+  },
+  "0x004B8200": {
+    "name": "j_D3DXVec3TransformCoord",
+    "signature": "void __cdecl(void *pOut, void *pV, void *pM)",
+    "declaration_only": true,
+    "source": "批15 2026-10-07：D3DX 桩收编（0x4BA800 call 目标 0x4B8200 证）——3 参 D3DX 真形（API 形）"
   }
 }

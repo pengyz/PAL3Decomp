@@ -117,6 +117,27 @@
     "CEffObj",
     "CTaskTpl_tagEffTaskParam_CEffCustomShape"
   ],
-  "methods": {},
+  "methods": {
+    "0x004CFE20": {
+      "name": "_nearby_4cfe20",
+      "signature": "virtual int __thiscall(CEffect *this, int a2, float a3, float a4, float a5)",
+      "source": "vtable_gap_fill_v1(from CEffect.json)"
+    },
+    "0x004CFFA0": {
+      "name": "DestroyEffect",
+      "signature": "void __thiscall()",
+      "source": "vtable_gap_fill_v1(from CEffModel.json)"
+    },
+    "0x004CFFB0": {
+      "name": "_nearby_4cffb0",
+      "signature": "virtual void __thiscall(CEffect *this, float a2)",
+      "source": "vtable_gap_fill_v1(from CEffect.json)"
+    },
+    "0x004CFD20": {
+      "name": "_scalar_dtor_fd20",
+      "signature": "void __thiscall(int nVal1)",
+      "source": "vtable_gap_fill_v1(IDB:_sdtor_38) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    }
+  },
   "base_size": 52
 }

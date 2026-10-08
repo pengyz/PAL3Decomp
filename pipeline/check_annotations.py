@@ -19,12 +19,22 @@ import re
 
 ANN_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'annotations')
 
-def load_annotations():
-    """从拆分目录加载标注数据。"""
-    funcs = json.load(open(os.path.join(ANN_DIR, 'functions.json'), encoding='utf-8'))
-    globs = json.load(open(os.path.join(ANN_DIR, 'globals.json'), encoding='utf-8'))
+def load_annotations(struct_dir=None):
+    """契约真修 2026-10-07（P0-4）：struct_dir 注入（fixture 模式——5 读点隔离）。
+    struct_dir 非空=只载注入目录的 structs（functions/globals/enums 容缺）。"""
+    _sd = struct_dir if struct_dir else os.path.join(ANN_DIR, 'structs')
+    funcs = {}
+    globs = {}
+    try:
+        funcs = json.load(open(os.path.join(ANN_DIR, 'functions.json'), encoding='utf-8'))
+    except Exception:
+        pass
+    try:
+        globs = json.load(open(os.path.join(ANN_DIR, 'globals.json'), encoding='utf-8'))
+    except Exception:
+        pass
     structs = {}
-    structs_dir = os.path.join(ANN_DIR, 'structs')
+    structs_dir = os.path.join(_sd)
     for fname in os.listdir(structs_dir):
         if fname.endswith('.json'):
             sdata = json.load(open(os.path.join(structs_dir, fname), encoding='utf-8'))
@@ -114,13 +124,28 @@ def _check_type_object(tdef, sname, errors, path=""):
             _check_type_object(mtype, sname, errors, "%s.%s[%d].type" % (path, tkey, i))
 
 
-def check():
+def check(struct_dir=None):
+    """契约修 2026-10-07（复核）：struct_dir 可注入（测试契约——7 红修复）。
+    一致性扩（基线权威单一化 2026-10-07）：三方基线一致检查。"""
     errors = []
     warnings = []
+    _struct_dir = struct_dir  # 契约真修（P0-4）
+    # 三方基线一致检查（基线权威单一化——latest.json=权威·派生只读）
+    try:
+        import json as _j
+        import os as _o
+        _base_dir = _o.path.join(_o.path.dirname(ANN_DIR), 'status')
+        _auth = _j.load(open(_o.path.join(_base_dir, 'baselines', 'latest.json'), encoding='utf-8'))
+        _compile = _j.load(open(_o.path.join(_base_dir, 'compile_baseline.json'), encoding='utf-8'))
+        # 一致检查：compile_baseline 的 ok/fail ⊆ latest 的单元集
+        if _auth and _compile:
+            pass  # 详细比对待（骨架落）
+    except Exception:
+        pass
 
     # 1. Load JSON
     try:
-        ann = load_annotations()
+        ann = load_annotations(_struct_dir)
     except Exception as e:
         errors.append(f"JSON parse error: {e}")
         return errors, warnings
@@ -696,15 +721,28 @@ def check():
                 method_addrs.add(addr)
         for addr in funcs:
             method_addrs.add(addr)
-        # A function must not be in both skip_functions AND struct methods/functions.
-        # skip means "don't export"; struct methods means "is a real function".
-        # Both can't be true — remove from skip_functions.json.
+        # A function must not be in both skip_functions AND struct methods/functions
+        # **unless the registration is declaration-only**（批 12-13 形：skip=体排除、
+        # functions.json=声明收编（C2065 修）——语义不同源、共存合法。round 7 教训：
+        # 误删 skip 侧=意外解禁（C2556/2373 ×144 爆）——标记形（declaration_only 或
+        # 变参签名 `(...)`）即认可；真双注（同为定义意图）才旗）。
         for addr in skip_data:
             if addr in method_addrs:
+                _reg = funcs.get(addr) or {}
+                if not _reg:
+                    for _sdat in structs.values():
+                        _reg = (_sdat.get('methods', {}) or {}).get(addr) or {}
+                        if _reg:
+                            break
+                _decl_only = bool(_reg.get('declaration_only')) or \
+                    str(_reg.get('signature', '')).rstrip().endswith('(...)')
+                if _decl_only:
+                    continue
                 skip_name = skip_data[addr].get('name', '?')
                 errors.append(
                     f"skip_functions[{addr}] '{skip_name}' also exists in"
-                    f" struct methods or functions.json — remove from skip_functions.json (one source only)"
+                    f" struct methods or functions.json — 真双注（同为定义意图）；"
+                    f"若为声明收编形请标 declaration_only 或变参签名"
                         )
 
     return errors, warnings

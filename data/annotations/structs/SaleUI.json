@@ -431,7 +431,8 @@
     "0x00469d50": {
       "name": "AddItem",
       "signature": "int __thiscall(PlayerMgr *this)",
-      "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8"
+      "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
+      "source": " | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 1——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00469d90": {
       "name": "SetupPlayerDisplay",
@@ -472,6 +473,11 @@
       "name": "UpdateSkillPanel",
       "signature": "int __thiscall()",
       "_misattrib_evidence": "round5: max this-offset 0x19DA8 fits SaleUI 0x19DB8; block-adjacent to PDB ?DestroySubFrames@SaleUI@@ 0x4615F0; callers are SaleUI methods"
+    },
+    "0x0043DDF0": {
+      "name": "CCBControlWindow::Render",
+      "signature": "virtual void __thiscall(CCBMagicWindow *this)",
+      "source": "vtable_decl_only_fill(copied from CCBControlWindow.json)"
     }
   },
   "vtables": [

@@ -323,15 +323,17 @@
     },
     "0x00449980": {
       "name": "SetUserData",
-      "signature": "void __thiscall()",
-      "_misattrib_evidence": "max_offset=364>class_size=96"
+      "signature": "void __thiscall(int nVal1)",
+      "_misattrib_evidence": "max_offset=364>class_size=96",
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004461D0": {
       "name": "_scalar_dtor",
-      "signature": "void __thiscall CCBUIPanel::_scalar_dtor()",
+      "signature": "void __thiscall CCBUIPanel::_scalar_dtor(int nVal1)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "ordinal": 5
+      "ordinal": 5,
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004462C0": {
       "name": "InitPanel",
@@ -344,7 +346,8 @@
     "0x0044A1B0": {
       "name": "ProcessInput",
       "signature": "BOOL __thiscall CCBUIPanel::ProcessInput(double st7_0)",
-      "ordinal": 2
+      "ordinal": 2,
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00453E50": {
       "name": "_scalar_dtor",
@@ -407,6 +410,11 @@
       "signature": "void __thiscall(UIListBox **this, int)",
       "source": "vtable_migrated",
       "ordinal": 3
+    },
+    "0x00449C20": {
+      "name": "sub_449C20",
+      "signature": "void __thiscall()",
+      "source": "vtable_gap_fill_v1(IDB:sub_449C20)"
     }
   },
   "vtables": [

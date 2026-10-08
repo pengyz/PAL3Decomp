@@ -460,8 +460,8 @@
     },
     "1288": {
       "name": "m_nTransformState",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "type": "float",
+      "source": "B:naming_m_n+FPU_misattrib | type_change: type-evidence T1:  | T1b: 0x00412740 this+0x508(store); 0x00412A69 this+0x508(store); 0x00412A75 this+0x508(store); 0x004133D8 this+0x508(store)"
     },
     "1292": {
       "name": "m_fMovement",
@@ -485,8 +485,8 @@
     },
     "1308": {
       "name": "m_nMovement",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "type": "float",
+      "source": "B:naming_m_n+FPU_misattrib | type_change: type-evidence T1:  | T1b: 0x00412760 this+0x51C(store); 0x00412D69 this+0x51C(store); 0x004133A9 this+0x51C(load); 0x004133CB this+0x51C(store)"
     },
     "1312": {
       "name": "m_fSavedRotX",
@@ -745,15 +745,15 @@
       "type": "int[29]",
       "source": "decomp ref C2039"
     },
-    "0x68C": {
+    "1676": {
       "name": "m_nTodo_68C",
       "type": "int",
-      "source": "Actor::UpdatePhysics accesses via this[1].m_nRoleState1+0x1B0"
+      "source": "Actor::UpdatePhysics accesses via this[1].m_nRoleState1+0x1B0 | normalize_key: 0x68C -> 1676"
     },
-    "0x690": {
+    "1680": {
       "name": "m_nTodo_690",
       "type": "float",
-      "source": "Actor::UpdatePhysics accesses via this[1].m_pEquipAtt0+0x1B4"
+      "source": "Actor::UpdatePhysics accesses via this[1].m_pEquipAtt0+0x1B4 | normalize_key: 0x690 -> 1680"
     },
     "1684_0": {
       "name": "m_teamSlotOverlay",
@@ -935,11 +935,13 @@
     },
     "0x00418130": {
       "name": "GetMoveState",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00421020": {
       "name": "CheckCollision",
-      "signature": "BOOL __thiscall(int *pResult, int nFlag)"
+      "signature": "BOOL __thiscall(int *pResult, int nFlag)",
+      "source": " | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 2——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00412B60": {
       "name": "SetMoveTarget",
@@ -963,11 +965,13 @@
     },
     "0x004125B0": {
       "name": "NotifySceneChange",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00414E30": {
       "name": "GetActionByIndex",
-      "signature": "int __thiscall(int nParam)"
+      "signature": "int __thiscall(int nParam)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00412A50": {
       "name": "StartHalfSpeedMovement",
@@ -1136,7 +1140,8 @@
     },
     "0x00420930": {
       "name": "InitInternal",
-      "signature": "void __thiscall RoleSystem::InitInternal()"
+      "signature": "void __thiscall RoleSystem::InitInternal(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00420940": {
       "name": "CopyRoleToSlot",
@@ -1329,8 +1334,9 @@
     },
     "0x004209E0": {
       "name": "ResetState",
-      "signature": "void __thiscall RoleSystem::ResetState()",
-      "ordinal": 3
+      "signature": "void __thiscall RoleSystem::ResetState(int nVal1)",
+      "ordinal": 3,
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00420F50": {
       "name": "GetMapNodePtr",
@@ -1441,7 +1447,8 @@
     },
     "0x00532E10": {
       "name": "ResetPathState",
-      "signature": "char __thiscall RoleSystem::ResetPathState()"
+      "signature": "char __thiscall RoleSystem::ResetPathState(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 68/4=17 参 vs 签名 0——补 17 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00414250": {
       "name": "NormalizeDirection",
@@ -1500,6 +1507,26 @@
     "0x004202A0": {
       "name": "AllocSlotData",
       "signature": "void *__thiscall(int nVal)"
+    },
+    "0x0043DE40": {
+      "name": "CCBRoleState::Destroy",
+      "signature": "int __thiscall Destroy(int nMode)",
+      "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+    },
+    "0x00524970": {
+      "name": "CCBRoleState::Render",
+      "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
+      "source": "vtable_gap_fill_v1(from CCBStage.json)"
+    },
+    "0x00420910": {
+      "name": "sub_420910",
+      "signature": "void __thiscall(int)",
+      "source": "vtable_gap_fill_v1(IDB:sub_420910) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
+    },
+    "0x005110B0": {
+      "name": "SetColor",
+      "signature": "void __thiscall(int nColor)",
+      "source": "重定谳 2026-10-07：偏移 672/884-887（台账 rework 族）=RoleSystem 归属（非 Actor）·SetColor 语义名（RGBA 字节写 0x374-377 证）·unskip 同批"
     }
   },
   "vtables": [

@@ -1,0 +1,3668 @@
+{
+ "generated_by": "tools/byte_diff_explain.py",
+ "partials": 203,
+ "cause_histogram": {
+  "opcode/flow differs": 80,
+  "register choice differs": 52,
+  "immediate/const differs": 33,
+  "operand shape differs": 20,
+  "this/member disp differs": 16,
+  "this-register differs (this in a different reg)": 2
+ },
+ "functions": [
+  {
+   "file": "pal3/src/Misc/AStarPathFinder.cpp",
+   "name": "AStarPathFinder::FindInClosed(int)",
+   "va": "0x00401530",
+   "size": 34,
+   "n_diff": 1,
+   "first_diff": 22,
+   "compiled_len": 34,
+   "cause": "this-register differs (this in a different reg)",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x401545",
+    "orig": "mov eax, dword ptr [ecx + 0x3c]",
+    "ours_addr": "0x15",
+    "ours": "mov eax, dword ptr [eax + 0x3c]",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/AStarPathFinder.cpp",
+   "name": "AStarPathFinder::FindInOpen(int)",
+   "va": "0x00401500",
+   "size": 34,
+   "n_diff": 1,
+   "first_diff": 22,
+   "compiled_len": 34,
+   "cause": "this-register differs (this in a different reg)",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x401515",
+    "orig": "mov eax, dword ptr [ecx + 0x3c]",
+    "ours_addr": "0x15",
+    "ours": "mov eax, dword ptr [eax + 0x3c]",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "name": "SceneMgr::ClearInactiveRoles(void)",
+   "va": "0x00423500",
+   "size": 58,
+   "n_diff": 3,
+   "first_diff": 7,
+   "compiled_len": 58,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x423505",
+    "orig": "mov ecx, dword ptr [eax + 0xe0e0]",
+    "ours_addr": "0x5",
+    "ours": "mov ecx, dword ptr [eax + 0xe0bc]",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/PlayerAtt.cpp",
+   "name": "PlayerAtt::CheckCurRV(void)",
+   "va": "0x0043A690",
+   "size": 44,
+   "n_diff": 4,
+   "first_diff": 20,
+   "compiled_len": 32,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x43a690",
+    "orig": "mov cl, byte ptr [0x189598e]",
+    "ours_addr": "0x0",
+    "ours": "mov {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/RoleCamera.cpp",
+   "name": "RoleCamera::UpdateAudioListener(int,int)",
+   "va": "0x00534CF0",
+   "size": 95,
+   "n_diff": 4,
+   "first_diff": 8,
+   "compiled_len": 95,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x534cf6",
+    "orig": "lea ebx, [esi + 0x2b0]",
+    "ours_addr": "0x6",
+    "ours": "lea ebx, [esi + 0x2dc]",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Role/ObjectCamera.cpp",
+   "name": "ObjectCamera::ObjectCamera(void)",
+   "va": "0x0047C570",
+   "size": 5,
+   "n_diff": 5,
+   "first_diff": 0,
+   "compiled_len": 5,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x47c570",
+    "orig": "jmp 0x10",
+    "ours_addr": "0x0",
+    "ours": "push esi",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/Parent_Data.cpp",
+   "name": "Parent_Data::_CheckStr(void)",
+   "va": "0x0053FE90",
+   "size": 11,
+   "n_diff": 5,
+   "first_diff": 0,
+   "compiled_len": 11,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x53fe90",
+    "orig": "mov eax, dword ptr [0x570a68]",
+    "ours_addr": "0x0",
+    "ours": "mov eax, 0x41400000",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/_Console.cpp",
+   "name": "_Console::SetActive(int)",
+   "va": "0x0041C170",
+   "size": 32,
+   "n_diff": 5,
+   "first_diff": 23,
+   "compiled_len": 32,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x41c186",
+    "orig": "jne 0x1d",
+    "ours_addr": "0x16",
+    "ours": "jne 0x1f",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBProtectWindow.cpp",
+   "name": "CCBProtectWindow::CCBProtectWindow(void)",
+   "va": "0x0051D6E0",
+   "size": 11,
+   "n_diff": 6,
+   "first_diff": 0,
+   "compiled_len": 11,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x51d6e0",
+    "orig": "mov eax, dword ptr [0x5705b0]",
+    "ours_addr": "0x0",
+    "ours": "push esi",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBStageShadow.cpp",
+   "name": "CCBStageShadow::Render(void)",
+   "va": "0x005122F0",
+   "size": 11,
+   "n_diff": 6,
+   "first_diff": 0,
+   "compiled_len": 11,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x5122f0",
+    "orig": "mov eax, dword ptr [0x57004c]",
+    "ours_addr": "0x0",
+    "ours": "mov {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/Comp_Donate.cpp",
+   "name": "Comp_Donate::Reset(void)",
+   "va": "0x0043A740",
+   "size": 11,
+   "n_diff": 6,
+   "first_diff": 0,
+   "compiled_len": 11,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x43a740",
+    "orig": "mov eax, dword ptr [0x56ac6c]",
+    "ours_addr": "0x0",
+    "ours": "mov {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/OpenNULLFile.cpp",
+   "name": "OpenNULLFile::OpenNULLFile(void)",
+   "va": "0x00401F90",
+   "size": 11,
+   "n_diff": 6,
+   "first_diff": 1,
+   "compiled_len": 11,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x401f90",
+    "orig": "mov eax, dword ptr [ecx]",
+    "ours_addr": "0x0",
+    "ours": "mov {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/SceneObjParam.cpp",
+   "name": "SceneObjParam::FlushCommands(void)",
+   "va": "0x00533DA0",
+   "size": 11,
+   "n_diff": 7,
+   "first_diff": 0,
+   "compiled_len": 11,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x533da0",
+    "orig": "mov dword ptr [ecx], 0x5708cc",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "name": "UI3DCtrl::ctor(void)",
+   "va": "0x0043D880",
+   "size": 11,
+   "n_diff": 7,
+   "first_diff": 0,
+   "compiled_len": 11,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x43d880",
+    "orig": "mov dword ptr [ecx], 0x56acfc",
+    "ours_addr": "0x0",
+    "ours": "jmp {R}",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/UI/UICursor.cpp",
+   "name": "UICursor::IRender(void)",
+   "va": "0x00541CC0",
+   "size": 22,
+   "n_diff": 7,
+   "first_diff": 13,
+   "compiled_len": 22,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x541cc0",
+    "orig": "call dword ptr [0x56a4f8]",
+    "ours_addr": "0x0",
+    "ours": "call {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBProtectWindow.cpp",
+   "name": "CCBProtectWindow::OnCommand(int,int)",
+   "va": "0x0051F0A0",
+   "size": 133,
+   "n_diff": 8,
+   "first_diff": 7,
+   "compiled_len": 133,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x51f0a5",
+    "orig": "mov ecx, dword ptr [ebx + 0x50154]",
+    "ours_addr": "0x5",
+    "ours": "mov ecx, dword ptr [ebx + 0x1f6c]",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
+   "name": "UIStatic::DestroyChainToBase(void)",
+   "va": "0x0044BE60",
+   "size": 12,
+   "n_diff": 8,
+   "first_diff": 0,
+   "compiled_len": 12,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x44be60",
+    "orig": "push esi",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "name": "SceneMgr::ResetSceneFlags(void)",
+   "va": "0x004236B0",
+   "size": 25,
+   "n_diff": 9,
+   "first_diff": 2,
+   "compiled_len": 25,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4236b2",
+    "orig": "mov dword ptr [0xd8bc30], eax",
+    "ours_addr": "0x2",
+    "ours": "mov {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
+   "name": "UIStatic::UIStatic_Base(void)",
+   "va": "0x00443380",
+   "size": 18,
+   "n_diff": 9,
+   "first_diff": 3,
+   "compiled_len": 16,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x443383",
+    "orig": "call 0xffffef60",
+    "ours_addr": "0x3",
+    "ours": "push esi",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBProtectWindow.cpp",
+   "name": "CCBProtectWindow::Reset(void)",
+   "va": "0x0051D700",
+   "size": 15,
+   "n_diff": 10,
+   "first_diff": 0,
+   "compiled_len": 15,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x51d700",
+    "orig": "fld dword ptr [0x5705b0]",
+    "ours_addr": "0x0",
+    "ours": "mov {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CMeteorChain.cpp",
+   "name": "CMeteorChain::CMeteorChain(void)",
+   "va": "0x004CD0A0",
+   "size": 46,
+   "n_diff": 10,
+   "first_diff": 32,
+   "compiled_len": 46,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4cd0c0",
+    "orig": "pop edi",
+    "ours_addr": "0x20",
+    "ours": "test eax, eax",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/Parent_Data.cpp",
+   "name": "Parent_Data::spstr(void)",
+   "va": "0x0053FEB0",
+   "size": 15,
+   "n_diff": 10,
+   "first_diff": 0,
+   "compiled_len": 15,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x53feb0",
+    "orig": "fld dword ptr [0x570a68]",
+    "ours_addr": "0x0",
+    "ours": "mov {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/UI/UILBColumn.cpp",
+   "name": "UILBColumn::Destroy(void)",
+   "va": "0x0043DCC0",
+   "size": 15,
+   "n_diff": 10,
+   "first_diff": 0,
+   "compiled_len": 15,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x43dcc0",
+    "orig": "fld dword ptr [0x56ad1c]",
+    "ours_addr": "0x0",
+    "ours": "mov {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/s_RoleState.cpp",
+   "name": "s_RoleState::LoadSkeletonModel(void)",
+   "va": "0x0052FA50",
+   "size": 169,
+   "n_diff": 10,
+   "first_diff": 155,
+   "compiled_len": 169,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x52fa52",
+    "orig": "push 0x568778",
+    "ours_addr": "0x2",
+    "ours": "push {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/CEffGroupNode.cpp",
+   "name": "CEffGroupNode::CEffGroupNode(void)",
+   "va": "0x004B72E0",
+   "size": 38,
+   "n_diff": 12,
+   "first_diff": 10,
+   "compiled_len": 38,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4b72ea",
+    "orig": "mov dword ptr [esi + 0x64], eax",
+    "ours_addr": "0xa",
+    "ours": "mov {R}",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "name": "UICaption::DestroyAll(void)",
+   "va": "0x0044BDA0",
+   "size": 95,
+   "n_diff": 12,
+   "first_diff": 0,
+   "compiled_len": 16,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x44bda0",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "jmp {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBControl.cpp",
+   "name": "CCBControl::GetActiveAttackCount(void)",
+   "va": "0x004DC240",
+   "size": 13,
+   "n_diff": 13,
+   "first_diff": 0,
+   "compiled_len": 13,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4dc240",
+    "orig": "mov al, byte ptr [ecx + 0x24]",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "name": "TextureLib::ClearGlobalVars(void)",
+   "va": "0x0053F560",
+   "size": 89,
+   "n_diff": 13,
+   "first_diff": 5,
+   "compiled_len": 48,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x53f560",
+    "orig": "mov ecx, 0x1894b78",
+    "ours_addr": "0x0",
+    "ours": "mov {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/CScreenModeNode.cpp",
+   "name": "CScreenModeNode::CScreenModeNode(void)",
+   "va": "0x0053D3A0",
+   "size": 45,
+   "n_diff": 14,
+   "first_diff": 17,
+   "compiled_len": 45,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x53d3a4",
+    "orig": "call dword ptr [0x56a3b0]",
+    "ours_addr": "0x4",
+    "ours": "call {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/AStarPathFinder.cpp",
+   "name": "AStarPathFinder::ReleaseAll(void)",
+   "va": "0x00401050",
+   "size": 28,
+   "n_diff": 16,
+   "first_diff": 3,
+   "compiled_len": 28,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x401053",
+    "orig": "mov dword ptr [esi], 0x56a600",
+    "ours_addr": "0x3",
+    "ours": "mov eax, dword ptr [esi + 4]",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/RenderTargetNode.cpp",
+   "name": "RenderTargetNode::RenderTargetNode(void)",
+   "va": "0x004BD830",
+   "size": 25,
+   "n_diff": 16,
+   "first_diff": 0,
+   "compiled_len": 16,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4bd830",
+    "orig": "push esi",
+    "ours_addr": "0x0",
+    "ours": "mov eax, ecx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/UI/UIQuadManager.cpp",
+   "name": "UIQuadManager::GetInstance(void)",
+   "va": "0x005415F0",
+   "size": 51,
+   "n_diff": 16,
+   "first_diff": 11,
+   "compiled_len": 51,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x5415f0",
+    "orig": "mov cl, byte ptr [0x1894db0]",
+    "ours_addr": "0x0",
+    "ours": "mov {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "name": "SceneMgr::RenderAll(void)",
+   "va": "0x004CDBF0",
+   "size": 36,
+   "n_diff": 17,
+   "first_diff": 4,
+   "compiled_len": 36,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4cdbf2",
+    "orig": "lea esi, [ecx + 0x92c]",
+    "ours_addr": "0x2",
+    "ours": "lea esi, [ecx + 0x930]",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "name": "SceneMgr::RenderUpdate(void)",
+   "va": "0x004CDC20",
+   "size": 36,
+   "n_diff": 17,
+   "first_diff": 4,
+   "compiled_len": 36,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4cdc22",
+    "orig": "lea esi, [ecx + 0x92c]",
+    "ours_addr": "0x2",
+    "ours": "lea esi, [ecx + 0x930]",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/UI/UINote.cpp",
+   "name": "UINote::RenderWithStack(gbMatrixStack *)",
+   "va": "0x0052AFF0",
+   "size": 57,
+   "n_diff": 17,
+   "first_diff": 18,
+   "compiled_len": 57,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x52affa",
+    "orig": "call dword ptr [0x56a578]",
+    "ours_addr": "0xa",
+    "ours": "call {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "name": "UIProgressBar::Destroy(void)",
+   "va": "0x00439810",
+   "size": 62,
+   "n_diff": 17,
+   "first_diff": 0,
+   "compiled_len": 62,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x439810",
+    "orig": "push esi",
+    "ours_addr": "0x0",
+    "ours": "push ebx",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
+   "name": "UIStatic::CtorWithFlag(void)",
+   "va": "0x00442D00",
+   "size": 28,
+   "n_diff": 18,
+   "first_diff": 3,
+   "compiled_len": 28,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x442d03",
+    "orig": "call 0xfffff5e0",
+    "ours_addr": "0x3",
+    "ours": "push esi",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/s_RoleState.cpp",
+   "name": "s_RoleState::CopyRoleData(int,char)",
+   "va": "0x0052FB00",
+   "size": 99,
+   "n_diff": 18,
+   "first_diff": 44,
+   "compiled_len": 99,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x52fb2c",
+    "orig": "mov dword ptr [ecx + 0xe34], eax",
+    "ours_addr": "0x2c",
+    "ours": "mov edx, dword ptr [ecx + 0xe2c]",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Role/Role.cpp",
+   "name": "Role::GetGfxManager(void)",
+   "va": "0x0041B6A0",
+   "size": 29,
+   "n_diff": 19,
+   "first_diff": 0,
+   "compiled_len": 29,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x41b6a0",
+    "orig": "mov eax, dword ptr [esp + 4]",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/MatrixStack.cpp",
+   "name": "MatrixStack::RenderScenePass(void)",
+   "va": "0x00530350",
+   "size": 98,
+   "n_diff": 21,
+   "first_diff": 32,
+   "compiled_len": 98,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x530350",
+    "orig": "mov eax, dword ptr [0xbfda60]",
+    "ours_addr": "0x0",
+    "ours": "mov {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "name": "TextureLib::FreeAllTextures(void *,char)",
+   "va": "0x0053F5C0",
+   "size": 30,
+   "n_diff": 21,
+   "first_diff": 3,
+   "compiled_len": 30,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x53f5c3",
+    "orig": "call 0x20",
+    "ours_addr": "0x3",
+    "ours": "mov eax, dword ptr [esi + 0x210]",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "name": "UI3DCtrl::UI3DCtrl(void)",
+   "va": "0x0043D830",
+   "size": 37,
+   "n_diff": 21,
+   "first_diff": 0,
+   "compiled_len": 37,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x43d830",
+    "orig": "push esi",
+    "ours_addr": "0x0",
+    "ours": "push -1",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
+   "name": "UIStatic::Destroy(void)",
+   "va": "0x0043D920",
+   "size": 25,
+   "n_diff": 21,
+   "first_diff": 0,
+   "compiled_len": 25,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x43d920",
+    "orig": "push esi",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_BBTY.cpp",
+   "name": "UITitle_BBTY::Render(void)",
+   "va": "0x00445CD0",
+   "size": 49,
+   "n_diff": 21,
+   "first_diff": 10,
+   "compiled_len": 49,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x445cd9",
+    "orig": "je 0x2e",
+    "ours_addr": "0x9",
+    "ours": "je 0x32",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/AStarPathFinder.cpp",
+   "name": "AStarPathFinder::AStarPathFinder(void)",
+   "va": "0x00401000",
+   "size": 39,
+   "n_diff": 22,
+   "first_diff": 13,
+   "compiled_len": 39,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x401007",
+    "orig": "mov dword ptr [esi], 0x56a600",
+    "ours_addr": "0x7",
+    "ours": "mov {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/UI/UINote.cpp",
+   "name": "UINote::CallVtableMethod(double)",
+   "va": "0x0052B030",
+   "size": 22,
+   "n_diff": 22,
+   "first_diff": 0,
+   "compiled_len": 22,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x52b030",
+    "orig": "mov ecx, dword ptr [ecx + 0x108]",
+    "ours_addr": "0x0",
+    "ours": "fld qword ptr [esp + 4]",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBProtectWindow.cpp",
+   "name": "CCBProtectWindow::`scalar deleting destructor'(uint)",
+   "va": "0x00516120",
+   "size": 79,
+   "n_diff": 23,
+   "first_diff": 0,
+   "compiled_len": 32,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x516120",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push esi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "name": "CEffShock::CEffShock(void)",
+   "va": "0x004D3910",
+   "size": 27,
+   "n_diff": 23,
+   "first_diff": 0,
+   "compiled_len": 27,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d3910",
+    "orig": "push 0x10b0",
+    "ours_addr": "0x0",
+    "ours": "push esi",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBControl.cpp",
+   "name": "CCBControl::SetParam(int,int)",
+   "va": "0x004DC5C0",
+   "size": 59,
+   "n_diff": 25,
+   "first_diff": 3,
+   "compiled_len": 59,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4dc5c0",
+    "orig": "mov eax, dword ptr [esp + 4]",
+    "ours_addr": "0x0",
+    "ours": "mov eax, dword ptr [esp + 8]",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/Combat.cpp",
+   "name": "Combat::GetSlotCount(void)",
+   "va": "0x0040CCD0",
+   "size": 32,
+   "n_diff": 25,
+   "first_diff": 5,
+   "compiled_len": 32,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x40ccd5",
+    "orig": "jne 8",
+    "ours_addr": "0x5",
+    "ours": "je 0x19",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "name": "CEffShock::GetEditorTaskDescription(int)",
+   "va": "0x004D3280",
+   "size": 58,
+   "n_diff": 27,
+   "first_diff": 7,
+   "compiled_len": 48,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d3287",
+    "orig": "mov dword ptr [eax + 4], ecx",
+    "ours_addr": "0x7",
+    "ours": "mov byte ptr [eax + 8], cl",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/UI/UIItem.cpp",
+   "name": "UIItem::SetData(char)",
+   "va": "0x004A14D0",
+   "size": 93,
+   "n_diff": 27,
+   "first_diff": 0,
+   "compiled_len": 32,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4a14d0",
+    "orig": "push ecx",
+    "ours_addr": "0x0",
+    "ours": "add ecx, 0x1c8",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIAnimateCtrl.cpp",
+   "name": "UIAnimateCtrl::GetRoleBySlot(uint)",
+   "va": "0x00479260",
+   "size": 36,
+   "n_diff": 28,
+   "first_diff": 4,
+   "compiled_len": 32,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x479264",
+    "orig": "test eax, eax",
+    "ours_addr": "0x4",
+    "ours": "cmp eax, 0xa",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffect.cpp",
+   "name": "ScreenEffect::CopyParams(int *)",
+   "va": "0x004BE830",
+   "size": 34,
+   "n_diff": 30,
+   "first_diff": 1,
+   "compiled_len": 32,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4be830",
+    "orig": "mov eax, ecx",
+    "ours_addr": "0x0",
+    "ours": "mov edx, dword ptr [esp + 4]",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_BBTY.cpp",
+   "name": "UITitle_BBTY::ctor(void)",
+   "va": "0x00451DA0",
+   "size": 172,
+   "n_diff": 30,
+   "first_diff": 0,
+   "compiled_len": 48,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x451da0",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push esi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/ExternalStatistics.cpp",
+   "name": "ExternalStatistics::Reset(int)",
+   "va": "0x00534E30",
+   "size": 38,
+   "n_diff": 31,
+   "first_diff": 3,
+   "compiled_len": 38,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x534e33",
+    "orig": "test al, al",
+    "ours_addr": "0x3",
+    "ours": "xor edx, edx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Role/ObjectCamera.cpp",
+   "name": "ObjectCamera::SetCameraDist(int,int,int)",
+   "va": "0x0047C7E0",
+   "size": 46,
+   "n_diff": 33,
+   "first_diff": 9,
+   "compiled_len": 46,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x47c7e9",
+    "orig": "mov edx, eax",
+    "ours_addr": "0x9",
+    "ours": "mov dword ptr [ecx + 0x44], eax",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/UI/UISystem.cpp",
+   "name": "UISystem::Destroy(void)",
+   "va": "0x00422DF0",
+   "size": 67,
+   "n_diff": 33,
+   "first_diff": 6,
+   "compiled_len": 67,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x422df6",
+    "orig": "mov ecx, eax",
+    "ours_addr": "0x6",
+    "ours": "push eax",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/AStarPathFinder.cpp",
+   "name": "AStarPathFinder::ResortNode(void)",
+   "va": "0x00401750",
+   "size": 40,
+   "n_diff": 34,
+   "first_diff": 0,
+   "compiled_len": 40,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x401750",
+    "orig": "push esi",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/Math.cpp",
+   "name": "Math::RandomLerp(float,float)",
+   "va": "0x004B8200",
+   "size": 66,
+   "n_diff": 35,
+   "first_diff": 22,
+   "compiled_len": 66,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4b8236",
+    "orig": "fmul dword ptr [0x56f494]",
+    "ours_addr": "0x37",
+    "ours": "fmul {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "name": "TextureLib::FreeTexture(void)",
+   "va": "0x0053F5E0",
+   "size": 47,
+   "n_diff": 35,
+   "first_diff": 0,
+   "compiled_len": 47,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x53f5e0",
+    "orig": "push esi",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "name": "TextureLib::SetPath(char *)",
+   "va": "0x0053F920",
+   "size": 63,
+   "n_diff": 37,
+   "first_diff": 2,
+   "compiled_len": 63,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x53f921",
+    "orig": "mov ebx, dword ptr [esp + 8]",
+    "ours_addr": "0x1",
+    "ours": "mov {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIPushButton.cpp",
+   "name": "UIPushButton::SetAnimOffset(int,int,float)",
+   "va": "0x0043A090",
+   "size": 76,
+   "n_diff": 37,
+   "first_diff": 28,
+   "compiled_len": 76,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x43a0ac",
+    "orig": "fmul dword ptr [0x56ac44]",
+    "ours_addr": "0x1c",
+    "ours": "fmul {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
+   "name": "UIStatic::OnMessage(void)",
+   "va": "0x00440BA0",
+   "size": 52,
+   "n_diff": 39,
+   "first_diff": 0,
+   "compiled_len": 52,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x440ba0",
+    "orig": "push ebx",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/ArcPastScene.cpp",
+   "name": "ArcPastScene::FreeChildList(void)",
+   "va": "0x00534FB0",
+   "size": 81,
+   "n_diff": 40,
+   "first_diff": 0,
+   "compiled_len": 48,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x534fb0",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push esi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/ArcPastScene.cpp",
+   "name": "ArcPastScene::ResetCityName(void)",
+   "va": "0x00534F50",
+   "size": 93,
+   "n_diff": 43,
+   "first_diff": 0,
+   "compiled_len": 48,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x534f50",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push esi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "name": "UICaption::LayoutDefault(void)",
+   "va": "0x00450320",
+   "size": 68,
+   "n_diff": 48,
+   "first_diff": 0,
+   "compiled_len": 48,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x450320",
+    "orig": "push esi",
+    "ours_addr": "0x0",
+    "ours": "mov edx, ecx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "name": "SceneMgr::UINotifyUpdate(void)",
+   "va": "0x00421C40",
+   "size": 88,
+   "n_diff": 49,
+   "first_diff": 1,
+   "compiled_len": 88,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x421c41",
+    "orig": "mov ebx, dword ptr [0xc116ec]",
+    "ours_addr": "0x1",
+    "ours": "push ebp",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/ExternalStatistics.cpp",
+   "name": "ExternalStatistics::CheckKeyPress(int)",
+   "va": "0x00534DD0",
+   "size": 83,
+   "n_diff": 51,
+   "first_diff": 12,
+   "compiled_len": 83,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x534ddc",
+    "orig": "lea ecx, [eax + 0xbfad70]",
+    "ours_addr": "0xc",
+    "ours": "mov {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
+   "name": "UIStatic::UIStatic(void)",
+   "va": "0x00440740",
+   "size": 81,
+   "n_diff": 51,
+   "first_diff": 0,
+   "compiled_len": 81,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x440740",
+    "orig": "push esi",
+    "ours_addr": "0x0",
+    "ours": "push -1",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBProtectWindow.cpp",
+   "name": "CCBProtectWindow::ValidateSlot(uint)",
+   "va": "0x00449BE0",
+   "size": 63,
+   "n_diff": 53,
+   "first_diff": 6,
+   "compiled_len": 63,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x449be4",
+    "orig": "cmp eax, 0x26",
+    "ours_addr": "0x4",
+    "ours": "cmp eax, 0x25",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Role/ObjectCamera.cpp",
+   "name": "ObjectCamera::SetCameraEyePosition(gbGfxManager *)",
+   "va": "0x0047C640",
+   "size": 156,
+   "n_diff": 57,
+   "first_diff": 0,
+   "compiled_len": 80,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x47c640",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push esi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBControl.cpp",
+   "name": "CCBControl::GetState(void)",
+   "va": "0x004DC560",
+   "size": 74,
+   "n_diff": 59,
+   "first_diff": 0,
+   "compiled_len": 64,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4dc560",
+    "orig": "mov al, byte ptr [ecx + 0x25]",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/ChoseCompose.cpp",
+   "name": "ChoseCompose::DestroyScene(void)",
+   "va": "0x004549A0",
+   "size": 256,
+   "n_diff": 60,
+   "first_diff": 0,
+   "compiled_len": 96,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4549a0",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push esi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/PalScriptWaitObj.cpp",
+   "name": "PalScriptWaitObj::ReleaseObject(char *)",
+   "va": "0x004A68D0",
+   "size": 81,
+   "n_diff": 61,
+   "first_diff": 0,
+   "compiled_len": 80,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4a68d0",
+    "orig": "push ebx",
+    "ours_addr": "0x0",
+    "ours": "push esi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "name": "SceneMgr::GetCurrentNode(void)",
+   "va": "0x0052EC90",
+   "size": 70,
+   "n_diff": 61,
+   "first_diff": 0,
+   "compiled_len": 64,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x52ec90",
+    "orig": "push esi",
+    "ours_addr": "0x0",
+    "ours": "mov eax, ecx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Role/Role.cpp",
+   "name": "Role::CalcZiXuanInit(int,int)",
+   "va": "0x00408E30",
+   "size": 74,
+   "n_diff": 63,
+   "first_diff": 1,
+   "compiled_len": 74,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x408e30",
+    "orig": "mov ecx, dword ptr [esp + 4]",
+    "ours_addr": "0x0",
+    "ours": "mov eax, dword ptr [esp + 4]",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "name": "TextureLib::ParseConfigFile(char *)",
+   "va": "0x0053F610",
+   "size": 98,
+   "n_diff": 63,
+   "first_diff": 5,
+   "compiled_len": 98,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x53f615",
+    "orig": "push edi",
+    "ours_addr": "0x5",
+    "ours": "mov {R}",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/JusticeBookUI.cpp",
+   "name": "JusticeBookUI::UpdateFadeAnim(float)",
+   "va": "0x0044DA30",
+   "size": 139,
+   "n_diff": 65,
+   "first_diff": 0,
+   "compiled_len": 80,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x44da30",
+    "orig": "push esi",
+    "ours_addr": "0x0",
+    "ours": "push ebx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/NameSys.cpp",
+   "name": "NameSys::GetSys(void)",
+   "va": "0x0043A770",
+   "size": 126,
+   "n_diff": 66,
+   "first_diff": 0,
+   "compiled_len": 80,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x43a770",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
+   "name": "UIStatic::LoadResource(char const *,char)",
+   "va": "0x00440A20",
+   "size": 187,
+   "n_diff": 67,
+   "first_diff": 62,
+   "compiled_len": 176,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x440a22",
+    "orig": "push 0x55ff38",
+    "ours_addr": "0x2",
+    "ours": "push {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBStageShadow.cpp",
+   "name": "CCBStageShadow::UpdateShadowMesh(void)",
+   "va": "0x00511E80",
+   "size": 88,
+   "n_diff": 68,
+   "first_diff": 3,
+   "compiled_len": 88,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x511e83",
+    "orig": "lea eax, [ecx + 0x44]",
+    "ours_addr": "0x3",
+    "ours": "xor esi, esi",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Role/Role.cpp",
+   "name": "Role::CalcXueJianInit(int,int)",
+   "va": "0x00408D10",
+   "size": 82,
+   "n_diff": 70,
+   "first_diff": 1,
+   "compiled_len": 82,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x408d10",
+    "orig": "mov ecx, dword ptr [esp + 4]",
+    "ours_addr": "0x0",
+    "ours": "mov eax, dword ptr [esp + 4]",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "name": "UI3DCtrl::CreateWithTexture(int,void *,int,uint,int)",
+   "va": "0x0043D890",
+   "size": 138,
+   "n_diff": 70,
+   "first_diff": 0,
+   "compiled_len": 80,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x43d890",
+    "orig": "mov eax, dword ptr fs:[0]",
+    "ours_addr": "0x0",
+    "ours": "mov eax, dword ptr [esp + 0x14]",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Role/Role.cpp",
+   "name": "Role::CalcChangQingInit(int,int)",
+   "va": "0x00408E90",
+   "size": 131,
+   "n_diff": 71,
+   "first_diff": 0,
+   "compiled_len": 131,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x408e90",
+    "orig": "push ebp",
+    "ours_addr": "0x0",
+    "ours": "fild dword ptr [esp + 8]",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Role/Role.cpp",
+   "name": "Role::CalcHuaYingInit(int,int)",
+   "va": "0x00408F30",
+   "size": 131,
+   "n_diff": 71,
+   "first_diff": 0,
+   "compiled_len": 131,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x408f30",
+    "orig": "push ebp",
+    "ours_addr": "0x0",
+    "ours": "fild dword ptr [esp + 8]",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/C3DSpark.cpp",
+   "name": "C3DSpark::CreateSingle(void const *)",
+   "va": "0x004D6A60",
+   "size": 86,
+   "n_diff": 75,
+   "first_diff": 5,
+   "compiled_len": 86,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d6a65",
+    "orig": "lea ecx, [ebx + 0x35]",
+    "ours_addr": "0x5",
+    "ours": "mov dl, byte ptr [ebx + 0x35]",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/C2DSpark.cpp",
+   "name": "C2DSpark::CreateSingle(void const *)",
+   "va": "0x004D5EC0",
+   "size": 83,
+   "n_diff": 76,
+   "first_diff": 5,
+   "compiled_len": 83,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d5ec5",
+    "orig": "lea ecx, [ebx + 0x29]",
+    "ours_addr": "0x5",
+    "ours": "mov dl, byte ptr [ebx + 0x29]",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "name": "UI3DCtrl::UpdateOscillation(void)",
+   "va": "0x0052E940",
+   "size": 121,
+   "n_diff": 79,
+   "first_diff": 11,
+   "compiled_len": 121,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x52e94a",
+    "orig": "je 0x42",
+    "ours_addr": "0xa",
+    "ours": "je 0x44",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "name": "UI3DCtrl::UpdateOscillationX(void)",
+   "va": "0x0052E9C0",
+   "size": 121,
+   "n_diff": 79,
+   "first_diff": 11,
+   "compiled_len": 121,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x52e9ca",
+    "orig": "je 0x42",
+    "ours_addr": "0xa",
+    "ours": "je 0x44",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "name": "UI3DCtrl::UpdateOscillationY(void)",
+   "va": "0x0052EA40",
+   "size": 121,
+   "n_diff": 79,
+   "first_diff": 11,
+   "compiled_len": 121,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x52ea4a",
+    "orig": "je 0x42",
+    "ours_addr": "0xa",
+    "ours": "je 0x44",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "name": "UI3DCtrl::UpdateRotation(void)",
+   "va": "0x0052E8C0",
+   "size": 121,
+   "n_diff": 79,
+   "first_diff": 11,
+   "compiled_len": 121,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x52e8ca",
+    "orig": "je 0x42",
+    "ours_addr": "0xa",
+    "ours": "je 0x44",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBAIWindow.cpp",
+   "name": "CCBAIWindow::Destroy(void)",
+   "va": "0x0051CCE0",
+   "size": 175,
+   "n_diff": 80,
+   "first_diff": 0,
+   "compiled_len": 112,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x51cce0",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x404",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
+   "name": "UIStatic::LoadTextureByName(char const *,char)",
+   "va": "0x00442480",
+   "size": 190,
+   "n_diff": 80,
+   "first_diff": 0,
+   "compiled_len": 112,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x442480",
+    "orig": "mov eax, dword ptr fs:[0]",
+    "ours_addr": "0x0",
+    "ours": "push esi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/ExternalStatistics.cpp",
+   "name": "ExternalStatistics::UpdateFromRole(int,int)",
+   "va": "0x00534E60",
+   "size": 122,
+   "n_diff": 81,
+   "first_diff": 0,
+   "compiled_len": 122,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x534e60",
+    "orig": "push esi",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Role/Role.cpp",
+   "name": "Role::CalcLongKuiInit(int,int)",
+   "va": "0x00408D80",
+   "size": 141,
+   "n_diff": 81,
+   "first_diff": 0,
+   "compiled_len": 141,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x408d80",
+    "orig": "push ebp",
+    "ours_addr": "0x0",
+    "ours": "fild dword ptr [esp + 8]",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIScrollBar.cpp",
+   "name": "UIScrollBar::SetRange(float)",
+   "va": "0x0043FCA0",
+   "size": 125,
+   "n_diff": 83,
+   "first_diff": 23,
+   "compiled_len": 125,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x43fca4",
+    "orig": "fcomp dword ptr [0x56a644]",
+    "ours_addr": "0x4",
+    "ours": "fcomp {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBStageShadow.cpp",
+   "name": "CCBStageShadow::Destroy(void)",
+   "va": "0x00512240",
+   "size": 110,
+   "n_diff": 86,
+   "first_diff": 0,
+   "compiled_len": 96,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x512240",
+    "orig": "sub esp, 0x1c",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "name": "CEffShock::UpdateSegment(int)",
+   "va": "0x004D4570",
+   "size": 96,
+   "n_diff": 86,
+   "first_diff": 0,
+   "compiled_len": 96,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d4570",
+    "orig": "push esi",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/ArcPastScene.cpp",
+   "name": "ArcPastScene::LoadCityData(void)",
+   "va": "0x00533B50",
+   "size": 109,
+   "n_diff": 88,
+   "first_diff": 0,
+   "compiled_len": 109,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x533b50",
+    "orig": "push ebx",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 8",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIMap.cpp",
+   "name": "UIMap::ctor(void)",
+   "va": "0x004410F0",
+   "size": 185,
+   "n_diff": 89,
+   "first_diff": 0,
+   "compiled_len": 112,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4410f0",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push esi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBAIWindow.cpp",
+   "name": "CCBAIWindow::Reset(int *)",
+   "va": "0x0051CB60",
+   "size": 178,
+   "n_diff": 92,
+   "first_diff": 0,
+   "compiled_len": 128,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x51cb60",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x404",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBAIWindow.cpp",
+   "name": "CCBAIWindow::Update(CCBUI * *)",
+   "va": "0x0051CE40",
+   "size": 178,
+   "n_diff": 92,
+   "first_diff": 0,
+   "compiled_len": 128,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x51ce40",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x404",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Role/ObjectCamera.cpp",
+   "name": "ObjectCamera::SetCameraRotate(float,float,float)",
+   "va": "0x0047C770",
+   "size": 110,
+   "n_diff": 93,
+   "first_diff": 3,
+   "compiled_len": 110,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x47c773",
+    "orig": "mov eax, dword ptr [esp + 0x10]",
+    "ours_addr": "0x3",
+    "ours": "push esi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffect.cpp",
+   "name": "ScreenEffect::ScreenEffect(void)",
+   "va": "0x004BDFB0",
+   "size": 163,
+   "n_diff": 93,
+   "first_diff": 0,
+   "compiled_len": 112,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4bdfb0",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBAIWindow.cpp",
+   "name": "CCBAIWindow::OnMessage(UIListBox * *)",
+   "va": "0x0051CD90",
+   "size": 175,
+   "n_diff": 94,
+   "first_diff": 0,
+   "compiled_len": 128,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x51cd90",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x404",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "name": "UI3DCtrl::LoadModel(char const *)",
+   "va": "0x0052AF20",
+   "size": 147,
+   "n_diff": 94,
+   "first_diff": 0,
+   "compiled_len": 112,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x52af20",
+    "orig": "mov eax, dword ptr fs:[0]",
+    "ours_addr": "0x0",
+    "ours": "mov eax, dword ptr [esp + 4]",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBAIWindow.cpp",
+   "name": "CCBAIWindow::ShowWindow(CCBControlWindow * *)",
+   "va": "0x0051CF00",
+   "size": 175,
+   "n_diff": 95,
+   "first_diff": 0,
+   "compiled_len": 128,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x51cf00",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x404",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/SceneProp.cpp",
+   "name": "SceneProp::CalcScreenPosition(void)",
+   "va": "0x00533BC0",
+   "size": 116,
+   "n_diff": 97,
+   "first_diff": 0,
+   "compiled_len": 116,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x533bc0",
+    "orig": "push ebx",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 8",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_BBTY.cpp",
+   "name": "UITitle_BBTY::OnMessage(int,int,int)",
+   "va": "0x00452420",
+   "size": 139,
+   "n_diff": 101,
+   "first_diff": 12,
+   "compiled_len": 139,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x45242c",
+    "orig": "jne 0x82",
+    "ours_addr": "0xc",
+    "ours": "jne 0x97",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/JusticeBookUI.cpp",
+   "name": "JusticeBookUI::JusticeBookUI_Render",
+   "va": "0x00528ED0",
+   "size": 125,
+   "n_diff": 103,
+   "first_diff": 0,
+   "compiled_len": 125,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x528ed0",
+    "orig": "push ebx",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Role/ObjectCamera.cpp",
+   "name": "ObjectCamera::Create(void)",
+   "va": "0x0047C590",
+   "size": 156,
+   "n_diff": 107,
+   "first_diff": 0,
+   "compiled_len": 112,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x47c590",
+    "orig": "sub esp, 0xc",
+    "ours_addr": "0x0",
+    "ours": "mov eax, ecx",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
+   "name": "UIStatic::LoadTexture(void)",
+   "va": "0x00440AE0",
+   "size": 187,
+   "n_diff": 107,
+   "first_diff": 21,
+   "compiled_len": 176,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x440ae2",
+    "orig": "push 0x55ff58",
+    "ours_addr": "0x2",
+    "ours": "push {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_QCYM.cpp",
+   "name": "UITitle_QCYM::HandleDeviceLostC(void)",
+   "va": "0x00529BE0",
+   "size": 159,
+   "n_diff": 108,
+   "first_diff": 0,
+   "compiled_len": 159,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x529be0",
+    "orig": "push esi",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Role/ObjectCamera.cpp",
+   "name": "ObjectCamera::Update(void)",
+   "va": "0x0047CAD0",
+   "size": 149,
+   "n_diff": 109,
+   "first_diff": 0,
+   "compiled_len": 128,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x47cad0",
+    "orig": "sub esp, 0xc",
+    "ours_addr": "0x0",
+    "ours": "xor eax, eax",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
+   "name": "UIStatic::CreateFromTemplate(void *,int)",
+   "va": "0x004426B0",
+   "size": 227,
+   "n_diff": 109,
+   "first_diff": 0,
+   "compiled_len": 160,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4426b0",
+    "orig": "mov eax, dword ptr fs:[0]",
+    "ours_addr": "0x0",
+    "ours": "push esi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_BBTY.cpp",
+   "name": "UITitle_BBTY::UITitle_BBTY(void)",
+   "va": "0x00451CC0",
+   "size": 184,
+   "n_diff": 112,
+   "first_diff": 25,
+   "compiled_len": 184,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x451cc2",
+    "orig": "push 0x560c0a",
+    "ours_addr": "0x2",
+    "ours": "push {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
+   "name": "UIStatic::FormatText(void)",
+   "va": "0x00440960",
+   "size": 187,
+   "n_diff": 114,
+   "first_diff": 21,
+   "compiled_len": 187,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x440962",
+    "orig": "push 0x55ff18",
+    "ours_addr": "0x2",
+    "ours": "push {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIMap.cpp",
+   "name": "UIMap::Create(int,void *,int,char *,int,char)",
+   "va": "0x004412C0",
+   "size": 179,
+   "n_diff": 115,
+   "first_diff": 12,
+   "compiled_len": 179,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4412ca",
+    "orig": "je 0xae",
+    "ours_addr": "0xa",
+    "ours": "je 0xb1",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
+   "name": "UIStatic::SetText(void)",
+   "va": "0x00440CE0",
+   "size": 230,
+   "n_diff": 115,
+   "first_diff": 23,
+   "compiled_len": 208,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x440ce2",
+    "orig": "push 0x55ff9b",
+    "ours_addr": "0x2",
+    "ours": "push {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/ARC_PlayerAtt.cpp",
+   "name": "ARC_PlayerAtt::Refresh(void)",
+   "va": "0x004A12F0",
+   "size": 229,
+   "n_diff": 117,
+   "first_diff": 0,
+   "compiled_len": 144,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4a12f0",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push esi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/SceneInfo.cpp",
+   "name": "SceneInfo::CheckBoundsBottomCombo(float)",
+   "va": "0x004448E0",
+   "size": 306,
+   "n_diff": 117,
+   "first_diff": 31,
+   "compiled_len": 306,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4448ff",
+    "orig": "je 0x2d",
+    "ours_addr": "0x1f",
+    "ours": "je 0x134",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/SceneInfo.cpp",
+   "name": "SceneInfo::CheckBoundsRightCombo(float)",
+   "va": "0x004447A0",
+   "size": 308,
+   "n_diff": 117,
+   "first_diff": 31,
+   "compiled_len": 308,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4447bf",
+    "orig": "je 0x2d",
+    "ours_addr": "0x1f",
+    "ours": "je 0x136",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "name": "UIProgressBar::FindChildByName(float)",
+   "va": "0x0043FDF0",
+   "size": 159,
+   "n_diff": 119,
+   "first_diff": 16,
+   "compiled_len": 159,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x43fdf3",
+    "orig": "fcomp dword ptr [0x56a644]",
+    "ours_addr": "0x3",
+    "ours": "fcomp {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBStageShadow.cpp",
+   "name": "CCBStageShadow::CCBStageShadow(void)",
+   "va": "0x00511EE0",
+   "size": 167,
+   "n_diff": 122,
+   "first_diff": 2,
+   "compiled_len": 167,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x511ee0",
+    "orig": "sub esp, 0x800",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x404",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/ChoseCompose.cpp",
+   "name": "ChoseCompose::DestroySubWindows(void)",
+   "va": "0x004A22E0",
+   "size": 364,
+   "n_diff": 123,
+   "first_diff": 0,
+   "compiled_len": 208,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4a22e0",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push esi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/SceneInfo.cpp",
+   "name": "SceneInfo::UpdateScaling(float)",
+   "va": "0x004442B0",
+   "size": 199,
+   "n_diff": 124,
+   "first_diff": 36,
+   "compiled_len": 199,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4442d4",
+    "orig": "jne 0x2c",
+    "ours_addr": "0x24",
+    "ours": "je 0xc1",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "name": "UIProgressBar::ctor(void)",
+   "va": "0x00439030",
+   "size": 209,
+   "n_diff": 124,
+   "first_diff": 0,
+   "compiled_len": 144,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x439030",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push esi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/SceneInfo.cpp",
+   "name": "SceneInfo::CheckHitBottom(float)",
+   "va": "0x00444450",
+   "size": 199,
+   "n_diff": 127,
+   "first_diff": 36,
+   "compiled_len": 199,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x444474",
+    "orig": "jne 0x2c",
+    "ours_addr": "0x24",
+    "ours": "je 0xc1",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/SceneInfo.cpp",
+   "name": "SceneInfo::CheckHitRight(float)",
+   "va": "0x00444380",
+   "size": 201,
+   "n_diff": 129,
+   "first_diff": 36,
+   "compiled_len": 201,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4443a4",
+    "orig": "jne 0x2c",
+    "ours_addr": "0x24",
+    "ours": "je 0xc3",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/ComposeUI.cpp",
+   "name": "ComposeUI::ProcessChildItem(int,int *)",
+   "va": "0x004A3730",
+   "size": 454,
+   "n_diff": 131,
+   "first_diff": 6,
+   "compiled_len": 304,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4a3734",
+    "orig": "sub esp, 0x40",
+    "ours_addr": "0x4",
+    "ours": "sub esp, 0x20",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/UI/UINote.cpp",
+   "name": "UINote::Create(int,int,int,char *)",
+   "va": "0x004450A0",
+   "size": 207,
+   "n_diff": 133,
+   "first_diff": 27,
+   "compiled_len": 207,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4450a2",
+    "orig": "push 0x56014b",
+    "ours_addr": "0x2",
+    "ours": "push {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/C3DSpark.cpp",
+   "name": "C3DSpark::CreateOne(int,int,int)",
+   "va": "0x004D6AC0",
+   "size": 217,
+   "n_diff": 136,
+   "first_diff": 8,
+   "compiled_len": 217,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d6ac8",
+    "orig": "push esi",
+    "ours_addr": "0x8",
+    "ours": "push ebp",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/ChoseCompose.cpp",
+   "name": "ChoseCompose::InitCompose(void)",
+   "va": "0x004A2170",
+   "size": 361,
+   "n_diff": 136,
+   "first_diff": 0,
+   "compiled_len": 224,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4a2170",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push esi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/SceneObjParam.cpp",
+   "name": "SceneObjParam::UpdateCameraAndRole(gbGfxManager *)",
+   "va": "0x00533CB0",
+   "size": 204,
+   "n_diff": 136,
+   "first_diff": 0,
+   "compiled_len": 160,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x533cb0",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push esi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/SceneProp.cpp",
+   "name": "SceneProp::CalculateWorldPos(float)",
+   "va": "0x005330F0",
+   "size": 343,
+   "n_diff": 141,
+   "first_diff": 0,
+   "compiled_len": 160,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x5330f0",
+    "orig": "sub esp, 0x94",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x44",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/DealData.cpp",
+   "name": "DealData::DealData(void)",
+   "va": "0x00457260",
+   "size": 212,
+   "n_diff": 144,
+   "first_diff": 39,
+   "compiled_len": 208,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x457262",
+    "orig": "push 0x561279",
+    "ours_addr": "0x2",
+    "ours": "push {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "name": "SceneMgr::Create(int,int,int)",
+   "va": "0x004CDA10",
+   "size": 196,
+   "n_diff": 146,
+   "first_diff": 20,
+   "compiled_len": 196,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4cda23",
+    "orig": "mov dword ptr [esi], eax",
+    "ours_addr": "0x13",
+    "ours": "mov dword ptr [esi + 4], eax",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
+   "name": "UIStatic::Render(void)",
+   "va": "0x00440F30",
+   "size": 265,
+   "n_diff": 149,
+   "first_diff": 0,
+   "compiled_len": 176,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x440f30",
+    "orig": "sub esp, 0x44",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBStageShadow.cpp",
+   "name": "CCBStageShadow::Reset(void)",
+   "va": "0x00511FC0",
+   "size": 178,
+   "n_diff": 150,
+   "first_diff": 2,
+   "compiled_len": 178,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x511fc0",
+    "orig": "sub esp, 0x50",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x48",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "name": "CEffShock::CreateGeom(int,int)",
+   "va": "0x004D49F0",
+   "size": 186,
+   "n_diff": 151,
+   "first_diff": 2,
+   "compiled_len": 186,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d49f0",
+    "orig": "sub esp, 0x14",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x10",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFace.cpp",
+   "name": "UISceneFace::SetFaceVisible(int,uint)",
+   "va": "0x0052D010",
+   "size": 188,
+   "n_diff": 151,
+   "first_diff": 6,
+   "compiled_len": 188,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x52d016",
+    "orig": "mov ebx, ecx",
+    "ours_addr": "0x6",
+    "ours": "push esi",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "name": "SceneMgr::ResetPlayerAtts(void)",
+   "va": "0x00408850",
+   "size": 213,
+   "n_diff": 164,
+   "first_diff": 26,
+   "compiled_len": 213,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x408853",
+    "orig": "mov ebp, dword ptr [0x56a054]",
+    "ours_addr": "0x3",
+    "ours": "mov {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UITabCtrl.cpp",
+   "name": "UITabCtrl::InitAnimParams(void)",
+   "va": "0x00532A80",
+   "size": 192,
+   "n_diff": 174,
+   "first_diff": 0,
+   "compiled_len": 176,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x532a80",
+    "orig": "push esi",
+    "ours_addr": "0x0",
+    "ours": "xor eax, eax",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/SceneInfo.cpp",
+   "name": "SceneInfo::CheckHitLeft(float)",
+   "va": "0x004441E0",
+   "size": 201,
+   "n_diff": 176,
+   "first_diff": 1,
+   "compiled_len": 201,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4441e1",
+    "orig": "mov eax, dword ptr [esp + 8]",
+    "ours_addr": "0x1",
+    "ours": "push esi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFace.cpp",
+   "name": "UISceneFace::UpdateFacePosition(void)",
+   "va": "0x0052D0F0",
+   "size": 260,
+   "n_diff": 180,
+   "first_diff": 2,
+   "compiled_len": 260,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x52d0f0",
+    "orig": "sub esp, 0x14",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0xc",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
+   "name": "UIStatic::RenderTile(int,char)",
+   "va": "0x0044AA20",
+   "size": 214,
+   "n_diff": 185,
+   "first_diff": 2,
+   "compiled_len": 214,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x44aa20",
+    "orig": "sub esp, 0x70",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x74",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/UI/UICamera.cpp",
+   "name": "UICamera::CalcPosition(float *)",
+   "va": "0x00420E50",
+   "size": 215,
+   "n_diff": 188,
+   "first_diff": 4,
+   "compiled_len": 215,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x420e53",
+    "orig": "mov ebp, ecx",
+    "ours_addr": "0x3",
+    "ours": "mov ebp, dword ptr [esp + 0x10]",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/JusticeBookUI.cpp",
+   "name": "JusticeBookUI::ctor(void)",
+   "va": "0x005282E0",
+   "size": 474,
+   "n_diff": 189,
+   "first_diff": 0,
+   "compiled_len": 256,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x5282e0",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push ebx",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIRoleSelect.cpp",
+   "name": "UIRoleSelect::SetByte(char)",
+   "va": "0x004A1530",
+   "size": 239,
+   "n_diff": 189,
+   "first_diff": 12,
+   "compiled_len": 239,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4a153a",
+    "orig": "mov byte ptr [esi + 0x555], al",
+    "ours_addr": "0xa",
+    "ours": "mov byte ptr [esi + 0x561], al",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/C2DSpark.cpp",
+   "name": "C2DSpark::SetEnableMouseTrack(int,int)",
+   "va": "0x004D5F40",
+   "size": 262,
+   "n_diff": 191,
+   "first_diff": 0,
+   "compiled_len": 262,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d5f40",
+    "orig": "fild dword ptr [esp + 4]",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0xc",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "name": "UI3DCtrl::Render(void)",
+   "va": "0x0043D940",
+   "size": 357,
+   "n_diff": 192,
+   "first_diff": 0,
+   "compiled_len": 224,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x43d940",
+    "orig": "sub esp, 0x10",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "name": "CEffShock::LoadTexture(int,int,int,int *,int,int)",
+   "va": "0x004D4B50",
+   "size": 213,
+   "n_diff": 193,
+   "first_diff": 0,
+   "compiled_len": 213,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d4b50",
+    "orig": "push ebx",
+    "ours_addr": "0x0",
+    "ours": "push ebp",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/OpenSceneFile.cpp",
+   "name": "OpenSceneFile::OpenSceneFile(char *)",
+   "va": "0x00401DF0",
+   "size": 328,
+   "n_diff": 193,
+   "first_diff": 15,
+   "compiled_len": 304,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x401dff",
+    "orig": "push esi",
+    "ours_addr": "0xf",
+    "ours": "push {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CMeteorChain.cpp",
+   "name": "CMeteorChain::Update(int,int,int,int *,int,int)",
+   "va": "0x004CD7E0",
+   "size": 213,
+   "n_diff": 195,
+   "first_diff": 0,
+   "compiled_len": 213,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4cd7e0",
+    "orig": "push ebx",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/RoleCamera.cpp",
+   "name": "RoleCamera::InitParticles(void)",
+   "va": "0x0044D180",
+   "size": 266,
+   "n_diff": 211,
+   "first_diff": 1,
+   "compiled_len": 266,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x44d181",
+    "orig": "push ebp",
+    "ours_addr": "0x1",
+    "ours": "push ebx",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Scene/SceneMgr.cpp",
+   "name": "SceneMgr::InitSceneRoles(void)",
+   "va": "0x0040CA40",
+   "size": 320,
+   "n_diff": 213,
+   "first_diff": 3,
+   "compiled_len": 256,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x40ca43",
+    "orig": "push edi",
+    "ours_addr": "0x3",
+    "ours": "mov {R}",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/PathObj.cpp",
+   "name": "PathObj::CalcLength(void)",
+   "va": "0x00407DC0",
+   "size": 251,
+   "n_diff": 214,
+   "first_diff": 0,
+   "compiled_len": 251,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x407dc0",
+    "orig": "sub esp, 0x10",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "name": "CEffShock::StartShock(int)",
+   "va": "0x004D45D0",
+   "size": 301,
+   "n_diff": 228,
+   "first_diff": 17,
+   "compiled_len": 301,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d45df",
+    "orig": "jle 0xd9",
+    "ours_addr": "0xf",
+    "ours": "jle 0xd6",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/C2DSpark.cpp",
+   "name": "C2DSpark::CreateMore(int,int,int,int)",
+   "va": "0x004D6050",
+   "size": 330,
+   "n_diff": 235,
+   "first_diff": 0,
+   "compiled_len": 330,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d6050",
+    "orig": "push ecx",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0xc",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/JusticeBookUI.cpp",
+   "name": "JusticeBookUI::JusticeBookUI(void)",
+   "va": "0x005284E0",
+   "size": 367,
+   "n_diff": 242,
+   "first_diff": 22,
+   "compiled_len": 367,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x5284e2",
+    "orig": "push 0x5681a5",
+    "ours_addr": "0x2",
+    "ours": "push {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Role/ObjectCamera.cpp",
+   "name": "ObjectCamera::SetStepRotate(void)",
+   "va": "0x0047C9B0",
+   "size": 278,
+   "n_diff": 243,
+   "first_diff": 11,
+   "compiled_len": 278,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x47c9b9",
+    "orig": "je 0xff",
+    "ours_addr": "0x9",
+    "ours": "je 0x105",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/VideoPlayer.cpp",
+   "name": "VideoPlayer::SetRegion(int,int)",
+   "va": "0x0053B720",
+   "size": 336,
+   "n_diff": 243,
+   "first_diff": 0,
+   "compiled_len": 272,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x53b720",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push ebp",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "name": "UI3DCtrl::UpdateTransform(int)",
+   "va": "0x0052EAC0",
+   "size": 288,
+   "n_diff": 249,
+   "first_diff": 0,
+   "compiled_len": 288,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x52eac0",
+    "orig": "push esi",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0xc",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/PathObj.cpp",
+   "name": "PathObj::GetPosition(float,float *,int *)",
+   "va": "0x0041F120",
+   "size": 299,
+   "n_diff": 263,
+   "first_diff": 12,
+   "compiled_len": 288,
+   "cause": "operand shape differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x41f124",
+    "orig": "fcomp dword ptr [0x56a644]",
+    "ours_addr": "0x4",
+    "ours": "fcomp {R}",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/JusticeBookUI.cpp",
+   "name": "JusticeBookUI::ProcessInput(int,int)",
+   "va": "0x00528F50",
+   "size": 449,
+   "n_diff": 268,
+   "first_diff": 6,
+   "compiled_len": 432,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x528f56",
+    "orig": "push edi",
+    "ours_addr": "0x6",
+    "ours": "mov al, byte ptr [esi + 0xb4c]",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/ComposeUI.cpp",
+   "name": "ComposeUI::RefreshRecipeList(int)",
+   "va": "0x0047E030",
+   "size": 348,
+   "n_diff": 270,
+   "first_diff": 2,
+   "compiled_len": 348,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x47e030",
+    "orig": "sub esp, 0x10",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0xc",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/UI/UICursor.cpp",
+   "name": "UICursor::Update(double)",
+   "va": "0x00535120",
+   "size": 507,
+   "n_diff": 281,
+   "first_diff": 0,
+   "compiled_len": 400,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x535120",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/SceneInfo.cpp",
+   "name": "SceneInfo::CheckBoundsHorizontal(float)",
+   "va": "0x00444520",
+   "size": 308,
+   "n_diff": 282,
+   "first_diff": 2,
+   "compiled_len": 308,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x444522",
+    "orig": "push edi",
+    "ours_addr": "0x2",
+    "ours": "mov esi, ecx",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/SceneInfo.cpp",
+   "name": "SceneInfo::CheckBoundsLeftCombo(float)",
+   "va": "0x00444660",
+   "size": 310,
+   "n_diff": 284,
+   "first_diff": 2,
+   "compiled_len": 310,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x444662",
+    "orig": "push edi",
+    "ours_addr": "0x2",
+    "ours": "mov esi, ecx",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Role/ObjectCamera.cpp",
+   "name": "ObjectCamera::ComputeInfo(int)",
+   "va": "0x0047C830",
+   "size": 375,
+   "n_diff": 286,
+   "first_diff": 2,
+   "compiled_len": 352,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x47c830",
+    "orig": "sub esp, 0x20",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x1c",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/BINK.cpp",
+   "name": "BINK::Reset(void)",
+   "va": "0x004236D0",
+   "size": 396,
+   "n_diff": 291,
+   "first_diff": 0,
+   "compiled_len": 304,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4236d0",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Scene/Scene.cpp",
+   "name": "Scene::Render2(void)",
+   "va": "0x0040C7D0",
+   "size": 398,
+   "n_diff": 296,
+   "first_diff": 2,
+   "compiled_len": 398,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x40c7d0",
+    "orig": "sub esp, 0x98",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0xa0",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/UI/UICamera.cpp",
+   "name": "UICamera::GetViewMode(int)",
+   "va": "0x00420CD0",
+   "size": 374,
+   "n_diff": 306,
+   "first_diff": 2,
+   "compiled_len": 352,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x420cd0",
+    "orig": "sub esp, 0x14",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x10",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/CCBPanelSlot.cpp",
+   "name": "CCBPanelSlot::Render(void)",
+   "va": "0x00443200",
+   "size": 378,
+   "n_diff": 307,
+   "first_diff": 2,
+   "compiled_len": 378,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x443200",
+    "orig": "sub esp, 0x58",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x1c",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/BINK.cpp",
+   "name": "BINK::Destroy(void)",
+   "va": "0x004243E0",
+   "size": 389,
+   "n_diff": 313,
+   "first_diff": 5,
+   "compiled_len": 389,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4243e5",
+    "orig": "mov ecx, dword ptr [esi + 0x34]",
+    "ours_addr": "0x5",
+    "ours": "xor ebx, ebx",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIMap.cpp",
+   "name": "UIMap::Render(void)",
+   "va": "0x004414F0",
+   "size": 573,
+   "n_diff": 317,
+   "first_diff": 2,
+   "compiled_len": 368,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4414f0",
+    "orig": "sub esp, 0x54",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 8",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/ChoseCompose.cpp",
+   "name": "ChoseCompose::Init(int)",
+   "va": "0x0044C970",
+   "size": 417,
+   "n_diff": 318,
+   "first_diff": 13,
+   "compiled_len": 400,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x44c97b",
+    "orig": "ja 0x19c",
+    "ours_addr": "0xb",
+    "ours": "ja 0x16c",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffect.cpp",
+   "name": "ScreenEffect::Apply(void)",
+   "va": "0x004B4DC0",
+   "size": 491,
+   "n_diff": 337,
+   "first_diff": 0,
+   "compiled_len": 491,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4b4dc0",
+    "orig": "push ebx",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x10",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIStatic.cpp",
+   "name": "UIStatic::RenderQuadSlice(int *,int)",
+   "va": "0x0043DAB0",
+   "size": 400,
+   "n_diff": 342,
+   "first_diff": 4,
+   "compiled_len": 400,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x43dab4",
+    "orig": "mov esi, dword ptr [esp + 0x7c]",
+    "ours_addr": "0x4",
+    "ours": "push edi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/CJ_FindFile.cpp",
+   "name": "CJ_FindFile::Create(int,void *,int,char *)",
+   "va": "0x00450F90",
+   "size": 610,
+   "n_diff": 345,
+   "first_diff": 0,
+   "compiled_len": 448,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x450f90",
+    "orig": "sub esp, 0x10",
+    "ours_addr": "0x0",
+    "ours": "mov eax, dword ptr [esp + 0xc]",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBStageShadow.cpp",
+   "name": "CCBStageShadow::Create(void)",
+   "va": "0x00512080",
+   "size": 440,
+   "n_diff": 350,
+   "first_diff": 0,
+   "compiled_len": 416,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x512080",
+    "orig": "sub esp, 0x54",
+    "ours_addr": "0x0",
+    "ours": "push ebp",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/C2DSpark.cpp",
+   "name": "C2DSpark::DestroyAll(void)",
+   "va": "0x004D61C0",
+   "size": 421,
+   "n_diff": 351,
+   "first_diff": 0,
+   "compiled_len": 421,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d61c0",
+    "orig": "push ebp",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x10",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/MatrixStack.cpp",
+   "name": "MatrixStack::BeginScene(void)",
+   "va": "0x0052FC60",
+   "size": 459,
+   "n_diff": 354,
+   "first_diff": 3,
+   "compiled_len": 459,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x52fc63",
+    "orig": "mov eax, dword ptr [0xbfda60]",
+    "ours_addr": "0x3",
+    "ours": "push ebx",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "name": "UICaption::Render(void)",
+   "va": "0x0043AD40",
+   "size": 593,
+   "n_diff": 356,
+   "first_diff": 2,
+   "compiled_len": 400,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x43ad40",
+    "orig": "sub esp, 0x78",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x14",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/UI/UICamera.cpp",
+   "name": "UICamera::GetTarget(void)",
+   "va": "0x004232D0",
+   "size": 452,
+   "n_diff": 376,
+   "first_diff": 3,
+   "compiled_len": 452,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4232d3",
+    "orig": "mov eax, dword ptr [0xd8bbec]",
+    "ours_addr": "0x3",
+    "ours": "push ebx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/UI/UICamera.cpp",
+   "name": "UICamera::GetState(void)",
+   "va": "0x004230D0",
+   "size": 508,
+   "n_diff": 401,
+   "first_diff": 0,
+   "compiled_len": 496,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4230d0",
+    "orig": "sub esp, 0x1c",
+    "ours_addr": "0x0",
+    "ours": "push ebp",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/ChoseCompose.cpp",
+   "name": "ChoseCompose::LayoutItems(int,int,int,int,int)",
+   "va": "0x00455570",
+   "size": 530,
+   "n_diff": 403,
+   "first_diff": 2,
+   "compiled_len": 464,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x455570",
+    "orig": "sub esp, 0x60",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x40",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/ChoseCompose.cpp",
+   "name": "ChoseCompose::LayoutItem(int,int,int,int,int)",
+   "va": "0x004B19E0",
+   "size": 530,
+   "n_diff": 404,
+   "first_diff": 2,
+   "compiled_len": 464,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4b19e0",
+    "orig": "sub esp, 0x60",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x40",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Scene/Scene.cpp",
+   "name": "Scene::GetTileHeight(int,int,int,int *)",
+   "va": "0x00421230",
+   "size": 469,
+   "n_diff": 406,
+   "first_diff": 2,
+   "compiled_len": 469,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x421230",
+    "orig": "sub esp, 0x4c",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x40",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/SceneInfo.cpp",
+   "name": "SceneInfo::ProcessSceneChange(float,int,int)",
+   "va": "0x00443FC0",
+   "size": 499,
+   "n_diff": 408,
+   "first_diff": 0,
+   "compiled_len": 499,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x443fc0",
+    "orig": "mov al, byte ptr [0x189598d]",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/C2DSpark.cpp",
+   "name": "C2DSpark::Render(float)",
+   "va": "0x004D6380",
+   "size": 629,
+   "n_diff": 496,
+   "first_diff": 2,
+   "compiled_len": 629,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d6380",
+    "orig": "sub esp, 0xc",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x10",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/JusticeBookUI.cpp",
+   "name": "JusticeBookUI::OnMessage(int,char *,int)",
+   "va": "0x00529120",
+   "size": 688,
+   "n_diff": 525,
+   "first_diff": 0,
+   "compiled_len": 688,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x529120",
+    "orig": "sub esp, 8",
+    "ours_addr": "0x0",
+    "ours": "push ebx",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/C3DSpark.cpp",
+   "name": "C3DSpark::C3DSpark(void)",
+   "va": "0x004D6670",
+   "size": 751,
+   "n_diff": 529,
+   "first_diff": 2,
+   "compiled_len": 704,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d6670",
+    "orig": "sub esp, 0x800",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x804",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/C2DSpark.cpp",
+   "name": "C2DSpark::C2DSpark(int,int)",
+   "va": "0x004D5AB0",
+   "size": 770,
+   "n_diff": 582,
+   "first_diff": 0,
+   "compiled_len": 752,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d5ab0",
+    "orig": "fild dword ptr [esp + 4]",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x424",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/SwordUI.cpp",
+   "name": "SwordUI::RenderSword(void)",
+   "va": "0x004AAD90",
+   "size": 1290,
+   "n_diff": 627,
+   "first_diff": 0,
+   "compiled_len": 880,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4aad90",
+    "orig": "push ebp",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0xd4",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "name": "UIProgressBar::Render(void)",
+   "va": "0x00439410",
+   "size": 814,
+   "n_diff": 649,
+   "first_diff": 6,
+   "compiled_len": 814,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x439416",
+    "orig": "mov eax, dword ptr [0xbfda60]",
+    "ours_addr": "0x6",
+    "ours": "push ebx",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/SceneInfo.cpp",
+   "name": "SceneInfo::ProcessCollision(int,int)",
+   "va": "0x00443CE0",
+   "size": 727,
+   "n_diff": 655,
+   "first_diff": 0,
+   "compiled_len": 688,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x443ce0",
+    "orig": "sub esp, 8",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "name": "TextureLib::CreateFromFile(void)",
+   "va": "0x004A6960",
+   "size": 773,
+   "n_diff": 657,
+   "first_diff": 0,
+   "compiled_len": 704,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4a6960",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x48",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_BBTY.cpp",
+   "name": "UITitle_BBTY::UpdateFrame(double,int,int)",
+   "va": "0x004520A0",
+   "size": 861,
+   "n_diff": 657,
+   "first_diff": 0,
+   "compiled_len": 861,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4520a0",
+    "orig": "sub esp, 0x30",
+    "ours_addr": "0x0",
+    "ours": "push ebp",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/s_RoleState.cpp",
+   "name": "s_RoleState::LoadAndSetupRole(void)",
+   "va": "0x004A3A90",
+   "size": 1071,
+   "n_diff": 807,
+   "first_diff": 0,
+   "compiled_len": 992,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4a3a90",
+    "orig": "push ebp",
+    "ours_addr": "0x0",
+    "ours": "push ebx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/UIGameFrm.cpp",
+   "name": "UIGameFrm::OnMessage(int,int,int)",
+   "va": "0x004A6120",
+   "size": 1082,
+   "n_diff": 822,
+   "first_diff": 0,
+   "compiled_len": 1082,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4a6120",
+    "orig": "push esi",
+    "ours_addr": "0x0",
+    "ours": "push ebx",
+    "tag": "insert"
+   }
+  },
+  {
+   "file": "pal3/src/Combat/CCBProtectWindow.cpp",
+   "name": "CCBProtectWindow::Destroy(void)",
+   "va": "0x005164D0",
+   "size": 1123,
+   "n_diff": 1049,
+   "first_diff": 2,
+   "compiled_len": 1123,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x5164d2",
+    "orig": "push esi",
+    "ours_addr": "0x2",
+    "ours": "mov ebp, ecx",
+    "tag": "insert"
+   }
+  }
+ ]
+}

@@ -1,4 +1,4 @@
-"""Test PE (Portable Executable) structure of compiled binaries.
+﻿"""Test PE (Portable Executable) structure of compiled binaries.
 
 This test verifies that our decompiled and recompiled binaries have
 the correct PE structure matching the original binaries.
@@ -16,6 +16,8 @@ without external dependencies (like pefile).
 import struct
 import os
 import pytest
+import importlib.util
+pytestmark = pytest.mark.skipif(importlib.util.find_spec("pefile") is None, reason="env: pefile missing")
 
 
 class PEInfo:
@@ -210,3 +212,6 @@ def test_compiled_topo_structure_info(compiled_topo_dll):
 
     # Test always passes, this is just for info
     assert True
+
+
+

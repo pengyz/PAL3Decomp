@@ -148,7 +148,20 @@ class DataStore:
                     mtype = dm.get('type', 'int')
                     off = dm['offset']
                     # Restore annotation-preserved array type (IDA truncates arrays to span)
-                    var_info = variants.get(str(off)) or variants.get(str(int(off)))
+                    # W5 键纪律修（2026-09-28）：旧式 `get(str(off)) or get(str(int(off)))` 两查恒同
+                    # （第二查空转）⇒ N_N/hex 键形成员的数组型回填静默丢失。归一化：键去 N_N
+                    # 后缀解析基数（含 hex 形），基数命中即取其数组型。
+                    var_info = None
+                    for vk, vv in variants.items():
+                        try:
+                            vbase = int(str(vk).split('_')[0], 0)
+                        except Exception:
+                            continue
+                        if vbase == off:
+                            _vt = (vv or {}).get('type', '')
+                            if isinstance(_vt, str) and _vt.endswith(']') and '[' in _vt:
+                                var_info = vv
+                                break
                     if var_info:
                         vt = var_info.get('type', '')
                         if isinstance(vt, str) and vt.endswith(']') and '[' in vt:
@@ -347,7 +360,8 @@ class DataStore:
             for _df in sorted(_decomp_dir.glob("*.json")):
                 try:
                     _dd = json.load(open(_df, encoding='utf-8'))
-                except:
+                except Exception as _e:
+                    print("  [data-ERR] %s: %s" % (_df.name, _e))
                     continue
                 _name = _dd.get('name', '')
                 if '::' in _name:
@@ -361,10 +375,15 @@ class DataStore:
             for _df in sorted(_decomp_dir.glob("*.json")):
                 try:
                     _dd = json.load(open(_df, encoding='utf-8'))
-                except:
+                except Exception as _e:
+                    print("  [data-ERR] %s: %s" % (_df.name, _e))
                     continue
                 _name = _dd.get('name', '')
                 _sig = _dd.get('signature', '')
+                # N1 注记（回退教训 2026-09-29）：曾加"成员地址不进 free_func_sigs"排除——
+                # 拆掉生成代码裸调用（SetEnable/RemoveAt 族）的声明拐杖 ⇒ C2065 +75 / S2 100→67
+                # 洪泛。free_func_sigs 对**限定调用无害**（重载决议走类声明）且是裸调用的唯一声明源
+                # ⇒ **不排除成员函数**；N1 的正确闭合在调用形转写（rewrite_unqualified_member_call）。
                 # Normalize IDA __hidden this marker (apply_annotations writes
                 # method types as `Cls *__hidden this`; consume as `Cls *this`)
                 _sig = _re2.sub(r'\b__hidden\s+', '', _sig)
@@ -399,7 +418,8 @@ class DataStore:
                         self.static_methods.add(_name.split('(')[0])
                 else:
                     # Free function: build forward declaration
-                    if _name.startswith('_') or _name.startswith('$') or _name.startswith('?'):
+                    if (_name.startswith('_') and not _name.startswith('_todo_')) \
+                            or _name.startswith('$') or _name.startswith('?'):
                         continue
                     if 'unknown_libname' in _name or 'nullsub' in _name:
                         continue
@@ -452,8 +472,9 @@ class DataStore:
                     continue  # class method, not a free function
                 if _name in self.free_func_sigs:
                     continue  # already have it from decomp
-                # Same filters as above
-                if _name.startswith('_') or _name.startswith('$') or _name.startswith('?'):
+                # Same filters as above（_todo_ 豁免——真名未知许可形（挂账③ E 接线））
+                if (_name.startswith('_') and not _name.startswith('_todo_')) \
+                        or _name.startswith('$') or _name.startswith('?'):
                     continue
                 # NOTE: do NOT filter unknown_libname/nullsub here — annotation
                 # entries are manually curated and may reference such functions

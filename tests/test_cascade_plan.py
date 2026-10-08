@@ -1,3 +1,4 @@
+﻿import pytest
 """级联计划生成器（正确模型）—— **断言型**测试 ✓
 
 本机 pytest collect 崩（sys.path 混入 aide 的 pytest dev 构建 ✗）⇒ 自带走 __main__ runner ✓。
@@ -145,3 +146,4 @@ if __name__ == '__main__':
                 print('  FAIL %s: %s: %s' % (nm, type(e).__name__, e)); fail += 1
     print('Results: %d passed, %d failed' % (ok, fail))
     sys.exit(1 if fail else 0)
+

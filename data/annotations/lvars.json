@@ -1,0 +1,5332 @@
+{
+  "_schema": "函数局部变量注解。键=函数 VA（0x 十六进制）；条目按 loc 定位 lvar：栈变量用 stkoff、寄存器变量用 reg（vdloc_t.reg1() 的 mreg 值；x87 st0-st7=160..175）。name/type 均可选；type 为 C 类型文本。注解决定论：export 每次渲染都会应用，不依赖会被 init 清掉的 IDB 交互态。2026-09-26 FPU 批次：寄存器变量分支修复（regidx() 死代码→reg1()）+ FPU 伪变量类型恢复（x87 操作数尺寸证据裁决 float/double）。",
+  "0x0040C7D0": [
+    {
+      "reg": "172",
+      "type": "float"
+    }
+  ],
+  "_auto_keys": [
+    "0x004012A0",
+    "0x00402D20",
+    "0x004031D0",
+    "0x004038F0",
+    "0x004039D0",
+    "0x00403B80",
+    "0x00404150",
+    "0x00405C00",
+    "0x00407DC0",
+    "0x00408460",
+    "0x00408E90",
+    "0x00408F30",
+    "0x0040C230",
+    "0x0040DE10",
+    "0x0040E110",
+    "0x0040E3C0",
+    "0x004105B0",
+    "0x004122C0",
+    "0x00412A90",
+    "0x00412B60",
+    "0x004132B0",
+    "0x00413390",
+    "0x00413420",
+    "0x00413850",
+    "0x00413C00",
+    "0x00414250",
+    "0x00414350",
+    "0x004148C0",
+    "0x00414980",
+    "0x00414A30",
+    "0x00414E50",
+    "0x004161E0",
+    "0x00416220",
+    "0x00416620",
+    "0x00416790",
+    "0x00416BC0",
+    "0x00417420",
+    "0x004178A0",
+    "0x00417C50",
+    "0x00418260",
+    "0x00418970",
+    "0x004189C0",
+    "0x00418DC0",
+    "0x00419090",
+    "0x00419200",
+    "0x004194C0",
+    "0x00419790",
+    "0x004198C0",
+    "0x00419B30",
+    "0x00419EF0",
+    "0x0041A070",
+    "0x0041A1A0",
+    "0x0041A450",
+    "0x0041ABE0",
+    "0x0041AD40",
+    "0x0041B6C0",
+    "0x0041BA10",
+    "0x0041C280",
+    "0x0041C540",
+    "0x0041C670",
+    "0x0041C710",
+    "0x0041C900",
+    "0x0041CAC0",
+    "0x0041CC50",
+    "0x0041D220",
+    "0x0041D410",
+    "0x0041D9A0",
+    "0x0041E7D0",
+    "0x0041EA00",
+    "0x0041F120",
+    "0x00420CD0",
+    "0x00420E50",
+    "0x00421230",
+    "0x004230D0",
+    "0x004232D0",
+    "0x00424570",
+    "0x00429DB0",
+    "0x0042AFA0",
+    "0x0042B350",
+    "0x0042B450",
+    "0x0042B5B0",
+    "0x0042C030",
+    "0x0042EBE0",
+    "0x0042FEC0",
+    "0x0042FF40",
+    "0x004387D0",
+    "0x00438E30",
+    "0x00439850",
+    "0x00439930",
+    "0x00439A20",
+    "0x0043A090",
+    "0x0043A270",
+    "0x0043A3E0",
+    "0x0043AD40",
+    "0x0043BF90",
+    "0x0043C0F0",
+    "0x0043C550",
+    "0x0043C7B0",
+    "0x0043CDF0",
+    "0x0043D1A0",
+    "0x0043DAB0",
+    "0x0043FCA0",
+    "0x0043FD20",
+    "0x0043FDF0",
+    "0x0043FF00",
+    "0x0043FF70",
+    "0x00440560",
+    "0x00441730",
+    "0x00442890",
+    "0x00442FF0",
+    "0x00443AF0",
+    "0x00443CE0",
+    "0x004441E0",
+    "0x004442B0",
+    "0x00444380",
+    "0x00444450",
+    "0x00444520",
+    "0x00444660",
+    "0x004447A0",
+    "0x004448E0",
+    "0x00444D30",
+    "0x00449AB0",
+    "0x00449CF0",
+    "0x00449F00",
+    "0x00449FE0",
+    "0x0044A3D0",
+    "0x0044A820",
+    "0x0044A870",
+    "0x0044AA20",
+    "0x0044C8A0",
+    "0x0044D780",
+    "0x0044DA30",
+    "0x004501A0",
+    "0x00450230",
+    "0x00450C90",
+    "0x004515E0",
+    "0x004520A0",
+    "0x00452AA0",
+    "0x00452D30",
+    "0x00452DF0",
+    "0x004533F0",
+    "0x00454CA0",
+    "0x00461C50",
+    "0x0046AEA0",
+    "0x0046F480",
+    "0x00474AB0",
+    "0x0047C590",
+    "0x0047C6E0",
+    "0x0047C770",
+    "0x0047C830",
+    "0x0047C9B0",
+    "0x0047D030",
+    "0x0047D130",
+    "0x0047D320",
+    "0x0047D440",
+    "0x0047D690",
+    "0x00480530",
+    "0x00483650",
+    "0x0049CF80",
+    "0x0049FBE0",
+    "0x004AD540",
+    "0x004B0820",
+    "0x004B3470",
+    "0x004B49C0",
+    "0x004B4B10",
+    "0x004B4C60",
+    "0x004B4DC0",
+    "0x004B4FE0",
+    "0x004B51A0",
+    "0x004B5380",
+    "0x004B5450",
+    "0x004B5570",
+    "0x004B5750",
+    "0x004B5830",
+    "0x004B59B0",
+    "0x004B5BB0",
+    "0x004B5D20",
+    "0x004B5EE0",
+    "0x004B60F0",
+    "0x004B6300",
+    "0x004B63C0",
+    "0x004B6820",
+    "0x004B7340",
+    "0x004B7F80",
+    "0x004BB0F0",
+    "0x004BB200",
+    "0x004BB330",
+    "0x004BB4E0",
+    "0x004BB690",
+    "0x004BB830",
+    "0x004BBA50",
+    "0x004BBCA0",
+    "0x004BBEB0",
+    "0x004BC0C0",
+    "0x004BC2D0",
+    "0x004BC4E0",
+    "0x004BF260",
+    "0x004C0200",
+    "0x004C0C10",
+    "0x004C2600",
+    "0x004C45A0",
+    "0x004C4B00",
+    "0x004C5210",
+    "0x004C65C0",
+    "0x004C7150",
+    "0x004C7680",
+    "0x004C7C00",
+    "0x004C7D40",
+    "0x004C7E60",
+    "0x004C8370",
+    "0x004C8B80",
+    "0x004C8BF0",
+    "0x004C9ED0",
+    "0x004CA450",
+    "0x004CBC50",
+    "0x004CBFC0",
+    "0x004CC4C0",
+    "0x004CCEF0",
+    "0x004CDB70",
+    "0x004D01C0",
+    "0x004D05E0",
+    "0x004D0EC0",
+    "0x004D1CA0",
+    "0x004D22F0",
+    "0x004D3DC0",
+    "0x004D45D0",
+    "0x004D49F0",
+    "0x004D6050",
+    "0x004D61C0",
+    "0x004D6BC0",
+    "0x004D8F20",
+    "0x004DB7A0",
+    "0x004DBB20",
+    "0x004DF710",
+    "0x004ECB20",
+    "0x004F2390",
+    "0x004FA3A0",
+    "0x004FA440",
+    "0x004FC150",
+    "0x004FCE70",
+    "0x004FCFB0",
+    "0x004FD0B0",
+    "0x004FD1A0",
+    "0x004FDB10",
+    "0x004FDD90",
+    "0x004FDFC0",
+    "0x004FE290",
+    "0x004FE660",
+    "0x004FEFB0",
+    "0x004FF1B0",
+    "0x004FFCB0",
+    "0x00500840",
+    "0x00500AD0",
+    "0x00501330",
+    "0x005015C0",
+    "0x00502000",
+    "0x005020D0",
+    "0x005021C0",
+    "0x00502300",
+    "0x00505930",
+    "0x005062D0",
+    "0x005075E0",
+    "0x00508930",
+    "0x0050A2B0",
+    "0x0050A5D0",
+    "0x0050A700",
+    "0x0050A770",
+    "0x0050E160",
+    "0x0050E360",
+    "0x0050EB00",
+    "0x005107C0",
+    "0x00511110",
+    "0x00511790",
+    "0x00511FC0",
+    "0x00512080",
+    "0x00512240",
+    "0x005184E0",
+    "0x00518FE0",
+    "0x00519080",
+    "0x00524230",
+    "0x00529E40",
+    "0x0052AAB0",
+    "0x0052BEB0",
+    "0x0052C480",
+    "0x0052D230",
+    "0x0052D7C0",
+    "0x0052DE00",
+    "0x0052DFF0",
+    "0x0052E080",
+    "0x0052E140",
+    "0x0052E2F0",
+    "0x0052E500",
+    "0x0052E820",
+    "0x0052E8C0",
+    "0x0052E940",
+    "0x0052E9C0",
+    "0x0052EA40",
+    "0x0052EAC0",
+    "0x0052ED30",
+    "0x0052FE30",
+    "0x00530960",
+    "0x005309A0",
+    "0x00530F70",
+    "0x00531010",
+    "0x005310C0",
+    "0x00531160",
+    "0x00531260",
+    "0x00532A80",
+    "0x00532B40",
+    "0x00532C80",
+    "0x00532D60",
+    "0x00532F60",
+    "0x005330F0",
+    "0x00533250",
+    "0x00533FE0",
+    "0x00534210",
+    "0x00534450",
+    "0x00534810",
+    "0x00535E70",
+    "0x00535F10",
+    "0x00535FD0",
+    "0x005400E0",
+    "0x00540FD0",
+    "0x00541210",
+    "0x00408FD0"
+  ],
+  "0x004012A0": [
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    }
+  ],
+  "0x00530F70": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x005309A0": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x00531260": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v17",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v30",
+      "type": "float"
+    },
+    {
+      "name": "v32",
+      "type": "float"
+    },
+    {
+      "name": "v35",
+      "type": "float"
+    }
+  ],
+  "0x00535FD0": [
+    {
+      "name": "v2",
+      "type": "float"
+    },
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x0049CF80": [
+    {
+      "name": "result",
+      "type": "float"
+    },
+    {
+      "name": "v116",
+      "type": "int",
+      "source": "批16 2026-10-07：+= int 语义证（C2297 根因）"
+    },
+    {
+      "name": "v111",
+      "type": "int",
+      "source": "批17 2026-10-07：+= int 语义证（C2297 同族）"
+    },
+    {
+      "name": "v56",
+      "type": "int",
+      "source": "批17 2026-10-07：+= int 语义证（C2297 同族）"
+    },
+    {
+      "name": "v26",
+      "type": "int",
+      "source": "批18 2026-10-07：= v111(int) 赋值语义证（C2440 根因——ScriptSystem* 误型）"
+    },
+    {
+      "name": "v80",
+      "type": "int",
+      "source": "批18 2026-10-07：= v111(int) 赋值语义证（C2440 根因——ScriptSystem* 误型）"
+    }
+  ],
+  "0x004D6050": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x004D61C0": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x004D6BC0": [
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    }
+  ],
+  "0x004D8F20": [
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x004DBB20": [
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x004DB7A0": [
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x0043FD20": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x0052E2F0": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    }
+  ],
+  "0x00443AF0": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x00442FF0": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    }
+  ],
+  "0x0044A820": [
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x0044A870": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x00502000": [
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x004FA440": [
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x004FA3A0": [
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x00449F00": [
+    {
+      "name": "m_fSpringPrevX_low",
+      "type": "float"
+    }
+  ],
+  "0x005020D0": [
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x004F2390": [
+    {
+      "name": "v19",
+      "type": "float"
+    },
+    {
+      "name": "v20",
+      "type": "float"
+    }
+  ],
+  "0x005021C0": [
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x00502300": [
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x0044A3D0": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x004ECB20": [
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x00449FE0": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "m_fSpringPosY",
+      "type": "float"
+    }
+  ],
+  "0x005107C0": [
+    {
+      "name": "m_fCurRotParam",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    },
+    {
+      "name": "v16",
+      "type": "float"
+    },
+    {
+      "name": "v17",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v19",
+      "type": "float"
+    },
+    {
+      "name": "v20",
+      "type": "float"
+    },
+    {
+      "name": "v21",
+      "type": "float"
+    },
+    {
+      "name": "v22",
+      "type": "float"
+    },
+    {
+      "name": "v23",
+      "type": "float"
+    },
+    {
+      "name": "v24",
+      "type": "float"
+    },
+    {
+      "name": "v25",
+      "type": "float"
+    },
+    {
+      "name": "z",
+      "type": "float"
+    },
+    {
+      "name": "v28",
+      "type": "float"
+    },
+    {
+      "name": "v29",
+      "type": "float"
+    },
+    {
+      "name": "v30",
+      "type": "float"
+    },
+    {
+      "name": "v31",
+      "type": "float"
+    },
+    {
+      "name": "v32",
+      "type": "float"
+    },
+    {
+      "name": "v33",
+      "type": "float"
+    },
+    {
+      "name": "v34",
+      "type": "float"
+    },
+    {
+      "name": "v35",
+      "type": "float"
+    },
+    {
+      "name": "v36",
+      "type": "float"
+    },
+    {
+      "name": "v37",
+      "type": "float"
+    },
+    {
+      "name": "v38",
+      "type": "float"
+    },
+    {
+      "name": "v39",
+      "type": "float"
+    },
+    {
+      "name": "v40",
+      "type": "float"
+    },
+    {
+      "name": "v41",
+      "type": "float"
+    },
+    {
+      "name": "v42",
+      "type": "float"
+    },
+    {
+      "name": "v43",
+      "type": "float"
+    },
+    {
+      "name": "v44",
+      "type": "float"
+    },
+    {
+      "name": "v45",
+      "type": "float"
+    },
+    {
+      "name": "v46",
+      "type": "float"
+    }
+  ],
+  "0x00511110": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x00511790": [
+    {
+      "name": "m_fRender",
+      "type": "float"
+    }
+  ],
+  "0x00512080": [
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    }
+  ],
+  "0x00512240": [
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x00511FC0": [
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x0050A5D0": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x00508930": [
+    {
+      "name": "v14",
+      "type": "float"
+    }
+  ],
+  "0x0050E360": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x00500AD0": [
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x0050A770": [
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    }
+  ],
+  "0x00500840": [
+    {
+      "name": "m_fCombatAnimY",
+      "type": "float"
+    }
+  ],
+  "0x0050A700": [
+    {
+      "name": "v1",
+      "type": "float"
+    },
+    {
+      "name": "v2",
+      "type": "float"
+    }
+  ],
+  "0x004FDB10": [
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "height",
+      "type": "float"
+    },
+    {
+      "name": "width",
+      "type": "float"
+    }
+  ],
+  "0x004FCFB0": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x004FCE70": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    }
+  ],
+  "0x004FD1A0": [
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x004FD0B0": [
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x004FE290": [
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "height",
+      "type": "float"
+    },
+    {
+      "name": "width",
+      "type": "float"
+    }
+  ],
+  "0x004FF1B0": [
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x004FEFB0": [
+    {
+      "name": "v11",
+      "type": "float"
+    }
+  ],
+  "0x004FE660": [
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v24",
+      "type": "float"
+    },
+    {
+      "name": "v25",
+      "type": "float"
+    }
+  ],
+  "0x004FDFC0": [
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "height",
+      "type": "float"
+    },
+    {
+      "name": "width",
+      "type": "float"
+    }
+  ],
+  "0x0050EB00": [
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x004DF710": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v16",
+      "type": "float"
+    },
+    {
+      "name": "v17",
+      "type": "float"
+    }
+  ],
+  "0x004FDD90": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "height",
+      "type": "float"
+    },
+    {
+      "name": "width",
+      "type": "float"
+    }
+  ],
+  "0x0050A2B0": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x005015C0": [
+    {
+      "name": "v25",
+      "type": "float"
+    },
+    {
+      "name": "v26",
+      "type": "float"
+    },
+    {
+      "name": "m_fCombatAnimY",
+      "type": "float"
+    }
+  ],
+  "0x00501330": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x004FFCB0": [
+    {
+      "name": "v8",
+      "type": "float"
+    }
+  ],
+  "0x0050E160": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x004FC150": [
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x00449AB0": [
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x00449CF0": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x005184E0": [
+    {
+      "name": "nEXP",
+      "type": "float"
+    }
+  ],
+  "0x00518FE0": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x00519080": [
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x0041C900": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x0044D780": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v19",
+      "type": "float"
+    },
+    {
+      "name": "v20",
+      "type": "float"
+    },
+    {
+      "name": "v21",
+      "type": "float"
+    }
+  ],
+  "0x005075E0": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v17",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v19",
+      "type": "float"
+    },
+    {
+      "name": "v20",
+      "type": "float"
+    },
+    {
+      "name": "v21",
+      "type": "float"
+    },
+    {
+      "name": "v22",
+      "type": "float"
+    },
+    {
+      "name": "v23",
+      "type": "float"
+    },
+    {
+      "name": "v24",
+      "type": "float"
+    }
+  ],
+  "0x005062D0": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x004533F0": [
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v21",
+      "type": "float"
+    }
+  ],
+  "0x00505930": [
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v20",
+      "type": "float"
+    },
+    {
+      "name": "v21",
+      "type": "float"
+    },
+    {
+      "name": "v23",
+      "type": "float"
+    }
+  ],
+  "0x004C45A0": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    },
+    {
+      "name": "v17",
+      "type": "float"
+    }
+  ],
+  "0x004C5210": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    }
+  ],
+  "0x004CA450": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "m_fGreen",
+      "type": "float"
+    },
+    {
+      "name": "m_fBlue",
+      "type": "float"
+    },
+    {
+      "name": "m_fSize",
+      "type": "float"
+    },
+    {
+      "name": "m_fHeight",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    }
+  ],
+  "0x004CC4C0": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    }
+  ],
+  "0x004C7D40": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    }
+  ],
+  "0x004C7C00": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    }
+  ],
+  "0x004C8370": [
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "x",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v25",
+      "type": "float"
+    }
+  ],
+  "0x004C9ED0": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "eu",
+      "type": "float"
+    },
+    {
+      "name": "v23",
+      "type": "float"
+    }
+  ],
+  "0x004CBFC0": [
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x004CBC50": [
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    },
+    {
+      "name": "v16",
+      "type": "float"
+    },
+    {
+      "name": "v17",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v19",
+      "type": "float"
+    }
+  ],
+  "0x004C7E60": [
+    {
+      "name": "v16",
+      "type": "float"
+    }
+  ],
+  "0x004CCEF0": [
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    }
+  ],
+  "0x004D22F0": [
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v16",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v20",
+      "type": "float"
+    },
+    {
+      "name": "v26",
+      "type": "float"
+    },
+    {
+      "name": "v28",
+      "type": "float"
+    },
+    {
+      "name": "v30",
+      "type": "float"
+    },
+    {
+      "name": "v32",
+      "type": "float"
+    },
+    {
+      "name": "v34",
+      "type": "float"
+    }
+  ],
+  "0x004B7340": [
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x004D01C0": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x004D1CA0": [
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x004D49F0": [
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    }
+  ],
+  "0x004D45D0": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x004D3DC0": [
+    {
+      "name": "m_byMaxFrame",
+      "type": "float"
+    }
+  ],
+  "0x004C65C0": [
+    {
+      "name": "v2",
+      "type": "float"
+    }
+  ],
+  "0x004C7150": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v17",
+      "type": "float"
+    }
+  ],
+  "0x004D0EC0": [
+    {
+      "name": "v8",
+      "type": "float"
+    }
+  ],
+  "0x004C8BF0": [
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x004C8B80": [
+    {
+      "name": "v8",
+      "type": "float"
+    }
+  ],
+  "0x0052ED30": [
+    {
+      "name": "v17",
+      "type": "float"
+    },
+    {
+      "name": "v28",
+      "type": "float"
+    }
+  ],
+  "0x0052D230": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    }
+  ],
+  "0x00533250": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    },
+    {
+      "name": "v16",
+      "type": "float"
+    },
+    {
+      "name": "v17",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v19",
+      "type": "float"
+    },
+    {
+      "name": "v20",
+      "type": "float"
+    },
+    {
+      "name": "v21",
+      "type": "float"
+    },
+    {
+      "name": "v22",
+      "type": "float"
+    },
+    {
+      "name": "v23",
+      "type": "float"
+    },
+    {
+      "name": "v24",
+      "type": "float"
+    },
+    {
+      "name": "v38",
+      "type": "float"
+    }
+  ],
+  "0x0043C550": [
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x0041C670": [
+    {
+      "name": "m_fCamDist",
+      "type": "float"
+    }
+  ],
+  "0x0041CAC0": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x0041D9A0": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v21",
+      "type": "float"
+    },
+    {
+      "name": "v22",
+      "type": "float"
+    },
+    {
+      "name": "v23",
+      "type": "float"
+    },
+    {
+      "name": "v24",
+      "type": "float"
+    },
+    {
+      "name": "v25",
+      "type": "float"
+    },
+    {
+      "name": "v43",
+      "type": "float"
+    }
+  ],
+  "0x0041CC50": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "m_fLerpPosX",
+      "type": "float"
+    }
+  ],
+  "0x0041E7D0": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "x",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    }
+  ],
+  "0x0041EA00": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x0052BEB0": [
+    {
+      "name": "v29",
+      "type": "float"
+    }
+  ],
+  "0x00439850": [
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x00439930": [
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x0042FEC0": [
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x0042FF40": [
+    {
+      "name": "v13",
+      "type": "float"
+    }
+  ],
+  "0x0049FBE0": [
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x00404150": [
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x004031D0": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    }
+  ],
+  "0x004039D0": [
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v17",
+      "type": "float"
+    },
+    {
+      "name": "v20",
+      "type": "float"
+    }
+  ],
+  "0x004038F0": [
+    {
+      "name": "v2",
+      "type": "float"
+    }
+  ],
+  "0x0046AEA0": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x00403B80": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    },
+    {
+      "name": "v36",
+      "type": "float"
+    }
+  ],
+  "0x0046F480": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x00402D20": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    }
+  ],
+  "0x0041C540": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x0041C280": [
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    }
+  ],
+  "0x0044DA30": [
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x00483650": [
+    {
+      "name": "v36",
+      "type": "float"
+    }
+  ],
+  "0x00474AB0": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x00480530": [
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x0052FE30": [
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v16",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v20",
+      "type": "float"
+    },
+    {
+      "name": "v22",
+      "type": "float"
+    },
+    {
+      "name": "v23",
+      "type": "float"
+    },
+    {
+      "name": "v25",
+      "type": "float"
+    }
+  ],
+  "0x00535F10": [
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x0040DE10": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    }
+  ],
+  "0x004105B0": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x0047D690": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v16",
+      "type": "float"
+    },
+    {
+      "name": "v17",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v19",
+      "type": "float"
+    },
+    {
+      "name": "m_rotRelative",
+      "type": "float"
+    },
+    {
+      "name": "v24",
+      "type": "float"
+    }
+  ],
+  "0x0047D440": [
+    {
+      "name": "v8",
+      "type": "float"
+    }
+  ],
+  "0x0047D320": [
+    {
+      "name": "m_dist",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    }
+  ],
+  "0x004B7F80": [
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x0047D130": [
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x0047D030": [
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x0047C830": [
+    {
+      "name": "m_dist",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    }
+  ],
+  "0x0047C590": [
+    {
+      "name": "x",
+      "type": "float"
+    }
+  ],
+  "0x0047C6E0": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x0047C770": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x0047C9B0": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    }
+  ],
+  "0x00532F60": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    }
+  ],
+  "0x00405C00": [
+    {
+      "name": "v31",
+      "type": "float"
+    }
+  ],
+  "0x00429DB0": [
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x0042EBE0": [
+    {
+      "name": "v26",
+      "type": "float"
+    },
+    {
+      "name": "v28",
+      "type": "float"
+    },
+    {
+      "name": "v31",
+      "type": "float"
+    },
+    {
+      "name": "v34",
+      "type": "float"
+    },
+    {
+      "name": "v35",
+      "type": "float"
+    },
+    {
+      "name": "v36",
+      "type": "float"
+    }
+  ],
+  "0x0042B450": [
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x0042B350": [
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x0042AFA0": [
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x0042C030": [
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x0042B5B0": [
+    {
+      "name": "result",
+      "type": "float"
+    }
+  ],
+  "0x004387D0": [
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x0043A270": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "m_pCurrentTask",
+      "type": "float"
+    },
+    {
+      "name": "m_CamObj",
+      "type": "float"
+    }
+  ],
+  "0x0043A3E0": [
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x00407DC0": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x0041F120": [
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    }
+  ],
+  "0x004C7680": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "m_fAlpha",
+      "type": "float"
+    }
+  ],
+  "0x0041C710": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    }
+  ],
+  "0x004C2600": [
+    {
+      "name": "v2",
+      "type": "float"
+    }
+  ],
+  "0x004D05E0": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    }
+  ],
+  "0x004C0C10": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    },
+    {
+      "name": "v16",
+      "type": "float"
+    }
+  ],
+  "0x004C0200": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    }
+  ],
+  "0x004B63C0": [
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    }
+  ],
+  "0x004B6820": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "width",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    }
+  ],
+  "0x004BB0F0": [
+    {
+      "name": "v2",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x004B4B10": [
+    {
+      "name": "m_fRender",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "m_fOffsetParam",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    },
+    {
+      "name": "v16",
+      "type": "float"
+    },
+    {
+      "name": "v17",
+      "type": "float"
+    },
+    {
+      "name": "v19",
+      "type": "float"
+    }
+  ],
+  "0x004B4C60": [
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    }
+  ],
+  "0x004B49C0": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "m_nHeight",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v16",
+      "type": "float"
+    }
+  ],
+  "0x00531010": [
+    {
+      "name": "v2",
+      "type": "float"
+    },
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x004515E0": [
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x00534450": [
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "exp",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    },
+    {
+      "name": "v16",
+      "type": "float"
+    },
+    {
+      "name": "v17",
+      "type": "float"
+    },
+    {
+      "name": "v19",
+      "type": "float"
+    },
+    {
+      "name": "v20",
+      "type": "float"
+    },
+    {
+      "name": "v23",
+      "type": "float"
+    }
+  ],
+  "0x00531160": [
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    }
+  ],
+  "0x00534210": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x00530960": [
+    {
+      "name": "v2",
+      "type": "float"
+    }
+  ],
+  "0x00534810": [
+    {
+      "name": "exp",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    },
+    {
+      "name": "v16",
+      "type": "float"
+    },
+    {
+      "name": "v17",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v20",
+      "type": "float"
+    },
+    {
+      "name": "v23",
+      "type": "float"
+    }
+  ],
+  "0x00533FE0": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    }
+  ],
+  "0x005310C0": [
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x0052E080": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x0052DFF0": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x00450C90": [
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x0041D410": [
+    {
+      "name": "v15",
+      "type": "float"
+    }
+  ],
+  "0x0041D220": [
+    {
+      "name": "v2",
+      "type": "float"
+    }
+  ],
+  "0x00418970": [
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x00532C80": [
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x00419EF0": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x00413850": [
+    {
+      "name": "result",
+      "type": "float"
+    }
+  ],
+  "0x0041B6C0": [
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v20",
+      "type": "float"
+    },
+    {
+      "name": "v21",
+      "type": "float"
+    },
+    {
+      "name": "v22",
+      "type": "float"
+    },
+    {
+      "name": "v23",
+      "type": "float"
+    }
+  ],
+  "0x00408460": [
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v19",
+      "type": "float"
+    }
+  ],
+  "0x00416220": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x004178A0": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x00414980": [
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x0041BA10": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x00413390": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x004132B0": [
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x00412A90": [
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    }
+  ],
+  "0x00414250": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x00414A30": [
+    {
+      "name": "v2",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v17",
+      "type": "float"
+    },
+    {
+      "name": "v19",
+      "type": "float"
+    },
+    {
+      "name": "v21",
+      "type": "float"
+    },
+    {
+      "name": "v31",
+      "type": "float"
+    },
+    {
+      "name": "v32",
+      "type": "float"
+    },
+    {
+      "name": "v35",
+      "type": "float"
+    },
+    {
+      "name": "v37",
+      "type": "float"
+    }
+  ],
+  "0x00413C00": [
+    {
+      "name": "v8",
+      "type": "float"
+    }
+  ],
+  "0x00416BC0": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x00419790": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x004161E0": [
+    {
+      "name": "v2",
+      "type": "float"
+    },
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x0041A1A0": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    }
+  ],
+  "0x00412B60": [
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x004198C0": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x004189C0": [
+    {
+      "name": "v15",
+      "type": "float"
+    },
+    {
+      "name": "v19",
+      "type": "float"
+    },
+    {
+      "name": "m_dropx",
+      "type": "float"
+    }
+  ],
+  "0x00413420": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    },
+    {
+      "name": "v16",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v19",
+      "type": "float"
+    }
+  ],
+  "0x00418DC0": [
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    }
+  ],
+  "0x00416790": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v20",
+      "type": "float"
+    },
+    {
+      "name": "v21",
+      "type": "float"
+    }
+  ],
+  "0x00419B30": [
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x0041AD40": [
+    {
+      "name": "v2",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x0041ABE0": [
+    {
+      "name": "v2",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x0041A450": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    },
+    {
+      "name": "v17",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v19",
+      "type": "float"
+    },
+    {
+      "name": "v20",
+      "type": "float"
+    },
+    {
+      "name": "v21",
+      "type": "float"
+    },
+    {
+      "name": "v31",
+      "type": "float"
+    }
+  ],
+  "0x004148C0": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    }
+  ],
+  "0x00417C50": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "m_fWaypointX",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    }
+  ],
+  "0x00414350": [
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    },
+    {
+      "name": "v16",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v20",
+      "type": "float"
+    }
+  ],
+  "0x00416620": [
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x004122C0": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x00417420": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    },
+    {
+      "name": "v16",
+      "type": "float"
+    }
+  ],
+  "0x00408E90": [
+    {
+      "name": "v2",
+      "type": "float"
+    }
+  ],
+  "0x00408F30": [
+    {
+      "name": "v2",
+      "type": "float"
+    }
+  ],
+  "0x00461C50": [
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    }
+  ],
+  "0x004448E0": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x00444520": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x00444660": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x004447A0": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x00444450": [
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x004441E0": [
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x00444380": [
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x00443CE0": [
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x004442B0": [
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x004CDB70": [
+    {
+      "name": "v2",
+      "type": "float"
+    }
+  ],
+  "0x005330F0": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    }
+  ],
+  "0x00421230": [
+    {
+      "name": "result",
+      "type": "float"
+    }
+  ],
+  "0x00419200": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    },
+    {
+      "name": "v16",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    }
+  ],
+  "0x004194C0": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x00419090": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    }
+  ],
+  "0x0040C230": [
+    {
+      "name": "v2",
+      "type": "float"
+    },
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x0040E3C0": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    }
+  ],
+  "0x0040E110": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    }
+  ],
+  "0x004AD540": [
+    {
+      "name": "v18",
+      "type": "float"
+    }
+  ],
+  "0x00454CA0": [
+    {
+      "name": "v21",
+      "type": "float"
+    },
+    {
+      "name": "v28",
+      "type": "float"
+    },
+    {
+      "name": "v31",
+      "type": "float"
+    }
+  ],
+  "0x005400E0": [
+    {
+      "name": "width",
+      "type": "float"
+    }
+  ],
+  "0x0052E9C0": [
+    {
+      "name": "v1",
+      "type": "float"
+    },
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x0052EA40": [
+    {
+      "name": "v1",
+      "type": "float"
+    },
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x0052E940": [
+    {
+      "name": "v1",
+      "type": "float"
+    },
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x0052E8C0": [
+    {
+      "name": "v1",
+      "type": "float"
+    },
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x0052EAC0": [
+    {
+      "name": "updated",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    }
+  ],
+  "0x00452D30": [
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x00535E70": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x00452AA0": [
+    {
+      "name": "width",
+      "type": "float"
+    }
+  ],
+  "0x00424570": [
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x00418260": [
+    {
+      "name": "v20",
+      "type": "float"
+    },
+    {
+      "name": "v26",
+      "type": "float"
+    },
+    {
+      "name": "v39",
+      "type": "float"
+    }
+  ],
+  "0x00414E50": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x0043BF90": [
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    }
+  ],
+  "0x0043FF00": [
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x0043FF70": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "left",
+      "type": "float"
+    },
+    {
+      "name": "right",
+      "type": "float"
+    },
+    {
+      "name": "v19",
+      "type": "float"
+    },
+    {
+      "name": "v26",
+      "type": "float"
+    },
+    {
+      "name": "v27",
+      "type": "float"
+    },
+    {
+      "name": "v30",
+      "type": "float"
+    },
+    {
+      "name": "v37",
+      "type": "float"
+    },
+    {
+      "name": "bottom",
+      "type": "float"
+    },
+    {
+      "name": "v41",
+      "type": "float"
+    }
+  ],
+  "0x00440560": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x00420E50": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x004230D0": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    }
+  ],
+  "0x004232D0": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    }
+  ],
+  "0x00420CD0": [
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    }
+  ],
+  "0x0041A070": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x0043AD40": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x0052D7C0": [
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v17",
+      "type": "float"
+    },
+    {
+      "name": "y",
+      "type": "float"
+    },
+    {
+      "name": "v20",
+      "type": "float"
+    }
+  ],
+  "0x0044C8A0": [
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x0052C480": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    }
+  ],
+  "0x00442890": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x00444D30": [
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x0052E500": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    },
+    {
+      "name": "v17",
+      "type": "float"
+    }
+  ],
+  "0x0052E820": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x0052DE00": [
+    {
+      "name": "v2",
+      "type": "float"
+    }
+  ],
+  "0x00441730": [
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v20",
+      "type": "float"
+    },
+    {
+      "name": "v24",
+      "type": "float"
+    },
+    {
+      "name": "v28",
+      "type": "float"
+    },
+    {
+      "name": "v29",
+      "type": "float"
+    }
+  ],
+  "0x004B4DC0": [
+    {
+      "name": "par_radiusY",
+      "type": "float"
+    },
+    {
+      "name": "par_radiusX",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x004B51A0": [
+    {
+      "name": "v12",
+      "type": "float"
+    }
+  ],
+  "0x004B4FE0": [
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    }
+  ],
+  "0x004B6300": [
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x004B5EE0": [
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x004B5D20": [
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    }
+  ],
+  "0x004B60F0": [
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x004B5380": [
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x004B5750": [
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x004B5450": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    }
+  ],
+  "0x004B59B0": [
+    {
+      "name": "yi",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    }
+  ],
+  "0x004B5570": [
+    {
+      "name": "m_helix_rx",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v19",
+      "type": "float"
+    }
+  ],
+  "0x004B5830": [
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    }
+  ],
+  "0x004B5BB0": [
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x00439A20": [
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    }
+  ],
+  "0x0043FDF0": [
+    {
+      "name": "m_tradius",
+      "type": "float"
+    },
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x0043DAB0": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v19",
+      "type": "float"
+    }
+  ],
+  "0x0044AA20": [
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x004BF260": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    }
+  ],
+  "0x00529E40": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v39",
+      "type": "float"
+    },
+    {
+      "name": "v40",
+      "type": "float"
+    },
+    {
+      "name": "v41",
+      "type": "float"
+    },
+    {
+      "name": "v43",
+      "type": "float"
+    },
+    {
+      "name": "v44",
+      "type": "float"
+    },
+    {
+      "name": "v46",
+      "type": "float"
+    },
+    {
+      "name": "v48",
+      "type": "float"
+    },
+    {
+      "name": "v49",
+      "type": "float"
+    }
+  ],
+  "0x0052AAB0": [
+    {
+      "name": "v5",
+      "type": "float"
+    }
+  ],
+  "0x004BB330": [
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x004BBA50": [
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x004BBEB0": [
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x004BC0C0": [
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x004BB830": [
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x004BBCA0": [
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x004BC4E0": [
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x004BB4E0": [
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x004BC2D0": [
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x004BB690": [
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    }
+  ],
+  "0x004BB200": [
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x00450230": [
+    {
+      "name": "v2",
+      "type": "float"
+    }
+  ],
+  "0x004501A0": [
+    {
+      "name": "result",
+      "type": "float"
+    }
+  ],
+  "0x0052E140": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    }
+  ],
+  "0x0043D1A0": [
+    {
+      "name": "v20",
+      "type": "float"
+    },
+    {
+      "name": "v21",
+      "type": "float"
+    },
+    {
+      "name": "v22",
+      "type": "float"
+    },
+    {
+      "name": "v24",
+      "type": "float"
+    },
+    {
+      "name": "v29",
+      "type": "float"
+    },
+    {
+      "name": "v31",
+      "type": "float"
+    },
+    {
+      "name": "v32",
+      "type": "float"
+    },
+    {
+      "name": "v33",
+      "type": "float"
+    },
+    {
+      "name": "v34",
+      "type": "float"
+    },
+    {
+      "name": "v44",
+      "type": "float"
+    },
+    {
+      "name": "v46",
+      "type": "float"
+    },
+    {
+      "name": "v47",
+      "type": "float"
+    },
+    {
+      "name": "v48",
+      "type": "float"
+    },
+    {
+      "name": "v53",
+      "type": "float"
+    },
+    {
+      "name": "v55",
+      "type": "float"
+    },
+    {
+      "name": "v56",
+      "type": "float"
+    },
+    {
+      "name": "v57",
+      "type": "float"
+    }
+  ],
+  "0x0043C7B0": [
+    {
+      "name": "m_nNotifyRender",
+      "type": "float"
+    },
+    {
+      "name": "v13",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v15",
+      "type": "float"
+    }
+  ],
+  "0x00524230": [
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v26",
+      "type": "float"
+    }
+  ],
+  "0x0043CDF0": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "m_nNotifyRender",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    },
+    {
+      "name": "v14",
+      "type": "float"
+    },
+    {
+      "name": "v17",
+      "type": "float"
+    },
+    {
+      "name": "v18",
+      "type": "float"
+    },
+    {
+      "name": "v20",
+      "type": "float"
+    },
+    {
+      "name": "v21",
+      "type": "float"
+    },
+    {
+      "name": "v23",
+      "type": "float"
+    }
+  ],
+  "0x00532D60": [
+    {
+      "name": "v2",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    }
+  ],
+  "0x0043C0F0": [
+    {
+      "name": "v25",
+      "type": "float"
+    }
+  ],
+  "0x0043FCA0": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x00532A80": [
+    {
+      "name": "v3",
+      "type": "float"
+    }
+  ],
+  "0x00532B40": [
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x004520A0": [
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x004B0820": [
+    {
+      "name": "v31",
+      "type": "float"
+    },
+    {
+      "name": "v40",
+      "type": "float"
+    },
+    {
+      "name": "v44",
+      "type": "float"
+    },
+    {
+      "name": "v60",
+      "type": "float"
+    },
+    {
+      "name": "v69",
+      "type": "float"
+    },
+    {
+      "name": "v72",
+      "type": "float"
+    },
+    {
+      "name": "v80",
+      "type": "float"
+    },
+    {
+      "name": "v89",
+      "type": "float"
+    },
+    {
+      "name": "v90",
+      "type": "float"
+    },
+    {
+      "name": "v91",
+      "type": "float"
+    }
+  ],
+  "0x004B3470": [
+    {
+      "name": "v24",
+      "type": "float"
+    }
+  ],
+  "0x00540FD0": [
+    {
+      "name": "v5",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    }
+  ],
+  "0x00541210": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    }
+  ],
+  "0x00438E30": [
+    {
+      "name": "v2",
+      "type": "float"
+    }
+  ],
+  "0x0043A090": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v4",
+      "type": "float"
+    }
+  ],
+  "0x00452DF0": [
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v7",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "width",
+      "type": "float"
+    }
+  ],
+  "0x004C4B00": [
+    {
+      "name": "v3",
+      "type": "float"
+    },
+    {
+      "name": "v6",
+      "type": "float"
+    },
+    {
+      "name": "v8",
+      "type": "float"
+    },
+    {
+      "name": "v9",
+      "type": "float"
+    },
+    {
+      "name": "v10",
+      "type": "float"
+    },
+    {
+      "name": "v11",
+      "type": "float"
+    },
+    {
+      "name": "v12",
+      "type": "float"
+    }
+  ],
+  "0x00408FD0": [
+    {
+      "stkoff": 56,
+      "name": "pNewBuffer",
+      "type": "void *"
+    },
+    {
+      "stkoff": 56,
+      "name": "pSceneName",
+      "type": "void *"
+    }
+  ],
+  "_notes": {
+    "0x00408FD0": "批4 A 簇接线 2026-10-07：同槽 14 重声明归并单形（void* 多数形 11/14）——冲突留注（int 计数/gbVec3D* scale-12 语义并存=复核 R-A 样张）；stkoff 56=复核 loc 换算坑随行"
+  }
+}

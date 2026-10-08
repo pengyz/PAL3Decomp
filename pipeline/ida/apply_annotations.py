@@ -76,6 +76,14 @@ _PRIMITIVE_BTF = {
     '_DWORD': ida_typeinf.BTF_UINT32,
     '_BYTE': ida_typeinf.BTF_BYTE,
     '_WORD': ida_typeinf.BTF_UINT16,
+    # 2026-09-27：Hex-Rays 惯用拼写补全（g_pSceneTransitionEnd 'unsigned __int8 *'
+    # 过不了 _resolve_member_type ⇒ apply FATAL 阻断全链）
+    '__int8': ida_typeinf.BTF_INT8,
+    'unsigned __int8': ida_typeinf.BTF_BYTE,
+    '__int16': ida_typeinf.BTF_INT16,
+    'unsigned __int16': ida_typeinf.BTF_UINT16,
+    '__int32': ida_typeinf.BTF_INT32,
+    'unsigned __int32': ida_typeinf.BTF_UINT32,
 }
 
 
@@ -435,8 +443,11 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
     if not members and not size:
         return None
 
+    # 复核 5560c6c5 P1：键可带 N_N 数组后缀 —— int('50814_0',0)=508140（Py 下划线
+    # 数字分隔符语义）会把键读成 508140 ⇒ 先 split('_')[0] 再解析（与 :986 同款）。
     sorted_members = sorted(
-        [(int(off, 0), info) for off, info in members.items() if int(off, 0) >= base_size],
+        [(int(str(off).split('_')[0], 0), info) for off, info in members.items()
+         if int(str(off).split('_')[0], 0) >= base_size],
         key=lambda x: x[0]
     )
 
@@ -615,7 +626,9 @@ def create_fixed_struct_diff(name, struct_info, til):
     deleted = set(struct_info.get("deleted_members", []))
     overrides = {}
     for k, v in struct_info.get("known_members", {}).items():
-        overrides[int(k.split('_')[0])] = v
+        # 复核 75f6709b C3 同批：键可 hex/N_N（键谱系 dec 9745/hex 51/N_N 4）——
+        # split('_')[0] 去数组后缀 + base=0 认 hex（旧 int(...)=十进制强制，hex 键 ValueError）
+        overrides[int(str(k).split('_')[0], 0)] = v
     is_union = struct_info.get("is_union", False)
 
     # 加载 PDB struct
@@ -999,7 +1012,9 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             # STL/template types: flatten to char[span] (TIL API can't handle template syntax)
             _is_stl = 'std::' in mtype_str or '<' in mtype_str
             if _is_stl:
-                sorted_offs = sorted(int(o, 0) for o in members if int(o, 0) > offset)
+                # 复核 75f6709b C3 同批：N_N 键去后缀（int('50814_0',0)=508140 坑）
+                sorted_offs = sorted(int(str(o).split('_')[0], 0) for o in members
+                                     if int(str(o).split('_')[0], 0) > offset)
                 span = min(sorted_offs) - offset if sorted_offs else binary_size - offset
                 if span <= 0:
                     span = 4
@@ -1509,6 +1524,26 @@ def _fix_gbengine_import_slots():
         cur = idc.get_type(ea) or ''
         n_cur = _slot_param_count(cur)
         if n_cur is None:
+            # F73b（2026-09-25 拆解实证）：空槽**不再跳过**。实证链：fresh init 的槽
+            # 全空 ⇒ export/Hex-Rays 用调用点推断的**退化原型回写**（Read 被写成
+            # `void __thiscall(__hidden this)`、RenderGeomQuad 被写成 __stdcall 丢
+            # this）⇒ Hex-Rays 下一轮导出采用坏型丢参；修复要拖到**下一轮 apply**，
+            # plain init 永远一次不成型。修饰名含完整签名（零猜测），空槽直接写全。
+            decl = '%s __thiscall __sigfix(%s);' % (
+                ret, ', '.join([cls + ' *'] + decl_params))
+            ftif = ida_typeinf.tinfo_t()
+            if not ida_typeinf.parse_decl(ftif, til, decl, ida_typeinf.PT_SIL):
+                failed += 1
+                log("  [!] import slot sig parse failed: %s -> %s" % (name, decl))
+                return True
+            ptr = ida_typeinf.tinfo_t()
+            ptr.create_ptr(ftif)
+            if ida_nalt.set_tinfo(ea, ptr):
+                fixed += 1
+                log("  [gb] empty slot sig set @%08X %s" % (ea, name))
+            else:
+                failed += 1
+                log("  [!] import slot set_tinfo failed (empty): %s" % name)
             return True
         # 裸函数类型里 IDA 把 this 打印成 `__hidden this` ⇒ 参数个数要减 1
         n_stack = n_cur - (1 if '__hidden this' in cur else 0)
@@ -1668,23 +1703,51 @@ def import_gbengine_types():
         # gbDynVertBuf render functions (fixes struct #136 = gbRenderEffect)
         "?RenderGeomQuadViaStrip@gbDynVertBuf@@QAEXPAUgbGeomQuad@@HPAVgbRenderEffect@@PAUgbTextureArray@@K@Z":
             "void __thiscall(gbDynVertBuf *, gbGeomQuad *, int, gbRenderEffect *, gbTextureArray *, unsigned long);",
+        # 缺参簇补齐（签名权威 = include/gbengine_api.h；无类型导入会让 Hex-Rays
+        # 丢参/丢解引用，如 C3DSpark RenderGeomQuad 3/4 参、CCBStageShadow operator= float*）
+        "?RenderGeomQuad@gbDynVertBuf@@QAEXPAUgbGeomQuad@@HPAVgbRenderEffect@@PAUgbTextureArray@@@Z":
+            "void __thiscall(gbDynVertBuf *, gbGeomQuad *, int, gbRenderEffect *, gbTextureArray *);",
+        "??4gbMatrix4@@QAEXABU0@@Z":
+            "void __thiscall(gbMatrix4 *, const gbMatrix4 &);",
+        "?LoadFromFile@gbGeomNode@@QAEHPBD0P6AXHH@Z@Z":
+            "int __thiscall(gbGeomNode *, const char *, const char *, void (__cdecl *)(int, int));",
+        "?GetTotalOBBox@gbGeomNode@@QAEPAUgbOBBox@@PAU2@@Z":
+            "gbOBBox *__thiscall(gbGeomNode *, gbOBBox *);",
+        "?Read@gbVFileSystem@@QAEXPAXIPAVgbVFile@@@Z":
+            "void __thiscall(gbVFileSystem *, void *, unsigned int, gbVFile *);",
     }
     import ida_nalt
     gb_sig_ok = 0
+    gb_sig_try = 0
     nimps = ida_nalt.get_import_module_qty()
     for i in range(nimps):
         mod = ida_nalt.get_import_module_name(i)
         if not mod or 'gbengine' not in mod.lower():
             continue
         def _set_import_type(ea, name, ordinal):
-            nonlocal gb_sig_ok
+            nonlocal gb_sig_ok, gb_sig_try
             if name and name in _GB_IMPORT_SIGS:
-                if idc.SetType(ea, _GB_IMPORT_SIGS[name]):
+                gb_sig_try += 1
+                # IAT 槽是**数据地址**（非函数）：SetType 写裸函数类型会被拒。
+                # 必须写"函数指针类型"到槽上（与 F73 同款）——Hex-Rays 反编译
+                # `call ds:<slot>` 时从槽读指向类型。实证（2026-09-25 拆解）：
+                # 裸 SetType 21 条只成 1 条；槽空着时 export 会用调用点推断的
+                # 退化原型回写（RenderGeomQuad 被写成 stdcall ⇒ 丢 this ⇒ 少参）。
+                sig = _GB_IMPORT_SIGS[name]
+                decl = sig.rstrip(';') + ';'
+                ftif = ida_typeinf.tinfo_t()
+                if not ida_typeinf.parse_decl(ftif, til, decl, ida_typeinf.PT_SIL):
+                    log("  [!] gb import sig parse failed: %s -> %s" % (name, decl))
+                    return True
+                ptr = ida_typeinf.tinfo_t()
+                ptr.create_ptr(ftif)
+                if ida_nalt.set_tinfo(ea, ptr):
                     gb_sig_ok += 1
+                else:
+                    log("  [!] gb import slot set_tinfo failed: %s" % name)
             return True
         ida_nalt.enum_import_names(i, _set_import_type)
-    if gb_sig_ok:
-        print("[gb] gbengine import function types set: %d" % gb_sig_ok)
+    log("[gb] import sig types set: %d/%d" % (gb_sig_ok, gb_sig_try))
 
 
 # ============================================================
@@ -2512,8 +2575,14 @@ def apply_annotations():
                     # 成员函数上不生效（HandleMessage 案例：SetType 报成功但
                     # 反编译仍为无参形态）。
                     if _cc_is_thiscall and re.match(r'^\w+$', name):
+                        # E-3（e1472de2）：签名自带类限定的条目（`RET __thiscall Cls::M(...)`
+                        # 形）_before 已含限定名与 cc——直接拼 _qsig 双拼
+                        # （`Cls::M __thiscall Cls::M(...)`）⇒ _before 先剥限定名与调用约定。
+                        _b2 = _before
+                        _b2 = re.sub(r'\b(?:__thiscall|__cdecl|__stdcall|__fastcall)\s*', ' ', _b2)
+                        _b2 = re.sub(r'\s*\w+\s*::\s*\w+\s*$', '', _b2).strip()
                         _qsig = '%s __thiscall %s::%s%s' % (
-                            _before, _cls, name,
+                            _b2, _cls, name,
                             _new_params.replace('__hidden ', ''))
                         if _apply_func_type_parse(addr, _qsig, til):
                             sig_ok += 1
@@ -2818,7 +2887,8 @@ def apply_annotations():
                 ann_by_name[fn] = lv_ann
             sk = lv_ann.get("stack_offset")
             if sk is not None:
-                ann_by_stkoff[sk] = lv_ann
+                # ordinal 支持 2026-10-07（复核 R4）：同址多 lvar——列表化
+                ann_by_stkoff.setdefault(sk, []).append(lv_ann)
         if not ann_by_name and not ann_by_stkoff:
             lvar_fail += len(lvars_ann)
             continue
@@ -2838,6 +2908,7 @@ def apply_annotations():
             continue
 
         modified = False
+        _stk_ordinal = {}
         for lvar in list(cfunc.lvars):
             is_reg = lvar.is_reg_var()
             ann = ann_by_name.get(lvar.name)
@@ -2845,7 +2916,11 @@ def apply_annotations():
                 try:
                     if lvar.is_stk_var():
                         soff = lvar.get_stkoff()
-                        ann = ann_by_stkoff.get(soff)
+                        lst = ann_by_stkoff.get(soff) or []
+                        if lst:
+                            _i = _stk_ordinal.get(soff, 0)
+                            ann = lst[_i] if _i < len(lst) else lst[-1]
+                            _stk_ordinal[soff] = _i + 1
                 except:
                     pass
             if ann is None:

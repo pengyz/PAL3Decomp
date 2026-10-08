@@ -123,8 +123,9 @@
       "signature": "void __thiscall()"
     },
     "0x00401030": {
-      "name": "~AStarPathFinder",
-      "signature": "void *__thiscall(char a2)"
+      "name": "_scalar_dtor",
+      "signature": "void *__thiscall(char a2)",
+      "source": " | 挂账③ F 案 2026-10-06：deleting-dtor 形（void* 回值+char 标志参+operator delete 体）→_scalar_dtor 族名（~名+参=C2631）"
     },
     "0x00401050": {
       "name": "ReleaseAll",
@@ -176,7 +177,8 @@
     },
     "0x00401750": {
       "name": "ResortNode",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall(int)",
+      "source": "sig_evidence_A(ret-N arity)"
     },
     "0x00401780": {
       "name": "PopStack",

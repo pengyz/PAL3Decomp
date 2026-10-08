@@ -32,7 +32,8 @@
     },
     "0x0052B030": {
       "name": "CallVtableMethod",
-      "signature": "int __thiscall(double pData)"
+      "signature": "int __thiscall(double pData)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004B7F00": {
       "name": "ReleaseResources",
@@ -42,6 +43,11 @@
     "0x0052AFF0": {
       "name": "RenderWithStack",
       "signature": "void __thiscall(gbMatrixStack *pStack)"
+    },
+    "0x00450AB0": {
+      "name": "_sdtor_26",
+      "signature": "RoleCameraCtrl *__thiscall(RoleCameraCtrl *Block, char a2)",
+      "source": "vtable_gap_fill_v1(from RoleCameraCtrl.json)"
     }
   },
   "base_size": 72

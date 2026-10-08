@@ -1,1017 +1,1172 @@
 {
- "name": "ScriptSystemData",
- "binary_size": 12624,
- "known_members": {
-  "0": {
-   "name": "m_mapPlayer",
-   "type": "SceneMapPlayer[4]",
-   "source": "A:binary ClearInitState(0x4220F0) stride=0x188, PDB SceneMapPlayer size=392"
-  },
-  "1568": {
-   "name": "m_scriptArray",
-   "type": "PtrArray",
-   "source": "A:mov ecx,0xD8B938;call PtrArray::InsertAt/Remove"
-  },
-  "1612": {
-   "name": "m_nArrData_2C",
-   "type": "float",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "1616": {
-   "name": "m_nArrData_30",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "1656": {
-   "name": "m_nArrData_58",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "1660": {
-   "name": "m_nArrData_5C",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "1664": {
-   "name": "m_nArrData_60",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "1668": {
-   "name": "m_nArrData_64",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "1676": {
-   "name": "m_nArrData_6C",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "1680": {
-   "name": "m_nArrData_70",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "1684": {
-   "name": "m_nArrData_74",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "1692": {
-   "name": "m_nArrData_7C",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "1696": {
-   "name": "m_nArrData_80",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "1700": {
-   "name": "m_nArrData_84",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "1708": {
-   "name": "m_nArrData_8C",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "1712": {
-   "name": "m_nArrData_90",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "1716": {
-   "name": "m_nArrData_94",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "1720": {
-   "name": "m_nArrData_98",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "1724": {
-   "name": "m_nArrData_9C",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "1728": {
-   "name": "m_nArrData_A0",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "1732": {
-   "name": "m_nArrData_A4",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "2260": {
-   "name": "m_nGameMode",
-   "type": "int",
-   "source": "binary: compared to 2 in game mode checks; dword_D8BBEC"
-  },
-  "2312": {
-   "name": "g_vRotateAxis",
-   "type": "gbVec3D",
-   "source": "codegen:global_overlap_detection"
-  },
-  "2380": {
-   "name": "m_fScriptTimer1",
-   "type": "float",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "2384": {
-   "name": "m_fScriptTimer2",
-   "type": "float",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "2424": {
-   "name": "m_nScriptDelay",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "2428": {
-   "name": "m_fScriptSpeed",
-   "type": "float",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "2988": {
-   "name": "m_g_fTimeDelta",
-   "type": "float",
-   "source": "globals_merge"
-  },
-  "3076": {
-   "name": "m_nVarPoolSize",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap | type_fix:float→int_raw_decomp"
-  },
-  "3080": {
-   "name": "m_nVarCount",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3128": {
-   "name": "m_nVarFlags",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3384": {
-   "name": "m_nArgDef_0",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3388": {
-   "name": "m_nArgDef_1",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3396": {
-   "name": "m_nArgDef_2",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3400": {
-   "name": "m_nArgDef_3",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3404": {
-   "name": "m_nArgDef_4",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3408": {
-   "name": "m_nArgDef_5",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3412": {
-   "name": "m_nArgDef_6",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3416": {
-   "name": "m_nArgDef_7",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3420": {
-   "name": "m_nArgDef_8",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3424": {
-   "name": "m_nArgDef_9",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3428": {
-   "name": "m_nArgDef_10",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3432": {
-   "name": "m_nField_D68",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3436": {
-   "name": "m_nArgDef_11",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3444": {
-   "name": "m_nArgDef_12",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3448": {
-   "name": "m_nArgDef_13",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3452": {
-   "name": "m_nArgDef_14",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3456": {
-   "name": "m_nArgDef_15",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3460": {
-   "name": "m_nArgDef_16",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3464": {
-   "name": "m_nField_D88",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3468": {
-   "name": "m_nArgDef_17",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3476": {
-   "name": "m_nArgDef_18",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3480": {
-   "name": "m_nArgDef_19",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3484": {
-   "name": "m_nArgDef_20",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3488": {
-   "name": "m_nArgDef_21",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3492": {
-   "name": "m_nArgDef_22",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3496": {
-   "name": "m_nField_DA8",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3500": {
-   "name": "m_nArgDef_23",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3504": {
-   "name": "m_nArgDef_24",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3508": {
-   "name": "m_nArgDef_25",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3512": {
-   "name": "m_nArgDef_26",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3524": {
-   "name": "m_nArgDef_27",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3532": {
-   "name": "m_nArgDef_28",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3540": {
-   "name": "m_nArgDef_29",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3544": {
-   "name": "m_nArgDef_30",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3556": {
-   "name": "m_nArgDef_31",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3564": {
-   "name": "m_nArgDef_32",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3568": {
-   "name": "m_nArgDef_33",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3732": {
-   "name": "m_String",
-   "type": "char[96]",
-   "source": "globals_merge | layout_fix:span_mismatch"
-  },
-  "3828": {
-   "name": "m_nCmdParamCount",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3844": {
-   "name": "m_nCmdIndex",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3848": {
-   "name": "m_nCmdType",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3856": {
-   "name": "m_nCmdSubType",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3860": {
-   "name": "m_nCmdParam1",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3864": {
-   "name": "m_nCmdParam2",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3872": {
-   "name": "m_nCmdParam3",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3876": {
-   "name": "m_nCmdParam4",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3880": {
-   "name": "m_nCmdParam5",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3888": {
-   "name": "m_nCmdParam6",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3892": {
-   "name": "m_nCmdParam7",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3904": {
-   "name": "m_nCmdParam8",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3908": {
-   "name": "m_nCmdParam9",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3912": {
-   "name": "m_nCmdParam10",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3952": {
-   "name": "m_nCmdParam11",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3960": {
-   "name": "m_bCmdFlag1",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3968": {
-   "name": "m_nCmdParam12",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3972": {
-   "name": "m_nCmdParam13",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3976": {
-   "name": "m_bCmdFlag2",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3984": {
-   "name": "m_nCmdParam14",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "3988": {
-   "name": "m_nScriptBlockCount",
-   "type": "int",
-   "source": "binary:4x abs refs, inc+store pattern (0xF94)"
-  },
-  "3992": {
-   "name": "m_pCurrentBlock",
-   "type": "char *",
-   "source": "binary:32x abs refs, malloc(48)+store pattern (0xF98) | type_fix:int→void*(malloc store)",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "4000": {
-   "name": "m_nCmdFA0",
-   "type": "short",
-   "source": "binary:4x abs refs (0xFA0)"
-  },
-  "4004": {
-   "name": "m_nScriptState",
-   "type": "int",
-   "source": "binary:7x abs refs (0xFA4)"
-  },
-  "4008": {
-   "name": "m_nCmdFA8",
-   "type": "int",
-   "source": "binary:4x abs refs, 4-byte access"
-  },
-  "4012": {
-   "name": "m_pScriptData",
-   "type": "char *",
-   "source": "binary:4x abs refs (0xFAC) | type_fix:int→void*(naming m_p)",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "4016": {
-   "name": "m_nTodo_FB0",
-   "type": "char[32]",
-   "source": "CRT:ctor_0x434470_confirmed_subobj_0x20"
-  },
-  "4048": {
-   "name": "m_nCmdFD0",
-   "type": "short",
-   "source": "binary:4x abs refs (0xFD0)"
-  },
-  "4080": {
-   "name": "m_pCmdTableFF0",
-   "type": "char *",
-   "source": "binary:5x abs refs, B9=mov ecx,addr (base load for array) | type_fix:int→void*(array base)",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "4112": {
-   "name": "m_CmdObjArray0",
-   "type": "PtrArray",
-   "source": "CRT:PtrArray::Clear_confirmed"
-  },
-  "4128": {
-   "name": "m_nCmdParam24",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4144": {
-   "name": "m_nScriptMode",
-   "type": "int",
-   "source": "binary:6x abs refs, dword access (0x1030)"
-  },
-  "4160": {
-   "name": "m_nCmdParam26",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4052": {
-   "name": "m_nCmdParam19",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4056": {
-   "name": "m_bCmdFlag4",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4064": {
-   "name": "m_nCmdParam20",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4068": {
-   "name": "m_nCmdParam21",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4072": {
-   "name": "m_bCmdFlag5",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4084": {
-   "name": "m_nCmdParam22",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4096": {
-   "name": "m_nCmdParam23",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4100": {
-   "name": "m_nCmd1004",
-   "type": "int",
-   "source": "binary:3x abs refs (0x1004)"
-  },
-  "4104": {
-   "name": "m_nCmd1008",
-   "type": "int",
-   "source": "binary:3x abs refs, 4-byte access"
-  },
-  "4108": {
-   "name": "m_bScriptFlag",
-   "type": "unsigned char",
-   "source": "binary:10x abs refs, byte access 8A/88 (0x100C)"
-  },
-  "4132": {
-   "name": "m_nCmdParam25",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4136": {
-   "name": "m_nCmd1028",
-   "type": "unsigned char",
-   "source": "binary:4x abs refs, 1-byte access"
-  },
-  "4137": {
-   "name": "m_bCmdFlag6",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4148": {
-   "name": "m_nCmd1034",
-   "type": "int",
-   "source": "binary:3x abs refs, 4-byte access"
-  },
-  "4152": {
-   "name": "m_bCmdFlag7",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4153": {
-   "name": "m_bCmdFlag8",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4154": {
-   "name": "m_bCmdFlag9",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4164": {
-   "name": "m_nCmdParam27",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4168": {
-   "name": "m_nScriptResult",
-   "type": "int",
-   "source": "binary:15x abs refs, dword access (0x1048)"
-  },
-  "4172": {
-   "name": "m_pCmdArray104C",
-   "type": "char *",
-   "source": "binary:5x abs refs, BF=mov edi,addr + [ecx*8+addr] (stride-8) | type_fix:int→void*(indexed access)",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "4176": {
-   "name": "m_nCmd1050",
-   "type": "short",
-   "source": "binary:3x abs refs (0x1050)"
-  },
-  "4180": {
-   "name": "m_nCmdResult",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4184": {
-   "name": "m_bCmdSuccess",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4185": {
-   "name": "m_bCmdError",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4192": {
-   "name": "m_nCmdExtra1",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4196": {
-   "name": "m_nCmdExtra2",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4200": {
-   "name": "m_bCmdExtraFlag",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4208": {
-   "name": "m_nCmdExtra3",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4212": {
-   "name": "m_nCmdExtra4",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4216": {
-   "name": "m_bCmdExtraFlag2",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4224": {
-   "name": "m_nField_1080",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4228": {
-   "name": "m_nField_1084",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4240": {
-   "name": "m_nField_1090",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4244": {
-   "name": "m_nField_1094",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4256": {
-   "name": "m_nField_10A0",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4260": {
-   "name": "m_nField_10A4",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4264": {
-   "name": "m_nField_10A8",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4272": {
-   "name": "m_nField_10B0",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4276": {
-   "name": "m_nField_10B4",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4280": {
-   "name": "m_nField_10B8",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4288": {
-   "name": "m_nField_10C0",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4292": {
-   "name": "m_nField_10C4",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4296": {
-   "name": "m_nField_10C8",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4304": {
-   "name": "m_nField_10D0",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4308": {
-   "name": "m_nField_10D4",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4312": {
-   "name": "m_nField_10D8",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4320": {
-   "name": "m_nField_10E0",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4324": {
-   "name": "m_nField_10E4",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4328": {
-   "name": "m_nField_10E8",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4329": {
-   "name": "m_nField_10E9",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4336": {
-   "name": "m_nField_10F0",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4340": {
-   "name": "m_nField_10F4",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4344": {
-   "name": "m_nField_10F8",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4345": {
-   "name": "m_nField_10F9",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4352": {
-   "name": "m_nField_1100",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4356": {
-   "name": "m_nField_1104",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4360": {
-   "name": "m_nField_1108",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4361": {
-   "name": "m_nField_1109",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4362": {
-   "name": "m_nField_110A",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4368": {
-   "name": "m_nField_1110",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4372": {
-   "name": "m_nField_1114",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4376": {
-   "name": "m_nField_1118",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4377": {
-   "name": "m_nField_1119",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4378": {
-   "name": "m_nField_111A",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4379": {
-   "name": "m_nField_111B",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4380": {
-   "name": "m_nField_111C",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4384": {
-   "name": "m_nField_1120",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4388": {
-   "name": "m_nField_1124",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4392": {
-   "name": "m_nField_1128",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4393": {
-   "name": "m_nField_1129",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4394": {
-   "name": "m_nField_112A",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4408": {
-   "name": "m_nField_1138",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4409": {
-   "name": "m_nField_1139",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4410": {
-   "name": "m_nField_113A",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4411": {
-   "name": "m_nField_113B",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4412": {
-   "name": "m_nField_113C",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4413": {
-   "name": "m_nField_113D",
-   "type": "unsigned char",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4416": {
-   "name": "m_nField_1140",
-   "type": "short",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4420": {
-   "name": "m_nField_1144",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4424": {
-   "name": "m_nField_1148",
-   "type": "int",
-   "source": "binary:stru_D8B318_gap"
-  },
-  "4432": {
-   "name": "m_CmdTable",
-   "type": "tagScriptCmd[213]",
-   "source": "binary:stride16_abs_addr_pattern"
-  },
-  "2324": {
-   "name": "m_bMapRenderFlags",
-   "type": "unsigned char",
-   "source": "auto:overlap_g_ScriptSystemData_at_+0x914"
-  },
-  "2328": {
-   "name": "m_nScriptCounter0",
-   "type": "int",
-   "source": "auto:overlap_g_ScriptSystemData_at_+0x918"
-  },
-  "2332": {
-   "name": "m_nScriptCounter1",
-   "type": "int",
-   "source": "auto:overlap_g_ScriptSystemData_at_+0x91C"
-  },
-  "2336": {
-   "name": "m_nScriptFlag",
-   "type": "int",
-   "source": "auto:overlap_g_ScriptSystemData_at_+0x920"
-  },
-  "3684": {
-   "name": "m_fScriptTileSize2",
-   "type": "float",
-   "source": "auto:overlap_g_ScriptSystemData_at_+0xE64"
-  },
-  "2216": {
-   "name": "m_fTimerA",
-   "type": "float",
-   "source": "auto:extern_overlap_g_ScriptSystemData_at_+0x8A8"
-  },
-  "3032": {
-   "name": "m_fTimerB",
-   "type": "float",
-   "source": "auto:extern_overlap_g_ScriptSystemData_at_+0xBD8"
-  },
-  "2264": {
-   "name": "m_nTodo_8D8",
-   "type": "int",
-   "source": "phantom:C2065_fix"
-  },
-  "2268": {
-   "name": "m_nTodo_8DC",
-   "type": "int",
-   "source": "phantom:C2065_fix"
-  },
-  "2272": {
-   "name": "m_nTodo_8E0",
-   "type": "int",
-   "source": "phantom:C2065_fix"
-  },
-  "2276": {
-   "name": "m_nTodo_8E4",
-   "type": "int",
-   "source": "phantom:C2065_fix"
-  },
-  "2280": {
-   "name": "m_nTodo_8E8",
-   "type": "int",
-   "source": "phantom:C2065_fix"
-  },
-  "2284": {
-   "name": "m_nTodo_8EC",
-   "type": "int",
-   "source": "phantom:C2065_fix"
-  },
-  "2288": {
-   "name": "m_nTodo_8F0",
-   "type": "int",
-   "source": "phantom:C2065_fix"
-  },
-  "2292": {
-   "name": "m_nTodo_8F4",
-   "type": "int",
-   "source": "phantom:C2065_fix"
-  },
-  "2296": {
-   "name": "m_nTodo_8F8",
-   "type": "int",
-   "source": "phantom:C2065_fix"
-  },
-  "2300": {
-   "name": "m_nTodo_8FC",
-   "type": "int",
-   "source": "phantom:C2065_fix"
-  },
-  "2304": {
-   "name": "m_nTodo_900",
-   "type": "int",
-   "source": "phantom:C2065_fix"
-  }
- },
- "methods": {},
- "methods_note": "2026-09-14: removed 3 stolen methods (0x51F070/80/90) — sole caller is CCBStage::GetWeaponSlotPtr, access radius 0x1F4C fits CCBStage(673988B); names like ScriptSystemData::CCBResultWindow are scan glue from the adjacent class"
+  "name": "ScriptSystemData",
+  "binary_size": 12624,
+  "known_members": {
+    "0": {
+      "name": "m_mapPlayer",
+      "type": "SceneMapPlayer[4]",
+      "source": "A:binary ClearInitState(0x4220F0) stride=0x188, PDB SceneMapPlayer size=392"
+    },
+    "1568": {
+      "name": "m_scriptArray",
+      "type": "PtrArray",
+      "source": "A:mov ecx,0xD8B938;call PtrArray::InsertAt/Remove"
+    },
+    "1612": {
+      "name": "m_nArrData_2C",
+      "type": "float",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "1616": {
+      "name": "m_nArrData_30",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "1656": {
+      "name": "m_nArrData_58",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "1660": {
+      "name": "m_nArrData_5C",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "1664": {
+      "name": "m_nArrData_60",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "1668": {
+      "name": "m_nArrData_64",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "1676": {
+      "name": "m_nArrData_6C",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "1680": {
+      "name": "m_nArrData_70",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "1684": {
+      "name": "m_nArrData_74",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "1692": {
+      "name": "m_nArrData_7C",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "1696": {
+      "name": "m_nArrData_80",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "1700": {
+      "name": "m_nArrData_84",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "1708": {
+      "name": "m_nArrData_8C",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "1712": {
+      "name": "m_nArrData_90",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "1716": {
+      "name": "m_nArrData_94",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "1720": {
+      "name": "m_nArrData_98",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "1724": {
+      "name": "m_nArrData_9C",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "1728": {
+      "name": "m_nArrData_A0",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "1732": {
+      "name": "m_nArrData_A4",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "2216": {
+      "name": "m_fTimerA",
+      "type": "float",
+      "source": "auto:extern_overlap_g_ScriptSystemData_at_+0x8A8"
+    },
+    "2260": {
+      "name": "m_nGameMode",
+      "type": "int",
+      "source": "binary: compared to 2 in game mode checks; dword_D8BBEC"
+    },
+    "2264": {
+      "name": "m_nTodo_8D8",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2268": {
+      "name": "m_nTodo_8DC",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2272": {
+      "name": "m_nTodo_8E0",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2276": {
+      "name": "m_nTodo_8E4",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2280": {
+      "name": "m_nTodo_8E8",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2284": {
+      "name": "m_nTodo_8EC",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2288": {
+      "name": "m_nTodo_8F0",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2292": {
+      "name": "m_nTodo_8F4",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2296": {
+      "name": "m_nTodo_8F8",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2300": {
+      "name": "m_nTodo_8FC",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2304": {
+      "name": "m_nTodo_900",
+      "type": "int",
+      "source": "phantom:C2065_fix"
+    },
+    "2312": {
+      "name": "g_vRotateAxis",
+      "type": "gbVec3D",
+      "source": "codegen:global_overlap_detection"
+    },
+    "2324": {
+      "name": "m_bMapRenderFlags",
+      "type": "unsigned char",
+      "source": "auto:overlap_g_ScriptSystemData_at_+0x914"
+    },
+    "2328": {
+      "name": "m_nScriptCounter0",
+      "type": "int",
+      "source": "auto:overlap_g_ScriptSystemData_at_+0x918"
+    },
+    "2332": {
+      "name": "m_nScriptCounter1",
+      "type": "int",
+      "source": "auto:overlap_g_ScriptSystemData_at_+0x91C"
+    },
+    "2336": {
+      "name": "m_nScriptFlag",
+      "type": "int",
+      "source": "auto:overlap_g_ScriptSystemData_at_+0x920"
+    },
+    "2380": {
+      "name": "m_fScriptTimer1",
+      "type": "float",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "2384": {
+      "name": "m_fScriptTimer2",
+      "type": "float",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "2424": {
+      "name": "m_nScriptDelay",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "2428": {
+      "name": "m_fScriptSpeed",
+      "type": "float",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "2988": {
+      "name": "m_g_fTimeDelta",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "3028": {
+      "name": "m_D8BEEC",
+      "type": "RoleSystem *",
+      "source": "region-audit: interior extern @0xD8BEEC"
+    },
+    "3032": {
+      "name": "m_fTimerB",
+      "type": "float",
+      "source": "auto:extern_overlap_g_ScriptSystemData_at_+0xBD8"
+    },
+    "3076": {
+      "name": "m_nVarPoolSize",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap | type_fix:float→int_raw_decomp"
+    },
+    "3080": {
+      "name": "m_nVarCount",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3128": {
+      "name": "m_nVarFlags",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3384": {
+      "name": "m_nArgDef_0",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3388": {
+      "name": "m_nArgDef_1",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3396": {
+      "name": "m_nArgDef_2",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3400": {
+      "name": "m_nArgDef_3",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3404": {
+      "name": "m_nArgDef_4",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3408": {
+      "name": "m_nArgDef_5",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3412": {
+      "name": "m_nArgDef_6",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3416": {
+      "name": "m_nArgDef_7",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3420": {
+      "name": "m_nArgDef_8",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3424": {
+      "name": "m_nArgDef_9",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3428": {
+      "name": "m_nArgDef_10",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3432": {
+      "name": "m_nField_D68",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3436": {
+      "name": "m_nArgDef_11",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3444": {
+      "name": "m_nArgDef_12",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3448": {
+      "name": "m_nArgDef_13",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3452": {
+      "name": "m_nArgDef_14",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3456": {
+      "name": "m_nArgDef_15",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3460": {
+      "name": "m_nArgDef_16",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3464": {
+      "name": "m_nField_D88",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3468": {
+      "name": "m_nArgDef_17",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3476": {
+      "name": "m_nArgDef_18",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3480": {
+      "name": "m_nArgDef_19",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3484": {
+      "name": "m_nArgDef_20",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3488": {
+      "name": "m_nArgDef_21",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3492": {
+      "name": "m_nArgDef_22",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3496": {
+      "name": "m_nField_DA8",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3500": {
+      "name": "m_nArgDef_23",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3504": {
+      "name": "m_nArgDef_24",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3508": {
+      "name": "m_nArgDef_25",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3512": {
+      "name": "m_nArgDef_26",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3524": {
+      "name": "m_nArgDef_27",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3532": {
+      "name": "m_nArgDef_28",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3540": {
+      "name": "m_nArgDef_29",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3544": {
+      "name": "m_nArgDef_30",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3556": {
+      "name": "m_nArgDef_31",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3564": {
+      "name": "m_nArgDef_32",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3568": {
+      "name": "m_nArgDef_33",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3684": {
+      "name": "m_fScriptTileSize2",
+      "type": "float",
+      "source": "auto:overlap_g_ScriptSystemData_at_+0xE64"
+    },
+    "3732": {
+      "name": "m_String",
+      "type": "char[96]",
+      "source": "globals_merge | layout_fix:span_mismatch"
+    },
+    "3828": {
+      "name": "m_nCmdParamCount",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3844": {
+      "name": "m_nCmdIndex",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3848": {
+      "name": "m_nCmdType",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3856": {
+      "name": "m_nCmdSubType",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3860": {
+      "name": "m_nCmdParam1",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3864": {
+      "name": "m_nCmdParam2",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3872": {
+      "name": "m_nCmdParam3",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3876": {
+      "name": "m_nCmdParam4",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3880": {
+      "name": "m_nCmdParam5",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3888": {
+      "name": "m_nCmdParam6",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3892": {
+      "name": "m_nCmdParam7",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3904": {
+      "name": "m_nCmdParam8",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3908": {
+      "name": "m_nCmdParam9",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3912": {
+      "name": "m_nCmdParam10",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3952": {
+      "name": "m_nCmdParam11",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3960": {
+      "name": "m_bCmdFlag1",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3968": {
+      "name": "m_nCmdParam12",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3972": {
+      "name": "m_nCmdParam13",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3976": {
+      "name": "m_bCmdFlag2",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3984": {
+      "name": "m_nCmdParam14",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "3988": {
+      "name": "m_nScriptBlockCount",
+      "type": "int",
+      "source": "binary:4x abs refs, inc+store pattern (0xF94)"
+    },
+    "3992": {
+      "name": "m_pCurrentBlock",
+      "type": "char *",
+      "source": "binary:32x abs refs, malloc(48)+store pattern (0xF98) | type_fix:int→void*(malloc store)",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "4000": {
+      "name": "m_nCmdFA0",
+      "type": "short",
+      "source": "binary:4x abs refs (0xFA0)"
+    },
+    "4004": {
+      "name": "m_nScriptState",
+      "type": "int",
+      "source": "binary:7x abs refs (0xFA4)"
+    },
+    "4008": {
+      "name": "m_nCmdFA8",
+      "type": "int",
+      "source": "binary:4x abs refs, 4-byte access"
+    },
+    "4012": {
+      "name": "m_pScriptData",
+      "type": "char *",
+      "source": "binary:4x abs refs (0xFAC) | type_fix:int→void*(naming m_p)",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "4016": {
+      "name": "m_nTodo_FB0",
+      "type": "char[32]",
+      "source": "CRT:ctor_0x434470_confirmed_subobj_0x20"
+    },
+    "4048": {
+      "name": "m_nCmdFD0",
+      "type": "short",
+      "source": "binary:4x abs refs (0xFD0)"
+    },
+    "4052": {
+      "name": "m_nCmdParam19",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4056": {
+      "name": "m_bCmdFlag4",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4064": {
+      "name": "m_nCmdParam20",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4068": {
+      "name": "m_nCmdParam21",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4072": {
+      "name": "m_bCmdFlag5",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4080": {
+      "name": "m_pCmdTableFF0",
+      "type": "char *",
+      "source": "binary:5x abs refs, B9=mov ecx,addr (base load for array) | type_fix:int→void*(array base)",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "4084": {
+      "name": "m_nCmdParam22",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4096": {
+      "name": "m_nCmdParam23",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4100": {
+      "name": "m_nCmd1004",
+      "type": "int",
+      "source": "binary:3x abs refs (0x1004)"
+    },
+    "4104": {
+      "name": "m_nCmd1008",
+      "type": "int",
+      "source": "binary:3x abs refs, 4-byte access"
+    },
+    "4108": {
+      "name": "m_bScriptFlag",
+      "type": "unsigned char",
+      "source": "binary:10x abs refs, byte access 8A/88 (0x100C)"
+    },
+    "4112": {
+      "name": "m_CmdObjArray0",
+      "type": "PtrArray",
+      "source": "CRT:PtrArray::Clear_confirmed"
+    },
+    "4128": {
+      "name": "m_nCmdParam24",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4132": {
+      "name": "m_nCmdParam25",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4136": {
+      "name": "m_nCmd1028",
+      "type": "unsigned char",
+      "source": "binary:4x abs refs, 1-byte access"
+    },
+    "4137": {
+      "name": "m_bCmdFlag6",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4144": {
+      "name": "m_nScriptMode",
+      "type": "int",
+      "source": "binary:6x abs refs, dword access (0x1030)"
+    },
+    "4148": {
+      "name": "m_nCmd1034",
+      "type": "int",
+      "source": "binary:3x abs refs, 4-byte access"
+    },
+    "4152": {
+      "name": "m_bCmdFlag7",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4153": {
+      "name": "m_bCmdFlag8",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4154": {
+      "name": "m_bCmdFlag9",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4160": {
+      "name": "m_nCmdParam26",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4164": {
+      "name": "m_nCmdParam27",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4168": {
+      "name": "m_nScriptResult",
+      "type": "int",
+      "source": "binary:15x abs refs, dword access (0x1048)"
+    },
+    "4172": {
+      "name": "m_pCmdArray104C",
+      "type": "char *",
+      "source": "binary:5x abs refs, BF=mov edi,addr + [ecx*8+addr] (stride-8) | type_fix:int→void*(indexed access)",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "4176": {
+      "name": "m_nCmd1050",
+      "type": "short",
+      "source": "binary:3x abs refs (0x1050)"
+    },
+    "4180": {
+      "name": "m_nCmdResult",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4184": {
+      "name": "m_bCmdSuccess",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4185": {
+      "name": "m_bCmdError",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4192": {
+      "name": "m_nCmdExtra1",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4196": {
+      "name": "m_nCmdExtra2",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4200": {
+      "name": "m_bCmdExtraFlag",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4208": {
+      "name": "m_nCmdExtra3",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4212": {
+      "name": "m_nCmdExtra4",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4216": {
+      "name": "m_bCmdExtraFlag2",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4224": {
+      "name": "m_nField_1080",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4228": {
+      "name": "m_nField_1084",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4240": {
+      "name": "m_nField_1090",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4244": {
+      "name": "m_nField_1094",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4256": {
+      "name": "m_nField_10A0",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4260": {
+      "name": "m_nField_10A4",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4264": {
+      "name": "m_nField_10A8",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4272": {
+      "name": "m_nField_10B0",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4276": {
+      "name": "m_nField_10B4",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4280": {
+      "name": "m_nField_10B8",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4288": {
+      "name": "m_nField_10C0",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4292": {
+      "name": "m_nField_10C4",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4296": {
+      "name": "m_nField_10C8",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4304": {
+      "name": "m_nField_10D0",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4308": {
+      "name": "m_nField_10D4",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4312": {
+      "name": "m_nField_10D8",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4320": {
+      "name": "m_nField_10E0",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4324": {
+      "name": "m_nField_10E4",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4328": {
+      "name": "m_nField_10E8",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4329": {
+      "name": "m_nField_10E9",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4336": {
+      "name": "m_nField_10F0",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4340": {
+      "name": "m_nField_10F4",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4344": {
+      "name": "m_nField_10F8",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4345": {
+      "name": "m_nField_10F9",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4352": {
+      "name": "m_nField_1100",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4356": {
+      "name": "m_nField_1104",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4360": {
+      "name": "m_nField_1108",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4361": {
+      "name": "m_nField_1109",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4362": {
+      "name": "m_nField_110A",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4368": {
+      "name": "m_nField_1110",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4372": {
+      "name": "m_nField_1114",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4376": {
+      "name": "m_nField_1118",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4377": {
+      "name": "m_nField_1119",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4378": {
+      "name": "m_nField_111A",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4379": {
+      "name": "m_nField_111B",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4380": {
+      "name": "m_nField_111C",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4384": {
+      "name": "m_nField_1120",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4388": {
+      "name": "m_nField_1124",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4392": {
+      "name": "m_nField_1128",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4393": {
+      "name": "m_nField_1129",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4394": {
+      "name": "m_nField_112A",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4408": {
+      "name": "m_nField_1138",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4409": {
+      "name": "m_nField_1139",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4410": {
+      "name": "m_nField_113A",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4411": {
+      "name": "m_nField_113B",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4412": {
+      "name": "m_nField_113C",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4413": {
+      "name": "m_nField_113D",
+      "type": "unsigned char",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4416": {
+      "name": "m_nField_1140",
+      "type": "short",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4420": {
+      "name": "m_nField_1144",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4424": {
+      "name": "m_nField_1148",
+      "type": "int",
+      "source": "binary:stru_D8B318_gap"
+    },
+    "4432": {
+      "name": "m_CmdTable",
+      "type": "int[852]",
+      "source": "binary:stride16_abs_addr_pattern | 批B 订正 2026-10-06：用法证=int 字面量赋值(0/1/2)+PalScript::Op_Idle TODO 注释字面量（非枚举铸——复核瑕疵②措辞订正）（命令 ID 表）——tagScriptCmd[213]→int[213]（C2679 26 件根因） | 复核瑕疵①修 2026-10-06：计数-跨度矛盾订正（int[213] 只覆 852B vs 区域 3408B=213×16 stride——实为 int[852]=3408B ✓ 吻合）"
+    },
+    "7840": {
+      "name": "m_D8D1B8",
+      "type": "int",
+      "source": "region-audit: interior extern @0xD8D1B8"
+    },
+    "7844": {
+      "name": "m_D8D1BC",
+      "type": "unsigned char",
+      "source": "region-audit: interior extern @0xD8D1BC"
+    },
+    "7845": {
+      "name": "m_D8D1BD",
+      "type": "unsigned char",
+      "source": "region-audit: interior extern @0xD8D1BD"
+    },
+    "7846": {
+      "name": "m_D8D1BE",
+      "type": "unsigned char",
+      "source": "region-audit: interior extern @0xD8D1BE"
+    },
+    "7847": {
+      "name": "m_D8D1BF",
+      "type": "unsigned char",
+      "source": "region-audit: interior extern @0xD8D1BF"
+    },
+    "7852": {
+      "name": "m_D8D1C4",
+      "type": "unsigned short",
+      "source": "region-audit: interior extern @0xD8D1C4"
+    },
+    "7856": {
+      "name": "m_D8D1C8",
+      "type": "int",
+      "source": "region-audit: interior extern @0xD8D1C8"
+    },
+    "7860": {
+      "name": "m_D8D1CC",
+      "type": "unsigned char",
+      "source": "region-audit: interior extern @0xD8D1CC"
+    },
+    "7861": {
+      "name": "m_D8D1CD",
+      "type": "unsigned char",
+      "source": "region-audit: interior extern @0xD8D1CD"
+    },
+    "7862": {
+      "name": "m_D8D1CE",
+      "type": "unsigned char",
+      "source": "region-audit: interior extern @0xD8D1CE"
+    },
+    "7863": {
+      "name": "m_D8D1CF",
+      "type": "unsigned char",
+      "source": "region-audit: interior extern @0xD8D1CF"
+    },
+    "7868": {
+      "name": "m_D8D1D4",
+      "type": "unsigned short",
+      "source": "region-audit: interior extern @0xD8D1D4"
+    },
+    "7968": {
+      "name": "m_D8D238",
+      "type": "int",
+      "source": "region-audit: interior extern @0xD8D238"
+    },
+    "7972": {
+      "name": "m_D8D23C",
+      "type": "unsigned char",
+      "source": "region-audit: interior extern @0xD8D23C"
+    },
+    "7980": {
+      "name": "m_D8D244",
+      "type": "unsigned short",
+      "source": "region-audit: interior extern @0xD8D244"
+    },
+    "8432": {
+      "name": "m_D8D408",
+      "type": "int",
+      "source": "region-audit: interior extern @0xD8D408"
+    },
+    "8436": {
+      "name": "m_D8D40C",
+      "type": "unsigned char",
+      "source": "region-audit: interior extern @0xD8D40C"
+    },
+    "8444": {
+      "name": "m_D8D414",
+      "type": "unsigned short",
+      "source": "region-audit: interior extern @0xD8D414"
+    },
+    "8448": {
+      "name": "m_D8D418",
+      "type": "int",
+      "source": "region-audit: interior extern @0xD8D418"
+    },
+    "8452": {
+      "name": "m_D8D41C",
+      "type": "unsigned char",
+      "source": "region-audit: interior extern @0xD8D41C"
+    },
+    "8460": {
+      "name": "m_D8D424",
+      "type": "unsigned short",
+      "source": "region-audit: interior extern @0xD8D424"
+    },
+    "10192": {
+      "name": "m_D8DAE8",
+      "type": "int",
+      "source": "region-audit: interior extern @0xD8DAE8"
+    },
+    "10196": {
+      "name": "m_D8DAEC",
+      "type": "unsigned char",
+      "source": "region-audit: interior extern @0xD8DAEC"
+    },
+    "10197": {
+      "name": "m_D8DAED",
+      "type": "unsigned char",
+      "source": "region-audit: interior extern @0xD8DAED"
+    },
+    "10198": {
+      "name": "m_D8DAEE",
+      "type": "unsigned char",
+      "source": "region-audit: interior extern @0xD8DAEE"
+    },
+    "10199": {
+      "name": "m_D8DAEF",
+      "type": "unsigned char",
+      "source": "region-audit: interior extern @0xD8DAEF"
+    },
+    "10200": {
+      "name": "m_D8DAF0",
+      "type": "unsigned char",
+      "source": "region-audit: interior extern @0xD8DAF0"
+    },
+    "10201": {
+      "name": "m_D8DAF1",
+      "type": "unsigned char",
+      "source": "region-audit: interior extern @0xD8DAF1"
+    },
+    "10202": {
+      "name": "m_D8DAF2",
+      "type": "unsigned char",
+      "source": "region-audit: interior extern @0xD8DAF2"
+    },
+    "10204": {
+      "name": "m_D8DAF4",
+      "type": "unsigned short",
+      "source": "region-audit: interior extern @0xD8DAF4"
+    }
+  },
+  "methods": {},
+  "methods_note": "2026-09-14: removed 3 stolen methods (0x51F070/80/90) — sole caller is CCBStage::GetWeaponSlotPtr, access radius 0x1F4C fits CCBStage(673988B); names like ScriptSystemData::CCBResultWindow are scan glue from the adjacent class"
 }

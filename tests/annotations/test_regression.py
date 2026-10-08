@@ -1,4 +1,5 @@
-"""Annotation regression tests - verify known fixes remain effective."""
+﻿"""Annotation regression tests - verify known fixes remain effective."""
+import pytest
 import json
 import os
 import sys
@@ -11,7 +12,7 @@ FUNCS_FILE = PROJECT_ROOT / "data" / "annotations" / "functions.json"
 
 
 def load_ida_data():
-    with open(IDA_FILE) as f:
+    with open(IDA_FILE, encoding='utf-8', errors='replace') as f:
         return json.load(f)
 
 
@@ -20,7 +21,7 @@ def test_pointer_level_mismatches():
     ida_data = load_ida_data()
     mismatches = 0
     for f in sorted(STRUCTS_DIR.glob("*.json")):
-        with open(f) as fh:
+        with open(f, encoding='utf-8', errors='replace') as fh:
             ann = json.load(fh)
         name = ann.get('name', '?')
         ida_entry = ida_data.get(name, {})
@@ -47,7 +48,7 @@ def test_ceffmgr_efftable_type():
     effmgr_file = STRUCTS_DIR / "CEffMgr.json"
     if not effmgr_file.exists():
         return  # Skip if file doesn't exist
-    with open(effmgr_file) as f:
+    with open(effmgr_file, encoding='utf-8', errors='replace') as f:
         data = json.load(f)
     members = data.get('known_members', {})
     efftable = members.get('2332', {})
@@ -60,7 +61,7 @@ def test_uiwnd_onmessage():
     uiwnd_file = STRUCTS_DIR / "UIWnd.json"
     if not uiwnd_file.exists():
         return
-    with open(uiwnd_file) as f:
+    with open(uiwnd_file, encoding='utf-8', errors='replace') as f:
         data = json.load(f)
     methods = data.get('known_methods', {})
     has_onmessage = any(m.get('name') == 'OnMessage' for m in methods.values() if isinstance(m, dict))
@@ -108,3 +109,5 @@ if __name__ == "__main__":
             failed += 1
     print(f"\nResults: {passed} passed, {failed} failed")
     sys.exit(1 if failed else 0)
+
+

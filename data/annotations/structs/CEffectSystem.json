@@ -75,8 +75,9 @@
   },
   "methods": {
     "0x004C6240": {
-      "name": "~CEffectSystem",
-      "signature": "int *__thiscall(int nVal)"
+      "name": "_todo_004C6240",
+      "signature": "int *__thiscall(int nVal)",
+      "source": " | 析构名误挂改名 2026-09-29：~CEffectSystem→_todo_004C6240（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）"
     },
     "0x004C6260": {
       "name": "Reset",
@@ -85,12 +86,13 @@
     },
     "0x004C6280": {
       "name": "Init",
-      "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "signature": "bool __thiscall __thiscall()",
+      "source": "pdb_ret | 签名缺参批量 2026-10-06：ret 20/4=5 参 vs 签名 0——补 5 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）"
     },
     "0x004C6290": {
       "name": "Destroy",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall(int nVal1)",
+      "source": " | 签名缺参批量 2026-10-06：ret 20/4=5 参 vs 签名 0——补 5 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004C6330": {
       "name": "GetEffectIndex",
@@ -195,6 +197,21 @@
       "note": "reattribute: asm 行 290910-290924 本体：mov eax,[esp+arg_0]（索引）; mov esi,ecx; push eax; call sub_4C5940（索引规范化）; mov ecx,[esi+eax*4+118h]; mov dl,[esp+4+arg_4]; mov [ecx+0Dh],dl。链路两侧都是精确成员： (1) +0x118 在 CEffectSystem 里是 known_members['280'] = m_pEffect，类型 CEffect *[8] —— 与 `[esi+eax*4+118h]`（4 字节指针数组取第 eax 个元素）完全吻合； (2) 写入目标是 [ecx+0Dh]，而 CEffect 的 known_members['13'] = m_bVisible，类型 unsigned char —— 与 byte 存储（mov dl → mov [ecx+0Dh],dl）吻合。原类 _Texture_uv 只有 u@0 / v@4（size=8），既无 +0x118 也无任何指针数组 ⇒ 不可能是宿主。原名字 operator= 与函数体无关（它收 (int, char) 并写一个字节，不是赋值运算符），已证伪。",
       "name_evidence": "按函数逻辑定名：它按索引取出 CEffectSystem::m_pEffect[idx]，把该 effect 的 m_bVisible 置为传入字节 ⇒ SetEffectVisible。CEffectSystem 已有 IsVisible/SetVisible，为免重名用 SetEffectVisible。",
       "signature_note": "set_signature: asm 行 290910-290924：`retn 8` ⇒ 2 个栈参数；第一参 `[esp+arg_0]` 作为索引传给 sub_4C5940 再用于 `[esi+eax*4+118h]`（取 m_pEffect[idx]）；第二参 `mov dl,[esp+4+arg_4]` 后 `mov [ecx+0Dh],dl` 是**字节存储**到 CEffect::m_bVisible ⇒ 第二参为字节、返回值为 void（函数未对 eax 作有效设置，调用方也不使用返回值）。搬移前该条带的是原类残留签名 `struct _Texture_uv & (_Texture_uv *)`，导致生成头把它发射成 `static struct _Texture_uv & SetEffectVisible(_Texture_uv *);`（pal3/src/Effect/CEffectSystem.h:44）—— 与函数体、与所属类均不符，已证伪。 (was: struct _Texture_uv & (_Texture_uv *))"
+    },
+    "0x004C5DB0": {
+      "name": "Activate",
+      "signature": "int __thiscall()",
+      "source": "vtable_gap_fill_v1(from CEffect.json)"
+    },
+    "0x004C5DE0": {
+      "name": "ReleaseTextures",
+      "signature": "void __thiscall()",
+      "source": "vtable_gap_fill_v1(from CEffect.json)"
+    },
+    "0x004C5840": {
+      "name": "DestroyEffects",
+      "signature": "void __thiscall()",
+      "source": "批A 2026-10-06：0x4C5840=5 字节尾跳 thunk（jmp 0x4C5910）——渲染伪名 Destroy_5840（址尾）禁伪名改 _todo_ 形；体证=调用点 thiscall 形（g_pEffectSystem this）+尾跳目标 0x4C5910 | 语义名 2026-10-06（用户可读性令）：体证=[this+0x114] 计数+循环 destroy 调（0x4C5B30/0x4C5850/0x4C5B50）=销毁效应数组循环形——DestroyEffects 语义名（弃 _todo_ 伪名）"
     }
   },
   "vtables": [

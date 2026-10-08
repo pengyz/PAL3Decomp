@@ -65,6 +65,12 @@
     "0x0053DB90": {
       "name": "Init",
       "signature": "CPK *__thiscall CPK::Init()"
+    },
+    "0x0053C2B0": {
+      "name": "_scalar_dtor_c2b0",
+      "signature": "void __thiscall(int nVal1)",
+      "source": "vtable_gap_fill_v1(IDB:CPK::scalar_deleting_dtor) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "declaration_only": true
     }
   },
   "vtables": [

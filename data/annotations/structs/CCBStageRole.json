@@ -1,522 +1,527 @@
 {
- "name": "CCBStageRole",
- "binary_size": 6848,
- "known_members": {
-  "0": {
-   "name": "m_pStage",
-   "type": "CCBStage *",
-   "offset": 0
-  },
-  "4": {
-   "name": "m_pRoleState",
-   "type": "CCBRoleState *",
-   "offset": 4
-  },
-  "264": {
-   "name": "m_bValid",
-   "type": "unsigned char",
-   "offset": 264
-  },
-  "265": {
-   "name": "m_bVisible",
-   "type": "unsigned char",
-   "offset": 265
-  },
-  "266": {
-   "name": "m_bPaused",
-   "type": "unsigned char",
-   "offset": 266
-  },
-  "267": {
-   "name": "m_bAbsTime",
-   "type": "unsigned char",
-   "offset": 267
-  },
-  "268": {
-   "name": "m_fTimeScale",
-   "type": "float",
-   "offset": 268
-  },
-  "272": {
-   "name": "m_bAlive",
-   "type": "unsigned char",
-   "offset": 272
-  },
-  "273": {
-   "name": "m_bRun",
-   "type": "unsigned char",
-   "offset": 273
-  },
-  "274": {
-   "name": "m_bFlash",
-   "type": "unsigned char",
-   "offset": 274
-  },
-  "275": {
-   "name": "m_bFlashCounter",
-   "type": "unsigned char",
-   "offset": 275
-  },
-  "276": {
-   "name": "m_fFlashTimeKey",
-   "type": "float",
-   "offset": 276
-  },
-  "280": {
-   "name": "m_bShowWeapon",
-   "type": "unsigned char",
-   "offset": 280
-  },
-  "284": {
-   "name": "m_fBlend",
-   "type": "float",
-   "offset": 284
-  },
-  "288": {
-   "name": "m_bBeSelected",
-   "type": "unsigned char",
-   "offset": 288
-  },
-  "292": {
-   "name": "m_nIndex",
-   "type": "int",
-   "offset": 292
-  },
-  "296": {
-   "name": "m_dwID",
-   "type": "unsigned int",
-   "offset": 296,
-   "source": "|fix:unsigned_long_to_int"
-  },
-  "300": {
-   "name": "m_pActor",
-   "type": "Actor *",
-   "offset": 300
-  },
-  "304": {
-   "name": "m_pRawActor",
-   "type": "Actor *",
-   "offset": 304
-  },
-  "308": {
-   "name": "m_pWeaponModel",
-   "type": "gbGeomNode *",
-   "offset": 308
-  },
-  "312": {
-   "name": "m_vecWeapon",
-   "type": "gbVec3D",
-   "offset": 312
-  },
-  "324": {
-   "name": "m_rotWeapon",
-   "type": "gbVec3D",
-   "offset": 324
-  },
-  "336": {
-   "name": "m_vNoteThrowPos",
-   "type": "gbVec3D",
-   "offset": 336
-  },
-  "348": {
-   "name": "m_vThrowVec",
-   "type": "gbVec3D",
-   "offset": 348
-  },
-  "360": {
-   "name": "m_vecLen",
-   "type": "float",
-   "offset": 360
-  },
-  "372": {
-   "name": "m_bShowWeaponModel",
-   "type": "unsigned char",
-   "offset": 372
-  },
-  "373": {
-   "name": "m_bCatching",
-   "type": "unsigned char",
-   "offset": 373
-  },
-  "376": {
-   "name": "m_iState",
-   "type": "int",
-   "offset": 376
-  },
-  "380": {
-   "name": "m_bForceFinishThrowingWeapon",
-   "type": "unsigned char",
-   "offset": 380
-  },
-  "384": {
-   "name": "m_fMaxThrowSpeed",
-   "type": "float",
-   "offset": 384
-  },
-  "388": {
-   "name": "m_fThrowSpeed",
-   "type": "float",
-   "offset": 388
-  },
-  "392": {
-   "name": "m_fThrowLen",
-   "type": "float",
-   "offset": 392
-  },
-  "396": {
-   "name": "m_ThrowCmdData",
-   "type": "tagCmdData *",
-   "offset": 396
-  },
-  "440": {
-   "name": "m_OBBox",
-   "type": "gbOBBox *",
-   "offset": 440
-  },
-  "516": {
-   "name": "m_bTransMtl",
-   "type": "unsigned char",
-   "offset": 516
-  },
-  "517": {
-   "name": "m_bSpecTransport",
-   "type": "unsigned char",
-   "offset": 517
-  },
-  "518": {
-   "name": "m_bGrabed",
-   "type": "unsigned char",
-   "offset": 518
-  },
-  "519": {
-   "name": "m_bNormalGrab",
-   "type": "unsigned char",
-   "offset": 519
-  },
-  "520": {
-   "name": "m_dwStageTaskID",
-   "type": "unsigned int",
-   "offset": 520,
-   "source": "|fix:unsigned_long_to_int"
-  },
-  "524": {
-   "name": "m_bExternalTask",
-   "type": "unsigned char",
-   "offset": 524
-  },
-  "528": {
-   "name": "m_fLeftWeapon",
-   "type": "float",
-   "offset": 528
-  },
-  "532": {
-   "name": "m_fRightWeapon",
-   "type": "float",
-   "offset": 532
-  },
-  "536": {
-   "name": "m_nTask",
-   "type": "int",
-   "offset": 536
-  },
-  "540": {
-   "name": "m_nCurTask",
-   "type": "int",
-   "offset": 540
-  },
-  "544": {
-   "name": "m_fp",
-   "type": "char *",
-   "offset": 544,
-   "source": "|fix:pointer_level:char **"
-  },
-  "560": {
-   "name": "m_Task",
-   "type": "tagRoleTask[64]",
-   "offset": 560
-  },
-  "6704": {
-   "name": "m_dwCurWeaponIndex",
-   "type": "unsigned int",
-   "offset": 6704,
-   "source": "|fix:unsigned_long_to_int"
-  },
-  "6708": {
-   "name": "m_eRoleActState",
-   "type": "ERoleActState",
-   "offset": 6708
-  },
-  "6712": {
-   "name": "m_eCurAction",
-   "type": "ACTION_KIND",
-   "offset": 6712
-  },
-  "6716": {
-   "name": "m_vecSunDir",
-   "type": "gbVec3D",
-   "offset": 6716
-  },
-  "6728": {
-   "name": "m_vecPos",
-   "type": "gbVec3D",
-   "offset": 6728
-  },
-  "6740": {
-   "name": "m_vecInitPos",
-   "type": "gbVec3D",
-   "offset": 6740
-  },
-  "6752": {
-   "name": "m_vecRunTarget",
-   "type": "gbVec3D",
-   "offset": 6752
-  },
-  "6764": {
-   "name": "m_vecRunVelocity",
-   "type": "gbVec3D",
-   "offset": 6764
-  },
-  "6776": {
-   "name": "m_fFaceDir",
-   "type": "float",
-   "offset": 6776
-  },
-  "6780": {
-   "name": "m_fInitFaceDir",
-   "type": "float",
-   "offset": 6780
-  },
-  "6784": {
-   "name": "m_dwCurAniFlag",
-   "type": "unsigned int",
-   "offset": 6784,
-   "source": "|fix:unsigned_long_to_int"
-  },
-  "6788": {
-   "name": "m_dwAniFlagOver",
-   "type": "unsigned int",
-   "offset": 6788,
-   "source": "|fix:unsigned_long_to_int"
-  },
-  "6792": {
-   "name": "m_dwAniFlagWork",
-   "type": "unsigned int",
-   "offset": 6792,
-   "source": "|fix:unsigned_long_to_int"
-  },
-  "6796": {
-   "name": "m_dwAniFlagWork1",
-   "type": "unsigned int",
-   "offset": 6796,
-   "source": "|fix:unsigned_long_to_int"
-  },
-  "6800": {
-   "name": "m_dwAniFlagWork2",
-   "type": "unsigned int",
-   "offset": 6800,
-   "source": "|fix:unsigned_long_to_int"
-  },
-  "6804": {
-   "name": "m_dwAniFlagWork3",
-   "type": "unsigned int",
-   "offset": 6804,
-   "source": "|fix:unsigned_long_to_int"
-  },
-  "6808": {
-   "name": "m_dwAniFlagPause",
-   "type": "unsigned int",
-   "offset": 6808,
-   "source": "|fix:unsigned_long_to_int"
-  },
-  "6812": {
-   "name": "m_dwAniFlagStore",
-   "type": "unsigned int",
-   "offset": 6812,
-   "source": "|fix:unsigned_long_to_int"
-  },
-  "6816": {
-   "name": "m_dwAniFlagFlyup",
-   "type": "unsigned int",
-   "offset": 6816,
-   "source": "|fix:unsigned_long_to_int"
-  },
-  "6820": {
-   "name": "m_dwAniFlagFlydown",
-   "type": "unsigned int",
-   "offset": 6820,
-   "source": "|fix:unsigned_long_to_int"
-  },
-  "6824": {
-   "name": "m_dwAniFlagThrowED",
-   "type": "unsigned int",
-   "offset": 6824,
-   "source": "|fix:unsigned_long_to_int"
-  },
-  "6828": {
-   "name": "m_dwAniFlagCatchED",
-   "type": "unsigned int",
-   "offset": 6828,
-   "source": "|fix:unsigned_long_to_int"
-  },
-  "6832": {
-   "name": "m_dwAniFlagSJump",
-   "type": "unsigned int",
-   "offset": 6832,
-   "source": "|fix:unsigned_long_to_int"
-  },
-  "6836": {
-   "name": "m_dwAniFlagEJump",
-   "type": "unsigned int",
-   "offset": 6836,
-   "source": "|fix:unsigned_long_to_int"
-  },
-  "6840": {
-   "name": "m_dwLastExternalActionCRC",
-   "type": "unsigned int",
-   "offset": 6840,
-   "source": "|fix:unsigned_long_to_int"
-  },
-  "368": {
-   "name": "m_fStatus",
-   "type": "float",
-   "source": "binary:raw_final"
-  },
-  "400": {
-   "name": "m_nRotAngle",
-   "type": "int",
-   "source": "binary:disp32_2hits_2funcs"
-  },
-  "404": {
-   "name": "m_nCurActionOff",
-   "type": "int",
-   "source": "decomp:ptr_dispatch+GetRotAngle_set_0"
-  },
-  "416": {
-   "name": "m_nTransportRun",
-   "type": "int",
-   "source": "binary:disp32_4hits_4funcs"
-  },
-  "432": {
-   "name": "m_nUseRecoverItem",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib"
-  },
-  "436": {
-   "name": "m_nProperAction",
-   "type": "int",
-   "source": "A:store_in_GetProperCurAction+ProcTransportRun_6refs"
-  },
-  "444": {
-   "name": "m_nOBBox",
-   "type": "int",
-   "source": "binary:disp32_5hits_3funcs"
-  },
-  "496": {
-   "name": "m_nCurState",
-   "type": "int",
-   "source": "A:GetCurrentState_returns_&field+store_ProcProtect_3refs"
-  },
-  "500": {
-   "name": "m_nActionType0",
-   "type": "int",
-   "source": "decomp:24stride_set_3_in_GetProperCurAction"
-  },
-  "504": {
-   "name": "m_bProperCurAction",
-   "type": "unsigned char",
-   "source": "binary:disp32_2hits_2funcs"
-  },
-  "505": {
-   "name": "m_bSlotActive0",
-   "type": "unsigned char",
-   "source": "decomp:96stride_loop_flag"
-  },
-  "506": {
-   "name": "m_bSlotBlocked0",
-   "type": "unsigned char",
-   "source": "decomp:96stride_ProcBlock_flag"
-  },
-  "364": {
-   "name": "m_fTask",
-   "type": "float",
-   "source": "raw_decomp:Hex-Rays_type_cast"
-  },
-  "374": {
-   "name": "m_bDelAllTask",
-   "type": "unsigned char",
-   "source": "raw_decomp:Hex-Rays_type_cast"
-  },
-  "408": {
-   "name": "m_nCurActionParam",
-   "type": "int",
-   "source": "decomp:copied_from_24stride_array"
-  },
-  "420": {
-   "name": "m_ActionSlot0",
-   "type": "int",
-   "source": "decomp:24stride_array_start(GetProperCurAction_sets)"
-  },
-  "424": {
-   "name": "m_ActionSlot1",
-   "type": "int",
-   "source": "decomp:24stride_index_1"
-  },
-  "428": {
-   "name": "m_ActionSlot2",
-   "type": "int",
-   "source": "decomp:24stride_index_2"
-  },
-  "448": {
-   "name": "m_fActionSpeed0",
-   "type": "int",
-   "source": "decomp:24stride+10_float(1.0/100.0_speed_values)"
-  },
-  "412": {
-   "name": "m_nTodo_19C",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "452": {
-   "name": "m_nTodo_1C4",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "472": {
-   "name": "m_nTodo_1D8",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "484": {
-   "name": "m_apSlotData",
-   "type": "int",
-   "source": "A:array_idx_reg*4+1E4h_slot_data"
-  },
-  "488": {
-   "name": "m_nTodo_1E8",
-   "type": "float",
-   "source": "binary_scan:2refs"
-  },
-  "8": {
-   "name": "m_sLastRole",
-   "type": "char[12]",
-   "source": "split_from_char256"
-  },
-  "20": {
-   "name": "m_sRoleArray",
-   "type": "Array",
-   "source": "A:ida_decomp_v29_Array_ptr"
-  },
-  "36": {
-   "name": "m_sRoleData",
-   "type": "char[228]",
-   "source": "split_from_char256"
+  "name": "CCBStageRole",
+  "binary_size": 6848,
+  "known_members": {
+    "0": {
+      "name": "m_pStage",
+      "type": "CCBStage *",
+      "offset": 0
+    },
+    "4": {
+      "name": "m_pRoleState",
+      "type": "CCBRoleState *",
+      "offset": 4
+    },
+    "264": {
+      "name": "m_bValid",
+      "type": "unsigned char",
+      "offset": 264
+    },
+    "265": {
+      "name": "m_bVisible",
+      "type": "unsigned char",
+      "offset": 265
+    },
+    "266": {
+      "name": "m_bPaused",
+      "type": "unsigned char",
+      "offset": 266
+    },
+    "267": {
+      "name": "m_bAbsTime",
+      "type": "unsigned char",
+      "offset": 267
+    },
+    "268": {
+      "name": "m_fTimeScale",
+      "type": "float",
+      "offset": 268
+    },
+    "272": {
+      "name": "m_bAlive",
+      "type": "unsigned char",
+      "offset": 272
+    },
+    "273": {
+      "name": "m_bRun",
+      "type": "unsigned char",
+      "offset": 273
+    },
+    "274": {
+      "name": "m_bFlash",
+      "type": "unsigned char",
+      "offset": 274
+    },
+    "275": {
+      "name": "m_bFlashCounter",
+      "type": "unsigned char",
+      "offset": 275
+    },
+    "276": {
+      "name": "m_fFlashTimeKey",
+      "type": "float",
+      "offset": 276
+    },
+    "280": {
+      "name": "m_bShowWeapon",
+      "type": "unsigned char",
+      "offset": 280
+    },
+    "284": {
+      "name": "m_fBlend",
+      "type": "float",
+      "offset": 284
+    },
+    "288": {
+      "name": "m_bBeSelected",
+      "type": "unsigned char",
+      "offset": 288
+    },
+    "292": {
+      "name": "m_nIndex",
+      "type": "int",
+      "offset": 292
+    },
+    "296": {
+      "name": "m_dwID",
+      "type": "unsigned int",
+      "offset": 296,
+      "source": "|fix:unsigned_long_to_int"
+    },
+    "300": {
+      "name": "m_pActor",
+      "type": "Actor *",
+      "offset": 300
+    },
+    "304": {
+      "name": "m_pRawActor",
+      "type": "Actor *",
+      "offset": 304
+    },
+    "308": {
+      "name": "m_pWeaponModel",
+      "type": "gbGeomNode *",
+      "offset": 308
+    },
+    "312": {
+      "name": "m_vecWeapon",
+      "type": "gbVec3D",
+      "offset": 312
+    },
+    "324": {
+      "name": "m_rotWeapon",
+      "type": "gbVec3D",
+      "offset": 324
+    },
+    "336": {
+      "name": "m_vNoteThrowPos",
+      "type": "gbVec3D",
+      "offset": 336
+    },
+    "348": {
+      "name": "m_vThrowVec",
+      "type": "gbVec3D",
+      "offset": 348
+    },
+    "360": {
+      "name": "m_vecLen",
+      "type": "float",
+      "offset": 360
+    },
+    "372": {
+      "name": "m_bShowWeaponModel",
+      "type": "unsigned char",
+      "offset": 372
+    },
+    "373": {
+      "name": "m_bCatching",
+      "type": "unsigned char",
+      "offset": 373
+    },
+    "376": {
+      "name": "m_iState",
+      "type": "int",
+      "offset": 376
+    },
+    "380": {
+      "name": "m_bForceFinishThrowingWeapon",
+      "type": "unsigned char",
+      "offset": 380
+    },
+    "384": {
+      "name": "m_fMaxThrowSpeed",
+      "type": "float",
+      "offset": 384
+    },
+    "388": {
+      "name": "m_fThrowSpeed",
+      "type": "float",
+      "offset": 388
+    },
+    "392": {
+      "name": "m_fThrowLen",
+      "type": "float",
+      "offset": 392
+    },
+    "396": {
+      "name": "m_ThrowCmdData",
+      "type": "tagCmdData *",
+      "offset": 396
+    },
+    "440": {
+      "name": "m_OBBox",
+      "type": "gbOBBox *",
+      "offset": 440
+    },
+    "516": {
+      "name": "m_bTransMtl",
+      "type": "unsigned char",
+      "offset": 516
+    },
+    "517": {
+      "name": "m_bSpecTransport",
+      "type": "unsigned char",
+      "offset": 517
+    },
+    "518": {
+      "name": "m_bGrabed",
+      "type": "unsigned char",
+      "offset": 518
+    },
+    "519": {
+      "name": "m_bNormalGrab",
+      "type": "unsigned char",
+      "offset": 519
+    },
+    "520": {
+      "name": "m_dwStageTaskID",
+      "type": "unsigned int",
+      "offset": 520,
+      "source": "|fix:unsigned_long_to_int"
+    },
+    "524": {
+      "name": "m_bExternalTask",
+      "type": "unsigned char",
+      "offset": 524
+    },
+    "528": {
+      "name": "m_fLeftWeapon",
+      "type": "float",
+      "offset": 528
+    },
+    "532": {
+      "name": "m_fRightWeapon",
+      "type": "float",
+      "offset": 532
+    },
+    "536": {
+      "name": "m_nTask",
+      "type": "int",
+      "offset": 536
+    },
+    "540": {
+      "name": "m_nCurTask",
+      "type": "int",
+      "offset": 540
+    },
+    "544": {
+      "name": "m_fp",
+      "type": "char *",
+      "offset": 544,
+      "source": "|fix:pointer_level:char **"
+    },
+    "560": {
+      "name": "m_Task",
+      "type": "tagRoleTask[64]",
+      "offset": 560
+    },
+    "6704": {
+      "name": "m_dwCurWeaponIndex",
+      "type": "unsigned int",
+      "offset": 6704,
+      "source": "|fix:unsigned_long_to_int"
+    },
+    "6708": {
+      "name": "m_eRoleActState",
+      "type": "ERoleActState",
+      "offset": 6708
+    },
+    "6712": {
+      "name": "m_eCurAction",
+      "type": "ACTION_KIND",
+      "offset": 6712
+    },
+    "6716": {
+      "name": "m_vecSunDir",
+      "type": "gbVec3D",
+      "offset": 6716
+    },
+    "6728": {
+      "name": "m_vecPos",
+      "type": "gbVec3D",
+      "offset": 6728
+    },
+    "6740": {
+      "name": "m_vecInitPos",
+      "type": "gbVec3D",
+      "offset": 6740
+    },
+    "6752": {
+      "name": "m_vecRunTarget",
+      "type": "gbVec3D",
+      "offset": 6752
+    },
+    "6764": {
+      "name": "m_vecRunVelocity",
+      "type": "gbVec3D",
+      "offset": 6764
+    },
+    "6776": {
+      "name": "m_fFaceDir",
+      "type": "float",
+      "offset": 6776
+    },
+    "6780": {
+      "name": "m_fInitFaceDir",
+      "type": "float",
+      "offset": 6780
+    },
+    "6784": {
+      "name": "m_dwCurAniFlag",
+      "type": "unsigned int",
+      "offset": 6784,
+      "source": "|fix:unsigned_long_to_int"
+    },
+    "6788": {
+      "name": "m_dwAniFlagOver",
+      "type": "unsigned int",
+      "offset": 6788,
+      "source": "|fix:unsigned_long_to_int"
+    },
+    "6792": {
+      "name": "m_dwAniFlagWork",
+      "type": "unsigned int",
+      "offset": 6792,
+      "source": "|fix:unsigned_long_to_int"
+    },
+    "6796": {
+      "name": "m_dwAniFlagWork1",
+      "type": "unsigned int",
+      "offset": 6796,
+      "source": "|fix:unsigned_long_to_int"
+    },
+    "6800": {
+      "name": "m_dwAniFlagWork2",
+      "type": "unsigned int",
+      "offset": 6800,
+      "source": "|fix:unsigned_long_to_int"
+    },
+    "6804": {
+      "name": "m_dwAniFlagWork3",
+      "type": "unsigned int",
+      "offset": 6804,
+      "source": "|fix:unsigned_long_to_int"
+    },
+    "6808": {
+      "name": "m_dwAniFlagPause",
+      "type": "unsigned int",
+      "offset": 6808,
+      "source": "|fix:unsigned_long_to_int"
+    },
+    "6812": {
+      "name": "m_dwAniFlagStore",
+      "type": "unsigned int",
+      "offset": 6812,
+      "source": "|fix:unsigned_long_to_int"
+    },
+    "6816": {
+      "name": "m_dwAniFlagFlyup",
+      "type": "unsigned int",
+      "offset": 6816,
+      "source": "|fix:unsigned_long_to_int"
+    },
+    "6820": {
+      "name": "m_dwAniFlagFlydown",
+      "type": "unsigned int",
+      "offset": 6820,
+      "source": "|fix:unsigned_long_to_int"
+    },
+    "6824": {
+      "name": "m_dwAniFlagThrowED",
+      "type": "unsigned int",
+      "offset": 6824,
+      "source": "|fix:unsigned_long_to_int"
+    },
+    "6828": {
+      "name": "m_dwAniFlagCatchED",
+      "type": "unsigned int",
+      "offset": 6828,
+      "source": "|fix:unsigned_long_to_int"
+    },
+    "6832": {
+      "name": "m_dwAniFlagSJump",
+      "type": "unsigned int",
+      "offset": 6832,
+      "source": "|fix:unsigned_long_to_int"
+    },
+    "6836": {
+      "name": "m_dwAniFlagEJump",
+      "type": "unsigned int",
+      "offset": 6836,
+      "source": "|fix:unsigned_long_to_int"
+    },
+    "6840": {
+      "name": "m_dwLastExternalActionCRC",
+      "type": "unsigned int",
+      "offset": 6840,
+      "source": "|fix:unsigned_long_to_int"
+    },
+    "368": {
+      "name": "m_fStatus",
+      "type": "float",
+      "source": "binary:raw_final"
+    },
+    "400": {
+      "name": "m_nRotAngle",
+      "type": "int",
+      "source": "binary:disp32_2hits_2funcs"
+    },
+    "404": {
+      "name": "m_nCurActionOff",
+      "type": "int",
+      "source": "decomp:ptr_dispatch+GetRotAngle_set_0"
+    },
+    "416": {
+      "name": "m_nTransportRun",
+      "type": "int",
+      "source": "binary:disp32_4hits_4funcs"
+    },
+    "432": {
+      "name": "m_nUseRecoverItem",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "436": {
+      "name": "m_nProperAction",
+      "type": "int",
+      "source": "A:store_in_GetProperCurAction+ProcTransportRun_6refs"
+    },
+    "444": {
+      "name": "m_nOBBox",
+      "type": "int",
+      "source": "binary:disp32_5hits_3funcs"
+    },
+    "496": {
+      "name": "m_nCurState",
+      "type": "int",
+      "source": "A:GetCurrentState_returns_&field+store_ProcProtect_3refs"
+    },
+    "500": {
+      "name": "m_nActionType0",
+      "type": "int",
+      "source": "decomp:24stride_set_3_in_GetProperCurAction"
+    },
+    "504": {
+      "name": "m_bProperCurAction",
+      "type": "unsigned char",
+      "source": "binary:disp32_2hits_2funcs"
+    },
+    "505": {
+      "name": "m_bSlotActive0",
+      "type": "unsigned char",
+      "source": "decomp:96stride_loop_flag"
+    },
+    "506": {
+      "name": "m_bSlotBlocked0",
+      "type": "unsigned char",
+      "source": "decomp:96stride_ProcBlock_flag"
+    },
+    "364": {
+      "name": "m_fTask",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "374": {
+      "name": "m_bDelAllTask",
+      "type": "unsigned char",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "408": {
+      "name": "m_nCurActionParam",
+      "type": "int",
+      "source": "decomp:copied_from_24stride_array"
+    },
+    "420": {
+      "name": "m_ActionSlot0",
+      "type": "int",
+      "source": "decomp:24stride_array_start(GetProperCurAction_sets)"
+    },
+    "424": {
+      "name": "m_ActionSlot1",
+      "type": "int",
+      "source": "decomp:24stride_index_1"
+    },
+    "428": {
+      "name": "m_ActionSlot2",
+      "type": "int",
+      "source": "decomp:24stride_index_2"
+    },
+    "448": {
+      "name": "m_fActionSpeed0",
+      "type": "int",
+      "source": "decomp:24stride+10_float(1.0/100.0_speed_values)"
+    },
+    "412": {
+      "name": "m_nTodo_19C",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "452": {
+      "name": "m_nTodo_1C4",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "472": {
+      "name": "m_nTodo_1D8",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "484": {
+      "name": "m_apSlotData",
+      "type": "int",
+      "source": "A:array_idx_reg*4+1E4h_slot_data"
+    },
+    "488": {
+      "name": "m_nTodo_1E8",
+      "type": "float",
+      "source": "binary_scan:2refs"
+    },
+    "8": {
+      "name": "m_sLastRole",
+      "type": "char[12]",
+      "source": "split_from_char256"
+    },
+    "20": {
+      "name": "m_sRoleArray",
+      "type": "Array",
+      "source": "A:ida_decomp_v29_Array_ptr"
+    },
+    "36": {
+      "name": "m_sRoleData",
+      "type": "char[228]",
+      "source": "split_from_char256"
+    }
+  },
+  "methods": {
+    "0x00521B00": {
+      "name": "LoadSaveData",
+      "signature": "int __thiscall (int *p_DWORD)",
+      "_misattrib_evidence": "max_offset=328044>class_size=6848"
+    },
+    "0x00522030": {
+      "name": "CCBStageRole",
+      "signature": "CCBStageRole *__thiscall(CCBStageRole *this)",
+      "source": " | 批1 归属迁移 2026-10-07：0x522030=ctor 形（SEH+成员 ctor TxtFile@+4+5 元素初始化）——CCBStageRole 类 ctor 非 CCBStage 方法（名遮蔽 ~56 错根因·复核簇 A）"
+    }
   }
- },
- "methods": {
-  "0x00521B00": {
-   "name": "LoadSaveData",
-   "signature": "int __thiscall (int *p_DWORD)",
-   "_misattrib_evidence": "max_offset=328044>class_size=6848"
-  }
- }
 }
