@@ -6,11 +6,14 @@ Usage:
 """
 import ida_auto, ida_funcs, ida_hexrays, ida_name, ida_typeinf, idautils, idc
 import ida_segment as idaseg
-import json, os, time, glob, re
+import json, os, sys, time, glob, re
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
+sys.path.insert(0, PROJECT_ROOT)
 OUTPUT_DIR = os.path.join(PROJECT_ROOT, "asm", "pal3", "decomp")
+
+from pipeline.gen.annotation_view import iter_structs
 
 # After apply_annotations changes types, Hex-Rays cache is stale — need dirty mark.
 # After init --force (fresh IDB), no cache exists — dirty mark is harmless but redundant.
@@ -193,9 +196,7 @@ def main():
         _addr_to_class = {}       # int(addr) -> class_name (own slots only)
         _structs_dir = os.path.join(PROJECT_ROOT, "data", "annotations", "structs")
         if os.path.isdir(_structs_dir):
-            import json as _sj, glob as _gl
-            for _sf in _gl.glob(os.path.join(_structs_dir, "*.json")):
-                _sd = _sj.load(open(_sf, encoding='utf-8'))
+            for _sf, _sd in iter_structs(_structs_dir):
                 _sname = _sd.get('name', '')
                 for _addr, _minfo in _sd.get('methods', {}).items():
                     if 'ordinal' in _minfo:
@@ -215,8 +216,7 @@ def main():
             # Also attribute non-virtual methods from annotation struct methods dict.
             # These have names like "ClassName::MethodName" that encode the class.
             _method_attributed = 0
-            for _sf in _gl.glob(os.path.join(_structs_dir, "*.json")):
-                _sd = _sj.load(open(_sf, encoding='utf-8'))
+            for _sf, _sd in iter_structs(_structs_dir):
                 for _addr, _minfo in _sd.get('methods', {}).items():
                     if 'ordinal' in _minfo:
                         continue  # virtual methods already handled above

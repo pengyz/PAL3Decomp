@@ -37,6 +37,7 @@ sys.path.insert(0, os.path.join(ROOT, 'pipeline'))
 sys.path.insert(0, os.path.join(ROOT, 'pipeline', 'gen'))
 
 import audit_type_layout as A  # noqa: E402
+from pipeline.gen.annotation_view import iter_structs  # noqa: E402
 
 BLIND_SPOTS = [
     '批量拷贝/序列化（memcpy/memset 覆盖区间）不可见',
@@ -385,13 +386,8 @@ def main():
                              encoding='utf-8'))
            for c in [a.cls] if os.path.exists(os.path.join(ROOT, 'data', 'annotations', 'structs', '%s.json' % c))}
     ann_all = {}
-    for p in os.listdir(os.path.join(ROOT, 'data', 'annotations', 'structs')):
-        if p.endswith('.json'):
-            try:
-                d = json.load(open(os.path.join(ROOT, 'data', 'annotations', 'structs', p), encoding='utf-8'))
-                ann_all[p[:-5]] = d
-            except Exception:
-                pass
+    for p, d in iter_structs(os.path.join(ROOT, 'data', 'annotations', 'structs')):
+        ann_all[os.path.basename(p)[:-5]] = d
     embed = embed_map(ann_all)
     deps = sorted(dependents_closure(a.cls, embed))
 

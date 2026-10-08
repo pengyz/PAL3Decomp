@@ -25,6 +25,7 @@ import io
 import json
 import os
 import re
+import sys
 import traceback
 
 import idc
@@ -49,6 +50,10 @@ if any(_a.startswith('-') for _a in _sys_guard.argv[1:]):
 REPO = os.environ.get('PAL3_REPO') or os.path.dirname(os.path.dirname(
     os.path.abspath(__file__)))  # 2026-09-20 修复：原为硬编码 Windows 路径 D:\\workspace\\PAL3Decomp，
 # 在非作者机器上必然 FileNotFoundError ⇒ 改为从脚本位置推导（可用 PAL3_REPO 覆盖）
+sys.path.insert(0, REPO)
+
+from pipeline.gen.annotation_view import iter_structs
+
 OUT_TXT = os.path.join(os.environ.get('TEMP', '.'), 'retn_param_audit.txt')
 OUT_JSON = os.path.join(os.environ.get('TEMP', '.'), 'retn_param_audit.json')
 RX_RETN = re.compile(r'\bretn\s+([0-9A-Fa-f]+h?|\d+)\b')
@@ -134,15 +139,8 @@ def load_annotations():
                 if info.get('class'):
                     nm = '%s::%s' % (info['class'], nm)
                 out[int(addr, 16)] = (nm, sig, 'functions.json')
-    for p in os.listdir(os.path.join(REPO, 'data', 'annotations', 'structs')):
-        if not p.endswith('.json'):
-            continue
-        try:
-            with io.open(os.path.join(REPO, 'data', 'annotations', 'structs', p),
-                         encoding='utf-8') as fh:
-                data = json.load(fh)
-        except Exception:
-            continue
+    for p, data in iter_structs(os.path.join(REPO, 'data', 'annotations', 'structs')):
+        p = os.path.basename(p)
         cls = data.get('name', p[:-5])
         for addr, mi in (data.get('methods') or {}).items():
             try:

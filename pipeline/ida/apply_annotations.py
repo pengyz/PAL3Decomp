@@ -25,13 +25,17 @@ import idc
 import json
 import os
 import re
+import sys
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
+sys.path.insert(0, PROJECT_ROOT)
 ANNOTATIONS_DIR = os.path.join(PROJECT_ROOT, "data", "annotations")
 LOG_DIR = os.path.join(SCRIPT_DIR, "_logs")
 LOG_FILE = os.path.join(LOG_DIR, "apply_annotations_log.txt")
 PDB_EXPORT = os.path.join(PROJECT_ROOT, "data", "pdb", "pdb_export.json")
+
+from pipeline.gen.annotation_view import iter_structs
 
 log_lines = []
 
@@ -1327,12 +1331,8 @@ def load_annotations():
     with open(os.path.join(ANNOTATIONS_DIR, "globals.json"), "r", encoding="utf-8") as f:
         globals_data = json.load(f)
     structs = {}
-    structs_dir = os.path.join(ANNOTATIONS_DIR, "structs")
-    for fname in os.listdir(structs_dir):
-        if not fname.endswith(".json"):
-            continue
-        with open(os.path.join(structs_dir, fname), "r", encoding="utf-8") as f:
-            sdata = json.load(f)
+    for fname, sdata in iter_structs(os.path.join(ANNOTATIONS_DIR, "structs")):
+        fname = os.path.basename(fname)
         sname = sdata.pop("name", fname.replace(".json", ""))
         structs[sname] = sdata
         # Merge struct methods into functions dict (class methods not in functions.json)

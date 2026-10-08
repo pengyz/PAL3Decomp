@@ -16,8 +16,14 @@ import json
 import sys
 import os
 import re
+import sys
 
-ANN_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'annotations')
+_PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, _PROJECT_ROOT)
+
+from pipeline.gen.annotation_view import iter_structs
+
+ANN_DIR = os.path.join(_PROJECT_ROOT, 'data', 'annotations')
 
 def load_annotations(struct_dir=None):
     """契约真修 2026-10-07（P0-4）：struct_dir 注入（fixture 模式——5 读点隔离）。
@@ -34,12 +40,10 @@ def load_annotations(struct_dir=None):
     except Exception:
         pass
     structs = {}
-    structs_dir = os.path.join(_sd)
-    for fname in os.listdir(structs_dir):
-        if fname.endswith('.json'):
-            sdata = json.load(open(os.path.join(structs_dir, fname), encoding='utf-8'))
-            sname = sdata.pop('name', fname.replace('.json', ''))
-            structs[sname] = sdata
+    for fname, sdata in iter_structs(_sd):
+        fname = os.path.basename(fname)
+        sname = sdata.pop('name', fname.replace('.json', ''))
+        structs[sname] = sdata
     enums = {}
     enums_path = os.path.join(ANN_DIR, 'enums.json')
     if os.path.exists(enums_path):
