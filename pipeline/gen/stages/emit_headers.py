@@ -3261,6 +3261,23 @@ def _forced_global_entries():
                 forced.add(nm)
                 extra.append(('0x%08X' % addr,
                               {'name': nm, 'type': t, '_synthesized': True}))
+    # ------------------------------------------------------------------
+    # S-1 生成确定性修复（等价变换：只改顺序，不改内容）
+    # ------------------------------------------------------------------
+    # 病灶：`for nm in ref` 遍历 `ref = _referenced_identifiers()` 这个 **set**，
+    # 其迭代序由 PYTHONHASHSEED 决定 ⇒ `extra` 逐进程漂移。
+    # 下游 generate_globals_cpp() 的消费点是
+    #   `sorted(_glbs.items(), ...) + _extra_entries`
+    # —— `_extra_entries` **未排序**追加 ⇒ globals.cpp 尾块行序逐进程漂移。
+    # 同态双跑实证（2026-10-09）：两次尾块重排、排序后多重集全同、均 2889 行
+    # ⇒ 内容无误，只有顺序漂移。
+    #
+    # 修法：**在源头排序**（而非两处消费点各排一次），使两个消费者自动一致。
+    # 等价性前提（由 tests/codegen/test_codegen_determinism.py::
+    # test_extra_entries_are_pod_only 断言）：extra 全是 POD 标量
+    # ⇒ globals.cpp 定义序 = CRT/静态初始化序（见 generate_globals() 注释）
+    # ⇒ 排序不改变构造序，只改变文本行序 = 等价变换。
+    extra.sort(key=lambda e: int(e[0], 16))
     return forced, extra
 
 
