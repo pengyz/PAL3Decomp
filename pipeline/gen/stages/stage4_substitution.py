@@ -1073,6 +1073,205 @@ def _collect_ptr_cast_edits(code_bytes, tree, ctx):
 
 
 # ============================================================
+# tagRECT* 伪装改写（任务 1：UIPushButton ③ 的 4 条 C2440 之 A 族）
+# ============================================================
+#
+# 病灶层三问（2026-10-09 只读实测，答案随 commit 存档）：
+#   ① 病灶在哪一层：**codegen**（Hex-Rays 把 m_texarray/m_texarrayInfo 的双槽指针
+#      遍历渲成 `tagRECT*` 形 `p_m_rect->left/right`；标注层的
+#      `gbTexture * m_texarray[2]; // +0x54` 本身是对的，不改标注）。
+#   ② 消费者实际读哪份声明：`pal3/src/Misc/UIPushButton.h:23`
+#      `gbTexture * m_texarray[2]; // +0x54`（+0x5C 是 `_PlugInfo * m_texarrayInfo[2]`）。
+#   ③ 报错还缺什么：C2440 只说 `from 'class gbTexture *' to 'long'`，不说是哪个
+#      cast 引入的 `long` ⇒ 用二进制步长裁决（`add esi,0x4` ⇒ 步长 4，非 tagRECT 的 16）。
+#
+# 判据**三条合取**（计划写死；任一不成立即不改——宁可漏，不可错）：
+#   ① 左值 `base->field`，field ∈ tagRECT 四字段，base 静态类型为 `tagRECT *`
+#   ② 右值是**类指针**（`gbTexture *` 这类指向类的指针；整数 / char* / void* 不算）
+#   ③ 同一局部变量二进制步长 4 —— 只认下面 objdump 实证白名单，且同名变量在本函数
+#      有 `v = (T *)((char *)v + 4)` 步进形（Hex-Rays 对 `add reg,4` 的固定渲染）
+#
+# 改写形（**等价变换**：地址与写入值逐位不变，转换不产码）：
+#   `p->left = X;`  ⇒  `*(DWORD *)((char *)p + 0*4) = (DWORD)X;`
+#   字段序号 n：left=0 / top=1 / right=2 / bottom=3 ⇒ `+ n*4` = tagRECT 字段字节偏移，
+#   与二进制的 `mov [esi],eax` / `mov [esi+0x8],eax` 槽位一一对应。
+#   右值 `(DWORD)` 显式转换必须一起补（否则 C2440 只是换成 unsigned long 说法），
+#   与原码里的 `(LONG)ParentData` 显式转换同语义。
+#
+# 实测（2026-10-09 全链当场读数，前后同法 `cli.py codegen all --skip-probe` + `probe`）：
+# UIPushButton.cpp C2440 −2（codegen all 产物行 173/180 消失；行 523/528 属 stage3 虚表
+# 改名丢补偿转换的 B 族，判据①不全 ⇒ 原样保留）/ 总错误 1721→1719 / 全语料仅此 1 单元
+# 错误数变化（4→2）· 其余 58 错误码多重集逐项全同 / S2 102→102（单元仍红）/ L1 86→86。
+# 判据不全站点的逐条核证记录见
+# `.superpowers/sdd/2026-10-09-restore-10-green-units/task-1-report.md`。
+
+_TAGRECT_FIELDS = {'left': 0, 'top': 1, 'right': 2, 'bottom': 3}
+
+# 判据③唯一裁决来源：**objdump 实证白名单**。新增站点必须先经
+# `tools/audit_callsite_evidence.py`（任务 0）+ 全量反汇编缓存核证再入表。
+_PTR_DISGUISE_STRIDE4 = {
+    # (类, 方法, 变量) -> {va, stride, evidence}
+    ('UIPushButton', 'CreateWithTextures', 'p_m_rect'): {
+        'va': '0x00440810',
+        'stride': 4,
+        # 全量反汇编核证（data/status/_disasm_cache.txt 与 objdump 原文逐字一致）：
+        'evidence': (
+            '0x44086a 8d 75 54    lea esi,[ebp+0x54]          ; m_texarray（gbTexture*[2] @+0x54）',
+            '0x4408bd 89 06       mov DWORD PTR [esi],eax     ; 每轮第 1 写：m_texarray[i]（NewTexture 返回值）',
+            '0x4408ce 89 46 08    mov DWORD PTR [esi+0x8],eax ; 每轮第 2 写：m_texarrayInfo[i]（@+0x5C）',
+            '0x4408f4 83 c6 04    add esi,0x4                 ; 步长 4',
+        ),
+    },
+}
+
+_method_ret_cache = None
+
+
+def _method_return_index():
+    """方法短名 → 返回类型文本；**所有**声明者不一致则不收录（宁可漏）。
+
+    注解读取经 `annotation_view` 单一读点（2026-09-20 规则：新增注解直读必须走它）。
+    """
+    global _method_ret_cache
+    if _method_ret_cache is None:
+        from annotation_view import iter_structs, structs_dir
+        acc = {}
+        for _p, d in iter_structs(structs_dir()):
+            for mv in (d.get('methods') or {}).values():
+                if not isinstance(mv, dict):
+                    continue
+                name = str(mv.get('name') or '').split('(')[0]
+                sig = str(mv.get('signature') or '')
+                if not name or '(' not in sig:
+                    continue
+                head = sig[:sig.find('(')]
+                head = re.sub(
+                    r'\b(?:virtual|__thiscall|__cdecl|__stdcall|__fastcall|__hidden)\b',
+                    ' ', head)
+                ret = head.strip()
+                if ret:
+                    acc.setdefault(name, set()).add(ret)
+        _method_ret_cache = {k: sorted(v)[0] for k, v in acc.items() if len(v) == 1}
+    return _method_ret_cache
+
+
+def _is_class_pointer_type(t):
+    """类指针判据（判据②）：`gbTexture *` 这类"指向类"的指针；char*/void*/整数不算。"""
+    kind, _text, cls = _classify_type_text(t)
+    return kind == 'pointer' and bool(cls)
+
+
+def _call_return_type(node):
+    """call_expression → 返回类型文本（只认注解方法签名；解析不出返回 ''）。"""
+    func = node.child_by_field_name('function')
+    if func is None:
+        return ''
+    name = None
+    if func.type == 'field_expression':
+        f = func.child_by_field_name('field')
+        name = f.text.decode('utf-8') if f is not None else None
+    elif func.type == 'identifier':
+        name = func.text.decode('utf-8')
+    if not name:
+        return ''
+    return _method_return_index().get(name, '')
+
+
+def _stride4_bumped_vars(tree):
+    """{变量名: 4} —— `v = (T *)((char *)v + 4)` 步进形（`add reg,4` 的固定渲染）。"""
+    out = {}
+
+    def _strip(n):
+        while n is not None:
+            if n.type == 'cast_expression':
+                n = n.child_by_field_name('value')
+            elif n.type == 'parenthesized_expression':
+                n = n.named_children[0] if n.named_children else None
+            else:
+                break
+        return n
+
+    def visit(node):
+        if node.type == 'assignment_expression':
+            left = node.child_by_field_name('left')
+            right = node.child_by_field_name('right')
+            if left is not None and left.type == 'identifier' and right is not None:
+                b = _strip(right)
+                if b is not None and b.type == 'binary_expression':
+                    op = b.child_by_field_name('operator')
+                    if op is not None and op.text == b'+':
+                        pairs = ((b.child_by_field_name('left'),
+                                  b.child_by_field_name('right')),
+                                 (b.child_by_field_name('right'),
+                                  b.child_by_field_name('left')))
+                        for a, c in pairs:
+                            if c is not None and c.text == b'4':
+                                aa = _strip(a)
+                                if (aa is not None and aa.type == 'identifier'
+                                        and aa.text == left.text):
+                                    out[left.text.decode('utf-8')] = 4
+        for ch in node.children:
+            visit(ch)
+
+    visit(tree.root_node)
+    return out
+
+
+def _collect_ptr_disguise_edits(code_bytes, tree, ctx):
+    """tagRECT* 伪装改写（判据①②③合取；判据不全一律不改）。
+
+    对外产出 Edit 列表：(start, end, replacement)。
+    """
+    edits = []
+    if ctx is None:
+        return edits
+    cls_name = getattr(ctx, 'cls_name', None)
+    method_name = getattr(ctx, 'method_name', None)
+    locals_ = _declared_local_types(tree, code_bytes)
+    stride4 = _stride4_bumped_vars(tree)
+
+    def visit(node):
+        if node.type == 'assignment_expression':
+            op = node.child_by_field_name('operator')
+            left = node.child_by_field_name('left')
+            right = node.child_by_field_name('right')
+            if (op is not None and op.text == b'=' and left is not None
+                    and left.type == 'field_expression' and right is not None):
+                field = left.child_by_field_name('field')
+                base = left.child_by_field_name('argument')
+                fname = field.text.decode('utf-8') if field is not None else ''
+                if (fname in _TAGRECT_FIELDS and base is not None
+                        and base.type == 'identifier'):
+                    # ① base 静态类型必须是 `tagRECT *`
+                    bt = _expr_type(base, locals_, ctx)
+                    if bt[0] == 'pointer' and bt[2] == 'tagRECT':
+                        # ② 右值必须是类指针
+                        rt = _expr_type(right, locals_, ctx)
+                        rhs_ok = rt[0] == 'pointer' and bool(rt[2])
+                        if not rhs_ok and right.type == 'call_expression':
+                            ret = _call_return_type(right)
+                            rhs_ok = bool(ret) and _is_class_pointer_type(ret)
+                        if rhs_ok:
+                            # ③ 同名局部变量二进制步长 4（实证白名单 + 步进形）
+                            var = base.text.decode('utf-8')
+                            ev = _PTR_DISGUISE_STRIDE4.get(
+                                (cls_name, method_name, var))
+                            if (ev is not None and ev.get('stride') == 4
+                                    and stride4.get(var) == 4):
+                                n = _TAGRECT_FIELDS[fname]
+                                repl = ('*(DWORD *)((char *)%s + %d*4)'
+                                        % (var, n)).encode('utf-8')
+                                edits.append((left.start_byte, left.end_byte, repl))
+                                edits.append((right.start_byte, right.start_byte,
+                                              b'(DWORD)'))
+        for ch in node.children:
+            visit(ch)
+
+    visit(tree.root_node)
+    return edits
+
+
+# ============================================================
 # Indirect-call argument cast insertion (VC6 C2664)
 # ============================================================
 #
@@ -1512,6 +1711,7 @@ def run(code, ctx):
     tree = _parser.parse(code_bytes)
     edits = _collect_token_edits(code_bytes, tree, ctx)
     edits += _collect_ptr_cast_edits(code_bytes, tree, ctx)
+    edits += _collect_ptr_disguise_edits(code_bytes, tree, ctx)
     edits += _collect_indirect_call_cast_edits(code_bytes, tree, ctx)
     edits += _collect_crt_arg_cast_edits(code_bytes, tree, ctx)
     edits += _collect_ref_arg_deref_edits(code_bytes, tree, ctx)
