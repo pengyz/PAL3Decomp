@@ -1475,6 +1475,245 @@ def _slot_param_text(t):
     return (groups[-1] if '*' in (t or '') else groups[0]).strip()
 
 
+# ============================================================
+# 任务 3（2026-10-09）：VC6 修饰名 → 形参类型（纯函数，无 IDA 依赖）
+#
+# 证据等级 = **A 级**：修饰名直接编码形参类型（`W4gbAxis` ⇒ enum gbAxis、
+# `PAUgbVec3D@@` ⇒ struct gbVec3D *），见 data/gbengine_registry.jsonl:911-913/1044。
+# 解析规则对 registry 全量 3742 行做过机械校验（形参个数 vs 解码形参个数）；
+# 校验数字与残余例外见 .superpowers/sdd/2026-10-09-restore-10-green-units/task-3-report.md。
+#
+#   name part = `?名@类@@`（首 `@@` 收尾）；成员前缀 3 字符（访问+cv+约定，
+#   如 QAE/QBE/UAE/AAE），静态/自由函数 2 字符（SA/YA/YG/CA）；
+#   ctor/dtor 无返回类型，用 `@` 占位；返回类型前可有 `?A` 修饰；
+#   空形参表 = `XZ`；非空 = <type>+ `@Z`；变参 = <type>+ `ZZ`；
+#   UDT 名 = (字面段 `@` | 反引用数字)* `@`。
+# 反引用（0-9）与指向函数（P6…）**不解析**，占位 `?` 占一格 —— 宁可不注入，
+# 也不允许写错形参（fail-safe）。
+# ============================================================
+
+_VC6_TYPE_DEC = {
+    'X': 'void', 'C': 'signed char', 'D': 'char', 'E': 'unsigned char',
+    'F': 'short', 'G': 'unsigned short', 'H': 'int', 'I': 'unsigned int',
+    'J': 'long', 'K': 'unsigned long', 'M': 'float', 'N': 'double',
+}
+_VC6_TYPE_DEC2 = {
+    '_N': 'bool', '_W': 'wchar_t', '_J': '__int64', '_K': 'unsigned __int64',
+}
+_VC6_CV_DEC = {'A': '', 'B': 'const ', 'C': 'volatile ', 'D': 'const volatile '}
+_VC6_UDT_TAG = {'U': 'struct ', 'V': 'class ', 'T': 'union '}
+_VC6_ENUM_RE = re.compile(r'^enum [A-Za-z_]\w*$')
+# 槽里 IDA 打印的整型占位（= 无类型信息的 4 字节）
+_SLOT_INT_PLACEHOLDERS = (
+    'int', '_DWORD', '_UNKNOWN', '_WORD', '_BYTE', '_QWORD',
+    'long', 'unsigned int', 'unsigned long',
+)
+
+
+class _MangledParseFail(Exception):
+    pass
+
+
+def _mangled_name(s, i):
+    """UDT 名 := (字面段 '@' | 反引用数字)* '@'。反引用不解析，占位 '?'。
+
+    反引用数字是**裸**的（不带段尾 '@'），随后的 '@' 才是整名收尾：
+    `ECPKMode@@` = 字面段 + 收尾；`LIGHT_TYPE@1@` = 字面段 + 反引用 1 + 收尾。
+    """
+    items = []
+    while True:
+        if i >= len(s):
+            raise _MangledParseFail('name eof')
+        if s[i] == '@':
+            return '::'.join(items), i + 1
+        if s[i].isdigit():
+            nxt = s[i + 1:i + 2]
+            if nxt in ('', '@') or nxt.isdigit():
+                items.append('?')      # 名字反引用（如 ??4gbVec3D@@…ABU0@@ 的 0）
+                i += 1
+                continue
+        j = s.find('@', i)
+        if j < 0:
+            raise _MangledParseFail('unterminated name')
+        seg = s[i:j]
+        if not seg:
+            raise _MangledParseFail('empty name segment')
+        items.append(seg)
+        i = j + 1
+
+
+def _mangled_type(s, i):
+    """一个类型 → (C 声明串, 新 i)。反引用/指向函数返回 '?'（只占位，不注入）。"""
+    if i >= len(s):
+        raise _MangledParseFail('type eof')
+    ch = s[i]
+    if ch.isdigit():
+        return '?', i + 1               # 类型反引用：回指不解析（fail-safe）
+    if s.startswith('P6', i):
+        # 指向函数：P6 + 调用约定(1) + 返回类型 + 形参表
+        _ret, j = _mangled_type(s, i + 3)
+        _args, j = _mangled_args(s, j)
+        return '?', j
+    if ch in ('P', 'A'):
+        cv = _VC6_CV_DEC.get(s[i + 1:i + 2])
+        if cv is None:
+            raise _MangledParseFail('bad cv %r' % s[i + 1:i + 2])
+        base, j = _mangled_type(s, i + 2)
+        if base == '?':
+            return '?', j
+        return cv + base + (' *' if ch == 'P' else ' &'), j
+    if s.startswith('?A', i):
+        return _mangled_type(s, i + 2)  # 返回类型修饰（enum/UDT 返回）
+    if s.startswith('W4', i):
+        name, j = _mangled_name(s, i + 2)
+        return 'enum ' + name, j
+    if ch in _VC6_UDT_TAG:
+        name, j = _mangled_name(s, i + 1)
+        return _VC6_UDT_TAG[ch] + name, j
+    if s[i:i + 2] in _VC6_TYPE_DEC2:
+        return _VC6_TYPE_DEC2[s[i:i + 2]], i + 2
+    if ch in _VC6_TYPE_DEC:
+        return _VC6_TYPE_DEC[ch], i + 1
+    raise _MangledParseFail('bad type %r' % ch)
+
+
+def _mangled_args(s, i):
+    """形参表 := 'XZ'（空） | <type>+ '@Z' | <type>+ 'ZZ'（变参）。"""
+    if s.startswith('XZ', i):
+        return [], i + 2
+    out = []
+    while True:
+        if s.startswith('@Z', i):
+            return out, i + 2
+        if s.startswith('ZZ', i):
+            return out, i + 2
+        t, i = _mangled_type(s, i)
+        out.append(t)
+
+
+def _mangled_param_types(mangled):
+    """VC6 修饰名 → 逐形参 C 声明类型列表（不含 this）；解析不出返回 None。
+
+    A 级证据来源：修饰名本身（`W4<Enum>` 直接编码 enum 形参）。IDA 自造的
+    `::` 名、模板名、未支持编码一律返回 None —— 调用方保持原行为，不猜。
+    """
+    try:
+        i = mangled.find('@@')
+        if i < 0:
+            return None
+        suf = mangled[i + 2:]
+        if not suf:
+            return None
+        j = 2 if suf[0] in 'SYC' else 3   # 静态/自由函数 2 字符（S/Y/C + 约定），成员 3 字符
+        if j > len(suf):
+            return None
+        if suf[j] == '@':
+            j += 1                       # ctor/dtor 无返回类型，'@' 占位
+        else:
+            _ret, j = _mangled_type(suf, j)
+        args, j = _mangled_args(suf, j)
+        if suf[j:] and not re.match(r'^_\d+$', suf[j:]):
+            return None                  # 模板固定实参尾巴（`_0`）之外的残留
+        return args
+    except (_MangledParseFail, IndexError):
+        return None
+
+
+def _enum_upgrade_needed(stored_params, mangled_params):
+    """槽形参表里该是 enum 的位置现在是整型占位 ⇒ 需要升级改写（int→enum）。
+
+    只在**位置对齐**（长度相等）且 mangled 解出具体 enum 名时判定；解析失败、
+    名字反引用、长度漂移一律不动（fail-safe，杜绝写错形参）。
+    """
+    if not mangled_params or len(stored_params) != len(mangled_params):
+        return False
+    for _sp, _mp in zip(stored_params, mangled_params):
+        if _VC6_ENUM_RE.match(_mp) and _sp.strip() in _SLOT_INT_PLACEHOLDERS:
+            return True
+    return False
+
+
+def _enum_merge_plan(existing, declared):
+    """enums.json 已声明值 vs IDB enum 现有成员 → 逐项处置表（绝不整体短路）。
+
+    返回 [(action, name, value)]（declared 顺序；值统一 int）：
+      'add'      名字空缺且值空缺 ⇒ 可写入
+      'keep'     名值一致 ⇒ 已满足（旧代码正是在这里整体 `continue` 丢声明）
+      'alias'    名字空缺但值已被别的成员占用 ⇒ IDA 不收同值异名，显式记录
+      'conflict' 名字已被占用但值不同 ⇒ 不覆盖既有信息，显式记录
+    每个已声明 (name, value) **必**出现在表里 ⇒ 不存在静默丢失。
+    """
+    out = []
+    existing = existing or {}
+    taken = {}
+    for _n, _v in existing.items():
+        taken[int(_v)] = _n
+    for name, raw in (declared or {}).items():
+        val = int(raw, 0) if isinstance(raw, str) else int(raw)
+        if name in existing:
+            out.append(('keep' if int(existing[name]) == val else 'conflict', name, val))
+        elif val in taken:
+            out.append(('alias', name, val))
+        else:
+            out.append(('add', name, val))
+            taken[val] = name
+    return out
+
+
+def _enum_merge_apply(plan, add_member):
+    """执行处置表：'add' 逐个落 add_member(name, value)；其余只出显式记录。
+
+    返回 (added, notes)。notes 非空即"没有静默"——调用方必须把 notes 打进日志。
+    """
+    added, notes = 0, []
+    for action, name, value in plan:
+        if action == 'add':
+            if add_member(name, value):
+                added += 1
+            else:
+                notes.append('add-failed %s=%d' % (name, value))
+        else:
+            notes.append('%s %s=%d' % (action, name, value))
+    return added, notes
+
+
+def _idb_enum_members(eid):
+    """IDB enum 现有成员 {name: value}；读不到返回 {}。
+
+    IDA 9.1 实测：`idc.get_enum_member_name` 只收 const_id（旧签名 id/value/serial
+    会 TypeError），故主路径走 `ida_typeinf.enum_type_data_t` 直读。
+    fail-safe：枚举失败时处置表会把已声明项判成 'add'，而 add_enum_member 对
+    名字/值冲突会失败 ⇒ 记 'add-failed' 显式留痕，**不会**覆盖既有成员。
+    """
+    existing = {}
+    try:
+        tif = ida_typeinf.tinfo_t()
+        if tif.get_type_by_tid(eid):
+            ei = ida_typeinf.enum_type_data_t()
+            if tif.get_enum_details(ei):
+                for _k in range(len(ei)):
+                    _edm = ei[_k]
+                    existing[str(_edm.name)] = int(_edm.value)
+        if existing:
+            return existing
+    except Exception:
+        existing = {}
+    try:
+        val = idc.get_first_enum_member(eid)
+        seen = 0
+        while val not in (None, -1) and seen < 4096:
+            cid = idc.get_enum_member(eid, val, 0, -1)
+            if cid not in (None, -1):
+                nm = idc.get_enum_member_name(cid)
+                if nm:
+                    existing[str(nm)] = int(val)
+            val = idc.get_next_enum_member(eid, val)
+            seen += 1
+    except Exception:
+        pass
+    return existing
+
+
 def _fix_gbengine_import_slots():
     """F73（第 132 轮）：按修饰名纠正 gbengine 导入槽上的**退化原型**。
 
@@ -1581,8 +1820,16 @@ def _fix_gbengine_import_slots():
             if _sp in ('_DWORD', '_UNKNOWN', '_QWORD', 'int') and ('*' in _p or '&' in _p):
                 ph_wrong = True
                 break
+        # 任务 3（2026-10-09）：第四种退化——**参数个数够、约定对、非指针占位，
+        # 但 enum 形参被存成整型占位**，于是这里 early return、int 永远升不成 enum。
+        # 实测：`?SetAxisAngle@gbMatrix4@@QAEXW4gbAxis@@M@Z` 的槽是
+        # `void __thiscall(gbMatrix4 *, int, float)` ⇒ Hex-Rays 不补 cast ⇒ 生成码
+        # `SetAxisAngle(2, …)` 裸整型 ⇒ Object3D.cpp L26/L31/L89 三条 C2664。
+        # 判据仍是修饰名（A 级）：该位置是 `W4<Enum>` 而槽里是整型占位。
+        _mangled_params = _mangled_param_types(name) or []
+        enum_wrong = _enum_upgrade_needed(_stored_params, _mangled_params)
         seen += 1
-        if n_stack >= len(decl_params) and not conv_wrong and not ph_wrong:
+        if n_stack >= len(decl_params) and not conv_wrong and not ph_wrong and not enum_wrong:
             return True
         decl = '%s __thiscall __sigfix(%s);' % (
             ret, ', '.join([cls + ' *'] + decl_params))
@@ -1613,6 +1860,72 @@ def _fix_gbengine_import_slots():
     for s in samples:
         log("     sample-reject: %s" % s)
     return fixed
+
+
+# gbengine IAT 槽数函数类型白名单（模块级：测试直接对它断言）。
+# 每条值 = 写到 IAT 槽上的函数指针声明（`ret __thiscall(this, ...)`）。
+# 任务 3（2026-10-09）：此前全表**零 enum 形参（零 `W4` 修饰）**且无
+# `SetAxisAngle`/`SetOpenMode` 条目 ⇒ 槽形参退化 int ⇒ Hex-Rays 不补 cast ⇒
+# C2664（Object3D.cpp L26/L31/L89；SoundMgr.cpp L21/L23）。新增四条按修饰名
+# （A 级，data/gbengine_registry.jsonl:911-913/1044）注入 enum 形参。
+_GB_IMPORT_SIGS = {
+    "?Rotate@gbMatrixStack@@QAEXMAAUgbVec3D@@@Z":
+        "void __thiscall(gbMatrixStack *, float, gbVec3D &);",
+    "?Rotate@gbMatrixStack@@QAEXAAUgbQuaternion@@@Z":
+        "void __thiscall(gbMatrixStack *, gbQuaternion &);",
+    "?Translate@gbMatrixStack@@QAEXAAUgbVec3D@@@Z":
+        "void __thiscall(gbMatrixStack *, gbVec3D &);",
+    "?Scale@gbMatrixStack@@QAEXAAUgbVec3D@@@Z":
+        "void __thiscall(gbMatrixStack *, gbVec3D &);",
+    "?RightMultiply@gbMatrix4@@QAEXABUgbMatrix4@@@Z":
+        "void __thiscall(gbMatrix4 *, const gbMatrix4 &);",
+    "?RightMultiply@gbMatrix4@@QAEXABUgbQuaternion@@@Z":
+        "void __thiscall(gbMatrix4 *, const gbQuaternion &);",
+    "?LeftMultiply@gbMatrix4@@QAEXABUgbMatrix4@@@Z":
+        "void __thiscall(gbMatrix4 *, const gbMatrix4 &);",
+    "?LeftMultiply@gbMatrix4@@QAEXABUgbQuaternion@@@Z":
+        "void __thiscall(gbMatrix4 *, const gbQuaternion &);",
+    "?RightTranslate@gbMatrix4@@QAEXAAUgbVec3D@@@Z":
+        "void __thiscall(gbMatrix4 *, gbVec3D &);",
+    "?LeftTranslate@gbMatrix4@@QAEXAAUgbVec3D@@@Z":
+        "void __thiscall(gbMatrix4 *, gbVec3D &);",
+    "?MakeMatrix@gbMatrix4@@QAEXAAUgbVec3D@@00@Z":
+        "void __thiscall(gbMatrix4 *, gbVec3D &, gbVec3D &, gbVec3D &);",
+    "?IsColTriangle@gbRay@@QAEHAAUgbVec3D@@000@Z":
+        "int __thiscall(gbRay *, gbVec3D &, gbVec3D &, gbVec3D &, gbVec3D &);",
+    "?IntersectPlane@gbRay@@QAEMAAUgbVec3D@@0@Z":
+        "float __thiscall(gbRay *, gbVec3D &, gbVec3D &);",
+    "?IsColOBB@gbRay@@QAEHAAUgbOBBox@@@Z":
+        "int __thiscall(gbRay *, gbOBBox &);",
+    "?IsColOBB_H@gbRay@@QAEHAAUgbOBBox@@@Z":
+        "int __thiscall(gbRay *, gbOBBox &);",
+    "?IsColAABB@gbRay@@QAEHAAUgbAABBox@@@Z":
+        "int __thiscall(gbRay *, gbAABBox &);",
+    # gbDynVertBuf render functions (fixes struct #136 = gbRenderEffect)
+    "?RenderGeomQuadViaStrip@gbDynVertBuf@@QAEXPAUgbGeomQuad@@HPAVgbRenderEffect@@PAUgbTextureArray@@K@Z":
+        "void __thiscall(gbDynVertBuf *, gbGeomQuad *, int, gbRenderEffect *, gbTextureArray *, unsigned long);",
+    # 缺参簇补齐（签名权威 = include/gbengine_api.h；无类型导入会让 Hex-Rays
+    # 丢参/丢解引用，如 C3DSpark RenderGeomQuad 3/4 参、CCBStageShadow operator= float*）
+    "?RenderGeomQuad@gbDynVertBuf@@QAEXPAUgbGeomQuad@@HPAVgbRenderEffect@@PAUgbTextureArray@@@Z":
+        "void __thiscall(gbDynVertBuf *, gbGeomQuad *, int, gbRenderEffect *, gbTextureArray *);",
+    "??4gbMatrix4@@QAEXABU0@@Z":
+        "void __thiscall(gbMatrix4 *, const gbMatrix4 &);",
+    "?LoadFromFile@gbGeomNode@@QAEHPBD0P6AXHH@Z@Z":
+        "int __thiscall(gbGeomNode *, const char *, const char *, void (__cdecl *)(int, int));",
+    "?GetTotalOBBox@gbGeomNode@@QAEPAUgbOBBox@@PAU2@@Z":
+        "gbOBBox *__thiscall(gbGeomNode *, gbOBBox *);",
+    "?Read@gbVFileSystem@@QAEXPAXIPAVgbVFile@@@Z":
+        "void __thiscall(gbVFileSystem *, void *, unsigned int, gbVFile *);",
+    # ── 任务 3（2026-10-09）enum 形参注入（A 级：`W4<Enum>` 直接编码 enum 形参）──
+    "?SetAxisAngle@gbMatrix4@@QAEXW4gbAxis@@M@Z":
+        "void __thiscall(gbMatrix4 *, enum gbAxis, float);",
+    "?SetAxisAngle@gbMatrix4@@QAEXW4gbAxis@@MM@Z":
+        "void __thiscall(gbMatrix4 *, enum gbAxis, float, float);",
+    "?SetAxisAngle@gbMatrix4@@QAEXPAUgbVec3D@@M@Z":
+        "void __thiscall(gbMatrix4 *, gbVec3D *, float);",
+    "?SetOpenMode@CPK@@QAEXW4ECPKMode@@@Z":
+        "void __thiscall(CPK *, enum ECPKMode);",
+}
 
 
 def import_gbengine_types():
@@ -1675,55 +1988,7 @@ def import_gbengine_types():
     # Set correct function types on gbengine IAT entries (data pointers in .idata).
     # Hex-Rays reads the type from the IAT address when decompiling indirect calls.
     # Without this, reference params (gbVec3D &) appear as pointer-pass (&var).
-    _GB_IMPORT_SIGS = {
-        "?Rotate@gbMatrixStack@@QAEXMAAUgbVec3D@@@Z":
-            "void __thiscall(gbMatrixStack *, float, gbVec3D &);",
-        "?Rotate@gbMatrixStack@@QAEXAAUgbQuaternion@@@Z":
-            "void __thiscall(gbMatrixStack *, gbQuaternion &);",
-        "?Translate@gbMatrixStack@@QAEXAAUgbVec3D@@@Z":
-            "void __thiscall(gbMatrixStack *, gbVec3D &);",
-        "?Scale@gbMatrixStack@@QAEXAAUgbVec3D@@@Z":
-            "void __thiscall(gbMatrixStack *, gbVec3D &);",
-        "?RightMultiply@gbMatrix4@@QAEXABUgbMatrix4@@@Z":
-            "void __thiscall(gbMatrix4 *, const gbMatrix4 &);",
-        "?RightMultiply@gbMatrix4@@QAEXABUgbQuaternion@@@Z":
-            "void __thiscall(gbMatrix4 *, const gbQuaternion &);",
-        "?LeftMultiply@gbMatrix4@@QAEXABUgbMatrix4@@@Z":
-            "void __thiscall(gbMatrix4 *, const gbMatrix4 &);",
-        "?LeftMultiply@gbMatrix4@@QAEXABUgbQuaternion@@@Z":
-            "void __thiscall(gbMatrix4 *, const gbQuaternion &);",
-        "?RightTranslate@gbMatrix4@@QAEXAAUgbVec3D@@@Z":
-            "void __thiscall(gbMatrix4 *, gbVec3D &);",
-        "?LeftTranslate@gbMatrix4@@QAEXAAUgbVec3D@@@Z":
-            "void __thiscall(gbMatrix4 *, gbVec3D &);",
-        "?MakeMatrix@gbMatrix4@@QAEXAAUgbVec3D@@00@Z":
-            "void __thiscall(gbMatrix4 *, gbVec3D &, gbVec3D &, gbVec3D &);",
-        "?IsColTriangle@gbRay@@QAEHAAUgbVec3D@@000@Z":
-            "int __thiscall(gbRay *, gbVec3D &, gbVec3D &, gbVec3D &, gbVec3D &);",
-        "?IntersectPlane@gbRay@@QAEMAAUgbVec3D@@0@Z":
-            "float __thiscall(gbRay *, gbVec3D &, gbVec3D &);",
-        "?IsColOBB@gbRay@@QAEHAAUgbOBBox@@@Z":
-            "int __thiscall(gbRay *, gbOBBox &);",
-        "?IsColOBB_H@gbRay@@QAEHAAUgbOBBox@@@Z":
-            "int __thiscall(gbRay *, gbOBBox &);",
-        "?IsColAABB@gbRay@@QAEHAAUgbAABBox@@@Z":
-            "int __thiscall(gbRay *, gbAABBox &);",
-        # gbDynVertBuf render functions (fixes struct #136 = gbRenderEffect)
-        "?RenderGeomQuadViaStrip@gbDynVertBuf@@QAEXPAUgbGeomQuad@@HPAVgbRenderEffect@@PAUgbTextureArray@@K@Z":
-            "void __thiscall(gbDynVertBuf *, gbGeomQuad *, int, gbRenderEffect *, gbTextureArray *, unsigned long);",
-        # 缺参簇补齐（签名权威 = include/gbengine_api.h；无类型导入会让 Hex-Rays
-        # 丢参/丢解引用，如 C3DSpark RenderGeomQuad 3/4 参、CCBStageShadow operator= float*）
-        "?RenderGeomQuad@gbDynVertBuf@@QAEXPAUgbGeomQuad@@HPAVgbRenderEffect@@PAUgbTextureArray@@@Z":
-            "void __thiscall(gbDynVertBuf *, gbGeomQuad *, int, gbRenderEffect *, gbTextureArray *);",
-        "??4gbMatrix4@@QAEXABU0@@Z":
-            "void __thiscall(gbMatrix4 *, const gbMatrix4 &);",
-        "?LoadFromFile@gbGeomNode@@QAEHPBD0P6AXHH@Z@Z":
-            "int __thiscall(gbGeomNode *, const char *, const char *, void (__cdecl *)(int, int));",
-        "?GetTotalOBBox@gbGeomNode@@QAEPAUgbOBBox@@PAU2@@Z":
-            "gbOBBox *__thiscall(gbGeomNode *, gbOBBox *);",
-        "?Read@gbVFileSystem@@QAEXPAXIPAVgbVFile@@@Z":
-            "void __thiscall(gbVFileSystem *, void *, unsigned int, gbVFile *);",
-    }
+    # 签名表 = 模块级 `_GB_IMPORT_SIGS`（任务 3 起含 enum 形参；测试直接对它断言）。
     import ida_nalt
     gb_sig_ok = 0
     gb_sig_try = 0
@@ -2181,22 +2446,62 @@ def apply_annotations():
     log("[3a] Forward declarations: %d new, %d skipped (already in til)" % (fwd_ok, fwd_skip))
 
     # --- 3b. Enums (via ida_enum API, 不用 parse_decl) ---
+    #
+    # 任务 3（2026-10-09）修复第三个失效点：旧代码
+    #   `if idc.get_enum(ename) != -1: e_ok += 1; continue`
+    # 对**已存在 enum 整体短路**，把 enums.json 的已声明值静默丢弃。注释写
+    # "Already exists from PDB import" 名实不符——实际来源是 include/gbengine/*.h
+    # 的 parse_decls（任务 4 §1 实证：gbAxis 早在 TIL，成员是 GB_AXIS_X/Y/Z）。
+    # 新语义：逐项处置（add/keep/alias/conflict），每个已声明 (name,value) 都
+    # 显式记录，绝不静默丢；不覆盖任何既有信息（conflict 只记录不改）。
     enums = data.get("enums", {})
     e_ok = 0
+    e_merged = 0
+    enum_notes = []
     for ename, einfo in enums.items():
         values = einfo.get("values", {})
         if not values:
             continue
-        if idc.get_enum(ename) != -1:
-            e_ok += 1  # Already exists from PDB import
+        eid = idc.get_enum(ename)
+        if eid == -1:
+            eid = idc.add_enum(-1, ename, 1)
+            if eid != -1:
+                for k, v in values.items():
+                    val = int(v, 0) if isinstance(v, str) else v
+                    idc.add_enum_member(eid, k, val)
+                e_ok += 1
             continue
-        eid = idc.add_enum(-1, ename, 1)
-        if eid != -1:
-            for k, v in values.items():
-                val = int(v, 0) if isinstance(v, str) else v
-                idc.add_enum_member(eid, k, val)
-            e_ok += 1
-    log("[3b] Enums: applied=%d/%d" % (e_ok, len(enums)))
+        if idc.get_enum_name(eid) is None:
+            # IDA 9.1 实测：`idc.get_enum` 对**不存在**的 enum 返回 BADADDR（≠ -1）
+            # ⇒ 旧代码 `!= -1` 把"不存在"也当"已存在"整体短路 —— 这才是 3b 创建
+            # 路径从未生效的真根因（61 个 enums.json enum 从未进 IDB，export 的
+            # `_enums` 只有 13 个可证）。本轮**不**启用创建路径（61 个 PDB 族
+            # enum 进 IDB 会触发大面积 decomp cast，生成码侧声明可见性未经验证，
+            # 属任务 3 范围外）；只显式记录，不再假装 merge。
+            enum_notes.append('%s: not-an-idb-enum (get_enum=BADADDR; '
+                              'create path out of scope)' % ename)
+            continue
+        existing = _idb_enum_members(eid)
+        plan = _enum_merge_plan(existing, values)
+
+        def _add_member(_n, _v, _eid=eid):
+            # IDA 9.1 的 add_enum_member 对重复名/值**抛 ValueError**（不是返回
+            # 错误码）⇒ 必须吞掉转 False，让处置表记 'add-failed' 而不是崩 apply。
+            try:
+                return idc.add_enum_member(_eid, _n, _v) == 0
+            except Exception:
+                return False
+
+        added, notes = _enum_merge_apply(plan, _add_member)
+        e_ok += 1
+        e_merged += 1
+        enum_notes.extend('%s: %s' % (ename, n) for n in notes)
+        log("  [3b] enum %s merged: +%d added, %d noted (was: whole-enum short-circuit)"
+            % (ename, added, len(notes)))
+    log("[3b] Enums: applied=%d/%d (existing merged=%d, notes=%d)"
+        % (e_ok, len(enums), e_merged, len(enum_notes)))
+    for _n in enum_notes[:40]:
+        log("     enum-note: %s" % _n)
 
     # Topological sort: dependencies (base classes + value-type members) first
     import re as _re2
