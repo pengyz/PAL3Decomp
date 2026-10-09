@@ -29,11 +29,25 @@ from pipeline.gen.stages.collect import get_class_dir
 _scalar_dtor_classes = None
 
 def _get_scalar_dtor_classes():
-    """Detect classes with _scalar_dtor by scanning decomp JSONs."""
+    """Detect classes with _scalar_dtor.
+
+    S0（2026-10-09）：改读缓存 —— 原为扫描 decomp 目录，射程 export 会让输入从全量
+    坍缩到 1，导致大量类被误判为「无 _scalar_dtor」，漏插 virtual ~Cls()，
+    编译器不发 ??_G，match 匹配不到该符号，L1 静默丢失。
+    """
+    # S0 修复（对抗复核实证）：原写法 `_scalar_dtor_classes = set()` 后再
+    # `return load_header_facts()[...]` 会把模块级缓存**清空为 set()**，
+    # 而守卫 `is not None` 对空 set 也为真 ⇒ 第二次调用起永久返回空集
+    # ⇒ 30 个生成头丢虚析构（比 v1 缺陷更严重）。正确做法：结果写回模块变量。
     global _scalar_dtor_classes
     if _scalar_dtor_classes is not None:
         return _scalar_dtor_classes
-    _scalar_dtor_classes = set()
+    _scalar_dtor_classes = set(load_header_facts()['scalar_dtor_classes'])
+    return _scalar_dtor_classes
+
+
+def _get_scalar_dtor_classes_scan_impl():
+    """S0 前的原扫描实现，保留备查（等价性对照用）。"""
     decomp_dir = PROJECT_ROOT / "asm" / "pal3" / "decomp"
     if not decomp_dir.exists():
         return _scalar_dtor_classes
@@ -86,10 +100,16 @@ def _get_underscore_aliases():
     typedef in the generated header so the code compiles with the same
     naming convention as the original project.
     """
+    # S0 修复：同上 —— 结果必须写回模块变量，否则第二次调用起返回空 dict
     global _underscore_aliases
     if _underscore_aliases is not None:
         return _underscore_aliases
-    _underscore_aliases = {}
+    _underscore_aliases = dict(load_header_facts()['underscore_aliases'])
+    return _underscore_aliases
+
+
+def _get_underscore_aliases_scan_impl():
+    """S0 前的原扫描实现，保留备查。"""
     ida_structs_file = PROJECT_ROOT / "asm" / "pal3" / "ida_structs.json"
     if not ida_structs_file.exists():
         return _underscore_aliases
@@ -139,6 +159,55 @@ IDA_STRUCTS_FILE = PROJECT_ROOT / "asm" / "pal3" / "ida_structs.json"
 DECOMP_DIR = PROJECT_ROOT / "asm" / "pal3" / "decomp"
 OUTPUT_DIR = PROJECT_ROOT / "pal3" / "src"
 OVERRIDES_DIR = PROJECT_ROOT / "include" / "pal3" / "overrides"
+
+# ---------------------------------------------------------------------------
+# S0：decomp 派生的头决策事实缓存
+# ---------------------------------------------------------------------------
+# 动机（对抗复核实证 2026-10-09）：本模块有 **4 条** decomp 依赖会「决定头内容」：
+#   1) _get_scalar_dtor_classes()  虚析构判定（漏判 => 不发 ??_G => L1 静默丢）
+#   2) _get_underscore_aliases()  _X->X typedef 别名
+#   3) :2386 虚析构注入的独立复算路径
+#   4) _referenced_identifiers() -> _forced_global_entries() 「全局须定义」
+# 射程 export 只写 1 个 decomp JSON 会让这 4 条的输入从全量坍缩 => 头决策被污染。
+# => 物化成缓存（随全量 export 刷新），本模块改读缓存，与「当前 decomp 目录有几个文件」解耦。
+_HEADER_FACTS_PATH = PROJECT_ROOT / "data" / "status" / "_decomp_derived_header_facts.json"
+
+
+def save_header_facts(facts, path=None):
+    """物化 decomp 派生的头决策事实（随全量 export 刷新）。
+
+    facts: {'scalar_dtor_classes': set[str], 'underscore_aliases': dict[str,str],
+            'forced_global_names': set[str], 'vptr_inject_classes': set[str]}
+    落盘为确定性 JSON（set 排序 + sort_keys）=> 可 diff、可复现。
+    """
+    p = Path(path) if path else _HEADER_FACTS_PATH
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps({
+        'scalar_dtor_classes': sorted(facts['scalar_dtor_classes']),
+        'underscore_aliases': facts['underscore_aliases'],
+        'forced_global_names': sorted(facts['forced_global_names']),
+        'vptr_inject_classes': sorted(facts['vptr_inject_classes']),
+    }, indent=2, sort_keys=True), encoding='utf-8')
+
+
+def load_header_facts(path=None):
+    """读缓存。缺失时**报错退出，不静默回退到目录扫描**。
+
+    回退会掩盖 v1 缺陷：射程 export 只写 1 个 decomp JSON 时，目录扫描会从全量
+    坍缩到 1，头决策被污染且无任何告警。
+    """
+    p = Path(path) if path else _HEADER_FACTS_PATH
+    if not p.exists():
+        raise RuntimeError(
+            '缺少 %s —— 请先跑全量 export 生成缓存（S0）。'
+            '禁止回退到 decomp 目录扫描：会让射程 export 污染头决策。' % p)
+    d = json.loads(p.read_text(encoding='utf-8'))
+    return {
+        'scalar_dtor_classes': set(d['scalar_dtor_classes']),
+        'underscore_aliases': d['underscore_aliases'],
+        'forced_global_names': set(d['forced_global_names']),
+        'vptr_inject_classes': set(d['vptr_inject_classes']),
+    }
 
 
 _ida_structs_cache = None  # ida_structs.json (export output, primary source)
@@ -3235,7 +3304,10 @@ def _forced_global_entries():
     (addr, info) pairs for IDA-pattern names absent from the export.
     """
     _glbs = _get_ida_structs().get('_globals', {})
-    ref = _referenced_identifiers()
+    # S0（2026-10-09）：forced 名改读缓存（第 4 条决策点）——
+    # 原 `ref = _referenced_identifiers()` 是全量 decomp body 标识符扫描，
+    # 射程 export 下集合漂移 => forced 集合漂移 => 全局被错误静默。
+    ref = load_header_facts()['forced_global_names']
     forced = set()
     extra = []
     for nm in ref:

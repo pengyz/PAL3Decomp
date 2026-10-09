@@ -181,6 +181,35 @@ def resolve_orphan_ordinals(code_str):
     resolved = re.sub(pattern, replace_ordinal, code_str)
     return resolved
 
+def _write_header_facts_cache():
+    """S0（2026-10-09）：全量 export 末尾物化 decomp 派生的头决策事实。
+
+    射程 export 只写 1 个 decomp JSON 会让 emit_headers 的 4 条决策点输入坍缩
+    => 头决策被污染。缓存随全量 export 刷新，emit_headers 改读缓存即与
+    「当前 decomp 目录有几个文件」解耦。
+    """
+    try:
+        from pipeline.gen.stages.emit_headers import (
+            save_header_facts, _get_scalar_dtor_classes_scan_impl,
+            _get_underscore_aliases_scan_impl, _referenced_identifiers)
+    except Exception as e:                       # IDA 内可能无 pipeline 包
+        print('[S0] header-facts cache skipped: %s' % e)
+        return
+    import emit_headers as eh
+    eh._scalar_dtor_classes = set()
+    eh._underscore_aliases = {}
+    facts = {
+        'scalar_dtor_classes': set(_get_scalar_dtor_classes_scan_impl()),
+        'underscore_aliases': dict(_get_underscore_aliases_scan_impl()),
+        'forced_global_names': set(_referenced_identifiers()),
+        'vptr_inject_classes': set(_get_scalar_dtor_classes_scan_impl()),
+    }
+    save_header_facts(facts)
+    print('[S0] header-facts cache written: %d scalar_dtor / %d aliases / %d forced'
+          % (len(facts['scalar_dtor_classes']), len(facts['underscore_aliases']),
+             len(facts['forced_global_names'])))
+
+
 def main():
     try:
         ida_auto.auto_wait()
@@ -886,3 +915,5 @@ def export_structs(log):
 
 if __name__ == '__main__':
     main()
+    # S0（2026-10-09）：全量 export 末尾物化 decomp 派生的头决策事实
+    _write_header_facts_cache()
