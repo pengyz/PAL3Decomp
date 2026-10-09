@@ -576,7 +576,7 @@ _GB_REF_PARAM_FUNCS = {
     'GetViewport': {0}, 'GetViewSizeOnNearPlane': {0, 1},
     'GetViewPort': {0, 1, 2, 3},
     'PointWorldToScr': {1, 2},  # (gbVec3D*, float&, float&)
-    'GetBlend': {0}, 'SetBlend': {0},
+    'GetBlend': {0},  # F3: 'SetBlend': {0} deleted — value params (NOTE (F3) below)
     'RightMultiply': {0},
     # 【B 修（方案复核判须修订）】PAU/AAU 分流（gbengine_registry 签名 A 级证）：
     # 指针形出表（gbMatrix4::Rotate(gbVec3D const*,gbVec3D*)=PAU 出；gbOBBox::IsColOBB
@@ -628,6 +628,23 @@ _GB_REF_PARAM_TYPES = {
 # it consumed the `this` argument and shifted every later argument by one.
 # Deleting the entry makes the pass leave `SetAxisAngle` alone, restoring the
 # decompiler's own `&` (e.g. `SetAxisAngle(&v4, 0, angle)`).
+
+# NOTE (F3): 'SetBlend': {0} was WRONG and has been deleted (修复轮 2, 任务 3 副作用).
+# `gbengine/gbengine.def` (authoritative, compiler-emitted mangled names):
+#   ?SetBlend@gbVisNode@@QAEXW4NodeBlend@@M@Z  -> void (NodeBlend, float) = VALUE params
+#   ?GetBlend@gbVisNode@@QAE?AW4NodeBlend@@AAM@Z -> NodeBlend (float &) = ref@0, stays
+# `W4NodeBlend@@` + `M` carry neither `P` (pointer) nor `A` (reference) — and
+# `include/gbengine/gbVisNode.h:78` agrees: `void SetBlend(NodeBlend mode, float value);`
+# vs `:79  NodeBlend GetBlend(float& outValue);`.  Task 3 (enum IAT slot sigs) made
+# Hex-Rays render enum constant names at these call sites; Case 3 then dereferenced
+# the constant (`*BLEND_ALPHA`) => C2100.  Same lesion class as F1b.
+# Measured (修复轮 2 full-chain, 2026-10-09):
+#   C2100 27→18  (the 9 SetBlend sites: CCBStage 6→0, RoleSystem 8→6, RenderTarget2 1→0)
+#   total errors 1724→1721  (C2100 −9, C2664 +6 — the +6 are CCBStage's C1003-capped
+#     hidden tail surfacing at L8053..L8088 (max_line 8046→8088), 'sub_445D20' family,
+#     unreachable by this change, which only touches `SetBlend(` args)
+#   S2 102/210 unchanged (all 3 affected units stay red for unrelated errors)
+#   L1 86 (521/614, partial 374) unchanged, ratchet 85→86, no --rebaseline
 
 # Local kinds that are positive evidence the identifier is NOT a `T` pointed at
 # by the reference parameter (see the F1a gate in `_fix_single_ref_arg`).

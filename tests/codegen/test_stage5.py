@@ -1,4 +1,4 @@
-﻿import pytest
+import pytest
 """Codegen stage tests - verify key transformations work correctly."""
 import sys
 from pathlib import Path
@@ -10,6 +10,7 @@ sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from stages.stage5_fixup import (
+    _GB_REF_PARAM_FUNCS,
     _fix_single_ref_arg,
     _fix_operator_new_cast,
     _fix_ref_params,
@@ -118,12 +119,41 @@ def test_stage5_setaxisangle_entry_removed():
     assert out == '  gbQuaternion::Translate(v5);\n', out
 
 
+def test_stage5_setblend_entry_removed():
+    """F3: 'SetBlend' must no longer be treated as taking a reference.
+
+    Regression lock against the entry coming back: gbengine.def mangled name
+    '?SetBlend@gbVisNode@@QAEXW4NodeBlend@@M@Z' is void (NodeBlend, float) --
+    VALUE params ('W4NodeBlend@@' + 'M', neither 'P' nor 'A') -- and
+    include/gbengine/gbVisNode.h:78 agrees ("void SetBlend(NodeBlend mode,
+    float value);").  Task 3 (enum IAT slot sigs) made Hex-Rays render enum
+    constant names at these call sites; Case 3 then dereferenced the constant
+    (`*BLEND_ALPHA`) => 9 x C2100 (CCBStage 6 / RoleSystem 2 / RenderTarget2 1).
+    """
+    # the entry itself must not exist (anti-regression, guards re-adding)
+    assert 'SetBlend' not in _GB_REF_PARAM_FUNCS
+
+    # value-parameter call sites must be left byte-identical
+    for code in (
+        '  n->SetBlend(BLEND_ALPHA, 1.0);\n',
+        '  n->SetBlend(2, f);\n',
+        '  gbVisNode::SetBlend(BLEND_ADD, 0.5);\n',
+    ):
+        assert _fix_ref_params(code, _Ctx()) == code, code
+
+    # neighbouring 'GetBlend' is a real reference (gbVisNode.h:79 'float&
+    # outValue', def 'AAM') and its entry must still be applied
+    out = _fix_ref_params('  n->GetBlend(f);\n', _Ctx())
+    assert out == '  n->GetBlend(*f);\n', out
+
+
 if __name__ == "__main__":
     tests = [
         test_stage5_ref_params,
         test_stage5_operator_new_cast,
         test_stage5_case3_requires_declaration_evidence,
         test_stage5_setaxisangle_entry_removed,
+        test_stage5_setblend_entry_removed,
     ]
     passed = 0
     failed = 0
