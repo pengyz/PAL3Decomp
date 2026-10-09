@@ -15,6 +15,45 @@ from stages.collect import collect_functions, get_class_dir, CLASS_DIRS
 _nullsub_stubs = set()
 
 
+# ---------------------------------------------------------------------------
+# 无 this 的编译器桩（等价变换：R1 thunk 尾跳）
+# ---------------------------------------------------------------------------
+# 二进制实证（2026-10-09）：
+#   0x509090: e9 0b 00 00 00   jmp  0x5090a0   (5B) + 11 NOP 对齐
+#   0x5090a0: a1 88 ff 56 00   mov  eax,ds:0x56ff88 ... 纯全局读写，**全程不读 ecx**
+#   0x532a30: fld ds:0x5708ac / fadd st,st / fstp ds:0x17b02e8 / ret  同样不读 ecx
+# Hex-Rays 按 ABI（jmp 不改 ecx）把 this 塞给目标 ⇒ 生成 `f(this)`；
+# 而 emit 原发 `int f(...);`（可变参）⇒ MSVC6 **不能尾调用** ⇒ 编译成
+# `51 E8 .. 59 C3`（push ecx/call/pop ecx/ret，8B）而非 `E9 ..`（jmp，5B）
+# ⇒ 破 `data/status/_d1_ledger.md` 的「thunk 契约 = jmp->retn」⇒ 真字节回归
+# （CCBStageEffect::PreLoadEffGroup @0x509090 L1→partial）。
+#
+# 修法（等价变换）：目标不读 ecx ⇒ ① 声明发 `void f(void)` 使 MSVC6 可尾调用
+#   ② 调用点去掉多余的 this 实参。二者必须同改，缺一即 C2660。
+# 判据（窄）：名字形如 `compiler_init_<hex>` / `compiler_global_init_*` /
+#   `_todo_<hex>` / `todo_<hex>`。
+_NOARG_STUB_RE = re.compile(
+    r'^(?:compiler_init_[0-9A-Fa-f]+|compiler_global_init_\w+|_?todo_[0-9A-Fa-f]+)$')
+
+
+def _is_noarg_stub(name):
+    """编译器桩（不读 ecx ⇒ 无参）—— 判据窄，避免误伤真实函数。"""
+    return bool(_NOARG_STUB_RE.match(name))
+
+
+def strip_noarg_stub_this_args(code):
+    """`<stub>(this[, ...])` → `<stub>([, ...])`。等价：目标不读 ecx。"""
+    def _repl(m):
+        name, args = m.group(1), (m.group(2) or '').strip()
+        if not _is_noarg_stub(name):
+            return m.group(0)
+        parts = [a for a in args.split(',') if a.strip()]
+        if not parts or parts[0].strip() != 'this':
+            return m.group(0)
+        return '%s(%s)' % (name, ', '.join(p.strip() for p in parts[1:]))
+    return re.sub(r'\b([A-Za-z_]\w*)\s*\(([^()]*)\)', _repl, code)
+
+
 def collect_sub_refs(code):
     """Find all sub_XXXXX and named function references needing forward declaration."""
     # _todo_/todo_ after . or -> are FIELD references, not functions — skip them
@@ -113,7 +152,11 @@ def generate_forward_decls(all_code):
             elif s in store.free_func_sigs:
                 lines.append("%s; // from annotations" % store.free_func_sigs[s])
             else:
-                lines.append("int %s(...);" % s)
+                if _is_noarg_stub(s):
+                    # R1：无 this 编译器桩发 `void f(void)` ⇒ MSVC6 可尾调用成 `jmp`
+                    lines.append("void %s(void); // no-arg compiler stub (does not read ecx)" % s)
+                else:
+                    lines.append("int %s(...);" % s)
         lines.append("")
 
     # Known free functions referenced in code but not caught by collect_sub_refs
@@ -464,6 +507,7 @@ def generate_class_cpp(cls_name, methods):
     lines.append("")
 
     # Generate forward declarations based on all code in this file
+    transformed = [(a, strip_noarg_stub_this_args(c)) for a, c in transformed]
     all_code = '\n'.join(code for _, code in transformed)
     fwd = generate_forward_decls(all_code)
     if fwd:
@@ -519,6 +563,7 @@ def generate_free_funcs_cpp(funcs):
         transformed.append((f['addr'], code))
 
     # Forward declarations
+    transformed = [(a, strip_noarg_stub_this_args(c)) for a, c in transformed]
     all_code = '\n'.join(code for _, code in transformed)
     fwd = generate_forward_decls(all_code)
     if fwd:
