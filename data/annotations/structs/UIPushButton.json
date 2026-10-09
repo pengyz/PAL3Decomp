@@ -111,8 +111,8 @@
     },
     "0x00440AE0": {
       "name": "LoadTexture",
-      "signature": "void __thiscall UIPushButton::LoadTexture(int nVal1)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "signature": "void __thiscall UIPushButton::LoadTexture(const char *pszName, char nVal2)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | 签名定谳 2026-10-09（复做 10-06 已回滚项，但本次有 A 级方向判据）：二进制实证 2026-10-09：ret 0x8=2 栈参（0x440a18 c2 08 00）| local_vars 双栈槽 36/40 | arg1 被 _CalculateUV/CreateParentData 当 LPCSTR（0x53fd5f push ebp 入 0x608cbc \"Not Found %s In UI_opt.tli\" 的 %s 位）| 调用点 2 push 且实参为字符串字面量（0x4b0b2f push 0x5d37f8=\"UI\\GameMainUI\\System\\Saveon.tga\"，生成码被强转 (int)）| arg2 宽度 A 级=mov al,[esp+0x1c]+test al,al（1 字节），char/bool/单字节枚举不可分⇒取最小假设 char，语义未定 | 方向判据：调用点发 2 参⇒非'渲染丢参族'⇒签名侧（对照 _completeness_convergence_ledger.md:95）"
     },
     "0x00440810": {
       "name": "CreateWithTextures",
@@ -121,8 +121,8 @@
     },
     "0x00440960": {
       "name": "FormatText",
-      "signature": "void __thiscall UIPushButton::FormatText(int nVal1)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "signature": "void __thiscall UIPushButton::FormatText(const char *pszName, char nVal2)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | 签名定谳 2026-10-09（复做 10-06 已回滚项，但本次有 A 级方向判据）：二进制实证 2026-10-09：ret 0x8=2 栈参（0x440a18 c2 08 00）| local_vars 双栈槽 36/40 | arg1 被 _CalculateUV/CreateParentData 当 LPCSTR（0x53fd5f push ebp 入 0x608cbc \"Not Found %s In UI_opt.tli\" 的 %s 位）| 调用点 2 push 且实参为字符串字面量（0x4b0b2f push 0x5d37f8=\"UI\\GameMainUI\\System\\Saveon.tga\"，生成码被强转 (int)）| arg2 宽度 A 级=mov al,[esp+0x1c]+test al,al（1 字节），char/bool/单字节枚举不可分⇒取最小假设 char，语义未定 | 方向判据：调用点发 2 参⇒非'渲染丢参族'⇒签名侧（对照 _completeness_convergence_ledger.md:95）"
     },
     "0x00440A20": {
       "name": "LoadResource",
