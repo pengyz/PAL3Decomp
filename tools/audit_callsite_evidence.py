@@ -276,7 +276,9 @@ def instr_width(mnemonic, operands):
 
 def _push_entry(exe_path, va, operands, raw_bytes, raw):
     op = operands.strip()
-    entry = {'va': va, 'text': op, 'width': 4,
+    # 修复轮 1（评审 Important）：push 不带 width 字段 —— 16-bit 前缀下 push 为 2B，
+    # 硬编码 4 会误导读者以为宽度已验证；宽度需求只在 regs（任务 5 契约），按 YAGNI 去字段。
+    entry = {'va': va, 'text': op,
              'bytes': raw_bytes, 'raw': raw}
     if op.lower() in _REG_SIZE:
         entry['kind'] = 'reg'
@@ -388,8 +390,8 @@ def format_report(result, show_width=False):
                 extra = ' value=%#x' % p['value']
             elif 'reg' in p:
                 extra = ' reg=%s' % p['reg']
-            lines.append('  push   %#x kind=%-7s text=%s%s width=%s'
-                         % (p['va'], p['kind'], p['text'], extra, _fmt_width(p['width'])))
+            lines.append('  push   %#x kind=%-7s text=%s%s'
+                         % (p['va'], p['kind'], p['text'], extra))
         if show_width:
             for r in c['regs']:
                 lines.append('  %-6s %#x %-4s %-28s width=%s'
@@ -405,7 +407,8 @@ def main(argv=None):
     ap.add_argument('vas', nargs='+', help='目标函数 VA（十六进制，如 0x440960）')
     ap.add_argument('--width', action='store_true',
                     help='逐条报告窗口内 mov/movzx/lea 的宽度（mov 4B / movzx 1B / lea addr）')
-    ap.add_argument('--json', action='store_true', help='输出 JSON（width 字段始终包含）')
+    ap.add_argument('--json', action='store_true',
+                    help='输出 JSON（regs[].width 始终包含；pushes 无 width 字段）')
     ap.add_argument('--window', type=lambda s: int(s, 0), default=DEFAULT_WINDOW_BYTES,
                     help='向前回溯的最大字节数（默认 %#x）' % DEFAULT_WINDOW_BYTES)
     ap.add_argument('--exe', default=DEFAULT_EXE, help='目标二进制（默认 original/PAL3.exe）')

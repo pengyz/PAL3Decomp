@@ -7,6 +7,8 @@
 * 补裁决 ②：**`imm_str` 分支** —— `0x4b0b2f push 0x5d37f8` 落在数据节且内容为可打印 ASCII
   字符串 `UI\\GameMainUI\\System\\Saveon.tga` ⇒ 必须标 `kind='imm_str'` 并附字符串
 * 补裁决 ①：**宽度取证**（任务 5 依赖）—— `mov` 4B / `movzx` 1B / `lea` 取址（`addr`）
+* 修复轮 1（评审 Important）：**pushes 不携带 width 字段**、CLI push 行不打印 `width=`
+  —— 16-bit 前缀下 push 是 2B，硬编码 4 会误导读者；宽度契约只在 `regs`（任务 5）
 * 补裁决 ③：**反汇编边界对齐** —— 必须全量反汇编后按 VA 定位（禁止手拼 `--start-address`），
   `0x4b0b2f` 必须恰是 `push 0x5d37f8` 这条真实指令，而不是落在指令中间的错位解码
 
@@ -110,6 +112,27 @@ def test_cli_width_flag_reports_widths():
     assert 'verdict=direct' in out, out[-800:]
     assert 'imm_str' in out and STRING_TXT in out, out[-800:]
     assert 'width=4B' in out and 'width=1B' in out, out[-800:]
+    # width=4B/1B 必须来自 regs 行（mov ecx,edi / mov dl,BYTE PTR ds:0x5cefa8）
+    reg_lines = [l for l in out.splitlines() if l.strip().startswith('regs')]
+    assert any('width=4B' in l for l in reg_lines), out[-800:]
+    assert any('width=1B' in l for l in reg_lines), out[-800:]
+
+
+# ------------------------- 修复轮 1（评审 Important）：push 不得携带/打印 width
+def test_pushes_have_no_width_field():
+    # 16-bit 前缀下 push 是 2B ⇒ 硬编码 width=4 会误导；宽度契约只在 regs（任务 5）
+    r = audit_callsite(0x440960)
+    for one in r['callsites']:
+        for p in one['pushes']:
+            assert 'width' not in p, p
+    # CLI 同步：push 行不得打印 width=，regs 行（--width）仍打印
+    r = subprocess.run([sys.executable, TOOL, '0x440960', '--width'],
+                       capture_output=True, text=True, timeout=600)
+    assert r.returncode == 0, (r.returncode, r.stdout[-500:], r.stderr[-500:])
+    push_lines = [l for l in r.stdout.splitlines() if l.strip().startswith('push')]
+    assert push_lines, r.stdout[-800:]
+    for l in push_lines:
+        assert 'width=' not in l, l
 
 
 if __name__ == '__main__':
