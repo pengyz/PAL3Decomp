@@ -37,8 +37,25 @@ _NOARG_STUB_RE = re.compile(
 
 
 def _is_noarg_stub(name):
-    """编译器桩（不读 ecx ⇒ 无参）—— 判据窄，避免误伤真实函数。"""
-    return bool(_NOARG_STUB_RE.match(name))
+    """编译器桩（不读 ecx ⇒ 无参）—— 判据窄，避免误伤真实函数。
+
+    ⚠️ 阻断级护栏（对抗复核实测 2026-10-09）：`_todo_0047E536` 与 `todo_0047E536`
+    是**同一桩的两种渲染**（decomp 吃前导下划线，见
+    data/status/_attr_cards_20261009/FINDINGS_post_review.md G1），
+    但 `free_functions.h:350-351` 按**带下划线**的拼写声明了 **3 个真参数**
+    （DllMain 别名桩）。若只按裸名判"无参桩"，会覆盖注解签名 ⇒ C2660
+    （实测 `UITitle_YXXX.cpp:400` / `RoleSystem.cpp:9751` 两文件 COMPILE-SKIP；
+     A/B 因果明确：HEAD~1 编译出 .obj、HEAD 失败）。
+    ⇒ 必须先按**两种拼写**查 `store.free_func_sigs`，命中即非无参桩。
+    """
+    if not _NOARG_STUB_RE.match(name):
+        return False
+    _alt = ('_' + name) if not name.startswith('_') else name.lstrip('_')
+    try:
+        _sigs = store.free_func_sigs
+    except Exception:
+        _sigs = {}
+    return not (name in _sigs or _alt in _sigs)
 
 
 def strip_noarg_stub_this_args(code):
