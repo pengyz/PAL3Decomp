@@ -22,7 +22,7 @@ sys.path.insert(0, str(REPO))
 sys.path.insert(0, str(REPO / 'pipeline' / 'gen'))
 sys.path.insert(0, str(REPO / 'pipeline' / 'gen' / 'stages'))
 
-from pipeline.gen.stages.collect import resolve_targets   # noqa: E402
+from pipeline.gen.stages.scoped_targets import resolve_targets   # noqa: E402
 
 
 # Object3D 的方法地址（取自 data/annotations/structs/Object3D.json 的 methods 键）
@@ -77,8 +77,30 @@ def test_scoped_export_output_dir_is_isolated():
     这是设计要点 0 的守卫：若实现把射程结果写进主 asm/pal3/decomp/，
     collect_methods() 生成的头会残缺（只剩 1 个方法签名）。
     """
-    from pipeline.gen.stages.collect import scoped_decomp_dir
+    from pipeline.gen.stages.scoped_targets import scoped_decomp_dir
     main_dir = REPO / 'asm' / 'pal3' / 'decomp'
     scoped = scoped_decomp_dir('/tmp/scoped_out')
     assert Path(scoped) != main_dir
     assert main_dir not in Path(scoped).parents
+
+
+def test_scoped_without_outdir_is_rejected():
+    """第 4 个 bug 回归锁（对抗复核实证）：
+    EXPORT_FUNC/EXPORT_CLASS 设了但 EXPORT_OUTDIR 未设 =>
+    必须**拒绝运行**，而非静默半污染主产物目录。
+
+    修法（export_full.py）：射程过滤前硬性校验 ——
+        if (_sc_func or _sc_class) and not _sc_out: raise RuntimeError(...)
+    本测试锁死该守卫的存在与语义（不跑 idat，直接验判据）。
+    """
+    import re
+    src = (REPO / 'pipeline' / 'ida' / 'export_full.py').read_text(encoding='utf-8')
+    # 守卫必须存在：射程 + 无 OUTDIR => 报错
+    assert re.search(
+        r"if\s+_sc_active\s+and\s+not\s+os\.environ\.get\(['\"]EXPORT_OUTDIR['\"]\)"
+        r"[\s\S]{0,400}?raise RuntimeError",
+        src), '缺少「射程必须有 EXPORT_OUTDIR」硬性守卫'
+    # 守卫必须在 targets 过滤之前（否则已写入才报错，主产物已损）
+    gi = src.find('raise RuntimeError')
+    fi = src.find('targets = [t for t in targets')
+    assert 0 < gi < fi, '守卫必须在 targets 过滤之前执行（gi=%d fi=%d）' % (gi, fi)

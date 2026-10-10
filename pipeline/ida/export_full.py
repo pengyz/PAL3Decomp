@@ -239,6 +239,17 @@ def main():
         # 修法：射程模式下**跳过主目录清理**（主产物是共享资产，不得动），
         # 只清 scoped 目标目录。
         _sc_active = bool(os.environ.get('EXPORT_FUNC') or os.environ.get('EXPORT_CLASS'))
+        # 🔴 S1 第 4 个 bug 修复（对抗复核实证 2026-10-10）：
+        # EXPORT_FUNC/EXPORT_CLASS 设了但 EXPORT_OUTDIR 未设 => targets 被过滤
+        # 但写入点仍指主 OUTPUT_DIR => **静默半污染主产物**（只重写被过滤到的
+        # 那部分文件，无告警、无报错、退出码正常）。实测复现：EXPORT_CLASS=Object3D
+        # 不设 EXPORT_OUTDIR 时，主目录 25 个文件被原地重写（mtime 变新鲜）。
+        # 修法：射程过滤必须强制要求 EXPORT_OUTDIR，否则**拒绝运行**。
+        if _sc_active and not os.environ.get('EXPORT_OUTDIR'):
+            raise RuntimeError(
+                '[S1] EXPORT_FUNC/EXPORT_CLASS 需要 EXPORT_OUTDIR：'
+                '射程 export 必须写独立目录，否则会静默覆盖主 asm/pal3/decomp/ 产物。'
+                '请设置 EXPORT_OUTDIR，或去掉 EXPORT_FUNC/EXPORT_CLASS 走全量。')
         if _sc_active:
             log("[S1] scoped mode: skip main OUTPUT_DIR cleanup (保护主 decomp 产物)")
             _sc_out2 = os.environ.get('EXPORT_OUTDIR')
