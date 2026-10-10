@@ -150,6 +150,17 @@ def collect(pattern, ext):
     return sorted(out)
 
 
+# ---------------------------------------------------------------------------
+# S2：射程收窄（产出端，2026-10-10）
+# ---------------------------------------------------------------------------
+# 对抗复核裁决：候选集合收窄必须在**产出端**（本文件），而非 compare_pal3 消费端
+# => probe_census.json 本身就是射程产物，S3 比对两份 census 更直观。
+# S2 修复：同 codegen.py —— 从环境变量初始化（PROBE_ONLY=逗号分隔单元名）
+_raw = os.environ.get('PROBE_ONLY')
+PROBE_ONLY = set(x.strip() for x in _raw.split(',')) if _raw else None   # None=全量
+
+
+
 def census(layer):
     units = collect('*.h', '.h') if layer == 's1' else collect('*.cpp', '.cpp')
     # S2 接线（接线审计定论）：**产出端收窄** —— census 只含射程单元，
@@ -269,16 +280,6 @@ if __name__ == '__main__':
     main()
 
 
-# ---------------------------------------------------------------------------
-# S2：射程收窄（产出端，2026-10-10）
-# ---------------------------------------------------------------------------
-# 对抗复核裁决：候选集合收窄必须在**产出端**（本文件），而非 compare_pal3 消费端
-# => probe_census.json 本身就是射程产物，S3 比对两份 census 更直观。
-# S2 修复：同 codegen.py —— 从环境变量初始化（PROBE_ONLY=逗号分隔单元名）
-_raw = os.environ.get('PROBE_ONLY')
-PROBE_ONLY = set(x.strip() for x in _raw.split(',')) if _raw else None   # None=全量
-
-
 def scoped_units(all_units):
     """按 PROBE_ONLY 收窄单元列表（产出端收窄）。None = 全量。"""
     if PROBE_ONLY is None:
@@ -286,3 +287,4 @@ def scoped_units(all_units):
     want = {os.path.basename(u) if isinstance(u, str) else u for u in PROBE_ONLY}
     return [u for u in all_units
             if (os.path.basename(u) if isinstance(u, str) else u) in want]
+
