@@ -684,7 +684,16 @@ def cmd_match(args=()):
         print('[match] --rebaseline 需要理由，例：--rebaseline "总体从 372→319 符号，重新对齐可比集"')
         sys.exit(2)
 
-    s4 = Path('data/status/s4_baseline.json')
+    # P0-5（多路分析，v2 修法）：射程 match 严禁读写 s4_baseline.json
+    # （否则 stats.match_L1 从 86 骤降 => 棘轮误判 => L1 记录永久损坏）。
+    # v2：**不包块、不 early-return**（v1 跳过了整个 match 导致 0.07s 空跑），
+    # 而是让棘轮**在 scoped 文件上跑** —— 比对照常，基线分离。
+    _sc = os.environ.get('MATCH_SCOPED')
+    if _sc:
+        s4 = Path('data/status') / ('s4_scoped_%s.json' % _sc)
+        print('[S2] scoped match: L1 ratchet runs on %s (baseline untouched)' % s4.name)
+    else:
+        s4 = Path('data/status/s4_baseline.json')
     prev_l1 = 0
     prev_text = None
     prev_pop = (None, None)

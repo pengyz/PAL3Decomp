@@ -54,10 +54,13 @@ SCOPED_OUTPUT = os.environ.get('MATCH_SCOPED') or None   # None=全量；str=射
 
 
 def scoped_output_path(target=None):
-    """射程 match 的输出文件 —— 与 s4_baseline.json 隔离。"""
+    """射程 match 的输出文件 —— 与 s4_baseline.json 隔离。
+
+    P0-2 修复：原用不存在的 BASELINE_FILE 常量 + CWD 相对路径，
+    会把产物写到错误位置。改用 OUT_JSON.parent（绝对、稳定）。
+    """
     name = target or SCOPED_OUTPUT or 'unknown'
-    return str(OUT_JSON.parent) if False else os.path.join(os.path.dirname(BASELINE_FILE) if 'BASELINE_FILE' in dir()
-                        else 'data/status', 's4_scoped_%s.json' % name)
+    return str(OUT_JSON.parent / ('s4_scoped_%s.json' % name))
 
 
 def is_scoped_run():
@@ -606,5 +609,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
