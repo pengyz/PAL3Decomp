@@ -41,6 +41,29 @@ EXE = REPO / 'original' / 'PAL3.exe'
 DECOMP = REPO / 'asm' / 'pal3' / 'decomp'
 CENSUS = REPO / 'data' / 'status' / 'probe_census.json'
 OUT_JSON = REPO / 'data' / 'status' / 's4_baseline.json'
+
+# ---------------------------------------------------------------------------
+# S2：射程 match 输出隔离（数据安全护栏，2026-10-10）
+# ---------------------------------------------------------------------------
+# 对抗复核裁决：射程 match 必须写 s4_scoped_<target>.json，
+# **严禁写 data/status/s4_baseline.json** —— 否则 stats.match_L1 从 86 骤降
+# => 棘轮误判「大幅回退」=> L1 记录永久损坏。
+# S2 修复（与 codegen.py 同一 bug 第 4 次）：原为模块全局 None，
+# 但**无处从 os.environ 赋值** => 射程 match 永远拿不到值 => 空跑。
+SCOPED_OUTPUT = os.environ.get('MATCH_SCOPED') or None   # None=全量；str=射程目标名
+
+
+def scoped_output_path(target=None):
+    """射程 match 的输出文件 —— 与 s4_baseline.json 隔离。"""
+    name = target or SCOPED_OUTPUT or 'unknown'
+    return str(OUT_JSON.parent) if False else os.path.join(os.path.dirname(BASELINE_FILE) if 'BASELINE_FILE' in dir()
+                        else 'data/status', 's4_scoped_%s.json' % name)
+
+
+def is_scoped_run():
+    """当前是否射程模式 —— 射程模式严禁触碰 s4_baseline.json。"""
+    return SCOPED_OUTPUT is not None
+
 OUT_REG = REPO / 'data' / 'status' / 'pal3_registry.jsonl'
 
 
@@ -470,6 +493,14 @@ def _flags_matrix(units, decomp_idx, mangled_map, base_idx, image_base, text, te
     _out = open(_out_path, 'w', encoding='utf-8')
     _out.write_text = _out.write   # 兼容下方 write_text 调用
     out = _out
+    # P0-3（多路分析合成）：三个写入点全部射程感知，严禁写 s4_baseline.json
+    _scoped = is_scoped_run()
+    if _scoped:
+        _base = scoped_output_path()
+        print('[S2] scoped match: baseline untouched -> %s' % _base)
+        _out = open(_base, 'w', encoding='utf-8')
+        _out.write_text = _out.write
+        out = _out
     out.write_text(json.dumps({'generated_by': 'pipeline/compare_pal3.py',
                                'units': units, 'results': results},
                               indent=1, ensure_ascii=False))
@@ -577,24 +608,3 @@ if __name__ == '__main__':
     main()
 
 
-# ---------------------------------------------------------------------------
-# S2：射程 match 输出隔离（数据安全护栏，2026-10-10）
-# ---------------------------------------------------------------------------
-# 对抗复核裁决：射程 match 必须写 s4_scoped_<target>.json，
-# **严禁写 data/status/s4_baseline.json** —— 否则 stats.match_L1 从 86 骤降
-# => 棘轮误判「大幅回退」=> L1 记录永久损坏。
-# S2 修复（与 codegen.py 同一 bug 第 4 次）：原为模块全局 None，
-# 但**无处从 os.environ 赋值** => 射程 match 永远拿不到值 => 空跑。
-SCOPED_OUTPUT = os.environ.get('MATCH_SCOPED') or None   # None=全量；str=射程目标名
-
-
-def scoped_output_path(target=None):
-    """射程 match 的输出文件 —— 与 s4_baseline.json 隔离。"""
-    name = target or SCOPED_OUTPUT or 'unknown'
-    return os.path.join(os.path.dirname(BASELINE_FILE) if 'BASELINE_FILE' in dir()
-                        else 'data/status', 's4_scoped_%s.json' % name)
-
-
-def is_scoped_run():
-    """当前是否射程模式 —— 射程模式严禁触碰 s4_baseline.json。"""
-    return SCOPED_OUTPUT is not None
