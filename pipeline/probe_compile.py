@@ -1,3 +1,4 @@
+import os
 #!/usr/bin/env python3
 """S1/S2 probe-compile census for PAL3 decompilation.
 
@@ -258,3 +259,20 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# ---------------------------------------------------------------------------
+# S2：射程收窄（产出端，2026-10-10）
+# ---------------------------------------------------------------------------
+# 对抗复核裁决：候选集合收窄必须在**产出端**（本文件），而非 compare_pal3 消费端
+# => probe_census.json 本身就是射程产物，S3 比对两份 census 更直观。
+PROBE_ONLY = None   # None=全量；set[str] = 只编译这些单元路径
+
+
+def scoped_units(all_units):
+    """按 PROBE_ONLY 收窄单元列表（产出端收窄）。None = 全量。"""
+    if PROBE_ONLY is None:
+        return all_units
+    want = {os.path.basename(u) if isinstance(u, str) else u for u in PROBE_ONLY}
+    return [u for u in all_units
+            if (os.path.basename(u) if isinstance(u, str) else u) in want]

@@ -566,3 +566,24 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# ---------------------------------------------------------------------------
+# S2：射程 match 输出隔离（数据安全护栏，2026-10-10）
+# ---------------------------------------------------------------------------
+# 对抗复核裁决：射程 match 必须写 s4_scoped_<target>.json，
+# **严禁写 data/status/s4_baseline.json** —— 否则 stats.match_L1 从 86 骤降
+# => 棘轮误判「大幅回退」=> L1 记录永久损坏。
+SCOPED_OUTPUT = None   # None=全量（写 s4_baseline.json）；str=射程目标名
+
+
+def scoped_output_path(target=None):
+    """射程 match 的输出文件 —— 与 s4_baseline.json 隔离。"""
+    name = target or SCOPED_OUTPUT or 'unknown'
+    return os.path.join(os.path.dirname(BASELINE_FILE) if 'BASELINE_FILE' in dir()
+                        else 'data/status', 's4_scoped_%s.json' % name)
+
+
+def is_scoped_run():
+    """当前是否射程模式 —— 射程模式严禁触碰 s4_baseline.json。"""
+    return SCOPED_OUTPUT is not None

@@ -145,3 +145,23 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# ---------------------------------------------------------------------------
+# S2：射程 codegen（2026-10-10）
+# ---------------------------------------------------------------------------
+# 对抗复核裁决：
+#   1. **头全量生成**（S0 已把 decomp 派生头决策缓存化 => 头全量安全，
+#      且天然解决依赖闭包）—— 头生成分支不得被射程过滤
+#   2. **`.cpp` 射程** —— 只生成目标 TU 的 .cpp
+CODEGEN_CLASS = None   # None=全量；str = 只生成该类的 .cpp
+CODEGEN_FUNC = None    # None=全量；hex str = 只生成该函数所在 TU 的 .cpp
+
+
+def scoped_cpp_filter(tu_name):
+    """判断某 TU 的 .cpp 是否在射程范围内。头不受此过滤。"""
+    if CODEGEN_CLASS is None and CODEGEN_FUNC is None:
+        return True
+    if CODEGEN_CLASS is not None:
+        return tu_name == CODEGEN_CLASS
+    return True   # CODEGEN_FUNC 按地址过滤，需调用方另判

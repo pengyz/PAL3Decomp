@@ -1127,3 +1127,20 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# ---------------------------------------------------------------------------
+# S2：射程三档入口（2026-10-10）
+# ---------------------------------------------------------------------------
+# 用法（经环境变量，与 S1 的 EXPORT_* 同通道）：
+#   CODEGEN_CLASS=Object3D PROBE_ONLY=Role/Object3D.cpp MATCH_SCOPED=Object3D ...
+def apply_scoped_env():
+    """把射程参数注入到 codegen/probe/compare 三阶段。"""
+    import pipeline.gen.codegen as _cg
+    import pipeline.probe_compile as _pc
+    import pipeline.compare_pal3 as _cp
+    _cg.CODEGEN_CLASS = os.environ.get('CODEGEN_CLASS') or None
+    _cg.CODEGEN_FUNC = os.environ.get('CODEGEN_FUNC') or None
+    _only = os.environ.get('PROBE_ONLY')
+    _pc.PROBE_ONLY = set(x.strip() for x in _only.split(',')) if _only else None
+    _cp.SCOPED_OUTPUT = os.environ.get('MATCH_SCOPED') or None
