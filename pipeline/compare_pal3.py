@@ -20,6 +20,7 @@ Usage:  python3 pipeline/compare_pal3.py [--census PATH] [--limit N]
 Output: data/status/s4_baseline.json + data/status/pal3_registry.jsonl
 """
 
+import os
 import argparse
 import hashlib
 import json
@@ -461,6 +462,14 @@ def _flags_matrix(units, decomp_idx, mangled_map, base_idx, image_base, text, te
             r['label'], s['match_L1'], s['partial'], s['matched'], s['symbols']))
 
     out = REPO / 'data' / 'status' / 'flags_matrix.json'
+    # S2 接线（接线审计定论）：射程 match 写 s4_scoped_<target>.json，
+    # **严禁写 s4_baseline.json**（否则 stats.match_L1 从 86 骤降 => 棘轮误判 => 数据损坏）
+    _out_path = scoped_output_path() if is_scoped_run() else OUT_JSON
+    if is_scoped_run():
+        print('[S2] scoped match output -> %s (baseline untouched)' % _out_path)
+    _out = open(_out_path, 'w', encoding='utf-8')
+    _out.write_text = _out.write   # 兼容下方 write_text 调用
+    out = _out
     out.write_text(json.dumps({'generated_by': 'pipeline/compare_pal3.py',
                                'units': units, 'results': results},
                               indent=1, ensure_ascii=False))
@@ -574,7 +583,9 @@ if __name__ == '__main__':
 # 对抗复核裁决：射程 match 必须写 s4_scoped_<target>.json，
 # **严禁写 data/status/s4_baseline.json** —— 否则 stats.match_L1 从 86 骤降
 # => 棘轮误判「大幅回退」=> L1 记录永久损坏。
-SCOPED_OUTPUT = None   # None=全量（写 s4_baseline.json）；str=射程目标名
+# S2 修复（与 codegen.py 同一 bug 第 4 次）：原为模块全局 None，
+# 但**无处从 os.environ 赋值** => 射程 match 永远拿不到值 => 空跑。
+SCOPED_OUTPUT = os.environ.get('MATCH_SCOPED') or None   # None=全量；str=射程目标名
 
 
 def scoped_output_path(target=None):

@@ -152,6 +152,14 @@ def collect(pattern, ext):
 
 def census(layer):
     units = collect('*.h', '.h') if layer == 's1' else collect('*.cpp', '.cpp')
+    # S2 接线（接线审计定论）：**产出端收窄** —— census 只含射程单元，
+    # probe_census.json 本身就是射程产物，S3 比对两份 census 更直观。
+    # 收窄点 = collect() 之后、遍历之前（此处是唯一的单元消费点）。
+    if PROBE_ONLY is not None:
+        _want = {os.path.basename(u) for u in PROBE_ONLY}
+        _before = len(units)
+        units = [u for u in units if os.path.basename(u) in _want]
+        print('[S2] probe scoped: %d -> %d units' % (_before, len(units)))
     results = []
     with futures.ThreadPoolExecutor(max_workers=6) as ex:
         futs = {}
