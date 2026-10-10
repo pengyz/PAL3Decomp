@@ -182,6 +182,7 @@ def resolve_orphan_ordinals(code_str):
     return resolved
 
 def _write_header_facts_cache():
+    import sys
     """S0（2026-10-09）：全量 export 末尾物化 decomp 派生的头决策事实。
 
     射程 export 只写 1 个 decomp JSON 会让 emit_headers 的 4 条决策点输入坍缩
@@ -195,9 +196,15 @@ def _write_header_facts_cache():
     except Exception as e:                       # IDA 内可能无 pipeline 包
         print('[S0] header-facts cache skipped: %s' % e)
         return
-    import emit_headers as eh
-    eh._scalar_dtor_classes = set()
-    eh._underscore_aliases = {}
+    # S0 修复（终审点名）：原 `import emit_headers as eh` 是**裸 import**，
+    # 在 try/except 之外，且 sys.path 无任何条目含 pipeline/gen/stages/
+    # => 必然 ModuleNotFoundError，缓存写入从未真正执行过。改为走
+    # `from pipeline.gen.stages.emit_headers import ...`（在 try 内，可解析）。
+    # ⚠️ 下面两行**不是死代码**（终审误判）：`_get_*_scan_impl()` 用模块级变量作累加器，
+    # 不初始化会 AttributeError: 'NoneType' object has no attribute 'add'。
+    _scan_mod = sys.modules['pipeline.gen.stages.emit_headers']
+    _scan_mod._scalar_dtor_classes = set()
+    _scan_mod._underscore_aliases = {}
     facts = {
         'scalar_dtor_classes': set(_get_scalar_dtor_classes_scan_impl()),
         'underscore_aliases': dict(_get_underscore_aliases_scan_impl()),
