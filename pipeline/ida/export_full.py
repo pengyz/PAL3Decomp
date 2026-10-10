@@ -133,6 +133,11 @@ log_lines = []
 def log(msg):
     log_lines.append(str(msg))
     print(msg)
+    try:
+        with open('/tmp/s1_diag.log', 'a') as _f:
+            _f.write(str(msg) + '\n')
+    except Exception:
+        pass
 
 _orphan_stats = {}  # Global stats for debugging
 
@@ -218,14 +223,36 @@ def _write_header_facts_cache():
 
 
 def main():
+    import time as _t
+    _T0 = _t.time()
+    log('[S1-DIAG] main() start')
     try:
         ida_auto.auto_wait()
         log("[*] Pure export (no IDB modifications)")
 
         os.makedirs(OUTPUT_DIR, exist_ok=True)
-        for f in glob.glob(os.path.join(OUTPUT_DIR, "*.json")):
-            if not os.path.basename(f).startswith('_'):
-                os.remove(f)
+        # 🔴 S1 破坏性 bug 修复（2026-10-10 端到端验证抓到）：
+        # 此清理原本无条件删 OUTPUT_DIR/*.json，而它在**射程过滤之前**执行
+        # （过滤在 targets.sort() 之后）=> 射程 export 会清空主 decomp 目录
+        # （实测 3649 -> 1 个文件），随后 DECOMP_DIR 才被改指 scoped
+        # => 主目录被清、产物写去别处、scoped 目录反而空。
+        # 修法：射程模式下**跳过主目录清理**（主产物是共享资产，不得动），
+        # 只清 scoped 目标目录。
+        _sc_active = bool(os.environ.get('EXPORT_FUNC') or os.environ.get('EXPORT_CLASS'))
+        if _sc_active:
+            log("[S1] scoped mode: skip main OUTPUT_DIR cleanup (保护主 decomp 产物)")
+            _sc_out2 = os.environ.get('EXPORT_OUTDIR')
+            if _sc_out2:
+                _scoped_d = os.path.join(_sc_out2, 'decomp')
+                os.makedirs(_scoped_d, exist_ok=True)
+                for f in glob.glob(os.path.join(_scoped_d, "*.json")):
+                    if not os.path.basename(f).startswith('_'):
+                        os.remove(f)
+                log("[S1] scoped cleanup -> %s" % _scoped_d)
+        else:
+            for f in glob.glob(os.path.join(OUTPUT_DIR, "*.json")):
+                if not os.path.basename(f).startswith('_'):
+                    os.remove(f)
 
         # [t4] 已删除的死读（原 :148-154，读 data/annotations/functions.json）：
         # d827ebca6 引入"以注解 signature 为权威源"，71a2e09db（次日）删去其唯一
@@ -430,6 +457,7 @@ def main():
             for _ea, _n in _missing[:10]:
                 log("    0x%08X %s" % (_ea, _n))
 
+        log('[S1-DIAG] before targets.sort: %.1fs' % (_t.time()-_T0))
         targets.sort()
 
         # ---- S1 射程过滤（2026-10-09）----
@@ -443,7 +471,7 @@ def main():
         _sc_out = os.environ.get('EXPORT_OUTDIR')
         if _sc_func or _sc_class:
             try:
-                from pipeline.gen.stages.collect import resolve_targets, scoped_decomp_dir
+                from pipeline.gen.stages.scoped_targets import resolve_targets, scoped_decomp_dir
             except Exception as _e:
                 log("[S1] scoped export unavailable: %s" % _e)
                 resolve_targets = None
@@ -461,8 +489,14 @@ def main():
                 if _sc_out:
                     _d = scoped_decomp_dir(_sc_out)
                     _d.mkdir(parents=True, exist_ok=True)
-                    globals()['DECOMP_DIR'] = _d   # 射程写独立目录（设计要点 0）
+                    globals()['DECOMP_DIR'] = _d    # 兼容（emit_headers 侧用）
+                    globals()['OUTPUT_DIR'] = str(_d)  # 🔴 关键：写入点 :658 用的是 OUTPUT_DIR 而非 DECOMP_DIR
+                    globals()['LOG_FILE'] = os.path.join(str(_d), '_export.log')
                     log("[S1] scoped decomp dir -> %s" % _d)
+                    log("[S1-DIAG] module DECOMP_DIR now = %r" % (globals().get('DECOMP_DIR'),))
+                    import sys as _s
+                    _mod = _s.modules[__name__] if __name__ in _s.modules else None
+                    log("[S1-DIAG] module obj DECOMP_DIR = %r" % (getattr(_mod, 'DECOMP_DIR', 'NO-MODULE'),))
 
         opt = PAL3Optimizer()
         opt.install()
@@ -471,6 +505,8 @@ def main():
         named = sum(1 for _, n, _ in targets if not n.startswith("sub_"))
         log("[*] Targets: %d (named: %d, sub_: %d)" % (len(targets), named, len(targets)-named))
 
+        _T_DECOMP = _t.time()
+        log('[S1-DIAG] decompile loop start: %.1fs (非函数产物+准备耗时)' % (_T_DECOMP-_T0))
         exported = 0
         t0 = time.time()
         for i, (ea, name, size) in enumerate(targets):
@@ -955,4 +991,5 @@ def export_structs(log):
 if __name__ == '__main__':
     main()
     # S0（2026-10-09）：全量 export 末尾物化 decomp 派生的头决策事实
+    log('[S1-DIAG] main() end: %.1fs total; decompile loop = %.1fs' % (_t.time()-_T0, _t.time()-_T_DECOMP if '_T_DECOMP' in dir() else -1))
     _write_header_facts_cache()
