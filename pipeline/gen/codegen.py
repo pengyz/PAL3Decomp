@@ -34,6 +34,7 @@
   - Python 3.8+
   - tree-sitter, tree-sitter-cpp (pip install tree-sitter tree-sitter-cpp)
 """
+import os
 import sys
 import os
 
@@ -106,6 +107,10 @@ def cmd_headers():
 
 
 def cmd_cpp(filter_classes=None):
+    # S2 射程接线（2026-10-10）：CODEGEN_CLASS 注入 filter_classes
+    # —— 前两版只写了 scoped_cpp_filter() 函数却没接进调用点（「搭桥不接线」）
+    if filter_classes is None and CODEGEN_CLASS:
+        filter_classes = {CODEGEN_CLASS}
     """Generate .cpp implementation files from decomp JSONs."""
     from data import store
     store.load()
@@ -143,10 +148,6 @@ def main():
         sys.exit(1)
 
 
-if __name__ == '__main__':
-    main()
-
-
 # ---------------------------------------------------------------------------
 # S2：射程 codegen（2026-10-10）
 # ---------------------------------------------------------------------------
@@ -154,8 +155,12 @@ if __name__ == '__main__':
 #   1. **头全量生成**（S0 已把 decomp 派生头决策缓存化 => 头全量安全，
 #      且天然解决依赖闭包）—— 头生成分支不得被射程过滤
 #   2. **`.cpp` 射程** —— 只生成目标 TU 的 .cpp
-CODEGEN_CLASS = None   # None=全量；str = 只生成该类的 .cpp
-CODEGEN_FUNC = None    # None=全量；hex str = 只生成该函数所在 TU 的 .cpp
+# S2 修复（病灶层三问第①问答出）：原为 `CODEGEN_CLASS = None` 模块全局，
+# 但**没有任何地方从 os.environ 赋值** —— cli.py 的 apply_scoped_env() 写了却没调用，
+# codegen.py 自己也不读环境变量 => 射程过滤永远拿不到值 => 三次端到端全失败。
+# 修：直接从环境变量初始化（与 S1 的 EXPORT_* 同通道）。
+CODEGEN_CLASS = os.environ.get('CODEGEN_CLASS') or None   # None=全量；str = 只生成该类的 .cpp
+CODEGEN_FUNC = os.environ.get('CODEGEN_FUNC') or None    # None=全量；hex str = 只生成该函数所在 TU 的 .cpp
 
 
 def scoped_cpp_filter(tu_name):
@@ -165,3 +170,7 @@ def scoped_cpp_filter(tu_name):
     if CODEGEN_CLASS is not None:
         return tu_name == CODEGEN_CLASS
     return True   # CODEGEN_FUNC 按地址过滤，需调用方另判
+
+if __name__ == '__main__':
+    main()
+

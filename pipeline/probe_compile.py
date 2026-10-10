@@ -266,7 +266,9 @@ if __name__ == '__main__':
 # ---------------------------------------------------------------------------
 # 对抗复核裁决：候选集合收窄必须在**产出端**（本文件），而非 compare_pal3 消费端
 # => probe_census.json 本身就是射程产物，S3 比对两份 census 更直观。
-PROBE_ONLY = None   # None=全量；set[str] = 只编译这些单元路径
+# S2 修复：同 codegen.py —— 从环境变量初始化（PROBE_ONLY=逗号分隔单元名）
+_raw = os.environ.get('PROBE_ONLY')
+PROBE_ONLY = set(x.strip() for x in _raw.split(',')) if _raw else None   # None=全量
 
 
 def scoped_units(all_units):
