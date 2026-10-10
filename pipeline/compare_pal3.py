@@ -585,20 +585,32 @@ def main():
         print('L1 rate over matched: %d/%d = %.1f%%'
               % (stats['match_L1'], total, 100.0 * stats['match_L1'] / total))
 
-    OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
-    OUT_JSON.write_text(json.dumps(
+    # P0-3（多路分析，v2）：**三个生产写入点全部射程感知**
+    # 射程写 s4_scoped_<name>{,_registry.jsonl,_diff_detail.json}，
+    # 严禁写 s4_baseline.json / pal3_registry.jsonl / s4_diff_detail.json
+    # （否则 stats.match_L1 从 86 骤降 => 棘轮误判 => 数据损坏）
+    _sc = is_scoped_run()
+    _tag = SCOPED_OUTPUT if _sc else None
+    _base_p = Path(scoped_output_path()) if _sc else OUT_JSON
+    _reg_p = (OUT_JSON.parent / ('s4_scoped_%s_registry.jsonl' % _tag)) if _sc else OUT_REG
+    _det_p = (OUT_JSON.parent / ('s4_scoped_%s_diff_detail.json' % _tag)) if _sc \
+             else (OUT_JSON.parent / 's4_diff_detail.json')
+    if _sc:
+        print('[S2] scoped match outputs -> %s / %s / %s' % (_base_p.name, _reg_p.name, _det_p.name))
+    _base_p.parent.mkdir(parents=True, exist_ok=True)
+    _base_p.write_text(json.dumps(
         {'generated_by': 'pipeline/compare_pal3.py', 'flags': flags,
          'stats': stats, 'rows': rows},
         indent=1, ensure_ascii=False))
-    with open(OUT_REG, 'w') as f:
+    with open(_reg_p, 'w') as f:
         for r in rows:
             f.write(json.dumps({'addr': r['va'], 'name': r['name'], 'file': r['file'],
                                 'status': r['status'],
                                 'match_pct': r.get('match_pct'),
                                 'size': r.get('size')}, ensure_ascii=False) + '\n')
-    print('report -> %s' % OUT_JSON)
-    print('registry -> %s' % OUT_REG)
-    _detail_out = OUT_JSON.parent / 's4_diff_detail.json'
+    print('report -> %s' % _base_p)
+    print('registry -> %s' % _reg_p)
+    _detail_out = _det_p
     _detail_out.write_text(json.dumps(
         {'generated_by': 'pipeline/compare_pal3.py (ROI-1 byte-diff detail)',
          'flags': flags, 'l1': stats['match_L1'], 'partial': stats['partial'],
