@@ -284,3 +284,54 @@ def collect_functions(decomp_dir=None):
             })
 
     return by_class, free_funcs
+
+
+# ---------------------------------------------------------------------------
+# S1：export 射程过滤（2026-10-09）
+# ---------------------------------------------------------------------------
+# 病灶层三问：
+#   ①层：export 的函数遍历（纯过滤，不改语义）
+#   ②消费者读哪份声明：codegen.py 读 asm/pal3/decomp/*.json
+#   ③报错还缺什么：无（地址/类名是显式输入）
+#
+# 设计要点（对抗复核裁决，不得偏离）：
+#   0. 射程 export 必须写独立目录 —— collect_methods() :829-835 从主 decomp
+#      收集类的全部方法签名以生成完整头，污染则头残缺
+#   1. apply 保持全量（IDB 是共享状态）
+#   2. 非函数产物（ida_structs.json、_globals）保持全量
+#   3. 只射程「函数反编译」这一步（148.5s 的大头）
+
+
+def resolve_targets(addrs=None, class_name=None):
+    """解析射程目标地址集合。
+
+    addrs:      显式地址集合（int 或 hex str）
+    class_name: 按 data/annotations/structs/<Cls>.json 的 methods 归属过滤
+    二者都 None  => 返回 None（全量，向后兼容）
+    二者都给     => 取交集（收窄，非并集）
+    """
+    import json as _json
+    from pathlib import Path as _P
+    if addrs is None and class_name is None:
+        return None
+    out = None
+    if addrs is not None:
+        out = {int(a, 16) if isinstance(a, str) else int(a) for a in addrs}
+    if class_name is not None:
+        ann = _P(__file__).resolve().parents[3] / 'data' / 'annotations' / 'structs' / ('%s.json' % class_name)
+        if not ann.exists():
+            raise ValueError('未找到类注解：%s' % ann)
+        d = _json.loads(ann.read_text(encoding='utf-8'))
+        cls_addrs = {int(k, 16) for k in (d.get('methods') or {})}
+        out = cls_addrs if out is None else (out & cls_addrs)
+    return out
+
+
+def scoped_decomp_dir(outdir):
+    """射程 export 的输出目录 —— 必须与主 asm/pal3/decomp/ 隔离。
+
+    理由：collect_methods() 从主 decomp 收集类的全部方法签名以生成完整头；
+    若射程 export 覆盖主目录，头会残缺（只剩目标那 1 个方法签名）。
+    """
+    from pathlib import Path as _P
+    return _P(outdir) / 'decomp'

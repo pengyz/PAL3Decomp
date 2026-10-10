@@ -388,6 +388,16 @@ def cmd_export(fast=False):
         print("EXPORT (fast, no refresh): decompiling to %s/ ..." % cfg.decomp_dir.name)
     else:
         print("EXPORT: decompiling to %s/ ..." % cfg.decomp_dir.name)
+
+    # ---- S1 射程 export（2026-10-09）----
+    # 经环境变量传给 export_full.py（idat -S 场景下最可靠的参数通道）。
+    # 设计要点 0：EXPORT_OUTDIR 使射程结果写独立目录，主 asm/pal3/decomp/ 零改动。
+    _sc = {k: v for k, v in (('EXPORT_FUNC', os.environ.get('EXPORT_FUNC')),
+                             ('EXPORT_CLASS', os.environ.get('EXPORT_CLASS')),
+                             ('EXPORT_OUTDIR', os.environ.get('EXPORT_OUTDIR'))) if v}
+    if _sc:
+        env = dict(env or os.environ, **_sc)
+        print("EXPORT (scoped): %s" % _sc)
     ok = _run_ida('export_full.py', cfg.idb_work, env=env)
     if ok:
         print("-> OK: decomp JSON exported")

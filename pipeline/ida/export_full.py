@@ -432,6 +432,38 @@ def main():
 
         targets.sort()
 
+        # ---- S1 射程过滤（2026-10-09）----
+        # 病灶层三问：①层=export 的函数遍历（纯过滤不改语义）
+        #            ②消费者=codegen.py 读 asm/pal3/decomp/*.json
+        #            ③报错还缺什么=无（地址/类名经环境变量显式传入）
+        # 设计要点 3：只射程「函数反编译」这一步（148.5s 的大头）；
+        # 非函数产物（ida_structs.json、_globals）保持全量。
+        _sc_func = os.environ.get('EXPORT_FUNC')
+        _sc_class = os.environ.get('EXPORT_CLASS')
+        _sc_out = os.environ.get('EXPORT_OUTDIR')
+        if _sc_func or _sc_class:
+            try:
+                from pipeline.gen.stages.collect import resolve_targets, scoped_decomp_dir
+            except Exception as _e:
+                log("[S1] scoped export unavailable: %s" % _e)
+                resolve_targets = None
+            if resolve_targets is not None:
+                _addrs = None
+                if _sc_func:
+                    _addrs = {int(_sc_func, 16)} if _sc_func.startswith('0x') or _sc_func[:1].isdigit() else None
+                    if _addrs is None:
+                        _addrs = {int(x, 16) for x in _sc_func.split(',') if x.strip()}
+                _want = resolve_targets(_addrs, _sc_class)
+                _before = len(targets)
+                targets = [t for t in targets if t[0] in _want]
+                log("[S1] scoped export: %d -> %d targets (func=%s class=%s)"
+                    % (_before, len(targets), _sc_func, _sc_class))
+                if _sc_out:
+                    _d = scoped_decomp_dir(_sc_out)
+                    _d.mkdir(parents=True, exist_ok=True)
+                    globals()['DECOMP_DIR'] = _d   # 射程写独立目录（设计要点 0）
+                    log("[S1] scoped decomp dir -> %s" % _d)
+
         opt = PAL3Optimizer()
         opt.install()
         log("[*] Microcode optimizer installed")
