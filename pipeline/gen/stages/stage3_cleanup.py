@@ -1736,9 +1736,48 @@ def _expand_pair64_double(code):
     return ''.join(out)
 
 
+# ============================================================
+# [T12] M3 lvar 重复声明归并（接线 TDD 存量 dedupe_identical_lvars 语义）
+# ============================================================
+# 病灶（2026-10-12 实测）：Hex-Rays 对同一栈槽的类型复用拆出多个 lvar_t
+# （PAL3::FullInit@0x00408FD0 槽 56 共 14 个：pSceneName/pNewBuffer ×
+# void*/int/gbVec3D*，槽 60 共 2 个 pSceneName）⇒ 渲染成同名多条声明
+# ⇒ C2086×10 + C2371×2 + C2040×2（生成 PAL3.cpp:2162-2175 共 14 错）。
+# 一个 C++ 标识符只能有一条声明——同名多条本身不可编译；同槽多名在原始源里
+# 是**不重叠生命期的独立变量被编译器合槽**（VC6 槽复用）⇒ 每名保留一条
+# 声明即忠实重建。
+# 修法（等价变换）：同名声明**首条保留、其余删除**（全等或异型皆然——异型
+# 即 C2371 源）。保留类型的仲裁（pSceneName 的 int 视图 vs void* 视图等）
+# 是 adjudicate_lvar_type 显式挂账的「接线批」，本次不动（禁猜测）。
+_LVAR_DECL_RE = re.compile(
+    r'^(?![^;]*=)[\w:<>,\s\*&]*?(\w+)\s*(?:\[[^\]]*\])?\s*;\s*'
+    r'//\s*\[esp\+(?:0x[0-9A-Fa-f]+|[0-9A-Fa-f]+h)\]'
+    r'\s*\[ebp-(?:0x[0-9A-Fa-f]+|[0-9A-Fa-f]+h)\]')
+
+
+def dedupe_lvar_decls(code):
+    """同名 lvar 声明归并（首条保留）；只认带 [esp..][ebp..] 注释的声明行。"""
+    seen = set()
+    out = []
+    dropped = 0
+    for line in code.split('\n'):
+        m = _LVAR_DECL_RE.match(line)
+        if m:
+            name = m.group(1)
+            if name in seen:
+                dropped += 1
+                continue
+            seen.add(name)
+        out.append(line)
+    return '\n'.join(out) if not dropped else '\n'.join(out)
+
+
 def run(code, ctx):
     """Stage 3: post-OOP cleanup."""
     cls_name = ctx.cls_name
+
+    # [T12] M3：同名 lvar 重复声明归并（C2086/C2371/C2040 源头）
+    code = dedupe_lvar_decls(code)
 
     # --- Simple text substitutions (no structural analysis needed) ---
 
