@@ -414,7 +414,23 @@ class DataStore:
                     # 归一化为裸名（与 method_sigs / 消费方同形）。
                     self.method_sigs.setdefault(_name.split('(')[0], _sig)
                     # detect __cdecl for static_methods
-                    if '__cdecl' in _sig and '__thiscall' not in _sig:
+                    # [T11 2026-10-12] 可变参补洞：IDA 的 dstr() 对**可变参**函数型
+                    # 丢调用约定（对照实证：`bool(const CHAR *, const CHAR *, ...)`
+                    # 无 cc vs `PAL3 *__cdecl()` 有 cc；**且 __thiscall 也丢**——
+                    # `char(Combat *this, char *a2, ..., ...)` 无 cc 却是真成员）⇒
+                    # 明写 __cdecl 的可变参静态成员恒漏本判定 ⇒ ast_transform.py:1345
+                    # 的 static 守卫永不触发 ⇒ stage2 OOP 吞首实参（T10 注册表族根因）。
+                    # 判据（三段）：①明写 __cdecl 且无 __thiscall（原判据）；
+                    # ②可变参且无 __thiscall 且**首形参不是显式 this**——可变参渲染
+                    # 连 __thiscall 都丢，唯一可靠的成员标记是首形参 `Cls *this`
+                    # （实测反例：Combat::LogMessage 首参 `Combat *this`，误判静态
+                    # 会产生 11 处 C2664——2026-10-12 实测后回退该误判）。
+                    _pm = _sig.find('(')
+                    _first = _sig[_pm + 1:].split(',')[0] if _pm >= 0 else ''
+                    _is_this = bool(_re2.search(r'\*+\s*(this|_this)\s*$', _first)) \
+                        or bool(_re2.search(r'\b(this|_this)\s*$', _first.strip()))
+                    if '__thiscall' not in _sig and not _is_this \
+                            and ('__cdecl' in _sig or '...' in _sig):
                         self.static_methods.add(_name.split('(')[0])
                 else:
                     # Free function: build forward declaration
