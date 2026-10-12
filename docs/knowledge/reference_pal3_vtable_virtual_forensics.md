@@ -54,3 +54,48 @@
 
 **「每步对抗复核」的直接收益**：5 轮复核抓到 6 个问题，其中 2 个是**会让 T2 全白做**的（病灶层错 / 越界 3 倍）。
 `diagnoser` 在查 objdump（二进制侧），captain 在查 annotation/生成头（注解侧）—— **两侧交叉**才抓到病灶层错位。
+
+---
+
+## 附：T4 对抗复核的两个架构级发现（F4/F5，2026-10-12）
+
+### F4：第 2 簇正在损伤（headline）
+**`ParabolaCalculator` 6/6 成员全漂**（velocity/A/B/H/G/m_state）—— 机制与 `PAL3::SceneUpdate` **完全同型**：
+
+| 证据 | |
+|---|---|
+| IDB 名 | `ParabolaCalculator::sub_523B90` 实为 **CUtil vtable slot6** |
+| annotation | `CUtil.json` vtables `0x005705F4` slots[6]=`0x00523B90` |
+| objdump | `.rdata 0x5705F0` 区 `903b5200` **独立确认** |
+| 函数体 | `cmp 0x3e8` / 3 参呈 UIWnd 族 OnMessage 形 |
+
+**⇒ 虚拟注入 ⇒ vptr ⇒ 全成员漂移**（同 PAL3 的 uniform +8）。
+
+**另 2 处同型归属分裂**：
+| 地址 | 冲突 |
+|---|---|
+| `0x00485230` | `StateUI::sub_485230` vs `CScreenMode` |
+| `0x0051A880` | `CCBItemWindow::CCBItemWindow_Destroy` vs `CCBUI` |
+
+**机制**：`functions.json` 错归属压过 struct 注解（**无 `owner` 即静默输**）。
+
+### F5：`owner` 机制的 5 处先例全是死代码
+T4 实证：**5 处 owner 先例的 addr 均不在 `functions.json`**，merge 条件 `minfo.get("owner") == sname` **从未生效**。
+⇒ **t7 是首个真实生效案例**（但机制本身实测有效）。
+
+**两个静默坑**：
+| | |
+|---|---|
+| **双认领 278 条无 owner** | 静默覆盖（`functions.json` 赢）|
+| **多 struct 争 owner** | 静默 last-wins |
+
+**⇒ 修**：加**告警**（不改行为，只报）+ R11 补最小自测。
+
+### ⇒ P0 的扩展路径（已量化）
+```
+F4 的 ParabolaCalculator（2 条 A 级证据已备）→ 复制 t7 的 owner 手法
++ 0x485230 / 0x51A880 归属裁定
++ 233 个 functions.json vs structs/*.json 归属冲突（t7 附带发现）
++ E3 模式 253 候选（严过滤：name 类 size < cast 类 size）
+```
+**⇒ P0 不是「修 1 簇」，是「修一族误归属」** —— 机制相同（`owner` 缺失 ⇒ `functions.json` 错归属压过 struct 注解）。
