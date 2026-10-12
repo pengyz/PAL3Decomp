@@ -85,3 +85,30 @@ captain 判断「codegen 是机械再生成，不算编辑」—— **错**：�
 ### 配套
 - `tools/scoped_consistency_check.py` 的 `_ps_snapshot()` 已有排他窗口检查（ps 快照拦并发管线进程）
   ⇒ **captain 跑任何管线命令前应先跑它**，或至少 `ps -eo cmd | grep -E 'codegen|probe|match|idat'`。
+
+---
+
+## 附：搭桥不接线 —— 第 7 次（T12，2026-10-12）
+
+**`dedupe_identical_lvars` 归并函数早已 TDD 落地但从未接线** —— 又是「写了函数没接调用点」。
+
+| 次 | 表现 |
+|---|---|
+| 1 | S0 `load_header_facts()` 4 条决策点零调用 |
+| 2 | S1 `scoped_cpp_filter()` 未接进生成循环 |
+| 3 | S2 `CODEGEN_CLASS` 定义在 `__main__` 之后 |
+| 4 | S2 `CODEGEN_CLASS` 无处从 `os.environ` 初始化 |
+| 5 | S2 `scoped_output_path()` 写入点未调用 |
+| 6 | S2 `PROBE_ONLY` 定义在 `__main__` 之后 |
+| **7** | **T12 `dedupe_identical_lvars` 早已 TDD 落地但从未接线** |
+
+**⇒ 7 次同一模式**：写了函数、写了测试，但没接进生产路径。
+**⇒ 测试全绿（TDD 落地）也挡不住** —— 因为测试测的是函数本身，不是「是否被调用」。
+
+## T12 的复核证伪（病灶层三问的又一次胜利）
+T8 的「lvar 退化」定性**不成立** —— T12 实施时复核证伪：
+- ① **成员/全局类型坍缩（P2）**：`m_pRoleObj = 13`（Actor* 成员存整数）
+- ② **E.T 直读形（P1）**：`m_nRetryCount = (PAL3 *)1`
+- 真 lvar 退化子集与 E.T **缠结无法单独裁型** ⇒ 转批
+
+**⇒ 教训**：**上游诊断的定性要被下游实施复核证伪一次** —— T8 诊断/T12 实施的两段式，比单段更准。
