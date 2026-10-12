@@ -460,6 +460,130 @@ def _detect_needed_includes(cls_name, methods):
     return needed_classes
 
 
+# ---------------------------------------------------------------------------
+# memfnptr ABI 槽赋值修复（P0.5 · T9 · 2026-10-12）
+# ---------------------------------------------------------------------------
+# 病灶层三问（实测定位）：
+#   1. 病灶在 codegen：stage1_structural._find_cc_nodes 递归剥调用约定（本意只剥
+#      定义头），把体内 `int (__thiscall **v13)(CEffect *, int)` 的 __thiscall
+#      一并剥掉 ⇒ 槽视图坍为 __cdecl fnptr ⇒ `*v13 = CEffect::SetParam` 报 C2440。
+#   2. 消费者：MSVC6 编译 .cpp 时读该槽类型（局部声明/类型转换表达式）。
+#   3. C2440 只给两端类型，缺「RHS 是 __thiscall 非静态成员函数」这一事实。
+# 二进制证据（A 级，objdump CEffCylinder::ProcInitTask @0x4c49e3 附近）：
+#   `mov DWORD PTR [esi],edx`（edx=0x4CA400=CEffect::SetParam）后隔 3 条指令才
+#   `mov DWORD PTR [esi+0x4],eax` ⇒ 槽是 4 字节裸指针、+4 是独立语句（非 PMF 拷贝）。
+# MSVC6 实测（probe_compile 探针，2026-10-12）：
+#   `typedef int (__thiscall *FP)(Cls*,int)` ⇒ C4234 非法；PMF↔fnptr 任何 cast 全
+#   C2440；**sizeof(成员函数指针)==4**（单继承紧凑形）⇒ 用 PMF 视图存槽与二进制
+#   的 4 字节单存一致；`*p = Cls::M`（裸名）与 `p[i]=0` 合法、`(PMF)整数` 非法
+#   ⇒ 只能逐赋值点改 LHS 视图，不能整体改声明（整数槽 `v13[2]=(T)2` 会炸）。
+# 修法（等价变换，仅动「RHS=__thiscall 成员函数」的赋值行）：
+#   `*v13 = CEffect::SetParam;`
+#     → `*(int (CEffect::**)(int))v13 = CEffect::SetParam;`        # LHS=*ptr 形
+#   `v8 = CCBStage::UpdateTaskNormals;`
+#     → `*(int (CCBStage::**)(int))&(v8) = CCBStage::UpdateTaskNormals;`  # LHS=变量形
+#   PMF 形参表 = 方法签名去 this 形参；method_sigs 缺项时回退同体局部声明的
+#   fnptr 元素型（错误文本 `void (__thiscall gbVFileSystem::*)…` 证明其为非静态成员）。
+#   其余语句零改动 ⇒ 字节面不变。
+# 实测（2026-10-12，probe 当场读 vs 前态 census）：C2440 389→335 · C2248 75→31
+#   （_Tidy 访问面 hack 连带解掉 m_ParamHandle 等私有访问族）· 总错误 1720→1643 ·
+#   S2 绿 101/209→106/209（CEffCylinder/CEffMeteor/CEffSParticle/CEffAction/
+#   PalScriptIdleObj 五单元归零）· free_functions C1003 最大行号 5193→5205 后移。
+#   已知漏网 2 形（非槽赋值，见任务报告）：逗号表达式内赋值 `v8 = Cls::M,` 与
+#   实参位置整型 cast `f((unsigned int)Cls::M, …)`。
+_TYPE_KEYWORDS = {
+    'int', 'char', 'float', 'double', 'void', 'long', 'short', 'bool',
+    'unsigned', 'signed', 'const', 'struct', 'class', 'enum', 'union',
+    '__int64', '__int32', '__int16', '__int8', 'wchar_t',
+    'BYTE', 'WORD', 'DWORD', 'UINT', 'BOOL', 'HANDLE', 'HWND', 'LPVOID',
+}
+
+
+def _strip_param_names(params):
+    """形参表 → 纯类型表（去尾部形参名；类型关键字结尾不动）。"""
+    out = []
+    for p in [x.strip() for x in params.split(',')]:
+        if not p:
+            continue
+        m = re.match(r'^(.*\S)\s+([A-Za-z_]\w*)$', p)
+        if m and m.group(2) not in _TYPE_KEYWORDS:
+            out.append(m.group(1))
+        else:
+            out.append(re.sub(r'\*+\s*[A-Za-z_]\w*$',
+                              lambda mm: '*' * mm.group(0).count('*'), p))
+    return ', '.join(out)
+
+
+def _memberfn_pmf_type(cls, method, body=None, lhs_var=None):
+    """cls::method（__thiscall 非静态成员）⇒ 成员函数指针类型串；定不出返回 None。"""
+    sig = store.method_sigs.get('%s::%s' % (cls, method))
+    if sig:
+        if '__thiscall' not in sig:
+            return None                      # static/cdecl 成员：现状可编译，不动
+        m = re.match(r'^\s*(.+?)\s*__thiscall\s*\((.*)\)\s*$', sig)
+        if m:
+            ret = m.group(1).strip()
+            plist = [x.strip() for x in m.group(2).split(',') if x.strip()]
+            if plist and re.match(r'^[\w:]+\s*\*+\s*(this|_this)$', plist[0]):
+                plist = plist[1:]
+            return '%s (%s::*)(%s)' % (ret, cls,
+                                       _strip_param_names(', '.join(plist)))
+        return None
+    if body and lhs_var:
+        # 回退：同体局部声明的 fnptr 元素型（首参=对象指针 ⇒ 非静态成员）
+        dm = re.search(r'^\s*([\w:<>,\s\*&]+?)\s*\(\s*\*+\s*' + re.escape(lhs_var) +
+                       r'\s*\)\s*\(([^;]*?)\)\s*;', body, re.M)
+        if dm:
+            ret = dm.group(1).strip()
+            plist = [x.strip() for x in dm.group(2).split(',') if x.strip()]
+            pcls = None
+            if plist:
+                fm = re.match(r'^([\w:]+)\s*\*+', plist[0])
+                if fm:
+                    pcls = fm.group(1)
+                    plist = plist[1:]
+            if pcls:
+                return '%s (%s::*)(%s)' % (ret, pcls,
+                                           _strip_param_names(', '.join(plist)))
+    return None
+
+
+_MEMBERFN_ASSIGN_RE = re.compile(
+    r'^(\s*)(\*?\s*[\w\[\]\.()>&\-]+?)\s*=\s*'
+    r'((?:[A-Za-z_]\w*::)+[A-Za-z_~]\w*)\s*;', re.M)
+
+
+def rewrite_memberfn_slot_assignments(body):
+    """RHS=__thiscall 成员函数的槽赋值 ⇒ LHS 视图 cast 成员函数指针指针。"""
+    def _repl(m):
+        indent, lhs, rhs = m.group(1), m.group(2).strip(), m.group(3)
+        cls, method = rhs.rsplit('::', 1)
+        lhs_var = None
+        if lhs.startswith('*'):
+            lhs_var = re.sub(r'\[.*', '', lhs[1:]).strip()
+        pmf = _memberfn_pmf_type(cls, method, body=body, lhs_var=lhs_var)
+        if not pmf:
+            return m.group(0)               # 定不出类型 ⇒ 不动（禁止猜测）
+        pmf_ptr = pmf.replace('::*)(', '::**)(')
+        if lhs.startswith('*'):
+            target = '*(%s)%s' % (pmf_ptr, lhs[1:].strip())
+        else:
+            target = '*(%s)&(%s)' % (pmf_ptr, lhs)
+        return '%s%s = %s;' % (indent, target, rhs)
+
+    return _MEMBERFN_ASSIGN_RE.sub(_repl, body)
+
+
+# [T9] std::string::_Tidy 是 MSVC6 STL 私有成员（C2248）。二进制里是裸 call
+# （等价性要求保留调用本体）⇒ 只能开访问面：本单元先 include <string> 再恢复
+# private。纯编译面变换，字节零变化；不丢失任何类型信息。
+_STRING_PRIVATE_HACK = (
+    '// [T9] std::string::_Tidy private-access workaround (compile-surface only)\n'
+    '#define private public\n'
+    '#include <string>\n'
+    '#undef private\n\n')
+
+
 def generate_class_cpp(cls_name, methods):
     """Generate .cpp content for a class."""
     lines = []
@@ -476,6 +600,7 @@ def generate_class_cpp(cls_name, methods):
         ctx = make_context(cls_name, m['method'], sig=m.get('sig', ''),
                            stub_registry=_stub_reg)
         code = run_transforms(m['code'].strip(), ctx)
+        code = rewrite_memberfn_slot_assignments(code)   # [T9] memfnptr 槽赋值
         transformed.append((m['addr'], code))
         transformed_methods.append({'code': code, 'method': m['method']})
 
@@ -537,7 +662,10 @@ def generate_class_cpp(cls_name, methods):
         lines.append(code)
         lines.append("")
 
-    return '\n'.join(lines)
+    content = '\n'.join(lines)
+    if '_Tidy(' in content:                 # [T9] 私有成员访问面 workaround
+        content = _STRING_PRIVATE_HACK + content
+    return content
 
 
 def generate_free_funcs_cpp(funcs):
@@ -578,6 +706,7 @@ def generate_free_funcs_cpp(funcs):
         ctx = make_context('', f['name'], sig=f.get('sig', ''), is_free=True,
                            stub_registry=_stub_reg)
         code = run_transforms(f['code'].strip(), ctx)
+        code = rewrite_memberfn_slot_assignments(code)   # [T9] memfnptr 槽赋值
         transformed.append((f['addr'], code))
 
     # Forward declarations
@@ -601,7 +730,10 @@ def generate_free_funcs_cpp(funcs):
             lines.append("void __cdecl %s(...) {}" % ns)
         lines.append("")
 
-    return '\n'.join(lines)
+    content = '\n'.join(lines)
+    if '_Tidy(' in content:                 # [T9] 私有成员访问面 workaround
+        content = _STRING_PRIVATE_HACK + content
+    return content
 
 
 def run_cpp_generation(filter_classes=None):
