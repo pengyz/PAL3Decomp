@@ -181,6 +181,7 @@ def run(code, ctx):
                 return found
         return None
     declarator = _find_declarator(func_def)
+    _is_del_dtor = False          # [T23-F1] 标量删除析构（保留返型）
 
     if declarator and not ctx.is_free_function:
         # Get the function name node
@@ -192,7 +193,17 @@ def run(code, ctx):
 
         if name_node:
             current_name = name_node.text.decode('utf-8')
-            expected_name = '%s::%s' % (ctx.cls_name, ctx.method_name)
+            # [T23-F1] 标量删除析构检测（dtor 名 + sig 含 this 外形参）：
+            # 发成 _sdtor_call_dtor 形（MSVC6 拒绝 ~X(int)（C2524））且
+            # **保留返型**（非 dtor 语法形）。
+            _is_del_dtor = False
+            if ctx.is_dtor:
+                _sm = re.search(r'\((.*)\)\s*$', getattr(ctx, 'sig', '') or '')
+                _spl = [x.strip() for x in (_sm.group(1).split(',') if _sm else []) if x.strip()]
+                _nonthis = [x for x in _spl if not re.search(r'\bthis\s*$', x)]
+                _is_del_dtor = bool(_nonthis)
+            _mname = '_sdtor_call_dtor' if _is_del_dtor else ctx.method_name
+            expected_name = '%s::%s' % (ctx.cls_name, _mname)
 
             # Replace sub_XXXXX with correct name
             if current_name.startswith('sub_') or current_name != expected_name:
@@ -239,26 +250,24 @@ def run(code, ctx):
                 if not is_this_param and 'this' in first_text and not ctx.is_free_function:
                     is_this_param = True
                 if is_this_param:
-                    # Skip for dtors: line 166+ strips ALL params, producing
-                    # the same byte-range edit. Two identical edits corrupt
-                    # the output when applied in reverse (second edit deletes
-                    # body content after the first shifted the bytes).
-                    if ctx.is_dtor:
-                        pass
-                    else:
-                        # [T20] 首参（this 槽）名 → this 重命名（Block 案）：
-                        # 只丢参不改名 ⇒ 体内引用落到同名全局/未声明——语义腐蚀
-                        # （CCBSkillWindow::Destroy_12 的 Block 命中 0x00D8E470
-                        # 全局 `extern void * Block`，delete/return 到全局而非对象）。
-                        # A 级：Block=register 16（ECX 槽）⇒ __thiscall this 实证。
-                        # AST 标识符逐个改名：跳过成员/限定访问字段位、声明名字位、
-                        # 首参声明自身（防遮蔽/声明误改）。
-                        _pname_m = re.search(r'(\w+)\s*$', first_text)
-                        _pname = _pname_m.group(1) if _pname_m else None
-                        if _pname and _pname != 'this':
-                            _rename_param_refs_to_this(func_def, first_param,
-                                                       _pname, edits)
-                    if not ctx.is_dtor and len(params) > 1:
+                    # [T23-F1] dtor 路径与非 dtor **统一**：只剥 this 槽首参，
+                    # **保留 params[1+]**（flags 形参是真栈实参——A 级：
+                    # 0x411bd8 `test BYTE PTR [esp+0x8],0x1` 读栈槽 flags；
+                    # 对照 Destroy_12(char a2) 形态，保留更符合字节语义）。
+                    # 原「strip all params」整列表裸丢 ⇒ params[1+] 体内引用
+                    # 绑到同名全局（nVal1 命中 globals.h:1157 `extern const int
+                    # nVal1; // 0x56fd34`）= 活体静默腐蚀（T22 F1 blocker）。
+                    # [T20] 首参（this 槽）名 → this 重命名（Block 案）：
+                    # 只丢参不改名 ⇒ 体内引用落到同名全局/未声明——语义腐蚀。
+                    # A 级：Block=register 16（ECX 槽）⇒ __thiscall this 实证。
+                    # AST 标识符逐个改名：跳过成员/限定访问字段位、声明名字位、
+                    # 首参声明自身（防遮蔽/声明误改）。
+                    _pname_m = re.search(r'(\w+)\s*$', first_text)
+                    _pname = _pname_m.group(1) if _pname_m else None
+                    if _pname and _pname != 'this':
+                        _rename_param_refs_to_this(func_def, first_param,
+                                                   _pname, edits)
+                    if len(params) > 1:
                         # Remove first param + following comma
                         # Find the comma after first param
                         end = first_param.end_byte
@@ -270,32 +279,16 @@ def run(code, ctx):
                                     end += 1
                                 break
                         edits.append((first_param.start_byte, end, b''))
-                    elif not ctx.is_dtor:
+                    else:
                         # Only param is 'this' → replace with empty parens content
                         edits.append((first_param.start_byte, first_param.end_byte, b''))
 
-            # Dtor: strip all params
-            if ctx.is_dtor and params:
-                # [T21] dtor 路径同族缺口（潜伏）：复用 T20 修法——丢参同步
-                # 改名 this（语料现 0 例撞全局，但同名遮蔽即静默绑错）。
-                _dfp = params[0]
-                _dpm = re.search(r'(\w+)\s*$', _dfp.text.decode('utf-8'))
-                _dpn = _dpm.group(1) if _dpm else None
-                if _dpn and _dpn != 'this':
-                    _rename_param_refs_to_this(func_def, _dfp, _dpn, edits)
-                # Replace entire param list content with ()
-                open_paren = None
-                close_paren = None
-                for child in param_list.children:
-                    if child.type == '(' and not open_paren:
-                        open_paren = child
-                    if child.type == ')':
-                        close_paren = child
-                if open_paren and close_paren:
-                    edits.append((open_paren.end_byte, close_paren.start_byte, b''))
+            # [T23-F1] 原「Dtor: strip all params」整列表裸丢已删——params[1+]
+            # 是真栈实参（flags 形参），须保留（对照 Destroy_12 形态）。
 
     # 4. Remove return type for ctor/dtor
-    if ctx.is_ctor or ctx.is_dtor:
+    # [T23-F1] 标量删除析构改发 _sdtor_call_dtor 形（非 dtor 语法）⇒ **保留返型**
+    if (ctx.is_ctor or ctx.is_dtor) and not _is_del_dtor:
         # Remove everything before the function declarator (return type + CC)
         if declarator:
             # Remove from start of func_def to start of declarator

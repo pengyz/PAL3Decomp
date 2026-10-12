@@ -602,6 +602,17 @@ def _fix_newtexture_args(code):
     return _NEWTEXTURE_RE.sub(r'NewTexture((const char *)\1)', code)
 
 
+# [T23-F1] 标量删除析构调用（dtor 名**带实参**）⇒ _sdtor_call_dtor 形
+# （与 stage1 定义侧改名一致——MSVC6 拒绝 ~X(int)（C2524 实测）；无实参的
+# 纯 dtor 调用不动）。带实参删除析构调用字节等价：同样 push 实参 + call。
+_SD_CALL_RE = re.compile(r'\b([A-Za-z_]\w*::)?~([A-Za-z_]\w*)\s*\((?=\s*[^)\s])')
+
+
+def _fix_sdtor_calls(code):
+    return _SD_CALL_RE.sub(
+        lambda m: '%s_sdtor_call_dtor(' % (m.group(1) or ''), code)
+
+
 def _fix_member_assign_forms(code, ctx):
     """[T14] T13 重判行终文处理（dword→成员链改写后的赋值形）：
     数组成员 = 标量 ⇒ `= [0]`（字节等价：存成员首址）；
@@ -1994,6 +2005,8 @@ def run(code, ctx):
     result = _fix_member_assign_forms(result, ctx)
     # [T18] NewTexture 实参 int 退化 ⇒ 显式 cast（字节等价）
     result = _fix_newtexture_args(result)
+    # [T23-F1] 带实参删除析构调用 ⇒ _sdtor_call_dtor 形（与定义侧一致）
+    result = _fix_sdtor_calls(result)
     # fn-ptr 限定形接线 2026-10-07（C2273 族——子对象引用形）
     try:
         from ast_transform import fix_fnptr_qualified_call
