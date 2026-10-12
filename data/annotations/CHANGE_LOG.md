@@ -5889,3 +5889,30 @@ g_SceneMgr.m_nTodo_1428 = ((PAL_GDB *)&g_pGDB)->PAL_GDB::GDB_GetSkillNum(82301);
   跨度 3408B=852×4 ✓ 与 binary_size 吻合）——C2679 −26 全清·free_functions C1003 解除
   （102→101 全可见·最大行号 2877→5170）。
 - emit_headers _UNDERSCORE_TYPES 白名单（复核定：实效 0=前瞻性卫生改动——非生产收益）。
+
+## 2026-10-12 · PAL3::SceneUpdate 误归属修复（decomp `name` 层 · T2）
+
+**现象**：`pal3/src/GameBase/PAL3.h:113` 出现 `virtual int SceneUpdate(...)` ⇒ 类被注入 vptr ⇒
+**57 成员全员偏移 +8**（`audit_type_layout --only PAL3` **58/57** 冲突）、`sizeof` 4944 vs `binary_size` 4936。
+**病灶层三问**：
+1. **病灶哪层**：`asm/pal3/decomp/PAL3_SceneUpdateint_int_0044f4c0.json` 的 `name='PAL3::SceneUpdate(int,int)'`
+   **误归属**（`signature` 的 `virtual` 前缀是症状，不是病灶——全仓 452 个 decomp JSON 带 `virtual`，
+   其中 451 个是真虚方法，剥前缀会致 vtable 槽位数 < 二进制 ⇒ 字节崩塌）。
+2. **消费者读哪份声明**：`emit_headers.py` 按 decomp JSON `name`/`signature` 聚合方法集生成 `PAL3.h`
+   并标 `virtual` ⇒ vptr 注入；annotation 侧 `PAL3.json.methods` **本无此方法**，`CGameData.json` 有。
+3. **报错还缺什么**：缺「真实归属」——由 objdump 调用点 this 来源 + 函数体显式 cast 唯一确定。
+**二进制证据（A 级 ×4 独立，T1 取证）**：
+- E1 调用点 `0x405649: mov ecx,0xdb9fd0`（=g_gamefrm）+ `0x40564e: call 0x44f4c0` ⇒ this ≠ PAL3 实例（`0x8acbf0`）
+- E2 `0x44f51d: mov ecx,[esi+0x6e10]`：`0x6e10=28176` < `CGameData.binary_size=28268` ✓ 但 > `PAL3=4936` ✗
+- E3 decomp 自证：`CGameData::Load((CGameData*)this,...)` / `SceneObj::Update((SceneObj*)this,...)` 显式 cast
+- E4 独立归属：`CGameData.json` 同址 `0x0044F4C0` 已有 `SceneUpdate`（`source:'vtable_migrated'`, `ordinal:2`）
+**修法**：`name` → `'CGameData::SceneUpdate(int,int)'`（fixer，1 字段）+ `decompiled_c` 内旧限定名 2 处
+**等价重写** `PAL3::SceneUpdate`→`CGameData::SceneUpdate`（captain；`UISceneUpdate` 未动）。
+**验证（codegen 后实测）**：`PAL3.h` SceneUpdate **0** · `CGameData.h` **1**（L205，ordinal 序）·
+`PAL3.cpp:406` 旧名 **0**（调用点现 cast `(CGameData*)&g_gamefrm`）·
+`audit_type_layout --only PAL3` **58/57 → 1/57**（57 真成员编译器全清）·
+`verify_fix --class PAL3`：**sizeof 4936 == binary_size ✓**（修前 4944）· 注解vs二进制矛盾 **0** ·
+基线 S2 102/210 · 错误 1719 · L1 86 **全平无回归**。
+**残余（诚实标注）**：`__tail_drift__` 1 项 = `PAL3.json` `known_members` 末端 `0xF9C+8 < 0x1348`
+（尾部 0xFA4..0x1348 无命名成员的**覆盖缺口**，非布局冲突）——T2 禁改 `PAL3.json`（captain 裁定预期残余），
+补齐需尾部成员 A 级证据 ⇒ 转 T5。
