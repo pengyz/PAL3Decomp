@@ -61,6 +61,37 @@ def rename_this_identifier(code, new='_this'):
     return ''.join(out)
 
 
+def _rename_param_refs_to_this(func_def, first_param, pname, edits):
+    """[T20/T21] 被剥 this 槽首参的体内引用改名 → this（AST 标识符逐个）。
+
+    为什么必须改名：只丢参不改名 ⇒ 引用落到同名全局（Block 案：globals.h
+    `extern void * Block; // 0x00D8E470`）= 静默语义腐蚀（delete/return 到
+    全局而非对象）。跳过：限定访问 name 位（成员位是 field_identifier 不同型）、
+    声明名字位（防遮蔽声明误改）、首参声明自身。
+    """
+    def _rn(node):
+        for ch in node.children:
+            if ch.type == 'identifier' and ch.text.decode('utf-8') == pname:
+                par = ch.parent
+                skip = (first_param.start_byte <= ch.start_byte
+                        < first_param.end_byte)
+                if par is not None:
+                    if par.type in ('declaration', 'init_declarator',
+                                    'parameter_declaration',
+                                    'function_declarator',
+                                    'pointer_declarator',
+                                    'array_declarator'):
+                        skip = True
+                    elif par.type == 'qualified_identifier':
+                        nm = par.child_by_field_name('name')
+                        if nm is ch:
+                            skip = True
+                if not skip:
+                    edits.append((ch.start_byte, ch.end_byte, b'this'))
+            _rn(ch)
+    _rn(func_def)
+
+
 def run(code, ctx):
     """Apply structural transforms to function code."""
     # Filter IDA header comments
@@ -225,28 +256,8 @@ def run(code, ctx):
                         _pname_m = re.search(r'(\w+)\s*$', first_text)
                         _pname = _pname_m.group(1) if _pname_m else None
                         if _pname and _pname != 'this':
-                            def _rn(node):
-                                for ch in node.children:
-                                    if (ch.type == 'identifier'
-                                            and ch.text.decode('utf-8') == _pname):
-                                        par = ch.parent
-                                        skip = (first_param.start_byte <= ch.start_byte
-                                                < first_param.end_byte)
-                                        if par is not None:
-                                            if par.type in ('declaration', 'init_declarator',
-                                                            'parameter_declaration',
-                                                            'function_declarator',
-                                                            'pointer_declarator',
-                                                            'array_declarator'):
-                                                skip = True
-                                            elif par.type == 'qualified_identifier':
-                                                nm = par.child_by_field_name('name')
-                                                if nm is ch:
-                                                    skip = True
-                                        if not skip:
-                                            edits.append((ch.start_byte, ch.end_byte, b'this'))
-                                    _rn(ch)
-                            _rn(func_def)
+                            _rename_param_refs_to_this(func_def, first_param,
+                                                       _pname, edits)
                     if not ctx.is_dtor and len(params) > 1:
                         # Remove first param + following comma
                         # Find the comma after first param
@@ -265,6 +276,13 @@ def run(code, ctx):
 
             # Dtor: strip all params
             if ctx.is_dtor and params:
+                # [T21] dtor 路径同族缺口（潜伏）：复用 T20 修法——丢参同步
+                # 改名 this（语料现 0 例撞全局，但同名遮蔽即静默绑错）。
+                _dfp = params[0]
+                _dpm = re.search(r'(\w+)\s*$', _dfp.text.decode('utf-8'))
+                _dpn = _dpm.group(1) if _dpm else None
+                if _dpn and _dpn != 'this':
+                    _rename_param_refs_to_this(func_def, _dfp, _dpn, edits)
                 # Replace entire param list content with ()
                 open_paren = None
                 close_paren = None
