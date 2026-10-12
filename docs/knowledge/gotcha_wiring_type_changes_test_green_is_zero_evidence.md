@@ -52,3 +52,36 @@
 - `docs/knowledge/debug_two_layer_localization.md`（病灶层检查）
 - `CLAUDE.md` 的「病灶层检查（动手前的第一件事）」
 - 本会话 SDD 台账：`.superpowers/sdd/2026-10-09-restore-10-green-units/progress.md`
+
+---
+
+## 附：并发写入事故（第 3 次，2026-10-12）
+
+**R1 原文**（`data/status/_d1_ledger.md:12`）：
+> **编排者不得在子代理 running 期间编辑同一文件**
+
+### 事故
+- `fixer` 跑 codegen（写 `pal3/src/Effect/CEffCylinder.cpp`）
+- **captain 并发跑 codegen**（`cmd_clean()` = `rmtree(pal3/src)`）⇒ **违反 R1**
+- 两者互删 ⇒ **`pal3/src` 全空**（cpp 0 / h 0）
+- `fixer` 检测到竞态，主动请求暂停 ✓
+
+### 根因（第 3 次，同一模式）
+| 次 | 表现 |
+|---|---|
+| 1 | 并行分发 3 个实现代理 ⇒ 读数互污 / `git stash` 收走 200 行 |
+| 2 | `pkill` 自匹配杀自己作业 |
+| **3** | **并发 codegen 互删 `pal3/src`** |
+
+**⇒ 根因不变**：「以为不会冲突」—— 但**共享工作区就是共享写入面**。
+captain 判断「codegen 是机械再生成，不算编辑」—— **错**：它写的就是 `pal3/src`，正是子代理在写的资源。
+
+### 判据（必须机械执行）
+- **任何会写 `pal3/src/`、`asm/pal3/`、`data/status/` 的操作**（codegen / export / probe / match / rmtree），
+  在子代理 running 期间 **captain 一律不得跑**。
+- **「机械」不是豁免理由** —— 写入面就是写入面。
+- 唯一安全的 captain 操作：**只读**（grep / 读 JSON / 读生成头）+ **写 `docs/`**（零冲突）。
+
+### 配套
+- `tools/scoped_consistency_check.py` 的 `_ps_snapshot()` 已有排他窗口检查（ps 快照拦并发管线进程）
+  ⇒ **captain 跑任何管线命令前应先跑它**，或至少 `ps -eo cmd | grep -E 'codegen|probe|match|idat'`。
