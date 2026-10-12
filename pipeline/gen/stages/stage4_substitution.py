@@ -590,6 +590,17 @@ _MEMBER_ASSIGN_ANY_RE = re.compile(
     r'^(\s*)([A-Za-z_]\w*(?:\s*(?:->|\.)\s*[A-Za-z_]\w*)*)\s*=\s*'
     r'([^;]+);', re.M)
 
+# [T18] NewTexture(const char*) 实参 int 退化（C2664）—— 最窄形：单标识符实参
+_NEWTEXTURE_RE = re.compile(r'\bNewTexture\(\s*([A-Za-z_]\w*)\s*\)')
+
+
+def _fix_newtexture_args(code):
+    """[T18] NewTexture 调用点补显式 (const char *) cast（字节等价：同一寄存器
+    值传参）。仅单标识符实参；已是 cast/字串实参不匹配 ⇒ 幂等。
+    实测：CEffQuad.cpp:567（NewTexture(nQuad)）+ UI3DCtrl.cpp:47（NewTexture(nVal)）
+    两处 C2664 —— gbGfxManager.h:146 声明 NewTexture(const char*)。"""
+    return _NEWTEXTURE_RE.sub(r'NewTexture((const char *)\1)', code)
+
 
 def _fix_member_assign_forms(code, ctx):
     """[T14] T13 重判行终文处理（dword→成员链改写后的赋值形）：
@@ -1981,6 +1992,8 @@ def run(code, ctx):
     # 指针成员 ← 整型字面量 → 补显式 cast（字节等价：同一立即数存）。
     # 类型仅链解析（T11 三段判据：名唯一回退会误伤 SDK 漏网名）。
     result = _fix_member_assign_forms(result, ctx)
+    # [T18] NewTexture 实参 int 退化 ⇒ 显式 cast（字节等价）
+    result = _fix_newtexture_args(result)
     # fn-ptr 限定形接线 2026-10-07（C2273 族——子对象引用形）
     try:
         from ast_transform import fix_fnptr_qualified_call

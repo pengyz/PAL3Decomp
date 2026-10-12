@@ -167,6 +167,16 @@ void * __cdecl gbLoadLightFile(const char *szFilename);
 // 结构体全局，含 display/window 参数）⇒ 实参是结构体指针，`int mode` 为占位误标。
 void * __cdecl gbCreateGraphManager(struct gbGfxDriverInfo *pDriverInfo);
 
+// [T18] _TEB 最小定义：IDA 伪代码 `NtCurrentTeb()->NtTib.ExceptionList` 引用
+// Windows SDK 的 _TEB（winnt.h 只前向声明、winternl.h 未引入 ⇒ C2027/C2227/C2228
+// 三错同源）。A 级证据：CEffGrid@0x004C98F0 内 4c98f2 mov eax,fs:0x0 读 +
+// 4c9903 mov fs:0x0,esp 写 —— fs:[0] 即 TEB.NtTib.ExceptionList（NtTib=TEB 首
+// 成员、ExceptionList=NT_TIB 首成员，二者皆 offset 0，段寄存器寻址直证）。
+// 仅补被引用通路所需的最小形；NT_TIB 复用 SDK winnt.h 既有定义。
+struct _TEB {
+    NT_TIB NtTib;
+};
+
 // CRT functions that IDA references directly
 extern "C" long __cdecl _ftol(double);
 extern "C" unsigned char * __cdecl _mbsrchr(const unsigned char *, unsigned int);
