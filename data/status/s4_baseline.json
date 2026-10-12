@@ -18,11 +18,11 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 589,
-  "matched": 505,
-  "unmatched": 84,
-  "match_L1": 85,
-  "partial": 359,
+  "symbols": 614,
+  "matched": 521,
+  "unmatched": 93,
+  "match_L1": 86,
+  "partial": 374,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
@@ -2578,6 +2578,24 @@
    "size": 116
   },
   {
+   "file": "pal3/src/Misc/SoundMgr.cpp",
+   "symbol": "?InitCPK@SoundMgr@@QAEDHH@Z",
+   "name": "SoundMgr::InitCPK(int,int)",
+   "va": "0x0053C340",
+   "status": "partial",
+   "match_pct": 19.7,
+   "size": 223
+  },
+  {
+   "file": "pal3/src/Misc/SoundMgr.cpp",
+   "symbol": "?PlayCPKStream@SoundMgr@@QAEHH@Z",
+   "name": "SoundMgr::PlayCPKStream(int)",
+   "va": "0x0053EA80",
+   "status": "partial",
+   "match_pct": 20.9,
+   "size": 201
+  },
+  {
    "file": "pal3/src/Misc/SwordUI.cpp",
    "symbol": "?RenderSword@SwordUI@@QAEPAVgbTexture@@XZ",
    "name": "SwordUI::RenderSword(void)",
@@ -3433,6 +3451,132 @@
    "size": 63
   },
   {
+   "file": "pal3/src/Role/Object3D.cpp",
+   "symbol": "??0Object3D@@QAE@XZ",
+   "name": "Object3D::Object3D(void)",
+   "va": "0x0047CB70",
+   "status": "partial",
+   "match_pct": 88.2,
+   "size": 17
+  },
+  {
+   "file": "pal3/src/Role/Object3D.cpp",
+   "symbol": "?_todo_0047CB90@Object3D@@QAEPAVOpenNULLFile@@PBDH@Z",
+   "name": "Object3D::_todo_0047CB90(char const *,int)",
+   "va": "0x0047CB90",
+   "status": "partial",
+   "match_pct": 22.2,
+   "size": 477
+  },
+  {
+   "file": "pal3/src/Role/Object3D.cpp",
+   "symbol": "?LoadSubObject@Object3D@@QAEXXZ",
+   "name": "Object3D::LoadSubObject(void)",
+   "va": "0x0047CEE0",
+   "status": "partial",
+   "match_pct": 26.2,
+   "size": 84
+  },
+  {
+   "file": "pal3/src/Role/Object3D.cpp",
+   "symbol": "?Destroy@Object3D@@QAEXXZ",
+   "name": "Object3D::Destroy(void)",
+   "va": "0x0047CF40",
+   "status": "partial",
+   "match_pct": 70.1,
+   "size": 97
+  },
+  {
+   "file": "pal3/src/Role/Object3D.cpp",
+   "symbol": "?VecAngle@Object3D@@QAEXMMM@Z",
+   "name": "Object3D::VecAngle(float,float,float)",
+   "va": "0x0047D030",
+   "status": "partial",
+   "match_pct": 13.7,
+   "size": 241
+  },
+  {
+   "file": "pal3/src/Role/Object3D.cpp",
+   "symbol": "?SetObjectPosition@Object3D@@QAEXMMM@Z",
+   "name": "Object3D::SetObjectPosition(float,float,float)",
+   "va": "0x0047D130",
+   "status": "partial",
+   "match_pct": 11.6,
+   "size": 241
+  },
+  {
+   "file": "pal3/src/Role/Object3D.cpp",
+   "symbol": "?GetScreenDegree@Object3D@@QAEXXZ",
+   "name": "Object3D::GetScreenDegree(void)",
+   "va": "0x0047D320",
+   "status": "partial",
+   "match_pct": 14.6,
+   "size": 274
+  },
+  {
+   "file": "pal3/src/Role/Object3D.cpp",
+   "symbol": "?CaculateRelative@Object3D@@QAEXM@Z",
+   "name": "Object3D::CaculateRelative(float)",
+   "va": "0x0047D690",
+   "status": "partial",
+   "match_pct": 16.3,
+   "size": 829
+  },
+  {
+   "file": "pal3/src/Role/Object3D.cpp",
+   "symbol": "?SetupCamera@Object3D@@QAEPAXH@Z",
+   "name": "Object3D::SetupCamera(int)",
+   "va": "0x0047D9D0",
+   "status": "partial",
+   "match_pct": 16.5,
+   "size": 139
+  },
+  {
+   "file": "pal3/src/Role/Object3D.cpp",
+   "symbol": "?Update@Object3D@@QAE_NXZ",
+   "name": "Object3D::Update(void)",
+   "va": "0x0047DA60",
+   "status": "partial",
+   "match_pct": 27.7,
+   "size": 213
+  },
+  {
+   "file": "pal3/src/Role/Object3D.cpp",
+   "symbol": "?CheckMouseLPressed@Object3D@@QAE_NXZ",
+   "name": "Object3D::CheckMouseLPressed(void)",
+   "va": "0x0047DC60",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 5
+  },
+  {
+   "file": "pal3/src/Role/Object3D.cpp",
+   "symbol": "?CheckMousePressed@Object3D@@QAE_NXZ",
+   "name": "Object3D::CheckMousePressed(void)",
+   "va": "0x0047DC70",
+   "status": "partial",
+   "match_pct": 36.4,
+   "size": 11
+  },
+  {
+   "file": "pal3/src/Role/Object3D.cpp",
+   "symbol": "?GetVisNode@Object3D@@QAEPAVgbVisNode@@XZ",
+   "name": "Object3D::GetVisNode(void)",
+   "va": "0x00537060",
+   "status": "partial",
+   "match_pct": 9.1,
+   "size": 11
+  },
+  {
+   "file": "pal3/src/Role/Object3D.cpp",
+   "symbol": "?CheckMessage@Object3D@@QAEHPBD@Z",
+   "name": "Object3D::CheckMessage(char const *)",
+   "va": "0x00537070",
+   "status": "partial",
+   "match_pct": 28.7,
+   "size": 101
+  },
+  {
    "file": "pal3/src/Role/ObjectCamera.cpp",
    "symbol": "??0ObjectCamera@@QAE@XZ",
    "name": "ObjectCamera::ObjectCamera(void)",
@@ -4026,19 +4170,5 @@
    "match_pct": 61.4,
    "size": 166
   }
- ],
- "rebaseline": {
-  "reason": "R1 thunk 尾跳已闭环（PreLoadEffGroup@0x509090 → match_L1/100%/size5，5B jmp 回归）+ R1 判据撞名回归已修（compile-skip 2→0）；L1 85=94−12总体退出−1真回归(R1,已修)+4增益，逐行多重集闭合见独立复核 0d54e301。12 行退出是 S2 108/209→100/210 的 10 个丢绿单元带走的（compare_pal3.py:517 L1 分母只由绿单元决定），属可比池缩小非字节退化。接受总体 669→589。",
-  "at": "2026-10-09T15:32:44",
-  "prev_match_L1": 94,
-  "cur_match_L1": 85,
-  "prev_population": {
-   "matched": 571,
-   "symbols": 669
-  },
-  "cur_population": {
-   "matched": 505,
-   "symbols": 589
-  }
- }
+ ]
 }
