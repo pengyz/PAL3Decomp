@@ -70,3 +70,22 @@ asm/pal3/decomp/PAL3_SceneUpdateint_int_0044f4c0.json
 | **检查点没说须 codegen 后验** | 改 decomp JSON 后生成头不会自动更新 |
 | **调用点旧名残留** | 改 `name` 不影响 `decompiled_c` ⇒ 会编译失败 |
 | **并发 codegen 互删 `pal3/src`** | R1：编排者不得在子代理 running 期间动同一写入面 |
+
+---
+
+## 附：`__tail_drift__` 豁免判据（T2 交付时裁决）
+
+**现象**：`audit_type_layout --only PAL3` 报 1/57 冲突 = `__tail_drift__`（`known_members` 末端 `0xF9C+8 = 4004` < `binary_size = 0x1348 = 4936` ⇒ 尾部 932 字节未标注）。
+
+**裁决**：**豁免**，不阻塞 T2。
+| | |
+|---|---|
+| **定性** | ❌ 不是布局冲突（uniform +8 已完全解决）· ✅ 是**注解覆盖度**问题（独立）|
+| **不变量** | `[MemberExtent]` 越界 **0** ✅（仓库不变量未破）|
+| **T2 acceptance③** | 判 **passed**（判据是「1/57 仅 `__tail_drift__`」，已达）|
+
+**⇒ 尾部成员补全转独立任务**（需 A 级证据：扫 ctor 全局对象 `0x8acbf0` 写点），**不阻塞 T2**。
+
+**❌ 不采纳「改 `binary_size` 迁就工具」** —— 那是破坏性 workaround（CLAUDE.md「禁止破坏性 workaround」）。
+
+**⇒ 此判据可复制**：`__tail_drift__` 是工具的**尾部覆盖检查**，命中时应判「注解覆盖度问题」而非「布局冲突」，转独立任务补全，不阻塞布局修复。
