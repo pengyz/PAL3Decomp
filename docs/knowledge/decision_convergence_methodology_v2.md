@@ -140,3 +140,36 @@ T1 诊断（只读，锁定最高 ROI 簇）
 `grep -c 'int (CEffect::*)' CEffect.h` 是 **BRE 死模式** —— 对合法 C++ 拼写 `int (CEffect::*)(int)` 亦 0 命中。
 **⇒ 真证据**：`grep -F 'int (CEffect::**)(int)'` 在单元取证（CEffCylinder×2/CEffAction×2/CEffect×6）。
 **⇒ 教训**：verify 命令本身要**先自测**（用已知正例验它能命中），否则「verify 通过」是假绿。
+
+---
+
+## 附5：inScope 裁决 + scope 清单教训（T10，2026-10-12）
+
+### T10 的 inScope 越界
+改动落在 `include/gbengine/gbRenderEffect.h` + `include/pal3/ida_defs.h` ——
+**不在 inScope 正面声明，也不在 outOfScope 负面清单**。
+
+**裁决**：**豁免，通过**（T4 可复核）。
+| | |
+|---|---|
+| **定性** | 这两个文件是**手写 ABI 规格**（CLAUDE.md「`include/gbengine/*.h` 手建 ABI 规格」）|
+| **病灶实际所在** | M1 的 `protected:` 节在 `gbRenderEffect.h`；M10 一处在 `ida_defs.h` |
+| **与 diff 零冲突** | `gbRenderEffect` audit **0 冲突**（声明序不变 ⇒ 偏移不变）|
+
+**⇒ 豁免判据（与 T2/T9 一致）**：改动落在「病灶实际所在」且与 diff 零冲突 ⇒ 通过，但**须披露**。
+
+### 🔑 scope 清单教训
+> **scope 清单应基于「病灶层三问」的答案（哪一层），而非假设。**
+
+T10 的 scope 是按 **T8 的不精确病灶层**写的（T8 说 M1 在 annotation，实测在手写头）⇒ scope 漏了真实病灶文件。
+
+**⇒ 规则**：
+1. **scope 清单须在「病灶层三问」答完后再定**
+2. 若病灶层诊断不精确，**scope 应留余量**（如 `include/`、`pipeline/gen/` 全含），而非按假设窄化
+3. **越界改动须全程披露**（T10 做对了），由 T4 裁定
+
+### T10 留的挂账
+| | |
+|---|---|
+| **t11（已立）** | 管线层可变参 sig 渲染丢 `__cdecl` ⇒ stage2 吞首实参（注册表族 3 错残余）|
+| `Calc*/Insert/Init` 4 错 | **M7/lvar 族**（decl 正确、调用侧退化），独立轮 |
