@@ -5911,8 +5911,77 @@ g_SceneMgr.m_nTodo_1428 = ((PAL_GDB *)&g_pGDB)->PAL_GDB::GDB_GetSkillNum(82301);
 **验证（codegen 后实测）**：`PAL3.h` SceneUpdate **0** · `CGameData.h` **1**（L205，ordinal 序）·
 `PAL3.cpp:406` 旧名 **0**（调用点现 cast `(CGameData*)&g_gamefrm`）·
 `audit_type_layout --only PAL3` **58/57 → 1/57**（57 真成员编译器全清）·
-`verify_fix --class PAL3`：**sizeof 4936 == binary_size ✓**（修前 4944）· 注解vs二进制矛盾 **0** ·
-基线 S2 102/210 · 错误 1719 · L1 86 **全平无回归**。
+`verify_fix --class PAL3`：**sizeof 4936 == binary_size ✓**（修前 4944）· 注解vs二进制矛盾 **0**。
+**【F1 更正（T4 复核驳回原措辞，2026-10-12）】**原条目写「基线 S2 102/210 · 错误 1719 · L1 86 全平无回归」
+**不描述修复在场态** ✗——实为：**修复在场态当场 census=1734（较基线 +15，全部 C2039，落 CGameData.cpp
+4→19）**，codegen/回归闸 rc=1『需要归因』；**1719 是回退态/陈旧缓存 census**（compile_regression 只读
+probe_census.json 缓存）。**立规矩**：门禁读数必须来自**该状态当场 probe 的 census**（codegen all 自带
+probe），不得事后引用 baseline 文件。
 **残余（诚实标注）**：`__tail_drift__` 1 项 = `PAL3.json` `known_members` 末端 `0xF9C+8 < 0x1348`
 （尾部 0xFA4..0x1348 无命名成员的**覆盖缺口**，非布局冲突）——T2 禁改 `PAL3.json`（captain 裁定预期残余），
 补齐需尾部成员 A 级证据 ⇒ 转 T5。
+
+## 2026-10-12 · T5（T4 复核修复批）：三处归属裁定落 owner + owner 机制告警
+
+### F4(a) `0x00523B90` → `CUtil::OnMessage`（ParabolaCalculator 6/6 漂移根因）
+**病灶**：IDB 名 `ParabolaCalculator::sub_523B90` 误归属 ⇒ decomp name 聚合进 `ParabolaCalculator.h`
+⇒ `virtual`（签名前缀）⇒ vptr 注入 ⇒ 6/6 成员漂移（与 PAL3::SceneUpdate 完全同型）。
+**A 级证据**：
+- A1 `objdump .rdata 0x57060C: 90 3b 52 00` = `CUtil` vtable `0x5705F4` **slot[6]** 槽字节
+- A2 IDB mangled 名 `?sub_523B90@CUtil@@QAEHXZ`（注解 source 留痕）⇒ 类 = **CUtil**
+- A3 函数体 `if (nVal != 1000) return UIWnd::OnMessage((UIWnd *)this, nVal, nMsg, wParam)` ⇒
+  **OnMessage 的 override**（同签名前转基类）
+- A4 UIWnd 族 3 张 vtable slot[6] 均 `0x00445D10` = `UIWnd::OnMessage`（methods 名 + owner:UIWnd）
+**修法**：`CUtil.json` methods 新建 `"0x00523B90"`（name=OnMessage · owner=CUtil ·
+signature=`int __thiscall(int nVal, int nMsg, int wParam)` · source=vtable_migrated · ordinal=6）
+⇒ 经 apply 流入 IDB（**未直改 IDB**，用户硬约束）。
+**Confidence: high**（4 条独立证据互证；名字由 A3+A4 双源锁定）。
+
+### F4(b) `0x00485230` → `StateUI`（胜方）
+**裁定**：**StateUI**。A 级证据：`objdump .rdata 0x56BA34: 30 52 48 00` = StateUI vtable `0x56BA30`
+**slot[2]**=0x485230；而 `CScreenMode` 自身 vtable `0x570638: 80 49 52 00` slot[2]=**0x524980**（不同实现）
+⇒ 0x485230 是 StateUI 的 **override**，非 CScreenMode 成员；ctor `0x4831E2 mov [esi],0x56ba30` 确认
+vtable 归属 StateUI。败方 `CScreenMode.json` 同址条目为 `vtable_gap_fill_v1(from functions.json)` 复制品
+（其 name 自带 `StateUI::` 前缀，自相矛盾）。
+**修法**：`StateUI.json` methods 新建 `"0x00485230"`（name=`sub_485230` 保持现状不改名 · owner=StateUI ·
+signature=`int __thiscall()`）。
+**⚠️ 命名存疑（不猜测）**：slot[2] 家族名冲突——`SceneObj::Update@0x445C60` vs
+`CScreenMode::ForwardMessage@0x524980`（后者体前转 SceneObj::Update）⇒ 真名待证，保留 `sub_485230`。
+**Confidence: high**（归属=vtable override 结构 + ctor vptr 双 A 级）；**名字留白**。
+
+### F4(c) `0x0051A880` → `CCBItemWindow`（胜方，条目已存在仅加 owner）
+**裁定**：**CCBItemWindow**。证据：
+- A1 `objdump .rdata 0x57050C: 80 a8 51 00` = vtable `0x570500` **slot[3]**
+- A2 ctor `0x51A36C/0x51A3CD mov [esi],0x570500` 落在 `0x51A340`（误名 `CCBUI::ChangeNumTxt`，
+  实为 ctor：体=`UIListBox::UIListBox(this); sub_51A400(this); return this`），紧邻
+  `CCBItemWindow::~CCBItemWindow@0x51A3B0` ⇒ ctor/dtor 成对 ⇒ vtable `0x570500` = **CCBItemWindow**
+  （对照：CCBUI 自身 dtor 在 `0x517650`，远隔）
+- A3 decomp 成员直读证据：`this->m_pDescription/m_pButtonTreasure/m_pBack/m_nActivePage`
+  精确命中 CCBItemWindow.known_members（76/100/72/104）且 **CCBUI 全无**（CLAUDE.md 认可证据型）
+- A4 `functions.json` 留痕 `|fix:class_from_ida_analysis` = CCBItemWindow
+败方 `CCBUI.json` 的 `Destroy_A880` 为 gap_fill 复制品；vtable `from=CCBUI` 旗标是旧 IDB 名派生伪迹。
+**修法**：`CCBItemWindow.json` methods["0x0051A880"] 加 `"owner": "CCBItemWindow"`，name 对齐现状有效名
+`CCBItemWindow_Destroy`（首跑曾用结构侧陈旧名 `Destroy` 见下修正）。
+**【实施中修正（同批自抓）】**首跑发现 owner 激活了结构侧陈旧名 `Destroy`，与同类 `0x0051B4B0` 的既有
+`Destroy` 撞名 ⇒ 生成物重复定义（`CCBItemWindow.cpp:53/333` 两份 `void CCBItemWindow::Destroy()`，
+C2084『already has a body』+ 体内的全局 `Destroy((int)this)` 被解析成自调用 C2264）。
+⇒ 名字恢复**现状有效名** `CCBItemWindow_Destroy`（functions.json `|fix:class_from_ida_analysis` 留痕），
+owner 保留 ⇒ 归属确定性 + 零撞名。教训：**owner 激活结构侧条目时，其 name 会一并接管——须与现状有效名对齐**。
+**Confidence: high**。
+
+### T5 端到端实测（全量 loop，当场读）
+apply rc=0 · export rc=0（**name 经 apply→IDB→export 持久重建**：decomp 文件重命名为
+`CUtil_OnMessageint_int_int_00523b90.json` 等，`PAL3.h` SceneUpdate 0 ✓ · `ParabolaCalculator.h`
+virtual 0 ✓ 无虚拟化）· codegen 回归闸 rc=1『需要归因』⇒ 其差异已逐条归因：
+`ParabolaCalculator.cpp` 单元消失（唯一方法迁 CUtil）· `CCBItemWindow.cpp` 撞名 2 错（已修）·
+`CUtil.cpp` +1（`RemoveAt` `(const char*)` 转换 = 本体直读形债，P1 E.T 范畴）。
+**残余转 T6**：278 条双认领归属债入台账（本告警口径：struct-struct 114 · functions+struct 249 ·
+并集 354，与 T4 的 278 口径不一致，台账统一口径）；`functions.json` 自身 owner 字段被忽略（F5②）本次未改行为。
+
+### F5 owner 机制加固（只报不改行为）+ R11 自测
+`apply_annotations.load_annotations` merge 处加告警：①双认领无 owner（静默覆盖=归属债）计数告警
+②多 struct 争 owner（静默 last-wins）逐条告警。行为零改动（merge 条件未动）。
+新增 `tests/test_owner_warnings.py`（4 例：双认领告警+先声明者胜 · functions.json+struct 双认领 ·
+多 owner 争用告警+last-wins · 单 owner 静默）；`tests.test_owner_field` 2 例回归通过
+（`python -m unittest tests.test_owner_warnings tests.test_owner_field` ⇒ 6/6 OK）。
+**残余转 T6**：278 条双认领归属债入台账；`functions.json` 自身 owner 字段被忽略（F5②）本次未改行为。

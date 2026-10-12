@@ -1339,6 +1339,12 @@ def load_annotations():
     with open(os.path.join(ANNOTATIONS_DIR, "globals.json"), "r", encoding="utf-8") as f:
         globals_data = json.load(f)
     structs = {}
+    # [T5-F5]（2026-10-12 T4 复核）归属可靠性告警——**只报不改行为**：
+    #   ①双认领无 owner：同址 ≥2 个来源（functions.json/各 struct methods）认领且无人声明
+    #     owner ⇒ 静默覆盖（归属债，升级为 attribution audit 输入）
+    #   ②多 struct 争 owner：同址 ≥2 个 struct 声明 owner==sname ⇒ 静默 last-wins（需人工裁定）
+    _claims = {addr: ["functions.json"] for addr in functions}
+    _owner_claims = {}
     for fname, sdata in _strict_struct_entries(os.path.join(ANNOTATIONS_DIR, "structs")):
         fname = os.path.basename(fname)
         sname = sdata.pop("name", fname.replace(".json", ""))
@@ -1346,6 +1352,9 @@ def load_annotations():
         # Merge struct methods into functions dict (class methods not in functions.json)
         # Class name derived from file name; name field stores short method name only.
         for addr, minfo in sdata.get("methods", {}).items():
+            _claims.setdefault(addr, []).append(sname)
+            if minfo.get("owner") == sname:
+                _owner_claims.setdefault(addr, []).append(sname)
             if addr not in functions or minfo.get("owner") == sname:
                 # Strip any lingering ClassName:: prefix (safety for old-format entries)
                 _raw = minfo.get("name", "")
@@ -1366,6 +1375,16 @@ def load_annotations():
                     _minfo["name"] = _mn
                     _minfo["class"] = _nt_full
                     functions[_addr] = _minfo
+    # [T5-F5] 归属告警输出（不改行为，只报）
+    _dual_no_owner = sorted(a for a, srcs in _claims.items()
+                           if len(srcs) > 1 and a not in _owner_claims)
+    if _dual_no_owner:
+        log("[attribution][WARN] 双认领且无 owner：%d 条（静默覆盖=归属债）例：%s"
+            % (len(_dual_no_owner), ", ".join(_dual_no_owner[:5])))
+    for _a in sorted(_owner_claims):
+        if len(_owner_claims[_a]) > 1:
+            log("[attribution][WARN] 多 struct 争 owner %s：%s（当前 last-wins 取后者，需人工裁定）"
+                % (_a, " vs ".join(_owner_claims[_a])))
     enums = {}
     enums_path = os.path.join(ANNOTATIONS_DIR, "enums.json")
     if os.path.exists(enums_path):

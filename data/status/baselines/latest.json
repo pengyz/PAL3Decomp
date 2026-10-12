@@ -1,6 +1,6 @@
 {
-  "name": "20261012_173047",
-  "timestamp": "2026-10-12T17:30:47.611077",
+  "name": "20261012_225949",
+  "timestamp": "2026-10-12T22:59:49.872725",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "ok",
@@ -1926,17 +1926,22 @@
     },
     "pal3/src/Combat/CUtil.cpp": {
       "status": "fail",
-      "error_count": 2,
+      "error_count": 3,
       "errors": [
         {
           "code": "C2039",
           "msg": "'UIScene_InitScriptScene' : is not a member of 'CUtil'",
-          "line": 192
+          "line": 200
         },
         {
           "code": "C2039",
           "msg": "'LineupUI_InitListView' : is not a member of 'CUtil'",
-          "line": 195
+          "line": 203
+        },
+        {
+          "code": "C2664",
+          "msg": "'RemoveAt' : cannot convert parameter 1 from 'unsigned char *' to 'const char *'",
+          "line": 388
         }
       ]
     },
@@ -1973,7 +1978,7 @@
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class CCBUIPanel *' to 'int *'",
-          "line": 692
+          "line": 737
         }
       ]
     },
@@ -3135,27 +3140,27 @@
         {
           "code": "C2660",
           "msg": "'GetInstance_db10' : function does not take 1 parameters",
-          "line": 3607
+          "line": 3555
         },
         {
           "code": "C2668",
           "msg": "'SendInputToRole' : ambiguous call to overloaded function",
-          "line": 3639
+          "line": 3587
         },
         {
           "code": "C2065",
           "msg": "'SingletonThunk_004B6D70' : undeclared identifier",
-          "line": 3702
+          "line": 3650
         },
         {
           "code": "C2065",
           "msg": "'SingletonThunk_004BFD60' : undeclared identifier",
-          "line": 3728
+          "line": 3676
         },
         {
           "code": "C2660",
           "msg": "'GetInstance_db10' : function does not take 1 parameters",
-          "line": 3800
+          "line": 3748
         }
       ]
     },
@@ -4102,11 +4107,6 @@
       ]
     },
     "pal3/src/Misc/PalScriptWaitObj.cpp": {
-      "status": "ok",
-      "error_count": 0,
-      "errors": []
-    },
-    "pal3/src/Misc/ParabolaCalculator.cpp": {
       "status": "ok",
       "error_count": 0,
       "errors": []

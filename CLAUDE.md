@@ -147,7 +147,7 @@ union { // +0xN
 | 时机 | 工具 | 命令 | 失败处理 |
 |------|------|------|----------|
 | **动手改任何东西之前** | **病灶层检查（必做）** | 见下节 | 答不出"病灶在哪一层 / 消费者实际读哪个文件·哪份声明"就**不许动手** |
-| **一轮完整迭代** | 一键循环 + 基线断言 | `python pipeline/cli.py loop --expect-s2 102/210 --expect-errors 1719 --expect-l1 86` | 断言不满足 ⇒ exit 1；恒红门禁被**显式标 TOLERATED**，不静默吞掉。⚠️ **基线数字须随实况刷新**（2026-10-10 对抗复核实证：原 `76/205 · 2140 · 38` 已陈旧 3 周、恒红 ⇒ 门禁失去判别力） |
+| **一轮完整迭代** | 一键循环 + 基线断言 | `python pipeline/cli.py loop --expect-s2 101/209 --expect-errors 1720 --expect-l1 86` | 断言不满足 ⇒ exit 1；恒红门禁被**显式标 TOLERATED**，不静默吞掉。⚠️ **基线数字须随实况刷新**（2026-10-10 对抗复核实证：原 `76/205 · 2140 · 38` 已陈旧 3 周、恒红 ⇒ 门禁失去判别力；2026-10-12 T6 刷新到 `101/209 · 1720 · 86`，对应 T5+T7 收口态） |
 | **codegen all 后** | 编译回归检测 | `python tools/compile_regression.py` | 发现退化立即报警，不提交 |
 | **apply 后** | annotation diff | `python tools/annotation_diff.py` | 显示变更摘要，确认无意外修改 |
 | **probe_compile 后** | 错误分类 | `python tools/error_classifier.py --summary` | 输出根因分布，指导下一步修复方向 |
