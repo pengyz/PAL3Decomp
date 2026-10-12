@@ -18,16 +18,16 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 758,
-  "matched": 628,
-  "unmatched": 130,
-  "match_L1": 104,
-  "partial": 449,
+  "symbols": 819,
+  "matched": 676,
+  "unmatched": 143,
+  "match_L1": 115,
+  "partial": 482,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 75
+  "unresolved_synth": 79
  },
  "rows": [
   {
@@ -711,7 +711,7 @@
    "name": "CCBItemWindow::DoTask(int)",
    "va": "0x0051A390",
    "status": "partial",
-   "match_pct": 13.3,
+   "match_pct": 23.3,
    "size": 30
   },
   {
@@ -1210,6 +1210,33 @@
    "size": 10209
   },
   {
+   "file": "pal3/src/Combat/CCBSkillWindow.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x0044E5C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Combat/CCBSkillWindow.cpp",
+   "symbol": "?Reset@CCBSkillWindow@@QAEXXZ",
+   "name": "CCBSkillWindow::Reset(void)",
+   "va": "0x0051C2D0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 88
+  },
+  {
+   "file": "pal3/src/Combat/CCBSkillWindow.cpp",
+   "symbol": "?Create@CCBSkillWindow@@QAE_NPAHH@Z",
+   "name": "CCBSkillWindow::Create(int *,int)",
+   "va": "0x0051C330",
+   "status": "partial",
+   "match_pct": 25.8,
+   "size": 1354
+  },
+  {
    "file": "pal3/src/Combat/CCBStageEffect.cpp",
    "symbol": "??0CCBStageEffect@@QAE@XZ",
    "name": "CCBStageEffect::CCBStageEffect(void)",
@@ -1597,6 +1624,87 @@
    "size": 721
   },
   {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "??0CEffGrid@@QAE@XZ",
+   "name": "CEffGrid::CEffGrid(void)",
+   "va": "0x004C9610",
+   "status": "partial",
+   "match_pct": 44.4,
+   "size": 27
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "??_GCEffGrid@@UAEPAXI@Z",
+   "name": "CEffGrid::`scalar deleting destructor'(uint)",
+   "va": "0x004C9630",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "?Init@CEffGrid@@UAEHPAMMMM@Z",
+   "name": "CEffGrid::Init(float *,float,float,float)",
+   "va": "0x004C9750",
+   "status": "partial",
+   "match_pct": 56.9,
+   "size": 408
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "?Create@CEffGrid@@UAEDPAVtagEffObjType@@@Z",
+   "name": "CEffGrid::Create(tagEffObjType *)",
+   "va": "0x004C98F0",
+   "status": "partial",
+   "match_pct": 15.7,
+   "size": 942
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "?slot_6@CEffGrid@@UAEHHH@Z",
+   "name": "CEffGrid::slot_6(int,int)",
+   "va": "0x004C9CA0",
+   "status": "partial",
+   "match_pct": 29.2,
+   "size": 506
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "?slot_5@CEffGrid@@UAEHH@Z",
+   "name": "CEffGrid::slot_5(int)",
+   "va": "0x004C9ED0",
+   "status": "partial",
+   "match_pct": 9.4,
+   "size": 759
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "?RenderEffectPass@CEffGrid@@UAEHH@Z",
+   "name": "CEffGrid::RenderEffectPass(int)",
+   "va": "0x004CA1D0",
+   "status": "partial",
+   "match_pct": 12.7,
+   "size": 559
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "?GetEditorObjDescription@CEffGrid@@UAEPBDH@Z",
+   "name": "CEffGrid::GetEditorObjDescription(int)",
+   "va": "0x004CA9A0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 188
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "?DispatchByType@CEffGrid@@UAEHH@Z",
+   "name": "CEffGrid::DispatchByType(int)",
+   "va": "0x004CAAB0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 88
+  },
+  {
    "file": "pal3/src/Effect/CEffMeteor.cpp",
    "symbol": "??0CEffMeteor@@QAE@XZ",
    "name": "CEffMeteor::CEffMeteor(void)",
@@ -1669,6 +1777,141 @@
    "size": 128
   },
   {
+   "file": "pal3/src/Effect/CEffModel.cpp",
+   "symbol": "??0CEffModel@@QAE@XZ",
+   "name": "CEffModel::CEffModel(void)",
+   "va": "0x004CFC70",
+   "status": "partial",
+   "match_pct": 31.9,
+   "size": 138
+  },
+  {
+   "file": "pal3/src/Effect/CEffModel.cpp",
+   "symbol": "?CreateEffModel@CEffModel@@UAEPAV1@XZ",
+   "name": "CEffModel::CreateEffModel(void)",
+   "va": "0x004CFD00",
+   "status": "partial",
+   "match_pct": 41.7,
+   "size": 24
+  },
+  {
+   "file": "pal3/src/Effect/CEffModel.cpp",
+   "symbol": "?LoadFromNode@CEffModel@@UAE_NH@Z",
+   "name": "CEffModel::LoadFromNode(int)",
+   "va": "0x004CFEB0",
+   "status": "partial",
+   "match_pct": 16.5,
+   "size": 231
+  },
+  {
+   "file": "pal3/src/Effect/CEffModel.cpp",
+   "symbol": "?RenderScenePass@CEffModel@@UAEXXZ",
+   "name": "CEffModel::RenderScenePass(void)",
+   "va": "0x004D01C0",
+   "status": "partial",
+   "match_pct": 31.4,
+   "size": 407
+  },
+  {
+   "file": "pal3/src/Effect/CEffModel.cpp",
+   "symbol": "?GetRenderNode@CEffModel@@UAEXH@Z",
+   "name": "CEffModel::GetRenderNode(int)",
+   "va": "0x004D0390",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 21
+  },
+  {
+   "file": "pal3/src/Effect/CEffModel.cpp",
+   "symbol": "?RenderModel@CEffModel@@UAEXH@Z",
+   "name": "CEffModel::RenderModel(int)",
+   "va": "0x004D03B0",
+   "status": "partial",
+   "match_pct": 39.5,
+   "size": 559
+  },
+  {
+   "file": "pal3/src/Effect/CEffModel.cpp",
+   "symbol": "?GetModelType@CEffModel@@UAEHH@Z",
+   "name": "CEffModel::GetModelType(int)",
+   "va": "0x004D0850",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 164
+  },
+  {
+   "file": "pal3/src/Effect/CEffModel.cpp",
+   "symbol": "?UpdateDuration@CEffModel@@UAEXH@Z",
+   "name": "CEffModel::UpdateDuration(int)",
+   "va": "0x004D0BD0",
+   "status": "partial",
+   "match_pct": 18.6,
+   "size": 129
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?sub_4D1300@CEffQuad@@UAEHXZ",
+   "name": "CEffQuad::sub_4D1300(void)",
+   "va": "0x004D1300",
+   "status": "partial",
+   "match_pct": 23.6,
+   "size": 1182
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?sub_4D17D0@CEffQuad@@UAEHH@Z",
+   "name": "CEffQuad::sub_4D17D0(int)",
+   "va": "0x004D17D0",
+   "status": "partial",
+   "match_pct": 8.4,
+   "size": 1032
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?DestroyOneQuad@CEffQuad@@QAEXPBX@Z",
+   "name": "CEffQuad::DestroyOneQuad(void const *)",
+   "va": "0x004D1BE0",
+   "status": "partial",
+   "match_pct": 10.0,
+   "size": 180
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?SetQuad@CEffQuad@@QAE_NH@Z",
+   "name": "CEffQuad::SetQuad(int)",
+   "va": "0x004D1CA0",
+   "status": "partial",
+   "match_pct": 98.1,
+   "size": 428
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?DestroyAllQuad@CEffQuad@@QAEPAHH@Z",
+   "name": "CEffQuad::DestroyAllQuad(int)",
+   "va": "0x004D1E50",
+   "status": "partial",
+   "match_pct": 49.7,
+   "size": 147
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?ToNextFrame@CEffQuad@@QAEPAHH@Z",
+   "name": "CEffQuad::ToNextFrame(int)",
+   "va": "0x004D1F30",
+   "status": "partial",
+   "match_pct": 35.9,
+   "size": 153
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?ProcessDestroyPass@CEffQuad@@QAEHH@Z",
+   "name": "CEffQuad::ProcessDestroyPass(int)",
+   "va": "0x004D2E10",
+   "status": "partial",
+   "match_pct": 75.0,
+   "size": 188
+  },
+  {
    "file": "pal3/src/Effect/CEffSParticle.cpp",
    "symbol": "??0CEffSParticle@@QAE@XZ",
    "name": "CEffSParticle::CEffSParticle(void)",
@@ -1683,7 +1926,7 @@
    "name": "CEffSParticle::CreateTask_4F00(char)",
    "va": "0x004D4F00",
    "status": "partial",
-   "match_pct": 13.3,
+   "match_pct": 23.3,
    "size": 30
   },
   {
@@ -2115,7 +2358,7 @@
    "name": "CCBFiveNimbusWindow::GetNimbusColor(int)",
    "va": "0x00519B40",
    "status": "partial",
-   "match_pct": 13.3,
+   "match_pct": 23.3,
    "size": 30
   },
   {
@@ -2484,7 +2727,7 @@
    "name": "DealData::DealData(void)",
    "va": "0x00457260",
    "status": "partial",
-   "match_pct": 30.2,
+   "match_pct": 15.6,
    "size": 212
   },
   {
@@ -3289,6 +3532,114 @@
    "size": 36
   },
   {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "symbol": "??0UI3DCtrl@@QAE@XZ",
+   "name": "UI3DCtrl::UI3DCtrl(void)",
+   "va": "0x0043D830",
+   "status": "partial",
+   "match_pct": 43.2,
+   "size": 37
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x0044E5C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "symbol": "??_GUI3DCtrl@@UAEPAXI@Z",
+   "name": "UI3DCtrl::`scalar deleting destructor'(uint)",
+   "va": "0x0043D860",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "symbol": "?ctor@UI3DCtrl@@QAEXH@Z",
+   "name": "UI3DCtrl::ctor(int)",
+   "va": "0x0043D880",
+   "status": "partial",
+   "match_pct": 36.4,
+   "size": 11
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "symbol": "?CreateWithTexture@UI3DCtrl@@UAEPAVgbVFileSystem@@HPAXHIH@Z",
+   "name": "UI3DCtrl::CreateWithTexture(int,void *,int,uint,int)",
+   "va": "0x0043D890",
+   "status": "partial",
+   "match_pct": 10.9,
+   "size": 138
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "symbol": "?Render@UI3DCtrl@@UAEXXZ",
+   "name": "UI3DCtrl::Render(void)",
+   "va": "0x0043D940",
+   "status": "partial",
+   "match_pct": 9.0,
+   "size": 357
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "symbol": "?LoadModel@UI3DCtrl@@QAEDPBD@Z",
+   "name": "UI3DCtrl::LoadModel(char const *)",
+   "va": "0x0052AF20",
+   "status": "partial",
+   "match_pct": 12.2,
+   "size": 147
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "symbol": "?UpdateRotation@UI3DCtrl@@QAENXZ",
+   "name": "UI3DCtrl::UpdateRotation(void)",
+   "va": "0x0052E8C0",
+   "status": "partial",
+   "match_pct": 34.7,
+   "size": 121
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "symbol": "?UpdateOscillation@UI3DCtrl@@QAENXZ",
+   "name": "UI3DCtrl::UpdateOscillation(void)",
+   "va": "0x0052E940",
+   "status": "partial",
+   "match_pct": 34.7,
+   "size": 121
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "symbol": "?UpdateOscillationX@UI3DCtrl@@QAENXZ",
+   "name": "UI3DCtrl::UpdateOscillationX(void)",
+   "va": "0x0052E9C0",
+   "status": "partial",
+   "match_pct": 34.7,
+   "size": 121
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "symbol": "?UpdateOscillationY@UI3DCtrl@@QAENXZ",
+   "name": "UI3DCtrl::UpdateOscillationY(void)",
+   "va": "0x0052EA40",
+   "status": "partial",
+   "match_pct": 34.7,
+   "size": 121
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "symbol": "?UpdateTransform@UI3DCtrl@@QAEDH@Z",
+   "name": "UI3DCtrl::UpdateTransform(int)",
+   "va": "0x0052EAC0",
+   "status": "partial",
+   "match_pct": 17.4,
+   "size": 288
+  },
+  {
    "file": "pal3/src/Misc/UIAnimateCtrl.cpp",
    "symbol": "?GetRoleBySlot@UIAnimateCtrl@@QAEHI@Z",
    "name": "UIAnimateCtrl::GetRoleBySlot(uint)",
@@ -3350,6 +3701,51 @@
    "status": "partial",
    "match_pct": 27.1,
    "size": 155
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?Destroy@UICaption@@UAEXXZ",
+   "name": "UICaption::Destroy(void)",
+   "va": "0x0043AB00",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 20
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?Render@UICaption@@UAEXXZ",
+   "name": "UICaption::Render(void)",
+   "va": "0x0043AD40",
+   "status": "partial",
+   "match_pct": 7.9,
+   "size": 593
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?DestroyPanel@UICaption@@QAEXXZ",
+   "name": "UICaption::DestroyPanel(void)",
+   "va": "0x004461F0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 8
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?DestroyAll@UICaption@@QAEXXZ",
+   "name": "UICaption::DestroyAll(void)",
+   "va": "0x0044BDA0",
+   "status": "partial",
+   "match_pct": 4.2,
+   "size": 95
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?LayoutDefault@UICaption@@QAEXXZ",
+   "name": "UICaption::LayoutDefault(void)",
+   "va": "0x00450320",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 68
   },
   {
    "file": "pal3/src/Misc/UIGameFrm.cpp",
