@@ -602,6 +602,17 @@ def _fix_newtexture_args(code):
     return _NEWTEXTURE_RE.sub(r'NewTexture((const char *)\1)', code)
 
 
+# [T26] SetLibFolder(const char*) 实参为 & 成员址（unsigned char* 等窄型）⇒
+# 补 (const char *) cast（字节等价：同一指针值传参；已 cast 形不匹配 ⇒ 幂等）。
+# 实测：UIButton.cpp:303 `SetLibFolder(&this->m_bBigFont, ...)` C2664
+# 'unsigned char *'→'const char *'（同文件 238/278/286 行已带 cast ✓）。
+_SETLIB_RE = re.compile(r'\bSetLibFolder\(\s*(&[\w\->.\[\]]+)\s*([,)])')
+
+
+def _fix_setlibfolder_args(code):
+    return _SETLIB_RE.sub(r'SetLibFolder((const char *)\1\2', code)
+
+
 # [T23-F1] 标量删除析构调用（dtor 名**带实参**）⇒ _sdtor_call_dtor 形
 # （与 stage1 定义侧改名一致——MSVC6 拒绝 ~X(int)（C2524 实测）；无实参的
 # 纯 dtor 调用不动）。带实参删除析构调用字节等价：同样 push 实参 + call。
@@ -2005,6 +2016,8 @@ def run(code, ctx):
     result = _fix_member_assign_forms(result, ctx)
     # [T18] NewTexture 实参 int 退化 ⇒ 显式 cast（字节等价）
     result = _fix_newtexture_args(result)
+    # [T26] SetLibFolder 实参窄型 ⇒ (const char *) cast（字节等价）
+    result = _fix_setlibfolder_args(result)
     # [T23-F1] 带实参删除析构调用 ⇒ _sdtor_call_dtor 形（与定义侧一致）
     result = _fix_sdtor_calls(result)
     # fn-ptr 限定形接线 2026-10-07（C2273 族——子对象引用形）

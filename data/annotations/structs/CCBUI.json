@@ -423,8 +423,8 @@
     },
     "0x00519BD0": {
       "name": "CreateButton",
-      "signature": "bool(int parent, int id, int rc, int picname, UIButton **a6, int nVal)",
-      "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "signature": "bool __thiscall(CCBUI *this, int parent, int id, int rc, int picname, UIButton **a5)",
+      "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [T26] sig 修正：A 级 objdump NPC@0x00517AC0 调用点 517adf lea ecx,[esp+0x8]（this）+ [esp+0xc/0x10/0x14/0x18/0x1c] 五槽（89/c7 系列写入）后 call 0x519bd0 ⇒ __thiscall(this, 5 实参)；原 sig 6 形参无 this（多一参）⇒ C2660 does not take 5 parameters"
     },
     "0x0051A0F0": {
       "name": "ChangeSpecStateLum",
