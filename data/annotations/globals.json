@@ -8178,5 +8178,11 @@
     "name": "g_InputStateBuf",
     "type": "unsigned char",
     "source": "global_add: G8-b 正名（ida-only 条目改 global_add 注册）：GRPinput::PollInputState(&X,v3) 唯一用法=输入轮询填充目标——输入状态缓冲"
+  },
+  "0x00C10BA0": {
+    "name": "dword_C10BA0",
+    "type": "int",
+    "source": "T13-P2 retype int[]->int: A 级 objdump 0x40b903 mov DWORD PTR ds:0xc10ba0,0x1005（绝对地址 DWORD 标量立即数存）⇒ 4 字节标量非数组（此前无注解条目，codegen extern 回退误推 int[]）",
+    "category": "data"
   }
 }

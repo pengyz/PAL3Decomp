@@ -248,8 +248,8 @@
     },
     "208": {
       "name": "m_pRoleObj",
-      "type": "char *",
-      "source": "B:naming_m_p+FPU_misattrib",
+      "type": "int",
+      "source": "B:naming_m_p+FPU_misattrib | T13-P2 retype char*->int: A 级 objdump 0x40b826 mov DWORD PTR ds:0xc05c18,esi（esi=0xd 立即数，0x40b814）+ 0x40b831/0x40b844/0x40b85c/0x40b869 四处 mov r32,[0xc05c18] 值载入喂 Calc*Init 实参（全库零解引用）⇒ 4 字节值槽非指针",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "212": {
@@ -309,8 +309,8 @@
     },
     "256": {
       "name": "m_Actor",
-      "type": "Actor *",
-      "source": "transfer_from_RoleSystem_off_680"
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_680 | T13-P2 retype Actor*->int: A 级 objdump 0x40b8e7 mov ds:0xc05c48,eax（DWORD 直存立即数 2）；全二进制仅此 1 处引用，零载入零解引用 ⇒ 4 字节值槽非指针（三段判据齐）"
     },
     "264": {
       "name": "m_nCmdParam",
