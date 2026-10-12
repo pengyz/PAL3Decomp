@@ -550,13 +550,22 @@ def _memberfn_pmf_type(cls, method, body=None, lhs_var=None):
 
 _MEMBERFN_ASSIGN_RE = re.compile(
     r'^(\s*)(\*?\s*[\w\[\]\.()>&\-]+?)\s*=\s*'
-    r'((?:[A-Za-z_]\w*::)+[A-Za-z_~]\w*)\s*;', re.M)
+    r'((?:[A-Za-z_]\w*::)+[A-Za-z_~]\w*)\s*([;,])', re.M)
+# [T14/T9-F-memfnptr] 实参整型 cast 形：`(uint)Cls::M` —— MSVC6 拒绝 PMF↔整型
+# 直接 cast（C2440，T9 探针实测）⇒ 等价改写为 pmf_to_u32(Cls::M)（union 位拷贝，
+# 单继承 PMF=4 字节纯地址 ⇒ 出参=原地址入参，字节不变；helper 在
+# include/pal3/ida_defs.h，全生成单元经该头可见）。仅 __thiscall 成员触发
+# （_memberfn_pmf_type 三段判据守卫，静态成员不动）。
+_MEMBERFN_INTCAST_RE = re.compile(
+    r'\(\s*(?:unsigned\s+int|unsigned|DWORD|int)\s*\)\s*'
+    r'((?:[A-Za-z_]\w*::)+[A-Za-z_~]\w*)')
 
 
 def rewrite_memberfn_slot_assignments(body):
     """RHS=__thiscall 成员函数的槽赋值 ⇒ LHS 视图 cast 成员函数指针指针。"""
     def _repl(m):
-        indent, lhs, rhs = m.group(1), m.group(2).strip(), m.group(3)
+        indent, lhs, rhs, term = (m.group(1), m.group(2).strip(),
+                                  m.group(3), m.group(4))
         cls, method = rhs.rsplit('::', 1)
         lhs_var = None
         if lhs.startswith('*'):
@@ -569,9 +578,20 @@ def rewrite_memberfn_slot_assignments(body):
             target = '*(%s)%s' % (pmf_ptr, lhs[1:].strip())
         else:
             target = '*(%s)&(%s)' % (pmf_ptr, lhs)
-        return '%s%s = %s;' % (indent, target, rhs)
+        return '%s%s = %s%s' % (indent, target, rhs, term)
 
-    return _MEMBERFN_ASSIGN_RE.sub(_repl, body)
+    def _repl_cast(m):
+        rhs = m.group(1)
+        cls, method = rhs.rsplit('::', 1)
+        pmf = _memberfn_pmf_type(cls, method, body=body)
+        if not pmf:
+            return m.group(0)               # 静态/未名 ⇒ 不动
+        # 显式 PMF cast 前缀：MSVC6 模板推导对裸成员名（PMF 常量）会退化为
+        # fn 形（实测 C2664 'int (int)'→'int (__thiscall *)(int)'）⇒ 显式定型。
+        return 'pmf_to_u32((%s)%s)' % (pmf, rhs)
+
+    body = _MEMBERFN_ASSIGN_RE.sub(_repl, body)
+    return _MEMBERFN_INTCAST_RE.sub(_repl_cast, body)
 
 
 # [T9] std::string::_Tidy 是 MSVC6 STL 私有成员（C2248）。二进制里是裸 call

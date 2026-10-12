@@ -436,6 +436,200 @@ def _load_member_kind():
     return mk
 
 
+# ============================================================
+# [T14] N-F3 含偏移子对象改写 + E.T 直读形扩展（2026-10-12）
+# ============================================================
+# N-F3 存量毒（reference_p0_p1_p2_prep_analysis.md）：`&E.T`→`((T*)&E)` 对
+# **非零偏移基类**折偏移（如 CEffCylinder 的 CTaskTpl_…@12、Role 的
+# PalScriptWaitObj@56）⇒ 静默字节错位。实测非零偏移基类子集=51 处
+# （CEff 族 49 + Role 2）。修法：偏移解析后补 `+off`；偏移**解析不出时保留
+# 原形**（不发错误偏移 cast——「补 +off 或保留 &E.T」二选一）。
+# E.T 直读形（C2273/C2274 162 条）= 无 `&` 的 `E.T` 形态——同一含偏移改写复用。
+_MEMBER_TYPES = None
+_BASE_OFFSETS = None
+_GLOBAL_TYPES = None
+
+
+def _load_member_types():
+    """{class: {member_name: type_str}}（单一读点 store.struct_members）。"""
+    global _MEMBER_TYPES
+    if _MEMBER_TYPES is None:
+        mt = {}
+        for tname, offs in (store.struct_members or {}).items():
+            for off, mi in offs.items():
+                try:
+                    name, mtype = mi
+                except Exception:
+                    continue
+                if name:
+                    mt.setdefault(tname, {})[name] = mtype or ''
+        _MEMBER_TYPES = mt
+    return _MEMBER_TYPES
+
+
+def _load_base_offsets():
+    """{base_name: {container_class: offset}}（store.struct_bases 反查表）。"""
+    global _BASE_OFFSETS
+    if _BASE_OFFSETS is None:
+        bo = {}
+        for cls, bases in (getattr(store, 'struct_bases', None) or {}).items():
+            for b, off in (bases or {}).items():
+                bo.setdefault(b, {})[cls] = off
+        _BASE_OFFSETS = bo
+    return _BASE_OFFSETS
+
+
+def _load_global_types():
+    """{global_name: type_str}（store.annotated_globals 反查表）。"""
+    global _GLOBAL_TYPES
+    if _GLOBAL_TYPES is None:
+        gt = {}
+        for v in (getattr(store, 'annotated_globals', None) or {}).values():
+            try:
+                nm, ty = v
+            except Exception:
+                continue
+            if nm:
+                gt[nm] = (ty or '').strip()
+        _GLOBAL_TYPES = gt
+    return _GLOBAL_TYPES
+
+
+_CHAIN_RE = re.compile(r'^[A-Za-z_]\w*(?:\s*(?:->|\.)\s*[A-Za-z_]\w*)*$')
+
+
+def _chain_class(base_txt, ctx):
+    """解析 `this / this->m_X / a.m_Y` 形链表达式的类名；解析不出返回 None。"""
+    s = (base_txt or '').strip()
+    if not s or not _CHAIN_RE.match(s):
+        return None
+    parts = re.split(r'\s*(?:->|\.)\s*', s)
+    cls = None
+    first = parts[0]
+    if first in ('this', '_this'):
+        cls = getattr(ctx, 'cls_name', None)
+    elif first in store.game_classes:
+        cls = first
+    else:
+        cls = _load_global_types().get(first)
+    if not cls:
+        return None
+    mt = _load_member_types()
+    for p in parts[1:]:
+        nxt = (mt.get(cls) or {}).get(p)
+        if not nxt:
+            return None
+        nm = re.match(r'^(?:const\s+)?([A-Za-z_]\w*(?:::[A-Za-z_]\w*)*)\s*(?:\*.*)?$', nxt.strip())
+        if not nm:
+            return None
+        cls = nm.group(1)
+    return cls
+
+
+def _subobject_offset(fname, base_txt, ctx):
+    """类名子对象 fname 在 base 表达式类型内的偏移；解析不出返回 None（保守保留原形）。"""
+    bo = getattr(store, 'struct_bases', None) or {}
+    cls = _chain_class(base_txt, ctx)
+    if cls and cls in bo and fname in bo[cls]:
+        try:
+            return int(bo[cls][fname] or 0)
+        except Exception:
+            return None
+    # 回退：全库唯一偏移（UIWnd 等 0 偏移基类多类一致 ✓；冲突 ⇒ 解析不出）
+    offs = set()
+    for b in bo.values():
+        if fname in b:
+            try:
+                offs.add(int(b[fname] or 0))
+            except Exception:
+                return None
+    if len(offs) == 1:
+        return offs.pop()
+    return None
+
+
+def _member_type_of(base_txt, fname, ctx):
+    """成员类型解析（**仅链解析**——T11 三段判据教训：名唯一回退会把 SDK 类型
+    漏网名（tagRECT.top 等）误判成注解里唯一同名指针成员 ⇒ 误 cast；
+    解析不出返回 None（保守保留，禁猜测）。"""
+    cls = _chain_class(base_txt, ctx)
+    if cls:
+        t = (_load_member_types().get(cls) or {}).get(fname)
+        if t:
+            return t
+    return None
+
+
+def _under_address_of(node):
+    """node 是否位于 & 表达式之下（& 形归 & 处理器独占，防重叠编辑）。"""
+    p = node.parent
+    while p is not None:
+        if p.type == 'pointer_expression':
+            op = p.child_by_field_name('operator')
+            return op is not None and op.text == b'&'
+        p = p.parent
+    return False
+
+
+def _subobject_cast(fname, base_txt, aop_text, off):
+    """含偏移子对象改写（N-F3 修正后形态；off=0 时保持原改写形）。"""
+    if off:
+        if aop_text == '->':
+            return '((%s *)((char *)%s + %d))' % (fname, base_txt, off)
+        return '((%s *)((char *)&%s + %d))' % (fname, base_txt, off)
+    if aop_text == '->':
+        return '((%s *)%s)' % (fname, base_txt)
+    return '((%s *)&%s)' % (fname, base_txt)
+
+
+_MEMBER_ASSIGN_LIT_RE = re.compile(
+    r'^(\s*)([A-Za-z_]\w*(?:\s*(?:->|\.)\s*[A-Za-z_]\w*)*)\s*=\s*'
+    r'(0x[0-9A-Fa-f]+|\d+)([uUlL]*)\s*;', re.M)
+# 指针成员 = 任意表达式形（T13 第 5 行调用形）——后处理器二次扫
+_MEMBER_ASSIGN_ANY_RE = re.compile(
+    r'^(\s*)([A-Za-z_]\w*(?:\s*(?:->|\.)\s*[A-Za-z_]\w*)*)\s*=\s*'
+    r'([^;]+);', re.M)
+
+
+def _fix_member_assign_forms(code, ctx):
+    """[T14] T13 重判行终文处理（dword→成员链改写后的赋值形）：
+    数组成员 = 标量 ⇒ `= [0]`（字节等价：存成员首址）；
+    指针成员 = 整型字面量/调用形 ⇒ 补显式 cast（字节等价：同一寄存器值存）。
+    类型仅链解析（T11 三段判据）；解析不出不动（禁猜测）。"""
+    def _r(m):
+        indent, lhs, num, suf = m.groups()
+        mm = re.match(r'^(.*?)(->|\.)(\w+)$', lhs)
+        if not mm:
+            return m.group(0)
+        base_txt, fname = mm.group(1), mm.group(3)
+        mtype = _member_type_of(base_txt, fname, ctx)
+        if not mtype:
+            return m.group(0)
+        if '[' in mtype:
+            return '%s%s[0] = %s%s;' % (indent, lhs, num, suf)
+        if '*' in mtype and '[' not in mtype:
+            return '%s%s = ((%s)%s%s);' % (indent, lhs, mtype.strip(), num, suf)
+        return m.group(0)
+
+    def _rc(m):
+        # 指针成员 = 调用/表达式形（T13 第 5 行 m_pSelfAtt = GDB_GetSkillNum(...)）
+        # ⇒ 补显式 cast（字节等价：同一寄存器值存）；已是 `((` cast 形不动。
+        indent, lhs, rhs = m.groups()
+        mm = re.match(r'^(.*?)(->|\.)(\w+)$', lhs)
+        if not mm:
+            return m.group(0)
+        base_txt, fname = mm.group(1), mm.group(3)
+        mtype = _member_type_of(base_txt, fname, ctx)
+        if not mtype or '*' not in mtype or '[' in mtype:
+            return m.group(0)
+        if rhs.lstrip().startswith('((%s)' % mtype.strip()):
+            return m.group(0)              # 已是本形 cast（幂等守卫）
+        return '%s%s = ((%s)(%s));' % (indent, lhs, mtype.strip(), rhs)
+
+    code = _MEMBER_ASSIGN_LIT_RE.sub(_r, code)
+    return _MEMBER_ASSIGN_ANY_RE.sub(_rc, code)
+
+
 def _collect_token_edits(code_bytes, tree, ctx):
     """Walk AST once, collect identifier/type replacement edits."""
     edits = []
@@ -453,6 +647,66 @@ def _collect_token_edits(code_bytes, tree, ctx):
         return False
 
     def visit(node):
+        if node.type == 'field_expression':
+            # [T14] E.T 直读形（无 & 形，C2273/C2274 源头）：`E->T`/`E.T` 的
+            # T 是类名子对象（IDA 无名子对象）⇒ MSVC 解析成 function-style cast。
+            # 同一含偏移改写复用（N-F3 修正后的 _subobject_cast）；& 形由下方
+            # pointer_expression 处理器独占（_under_address_of 防重叠）。
+            fnode = node.child_by_field_name('field')
+            base = node.child_by_field_name('argument')
+            if fnode is not None and base is not None:
+                fname = fnode.text.decode('utf-8')
+                if (fname in store.game_classes
+                        and fname not in _load_member_names()
+                        and not _under_address_of(node)):
+                    aop = node.child_by_field_name('operator')
+                    aop_text = aop.text.decode('utf-8') if aop is not None else '->'
+                    base_txt = base.text.decode('utf-8')
+                    if ctx.is_free_function and base_txt == 'this':
+                        base_txt = '_this'
+                    off = _subobject_offset(fname, base_txt, ctx)
+                    if off is None:
+                        return            # 偏移解析不出 ⇒ 保留原形（禁猜测）
+                    repl = _subobject_cast(fname, base_txt, aop_text, off)
+                    edits.append((node.start_byte, node.end_byte,
+                                  repl.encode('utf-8')))
+                    return
+
+        if node.type == 'assignment_expression':
+            # [T14] T13 重判行（A 级反证已备）：
+            # ①数组成员被赋标量（m_pEquipAtt1 = 0）⇒ E.m_arr[0] = rhs
+            #   （字节等价：原实存即成员首址的 4 字节）
+            # ②指针成员 ← 整型字面量（m_pTexture = 4）⇒ 补显式 cast
+            #   （字节等价：同一立即数存）。类型解析：链优先、名唯一回退，
+            #   解析不出保留原形（禁猜测）。
+            op = node.child_by_field_name('operator')
+            lhs = node.child_by_field_name('left')
+            rhs = node.child_by_field_name('right')
+            if (op is not None and op.text == b'=' and lhs is not None
+                    and rhs is not None and lhs.type == 'field_expression'):
+                fnode = lhs.child_by_field_name('field')
+                lbase = lhs.child_by_field_name('argument')
+                if fnode is not None and lbase is not None and not _under_address_of(lhs):
+                    lfn = fnode.text.decode('utf-8')
+                    lbtxt = lbase.text.decode('utf-8')
+                    if ctx.is_free_function and lbtxt == 'this':
+                        lbtxt = '_this'
+                    mtype = _member_type_of(lbtxt, lfn, ctx)
+                    if mtype:
+                        if '[' in mtype and rhs.type != 'subscript_expression':
+                            repl = '%s[0]' % lhs.text.decode('utf-8')
+                            edits.append((lhs.start_byte, lhs.end_byte,
+                                          repl.encode('utf-8')))
+                            return
+                        if ('*' in mtype and '[' not in mtype
+                                and rhs.type == 'number_literal'):
+                            rt = rhs.text.decode('utf-8')
+                            if re.match(r'^\d+[uUlL]*$', rt):
+                                repl = '((%s)%s)' % (mtype.strip(), rt)
+                                edits.append((rhs.start_byte, rhs.end_byte,
+                                              repl.encode('utf-8')))
+                                return
+
         if node.type == 'subscript_expression':
             # `path.m_member[idx]` where m_member is a declared SCALAR:
             # does not compile (C2109). Taking the member's address and
@@ -506,10 +760,11 @@ def _collect_token_edits(code_bytes, tree, ctx):
                             base_txt = base.text.decode('utf-8')
                             if ctx.is_free_function and base_txt == 'this':
                                 base_txt = '_this'
-                            if aop_text == '->':
-                                repl = '((%s *)%s)' % (fname, base_txt)
-                            else:
-                                repl = '((%s *)&%s)' % (fname, base_txt)
+                            # [T14-N-F3] 非零偏移基类补 +off；解析不出 ⇒ 保留原形
+                            off = _subobject_offset(fname, base_txt, ctx)
+                            if off is None:
+                                return
+                            repl = _subobject_cast(fname, base_txt, aop_text, off)
                             edits.append((node.start_byte, node.end_byte,
                                           repl.encode('utf-8')))
                             return
@@ -1720,6 +1975,12 @@ def run(code, ctx):
     for start, end, replacement in sorted(edits, reverse=True):
         result = result[:start] + replacement + result[end:]
     result = _fix_base_qualified_access(result.decode('utf-8'), ctx)
+    # [T14] T13 重判行后处理：dword_XXX = <字面量> 形经标识符改写后已是
+    # 成员链（`g_SceneMgr…m_pEquipAtt1 = 0`）——在标识符层无法预知终形，
+    # 故在此终文处理：数组成员 → `= [0]`（字节等价：存成员首址）；
+    # 指针成员 ← 整型字面量 → 补显式 cast（字节等价：同一立即数存）。
+    # 类型仅链解析（T11 三段判据：名唯一回退会误伤 SDK 漏网名）。
+    result = _fix_member_assign_forms(result, ctx)
     # fn-ptr 限定形接线 2026-10-07（C2273 族——子对象引用形）
     try:
         from ast_transform import fix_fnptr_qualified_call

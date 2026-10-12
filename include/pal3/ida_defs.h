@@ -203,6 +203,17 @@ inline F mfp_cast(M mfp) {
     return u.f;
 }
 
+// [T14/T9-F-memfnptr] 成员函数指针→位模式（实参形等价变换）：
+// MSVC6 单继承 PMF 紧凑表示=4 字节纯地址（实测 sizeof==4）⇒ union 位拷贝取出
+// 的 u 与原始「地址入参」字节一致；MSVC6 拒绝 PMF↔整型直接 cast（C2440，
+// T9 探针实测）⇒ union 旁路是唯一不改字节的表达式形。模板参数化以容纳任意 PMF 形。
+template <class PMF>
+inline unsigned int pmf_to_u32(PMF pmf) {
+    union { PMF p; unsigned int u; } _c;
+    _c.p = pmf;
+    return _c.u;
+}
+
 // Hex-Rays MACRO_NULL enumeration (None = 0)
 #ifndef None
 #define None 0
