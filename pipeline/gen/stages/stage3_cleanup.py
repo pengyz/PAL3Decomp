@@ -350,8 +350,16 @@ def _ast_cleanup(code, ctx):
                     method, obj_text = _get_ctor_call_info(child)
                     if method:
                         stripped = lines[line_idx].strip() if line_idx < len(lines) else ''
+                        # [T20] 标量删除析构（dtor 调用 + operator delete + return
+                        # 三形）内的显式析构调用是**真调用**，非 Hex-Rays 噪声：
+                        # `~` 形且函数体含 operator delete ⇒ 保留（A 级：
+                        # CCBSkillWindow::Destroy_12@0x0051BBE0 体含 dtor call +
+                        # operator delete 两条真调用，误删即字节腐蚀）。
+                        if (method.startswith('~')
+                                and any('operator delete' in l for l in lines)):
+                            return                # 真调用：整行不动（跳过全部清理形）
                         # Standalone at line start with ((Type*) pattern → delete
-                        if child.parent == node or (child.parent and child.parent.type == 'cast_expression'):
+                        elif child.parent == node or (child.parent and child.parent.type == 'cast_expression'):
                             # Check if it's truly standalone (no assignment/return wrapping)
                             is_standalone = node.child_count <= 2  # expr + ;
                             if is_standalone:

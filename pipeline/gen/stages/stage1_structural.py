@@ -214,7 +214,40 @@ def run(code, ctx):
                     # body content after the first shifted the bytes).
                     if ctx.is_dtor:
                         pass
-                    elif len(params) > 1:
+                    else:
+                        # [T20] 首参（this 槽）名 → this 重命名（Block 案）：
+                        # 只丢参不改名 ⇒ 体内引用落到同名全局/未声明——语义腐蚀
+                        # （CCBSkillWindow::Destroy_12 的 Block 命中 0x00D8E470
+                        # 全局 `extern void * Block`，delete/return 到全局而非对象）。
+                        # A 级：Block=register 16（ECX 槽）⇒ __thiscall this 实证。
+                        # AST 标识符逐个改名：跳过成员/限定访问字段位、声明名字位、
+                        # 首参声明自身（防遮蔽/声明误改）。
+                        _pname_m = re.search(r'(\w+)\s*$', first_text)
+                        _pname = _pname_m.group(1) if _pname_m else None
+                        if _pname and _pname != 'this':
+                            def _rn(node):
+                                for ch in node.children:
+                                    if (ch.type == 'identifier'
+                                            and ch.text.decode('utf-8') == _pname):
+                                        par = ch.parent
+                                        skip = (first_param.start_byte <= ch.start_byte
+                                                < first_param.end_byte)
+                                        if par is not None:
+                                            if par.type in ('declaration', 'init_declarator',
+                                                            'parameter_declaration',
+                                                            'function_declarator',
+                                                            'pointer_declarator',
+                                                            'array_declarator'):
+                                                skip = True
+                                            elif par.type == 'qualified_identifier':
+                                                nm = par.child_by_field_name('name')
+                                                if nm is ch:
+                                                    skip = True
+                                        if not skip:
+                                            edits.append((ch.start_byte, ch.end_byte, b'this'))
+                                    _rn(ch)
+                            _rn(func_def)
+                    if not ctx.is_dtor and len(params) > 1:
                         # Remove first param + following comma
                         # Find the comma after first param
                         end = first_param.end_byte
@@ -226,7 +259,7 @@ def run(code, ctx):
                                     end += 1
                                 break
                         edits.append((first_param.start_byte, end, b''))
-                    else:
+                    elif not ctx.is_dtor:
                         # Only param is 'this' → replace with empty parens content
                         edits.append((first_param.start_byte, first_param.end_byte, b''))
 
