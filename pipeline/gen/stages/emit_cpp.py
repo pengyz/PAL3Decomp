@@ -3,6 +3,7 @@
 Transforms decomp output through the pipeline and emits .cpp files
 organized by class and free functions.
 """
+import os
 import re
 from pathlib import Path
 
@@ -631,8 +632,16 @@ def run_cpp_generation(filter_classes=None):
     for _fname, _decl in sorted(store.free_func_sigs.items()):
         _h_lines.append('%s;' % _decl)
     _h_lines.append('')
-    with open(_header_dir / "free_functions.h", 'w', encoding='utf-8') as _f:
-        _f.write('\n'.join(_h_lines))
+    # S3 修 N 违规（2026-10-10）：free_functions.h 从 store.free_func_sigs 全量生成，
+    # 但射程 export 只导目标函数 => free_func_sigs 变少 => 该头被射程产物**污染共享树**
+    # （S3 实测 N 判据唯一违规项，正是 C 路反例 C「跨世代拼接」的活证）。
+    # 修：射程模式下**跳过重生成**，保留全量版 —— 与 .h 全量的设计一致。
+    if os.environ.get('EXPORT_FUNC') or os.environ.get('EXPORT_CLASS') or \
+       os.environ.get('CODEGEN_CLASS') or os.environ.get('PROBE_ONLY'):
+        print('[S3] scoped mode: skip free_functions.h regeneration (keep full)')
+    else:
+        with open(_header_dir / "free_functions.h", 'w', encoding='utf-8') as _f:
+            _f.write('\n'.join(_h_lines))
 
     for cls_name, methods in sorted(by_class.items()):
         if filter_classes and cls_name not in filter_classes:
