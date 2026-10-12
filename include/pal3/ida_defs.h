@@ -162,7 +162,10 @@ void UIQuadManager_Reset();
 
 // gbengine imports used across many files
 void * __cdecl gbLoadLightFile(const char *szFilename);
-void * __cdecl gbCreateGraphManager(int mode);
+// [T10] 形参实证：PAL3::InitGFX@0x404FF0 调用点 `0x40500e push 0xbfd6c8` 后
+// `0x405013 call [0x56a1fc]`（gbengine 导入）——0xbfd6c8 = &g_DrvInfo（globals.json
+// 结构体全局，含 display/window 参数）⇒ 实参是结构体指针，`int mode` 为占位误标。
+void * __cdecl gbCreateGraphManager(struct gbGfxDriverInfo *pDriverInfo);
 
 // CRT functions that IDA references directly
 extern "C" long __cdecl _ftol(double);

@@ -49,6 +49,11 @@ protected:
     ID3DXEffect* m_pEffect;                 // +0x18
     unsigned int m_dwFlags;                 // +0x1C
     IDirect3DVertexDeclaration9* m_pDecl;   // +0x20
+public:
+    // [T10] 访问级实证：PAL3::DefaultKeyMap@0x406B80 外部访问本参数块
+    //（生成 PAL3.cpp:1345-1409 六站点 12 处 C2248；指令 0x406ba4/0x406bc9
+    // `[reg-0x1]` 字节访问经 IDB 类型解析为 m_ParamHandle[7] HIBYTE）
+    // ⇒ 原始声明必允许外部访问，protected 为重建误标。
     D3DXHANDLE m_ParamHandle[8];           // +0x24
 
 private:

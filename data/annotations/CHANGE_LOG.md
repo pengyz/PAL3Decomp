@@ -5985,3 +5985,37 @@ virtual 0 ✓ 无虚拟化）· codegen 回归闸 rc=1『需要归因』⇒ 其�
 多 owner 争用告警+last-wins · 单 owner 静默）；`tests.test_owner_field` 2 例回归通过
 （`python -m unittest tests.test_owner_warnings tests.test_owner_field` ⇒ 6/6 OK）。
 **残余转 T6**：278 条双认领归属债入台账；`functions.json` 自身 owner 字段被忽略（F5②）本次未改行为。
+
+## 2026-10-12 · T10（P0.5 续）：M1 访问级簇 + M10 签名簇（PAL3.cpp 94→81）
+
+### M1 `gbRenderEffect::m_ParamHandle` protected→public（12 错清零）
+**病灶**：手写重建头 `include/gbengine/gbRenderEffect.h` 把 `m_ParamHandle[8]`（+0x24）
+放在 `protected:` 节，而外部类直接访问它（生成 PAL3.cpp:1345-1409 六站点 12 处 C2248）。
+**A 级证据**：访问方位 = `PAL3::DefaultKeyMap@0x406B80`（非 gbRenderEffect 成员）；
+指令 `0x406ba4/0x406bc9` 等 `[reg-0x1]` 字节访问经 IDB 类型解析为 `m_ParamHandle[7]` HIBYTE
+（decomp 形 `HIBYTE(m_pAdditiveEffect2[-1].m_ParamHandle[7])`）⇒ 原始声明必允许外部访问。
+**修法**：`public:` 标签插到该成员前（**声明序不变 ⇒ 偏移不变**，audit 0 冲突实证）。
+**注**：同节其余三成员（m_pEffect/m_dwFlags/m_pDecl）无外部访问证据 ⇒ 不动。
+
+### M10 签名簇（PAL3.json 3 条 + ida_defs.h 1 条）
+- `gbCreateGraphManager`（include/pal3/ida_defs.h）：`int mode` → `struct gbGfxDriverInfo *`
+  ——A 级：`0x40500e push 0xbfd6c8`（=**&g_DrvInfo**，globals.json 结构体全局）后
+  `0x405013 call [0x56a1fc]`（gbengine 导入）⇒ 实参是结构体地址 ✓（C2664 ×1 清零）。
+- `GetInstance_db10`（0x004BDB10）：sig `PAL3 * __thiscall()` → `PAL3 * __cdecl()` + static +
+  **owner:"PAL3"**（T5 先例：functions.json 同址条目无 owner 会赢 merge ⇒ 结构侧改动须
+  owner 才生效）——A 级：体=单例访问器（返回 `&g_PAL3` + atexit 注册，头部指令只读全局
+  `0xde7aa0` 区，**零栈参读取**）⇒ 静态无形参 ✓（C2660 'does not take 1 parameters' ×2 清零）。
+- `ReadRegistryValue`（0x004070A0）/ `WriteRegistryDword`（0x0044E2B0）：param2
+  `DWORD dwDisposition` → `const CHAR *szValueName` + static ——A 级：体
+  `RegSetValueExA(hkey, v4, 0, 4u, …)` 的第 2 实参（API 形 LPCSTR lpValueName）即 param2，
+  经 `v4 = (const CHAR *)dwDisposition` 显式转指针使用 ✓。
+**实测**：PAL3.cpp 94→**81**（−13）· 总错误 1643→**1630** · S2 106/209（T8 预测 +0 ✓）·
+L1 94→94（判据 v2.1 绝对数不回退）· C2248 −12 · C2660 −2。
+
+### 已知残余（诚实标注，非本层可修）
+注册表族 3 错（ReadRegistryValue ×1 + WriteRegistryDword ×2，param2 实参错位）——
+**根因在管线层**：sig 渲染对**可变参**函数丢 `__cdecl`（对照实证：`bool(CHAR*, DWORD, ...)`
+无 cc vs `PAL3 *__cdecl()`/`void __cdecl()` 有 cc）⇒ `pipeline/gen/data.py:417` 的
+`'__cdecl' in _sig` 静态判定对可变参静态成员**恒漏** ⇒ stage2 OOP 转写吞第一实参当 this ⇒
+实参表错位。修它需动 data.py/export_full/stage2（t10 inScope 够不着）⇒ 转后续任务。
+注：签名本身已修对（decomp 重导后调用形已干净：`PAL3::ReadRegistryValue(a, b, 1)`）。

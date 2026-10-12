@@ -385,7 +385,9 @@
   },
   "0x004BDB10": {
    "name": "GetInstance_db10",
-   "signature": "PAL3 * __thiscall()"
+   "signature": "PAL3 * __cdecl()",
+   "owner": "PAL3",
+   "static": true
   },
   "0x004BFD20": {
    "name": "GetInstance_fd20",
@@ -405,7 +407,8 @@
   },
   "0x004070A0": {
    "name": "ReadRegistryValue",
-   "signature": "bool(CHAR *lpSubKey, DWORD dwDisposition, ...)"
+   "signature": "bool __cdecl(const CHAR *szSubKey, const CHAR *szValueName, ...)",
+   "static": true
   },
   "0x0041F9F0": {
    "name": "LoadingTimerCallback",
@@ -418,7 +421,7 @@
   },
   "0x0044E2B0": {
    "name": "WriteRegistryDword",
-   "signature": "bool __cdecl PAL3::WriteRegistryDword(CHAR *lpSubKey, DWORD dwDisposition, ...)",
+   "signature": "bool __cdecl(CHAR *lpSubKey, const CHAR *szValueName, ...)",
    "static": true
   },
   "0x00456590": {
