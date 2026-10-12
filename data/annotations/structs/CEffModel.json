@@ -87,8 +87,8 @@
     },
     "0x004CFD00": {
       "name": "CreateEffModel",
-      "signature": "int __cdecl()",
-      "source": "vtable_migrated",
+      "signature": "CEffModel * __cdecl()",
+      "source": "vtable_migrated | [T19] return-type retype int->CEffModel *: A 级 objdump 0x40CFD00 内 4cfd00 push 0x68/call new、4cfd0a test eax,eax、4cfd0e mov ecx,eax 跳 ctor —— 返回值=operator new 分配体（EAX 直通）；体 `return v0;` 指针语义实证",
       "static": true
     },
     "0x004D0390": {

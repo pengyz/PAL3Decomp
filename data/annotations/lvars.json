@@ -5328,5 +5328,33 @@
   ],
   "_notes": {
     "0x00408FD0": "批4 A 簇接线 2026-10-07：同槽 14 重声明归并单形（void* 多数形 11/14）——冲突留注（int 计数/gbVec3D* scale-12 语义并存=复核 R-A 样张）；stkoff 56=复核 loc 换算坑随行"
-  }
+  },
+  "0x0043A870": [
+    {
+      "name": "p_m_curline",
+      "type": "Parent_Data **",
+      "source": "[T19] lvar 类型退化 _DWORD*->Parent_Data **: 槽存 TextureLibDataBase::CreateParentData 返回（Parent_Data*，class 型证据）+ 空值 ⇒ 指针槽；字节中性（槽同为指针宽）"
+    }
+  ],
+  "0x0044E660": [
+    {
+      "name": "v4",
+      "type": "_DWORD *",
+      "source": "[T19] 符号性对齐 LONG*->_DWORD*：与 v12(_DWORD[23]) 衰变一致（C2440 'unsigned long [23]'->'long *'）；signed/unsigned long 同为 4 字节同指令 ⇒ 字节中性编译级等价"
+    }
+  ],
+  "0x0044F8D0": [
+    {
+      "name": "v10",
+      "type": "int *",
+      "source": "[T19] lvar 类型退化 int*->CCBUIPanel *: 赋值源 ((CCBUIPanel *)v32) cast 型证据；字节中性（槽同为指针宽） | [T19 回退] pin CCBUIPanel* 误判当场读抓回（v10 为型复用 lvar，多用途行连锁 C2784 级联）⇒ 还原 int*，留 adjudicate_lvar_type 接线批"
+    }
+  ],
+  "0x0051BBE0": [
+    {
+      "name": "Block",
+      "type": "CCBSkillWindow *",
+      "source": "[T19 回退] 注解 pin 错层——Block 实为 __thiscall 的 this（register 16=ECX 槽），decomp 型已正确（CCBSkillWindow *），生成码 int 化是 codegen this/寄存器建模降解（brief：reg_* 建模 ≠ 注解坍缩，不改注解）⇒ pin 撤销，留 codegen 建模修（P1/codegen 批）"
+    }
+  ]
 }
