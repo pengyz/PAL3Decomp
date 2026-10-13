@@ -35,6 +35,20 @@ def run(code, ctx):
             if _re0.search(r'\bthis\b\s*$', _inner.split(',')[0]):
                 _n = max(0, _n - 1)
             _cnts.setdefault(_m, set()).add(_n)
+        # [T56] 自由函数（functions.json → free_func_sigs）同喂 slots map：
+        # thunk callee（compiler_init_* 族）是自由函数，method_sigs 不含 ⇒
+        # sig_slots 门恒 None——T50/T56 两次 thunk 实验翻红的**真正根因**
+        # （T51 修对了 this/thunk 门但 slots 喂入断，T26/T27 feed 族同根）。
+        for _k, _sig in list((getattr(store, 'free_func_sigs', None) or {}).items()):
+            _m = str(_k).split('(')[0]
+            _pm2 = _re0.search(r'\((.*)\)\s*$', str(_sig))
+            if not _pm2:
+                continue
+            _inner2 = _pm2.group(1).strip()
+            if _inner2 == '...':
+                continue                   # 变参形槽数未知 ⇒ 不入（禁猜测）
+            _n2 = (_inner2.count(',') + 1) if (_inner2 and _inner2 != 'void') else 0
+            _cnts.setdefault(_m, set()).add(_n2)
         _SLOTS_CACHE = {m: next(iter(s)) for m, s in _cnts.items() if len(s) == 1}
     code = transform_oop_calls(code, static_methods=store.static_methods,
                                cls_name=ctx.cls_name)
