@@ -537,6 +537,11 @@ def drop_call_echo_arg(code, sig_slots_by_method):
             continue
         if not re.match(r'^[\w:\*~& ]+$', head):
             continue                       # 宏头（ASSERT 等）非定义头
+        # [T51] 方法隐式 this 入回波形参集（F-echo-drop-this-gap 闭合）：
+        # this-strip 后 def-head 无 this，但调用形渲 `this` 回波须剔
+        # （thiscall 语义 ✓——A 级：thunk `e9 0b 00 00 00` jmp 形无实参设置）。
+        if '::' in head:
+            fn_params.add('this')
         for pm in re.finditer(r'\b(\w+)\s*(?:\[[^\]]*\])?\s*(?=,|$)', mdef.group(2)):
             # 字面量守卫（07fe8e00 残孔补：0x10i64/100i64 MSVC __int64 后缀、(int)0x10u 铸形）
             _v = pm.group(1)
@@ -557,6 +562,16 @@ def drop_call_echo_arg(code, sig_slots_by_method):
         r'(?<!\w)(?P<method>\w+)\s*\((?P<first>[^(),]+(?:\([^()]*\)[^(),]*)*'
         r'|\([^()]*\)[^(),]*)\s*,\s*')
     edits = []
+    # [T51] 单实参 this 回波形（f(this)——pattern 的 `,\s*` 尾要求多实参，
+    # 单实参形不入）：0 槽数签名 + 唯一实参 this + **thunk 属性证据**
+    # （decomp `// attributes: thunk` 注记——A 级：thunk `e9 0b 00 00 00`
+    # jmp 形无实参设置）⇒ 剔除。当场读实证：无 thunk 证据的 f(this) 有
+    # 真实参案（UI3DModelNode/_Console 翻红）⇒ 证据门收窄至此。
+    pat_this = re.compile(r'(?<!\w)(?P<method>\w+)\s*\(\s*this\s*\)')
+    if 'attributes: thunk' in code:
+        for m in pat_this.finditer(masked):
+            if sig_slots_by_method.get(m.group('method')) == 0:
+                edits.append((m.start(), m.end(), '%s()' % m.group('method')))
     for m in pat.finditer(masked):
         method = m.group('method')
         slots = sig_slots_by_method.get(method)
