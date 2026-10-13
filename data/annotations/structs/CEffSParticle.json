@@ -87,9 +87,10 @@
       "signature": "int __thiscall(int nVal)"
     },
     "0x004D5620": {
-      "name": "Update",
+      "name": "GetEffTypeData",
       "signature": "int *__thiscall(float fCurTime)",
-      "ordinal": 14
+      "ordinal": 14,
+      "source": " | [T110] 语义偏离名修正：@0x4D5620 全函数体（703 字符）= switch(LODWORD(fCurTime)) 各 case 返回数据指针（类型码→数据表查表）⇒ 语义名 GetEffTypeData（禁伪语义 ✓ 全函数体证据）"
     },
     "0x004D56B0": {
       "name": "Render",
