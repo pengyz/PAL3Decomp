@@ -65,6 +65,7 @@ def get_dll_text_section(dll_path):
 
             if name == '.text':
                 return {
+        'reloc_target': reloc_target,
                     'virt_addr': virt_addr,
                     'virt_size': virt_size,
                     'raw_offset': raw_offset,
@@ -252,6 +253,24 @@ def compare_bytes(compiled, original, func_name, verbose=True, relocs=None):
     diffs = []
     reloc_diffs = 0
 
+    # [T81/P0c] 重定位目标核对（kiro 口径）：每处重定位的 4 字节值双侧比较——
+    # 可解析（双值在 .text 范围内 ⇒ 目标可定位）计入 reloc_ok/total；不可解析
+    # （导入/字符串/vtable）计 reloc_unresolved。每处 4 字节跳过+截断比较的判据
+    # 不变（完美性判定不被此检查改变——纯计量）。
+    reloc_target = {'total': 0, 'ok': 0, 'unresolved': 0}
+    for i in sorted(relocs):
+        if i + 4 > min_len:
+            continue
+        reloc_target['total'] += 1
+        cv = int.from_bytes(compiled[i:i+4], 'little')
+        ov = int.from_bytes(original[i:i+4], 'little')
+        if 0x400000 <= cv <= 0x600000 and 0x400000 <= ov <= 0x600000:
+            if cv == ov:
+                reloc_target['ok'] += 1
+            else:
+                reloc_target['unresolved'] += 1  # 目标异（计入偏移量后仍异）
+        else:
+            reloc_target['unresolved'] += 1  # 导入/字符串/vtable 等不可解析
     for i in range(min_len):
         if compiled[i] == original[i]:
             matches += 1
@@ -293,6 +312,7 @@ def compare_bytes(compiled, original, func_name, verbose=True, relocs=None):
         # （`compare_pal3.compare_units` 拿到 res 后只取 match_pct）。**只增字段，不改判据**。
         'diffs': diffs,
         'reloc_diffs': reloc_diffs,
+        'reloc_target': reloc_target,
         'first_diff': diffs[0] if diffs else None,
     }
 
