@@ -499,11 +499,14 @@ _CHAIN_RE = re.compile(r'^[A-Za-z_]\w*(?:\s*(?:->|\.)\s*[A-Za-z_]\w*)*$')
 
 
 def _chain_class(base_txt, ctx):
-    """解析 `this / this->m_X / a.m_Y` 形链表达式的类名；解析不出返回 None。"""
+    """解析 `this / this->m_X / a.m_Y` 形链表达式的类名；解析不出返回 None。
+    [T37] 下标段（m_ani[7]）剥除后按元素型续链（数组元素的成员=数组元素型的成员）。"""
     s = (base_txt or '').strip()
+    s = re.sub(r'\[[^\]]*\]', '', s)          # [T37] 下标段剥除（数组元素续链）
     if not s or not _CHAIN_RE.match(s):
         return None
     parts = re.split(r'\s*(?:->|\.)\s*', s)
+    parts = [re.sub(r'\[[^\]]*\]', '', p) for p in parts]
     cls = None
     first = parts[0]
     if first in ('this', '_this'):
@@ -518,8 +521,14 @@ def _chain_class(base_txt, ctx):
     for p in parts[1:]:
         nxt = (mt.get(cls) or {}).get(p)
         if not nxt:
+            # [T37] 基类回落（m_childs 在 UIWnd 基类里）：struct_bases 链上溯
+            for _b in ((getattr(store, 'struct_bases', None) or {}).get(cls) or {}):
+                nxt = (mt.get(_b) or {}).get(p)
+                if nxt:
+                    break
+        if not nxt:
             return None
-        nm = re.match(r'^(?:const\s+)?([A-Za-z_]\w*(?:::[A-Za-z_]\w*)*)\s*(?:\*.*)?$', nxt.strip())
+        nm = re.match(r'^(?:const\s+)?([A-Za-z_]\w*(?:::[A-Za-z_]\w*)*)\s*(?:\*.*|\[.*)?$', nxt.strip())
         if not nm:
             return None
         cls = nm.group(1)
@@ -555,6 +564,11 @@ def _member_type_of(base_txt, fname, ctx):
     cls = _chain_class(base_txt, ctx)
     if cls:
         t = (_load_member_types().get(cls) or {}).get(fname)
+        if not t:
+            for _b in ((getattr(store, 'struct_bases', None) or {}).get(cls) or {}):
+                t = (_load_member_types().get(_b) or {}).get(fname)
+                if t:
+                    break
         if t:
             return t
     return None
@@ -622,6 +636,49 @@ _SD_CALL_RE = re.compile(r'\b([A-Za-z_]\w*::)?~([A-Za-z_]\w*)\s*\((?=\s*[^)\s])'
 def _fix_sdtor_calls(code):
     return _SD_CALL_RE.sub(
         lambda m: '%s_sdtor_call_dtor(' % (m.group(1) or ''), code)
+
+
+# [T37] 指针值→unsigned long 整型别名 lvalue（C2440 'X*'→'unsigned long'，
+# UIPushButton/UIEmote 全簇 4 行）：双门——①LHS 为整型别名形
+# （HIDWORD()/ *(T*) 解引用别名 / 下标形）②RHS 为指针型证据（成员链型 gate
+# 或方法返回型 gate）⇒ RHS 包 (unsigned long)（位拷贝，字节等价：同一寄存器值存）。
+_PTR2ULONG_RE = re.compile(
+    r'^(?P<ind>\s*)(?P<l>HIDWORD\s*\([^;=]*\)|\*\s*\(\s*(?:_DWORD|DWORD|unsigned\s+long|int)\s*\*\s*\)[^;=]*'
+    r'|[A-Za-z_]\w*\s*\[[^;=]*\])\s*=\s*(?P<r>[^;]+);\s*$')
+
+
+def _rhs_is_pointer(rhs, ctx):
+    """[T37] RHS 指针型证据：成员链型含 * 或 方法返回型含 *。"""
+    rhs = rhs.strip()
+    cm = re.match(r'^(?:\(\s*\([^)]*\)\s*\))?[A-Za-z_]\w*(?:\s*(?:->|\.)\s*[\w\->.\[\]]+)?'
+                  r'->\s*(?:[A-Za-z_]\w*::)?([A-Za-z_~]\w*)\s*\(.*\)$', rhs)
+    if not cm:
+        cm = re.match(r'^(?:[A-Za-z_]\w*::)?([A-Za-z_~]\w*)\s*\(.*\)$', rhs)
+    if cm:
+        name = cm.group(1)
+        if name.startswith('~'):
+            return False
+        for k, s in (getattr(store, 'method_sigs', None) or {}).items():
+            if k.split('::')[-1].split('(')[0] == name:
+                if '*' in (s.split('(')[0] or ''):
+                    return True
+        return False
+    mm = re.match(r'^(.*?)(->|\.)(\w+)$', rhs)
+    if mm:
+        t = _member_type_of(mm.group(1), mm.group(3), ctx)
+        return bool(t and '*' in t)
+    return False
+
+
+def _fix_ptr_to_ulong_assigns(code, ctx):
+    out = []
+    for l in code.split('\n'):
+        m = _PTR2ULONG_RE.match(l)
+        if m and _rhs_is_pointer(m.group('r'), ctx):
+            out.append('%s%s = (unsigned long)(%s);' % (m.group('ind'), m.group('l'), m.group('r')))
+        else:
+            out.append(l)
+    return '\n'.join(out)
 
 
 def _fix_member_assign_forms(code, ctx):
@@ -2014,6 +2071,8 @@ def run(code, ctx):
     # 指针成员 ← 整型字面量 → 补显式 cast（字节等价：同一立即数存）。
     # 类型仅链解析（T11 三段判据：名唯一回退会误伤 SDK 漏网名）。
     result = _fix_member_assign_forms(result, ctx)
+    # [T37] 指针值→unsigned long 整型别名 lvalue ⇒ (unsigned long) 位拷贝 cast
+    result = _fix_ptr_to_ulong_assigns(result, ctx)
     # [T18] NewTexture 实参 int 退化 ⇒ 显式 cast（字节等价）
     result = _fix_newtexture_args(result)
     # [T26] SetLibFolder 实参窄型 ⇒ (const char *) cast（字节等价）
