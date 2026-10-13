@@ -34,7 +34,7 @@ def test_parse_count_matches_file():
         if ln.startswith('extern') and '//' in ln and '0x' in ln:
             raw += 1
     assert len(entries) == raw
-    assert len(entries) == 2242  # 合同刷新（2026-09-28 用户授权）：2035→2232（+197）
+    assert len(entries) == 2855  # [T77/F9 2026-10-13] 口径归一：实测 globals.h extern=2855（rdata 163 / data_init 930 / bss 1762）——原 2242/2232/2035 四数漂移
     # 归因：W2 幻影清理**释放波**合法增发此前被容器声称吞掉的全局（PAL3 收缩 +56 /
     # SceneMgr 成分拆分 +151 等 ≈ +207）减 G 系删除/墓碑 −12 ≈ +197。原"退役棘轮
     # 2734→2034"合同假设 extern 只减——被释放波推翻（b827549e/fcce0c24 双结报 N1）。
@@ -95,7 +95,7 @@ def test_classify_known_addresses():
 def test_census_total_and_buckets():
     census = gra.build_census(GLOBALS_H, os.path.join(ROOT, 'original', 'PAL3.exe'))
     rows = census['rows']
-    assert len(rows) == 2242     # 同 :37 合同刷新（释放波 +197 归因在案）
+    assert len(rows) == 2855     # [T77/F9 2026-10-13] 同 :37 口径归一（2855）
     # 完备门（阶段 1 形态）：每行有 section 与 bucket；rdata 即 B7，
     # 其余为 pending（最终 bucket 由分区/锚定阶段细分——完备性在全部阶段后达成）
     for r in rows:
@@ -112,7 +112,7 @@ def test_census_total_and_buckets():
     assert len(by_sec.get('bss', [])) == 1159
     # 合同刷新（2026-09-28）：951→1149（+198）——释放波主体落 bss（未初始化数据对象：
     # PAL3 收缩/SceneMgr 成分拆分释放的全局多为 bss 项）与 :37 的 +197 归因闭合
-    # （rdata 155 / data_init 928 / bss 1149 = 2232 ✓）
+    # （rdata 163 / data_init 930 / bss 1762 = 2855 ✓ [T77/F9 2026-10-13 实测]）
 
 
 def test_census_deterministic(tmp_path):

@@ -181,8 +181,10 @@ def main(argv=None):
                      'a*串名' if re.match(r'^a[A-Z]', nm) else
                      'auto:' + nm.split('_')[0] if '_' in nm else 'other')
         # ⑥ 可变性（用户判据：游戏变量=可变状态；只读指针表/常量表不算）
-        has_write = any(s in ('mov_store', 'mov_imm', 'fpu', 'addr')
-                        and n for s, n in shapes.items())
+        # [T77/F3] 死代码删除：原 L184-185 二次 has_write 赋值（addr/fpu 全计写、
+        # 引用不存在的 mov_imm）覆盖 C4 逐条精判——影子树定量（bfd87ca0）：删后
+        # 2720 条中 247 条改类、20 条假「真·可变全局」消除（g_pszSceneSlot1/2 等
+        # 实为只读）。保留 C4 版（L174 _is_mem_write 逐条判）✓ 唯一权威。
         # 分类（负证优先——W1 结构性负证序；75e5af3b C4 严判据 + IAT 类目）
         if is_str_strict:
             c = '串字面（伪全局）'

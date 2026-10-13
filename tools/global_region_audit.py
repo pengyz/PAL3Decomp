@@ -28,7 +28,7 @@ _EXTERN_RE = re.compile(
 # 分母口径常量（完备性门禁——漂移即测试红）。
 # 棘轮轨迹：2734（退役前）→ 2034（退役第一波 -700）→ 2035（+1 = aDatascriptScen_0
 # 合成名漂移，伪函数清除改变去重顺序的附带产物，已归因非真实新增）
-DENOMINATOR = 2035
+DENOMINATOR = 2855  # [T77/F9 2026-10-13] 口径定：实测 globals.h extern=2855（rdata 163 / data_init 930 / bss 1762）——原 2035/2232/2242 四数漂移已归一
 
 # 基型字节数（size_bytes 估算用；未知基型 → None）
 _BASE_SIZES = {
