@@ -495,6 +495,25 @@ def _load_global_types():
     return _GLOBAL_TYPES
 
 
+def _lookup_member_with_bases(cls, fname):
+    """[T38-F3] 成员类型查找（含基类**递归**上溯）：BFS 沿 struct_bases 上溯，
+    孙基类成员仍解析（单层回落对 C→B1→B2 的 B2 成员失效——T38 复核）。"""
+    mt = _load_member_types()
+    bo = getattr(store, 'struct_bases', None) or {}
+    seen = set()
+    queue = list(bo.get(cls) or {})
+    while queue:
+        b = queue.pop(0)
+        if b in seen:
+            continue
+        seen.add(b)
+        t = (mt.get(b) or {}).get(fname)
+        if t:
+            return t
+        queue.extend(bo.get(b) or {})
+    return None
+
+
 _CHAIN_RE = re.compile(r'^[A-Za-z_]\w*(?:\s*(?:->|\.)\s*[A-Za-z_]\w*)*$')
 
 
@@ -521,11 +540,9 @@ def _chain_class(base_txt, ctx):
     for p in parts[1:]:
         nxt = (mt.get(cls) or {}).get(p)
         if not nxt:
-            # [T37] 基类回落（m_childs 在 UIWnd 基类里）：struct_bases 链上溯
-            for _b in ((getattr(store, 'struct_bases', None) or {}).get(cls) or {}):
-                nxt = (mt.get(_b) or {}).get(p)
-                if nxt:
-                    break
+            # [T37/T38-F3] 基类回落**递归上溯**（孙基类成员仍解析）：BFS 沿
+            # struct_bases 上溯（单层回落对 C→B1→B2 的 B2 成员失效——T38 复核）。
+            nxt = _lookup_member_with_bases(cls, p)
         if not nxt:
             return None
         nm = re.match(r'^(?:const\s+)?([A-Za-z_]\w*(?:::[A-Za-z_]\w*)*)\s*(?:\*.*|\[.*)?$', nxt.strip())
@@ -565,10 +582,7 @@ def _member_type_of(base_txt, fname, ctx):
     if cls:
         t = (_load_member_types().get(cls) or {}).get(fname)
         if not t:
-            for _b in ((getattr(store, 'struct_bases', None) or {}).get(cls) or {}):
-                t = (_load_member_types().get(_b) or {}).get(fname)
-                if t:
-                    break
+            t = _lookup_member_with_bases(cls, fname)
         if t:
             return t
     return None
@@ -641,7 +655,9 @@ def _fix_sdtor_calls(code):
 # [T37] 指针值→unsigned long 整型别名 lvalue（C2440 'X*'→'unsigned long'，
 # UIPushButton/UIEmote 全簇 4 行）：双门——①LHS 为整型别名形
 # （HIDWORD()/ *(T*) 解引用别名 / 下标形）②RHS 为指针型证据（成员链型 gate
-# 或方法返回型 gate）⇒ RHS 包 (unsigned long)（位拷贝，字节等价：同一寄存器值存）。
+# 或方法返回型 gate）⇒ RHS 包 (unsigned long)（**类型级字节等价**：x86-32
+# 位拷贝成立——指针/整型值同 4 字节寄存器传送；⚠️ 非端到端 L1 实证（T38-F2
+# 限缩：目标函数仍 partial，L1 增量来自新入比对集单元））。
 _PTR2ULONG_RE = re.compile(
     r'^(?P<ind>\s*)(?P<l>HIDWORD\s*\([^;=]*\)|\*\s*\(\s*(?:_DWORD|DWORD|unsigned\s+long|int)\s*\*\s*\)[^;=]*'
     r'|[A-Za-z_]\w*\s*\[[^;=]*\])\s*=\s*(?P<r>[^;]+);\s*$')
