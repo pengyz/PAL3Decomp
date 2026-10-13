@@ -18,16 +18,16 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 922,
-  "matched": 754,
-  "unmatched": 168,
-  "match_L1": 129,
-  "partial": 537,
+  "symbols": 952,
+  "matched": 777,
+  "unmatched": 175,
+  "match_L1": 132,
+  "partial": 553,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 88
+  "unresolved_synth": 92
  },
  "rows": [
   {
@@ -4099,6 +4099,33 @@
    "size": 1137
   },
   {
+   "file": "pal3/src/Misc/UIEmote.cpp",
+   "symbol": "??0UIEmote@@QAE@XZ",
+   "name": "UIEmote::UIEmote(void)",
+   "va": "0x0044E530",
+   "status": "partial",
+   "match_pct": 45.1,
+   "size": 133
+  },
+  {
+   "file": "pal3/src/Misc/UIEmote.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x0044E5C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UIEmote.cpp",
+   "symbol": "?Render@UIEmote@@QAEXXZ",
+   "name": "UIEmote::Render(void)",
+   "va": "0x00529870",
+   "status": "partial",
+   "match_pct": 19.9,
+   "size": 873
+  },
+  {
    "file": "pal3/src/Misc/UIGameFrm.cpp",
    "symbol": "?OnMessage@UIGameFrm@@UAEHHHH@Z",
    "name": "UIGameFrm::OnMessage(int,int,int)",
@@ -4394,6 +4421,150 @@
    "status": "partial",
    "match_pct": 23.3,
    "size": 159
+  },
+  {
+   "file": "pal3/src/Misc/UIPushButton.cpp",
+   "symbol": "?RenderQuadSlice@UIPushButton@@QAEXPAHH@Z",
+   "name": "UIPushButton::RenderQuadSlice(int *,int)",
+   "va": "0x0043DAB0",
+   "status": "partial",
+   "match_pct": 20.5,
+   "size": 400
+  },
+  {
+   "file": "pal3/src/Misc/UIPushButton.cpp",
+   "symbol": "??0UIPushButton@@QAE@XZ",
+   "name": "UIPushButton::UIPushButton(void)",
+   "va": "0x00440740",
+   "status": "partial",
+   "match_pct": 37.0,
+   "size": 81
+  },
+  {
+   "file": "pal3/src/Misc/UIPushButton.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x0044E5C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UIPushButton.cpp",
+   "symbol": "??_GUIPushButton@@UAEPAXI@Z",
+   "name": "UIPushButton::`scalar deleting destructor'(uint)",
+   "va": "0x004407A0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UIPushButton.cpp",
+   "symbol": "?FormatText@UIPushButton@@QAEXPBDD@Z",
+   "name": "UIPushButton::FormatText(char const *,char)",
+   "va": "0x00440960",
+   "status": "partial",
+   "match_pct": 52.9,
+   "size": 187
+  },
+  {
+   "file": "pal3/src/Misc/UIPushButton.cpp",
+   "symbol": "?LoadResource@UIPushButton@@QAEPAVgbVFileSystem@@PBDD@Z",
+   "name": "UIPushButton::LoadResource(char const *,char)",
+   "va": "0x00440A20",
+   "status": "partial",
+   "match_pct": 52.4,
+   "size": 187
+  },
+  {
+   "file": "pal3/src/Misc/UIPushButton.cpp",
+   "symbol": "?LoadTexture@UIPushButton@@QAEXPBDD@Z",
+   "name": "UIPushButton::LoadTexture(char const *,char)",
+   "va": "0x00440AE0",
+   "status": "partial",
+   "match_pct": 52.9,
+   "size": 187
+  },
+  {
+   "file": "pal3/src/Misc/UIPushButton.cpp",
+   "symbol": "?OnMessage@UIPushButton@@UAEHXZ",
+   "name": "UIPushButton::OnMessage(void)",
+   "va": "0x00440BA0",
+   "status": "partial",
+   "match_pct": 25.0,
+   "size": 52
+  },
+  {
+   "file": "pal3/src/Misc/UIPushButton.cpp",
+   "symbol": "?SetText@UIPushButton@@QAEXXZ",
+   "name": "UIPushButton::SetText(void)",
+   "va": "0x00440CE0",
+   "status": "partial",
+   "match_pct": 40.9,
+   "size": 230
+  },
+  {
+   "file": "pal3/src/Misc/UIPushButton.cpp",
+   "symbol": "?Render@UIPushButton@@UAEXXZ",
+   "name": "UIPushButton::Render(void)",
+   "va": "0x00440F30",
+   "status": "partial",
+   "match_pct": 9.1,
+   "size": 265
+  },
+  {
+   "file": "pal3/src/Misc/UIPushButton.cpp",
+   "symbol": "?LoadTextureByName@UIPushButton@@QAEXPBDD@Z",
+   "name": "UIPushButton::LoadTextureByName(char const *,char)",
+   "va": "0x00442480",
+   "status": "partial",
+   "match_pct": 17.4,
+   "size": 190
+  },
+  {
+   "file": "pal3/src/Misc/UIPushButton.cpp",
+   "symbol": "?CreateFromTemplate@UIPushButton@@QAEXPAXH@Z",
+   "name": "UIPushButton::CreateFromTemplate(void *,int)",
+   "va": "0x004426B0",
+   "status": "partial",
+   "match_pct": 22.0,
+   "size": 227
+  },
+  {
+   "file": "pal3/src/Misc/UIPushButton.cpp",
+   "symbol": "?CtorWithFlag@UIPushButton@@QAEPAV1@XZ",
+   "name": "UIPushButton::CtorWithFlag(void)",
+   "va": "0x00442D00",
+   "status": "partial",
+   "match_pct": 35.7,
+   "size": 28
+  },
+  {
+   "file": "pal3/src/Misc/UIPushButton.cpp",
+   "symbol": "?UIPushButton_Base@UIPushButton@@QAEPAV1@XZ",
+   "name": "UIPushButton::UIPushButton_Base(void)",
+   "va": "0x00443380",
+   "status": "partial",
+   "match_pct": 38.9,
+   "size": 18
+  },
+  {
+   "file": "pal3/src/Misc/UIPushButton.cpp",
+   "symbol": "?RenderTile@UIPushButton@@QAEXHD@Z",
+   "name": "UIPushButton::RenderTile(int,char)",
+   "va": "0x0044AA20",
+   "status": "partial",
+   "match_pct": 18.2,
+   "size": 214
+  },
+  {
+   "file": "pal3/src/Misc/UIPushButton.cpp",
+   "symbol": "?DestroyChainToBase@UIPushButton@@QAEXXZ",
+   "name": "UIPushButton::DestroyChainToBase(void)",
+   "va": "0x0044BE60",
+   "status": "partial",
+   "match_pct": 33.3,
+   "size": 12
   },
   {
    "file": "pal3/src/Misc/UIRoleSelect.cpp",
