@@ -1214,8 +1214,9 @@
       "signature": "void __thiscall CCBRoleState::TickDebuffs(int roleIdx)"
     },
     "0x004F4B90": {
-      "name": "CalcMagicDamage",
-      "signature": "unsigned int __thiscall CCBRoleState::CalcMagicDamage(int roleIdx, int nMagicID)"
+      "name": "CalcSpellDamage",
+      "signature": "unsigned int __thiscall CCBRoleState::CalcMagicDamage(int roleIdx, int nMagicID)",
+      "source": " | [T107] 同名消歧：0x004F4B90 体带 nMagicID 形参（法术 ID）⇒ 按法术伤害计算（调用实参/形参证据） ⇒ 语义名 CalcSpellDamage（禁伪语义 ✓）；@0x4F57A0 CalcMagicDamage 保留（无 nMagicID 形=通用魔法伤害）"
     },
     "0x004F4C80": {
       "name": "CalcSkillDamage",
