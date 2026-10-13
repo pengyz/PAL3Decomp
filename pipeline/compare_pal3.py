@@ -344,6 +344,15 @@ def match_symbols(funcs, mangled_map, base_idx):
             matched[sym] = mangled_map[sym]
             continue
         if sym.startswith('?'):
+            # [T80/P0b] mangled 名解码兜底（N2 根因：修饰名返回型写法差异
+            # 致 mangler 匹配失败——`?Name@Cls@@...` 的 Name/Cls 与 decomp 的
+            # `Cls::Name` 键唯一对应 ✓ 等价地址映射）：139 未匹配中 78 可对上。
+            m = re.match(r'^\?(\w+)@(\w+)@@', sym)
+            if m:
+                key = '%s::%s' % (m.group(2), m.group(1))
+                if key in base_idx:
+                    matched[sym] = base_idx[key]
+                    continue
             continue  # mangled but no mangler match
         cand = sym[1:] if sym.startswith('_') else sym
         cand = re.sub(r'@\d+$', '', cand)
