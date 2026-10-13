@@ -217,9 +217,9 @@
       "signature": "void __thiscall()"
     },
     "0x0047D440": {
-      "name": "GetScreenDegree",
+      "name": "RenderObjectScene",
       "signature": "void(gbVec3D scrVec, gbMatrixStack *pMatrixStack)",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [T120] 渲染管线命名约定确立（Render<Scope>——T109 RenderEffectTexture 模式）+ 正名：@0x47D440 全函数体（2703 字符）= gbSceneGraph::Begin/End 括号 + gbCamera::SetAsCurrent + Matrix Push/Rotate/Translate + DispatchAction + GetScreenDegree 自调用（场景通路渲染+度计算）⇒ 语义名 RenderObjectScene（禁伪语义 ✓ 全函数体+调用簇证据）；@0x47D320 GetScreenDegree 保留（纯度计算）"
     },
     "0x0047D690": {
       "name": "CaculateRelative",
@@ -242,12 +242,12 @@
     "0x0047DC60": {
       "name": "CheckMouseLPressed",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x0047DC70": {
       "name": "CheckMousePressed",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x00429EE0": {
       "name": "SetTransform",
