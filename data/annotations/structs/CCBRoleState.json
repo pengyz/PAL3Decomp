@@ -701,25 +701,26 @@
     "0x004EE540": {
       "name": "Create",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x004EE760": {
       "name": "Destroy",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x004EE7C0": {
       "name": "Init",
       "signature": "bool __thiscall(int nVal, char pData)",
-      "source": "pdb_ret"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x004EE870": {
       "name": "InitUI",
       "signature": "tagRoleState *__thiscall(int nVal)"
     },
     "0x004EE890": {
-      "name": "Update",
-      "signature": "int __thiscall(int roleIdx)"
+      "name": "UpdateRoleMP",
+      "signature": "int __thiscall(int roleIdx)",
+      "source": " | [T100] 同名消歧：@0x4EE890 体=GetRoleMP(this,roleIdx); return 0（decomp 证据）⇒ 语义名 UpdateRoleMP（与类内 GetRoleMP 命名族一致）；@0x4ECB00 保留 Update（全周期：CheckStatus/ProcessActions/UpdateEffects）——禁伪语义命名 ✓"
     },
     "0x004EE990": {
       "name": "VarianceRoundCounter",
@@ -745,7 +746,7 @@
     "0x004EF6A0": {
       "name": "IsAllWeDead",
       "signature": "bool __thiscall(int bCheckHP)",
-      "source": "pdb_ret"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x004EF6C0": {
       "name": "IsAllEnemyDead",
@@ -841,7 +842,7 @@
     "0x004F1A30": {
       "name": "GetCastFightSkillSuccess",
       "signature": "bool __thiscall(int pCmd)",
-      "source": "pdb_ret"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x004F1B20": {
       "name": "SetCoAttack",
@@ -851,12 +852,12 @@
     "0x004F1CC0": {
       "name": "CanBeImbibeNimbus",
       "signature": "bool __thiscall(int dmg, unsigned int nRoleIndex)",
-      "source": "pdb_ret"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x004F1FA0": {
       "name": "CheckRoleValid",
       "signature": "bool __thiscall(int nRoleIndex, unsigned int roleIdx, int nVal)",
-      "source": "pdb_ret"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x004F2310": {
       "name": "CheckRoleNimbus",
@@ -865,7 +866,7 @@
     "0x004F2350": {
       "name": "CanBeSelect",
       "signature": "bool __thiscall(tagCmdData *pCmd, unsigned int nDestRole)",
-      "source": "pdb_ret"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x004F2910": {
       "name": "SetRoleHP",
