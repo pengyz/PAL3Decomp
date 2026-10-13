@@ -65,8 +65,8 @@
     },
     "512": {
       "name": "m_pSubPanel",
-      "type": "int",
-      "source": "binary_discovery:1refs | ida_xref2"
+      "type": "float",
+      "source": "binary_discovery:1refs | ida_xref2 | [T76] int→float：A 级 objdump 0x200 站点 `fstp DWORD PTR [ecx+0x200]`/`fmul`/`fld` 形（8 个浮点指令站点）⇒ 浮点字段；T73「指针坍缩」表征对本成员证伪。探测器 verdict=float（tools/audit_member_use_pattern.py）"
     },
     "1158": {
       "name": "m_bPanelActive",
