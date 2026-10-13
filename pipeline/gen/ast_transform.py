@@ -1293,8 +1293,16 @@ def rewrite_unqualified_member_call(code, methods_by_cls, exclude=None, slots_by
         _c, _n = _k.split('::', 1)
         _n = _n.split('(')[0]
         _pa = _parse_sig_arity(_s)
+        # [T69] 裸 `__thiscall()` 形（0 形参 thiscall=仅 this）：_parse_sig_arity
+        # 返 None ⇒ _by_na 缺项（T27 裸名 feed 同族缺口，F80 族 GetActiveAttackCount
+        # 实证）⇒ 按 (键类, 元数 0) 补——this 型回落键类（方法归属即 this 型等价证据）。
+        if _pa is None and '__thiscall' in str(_s) and re.search(r'\(\s*\)\s*$', str(_s)):
+            _pa = (None, 0)
+        _this_ty = _pa[0] if _pa else None
+        if not _this_ty:
+            _this_ty = _c
         if _pa:
-            _by_na.setdefault((_n, _pa[1]), []).append(_pa[0])
+            _by_na.setdefault((_n, _pa[1]), []).append(_this_ty)
     pat = re.compile(
         r'(?<![\w:])(?:(?P<qcls>\w+)::)?(?P<name>\w+)\s*\(\s*\(\s*(?P<cls>\w+)\s*\*\s*\)\s*'
         r'(?P<recv>[\w\->.\[\]]+)\s*(?P<rest>,[^;]*)?\)')
