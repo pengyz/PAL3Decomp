@@ -112,3 +112,18 @@ T8 的「lvar 退化」定性**不成立** —— T12 实施时复核证伪：
 - 真 lvar 退化子集与 E.T **缠结无法单独裁型** ⇒ 转批
 
 **⇒ 教训**：**上游诊断的定性要被下游实施复核证伪一次** —— T8 诊断/T12 实施的两段式，比单段更准。
+
+---
+
+## 附：pytest assert-rewrite AST 不兼容（T40 环境坑，2026-10-13）
+
+**现象**：`python -m pytest` 该环境的 assert-rewrite 与当前 Python AST 不兼容
+（`TypeError: required field "lineno" missing from alias`）。
+
+**绕过**：`tests/pytest.ini` 置 `addopts=--assert=plain`，或 unittest 直跑。
+
+**⇒ 后续 R15 落盘批通用** —— 单测落盘时若遇 assert-rewrite 崩溃，加 `--assert=plain` 即可。
+
+**⇒ 与「测试绿证据力为 0」的关系**：这是**测试基础设施**的坑，不是测试设计的坑。
+但它会让「跑测试」这一步本身失败 ⇒ 误以为「测试不存在」。
+**⇒ 教训**：跑测试失败时，先分辨「测试不存在 / 测试失败 / 测试基础设施崩」三种。
