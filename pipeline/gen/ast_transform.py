@@ -567,7 +567,9 @@ def drop_call_echo_arg(code, sig_slots_by_method):
     # （decomp `// attributes: thunk` 注记——A 级：thunk `e9 0b 00 00 00`
     # jmp 形无实参设置）⇒ 剔除。当场读实证：无 thunk 证据的 f(this) 有
     # 真实参案（UI3DModelNode/_Console 翻红）⇒ 证据门收窄至此。
-    pat_this = re.compile(r'(?<!\w)(?P<method>\w+)\s*\(\s*this\s*\)')
+    # [T86] 名形扩 `~?\w+`（dtor 形）：ObjectCamera ctor→dtor COMDAT 别名的
+    # `~ObjectCamera(this)` 回波须入（T85 定位——原 \w+ 头不含 ~）。
+    pat_this = re.compile(r'(?<![\w~])(?P<method>~?\w+)\s*\(\s*this\s*\)')
     # [T53-F2] 证据门锚定行首注释形（非裸子串——字面量含该短语即误放行）
     if re.search(r'^\s*//\s*attributes:\s*thunk', code, re.M):
         for m in pat_this.finditer(masked):
