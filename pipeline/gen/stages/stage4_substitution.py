@@ -652,6 +652,17 @@ def _fix_sdtor_calls(code):
         lambda m: '%s_sdtor_call_dtor(' % (m.group(1) or ''), code)
 
 
+# [T59] thunk #2 形：LOBYTE(result)=EXPR; return result; ⇒ return EXPR;
+# （A 级：thunk `e9 0b 00 00 00` jmp 形=尾直通——LOBYTE 截断形挡尾调用优化；
+# 收窄：仅「LOBYTE 赋值+紧随同名 return」两语句相邻形）。
+_LOBYTE_RET_RE = re.compile(
+    r'LOBYTE\s*\(\s*(\w+)\s*\)\s*=\s*([^;]+);\s*\n\s*return\s+\1\s*;')
+
+
+def _fix_lobyte_return(code):
+    return _LOBYTE_RET_RE.sub(r'return \2;', code)
+
+
 # [T37] 指针值→unsigned long 整型别名 lvalue（C2440 'X*'→'unsigned long'，
 # UIPushButton/UIEmote 全簇 4 行）：双门——①LHS 为整型别名形
 # （HIDWORD()/ *(T*) 解引用别名 / 下标形）②RHS 为指针型证据（成员链型 gate
@@ -2129,6 +2140,8 @@ def run(code, ctx):
     result = _fix_ptr_to_ulong_assigns(result, ctx)
     # [T18] NewTexture 实参 int 退化 ⇒ 显式 cast（字节等价）
     result = _fix_newtexture_args(result)
+    # [T59] LOBYTE 截断-return 坍缩（thunk #2 尾直通形）
+    result = _fix_lobyte_return(result)
     # [T26] SetLibFolder 实参窄型 ⇒ (const char *) cast（字节等价）
     result = _fix_setlibfolder_args(result)
     # [T23-F1] 带实参删除析构调用 ⇒ _sdtor_call_dtor 形（与定义侧一致）
