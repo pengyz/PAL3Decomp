@@ -147,6 +147,10 @@ def _jumpout_to_tailcall(code):
     if not [s for s in _stmts if not s.startswith('JUMPOUT(')]:
         return code
     code = _JUMPOUT_RE.sub(lambda mm: 'sub_%X()' % int(mm.group(1), 16), code)
+    # [T90] callee 侧 noinline 探针（T89 缺件定性：需 callee 侧抑制）——
+    # dtor 定义（`~` 形 def-head）加 __declspec(noinline)，影响面=dtor 定义族。
+    # ⚠️ 先测后改（T88 提示）：本探针仅改 dtor 定义签名前缀。
+    code = re.sub(r'^(?=[\w:~].*::~\w+\s*\()', r'__declspec(noinline) ', code, flags=re.M)
     # [T89] 内联抑制探针（T88 缺件定性：dtor 体被 /Ob2 内联而非尾跳）——
     # inline_depth(0) 不抑成员调用内联（T88 实证）⇒ 叠加 auto_inline(off)。
     # ⚠️ 影响面收窄至本包装函数（thunk 体）——先测后改（T88 提示）。
