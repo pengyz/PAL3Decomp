@@ -106,7 +106,11 @@ def _thunk_keep_tailjump(code, ctx, is_thunk):
              if l.strip() and not l.strip().startswith('//')]
     if len(_body) != 1 or not _body[0].endswith(';'):
         return code
-    return '#pragma inline_depth(0)\n%s\n#pragma inline_depth()' % code
+    # [T89] 内联抑制探针（T88 缺件定性：dtor 体被 /Ob2 内联而非尾跳）——
+    # inline_depth(0) 不抑成员调用内联（T88 实证）⇒ 叠加 auto_inline(off)。
+    # ⚠️ 影响面收窄至本包装函数（thunk 体）——先测后改（T88 提示）。
+    return ('#pragma inline_depth(0)\n#pragma auto_inline(off)\n%s\n'
+            '#pragma auto_inline(on)\n#pragma inline_depth()') % code
 
 
 # --- F51: JUMPOUT(0xADDR) 还原成真正的尾调用 -------------------------------
@@ -143,7 +147,11 @@ def _jumpout_to_tailcall(code):
     if not [s for s in _stmts if not s.startswith('JUMPOUT(')]:
         return code
     code = _JUMPOUT_RE.sub(lambda mm: 'sub_%X()' % int(mm.group(1), 16), code)
-    return '#pragma inline_depth(0)\n%s\n#pragma inline_depth()' % code
+    # [T89] 内联抑制探针（T88 缺件定性：dtor 体被 /Ob2 内联而非尾跳）——
+    # inline_depth(0) 不抑成员调用内联（T88 实证）⇒ 叠加 auto_inline(off)。
+    # ⚠️ 影响面收窄至本包装函数（thunk 体）——先测后改（T88 提示）。
+    return ('#pragma inline_depth(0)\n#pragma auto_inline(off)\n%s\n'
+            '#pragma auto_inline(on)\n#pragma inline_depth()') % code
 
 
 def run_transforms(code, ctx):
