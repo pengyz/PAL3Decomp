@@ -94,11 +94,10 @@
     "source": " | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、"
   },
   "0x0056BA1C": {
-    "name": "off_56BA1C",
-    "reason": "rdata offset: codegen auto-substitutes",
-    "type": "const char *",
-    "category": "ptr_table",
-    "source": " | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、"
+    "name": "g_pLineupNameStrs",
+    "type": "const char *[]",
+    "category": "const_data",
+    "source": "[T31] C266x：A 级 objdump 0x483fb1 `mov ecx,DWORD PTR [ebp*4+0x56ba1c]`（scale-4 DWORD 元素）；消费=LineupComp 调用点实参 `(&off_56BA1C)[id]` 传 const char* 形参 ⇒ const char*[]（字符串指针表）"
   },
   "0x0056C548": {
     "name": "off_56C548",
@@ -120,11 +119,10 @@
     "source": " | categorize: G3 分类标注：零写点+数据访问=常量表/初值（注册内入账）"
   },
   "0x0056D5D8": {
-    "name": "off_56D5D8",
-    "reason": "rdata offset: codegen auto-substitutes",
-    "type": "const char *",
-    "category": "ptr_table",
-    "source": " | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、"
+    "name": "g_pPropUINameStrs",
+    "type": "const char *[]",
+    "category": "const_data",
+    "source": "[T31] C266x/MainPropUI 两行（T26 挂账收口）：A 级 objdump 0x497170 `mov edx,DWORD PTR [ecx*4+0x56d5d8]`（scale-4）+ 0x495ce4 直载 [0]；消费=MainPropUI 调用点实参 `(&off_56D5D8)[idx]` 传 const char* 形参 ⇒ const char*[]"
   },
   "0x0056D604": {
     "name": "g_pfnCallback",
@@ -8184,5 +8182,23 @@
     "type": "int",
     "source": "T13-P2 retype int[]->int: A 级 objdump 0x40b903 mov DWORD PTR ds:0xc10ba0,0x1005（绝对地址 DWORD 标量立即数存）⇒ 4 字节标量非数组（此前无注解条目，codegen extern 回退误推 int[]）",
     "category": "data"
+  },
+  "0x005707F0": {
+    "name": "g_pStarTemplates",
+    "type": "void *[]",
+    "category": "const_data",
+    "source": "[T31] C2109 裸地址数组：A 级 objdump 0x52d6a7/0x52d6d0 `mov eax,DWORD PTR [ebx*4+0x5707f0]`（scale-4 DWORD 元素）+ 0x52c053 直载 [0]；消费=UICoverFrm::AnimateElements@0x0052D5B0 的 CreateFromTemplate((void*)tbl[i]) 指针表 ⇒ void*[]（元素为模板指针）"
+  },
+  "0x0056C534": {
+    "name": "g_pMonsterEntryTemplates",
+    "type": "void *[]",
+    "category": "const_data",
+    "source": "[T31] C2109：A 级 0x487f4e `mov eax,DWORD PTR [edi*4+0x56c534]`（scale-4）；消费=UITitle_XJTM::UpdateMonsterEntry@0x00487C40 的 CreateFromTemplate((void*)tbl[nVal]) ⇒ void*[]（同族 g_MonsterEntryTable 表）"
+  },
+  "0x0056E11C": {
+    "name": "g_pMonsterEntry2Templates",
+    "type": "void *[]",
+    "category": "const_data",
+    "source": "[T31] C2109：A 级 0x499c9d `mov eax,DWORD PTR [edx*4+0x56e11c]`（scale-4）；消费=UITitle_XJTM::UpdateMonsterEntry2@0x004999D0 的 CreateFromTemplate((void*)tbl[nVal]) ⇒ void*[]"
   }
 }
