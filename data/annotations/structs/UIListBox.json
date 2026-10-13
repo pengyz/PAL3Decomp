@@ -494,11 +494,6 @@
       "name": "OnMessage_4590",
       "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
       "source": "vtable_gap_fill_v1(from CCBUIPanel.json)"
-    },
-    "0x0046B4B0": {
-      "name": "OnMessage",
-      "signature": "int __thiscall(int nVal, char *pszBuf, int nVal2)",
-      "source": "vtable_gap_fill_v1(from SaleUI.json)"
     }
   },
   "vtables": [
@@ -678,5 +673,16 @@
     }
   ],
   "base_size": 68,
-  "size_note": "heap alloc says 1760 (vtable-proven ctor 0x527950, 0x5706EC table) BUT UIRoleSelect embeds a 1208-byte region at +0x58 (bounded by m_bk@0x510) whose accesses break at 1760. UIListBox family likely has base(1208)/derived(1760) split - finding recorded round 6b. Held at 1208 pending family split resolution."
+  "size_note": "heap alloc says 1760 (vtable-proven ctor 0x527950, 0x5706EC table) BUT UIRoleSelect embeds a 1208-byte region at +0x58 (bounded by m_bk@0x510) whose accesses break at 1760. UIListBox family likely has base(1208)/derived(1760) split - finding recorded round 6b. Held at 1208 pending family split resolution.",
+  "_attribution_migrations": [
+    {
+      "0x0046B4B0": {
+        "name": "OnMessage",
+        "signature": "int __thiscall(int nVal, char *pszBuf, int nVal2)",
+        "source": "vtable_gap_fill_v1(from SaleUI.json) | [T102] 归属迁移：0x0046B4B0 decomp 类归属=SaleUI（成员访问证据双证）——本类误挂条目移除"
+      },
+      "from": "UIListBox",
+      "to": "SaleUI"
+    }
+  ]
 }

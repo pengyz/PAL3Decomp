@@ -38,15 +38,11 @@
     "0x0051C330": {
       "name": "Create",
       "signature": "bool __thiscall(int *pRect, int parent)",
-      "source": "pdb_ret"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x0051C1B0": {
       "name": "SetActivePage",
       "signature": "BOOL __thiscall(int n, int nVal)"
-    },
-    "0x0051C110": {
-      "name": "Destroy",
-      "signature": "void __thiscall()"
     },
     "0x0051B860": {
       "name": "OnMessage",
@@ -147,5 +143,16 @@
       ]
     }
   ],
-  "base_size": 72
+  "base_size": 72,
+  "_attribution_migrations": [
+    {
+      "0x0051C110": {
+        "name": "Destroy",
+        "signature": "void __thiscall()",
+        "source": " | [T102] 归属迁移：0x0051C110 decomp 类归属=CCBMagicWindow（成员访问证据双证）——本类误挂条目移除"
+      },
+      "from": "CCBSkillWindow",
+      "to": "CCBMagicWindow"
+    }
+  ]
 }

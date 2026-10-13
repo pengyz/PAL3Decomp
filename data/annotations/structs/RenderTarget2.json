@@ -640,11 +640,6 @@
       "signature": "void __thiscall()",
       "source": "vtable_gap_fill_v1(from CEffAction.json)"
     },
-    "0x004C0540": {
-      "name": "ExecutePasses",
-      "signature": "char *__thiscall(char a2)",
-      "source": "vtable_gap_fill_v1(from CEffAction.json)"
-    },
     "0x004C0640": {
       "name": "ResetState",
       "signature": "void __thiscall CEffAction::ResetState(int nVal1)",
@@ -665,11 +660,6 @@
       "signature": "void __thiscall(int)",
       "source": "vtable_gap_fill_v1(from CEffAction.json) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
     },
-    "0x004C09E0": {
-      "name": "RenderScene",
-      "signature": "void __thiscall(int)",
-      "source": "vtable_gap_fill_v1(from CEffAction.json) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
-    },
     "0x004C15D0": {
       "name": "UpdateParticles",
       "signature": "void __thiscall()",
@@ -683,11 +673,6 @@
     "0x004C3D90": {
       "name": "AllocEffect",
       "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
-    },
-    "0x004C3EC0": {
-      "name": "Init",
-      "signature": "int __thiscall(float *pType, float fx, float fy, float fz)",
       "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
     },
     "0x004C4060": {
@@ -1359,6 +1344,33 @@
       },
       "from": "RenderTarget2",
       "to": "Object"
+    },
+    {
+      "0x004C3EC0": {
+        "name": "Init",
+        "signature": "int __thiscall(float *pType, float fx, float fy, float fz)",
+        "source": "vtable_gap_fill_v1(from CEffCylinder.json) | [T102] 归属迁移：0x004C3EC0 decomp 类归属=CEffCylinder（成员访问证据双证）——本类误挂条目移除"
+      },
+      "from": "RenderTarget2",
+      "to": "CEffCylinder"
+    },
+    {
+      "0x004C0540": {
+        "name": "ExecutePasses",
+        "signature": "char *__thiscall(char a2)",
+        "source": "vtable_gap_fill_v1(from CEffAction.json) | [T102] 归属迁移：0x004C0540 decomp 类归属=CEffAction（成员访问证据双证）——本类误挂条目移除"
+      },
+      "from": "RenderTarget2",
+      "to": "CEffAction"
+    },
+    {
+      "0x004C09E0": {
+        "name": "RenderScene",
+        "signature": "void __thiscall(int)",
+        "source": "vtable_gap_fill_v1(from CEffAction.json) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4) | [T102] 归属迁移：0x004C09E0 decomp 类归属=CEffAction（成员访问证据双证）——本类误挂条目移除"
+      },
+      "from": "RenderTarget2",
+      "to": "CEffAction"
     }
   ]
 }
