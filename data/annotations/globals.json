@@ -7880,14 +7880,16 @@
     "source": " | categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入"
   },
   "0x00586194": {
-    "type": "skip",
+    "type": "char *",
     "category": "game_state",
-    "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真"
+    "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | [T34] type:skip→char *（与 globals.h 既有 `extern char *` 一致，零新型声明）+ 补 name：skip 形曾阻断名字/类型流入 ⇒ 体侧仍渲 dword_XXXX（int 退化 C2440 源）。A 级：0x409150 `mov DWORD PTR [esp+0x28],0x586198`/0x40e7a4 `push 0x586194` 地址即参（指针语义）；体侧赋 char* 实参位双向证据",
+    "name": "g_pszSceneSlot2"
   },
   "0x00586198": {
-    "type": "skip",
+    "type": "char *",
     "category": "game_state",
-    "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真"
+    "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | [T34] type:skip→char *（与 globals.h 既有 `extern char *` 一致，零新型声明）+ 补 name：skip 形曾阻断名字/类型流入 ⇒ 体侧仍渲 dword_XXXX（int 退化 C2440 源）。A 级：0x409150 `mov DWORD PTR [esp+0x28],0x586198`/0x40e7a4 `push 0x586194` 地址即参（指针语义）；体侧赋 char* 实参位双向证据",
+    "name": "g_pszSceneSlot1"
   },
   "0x0058619C": {
     "type": "skip",
