@@ -1144,8 +1144,9 @@
       "signature": "int __thiscall(int B4)"
     },
     "0x004DF3D0": {
-      "name": "CheckMP",
-      "signature": "char __thiscall()"
+      "name": "CheckSelfMP",
+      "signature": "char __thiscall()",
+      "source": " | [T106] 同名消歧：0x004DF3D0 体=GetRoleMP(this->m_id,1)（m_id=自身角色槽）⇒ 自身 MP 检查（decomp 调用实参证据）⇒ 语义名 CheckSelfMP（禁伪语义 ✓）"
     },
     "0x004E1A40": {
       "name": "CombatDialogProc",
@@ -1176,8 +1177,9 @@
       "signature": "char __thiscall()"
     },
     "0x004EE910": {
-      "name": "CheckMP",
-      "signature": "int __thiscall(int roleIdx)"
+      "name": "CheckRoleMP",
+      "signature": "int __thiscall(int roleIdx)",
+      "source": " | [T106] 同名消歧：0x004EE910 体=GetRoleMP(this,roleIdx)（显式 roleIdx）⇒ 按角色 MP 检查（decomp 调用实参证据）⇒ 语义名 CheckRoleMP（禁伪语义 ✓）"
     },
     "0x004F0A10": {
       "name": "CalcCombatDamage",
