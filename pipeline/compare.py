@@ -66,7 +66,7 @@ def compile_source(src_path, obj_path=None):
         cmd = [
             str(VC6_BIN / "CL.EXE"), "/nologo", "/c",
             "/O2", "/Ob2", "/Oi", "/Ot", "/Oy", "/GF", "/Gy",
-            "/GX", "/GR", "/MD", "/Gd",
+            "/GX", "/GR", "/MT", "/Gd",
             "/W3",
             "/DNDEBUG", "/DWIN32", "/D_WINDOWS", "/D_MBCS",
             f"/I{win_inc}", f"/I{win_proj_inc}",
@@ -78,7 +78,7 @@ def compile_source(src_path, obj_path=None):
         cmd = [
             "wine", str(VC6_BIN / "CL.EXE"), "/nologo", "/c",
             "/O2", "/Ob2", "/Oi", "/Ot", "/Oy", "/GF", "/Gy",
-            "/GX", "/GR", "/MD", "/Gd",
+            "/GX", "/GR", "/MT", "/Gd",
             "/W3",
             "/DNDEBUG", "/DWIN32", "/D_WINDOWS", "/D_MBCS",
             f"/I{win_inc}", f"/I{win_proj_inc}",

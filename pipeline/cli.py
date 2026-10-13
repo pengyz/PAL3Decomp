@@ -706,7 +706,7 @@ def cmd_match(args=()):
         except (json.JSONDecodeError, OSError):
             pass
     script = os.path.join(_PIPELINE_DIR, 'compare_pal3.py')
-    flags = "/nologo /TP /c /W3 /O2 /Ob2 /Oi /Ot /Oy /GF /Gy /GX /GR /MD /Gd"
+    flags = "/nologo /TP /c /W3 /O2 /Ob2 /Oi /Ot /Oy /GF /Gy /GX /GR /MT /Gd"
     rc = subprocess.run([sys.executable, script, '--flags', flags]).returncode
 
     # R1（2026-09-15 独立复核 M2-a）：
