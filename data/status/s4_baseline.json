@@ -18,16 +18,16 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 819,
-  "matched": 676,
-  "unmatched": 143,
-  "match_L1": 115,
-  "partial": 482,
+  "symbols": 848,
+  "matched": 700,
+  "unmatched": 148,
+  "match_L1": 120,
+  "partial": 499,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 79
+  "unresolved_synth": 81
  },
  "rows": [
   {
@@ -3316,6 +3316,15 @@
    "size": 116
   },
   {
+   "file": "pal3/src/Misc/ScriptPoolPage.cpp",
+   "symbol": "?ScriptPoolPage_Manage@ScriptPoolPage@@QAEHH@Z",
+   "name": "ScriptPoolPage::ScriptPoolPage_Manage(int)",
+   "va": "0x0041D100",
+   "status": "partial",
+   "match_pct": 98.5,
+   "size": 268
+  },
+  {
    "file": "pal3/src/Misc/SoundMgr.cpp",
    "symbol": "?InitCPK@SoundMgr@@QAEDHH@Z",
    "name": "SoundMgr::InitCPK(int,int)",
@@ -3701,6 +3710,51 @@
    "status": "partial",
    "match_pct": 27.1,
    "size": 155
+  },
+  {
+   "file": "pal3/src/Misc/UIButton.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x0044E5C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UIButton.cpp",
+   "symbol": "??_GUIButton@@UAEPAXI@Z",
+   "name": "UIButton::`scalar deleting destructor'(uint)",
+   "va": "0x0043F950",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UIButton.cpp",
+   "symbol": "?Destroy@UIButton@@UAEXXZ",
+   "name": "UIButton::Destroy(void)",
+   "va": "0x0043F9C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 57
+  },
+  {
+   "file": "pal3/src/Misc/UIButton.cpp",
+   "symbol": "?Create@UIButton@@UAEHHPAHH@Z",
+   "name": "UIButton::Create(int,int *,int)",
+   "va": "0x0043FF00",
+   "status": "partial",
+   "match_pct": 41.5,
+   "size": 106
+  },
+  {
+   "file": "pal3/src/Misc/UIButton.cpp",
+   "symbol": "?Render@UIButton@@UAEXXZ",
+   "name": "UIButton::Render(void)",
+   "va": "0x0043FF70",
+   "status": "partial",
+   "match_pct": 13.2,
+   "size": 1505
   },
   {
    "file": "pal3/src/Misc/UICaption.cpp",
@@ -4682,6 +4736,150 @@
    "status": "partial",
    "match_pct": 41.3,
    "size": 63
+  },
+  {
+   "file": "pal3/src/Role/NPC.cpp",
+   "symbol": "?Create@NPC@@SAIH@Z",
+   "name": "NPC::Create(int)",
+   "va": "0x0040EB90",
+   "status": "partial",
+   "match_pct": 22.4,
+   "size": 143
+  },
+  {
+   "file": "pal3/src/Role/NPC.cpp",
+   "symbol": "?Init@NPC@@SAPAXH@Z",
+   "name": "NPC::Init(int)",
+   "va": "0x0040EC20",
+   "status": "partial",
+   "match_pct": 31.9,
+   "size": 433
+  },
+  {
+   "file": "pal3/src/Role/NPC.cpp",
+   "symbol": "?FreeBuffer@NPC@@QAEHXZ",
+   "name": "NPC::FreeBuffer(void)",
+   "va": "0x0040EE00",
+   "status": "partial",
+   "match_pct": 14.7,
+   "size": 34
+  },
+  {
+   "file": "pal3/src/Role/NPC.cpp",
+   "symbol": "?ShiftBufferData@NPC@@QAEDH@Z",
+   "name": "NPC::ShiftBufferData(int)",
+   "va": "0x0040EE30",
+   "status": "partial",
+   "match_pct": 8.5,
+   "size": 457
+  },
+  {
+   "file": "pal3/src/Role/NPC.cpp",
+   "symbol": "?HasBufferData@NPC@@QAE_NH@Z",
+   "name": "NPC::HasBufferData(int)",
+   "va": "0x0040F000",
+   "status": "partial",
+   "match_pct": 18.2,
+   "size": 33
+  },
+  {
+   "file": "pal3/src/Role/NPC.cpp",
+   "symbol": "?GetBufferCount@NPC@@QAEHXZ",
+   "name": "NPC::GetBufferCount(void)",
+   "va": "0x0040F030",
+   "status": "partial",
+   "match_pct": 31.6,
+   "size": 19
+  },
+  {
+   "file": "pal3/src/Role/NPC.cpp",
+   "symbol": "?GetBufferAt@NPC@@QAEHH@Z",
+   "name": "NPC::GetBufferAt(int)",
+   "va": "0x0040F050",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 13
+  },
+  {
+   "file": "pal3/src/Role/NPC.cpp",
+   "symbol": "?SetRoleMode@NPC@@SAHH@Z",
+   "name": "NPC::SetRoleMode(int)",
+   "va": "0x0040F060",
+   "status": "partial",
+   "match_pct": 41.3,
+   "size": 92
+  },
+  {
+   "file": "pal3/src/Role/NPC.cpp",
+   "symbol": "?InitAll@NPC@@SAHXZ",
+   "name": "NPC::InitAll(void)",
+   "va": "0x0040F620",
+   "status": "partial",
+   "match_pct": 26.0,
+   "size": 196
+  },
+  {
+   "file": "pal3/src/Role/NPC.cpp",
+   "symbol": "?SetSceneFlag@NPC@@QAEXXZ",
+   "name": "NPC::SetSceneFlag(void)",
+   "va": "0x00410580",
+   "status": "partial",
+   "match_pct": 46.7,
+   "size": 45
+  },
+  {
+   "file": "pal3/src/Role/NPC.cpp",
+   "symbol": "?UpdateAnim@NPC@@QAEXH@Z",
+   "name": "NPC::UpdateAnim(int)",
+   "va": "0x00446020",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 10
+  },
+  {
+   "file": "pal3/src/Role/NPC.cpp",
+   "symbol": "?GetPropertyByIndex@NPC@@QAEHI@Z",
+   "name": "NPC::GetPropertyByIndex(uint)",
+   "va": "0x00479100",
+   "status": "partial",
+   "match_pct": 10.5,
+   "size": 38
+  },
+  {
+   "file": "pal3/src/Role/NPC.cpp",
+   "symbol": "?DestroyAndRecreateUI@NPC@@QAEXXZ",
+   "name": "NPC::DestroyAndRecreateUI(void)",
+   "va": "0x00517A50",
+   "status": "partial",
+   "match_pct": 11.5,
+   "size": 104
+  },
+  {
+   "file": "pal3/src/Role/NPC.cpp",
+   "symbol": "?HandleAIMessage@NPC@@QAEDHH@Z",
+   "name": "NPC::HandleAIMessage(int,int)",
+   "va": "0x00517AC0",
+   "status": "partial",
+   "match_pct": 12.5,
+   "size": 104
+  },
+  {
+   "file": "pal3/src/Role/NPC.cpp",
+   "symbol": "?ShowAIWindow@NPC@@QAEXXZ",
+   "name": "NPC::ShowAIWindow(void)",
+   "va": "0x00517BA0",
+   "status": "partial",
+   "match_pct": 7.7,
+   "size": 104
+  },
+  {
+   "file": "pal3/src/Role/NPC.cpp",
+   "symbol": "?ResetLineupWindow@NPC@@QAEXXZ",
+   "name": "NPC::ResetLineupWindow(void)",
+   "va": "0x00517CF0",
+   "status": "partial",
+   "match_pct": 23.1,
+   "size": 104
   },
   {
    "file": "pal3/src/Role/Object3D.cpp",

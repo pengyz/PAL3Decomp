@@ -1,6 +1,6 @@
 {
-  "name": "20261013_070218",
-  "timestamp": "2026-10-13T07:02:18.755338",
+  "name": "20261013_082315",
+  "timestamp": "2026-10-13T08:23:15.938940",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "ok",
@@ -298,7 +298,7 @@
     },
     "pal3/src/Combat/CCBStage.cpp": {
       "status": "fail",
-      "error_count": 96,
+      "error_count": 90,
       "errors": [
         {
           "code": "C2556",
@@ -414,36 +414,6 @@
           "code": "C2664",
           "msg": "'sub_4DB940' : cannot convert parameter 1 from 'class CCBAttackSequen *' to 'char *'",
           "line": 5414
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessKeyboard' : function does not take 2 parameters",
-          "line": 5958
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessKeyboard' : function does not take 2 parameters",
-          "line": 5959
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessKeyboard' : function does not take 2 parameters",
-          "line": 5966
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessKeyboard' : function does not take 2 parameters",
-          "line": 5977
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessKeyboard' : function does not take 2 parameters",
-          "line": 5994
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessKeyboard' : function does not take 2 parameters",
-          "line": 5998
         },
         {
           "code": "C2653",
@@ -1167,22 +1137,22 @@
         {
           "code": "C2664",
           "msg": "'int (char *,char *,int *,class CCBUI *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 4628
+          "line": 4626
         },
         {
           "code": "C2664",
           "msg": "'void (unsigned int *,char *,class CCBMagicWindow ** ,class CCBUI *)' : cannot convert parameter 1 from 'unsigned long *' to 'unsigned int *'",
-          "line": 4957
+          "line": 4955
         },
         {
           "code": "C2664",
           "msg": "'void (unsigned int *,unsigned long)' : cannot convert parameter 1 from 'unsigned long *' to 'unsigned int *'",
-          "line": 4959
+          "line": 4957
         },
         {
           "code": "C2664",
           "msg": "'CreateDigitPair' : cannot convert parameter 2 from 'class UIStatic ** ' to 'class UIWnd ** '",
-          "line": 5038
+          "line": 5036
         }
       ]
     },
@@ -3622,20 +3592,9 @@
       "errors": []
     },
     "pal3/src/Misc/ScriptPoolPage.cpp": {
-      "status": "fail",
-      "error_count": 2,
-      "errors": [
-        {
-          "code": "C2660",
-          "msg": "'ScriptPoolPage_Alloc' : function does not take 1 parameters",
-          "line": 59
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessKeyboard' : function does not take 2 parameters",
-          "line": 60
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/ScriptVM.cpp": {
       "status": "fail",
@@ -4087,15 +4046,9 @@
       ]
     },
     "pal3/src/Misc/UIButton.cpp": {
-      "status": "fail",
-      "error_count": 1,
-      "errors": [
-        {
-          "code": "C2664",
-          "msg": "'SetLibFolder' : cannot convert parameter 1 from 'unsigned char *' to 'const char *'",
-          "line": 303
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/UICaption.cpp": {
       "status": "ok",
@@ -5928,15 +5881,9 @@
       ]
     },
     "pal3/src/Role/NPC.cpp": {
-      "status": "fail",
-      "error_count": 1,
-      "errors": [
-        {
-          "code": "C2660",
-          "msg": "'CreateButton' : function does not take 5 parameters",
-          "line": 720
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Role/Object3D.cpp": {
       "status": "ok",
@@ -6291,7 +6238,7 @@
     },
     "pal3/src/Scene/CameraCtrl.cpp": {
       "status": "fail",
-      "error_count": 19,
+      "error_count": 18,
       "errors": [
         {
           "code": "C2660",
@@ -6382,11 +6329,6 @@
           "code": "C2039",
           "msg": "'_nearby_41cbc0' : is not a member of 'CameraCtrl'",
           "line": 1923
-        },
-        {
-          "code": "C2660",
-          "msg": "'ProcessKeyboard' : function does not take 2 parameters",
-          "line": 1948
         }
       ]
     },
@@ -7631,11 +7573,6 @@
           "line": 1835
         },
         {
-          "code": "C2660",
-          "msg": "'ProcessKeyboard' : function does not take 2 parameters",
-          "line": 1836
-        },
-        {
           "code": "C2373",
           "msg": "'InputUpdate' : redefinition; different type modifiers",
           "line": 1841
@@ -7834,6 +7771,11 @@
           "code": "C2664",
           "msg": "'void (unsigned long,unsigned long)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,unsigned long)' to 'unsigned long'",
           "line": 5214
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (unsigned long,int)' : cannot convert parameter 1 from 'void (__cdecl ***  )(unsigned long,int)' to 'unsigned long'",
+          "line": 5228
         }
       ]
     },

@@ -363,6 +363,7 @@
 {"addr": "0x00533DA0", "name": "SceneObjParam::FlushCommands(void)", "file": "pal3/src/Misc/SceneObjParam.cpp", "status": "partial", "match_pct": 36.4, "size": 11}
 {"addr": "0x005330F0", "name": "SceneProp::CalculateWorldPos(float)", "file": "pal3/src/Misc/SceneProp.cpp", "status": "partial", "match_pct": 5.5, "size": 343}
 {"addr": "0x00533BC0", "name": "SceneProp::CalcScreenPosition(void)", "file": "pal3/src/Misc/SceneProp.cpp", "status": "partial", "match_pct": 16.4, "size": 116}
+{"addr": "0x0041D100", "name": "ScriptPoolPage::ScriptPoolPage_Manage(int)", "file": "pal3/src/Misc/ScriptPoolPage.cpp", "status": "partial", "match_pct": 98.5, "size": 268}
 {"addr": "0x0053C340", "name": "SoundMgr::InitCPK(int,int)", "file": "pal3/src/Misc/SoundMgr.cpp", "status": "partial", "match_pct": 19.7, "size": 223}
 {"addr": "0x0053EA80", "name": "SoundMgr::PlayCPKStream(int)", "file": "pal3/src/Misc/SoundMgr.cpp", "status": "partial", "match_pct": 20.9, "size": 201}
 {"addr": "0x004AAD90", "name": "SwordUI::RenderSword(void)", "file": "pal3/src/Misc/SwordUI.cpp", "status": "partial", "match_pct": 19.6, "size": 1290}
@@ -406,6 +407,11 @@
 {"addr": "0x00452DA0", "name": "UIAnimateCtrlEX::OnNotify(int,int,int)", "file": "pal3/src/Misc/UIAnimateCtrlEX.cpp", "status": "partial", "match_pct": 36.1, "size": 72}
 {"addr": "0x00535A70", "name": "UIAnimateCtrlEX::InitMatrix(void)", "file": "pal3/src/Misc/UIAnimateCtrlEX.cpp", "status": "partial", "match_pct": 11.4, "size": 105}
 {"addr": "0x00535E70", "name": "UIAnimateCtrlEX::NormalizeVector(int,int,int,int)", "file": "pal3/src/Misc/UIAnimateCtrlEX.cpp", "status": "partial", "match_pct": 27.1, "size": 155}
+{"addr": "0x0044E5C0", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UIButton.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x0043F950", "name": "UIButton::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UIButton.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x0043F9C0", "name": "UIButton::Destroy(void)", "file": "pal3/src/Misc/UIButton.cpp", "status": "match_L1", "match_pct": 100.0, "size": 57}
+{"addr": "0x0043FF00", "name": "UIButton::Create(int,int *,int)", "file": "pal3/src/Misc/UIButton.cpp", "status": "partial", "match_pct": 41.5, "size": 106}
+{"addr": "0x0043FF70", "name": "UIButton::Render(void)", "file": "pal3/src/Misc/UIButton.cpp", "status": "partial", "match_pct": 13.2, "size": 1505}
 {"addr": "0x0043AB00", "name": "UICaption::Destroy(void)", "file": "pal3/src/Misc/UICaption.cpp", "status": "match_L1", "match_pct": 100.0, "size": 20}
 {"addr": "0x0043AD40", "name": "UICaption::Render(void)", "file": "pal3/src/Misc/UICaption.cpp", "status": "partial", "match_pct": 7.9, "size": 593}
 {"addr": "0x004461F0", "name": "UICaption::DestroyPanel(void)", "file": "pal3/src/Misc/UICaption.cpp", "status": "match_L1", "match_pct": 100.0, "size": 8}
@@ -515,6 +521,22 @@
 {"addr": "0x0053F5E0", "name": "TextureLib::FreeTexture(void)", "file": "pal3/src/Render/TextureLib.cpp", "status": "partial", "match_pct": 25.5, "size": 47}
 {"addr": "0x0053F610", "name": "TextureLib::ParseConfigFile(char *)", "file": "pal3/src/Render/TextureLib.cpp", "status": "partial", "match_pct": 35.7, "size": 98}
 {"addr": "0x0053F920", "name": "TextureLib::SetPath(char *)", "file": "pal3/src/Render/TextureLib.cpp", "status": "partial", "match_pct": 41.3, "size": 63}
+{"addr": "0x0040EB90", "name": "NPC::Create(int)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 22.4, "size": 143}
+{"addr": "0x0040EC20", "name": "NPC::Init(int)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 31.9, "size": 433}
+{"addr": "0x0040EE00", "name": "NPC::FreeBuffer(void)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 14.7, "size": 34}
+{"addr": "0x0040EE30", "name": "NPC::ShiftBufferData(int)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 8.5, "size": 457}
+{"addr": "0x0040F000", "name": "NPC::HasBufferData(int)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 18.2, "size": 33}
+{"addr": "0x0040F030", "name": "NPC::GetBufferCount(void)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 31.6, "size": 19}
+{"addr": "0x0040F050", "name": "NPC::GetBufferAt(int)", "file": "pal3/src/Role/NPC.cpp", "status": "match_L1", "match_pct": 100.0, "size": 13}
+{"addr": "0x0040F060", "name": "NPC::SetRoleMode(int)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 41.3, "size": 92}
+{"addr": "0x0040F620", "name": "NPC::InitAll(void)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 26.0, "size": 196}
+{"addr": "0x00410580", "name": "NPC::SetSceneFlag(void)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 46.7, "size": 45}
+{"addr": "0x00446020", "name": "NPC::UpdateAnim(int)", "file": "pal3/src/Role/NPC.cpp", "status": "match_L1", "match_pct": 100.0, "size": 10}
+{"addr": "0x00479100", "name": "NPC::GetPropertyByIndex(uint)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 10.5, "size": 38}
+{"addr": "0x00517A50", "name": "NPC::DestroyAndRecreateUI(void)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 11.5, "size": 104}
+{"addr": "0x00517AC0", "name": "NPC::HandleAIMessage(int,int)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 12.5, "size": 104}
+{"addr": "0x00517BA0", "name": "NPC::ShowAIWindow(void)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 7.7, "size": 104}
+{"addr": "0x00517CF0", "name": "NPC::ResetLineupWindow(void)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 23.1, "size": 104}
 {"addr": "0x0047CB70", "name": "Object3D::Object3D(void)", "file": "pal3/src/Role/Object3D.cpp", "status": "partial", "match_pct": 88.2, "size": 17}
 {"addr": "0x0047CB90", "name": "Object3D::_todo_0047CB90(char const *,int)", "file": "pal3/src/Role/Object3D.cpp", "status": "partial", "match_pct": 22.2, "size": 477}
 {"addr": "0x0047CEE0", "name": "Object3D::LoadSubObject(void)", "file": "pal3/src/Role/Object3D.cpp", "status": "partial", "match_pct": 26.2, "size": 84}
