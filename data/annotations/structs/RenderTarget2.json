@@ -611,8 +611,9 @@
       "signature": "char *__thiscall(char a2)"
     },
     "0x004C2870": {
-      "name": "BeginMultiPass",
-      "signature": "char *__thiscall(char a2)"
+      "name": "~RenderTarget2",
+      "signature": "char *__thiscall(char a2)",
+      "source": " | [T111] 语义偏离名修正：@0x4C2870 全函数体（193 字符）= BeginMultiPass(this)+if(a2&1) operator delete(this)+return this（**标量删除析构经典形**）⇒ 语义名 ~RenderTarget2（T23 _sdtor_call_dtor 通道对齐 ✓ 禁伪语义）；@0x4C2890 BeginMultiPass 保留（多趟渲染实体）"
     },
     "0x004C2030": {
       "name": "UpdateInternalAdj",
