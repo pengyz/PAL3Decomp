@@ -105,9 +105,10 @@
       "ordinal": 5
     },
     "0x004C8E10": {
-      "name": "GetEditorTaskDescription",
+      "name": "RenderEffectTexture",
       "signature": "void __thiscall()",
-      "ordinal": 6
+      "ordinal": 6,
+      "source": " | [T109] 语义偏离名修正：@0x4C8E10 全函数体=矩阵 Push/Translate + RenderTarget::RenderToTexture（粒子渲染到纹理）⇒ 语义名 RenderEffectTexture（禁伪语义 ✓ 全函数体证据）；@0x4C7A70 GetEditorTaskDescription 保留（nIndex 形描述 getter）"
     },
     "0x004C9540": {
       "name": "DestroyEffect",

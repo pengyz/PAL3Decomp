@@ -820,8 +820,9 @@
       "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 2 params"
     },
     "0x004F07D0": {
-      "name": "GetRole",
-      "signature": "char __thiscall(int nIndex, int nVal)"
+      "name": "IsRoleIndexEqual",
+      "signature": "char __thiscall(int nIndex, int nVal)",
+      "source": " | [T109] 同名消歧：@0x4F07D0 全函数体=switch(nIndex) 各 case `nVal==nIndex` return 1（跳表形相等判定）⇒ 语义名 IsRoleIndexEqual（禁伪语义 ✓ 全函数体证据）；@0x4F2C30 GetRole 保留（对象 getter）"
     },
     "0x004F0830": {
       "name": "GetRoleNum",
