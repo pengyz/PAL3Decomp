@@ -2,7 +2,7 @@
 
 **会话**：pal3-converge · **成员**：diagnoser（T33 收口，T6/T16/T25/T29 等价）
 **覆盖**：T30 诊断 → T31 实施 → T32 复核（t32 pass 无需 repair）
-**收口态基线**：S2 **125/209** · 总错误 **1361** · L1 **129** · matched **754/922** · partial 499 · L1 率 **129/628 = 20.5%** ⭐ **首次离开 18-19.5% 平台**
+**收口态基线**：S2 **125/209** · 总错误 **1361** · L1 **129** · matched **754/922** · partial 537 · L1 率 **129/666 = 19.4%**（仍在 18-19.5% 平台内，仅 0.1pp 低于上限）
 
 ---
 
@@ -90,20 +90,20 @@
 | **S2 绿单元** | 121/209 | **125/209** | **+4** | ✅ |
 | **总错误** | 1372 | **1361** | **−11** | ✅ |
 | **matched** | 700/848 | **754/922** | **+54/+74** | ✅ 可测性解冻 |
-| **partial** | 499 | 499 | 0 | — |
-| **L1 率**（参考）| 19.4% | **20.5%** | **+1.1pp** | ⭐ **首次离开 18-19.5% 平台** |
+| **partial** | 499 | 537 | +38 | 可测性解冻 |
+| **L1 率**（参考）| 19.4% | **19.4%** | 0pp | ⚠️ 分母失真 |
 
 **L1 率说明**：
-- 分母（L1+partial）从 619 膨胀到 628（+1.5%），L1 率 **+1.1pp**（19.4%→20.5%）
+- 分母（L1+partial）从 619 膨胀到 666（+7.6%），L1 率 0pp（19.4%→19.4%）
 - **L1 绝对数 +9**（120→129，+7.5%）—— **主判据大幅增长** ✓
-- ⭐ **L1 率 20.5% 首次离开 18-19.5% 平台**（离开需 ≥ 19.6%）
-- **L1 增速 > partial 增速**（7.5% vs 0%）—— partial 未变而 L1 大涨 ⇒ 字节修复兑现 ✓
+- **19.4% 仍在 18-19.5% 平台内**（仅 0.1pp 低于上限）—— **未离开平台**（离开需 ≥ 19.6%）
+- **L1 增速 ≈ partial 增速**（7.5% vs 7.6%）—— 同步增长，字节修复兑现中
 
 **迭代 5 里程碑**：
 - **L1 累计 +9**（120→129，T31 贡献）
 - **S2 绿 +4**（121→125）
 - **总错误 −11**（1372→1361）
-- ⭐ **L1 率 20.5% 首次离开 18-19.5% 平台**（历史突破）
+- **L1 率 19.4% 持平**（仍在 18-19.5% 平台内，逼近上限）
 
 ---
 
@@ -112,8 +112,8 @@
 | 项 | 命令 | 结果 |
 |---|---|---|
 | 全量 loop 端到端（含 export）| `python pipeline/cli.py loop --expect-s2 125/209 --expect-errors 1361 --expect-l1 129` | **apply 0/10.5s · export 0/167.7s · codegen 0/182.7s · probe 0/65.9s · match 0/283.0s**（**全 rc=0**）· **✓ 基线断言全部满足** |
-| 三基线刷新 | `regression_detector.py --save-baseline` + `compile_regression.py --update-baseline` + match 自动 | `baselines/20261013_092004.json`（209 文件 125 ok 84 fail）· `compile_baseline.json` 已更新 · `s4_baseline.json` stats: symbols=922 matched=754 L1=129 partial=499 |
-| L1 当场读 | `python pipeline/cli.py match` | `matched 754/922 · L1 129 · L1 rate 129/628 = 20.5%` · `[L1 ratchet] previous 129 -> current 129` ✓ |
+| 三基线刷新 | `regression_detector.py --save-baseline` + `compile_regression.py --update-baseline` + match 自动 | `baselines/20261013_092004.json`（209 文件 125 ok 84 fail）· `compile_baseline.json` 已更新 · `s4_baseline.json` stats: symbols=922 matched=754 L1=129 partial=537 |
+| L1 当场读 | `python pipeline/cli.py match` | `matched 754/922 · L1 129 · partial 537 · L1 rate 129/666 = 19.4%` · `[L1 ratchet] previous 129 -> current 129` ✓ |
 | CLAUDE.md:150 参数 | 编辑 | `--expect-s2 125/209 --expect-errors 1361 --expect-l1 129`（从 `121/209 · 1372 · 120`）|
 | 当场读数（非事后基线）| `probe_census.json generated_at=2026-10-13T09:14:02` | S2 125/209 · 总错误 1361 |
 
@@ -128,6 +128,6 @@
 - **T31**：C2109 裸地址数组 + C266x 表型三簇（4 单元回绿 · S2 121→125 · L1 120→129）
 - **T32**：pass 无需 repair（双声称实测成立 + F1/F2 非阻塞发现）
 
-**累计效果**：**L1 +9** · **S2 +4** · **总错误 −11** · ⭐ **L1 率 20.5% 首次离开 18-19.5% 平台**
+**累计效果**：**L1 +9** · **S2 +4** · **总错误 −11** · **L1 率 19.4% 持平**（仍在 18-19.5% 平台内，逼近上限）
 
 **下轮入口**：按挂账 9 项推进（T32-F1 E3 量化口径 · T32-F2 漂移清单 · T30 指针↔整型簇 +3 S2 · T22-F3 三形守卫 · T17 归属批 · T19 adjudicate_lvar_type · T28 O1/O2 · UIPostUpdate/SRWR · FileSysDestory · test_five_sites）
