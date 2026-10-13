@@ -1240,29 +1240,71 @@ def fix_ref_arg_calls(code, sig_params, struct_value_exprs):
     return out
 
 
-def rewrite_unqualified_member_call(code, methods_by_cls, exclude=None, slots_by_method=None):
+def _parse_sig_arity(sig):
+    """[T27] 签名元数门解析：返回 (this_type, 非 this 形参数) 或 None。
+    __thiscall(Cls *this, p1, ...) ⇒ ('Cls', N)；非 thiscall/无 this ⇒ None。"""
+    if not sig or '__thiscall' not in sig:
+        return None
+    m = re.search(r'\((.*)\)\s*$', sig)
+    if not m:
+        return None
+    plist = [x.strip() for x in m.group(1).split(',') if x.strip()]
+    if not plist:
+        return None
+    tm = re.match(r'^(?:struct\s+)?([A-Za-z_]\w*)\s*\*+\s*(?:this|_this)\s*$', plist[0])
+    if not tm:
+        return None
+    return tm.group(1), len(plist) - 1
+
+
+def rewrite_unqualified_member_call(code, methods_by_cls, exclude=None, slots_by_method=None, sig_map=None):
     """批 E C2065#1：Hex-Rays 丢类限定的成员调用等价转写。
 
     `name((T *)recv, ...)` 且 name ∈ methods_by_cls[T] ⇒ `(((T *)recv))->T::name(...)`
     证据门：①name ∈ T.methods ②exclude（static_methods）不转。
     ⚠️ 槽数门已撤（5a7a3b86 假门清）；slots_by_method 参数保留接口兼容但不参与判定。"""
-    if not methods_by_cls:
+    if not methods_by_cls and not sig_map:
         return code
     ex = exclude or set()
-    sl = slots_by_method or {}
+    # [T27] 签名元数门（T26 教训：宽 map 证损伤/唯一名回退实测净负 ⇒ 收窄到
+    # (name, 元数) 精准匹配）：候选=sig 为 __thiscall(this, N 形参) 的方法且
+    # 调用实参数（recv-cast 之外）恰为 N；(name,N) 唯一 ⇒ 以 sig 的 this 型
+    # 为类（cast 型是 E.T 噪声不作依据）。非 thiscall/元数不符/多命中 ⇒ 不转。
+    _by_na = {}
+    for _k, _s in (sig_map or {}).items():
+        if '::' not in _k:
+            continue
+        _c, _n = _k.split('::', 1)
+        _n = _n.split('(')[0]
+        _pa = _parse_sig_arity(_s)
+        if _pa:
+            _by_na.setdefault((_n, _pa[1]), []).append(_pa[0])
     pat = re.compile(
-        r'(?<![\w:>])(?P<name>\w+)\s*\(\s*\(\s*(?P<cls>\w+)\s*\*\s*\)\s*'
+        r'(?<![\w:])(?:(?P<qcls>\w+)::)?(?P<name>\w+)\s*\(\s*\(\s*(?P<cls>\w+)\s*\*\s*\)\s*'
         r'(?P<recv>[\w\->.\[\]]+)\s*(?P<rest>,[^;]*)?\)')
 
     def _sub(m):
-        cls, name = m.group('cls'), m.group('name')
+        qcls, cls, name = m.group('qcls'), m.group('cls'), m.group('name')
         if name in ex:
             return m.group(0)
-        if name not in (methods_by_cls.get(cls) or ()):
-            return m.group(0)
         rest = m.group('rest') or ''
+        # [T27] 语义确定门：recv 仅 this/_this（T26/T27 实证——非 this 接收者的
+        # 宽改写在实链产生嵌套改写垃圾（CCBMagicWindow +102 等 3 单元损伤）；
+        # this 接收者 + (name,元数) 唯一 + thiscall 三门齐 ⇒ 成员调用形确定。
+        if m.group('recv') not in ('this', '_this'):
+            return m.group(0)
+        nargs = len([x for x in rest.lstrip(', ').split(',') if x.strip()]) if rest else 0
+        if sig_map is not None:
+            cands = _by_na.get((name, nargs)) or []
+            if len(cands) != 1:
+                return m.group(0)          # 元数不符/多命中 ⇒ 不转（禁猜测）
+            target = cands[0]
+        else:
+            if name not in (methods_by_cls.get(cls) or ()):
+                return m.group(0)
+            target = cls
         return '(((%s *)%s))->%s::%s(%s)' % (
-            cls, m.group('recv'), cls, name, rest.lstrip(', '))
+            target, m.group('recv'), target, name, rest.lstrip(', '))
 
     return pat.sub(_sub, code)
 

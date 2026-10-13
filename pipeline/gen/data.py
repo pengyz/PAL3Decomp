@@ -468,6 +468,32 @@ class DataStore:
                             else:
                                 self.free_func_sigs[_name] = '%s %s %s(%s)' % (ret, cc, _name, params)
 
+        # [T27] 裸名方法的 method_sigs 喂入（补挂账：feed 断点）：注解
+        # structs/*.json 的 methods 条目名多为**裸名**（ScriptPoolPage_Alloc /
+        # ProcessKeyboard），上行 `if '::' in _name` 门直接漏掉 ⇒ 裸名方法的
+        # rewrite 通路断（stage2 注记「裸名方法的喂入路径仍断」的病灶根）。
+        # 类名=拥有者 JSON 的 name 字段（唯一权威）；注解读取走
+        # annotation_view.iter_structs（CLAUDE.md 单一读点规则）。
+        # setdefault ⇒ decomp 形优先。
+        try:
+            try:
+                import annotation_view as _av_t27
+            except ImportError:
+                from pipeline.gen import annotation_view as _av_t27
+            for _sp, _sd in _av_t27.iter_structs(None, store=self):
+                _cls_t27 = _sd.get('name') or ''
+                if not _cls_t27:
+                    continue
+                for _mv in (_sd.get('methods') or {}).values():
+                    if not isinstance(_mv, dict):
+                        continue
+                    _mn = str(_mv.get('name') or '').split('(')[0]
+                    _ms = _mv.get('signature') or ''
+                    if _mn and _ms and '::' not in _mn:
+                        self.method_sigs.setdefault('%s::%s' % (_cls_t27, _mn), _ms)
+        except Exception:
+            pass
+
         # Supplement: functions.json annotations for free functions missing from decomp
         # (e.g. 1-byte empty functions like NullCallback that Hex-Rays cannot decompile)
         # 2026-09-20 审计 P1-5（第五批）：同批收敛到 annotation_view（读不出时 None ⇒ {}）。

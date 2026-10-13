@@ -111,7 +111,9 @@ def run(code, ctx):
         code = rewrite_unqualified_member_call(
             code, _map,
             exclude={str(s).split('(')[0] for s in (getattr(store, 'static_methods', None) or ())},
-            slots_by_method=_SLOTS_CACHE)
+            slots_by_method=_SLOTS_CACHE,
+            # [T27] 签名元数门：(name, 元数) 精准匹配 + sig 的 this 型为类
+            sig_map=dict(getattr(store, 'method_sigs', None) or {}))
     except Exception:
         pass
     # 【批 E C2660 族】echo 形剔除（(int)this 回波首参 + ret-N/签名槽数证据门）
