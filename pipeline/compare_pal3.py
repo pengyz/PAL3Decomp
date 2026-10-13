@@ -356,7 +356,7 @@ PROBE_FLAGS = ['/nologo', '/TP', '/c', '/W3']
 # docs/compiler_setup.md hypothesis flag set (needs byte-compare calibration —
 # that is exactly what --flags-matrix does)
 HYPOTHESIS_FLAGS = ['/O2', '/Ob2', '/Oi', '/Ot', '/Oy', '/GF', '/Gy',
-                    '/GX', '/GR', '/MD', '/Gd']
+                    '/GX', '/GR', '/MT', '/Gd']  # [T79/P0a 补] N1 证据同（导入表无 MSVCRT）
 
 
 def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
