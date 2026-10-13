@@ -39,8 +39,8 @@
     },
     "0x004C0500": {
       "name": "OnTest",
-      "signature": "int()",
-      "source": "vtable_migrated",
+      "signature": "bool()",
+      "source": "vtable_migrated | [T47] 返型 int→bool：A 级 objdump 0x4c0500 `32 c0 c3`（xor al,al+ret 仅清 AL ⇒ **1 字节返型**）——bool/char 对编译字节等价（同 xor al,al），按谓词语义（OnTest）取 bool；L1 目标 n_diff=3（[0,1,2]=整函数）",
       "ordinal": 8
     },
     "0x004C0920": {
