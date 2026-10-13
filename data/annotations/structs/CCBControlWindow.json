@@ -134,8 +134,9 @@
       "signature": "virtual void __thiscall(CCBMagicWindow *this)"
     },
     "0x0051B5D0": {
-      "name": "OnMessage",
-      "signature": "int __thiscall(CCBItemWindow *__hidden this, unsigned int a2, unsigned int, unsigned int)"
+      "name": "UpdateDescriptionPage",
+      "signature": "int __thiscall(CCBItemWindow *__hidden this, unsigned int a2, unsigned int, unsigned int)",
+      "source": " | [T115] 同名消歧：@0x51B5D0 全函数体（654 字符）成员簇=m_nActivePage/m_pDescription + 调用 CCBPanelSlot::ShowWindow（活动页+描述更新）⇒ 语义名 UpdateDescriptionPage（禁伪语义 ✓ 成员/调用簇证据）；@0x51B030 OnMessage 保留"
     },
     "0x0051B030": {
       "name": "OnMessage",
