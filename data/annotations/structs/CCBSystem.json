@@ -301,7 +301,7 @@
     "0x00512330": {
       "name": "IsEditorWindow",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x00512370": {
       "name": "SetAuto",
@@ -342,7 +342,7 @@
     "0x005124C0": {
       "name": "CanBeHandleNGH_R",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x00512580": {
       "name": "ProcDialog",
@@ -419,7 +419,7 @@
     "0x005137F0": {
       "name": "IsFriendDoSkill",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x00513840": {
       "name": "CheckBattleEnd",
@@ -433,7 +433,7 @@
     "0x00513FD0": {
       "name": "IsRoleWaitForFlee",
       "signature": "bool __thiscall(int nRoleIndex)",
-      "source": "pdb_ret"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x00514220": {
       "name": "AddThread",
@@ -443,7 +443,7 @@
     "0x00514610": {
       "name": "DelThread",
       "signature": "bool __thiscall(int nIndex)",
-      "source": "pdb_ret"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x00514870": {
       "name": "GetSameThreadNum",
@@ -452,7 +452,7 @@
     "0x00514AE0": {
       "name": "IsThreadExist",
       "signature": "bool __thiscall(unsigned int dwThreadID)",
-      "source": "pdb_ret"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x00514D60": {
       "name": "GetThreadIndex",
@@ -470,19 +470,22 @@
     "0x005155D0": {
       "name": "PassCmdToTask",
       "signature": "bool(int nTaskIndex, int nThreadIndex)",
-      "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x00515940": {
-      "name": "CreateObj",
-      "signature": "int __thiscall(int nVal)"
+      "name": "CreateThreadObj",
+      "signature": "int __thiscall(int nVal)",
+      "source": " | [T105] 同名消歧：0x00515940 (int nVal) 形——m_nThread/tagThread 线程对象（decomp 形参/成员证据）⇒ 语义名 CreateThreadObj（禁伪语义 ✓）"
     },
     "0x005159A0": {
-      "name": "CreateObj",
-      "signature": "BOOL __thiscall(CCBUI **ppUI, const char *szName, UINT nFlags)"
+      "name": "CreateUIObj",
+      "signature": "BOOL __thiscall(CCBUI **ppUI, const char *szName, UINT nFlags)",
+      "source": " | [T105] 同名消歧：0x005159A0 (CCBUI** ppUI, szName, nFlags) 形——CCBUI 创建（decomp 形参/成员证据）⇒ 语义名 CreateUIObj（禁伪语义 ✓）"
     },
     "0x00515AC0": {
-      "name": "CreateObj",
-      "signature": "char __thiscall(CCBRoleState **a2)"
+      "name": "CreateRoleStateObj",
+      "signature": "char __thiscall(CCBRoleState **a2)",
+      "source": " | [T105] 同名消歧：0x00515AC0 (CCBRoleState** a2) 形——CCBRoleState 创建（decomp 形参/成员证据）⇒ 语义名 CreateRoleStateObj（禁伪语义 ✓）"
     },
     "0x00515B20": {
       "name": "CreateObj",
@@ -515,7 +518,7 @@
     "0x00515E90": {
       "name": "InitObj",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x00515EE0": {
       "name": "InitObj_5ee0",
