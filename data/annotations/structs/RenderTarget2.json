@@ -630,11 +630,6 @@
       "signature": "void __thiscall (void *pData)",
       "source": "vtable_gap_fill_v1(from CEffAction.json)"
     },
-    "0x004AF760": {
-      "name": "Update",
-      "signature": "int __thiscall(int)",
-      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
-    },
     "0x004C0500": {
       "name": "OnTest",
       "signature": "int()",
@@ -1353,6 +1348,17 @@
           "from": null
         }
       ]
+    }
+  ],
+  "_attribution_migrations": [
+    {
+      "0x004AF760": {
+        "name": "Update",
+        "signature": "int __thiscall(int)",
+        "source": "vtable_gap_fill_v1(from CEffCylinder.json) | [T101] 归属迁移：0x4AF760 decomp 类归属=Object::Update（成员访问证据：空体 stub + Object this 型）——本类误挂条目移除（T15/T18 归属族；禁止仅凭 signature this——decomp 归属+成员证据双证）"
+      },
+      "from": "RenderTarget2",
+      "to": "Object"
     }
   ]
 }

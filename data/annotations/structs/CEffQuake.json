@@ -47,11 +47,6 @@
       "name": "UpdateInternal",
       "signature": "void __thiscall(float fVal)"
     },
-    "0x004AF760": {
-      "name": "Update",
-      "signature": "int __thiscall(int)",
-      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
-    },
     "0x004C0500": {
       "name": "OnTest",
       "signature": "int()",
@@ -152,5 +147,16 @@
       "offset": 12
     }
   ],
-  "bases_source": "A: ctor `mov [reg+0Ch], offset <vtable>` (CEffModel sub_4CFC70 / CEffCylinder sub_4C3DD0)；PDB 全族 CTaskTpl 基 = 12；template_bases.json 记载 18 个 CEff* 共享该模板布局；二进制另有 58 处 `sub ecx,0Ch` 的 this 调整"
+  "bases_source": "A: ctor `mov [reg+0Ch], offset <vtable>` (CEffModel sub_4CFC70 / CEffCylinder sub_4C3DD0)；PDB 全族 CTaskTpl 基 = 12；template_bases.json 记载 18 个 CEff* 共享该模板布局；二进制另有 58 处 `sub ecx,0Ch` 的 this 调整",
+  "_attribution_migrations": [
+    {
+      "0x004AF760": {
+        "name": "Update",
+        "signature": "int __thiscall(int)",
+        "source": "vtable_gap_fill_v1(from CEffCylinder.json) | [T101] 归属迁移：0x4AF760 decomp 类归属=Object::Update（成员访问证据：空体 stub + Object this 型）——本类误挂条目移除（T15/T18 归属族；禁止仅凭 signature this——decomp 归属+成员证据双证）"
+      },
+      "from": "CEffQuake",
+      "to": "Object"
+    }
+  ]
 }
