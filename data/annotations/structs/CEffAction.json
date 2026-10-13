@@ -21,9 +21,9 @@
     },
     "0x004C0640": {
       "name": "ResetState",
-      "signature": "void __thiscall CEffAction::ResetState(int nVal1)",
+      "signature": "void __thiscall CEffAction::ResetState(int nVal1, int nVal2, int nVal3, int nVal4)",
       "ordinal": 2,
-      "source": " | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": " | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [T44] 复补 4 参（2026-10-06 回滚复议）：A 级 objdump 0x4c064b `c2 10 00` = `ret 0x10`（弹 16 字节=4 个 DWORD 实参，thiscall 的 this 在 ECX 不占栈）⇒ 定义侧 ABI 实参 4 无疑；旧回滚「渲染丢参族」论据不覆盖定义侧 ret。L1 目标：n_diff=1（byte 12=ret 立即数 0x04→0x10）"
     },
     "0x00408BD0": {
       "name": "NullCallback",

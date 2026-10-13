@@ -753,6 +753,44 @@ def _collect_token_edits(code_bytes, tree, ctx):
         return False
 
     def visit(node):
+        if node.type == 'for_statement':
+            # [T44] 循环增量基址等价改写：for(i=X;i;i=i->next){…;Y=i;} ⇒ i=Y->next
+            # （增量点上 Y==i——body 末句即别名建立、break/return 均在增量前离场
+            # ⇒ 等价 ✓）。寄存器分配随基址变：A 级 objdump 0x401515 原始
+            # `8b 41 3c`（mov eax,[ecx+0x3c] 经 Y/OPEN）vs 编译物 `8b 40 3c`
+            # （经 i/eax）——L1 目标 FindInOpen/FindInClosed n_diff=1 @byte22。
+            _inc = None
+            _body = None
+            for ch in node.children:
+                if ch.type in ('expression_statement', 'compound_statement'):
+                    _body = ch
+                elif ch.type == 'assignment_expression':
+                    _inc = ch
+            if _inc is not None and _body is not None:
+                _l = _inc.child_by_field_name('left')
+                _r = _inc.child_by_field_name('right')
+                if (_l is not None and _r is not None and _l.type == 'identifier'
+                        and _r.type == 'field_expression'):
+                    _ra = _r.child_by_field_name('argument')
+                    _rf = _r.child_by_field_name('field')
+                    if (_ra is not None and _ra.type == 'identifier'
+                            and _rf is not None
+                            and _ra.text == _l.text and _rf.text == b'next'):
+                        _stmts = _body.children if _body.type == 'compound_statement' else [_body]
+                        _last = None
+                        for s2 in _stmts:
+                            if s2.type not in ('{', '}', 'comment'):
+                                _last = s2
+                        if _last is not None and _last.type == 'expression_statement':
+                            _a = _last.children[0] if _last.children else None
+                            if _a is not None and _a.type == 'assignment_expression':
+                                _al = _a.child_by_field_name('left')
+                                _ar = _a.child_by_field_name('right')
+                                if (_al is not None and _ar is not None
+                                        and _al.type == 'identifier' and _ar.type == 'identifier'
+                                        and _ar.text == _l.text):
+                                    edits.append((_ra.start_byte, _ra.end_byte,
+                                                  _al.text))
         if node.type == 'field_expression':
             # [T14] E.T 直读形（无 & 形，C2273/C2274 源头）：`E->T`/`E.T` 的
             # T 是类名子对象（IDA 无名子对象）⇒ MSVC 解析成 function-style cast。
