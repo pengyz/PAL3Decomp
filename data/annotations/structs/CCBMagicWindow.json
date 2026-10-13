@@ -89,8 +89,8 @@
     },
     "0x0051BB40": {
       "name": "Create",
-      "signature": "bool __thiscall(int rc)",
-      "source": "pdb_ret"
+      "signature": "int __thiscall(int rc)",
+      "source": "pdb_ret | [T94] 返型 bool→int：A 级 objdump 0x51bb40 `8b 44 24 04/89 41 74/c2 04 00`——EAX=arg 直回（无 setne 形）⇒ 非 bool；原 bool 来自 pdb_ret（PDB 仅参考级——A 级优先）。int/void 编译字节等价（passthrough），按语义取 int。L1 目标：n_diff=5 [4-9] run"
     },
     "0x0051BB90": {
       "name": "ForbidPage",
