@@ -219,8 +219,9 @@
       "ordinal": 3
     },
     "0x0043E560": {
-      "name": "SetFirstShow",
-      "signature": "int __thiscall(int nVal, int nOffset)"
+      "name": "SetColumnHead",
+      "signature": "int __thiscall(int nVal, int nOffset)",
+      "source": " | [T103] 同名消歧：@0x43E560 体=strncpy(m_column[m_numcol].head,src,0x40)（decomp 成员访问证据）⇒ 语义名 SetColumnHead（禁伪语义 ✓）；@0x43F670 族 SetItemOffset 保留（m_itemoffset.x/y 直存）"
     },
     "0x0043E5C0": {
       "name": "SetItemOffset",
