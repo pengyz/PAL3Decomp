@@ -655,12 +655,16 @@ def _fix_sdtor_calls(code):
 # [T59] thunk #2 形：LOBYTE(result)=EXPR; return result; ⇒ return EXPR;
 # （A 级：thunk `e9 0b 00 00 00` jmp 形=尾直通——LOBYTE 截断形挡尾调用优化；
 # 收窄：仅「LOBYTE 赋值+紧随同名 return」两语句相邻形）。
+# [T68/T66-F1] 行首锚收窄（选 B）：原 `LOBYTE\s*\(` 无行首锚——行中形
+# （`x=1; LOBYTE(v)=f(); return v;`）会被坍缩，但 thunk#2 的 jmp 透传 EAX
+# 论证**不推广**到任意函数（行中形的截断语义等价面未证）⇒ 等价变换红线
+# 要求收窄至行首形（`^\s*LOBYTE\s*\(`，re.M）；行中形挂账评估。
 _LOBYTE_RET_RE = re.compile(
-    r'LOBYTE\s*\(\s*(\w+)\s*\)\s*=\s*([^;]+);\s*\n\s*return\s+\1\s*;')
+    r'^([ \t]*)LOBYTE\s*\(\s*(\w+)\s*\)\s*=\s*([^;]+);\s*\n[ \t]*return\s+\2\s*;', re.M)
 
 
 def _fix_lobyte_return(code):
-    return _LOBYTE_RET_RE.sub(r'return \2;', code)
+    return _LOBYTE_RET_RE.sub(r'\1return \3;', code)
 
 
 # [T37] 指针值→unsigned long 整型别名 lvalue（C2440 'X*'→'unsigned long'，

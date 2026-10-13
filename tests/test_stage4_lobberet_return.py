@@ -43,6 +43,10 @@ class TestLobyeReturn(unittest.TestCase):
         # [T65/T63-F1] 非 LOBYTE 形（HIDWORD 别名族）⇒ 不动（契约三子形补齐）
         s3 = '  HIDWORD(result) = f(this);\n  return result;\n'
         self.assertEqual(s4._fix_lobyte_return(s3), s3)
+        # [T68/T66-F1] 行中形 ⇒ 不动（行首锚收窄；行中形截断语义等价面未证
+        # ——thunk#2 的 jmp 透传 EAX 论证不推广到任意函数）
+        s4m = '  x = 1; LOBYTE(result) = f(this);\n  return result;\n'
+        self.assertEqual(s4._fix_lobyte_return(s4m), s4m)
 
     def test_idempotent(self):
         once = s4._fix_lobyte_return(POS)
