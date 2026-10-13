@@ -109,8 +109,9 @@
       "source": "pdb_ret"
     },
     "0x0051AD10": {
-      "name": "OnMessage",
-      "signature": "char __thiscall(int *pRect, int parent)"
+      "name": "CreateControls",
+      "signature": "char __thiscall(int *pRect, int parent)",
+      "source": " | [T112] 语义偏离名修正：@0x51AD10 全函数体（3859 字符）= UIStatic/UIButton/UIListBox 创建 + SetLockSel/GetSel/SetItemData 条目循环（控件构建+条目设置）+ 形参 (pRect,parent)=创建形 ⇒ 语义名 CreateControls（禁伪语义 ✓ 全函数体证据）；@0x51B030 OnMessage 保留（1006/1007 消息分发）"
     },
     "0x0051AFE0": {
       "name": "Update",
