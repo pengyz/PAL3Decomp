@@ -224,8 +224,9 @@
       "source": " | [T103] 同名消歧：@0x43E560 体=strncpy(m_column[m_numcol].head,src,0x40)（decomp 成员访问证据）⇒ 语义名 SetColumnHead（禁伪语义 ✓）；@0x43F670 族 SetItemOffset 保留（m_itemoffset.x/y 直存）"
     },
     "0x0043E5C0": {
-      "name": "SetItemOffset",
-      "signature": "int __thiscall(char *Source, int y)"
+      "name": "LoadListItems",
+      "signature": "int __thiscall(char *Source, int y)",
+      "source": " | [T114] 同名消歧：@0x43E5C0 全函数体（2976 字符）调用簇=gbTexture::LoadTexture/UIListBox::CreateChild/GetSubItemInfo/PtrArray::SetAt/InitScrollbar（列循环+子项构造+纹理加载+滚动条初始化）⇒ 语义名 LoadListItems（禁伪语义 ✓ 调用簇证据）；@0x43F670 SetItemOffset 保留（m_itemoffset 直存）"
     },
     "0x0043E7D0": {
       "name": "SetMouseMoveSel",
