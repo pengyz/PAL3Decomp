@@ -488,16 +488,18 @@
       "source": " | [T105] 同名消歧：0x00515AC0 (CCBRoleState** a2) 形——CCBRoleState 创建（decomp 形参/成员证据）⇒ 语义名 CreateRoleStateObj（禁伪语义 ✓）"
     },
     "0x00515B20": {
-      "name": "CreateObj",
-      "signature": "int __thiscall(int (__thiscall *a2)(int this, int a2), int nVal, int nVal2, int nVal3, const void *pData)"
+      "name": "CreateProtectedObj",
+      "signature": "int __thiscall(int (__thiscall *a2)(int this, int a2), int nVal, int nVal2, int nVal3, const void *pData)",
+      "source": " | [T116] 同名消歧：0x00515B20 (ProcProtect 调用 + m_Thread/m_dwIDHolder 成员簇）——线程保护创建（形参/调用簇/成员簇证据）⇒ 语义名 CreateProtectedObj（禁伪语义 ✓）"
     },
     "0x00515C50": {
       "name": "ClearEffect",
       "signature": "char __thiscall(int idx)"
     },
     "0x00515D10": {
-      "name": "CreateObj",
-      "signature": "bool __thiscall(struct CCBEditor **a2)"
+      "name": "CreateEditorObj",
+      "signature": "bool __thiscall(struct CCBEditor **a2)",
+      "source": " | [T116] 同名消歧：0x00515D10 (CCBEditor** 形参 + CCBStage::ResetAndSetSystem/SyncTimeScale 调用）——编辑器对象创建+舞台重置（形参/调用簇/成员簇证据）⇒ 语义名 CreateEditorObj（禁伪语义 ✓）"
     },
     "0x00515DD0": {
       "name": "DestroyObj",
