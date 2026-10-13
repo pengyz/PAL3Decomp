@@ -40,6 +40,9 @@ class TestLobyeReturn(unittest.TestCase):
         # 非相邻（中间隔语句）⇒ 不动
         s2 = '  LOBYTE(result) = f(this);\n  x = 1;\n  return result;\n'
         self.assertEqual(s4._fix_lobyte_return(s2), s2)
+        # [T65/T63-F1] 非 LOBYTE 形（HIDWORD 别名族）⇒ 不动（契约三子形补齐）
+        s3 = '  HIDWORD(result) = f(this);\n  return result;\n'
+        self.assertEqual(s4._fix_lobyte_return(s3), s3)
 
     def test_idempotent(self):
         once = s4._fix_lobyte_return(POS)
