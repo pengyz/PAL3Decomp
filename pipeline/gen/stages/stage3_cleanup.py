@@ -356,7 +356,11 @@ def _ast_cleanup(code, ctx):
                         # CCBSkillWindow::Destroy_12@0x0051BBE0 体含 dtor call +
                         # operator delete 两条真调用，误删即字节腐蚀）。
                         if (method.startswith('~')
-                                and any('operator delete' in l for l in lines)):
+                                and (any('operator delete' in l for l in lines)
+                                     # [T87] thunk 体内的 dtor 调用是**真调用**
+                                     # （ctor→dtor COMDAT 别名的目标）——
+                                     # `// attributes: thunk` 注记体同样保留。
+                                     or any('attributes: thunk' in l for l in lines))):
                             return                # 真调用：整行不动（跳过全部清理形）
                         # Standalone at line start with ((Type*) pattern → delete
                         elif child.parent == node or (child.parent and child.parent.type == 'cast_expression'):
