@@ -133,8 +133,9 @@
   ],
   "methods": {
     "0x00414E50": {
-      "name": "Update",
-      "signature": "int __thiscall(int *deltatime, int haveinput)"
+      "name": "UpdateActions",
+      "signature": "int __thiscall(int *deltatime, int haveinput)",
+      "source": " | [T131] Update 族命名约定确立（Update<Aspect>——T120 Render<Scope> 模式对应）+ 正名：0x00414E50 调用簇=Actor::CompareActionName/RoleSystem::Notify（行动更新）（调用簇/成员簇证据）⇒ 语义名 UpdateActions（禁伪语义 ✓）"
     },
     "0x00489BA0": {
       "name": "UpdateElement",
@@ -160,8 +161,9 @@
       "signature": "void __thiscall()"
     },
     "0x00418260": {
-      "name": "Update",
-      "signature": "int __thiscall UIBigMap::Update__ovl_8260(int deltatime, float *haveinput)"
+      "name": "UpdateTransform",
+      "signature": "int __thiscall UIBigMap::Update__ovl_8260(int deltatime, float *haveinput)",
+      "source": " | [T131] Update 族命名约定确立（Update<Aspect>——T120 Render<Scope> 模式对应）+ 正名：0x00418260 调用簇=RoleSystem::AddVec3ToTarget + 子窗/矩形簇（变换更新）（调用簇/成员簇证据）⇒ 语义名 UpdateTransform（禁伪语义 ✓）"
     },
     "0x00423A70": {
       "name": "LoadScene",
@@ -172,8 +174,9 @@
       "signature": "void __thiscall UIBigMap::RenderRole(gbMatrixStack *pStack, int visible)"
     },
     "0x0043BF90": {
-      "name": "Update",
-      "signature": "int __thiscall(int deltatime, int haveinput)"
+      "name": "UpdateWindowPos",
+      "signature": "int __thiscall(int deltatime, int haveinput)",
+      "source": " | [T131] Update 族命名约定确立（Update<Aspect>——T120 Render<Scope> 模式对应）+ 正名：0x0043BF90 成员簇=bkWndY（窗位更新）（调用簇/成员簇证据）⇒ 语义名 UpdateWindowPos（禁伪语义 ✓）"
     },
     "0x00441240": {
       "name": "SetScrollRange",
