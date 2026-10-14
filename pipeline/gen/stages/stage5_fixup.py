@@ -1542,7 +1542,9 @@ def _resolve_stru_overlap(code):
 def _run_inner(code, ctx):
     """Stage 5: compiler compatibility fixups (text-level, no AST)."""
     # Strip __noreturn (VC6 doesn't support this IDA attribute)
-    code = re.sub(r'\b__noreturn\s*(?=\()', '', code)
+    # 2026-10-14 T145：同 emit_headers.py:767——原正则漏 `void __noreturn Cls::M()` 声明符形
+    # ⇒ RenderTarget2.cpp:3260 C2143/C2182/C1004；实测 `\b__noreturn\b\s*` 后消失。
+    code = re.sub(r'\b__noreturn\b\s*', '', code)
 
     # Strip 'virtual' from free function definitions (not valid for non-member functions)
     if ctx.is_free_function:

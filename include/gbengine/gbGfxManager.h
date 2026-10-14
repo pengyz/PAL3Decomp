@@ -191,9 +191,14 @@ public:
     void SetClearParam(gbClearParam* pParam);
     void OffsetZBuffer(int enable);
     void SetWireMode(int mode);
-    const gbMatrix4& GetWorldMatrix(void);
+    // T145: 返回型由 `const gbMatrix4&` 改 `const gbMatrix4*`。
+    //   理由：decomp 形 `qmemcpy(v89, GetWorldMatrix(), sizeof(v89))` 把返回值直接
+    //   传给 `const void *` ⇒ IDB/调用点按**指针**返回（MSVC6 引用返回=指针返回，
+    //   字节等价 ✓）。原 `const &` 形对 `memcpy(void*,const void*,size_t)` 报 C2664
+    //   （RenderTarget.cpp:1757/1765 两错）。同族先例 gbCamera.h:133 已是 `gbMatrix4*`。
+    const gbMatrix4* GetWorldMatrix(void);
     void IdentityWorldMatrix(void);
-    const gbMatrix4& GetViewMatrix(void);
+    const gbMatrix4* GetViewMatrix(void);
     void SetCameraMatrix(const gbMatrix4& view, const gbMatrix4& proj);
     unsigned int GetCurTick(void);
     double GetCurTime(void);

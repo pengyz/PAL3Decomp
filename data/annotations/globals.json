@@ -3102,10 +3102,10 @@
     "category": "game_state"
   },
   "0x00D8C1AC": {
-    "name": "String",
+    "name": "unk_D8C1AC",
     "type": "CHAR[260]",
     "category": "pending",
-    "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：仅"
+    "source": "binary:A 级证据 Config::ReadSectionAsInt@0x42FDE0: push 0xff(=255)/push 0xd8c1ac/call ds:0x56a050(GetPrivateProfileStringA) → lpReturnedString 缓冲(260B); strcmp/atoi 其后。原名 String 无任何 binary 证据(source 以 \" | \" 起始=空源), 且与 data/annotations/structs/String.json 的 class String(0x4326A0) 撞名⇒ 5 单元 C2059。改中性名 unk_D8C1AC(同文件 90 条 unk_<ADDR> 先例), 语义证据留档待命名战役。"
   },
   "0x00D8E468": {
     "name": "g_pLoadBuffer",

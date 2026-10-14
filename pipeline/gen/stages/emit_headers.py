@@ -763,8 +763,10 @@ def parse_signature(sig):
     # Strip IDA __attribute__ annotations from signature
     sig = re.sub(r'\s*__attribute__\s*\(\([^()]*(?:\([^()]*\)[^()]*)*\)\)', '', sig)
     # Strip __noreturn (VC6 doesn't support it; functions are noreturn by analysis)
-    # Matches both "__noreturn ()" and "__noreturn()"
-    sig = re.sub(r'\b__noreturn\s*(?=\()', '', sig)
+    # 2026-10-14 T145：原正则 `\b__noreturn\s*(?=\()` **只匹配 `__noreturn(` 形**，
+    # 漏掉 `void __noreturn Cls::M()` 声明符形 ⇒ RenderTarget2.cpp:3260
+    # C2143/C2182/C1004 三错（同族遮蔽）。实测 `\b__noreturn\b\s*` 后三错消失。
+    sig = re.sub(r'\b__noreturn\b\s*', '', sig)
 
     # Detect function-pointer return type: "... *CC(params)(fp_params)"
     fp_match = re.search(r'\*\s*(__thiscall|__cdecl|__stdcall|__fastcall)\s*\(', sig)

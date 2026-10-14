@@ -96,6 +96,12 @@ static void *retaddr = 0;
 
 // IDA helpers
 #define qmemcpy memcpy
+
+// CRT 前向声明（T145）。A 级证据：PAL3.exe@0x55434F
+//   `6a 19` push 0x19 ; `e8 1c 0e 00 00` call 0x555172 ; `59` pop ecx ; `c3` ret
+//   ⇒ caller-clean = __cdecl，1 个 int 形参，void 返回。
+//   VC6 公开头未声明该符号 ⇒ RenderTarget2.cpp:3262 C2065。
+extern "C" void __cdecl _amsg_exit(int);
 #define SLODWORD(x) (*((_DWORD*)&(x)))
 #define SHIDWORD(x) (*(((_DWORD*)&(x))+1))
 #define COERCE_FLOAT(x) (*(float*)&(x))

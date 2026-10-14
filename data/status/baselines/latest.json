@@ -1,6 +1,6 @@
 {
-  "name": "20261014_184956",
-  "timestamp": "2026-10-14T18:49:56.800474",
+  "name": "20261014_203656",
+  "timestamp": "2026-10-14T20:36:56.771789",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "ok",
@@ -3025,7 +3025,7 @@
     },
     "pal3/src/Misc/PtrArray.cpp": {
       "status": "fail",
-      "error_count": 6,
+      "error_count": 4,
       "errors": [
         {
           "code": "C2440",
@@ -3036,16 +3036,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned long [5]' to 'int *'",
           "line": 504
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 648
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 962
         },
         {
           "code": "C2440",
@@ -5134,59 +5124,18 @@
       ]
     },
     "pal3/src/Render/RenderTarget.cpp": {
-      "status": "fail",
-      "error_count": 4,
-      "errors": [
-        {
-          "code": "C2664",
-          "msg": "'memcpy' : cannot convert parameter 2 from 'const struct gbMatrix4' to 'const void *'",
-          "line": 1757
-        },
-        {
-          "code": "C2664",
-          "msg": "'memcpy' : cannot convert parameter 2 from 'const struct gbMatrix4' to 'const void *'",
-          "line": 1765
-        },
-        {
-          "code": "C2039",
-          "msg": "'SpaceScale' : is not a member of 'gbParticleEffect'",
-          "line": 2146
-        },
-        {
-          "code": "C2039",
-          "msg": "'nAlivePart' : is not a member of 'gbParticleGroup'",
-          "line": 2164
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Render/RenderTarget2.cpp": {
       "status": "fail",
-      "error_count": 5,
+      "error_count": 1,
       "errors": [
-        {
-          "code": "C2664",
-          "msg": "'int (unsigned long,int,int,int,int,char *,unsigned long)' : cannot convert parameter 6 from 'unsigned char *' to 'char *'",
-          "line": 206
-        },
         {
           "code": "C2511",
           "msg": "'AdjustThisCall' : overloaded member function 'int (int (__cdecl *)(char *,int),int,int)' not found in 'RenderTarget2'",
           "line": 2125
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before 'tag::id'",
-          "line": 3260
-        },
-        {
-          "code": "C2182",
-          "msg": "'__noreturn' : illegal use of type 'void'",
-          "line": 3260
-        },
-        {
-          "code": "C1004",
-          "msg": "unexpected end of file found",
-          "line": 3260
         }
       ]
     },
@@ -6116,13 +6065,8 @@
     },
     "pal3/src/Scene/SceneObj.cpp": {
       "status": "fail",
-      "error_count": 9,
+      "error_count": 8,
       "errors": [
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 142
-        },
         {
           "code": "C2446",
           "msg": "'==' : no conversion from 'char *' to 'unsigned char *'",
@@ -6167,7 +6111,7 @@
     },
     "pal3/src/Script/PalScript.cpp": {
       "status": "fail",
-      "error_count": 55,
+      "error_count": 54,
       "errors": [
         {
           "code": "C2065",
@@ -6298,11 +6242,6 @@
           "code": "C2660",
           "msg": "'_Eos' : function does not take 0 parameters",
           "line": 1091
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 1450
         },
         {
           "code": "C2065",
@@ -6448,7 +6387,7 @@
     },
     "pal3/src/Script/PalScriptMgr.cpp": {
       "status": "fail",
-      "error_count": 7,
+      "error_count": 6,
       "errors": [
         {
           "code": "C2065",
@@ -6479,11 +6418,6 @@
           "code": "C2040",
           "msg": "'>=' : 'char *' differs in levels of indirection from 'unsigned int'",
           "line": 3190
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 3435
         }
       ]
     },
@@ -6494,17 +6428,12 @@
     },
     "pal3/src/Script/ScriptSystem.cpp": {
       "status": "fail",
-      "error_count": 4,
+      "error_count": 3,
       "errors": [
         {
           "code": "C2664",
           "msg": "'void __thiscall gbRenderEffect::SetVariant(enum GBPARAMHANDLE,void *)' : cannot convert parameter 1 from 'const int' to 'enum GBPARAMHANDLE'",
           "line": 68
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 98
         },
         {
           "code": "C2102",
@@ -6809,13 +6738,8 @@
     },
     "pal3/src/UI/UIListBox.cpp": {
       "status": "fail",
-      "error_count": 4,
+      "error_count": 3,
       "errors": [
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 202
-        },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class std::vector<int,class std::allocator<int> >' to 'class Actor *'",

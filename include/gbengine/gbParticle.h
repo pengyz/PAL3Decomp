@@ -196,7 +196,7 @@ public:
     gbPartEmitter* pEmitter;               // +0x7C
     gbParticleUnit* particleArray;         // +0x80
     int maxParticles;                      // +0x84
-    int numAliveParticles;                 // +0x88
+    int nAlivePart;                        // +0x88  (T145: 与注解 gbParticleGroup.json:41 同 offset 136 对齐命名)
     gbParticleEffect* pParticleEffect;     // +0x8C
 
     gbParticleGroup(void);
@@ -246,7 +246,7 @@ public:
     int field_B4;                          // +0xB4: read from file
     int field_B8;                          // +0xB8: read from file
     char _effectData2[0x5C];               // +0xBC: remaining data (offsets 188-279)
-    float spaceScale;                      // +0x118: space scale factor
+    float SpaceScale;                      // +0x118: space scale factor (T145: 与注解 gbParticleEffect.json:126 同 offset 280 对齐命名)
     gbMatrix4 worldTransform;              // +0x11C: world transform matrix
 
     gbParticleEffect(void);
