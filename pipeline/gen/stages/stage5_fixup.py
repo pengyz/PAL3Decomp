@@ -568,7 +568,7 @@ _GB_REF_PARAM_FUNCS = {
     'IsColAABB': {0}, 'IsColOBB_H': {0},
     'IsColPoint': {0}, 'IsColQuad': {0, 1, 2},
     'IsColSphere': {0}, 'IsColTriangle': {0, 1, 2, 3},
-    'GetAABBox': {0}, 'GetSphere': {0}, 'GetCollideOBB': {0},
+    'GetSphere': {0}, 'GetCollideOBB': {0},  # 'GetAABBox' 裸键拆限定键（B 修补条 2026-10-14，见下）
     'SetPosition': {0}, 'GetPosition': {0}, 'SetVelocity': {0},
     'SetOrientation': {0}, 'SetListenerPosition': {0},
     'SetListenerOrientation': {0, 1}, 'GetListenerPosition': {0},
@@ -584,6 +584,16 @@ _GB_REF_PARAM_FUNCS = {
     'gbMatrixStack::Rotate': {2: {1}, 1: {0}},  # (float,gbVec3D&) 2 元 ref@1；
     #   (gbQuaternion&) 1 元 ref@0 ——元数感知（_ref_positions 按实参数选位）
     'gbRay::IsColOBB': {0}, 'gbPlane::IsColOBB': {0},   # (gbOBBox&) 引用形留表
+    # 【B 修补条 2026-10-14】GetAABBox 跨类形参形态相反（gbengine.def mangled 名 A 级）：
+    #   ?GetAABBox@gbOBBox@@QAEXAAUgbAABBox@@@Z    = AAU 引用形 ⇒ 限定键留表
+    #   ?GetAABBox@gbVisNode@@UAEHPAUgbAABBox@@@Z  = PAU 指针形 ⇒ 出表（裸键曾误解引用
+    #   ?GetAABBox@gbGeomNode@@UAEHPAUgbAABBox@@@Z = PAU 指针形 ⇒ 出表     实参 ⇒
+    #   ScreenEffectMgr.cpp:851 C2664 `from 'struct gbAABBox' to 'struct gbAABBox *'`）
+    #   ?GetAABBox@gbBaseMesh@@QAEPAUgbAABBox@@XZ  = 0 参 ⇒ 不涉。
+    # 生产实效面（grep 核实 2026-10-14）：gbOBBox::GetAABBox 调用 4 处（Role.cpp:180 /
+    # RoleSystem.cpp:8095 / gbLightObj.cpp:21 / UIBigMap.cpp:1019）限定形全中保持；
+    # gbVisNode::GetAABBox 1 处（ScreenEffectMgr.cpp:850）出表不改 ⇒ C2664 消。
+    'gbOBBox::GetAABBox': {0},   # (gbAABBox&) 引用形留表（PAU 指针形出表——同 B 修分流）
 }
 
 # F81（2026-09-25）：引用参数的**实参类型**（SDK 头权威，include/gbengine）。

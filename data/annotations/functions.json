@@ -139,6 +139,21 @@
   "signature": "PalScript *__thiscall(PalScript *Block, char a2)",
   "source": "|fix:class_from_xref"
  },
+ "0x00431E90": {
+  "name": "ConditionalCleanup",
+  "signature": "void __cdecl()",
+  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump 首两指令 mov cl,ds:0D8C324h;mov al,04h（ECX 作暂存读固定全局非 this）| IDA 注型 ; void __cdecl sub_431E90() + push offset ; void (__cdecl *)() atexit 注册 | decomp 体仅访固定全局(byte_D8C324 守卫位+unk_D8C2E8)零 this 使用 | plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 PtrArray.__thiscall() 误归属；名 PDB 并入参考级挂账）"
+ },
+ "0x00431EE0": {
+  "name": "FindScript",
+  "signature": "void __cdecl()",
+  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump 首两指令 mov cl,ds:0D8C324h;mov al,08h（ECX 作暂存读固定全局非 this）| IDA 注型 ; void __cdecl sub_431EE0() + push offset ; void (__cdecl *)() atexit 注册 | decomp 体仅访固定全局(byte_D8C324 守卫位+unk_D8C2C8)零 this 使用 | plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 PalScriptMgr.__thiscall() 误归属；名 PDB 并入参考级挂账）"
+ },
+ "0x00431F40": {
+  "name": "ClearAllCamObj",
+  "signature": "void __cdecl()",
+  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump 首两指令 mov cl,ds:0D8C324h;mov al,10h（ECX 作暂存读固定全局非 this）| IDA 注型 ; void __cdecl sub_431F40() + push offset ; void (__cdecl *)() atexit 注册 | decomp 体仅访固定全局(byte_D8C324 守卫位+dword_D8C2BC 区)零 this 使用 | plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 PalScript.__thiscall() 误归属；名 PDB 并入参考级挂账）"
+ },
  "0x00432600": {
   "name": "FindScriptEventByID",
   "signature": "char __cdecl FindScriptEventByID(int nEventId)"
@@ -279,9 +294,29 @@
   "name": "SortTripletsByField",
   "signature": "int *__cdecl SortTripletsByField(int *p_DWORD, int *p_DWORD2, int nVal)"
  },
+ "0x004B65E0": {
+  "name": "_todo_004B65E0",
+  "signature": "void __cdecl()",
+  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump mov ecx,00DE6A30h;jmp 004B6570h（ECX 自装固定全局非入参）| IDA 注型 void (__cdecl *)() atexit 注册 | decomp 体仅访固定全局(dword_DE6A30 区)零 this 使用 | 尾跳目标 004B6570 plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 Actor.__thiscall(int) 误归属）"
+ },
+ "0x004BDB50": {
+  "name": "_todo_004BDB50",
+  "signature": "void __cdecl()",
+  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump mov ecx,00DE7AA0h;jmp 004BDAC0h（ECX 自装固定全局非入参）| IDA 注型 void (__cdecl *)() atexit 注册 | decomp 体仅访固定全局(&g_PAL3)零 this 使用 | 尾跳目标 004BDAC0 plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 Actor.__thiscall(int) 误归属）"
+ },
+ "0x004BE5D0": {
+  "name": "_todo_004BE5D0",
+  "signature": "void __cdecl()",
+  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump mov ecx,00DE7DF8h;jmp 004BE080h（ECX 自装固定全局非入参）| IDA 注型 push offset unk ; void (__cdecl *)() + call _atexit | decomp 体仅访固定全局(&g_PAL3.m_gametime+51)零 this 使用 | 尾跳目标 004BE080=ScreenEffectMgr::ClearAllEffects plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 Actor.__thiscall(int) 误归属——偏移[116,148]系全局对象所属类成员非 Actor 拥有）"
+ },
  "0x004C5BB0": {
   "name": "CombatEffectUpdate",
   "signature": "int __stdcall(double pData)"
+ },
+ "0x004C6450": {
+  "name": "_todo_004C6450",
+  "signature": "void __cdecl()",
+  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump mov ecx,00DE93B0h;jmp 004C63F0h（ECX 自装固定全局非入参）| IDA 注型 void (__cdecl *)() atexit 注册 | decomp 体空(this 零使用) | 尾跳目标 004C63F0 plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 CCBStageScene.__thiscall(int) 误归属）"
  },
  "0x004CB350": {
   "name": "_sdtor_36",
@@ -449,6 +484,11 @@
  "0x0053D030": {
   "name": "LogMessage",
   "signature": "FILE *__cdecl(char *Format, ...)"
+ },
+ "0x0053D190": {
+  "name": "_todo_0053D190",
+  "signature": "void __cdecl()",
+  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump mov ecx,017B3EB0h;jmp 0053D100h（ECX 自装固定全局非入参）| IDA 注型 void (__cdecl *)() atexit 注册 | decomp 体仅访固定全局(&stru_17B3EB0)零 this 使用 | 尾跳目标 0053D100 主出口 plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 Actor.__thiscall(int) 误归属）"
  },
  "0x0053F4D0": {
   "name": "_sdtor_20",

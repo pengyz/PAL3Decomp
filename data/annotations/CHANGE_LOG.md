@@ -6020,6 +6020,104 @@ L1 94→94（判据 v2.1 绝对数不回退）· C2248 −12 · C2660 −2。
 实参表错位。修它需动 data.py/export_full/stage2（t10 inScope 够不着）⇒ 转后续任务。
 注：签名本身已修对（decomp 重导后调用形已干净：`PAL3::ReadRegistryValue(a, b, 1)`）。
 
+## 2026-10-14 · T144（atexit 析构 thunk 家族归属修正 + S2 前沿批 2）：S2 131→134 · L1 唯一 136→146
+
+### 病灶层三问（动手前定谳）
+①层：**annotation 层**（归属+签名）与 **codegen 层**（ref-param 表裸键）两处；
+②消费者：apply→IDB→export(decomp)→codegen(stage5_fixup/_GB_REF_PARAM_FUNCS/_call_return_type)；
+③报错只给转换失败形（C2440 'cannot convert from … to void (__cdecl *)(void)' / C2664 值vs指针 /
+C2039 非成员）——**不给被调方真实形态** ⇒ 逐址 objdump + gbengine.def mangled 名定谳。
+
+### ① atexit 析构 thunk 家族（8 地址 · 10 错/8 单元口径实测为 8 错/7 单元）
+**根因**：IDA 把**全局对象析构 thunk** 误命名为类成员（`void __thiscall(int)`），
+atexit 注册点 `atexit((void(*)())Cls::thunk)` 铸转失败 ⇒ C2440。
+**A 级证据（8/8 全同证法，逐址 objdump 当场核实）**：
+- 5 个尾跳 thunk：`mov ecx,<imm32>; jmp <dtor>`（**ECX 自装固定全局非入参**）——
+  0x4BE5D0→004BE080(ScreenEffectMgr::ClearAllEffects) · 0x4C6450→004C63F0 ·
+  0x4BDB50→004BDAC0 · 0x53D190→0053D100(UIListBox::RefreshList) · 0x4B65E0→004B6570；
+  尾跳目标全 plain ret(C3) 0 参。
+- 3 个守卫位 thunk：首两指令 `mov cl,ds:0D8C324h; mov al,<bit>`（**ECX 作暂存读固定全局**）——
+  0x431F40(0x10)/0x431E90(0x04)/0x431EE0(0x08)；IDA 自注型 `; void __cdecl sub_431E90()`。
+- 注册点 IDA 注型：`push offset unk ; void (__cdecl *)()` + `call _atexit`（8/8）。
+- decomp 体：8/8 仅访固定全局、**this 零使用**（0x4BE5D0 体=`ScreenEffectMgr::ClearAllEffects(&g_PAL3.m_gametime+51)`）。
+**修法**：functions.json 8 条 `void __cdecl()`（名字保留：5×`_todo_<hex>` + 3×既有名）+
+从 Actor.json(4)/CCBStageScene.json(1)/PalScript.json(1)/PalScriptMgr.json(1)/PtrArray.json(1)
+methods 移除（归属修正）。**实效：8 错全清**（CEffectSystem:298/ScreenEffectMgr:341/PAL3:3675/
+CScreenMode:2471/RenderTarget3:116/PalScript:1464/PalScriptMgr:3145+3152），零新增。
+⚠️ 口径修正：任务口径「10 错/8 单元」实测为 **8 错/7 单元**——
+CCBStageScene:479 的 C2065+C2296 ×2 是**另族**（free function `FightInfo`@0x42CB70 撞 `class FightInfo`
+名），非 atexit 家族 ⇒ 挂账（见下）。
+
+### ② ScreenEffectMgr L851 C2664（`GetAABBox` 裸键跨类形态相反）
+**根因**：stage5_fixup `_GB_REF_PARAM_FUNCS` 裸键 `'GetAABBox': {0}` 把**所有** GetAABBox 实参 0 当引用形解引用。
+**A 级证据（gbengine.def 编译器产物 mangled 名）**：
+`?GetAABBox@gbOBBox@@QAEXAAUgbAABBox@@@Z`=**AAU 引用形**（留表）；
+`?GetAABBox@gbVisNode@@UAEHPAUgbAABBox@@@Z`/`?GetAABBox@gbGeomNode@@UAEHPAUgbAABBox@@@Z`=**PAU 指针形**（出表）；
+`?GetAABBox@gbBaseMesh@@QAEPAUgbAABBox@@XZ`=0 参（不涉）。
+**修法**：裸键拆限定键 `'gbOBBox::GetAABBox': {0}`（B 修同式）。生产实效面 grep 核实：
+gbOBBox 限定形 4 站点（Role.cpp:180/RoleSystem.cpp:8095/gbLightObj.cpp:21/UIBigMap.cpp:1019）全保持；
+gbVisNode 1 站点（ScreenEffectMgr.cpp:850）出表不再解引用 ⇒ C2664 消、unit 绿。
+R15：`test_ref_param_table_b.py` 补 test⑤（跨类分流）+ 全套 203 测（唯一 discover 报错为存量
+harness 路径问题 `test_base_suffix_rewrite`，stash 对照核实非本改动）。
+
+### ③ CEffectSystem L90 C2440（gbVertPoolMgr::GetDynVertBuf 返回型缺）
+**根因**：`_call_return_type('gbVertPoolMgr::GetDynVertBuf')` 返回 None（gbVertPoolMgr.json 无 methods）
+⇒ `_expr_is_pointer` 限定调用支回 False ⇒ DWORD 槽 fixer 不插 `(unsigned long)` 铸。
+**A 级证据（三方一致）**：gbengine.def `?GetDynVertBuf@gbVertPoolMgr@@QAEPAVgbDynVertBuf@@I@Z`
+（QAE=public __thiscall / PAVgbDynVertBuf@@=返回 `gbDynVertBuf *` / I=unsigned int）+
+gbengine_registry.jsonl @0x10021680 + include/gbengine/gbMesh.h:194 一致。
+**修法**：gbVertPoolMgr.json methods 补 `0x10021680`（键=gbengine.dll 注册表地址，
+gbTexture.json 0x1001BD30 同式）签名 `gbDynVertBuf *__thiscall(unsigned int nVal)`。
+实效：CEffectSystem 1 错清零、unit 绿。
+
+### ④ UISceneMap L156 C2039 ×2（`string::_init_4530c0` 非 string 成员·同名消歧族）
+**根因**：skip_functions 名 `string::_init_4530c0`(reason=std_library) 误挂 std::string
+⇒ codegen OOP 转写成 `((string*)p)->string::_init_4530c0(arg)` ⇒ C2039（basic_string 无此成员）。
+**A 级证据链**：①同 TU 簇 ctor@0x452FD0 = call 0x445AA0(UIWnd ctor) + `movl $0x56B200,(%esi)`（vptr store）
+⇒ 簇类=UIWnd 派生、vtable 0x56B200=SceneObj（SceneObj.json vtables 唯一认领）；
+②同接收者兄弟调用 0x4538E0=SceneObj::LoadData（LoadCompass@0x451208 `lea 0x250(%esi),%ebx` 两次同对象）；
+③本体 this+0x44/+0x48/+0x4C 引用计数串形与 0x4538E0 同形，std::string Dinkumware 布局不符；
+④`ret $0x4` ⇒ 1 栈参 ⇒ 签名 `void __thiscall(const char *pszName)`。
+**修法**：skip_functions 名改 `SceneObj::_init_4530c0`（归属修正 string::→SceneObj::）+
+SceneObj.json methods 声明收编（declaration_only，批 12-13 形）。**体渲染实测 +3 错**
+（std::_Eos 变参丢失 ×2 + RoleAtt::_sub_4531F0 实参错位——T 族既有病灶）⇒ 转 skip=体排除形，
+体渲染修复挂账。实效：UISceneMap 2 错清零、unit 绿。
+
+### 实测（全量 loop 当场读，5 阶段全 rc=0 零翻红）
+`python pipeline/cli.py loop --expect-s2 134/209 --expect-errors 1317 --expect-l1 162`：
+apply 9.8s / export 148.3s / codegen 190.3s / probe 60.7s / match 297.2s **全 rc=0**。
+- **S2 = 134/209**（131→134，+3 unit：ScreenEffectMgr/CEffectSystem/UISceneMap）✓
+- **总错误 = 1317**（1329→1317，−12）✓ · **L1 = 175 行/146 唯一/128 游戏**
+  （162/136/118 → 175/146/128，**+13/+10/+10**；matched 891/1124→962/1205）
+- 断言唯一未满足项 = `L1 期望 162 实得 175`——**改善非回退**（+13，三单元解禁字节比对）。
+- C1003 截断单元 free_functions.cpp：101 错（截断线）max_line 5228→**5277**（+49 前进 ✓，
+  atexit 8 thunk 定义落位此）；CCBStage.cpp 85 错（已退出截断）。
+- compile_baseline.json 对齐 134/209（前批 24c466ec2 同式 chore，清恒红门禁）。
+
+### 挂账（精确原因 + 精确扫描）
+1. **FightInfo 名撞族**（CCBStageScene.cpp:479 C2065+C2296 ×2）：free function `FightInfo`@0x0042CB70
+   （functions.json `void __cdecl()`，实为 thiscall 体 `sub esp; mov %ecx,%esi` 读 this）撞 `class FightInfo`
+   ⇒ `FightInfo *m_pFightInfo;` 解析成乘法。须归属证据（member access）定其真类。
+   扫描：`grep -n "void FightInfo" pal3/src/free_functions.h && objdump -d --start-address=0x42CB70 --stop-address=0x42CC00 original/PAL3.exe`
+2. **`_init_4530c0` 体渲染 3 错**：std::_Eos 变参丢失 ×2（C2660，与既有 L381 同族）+
+   `RoleAtt::_sub_4531F0(this)` 实参错位（C2664；0x4531F0=`movb $1,0x64(%ecx);ret` 微型 setter 无注解）。
+   扫描：`python3 -c "import json;d=json.load(open('asm/pal3/decomp/SceneObj_init_4530c0char_const_004530c0.json'));print(d['decompiled_c'])"`
+3. **atexit 家族 3 个语义名 PDB 噪声**：`ClearAllCamObj`/`ConditionalCleanup`/`FindScript`
+   （git 19a64a498 PDB 并入；体=全局对象析构非其名义）⇒ 真语义名待命名战役（T74 禁猜测）。
+   扫描：`python3 -c "import json;d=json.load(open('data/annotations/functions.json'));print([(k,v['name']) for k,v in d.items() if v.get('name') in ('ClearAllCamObj','ConditionalCleanup','FindScript')])"`
+4. **ref-param 表其余裸键跨类形态待扫**：IsColPoint/IsColQuad/GetCollideOBB 等同名跨类形态未逐一核。
+   扫描：`grep -n "IsColPoint\|GetCollideOBB\|IsColSphere" include/gbengine/gbengine_types.h`
+5. **dword_DE9384 全局未结构化**（CEffectSystem L90 现以 `(unsigned long)` 铸兜底）：
+   +0(指针)/+4(gbDynVertBuf*)/+8(gbRenderEffect*) 三字段 A 级（`mov %eax,0x4(%edx)`/`mov 0x8(%ecx),%edx`）
+   ⇒ 待 struct 化标注（影响 9 站点，需先测后改）。
+   扫描：`grep -rn "dword_DE9384" pal3/src/ --include=*.cpp`
+6. **`todo_`/`_todo_` 双拼写**（free_functions.h `_todo_004BE5D0` vs free_functions.cpp `todo_004BE5D0`）：
+   既有 decomp 吃前导下划线族（emit_cpp 已有护栏），编译未炸但声明/定义名不一致。
+   扫描：`grep -n "todo_004BE5D0" pal3/src/free_functions.h pal3/src/free_functions.cpp`
+
+**Confidence: high**（8/8 A 级 objdump 逐址核实 + gbengine.def mangled 名定谳 + 全量 loop 5 阶段
+rc=0 当场读 + S2/错误/L1 三计数当场核实 + R15 测试全绿 + R13 grep 落地核）。
+
 ## 2026-10-14 · T142（同名消歧·真-clash 拆解）：scope 重界定 + CCBStage::ClearAll 真-clash 消歧
 
 ### Scope 重界定（captain 裁决：同名 ≠ 需消歧）

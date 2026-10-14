@@ -38,6 +38,20 @@ class TestRefParamTableB(unittest.TestCase):
         code = 'x->gbMatrix4::Rotate(&a, &b);'
         self.assertEqual(_fix_ref_params(code, None), code)
 
+    def test_getaabox_cross_class_form_split(self):
+        # ⑤GetAABBox 跨类形参形态相反（B 修补条 2026-10-14）：
+        #   gbengine.def mangled 名 A 级：gbOBBox=AAU 引用形留表；
+        #   gbVisNode/gbGeomNode=PAU 指针形出表（裸键曾误解引用实参 ⇒ ScreenEffectMgr C2664）。
+        from stage5_fixup import _GB_REF_PARAM_FUNCS as F, _fix_ref_params
+        self.assertNotIn('GetAABBox', F)              # 裸键出表（指针形不再被解引用）
+        self.assertIn('gbOBBox::GetAABBox', F)        # 引用形限定键留表
+        # PAU 形（gbVisNode）不动：实参 p0 保持指针形
+        code_ptr = 'x->gbVisNode::GetAABBox(p0);'
+        self.assertEqual(_fix_ref_params(code_ptr, None), code_ptr)
+        # AAU 形（gbOBBox）保留既有解引用形（生产 4 站点形）
+        code_ref = 'x->gbOBBox::GetAABBox(*pBox);'
+        self.assertEqual(_fix_ref_params(code_ref, None), code_ref)
+
 
 if __name__ == '__main__':
     unittest.main()

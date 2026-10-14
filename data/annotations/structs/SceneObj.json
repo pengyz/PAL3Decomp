@@ -276,6 +276,12 @@
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5
     },
+    "0x004530C0": {
+      "name": "_init_4530c0",
+      "signature": "void __thiscall(const char *pszName)",
+      "declaration_only": true,
+      "source": "归属修正 2026-10-14（同名消歧族·T142 判读模式）：原 skip_functions 名 `string::_init_4530c0`(reason=std_library) 误挂 std::string ⇒ UISceneMap.cpp:156 C2039 ×2『'_init_4530c0' is not a member of 'basic_string'』。A 级证据链：①同 TU 簇 ctor@0x452FD0 = call 0x445AA0(UIWnd ctor，vptr 0x56AEC8) + `movl $0x56B200,(%esi)`（vptr store）⇒ 该簇类=UIWnd 派生且 vtable=0x56B200（SceneObj.json vtables 唯一认领，GlowObj/PalScriptWaitObj 无 vtables 键=误命中）；②同接收者兄弟调用 0x4538E0=SceneObj::LoadData（UISceneMap::LoadCompass@0x451208 lea 0x250(%esi),%ebx → mov %ebx,%ecx; call 两次同对象）；③本体 this+0x44/+0x48/+0x4C 引用计数串形（refcount@ptr[-1]）与 0x4538E0 同形（SceneObj::LoadData 生成体对同偏移渲染 this->m_fTimerLimit 等已编译通过）⇒ SceneObj 成员，非 std::string（std::string Dinkumware 布局 {buf/ptr@0,size@8,res@12} 不符）。名 _init_4530c0 保留同名消歧族现状（CGameData::_init_44f8d0 同式）；真语义名（append 形）挂账。2026-10-14 收窄：体渲染实测 +3 错（std::_Eos 变参丢失 ×2 / RoleAtt::_sub_4531F0 实参错位——T 族既有病灶）⇒ 转声明收编形（批 12-13：skip=体排除 + declaration_only=声明收编），体渲染修复挂账"
+    },
     "0x0052F800": {
       "name": "LoadGeomFromFile",
       "signature": "gbVFileSystem *__thiscall(const char *pszName)"
