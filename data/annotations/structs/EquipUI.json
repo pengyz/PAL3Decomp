@@ -537,8 +537,9 @@
       "signature": "int __thiscall EquipUI::SetSubTab2(unsigned __int8 nTab)"
     },
     "0x0049FF90": {
-      "name": "HandleInput",
-      "signature": "char __thiscall EquipUI::HandleInput__ovl_ff90()"
+      "name": "NavigateSlots",
+      "signature": "char __thiscall EquipUI::HandleInput__ovl_ff90()",
+      "source": " | [T129] 同名消歧：@0x49FF90 全函数体（2302 字符）调用簇=EquipUI::FindNextSlot/FindPrevSlot（槽位导航）+ 成员 m_EquipData ⇒ 语义名 NavigateSlots（禁伪语义 ✓ 调用簇证据）；@0x494D70 HandleInput 保留（18370 字符大形=输入处理）"
     },
     "0x004A00B0": {
       "name": "Update",
