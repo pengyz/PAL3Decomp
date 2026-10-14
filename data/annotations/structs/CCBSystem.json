@@ -502,8 +502,9 @@
       "source": " | [T116] 同名消歧：0x00515D10 (CCBEditor** 形参 + CCBStage::ResetAndSetSystem/SyncTimeScale 调用）——编辑器对象创建+舞台重置（形参/调用簇/成员簇证据）⇒ 语义名 CreateEditorObj（禁伪语义 ✓）"
     },
     "0x00515DD0": {
-      "name": "DestroyObj",
-      "signature": "void *__thiscall(CCBSystem *Block, char pData)"
+      "name": "`scalar deleting destructor'",
+      "signature": "void *__thiscall(CCBSystem *Block, char pData)",
+      "source": " | [T141] 同名消歧：@0x515DD0 全函数体=objdump 标量删除析构经典形（call 0x408bd0 析构 + testb $0x1,0x8(%esp) flag + call 0x541d10 operator delete + mov eax,esi + ret $4）⇒ `scalar deleting destructor`（T138 模式，~<Cls> 撞名规避）；同名 @0x515E50 DestroyObj 保留（本体=mov eax,[0x57007c]; mov [0x17ace14=g_nCBCamState],eax; ret 全局复制形非析构，语义名待动词消歧 Reset/Set/Init ⇒ 挂账命名质量，不硬改）"
     },
     "0x00515DF0": {
       "name": "DestroyObj_5df0",

@@ -46,9 +46,9 @@
       "static": true
     },
     "0x004343F0": {
-      "name": "RemoveAt",
+      "name": "FindByName",
       "signature": "void __thiscall(const char *pszName)",
-      "source": " | sig-type-fix 2026-09-28: const char *→int（参数名 nIndex+调用点全 int 实参（UIListBox:1221 等）+sibling RemoveAt(int nIndex,int nCount) 同名同义——PDB 残留型订正；证据: 多调用点 B 级） | 返工 2026-09-28（d0643565 反证）：撤 int 订正——被调体 strcmp((const char*)nIndex,v3) 证明实参是名字串；nIndex 更名 pszName；调用点 (int) 铸形系签名渲染产物（循环论证）另解"
+      "source": " | sig-type-fix 2026-09-28: const char *→int（参数名 nIndex+调用点全 int 实参（UIListBox:1221 等）+sibling RemoveAt(int nIndex,int nCount) 同名同义——PDB 残留型订正；证据: 多调用点 B 级） | 返工 2026-09-28（d0643565 反证）：撤 int 订正——被调体 strcmp((const char*)nIndex,v3) 证明实参是名字串；nIndex 更名 pszName；调用点 (int) 铸形系签名渲染产物（循环论证）另解 | [T141] 同名消歧（语义偏离名修正）：@0x4343F0 全函数体=inlined strcmp 逐条比对名字串（24字节项@+8）→ 命中返 &entry[匹配]（0x434450 lea eax,[edx+ecx*8]）否则 0，**纯查表非删除** ⇒ 语义名 FindByName（区别于 sibling RemoveAt(int,int)@0x4327B0 索引删除 this->m_pData/capacity + 既有 Find/FindFirst）；objdump 辅证（strcmp 展开 + 无 memmove/delete）"
     },
     "0x00434490": {
       "name": "Remove",

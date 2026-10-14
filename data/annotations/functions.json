@@ -2710,9 +2710,9 @@
     "source": "N1 条目复置（S2-100 实证形：无 class、有类限定签名——喂 method_sigs 窄 map 供重写触发）"
   },
   "0x004343F0": {
-    "name": "RemoveAt",
-    "signature": "void __thiscall PtrArray::RemoveAt(const char *pszName)",
-    "source": "同上（体证据 strcmp）"
+    "name": "FindByName",
+    "signature": "void __thiscall PtrArray::FindByName(const char *pszName)",
+    "source": "同上（体证据 strcmp） | [T141] 声明侧同步：与 structs/PtrArray.json:0x004343F0 名一致化（RemoveAt→FindByName，消歧语义名——体证据 strcmp 查表非删除）；functions.json 无 owner 且 merge 时 wins ⇒ 此处为有效名源头，须与 struct 侧一致"
   },
   "0x00540B20": {
     "name": "UIInitSystem",
