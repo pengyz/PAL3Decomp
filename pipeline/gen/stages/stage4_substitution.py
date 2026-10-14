@@ -826,7 +826,27 @@ def _collect_token_edits(code_bytes, tree, ctx):
                     off = _subobject_offset(fname, base_txt, ctx)
                     if off is None:
                         return            # 偏移解析不出 ⇒ 保留原形（禁猜测）
-                    repl = _subobject_cast(fname, base_txt, aop_text, off)
+                    # [T14x] **仅赋值 LHS 位**改用值/lvalue 形（2026-10-14 影响面实测教训）：
+                    # `_subobject_cast` 的 `((T *)&X)` 是 **指针**（T*）⇒ 作赋值左值报
+                    # C2106（cast 非 lvalue），病灶单点 ArcSceneObject.cpp:329
+                    # （objdump 0x5254D3 `c7 06 00 00 00 00` = 单条 dword 存 this+0）。
+                    # ⚠️ 首版按"独立形"全量改值形 ⇒ 8 新失败 / 25 单元新增错误
+                    # （UICaption `*(UIWnd*)&this[1]` 等；rvalue 位指针形本已可编）——
+                    # 故收窄到**仅 LHS**；其余位（含 rvalue / 链基址 / 非 0 偏移）一律
+                    # 保持 `_subobject_cast` 原形。值形取 4B `_DWORD` 约定（同
+                    # rewrite_base_suffix_bare_form / test_base_suffix_form.py 样张），
+                    # `.形` 取址、`->形` 直接解引用。
+                    _pa = node.parent
+                    _is_lhs = (_pa is not None and _pa.type == 'assignment_expression'
+                               and _pa.child_by_field_name('left') is not None
+                               and _pa.child_by_field_name('left').start_byte == node.start_byte
+                               and _pa.child_by_field_name('left').end_byte == node.end_byte)
+                    if _is_lhs and off == 0:
+                        repl = '*(%s *)%s%s' % (
+                            '_DWORD' if (getattr(store, 'struct_sizes', None) or {}).get(fname, 4) == 4 else fname,
+                            '&' if aop_text != '->' else '', base_txt)
+                    else:
+                        repl = _subobject_cast(fname, base_txt, aop_text, off)
                     edits.append((node.start_byte, node.end_byte,
                                   repl.encode('utf-8')))
                     return

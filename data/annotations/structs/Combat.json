@@ -1,24 +1,31 @@
 {
-  "name": "Combat",
-  "binary_size": 4,
-  "methods": {
-    "0x004DFD20": {
-      "name": "LogMessage",
-      "signature": "char __thiscall(char *, int, char *format, ...)",
-      "source": "manual_fix_from_call_sites"
-    },
-    "0x0040CCD0": {
-      "name": "GetSlotCount",
-      "signature": "int __thiscall()",
-      "source": " | rename:_todo_→fn_"
-    },
-    "0x004CDB60": {
-      "name": "ReleaseCompletedEffects",
-      "signature": "char __thiscall()"
-    },
-    "0x004F4820": {
-      "name": "HandleControlCmd",
-      "signature": "unsigned __int8 __thiscall Combat::HandleControlCmd(int idx)"
-    }
+ "name": "Combat",
+ "binary_size": 4,
+ "methods": {
+  "0x004DFD20": {
+   "name": "LogMessage",
+   "signature": "char __thiscall(char *, int, char *format, ...)",
+   "source": "manual_fix_from_call_sites"
+  },
+  "0x0040CCD0": {
+   "name": "GetSlotCount",
+   "signature": "int __thiscall()",
+   "source": " | rename:_todo_→fn_"
+  },
+  "0x004CDB60": {
+   "name": "ReleaseCompletedEffects",
+   "signature": "char __thiscall()"
+  },
+  "0x004F4820": {
+   "name": "HandleControlCmd",
+   "signature": "unsigned __int8 __thiscall Combat::HandleControlCmd(int idx)"
   }
+ },
+ "known_methods": {
+  "operator_int": {
+   "name": "operator int",
+   "signature": "int __thiscall operator int(Combat *this)",
+   "source": "fix:C2440:explicit_cast_class_to_int_GetSlotCount_0x0040CCD0"
+  }
+ }
 }
