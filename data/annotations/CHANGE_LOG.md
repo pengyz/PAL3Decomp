@@ -6019,3 +6019,66 @@ L1 94→94（判据 v2.1 绝对数不回退）· C2248 −12 · C2660 −2。
 `'__cdecl' in _sig` 静态判定对可变参静态成员**恒漏** ⇒ stage2 OOP 转写吞第一实参当 this ⇒
 实参表错位。修它需动 data.py/export_full/stage2（t10 inScope 够不着）⇒ 转后续任务。
 注：签名本身已修对（decomp 重导后调用形已干净：`PAL3::ReadRegistryValue(a, b, 1)`）。
+
+## 2026-10-14 · T142（同名消歧·真-clash 拆解）：scope 重界定 + CCBStage::ClearAll 真-clash 消歧
+
+### Scope 重界定（captain 裁决：同名 ≠ 需消歧）
+按「真-clash（同名同签名/不可重载 ⇒ C2084）vs 异参合法重载 vs 删除析构族」三分类重扫。
+**精确扫描命令**（当场可复现）：`python3 /tmp/scan_scope.py`（逻辑：group by (cls,name) 且
+≥2 方法/free 函数；簇内按规范化形参类型表分组，同形参表 ≥2 ⇒ 真-clash）。
+**扫描口径账面**：32 簇（30 size-2 + 2 size-3）；注：`30×1 + 2×2 = 34` 即历史「34 簇」
+（rename-decision 口径，每 3-way 簇记 2 个消歧决策）——**以扫描为准**（报数附命令）。
+**桶**：真-clash 0（ClearAll 已解）+ BOTH(真clash+dtor) 1 + 删除析构族 3 + 合法重载 28（→698 战役）。
+
+### A 级证据下的判据：同名簇内「同形参表 ⇒ 不可重载」
+- **真-clash 判据** = 同类同名 + **规范化形参类型表相同** ⇒ 生成侧 C2084「already has a body」。
+- 实证唯一 build-breaking 真-clash = `CCBStage::ClearAll`（baseline CCBStage.cpp:6179 C2084）。
+
+### CCBStage::ClearAll 真-clash 消歧（本任务 scope，挡 127 池）
+两条同名同签名 `int __thiscall()`：
+- **@0x4E0330**：A 级 decomp `memset(this,0,0x2598)` + objdump——销毁路径 `sub_515DF0`
+  （标量删除析构，call 0x4E0330+test flag+operator delete+return this）调用作清理体 ⇒ **ClearAll 保留**。
+- **@0x504E30**：A 级 objdump 全函数体 `sub_504E30` = rep stosd 清零 [this,+0x639C0) + 清零
+  m_EditDescBuf(char[2000]@0x639C0) + 填 m_nTodo_64190(int[5000]@0x64190) 为 -1（标志表初始化）；
+  调用点 `sub_504DD0`（清 2000 条 role/task 项后的整体重置例程）⇒ 语义名 **`ResetAllData`**
+  （全量数据重置+标志初始化）；不与本类 215 名冲突（T135 撞名规避核）；禁地址后缀 ✓。
+  （**T56 当场抓误判**：T99 曾据「全对象清零」命名 @0x4E0330=ClearAll，但 0x2598 仅占 673988
+  字节对象 1.4%——实为头部清零非全清；真正的全清是 @0x504E30 ⇒ 该 misnomer 转 698 战役。）
+
+### 删除析构族机械判定（T138 形，逐个 objdump）
+T138 = `call dtor + test flag + operator delete + return this`。decomp 全量扫出 **60 条** op-delete+
+return-this 外形，逐条 objdump 判读分两类：
+- **真标量删除析构**（首步 call 真析构）：`CCBSystem::_scalar deleting destructor@0x515DD0`
+  （call 0x408bd0 析构+testb+call 0x541d10 delete+ret$4 = **textbook 形** ✓，captain 确认一致）·
+  `CCBUIPanel@0x4461D0`(call ~CCBUIPanel) · `UIListBox@0x43DCF0`(call ~UIListBox) ·
+  `CScreenMode@0x524110`(call _CScreenMode)。
+- **非删除析构（外形似但首步非 dtor ⇒ 误名）**：`CCBUIPanel@0x453E50`(call ctor) ·
+  `CScreenMode@0x483260`(call StateUI::ctor) · `CCBMagicWindow@0x4B0520`(call UITitle_JDHY dtor
+  跨类) · `UIListBox@0x43E100`(call DeleteRow/SEH 子程 sub_43E120) · `UIListBox@0x4525E0`
+  (call ctor_2600/SEH 子程 sub_452600)。
+⇒ 机械判定产出：真删除析构套 `` `scalar deleting destructor' `` 高置信解；误名者**须逐对判读真语义**
+（禁纯正则）⇒ 挂账 698/逐对，不批量硬改。
+
+### 实测（全量 loop 当场读，零翻红）
+`python pipeline/cli.py loop`：apply/export/codegen/probe/match **全 rc=0**。
+- **L1 = 151/125/107**（行/唯一/游戏，当场核实：s4_baseline match_L1 行=151·按名去重=125·
+  排 std/thunk/operator/_ 游戏=107）· **棘轮 151→151 稳定** ✓
+- **S2 = 127/209 稳定** ✓ · **总错误 1334→1333（−1）**· **C2084 1→0** ✓（真-clash 解除）
+- matched 854/1082 · partial 611 · CCBStage.cpp 86→85（< C1003 截断线 ⇒ 真减非截断回填）。
+
+### 挂账（精确原因 + 精确扫描）
+1. **UIListBox::_scalar_dtor 真-clash（本任务 scope，当前 mask 非 build-breaking）**：
+   @0x43E100 vs @0x4525E0 同名同签名 `void*(this,UIWnd*,char)` ⇒ 潜在 C2084，但 baseline
+   UIListBox.cpp 4 错无 C2084（mask）。二者均 vtable-referenced 标量删除析构 thunk（.rdata
+   xref）+ call SEH 清理子程（sub_43E120 / sub_452600，均带 __unwind）⇒ 需先解 UIListBox
+   析构层级（3 thunk + 2 SEH 子程真名）才能消歧 ⇒ **禁猜测挂账**。
+   扫描：`python3 /tmp/scan_scope.py`（BOTH(真clash+dtor) 桶）。
+2. **删除析构族误名 5 条**（0x453E50/0x483260/0x4B0520/0x43E100/0x4525E0）：首步非 dtor ⇒
+   `_scalar_dtor` 误名，须逐对判真语义 ⇒ 698 战役/下会话逐对。
+3. **@0x4E0330 ClearAll misnomer**（T99「全对象清零」实为 1.4% 头部清零）⇒ 语义名转 698 战役。
+4. **CCBSystem::DestroyObj_5df0@0x515DF0**：名含地址后缀 `_5df0`（伪语义命名违反）+ 体=call
+   sub_4E0330+test+delete（ClearAll+条件释放非纯删除析构）⇒ 须真语义名（禁地址后缀），
+   且与 @0x515DD0 同签名不可套同名 ⇒ 挂账逐对。
+
+**Confidence: high**（真-clash C2084 闭环 + A 级 objdump/decomp 全函数体证据 + 全量 loop 零翻红
+当场读 + 数字当场核实）。

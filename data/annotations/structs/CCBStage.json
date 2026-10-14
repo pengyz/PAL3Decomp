@@ -1072,8 +1072,9 @@
       "signature": "int __thiscall CCBStage::ProcessQueuedCommand(int nVal)"
     },
     "0x00504E30": {
-      "name": "ClearAll",
-      "signature": "int __thiscall()"
+      "name": "ResetAllData",
+      "signature": "int __thiscall()",
+      "source": " | [T142] 同名消歧（真-clash：与 0x4E0330 同名同签名 ⇒ C2084 already has a body，本条为生成侧第二定义）：A 级 objdump 全函数体 sub_504E30 = rep stosd 清零 [this,+0x639C0) + 清零 m_EditDescBuf(char[2000]@0x639C0) + 填 m_nTodo_64190(int[5000]@0x64190) 为 -1（标志表初始化），调用点 sub_504DD0（清 2000 条 role/task 项后的整体重置例程）⇒ 语义名 ResetAllData（全量数据重置+标志初始化）；与 0x4E0330(memset 0x2598 头部清零，销毁路径 sub_515DF0 标量删除析构调用) 行为可分。禁地址后缀 ✓ ResetAllData 不与本类 215 名冲突（T135 撞名规避核）"
     },
     "0x0050E550": {
       "name": "ResolveActionEffect",
