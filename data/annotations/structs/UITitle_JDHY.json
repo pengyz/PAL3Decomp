@@ -222,8 +222,9 @@
       "signature": "int __thiscall()"
     },
     "0x004B2920": {
-      "name": "SaveData",
-      "signature": "char __thiscall UITitle_JDHY::SaveData__ovl_2920(int Data)"
+      "name": "LoadData",
+      "signature": "char __thiscall UITitle_JDHY::SaveData__ovl_2920(int Data)",
+      "source": " | [T127] 语义偏离名修正：@0x4B2920 全函数体（3922 字符）调用簇=Actor::LoadActorModel/LoadSaveData/ChoseCompose::LayoutItem/UIPushButton::CreateFromTemplate（**加载族**）⇒ 语义名 LoadData（禁伪语义 ✓ 调用簇证据）；@0x4B2750 SaveData 保留（DoSceneTransition/CGameData::Load+WriteRegistry 存档形）"
     },
     "0x004B3100": {
       "name": "ForwardHitTest",
