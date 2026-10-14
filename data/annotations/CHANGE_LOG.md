@@ -6082,3 +6082,71 @@ return-this 外形，逐条 objdump 判读分两类：
 
 **Confidence: high**（真-clash C2084 闭环 + A 级 objdump/decomp 全函数体证据 + 全量 loop 零翻红
 当场读 + 数字当场核实）。
+
+## 2026-10-14 · T142R（对抗复核·T56 当场读抓误判）：删除析构族机械判定修正 + 6 处落地
+
+### T56 误判修正：T142「非删除析构（误名）5 条」分类**全部推翻**（根因=凭被调函数的注解名判读，违 T119）
+逐形 objdump（A 级，禁纯正则）复核 T142 挂账 2 的 5 条：
+- `UIListBox@0x43E100`（T142：「call DeleteRow/SEH 子程」）：被调 0x43E120 本体=SEH +
+  **vptr store 0x56AD40** + try-level 3→递减 + 成员内存 operator delete ⇒ **是析构**
+  （注解名 DeleteRow 本身是误名）⇒ 本体=**真标量删除析构**。自洽核：vtable 0x56AD40(base UIWnd)
+  slot5=0x43E100 ⇒ 归属 UIListBox ✓。
+- `UIListBox@0x4525E0`（T142：「call ctor_2600」）：被调 0x452600 本体=SEH + **vptr store 0x56B1BC**
+  + try-level 1→0→-1 递减 + 成员析构调用 ⇒ **是析构**（**T119：`ctor_*` 名 ≠ ctor 语义，须本体判读**）
+  ⇒ 真标量删除析构（类-56B1BC，归属挂账）。
+- `CScreenMode@0x483260`（T142：「call StateUI::ctor」）：被调 0x483380 本体=SEH + **vptr store
+  0x56BA30** + try-level 0x1e 递减 + 条件释放 ⇒ **是析构** ⇒ 真标量删除析构（类-56BA30，归属挂账）。
+- `CCBUIPanel@0x453E50`（T142：「call ctor」）：被调 0x453E70 本体=SEH + **vptr store 0x56B22C**
+  + try-level 0xc→递减 + 成员子对象析构 ⇒ **是析构** ⇒ 真标量删除析构（类-56B22C，归属挂账）。
+- `CCBMagicWindow@0x4B0520`（T142：「call UITitle_JDHY dtor 跨类」）：被调 0x4B0540=**~UITitle_JDHY**
+  （vptr 0x56F33C + try-level 0x25 递减）⇒ 本体=UITitle_JDHY 的真标量删除析构（vtable 0x56F33C
+  slot5=0x4B0520 自洽 ✓）——跨类归属属实，但**函数本体是真删除析构**（非「误名」）。
+**析构判据（A 级指纹）**：起手 **vptr store + try-level 递减（N→…→-1）+ 成员清理**；构造体反向
+（try-level 递增 0→1→…）。T142 按被调函数**注解名**（DeleteRow/ctor_2600/ctor）分类未读本体
+——违反 T119 与「每形须 objdump 验证」铁律 ⇒ 本会话修正。
+- 补 T142 未覆盖 2 形：`CCBParabolaWindow@0x51C260`=**真删除析构**（T138 形 ✓，被调 0x51C280=
+  完整析构 vptr 0x57058C，vtable 0x57058C(base CCBSkillWindow) slot5=0x51C260 自洽 ✓）；
+  `CCBMagicWindow@0x51B690`=**完整析构**（vptr 0x570554 + 成员清理 + call 0x43dd10 基类析构），
+  非删除析构形（`_scalar_dtor` 名挂账）。
+
+### 落地 6 处（T135 撞名核=0 逐 JSON 核；生成侧渲染 `_scalar_deleting_destructor_`）
+`_scalar_dtor` ⇒ `` `scalar deleting destructor' ``（T138 分形约定）：
+CCBParabolaWindow@0x51C260 · CCBSkillWindow@0x51C260（跨类重复条目同名同步）·
+UITitle_JDHY@0x4B0520 · CCBMagicWindow@0x4B0520（同步）· UIListBox@0x43DCF0（⚠️ 归属挂账：
+被调 0x43DD10 vptr=0x56AD20 非 UIListBox 本体 vtable 0x56AD40）· CScreenMode@0x483260
+（⚠️ 归属挂账：被调 0x483380 vptr=0x56BA30 非 CScreenMode 本体 vtable 0x570630）。
+**通道实证（病灶层）**：注解名 → IDB 仅对**非 `type: skip`** 条目生效（emit_headers.py:3491
+"skip governs renaming, not silencing"；实证 0x51C280 skip 形生成侧渲染的是 IDB 残留名
+`_scalar_deleting_destructor_` 而非注解名 `_scalar_dtor`）⇒ skip 形改名不入生成侧，本轮只落
+非 skip 6 处。**声明侧同步当场核**：CCBParabolaWindow.h:26 · CCBMagicWindow.h:30 ·
+UIListBox.h:57 · CScreenMode.h:152 均已渲染 `_scalar_deleting_destructor_` ✓。
+
+### 实测（全量 loop 当场读，零翻红）
+`python pipeline/cli.py loop --expect-s2 127/209 --expect-errors 1333 --expect-l1 151`：
+apply/export/codegen/probe/match **全 rc=0**（14.3/186.5/231.3/76.3/290.2s）· 断言全满足。
+- **L1 = 151/125/107 稳定**（行/唯一/游戏；改名 4 址均不在 L1 集 ⇒ 游戏数不变 ✓）
+- **S2 = 127/209 稳定** · **总错误 1333**（HEAD 1334→1333，−1=T142 ClearAll 消歧）· **C2084=0** ✓
+- matched 854/1082 → **855/1083**（+1，名字通道通）
+- 同名簇精确扫描 42（HEAD 状态）→ **38**（ClearAll 解 + CCBParabolaWindow/CCBMagicWindow/
+  CScreenMode 三簇消）。扫描命令（当场可复现）：`python3 -c "import json,glob,collections;
+  d=collections.defaultdict(list); [d[(json.load(open(f)).get('name'),(v.get('name') or
+  '').split('::')[-1])].append(k) for f in glob.glob('data/annotations/structs/*.json') for
+  k,v in (json.load(open(f)).get('methods') or {}).items() if (v.get('name') or '')];
+  print(sum(1 for vs in d.values() if len(vs)>1))"`（状态：脏树=HEAD+T142+T142R）。
+
+### 挂账（精确原因 + 扫描）
+1. **skip 形真删除析构 3 条**（0x43E100/0x4461D0/0x524110）：`type: skip` 名通道不通 ⇒ 改名不入
+   IDB/生成侧；须先解 skip 通道（**先测后改**）⇒ 下会话。判读已入账（上文）。
+2. **UIListBox::_scalar_dtor 真-clash（mask，沿 T142 挂账 1）**：@0x43E100 vs @0x4525E0 同名同签名
+   `void*(this,char)` ⇒ 潜在 C2084（baseline UIListBox.cpp 4 错无 C2084 = mask）。根因=类归属未解
+   （0x4525E0 属类-56B1BC）。
+3. **归属挂账 4 条**（0x43DCF0 类-56AD20 · 0x4525E0 类-56B1BC · 0x453E50 类-56B22C · 0x483260
+   类-56BA30）：vtable base=None 类标识不明 ⇒ 语义名禁猜（T74 族）。
+4. **`~CCBParabolaWindow` 误置**：@0x51B810 起手**无 vptr store 无 SEH**（call 0x43DE40 +
+   [esi+0x5c] 虚调用 Release(arg=1) + [esi+0x60]×5 循环清理）⇒ 非析构形；真完整析构=@0x51C280
+   （vptr 0x57058C）⇒ 名置错位，0x51B810 真语义待逐对（禁猜测）。
+5. **CCBSystem::DestroyObj_5df0@0x515DF0**（沿 T142 挂账 4）：地址后缀伪语义命名 + 体=call
+   0x4E0330+test+delete 非纯删除析构 ⇒ 待真语义名。
+
+**Confidence: high**（逐形 objdump A 级指纹 + vtable slot5 自洽核 + 通道实证 + 声明侧同步当场核 +
+全量 loop 零翻红当场读 + 数字当场核实 151/125/107 · 127/209 · 1333 · C2084=0）。

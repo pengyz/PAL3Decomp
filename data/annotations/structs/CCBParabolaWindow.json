@@ -65,8 +65,9 @@
       "signature": "int __thiscall()"
     },
     "0x0051C260": {
-      "name": "_scalar_dtor",
-      "signature": "UIWnd *__thiscall(CCBSkillWindow *Block, char pData)"
+      "name": "`scalar deleting destructor'",
+      "signature": "UIWnd *__thiscall(CCBSkillWindow *Block, char pData)",
+      "source": " | [T142R] \u5220\u9664\u6790\u6784\u65cf\u673a\u68b0\u5224\u5b9a\uff08T138 \u5f62\uff0c\u9010\u5f62 objdump A \u7ea7\uff09\uff1a\u5168\u5f62=call 0x51C280 + testb $0x1,0x8(%esp) + call 0x541d10(operator delete) + mov eax,esi + ret $4\uff1b\u88ab\u8c03 0x51C280 \u672c\u4f53=SEH + vptr store 0x57058C + try-level \u9012\u51cf + \u6210\u5458\u6e05\u7406 + call 0x43dd10 \u57fa\u7c7b\u6790\u6784 \u21d2 \u5b8c\u6574\u6790\u6784 \u21d2 \u672c\u4f53=\u771f\u6807\u91cf\u5220\u9664\u6790\u6784\uff1b\u81ea\u6d3d\u6838\uff1avtable 0x57058C(base CCBSkillWindow) slot5=0x51C260 \u21d2 \u5f52\u5c5e CCBParabolaWindow \u2713\u3002T135 \u649e\u540d\u6838=0 \u2713 \u7981\u5730\u5740\u540e\u7f00 \u2713"
     }
   },
   "vtables": [

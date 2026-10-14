@@ -750,9 +750,9 @@
       "source": "vtable_gap_fill_v1(from UITitle_QCYM.json)"
     },
     "0x00483260": {
-      "name": "_scalar_dtor",
+      "name": "`scalar deleting destructor'",
       "signature": "StateUI *__thiscall(StateUI *Block, char a2)",
-      "source": "vtable_gap_fill_v1(from StateUI.json)"
+      "source": "vtable_gap_fill_v1(from StateUI.json) | [T142R] \u5220\u9664\u6790\u6784\u65cf\u673a\u68b0\u5224\u5b9a\uff08T138 \u5f62\uff0c\u9010\u5f62 objdump A \u7ea7\uff09\uff1a\u5168\u5f62=call 0x483380 + testb $0x1,0x8(%esp) + call 0x541d10(operator delete) + mov eax,esi + ret $4\uff1b\u88ab\u8c03 0x483380 \u672c\u4f53=SEH + vptr store 0x56BA30 + try-level 0x1e \u9012\u51cf + \u6761\u4ef6\u91ca\u653e \u21d2 \u5b8c\u6574\u6790\u6784 \u21d2 \u672c\u4f53=\u771f\u6807\u91cf\u5220\u9664\u6790\u6784\uff08T142 \u66fe\u5224\u300ecall StateUI::ctor \u8bef\u540d\u300f\u2014\u2014 \u8bef\uff1avptr \u5199\u5165+try-level \u9012\u51cf=\u6790\u6784\u6307\u7eb9\uff0cT119 \u7981\u51ed ctor_ \u540d\u5224\u8bfb\uff09\u3002\u26a0\ufe0f \u5f52\u5c5e\u6302\u8d26\uff1avtable 0x56BA30 \u975e CScreenMode \u672c\u4f53 vtable 0x570630"
     },
     "0x00485230": {
       "name": "StateUI::sub_485230",
