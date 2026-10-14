@@ -111,8 +111,9 @@
       "source": " | [T109] 语义偏离名修正：@0x4C8E10 全函数体=矩阵 Push/Translate + RenderTarget::RenderToTexture（粒子渲染到纹理）⇒ 语义名 RenderEffectTexture（禁伪语义 ✓ 全函数体证据）；@0x4C7A70 GetEditorTaskDescription 保留（nIndex 形描述 getter）"
     },
     "0x004C9540": {
-      "name": "DestroyEffect",
-      "signature": "char *__thiscall(char pData)"
+      "name": "~CEffgbParticle",
+      "signature": "char *__thiscall(char pData)",
+      "source": " | [T128] 语义偏离名修正：@0x4C9540 全函数体（176 字符）= DestroyEffect 调用+flag+operator delete（**标量删除析构经典形**，T111 ~RenderTarget2 模式）⇒ 语义名 ~CEffgbParticle（T23 _sdtor 通道对齐 ✓ 禁伪语义）；@0x4D0A60 DestroyEffect 保留（m_pEffect 清理实体）"
     },
     "0x004CEB60": {
       "name": "CreateInstance",
