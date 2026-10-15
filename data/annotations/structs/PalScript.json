@@ -503,8 +503,8 @@
     },
     "64": {
       "name": "m_pActorData",
-      "type": "unsigned char",
-      "source": "decomp:passed_to_Actor_method",
+      "type": "gbRenderEffect *",
+      "source": "decomp:passed_to_Actor_method | [F-HDR#1 2026-10-15] unsigned char→gbRenderEffect*：A 级 import 修饰名铁证 GBENGINE.DLL `?RenderUIQuad@gbDynVertBuf@@QAEXPAUgbUIQuad@@HPAVgbRenderEffect@@PAUgbTextureArray@@@Z`（IAT 0x17d930 hint 797）参数3=PAVgbRenderEffect@@⇒gbRenderEffect* 无歧义，与手写头 gbMesh.h:426/gbengine_api.h:483 一致；实参 dword_C11760=unk_C11720+0x40=本成员。名字泄漏核查：全 decomp 仅 1 使用点且为取址形 `&v2->m_pActorData`（ScriptObj_ScriptObj@0x411ca0）⇒ 类型无关、改型安全 ✓。同根连带 L127（同全局被赋 gbRenderEffect* 值）",
       "note": "Discovered by member_scan after disp8 fix."
     },
     "128": {

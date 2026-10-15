@@ -1800,7 +1800,21 @@ def run(code, ctx):
     # Operator new fix
     code = re.sub(r'\(\(operator \*\)(0x[0-9A-Fa-f]+u?)\)->new\(\)', r'operator new(\1)', code)
     # CC removal from body (function pointer casts)
+    # [批1-5#2 2026-10-15] fnptr 声明位的 __thiscall **不得剥**：MSVC6 拒绝该拼法
+    # （受控实验 C4234 'keyword reserved for future use'）⇒ stage4
+    # `rewrite_thiscall_fnptr_param` 需要它转成员指针形。全局剥除使 stage4 pass 0
+    # 失配 ⇒ 头（成员指针）/定义（普通指针）两形对峙 C2511（实测
+    # RenderTarget2::AdjustThisCall@0x4C2850，1 错卡整个单元 S2 +1）。
+    # 护位符保护 → 剥除 → 还原（等价变换：仅对非 fnptr 位剥除）。
+    _fp_saves = []
+    for _m in re.finditer(r'\(\s*__thiscall\s*\*\s*\w+\s*\)\s*\([^()]*\)', code):
+        _fp_saves.append(_m.group(0))
+    if _fp_saves:
+        for _i in range(len(_fp_saves) - 1, -1, -1):
+            code = code.replace(_fp_saves[_i], '\x00FP%d\x00' % _i, 1)
     code = re.sub(r'__thiscall\s+', '', code)
+    for _i, _saved in enumerate(_fp_saves):
+        code = code.replace('\x00FP%d\x00' % _i, _saved)
     code = re.sub(r'__userpurge\s+', '', code)
     code = re.sub(r'__usercall\s+', '', code)
 

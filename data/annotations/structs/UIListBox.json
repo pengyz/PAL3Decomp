@@ -119,8 +119,8 @@
     },
     "1192": {
       "name": "m_rowenable",
-      "type": "std::vector<int,std::allocator<int> >",
-      "source": "PDB+PAL3_offset_adjusted"
+      "type": "unsigned char[16]",
+      "source": "PDB+PAL3_offset_adjusted | [批1-5#1 A 级重定型 2026-10-15] std::vector<int>→unsigned char[16]：① UIListBox=1208 定案（objdump `68 b8 04 00 00/push 0x4b8; call new` ×2 @519d05/51a558）⇒ +0x4A8 尾块 16B（0x4A8+16=0x4B8 恰好到类尾）⇒ 不可能是 Actor(820B) 整体；② 访问形=字节/双字下标（43e748 `lea 0x4a8(%esi)` 取址 + 解引用 [edi+4]/[edi+8]；decomp 渲染 `&this->m_rowenable[8]`/`&this->m_rowenable[4]` = +0x4B0/+0x4AC）⇒ 16B 字节簇；③ 被 call 0x5372d0 以 this=&成员 调用（体读 +4/+8/+0xC begin/end/cap 三元组=actarray 增长形，匹配 Actor.m_actarray_* 但该簇独立 16B；簇的语义类未定 ⇒ 按 workaround 规则用 char 簇表不透明区）。修 3 错：C2440(vector→Actor*) 单根 + C2227/C2653 级联（Actor.h 实际已 include，见 UIListBox.cpp L5）。⚠️ 原 source=PDB 单证违规（PDB+PAL3_offset_adjusted）已由 A 级证据替换"
     }
   },
   "base_class": [
@@ -425,7 +425,7 @@
     "0x0043DCF0": {
       "name": "`scalar deleting destructor'",
       "signature": "void __thiscall(UIListBox *__hidden this)",
-      "source": "vtable_evidence | [T142R] \u5220\u9664\u6790\u6784\u65cf\u673a\u68b0\u5224\u5b9a\uff08T138 \u5f62\uff0c\u9010\u5f62 objdump A \u7ea7\uff09\uff1a\u5168\u5f62=call 0x43DD10 + testb $0x1,0x8(%esp) + call 0x541d10(operator delete) + mov eax,esi + ret $4\uff1b\u88ab\u8c03 0x43DD10 \u672c\u4f53=SEH + vptr store 0x56AD20 + try-level \u9012\u51cf + call 0x43DE40/0x445B40 \u21d2 \u5b8c\u6574\u6790\u6784 \u21d2 \u672c\u4f53=\u771f\u6807\u91cf\u5220\u9664\u6790\u6784\u3002\u26a0\ufe0f \u5f52\u5c5e\u6302\u8d26\uff1avtable 0x56AD20(base None) slot5=0x43DCF0\uff0c\u7c7b\u6807\u8bc6\u5f85\u5b9a\uff08\u975e UIListBox \u672c\u4f53 vtable 0x56AD40\uff09\uff1b\u540d\u63cf\u8ff0\u51fd\u6570\u8bed\u4e49 \u2713 T135 \u649e\u540d\u6838=0 \u2713",
+      "source": "vtable_evidence | [T142R] 删除析构族机械判定（T138 形，逐形 objdump A 级）：全形=call 0x43DD10 + testb $0x1,0x8(%esp) + call 0x541d10(operator delete) + mov eax,esi + ret $4；被调 0x43DD10 本体=SEH + vptr store 0x56AD20 + try-level 递减 + call 0x43DE40/0x445B40 ⇒ 完整析构 ⇒ 本体=真标量删除析构。⚠️ 归属挂账：vtable 0x56AD20(base None) slot5=0x43DCF0，类标识待定（非 UIListBox 本体 vtable 0x56AD40）；名描述函数语义 ✓ T135 撞名核=0 ✓",
       "ordinal": 5
     },
     "0x0043F6D0": {
@@ -496,6 +496,11 @@
       "name": "OnMessage_4590",
       "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
       "source": "vtable_gap_fill_v1(from CCBUIPanel.json)"
+    },
+    "0x0046B4B0": {
+      "name": "_todo_0046B4B0",
+      "signature": "void __thiscall(int nVal1, int nVal2, int nVal3)",
+      "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x46b4b0 `mov 0x4(%esp),%eax; sub $0x110,%esp; add $0xfffffc18,%eax`（参1 运算）+ 尾 `ret $0xc`（3 栈参）；语义未定 ⇒ _todo_ 占位。SaleUI 继承槽 slot[6] 的基类侧缺失（from=UIListBox）"
     }
   },
   "vtables": [

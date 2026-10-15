@@ -66,6 +66,11 @@
       "name": "_scalar_dtor_32e0",
       "signature": "void __thiscall(int nVal1)",
       "source": "vtable_gap_fill_v1(IDB:??_GCEffQuake@@UAEPAXI@Z) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x004AF760": {
+      "name": "_todo_004AF760",
+      "signature": "void __thiscall(int nVal1)",
+      "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x4AF760 单指令 `c2 04 00`（ret $0x4）= 零体 thiscall 1 栈参（空桩，13 槽 COMDAT 折叠形）；语义未定 ⇒ _todo_ 占位（禁伪语义命名）。vtable_mapper 口径：21 槽/3 唯一地址/5 类×地址条目（per-class methods 查找）"
     }
   },
   "vtables": [

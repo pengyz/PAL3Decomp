@@ -1,189 +1,194 @@
 {
- "name": "ScriptVM",
- "pdb_size": 4,
- "known_members": {
-  "856": {
-   "name": "m_ptr_358",
-   "type": "char *",
-   "source": "codegen_offset_infer"
+  "name": "ScriptVM",
+  "pdb_size": 4,
+  "known_members": {
+    "856": {
+      "name": "m_ptr_358",
+      "type": "char *",
+      "source": "codegen_offset_infer"
+    },
+    "32": {
+      "name": "m_ptr_20",
+      "type": "int *",
+      "source": "codegen_offset_infer"
+    },
+    "4": {
+      "name": "m_bufHead",
+      "type": "int",
+      "source": "decomp:GetString ring buffer head pointer (pair: {block_ptr, block_end})"
+    },
+    "8": {
+      "name": "m_bufTail",
+      "type": "int",
+      "source": "decomp:GetString ring buffer tail (+4 = block_end = block_ptr+0xFBC)"
+    },
+    "12": {
+      "name": "m_bufCapacity",
+      "type": "int",
+      "source": "decomp:GetString ring buffer capacity/count"
+    },
+    "16": {
+      "name": "m_bufReadPtr",
+      "type": "int",
+      "source": "decomp:GetString ring buffer read position (iterator)"
+    },
+    "20": {
+      "name": "m_bufWritePtr",
+      "type": "int",
+      "source": "decomp:GetString ring buffer write position (iterator)"
+    },
+    "160": {
+      "name": "m_nTodo_0A0",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "164": {
+      "name": "m_nTodo_0A4",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "168": {
+      "name": "m_nTodo_0A8",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "220": {
+      "name": "m_nTodo_0DC",
+      "type": "int",
+      "source": "binary_scan:2refs"
+    },
+    "224": {
+      "name": "m_nTodo_0E0",
+      "type": "void *",
+      "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
+    },
+    "244": {
+      "name": "m_nTodo_0F4",
+      "type": "unsigned char",
+      "source": "A:cmp_byte_ptr_25h_confirms_byte|binary_scan:1refs"
+    },
+    "256": {
+      "name": "m_nPauseState",
+      "type": "int",
+      "source": "decomp:UpdatePauseState compared to 1"
+    },
+    "796": {
+      "name": "m_pCmdList",
+      "type": "void *",
+      "source": "decomp:UpdatePauseState *(m_pCmdList + 16) accessed as array base"
+    },
+    "828": {
+      "name": "m_nPathMode",
+      "type": "int",
+      "source": "decomp:ExecuteOpcode_base_used_as_ScriptVM_self"
+    },
+    "832": {
+      "name": "m_fPathStartX",
+      "type": "float",
+      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot1"
+    },
+    "836": {
+      "name": "m_fPathStartY",
+      "type": "float",
+      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot2"
+    },
+    "840": {
+      "name": "m_fPathStartZ",
+      "type": "float",
+      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot3"
+    },
+    "844": {
+      "name": "m_nPathParam",
+      "type": "int",
+      "source": "decomp:ExecuteOpcode_slot4_arithmetic"
+    },
+    "848": {
+      "name": "m_fPathEndX",
+      "type": "float",
+      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot5"
+    },
+    "852": {
+      "name": "m_fPathEndY",
+      "type": "float",
+      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot6"
+    },
+    "860": {
+      "name": "m_pPathCurrent",
+      "type": "char *",
+      "source": "decomp:ExecuteOpcode_slot8_ptr_arithmetic",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "864": {
+      "name": "m_pPathKeys",
+      "type": "char *",
+      "source": "decomp:ExecuteOpcode_slot9_key_array_base",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "868": {
+      "name": "m_nPathKeyCount",
+      "type": "int",
+      "source": "decomp:ExecuteOpcode_slot10_set_2"
+    },
+    "872": {
+      "name": "m_nPathStep",
+      "type": "int",
+      "source": "decomp:ExecuteOpcode_slot11_incremented"
+    }
   },
-  "32": {
-   "name": "m_ptr_20",
-   "type": "int *",
-   "source": "codegen_offset_infer"
+  "binary_size": 888,
+  "methods": {
+    "0x0042CD90": {
+      "name": "CallFunction",
+      "signature": "int __thiscall(unsigned char nFuncID, int nArgCount)"
+    },
+    "0x004366C0": {
+      "name": "GetObjectByID",
+      "signature": "int __cdecl(int nObjID)",
+      "static": true
+    },
+    "0x0042C730": {
+      "name": "OpenSceneScript",
+      "signature": "struct gbVFileSystem *__thiscall()"
+    },
+    "0x0042C810": {
+      "name": "UpdatePauseState",
+      "signature": "char __thiscall()"
+    },
+    "0x0042C950": {
+      "name": "ExecuteOpcode",
+      "signature": "int __thiscall(void *pData, unsigned char nType, int nCount, int)",
+      "source": "sig_evidence_A(ret-N arity)"
+    },
+    "0x0042D670": {
+      "name": "GetRolePosition",
+      "signature": "int __thiscall(unsigned char pData)"
+    },
+    "0x00423880": {
+      "name": "ProcessFrame",
+      "signature": "void __thiscall ScriptVM::ProcessFrame()"
+    },
+    "0x0042D4B0": {
+      "name": "SetRolePosition",
+      "signature": "int __thiscall(unsigned char pData)"
+    },
+    "0x0042C1A0": {
+      "name": "IsRunning",
+      "signature": "BOOL __thiscall()"
+    },
+    "0x0042FB60": {
+      "name": "GetString",
+      "signature": "char *__thiscall()"
+    },
+    "0x00424c20": {
+      "name": "ExecuteBlock",
+      "signature": "void __thiscall()",
+      "_misattrib_evidence": "round3: interpreter loop; ScriptVM::CallFunction/SetRolePosition on own this (mov ecx,esi); IsRunning(0x42C1A0) callers all inside this function"
+    },
+    "0x0042CB70": {
+      "name": "FightInfo",
+      "signature": "void __thiscall(int nVal1, int nVal2, int nVal3)",
+      "source": "[批1-5#3 归属修正 2026-10-15] A 级：① 调用侧 0x424fe7-0x424fed `push %ebx; push $0x0; push %edi; mov %esi,%ecx; call 0x42cb70` = 3 栈参 + thiscall（接收者 _ESI=ScriptVM self，同段前后是 ScriptVM::GetRolePosition/ScriptVM::CallFunction(_ESI,…) ✓）；② 本体 0x42cb70 `mov %ecx,%esi` + `lea 0x33c(%esi),%ebp` + 尾 `ret $0xc`（0x42cc29/0x42cd8d）= 3 栈参 thiscall；③ 归属证据（decomp member access）：+0x33C 成员存在于 ScriptVM（m_nPathMode@828）且不在原类（FightInfo binary_size=96 越界 8 倍；functions.json 自由函数无成员）；④ 同址双挂根因=functions.json 的 void __cdecl() 与 FightInfo.json 的 ctor 名双认领⇒ 生成 void FightInfo() 自由函数与 class FightInfo 名撞（C2501/C2065 族 6 错）"
+    }
   },
-  "4": {
-   "name": "m_bufHead",
-   "type": "int",
-   "source": "decomp:GetString ring buffer head pointer (pair: {block_ptr, block_end})"
-  },
-  "8": {
-   "name": "m_bufTail",
-   "type": "int",
-   "source": "decomp:GetString ring buffer tail (+4 = block_end = block_ptr+0xFBC)"
-  },
-  "12": {
-   "name": "m_bufCapacity",
-   "type": "int",
-   "source": "decomp:GetString ring buffer capacity/count"
-  },
-  "16": {
-   "name": "m_bufReadPtr",
-   "type": "int",
-   "source": "decomp:GetString ring buffer read position (iterator)"
-  },
-  "20": {
-   "name": "m_bufWritePtr",
-   "type": "int",
-   "source": "decomp:GetString ring buffer write position (iterator)"
-  },
-  "160": {
-   "name": "m_nTodo_0A0",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "164": {
-   "name": "m_nTodo_0A4",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "168": {
-   "name": "m_nTodo_0A8",
-   "type": "int",
-   "source": "binary_scan:1refs"
-  },
-  "220": {
-   "name": "m_nTodo_0DC",
-   "type": "int",
-   "source": "binary_scan:2refs"
-  },
-  "224": {
-   "name": "m_nTodo_0E0",
-   "type": "void *",
-   "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
-  },
-  "244": {
-   "name": "m_nTodo_0F4",
-   "type": "unsigned char",
-   "source": "A:cmp_byte_ptr_25h_confirms_byte|binary_scan:1refs"
-  },
-  "256": {
-   "name": "m_nPauseState",
-   "type": "int",
-   "source": "decomp:UpdatePauseState compared to 1"
-  },
-  "796": {
-   "name": "m_pCmdList",
-   "type": "void *",
-   "source": "decomp:UpdatePauseState *(m_pCmdList + 16) accessed as array base"
-  },
-  "828": {
-   "name": "m_nPathMode",
-   "type": "int",
-   "source": "decomp:ExecuteOpcode_base_used_as_ScriptVM_self"
-  },
-  "832": {
-   "name": "m_fPathStartX",
-   "type": "float",
-   "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot1"
-  },
-  "836": {
-   "name": "m_fPathStartY",
-   "type": "float",
-   "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot2"
-  },
-  "840": {
-   "name": "m_fPathStartZ",
-   "type": "float",
-   "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot3"
-  },
-  "844": {
-   "name": "m_nPathParam",
-   "type": "int",
-   "source": "decomp:ExecuteOpcode_slot4_arithmetic"
-  },
-  "848": {
-   "name": "m_fPathEndX",
-   "type": "float",
-   "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot5"
-  },
-  "852": {
-   "name": "m_fPathEndY",
-   "type": "float",
-   "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot6"
-  },
-  "860": {
-   "name": "m_pPathCurrent",
-   "type": "char *",
-   "source": "decomp:ExecuteOpcode_slot8_ptr_arithmetic",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "864": {
-   "name": "m_pPathKeys",
-   "type": "char *",
-   "source": "decomp:ExecuteOpcode_slot9_key_array_base",
-   "note": "replaced void* with char* (IDB struct compat)"
-  },
-  "868": {
-   "name": "m_nPathKeyCount",
-   "type": "int",
-   "source": "decomp:ExecuteOpcode_slot10_set_2"
-  },
-  "872": {
-   "name": "m_nPathStep",
-   "type": "int",
-   "source": "decomp:ExecuteOpcode_slot11_incremented"
-  }
- },
- "binary_size": 888,
- "methods": {
-  "0x0042CD90": {
-   "name": "CallFunction",
-   "signature": "int __thiscall(unsigned char nFuncID, int nArgCount)"
-  },
-  "0x004366C0": {
-   "name": "GetObjectByID",
-   "signature": "int __cdecl(int nObjID)",
-   "static": true
-  },
-  "0x0042C730": {
-   "name": "OpenSceneScript",
-   "signature": "struct gbVFileSystem *__thiscall()"
-  },
-  "0x0042C810": {
-   "name": "UpdatePauseState",
-   "signature": "char __thiscall()"
-  },
-  "0x0042C950": {
-   "name": "ExecuteOpcode",
-   "signature": "int __thiscall(void *pData, unsigned char nType, int nCount, int)",
-   "source": "sig_evidence_A(ret-N arity)"
-  },
-  "0x0042D670": {
-   "name": "GetRolePosition",
-   "signature": "int __thiscall(unsigned char pData)"
-  },
-  "0x00423880": {
-   "name": "ProcessFrame",
-   "signature": "void __thiscall ScriptVM::ProcessFrame()"
-  },
-  "0x0042D4B0": {
-   "name": "SetRolePosition",
-   "signature": "int __thiscall(unsigned char pData)"
-  },
-  "0x0042C1A0": {
-   "name": "IsRunning",
-   "signature": "BOOL __thiscall()"
-  },
-  "0x0042FB60": {
-   "name": "GetString",
-   "signature": "char *__thiscall()"
-  },
-  "0x00424c20": {
-   "name": "ExecuteBlock",
-   "signature": "void __thiscall()",
-   "_misattrib_evidence": "round3: interpreter loop; ScriptVM::CallFunction/SetRolePosition on own this (mov ecx,esi); IsRunning(0x42C1A0) callers all inside this function"
-  }
- },
- "size_evidence": "ExecuteBlock(0x424C20, this-proven ScriptVM method) accesses this+0x370/+0x374 (first-party member access, round-6 profile); old 876(0x36C) contradicted. No heap alloc site exists - objects are embedded/members. Lower bound 0x378=888."
+  "size_evidence": "ExecuteBlock(0x424C20, this-proven ScriptVM method) accesses this+0x370/+0x374 (first-party member access, round-6 profile); old 876(0x36C) contradicted. No heap alloc site exists - objects are embedded/members. Lower bound 0x378=888."
 }

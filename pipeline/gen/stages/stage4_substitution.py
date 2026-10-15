@@ -1288,6 +1288,12 @@ _FPTR_PARAM_RE = re.compile(
 
 _THIS_NAME_RE = re.compile(r'(?:^|\s)(?:\w+\s*\*+\s*)?(?:this|_this)$')
 
+# [批1-5#2 2026-10-15] 无名指针型首参（`char *`/`void *`/`T *`）同为合成 this 形：
+# __thiscall fnptr 的首参即 this（Hex-Rays 合成 this 渲染），AdjustThisCall@0x4C2850
+# 的 `int (__thiscall *a2)(char *, int)` 实为 (this=char*, a4=int)——A 级
+# `lea -0xc(%edx,%ecx,1),%ecx; push a4; call *fnptr` = 隐含 this + 1 栈参。
+_ANON_PTR_ARG_RE = re.compile(r'^\w[\w\s]*\s*\*+\s*$')
+
 
 def rewrite_thiscall_fnptr_param(param, cls_name):
     """Rewrite one parameter spelled as a thiscall fn-ptr to member-ptr form.
@@ -1299,9 +1305,16 @@ def rewrite_thiscall_fnptr_param(param, cls_name):
     methods of that same class).  VC6 cannot spell the __thiscall fn-ptr
     form at all (C4234).
     """
+    text, _name, _dropped = rewrite_thiscall_fnptr_param_ex(param, cls_name)
+    return text
+
+
+def rewrite_thiscall_fnptr_param_ex(param, cls_name):
+    """同 rewrite_thiscall_fnptr_param，另回传 (文本, 参数名, 是否剥了合成 this)。
+    剥了合成 this 的名字必须由调用方继续做**直调改写**（成员指针不可直调）。"""
     m = _FPTR_PARAM_RE.match(param.strip())
     if not m:
-        return param
+        return param, None, False
     pre, name, inner = m.groups()
     depth = 0
     args, cur = [], ''
@@ -1317,10 +1330,61 @@ def rewrite_thiscall_fnptr_param(param, cls_name):
             cur += ch
     if cur.strip():
         args.append(cur.strip())
-    if len(args) >= 2 and _THIS_NAME_RE.search(args[0]):
+    dropped = False
+    if len(args) >= 2 and (_THIS_NAME_RE.search(args[0])
+                           or _ANON_PTR_ARG_RE.match(args[0])):
         args = args[1:]
-    return '%s(%s::*%s)(%s)' % (
-        pre, cls_name, name or 'pFn', ', '.join(args))
+        dropped = True
+    return ('%s(%s::*%s)(%s)' % (pre, cls_name, name or 'pFn', ', '.join(args)),
+            (name or 'pFn'), dropped)
+
+
+def _rewrite_member_ptr_calls(code, name, cls):
+    """[批1-5#2] 成员指针直调改写：`a2(OBJ, ...)` → `(((CLS *)(OBJ))->*a2)(...)`。
+
+    成员指针不可直调；合成 this 参数被剥后首实参即隐含 this ⇒ 首实参变对象、
+    余参保留。A 级依据：0x4C2850 `lea -0xc(%edx,%ecx,1),%ecx; push a4;
+    call *0x8(%esp)` = 隐含 this 入 ecx + 单栈参 + 间接调用 ⇒ 与
+    `(obj->*pmf)(a4)` 编译形一致。仅改写**调用位**（`name(` 后有实参的形）；
+    声明位形如 `*a2)(` 不匹配 ✓。"""
+    out = code
+    pat = re.compile(r'\b%s\s*\(' % re.escape(name))
+    idx = 0
+    while True:
+        m = pat.search(out, idx)
+        if not m:
+            break
+        start = m.end()
+        depth, j = 1, start
+        while j < len(out) and depth:
+            if out[j] == '(':
+                depth += 1
+            elif out[j] == ')':
+                depth -= 1
+            j += 1
+        inner = out[start:j - 1]
+        args, cur, d = [], '', 0
+        for ch in inner:
+            if ch == '(':
+                d += 1
+            elif ch == ')':
+                d -= 1
+            if ch == ',' and d == 0:
+                args.append(cur.strip())
+                cur = ''
+            else:
+                cur += ch
+        if cur.strip():
+            args.append(cur.strip())
+        if not args:
+            idx = m.end()
+            continue
+        obj = args[0]
+        rest = ', '.join(args[1:])
+        repl = '(((%s *)(%s))->*%s)(%s)' % (cls, obj, name, rest)
+        out = out[:m.start()] + repl + out[j:]
+        idx = m.start() + len(repl)
+    return out
 
 
 def _fix_member_fn_callbacks(code, ctx):
@@ -1329,10 +1393,20 @@ def _fix_member_fn_callbacks(code, ctx):
     # pass 0 — thiscall fn-ptr parameters in the definition signature
     # (Hex-Rays synthetic-this form).  Class = the method's own class.
     if ctx is not None and getattr(ctx, 'cls_name', None):
+        _dropped = []
+
+        def _p0(m):
+            _t, _n, _d = rewrite_thiscall_fnptr_param_ex(m.group(0), ctx.cls_name)
+            if _d:
+                _dropped.append(_n)
+            return _t
+
         out = re.sub(
-            r'[\w\s]*\(\s*__thiscall\s*\*\s*\w*\s*\)\s*\([^()]*\)',
-            lambda m: rewrite_thiscall_fnptr_param(m.group(0), ctx.cls_name),
-            out)
+            r'[\w\s]*\(\s*__thiscall\s*\*\s*\w+\s*\)\s*\([^()]*\)',
+            _p0, out)
+        # pass 0b — 剥了合成 this 的成员指针直调改写（成员指针不可直调）
+        for _n in _dropped:
+            out = _rewrite_member_ptr_calls(out, _n, ctx.cls_name)
 
     # pass 1 — cast sites:
     #   (RET ( *)(ARGS))CLS::METH → (RET (CLS::*)(ARGS'))&CLS::METH

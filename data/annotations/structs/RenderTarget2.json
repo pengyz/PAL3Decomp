@@ -756,6 +756,26 @@
       "name": "sub_4C5800",
       "signature": "void __thiscall(int nVal1)",
       "source": "vtable_gap_fill_v1(IDB:sub_4C5800) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+    },
+    "0x004AF760": {
+      "name": "_todo_004AF760",
+      "signature": "void __thiscall(int nVal1)",
+      "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x4AF760 单指令 `c2 04 00`（ret $0x4）= 零体 thiscall 1 栈参（空桩，13 槽 COMDAT 折叠形）；语义未定 ⇒ _todo_ 占位（禁伪语义命名）。vtable_mapper 口径：21 槽/3 唯一地址/5 类×地址条目（per-class methods 查找）"
+    },
+    "0x004C0540": {
+      "name": "_scalar_dtor_0540",
+      "signature": "void __thiscall(int nVal1)",
+      "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x4C0540 = scalar deleting destructor 形（`call 0x4c0560`(dtor) / `testb $1,0x8(%esp)`(flag) / `call 0x541d10`(operator delete)）⇒ _scalar_dtor 命名 + 1 栈参 flag；同 _scalar_dtor_0620/34b0 形制"
+    },
+    "0x004C09E0": {
+      "name": "_todo_004C09E0",
+      "signature": "void __thiscall(int nVal1)",
+      "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x4C09E0 `push ecx;push ebx;push ebp;lea 0xc(%ecx),%ebx;…;ret $0x4` = thiscall 1 栈参真实方法（读 this+0xC/+0x28 族成员）；语义未定 ⇒ _todo_ 占位"
+    },
+    "0x004C3EC0": {
+      "name": "_todo_004C3EC0",
+      "signature": "void __thiscall(int nVal1, float fVal, int nVal3, int nVal4)",
+      "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x4c3ec0 `flds 0x8(%esp)`（参2=float FPU 载入）+ `mov 0x10(%esp),%edi`（3 push 后 =参1）+ `mov %ecx,%esi`（thiscall）+ 尾 `ret $0x10`（4 栈参）；语义未定 ⇒ _todo_ 占位。vtable[RenderTarget2][1] slot[26]"
     }
   },
   "vtables": [

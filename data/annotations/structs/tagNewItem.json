@@ -10,8 +10,8 @@
     },
     "4": {
       "name": "fnHP",
-      "type": "int (__thiscall *)(void *, unsigned long)",
-      "source": "annotation"
+      "type": "int (__thiscall *)(void *, unsigned int)",
+      "source": "annotation | [F-HDR#7 2026-10-15] unsigned long→unsigned int（型别文本对齐，非二进制取证出真型——Win32 同宽同 ABI 二进制不可判，精确措辞）：Hex-Rays 原文 CCBEditor_InvokeItemMethod@0x44b690 `int (__thiscall **p_fnHP)(void *, unsigned int);` + 调用形 `(*p_fnHP)(p_fnHP, 0)`= (this=slot, flags) deleting-dtor 语义形 + MSVC `??_G` scalar-deleting-dtor 惯例 I=unsigned int。fnGP/fnMP 同文未改：decomp 仅见取址形（fnGP+1649 族）无实参型证据 ⇒ 禁批量未验证字段"
     },
     "8": {
       "name": "fnGP",
