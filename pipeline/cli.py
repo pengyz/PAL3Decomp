@@ -1048,6 +1048,25 @@ def cmd_loop(argv):
             print('[loop] 出现**非容错**失败（%s）⇒ 中止后续阶段' % ', '.join(report['failed']))
             break
 
+    # [Phase2 留存 2026-10-15] retain 状态可见性（条目数/漂移数——verifier 步骤 3）
+    try:
+        _tp = os.path.join(_PROJECT_DIR, 'tools')
+        if _tp not in sys.path:
+            sys.path.insert(0, _tp)
+        import phase2_retain as _pr
+        _ctx = _pr.Ctx(os.path.join(_PROJECT_DIR, 'pal3', 'src'),
+                       os.path.join(_PROJECT_DIR, 'phase2'))
+        _m = _pr.load_manifest(_ctx.manifest_path)
+        if _m['entries']:
+            _plan = _pr.plan_apply(_m, _ctx.root_hashes(), _ctx.overlay_hashes())
+            print('[loop] phase2-retain: 条目 %d · 在位 %d · 待套 %d · 漂移 %d'
+                  % (len(_m['entries']), len(_plan['inplace']),
+                     len(_plan['actions']), len(_plan['drift'])))
+        else:
+            print('[loop] phase2-retain: 条目 0（no-op）')
+    except Exception as _e:
+        print('[loop] phase2-retain: 状态不可读（%s）' % _e)
+
     # 汇总 + 断言
     print()
     print('=' * 72)

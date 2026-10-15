@@ -7,6 +7,7 @@
 - [gbui 七槽 vtable 继承链](arch_gbui_seven_slot_vtables_inheritance_chain.md) — gbui 家族 vtable 的槽位与继承链关系
 
 ## Gotchas
+- [pal3/src 手改三重灭失 → phase2/overlay 机制化](gotcha_pal3src_fix_threefold_eviction.md) — 手改 pal3/src 必然零留存（emit_cpp 逐文件覆盖 + codegen all rmtree + gitignore 不跟踪）；Phase 2 fix 必须 `adopt`→改 `phase2/overlay`→`apply`（base_sha256 漂移门 fail-loud，exit 2）；`codegen headers/cpp/all` 末尾自动套用；新增单元 `new_unit: true` 须同步刷新 S2 分母门禁 ✓
 - [MSVC6 复制传播让"经 prev 寻址"双变量改写无效](gotcha_msvc6_copy_prop_defeats_prev_load.md) — `Y=i; i=Y->next` 必被前向传播成 `[eax+disp]`（9 种双变量形实测全无效，含字节偏移 cast）；唯有**单循环变量形**（`for(;Y->next;Y=Y->next){if(Y->next->f…)break;}`）编出 `[ecx+disp]` 与原 34 字节全同；已实现 `stage4_substitution._try_loop_carry_rewrite`（T44 只作遗留通路）；判据=受控实验字节比对，别靠推理 ✓
 - [改生成产物不持久，改生成源才持久](gotcha_generated_artifacts_regenerated_not_persistent.md) — 手改 `asm/pal3/decomp/*.json` / `pal3/src/**` 生成头会在下一次 export/codegen **整体覆盖回潮**（T2/T3 实证）；要持久必须改 `data/annotations/**`（走 apply→IDB 流入）或 apply 层，禁直改 IDB；端到端验证必须跑**含 export 的完整 loop**（codegen 单步不够）✓
 - [判归属时成员集合必须按基对象分离](gotcha_member_set_must_be_split_by_base_object.md) — naive `mov R,ecx ⇒ R≡this` 追踪会把**经其它指针/全局**访问的字段算成 this 的成员 ✗（实测 `SceneMgr::Create` 因访问 `CEffMgr` 的字段(0xA91C…≈0xA930) 被判"唯一相容 CEffMgr" ⇒ **问题问错了**）；判据可 TDD，但**提取器必须做寄存器级 provenance**，且工具须标注实验性 ✓

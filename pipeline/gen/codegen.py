@@ -118,6 +118,30 @@ def cmd_cpp(filter_classes=None):
     run_cpp_generation(filter_classes=filter_classes)
 
 
+def _retain_apply(no_retain=False):
+    """[Phase2 留存 2026-10-15] codegen 产物落盘后套用 phase2/overlay 手工 fix。
+
+    零管线侵入钩子（verifier 方案 A'）：manifest 空 = no-op；`--no-retain` 逃生阀；
+    rc 原样传播（override 漂移 = exit 2 fail-loud）。仅挂 headers/cpp/all 三分支
+    （clean/config 不挂——clean 无产物可套，config 不产码）。
+    """
+    if no_retain:
+        print('[phase2-retain] --no-retain ⇒ 跳过 overlay 套用')
+        return 0
+    try:
+        _tools = os.path.join(os.path.dirname(os.path.dirname(
+            os.path.dirname(os.path.abspath(__file__)))), 'tools')
+        if _tools not in sys.path:
+            sys.path.insert(0, _tools)
+        import phase2_retain as pr
+    except Exception as e:  # 工具缺失不得拖垮 codegen（但要出声）
+        print('[phase2-retain][WARN] phase2_retain 不可用（%s）⇒ 跳过' % e)
+        return 0
+    from pipeline.config import PROJECT_ROOT as _PR
+    ctx = pr.Ctx(str(_PR / 'pal3' / 'src'), str(_PR / 'phase2'))
+    return pr.cmd_apply(ctx)
+
+
 def main():
     args = sys.argv[1:]
     if not args or args[0] in ('-h', '--help', 'help'):
@@ -126,26 +150,35 @@ def main():
 
     command = args[0]
     filter_classes = set()
+    no_retain = False
     for arg in args[1:]:
-        if not arg.startswith('-'):
+        if arg == '--no-retain':
+            no_retain = True
+        elif not arg.startswith('-'):
             filter_classes.add(arg)
 
+    rc = 0
     if command == 'config':
         cmd_config()
     elif command == 'clean':
         cmd_clean()
     elif command == 'headers':
         cmd_headers()
+        rc = _retain_apply(no_retain)
     elif command == 'cpp':
         cmd_cpp(filter_classes=filter_classes or None)
+        rc = _retain_apply(no_retain)
     elif command == 'all':
         cmd_clean()
         cmd_headers()
         cmd_cpp(filter_classes=filter_classes or None)
+        rc = _retain_apply(no_retain)
     else:
         print("Unknown command: %s" % command)
         print("Run with --help for usage.")
         sys.exit(1)
+    if rc:
+        sys.exit(rc)
 
 
 # ---------------------------------------------------------------------------

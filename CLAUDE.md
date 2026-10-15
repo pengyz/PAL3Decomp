@@ -157,6 +157,13 @@ union { // +0xN
 | **函数归属改动** | 归属证据（**可证**）| `python tools/audit_attribution_evidence.py` | 只看 contradiction 告警，人工裁定 |
 | **任何修复提交前** | **证物报告** | `python tools/verify_fix.py --class <Cls>` | 成员偏移+**sizeof**+传递依赖+端到端+基线；有问题 ⇒ 不提交 |
 | **annotation 批量改动** | **四道门** | ①布局等价 ②`loop --expect-errors`不增 ③`l1`不降 ④证据自校验 | 缺一不可 ⇒ 见 `annotation-audit` skill |
+| **Phase 2 手工 fix 落盘** | **phase2 retain check** | `python tools/phase2_retain.py check` | 禁直改 `pal3/src`（三重灭失零留存）⇒ `adopt`→改 `phase2/overlay`→`apply`；PASS 才放行 |
+
+> **Phase 2 留存机制**（2026-10-15 起）：`pal3/src` 手改会被 codegen 覆盖/rmtree/不被 git
+> 跟踪（三重灭失）⇒ 手工 fix 收编进 `phase2/`（tracked）：`manifest.json`（base_sha256
+> 漂移门：override 漂移 exit 2 fail-loud）+ `overlay/`（fix 副本）。`codegen headers/cpp/all`
+> 末尾自动套用（`--no-retain` 逃生阀）。新增 .cpp 单元须 `new_unit: true` 并刷新 S2 分母
+> 门禁数字。详见 `docs/knowledge/gotcha_pal3src_fix_threefold_eviction.md`。
 
 > ⚠️ **不要再用 `tools/audit_layout.py` 作布局判据**：它比的是「注解 vs `asm/pal3/ida_structs.json`」，
 > 而后者是 `apply_annotations.py` **从这些注解写进 IDB 再导出**的 ⇒ **同源比较、恒等、无判别力** ✗
