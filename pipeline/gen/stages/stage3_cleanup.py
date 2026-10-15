@@ -752,6 +752,12 @@ def _load_vtbl_index():
             addr = str(vtables[0].get('addr') or '').lower()
             if not addr:
                 continue
+            # [外部 vtable 槽名表 2026-10-15] external 标记：gbengine.dll 外部库类的
+            # vtable **地址不认领**（表在 DLL 内；编造址已清 0032f2e35）——但槽序/槽名是
+            # 真数据（methods[槽址].name），渲染链要消费 ⇒ 用 `external:<cls>` 唯一键入
+            # 索引；idb_members 侧无 `vtbl_<ADDR>`（PAL3 映像无此表）⇒ 事后按槽序合成。
+            if vtables[0].get('external') or addr in ('external', 'unknown'):
+                addr = 'external:' + cls.lower()
             methods = ann.get('methods') or {}
             slot_map = {}
             slot_addrs = {}
@@ -825,6 +831,21 @@ def _load_vtbl_index():
                     nm = _vtbl_method_name(entry.get('name', ''))
                     if nm:
                         class_decl[cname].setdefault(nm, set()).add(str(maddr).lower())
+    # [外部 vtable 槽名表 2026-10-15] external 条目：PAL3 映像无 `vtbl_<ADDR>` 表
+    # ⇒ idb_members 缺项会让链短路 'no_idb_vtbl_struct'（L1 回退机制，实测
+    # PalScriptWaitObj::ReleaseObject@0x4A68D0 gfxMgr 槽2 dispatch 降级 fn-ptr）。
+    # 按槽序合成成员名表（名来自 methods[槽址].name = 真数据）⇒ 链恢复具名渲染。
+    for a, smap in by_addr.items():
+        if not a.startswith('external:'):
+            continue
+        if a in idb_members:
+            continue
+        n = (max(smap) + 1) if smap else 0
+        lst = [''] * n
+        for i, nm in smap.items():
+            if 0 <= i < n:
+                lst[i] = nm
+        idb_members[a] = lst
     return {'class_addr': class_addr, 'by_addr': by_addr,
             'idb_members': idb_members,
             'class_slot_addrs': class_slot_addrs, 'class_decl': class_decl}

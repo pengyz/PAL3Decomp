@@ -127,7 +127,39 @@
       "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
     }
   },
-  "vtables": [],
+  "vtables": [
+    {
+      "addr": "external",
+      "external": true,
+      "slots": [
+        {
+          "addr": "0x0042C6A0",
+          "from": null
+        },
+        {
+          "addr": "0x0042C6E0",
+          "from": null
+        },
+        {
+          "addr": "0x0042C8D0",
+          "from": null
+        },
+        {
+          "addr": "0x00423860",
+          "from": null
+        },
+        {
+          "addr": "0x0042BEE0",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        }
+      ],
+      "source": "[外部 vtable 槽名表 2026-10-15] vtable 地址显式**不认领**（gbengine.dll 外部库类，表在 DLL 内；0032f2e35 移除的是编造的 vtable **地址**认领，槽序/槽名是真数据须保留供渲染链消费）。槽名经 methods[槽址].name 解析，名/序与 gbengine 接口头 一致。⚠️ 切勿回填编造 vtable 址（0x10000/0x100F57E8 族）。"
+    }
+  ],
   "base_size": 4,
   "source": " | [vtable 治理 2026-10-15] 移除编造认领：认领 0x0056AB28 实为**游戏类 MI 第二 vptr**：A 级 objdump 0x4237f1/0x4237f7 `movl $0x56ab34,(%esi); movl $0x56ab28,0x8(%esi)` = 主 vptr 0x56AB34@+0 + 子对象 vptr 0x56AB28@+8 的 MI 构造器（类体 ≥0x36C，未归属区 0x4237xx）；gb* 外部库类不拥有映像内 vtable ⇒ 误挂。真主=该 MI 游戏类（构造器未归属，挂账）"
 }

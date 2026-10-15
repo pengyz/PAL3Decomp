@@ -32,7 +32,31 @@
     "gbResource"
   ],
   "base_size": 24,
-  "vtables": [],
+  "vtables": [
+    {
+      "addr": "external",
+      "external": true,
+      "slots": [
+        {
+          "addr": "0x1001BD30",
+          "from": null
+        },
+        {
+          "addr": "0x1001BEA0",
+          "from": null
+        },
+        {
+          "addr": "0x1001BF80",
+          "from": null
+        },
+        {
+          "addr": "0x1001C010",
+          "from": null
+        }
+      ],
+      "source": "[外部 vtable 槽名表 2026-10-15] vtable 地址显式**不认领**（gbengine.dll 外部库类，表在 DLL 内；0032f2e35 移除的是编造的 vtable **地址**认领，槽序/槽名是真数据须保留供渲染链消费）。槽名经 methods[槽址].name 解析，名/序与 gbengine 接口头 一致。⚠️ 切勿回填编造 vtable 址（0x10000/0x100F57E8 族）。"
+    }
+  ],
   "methods": {
     "0x1001BD30": {
       "name": "CreateFromMemory",

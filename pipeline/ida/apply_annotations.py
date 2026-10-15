@@ -2571,6 +2571,14 @@ def apply_annotations():
     for sname, sinfo in structs.items():
         for vt_addr, slots in resolve_vtable_slots(sinfo, functions):
             if vt_addr and slots:
+                # [外部 vtable 槽名表 2026-10-16] external/unknown 痕 = **地址不认领**
+                # （gbengine.dll 外部库类，vtable 表在 DLL 内）⇒ 不写 IDB（PAL3 .rdata
+                # 无此表）。此前 addr='external' 走到 [5] 阶段 `int(vt_addr_hex, 16)`
+                # ValueError 崩掉整个 apply（exit 1，实测 2026-10-16 00:05）。
+                # 槽序/槽名数据只服务 codegen 渲染链（stage3._load_vtbl_index 的
+                # `external:<cls>` 索引）✓ 治理正确性保持（不回填编造址）。
+                if not str(vt_addr).lower().startswith('0x'):
+                    continue
                 vtable_jobs.append((vt_addr, slots))
 
     import re as _re3

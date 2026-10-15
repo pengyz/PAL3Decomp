@@ -162,6 +162,42 @@
       "ordinal": 6
     }
   },
-  "vtables": [],
+  "vtables": [
+    {
+      "addr": "external",
+      "external": true,
+      "slots": [
+        {
+          "addr": "0x00010000",
+          "from": null
+        },
+        {
+          "addr": "0x00010001",
+          "from": null
+        },
+        {
+          "addr": "0x00010002",
+          "from": null
+        },
+        {
+          "addr": "0x00010003",
+          "from": null
+        },
+        {
+          "addr": "0x00010004",
+          "from": null
+        },
+        {
+          "addr": "0x00010005",
+          "from": null
+        },
+        {
+          "addr": "0x00010006",
+          "from": null
+        }
+      ],
+      "source": "[外部 vtable 槽名表 2026-10-15] vtable 地址显式**不认领**（gbengine.dll 外部库类，表在 DLL 内；0032f2e35 移除的是编造的 vtable **地址**认领，槽序/槽名是真数据须保留供渲染链消费）。槽名经 methods[槽址].name 解析，名/序与 include/gbengine/gbGfxManager.h:144-153 一致。⚠️ 切勿回填编造 vtable 址（0x10000/0x100F57E8 族）。"
+    }
+  ],
   "source": " | [vtable 治理 2026-10-15] 移除编造认领：认领 0x00010000 非任何映像地址（PAL3 映像界 0x401000-0x189C3CA；0x10000<0x401000）⇒ 垃圾值。gb*（gbengine.dll 外部库）类的 vtable 不在 PAL3 映像 ⇒ 认领即编造"
 }
