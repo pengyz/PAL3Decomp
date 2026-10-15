@@ -37,8 +37,8 @@
   "l1_bytes": 7263,
   "l1_hidden_reloc_bytes": 1372,
   "l1_reloc_covered_bytes": 1976,
-  "rsite_ok": 177,
-  "rsite_mismatch": 77,
+  "rsite_ok": 229,
+  "rsite_mismatch": 25,
   "rsite_mismatch_samples": [
    {
     "va": "0x004DB160",
@@ -46,34 +46,6 @@
     "orig": "CCBSystem::CreateProtectedObj(int,int,int,int,void const *)",
     "ours": "CEffMgr::Init(int,int,int,int,int)",
     "sym": "?Init@CEffMgr@@QAE_NHHHHH@Z"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x0051B160",
-    "off": 4,
-    "orig": "CCBLineupWindow::`scalar deleting destructor'(uint)",
-    "ours": "CCBItemWindow::~CCBItemWindow",
-    "sym": "??1CCBItemWindow@@UAE@XZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
    },
    {
     "va": "0x0051BC70",
@@ -90,67 +62,11 @@
     "sym": "?GetHeight@UIProgressBar@@QAEXH@Z"
    },
    {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x004C5810",
-    "off": 4,
-    "orig": "CEffCylinder::_scalar_dtor_3db0(int)",
-    "ours": "CEffCylinder::~CEffCylinder",
-    "sym": "??1CEffCylinder@@UAE@XZ"
-   },
-   {
-    "va": "0x004C9630",
-    "off": 4,
-    "orig": "CEffGrid::~CEffGrid(void)",
-    "ours": "CEffGrid::~CEffGrid",
-    "sym": "??1CEffGrid@@UAE@XZ"
-   },
-   {
     "va": "0x004D3930",
     "off": 4,
     "orig": "CEffect::DestroyCallback(void)",
     "ours": "CEffShock::~CEffShock",
     "sym": "??1CEffShock@@UAE@XZ"
-   },
-   {
-    "va": "0x004BEFB0",
-    "off": 414,
-    "orig": "OpenNULLFile::OpenNULLFile(void)",
-    "ours": "OpenBaseFile::~OpenBaseFile",
-    "sym": "??1OpenBaseFile@@QAE@XZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x00450E90",
-    "off": 4,
-    "orig": "RoleAtt::~RoleAtt(UIWnd *)",
-    "ours": "CCBFiveNimbusWindow::~CCBFiveNimbusWindow",
-    "sym": "??1CCBFiveNimbusWindow@@UAE@XZ"
    },
    {
     "va": "0x00519FE0",
@@ -160,60 +76,11 @@
     "sym": "?GetInstance@CScreenMode@@SAPAV1@XZ"
    },
    {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x004A22E0",
-    "off": 153,
-    "orig": "UIFrameWnd::_UIFrameWnd(void)",
-    "ours": "UIButton::~UIButton",
-    "sym": "??1UIButton@@UAE@XZ"
-   },
-   {
     "va": "0x00457490",
     "off": 1033,
     "orig": "PalScript::LoadNext(void)",
     "ours": "PalScript::HasNext(void)",
     "sym": "?HasNext@PalScript@@QAEHXZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x005284C0",
-    "off": 4,
-    "orig": "JusticeBookUI::JusticeBookUI(void)",
-    "ours": "JusticeBookUI::~JusticeBookUI",
-    "sym": "??1JusticeBookUI@@UAE@XZ"
-   },
-   {
-    "va": "0x0043F950",
-    "off": 4,
-    "orig": "UIButton::~UIButton(void)",
-    "ours": "UIButton::~UIButton",
-    "sym": "??1UIButton@@UAE@XZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
    },
    {
     "va": "0x004A4780",
@@ -237,20 +104,6 @@
     "sym": "?CreateWidgets@RoleStatePanel@@QAEXH@Z"
    },
    {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x004A7670",
-    "off": 4,
-    "orig": "SystemUI::~SystemUI(void)",
-    "ours": "SystemUI::~SystemUI",
-    "sym": "??1SystemUI@@UAE@XZ"
-   },
-   {
     "va": "0x004ADC30",
     "off": 2246,
     "orig": "CScreenMode::AudioSetPosition(void const *,int)",
@@ -265,67 +118,11 @@
     "sym": "?GetItemData@UIListBox@@QAEHXZ"
    },
    {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x0043D860",
-    "off": 4,
-    "orig": "UI3DCtrl::ctor(int)",
-    "ours": "UI3DCtrl::~UI3DCtrl",
-    "sym": "??1UI3DCtrl@@UAE@XZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x0043F950",
-    "off": 4,
-    "orig": "UIButton::~UIButton(void)",
-    "ours": "UIButton::~UIButton",
-    "sym": "??1UIButton@@UAE@XZ"
-   },
-   {
     "va": "0x0043FF70",
     "off": 1008,
     "orig": "crt_sub_00540DC0",
     "ours": "TextureLibDataBase::SetLibFolder(char const *,int)",
     "sym": "?SetLibFolder@TextureLibDataBase@@QAEXPBDH@Z"
-   },
-   {
-    "va": "0x004461F0",
-    "off": 4,
-    "orig": "UIScenePanel::~UIScenePanel(void)",
-    "ours": "UIScenePanel::~UIScenePanel",
-    "sym": "??1UIScenePanel@@UAE@XZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x0052BBB0",
-    "off": 4,
-    "orig": "UICoverFrm::UICoverFrm(void)",
-    "ours": "UICoverFrm::~UICoverFrm",
-    "sym": "??1UICoverFrm@@UAE@XZ"
-   },
-   {
-    "va": "0x0043F950",
-    "off": 4,
-    "orig": "UIButton::~UIButton(void)",
-    "ours": "UIButton::~UIButton",
-    "sym": "??1UIButton@@UAE@XZ"
    },
    {
     "va": "0x0052C480",
@@ -335,130 +132,11 @@
     "sym": "?GetAudioManager@CScreenMode@@QAEHXZ"
    },
    {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
     "va": "0x004518E0",
     "off": 4,
     "orig": "UIListBox::DestroyContent(void)",
     "ours": "UILoadingFrm::~UILoadingFrm",
     "sym": "??1UILoadingFrm@@UAE@XZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x004407A0",
-    "off": 4,
-    "orig": "UIPushButton::~UIPushButton(void)",
-    "ours": "UIPushButton::~UIPushButton",
-    "sym": "??1UIPushButton@@UAE@XZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x00450070",
-    "off": 4,
-    "orig": "UISceneMap::ctor_90(void)",
-    "ours": "UISceneMap::~UISceneMap",
-    "sym": "??1UISceneMap@@UAE@XZ"
-   },
-   {
-    "va": "0x00459240",
-    "off": 4,
-    "orig": "UISceneFrm::UISceneFrm(void)",
-    "ours": "UISceneFrm::~UISceneFrm",
-    "sym": "??1UISceneFrm@@UAE@XZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x00450070",
-    "off": 4,
-    "orig": "UISceneMap::ctor_90(void)",
-    "ours": "UISceneMap::~UISceneMap",
-    "sym": "??1UISceneMap@@UAE@XZ"
-   },
-   {
-    "va": "0x0043F950",
-    "off": 4,
-    "orig": "UIButton::~UIButton(void)",
-    "ours": "UIButton::~UIButton",
-    "sym": "??1UIButton@@UAE@XZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x0044ACC0",
-    "off": 4,
-    "orig": "UITitle::~UITitle(void)",
-    "ours": "UITitle::~UITitle",
-    "sym": "??1UITitle@@UAE@XZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x0047BD00",
-    "off": 4,
-    "orig": "UITitle_ArcSave::UITitle_ArcSave(void)",
-    "ours": "UITitle_ArcSave::~UITitle_ArcSave",
-    "sym": "??1UITitle_ArcSave@@UAE@XZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x00451D80",
-    "off": 4,
-    "orig": "UITitle_BBTY::ctor(void)",
-    "ours": "UITitle_BBTY::~UITitle_BBTY",
-    "sym": "??1UITitle_BBTY@@UAE@XZ"
-   },
-   {
-    "va": "0x0043F950",
-    "off": 4,
-    "orig": "UIButton::~UIButton(void)",
-    "ours": "UIButton::~UIButton",
-    "sym": "??1UIButton@@UAE@XZ"
    },
    {
     "va": "0x004520A0",
@@ -482,20 +160,6 @@
     "sym": "?GetInstance_db10@PAL3@@SAPAV1@XZ"
    },
    {
-    "va": "0x00486EF0",
-    "off": 153,
-    "orig": "UIFrameWnd::_UIFrameWnd(void)",
-    "ours": "UIButton::~UIButton",
-    "sym": "??1UIButton@@UAE@XZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
     "va": "0x00487C40",
     "off": 205,
     "orig": "UIProgressBar::GetPosition(int)",
@@ -510,39 +174,11 @@
     "sym": "?sub_445FA0@UIWnd@@QAEHPAX@Z"
    },
    {
-    "va": "0x00498E60",
-    "off": 153,
-    "orig": "UIFrameWnd::_UIFrameWnd(void)",
-    "ours": "UIButton::~UIButton",
-    "sym": "??1UIButton@@UAE@XZ"
-   },
-   {
     "va": "0x004999D0",
     "off": 205,
     "orig": "UIProgressBar::GetPosition(int)",
     "ours": "UIScene::GetChildCount(void)",
     "sym": "?GetChildCount@UIScene@@QAEHXZ"
-   },
-   {
-    "va": "0x0044E5C0",
-    "off": 4,
-    "orig": "scScriptInstance::~scScriptInstance(void)",
-    "ours": "UIWnd::~UIWnd",
-    "sym": "??1UIWnd@@UAE@XZ"
-   },
-   {
-    "va": "0x0047DD70",
-    "off": 4,
-    "orig": "UITitle_YXXX::~UITitle_YXXX(void)",
-    "ours": "UITitle_YXXX::~UITitle_YXXX",
-    "sym": "??1UITitle_YXXX@@UAE@XZ"
-   },
-   {
-    "va": "0x0052FA50",
-    "off": 147,
-    "orig": "OpenNULLFile::OpenNULLFile(void)",
-    "ours": "OpenBaseFile::~OpenBaseFile",
-    "sym": "??1OpenBaseFile@@QAE@XZ"
    },
    {
     "va": "0x004867F0",
