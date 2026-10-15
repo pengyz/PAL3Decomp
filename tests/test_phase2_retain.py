@@ -56,6 +56,12 @@ def test_manifest_invalid_fail_loud(tmp_path):
         pass
 
 
+def test_normalize_rel_accepts_repo_prefix():
+    assert pr.normalize_rel('pal3/src/Misc/File.cpp') == 'Misc/File.cpp'
+    assert pr.normalize_rel('./Misc/File.cpp') == 'Misc/File.cpp'
+    assert pr.normalize_rel('Misc\\File.cpp') == 'Misc/File.cpp'
+
+
 # ── ② plan_apply 三分判据 ───────────────────────────────────────────
 def test_plan_apply_three_way_judgement():
     manifest = {'entries': {

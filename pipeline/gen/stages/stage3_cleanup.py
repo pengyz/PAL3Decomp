@@ -1748,6 +1748,52 @@ def _expand_pair64_double(code):
     return ''.join(out)
 
 
+def _expand_pair64_point(code):
+    """[F-CG#19 2026-10-15] (POINT)__PAIR64__(H, L) → _pal3_pair_to_point(H, L)。
+
+    覆盖缺口补：__PAIR64__ 展开族此前只有 `(double)` 形 ⇒ `(POINT)__PAIR64__`
+    经宏展开得 `(POINT)(((unsigned __int64)(H) << 32) | (unsigned int)(L))`
+    ——__int64→struct POINT 转换 MSVC6 拒绝（C2440/C2102 族 2 错）。
+    位等价：宏的低 32=L=POINT.x、高 32=H=POINT.y（PtInRect 按值传 8B）⇒
+    helper `_pal3_pair_to_point(H,L)` 内联返回 POINT{x=L,y=H}（ida_defs.h）。
+    实参**原文搬运**（括号配平扫描同 _expand_pair64_double）⇒ 注释/空白零风险。
+    """
+    out, pos = [], 0
+    pat = re.compile(r'\(POINT\)\s*__PAIR64__\(')
+    while True:
+        m = pat.search(code, pos)
+        if not m:
+            out.append(code[pos:])
+            break
+        depth, i, n = 1, m.end(), len(code)
+        close = None
+        while i < n:
+            ch = code[i]
+            if ch in '"\'':
+                q = ch
+                i += 1
+                while i < n and code[i] != q:
+                    i += 2 if code[i] == '\\' else 1
+                i += 1
+                continue
+            if ch == '(':
+                depth += 1
+            elif ch == ')':
+                depth -= 1
+                if depth == 0:
+                    close = i
+                    break
+            i += 1
+        if close is None:
+            out.append(code[pos:])
+            break
+        inner = code[m.end():close]
+        out.append(code[pos:m.start()])
+        out.append('_pal3_pair_to_point(%s)' % inner)
+        pos = close + 1
+    return ''.join(out)
+
+
 # ============================================================
 # [T12] M3 lvar 重复声明归并（接线 TDD 存量 dedupe_identical_lvars 语义）
 # ============================================================
@@ -2114,6 +2160,9 @@ def run(code, ctx):
     # 批 E 单点（TextureLibDataBase:391 C2520）：MSVC6 无 unsigned __int64→double 转换
     # ——(double)__PAIR64__(H,L) 等价展开 H*4294967296.0+L（双精对 32+32 位无损）。
     code = _expand_pair64_double(code)
+    # [F-CG#19 2026-10-15] (POINT)__PAIR64__(H,L) → _pal3_pair_to_point(H,L)
+    # （__int64→POINT 转换 MSVC6 拒绝；位等价 helper 详见函数 docstring）
+    code = _expand_pair64_point(code)
 
     # Comment out Hex-Rays "->0" / "->0 + N" vtable dispatch (invalid C syntax).
     # Root cause: structs lack vfptr member at offset 0 in exported data_members.

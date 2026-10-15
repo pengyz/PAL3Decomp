@@ -2285,7 +2285,18 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         # ⇒ 本分支的**尺寸记账另有问题**（内联体的 `member_size`/`start_off` 推进方式），
                         # 必须与 gap 一起解决，否则按下葫芦浮起瓢。第 114 轮从这里继续。
                         lines.append("#pragma pack(push,1)")   # 同上：按字节级布局打包
-                        lines.append("    %s { // +0x%X" % (_kind, off))
+                        # [F-CG#21 2026-10-15] 内联 struct 带类型名：decomp 的 cast 用
+                        # 类型名 `_inline_MUIDialog_m_btRc`（ida_structs 里该成员 type 实名）
+                        # ⇒ 匿名内联 struct 在 TU 里无此名 ⇒ C2059（MUIDialog.h:28 族）。
+                        # 等价变换（布局不变）：`struct _inline_MUIDialog_m_btRc {…} m_btRc;`。
+                        # 仅对**合法标识符**名（纯 `_inline_*` 无 `::`/`$`）加名——
+                        # 合成名（`Cls::$123` 等）保持匿名（最小 churn）。
+                        _tn = _inline_type_name if (
+                            _inline_type_name.startswith('_inline_')
+                            and '::' not in _inline_type_name
+                            and '$' not in _inline_type_name) else ''
+                        lines.append("    %s %s{ // +0x%X"
+                                     % (_kind, (_tn + ' ') if _tn else '', off))
                         _inner_prev = off
                         for _idm in _inline_dms:
                             _ioff = _idm.get('offset', 0)

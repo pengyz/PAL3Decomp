@@ -873,6 +873,27 @@ def fix_macro_safe_decl(code):
     return out
 
 
+# [F-CG#23 2026-10-15] Win32 import 族 fnptr cast 补 __stdcall：
+#   `v6 = (void ( *)(LPSTR, LPCSTR))lstrcatA;` ⇒ `(void (__stdcall *)(…))lstrcatA`
+# 病灶：Hex-Rays 的 cast 文本 fnptr 型无显式约定 ⇒ 默认 __cdecl，而 lstrcatA/
+# lstrcpyA 是 WINAPI(__stdcall)（windows.h 声明）⇒ 调用约定错位（经 v6 的间接
+# 调用走 cdecl 形=错字节/错清栈；实测 SaleUI.cpp:7574/7580 · TaskBookUI.cpp:297/303）。
+# 等价变换：仅对**已知 WINAPI 导入名**的 cast 目标补限定（不误伤普通 fnptr cast）。
+_WINQAPI_FN_NAMES = ('lstrcatA', 'lstrcpyA', 'lstrcmpA', 'lstrlenA', 'wsprintfA')
+
+_WINQAPI_CAST_RE = re.compile(
+    r'\(\s*([\w ]+?)\(\s*\*\s*\)\s*\(([^()]*)\)\s*\)\s*('
+    + '|'.join(_WINQAPI_FN_NAMES) + r')\b')
+
+
+def fix_winqapi_fnptr_casts(code):
+    """[F-CG#23] Win32 import 族 fnptr cast 补 `__stdcall`（幂等：已带约定的不动）。"""
+    def _sub(m):
+        ret, args, tgt = m.group(1), m.group(2), m.group(3)
+        return '(%s (__stdcall *)(%s))%s' % (ret.strip(), args, tgt)
+    return _WINQAPI_CAST_RE.sub(_sub, code)
+
+
 def fix_fnptr_qualified_call(code, base_names=None):
     """C2273 fn-ptr 限定形（TDD 3 测）：`recv->Base(args)` → `((Base&)recv).M(args)`（子对象形）。
     fn-ptr 调用渲染名=基类名——子对象引用形（复核真形 f3d 编译器证）·分号保全。"""
@@ -1924,12 +1945,35 @@ def _qualify_this_member_calls(code, cls_name):
 #   判据是【语法结构】——"实参是不是函数调用"。**正则做不到可靠**：
 #   本会话我在正则上连错 4 次（交替顺序、贪婪匹配、把 this->m_x 的 '-' 当运算符、
 #   0x10000000i64 的 i64 后缀破匹配）。tree-sitter 直接给出节点类型 ⇒ 无歧义。
-def transform_coerce_calls(code):
-    """把 `COERCE_FLOAT(<函数调用>)` / `COERCE_DOUBLE(<函数调用>)` 改为辅助函数调用。
+def _is_coerce_lvalue(n):
+    """[F-CG#15 2026-10-15] 判实参是否左值（`&(x)` 在 MSVC6 合法的前提）。
 
-    只改**实参是 `call_expression`**（真正的 rvalue）的情形；
-    实参为标识符 / 成员访问 / 字面量 / 其它表达式**一律保持原样**
-    （那些在 MSVC6 下 `&(x)` 合法；不动它们可避免影响既有 51 处用法）。
+    保留不动（左值）：identifier / field_expression / subscript_expression /
+    qualified_identifier / 解引用 `*p`（pointer_expression op='*'）/ 括号包左值。
+    **注释修正**：原注释称"字面量/其它表达式 &(x) 合法"——**有误**（T66-F1 族
+    措辞纪律）：只有左值合法；`LODWORD(dt) | 0x100000000i64`（binary_expression）
+    实测 C2102 '&' requires l-value。
+    """
+    t = n.type
+    if t in ('identifier', 'field_expression', 'subscript_expression',
+             'qualified_identifier'):
+        return True
+    if t == 'parenthesized_expression':
+        inner = [c for c in n.children if c.type not in ('(', ')')]
+        return len(inner) == 1 and _is_coerce_lvalue(inner[0])
+    if t == 'pointer_expression':
+        op = n.child_by_field_name('operator')
+        return op is not None and op.text == b'*'
+    return False
+
+
+def transform_coerce_calls(code):
+    """把 `COERCE_FLOAT(<rvalue>)` / `COERCE_DOUBLE(<rvalue>)` 改为辅助函数调用。
+
+    [F-CG#15 2026-10-15] 判据从「实参=call_expression」扩为「实参=**非左值**」
+    （call/binary/cast/literal/unary/conditional… 即改 helper）；identifier/
+    member/subscript/解引用等左值保持原样（最小 churn——既有 51 处用法不动）。
+    等价变换：helper 取值传参（形参即 lvalue）与宏的位重解释一致。
     """
     _MAP = {'COERCE_FLOAT': '_pal3_coerce_f32', 'COERCE_DOUBLE': '_pal3_coerce_f64'}
     code_bytes = code.encode('utf-8')
@@ -1944,7 +1988,7 @@ def transform_coerce_calls(code):
                 helper = _MAP.get(fn.text.decode('utf-8'))
                 if helper:
                     exprs = [c for c in ar.children if c.type not in ('(', ')', ',')]
-                    if len(exprs) == 1 and exprs[0].type == 'call_expression':
+                    if len(exprs) == 1 and not _is_coerce_lvalue(exprs[0]):
                         replacements.append((fn.start_byte, fn.end_byte, helper))
         for child in node.children:
             process_node(child)

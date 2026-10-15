@@ -105,11 +105,14 @@ def save_manifest(path, manifest):
 
 
 def compute_census(root):
-    """root 下全部**文件**的 {相对路径: sha256}（字典序，确定性）。"""
+    """root 下全部**文件**的 {相对路径: sha256}（字典序，确定性）。
+    跳过点文件（.gitkeep 等占位符不是 fix 副本）。"""
     out = {}
     for dirpath, dirnames, filenames in os.walk(root):
         dirnames.sort()
         for fn in sorted(filenames):
+            if fn.startswith('.'):
+                continue
             full = os.path.join(dirpath, fn)
             rel = os.path.relpath(full, root).replace(os.sep, '/')
             out[rel] = sha256_file(full)
@@ -210,11 +213,16 @@ def plan_check(manifest, root_hashes, overlay_hashes):
 
 
 def normalize_rel(rel):
-    """相对路径归一：反斜杠→正斜杠、去前导 ./ 与 /（防 Windows/手滑形）。"""
+    """相对路径归一：反斜杠→正斜杠、去前导 ./ 与 /、剥仓库级 `pal3/src/` 前缀
+    （root 即 pal3/src，接受两种口径——防手滑拼成双路径）。"""
     r = rel.replace('\\', '/').strip()
     while r.startswith('./'):
         r = r[2:]
-    return r.lstrip('/')
+    r = r.lstrip('/')
+    for prefix in ('pal3/src/', 'src/'):
+        if r.startswith(prefix):
+            r = r[len(prefix):]
+    return r
 
 
 # ─────────────────────────── 执行层 ───────────────────────────

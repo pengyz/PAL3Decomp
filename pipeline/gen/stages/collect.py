@@ -187,9 +187,16 @@ def collect_functions(decomp_dir=None):
             if cls and ('$' in cls or '<' in cls or not (cls[0].isalpha() or cls[0] == '_')):
                 cls = None
         elif '::' in name:
-            parts = name.rsplit('::', 1)
+            # [F-CG#2 2026-10-15] 先剥参数表再 rsplit：decomp name 的**参数表内可含 `::`**
+            # （嵌套型 `AStarPathFinder::NODE *`）⇒ 原 `name.rsplit('::', 1)` 切进参数表
+            # ⇒ cls='AStarPathFinder::Release(AStarPathFinder' · method='NODE *)' ⇒
+            # stage1 name 归一拼回双参表（C2091 族）+ emit_cpp safe_name 不含 `(`/`)`
+            # ⇒ 文件名带 `(`。实测影响面=decomp 全库 4 条（911 条扫描：PushOpen/TryExpand/
+            # UpdateNeighbors/Release = 49 错同根因），无外溢。
+            base = name.split('(')[0]              # AStarPathFinder::Release
+            parts = base.rsplit('::', 1)
             cls = parts[0]
-            method = parts[1].split('(')[0] if '(' in parts[1] else parts[1]
+            method = parts[1] if len(parts) > 1 else None
         # N1 注记（回退教训 2026-09-29）：曾加"渲染首行/注解映射回退路由成员"——
         # 30 函数改类后裸调用失 free_func_sigs 声明 ⇒ C2065 洪泛（S2 100→91）。
         # **分类保持 name 形原判**；N1 的正确闭合在调用形转写层（挂账）。

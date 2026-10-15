@@ -114,10 +114,19 @@ extern "C" void __cdecl _amsg_exit(int);
 // 下面用**取值传参的 inline 函数**替代：形参本身即 lvalue ⇒ 语义等价（按位重解释）， 
 // 且 __forceinline 保证与宏一致的零开销（MSVC6 支持 __forceinline）。 
 // ⚠️ 名字刻意避开双下划线开头（那是实现保留命名空间）。 
-__forceinline float  _pal3_coerce_f32(unsigned long v) { return *(float *)&v; }
-__forceinline double _pal3_coerce_f64(unsigned __int64 v) { return *(double *)&v; }
+// [F-CG#15 回归修 2026-10-15] 模板化（任意实参型保位）：非模板版签名过窄——
+// 指针/cast 形实参（`(UIBigMap *)&x` 等）过 `unsigned long` 断型 C2664（实测
+// UIBigMap.cpp:300）；模板取值传参 = 形参 lvalue + 位重解释 ⇒ 与宏语义等价且
+// 覆盖全型。双参版本（f64 对 32 位实参的 8 字节读）与原宏同语义（刻意保留）。
+template<class T> __forceinline float  _pal3_coerce_f32(T v) { return *(float *)&v; }
+template<class T> __forceinline double _pal3_coerce_f64(T v) { return *(double *)&v; }
 __forceinline long   _pal3_slo_dword(unsigned __int64 v) { return (long)(unsigned long)v; }
 __forceinline long   _pal3_shi_dword(unsigned __int64 v) { return (long)(unsigned long)(v >> 32); }
+// [F-CG#19 2026-10-15] (POINT)__PAIR64__(H,L) 的位等价 helper：宏低 32=L=POINT.x、
+// 高 32=H=POINT.y（PtInRect 按值传 8B）。MSVC6 拒 __int64→struct 直转（C2440/C2102）。
+__forceinline POINT  _pal3_pair_to_point(unsigned int high, unsigned int low) {
+    POINT p; p.x = (long)low; p.y = (long)high; return p;
+}
 
 // IDA FLIRT misidentifications
 #define CRT_set_new_handler srand

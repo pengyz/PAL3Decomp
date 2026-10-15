@@ -804,7 +804,9 @@ def run_cpp_generation(filter_classes=None):
         out_dir = output_dir / subdir
         out_dir.mkdir(parents=True, exist_ok=True)
 
-        safe_name = cls_name.replace('<', '_').replace('>', '_').replace(':', '_').replace('"', '_').replace('?', '_').replace('*', '_').replace('|', '_').replace('\\', '_').replace('/', '_').strip()
+        # [F-CG#2 防御补丁 2026-10-15] 替换表补 `(`/`)`：collect 侧 name 参数表含 `::`
+        # 嵌套型的根因已修（先剥参数表再 rsplit）；此处兜底防文件名再带括号
+        safe_name = cls_name.replace('<', '_').replace('>', '_').replace(':', '_').replace('"', '_').replace('?', '_').replace('*', '_').replace('|', '_').replace('\\', '_').replace('/', '_').replace('(', '_').replace(')', '_').strip()
         out_path = out_dir / ("%s.cpp" % safe_name)
         content = generate_class_cpp(cls_name, methods)
         with open(out_path, 'w', encoding='utf-8') as f:
