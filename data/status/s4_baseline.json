@@ -18,27 +18,27 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 1255,
-  "matched": 1010,
-  "unmatched": 245,
-  "match_L1": 188,
-  "partial": 728,
+  "symbols": 1321,
+  "matched": 1070,
+  "unmatched": 251,
+  "match_L1": 202,
+  "partial": 772,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 94,
-  "reloc_total": 7878,
-  "reloc_ok": 1927,
+  "unresolved_synth": 96,
+  "reloc_total": 8054,
+  "reloc_ok": 1981,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 5951,
-  "rsite_total": 7878,
-  "rsite_unresolved": 7624,
-  "l1_bytes": 7263,
-  "l1_hidden_reloc_bytes": 1372,
-  "l1_reloc_covered_bytes": 1976,
-  "rsite_ok": 229,
-  "rsite_mismatch": 25,
+  "reloc_unresolved": 6073,
+  "rsite_total": 8054,
+  "rsite_unresolved": 7785,
+  "l1_bytes": 7726,
+  "l1_hidden_reloc_bytes": 1407,
+  "l1_reloc_covered_bytes": 2036,
+  "rsite_ok": 242,
+  "rsite_mismatch": 27,
   "rsite_mismatch_samples": [
    {
     "va": "0x004DB160",
@@ -214,6 +214,20 @@
     "orig": "RoleSystem::SetBlendMode(float)",
     "ours": "RoleSystem::UpdateTransform(void)",
     "sym": "?UpdateTransform@RoleSystem@@QAEHXZ"
+   },
+   {
+    "va": "0x0043E100",
+    "off": 4,
+    "orig": "UIListBox::DeleteRow(void)",
+    "ours": "UIListBox::~UIListBox",
+    "sym": "??1UIListBox@@UAE@XZ"
+   },
+   {
+    "va": "0x0043DD60",
+    "off": 111,
+    "orig": "UIWnd::Create(int,tagRECT *,int)",
+    "ours": "OpenBaseFile::~OpenBaseFile",
+    "sym": "??1OpenBaseFile@@QAE@XZ"
    }
   ]
  },
@@ -8290,6 +8304,528 @@
    "status": "partial",
    "match_pct": 33.3,
    "size": 15
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?RefreshSelection@UIListBox@@QAEXXZ",
+   "name": "UIListBox::RefreshSelection(void)",
+   "va": "0x00431CD0",
+   "status": "partial",
+   "match_pct": 10.8,
+   "size": 74
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?ReleaseVtable@UIListBox@@QAEHXZ",
+   "name": "UIListBox::ReleaseVtable(void)",
+   "va": "0x00432680",
+   "status": "partial",
+   "match_pct": 30.8,
+   "size": 26
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "??0UIListBox@@QAE@XZ",
+   "name": "UIListBox::UIListBox(void)",
+   "va": "0x0043DCD0",
+   "status": "partial",
+   "match_pct": 48.0,
+   "size": 25
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x0044E5C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "??_GUIListBox@@UAEPAXI@Z",
+   "name": "UIListBox::`scalar deleting destructor'(uint)",
+   "va": "0x0043E100",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?_scalar_deleting_destructor_@UIListBox@@UAEXXZ",
+   "name": "UIListBox::_scalar_deleting_destructor_(void)",
+   "va": "0x0043DCF0",
+   "status": "partial",
+   "match_pct": 20.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?SetSelTexture@UIListBox@@QAEXHHHHH@Z",
+   "name": "UIListBox::SetSelTexture(int,int,int,int,int)",
+   "va": "0x0043DD60",
+   "status": "partial",
+   "match_pct": 51.5,
+   "size": 134
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?Destroy@UIListBox@@QAEXXZ",
+   "name": "UIListBox::Destroy(void)",
+   "va": "0x0043DE90",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 5
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?AddColumn@UIListBox@@QAEXXZ",
+   "name": "UIListBox::AddColumn(void)",
+   "va": "0x0043DEA0",
+   "status": "partial",
+   "match_pct": 45.5,
+   "size": 11
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?AddRow@UIListBox@@QAEXXZ",
+   "name": "UIListBox::AddRow(void)",
+   "va": "0x0043DEB0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 5
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?SetSubItem@UIListBox@@QAEXXZ",
+   "name": "UIListBox::SetSubItem(void)",
+   "va": "0x0043DEC0",
+   "status": "partial",
+   "match_pct": 33.3,
+   "size": 15
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetSubItemInfo@UIListBox@@QAEPAV1@XZ",
+   "name": "UIListBox::GetSubItemInfo(void)",
+   "va": "0x0043DED0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 18
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?Render@UIListBox@@QAEXXZ",
+   "name": "UIListBox::Render(void)",
+   "va": "0x0043DEF0",
+   "status": "partial",
+   "match_pct": 30.8,
+   "size": 26
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?CalHeightCount@UIListBox@@QAEXXZ",
+   "name": "UIListBox::CalHeightCount(void)",
+   "va": "0x0043DF10",
+   "status": "partial",
+   "match_pct": 26.7,
+   "size": 15
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetItemPos@UIListBox@@QAEXXZ",
+   "name": "UIListBox::GetItemPos(void)",
+   "va": "0x0043DF20",
+   "status": "partial",
+   "match_pct": 13.5,
+   "size": 74
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetItemAt@UIListBox@@QAEXXZ",
+   "name": "UIListBox::GetItemAt(void)",
+   "va": "0x0043DF70",
+   "status": "partial",
+   "match_pct": 31.5,
+   "size": 73
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?UpdateKeyCtrl@UIListBox@@QAEPAV1@XZ",
+   "name": "UIListBox::UpdateKeyCtrl(void)",
+   "va": "0x0043DFC0",
+   "status": "partial",
+   "match_pct": 6.3,
+   "size": 319
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?DeleteRow@UIListBox@@QAEXXZ",
+   "name": "UIListBox::DeleteRow(void)",
+   "va": "0x0043E120",
+   "status": "partial",
+   "match_pct": 14.4,
+   "size": 160
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?CalScrollBarRange@UIListBox@@UAEXHPAHHPBDHD@Z",
+   "name": "UIListBox::CalScrollBarRange(int,int *,int,char const *,int,char)",
+   "va": "0x0043E1C0",
+   "status": "partial",
+   "match_pct": 16.5,
+   "size": 358
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetSel@UIListBox@@QAEXHH@Z",
+   "name": "UIListBox::GetSel(int,int)",
+   "va": "0x0043E330",
+   "status": "partial",
+   "match_pct": 7.6,
+   "size": 118
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetLockSel@UIListBox@@QAEHHPAHHHD@Z",
+   "name": "UIListBox::GetLockSel(int,int *,int,int,char)",
+   "va": "0x0043E3B0",
+   "status": "partial",
+   "match_pct": 13.2,
+   "size": 136
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?SetSel@UIListBox@@QAEXH@Z",
+   "name": "UIListBox::SetSel(int)",
+   "va": "0x0043E440",
+   "status": "partial",
+   "match_pct": 12.7,
+   "size": 55
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?OnMessage@UIListBox@@UAEHHHH@Z",
+   "name": "UIListBox::OnMessage(int,int,int)",
+   "va": "0x0043E480",
+   "status": "partial",
+   "match_pct": 28.7,
+   "size": 160
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?Destroy_e520@UIListBox@@UAEXXZ",
+   "name": "UIListBox::Destroy_e520(void)",
+   "va": "0x0043E520",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 53
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?SetColumnHead@UIListBox@@QAEHHH@Z",
+   "name": "UIListBox::SetColumnHead(int,int)",
+   "va": "0x0043E560",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 90
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?LoadListItems@UIListBox@@QAEHPADH@Z",
+   "name": "UIListBox::LoadListItems(char *,int)",
+   "va": "0x0043E5C0",
+   "status": "partial",
+   "match_pct": 24.9,
+   "size": 526
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?SetMouseMoveSel@UIListBox@@QAEPAVgbVFileSystem@@HHPADH@Z",
+   "name": "UIListBox::SetMouseMoveSel(int,int,char *,int)",
+   "va": "0x0043E7D0",
+   "status": "partial",
+   "match_pct": 8.2,
+   "size": 196
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?Render_e8a0@UIListBox@@UAEHXZ",
+   "name": "UIListBox::Render_e8a0(void)",
+   "va": "0x0043E8A0",
+   "status": "partial",
+   "match_pct": 7.1,
+   "size": 764
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?SetDefaultSel@UIListBox@@QAEXXZ",
+   "name": "UIListBox::SetDefaultSel(void)",
+   "va": "0x0043EBA0",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 16
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetGridOffset@UIListBox@@QAEXPAHH@Z",
+   "name": "UIListBox::GetGridOffset(int *,int)",
+   "va": "0x0043EBB0",
+   "status": "partial",
+   "match_pct": 26.8,
+   "size": 41
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?Update@UIListBox@@UAEHHH@Z",
+   "name": "UIListBox::Update(int,int)",
+   "va": "0x0043EBE0",
+   "status": "partial",
+   "match_pct": 30.3,
+   "size": 1176
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?ProcessSelection@UIListBox@@QAEHXZ",
+   "name": "UIListBox::ProcessSelection(void)",
+   "va": "0x0043F080",
+   "status": "partial",
+   "match_pct": 13.3,
+   "size": 729
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?ClearAll@UIListBox@@QAEHXZ",
+   "name": "UIListBox::ClearAll(void)",
+   "va": "0x0043F360",
+   "status": "partial",
+   "match_pct": 14.6,
+   "size": 171
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?AdjustScroll@UIListBox@@QAEHH@Z",
+   "name": "UIListBox::AdjustScroll(int)",
+   "va": "0x0043F410",
+   "status": "partial",
+   "match_pct": 16.3,
+   "size": 263
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?InitScrollbar@UIListBox@@QAEHXZ",
+   "name": "UIListBox::InitScrollbar(void)",
+   "va": "0x0043F520",
+   "status": "partial",
+   "match_pct": 15.0,
+   "size": 60
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?CreateChild@UIListBox@@QAEHXZ",
+   "name": "UIListBox::CreateChild(void)",
+   "va": "0x0043F560",
+   "status": "partial",
+   "match_pct": 23.5,
+   "size": 34
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetLockedSel@UIListBox@@QAEHXZ",
+   "name": "UIListBox::GetLockedSel(void)",
+   "va": "0x0043F590",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 28
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetItem@UIListBox@@QAEHXZ",
+   "name": "UIListBox::GetItem(void)",
+   "va": "0x0043F5B0",
+   "status": "partial",
+   "match_pct": 28.8,
+   "size": 139
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?SetLockSel@UIListBox@@QAEXH@Z",
+   "name": "UIListBox::SetLockSel(int)",
+   "va": "0x0043F640",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 13
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetItemData@UIListBox@@QAEHXZ",
+   "name": "UIListBox::GetItemData(void)",
+   "va": "0x0043F650",
+   "status": "partial",
+   "match_pct": 45.0,
+   "size": 20
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?SetItemOffset@UIListBox@@QAEHHH@Z",
+   "name": "UIListBox::SetItemOffset(int,int)",
+   "va": "0x0043F670",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 23
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetCurSel@UIListBox@@QAEHXZ",
+   "name": "UIListBox::GetCurSel(void)",
+   "va": "0x0043FE90",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 48
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?UIListBox_Init@UIListBox@@QAEHXZ",
+   "name": "UIListBox::UIListBox_Init(void)",
+   "va": "0x00451850",
+   "status": "partial",
+   "match_pct": 10.2,
+   "size": 137
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?DestroyContent@UIListBox@@QAEXXZ",
+   "name": "UIListBox::DestroyContent(void)",
+   "va": "0x00451900",
+   "status": "partial",
+   "match_pct": 26.0,
+   "size": 123
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?ReinitScrollbar@UIListBox@@QAEHXZ",
+   "name": "UIListBox::ReinitScrollbar(void)",
+   "va": "0x00451AD0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 20
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?CalcVisibleRange@UIListBox@@QAEHPADH@Z",
+   "name": "UIListBox::CalcVisibleRange(char *,int)",
+   "va": "0x00451AF0",
+   "status": "partial",
+   "match_pct": 30.0,
+   "size": 70
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?ctor_2600@UIListBox@@QAEXXZ",
+   "name": "UIListBox::ctor_2600(void)",
+   "va": "0x00452600",
+   "status": "partial",
+   "match_pct": 9.2,
+   "size": 98
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?ShouldProcessInput@UIListBox@@UAEHHH@Z",
+   "name": "UIListBox::ShouldProcessInput(int,int)",
+   "va": "0x004526C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 41
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?RenderMagic@UIListBox@@UAEHXZ",
+   "name": "UIListBox::RenderMagic(void)",
+   "va": "0x004526F0",
+   "status": "partial",
+   "match_pct": 33.3,
+   "size": 36
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetSkillSlotLevel@UIListBox@@QAEHHH@Z",
+   "name": "UIListBox::GetSkillSlotLevel(int,int)",
+   "va": "0x0049CF20",
+   "status": "partial",
+   "match_pct": 64.4,
+   "size": 90
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?Reset@UIListBox@@QAEXXZ",
+   "name": "UIListBox::Reset(void)",
+   "va": "0x004B4690",
+   "status": "partial",
+   "match_pct": 11.8,
+   "size": 323
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?InitAndRender@UIListBox@@QAEPAVCCBUI@@XZ",
+   "name": "UIListBox::InitAndRender(void)",
+   "va": "0x00519AF0",
+   "status": "partial",
+   "match_pct": 5.5,
+   "size": 73
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?ctor@UIListBox@@QAEHXZ",
+   "name": "UIListBox::ctor(void)",
+   "va": "0x00527950",
+   "status": "partial",
+   "match_pct": 3.3,
+   "size": 122
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?ctor_79F0@UIListBox@@QAEXXZ",
+   "name": "UIListBox::ctor_79F0(void)",
+   "va": "0x005279F0",
+   "status": "partial",
+   "match_pct": 4.9,
+   "size": 144
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?RenderWithSceneMap@UIListBox@@UAEHXZ",
+   "name": "UIListBox::RenderWithSceneMap(void)",
+   "va": "0x00527D80",
+   "status": "partial",
+   "match_pct": 11.7,
+   "size": 60
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?OnMessageEx@UIListBox@@UAEHHHH@Z",
+   "name": "UIListBox::OnMessageEx(int,int,int)",
+   "va": "0x00527EA0",
+   "status": "partial",
+   "match_pct": 70.5,
+   "size": 166
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?ResetRect@UIListBox@@QAEPAHXZ",
+   "name": "UIListBox::ResetRect(void)",
+   "va": "0x00532A40",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 59
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?RefreshList@UIListBox@@QAEXXZ",
+   "name": "UIListBox::RefreshList(void)",
+   "va": "0x0053D100",
+   "status": "partial",
+   "match_pct": 10.5,
+   "size": 76
   },
   {
    "file": "pal3/src/UI/UINote.cpp",
