@@ -174,8 +174,8 @@
     },
     "0x00439110": {
       "name": "sub_439110",
-      "signature": "void __thiscall(int)",
-      "source": "vtable_gap_fill_v1(IDB:sub_439110) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
+      "signature": "void* __thiscall(int)",
+      "source": "vtable_gap_fill_v1(IDB:sub_439110) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4) | 回型 void→void* 2026-10-15（T146）：A 级=原函数尾部 8b c6（mov eax,esi=回 this）+ 5e c2 04 00 形=标量删除析构体（call dtor/test [esp+8],1/push esi/call delete/add esp,4/mov eax,esi/ret 4）；我方缺 8b c6（n_diff=5 尾部族）。vtable 间接调用（0 直接调用点）⇒ 影响面=本函数"
     },
     "0x00445B20": {
       "name": "_scalar_dtor_5b20",

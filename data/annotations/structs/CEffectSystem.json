@@ -81,8 +81,9 @@
     },
     "0x004C6260": {
       "name": "Reset",
-      "signature": "int *__thiscall(CEffectSystem *Block, char pData)",
-      "ordinal": 8
+      "signature": "int *__thiscall(CEffectSystem *Block)",
+      "ordinal": 8,
+      "source": "剥多余第 2 参 2026-10-15（T146）：A 级=原函数 c2 04 00（ret 4=1 个 dword 栈参）+ 体中唯一参槽访问 [esp+0x8]=param1（push esi 后）；我方签名 2 参⇒c2 08 00（ret 8），n_diff=1。第 2 参 pData 体中零引用（decomp 零读）。标量删除析构体（call Init/test [esp+8],1/operator delete/mov eax,esi/ret 4）。vtable 间接调用（0 直接调用点）⇒ 影响面=本函数"
     },
     "0x004C6280": {
       "name": "Init",
