@@ -151,7 +151,7 @@ union { // +0xN
 | **codegen all 后** | 编译回归检测 | `python tools/compile_regression.py` | 发现退化立即报警，不提交 |
 | **apply 后** | annotation diff | `python tools/annotation_diff.py` | 显示变更摘要，确认无意外修改 |
 | **probe_compile 后** | 错误分类 | `python tools/error_classifier.py --summary` | 输出根因分布，指导下一步修复方向 |
-| **probe_compile 后** | 字节匹配裁判 | `python pipeline/cli.py match` | L1（字节全同函数数）不得回退；partial 的字节 diff 是注解布局/归属错误的直接证据 |
+| **probe_compile 后** | 字节匹配裁判 | `python pipeline/cli.py match` | L1（字节全同函数数）不得回退；partial 的字节 diff 是注解布局/归属错误的直接证据。⚠️「字节全同」的**精确定义**见下方「度量盲区：字节全同 ≠ 全字节相同」；match 输出的 `[metric]` 行须当场读 |
 | **修改 struct annotation 后** | 布局验证（**编译器裁判**）| `python tools/audit_type_layout.py --only <Cls>` | 发现布局问题立即修复 |
 | **任何"无证据/无冲突"结论** | 语义/类型证据（**三形态**）| `python tools/audit_member_semantics.py --class <Cls>` | 否定结论必须来自**权威批量原始扫描** ✓ |
 | **函数归属改动** | 归属证据（**可证**）| `python tools/audit_attribution_evidence.py` | 只看 contradiction 告警，人工裁定 |
@@ -198,6 +198,27 @@ MSVC 在单个编译单元错误数超过 ~100 时以 **C1003** 停住（**2026-
 
 ⇒ 发布门禁"改善 ≥ 新增"在**截断单元**上会**误判为中性**；此时以"新增错误是否与改动**同族**"+
 "截断进度是否前进"作为判据，并在 commit message 里写明理由。
+
+### ⚠️ 度量盲区：「字节全同」≠ 全字节相同（T146 度量校正，2026-10-15）
+
+`match` 报的 **L1（match_L1，字节全同函数数）** 的精确判据是
+（`pipeline/compare_pal3.py`（`compiled = info['bytes'][:size]` 处）+
+`tools/gbengine_compare.py:compare_bytes`）：
+
+1. **截断**：编译产物先**截到原函数长度 `size`** 再比较 ⇒ 编译多出来的尾部**完全不可见**。
+   实测 L1 182 例里 **179 例**编译字节长于 `size`（合计 1903 尾字节），抽样均是
+   **0x90 NOP 对齐填充**（`/Gy` COMDAT 段）⇒ 目前无害；但「我方多编出真实指令」会被
+   **掩盖成 L1**（已知盲区，判据不变）。
+2. **长度相等**：截断后两侧长度必须相等（编译**短**于原函数 ⇒ 直接 partial）。
+3. **重定位 4 字节 = don't care**：每处重定位覆盖的 4 字节**即使双侧不同也计 match**。
+   实测（L1 182 函数 / 7089 字节）：重定位覆盖 **27.65%** 的字节；其中双侧**真的不同**
+   （被跳过的隐藏差异）= **全部 L1 字节的 19.24% / 重定位字节的 69.6%**。
+   ⇒ 引用"L1 = 字节全同"时必须带上这三条限定，禁止外推为"每字节已验证"。
+
+**核对出口**（`match` 输出 `[metric]` 行，须当场读）：L1 字节/重定位覆盖/隐藏差异三分账 +
+重定位**站点值核对**（ok/mismatch/unresolved）+ 重定位**目标核对（符号法）**
+（我方 reloc 符号 ↔ 原函数站点目标 VA 的名字，REL32/DIR32 双路解析）。
+纯计量，**不改变 perfect 判据**（回归锁：`tests/test_gbengine_reloc_sites.py`）。
 
 ### 纪律编号现状（⚠️ 阅读前必看）
 

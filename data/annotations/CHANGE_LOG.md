@@ -6248,3 +6248,86 @@ apply/export/codegen/probe/match **全 rc=0**（14.3/186.5/231.3/76.3/290.2s）�
 
 **Confidence: high**（逐形 objdump A 级指纹 + vtable slot5 自洽核 + 通道实证 + 声明侧同步当场核 +
 全量 loop 零翻红当场读 + 数字当场核实 151/125/107 · 127/209 · 1333 · C2084=0）。
+
+---
+
+## 2026-10-15 · T146（partial 快赢逐个取证 + 「字节全同」度量校正 + Phase 2 切换信号）
+
+### ① 度量校正：「字节全同」（match_L1）的精确定义（文档化，判据不变）
+
+`match_L1` 的真实判据（`pipeline/compare_pal3.py:439-443` + `tools/gbengine_compare.py:compare_bytes`）是：
+
+1. **截断**：编译产物 `info['bytes'][:size]` **截到原函数长度 `size`**（decomp `size_bytes`）后才比较
+   ⇒ 编译出的**尾部字节完全不可见**。实测 L1 182 例里 **179 例**编译字节长于 `size`
+   （合计 1903 尾字节），抽样均为 **0x90 NOP 对齐填充**（`/Gy` COMDAT 段对齐到 16B）⇒ 当前无害；
+   但「我方多编出真实指令」会被截断**掩盖成 L1**——此为已知度量盲区（判据不变，先披露）。
+2. **长度相等**：截断后两侧字节数必须相等（编译比原函数**短** ⇒ 直接 partial，如 PlayerAtt::CheckCurRV 32/44）。
+3. **重定位字节一律当相同**：每处重定位覆盖 4 字节，这 4 字节**即使双侧不同也计 match**
+   （`elif i in relocs: matches += 1`，don't-care）。
+   实测（L1 182 函数 / 7089 字节）：重定位覆盖 **1960 字节 = 27.65%**；
+   其中**双侧真的不同**（被跳过的隐藏差异）**1364 字节 = 全部 L1 字节的 19.24% / 重定位字节的 69.6%**。
+   ⇒ 「字节全同」≠「全字节相同」；约 1/5 的 L1 字节是**未被验证的跳过字节**。
+
+**判据更新（强制检查点表）**：`match` 报告新增 `[metric]` 行（当场读）：
+L1 字节/重定位覆盖/隐藏差异字节三分账 + 重定位站点值核对 + **重定位目标核对（符号法）**。
+
+### ② 重定位目标核对（落地 + 当场实测）
+
+- **修复实现缺陷**：原 `compare_bytes` 的站点循环把 `parse_coff_obj` 的**字节偏移集合**
+  （每站点 4 个偏移）逐个当站点 ⇒ 每站点重复计 4 次、比较窗口错位 ⇒ `ok` 恒 0
+  （实测 L1 490 站点全部落 unresolved——该检查**零判别力**）。现按 4 字节步进聚合成站点，
+  并把「双值在界内但不同」单列 `mismatch`（原混入 unresolved）。R15 新增
+  `tests/test_gbengine_reloc_sites.py` **4/4 绿**（含 perfect 判据回归锁）。
+- **新增目标核对（符号法）**：每站点解析我方 reloc 符号 ↔ 原函数该站点目标 VA 的名字
+  （REL32=va+off+4+rel32、DIR32=原 4 字节值），双侧可解则比对。`compare_pal3` 汇总打印。
+- 实测数字见 loop 输出 `[metric]` 行（当场读）。
+
+### ③ partial 快赢：n_diff≤6 近池逐个 A 级取证（49 例，逐例 objdump 双侧对比）
+
+⚠️ 数字当场核实：kiro 口径「33 个 n_diff≤6 / 35 尾 8 字节 / 单 run 20 / 宽 72 / 527 n_diff≥16 / 232 长度不等」
+与现况（`s4_diff_detail.json` 2026-10-14 20:48 = T145 loop 产物）**全不匹配**：
+实测 partial **729**（非 611）· n_diff≤6 **49**（非 33）· n_diff≥16 **616**（非 527）· 长度不等 **276**（非 232）·
+len_eq 且 diff 全在尾 8 字节 **22**（非 35）· 单连续 run & reloc=0 **30**（非 20）· 含相邻对 & reloc=0 **93**（非 72）。
+⇒ 以下按**实测 49 例**逐例分析（命令：`python3 /tmp/ab_diff.py <va>` 形态=objdump -M intel 双侧 + 逐字节 diff 图）。
+
+根因分布（49 例，逐例判定）：
+- **返回型/参数个数形（可注解单点修）**：CEffectSystem::Reset（ret 8→ret 4，多余第 2 参）·
+  RenderTarget::SetOffset/SetScale（ret 8 vs ret 4 + `[esp+8]` vs `[esp+4]`——**签名 2 参**，
+  但成员 0x90/0x94/0x98/0x9C 的型牵连 L1 函数 SetRenderState ⇒ 挂账，见下）。
+- **标量删除析构体形**（call dtor/test [esp+8],1/operator delete/**mov eax,esi**/ret 4）：
+  UIWnd::sub_439110（回型 void→void*）· CEffectSystem::Reset（同形，已剥参）·
+  CEffCylinder::scalar deleting destructor（原=adjustor thunk `sub ecx,0xc; jmp` ⇒ 编译器合成，Phase 2）。
+- **尾跳 thunk/别名形**（原 `jmp <邻函数>`，我方实体体）：CEffectSystem::DestroyEffects/Init ·
+  CCBAI::RunValueAutomation · ObjectCamera::ObjectCamera · CCBLineupWindow::RefreshFacePos ·
+  CCBLineupWindow::IsPtOnFace_d590 族 · UISceneMap::Render_527cd0/529c80 ⇒ Phase 2（编译器合成/ICF）。
+- **导入跳板**（`ff 25 <IAT>` 6 字节）：ScreenEffectMgr::EnableShadow/GetAABBox/GetBoundSphere
+  ⇒ 非游戏函数（IAT thunk），现有语义名无证据 ⇒ 挂账（建议 skip/中性名）。
+- **全局读被 Hex-Rays 折叠成常量**（原 `mov eax,[.rdata]`，伪码 `= 1094713344`=0x41400000）：
+  CEffectSystem::CreateEffect · CCBLineupWindow::IsPtOnFace_d590 · Parent_Data::_CheckStr ·
+  Comp_Donate::Reset · CCBStageShadow::Render · CCBProtectWindow::CCBProtectWindow（+20 例同折叠）
+  ⇒ 根因=Hex-Rays 对**只读已知值内存的直接值读**折叠（命名全局 `unk_5D3C68` 走计算地址渲染为引用）；
+  修法假设=源地址入 `globals.json` 中性名（`unk_<ADDR>`，T145 先例）⇒ 挂账待验证。
+- **寄存器/表达式形态形**（注解不可单点修）：AStarPathFinder::FindInOpen/FindInClosed（this 落 ecx vs eax）·
+  CCBAI::SetNewRole（esi/edi 选择）· CCBAttackSequen::ProcessAllCmds（SIB base/index 序）·
+  ScreenEffectMgr::IsFadeWhiteHolding（`mov eax/test eax` vs `mov edx/xor eax/test edx` ——
+  **受控实验**：bool/char/int/uchar 4 种回型 + `!!x`/`x?1:0`/`if` 3 种表达形**全部**产 xor 形 ⇒ 判 hexrays_limit/Phase 2）·
+  OpenNULLFile::OpenNULLFile（指令序）· CEffAction::sub_4C1270（回表内偏移 vs 绝对址）。
+- **成员偏移/布局形**（A 级 disp 证据在手，但牵连面广）：Role::UpdateBoundingBox（0x60/0x64 vs 0x2c/0x30 +
+  0x268 vs 0x288）· Role::GetGfxManager（`add ecx,-0x40` vs `-0x78` 基类调整）·
+  RoleStatePanel::GetSelected/SetEquipSlotData（**整类 +4 平移**：0x60→0x64、0x2afd4→0x2afd8、0x169→0x16d）。
+- **虚拟调用约定形**：CCBPanelSlot::ShowClipped（`call [edx+0x18]` 后我方多 `add esp,0xc` ⇒ 该虚函数应为
+  thiscall/准 stdcall 清栈，非 cdecl）· UIWnd::sub_445FA0（**vtable 槽 0x18 vs 0x48** + 多余 `mov eax,0x10` 路径）。
+- **显式 this 调用形**：_Console::SetActive（原 `call 0x41c1e0` 无 push/pop，我方 `push ecx/call/pop ecx`）·
+  CCBFiveNimbusWindow::UpdateIfVisible（原 `mov ecx,[esi+0x20]; push edi; call` 无 add esp，我方 cdecl+add esp）。
+- **长度不等/体不符**（n_diff 受截断失真，实际差异大）：PlayerAtt::CheckCurRV（原带 jmp+nop 对齐段）·
+  CEffModel::CreateEffModel（我方仅 new+ret，原 new+判空+尾跳 ctor）。
+
+### ④ 落地的两处注解修复（A 级，均为 vtable 间接调用=影响面仅本函数）
+
+| 地址 | 病灶层 | 消费者 | A 级证据 | 修法 |
+|---|---|---|---|---|
+| UIWnd::sub_439110@0x439110 | annotation 回型 | structs/UIWnd.json→IDB 函数型→伪码 | 原尾部 `8b c6`（mov eax,esi=回 this）+ `5e c2 04 00` | 回型 void→**void*** |
+| CEffectSystem::Reset@0x4C6260 | annotation 签名多参 | structs/CEffectSystem.json→IDB 函数型 | 原 `c2 04 00`（ret 4=1 参）+ 唯一参槽 [esp+0x8]=param1 | 剥第 2 参（体中零引用） |
+
+**Confidence: high**（每处 objdump 逐字节 A 级 + 0 直接调用点（全 vtable）⇒ 影响面实测为本函数 +
+R15 test_gbengine_reloc_sites.py 4/4 绿 + pre-commit 存量豁免无关）。

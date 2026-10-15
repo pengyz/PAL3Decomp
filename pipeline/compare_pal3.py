@@ -389,6 +389,8 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
     # ROI-1（2026-09-19）：每个 partial 的字节差异明细。**写入独立文件**，
     # 不改 `s4_baseline.json` / `pal3_registry.jsonl` 的形状（ratchet 必须保持可比）。
     detail = {}
+    # [T146/P2] 目标核对用：VA → decomp name（原函数重定位目标的语义名）
+    va_idx = {e['va']: n for n, e in decomp_idx.items() if isinstance(e, dict) and 'va' in e}
     for n, unit in enumerate(passing, 1):
         src = str(REPO / unit)
         # ROI-1：`.obj` 名改用**稳定哈希**。原来用内建 `hash(unit)`，受 PYTHONHASHSEED 影响
@@ -438,9 +440,53 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                 continue
             compiled = info['bytes'][:size]
             relocs = {r for r in info['relocs'] if r < size}
+            # [T146/P2] reloc type 映射（DIR32/REL32 目标地址计算方式不同）
+            reloc_type_map = {rel_off: r_type
+                              for (rel_off, r_type, _sym, _add) in info.get('reloc_sites', ())
+                              if rel_off < size}
             res = gc.compare_bytes(compiled, text[idx0:idx0 + size], e['name'],
-                                   verbose=False, relocs=relocs)
+                                   verbose=False, relocs=relocs,
+                                   reloc_type_map=reloc_type_map)
             status = 'match_L1' if res['perfect'] else 'partial'
+            # ---- [T146/P2 度量校正] 重定位核对（纯计量，不影响完美性判据）-----
+            # ①站点级值核对（compare_bytes 内部已按站点聚合）——按 L1/全体分账；
+            # ②**目标核对（符号法）**：我方 reloc 符号 ↔ 原函数该站点目标 VA 的
+            #   名字。REL32（type 0x14）目标 = va+off+4+rel32(原字节)；
+            #   DIR32（type 0x06）目标 = 原 4 字节值本身。双侧都解出名字 ⇒ 比对；
+            #   任一侧不可解 ⇒ unresolved（导入/字符串/表，不猜）。
+            _rt = res['reloc_target']
+            for k in ('total', 'ok', 'mismatch', 'unresolved'):
+                stats['reloc_' + k] = stats.get('reloc_' + k, 0) + _rt[k]
+            if status == 'match_L1':
+                stats['l1_bytes'] = stats.get('l1_bytes', 0) + res['total']
+                stats['l1_hidden_reloc_bytes'] = (
+                    stats.get('l1_hidden_reloc_bytes', 0) + res['reloc_diffs'])
+                stats['l1_reloc_covered_bytes'] = (
+                    stats.get('l1_reloc_covered_bytes', 0) + len(relocs))
+            _orig = text[idx0:idx0 + size]
+            for (off, rtype, sym_name, _add) in info.get('reloc_sites', ()):
+                if off + 4 > size:
+                    continue
+                stats['rsite_total'] = stats.get('rsite_total', 0) + 1
+                tgt = None
+                if rtype == 0x14:      # IMAGE_REL_I386_REL32
+                    rel = int.from_bytes(_orig[off + 1:off + 5], 'little', signed=True)
+                    tgt = e['va'] + off + 4 + rel
+                elif rtype == 0x06:    # IMAGE_REL_I386_DIR32
+                    tgt = int.from_bytes(_orig[off:off + 4], 'little')
+                exp_name = va_idx.get(tgt) if tgt is not None else None
+                got_entry = mangled_map.get(sym_name)
+                got_name = got_entry['name'] if got_entry else None
+                if exp_name and got_name:
+                    if exp_name == got_name:
+                        stats['rsite_ok'] = stats.get('rsite_ok', 0) + 1
+                    else:
+                        stats['rsite_mismatch'] = stats.get('rsite_mismatch', 0) + 1
+                        stats.setdefault('rsite_mismatch_samples', []).append(
+                            {'va': '0x%08X' % e['va'], 'off': off,
+                             'orig': exp_name, 'ours': got_name, 'sym': sym_name[:60]})
+                else:
+                    stats['rsite_unresolved'] = stats.get('rsite_unresolved', 0) + 1
             if status == 'match_L1':
                 p1 += 1
             else:
@@ -468,6 +514,26 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
     if total:
         print('L1 rate over matched: %d/%d = %.1f%%'
               % (stats['match_L1'], total, 100.0 * stats['match_L1'] / total))
+    # ---- [T146/P2 度量校正] 「字节全同」的隐藏面（当场读，纯计量，不改判据）----
+    _lb = stats.get('l1_bytes', 0)
+    if _lb:
+        print('[metric] L1 字节 %d | 重定位覆盖字节 %d (%.1f%%) | '
+              '被跳过且双侧不同的隐藏差异字节 %d (%.1f%% 的 L1 字节 / %.1f%% 的重定位字节)'
+              % (_lb, stats.get('l1_reloc_covered_bytes', 0),
+                 100.0 * stats.get('l1_reloc_covered_bytes', 0) / _lb,
+                 stats.get('l1_hidden_reloc_bytes', 0),
+                 100.0 * stats.get('l1_hidden_reloc_bytes', 0) / _lb,
+                 100.0 * stats.get('l1_hidden_reloc_bytes', 0)
+                 / max(1, stats.get('l1_reloc_covered_bytes', 0))))
+    print('[metric] 重定位站点值核对：total=%d ok=%d mismatch=%d unresolved=%d'
+          % (stats.get('reloc_total', 0), stats.get('reloc_ok', 0),
+             stats.get('reloc_mismatch', 0), stats.get('reloc_unresolved', 0)))
+    print('[metric] 重定位目标核对（符号法）：total=%d ok=%d mismatch=%d unresolved=%d'
+          % (stats.get('rsite_total', 0), stats.get('rsite_ok', 0),
+             stats.get('rsite_mismatch', 0), stats.get('rsite_unresolved', 0)))
+    for s in stats.get('rsite_mismatch_samples', [])[:8]:
+        print('    [mismatch] %s off=%d orig=%s ours=%s (%s)'
+              % (s['va'], s['off'], s['orig'], s['ours'], s['sym']))
 
     return stats, rows, detail
 

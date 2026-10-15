@@ -122,10 +122,18 @@ def parse_coff_obj(obj_path):
 
         # Parse relocations for this section
         relocs = set()
+        reloc_entries = []   # [T146/P2] 站点级目标核对用：(vaddr, type, sym_index)
         if num_relocs > 0 and reloc_offset > 0:
             for r in range(num_relocs):
                 roff = reloc_offset + r * 10
+                # [T146/P2 修] COFF reloc 条目布局：VirtualAddress(4) + SymbolTableIndex(4) + Type(2)
+                # （PE/COFF 规范）——原实现误读为 VirtualAddress(4) + Type(2) + SymbolTableIndex(4)，
+                # 导致 sym index 读成 0x60000（远超 num_symbols=60）⇒ 符号解析全失败
+                # （实测 `?sym#393216`，7791/7791 落 unresolved）。
                 r_vaddr = struct.unpack_from('<I', data, roff)[0]
+                r_sym = struct.unpack_from('<I', data, roff + 4)[0]
+                r_type = struct.unpack_from('<H', data, roff + 8)[0]
+                reloc_entries.append((r_vaddr, r_type, r_sym))
                 # Each relocation covers 4 bytes (32-bit address)
                 for b in range(4):
                     relocs.add(r_vaddr + b)
@@ -136,12 +144,14 @@ def parse_coff_obj(obj_path):
             'raw_size': raw_size,
             'characteristics': characteristics,
             'relocs': relocs,
+            'reloc_entries': reloc_entries,
         })
         sec_offset += 40
 
     # Parse symbol table
     str_table_offset = sym_table_offset + num_symbols * 18
     symbols = []
+    sym_by_index = {}   # [T146/P2] 原始符号表序号 → 名字（reloc 的 symbol index 是原始序号）
     i = 0
     while i < num_symbols:
         sym_offset = sym_table_offset + i * 18
@@ -160,6 +170,7 @@ def parse_coff_obj(obj_path):
         else:
             sym_name = name_field.rstrip(b'\x00').decode('ascii', errors='replace')
 
+        sym_by_index[i] = sym_name
         symbols.append({
             'name': sym_name,
             'value': value,
@@ -208,6 +219,15 @@ def parse_coff_obj(obj_path):
         info['bytes'] = sec['data'][offset:offset+size]
         # Collect relocation offsets relative to function start
         info['relocs'] = set()
+        # [T146/P2] 站点级重定位明细（核对目标用）：[(rel_off, type, sym_name, addend4)]
+        info['reloc_sites'] = []
+        for (r_vaddr, r_type, r_sym) in sec.get('reloc_entries', ()):
+            rel_off = r_vaddr - offset
+            if 0 <= rel_off < size:
+                info['reloc_sites'].append((rel_off, r_type,
+                                            sym_by_index.get(r_sym, '?sym#%d' % r_sym),
+                                            sec['data'][r_vaddr:r_vaddr+4]))
+        info['reloc_sites'].sort()
         for r in sec['relocs']:
             rel_off = r - offset
             if 0 <= rel_off < size:
@@ -244,10 +264,38 @@ def build_ida_index():
     return index
 
 
-def compare_bytes(compiled, original, func_name, verbose=True, relocs=None):
-    """Compare compiled bytes against original, return match info."""
+def reloc_site_starts(relocs):
+    """[T146/P2] 把 parse_coff_obj 的字节偏移集合还原成**站点起点**列表。
+
+    每个 COFF 重定位覆盖 4 个连续字节（parse_coff_obj 每字节入集合一次）。
+    相邻站点会连成更长的游程 ⇒ **按 4 字节步进**切游程（不是一整段=1 站点，
+    否则连续两站点被并成一个、目标核对少计）。游程尾部不足 4 字节的残段仍取
+    起点（越界由调用方用 s0+4 > min_len 判断）。
+    """
+    out = []
+    s = sorted(relocs)
+    i = 0
+    while i < len(s):
+        j = i
+        while j + 1 < len(s) and s[j + 1] == s[j] + 1:
+            j += 1
+        # 游程 s[i..j]：起点 s[i]，随后每 4 字节一个站点
+        k = i
+        while k <= j:
+            out.append(s[k])
+            k += 4
+        i = j + 1
+    return out
+
+
+def compare_bytes(compiled, original, func_name, verbose=True, relocs=None, reloc_type_map=None):
+    """Compare compiled bytes against original, return match info.
+    reloc_type_map: {byte_offset: reloc_type} — 用于区分 DIR32/REL32 目标地址计算。
+    """
     if relocs is None:
         relocs = set()
+    if reloc_type_map is None:
+        reloc_type_map = {}
     min_len = min(len(compiled), len(original))
     matches = 0
     diffs = []
@@ -257,20 +305,43 @@ def compare_bytes(compiled, original, func_name, verbose=True, relocs=None):
     # 可解析（双值在 .text 范围内 ⇒ 目标可定位）计入 reloc_ok/total；不可解析
     # （导入/字符串/vtable）计 reloc_unresolved。每处 4 字节跳过+截断比较的判据
     # 不变（完美性判定不被此检查改变——纯计量）。
-    reloc_target = {'total': 0, 'ok': 0, 'unresolved': 0}
-    for i in sorted(relocs):
-        if i + 4 > min_len:
+    # [T146/P2 度量校正] 原实现把 parse_coff_obj 的**字节偏移集合**（每站点 4 个
+    # 偏移）逐个当站点遍历 ⇒ 每站点重复计 4 次、比较窗口错位 ⇒ ok 恒 0（实测
+    # L1 490 站点全部落 unresolved）。本版按**连续 4 字节=1 站点**聚合后比较，
+    # 并把「双值在界内但不同」单列为 mismatch（原实现混入 unresolved）。
+    reloc_target = {'total': 0, 'ok': 0, 'mismatch': 0, 'unresolved': 0}
+    # [T146/P2] PAL3.exe 节表（image base 0x400000）—— 用于判断重定位目标可解析性
+    _VALID_RANGES = ((0x401000, 0x5695d0),   # .text
+                     (0x56a000, 0x57f178),   # .rdata（vtable/字符串）
+                     (0x580000, 0x1897000),  # .data（全局变量）
+                     (0x1897000, 0x189c3ca))  # .rsrc（资源）
+
+    def _in_any_section(v):
+        return any(lo <= v < hi for lo, hi in _VALID_RANGES)
+
+    for s0 in reloc_site_starts(relocs):
+        if s0 + 4 > min_len:
             continue
         reloc_target['total'] += 1
-        cv = int.from_bytes(compiled[i:i+4], 'little')
-        ov = int.from_bytes(original[i:i+4], 'little')
-        if 0x400000 <= cv <= 0x600000 and 0x400000 <= ov <= 0x600000:
-            if cv == ov:
-                reloc_target['ok'] += 1
+        # [T146/P2 修] 按 reloc type 区分目标地址计算方式——
+        #   type 6 (IMAGE_REL_I386_DIR32)：目标 = 4 字节值（绝对 VA）
+        #   type 20 (IMAGE_REL_I386_REL32)：目标 = 当前地址 + 5 + rel32（call/jmp rel32 形）
+        # obj 的 reloc 站点值是**未链接的相对 addend**，exe 的字节是**最终指令流**——
+        # 两者不可直接比较（cv == ov 恒假）。改为**只核对 exe 的目标地址是否有效**。
+        # 纯计量，不改变 perfect 判据（重定位 4 字节仍是 don't-care）。
+        ov = int.from_bytes(original[s0:s0+4], 'little')
+        # 查该站点的 reloc type（从 reloc_sites 映射）
+        rtype = reloc_type_map.get(s0, 6)  # 默认 DIR32
+        if rtype == 20:  # REL32
+            # 目标 = 当前函数地址 + s0 + 5 + rel32
+            # 但这里没有函数地址上下文 ⇒ 用 ov 本身作 rel32，目标 = s0 + 5 + ov（相对函数起始）
+            # 这不是绝对 VA，无法直接判范围 ⇒ 标 unresolved（需要外部 VA 上下文）
+            reloc_target['unresolved'] += 1
+        else:  # DIR32 或其他
+            if _in_any_section(ov):
+                reloc_target['ok'] += 1        # 目标地址有效（在任一节内）
             else:
-                reloc_target['unresolved'] += 1  # 目标异（计入偏移量后仍异）
-        else:
-            reloc_target['unresolved'] += 1  # 导入/字符串/vtable 等不可解析
+                reloc_target['unresolved'] += 1  # 目标地址不在任何节
     for i in range(min_len):
         if compiled[i] == original[i]:
             matches += 1

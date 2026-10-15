@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+"""[T146/P2] gbengine_compare 重定位核对的纯函数单测（R15：改工具必须跑其测试）。
+
+覆盖：
+  ① reloc_site_starts —— 字节偏移集合 → 站点起点（连续 4 字节=1 站点）；
+     原实现把每字节偏移当站点 ⇒ 每站点重复计 4 次、比较窗口错位（ok 恒 0）。
+  ② compare_bytes 的 reloc_target 站点级三分：ok / mismatch / unresolved。
+     —— 纯计量，不改变 perfect 判据（回归断言一并锁死）。
+"""
+import sys
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO / 'tools'))
+
+import gbengine_compare as gc  # noqa: E402
+
+
+def test_reloc_site_starts_groups_4byte_runs():
+    # 两个站点：0..3 与 8..11；4..7 不是重定位
+    offs = {3, 1, 0, 2, 11, 9, 8, 10}
+    assert gc.reloc_site_starts(offs) == [0, 8]
+
+
+def test_reloc_site_starts_single_site_and_tail():
+    # 单站点 + 尾部不足 4 字节的残段（仍取起点，越界由调用方判断）
+    assert gc.reloc_site_starts({5, 6, 7, 8}) == [5]
+    assert gc.reloc_site_starts({5, 6}) == [5]
+    assert gc.reloc_site_starts(set()) == []
+
+
+def test_compare_bytes_reloc_target_three_way():
+    # 3 个站点（各 4 字节）：ok(原值在有效节范围) / ok / unresolved
+    # [T146/P2 判据变更] 只看 original 的目标 VA 是否在有效节范围（obj 的 reloc 值
+    # 是未链接的相对 addend，exe 是最终指令流 ⇒ cv == ov 恒假，不能双侧比较）。
+    # PAL3.exe 节表（image base 0x400000）：.text 0x401000-0x5695d0 · .rdata 0x56a000-0x57f178
+    #   · .data 0x580000-0x1897000 · .rsrc 0x1897000-0x189c3ca
+    size = 12
+    orig = bytearray(size)
+    comp = bytearray(size)
+    relocs = set()
+    # 站点 0：ok —— 原值 0x00401000（.text 起点）
+    orig[0:4] = (0x00401000).to_bytes(4, 'little')
+    comp[0:4] = (0x00000000).to_bytes(4, 'little')  # obj addend
+    # 站点 4：ok —— 原值 0x00500000（.text 内）
+    orig[4:8] = (0x00500000).to_bytes(4, 'little')
+    comp[4:8] = (0x00000000).to_bytes(4, 'little')
+    # 站点 8：unresolved —— 原值 0x00000000（不在任何节）
+    orig[8:12] = (0x00000000).to_bytes(4, 'little')
+    comp[8:12] = (0x00000000).to_bytes(4, 'little')
+    for s in (0, 4, 8):
+        for b in range(4):
+            relocs.add(s + b)
+    res = gc.compare_bytes(bytes(comp), bytes(orig), 'T', verbose=False,
+                           relocs=relocs)
+    rt = res['reloc_target']
+    assert rt['total'] == 3, rt
+    assert rt['ok'] == 2, rt       # 站点 0 + 4 都在 .text
+    assert rt['mismatch'] == 0, rt  # 新判据不比 cv/ov，无 mismatch
+    assert rt['unresolved'] == 1, rt  # 站点 8 不在任何节
+    # 回归锁：完美性判据不被核对改变（全部站点差异都被跳过 ⇒ perfect）
+    assert res['perfect'] is True
+    # 隐藏差异字节数（逐字节实数）：站点0 四字节同=0；
+    # 站点4 00 20 40 00 vs 00 30 40 00 ⇒ +5 一字节；
+    # 站点8 00 40 40 00 vs 00 00 00 00 ⇒ +9/+10 两字节 ⇒ 共 3
+    assert res['reloc_diffs'] == 3
+
+
+def test_compare_bytes_perfect_semantics_unchanged():
+    # 字节全同定义回归锁：长度必须相等，且非重定位字节必须逐字节相同
+    a = bytes([1, 2, 3, 4])
+    assert gc.compare_bytes(a, a, 'T', verbose=False)['perfect'] is True
+    assert gc.compare_bytes(a, a[:3], 'T', verbose=False)['perfect'] is False
+    b = bytes([1, 2, 9, 4])
+    assert gc.compare_bytes(b, a, 'T', verbose=False)['perfect'] is False
+    # 同一字节若在重定位位 ⇒ 计为 match（don't care）
+    assert gc.compare_bytes(b, a, 'T', verbose=False,
+                            relocs={2})['perfect'] is True
+
+
+if __name__ == '__main__':
+    import pytest
+    raise SystemExit(pytest.main([__file__, '-v']))
