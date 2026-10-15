@@ -128,6 +128,43 @@ union { // +0xN
 - 跨继承边界的内存复用应在定义该偏移的基类中标注 union
 - **`union` 本身即为 overlap 声明**：`check_annotations` 遇到 `type={"union":[...]}` 时会自动跳过该成员与后续成员的 overlap 检测，无需额外在 `source` 中写 `overlap`
 
+### 二进制取证工具优先级（idapro MCP 优先，2026-10-15 新增）
+
+**任何二进制裁决/取证场景，优先使用 `idapro` MCP（IDA PRO），效率远高于 objdump 自建索引。**
+
+**为什么优先 idapro**：
+| 能力 | idapro MCP | objdump 自建 |
+|---|---|---|
+| **xref 交叉引用** | ✅ 原生（直接 call/jmp + 虚槽反查）| ⚠️ 需全量反汇编自建索引（471K 行 → 32K 边）|
+| **结构体视图** | ✅ 原生（成员偏移/类型/嵌套）| ❌ 无（需人工推断）|
+| **反编译伪码** | ✅ Hex-Rays | ❌ 无 |
+| **类型传播** | ✅ 原生 | ❌ 无 |
+| **符号/命名** | ✅ 原生（含 IDA 重命名）| ⚠️ 仅 symbol table |
+
+**使用方式**（2026-10-15 已恢复常驻）：
+```bash
+# 服务启动（常驻，端口 13337）
+source ~/.local/ida-mcp-venv/bin/activate
+export IDADIR=/home/peng/ida-pro-9.1
+nohup python -m ida_pro_mcp.idalib_supervisor --host 127.0.0.1 --port 13337 --unsafe &
+
+# 工具调用（DSH 内 mcp__idapro__*）
+idb_open(input_path="original/PAL3.exe.i64")   # 返回 session_id
+idb_xrefs(database="<session_id>", address="0x401000")
+```
+
+**⚠️ 注意事项**：
+1. **worker 默认 idle TTL 600s** —— 闲置后第一次调用报 `Worker not reachable`，重新 `idb_open` 即恢复；需常驻传大 `idle_ttl_sec`
+2. **辅助查询通道**（反编译/xref/交叉引用只读探索），**不是标注提交的权威来源** —— annotation 数据流和证据分级规则不变
+3. **IDA MCP 断连时降级**用 objdump 自建索引（同源同效），但**恢复后须用 IDA 交叉复核关键矛盾**
+
+**强制检查点（二进制裁决前）**：
+| 时机 | 动作 |
+|---|---|
+| **二进制裁决/取证** | ✅ **优先 `mcp__idapro__*`**（xref / 结构体 / 反编译 / 类型传播）|
+| **IDA MCP 断连** | 降级 objdump 自建索引 + 标注「待 IDA 复核」|
+| **IDA MCP 恢复后** | 对断连期间的结论**交叉复核**（尤其 ctor/dtor 判定、归属、继承链）|
+
 ### workaround 规则
 - **禁止破坏性 workaround**：不为了编译通过而丢失类型信息或结构体定义。`void*`、`int`、`char[]` 等泛化类型只在确实不知道真实类型时使用。
 - **后处理只做等价变换**：codegen pipeline 只做不改变语义的代码转换，不编造信息。
