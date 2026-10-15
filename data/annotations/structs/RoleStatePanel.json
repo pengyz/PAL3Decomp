@@ -115,8 +115,8 @@
     },
     "176060": {
       "name": "m_pSubTab1",
-      "type": "void *",
-      "source": "0xa1 family sub-control (has vtable) | normalize_key: 0x2afbc -> 176060"
+      "type": "UITitle_XJTM *",
+      "source": "0xa1 family sub-control (has vtable) | normalize_key: 0x2afbc -> 176060 | void*语义化 2026-10-15：A 级=SetMonsterState(0x00488C70)签名 int __thiscall UITitle_XJTM::SetMonsterState(int, unsigned int)（UITitle_XJTM 方法）+ 调用形把 m_pSubTab1 绑为 this ⇒ 目标=UITitle_XJTM 对象；辅证 vtable 槽+4 间接调（多态）"
     },
     "176064": {
       "name": "m_pSubTab2",

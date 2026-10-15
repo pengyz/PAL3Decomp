@@ -74,8 +74,8 @@
     },
     "796": {
       "name": "m_pCmdList",
-      "type": "void *",
-      "source": "decomp:UpdatePauseState *(m_pCmdList + 16) accessed as array base"
+      "type": "RoleSystem **",
+      "source": "decomp:UpdatePauseState *(m_pCmdList + 16) accessed as array base | void*语义化 2026-10-15：A 级=GetRolePtr(0x00420F30) int __thiscall(int index)（RoleSystem 方法）+ 调用形把元素绑为 this ⇒ RoleSystem**；编译净效果实测 58→58=0（ScriptVM.cpp 的 ->m_rect/->RoleSystem 替换族由 decomp cast 驱动、与本型无关，归 codegen 渲染专项）"
     },
     "828": {
       "name": "m_nPathMode",

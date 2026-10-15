@@ -483,3 +483,5 @@
 | `CCBPanelSlot::ShowClipped` | vftable_local | `int` | 24 | self_arg_mismatch | `(*(int ( **)(int, int, _DWORD))(v3 + 24))(1000, nFlags, 0)` |
 | `EquipUI::NavigateSlots` | vftable_local | `EquipUI` | 24 | self_arg_mismatch | `(*(int ( **)(EquipUI *, int, _DWORD, _DWORD))(v5 + 24))( this, 1001, *(&dword_56E148 + PrevSlot), 0)` |
 | `EquipUI::NavigateSlots` | inline | `EquipUI` | 24 | self_arg_mismatch | `(*(int ( **)(EquipUI *, int, _DWORD, _DWORD))(*(_DWORD *)&this->UIWnd + 24))(this, 1010, 0, 0)` |
+| `RoleStatePanel::RenderThrottled` | inline | `UITitle_XJTM` | 4 | self_arg_mismatch | `(*(int ( **)(UITitle_XJTM *))(*(_DWORD *)&this->m_pSubTab1->UIWnd + 4))(this->m_pSubTab1)` |
+| `RoleStatePanel::UpdateCaptions` | inline | `UITitle_XJTM` | 8 | self_arg_mismatch | `(*(void ( **)(UITitle_XJTM *, int, int))(*(_DWORD *)&this->m_pSubTab1->UIWnd + 8))( this->m_pSubTab1, nVal, a3)` |

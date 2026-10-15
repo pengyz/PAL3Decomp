@@ -331,23 +331,35 @@
 {"addr": "0x0041ED00", "name": "SoundSystem::Init(void)", "file": "pal3/src/GameBase/SoundSystem.cpp", "status": "partial", "match_pct": 20.9, "size": 306}
 {"addr": "0x00401000", "name": "AStarPathFinder::AStarPathFinder(void)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "match_L1", "match_pct": 100.0, "size": 39}
 {"addr": "0x00401030", "name": "AStarPathFinder::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 26.7, "size": 30}
-{"addr": "0x00401050", "name": "AStarPathFinder::ReleaseAll(void)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 42.9, "size": 28}
+{"addr": "0x00401050", "name": "AStarPathFinder::ReleaseAll(void)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 17.9, "size": 28}
+{"addr": "0x004012A0", "name": "AStarPathFinder::TryExpand(AStarPathFinder::NODE *,int,int,int,int)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 5.2, "size": 523}
 {"addr": "0x004014E0", "name": "AStarPathFinder::IsInBounds(int,int)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "match_L1", "match_pct": 100.0, "size": 5}
 {"addr": "0x004014F0", "name": "AStarPathFinder::GetHeuristicIdx(int,int)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "match_L1", "match_pct": 100.0, "size": 5}
 {"addr": "0x00401500", "name": "AStarPathFinder::FindInOpen(int)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "match_L1", "match_pct": 100.0, "size": 34}
 {"addr": "0x00401530", "name": "AStarPathFinder::FindInClosed(int)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "match_L1", "match_pct": 100.0, "size": 34}
+{"addr": "0x00401560", "name": "AStarPathFinder::PushOpen(AStarPathFinder::NODE *)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 35.4, "size": 48}
+{"addr": "0x00401590", "name": "AStarPathFinder::Release(AStarPathFinder::NODE *)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "match_L1", "match_pct": 100.0, "size": 31}
+{"addr": "0x004015B0", "name": "AStarPathFinder::UpdateNeighbors(AStarPathFinder::NODE *)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 10.7, "size": 401}
 {"addr": "0x00401750", "name": "AStarPathFinder::ResortNode(int)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "match_L1", "match_pct": 100.0, "size": 40}
 {"addr": "0x00401780", "name": "AStarPathFinder::PopStack(void)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "match_L1", "match_pct": 100.0, "size": 28}
-{"addr": "0x004017A0", "name": "AStarPathFinder::Reset(void)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "match_L1", "match_pct": 100.0, "size": 36}
+{"addr": "0x004017A0", "name": "AStarPathFinder::Reset(void)", "file": "pal3/src/Misc/AStarPathFinder.cpp", "status": "partial", "match_pct": 13.9, "size": 36}
 {"addr": "0x00533B50", "name": "ArcPastScene::LoadCityData(void)", "file": "pal3/src/Misc/ArcPastScene.cpp", "status": "partial", "match_pct": 19.3, "size": 109}
 {"addr": "0x00534F50", "name": "ArcPastScene::ResetCityName(void)", "file": "pal3/src/Misc/ArcPastScene.cpp", "status": "partial", "match_pct": 5.4, "size": 93}
 {"addr": "0x00534FB0", "name": "ArcPastScene::FreeChildList(void)", "file": "pal3/src/Misc/ArcPastScene.cpp", "status": "partial", "match_pct": 9.9, "size": 81}
+{"addr": "0x00441E30", "name": "ArcSceneMonster::HitTest(uint *)", "file": "pal3/src/Misc/ArcSceneMonster.cpp", "status": "partial", "match_pct": 7.6, "size": 450}
+{"addr": "0x00487F80", "name": "ArcSceneMonster::CreateInfoPanel(int,int,int,int *,int)", "file": "pal3/src/Misc/ArcSceneMonster.cpp", "status": "partial", "match_pct": 14.8, "size": 1749}
+{"addr": "0x00491F20", "name": "ArcSceneMonster::CreateMonsterUI(int,int,int,int *,int)", "file": "pal3/src/Misc/ArcSceneMonster.cpp", "status": "partial", "match_pct": 15.7, "size": 2342}
+{"addr": "0x00499CC0", "name": "ArcSceneMonster::CreateStatusPanel(int,int,int,int *,int)", "file": "pal3/src/Misc/ArcSceneMonster.cpp", "status": "partial", "match_pct": 14.8, "size": 1686}
+{"addr": "0x0052DC40", "name": "ArcSceneMonster::CheckDistance(float)", "file": "pal3/src/Misc/ArcSceneMonster.cpp", "status": "partial", "match_pct": 19.5, "size": 87}
+{"addr": "0x0052DCA0", "name": "ArcSceneMonster::ValidateRange(float)", "file": "pal3/src/Misc/ArcSceneMonster.cpp", "status": "partial", "match_pct": 21.5, "size": 79}
 {"addr": "0x00458A20", "name": "ArcSceneObject::FormatDescription(void)", "file": "pal3/src/Misc/ArcSceneObject.cpp", "status": "partial", "match_pct": 30.6, "size": 1354}
 {"addr": "0x0049AAF0", "name": "ArcSceneObject::ResetEquipControls(void)", "file": "pal3/src/Misc/ArcSceneObject.cpp", "status": "partial", "match_pct": 47.2, "size": 369}
 {"addr": "0x005254C0", "name": "ArcSceneObject::InitFromConfig(void)", "file": "pal3/src/Misc/ArcSceneObject.cpp", "status": "match_L1", "match_pct": 100.0, "size": 87}
 {"addr": "0x00533F50", "name": "ArcSceneObject::UpdateOscillation(float)", "file": "pal3/src/Misc/ArcSceneObject.cpp", "status": "partial", "match_pct": 17.2, "size": 128}
 {"addr": "0x004236D0", "name": "BINK::Reset(void)", "file": "pal3/src/Misc/BINK.cpp", "status": "partial", "match_pct": 3.3, "size": 396}
 {"addr": "0x004243E0", "name": "BINK::Destroy(void)", "file": "pal3/src/Misc/BINK.cpp", "status": "partial", "match_pct": 19.5, "size": 389}
+{"addr": "0x0044B630", "name": "CCBEditor::UpdateItemScript(CHAR *,int,int,int)", "file": "pal3/src/Misc/CCBEditor.cpp", "status": "partial", "match_pct": 21.8, "size": 87}
+{"addr": "0x0044B690", "name": "CCBEditor::InvokeItemMethod(void)", "file": "pal3/src/Misc/CCBEditor.cpp", "status": "partial", "match_pct": 14.4, "size": 125}
 {"addr": "0x00439740", "name": "CCBFiveNimbusWindow::CreateScriptAndCamera(int,int)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "partial", "match_pct": 12.3, "size": 195}
 {"addr": "0x0043A070", "name": "CCBFiveNimbusWindow::SetFloatParam(float)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "partial", "match_pct": 18.8, "size": 32}
 {"addr": "0x0043FD20", "name": "CCBFiveNimbusWindow::CalcHitAngle(int)", "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp", "status": "partial", "match_pct": 15.5, "size": 103}
@@ -424,6 +436,8 @@
 {"addr": "0x004841B0", "name": "LineupComp::PositionAt(int,int,int)", "file": "pal3/src/Misc/LineupComp.cpp", "status": "partial", "match_pct": 12.2, "size": 417}
 {"addr": "0x00484E10", "name": "LineupComp::DispatchSlotMethod(int,uint)", "file": "pal3/src/Misc/LineupComp.cpp", "status": "partial", "match_pct": 22.2, "size": 18}
 {"addr": "0x00484E30", "name": "LineupComp::GetSlotWidget(int,uint)", "file": "pal3/src/Misc/LineupComp.cpp", "status": "partial", "match_pct": 19.7, "size": 61}
+{"addr": "0x0049CEC0", "name": "MUIDialog::GetPlayerAttField(int,int)", "file": "pal3/src/Misc/MUIDialog.cpp", "status": "partial", "match_pct": 64.4, "size": 90}
+{"addr": "0x004A1620", "name": "MUIDialog::InvokeCallback(void)", "file": "pal3/src/Misc/MUIDialog.cpp", "status": "partial", "match_pct": 27.0, "size": 159}
 {"addr": "0x00488660", "name": "MainPropUI::DisplayCaption(int)", "file": "pal3/src/Misc/MainPropUI.cpp", "status": "partial", "match_pct": 27.4, "size": 887}
 {"addr": "0x00489030", "name": "MainPropUI::CalcBarWidth(int,float)", "file": "pal3/src/Misc/MainPropUI.cpp", "status": "partial", "match_pct": 14.3, "size": 98}
 {"addr": "0x00489ED0", "name": "MainPropUI::InitNPCs(int,int,int)", "file": "pal3/src/Misc/MainPropUI.cpp", "status": "partial", "match_pct": 54.7, "size": 285}
@@ -510,6 +524,12 @@
 {"addr": "0x004AD540", "name": "SystemUI::UpdateSwordDisplay(int,int)", "file": "pal3/src/Misc/SystemUI.cpp", "status": "partial", "match_pct": 20.9, "size": 1770}
 {"addr": "0x004ADC30", "name": "SystemUI::InitScreenUI(int,UIWnd *,int,char *,int)", "file": "pal3/src/Misc/SystemUI.cpp", "status": "partial", "match_pct": 24.5, "size": 5548}
 {"addr": "0x0051F130", "name": "SystemUI::UpdateParticles(void)", "file": "pal3/src/Misc/SystemUI.cpp", "status": "partial", "match_pct": 10.0, "size": 120}
+{"addr": "0x0044E5C0", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/TaskBookUI.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x00454BA0", "name": "TaskBookUI::_TaskBookUI_4ba0(void)", "file": "pal3/src/Misc/TaskBookUI.cpp", "status": "partial", "match_pct": 17.4, "size": 242}
+{"addr": "0x004551A0", "name": "TaskBookUI::RefreshTaskList(void)", "file": "pal3/src/Misc/TaskBookUI.cpp", "status": "partial", "match_pct": 16.0, "size": 810}
+{"addr": "0x00456220", "name": "TaskBookUI::_todo_00456220(void)", "file": "pal3/src/Misc/TaskBookUI.cpp", "status": "partial", "match_pct": 15.5, "size": 84}
+{"addr": "0x004562C0", "name": "TaskBookUI::HandleNavigation(void)", "file": "pal3/src/Misc/TaskBookUI.cpp", "status": "partial", "match_pct": 21.1, "size": 564}
+{"addr": "0x00477A90", "name": "TaskBookUI::SetEntryCaption(int,int)", "file": "pal3/src/Misc/TaskBookUI.cpp", "status": "partial", "match_pct": 60.0, "size": 245}
 {"addr": "0x00443A00", "name": "TextureLibDataBase::CountEntries(void)", "file": "pal3/src/Misc/TextureLibDataBase.cpp", "status": "partial", "match_pct": 3.9, "size": 129}
 {"addr": "0x00443A90", "name": "TextureLibDataBase::SearchByIndex(void)", "file": "pal3/src/Misc/TextureLibDataBase.cpp", "status": "partial", "match_pct": 28.9, "size": 83}
 {"addr": "0x0053FDD0", "name": "TextureLibDataBase::CreateParentData(char const *)", "file": "pal3/src/Misc/TextureLibDataBase.cpp", "status": "partial", "match_pct": 20.3, "size": 118}
@@ -876,8 +896,8 @@
 {"addr": "0x00408850", "name": "SceneMgr::ResetPlayerAtts(void)", "file": "pal3/src/Scene/SceneMgr.cpp", "status": "partial", "match_pct": 23.0, "size": 213}
 {"addr": "0x0040CA40", "name": "SceneMgr::InitSceneRoles(void)", "file": "pal3/src/Scene/SceneMgr.cpp", "status": "partial", "match_pct": 12.5, "size": 320}
 {"addr": "0x0040FC70", "name": "SceneMgr::GetValidPartyCount(void)", "file": "pal3/src/Scene/SceneMgr.cpp", "status": "match_L1", "match_pct": 100.0, "size": 22}
-{"addr": "0x00421C40", "name": "SceneMgr::UINotifyUpdate(void)", "file": "pal3/src/Scene/SceneMgr.cpp", "status": "partial", "match_pct": 46.6, "size": 88}
-{"addr": "0x00423500", "name": "SceneMgr::ClearInactiveRoles(void)", "file": "pal3/src/Scene/SceneMgr.cpp", "status": "match_L1", "match_pct": 100.0, "size": 58}
+{"addr": "0x00421C40", "name": "SceneMgr::UINotifyUpdate(void)", "file": "pal3/src/Scene/SceneMgr.cpp", "status": "partial", "match_pct": 42.0, "size": 88}
+{"addr": "0x00423500", "name": "SceneMgr::ClearInactiveRoles(void)", "file": "pal3/src/Scene/SceneMgr.cpp", "status": "partial", "match_pct": 89.7, "size": 58}
 {"addr": "0x004236B0", "name": "SceneMgr::ResetSceneFlags(void)", "file": "pal3/src/Scene/SceneMgr.cpp", "status": "partial", "match_pct": 64.0, "size": 25}
 {"addr": "0x004CDA10", "name": "SceneMgr::Create(int,int,int)", "file": "pal3/src/Scene/SceneMgr.cpp", "status": "partial", "match_pct": 83.2, "size": 196}
 {"addr": "0x004CDBF0", "name": "SceneMgr::RenderAll(void)", "file": "pal3/src/Scene/SceneMgr.cpp", "status": "partial", "match_pct": 55.6, "size": 36}

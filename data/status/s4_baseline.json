@@ -18,24 +18,24 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 1321,
-  "matched": 1070,
-  "unmatched": 251,
+  "symbols": 1356,
+  "matched": 1093,
+  "unmatched": 263,
   "match_L1": 202,
-  "partial": 772,
+  "partial": 792,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 96,
-  "reloc_total": 8054,
-  "reloc_ok": 1981,
+  "unresolved_synth": 99,
+  "reloc_total": 8330,
+  "reloc_ok": 2018,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 6073,
-  "rsite_total": 8054,
-  "rsite_unresolved": 7785,
-  "l1_bytes": 7726,
-  "l1_hidden_reloc_bytes": 1407,
+  "reloc_unresolved": 6312,
+  "rsite_total": 8330,
+  "rsite_unresolved": 8061,
+  "l1_bytes": 7693,
+  "l1_hidden_reloc_bytes": 1402,
   "l1_reloc_covered_bytes": 2036,
   "rsite_ok": 242,
   "rsite_mismatch": 27,
@@ -3235,8 +3235,17 @@
    "name": "AStarPathFinder::ReleaseAll(void)",
    "va": "0x00401050",
    "status": "partial",
-   "match_pct": 42.9,
+   "match_pct": 17.9,
    "size": 28
+  },
+  {
+   "file": "pal3/src/Misc/AStarPathFinder.cpp",
+   "symbol": "?TryExpand@AStarPathFinder@@QAEHPAUNODE@1@HHHH@Z",
+   "name": "AStarPathFinder::TryExpand(AStarPathFinder::NODE *,int,int,int,int)",
+   "va": "0x004012A0",
+   "status": "partial",
+   "match_pct": 5.2,
+   "size": 523
   },
   {
    "file": "pal3/src/Misc/AStarPathFinder.cpp",
@@ -3276,6 +3285,33 @@
   },
   {
    "file": "pal3/src/Misc/AStarPathFinder.cpp",
+   "symbol": "?PushOpen@AStarPathFinder@@QAEHPAUNODE@1@@Z",
+   "name": "AStarPathFinder::PushOpen(AStarPathFinder::NODE *)",
+   "va": "0x00401560",
+   "status": "partial",
+   "match_pct": 35.4,
+   "size": 48
+  },
+  {
+   "file": "pal3/src/Misc/AStarPathFinder.cpp",
+   "symbol": "?Release@AStarPathFinder@@QAEHPAUNODE@1@@Z",
+   "name": "AStarPathFinder::Release(AStarPathFinder::NODE *)",
+   "va": "0x00401590",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 31
+  },
+  {
+   "file": "pal3/src/Misc/AStarPathFinder.cpp",
+   "symbol": "?UpdateNeighbors@AStarPathFinder@@QAEHPAUNODE@1@@Z",
+   "name": "AStarPathFinder::UpdateNeighbors(AStarPathFinder::NODE *)",
+   "va": "0x004015B0",
+   "status": "partial",
+   "match_pct": 10.7,
+   "size": 401
+  },
+  {
+   "file": "pal3/src/Misc/AStarPathFinder.cpp",
    "symbol": "?ResortNode@AStarPathFinder@@QAEHH@Z",
    "name": "AStarPathFinder::ResortNode(int)",
    "va": "0x00401750",
@@ -3297,8 +3333,8 @@
    "symbol": "?Reset@AStarPathFinder@@QAEHXZ",
    "name": "AStarPathFinder::Reset(void)",
    "va": "0x004017A0",
-   "status": "match_L1",
-   "match_pct": 100.0,
+   "status": "partial",
+   "match_pct": 13.9,
    "size": 36
   },
   {
@@ -3327,6 +3363,60 @@
    "status": "partial",
    "match_pct": 9.9,
    "size": 81
+  },
+  {
+   "file": "pal3/src/Misc/ArcSceneMonster.cpp",
+   "symbol": "?HitTest@ArcSceneMonster@@QAEHPAI@Z",
+   "name": "ArcSceneMonster::HitTest(uint *)",
+   "va": "0x00441E30",
+   "status": "partial",
+   "match_pct": 7.6,
+   "size": 450
+  },
+  {
+   "file": "pal3/src/Misc/ArcSceneMonster.cpp",
+   "symbol": "?CreateInfoPanel@ArcSceneMonster@@QAEPAHHHHPAHH@Z",
+   "name": "ArcSceneMonster::CreateInfoPanel(int,int,int,int *,int)",
+   "va": "0x00487F80",
+   "status": "partial",
+   "match_pct": 14.8,
+   "size": 1749
+  },
+  {
+   "file": "pal3/src/Misc/ArcSceneMonster.cpp",
+   "symbol": "?CreateMonsterUI@ArcSceneMonster@@QAEPAHHHHPAHH@Z",
+   "name": "ArcSceneMonster::CreateMonsterUI(int,int,int,int *,int)",
+   "va": "0x00491F20",
+   "status": "partial",
+   "match_pct": 15.7,
+   "size": 2342
+  },
+  {
+   "file": "pal3/src/Misc/ArcSceneMonster.cpp",
+   "symbol": "?CreateStatusPanel@ArcSceneMonster@@QAEPAHHHHPAHH@Z",
+   "name": "ArcSceneMonster::CreateStatusPanel(int,int,int,int *,int)",
+   "va": "0x00499CC0",
+   "status": "partial",
+   "match_pct": 14.8,
+   "size": 1686
+  },
+  {
+   "file": "pal3/src/Misc/ArcSceneMonster.cpp",
+   "symbol": "?CheckDistance@ArcSceneMonster@@QAEHM@Z",
+   "name": "ArcSceneMonster::CheckDistance(float)",
+   "va": "0x0052DC40",
+   "status": "partial",
+   "match_pct": 19.5,
+   "size": 87
+  },
+  {
+   "file": "pal3/src/Misc/ArcSceneMonster.cpp",
+   "symbol": "?ValidateRange@ArcSceneMonster@@QAEHM@Z",
+   "name": "ArcSceneMonster::ValidateRange(float)",
+   "va": "0x0052DCA0",
+   "status": "partial",
+   "match_pct": 21.5,
+   "size": 79
   },
   {
    "file": "pal3/src/Misc/ArcSceneObject.cpp",
@@ -3381,6 +3471,24 @@
    "status": "partial",
    "match_pct": 19.5,
    "size": 389
+  },
+  {
+   "file": "pal3/src/Misc/CCBEditor.cpp",
+   "symbol": "?UpdateItemScript@CCBEditor@@QAEHPADHHH@Z",
+   "name": "CCBEditor::UpdateItemScript(CHAR *,int,int,int)",
+   "va": "0x0044B630",
+   "status": "partial",
+   "match_pct": 21.8,
+   "size": 87
+  },
+  {
+   "file": "pal3/src/Misc/CCBEditor.cpp",
+   "symbol": "?InvokeItemMethod@CCBEditor@@QAEHXZ",
+   "name": "CCBEditor::InvokeItemMethod(void)",
+   "va": "0x0044B690",
+   "status": "partial",
+   "match_pct": 14.4,
+   "size": 125
   },
   {
    "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
@@ -4065,6 +4173,24 @@
    "status": "partial",
    "match_pct": 19.7,
    "size": 61
+  },
+  {
+   "file": "pal3/src/Misc/MUIDialog.cpp",
+   "symbol": "?GetPlayerAttField@MUIDialog@@QAEHHH@Z",
+   "name": "MUIDialog::GetPlayerAttField(int,int)",
+   "va": "0x0049CEC0",
+   "status": "partial",
+   "match_pct": 64.4,
+   "size": 90
+  },
+  {
+   "file": "pal3/src/Misc/MUIDialog.cpp",
+   "symbol": "?InvokeCallback@MUIDialog@@QAEDXZ",
+   "name": "MUIDialog::InvokeCallback(void)",
+   "va": "0x004A1620",
+   "status": "partial",
+   "match_pct": 27.0,
+   "size": 159
   },
   {
    "file": "pal3/src/Misc/MainPropUI.cpp",
@@ -4839,6 +4965,60 @@
    "status": "partial",
    "match_pct": 10.0,
    "size": 120
+  },
+  {
+   "file": "pal3/src/Misc/TaskBookUI.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x0044E5C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/TaskBookUI.cpp",
+   "symbol": "?_TaskBookUI_4ba0@TaskBookUI@@QAEXXZ",
+   "name": "TaskBookUI::_TaskBookUI_4ba0(void)",
+   "va": "0x00454BA0",
+   "status": "partial",
+   "match_pct": 17.4,
+   "size": 242
+  },
+  {
+   "file": "pal3/src/Misc/TaskBookUI.cpp",
+   "symbol": "?RefreshTaskList@TaskBookUI@@QAEHXZ",
+   "name": "TaskBookUI::RefreshTaskList(void)",
+   "va": "0x004551A0",
+   "status": "partial",
+   "match_pct": 16.0,
+   "size": 810
+  },
+  {
+   "file": "pal3/src/Misc/TaskBookUI.cpp",
+   "symbol": "?_todo_00456220@TaskBookUI@@QAEHXZ",
+   "name": "TaskBookUI::_todo_00456220(void)",
+   "va": "0x00456220",
+   "status": "partial",
+   "match_pct": 15.5,
+   "size": 84
+  },
+  {
+   "file": "pal3/src/Misc/TaskBookUI.cpp",
+   "symbol": "?HandleNavigation@TaskBookUI@@QAEXXZ",
+   "name": "TaskBookUI::HandleNavigation(void)",
+   "va": "0x004562C0",
+   "status": "partial",
+   "match_pct": 21.1,
+   "size": 564
+  },
+  {
+   "file": "pal3/src/Misc/TaskBookUI.cpp",
+   "symbol": "?SetEntryCaption@TaskBookUI@@QAEXHH@Z",
+   "name": "TaskBookUI::SetEntryCaption(int,int)",
+   "va": "0x00477A90",
+   "status": "partial",
+   "match_pct": 60.0,
+   "size": 245
   },
   {
    "file": "pal3/src/Misc/TextureLibDataBase.cpp",
@@ -8140,7 +8320,7 @@
    "name": "SceneMgr::UINotifyUpdate(void)",
    "va": "0x00421C40",
    "status": "partial",
-   "match_pct": 46.6,
+   "match_pct": 42.0,
    "size": 88
   },
   {
@@ -8148,8 +8328,8 @@
    "symbol": "?ClearInactiveRoles@SceneMgr@@SAPAV1@XZ",
    "name": "SceneMgr::ClearInactiveRoles(void)",
    "va": "0x00423500",
-   "status": "match_L1",
-   "match_pct": 100.0,
+   "status": "partial",
+   "match_pct": 89.7,
    "size": 58
   },
   {

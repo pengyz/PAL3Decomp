@@ -1,6 +1,6 @@
 {
-  "name": "20261015_173325",
-  "timestamp": "2026-10-15T17:33:25.255329",
+  "name": "20261015_212124",
+  "timestamp": "2026-10-15T21:21:24.891231",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "ok",
@@ -137,7 +137,7 @@
     },
     "pal3/src/Combat/CCBRoleState.cpp": {
       "status": "fail",
-      "error_count": 23,
+      "error_count": 24,
       "errors": [
         {
           "code": "C2039",
@@ -213,6 +213,11 @@
           "code": "C2664",
           "msg": "'CreateUIObj' : cannot convert parameter 1 from 'int *' to 'class CCBUI ** '",
           "line": 6061
+        },
+        {
+          "code": "C2039",
+          "msg": "'bDestRole' : is not a member of 'tagCmdData'",
+          "line": 6324
         },
         {
           "code": "C2664",
@@ -1695,7 +1700,7 @@
     },
     "pal3/src/GameBase/GRPinput.cpp": {
       "status": "fail",
-      "error_count": 18,
+      "error_count": 16,
       "errors": [
         {
           "code": "C2664",
@@ -1706,16 +1711,6 @@
           "code": "C2102",
           "msg": "'&' requires l-value",
           "line": 566
-        },
-        {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 708
-        },
-        {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 753
         },
         {
           "code": "C2259",
@@ -2153,275 +2148,6 @@
       "error_count": 0,
       "errors": []
     },
-    "pal3/src/Misc/AStarPathFinder__PushOpen(AStarPathFinder.cpp": {
-      "status": "fail",
-      "error_count": 7,
-      "errors": [
-        {
-          "code": "C2091",
-          "msg": "function returns function",
-          "line": 8
-        },
-        {
-          "code": "C2556",
-          "msg": "'int (__cdecl *__thiscall AStarPathFinder::PushOpen(struct AStarPathFinder::NODE *))(struct AStarPathFinder::NODE *)' : overloaded function differs only by return type from 'int __thiscall AStarPathFi",
-          "line": 8
-        },
-        {
-          "code": "C2040",
-          "msg": "'PushOpen' : 'int (__cdecl *(struct AStarPathFinder::NODE *))(struct AStarPathFinder::NODE *)' differs in levels of indirection from 'int (struct AStarPathFinder::NODE *)'",
-          "line": 8
-        },
-        {
-          "code": "C2065",
-          "msg": "'pNode' : undeclared identifier",
-          "line": 16
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->f' must point to class/struct/union",
-          "line": 16
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->next' must point to class/struct/union",
-          "line": 21
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int' to 'struct AStarPathFinder::NODE *'",
-          "line": 22
-        }
-      ]
-    },
-    "pal3/src/Misc/AStarPathFinder__Release(AStarPathFinder.cpp": {
-      "status": "fail",
-      "error_count": 4,
-      "errors": [
-        {
-          "code": "C2091",
-          "msg": "function returns function",
-          "line": 8
-        },
-        {
-          "code": "C2556",
-          "msg": "'int (__cdecl *__thiscall AStarPathFinder::Release(struct AStarPathFinder::NODE *))(struct AStarPathFinder::NODE *)' : overloaded function differs only by return type from 'int __thiscall AStarPathFin",
-          "line": 8
-        },
-        {
-          "code": "C2040",
-          "msg": "'Release' : 'int (__cdecl *(struct AStarPathFinder::NODE *))(struct AStarPathFinder::NODE *)' differs in levels of indirection from 'int (struct AStarPathFinder::NODE *)'",
-          "line": 8
-        },
-        {
-          "code": "C2065",
-          "msg": "'pNode' : undeclared identifier",
-          "line": 12
-        }
-      ]
-    },
-    "pal3/src/Misc/AStarPathFinder__TryExpand(AStarPathFinder.cpp": {
-      "status": "fail",
-      "error_count": 26,
-      "errors": [
-        {
-          "code": "C2091",
-          "msg": "function returns function",
-          "line": 14
-        },
-        {
-          "code": "C2556",
-          "msg": "'int (__cdecl *__thiscall AStarPathFinder::TryExpand(struct AStarPathFinder::NODE *,int,int,int,int))(struct AStarPathFinder::NODE *,int,int,int,int)' : overloaded function differs only by return type",
-          "line": 14
-        },
-        {
-          "code": "C2040",
-          "msg": "'TryExpand' : 'int (__cdecl *(struct AStarPathFinder::NODE *,int,int,int,int))(struct AStarPathFinder::NODE *,int,int,int,int)' differs in levels of indirection from 'int (struct AStarPathFinder::NODE",
-          "line": 14
-        },
-        {
-          "code": "C2065",
-          "msg": "'nTileX' : undeclared identifier",
-          "line": 30
-        },
-        {
-          "code": "C2065",
-          "msg": "'nTileY' : undeclared identifier",
-          "line": 30
-        },
-        {
-          "code": "C2065",
-          "msg": "'pNode' : undeclared identifier",
-          "line": 35
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->x' must point to class/struct/union",
-          "line": 35
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->x' must point to class/struct/union",
-          "line": 35
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->y' must point to class/struct/union",
-          "line": 35
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->y' must point to class/struct/union",
-          "line": 35
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->g' must point to class/struct/union",
-          "line": 38
-        },
-        {
-          "code": "C2660",
-          "msg": "'FindInOpen' : function does not take 2 parameters",
-          "line": 39
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->stack' must point to class/struct/union",
-          "line": 42
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->stack' must point to class/struct/union",
-          "line": 51
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int' to 'struct AStarPathFinder::NODE *'",
-          "line": 55
-        },
-        {
-          "code": "C2660",
-          "msg": "'FindInClosed' : function does not take 2 parameters",
-          "line": 63
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->stack' must point to class/struct/union",
-          "line": 66
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->stack' must point to class/struct/union",
-          "line": 75
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int' to 'struct AStarPathFinder::NODE *'",
-          "line": 79
-        },
-        {
-          "code": "C2660",
-          "msg": "'UpdateNeighbors' : function does not take 2 parameters",
-          "line": 82
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int' to 'struct AStarPathFinder::NODE *'",
-          "line": 89
-        },
-        {
-          "code": "C2065",
-          "msg": "'nGoalX' : undeclared identifier",
-          "line": 91
-        },
-        {
-          "code": "C2065",
-          "msg": "'nGoalY' : undeclared identifier",
-          "line": 91
-        },
-        {
-          "code": "C2660",
-          "msg": "'PushOpen' : function does not take 2 parameters",
-          "line": 98
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->stack' must point to class/struct/union",
-          "line": 100
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->stack' must point to class/struct/union",
-          "line": 109
-        }
-      ]
-    },
-    "pal3/src/Misc/AStarPathFinder__UpdateNeighbors(AStarPathFinder.cpp": {
-      "status": "fail",
-      "error_count": 12,
-      "errors": [
-        {
-          "code": "C2091",
-          "msg": "function returns function",
-          "line": 8
-        },
-        {
-          "code": "C2556",
-          "msg": "'int (__cdecl *__thiscall AStarPathFinder::UpdateNeighbors(struct AStarPathFinder::NODE *))(struct AStarPathFinder::NODE *)' : overloaded function differs only by return type from 'int __thiscall ASta",
-          "line": 8
-        },
-        {
-          "code": "C2040",
-          "msg": "'UpdateNeighbors' : 'int (__cdecl *(struct AStarPathFinder::NODE *))(struct AStarPathFinder::NODE *)' differs in levels of indirection from 'int (struct AStarPathFinder::NODE *)'",
-          "line": 8
-        },
-        {
-          "code": "C2065",
-          "msg": "'pNode' : undeclared identifier",
-          "line": 29
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int' to 'struct AStarPathFinder::NODE *'",
-          "line": 29
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->g' must point to class/struct/union",
-          "line": 30
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->stack' must point to class/struct/union",
-          "line": 32
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int' to 'struct AStarPathFinder::NODE *'",
-          "line": 45
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int' to 'struct AStarPathFinder::NODE *'",
-          "line": 51
-        },
-        {
-          "code": "C2660",
-          "msg": "'ResortNode' : function does not take 2 parameters",
-          "line": 54
-        },
-        {
-          "code": "C2660",
-          "msg": "'PopStack' : function does not take 1 parameters",
-          "line": 62
-        },
-        {
-          "code": "C2660",
-          "msg": "'ResortNode' : function does not take 2 parameters",
-          "line": 81
-        }
-      ]
-    },
     "pal3/src/Misc/ArcLocaleRole.cpp": {
       "status": "fail",
       "error_count": 7,
@@ -2469,20 +2195,9 @@
       "errors": []
     },
     "pal3/src/Misc/ArcSceneMonster.cpp": {
-      "status": "fail",
-      "error_count": 2,
-      "errors": [
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'unsigned __int64' to 'struct tagPOINT'",
-          "line": 64
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'unsigned __int64' to 'struct tagPOINT'",
-          "line": 89
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/ArcSceneObject.cpp": {
       "status": "ok",
@@ -2581,25 +2296,9 @@
       "errors": []
     },
     "pal3/src/Misc/CCBEditor.cpp": {
-      "status": "fail",
-      "error_count": 3,
-      "errors": [
-        {
-          "code": "C2664",
-          "msg": "'void (int (__cdecl ** )(void *,unsigned int),unsigned long)' : cannot convert parameter 1 from 'int (__cdecl ** )(void *,unsigned long)' to 'int (__cdecl ** )(void *,unsigned int)'",
-          "line": 35
-        },
-        {
-          "code": "C2664",
-          "msg": "'void (int (__cdecl ** )(void *,unsigned int),unsigned long)' : cannot convert parameter 1 from 'int (__cdecl ** )(void *,unsigned long)' to 'int (__cdecl ** )(void *,unsigned int)'",
-          "line": 39
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'int (__cdecl ** )(void *,unsigned long)' to 'int (__cdecl ** )(void *,unsigned int)'",
-          "line": 41
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/CCBFiveNimbusWindow.cpp": {
       "status": "ok",
@@ -2816,20 +2515,9 @@
       ]
     },
     "pal3/src/Misc/MUIDialog.cpp": {
-      "status": "fail",
-      "error_count": 2,
-      "errors": [
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 64
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 70
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/MainEquipUI.cpp": {
       "status": "fail",
@@ -3153,7 +2841,7 @@
     },
     "pal3/src/Misc/SaleUI.cpp": {
       "status": "fail",
-      "error_count": 38,
+      "error_count": 36,
       "errors": [
         {
           "code": "C2440",
@@ -3229,16 +2917,6 @@
           "code": "C2668",
           "msg": "'SendInputToRole' : ambiguous call to overloaded function",
           "line": 2514
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void (__cdecl *)(char *,const char *)' to 'void (__stdcall *)(char *,const char *)'",
-          "line": 7574
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void (__cdecl *)(char *,const char *)' to 'void (__stdcall *)(char *,const char *)'",
-          "line": 7580
         },
         {
           "code": "C2440",
@@ -3379,7 +3057,7 @@
     },
     "pal3/src/Misc/ScriptVM.cpp": {
       "status": "fail",
-      "error_count": 45,
+      "error_count": 58,
       "errors": [
         {
           "code": "C2039",
@@ -3390,6 +3068,26 @@
           "code": "C2039",
           "msg": "'_nearby_4b6ca0' : is not a member of 'RenderTarget3'",
           "line": 86
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->m_rect' must point to class/struct/union",
+          "line": 345
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.left' must have class/struct/union type",
+          "line": 345
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->RoleSystem' must point to class/struct/union",
+          "line": 345
+        },
+        {
+          "code": "C2653",
+          "msg": "'RoleSystem' : is not a class or namespace name",
+          "line": 345
         },
         {
           "code": "C2440",
@@ -3532,8 +3230,23 @@
           "line": 1671
         },
         {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long *' to 'unsigned long'",
+          "code": "C2227",
+          "msg": "left of '->m_rect' must point to class/struct/union",
+          "line": 1857
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.left' must have class/struct/union type",
+          "line": 1857
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->RoleSystem' must point to class/struct/union",
+          "line": 1857
+        },
+        {
+          "code": "C2653",
+          "msg": "'RoleSystem' : is not a class or namespace name",
           "line": 1857
         },
         {
@@ -3550,6 +3263,26 @@
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
           "line": 1888
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->m_rect' must point to class/struct/union",
+          "line": 1902
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.left' must have class/struct/union type",
+          "line": 1902
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->RoleSystem' must point to class/struct/union",
+          "line": 1902
+        },
+        {
+          "code": "C2653",
+          "msg": "'RoleSystem' : is not a class or namespace name",
+          "line": 1902
         },
         {
           "code": "C2440",
@@ -3605,6 +3338,16 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'const char *'",
           "line": 2134
+        },
+        {
+          "code": "C2227",
+          "msg": "left of '->m_rect' must point to class/struct/union",
+          "line": 2164
+        },
+        {
+          "code": "C2228",
+          "msg": "left of '.left' must have class/struct/union type",
+          "line": 2164
         }
       ]
     },
@@ -3680,20 +3423,9 @@
       "errors": []
     },
     "pal3/src/Misc/TaskBookUI.cpp": {
-      "status": "fail",
-      "error_count": 2,
-      "errors": [
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void (__cdecl *)(char *,const char *)' to 'void (__stdcall *)(char *,const char *)'",
-          "line": 297
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'void (__cdecl *)(char *,const char *)' to 'void (__stdcall *)(char *,const char *)'",
-          "line": 303
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/TextureLibDataBase.cpp": {
       "status": "ok",
@@ -3727,17 +3459,12 @@
     },
     "pal3/src/Misc/UIBigMap.cpp": {
       "status": "fail",
-      "error_count": 19,
+      "error_count": 18,
       "errors": [
         {
           "code": "C2660",
           "msg": "'-' : function does not take 1 parameters",
           "line": 298
-        },
-        {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 300
         },
         {
           "code": "C2440",
@@ -5055,7 +4782,7 @@
     },
     "pal3/src/Render/RenderTarget3.cpp": {
       "status": "fail",
-      "error_count": 4,
+      "error_count": 3,
       "errors": [
         {
           "code": "C2102",
@@ -5071,11 +4798,6 @@
           "code": "C2039",
           "msg": "'_nearby_4b6ca0' : is not a member of 'RenderTarget3'",
           "line": 410
-        },
-        {
-          "code": "C2664",
-          "msg": "'RenderUIQuad' : cannot convert parameter 3 from 'unsigned char' to 'class gbRenderEffect *'",
-          "line": 476
         }
       ]
     },
@@ -5542,7 +5264,7 @@
     },
     "pal3/src/Role/RoleSystem.cpp": {
       "status": "fail",
-      "error_count": 62,
+      "error_count": 60,
       "errors": [
         {
           "code": "C2440",
@@ -5770,16 +5492,6 @@
           "line": 4117
         },
         {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 4736
-        },
-        {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 4765
-        },
-        {
           "code": "C2664",
           "msg": "'_strcmpi' : cannot convert parameter 2 from 'int' to 'const char *'",
           "line": 6309
@@ -5863,7 +5575,7 @@
     },
     "pal3/src/Scene/CameraCtrl.cpp": {
       "status": "fail",
-      "error_count": 18,
+      "error_count": 17,
       "errors": [
         {
           "code": "C2660",
@@ -5889,11 +5601,6 @@
           "code": "C2660",
           "msg": "'ProcessKeyboard' : function does not take 2 parameters",
           "line": 233
-        },
-        {
-          "code": "C2664",
-          "msg": "'_pal3_coerce_f32' : cannot convert parameter 1 from 'void *' to 'unsigned long'",
-          "line": 431
         },
         {
           "code": "C2664",
@@ -6020,33 +5727,8 @@
     },
     "pal3/src/Script/PalScript.cpp": {
       "status": "fail",
-      "error_count": 54,
+      "error_count": 49,
       "errors": [
-        {
-          "code": "C2065",
-          "msg": "'_inline_PalScript_m_RoleSlotArray' : undeclared identifier",
-          "line": 162
-        },
-        {
-          "code": "C2065",
-          "msg": "'pSlots' : undeclared identifier",
-          "line": 162
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 168
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->slot' must point to class/struct/union",
-          "line": 171
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.nRoleID' must have class/struct/union type",
-          "line": 171
-        },
         {
           "code": "C2039",
           "msg": "'_Split' : is not a member of 'GRPinput'",
@@ -6337,17 +6019,22 @@
     },
     "pal3/src/Script/ScriptSystem.cpp": {
       "status": "fail",
-      "error_count": 2,
+      "error_count": 3,
       "errors": [
         {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 415
+          "code": "C2094",
+          "msg": "label '_flt_45_0' was undefined",
+          "line": 461
         },
         {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 428
+          "code": "C2094",
+          "msg": "label 'var_20' was undefined",
+          "line": 461
+        },
+        {
+          "code": "C2094",
+          "msg": "label '_flt_0_005' was undefined",
+          "line": 461
         }
       ]
     },
@@ -6678,7 +6365,7 @@
     },
     "pal3/src/UI/UIScene.cpp": {
       "status": "fail",
-      "error_count": 16,
+      "error_count": 15,
       "errors": [
         {
           "code": "C2660",
@@ -6694,11 +6381,6 @@
           "code": "C2100",
           "msg": "illegal indirection",
           "line": 183
-        },
-        {
-          "code": "C2101",
-          "msg": "'&' on constant",
-          "line": 206
         },
         {
           "code": "C2440",
