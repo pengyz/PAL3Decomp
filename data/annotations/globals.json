@@ -340,7 +340,8 @@
     "reason": "rdata offset: codegen auto-substitutes",
     "type": "const char *",
     "category": "ptr_table",
-    "source": " | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、"
+    "source": " | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、 | [F-TAB 2026-10-15] 补 orig_type：A 级 hexdump 0x570280=计数 0x83+递减指针表（0x5DF8C8/0x5DF8A0…）；emit 合并只传 name/category/orig_type（type 不传）⇒ 此前复活落 _prefix_type(\"off_\")=void* ⇒ CCBParabolaWindow.cpp L130 `(&off_570298)[i]` void*→const char* C2664",
+    "orig_type": "const char *"
   },
   "0x00570310": {
     "name": "off_570310",
@@ -1462,9 +1463,9 @@
   "0x005D5484": {
     "decomp_name": "pEffMgr",
     "name": "g_EffMgr",
-    "type": "CEffMgr",
-    "category": "string_literal",
-    "source": " | categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入"
+    "type": "char[]",
+    "category": "const_data",
+    "source": " | categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入 | [F-STR 2026-10-15] int→char[]：A 级 hexdump 0x5d5484=\"quake\"（字符串，原 typed CEffMgr ⇒ decomp 渲染成员访问）"
   },
   "0x005D558C": {
     "name": "FileName",
@@ -8202,5 +8203,74 @@
     "type": "void *[]",
     "category": "const_data",
     "source": "[T31] C2109：A 级 0x499c9d `mov eax,DWORD PTR [edx*4+0x56e11c]`（scale-4）；消费=UITitle_XJTM::UpdateMonsterEntry2@0x004999D0 的 CreateFromTemplate((void*)tbl[nVal]) ⇒ void*[]"
+  },
+  "0x005D548C": {
+    "name": "aBink",
+    "type": "char[]",
+    "category": "const_data",
+    "source": " | [F-STR 2026-10-15] int→char[]：A 级 hexdump 0x5d548c=\"bink\"（字符串，原 typed RenderTarget2 ⇒ decomp 渲染成员访问）"
+  },
+  "0x005D5494": {
+    "name": "aShock",
+    "type": "char[]",
+    "category": "const_data",
+    "source": " | [F-STR 2026-10-15] int→char[]：A 级 hexdump 0x5d5494=\"shock\"（字符串，原 typed CEffMgr ⇒ decomp 渲染成员访问）"
+  },
+  "0x005D54A4": {
+    "name": "aMeteor",
+    "type": "char[]",
+    "category": "const_data",
+    "source": " | [F-STR 2026-10-15] int→char[]：A 级 hexdump 0x5d54a4=\"meteor\"（字符串，原 typed CEffMgr ⇒ decomp 渲染成员访问）"
+  },
+  "0x005D54AC": {
+    "name": "aExplosive",
+    "type": "char[]",
+    "category": "const_data",
+    "source": " | [F-STR 2026-10-15] int→char[]：A 级 hexdump 0x5d54ac=\"explosive\"（字符串，原 typed CEffectSystem ⇒ decomp 渲染成员访问）"
+  },
+  "0x005D54B8": {
+    "name": "aGrid",
+    "type": "char[]",
+    "category": "const_data",
+    "source": " | [F-STR 2026-10-15] int→char[]：A 级 hexdump 0x5d54b8=\"grid\"（字符串，原 typed CEffMgr ⇒ decomp 渲染成员访问）"
+  },
+  "0x005D54C0": {
+    "name": "aCallback",
+    "type": "char[]",
+    "category": "const_data",
+    "source": " | [F-STR 2026-10-15] int→char[]：A 级 hexdump 0x5d54c0=\"callback\"（字符串，原 typed RenderTarget2 ⇒ decomp 渲染成员访问）"
+  },
+  "0x005D54CC": {
+    "name": "aModel",
+    "type": "char[]",
+    "category": "const_data",
+    "source": " | [F-STR 2026-10-15] int→char[]：A 级 hexdump 0x5d54cc=\"model\"（字符串，原 typed CEffMgr ⇒ decomp 渲染成员访问）"
+  },
+  "0x005D54F8": {
+    "name": "aQuad",
+    "type": "char[]",
+    "category": "const_data",
+    "source": " | [F-STR 2026-10-15] int→char[]：A 级 hexdump 0x5d54f8=\"quad\"（字符串，原 typed CEffModel ⇒ decomp 渲染成员访问）"
+  },
+  "0x005AC098": {
+    "name": "off_5AC098",
+    "type": "void *[]",
+    "category": "ptr_table",
+    "orig_type": "void *[]",
+    "source": "[F-TAB 2026-10-15] A 级 hexdump 0x5AC080 起=递减指针表（94 0a 5a 00/80 0a 5a 00…=0x5A0A94/0x5A0A80…），0x5AC098=f4 09 5a 00 表元素；RoleShadow.cpp:25 就地 extern void* off_5AC098[]（数组形正确）vs globals.h 启发 void* 标量 ⇒ C2372 重定义 + L284 下标 C2036/C2664"
+  },
+  "0x0056F314": {
+    "name": "off_56F314",
+    "type": "const char *[]",
+    "category": "ptr_table",
+    "orig_type": "const char *[]",
+    "source": "[F-TAB 2026-10-15] A 级 hexdump 0x56f310 起=递减指针表（6c0a5b00/500a5b00…=0x5B0A6C/0x5B0A50…），0x5B0A6C=\"UI\\GameMainUI\\System\\jt…\" 路径串；IDB tombstone skip（rdata:compiler_generated）⇒ decomp 渲染裸数字下标 ⇒ UITitle_JDHY.cpp L976/978 `(void*)(0x56F314)[v10]` C2109"
+  },
+  "0x0056F328": {
+    "name": "off_56F328",
+    "type": "const char *[]",
+    "category": "ptr_table",
+    "orig_type": "const char *[]",
+    "source": "[F-TAB 2026-10-15] A 级 hexdump 0x56f310 起=递减指针表（6c0a5b00/500a5b00…=0x5B0A6C/0x5B0A50…），0x5B0A6C=\"UI\\GameMainUI\\System\\jt…\" 路径串；IDB tombstone skip（rdata:compiler_generated）⇒ decomp 渲染裸数字下标 ⇒ UITitle_JDHY.cpp L976/978 `(void*)(0x56F314)[v10]` C2109"
   }
 }

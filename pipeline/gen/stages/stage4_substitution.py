@@ -641,6 +641,19 @@ def _fix_setlibfolder_args(code):
     return _SETLIB_RE.sub(r'SetLibFolder((const char *)\1\2', code)
 
 
+# [F-CST 2026-10-15] enum|enum 实参 ⇒ 显式 (GBPARAMHANDLE) cast（字节等价：
+# 同一立即数/寄存器值传参；C2664 'const int'→'enum GBPARAMHANDLE' 实测
+# RenderTarget3.cpp L151 + ScriptSystem.cpp L68 + CCBStage.cpp L7092/7097
+# 共 4 站点 3 文件——CCBStage 2 站点在 C1003 截断单元内此前被遮蔽）。
+# 幂等守卫：已带 (GBPARAMHANDLE) cast 的不动。
+_SETVARIANT_ENUMOR_RE = re.compile(
+    r'\bSetVariant\((?!\(GBPARAMHANDLE\))((?:GBPARAM_\w+\s*\|\s*)+GBPARAM_\w+)\s*,')
+
+
+def _fix_setvariant_enum_or(code):
+    return _SETVARIANT_ENUMOR_RE.sub(r'SetVariant((GBPARAMHANDLE)(\1),', code)
+
+
 # [T23-F1] 标量删除析构调用（dtor 名**带实参**）⇒ _sdtor_call_dtor 形
 # （与 stage1 定义侧改名一致——MSVC6 拒绝 ~X(int)（C2524 实测）；无实参的
 # 纯 dtor 调用不动）。带实参删除析构调用字节等价：同样 push 实参 + call。
@@ -2335,6 +2348,8 @@ def run(code, ctx):
     result = _fix_lobyte_return(result)
     # [T26] SetLibFolder 实参窄型 ⇒ (const char *) cast（字节等价）
     result = _fix_setlibfolder_args(result)
+    # [F-CST 2026-10-15] SetVariant enum|enum 实参 ⇒ (GBPARAMHANDLE) cast
+    result = _fix_setvariant_enum_or(result)
     # [T23-F1] 带实参删除析构调用 ⇒ _sdtor_call_dtor 形（与定义侧一致）
     result = _fix_sdtor_calls(result)
     # fn-ptr 限定形接线 2026-10-07（C2273 族——子对象引用形）

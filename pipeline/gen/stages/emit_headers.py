@@ -3303,6 +3303,47 @@ def _interior_member_resolvable(addr, name=None):
     return _try_struct_member_resolution(prefix_name) is not None
 
 
+_ANN_GLOBAL_TYPE_CACHE = None
+
+
+def _ann_global_type_map(data):
+    """[F-TAB 2026-10-15] globals.json → {addr: 复活型}（纯函数，R15 单测点）。
+
+    规则（W3 类型源律的合成路径扩展）：`orig_type`（墓碑原类型）优先，
+    其次非 skip 的 `type`；skip 无 orig_type ⇒ 不入表（回退名字启发）。
+    """
+    out = {}
+    for _a, _e in (data or {}).items():
+        if not isinstance(_e, dict):
+            continue
+        _t = _e.get('orig_type') or _e.get('type')
+        if _t and _t != 'skip':
+            try:
+                out[int(_a, 16)] = _t
+            except (ValueError, TypeError):
+                pass
+    return out
+
+
+def _ann_global_type(addr):
+    """globals.json 显式型（复活型解析源 · W3 类型源律扩展）。
+
+    合成路径（_forced_global_entries）此前对 IDA 式名字一律 `_prefix_type`
+    ⇒ `off_*`→**void\\* 标量**，吞掉注解里的数组形（实测 off_5AC098 标量
+    `extern void *` 与就地 `extern void *off_5AC098[]` 相撞 C2372 + 下标
+    C2036/C2664 共 3 错）。查不到 ⇒ None（调用方回退 _prefix_type）。
+    """
+    global _ANN_GLOBAL_TYPE_CACHE
+    if _ANN_GLOBAL_TYPE_CACHE is None:
+        try:
+            _p = _annview.annotation_json_path('globals.json')
+            _data = json.loads(open(_p, encoding='utf-8').read()) if os.path.exists(_p) else {}
+        except Exception:
+            _data = {}
+        _ANN_GLOBAL_TYPE_CACHE = _ann_global_type_map(_data)
+    return _ANN_GLOBAL_TYPE_CACHE.get(addr)
+
+
 def _forced_global_entries():
     """Decomp-referenced globals that current skip filters would silence.
 
@@ -3341,7 +3382,9 @@ def _forced_global_entries():
             addr = int(m.group(1), 16)
             if _interior_member_resolvable(addr, nm):
                 continue
-            t = _prefix_type(nm)
+            # [F-TAB 2026-10-15] 注解显式型优先于名字启发（off_*→void* 吞数组形
+            # ⇒ C2372/C2036/C2664 实测 3 错；W3 类型源律的合成路径扩展）
+            t = _ann_global_type(addr) or _prefix_type(nm)
             if t and 0x401000 <= addr < 0x580000 + 0x900000:
                 forced.add(nm)
                 extra.append(('0x%08X' % addr,
@@ -3784,7 +3827,10 @@ def _read_init_value(addr, typ, exe_data):
         if val > 0x7FFFFFFF: return '0x%X' % val
         return str(val)
     # Char array (string) — read actual content from .data section
-    if 'char' in typ.lower() and ('[' in typ or '[]' in typ):
+    # [F-TAB 修 2026-10-15] `*` 必须排除：指针数组型（const char *[]）此前也
+    # 命中本路径 ⇒ 定义发成 `T* X[] = "字节串"` ⇒ C2440 ×4（globals.cpp L61/62/
+    # 1944/1948，实测 off_56F314/56F328/56BA1C/56D5D8 全中）。
+    if 'char' in typ.lower() and ('[' in typ or '[]' in typ) and '*' not in typ:
         raw = exe_data[foff:foff+256]
         null_pos = raw.find(b'\x00')
         if null_pos > 0:
