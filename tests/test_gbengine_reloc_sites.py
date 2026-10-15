@@ -137,6 +137,45 @@ def test_compare_bytes_rel32_negative_and_no_va():
                                     'unresolved': 1}, res2['reloc_target']
 
 
+# ─── [mismatch 修法 1+2] rsite 名字比对归一 + ctor/dtor 族容差 ─────────
+sys.path.insert(0, str(REPO / 'pipeline'))
+import compare_pal3 as cp3  # noqa: E402
+
+
+def test_norm_name_strips_void_param_suffix():
+    assert cp3._norm_name('CEffGrid::~CEffGrid(void)') == 'CEffGrid::~CEffGrid'
+    assert cp3._norm_name('X::~X ( void )') == 'X::~X'
+    assert cp3._norm_name('Foo::Bar(uint)') == 'Foo::Bar'
+    # 非 (void)/(uint) 尾参表不剥（真签名差异不得被归一吞掉）
+    assert cp3._norm_name('A::B(int)') == 'A::B(int)'
+
+
+def test_ctor_dtor_family():
+    for n in ('UIWnd::~UIWnd', "CCBLineupWindow::`scalar deleting destructor'(uint)",
+              'CEffCylinder::_scalar_dtor_3db0(int)', 'UIWnd::_sdtor_14',
+              'UI3DCtrl::ctor(int)', 'UISceneMap::ctor_90(void)',
+              'UICoverFrm::UICoverFrm(void)', 'UIFrameWnd::_UIFrameWnd(void)'):
+        assert cp3._ctor_dtor_family(n), n
+    for n in ('RoleSystem::UpdateTransform(void)', 'sub_445FE0',
+              'Array::Insert(void *,void *)', 'OpenNULLFile::OpenNULLFileX(void)'):
+        assert not cp3._ctor_dtor_family(n), n
+
+
+def test_rsite_names_match_three_way():
+    # ① 归一相等（修法 1）
+    assert cp3._rsite_names_match('CEffGrid::~CEffGrid(void)', 'CEffGrid::~CEffGrid')
+    # ② 双侧 ctor/dtor 族（修法 2，含跨类——IDB 命名互换）
+    assert cp3._rsite_names_match('JusticeBookUI::JusticeBookUI(void)',
+                                  'JusticeBookUI::~JusticeBookUI')
+    assert cp3._rsite_names_match('scScriptInstance::~scScriptInstance(void)',
+                                  'UIWnd::~UIWnd')
+    # ③ 真差异保持 mismatch（判别力回归锁）
+    assert not cp3._rsite_names_match('Array::Insert(void *,void *)',
+                                      'Array::Erase(int,int)')
+    assert not cp3._rsite_names_match('CEffect::DestroyCallback(void)',
+                                      'CEffShock::~CEffShock')
+
+
 if __name__ == '__main__':
     import pytest
     raise SystemExit(pytest.main([__file__, '-v']))

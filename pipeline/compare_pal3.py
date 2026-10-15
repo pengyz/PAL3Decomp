@@ -361,6 +361,50 @@ def match_symbols(funcs, mangled_map, base_idx):
     return matched
 
 
+# ─── [mismatch 修法 1+2 · 2026-10-15] rsite 目标名字比对归一 + 析构/构造族容差 ───
+# 实测 77 mismatch（41 唯一对）分拣：①纯格式差 7（`X::~X(void)` vs `X::~X`）·
+# ②ctor/dtor 命名互换族 11（含跨类 4，IDB ctor/dtor 互换+归属名实不符）·
+# ③真差异 23。比对器此前是**裸字符串相等** ⇒ 前两类 = 纯比对器噪声（~85%）。
+# ⚠️ 精确定性（T66-F1 族措辞纪律）：不是「析构折叠」（非 COMDAT/ICF）——
+# 差异全在**名字层**，我方析构/删除析构语义正确（analyzer 逐站点裁定）。
+# 修法 3（IDB 命名修正 12 条）挂账 Phase 2 命名阶段——工具侧容差即恢复判别力。
+_DTOR_NAME_RE = re.compile(r'::~|deleting destructor|_scalar_dtor|_sdtor')
+
+
+def _norm_name(n):
+    """修法 1：名字归一——剥尾参表 `(void)`/`(uint)`/`(unsigned int)` + 空白折叠。"""
+    n = re.sub(r'\s*\(\s*(?:void|uint|unsigned int)\s*\)\s*$', '',
+               (n or '').strip())
+    return re.sub(r'\s+', ' ', n).strip()
+
+
+def _ctor_dtor_family(n):
+    """修法 2：ctor/dtor 族判定（同族候选——仅当两侧都属析构/构造链名字时）。
+
+    形：`X::~X` · `X::\`scalar deleting destructor'` · `X::_scalar_dtor*` ·
+        `X::_sdtor*` · `X::X`（类名重复=ctor）· `X::ctor*`。
+    跨类也认族（IDB ctor/dtor 命名互换 + 归属名实不符时我方符号对，
+    analyzer 逐 VA 体证实为析构/构造链）；非族名一律不放行。
+    """
+    nn = _norm_name(n)
+    if _DTOR_NAME_RE.search(nn):
+        return True
+    m = re.match(r'^([\w:]+)::(\w+)', nn)
+    if m:
+        cls = m.group(1).split('::')[-1]
+        fn = m.group(2).lstrip('_')   # `_UIFrameWnd` 形（前导下划线 ctor 别名）
+        if fn == cls or fn.startswith('ctor'):
+            return True
+    return False
+
+
+def _rsite_names_match(exp_name, got_name):
+    """rsite 目标名比对（纯函数，R15 单测点）：归一相等 或 双侧 ctor/dtor 族。"""
+    if _norm_name(exp_name) == _norm_name(got_name):
+        return True
+    return _ctor_dtor_family(exp_name) and _ctor_dtor_family(got_name)
+
+
 PROBE_FLAGS = ['/nologo', '/TP', '/c', '/W3']
 # docs/compiler_setup.md hypothesis flag set (needs byte-compare calibration —
 # that is exactly what --flags-matrix does)
@@ -482,7 +526,7 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                 got_entry = mangled_map.get(sym_name)
                 got_name = got_entry['name'] if got_entry else None
                 if exp_name and got_name:
-                    if exp_name == got_name:
+                    if _rsite_names_match(exp_name, got_name):
                         stats['rsite_ok'] = stats.get('rsite_ok', 0) + 1
                     else:
                         stats['rsite_mismatch'] = stats.get('rsite_mismatch', 0) + 1
