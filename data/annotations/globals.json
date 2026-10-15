@@ -1476,8 +1476,9 @@
   "0x005D5FE8": {
     "name": "g_nTargetSlot",
     "type": "int",
-    "source": "CRT init: converted from skip to int | categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入",
-    "category": "string_literal"
+    "source": "CRT init: converted from skip to int | categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入 | alias:2026-10-15 同址符号别名=类成员 CEffMgr.m_nTargetSlot(+0xB64) 的全局视图,同字节双声明;治理=成员名权威,本条仅别名标注(非union场景,无字段级复用)",
+    "category": "string_literal",
+    "note": "alias of CEffMgr.m_nTargetSlot (same bytes; member authoritative)"
   },
   "0x005D87F0": {
     "name": "unk_5D87F0",
@@ -1490,7 +1491,8 @@
     "name": "roleIdx",
     "type": "unsigned int",
     "category": "game_state",
-    "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真"
+    "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | alias:2026-10-15 同址符号别名=类成员 CEffMgr.roleIdx(+0x3370) 的全局视图,同字节双声明;治理=成员名权威,本条仅别名标注(非union场景,无字段级复用)",
+    "note": "alias of CEffMgr.roleIdx (same bytes; member authoritative)"
   },
   "0x005D8800": {
     "name": "unk_5D8800",
@@ -3062,33 +3064,38 @@
     "overlaps_with": [
       "g_ScriptSystemData"
     ],
-    "source": "binary: UIBigMap_RenderRole: gbMatrixStack::Rotate(pStack, angle, &g_vRotateAxis) | categorize: G5 分类标注：static 块三元组命中（注册内入账）",
+    "source": "binary: UIBigMap_RenderRole: gbMatrixStack::Rotate(pStack, angle, &g_vRotateAxis) | categorize: G5 分类标注：static 块三元组命中（注册内入账） | alias:2026-10-15 同址符号别名=类成员 ScriptSystemData.g_vRotateAxis(+0x908) 的全局视图,同字节双声明;治理=成员名权威,本条仅别名标注(非union场景,无字段级复用)",
     "type": "gbVec3D",
-    "category": "function_static"
+    "category": "function_static",
+    "note": "alias of ScriptSystemData.g_vRotateAxis (same bytes; member authoritative)"
   },
   "0x00D8BC2C": {
     "name": "g_bMapRenderFlags",
-    "source": "binary: UIBigMap_RenderRole: (g_bMapRenderFlags & 1)==0 check | categorize: G5 分类标注：static 块三元组命中（注册内入账）",
+    "source": "binary: UIBigMap_RenderRole: (g_bMapRenderFlags & 1)==0 check | categorize: G5 分类标注：static 块三元组命中（注册内入账） | alias:2026-10-15 同址符号别名=类成员 ScriptSystemData.m_bMapRenderFlags(+0x914) 的全局视图,同字节双声明;治理=成员名权威,本条仅别名标注(非union场景,无字段级复用)",
     "type": "unsigned char",
-    "category": "function_static"
+    "category": "function_static",
+    "note": "alias of ScriptSystemData.m_bMapRenderFlags (same bytes; member authoritative)"
   },
   "0x00D8BC30": {
     "name": "dword_D8BC30",
     "type": "int",
     "category": "game_state",
-    "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真"
+    "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | alias:2026-10-15 同址符号别名=类成员 ScriptSystemData.m_nScriptCounter0(+0x918) 的全局视图,同字节双声明;治理=成员名权威,本条仅别名标注(非union场景,无字段级复用)",
+    "note": "alias of ScriptSystemData.m_nScriptCounter0 (same bytes; member authoritative)"
   },
   "0x00D8BC34": {
     "name": "dword_D8BC34",
     "type": "int",
     "category": "game_state",
-    "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真"
+    "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | alias:2026-10-15 同址符号别名=类成员 ScriptSystemData.m_nScriptCounter1(+0x91C) 的全局视图,同字节双声明;治理=成员名权威,本条仅别名标注(非union场景,无字段级复用)",
+    "note": "alias of ScriptSystemData.m_nScriptCounter1 (same bytes; member authoritative)"
   },
   "0x00D8BC38": {
     "name": "dword_D8BC38",
     "type": "int",
     "category": "game_state",
-    "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真"
+    "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | alias:2026-10-15 同址符号别名=类成员 ScriptSystemData.m_nScriptFlag(+0x920) 的全局视图,同字节双声明;治理=成员名权威,本条仅别名标注(非union场景,无字段级复用)",
+    "note": "alias of ScriptSystemData.m_nScriptFlag (same bytes; member authoritative)"
   },
   "0x00D8BEC4": {
     "name": "g_fScriptTileSize",
@@ -3098,9 +3105,10 @@
   },
   "0x00D8C17C": {
     "name": "g_fScriptTileSize2",
-    "source": "binary: PalScriptMgr_ExecuteFrame: position/*(float*)&val division; tile size divisor | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真",
+    "source": "binary: PalScriptMgr_ExecuteFrame: position/*(float*)&val division; tile size divisor | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | alias:2026-10-15 同址符号别名=类成员 ScriptSystemData.m_fScriptTileSize2(+0xE64) 的全局视图,同字节双声明;治理=成员名权威,本条仅别名标注(非union场景,无字段级复用)",
     "type": "float",
-    "category": "game_state"
+    "category": "game_state",
+    "note": "alias of ScriptSystemData.m_fScriptTileSize2 (same bytes; member authoritative)"
   },
   "0x00D8C1AC": {
     "name": "unk_D8C1AC",
@@ -3153,8 +3161,9 @@
   "0x00D91780": {
     "name": "g_fUIColorParam",
     "type": "int",
-    "source": "CRT init: converted from skip to int | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真",
-    "category": "game_state"
+    "source": "CRT init: converted from skip to int | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | alias:2026-10-15 同址符号别名=类成员 CGameData.m_fUIColorParam(+0x32C0) 的全局视图,同字节双声明;治理=成员名权威,本条仅别名标注(非union场景,无字段级复用)",
+    "category": "game_state",
+    "note": "alias of CGameData.m_fUIColorParam (same bytes; member authoritative)"
   },
   "0x00D924B4": {
     "name": "g_bRoleLoadFlags",
@@ -3165,8 +3174,9 @@
   "0x00D924E8": {
     "name": "g_bGameUpdating",
     "type": "int",
-    "source": "CRT init: converted from skip to int | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真",
-    "category": "game_state"
+    "source": "CRT init: converted from skip to int | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | alias:2026-10-15 同址符号别名=类成员 CGameData.m_bGameUpdating(+0x4028) 的全局视图,同字节双声明;治理=成员名权威,本条仅别名标注(非union场景,无字段级复用)",
+    "category": "game_state",
+    "note": "alias of CGameData.m_bGameUpdating (same bytes; member authoritative)"
   },
   "0x00D92788": {
     "name": "g_SceneTransitionBuffer",
@@ -4036,20 +4046,23 @@
   "0x00D8BBC0": {
     "name": "flt_D8BBC0",
     "type": "skip",
-    "source": "auto:extern_overlap_skip | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真",
-    "category": "game_state"
+    "source": "auto:extern_overlap_skip | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | alias:2026-10-15 同址符号别名=类成员 ScriptSystemData.m_fTimerA(+0x8A8) 的全局视图,同字节双声明;治理=成员名权威,本条仅别名标注(非union场景,无字段级复用)",
+    "category": "game_state",
+    "note": "alias of ScriptSystemData.m_fTimerA (same bytes; member authoritative)"
   },
   "0x00D8BEF0": {
     "name": "flt_D8BEF0",
     "type": "skip",
-    "source": "auto:extern_overlap_skip | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真",
-    "category": "game_state"
+    "source": "auto:extern_overlap_skip | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | alias:2026-10-15 同址符号别名=类成员 ScriptSystemData.m_fTimerB(+0xBD8) 的全局视图,同字节双声明;治理=成员名权威,本条仅别名标注(非union场景,无字段级复用)",
+    "category": "game_state",
+    "note": "alias of ScriptSystemData.m_fTimerB (same bytes; member authoritative)"
   },
   "0x00D90060": {
     "name": "flt_D90060",
     "type": "float",
-    "source": "manual:UILBColumn.cpp needs this float global for C2065 fix | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真",
-    "category": "game_state"
+    "source": "manual:UILBColumn.cpp needs this float global for C2065 fix | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | alias:2026-10-15 同址符号别名=类成员 CGameData.m_fTimerC(+0x1BA0) 的全局视图,同字节双声明;治理=成员名权威,本条仅别名标注(非union场景,无字段级复用)",
+    "category": "game_state",
+    "note": "alias of CGameData.m_fTimerC (same bytes; member authoritative)"
   },
   "0x017AA800": {
     "name": "flt_17AA800",

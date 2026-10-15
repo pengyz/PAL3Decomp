@@ -441,9 +441,10 @@
       "source": "ida_decomp:= 0, if+ClearAllScript, 2 refs"
     },
     "212": {
-      "name": "m_pSavedIndex",
+      "name": "m_pTodo_84",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast | annotate_todo"
+      "source": "raw_decomp:Hex-Rays_type_cast | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
+      "note": "原名 m_pSavedIndex 降级(未证语义名,CLAUDE.md 禁伪语义)"
     },
     "249": {
       "name": "m_nTodo_0F5",
@@ -561,10 +562,10 @@
       "source": "A+:decomp_assigned_from_m_pRoleSystem_in_UpdateScriptRoles"
     },
     "296": {
-      "name": "m_pSubScript",
+      "name": "m_pTodo_128",
       "type": "char *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
+      "note": "replaced void* with char* (IDB struct compat) | 原名 m_pSubScript 降级(未证语义名,CLAUDE.md 禁伪语义)"
     },
     "300": {
       "name": "m_nScriptCount",
@@ -582,9 +583,10 @@
       "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "532": {
-      "name": "m_fPosAYTarget",
+      "name": "m_fTodo_214",
       "type": "float",
-      "source": "gap_fill:ida_decomp_access | annotate_todo"
+      "source": "gap_fill:ida_decomp_access | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
+      "note": "原名 m_fPosAYTarget 降级(未证语义名,CLAUDE.md 禁伪语义)"
     },
     "572": {
       "name": "m_nTodo_238",
@@ -592,16 +594,16 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "792": {
-      "name": "m_pRoleSystem",
+      "name": "m_pTodo_318",
       "type": "char *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
+      "note": "replaced void* with char* (IDB struct compat) | 原名 m_pRoleSystem 降级(未证语义名,CLAUDE.md 禁伪语义)"
     },
     "880": {
-      "name": "m_pScriptInst",
+      "name": "m_pTodo_370",
       "type": "char *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
+      "note": "replaced void* with char* (IDB struct compat) | 原名 m_pScriptInst 降级(未证语义名,CLAUDE.md 禁伪语义)"
     },
     "1912": {
       "name": "m_nTodo_774",
@@ -619,10 +621,10 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "3284": {
-      "name": "m_pScreenEffect",
+      "name": "m_pTodo_CD4",
       "type": "char *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
+      "note": "replaced void* with char* (IDB struct compat) | 原名 m_pScreenEffect 降级(未证语义名,CLAUDE.md 禁伪语义)"
     },
     "8456": {
       "name": "m_nCost",
@@ -630,16 +632,16 @@
       "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "9484": {
-      "name": "m_pScriptInstB",
+      "name": "m_pTodo_250C",
       "type": "char *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
+      "note": "replaced void* with char* (IDB struct compat) | 原名 m_pScriptInstB 降级(未证语义名,CLAUDE.md 禁伪语义)"
     },
     "9488": {
-      "name": "m_pScriptInstC",
+      "name": "m_pTodo_2510",
       "type": "char *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
+      "note": "replaced void* with char* (IDB struct compat) | 原名 m_pScriptInstC 降级(未证语义名,CLAUDE.md 禁伪语义)"
     },
     "28": {
       "name": "m_nTodo_018",

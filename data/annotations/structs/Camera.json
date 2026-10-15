@@ -138,9 +138,10 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "0": {
-      "name": "m_pVtbl",
+      "name": "m_pTodo_0",
       "type": "void *",
-      "source": "gap_fill:ida_decomp_access | annotate_todo"
+      "source": "gap_fill:ida_decomp_access | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
+      "note": "原名 m_pVtbl 降级(未证语义名,CLAUDE.md 禁伪语义)"
     },
     "380": {
       "name": "m_nCameraTick",

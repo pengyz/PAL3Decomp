@@ -96,7 +96,7 @@
     "11104": {
       "name": "m_nUnk61D8",
       "type": "int",
-      "source": "auto:overlap_g_SceneMgr_at_+0x1E48"
+      "source": "overlap_marker_removed:2026-10-15(误报) | adjudicated:2026-10-15 误报实锤:marker记+0x1E48(=全局g_nUnk61D8@g_SceneMgr基址偏移)与成员offset0x2B60互斥;decomp锚点(&m_nUnk61D8+8047)反推真偏移0x2BA0(与SceneMgr::Create@[esi+0xa91c]指令逐字节吻合)⇒三数互斥(0x2B60/0x2BA0/0x1E48),overlap标记移除,offset修正挂账(需多站点A级复核),名m_nUnk61D8=地址后缀伪语义(T74族)待改中性名"
     },
     "5160": {
       "name": "m_nTodo_1428",

@@ -400,12 +400,14 @@
     "364": {
       "name": "m_vecPos",
       "type": "gbVec3D",
-      "source": "binary:gap_r2 | annotate_todo"
+      "source": "binary:gap_r2 | verified:2026-10-15 A:disp32_0x16C(120hits)+Actor::SetCurrentAction gbVec3D::operator=(&m_vecPos,src+364)同构偏移+型gbVec3D一致",
+      "note": " | verified:2026-10-15"
     },
     "376": {
       "name": "m_vecRot",
       "type": "gbVec3D",
-      "source": "binary:gap_r2 | annotate_todo"
+      "source": "binary:gap_r2 | verified:2026-10-15 A:disp32_0x178(84hits)+Actor::SetCurrentAction gbVec3D::operator=(&m_vecRot,src+376)同构偏移+型gbVec3D一致",
+      "note": " | verified:2026-10-15"
     },
     "388": {
       "name": "m_nCloneParam",
@@ -591,7 +593,8 @@
     "680": {
       "name": "m_InnerActor",
       "type": "void *",
-      "source": "overlap: 4-byte workspace. Used via (Actor *)&this->m_InnerActor to access m_pact@+0x10 and m_dwMatMsg@+0x21C. | normalize_key: 0x2A8 -> 680"
+      "source": "overlap: 4-byte workspace. Used via (Actor *)&this->m_InnerActor to access m_pact@+0x10 and m_dwMatMsg@+0x21C. | normalize_key: 0x2A8 -> 680 | verified:2026-10-15 A:视图级4B工作区((Actor*)&m_InnerActor 强转用法),与邻居m_bDirFlag@684相邻无字段重叠;union不适用(嵌Actor视图820B撞布局)→保留现状+注释",
+      "note": "overlap: 4-byte workspace = 类型双视图(同址),非字段复用;治理=保留"
     },
     "628": {
       "name": "_overlap_RoleSystem_m_partyActor_m_nState",
