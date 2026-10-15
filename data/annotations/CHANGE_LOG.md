@@ -6331,3 +6331,27 @@ len_eq 且 diff 全在尾 8 字节 **22**（非 35）· 单连续 run & reloc=0 
 
 **Confidence: high**（每处 objdump 逐字节 A 级 + 0 直接调用点（全 vtable）⇒ 影响面实测为本函数 +
 R15 test_gbengine_reloc_sites.py 4/4 绿 + pre-commit 存量豁免无关）。
+
+## 2026-10-15 · task-6 案例 B：`RenderTarget::SetOffset/SetScale` 补 2 参 + 144/148 float 化
+
+### ① `0x004B4D80` SetOffset `void __thiscall(int nOffY)` → `void __thiscall(float fVal1, float fVal2)`
+- **A 级**：定义侧 0x4B4D80 `8b 44 24 04 / 8b 54 24 08 / 89 81 90 00 00 00 / 89 91 94 00 00 00 / c2 08 00`
+  —— 读 [esp+4]/[esp+8] 双槽 + ret 8（=2 dword 参数）+ 裸 mov 位拷贝（无 FPU 转换）。
+- **调用侧 4 处全核**（0x482E12 / 0x47A507 / 0x48EDCE / 0x47A54E）：实参 float 位型
+  （`push 0x40000000`=2.0f、`push 0x41200000`=10.0f 常量；fild/fstp int→float 转换）。
+- **受控实验**（/tmp/shape_exp/rt.cpp，同 S4 flags）：`float,float` + float 成员编出
+  与原 23 字节**逐字节全同**；int→float / float→int 均编出 fild/flds+call ✗。
+
+### ② known_members 144/148 `int` → `float`（改名 m_nOffsetX/Y → m_fOffsetX/Y）
+- **A 级**：同上位拷贝 + 调用侧 float 位型。名字泄漏用法逐一核过（类型无关）：
+  `this[16].m_nOffsetX = 0`（0==0.0f 位型）· `LOBYTE(this[16].m_nOffsetY) = 0` ·
+  `&this[1060].m_nOffsetX` 取址 ⇒ float 化安全。
+
+### ③ `0x004B4DA0` SetScale 仅补第 2 参 `void __thiscall(int nVal1, int nVal2)`（型刻意留 int）
+- **A 级**：定义侧 0x4B4DA0 `8b 44 24 04 / 8b 54 24 08 / 89 81 98 00 00 00 / 89 91 9c 00 00 00 / c2 08 00`（ret 8=2 参）。
+- ⚠️ **float 化被 152/156 名字泄漏的 int 语境阻塞**：`SetRenderState`（L1 函数，13B，
+  `this[1].m_nScaleY = nVal` int 存）· `OnRender`（`this[1247].m_nScaleX = 1`）·
+  `RenderToTexture`（`m_nScaleX > 0`）⇒ float 化必插转换破 L1。调用侧 float 位型证据
+  留档（0x47A54E fild/fstp 双槽），待名字泄漏治理后复议。
+- **T146 挂账机理更正**：「SetRenderState 不碰 0x90-0x9C」按**偏移**成立，但按**名字**
+  仍渲染进 `this[1].m_nScaleY` ⇒ 成员型变更确实牵连它（挂账理由部分成立，实测以 L1 为准）。

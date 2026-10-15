@@ -446,7 +446,7 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                               if rel_off < size}
             res = gc.compare_bytes(compiled, text[idx0:idx0 + size], e['name'],
                                    verbose=False, relocs=relocs,
-                                   reloc_type_map=reloc_type_map)
+                                   reloc_type_map=reloc_type_map, va=e['va'])
             status = 'match_L1' if res['perfect'] else 'partial'
             # ---- [T146/P2 度量校正] 重定位核对（纯计量，不影响完美性判据）-----
             # ①站点级值核对（compare_bytes 内部已按站点聚合）——按 L1/全体分账；
@@ -470,7 +470,11 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                 stats['rsite_total'] = stats.get('rsite_total', 0) + 1
                 tgt = None
                 if rtype == 0x14:      # IMAGE_REL_I386_REL32
-                    rel = int.from_bytes(_orig[off + 1:off + 5], 'little', signed=True)
+                    # [task-6 修 2026-10-15] 读数错位 1 字节：off = COFF reloc
+                    # VirtualAddress = rel32 **操作数字段**偏移 ⇒ 读 [off:off+4]。
+                    # 原 [off+1:off+5] 把指令首字节并进读数（实测 0x40105A 站点读出
+                    # 0x8B000007 垃圾值）⇒ 目标恒查不到 ⇒ rsite 全 unresolved。
+                    rel = int.from_bytes(_orig[off:off + 4], 'little', signed=True)
                     tgt = e['va'] + off + 4 + rel
                 elif rtype == 0x06:    # IMAGE_REL_I386_DIR32
                     tgt = int.from_bytes(_orig[off:off + 4], 'little')

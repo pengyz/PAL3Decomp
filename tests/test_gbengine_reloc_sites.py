@@ -78,6 +78,65 @@ def test_compare_bytes_perfect_semantics_unchanged():
                             relocs={2})['perfect'] is True
 
 
+def test_compare_bytes_rel32_target_formula_plus4():
+    # [task-6 2026-10-15] REL32 目标 = va + s0 + **4** + rel32（A 级：0x401059
+    # `e8 42 07 00 00 call` ⇒ s0=0x0A、rel32=0x742 ⇒ 0x4017A0 = Reset ✓；
+    # +5 得 0x4017A1 ✗）。rel32 读数 = original[s0:s0+4]（signed）。
+    va = 0x401050
+    s0 = 0x0A
+    rel32 = 0x742
+    size = 16
+    orig = bytearray(size)
+    comp = bytearray(size)
+    orig[s0:s0 + 4] = rel32.to_bytes(4, 'little', signed=True)
+    relocs = {s0 + b for b in range(4)}
+    res = gc.compare_bytes(bytes(comp), bytes(orig), 'T', verbose=False,
+                           relocs=relocs, reloc_type_map={s0: 20}, va=va)
+    rt = res['reloc_target']
+    # 目标 0x4017A0 ∈ .text ⇒ ok；若用 +5（0x4017A1 仍在界内）此断言不区分 ⇒
+    # 由下一用例的边界钉死 +4。
+    assert rt == {'total': 1, 'ok': 1, 'mismatch': 0, 'unresolved': 0}, rt
+
+
+def test_compare_bytes_rel32_boundary_distinguishes_plus5():
+    # 边界钉：+4 形目标 = 0x5695CF（.text 最后有效字节，hi=0x5695d0 开区间），
+    # +5 形会落到 0x5695D0（出界）⇒ 若实现误用 +5，本用例必红。
+    va = 0x401050
+    s0 = 0x0A
+    rel32 = 0x5695CF - (va + s0 + 4)
+    assert rel32 == 0x168571
+    size = 16
+    orig = bytearray(size)
+    comp = bytearray(size)
+    orig[s0:s0 + 4] = rel32.to_bytes(4, 'little', signed=True)
+    relocs = {s0 + b for b in range(4)}
+    res = gc.compare_bytes(bytes(comp), bytes(orig), 'T', verbose=False,
+                           relocs=relocs, reloc_type_map={s0: 20}, va=va)
+    rt = res['reloc_target']
+    assert rt == {'total': 1, 'ok': 1, 'mismatch': 0, 'unresolved': 0}, rt
+
+
+def test_compare_bytes_rel32_negative_and_no_va():
+    # 负 rel32（回跳目标）：va=0x401500 → 目标 0x401050（signed 读数必须为负）
+    va = 0x401500
+    s0 = 0x0A
+    rel32 = 0x401050 - (va + s0 + 4)   # = -0x4BE
+    assert rel32 < 0
+    size = 16
+    orig = bytearray(size)
+    comp = bytearray(size)
+    orig[s0:s0 + 4] = rel32.to_bytes(4, 'little', signed=True)
+    relocs = {s0 + b for b in range(4)}
+    res = gc.compare_bytes(bytes(comp), bytes(orig), 'T', verbose=False,
+                           relocs=relocs, reloc_type_map={s0: 20}, va=va)
+    assert res['reloc_target']['ok'] == 1, res['reloc_target']
+    # 无 va 上下文 ⇒ 不猜，落 unresolved
+    res2 = gc.compare_bytes(bytes(comp), bytes(orig), 'T', verbose=False,
+                            relocs=relocs, reloc_type_map={s0: 20})
+    assert res2['reloc_target'] == {'total': 1, 'ok': 0, 'mismatch': 0,
+                                    'unresolved': 1}, res2['reloc_target']
+
+
 if __name__ == '__main__':
     import pytest
     raise SystemExit(pytest.main([__file__, '-v']))

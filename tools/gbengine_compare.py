@@ -288,9 +288,12 @@ def reloc_site_starts(relocs):
     return out
 
 
-def compare_bytes(compiled, original, func_name, verbose=True, relocs=None, reloc_type_map=None):
+def compare_bytes(compiled, original, func_name, verbose=True, relocs=None, reloc_type_map=None,
+                  va=None):
     """Compare compiled bytes against original, return match info.
     reloc_type_map: {byte_offset: reloc_type} — 用于区分 DIR32/REL32 目标地址计算。
+    va: 该函数在原二进制中的 VA（REL32 目标计算所需上下文；缺省 None ⇒ REL32 站点
+        落 unresolved，不猜）。
     """
     if relocs is None:
         relocs = set()
@@ -325,7 +328,7 @@ def compare_bytes(compiled, original, func_name, verbose=True, relocs=None, relo
         reloc_target['total'] += 1
         # [T146/P2 修] 按 reloc type 区分目标地址计算方式——
         #   type 6 (IMAGE_REL_I386_DIR32)：目标 = 4 字节值（绝对 VA）
-        #   type 20 (IMAGE_REL_I386_REL32)：目标 = 当前地址 + 5 + rel32（call/jmp rel32 形）
+        #   type 20 (IMAGE_REL_I386_REL32)：目标 = func_va + s0 + 4 + rel32
         # obj 的 reloc 站点值是**未链接的相对 addend**，exe 的字节是**最终指令流**——
         # 两者不可直接比较（cv == ov 恒假）。改为**只核对 exe 的目标地址是否有效**。
         # 纯计量，不改变 perfect 判据（重定位 4 字节仍是 don't-care）。
@@ -333,10 +336,21 @@ def compare_bytes(compiled, original, func_name, verbose=True, relocs=None, relo
         # 查该站点的 reloc type（从 reloc_sites 映射）
         rtype = reloc_type_map.get(s0, 6)  # 默认 DIR32
         if rtype == 20:  # REL32
-            # 目标 = 当前函数地址 + s0 + 5 + rel32
-            # 但这里没有函数地址上下文 ⇒ 用 ov 本身作 rel32，目标 = s0 + 5 + ov（相对函数起始）
-            # 这不是绝对 VA，无法直接判范围 ⇒ 标 unresolved（需要外部 VA 上下文）
-            reloc_target['unresolved'] += 1
+            # [task-6 修 2026-10-15] 目标公式 +5 → **+4**（A 级）：s0 = COFF reloc
+            # VirtualAddress = rel32 **操作数字段**偏移，rel32 相对**指令末尾**=
+            # 字段末尾（s0+4）。实测 0x401059 `e8 42 07 00 00 call`：s0=0x0A、
+            # rel32=0x742 ⇒ +4 解出 0x4017A0（=AStarPathFinder::Reset ✓），
+            # +5 解出 0x4017A1（恒偏 +1 ⇒ 符号法查名字恒查不到）。rel32 读数 =
+            # original[s0:s0+4]（signed）。va 缺省时不猜 ⇒ unresolved。
+            rel32 = int.from_bytes(original[s0:s0+4], 'little', signed=True)
+            if va is None:
+                reloc_target['unresolved'] += 1  # 无函数 VA 上下文 ⇒ 不猜
+            else:
+                tgt = va + s0 + 4 + rel32
+                if _in_any_section(tgt):
+                    reloc_target['ok'] += 1        # 目标地址有效（在任一节内）
+                else:
+                    reloc_target['unresolved'] += 1  # 目标地址不在任何节
         else:  # DIR32 或其他
             if _in_any_section(ov):
                 reloc_target['ok'] += 1        # 目标地址有效（在任一节内）
@@ -581,7 +595,8 @@ def main():
 
             # Compare (pass relocation info to skip reloc bytes)
             result = compare_bytes(compiled_bytes, orig_bytes, ida_data['name'],
-                                   verbose=True, relocs=func_info.get('relocs', set()))
+                                   verbose=True, relocs=func_info.get('relocs', set()),
+                                   va=addr)
             results.append(result)
         elif args.scan and text_data and func_info['size'] >= 20:
             # Scan DLL .text for this function
@@ -593,7 +608,8 @@ def main():
                 rva = va - DLL_IMAGE_BASE
                 orig_bytes = read_dll_bytes(ORIGINAL_DLL, rva, func_info['size'], text_sec)
                 result = compare_bytes(func_info['bytes'], orig_bytes, f"{mangled_name} @0x{va:08X}",
-                                       verbose=True, relocs=func_info.get('relocs', set()))
+                                       verbose=True, relocs=func_info.get('relocs', set()),
+                                       va=va)
                 scan_results.append(result)
             elif len(matches) > 1:
                 if args.verbose:

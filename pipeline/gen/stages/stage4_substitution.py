@@ -751,9 +751,159 @@ def _fix_member_assign_forms(code, ctx):
     return _MEMBER_ASSIGN_ANY_RE.sub(_rc, code)
 
 
+def _try_loop_carry_rewrite(node):
+    """[task-6 2026-10-15] 单循环变量结构改写（FindInOpen/FindInClosed L1 目标）。
+
+    匹配形（Hex-Rays 双变量链表遍历）::
+
+        for ( i = Y->next; i; i = i->next )   # 增量也可是 i = Y->next
+        {
+            if ( i-><f> … ) break;
+            Y = i;
+        }
+
+    改写成**单循环变量形**::
+
+        for ( ; Y->next; Y = Y->next )
+        {
+            if ( Y->next-><f> … ) break;
+        }
+
+    等价性：循环头不变量 i == Y->next（init/增量建立；`Y = i` 吸收进增量
+    `Y = Y->next`；break 在 `Y = i` 前离场 ⇒ 两侧同为「Y 停在命中点前」）。
+    守卫：体仅 2 句（if-break + `Y = i`）⇒ 无 continue；函数内 i 无其它引用
+    （声明除外）⇒ 删 i 的唯一性成立。
+
+    **为什么必须结构改写**（A 级 objdump 0x401515 + 受控实验）：MSVC6 对
+    `Y = i` 复制对必前向传播——`Y=i; i=Y->next` 编出 `8b c8 / 8b 40 3c`（经
+    eax），原函数是 `8b c8 / 8b 41 3c`（经 ecx/Y）。实测 9 种双变量形（for/
+    while/do-while/逗号增量/字节偏移 cast）**全部**编出 8b 40 3c；唯单变量形
+    `while (Y->next) { if (Y->next->key==K) break; Y = Y->next; }` 与其 for 形
+    与原 34 字节**逐字节全同**（/tmp/shape_exp 实验 vG/vI/vK）。
+
+    返回 (fired, own_edits, claimed)：own_edits=[(start, end, bytes)]；
+    claimed=被本规则占用的字节区间（调用方须过滤区间内其它编辑防重叠）。
+    """
+    init = cond = update = body = None
+    for ch in node.children:
+        if ch.type == 'assignment_expression':
+            if init is None:
+                init = ch
+            else:
+                update = ch
+        elif ch.type == 'identifier' and cond is None:
+            cond = ch
+        elif ch.type == 'compound_statement':
+            body = ch
+    if None in (init, cond, update, body):
+        return False, [], []
+    li = init.child_by_field_name('left')
+    ri = init.child_by_field_name('right')
+    if (li is None or li.type != 'identifier' or ri is None
+            or ri.type != 'field_expression'):
+        return False, [], []
+    y_node = ri.child_by_field_name('argument')
+    nxt = ri.child_by_field_name('field')
+    if (y_node is None or y_node.type != 'identifier' or nxt is None
+            or nxt.text != b'next' or y_node.text == li.text):
+        return False, [], []
+    i_name, y_name = li.text, y_node.text
+    if cond.type != 'identifier' or cond.text != i_name:
+        return False, [], []
+    lu = update.child_by_field_name('left')
+    ru = update.child_by_field_name('right')
+    if (lu is None or lu.type != 'identifier' or lu.text != i_name
+            or ru is None or ru.type != 'field_expression'):
+        return False, [], []
+    ru_a = ru.child_by_field_name('argument')
+    ru_f = ru.child_by_field_name('field')
+    if (ru_a is None or ru_a.type != 'identifier' or ru_f is None
+            or ru_f.text != b'next' or ru_a.text not in (i_name, y_name)):
+        return False, [], []
+    stmts = [s for s in body.children
+             if s.type not in ('{', '}', 'comment')]
+    if len(stmts) != 2 or stmts[0].type != 'if_statement':
+        return False, [], []
+    if_stmt, last = stmts
+    if last.type != 'expression_statement':
+        return False, [], []
+    # if 形：consequence = break，无 else
+    if any(c.type == 'else_clause' for c in if_stmt.children):
+        return False, [], []
+    cons = if_stmt.child_by_field_name('consequence')
+    if cons is None or cons.type != 'break_statement':
+        return False, [], []
+    # 末句形：Y = i
+    a_last = last.children[0] if last.children else None
+    if a_last is None or a_last.type != 'assignment_expression':
+        return False, [], []
+    al = a_last.child_by_field_name('left')
+    ar = a_last.child_by_field_name('right')
+    if (al is None or al.type != 'identifier' or al.text != y_name
+            or ar is None or ar.type != 'identifier' or ar.text != i_name):
+        return False, [], []
+    # 守卫：i 在整个函数内除本 for 与声明外零引用（否则改写不等价）
+    fn = node.parent
+    while fn is not None and fn.type != 'function_definition':
+        fn = fn.parent
+    if fn is None:
+        return False, [], []
+    lo, hi = node.start_byte, node.end_byte
+    stack = [fn]
+    while stack:
+        n = stack.pop()
+        if n is not None and n.type == 'identifier' and n.text == i_name:
+            if not (lo <= n.start_byte and n.end_byte <= hi):
+                p, in_decl = n.parent, False
+                while p is not None and p is not fn:
+                    if p.type in ('declaration', 'pointer_declarator',
+                                  'init_declarator'):
+                        in_decl = True
+                        break
+                    p = p.parent
+                if not in_decl:
+                    return False, [], []
+        if n is not None:
+            stack.extend(n.children)
+
+    def _idents(t, root):
+        out, st = [], [root]
+        while st:
+            n = st.pop()
+            if n is not None and n.type == 'identifier' and n.text == t:
+                out.append(n)
+            if n is not None:
+                st.extend(n.children)
+        return out
+
+    own, claimed = [], []
+    # ① init 整删（`for ( ; …` ）
+    own.append((init.start_byte, init.end_byte, b''))
+    claimed.append((init.start_byte, init.end_byte))
+    # ② cond `i` → `Y->next`
+    own.append((cond.start_byte, cond.end_byte, y_name + b'->next'))
+    claimed.append((cond.start_byte, cond.end_byte))
+    # ③ update 整替 → `Y = Y->next`
+    own.append((update.start_byte, update.end_byte, y_name + b' = ' + y_name + b'->next'))
+    claimed.append((update.start_byte, update.end_byte))
+    # ④ if 条件内 i → `Y->next`（逐 identifier）
+    cond_node = if_stmt.child_by_field_name('condition')
+    if cond_node is None:
+        return False, [], []
+    for n in _idents(i_name, cond_node):
+        own.append((n.start_byte, n.end_byte, y_name + b'->next'))
+        claimed.append((n.start_byte, n.end_byte))
+    # ⑤ 末句 `Y = i;` 整删
+    own.append((last.start_byte, last.end_byte, b''))
+    claimed.append((last.start_byte, last.end_byte))
+    return True, own, claimed
+
+
 def _collect_token_edits(code_bytes, tree, ctx):
     """Walk AST once, collect identifier/type replacement edits."""
     edits = []
+    claimed_ranges = []   # [task-6] 结构改写占用区间（区间内其它编辑须过滤防重叠）
+    own_edits = set()     # [task-6] 结构改写自己的编辑（过滤豁免）
     thunk_map = _build_identifier_map()
     reserved = _collect_reserved_names(tree, ctx)
 
@@ -769,43 +919,55 @@ def _collect_token_edits(code_bytes, tree, ctx):
 
     def visit(node):
         if node.type == 'for_statement':
-            # [T44] 循环增量基址等价改写：for(i=X;i;i=i->next){…;Y=i;} ⇒ i=Y->next
-            # （增量点上 Y==i——body 末句即别名建立、break/return 均在增量前离场
-            # ⇒ 等价 ✓）。寄存器分配随基址变：A 级 objdump 0x401515 原始
-            # `8b 41 3c`（mov eax,[ecx+0x3c] 经 Y/OPEN）vs 编译物 `8b 40 3c`
-            # （经 i/eax）——L1 目标 FindInOpen/FindInClosed n_diff=1 @byte22。
-            _inc = None
-            _body = None
-            for ch in node.children:
-                if ch.type in ('expression_statement', 'compound_statement'):
-                    _body = ch
-                elif ch.type == 'assignment_expression':
-                    _inc = ch
-            if _inc is not None and _body is not None:
-                _l = _inc.child_by_field_name('left')
-                _r = _inc.child_by_field_name('right')
-                if (_l is not None and _r is not None and _l.type == 'identifier'
-                        and _r.type == 'field_expression'):
-                    _ra = _r.child_by_field_name('argument')
-                    _rf = _r.child_by_field_name('field')
-                    if (_ra is not None and _ra.type == 'identifier'
-                            and _rf is not None
-                            and _ra.text == _l.text and _rf.text == b'next'):
-                        _stmts = _body.children if _body.type == 'compound_statement' else [_body]
-                        _last = None
-                        for s2 in _stmts:
-                            if s2.type not in ('{', '}', 'comment'):
-                                _last = s2
-                        if _last is not None and _last.type == 'expression_statement':
-                            _a = _last.children[0] if _last.children else None
-                            if _a is not None and _a.type == 'assignment_expression':
-                                _al = _a.child_by_field_name('left')
-                                _ar = _a.child_by_field_name('right')
-                                if (_al is not None and _ar is not None
-                                        and _al.type == 'identifier' and _ar.type == 'identifier'
-                                        and _ar.text == _l.text):
-                                    edits.append((_ra.start_byte, _ra.end_byte,
-                                                  _al.text))
+            # [task-6 2026-10-15] 单循环变量结构改写优先（详见 _try_loop_carry_rewrite）：
+            # 命中即取代下方 [T44] 增量基址改写（T44 形对 MSVC6 复制传播无效，
+            # 实测字节零变化）；未命中走 T44 原路。
+            _fired, _own, _claimed = _try_loop_carry_rewrite(node)
+            if _fired:
+                edits.extend(_own)
+                claimed_ranges.extend(_claimed)
+                own_edits.update(_own)
+            else:
+                # [T44] 循环增量基址等价改写：for(i=X;i;i=i->next){…;Y=i;} ⇒ i=Y->next
+                # （增量点上 Y==i——body 末句即别名建立、break/return 均在增量前离场
+                # ⇒ 等价 ✓）。寄存器分配随基址变：A 级 objdump 0x401515 原始
+                # `8b 41 3c`（mov eax,[ecx+0x3c] 经 Y/OPEN）vs 编译物 `8b 40 3c`
+                # （经 i/eax）——L1 目标 FindInOpen/FindInClosed n_diff=1 @byte22。
+                # ⚠️ 2026-10-15 实测：本改写**不翻字节**（MSVC6 对 Y=i 复制对必
+                # 前向传播，9 种双变量形全编出 8b 40 3c）⇒ 仅作未命中结构改写
+                # 形时的遗留通路。
+                _inc = None
+                _body = None
+                for ch in node.children:
+                    if ch.type in ('expression_statement', 'compound_statement'):
+                        _body = ch
+                    elif ch.type == 'assignment_expression':
+                        _inc = ch
+                if _inc is not None and _body is not None:
+                    _l = _inc.child_by_field_name('left')
+                    _r = _inc.child_by_field_name('right')
+                    if (_l is not None and _r is not None and _l.type == 'identifier'
+                            and _r.type == 'field_expression'):
+                        _ra = _r.child_by_field_name('argument')
+                        _rf = _r.child_by_field_name('field')
+                        if (_ra is not None and _ra.type == 'identifier'
+                                and _rf is not None
+                                and _ra.text == _l.text and _rf.text == b'next'):
+                            _stmts = _body.children if _body.type == 'compound_statement' else [_body]
+                            _last = None
+                            for s2 in _stmts:
+                                if s2.type not in ('{', '}', 'comment'):
+                                    _last = s2
+                            if _last is not None and _last.type == 'expression_statement':
+                                _a = _last.children[0] if _last.children else None
+                                if _a is not None and _a.type == 'assignment_expression':
+                                    _al = _a.child_by_field_name('left')
+                                    _ar = _a.child_by_field_name('right')
+                                    if (_al is not None and _ar is not None
+                                            and _al.type == 'identifier' and _ar.type == 'identifier'
+                                            and _ar.text == _l.text):
+                                        edits.append((_ra.start_byte, _ra.end_byte,
+                                                      _al.text))
         if node.type == 'field_expression':
             # [T14] E.T 直读形（无 & 形，C2273/C2274 源头）：`E->T`/`E.T` 的
             # T 是类名子对象（IDA 无名子对象）⇒ MSVC 解析成 function-style cast。
@@ -1073,6 +1235,11 @@ def _collect_token_edits(code_bytes, tree, ctx):
             visit(child)
 
     visit(tree.root_node)
+    if claimed_ranges:
+        # [task-6] 结构改写区间与其它编辑重叠=字节拼接损坏 ⇒ 只保留本规则自己的编辑
+        def _overlaps(e):
+            return any(not (e[1] <= cs or e[0] >= ce) for cs, ce in claimed_ranges)
+        edits = [e for e in edits if (not _overlaps(e)) or e in own_edits]
     return edits
 
 

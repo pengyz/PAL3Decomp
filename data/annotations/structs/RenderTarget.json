@@ -158,14 +158,14 @@
       "source": "binary:2x access in RenderTarget:: methods"
     },
     "144": {
-      "name": "m_nOffsetX",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "name": "m_fOffsetX",
+      "type": "float",
+      "source": "B:naming_m_n+FPU_misattrib | task-6 案例B 2026-10-15 int→float：A 级=SetOffset 0x4B4D88/0x4B4D8E 裸 mov 位拷贝 float 参数（调用侧 push float 常量/ fild-fstp 转换）+ 受控实验 float,float 编出 23 字节全同；名字泄漏用法核过（InitChildPanels `this[16].m_nOffsetX=0`（0==0.0f 位型）/LOBYTE 置0/`&this[1060].m_nOffsetX` 取址）⇒ 型改安全"
     },
     "148": {
-      "name": "m_nOffsetY",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "name": "m_fOffsetY",
+      "type": "float",
+      "source": "B:naming_m_n+FPU_misattrib | task-6 案例B 2026-10-15 int→float：A 级=SetOffset 0x4B4D88/0x4B4D8E 裸 mov 位拷贝 float 参数（调用侧 push float 常量/ fild-fstp 转换）+ 受控实验 float,float 编出 23 字节全同；名字泄漏用法核过（InitChildPanels `this[16].m_nOffsetX=0`（0==0.0f 位型）/LOBYTE 置0/`&this[1060].m_nOffsetX` 取址）⇒ 型改安全"
     },
     "152": {
       "name": "m_nScaleX",
@@ -243,8 +243,8 @@
     },
     "0x004B4D80": {
       "name": "SetOffset",
-      "signature": "void __thiscall(int nOffY)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "signature": "void __thiscall(float fVal1, float fVal2)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | task-6 案例B 2026-10-15 补 2 参 float：A 级定义侧 0x4B4D80 `8b 44 24 04/8b 54 24 08/89 81 90 00 00 00/89 91 94 00 00 00/c2 08 00`（读 [esp+4]/[esp+8] 双槽+ret 8=2 参，裸 mov 位拷贝无 FPU 转换）；调用侧 4 处全核（0x482E12/0x47A507/0x48EDCE/0x47A54E）实参 float 位型（push 0x40000000=2.0f、0x41200000=10.0f 常量、fild/fstp int→float 转换）；受控实验 float,float+float 成员编出与原 23 字节逐字节全同"
     },
     "0x004B4820": {
       "name": "SetVisible",
@@ -374,8 +374,8 @@
     },
     "0x004B4DA0": {
       "name": "SetScale",
-      "signature": "void __thiscall(int nScaleY)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "signature": "void __thiscall(int nVal1, int nVal2)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | task-6 案例B 2026-10-15 补第 2 参：A 级定义侧 0x4B4DA0 `8b 44 24 04/8b 54 24 08/89 81 98/89 91 9c/c2 08 00`（ret 8=2 参）；⚠️ 型刻意留 int 不改 float：152/156 被名字泄漏进 int 语境（SetRenderState `this[1].m_nScaleY=nVal` int 存=L1 函数 13B、OnRender `this[1247].m_nScaleX=1`、RenderToTexture `m_nScaleX>0`）⇒ float 化必插转换破 L1；调用侧实参 float 位型证据留档（0x47A54E fild/fstp 双槽），待名字泄漏治理后复议 float 化"
     },
     "0x004867F0": {
       "name": "InitChildPanels",
