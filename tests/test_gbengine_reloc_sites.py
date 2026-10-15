@@ -176,6 +176,27 @@ def test_rsite_names_match_three_way():
                                       'CEffShock::~CEffShock')
 
 
+# ── [rsite 判据收窄 2026-10-15 lead 裁决选项 A] 四分账 ─────────────────
+def test_rsite_bucket_unaligned_wins():
+    """partial 函数（aligned=False）⇒ unaligned，不入 mismatch（偏移错位噪声）。"""
+    assert cp3.rsite_bucket(False, 'RenderTarget::RenderToScreen(void)',
+                            'PAL3::GetInstance_db10(void)') == 'unaligned'
+    # 即使名字可比/不可解，都先归 unaligned
+    assert cp3.rsite_bucket(False, None, None) == 'unaligned'
+
+
+def test_rsite_bucket_aligned_four_way():
+    assert cp3.rsite_bucket(True, 'CEffGrid::~CEffGrid(void)',
+                            'CEffGrid::~CEffGrid') == 'ok'
+    assert cp3.rsite_bucket(True, 'RenderTarget::RenderToScreen(void)',
+                            'PAL3::GetInstance_db10(void)') == 'mismatch'
+    assert cp3.rsite_bucket(True, None, 'X') == 'unresolved'
+    assert cp3.rsite_bucket(True, 'X', None) == 'unresolved'
+    # ctor/dtor 族容差仍走 ok（修法 2 不回退）——真族对（非 DestroyCallback 形）
+    assert cp3.rsite_bucket(True, 'JusticeBookUI::JusticeBookUI(void)',
+                            'JusticeBookUI::~JusticeBookUI') == 'ok'
+
+
 if __name__ == '__main__':
     import pytest
     raise SystemExit(pytest.main([__file__, '-v']))

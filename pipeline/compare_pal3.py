@@ -405,6 +405,24 @@ def _rsite_names_match(exp_name, got_name):
     return _ctor_dtor_family(exp_name) and _ctor_dtor_family(got_name)
 
 
+def rsite_bucket(aligned, exp_name, got_name):
+    """rsite 单站分账（纯函数，R15 单测点）——判据收窄 2026-10-15（lead 裁决选项 A）。
+
+    机制定性（精确措辞）：rsite 核对按 **OFFSET 配对**站点 ⇒ 仅在 L1（字节全同）
+    函数里站点对齐；partial 函数编译调度不同 ⇒ 同 offset 落在不同 call 上
+    （实证：5/5 hex 尾名族 VA 分歧 + HandleDeviceLostB 四连调语义全对仅调度不同
+    + L1 函数站点 mismatch=0）⇒ 名字比较失义 ⇒ 计 **unaligned**，不入 mismatch。
+    纯计量精度改进，**不改 perfect 判据**（L1 判据不变）。
+
+    返回：'unaligned' | 'ok' | 'mismatch' | 'unresolved'。
+    """
+    if not aligned:
+        return 'unaligned'
+    if exp_name and got_name:
+        return 'ok' if _rsite_names_match(exp_name, got_name) else 'mismatch'
+    return 'unresolved'
+
+
 PROBE_FLAGS = ['/nologo', '/TP', '/c', '/W3']
 # docs/compiler_setup.md hypothesis flag set (needs byte-compare calibration —
 # that is exactly what --flags-matrix does)
@@ -508,6 +526,12 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                 stats['l1_reloc_covered_bytes'] = (
                     stats.get('l1_reloc_covered_bytes', 0) + len(relocs))
             _orig = text[idx0:idx0 + size]
+            # [rsite 判据收窄 2026-10-15 lead 裁决选项 A] 仅 L1（字节全同）函数的
+            # 站点计入名字核对；partial 函数站点错位（编译调度不同 ⇒ 同 offset 落在
+            # 不同 call）⇒ 计 unaligned，不入 mismatch（实证 5/5 VA 分歧 +
+            # HandleDeviceLostB 四连调语义全对 + L1 站点 mismatch=0）。
+            # 纯计量精度改进，**不改 perfect 判据**。分账函数 rsite_bucket（R15 单测）。
+            _aligned = (status == 'match_L1')
             for (off, rtype, sym_name, _add) in info.get('reloc_sites', ()):
                 if off + 4 > size:
                     continue
@@ -525,14 +549,16 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                 exp_name = va_idx.get(tgt) if tgt is not None else None
                 got_entry = mangled_map.get(sym_name)
                 got_name = got_entry['name'] if got_entry else None
-                if exp_name and got_name:
-                    if _rsite_names_match(exp_name, got_name):
-                        stats['rsite_ok'] = stats.get('rsite_ok', 0) + 1
-                    else:
-                        stats['rsite_mismatch'] = stats.get('rsite_mismatch', 0) + 1
-                        stats.setdefault('rsite_mismatch_samples', []).append(
-                            {'va': '0x%08X' % e['va'], 'off': off,
-                             'orig': exp_name, 'ours': got_name, 'sym': sym_name[:60]})
+                bucket = rsite_bucket(_aligned, exp_name, got_name)
+                if bucket == 'unaligned':
+                    stats['rsite_unaligned'] = stats.get('rsite_unaligned', 0) + 1
+                elif bucket == 'ok':
+                    stats['rsite_ok'] = stats.get('rsite_ok', 0) + 1
+                elif bucket == 'mismatch':
+                    stats['rsite_mismatch'] = stats.get('rsite_mismatch', 0) + 1
+                    stats.setdefault('rsite_mismatch_samples', []).append(
+                        {'va': '0x%08X' % e['va'], 'off': off,
+                         'orig': exp_name, 'ours': got_name, 'sym': sym_name[:60]})
                 else:
                     stats['rsite_unresolved'] = stats.get('rsite_unresolved', 0) + 1
             if status == 'match_L1':
@@ -576,9 +602,10 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
     print('[metric] 重定位站点值核对：total=%d ok=%d mismatch=%d unresolved=%d'
           % (stats.get('reloc_total', 0), stats.get('reloc_ok', 0),
              stats.get('reloc_mismatch', 0), stats.get('reloc_unresolved', 0)))
-    print('[metric] 重定位目标核对（符号法）：total=%d ok=%d mismatch=%d unresolved=%d'
+    print('[metric] 重定位目标核对（符号法）：total=%d ok=%d mismatch=%d unresolved=%d unaligned=%d'
           % (stats.get('rsite_total', 0), stats.get('rsite_ok', 0),
-             stats.get('rsite_mismatch', 0), stats.get('rsite_unresolved', 0)))
+             stats.get('rsite_mismatch', 0), stats.get('rsite_unresolved', 0),
+             stats.get('rsite_unaligned', 0)))
     for s in stats.get('rsite_mismatch_samples', [])[:8]:
         print('    [mismatch] %s off=%d orig=%s ours=%s (%s)'
               % (s['va'], s['off'], s['orig'], s['ours'], s['sym']))
