@@ -162,40 +162,6 @@
       "ordinal": 6
     }
   },
-  "vtables": [
-    {
-      "addr": "0x00010000",
-      "base": null,
-      "slots": [
-        {
-          "addr": "0x00010000",
-          "from": null
-        },
-        {
-          "addr": "0x00010001",
-          "from": null
-        },
-        {
-          "addr": "0x00010002",
-          "from": null
-        },
-        {
-          "addr": "0x00010003",
-          "from": null
-        },
-        {
-          "addr": "0x00010004",
-          "from": null
-        },
-        {
-          "addr": "0x00010005",
-          "from": null
-        },
-        {
-          "addr": "0x00010006",
-          "from": null
-        }
-      ]
-    }
-  ]
+  "vtables": [],
+  "source": " | [vtable 治理 2026-10-15] 移除编造认领：认领 0x00010000 非任何映像地址（PAL3 映像界 0x401000-0x189C3CA；0x10000<0x401000）⇒ 垃圾值。gb*（gbengine.dll 外部库）类的 vtable 不在 PAL3 映像 ⇒ 认领即编造"
 }
