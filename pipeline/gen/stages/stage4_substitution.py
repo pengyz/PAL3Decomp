@@ -2448,6 +2448,15 @@ def run(code, ctx):
                 result, _entries, unit_name=getattr(ctx, 'cls_name', None))
         except Exception:
             pass
+        # [F-CG 尾 5 项 2026-10-16] verifier A 级取证 7 站 allowlist（同款应用器）
+        try:
+            _al2 = _os.path.join(_os.path.dirname(_al_path), 'fcg_tail_allowlist.json')
+            with open(_al2, encoding='utf-8') as _fh:
+                _entries2 = _json.load(_fh)['sites']
+            result, _a2, _s2 = apply_mrect_allowlist(
+                result, _entries2, unit_name=getattr(ctx, 'cls_name', None))
+        except Exception:
+            pass
     except Exception:
         pass
     # F2 offset 形接线 2026-10-07（非零基类——复核 N4/N5 通路）

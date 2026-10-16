@@ -1,0 +1,254 @@
+[
+ {
+  "file": "pal3/src/UI/UIScene.cpp",
+  "line": 640,
+  "signature": "sig-1",
+  "current": "(TextureLibDataBase *)this->m_rect.top",
+  "target": "*((TextureLibDataBase **)this + 5)",
+  "n": 5,
+  "evidence": "值赋给指针型局部/返回（指针位；坐标不可能是指针值）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/UI/UIScene.cpp",
+  "line": 667,
+  "signature": "sig-1",
+  "current": "(TextureLibDataBase *)this->m_rect.right",
+  "target": "*((TextureLibDataBase **)this + 6)",
+  "n": 6,
+  "evidence": "值赋给指针型局部/返回（指针位；坐标不可能是指针值）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Combat/CCBUI.cpp",
+  "line": 3611,
+  "signature": "sig-1",
+  "current": "(CCBRoleState *)m_pSkillWindow->m_rect.left",
+  "target": "*((CCBRoleState **)m_pSkillWindow + 4)",
+  "n": 4,
+  "evidence": "值用作限定调用 this 实参（指针位；LONG 坐标不可能做对象指针）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Combat/CCBResultWindow.cpp",
+  "line": 899,
+  "signature": "sig-1",
+  "current": "(void *)v10->m_rect.left",
+  "target": "*((void **)v10 + 4)",
+  "n": 4,
+  "evidence": "值赋给指针型局部/返回（指针位；坐标不可能是指针值）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Combat/CCBRoleState.cpp",
+  "line": 935,
+  "signature": "sig-1",
+  "current": "(CCBUI *)this->m_rect.left",
+  "target": "*((CCBUI **)this + 4)",
+  "n": 4,
+  "evidence": "值用作限定调用 this 实参（指针位；LONG 坐标不可能做对象指针）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Combat/CCBRoleState.cpp",
+  "line": 939,
+  "signature": "sig-1",
+  "current": "(CCBUI *)this->m_rect.left",
+  "target": "*((CCBUI **)this + 4)",
+  "n": 4,
+  "evidence": "值用作限定调用 this 实参（指针位；LONG 坐标不可能做对象指针）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Combat/CCBRoleState.cpp",
+  "line": 1542,
+  "signature": "sig-1",
+  "current": "(CCBUI *)this->m_rect.left",
+  "target": "*((CCBUI **)this + 4)",
+  "n": 4,
+  "evidence": "值用作限定调用 this 实参（指针位；LONG 坐标不可能做对象指针）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Combat/CCBRoleState.cpp",
+  "line": 1563,
+  "signature": "sig-1",
+  "current": "(CCBUI *)this->m_rect.left",
+  "target": "*((CCBUI **)this + 4)",
+  "n": 4,
+  "evidence": "值用作限定调用 this 实参（指针位；LONG 坐标不可能做对象指针）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Combat/CCBRoleState.cpp",
+  "line": 1701,
+  "signature": "sig-1",
+  "current": "(CCBUI *)this->m_rect.left",
+  "target": "*((CCBUI **)this + 4)",
+  "n": 4,
+  "evidence": "值用作限定调用 this 实参（指针位；LONG 坐标不可能做对象指针）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Combat/CCBRoleState.cpp",
+  "line": 1733,
+  "signature": "sig-1",
+  "current": "(CCBUI *)this->m_rect.left",
+  "target": "*((CCBUI **)this + 4)",
+  "n": 4,
+  "evidence": "值用作限定调用 this 实参（指针位；LONG 坐标不可能做对象指针）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Combat/CCBRoleState.cpp",
+  "line": 1856,
+  "signature": "sig-1",
+  "current": "(CCBUI *)this->m_rect.left",
+  "target": "*((CCBUI **)this + 4)",
+  "n": 4,
+  "evidence": "值用作限定调用 this 实参（指针位；LONG 坐标不可能做对象指针）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Combat/CCBRoleState.cpp",
+  "line": 1894,
+  "signature": "sig-1",
+  "current": "(CCBUI *)this->m_rect.left",
+  "target": "*((CCBUI **)this + 4)",
+  "n": 4,
+  "evidence": "值用作限定调用 this 实参（指针位；LONG 坐标不可能做对象指针）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Combat/CCBRoleState.cpp",
+  "line": 2130,
+  "signature": "sig-1",
+  "current": "(CCBUI *)this->m_rect.left",
+  "target": "*((CCBUI **)this + 4)",
+  "n": 4,
+  "evidence": "值用作限定调用 this 实参（指针位；LONG 坐标不可能做对象指针）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Combat/CCBRoleState.cpp",
+  "line": 2272,
+  "signature": "sig-1",
+  "current": "(CCBStage *)this->m_rect.left",
+  "target": "*((CCBStage **)this + 4)",
+  "n": 4,
+  "evidence": "值用作限定调用 this 实参（指针位；LONG 坐标不可能做对象指针）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Combat/CCBRoleState.cpp",
+  "line": 2300,
+  "signature": "sig-1",
+  "current": "(CCBStage *)this->m_rect.left",
+  "target": "*((CCBStage **)this + 4)",
+  "n": 4,
+  "evidence": "值用作限定调用 this 实参（指针位；LONG 坐标不可能做对象指针）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Combat/CCBRoleState.cpp",
+  "line": 2324,
+  "signature": "sig-1",
+  "current": "(CCBStage *)this->m_rect.left",
+  "target": "*((CCBStage **)this + 4)",
+  "n": 4,
+  "evidence": "值用作限定调用 this 实参（指针位；LONG 坐标不可能做对象指针）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Combat/CCBRoleState.cpp",
+  "line": 2386,
+  "signature": "sig-1",
+  "current": "(CCBStage *)this->m_rect.left",
+  "target": "*((CCBStage **)this + 4)",
+  "n": 4,
+  "evidence": "值用作限定调用 this 实参（指针位；LONG 坐标不可能做对象指针）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Role/RoleSystem.cpp",
+  "line": 79,
+  "signature": "sig-1",
+  "current": "(int *)this->m_rect.bottom",
+  "target": "*((int **)this + 7)",
+  "n": 7,
+  "evidence": "值赋给指针型局部/返回（指针位；坐标不可能是指针值）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Role/RoleSystem.cpp",
+  "line": 134,
+  "signature": "sig-1",
+  "current": "(int *)this->m_rect.bottom",
+  "target": "*((int **)this + 7)",
+  "n": 7,
+  "evidence": "值赋给指针型局部/返回（指针位；坐标不可能是指针值）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Role/RoleSystem.cpp",
+  "line": 4333,
+  "signature": "sig-1",
+  "current": "(gbTexture *)this->m_rect.bottom",
+  "target": "*((gbTexture **)this + 7)",
+  "n": 7,
+  "evidence": "值赋给指针型局部/返回（指针位；坐标不可能是指针值）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Role/RoleSystem.cpp",
+  "line": 6702,
+  "signature": "sig-1",
+  "current": "(gbColorQuad *)this->m_rect.left",
+  "target": "*((gbColorQuad **)this + 4)",
+  "n": 4,
+  "evidence": "值赋给指针型局部/返回（指针位；坐标不可能是指针值）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Misc/ScriptVM.cpp",
+  "line": 1935,
+  "signature": "sig-1",
+  "current": "(RoleSystem *)m_pCmdList->m_rect.left",
+  "target": "*((RoleSystem **)m_pCmdList + 4)",
+  "n": 4,
+  "evidence": "值用作限定调用 this 实参（指针位；LONG 坐标不可能做对象指针）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Misc/ScriptVM.cpp",
+  "line": 1972,
+  "signature": "sig-1",
+  "current": "(Scene *)v172->m_rect.left",
+  "target": "*((Scene **)v172 + 4)",
+  "n": 4,
+  "evidence": "值用作限定调用 this 实参（指针位；LONG 坐标不可能做对象指针）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Misc/UIFrameWnd.cpp",
+  "line": 272,
+  "signature": "sig-1",
+  "current": "(TextureLibDataBase *)this->m_rect.left",
+  "target": "*((TextureLibDataBase **)this + 4)",
+  "n": 4,
+  "evidence": "值赋给指针型局部/返回（指针位；坐标不可能是指针值）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Misc/UIFrameWnd.cpp",
+  "line": 784,
+  "signature": "sig-1",
+  "current": "(TextureLibDataBase *)this->m_rect.right",
+  "target": "*((TextureLibDataBase **)this + 6)",
+  "n": 6,
+  "evidence": "值赋给指针型局部/返回（指针位；坐标不可能是指针值）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Misc/UIFrameWnd.cpp",
+  "line": 785,
+  "signature": "sig-1",
+  "current": "(char *)this->m_rect.left",
+  "target": "*((char **)this + 4)",
+  "n": 4,
+  "evidence": "值赋给指针型局部/返回（指针位；坐标不可能是指针值）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Misc/UIFrameWnd.cpp",
+  "line": 792,
+  "signature": "sig-1",
+  "current": "(TextureLibDataBase *)this->m_rect.left",
+  "target": "*((TextureLibDataBase **)this + 4)",
+  "n": 4,
+  "evidence": "值赋给指针型局部/返回（指针位；坐标不可能是指针值）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ },
+ {
+  "file": "pal3/src/Misc/UIMap.cpp",
+  "line": 71,
+  "signature": "sig-1",
+  "current": "(char *)this->m_rect.left",
+  "target": "*((char **)this + 4)",
+  "n": 4,
+  "evidence": "值赋给指针型局部/返回（指针位；坐标不可能是指针值）；同族旁证：decomp 同址算术形存活对照（PalScriptMgr L62 `*((RoleSystem **)v8 + 4)` 原样）+ 同函数姊妹行同槽异形（如 `*(CCBCamControl **)(this->m_wndcolor.Color + 16)`）"
+ }
+]

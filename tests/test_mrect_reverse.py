@@ -110,3 +110,27 @@ def test_allowlist_unit_filter_and_real_untouched():
     assert not applied and code == out                      # 他单元不动
     out, applied, skipped = at.apply_mrect_allowlist(code, ents, unit_name='UIScene')
     assert len(applied) == 1 and 'this->m_rect.left' in out  # 真访问保持
+
+
+# ── [F-CG 尾 5 项] 7 站 allowlist 回归 ─────────────────────────────
+def test_fcg_tail_allowlist_7_sites():
+    """7 站逐条（组 3/18/17/8/6）：行锚定 current→target 精确生效。"""
+    import json
+    sites = json.load(open(REPO / 'data' / 'annotations' /
+                           'fcg_tail_allowlist.json'))['sites']
+    assert len(sites) == 7
+    for e in sites:
+        code = '// pad\n' * (e['line'] - 1) + e['current'] + '\n'
+        out, applied, skipped = at.apply_mrect_allowlist(code, [e])
+        assert len(applied) == 1 and not skipped, (e['file'], e['line'])
+        assert e['target'] in out and e['current'] not in out, e
+
+
+def test_fcg_tail_current_strings_live():
+    """R13 预检：7 站 current 串在生成码实位（行锚定命中）。"""
+    import json
+    sites = json.load(open(REPO / 'data' / 'annotations' /
+                           'fcg_tail_allowlist.json'))['sites']
+    for e in sites:
+        lines = open(REPO / e['file'], encoding='utf-8', errors='replace').read().split('\n')
+        assert e['current'] in lines[e['line'] - 1], (e['file'], e['line'])

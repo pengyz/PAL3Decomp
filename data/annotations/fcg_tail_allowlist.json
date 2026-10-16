@@ -1,0 +1,66 @@
+{
+  "_meta": {
+    "name": "fcg_tail_allowlist",
+    "purpose": "[F-CG 尾 5 项] verifier A 级取证后的逐站定向修法（allowlist 化）",
+    "provenance": "verifier idapro session 673e4c23（2026-10-16）；2 项裁决定案=#8 目标 CScreenMode::Destroy + #6 位拷贝分支",
+    "warning": "逐站精确串；禁正则全量（mrect 误伤教训）"
+  },
+  "sites": [
+    {
+      "file": "pal3/src/Misc/PtrArray.cpp",
+      "line": 498,
+      "group": "3",
+      "current": "        p_m_nSize = v42;",
+      "target": "        p_m_nSize = (int *)v42;",
+      "evidence": "verifier idapro session 673e4c23：LHS p_m_nSize:int* / RHS v42:unsigned long[5] 数组衰减型不一致；窄匹配指针赋值插显式 cast"
+    },
+    {
+      "file": "pal3/src/Misc/PtrArray.cpp",
+      "line": 504,
+      "group": "3",
+      "current": "        p_m_nSize = v42;",
+      "target": "        p_m_nSize = (int *)v42;",
+      "evidence": "同 L498（同函数第二站）"
+    },
+    {
+      "file": "pal3/src/Data/CGameData.cpp",
+      "line": 737,
+      "group": "18",
+      "current": "        v10 = ((CCBUIPanel *)v32);",
+      "target": "        v10 = (int *)((CCBUIPanel *)v32);",
+      "evidence": "verifier 同 #3：LHS v10:int* / RHS CCBUIPanel* 型不一致 ⇒ 插 (int *) 显式 cast"
+    },
+    {
+      "file": "pal3/src/Combat/CCBParabolaWindow.cpp",
+      "line": 225,
+      "group": "17",
+      "current": "  result = this->Destroy();",
+      "target": "  this->Destroy();",
+      "evidence": "verifier A 级：Destroy 返回 void（`cannot convert from 'void' to 'int'`）⇒ 降回值"
+    },
+    {
+      "file": "pal3/src/Misc/CCBUIPanel.cpp",
+      "line": 1985,
+      "group": "8",
+      "current": "void CCBUIPanel::Destroy(UIListBox **thisa, int a3)",
+      "target": "void CCBUIPanel::Destroy(UIListBox **thisa)",
+      "evidence": "verifier 裁决：thunk jmp 纯尾跳 + 目标裸 retn ⇒ 调用方按 0 显式参清栈 ⇒ 声明去 a3"
+    },
+    {
+      "file": "pal3/src/Misc/CCBUIPanel.cpp",
+      "line": 1987,
+      "group": "8",
+      "current": "  this->Destroy();",
+      "target": "  ((CScreenMode *)thisa)->CScreenMode::Destroy();",
+      "evidence": "verifier 裁决：真实目标=CScreenMode::Destroy@0x43DE40（非 UIWnd::Destroy@0x43BBB0）——宽限定会编出错字节 ⇒ 限定直调"
+    },
+    {
+      "file": "pal3/src/Effect/CEffect.cpp",
+      "line": 760,
+      "group": "6",
+      "current": "  this->m_Partical[2].pPic = (char *)dwParam[49];",
+      "target": "  this->m_Partical[2].pPic = (char *)LODWORD(dwParam[49]);",
+      "evidence": "verifier 裁决：位拷贝（选项①）⇒ 渲染 (char *)LODWORD(X) 位重解释；⚠️ 同函数 dwParam[45]/[50] 浮点族走 fld/fstp 不套本规则（按站点形态分支）"
+    }
+  ]
+}
