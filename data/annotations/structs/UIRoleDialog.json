@@ -145,8 +145,8 @@
     },
     "0x0054211A": {
       "name": "Update",
-      "signature": "void __thiscall(int nVal1)",
-      "source": "vtable_gap_fill_v1(IDB:?Update@gbVisNode@@UAEXXZ) | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "signature": "void __thiscall(int nVal1, int nVal2)",
+      "source": "vtable_gap_fill_v1(IDB:?Update@gbVisNode@@UAEXXZ) | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 void __thiscall(int nVal1) ⇒ void __thiscall(int nVal1, int nVal2)（A 级 ret-N 证据：ret $0x8 ⇒ 2 栈参；int 占位·nVal 序号惯例）",
       "declaration_only": true
     }
   },

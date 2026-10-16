@@ -15,7 +15,7 @@
     "4": {
       "name": "m_pMonsterData",
       "type": "void *",
-      "source": "decomp_analysis:used_as_pointer_in_ValidateRange_CheckDistance"
+      "source": "decomp_analysis:used_as_pointer_in_ValidateRange_CheckDistance | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：区 4..28 多视——`(&field+3)`=RECT@16（PtInRect/LONG*）· `(&field+4/5/6)` dwords=RECT top/right/bottom@20/24/28 · `(float*)&field+1`@8 float 视 · `char*` 视（HitTest@0x441E30 ）"
     },
     "164": {
       "name": "m_nMonsterHP",
@@ -40,7 +40,7 @@
     "304": {
       "name": "m_pSkillList",
       "type": "void *",
-      "source": "binary_scan:2refs;batch_fix:int_to_v*_LEA_embed"
+      "source": "binary_scan:2refs;batch_fix:int_to_v*_LEA_embed | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：内嵌 RECT@304（304..319）——值=rc.left、(&field+1)=top、(&field+2)=right（HitTest@0x441E30 ）；与 m_pDropItems@320 相邻两 RECT（步长 16）"
     },
     "316": {
       "name": "m_nSkillCount",
@@ -50,7 +50,7 @@
     "320": {
       "name": "m_pDropItems",
       "type": "void *",
-      "source": "binary_scan:2refs;batch_fix:int_to_v*_LEA_embed"
+      "source": "binary_scan:2refs;batch_fix:int_to_v*_LEA_embed | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：内嵌 RECT@320 起——值=rc.left（HitTest@0x441E30 ）"
     },
     "324": {
       "name": "m_nDropRate",

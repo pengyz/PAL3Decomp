@@ -4,8 +4,23 @@
   "known_members": {
     "8": {
       "name": "m_pVtable",
-      "type": "void*",
-      "source": "gap_fill:ida_decomp_access; type_fix:m_p*_int_to_void*"
+      "type": {
+        "union": [
+          {
+            "type": "float",
+            "name": "fVal"
+          },
+          {
+            "type": "int",
+            "name": "nVal"
+          },
+          {
+            "type": "void *",
+            "name": "pVal"
+          }
+        ]
+      },
+      "source": "gap_fill:ida_decomp_access; type_fix:m_p*_int_to_void* | inline-union治理 2026-10-16（idapro A 级）：ComputeViewVector@0x52E080 `*(float*)&this->m_pVtable`（float 视）+ SetViewPosition@0x52DFF0 `=(void*)nVal2` 裸搬 + `LODWORD(m_passtime)=m_pVtable` 别名 ⇒ 非 vptr（名误导），三视复用"
     },
     "12": {
       "name": "m_type",

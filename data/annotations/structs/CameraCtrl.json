@@ -17,8 +17,8 @@
     },
     "8": {
       "name": "m_pTarget",
-      "type": "void *",
-      "source": "A:binary VA=0x41CFC0 stored as InputSystem* from script param; float data at +468+ accessed as float*",
+      "type": "InputSystem *",
+      "source": "A:binary VA=0x41CFC0 stored as InputSystem* from script param; float data at +468+ accessed as float* | void*语义化 2026-10-16（idapro A 级）：UpdateTransition@0x41CC50 `ProcessKeyboard((InputSystem *)this->m_pTarget, 1)` —— ProcessKeyboard@0x41C710 签名 `void __thiscall(InputSystem *this, int)` this-绑定 ⇒ 目标=InputSystem；辅证 GetLerpPos 处 `(float*)m_pTarget+113..117` 字段访问形",
       "comment": "camera target object (received from scripts, typed as void*; cast to InputSystem* for ProcessKeyboard, to float* for lerp data)"
     },
     "12": {
@@ -409,7 +409,7 @@
     "2044": {
       "name": "m_nViewBase",
       "type": "void *",
-      "source": "A:decomp_subarray_base_ptr_arithmetic_21refs"
+      "source": "A:decomp_subarray_base_ptr_arithmetic_21refs | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：多实例内嵌视图块——`&this[1]/this[2].m_nViewBase` 跨对象 + 2384×m_nViewMode 步长索引 + `12*n+288/800` 子块（BuildRenderLists@0x48B370）"
     },
     "3336": {
       "name": "m_bBlendActive",

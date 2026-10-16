@@ -19,7 +19,8 @@
     },
     "0x004D3860": {
       "name": "_sdtor",
-      "signature": "CEffQuake *__thiscall(char pData)"
+      "signature": "CEffQuake *__thiscall(char pData)",
+      "source": "[非 ctor/dtor 实证 2026-10-16 analyzer 66 条] A 级形判：删际析构/adjustor 跳板形（`sub ecx,N; jmp`/flag-test+delete），非普通 ctor/dtor —— 名保留 `_sdtor` 系"
     },
     "0x004D33A0": {
       "name": "ResetFlags",

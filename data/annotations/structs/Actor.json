@@ -507,7 +507,7 @@
     "512": {
       "name": "m_pParticleData",
       "type": "void *",
-      "source": "A+:decomp *(float*)&this->_field_200 (1 occurrences);batch_fix:int_to_v*_LEA_embed"
+      "source": "A+:decomp *(float*)&this->_field_200 (1 occurrences);batch_fix:int_to_v*_LEA_embed | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：多视混杂——槽+4 间接调（多态 vtable 视，InitParticles@0x44CB30）+ `this[1].` 跨对象 float+3/4/5（vec 视，UpdatePhysics@0x419690）+ `CreateFromTemplate(&field,...)`（&field=对象）"
     },
     "536": {
       "name": "m_fAnimDelta",
@@ -593,7 +593,7 @@
     "680": {
       "name": "m_InnerActor",
       "type": "void *",
-      "source": "overlap: 4-byte workspace. Used via (Actor *)&this->m_InnerActor to access m_pact@+0x10 and m_dwMatMsg@+0x21C. | normalize_key: 0x2A8 -> 680 | verified:2026-10-15 A:视图级4B工作区((Actor*)&m_InnerActor 强转用法),与邻居m_bDirFlag@684相邻无字段重叠;union不适用(嵌Actor视图820B撞布局)→保留现状+注释",
+      "source": "overlap: 4-byte workspace. Used via (Actor *)&this->m_InnerActor to access m_pact@+0x10 and m_dwMatMsg@+0x21C. | normalize_key: 0x2A8 -> 680 | verified:2026-10-15 A:视图级4B工作区((Actor*)&m_InnerActor 强转用法),与邻居m_bDirFlag@684相邻无字段重叠;union不适用(嵌Actor视图820B撞布局)→保留现状+注释 | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：（补 idapro 证据）`Actor::QueryState((Actor *)&this->m_InnerActor, ...)`/`CompareActionName`（UpdatePhysics@0x419690/UpdateFrame@0x531260）⇒ &field=Actor 内嵌对象",
       "note": "overlap: 4-byte workspace = 类型双视图(同址),非字段复用;治理=保留"
     },
     "628": {
@@ -605,8 +605,8 @@
   "methods": {
     "0x00536160": {
       "name": "SetParam",
-      "signature": "int __thiscall(int nVal)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "signature": "int __thiscall(int nVal1, int nVal2)",
+      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 int __thiscall(int nVal) ⇒ int __thiscall(int nVal1, int nVal2)（A 级 ret-N 证据：ret $0x8 ⇒ 2 栈参；int 占位·nVal 序号惯例）"
     },
     "0x00536220": {
       "name": "GetDefaultFOV_thunk",

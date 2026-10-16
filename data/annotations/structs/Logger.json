@@ -39,13 +39,13 @@
     },
     "4652": {
       "name": "m_szCmdBuf2",
-      "type": "void *",
-      "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA;A:decomp_batch_rename_usage_pattern"
+      "type": "char[104]",
+      "source": " | inline-union治理 2026-10-16（idapro A 级）：WinProc_HWND_InputLine@0x53CB10 字节写 *(buf2+n+3) 至 n≈100 ⇒ 真跨度 104B；**overlap**：与 m_szCmdBuf@4656 同区别名（buf2[n+3]≡buf[n-1]，cursor 形字节写）"
     },
     "4656": {
       "name": "m_szCmdBuf",
-      "type": "void *",
-      "source": "A:decomp_strcpy_command_buffer_string"
+      "type": "char[100]",
+      "source": " | inline-union治理 2026-10-16（idapro A 级）：memset(&m_szCmdBuf,0,0x64)+strlen((char*)&m_szCmdBuf) ⇒ 100B 缓冲窗口；**overlap**：m_szCmdBuf2@4652 起 104B 区内 +4 窗口（别名）"
     },
     "4856": {
       "name": "m_nTodo_12F8",
@@ -55,12 +55,12 @@
     "0": {
       "name": "m_nCallbackCount",
       "type": "int",
-      "source": "A:decomp Logger::RegisterCallback *(DWORD*)this >= 34 \u2014 callback registration count"
+      "source": "A:decomp Logger::RegisterCallback *(DWORD*)this >= 34 — callback registration count"
     },
     "4": {
       "name": "m_callbacks",
       "type": "tagLoggerCallback[34]",
-      "source": "A:decomp Logger::RegisterCallback v6=&this->m_nCallbackCount + 34*count + 1 \u2014 callback array at +4, each 136 bytes, max 34 entries"
+      "source": "A:decomp Logger::RegisterCallback v6=&this->m_nCallbackCount + 34*count + 1 — callback array at +4, each 136 bytes, max 34 entries"
     }
   },
   "binary_size": 6360,

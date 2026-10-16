@@ -520,12 +520,27 @@
     "140": {
       "name": "m_pDialogData",
       "type": "void *",
-      "source": "binary_scan:3refs"
+      "source": "binary_scan:3refs | [void* 语义化 2026-10-16 analyzer 30 条跨类取证] A级：decomp 6 处 `m_pDialogData = (char *)v2->m_pDialogData; … m_pDialogData = m_pDialogData - 1; v2->m_pDialogData = v6`（char* 递减遍历）⇒ 指针位+字节步长=char* | [void* 语义化回退 2026-10-16 analyzer] 四道门判负实证：CCBStage _BYTE[N] 型改使 `&field + N` 指针算术步长从 4B 变 N B ⇒ C2039/C2228 族爆发；PalScript char* 引 C2679 operator= 不匹配（L5942）⇒ 类型语义化候选保留 source，落地待渲染层（指针算术缩放）修妥后复议"
     },
     "144": {
       "name": "m_pCurrentTask",
-      "type": "void*",
-      "source": "binary_scan:9refs; type_fix:m_p*_int_to_void*"
+      "type": {
+        "union": [
+          {
+            "type": "float",
+            "name": "fVal"
+          },
+          {
+            "type": "int",
+            "name": "nVal"
+          },
+          {
+            "type": "char *",
+            "name": "pVal"
+          }
+        ]
+      },
+      "source": "binary_scan:9refs; type_fix:m_p*_int_to_void* | inline-union治理 2026-10-16（idapro A 级）：RenderUI@0x43A270 `(double)(int)this->m_pCurrentTask`（int 视）+ `m_pCurrentTask*v6`（float 视 st6）+ UpdateTimer@0x43A3E0 `(char*)...; m_pCurrentTask+1`（指针步进视）+ `=0` 清零 ⇒ 三视同 4B 区复用"
     },
     "148": {
       "name": "m_pTaskPtr",

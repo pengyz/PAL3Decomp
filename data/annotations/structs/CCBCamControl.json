@@ -311,8 +311,8 @@
     },
     "0x005058E0": {
       "name": "SwitchEditorCamPos",
-      "signature": "bool __thiscall(int nVal1)",
-      "source": "pdb_ret | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "signature": "bool __thiscall(int nVal1, int nVal2)",
+      "source": "pdb_ret | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 bool __thiscall(int nVal1) ⇒ bool __thiscall(int nVal1, int nVal2)（A 级 ret-N 证据：ret $0x8 ⇒ 2 栈参；int 占位·nVal 序号惯例）"
     },
     "0x00505820": {
       "name": "ProcCamMove",

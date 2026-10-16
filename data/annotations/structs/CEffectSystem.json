@@ -92,8 +92,8 @@
     },
     "0x004C6290": {
       "name": "Destroy",
-      "signature": "void __thiscall(int nVal1)",
-      "source": " | 签名缺参批量 2026-10-06：ret 20/4=5 参 vs 签名 0——补 5 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "signature": "void __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)",
+      "source": " | 签名缺参批量 2026-10-06：ret 20/4=5 参 vs 签名 0——补 5 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 void __thiscall(int nVal1) ⇒ void __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)（A 级 ret-N 证据：ret $0x14 ⇒ 5 栈参；int 占位·nVal 序号惯例）"
     },
     "0x004C6330": {
       "name": "GetEffectIndex",

@@ -214,8 +214,8 @@
     },
     "2220": {
       "name": "m_pItemArray",
-      "type": "void *",
-      "source": "binary:gap_r2;batch_fix:int_or_float_to_v*_LEA"
+      "type": "int[13]",
+      "source": " | inline-union治理 2026-10-16（idapro A 级）：InitItems@0x44E660 memset32(&field, val=3, count=13)（ida_defs.h:137 (dst,val,count) 语义已核）⇒ 52B 区 2220..2272 填 3；**overlap**：m_nInitItems@2228/m_nItemCount2@2232/m_nEquipCount@2248/m_nConsumableCount@2260 为数组槽的命名视图（同区）"
     },
     "3308": {
       "name": "m_ItemSlotB",

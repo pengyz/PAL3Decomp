@@ -121,7 +121,7 @@
     "0x00401000": {
       "name": "~AStarPathFinder",
       "signature": "void __thiscall()",
-      "source": " | [ctor/dtor 错位改名 2026-10-16] AStarPathFinder ⇒ ~AStarPathFinder：idapro 交叉复核（lead 确认）：ctor 名语义实为**真析构**；objdump 401007 movl $0x56a600,(%esi) vptr 写 + call 0x552ed8 析构链"
+      "source": " | [ctor/dtor 二次改名 2026-10-16 an alyzer 66 条无家族取证] ~AStarPathFinder ⇒ AStarPathFinder（**真 ctor**，A 级 40 字节体铁证）：`401000 push esi; mov esi,ecx; push 8; push 1; 401007 mov [esi],stru_56A600(vptr 自写); 40100d call 0x552ED8; mov [esi+10h],eax; mov [esi+4/8/0Ch],0; mov eax,esi; ret`——①calloc(1,8) 结果存成员 +②成员三清零 +③返回 this = 初始化语义；**前版『call 0x552ed8 析构链』定性错误**：0x552ED8 本体 A 级实为 calloc（`mov esi,[esp+0Ch]; imul esi,[esp+14h]` count×size + 对齐 + HeapAlloc 形 `push 8; push [heap]; call [IAT]`）——分配器非释放链 ⇒ 401000 为 ctor（dtor 归 0x4013B0 族）。前版 source 保留可溯 | [隔离 A/B 2026-10-16] name 回退 ~AStarPathFinder（ctor 真身判据保留于前段 source；改名渲染联动嫌疑致 C2084 双体族 ⇒ 隔离实验回退）"
     },
     "0x00401030": {
       "name": "_scalar_dtor",

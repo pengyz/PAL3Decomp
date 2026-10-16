@@ -44,8 +44,8 @@
     },
     "352": {
       "name": "m_nTodo_160",
-      "type": "void *",
-      "source": "binary_scan:1refs;batch_fix:int_to_v*_LEA_embed"
+      "type": "int[2]",
+      "source": "binary_scan:1refs;batch_fix:int_to_v*_LEA_embed | inline-union治理 2026-10-16（idapro A 级）：CUtil@0x523130 ctor：`m_nTodo_160=0` + `*(&+4)=0` ⇒ 8B 双 dword 区（暂无指针/浮点视）"
     },
     "360": {
       "name": "m_nTodo_168",

@@ -538,6 +538,8 @@
     "0x004C5810": {
       "name": "_sdtor",
       "signature": "char *__thiscall(char pData)"
+,
+      "source": " | [非 ctor/dtor 实证 2026-10-16 analyzer 66 条] A 级形判：删际析构/adjustor 跳板形，非普通 ctor/dtor —— 名保留 _sdtor 系"
     },
     "0x004D05E0": {
       "name": "CameraInterpCallback",
@@ -624,7 +626,7 @@
       "signature": "char *__thiscall(char pData)",
       "type": "skip",
       "reason": "compiler-generated scalar deleting destructor for RenderTarget2 (adjustor -12)",
-      "source": " | 2-param form -> 1-param: 8-byte jmp-thunk to 0x4C34B0 deleting-dtor body which tests (arg & 1) for operator delete and returns this; mangle QAEPADD = ret char*, args(char)"
+      "source": " | 2-param form -> 1-param: 8-byte jmp-thunk to 0x4C34B0 deleting-dtor body which tests (arg & 1) for operator delete and returns this; mangle QAEPADD = ret char*, args(char) | [非 ctor/dtor 实证 2026-10-16 analyzer] A 级：adjustor thunk `sub ecx,0Ch; jmp _scalar_dtor_34b0`（MI this 调整跳板）"
     },
     "0x00408BD0": {
       "name": "NullCallback",

@@ -196,6 +196,11 @@
       "name": "sub_4D4110",
       "signature": "int __thiscall()",
       "source": "vtable_gap_fill_v1(IDB:?sub_4D4110@CEffect@@QAEHXZ)"
+    },
+    "0x004D3950": {
+      "name": "~CEffShock",
+      "signature": "void __fastcall(CEffect *this)",
+      "source": " | [rsite 根治 2026-10-16] 归属迁移 CEffect⇒CEffShock + 名 DestroyCallback⇒~CEffShock：A级 idapro 2f27f612：删析构 vtable 槽 xref（0x4518E0@0x56B178 from=UILoadingFrm / 0x4D3930@0x56FADC from=CEffShock / 0x43E100@0x56AD40 from=None=UIListBox）+ call 完整dtor(this)+flags 条件 delete ABI 配对 ⇒ 目标=同类完整析构"
     }
   },
   "base_size": 16,
@@ -209,5 +214,74 @@
       "offset": 12
     }
   ],
-  "bases_source": "A: ctor `mov [reg+0Ch], offset <vtable>` (CEffModel sub_4CFC70 / CEffCylinder sub_4C3DD0)；PDB 全族 CTaskTpl 基 = 12；template_bases.json 记载 18 个 CEff* 共享该模板布局；二进制另有 58 处 `sub ecx,0Ch` 的 this 调整"
+  "bases_source": "A: ctor `mov [reg+0Ch], offset <vtable>` (CEffModel sub_4CFC70 / CEffCylinder sub_4C3DD0)；PDB 全族 CTaskTpl 基 = 12；template_bases.json 记载 18 个 CEff* 共享该模板布局；二进制另有 58 处 `sub ecx,0Ch` 的 this 调整",
+  "vtables": [
+    {
+      "addr": "0x0056FADC",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004D3930",
+          "from": null
+        },
+        {
+          "addr": "0x004D3AD0",
+          "from": "CEffect"
+        },
+        {
+          "addr": "0x004D3A50",
+          "from": "CEffect"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004D3DC0",
+          "from": null
+        },
+        {
+          "addr": "0x004D4110",
+          "from": null
+        },
+        {
+          "addr": "0x004D3910",
+          "from": "CEffect"
+        },
+        {
+          "addr": "0x004C0500",
+          "from": "CEffect"
+        },
+        {
+          "addr": "0x004AF760",
+          "from": "CEffect"
+        },
+        {
+          "addr": "0x004D4840",
+          "from": "CEffect"
+        },
+        {
+          "addr": "0x004AF760",
+          "from": "CEffect"
+        },
+        {
+          "addr": "0x004D4340",
+          "from": "CEffect"
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": "CEffect"
+        },
+        {
+          "addr": "0x004D4700",
+          "from": "CEffect"
+        }
+      ],
+      "source": "A级（objdump+vptr_installs）：写入点 0x4d38db/0x4d3973=0x4D38xx ctor+0x4D3950 dtor 簇 movl $0x56fadc,(%reg) +0 位移；slot[0]=0x4D3930 删析构（call 0x4D3950(this)+flags delete）ABI 配对；兄弟表 0x56FA30 slot[0]=CEffQuad 删析构同挂 CEffect=停车场模式"
+    }
+  ]
 }

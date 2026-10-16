@@ -152,5 +152,74 @@
       "offset": 12
     }
   ],
-  "bases_source": "[T15] A 级 objdump：0x004D17D0 内 4d17e6 lea esi,[edi+0xc] —— &this->CTaskTpl_tagEffTaskParam_CEffQuad 的 lea 基址+0xC ⇒ 子对象偏移 12（reg+disp32 直证，逐类独立取证；CEffObj@0=首基类结构确定）；与 base_size(16)=12+尾段自洽"
+  "bases_source": "[T15] A 级 objdump：0x004D17D0 内 4d17e6 lea esi,[edi+0xc] —— &this->CTaskTpl_tagEffTaskParam_CEffQuad 的 lea 基址+0xC ⇒ 子对象偏移 12（reg+disp32 直证，逐类独立取证；CEffObj@0=首基类结构确定）；与 base_size(16)=12+尾段自洽",
+  "vtables": [
+    {
+      "addr": "0x0056FA30",
+      "base": "CEffQuad",
+      "slots": [
+        {
+          "addr": "0x004D0D90",
+          "from": null
+        },
+        {
+          "addr": "0x004D1090",
+          "from": "CEffect"
+        },
+        {
+          "addr": "0x004D0EC0",
+          "from": "CEffect"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004D17D0",
+          "from": null
+        },
+        {
+          "addr": "0x004D1300",
+          "from": null
+        },
+        {
+          "addr": "0x004D0D70",
+          "from": "CEffect"
+        },
+        {
+          "addr": "0x004C0500",
+          "from": "CEffSParticle"
+        },
+        {
+          "addr": "0x004AF760",
+          "from": "CEffSParticle"
+        },
+        {
+          "addr": "0x004C0510",
+          "from": "CEffSParticle"
+        },
+        {
+          "addr": "0x004AF760",
+          "from": "CEffSParticle"
+        },
+        {
+          "addr": "0x004D2080",
+          "from": "CEffect"
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": "CEffSParticle"
+        },
+        {
+          "addr": "0x004D2ED0",
+          "from": "CEffect"
+        }
+      ],
+      "source": "A级：slot[0]=0x4D0D90 CEffQuad 删析构 + 写入点 0x4d0d1b/0x4d0dd3（CEffQuad 簇 movl $0x56fa30,(%reg) +0）⇒ CEffQuad 的表，自 CEffect.json 迁出（停车场清理 2026-10-16）"
+    }
+  ]
 }

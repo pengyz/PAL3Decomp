@@ -193,19 +193,7 @@
       "source": "PAL3patch_import"
     }
   },
-  "vtables": [
-    {
-      "addr": "0x0056A620",
-      "base": null,
-      "slots": [{"addr": "0x00402BD0", "from": null}]
-    }
-  ],
   "methods": {
-    "0x00402BD0": {
-      "name": "_scalar_dtor",
-      "signature": "void *__thiscall(char a2)",
-      "source": " | 认领第一批 2026-10-16（analyzer）：表 0x56A620→GRPinput 主表认领。A 级证据：①删际析构形 0x402BD0 body `56 8b f1 e8 ... f6 44 24 08 01 74 09 56 e8`（call 完整析构+delete）且 @+35 写 `mov [esi],0x56A620`；②真析构 0x402BF0@+3 写 `c7 06 20 a6 56 00`（[esi]=0x56A620 disp0=主表）双自证；③安装点 GRPinput::SetMousePos（member access 证据 GRPinput×8）。形制同 AStarPathFinder 0x401030"
-    },
     "0x004022E0": {
       "name": "GetCursorPos",
       "signature": "BOOL __thiscall(GRPinput *this, LPPOINT lpPoint)"

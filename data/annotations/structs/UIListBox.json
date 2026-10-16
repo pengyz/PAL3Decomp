@@ -185,10 +185,6 @@
       "ordinal": 5,
       "source": "|fixed_ios_base"
     },
-    "0x0043E120": {
-      "name": "DeleteRow",
-      "signature": "void __thiscall()"
-    },
     "0x0043E1C0": {
       "name": "CalScrollBarRange",
       "signature": "void __thiscall(int id, int *p_DWORD, int parent, LPCSTR lpString, int nVal, char pData)",
@@ -383,11 +379,6 @@
       "name": "UIListBox_Init",
       "signature": "int __thiscall UIListBox::UIListBox_Init()"
     },
-    "0x00451900": {
-      "name": "DestroyContent",
-      "signature": "void __thiscall()",
-      "source": "sig_evidence_A(ret-N arity)"
-    },
     "0x00451B40": {
       "name": "ResizeToContent",
       "signature": "int __thiscall UIListBox::ResizeToContent(int bResize)",
@@ -503,6 +494,16 @@
       "name": "_todo_0046B4B0",
       "signature": "void __thiscall(int nVal1, int nVal2, int nVal3)",
       "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x46b4b0 `mov 0x4(%esp),%eax; sub $0x110,%esp; add $0xfffffc18,%eax`（参1 运算）+ 尾 `ret $0xc`（3 栈参）；语义未定 ⇒ _todo_ 占位。SaleUI 继承槽 slot[6] 的基类侧缺失（from=UIListBox）"
+    },
+    "0x0043E120": {
+      "name": "~UIListBox",
+      "signature": "void __thiscall()",
+      "source": " | [rsite 根治 2026-10-16] 名 DeleteRow⇒~UIListBox（真析构，vtable 0x56AD40 slot None=本类）：A级 idapro 2f27f612：删析构 vtable 槽 xref（0x4518E0@0x56B178 from=UILoadingFrm / 0x4D3930@0x56FADC from=CEffShock / 0x43E100@0x56AD40 from=None=UIListBox）+ call 完整dtor(this)+flags 条件 delete ABI 配对 ⇒ 目标=同类完整析构"
+    },
+    "0x00451900": {
+      "name": "DestroyContent",
+      "signature": "void __thiscall()",
+      "source": "sig_evidence_A(ret-N arity) | [rsite 根治 2026-10-16] 归属迁移 UIListBox⇒UILoadingFrm + 名 DestroyContent⇒~UILoadingFrm：A级 idapro 2f27f612：删析构 vtable 槽 xref（0x4518E0@0x56B178 from=UILoadingFrm / 0x4D3930@0x56FADC from=CEffShock / 0x43E100@0x56AD40 from=None=UIListBox）+ call 完整dtor(this)+flags 条件 delete ABI 配对 ⇒ 目标=同类完整析构 | [停车场清理 2026-10-16 回改] A级 idapro d9a0f50c+objdump：0x451850 基类 call 0x43bb70（≠UIListBox 簇 0x445AA0）+ call 0x43dfc0(UIListBox ctor) 于子对象 + UITextArea::InitAfterClear ⇒ 0x4518xx=独立类（UIFrameWnd 系+UIListBox/UITextArea 成员）；UILoadingFrm=0x4507xx 簇（m_LoadProgress+m_MaxValue=100 语义吻合）⇒ 上轮 ~UILoadingFrm 误迁回改，真名待 0x4518xx 簇裁决"
     }
   },
   "vtables": [
@@ -576,7 +577,8 @@
           "addr": "0x00445D10",
           "from": "UIWnd"
         }
-      ]
+      ],
+      "source": "[停车场清理 2026-10-16 证据注记] 写入点 0x43dcd8/0x43dd2d（0x43DCxx 簇）；ctor 0x43DCD0=UIWnd 基(0x445AA0)+m_selcolor；dtor 0x43DD10=Destroy+UIWnd::_UIWnd，**无 m_rowenable/scrollbar 清理** ⇒ 非 UIListBox 本体，真名待裁（候选=简单 UIWnd 派生控件族）"
     },
     {
       "addr": "0x0056B178",
@@ -610,7 +612,8 @@
           "addr": "0x00451AA0",
           "from": "UILoadingFrm"
         }
-      ]
+      ],
+      "source": "[停车场清理 2026-10-16 证据注记] 写入点 0x4518a9/0x451921（0x4518xx 簇）；ctor 0x451850 基类 call **0x43bb70**（≠UIListBox 簇 0x445AA0）+ call 0x43dfc0(UIListBox ctor) 子对象 + UITextArea::InitAfterClear ⇒ 独立类（UIFrameWnd 系+UIListBox/UITextArea 成员），**≠UILoadingFrm**（=0x4507xx 簇，m_LoadProgress+m_MaxValue=100）；上轮 ~UILoadingFrm 误迁已回改。真名待裁"
     },
     {
       "addr": "0x0056B1BC",
@@ -644,7 +647,8 @@
           "addr": "0x0043D7A0",
           "from": null
         }
-      ]
+      ],
+      "source": "[停车场清理 2026-10-16 证据注记] 写入点 0x4525c6/0x45261d（0x4525xx 簇）；ctor 0x4525A0=UIListBox ctor(0:0x43DCD0)+UIAnimateCtrlEX ctor+UITitle_BBTY ctor(+1084) ⇒ 含 UIListBox+UIAnimateCtrlEX+UITitle_BBTY 成员的复合类，真名待裁"
     },
     {
       "addr": "0x005706EC",
@@ -678,7 +682,8 @@
           "addr": "0x00527EA0",
           "from": null
         }
-      ]
+      ],
+      "source": "[停车场清理 2026-10-16 证据注记] 写入点 0x5279ae/0x527a0d（0x5279xx 簇）；ctor 0x527950=UIListBox ctor(this+0)+UIRoleDialog ctor(+m_scrollbar.m_texarrayInfo[4]) ⇒ UIListBox 派生/含 UIRoleDialog 成员复合类（0x5279D0 曾 UIListBox/UICoverFrm 双挂）；真名待裁"
     }
   ],
   "base_size": 68,
