@@ -650,12 +650,12 @@
  "0x00445fe0": {
   "name": "sub_445FE0",
   "signature": "void * __cdecl(void *a2)",
-  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=UIListBox::CalScrollBarRange+UIMap::ProcessHitTest+UISceneMap::LoadCompass 等 21 站 ②被调=待全读 ③成员=+16 域访问 ④**类归属=跨类 ✗** ⑤交互=滚动/命中测试/罗盘多域；功能定性=共享工具（raw-offset 族）"
+  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=UIListBox::CalScrollBarRange+UIMap::ProcessHitTest+UISceneMap::LoadCompass 等 21 站 ②被调=待全读 ③成员=+16 域访问 ④**类归属=跨类 ✗** ⑤交互=滚动/命中测试/罗盘多域；功能定性=共享工具（raw-offset 族） | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数；③+16 域语义未定 ⇒ 仍挂账"
  },
  "0x0043fec0": {
   "name": "sub_43FEC0",
   "signature": "int __cdecl(void *a2)",
-  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=CJ_FindFile::Create+UITitle_BBTY/UITitle_XJTM::LayoutGetRects 等 23 站 ②被调=待全读 ③成员=+76 域访问 ④**类归属=跨类 ✗** ⑤交互=文件/布局多域；功能定性=共享工具（raw-offset 族）"
+  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=CJ_FindFile::Create+UITitle_BBTY/UITitle_XJTM::LayoutGetRects 等 23 站 ②被调=待全读 ③成员=+76 域访问 ④**类归属=跨类 ✗** ⑤交互=文件/布局多域；功能定性=共享工具（raw-offset 族） | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数；③+76 域语义未定 ⇒ 仍挂账"
  },
  "0x00442000": {
   "name": "CalcWeightedOffset",
@@ -679,12 +679,12 @@
  "0x00445db0": {
   "name": "sub_445DB0",
   "signature": "int __cdecl(void *a2)",
-  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=PalScript::Op_WaterMagic+ShowTextBox+UIListBox_ResizeToContent ×2 ②被调=待全读 ③成员=width/height 寄存维度算 ④**类归属=跨类 ✗** ⑤交互=布局/尺寸域；A 级体头（width/height regs）；功能定性=尺寸/布局计算"
+  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=PalScript::Op_WaterMagic+ShowTextBox+UIListBox_ResizeToContent ×2 ②被调=待全读 ③成员=width/height 寄存维度算 ④**类归属=跨类 ✗** ⑤交互=布局/尺寸域；A 级体头（width/height regs）；功能定性=尺寸/布局计算 | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数；③布局域语义未定 ⇒ 仍挂账"
  },
  "0x00445e50": {
   "name": "sub_445E50",
   "signature": "int __thiscall(int a2)",
-  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=CCBUIPanel_SetAllSlotsVisible/UpdateButtonVisibility **100 站**（热谓词）②被调=待全读 ③成员=+52 读取后分支 ④类归属=CCBUIPanel 可见性域 ✓ ⑤交互=槽/按钮可见性判定；**成员语义面弱**（+52 旗标语义未定）⇒ 挂账；功能定性=状态判定谓词"
+  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=CCBUIPanel_SetAllSlotsVisible/UpdateButtonVisibility **100 站**（热谓词）②被调=待全读 ③成员=+52 读取后分支 ④类归属=CCBUIPanel 可见性域 ✓ ⑤交互=槽/按钮可见性判定；**成员语义面弱**（+52 旗标语义未定）⇒ 挂账；功能定性=状态判定谓词 | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数（调用形 sub(v2) 实证）；③+52 旗标语义未定（CCBUIPanel +52 未注解）⇒ 仍挂账"
  },
  "0x00445ea0": {
   "name": "ZeroInitSelf68",
@@ -720,9 +720,9 @@
   "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 sub_4A5760 ⇒ LoadGameFrmRenderTarget | evidence: ①UIGameFrm::OnMessage×2 ②LoadTexture+SetSize ③2572B ④UIGameFrm 域 ⑤消息链纹理加载 | confidence: high"
  },
  "0x004a8230": {
-  "name": "sub_4A8230",
+  "name": "ClampToRange",
   "signature": "unsigned int __cdecl(unsigned int a2, int a3)",
-  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=CCBUI::CreatePanelUI+SwordUI::RenderSword ②被调=无 ③成员=+383216 8-stride 表读取+上界校验（a2<=result）④**类归属=双类跨用 ✗** ⑤交互=面板创建/剑气渲染；A 级体 `*(this+8*a3+383216)`；功能定性=表项上界校验读取器"
+  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=CCBUI::CreatePanelUI+SwordUI::RenderSword ②被调=无 ③成员=+383216 8-stride 表读取+上界校验（a2<=result）④**类归属=双类跨用 ✗** ⑤交互=面板创建/剑气渲染；A 级体 `*(this+8*a3+383216)`；功能定性=表项上界校验读取器 | [主攻点2续2 2026-10-17] 五面满卡 5/5 正名：①CCBUI::CreatePanelUI+SwordUI::RenderSword ②无 ③+383212/383216 双 DWORD range 对表 8-stride ④自由函数（调用形实证）⑤面板创建/渲染值域钳制；A 级=idapro 全体钳制形 `r=obj[8*a3+383216]; if(a2<=r){r=obj[8*a3+383212]; if(a2>=r) return a2;} return r`；原名 sub_4A8230 ⇒ ClampToRange"
  },
  "0x00504f40": {
   "name": "ReadStageCamConfig",
@@ -730,9 +730,9 @@
   "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 sub_504F40 ⇒ ReadStageCamConfig | evidence: ①CCBStageCam::UpdateEditorState+_todo_00504E60 ②**gbVFileSystem::Read×3+OpenBaseFile** ③1241B ④CCBStageCam 配置域 ⑤文件读取链 | confidence: high"
  },
  "0x0052fc50": {
-  "name": "sub_52FC50",
+  "name": "GetTableEntry",
   "signature": "int __cdecl(int a2)",
-  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账（不达五面不赋名 ✓）：①调用者=CScreenMode::InitEndScreen+Actor::UpdateFrame ×2 ②被调=无（纯读）③成员=+2212 int 表 4-stride 下标读取 ④**类归属=双类跨用 ✗**（Actor/CScreenMode 共享布局待裁）⑤交互=EndScreen 初始化/帧更新；A 级体 `return *(this+4*a2+2212)`；功能定性=表下标读取器"
+  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账（不达五面不赋名 ✓）：①调用者=CScreenMode::InitEndScreen+Actor::UpdateFrame ×2 ②被调=无（纯读）③成员=+2212 int 表 4-stride 下标读取 ④**类归属=双类跨用 ✗**（Actor/CScreenMode 共享布局待裁）⑤交互=EndScreen 初始化/帧更新；A 级体 `return *(this+4*a2+2212)`；功能定性=表下标读取器 | [主攻点2续2 2026-10-17] 五面满卡 5/5 正名：①Actor::UpdateFrame ×2（返回值 COERCE_FLOAT 位型消费）+CScreenMode::InitEndScreen ②无（纯读）③+2212 4-stride dword 表 ④自由函数（调用形实证）⑤帧更新/EndScreen 初始化读取；A 级=idapro 全体 `return *(obj+4*a2+2212)`；原名 sub_52FC50 ⇒ GetTableEntry"
  },
  "0x00530270": {
   "name": "ZeroInitPair",
@@ -2030,7 +2030,8 @@
  "0x004A16C0": {
   "name": "Create__ovl_1",
   "signature": "void __thiscall ARC_PlayerAtt::Create(ARC_PlayerAtt *this)",
-  "class": "ARC_PlayerAtt"
+  "class": "ARC_PlayerAtt",
+  "source_note": " | [归属 2026-10-17] 类=ARC_PlayerAtt（decompile 类名直证）"
  },
  "0x004517A0": {
   "name": "SetVideoRect",
@@ -2810,25 +2811,29 @@
   "name": "ClearStateMode",
   "signature": "void __thiscall RoleSystem::ClearStateMode(RoleSystem *this)",
   "class": "RoleSystem",
-  "_flirt_correction": "FLIRT 曾将 0x00532D50 误命名为 ?MarkInactive@ExternalStatistics@details@Concurrency@@QAEXXZ，并被前一轮以「函数名属于 MSVC Concurrency Runtime」为由写入 skip_functions.json (reason=crt_runtime)。该判断仅凭名字、无函数体取证，属错误：实测函数体 = C7 41 18 00 00 00 00 C3 (mov dword [ecx+0x18], 0 ; retn)，是**游戏函数**，非 CRT。位置证据：邻居 0x00532CF0 CalcAngleBetweenVectors / 0x00532D30 GetStateMode / 0x00532E10 ResetPathState 全为游戏函数。调用点证据：xrefs_to = 0x534EA9，落在 ExternalStatistics::UpdateFromRole(0x00534E60) 内；同函数前两分支分别调 GetStateMode 与 RoleSystem::NegateStateMode，均取 *(RoleSystem **)this。命名理由：C7 41 18 = mov dword [ecx+0x18], 0 与邻居 GetStateMode 的 8B 41 50 89 41 18 (mov eax,[ecx+0x50]; mov [ecx+0x18],eax) 操作**同一字段 0x18**，故本函数是该字段的『清零』变体。"
+  "_flirt_correction": "FLIRT 曾将 0x00532D50 误命名为 ?MarkInactive@ExternalStatistics@details@Concurrency@@QAEXXZ，并被前一轮以「函数名属于 MSVC Concurrency Runtime」为由写入 skip_functions.json (reason=crt_runtime)。该判断仅凭名字、无函数体取证，属错误：实测函数体 = C7 41 18 00 00 00 00 C3 (mov dword [ecx+0x18], 0 ; retn)，是**游戏函数**，非 CRT。位置证据：邻居 0x00532CF0 CalcAngleBetweenVectors / 0x00532D30 GetStateMode / 0x00532E10 ResetPathState 全为游戏函数。调用点证据：xrefs_to = 0x534EA9，落在 ExternalStatistics::UpdateFromRole(0x00534E60) 内；同函数前两分支分别调 GetStateMode 与 RoleSystem::NegateStateMode，均取 *(RoleSystem **)this。命名理由：C7 41 18 = mov dword [ecx+0x18], 0 与邻居 GetStateMode 的 8B 41 50 89 41 18 (mov eax,[ecx+0x50]; mov [ecx+0x18],eax) 操作**同一字段 0x18**，故本函数是该字段的『清零』变体。",
+  "source_note": " | [归属 2026-10-17] 类=RoleSystem（decompile 类名直证）"
  },
  "0x004B4830": {
   "name": "IsVisible",
   "signature": "char __thiscall RenderTarget::IsVisible(RenderTarget *this)",
   "class": "RenderTarget",
-  "_flirt_correction": "FLIRT 曾误命名为 Conformance Runtime 命名空间函数（原名 ?IsThrottled@VirtualProcessor@details@Concurrency@@QBE_NXZ）。判定为误命名的依据：PE 静态读（tools/pe_probe.py，与 idat 探针逐字节互证）实测函数体；MSVC6(1998) 二进制不含 VS2010 才有的 Concurrency Runtime；调用者全在游戏区、this 为游戏对象、邻居为游戏函数。见 data/status/_cleanup_review_abc_plan.json。 命名依据：0x4B4830 = 8A 81 80 00 00 00 C3 = `mov al,[ecx+0x80]; retn`（7B bool getter）。字段证据：RenderTarget 注解 +0x80 = m_bVisible (int)；setter 0x4B4820 RenderTarget_SetVisible 写同一字段 [ecx+0x80]（88 81 80 00 00 00）。"
+  "_flirt_correction": "FLIRT 曾误命名为 Conformance Runtime 命名空间函数（原名 ?IsThrottled@VirtualProcessor@details@Concurrency@@QBE_NXZ）。判定为误命名的依据：PE 静态读（tools/pe_probe.py，与 idat 探针逐字节互证）实测函数体；MSVC6(1998) 二进制不含 VS2010 才有的 Concurrency Runtime；调用者全在游戏区、this 为游戏对象、邻居为游戏函数。见 data/status/_cleanup_review_abc_plan.json。 命名依据：0x4B4830 = 8A 81 80 00 00 00 C3 = `mov al,[ecx+0x80]; retn`（7B bool getter）。字段证据：RenderTarget 注解 +0x80 = m_bVisible (int)；setter 0x4B4820 RenderTarget_SetVisible 写同一字段 [ecx+0x80]（88 81 80 00 00 00）。",
+  "source_note": " | [归属 2026-10-17] 类=RenderTarget（decompile 类名直证）"
  },
  "0x004790F0": {
   "name": "GDB_GetRoleNum",
   "signature": "int __thiscall PAL_GDB::GDB_GetRoleNum(PAL_GDB *this)",
   "class": "PAL_GDB",
-  "_flirt_correction": "FLIRT 曾误命名为 Conformance Runtime 命名空间函数（原名 ?GetExecutionResourceId@VirtualProcessor@details@Concurrency@@QBEIXZ）。判定为误命名的依据：PE 静态读（tools/pe_probe.py，与 idat 探针逐字节互证）实测函数体；MSVC6(1998) 二进制不含 VS2010 才有的 Concurrency Runtime；调用者全在游戏区、this 为游戏对象、邻居为游戏函数。见 data/status/_cleanup_review_abc_plan.json。 命名依据：0x4790F0 = 8B 81 8C 00 00 00 C3 = `mov eax,[ecx+0x8C]; retn`（7B getter）。邻居 0x479080 GDB_GetRoleNum 读同一字段 [ecx+0x8C] 并作计数用（8B 91 8C 00 00 00 + test/jle）；调用者 4 个全游戏区，this=&g_pGDB，返回值作 NPC::GetPropertyByIndex 循环上限。"
+  "_flirt_correction": "FLIRT 曾误命名为 Conformance Runtime 命名空间函数（原名 ?GetExecutionResourceId@VirtualProcessor@details@Concurrency@@QBEIXZ）。判定为误命名的依据：PE 静态读（tools/pe_probe.py，与 idat 探针逐字节互证）实测函数体；MSVC6(1998) 二进制不含 VS2010 才有的 Concurrency Runtime；调用者全在游戏区、this 为游戏对象、邻居为游戏函数。见 data/status/_cleanup_review_abc_plan.json。 命名依据：0x4790F0 = 8B 81 8C 00 00 00 C3 = `mov eax,[ecx+0x8C]; retn`（7B getter）。邻居 0x479080 GDB_GetRoleNum 读同一字段 [ecx+0x8C] 并作计数用（8B 91 8C 00 00 00 + test/jle）；调用者 4 个全游戏区，this=&g_pGDB，返回值作 NPC::GetPropertyByIndex 循环上限。",
+  "source_note": " | [归属 2026-10-17] 类=PAL_GDB（decompile 类名直证）"
  },
  "0x00479250": {
   "name": "GDB_GetItemNum",
   "signature": "int __thiscall PAL_GDB::GDB_GetItemNum(PAL_GDB *this)",
   "class": "PAL_GDB",
-  "_flirt_correction": "FLIRT 曾误命名为 Conformance Runtime 命名空间函数（原名 ?GetProxy@InternalContextBase@details@Concurrency@@UAEPAUIThreadProxy@3@XZ）。判定为误命名的依据：PE 静态读（tools/pe_probe.py，与 idat 探针逐字节互证）实测函数体；MSVC6(1998) 二进制不含 VS2010 才有的 Concurrency Runtime；调用者全在游戏区、this 为游戏对象、邻居为游戏函数。见 data/status/_cleanup_review_abc_plan.json。 命名依据：0x479250 = 8B 81 9C 00 00 00 C3 = `mov eax,[ecx+0x9C]; retn`（7B getter）。夹在 GDB_GetItemNum 与 GetRoleBySlot 之间；调用者 CCBRoleState/CCBCamControl，返回值作计数。"
+  "_flirt_correction": "FLIRT 曾误命名为 Conformance Runtime 命名空间函数（原名 ?GetProxy@InternalContextBase@details@Concurrency@@UAEPAUIThreadProxy@3@XZ）。判定为误命名的依据：PE 静态读（tools/pe_probe.py，与 idat 探针逐字节互证）实测函数体；MSVC6(1998) 二进制不含 VS2010 才有的 Concurrency Runtime；调用者全在游戏区、this 为游戏对象、邻居为游戏函数。见 data/status/_cleanup_review_abc_plan.json。 命名依据：0x479250 = 8B 81 9C 00 00 00 C3 = `mov eax,[ecx+0x9C]; retn`（7B getter）。夹在 GDB_GetItemNum 与 GetRoleBySlot 之间；调用者 CCBRoleState/CCBCamControl，返回值作计数。",
+  "source_note": " | [归属 2026-10-17] 类=PAL_GDB（decompile 类名直证）"
  },
  "0x00445E10": {
   "name": "OffsetRect",

@@ -29,28 +29,28 @@
     },
     "108": {
       "name": "m_pAllocBlock",
-      "type": "int",
-      "source": "A:decomp ScreenEffectMgr::UpdateFrontEffect/ProcessEffect/ClearAllEffects — allocator block start ptr, used as p_field_06C[0] with 0x1000 block size"
+      "type": "void *",
+      "source": "A:decomp ScreenEffectMgr::UpdateFrontEffect/ProcessEffect/ClearAllEffects — allocator block start ptr, used as p_field_06C[0] with 0x1000 block size | 主攻点2 成员类型修复 2026-10-17（verifier·A 级·stash 冲失后幂等重放）：型 int ⇒ void * | evidence: 0x4BE080 `m_pAllocBlock = *v6`（指针位搬）| confidence: high"
     },
     "112": {
       "name": "m_pAllocBlockEnd",
-      "type": "int",
-      "source": "A:decomp — allocator block end (= block_start + 0x1000), used as p_field_06C[1]"
+      "type": "void *",
+      "source": "A:decomp — allocator block end (= block_start + 0x1000), used as p_field_06C[1] | 主攻点2 成员类型修复 2026-10-17（verifier·A 级·stash 冲失后幂等重放）：型 int ⇒ void * | evidence: `m_pAllocBlockEnd = v7 + 4096`（指针算术 +4096）| confidence: high"
     },
     "116": {
       "name": "m_pAllocPos",
-      "type": "int",
-      "source": "A:decomp — allocator cursor within current block, used as p_field_06C[2], advanced by 4 per allocation"
+      "type": "void *",
+      "source": "A:decomp — allocator cursor within current block, used as p_field_06C[2], advanced by 4 per allocation | 主攻点2 成员类型修复 2026-10-17（verifier·A 级·stash 冲失后幂等重放）：型 int ⇒ void * | evidence: `v3 = m_pAllocPos + 4; = v3`（指针步进 +4）| confidence: high"
     },
     "120": {
       "name": "m_pAllocSlot",
-      "type": "int",
-      "source": "A:decomp — ptr to current entry in block-pointer table, used as p_field_06C[3]"
+      "type": "void *",
+      "source": "A:decomp — ptr to current entry in block-pointer table, used as p_field_06C[3] | 主攻点2 成员类型修复 2026-10-17（verifier·A 级·stash 冲失后幂等重放）：型 int ⇒ void * | evidence: 分配链簇同构（Block/End/Pos 三点实证）| confidence: medium-high"
     },
     "124": {
       "name": "m_pAllocRest",
-      "type": "int",
-      "source": "A:decomp — secondary allocator ptr, zeroed on all-effects-cleared"
+      "type": "void *",
+      "source": "A:decomp — secondary allocator ptr, zeroed on all-effects-cleared | 主攻点2 成员类型修复 2026-10-17（verifier·A 级·stash 冲失后幂等重放）：型 int ⇒ void * | evidence: 分配链簇同构（AllocRest 同链）| confidence: medium-high"
     },
     "128": {
       "name": "m_nAllocFlag1",
@@ -65,7 +65,7 @@
     "136": {
       "name": "m_fAllocFactor",
       "type": "int",
-      "source": "A:decomp — allocator factor, zeroed on reset; set to 1065353216(1.0f) in LoadResources"
+      "source": "A:decomp — allocator factor, zeroed on reset; set to 1065353216(1.0f) in LoadResources | 主攻点2 成员类型修复 2026-10-17（verifier·A 级·stash 冲失后幂等重放）：型保留 | `=0` 位面中性判据不足 ⇒ 名挂账 | evidence: 详前文 A 级形证"
     },
     "148": {
       "name": "m_nEffectCount",

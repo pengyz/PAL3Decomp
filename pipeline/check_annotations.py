@@ -25,6 +25,22 @@ from pipeline.gen.annotation_view import iter_struct_files, iter_structs, load_s
 ANN_DIR = os.path.join(_PROJECT_ROOT, 'data', 'annotations')
 
 
+
+def needs_member_attr_warning(name, sig):
+    """__thiscall 归属告警判据（纯函数，R15 单测点）。
+
+    签名含 '::'（类限定形 `Cls::Meth(Cls *this)`）= 已归属不报；原判据查 name
+    而非 sig ⇒ Create__ovl_1/IsVisible 等 5 条误报（2026-10-17 修正）。
+    制式名族（_sdtor/_nearby/sub_/_todo_ 等）豁免。
+    """
+    if '__thiscall' not in sig:
+        return False
+    if '::' in sig.split('(')[0]:      # 归属面=签名声明段的类限定
+        return False
+    if name.startswith(('_sdtor', '_nearby', '_sub', '_todo', '_init_', 'sub_', '_old_')):
+        return False
+    return True
+
 def _strict_struct_entries(directory):
     for path in iter_struct_files(directory):
         struct_data = load_struct(path)
@@ -218,13 +234,8 @@ def check(struct_dir=None):
                     f"(sig: {sig[:60]}) — generic this type, cannot determine class")
 
         # Check 2: __thiscall without :: suggests misattributed member function
-        if '__thiscall' in sig and '::' not in name and addr not in _struct_method_addrs:
-            # Exclude known-nonmember patterns: _sdtor_, _nearby_, sub_ etc.
-            if not name.startswith(('_sdtor', '_nearby', '_sub', '_todo', '_init_', 'sub_', '_old_')):
-                first_param = sig.split('(')[1].split(',')[0].strip() if '(' in sig else ''
-                # If first param is a real class pointer -> likely misattributed member
-                # Downgrade to WARNING — proper attribution requires IDA
-                # investigation to determine the correct class.
+        # （判据修正 2026-10-17 verifier：签名含 '::' 不报——R15 纯函数）
+        if addr not in _struct_method_addrs and needs_member_attr_warning(name, sig):
                 warnings.append(
                     f"functions[{addr}]: '__thiscall' without '::' in '{name}' "
                     f"(sig: {sig[:60]}) — likely member function, needs IDA investigation")

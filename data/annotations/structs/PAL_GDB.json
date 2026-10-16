@@ -233,6 +233,16 @@
     "0x004F6A80": {
       "name": "IsRoleAlive2",
       "signature": "bool __thiscall(int nVal)"
+    },
+    "0x004790F0": {
+      "name": "GDB_GetRoleNum",
+      "signature": "int __thiscall PAL_GDB::GDB_GetRoleNum(PAL_GDB *this)",
+      "source": "[函数归属 2026-10-17·余 8] PAL_GDB——②`GDB_GetRoleNum(PAL_GDB *this)` 类名直证 ✓ + ①NPC::Create/Init ③return m_head.SkillNum ✓（**decompile 类名直证**（非 signature this ✗ 铁律）=decomp 产出的类限定 ✓）"
+    },
+    "0x00479250": {
+      "name": "GDB_GetItemNum",
+      "signature": "int __thiscall PAL_GDB::GDB_GetItemNum(PAL_GDB *this)",
+      "source": "[函数归属 2026-10-17·余 8] PAL_GDB——②`GDB_GetItemNum(PAL_GDB *this)` 类名直证 ✓ + ①CCBCamControl/CCBRoleState ③return m_head.ComboNum ✓（**decompile 类名直证**（非 signature this ✗ 铁律）=decomp 产出的类限定 ✓）"
     }
   }
 }

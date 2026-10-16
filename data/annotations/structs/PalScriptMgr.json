@@ -48,9 +48,9 @@
       "source": "binary:raw_14votes | decomp:counter_in_SetPauseState_ExecuteBlock"
     },
     "64": {
-      "name": "m_nTodo_3C",
+      "name": "m_fPauseCamY",
       "type": "float",
-      "source": "binary:raw_12votes | [97挂账裁决 2026-10-16] m_fField3C ⇒ m_nTodo_3C（泛化词 Field+偏移尾（PalScriptMgr 对实证 PDB 漂移 0x3C→0x40 差+4）=禁令形；零表达式/零布局改动）"
+      "source": "binary:raw_12votes | [97挂账裁决 2026-10-16] m_fField3C ⇒ m_nTodo_3C（泛化词 Field+偏移尾（PalScriptMgr 对实证 PDB 漂移 0x3C→0x40 差+4）=禁令形；零表达式/零布局改动） | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_3C）：SetPauseState `m = m_fCamY`（保存相机 Y）；五面：①SetPauseState ②m_fCamY 赋值源 ③float 域 ④PalScriptMgr ⑤暂停/恢复交互；confidence=75"
     },
     "68": {
       "name": "m_pBigMapSce",
@@ -58,9 +58,9 @@
       "source": "A:decomp LODWORD(this->m_fField40)=this->m_scesys where m_scesys is scSCEFile* | decomp:assigned_from_m_scesys_and_m_nSavedDataB"
     },
     "72": {
-      "name": "m_nTodo_44",
+      "name": "m_wndTextBox",
       "type": "float",
-      "source": "binary:raw_14votes | decomp:Normalize_called_on_this_field | [97挂账裁决 2026-10-16] m_fField44 ⇒ m_nTodo_44（泛化词 Field+偏移尾（PalScriptMgr 对实证 PDB 漂移 0x3C→0x40 差+4）=禁令形；零表达式/零布局改动）"
+      "source": "binary:raw_14votes | decomp:Normalize_called_on_this_field | [97挂账裁决 2026-10-16] m_fField44 ⇒ m_nTodo_44（泛化词 Field+偏移尾（PalScriptMgr 对实证 PDB 漂移 0x3C→0x40 差+4）=禁令形；零表达式/零布局改动） | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_44）：ShowTextBox `UIWnd::sub_445FA0((UIWnd*)&m,a2)` + SetName(pszText)（嵌入 UI 对象文本设置）；①ShowTextBox ②UIWnd 子对象方法 ③+72 嵌入域 ④PalScriptMgr ⑤文本框展示；confidence=72"
     },
     "76": {
       "name": "m_fPosZ",
@@ -68,14 +68,14 @@
       "source": "binary:raw_18votes | decomp:used_as_Z_coord_in_ExecuteBlock"
     },
     "88": {
-      "name": "m_nTodo_054",
+      "name": "m_script",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "source": "B:naming_m_n+FPU_misattrib | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_054）：UpdateScript `PalScript::GetCount((PalScript*)&m,0)`（嵌入 PalScript 子对象起始位）+ `m==3` 状态首域视图；①UpdateScript ②PalScript 方法 ③+88 嵌入域 ④PalScriptMgr ⑤脚本更新；confidence=72"
     },
     "92": {
-      "name": "m_pRoleVisNode",
+      "name": "m_pScriptObj",
       "type": "gbVisNode *",
-      "source": "binary:raw_5votes | [主攻点2续 2026-10-17] 五面满卡 5/5 正名：①调用者=PalScriptMgr::UpdateScriptRoles 脚本角色更新帧（31 站）②被调=gbVisNode::SetTimeScale(node,0.0) 时间缩放 + slot24 虚调用（Update 族）③成员访问=+92 读为 gbVisNode* 指针 ④类归属=PalScriptMgr 脚本管理 ⑤交互=脚本角色更新帧内时间缩放/状态更新生命周期；A 级=idapro decomp 用法 31 站（SetTimeScale 实参 cast 形）；原名 m_nTodo_058 ⇒ 再创作命名 m_pRoleVisNode（功能驱动：脚本角色可视节点指针）；类型正名 int→gbVisNode *（同宽 4B 布局等价）"
+      "source": "binary:raw_5votes | [主攻点2续 2026-10-17] 五面满卡 5/5 正名：①调用者=PalScriptMgr::UpdateScriptRoles 脚本角色更新帧（31 站）②被调=gbVisNode::SetTimeScale(node,0.0) 时间缩放 + slot24 虚调用（Update 族）③成员访问=+92 读为 gbVisNode* 指针 ④类归属=PalScriptMgr 脚本管理 ⑤交互=脚本角色更新帧内时间缩放/状态更新生命周期；A 级=idapro decomp 用法 31 站（SetTimeScale 实参 cast 形）；原名 m_nTodo_058 ⇒ 再创作命名 m_pRoleVisNode（功能驱动：脚本角色可视节点指针）；类型正名 int→gbVisNode *（同宽 4B 布局等价） | evidence: 详前文 A 级形证 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_pRoleVisNode）：UpdateScript 虚调用 `(*(fn)(m+24))(...)`（对象指针+虚表偏移）；①UpdateScript ②虚分派 ③+92 指针域 ④PalScriptMgr ⑤脚本对象驱动；confidence=72"
     },
     "96": {
       "name": "m_pExecSystem",
@@ -86,7 +86,7 @@
     "56": {
       "name": "m_nTodo_0034",
       "type": "int",
-      "source": "binary:raw_final | [97挂账裁决 2026-10-16] m_Sub_0034 ⇒ m_nTodo_0034（泛化词 Sub+偏移尾 0034（现偏移 0x38，PDB 漂移 -4 同族）=禁令形；零表达式/零布局改动）"
+      "source": "binary:raw_final | [97挂账裁决 2026-10-16] m_Sub_0034 ⇒ m_nTodo_0034（泛化词 Sub+偏移尾 0034（现偏移 0x38，PDB 漂移 -4 同族）=禁令形；零表达式/零布局改动） | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "216": {
       "name": "m_nExecuteBlock",
@@ -443,13 +443,13 @@
     "212": {
       "name": "m_pTodo_84",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化 | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x42B75B `*(DWORD*)&m_pTodo_84=*(DWORD*)(x+40)`+`m_nTodo_024=*(DWORD*)&` **DWORD 位搬双视**（判据③）；伪名挂账",
+      "source": "raw_decomp:Hex-Rays_type_cast | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化 | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x42B75B `*(DWORD*)&m_pTodo_84=*(DWORD*)(x+40)`+`m_nTodo_024=*(DWORD*)&` **DWORD 位搬双视**（判据③）；伪名挂账 | evidence: 详前文 A 级形证",
       "note": "原名 m_pSavedIndex 降级(未证语义名,CLAUDE.md 禁伪语义)"
     },
     "249": {
       "name": "m_nTodo_0F5",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "250": {
       "name": "m_bExecuteOpcode",
@@ -459,17 +459,17 @@
     "251": {
       "name": "m_nTodo_0F7",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "276": {
       "name": "m_nTodo_110",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "278": {
       "name": "m_nTodo_112",
       "type": "short",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "280": {
       "name": "m_Actor",
@@ -479,7 +479,7 @@
     "282": {
       "name": "m_nTodo_116",
       "type": "short",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "284": {
       "name": "m_nField_0118",
@@ -489,7 +489,7 @@
     "286": {
       "name": "m_nTodo_11A",
       "type": "unsigned char",
-      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
+      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "568": {
       "name": "m_bRunCommand",
@@ -497,9 +497,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "576": {
-      "name": "m_nTodo_23C",
+      "name": "m_bScriptInputBlock",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_23C）：IsInputBlocked `if (m || m_bInputBlock)` 阻断或逻辑 + UpdateScript `= *(DWORD*)(src+404)` 参数拷贝；①IsInputBlocked ②阻断判 ③+576 标志 ④PalScriptMgr ⑤输入阻断交互；confidence=80"
     },
     "580": {
       "name": "m_bInputBlock",
@@ -539,7 +539,7 @@
     "168": {
       "name": "m_pVarContext",
       "type": "int",
-      "source": "A:0_fpu_in_14+_refs_all_mov_load_store | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x42B9xx `*((char*)&m_pVarContext+strlen+3)-48` **取址字节走查+ASCII 转数**（判据②）"
+      "source": "A:0_fpu_in_14+_refs_all_mov_load_store | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x42B9xx `*((char*)&m_pVarContext+strlen+3)-48` **取址字节走查+ASCII 转数**（判据②） | evidence: 详前文 A 级形证"
     },
     "172": {
       "name": "m_szScriptFile",
@@ -549,7 +549,7 @@
     "204": {
       "name": "m_nTodo_0C8",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "208": {
       "name": "m_nSavedBlockNum",
@@ -585,13 +585,13 @@
     "532": {
       "name": "m_nTodo_214",
       "type": "float",
-      "source": "gap_fill:ida_decomp_access | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化 | [批4 诚实化 2026-10-16] A偏移形：m_fTodo_214⇒m_nTodo_214（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+      "source": "gap_fill:ida_decomp_access | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化 | [批4 诚实化 2026-10-16] A偏移形：m_fTodo_214⇒m_nTodo_214（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动） | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
       "note": "原名 m_fPosAYTarget 降级(未证语义名,CLAUDE.md 禁伪语义)"
     },
     "572": {
       "name": "m_nTodo_238",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "792": {
       "name": "m_pTodo_318",
@@ -608,17 +608,17 @@
     "1912": {
       "name": "m_nTodo_774",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "2368": {
       "name": "m_nTodo_93C",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "3280": {
-      "name": "m_nTodo_CCC",
+      "name": "m_bDeviceResetFlag",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_CCC）：PAL3::HandleDeviceReset `m = v4`（设备复位处理器置值）；①HandleDeviceReset ②设备复位流程 ③+3280 域 ④PalScriptMgr ⑤设备复位交互；confidence=65"
     },
     "3284": {
       "name": "m_pTodo_CD4",
@@ -646,62 +646,62 @@
     "28": {
       "name": "m_nTodo_018",
       "type": "float",
-      "source": "reverted_auto_semantic:1x"
+      "source": "reverted_auto_semantic:1x | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "32": {
       "name": "m_nTodo_01C",
       "type": "float",
-      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
+      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "36": {
       "name": "m_nTodo_020",
       "type": "float",
-      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
+      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "40": {
       "name": "m_nTodo_024",
       "type": "int",
-      "source": "reverted_auto_semantic:1x_access | [主攻点2续 2026-10-17] 五面 4/5 挂账（不达五面不赋名）：①调用者=UpdateScriptRoles case 分支族 ②被调=目标值流入 ProcessAction 族（值型未定）③成员=+40 读写·与 m_pTodo_84 表 3×idx 联动·与 m_fCamX/m_fCamY 同流 ④类归属=PalScriptMgr ✓ ⑤交互=脚本命令 case 重置/赋值；**③值型面未定**（int vs 指针）⇒ 挂账；功能定性=脚本命令目标槽"
+      "source": "reverted_auto_semantic:1x_access | [主攻点2续 2026-10-17] 五面 4/5 挂账（不达五面不赋名）：①调用者=UpdateScriptRoles case 分支族 ②被调=目标值流入 ProcessAction 族（值型未定）③成员=+40 读写·与 m_pTodo_84 表 3×idx 联动·与 m_fCamX/m_fCamY 同流 ④类归属=PalScriptMgr ✓ ⑤交互=脚本命令 case 重置/赋值；**③值型面未定**（int vs 指针）⇒ 挂账；功能定性=脚本命令目标槽 | evidence: 详前文 A 级形证 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "100": {
       "name": "m_nTodo_060",
       "type": "int",
-      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
+      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "104": {
       "name": "m_nTodo_064",
       "type": "int",
-      "source": "transfer_from_Camera_off_504"
+      "source": "transfer_from_Camera_off_504 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "108": {
       "name": "m_nTodo_068",
       "type": "short",
-      "source": "A:66_prefix_word_access_in_class_method"
+      "source": "A:66_prefix_word_access_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "112": {
       "name": "m_nTodo_06C",
       "type": "short",
-      "source": "A:66_prefix_word_access_in_class_method"
+      "source": "A:66_prefix_word_access_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "116": {
       "name": "m_nTodo_070",
       "type": "int",
-      "source": "transfer_from_Camera_off_516"
+      "source": "transfer_from_Camera_off_516 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "120": {
       "name": "m_nTodo_074",
       "type": "float",
-      "source": "A:FPU_disp8_in_class_method"
+      "source": "A:FPU_disp8_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "124": {
       "name": "m_nTodo_078",
       "type": "int",
-      "source": "transfer_from_Camera_off_524"
+      "source": "transfer_from_Camera_off_524 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "128": {
       "name": "m_nTodo_07C",
       "type": "float",
-      "source": "A:FPU_disp8_in_class_method"
+      "source": "A:FPU_disp8_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "132": {
       "name": "m_nExecParam",
@@ -721,7 +721,7 @@
     "288": {
       "name": "m_nTodo_11C",
       "type": "int",
-      "source": "transfer_from_Camera_off_688"
+      "source": "transfer_from_Camera_off_688 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "956": {
       "name": "m_nState",
@@ -836,7 +836,7 @@
     "636": {
       "name": "m_nTodo_278",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "1148": {
       "name": "m_nFrameState",
@@ -941,7 +941,7 @@
     "3309": {
       "name": "m_nTodo_CE9",
       "type": "unsigned char",
-      "source": "binary_scan:3refs"
+      "source": "binary_scan:3refs | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
     },
     "3700": {
       "name": "m_nField_0E70",

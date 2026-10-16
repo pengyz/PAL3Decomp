@@ -78,7 +78,7 @@
     "124": {
       "name": "m_nTodo_7C",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib | [批4 诚实化 2026-10-16] A偏移形：m_nPathField7C⇒m_nTodo_7C（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动） | [主攻点2续 2026-10-17] 五面 4/5 挂账：①调用者=RoleSystem::ProcessWaypoint+AllocPathPage（45 站）②被调=**slot0 接口虚调用目标未知**（经其 vptr 派发）③成员=+124 读为指针·写 [0..2] 三槽（[0]=1 标志）·+16 链步（m_nTodo_7C+4）④类归属=RoleSystem 寻路 ✓ ⑤交互=路径页分配生命周期（Alloc 写 flag=1）；**②被调用者语义未满**（slot0 方法名未解析）⇒ 挂账；功能定性=路径页链表/分配游标"
+      "source": "B:naming_m_n+FPU_misattrib | [批4 诚实化 2026-10-16] A偏移形：m_nPathField7C⇒m_nTodo_7C（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动） | [主攻点2续 2026-10-17] 五面 4/5 挂账：①调用者=RoleSystem::ProcessWaypoint+AllocPathPage（45 站）②被调=**slot0 接口虚调用目标未知**（经其 vptr 派发）③成员=+124 读为指针·写 [0..2] 三槽（[0]=1 标志）·+16 链步（m_nTodo_7C+4）④类归属=RoleSystem 寻路 ✓ ⑤交互=路径页分配生命周期（Alloc 写 flag=1）；**②被调用者语义未满**（slot0 方法名未解析）⇒ 挂账；功能定性=路径页链表/分配游标 | evidence: 详前文 A 级形证"
     },
     "128": {
       "name": "m_fMoveX",
@@ -623,7 +623,7 @@
     "1484": {
       "name": "m_fMoveTargetY",
       "type": "int",
-      "source": "gen_headers_9.2 | type_fix:float鈫抜nt_raw_decomp | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x412F79 `m_fMoveTargetY = m_wndcolor.Color` DWORD 位搬（判据③）；名 m_f 挂账"
+      "source": "gen_headers_9.2 | type_fix:float鈫抜nt_raw_decomp | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x412F79 `m_fMoveTargetY = m_wndcolor.Color` DWORD 位搬（判据③）；名 m_f 挂账 | evidence: 详前文 A 级形证"
     },
     "1488": {
       "name": "m_fMoveTargetZ",
@@ -1542,6 +1542,11 @@
       "name": "_scalar_dtor_0270",
       "signature": "void __thiscall()",
       "source": " | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x420290 写 vptr 0x56AAD8（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AAD8→RoleSystem（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x420290 写 vptr 0x56AAD8"
+    },
+    "0x00532D50": {
+      "name": "ClearStateMode",
+      "signature": "void __thiscall RoleSystem::ClearStateMode(RoleSystem *this)",
+      "source": "[函数归属 2026-10-17·余 8] RoleSystem——②`ClearStateMode(RoleSystem *this)` 类名直证 ✓ + ①ExternalStatistics::UpdateFromRole ③m_rect.right=0 ✓（**decompile 类名直证**（非 signature this ✗ 铁律）=decomp 产出的类限定 ✓）"
     }
   },
   "vtables": [

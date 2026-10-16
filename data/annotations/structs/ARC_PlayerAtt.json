@@ -132,5 +132,12 @@
     "ARC_RoleAtt"
   ],
   "base_size": 852,
-  "_cascade_note": "2026-09-24: ARC_PlayerItem=12（stride 铁证）⇒ wear[2] 后成员 +4 平移；binary_size 1408→1412（编译 sizeof 实测吻合）"
+  "_cascade_note": "2026-09-24: ARC_PlayerItem=12（stride 铁证）⇒ wear[2] 后成员 +4 平移；binary_size 1408→1412（编译 sizeof 实测吻合）",
+  "methods": {
+    "0x004A16C0": {
+      "name": "Create__ovl_1",
+      "signature": "void __thiscall ARC_PlayerAtt::Create(ARC_PlayerAtt *this)",
+      "source": "[函数归属 2026-10-17·余 8] ARC_PlayerAtt——②签名 `void __thiscall Create__ovl_1(ARC_PlayerAtt *this)` **decompile 类名直证** ✓ + ①41 站（CCBUIPanel::InitPanel 族）③this->_todo_048=parent ✓（**decompile 类名直证**（非 signature this ✗ 铁律）=decomp 产出的类限定 ✓）"
+    }
+  }
 }
