@@ -143,7 +143,26 @@
     },
     "0x00432980": {
       "name": "ResizeOpcodeParams",
-      "signature": "void __thiscall(PtrArray *this)"
+      "signature": "void __thiscall(PtrArray *this)",
+      "source": " | [名账正名 2026-10-16] idapro decompile（session 753ed139）：体=`PtrArray::SetSize(this)` 单行包装——**无 vptr 写 ⇒ 非 ctor 本体**（构造闭包/尺寸重置形候选）· xref 零命中 ⇒ **禁猜挂账**（保留现名 ResizeOpcodeParams，ctor 真名待调用面取证）"
+    },
+    "0x00432960": {
+      "name": "_todo_2960",
+      "signature": "void __thiscall()",
+      "source": " | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB9C 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AB9C）：本体 56 8b f1 e8 18 00 00 00"
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AB9C",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00432960",
+          "from": null
+        }
+      ],
+      "source": "[97 族 ctor 注册解锁批 2026-10-16 analyzer] 认领 A 级：ctor 0x432980 开头写（ctor 形）+SetScriptInitFlag+34；ctor 已注册（名账 ResizeOpcodeParams 待正名）解锁"
+    }
+  ]
 }

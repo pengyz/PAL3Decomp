@@ -3,14 +3,14 @@
   "pdb_size": 4,
   "known_members": {
     "856": {
-      "name": "m_ptr_358",
+      "name": "m_nTodo_358",
       "type": "char *",
-      "source": "codegen_offset_infer"
+      "source": "codegen_offset_infer | [批4 诚实化 2026-10-16] A偏移形：m_ptr_358⇒m_nTodo_358（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "32": {
-      "name": "m_ptr_20",
+      "name": "m_nTodo_20",
       "type": "int *",
-      "source": "codegen_offset_infer"
+      "source": "codegen_offset_infer | [批4 诚实化 2026-10-16] A偏移形：m_ptr_20⇒m_nTodo_20（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "4": {
       "name": "m_bufHead",
@@ -165,7 +165,8 @@
     },
     "0x00423880": {
       "name": "ProcessFrame",
-      "signature": "void __thiscall ScriptVM::ProcessFrame()"
+      "signature": "void __thiscall ScriptVM::ProcessFrame()",
+      "source": " | [名账正名 2026-10-16] idapro decompile：体=`BINK::Destroy(this)` + m_nPathStep 循环 + operator delete（??3）——**清理/析构形 ⇒ 非 ctor**（lead 疑「gbLightObj ctor」证否）· xref 零命中 ⇒ **禁猜挂账**（保留现名 ProcessFrame；清理语义明但真名待全形核）"
     },
     "0x0042D4B0": {
       "name": "SetRolePosition",
@@ -181,8 +182,9 @@
     },
     "0x00424c20": {
       "name": "ExecuteBlock",
-      "signature": "void __thiscall()",
-      "_misattrib_evidence": "round3: interpreter loop; ScriptVM::CallFunction/SetRolePosition on own this (mov ecx,esi); IsRunning(0x42C1A0) callers all inside this function"
+      "signature": "void __thiscall(ScriptVM *this)",
+      "_misattrib_evidence": "round3: interpreter loop; ScriptVM::CallFunction/SetRolePosition on own this (mov ecx,esi); IsRunning(0x42C1A0) callers all inside this function",
+      "source": " | ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 `void __thiscall()`；A 级：0x424C20 ScriptVM 成员访问"
     },
     "0x0042CB70": {
       "name": "FightInfo",
