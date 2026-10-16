@@ -63,6 +63,12 @@
       "name": "_ScriptObj_adjthunk2",
       "signature": "void __thiscall()",
       "source": "[thunk 命名落地 2026-10-16·裁决 A] adjustor thunk（sub ecx,0x40 ; jmp 0x411bd0）⇒ 目标名 ~ScriptObj + _adjthunk ⇒ ~ScriptObj_adjthunk2（零语义发明 ✓ 目标名继承；A 级=指令形 + idapro decompile 目标名） | thunk 形统一 2026-10-17（verifier A 级）：disasm 0x41BE20=`sub ecx,38h; jmp ScriptObj::~ScriptObj(int)`、0x41BE30=`sub ecx,40h; jmp 同` = 析构 adjustor thunk 实锤；原名 `~ScriptObj_adjthunkN` 语义对但**制式非法**（`~` 前缀非合法标识符 ⇒ 注解 `~`/生成 `_` 三源分叉）⇒ 统一制式 `_ScriptObj_adjthunkN`（与生成侧对齐）"
+    },
+    "0x0041BE20": {
+      "name": "Object_adjthunk_1be20",
+      "signature": "void __thiscall()",
+      "declaration_only": true,
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）—— Role 继承槽引用 + declaration_only"
     }
   },
   "vtables": [
