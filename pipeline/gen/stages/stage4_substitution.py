@@ -2457,15 +2457,18 @@ def run(code, ctx):
                 result, _entries2, unit_name=getattr(ctx, 'cls_name', None))
         except Exception:
             pass
-        # [型名替换第三形 2026-10-16] 119 站定向逆转（4 组，嵌入接收者带 &）
-        try:
-            _al3 = _os.path.join(_os.path.dirname(_al_path), 'sig3_allowlist.json')
-            with open(_al3, encoding='utf-8') as _fh:
-                _entries3 = _json.load(_fh)['sites']
-            result, _a3, _s3 = apply_mrect_allowlist(
-                result, _entries3, unit_name=getattr(ctx, 'cls_name', None))
-        except Exception:
-            pass
+        # [型名替换第三形 2026-10-16] ⚠️ **接线暂回退**（三态对照定谳中）：
+        # int** 形位等价误伤（L1 202→190）已修为 int* 槽读形；但复测 L1 读数 128
+        # 伴总体崩（1356→898）——与树竞态/基线交织叠加，须「无 sig-3」基线对照才能
+        # 归因。清单/库/测试保留（data/annotations/sig3_allowlist.json 119 站）。
+        # try:
+        #     _al3 = _os.path.join(_os.path.dirname(_al_path), 'sig3_allowlist.json')
+        #     with open(_al3, encoding='utf-8') as _fh:
+        #         _entries3 = _json.load(_fh)['sites']
+        #     result, _a3, _s3 = apply_mrect_allowlist(
+        #         result, _entries3, unit_name=getattr(ctx, 'cls_name', None))
+        # except Exception:
+        #     pass
     except Exception:
         pass
     # F2 offset 形接线 2026-10-07（非零基类——复核 N4/N5 通路）
