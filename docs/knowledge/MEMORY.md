@@ -46,6 +46,7 @@
 - [**归属信号的真实覆盖**](gotcha_attribution_signal_limits.md) — mangled 名可靠但 F2 缺口只命中 3/57；**IDA/注解的函数名本身不可信**；operator new=0x55353b 但 size 不唯一；F2 缺口分 A/C/D 三组
 - [**PE 节范围须用 max(VirtualSize,SizeOfRawData)**](gotcha_pe_section_extent_max_vsz_rsz.md) — 按 VirtualSize 读 `.rdata` 会截掉尾部，把 `0x5704A8` 等**真实存在的 vtable** 误判为"未映射"，产出"18 个注解 vtable 是伪造的"**假发现**
 - [**/OPT:ICF 使函数地址共享**](gotcha_icf_function_address_sharing.md) — 相同的函数被折叠到一个地址 ⇒「同一函数出现在两张不相关的 vtable」**不是**矛盾，不能当归属证据；要用 `[this+off]` 的语义/数据流判定
+- [**注解类型瞬态 churn→就地 extern 空型渲染**](gotcha_annotation_type_churn_empty_extern_render.md) — 并发编辑窗内型名瞬缺 ⇒ `globals.h` 渲出空型坏行 ⇒ 全单元同崩一行、S2 塌 0 的**总体幻影**；判据=同崩一行 + **崩/好双态同源**（stage 静态下稍后复渲即好 ⇒ 排除 stage 损坏）；修法=等编辑窗 + 渲染层遇空型 fail-loud（挂账）
 - [**compile_regression 读的是缓存 census**](gotcha_compile_regression_reads_cached_census.md) — 它从不重新编译，只读 `data/status/probe_census.json` ⇒ `codegen all` 后直接跑它会用**上一轮**数据报「✅ No regressions」；正确顺序是 codegen → **probe all** → compile_regression → error_classifier → match
 - [**错误 census 不是源码的纯函数**](gotcha_error_census_not_a_pure_function_of_the_tree.md) — C1003 截断 15 个文件（恰 102 条，逐码增减不可测）+ 修掉早期错误会让后期错误"浮现"（CCBStage C2440 5→7 但 L3536/3540 源码逐字未变）⇒ "总错误数/逐码增减"是带噪声的指示器，可信量是 ok 文件数与 L1 多重集；工具 `tools/regression_detector.py` 已剔除截断单元
 - [**可选后缀写在捕获组外 ⇒ 解析分支成死代码**](gotcha_optional_group_suffix_kills_parse_branch.md) — `RET_RE` 的 `h?` 吃掉 h，所有 `retn` 多位立即数按十进制解析，静默污染"显式 this 证据门"的二进制真值（`B-ODDRET` 不发 slots ⇒ 门永久阻塞；`20h`→错 slots；`0Ch`→ValueError 被吞）；pack 的 `err` 字段一直记着现场却无人消费。修法须收窄到"可被证明错"的 29 条，"顺手重评整张 pack"会误伤 54 条 `A-V2`

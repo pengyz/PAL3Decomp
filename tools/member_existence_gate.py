@@ -12,6 +12,10 @@ v2 重写（复核 5eb371d4 四硬伤返工 + fbe198d4 六条件收口）：
 - **判据①this 物化锚、④尺寸锚、区间覆盖仲裁：未实现**（_meta.caveats 如实标注，不虚标）。
 
 口径（P1-e）：_meta 记录探针/输入 md5 + 参数 + 时间戳；行内证据带 insn VA + 形态。
+⚠️ 覆盖扩展（2026-10-16，R11 契约守恒）：MEG_EXTEND_XREF=1 开启语料外（gap）域补扫
+（classify_gap_regions + scan_shape_index 纯函数，tests/test_xref_coverage.py 6/6）；
+默认关。stash 判别实证（2026-10-17）：HEAD 版 self-test=13/37 FAIL（既有契约债，非本扩展引入）；
+开/关旗标败数同 13/37 ⇒ gap 合流契约中性；13 败项疑黄金案读活注解数据随他线在途漂移，待独立核查。
 用法（只读）：
     python tools/member_existence_gate.py                # 全库裁定报告
     python tools/member_existence_gate.py --class PAL3
@@ -182,8 +186,102 @@ def build_xref_index():
                         shape = 'other'
                 if target is not None and 0x400000 <= target < 0x2000000:
                     idx[target].append((ins.address, mn, shape))
+    if not os.environ.get('MEG_EXTEND_XREF'):
+        _CACHED['xref'] = idx
+        return idx
+    # 语料外（gap）域补扫（2026-10-16 覆盖扩展：xref 此前仅扫 decomp 语料函数域 ⇒
+    # 语料外成员无从判证 = pending 2751 的 73.6% 盲区；gap 证据与语料内同强度（指令级 A 级））
+    _, _, sections, _ = _load()
+    text = next((x for x in sections if x[0] in ('.text', 'TEXT')), None)
+    if text:
+        t0, t1 = text[1], text[1] + text[2]
+        gaps = classify_gap_regions((t0, t1), funcs)
+        gap_idx = scan_shape_index(data, t0, va2off, gaps)
+        for k, v in gap_idx.items():
+            idx[k].extend(v)
     _CACHED['xref'] = idx
     return idx
+
+
+# ---------------------------------------------------------------- 覆盖扩展（R15 纯函数，tests/test_xref_coverage.py）
+
+def classify_gap_regions(text_span, func_ranges):
+    """语料函数域对 .text 的补集 = 语料外（gap）域（纯函数）。
+    text_span=(start,end) 端不含；func_ranges=[(fva,size)]；重叠域先并、越界裁剪。
+    返回 [(start,size),...] 升序不相交。"""
+    t0, t1 = text_span
+    clipped = []
+    for fva, sz in func_ranges:
+        a, b = max(fva, t0), min(fva + sz, t1)
+        if b > a:
+            clipped.append((a, b))
+    clipped.sort()
+    merged = []
+    for a, b in clipped:
+        if merged and a <= merged[-1][1]:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], b))
+        else:
+            merged.append((a, b))
+    gaps, cur = [], t0
+    for a, b in merged:
+        if a > cur:
+            gaps.append((cur, a - cur))
+        cur = max(cur, b)
+    if t1 > cur:
+        gaps.append((cur, t1 - cur))
+    return gaps
+
+
+def scan_shape_index(code, base_va, va2off, ranges):
+    """对任意域做单遍形态索引（纯函数逻辑；不改全局缓存）。
+    形态口径与 build_xref_index 同源：push_arg/lea/addr/mov_imm/mov_load/mov_store/fpu/cmp/other。
+    不可解码字节单遍前进不崩（R15 契约：确定性、零 IO 副作用）。"""
+    import capstone
+    from capstone import x86 as cs_x86
+    md = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
+    md.detail = True
+    idx = collections.defaultdict(list)
+    for rva, rsz in ranges:
+        off = va2off(rva)
+        if off is None or rsz <= 0 or rsz > 0x30000:
+            continue
+        blob = code[off:off + rsz]
+        pos = 0
+        while pos < len(blob):
+            ins_list = list(md.disasm(blob[pos:pos + 15], rva + pos, count=1))
+            if not ins_list:
+                pos += 1
+                continue
+            ins = ins_list[0]
+            mn = ins.mnemonic
+            for op in ins.operands:
+                target, shape = None, 'other'
+                if op.type == cs_x86.X86_OP_IMM:
+                    target = op.imm & 0xFFFFFFFF
+                    if mn == 'push':
+                        shape = 'push_arg'
+                    elif mn == 'lea':
+                        shape = 'lea'
+                    elif mn.startswith('mov'):
+                        shape = 'mov_imm' if (ins.operands and
+                                              ins.operands[0].type == cs_x86.X86_OP_MEM) else 'addr'
+                elif op.type == cs_x86.X86_OP_MEM and op.mem.base == 0 and op.mem.index == 0:
+                    target = op.mem.disp & 0xFFFFFFFF
+                    if mn.startswith('f') and mn not in ('fs',):
+                        shape = 'fpu'
+                    elif mn in ('cmp', 'test'):
+                        shape = 'cmp'
+                    elif mn == 'lea':
+                        shape = 'lea'
+                    elif mn.startswith('mov'):
+                        shape = 'mov_store' if ins.operands[0] is op else 'mov_load'
+                        if mn == 'mov' and ins.operands[0] is op and \
+                                ins.operands[1].type == cs_x86.X86_OP_IMM:
+                            shape = 'mov_imm'
+                if target is not None and 0x400000 <= target < 0x2000000:
+                    idx[target].append((ins.address, mn, shape))
+            pos += ins.size
+    return dict(idx)
 
 
 def _find_guard_jump(win):

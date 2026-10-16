@@ -2,7 +2,8 @@
  "_meta": {
   "extracted": "2026-10-16 analyzer",
   "count": 36,
-  "note": "MXTransport 迁移族签名正名全集（当场核实 36 条 ✓ 与 lead 口径对齐——含 UIRoleDialog 双注册 dtor/deleting 双件 0x4BEF30/0x4BEF50；5 条确定含于内）；判据优先级：ret-N（A 级尾扫）> PDB 形（B 级参考）> 现签名"
+  "note": "MXTransport 迁移族签名正名全集（当场核实 36 条 ✓ 与 lead 口径对齐——含 UIRoleDialog 双注册 dtor/deleting 双件 0x4BEF30/0x4BEF50；5 条确定含于内）；判据优先级：ret-N（A 级尾扫）> PDB 形（B 级参考）> 现签名",
+  "exec_amendment": "2026-10-16 analyzer 执行前核对：固化单 target 字段 3 类缺陷（返回型丢 *×5 · gb 跳板 retN 伪值×6 · Render 参数误删×1）⇒ target_fixed 为准（保守规则：返回型/已有参形不动，缺参补占位，清非法限定）"
  },
  "entries": [
   {
@@ -17,7 +18,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；",
+   "target_fixed": "int __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -31,7 +34,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；",
+   "target_fixed": "void __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -45,7 +50,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；",
+   "target_fixed": "void __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -59,7 +66,9 @@
    "n": 1,
    "ret_n": 4,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=4 ⇒ 1 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=4 ⇒ 1 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；",
+   "target_fixed": "int __thiscall(int nVal1)",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -73,7 +82,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；",
+   "target_fixed": "void __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -87,7 +98,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；",
+   "target_fixed": "ScreenEffect * __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -101,7 +114,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；",
+   "target_fixed": "bool __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -115,7 +130,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；",
+   "target_fixed": "int __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -129,7 +146,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；",
+   "target_fixed": "char * __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -143,7 +162,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；",
+   "target_fixed": "int * __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -157,7 +178,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；",
+   "target_fixed": "void __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -171,7 +194,9 @@
    "n": 1,
    "ret_n": 4,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=4 ⇒ 1 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=4 ⇒ 1 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；",
+   "target_fixed": "void __thiscall(float fVal)",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -185,7 +210,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；",
+   "target_fixed": "void __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -199,7 +226,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；",
+   "target_fixed": "void __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -213,7 +242,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；",
+   "target_fixed": "void __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -227,7 +258,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；",
+   "target_fixed": "void __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/free_functions.cpp",
@@ -241,7 +274,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": "??0MXTransport@@QAE@XZ() size=209",
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 形互证: ??0MXTransport@@QAE@XZ() size=209；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 形互证: ??0MXTransport@@QAE@XZ() size=209；",
+   "target_fixed": "void __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "Misc/UIRoleDialog.cpp",
@@ -255,7 +290,9 @@
    "n": 1,
    "ret_n": 4,
    "pdb": "??_GMXTransport@@UAEPAXI@Z size=46",
-   "evidence": "A级 ret-N 尾扫 N=4；PDB ??_GMXTransport@@UAEPAXI@Z size=46 —— 迁移族 dtor/deleting 双件（写表点 0x4BEF6D 复写 0x56F580）；三名裁定=真身 MXTransport"
+   "evidence": "A级 ret-N 尾扫 N=4；PDB ??_GMXTransport@@UAEPAXI@Z size=46 —— 迁移族 dtor/deleting 双件（写表点 0x4BEF6D 复写 0x56F580）；三名裁定=真身 MXTransport",
+   "target_fixed": "void __thiscall(int)",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1"
   },
   {
    "file": "Misc/UIRoleDialog.cpp",
@@ -269,7 +306,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": "??1MXTransport@@UAE@XZ() size=99",
-   "evidence": "A级 ret-N 尾扫 N=0；PDB ??1MXTransport@@UAE@XZ() size=99 —— 迁移族 dtor/deleting 双件（写表点 0x4BEF6D 复写 0x56F580）；三名裁定=真身 MXTransport"
+   "evidence": "A级 ret-N 尾扫 N=0；PDB ??1MXTransport@@UAE@XZ() size=99 —— 迁移族 dtor/deleting 双件（写表点 0x4BEF6D 复写 0x56F580）；三名裁定=真身 MXTransport",
+   "target_fixed": "void __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -283,7 +322,9 @@
    "n": 1,
    "ret_n": 4,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=4 ⇒ 1 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=4 ⇒ 1 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；",
+   "target_fixed": "gbVFileSystem * __thiscall(int nVal)",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -297,7 +338,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；",
+   "target_fixed": "void __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/Misc/UIRoleDialog.cpp",
@@ -311,7 +354,9 @@
    "n": 1,
    "ret_n": 4,
    "pdb": "?Create@MXTransport@@UAEXKH@Z(ulong,int) size=2101",
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=4 ⇒ 1 个栈参；PDB 形互证: ?Create@MXTransport@@UAEXKH@Z(ulong,int) size=2101；⚠️ PAL3/PAL3A 参数形变体（PDB 参形≠ret-N）；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=4 ⇒ 1 个栈参；PDB 形互证: ?Create@MXTransport@@UAEXKH@Z(ulong,int) size=2101；⚠️ PAL3/PAL3A 参数形变体（PDB 参形≠ret-N）；",
+   "target_fixed": "void __thiscall(int nVal)",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1"
   },
   {
    "file": "pal3/src/Misc/UIRoleDialog.cpp",
@@ -325,7 +370,9 @@
    "n": 1,
    "ret_n": 4,
    "pdb": "?Destroy@MXTransport@@UAEXXZ() size=156",
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=4 ⇒ 1 个栈参；PDB 形互证: ?Destroy@MXTransport@@UAEXXZ() size=156；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=4 ⇒ 1 个栈参；PDB 形互证: ?Destroy@MXTransport@@UAEXXZ() size=156；",
+   "target_fixed": "int __thiscall(int nVal)",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1"
   },
   {
    "file": "pal3/src/Misc/UIRoleDialog.cpp",
@@ -339,7 +386,9 @@
    "n": 1,
    "ret_n": 4,
    "pdb": "?Render@MXTransport@@UAEXPAUgbRenderInfoObj@@@Z(gbRenderInfoObj*) size=791",
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=4 ⇒ 1 个栈参；PDB 形互证: ?Render@MXTransport@@UAEXPAUgbRenderInfoObj@@@Z(gbRenderInfoObj*) size=791；⚠️ PAL3/PAL3A 参数形变体（PDB 参形≠ret-N）；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=4 ⇒ 1 个栈参；PDB 形互证: ?Render@MXTransport@@UAEXPAUgbRenderInfoObj@@@Z(gbRenderInfoObj*) size=791；⚠️ PAL3/PAL3A 参数形变体（PDB 参形≠ret-N）；",
+   "target_fixed": "void __thiscall(int nVal)",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -353,7 +402,9 @@
    "n": 1,
    "ret_n": 4,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=4 ⇒ 1 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=4 ⇒ 1 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；",
+   "target_fixed": "void __thiscall(float fVal)",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -367,7 +418,9 @@
    "n": 1,
    "ret_n": 4,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=4 ⇒ 1 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=4 ⇒ 1 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；",
+   "target_fixed": "int __thiscall(int nType)",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -381,7 +434,9 @@
    "n": 1,
    "ret_n": 4,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=4 ⇒ 1 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=4 ⇒ 1 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；",
+   "target_fixed": "int __thiscall(gbMatrix4 *pMat)",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -395,7 +450,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；",
+   "target_fixed": "int * __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -409,7 +466,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；",
+   "target_fixed": "int __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -423,7 +482,9 @@
    "n": 0,
    "ret_n": 0,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=0 ⇒ 0 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；⚠️ 现签名含非法类限定 ScreenEffectMgr:: 需清；",
+   "target_fixed": "BOOL __thiscall()",
+   "exec_note": "返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -437,7 +498,9 @@
    "n": 2,
    "ret_n": 8,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=8 ⇒ 2 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=8 ⇒ 2 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；",
+   "target_fixed": "void __thiscall(int nEnable)",
+   "exec_note": "跳板 tail-jmp 无 ret（retN=8 尾扫伪值）⇒ 参形保留现状；仅清限定"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -451,7 +514,9 @@
    "n": 2,
    "ret_n": 8,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=8 ⇒ 2 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=8 ⇒ 2 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；",
+   "target_fixed": "void __thiscall(gbAABBox *pBox)",
+   "exec_note": "跳板 tail-jmp 无 ret（retN=8 尾扫伪值）⇒ 参形保留现状；仅清限定"
   },
   {
    "file": "?",
@@ -465,7 +530,9 @@
    "n": 2,
    "ret_n": 8,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=8 ⇒ 2 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=8 ⇒ 2 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；",
+   "target_fixed": "void __thiscall(gbRenderInfoObj *)",
+   "exec_note": "跳板 tail-jmp 无 ret（retN=8 尾扫伪值）⇒ 参形保留现状；仅清限定"
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -479,7 +546,9 @@
    "n": 2,
    "ret_n": 8,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=8 ⇒ 2 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=8 ⇒ 2 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；",
+   "target_fixed": "void __thiscall(gbSphere *pSphere)",
+   "exec_note": "跳板 tail-jmp 无 ret（retN=8 尾扫伪值）⇒ 参形保留现状；仅清限定"
   },
   {
    "file": "?",
@@ -493,7 +562,9 @@
    "n": 2,
    "ret_n": 8,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=8 ⇒ 2 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=8 ⇒ 2 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；",
+   "target_fixed": "void __thiscall(float)",
+   "exec_note": "跳板 tail-jmp 无 ret（retN=8 尾扫伪值）⇒ 参形保留现状；仅清限定"
   },
   {
    "file": "?",
@@ -507,7 +578,9 @@
    "n": 2,
    "ret_n": 8,
    "pdb": null,
-   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=8 ⇒ 2 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；"
+   "evidence": "A级 ret-N 尾扫（objdump 汇编首 ret）N=8 ⇒ 2 个栈参；PDB 无对应（名字域 ScreenEffectMgr/转发跳板）；",
+   "target_fixed": "void __thiscall(int nVal1, int nVal2)",
+   "exec_note": "跳板 tail-jmp 无 ret（retN=8 尾扫伪值）⇒ 参形保留现状；仅清限定"
   }
  ]
 }

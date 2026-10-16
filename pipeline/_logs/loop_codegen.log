@@ -1,0 +1,437 @@
+  Cleaned: /home/peng/workspace/PAL3Decomp/pal3/src/
+[clean] Done
+Generated 726 header files in /home/peng/workspace/PAL3Decomp/pal3/src
+  With annotation layout: 1080
+  With methods: 226
+  Enums: 0
+  Template stubs: 0
+  Phantom globals skipped: 27 (arr, unk_C0A40E, unk_C1096C, dword_C109F0, dword_C10A08, dword_C1109C, dword_C110CC, dword_C110D0, dword_C11760, flt_D8BBC0)
+    ... and 17 more
+  Annotation-skipped globals: 75
+  Globals: 3059 in globals.h
+
+[WARN] Header generation found 33 annotation conflicts (deduplicated):
+  DUPLICATE METHOD: CCBRoleState::UpdatePanel(BOOL) (addr=0x004dc250)
+  DUPLICATE METHOD: CCBRoleState::AddCommand(int, BOOL, int) (addr=0x004f2c70)
+  DUPLICATE METHOD: Object::FatalExit() (addr=0x55434f)
+  DUPLICATE METHOD: Object::Update(int) (addr=0x4af760)
+  DUPLICATE METHOD: Object::_ScriptObj_adjthunk1() (addr=0x0041be20)
+  DUPLICATE METHOD: RoleStatePanel::RenderThrottled() (addr=0x004a5930)
+  DUPLICATE METHOD: RoleStatePanel::UpdateCaptions() (addr=0x004a5b30)
+  DUPLICATE METHOD: RoleStatePanel::InitUI() (addr=0x004a1e40)
+  DUPLICATE METHOD: RoleStatePanel::~RoleStatePanel() (addr=0x004a2450)
+  DUPLICATE METHOD: RoleStatePanel::SetItemData(int, unsigned int) (addr=0x004a3900)
+  DUPLICATE METHOD: RoleStatePanel::HandleDeviceLostB() (addr=0x004a4780)
+  DUPLICATE METHOD: RoleStatePanel::Render() (addr=0x004a4820)
+  DUPLICATE METHOD: RoleStatePanel::GetSelected() (addr=0x004a4890)
+  DUPLICATE METHOD: RoleStatePanel::InitSlots(int) (addr=0x004a48b0)
+  DUPLICATE METHOD: RoleStatePanel::InitLayout(int) (addr=0x004a4960)
+  DUPLICATE METHOD: RoleStatePanel::CreateWidgets(int) (addr=0x004a4a10)
+  DUPLICATE METHOD: RoleStatePanel::SetSelectedData(int) (addr=0x004a4ac0)
+  DUPLICATE METHOD: RoleStatePanel::Init(int) (addr=0x004a4b70)
+  DUPLICATE METHOD: RoleStatePanel::Create() (addr=0x004a4c20)
+  DUPLICATE METHOD: RoleStatePanel::SetEquipSlotData() (addr=0x004a4fc0)
+  DUPLICATE METHOD: RoleStatePanel::LayoutHandleNav() (addr=0x004a5a80)
+  DUPLICATE METHOD: SaleUI::~SaleUI() (addr=0x0045ae60)
+  DUPLICATE METHOD: SaleUI::LoadState(const void *) (addr=0x0045b7a0)
+  DUPLICATE METHOD: SaleUI::InitCombatUI(int) (addr=0x0045b990)
+  DUPLICATE METHOD: SaleUI::UpdateSkillPanel() (addr=0x00460a90)
+  DUPLICATE METHOD: SaleUI::InitMode(int) (addr=0x00461c50)
+  DUPLICATE METHOD: SaleUI::CreatePanelElements(CCBUIPanel *) (addr=0x004623a0)
+  DUPLICATE METHOD: SaleUI::SetupPlayerDisplay(int) (addr=0x00469d90)
+  DUPLICATE METHOD: SaleUI::HandleInput(int, int, int) (addr=0x00469eb0)
+  DUPLICATE METHOD: SaleUI::ToggleSlot1(unsigned __int8) (addr=0x004712d0)
+  DUPLICATE METHOD: SaleUI::ToggleSlot4(unsigned __int8) (addr=0x004714e0)
+  DUPLICATE METHOD: ScriptVM::ExecuteBlock() (addr=0x00424c20)
+  DUPLICATE METHOD: UIListBox::CreateChild() (addr=0x0043f560)
+  Globals: 2994 in globals.cpp
+  Globals: 2994 in globals.cpp
+Collecting functions from decomp...
+  Classes with methods: 208
+  Free functions: 334
+
+Generated 209 .cpp files (3510 functions) in /home/peng/workspace/PAL3Decomp/pal3/src
+  Combat/: 25 files
+  Data/: 2 files
+  Effect/: 18 files
+  GameBase/: 6 files
+  MiniGame/: 2 files
+  Misc/: 117 files
+  Render/: 5 files
+  Role/: 6 files
+  Scene/: 6 files
+  Script/: 4 files
+  UI/: 17 files
+[phase2-retain] manifest 空 ⇒ no-op
+S2 cpp: 140/210 ok | own-fail 70 | imported-only 0  (28s)
+Top root-cause headers (files blocked):
+report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
+================================================================================
+编译回归检测报告
+================================================================================
+基线: 20261016_200152
+基线时间: 2026-10-16T20:01:52.945642
+检测时间: 2026-10-17T01:08:19.927331
+
+📊 摘要:
+  总文件数: 210
+  新失败: 5
+  新错误(真新增 (code,msg)): 11
+  已修复: 1
+  错误收敛(消失 (code,msg)): 23
+  持续失败: 64
+
+🔢 逐错误码净增减 (正=增加，负=减少):
+----------------------------------------
+  C2039    +30  ⚠️ 增加
+  C2065    -23
+  C2660    +21  ⚠️ 增加
+  C2228    -20
+  C2109    -20
+  C2059    -5
+  C2227    -5
+  C2664    -4
+  C2440    -4
+  C2102    -3
+  C2036    -2
+  C2653    +2  ⚠️ 增加
+  C2373    +2  ⚠️ 增加
+  C2040    -1
+  C2512    -1
+  ⚠️ 注意: 以下错误码**净增** C2039, C2373, C2653, C2660, C2673 —— 即使总错误数在下降也要逐条归因
+
+❌ 新失败 (之前成功，现在失败):
+----------------------------------------
+  pal3/src/Combat/CCBAttackSequen.cpp
+    L409: C2065 - 'Buffer' : undeclared identifier
+  pal3/src/Misc/UICaption.cpp
+    L391: C2065 - 'sdtor_15' : undeclared identifier
+  pal3/src/Effect/CEffSParticle.cpp
+    L372: C2039 - 'CEffObj' : is not a member of 'CEffMgr'
+    L372: C2039 - 'CEffObj' : is not a member of 'CEffMgr'
+    L372: C2653 - 'CEffObj' : is not a class or namespace name
+    ... 还有 27 个错误
+  pal3/src/Misc/CEffAction.cpp
+    L252: C2039 - 'CEffObj' : is not a member of 'CEffMgr'
+    L252: C2039 - 'CEffObj' : is not a member of 'CEffMgr'
+    L252: C2653 - 'CEffObj' : is not a class or namespace name
+    ... 还有 6 个错误
+  pal3/src/Effect/ScreenEffectMgr.cpp
+    L545: C2440 - 'type cast' : cannot convert from 'float' to 'class ScreenEf
+    L545: C2227 - left of '->ScreenEffectMgr' must point to class/struct/union
+    L545: C2653 - 'ScreenEffectMgr' : is not a class or namespace name
+
+⚠️  真新增错误 (同码出现数抵不掉消失数):
+----------------------------------------
+  pal3/src/Combat/CCBStage.cpp
+    错误数: 64 -> 61  真新增 20 {'C2660': 20}
+    新增 L3325: C2660 - 'MoveToAbsolute' : function does not take 3 parameters
+    新增 L8012: C2660 - 'MoveToAbsolute' : function does not take 3 parameters
+    新增 L8023: C2660 - 'MoveToAbsolute' : function does not take 3 parameters
+    新增 L8030: C2660 - 'MoveToAbsolute' : function does not take 3 parameters
+    新增 L8037: C2660 - 'MoveToAbsolute' : function does not take 3 parameters
+  pal3/src/Render/RenderTarget2.cpp
+    错误数: 1 -> 9  真新增 9 {'C2039': 2, 'C2440': 1, 'C2664': 6}
+    新增 L1882: C2039 - '_scalar_dtor_DestroyEffBink' : is not a member of 'RenderTarget2'
+    新增 L1882: C2039 - '_scalar_dtor_DestroyEffBink' : is not a member of 'RenderTarget2'
+    新增 L1932: C2440 - 'return' : cannot convert from 'void *' to 'char *'
+    新增 L2853: C2664 - 'strcpy' : cannot convert parameter 2 from 'void *' to 'const char *'
+    新增 L2857: C2664 - 'strcpy' : cannot convert parameter 2 from 'void *' to 'const char *'
+  pal3/src/Data/PAL_GDB.cpp
+    错误数: 35 -> 21  真新增 3 {'C2039': 3}
+    新增 L2010: C2039 - '$101B5358F90B67F92EE483560EB2675D' : is not a member of '_inline_Role
+    新增 L2131: C2039 - '$101B5358F90B67F92EE483560EB2675D' : is not a member of '_inline_Role
+    新增 L2143: C2039 - '$101B5358F90B67F92EE483560EB2675D' : is not a member of '_inline_Role
+  pal3/src/Effect/CEffMgr.cpp
+    错误数: 8 -> 18  真新增 10 {'C2664': 10}
+    新增 L827: C2664 - 'FormatException' : cannot convert parameter 2 from 'float' to 'char *
+    新增 L872: C2664 - 'FormatException' : cannot convert parameter 2 from 'float' to 'char *
+    新增 L1156: C2664 - 'strcpy' : cannot convert parameter 2 from 'void *' to 'const char *'
+    新增 L1160: C2664 - 'strcpy' : cannot convert parameter 2 from 'void *' to 'const char *'
+    新增 L1234: C2664 - 'strcpy' : cannot convert parameter 2 from 'void *' to 'const char *'
+  pal3/src/free_functions.cpp
+    错误数: 101 -> 101  真新增 2 {'C2373': 1, 'C2664': 1}
+    新增 L351: C2373 - 'WinProc' : redefinition; different type modifiers
+    新增 L5219: C2664 - 'void (unsigned long,unsigned long)' : cannot convert parameter 1 from
+    新增 L5221: C2664 - 'void (unsigned long,unsigned long)' : cannot convert parameter 1 from
+    新增 L5226: C2664 - 'void (unsigned long,unsigned long)' : cannot convert parameter 1 from
+    新增 L5228: C2664 - 'void (unsigned long,unsigned long)' : cannot convert parameter 1 from
+  pal3/src/Combat/CCBRoleState.cpp
+    错误数: 24 -> 18  真新增 1 {'C2065': 1}
+    新增 L1826: C2065 - 'unk_17A8EE0' : undeclared identifier
+  pal3/src/Misc/gbLightObj.cpp
+    错误数: 22 -> 24  真新增 4 {'C2039': 1, 'C2673': 1, 'C2227': 1, 'C2653': 1}
+    新增 L11: C2039 - '_todo_3860' : is not a member of 'gbLightObj'
+    新增 L15: C2673 - '_todo_3860' : global functions do not have 'this' pointers
+    新增 L17: C2673 - '_todo_3860' : global functions do not have 'this' pointers
+    新增 L49: C2227 - left of '->gbLightObj' must point to class/struct/union
+    新增 L49: C2653 - 'gbLightObj' : is not a class or namespace name
+  pal3/src/Script/PalScript.cpp
+    错误数: 49 -> 46  真新增 1 {'C2660': 1}
+    新增 L2902: C2660 - 'ProcessKeyboard_2' : function does not take 1 parameters
+  pal3/src/Render/RenderTarget3.cpp
+    错误数: 3 -> 6  真新增 3 {'C2039': 2, 'C2373': 1}
+    新增 L414: C2039 - '_nearby_4b6ca0' : is not a member of 'RenderTarget3'
+    新增 L414: C2039 - '_nearby_4b6ca0' : is not a member of 'RenderTarget3'
+    新增 L421: C2039 - '_nearby_4b6ca0' : is not a member of 'RenderTarget3'
+    新增 L422: C2373 - '_nearby_4b6ca0' : redefinition; different type modifiers
+  pal3/src/GameBase/PAL3.cpp
+    错误数: 45 -> 38  真新增 2 {'C2664': 2}
+    新增 L3663: C2664 - 'atexit' : cannot convert parameter 1 from 'void (void *)' to 'void (_
+    新增 L3701: C2664 - 'atexit' : cannot convert parameter 1 from 'void (void *)' to 'void (_
+  pal3/src/Misc/UIBigMap.cpp
+    错误数: 18 -> 19  真新增 1 {'C2664': 1}
+    新增 L2537: C2664 - 'void (int *,unsigned long)' : cannot convert parameter 1 from 'long *
+
+🔁 报错文本/站点变化 (同码增删并存 —— 不是新的错误种类，常见于 msg 里嵌了实参类型):
+----------------------------------------
+  pal3/src/Data/PAL_GDB.cpp: {'C2065': 1}
+  pal3/src/Effect/CEffMgr.cpp: {'C2440': 1, 'C2664': 4}
+  pal3/src/Misc/gbOBBox.cpp: {'C2228': 7}
+  pal3/src/Scene/CameraCtrl.cpp: {'C2664': 1}
+  pal3/src/Misc/gbLightObj.cpp: {'C2673': 1}
+  pal3/src/Script/PalScript.cpp: {'C2664': 1}
+  pal3/src/Combat/CCBUI.cpp: {'C2664': 2}
+  pal3/src/GameBase/PAL3.cpp: {'C2440': 2}
+
+🔧 错误收敛 (仍失败，但部分错误消失):
+----------------------------------------
+  pal3/src/Role/Actor.cpp: 86 -> 78  (消失 8)
+  pal3/src/Combat/CCBStage.cpp: 64 -> 61  (消失 23)
+  pal3/src/Misc/NavFaceLayer.cpp: 2 -> 1  (消失 1)
+  pal3/src/Misc/RoleCameraCtrl.cpp: 2 -> 1  (消失 1)
+  pal3/src/Render/RenderTarget2.cpp: 1 -> 9  (消失 1)
+  pal3/src/Misc/scAsmDecoder.cpp: 4 -> 2  (消失 2)
+  pal3/src/Data/PAL_GDB.cpp: 35 -> 21  (消失 27)
+  pal3/src/Misc/LineupUI.cpp: 15 -> 11  (消失 4)
+  pal3/src/Effect/CEffMgr.cpp: 8 -> 18  (消失 5)
+  pal3/src/Misc/gbOBBox.cpp: 40 -> 39  (消失 8)
+  pal3/src/Script/PalScriptMgr.cpp: 6 -> 4  (消失 2)
+  pal3/src/free_functions.cpp: 101 -> 101  (消失 2)
+  pal3/src/Combat/CCBStageScene.cpp: 3 -> 2  (消失 1)
+  pal3/src/Combat/CCBRoleState.cpp: 24 -> 18  (消失 7)
+  pal3/src/Scene/CameraCtrl.cpp: 6 -> 6  (消失 1)
+
+✅ 已修复 (之前失败，现在成功):
+----------------------------------------
+  pal3/src/Effect/CEffect.cpp
+
+📈 错误数量变化:
+----------------------------------------
+  pal3/src/Role/Actor.cpp: 86 ↓ 78
+  pal3/src/Combat/CCBStage.cpp: 64 ↓ 61
+  pal3/src/Misc/NavFaceLayer.cpp: 2 ↓ 1
+  pal3/src/Misc/RoleCameraCtrl.cpp: 2 ↓ 1
+  pal3/src/Render/RenderTarget2.cpp: 1 → 9
+  pal3/src/Misc/scAsmDecoder.cpp: 4 ↓ 2
+  pal3/src/Data/PAL_GDB.cpp: 35 ↓ 21
+  pal3/src/Misc/LineupUI.cpp: 15 ↓ 11
+  pal3/src/Effect/CEffMgr.cpp: 8 → 18
+  pal3/src/Misc/gbOBBox.cpp: 40 ↓ 39
+  pal3/src/Script/PalScriptMgr.cpp: 6 ↓ 4
+  pal3/src/Combat/CCBStageScene.cpp: 3 ↓ 2
+  pal3/src/Combat/CCBRoleState.cpp: 24 ↓ 18
+  pal3/src/Misc/gbLightObj.cpp: 22 → 24
+  pal3/src/Combat/CCBSystem.cpp: 24 ↓ 23
+  pal3/src/globals.cpp: 34 ↓ 32
+  pal3/src/Role/RoleSystem.cpp: 60 ↓ 59
+  pal3/src/Script/PalScript.cpp: 49 ↓ 46
+  pal3/src/Render/RenderTarget3.cpp: 3 → 6
+  pal3/src/GameBase/PAL3.cpp: 45 ↓ 38
+  pal3/src/Misc/UIBigMap.cpp: 18 → 19
+  pal3/src/Combat/CCCTData.cpp: 46 ↓ 1
+
+🚨 需要归因：存在新失败 / 真新增错误 / 净增错误码 —— 请逐条说明来源。
+================================================================================
+编译回归检测报告
+================================================================================
+基线: 20261016_200152
+基线时间: 2026-10-16T20:01:52.945642
+检测时间: 2026-10-17T01:08:19.964389
+
+📊 摘要:
+  总文件数: 210
+  新失败: 5
+  新错误(真新增 (code,msg)): 11
+  已修复: 1
+  错误收敛(消失 (code,msg)): 23
+  持续失败: 64
+
+🔢 逐错误码净增减 (正=增加，负=减少):
+----------------------------------------
+  C2039    +30  ⚠️ 增加
+  C2065    -23
+  C2660    +21  ⚠️ 增加
+  C2228    -20
+  C2109    -20
+  C2059    -5
+  C2227    -5
+  C2664    -4
+  C2440    -4
+  C2102    -3
+  C2036    -2
+  C2653    +2  ⚠️ 增加
+  C2373    +2  ⚠️ 增加
+  C2511    -1
+  C2819    -1
+  ⚠️ 注意: 以下错误码**净增** C2039, C2373, C2653, C2660, C2673 —— 即使总错误数在下降也要逐条归因
+
+❌ 新失败 (之前成功，现在失败):
+----------------------------------------
+  pal3/src/Effect/ScreenEffectMgr.cpp
+    L545: C2440 - 'type cast' : cannot convert from 'float' to 'class ScreenEf
+    L545: C2227 - left of '->ScreenEffectMgr' must point to class/struct/union
+    L545: C2653 - 'ScreenEffectMgr' : is not a class or namespace name
+  pal3/src/Combat/CCBAttackSequen.cpp
+    L409: C2065 - 'Buffer' : undeclared identifier
+  pal3/src/Misc/CEffAction.cpp
+    L252: C2039 - 'CEffObj' : is not a member of 'CEffMgr'
+    L252: C2039 - 'CEffObj' : is not a member of 'CEffMgr'
+    L252: C2653 - 'CEffObj' : is not a class or namespace name
+    ... 还有 6 个错误
+  pal3/src/Effect/CEffSParticle.cpp
+    L372: C2039 - 'CEffObj' : is not a member of 'CEffMgr'
+    L372: C2039 - 'CEffObj' : is not a member of 'CEffMgr'
+    L372: C2653 - 'CEffObj' : is not a class or namespace name
+    ... 还有 27 个错误
+  pal3/src/Misc/UICaption.cpp
+    L391: C2065 - 'sdtor_15' : undeclared identifier
+
+⚠️  真新增错误 (同码出现数抵不掉消失数):
+----------------------------------------
+  pal3/src/Script/PalScript.cpp
+    错误数: 49 -> 46  真新增 1 {'C2660': 1}
+    新增 L2902: C2660 - 'ProcessKeyboard_2' : function does not take 1 parameters
+  pal3/src/Data/PAL_GDB.cpp
+    错误数: 35 -> 21  真新增 3 {'C2039': 3}
+    新增 L2010: C2039 - '$101B5358F90B67F92EE483560EB2675D' : is not a member of '_inline_Role
+    新增 L2131: C2039 - '$101B5358F90B67F92EE483560EB2675D' : is not a member of '_inline_Role
+    新增 L2143: C2039 - '$101B5358F90B67F92EE483560EB2675D' : is not a member of '_inline_Role
+  pal3/src/Combat/CCBRoleState.cpp
+    错误数: 24 -> 18  真新增 1 {'C2065': 1}
+    新增 L1826: C2065 - 'unk_17A8EE0' : undeclared identifier
+  pal3/src/Effect/CEffMgr.cpp
+    错误数: 8 -> 18  真新增 10 {'C2664': 10}
+    新增 L827: C2664 - 'FormatException' : cannot convert parameter 2 from 'float' to 'char *
+    新增 L872: C2664 - 'FormatException' : cannot convert parameter 2 from 'float' to 'char *
+    新增 L1156: C2664 - 'strcpy' : cannot convert parameter 2 from 'void *' to 'const char *'
+    新增 L1160: C2664 - 'strcpy' : cannot convert parameter 2 from 'void *' to 'const char *'
+    新增 L1234: C2664 - 'strcpy' : cannot convert parameter 2 from 'void *' to 'const char *'
+  pal3/src/Misc/gbLightObj.cpp
+    错误数: 22 -> 24  真新增 4 {'C2039': 1, 'C2673': 1, 'C2227': 1, 'C2653': 1}
+    新增 L11: C2039 - '_todo_3860' : is not a member of 'gbLightObj'
+    新增 L15: C2673 - '_todo_3860' : global functions do not have 'this' pointers
+    新增 L17: C2673 - '_todo_3860' : global functions do not have 'this' pointers
+    新增 L49: C2227 - left of '->gbLightObj' must point to class/struct/union
+    新增 L49: C2653 - 'gbLightObj' : is not a class or namespace name
+  pal3/src/free_functions.cpp
+    错误数: 101 -> 101  真新增 2 {'C2373': 1, 'C2664': 1}
+    新增 L351: C2373 - 'WinProc' : redefinition; different type modifiers
+    新增 L5219: C2664 - 'void (unsigned long,unsigned long)' : cannot convert parameter 1 from
+    新增 L5221: C2664 - 'void (unsigned long,unsigned long)' : cannot convert parameter 1 from
+    新增 L5226: C2664 - 'void (unsigned long,unsigned long)' : cannot convert parameter 1 from
+    新增 L5228: C2664 - 'void (unsigned long,unsigned long)' : cannot convert parameter 1 from
+  pal3/src/Render/RenderTarget3.cpp
+    错误数: 3 -> 6  真新增 3 {'C2039': 2, 'C2373': 1}
+    新增 L414: C2039 - '_nearby_4b6ca0' : is not a member of 'RenderTarget3'
+    新增 L414: C2039 - '_nearby_4b6ca0' : is not a member of 'RenderTarget3'
+    新增 L421: C2039 - '_nearby_4b6ca0' : is not a member of 'RenderTarget3'
+    新增 L422: C2373 - '_nearby_4b6ca0' : redefinition; different type modifiers
+  pal3/src/GameBase/PAL3.cpp
+    错误数: 45 -> 38  真新增 2 {'C2664': 2}
+    新增 L3663: C2664 - 'atexit' : cannot convert parameter 1 from 'void (void *)' to 'void (_
+    新增 L3701: C2664 - 'atexit' : cannot convert parameter 1 from 'void (void *)' to 'void (_
+  pal3/src/Combat/CCBStage.cpp
+    错误数: 64 -> 61  真新增 20 {'C2660': 20}
+    新增 L3325: C2660 - 'MoveToAbsolute' : function does not take 3 parameters
+    新增 L8012: C2660 - 'MoveToAbsolute' : function does not take 3 parameters
+    新增 L8023: C2660 - 'MoveToAbsolute' : function does not take 3 parameters
+    新增 L8030: C2660 - 'MoveToAbsolute' : function does not take 3 parameters
+    新增 L8037: C2660 - 'MoveToAbsolute' : function does not take 3 parameters
+  pal3/src/Misc/UIBigMap.cpp
+    错误数: 18 -> 19  真新增 1 {'C2664': 1}
+    新增 L2537: C2664 - 'void (int *,unsigned long)' : cannot convert parameter 1 from 'long *
+  pal3/src/Render/RenderTarget2.cpp
+    错误数: 1 -> 9  真新增 9 {'C2039': 2, 'C2440': 1, 'C2664': 6}
+    新增 L1882: C2039 - '_scalar_dtor_DestroyEffBink' : is not a member of 'RenderTarget2'
+    新增 L1882: C2039 - '_scalar_dtor_DestroyEffBink' : is not a member of 'RenderTarget2'
+    新增 L1932: C2440 - 'return' : cannot convert from 'void *' to 'char *'
+    新增 L2853: C2664 - 'strcpy' : cannot convert parameter 2 from 'void *' to 'const char *'
+    新增 L2857: C2664 - 'strcpy' : cannot convert parameter 2 from 'void *' to 'const char *'
+
+🔁 报错文本/站点变化 (同码增删并存 —— 不是新的错误种类，常见于 msg 里嵌了实参类型):
+----------------------------------------
+  pal3/src/Script/PalScript.cpp: {'C2664': 1}
+  pal3/src/Misc/gbOBBox.cpp: {'C2228': 7}
+  pal3/src/Data/PAL_GDB.cpp: {'C2065': 1}
+  pal3/src/Effect/CEffMgr.cpp: {'C2440': 1, 'C2664': 4}
+  pal3/src/Misc/gbLightObj.cpp: {'C2673': 1}
+  pal3/src/GameBase/PAL3.cpp: {'C2440': 2}
+  pal3/src/Scene/CameraCtrl.cpp: {'C2664': 1}
+  pal3/src/Combat/CCBUI.cpp: {'C2664': 2}
+
+🔧 错误收敛 (仍失败，但部分错误消失):
+----------------------------------------
+  pal3/src/Script/PalScript.cpp: 49 -> 46  (消失 5)
+  pal3/src/Misc/gbOBBox.cpp: 40 -> 39  (消失 8)
+  pal3/src/Data/PAL_GDB.cpp: 35 -> 21  (消失 27)
+  pal3/src/Combat/CCBRoleState.cpp: 24 -> 18  (消失 7)
+  pal3/src/Effect/CEffMgr.cpp: 8 -> 18  (消失 5)
+  pal3/src/Misc/gbLightObj.cpp: 22 -> 24  (消失 8)
+  pal3/src/Misc/NavFaceLayer.cpp: 2 -> 1  (消失 1)
+  pal3/src/free_functions.cpp: 101 -> 101  (消失 2)
+  pal3/src/globals.cpp: 34 -> 32  (消失 2)
+  pal3/src/Combat/CCCTData.cpp: 46 -> 1  (消失 45)
+  pal3/src/Misc/LineupUI.cpp: 15 -> 11  (消失 4)
+  pal3/src/GameBase/PAL3.cpp: 45 -> 38  (消失 11)
+  pal3/src/Scene/CameraCtrl.cpp: 6 -> 6  (消失 1)
+  pal3/src/Role/Actor.cpp: 86 -> 78  (消失 8)
+  pal3/src/Combat/CCBStage.cpp: 64 -> 61  (消失 23)
+
+✅ 已修复 (之前失败，现在成功):
+----------------------------------------
+  pal3/src/Effect/CEffect.cpp
+
+📈 错误数量变化:
+----------------------------------------
+  pal3/src/Script/PalScript.cpp: 49 ↓ 46
+  pal3/src/Misc/gbOBBox.cpp: 40 ↓ 39
+  pal3/src/Data/PAL_GDB.cpp: 35 ↓ 21
+  pal3/src/Combat/CCBRoleState.cpp: 24 ↓ 18
+  pal3/src/Effect/CEffMgr.cpp: 8 → 18
+  pal3/src/Misc/gbLightObj.cpp: 22 → 24
+  pal3/src/Misc/NavFaceLayer.cpp: 2 ↓ 1
+  pal3/src/globals.cpp: 34 ↓ 32
+  pal3/src/Render/RenderTarget3.cpp: 3 → 6
+  pal3/src/Combat/CCCTData.cpp: 46 ↓ 1
+  pal3/src/Misc/LineupUI.cpp: 15 ↓ 11
+  pal3/src/GameBase/PAL3.cpp: 45 ↓ 38
+  pal3/src/Role/Actor.cpp: 86 ↓ 78
+  pal3/src/Combat/CCBStage.cpp: 64 ↓ 61
+  pal3/src/Misc/UIBigMap.cpp: 18 → 19
+  pal3/src/Combat/CCBSystem.cpp: 24 ↓ 23
+  pal3/src/Combat/CCBStageScene.cpp: 3 ↓ 2
+  pal3/src/Misc/RoleCameraCtrl.cpp: 2 ↓ 1
+  pal3/src/Script/PalScriptMgr.cpp: 6 ↓ 4
+  pal3/src/Misc/scAsmDecoder.cpp: 4 ↓ 2
+  pal3/src/Role/RoleSystem.cpp: 60 ↓ 59
+  pal3/src/Render/RenderTarget2.cpp: 1 → 9
+
+🚨 需要归因：存在新失败 / 真新增错误 / 净增错误码 —— 请逐条说明来源。
+
+[Regression] diff vs latest baseline:
+
+[Baseline] NOT refreshing: regressions detected (exit 1).
+        The baseline is intentionally left unchanged so the regression stays visible on the next run.
+        Evidence saved under pipeline/_logs/regression_detection/
+        After confirming the regressions are understood, refresh deliberately with:
+          python3 tools/regression_detector.py --save-baseline
+
+[Probe] Running probe s2 so compile_regression sees THIS codegen's census...
+[ERROR] probe s2 exited 1 — 本次 codegen 的编译普查未通过（新失败/退化，或 probe 自身出错）。
+        修好退化后再跑；若确要只跑 codegen，可加 '--skip-probe'（会使 compile_regression 的结论失去意义）。
+[emit] CGameData: member at +0x8B4 is behind bookkeeping (start_off=0x8E0, +0x2C) — 不跳过，交由布局审计裁决
+[emit] Logger: member at +0x1230 is behind bookkeeping (start_off=0x1294, +0x64) — 不跳过，交由布局审计裁决
+[emit] SceneMgr: member at +0x2B54 is behind bookkeeping (start_off=0x33C0, +0x86C) — 不跳过，交由布局审计裁决
+[emit] UIGameFrm: member at +0x164 is behind bookkeeping (start_off=0x25C, +0xF8) — 不跳过，交由布局审计裁决
+[ret-N evidence] 指令级(asm) 3406 / 裸扫描回退 324 / 无证据 11

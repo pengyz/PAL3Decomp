@@ -520,6 +520,37 @@
           "from": "UIScene"
         }
       ]
+    },
+    {
+      "addr": "0x0056B018",
+      "base": "UICaption",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "CCBPanelSlot"
+        },
+        {
+          "addr": "0x0043AD40",
+          "from": null
+        },
+        {
+          "addr": "0x0043B1E0",
+          "from": "UIScene"
+        },
+        {
+          "addr": "0x0043AB00",
+          "from": "UICaption"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0044BE00",
+          "from": "UICaption"
+        }
+      ],
+      "source": "[vtable 100 认领续 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor `UIScenePanel::UIScenePanel` +306/+365/+424 三写（MI 子对象组装）②被调用者面=UICaption impl（Render/Destroy/删际 0x44BE00）③成员访问面=UICaption 子对象布局 ④类归属面=UIScenePanel:base(UICaption) ⑤交互模式面=MI 构造序；evidence=[ctor 三写偏移,槽行 UICaption 族,删际 0x44BE00] confidence=90"
     }
   ]
 }

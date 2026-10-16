@@ -1,0 +1,71 @@
+{
+  "name": "UIFrameContainer",
+  "binary_size": 136,
+  "known_members": {
+    "96": {
+      "name": "m_bFlag96",
+      "type": "char",
+      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级：0x4422E0 `this+96` 状态字节"
+    },
+    "100": {
+      "name": "m_aSlots",
+      "type": "int[6]",
+      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级：0x4422E0 `+100..+128 清零区`"
+    }
+  },
+  "methods": {
+    "0x004422E0": {
+      "name": "ResetContainerState",
+      "signature": "void __thiscall()",
+      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级 decompile：ClearSubArraySlot();+96 状态;+100-128 清零"
+    },
+    "0x00442370": {
+      "name": "_scalar_dtor",
+      "signature": "void __thiscall()",
+      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] deleting 三段式（包装 0x442390）"
+    },
+    "0x00442390": {
+      "name": "~UIFrameContainer",
+      "signature": "void __thiscall()",
+      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级 decompile：UIFrameWnd::Destroy 链 + m_rect.bottom 检查"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056ADD0",
+      "base": "UIFrameWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "CCBPanelSlot"
+        },
+        {
+          "addr": "0x00442890",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00442AD0",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00442420",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00442370",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        }
+      ],
+      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] 认领+再创作命名五面卡：①ctor/复位 0x4422E0+82 写表+dtor 0x442390+29 写表 ②ClearSubArraySlot()+UIFrameWnd::Destroy 链 ③+96/+100-128/this[1].m_rect ④UIFrameWnd 派生（删际 0x442370 在槽）⑤构造-复位-析构三点 ⇒ UIFrameWnd 派生容器窗；confidence=88"
+    }
+  ],
+  "_naming": "[vtable 55 续 2026-10-17 analyzer 证据账目制] 再创作命名 UIFrameContainer（容器语义：ClearSubArraySlot 子数组槽 + 状态/清零区 + 渲染窗基类）"
+}

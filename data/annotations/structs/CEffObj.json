@@ -1,31 +1,64 @@
 {
- "name": "CEffObj",
- "binary_size": 12,
- "known_members": {
-  "4": {
-   "name": "m_pEM",
-   "type": "CEffMgr *",
-   "source": "annotation"
+  "name": "CEffObj",
+  "binary_size": 12,
+  "known_members": {
+    "4": {
+      "name": "m_pEM",
+      "type": "CEffMgr *",
+      "source": "annotation"
+    },
+    "8": {
+      "name": "m_bIdle",
+      "type": "_BYTE",
+      "source": "annotation | type:BYTE→_BYTE 2026-10-14 | A级 objdump 0x4D33A0 `c6 41 08 00`(BYTE 存 this+8) + 0x4CEB7B `80 38 00`(BYTE 读 this+0x58) —— 宽度 1B 实证；签名性 cmp-with-zero/0-1 存**不可观测** ⇒ BYTE/_BYTE 二值等价，取 IDA 本地 `_BYTE *i` 词表（CEffgbParticle::CreateInstance 0x004CEB60 decomp）| 修 C2440 L1154"
+    },
+    "0": {
+      "name": "vfptr",
+      "type": "void *",
+      "vfptr_slot": true,
+      "source": "vtable_owner_fix(CEffObj 多态化: vptr@0 从二进制布局证据确认)"
+    }
   },
-  "8": {
-   "name": "m_bIdle",
-   "type": "_BYTE",
-   "source": "annotation | type:BYTE→_BYTE 2026-10-14 | A级 objdump 0x4D33A0 `c6 41 08 00`(BYTE 存 this+8) + 0x4CEB7B `80 38 00`(BYTE 读 this+0x58) —— 宽度 1B 实证；签名性 cmp-with-zero/0-1 存**不可观测** ⇒ BYTE/_BYTE 二值等价，取 IDA 本地 `_BYTE *i` 词表（CEffgbParticle::CreateInstance 0x004CEB60 decomp）| 修 C2440 L1154"
-  },
-  "0": {
-   "name": "vfptr",
-   "type": "void *",
-   "vfptr_slot": true,
-   "source": "vtable_owner_fix(CEffObj 多态化: vptr@0 从二进制布局证据确认)"
-  }
- },
- "vtables": [
-  {
-   "addr": "0x0056F62C",
-   "base": null,
-   "slots": [{"addr": "0x004C0620", "from": null}, {"addr": "0x004C0600", "from": null}, {"addr": "0x004C0610", "from": null}, {"addr": "0x00401800", "from": null}, {"addr": "0x00401800", "from": null}, {"addr": "0x004AF760", "from": null}, {"addr": "0x00401800", "from": null}, {"addr": "0x0055434F", "from": null}],
-   "source": " | [100 表认领 2026-10-16 analyzer 重落] A 级：基类析构尾形 c7 01 2c f6 56 00 c3（[ecx]=0x56F62C）+ 全 CEff 族析构一致写此表（类体系根基类定案）"
-  }
- ],
- "methods": {}
+  "vtables": [
+    {
+      "addr": "0x0056F62C",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004C0620",
+          "from": "EffObjectPool"
+        },
+        {
+          "addr": "0x004C0600",
+          "from": "EffObjectPool"
+        },
+        {
+          "addr": "0x004C0610",
+          "from": "EffObjectPool"
+        },
+        {
+          "addr": "0x00401800",
+          "from": "EffObjectPool"
+        },
+        {
+          "addr": "0x00401800",
+          "from": "EffObjectPool"
+        },
+        {
+          "addr": "0x004AF760",
+          "from": "CEffSParticle"
+        },
+        {
+          "addr": "0x00401800",
+          "from": "EffObjectPool"
+        },
+        {
+          "addr": "0x0055434F",
+          "from": "EffObjectPool"
+        }
+      ],
+      "source": " | [100 表认领 2026-10-16 analyzer 重落] A 级：基类析构尾形 c7 01 2c f6 56 00 c3（[ecx]=0x56F62C）+ 全 CEff 族析构一致写此表（类体系根基类定案）"
+    }
+  ],
+  "methods": {}
 }

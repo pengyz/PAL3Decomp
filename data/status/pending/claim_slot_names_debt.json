@@ -1,0 +1,233 @@
+{
+ "_meta": {
+  "created": "2026-10-16 analyzer",
+  "reason": "5 表认领解锁渲染链后 C2653/C2039/C2228 爆发（S2 140→125、错误 +658）——病灶=槽名债（gap-fill 质量）：gb*未声明类限定名（gbVolModNode C2653 实证）+ 无名占位槽；按衰退纪律部分回退 5 表（保留 GRPinput/Camera/CEffObj 3 表=上轮 140/1212 无爆），槽名债清毕后重落",
+  "cleanup": "2026-10-16 analyzer 清毕：0x55434F 双注册摘除（A 级 CRT 本体判读）；UNREG×3 天然干净（无登记）；共享名×3 verified 保留。⚠️ 重判：C2653 实证毒名=gbVolModNode **型名泄漏**（ida_structs 成员型 `gbVolModNode *[2]` 泄入表达式渲染，型名替换族另账）非本清单槽名——5 表重落后如复发归该账"
+ },
+ "tables": [
+  {
+   "table": "0x0056AAE4",
+   "claim_class": "RoleSystem",
+   "slots": [
+    {
+     "slot": "0x4208A0",
+     "name": "RoleSystem::Reset(void)",
+     "toxic": []
+    },
+    {
+     "slot": "0x4202A0",
+     "name": "RoleSystem::AllocSlotData(int)",
+     "toxic": []
+    },
+    {
+     "slot": "0x420430",
+     "name": "RoleSystem::_sdtor_2",
+     "toxic": []
+    },
+    {
+     "slot": "0x4209E0",
+     "name": "RoleSystem::ResetState(int)",
+     "toxic": []
+    },
+    {
+     "slot": "0x4202A0",
+     "name": "RoleSystem::AllocSlotData(int)",
+     "toxic": []
+    },
+    {
+     "slot": "0x420910",
+     "name": "RoleSystem::sub_420910(int)",
+     "toxic": []
+    }
+   ]
+  },
+  {
+   "table": "0x0056AAF0",
+   "claim_class": "RoleSystem",
+   "slots": [
+    {
+     "slot": "0x4209E0",
+     "name": "RoleSystem::ResetState(int)",
+     "toxic": []
+    },
+    {
+     "slot": "0x4202A0",
+     "name": "RoleSystem::AllocSlotData(int)",
+     "toxic": []
+    },
+    {
+     "slot": "0x420910",
+     "name": "RoleSystem::sub_420910(int)",
+     "toxic": []
+    }
+   ]
+  },
+  {
+   "table": "0x0056A9A4",
+   "claim_class": "Role",
+   "slots": [
+    {
+     "slot": "0x41B640",
+     "name": "Role::UpdateBoundingBox(gbAABBox *)",
+     "toxic": []
+    },
+    {
+     "slot": "0x41B6A0",
+     "name": "Role::GetGfxManager(int)",
+     "toxic": []
+    },
+    {
+     "slot": "0x41BE30",
+     "name": "Role::`scalar deleting destructor'(uint)",
+     "toxic": []
+    },
+    {
+     "slot": "0x41BE20",
+     "name": "Role::sub_41BE20",
+     "toxic": []
+    },
+    {
+     "slot": "0x416500",
+     "name": "RoleSystem::IsActionBlocked(void)",
+     "toxic": []
+    },
+    {
+     "slot": "0x4AF760",
+     "name": "Object::Update(int)",
+     "toxic": []
+    },
+    {
+     "slot": "0x411BD0",
+     "name": "ScriptObj::~ScriptObj(int)",
+     "toxic": []
+    },
+    {
+     "slot": "0x411BB0",
+     "name": "UNREG",
+     "toxic": [],
+     "resolution": "本体=A 级形判（删际析构/取值桩）；无 methods 登记 ⇒ 天然落 slot_<i> ✓ 干净"
+    },
+    {
+     "slot": "0x55434F",
+     "name": "RenderTarget2::FatalExit(void)",
+     "toxic": [],
+     "resolution": "CRT amsg_exit(0x19)（T145 家族）；双注册摘除，权威留 RenderTarget2；槽渲染落 slot_<i> 或单源 FatalExit"
+    },
+    {
+     "slot": "0x4AF760",
+     "name": "Object::Update(int)",
+     "toxic": []
+    }
+   ]
+  },
+  {
+   "table": "0x0056A9B0",
+   "claim_class": "Role",
+   "slots": [
+    {
+     "slot": "0x41BE20",
+     "name": "Role::sub_41BE20",
+     "toxic": []
+    },
+    {
+     "slot": "0x416500",
+     "name": "RoleSystem::IsActionBlocked(void)",
+     "toxic": []
+    },
+    {
+     "slot": "0x4AF760",
+     "name": "Object::Update(int)",
+     "toxic": []
+    },
+    {
+     "slot": "0x411BD0",
+     "name": "ScriptObj::~ScriptObj(int)",
+     "toxic": []
+    },
+    {
+     "slot": "0x411BB0",
+     "name": "UNREG",
+     "toxic": [],
+     "resolution": "本体=A 级形判（删际析构/取值桩）；无 methods 登记 ⇒ 天然落 slot_<i> ✓ 干净"
+    },
+    {
+     "slot": "0x55434F",
+     "name": "RenderTarget2::FatalExit(void)",
+     "toxic": [],
+     "resolution": "CRT amsg_exit(0x19)（T145 家族）；双注册摘除，权威留 RenderTarget2；槽渲染落 slot_<i> 或单源 FatalExit"
+    },
+    {
+     "slot": "0x4AF760",
+     "name": "Object::Update(int)",
+     "toxic": []
+    },
+    {
+     "slot": "0x411B80",
+     "name": "UNREG",
+     "toxic": [],
+     "resolution": "本体=A 级形判（删际析构/取值桩）；无 methods 登记 ⇒ 天然落 slot_<i> ✓ 干净"
+    }
+   ]
+  },
+  {
+   "table": "0x0056B044",
+   "claim_class": "UIEmote",
+   "slots": [
+    {
+     "slot": "0x44EB40",
+     "name": "UIEmote::sub_44EB40",
+     "toxic": []
+    },
+    {
+     "slot": "0x44AB00",
+     "name": "UNREG",
+     "toxic": [],
+     "resolution": "本体=A 级形判（删际析构/取值桩）；无 methods 登记 ⇒ 天然落 slot_<i> ✓ 干净"
+    },
+    {
+     "slot": "0x4AF760",
+     "name": "Object::Update(int)",
+     "toxic": []
+    },
+    {
+     "slot": "0x445E70",
+     "name": "CCBPanelSlot::ShowClipped(int)",
+     "toxic": [],
+     "resolution": "共享 UIWnd 默认实现，既有认领表在用且无 C2653 实证 ⇒ verified 保留"
+    },
+    {
+     "slot": "0x445CD0",
+     "name": "UITitle_BBTY::Render(void)",
+     "toxic": [],
+     "resolution": "共享 UIWnd 默认实现，既有认领表在用且无 C2653 实证 ⇒ verified 保留"
+    },
+    {
+     "slot": "0x44E980",
+     "name": "UIWnd::sub_44E980(int,int)",
+     "toxic": []
+    },
+    {
+     "slot": "0x445C10",
+     "name": "SceneObj::HideAll(void)",
+     "toxic": [],
+     "resolution": "共享 UIWnd 默认实现，既有认领表在用且无 C2653 实证 ⇒ verified 保留"
+    },
+    {
+     "slot": "0x445B90",
+     "name": "UIWnd::Create(int,tagRECT *,int)",
+     "toxic": []
+    },
+    {
+     "slot": "0x44E5C0",
+     "name": "UIWnd::`scalar deleting destructor'(uint)",
+     "toxic": []
+    },
+    {
+     "slot": "0x445D10",
+     "name": "UIWnd::OnMessage(int,int,int)",
+     "toxic": []
+    }
+   ]
+  }
+ ]
+}

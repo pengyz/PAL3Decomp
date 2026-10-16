@@ -64,3 +64,36 @@ if __name__ == '__main__':
                 print('  FAIL %s: %s: %s' % (nm, type(e).__name__, e)); fail += 1
     print('Results: %d passed, %d failed' % (ok, fail))
     sys.exit(1 if fail else 0)
+
+# [vptr 前置门查找面扩展 2026-10-16 verifier] 手写头并存制式（emit 跳过 handwritten
+# 类防重复定义）⇒ [D] 门「未找到生成头」须回退查 include/ 手写声明（virtual/vptr 证据
+# 判据与生成头一致），否则 gbChain1DNode/gbLightObj 等误报。纯函数单测（R15）。
+def test_handwritten_vptr_ok_virtual():
+    from codegen_invariants import handwritten_vptr_verdict
+    v, detail = handwritten_vptr_verdict('gbChain1DNode', 'include')
+    assert v == 'ok', (v, detail)
+
+
+def test_handwritten_vptr_none_missing():
+    from codegen_invariants import handwritten_vptr_verdict
+    v, detail = handwritten_vptr_verdict('NoSuchClassXYZ', 'include')
+    assert v == 'none'
+
+
+def test_handwritten_vptr_bad_no_virtual():
+    from codegen_invariants import handwritten_vptr_verdict
+    v, detail = handwritten_vptr_verdict('filebuf', 'include')
+    assert v in ('none', 'bad'), (v, detail)
+
+
+# [tail_drift 判据修正 2026-10-16 verifier] 原 `_mx+8<bsize`（最大成员**起始偏移**）
+# 当「成员末端」用（注释/代码不符）⇒ 大尾部成员类误报（ArcLocaleRole mx=1 bsize=28
+# 实测 3/4 误报）。纯函数单测（R15）：判据=成员**末端** max(off+size) vs bsize。
+def test_tail_drift_judgement_end_based():
+    from audit_type_layout import tail_drift_conflict
+    # ArcLocaleRole 形：active@0(BYTE) + offset@1(uchar[27]) ⇒ end=28=bsize ⇒ 无漂移
+    assert tail_drift_conflict(28, [(0, 'BYTE'), (1, 'unsigned char[27]')]) is None
+    # 真漂移形：end+8 < bsize
+    assert tail_drift_conflict(100, [(0, 'BYTE')]) == 1
+    # 对齐尾差（<=8 容差）：ComboAttack 形 end=630 bsize=632 ⇒ 无漂移
+    assert tail_drift_conflict(632, [(606, 'short[12]')]) is None

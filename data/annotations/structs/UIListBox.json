@@ -616,6 +616,53 @@
       ],
       "source": "[停车场清理 2026-10-16 证据注记] 写入点 0x4525c6/0x45261d（0x4525xx 簇）；ctor 0x4525A0=UIListBox ctor(0:0x43DCD0)+UIAnimateCtrlEX ctor+UITitle_BBTY ctor(+1084) ⇒ 含 UIListBox+UIAnimateCtrlEX+UITitle_BBTY 成员的复合类，真名待裁 | [4 表裁决落地 2026-10-16] ⚠️ **挂账**：三子对象复合体（PDB 无派生类名源，禁猜）⇒ 真名待语义考；暂留 UIListBox 名下",
       "note": "真名挂账（2026-10-16 verifier A 级裁决）：三子对象复合体（UIListBox名@0·UIAnimateCtrlEX@72·UITitle_BBTY@1084）· 自表 vtable（ctor 0x452590 域末位 `mov [esi],offset stru_56B1BC` 实证）· 真名待语义考（无 PDB 源/无调用面）——禁猜，维持挂账；⚠️ 本表错挂 UIListBox（真属未命名复合体）；关联矛盾：UIListBox 标注 1208 vs 子区 72 待重审"
+    },
+    {
+      "addr": "0x0056B16C",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00451C70",
+          "from": null
+        },
+        {
+          "addr": "0x004503C0",
+          "from": "Actor"
+        },
+        {
+          "addr": "0x004AF760",
+          "from": "CEffSParticle"
+        },
+        {
+          "addr": "0x00451B40",
+          "from": null
+        },
+        {
+          "addr": "0x00451C10",
+          "from": null
+        },
+        {
+          "addr": "0x0043BBC0",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00445C10",
+          "from": "SceneObj"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004518E0",
+          "from": null
+        },
+        {
+          "addr": "0x00451AA0",
+          "from": "UILoadingFrm"
+        }
+      ],
+      "source": "[vtable 余 49 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor 域 `UIListBox::UIListBox_Init+95` 写表 + `DestroyContent+39` 析构复写 ②被调用者面=槽 0x4503C0 Actor 域(误名)+Object::Update ③成员访问面=UIListBox 子对象布局 ④类归属面=UIListBox:子对象表（0x56AD40 主表外的嵌入视图）⑤交互模式面=Init/Destroy 对；⚠️ 槽 0x451C70 UNREG 待补；evidence=[写点 ctor/dtor 对,槽行域名] confidence=75"
     }
   ],
   "base_size": 68,

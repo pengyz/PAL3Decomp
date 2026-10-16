@@ -183,7 +183,7 @@ def test_ac_family_allowlist_sites_apply():
     import json
     sites = json.load(open(REPO / 'data' / 'annotations' /
                            'ac_family_cast_allowlist.json'))['sites']
-    assert len(sites) == 24
+    assert len(sites) == 25  # 24 + verifier 补录 PAL3 L3195（31站修法余1站）
     for e in sites:
         code = '// pad\n' * (e['line'] - 1) + e['current'] + '\n'
         out, applied, skipped = at.apply_mrect_allowlist(code, [e])

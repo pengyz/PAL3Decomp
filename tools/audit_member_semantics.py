@@ -213,6 +213,40 @@ def confirm_abs_access(instr, val):
     return False
 
 
+# ── overlap 三判据机械扫（R15 纯函数；tests/test_overlap_three_criteria.py）──
+# 判据来源：CLAUDE.md「overlap 标注语义澄清」三判据（值位面/取址/重解释，2026-10-16 定谳）
+_BITPLANE_CONST = re.compile(r'=\s*(-?\d{5,})\b')
+_ADDR_OF = re.compile(r'&[^;\n]{0,24}')
+_CAST_DEREF = re.compile(r'\*\s*\(\s*(?:float|double|_DWORD|int|unsigned\s+\w+|char)\s*\*\s*\)')
+_TOKEN = re.compile(r'[A-Za-z_]\w*')
+
+def overlap_three_criteria(fragments, name):
+    """扫描访问形片段，返回三判据命中计数（纯函数，零 IO）。
+
+    值位面：位型常量写（|v|>65000 的整型字面量右值——1.0f=1065353216 / -10.0f=-1054867456 族）；
+    取址：&member 作 buffer 基（& 后 24 字符内出现 name 记号）；
+    重解释：*(T*)cast-deref 形（片段内与 name 记号共现）。
+    """
+    out = {'值位面': 0, '取址': 0, '重解释': 0}
+    for frag in fragments:
+        toks = set(_TOKEN.findall(frag))
+        if name not in toks:
+            continue
+        for m in _BITPLANE_CONST.finditer(frag):
+            if abs(int(m.group(1))) > 65000:
+                out['值位面'] += 1
+        for m in _ADDR_OF.finditer(frag):
+            if name in set(_TOKEN.findall(m.group(0))):
+                out['取址'] += 1
+        if _CAST_DEREF.search(frag):
+            out['重解释'] += 1
+    return out
+
+def overlap_verdict(shapes):
+    """三判据命中 → 判定词（member 级真 / 无多视图形）。"""
+    return 'member-真' if any(shapes.values()) else '无多视图形'
+
+
 def pseudo_tag(name):
     for tag, rx in PSEUDO_RX:
         if rx.search(name or ''):

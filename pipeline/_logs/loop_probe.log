@@ -1,0 +1,55 @@
+S1 headers: 739/739 ok  (76s)
+S2 cpp: 141/205 ok | own-fail 64 | imported-only 0  (26s)
+Top root-cause headers (files blocked):
+report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
+================================================================================
+编译回归检测报告
+================================================================================
+基线: 20261016_163044
+基线时间: 2026-10-16T16:30:44.861915
+检测时间: 2026-10-16T16:32:27.815630
+
+📊 摘要:
+  总文件数: 205
+  新失败: 0
+  新错误(真新增 (code,msg)): 0
+  已修复: 0
+  错误收敛(消失 (code,msg)): 0
+  持续失败: 64
+
+✅ 未检测到回归。
+✅ 基线已保存: /home/peng/workspace/PAL3Decomp/data/status/baselines/20261016_163227.json
+   总文件数: 205
+   成功: 141
+   失败: 64
+S2-passing units to link: 141
+compiled 141/141 objs (0 skipped)
+linking 141 objs ...
+
+=== link census ===
+linker errors by code: {'LNK2001': 2964, 'LNK1120': 1}
+unresolved external symbols: 1349 (referenced by 2964 sites)
+   27x  (?slot_15@UIWnd@@UAEXXZ)
+   26x  (?slot_5@UIWnd@@UAEXXZ)
+   26x  (?slot_27@UIWnd@@UAEXXZ)
+   25x  (?slot_3@UIWnd@@UAEXXZ)
+   25x  (?slot_17@UIWnd@@UAEXXZ)
+   25x  (?slot_16@UIWnd@@UAEXXZ)
+   25x  (?Update@SceneObj@@UAEHHH@Z)
+   25x  (?gfxMgr@@3PAVgbGfxManager@@A)
+   24x  (?slot_21@UIWnd@@UAEXXZ)
+   23x  (?slot_9@UIWnd@@UAEXXZ)
+   22x  (?slot_1@UIWnd@@UAEXXZ)
+   22x  (??1PtrArray@@QAE@XZ)
+   21x  (??1UIFrameWnd@@UAE@XZ)
+   21x  (?slot_24@UIWnd@@UAEXXZ)
+   21x  (?slot_23@UIWnd@@UAEXXZ)
+duplicate definitions: 0 symbols
+[link-gate] ✓ 无链接层回归（duplicates/unresolved 均未恶化）
+report -> /home/peng/workspace/PAL3Decomp/data/status/link_census.json
+
+[Regression] diff vs latest baseline:
+
+[Baseline] refreshing latest baseline...
+
+[Link] link-layer probe (LNK census, ratchet gate)...

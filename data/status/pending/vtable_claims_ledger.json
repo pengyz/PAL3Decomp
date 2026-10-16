@@ -1,0 +1,402 @@
+{
+ "_meta": {
+  "created": "2026-10-17 analyzer",
+  "note": "vtable 认领证据账目制台账（每命名=证据账目：evidence 可复现指针 + confidence 0-100）；C 级只进假设区禁改名"
+ },
+ "entries": [
+  {
+   "claim": "PalScriptWaitTimer@0x56ABE0",
+   "action": "表址修正（0x56ABCC→0x56ABE0）",
+   "evidence": [
+    "xrefs_to 0x4382A0@0x56abe0",
+    "slot行 [0x434D50,0x438100,0x4382A0] decompile 三槽语义吻合",
+    "0x56ABCC 含非码值 0xBC8EFA35=非安装点"
+   ],
+   "confidence": 90,
+   "grade": "A"
+  },
+  {
+   "claim": "PalScriptBlendTimer@0x56ABC4",
+   "action": "认领+再创作命名",
+   "evidence": [
+    "decompile 0x434D20 IsBlendComplete `+8<+12`",
+    "decompile 0x434D40 AccumulateTime `+8+=fDelta`",
+    "xrefs_to 0x434D50@0x56abb8/0x56abc4",
+    "writer Op_Idle+30"
+   ],
+   "confidence": 88,
+   "grade": "A"
+  },
+  {
+   "claim": "UIFrameWnd@0x56ACB8",
+   "action": "主表认领",
+   "evidence": [
+    "0x43BB70 entry `c7 06 b8 ac 56 00`（ctor+8 直写）",
+    "成员几何 m_pbktex@68（bs=72 定谳）",
+    "audit_type_layout 一致"
+   ],
+   "confidence": 95,
+   "grade": "A"
+  },
+  {
+   "claim": "CCBResultWindow@0x56AE84",
+   "evidence": [
+    "writer CCBResultWindow ctor+45",
+    "slots UIFrameWnd-family impls",
+    "deleting 0x444AA0 in slot"
+   ],
+   "confidence": 92,
+   "grade": "A"
+  },
+  {
+   "claim": "UIScenePanel:base(UICaption)@0x56B018",
+   "evidence": [
+    "ctor +306/+365/+424 三写",
+    "slots UICaption impls",
+    "deleting 0x44BE00"
+   ],
+   "confidence": 90,
+   "grade": "A"
+  },
+  {
+   "claim": "GameObject@0x56A9C0（再创作命名）",
+   "evidence": [
+    "Role ctor +114/+672/+697 三写",
+    "slot 0x4AF760 Object::Update 共享",
+    "0x411BB0/0x411B80 回基桩字节 c7 01 c0 a9 56 00 c3"
+   ],
+   "confidence": 85,
+   "grade": "A"
+  },
+  {
+   "key": "UIFrameContainer@0x56ADD0",
+   "claim": "认领+再创作命名",
+   "evidence": [
+    "decompile 0x4422E0",
+    "decompile 0x442390",
+    "decompile 0x442370",
+    "槽行 UIFrameWnd impls"
+   ],
+   "confidence": 88,
+   "grade": "A"
+  },
+  {
+   "key": "ArraySlots@0x56AFA4",
+   "claim": "认领+再创作命名",
+   "evidence": [
+    "decompile 0x44A790",
+    "写点 +32",
+    "槽行 Object::Update+ShowClipped"
+   ],
+   "confidence": 82,
+   "grade": "A"
+  },
+  {
+   "key": "WeatherEffectNode@0x56A66C/0x56A694/0x56A6A8/0x56A6B4",
+   "claim": "MI 四视图认领+再创作命名",
+   "evidence": [
+    "decompile thunks 0x542072-0x5420D2（gbGeomNode/gbLightObj/gbRain/gbSnow IDA 名×8）",
+    "xrefs_to 删际 4 条（仅表内）",
+    "槽行嵌套尾并合（21⊃11⊃6⊃3 精确链）",
+    "删除析构三段式体形×4"
+   ],
+   "confidence": 82,
+   "grade": "A"
+  },
+  {
+   "key": "CCBRoleState@0x56B364",
+   "claim": "认领（已知类）",
+   "evidence": [
+    "写点 ctor _todo_456A+134/dtor+29",
+    "槽 0x524970 CCBRoleState Render 域"
+   ],
+   "confidence": 92,
+   "grade": "A"
+  },
+  {
+   "key": "UITitle_YXXX@0x56B898",
+   "claim": "认领（已知类）",
+   "evidence": [
+    "写点 Create+168/~UITitle_YXXX+39",
+    "槽 0x47E570 域+Object3D::SetBound"
+   ],
+   "confidence": 90,
+   "grade": "A"
+  },
+  {
+   "key": "UISceneMap@0x56B140",
+   "claim": "认领（域证据）",
+   "evidence": [
+    "写点 _todo_450DC0+159",
+    "析构族共享写 +39",
+    "槽 0x450F80 域"
+   ],
+   "confidence": 75,
+   "grade": "A"
+  },
+  {
+   "key": "UIListBox:子对象@0x56B16C",
+   "claim": "认领（子对象视图）",
+   "evidence": [
+    "写点 Init+95/DestroyContent+39",
+    "槽 0x4503C0 域"
+   ],
+   "confidence": 75,
+   "grade": "A"
+  },
+  {
+   "key": "EffAudioNode@0x0056F674",
+   "claim": "认领+再创作命名（变体）",
+   "evidence": [
+    "独有槽 IDA：**0x4C15B0 `RenderTarget2::CreateEffAudio`（返回 CEffAudio\\*\\*）** + CEffAudio::UpdateInternal(0x4C29A0)；共享槽=EffTarg"
+   ],
+   "confidence": 85,
+   "grade": "A"
+  },
+  {
+   "key": "EffBinkNode@0x0056F6B0/0x0056F6BC/0x0056F6C8",
+   "claim": "认领+再创作命名（变体）",
+   "evidence": [
+    "独有槽 IDA：**0x4C2090 `CreateEffBink`（返回 CEffBink\\*\\*）** + 0x4C3340 `_scalar_dtor_Bink`（Bink 删际）；共享槽=EffObjectPool CalcDelt"
+   ],
+   "confidence": 85,
+   "grade": "A"
+  },
+  {
+   "key": "EffMultiPassNode@0x0056F704/0x0056F710/0x0056F71C",
+   "claim": "认领+再创作命名（变体）",
+   "evidence": [
+    "独有槽 IDA：**0x4C2700 `BeginNextPass` + 0x4C2930 `InitTargetPos` + 0x4C2820 `CreateDeactivated`** + CEffAction::AllocSegmen"
+   ],
+   "confidence": 85,
+   "grade": "A"
+  },
+  {
+   "key": "EffCallBackNode@0x0056F758/0x0056F774",
+   "claim": "认领+再创作命名（变体）",
+   "evidence": [
+    "独有槽 IDA：**0x4C3490 `CreateEffCallBack`（返回 CEffCallBack\\*\\*）** + **0x4C3570 `UpdatePost(float)`**；0x56F758=删际 0x4C3340(Bi"
+   ],
+   "confidence": 82,
+   "grade": "A"
+  },
+  {
+   "key": "CEffCylinder@0x0056F7BC",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "ctor CEffCylinder::Init+109 写表 + _scalar_dtor+42 析构复写；槽=EffTargetPool Alloc/adjust 族 + CEffCylinder 删际"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffCylinder@0x0056F804",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "ctor Init+37 / dtor+111 对；槽=EffObjectPool CalcDeltaTime + Object::FatalExit 共享"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffectSystem@0x0056F844",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "ctor 域 CEffectSystem::_todo_0+13 写表；槽=CEffectSystem::Render/Reset + CEffect::Activate 域"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffgbParticle@0x0056F8B4",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "ctor FillDefaultUVSet+37 / ReleaseEffect+126 对；池基视图"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffgbParticle@0x0056F8C0",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "ctor Render+50 / Destroy+42 对；槽=CEffgbParticle 域 + EffTargetPool Alloc"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffgbParticle@0x0056F908",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "ctor Render+37 / Destroy+82 对；池基视图"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffGrid@0x0056F914",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "ctor ~CEffgbParticle+120 / ~CEffGrid+41 对（CEffGrid 域）；槽=_sdtor_36 族"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffGrid@0x0056F95C",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "同对 +53/+142；池基视图"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffMeteor@0x0056F96C",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "ctor _sdtor_36+220 / ~CEffMeteor+41 对；槽=_sdtor_37 族"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffMeteor@0x0056F9B4",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "同对 +117/+162；池基视图"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffModel@0x0056F9D0",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "ctor CEffModel+77 / ~CEffgbParticle+41 对；槽=_sdtor_38 族"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffModel@0x0056FA18",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "ctor CEffModel+37 / +68 对；槽=CEffModel::Update"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffModel@0x0056FA24",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "ctor CEffModel_Reset+65 / UpdateCallback+41 对；槽=_sdtor_39"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffModel@0x0056FA6C",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "同对 +38/+157；池基视图"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffShock@0x0056FA7C",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "ctor CEffShock::GetEditorTa+50 / CEffQuake::Update+22 对；槽=EffTargetPool 族 + CEffQuake 删际"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffShock@0x0056FAC4",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "同对 +37/+31；池基视图"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffQuake@0x0056FAD0",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "ctor 删际+129 / ~CEffect+41 对；槽=_sdtor_40 族"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffQuake@0x0056FB18",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "同对 +54/+138；池基视图"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffSParticle@0x0056FB28",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "ctor _sdtor_40+226 / ~CEffSParticle+22 对；槽=CEffSParticle 域"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CEffSParticle@0x0056FB70",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "同对 +213/+31；槽=CEffSParticle::Set*"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "LineupUI@0x0056B794",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "ctor UIListBox_InitWithPalScr+951 / LineupUI 构造+32 对；槽=LineupUI::Update + UIWnd 族"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CCBUI@0x00570554",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "ctor CCBItemWindow::Update+44 / CCBMagicWindow 删际+29 对；槽=CCBUI::_todo 域（4 子对象族邻表）"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "CCBRoleState@0x005708E8",
+   "claim": "认领（池基子对象视图）",
+   "evidence": [
+    "ctor SceneObj::CreateUI+108 / Actor::DestroyInternal+29 对；槽=CCBRoleState::Render 域 + SceneObj_HandleE"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  },
+  {
+   "key": "ScreenEffectMgr:伴生@0x56F510",
+   "claim": "认领（fade 伴生族第 4 表）",
+   "evidence": [
+    "写点 ResetHorizontal+8/OnIdle+0 对",
+    "槽 StartFadeIn/RenderFadeOut/ToggleFade 语义族",
+    "删际 0x4BE8F0 包装形"
+   ],
+   "confidence": 80,
+   "grade": "A"
+  }
+ ]
+}

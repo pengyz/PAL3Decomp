@@ -1,0 +1,62 @@
+{
+ "_meta": {
+  "created": "2026-10-16 analyzer",
+  "note": "vtable 余 17 表修法清单（1 表落地/5 表 ctor 形待尺寸径/8 表 IMPOSSIBLE 确认）；new-ctor 三元组仅堆分配类存在——嵌入式构造走 memset/成员末端径"
+ },
+ "tables": [
+  {
+   "table": "0x0056F4A0",
+   "verdict": "✅ 修法落地",
+   "evidence": "new-ctor 三元组 A 级：push 0x5896C(=362860); call new@0x55353B; call ctor 0x4BC760 @site 0x4C8B05 —— PDB ParticleEffect size 双源 ✓",
+   "action": "已认领 ParticleEffect + ctor 注册回填"
+  },
+  {
+   "table": "0x0056A9CC",
+   "verdict": "🔧 ctor 形待尺寸径",
+   "evidence": "Role_Role+101/+624/+649 三写（Role MI 第三表）——无 new-triple（嵌入式）",
+   "action": "随 Role 族补认领（bs=8704 audit 径）"
+  },
+  {
+   "table": "0x0056AAC4",
+   "verdict": "🔧 ctor 形待尺寸径",
+   "evidence": "0x41F360 开头写（ctor 形）+0x41F2D0+95 reinit；call 站点 0x41F343 无 alloc（嵌入式）",
+   "action": "ctor 注册回填（_todo_ 或 97 族名）+ 表认领"
+  },
+  {
+   "table": "0x0056AB9C",
+   "verdict": "🔧 ctor 形待尺寸径",
+   "evidence": "0x432980 开头写（ctor 形）+SetScriptInitFlag+34；无 new-triple",
+   "action": "同上"
+  },
+  {
+   "table": "0x0056A6D0",
+   "verdict": "🔧 ctor 形待尺寸径",
+   "evidence": "0x4083D0 开头写（ctor 形）+PathObj::CalcLength+1498 reinit",
+   "action": "同上"
+  },
+  {
+   "table": "0x0056AB28/34",
+   "verdict": "🔧 ctor 形待尺寸径",
+   "evidence": "0x423880+31/+37 双写（ctor 形 MI 对）+BINK::Reset+289/295；gbLightObj 族槽名",
+   "action": "ctor 注册回填 + 表认领（gbLightObj 派生）"
+  },
+  {
+   "table": "0x0056A66C/0x56A694/0x56A6A8/0x56A6B4",
+   "verdict": "❌ IMPOSSIBLE 确认",
+   "evidence": "写点全在深偏移（+247~+1153）=reinit/大函数域，无 ctor 形写点；无 new-triple",
+   "action": "候选无族 ⇒ 待 97 族 ctor 注册回填联动（如 sub_404800 注册后回填）"
+  },
+  {
+   "table": "0x0056D5C4/0x570748",
+   "verdict": "❌ IMPOSSIBLE 确认",
+   "evidence": "vptr 写点全扫零命中（疑寄存器间接写）",
+   "action": "idapro xref 深查待做"
+  },
+  {
+   "table": "0x005731D4/0x573238",
+   "verdict": "❌ IMPOSSIBLE 确认",
+   "evidence": "写点 +6208/+3728 深偏移（大函数负载写）",
+   "action": "同 IMPOSSIBLE 账"
+  }
+ ]
+}

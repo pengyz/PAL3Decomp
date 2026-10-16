@@ -130,6 +130,16 @@ union { // +0xN
 - 跨继承边界的内存复用应在定义该偏移的基类中标注 union
 - **`union` 本身即为 overlap 声明**：`check_annotations` 遇到 `type={"union":[...]}` 时会自动跳过该成员与后续成员的 overlap 检测，无需额外在 `source` 中写 `overlap`
 
+**⚠️ overlap 标注语义澄清（2026-10-16 反向审计定谳——「位面复用」≠「偏移冲突」）**：
+`source` 带 `overlap` / `type={"union":...}` 标记的实际语义是**位面复用声明**（同一存储的多解释视图），
+**不是**「同偏移多成员冲突」的偏移维度标记。历史表述「成员之间偏移重叠⇒冲突⇒其一记 overlap」是偏移维度措辞，
+与实际用法（位面维度）脱节——按字面理解会误判「标注面过大」（2026-10-16 反向审计实测：302 员抽样 9/9 全为位面复用，误标≈0）。
+**三判据（满足其一即真 overlap）**：
+1. **值位面**：同一存储被不同标量型解释（`1.0f 位型写 int`（`m_nEffParam0 = 1065353216`）· `21.0f 位型写 int[2]` · 同 struct 内 `m_nEffParam14 = *(float *)&m_nEffParamBase[2]` 重解释拷贝）；
+2. **取址**：`&member` 作 buffer 基走查（`&g_RoleSlotBuf.m_partyActor.m_pParticleData + v22 + 8` ×64 数组步进基 · `(const char *)&m_nEffParam0` 取址转 char*）；
+3. **重解释**：`*(float *)&member` / `(Actor *)&member` 等 cast-deref 位面（`*(float *)&this->m_InnerActor = acos(...)` float 写 + `&this->m_InnerActor` 传 Actor* 子对象位面）。
+**何时警惕误标**：孤立成员（无同偏移/无 range 成对）**不构成误标证据**——位面复用的多视图可能是**跨 struct**（g_EffMgrData/g_17A7BData/g_17A8Data/g_C10Data/g_CombatTaskData/g_RoleSystemData 同名成员=同一 buffer 六视图）或**异类型**（int/float/指针）。判定必须看**访问形**（& 取址 / cast-deref / 位型赋值），不可只看偏移表。
+
 ### 二进制取证工具优先级（idapro MCP 优先，2026-10-15 新增）
 
 **任何二进制裁决/取证场景，优先使用 `idapro` MCP（IDA PRO），效率远高于 objdump 自建索引。**

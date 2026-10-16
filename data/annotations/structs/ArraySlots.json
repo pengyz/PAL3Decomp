@@ -1,0 +1,65 @@
+{
+  "name": "ArraySlots",
+  "binary_size": 88,
+  "known_members": {
+    "72": {
+      "name": "m_aSlotPtrs",
+      "type": "int[4]",
+      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级：0x44A790 this[18..20]=0（+72..+80）"
+    },
+    "84": {
+      "name": "m_bActive",
+      "type": "int",
+      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级：0x44A790 this[21]=1（+84）"
+    }
+  },
+  "methods": {
+    "0x0044A790": {
+      "name": "ArraySlots",
+      "signature": "void __thiscall()",
+      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级 decompile：ClearSubArraySlot();槽清零;return this（ctor 形）"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AFA4",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x0044AB40",
+          "from": "CCBProtectWindow"
+        },
+        {
+          "addr": "0x0044AB00",
+          "from": "UIEmote"
+        },
+        {
+          "addr": "0x004AF760",
+          "from": "CEffSParticle"
+        },
+        {
+          "addr": "0x00445E70",
+          "from": "CCBPanelSlot"
+        },
+        {
+          "addr": "0x0044A870",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0044A820",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043D920",
+          "from": "UIPushButton"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        }
+      ],
+      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] 认领+再创作命名五面卡：①ctor 0x44A790+32 写表+UIWnd_RenderText+17 复位写 ②ClearSubArraySlot() ③+72..+84 槽区 ④独立小容器类 ⑤构造/复位返回 this ⇒ 子数组槽容器；confidence=82"
+    }
+  ],
+  "_naming": "[vtable 55 续 2026-10-17 analyzer 证据账目制] 再创作命名 ArraySlots（ClearSubArraySlot + 槽指针数组语义）"
+}

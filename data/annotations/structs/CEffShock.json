@@ -215,5 +215,84 @@
     }
   ],
   "bases_source": "A: ctor `mov [reg+0Ch], offset <vtable>` (CEffModel sub_4CFC70 / CEffCylinder sub_4C3DD0)；PDB 全族 CTaskTpl 基 = 12；template_bases.json 记载 18 个 CEff* 共享该模板布局；二进制另有 58 处 `sub ecx,0Ch` 的 this 调整",
-  "vtables": []
+  "vtables": [
+    {
+      "addr": "0x0056FA7C",
+      "base": "EffTargetPool",
+      "slots": [
+        {
+          "addr": "0x004C2030",
+          "from": "RenderTarget2"
+        },
+        {
+          "addr": "0x004C2850",
+          "from": "RenderTarget2"
+        },
+        {
+          "addr": "0x004D3860",
+          "from": "CEffQuake"
+        },
+        {
+          "addr": "0x004D32E0",
+          "from": "CEffQuake"
+        },
+        {
+          "addr": "0x004C0650",
+          "from": "CEffQuake"
+        },
+        {
+          "addr": "0x004D33A0",
+          "from": "CEffSParticle"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "UISceneMap"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "UISceneMap"
+        }
+      ],
+      "source": "[余量 33 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor CEffShock::GetEditorTa+50 / CEffQuake::Update+22 对 ②被调用者面=池基共享 impl（EffTargetPool/EffObjectPool 既有命名）+ 类域槽 ③成员访问面=池节点布局 ④类归属面=ctor/dtor 域双自证 ⑤交互模式面=RenderTarget2 效果生命周期；evidence=[写点对,槽行,删际锚] confidence=80"
+    },
+    {
+      "addr": "0x0056FAC4",
+      "base": "EffObjectPool",
+      "slots": [
+        {
+          "addr": "0x004C2600",
+          "from": "EffObjectPool"
+        },
+        {
+          "addr": "0x0055434F",
+          "from": "EffObjectPool"
+        },
+        {
+          "addr": "0x004D37A0",
+          "from": "Actor"
+        },
+        {
+          "addr": "0x004D4DE0",
+          "from": null
+        },
+        {
+          "addr": "0x004C2850",
+          "from": "RenderTarget2"
+        },
+        {
+          "addr": "0x004D4DF0",
+          "from": null
+        },
+        {
+          "addr": "0x004D3930",
+          "from": null
+        },
+        {
+          "addr": "0x004D3AD0",
+          "from": "CEffect"
+        }
+      ],
+      "source": "[余量 33 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=同对 +37/+31 ②被调用者面=池基共享 impl（EffTargetPool/EffObjectPool 既有命名）+ 类域槽 ③成员访问面=池节点布局 ④类归属面=ctor/dtor 域双自证 ⑤交互模式面=RenderTarget2 效果生命周期；evidence=[写点对,槽行,删际锚] confidence=80"
+    }
+  ]
 }

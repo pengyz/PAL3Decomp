@@ -657,7 +657,7 @@ def check(struct_dir=None):
                         warnings.append(f"structs[{sname}]: base_class '{b}' not in structs (may be in PDB)")
 
         # Check struct has size
-        size = max(sinfo.get('binary_size', 0), sinfo.get('pdb_size', 0))
+        size = max((sinfo.get('binary_size') or 0), (sinfo.get('pdb_size') or 0))  # null 防御 2026-10-17
         if size == 0 and members:
             warnings.append(f"structs[{sname}]: no size (has {len(members)} members but size=0)")
 

@@ -52,35 +52,35 @@
         },
         {
           "addr": "0x004AF760",
-          "from": null
+          "from": "CEffSParticle"
         },
         {
           "addr": "0x00445E70",
-          "from": null
+          "from": "CCBPanelSlot"
         },
         {
           "addr": "0x00445CD0",
-          "from": null
+          "from": "UITitle_BBTY"
         },
         {
           "addr": "0x0044E980",
-          "from": null
+          "from": "UIWnd"
         },
         {
           "addr": "0x00445C10",
-          "from": null
+          "from": "SceneObj"
         },
         {
           "addr": "0x00445B90",
-          "from": null
+          "from": "UIWnd"
         },
         {
           "addr": "0x0044E5C0",
-          "from": null
+          "from": "scScriptInstance"
         },
         {
           "addr": "0x00445D10",
-          "from": null
+          "from": "UIWnd"
         }
       ],
       "source": "[100 表认领 2026-10-16 重落] UIEmote 主表 A 级：写入点 ctor+101 + 析构族+39 双自证；UIWnd 接口形 + 0x44E5C0 删除析构在槽 | 槽名债清毕 2026-10-16：0x55434F 双注册摘除（CRT amsg_exit(0x19) T145 族）/UNREG 槽天然 slot_<i>/共享名 verified"
@@ -102,8 +102,8 @@
     },
     "0x0044AB00": {
       "name": "_todo_",
-      "signature": "int __thiscall()",
-      "source": " | [vtable 治理·未注册族 2026-10-16 analyzer] A 级本体判读：`8b 41 f4 c3`（mov eax,[ecx-0xC]; ret）=基类偏移取值桩——语义未考保留 _todo_（CLAUDE.md 诚实保留形）；表 0x56B044 槽（UIEmote 主表已认领）"
+      "signature": "int __thiscall(UIEmote *this)",
+      "source": " | 97族注册续 2026-10-17（verifier·证据账目制 symbol+addr）：注册 evidence：体 `mov eax,[ecx-0xC]; ret`（字段 getter 形，读 this-12 处槽）| 表主已认领 UIEmote（0x56AFA4 槽）| confidence: high（注册）/ 名挂账（raw 别名渲染 `this[-1].m_nLoop[10]` 第③面不达 ⇒ 不赋名）"
     }
   },
   "base_size": 76,

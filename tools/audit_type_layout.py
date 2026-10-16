@@ -59,6 +59,33 @@ NOT_A_MEMBER_PREFIX = re.compile(
     r'\b(static|typedef|friend|using|enum|union|struct|class|virtual|inline|extern|template)\b')
 
 
+
+def tail_drift_conflict(bsize, members):
+    """尾部漂移判据（纯函数，R15 单测点）→ 尾漂移起始偏移 或 None。
+
+    判据=成员**末端** max(off+size) vs binary_size（容忍 ≤8 对齐尾差）。
+    原实现 `_mx + 8 < _bsize` 用最大成员**起始偏移**（注释写「末端」但代码不是）
+    ⇒ 大尾部成员类误报（2026-10-16 实测 ARC 族 3/4 误报：ArcLocaleRole mx=1
+    判 9<28 报警而真末端 28=bsize 精确闭合）。
+    """
+    end = 0
+    for off, typ in members:
+        t = str(typ).strip()
+        m = __import__('re').match(r'^(.*?)\[(\d+)\]$', t)
+        if m:
+            base, n = m.group(1).strip(), int(m.group(2))
+            sz = _SCALAR.get(base, 4) * n
+        else:
+            sz = _SCALAR.get(t, 4)
+        end = max(end, int(off) + sz)
+    return end if end + 8 < int(bsize) else None
+
+
+_SCALAR = {'BYTE': 1, 'char': 1, '_BYTE': 1, 'unsigned char': 1, 'bool': 1,
+           'short': 2, 'unsigned short': 2, 'WORD': 2, '__int16': 2,
+           'int': 4, 'unsigned int': 4, 'DWORD': 4, 'long': 4, 'float': 4,
+           'void *': 4, 'char *': 4}
+
 def parse_member_line(line):
     """**唯一**的成员行解析入口 → (name, offset) 或 None。
 
@@ -256,9 +283,11 @@ def measure_cpp_layout(cls, header, declared, include_dirs, timeout=180, chunk_s
             _bsize = _ann.get('binary_size')
             _km = _ann.get('known_members') or {}
             if _bsize and _km:
-                _mx = max((int(k) for k in _km if str(k).lstrip('-').isdigit()), default=0)
-                if _mx + 8 < _bsize:      # 成员末端 < binary_size ⇒ 尾部漂移
-                    conflicts['__tail_drift__'] = _mx
+                _td = tail_drift_conflict(_bsize, [(int(k), m.get('type', 'int'))
+                                                   for k, m in _km.items()
+                                                   if str(k).lstrip('-').isdigit() and isinstance(m, dict)])
+                if _td is not None:       # 成员末端 < binary_size ⇒ 尾部漂移（判据修正 2026-10-16）
+                    conflicts['__tail_drift__'] = _td
     except Exception:
         pass
     return conflicts, ok

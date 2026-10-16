@@ -168,6 +168,53 @@
           "from": "UIWnd"
         }
       ]
+    },
+    {
+      "addr": "0x0056B140",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00451800",
+          "from": "CCBFiveNimbusWindow"
+        },
+        {
+          "addr": "0x00450F80",
+          "from": "RoleAtt"
+        },
+        {
+          "addr": "0x004AF760",
+          "from": "CEffSParticle"
+        },
+        {
+          "addr": "0x00451740",
+          "from": "RoleAtt"
+        },
+        {
+          "addr": "0x004512F0",
+          "from": "RoleAtt"
+        },
+        {
+          "addr": "0x004515E0",
+          "from": "RoleAtt"
+        },
+        {
+          "addr": "0x00451320",
+          "from": "RoleAtt"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00450E90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004515A0",
+          "from": "RoleAtt"
+        }
+      ],
+      "source": "[vtable 余 49 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor 域 `UISceneMap::_todo_450DC0+159` 写表 + `RoleAtt::~RoleAtt+39`（析构族共享写）②被调用者面=槽 0x450F80 RoleAtt::IsValid(误名域)+Object::Update ③成员访问面=域布局 ④类归属面=UISceneMap 域（0x450Dxx ctor 域）⑤交互模式面=构造/析构对；⚠️ 槽 0x451800 UNREG 待补；evidence=[写点 ctor/dtor 对,槽行域名] confidence=75"
     }
   ],
   "base_size": 68

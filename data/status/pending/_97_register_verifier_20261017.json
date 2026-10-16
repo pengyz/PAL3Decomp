@@ -1,0 +1,143 @@
+{
+ "_meta": {
+  "created": "2026-10-17 verifier",
+  "kind": "97族注册续·表认领证据账目（键=symbol+addr）",
+  "updated": "2026-10-17 verifier 终：4 删际析构注册+gbRain 新类+IAT 桩判定更正（IMPORTED-VIRTUAL 注册面）"
+ },
+ "table_claims": [
+  {
+   "table": "0x0056A66C",
+   "claim": "gbGeomNode 家族（具体子类待槽面）",
+   "status": "CLAIMED-pending-slot",
+   "confidence": "medium-high",
+   "evidence": "**4 ctor 写点全 WRITE 形**：0x404c33/0x404c81/0x41b5dd/0x41ff2f `mov [esi|edi], offset off_56A66C` + 注释 `gbGeomNode *`（0x404c3d）+ LoadWeaponModel@RoleSystem 创建域 ⇒ 武器模型=gbGeomNode 子类；解锁 21 条"
+  },
+  {
+   "table": "0x0056A694",
+   "claim": "多域内嵌构造类（ctor 写点 4 形）",
+   "status": "CLAIMED-pending-slot",
+   "confidence": "medium",
+   "evidence": "**4 ctor 写点全 WRITE 形**：0x40522a(PAL3::InitGFX 域)/0x50852c/0x5086fe(CCBCamControl 域)/0x52f134(CScreenMode::InitEndScreen 域) `mov [reg], offset off_56A694`——多域内嵌构造（成员对象族）；解锁 11 条"
+  },
+  {
+   "table": "0x0056A6A8",
+   "claim": "效果系统域 344B 类（0x158 尺寸实证）",
+   "status": "CLAIMED-pending-slot",
+   "confidence": "medium",
+   "evidence": "**1 ctor 写点 WRITE 形**：0x40546d `mov [esi], offset off_56A6A8` + **`push 158h`（=344B 对象尺寸）** + CreateEffectSystem@PAL3 创建域；解锁 6 条"
+  },
+  {
+   "table": "0x0056A784",
+   "claim": "gbParticleEffect",
+   "status": "CLAIMED",
+   "confidence": "high",
+   "evidence": "（前轮）创建点双证；7 条挂起=1 已注册+6 IAT 桩"
+  },
+  {
+   "table": "0x0056A66C",
+   "claim": "gbGeomNode",
+   "status": "CLAIMED",
+   "confidence": "high",
+   "evidence": "**删际析构类自证**：0x404D40 `call ??1gbGeomNode@@UAE@XZ + delete`（vtable 槽 caller=表址自证）+ 4 ctor 写点 + gbGeomNode* 注释"
+  },
+  {
+   "table": "0x0056A694",
+   "claim": "gbLightObj",
+   "status": "CLAIMED",
+   "confidence": "high",
+   "evidence": "**删际析构类自证**：0x405310 `call ??1gbLightObj@@UAE@XZ + delete`——多域构造=光效对象语义自洽（InitGFX/CCBCamControl/InitEndScreen 域）"
+  },
+  {
+   "table": "0x0056A6A8",
+   "claim": "gbRain",
+   "status": "CLAIMED",
+   "confidence": "high",
+   "evidence": "**删际析构类自证**：0x405580 `call ??1gbRain@@UAE@XZ + delete` + `push 158h`=**gbRain 344B 尺寸闭合** + CreateEffectSystem 域"
+  },
+  {
+   "table": "0x0056A6B4",
+   "claim": "gbSnow",
+   "status": "CLAIMED",
+   "confidence": "high",
+   "evidence": "**删际析构类自证**：0x405560 `call ??1gbSnow@@UAE@XZ + delete`（新发现表）"
+  }
+ ],
+ "registrations": [
+  {
+   "symbol": "ForwardShowClipped",
+   "addr": "0x0051B940",
+   "classes": [
+    "CCBControlWindow",
+    "CCBFiveNimbusWindow",
+    "CCBItemWindow",
+    "CCBLineupWindow",
+    "CCBResultWindow"
+   ],
+   "confidence": "high"
+  },
+  {
+   "symbol": "_todo_",
+   "addr": "0x0044AB00",
+   "classes": [
+    "UIEmote"
+   ],
+   "confidence": "high(注册)/名挂账"
+  }
+ ],
+ "verdict_corrections": [
+  {
+   "addr": "0x005420E4",
+   "old": "PENDING-table-claim",
+   "new": "SKIP-external",
+   "evidence": "体 `ff 25 74 a2 56 00`=jmp [IAT 0x56A274] 导入跳转桩"
+  },
+  {
+   "addr": "0x005420EA",
+   "old": "PENDING-table-claim",
+   "new": "SKIP-external",
+   "evidence": "同族 ff 25 IAT 桩"
+  },
+  {
+   "addr": "0x005420F0",
+   "old": "PENDING-table-claim",
+   "new": "SKIP-external",
+   "evidence": "同族"
+  },
+  {
+   "addr": "0x005420F6",
+   "old": "PENDING-table-claim",
+   "new": "SKIP-external",
+   "evidence": "同族"
+  },
+  {
+   "addr": "0x005420FC",
+   "old": "PENDING-table-claim",
+   "new": "SKIP-external",
+   "evidence": "同族"
+  },
+  {
+   "addr": "0x00542108",
+   "old": "PENDING-table-claim",
+   "new": "SKIP-external",
+   "evidence": "同族"
+  },
+  {
+   "addr": "0x00410900",
+   "old": "PENDING-table-claim",
+   "new": "DONE-registered",
+   "evidence": "已注册 structs/ParticleVisNode.json ForwardToImport（三证法批）"
+  },
+  {
+   "addr": "0x542072-0x5420D2 块×34",
+   "old": "PENDING-table-claim",
+   "new": "SKIP-external",
+   "evidence": "ff 25 IAT 导入跳转桩族（与前轮 6 条同形）——机械形证逐条：ff 25 [IAT] = jmp [IAT] 非注册面"
+  },
+  {
+   "addr": "0x542072-0x5420D2 块×34 + 前轮 6 条",
+   "old": "SKIP-external（verifier 判）",
+   "new": "**IMPORTED-VIRTUAL 注册面**（更正）",
+   "evidence": "更正：ff 25 [IAT] 桩的导入符号=?Update@gbRain@@EAEXM@Z 等=**gbengine DLL 实现的类虚方法**——「IAT 外部应从 L1 universe 排除」指 L1 比对面，**注册面=类方法（external impl）成立**；导入符号名=二进制导入表 A 级类/方法名源。他线 258 批正按此注册（skip_functions 双注撞车=对账面）"
+  }
+ ]
+}

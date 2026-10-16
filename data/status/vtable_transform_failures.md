@@ -565,3 +565,43 @@
 | `MXTransport::Create` | inline | `MXTransport` | 12 | self_arg_mismatch | `(*(void ( **)(MXTransport *, _DWORD))(*(_DWORD *)&this->gbChain1DNode + 12))(this, 0)` |
 | `MXTransport::IsFadeActive` | inline | `int` | 4 | non_class_hint | `(*(int ( **)(int))(*(_DWORD *)m_numNode + 4))(m_numNode)` |
 | `UICoverFrm::RenderWithSceneMap` | inline | `int` | 4 | non_class_hint | `(*(int ( **)(int))(*(_DWORD *)this[1].m_column[0].width + 4))(this[1].m_column[0].width)` |
+| `CCBStage::SetParam` | inline | `gbChain1DNode` | 24 | slot_out_of_range | `(*(void ( **)(gbChain1DNode *, _DWORD))(*(_DWORD *)this->m_nTodo_124->children.m_Tail + 24))( this->m_nTodo_124->children.m_Tail, 0)` |
+| `CCBStage::ProcessSlotAction` | inline | `gbChain1DNode` | 24 | slot_out_of_range | `(*(void ( **)(gbChain1DNode *, _DWORD))(*(_DWORD *)this->m_nTodo_124->children.m_Tail + 24))( this->m_nTodo_124->children.m_Tail, 0)` |
+| `CCBStage::OnPhysicalHit` | inline | `gbChain1DNode` | 24 | slot_out_of_range | `(*(void ( **)(gbChain1DNode *, _DWORD))(*(_DWORD *)this->m_nTodo_124->children.m_Tail + 24))( this->m_nTodo_124->children.m_Tail, 0)` |
+| `ScreenEffectNode::Object3D_RenderTransformed` | inline | `int` | 12 | non_class_hint | `(*(void ( **)(int, _DWORD))(*(_DWORD *)v2 + 12))(v2, 0)` |
+| `CCBControlWindow::CreateControls` | inline | `UIListBox` | 28 | self_arg_mismatch | `(*(void ( **)(UIListBox *, int, int *, CCBControlWindow *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)&(*v11)->UIWnd + 28))( *v11, *v10, pRect, this, 0, 0, 0)` |
+| `CCBControlWindow::Update` | inline | `int` | 20 | non_class_hint | `(*(int ( **)(int, int))(*(_DWORD *)v5 + 20))(v5, 1)` |
+| `CCBFiveNimbusWindow::Destroy` | inline | `_DWORD` | 20 | non_class_hint | `(*(void ( **)(_DWORD, int))(*(_DWORD *)*v2 + 20))(*v2, 1)` |
+| `CCBItemWindow::CCBItemWindow_Destroy` | inline | `_DWORD` | 20 | non_class_hint | `(*(void ( **)(_DWORD, int))(*(_DWORD *)*v2 + 20))(*v2, 1)` |
+| `CCBItemWindow::Create` | inline | `_DWORD` | 16 | non_class_hint | `(*(void ( **)(_DWORD, int, int *, CCBItemWindow *))(*(_DWORD *)*v4 + 16))(*v4, 232, pRect, this)` |
+| `CCBItemWindow::Create` | inline | `_DWORD` | 28 | non_class_hint | `(*(void ( **)(_DWORD, int, int *, CCBItemWindow *, int, _DWORD))(*(_DWORD *)*v6 + 28))( *v6, 214, pRect, this, g_nUnkDataTable[22], 0)` |
+| `CCBItemWindow::Destroy` | inline | `_DWORD` | 20 | non_class_hint | `(*(void ( **)(_DWORD, int))(*(_DWORD *)*v10 + 20))(*v10, 1)` |
+| `CCBMagicWindow::CreateButton` | inline | `_DWORD` | 28 | non_class_hint | `(*(void ( **)(_DWORD, int, int *, CCBMagicWindow *, void *, int, _DWORD))(*(_DWORD *)*v26 + 28))( *v26, 282, ppButton, this, &unk_5DF59C, 1, 0)` |
+| `CCBParabolaWindow::~CCBParabolaWindow` | inline | `int` | 20 | non_class_hint | `(*(void (**)(int, int))(*(_DWORD *)v2 + 20))(v2, 1)` |
+| `CCBParabolaWindow::~CCBParabolaWindow` | inline | `_DWORD` | 20 | non_class_hint | `(*(void (**)(_DWORD, int))(*(_DWORD *)*v3 + 20))(*v3, 1)` |
+| `CCBParabolaWindow::Destroy_c880` | inline | `_DWORD` | 20 | non_class_hint | `(*(int ( **)(_DWORD, int))(*(_DWORD *)*v3 + 20))(*v3, 1)` |
+| `CCBProtectWindow::Destroy` | inline | `_DWORD` | 20 | non_class_hint | `(*(void ( **)(_DWORD, int))(*(_DWORD *)*v3 + 20))(*v3, 1)` |
+| `CCBResultWindow::Destroy` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int, int))(*(_DWORD *)v2 + 20))(v2, 1)` |
+| `CCBSkillWindow::Create` | inline | `_DWORD` | 16 | non_class_hint | `(*(void ( **)(_DWORD, int, int *, CCBSkillWindow *))(*(_DWORD *)*v4 + 16))(*v4, 513, pRect, this)` |
+| `CCBSystem::ProcFling` | inline | `CCBUI` | 12 | no_vtables_declaration | `(*(void ( **)(CCBUI *))(*(_DWORD *)m_pUI + 12))(m_pUI)` |
+| `CCBSystem::ProcFling` | inline | `CCBUI` | 20 | no_vtables_declaration | `(*(void ( **)(CCBUI *, int))(*(_DWORD *)v11 + 20))(v11, 1)` |
+| `CCBUI::~CCBUI` | inline | `int` | 16 | non_class_hint | `(*(void (**)(int, int, int *, CCBUI *))(*(_DWORD *)v3 + 16))(v3, 1, &v8, this)` |
+| `CCBUI::Reset` | inline | `int` | 16 | non_class_hint | `(*(void ( **)(int, int, int *, CCBUI *))(*(_DWORD *)v8 + 16))(v8, 784, &v10, this)` |
+| `CCBUI::LineMove` | inline | `int` | 28 | non_class_hint | `(*(int ( **)(int, POINT *, int, CCBUI *, int, _DWORD))(*(_DWORD *)v5 + 28))( v5, pEnd, v10, this, v11, 0)` |
+| `LineupUI::CreatePreviewScene` | inline | `char` | 28 | non_class_hint | `(*(void ( **)(char *, const char *, char *, LineupUI *, char *, int, int))(*(_DWORD *)v27 + 28))( v27, (&off_56B97C)[v25], pszName, this, &aUiGamemainuiLi[v46], 1, v24)` |
+| `MainEquipUI::InitMainEquipUI` | inline | `UIPushButton` | 16 | self_arg_mismatch | `(*(int ( **)(UIPushButton *, int, int *, MainEquipUI *))(*(_DWORD *)&v33->UIWnd + 16))( v33, 4371, &v79, this)` |
+| `MainEquipUI::HandleMessage` | inline | `int` | 24 | non_class_hint | `(*(int ( **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v4 + 24))(v4, 1000, 0, 0)` |
+| `MainPropUI::HandleKeyInput` | vftable_local | `MainPropUI` | 24 | name_not_declared_for_class | `(*(int ( **)(MainPropUI *, int, _DWORD, _DWORD))(v4 + 24))( this, 1001, *(&dword_56D5F0 + NextValid), 0)` |
+| `MainPropUI::HandleKeyInput` | inline | `MainPropUI` | 24 | name_not_declared_for_class | `(*(void ( **)(MainPropUI *, int, int *, _DWORD))(*(_DWORD *)this + 24))(this, 1001, &byte_A00323, 0)` |
+| `PalScript::Op_AddItem` | inline | `CCBItemWindow` | 8 | name_declared_at_other_address | `(*(void ( **)(CCBItemWindow *, _DWORD, _DWORD))(*(_DWORD *)v4 + 8))(v4, 0, 0)` |
+| `PropUI::InitListUI` | inline | `PropUI` | 24 | slot_out_of_range | `(*(void ( **)(PropUI *, int, _DWORD, _DWORD))(*(_DWORD *)this + 24))(this, 1007, 0, 0)` |
+| `RoleStatePanel::RenderThrottled` | inline | `UITitle_XJTM` | 4 | no_vtables_declaration | `(*(int ( **)(UITitle_XJTM *))(*(_DWORD *)this->m_pSubTab1 + 4))(this->m_pSubTab1)` |
+| `RoleStatePanel::UpdateCaptions` | inline | `UITitle_XJTM` | 8 | no_vtables_declaration | `(*(void ( **)(UITitle_XJTM *, int, int))(*(_DWORD *)this->m_pSubTab1 + 8))(this->m_pSubTab1, nVal, a3)` |
+| `SaleUI::OnMessage` | inline | `SaleUI` | 24 | slot_out_of_range | `(*(void ( **)(SaleUI *, int, _DWORD, _DWORD))(*(_DWORD *)this + 24))(this, 1007, 0, 0)` |
+| `SystemUI::UIUpdate` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int))(*(_DWORD *)v4 + 20))(v4)` |
+| `TaskBookUI::RefreshTaskList` | inline | `char` | 16 | non_class_hint | `(*(void ( **)(char *, int *, _DWORD *, TaskBookUI *))(*(_DWORD *)v5 + 16))(v5, &byte_A00703, v10, this)` |
+| `UITitle_JDHY::InitNoteItems` | inline | `char` | 16 | non_class_hint | `(*(void ( **)(char *, int *, _DWORD *, UITitle_JDHY *))(*(_DWORD *)v5 + 16))(v5, &byte_A00703, v10, this)` |
+| `UITitle_XJTM::CreateSubWidgets` | inline | `char` | 16 | non_class_hint | `(*(int ( **)(char *, _DWORD, int *, UITitle_XJTM *))(*(_DWORD *)v3 + 16))(v3, 0, &v16, this)` |
+| `::WinProc` | inline | `_DWORD` | 44 | non_class_hint | `(*(void ( **)(_DWORD, int, int, int))(*(_DWORD *)LODWORD(v7[1].InvViewMatrix.xy) + 44))( LODWORD(v7[1].InvViewMatrix.xy), Point.x, Point.y, 1)` |
+| `RenderTarget2::UpdatePost` | inline | `float` | 4 | non_class_hint | `(*(void ( **)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2 + 4))( v2, *(_DWORD *)(*v4 + v6), *(_DWORD *)(*v4 + v6 + 4), 0)` |
+| `CCBStage::RunActiveTask` | inline | `unsigned int` | 16 | non_class_hint | `(*(void ( **)(unsigned int, _DWORD))(*(_DWORD *)inited[1].dwMagicID[1][3] + 16))( inited[1].dwMagicID[1][3], 0)` |

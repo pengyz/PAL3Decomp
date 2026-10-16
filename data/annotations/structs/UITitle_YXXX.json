@@ -150,6 +150,53 @@
           "from": null
         }
       ]
+    },
+    {
+      "addr": "0x0056B898",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x0047E570",
+          "from": null
+        },
+        {
+          "addr": "0x0047DD60",
+          "from": "Object3D"
+        },
+        {
+          "addr": "0x004AF760",
+          "from": "CEffSParticle"
+        },
+        {
+          "addr": "0x00445E70",
+          "from": "CCBPanelSlot"
+        },
+        {
+          "addr": "0x00524970",
+          "from": null
+        },
+        {
+          "addr": "0x0047E3E0",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0047DD70",
+          "from": null
+        },
+        {
+          "addr": "0x0047E4E0",
+          "from": null
+        }
+      ],
+      "source": "[vtable 余 49 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=`UITitle_YXXX::Create+168` 写表 + `~UITitle_YXXX+39` 析构复写 ②被调用者面=Object3D::SetBound(0x47DD60)/Object::Update 共享 + 0x47E570 域槽 ③成员访问面=UITitle 布局 ④类归属面=UITitle_YXXX（ctor 域双自证）⑤交互模式面=Create/析构对；evidence=[写点 ctor/dtor 对,槽行域名] confidence=90"
     }
   ],
   "base_size": 72,

@@ -321,7 +321,7 @@
       "slots": [
         {
           "addr": "0x0041CBA0",
-          "from": null
+          "from": "CameraCtrl"
         },
         {
           "addr": "0x004BDF60",
@@ -329,7 +329,7 @@
         },
         {
           "addr": "0x004AF760",
-          "from": null
+          "from": "CEffSParticle"
         },
         {
           "addr": "0x004BDF70",
@@ -337,7 +337,7 @@
         },
         {
           "addr": "0x0055434F",
-          "from": null
+          "from": "EffObjectPool"
         },
         {
           "addr": "0x004BDF30",
@@ -345,7 +345,7 @@
         },
         {
           "addr": "0x004BE060",
-          "from": null
+          "from": "ScreenEffect"
         }
       ],
       "source": "[残余 14 条裁决 2026-10-16 analyzer] fade 节点伴生小类迁入（filebuf→PalScript 先例）A 级：单写 0x4BDF07=RenderTarget::Destroy+7（ctor 形）；码区 0x4BEAxx-0x4BExxx=ScreenEffectMgr 方法域内；类真名挂账（PDB 无精确形）"
@@ -364,7 +364,7 @@
         },
         {
           "addr": "0x004AF760",
-          "from": null
+          "from": "CEffSParticle"
         },
         {
           "addr": "0x004BDF70",
@@ -395,7 +395,7 @@
         },
         {
           "addr": "0x004AF760",
-          "from": null
+          "from": "CEffSParticle"
         },
         {
           "addr": "0x004BDF70",
@@ -426,7 +426,7 @@
         },
         {
           "addr": "0x004AF760",
-          "from": null
+          "from": "CEffSParticle"
         },
         {
           "addr": "0x004BDF70",
@@ -442,6 +442,37 @@
         }
       ],
       "source": "[残余 14 条裁决 2026-10-16 analyzer] fade 节点伴生小类迁入（filebuf→PalScript 先例）A 级：ctor 0x4BED00+8 / dtor 0x4BED40+0 对（三件套 0x4BED00/0x4BED40/0x4BED20）；码区 0x4BEAxx-0x4BExxx=ScreenEffectMgr 方法域内；类真名挂账（PDB 无精确形）"
+    },
+    {
+      "addr": "0x0056F510",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004BE8F0",
+          "from": "CameraCtrl"
+        },
+        {
+          "addr": "0x004BDF60",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": "CEffSParticle"
+        },
+        {
+          "addr": "0x004BE9E0",
+          "from": null
+        },
+        {
+          "addr": "0x004BE920",
+          "from": null
+        },
+        {
+          "addr": "0x004BE9C0",
+          "from": null
+        }
+      ],
+      "source": "[余量 33 2026-10-17 analyzer] fade 节点伴生族第 4 表（与 0x56F52C/0x56F564/0x56F548 同族）：ctor RenderTarget::ResetHorizontal+8 / CameraCtrl::OnIdle+0 对；槽=StartFadeIn/RenderFadeOut/ToggleFade 语义族 + 删际 0x4BE8F0 包装；evidence=[写点对,槽行语义] confidence=80"
     }
   ]
 }

@@ -1,0 +1,55 @@
+{
+  "name": "EffAudioNode",
+  "binary_size": 32,
+  "known_members": {
+    "0": {
+      "name": "vfptr",
+      "type": "void *",
+      "source": "[RenderTarget2 节点族 2026-10-17 analyzer 证据账目制] vptr 槽位（MI/池节点根）"
+    }
+  },
+  "methods": {},
+  "vtables": [
+    {
+      "addr": "0x0056F674",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004C1640",
+          "from": "RenderTarget2"
+        },
+        {
+          "addr": "0x004C2170",
+          "from": "RenderTarget2"
+        },
+        {
+          "addr": "0x004D33A0",
+          "from": "CEffSParticle"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "UISceneMap"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "UISceneMap"
+        },
+        {
+          "addr": "0x004C29A0",
+          "from": "CEffQuake"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "UISceneMap"
+        },
+        {
+          "addr": "0x004C15B0",
+          "from": "RenderTarget2"
+        }
+      ],
+      "source": "[RenderTarget2 节点族 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor/dtor 对写点（RenderTarget2::Reset/ResetSurface/Deactivate/ResetTargets 域 +31..+50）②被调用者面=独有槽 IDA：**0x4C15B0 `RenderTarget2::CreateEffAudio`（返回 CEffAudio\\*\\*）** + CEffAudio::UpdateInternal(0x4C29A0)；共享槽=EffTargetPool Alloc/adjust/del + CEffQuake m_bIdle-stub + nullsub；ctor/dtor 对=RenderTarget2::Reset+44/DestroyEffBase+11 写点 ③成员访问面=池节点（EffTargetPool/EffObjectPool 既有 impl 共享槽）④类归属面=删际锚+嵌套窗结构 ⑤交互模式面=RenderTarget2 表面/目标管理生命周期；confidence=85"
+    }
+  ],
+  "_naming": "[RenderTarget2 节点族 2026-10-17 analyzer 证据账目制] 再创作命名（独有槽工厂语义反推：CreateEffAudio）",
+  "_size_note": "bs=32 几何最小界；池节点区真身锚挂账"
+}

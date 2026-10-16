@@ -265,19 +265,19 @@
         },
         {
           "addr": "0x00442890",
-          "from": null
+          "from": "UIFrameWnd"
         },
         {
           "addr": "0x00442AD0",
-          "from": null
+          "from": "UIFrameWnd"
         },
         {
           "addr": "0x00442420",
-          "from": null
+          "from": "UIFrameWnd"
         },
         {
           "addr": "0x00445B90",
-          "from": null
+          "from": "UIWnd"
         },
         {
           "addr": "0x00442D20",
@@ -285,7 +285,7 @@
         },
         {
           "addr": "0x00445D10",
-          "from": null
+          "from": "UIWnd"
         }
       ],
       "source": "[表认领+槽注册合并批 2026-10-16 analyzer] 认领 A 级：写入点 0x442D08（UIPushButton::CtorWithFlag+8）+ 0x442D40（UIFrameWnd 族+0 复写）双自证；槽=UIFrameWnd 族（CalculateLayout/Update/Destroy/删除析构）+ UIWnd 共享 ⇒ UIPushButton:base(UIFrameWnd) 子对象表"

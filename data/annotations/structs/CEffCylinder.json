@@ -344,6 +344,64 @@
           "from": null
         }
       ]
+    },
+    {
+      "addr": "0x0056F7BC",
+      "base": "EffTargetPool",
+      "slots": [
+        {
+          "addr": "0x004C5800",
+          "from": "RenderTarget2"
+        },
+        {
+          "addr": "0x004C2850",
+          "from": "RenderTarget2"
+        },
+        {
+          "addr": "0x004C5810",
+          "from": null
+        },
+        {
+          "addr": "0x004C3DB0",
+          "from": null
+        },
+        {
+          "addr": "0x004C4060",
+          "from": null
+        },
+        {
+          "addr": "0x004C3EC0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "UISceneMap"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "UISceneMap"
+        }
+      ],
+      "source": "[余量 33 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor CEffCylinder::Init+109 写表 + _scalar_dtor+42 析构复写 ②被调用者面=池基共享 impl（EffTargetPool/EffObjectPool 既有命名）+ 类域槽 ③成员访问面=池节点布局 ④类归属面=ctor/dtor 域双自证 ⑤交互模式面=RenderTarget2 效果生命周期；evidence=[写点对,槽行,删际锚] confidence=80"
+    },
+    {
+      "addr": "0x0056F804",
+      "base": "EffObjectPool",
+      "slots": [
+        {
+          "addr": "0x004C2600",
+          "from": "EffObjectPool"
+        },
+        {
+          "addr": "0x0055434F",
+          "from": "EffObjectPool"
+        },
+        {
+          "addr": "0x004C5740",
+          "from": "RenderTarget2"
+        }
+      ],
+      "source": "[余量 33 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor Init+37 / dtor+111 对 ②被调用者面=池基共享 impl（EffTargetPool/EffObjectPool 既有命名）+ 类域槽 ③成员访问面=池节点布局 ④类归属面=ctor/dtor 域双自证 ⑤交互模式面=RenderTarget2 效果生命周期；evidence=[写点对,槽行,删际锚] confidence=80"
     }
   ],
   "base_size": 16,

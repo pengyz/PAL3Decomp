@@ -279,7 +279,7 @@
         },
         {
           "addr": "0x004C2850",
-          "from": null
+          "from": "RenderTarget2"
         },
         {
           "addr": "0x004C88C0",
@@ -295,19 +295,19 @@
         },
         {
           "addr": "0x004C6A70",
-          "from": null
+          "from": "CEffect"
         },
         {
           "addr": "0x00408BD0",
-          "from": null
+          "from": "UISceneMap"
         },
         {
           "addr": "0x00408BD0",
-          "from": null
+          "from": "UISceneMap"
         },
         {
           "addr": "0x004C7150",
-          "from": null
+          "from": "CEffect"
         },
         {
           "addr": "0x004C6F20",
@@ -315,7 +315,7 @@
         },
         {
           "addr": "0x004C6940",
-          "from": null
+          "from": "CEffect"
         },
         {
           "addr": "0x004C0500",
@@ -346,19 +346,19 @@
         },
         {
           "addr": "0x004C6A70",
-          "from": null
+          "from": "CEffect"
         },
         {
           "addr": "0x00408BD0",
-          "from": null
+          "from": "UISceneMap"
         },
         {
           "addr": "0x00408BD0",
-          "from": null
+          "from": "UISceneMap"
         },
         {
           "addr": "0x004C7150",
-          "from": null
+          "from": "CEffect"
         },
         {
           "addr": "0x004C6F20",
@@ -366,7 +366,7 @@
         },
         {
           "addr": "0x004C6940",
-          "from": null
+          "from": "CEffect"
         },
         {
           "addr": "0x004C0500",
@@ -386,7 +386,7 @@
         },
         {
           "addr": "0x004C7450",
-          "from": null
+          "from": "CEffect"
         },
         {
           "addr": "0x004C15D0",
@@ -394,6 +394,123 @@
         }
       ],
       "source": "[vtable 合并批 2026-10-16 analyzer] 认领 A 级：ctor 域 +116/+35（同 ctor 双写 MI 形，与 0x56F86C 成对）"
+    },
+    {
+      "addr": "0x0056F8B4",
+      "base": "EffObjectPool",
+      "slots": [
+        {
+          "addr": "0x004C2600",
+          "from": "EffObjectPool"
+        },
+        {
+          "addr": "0x0055434F",
+          "from": "EffObjectPool"
+        },
+        {
+          "addr": "0x004C87A0",
+          "from": null
+        },
+        {
+          "addr": "0x004C9530",
+          "from": null
+        },
+        {
+          "addr": "0x004C2850",
+          "from": "RenderTarget2"
+        },
+        {
+          "addr": "0x004C9540",
+          "from": null
+        },
+        {
+          "addr": "0x004C8950",
+          "from": null
+        },
+        {
+          "addr": "0x004C8A40",
+          "from": null
+        }
+      ],
+      "source": "[余量 33 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor FillDefaultUVSet+37 / ReleaseEffect+126 对 ②被调用者面=池基共享 impl（EffTargetPool/EffObjectPool 既有命名）+ 类域槽 ③成员访问面=池节点布局 ④类归属面=ctor/dtor 域双自证 ⑤交互模式面=RenderTarget2 效果生命周期；evidence=[写点对,槽行,删际锚] confidence=80"
+    },
+    {
+      "addr": "0x0056F8C0",
+      "base": "EffTargetPool",
+      "slots": [
+        {
+          "addr": "0x004C9530",
+          "from": null
+        },
+        {
+          "addr": "0x004C2850",
+          "from": "RenderTarget2"
+        },
+        {
+          "addr": "0x004C9540",
+          "from": null
+        },
+        {
+          "addr": "0x004C8950",
+          "from": null
+        },
+        {
+          "addr": "0x004C8A40",
+          "from": null
+        },
+        {
+          "addr": "0x004C8B80",
+          "from": null
+        },
+        {
+          "addr": "0x004D0A60",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "UISceneMap"
+        }
+      ],
+      "source": "[余量 33 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor Render+50 / Destroy+42 对 ②被调用者面=池基共享 impl（EffTargetPool/EffObjectPool 既有命名）+ 类域槽 ③成员访问面=池节点布局 ④类归属面=ctor/dtor 域双自证 ⑤交互模式面=RenderTarget2 效果生命周期；evidence=[写点对,槽行,删际锚] confidence=80"
+    },
+    {
+      "addr": "0x0056F908",
+      "base": "EffObjectPool",
+      "slots": [
+        {
+          "addr": "0x004C2600",
+          "from": "EffObjectPool"
+        },
+        {
+          "addr": "0x0055434F",
+          "from": "EffObjectPool"
+        },
+        {
+          "addr": "0x004C9470",
+          "from": "Actor"
+        },
+        {
+          "addr": "0x004CB340",
+          "from": null
+        },
+        {
+          "addr": "0x004C2850",
+          "from": "RenderTarget2"
+        },
+        {
+          "addr": "0x004CB350",
+          "from": null
+        },
+        {
+          "addr": "0x004C9630",
+          "from": "CEffGrid"
+        },
+        {
+          "addr": "0x004C98F0",
+          "from": "CEffGrid"
+        }
+      ],
+      "source": "[余量 33 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor Render+37 / Destroy+82 对 ②被调用者面=池基共享 impl（EffTargetPool/EffObjectPool 既有命名）+ 类域槽 ③成员访问面=池节点布局 ④类归属面=ctor/dtor 域双自证 ⑤交互模式面=RenderTarget2 效果生命周期；evidence=[写点对,槽行,删际锚] confidence=80"
     }
   ],
   "base_size": 16,

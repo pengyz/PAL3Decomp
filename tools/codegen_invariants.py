@@ -42,6 +42,7 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'pal3', 'src')
 STRUCTS = os.path.join(ROOT, 'data', 'annotations', 'structs')
+INCLUDE = os.path.join(ROOT, 'include')
 VALID_CHECKS = ('A', 'B', 'C', 'D')
 
 ANY_VFT = re.compile(r'__vftable')
@@ -49,6 +50,35 @@ SUBFN = re.compile(r'\bsub_[0-9A-Fa-f]{6}\b')
 DECL_LINE = re.compile(r'^\s*(?:extern\s+)?[\w\s\*&:<>,\[\]]+?\b(sub_[0-9A-Fa-f]{6})\s*\(')
 THISCLASS = re.compile(r'__thiscall\s+([A-Za-z_]\w*)::')
 
+
+
+def handwritten_vptr_verdict(cls, include_root):
+    """手写头 vptr 判定（纯函数，R15 单测点）→ ('ok'|'bad'|'none', detail)。
+
+    判据与生成头一致：「显式 vptr/占位」∨「声明了 virtual」⇒ ok。查找形：
+    ① include/**/Cls.h 同名头 ② include/**/*.h 内 `class|struct Cls` 声明行。
+    """
+    import glob as _g, os as _o, re as _re
+    texts = []
+    for hp in _g.glob(_o.path.join(include_root, '**', cls + '.h'), recursive=True):
+        texts.append((hp, open(hp, encoding='utf-8', errors='replace').read()))
+    if not texts:
+        decl = _re.compile(r'\b(?:class|struct)\s+(?:\w+\s+)*%s\b' % _re.escape(cls))
+        for hp in _g.glob(_o.path.join(include_root, '**', '*.h'), recursive=True):
+            t = open(hp, encoding='utf-8', errors='replace').read()
+            if decl.search(t):
+                texts.append((hp, t))   # 多声明全收集（CPK 双声明实证）
+    if not texts:
+        return 'none', ''
+    # 多声明场景（如 CPK 在 pal3_structs.h 与 gbVFileSystem.h 双声明）：任一命中含
+    # virtual/vptr 证据即 ok（2026-10-16 首版只判首命中 ⇒ CPK 误报，本版全遍历）
+    _bad_hp = None
+    for hp, t in texts:
+        if '__vftable' in t or _re.search(r'^\s*virtual\s', t, _re.M) or 'vptr' in t:
+            return 'ok', _o.path.relpath(hp)
+        if _bad_hp is None:
+            _bad_hp = hp
+    return 'bad', _o.path.relpath(_bad_hp)
 
 def gen_files(exts=('.cpp', '.h')):
     out = []
@@ -284,14 +314,29 @@ def check_d(verbose=False):
     **「显式 vptr/占位」∨「声明了 virtual」二者之一成立即通过**；两者都没有才是真问题。
     """
     bad, ok = [], 0
+    # CRT/STL 类型豁免与 emit 同源（WINDOWS_CRT_TYPES 单一来源 import——防双副本分叉；
+    # filebuf 实证：emit 按此表不生成头 ⇒ [D] 不得要求其有生成头）
+    try:
+        sys.path.insert(0, os.path.join(ROOT, 'pipeline', 'gen'))
+        sys.path.insert(0, os.path.join(ROOT, 'pipeline', 'gen', 'stages'))
+        from emit_headers import WINDOWS_CRT_TYPES as _CRT
+    except Exception:
+        _CRT = set()
     for p in sorted(glob.glob(os.path.join(STRUCTS, '*.json'))):
         cls = os.path.basename(p)[:-5]
         d = json.load(open(p, encoding='utf-8'))
         if not (d.get('vtables') or []):
             continue
+        if cls in _CRT:
+            continue
         hdrs = glob.glob(os.path.join(SRC, '**', cls + '.h'), recursive=True)
         if not hdrs:
-            bad.append((cls, '(未找到生成头)', d.get('binary_size')))
+            # [vptr 前置门查找面扩展 2026-10-16 verifier] 手写头并存制式回退（R15 纯函数）
+            _hv, _hd = handwritten_vptr_verdict(cls, INCLUDE)
+            if _hv == 'ok':
+                ok += 1
+                continue
+            bad.append((cls, '(未找到生成头; 手写头 %s: %s)' % (_hv, _hd), d.get('binary_size')))
             continue
         htxt = open(hdrs[0], encoding='utf-8', errors='replace').read()
         if '__vftable' in htxt:
