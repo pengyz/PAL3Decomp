@@ -126,14 +126,16 @@ def test_fcg_tail_allowlist_7_sites():
         assert e['target'] in out and e['current'] not in out, e
 
 
-def test_fcg_tail_current_strings_live():
-    """R13 预检：7 站 current 串在生成码实位（行锚定命中）。"""
+def test_fcg_tail_entries_wellformed():
+    """R13 预检（树无关化 2026-10-16）：7 站 entry 良构——生成树行锚定检查
+    属 verify 步（树随 codegen 重生成漂移 ⇒ 单测保持树无关）。"""
     import json
     sites = json.load(open(REPO / 'data' / 'annotations' /
                            'fcg_tail_allowlist.json'))['sites']
+    assert len(sites) == 7
     for e in sites:
-        lines = open(REPO / e['file'], encoding='utf-8', errors='replace').read().split('\n')
-        assert e['current'] in lines[e['line'] - 1], (e['file'], e['line'])
+        assert e['file'] and e['line'] > 0 and e['current'] and e['target'], e
+        assert e['current'] != e['target']
 
 
 # ── [sig-3 第三形 119 站] 定向应用回归 ─────────────────────────────
@@ -173,3 +175,27 @@ def test_sig3_pointer_receivers_no_ampersand_and_arith_untouched():
         for frag in ('1116', '4 * ', '+ 112', '= BufferAt'):
             if frag in e['current']:
                 assert frag in e['target'], (e['line'], frag)
+
+
+# ── [A/C 族强转] 24 站回归 ─────────────────────────────────────────
+def test_ac_family_allowlist_sites_apply():
+    """24 站逐条：整行锚定 current→target 精确生效（C2679 消除形）。"""
+    import json
+    sites = json.load(open(REPO / 'data' / 'annotations' /
+                           'ac_family_cast_allowlist.json'))['sites']
+    assert len(sites) == 24
+    for e in sites:
+        code = '// pad\n' * (e['line'] - 1) + e['current'] + '\n'
+        out, applied, skipped = at.apply_mrect_allowlist(code, [e])
+        assert len(applied) == 1 and not skipped, (e['file'], e['line'])
+        assert e['target'] in out and e['current'] not in out, e
+
+
+def test_ac_family_bit_equivalence_forms():
+    """强转形锁：((int *)X)[i] / *(_DWORD *)&X / (int)RHS —— 4B 位槽等价制式。"""
+    import json
+    sites = json.load(open(REPO / 'data' / 'annotations' /
+                           'ac_family_cast_allowlist.json'))['sites']
+    for e in sites:
+        t = e['target']
+        assert ('((int *)' in t or '*(_DWORD *)' in t or '(int)' in t), e
