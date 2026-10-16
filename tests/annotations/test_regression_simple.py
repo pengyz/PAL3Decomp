@@ -60,6 +60,9 @@ def test_pointer_fixes():
         actual_normalized = actual_type.replace(" ", "")
         expected_normalized = expected_type.replace(" ", "")
         
+        assert actual_normalized == expected_normalized, (
+            f'{struct_name}[{offset}]: {description} — '
+            f'实际 {actual_type!r} != 期望 {expected_type!r}')
         if actual_normalized == expected_normalized:
             print(f"  ✅ {struct_name}[{offset}]: {actual_type} (correct)")
             passed += 1
@@ -67,6 +70,8 @@ def test_pointer_fixes():
             print(f"  ❌ {struct_name}[{offset}]: {actual_type} (expected {expected_type})")
             failed += 1
     
+    assert failed == 0, f'{failed} 项回退（passed={passed}）'
+    assert passed > 0, '零有效断言（空转）——用例退化'
     return passed, failed, skipped
 
 
@@ -103,6 +108,8 @@ def test_thiscall_fixes():
             print(f"  ❌ {struct_name}: {thiscall_count} __thiscall methods (< {min_count})")
             failed += 1
     
+    assert failed == 0, f'{failed} 项回退（passed={passed}）'
+    assert passed > 0, '零有效断言（空转）——用例退化'
     return passed, failed, skipped
 
 
@@ -138,6 +145,8 @@ def test_semantic_naming():
             continue
         
         actual_name = members[offset].get("name", "")
+        assert actual_name == expected_name, (
+            f'{struct_name}[{offset}]: 实际名 {actual_name!r} != 期望 {expected_name!r}')
         if actual_name == expected_name:
             print(f"  ✅ {struct_name}[{offset}]: {actual_name} (correct)")
             passed += 1
@@ -145,6 +154,8 @@ def test_semantic_naming():
             print(f"  ❌ {struct_name}[{offset}]: {actual_name} (expected {expected_name})")
             failed += 1
     
+    assert failed == 0, f'{failed} 项回退（passed={passed}）'
+    assert passed > 0, '零有效断言（空转）——用例退化'
     return passed, failed, skipped
 
 
@@ -176,6 +187,8 @@ def test_embedded_objects():
             continue
         
         actual_type = members[offset].get("type", "")
+        assert actual_type == expected_type, (
+            f'{struct_name}[{offset}]: 实际型 {actual_type!r} != 期望 {expected_type!r}')
         if actual_type == expected_type:
             print(f"  ✅ {struct_name}[{offset}]: {actual_type} (correct)")
             passed += 1
@@ -183,6 +196,8 @@ def test_embedded_objects():
             print(f"  ❌ {struct_name}[{offset}]: {actual_type} (expected {expected_type})")
             failed += 1
     
+    assert failed == 0, f'{failed} 项回退（passed={passed}）'
+    assert passed > 0, '零有效断言（空转）——用例退化'
     return passed, failed, skipped
 
 
@@ -236,6 +251,8 @@ def test_annotation_consistency():
                 # Non-numeric offset (e.g., for union members)
                 passed += 1
     
+    assert failed == 0, f'{failed} 项回退（passed={passed}）'
+    assert passed > 0, '零有效断言（空转）——用例退化'
     return passed, failed, skipped
 
 
