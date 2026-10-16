@@ -2,21 +2,6 @@
   "name": "tag17A7BData",
   "binary_size": 48,
   "known_members": {
-    "0": {
-      "name": "m_nEffParamBase0",
-      "type": "int",
-      "source": "cluster: tag17A7BData"
-    },
-    "4": {
-      "name": "m_nEffParamBase4",
-      "type": "int",
-      "source": "cluster: tag17A7BData"
-    },
-    "8": {
-      "name": "m_nEffParamBase8",
-      "type": "int",
-      "source": "cluster: tag17A7BData"
-    },
     "12": {
       "name": "m_nEffParam0",
       "type": "int",
@@ -51,6 +36,11 @@
       "name": "m_nEffParam2C",
       "type": "int",
       "source": "cluster: tag17A7BData"
+    },
+    "0": {
+      "name": "m_nEffParamBase",
+      "type": "int[3]",
+      "source": "[伪语义批 2 折叠 2026-10-16] m_nEffParamBase0/4/8 → int[3]@0（纯型步距 4 三连 ✓ 全族普适 9 类）。证据等级：数组语义=命名来历推断（同前缀+步距4连跑）+布局等价（常量下标折叠）；**无索引访问证据**（全图 disp 谱零 [reg+N*i+M] 形）——lead 裁决 A 同批 1。"
     }
   }
 }
