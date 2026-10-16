@@ -342,6 +342,18 @@
       "name": "ProcessInput",
       "signature": "int __thiscall UIListBox::ProcessInput(int nVal, int nVal2)",
       "source": "vtable_gap_fill_v1(from UIListBox.json)"
+    },
+    "0x00527D80": {
+      "name": "RenderWithSceneMap",
+      "signature": "int __thiscall()",
+      "ordinal": 1,
+      "source": " | [4 表裁决落地 2026-10-16] 自 UIListBox 误挂迁入（0x5706EC=UICoverFrm 域子对象表的服务方法；UIListBox 自表 0x56AD40/20/B1BC 不含此槽 ⇒ 移属无歧义 ✓）"
+    },
+    "0x00527EA0": {
+      "name": "OnMessageEx",
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
+      "ordinal": 6,
+      "source": " | [4 表裁决落地 2026-10-16] 自 UIListBox 误挂迁入（0x5706EC=UICoverFrm 域子对象表的服务方法；UIListBox 自表 0x56AD40/20/B1BC 不含此槽 ⇒ 移属无歧义 ✓）"
     }
   },
   "vtables": [
@@ -378,6 +390,41 @@
           "from": null
         }
       ]
+    },
+    {
+      "addr": "0x005706EC",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00527D80",
+          "from": null
+        },
+        {
+          "addr": "0x00527DC0",
+          "from": "UICoverFrm"
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x005279D0",
+          "from": "UICoverFrm"
+        },
+        {
+          "addr": "0x00527EA0",
+          "from": null
+        }
+      ],
+      "source": "[4 表裁决落地 2026-10-16] ✅ UICoverFrm **域子对象表**（A 级：deleting ?_scalar_dtor_79d0@UICoverFrm@@ 修饰名 + ctor 嵌 UIRoleDialog 子对象）——自 UIListBox 误挂迁入；⚠️ 派生 UIListBox 注记**待考**（不预设）"
     }
   ],
   "base_size": 72

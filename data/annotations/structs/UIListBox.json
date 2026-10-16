@@ -393,16 +393,6 @@
       "name": "GetSkillSlotLevel",
       "signature": "int __thiscall UIListBox::GetSkillSlotLevel(int nVal, int nVal2)"
     },
-    "0x00527D80": {
-      "name": "RenderWithSceneMap",
-      "signature": "int __thiscall()",
-      "ordinal": 1
-    },
-    "0x00527EA0": {
-      "name": "OnMessageEx",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
-      "ordinal": 6
-    },
     "0x00532A40": {
       "name": "ResetRect",
       "signature": "int *__thiscall()"
@@ -547,7 +537,7 @@
     },
     {
       "addr": "0x0056AD20",
-      "base": null,
+      "base": "UIWnd",
       "slots": [
         {
           "addr": "0x00445E70",
@@ -578,42 +568,7 @@
           "from": "UIWnd"
         }
       ],
-      "source": "[停车场清理 2026-10-16 证据注记] 写入点 0x43dcd8/0x43dd2d（0x43DCxx 簇）；ctor 0x43DCD0=UIWnd 基(0x445AA0)+m_selcolor；dtor 0x43DD10=Destroy+UIWnd::_UIWnd，**无 m_rowenable/scrollbar 清理** ⇒ 非 UIListBox 本体，真名待裁（候选=简单 UIWnd 派生控件族）"
-    },
-    {
-      "addr": "0x0056B178",
-      "base": null,
-      "slots": [
-        {
-          "addr": "0x00451B40",
-          "from": "UILoadingFrm"
-        },
-        {
-          "addr": "0x00451C10",
-          "from": "UILoadingFrm"
-        },
-        {
-          "addr": "0x0043BBC0",
-          "from": "UILoadingFrm"
-        },
-        {
-          "addr": "0x00445C10",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x004518E0",
-          "from": "UILoadingFrm"
-        },
-        {
-          "addr": "0x00451AA0",
-          "from": "UILoadingFrm"
-        }
-      ],
-      "source": "[停车场清理 2026-10-16 证据注记] 写入点 0x4518a9/0x451921（0x4518xx 簇）；ctor 0x451850 基类 call **0x43bb70**（≠UIListBox 簇 0x445AA0）+ call 0x43dfc0(UIListBox ctor) 子对象 + UITextArea::InitAfterClear ⇒ 独立类（UIFrameWnd 系+UIListBox/UITextArea 成员），**≠UILoadingFrm**（=0x4507xx 簇，m_LoadProgress+m_MaxValue=100）；上轮 ~UILoadingFrm 误迁已回改。真名待裁"
+      "source": "[停车场清理 2026-10-16 证据注记] 写入点 0x43dcd8/0x43dd2d（0x43DCxx 簇）；ctor 0x43DCD0=UIWnd 基(0x445AA0)+m_selcolor；dtor 0x43DD10=Destroy+UIWnd::_UIWnd，**无 m_rowenable/scrollbar 清理** ⇒ 非 UIListBox 本体，真名待裁（候选=简单 UIWnd 派生控件族） | [4 表裁决落地 2026-10-16] ✅ UIListBox 的 **UIWnd 基类子对象表**（A 级：ctor 双写 0x56AD20+0x56AD40=MI 双表形 + deleting ?_scalar_deleting_destructor_@UIListBox@@ 修饰名）"
     },
     {
       "addr": "0x0056B1BC",
@@ -648,42 +603,7 @@
           "from": null
         }
       ],
-      "source": "[停车场清理 2026-10-16 证据注记] 写入点 0x4525c6/0x45261d（0x4525xx 簇）；ctor 0x4525A0=UIListBox ctor(0:0x43DCD0)+UIAnimateCtrlEX ctor+UITitle_BBTY ctor(+1084) ⇒ 含 UIListBox+UIAnimateCtrlEX+UITitle_BBTY 成员的复合类，真名待裁"
-    },
-    {
-      "addr": "0x005706EC",
-      "base": null,
-      "slots": [
-        {
-          "addr": "0x00445E70",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x00527D80",
-          "from": null
-        },
-        {
-          "addr": "0x00527DC0",
-          "from": "UICoverFrm"
-        },
-        {
-          "addr": "0x0043DE40",
-          "from": null
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x005279D0",
-          "from": "UICoverFrm"
-        },
-        {
-          "addr": "0x00527EA0",
-          "from": null
-        }
-      ],
-      "source": "[停车场清理 2026-10-16 证据注记] 写入点 0x5279ae/0x527a0d（0x5279xx 簇）；ctor 0x527950=UIListBox ctor(this+0)+UIRoleDialog ctor(+m_scrollbar.m_texarrayInfo[4]) ⇒ UIListBox 派生/含 UIRoleDialog 成员复合类（0x5279D0 曾 UIListBox/UICoverFrm 双挂）；真名待裁"
+      "source": "[停车场清理 2026-10-16 证据注记] 写入点 0x4525c6/0x45261d（0x4525xx 簇）；ctor 0x4525A0=UIListBox ctor(0:0x43DCD0)+UIAnimateCtrlEX ctor+UITitle_BBTY ctor(+1084) ⇒ 含 UIListBox+UIAnimateCtrlEX+UITitle_BBTY 成员的复合类，真名待裁 | [4 表裁决落地 2026-10-16] ⚠️ **挂账**：三子对象复合体（PDB 无派生类名源，禁猜）⇒ 真名待语义考；暂留 UIListBox 名下"
     }
   ],
   "base_size": 68,
