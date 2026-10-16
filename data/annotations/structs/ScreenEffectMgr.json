@@ -87,32 +87,38 @@
   "methods": {
     "0x004BE4A0": {
       "name": "UpdateFrontEffect",
-      "signature": "void __thiscall ScreenEffectMgr::UpdateFrontEffect()"
+      "signature": "void __thiscall()",
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
     },
     "0x004BE590": {
       "name": "GetInstance",
-      "signature": "ScreenEffect *__thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "signature": "ScreenEffect * __thiscall()",
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
     },
     "0x004BE1A0": {
       "name": "ProcessEffect",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall(int nVal1)",
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=4；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1"
     },
     "0x004BE080": {
       "name": "ClearAllEffects",
-      "signature": "void __thiscall ScreenEffectMgr::ClearAllEffects()"
+      "signature": "void __thiscall()",
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
     },
     "0x004BE810": {
       "name": "GetFadeFlags",
-      "signature": "int *__thiscall()"
+      "signature": "int * __thiscall()",
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
     },
     "0x004BE920": {
       "name": "RenderFadeOut",
-      "signature": "void __thiscall ScreenEffectMgr::RenderFadeOut()"
+      "signature": "void __thiscall()",
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
     },
     "0x004BEAB0": {
       "name": "RenderFadeIn",
-      "signature": "void __thiscall ScreenEffectMgr::RenderFadeIn()"
+      "signature": "void __thiscall()",
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
     },
     "0x004BEE60": {
       "name": "ScreenEffectMgr",
@@ -122,7 +128,8 @@
     },
     "0x004BEFB0": {
       "name": "LoadResources",
-      "signature": "gbVFileSystem *__thiscall ScreenEffectMgr::LoadResources(int nVal)",
+      "signature": "gbVFileSystem * __thiscall(int nVal)",
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=4；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1",
       "ordinal": 10
     },
     "0x004BDF60": {
@@ -131,7 +138,8 @@
     },
     "0x004BDF70": {
       "name": "StartFade",
-      "signature": "void __thiscall ScreenEffectMgr::StartFade()"
+      "signature": "void __thiscall()",
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
     },
     "0x004BE5E0": {
       "name": "IsFadeWhiteHolding",
@@ -139,15 +147,18 @@
     },
     "0x004BE5F0": {
       "name": "DrainQueue",
-      "signature": "int __thiscall ScreenEffectMgr::DrainQueue()"
+      "signature": "int __thiscall()",
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
     },
     "0x004BE6B0": {
       "name": "AllocEffectBlock",
-      "signature": "char *__thiscall ScreenEffectMgr::AllocEffectBlock()"
+      "signature": "char * __thiscall()",
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
     },
     "0x004BE9C0": {
       "name": "ToggleFade",
-      "signature": "void __thiscall ScreenEffectMgr::ToggleFade(float fVal)"
+      "signature": "void __thiscall(float fVal)",
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=4；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1"
     },
     "0x004BE9E0": {
       "name": "StartFadeIn",
@@ -155,15 +166,18 @@
     },
     "0x004BEC00": {
       "name": "RenderFadeWhiteOut",
-      "signature": "void __thiscall ScreenEffectMgr::RenderFadeWhiteOut()"
+      "signature": "void __thiscall()",
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
     },
     "0x004BED50": {
       "name": "RenderFadeWhiteIn",
-      "signature": "void __thiscall ScreenEffectMgr::RenderFadeWhiteIn()"
+      "signature": "void __thiscall()",
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
     },
     "0x004BF4F0": {
       "name": "UpdateAnimation",
-      "signature": "void __thiscall ScreenEffectMgr::UpdateAnimation(float fVal)",
+      "signature": "void __thiscall(float fVal)",
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=4；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1",
       "ordinal": 12
     },
     "0x004BF680": {
@@ -180,7 +194,8 @@
     },
     "0x004BF760": {
       "name": "ResetFadeState",
-      "signature": "int *__thiscall ScreenEffectMgr::ResetFadeState()"
+      "signature": "int * __thiscall()",
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
     },
     "0x0052F310": {
       "name": "ProcessInstance",
@@ -188,11 +203,13 @@
     },
     "0x0052F330": {
       "name": "IsFadeActive",
-      "signature": "BOOL __thiscall ScreenEffectMgr::IsFadeActive()"
+      "signature": "BOOL __thiscall()",
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
     },
     "0x004BF170": {
       "name": "CleanupTextures",
-      "signature": "void __thiscall ScreenEffectMgr::CleanupTextures()",
+      "signature": "void __thiscall()",
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0",
       "ordinal": 11
     },
     "0x005420D8": {
@@ -209,6 +226,26 @@
       "name": "GetBoundSphere",
       "signature": "void __thiscall(gbSphere *pSphere)",
       "source": "vtable_gap_fill_v1(from gbVisNode.json) | [真型补全 2026-10-16] (空) ⇒ void __thiscall(gbSphere *pSphere)：idapro decompile：thunk 转发 gbVisNode::GetBoundSphere(gbVisNode*, gbSphere *p0) ⇒ 1 参指针"
+    },
+    "0x004BEA80": {
+      "name": "_scalar_dtor",
+      "signature": "void __thiscall()",
+      "source": " | [残余 14 条裁决 2026-10-16 analyzer] 本体 A 级：删际析构形 `56 8b f1 e8 18 00 00 00 f6 44 24 08 01`（包装真 dtor）"
+    },
+    "0x004BEBD0": {
+      "name": "_scalar_dtor",
+      "signature": "void __thiscall()",
+      "source": " | [残余 14 条裁决 2026-10-16 analyzer] 本体 A 级：删际析构形 `56 8b f1 e8 18 00 00 00 f6 44 24 08 01`（包装真 dtor）"
+    },
+    "0x004BED20": {
+      "name": "_scalar_dtor",
+      "signature": "void __thiscall()",
+      "source": " | [残余 14 条裁决 2026-10-16 analyzer] 本体 A 级：删际析构形 `56 8b f1 e8 18 00 00 00 f6 44 24 08 01`（包装真 dtor）"
+    },
+    "0x004BDF30": {
+      "name": "_todo_4BDF30",
+      "signature": "void __thiscall(float)",
+      "source": " | [残余 14 条裁决 2026-10-16 analyzer] 本体 A 级：计时累加器 `+16 float 累加 >+12 阈值处理`（0x4BDF30 decompile 实证）"
     }
   },
   "vtables": [
@@ -277,6 +314,134 @@
           "from": null
         }
       ]
+    },
+    {
+      "addr": "0x0056F4F0",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x0041CBA0",
+          "from": null
+        },
+        {
+          "addr": "0x004BDF60",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004BDF70",
+          "from": null
+        },
+        {
+          "addr": "0x0055434F",
+          "from": null
+        },
+        {
+          "addr": "0x004BDF30",
+          "from": null
+        },
+        {
+          "addr": "0x004BE060",
+          "from": null
+        }
+      ],
+      "source": "[残余 14 条裁决 2026-10-16 analyzer] fade 节点伴生小类迁入（filebuf→PalScript 先例）A 级：单写 0x4BDF07=RenderTarget::Destroy+7（ctor 形）；码区 0x4BEAxx-0x4BExxx=ScreenEffectMgr 方法域内；类真名挂账（PDB 无精确形）"
+    },
+    {
+      "addr": "0x0056F52C",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004BEA80",
+          "from": null
+        },
+        {
+          "addr": "0x004BDF60",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004BDF70",
+          "from": null
+        },
+        {
+          "addr": "0x004BEAB0",
+          "from": null
+        },
+        {
+          "addr": "0x004BDF30",
+          "from": null
+        }
+      ],
+      "source": "[残余 14 条裁决 2026-10-16 analyzer] fade 节点伴生小类迁入（filebuf→PalScript 先例）A 级：ctor 0x4BEA60+8 / dtor 0x4BEAA0+0 对（三件套：ctor 0x4BEA60+dtor 0x4BEAA0+deleting 0x4BEA80）；码区 0x4BEAxx-0x4BExxx=ScreenEffectMgr 方法域内；类真名挂账（PDB 无精确形）"
+    },
+    {
+      "addr": "0x0056F548",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004BEBD0",
+          "from": null
+        },
+        {
+          "addr": "0x004BDF60",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004BDF70",
+          "from": null
+        },
+        {
+          "addr": "0x004BEC00",
+          "from": null
+        },
+        {
+          "addr": "0x004BDF30",
+          "from": null
+        }
+      ],
+      "source": "[残余 14 条裁决 2026-10-16 analyzer] fade 节点伴生小类迁入（filebuf→PalScript 先例）A 级：ctor 0x4BEBB0+8 / dtor 0x4BEBF0+0 对（三件套 0x4BEBB0/0x4BEBF0/0x4BEBD0）；码区 0x4BEAxx-0x4BExxx=ScreenEffectMgr 方法域内；类真名挂账（PDB 无精确形）"
+    },
+    {
+      "addr": "0x0056F564",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004BED20",
+          "from": null
+        },
+        {
+          "addr": "0x004BDF60",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004BDF70",
+          "from": null
+        },
+        {
+          "addr": "0x004BED50",
+          "from": null
+        },
+        {
+          "addr": "0x004BDF30",
+          "from": null
+        }
+      ],
+      "source": "[残余 14 条裁决 2026-10-16 analyzer] fade 节点伴生小类迁入（filebuf→PalScript 先例）A 级：ctor 0x4BED00+8 / dtor 0x4BED40+0 对（三件套 0x4BED00/0x4BED40/0x4BED20）；码区 0x4BEAxx-0x4BExxx=ScreenEffectMgr 方法域内；类真名挂账（PDB 无精确形）"
     }
   ]
 }

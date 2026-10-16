@@ -1,104 +1,101 @@
 {
- "name": "RenderTarget3",
- "pdb_size": 4,
- "known_members": {
-  "4": {
-   "name": "m_ptr_4",
-   "type": "gbRenderEffect *",
-   "source": "codegen_offset_infer"
-  }
- },
- "binary_size": 24,
- "methods": {
-  "0x004B6630": {
-   "name": "Begin",
-   "signature": "int __thiscall()"
-  },
-  "0x004B6DF0": {
-   "name": "End",
-   "signature": "void *__thiscall()",
-   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-  },
-  "0x004B6E20": {
-   "name": "Resolve",
-   "signature": "void __thiscall()"
-  },
-  "0x004B65F0": {
-   "name": "Init",
-   "signature": "char __thiscall()"
-  },
-  "0x004B65A0": {
-   "name": "GetInstance",
-   "signature": "RenderTarget3 * __thiscall()"
-  },
-  "0x004B66B0": {
-   "name": "ResetAndRender",
-   "signature": "bool __thiscall(int nVal, int nVal2)"
-  },
-  "0x004B67B0": {
-   "name": "EndSceneGraph",
-   "signature": "void __thiscall()"
-  },
-  "0x004B6C20": {
-   "name": "ClearEffects",
-   "signature": "CPolicy **__thiscall()"
-  },
-  "0x004B63C0": {
-   "name": "GenerateRingMesh",
-   "signature": "int __cdecl RenderTarget3::GenerateRingMesh(float fVal, float fVal2, int nVal, int nVal2, int nVal3, int nVal4, float fVal3)",
-   "static": true
-  },
-  "0x004B6550": {
-   "name": "InitStruct",
-   "signature": "int __thiscall()",
-   "source": "sig_evidence_A(ret-N arity)"
-  },
-  "0x004B67E0": {
-   "name": "SwapBuffers",
-   "signature": "int __thiscall()"
-  },
-  "0x004B6820": {
-   "name": "UpdateRender",
-   "signature": "int __thiscall RenderTarget3::UpdateRender(int nVal)"
-  },
-  "0x004B6D20": {
-   "name": "Reset",
-   "signature": "int *__thiscall RenderTarget3::Reset()"
-  },
-  "0x004B6C80": {
-   "name": "_sdtor_with_dtor",
-   "signature": "int __thiscall(void *Block, char)",
-   "source": "vtable_migrated",
-   "ordinal": 2
-  },
-  "0x004B6CA0": {
-   "name": "_scalar_dtor",
-   "signature": "void __thiscall(vtbl_0056F36C **)"
-  },
-  "0x0055434F": {
-   "name": "FatalExit",
-   "signature": "void __thiscall()",
-   "source": "vtable_gap_fill_v1(from RenderTarget2.json)"
-  }
- },
- "vtables": [
-  {
-   "addr": "0x0056F36C",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x0055434F",
-     "from": null
-    },
-    {
-     "addr": "0x0055434F",
-     "from": null
-    },
-    {
-     "addr": "0x004B6C80",
-     "from": null
+  "name": "RenderTarget3",
+  "pdb_size": 4,
+  "known_members": {
+    "4": {
+      "name": "m_ptr_4",
+      "type": "gbRenderEffect *",
+      "source": "codegen_offset_infer"
     }
-   ]
-  }
- ]
+  },
+  "binary_size": 24,
+  "methods": {
+    "0x004B6630": {
+      "name": "Begin",
+      "signature": "int __thiscall()"
+    },
+    "0x004B6DF0": {
+      "name": "End",
+      "signature": "void *__thiscall()",
+      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+    },
+    "0x004B6E20": {
+      "name": "Resolve",
+      "signature": "void __thiscall()"
+    },
+    "0x004B65F0": {
+      "name": "Init",
+      "signature": "char __thiscall()"
+    },
+    "0x004B65A0": {
+      "name": "GetInstance",
+      "signature": "RenderTarget3 * __thiscall()"
+    },
+    "0x004B66B0": {
+      "name": "ResetAndRender",
+      "signature": "bool __thiscall(int nVal, int nVal2)"
+    },
+    "0x004B67B0": {
+      "name": "EndSceneGraph",
+      "signature": "void __thiscall()"
+    },
+    "0x004B6C20": {
+      "name": "ClearEffects",
+      "signature": "CPolicy **__thiscall()"
+    },
+    "0x004B63C0": {
+      "name": "GenerateRingMesh",
+      "signature": "int __cdecl RenderTarget3::GenerateRingMesh(float fVal, float fVal2, int nVal, int nVal2, int nVal3, int nVal4, float fVal3)",
+      "static": true
+    },
+    "0x004B6550": {
+      "name": "InitStruct",
+      "signature": "int __thiscall()",
+      "source": "sig_evidence_A(ret-N arity)"
+    },
+    "0x004B67E0": {
+      "name": "SwapBuffers",
+      "signature": "int __thiscall()"
+    },
+    "0x004B6820": {
+      "name": "UpdateRender",
+      "signature": "int __thiscall RenderTarget3::UpdateRender(int nVal)"
+    },
+    "0x004B6D20": {
+      "name": "Reset",
+      "signature": "int *__thiscall RenderTarget3::Reset()"
+    },
+    "0x004B6C80": {
+      "name": "_sdtor_with_dtor",
+      "signature": "int __thiscall(void *Block, char)",
+      "source": "vtable_migrated",
+      "ordinal": 2
+    },
+    "0x004B6CA0": {
+      "name": "_scalar_dtor",
+      "signature": "void __thiscall(void **a2)",
+      "declaration_only": true,
+      "source": " | [①渲染错族治理 2026-10-16 analyzer] A 级本体判读+声明性注册（declaration_only 消渲染 C2039，非归属认定）：本体 `c7 01 6c f3 56 00 c3`=写表桩（[ecx]=0x56F36C） | [签名修正 2026-10-16] vtbl_0056F36C ** 未定义型致声明未发 ⇒ 降 void **（指针形同宽）"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056F36C",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x0055434F",
+          "from": null
+        },
+        {
+          "addr": "0x0055434F",
+          "from": null
+        },
+        {
+          "addr": "0x004B6C80",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

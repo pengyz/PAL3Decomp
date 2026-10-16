@@ -23,9 +23,9 @@
   ],
   "methods": {
     "0x004BC760": {
-      "name": "Reset",
-      "signature": "ParticleEffect *__thiscall()",
-      "_misattrib_evidence": "max_offset=362856>class_size=200"
+      "name": "ParticleEffect",
+      "signature": "void __thiscall()",
+      "source": "[vtable 余 17 表修法 2026-10-16 analyzer] 97 族 ctor 注册回填：new-ctor 三元组 A 级 `push 0x5896C; call 0x55353B(new); mov ecx,eax; call 0x4BC760` @site 0x4C8B05——SIZE=362860 与 PDB `ParticleEffect` size=362860 **双源独立** ✓；PDB 名互证（非伪语义）；原 IDB 名 ParticleEffect_Reset=误名（reinit 形误挂）"
     },
     "0x004BC7E0": {
       "name": "SetDeltaTime",
@@ -56,7 +56,53 @@
       "name": "LoadFromFile",
       "signature": "bool __thiscall(char *filename)",
       "source": "pdb_ret"
+    },
+    "0x004BC790": {
+      "name": "_todo_C790",
+      "signature": "void __thiscall()",
+      "source": " | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56F4A0）：本体 56 8b f1 e8 18 00 00 00"
     }
   },
-  "base_size": 362832
+  "base_size": 362832,
+  "vtables": [
+    {
+      "addr": "0x0056F4A0",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004BC790",
+          "from": null
+        },
+        {
+          "addr": "0x00000000",
+          "from": null
+        },
+        {
+          "addr": "0x9D353918",
+          "from": null
+        },
+        {
+          "addr": "0x3F91DF46",
+          "from": null
+        },
+        {
+          "addr": "0x004BD850",
+          "from": null
+        },
+        {
+          "addr": "0x004B7F70",
+          "from": null
+        },
+        {
+          "addr": "0x00542102",
+          "from": null
+        },
+        {
+          "addr": "0x004B7F70",
+          "from": null
+        }
+      ],
+      "source": "[vtable 余 17 表修法 2026-10-16 analyzer] 认领 A 级：ctor 0x4BC760 写表 @+19 + UpdateTimeStep@+2 复写（0x4BC760 域）；SIZE 三元组双源定谳"
+    }
+  ]
 }

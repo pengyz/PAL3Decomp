@@ -177,6 +177,28 @@
       "name": "DestroyEffect_8950",
       "signature": "char *__thiscall(char)",
       "source": "vtable_gap_fill_v1(IDB:?DestroyEffect@CEffgbParticle@@QAEPADD@Z)"
+    },
+    "0x004CB340": {
+      "name": "_sdtor_adj",
+      "signature": "void __thiscall()",
+      "type": "skip",
+      "reason": "compiler-generated",
+      "source": " | [vtable 治理·未注册族 2026-10-16 analyzer] A 级本体判读：`sub ecx,N; jmp target`（target 已注册）——MI 调整跳板 compiler-generated | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=adjustor；表 0x0056F86C 认领（ctor 域 CEffectSystem::FillDefaultUVSet@0）连带 | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=adjustor；表 0x0056F878 认领（ctor 域 +116/+35（同 ctor 双写 MI 形，与 0x56F86）连带"
+    },
+    "0x004C6960": {
+      "name": "_todo_6960",
+      "signature": "void __thiscall()",
+      "source": " | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x0056F86C 认领（ctor 域 CEffectSystem::FillDefaultUVSet@0）连带 | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x0056F878 认领（ctor 域 +116/+35（同 ctor 双写 MI 形，与 0x56F86）连带"
+    },
+    "0x004C88B0": {
+      "name": "_todo_88B0",
+      "signature": "void __thiscall()",
+      "source": " | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=adjustor；表 0x0056F86C 认领（ctor 域 CEffectSystem::FillDefaultUVSet@0）连带"
+    },
+    "0x004C9530": {
+      "name": "_todo_9530",
+      "signature": "void __thiscall()",
+      "source": " | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=adjustor；表 0x0056F86C 认领（ctor 域 CEffectSystem::FillDefaultUVSet@0）连带 | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=adjustor；表 0x0056F878 认领（ctor 域 +116/+35（同 ctor 双写 MI 形，与 0x56F86）连带"
     }
   },
   "vtables": [
@@ -245,6 +267,132 @@
           "from": null
         }
       ]
+    },
+    {
+      "addr": "0x0056F86C",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004C88B0",
+          "from": null
+        },
+        {
+          "addr": "0x004C2850",
+          "from": null
+        },
+        {
+          "addr": "0x004C88C0",
+          "from": null
+        },
+        {
+          "addr": "0x004C6960",
+          "from": null
+        },
+        {
+          "addr": "0x004C6C10",
+          "from": null
+        },
+        {
+          "addr": "0x004C6A70",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C7150",
+          "from": null
+        },
+        {
+          "addr": "0x004C6F20",
+          "from": null
+        },
+        {
+          "addr": "0x004C6940",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C7B70",
+          "from": null
+        }
+      ],
+      "source": "[vtable 合并批 2026-10-16 analyzer] 认领 A 级：ctor 域 CEffectSystem::FillDefaultUVSet@0x4C6870+122 + CEffgbParticle::ReleaseEffect@0x4C6980+41（与 0x56F878 相邻 6B=MI 双 vptr 写）"
+    },
+    {
+      "addr": "0x0056F878",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004C6960",
+          "from": null
+        },
+        {
+          "addr": "0x004C6C10",
+          "from": null
+        },
+        {
+          "addr": "0x004C6A70",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C7150",
+          "from": null
+        },
+        {
+          "addr": "0x004C6F20",
+          "from": null
+        },
+        {
+          "addr": "0x004C6940",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C7B70",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C7450",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        }
+      ],
+      "source": "[vtable 合并批 2026-10-16 analyzer] 认领 A 级：ctor 域 +116/+35（同 ctor 双写 MI 形，与 0x56F86C 成对）"
     }
   ],
   "base_size": 16,

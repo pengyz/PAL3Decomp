@@ -165,6 +165,11 @@
       "signature": "int __thiscall(void *Block, char)",
       "source": "vtable_migrated",
       "ordinal": 5
+    },
+    "0x00442D50": {
+      "name": "_todo_",
+      "signature": "void __thiscall(int nVal)",
+      "source": " | [表认领+槽注册合并批 2026-10-16 analyzer] 槽注册：A 级 `8b 54 24 04`（mov edx,[esp+4]; …）取参桩"
     }
   },
   "base_size": 68,
@@ -239,6 +244,41 @@
           "from": "UIWnd"
         }
       ]
+    },
+    {
+      "addr": "0x0056ADF0",
+      "base": "UIFrameWnd",
+      "slots": [
+        {
+          "addr": "0x00442D50",
+          "from": null
+        },
+        {
+          "addr": "0x00442890",
+          "from": null
+        },
+        {
+          "addr": "0x00442AD0",
+          "from": null
+        },
+        {
+          "addr": "0x00442420",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": null
+        },
+        {
+          "addr": "0x00442D20",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": null
+        }
+      ],
+      "source": "[表认领+槽注册合并批 2026-10-16 analyzer] 认领 A 级：写入点 0x442D08（UIPushButton::CtorWithFlag+8）+ 0x442D40（UIFrameWnd 族+0 复写）双自证；槽=UIFrameWnd 族（CalculateLayout/Update/Destroy/删除析构）+ UIWnd 共享 ⇒ UIPushButton:base(UIFrameWnd) 子对象表"
     }
   ],
   "binary_size_source": "钉死复核 f314ccac：原生锚 push 0F8h + call sub_440740（3 处真 new）⇒ 248；且 PDB UIPushButton size=252 ⇒ PAL3 = 252−4 = 248（与 UIStatic 152=160−8 同属\"PAL3 少尾部字段\"模式）✓。⚠️ 本文件的 known_members 仍待重排（m_caption 记在 100 而真值 0x78=120；缺 0x4C/0x50/0x54/0x5C）—— 需独立取证，未在本批混入 ✗。",

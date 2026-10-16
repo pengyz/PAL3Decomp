@@ -211,7 +211,80 @@
       "name": "sub_4D4840",
       "signature": "int __thiscall(int)",
       "source": "vtable_gap_fill_v1(IDB:?sub_4D4840@CEffect@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
+    },
+    "0x004D3950": {
+      "name": "~CEffect",
+      "signature": "void __fastcall(CEffect *this)",
+      "source": " | [rsite 根治 2026-10-16] 归属迁移 CEffect⇒CEffShock + 名 DestroyCallback⇒~CEffShock：A级 idapro 2f27f612：删析构 vtable 槽 xref（0x4518E0@0x56B178 from=UILoadingFrm / 0x4D3930@0x56FADC from=CEffShock / 0x43E100@0x56AD40 from=None=UIListBox）+ call 完整dtor(this)+flags 条件 delete ABI 配对 ⇒ 目标=同类完整析构 | [退化修复 2026-10-16 回改+正名] A级：C2039 成员面反证（m_bActive/m_Partical=CEffect 成员，CEffShock 无）+ decompile 本体 CEffect *this + dtor 写自身表 0x56FADC@0x4d3973 + 删析构 0x4D3930 ABI 配对 ⇒ 0x4D3950=CEffect 完整析构；上轮 ~CEffShock 误迁回改"
     }
   },
-  "vtables": []
+  "vtables": [
+    {
+      "addr": "0x0056FADC",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004D3930",
+          "from": "CEffShock"
+        },
+        {
+          "addr": "0x004D3AD0",
+          "from": null
+        },
+        {
+          "addr": "0x004D3A50",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "UISceneMap"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "UISceneMap"
+        },
+        {
+          "addr": "0x004D3DC0",
+          "from": "CEffShock"
+        },
+        {
+          "addr": "0x004D4110",
+          "from": "CEffShock"
+        },
+        {
+          "addr": "0x004D3910",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004D4840",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004D4340",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004D4700",
+          "from": null
+        }
+      ],
+      "source": "[退化修复 2026-10-16 回迁] 归属=写入点簇（0x4D3950 dtor 本体写入 0x4d3973）=CEffect 的表；from=槽注册位置查找提示（非继承义）；A级：C2039 成员面反证（m_bActive/m_Partical=CEffect 成员，CEffShock 无）+ decompile 本体 CEffect *this + dtor 写自身表 0x56FADC@0x4d3973 + 删析构 0x4D3930 ABI 配对 ⇒ 0x4D3950=CEffect 完整析构；上轮 ~CEffShock 误迁回改"
+    }
+  ]
 }

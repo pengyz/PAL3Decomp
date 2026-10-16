@@ -1,52 +1,147 @@
 {
- "name": "UICursor",
- "binary_size": 64,
- "known_members": {
-  "0": {
-   "name": "m_dwID",
-   "type": "unsigned int[3]",
-   "source": "annotation"
+  "name": "UICursor",
+  "binary_size": 64,
+  "known_members": {
+    "0": {
+      "name": "m_dwID",
+      "type": "unsigned int[3]",
+      "source": "annotation"
+    },
+    "12": {
+      "name": "m_active",
+      "type": "CameraCtrl *",
+      "source": "binary:C2440 assignment from CameraCtrl*"
+    },
+    "16": {
+      "name": "m_tex",
+      "type": "gbTexture *[3]",
+      "source": "annotation"
+    },
+    "28": {
+      "name": "m_bShow",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "29": {
+      "name": "m_bSoftMode",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "44": {
+      "name": "m_pData",
+      "type": "unsigned long",
+      "source": "2026-09-14: decomp writes at this+0x2C*4 (44 bytes)"
+    }
   },
-  "12": {
-   "name": "m_active",
-   "type": "CameraCtrl *",
-   "source": "binary:C2440 assignment from CameraCtrl*"
+  "methods": {
+    "0x00535120": {
+      "name": "Update",
+      "signature": "void __thiscall UICursor::Update(double fDelta)"
+    },
+    "0x00541CC0": {
+      "name": "_todo_541CC0",
+      "signature": "void __thiscall()",
+      "source": " | [重名消解 2026-10-16 analyzer] 0x541CC0 A 级本体=6 次 vptr 写（0x541CC0+168/+259/+340/+635/+724/+867 三子对象组装）=**ctor 形**非 IRender（0x541160 才是 IRender(int,int,int,int,...) 真渲染）⇒ 改名 UICursor（ctor）消类内重名（C2065 暴露源） | [改名修正 2026-10-16 analyzer] 「UICursor(ctor)」判据不足收回——0x541CC0 头部 A 级=`ff 15 [IAT]` 调用+浮点操作非 ctor 头（6 写表是工作负载非组装序）⇒ 语义未考诚实保留 _todo_541CC0（重名消解仍达成）"
+    },
+    "0x00541160": {
+      "name": "IRender",
+      "signature": "int __cdecl(int nX, int nY, int nW, int nH, gbColorQuad *pColor, gbTextureArray *pTex, _PlugInfo *pInfo)",
+      "source": "fix:header_missing_method",
+      "static": true
+    },
+    "0x00541DD9": {
+      "name": "_todo_1DD9",
+      "signature": "void __thiscall()",
+      "source": " | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=other:8b 41 10 85；表 0x00570A78 认领（UICursor::IRender@0x541CC0+168/+635（同函数 ）连带 | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=other:8b 41 10 85；表 0x00570A98 认领（UICursor::IRender@0x541CC0+259/+340（3 子对）连带 | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=other:8b 41 10 85；表 0x00570AA8 认领（UICursor::IRender@0x541CC0+724/+867（3 子对）连带"
+    },
+    "0x00541EF6": {
+      "name": "_todo_1EF6",
+      "signature": "void __thiscall()",
+      "source": " | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x00570A78 认领（UICursor::IRender@0x541CC0+168/+635（同函数 ）连带"
+    },
+    "0x00541F13": {
+      "name": "_todo_1F13",
+      "signature": "void __thiscall()",
+      "source": " | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x00570A78 认领（UICursor::IRender@0x541CC0+168/+635（同函数 ）连带"
+    },
+    "0x00541DE6": {
+      "name": "_todo_1DE6",
+      "signature": "void __thiscall()",
+      "source": " | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x00570A98 认领（UICursor::IRender@0x541CC0+259/+340（3 子对）连带"
+    },
+    "0x00541E40": {
+      "name": "_todo_1E40",
+      "signature": "void __thiscall()",
+      "source": " | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x00570A98 认领（UICursor::IRender@0x541CC0+259/+340（3 子对）连带"
+    },
+    "0x00541FDE": {
+      "name": "_todo_1FDE",
+      "signature": "void __thiscall()",
+      "source": " | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x00570AA8 认领（UICursor::IRender@0x541CC0+724/+867（3 子对）连带"
+    },
+    "0x00541FFB": {
+      "name": "_todo_1FFB",
+      "signature": "void __thiscall()",
+      "source": " | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x00570AA8 认领（UICursor::IRender@0x541CC0+724/+867（3 子对）连带"
+    }
   },
-  "16": {
-   "name": "m_tex",
-   "type": "gbTexture *[3]",
-   "source": "annotation"
-  },
-  "28": {
-   "name": "m_bShow",
-   "type": "BYTE",
-   "source": "annotation"
-  },
-  "29": {
-   "name": "m_bSoftMode",
-   "type": "BYTE",
-   "source": "annotation"
-  },
-  "44": {
-   "name": "m_pData",
-   "type": "unsigned long",
-   "source": "2026-09-14: decomp writes at this+0x2C*4 (44 bytes)"
-  }
- },
- "methods": {
-  "0x00535120": {
-   "name": "Update",
-   "signature": "void __thiscall UICursor::Update(double fDelta)"
-  },
-  "0x00541CC0": {
-   "name": "IRender",
-   "signature": "void __thiscall()"
-  },
-  "0x00541160": {
-   "name": "IRender",
-   "signature": "int __cdecl(int nX, int nY, int nW, int nH, gbColorQuad *pColor, gbTextureArray *pTex, _PlugInfo *pInfo)",
-   "source": "fix:header_missing_method",
-   "static": true
-  }
- }
+  "vtables": [
+    {
+      "addr": "0x00570A78",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00541F13",
+          "from": null
+        },
+        {
+          "addr": "0x00541DD9",
+          "from": null
+        },
+        {
+          "addr": "0x00541EF6",
+          "from": null
+        }
+      ],
+      "source": "[vtable 合并批 2026-10-16 analyzer] 认领 A 级：UICursor::IRender@0x541CC0+168/+635（同函数 6 写 3 表=3 多态子对象组装）"
+    },
+    {
+      "addr": "0x00570A98",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00541E40",
+          "from": null
+        },
+        {
+          "addr": "0x00541DD9",
+          "from": null
+        },
+        {
+          "addr": "0x00541DE6",
+          "from": null
+        }
+      ],
+      "source": "[vtable 合并批 2026-10-16 analyzer] 认领 A 级：UICursor::IRender@0x541CC0+259/+340（3 子对象之二）"
+    },
+    {
+      "addr": "0x00570AA8",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00541FFB",
+          "from": null
+        },
+        {
+          "addr": "0x00541DD9",
+          "from": null
+        },
+        {
+          "addr": "0x00541FDE",
+          "from": null
+        }
+      ],
+      "source": "[vtable 合并批 2026-10-16 analyzer] 认领 A 级：UICursor::IRender@0x541CC0+724/+867（3 子对象之三）"
+    }
+  ]
 }

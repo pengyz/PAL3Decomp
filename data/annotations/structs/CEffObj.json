@@ -19,5 +19,13 @@
    "source": "vtable_owner_fix(CEffObj 多态化: vptr@0 从二进制布局证据确认)"
   }
  },
+ "vtables": [
+  {
+   "addr": "0x0056F62C",
+   "base": null,
+   "slots": [{"addr": "0x004C0620", "from": null}, {"addr": "0x004C0600", "from": null}, {"addr": "0x004C0610", "from": null}, {"addr": "0x00401800", "from": null}, {"addr": "0x00401800", "from": null}, {"addr": "0x004AF760", "from": null}, {"addr": "0x00401800", "from": null}, {"addr": "0x0055434F", "from": null}],
+   "source": " | [100 表认领 2026-10-16 analyzer 重落] A 级：基类析构尾形 c7 01 2c f6 56 00 c3（[ecx]=0x56F62C）+ 全 CEff 族析构一致写此表（类体系根基类定案）"
+  }
+ ],
  "methods": {}
 }

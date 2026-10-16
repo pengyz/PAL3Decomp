@@ -1,0 +1,19 @@
+{
+  "name": "tagPOINT",
+  "binary_size": 8,
+  "known_members": {
+    "0": {
+      "name": "x",
+      "type": "int",
+      "source": "PDB tagPOINT x@0 long（B 级形；Win32 POINT 标准布局）"
+    },
+    "4": {
+      "name": "y",
+      "type": "int",
+      "source": "PDB tagPOINT y@4 long（B 级形）"
+    }
+  },
+  "methods": {},
+  "vtables": [],
+  "_note": "apply 41-failure 修 2026-10-16 analyzer：悬挂类型补全（MagicUI/UIBigMap 引用）；PDB size=8 x/y long"
+}

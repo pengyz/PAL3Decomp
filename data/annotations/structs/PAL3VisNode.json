@@ -7,7 +7,79 @@
     "0x004B6F70": {
       "name": "PAL3VisNode",
       "signature": "void __thiscall()"
+    },
+    "0x004B6F90": {
+      "name": "_todo_",
+      "signature": "void __thiscall()",
+      "source": " | [表认领+槽注册合并批 2026-10-16 analyzer] 槽注册：本体 real-method（表主 ctor 写点域 0x4B6F70 域）"
+    },
+    "0x004B7030": {
+      "name": "_todo_",
+      "signature": "void __thiscall()",
+      "source": " | [表认领+槽注册合并批 2026-10-16 analyzer] 槽注册：同上"
+    },
+    "0x004B7090": {
+      "name": "_todo_",
+      "signature": "void __thiscall()",
+      "source": " | [表认领+槽注册合并批 2026-10-16 analyzer] 槽注册：同上（0x56F3B8 尾并合视图共享槽）"
     }
   },
-  "base_size": 88
+  "base_size": 88,
+  "vtables": [
+    {
+      "addr": "0x0056F37C",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004B6F90",
+          "from": null
+        },
+        {
+          "addr": "0x0055434F",
+          "from": null
+        },
+        {
+          "addr": "0x00542102",
+          "from": null
+        },
+        {
+          "addr": "0x0055434F",
+          "from": null
+        },
+        {
+          "addr": "0x0055434F",
+          "from": null
+        },
+        {
+          "addr": "0x0054211A",
+          "from": null
+        },
+        {
+          "addr": "0x00542114",
+          "from": null
+        },
+        {
+          "addr": "0x0054210E",
+          "from": null
+        },
+        {
+          "addr": "0x005420DE",
+          "from": null
+        },
+        {
+          "addr": "0x005420D8",
+          "from": null
+        },
+        {
+          "addr": "0x0055434F",
+          "from": null
+        },
+        {
+          "addr": "0x0055434F",
+          "from": null
+        }
+      ],
+      "source": "[表认领+槽注册合并批 2026-10-16 analyzer] 认领 A 级：写入点 0x4B6F79=ctor PAL3VisNode@0x4B6F70+9 自写表 + 槽域 0x4B6Fxx 域一致"
+    }
+  ]
 }

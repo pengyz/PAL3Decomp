@@ -203,15 +203,15 @@
       "note": "Discovered by member_scan after disp8 fix."
     },
     "40": {
-      "name": "m_bFlag_28",
+      "name": "m_nTodo_28",
       "type": "int",
-      "source": "binary_scan:2_accesses(load:2);A:decomp_batch_rename_usage_pattern",
+      "source": "binary_scan:2_accesses(load:2);A:decomp_batch_rename_usage_pattern | [批4 诚实化 2026-10-16] A偏移形：m_bFlag_28⇒m_nTodo_28（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
       "note": "Discovered by member_scan after disp8 fix."
     },
     "48": {
-      "name": "m_bFlag_30",
+      "name": "m_nTodo_30",
       "type": "int",
-      "source": "binary_scan:2_accesses(load:2);A:decomp_batch_rename_usage_pattern",
+      "source": "binary_scan:2_accesses(load:2);A:decomp_batch_rename_usage_pattern | [批4 诚实化 2026-10-16] A偏移形：m_bFlag_30⇒m_nTodo_30（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
       "note": "Discovered by member_scan after disp8 fix."
     },
     "56": {
@@ -249,6 +249,19 @@
     }
   },
   "binary_size": 544,
+  "vtables": [
+    {
+      "addr": "0x0056AA84",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x0041BFC0",
+          "from": null
+        }
+      ],
+      "source": "[100 表认领 2026-10-16 analyzer 重落] A 级：ctor 0x41BE80@+224 `c7 06 84 aa 56 00`（disp0=主表）+ 0x41C090 reinit 复写 + 槽0 0x41BFC0 删际析构形"
+    }
+  ],
   "methods": {
     "0x004125D0": {
       "name": "InitFromScene",
@@ -285,6 +298,11 @@
     "0x0052BEB0": {
       "name": "InitUIElements",
       "signature": "void __thiscall Camera::InitUIElements()"
+    },
+    "0x0041BFC0": {
+      "name": "_todo_BFC0",
+      "signature": "void __thiscall()",
+      "source": " | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AA84）：本体 56 8b f1 e8 c8 00 00 00"
     }
   },
   "binary_size_source": "P1 复核（12f09f9e）第三判据 + 编排者独立复验：① operator new(544) + call 0x41BE80（alloc_sizeof，exhibits 经复核者逐字节校验 28/28 OK）；② 0x41BE80 是 name==Camera 的真构造函数并写 off_56AA84；③ 该类 ctor ±0x2000 邻域 [reg+imm] 最大位移 = 544 = alloc（两个独立读数一致）；④ 47 个成员的 max offset=404 ⇒ 末端 408 < 544；⑤ cascade_scan：0 派生/0 按值/0 数组/0 union；⑥ base_class=None。原 12956 的膨胀来自错挂方法 0x52BEB0 InitUIElements（0x52Bxxx 区）。"

@@ -193,6 +193,14 @@
       "source": "PAL3patch_import"
     }
   },
+  "vtables": [
+    {
+      "addr": "0x0056A620",
+      "base": null,
+      "slots": [{"addr": "0x00402BD0", "from": null}],
+      "source": "[100 表认领 2026-10-16 analyzer 重落] A 级：删际析构 0x402BD0@+35 + 真析构 0x402BF0@+3 双自证 `mov [esi],0x56A620`（disp0=主表）+ 安装点 GRPinput::SetMousePos（member access GRPinput×8）"
+    }
+  ],
   "methods": {
     "0x004022E0": {
       "name": "GetCursorPos",

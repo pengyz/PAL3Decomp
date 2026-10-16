@@ -119,19 +119,19 @@
       "source": "binary:raw_Update_check"
     },
     "153": {
-      "name": "m_bFlag99",
+      "name": "m_nTodo_99",
       "type": "unsigned char",
-      "source": "binary:byte_after_status"
+      "source": "binary:byte_after_status | [批4 诚实化 2026-10-16] A偏移形：m_bFlag99⇒m_nTodo_99（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "154": {
-      "name": "m_bFlag9A",
+      "name": "m_nTodo_9A",
       "type": "unsigned char",
-      "source": "binary:byte_flag"
+      "source": "binary:byte_flag | [批4 诚实化 2026-10-16] A偏移形：m_bFlag9A⇒m_nTodo_9A（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "155": {
-      "name": "m_bFlag9B",
+      "name": "m_nTodo_9B",
       "type": "unsigned char",
-      "source": "binary:byte_flag"
+      "source": "binary:byte_flag | [批4 诚实化 2026-10-16] A偏移形：m_bFlag9B⇒m_nTodo_9B（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "156": {
       "name": "m_nTaskCount",
@@ -211,8 +211,8 @@
     },
     "292": {
       "name": "m_nTodo_124",
-      "type": "gbVisNode **",
-      "source": "reverted_auto_semantic:3x_access|reverted:pseudo_semantic | 批7 2026-10-07：+16 成员访问+deref（*(gbVisNode**)）=指针语义——int 型证伪（C2100 6 件根因） | 批8 2026-10-07：型精化（gbVisNode** 用法证——(T**)x 铸形消）"
+      "type": "gbNBTreeNode *",
+      "source": "reverted_auto_semantic:3x_access|reverted:pseudo_semantic | 批7 2026-10-07：+16 成员访问+deref（*(gbVisNode**)）=指针语义——int 型证伪（C2100 6 件根因） | 批8 2026-10-07：型精化（gbVisNode** 用法证——(T**)x 铸形消） | ⑤型补强 2026-10-16（verifier A 级）：C2228×10 根因：`gbVisNode **` 双指针弱链（gbVisNode 无类定义=幽灵名）；A 级：0x509B90 `this->m_nTodo_124->children.m_Tail`（单解引用 + children=gbChain1D）+ `(Actor*)`/`(gbActor*)` 转用；gbNBTreeNode（gbChain.h:94）持有 children@+0x0C(gbChain1D) + gbChain1D.m_Tail ✓ 链型闭合"
     },
     "296": {
       "name": "m_CamParams",

@@ -138,9 +138,9 @@
       "source": "globals_merge"
     },
     "3028": {
-      "name": "m_D8BEEC",
+      "name": "m_nTodo_D8BEEC",
       "type": "RoleSystem *",
-      "source": "region-audit: interior extern @0xD8BEEC"
+      "source": "region-audit: interior extern @0xD8BEEC | [批4 诚实化 2026-10-16] B地址形：m_D8BEEC⇒m_nTodo_D8BEEC（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "3032": {
       "name": "m_fTimerB",
@@ -541,14 +541,14 @@
       "source": "binary:stru_D8B318_gap"
     },
     "4100": {
-      "name": "m_nCmd1004",
+      "name": "m_nTodo_1004",
       "type": "int",
-      "source": "binary:3x abs refs (0x1004)"
+      "source": "binary:3x abs refs (0x1004) | [批4 诚实化 2026-10-16] A偏移形：m_nCmd1004⇒m_nTodo_1004（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "4104": {
-      "name": "m_nCmd1008",
+      "name": "m_nTodo_1008",
       "type": "int",
-      "source": "binary:3x abs refs, 4-byte access"
+      "source": "binary:3x abs refs, 4-byte access | [批4 诚实化 2026-10-16] A偏移形：m_nCmd1008⇒m_nTodo_1008（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "4108": {
       "name": "m_bScriptFlag",
@@ -571,9 +571,9 @@
       "source": "binary:stru_D8B318_gap"
     },
     "4136": {
-      "name": "m_nCmd1028",
+      "name": "m_nTodo_1028",
       "type": "unsigned char",
-      "source": "binary:4x abs refs, 1-byte access"
+      "source": "binary:4x abs refs, 1-byte access | [批4 诚实化 2026-10-16] A偏移形：m_nCmd1028⇒m_nTodo_1028（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "4137": {
       "name": "m_bCmdFlag6",
@@ -586,9 +586,9 @@
       "source": "binary:6x abs refs, dword access (0x1030)"
     },
     "4148": {
-      "name": "m_nCmd1034",
+      "name": "m_nTodo_1034",
       "type": "int",
-      "source": "binary:3x abs refs, 4-byte access"
+      "source": "binary:3x abs refs, 4-byte access | [批4 诚实化 2026-10-16] A偏移形：m_nCmd1034⇒m_nTodo_1034（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "4152": {
       "name": "m_bCmdFlag7",
@@ -621,15 +621,15 @@
       "source": "binary:15x abs refs, dword access (0x1048)"
     },
     "4172": {
-      "name": "m_pCmdArray104C",
+      "name": "m_nTodo_104C",
       "type": "char *",
-      "source": "binary:5x abs refs, BF=mov edi,addr + [ecx*8+addr] (stride-8) | type_fix:int→void*(indexed access)",
+      "source": "binary:5x abs refs, BF=mov edi,addr + [ecx*8+addr] (stride-8) | type_fix:int→void*(indexed access) | [批4 诚实化 2026-10-16] A偏移形：m_pCmdArray104C⇒m_nTodo_104C（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "4176": {
-      "name": "m_nCmd1050",
+      "name": "m_nTodo_1050",
       "type": "short",
-      "source": "binary:3x abs refs (0x1050)"
+      "source": "binary:3x abs refs (0x1050) | [批4 诚实化 2026-10-16] A偏移形：m_nCmd1050⇒m_nTodo_1050（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "4180": {
       "name": "m_nCmdResult",
@@ -932,154 +932,154 @@
       "source": "binary:stride16_abs_addr_pattern | 批B 订正 2026-10-06：用法证=int 字面量赋值(0/1/2)+PalScript::Op_Idle TODO 注释字面量（非枚举铸——复核瑕疵②措辞订正）（命令 ID 表）——tagScriptCmd[213]→int[213]（C2679 26 件根因） | 复核瑕疵①修 2026-10-06：计数-跨度矛盾订正（int[213] 只覆 852B vs 区域 3408B=213×16 stride——实为 int[852]=3408B ✓ 吻合）"
     },
     "7840": {
-      "name": "m_D8D1B8",
+      "name": "m_nTodo_D8D1B8",
       "type": "int",
-      "source": "region-audit: interior extern @0xD8D1B8"
+      "source": "region-audit: interior extern @0xD8D1B8 | [批4 诚实化 2026-10-16] B地址形：m_D8D1B8⇒m_nTodo_D8D1B8（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "7844": {
-      "name": "m_D8D1BC",
+      "name": "m_nTodo_D8D1BC",
       "type": "unsigned char",
-      "source": "region-audit: interior extern @0xD8D1BC"
+      "source": "region-audit: interior extern @0xD8D1BC | [批4 诚实化 2026-10-16] B地址形：m_D8D1BC⇒m_nTodo_D8D1BC（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "7845": {
-      "name": "m_D8D1BD",
+      "name": "m_nTodo_D8D1BD",
       "type": "unsigned char",
-      "source": "region-audit: interior extern @0xD8D1BD"
+      "source": "region-audit: interior extern @0xD8D1BD | [批4 诚实化 2026-10-16] B地址形：m_D8D1BD⇒m_nTodo_D8D1BD（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "7846": {
-      "name": "m_D8D1BE",
+      "name": "m_nTodo_D8D1BE",
       "type": "unsigned char",
-      "source": "region-audit: interior extern @0xD8D1BE"
+      "source": "region-audit: interior extern @0xD8D1BE | [批4 诚实化 2026-10-16] B地址形：m_D8D1BE⇒m_nTodo_D8D1BE（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "7847": {
-      "name": "m_D8D1BF",
+      "name": "m_nTodo_D8D1BF",
       "type": "unsigned char",
-      "source": "region-audit: interior extern @0xD8D1BF"
+      "source": "region-audit: interior extern @0xD8D1BF | [批4 诚实化 2026-10-16] B地址形：m_D8D1BF⇒m_nTodo_D8D1BF（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "7852": {
-      "name": "m_D8D1C4",
+      "name": "m_nTodo_D8D1C4",
       "type": "unsigned short",
-      "source": "region-audit: interior extern @0xD8D1C4"
+      "source": "region-audit: interior extern @0xD8D1C4 | [批4 诚实化 2026-10-16] B地址形：m_D8D1C4⇒m_nTodo_D8D1C4（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "7856": {
-      "name": "m_D8D1C8",
+      "name": "m_nTodo_D8D1C8",
       "type": "int",
-      "source": "region-audit: interior extern @0xD8D1C8"
+      "source": "region-audit: interior extern @0xD8D1C8 | [批4 诚实化 2026-10-16] B地址形：m_D8D1C8⇒m_nTodo_D8D1C8（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "7860": {
-      "name": "m_D8D1CC",
+      "name": "m_nTodo_D8D1CC",
       "type": "unsigned char",
-      "source": "region-audit: interior extern @0xD8D1CC"
+      "source": "region-audit: interior extern @0xD8D1CC | [批4 诚实化 2026-10-16] B地址形：m_D8D1CC⇒m_nTodo_D8D1CC（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "7861": {
-      "name": "m_D8D1CD",
+      "name": "m_nTodo_D8D1CD",
       "type": "unsigned char",
-      "source": "region-audit: interior extern @0xD8D1CD"
+      "source": "region-audit: interior extern @0xD8D1CD | [批4 诚实化 2026-10-16] B地址形：m_D8D1CD⇒m_nTodo_D8D1CD（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "7862": {
-      "name": "m_D8D1CE",
+      "name": "m_nTodo_D8D1CE",
       "type": "unsigned char",
-      "source": "region-audit: interior extern @0xD8D1CE"
+      "source": "region-audit: interior extern @0xD8D1CE | [批4 诚实化 2026-10-16] B地址形：m_D8D1CE⇒m_nTodo_D8D1CE（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "7863": {
-      "name": "m_D8D1CF",
+      "name": "m_nTodo_D8D1CF",
       "type": "unsigned char",
-      "source": "region-audit: interior extern @0xD8D1CF"
+      "source": "region-audit: interior extern @0xD8D1CF | [批4 诚实化 2026-10-16] B地址形：m_D8D1CF⇒m_nTodo_D8D1CF（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "7868": {
-      "name": "m_D8D1D4",
+      "name": "m_nTodo_D8D1D4",
       "type": "unsigned short",
-      "source": "region-audit: interior extern @0xD8D1D4"
+      "source": "region-audit: interior extern @0xD8D1D4 | [批4 诚实化 2026-10-16] B地址形：m_D8D1D4⇒m_nTodo_D8D1D4（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "7968": {
-      "name": "m_D8D238",
+      "name": "m_nTodo_D8D238",
       "type": "int",
-      "source": "region-audit: interior extern @0xD8D238"
+      "source": "region-audit: interior extern @0xD8D238 | [批4 诚实化 2026-10-16] B地址形：m_D8D238⇒m_nTodo_D8D238（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "7972": {
-      "name": "m_D8D23C",
+      "name": "m_nTodo_D8D23C",
       "type": "unsigned char",
-      "source": "region-audit: interior extern @0xD8D23C"
+      "source": "region-audit: interior extern @0xD8D23C | [批4 诚实化 2026-10-16] B地址形：m_D8D23C⇒m_nTodo_D8D23C（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "7980": {
-      "name": "m_D8D244",
+      "name": "m_nTodo_D8D244",
       "type": "unsigned short",
-      "source": "region-audit: interior extern @0xD8D244"
+      "source": "region-audit: interior extern @0xD8D244 | [批4 诚实化 2026-10-16] B地址形：m_D8D244⇒m_nTodo_D8D244（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "8432": {
-      "name": "m_D8D408",
+      "name": "m_nTodo_D8D408",
       "type": "int",
-      "source": "region-audit: interior extern @0xD8D408"
+      "source": "region-audit: interior extern @0xD8D408 | [批4 诚实化 2026-10-16] B地址形：m_D8D408⇒m_nTodo_D8D408（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "8436": {
-      "name": "m_D8D40C",
+      "name": "m_nTodo_D8D40C",
       "type": "unsigned char",
-      "source": "region-audit: interior extern @0xD8D40C"
+      "source": "region-audit: interior extern @0xD8D40C | [批4 诚实化 2026-10-16] B地址形：m_D8D40C⇒m_nTodo_D8D40C（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "8444": {
-      "name": "m_D8D414",
+      "name": "m_nTodo_D8D414",
       "type": "unsigned short",
-      "source": "region-audit: interior extern @0xD8D414"
+      "source": "region-audit: interior extern @0xD8D414 | [批4 诚实化 2026-10-16] B地址形：m_D8D414⇒m_nTodo_D8D414（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "8448": {
-      "name": "m_D8D418",
+      "name": "m_nTodo_D8D418",
       "type": "int",
-      "source": "region-audit: interior extern @0xD8D418"
+      "source": "region-audit: interior extern @0xD8D418 | [批4 诚实化 2026-10-16] B地址形：m_D8D418⇒m_nTodo_D8D418（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "8452": {
-      "name": "m_D8D41C",
+      "name": "m_nTodo_D8D41C",
       "type": "unsigned char",
-      "source": "region-audit: interior extern @0xD8D41C"
+      "source": "region-audit: interior extern @0xD8D41C | [批4 诚实化 2026-10-16] B地址形：m_D8D41C⇒m_nTodo_D8D41C（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "8460": {
-      "name": "m_D8D424",
+      "name": "m_nTodo_D8D424",
       "type": "unsigned short",
-      "source": "region-audit: interior extern @0xD8D424"
+      "source": "region-audit: interior extern @0xD8D424 | [批4 诚实化 2026-10-16] B地址形：m_D8D424⇒m_nTodo_D8D424（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "10192": {
-      "name": "m_D8DAE8",
+      "name": "m_nTodo_D8DAE8",
       "type": "int",
-      "source": "region-audit: interior extern @0xD8DAE8"
+      "source": "region-audit: interior extern @0xD8DAE8 | [批4 诚实化 2026-10-16] B地址形：m_D8DAE8⇒m_nTodo_D8DAE8（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "10196": {
-      "name": "m_D8DAEC",
+      "name": "m_nTodo_D8DAEC",
       "type": "unsigned char",
-      "source": "region-audit: interior extern @0xD8DAEC"
+      "source": "region-audit: interior extern @0xD8DAEC | [批4 诚实化 2026-10-16] B地址形：m_D8DAEC⇒m_nTodo_D8DAEC（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "10197": {
-      "name": "m_D8DAED",
+      "name": "m_nTodo_D8DAED",
       "type": "unsigned char",
-      "source": "region-audit: interior extern @0xD8DAED"
+      "source": "region-audit: interior extern @0xD8DAED | [批4 诚实化 2026-10-16] B地址形：m_D8DAED⇒m_nTodo_D8DAED（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "10198": {
-      "name": "m_D8DAEE",
+      "name": "m_nTodo_D8DAEE",
       "type": "unsigned char",
-      "source": "region-audit: interior extern @0xD8DAEE"
+      "source": "region-audit: interior extern @0xD8DAEE | [批4 诚实化 2026-10-16] B地址形：m_D8DAEE⇒m_nTodo_D8DAEE（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "10199": {
-      "name": "m_D8DAEF",
+      "name": "m_nTodo_D8DAEF",
       "type": "unsigned char",
-      "source": "region-audit: interior extern @0xD8DAEF"
+      "source": "region-audit: interior extern @0xD8DAEF | [批4 诚实化 2026-10-16] B地址形：m_D8DAEF⇒m_nTodo_D8DAEF（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "10200": {
-      "name": "m_D8DAF0",
+      "name": "m_nTodo_D8DAF0",
       "type": "unsigned char",
-      "source": "region-audit: interior extern @0xD8DAF0"
+      "source": "region-audit: interior extern @0xD8DAF0 | [批4 诚实化 2026-10-16] B地址形：m_D8DAF0⇒m_nTodo_D8DAF0（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "10201": {
-      "name": "m_D8DAF1",
+      "name": "m_nTodo_D8DAF1",
       "type": "unsigned char",
-      "source": "region-audit: interior extern @0xD8DAF1"
+      "source": "region-audit: interior extern @0xD8DAF1 | [批4 诚实化 2026-10-16] B地址形：m_D8DAF1⇒m_nTodo_D8DAF1（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "10202": {
-      "name": "m_D8DAF2",
+      "name": "m_nTodo_D8DAF2",
       "type": "unsigned char",
-      "source": "region-audit: interior extern @0xD8DAF2"
+      "source": "region-audit: interior extern @0xD8DAF2 | [批4 诚实化 2026-10-16] B地址形：m_D8DAF2⇒m_nTodo_D8DAF2（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "10204": {
-      "name": "m_D8DAF4",
+      "name": "m_nTodo_D8DAF4",
       "type": "unsigned short",
-      "source": "region-audit: interior extern @0xD8DAF4"
+      "source": "region-audit: interior extern @0xD8DAF4 | [批4 诚实化 2026-10-16] B地址形：m_D8DAF4⇒m_nTodo_D8DAF4（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "1656": {
       "name": "m_nArrData",

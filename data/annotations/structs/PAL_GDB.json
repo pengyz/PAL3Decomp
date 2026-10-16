@@ -223,7 +223,8 @@
     },
     "0x00528650": {
       "name": "InitSkillDisplay",
-      "signature": "int __thiscall(int nVal)"
+      "signature": "int __thiscall(PAL_GDB *this)",
+      "source": " | ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：占位垃圾签名 `int __thiscall(int nVal)`（MXTransport 教训同族）；A 级：0x528650 访问 v14[-1].nSkillCount2 别名形（PAL_GDB 成员）"
     },
     "0x0052ECE0": {
       "name": "SetupSkillData",

@@ -48,9 +48,9 @@
       "source": "binary:raw_14votes | decomp:counter_in_SetPauseState_ExecuteBlock"
     },
     "64": {
-      "name": "m_fField3C",
+      "name": "m_nTodo_3C",
       "type": "float",
-      "source": "binary:raw_12votes"
+      "source": "binary:raw_12votes | [97挂账裁决 2026-10-16] m_fField3C ⇒ m_nTodo_3C（泛化词 Field+偏移尾（PalScriptMgr 对实证 PDB 漂移 0x3C→0x40 差+4）=禁令形；零表达式/零布局改动）"
     },
     "68": {
       "name": "m_pBigMapSce",
@@ -58,9 +58,9 @@
       "source": "A:decomp LODWORD(this->m_fField40)=this->m_scesys where m_scesys is scSCEFile* | decomp:assigned_from_m_scesys_and_m_nSavedDataB"
     },
     "72": {
-      "name": "m_fField44",
+      "name": "m_nTodo_44",
       "type": "float",
-      "source": "binary:raw_14votes | decomp:Normalize_called_on_this_field"
+      "source": "binary:raw_14votes | decomp:Normalize_called_on_this_field | [97挂账裁决 2026-10-16] m_fField44 ⇒ m_nTodo_44（泛化词 Field+偏移尾（PalScriptMgr 对实证 PDB 漂移 0x3C→0x40 差+4）=禁令形；零表达式/零布局改动）"
     },
     "76": {
       "name": "m_fPosZ",
@@ -84,9 +84,9 @@
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "56": {
-      "name": "m_Sub_0034",
+      "name": "m_nTodo_0034",
       "type": "int",
-      "source": "binary:raw_final"
+      "source": "binary:raw_final | [97挂账裁决 2026-10-16] m_Sub_0034 ⇒ m_nTodo_0034（泛化词 Sub+偏移尾 0034（现偏移 0x38，PDB 漂移 -4 同族）=禁令形；零表达式/零布局改动）"
     },
     "216": {
       "name": "m_nExecuteBlock",
@@ -583,9 +583,9 @@
       "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "532": {
-      "name": "m_fTodo_214",
+      "name": "m_nTodo_214",
       "type": "float",
-      "source": "gap_fill:ida_decomp_access | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
+      "source": "gap_fill:ida_decomp_access | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化 | [批4 诚实化 2026-10-16] A偏移形：m_fTodo_214⇒m_nTodo_214（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
       "note": "原名 m_fPosAYTarget 降级(未证语义名,CLAUDE.md 禁伪语义)"
     },
     "572": {

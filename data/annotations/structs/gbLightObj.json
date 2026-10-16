@@ -101,8 +101,9 @@
   "methods": {
     "0x0042C6A0": {
       "name": "GetAABBox",
-      "signature": "void __thiscall(struct gbAABBox *p)",
-      "ordinal": 0
+      "signature": "void __thiscall(gbLightObj *this, struct gbAABBox *p)",
+      "ordinal": 0,
+      "source": " | ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 ⇒ `this[-1].m_SysLight.phi` 别名形弱型；A 级：0x42C6A0 访问 this->m_SysLight（gbLightObj@108 成员 ✓ 归属不变）"
     },
     "0x0042BEE0": {
       "name": "IsIdle",
@@ -125,6 +126,11 @@
       "name": "Update",
       "signature": "int __thiscall(int)",
       "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+    },
+    "0x00423860": {
+      "name": "_todo_3860",
+      "signature": "void __thiscall()",
+      "source": " | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB28 认领连带 | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB34 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AB28/34）：本体 56 8b f1 e8 18 00 00 00"
     }
   },
   "vtables": [
@@ -158,6 +164,56 @@
         }
       ],
       "source": "[外部 vtable 槽名表 2026-10-15] vtable 地址显式**不认领**（gbengine.dll 外部库类，表在 DLL 内；0032f2e35 移除的是编造的 vtable **地址**认领，槽序/槽名是真数据须保留供渲染链消费）。槽名经 methods[槽址].name 解析，名/序与 gbengine 接口头 一致。⚠️ 切勿回填编造 vtable 址（0x10000/0x100F57E8 族）。"
+    },
+    {
+      "addr": "0x0056AB28",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x0042C6A0",
+          "from": null
+        },
+        {
+          "addr": "0x0042C6E0",
+          "from": null
+        },
+        {
+          "addr": "0x0042C8D0",
+          "from": null
+        },
+        {
+          "addr": "0x00423860",
+          "from": null
+        },
+        {
+          "addr": "0x0042BEE0",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        }
+      ],
+      "source": "[97 族 ctor 注册解锁批 2026-10-16 analyzer] 认领 A 级：ctor 0x423880+31 双写（与 0x56AB34 相邻 6B=MI 对）+BINK::Reset+289/295；槽 gbLightObj 族名；ctor 注册名账（ScriptVM::ProcessFrame 误名）待正名"
+    },
+    {
+      "addr": "0x0056AB34",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00423860",
+          "from": null
+        },
+        {
+          "addr": "0x0042BEE0",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        }
+      ],
+      "source": "[97 族 ctor 注册解锁批 2026-10-16 analyzer] 认领 A 级：同 0x56AB28 MI 对（+37/+31 相邻双写）；尾并合视图"
     }
   ],
   "base_size": 4,

@@ -1,11 +1,11 @@
 {
   "name": "UIFrameWnd",
-  "binary_size": 152,
+  "binary_size": 72,
   "known_members": {
     "68": {
       "name": "m_pbktex",
       "type": "gbTexture *",
-      "source": "annotation"
+      "source": "annotation | [apply 41-failure 修 2026-10-16 analyzer] bs 152→72：A 级成员几何=base UIWnd(68)+m_pbktex@68(gbTexture*=4B)=72 精确；41 派生类 base_size=72 一致互证；T-130 尾差 +80 挂账（152=几何值+80 tail drift）精确吻合——add_udt 几何矛盾（base 152B vs 派生首员@72）=41 空壳 UDT 根因"
     }
   },
   "base_class": [

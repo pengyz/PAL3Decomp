@@ -40,9 +40,9 @@
       "source": "pdb"
     },
     "0x00452580": {
-      "name": "GetFaceNum",
-      "signature": "int ()",
-      "source": "pdb"
+      "name": "_todo_ctor",
+      "signature": "void *()",
+      "source": "pdb | 错位修正 2026-10-16（verifier A 级）：真身=0x56B1BC 三子对象复合体的 **ctor**（disasm 0x452580 SEH 序言 + 三子对象组装 UIListBox@0/UIAnimateCtrlEX@0x48/UITitle_BBTY@0x43C + 末位写自表 vtable 实证）；现名 GetFaceNum 为错位（返回 this 的 ctor 挂了 getter 名）；签名 `int __cdecl()` 亦错——真身 __thiscall（ecx=this 实证） 返回 this（mov eax,esi）⇒ 改 `void *__thiscall()`；真名待语义考（复合体挂账中），占位名 _todo_ 非伪语义（无地址后缀）；⚠️ 条目错挂 NavFaceLayer（复合体非该类），真名挂账后迁出"
     }
   }
 }

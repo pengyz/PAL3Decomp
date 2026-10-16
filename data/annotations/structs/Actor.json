@@ -1129,6 +1129,53 @@
       "name": "_todo_0053D5D0",
       "signature": "void __thiscall(int)",
       "source": "深证批4 2026-10-06：A 级 vtable 槽+偏移[88,112,116,120] Actor×3 非低偏移证（净判别力筛）"
+    },
+    "0x0041F340": {
+      "name": "_todo_F340",
+      "signature": "void __thiscall()",
+      "source": " | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AAC4 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AAC4）：本体 56 8b f1 e8 18 00 00 00"
+    },
+    "0x004083B0": {
+      "name": "_todo_83B0",
+      "signature": "void __thiscall()",
+      "source": " | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056A6D0 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56A6D0 已认领）：本体 56 8b f1 e8 18 00 00 00"
+    },
+    "0x00408410": {
+      "name": "_todo_8410",
+      "signature": "void __thiscall()",
+      "source": " | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056A6D0 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56A6D0）：本体 8b 54 24 04 8b 41 18 85"
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AAC4",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x0041F340",
+          "from": null
+        }
+      ],
+      "source": "[97 族 ctor 注册解锁批 2026-10-16 analyzer] 认领 A 级：ctor 0x41F360 开头写 @0x41F360+0（ctor 形）+0x41F2D0+95 reinit；ctor 已注册 Actor::_todo_0041F360 解锁"
+    },
+    {
+      "addr": "0x0056A6D0",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004083B0",
+          "from": null
+        },
+        {
+          "addr": "0x004083E0",
+          "from": null
+        },
+        {
+          "addr": "0x00408410",
+          "from": null
+        }
+      ],
+      "source": "[97 族 ctor 注册解锁批 2026-10-16 analyzer] 认领 A 级：ctor 0x4083D0 开头写（ctor 形）+PathObj::CalcLength+1498 reinit；ctor 已注册 Actor::_todo_004083D0 解锁"
+    }
+  ]
 }

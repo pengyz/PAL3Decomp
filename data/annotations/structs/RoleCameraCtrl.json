@@ -2,26 +2,6 @@
   "name": "RoleCameraCtrl",
   "binary_size": 76,
   "known_members": {
-    "8": {
-      "name": "m_pVtable",
-      "type": {
-        "union": [
-          {
-            "type": "float",
-            "name": "fVal"
-          },
-          {
-            "type": "int",
-            "name": "nVal"
-          },
-          {
-            "type": "void *",
-            "name": "pVal"
-          }
-        ]
-      },
-      "source": "gap_fill:ida_decomp_access; type_fix:m_p*_int_to_void* | inline-union治理 2026-10-16（idapro A 级）：ComputeViewVector@0x52E080 `*(float*)&this->m_pVtable`（float 视）+ SetViewPosition@0x52DFF0 `=(void*)nVal2` 裸搬 + `LODWORD(m_passtime)=m_pVtable` 别名 ⇒ 非 vptr（名误导），三视复用"
-    },
     "12": {
       "name": "m_type",
       "type": "RCC_TYPE",
@@ -81,6 +61,24 @@
       "name": "m_startfrom",
       "type": "gbVec3D",
       "source": "annotation"
+    },
+    "8": {
+      "name": "m_pVtable",
+      "type": "void *",
+      "union": true,
+      "source": "原 void* 位面（SetViewPosition@0x52DFF0 `=(void*)nVal2` 裸搬实证） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）："
+    },
+    "8_1": {
+      "name": "m_pVtable_f",
+      "type": "float",
+      "union": true,
+      "source": "float 别名视图（ComputeViewVector@0x52E080 `*(float*)&m_pVtable` 实证） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）："
+    },
+    "8_2": {
+      "name": "m_pVtable_i",
+      "type": "int",
+      "union": true,
+      "source": "int 位面（`LODWORD(v7.fVal)=m_pVtable` RHS 标量实证；C2679 站） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）："
     }
   },
   "base_class": [

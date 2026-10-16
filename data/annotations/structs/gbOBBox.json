@@ -4,8 +4,8 @@
   "known_members": {
     "0": {
       "name": "trans",
-      "type": "Matrix4",
-      "source": "annotation"
+      "type": "gbMatrix4",
+      "source": "annotation | ⑤型补强 2026-10-16（verifier A 级）：C2228×16 根因：`Matrix4` 为幽灵类型名（include/ 无定义，仅 Matrix4x4/gbMatrix4）；A 级：0x52F6C0 `this[22].trans.m[0][2]`/`this[47].trans.m[2][3]` 需 m[4][4] ⇒ gbMatrix4（pal3_structs.h:220 union 含 float m[4][4] ✓ 唯一匹配）"
     },
     "64": {
       "name": "xlen",
@@ -21,6 +21,14 @@
       "name": "zlen",
       "type": "float",
       "source": "annotation"
+    }
+  },
+  "methods": {
+    "0x0052F6C0": {
+      "name": "GetBBox",
+      "signature": "void __thiscall()",
+      "declaration_only": true,
+      "source": " | [①渲染错族治理 2026-10-16 analyzer] A 级本体判读+声明性注册（declaration_only 消渲染 C2039，非归属认定）：gb* 方法声明补齐（原 methods 空 ⇒ 头无声明 C2039 根源）"
     }
   }
 }

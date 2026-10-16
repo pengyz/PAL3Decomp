@@ -35,7 +35,25 @@
     "0x004BDFB0": {
       "name": "ScreenEffect",
       "signature": "ScreenEffect * __thiscall()"
+    },
+    "0x004BE060": {
+      "name": "_todo_E060",
+      "signature": "void __thiscall()",
+      "source": " | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x0056F508 认领（ctor ScreenEffect@0x4BDFB0+142 + ClearAl）连带"
     }
   },
-  "base_size": 8
+  "base_size": 8,
+  "vtables": [
+    {
+      "addr": "0x0056F508",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004BE060",
+          "from": null
+        }
+      ],
+      "source": "[vtable 合并批 2026-10-16 analyzer] 认领 A 级：ctor ScreenEffect@0x4BDFB0+142 + ClearAllEffects@0x4BE080+29 析构族复写"
+    }
+  ]
 }

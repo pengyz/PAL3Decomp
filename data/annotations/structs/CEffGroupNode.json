@@ -38,7 +38,79 @@
     "0x004B72E0": {
       "name": "CEffGroupNode",
       "signature": "void __thiscall()"
+    },
+    "0x004B7310": {
+      "name": "_todo_",
+      "signature": "void __thiscall()",
+      "source": " | [表认领+槽注册合并批 2026-10-16 analyzer] 槽注册：real-method（0x4B72E0 ctor 域）"
+    },
+    "0x004B7BA0": {
+      "name": "_todo_",
+      "signature": "void __thiscall()",
+      "source": " | [表认领+槽注册合并批 2026-10-16 analyzer] 槽注册：real-method"
+    },
+    "0x004B7F70": {
+      "name": "nullsub",
+      "signature": "void __thiscall()",
+      "source": " | [表认领+槽注册合并批 2026-10-16 analyzer] 槽注册：A 级 `c3` 空实现桩 ⇒ nullsub 名（先例 nullsub_75_override）"
     }
   },
-  "base_size": 88
+  "base_size": 88,
+  "vtables": [
+    {
+      "addr": "0x0056F3C0",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004B7310",
+          "from": null
+        },
+        {
+          "addr": "0x004B7F70",
+          "from": null
+        },
+        {
+          "addr": "0x00542102",
+          "from": null
+        },
+        {
+          "addr": "0x004B7F70",
+          "from": null
+        },
+        {
+          "addr": "0x004B73E0",
+          "from": null
+        },
+        {
+          "addr": "0x0054211A",
+          "from": null
+        },
+        {
+          "addr": "0x00542114",
+          "from": null
+        },
+        {
+          "addr": "0x0054210E",
+          "from": null
+        },
+        {
+          "addr": "0x005420DE",
+          "from": null
+        },
+        {
+          "addr": "0x005420D8",
+          "from": null
+        },
+        {
+          "addr": "0x004B73D0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        }
+      ],
+      "source": "[表认领+槽注册合并批 2026-10-16 analyzer] 认领 A 级：写入点 0x4B72FC=ctor CEffGroupNode@0x4B72E0+28 + 0x4B7330 析构族复写"
+    }
+  ]
 }

@@ -413,11 +413,6 @@
       },
       "source": "union views: role-slot array (slot), flat overlay (overlay), and script-state (script_state): +0x354 m_pCurrentScript (10 refs: PAL3::FullInit, ScriptSystem::Render, ScriptUpdate, Actor::LoadActorModel); +0x358 formation-ready (SetupPartyFormation x5, ScriptUpdate); +0x359 scene-transition param (StartCombatFromNPC, DoSceneTransition); +0x360 script-VM state (x59: scAsmDecoder::Execute, ScriptSystem_ProcessScriptEvent, Array::HandleItemPage); +0x368 fade timer (ScriptUpdate, DoSceneTransition); +0x3d0 scene-UI text buffer (300 refs: EquipUI, MainEquipUI, UIBigMap, CCBStage, PAL_GDB_ResetAllData). g_palScript is a STANDALONE instance (not in the 0xC04730 array: delta 0xC238); absolute refs in its span are script-state only; role-slot view lives in array instances via this+off."
     },
-    "260": {
-      "name": "m_WaitObjList",
-      "type": "PtrArray",
-      "source": "decomp:accessed_.buf_.capacity"
-    },
     "312": {
       "name": "m_nTodo_138",
       "type": "int",
@@ -484,21 +479,21 @@
       "note": "Discovered by member_scan after disp8 fix."
     },
     "40": {
-      "name": "m_bFlag_28",
+      "name": "m_nTodo_28",
       "type": "int",
-      "source": "reverted_auto_semantic:6x_access|reverted:pseudo_semantic;A:decomp_batch_rename_usage_pattern",
+      "source": "reverted_auto_semantic:6x_access|reverted:pseudo_semantic;A:decomp_batch_rename_usage_pattern | [批4 诚实化 2026-10-16] A偏移形：m_bFlag_28⇒m_nTodo_28（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
       "note": "Discovered by member_scan after disp8 fix."
     },
     "48": {
-      "name": "m_bFlag_30",
+      "name": "m_nTodo_30",
       "type": "int",
-      "source": "binary_scan:3_accesses(store:2, load:1);A:decomp_batch_rename_usage_pattern",
+      "source": "binary_scan:3_accesses(store:2, load:1);A:decomp_batch_rename_usage_pattern | [批4 诚实化 2026-10-16] A偏移形：m_bFlag_30⇒m_nTodo_30（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
       "note": "Discovered by member_scan after disp8 fix."
     },
     "52": {
-      "name": "m_bFlag_34",
+      "name": "m_nTodo_34",
       "type": "int",
-      "source": "reverted_auto_semantic:2x;A:decomp_batch_rename_usage_pattern",
+      "source": "reverted_auto_semantic:2x;A:decomp_batch_rename_usage_pattern | [批4 诚实化 2026-10-16] A偏移形：m_bFlag_34⇒m_nTodo_34（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
       "note": "Discovered by member_scan after disp8 fix."
     },
     "64": {
@@ -521,26 +516,6 @@
       "name": "m_pDialogData",
       "type": "void *",
       "source": "binary_scan:3refs | [void* 语义化 2026-10-16 analyzer 30 条跨类取证] A级：decomp 6 处 `m_pDialogData = (char *)v2->m_pDialogData; … m_pDialogData = m_pDialogData - 1; v2->m_pDialogData = v6`（char* 递减遍历）⇒ 指针位+字节步长=char* | [void* 语义化回退 2026-10-16 analyzer] 四道门判负实证：CCBStage _BYTE[N] 型改使 `&field + N` 指针算术步长从 4B 变 N B ⇒ C2039/C2228 族爆发；PalScript char* 引 C2679 operator= 不匹配（L5942）⇒ 类型语义化候选保留 source，落地待渲染层（指针算术缩放）修妥后复议"
-    },
-    "144": {
-      "name": "m_pCurrentTask",
-      "type": {
-        "union": [
-          {
-            "type": "float",
-            "name": "fVal"
-          },
-          {
-            "type": "int",
-            "name": "nVal"
-          },
-          {
-            "type": "char *",
-            "name": "pVal"
-          }
-        ]
-      },
-      "source": "binary_scan:9refs; type_fix:m_p*_int_to_void* | inline-union治理 2026-10-16（idapro A 级）：RenderUI@0x43A270 `(double)(int)this->m_pCurrentTask`（int 视）+ `m_pCurrentTask*v6`（float 视 st6）+ UpdateTimer@0x43A3E0 `(char*)...; m_pCurrentTask+1`（指针步进视）+ `=0` 清零 ⇒ 三视同 4B 区复用"
     },
     "148": {
       "name": "m_pTaskPtr",
@@ -646,6 +621,29 @@
       "name": "_todo_768",
       "type": "int",
       "source": "binary: mov dword_C110D0 in RoleSystem::PlayAction/UpdateActionState"
+    },
+    "144": {
+      "name": "m_pCurrentTask",
+      "type": "int",
+      "union": true,
+      "source": "int 位面（`=0`/`+1`/`(int)` 比较实证；C2679 站 RHS 标量） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）："
+    },
+    "144_1": {
+      "name": "m_pCurrentTask_f",
+      "type": "float",
+      "union": true,
+      "source": "float 别名视图（RenderUI@0x43A270 `(double)(int)`+乘法 st6 实证） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）："
+    },
+    "144_2": {
+      "name": "m_pCurrentTask_p",
+      "type": "char *",
+      "union": true,
+      "source": "指针步进视图（UpdateTimer@0x43A3E0 `(char*)...;+1` 实证） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）："
+    },
+    "260": {
+      "name": "m_WaitObjList",
+      "type": "PtrArray",
+      "source": "内嵌 PtrArray 值位面（`m_WaitObjList.capacity` 实证） | ⚠️ C1 variant 撤销 2026-10-16（verifier 当场读抓获误伤）：PtrArray=非平凡型（带 ctor）入匿名 union ⇒ C2620 全树崩（S2 0/205，每 TU L84）——MSVC6 union 禁非平凡成员；PAL3 L3195 `=0` 位面失配（C2679）改期他法（overlap 标注/值位面 POD 替身）"
     }
   },
   "methods": {
@@ -1633,8 +1631,9 @@
     },
     "0x00433F90": {
       "name": "ProcessGBKString",
-      "signature": "int __cdecl PalScript::ProcessGBKString()",
-      "static": true
+      "signature": "int __thiscall(PalScript *this)",
+      "static": true,
+      "source": " | ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失（原 __cdecl 形）；A 级：0x433F90 链 m_nTodo_1050[i].mData（PalScript 成员）"
     },
     "0x00421560": {
       "name": "SetAction",
@@ -1772,6 +1771,25 @@
           "from": null
         }
       ]
+    },
+    {
+      "addr": "0x0056AC08",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00438E90",
+          "from": null
+        },
+        {
+          "addr": "0x00438100",
+          "from": null
+        },
+        {
+          "addr": "0x00438E30",
+          "from": null
+        }
+      ],
+      "source": "[filebuf 归属裁决 2026-10-16 analyzer] 归属迁移（filebuf 误挂 → PalScript 伴生计时器小类）A 级三证：①ctor 写点 0x438D62 在 PalScript::Op 域 ②槽 0x438100=PalScript::_sub_438100（已注册）③0x4381xx=PalScript 码区；本体语义=4 秒计时累加器（float@8 累加 ≥4.0 置 byte@0xC done + clamp 4.0f）；真名挂账（PDB 无精确形）；bs≥16 待定"
     }
   ]
 }

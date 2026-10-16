@@ -19,26 +19,12 @@
       "ordinal": 2
     }
   },
-  "vtables": [
-    {
-      "addr": "0x0056AC08",
-      "base": null,
-      "slots": [
-        {
-          "addr": "0x00438E90",
-          "from": null
-        },
-        {
-          "addr": "0x00438100",
-          "from": null
-        },
-        {
-          "addr": "0x00438E30",
-          "from": null
-        }
-      ]
-    }
-  ],
+  "vtables": [],
   "binary_size": 4,
-  "note": "binary_size estimated at 4 for IDB struct compat"
+  "note": "binary_size estimated at 4 for IDB struct compat",
+  "_verdict": "[filebuf 归属裁决 2026-10-16 analyzer] **误挂定谳**：filebuf=STL CRT 名（gap-fill 误名）——bs=4 空壳 + 槽实现全在游戏码区 0x438xxx（0x438E90 删际析构/0x438100 `this[12]==0` flag 判/0x438E30 `this[2]+=fVal; if>=4.0 {this[3]=1; this[2]=4.0f}` 4 秒计时累加器）非 CRT；表 0x56AC08 已迁 PalScript.json（三证合流：ctor 写点 PalScript::Op 域 + 槽 0x438100 已注册 PalScript::_sub_438100 + 0x4381xx=PalScript 码区）；真名挂账（PDB 无精确形：PalScriptWaitObj/ScriptWaitFrm 偏移不合）",
+  "_verdicts": {
+    "gapfill_shell_20261016": "误挂（变量名）"
+  },
+  "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂定谳**：`filebuf`=**匈牙利变量名形**（小写前缀+大写体）被误收为类 · mangled 零命中"
 }

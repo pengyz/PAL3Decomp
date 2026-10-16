@@ -81,6 +81,16 @@
     "0x0043A870": {
       "name": "CreateChildWidget",
       "signature": "gbVFileSystem *__thiscall UIScene::CreateChildWidget(int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData, char pData2)"
+    },
+    "0x00450370": {
+      "name": "_todo_0370",
+      "signature": "void __thiscall()",
+      "source": " | [method 27 余量批 2026-10-16 analyzer] 表 0x0056B0E0 认领连带注册"
+    },
+    "0x00450670": {
+      "name": "_todo_0670",
+      "signature": "void __thiscall()",
+      "source": " | [method 27 余量批 2026-10-16 analyzer] 表 0x0056B0E0 认领连带注册"
     }
   },
   "vtables": [
@@ -120,6 +130,88 @@
           "from": null
         }
       ]
+    },
+    {
+      "addr": "0x0056B0E0",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": null
+        },
+        {
+          "addr": "0x00450440",
+          "from": null
+        },
+        {
+          "addr": "0x00450560",
+          "from": null
+        },
+        {
+          "addr": "0x00450670",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": null
+        },
+        {
+          "addr": "0x00450370",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": null
+        }
+      ],
+      "source": "[method 27 余量批 2026-10-16 analyzer] 认领 A 级：ctor 域 UICaption::LayoutDefault@+29 写（+35 相邻=MI 对）+UIWnd::DelegateRender+9 复写"
+    },
+    {
+      "addr": "0x0056B0D4",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004506C0",
+          "from": null
+        },
+        {
+          "addr": "0x004503C0",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x00445E70",
+          "from": null
+        },
+        {
+          "addr": "0x00450440",
+          "from": null
+        },
+        {
+          "addr": "0x00450560",
+          "from": null
+        },
+        {
+          "addr": "0x00450670",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": null
+        },
+        {
+          "addr": "0x00450370",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": null
+        }
+      ],
+      "source": "[method 27 余量批 2026-10-16 analyzer] 认领 A 级：MI 对（LayoutDefault+35/+29 相邻双写）+DelegateRender+17 复写"
     }
   ],
   "base_size": 76,

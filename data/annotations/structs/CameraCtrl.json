@@ -472,9 +472,9 @@
       "source": "annotation"
     },
     "464": {
-      "name": "m_fTodo_1D0",
+      "name": "m_nTodo_1D0",
       "type": "float",
-      "source": "binary:disasm@0x534000 (0x1D0 有 fadds/fstps ⇒ 浮点 ✓；原注解此处 std::stack 系编造 ✗)"
+      "source": "binary:disasm@0x534000 (0x1D0 有 fadds/fstps ⇒ 浮点 ✓；原注解此处 std::stack 系编造 ✗) | [批4 诚实化 2026-10-16] A偏移形：m_fTodo_1D0⇒m_nTodo_1D0（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     }
   },
   "binary_size": 4088,
@@ -686,6 +686,12 @@
     "0x004BE8F0": {
       "name": "_sdtor_17",
       "signature": "CameraCtrl *__thiscall(CameraCtrl *Block, char a2)"
+    },
+    "0x0041CBC0": {
+      "name": "_nearby_41cbc0",
+      "signature": "void __thiscall()",
+      "declaration_only": true,
+      "source": " | [①渲染错族治理 2026-10-16 analyzer] A 级本体判读+声明性注册（declaration_only 消渲染 C2039，非归属认定）：本体 `c7 01 c0 a9 56 00 c3`=写表桩（[ecx]=0x56A9C0 Object 族基表重置）——共享桩非 CameraCtrl 专属"
     }
   },
   "vtables": [
