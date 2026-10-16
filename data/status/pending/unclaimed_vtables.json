@@ -236,6 +236,19 @@
    "evidence": "objdump 降级取证（idapro supervisor 断连待复核）：安装点 0x438ECD `movl $0x56ac08,(%esi)` 位于 0x438EB0 函数体（注解名 ~filebuf）内——析构 vptr 复写形 ✓ 表确属 filebuf（claim 正确）；IMPOSSIBLE 根因=**binary_size=4 过小**（req 16 > 4）⇒ 尺寸需 new 算子/member 跨度取证补正（非迁表）",
    "status": "裁定完成·尺寸待取证",
    "tier": "IMPOSSIBLE-1/23"
+  },
+  "_mechanism_IMPOSSIBLE_family": {
+   "finding": "IMPOSSIBLE（req>size）族 = **+0x48 子对象 vptr 误当主表**",
+   "evidence": "objdump 安装点形制（4/4 一致）：`movl $T1,(%esi)`（主表@+0）+ `movl $T2,0x48(%esi)`（**子对象表@+0x48**）——T2=claimed 表即子对象表 ✓ req（全对象跨度）> 声明类 size（子对象尺寸）= IMPOSSIBLE 成因 ✓",
+   "instances": [
+    "0x56b0d4 UIProgressBar(296>244)",
+    "0x56b140 UICaption(344>96)",
+    "0x56b16c UIMap(352>152)",
+    "0x56b898 UIFrameWnd(172>72)"
+   ],
+   "mechanism_family": "与 UIListBox 4 表「表≠类边界」同族（MI 子对象表被最派生名渲染）",
+   "fix_pattern": "迁表到真实基类（如 4 表裁决制式）+ 认领主表给派生类 ⇒ 1637 站渲染解锁",
+   "status": "机制定谳（objdump 降级证 · idapro 复核待补）"
   }
  }
 }
