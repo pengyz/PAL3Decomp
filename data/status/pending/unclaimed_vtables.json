@@ -227,5 +227,15 @@
   "0x56fb28",
   "0x56fb70",
   "0x570748"
- ]
+ ],
+ "adjudications": {
+  "0x56ac08": {
+   "table": "0x56ac08",
+   "declared": "filebuf",
+   "verdict": "claim ✓ size ✗",
+   "evidence": "objdump 降级取证（idapro supervisor 断连待复核）：安装点 0x438ECD `movl $0x56ac08,(%esi)` 位于 0x438EB0 函数体（注解名 ~filebuf）内——析构 vptr 复写形 ✓ 表确属 filebuf（claim 正确）；IMPOSSIBLE 根因=**binary_size=4 过小**（req 16 > 4）⇒ 尺寸需 new 算子/member 跨度取证补正（非迁表）",
+   "status": "裁定完成·尺寸待取证",
+   "tier": "IMPOSSIBLE-1/23"
+  }
+ }
 }
