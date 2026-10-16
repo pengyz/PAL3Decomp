@@ -94,6 +94,37 @@ def parse_link_output(text):
     return by_code, unresolved, duplicates
 
 
+def diff_census(prev, cur):
+    """Ratchet diff of two link-census summaries (pure function, R15 单测点).
+
+    判据（机制定性精确）：
+      - **LNK2005 重复定义（ODR）增长 = 硬回归** —— 永无正当增长理由；
+      - **LNK2001/2019 未解析符号增长** 仅在 `units_linked` 未增长时算回归
+        （S2 新增单元会合法地引入新引用 ⇒ 单元增长期 unresolved 增长是
+        视野扩大而非退化，只进 advisory 报告）；
+      - units_linked 缩水而 unresolved 增长 = 回归（比对面变小、问题反增）。
+
+    返回 {'regressed': bool, 'reasons': [...], 'advisory': [...]}。
+    """
+    def _cnt(d, key):
+        v = d.get(key) or {}
+        return len(v) if isinstance(v, dict) else int(v or 0)
+
+    p_dup, c_dup = _cnt(prev, 'duplicates'), _cnt(cur, 'duplicates')
+    p_unr, c_unr = _cnt(prev, 'unresolved'), _cnt(cur, 'unresolved')
+    p_u, c_u = int(prev.get('units_linked') or 0), int(cur.get('units_linked') or 0)
+    reasons, advisory = [], []
+    if c_dup > p_dup:
+        reasons.append('duplicate definitions (LNK2005): %d -> %d' % (p_dup, c_dup))
+    if c_unr > p_unr and c_u <= p_u:
+        reasons.append('unresolved externs: %d -> %d (units_linked %d -> %d 未增)'
+                       % (p_unr, c_unr, p_u, c_u))
+    elif c_unr > p_unr:
+        advisory.append('unresolved externs: %d -> %d（units_linked %d -> %d 增长期'
+                        '视野扩大，advisory）' % (p_unr, c_unr, p_u, c_u))
+    return {'regressed': bool(reasons), 'reasons': reasons, 'advisory': advisory}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--census', default=str(CENSUS))
@@ -101,6 +132,11 @@ def main():
                     help='only link the first N S2-passing units')
     ap.add_argument('--keep-objs', action='store_true',
                     help='keep the scratch .obj directory for inspection')
+    ap.add_argument('--check', action='store_true',
+                    help='ratchet gate: exit 1 on hard regression vs previous '
+                         'link_census.json (LNK2005 增长 / 单元未增而 unresolved 增长)')
+    ap.add_argument('--rebaseline', metavar='REASON',
+                    help='force-refresh the census baseline (reason recorded)')
     args = ap.parse_args()
 
     census = json.loads(Path(args.census).read_text(encoding='utf-8'))
@@ -148,8 +184,7 @@ def main():
         import shutil
         shutil.rmtree(obj_dir, ignore_errors=True)
 
-    OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
-    OUT_JSON.write_text(json.dumps({
+    summary = {
         'generated_at': datetime.now().isoformat(timespec='seconds'),
         'units_linked': len(obj_paths), 'units_skipped': len(skipped),
         'skipped': [{'unit': u, 'detail': d} for u, d in skipped],
@@ -158,7 +193,42 @@ def main():
                        sorted(unresolved.items(), key=lambda kv: -len(kv[1]))},
         'duplicates': {s: sorted(set(d)) for s, d in
                        sorted(duplicates.items(), key=lambda kv: -len(kv[1]))},
-    }, indent=1, ensure_ascii=False))
+    }
+    if args.rebaseline:
+        summary['rebaseline_reason'] = args.rebaseline
+
+    # [link 门禁 2026-10-16] 棘轮语义：与旧 census 比对，硬回归时**不刷新**基线
+    # （与 regression_detector 的 "NOT refreshing" 同构 ⇒ 退化持续可见）。
+    # 退化修复后 --check 自动通过、刷新即恢复；确认可接受则 --rebaseline "<理由>" 显式前进。
+    prev = None
+    if OUT_JSON.exists():
+        try:
+            prev = json.loads(OUT_JSON.read_text(encoding='utf-8'))
+        except (OSError, ValueError):
+            prev = None
+    rc = 0
+    if prev is not None:
+        d = diff_census(prev, summary)
+        for line in d['advisory']:
+            print('[link-gate] ADVISORY: %s' % line)
+        if d['regressed']:
+            print('[link-gate] ❌ LINK 层回归（对照 %s）:' % prev.get('generated_at'))
+            for r in d['reasons']:
+                print('      - %s' % r)
+            if args.check:
+                print('[link-gate] NOT refreshing link_census.json（保持退化可见）。')
+                print('           确认后用 --rebaseline "<理由>" 显式重新对齐。')
+                rc = 1
+        else:
+            print('[link-gate] ✓ 无链接层回归（duplicates/unresolved 均未恶化）')
+
+    if rc == 0 or args.rebaseline:
+        OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
+        OUT_JSON.write_text(json.dumps(summary, indent=1, ensure_ascii=False))
+        print('report -> %s' % OUT_JSON)
+    else:
+        print('report NOT written (ratchet holds previous baseline)')
+    return rc
     print('report -> %s' % OUT_JSON)
     return 0
 

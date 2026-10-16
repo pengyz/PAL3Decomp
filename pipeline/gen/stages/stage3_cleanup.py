@@ -2239,7 +2239,7 @@ _GB_REF_PARAM_FUNCS = {
     'GetSphere': {0},
     'GetCollideOBB': {0},
     'SetPosition': {0},
-    'GetPosition': {0},
+    # [挂账3 修 2/3 2026-10-16] GetPosition 裸键删除（限定化无目标——已知全形无 ref）：mangled A 级：?GetPosition@PathObj@@QAEPAHMPAMPAH@Z(float,float*,int*)=指针形 · ?GetPosition@RoleSystem(float*,int)=指针形 · ?GetPosition@UIProgressBar@@QAEXH@Z(int)=值形 · ?GetPosition@Object3D@@QAE?AUgbVec3D@@XZ=无参 —— 无 AAU/AAV ref 形 ⇒ 裸键剥& 会打断 RoleSystem::GetPosition(&pOut[0].x,…) 指针实参（reviewer B 组 float*/GetPosition 实症）
     'SetVelocity': {0},
     'SetOrientation': {0},
     'SetListenerPosition': {0},

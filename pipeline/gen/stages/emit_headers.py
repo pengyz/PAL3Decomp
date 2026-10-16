@@ -28,6 +28,56 @@ from pipeline.gen.stages.collect import get_class_dir
 # Module-level cache for _scalar_dtor detection (populated lazily)
 _scalar_dtor_classes = None
 
+
+def named_udt_scope_form(type_name, kind, member_name, body_lines):
+    """命名内联 UDT 的命名空间作用域提升形（纯函数，R15 单测点）→ (ns_lines, member_line)。
+
+    病灶（2026-10-16 C2228×15）：decomp 局部声明用 IDA 合成名 `union _inline_tagCam_yaw`
+    （TU 全局作用域），而发射把同名 UDT **嵌套在类内** ⇒ 跨 TU 裸名解析失败（C2228/C2059）。
+    修法=定义提升到命名空间作用域（布局不变等价变换）：类前出 `union _inline_X {…};`
+    类内成员改引用 `union _inline_X name;`。仅 `_inline_*` 合法标识符形可提升；
+    `Cls::$123` 等合成名/普通类型名维持原渲染（最小 churn）。
+
+    返回 (None, None) 表示不适用（调用方回退现行类内渲染）。
+    """
+    if not type_name or not type_name.startswith('_inline_'):
+        return None, None
+    if '::' in type_name or '$' in type_name or not type_name.replace('_', '').isalnum():
+        return None, None
+    if kind not in ('union', 'struct'):
+        return None, None
+    ns = ['%s %s {' % (kind, type_name)]
+    ns.extend(body_lines)
+    ns.append('};')
+    member = '%s %s %s;' % (kind, type_name, member_name)
+    return ns, member
+
+
+def hoist_udt_block(block_lines, member_name, cls_name=None):
+    """类内命名 UDT 块文本 ⇒ (命名空间 decl 行, 成员行)（纯函数，R15 单测点）。
+
+    输入为发射器产出的类内块（首行 `    <kind> <name>{ // +0x..`，尾行 `    } member;`）。
+    布局不变等价变换：body 缩进 8→4，定义包 #pragma pack(push,1)/pop（打包尺寸语义随行）。
+    未命名块返回 (None, None)——调用方维持原渲染。
+    """
+    if not block_lines or len(block_lines) < 3:
+        return None, None
+    m = re.match(r'^\s+(union|struct)\s+(\S+)\s*\{', block_lines[0])
+    if not m:
+        return None, None
+    kind, type_name = m.group(1), m.group(2)
+    body = [re.sub(r'^        ', '    ', l) for l in block_lines[1:-1]]
+    ns, member = named_udt_scope_form(type_name, kind, member_name, body)
+    if ns is None:
+        return None, None
+    fwd = []
+    # 自引用（body 含本类指针）⇒ hoist 到类前后向引用断裂（2026-10-16 全树 L76 误伤
+    # 实锤：`PalScript *` 在 class PalScript 前未声明 ⇒ C2143/C2501 ×140 单元）⇒ 补前向声明
+    if cls_name and re.search(r'\b%s\s*\*' % re.escape(cls_name), '\n'.join(body)):
+        fwd = ['class %s;' % cls_name]
+    return (['#pragma pack(push,1)'] + fwd + ns + ['#pragma pack(pop)'],
+            '    ' + member)
+
 def _get_scalar_dtor_classes():
     """Detect classes with _scalar_dtor.
 
@@ -2295,6 +2345,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                             _inline_type_name.startswith('_inline_')
                             and '::' not in _inline_type_name
                             and '$' not in _inline_type_name) else ''
+                        _blk_start = len(lines)
                         lines.append("    %s %s{ // +0x%X"
                                      % (_kind, (_tn + ' ') if _tn else '', off))
                         _inner_prev = off
@@ -2344,6 +2395,19 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                                 lines.append("        %s %s; // +0x%X" % (_it, _in, _iab))
                             _inner_prev = _iab + _type_extent(_it_full)
                         lines.append("    } %s;" % mname)
+                        # [CCCTData emit 命名 2026-10-16 verifier] 命名 UDT 提升到命名
+                        # 空间作用域（R15 纯函数 hoist_udt_block）：decomp 局部声明在 TU
+                        # 全局作用域引用 `union _inline_tagCam_yaw`，类内嵌套名解析失败
+                        # （C2228×15）；布局不变等价变换（pack(1) 语义随行）。
+                        if _tn:
+                            _ns_lines, _mem_line = hoist_udt_block(lines[_blk_start:], mname, cls_name=cls_name)
+                            if _ns_lines:
+                                del lines[_blk_start:]
+                                lines.append(_mem_line)
+                                for _j in range(len(lines) - 1, -1, -1):
+                                    if re.match(r'^(?:class|union|struct)\s+%s\b' % re.escape(cls_name), lines[_j]):
+                                        lines[_j:_j] = _ns_lines
+                                        break
                         lines.append("#pragma pack(pop)")
                         member_size = _packed_inline_size(_inline_data) \
                             or _inline_data.get('size', 4)   # W4-C0b：打包尺寸（402 非 404）

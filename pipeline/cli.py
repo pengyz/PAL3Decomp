@@ -361,7 +361,7 @@ def cmd_apply():
         print("-> ERROR: apply FAILED (apply_annotations.py exited non-zero).")
         print("   Check pipeline/ida/_logs/apply_annotations_log.txt ([3] Structs line).")
         print("   NOTE: _logs/apply_status.json is written by a separate script")
-        print("   (pipeline/ida/check_apply_status.py) and can be a stale value.")
+        print("   (pipeline/ida/_archive/check_apply_status.py；2026-10-16 归档定谳) and can be a stale value.")
         print("   Refusing to report success; the gate chain stops here.")
         sys.exit(1)
     print("-> OK: annotations applied")
@@ -835,6 +835,22 @@ def cmd_probe(args):
         # 原先此处的 rc 也被丢弃（census 缺失时该脚本会抛错 → rc 2）。
         print("[ERROR] regression_detector.py --save-baseline exited %d." % save_rc)
         sys.exit(save_rc if save_rc > 0 else 1)
+
+    # 3. [link 门禁 2026-10-16] 链接层盲区探针（S2 只编译不链接的 LNK 族盲区，
+    #    幽灵符号/ODR 重复在此可见）。棘轮语义：LNK2005 增长 / 单元未增而
+    #    unresolved 增长 ⇒ exit 1 且不刷新基线（保持退化可见）。
+    # 仅全量 probe 触发（args 空或 'all'）——codegen 链里的 `probe s2` 不触发，
+    # 避免每次 codegen 多付全量重编+链接成本。
+    if not args or args[0] in ('all', 'link'):
+        print("\n[Link] link-layer probe (LNK census, ratchet gate)...")
+        link_rc = subprocess.run(
+            [sys.executable, os.path.join(_PIPELINE_DIR, 'link_probe.py'), '--check']
+        ).returncode
+        if link_rc != 0:
+            print("[ERROR] link_probe --check exited %d —— 链接层回归"
+                  "（LNK2005 重复定义增长 / 未解析符号增长），基线未刷新。" % link_rc)
+            print("        确认后重锚：python3 pipeline/link_probe.py --rebaseline \"<理由>\"")
+            sys.exit(link_rc if link_rc > 0 else 1)
 
 
 def cmd_compile():
