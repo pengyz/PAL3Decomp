@@ -123,7 +123,8 @@
       "name": "WriteLog",
       "signature": "UIWnd *__thiscall(CUtil *Block, char format)",
       "ordinal": 5,
-      "source": " | [再创作命名 2026-10-16] WriteLog=**删除析构误名**（A 级：体=`_CUtil_31f0(this); if (Block&1) operator delete(this)` 标准 deleting-dtor 形）⇒ 正名挂账待全族析构制式"
+      "source": " | [再创作命名 2026-10-16] WriteLog=**删除析构误名**（A 级：体=`_CUtil_31f0(this); if (Block&1) operator delete(this)` 标准 deleting-dtor 形）⇒ 正名挂账待全族析构制式",
+      "repro_pointer": "ptr:0x5231D0|0x5231d3|0x5231e0 decompile 行（_CUtil_31f0 call 0x5231d3 · operator delete 0x5231e0）"
     },
     "0x005231F0": {
       "name": "~CUtil_31f0",

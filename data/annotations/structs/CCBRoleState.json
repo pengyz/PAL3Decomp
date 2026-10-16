@@ -505,12 +505,14 @@
     "132": {
       "name": "m_nState",
       "type": "int[4]",
-      "source": "[伪语义批 3 折叠 2026-10-16·T56 修正] 原 int[35]@132 **越界**（132..272 内含他名员 m_nTargetRoleIdx@148 等 4 员——前缀聚类漏交错面，check overlap 抓获）⇒ 拆双数组避开：本件 132..148 int[4]（m_nState_084.._090 4 散名）。证据等级：命名来历推断+布局等价（常量下标折叠）；无索引访问证据"
+      "source": "[伪语义批 3 折叠 2026-10-16·T56 修正] 原 int[35]@132 **越界**（132..272 内含他名员 m_nTargetRoleIdx@148 等 4 员——前缀聚类漏交错面，check overlap 抓获）⇒ 拆双数组避开：本件 132..148 int[4]（m_nState_084.._090 4 散名）。证据等级：命名来历推断+布局等价（常量下标折叠）；无索引访问证据",
+      "repro_pointer": "ptr:offset@132..148|fold-20261016 m_nState 簇3 拆分件 int[4]（T56 越界修正证）"
     },
     "168": {
       "name": "m_nState2",
       "type": "int[26]",
-      "source": "[伪语义批 3 折叠 2026-10-16·T56 修正] 168..272 int[26]（m_nState_0A8.._10C 15 散名 → 1；含空槽）。证据等级同 m_nState"
+      "source": "[伪语义批 3 折叠 2026-10-16·T56 修正] 168..272 int[26]（m_nState_0A8.._10C 15 散名 → 1；含空槽）。证据等级同 m_nState",
+      "repro_pointer": "ptr:offset@168..272|fold-20261016 int[26]（m_nState2）"
     }
   },
   "methods": {

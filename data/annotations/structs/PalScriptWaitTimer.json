@@ -31,15 +31,23 @@
   },
   "vtables": [
     {
-      "addr": "0x0056ABCC",
+      "addr": "0x0056ABE0",
       "base": null,
       "slots": [
         {
-          "addr": "0x00434D40",
+          "addr": "0x00434D50",
+          "from": null
+        },
+        {
+          "addr": "0x00438100",
+          "from": null
+        },
+        {
+          "addr": "0x004382A0",
           "from": null
         }
       ],
-      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 认领+再创作命名（功能驱动，字节等价唯一判据）A 级三证：调用者面:xref 仅表内 data 引用（虚调用）+ctor 写点 PalScript::Op_Trigger+103（Op 域组装）；方法语义面:UpdateIdleTimer(float) decompile=`m_waitobj += fVal; if(>=5.0) done=1` 5 秒 idle 累加器 + flag(this+0xC)==0 判；交互模式面:脚本等待语义（Op 域构造+虚轮询）"
+      "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] 表址修正（边界精核）：0x56ABCC=非安装点（含非码值 0xBC8EFA35）；真表 0x56ABE0 槽行 [0x434D50 del,0x438100 IsWaitDone,0x4382A0 UpdateIdleTimer] 语义吻合；evidence=xrefs 0x4382A0@0x56abe0 + 三槽 decompile；confidence=90"
     }
   ],
   "_naming": "[caller 三证法 2026-10-16 analyzer 再创作命名] 再创作命名（原名不可达）：功能反推；名字不入编译字节（字节等价保持）",

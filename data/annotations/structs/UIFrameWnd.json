@@ -205,6 +205,25 @@
   },
   "vtables": [
     {
+      "addr": "0x0056ACB8",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": null
+        },
+        {
+          "addr": "0x00445CD0",
+          "from": null
+        },
+        {
+          "addr": "0x0043BBC0",
+          "from": null
+        }
+      ],
+      "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] 主表认领五面卡：①调用者面=ctor 0x43BB70@+8 `c7 06 b8 ac 56 00` 直写（A 级字节）②被调用者面=UIWnd 基 ctor 链 ③成员访问面=m_pbktex@68 ④类归属面=UIFrameWnd（bs=72 几何定谳）⑤交互模式面=ctor/dtor 对；evidence=[0x43BB70 entry bytes,audit_type_layout UIFrameWnd] confidence=95"
+    },
+    {
       "addr": "0x0056AE10",
       "slots": [
         {

@@ -1,0 +1,55 @@
+{
+  "name": "PalScriptBlendTimer",
+  "binary_size": 16,
+  "known_members": {
+    "8": {
+      "name": "m_fElapsed",
+      "type": "float",
+      "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] A 级：0x434D40 `capacity(+8) += fDelta` 累加域"
+    },
+    "12": {
+      "name": "m_fDuration",
+      "type": "float",
+      "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] A 级：0x434D20 `m_pData(+12)` 比较域（elapsed<duration 判）"
+    }
+  },
+  "methods": {
+    "0x00434D50": {
+      "name": "_scalar_dtor",
+      "signature": "void __thiscall()",
+      "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] deleting 三段式体形证"
+    },
+    "0x00434D20": {
+      "name": "IsBlendComplete",
+      "signature": "int __thiscall()",
+      "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] A 级 decompile：`return m_fElapsed(+8) < m_fDuration(+12)` 混合完成判"
+    },
+    "0x00434D40": {
+      "name": "AccumulateTime",
+      "signature": "void __thiscall(float)",
+      "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] A 级 decompile：`m_fElapsed(+8) += fDelta` 累加"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056ABC4",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00434D50",
+          "from": null
+        },
+        {
+          "addr": "0x00434D20",
+          "from": null
+        },
+        {
+          "addr": "0x00434D40",
+          "from": null
+        }
+      ],
+      "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] 认领+再创作命名五面卡：①调用者面=xref 0x434D50@0x56abb8/0x56abc4 表内 ②被调用者面=del 链 ③成员访问面=+8/+12 浮点对 ④类归属面=独立小类（PalScript 族）⑤交互模式面=ctor 写点 Op_Idle+30（Op 域构造）⇒ **混合/过渡计时器**（Blend=混合进度语义：elapsed<duration 判 + 累加）evidence=[0x434D20/0x434D40 decompile,xrefs_to 0x434D50,writer Op_Idle+30] confidence=88"
+    }
+  ],
+  "_naming": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] 再创作命名：BlendTimer（IsBlendComplete+AccumulateTime 双语义函数名实证）"
+}

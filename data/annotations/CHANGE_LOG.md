@@ -6355,3 +6355,14 @@ R15 test_gbengine_reloc_sites.py 4/4 绿 + pre-commit 存量豁免无关）。
   留档（0x47A54E fild/fstp 双槽），待名字泄漏治理后复议。
 - **T146 挂账机理更正**：「SetRenderState 不碰 0x90-0x9C」按**偏移**成立，但按**名字**
   仍渲染进 `this[1].m_nScaleY` ⇒ 成员型变更确实牵连它（挂账理由部分成立，实测以 L1 为准）。
+
+## 认领第一批 2026-10-16（analyzer）：3 表认领（GRPinput/Camera/CEffObj 主表）+ IDB 打包基恢复
+
+### 认领（每条 A 级指令证据，逐表裁定；100 表总账：✅3 / ⚠️97 待查）
+1. **GRPinput ← 0x0056A620（主表）**：①删际析构 0x402BD0 body `56 8b f1 e8 18 00 00 00 f6 44 24 08 01 74 09 56 e8`（call 完整析构+条件 delete）且 @+35 写 `c7 06 20 a6 56 00`；②真析构 0x402BF0@+3 写 `c7 06 20 a6 56 00`（[esi] disp0=主表）**双自证**；③安装点 GRPinput::SetMousePos（member access 证据 GRPinput×8）。methods 注册 `0x00402BD0=_scalar_dtor`（形制同 AStarPathFinder 0x401030）。
+2. **Camera ← 0x0056AA84（主表）**：①ctor Camera::Camera(0x41BE80)@+224 写 `c7 06 84 aa 56 00`（disp0=主表）；②0x41C090@+3 复写（reinit 形）；③槽0 0x41BFC0 删际析构形（`56 8b f1 e8 c8 ... f6 44 24 08 01 74 09 56 e8`）⇒ methods 注册 `_scalar_dtor`。
+3. **CEffObj ← 0x0056F62C（主表，8 槽）**：基类析构尾形 `4C3EB0: c7 01 2c f6 56 00 c3`（[ecx]=0x56F62C）+ 全 CEff 族析构一致写此表（CEffCylinder/CEffgbParticle/CEffGrid/CEffMeteor/CEffSParticle/CEffect 各自 dtor 写点）⇒ 根基类定案（类体系工作定案的落账）。槽 0x4C0620 = 删际析构形（`8a 44 24 04 56 8b f1 a8 01 c7 06 2c f6 56 00 74 09 56 e8`）——⚠️ **归属矛盾挂账**：`RenderTarget2.json` methods 早已把 0x4C0620 登记为 `_scalar_dtor_0620`（declaration_only，IDB 名 `RenderTarget2::scalar_deleting_dtor`），但其写表为 0x56F62C（CEffObj 主表）而 RenderTarget2 认领的是 0x56F5D8/0x56F768 ⇒ **同一删际析构双类归属矛盾待裁**（不本批动，防 audit_attribution 误报）。
+- 槽函数命名红线核验：0x4C0600=`32 c0 c2 04 00`（空虚返回0）/0x4C0610=`c2 10 00`（空 ret16）/0x401800=`c3`（空 ret）⇒ **不命名**（禁伪语义命名），只认表不认名。
+
+### 环境修复（同批顺带，A 级 IDA 自身日志）
+- **IDB 打包基恢复**：`original/PAL3.exe.i64` 处于 unpacked 残留态（idat rc=4 + IDA 日志「found unpacked version…did not close properly / PAL3.exe.id0: 资源暂时不可用」——idapro MCP 会话异常关闭遗留 sidecar）⇒ 按 IDA 对话框建议**恢复打包基**：sidecar（id0/id1/nam/til）移至 `/tmp/idb_sidecars_backup_20261016/` 备份（**非删除**），packed i64（11:29:18 mtime=claims 落地后的保存点）解包重生 ⇒ apply 恢复 rc=0。⚠️ 机制教训：**idalib/MCP 会话必须显式关库**，否则 sidecar 残留毒化后续 idat（R14 族新变体）。

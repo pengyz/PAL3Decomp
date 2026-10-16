@@ -1,154 +1,161 @@
 {
- "_meta": {
-  "name": "ac_family_cast_allowlist",
-  "purpose": "[A/C 族 codegen 强转] 27 站 C2679 消除（裁决：型变源在 IDB 局部变量型 ⇒ codegen 强转）",
-  "evidence": "A 族：gbVolumeModifier 4B 元素（new(216)/最大索引45 ⇒ 54 槽 ✓）误挂类型名；C 族：LODWORD/成员/解引用型变面",
-  "warning": "等价变换（4B 位槽）；逐站精确串"
- },
- "sites": [
-  {
-   "file": "pal3/src/GameBase/GRPinput.cpp",
-   "line": 832,
-   "current": "  *keya = 0;",
-   "target": "  *(_DWORD *)keya = 0;"
+  "_meta": {
+    "name": "ac_family_cast_allowlist",
+    "purpose": "[A/C 族 codegen 强转] 27 站 C2679 消除（裁决：型变源在 IDB 局部变量型 ⇒ codegen 强转）",
+    "evidence": "A 族：gbVolumeModifier 4B 元素（new(216)/最大索引45 ⇒ 54 槽 ✓）误挂类型名；C 族：LODWORD/成员/解引用型变面",
+    "warning": "等价变换（4B 位槽）；逐站精确串"
   },
-  {
-   "file": "pal3/src/GameBase/GRPinput.cpp",
-   "line": 838,
-   "current": "  v2[(_DWORD)v11] = 0;",
-   "target": "  ((int *)v2)[(_DWORD)v11] = 0;"
-  },
-  {
-   "file": "pal3/src/Misc/RoleAtt.cpp",
-   "line": 675,
-   "current": "    v2[24] = 0;",
-   "target": "    ((int *)v2)[24] = 0;"
-  },
-  {
-   "file": "pal3/src/Misc/RoleAtt.cpp",
-   "line": 676,
-   "current": "    v2[25] = 0;",
-   "target": "    ((int *)v2)[25] = 0;"
-  },
-  {
-   "file": "pal3/src/Misc/RoleAtt.cpp",
-   "line": 677,
-   "current": "    v2[26] = 0;",
-   "target": "    ((int *)v2)[26] = 0;"
-  },
-  {
-   "file": "pal3/src/Misc/RoleAtt.cpp",
-   "line": 678,
-   "current": "    v2[40] = 0;",
-   "target": "    ((int *)v2)[40] = 0;"
-  },
-  {
-   "file": "pal3/src/Misc/RoleAtt.cpp",
-   "line": 679,
-   "current": "    v2[41] = 0;",
-   "target": "    ((int *)v2)[41] = 0;"
-  },
-  {
-   "file": "pal3/src/Misc/RoleAtt.cpp",
-   "line": 680,
-   "current": "    v2[42] = 0;",
-   "target": "    ((int *)v2)[42] = 0;"
-  },
-  {
-   "file": "pal3/src/Misc/RoleAtt.cpp",
-   "line": 681,
-   "current": "    v2[43] = 0;",
-   "target": "    ((int *)v2)[43] = 0;"
-  },
-  {
-   "file": "pal3/src/Misc/RoleAtt.cpp",
-   "line": 682,
-   "current": "    v2[44] = 0;",
-   "target": "    ((int *)v2)[44] = 0;"
-  },
-  {
-   "file": "pal3/src/Misc/RoleAtt.cpp",
-   "line": 683,
-   "current": "    v2[45] = 0;",
-   "target": "    ((int *)v2)[45] = 0;"
-  },
-  {
-   "file": "pal3/src/Misc/scAsmDecoder.cpp",
-   "line": 39,
-   "current": "    unk_C05F30.m_WPXVariance[v4] = (int)v3->m_pfather;",
-   "target": "    ((int *)unk_C05F30.m_WPXVariance)[v4] = (int)v3->m_pfather;"
-  },
-  {
-   "file": "pal3/src/Misc/scAsmDecoder.cpp",
-   "line": 40,
-   "current": "    unk_C05F20.m_wndBase.m_pfather[v4] = (int)v3->m_childs.m_pData;",
-   "target": "    ((int *)unk_C05F20.m_wndBase.m_pfather)[v4] = (int)v3->m_childs.m_pData;"
-  },
-  {
-   "file": "pal3/src/Misc/scAsmDecoder.cpp",
-   "line": 41,
-   "current": "    (&unk_C05F20.m_wndBase.m_childs)[v4] = v3->m_childs.capacity;",
-   "target": "    ((int *)(&unk_C05F20.m_wndBase.m_childs))[v4] = v3->m_childs.capacity;"
-  },
-  {
-   "file": "pal3/src/Render/CScreenMode.cpp",
-   "line": 1734,
-   "current": "    v30[24] = 0;",
-   "target": "    ((int *)v30)[24] = 0;"
-  },
-  {
-   "file": "pal3/src/Render/CScreenMode.cpp",
-   "line": 1735,
-   "current": "    v30[25] = 0;",
-   "target": "    ((int *)v30)[25] = 0;"
-  },
-  {
-   "file": "pal3/src/Render/CScreenMode.cpp",
-   "line": 1736,
-   "current": "    v30[26] = 0;",
-   "target": "    ((int *)v30)[26] = 0;"
-  },
-  {
-   "file": "pal3/src/Render/CScreenMode.cpp",
-   "line": 1737,
-   "current": "    v30[40] = 0;",
-   "target": "    ((int *)v30)[40] = 0;"
-  },
-  {
-   "file": "pal3/src/Render/CScreenMode.cpp",
-   "line": 1738,
-   "current": "    v30[41] = 0;",
-   "target": "    ((int *)v30)[41] = 0;"
-  },
-  {
-   "file": "pal3/src/Render/CScreenMode.cpp",
-   "line": 1739,
-   "current": "    v30[42] = 0;",
-   "target": "    ((int *)v30)[42] = 0;"
-  },
-  {
-   "file": "pal3/src/Render/CScreenMode.cpp",
-   "line": 1740,
-   "current": "    v30[43] = 0;",
-   "target": "    ((int *)v30)[43] = 0;"
-  },
-  {
-   "file": "pal3/src/Render/CScreenMode.cpp",
-   "line": 1741,
-   "current": "    v30[44] = 0;",
-   "target": "    ((int *)v30)[44] = 0;"
-  },
-  {
-   "file": "pal3/src/Render/CScreenMode.cpp",
-   "line": 1742,
-   "current": "    v30[45] = 0;",
-   "target": "    ((int *)v30)[45] = 0;"
-  },
-  {
-   "file": "pal3/src/Scene/SceneObj.cpp",
-   "line": 497,
-   "current": "      m_lpDIDMouse[v27] = 0;",
-   "target": "      ((int *)m_lpDIDMouse)[v27] = 0;"
-  }
- ]
+  "sites": [
+    {
+      "file": "pal3/src/GameBase/GRPinput.cpp",
+      "line": 832,
+      "current": "  *keya = 0;",
+      "target": "  *(_DWORD *)keya = 0;"
+    },
+    {
+      "file": "pal3/src/GameBase/GRPinput.cpp",
+      "line": 838,
+      "current": "  v2[(_DWORD)v11] = 0;",
+      "target": "  ((int *)v2)[(_DWORD)v11] = 0;"
+    },
+    {
+      "file": "pal3/src/Misc/RoleAtt.cpp",
+      "line": 675,
+      "current": "    v2[24] = 0;",
+      "target": "    ((int *)v2)[24] = 0;"
+    },
+    {
+      "file": "pal3/src/Misc/RoleAtt.cpp",
+      "line": 676,
+      "current": "    v2[25] = 0;",
+      "target": "    ((int *)v2)[25] = 0;"
+    },
+    {
+      "file": "pal3/src/Misc/RoleAtt.cpp",
+      "line": 677,
+      "current": "    v2[26] = 0;",
+      "target": "    ((int *)v2)[26] = 0;"
+    },
+    {
+      "file": "pal3/src/Misc/RoleAtt.cpp",
+      "line": 678,
+      "current": "    v2[40] = 0;",
+      "target": "    ((int *)v2)[40] = 0;"
+    },
+    {
+      "file": "pal3/src/Misc/RoleAtt.cpp",
+      "line": 679,
+      "current": "    v2[41] = 0;",
+      "target": "    ((int *)v2)[41] = 0;"
+    },
+    {
+      "file": "pal3/src/Misc/RoleAtt.cpp",
+      "line": 680,
+      "current": "    v2[42] = 0;",
+      "target": "    ((int *)v2)[42] = 0;"
+    },
+    {
+      "file": "pal3/src/Misc/RoleAtt.cpp",
+      "line": 681,
+      "current": "    v2[43] = 0;",
+      "target": "    ((int *)v2)[43] = 0;"
+    },
+    {
+      "file": "pal3/src/Misc/RoleAtt.cpp",
+      "line": 682,
+      "current": "    v2[44] = 0;",
+      "target": "    ((int *)v2)[44] = 0;"
+    },
+    {
+      "file": "pal3/src/Misc/RoleAtt.cpp",
+      "line": 683,
+      "current": "    v2[45] = 0;",
+      "target": "    ((int *)v2)[45] = 0;"
+    },
+    {
+      "file": "pal3/src/Misc/scAsmDecoder.cpp",
+      "line": 39,
+      "current": "    unk_C05F30.m_WPXVariance[v4] = (int)v3->m_pfather;",
+      "target": "    ((int *)unk_C05F30.m_WPXVariance)[v4] = (int)v3->m_pfather;"
+    },
+    {
+      "file": "pal3/src/Misc/scAsmDecoder.cpp",
+      "line": 40,
+      "current": "    unk_C05F20.m_wndBase.m_pfather[v4] = (int)v3->m_childs.m_pData;",
+      "target": "    ((int *)unk_C05F20.m_wndBase.m_pfather)[v4] = (int)v3->m_childs.m_pData;"
+    },
+    {
+      "file": "pal3/src/Misc/scAsmDecoder.cpp",
+      "line": 41,
+      "current": "    (&unk_C05F20.m_wndBase.m_childs)[v4] = v3->m_childs.capacity;",
+      "target": "    ((int *)(&unk_C05F20.m_wndBase.m_childs))[v4] = v3->m_childs.capacity;"
+    },
+    {
+      "file": "pal3/src/Render/CScreenMode.cpp",
+      "line": 1734,
+      "current": "    v30[24] = 0;",
+      "target": "    ((int *)v30)[24] = 0;"
+    },
+    {
+      "file": "pal3/src/Render/CScreenMode.cpp",
+      "line": 1735,
+      "current": "    v30[25] = 0;",
+      "target": "    ((int *)v30)[25] = 0;"
+    },
+    {
+      "file": "pal3/src/Render/CScreenMode.cpp",
+      "line": 1736,
+      "current": "    v30[26] = 0;",
+      "target": "    ((int *)v30)[26] = 0;"
+    },
+    {
+      "file": "pal3/src/Render/CScreenMode.cpp",
+      "line": 1737,
+      "current": "    v30[40] = 0;",
+      "target": "    ((int *)v30)[40] = 0;"
+    },
+    {
+      "file": "pal3/src/Render/CScreenMode.cpp",
+      "line": 1738,
+      "current": "    v30[41] = 0;",
+      "target": "    ((int *)v30)[41] = 0;"
+    },
+    {
+      "file": "pal3/src/Render/CScreenMode.cpp",
+      "line": 1739,
+      "current": "    v30[42] = 0;",
+      "target": "    ((int *)v30)[42] = 0;"
+    },
+    {
+      "file": "pal3/src/Render/CScreenMode.cpp",
+      "line": 1740,
+      "current": "    v30[43] = 0;",
+      "target": "    ((int *)v30)[43] = 0;"
+    },
+    {
+      "file": "pal3/src/Render/CScreenMode.cpp",
+      "line": 1741,
+      "current": "    v30[44] = 0;",
+      "target": "    ((int *)v30)[44] = 0;"
+    },
+    {
+      "file": "pal3/src/Render/CScreenMode.cpp",
+      "line": 1742,
+      "current": "    v30[45] = 0;",
+      "target": "    ((int *)v30)[45] = 0;"
+    },
+    {
+      "file": "pal3/src/Scene/SceneObj.cpp",
+      "line": 497,
+      "current": "      m_lpDIDMouse[v27] = 0;",
+      "target": "      ((int *)m_lpDIDMouse)[v27] = 0;"
+    },
+    {
+      "file": "pal3/src/GameBase/PAL3.cpp",
+      "line": 3195,
+      "current": "  g_palScript.m_WaitObjList = 0;",
+      "target": "  *(_DWORD *)&g_palScript.m_WaitObjList = 0;",
+      "note": "余 1 站补录 2026-10-16 verifier：C 族值/指针位面（PtrArray 值位面=0 初始化；A 级：PAL3@0x408FD0 decompile）；repr 路线因 PtrArray 非平凡型 C2620 已撤（union:true 仅限 POD 教训）⇒ 收敛于强转形"
+    }
+  ]
 }
