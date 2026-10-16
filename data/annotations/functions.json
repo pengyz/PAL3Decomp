@@ -9,8 +9,8 @@
   },
   "0x00401DA0": {
     "name": "FileSysDestory",
-    "signature": "gbVFileSystem *()",
-    "source": " | 批12 改名 2026-09-29：?FileSysDestory@@YAXXZ→FileSysDestory（mangled 名不匹渲染调用形——自由函数纯名正确）"
+    "signature": "gbVFileSystem * __cdecl()",
+    "source": " | 批12 改名 2026-09-29：?FileSysDestory@@YAXXZ→FileSysDestory（mangled 名不匹渲染调用形——自由函数纯名正确） | [函数19登记批 2026-10-16] 补 __cdecl 前缀（C2065 前缀缺口）"
   },
   "0x004023D0": {
     "name": "EnumJoystick",
@@ -22,8 +22,9 @@
     "signature": "char *__stdcall(char *pStart, char *pEnd, char *pDest)"
   },
   "0x00404D60": {
-    "name": "?WinProc@@YGJPAUHWND__@@IIJ@Z",
-    "signature": "int __stdcall(HWND hWnd, UINT Msg, unsigned int pvParam, LPARAM lParam)"
+    "name": "WinProc",
+    "signature": "int __stdcall(HWND hWnd, UINT Msg, unsigned int pvParam, LPARAM lParam)",
+    "source": "[函数19登记批 2026-10-16] 名解码 ?WinProc@@YGJPAUHWND__@@IIJ@Z→WinProc（mangled 名致 decl 发射名不匹配⇒C2065；A 级 idapro 体 int __stdcall(HWND,UINT,UINT,LPARAM)+PAL3::CheckSystemRequire 调用面）"
   },
   "0x00408B60": {
     "name": "InitScriptObjArray",
@@ -459,19 +460,23 @@
   },
   "0x0053B010": {
     "name": "ActVecUninitCopy",
-    "signature": "char **(int nVal, unsigned int *pdwVal, unsigned int *pdwVal2, char **a4)"
+    "signature": "char ** __cdecl(int nVal, unsigned int *pdwVal, unsigned int *pdwVal2, char **a4)",
+    "source": " | [函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）（修形：补约定前缀）；调用面 Actor::LoadActions"
   },
   "0x0053B2D0": {
     "name": "ActVecUninitCopy2",
-    "signature": "int *(int nVal, int *p_DWORD, int *p_DWORD2, char **a4)"
+    "signature": "int * __cdecl(int nVal, int *p_DWORD, int *p_DWORD2, char **a4)",
+    "source": " | [函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）（修形：补约定前缀）；调用面 Actor::InsertAction ×2"
   },
   "0x0053B4D0": {
     "name": "ActVecUninitFill",
-    "signature": "char **(int nVal, int nVal2, int nVal3, char **a4)"
+    "signature": "char ** __cdecl(int nVal, int nVal2, int nVal3, char **a4)",
+    "source": " | [函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）（修形：补约定前缀）；调用面 Actor::InsertAction"
   },
   "0x0053BEE0": {
     "name": "ActVecReallocate",
-    "signature": "char *(int nVal, char *pszBuf, char *pszBuf2, char *pszBuf3, int nVal2)"
+    "signature": "char * __cdecl(int nVal, char *pszBuf, char *pszBuf2, char *pszBuf3, int nVal2)",
+    "source": " | [函数19登记批 2026-10-16] 补 __cdecl 前缀"
   },
   "0x0053CF30": {
     "name": "TextureInfoFormatException",
@@ -552,8 +557,9 @@
     "source": "|fix:class_from_ida_analysis"
   },
   "0x00452580": {
-    "name": "GetFaceNum",
-    "signature": "int __cdecl()"
+    "name": "_todo_ctor",
+    "signature": "void *__thiscall()",
+    "source": " | 错位修正 2026-10-16（verifier A 级）：真身=0x56B1BC 三子对象复合体的 **ctor**（disasm 0x452580 SEH 序言 + 三子对象组装 UIListBox@0/UIAnimateCtrlEX@0x48/UITitle_BBTY@0x43C + 末位写自表 vtable 实证）；现名 GetFaceNum 为错位（返回 this 的 ctor 挂了 getter 名）；签名 `int __cdecl()` 亦错——真身 __thiscall（ecx=this 实证） 返回 this（mov eax,esi）⇒ 改 `void *__thiscall()`；真名待语义考（复合体挂账中），占位名 _todo_ 非伪语义（无地址后缀）"
   },
   "0x004A1A7C": {
     "name": "GetGlobalUserVar",
@@ -582,12 +588,14 @@
     "signature": "void(PlayerItem *a1, PlayerItem *a2, PlayerItem *a3)"
   },
   "0x00445f60": {
-    "name": "sub_445F60",
-    "signature": "int __cdecl(unsigned int a2)"
+    "name": "GetTableEntry16",
+    "signature": "int __cdecl(unsigned int a2)",
+    "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_445F60（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：16 槽表下标读取器：`if (idx>=0x10) return 0; return this[idx]` 越界返 0（0x445F60 decompile）"
   },
   "0x00445aa0": {
-    "name": "sub_445AA0",
-    "signature": "int __cdecl()"
+    "name": "ClearSubArraySlot",
+    "signature": "int __cdecl()",
+    "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_445AA0（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：槽位子数组清除：`PtrArray::Clear((PtrArray*)(this+36))`（0x445AA0 decompile）"
   },
   "0x00445ed0": {
     "name": "sub_445ED0",
@@ -602,16 +610,18 @@
     "signature": "int __cdecl(void *a2)"
   },
   "0x00442000": {
-    "name": "sub_442000",
-    "signature": "int __cdecl()"
+    "name": "CalcWeightedOffset",
+    "signature": "int __cdecl()",
+    "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_442000（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：加权插值算式：`(v[42]-v[41])` 分母 + `v[85]+v[79]+v[43]*(v[81]-2*v[85]-v[87]/2-v[79])/span` 加权位移计算（0x442000 decompile）"
   },
   "0x00442100": {
     "name": "sub_442100",
     "signature": "int __cdecl()"
   },
   "0x004422e0": {
-    "name": "sub_4422E0",
-    "signature": "void __thiscall(void *this)"
+    "name": "ResetContainerState",
+    "signature": "void __thiscall(void *this)",
+    "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_4422E0（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：容器重置：调 `PtrArray::Clear` 系（sub_445AA0）+ 清零 this+96/+100/+104 三字段（0x4422E0 decompile）"
   },
   "0x00445db0": {
     "name": "sub_445DB0",
@@ -622,8 +632,9 @@
     "signature": "int __thiscall(int a2)"
   },
   "0x00445ea0": {
-    "name": "sub_445EA0",
-    "signature": "void *__cdecl()"
+    "name": "ZeroInitSelf68",
+    "signature": "void *__cdecl()",
+    "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_445EA0（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：对象清零构造：`memset(this, 0, 0x44); return this`（68B 零初始化，0x445EA0 decompile）"
   },
   "0x00446010": {
     "name": "sub_446010",
@@ -1829,7 +1840,8 @@
   "0x00445D20": {
     "name": "sub_445D20",
     "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
-    "source": "ida_pdb"
+    "source": "ida_pdb",
+    "source_note": "[再创作命名 2026-10-16] 功能语义**坐标原点偏移转换**（A 级：体=`return sub_445D40(this, a2-this[4], a3-this[5])`——this[4]/this[5]=x/y 原点，转相对系调内层）⇒ 候选名 CoordToRelative/ScreenToLocal（**待全函数体+调用面核**后定）"
   },
   "0x004A4770": {
     "name": "sub_4A4770",
@@ -2009,7 +2021,8 @@
   "0x0041C1E0": {
     "name": "ScriptPoolPage_Alloc",
     "signature": "void __thiscall _Console::ScriptPoolPage_Alloc(_Console *this)",
-    "class": "_Console"
+    "class": "_Console",
+    "source": " | ⑤型补强 2026-10-16：归属收敛（A 级：this->m_cmd@4=_Console__ConCmd[64]/_tail_000 访问证据）；ScriptPoolPage.json 错挂双注已删（C2228×16 根因之一）"
   },
   "0x0043F7F0": {
     "name": "ctor_17",
@@ -2801,5 +2814,83 @@
     "signature": "void __cdecl(void *pOut, void *pV, void *pM)",
     "declaration_only": true,
     "source": "批15 2026-10-07：D3DX 桩收编（0x4BA800 call 目标 0x4B8200 证）——3 参 D3DX 真形（API 形）"
+  },
+  "0x00431D90": {
+    "name": "SingletonThunk_00431D90",
+    "signature": "Iostream_init * __cdecl()",
+    "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；体 return Iostream_init::Iostream_init(&unk_D8C338) 0 参 CRT iostream 静态初始化跳板；调用面 PalScript::_StaticInit | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+    "declaration_only": true
+  },
+  "0x00431DB0": {
+    "name": "SingletonThunk_00431DB0",
+    "signature": "void __cdecl()",
+    "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；0 参跳板；调用面 PalScript::_StaticInit | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+    "declaration_only": true
+  },
+  "0x00431E70": {
+    "name": "SingletonThunk_00431E70",
+    "signature": "PtrArray * __cdecl()",
+    "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；返回 PtrArray* 0 参；调用面 PalScriptMgr ctor | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+    "declaration_only": true
+  },
+  "0x00431EC0": {
+    "name": "SingletonThunk_00431EC0",
+    "signature": "PtrArray * __cdecl()",
+    "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；返回 PtrArray* 0 参；调用面 PalScriptMgr::OpenSCE | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+    "declaration_only": true
+  },
+  "0x004B6D70": {
+    "name": "SingletonThunk_004B6D70",
+    "signature": "void __cdecl(void *pData)",
+    "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；1 参；调用面 PAL3::GetInstance | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+    "declaration_only": true
+  },
+  "0x004BFD60": {
+    "name": "SingletonThunk_004BFD60",
+    "signature": "void __cdecl(void *pData)",
+    "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；1 参；调用面 PAL3::GetInstance_fd20 | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+    "declaration_only": true
+  },
+  "0x00450A30": {
+    "name": "accessor_00450A30",
+    "signature": "int __cdecl()",
+    "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；体 dword_DC1B5C=1094713344 0 参访问器；调用面 RoleCameraCtrl dtor + thunk_00450A20 | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+    "declaration_only": true
+  },
+  "0x00452550": {
+    "name": "accessor_00452550",
+    "signature": "int __cdecl()",
+    "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；0 参访问器；调用面 NavFaceLayer::GetVertexNum | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+    "declaration_only": true
+  },
+  "0x004792D0": {
+    "name": "accessor_004792D0",
+    "signature": "int __cdecl()",
+    "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；0 参访问器；调用面 PAL_GDB::GDB_GetComboID | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+    "declaration_only": true
+  },
+  "0x00511CA0": {
+    "name": "compiler_init_00511CA0",
+    "signature": "int __cdecl()",
+    "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；0 参编译器初始化族；调用面 CCBStageScene::SaveRolePos | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+    "declaration_only": true
+  },
+  "0x00512420": {
+    "name": "compiler_init_00512420",
+    "signature": "int __cdecl()",
+    "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；0 参编译器初始化族；调用面 CCBSystem::GetFreeID | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+    "declaration_only": true
+  },
+  "0x005415C0": {
+    "name": "crt_sub_005415C0",
+    "signature": "void __cdecl(gbRefObject **p)",
+    "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；1 参 CRT 释放族（decomp 形 void __thiscall(gbRefObject **this)）；调用面 PAL3::Destroy + crt_sub_00541490 | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形） | [函数19登记批 收尾] __thiscall 自由函数声明致发射跳过（MSVC6 thiscall=成员限定）⇒ 改 __cdecl 声明形；⚠️ 调用约定字节面（ECX vs 栈传）挂账 A/B 对拍族",
+    "declaration_only": true
+  },
+  "0x004074C0": {
+    "name": "ProcessKeyboard_2",
+    "signature": "void __cdecl(int nVal)",
+    "declaration_only": true,
+    "source": "[函数19登记批 2026-10-16] declaration_only 兜底（j_ 跳板 VA 机械搜未果挂账）：调用站 PalScript.cpp:2902 渲染自由函数形 ProcessKeyboard_2(LODWORD(v7))；A 级=idapro 0x4074C0 本体+0x436190 调用面；跳板 j_InputSystem::ProcessKeyboard_2 VA 待查"
   }
 }
