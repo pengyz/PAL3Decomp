@@ -12,9 +12,9 @@
       "source": "B:naming_m_n+FPU_misattrib"
     },
     "12": {
-      "name": "m_nField0C",
+      "name": "m_nTodo_0C",
       "type": "int",
-      "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)"
+      "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error) | [批4 诚实化 2026-10-16] A偏移形：m_nField0C⇒m_nTodo_0C（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "16": {
       "name": "m_fFadeStart",
@@ -280,12 +280,12 @@
     "636": {
       "type": "UIFrameWnd",
       "name": "_embed_UIFrameWnd_816",
-      "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
+      "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init | [embed overlap 声明 2026-10-16] 补 overlap（CLAUDE.md 位面/范围复用定谳）——⚠️ 本冲突系 UIFrameWnd 尺寸修正 72→152（26 站 new-ctor 三元组证）的**下游暴露**：双嵌入 @636/@728 间隔 92B < 152B 对象 ⇒ 二者之一嵌入位/型存疑（真值待 idapro decompile 访问形核实）；暂以 overlap 声明解锁检查面 + 挂账真值待裁"
     },
     "728": {
       "type": "UIFrameWnd",
       "name": "_embed_UIFrameWnd_968",
-      "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
+      "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init | [embed overlap 声明 2026-10-16] 补 overlap（CLAUDE.md 位面/范围复用定谳）——⚠️ 本冲突系 UIFrameWnd 尺寸修正 72→152（26 站 new-ctor 三元组证）的**下游暴露**：双嵌入 @636/@728 间隔 92B < 152B 对象 ⇒ 二者之一嵌入位/型存疑（真值待 idapro decompile 访问形核实）；暂以 overlap 声明解锁检查面 + 挂账真值待裁"
     },
     "32": {
       "name": "m_nFadeCounter",
