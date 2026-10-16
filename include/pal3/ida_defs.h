@@ -106,6 +106,11 @@ extern "C" void __cdecl _amsg_exit(int);
 #define SHIDWORD(x) (*(((_DWORD*)&(x))+1))
 #define COERCE_FLOAT(x) (*(float*)&(x))
 #define COERCE_DOUBLE(x) (*(double*)&(x))
+// [COERCE_INT 补宏 2026-10-16] 词法产物 `COERCE_INT(x)` 原 0 定义/2+ 引用（宏缺口）：
+// 语义=**浮点位重解释为 int**（COERCE 族逆向；实测 CCBRoleState:1864 等 4 站
+// `COERCE_INT(*(float *)(...+916))` = float 槽位传 int 形参）。同族 rvalue 教训：
+// 宏内取址仅限左值；rvalue 用 _pal3_coerce_i32 helper（取值传参）。
+#define COERCE_INT(x) (*(int*)&(x))
 #define __PAIR64__(high, low) (((unsigned __int64)(high) << 32) | (unsigned int)(low))
 
 // 【2026-09-15 加】上面三个宏内部对实参取地址（`&(x)`）⇒ **实参必须是 lvalue**。 
@@ -124,6 +129,9 @@ __forceinline long   _pal3_slo_dword(unsigned __int64 v) { return (long)(unsigne
 __forceinline long   _pal3_shi_dword(unsigned __int64 v) { return (long)(unsigned long)(v >> 32); }
 // [F-CG#19 2026-10-15] (POINT)__PAIR64__(H,L) 的位等价 helper：宏低 32=L=POINT.x、
 // 高 32=H=POINT.y（PtInRect 按值传 8B）。MSVC6 拒 __int64→struct 直转（C2440/C2102）。
+// [COERCE_INT 补宏 2026-10-16] rvalue 形 helper（同 COERCE_FLOAT 族教训：宏内取址
+// 仅限左值 ⇒ rvalue 走取值传参形）。位等价：float 位模式 → int 同位。
+__forceinline int    _pal3_coerce_i32(float v) { return *(int *)&v; }
 __forceinline POINT  _pal3_pair_to_point(unsigned int high, unsigned int low) {
     POINT p; p.x = (long)low; p.y = (long)high; return p;
 }
