@@ -168,13 +168,15 @@
     },
     "0x004BF680": {
       "name": "GetPageIndex",
-      "signature": "int __thiscall(int nVal)",
-      "ordinal": 13
+      "signature": "int __thiscall(int nType)",
+      "ordinal": 13,
+      "source": " | [真型补全 2026-10-16] int __thiscall(int nVal) ⇒ int __thiscall(int nType)：idapro decompile：`this->m_fadeWhite2.m_nType = nVal` ⇒ 参数语义=nType（型 int ✓ 仅正名）"
     },
     "0x004BF6C0": {
       "name": "SetFadeParams",
-      "signature": "int __thiscall(int nVal)",
-      "ordinal": 14
+      "signature": "int __thiscall(gbMatrix4 *pMat)",
+      "ordinal": 14,
+      "source": " | [真型补全 2026-10-16] int __thiscall(int nVal) ⇒ int __thiscall(gbMatrix4 *pMat)：idapro decompile（session 1af5c89c）铁证：`gbMatrix4::LoadIdentity((gbMatrix4 *)nVal)` + `*(_DWORD *)(nVal + 68/72)` 偏移写 ⇒ **nVal 实为 gbMatrix4***（占位 int 错型）"
     },
     "0x004BF760": {
       "name": "ResetFadeState",
@@ -195,18 +197,18 @@
     },
     "0x005420D8": {
       "name": "EnableShadow",
-      "signature": "",
-      "source": "vtable_gap_fill_v1(from gbVisNode.json)"
+      "signature": "void __thiscall(int nEnable)",
+      "source": "vtable_gap_fill_v1(from gbVisNode.json) | [真型补全 2026-10-16] (空) ⇒ void __thiscall(int nEnable)：idapro decompile：thunk 转发 gbVisNode::EnableShadow(gbVisNode*, int enable) ⇒ 1 参 int"
     },
     "0x005420DE": {
       "name": "GetAABBox",
-      "signature": "",
-      "source": "vtable_gap_fill_v1(from gbVisNode.json)"
+      "signature": "void __thiscall(gbAABBox *pBox)",
+      "source": "vtable_gap_fill_v1(from gbVisNode.json) | [真型补全 2026-10-16] (空) ⇒ void __thiscall(gbAABBox *pBox)：idapro decompile：thunk 转发 gbVisNode::GetAABBox(gbVisNode*, gbAABBox *p0) ⇒ 1 参指针"
     },
     "0x0054210E": {
       "name": "GetBoundSphere",
-      "signature": "",
-      "source": "vtable_gap_fill_v1(from gbVisNode.json)"
+      "signature": "void __thiscall(gbSphere *pSphere)",
+      "source": "vtable_gap_fill_v1(from gbVisNode.json) | [真型补全 2026-10-16] (空) ⇒ void __thiscall(gbSphere *pSphere)：idapro decompile：thunk 转发 gbVisNode::GetBoundSphere(gbVisNode*, gbSphere *p0) ⇒ 1 参指针"
     }
   },
   "vtables": [
