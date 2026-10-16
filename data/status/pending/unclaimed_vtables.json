@@ -250,6 +250,18 @@
    "fix_pattern": "迁表到真实基类（如 4 表裁决制式）+ 认领主表给派生类 ⇒ 1637 站渲染解锁",
    "status": "机制定谳（objdump 降级证 · idapro 复核待补）",
    "correction_20261016": "⚠️ T56 自查修正：早期批次 4 表 VA=手填误配（行配对漏）——正确 worklist 邻行配对后 UIProgressBar=0x56AC20（off=0 **主表形**）非 0x56B0D4。**机制声明收窄**：+0x48 子对象形**真实存在**于 0x56B0D4/0x56B140/0x56B16C/0x56B898（objdump 实证 ✓）但**非全 IMPOSSIBLE 族**——23 条中 off=0 主表形亦有（req>size 成因另有：方法集成员访问跨度过大/尺寸低估）。逐表形制已正档 impossible_install_forms.json（23 条配对正确）"
+  },
+  "_ctor_form_5_tables": {
+   "tables": {
+    "0x56A9CC": "Role MI 第三表（安装点 4）",
+    "0x56AAC4": "ctor 0x41F360",
+    "0x56AB9C": "ctor 0x432980",
+    "0x56A6D0": "ctor 0x4083D0",
+    "0x56AB28": "ctor 0x423880 MI 对"
+   },
+   "findings": "① 安装点=ctor 入口 ✓（5 表 objdump 实证）② memset 尺寸径**零命中**（ctor 体无 memset 大尺寸形）③ 成员末端径**前置=表认领**（5 表全未认领 = 97 族联动 ✓）——claim 后方可算跨度修正",
+   "status": "ctor 入口已固 · 尺寸径待 97 族 claim 联动",
+   "tier": "ctor-form 5/17"
   }
  }
 }
