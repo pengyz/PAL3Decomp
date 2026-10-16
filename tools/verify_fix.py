@@ -214,6 +214,34 @@ def access_of(line):
             'base': base, 'mnemonic': mn, 'line': (line or '').strip()[:80]}
 
 
+def _type_text(annot_type):
+    """注解 type → 可比较小写文本（纯函数，R15 单测点）。
+
+    [R11 修 2026-10-16] 原 `(annot_type or '').lower()` 对 **dict 型**（inline
+    union/struct，CLAUDE.md 内联 UDT 语法）崩 AttributeError——实测
+    `verify_fix --class PalScript` 在 inline 成员处崩溃阻塞四道门终验。
+    dict 型 ⇒ 递归收集**叶类型名**拼文本（float 检查等语义保持）。
+    """
+    if annot_type is None:
+        return ''
+    if isinstance(annot_type, str):
+        return annot_type.lower()
+    parts = []
+
+    def _walk(o):
+        if isinstance(o, str):
+            parts.append(o.lower())
+        elif isinstance(o, dict):
+            for v in o.values():
+                _walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                _walk(v)
+
+    _walk(annot_type)
+    return ' '.join(parts)
+
+
 def consistency(annot_type, annot_size, binary_size, acc):
     """→ ('ok'|'suspicious'|'contradiction', why) —— 注解与**二进制访问**是否矛盾 ✓（纯函数）
 
@@ -221,7 +249,7 @@ def consistency(annot_type, annot_size, binary_size, acc):
     * R1（决定性）：向**非 float/double** 成员写 **float 立即数** ⇒ 矛盾 ✗
     * R2（可疑）：访问宽度 > 注解尺寸 ⇒ suspicious ✓（MSVC 会合并相邻字节写 ⇒ 不能断死 ✗）
     """
-    t = (annot_type or '').lower()
+    t = _type_text(annot_type)
     if binary_size and acc['disp'] >= int(binary_size):
         return ('contradiction', '访问 +0x%X ≥ binary_size 0x%X ⇒ 对象没有该段' % (acc['disp'], int(binary_size)))
     if acc.get('float_imm') and not any(k in t for k in ('float', 'double')):
