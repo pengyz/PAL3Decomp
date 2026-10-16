@@ -276,16 +276,18 @@
   "source_note": "[17 挂账补面 2026-10-17·五面满卡] GetCellStateByte（五面满卡：①调用者 SaleUI::ProcessCellAnimations ✓ ②本体=字节读 ✓ ③this[95265] 偏移读 （_BYTE* this 形）④类=SaleUI ✓ ⑤交互=动画处理状态查询 ✓）——face3_rule 降级判据执行（thiscall=this[+N] 形）· 证据账目：A 级（decompile+xref）conf 92"
  },
  "0x0046F3D0": {
-  "name": "sub_46F3D0",
+  "name": "GetInputFlag",
   "signature": "char __thiscall(_BYTE *this)",
   "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体双胞2·HandleInput 域",
-  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）"
+  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
+  "source_note": "[余 14 补面 2026-10-17·五面满卡] GetInputFlag（①PropUI::HandleInput ✓ ③this[21261] 字节读 ✓ ④PropUI ✓ ⑤输入处理状态查询 ✓）——face3 规则执行 · A 级 conf 92"
  },
  "0x00474990": {
-  "name": "sub_474990",
+  "name": "GetUpdateFlag",
   "signature": "char __thiscall(_BYTE *this)",
   "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体·UpdateAndForward 域（lits 0/5）",
-  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）"
+  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
+  "source_note": "[余 14 补面 2026-10-17·五面满卡] GetUpdateFlag（①LineupUI::UpdateAndForward ✓ ③this[103789] 字节读 ✓ ④LineupUI ✓ ⑤更新状态查询 ✓）——face3 规则执行 · A 级 conf 92"
  },
  "0x004A13E0": {
   "name": "SyncUIRoleDialogMembers",
@@ -372,10 +374,11 @@
   "signature": "char *__thiscall(char *this, char a2)"
  },
  "0x004DB940": {
-  "name": "sub_4DB940",
+  "name": "StoreThreadFlag",
   "signature": "int __thiscall(_BYTE *this, char a2)",
   "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体·线程旗/动作处理域（lits 0/76/892）",
-  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）"
+  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
+  "source_note": "[余 14 补面 2026-10-17·五面满卡] StoreThreadFlag（①CCBSystem::SetThreadFlag + CCBRoleState::ProcessActions ✓ ③this[454]=a2 写 ✓ ④CCBSystem ✓ ⑤线程标志存储 ✓）——face3 规则执行 · A 级 conf 92"
  },
  "0x004E0A30": {
   "name": "DialogFunc",
@@ -443,7 +446,8 @@
   "name": "sub_523CB0",
   "signature": "int __thiscall(_BYTE *this)",
   "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件·邻接簇 sub_523CD0/D20 域",
-  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）"
+  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
+  "source_note": " | [余 14 补面 2026-10-17] ①调用者 sub_523CD0/523D20 未具名 ⇒ **①面未满挂账**（不达五面 ✓）"
  },
  "0x00525090": {
   "name": "CCBStage::sub_525090",
@@ -471,10 +475,11 @@
   "signature": "int __stdcall(float fVal)"
  },
  "0x00538260": {
-  "name": "_sub_538260",
+  "name": "ClearModelFlag",
   "signature": "CHAR *__thiscall(CHAR *this)",
   "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：域件·Actor LoadActorModel/DoSceneTransition 域",
-  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）"
+  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
+  "source_note": "[余 14 补面 2026-10-17·五面满卡] ClearModelFlag（①Actor::LoadActorModel + DoSceneTransition ✓ ③this[612]=0 零化 ✓ ④Actor ✓ ⑤模型载入态清 ✓）——face3 规则执行 · A 级 conf 92"
  },
  "0x005382D0": {
   "name": "CheckDirectoryExists",
@@ -1895,10 +1900,11 @@
   "face3_rule": "stdcall 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）"
  },
  "0x00523E70": {
-  "name": "sub_523E70",
+  "name": "GetScriptBufferAddr",
   "signature": "int __thiscall(_DWORD *this)",
   "source": "ida_pdb | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件·脚本算子 Op_HY_FLY/Op_SetRoleTexture 域",
-  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）"
+  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
+  "source_note": "[余 14 补面 2026-10-17·五面满卡] GetScriptBufferAddr（①PalScript::Op_HY_FLY + Op_SetRoleTexture ✓ ③return this[435]+345572 计算址 ✓ ④PalScript ✓ ⑤脚本缓冲取址 ✓）——face3 规则执行 · A 级 conf 92"
  },
  "0x00408BD0": {
   "name": "NullCallback",
