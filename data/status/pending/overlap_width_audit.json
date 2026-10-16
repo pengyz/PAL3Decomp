@@ -1,0 +1,225 @@
+{
+ "agree": 225,
+ "diff": 21,
+ "nodata": 4,
+ "diffs": [
+  {
+   "cls": "tag17A7BData",
+   "off": 20,
+   "name": "m_nEffParam14",
+   "type": "int",
+   "widths": [
+    2,
+    4
+   ]
+  },
+  {
+   "cls": "tag17A7BData",
+   "off": 36,
+   "name": "m_nEffParam24",
+   "type": "int",
+   "widths": [
+    1,
+    4
+   ]
+  },
+  {
+   "cls": "tag17A7BData",
+   "off": 44,
+   "name": "m_nEffParam2C",
+   "type": "int",
+   "widths": [
+    2,
+    4
+   ]
+  },
+  {
+   "cls": "tag17A8Data",
+   "off": 20,
+   "name": "m_nEffParam14",
+   "type": "float",
+   "widths": [
+    2,
+    4
+   ]
+  },
+  {
+   "cls": "tag17A8Data",
+   "off": 36,
+   "name": "m_nEffParam24",
+   "type": "int",
+   "widths": [
+    1,
+    4
+   ]
+  },
+  {
+   "cls": "tag17A8Data",
+   "off": 44,
+   "name": "m_nEffParam2C",
+   "type": "int",
+   "widths": [
+    2,
+    4
+   ]
+  },
+  {
+   "cls": "tag17A8Data",
+   "off": 48,
+   "name": "m_nEffParam30",
+   "type": "int",
+   "widths": [
+    1,
+    4
+   ]
+  },
+  {
+   "cls": "tagCCBStageData",
+   "off": 20,
+   "name": "m_nEffParam14",
+   "type": "int",
+   "widths": [
+    2,
+    4
+   ]
+  },
+  {
+   "cls": "tagCombatTaskData",
+   "off": 20,
+   "name": "m_nEffParam14",
+   "type": "float",
+   "widths": [
+    2,
+    4
+   ]
+  },
+  {
+   "cls": "tagCombatTaskData",
+   "off": 36,
+   "name": "m_nEffParam24",
+   "type": "int",
+   "widths": [
+    1,
+    4
+   ]
+  },
+  {
+   "cls": "tagStageRoleData",
+   "off": 4,
+   "name": "m_nEffParamBase4",
+   "type": "int",
+   "widths": [
+    1,
+    2,
+    4
+   ]
+  },
+  {
+   "cls": "tagStageRoleData",
+   "off": 36,
+   "name": "m_nEffParam24",
+   "type": "int",
+   "widths": [
+    1,
+    4
+   ]
+  },
+  {
+   "cls": "tagStageRoleData",
+   "off": 44,
+   "name": "m_nEffParam2C",
+   "type": "int",
+   "widths": [
+    2,
+    4
+   ]
+  },
+  {
+   "cls": "tagStageRoleData",
+   "off": 48,
+   "name": "m_nEffParam30",
+   "type": "int",
+   "widths": [
+    1,
+    4
+   ]
+  },
+  {
+   "cls": "tagC10Data",
+   "off": 20,
+   "name": "m_nEffParam14",
+   "type": "int",
+   "widths": [
+    2,
+    4
+   ]
+  },
+  {
+   "cls": "tagC10Data",
+   "off": 36,
+   "name": "m_nEffParam24",
+   "type": "int",
+   "widths": [
+    1,
+    4
+   ]
+  },
+  {
+   "cls": "tagC10Data",
+   "off": 44,
+   "name": "m_nEffParam2C",
+   "type": "int",
+   "widths": [
+    2,
+    4
+   ]
+  },
+  {
+   "cls": "tagC10Data",
+   "off": 48,
+   "name": "m_nEffParam30",
+   "type": "int",
+   "widths": [
+    1,
+    4
+   ]
+  },
+  {
+   "cls": "tagRoleSystemData",
+   "off": 20,
+   "name": "m_nEffParam14",
+   "type": "int",
+   "widths": [
+    2,
+    4
+   ]
+  },
+  {
+   "cls": "tagPAL3GameState",
+   "off": 44,
+   "name": "m_nEffParam2C",
+   "type": "int",
+   "widths": [
+    2,
+    4
+   ]
+  },
+  {
+   "cls": "tagPAL3GameState",
+   "off": 48,
+   "name": "m_nEffParam30",
+   "type": "int",
+   "widths": [
+    1,
+    4
+   ]
+  }
+ ],
+ "verdict": {
+  "summary": "三源一致 225 / 混宽 21（overlap 真值确认）/ 无数据 4",
+  "key_finding": "21 条宽度分歧 = 访问宽 [2,4]/[1,4] 并存于同偏移 => 叠加语义铁证（同一字节被不同 effect 类型按 short/float 双视图访问）——overlap 标注正确且必要（非掩盖类型错，用户风险 2 证否）；跨类同位一致（m_nEffParam14@20 在 tag17A7B/tag17A8/tagCCBStage/tagCombatTask 四类均 [2,4]）= 共享布局族佐证",
+  "pdb_side": "B 级（m_nEffParam_XXX 偏移编码名=命名来历面）",
+  "idb_side": "待复核（idapro supervisor 断连降级）",
+  "binary_side": "A 级（9607 disp 谱 x 指令宽度逐偏移核）"
+ }
+}
