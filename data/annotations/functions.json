@@ -1838,10 +1838,10 @@
     "reason": "misattributed in struct, removed"
   },
   "0x00445D20": {
-    "name": "sub_445D20",
+    "name": "MoveToAbsolute",
     "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
     "source": "ida_pdb",
-    "source_note": "[再创作命名 2026-10-16] 功能语义**坐标原点偏移转换**（A 级：体=`return sub_445D40(this, a2-this[4], a3-this[5])`——this[4]/this[5]=x/y 原点，转相对系调内层）⇒ 候选名 CoordToRelative/ScreenToLocal（**待全函数体+调用面核**后定）"
+    "source_note": "[再创作命名 2026-10-16·五维上下文] **MoveToAbsolute**（绝对坐标→增量换算+累加）——A 级上下文语义五维证：①调用者 `CameraCtrl::UpdateInternal`+`PalScript::Op_LK_Ghost`（相机更新/脚本位移操作域 ✓）②被调用者 0x445D40=this[4..7] 累加器（`this[4]=a2+v4` 增量累积形）③成员访问 this[4]/this[5]=x/y 当前位（视口/相机位）④类归属=视口控制族 ⑤交互模式=绝对定位入口（MoveTo(a2,a3)=OffsetBy(a2-curX,a3-curY)）· 用户指令（2026-10-17）：命名须上下文语义+IDA 优先 ✓ 本条为强化工作流示范"
   },
   "0x004A4770": {
     "name": "sub_4A4770",
