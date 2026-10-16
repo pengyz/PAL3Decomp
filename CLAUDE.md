@@ -64,6 +64,8 @@ annotations → apply → IDB → Hex-Rays → decomp JSON → codegen → C++  
   `pipeline/gen/stages/stage3_cleanup.py:107-110`（`structs/<Cls>.json`，**此前不在任何违规清单里**）。
   ⇒ **当前措辞应为"尚有 3 处"**；修完这 3 处后才可改回"全部收敛" ✓。
   规则本身不变且**可检查**：新增注解直读必须走 `annotation_view`。
+  同型「双副本分叉」风险（逻辑表/映射多处并存、修一漏一）见
+  [`docs/knowledge/gotcha_dual_copy_table_divergence.md`](docs/knowledge/gotcha_dual_copy_table_divergence.md)（stage3/stage5 `_GB_REF_PARAM_FUNCS` 分叉实证：stage3 键 30 / stage5 键 34 / 交集 29 / 分叉 6）。
 - **编译错误不是问题本身**：C2440/C2664 等是标注错误的**表象**。盯着错误码修是治标不治本。真正的任务是理解原始代码的意图——内存布局、复用模式、生命周期——然后让 annotation 正确表达它。错误自然消失。
 - **禁止"试错式修改"**：不理解内存布局之前，不修改 annotation。先用 IDA 查全所有访问点，画出完整的使用图景，确认场景和约束，再动 annotation。
 
@@ -195,6 +197,7 @@ idb_xrefs(database="<session_id>", address="0x401000")
 | **任何修复提交前** | **证物报告** | `python tools/verify_fix.py --class <Cls>` | 成员偏移+**sizeof**+传递依赖+端到端+基线；有问题 ⇒ 不提交 |
 | **annotation 批量改动** | **四道门** | ①布局等价 ②`loop --expect-errors`不增 ③`l1`不降 ④证据自校验 | 缺一不可 ⇒ 见 `annotation-audit` skill |
 | **Phase 2 手工 fix 落盘** | **phase2 retain check** | `python tools/phase2_retain.py check` | 禁直改 `pal3/src`（三重灭失零留存）⇒ `adopt`→改 `phase2/overlay`→`apply`；PASS 才放行 |
+| **probe all 后（自动）** | **链接层盲区探针** | `python pipeline/link_probe.py --check`（已接 `cli.py probe all` 链尾） | 治「S2 只编译不链接」盲区（LNK2005 重复符号 / LNK2001·2019 未解析外部）。棘轮：LNK2005 增长 或 单元未增而 unresolved 增长 ⇒ exit 1 且**不刷新** `data/status/link_census.json`；重锚须 `--rebaseline "<理由>"`。单元增长期 unresolved 增长 = advisory（视野扩大，非退化）|
 
 > **Phase 2 留存机制**（2026-10-15 起）：`pal3/src` 手改会被 codegen 覆盖/rmtree/不被 git
 > 跟踪（三重灭失）⇒ 手工 fix 收编进 `phase2/`（tracked）：`manifest.json`（base_sha256
@@ -202,9 +205,40 @@ idb_xrefs(database="<session_id>", address="0x401000")
 > 末尾自动套用（`--no-retain` 逃生阀）。新增 .cpp 单元须 `new_unit: true` 并刷新 S2 分母
 > 门禁数字。详见 `docs/knowledge/gotcha_pal3src_fix_threefold_eviction.md`。
 
-> ⚠️ **不要再用 `tools/audit_layout.py` 作布局判据**：它比的是「注解 vs `asm/pal3/ida_structs.json`」，
-> 而后者是 `apply_annotations.py` **从这些注解写进 IDB 再导出**的 ⇒ **同源比较、恒等、无判别力** ✗
-> （该脚本 docstring 自认 "check 1 是同源比较、恒等、无判别力"）。现代替品：`tools/audit_type_layout.py` ✓
+### ⚠️ 衰退纪律：衰退 ≠ 必然回撤（2026-10-16 新增）
+
+**过程中可能会存在波动，衰退不意味着必然回撤，可能是阵痛/其他问题暴露，先分析定位。**
+
+**规则**：检测到指标衰退（S2/L1/总错误变差）时，**禁止立即回退**——必须先：
+1. **分析衰退原因**（病灶层三问：哪一层？消费者读哪个？报错缺什么？）
+2. **定位病灶**（具体机制，如「签名层占位垃圾」）
+3. **评估修复成本**（修复 vs 回退的成本/收益）
+4. **决策**：修复（推荐）or 回退（最后手段）
+
+**为什么必须**：本仓实测——**MXTransport 大迁移**（2026-10-16）：S2 141→135 立即回退，
+但事后分析发现 C2555 +11 的机理是「签名层占位垃圾 `void __thiscall(int nVal)`」，
+**修复成本中等**（36 条签名按 PDB 形/ret-N 逐条正名）⇒ **应先试修复再回退**。
+同类教训：T56 当场读抓误伤（sig-3 L1 202→190）已正确分析根因后修正，而非直接回退。
+
+**决策路径**：
+```
+衰退检测（S2/L1/总错误变差）
+  ↓
+❌ 不是立即回退
+  ↓
+✅ 分析原因（病灶层三问）
+  ↓
+定位病灶（具体机制）
+  ↓
+评估修复成本（修复 vs 回退）
+  ↓
+决策：修复（推荐）or 回退（最后手段）
+```
+
+**例外**（可直接回退）：
+- **T56 误伤实锤**（当场读抓获机械判据误伤，如 sig-3 int** 形 L1 −12）
+- **回退成本极低**（纯 source 注记，零渲染影响）
+- **修复成本极高**（需重写核心机制）
 
 ### 病灶层检查（动手前的第一件事）
 
@@ -263,6 +297,8 @@ MSVC 在单个编译单元错误数超过 ~100 时以 **C1003** 停住（**2026-
 重定位**站点值核对**（ok/mismatch/unresolved）+ 重定位**目标核对（符号法）**
 （我方 reloc 符号 ↔ 原函数站点目标 VA 的名字，REL32/DIR32 双路解析）。
 纯计量，**不改变 perfect 判据**（回归锁：`tests/test_gbengine_reloc_sites.py`）。
+**引用规则（三限定随数字走）**：凡引用 L1 数字/宣称"字节全同"，必须带三限定或指向
+[`docs/knowledge/gotcha_l1_reloc_dontcare_three_qualifications.md`](docs/knowledge/gotcha_l1_reloc_dontcare_three_qualifications.md)。
 
 ### 纪律编号现状（⚠️ 阅读前必看）
 
@@ -297,7 +333,7 @@ MSVC 在单个编译单元错误数超过 ~100 时以 **C1003** 停住（**2026-
    - 根据分类结果优先修复 `annotation_fix` 类（投入产出比最高）
    - `hexlimits` 类不修，`manual_idb` 类记录待办
 
-3. **布局验证**（`audit_type_layout.py`，**编译器裁判**；`audit_layout.py` 已废弃 ✗ —— 同源比较无判别力）：
+3. **布局验证**（`audit_type_layout.py`，**编译器裁判**；旧 `audit_layout.py` 为同源比较、恒等、无判别力，已随 2026-10-16 归档定谳删除）：
    - 修改 struct annotation 后必须运行
    - 检测到类型大小不匹配时：对比 IDA 导出，修正 annotation 类型
    - 典型案例：`CEffMgr.m_EffTable` 从 `tagEffObj[2048]` 改回 `_BYTE[584]`
@@ -311,6 +347,9 @@ MSVC 在单个编译单元错误数超过 ~100 时以 **C1003** 停住（**2026-
      `--before/--after`/`--self-test`）。
    - **检查点表缺了一步**：`codegen all` 与 `compile_regression` 之间**必须先跑 `probe`**，
      否则门禁验的是陈旧快照（见 `docs/knowledge/gotcha_compile_regression_reads_cached_census.md`）。
+   - ⚠️ **S2/probe 只编译不链接**：LNK 族（LNK2005 重复符号/LNK2001·2019 未解析外部）是
+     **编译层全盲区**——「S2 上升/错误下降」不可外推为「更接近可运行」；链接层计量用
+     `pipeline/link_probe.py`（见 [`docs/knowledge/gotcha_s2_compiles_but_does_not_link.md`](docs/knowledge/gotcha_s2_compiles_but_does_not_link.md)）。
 4. **annotation diff**（`annotation_diff.py`）：
    - `apply` 后运行，显示本次变更摘要
    - 确认无意外修改（如指针级别变化、类型大小变化）
