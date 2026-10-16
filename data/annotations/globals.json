@@ -586,9 +586,9 @@
  },
  "0x0058618C": {
   "name": "g_pfnUpdateFuncs",
-  "type": "char[4][5]",
+  "type": "void *[5]",
   "category": "game_state",
-  "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真"
+  "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | [全局类型账 2026-10-16] char[4][5]→**void *[5]**（A 级：0x58618C/0x586190 双址 stride=4=指针对 + `mov $0x58618c,%edi`/`push $0x586190` 取址作指针值 + pfn 前缀=函数指针表 ✓ 总 20B 不变——elem=4B 指针非 char[4]，解 unknown elem size）"
  },
  "0x005861F8": {
   "name": "byte_5861F8",
@@ -1401,14 +1401,14 @@
  },
  "0x005D3C68": {
   "name": "unk_5D3C68",
-  "type": "int",
-  "source": "C2065:skip_to_int | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、",
+  "type": "float",
+  "source": "C2065:skip_to_int | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、 | [全局类型账 2026-10-16] int→**float**（A 级 opcode 证：访问点 0x4b487b 等 `flds 0x5d3c68` = x87 单精度浮点装载 ⇒ 型=float 铁证；原 retyping int 失败系型错 ✓）",
   "category": "const_data"
  },
  "0x005D3C6C": {
   "name": "unk_5D3C6C",
-  "type": "int",
-  "source": "C2065:skip_to_int | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、",
+  "type": "float",
+  "source": "C2065:skip_to_int | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、 | [全局类型账 2026-10-16] int→**float**（A 级 opcode 证：访问点 0x4b487b 等 `flds 0x5d3c68` = x87 单精度浮点装载 ⇒ 型=float 铁证；原 retyping int 失败系型错 ✓）",
   "category": "const_data"
  },
  "0x005D41B0": {
