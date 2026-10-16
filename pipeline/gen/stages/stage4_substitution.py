@@ -2433,9 +2433,13 @@ def run(code, ctx):
         result = fix_fnptr_qualified_call(result, base_names={'UIWnd', 'gbRefObject', 'ObjectInfoBase'})
         # [F-CG#23 2026-10-15] Win32 import 族 fnptr cast 补 __stdcall
         result = fix_winqapi_fnptr_casts(result)
-        # [型名替换缺陷签名逆转 2026-10-16] `X->m_rect.<f>` 型谎言签名逆转
-        # （只动铸包裹/算术位命中形；真成员访问零触碰——判据见 ast_transform）
-        result = reverse_mrect_typelie(result)
+        # [型名替换缺陷签名逆转 2026-10-16] ⚠️ **接线已回退**（同日实测）：
+        # 机械判据误伤真访问两形（①对象基 `this->m_X.m_rect.f` 真访问被铸包裹形
+        # 误判；②`&X.m_rect.f + 1` memset 取址实参被算术形误判）⇒ SaleUI +33
+        # C2440 / MainEquipUI +4 等，S2 141→131、错误 +273。
+        # 逆转函数保留（ast_transform.reverse_mrect_typelie + 6 用例双锁），
+        # 待 analyzer 37 站点清单做**定向应用**（禁全量机械逆转）。
+        # result = reverse_mrect_typelie(result)
     except Exception:
         pass
     # F2 offset 形接线 2026-10-07（非零基类——复核 N4/N5 通路）
