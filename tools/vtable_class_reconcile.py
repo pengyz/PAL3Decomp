@@ -101,7 +101,12 @@ def norm_va(s):
     if isinstance(s, int):
         return s
     s = str(s).strip()
-    return int(s, 16) if s.lower().startswith('0x') else int(s)
+    # [R11 修 2026-10-16] 非址形（'external'/'unknown'——外部库类 vtable 不认领标记）
+    # 返回 None（原 int() 崩 ValueError 阻断全量对账）
+    try:
+        return int(s, 16) if s.lower().startswith('0x') else int(s)
+    except ValueError:
+        return None
 
 
 # ---- annotation ------------------------------------------------------------
