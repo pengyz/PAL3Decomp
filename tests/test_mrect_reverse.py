@@ -134,3 +134,42 @@ def test_fcg_tail_current_strings_live():
     for e in sites:
         lines = open(REPO / e['file'], encoding='utf-8', errors='replace').read().split('\n')
         assert e['current'] in lines[e['line'] - 1], (e['file'], e['line'])
+
+
+# ── [sig-3 第三形 119 站] 定向应用回归 ─────────────────────────────
+def test_sig3_allowlist_119_sites_each_applies():
+    """119 站逐条：整行锚定 current→target 精确生效（G1 112 + G2 2 + G3 2 + G4 3）。"""
+    import json
+    sites = json.load(open(REPO / 'data' / 'annotations' / 'sig3_allowlist.json'))['sites']
+    assert len(sites) == 119
+    for e in sites:
+        code = '// pad\n' * (e['line'] - 1) + e['current'] + '\n'
+        out, applied, skipped = at.apply_mrect_allowlist(code, [e])
+        assert len(applied) == 1 and not skipped, (e['file'], e['line'])
+        assert e['target'] in out and e['current'] not in out, e
+
+
+def test_sig3_embedded_receivers_keep_ampersand():
+    """G3/G4 嵌入接收者 target 必带 &（防基址换成员值回归形）。"""
+    import json
+    sites = json.load(open(REPO / 'data' / 'annotations' / 'sig3_allowlist.json'))['sites']
+    emb = [e for e in sites if 'm_3DObj' in e['base'] or 'm_ListGrid' in e['base']]
+    assert len(emb) == 5   # G3 2 + G4 3
+    for e in emb:
+        assert '(&' in e['target'], e
+        assert e['base'] not in e['target']
+
+
+def test_sig3_pointer_receivers_no_ampersand_and_arith_untouched():
+    """G1/G2 指针接收者不带 &；行内算术（+1116/4*i）保持不动。"""
+    import json
+    sites = json.load(open(REPO / 'data' / 'annotations' / 'sig3_allowlist.json'))['sites']
+    ptr = [e for e in sites if e['base'] in ('this->m_rect.left',
+                                             'this->m_pSkillWindow->m_rect.left')]
+    assert len(ptr) == 114  # G1 112 + G2 2
+    for e in ptr:
+        assert '(&' not in e['target'].replace('(*(_DWORD *)', ''), e
+        # 算术片段保持
+        for frag in ('1116', '4 * ', '+ 112', '= BufferAt'):
+            if frag in e['current']:
+                assert frag in e['target'], (e['line'], frag)

@@ -2457,6 +2457,15 @@ def run(code, ctx):
                 result, _entries2, unit_name=getattr(ctx, 'cls_name', None))
         except Exception:
             pass
+        # [型名替换第三形 2026-10-16] 119 站定向逆转（4 组，嵌入接收者带 &）
+        try:
+            _al3 = _os.path.join(_os.path.dirname(_al_path), 'sig3_allowlist.json')
+            with open(_al3, encoding='utf-8') as _fh:
+                _entries3 = _json.load(_fh)['sites']
+            result, _a3, _s3 = apply_mrect_allowlist(
+                result, _entries3, unit_name=getattr(ctx, 'cls_name', None))
+        except Exception:
+            pass
     except Exception:
         pass
     # F2 offset 形接线 2026-10-07（非零基类——复核 N4/N5 通路）

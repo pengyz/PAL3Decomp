@@ -1,0 +1,962 @@
+{
+ "_meta": {
+  "name": "sig3_allowlist",
+  "purpose": "[型名替换第三形] 119 站点定向逆转（4 组）",
+  "provenance": "analyzer sig3.json（data/status/pending/sig3_sites.json）；G1/G2 指令级已证（CCBRoleState::UpdatePanel@0x4DC250 mov eax,[esi+0x10]→mov ecx,[eax+0x45c]）；G3/G4 值基逐行人工确认（SaleUI 2391/8948/9014）",
+  "warning": "嵌入接收者 target 带 &（防基址换成员值的回归形）；禁正则全量"
+ },
+ "sites": [
+  {
+   "file": "pal3/src/UI/StateUI.cpp",
+   "line": 75,
+   "current": "*(_DWORD *)(this->m_3DObj.m_rect.right + 4 * v3 - 4) = BufferAt;",
+   "target": "*(_DWORD *)(*((int **)(&this->m_3DObj) + 6) + 4 * v3 - 4) = BufferAt;",
+   "base": "this->m_3DObj.m_rect.right",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/UI/StateUI.cpp",
+   "line": 108,
+   "current": "(((PAL_GDB *)&g_pGDB))->PAL_GDB::_todo_00478FD0(*(_DWORD *)(this->m_3DObj.m_rect.right + 4 * i));",
+   "target": "(((PAL_GDB *)&g_pGDB))->PAL_GDB::_todo_00478FD0(*(_DWORD *)(*((int **)(&this->m_3DObj) + 6) + 4 * i));",
+   "base": "this->m_3DObj.m_rect.right",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBUI.cpp",
+   "line": 3704,
+   "current": "result = *(_BYTE *)(this->m_pSkillWindow->m_rect.left + 892 * i + 577);",
+   "target": "result = *(_BYTE *)(*((int **)this->m_pSkillWindow + 4) + 892 * i + 577);",
+   "base": "this->m_pSkillWindow->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBUI.cpp",
+   "line": 3788,
+   "current": "if ( *(_BYTE *)(this->m_pSkillWindow->m_rect.left + v4 + 577) )",
+   "target": "if ( *(_BYTE *)(*((int **)this->m_pSkillWindow + 4) + v4 + 577) )",
+   "base": "this->m_pSkillWindow->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 919,
+   "current": "(***(void ( ****)(_DWORD))(*(_DWORD *)(this->m_rect.left + 1116) + 112))((_DWORD)(0));",
+   "target": "(***(void ( ****)(_DWORD))(*(_DWORD *)(*((int **)this + 4) + 1116) + 112))((_DWORD)(0));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 923,
+   "current": "(***(void ( ****)(int))(*(_DWORD *)(this->m_rect.left + 1116) + 112))((int)(1));",
+   "target": "(***(void ( ****)(int))(*(_DWORD *)(*((int **)this + 4) + 1116) + 112))((int)(1));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 926,
+   "current": "sub_445E50(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1116) + 84));",
+   "target": "sub_445E50(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1116) + 84));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 928,
+   "current": "sub_445E50(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1116) + 88));",
+   "target": "sub_445E50(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1116) + 88));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 929,
+   "current": "sub_445E50(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1116) + 104));",
+   "target": "sub_445E50(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1116) + 104));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 931,
+   "current": "sub_445E50(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1116) + 96));",
+   "target": "sub_445E50(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1116) + 96));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 934,
+   "current": "sub_445E50(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1116) + 108));",
+   "target": "sub_445E50(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1116) + 108));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1004,
+   "current": "sub_445E50(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1116) + 84));",
+   "target": "sub_445E50(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1116) + 84));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1006,
+   "current": "sub_445E50(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1116) + 88));",
+   "target": "sub_445E50(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1116) + 88));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1007,
+   "current": "sub_445E50(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1116) + 104));",
+   "target": "sub_445E50(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1116) + 104));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1009,
+   "current": "sub_445E50(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1116) + 96));",
+   "target": "sub_445E50(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1116) + 96));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1016,
+   "current": "v4 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1116) + 108);",
+   "target": "v4 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1116) + 108);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1020,
+   "current": "v4 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1116) + 108);",
+   "target": "v4 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1116) + 108);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1217,
+   "current": "SetEnable(*(UICaption **)(*(_DWORD *)(this->m_rect.left + 1128) + 72));",
+   "target": "SetEnable(*(UICaption **)(*(_DWORD *)(*((int **)this + 4) + 1128) + 72));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1218,
+   "current": "(***(void ( ****)(_DWORD, int))(this->m_rect.left + 1128))((_DWORD)(*(_DWORD *)(this->m_rect.left + 1128)), (int)(1));",
+   "target": "(***(void ( ****)(_DWORD, int))(*((int **)this + 4) + 1128))((_DWORD)(*(_DWORD *)(*((int **)this + 4) + 1128)), (int)(1));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1225,
+   "current": "(***(void ( ****)(_DWORD, _DWORD))(this->m_rect.left + 1128))((_DWORD)(*(_DWORD *)(this->m_rect.left + 1128)), (_DWORD)(0));",
+   "target": "(***(void ( ****)(_DWORD, _DWORD))(*((int **)this + 4) + 1128))((_DWORD)(*(_DWORD *)(*((int **)this + 4) + 1128)), (_DWORD)(0));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1262,
+   "current": "SetEnable(*(UICaption **)(*(_DWORD *)(this->m_rect.left + 1128) + 72));",
+   "target": "SetEnable(*(UICaption **)(*(_DWORD *)(*((int **)this + 4) + 1128) + 72));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1264,
+   "current": "(***(void ( ****)(_DWORD, int))(this->m_rect.left + 1128))((_DWORD)(*(_DWORD *)(this->m_rect.left + 1128)), (int)(1));",
+   "target": "(***(void ( ****)(_DWORD, int))(*((int **)this + 4) + 1128))((_DWORD)(*(_DWORD *)(*((int **)this + 4) + 1128)), (int)(1));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1269,
+   "current": "(***(void ( ****)(_DWORD, _DWORD))(this->m_rect.left + 1128))((_DWORD)(*(_DWORD *)(this->m_rect.left + 1128)), (_DWORD)(0));",
+   "target": "(***(void ( ****)(_DWORD, _DWORD))(*((int **)this + 4) + 1128))((_DWORD)(*(_DWORD *)(*((int **)this + 4) + 1128)), (_DWORD)(0));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1303,
+   "current": "(((CCBControlWindow *)*(CCBControlWindow **)(this->m_rect.left + 1124)))->CCBControlWindow::HandleInput(*(UIButton **)(*(_DWORD *)",
+   "target": "(((CCBControlWindow *)*(CCBControlWindow **)(*((int **)this + 4) + 1124)))->CCBControlWindow::HandleInput(*(UIButton **)(*(_DWORD *)",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1304,
+   "current": "SetEnable(*(UICaption **)(*(_DWORD *)(this->m_rect.left + 1124) + 72));",
+   "target": "SetEnable(*(UICaption **)(*(_DWORD *)(*((int **)this + 4) + 1124) + 72));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1305,
+   "current": "(***(void ( ****)(_DWORD, int))(this->m_rect.left + 1124))((_DWORD)(*(_DWORD *)(this->m_rect.left + 1124)), (int)(1));",
+   "target": "(***(void ( ****)(_DWORD, int))(*((int **)this + 4) + 1124))((_DWORD)(*(_DWORD *)(*((int **)this + 4) + 1124)), (int)(1));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1311,
+   "current": "(((CCBControlWindow *)*(CCBControlWindow **)(this->m_rect.left + 1124)))->CCBControlWindow::KeyPressed();",
+   "target": "(((CCBControlWindow *)*(CCBControlWindow **)(*((int **)this + 4) + 1124)))->CCBControlWindow::KeyPressed();",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1317,
+   "current": "(***(void ( ****)(_DWORD, _DWORD))(this->m_rect.left + 1124))((_DWORD)(*(_DWORD *)(this->m_rect.left + 1124)), (_DWORD)(0));",
+   "target": "(***(void ( ****)(_DWORD, _DWORD))(*((int **)this + 4) + 1124))((_DWORD)(*(_DWORD *)(*((int **)this + 4) + 1124)), (_DWORD)(0));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1343,
+   "current": "(((CCBControlWindow *)*(CCBControlWindow **)(this->m_rect.left + 1124)))->CCBControlWindow::KeyPressed();",
+   "target": "(((CCBControlWindow *)*(CCBControlWindow **)(*((int **)this + 4) + 1124)))->CCBControlWindow::KeyPressed();",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1360,
+   "current": "SetEnable(*(UICaption **)(*(_DWORD *)(this->m_rect.left + 1124) + 72));",
+   "target": "SetEnable(*(UICaption **)(*(_DWORD *)(*((int **)this + 4) + 1124) + 72));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1363,
+   "current": "(***(void ( ****)(_DWORD, int))(this->m_rect.left + 1124))((_DWORD)(*(_DWORD *)(this->m_rect.left + 1124)), (int)(1));",
+   "target": "(***(void ( ****)(_DWORD, int))(*((int **)this + 4) + 1124))((_DWORD)(*(_DWORD *)(*((int **)this + 4) + 1124)), (int)(1));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1367,
+   "current": "(***(void ( ****)(_DWORD, _DWORD))(this->m_rect.left + 1124))((_DWORD)(*(_DWORD *)(this->m_rect.left + 1124)), (_DWORD)(0));",
+   "target": "(***(void ( ****)(_DWORD, _DWORD))(*((int **)this + 4) + 1124))((_DWORD)(*(_DWORD *)(*((int **)this + 4) + 1124)), (_DWORD)(0));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1384,
+   "current": "(***(void ( ****)(_DWORD, _DWORD))(this->m_rect.left + 1124))((_DWORD)(*(_DWORD *)(this->m_rect.left + 1124)), (_DWORD)(0));",
+   "target": "(***(void ( ****)(_DWORD, _DWORD))(*((int **)this + 4) + 1124))((_DWORD)(*(_DWORD *)(*((int **)this + 4) + 1124)), (_DWORD)(0));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1415,
+   "current": "SetEnable(*(UICaption **)(*(_DWORD *)(this->m_rect.left + 1120) + 76));",
+   "target": "SetEnable(*(UICaption **)(*(_DWORD *)(*((int **)this + 4) + 1120) + 76));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1416,
+   "current": "(***(void ( ****)(_DWORD, int))(this->m_rect.left + 1120))((_DWORD)(*(_DWORD *)(this->m_rect.left + 1120)), (int)(1));",
+   "target": "(***(void ( ****)(_DWORD, int))(*((int **)this + 4) + 1120))((_DWORD)(*(_DWORD *)(*((int **)this + 4) + 1120)), (int)(1));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1417,
+   "current": "(((CCBRoleState *)this->m_id))->CCBRoleState::PopulateTargetList((int)this->m_pfather, *(_DWORD *)(*(_DWORD *)(this->m_rect.left +",
+   "target": "(((CCBRoleState *)this->m_id))->CCBRoleState::PopulateTargetList((int)this->m_pfather, *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) +",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1427,
+   "current": "(***(void ( ****)(_DWORD, _DWORD))(this->m_rect.left + 1120))((_DWORD)(*(_DWORD *)(this->m_rect.left + 1120)), (_DWORD)(0));",
+   "target": "(***(void ( ****)(_DWORD, _DWORD))(*((int **)this + 4) + 1120))((_DWORD)(*(_DWORD *)(*((int **)this + 4) + 1120)), (_DWORD)(0));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1465,
+   "current": "SetEnable(*(UICaption **)(*(_DWORD *)(this->m_rect.left + 1120) + 76));",
+   "target": "SetEnable(*(UICaption **)(*(_DWORD *)(*((int **)this + 4) + 1120) + 76));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1467,
+   "current": "(***(void ( ****)(_DWORD, int))(this->m_rect.left + 1120))((_DWORD)(*(_DWORD *)(this->m_rect.left + 1120)), (int)(1));",
+   "target": "(***(void ( ****)(_DWORD, int))(*((int **)this + 4) + 1120))((_DWORD)(*(_DWORD *)(*((int **)this + 4) + 1120)), (int)(1));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1471,
+   "current": "(((CCBRoleState *)this->m_id))->CCBRoleState::PopulateTargetList((int)this->m_pfather, *(_DWORD *)(*(_DWORD *)(this->m_rect.left +",
+   "target": "(((CCBRoleState *)this->m_id))->CCBRoleState::PopulateTargetList((int)this->m_pfather, *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) +",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1475,
+   "current": "(***(void ( ****)(_DWORD, _DWORD))(this->m_rect.left + 1120))((_DWORD)(*(_DWORD *)(this->m_rect.left + 1120)), (_DWORD)(0));",
+   "target": "(***(void ( ****)(_DWORD, _DWORD))(*((int **)this + 4) + 1120))((_DWORD)(*(_DWORD *)(*((int **)this + 4) + 1120)), (_DWORD)(0));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1482,
+   "current": "(***(void ( ****)(_DWORD, _DWORD))(this->m_rect.left + 1120))((_DWORD)(*(_DWORD *)(this->m_rect.left + 1120)), (_DWORD)(0));",
+   "target": "(***(void ( ****)(_DWORD, _DWORD))(*((int **)this + 4) + 1120))((_DWORD)(*(_DWORD *)(*((int **)this + 4) + 1120)), (_DWORD)(0));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1543,
+   "current": "g_RoleSystemCombat.m_partyActor.m_curact[31] = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 116)",
+   "target": "g_RoleSystemCombat.m_partyActor.m_curact[31] = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 116)",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1545,
+   "current": "g_RoleSystemCombat.m_partyActor.m_curact[30] = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 112)",
+   "target": "g_RoleSystemCombat.m_partyActor.m_curact[30] = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 112)",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1547,
+   "current": "g_RoleSystemCombat.m_partyActor.m_curact[29] = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 108)",
+   "target": "g_RoleSystemCombat.m_partyActor.m_curact[29] = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 108)",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1549,
+   "current": "g_RoleSystemCombat.m_partyActor.m_curact[28] = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 104)",
+   "target": "g_RoleSystemCombat.m_partyActor.m_curact[28] = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 104)",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1551,
+   "current": "g_RoleSystemCombat.m_partyActor.m_curact[27] = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 100)",
+   "target": "g_RoleSystemCombat.m_partyActor.m_curact[27] = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 100)",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1574,
+   "current": "if ( *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 116) + 68) )",
+   "target": "if ( *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 116) + 68) )",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1583,
+   "current": "v14 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 96);",
+   "target": "v14 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 96);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1592,
+   "current": "v17 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 108);",
+   "target": "v17 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 108);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1595,
+   "current": "v18 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 100);",
+   "target": "v18 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 100);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1598,
+   "current": "v19 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 104);",
+   "target": "v19 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 104);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1601,
+   "current": "v20 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 116);",
+   "target": "v20 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 116);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1607,
+   "current": "if ( *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 116) + 68) )",
+   "target": "if ( *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 116) + 68) )",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1611,
+   "current": "v22 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 100);",
+   "target": "v22 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 100);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1616,
+   "current": "if ( *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 116) + 68) )",
+   "target": "if ( *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 116) + 68) )",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1620,
+   "current": "v24 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 104);",
+   "target": "v24 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 104);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1625,
+   "current": "if ( *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 116) + 68) )",
+   "target": "if ( *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 116) + 68) )",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1629,
+   "current": "v26 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 108);",
+   "target": "v26 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 108);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1634,
+   "current": "if ( *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 116) + 68) )",
+   "target": "if ( *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 116) + 68) )",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1644,
+   "current": "v28 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 112);",
+   "target": "v28 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 112);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1662,
+   "current": "v8 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 96);",
+   "target": "v8 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 96);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1668,
+   "current": "v9 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 108);",
+   "target": "v9 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 108);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1671,
+   "current": "v10 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 100);",
+   "target": "v10 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 100);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1674,
+   "current": "v11 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 104);",
+   "target": "v11 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 104);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1677,
+   "current": "v12 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 96);",
+   "target": "v12 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 96);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1689,
+   "current": "v39 = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 96) + 68);",
+   "target": "v39 = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 96) + 68);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1691,
+   "current": "v40 = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 104) + 68);",
+   "target": "v40 = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 104) + 68);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1693,
+   "current": "v41 = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 108) + 68);",
+   "target": "v41 = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 108) + 68);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1695,
+   "current": "v42 = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 100) + 68);",
+   "target": "v42 = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 100) + 68);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1697,
+   "current": "v31 = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 112) + 68) == 0;",
+   "target": "v31 = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 112) + 68) == 0;",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1699,
+   "current": "v32 = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1132) + 116) + 68);",
+   "target": "v32 = *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1132) + 116) + 68);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1702,
+   "current": "v33 = (_DWORD *)*(_DWORD **)(this->m_rect.left + 1132);",
+   "target": "v33 = (_DWORD *)*(_DWORD **)(*((int **)this + 4) + 1132);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1878,
+   "current": "v15 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1136) + i);",
+   "target": "v15 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1136) + i);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 1880,
+   "current": "v15 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1136) + i);",
+   "target": "v15 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1136) + i);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2032,
+   "current": "sub_445D20(*(_DWORD **)(*(_DWORD *)(this->m_rect.left + 1136) + 4 * v34 + 96), x - v42, y - v44);",
+   "target": "sub_445D20(*(_DWORD **)(*(_DWORD *)(*((int **)this + 4) + 1136) + 4 * v34 + 96), x - v42, y - v44);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2053,
+   "current": "(((CCBMagicWindow *)*(CCBMagicWindow **)(this->m_rect.left + 1136)))->CCBMagicWindow::Create(v35);",
+   "target": "(((CCBMagicWindow *)*(CCBMagicWindow **)(*((int **)this + 4) + 1136)))->CCBMagicWindow::Create(v35);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2076,
+   "current": "v45 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1136) + 4 * g_nTargetSlot + 96);",
+   "target": "v45 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1136) + 4 * g_nTargetSlot + 96);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2079,
+   "current": "(((CCBMagicWindow *)*(CCBMagicWindow **)(this->m_rect.left + 1136)))->CCBMagicWindow::_todo_0051BAB0(g_nTargetSlot);",
+   "target": "(((CCBMagicWindow *)*(CCBMagicWindow **)(*((int **)this + 4) + 1136)))->CCBMagicWindow::_todo_0051BAB0(g_nTargetSlot);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2081,
+   "current": "|| ((((CCBMagicWindow *)*(CCBMagicWindow **)(this->m_rect.left + 1136)))->CCBMagicWindow::_todo_0051BAB0(g_nTargetSlot),",
+   "target": "|| ((((CCBMagicWindow *)*(CCBMagicWindow **)(*((int **)this + 4) + 1136)))->CCBMagicWindow::_todo_0051BAB0(g_nTargetSlot),",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2085,
+   "current": "(((RoleCameraCtrl *)*(RoleCameraCtrl **)(this->m_rect.left + 1136)))->RoleCameraCtrl::InitViewSlots();",
+   "target": "(((RoleCameraCtrl *)*(RoleCameraCtrl **)(*((int **)this + 4) + 1136)))->RoleCameraCtrl::InitViewSlots();",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2090,
+   "current": "(((CCBMagicWindow *)*(CCBMagicWindow **)(this->m_rect.left + 1136)))->CCBMagicWindow::_todo_0051BAB0(g_nTargetSlot);",
+   "target": "(((CCBMagicWindow *)*(CCBMagicWindow **)(*((int **)this + 4) + 1136)))->CCBMagicWindow::_todo_0051BAB0(g_nTargetSlot);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2091,
+   "current": "(((CCBMagicWindow *)*(CCBMagicWindow **)(this->m_rect.left + 1136)))->CCBMagicWindow::Reset(g_nTargetSlot, v49);",
+   "target": "(((CCBMagicWindow *)*(CCBMagicWindow **)(*((int **)this + 4) + 1136)))->CCBMagicWindow::Reset(g_nTargetSlot, v49);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2221,
+   "current": "(((UIListBox *)*(UIListBox **)(*(_DWORD *)(this->m_rect.left + 1140) + 88)))->UIListBox::GetCurSel();",
+   "target": "(((UIListBox *)*(UIListBox **)(*(_DWORD *)(*((int **)this + 4) + 1140) + 88)))->UIListBox::GetCurSel();",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2222,
+   "current": "(((UIListBox *)*(UIListBox **)(*(_DWORD *)(this->m_rect.left + 1140) + 92)))->UIListBox::GetCurSel();",
+   "target": "(((UIListBox *)*(UIListBox **)(*(_DWORD *)(*((int **)this + 4) + 1140) + 92)))->UIListBox::GetCurSel();",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2223,
+   "current": "(((UIListBox *)*(UIListBox **)(*(_DWORD *)(this->m_rect.left + 1140) + 96)))->UIListBox::GetCurSel();",
+   "target": "(((UIListBox *)*(UIListBox **)(*(_DWORD *)(*((int **)this + 4) + 1140) + 96)))->UIListBox::GetCurSel();",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2224,
+   "current": "(((UIScrollBar *)*(UIScrollBar **)(*(_DWORD *)(this->m_rect.left + 1140) + 88)))->UIScrollBar::SetRange(100.0);",
+   "target": "(((UIScrollBar *)*(UIScrollBar **)(*(_DWORD *)(*((int **)this + 4) + 1140) + 88)))->UIScrollBar::SetRange(100.0);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2225,
+   "current": "(((UIScrollBar *)*(UIScrollBar **)(*(_DWORD *)(this->m_rect.left + 1140) + 92)))->UIScrollBar::SetRange(100.0);",
+   "target": "(((UIScrollBar *)*(UIScrollBar **)(*(_DWORD *)(*((int **)this + 4) + 1140) + 92)))->UIScrollBar::SetRange(100.0);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2226,
+   "current": "(((UIScrollBar *)*(UIScrollBar **)(*(_DWORD *)(this->m_rect.left + 1140) + 96)))->UIScrollBar::SetRange(100.0);",
+   "target": "(((UIScrollBar *)*(UIScrollBar **)(*(_DWORD *)(*((int **)this + 4) + 1140) + 96)))->UIScrollBar::SetRange(100.0);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2228,
+   "current": "(((UIProgressBar *)*(UIProgressBar **)(*(_DWORD *)(this->m_rect.left + 1140) + 88)))->UIProgressBar::FindChildByName(fValue);",
+   "target": "(((UIProgressBar *)*(UIProgressBar **)(*(_DWORD *)(*((int **)this + 4) + 1140) + 88)))->UIProgressBar::FindChildByName(fValue);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2230,
+   "current": "(((UIProgressBar *)*(UIProgressBar **)(*(_DWORD *)(this->m_rect.left + 1140) + 92)))->UIProgressBar::FindChildByName(fValuea);",
+   "target": "(((UIProgressBar *)*(UIProgressBar **)(*(_DWORD *)(*((int **)this + 4) + 1140) + 92)))->UIProgressBar::FindChildByName(fValuea);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2232,
+   "current": "(((UIProgressBar *)*(UIProgressBar **)(*(_DWORD *)(this->m_rect.left + 1140) + 96)))->UIProgressBar::FindChildByName(fValueb);",
+   "target": "(((UIProgressBar *)*(UIProgressBar **)(*(_DWORD *)(*((int **)this + 4) + 1140) + 96)))->UIProgressBar::FindChildByName(fValueb);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2233,
+   "current": "v4 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 76);",
+   "target": "v4 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 76);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2236,
+   "current": "v5 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 80);",
+   "target": "v5 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 80);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2239,
+   "current": "v6 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 84);",
+   "target": "v6 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 84);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2243,
+   "current": "sub_445E50(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 76));",
+   "target": "sub_445E50(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 76));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2245,
+   "current": "sub_445E50(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 80));",
+   "target": "sub_445E50(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 80));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2247,
+   "current": "sub_445E50(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 84));",
+   "target": "sub_445E50(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 84));",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2252,
+   "current": "v9 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 76);",
+   "target": "v9 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 76);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2258,
+   "current": "v9 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 80);",
+   "target": "v9 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 80);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2263,
+   "current": "v9 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 84);",
+   "target": "v9 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 84);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2279,
+   "current": "v12 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 76);",
+   "target": "v12 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 76);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2281,
+   "current": "v12 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 76);",
+   "target": "v12 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 76);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2285,
+   "current": "v14 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 80);",
+   "target": "v14 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 80);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2287,
+   "current": "v14 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 80);",
+   "target": "v14 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 80);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2291,
+   "current": "v16 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 84);",
+   "target": "v16 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 84);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2293,
+   "current": "v16 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 84);",
+   "target": "v16 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 84);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2318,
+   "current": "if ( *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 76) + 68) )",
+   "target": "if ( *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 76) + 68) )",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2320,
+   "current": "if ( *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 80) + 68) )",
+   "target": "if ( *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 80) + 68) )",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2322,
+   "current": "if ( *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 84) + 68) )",
+   "target": "if ( *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 84) + 68) )",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2358,
+   "current": "v21 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 76);",
+   "target": "v21 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 76);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2361,
+   "current": "v22 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 80);",
+   "target": "v22 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 80);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2364,
+   "current": "v23 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 84);",
+   "target": "v23 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 84);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2370,
+   "current": "v24 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 76);",
+   "target": "v24 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 76);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2376,
+   "current": "v24 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 80);",
+   "target": "v24 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 80);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 2379,
+   "current": "v24 = *(_DWORD *)(*(_DWORD *)(this->m_rect.left + 1140) + 84);",
+   "target": "v24 = *(_DWORD *)(*(_DWORD *)(*((int **)this + 4) + 1140) + 84);",
+   "base": "this->m_rect.left",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Misc/SaleUI.cpp",
+   "line": 2391,
+   "current": "v7 = *(_DWORD *)(this->m_ListGrid[7].m_rect.top + 4 * v6);",
+   "target": "v7 = *(_DWORD *)(*((int **)(&this->m_ListGrid[7]) + 5) + 4 * v6);",
+   "base": "this->m_ListGrid[7].m_rect.top",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Misc/SaleUI.cpp",
+   "line": 8948,
+   "current": "v25 = *(_DWORD *)(this->m_ListGrid[7].m_rect.top + 4 * v24);",
+   "target": "v25 = *(_DWORD *)(*((int **)(&this->m_ListGrid[7]) + 5) + 4 * v24);",
+   "base": "this->m_ListGrid[7].m_rect.top",
+   "op": "+"
+  },
+  {
+   "file": "pal3/src/Misc/SaleUI.cpp",
+   "line": 9014,
+   "current": "v31 = *(_DWORD *)(this->m_ListGrid[7].m_rect.top + 4 * v30);",
+   "target": "v31 = *(_DWORD *)(*((int **)(&this->m_ListGrid[7]) + 5) + 4 * v30);",
+   "base": "this->m_ListGrid[7].m_rect.top",
+   "op": "+"
+  }
+ ]
+}
