@@ -2429,17 +2429,25 @@ def run(code, ctx):
     # fn-ptr 限定形接线 2026-10-07（C2273 族——子对象引用形）
     try:
         from ast_transform import (fix_fnptr_qualified_call, fix_winqapi_fnptr_casts,
-                                   reverse_mrect_typelie)
+                                   apply_mrect_allowlist)
         result = fix_fnptr_qualified_call(result, base_names={'UIWnd', 'gbRefObject', 'ObjectInfoBase'})
         # [F-CG#23 2026-10-15] Win32 import 族 fnptr cast 补 __stdcall
         result = fix_winqapi_fnptr_casts(result)
-        # [型名替换缺陷签名逆转 2026-10-16] ⚠️ **接线已回退**（同日实测）：
-        # 机械判据误伤真访问两形（①对象基 `this->m_X.m_rect.f` 真访问被铸包裹形
-        # 误判；②`&X.m_rect.f + 1` memset 取址实参被算术形误判）⇒ SaleUI +33
-        # C2440 / MainEquipUI +4 等，S2 141→131、错误 +273。
-        # 逆转函数保留（ast_transform.reverse_mrect_typelie + 6 用例双锁），
-        # 待 analyzer 37 站点清单做**定向应用**（禁全量机械逆转）。
-        # result = reverse_mrect_typelie(result)
+        # [型名替换 28 条定向应用 2026-10-16] 机械全量逆转已回退（误伤真访问：
+        # S2 141→131·错误 +273）⇒ 改 analyzer 28 条 allowlist **逐站定向**：
+        # file+line 锚定 + current 串校验（6 条 current 重复 ⇒ 必须行锚定）。
+        # 判据=DEFECT 值入指针位 + 豁免A/B（&取址/存储重解释/坐标运算）。
+        try:
+            import json as _json, os as _os
+            _al_path = _os.path.join(_os.path.dirname(_os.path.dirname(
+                _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))),
+                'data', 'annotations', 'mrect_allowlist.json')
+            with open(_al_path, encoding='utf-8') as _fh:
+                _entries = _json.load(_fh)['sites']
+            result, _applied, _skipped = apply_mrect_allowlist(
+                result, _entries, unit_name=getattr(ctx, 'cls_name', None))
+        except Exception:
+            pass
     except Exception:
         pass
     # F2 offset 形接线 2026-10-07（非零基类——复核 N4/N5 通路）

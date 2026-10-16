@@ -2193,3 +2193,44 @@ UIListBox * CCBControlWindow::CreateButton()
     
     status = 'PASSED' if ok else 'FAILED'
     print(f'\nAll: {status}')
+
+
+# ═══ [型名替换 28 条定向应用 2026-10-16] ═══════════════════════════
+# analyzer 28 条 sig-1 清单（allowlist 化）——真/假判别三条件：
+#   DEFECT=值流入指针位 · 豁免A=&取址/存储重解释 · 豁免B=坐标运算/比较/LONG 赋值
+# 机械规则两度误伤后（S2 141→131·错误 +273，已回退），改为**逐站定向**：
+# file+line 锚定 + current 串校验（6 条 current 重复 ⇒ 必须行锚定）。
+# ⚠️ 禁全量逆转（1373 处真访问）。清单=data/annotations/mrect_allowlist.json。
+
+
+def apply_mrect_allowlist(code, entries, unit_name=None):
+    """定向逆转（纯函数，R15 单测点）→ (新代码, 已应用清单, 未命中清单)。
+
+    逐站：行锚定（entry.line）+ current 子串校验；行漂移时回退全文件顺序首遇
+    （current 重复形按清单序消费）；两路皆失 ⇒ 记 skipped（fail-loud，不猜）。
+    """
+    lines = code.split('\n')
+    used = [False] * len(lines)
+    applied, skipped = [], []
+    for e in entries:
+        if unit_name:
+            stem = e['file'].replace('\\', '/').rsplit('/', 1)[-1]
+            if stem.endswith('.cpp') and stem[:-4] != unit_name:
+                continue
+        cur, tgt = e['current'], e['target']
+        li = e.get('line', 0) - 1
+        hit = None
+        if 0 <= li < len(lines) and not used[li] and cur in lines[li]:
+            hit = li
+        else:
+            for k, l in enumerate(lines):
+                if not used[k] and cur in l:
+                    hit = k
+                    break
+        if hit is None:
+            skipped.append(e)
+            continue
+        lines[hit] = lines[hit].replace(cur, tgt, 1)
+        used[hit] = True
+        applied.append(e)
+    return '\n'.join(lines), applied, skipped

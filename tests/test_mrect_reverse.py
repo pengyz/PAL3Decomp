@@ -68,3 +68,45 @@ def test_real_member_accesses_untouched():
 if __name__ == '__main__':
     import pytest
     raise SystemExit(pytest.main([__file__, '-v']))
+
+
+# ── [28 条定向应用] allowlist 逐站回归 ─────────────────────────────
+def _load_allowlist():
+    import json
+    return json.load(open(REPO / 'data' / 'annotations' / 'mrect_allowlist.json'))['sites']
+
+
+def test_allowlist_28_sites_each_applies():
+    """28 条逐条：构造行锚定场景 ⇒ current→target 精确生效（定向应用回归锁）。"""
+    sites = _load_allowlist()
+    assert len(sites) == 28
+    for e in sites:
+        code = '// pad\n' * (e['line'] - 1) + '  ' + e['current'] + ';\n'
+        out, applied, skipped = at.apply_mrect_allowlist(code, [e], unit_name=None)
+        assert len(applied) == 1 and not skipped, (e['file'], e['line'])
+        assert e['target'] in out and e['current'] not in out, e
+
+
+def test_allowlist_line_anchor_and_dup_consume():
+    # current 重复形（6 条）：行锚定各自命中、互不抢
+    code = '  A = (T *)X->m_rect.left;\n  B = (T *)X->m_rect.left;\n'
+    ents = [
+        {'file': 'pal3/src/Foo.cpp', 'line': 1, 'current': '(T *)X->m_rect.left',
+         'target': '*((T **)X + 4)'},
+        {'file': 'pal3/src/Foo.cpp', 'line': 2, 'current': '(T *)X->m_rect.left',
+         'target': '*((T **)X + 4)'},
+    ]
+    out, applied, skipped = at.apply_mrect_allowlist(code, ents)
+    assert len(applied) == 2 and not skipped
+    assert out.count('*((T **)X + 4)') == 2
+
+
+def test_allowlist_unit_filter_and_real_untouched():
+    # unit 过滤：他单元条目不入；真访问串零触碰
+    ents = [{'file': 'pal3/src/UI/UIScene.cpp', 'line': 1,
+             'current': '(T *)X->m_rect.left', 'target': '*((T **)X + 4)'}]
+    code = '  a = this->m_rect.left;\n  b = (T *)X->m_rect.left;\n'
+    out, applied, skipped = at.apply_mrect_allowlist(code, ents, unit_name='Other')
+    assert not applied and code == out                      # 他单元不动
+    out, applied, skipped = at.apply_mrect_allowlist(code, ents, unit_name='UIScene')
+    assert len(applied) == 1 and 'this->m_rect.left' in out  # 真访问保持
