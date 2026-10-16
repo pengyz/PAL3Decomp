@@ -75,8 +75,9 @@
   },
   "methods": {
     "0x004CD0A0": {
-      "name": "CMeteorChain",
-      "signature": "void __thiscall()"
+      "name": "~CMeteorChain",
+      "signature": "void __thiscall()",
+      "source": " | [ctor/dtor 错位改名 2026-10-16] 名 CMeteorChain 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~CMeteorChain。refs: ??3@YAXPAX@Z"
     },
     "0x004CD7E0": {
       "name": "Update",

@@ -1,614 +1,615 @@
 {
- "name": "PropUI",
- "binary_size": 29056,
- "known_members": {
-  "72": {
-   "name": "bkWndX",
-   "type": "int",
-   "source": "annotation"
-  },
-  "76": {
-   "name": "bkWndY",
-   "type": "int",
-   "source": "annotation"
-  },
-  "80": {
-   "name": "m_ListWidth",
-   "type": "int",
-   "source": "annotation"
-  },
-  "84": {
-   "name": "m_ListHeight",
-   "type": "int",
-   "source": "annotation"
-  },
-  "88": {
-   "name": "m_PropData",
-   "type": "st_Manager",
-   "source": "annotation"
-  },
-  "17592": {
-   "name": "p_DealData",
-   "type": "PlayerItem *",
-   "source": "annotation"
-  },
-  "17596": {
-   "name": "buf",
-   "type": "char[256]",
-   "source": "annotation"
-  },
-  "17852": {
-   "name": "remarkbuf",
-   "type": "char[256]",
-   "source": "annotation"
-  },
-  "18108": {
-   "name": "m_SelNum",
-   "type": "int",
-   "source": "annotation"
-  },
-  "18112": {
-   "name": "m_ListSelNum",
-   "type": "int *",
-   "source": "annotation"
-  },
-  "18116": {
-   "name": "m_MaxNum",
-   "type": "int *",
-   "source": "annotation"
-  },
-  "18120": {
-   "name": "m_x",
-   "type": "int",
-   "source": "annotation"
-  },
-  "18124": {
-   "name": "m_y",
-   "type": "int",
-   "source": "annotation"
-  },
-  "18128": {
-   "name": "m_Sum",
-   "type": "int",
-   "source": "annotation"
-  },
-  "18132": {
-   "name": "i",
-   "type": "int",
-   "source": "annotation"
-  },
-  "18136": {
-   "name": "j",
-   "type": "int",
-   "source": "annotation"
-  },
-  "18140": {
-   "name": "_isCreatable",
-   "type": "unsigned char",
-   "source": "annotation"
-  },
-  "18144": {
-   "name": "m_Frame",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "18304": {
-   "name": "m_FrameBar",
-   "type": "UIFlexBar",
-   "source": "annotation"
-  },
-  "18388": {
-   "name": "m_Flag",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "18548": {
-   "name": "m_OutFrameT",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "18708": {
-   "name": "m_OutFrameR",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "18868": {
-   "name": "m_OutFrameL",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "19028": {
-   "name": "m_OutFrameB",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "19188": {
-   "name": "mb_ExitRc",
-   "type": "tagRECT",
-   "source": "annotation"
-  },
-  "19204": {
-   "name": "mb_Exit",
-   "type": "UIButton",
-   "source": "annotation"
-  },
-  "19548": {
-   "name": "m_ani",
-   "type": "UIAnimateCtrl",
-   "source": "annotation"
-  },
-  "19712": {
-   "name": "m_Role",
-   "type": "UIStatic[5]",
-   "source": "annotation"
-  },
-  "20512": {
-   "name": "m_RoleRc",
-   "type": "tagRECT[5]",
-   "source": "annotation"
-  },
-  "20592": {
-   "name": "RoleX",
-   "type": "int",
-   "source": "annotation"
-  },
-  "20596": {
-   "name": "RoleY",
-   "type": "int",
-   "source": "annotation"
-  },
-  "20600": {
-   "name": "HeadW",
-   "type": "int",
-   "source": "annotation"
-  },
-  "20604": {
-   "name": "HeadH",
-   "type": "int",
-   "source": "annotation"
-  },
-  "20608": {
-   "name": "m_Is",
-   "type": "unsigned char[5]",
-   "source": "annotation"
-  },
-  "20616": {
-   "name": "m_Msg",
-   "type": "MUIDialog",
-   "source": "annotation"
-  },
-  "22000": {
-   "name": "m_3DObj",
-   "type": "UI3DCtrl",
-   "source": "annotation"
-  },
-  "22308": {
-   "name": "m_Dlg",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "22468": {
-   "name": "m_DlgRc",
-   "type": "tagRECT",
-   "source": "annotation"
-  },
-  "22484": {
-   "name": "m_TalkFrame",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "22644": {
-   "name": "m_Ready",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "22804": {
-   "name": "m_ReadyRc",
-   "type": "tagRECT",
-   "source": "annotation"
-  },
-  "22820": {
-   "name": "m_ListFrame",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "22980": {
-   "name": "m_ListGrid",
-   "type": "UIStatic[14]",
-   "source": "annotation"
-  },
-  "25220": {
-   "name": "m_ScrollHB",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "25380": {
-   "name": "m_EquipFlag",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "25540": {
-   "name": "m_ListPropTitle",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "25700": {
-   "name": "m_ListPropTitleRc",
-   "type": "tagRECT",
-   "source": "annotation"
-  },
-  "25716": {
-   "name": "ml_ListProp",
-   "type": "UIListBox",
-   "source": "annotation"
-  },
-  "27004": {
-   "name": "ml_ListPropRc",
-   "type": "tagRECT",
-   "source": "annotation"
-  },
-  "27020": {
-   "name": "m_btnGroup",
-   "type": "BtnGroup",
-   "source": "annotation"
-  },
-  "27760": {
-   "name": "m_ctrlTime",
-   "type": "float",
-   "source": "annotation"
-  },
-  "27764": {
-   "name": "m_bCanUpdate1",
-   "type": "unsigned char",
-   "source": "annotation"
-  },
-  "27765": {
-   "name": "m_bCanUpdate2",
-   "type": "unsigned char",
-   "source": "annotation"
-  },
-  "27768": {
-   "name": "m_PropRemarkBk",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "27928": {
-   "name": "m_PropRemark",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "28088": {
-   "name": "m_PropAtt",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "28248": {
-   "name": "m_MoneyRemark",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "28408": {
-   "name": "m_MoneyRc",
-   "type": "tagRECT",
-   "source": "annotation"
-  },
-  "28424": {
-   "name": "m_SumProp",
-   "type": "UIStatic",
-   "source": "annotation"
-  },
-  "28584": {
-   "name": "m_SumRc",
-   "type": "tagRECT",
-   "source": "annotation"
-  },
-  "28600": {
-   "name": "mb_OK",
-   "type": "UIButton",
-   "source": "annotation"
-  },
-  "28944": {
-   "name": "mb_OKRc",
-   "type": "tagRECT",
-   "source": "annotation"
-  },
-  "356": {
-   "name": "m_nTodo_164",
-   "type": "int",
-   "source": "ida_gap_40refs"
-  },
-  "360": {
-   "name": "m_nTodo_168",
-   "type": "int",
-   "source": "ida_gap_15refs"
-  },
-  "376": {
-   "name": "m_nTodo_178",
-   "type": "int",
-   "source": "ida_gap_10refs"
-  },
-  "400": {
-   "name": "m_nTodo_190",
-   "type": "int",
-   "source": "ida_gap_2refs"
-  },
-  "500": {
-   "name": "m_nTodo_1F4",
-   "type": "int",
-   "source": "ida_gap_4refs"
-  },
-  "504": {
-   "name": "m_nTodo_1F8",
-   "type": "int",
-   "source": "ida_gap_4refs"
-  },
-  "556": {
-   "name": "m_nTodo_22C",
-   "type": "int",
-   "source": "ida_gap_1refs"
-  },
-  "600": {
-   "name": "m_nTodo_258",
-   "type": "int",
-   "source": "ida_gap_2refs"
-  },
-  "608": {
-   "name": "m_nTodo_260",
-   "type": "int",
-   "source": "ida_gap_10refs"
-  },
-  "612": {
-   "name": "m_nTodo_264",
-   "type": "int",
-   "source": "ida_gap_4refs"
-  },
-  "720": {
-   "name": "m_nTodo_2D0",
-   "type": "int",
-   "source": "ida_gap_5refs"
-  },
-  "724": {
-   "name": "m_nTodo_2D4",
-   "type": "int",
-   "source": "ida_gap_6refs"
-  },
-  "728": {
-   "name": "m_nTodo_2D8",
-   "type": "int",
-   "source": "ida_gap_1refs"
-  },
-  "732": {
-   "name": "m_nTodo_2DC",
-   "type": "int",
-   "source": "ida_gap_3refs"
-  },
-  "736": {
-   "name": "m_nTodo_2E0",
-   "type": "int",
-   "source": "ida_gap_3refs"
-  },
-  "800": {
-   "name": "m_nTodo_320",
-   "type": "int",
-   "source": "ida_gap_2refs"
-  },
-  "1084": {
-   "name": "m_nTodo_43C",
-   "type": "int",
-   "source": "ida_gap_2refs"
-  },
-  "1164": {
-   "name": "m_nTodo_48C",
-   "type": "int",
-   "source": "ida_gap_1refs"
-  },
-  "1168": {
-   "name": "m_nTodo_490",
-   "type": "int",
-   "source": "ida_gap_1refs"
-  },
-  "1380": {
-   "name": "m_nTodo_564",
-   "type": "int",
-   "source": "ida_gap_1refs"
-  },
-  "2148": {
-   "name": "m_nTodo_864",
-   "type": "int",
-   "source": "ida_gap_1refs"
-  },
-  "4376": {
-   "name": "m_nTodo_1118",
-   "type": "int",
-   "source": "ida_gap_3refs"
-  },
-  "13896": {
-   "name": "m_nTodo_3648",
-   "type": "int",
-   "source": "ida_gap_1refs"
-  },
-  "13904": {
-   "name": "m_nTodo_3650",
-   "type": "int",
-   "source": "ida_gap_1refs"
-  },
-  "13988": {
-   "name": "m_nTodo_36A4",
-   "type": "int",
-   "source": "ida_gap_24refs"
-  },
-  "15504": {
-   "name": "m_nTodo_3C90",
-   "type": "int",
-   "source": "ida_gap_1refs"
-  },
-  "16392": {
-   "name": "m_nTodo_4008",
-   "type": "int",
-   "source": "ida_gap_19refs"
-  },
-  "17104": {
-   "name": "m_nTodo_42D0",
-   "type": "int",
-   "source": "ida_gap_1refs"
-  },
-  "18296": {
-   "name": "m_EmbedUI3DCtrl",
-   "type": "int",
-   "source": "ida_gap_4refs;A:decomp_batch_rename_usage_pattern"
-  },
-  "18540": {
-   "name": "m_nTodo_486C",
-   "type": "int",
-   "source": "ida_gap_1refs"
-  },
-  "18544": {
-   "name": "m_nTodo_4870",
-   "type": "int",
-   "source": "ida_gap_1refs"
-  },
-  "21916": {
-   "name": "m_EmbedSubPanel",
-   "type": "int",
-   "source": "ida_gap_3refs;A:decomp_batch_rename_usage_pattern"
-  },
-  "26960": {
-   "name": "m_nCaptionOverlay",
-   "type": "int",
-   "source": "A:decomp_UICaption_SetEnable_cast_embed_caption"
-  }
- },
- "base_class": [
-  "UIFrameWnd"
- ],
- "methods": {
-  "0x00452670": {
-   "name": "Init",
-   "signature": "void __thiscall()"
-  },
-  "0x0046D4E0": {
-   "name": "ctor",
-   "signature": "void __thiscall()",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-  },
-  "0x0046D140": {
-   "name": "InitUI",
-   "signature": "int __thiscall PropUI::InitUI()"
-  },
-  "0x0046ECC0": {
-   "name": "DisplayItemInfo",
-   "signature": "int __thiscall PropUI::DisplayItemInfo()"
-  },
-  "0x0046F620": {
-   "name": "HandleInput",
-   "signature": "int __thiscall(int nVal, int nVal2)",
-   "ordinal": 2
-  },
-  "0x0046F650": {
-   "name": "InitListUI",
-   "signature": "int __thiscall(int arg0, int nVal, unsigned int dwVal)",
-   "ordinal": 6
-  },
-  "0x0045B200": {
-   "name": "ShowCategory0",
-   "signature": "int __thiscall PropUI::ShowCategory0(unsigned __int8 pData)"
-  },
-  "0x0045B320": {
-   "name": "ShowCategory1",
-   "signature": "int __thiscall PropUI::ShowCategory1(unsigned __int8 pData)"
-  },
-  "0x0045B440": {
-   "name": "ShowCategory2",
-   "signature": "int __thiscall PropUI::ShowCategory2(unsigned __int8 pData)"
-  },
-  "0x0045B560": {
-   "name": "ShowCategory3",
-   "signature": "int __thiscall PropUI::ShowCategory3(unsigned __int8 pData)"
-  },
-  "0x0045B680": {
-   "name": "ShowCategory4",
-   "signature": "int __thiscall PropUI::ShowCategory4(unsigned __int8 pData)"
-  },
-  "0x0046DD10": {
-   "name": "UpdateItemList",
-   "signature": "int __thiscall PropUI::UpdateItemList(const void *arg0)"
-  },
-  "0x0046DF40": {
-   "name": "InitPlayerList",
-   "signature": "int __thiscall(int nVal)"
-  },
-  "0x0046EC30": {
-   "name": "SetSlotLock",
-   "signature": "int __thiscall PropUI::SetSlotLock(int nVal)"
-  },
-  "0x0046EC50": {
-   "name": "CheckMode",
-   "signature": "bool __thiscall PropUI::CheckMode(unsigned int dwVal)"
-  },
-  "0x0046EC70": {
-   "name": "SetSceneStates",
-   "signature": "int __thiscall(unsigned char pData)"
-  },
-  "0x0046F160": {
-   "name": "UpdateCaptions",
-   "signature": "int __thiscall PropUI::UpdateCaptions()"
-  },
-  "0x0046F300": {
-   "name": "UpdateItemDetail",
-   "signature": "void __thiscall PropUI::UpdateItemDetail(int nItemIdx)"
-  },
-  "0x00521A50": {
-   "name": "SetPendingMessage",
-   "signature": "int __thiscall PropUI::SetPendingMessage(char msg, int wparam, int lparam)"
-  },
-  "0x0046D4C0": {
-   "name": "_scalar_dtor",
-   "signature": "int __thiscall(void *Block, char)",
-   "source": "vtable_migrated",
-   "ordinal": 5
-  },
-  "0x0043DDF0": {
-   "name": "CCBControlWindow::Render",
-   "signature": "virtual void __thiscall(CCBMagicWindow *this)",
-   "source": "vtable_decl_only_fill(copied from CCBControlWindow.json)"
-  }
- },
- "vtables": [
-  {
-   "addr": "0x0056B688",
-   "base": "UIWnd",
-   "slots": [
-    {
-     "addr": "0x00445E70",
-     "from": "UIWnd"
+  "name": "PropUI",
+  "binary_size": 29056,
+  "known_members": {
+    "72": {
+      "name": "bkWndX",
+      "type": "int",
+      "source": "annotation"
     },
-    {
-     "addr": "0x0043DDF0",
-     "from": "UIListBox"
+    "76": {
+      "name": "bkWndY",
+      "type": "int",
+      "source": "annotation"
     },
-    {
-     "addr": "0x0046F620",
-     "from": null
+    "80": {
+      "name": "m_ListWidth",
+      "type": "int",
+      "source": "annotation"
     },
-    {
-     "addr": "0x0043DE40",
-     "from": "UIListBox"
+    "84": {
+      "name": "m_ListHeight",
+      "type": "int",
+      "source": "annotation"
     },
-    {
-     "addr": "0x00445B90",
-     "from": "UIWnd"
+    "88": {
+      "name": "m_PropData",
+      "type": "st_Manager",
+      "source": "annotation"
     },
-    {
-     "addr": "0x0046D4C0",
-     "from": null
+    "17592": {
+      "name": "p_DealData",
+      "type": "PlayerItem *",
+      "source": "annotation"
     },
-    {
-     "addr": "0x0046F650",
-     "from": null
+    "17596": {
+      "name": "buf",
+      "type": "char[256]",
+      "source": "annotation"
+    },
+    "17852": {
+      "name": "remarkbuf",
+      "type": "char[256]",
+      "source": "annotation"
+    },
+    "18108": {
+      "name": "m_SelNum",
+      "type": "int",
+      "source": "annotation"
+    },
+    "18112": {
+      "name": "m_ListSelNum",
+      "type": "int *",
+      "source": "annotation"
+    },
+    "18116": {
+      "name": "m_MaxNum",
+      "type": "int *",
+      "source": "annotation"
+    },
+    "18120": {
+      "name": "m_x",
+      "type": "int",
+      "source": "annotation"
+    },
+    "18124": {
+      "name": "m_y",
+      "type": "int",
+      "source": "annotation"
+    },
+    "18128": {
+      "name": "m_Sum",
+      "type": "int",
+      "source": "annotation"
+    },
+    "18132": {
+      "name": "i",
+      "type": "int",
+      "source": "annotation"
+    },
+    "18136": {
+      "name": "j",
+      "type": "int",
+      "source": "annotation"
+    },
+    "18140": {
+      "name": "_isCreatable",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "18144": {
+      "name": "m_Frame",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "18304": {
+      "name": "m_FrameBar",
+      "type": "UIFlexBar",
+      "source": "annotation"
+    },
+    "18388": {
+      "name": "m_Flag",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "18548": {
+      "name": "m_OutFrameT",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "18708": {
+      "name": "m_OutFrameR",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "18868": {
+      "name": "m_OutFrameL",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "19028": {
+      "name": "m_OutFrameB",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "19188": {
+      "name": "mb_ExitRc",
+      "type": "tagRECT",
+      "source": "annotation"
+    },
+    "19204": {
+      "name": "mb_Exit",
+      "type": "UIButton",
+      "source": "annotation"
+    },
+    "19548": {
+      "name": "m_ani",
+      "type": "UIAnimateCtrl",
+      "source": "annotation"
+    },
+    "19712": {
+      "name": "m_Role",
+      "type": "UIStatic[5]",
+      "source": "annotation"
+    },
+    "20512": {
+      "name": "m_RoleRc",
+      "type": "tagRECT[5]",
+      "source": "annotation"
+    },
+    "20592": {
+      "name": "RoleX",
+      "type": "int",
+      "source": "annotation"
+    },
+    "20596": {
+      "name": "RoleY",
+      "type": "int",
+      "source": "annotation"
+    },
+    "20600": {
+      "name": "HeadW",
+      "type": "int",
+      "source": "annotation"
+    },
+    "20604": {
+      "name": "HeadH",
+      "type": "int",
+      "source": "annotation"
+    },
+    "20608": {
+      "name": "m_Is",
+      "type": "unsigned char[5]",
+      "source": "annotation"
+    },
+    "20616": {
+      "name": "m_Msg",
+      "type": "MUIDialog",
+      "source": "annotation"
+    },
+    "22000": {
+      "name": "m_3DObj",
+      "type": "UI3DCtrl",
+      "source": "annotation"
+    },
+    "22308": {
+      "name": "m_Dlg",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "22468": {
+      "name": "m_DlgRc",
+      "type": "tagRECT",
+      "source": "annotation"
+    },
+    "22484": {
+      "name": "m_TalkFrame",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "22644": {
+      "name": "m_Ready",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "22804": {
+      "name": "m_ReadyRc",
+      "type": "tagRECT",
+      "source": "annotation"
+    },
+    "22820": {
+      "name": "m_ListFrame",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "22980": {
+      "name": "m_ListGrid",
+      "type": "UIStatic[14]",
+      "source": "annotation"
+    },
+    "25220": {
+      "name": "m_ScrollHB",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "25380": {
+      "name": "m_EquipFlag",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "25540": {
+      "name": "m_ListPropTitle",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "25700": {
+      "name": "m_ListPropTitleRc",
+      "type": "tagRECT",
+      "source": "annotation"
+    },
+    "25716": {
+      "name": "ml_ListProp",
+      "type": "UIListBox",
+      "source": "annotation"
+    },
+    "27004": {
+      "name": "ml_ListPropRc",
+      "type": "tagRECT",
+      "source": "annotation"
+    },
+    "27020": {
+      "name": "m_btnGroup",
+      "type": "BtnGroup",
+      "source": "annotation"
+    },
+    "27760": {
+      "name": "m_ctrlTime",
+      "type": "float",
+      "source": "annotation"
+    },
+    "27764": {
+      "name": "m_bCanUpdate1",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "27765": {
+      "name": "m_bCanUpdate2",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "27768": {
+      "name": "m_PropRemarkBk",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "27928": {
+      "name": "m_PropRemark",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "28088": {
+      "name": "m_PropAtt",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "28248": {
+      "name": "m_MoneyRemark",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "28408": {
+      "name": "m_MoneyRc",
+      "type": "tagRECT",
+      "source": "annotation"
+    },
+    "28424": {
+      "name": "m_SumProp",
+      "type": "UIStatic",
+      "source": "annotation"
+    },
+    "28584": {
+      "name": "m_SumRc",
+      "type": "tagRECT",
+      "source": "annotation"
+    },
+    "28600": {
+      "name": "mb_OK",
+      "type": "UIButton",
+      "source": "annotation"
+    },
+    "28944": {
+      "name": "mb_OKRc",
+      "type": "tagRECT",
+      "source": "annotation"
+    },
+    "356": {
+      "name": "m_nTodo_164",
+      "type": "int",
+      "source": "ida_gap_40refs"
+    },
+    "360": {
+      "name": "m_nTodo_168",
+      "type": "int",
+      "source": "ida_gap_15refs"
+    },
+    "376": {
+      "name": "m_nTodo_178",
+      "type": "int",
+      "source": "ida_gap_10refs"
+    },
+    "400": {
+      "name": "m_nTodo_190",
+      "type": "int",
+      "source": "ida_gap_2refs"
+    },
+    "500": {
+      "name": "m_nTodo_1F4",
+      "type": "int",
+      "source": "ida_gap_4refs"
+    },
+    "504": {
+      "name": "m_nTodo_1F8",
+      "type": "int",
+      "source": "ida_gap_4refs"
+    },
+    "556": {
+      "name": "m_nTodo_22C",
+      "type": "int",
+      "source": "ida_gap_1refs"
+    },
+    "600": {
+      "name": "m_nTodo_258",
+      "type": "int",
+      "source": "ida_gap_2refs"
+    },
+    "608": {
+      "name": "m_nTodo_260",
+      "type": "int",
+      "source": "ida_gap_10refs"
+    },
+    "612": {
+      "name": "m_nTodo_264",
+      "type": "int",
+      "source": "ida_gap_4refs"
+    },
+    "720": {
+      "name": "m_nTodo_2D0",
+      "type": "int",
+      "source": "ida_gap_5refs"
+    },
+    "724": {
+      "name": "m_nTodo_2D4",
+      "type": "int",
+      "source": "ida_gap_6refs"
+    },
+    "728": {
+      "name": "m_nTodo_2D8",
+      "type": "int",
+      "source": "ida_gap_1refs"
+    },
+    "732": {
+      "name": "m_nTodo_2DC",
+      "type": "int",
+      "source": "ida_gap_3refs"
+    },
+    "736": {
+      "name": "m_nTodo_2E0",
+      "type": "int",
+      "source": "ida_gap_3refs"
+    },
+    "800": {
+      "name": "m_nTodo_320",
+      "type": "int",
+      "source": "ida_gap_2refs"
+    },
+    "1084": {
+      "name": "m_nTodo_43C",
+      "type": "int",
+      "source": "ida_gap_2refs"
+    },
+    "1164": {
+      "name": "m_nTodo_48C",
+      "type": "int",
+      "source": "ida_gap_1refs"
+    },
+    "1168": {
+      "name": "m_nTodo_490",
+      "type": "int",
+      "source": "ida_gap_1refs"
+    },
+    "1380": {
+      "name": "m_nTodo_564",
+      "type": "int",
+      "source": "ida_gap_1refs"
+    },
+    "2148": {
+      "name": "m_nTodo_864",
+      "type": "int",
+      "source": "ida_gap_1refs"
+    },
+    "4376": {
+      "name": "m_nTodo_1118",
+      "type": "int",
+      "source": "ida_gap_3refs"
+    },
+    "13896": {
+      "name": "m_nTodo_3648",
+      "type": "int",
+      "source": "ida_gap_1refs"
+    },
+    "13904": {
+      "name": "m_nTodo_3650",
+      "type": "int",
+      "source": "ida_gap_1refs"
+    },
+    "13988": {
+      "name": "m_nTodo_36A4",
+      "type": "int",
+      "source": "ida_gap_24refs"
+    },
+    "15504": {
+      "name": "m_nTodo_3C90",
+      "type": "int",
+      "source": "ida_gap_1refs"
+    },
+    "16392": {
+      "name": "m_nTodo_4008",
+      "type": "int",
+      "source": "ida_gap_19refs"
+    },
+    "17104": {
+      "name": "m_nTodo_42D0",
+      "type": "int",
+      "source": "ida_gap_1refs"
+    },
+    "18296": {
+      "name": "m_EmbedUI3DCtrl",
+      "type": "int",
+      "source": "ida_gap_4refs;A:decomp_batch_rename_usage_pattern"
+    },
+    "18540": {
+      "name": "m_nTodo_486C",
+      "type": "int",
+      "source": "ida_gap_1refs"
+    },
+    "18544": {
+      "name": "m_nTodo_4870",
+      "type": "int",
+      "source": "ida_gap_1refs"
+    },
+    "21916": {
+      "name": "m_EmbedSubPanel",
+      "type": "int",
+      "source": "ida_gap_3refs;A:decomp_batch_rename_usage_pattern"
+    },
+    "26960": {
+      "name": "m_nCaptionOverlay",
+      "type": "int",
+      "source": "A:decomp_UICaption_SetEnable_cast_embed_caption"
     }
-   ]
-  }
- ],
- "base_size": 72
+  },
+  "base_class": [
+    "UIFrameWnd"
+  ],
+  "methods": {
+    "0x00452670": {
+      "name": "Init",
+      "signature": "void __thiscall()"
+    },
+    "0x0046D4E0": {
+      "name": "~PropUI",
+      "signature": "void __thiscall()",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "source": " | [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~PropUI。refs: ??3@YAXPAX@Z Destroy ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ?Destroy2@UICaption@@QAEXXZ ?DeleteRo"
+    },
+    "0x0046D140": {
+      "name": "InitUI",
+      "signature": "int __thiscall PropUI::InitUI()"
+    },
+    "0x0046ECC0": {
+      "name": "DisplayItemInfo",
+      "signature": "int __thiscall PropUI::DisplayItemInfo()"
+    },
+    "0x0046F620": {
+      "name": "HandleInput",
+      "signature": "int __thiscall(int nVal, int nVal2)",
+      "ordinal": 2
+    },
+    "0x0046F650": {
+      "name": "InitListUI",
+      "signature": "int __thiscall(int arg0, int nVal, unsigned int dwVal)",
+      "ordinal": 6
+    },
+    "0x0045B200": {
+      "name": "ShowCategory0",
+      "signature": "int __thiscall PropUI::ShowCategory0(unsigned __int8 pData)"
+    },
+    "0x0045B320": {
+      "name": "ShowCategory1",
+      "signature": "int __thiscall PropUI::ShowCategory1(unsigned __int8 pData)"
+    },
+    "0x0045B440": {
+      "name": "ShowCategory2",
+      "signature": "int __thiscall PropUI::ShowCategory2(unsigned __int8 pData)"
+    },
+    "0x0045B560": {
+      "name": "ShowCategory3",
+      "signature": "int __thiscall PropUI::ShowCategory3(unsigned __int8 pData)"
+    },
+    "0x0045B680": {
+      "name": "ShowCategory4",
+      "signature": "int __thiscall PropUI::ShowCategory4(unsigned __int8 pData)"
+    },
+    "0x0046DD10": {
+      "name": "UpdateItemList",
+      "signature": "int __thiscall PropUI::UpdateItemList(const void *arg0)"
+    },
+    "0x0046DF40": {
+      "name": "InitPlayerList",
+      "signature": "int __thiscall(int nVal)"
+    },
+    "0x0046EC30": {
+      "name": "SetSlotLock",
+      "signature": "int __thiscall PropUI::SetSlotLock(int nVal)"
+    },
+    "0x0046EC50": {
+      "name": "CheckMode",
+      "signature": "bool __thiscall PropUI::CheckMode(unsigned int dwVal)"
+    },
+    "0x0046EC70": {
+      "name": "SetSceneStates",
+      "signature": "int __thiscall(unsigned char pData)"
+    },
+    "0x0046F160": {
+      "name": "UpdateCaptions",
+      "signature": "int __thiscall PropUI::UpdateCaptions()"
+    },
+    "0x0046F300": {
+      "name": "UpdateItemDetail",
+      "signature": "void __thiscall PropUI::UpdateItemDetail(int nItemIdx)"
+    },
+    "0x00521A50": {
+      "name": "SetPendingMessage",
+      "signature": "int __thiscall PropUI::SetPendingMessage(char msg, int wparam, int lparam)"
+    },
+    "0x0046D4C0": {
+      "name": "_scalar_dtor",
+      "signature": "int __thiscall(void *Block, char)",
+      "source": "vtable_migrated",
+      "ordinal": 5
+    },
+    "0x0043DDF0": {
+      "name": "CCBControlWindow::Render",
+      "signature": "virtual void __thiscall(CCBMagicWindow *this)",
+      "source": "vtable_decl_only_fill(copied from CCBControlWindow.json)"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056B688",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": "UIListBox"
+        },
+        {
+          "addr": "0x0046F620",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": "UIListBox"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0046D4C0",
+          "from": null
+        },
+        {
+          "addr": "0x0046F650",
+          "from": null
+        }
+      ]
+    }
+  ],
+  "base_size": 72
 }

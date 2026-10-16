@@ -200,8 +200,9 @@
   },
   "methods": {
     "0x004BDAC0": {
-      "name": "RenderTarget",
-      "signature": "void __thiscall()"
+      "name": "~RenderTarget",
+      "signature": "void __thiscall()",
+      "source": " | [ctor/dtor 错位改名 2026-10-16] 名 RenderTarget 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~RenderTarget。refs: ??1gbTexture_D3D@@UAE@XZ"
     },
     "0x004BDB60": {
       "name": "Create",

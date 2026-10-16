@@ -248,8 +248,9 @@
       "signature": "GRPinput *__fastcall(GRPinput *this)"
     },
     "0x00402BF0": {
-      "name": "SetMouseFreePos",
-      "signature": "void __thiscall()"
+      "name": "~GRPinput",
+      "signature": "void __thiscall()",
+      "source": " | [ctor/dtor 错位改名 2026-10-16] SetMouseFreePos ⇒ ~GRPinput：idapro 交叉复核（lead 确认）：名=Setter 语义实为**真析构**；objdump 402bf3 movl $0x56a620,(%esi) vptr 写 + 402bfc test %eax,%eax 删 flag = **scalar deleting destructor 形**"
     },
     "0x00402C40": {
       "name": "SetJoystickPos",

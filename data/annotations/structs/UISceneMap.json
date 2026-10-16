@@ -50,8 +50,9 @@
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
     "0x00450090": {
-      "name": "ctor_90",
-      "signature": "void __thiscall()"
+      "name": "~UISceneMap",
+      "signature": "void __thiscall()",
+      "source": " | [ctor/dtor 错位改名 2026-10-16] 名 ctor_90 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UISceneMap。refs: ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ??1UIListBox@@QAE@XZ"
     },
     "0x00535930": {
       "name": "LoadOverlayTexture",

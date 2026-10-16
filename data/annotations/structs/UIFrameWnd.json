@@ -13,8 +13,9 @@
   ],
   "methods": {
     "0x00442390": {
-      "name": "_UIFrameWnd",
-      "signature": "void __thiscall()"
+      "name": "~UIFrameWnd",
+      "signature": "void __thiscall()",
+      "source": " | [ctor/dtor 错位改名 2026-10-16] 名 _UIFrameWnd 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UIFrameWnd。refs: ?Destroy@UIFrameWnd@@QAEXXZ ??3@YAXPAX@Z ?_UIWnd@UIWnd@@QAEXXZ"
     },
     "0x00442420": {
       "name": "Destroy",
@@ -34,10 +35,11 @@
       "source": "+strip_suffix"
     },
     "0x00442E80": {
-      "name": "ctor",
+      "name": "~UIFrameWnd",
       "signature": "void __thiscall()",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "source": " | [ctor/dtor 错位改名 2026-10-16] ctor ⇒ ~UIFrameWnd：idapro 交叉复核（lead 确认）：ctor 名语义实为**真析构**（叶析构无 ??1/??3 家族调用=机械判据盲区，人工裁决补）"
     },
     "0x004431D0": {
       "name": "DestroyCallingCtor",

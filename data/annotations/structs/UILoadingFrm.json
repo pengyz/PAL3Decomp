@@ -1,159 +1,160 @@
 {
- "name": "UILoadingFrm",
- "binary_size": 332,
- "known_members": {
-  "72": {
-   "name": "m_LoadProgress",
-   "type": "UIProgressBar",
-   "source": "annotation"
-  },
-  "316": {
-   "name": "m_anitime",
-   "type": "float",
-   "source": "annotation"
-  },
-  "320": {
-   "name": "m_aniFlag",
-   "type": "int",
-   "source": "annotation"
-  },
-  "324": {
-   "name": "m_MaxValue",
-   "type": "float",
-   "source": "annotation"
-  },
-  "328": {
-   "name": "m_isOverProgress",
-   "type": "unsigned char",
-   "source": "annotation"
-  }
- },
- "base_class": [
-  "UIFrameWnd"
- ],
- "methods": {
-  "0x00450710": {
-   "name": "ctor",
-   "signature": "int *__thiscall()",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-  },
-  "0x00450790": {
-   "name": "UILoadingFrm",
-   "signature": "void __thiscall()"
-  },
-  "0x00450770": {
-   "name": "_scalar_dtor",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "ordinal": 5
-  },
-  "0x00450990": {
-   "name": "OnMessage",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
-   "ordinal": 6
-  },
-  "0x00483300": {
-   "name": "DestroyFrames",
-   "signature": "void __thiscall UILoadingFrm::DestroyFrames()"
-  },
-  "0x004507F0": {
-   "name": "InitFullScreen",
-   "signature": "void __thiscall UILoadingFrm::InitFullScreen()"
-  },
-  "0x00450900": {
-   "name": "UpdateAnimation",
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
-   "ordinal": 2
-  },
-  "0x00483280": {
-   "name": "DestroyStatics",
-   "signature": "void __thiscall UILoadingFrm::DestroyStatics()"
-  },
-  "0x0052DD60": {
-   "name": "ResetState",
-   "signature": "int __thiscall UIGameOver::ResetState()"
-  },
-  "0x0052DE00": {
-   "name": "ResetAllState",
-   "signature": "int __thiscall UILoadingFrm::ResetAllState()"
-  },
-  "0x0052E820": {
-   "name": "CheckProgress",
-   "signature": "char __thiscall UILoadingFrm::CheckProgress(int nVal)"
-  },
-  "0x0043BBC0": {
-   "name": "Update_bbc0",
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
-   "source": "vtable_gap_fill_v1(from UIFrameWnd.json)"
-  },
-  "0x0043DE40": {
-   "name": "CCBRoleState::Destroy",
-   "signature": "int __thiscall Destroy(int nMode)",
-   "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
-  },
-  "0x004518E0": {
-   "name": "_sdtor_28",
-   "signature": "UIWnd *__thiscall(UIWnd *Block, char a2)",
-   "source": "vtable_gap_fill_v1(from UIWnd.json)"
-  },
-  "0x00451B40": {
-   "name": "ResizeToContent",
-   "signature": "int __thiscall UIListBox::ResizeToContent(int bResize)",
-   "source": "vtable_gap_fill_v1(from UIListBox.json)"
-  },
-  "0x00451C10": {
-   "name": "IsVisible",
-   "signature": "int __thiscall UIListBox::IsVisible()",
-   "source": "vtable_gap_fill_v1(from UIListBox.json)"
-  },
-  "0x00524970": {
-   "name": "CCBRoleState::Render",
-   "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
-   "source": "vtable_gap_fill_v1(from CCBStage.json)"
-  },
-  "0x00451AA0": {
-   "name": "OnMessage_ovl_1aa0",
-   "signature": "int __thiscall(int, int, int)",
-   "source": "vtable_gap_fill_v1(IDB:?OnMessage_ovl_1aa0@UIListBox@@QAEHXZ) | vtable_sig_arity_fill(ret-N=12) | vtable_sig_arity_fill(ret-N=12)"
-  }
- },
- "vtables": [
-  {
-   "addr": "0x0056B100",
-   "base": "UIWnd",
-   "slots": [
-    {
-     "addr": "0x00445E70",
-     "from": "UIWnd"
+  "name": "UILoadingFrm",
+  "binary_size": 332,
+  "known_members": {
+    "72": {
+      "name": "m_LoadProgress",
+      "type": "UIProgressBar",
+      "source": "annotation"
     },
-    {
-     "addr": "0x00524970",
-     "from": null
+    "316": {
+      "name": "m_anitime",
+      "type": "float",
+      "source": "annotation"
     },
-    {
-     "addr": "0x00450900",
-     "from": null
+    "320": {
+      "name": "m_aniFlag",
+      "type": "int",
+      "source": "annotation"
     },
-    {
-     "addr": "0x0043DE40",
-     "from": null
+    "324": {
+      "name": "m_MaxValue",
+      "type": "float",
+      "source": "annotation"
     },
-    {
-     "addr": "0x00445B90",
-     "from": "UIWnd"
-    },
-    {
-     "addr": "0x00450770",
-     "from": null
-    },
-    {
-     "addr": "0x00450990",
-     "from": null
+    "328": {
+      "name": "m_isOverProgress",
+      "type": "unsigned char",
+      "source": "annotation"
     }
-   ]
-  }
- ],
- "base_size": 72
+  },
+  "base_class": [
+    "UIFrameWnd"
+  ],
+  "methods": {
+    "0x00450710": {
+      "name": "ctor",
+      "signature": "int *__thiscall()",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+    },
+    "0x00450790": {
+      "name": "~UILoadingFrm",
+      "signature": "void __thiscall()",
+      "source": " | [ctor/dtor 错位改名 2026-10-16] 名 UILoadingFrm 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UILoadingFrm。refs: ??1UIButton@@QAE@XZ ??1UIListBox@@QAE@XZ"
+    },
+    "0x00450770": {
+      "name": "_scalar_dtor",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
+    },
+    "0x00450990": {
+      "name": "OnMessage",
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
+      "ordinal": 6
+    },
+    "0x00483300": {
+      "name": "DestroyFrames",
+      "signature": "void __thiscall UILoadingFrm::DestroyFrames()"
+    },
+    "0x004507F0": {
+      "name": "InitFullScreen",
+      "signature": "void __thiscall UILoadingFrm::InitFullScreen()"
+    },
+    "0x00450900": {
+      "name": "UpdateAnimation",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
+      "ordinal": 2
+    },
+    "0x00483280": {
+      "name": "DestroyStatics",
+      "signature": "void __thiscall UILoadingFrm::DestroyStatics()"
+    },
+    "0x0052DD60": {
+      "name": "ResetState",
+      "signature": "int __thiscall UIGameOver::ResetState()"
+    },
+    "0x0052DE00": {
+      "name": "ResetAllState",
+      "signature": "int __thiscall UILoadingFrm::ResetAllState()"
+    },
+    "0x0052E820": {
+      "name": "CheckProgress",
+      "signature": "char __thiscall UILoadingFrm::CheckProgress(int nVal)"
+    },
+    "0x0043BBC0": {
+      "name": "Update_bbc0",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
+      "source": "vtable_gap_fill_v1(from UIFrameWnd.json)"
+    },
+    "0x0043DE40": {
+      "name": "CCBRoleState::Destroy",
+      "signature": "int __thiscall Destroy(int nMode)",
+      "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+    },
+    "0x004518E0": {
+      "name": "_sdtor_28",
+      "signature": "UIWnd *__thiscall(UIWnd *Block, char a2)",
+      "source": "vtable_gap_fill_v1(from UIWnd.json)"
+    },
+    "0x00451B40": {
+      "name": "ResizeToContent",
+      "signature": "int __thiscall UIListBox::ResizeToContent(int bResize)",
+      "source": "vtable_gap_fill_v1(from UIListBox.json)"
+    },
+    "0x00451C10": {
+      "name": "IsVisible",
+      "signature": "int __thiscall UIListBox::IsVisible()",
+      "source": "vtable_gap_fill_v1(from UIListBox.json)"
+    },
+    "0x00524970": {
+      "name": "CCBRoleState::Render",
+      "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
+      "source": "vtable_gap_fill_v1(from CCBStage.json)"
+    },
+    "0x00451AA0": {
+      "name": "OnMessage_ovl_1aa0",
+      "signature": "int __thiscall(int, int, int)",
+      "source": "vtable_gap_fill_v1(IDB:?OnMessage_ovl_1aa0@UIListBox@@QAEHXZ) | vtable_sig_arity_fill(ret-N=12) | vtable_sig_arity_fill(ret-N=12)"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056B100",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00524970",
+          "from": null
+        },
+        {
+          "addr": "0x00450900",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00450770",
+          "from": null
+        },
+        {
+          "addr": "0x00450990",
+          "from": null
+        }
+      ]
+    }
+  ],
+  "base_size": 72
 }
