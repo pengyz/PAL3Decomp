@@ -219,12 +219,12 @@
  "0x00438100": {
   "name": "IsAnimDone",
   "signature": "virtual BOOL __thiscall(_BYTE *this)",
-  "source": " | 46五面专轮 2026-10-17（verifier·双注册同址名同步）：原名 _sub_438100 ⇒ IsAnimDone：同址计时器族谓词（IsAnimDone/IsProgressDone/IsWaitDone 三名共址合法共槽）⇒ 副本同步主流名"
+  "source": " | 46五面专轮 2026-10-17（verifier·双注册同址名同步）：原名 _sub_438100 ⇒ IsAnimDone：同址计时器族谓词（IsAnimDone/IsProgressDone/IsWaitDone 三名共址合法共槽）⇒ 副本同步主流名 | [4 条补面 2026-10-17·五面满卡] ③面 return this[12]==0（完成判 ✓）+ 三证法 3 面 ⇒ 5/5 ——保留命名 ✓"
  },
  "0x00438530": {
   "name": "IsFadeDone",
   "signature": "virtual BOOL __thiscall(_BYTE *this)",
-  "source": " | 46五面专轮 2026-10-17（verifier·双注册同址名同步）：原名 _sub_438530 ⇒ IsFadeDone：同址淡变谓词（IsFadeDone）⇒ 副本同步"
+  "source": " | 46五面专轮 2026-10-17（verifier·双注册同址名同步）：原名 _sub_438530 ⇒ IsFadeDone：同址淡变谓词（IsFadeDone）⇒ 副本同步 | [4 条补面 2026-10-17·五面满卡] ③面 return this[16]==0（淡出完成判 ✓）⇒ 5/5 ——保留命名 ✓"
  },
  "0x004499A0": {
   "name": "CCBRoleState::sub_4499A0",
@@ -367,7 +367,7 @@
  "0x004D33A0": {
   "name": "ResetIdle",
   "signature": "virtual void __thiscall(CEffQuake *this, int a2, int a3, int a4, int a5)",
-  "source": "this-type:_BYTE*→CEffQuake* 2026-10-14 | A级 objdump 0x4D33A0 `c6 41 08 00` = CEffObj::m_bIdle@+8 BYTE 存（CEffQuake : public CEffObj）| 原 _BYTE* this 使 Hex-Rays 出 this[8]（scale 1）而 codegen 定 this=CEffQuake*(4272B) ⇒ this[8] scale 4272 全错 + C2679 | 修法=给 IDB 正确 this 型让 Hex-Rays 出 this->m_bIdle | 46五面专轮 2026-10-17（verifier·双注册同址名同步）：原名 _sub_4D33A0 ⇒ ResetIdle：同址 structs/EffTargetPool 侧已名 ResetIdle（三证法面+本侧体证 113B store×1）⇒ functions.json 副本同步"
+  "source": "this-type:_BYTE*→CEffQuake* 2026-10-14 | A级 objdump 0x4D33A0 `c6 41 08 00` = CEffObj::m_bIdle@+8 BYTE 存（CEffQuake : public CEffObj）| 原 _BYTE* this 使 Hex-Rays 出 this[8]（scale 1）而 codegen 定 this=CEffQuake*(4272B) ⇒ this[8] scale 4272 全错 + C2679 | 修法=给 IDB 正确 this 型让 Hex-Rays 出 this->m_bIdle | 46五面专轮 2026-10-17（verifier·双注册同址名同步）：原名 _sub_4D33A0 ⇒ ResetIdle：同址 structs/EffTargetPool 侧已名 ResetIdle（三证法面+本侧体证 113B store×1）⇒ functions.json 副本同步 | [4 条补面 2026-10-17·五面满卡] ③面 this->m_bIdle=0（具名成员 ✓ 空闲标志清）⇒ 5/5 ——保留命名 ✓"
  },
  "0x004D4DF0": {
   "name": "_sdtor_40",
@@ -2836,20 +2836,21 @@
  "0x005090A0": {
   "name": "compiler_init_005090A0",
   "signature": "void __cdecl()",
-  "source": "批18 收编 2026-09-29：函数体证据（全访问全局址/零参数读）⇒ 0 参；CRT 初始化数组间接调用（.CRT$XCU）无直调点——调用点清理证据法失效（定谳） | 变参形 2026-10-06：调用点渲染名带 this 实参（0 参体证 vs 1 实参渲染）——变参形收（回波参待渲染面统一后订正） | [T56-分析驱动重试] 根因已诊断：slots 喂入断（自由函数不入 sig_slots map，门恒 None）+ 变参形槽数未知——两半均已补（stage2 free_func_sigs 喂入 + 0 参形）。A 级 0x509090 `e9 0b 00 00 00` jmp 形无实参设置 ✓"
+  "source": "批18 收编 2026-09-29：函数体证据（全访问全局址/零参数读）⇒ 0 参；CRT 初始化数组间接调用（.CRT$XCU）无直调点——调用点清理证据法失效（定谳） | 变参形 2026-10-06：调用点渲染名带 this 实参（0 参体证 vs 1 实参渲染）——变参形收（回波参待渲染面统一后订正） | [T56-分析驱动重试] 根因已诊断：slots 喂入断（自由函数不入 sig_slots map，门恒 None）+ 变参形槽数未知——两半均已补（stage2 free_func_sigs 喂入 + 0 参形）。A 级 0x509090 `e9 0b 00 00 00` jmp 形无实参设置 ✓ | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only（check:748 判据面）",
+  "declaration_only": true
  },
  "0x0047E536": {
-  "name": "HandleDllEntry",
+  "name": "HandleDllEntryUITitle",
   "signature": "int __stdcall(int, int, int)",
-  "source": "挂账③ E 案 2026-10-06：0x47E4E0 jz 尾跳目标（mov eax,1; retn 0xC）=stdcall 3 参回 1 桩——原名 _DllMain@12_* 无任何权威源（PAL3 字节串/PDB/FLIRT 三处零命中）疑跨库泄漏；改 _todo_ 真名未知形+实参形声明（元数=retn 0xC A 级；型保守 int 形） | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：双胞壳·HandleMsgDLL@UITitle_YXXX 域",
+  "source": "挂账③ E 案 2026-10-06：0x47E4E0 jz 尾跳目标（mov eax,1; retn 0xC）=stdcall 3 参回 1 桩——原名 _DllMain@12_* 无任何权威源（PAL3 字节串/PDB/FLIRT 三处零命中）疑跨库泄漏；改 _todo_ 真名未知形+实参形声明（元数=retn 0xC A 级；型保守 int 形） | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：双胞壳·HandleMsgDLL@UITitle_YXXX 域 | 消双注+双胞壳收口 2026-10-17（verifier·五面：调用者域消歧）：原名 HandleDllEntry ⇒ HandleDllEntryUITitle | evidence: 五面①调用者=HandleMsgDLL@UITitle_YXXX（UI 标题域）②114B DLL 消息件 ③int(int,int,int) ④UITitle_YXXX 域 ⑤DLL 消息处理——与 0x5329BE 同签名硬撞 ⇒ 域后缀消歧 | confidence: high",
   "declaration_only": true,
   "face3_rule": "stdcall 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）",
   "source_note": "[余 8 补面 2026-10-17·五面满卡] HandleDllEntry（①UITitle_YXXX::HandleMsgDLL ✓ ②**DllMain 签名形**（HINSTANCE/DWORD/LPVOID ✓）③参数语义=HINSTANCE/原因码 ✓ ④UITitle_YXXX ✓ ⑤DLL 生命周期处理 ✓）· A 级 conf 92"
  },
  "0x005329BE": {
-  "name": "HandleDllEntry",
+  "name": "HandleDllEntryRoleSystem",
   "signature": "int __stdcall(int, int, int)",
-  "source": "挂账③ E 案 2026-10-06：0x47E4E0 jz 尾跳目标（mov eax,1; retn 0xC）=stdcall 3 参回 1 桩——原名 _DllMain@12_* 无任何权威源（PAL3 字节串/PDB/FLIRT 三处零命中）疑跨库泄漏；改 _todo_ 真名未知形+实参形声明（元数=retn 0xC A 级；型保守 int 形） | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：双胞壳·HandleMsgDLL@RoleSystem 域",
+  "source": "挂账③ E 案 2026-10-06：0x47E4E0 jz 尾跳目标（mov eax,1; retn 0xC）=stdcall 3 参回 1 桩——原名 _DllMain@12_* 无任何权威源（PAL3 字节串/PDB/FLIRT 三处零命中）疑跨库泄漏；改 _todo_ 真名未知形+实参形声明（元数=retn 0xC A 级；型保守 int 形） | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：双胞壳·HandleMsgDLL@RoleSystem 域 | 消双注+双胞壳收口 2026-10-17（verifier·五面：调用者域消歧）：原名 HandleDllEntry ⇒ HandleDllEntryRoleSystem | evidence: 五面①调用者=HandleMsgDLL@RoleSystem（角色系统域）②114B 同形件 ③同签名 ④RoleSystem 域 ⑤DLL 消息处理 ⇒ 域后缀消歧（挂账19「双胞壳」收口） | confidence: high",
   "declaration_only": true,
   "face3_rule": "stdcall 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）",
   "source_note": "[余 8 补面 2026-10-17·五面满卡] HandleDllEntry（①RoleSystem::HandleMsgDLL ✓ ②DllMain 签名形 ✓ ③参数语义 ✓ ④RoleSystem ✓ ⑤DLL 生命周期 ✓）· A 级 conf 92"

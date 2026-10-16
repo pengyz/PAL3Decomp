@@ -178,12 +178,12 @@
       "signature": "UIListBox *__thiscall()"
     },
     "0x0043E100": {
-      "name": "_scalar_dtor_43e100",
+      "name": "_scalar_dtor_E100",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": "|fixed_ios_base | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例）"
+      "source": "|fixed_ios_base | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIListBox（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AD40）"
     },
     "0x0043E1C0": {
       "name": "CalScrollBarRange",
@@ -324,12 +324,12 @@
       "_misattrib_evidence": "max_offset=1196>class_size=308"
     },
     "0x004525E0": {
-      "name": "_scalar_dtor_4525e0",
+      "name": "_scalar_dtor_25E0",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": " | 错挂修正 2026-10-16（verifier A 级）：真身=0x56B1BC 复合体的 scalar deleting destructor（vtable 槽 0x56b1bc→0x4525E0 xref 实证）——错挂 UIListBox，复合体真名挂账中 | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例）"
+      "source": " | 错挂修正 2026-10-16（verifier A 级）：真身=0x56B1BC 复合体的 scalar deleting destructor（vtable 槽 0x56b1bc→0x4525E0 xref 实证）——错挂 UIListBox，复合体真名挂账中 | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIListBox（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B1BC）"
     },
     "0x004526C0": {
       "name": "ShouldProcessInput",
@@ -407,9 +407,9 @@
       "signature": "UIListBox *__thiscall(UIListBox *Block, char a2)"
     },
     "0x0043DCF0": {
-      "name": "`scalar deleting destructor'",
+      "name": "_scalar_dtor_DCF0",
       "signature": "void __thiscall(UIListBox *__hidden this)",
-      "source": "vtable_evidence | [T142R] 删除析构族机械判定（T138 形，逐形 objdump A 级）：全形=call 0x43DD10 + testb $0x1,0x8(%esp) + call 0x541d10(operator delete) + mov eax,esi + ret $4；被调 0x43DD10 本体=SEH + vptr store 0x56AD20 + try-level 递减 + call 0x43DE40/0x445B40 ⇒ 完整析构 ⇒ 本体=真标量删除析构。⚠️ 归属挂账：vtable 0x56AD20(base None) slot5=0x43DCF0，类标识待定（非 UIListBox 本体 vtable 0x56AD40）；名描述函数语义 ✓ T135 撞名核=0 ✓",
+      "source": "vtable_evidence | [T142R] 删除析构族机械判定（T138 形，逐形 objdump A 级）：全形=call 0x43DD10 + testb $0x1,0x8(%esp) + call 0x541d10(operator delete) + mov eax,esi + ret $4；被调 0x43DD10 本体=SEH + vptr store 0x56AD20 + try-level 递减 + call 0x43DE40/0x445B40 ⇒ 完整析构 ⇒ 本体=真标量删除析构。⚠️ 归属挂账：vtable 0x56AD20(base None) slot5=0x43DCF0，类标识待定（非 UIListBox 本体 vtable 0x56AD40）；名描述函数语义 ✓ T135 撞名核=0 ✓ | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIListBox（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AD20）",
       "ordinal": 5
     },
     "0x0043F6D0": {

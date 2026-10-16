@@ -1,0 +1,74 @@
+{
+  "name": "SceneVisNode",
+  "binary_size": 8,
+  "known_members": {
+    "0": {
+      "name": "vfptr",
+      "type": "void *",
+      "source": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] vptr 槽位 0x570794"
+    }
+  },
+  "methods": {
+    "0x00542126": {
+      "name": "VisRender",
+      "signature": "void __thiscall()",
+      "source": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] A 级 IDA thunk：VisRender | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
+      "declaration_only": true
+    },
+    "0x00542120": {
+      "name": "VisAttach",
+      "signature": "int __thiscall()",
+      "source": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] A 级 IDA thunk：VisAttach | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
+      "declaration_only": true
+    },
+    "0x0054211A": {
+      "name": "VisUpdate",
+      "signature": "void __thiscall()",
+      "source": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] A 级 IDA thunk：VisUpdate | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
+      "declaration_only": true
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x00570794",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x0052B980",
+          "from": null
+        },
+        {
+          "addr": "0x00542126",
+          "from": null
+        },
+        {
+          "addr": "0x00542102",
+          "from": null
+        },
+        {
+          "addr": "0x005420FC",
+          "from": null
+        },
+        {
+          "addr": "0x00542120",
+          "from": null
+        },
+        {
+          "addr": "0x0054211A",
+          "from": null
+        },
+        {
+          "addr": "0x00542114",
+          "from": null
+        },
+        {
+          "addr": "0x0054210E",
+          "from": null
+        }
+      ],
+      "source": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor 写点 `PalScript::LoadVisNode+309`/CCBStageScene_CreateCamera+977（VisNode 构造域）②被调用者面=thunk IDA 名 **gbVisNode::Render/Attach**（__imp_ 导入转发）+ UIRoleDialog::Update(gbVisNode*) ③成员访问面=thunk 转发形 ④类归属面=gbVisNode 界面实现 ⑤交互模式面=场景/相机装载构造 ⇒ **场景可视节点**；evidence=[thunk decompile×3,xref,ctor 写点] confidence=85"
+    }
+  ],
+  "_naming": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] 再创作命名 SceneVisNode（LoadVisNode 构造域 + gbVisNode 界面）",
+  "_size_note": "bs=8 最小界；真身锚挂账"
+}

@@ -32,12 +32,14 @@
     "0x005420C0": {
       "name": "SnowDraw",
       "signature": "void __thiscall()",
-      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级 IDA：`gbSnow::Draw` thunk（__imp_?Draw@gbSnow@@EAEXXZ 转发）"
+      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级 IDA：`gbSnow::Draw` thunk（__imp_?Draw@gbSnow@@EAEXXZ 转发） | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
+      "declaration_only": true
     },
     "0x005420D2": {
       "name": "RainUpdate",
       "signature": "void __thiscall(float)",
-      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级 IDA：`gbRain::Update` thunk"
+      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级 IDA：`gbRain::Update` thunk | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
+      "declaration_only": true
     }
   },
   "vtables": [

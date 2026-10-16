@@ -1195,11 +1195,12 @@
       "signature": "int __thiscall RoleSystem::ExecScriptDataC()"
     },
     "0x00531E50": {
-      "name": "_scalar_dtor",
+      "name": "_scalar_dtor_1E50",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "ordinal": 5
+      "ordinal": 5,
+      "source": " | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x570890）"
     },
     "0x00408460": {
       "name": "BindRoleToScene",
@@ -1525,7 +1526,7 @@
     "0x00420910": {
       "name": "_scalar_dtor_0910",
       "signature": "void __thiscall(int)",
-      "source": "vtable_gap_fill_v1(IDB:sub_420910) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4) | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x420930 写 vptr 0x56AAF0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AAF0→RoleSystem（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名"
+      "source": "vtable_gap_fill_v1(IDB:sub_420910) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4) | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x420930 写 vptr 0x56AAF0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AAF0→RoleSystem（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x420930 写 vptr 0x56AAF0"
     },
     "0x005110B0": {
       "name": "SetColor",
@@ -1533,14 +1534,14 @@
       "source": "重定谳 2026-10-07：偏移 672/884-887（台账 rework 族）=RoleSystem 归属（非 Actor）·SetColor 语义名（RGBA 字节写 0x374-377 证）·unskip 同批"
     },
     "0x00420430": {
-      "name": "_sdtor_2",
+      "name": "_scalar_dtor_0430",
       "signature": "void *__thiscall(char a2)",
-      "source": "[5表重落收尾 2026-10-16] 补登记（槽名债清毕后重落缺口）：A 级 decomp 快照 RoleSystem_sdtor_2_00420430.json——体 `sub_420450(Block); if (a2 & 1) operator delete(Block); return Block` = 删析构形（flags 条件 delete+return Block），flags 真型 char、this 隐式（弃 (void *Block, char a2) 显式 this 旧建模）"
+      "source": "[5表重落收尾 2026-10-16] 补登记（槽名债清毕后重落缺口）：A 级 decomp 快照 RoleSystem_sdtor_2_00420430.json——体 `sub_420450(Block); if (a2 & 1) operator delete(Block); return Block` = 删析构形（flags 条件 delete+return Block），flags 真型 char、this 隐式（弃 (void *Block, char a2) 显式 this 旧建模） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AAD8,0x56AAE4）"
     },
     "0x00420270": {
       "name": "_scalar_dtor_0270",
       "signature": "void __thiscall()",
-      "source": " | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x420290 写 vptr 0x56AAD8（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AAD8→RoleSystem（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名"
+      "source": " | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x420290 写 vptr 0x56AAD8（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AAD8→RoleSystem（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x420290 写 vptr 0x56AAD8"
     }
   },
   "vtables": [

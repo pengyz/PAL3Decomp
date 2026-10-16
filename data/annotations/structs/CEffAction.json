@@ -56,9 +56,9 @@
       "ordinal": 12
     },
     "0x004C0540": {
-      "name": "`scalar deleting destructor'",
+      "name": "~CEffAction",
       "signature": "char *__thiscall(char a2)",
-      "source": " | [T140] 语义偏离名修正：@0x4C0540 全函数体（202 字符）= ExecutePasses 调用+flag+operator delete（标量删除析构经典形）⇒ `scalar deleting destructor`（T138 模式，~<Cls> 撞名规避）；@0x4C0560 ExecutePasses 保留（m_nMaxPasses/m_nMaxTargets 实体）"
+      "source": " | [T140] 语义偏离名修正：@0x4C0540 全函数体（202 字符）= ExecutePasses 调用+flag+operator delete（标量删除析构经典形）⇒ `scalar deleting destructor`（T138 模式，~<Cls> 撞名规避）；@0x4C0560 ExecutePasses 保留（m_nMaxPasses/m_nMaxTargets 实体） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffAction（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F5E4,0x56F5D8）"
     },
     "0x004AF760": {
       "name": "Update",

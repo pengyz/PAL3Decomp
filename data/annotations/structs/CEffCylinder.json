@@ -273,9 +273,9 @@
       "source": "vtable_gap_fill_v1(from RenderTarget2.json) | [非 ctor/dtor 实证 2026-10-16 analyzer 66 条] A 级形判：删际析构/adjustor 跳板形，非普通 ctor/dtor —— 名保留 _sdtor 系"
     },
     "0x004C3DB0": {
-      "name": "_scalar_dtor_3db0",
+      "name": "_scalar_dtor_3DB0",
       "signature": "void __thiscall(int nVal1)",
-      "source": "vtable_gap_fill_v1(IDB:??_GCEffCylinder@@UAEPAXI@Z) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "vtable_gap_fill_v1(IDB:??_GCEffCylinder@@UAEPAXI@Z) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffCylinder（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F7B0,0x56F774,0x56F768,0x56F7C8,0x56F7BC）"
     }
   },
   "vtables": [
@@ -402,6 +402,45 @@
         }
       ],
       "source": "[余量 33 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor Init+37 / dtor+111 对 ②被调用者面=池基共享 impl（EffTargetPool/EffObjectPool 既有命名）+ 类域槽 ③成员访问面=池节点布局 ④类归属面=ctor/dtor 域双自证 ⑤交互模式面=RenderTarget2 效果生命周期；evidence=[写点对,槽行,删际锚] confidence=80"
+    },
+    {
+      "addr": "0x0056F7B0",
+      "base": "EffObjectPool",
+      "slots": [
+        {
+          "addr": "0x004C2600",
+          "from": null
+        },
+        {
+          "addr": "0x0055434F",
+          "from": null
+        },
+        {
+          "addr": "0x004C3BB0",
+          "from": null
+        },
+        {
+          "addr": "0x004C5800",
+          "from": null
+        },
+        {
+          "addr": "0x004C2850",
+          "from": null
+        },
+        {
+          "addr": "0x004C5810",
+          "from": null
+        },
+        {
+          "addr": "0x004C3DB0",
+          "from": null
+        },
+        {
+          "addr": "0x004C4060",
+          "from": null
+        }
+      ],
+      "source": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] 认领五面卡：①ctor ResetTargets+37/Destroy+31 对；槽=EffObjectPool/EffTargetPool 池基 + **删际 0x4C5810 CEffCylinder 域**（0x4C5800/0x4C5810 双注册账注记随表）②被调用者面=域共享 impl③成员访问面=池/库节点布局④类归属面=ctor/dtor 域双自证⑤交互模式面=管理生命周期；confidence=80"
     }
   ],
   "base_size": 16,
