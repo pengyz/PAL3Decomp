@@ -1,0 +1,940 @@
+[
+ {
+  "cls": "Actor",
+  "off": "112",
+  "name": "m_pResource",
+  "methods_decompiled": 14,
+  "access": []
+ },
+ {
+  "cls": "Actor",
+  "off": "496",
+  "name": "m_pSelfAtt",
+  "methods_decompiled": 14,
+  "access": []
+ },
+ {
+  "cls": "Actor",
+  "off": "512",
+  "name": "m_pParticleData",
+  "methods_decompiled": 14,
+  "access": [
+   {
+    "fn": "UpdatePhysics@0x00419690",
+    "line": "+ *((float *)&this[1].m_pParticleData + 3) * v7;"
+   },
+   {
+    "fn": "UpdatePhysics@0x00419690",
+    "line": "+ *((float *)&this[1].m_pParticleData + 4) * v7;"
+   },
+   {
+    "fn": "UpdatePhysics@0x00419690",
+    "line": "+ *((float *)&this[1].m_pParticleData + 5) * v7;"
+   },
+   {
+    "fn": "UpdatePhysics@0x00419690",
+    "line": "this->m_vecTargetPos.x = *((float *)&this[1].m_pParticleData + 3); /*0x4196c6*/"
+   },
+   {
+    "fn": "UpdatePhysics@0x00419690",
+    "line": "this->m_vecTargetPos.y = *((float *)&this[1].m_pParticleData + 4); /*0x4196d2*/"
+   },
+   {
+    "fn": "UpdatePhysics@0x00419690",
+    "line": "this->m_vecTargetPos.z = *((float *)&this[1].m_pParticleData + 5); /*0x4196de*/"
+   },
+   {
+    "fn": "InitParticles@0x0044CB30",
+    "line": "void **p_m_pParticleData; // esi"
+   },
+   {
+    "fn": "InitParticles@0x0044CB30",
+    "line": "p_m_pParticleData = &this->m_pParticleData; /*0x44cb5a*/"
+   },
+   {
+    "fn": "InitParticles@0x0044CB30",
+    "line": "v4 = (*((int (__thiscall **)(void **, _DWORD, int *, Actor *))*p_m_pParticleData + 4))( /*0x44cb6c*/"
+   },
+   {
+    "fn": "InitParticles@0x0044CB30",
+    "line": "p_m_pParticleData,"
+   },
+   {
+    "fn": "InitParticles@0x0044CB30",
+    "line": "UIPushButton::CreateFromTemplate((UIPushButton *)p_m_pParticleData, (void *)*v2, v4); /*0x44cbd0*/"
+   },
+   {
+    "fn": "InitParticles@0x0044CB30",
+    "line": "UIPushButton::CreateFromTemplate((UIPushButton *)p_m_pParticleData, (void *)*(&off_59DD18 + v5 % 0x12), v6); /*0x44cb98*/"
+   }
+  ]
+ },
+ {
+  "cls": "Actor",
+  "off": "680",
+  "name": "m_InnerActor",
+  "methods_decompiled": 14,
+  "access": [
+   {
+    "fn": "UpdateFrame@0x00531260",
+    "line": "*(float *)&this->m_InnerActor = acos( /*0x5315e5*/"
+   },
+   {
+    "fn": "UpdatePhysics@0x00419690",
+    "line": "void **p_m_InnerActor; // edi"
+   },
+   {
+    "fn": "UpdatePhysics@0x00419690",
+    "line": "p_m_InnerActor = &this->m_InnerActor; /*0x419694*/"
+   },
+   {
+    "fn": "UpdatePhysics@0x00419690",
+    "line": "Actor::QueryState((Actor *)&this->m_InnerActor, v8); /*0x41969c*/"
+   },
+   {
+    "fn": "UpdatePhysics@0x00419690",
+    "line": "Actor::CompareActionName((Actor *)p_m_InnerActor, 0, 0); /*0x4196f4*/"
+   }
+  ]
+ },
+ {
+  "cls": "ArcSceneMonster",
+  "off": "4",
+  "name": "m_pMonsterData",
+  "methods_decompiled": 6,
+  "access": [
+   {
+    "fn": "HitTest@0x00441E30",
+    "line": "v3 = (LONG *)(&this->m_pMonsterData + 3); /*0x441e49*/"
+   },
+   {
+    "fn": "HitTest@0x00441E30",
+    "line": "if ( !PtInRect((const RECT *)(&this->m_pMonsterData + 3), v20) ) /*0x441e4e*/"
+   },
+   {
+    "fn": "HitTest@0x00441E30",
+    "line": "rc.right = *((_DWORD *)&this->m_pMonsterData + 5); /*0x441f13*/"
+   },
+   {
+    "fn": "HitTest@0x00441E30",
+    "line": "rc.bottom = *((_DWORD *)&this->m_pMonsterData + 6); /*0x441f25*/"
+   },
+   {
+    "fn": "HitTest@0x00441E30",
+    "line": "rc.top = *((_DWORD *)&this->m_pMonsterData + 4); /*0x441f5a*/"
+   },
+   {
+    "fn": "HitTest@0x00441E30",
+    "line": "rc.right = *((_DWORD *)&this->m_pMonsterData + 5); /*0x441f61*/"
+   },
+   {
+    "fn": "HitTest@0x00441E30",
+    "line": "rc.bottom = *((_DWORD *)&this->m_pMonsterData + 6); /*0x441f71*/"
+   },
+   {
+    "fn": "HitTest@0x00441E30",
+    "line": "v13 = *((_DWORD *)&this->m_pMonsterData + 4); /*0x441fa1*/"
+   },
+   {
+    "fn": "HitTest@0x00441E30",
+    "line": "v14 = *((_DWORD *)&this->m_pMonsterData + 5); /*0x441fa4*/"
+   },
+   {
+    "fn": "HitTest@0x00441E30",
+    "line": "v15 = *((_DWORD *)&this->m_pMonsterData + 6); /*0x441fab*/"
+   },
+   {
+    "fn": "CheckDistance@0x0052DC40",
+    "line": "char *m_pMonsterData; // edi"
+   },
+   {
+    "fn": "CheckDistance@0x0052DC40",
+    "line": "if ( fVal > (double)*((float *)&this->m_pMonsterData + 1) ) /*0x52dc5f*/"
+   }
+  ]
+ },
+ {
+  "cls": "ArcSceneMonster",
+  "off": "304",
+  "name": "m_pSkillList",
+  "methods_decompiled": 6,
+  "access": [
+   {
+    "fn": "HitTest@0x00441E30",
+    "line": "rc.left = (LONG)this->m_pSkillList; /*0x441e64*/"
+   },
+   {
+    "fn": "HitTest@0x00441E30",
+    "line": "rc.top = *((_DWORD *)&this->m_pSkillList + 1); /*0x441e6b*/"
+   },
+   {
+    "fn": "HitTest@0x00441E30",
+    "line": "rc.right = *((_DWORD *)&this->m_pSkillList + 2); /*0x441e72*/"
+   }
+  ]
+ },
+ {
+  "cls": "ArcSceneMonster",
+  "off": "320",
+  "name": "m_pDropItems",
+  "methods_decompiled": 6,
+  "access": [
+   {
+    "fn": "HitTest@0x00441E30",
+    "line": "rc.left = (LONG)this->m_pDropItems; /*0x441ea7*/"
+   }
+  ]
+ },
+ {
+  "cls": "C2DSpark_tagSpark",
+  "off": "4",
+  "name": "pTextureWrap1",
+  "methods_decompiled": 0,
+  "access": []
+ },
+ {
+  "cls": "C2DSpark_tagSpark",
+  "off": "20",
+  "name": "pTextureWrap3",
+  "methods_decompiled": 0,
+  "access": []
+ },
+ {
+  "cls": "C2DSpark_tagSpark",
+  "off": "36",
+  "name": "pTextureWrap5",
+  "methods_decompiled": 0,
+  "access": []
+ },
+ {
+  "cls": "CCBStage",
+  "off": "4504",
+  "name": "m_nTodo_1198",
+  "methods_decompiled": 14,
+  "access": []
+ },
+ {
+  "cls": "CCBStage",
+  "off": "410000",
+  "name": "m_nTodo_64190",
+  "methods_decompiled": 14,
+  "access": []
+ },
+ {
+  "cls": "CCBUIPanel",
+  "off": "20664",
+  "name": "m_EmbedCaption",
+  "methods_decompiled": 14,
+  "access": [
+   {
+    "fn": "OnMessage_a540@0x0044A540",
+    "line": "SetEnable((UICaption *)&this->m_EmbedCaption); /*0x44a649*/"
+   }
+  ]
+ },
+ {
+  "cls": "CEffObj",
+  "off": "0",
+  "name": "vfptr",
+  "methods_decompiled": 0,
+  "access": []
+ },
+ {
+  "cls": "CGameData",
+  "off": "0",
+  "name": "_vftable",
+  "methods_decompiled": 12,
+  "access": [
+   {
+    "fn": "InitItems@0x0044E660",
+    "line": "return (*(int (__thiscall **)(CGameData *, _DWORD))this->_vftable)(this, 0); /*0x44e89d*/"
+   }
+  ]
+ },
+ {
+  "cls": "CGameData",
+  "off": "2220",
+  "name": "m_pItemArray",
+  "methods_decompiled": 12,
+  "access": [
+   {
+    "fn": "InitItems@0x0044E660",
+    "line": "memset32(&this->m_pItemArray, 3, 0xDu); /*0x44e6b0*/"
+   }
+  ]
+ },
+ {
+  "cls": "CScreenMode",
+  "off": "812",
+  "name": "m_pSoundStream",
+  "methods_decompiled": 14,
+  "access": []
+ },
+ {
+  "cls": "CScreenMode",
+  "off": "2608",
+  "name": "m_pGameUI",
+  "methods_decompiled": 14,
+  "access": [
+   {
+    "fn": "InitGameUI@0x004593C0",
+    "line": "(*((void (__thiscall **)(void **, int, signed __int32 *, CScreenMode *, char *, _DWORD, int))this->m_pGameUI + 7))( /*0x4596d2*/"
+   },
+   {
+    "fn": "InitGameUI@0x004593C0",
+    "line": "&this->m_pGameUI,"
+   },
+   {
+    "fn": "InitGameUI@0x004593C0",
+    "line": "CScreenMode::SetTooltipText((CScreenMode *)&this->m_pGameUI, (int)dword_DCD93C); /*0x4596dc*/"
+   },
+   {
+    "fn": "InitGameUI@0x004593C0",
+    "line": "sub_446010(&this->m_pGameUI); /*0x459717*/"
+   },
+   {
+    "fn": "InitGameUI@0x004593C0",
+    "line": "(*(void (__thiscall **)(void **, _DWORD))this->m_pGameUI)(&this->m_pGameUI, 0); /*0x459722*/"
+   }
+  ]
+ },
+ {
+  "cls": "CUtil",
+  "off": "352",
+  "name": "m_nTodo_160",
+  "methods_decompiled": 14,
+  "access": [
+   {
+    "fn": "CUtil@0x00523130",
+    "line": "this->m_nTodo_160 = 0; /*0x5231aa*/"
+   },
+   {
+    "fn": "CUtil@0x00523130",
+    "line": "*((_BYTE *)&this->m_nTodo_160 + 4) = 0; /*0x5231ac*/"
+   }
+  ]
+ },
+ {
+  "cls": "Camera",
+  "off": "0",
+  "name": "m_pTodo_0",
+  "methods_decompiled": 8,
+  "access": []
+ },
+ {
+  "cls": "Camera",
+  "off": "332",
+  "name": "m_pCollisionMesh",
+  "methods_decompiled": 8,
+  "access": []
+ },
+ {
+  "cls": "Camera",
+  "off": "348",
+  "name": "m_pRayHitPoint",
+  "methods_decompiled": 8,
+  "access": [
+   {
+    "fn": "InitFromScene@0x004125D0",
+    "line": "*((_DWORD *)&this[2].m_pRayHitPoint + 5) = 1; /*0x412657*/"
+   }
+  ]
+ },
+ {
+  "cls": "CameraCtrl",
+  "off": "8",
+  "name": "m_pTarget",
+  "methods_decompiled": 14,
+  "access": [
+   {
+    "fn": "UpdateTransition@0x0041CC50",
+    "line": "CameraCtrl::GetLerpPos(this, (float *)this->m_pTarget + 117, this->m_fAngleSrc, this->m_fAngleDest, fFactor); /*0x41cca8*/"
+   },
+   {
+    "fn": "UpdateTransition@0x0041CC50",
+    "line": "ProcessKeyboard((InputSystem *)this->m_pTarget, 1); /*0x41ccb2*/"
+   },
+   {
+    "fn": "UpdateTransition@0x0041CC50",
+    "line": "CameraCtrl::GetLerpPos(this, (float *)this->m_pTarget + 114, this->m_fFOVLerp, this->m_fFOV, fFactor); /*0x41ccd8*/"
+   },
+   {
+    "fn": "UpdateTransition@0x0041CC50",
+    "line": "(float *)this->m_pTarget + 113,"
+   },
+   {
+    "fn": "UpdateTransition@0x0041CC50",
+    "line": "ProcessKeyboard((InputSystem *)this->m_pTarget, this->m_nFlags == 2); /*0x41cd06*/"
+   },
+   {
+    "fn": "UpdateTransition@0x0041CC50",
+    "line": "result = (int)this->m_pTarget; /*0x41cd0b*/"
+   },
+   {
+    "fn": "UpdateTransition@0x0041CC50",
+    "line": "CameraCtrl::GetLerpPos(this, (float *)this->m_pTarget + 123, this->m_fLerpTargetX, this->m_fLerpPosX, fFactor); /*0x41cd38*/"
+   },
+   {
+    "fn": "UpdateTransition@0x0041CC50",
+    "line": "CameraCtrl::GetLerpPos(this, (float *)this->m_pTarget + 124, this->m_fLerpTargetY, this->m_fLerpPosY, fFactor); /*0x41cd51*/"
+   },
+   {
+    "fn": "UpdateTransition@0x0041CC50",
+    "line": "CameraCtrl::GetLerpPos(this, (float *)this->m_pTarget + 125, this->m_fLerpTargetZ, this->m_fLerpPosZ, fFactor); /*0x41cd6a*/"
+   },
+   {
+    "fn": "UpdateTransition@0x0041CC50",
+    "line": "ProcessKeyboard((InputSystem *)this->m_pTarget, 0); /*0x41cd74*/"
+   },
+   {
+    "fn": "UpdateTransition@0x0041CC50",
+    "line": "CameraCtrl::GetLerpPos(this, (float *)this->m_pTarget + 117, this->m_fAngleSrc, this->m_fAngleDest, fFactor); /*0x41cd99*/"
+   },
+   {
+    "fn": "UpdateTransition@0x0041CC50",
+    "line": "CameraCtrl::GetLerpPos(this, (float *)this->m_pTarget + 114, this->m_fFOVLerp, this->m_fFOV, fFactor); /*0x41cdb2*/"
+   }
+  ]
+ },
+ {
+  "cls": "CameraCtrl",
+  "off": "2044",
+  "name": "m_nViewBase",
+  "methods_decompiled": 14,
+  "access": [
+   {
+    "fn": "BuildRenderLists@0x0048B370",
+    "line": "v61 = *((_DWORD *)&this[2].m_nViewBase + 2384 * m_nViewMode + 71); /*0x48b86c*/"
+   },
+   {
+    "fn": "BuildRenderLists@0x0048B370",
+    "line": "v63 = (gbCamera **)((char *)&this[2].m_nViewBase + 12 * v61 + v60 + 288); /*0x48b88a*/"
+   },
+   {
+    "fn": "BuildRenderLists@0x0048B370",
+    "line": "++*((_DWORD *)&this[2].m_nViewBase + 2384 * this->m_nViewMode + 71); /*0x48b8c1*/"
+   },
+   {
+    "fn": "BuildRenderLists@0x0048B370",
+    "line": "v62 = (gbCamera **)((char *)&this[2].m_nViewBase + v60 + 288); /*0x48b877*/"
+   },
+   {
+    "fn": "BuildRenderLists@0x0048B370",
+    "line": "v28 = *((_DWORD *)&this[1].m_nViewBase + 2384 * m_nViewMode + 199); /*0x48b596*/"
+   },
+   {
+    "fn": "BuildRenderLists@0x0048B370",
+    "line": "v29 = (gbCamera **)((char *)&this[1].m_nViewBase + v27 + 800); /*0x48b5a1*/"
+   },
+   {
+    "fn": "BuildRenderLists@0x0048B370",
+    "line": "v30 = (gbCamera **)((char *)&this[1].m_nViewBase + 12 * v28 + v27 + 800); /*0x48b5b8*/"
+   },
+   {
+    "fn": "BuildRenderLists@0x0048B370",
+    "line": "++*((_DWORD *)&this[1].m_nViewBase + 2384 * this->m_nViewMode + 199); /*0x48b5ef*/"
+   },
+   {
+    "fn": "UpdateBlendWeight@0x0048D040",
+    "line": "sub_445E50((int)(&this[60].m_nViewBase + 236)); /*0x48d58a*/"
+   }
+  ]
+ },
+ {
+  "cls": "Logger",
+  "off": "4640",
+  "name": "m_pRenderTarget",
+  "methods_decompiled": 9,
+  "access": []
+ },
+ {
+  "cls": "Logger",
+  "off": "4652",
+  "name": "m_szCmdBuf2",
+  "methods_decompiled": 9,
+  "access": [
+   {
+    "fn": "WinProc_HWND_InputLine@0x0053CB10",
+    "line": "*((_BYTE *)&this->m_szCmdBuf2 + v6 + 3) = 0; /*0x53cbfa*/"
+   },
+   {
+    "fn": "WinProc_HWND_InputLine@0x0053CB10",
+    "line": "*((_BYTE *)&this->m_szCmdBuf2 + v6 + 2) = 95; /*0x53cc01*/"
+   },
+   {
+    "fn": "WinProc_HWND_InputLine@0x0053CB10",
+    "line": "*((_BYTE *)&this->m_szCmdBuf2 + strlen((const char *)&this->m_szCmdBuf) + 3) = 0; /*0x53cbbb*/"
+   },
+   {
+    "fn": "WinProc_HWND_InputLine@0x0053CB10",
+    "line": "*((_BYTE *)&this->m_szCmdBuf2 + v4 + 3) = pData; /*0x53cb73*/"
+   }
+  ]
+ },
+ {
+  "cls": "Logger",
+  "off": "4656",
+  "name": "m_szCmdBuf",
+  "methods_decompiled": 9,
+  "access": [
+   {
+    "fn": "WinProc_HWND_InputLine@0x0053CB10",
+    "line": "void **p_m_szCmdBuf; // ebx"
+   },
+   {
+    "fn": "WinProc_HWND_InputLine@0x0053CB10",
+    "line": "v6 = strlen((const char *)&this->m_szCmdBuf); /*0x53cbf4*/"
+   },
+   {
+    "fn": "WinProc_HWND_InputLine@0x0053CB10",
+    "line": "*((_BYTE *)&this->m_szCmdBuf2 + v6 + 3) = 0; /*0x53cbfa*/"
+   },
+   {
+    "fn": "WinProc_HWND_InputLine@0x0053CB10",
+    "line": "*((_BYTE *)&this->m_szCmdBuf2 + v6 + 2) = 95; /*0x53cc01*/"
+   },
+   {
+    "fn": "WinProc_HWND_InputLine@0x0053CB10",
+    "line": "p_m_szCmdBuf = &this->m_szCmdBuf; /*0x53cba2*/"
+   },
+   {
+    "fn": "WinProc_HWND_InputLine@0x0053CB10",
+    "line": "*((_BYTE *)&this->m_szCmdBuf2 + strlen((const char *)&this->m_szCmdBuf) + 3) = 0; /*0x53cbbb*/"
+   },
+   {
+    "fn": "WinProc_HWND_InputLine@0x0053CB10",
+    "line": "memset(p_m_szCmdBuf, 0, 0x64u); /*0x53cbda*/"
+   },
+   {
+    "fn": "WinProc_HWND_InputLine@0x0053CB10",
+    "line": "*(_BYTE *)p_m_szCmdBuf = 95; /*0x53cbdd*/"
+   },
+   {
+    "fn": "WinProc_HWND_InputLine@0x0053CB10",
+    "line": "memset(&this->m_szCmdBuf, 0, 0x64u); /*0x53cb97*/"
+   },
+   {
+    "fn": "WinProc_HWND_InputLine@0x0053CB10",
+    "line": "LOBYTE(this->m_szCmdBuf) = 95; /*0x53cb9b*/"
+   },
+   {
+    "fn": "WinProc_HWND_InputLine@0x0053CB10",
+    "line": "v4 = strlen((const char *)&this->m_szCmdBuf); /*0x53cb69*/"
+   },
+   {
+    "fn": "WinProc_HWND_InputLine@0x0053CB10",
+    "line": "*((_BYTE *)&this->m_szCmdBuf2 + v4 + 3) = pData; /*0x53cb73*/"
+   }
+  ]
+ },
+ {
+  "cls": "Logger",
+  "off": "4856",
+  "name": "m_nTodo_12F8",
+  "methods_decompiled": 9,
+  "access": []
+ },
+ {
+  "cls": "MUIDialog",
+  "off": "976",
+  "name": "pCallbackVtable2",
+  "methods_decompiled": 3,
+  "access": [
+   {
+    "fn": "InvokeCallback@0x004A1620",
+    "line": "(*(void (__thiscall **)(void **, _DWORD))this->pCallbackVtable2)(&this->pCallbackVtable2, 0); /*0x4a167e*/"
+   }
+  ]
+ },
+ {
+  "cls": "NPC",
+  "off": "60",
+  "name": "m_pConditionB",
+  "methods_decompiled": 14,
+  "access": []
+ },
+ {
+  "cls": "PalScript",
+  "off": "136",
+  "name": "m_pTaskData",
+  "methods_decompiled": 14,
+  "access": []
+ },
+ {
+  "cls": "PalScript",
+  "off": "140",
+  "name": "m_pDialogData",
+  "methods_decompiled": 14,
+  "access": []
+ },
+ {
+  "cls": "PalScript",
+  "off": "144",
+  "name": "m_pCurrentTask",
+  "methods_decompiled": 14,
+  "access": [
+   {
+    "fn": "PalScript@0x0043A160",
+    "line": "this->m_pCurrentTask = 0; /*0x43a195*/"
+   },
+   {
+    "fn": "RenderUI@0x0043A270",
+    "line": "float m_pCurrentTask; // st6"
+   },
+   {
+    "fn": "RenderUI@0x0043A270",
+    "line": "m_pCurrentTask = (double)(int)this->m_pCurrentTask; /*0x43a30a*/"
+   },
+   {
+    "fn": "RenderUI@0x0043A270",
+    "line": "v12.su = m_pCurrentTask * v6; /*0x43a314*/"
+   },
+   {
+    "fn": "RenderUI@0x0043A270",
+    "line": "v12.eu = (m_pCurrentTask + 1.0) * v6; /*0x43a320*/"
+   },
+   {
+    "fn": "RenderUI@0x0043A270",
+    "line": "v10 = sub_445F60((unsigned int)this->m_pCurrentTask); /*0x43a392*/"
+   },
+   {
+    "fn": "UpdateTimer@0x0043A3E0",
+    "line": "char *m_pCurrentTask; // eax"
+   },
+   {
+    "fn": "UpdateTimer@0x0043A3E0",
+    "line": "m_pCurrentTask = (char *)this->m_pCurrentTask; /*0x43a442*/"
+   },
+   {
+    "fn": "UpdateTimer@0x0043A3E0",
+    "line": "this->m_pCurrentTask = m_pCurrentTask + 1; /*0x43a450*/"
+   },
+   {
+    "fn": "UpdateTimer@0x0043A3E0",
+    "line": "if ( (int)this->m_pCurrentTask >= (int)m_pTaskPtr ) /*0x43a45c*/"
+   },
+   {
+    "fn": "UpdateTimer@0x0043A3E0",
+    "line": "this->m_pCurrentTask = 0; /*0x43a464*/"
+   },
+   {
+    "fn": "UpdateTimer@0x0043A3E0",
+    "line": "this->m_pCurrentTask = m_pTaskPtr - 1; /*0x43a48c*/"
+   }
+  ]
+ },
+ {
+  "cls": "PalScript",
+  "off": "148",
+  "name": "m_pTaskPtr",
+  "methods_decompiled": 14,
+  "access": [
+   {
+    "fn": "PalScript@0x0043A160",
+    "line": "this->m_pTaskPtr = 0; /*0x43a19e*/"
+   },
+   {
+    "fn": "RenderUI@0x0043A270",
+    "line": "result = (int)this->m_pTaskPtr; /*0x43a284*/"
+   },
+   {
+    "fn": "UpdateTimer@0x0043A3E0",
+    "line": "char *m_pTaskPtr; // edx"
+   },
+   {
+    "fn": "UpdateTimer@0x0043A3E0",
+    "line": "m_pTaskPtr = (char *)this->m_pTaskPtr; /*0x43a3f8*/"
+   },
+   {
+    "fn": "UpdateTimer@0x0043A3E0",
+    "line": "if ( (int)m_pTaskPtr > 0 ) /*0x43a400*/"
+   },
+   {
+    "fn": "UpdateTimer@0x0043A3E0",
+    "line": "if ( (int)this->m_pCurrentTask >= (int)m_pTaskPtr ) /*0x43a45c*/"
+   },
+   {
+    "fn": "UpdateTimer@0x0043A3E0",
+    "line": "this->m_pCurrentTask = m_pTaskPtr - 1; /*0x43a48c*/"
+   }
+  ]
+ },
+ {
+  "cls": "PalScriptMgr",
+  "off": "164",
+  "name": "m_pExecState",
+  "methods_decompiled": 14,
+  "access": []
+ },
+ {
+  "cls": "PalScriptMgr",
+  "off": "156",
+  "name": "m_pCurScriptBlock",
+  "methods_decompiled": 14,
+  "access": []
+ },
+ {
+  "cls": "PalScriptMgr",
+  "off": "416",
+  "name": "m_pRoleScript",
+  "methods_decompiled": 14,
+  "access": []
+ },
+ {
+  "cls": "PalScriptMgr",
+  "off": "452",
+  "name": "m_pOpResult",
+  "methods_decompiled": 14,
+  "access": []
+ },
+ {
+  "cls": "PalScriptMgr",
+  "off": "632",
+  "name": "m_pCaseTable",
+  "methods_decompiled": 14,
+  "access": []
+ },
+ {
+  "cls": "PalScriptWaitObj",
+  "off": "0",
+  "name": "m_nTodo_000",
+  "methods_decompiled": 1,
+  "access": [
+   {
+    "fn": "ReleaseObject@0x004A68D0",
+    "line": "gbRefObject *m_nTodo_000; // ecx"
+   },
+   {
+    "fn": "ReleaseObject@0x004A68D0",
+    "line": "m_nTodo_000 = (gbRefObject *)this->m_nTodo_000; /*0x4a68d5*/"
+   },
+   {
+    "fn": "ReleaseObject@0x004A68D0",
+    "line": "if ( m_nTodo_000 ) /*0x4a68d9*/"
+   },
+   {
+    "fn": "ReleaseObject@0x004A68D0",
+    "line": "gbRefObject::Release(m_nTodo_000); /*0x4a68db*/"
+   },
+   {
+    "fn": "ReleaseObject@0x004A68D0",
+    "line": "this->m_nTodo_000 = 0; /*0x4a68e1*/"
+   },
+   {
+    "fn": "ReleaseObject@0x004A68D0",
+    "line": "this->m_nTodo_000 = v4; /*0x4a6911*/"
+   }
+  ]
+ },
+ {
+  "cls": "RoleCameraCtrl",
+  "off": "8",
+  "name": "m_pVtable",
+  "methods_decompiled": 13,
+  "access": [
+   {
+    "fn": "ComputeViewVector@0x0052E080",
+    "line": "v5 = this->m_passtime - *(float *)&this->m_pVtable; /*0x52e0a8*/"
+   },
+   {
+    "fn": "SetViewPosition@0x0052DFF0",
+    "line": "void *m_pVtable; // ecx"
+   },
+   {
+    "fn": "SetViewPosition@0x0052DFF0",
+    "line": "this->m_pVtable = (void *)nVal2; /*0x52e00b*/"
+   },
+   {
+    "fn": "SetViewPosition@0x0052DFF0",
+    "line": "m_pVtable = this->m_pVtable; /*0x52e01c*/"
+   },
+   {
+    "fn": "SetViewPosition@0x0052DFF0",
+    "line": "LODWORD(this->m_passtime) = m_pVtable; /*0x52e022*/"
+   },
+   {
+    "fn": "SetViewPosition@0x0052DFF0",
+    "line": "v8 = this->m_passtime - *(float *)&this->m_pVtable; /*0x52e035*/"
+   }
+  ]
+ },
+ {
+  "cls": "RoleStatePanel",
+  "off": "176064",
+  "name": "m_pSubTab2",
+  "methods_decompiled": 14,
+  "access": [
+   {
+    "fn": "InitUI@0x004a1e40",
+    "line": "this->m_pSubTab2 = 0; /*0x4a20d1*/"
+   },
+   {
+    "fn": "InitUI@0x004a1e40",
+    "line": "*((_DWORD *)&this->m_pSubTab2 + 1) = 0; /*0x4a20d7*/"
+   },
+   {
+    "fn": "InitUI@0x004a1e40",
+    "line": "*((_DWORD *)&this->m_pSubTab2 + 2) = 0; /*0x4a20dd*/"
+   },
+   {
+    "fn": "InitUI@0x004a1e40",
+    "line": "*((_DWORD *)&this->m_pSubTab2 + 3) = 0; /*0x4a20e9*/"
+   },
+   {
+    "fn": "InitUI@0x004a1e40",
+    "line": "*((_DWORD *)&this->m_pSubTab2 + 4) = 0; /*0x4a20ef*/"
+   },
+   {
+    "fn": "InitSlots@0x004a48b0",
+    "line": "EquipUI::SelectBigMapTab0((EquipUI *)this->m_pSubTab2, nVal1); /*0x4a492f*/"
+   },
+   {
+    "fn": "InitSlots@0x004a48b0",
+    "line": "EquipUI::SetSubTab2(*((EquipUI **)&this->m_pSubTab2 + 1), nVal1); /*0x4a493b*/"
+   },
+   {
+    "fn": "InitSlots@0x004a48b0",
+    "line": "EquipUI::SelectBigMapTab0((EquipUI *)this->m_pSubTab2, 0); /*0x4a48e4*/"
+   },
+   {
+    "fn": "InitSlots@0x004a48b0",
+    "line": "EquipUI::SetSubTab2(*((EquipUI **)&this->m_pSubTab2 + 1), 0); /*0x4a48f1*/"
+   },
+   {
+    "fn": "InitLayout@0x004a4960",
+    "line": "StateUI::ForwardToBigMap((StateUI *)this->m_pSubTab2, nVal1); /*0x4a49df*/"
+   },
+   {
+    "fn": "InitLayout@0x004a4960",
+    "line": "StateUI::SelectXJTMTab1(*((StateUI **)&this->m_pSubTab2 + 1), nVal1); /*0x4a49eb*/"
+   },
+   {
+    "fn": "InitLayout@0x004a4960",
+    "line": "StateUI::ForwardToBigMap((StateUI *)this->m_pSubTab2, 0); /*0x4a4994*/"
+   }
+  ]
+ },
+ {
+  "cls": "RoleSystem",
+  "off": "400",
+  "name": "m_pCmdQueue",
+  "methods_decompiled": 14,
+  "access": []
+ },
+ {
+  "cls": "RoleSystem",
+  "off": "404",
+  "name": "m_pCmdQueueEnd",
+  "methods_decompiled": 14,
+  "access": []
+ },
+ {
+  "cls": "RoleSystem",
+  "off": "4088",
+  "name": "m_nTodo_FF8",
+  "methods_decompiled": 14,
+  "access": []
+ },
+ {
+  "cls": "ScreenEffectMgr",
+  "off": "0",
+  "name": "m_pVtable",
+  "methods_decompiled": 14,
+  "access": [
+   {
+    "fn": "UpdateAnimation@0x004BF4F0",
+    "line": "*(float *)&this[7].m_pVtable = (float)(int)(__int64)((1.0 - cos(*(float *)&this[6].m_nEffectCount * 0.25 * 3.1415927)) /*0x4bf587*/"
+   }
+  ]
+ },
+ {
+  "cls": "ScriptVM",
+  "off": "224",
+  "name": "m_nTodo_0E0",
+  "methods_decompiled": 12,
+  "access": []
+ },
+ {
+  "cls": "SystemUI",
+  "off": "180",
+  "name": "m_pSysUI_0B4",
+  "methods_decompiled": 14,
+  "access": [
+   {
+    "fn": "Render@0x004200A0",
+    "line": "result = *((_DWORD *)&this->m_pSysUI_0B4 + 10); /*0x4200d0*/"
+   },
+   {
+    "fn": "Render@0x004200A0",
+    "line": "v6 = (UIBigMap *)(&this->m_pSysUI_0B4 + 11); /*0x4200e2*/"
+   },
+   {
+    "fn": "Render@0x004200A0",
+    "line": "result = *((_DWORD *)&this->m_pSysUI_0B4 + 10); /*0x4200f8*/"
+   },
+   {
+    "fn": "UIUpdate@0x00420150",
+    "line": "if ( *((int *)&this->m_pSysUI_0B4 + 10) > 0 ) /*0x4201be*/"
+   },
+   {
+    "fn": "UIUpdate@0x00420150",
+    "line": "v9 = &this->m_pSysUI_0B4 + 11; /*0x4201c4*/"
+   },
+   {
+    "fn": "UIUpdate@0x00420150",
+    "line": "while ( v8 < *((_DWORD *)&this->m_pSysUI_0B4 + 10) ); /*0x4201e9*/"
+   },
+   {
+    "fn": "Reset@0x0041F6F0",
+    "line": "*((_DWORD *)&this->m_pSysUI_0B4 + 10) = 0; /*0x41f7c7*/"
+   }
+  ]
+ },
+ {
+  "cls": "TaskMgr_SceneObjParam_SceneObj",
+  "off": "0",
+  "name": "m_nTodo_000",
+  "methods_decompiled": 0,
+  "access": []
+ },
+ {
+  "cls": "TextureLib",
+  "off": "408",
+  "name": "m_pPalette",
+  "methods_decompiled": 11,
+  "access": [
+   {
+    "fn": "CreateFromFile@0x004A6960",
+    "line": "UITitle_YXXX::CreateTitle((UITitle_YXXX *)&v2->m_pPalette, m_nDataEnd, 1u, (int)&nVal); /*0x4a6c27*/"
+   }
+  ]
+ },
+ {
+  "cls": "UIScenePanel",
+  "off": "5088",
+  "name": "m_nTodo_13E0",
+  "methods_decompiled": 14,
+  "access": []
+ },
+ {
+  "cls": "UIScenePanel",
+  "off": "8416",
+  "name": "m_nTodo_20E0",
+  "methods_decompiled": 14,
+  "access": []
+ },
+ {
+  "cls": "tagRoleTaskData",
+  "off": "16",
+  "name": "pRoleState",
+  "methods_decompiled": 0,
+  "access": []
+ },
+ {
+  "cls": "tagTaskSlotHeader",
+  "off": "0",
+  "name": "pRoleTaskData",
+  "methods_decompiled": 0,
+  "access": []
+ }
+]

@@ -1,0 +1,6886 @@
+[
+ {
+  "addr": "0x00401000",
+  "cls": "AStarPathFinder",
+  "name": "~AStarPathFinder",
+  "form": "dtor形",
+  "asm_head": [
+   "401000 push esi",
+   "401001 mov esi, ecx",
+   "401003 push 8; Size",
+   "401005 push 1; Count",
+   "401007 mov dword ptr [esi], offset stru_56A600",
+   "40100d call _calloc",
+   "401012 mov [esi+10h], eax",
+   "401015 xor eax, eax",
+   "401017 add esp, 8",
+   "40101a mov [esi+4], eax",
+   "40101d mov [esi+8], eax",
+   "401020 mov [esi+0Ch], eax",
+   "401023 mov eax, esi",
+   "401025 pop esi",
+   "401026 retn"
+  ],
+  "asm_name": "??1AStarPathFinder@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x00401000",
+    "xrefs": [
+     {
+      "addr": "0x408393",
+      "type": "code",
+      "fn": {
+       "addr": "0x4117a0",
+       "name": "SingletonThunk_004117A0",
+       "size": "0xa"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall AStarPathFinder::~AStarPathFinder(AStarPathFinder *this)"
+ },
+ {
+  "addr": "0x00420290",
+  "cls": "RoleSystem",
+  "name": "RoleSystem",
+  "form": "ctor形",
+  "asm_head": [
+   "420290 mov dword ptr [ecx], offset stru_56AAD8",
+   "420296 retn"
+  ],
+  "asm_name": "??0RoleSystem@@QAE@XZ_0",
+  "xrefs": [
+   {
+    "addr": "0x00420290",
+    "xrefs": [
+     {
+      "addr": "0x420273",
+      "type": "code",
+      "fn": {
+       "addr": "0x420270",
+       "name": "?sub_420270@gbRenderEffect@@QAEXH@Z",
+       "size": "0x1e"
+      }
+     },
+     {
+      "addr": "0x420490",
+      "type": "code",
+      "fn": {
+       "addr": "0x420450",
+       "name": "sub_420450",
+       "size": "0x55"
+      }
+     },
+     {
+      "addr": "0x420936",
+      "type": "code",
+      "fn": {
+       "addr": "0x420930",
+       "name": "?InitInternal@RoleSystem@@QAEXH@Z",
+       "size": "0xb"
+      }
+     },
+     {
+      "addr": "0x55f5f3",
+      "type": "code",
+      "fn": {
+       "addr": "0x4203c0",
+       "name": "?InitRoleImage@RoleSystem@@QAEXXZ",
+       "size": "0x63"
+      }
+     },
+     {
+      "addr": "0x55f613",
+      "type": "code",
+      "fn": {
+       "addr": "0x420450",
+       "name": "sub_420450",
+       "size": "0x55"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 5
+   }
+  ],
+  "decomp_first": "void __thiscall RoleSystem::RoleSystem(RoleSystem *this)"
+ },
+ {
+  "addr": "0x00431870",
+  "cls": "TxtFile",
+  "name": "TxtFile",
+  "form": "ctor形",
+  "asm_head": [
+   "431870 mov edx, ecx",
+   "431872 push edi",
+   "431873 xor eax, eax",
+   "431875 mov ecx, 80h",
+   "43187a mov edi, edx",
+   "43187c mov [edx+200h], eax",
+   "431882 mov [edx+204h], eax",
+   "431888 mov [edx+208h], eax",
+   "43188e rep stosd",
+   "431890 mov eax, edx",
+   "431892 pop edi",
+   "431893 retn"
+  ],
+  "asm_name": "??0TxtFile@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x00431870",
+    "xrefs": [
+     {
+      "addr": "0x4044b5",
+      "type": "code",
+      "fn": {
+       "addr": "0x4044b0",
+       "name": "SingletonThunk_004044B0",
+       "size": "0xa"
+      }
+     },
+     {
+      "addr": "0x41efc1",
+      "type": "code",
+      "fn": {
+       "addr": "0x41efa0",
+       "name": "?Init@ScriptSystem@@QAEXXZ",
+       "size": "0x174"
+      }
+     },
+     {
+      "addr": "0x4302b7",
+      "type": "code",
+      "fn": {
+       "addr": "0x430290",
+       "name": "?LoadScript@PalScript@@QAEHH@Z",
+       "size": "0x26a"
+      }
+     },
+     {
+      "addr": "0x44616c",
+      "type": "code",
+      "fn": {
+       "addr": "0x4460d0",
+       "name": "??0CCBUIPanel@@QAE@XZ",
+       "size": "0xd5"
+      }
+     },
+     {
+      "addr": "0x44b853",
+      "type": "code",
+      "fn": {
+       "addr": "0x44b850",
+       "name": "??0LineupComp@@QAE@XZ",
+       "size": "0x3f"
+      }
+     },
+     {
+      "addr": "0x457282",
+      "type": "code",
+      "fn": {
+       "addr": "0x457260",
+       "name": "??0DealData@@QAE@XZ",
+       "size": "0xd4"
+      }
+     },
+     {
+      "addr": "0x4572a3",
+      "type": "code",
+      "fn": {
+       "addr": "0x457260",
+       "name": "??0DealData@@QAE@XZ",
+       "size": "0xd4"
+      }
+     },
+     {
+      "addr": "0x522057",
+      "type": "code",
+      "fn": {
+       "addr": "0x522030",
+       "name": "??0CCBStageRole@@QAE@XZ",
+       "size": "0xa6"
+      }
+     },
+     {
+      "addr": "0x528408",
+      "type": "code",
+      "fn": {
+       "addr": "0x5282e0",
+       "name": "??0JusticeBookUI@@QAE@XZ",
+       "size": "0x1da"
+      }
+     },
+     {
+      "addr": "0x52ba4d",
+      "type": "code",
+      "fn": {
+       "addr": "0x52ba10",
+       "name": "??0UICoverFrm@@QAE@XZ",
+       "size": "0x19c"
+      }
+     },
+     {
+      "addr": "0x535888",
+      "type": "code",
+      "fn": {
+       "addr": "0x535710",
+       "name": "?LoadVisNode@PalScript@@QAEPAVgbVFileSystem@@NPADPAD@Z",
+       "size": "0x21d"
+      }
+     },
+     {
+      "addr": "0x538584",
+      "type": "code",
+      "fn": {
+       "addr": "0x538500",
+       "name": "?LoadActorModel@Actor@@QAEIH@Z",
+       "size": "0x7dd"
+      }
+     },
+     {
+      "addr": "0x53dbcd",
+      "type": "code",
+      "fn": {
+       "addr": "0x53db90",
+       "name": "?Init@CPK@@QAEPAV1@XZ",
+       "size": "0x9e"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 13
+   }
+  ],
+  "decomp_first": "int *__thiscall TxtFile::TxtFile(TxtFile *this)"
+ },
+ {
+  "addr": "0x00431E60",
+  "cls": "PalScriptMgr",
+  "name": "PalScriptMgr",
+  "form": "ctor形",
+  "asm_head": [
+   "431e60 call SingletonThunk_00431E70; Microsoft VisualC 2-14/net runtime",
+   "431e65 jmp loc_431E80",
+   "431e80 push offset ConditionalCleanup; void (__cdecl *)()",
+   "431e85 call _atexit",
+   "431e8a pop ecx",
+   "431e8b retn"
+  ],
+  "asm_name": "??0PalScriptMgr@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x00431E60",
+    "xrefs": [
+     {
+      "addr": "0x5801a8",
+      "type": "data",
+      "fn": null
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall PalScriptMgr::PalScriptMgr(PalScriptMgr *this)"
+ },
+ {
+  "addr": "0x00434130",
+  "cls": "PtrArray",
+  "name": "PtrArray",
+  "form": "ctor形",
+  "asm_head": [
+   "434130 mov eax, [esp+nInitSize]",
+   "434134 mov ecx, dword ptr [esp+bOwned]",
+   "434138 mov edx, 4",
+   "43413d push esi",
+   "43413e mov [eax], cl",
+   "434140 and ecx, 0FFh",
+   "434146 dec ecx; switch 5 cases",
+   "434147 cmp ecx, edx",
+   "434149 ja short def_43414B; jumptable 0043414B default case",
+   "43414b jmp ds:jpt_43414B[ecx*4]; switch jump",
+   "434152 mov ecx, [esp+4+nGrowBy]; jumptable 0043414B cases 1,2,4",
+   "434156 mov [eax+2], dx",
+   "43415a mov esi, [ecx+8]",
+   "43415d mov esi, [esi]",
+   "43415f mov [eax+4], esi",
+   "434162 mov eax, [ecx+8]",
+   "434165 add eax, edx",
+   "434167 pop esi",
+   "434168 mov [ecx+8], eax",
+   "43416b retn",
+   "43416c mov ecx, [esp+4+nGrowBy]; jumptable 0043414B case 3",
+   "434170 pop esi",
+   "434171 mov edx, [ecx+8]",
+   "434174 mov dx, [edx]",
+   "434177 mov [eax+2], dx",
+   "43417b mov edx, [ecx+8]",
+   "43417e add edx, 2",
+   "434181 mov [ecx+8], edx"
+  ],
+  "asm_name": "??0PtrArray@@QAE@HHD@Z",
+  "xrefs": [
+   {
+    "addr": "0x00434130",
+    "xrefs": [
+     {
+      "addr": "0x43402b",
+      "type": "code",
+      "fn": {
+       "addr": "0x433f90",
+       "name": "?ProcessGBKString@PalScript@@QAEHXZ",
+       "size": "0x19b"
+      }
+     },
+     {
+      "addr": "0x4340d7",
+      "type": "code",
+      "fn": {
+       "addr": "0x433f90",
+       "name": "?ProcessGBKString@PalScript@@QAEHXZ",
+       "size": "0x19b"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 2
+   }
+  ],
+  "decomp_first": "void __thiscall PtrArray::PtrArray(PtrArray *this, int nInitSize, int nGrowBy, char bOwned)"
+ },
+ {
+  "addr": "0x004341E0",
+  "cls": "PtrArray",
+  "name": "~PtrArray",
+  "form": "dtor形",
+  "asm_head": [
+   "4341e0 push esi",
+   "4341e1 mov esi, [esp+4+arg_0]",
+   "4341e5 test esi, esi",
+   "4341e7 push edi",
+   "4341e8 jnz short loc_4341EF",
+   "4341ea pop edi",
+   "4341eb xor eax, eax",
+   "4341ed pop esi",
+   "4341ee retn",
+   "4341ef mov eax, [esi]",
+   "4341f1 mov edi, [eax+48h]",
+   "4341f4 mov ecx, [eax+44h]",
+   "4341f7 mov eax, [esi+8]",
+   "4341fa add edi, ecx",
+   "4341fc cmp eax, edi",
+   "4341fe jb short loc_434208",
+   "434200 pop edi",
+   "434201 mov eax, 2",
+   "434206 pop esi",
+   "434207 retn",
+   "434208 mov g_pLoadBuffer, esi",
+   "43420e mov eax, [esi+8]",
+   "434211 cmp eax, edi",
+   "434213 jnb short loc_434225",
+   "434215 call ?ProcessGBKString@PalScript@@QAEHXZ; PalScript::ProcessGBKString(void)",
+   "43421a cmp byte ptr [esi+4], 1",
+   "43421e jz short loc_434225",
+   "434220 cmp [esi+8], edi"
+  ],
+  "asm_name": "??1PtrArray@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x004341E0",
+    "xrefs": [
+     {
+      "addr": "0x4322d6",
+      "type": "code",
+      "fn": {
+       "addr": "0x4322c0",
+       "name": "?IsScriptRuning@PalScriptMgr@@QAEHH@Z",
+       "size": "0xf5"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall PtrArray::~PtrArray(PtrArray *this)"
+ },
+ {
+  "addr": "0x00438EB0",
+  "cls": "filebuf",
+  "name": "~filebuf",
+  "form": "dtor形",
+  "asm_head": [
+   "438eb0 push 0FFFFFFFFh",
+   "438eb2 push offset ??1filebuf@@UAE@XZ_SEH",
+   "438eb7 mov eax, large fs:0",
+   "438ebd push eax",
+   "438ebe mov large fs:0, esp",
+   "438ec5 push ecx",
+   "438ec6 push esi",
+   "438ec7 mov esi, ecx",
+   "438ec9 mov [esp+14h+var_10], esi",
+   "438ecd mov dword ptr [esi], offset stru_56AC08",
+   "438ed3 mov ecx, g_fGameSpeed",
+   "438ed9 mov [esp+14h+var_4], 0",
+   "438ee1 test ecx, ecx",
+   "438ee3 jz short loc_438EEC",
+   "438ee5 mov eax, [ecx]",
+   "438ee7 push 1",
+   "438ee9 call dword ptr [eax+14h]",
+   "438eec mov ecx, [esp+14h+var_C]",
+   "438ef0 mov g_fGameSpeed, 0",
+   "438efa mov dword ptr [esi], offset stru_56A9BC._scalar_dtor_1bb0",
+   "438f00 pop esi",
+   "438f01 mov large fs:0, ecx",
+   "438f08 add esp, 10h",
+   "438f0b retn",
+   "55fa70 mov ecx, [ebp-10h]",
+   "55fa73 jmp Array___nearby_411ba0",
+   "55fa78 mov eax, offset stru_574978",
+   "55fa7d jmp ___CxxFrameHandler"
+  ],
+  "asm_name": "??1filebuf@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x00438EB0",
+    "xrefs": [
+     {
+      "addr": "0x438e93",
+      "type": "code",
+      "fn": {
+       "addr": "0x438e90",
+       "name": "??_Gfilebuf@@UAEPAXI@Z",
+       "size": "0x1e"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall filebuf::~filebuf(filebuf *this)"
+ },
+ {
+  "addr": "0x0043A160",
+  "cls": "PalScript",
+  "name": "PalScript",
+  "form": "ctor形",
+  "asm_head": [
+   "43a160 push 0FFFFFFFFh",
+   "43a162 push offset SEH_43A160",
+   "43a167 mov eax, large fs:0",
+   "43a16d push eax",
+   "43a16e mov large fs:0, esp",
+   "43a175 push ecx",
+   "43a176 push esi",
+   "43a177 mov esi, ecx",
+   "43a179 push edi",
+   "43a17a mov [esp+18h+var_10], esi",
+   "43a17e call sub_445AA0",
+   "43a183 xor edi, edi",
+   "43a185 lea ecx, [esi+4Ch]",
+   "43a188 mov [esp+18h+var_4], edi",
+   "43a18c call sub_445EA0",
+   "43a191 mov ecx, [esp+18h+var_C]",
+   "43a195 mov [esi+90h], edi",
+   "43a19b mov [esi+48h], edi",
+   "43a19e mov [esi+94h], edi",
+   "43a1a4 mov dword ptr [esi], offset stru_56AC4C",
+   "43a1aa mov dword ptr [esi+44h], 41200000h",
+   "43a1b1 mov dword ptr [esi+9Ch], 0FFFFFFFFh",
+   "43a1bb mov eax, esi",
+   "43a1bd pop edi",
+   "43a1be pop esi",
+   "43a1bf mov large fs:0, ecx",
+   "43a1c6 add esp, 10h",
+   "43a1c9 retn"
+  ],
+  "asm_name": "??0PalScript@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x0043A160",
+    "xrefs": [
+     {
+      "addr": "0x4086c5",
+      "type": "code",
+      "fn": {
+       "addr": "0x4086c0",
+       "name": "SingletonThunk_004086C0",
+       "size": "0xa"
+      }
+     },
+     {
+      "addr": "0x446132",
+      "type": "code",
+      "fn": {
+       "addr": "0x4460d0",
+       "name": "??0CCBUIPanel@@QAE@XZ",
+       "size": "0xd5"
+      }
+     },
+     {
+      "addr": "0x450e10",
+      "type": "code",
+      "fn": {
+       "addr": "0x450dc0",
+       "name": "??0UISceneMap@@QAE@XZ_0",
+       "size": "0xc5"
+      }
+     },
+     {
+      "addr": "0x45a97c",
+      "type": "code",
+      "fn": {
+       "addr": "0x45a7b0",
+       "name": "??0SaleUI@@QAE@XZ",
+       "size": "0x613"
+      }
+     },
+     {
+      "addr": "0x46d237",
+      "type": "code",
+      "fn": {
+       "addr": "0x46d140",
+       "name": "?InitUI@PropUI@@QAEHXZ",
+       "size": "0x377"
+      }
+     },
+     {
+      "addr": "0x470b6e",
+      "type": "code",
+      "fn": {
+       "addr": "0x470a60",
+       "name": "UIListBox_InitWithPalScript",
+       "size": "0x4b4"
+      }
+     },
+     {
+      "addr": "0x47942f",
+      "type": "code",
+      "fn": {
+       "addr": "0x479300",
+       "name": "??0MainEquipUI@@QAE@XZ",
+       "size": "0x351"
+      }
+     },
+     {
+      "addr": "0x44e568",
+      "type": "data",
+      "fn": {
+       "addr": "0x44e530",
+       "name": "??0UIEmote@@QAE@XZ",
+       "size": "0x85"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 8
+   }
+  ],
+  "decomp_first": "void __thiscall PalScript::PalScript(PalScript *this)"
+ },
+ {
+  "addr": "0x0043BB70",
+  "cls": "UIFrameWnd",
+  "name": "UIFrameWnd",
+  "form": "ctor形",
+  "asm_head": [
+   "43bb70 push esi",
+   "43bb71 mov esi, ecx",
+   "43bb73 call sub_445AA0",
+   "43bb78 mov dword ptr [esi], offset off_56ACB8",
+   "43bb7e mov dword ptr [esi+44h], 0",
+   "43bb85 mov eax, esi",
+   "43bb87 pop esi",
+   "43bb88 retn"
+  ],
+  "asm_name": "??0UIFrameWnd@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x0043BB70",
+    "xrefs": [
+     {
+      "addr": "0x450324",
+      "type": "code",
+      "fn": {
+       "addr": "0x450320",
+       "name": "?LayoutDefault@UICaption@@QAEXXZ",
+       "size": "0x44"
+      }
+     },
+     {
+      "addr": "0x450a7d",
+      "type": "code",
+      "fn": {
+       "addr": "0x450a60",
+       "name": "?InitFrameUI@RoleCameraCtrl@@QAEPAV1@XZ",
+       "size": "0x4a"
+      }
+     },
+     {
+      "addr": "0x450ddd",
+      "type": "code",
+      "fn": {
+       "addr": "0x450dc0",
+       "name": "??0UISceneMap@@QAE@XZ_0",
+       "size": "0xc5"
+      }
+     },
+     {
+      "addr": "0x45186d",
+      "type": "code",
+      "fn": {
+       "addr": "0x451850",
+       "name": "?UIListBox_Init@UIListBox@@QAEHXZ",
+       "size": "0x89"
+      }
+     },
+     {
+      "addr": "0x4a130d",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a12f0",
+       "name": "??0UIRoleDialog@@QAE@XZ",
+       "size": "0xe5"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 5
+   }
+  ],
+  "decomp_first": "int *__thiscall UIFrameWnd::UIFrameWnd(UIFrameWnd *this)"
+ },
+ {
+  "addr": "0x0043BE30",
+  "cls": "CCBResultWindow",
+  "name": "~CCBResultWindow",
+  "form": "dtor形",
+  "asm_head": [
+   "43be30 push 0FFFFFFFFh",
+   "43be32 push offset ??1stdiobuf@@UAE@XZ_SEH",
+   "43be37 mov eax, large fs:0",
+   "43be3d push eax",
+   "43be3e mov large fs:0, esp",
+   "43be45 push ecx",
+   "43be46 push esi",
+   "43be47 mov esi, ecx",
+   "43be49 mov [esp+14h+var_10], esi",
+   "43be4d mov dword ptr [esi], offset stru_56ACD8",
+   "43be53 mov [esp+14h+var_4], 0",
+   "43be5b call ReleaseTexture",
+   "43be60 mov ecx, esi; this",
+   "43be62 mov [esp+14h+var_4], 0FFFFFFFFh",
+   "43be6a call ?_UIWnd@UIWnd@@QAEXXZ",
+   "43be6f mov ecx, [esp+14h+var_C]",
+   "43be73 pop esi",
+   "43be74 mov large fs:0, ecx",
+   "43be7b add esp, 10h",
+   "43be7e retn",
+   "55fc80 mov ecx, [ebp-10h]; this",
+   "55fc83 jmp ?_UIWnd@UIWnd@@QAEXXZ",
+   "55fc88 mov eax, offset stru_574C00",
+   "55fc8d jmp ___CxxFrameHandler"
+  ],
+  "asm_name": "??1CCBResultWindow@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x0043BE30",
+    "xrefs": [
+     {
+      "addr": "0x43be13",
+      "type": "code",
+      "fn": {
+       "addr": "0x43be10",
+       "name": "??_GUIScene@@UAEPAXI@Z",
+       "size": "0x1e"
+      }
+     },
+     {
+      "addr": "0x454bf1",
+      "type": "code",
+      "fn": {
+       "addr": "0x454ba0",
+       "name": "?_TaskBookUI_4ba0@TaskBookUI@@QAEXXZ",
+       "size": "0xf2"
+      }
+     },
+     {
+      "addr": "0x4b05c1",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b0540",
+       "name": "UITitle_JDHY__UITitle_JDHY",
+       "size": "0x2d2"
+      }
+     },
+     {
+      "addr": "0x4b05d1",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b0540",
+       "name": "UITitle_JDHY__UITitle_JDHY",
+       "size": "0x2d2"
+      }
+     },
+     {
+      "addr": "0x4b05e1",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b0540",
+       "name": "UITitle_JDHY__UITitle_JDHY",
+       "size": "0x2d2"
+      }
+     },
+     {
+      "addr": "0x5241a1",
+      "type": "code",
+      "fn": {
+       "addr": "0x524130",
+       "name": "??1CScreenMode@@QAE@XZ",
+       "size": "0xf5"
+      }
+     },
+     {
+      "addr": "0x560fa0",
+      "type": "code",
+      "fn": {
+       "addr": "0x454830",
+       "name": "??1TaskBookUI@@QAE@XZ",
+       "size": "0x144"
+      }
+     },
+     {
+      "addr": "0x5611a0",
+      "type": "code",
+      "fn": {
+       "addr": "0x454ba0",
+       "name": "?_TaskBookUI_4ba0@TaskBookUI@@QAEXXZ",
+       "size": "0xf2"
+      }
+     },
+     {
+      "addr": "0x565fd2",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b01d0",
+       "name": "UITitle_JDHY_DestroyPages",
+       "size": "0x347"
+      }
+     },
+     {
+      "addr": "0x565fe0",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b01d0",
+       "name": "UITitle_JDHY_DestroyPages",
+       "size": "0x347"
+      }
+     },
+     {
+      "addr": "0x565fee",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b01d0",
+       "name": "UITitle_JDHY_DestroyPages",
+       "size": "0x347"
+      }
+     },
+     {
+      "addr": "0x566222",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b0540",
+       "name": "UITitle_JDHY__UITitle_JDHY",
+       "size": "0x2d2"
+      }
+     },
+     {
+      "addr": "0x566230",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b0540",
+       "name": "UITitle_JDHY__UITitle_JDHY",
+       "size": "0x2d2"
+      }
+     },
+     {
+      "addr": "0x56623e",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b0540",
+       "name": "UITitle_JDHY__UITitle_JDHY",
+       "size": "0x2d2"
+      }
+     },
+     {
+      "addr": "0x567a75",
+      "type": "code",
+      "fn": {
+       "addr": "0x523f30",
+       "name": "??0CScreenMode@@QAE@XZ",
+       "size": "0x1da"
+      }
+     },
+     {
+      "addr": "0x567b15",
+      "type": "code",
+      "fn": {
+       "addr": "0x524130",
+       "name": "??1CScreenMode@@QAE@XZ",
+       "size": "0xf5"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 16
+   }
+  ],
+  "decomp_first": "void __thiscall CCBResultWindow::~CCBResultWindow(CCBResultWindow *this)"
+ },
+ {
+  "addr": "0x0043D830",
+  "cls": "UI3DCtrl",
+  "name": "UI3DCtrl",
+  "form": "ctor形",
+  "asm_head": [
+   "43d830 push esi",
+   "43d831 mov esi, ecx",
+   "43d833 call sub_445AA0",
+   "43d838 xor eax, eax",
+   "43d83a mov dword ptr [esi], offset stru_56ACFC",
+   "43d840 mov [esi+50h], eax",
+   "43d843 mov [esi+4Ch], eax",
+   "43d846 mov eax, 20h ; ' '",
+   "43d84b mov [esi+44h], eax",
+   "43d84e mov [esi+48h], eax",
+   "43d851 mov eax, esi",
+   "43d853 pop esi",
+   "43d854 retn"
+  ],
+  "asm_name": "??0UI3DCtrl@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x0043D830",
+    "xrefs": [
+     {
+      "addr": "0x44111d",
+      "type": "code",
+      "fn": {
+       "addr": "0x4410f0",
+       "name": "??0UIMap@@QAE@XZ",
+       "size": "0xb9"
+      }
+     },
+     {
+      "addr": "0x45a95c",
+      "type": "code",
+      "fn": {
+       "addr": "0x45a7b0",
+       "name": "??0SaleUI@@QAE@XZ",
+       "size": "0x613"
+      }
+     },
+     {
+      "addr": "0x46d207",
+      "type": "code",
+      "fn": {
+       "addr": "0x46d140",
+       "name": "?InitUI@PropUI@@QAEHXZ",
+       "size": "0x377"
+      }
+     },
+     {
+      "addr": "0x470b3e",
+      "type": "code",
+      "fn": {
+       "addr": "0x470a60",
+       "name": "UIListBox_InitWithPalScript",
+       "size": "0x4b4"
+      }
+     },
+     {
+      "addr": "0x470c68",
+      "type": "code",
+      "fn": {
+       "addr": "0x470a60",
+       "name": "UIListBox_InitWithPalScript",
+       "size": "0x4b4"
+      }
+     },
+     {
+      "addr": "0x4793cf",
+      "type": "code",
+      "fn": {
+       "addr": "0x479300",
+       "name": "??0MainEquipUI@@QAE@XZ",
+       "size": "0x351"
+      }
+     },
+     {
+      "addr": "0x486aae",
+      "type": "code",
+      "fn": {
+       "addr": "0x4867f0",
+       "name": "?InitChildPanels@RenderTarget@@QAEHXZ",
+       "size": "0x4ee"
+      }
+     },
+     {
+      "addr": "0x490d7f",
+      "type": "code",
+      "fn": {
+       "addr": "0x4909f0",
+       "name": "MainPropUI__MainPropUI",
+       "size": "0x47e"
+      }
+     },
+     {
+      "addr": "0x498ae2",
+      "type": "code",
+      "fn": {
+       "addr": "0x498820",
+       "name": "??0EquipUI@@QAE@XZ",
+       "size": "0x450"
+      }
+     },
+     {
+      "addr": "0x4a7364",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a6f10",
+       "name": "??0CCCTData@@QAE@XZ",
+       "size": "0x751"
+      }
+     },
+     {
+      "addr": "0x4a7374",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a6f10",
+       "name": "??0CCCTData@@QAE@XZ",
+       "size": "0x751"
+      }
+     },
+     {
+      "addr": "0x4a73c6",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a6f10",
+       "name": "??0CCCTData@@QAE@XZ",
+       "size": "0x751"
+      }
+     },
+     {
+      "addr": "0x4a750a",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a6f10",
+       "name": "??0CCCTData@@QAE@XZ",
+       "size": "0x751"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 13
+   }
+  ],
+  "decomp_first": "int *__thiscall UI3DCtrl::UI3DCtrl(UI3DCtrl *this)"
+ },
+ {
+  "addr": "0x0043DCD0",
+  "cls": "UIListBox",
+  "name": "UIListBox",
+  "form": "ctor形",
+  "asm_head": [
+   "43dcd0 push esi",
+   "43dcd1 mov esi, ecx",
+   "43dcd3 call sub_445AA0",
+   "43dcd8 mov dword ptr [esi], offset stru_56AD20",
+   "43dcde mov dword ptr [esi+44h], 0",
+   "43dce5 mov eax, esi",
+   "43dce7 pop esi",
+   "43dce8 retn"
+  ],
+  "asm_name": "??0UIListBox@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x0043DCD0",
+    "xrefs": [
+     {
+      "addr": "0x4460ed",
+      "type": "code",
+      "fn": {
+       "addr": "0x4460d0",
+       "name": "??0CCBUIPanel@@QAE@XZ",
+       "size": "0xd5"
+      }
+     },
+     {
+      "addr": "0x44ba81",
+      "type": "code",
+      "fn": {
+       "addr": "0x44ba60",
+       "name": "??0UIScenePanel@@QAE@XZ",
+       "size": "0x2f7"
+      }
+     },
+     {
+      "addr": "0x44fffd",
+      "type": "code",
+      "fn": {
+       "addr": "0x44ffe0",
+       "name": "??0UISceneMap@@QAE@XZ",
+       "size": "0x8e"
+      }
+     },
+     {
+      "addr": "0x45072d",
+      "type": "code",
+      "fn": {
+       "addr": "0x450710",
+       "name": "??0UILoadingFrm@@QAE@XZ",
+       "size": "0x54"
+      }
+     },
+     {
+      "addr": "0x45259d",
+      "type": "code",
+      "fn": {
+       "addr": "0x452580",
+       "name": "GetFaceNum",
+       "size": "0x5a"
+      }
+     },
+     {
+      "addr": "0x453d2e",
+      "type": "code",
+      "fn": {
+       "addr": "0x453d10",
+       "name": "??0CCBUIPanel@@QAE@XZ_0",
+       "size": "0x139"
+      }
+     },
+     {
+      "addr": "0x45484e",
+      "type": "code",
+      "fn": {
+       "addr": "0x454830",
+       "name": "??1TaskBookUI@@QAE@XZ",
+       "size": "0x144"
+      }
+     },
+     {
+      "addr": "0x456ace",
+      "type": "code",
+      "fn": {
+       "addr": "0x456ab0",
+       "name": "??0CCBRoleState@@QAE@XZ_0",
+       "size": "0xa9"
+      }
+     },
+     {
+      "addr": "0x4590ee",
+      "type": "code",
+      "fn": {
+       "addr": "0x4590d0",
+       "name": "??0UISceneFrm@@QAE@XZ",
+       "size": "0x16b"
+      }
+     },
+     {
+      "addr": "0x45a7d2",
+      "type": "code",
+      "fn": {
+       "addr": "0x45a7b0",
+       "name": "??0SaleUI@@QAE@XZ",
+       "size": "0x613"
+      }
+     },
+     {
+      "addr": "0x46d162",
+      "type": "code",
+      "fn": {
+       "addr": "0x46d140",
+       "name": "?InitUI@PropUI@@QAEHXZ",
+       "size": "0x377"
+      }
+     },
+     {
+      "addr": "0x470a82",
+      "type": "code",
+      "fn": {
+       "addr": "0x470a60",
+       "name": "UIListBox_InitWithPalScript",
+       "size": "0x4b4"
+      }
+     },
+     {
+      "addr": "0x47931f",
+      "type": "code",
+      "fn": {
+       "addr": "0x479300",
+       "name": "??0MainEquipUI@@QAE@XZ",
+       "size": "0x351"
+      }
+     },
+     {
+      "addr": "0x47bc0d",
+      "type": "code",
+      "fn": {
+       "addr": "0x47bbf0",
+       "name": "??0UITitle_ArcSave@@QAE@XZ",
+       "size": "0x101"
+      }
+     },
+     {
+      "addr": "0x47dcbd",
+      "type": "code",
+      "fn": {
+       "addr": "0x47dca0",
+       "name": "?Create@UITitle_YXXX@@QAEXXZ",
+       "size": "0xbd"
+      }
+     },
+     {
+      "addr": "0x47e5de",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e5c0",
+       "name": "??0LineupUI@@QAE@XZ",
+       "size": "0x32c"
+      }
+     },
+     {
+      "addr": "0x482ef2",
+      "type": "code",
+      "fn": {
+       "addr": "0x482ed0",
+       "name": "?Save@LineupUI@@QAEHXZ",
+       "size": "0x38e"
+      }
+     },
+     {
+      "addr": "0x486810",
+      "type": "code",
+      "fn": {
+       "addr": "0x4867f0",
+       "name": "?InitChildPanels@RenderTarget@@QAEHXZ",
+       "size": "0x4ee"
+      }
+     },
+     {
+      "addr": "0x490a12",
+      "type": "code",
+      "fn": {
+       "addr": "0x4909f0",
+       "name": "MainPropUI__MainPropUI",
+       "size": "0x47e"
+      }
+     },
+     {
+      "addr": "0x49883e",
+      "type": "code",
+      "fn": {
+       "addr": "0x498820",
+       "name": "??0EquipUI@@QAE@XZ",
+       "size": "0x450"
+      }
+     },
+     {
+      "addr": "0x4a1e5e",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a1e40",
+       "name": "?InitUI@RoleStatePanel@@QAEHXZ",
+       "size": "0x310"
+      }
+     },
+     {
+      "addr": "0x4a6f32",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a6f10",
+       "name": "??0CCCTData@@QAE@XZ",
+       "size": "0x751"
+      }
+     },
+     {
+      "addr": "0x4b01ef",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b01d0",
+       "name": "UITitle_JDHY_DestroyPages",
+       "size": "0x347"
+      }
+     },
+     {
+      "addr": "0x5160bd",
+      "type": "code",
+      "fn": {
+       "addr": "0x5160a0",
+       "name": "??0CCBUI@@QAE@H@Z",
+       "size": "0x55"
+      }
+     },
+     {
+      "addr": "0x51932d",
+      "type": "code",
+      "fn": {
+       "addr": "0x519310",
+       "name": "??0CCBUI@@QAE@XZ",
+       "size": "0x49"
+      }
+     },
+     {
+      "addr": "0x519b0d",
+      "type": "code",
+      "fn": {
+       "addr": "0x519af0",
+       "name": "?InitAndRender@UIListBox@@QAEPAVCCBUI@@XZ",
+       "size": "0x49"
+      }
+     },
+     {
+      "addr": "0x51a35d",
+      "type": "code",
+      "fn": {
+       "addr": "0x51a340",
+       "name": "?ChangeNumTxt@CCBUI@@QAEKXZ",
+       "size": "0x49"
+      }
+     },
+     {
+      "addr": "0x51ac5d",
+      "type": "code",
+      "fn": {
+       "addr": "0x51ac40",
+       "name": "?DefaultKey@CCBControlWindow@@QAEPAVUIListBox@@XZ",
+       "size": "0x49"
+      }
+     },
+     {
+      "addr": "0x51b12d",
+      "type": "code",
+      "fn": {
+       "addr": "0x51b110",
+       "name": "?CreateButton@CCBControlWindow@@QAEPAVUIListBox@@XZ",
+       "size": "0x49"
+      }
+     },
+     {
+      "addr": "0x51b63d",
+      "type": "code",
+      "fn": {
+       "addr": "0x51b620",
+       "name": "?Update@CCBItemWindow@@QAEPAVUIListBox@@XZ",
+       "size": "0x49"
+      }
+     },
+     {
+      "addr": "0x51bbad",
+      "type": "code",
+      "fn": {
+       "addr": "0x51bb90",
+       "name": "?ForbidPage@CCBMagicWindow@@QAEPAVUIListBox@@XZ",
+       "size": "0x49"
+      }
+     },
+     {
+      "addr": "0x51c22d",
+      "type": "code",
+      "fn": {
+       "addr": "0x51c210",
+       "name": "?GetActivePage@CCBMagicWindow@@QAEPAVUIListBox@@XZ",
+       "size": "0x49"
+      }
+     },
+     {
+      "addr": "0x51d732",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x52314e",
+      "type": "code",
+      "fn": {
+       "addr": "0x523130",
+       "name": "??0CUtil@@QAE@XZ",
+       "size": "0x9f"
+      }
+     },
+     {
+      "addr": "0x523f50",
+      "type": "code",
+      "fn": {
+       "addr": "0x523f30",
+       "name": "??0CScreenMode@@QAE@XZ",
+       "size": "0x1da"
+      }
+     },
+     {
+      "addr": "0x525140",
+      "type": "code",
+      "fn": {
+       "addr": "0x525120",
+       "name": "?InitUI@SaleUI@@QAEHXZ",
+       "size": "0x39f"
+      }
+     },
+     {
+      "addr": "0x52796e",
+      "type": "code",
+      "fn": {
+       "addr": "0x527950",
+       "name": "?ctor@UIListBox@@QAEHXZ",
+       "size": "0x7a"
+      }
+     },
+     {
+      "addr": "0x528300",
+      "type": "code",
+      "fn": {
+       "addr": "0x5282e0",
+       "name": "??0JusticeBookUI@@QAE@XZ",
+       "size": "0x1da"
+      }
+     },
+     {
+      "addr": "0x52960e",
+      "type": "code",
+      "fn": {
+       "addr": "0x5295f0",
+       "name": "??0UIRoleSelectDialog@@QAE@XZ",
+       "size": "0x17b"
+      }
+     },
+     {
+      "addr": "0x52ba2e",
+      "type": "code",
+      "fn": {
+       "addr": "0x52ba10",
+       "name": "??0UICoverFrm@@QAE@XZ",
+       "size": "0x19c"
+      }
+     },
+     {
+      "addr": "0x531d3e",
+      "type": "code",
+      "fn": {
+       "addr": "0x531d20",
+       "name": "??0RoleSystem@@QAE@XZ",
+       "size": "0x129"
+      }
+     },
+     {
+      "addr": "0x53627d",
+      "type": "code",
+      "fn": {
+       "addr": "0x536260",
+       "name": "?CreateUI@SceneObj@@QAEHXZ",
+       "size": "0x90"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 42
+   }
+  ],
+  "decomp_first": "int *__thiscall UIListBox::UIListBox(UIListBox *this)"
+ },
+ {
+  "addr": "0x0043DD10",
+  "cls": "UIListBox",
+  "name": "~UIListBox",
+  "form": "dtor形",
+  "asm_head": [
+   "43dd10 push 0FFFFFFFFh",
+   "43dd12 push offset ??1stdiobuf@@UAE@XZ_0_SEH",
+   "43dd17 mov eax, large fs:0",
+   "43dd1d push eax",
+   "43dd1e mov large fs:0, esp",
+   "43dd25 push ecx",
+   "43dd26 push esi",
+   "43dd27 mov esi, ecx",
+   "43dd29 mov [esp+14h+var_10], esi",
+   "43dd2d mov dword ptr [esi], offset stru_56AD20",
+   "43dd33 mov [esp+14h+var_4], 0",
+   "43dd3b call Destroy",
+   "43dd40 mov ecx, esi; this",
+   "43dd42 mov [esp+14h+var_4], 0FFFFFFFFh",
+   "43dd4a call ?_UIWnd@UIWnd@@QAEXXZ",
+   "43dd4f mov ecx, [esp+14h+var_C]",
+   "43dd53 pop esi",
+   "43dd54 mov large fs:0, ecx",
+   "43dd5b add esp, 10h",
+   "43dd5e retn",
+   "55fd00 mov ecx, [ebp-10h]; this",
+   "55fd03 jmp ?_UIWnd@UIWnd@@QAEXXZ",
+   "55fd08 mov eax, offset stru_574CA0",
+   "55fd0d jmp ___CxxFrameHandler"
+  ],
+  "asm_name": "??1UIListBox@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x0043DD10",
+    "xrefs": [
+     {
+      "addr": "0x43dcf3",
+      "type": "code",
+      "fn": {
+       "addr": "0x43dcf0",
+       "name": "?_scalar_deleting_destructor_@UIListBox@@QAEXXZ",
+       "size": "0x1e"
+      }
+     },
+     {
+      "addr": "0x4462a7",
+      "type": "code",
+      "fn": {
+       "addr": "0x446200",
+       "name": "??1CCBUIPanel@@QAE@XZ",
+       "size": "0xbc"
+      }
+     },
+     {
+      "addr": "0x44c105",
+      "type": "code",
+      "fn": {
+       "addr": "0x44be80",
+       "name": "?_scalar_dtor_BE80@UIScenePanel@@QAEXXZ",
+       "size": "0x29b"
+      }
+     },
+     {
+      "addr": "0x4500cd",
+      "type": "code",
+      "fn": {
+       "addr": "0x450090",
+       "name": "??1UISceneMap@@QAE@XZ",
+       "size": "0x52"
+      }
+     },
+     {
+      "addr": "0x4507cd",
+      "type": "code",
+      "fn": {
+       "addr": "0x450790",
+       "name": "??1UILoadingFrm@@QAE@XZ",
+       "size": "0x52"
+      }
+     },
+     {
+      "addr": "0x45264d",
+      "type": "code",
+      "fn": {
+       "addr": "0x452600",
+       "name": "??_GUIListBox@@UAEPAXI@Z_0",
+       "size": "0x62"
+      }
+     },
+     {
+      "addr": "0x453f7d",
+      "type": "code",
+      "fn": {
+       "addr": "0x453e70",
+       "name": "?_scalar_dtor_3E70@CCBUIPanel@@QAEXXZ",
+       "size": "0x122"
+      }
+     },
+     {
+      "addr": "0x454c7d",
+      "type": "code",
+      "fn": {
+       "addr": "0x454ba0",
+       "name": "?_TaskBookUI_4ba0@TaskBookUI@@QAEXXZ",
+       "size": "0xf2"
+      }
+     },
+     {
+      "addr": "0x456bfd",
+      "type": "code",
+      "fn": {
+       "addr": "0x456b80",
+       "name": "?_scalar_dtor_6B80@CCBRoleState@@QAEXXZ",
+       "size": "0x92"
+      }
+     },
+     {
+      "addr": "0x459347",
+      "type": "code",
+      "fn": {
+       "addr": "0x459260",
+       "name": "??1UISceneFrm@@QAE@XZ",
+       "size": "0xfc"
+      }
+     },
+     {
+      "addr": "0x45b1e9",
+      "type": "code",
+      "fn": {
+       "addr": "0x45ae60",
+       "name": "??1SaleUI@@QAE@XZ",
+       "size": "0x3a0"
+      }
+     },
+     {
+      "addr": "0x46d750",
+      "type": "code",
+      "fn": {
+       "addr": "0x46d4e0",
+       "name": "??1PropUI@@QAE@XZ",
+       "size": "0x287"
+      }
+     },
+     {
+      "addr": "0x471209",
+      "type": "code",
+      "fn": {
+       "addr": "0x470f40",
+       "name": "LineupUI__LineupUI",
+       "size": "0x2df"
+      }
+     },
+     {
+      "addr": "0x479877",
+      "type": "code",
+      "fn": {
+       "addr": "0x479680",
+       "name": "??1MainEquipUI@@QAE@XZ",
+       "size": "0x20c"
+      }
+     },
+     {
+      "addr": "0x47bdd7",
+      "type": "code",
+      "fn": {
+       "addr": "0x47bd20",
+       "name": "??1UITitle_ArcSave@@QAE@XZ",
+       "size": "0xcc"
+      }
+     },
+     {
+      "addr": "0x47de25",
+      "type": "code",
+      "fn": {
+       "addr": "0x47dd90",
+       "name": "??1UITitle_YXXX@@QAE@XZ",
+       "size": "0xab"
+      }
+     },
+     {
+      "addr": "0x47ebe1",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e910",
+       "name": "?_scalar_dtor_E910@LineupUI@@QAEXXZ",
+       "size": "0x2e6"
+      }
+     },
+     {
+      "addr": "0x483638",
+      "type": "code",
+      "fn": {
+       "addr": "0x483380",
+       "name": "?ctor@StateUI@@QAEXXZ",
+       "size": "0x2cd"
+      }
+     },
+     {
+      "addr": "0x487465",
+      "type": "code",
+      "fn": {
+       "addr": "0x4870c0",
+       "name": "RenderTarget_InitNPCPanel",
+       "size": "0x3ba"
+      }
+     },
+     {
+      "addr": "0x491614",
+      "type": "code",
+      "fn": {
+       "addr": "0x4912d0",
+       "name": "sub_4912D0",
+       "size": "0x359"
+      }
+     },
+     {
+      "addr": "0x4993b8",
+      "type": "code",
+      "fn": {
+       "addr": "0x499030",
+       "name": "??1EquipUI@@QAE@XZ",
+       "size": "0x39d"
+      }
+     },
+     {
+      "addr": "0x4a26b1",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a2450",
+       "name": "??1RoleStatePanel@@QAE@XZ",
+       "size": "0x276"
+      }
+     },
+     {
+      "addr": "0x4a7c1b",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a7690",
+       "name": "??1SystemUI@@QAE@XZ",
+       "size": "0x5a1"
+      }
+     },
+     {
+      "addr": "0x4b07fd",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b0540",
+       "name": "UITitle_JDHY__UITitle_JDHY",
+       "size": "0x2d2"
+      }
+     },
+     {
+      "addr": "0x51615a",
+      "type": "code",
+      "fn": {
+       "addr": "0x516120",
+       "name": "??_GCCBProtectWindow@@UAEPAXI@Z",
+       "size": "0x4f"
+      }
+     },
+     {
+      "addr": "0x5193ba",
+      "type": "code",
+      "fn": {
+       "addr": "0x519380",
+       "name": "?Release@CCBUI@@QAEXXZ",
+       "size": "0x4f"
+      }
+     },
+     {
+      "addr": "0x519b9a",
+      "type": "code",
+      "fn": {
+       "addr": "0x519b60",
+       "name": "??1CCBFiveNimbusWindow@@QAE@XZ",
+       "size": "0x4f"
+      }
+     },
+     {
+      "addr": "0x51a3ea",
+      "type": "code",
+      "fn": {
+       "addr": "0x51a3b0",
+       "name": "??1CCBItemWindow@@QAE@XZ",
+       "size": "0x4f"
+      }
+     },
+     {
+      "addr": "0x51acea",
+      "type": "code",
+      "fn": {
+       "addr": "0x51acb0",
+       "name": "??1CCBControlWindow@@QAE@XZ",
+       "size": "0x4f"
+      }
+     },
+     {
+      "addr": "0x51b1ba",
+      "type": "code",
+      "fn": {
+       "addr": "0x51b180",
+       "name": "??_GCCBLineupWindow@@UAEPAXI@Z",
+       "size": "0x4f"
+      }
+     },
+     {
+      "addr": "0x51b6ca",
+      "type": "code",
+      "fn": {
+       "addr": "0x51b690",
+       "name": "??_GCCBMagicWindow@@UAEPAXI@Z",
+       "size": "0x4f"
+      }
+     },
+     {
+      "addr": "0x51bc3a",
+      "type": "code",
+      "fn": {
+       "addr": "0x51bc00",
+       "name": "??1CCBSkillWindow@@QAE@XZ",
+       "size": "0x4f"
+      }
+     },
+     {
+      "addr": "0x51c2ba",
+      "type": "code",
+      "fn": {
+       "addr": "0x51c280",
+       "name": "??_GCCBParabolaWindow@@UAEPAXI@Z",
+       "size": "0x4f"
+      }
+     },
+     {
+      "addr": "0x51dfb4",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x523293",
+      "type": "code",
+      "fn": {
+       "addr": "0x5231f0",
+       "name": "?_CUtil_31f0@CUtil@@QAEXXZ",
+       "size": "0xb9"
+      }
+     },
+     {
+      "addr": "0x524210",
+      "type": "code",
+      "fn": {
+       "addr": "0x524130",
+       "name": "??1CScreenMode@@QAE@XZ",
+       "size": "0xf5"
+      }
+     },
+     {
+      "addr": "0x52578e",
+      "type": "code",
+      "fn": {
+       "addr": "0x525540",
+       "name": "?InitShopUI@CCBUI@@QAEXXZ",
+       "size": "0x263"
+      }
+     },
+     {
+      "addr": "0x527a6b",
+      "type": "code",
+      "fn": {
+       "addr": "0x5279f0",
+       "name": "?_scalar_dtor_79F0@UIListBox@@QAEXXZ",
+       "size": "0x90"
+      }
+     },
+     {
+      "addr": "0x52863a",
+      "type": "code",
+      "fn": {
+       "addr": "0x5284e0",
+       "name": "??1JusticeBookUI@@QAE@XZ",
+       "size": "0x16f"
+      }
+     },
+     {
+      "addr": "0x529850",
+      "type": "code",
+      "fn": {
+       "addr": "0x529790",
+       "name": "??1UIRoleSelectDialog@@QAE@XZ",
+       "size": "0xd5"
+      }
+     },
+     {
+      "addr": "0x52be2a",
+      "type": "code",
+      "fn": {
+       "addr": "0x52bd50",
+       "name": "??1UICoverFrm@@QAE@XZ",
+       "size": "0xef"
+      }
+     },
+     {
+      "addr": "0x531f3a",
+      "type": "code",
+      "fn": {
+       "addr": "0x531e70",
+       "name": "??1RoleSystem@@QAE@XZ",
+       "size": "0xdf"
+      }
+     },
+     {
+      "addr": "0x536380",
+      "type": "code",
+      "fn": {
+       "addr": "0x536310",
+       "name": "?DestroyInternalData@Actor@@QAEXXZ",
+       "size": "0x85"
+      }
+     },
+     {
+      "addr": "0x560183",
+      "type": "code",
+      "fn": {
+       "addr": "0x4460d0",
+       "name": "??0CCBUIPanel@@QAE@XZ",
+       "size": "0xd5"
+      }
+     },
+     {
+      "addr": "0x5601f3",
+      "type": "code",
+      "fn": {
+       "addr": "0x446200",
+       "name": "??1CCBUIPanel@@QAE@XZ",
+       "size": "0xbc"
+      }
+     },
+     {
+      "addr": "0x560413",
+      "type": "code",
+      "fn": {
+       "addr": "0x44ba60",
+       "name": "??0UIScenePanel@@QAE@XZ",
+       "size": "0x2f7"
+      }
+     },
+     {
+      "addr": "0x5605a3",
+      "type": "code",
+      "fn": {
+       "addr": "0x44be80",
+       "name": "?_scalar_dtor_BE80@UIScenePanel@@QAEXXZ",
+       "size": "0x29b"
+      }
+     },
+     {
+      "addr": "0x560993",
+      "type": "code",
+      "fn": {
+       "addr": "0x44ffe0",
+       "name": "??0UISceneMap@@QAE@XZ",
+       "size": "0x8e"
+      }
+     },
+     {
+      "addr": "0x5609b3",
+      "type": "code",
+      "fn": {
+       "addr": "0x450090",
+       "name": "??1UISceneMap@@QAE@XZ",
+       "size": "0x52"
+      }
+     },
+     {
+      "addr": "0x5609d3",
+      "type": "code",
+      "fn": {
+       "addr": "0x450710",
+       "name": "??0UILoadingFrm@@QAE@XZ",
+       "size": "0x54"
+      }
+     },
+     {
+      "addr": "0x5609f3",
+      "type": "code",
+      "fn": {
+       "addr": "0x450790",
+       "name": "??1UILoadingFrm@@QAE@XZ",
+       "size": "0x52"
+      }
+     },
+     {
+      "addr": "0x560c83",
+      "type": "code",
+      "fn": {
+       "addr": "0x452580",
+       "name": "GetFaceNum",
+       "size": "0x5a"
+      }
+     },
+     {
+      "addr": "0x560ca3",
+      "type": "code",
+      "fn": {
+       "addr": "0x452600",
+       "name": "??_GUIListBox@@UAEPAXI@Z_0",
+       "size": "0x62"
+      }
+     },
+     {
+      "addr": "0x560d83",
+      "type": "code",
+      "fn": {
+       "addr": "0x453d10",
+       "name": "??0CCBUIPanel@@QAE@XZ_0",
+       "size": "0x139"
+      }
+     },
+     {
+      "addr": "0x560e53",
+      "type": "code",
+      "fn": {
+       "addr": "0x453e70",
+       "name": "?_scalar_dtor_3E70@CCBUIPanel@@QAEXXZ",
+       "size": "0x122"
+      }
+     },
+     {
+      "addr": "0x560f23",
+      "type": "code",
+      "fn": {
+       "addr": "0x454830",
+       "name": "??1TaskBookUI@@QAE@XZ",
+       "size": "0x144"
+      }
+     },
+     {
+      "addr": "0x561123",
+      "type": "code",
+      "fn": {
+       "addr": "0x454ba0",
+       "name": "?_TaskBookUI_4ba0@TaskBookUI@@QAEXXZ",
+       "size": "0xf2"
+      }
+     },
+     {
+      "addr": "0x5611c3",
+      "type": "code",
+      "fn": {
+       "addr": "0x456ab0",
+       "name": "??0CCBRoleState@@QAE@XZ_0",
+       "size": "0xa9"
+      }
+     },
+     {
+      "addr": "0x561213",
+      "type": "code",
+      "fn": {
+       "addr": "0x456b80",
+       "name": "?_scalar_dtor_6B80@CCBRoleState@@QAEXXZ",
+       "size": "0x92"
+      }
+     },
+     {
+      "addr": "0x5612c3",
+      "type": "code",
+      "fn": {
+       "addr": "0x4590d0",
+       "name": "??0UISceneFrm@@QAE@XZ",
+       "size": "0x16b"
+      }
+     },
+     {
+      "addr": "0x561363",
+      "type": "code",
+      "fn": {
+       "addr": "0x459260",
+       "name": "??1UISceneFrm@@QAE@XZ",
+       "size": "0xfc"
+      }
+     },
+     {
+      "addr": "0x561443",
+      "type": "code",
+      "fn": {
+       "addr": "0x45a7b0",
+       "name": "??0SaleUI@@QAE@XZ",
+       "size": "0x613"
+      }
+     },
+     {
+      "addr": "0x5616f3",
+      "type": "code",
+      "fn": {
+       "addr": "0x45ae60",
+       "name": "??1SaleUI@@QAE@XZ",
+       "size": "0x3a0"
+      }
+     },
+     {
+      "addr": "0x561983",
+      "type": "code",
+      "fn": {
+       "addr": "0x46d140",
+       "name": "?InitUI@PropUI@@QAEHXZ",
+       "size": "0x377"
+      }
+     },
+     {
+      "addr": "0x561b43",
+      "type": "code",
+      "fn": {
+       "addr": "0x46d4e0",
+       "name": "??1PropUI@@QAE@XZ",
+       "size": "0x287"
+      }
+     },
+     {
+      "addr": "0x561d03",
+      "type": "code",
+      "fn": {
+       "addr": "0x470a60",
+       "name": "UIListBox_InitWithPalScript",
+       "size": "0x4b4"
+      }
+     },
+     {
+      "addr": "0x561f33",
+      "type": "code",
+      "fn": {
+       "addr": "0x470f40",
+       "name": "LineupUI__LineupUI",
+       "size": "0x2df"
+      }
+     },
+     {
+      "addr": "0x562193",
+      "type": "code",
+      "fn": {
+       "addr": "0x479300",
+       "name": "??0MainEquipUI@@QAE@XZ",
+       "size": "0x351"
+      }
+     },
+     {
+      "addr": "0x562343",
+      "type": "code",
+      "fn": {
+       "addr": "0x479680",
+       "name": "??1MainEquipUI@@QAE@XZ",
+       "size": "0x20c"
+      }
+     },
+     {
+      "addr": "0x5624f3",
+      "type": "code",
+      "fn": {
+       "addr": "0x47bbf0",
+       "name": "??0UITitle_ArcSave@@QAE@XZ",
+       "size": "0x101"
+      }
+     },
+     {
+      "addr": "0x562573",
+      "type": "code",
+      "fn": {
+       "addr": "0x47bd20",
+       "name": "??1UITitle_ArcSave@@QAE@XZ",
+       "size": "0xcc"
+      }
+     },
+     {
+      "addr": "0x5626b3",
+      "type": "code",
+      "fn": {
+       "addr": "0x47dca0",
+       "name": "?Create@UITitle_YXXX@@QAEXXZ",
+       "size": "0xbd"
+      }
+     },
+     {
+      "addr": "0x562713",
+      "type": "code",
+      "fn": {
+       "addr": "0x47dd90",
+       "name": "??1UITitle_YXXX@@QAE@XZ",
+       "size": "0xab"
+      }
+     },
+     {
+      "addr": "0x562783",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e5c0",
+       "name": "??0LineupUI@@QAE@XZ",
+       "size": "0x32c"
+      }
+     },
+     {
+      "addr": "0x5629e3",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e910",
+       "name": "?_scalar_dtor_E910@LineupUI@@QAEXXZ",
+       "size": "0x2e6"
+      }
+     },
+     {
+      "addr": "0x562c43",
+      "type": "code",
+      "fn": {
+       "addr": "0x482ed0",
+       "name": "?Save@LineupUI@@QAEHXZ",
+       "size": "0x38e"
+      }
+     },
+     {
+      "addr": "0x562eb3",
+      "type": "code",
+      "fn": {
+       "addr": "0x483380",
+       "name": "?ctor@StateUI@@QAEXXZ",
+       "size": "0x2cd"
+      }
+     },
+     {
+      "addr": "0x563123",
+      "type": "code",
+      "fn": {
+       "addr": "0x4867f0",
+       "name": "?InitChildPanels@RenderTarget@@QAEHXZ",
+       "size": "0x4ee"
+      }
+     },
+     {
+      "addr": "0x563723",
+      "type": "code",
+      "fn": {
+       "addr": "0x4870c0",
+       "name": "RenderTarget_InitNPCPanel",
+       "size": "0x3ba"
+      }
+     },
+     {
+      "addr": "0x563a43",
+      "type": "code",
+      "fn": {
+       "addr": "0x4909f0",
+       "name": "MainPropUI__MainPropUI",
+       "size": "0x47e"
+      }
+     },
+     {
+      "addr": "0x564063",
+      "type": "code",
+      "fn": {
+       "addr": "0x4912d0",
+       "name": "sub_4912D0",
+       "size": "0x359"
+      }
+     },
+     {
+      "addr": "0x564323",
+      "type": "code",
+      "fn": {
+       "addr": "0x498820",
+       "name": "??0EquipUI@@QAE@XZ",
+       "size": "0x450"
+      }
+     },
+     {
+      "addr": "0x564903",
+      "type": "code",
+      "fn": {
+       "addr": "0x499030",
+       "name": "??1EquipUI@@QAE@XZ",
+       "size": "0x39d"
+      }
+     },
+     {
+      "addr": "0x564cf3",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a1e40",
+       "name": "?InitUI@RoleStatePanel@@QAEHXZ",
+       "size": "0x310"
+      }
+     },
+     {
+      "addr": "0x565103",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a2450",
+       "name": "??1RoleStatePanel@@QAE@XZ",
+       "size": "0x276"
+      }
+     },
+     {
+      "addr": "0x5653e3",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a6f10",
+       "name": "??0CCCTData@@QAE@XZ",
+       "size": "0x751"
+      }
+     },
+     {
+      "addr": "0x5658c3",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a7690",
+       "name": "??1SystemUI@@QAE@XZ",
+       "size": "0x5a1"
+      }
+     },
+     {
+      "addr": "0x565df3",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b01d0",
+       "name": "UITitle_JDHY_DestroyPages",
+       "size": "0x347"
+      }
+     },
+     {
+      "addr": "0x566043",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b0540",
+       "name": "UITitle_JDHY__UITitle_JDHY",
+       "size": "0x2d2"
+      }
+     },
+     {
+      "addr": "0x567083",
+      "type": "code",
+      "fn": {
+       "addr": "0x5160a0",
+       "name": "??0CCBUI@@QAE@H@Z",
+       "size": "0x55"
+      }
+     },
+     {
+      "addr": "0x5670a3",
+      "type": "code",
+      "fn": {
+       "addr": "0x516120",
+       "name": "??_GCCBProtectWindow@@UAEPAXI@Z",
+       "size": "0x4f"
+      }
+     },
+     {
+      "addr": "0x567123",
+      "type": "code",
+      "fn": {
+       "addr": "0x519310",
+       "name": "??0CCBUI@@QAE@XZ",
+       "size": "0x49"
+      }
+     },
+     {
+      "addr": "0x567143",
+      "type": "code",
+      "fn": {
+       "addr": "0x519380",
+       "name": "?Release@CCBUI@@QAEXXZ",
+       "size": "0x4f"
+      }
+     },
+     {
+      "addr": "0x5671a3",
+      "type": "code",
+      "fn": {
+       "addr": "0x519af0",
+       "name": "?InitAndRender@UIListBox@@QAEPAVCCBUI@@XZ",
+       "size": "0x49"
+      }
+     },
+     {
+      "addr": "0x5671c3",
+      "type": "code",
+      "fn": {
+       "addr": "0x519b60",
+       "name": "??1CCBFiveNimbusWindow@@QAE@XZ",
+       "size": "0x4f"
+      }
+     },
+     {
+      "addr": "0x567243",
+      "type": "code",
+      "fn": {
+       "addr": "0x51a340",
+       "name": "?ChangeNumTxt@CCBUI@@QAEKXZ",
+       "size": "0x49"
+      }
+     },
+     {
+      "addr": "0x567263",
+      "type": "code",
+      "fn": {
+       "addr": "0x51a3b0",
+       "name": "??1CCBItemWindow@@QAE@XZ",
+       "size": "0x4f"
+      }
+     },
+     {
+      "addr": "0x5672d3",
+      "type": "code",
+      "fn": {
+       "addr": "0x51ac40",
+       "name": "?DefaultKey@CCBControlWindow@@QAEPAVUIListBox@@XZ",
+       "size": "0x49"
+      }
+     },
+     {
+      "addr": "0x5672f3",
+      "type": "code",
+      "fn": {
+       "addr": "0x51acb0",
+       "name": "??1CCBControlWindow@@QAE@XZ",
+       "size": "0x4f"
+      }
+     },
+     {
+      "addr": "0x567353",
+      "type": "code",
+      "fn": {
+       "addr": "0x51b110",
+       "name": "?CreateButton@CCBControlWindow@@QAEPAVUIListBox@@XZ",
+       "size": "0x49"
+      }
+     }
+    ],
+    "more": true,
+    "xref_count": 100
+   }
+  ],
+  "decomp_first": "void __thiscall UIListBox::~UIListBox(UIListBox *this)"
+ },
+ {
+  "addr": "0x0043F970",
+  "cls": "UIButton",
+  "name": "~UIButton",
+  "form": "dtor形",
+  "asm_head": [
+   "43f970 push 0FFFFFFFFh",
+   "43f972 push offset ??1stdiobuf@@UAE@XZ_1_SEH",
+   "43f977 mov eax, large fs:0",
+   "43f97d push eax",
+   "43f97e mov large fs:0, esp",
+   "43f985 push ecx",
+   "43f986 push esi",
+   "43f987 mov esi, ecx",
+   "43f989 mov [esp+14h+var_10], esi",
+   "43f98d mov dword ptr [esi], offset stru_56AD64",
+   "43f993 mov [esp+14h+var_4], 0",
+   "43f99b call ?Destroy@UIButton@@QAEXXZ",
+   "43f9a0 mov ecx, esi; this",
+   "43f9a2 mov [esp+14h+var_4], 0FFFFFFFFh",
+   "43f9aa call ?_UIWnd@UIWnd@@QAEXXZ",
+   "43f9af mov ecx, [esp+14h+var_C]",
+   "43f9b3 pop esi",
+   "43f9b4 mov large fs:0, ecx",
+   "43f9bb add esp, 10h",
+   "43f9be retn",
+   "55fe50 mov ecx, [ebp-10h]; this",
+   "55fe53 jmp ?_UIWnd@UIWnd@@QAEXXZ",
+   "55fe58 mov eax, offset stru_574E28",
+   "55fe5d jmp ___CxxFrameHandler"
+  ],
+  "asm_name": "??1UIButton@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x0043F970",
+    "xrefs": [
+     {
+      "addr": "0x43f953",
+      "type": "code",
+      "fn": {
+       "addr": "0x43f950",
+       "name": "??_GUIButton@@UAEPAXI@Z",
+       "size": "0x1e"
+      }
+     },
+     {
+      "addr": "0x4507be",
+      "type": "code",
+      "fn": {
+       "addr": "0x450790",
+       "name": "??1UILoadingFrm@@QAE@XZ",
+       "size": "0x52"
+      }
+     },
+     {
+      "addr": "0x450ef5",
+      "type": "code",
+      "fn": {
+       "addr": "0x450eb0",
+       "name": "??1RoleAtt@@QAE@PAVUIWnd@@@Z",
+       "size": "0xc5"
+      }
+     },
+     {
+      "addr": "0x451e1b",
+      "type": "code",
+      "fn": {
+       "addr": "0x451da0",
+       "name": "??1UITitle_BBTY@@QAE@XZ",
+       "size": "0xac"
+      }
+     },
+     {
+      "addr": "0x451e28",
+      "type": "code",
+      "fn": {
+       "addr": "0x451da0",
+       "name": "??1UITitle_BBTY@@QAE@XZ",
+       "size": "0xac"
+      }
+     },
+     {
+      "addr": "0x487008",
+      "type": "code",
+      "fn": {
+       "addr": "0x486ef0",
+       "name": "?DestroyFrames@UITitle_XJTM@@QAEXXZ",
+       "size": "0x1cc"
+      }
+     },
+     {
+      "addr": "0x487038",
+      "type": "code",
+      "fn": {
+       "addr": "0x486ef0",
+       "name": "?DestroyFrames@UITitle_XJTM@@QAEXXZ",
+       "size": "0x1cc"
+      }
+     },
+     {
+      "addr": "0x487068",
+      "type": "code",
+      "fn": {
+       "addr": "0x486ef0",
+       "name": "?DestroyFrames@UITitle_XJTM@@QAEXXZ",
+       "size": "0x1cc"
+      }
+     },
+     {
+      "addr": "0x491212",
+      "type": "code",
+      "fn": {
+       "addr": "0x4910b0",
+       "name": "??1UIBigMap@@QAE@XZ",
+       "size": "0x216"
+      }
+     },
+     {
+      "addr": "0x491242",
+      "type": "code",
+      "fn": {
+       "addr": "0x4910b0",
+       "name": "??1UIBigMap@@QAE@XZ",
+       "size": "0x216"
+      }
+     },
+     {
+      "addr": "0x491272",
+      "type": "code",
+      "fn": {
+       "addr": "0x4910b0",
+       "name": "??1UIBigMap@@QAE@XZ",
+       "size": "0x216"
+      }
+     },
+     {
+      "addr": "0x498f78",
+      "type": "code",
+      "fn": {
+       "addr": "0x498e60",
+       "name": "?DestroyFramesEx@UITitle_XJTM@@QAEXXZ",
+       "size": "0x1cc"
+      }
+     },
+     {
+      "addr": "0x498fa8",
+      "type": "code",
+      "fn": {
+       "addr": "0x498e60",
+       "name": "?DestroyFramesEx@UITitle_XJTM@@QAEXXZ",
+       "size": "0x1cc"
+      }
+     },
+     {
+      "addr": "0x498fd8",
+      "type": "code",
+      "fn": {
+       "addr": "0x498e60",
+       "name": "?DestroyFramesEx@UITitle_XJTM@@QAEXXZ",
+       "size": "0x1cc"
+      }
+     },
+     {
+      "addr": "0x4a2398",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a22e0",
+       "name": "?DestroySubWindows@ChoseCompose@@QAEXXZ",
+       "size": "0x16c"
+      }
+     },
+     {
+      "addr": "0x4a23c8",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a22e0",
+       "name": "?DestroySubWindows@ChoseCompose@@QAEXXZ",
+       "size": "0x16c"
+      }
+     },
+     {
+      "addr": "0x4a23f8",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a22e0",
+       "name": "?DestroySubWindows@ChoseCompose@@QAEXXZ",
+       "size": "0x16c"
+      }
+     },
+     {
+      "addr": "0x525635",
+      "type": "code",
+      "fn": {
+       "addr": "0x525540",
+       "name": "?InitShopUI@CCBUI@@QAEXXZ",
+       "size": "0x263"
+      }
+     },
+     {
+      "addr": "0x52bccb",
+      "type": "code",
+      "fn": {
+       "addr": "0x52bc90",
+       "name": "?DestroyFrames@UIRoleSelectDialog@@QAEXXZ",
+       "size": "0xbf"
+      }
+     },
+     {
+      "addr": "0x52bcfb",
+      "type": "code",
+      "fn": {
+       "addr": "0x52bc90",
+       "name": "?DestroyFrames@UIRoleSelectDialog@@QAEXXZ",
+       "size": "0xbf"
+      }
+     },
+     {
+      "addr": "0x536351",
+      "type": "code",
+      "fn": {
+       "addr": "0x536310",
+       "name": "?DestroyInternalData@Actor@@QAEXXZ",
+       "size": "0x85"
+      }
+     },
+     {
+      "addr": "0x560b2b",
+      "type": "code",
+      "fn": {
+       "addr": "0x450eb0",
+       "name": "??1RoleAtt@@QAE@PAVUIWnd@@@Z",
+       "size": "0xc5"
+      }
+     },
+     {
+      "addr": "0x560bce",
+      "type": "code",
+      "fn": {
+       "addr": "0x451cc0",
+       "name": "??0UITitle_BBTY@@QAE@XZ",
+       "size": "0xb8"
+      }
+     },
+     {
+      "addr": "0x560bdc",
+      "type": "code",
+      "fn": {
+       "addr": "0x451cc0",
+       "name": "??0UITitle_BBTY@@QAE@XZ",
+       "size": "0xb8"
+      }
+     },
+     {
+      "addr": "0x560c2e",
+      "type": "code",
+      "fn": {
+       "addr": "0x451da0",
+       "name": "??1UITitle_BBTY@@QAE@XZ",
+       "size": "0xac"
+      }
+     },
+     {
+      "addr": "0x560c3c",
+      "type": "code",
+      "fn": {
+       "addr": "0x451da0",
+       "name": "??1UITitle_BBTY@@QAE@XZ",
+       "size": "0xac"
+      }
+     },
+     {
+      "addr": "0x56347b",
+      "type": "code",
+      "fn": {
+       "addr": "0x486d20",
+       "name": "?DestroyStatics@UITitle_XJTM@@QAEXXZ",
+       "size": "0x1c9"
+      }
+     },
+     {
+      "addr": "0x5634a5",
+      "type": "code",
+      "fn": {
+       "addr": "0x486d20",
+       "name": "?DestroyStatics@UITitle_XJTM@@QAEXXZ",
+       "size": "0x1c9"
+      }
+     },
+     {
+      "addr": "0x5634cf",
+      "type": "code",
+      "fn": {
+       "addr": "0x486d20",
+       "name": "?DestroyStatics@UITitle_XJTM@@QAEXXZ",
+       "size": "0x1c9"
+      }
+     },
+     {
+      "addr": "0x5635eb",
+      "type": "code",
+      "fn": {
+       "addr": "0x486ef0",
+       "name": "?DestroyFrames@UITitle_XJTM@@QAEXXZ",
+       "size": "0x1cc"
+      }
+     },
+     {
+      "addr": "0x563615",
+      "type": "code",
+      "fn": {
+       "addr": "0x486ef0",
+       "name": "?DestroyFrames@UITitle_XJTM@@QAEXXZ",
+       "size": "0x1cc"
+      }
+     },
+     {
+      "addr": "0x56363f",
+      "type": "code",
+      "fn": {
+       "addr": "0x486ef0",
+       "name": "?DestroyFrames@UITitle_XJTM@@QAEXXZ",
+       "size": "0x1cc"
+      }
+     },
+     {
+      "addr": "0x563d3b",
+      "type": "code",
+      "fn": {
+       "addr": "0x490e90",
+       "name": "??0UIBigMap@@QAE@XZ",
+       "size": "0x21d"
+      }
+     },
+     {
+      "addr": "0x563d65",
+      "type": "code",
+      "fn": {
+       "addr": "0x490e90",
+       "name": "??0UIBigMap@@QAE@XZ",
+       "size": "0x21d"
+      }
+     },
+     {
+      "addr": "0x563d8f",
+      "type": "code",
+      "fn": {
+       "addr": "0x490e90",
+       "name": "??0UIBigMap@@QAE@XZ",
+       "size": "0x21d"
+      }
+     },
+     {
+      "addr": "0x563eeb",
+      "type": "code",
+      "fn": {
+       "addr": "0x4910b0",
+       "name": "??1UIBigMap@@QAE@XZ",
+       "size": "0x216"
+      }
+     },
+     {
+      "addr": "0x563f15",
+      "type": "code",
+      "fn": {
+       "addr": "0x4910b0",
+       "name": "??1UIBigMap@@QAE@XZ",
+       "size": "0x216"
+      }
+     },
+     {
+      "addr": "0x563f3f",
+      "type": "code",
+      "fn": {
+       "addr": "0x4910b0",
+       "name": "??1UIBigMap@@QAE@XZ",
+       "size": "0x216"
+      }
+     },
+     {
+      "addr": "0x56465b",
+      "type": "code",
+      "fn": {
+       "addr": "0x498c90",
+       "name": "?DestroyStaticsEx@UITitle_XJTM@@QAEXXZ",
+       "size": "0x1c9"
+      }
+     },
+     {
+      "addr": "0x564685",
+      "type": "code",
+      "fn": {
+       "addr": "0x498c90",
+       "name": "?DestroyStaticsEx@UITitle_XJTM@@QAEXXZ",
+       "size": "0x1c9"
+      }
+     },
+     {
+      "addr": "0x5646af",
+      "type": "code",
+      "fn": {
+       "addr": "0x498c90",
+       "name": "?DestroyStaticsEx@UITitle_XJTM@@QAEXXZ",
+       "size": "0x1c9"
+      }
+     },
+     {
+      "addr": "0x5647cb",
+      "type": "code",
+      "fn": {
+       "addr": "0x498e60",
+       "name": "?DestroyFramesEx@UITitle_XJTM@@QAEXXZ",
+       "size": "0x1cc"
+      }
+     },
+     {
+      "addr": "0x5647f5",
+      "type": "code",
+      "fn": {
+       "addr": "0x498e60",
+       "name": "?DestroyFramesEx@UITitle_XJTM@@QAEXXZ",
+       "size": "0x1cc"
+      }
+     },
+     {
+      "addr": "0x56481f",
+      "type": "code",
+      "fn": {
+       "addr": "0x498e60",
+       "name": "?DestroyFramesEx@UITitle_XJTM@@QAEXXZ",
+       "size": "0x1cc"
+      }
+     },
+     {
+      "addr": "0x564f1b",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a2170",
+       "name": "?InitCompose@ChoseCompose@@QAEXXZ",
+       "size": "0x169"
+      }
+     },
+     {
+      "addr": "0x564f45",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a2170",
+       "name": "?InitCompose@ChoseCompose@@QAEXXZ",
+       "size": "0x169"
+      }
+     },
+     {
+      "addr": "0x564f6f",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a2170",
+       "name": "?InitCompose@ChoseCompose@@QAEXXZ",
+       "size": "0x169"
+      }
+     },
+     {
+      "addr": "0x56502b",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a22e0",
+       "name": "?DestroySubWindows@ChoseCompose@@QAEXXZ",
+       "size": "0x16c"
+      }
+     },
+     {
+      "addr": "0x565055",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a22e0",
+       "name": "?DestroySubWindows@ChoseCompose@@QAEXXZ",
+       "size": "0x16c"
+      }
+     },
+     {
+      "addr": "0x56507f",
+      "type": "code",
+      "fn": {
+       "addr": "0x4a22e0",
+       "name": "?DestroySubWindows@ChoseCompose@@QAEXXZ",
+       "size": "0x16c"
+      }
+     },
+     {
+      "addr": "0x567c93",
+      "type": "code",
+      "fn": {
+       "addr": "0x525120",
+       "name": "?InitUI@SaleUI@@QAEHXZ",
+       "size": "0x39f"
+      }
+     },
+     {
+      "addr": "0x567e93",
+      "type": "code",
+      "fn": {
+       "addr": "0x525540",
+       "name": "?InitShopUI@CCBUI@@QAEXXZ",
+       "size": "0x263"
+      }
+     },
+     {
+      "addr": "0x5684db",
+      "type": "code",
+      "fn": {
+       "addr": "0x52bbd0",
+       "name": "?DestroyStatics@UIRoleSelectDialog@@QAEXXZ",
+       "size": "0xb7"
+      }
+     },
+     {
+      "addr": "0x568505",
+      "type": "code",
+      "fn": {
+       "addr": "0x52bbd0",
+       "name": "?DestroyStatics@UIRoleSelectDialog@@QAEXXZ",
+       "size": "0xb7"
+      }
+     },
+     {
+      "addr": "0x56855b",
+      "type": "code",
+      "fn": {
+       "addr": "0x52bc90",
+       "name": "?DestroyFrames@UIRoleSelectDialog@@QAEXXZ",
+       "size": "0xbf"
+      }
+     },
+     {
+      "addr": "0x568585",
+      "type": "code",
+      "fn": {
+       "addr": "0x52bc90",
+       "name": "?DestroyFrames@UIRoleSelectDialog@@QAEXXZ",
+       "size": "0xbf"
+      }
+     },
+     {
+      "addr": "0x568aed",
+      "type": "code",
+      "fn": {
+       "addr": "0x536260",
+       "name": "?CreateUI@SceneObj@@QAEHXZ",
+       "size": "0x90"
+      }
+     },
+     {
+      "addr": "0x568b3d",
+      "type": "code",
+      "fn": {
+       "addr": "0x536310",
+       "name": "?DestroyInternalData@Actor@@QAEXXZ",
+       "size": "0x85"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 58
+   }
+  ],
+  "decomp_first": "void __thiscall UIButton::~UIButton(UIButton *this)"
+ },
+ {
+  "addr": "0x00440740",
+  "cls": "UIPushButton",
+  "name": "UIPushButton",
+  "form": "ctor形",
+  "asm_head": [
+   "440740 push esi",
+   "440741 push edi",
+   "440742 mov esi, ecx",
+   "440744 call sub_445AA0",
+   "440749 xor edx, edx",
+   "44074b mov dword ptr [esi], offset stru_56AD88",
+   "440751 mov [esi+44h], dl",
+   "440754 mov [esi+45h], dl",
+   "440757 mov [esi+50h], edx",
+   "44075a lea eax, [esi+5Ch]",
+   "44075d mov ecx, 2",
+   "440762 mov [eax-8], edx",
+   "440765 mov [eax], edx",
+   "440767 add eax, 4",
+   "44076a dec ecx",
+   "44076b jnz short loc_440762",
+   "44076d mov ecx, 20h ; ' '",
+   "440772 xor eax, eax",
+   "440774 lea edi, [esi+78h]",
+   "440777 rep stosd",
+   "440779 mov dword ptr [esi+4Ch], 1",
+   "440780 mov [esi+70h], edx",
+   "440783 mov [esi+74h], edx",
+   "440786 mov [esi+68h], edx",
+   "440789 mov [esi+6Ch], edx",
+   "44078c mov eax, esi",
+   "44078e pop edi",
+   "44078f pop esi"
+  ],
+  "asm_name": "??0UIPushButton@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x00440740",
+    "xrefs": [
+     {
+      "addr": "0x47e85f",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e5c0",
+       "name": "??0LineupUI@@QAE@XZ",
+       "size": "0x32c"
+      }
+     },
+     {
+      "addr": "0x47e86f",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e5c0",
+       "name": "??0LineupUI@@QAE@XZ",
+       "size": "0x32c"
+      }
+     },
+     {
+      "addr": "0x47e87f",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e5c0",
+       "name": "??0LineupUI@@QAE@XZ",
+       "size": "0x32c"
+      }
+     },
+     {
+      "addr": "0x47e88f",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e5c0",
+       "name": "??0LineupUI@@QAE@XZ",
+       "size": "0x32c"
+      }
+     },
+     {
+      "addr": "0x47e89f",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e5c0",
+       "name": "??0LineupUI@@QAE@XZ",
+       "size": "0x32c"
+      }
+     },
+     {
+      "addr": "0x47e8af",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e5c0",
+       "name": "??0LineupUI@@QAE@XZ",
+       "size": "0x32c"
+      }
+     },
+     {
+      "addr": "0x4b03a4",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b01d0",
+       "name": "UITitle_JDHY_DestroyPages",
+       "size": "0x347"
+      }
+     },
+     {
+      "addr": "0x4b03b4",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b01d0",
+       "name": "UITitle_JDHY_DestroyPages",
+       "size": "0x347"
+      }
+     },
+     {
+      "addr": "0x51a210",
+      "type": "code",
+      "fn": {
+       "addr": "0x51a1d0",
+       "name": "?LineMove@CCBUI@@QAEIPAVPOINT@@PAVPOINT@@@Z",
+       "size": "0xd6"
+      }
+     },
+     {
+      "addr": "0x51aa60",
+      "type": "code",
+      "fn": {
+       "addr": "0x51aa20",
+       "name": "?Create@CCBControlWindow@@QAE_NPAPAVUIWnd@@HPAVtagRECT@@H@Z",
+       "size": "0xd6"
+      }
+     },
+     {
+      "addr": "0x51d37d",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d340",
+       "name": "?OnMessage@CCBLineupWindow@@QAEDPAH@Z",
+       "size": "0xb0"
+      }
+     },
+     {
+      "addr": "0x51d7c9",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x51d809",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x51d819",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x51d829",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x51d839",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x51d849",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x51d859",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x51d869",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x51d879",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x51d889",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x51d899",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x51d8a9",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x51d8b9",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x51d8c9",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x51d8d9",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x51d8e9",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x51d8f9",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x51d909",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x5251d3",
+      "type": "code",
+      "fn": {
+       "addr": "0x525120",
+       "name": "?InitUI@SaleUI@@QAEHXZ",
+       "size": "0x39f"
+      }
+     },
+     {
+      "addr": "0x5251e3",
+      "type": "code",
+      "fn": {
+       "addr": "0x525120",
+       "name": "?InitUI@SaleUI@@QAEHXZ",
+       "size": "0x39f"
+      }
+     },
+     {
+      "addr": "0x4832ca",
+      "type": "data",
+      "fn": {
+       "addr": "0x483280",
+       "name": "?DestroyStatics@UILoadingFrm@@QAEXXZ",
+       "size": "0x79"
+      }
+     },
+     {
+      "addr": "0x498aaa",
+      "type": "data",
+      "fn": {
+       "addr": "0x498820",
+       "name": "??0EquipUI@@QAE@XZ",
+       "size": "0x450"
+      }
+     },
+     {
+      "addr": "0x52514a",
+      "type": "data",
+      "fn": {
+       "addr": "0x525120",
+       "name": "?InitUI@SaleUI@@QAEHXZ",
+       "size": "0x39f"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 34
+   }
+  ],
+  "decomp_first": "void __thiscall UIPushButton::UIPushButton(UIPushButton *this)"
+ },
+ {
+  "addr": "0x004407C0",
+  "cls": "UIPushButton",
+  "name": "~UIPushButton",
+  "form": "dtor形",
+  "asm_head": [
+   "4407c0 push 0FFFFFFFFh",
+   "4407c2 push offset ??1stdiobuf@@UAE@XZ_2_SEH",
+   "4407c7 mov eax, large fs:0",
+   "4407cd push eax",
+   "4407ce mov large fs:0, esp",
+   "4407d5 push ecx",
+   "4407d6 push esi",
+   "4407d7 mov esi, ecx",
+   "4407d9 mov [esp+14h+var_10], esi",
+   "4407dd mov dword ptr [esi], offset stru_56AD88",
+   "4407e3 mov [esp+14h+var_4], 0",
+   "4407eb call ?OnMessage@UIPushButton@@QAEHXZ",
+   "4407f0 mov ecx, esi; this",
+   "4407f2 mov [esp+14h+var_4], 0FFFFFFFFh",
+   "4407fa call ?_UIWnd@UIWnd@@QAEXXZ",
+   "4407ff mov ecx, [esp+14h+var_C]",
+   "440803 pop esi",
+   "440804 mov large fs:0, ecx",
+   "44080b add esp, 10h",
+   "44080e retn",
+   "55fed0 mov ecx, [ebp-10h]; this",
+   "55fed3 jmp ?_UIWnd@UIWnd@@QAEXXZ",
+   "55fed8 mov eax, offset stru_574EC8",
+   "55fedd jmp ___CxxFrameHandler"
+  ],
+  "asm_name": "??1UIPushButton@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x004407C0",
+    "xrefs": [
+     {
+      "addr": "0x4407a3",
+      "type": "code",
+      "fn": {
+       "addr": "0x4407a0",
+       "name": "??_GUIPushButton@@UAEPAXI@Z",
+       "size": "0x1e"
+      }
+     },
+     {
+      "addr": "0x47e94b",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e910",
+       "name": "?_scalar_dtor_E910@LineupUI@@QAEXXZ",
+       "size": "0x2e6"
+      }
+     },
+     {
+      "addr": "0x47e95b",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e910",
+       "name": "?_scalar_dtor_E910@LineupUI@@QAEXXZ",
+       "size": "0x2e6"
+      }
+     },
+     {
+      "addr": "0x47e96b",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e910",
+       "name": "?_scalar_dtor_E910@LineupUI@@QAEXXZ",
+       "size": "0x2e6"
+      }
+     },
+     {
+      "addr": "0x47e97b",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e910",
+       "name": "?_scalar_dtor_E910@LineupUI@@QAEXXZ",
+       "size": "0x2e6"
+      }
+     },
+     {
+      "addr": "0x47e98b",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e910",
+       "name": "?_scalar_dtor_E910@LineupUI@@QAEXXZ",
+       "size": "0x2e6"
+      }
+     },
+     {
+      "addr": "0x47e99b",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e910",
+       "name": "?_scalar_dtor_E910@LineupUI@@QAEXXZ",
+       "size": "0x2e6"
+      }
+     },
+     {
+      "addr": "0x4b065e",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b0540",
+       "name": "UITitle_JDHY__UITitle_JDHY",
+       "size": "0x2d2"
+      }
+     },
+     {
+      "addr": "0x4b066e",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b0540",
+       "name": "UITitle_JDHY__UITitle_JDHY",
+       "size": "0x2d2"
+      }
+     },
+     {
+      "addr": "0x51ddf8",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x51de08",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x51de18",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x51de28",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x51de38",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x51de48",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x51de58",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x51de68",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x51de78",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x51de88",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x51de98",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x51dea8",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x51deb8",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x51dec8",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x51ded8",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x51dee8",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x51def8",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x51df38",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x525705",
+      "type": "code",
+      "fn": {
+       "addr": "0x525540",
+       "name": "?InitShopUI@CCBUI@@QAEXXZ",
+       "size": "0x263"
+      }
+     },
+     {
+      "addr": "0x525715",
+      "type": "code",
+      "fn": {
+       "addr": "0x525540",
+       "name": "?InitShopUI@CCBUI@@QAEXXZ",
+       "size": "0x263"
+      }
+     },
+     {
+      "addr": "0x56298a",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e5c0",
+       "name": "??0LineupUI@@QAE@XZ",
+       "size": "0x32c"
+      }
+     },
+     {
+      "addr": "0x562998",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e5c0",
+       "name": "??0LineupUI@@QAE@XZ",
+       "size": "0x32c"
+      }
+     },
+     {
+      "addr": "0x5629a6",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e5c0",
+       "name": "??0LineupUI@@QAE@XZ",
+       "size": "0x32c"
+      }
+     },
+     {
+      "addr": "0x5629b4",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e5c0",
+       "name": "??0LineupUI@@QAE@XZ",
+       "size": "0x32c"
+      }
+     },
+     {
+      "addr": "0x5629c2",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e5c0",
+       "name": "??0LineupUI@@QAE@XZ",
+       "size": "0x32c"
+      }
+     },
+     {
+      "addr": "0x5629d0",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e5c0",
+       "name": "??0LineupUI@@QAE@XZ",
+       "size": "0x32c"
+      }
+     },
+     {
+      "addr": "0x562bea",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e910",
+       "name": "?_scalar_dtor_E910@LineupUI@@QAEXXZ",
+       "size": "0x2e6"
+      }
+     },
+     {
+      "addr": "0x562bf8",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e910",
+       "name": "?_scalar_dtor_E910@LineupUI@@QAEXXZ",
+       "size": "0x2e6"
+      }
+     },
+     {
+      "addr": "0x562c06",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e910",
+       "name": "?_scalar_dtor_E910@LineupUI@@QAEXXZ",
+       "size": "0x2e6"
+      }
+     },
+     {
+      "addr": "0x562c14",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e910",
+       "name": "?_scalar_dtor_E910@LineupUI@@QAEXXZ",
+       "size": "0x2e6"
+      }
+     },
+     {
+      "addr": "0x562c22",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e910",
+       "name": "?_scalar_dtor_E910@LineupUI@@QAEXXZ",
+       "size": "0x2e6"
+      }
+     },
+     {
+      "addr": "0x562c30",
+      "type": "code",
+      "fn": {
+       "addr": "0x47e910",
+       "name": "?_scalar_dtor_E910@LineupUI@@QAEXXZ",
+       "size": "0x2e6"
+      }
+     },
+     {
+      "addr": "0x565f55",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b01d0",
+       "name": "UITitle_JDHY_DestroyPages",
+       "size": "0x347"
+      }
+     },
+     {
+      "addr": "0x565f63",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b01d0",
+       "name": "UITitle_JDHY_DestroyPages",
+       "size": "0x347"
+      }
+     },
+     {
+      "addr": "0x5661a5",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b0540",
+       "name": "UITitle_JDHY__UITitle_JDHY",
+       "size": "0x2d2"
+      }
+     },
+     {
+      "addr": "0x5661b3",
+      "type": "code",
+      "fn": {
+       "addr": "0x4b0540",
+       "name": "UITitle_JDHY__UITitle_JDHY",
+       "size": "0x2d2"
+      }
+     },
+     {
+      "addr": "0x567682",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x5676ba",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x5676c8",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x5676d6",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x5676e4",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x5676f2",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x567700",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x56770e",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x56771c",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x56772a",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x567738",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x567746",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x567754",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x567762",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x567770",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x56777e",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x56778c",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x56779a",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d710",
+       "name": "?Create_d710@CCBStage@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x667"
+      }
+     },
+     {
+      "addr": "0x567832",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x56786a",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x567878",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x567886",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x567894",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x5678a2",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x5678b0",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x5678be",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x5678cc",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x5678da",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x5678e8",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x5678f6",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x567904",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x567912",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x567920",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x56792e",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x56793c",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x56794a",
+      "type": "code",
+      "fn": {
+       "addr": "0x51dda0",
+       "name": "?ShowWindow@CCBStage@@QAEXXZ",
+       "size": "0x229"
+      }
+     },
+     {
+      "addr": "0x567bc1",
+      "type": "code",
+      "fn": {
+       "addr": "0x525120",
+       "name": "?InitUI@SaleUI@@QAEHXZ",
+       "size": "0x39f"
+      }
+     },
+     {
+      "addr": "0x567bcf",
+      "type": "code",
+      "fn": {
+       "addr": "0x525120",
+       "name": "?InitUI@SaleUI@@QAEHXZ",
+       "size": "0x39f"
+      }
+     },
+     {
+      "addr": "0x567dc1",
+      "type": "code",
+      "fn": {
+       "addr": "0x525540",
+       "name": "?InitShopUI@CCBUI@@QAEXXZ",
+       "size": "0x263"
+      }
+     },
+     {
+      "addr": "0x567dcf",
+      "type": "code",
+      "fn": {
+       "addr": "0x525540",
+       "name": "?InitShopUI@CCBUI@@QAEXXZ",
+       "size": "0x263"
+      }
+     },
+     {
+      "addr": "0x4832c5",
+      "type": "data",
+      "fn": {
+       "addr": "0x483280",
+       "name": "?DestroyStatics@UILoadingFrm@@QAEXXZ",
+       "size": "0x79"
+      }
+     },
+     {
+      "addr": "0x48331d",
+      "type": "data",
+      "fn": {
+       "addr": "0x483300",
+       "name": "?DestroyFrames@UILoadingFrm@@QAEXXZ",
+       "size": "0x7c"
+      }
+     },
+     {
+      "addr": "0x498aa5",
+      "type": "data",
+      "fn": {
+       "addr": "0x498820",
+       "name": "??0EquipUI@@QAE@XZ",
+       "size": "0x450"
+      }
+     },
+     {
+      "addr": "0x499197",
+      "type": "data",
+      "fn": {
+       "addr": "0x499030",
+       "name": "??1EquipUI@@QAE@XZ",
+       "size": "0x39d"
+      }
+     },
+     {
+      "addr": "0x525145",
+      "type": "data",
+      "fn": {
+       "addr": "0x525120",
+       "name": "?InitUI@SaleUI@@QAEHXZ",
+       "size": "0x39f"
+      }
+     },
+     {
+      "addr": "0x525767",
+      "type": "data",
+      "fn": {
+       "addr": "0x525540",
+       "name": "?InitShopUI@CCBUI@@QAEXXZ",
+       "size": "0x263"
+      }
+     },
+     {
+      "addr": "0x5644ea",
+      "type": "data",
+      "fn": {
+       "addr": "0x498820",
+       "name": "??0EquipUI@@QAE@XZ",
+       "size": "0x450"
+      }
+     },
+     {
+      "addr": "0x564aca",
+      "type": "data",
+      "fn": {
+       "addr": "0x499030",
+       "name": "??1EquipUI@@QAE@XZ",
+       "size": "0x39d"
+      }
+     },
+     {
+      "addr": "0x567b58",
+      "type": "data",
+      "fn": {
+       "addr": "0x525120",
+       "name": "?InitUI@SaleUI@@QAEHXZ",
+       "size": "0x39f"
+      }
+     },
+     {
+      "addr": "0x567d58",
+      "type": "data",
+      "fn": {
+       "addr": "0x525540",
+       "name": "?InitShopUI@CCBUI@@QAEXXZ",
+       "size": "0x263"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 95
+   }
+  ],
+  "decomp_first": "void __thiscall UIPushButton::~UIPushButton(UIPushButton *this)"
+ },
+ {
+  "addr": "0x004411D0",
+  "cls": "UIMap",
+  "name": "UIMap",
+  "form": "ctor形(无 decomp)",
+  "asm_head": [
+   "4411d0 push 0FFFFFFFFh",
+   "4411d2 push offset SEH_4411D0",
+   "4411d7 mov eax, large fs:0",
+   "4411dd push eax",
+   "4411de mov large fs:0, esp",
+   "4411e5 push ecx",
+   "4411e6 push esi; nVal1",
+   "4411e7 mov esi, ecx",
+   "4411e9 mov [esp+14h+var_10], esi",
+   "4411ed mov dword ptr [esi], offset stru_56ADAC",
+   "4411f3 mov [esp+14h+var_4], 2",
+   "4411fb call ?Destroy@UIMap@@QAEXXZ; UIMap::Destroy(void)",
+   "441200 lea ecx, [esi+0C0h]; this",
+   "441206 mov byte ptr [esp+14h+var_4], 1",
+   "44120b call j_UIWnd__MoveWindow",
+   "441210 lea ecx, [esi+48h]; this",
+   "441213 mov byte ptr [esp+14h+var_4], 0",
+   "441218 call ?ctor@UI3DCtrl@@QAEXH@Z; UI3DCtrl::ctor(int)",
+   "44121d mov ecx, esi; this",
+   "44121f mov [esp+14h+var_4], 0FFFFFFFFh",
+   "441227 call ?_UIWnd@UIWnd@@QAEXXZ; UIWnd::_UIWnd(void)",
+   "44122c mov ecx, [esp+14h+var_C]",
+   "441230 pop esi",
+   "441231 mov large fs:0, ecx",
+   "441238 add esp, 10h",
+   "44123b retn",
+   "55ffd0 mov ecx, [ebp-10h]; this",
+   "55ffd3 jmp ?_UIWnd@UIWnd@@QAEXXZ; UIWnd::_UIWnd(void)"
+  ],
+  "asm_name": "??0UIMap@@QAE@XZ_0",
+  "xrefs": [
+   {
+    "addr": "0x004411D0",
+    "xrefs": [
+     {
+      "addr": "0x43e19b",
+      "type": "code",
+      "fn": {
+       "addr": "0x43e120",
+       "name": "?DeleteRow@UIListBox@@QAEXXZ",
+       "size": "0xa0"
+      }
+     },
+     {
+      "addr": "0x4411b3",
+      "type": "code",
+      "fn": {
+       "addr": "0x4411b0",
+       "name": "??_GUIMap@@UAEPAXI@Z",
+       "size": "0x1e"
+      }
+     },
+     {
+      "addr": "0x55fd6e",
+      "type": "code",
+      "fn": {
+       "addr": "0x43dfc0",
+       "name": "?UpdateKeyCtrl@UIListBox@@QAEPAV1@XZ",
+       "size": "0x13f"
+      }
+     },
+     {
+      "addr": "0x55fd8e",
+      "type": "code",
+      "fn": {
+       "addr": "0x43e120",
+       "name": "?DeleteRow@UIListBox@@QAEXXZ",
+       "size": "0xa0"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 4
+   }
+  ],
+  "decomp_first": "void __thiscall UIMap::UIMap(UIMap *this)"
+ },
+ {
+  "addr": "0x00444A20",
+  "cls": "CCBResultWindow",
+  "name": "CCBResultWindow",
+  "form": "ctor形",
+  "asm_head": [
+   "444a20 push ecx",
+   "444a21 push esi",
+   "444a22 mov esi, ecx",
+   "444a24 call sub_4422E0",
+   "444a29 xor eax, eax",
+   "444a2b mov dword ptr [esi+0A8h], 3F800000h",
+   "444a35 mov [esi+0ACh], al",
+   "444a3b mov [esi+0ADh], al",
+   "444a41 mov [esi+0AEh], al",
+   "444a47 mov [esi+0B0h], eax",
+   "444a4d mov dword ptr [esi], offset off_56AE84",
+   "444a53 mov dword ptr [esi+0A4h], 6",
+   "444a5d mov ecx, ds:?ColorQuadFmt@gbColorQuad@@2HA; int gbColorQuad::ColorQuadFmt",
+   "444a63 mov edx, [ecx]",
+   "444a65 cmp edx, eax",
+   "444a67 mov al, 0FFh",
+   "444a69 mov byte ptr [esp+8+var_4+2], al",
+   "444a6d mov byte ptr [esp+8+var_4+1], al",
+   "444a71 mov byte ptr [esp+8+var_4], al",
+   "444a75 mov byte ptr [esp+8+var_4+3], al",
+   "444a79 mov edx, [esp+8+var_4]",
+   "444a7d xor eax, eax",
+   "444a7f mov [esi+98h], edx",
+   "444a85 mov al, [esi+9Bh]",
+   "444a8b mov [esi+0A0h], eax",
+   "444a91 mov [esi+9Ch], eax",
+   "444a97 mov eax, esi",
+   "444a99 pop esi"
+  ],
+  "asm_name": "??0CCBResultWindow@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x00444A20",
+    "xrefs": [
+     {
+      "addr": "0x529665",
+      "type": "code",
+      "fn": {
+       "addr": "0x5295f0",
+       "name": "??0UIRoleSelectDialog@@QAE@XZ",
+       "size": "0x17b"
+      }
+     },
+     {
+      "addr": "0x45a9f5",
+      "type": "data",
+      "fn": {
+       "addr": "0x45a7b0",
+       "name": "??0SaleUI@@QAE@XZ",
+       "size": "0x613"
+      }
+     },
+     {
+      "addr": "0x470c40",
+      "type": "data",
+      "fn": {
+       "addr": "0x470a60",
+       "name": "UIListBox_InitWithPalScript",
+       "size": "0x4b4"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 3
+   }
+  ],
+  "decomp_first": "void __thiscall CCBResultWindow::CCBResultWindow(CCBResultWindow *this)"
+ },
+ {
+  "addr": "0x004461B0",
+  "cls": "CCBItemWindow",
+  "name": "CCBItemWindow",
+  "form": "ctor形",
+  "asm_head": [
+   "4461b0 push esi; nVal",
+   "4461b1 mov esi, ecx",
+   "4461b3 lea ecx, [esi+60h]; void *",
+   "4461b6 mov byte ptr [esi], 0",
+   "4461b9 call UIScenePanel__UIScenePanel",
+   "4461be mov byte ptr [esi+1D8h], 0",
+   "4461c5 mov eax, esi",
+   "4461c7 pop esi",
+   "4461c8 retn"
+  ],
+  "asm_name": "??0CCBItemWindow@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x004461B0",
+    "xrefs": [
+     {
+      "addr": "0x44610a",
+      "type": "data",
+      "fn": {
+       "addr": "0x4460d0",
+       "name": "??0CCBUIPanel@@QAE@XZ",
+       "size": "0xd5"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CCBItemWindow::CCBItemWindow(CCBItemWindow *this)"
+ },
+ {
+  "addr": "0x0044BD60",
+  "cls": "PtrArray",
+  "name": "PtrArray",
+  "form": "ctor形",
+  "asm_head": [
+   "44bd60 mov eax, ecx",
+   "44bd62 xor ecx, ecx",
+   "44bd64 mov [eax], ecx",
+   "44bd66 mov [eax+4], ecx",
+   "44bd69 mov [eax+8], ecx",
+   "44bd6c mov dword ptr [eax+0Ch], 20h ; ' '",
+   "44bd73 retn"
+  ],
+  "asm_name": "??0PtrArray@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x0044BD60",
+    "xrefs": [
+     {
+      "addr": "0x44bb78",
+      "type": "data",
+      "fn": {
+       "addr": "0x44ba60",
+       "name": "??0UIScenePanel@@QAE@XZ",
+       "size": "0x2f7"
+      }
+     },
+     {
+      "addr": "0x44bbb3",
+      "type": "data",
+      "fn": {
+       "addr": "0x44ba60",
+       "name": "??0UIScenePanel@@QAE@XZ",
+       "size": "0x2f7"
+      }
+     },
+     {
+      "addr": "0x44bbee",
+      "type": "data",
+      "fn": {
+       "addr": "0x44ba60",
+       "name": "??0UIScenePanel@@QAE@XZ",
+       "size": "0x2f7"
+      }
+     },
+     {
+      "addr": "0x44bc29",
+      "type": "data",
+      "fn": {
+       "addr": "0x44ba60",
+       "name": "??0UIScenePanel@@QAE@XZ",
+       "size": "0x2f7"
+      }
+     },
+     {
+      "addr": "0x44bc64",
+      "type": "data",
+      "fn": {
+       "addr": "0x44ba60",
+       "name": "??0UIScenePanel@@QAE@XZ",
+       "size": "0x2f7"
+      }
+     },
+     {
+      "addr": "0x44bc9f",
+      "type": "data",
+      "fn": {
+       "addr": "0x44ba60",
+       "name": "??0UIScenePanel@@QAE@XZ",
+       "size": "0x2f7"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 6
+   }
+  ],
+  "decomp_first": "void __thiscall PtrArray::PtrArray(PtrArray *this)"
+ },
+ {
+  "addr": "0x0044E530",
+  "cls": "UIEmote",
+  "name": "UIEmote",
+  "form": "ctor形",
+  "asm_head": [
+   "44e530 push 0FFFFFFFFh",
+   "44e532 push offset SEH_44E530",
+   "44e537 mov eax, large fs:0",
+   "44e53d push eax",
+   "44e53e mov large fs:0, esp",
+   "44e545 push ecx",
+   "44e546 push esi",
+   "44e547 mov esi, ecx",
+   "44e549 push edi",
+   "44e54a mov [esp+18h+var_10], esi",
+   "44e54e call sub_445AA0",
+   "44e553 xor edi, edi",
+   "44e555 mov dword ptr [esi+44h], offset stru_56A9BC._scalar_dtor_1bb0",
+   "44e55c mov [esp+18h+var_4], edi",
+   "44e560 mov [esi+48h], edi",
+   "44e563 push offset ?ctor@PalScript@@QAEXXZ; void (__thiscall *)(void *)",
+   "44e568 push offset ??0PalScript@@QAE@XZ; void (__thiscall *)(void *)",
+   "44e56d push 0Dh; int",
+   "44e56f lea eax, [esi+50h]",
+   "44e572 push 0A4h; unsigned int",
+   "44e577 push eax; void *",
+   "44e578 mov byte ptr [esp+2Ch+var_4], 1",
+   "44e57d call ??_L@YGXPAXIHP6EX0@Z1@Z; `eh vector constructor iterator'(void *,uint,int,void (*)(void *),void (*)(void *))",
+   "44e582 mov ecx, [esp+18h+var_C]",
+   "44e586 mov [esi+8A4h], edi",
+   "44e58c mov [esi+4Ch], edi",
+   "44e58f mov dword ptr [esi], offset stru_56B050",
+   "44e595 mov dword ptr [esi+44h], offset off_56B044"
+  ],
+  "asm_name": "??0UIEmote@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x0044E530",
+    "xrefs": [
+     {
+      "addr": "0x44efcb",
+      "type": "data",
+      "fn": {
+       "addr": "0x44ed80",
+       "name": "SingletonThunk_0044ED80",
+       "size": "0x2b0"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall UIEmote::UIEmote(UIEmote *this)"
+ },
+ {
+  "addr": "0x0044E5E0",
+  "cls": "scScriptInstance",
+  "name": "~scScriptInstance",
+  "form": "dtor形",
+  "asm_head": [
+   "44e5e0 push 0FFFFFFFFh",
+   "44e5e2 push offset SEH_44E5E0",
+   "44e5e7 mov eax, large fs:0",
+   "44e5ed push eax",
+   "44e5ee mov large fs:0, esp",
+   "44e5f5 push ecx",
+   "44e5f6 push esi",
+   "44e5f7 mov esi, ecx",
+   "44e5f9 push edi",
+   "44e5fa mov [esp+18h+var_10], esi",
+   "44e5fe lea edi, [esi+44h]",
+   "44e601 mov dword ptr [esi], offset stru_56B050",
+   "44e607 mov dword ptr [edi], offset off_56B044",
+   "44e60d push offset ?ctor@PalScript@@QAEXXZ; void (__thiscall *)(void *)",
+   "44e612 push 0Dh; int",
+   "44e614 lea eax, [esi+50h]",
+   "44e617 push 0A4h; unsigned int",
+   "44e61c push eax; void *",
+   "44e61d mov [esp+28h+var_4], 1",
+   "44e625 call ??_M@YGXPAXIHP6EX0@Z@Z; `eh vector destructor iterator'(void *,uint,int,void (*)(void *))",
+   "44e62a mov eax, esi",
+   "44e62c mov ecx, esi; this",
+   "44e62e neg eax",
+   "44e630 sbb eax, eax",
+   "44e632 mov [esp+18h+var_4], 0FFFFFFFFh",
+   "44e63a and eax, edi",
+   "44e63c mov dword ptr [eax], offset stru_56A9BC._scalar_dtor_1bb0",
+   "44e642 call ?_UIWnd@UIWnd@@QAEXXZ; UIWnd::_UIWnd(void)"
+  ],
+  "asm_name": "??1scScriptInstance@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x0044E5E0",
+    "xrefs": [
+     {
+      "addr": "0x44e5c3",
+      "type": "code",
+      "fn": {
+       "addr": "0x44e5c0",
+       "name": "??_GUIWnd@@UAEPAXI@Z",
+       "size": "0x1e"
+      }
+     },
+     {
+      "addr": "0x44efc6",
+      "type": "data",
+      "fn": {
+       "addr": "0x44ed80",
+       "name": "SingletonThunk_0044ED80",
+       "size": "0x2b0"
+      }
+     },
+     {
+      "addr": "0x44f080",
+      "type": "data",
+      "fn": {
+       "addr": "0x44f050",
+       "name": "??1CGameData@@QAE@XZ",
+       "size": "0xd9"
+      }
+     },
+     {
+      "addr": "0x560899",
+      "type": "data",
+      "fn": {
+       "addr": "0x44f050",
+       "name": "??1CGameData@@QAE@XZ",
+       "size": "0xd9"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 4
+   }
+  ],
+  "decomp_first": "void __thiscall scScriptInstance::~scScriptInstance(scScriptInstance *this)"
+ },
+ {
+  "addr": "0x00450A25",
+  "cls": "RoleCameraCtrl",
+  "name": "~RoleCameraCtrl",
+  "form": "dtor形",
+  "asm_head": [
+   "450a25 nop",
+   "450a26 nop",
+   "450a27 nop",
+   "450a28 nop",
+   "450a29 nop",
+   "450a2a nop",
+   "450a2b nop",
+   "450a2c nop",
+   "450a2d nop",
+   "450a2e nop",
+   "450a2f nop"
+  ],
+  "asm_name": "??1RoleCameraCtrl@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x00450A25",
+    "xrefs": [],
+    "more": false,
+    "xref_count": 0,
+    "message": "No cross-references to this address"
+   }
+  ],
+  "decomp_first": "void RoleCameraCtrl::~RoleCameraCtrl()"
+ },
+ {
+  "addr": "0x00451CC0",
+  "cls": "UITitle_BBTY",
+  "name": "UITitle_BBTY",
+  "form": "ctor形",
+  "asm_head": [
+   "451cc0 push 0FFFFFFFFh",
+   "451cc2 push offset SEH_451CC0",
+   "451cc7 mov eax, large fs:0",
+   "451ccd push eax",
+   "451cce mov large fs:0, esp",
+   "451cd5 push ecx",
+   "451cd6 push esi",
+   "451cd7 mov esi, ecx",
+   "451cd9 mov [esp+14h+var_10], esi",
+   "451cdd call sub_445AA0",
+   "451ce2 lea ecx, [esi+44h]; this",
+   "451ce5 mov [esp+14h+var_4], 0",
+   "451ced call ctor_17",
+   "451cf2 lea ecx, [esi+138h]; this",
+   "451cf8 mov byte ptr [esp+14h+var_4], 1",
+   "451cfd call ctor_17",
+   "451d02 push offset ??1UIFrameWnd@@QAE@XZ; void (__thiscall *)(void *)",
+   "451d07 push offset sub_4422E0; void (__thiscall *)(void *)",
+   "451d0c push 3; int",
+   "451d0e lea eax, [esi+22Ch]",
+   "451d14 push 98h; unsigned int",
+   "451d19 push eax; void *",
+   "451d1a mov byte ptr [esp+28h+var_4], 2",
+   "451d1f call ??_L@YGXPAXIHP6EX0@Z1@Z; `eh vector constructor iterator'(void *,uint,int,void (*)(void *),void (*)(void *))",
+   "451d24 lea ecx, [esi+3F4h]; this",
+   "451d2a mov byte ptr [esp+14h+var_4], 3",
+   "451d2f call sub_4422E0",
+   "451d34 push offset ??1UIFrameWnd@@QAE@XZ; void (__thiscall *)(void *)"
+  ],
+  "asm_name": "??0UITitle_BBTY@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x00451CC0",
+    "xrefs": [
+     {
+      "addr": "0x4525bd",
+      "type": "code",
+      "fn": {
+       "addr": "0x452580",
+       "name": "GetFaceNum",
+       "size": "0x5a"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "int __thiscall UITitle_BBTY::UITitle_BBTY(UITitle_BBTY *this)"
+ },
+ {
+  "addr": "0x00452790",
+  "cls": "UIAnimateCtrlEX",
+  "name": "UIAnimateCtrlEX",
+  "form": "ctor形",
+  "asm_head": [
+   "452790 push 0FFFFFFFFh",
+   "452792 push offset SEH_452790",
+   "452797 mov eax, large fs:0",
+   "45279d push eax",
+   "45279e mov large fs:0, esp",
+   "4527a5 push ecx",
+   "4527a6 push esi",
+   "4527a7 mov esi, ecx",
+   "4527a9 mov [esp+14h+var_10], esi",
+   "4527ad call sub_445AA0",
+   "4527b2 lea ecx, [esi+44h]; void *",
+   "4527b5 mov [esp+14h+var_4], 0",
+   "4527bd call ?GetSys@NameSys@@QAEPAV1@XZ; NameSys::GetSys(void)",
+   "4527c2 lea ecx, [esi+19Ch]; this",
+   "4527c8 mov byte ptr [esp+14h+var_4], 1",
+   "4527cd call sub_4422E0",
+   "4527d2 lea ecx, [esi+234h]; this",
+   "4527d8 mov byte ptr [esp+14h+var_4], 2",
+   "4527dd call ?ctor@CCBResultWindow@@QAEXXZ; CCBResultWindow::ctor(void)",
+   "4527e2 lea ecx, [esi+2ECh]; this",
+   "4527e8 mov byte ptr [esp+14h+var_4], 3",
+   "4527ed call ?InitAfterClear@UITextArea@@QAEHXZ; UITextArea::InitAfterClear(void)",
+   "4527f2 lea ecx, [esi+3ACh]",
+   "4527f8 mov byte ptr [esp+14h+var_4], 4",
+   "4527fd call sub_445EA0",
+   "452802 mov ecx, [esp+14h+var_C]",
+   "452806 mov dword ptr [esi], offset stru_56B1DC",
+   "45280c mov dword ptr [esi+3F0h], 0"
+  ],
+  "asm_name": "UIAnimateCtrlEX_UIAnimateCtrlEX",
+  "xrefs": [
+   {
+    "addr": "0x00452790",
+    "xrefs": [
+     {
+      "addr": "0x4525ad",
+      "type": "code",
+      "fn": {
+       "addr": "0x452580",
+       "name": "GetFaceNum",
+       "size": "0x5a"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "int __cdecl UIAnimateCtrlEX_UIAnimateCtrlEX(int nVal)"
+ },
+ {
+  "addr": "0x0047C580",
+  "cls": "ObjectCamera",
+  "name": "~ObjectCamera",
+  "form": "dtor形",
+  "asm_head": [
+   "47c580 fld ds:dword_56B86C",
+   "47c586 fadd st, st",
+   "47c588 fstp flt_DE4A00",
+   "47c58e retn"
+  ],
+  "asm_name": "??1ObjectCamera@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x0047C580",
+    "xrefs": [
+     {
+      "addr": "0x47c570",
+      "type": "code",
+      "fn": {
+       "addr": "0x47c570",
+       "name": "?_scalar_dtor_C570@ObjectCamera@@QAEXXZ",
+       "size": "0x5"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall ObjectCamera::~ObjectCamera(ObjectCamera *this)"
+ },
+ {
+  "addr": "0x0047CB70",
+  "cls": "Object3D",
+  "name": "Object3D",
+  "form": "ctor形",
+  "asm_head": [
+   "47cb70 push esi",
+   "47cb71 mov esi, ecx",
+   "47cb73 call ?LoadSubObject@Object3D@@QAEXXZ; Object3D::LoadSubObject(void)",
+   "47cb78 mov dword ptr [esi+54h], 0",
+   "47cb7f pop esi",
+   "47cb80 retn"
+  ],
+  "asm_name": "??0Object3D@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x0047CB70",
+    "xrefs": [
+     {
+      "addr": "0x483442",
+      "type": "code",
+      "fn": {
+       "addr": "0x483380",
+       "name": "?ctor@StateUI@@QAEXXZ",
+       "size": "0x2cd"
+      }
+     },
+     {
+      "addr": "0x52b310",
+      "type": "code",
+      "fn": {
+       "addr": "0x52b2a0",
+       "name": "?CleanupCamera@CCBStageScene@@QAEXXZ",
+       "size": "0xa2"
+      }
+     },
+     {
+      "addr": "0x562e04",
+      "type": "code",
+      "fn": {
+       "addr": "0x482ed0",
+       "name": "?Save@LineupUI@@QAEHXZ",
+       "size": "0x38e"
+      }
+     },
+     {
+      "addr": "0x563074",
+      "type": "code",
+      "fn": {
+       "addr": "0x483380",
+       "name": "?ctor@StateUI@@QAEXXZ",
+       "size": "0x2cd"
+      }
+     },
+     {
+      "addr": "0x568352",
+      "type": "code",
+      "fn": {
+       "addr": "0x52b1e0",
+       "name": "CCBStageScene_InitCameraPositions",
+       "size": "0xbb"
+      }
+     },
+     {
+      "addr": "0x568392",
+      "type": "code",
+      "fn": {
+       "addr": "0x52b2a0",
+       "name": "?CleanupCamera@CCBStageScene@@QAEXXZ",
+       "size": "0xa2"
+      }
+     },
+     {
+      "addr": "0x483169",
+      "type": "data",
+      "fn": {
+       "addr": "0x482ed0",
+       "name": "?Save@LineupUI@@QAEHXZ",
+       "size": "0x38e"
+      }
+     },
+     {
+      "addr": "0x48318b",
+      "type": "data",
+      "fn": {
+       "addr": "0x482ed0",
+       "name": "?Save@LineupUI@@QAEHXZ",
+       "size": "0x38e"
+      }
+     },
+     {
+      "addr": "0x4833fd",
+      "type": "data",
+      "fn": {
+       "addr": "0x483380",
+       "name": "?ctor@StateUI@@QAEXXZ",
+       "size": "0x2cd"
+      }
+     },
+     {
+      "addr": "0x48341a",
+      "type": "data",
+      "fn": {
+       "addr": "0x483380",
+       "name": "?ctor@StateUI@@QAEXXZ",
+       "size": "0x2cd"
+      }
+     },
+     {
+      "addr": "0x52b1fc",
+      "type": "data",
+      "fn": {
+       "addr": "0x52b1e0",
+       "name": "CCBStageScene_InitCameraPositions",
+       "size": "0xbb"
+      }
+     },
+     {
+      "addr": "0x52b315",
+      "type": "data",
+      "fn": {
+       "addr": "0x52b2a0",
+       "name": "?CleanupCamera@CCBStageScene@@QAEXXZ",
+       "size": "0xa2"
+      }
+     },
+     {
+      "addr": "0x562e09",
+      "type": "data",
+      "fn": {
+       "addr": "0x482ed0",
+       "name": "?Save@LineupUI@@QAEHXZ",
+       "size": "0x38e"
+      }
+     },
+     {
+      "addr": "0x562e24",
+      "type": "data",
+      "fn": {
+       "addr": "0x482ed0",
+       "name": "?Save@LineupUI@@QAEHXZ",
+       "size": "0x38e"
+      }
+     },
+     {
+      "addr": "0x563079",
+      "type": "data",
+      "fn": {
+       "addr": "0x483380",
+       "name": "?ctor@StateUI@@QAEXXZ",
+       "size": "0x2cd"
+      }
+     },
+     {
+      "addr": "0x563094",
+      "type": "data",
+      "fn": {
+       "addr": "0x483380",
+       "name": "?ctor@StateUI@@QAEXXZ",
+       "size": "0x2cd"
+      }
+     },
+     {
+      "addr": "0x568330",
+      "type": "data",
+      "fn": {
+       "addr": "0x52b1e0",
+       "name": "CCBStageScene_InitCameraPositions",
+       "size": "0xbb"
+      }
+     },
+     {
+      "addr": "0x568370",
+      "type": "data",
+      "fn": {
+       "addr": "0x52b2a0",
+       "name": "?CleanupCamera@CCBStageScene@@QAEXXZ",
+       "size": "0xa2"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 18
+   }
+  ],
+  "decomp_first": "void __thiscall Object3D::Object3D(Object3D *this)"
+ },
+ {
+  "addr": "0x00490E90",
+  "cls": "UIBigMap",
+  "name": "UIBigMap",
+  "form": "ctor形",
+  "asm_head": [
+   "490e90 push 0FFFFFFFFh",
+   "490e92 push offset SEH_490E90",
+   "490e97 mov eax, large fs:0",
+   "490e9d push eax",
+   "490e9e mov large fs:0, esp",
+   "490ea5 push ecx",
+   "490ea6 push esi",
+   "490ea7 mov esi, ecx",
+   "490ea9 mov [esp+14h+var_10], esi",
+   "490ead call sub_4422E0",
+   "490eb2 lea ecx, [esi+98h]; void *",
+   "490eb8 mov [esp+14h+var_4], 0",
+   "490ec0 call ?GetSys@NameSys@@QAEPAV1@XZ; NameSys::GetSys(void)",
+   "490ec5 lea ecx, [esi+1F0h]; this",
+   "490ecb mov byte ptr [esp+14h+var_4], 1",
+   "490ed0 call sub_4422E0",
+   "490ed5 lea ecx, [esi+288h]; this",
+   "490edb mov byte ptr [esp+14h+var_4], 2",
+   "490ee0 call sub_4422E0",
+   "490ee5 lea ecx, [esi+320h]; this",
+   "490eeb mov byte ptr [esp+14h+var_4], 3",
+   "490ef0 call ctor_17",
+   "490ef5 lea ecx, [esi+414h]; this",
+   "490efb mov byte ptr [esp+14h+var_4], 4",
+   "490f00 call sub_4422E0",
+   "490f05 lea ecx, [esi+4ACh]; this",
+   "490f0b mov byte ptr [esp+14h+var_4], 5",
+   "490f10 call sub_4422E0"
+  ],
+  "asm_name": "??0UIBigMap@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x00490E90",
+    "xrefs": [
+     {
+      "addr": "0x490bbd",
+      "type": "data",
+      "fn": {
+       "addr": "0x4909f0",
+       "name": "MainPropUI__MainPropUI",
+       "size": "0x47e"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall UIBigMap::UIBigMap(UIBigMap *this)"
+ },
+ {
+  "addr": "0x004B7510",
+  "cls": "UI3DModelNode",
+  "name": "~UI3DModelNode",
+  "form": "dtor形",
+  "asm_head": [
+   "4b7510 push 0FFFFFFFFh",
+   "4b7512 push offset ??1stdiobuf@@UAE@XZ_4_SEH",
+   "4b7517 mov eax, large fs:0",
+   "4b751d push eax",
+   "4b751e mov large fs:0, esp",
+   "4b7525 push ecx",
+   "4b7526 push esi",
+   "4b7527 mov esi, ecx",
+   "4b7529 mov [esp+14h+var_10], esi",
+   "4b752d mov dword ptr [esi], offset off_56F404",
+   "4b7533 mov [esp+14h+var_4], 0",
+   "4b753b call ReleaseAllTextures",
+   "4b7540 mov ecx, esi; this",
+   "4b7542 mov [esp+14h+var_4], 0FFFFFFFFh",
+   "4b754a call ?Process@gbChain1DNode@@QAEHXZ",
+   "4b754f mov ecx, [esp+14h+var_C]",
+   "4b7553 pop esi",
+   "4b7554 mov large fs:0, ecx",
+   "4b755b add esp, 10h",
+   "4b755e retn",
+   "5663a0 mov ecx, [ebp-10h]; this",
+   "5663a3 jmp ?Process@gbChain1DNode@@QAEHXZ",
+   "5663a8 mov eax, offset stru_578F08",
+   "5663ad jmp ___CxxFrameHandler"
+  ],
+  "asm_name": "??1UI3DModelNode@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x004B7510",
+    "xrefs": [
+     {
+      "addr": "0x4b74f3",
+      "type": "code",
+      "fn": null
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall UI3DModelNode::~UI3DModelNode(UI3DModelNode *this)"
+ },
+ {
+  "addr": "0x004B7CE0",
+  "cls": "ScreenEffectNode",
+  "name": "~ScreenEffectNode",
+  "form": "dtor形",
+  "asm_head": [
+   "4b7ce0 push 0FFFFFFFFh",
+   "4b7ce2 push offset ??1stdiobuf@@UAE@XZ_5_SEH",
+   "4b7ce7 mov eax, large fs:0",
+   "4b7ced push eax",
+   "4b7cee mov large fs:0, esp",
+   "4b7cf5 push ecx",
+   "4b7cf6 push esi; nVal",
+   "4b7cf7 mov esi, ecx",
+   "4b7cf9 mov [esp+14h+var_10], esi",
+   "4b7cfd mov dword ptr [esi], offset off_56F450",
+   "4b7d03 mov [esp+14h+var_4], 0",
+   "4b7d0b call UINote_ReleaseResources",
+   "4b7d10 mov ecx, esi; this",
+   "4b7d12 mov [esp+14h+var_4], 0FFFFFFFFh",
+   "4b7d1a call ?Process@gbChain1DNode@@QAEHXZ",
+   "4b7d1f mov ecx, [esp+14h+var_C]",
+   "4b7d23 pop esi",
+   "4b7d24 mov large fs:0, ecx",
+   "4b7d2b add esp, 10h",
+   "4b7d2e retn",
+   "566400 mov ecx, [ebp-10h]; this",
+   "566403 jmp ?Process@gbChain1DNode@@QAEHXZ",
+   "566408 mov eax, offset stru_578F80",
+   "56640d jmp ___CxxFrameHandler"
+  ],
+  "asm_name": "??1ScreenEffectNode@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x004B7CE0",
+    "xrefs": [
+     {
+      "addr": "0x4b7cc3",
+      "type": "code",
+      "fn": null
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall ScreenEffectNode::~ScreenEffectNode(ScreenEffectNode *this)"
+ },
+ {
+  "addr": "0x004BDFB0",
+  "cls": "ScreenEffect",
+  "name": "ScreenEffect",
+  "form": "ctor形",
+  "asm_head": [
+   "4bdfb0 push 0FFFFFFFFh",
+   "4bdfb2 push offset SEH_4BDFB0",
+   "4bdfb7 mov eax, large fs:0",
+   "4bdfbd push eax",
+   "4bdfbe mov large fs:0, esp",
+   "4bdfc5 sub esp, 8",
+   "4bdfc8 push esi",
+   "4bdfc9 mov esi, ecx",
+   "4bdfcb push edi",
+   "4bdfcc mov [esp+1Ch+var_10], esi",
+   "4bdfd0 lea ecx, [esi+4]; this",
+   "4bdfd3 call ?ResetHorizontal@RenderTarget@@QAEHXZ; RenderTarget::ResetHorizontal(void)",
+   "4bdfd8 xor edi, edi",
+   "4bdfda lea ecx, [esi+20h]; this",
+   "4bdfdd mov [esp+1Ch+var_4], edi",
+   "4bdfe1 call ?ResetVertical@RenderTarget@@QAEPAV1@XZ; RenderTarget::ResetVertical(void)",
+   "4bdfe6 lea ecx, [esi+38h]; this",
+   "4bdfe9 mov byte ptr [esp+1Ch+var_4], 1",
+   "4bdfee call ?ResetVertical2@RenderTarget@@QAEPAV1@XZ; RenderTarget::ResetVertical2(void)",
+   "4bdff3 lea ecx, [esi+50h]; this",
+   "4bdff6 mov byte ptr [esp+1Ch+var_4], 2",
+   "4bdffb call ?ResetBase@RenderTarget@@QAEPAV1@XZ; RenderTarget::ResetBase(void)",
+   "4be000 mov al, [esp+1Ch+var_11]",
+   "4be004 mov ecx, [esp+1Ch+var_C]",
+   "4be008 mov [esi+68h], al",
+   "4be00b mov [esi+6Ch], edi",
+   "4be00e mov [esi+70h], edi",
+   "4be011 mov [esi+74h], edi"
+  ],
+  "asm_name": "??0ScreenEffect@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x004BDFB0",
+    "xrefs": [
+     {
+      "addr": "0x4be5ab",
+      "type": "code",
+      "fn": {
+       "addr": "0x4be590",
+       "name": "?GetInstance@ScreenEffectMgr@@QAEPAVScreenEffect@@XZ",
+       "size": "0x33"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "ScreenEffect *__thiscall ScreenEffect::ScreenEffect(ScreenEffect *this)"
+ },
+ {
+  "addr": "0x004BEF50",
+  "cls": "UIRoleDialog",
+  "name": "~UIWnd",
+  "form": "dtor形",
+  "asm_head": [
+   "4bef50 push 0FFFFFFFFh",
+   "4bef52 push offset ??1ios_base@std@@UAE@XZ_2_SEH",
+   "4bef57 mov eax, large fs:0",
+   "4bef5d push eax",
+   "4bef5e mov large fs:0, esp",
+   "4bef65 push ecx",
+   "4bef66 push esi",
+   "4bef67 mov esi, ecx",
+   "4bef69 mov [esp+14h+var_10], esi",
+   "4bef6d mov dword ptr [esi], offset stru_56F580",
+   "4bef73 mov [esp+14h+var_4], 1",
+   "4bef7b call ?CleanupTextures@ScreenEffectMgr@@QAEXXZ",
+   "4bef80 lea ecx, [esi+454h]; this",
+   "4bef86 mov byte ptr [esp+14h+var_4], 0",
+   "4bef8b call ?UpdateTimeStep@RenderTarget@@QAEXXZ",
+   "4bef90 mov ecx, esi; this",
+   "4bef92 mov [esp+14h+var_4], 0FFFFFFFFh",
+   "4bef9a call ?Process@gbChain1DNode@@QAEHXZ",
+   "4bef9f mov ecx, [esp+14h+var_C]",
+   "4befa3 pop esi",
+   "4befa4 mov large fs:0, ecx",
+   "4befab add esp, 10h",
+   "4befae retn",
+   "5665e0 mov ecx, [ebp-10h]; this",
+   "5665e3 jmp ?Process@gbChain1DNode@@QAEHXZ",
+   "5665e8 mov ecx, [ebp-10h]",
+   "5665eb add ecx, 454h; this",
+   "5665f1 jmp ?UpdateTimeStep@RenderTarget@@QAEXXZ"
+  ],
+  "asm_name": "_UIWnd",
+  "xrefs": [
+   {
+    "addr": "0x004BEF50",
+    "xrefs": [
+     {
+      "addr": "0x4bef33",
+      "type": "code",
+      "fn": {
+       "addr": "0x4bef30",
+       "name": "?sub_4BEF30@UIRoleDialog@@QAEXH@Z",
+       "size": "0x1e"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall UIWnd(ScreenEffectMgr *this)"
+ },
+ {
+  "addr": "0x004C3C80",
+  "cls": "RenderTarget2",
+  "name": "_sdtor_35",
+  "form": "dtor形",
+  "asm_head": [
+   "4c3c80 sub ecx, 0Ch; this",
+   "4c3c83 jmp ?_scalar_dtor_34b0@RenderTarget2@@QAEXH@Z; RenderTarget2::_scalar_dtor_34b0(int)"
+  ],
+  "asm_name": "??_GRenderTarget2@@UAEPAXI@Z",
+  "xrefs": [
+   {
+    "addr": "0x004C3C80",
+    "xrefs": [
+     {
+      "addr": "0x56f768",
+      "type": "data",
+      "fn": null
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "char *__thiscall RenderTarget2::`scalar deleting destructor'(RenderTarget2 *this, char pData)"
+ },
+ {
+  "addr": "0x004C3EB0",
+  "cls": "CEffCylinder",
+  "name": "~CEffCylinder",
+  "form": "dtor形",
+  "asm_head": [
+   "4c3eb0 mov dword ptr [ecx], offset stru_56F5D8.nullsub_75_override",
+   "4c3eb6 retn"
+  ],
+  "asm_name": "??1CEffCylinder@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x004C3EB0",
+    "xrefs": [
+     {
+      "addr": "0x566643",
+      "type": "code",
+      "fn": {
+       "addr": "0x4c3dd0",
+       "name": "?_scalar_dtor_3DD0@CEffCylinder@@QAEXXZ",
+       "size": "0xdf"
+      }
+     },
+     {
+      "addr": "0x5666c3",
+      "type": "code",
+      "fn": {
+       "addr": "0x4c6980",
+       "name": "?ReleaseEffect@CEffgbParticle@@QAEXXZ",
+       "size": "0xed"
+      }
+     },
+     {
+      "addr": "0x566723",
+      "type": "code",
+      "fn": {
+       "addr": "0x4c8970",
+       "name": "?Destroy__fastcall@CEffgbParticle@@QAEXXZ",
+       "size": "0xc2"
+      }
+     },
+     {
+      "addr": "0x566783",
+      "type": "code",
+      "fn": {
+       "addr": "0x4c9650",
+       "name": "??1CEffGrid@@QAE@XZ",
+       "size": "0xfd"
+      }
+     },
+     {
+      "addr": "0x566803",
+      "type": "code",
+      "fn": {
+       "addr": "0x4cb4c0",
+       "name": "??1CEffMeteor@@QAE@XZ",
+       "size": "0x111"
+      }
+     },
+     {
+      "addr": "0x566a83",
+      "type": "code",
+      "fn": {
+       "addr": "0x4cfd40",
+       "name": "?_nearby_4cfd40@CEffgbParticle@@QAEHPAV1@@Z",
+       "size": "0xd2"
+      }
+     },
+     {
+      "addr": "0x566af3",
+      "type": "code",
+      "fn": {
+       "addr": "0x4d0db0",
+       "name": "?UpdateCallback@CEffect@@QAEXXZ",
+       "size": "0x10c"
+      }
+     },
+     {
+      "addr": "0x566b53",
+      "type": "code",
+      "fn": {
+       "addr": "0x4d3950",
+       "name": "?DestroyCallback@CEffect@@QAEXXZ",
+       "size": "0xf9"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 8
+   }
+  ],
+  "decomp_first": "void __thiscall CEffCylinder::~CEffCylinder(CEffCylinder *this)"
+ },
+ {
+  "addr": "0x004C5810",
+  "cls": "RenderTarget2",
+  "name": "_sdtor",
+  "form": "dtor形",
+  "asm_head": [
+   "4c5810 sub ecx, 0Ch; this",
+   "4c5813 jmp ?_scalar_dtor_3db0@CEffCylinder@@QAEXH@Z; CEffCylinder::_scalar_dtor_3db0(int)"
+  ],
+  "asm_name": "??_GCEffCylinder@@UAEPAXI@Z",
+  "xrefs": [
+   {
+    "addr": "0x004C5810",
+    "xrefs": [
+     {
+      "addr": "0x56f768",
+      "type": "data",
+      "fn": null
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "char *__thiscall CEffCylinder::`scalar deleting destructor'(CEffCylinder *this, char pData)"
+ },
+ {
+  "addr": "0x004C61A0",
+  "cls": "CEffectSystem",
+  "name": "CEffectSystem",
+  "form": "ctor形",
+  "asm_head": [
+   "4c61a0 mov eax, dword_DE9384",
+   "4c61a5 sub esp, 800h",
+   "4c61ab push esi",
+   "4c61ac mov esi, ecx",
+   "4c61ae mov ecx, [eax]",
+   "4c61b0 mov eax, [esp+804h+nVal]",
+   "4c61b7 push eax",
+   "4c61b8 mov edx, [ecx]",
+   "4c61ba call dword ptr [edx+8]",
+   "4c61bd push 1; int",
+   "4c61bf mov ecx, eax; gbTexture *",
+   "4c61c1 mov [esi+3C020h], eax",
+   "4c61c7 call ds:?LoadTexture@gbTexture@@QAEXH@Z; gbTexture::LoadTexture(int)",
+   "4c61cd push 44h ; 'D'; Size",
+   "4c61cf call ??2@YAPAXI@Z; operator new(uint)",
+   "4c61d4 add esp, 4",
+   "4c61d7 test eax, eax",
+   "4c61d9 jz short loc_4C61EC",
+   "4c61db mov ecx, [esi+3C020h]",
+   "4c61e1 mov dword ptr [eax+40h], 1",
+   "4c61e8 mov [eax], ecx",
+   "4c61ea jmp short loc_4C61EE",
+   "4c61ec xor eax, eax",
+   "4c61ee test eax, eax",
+   "4c61f0 mov [esi+3C024h], eax",
+   "4c61f6 jnz short loc_4C6231",
+   "4c61f8 push edi",
+   "4c61f9 push 2F9h; line"
+  ],
+  "asm_name": "CEffectSystem_CEffectSystem",
+  "xrefs": [
+   {
+    "addr": "0x004C61A0",
+    "xrefs": [
+     {
+      "addr": "0x512b77",
+      "type": "code",
+      "fn": {
+       "addr": "0x5125e0",
+       "name": "?ProcNormalAttack@CCBSystem@@QAEDXZ",
+       "size": "0x5b5"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "int __cdecl CEffectSystem_CEffectSystem(int nVal)"
+ },
+ {
+  "addr": "0x004C6940",
+  "cls": "CEffect",
+  "name": "CEffect",
+  "form": "ctor形",
+  "asm_head": [
+   "4c6940 push 10C0h; Size",
+   "4c6945 call ??2@YAPAXI@Z; operator new(uint)",
+   "4c694a add esp, 4",
+   "4c694d test eax, eax",
+   "4c694f jz short loc_4C6958",
+   "4c6951 mov ecx, eax; this",
+   "4c6953 jmp ?FillDefaultUVSet@CEffectSystem@@QAEPAHXZ; CEffectSystem::FillDefaultUVSet(void)",
+   "4c6958 xor eax, eax",
+   "4c695a retn"
+  ],
+  "asm_name": "??0CEffect@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x004C6940",
+    "xrefs": [
+     {
+      "addr": "0x56f894",
+      "type": "data",
+      "fn": null
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CEffect::CEffect(CEffect *this)"
+ },
+ {
+  "addr": "0x004C9540",
+  "cls": "CEffgbParticle",
+  "name": "~CEffgbParticle",
+  "form": "dtor形",
+  "asm_head": [
+   "4c9540 sub ecx, 0Ch; this",
+   "4c9543 jmp ?DestroyEffect_8950@CEffgbParticle@@QAEPADD@Z; CEffgbParticle::DestroyEffect_8950(char)"
+  ],
+  "asm_name": "??1CEffgbParticle@@QAE@D@Z",
+  "xrefs": [
+   {
+    "addr": "0x004C9540",
+    "xrefs": [
+     {
+      "addr": "0x56f8c8",
+      "type": "data",
+      "fn": null
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "char *__thiscall CEffgbParticle::~CEffgbParticle(CEffgbParticle *this, char pData)"
+ },
+ {
+  "addr": "0x004C9610",
+  "cls": "CEffGrid",
+  "name": "CEffGrid",
+  "form": "ctor形",
+  "asm_head": [
+   "4c9610 push 10B8h; Size",
+   "4c9615 call ??2@YAPAXI@Z; operator new(uint)",
+   "4c961a add esp, 4",
+   "4c961d test eax, eax",
+   "4c961f jz short loc_4C9628",
+   "4c9621 mov ecx, eax",
+   "4c9623 jmp sub_4C9550",
+   "4c9628 xor eax, eax",
+   "4c962a retn"
+  ],
+  "asm_name": "??0CEffGrid@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x004C9610",
+    "xrefs": [
+     {
+      "addr": "0x56f920",
+      "type": "data",
+      "fn": null
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CEffGrid::CEffGrid(CEffGrid *this)"
+ },
+ {
+  "addr": "0x004CB480",
+  "cls": "CEffMeteor",
+  "name": "CEffMeteor",
+  "form": "ctor形",
+  "asm_head": [
+   "4cb480 push 10D0h; Size",
+   "4cb485 call ??2@YAPAXI@Z; operator new(uint)",
+   "4cb48a add esp, 4",
+   "4cb48d test eax, eax",
+   "4cb48f jz short loc_4CB498",
+   "4cb491 mov ecx, eax",
+   "4cb493 jmp sub_4CB3A0",
+   "4cb498 xor eax, eax",
+   "4cb49a retn"
+  ],
+  "asm_name": "??0CEffMeteor@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x004CB480",
+    "xrefs": [
+     {
+      "addr": "0x56f978",
+      "type": "data",
+      "fn": null
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CEffMeteor::CEffMeteor(CEffMeteor *this)"
+ },
+ {
+  "addr": "0x004CE2A0",
+  "cls": "CEffMgr",
+  "name": "~CEffMgr",
+  "form": "dtor形",
+  "asm_head": [
+   "4ce2a0 sub esp, 800h",
+   "4ce2a6 push esi",
+   "4ce2a7 push offset Mode; Mode",
+   "4ce2ac push offset FileName; FileName",
+   "4ce2b1 call _fopen",
+   "4ce2b6 mov esi, eax",
+   "4ce2b8 add esp, 8",
+   "4ce2bb test esi, esi",
+   "4ce2bd jnz short loc_4CE2F8",
+   "4ce2bf push edi",
+   "4ce2c0 push 209h; line",
+   "4ce2c5 push offset aDProjectPal3Co_1; file",
+   "4ce2ca push offset aCouldnTOpenCbE; msg",
+   "4ce2cf lea ecx, [esp+814h+ArgList]; this",
+   "4ce2d6 call ?FormatException@Logger@@QAEPADPADPADH@Z; Logger::FormatException(char *,char *,int)",
+   "4ce2db mov esi, eax",
+   "4ce2dd mov ecx, 100h",
+   "4ce2e2 lea edi, [esp+808h+pExceptionObject]",
+   "4ce2e6 lea eax, [esp+808h+pExceptionObject]",
+   "4ce2ea push offset __TI1?AV_Exception@@; pThrowInfo",
+   "4ce2ef push eax; pExceptionObject",
+   "4ce2f0 rep movsd",
+   "4ce2f2 call __CxxThrowException@8; _CxxThrowException(x,x)",
+   "4ce2f7 pop edi",
+   "4ce2f8 push 0; Origin",
+   "4ce2fa push 0; Offset",
+   "4ce2fc push esi; Stream",
+   "4ce2fd call _fseek"
+  ],
+  "asm_name": "??1CEffMgr@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x004CE2A0",
+    "xrefs": [
+     {
+      "addr": "0x4e8d4e",
+      "type": "code",
+      "fn": {
+       "addr": "0x4e8480",
+       "name": "?UpdateStageCamera@CCBStageCam@@QAEHPAMHHHH@Z",
+       "size": "0xf90"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CEffMgr::~CEffMgr(CEffMgr *this)"
+ },
+ {
+  "addr": "0x004CFC70",
+  "cls": "CEffModel",
+  "name": "CEffModel",
+  "form": "ctor形",
+  "asm_head": [
+   "4cfc70 mov eax, ecx",
+   "4cfc72 or edx, 0FFFFFFFFh",
+   "4cfc75 xor ecx, ecx",
+   "4cfc77 mov [eax+4], ecx",
+   "4cfc7a mov [eax+8], cl",
+   "4cfc7d mov [eax+10h], ecx",
+   "4cfc80 mov [eax+14h], ecx",
+   "4cfc83 mov [eax+18h], ecx",
+   "4cfc86 mov [eax+1Ch], edx",
+   "4cfc89 mov [eax+20h], edx",
+   "4cfc8c mov [eax+24h], ecx",
+   "4cfc8f mov [eax+28h], ecx",
+   "4cfc92 mov [eax+2Ch], ecx",
+   "4cfc95 mov dword ptr [eax+0Ch], offset off_56FA18",
+   "4cfc9c mov [eax+34h], ecx",
+   "4cfc9f mov [eax+38h], ecx",
+   "4cfca2 mov [eax+3Ch], ecx",
+   "4cfca5 mov [eax+40h], ecx",
+   "4cfca8 mov [eax+44h], ecx",
+   "4cfcab mov [eax+48h], ecx",
+   "4cfcae mov [eax+4Ch], ecx",
+   "4cfcb1 mov [eax+50h], ecx",
+   "4cfcb4 mov [eax+54h], ecx",
+   "4cfcb7 mov dword ptr [eax], offset stru_56F9DC",
+   "4cfcbd mov dword ptr [eax+0Ch], offset off_56F9D0",
+   "4cfcc4 mov [eax+30h], ecx",
+   "4cfcc7 mov [eax+3Ch], ecx",
+   "4cfcca mov [eax+38h], ecx"
+  ],
+  "asm_name": "??0CEffModel@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x004CFC70",
+    "xrefs": [
+     {
+      "addr": "0x4cf2dc",
+      "type": "code",
+      "fn": {
+       "addr": "0x4cf220",
+       "name": "?CreateModelEffect@CEffMgr@@QAEHPAV1@HPAV1@@Z",
+       "size": "0x114"
+      }
+     },
+     {
+      "addr": "0x4cfd10",
+      "type": "code",
+      "fn": {
+       "addr": "0x4cfd00",
+       "name": "?CreateEffModel@CEffModel@@QAEPAV1@XZ",
+       "size": "0x18"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 2
+   }
+  ],
+  "decomp_first": "CEffModel *__thiscall CEffModel::CEffModel(CEffModel *this)"
+ },
+ {
+  "addr": "0x004D3860",
+  "cls": "CEffQuake",
+  "name": "_sdtor",
+  "form": "dtor形",
+  "asm_head": [
+   "4d3860 sub ecx, 0Ch; this",
+   "4d3863 jmp ?_scalar_dtor_32e0@CEffQuake@@QAEXH@Z; CEffQuake::_scalar_dtor_32e0(int)"
+  ],
+  "asm_name": "??_GCEffQuake@@UAEPAXI@Z",
+  "xrefs": [
+   {
+    "addr": "0x004D3860",
+    "xrefs": [
+     {
+      "addr": "0x56fa84",
+      "type": "data",
+      "fn": null
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "CEffQuake *__thiscall CEffQuake::`scalar deleting destructor'(CEffQuake *this, char pData)"
+ },
+ {
+  "addr": "0x004D3910",
+  "cls": "CEffShock",
+  "name": "CEffShock",
+  "form": "ctor形",
+  "asm_head": [
+   "4d3910 push 10B0h; Size",
+   "4d3915 call ??2@YAPAXI@Z; operator new(uint)",
+   "4d391a add esp, 4",
+   "4d391d test eax, eax",
+   "4d391f jz short loc_4D3928",
+   "4d3921 mov ecx, eax",
+   "4d3923 jmp sub_4D3870",
+   "4d3928 xor eax, eax",
+   "4d392a retn"
+  ],
+  "asm_name": "??0CEffShock@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x004D3910",
+    "xrefs": [
+     {
+      "addr": "0x56fadc",
+      "type": "data",
+      "fn": null
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "CEffShock *__thiscall CEffShock::CEffShock(CEffShock *this)"
+ },
+ {
+  "addr": "0x004D4EE0",
+  "cls": "CEffSParticle",
+  "name": "CEffSParticle",
+  "form": "ctor形",
+  "asm_head": [
+   "4d4ee0 push 30h ; '0'; Size",
+   "4d4ee2 call ??2@YAPAXI@Z; operator new(uint)",
+   "4d4ee7 add esp, 4",
+   "4d4eea test eax, eax",
+   "4d4eec jz short loc_4D4EF5",
+   "4d4eee mov ecx, eax",
+   "4d4ef0 jmp sub_4D4EA0",
+   "4d4ef5 xor eax, eax",
+   "4d4ef7 retn"
+  ],
+  "asm_name": "??0CEffSParticle@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x004D4EE0",
+    "xrefs": [
+     {
+      "addr": "0x56fb34",
+      "type": "data",
+      "fn": null
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CEffSParticle::CEffSParticle(CEffSParticle *this)"
+ },
+ {
+  "addr": "0x004D5AB0",
+  "cls": "C2DSpark",
+  "name": "C2DSpark",
+  "form": "ctor形",
+  "asm_head": [
+   "4d5ab0 fild [esp+nClientWidth]",
+   "4d5ab4 sub esp, 800h",
+   "4d5aba xor eax, eax",
+   "4d5abc push ebx",
+   "4d5abd push ebp",
+   "4d5abe push esi",
+   "4d5abf mov esi, ecx",
+   "4d5ac1 push edi",
+   "4d5ac2 xor ebx, ebx",
+   "4d5ac4 mov ecx, 161Ch",
+   "4d5ac9 mov edi, esi",
+   "4d5acb mov dword ptr [esi+586Ch], 0FFFFFFFFh",
+   "4d5ad5 mov [esi+5868h], ebx",
+   "4d5adb rep stosd",
+   "4d5add fstp dword ptr [esi+5800h]",
+   "4d5ae3 fild [esp+810h+nClientHeight]",
+   "4d5aea fstp dword ptr [esi+5804h]",
+   "4d5af0 mov [esi+5818h], bl",
+   "4d5af6 mov eax, gfxMgr",
+   "4d5afb push ebx; unsigned int",
+   "4d5afc push offset aGfxscriptTlAdd; \"gfxscript\\\\TL_AdditiveBlendNoZ.gbf\"",
+   "4d5b01 mov ecx, [eax+0C8h]; gbEffectMgr *",
+   "4d5b07 call ds:?NewRenderEffect@gbEffectMgr@@QAEPAVgbRenderEffect@@PBDI@Z; gbEffectMgr::NewRenderEffect(char const *,uint)",
+   "4d5b0d mov [esi+581Ch], eax",
+   "4d5b13 mov ecx, gfxMgr",
+   "4d5b19 push offset aEffectFlare3Bm; \"effect\\\\flare3.bmp\"",
+   "4d5b1e mov edx, [ecx]",
+   "4d5b20 call dword ptr [edx+8]"
+  ],
+  "asm_name": "??0C2DSpark@@QAE@HH@Z",
+  "xrefs": [
+   {
+    "addr": "0x004D5AB0",
+    "xrefs": [
+     {
+      "addr": "0x512b1b",
+      "type": "code",
+      "fn": {
+       "addr": "0x5125e0",
+       "name": "?ProcNormalAttack@CCBSystem@@QAEDXZ",
+       "size": "0x5b5"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall C2DSpark::C2DSpark(C2DSpark *this, int nClientWidth, int nClientHeight)"
+ },
+ {
+  "addr": "0x004D6670",
+  "cls": "C3DSpark",
+  "name": "C3DSpark",
+  "form": "ctor形",
+  "asm_head": [
+   "4d6670 sub esp, 800h",
+   "4d6676 push ebx",
+   "4d6677 push esi",
+   "4d6678 mov esi, ecx",
+   "4d667a push edi",
+   "4d667b mov ebx, 80h",
+   "4d6680 lea edi, [esi+1C30h]",
+   "4d6686 mov eax, ds:??_FgbVec3D@@QAEXXZ; gbVec3D::`default constructor closure'(void)",
+   "4d668b push eax; compareFunc",
+   "4d668c push 4; elemSize",
+   "4d668e push 0Ch; count",
+   "4d6690 push edi; base",
+   "4d6691 call ArraySort",
+   "4d6696 add edi, 44h ; 'D'",
+   "4d6699 dec ebx",
+   "4d669a jnz short loc_4D6686",
+   "4d669c mov ecx, 0F8Ch",
+   "4d66a1 xor eax, eax",
+   "4d66a3 mov edi, esi",
+   "4d66a5 push eax; unsigned int",
+   "4d66a6 rep stosd",
+   "4d66a8 mov ecx, gfxMgr",
+   "4d66ae push offset aGfxscriptAddit; \"gfxscript\\\\AdditiveBlend.gbf\"",
+   "4d66b3 mov ecx, [ecx+0C8h]; gbEffectMgr *",
+   "4d66b9 call ds:?NewRenderEffect@gbEffectMgr@@QAEPAVgbRenderEffect@@PBDI@Z; gbEffectMgr::NewRenderEffect(char const *,uint)",
+   "4d66bf mov [esi+1C04h], eax",
+   "4d66c5 mov ecx, gfxMgr",
+   "4d66cb push offset aEffectFlare3Bm; \"effect\\\\flare3.bmp\""
+  ],
+  "asm_name": "??0C3DSpark@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x004D6670",
+    "xrefs": [
+     {
+      "addr": "0x512b50",
+      "type": "code",
+      "fn": {
+       "addr": "0x5125e0",
+       "name": "?ProcNormalAttack@CCBSystem@@QAEDXZ",
+       "size": "0x5b5"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "C3DSpark *__thiscall C3DSpark::C3DSpark(C3DSpark *this)"
+ },
+ {
+  "addr": "0x004D6FF0",
+  "cls": "CCBAI",
+  "name": "CCBAI",
+  "form": "ctor形",
+  "asm_head": [
+   "4d6ff0 mov eax, ds:dword_56FB90",
+   "4d6ff5 mov ecx, ds:dword_56FB94",
+   "4d6ffb mov edx, ds:dword_56FB98",
+   "4d7001 add eax, 79h ; 'y'",
+   "4d7004 mov dword_17A89C8, eax",
+   "4d7009 mov eax, ds:dword_56FB9C",
+   "4d700e add ecx, 6Dh ; 'm'",
+   "4d7011 add edx, 6Dh ; 'm'",
+   "4d7014 add eax, 6Dh ; 'm'",
+   "4d7017 mov dword_17A89CC, ecx",
+   "4d701d mov dword_17A89D0, edx",
+   "4d7023 mov dword_17A89D4, eax",
+   "4d7028 retn"
+  ],
+  "asm_name": "??0CCBAI@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x004D6FF0",
+    "xrefs": [
+     {
+      "addr": "0x4d6fe0",
+      "type": "code",
+      "fn": {
+       "addr": "0x4d6fe0",
+       "name": "j_CCBAI::CCBAI",
+       "size": "0x5"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CCBAI::CCBAI(CCBAI *this)"
+ },
+ {
+  "addr": "0x004EDD60",
+  "cls": "CCBRoleState",
+  "name": "CCBRoleState",
+  "form": "ctor形",
+  "asm_head": [
+   "4edd60 sub esp, 8",
+   "4edd63 push ebx",
+   "4edd64 push ebp",
+   "4edd65 lea ebp, [ecx+458h]",
+   "4edd6b push esi",
+   "4edd6c push edi",
+   "4edd6d mov esi, offset g_RoleSlotBuf.m_partyActor.m_pSelfAtt",
+   "4edd72 mov [esp+18h+var_4], ebp",
+   "4edd76 mov al, [ebp-217h]",
+   "4edd7c lea ebx, [ebp-4]",
+   "4edd7f test al, al",
+   "4edd81 jz loc_4EDEEB",
+   "4edd87 mov ecx, 7",
+   "4edd8c xor eax, eax",
+   "4edd8e mov edi, ebx",
+   "4edd90 cmp esi, offset g_RoleSlotBuf.m_partyActor.m_pSelfAtt",
+   "4edd96 rep stosd",
+   "4edd98 jl loc_4EDE99",
+   "4edd9e cmp esi, offset dword_C062B8",
+   "4edda4 jge loc_4EDE99",
+   "4eddaa mov eax, [esi-8]",
+   "4eddad test eax, eax",
+   "4eddaf jz short loc_4EDDCF",
+   "4eddb1 xor eax, eax",
+   "4eddb3 mov ecx, ebp",
+   "4eddb5 mov edx, [esi]",
+   "4eddb7 xor ebx, ebx",
+   "4eddb9 add ecx, 4"
+  ],
+  "asm_name": "??0CCBRoleState@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x004EDD60",
+    "xrefs": [
+     {
+      "addr": "0x4ec8ae",
+      "type": "code",
+      "fn": {
+       "addr": "0x4ec830",
+       "name": "?DestroyAndReinit@CCBRoleState@@QAEDXZ",
+       "size": "0xd1"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CCBRoleState::CCBRoleState(CCBRoleState *this)"
+ },
+ {
+  "addr": "0x004FB9A0",
+  "cls": "CCBStage",
+  "name": "CCBStage",
+  "form": "ctor形",
+  "asm_head": [
+   "4fb9a0 push ebx",
+   "4fb9a1 mov ebx, ecx",
+   "4fb9a3 push esi",
+   "4fb9a4 push edi",
+   "4fb9a5 lea edx, [ebx+0AC0h]",
+   "4fb9ab mov esi, 100h",
+   "4fb9b0 mov edi, edx",
+   "4fb9b2 mov ecx, 0Bh",
+   "4fb9b7 xor eax, eax",
+   "4fb9b9 add edx, 0A48h",
+   "4fb9bf dec esi",
+   "4fb9c0 rep stosd",
+   "4fb9c2 jnz short loc_4FB9B0",
+   "4fb9c4 mov ecx, 2922Ch",
+   "4fb9c9 mov edi, ebx",
+   "4fb9cb rep stosd",
+   "4fb9cd mov eax, [esp+0Ch+pCBSystem]",
+   "4fb9d1 pop edi",
+   "4fb9d2 mov [ebx], eax",
+   "4fb9d4 pop esi",
+   "4fb9d5 mov eax, [eax+10h]",
+   "4fb9d8 mov [ebx+4], eax",
+   "4fb9db mov eax, ebx",
+   "4fb9dd pop ebx",
+   "4fb9de retn 4"
+  ],
+  "asm_name": "??0CCBStage@@QAE@H@Z",
+  "xrefs": [
+   {
+    "addr": "0x004FB9A0",
+    "xrefs": [
+     {
+      "addr": "0x512874",
+      "type": "code",
+      "fn": {
+       "addr": "0x5125e0",
+       "name": "?ProcNormalAttack@CCBSystem@@QAEDXZ",
+       "size": "0x5b5"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "int *__thiscall CCBStage::CCBStage(CCBStage *this, int pCBSystem)"
+ },
+ {
+  "addr": "0x00504E70",
+  "cls": "CCBStageCam",
+  "name": "CCBStageCam",
+  "form": "ctor形",
+  "asm_head": [
+   "504e70 sub esp, 800h",
+   "504e76 push esi",
+   "504e77 push edi",
+   "504e78 push offset Mode; Mode",
+   "504e7d mov edi, ecx",
+   "504e7f push offset aBasedataCbdata; FileName",
+   "504e84 call _fopen",
+   "504e89 mov esi, eax",
+   "504e8b add esp, 8",
+   "504e8e test esi, esi",
+   "504e90 jnz short loc_504EC9",
+   "504e92 push 2BEh; line",
+   "504e97 push offset aDProjectPal3Co_9; \"D:\\\\Project\\\\PAL3\\\\Combat\\\\CBStageCam.c\"...",
+   "504e9c push offset aCouldnTOpenCbC; \"Couldn't open cb cct cam data file\"",
+   "504ea1 lea ecx, [esp+814h+ArgList]; this",
+   "504ea8 call ?FormatException@Logger@@QAEPADPADPADH@Z; Logger::FormatException(char *,char *,int)",
+   "504ead mov esi, eax",
+   "504eaf mov ecx, 100h",
+   "504eb4 lea edi, [esp+808h+pExceptionObject]",
+   "504eb8 lea eax, [esp+808h+pExceptionObject]",
+   "504ebc push offset __TI1?AV_Exception@@; pThrowInfo",
+   "504ec1 push eax; pExceptionObject",
+   "504ec2 rep movsd",
+   "504ec4 call __CxxThrowException@8; _CxxThrowException(x,x)",
+   "504ec9 lea eax, [edi+0B0h]",
+   "504ecf mov ecx, 7D0h",
+   "504ed4 mov edx, 42480000h",
+   "504ed9 mov [eax+4], edx"
+  ],
+  "asm_name": "??0CCBStageCam@@QAE@PAVCCBStageCam@@@Z",
+  "xrefs": [
+   {
+    "addr": "0x00504E70",
+    "xrefs": [
+     {
+      "addr": "0x4e6697",
+      "type": "code",
+      "fn": {
+       "addr": "0x4e6020",
+       "name": "?UpdateEditorState@CCBStageCam@@QAEHXZ",
+       "size": "0xf6d"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CCBStageCam::CCBStageCam(CCBStageCam *this, CCBStageCam *Buffer)"
+ },
+ {
+  "addr": "0x005058F0",
+  "cls": "CCCTData",
+  "name": "CCCTData",
+  "form": "ctor形",
+  "asm_head": [
+   "5058f0 mov eax, [esp+p_DWORD]",
+   "5058f4 mov edx, [eax]",
+   "5058f6 mov [ecx+69094h], edx",
+   "5058fc mov edx, [eax+4]",
+   "5058ff mov [ecx+69098h], edx",
+   "505905 mov eax, [eax+8]",
+   "505908 mov [ecx+6909Ch], eax",
+   "50590e mov eax, [esp+p_DWORD2]",
+   "505912 mov edx, [eax]",
+   "505914 mov [ecx+690A0h], edx",
+   "50591a mov edx, [eax+4]",
+   "50591d mov [ecx+690A4h], edx",
+   "505923 mov eax, [eax+8]",
+   "505926 mov [ecx+690A8h], eax",
+   "50592c retn 8"
+  ],
+  "asm_name": "??0CCCTData@@QAE@PAHPAH@Z",
+  "xrefs": [
+   {
+    "addr": "0x005058F0",
+    "xrefs": [
+     {
+      "addr": "0x4e667f",
+      "type": "code",
+      "fn": {
+       "addr": "0x4e6020",
+       "name": "?UpdateEditorState@CCBStageCam@@QAEHXZ",
+       "size": "0xf6d"
+      }
+     },
+     {
+      "addr": "0x4e8298",
+      "type": "code",
+      "fn": {
+       "addr": "0x4e7d70",
+       "name": "?UpdateDebugDialog@CCCTData@@QAEHXZ",
+       "size": "0x6d2"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 2
+   }
+  ],
+  "decomp_first": "void __thiscall CCCTData::CCCTData(CCCTData *this, int *p_DWORD, int *p_DWORD2)"
+ },
+ {
+  "addr": "0x005081E0",
+  "cls": "CCBCamControl",
+  "name": "~CCBCamControl",
+  "form": "dtor形",
+  "asm_head": [
+   "5081e0 mov eax, ds:dword_56FD8C",
+   "5081e5 mov ecx, ds:dword_56FD90",
+   "5081eb mov edx, ds:dword_56FD94",
+   "5081f1 add eax, 77h ; 'w'",
+   "5081f4 mov dword ptr g_CCBCamControlData+5C0h, eax",
+   "5081f9 mov eax, ds:dword_56FD98",
+   "5081fe add ecx, 6Bh ; 'k'",
+   "508201 add edx, 6Bh ; 'k'",
+   "508204 add eax, 6Bh ; 'k'",
+   "508207 mov dword ptr g_CCBCamControlData+5C4h, ecx",
+   "50820d mov dword ptr g_CCBCamControlData+5C8h, edx",
+   "508213 mov dword ptr g_CCBCamControlData+5CCh, eax",
+   "508218 retn"
+  ],
+  "asm_name": "??1CCBCamControl@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x005081E0",
+    "xrefs": [
+     {
+      "addr": "0x5081d0",
+      "type": "code",
+      "fn": {
+       "addr": "0x5081d0",
+       "name": "?_scalar_dtor_81D0@CCBCamControl@@QAEXXZ",
+       "size": "0x5"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CCBCamControl::~CCBCamControl(CCBCamControl *this)"
+ },
+ {
+  "addr": "0x0050FD00",
+  "cls": "CCBStageScene",
+  "name": "CCBStageScene",
+  "form": "ctor形",
+  "asm_head": [
+   "50fd00 push ebx",
+   "50fd01 mov ebx, ecx",
+   "50fd03 push esi",
+   "50fd04 push edi",
+   "50fd05 lea esi, [ebx+8]",
+   "50fd08 mov edi, 7",
+   "50fd0d mov ecx, esi",
+   "50fd0f call ds:??_FgbVec3D@@QAEXXZ; gbVec3D::`default constructor closure'(void)",
+   "50fd15 add esi, 0Ch",
+   "50fd18 dec edi",
+   "50fd19 jnz short loc_50FD0D",
+   "50fd1b lea esi, [ebx+5Ch]",
+   "50fd1e mov edi, 7",
+   "50fd23 mov ecx, esi",
+   "50fd25 call ds:??_FgbVec3D@@QAEXXZ; gbVec3D::`default constructor closure'(void)",
+   "50fd2b add esi, 0Ch",
+   "50fd2e dec edi",
+   "50fd2f jnz short loc_50FD23",
+   "50fd31 lea esi, [ebx+0B0h]",
+   "50fd37 mov edi, 7",
+   "50fd3c mov ecx, esi",
+   "50fd3e call ds:??_FgbVec3D@@QAEXXZ; gbVec3D::`default constructor closure'(void)",
+   "50fd44 add esi, 0Ch",
+   "50fd47 dec edi",
+   "50fd48 jnz short loc_50FD3C",
+   "50fd4a lea esi, [ebx+104h]",
+   "50fd50 mov edi, 7",
+   "50fd55 mov ecx, esi"
+  ],
+  "asm_name": "??0CCBStageScene@@QAE@PAVCCBStage@@@Z",
+  "xrefs": [
+   {
+    "addr": "0x0050FD00",
+    "xrefs": [
+     {
+      "addr": "0x4fbab5",
+      "type": "code",
+      "fn": {
+       "addr": "0x4fba70",
+       "name": "?ResetSceneState@CCBStageScene@@QAEHXZ",
+       "size": "0x3d8"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "CCBStageScene *__thiscall CCBStageScene::CCBStageScene(CCBStageScene *this, CCBStage *pCBStage)"
+ },
+ {
+  "addr": "0x0050FEE0",
+  "cls": "CCBStageScene",
+  "name": "CCBStageScene",
+  "form": "ctor形",
+  "asm_head": [
+   "50fee0 sub esp, 800h",
+   "50fee6 push ebp",
+   "50fee7 push esi",
+   "50fee8 push edi",
+   "50fee9 mov esi, ecx",
+   "50feeb call ?Update@CCBStageScene@@QAEXXZ; CCBStageScene::Update(void)",
+   "50fef0 mov ecx, 0C2DC0000h",
+   "50fef5 xor edi, edi",
+   "50fef7 mov eax, 41F00000h",
+   "50fefc mov [esi+14h], ecx",
+   "50feff mov [esi+18h], edi",
+   "50ff02 mov dword ptr [esi+1Ch], 0C3020000h",
+   "50ff09 mov [esi+20h], eax",
+   "50ff0c mov [esi+28h], ecx",
+   "50ff0f mov [esi+24h], edi",
+   "50ff12 mov [esi+2Ch], ecx",
+   "50ff15 mov [esi+30h], edi",
+   "50ff18 mov [esi+34h], eax",
+   "50ff1b mov [esi+38h], eax",
+   "50ff1e mov eax, 0C2480000h",
+   "50ff23 mov [esi+3Ch], edi",
+   "50ff26 mov dword ptr [esi+40h], 41200000h",
+   "50ff2d mov dword ptr [esi+44h], 0C3160000h",
+   "50ff34 mov [esi+48h], edi",
+   "50ff37 mov [esi+4Ch], eax",
+   "50ff3a mov [esi+50h], eax",
+   "50ff3d mov [esi+58h], eax",
+   "50ff40 mov ecx, 430C0000h"
+  ],
+  "asm_name": "??0CCBStageScene@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x0050FEE0",
+    "xrefs": [
+     {
+      "addr": "0x4fbb09",
+      "type": "code",
+      "fn": {
+       "addr": "0x4fba70",
+       "name": "?ResetSceneState@CCBStageScene@@QAEHXZ",
+       "size": "0x3d8"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CCBStageScene::CCBStageScene(CCBStageScene *this)"
+ },
+ {
+  "addr": "0x00511EE0",
+  "cls": "CCBStageShadow",
+  "name": "CCBStageShadow",
+  "form": "ctor形",
+  "asm_head": [
+   "511ee0 sub esp, 800h",
+   "511ee6 push esi",
+   "511ee7 mov esi, ecx",
+   "511ee9 mov ecx, gfxMgr",
+   "511eef push offset asc_5DC254; \"Shadow.tga\"",
+   "511ef4 mov eax, [ecx]",
+   "511ef6 call dword ptr [eax+8]",
+   "511ef9 push 1; int",
+   "511efb mov ecx, eax; gbTexture *",
+   "511efd mov [esi+4], eax",
+   "511f00 call ds:?LoadTexture@gbTexture@@QAEXH@Z; gbTexture::LoadTexture(int)",
+   "511f06 mov ecx, gfxMgr",
+   "511f0c push 0; unsigned int",
+   "511f0e push offset aGfxscriptShado; \"gfxscript\\\\shadow.gbf\"",
+   "511f13 mov ecx, [ecx+0C8h]; gbEffectMgr *",
+   "511f19 call ds:?NewRenderEffect@gbEffectMgr@@QAEPAVgbRenderEffect@@PBDI@Z; gbEffectMgr::NewRenderEffect(char const *,uint)",
+   "511f1f push 44h ; 'D'; Size",
+   "511f21 mov [esi+8], eax",
+   "511f24 call ??2@YAPAXI@Z; operator new(uint)",
+   "511f29 add esp, 4",
+   "511f2c test eax, eax",
+   "511f2e jz short loc_511F3E",
+   "511f30 mov ecx, [esi+4]",
+   "511f33 mov dword ptr [eax+40h], 1",
+   "511f3a mov [eax], ecx",
+   "511f3c jmp short loc_511F40",
+   "511f3e xor eax, eax",
+   "511f40 test eax, eax"
+  ],
+  "asm_name": "??0CCBStageShadow@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x00511EE0",
+    "xrefs": [
+     {
+      "addr": "0x4fbda0",
+      "type": "code",
+      "fn": {
+       "addr": "0x4fba70",
+       "name": "?ResetSceneState@CCBStageScene@@QAEHXZ",
+       "size": "0x3d8"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CCBStageShadow::CCBStageShadow(CCBStageShadow *this)"
+ },
+ {
+  "addr": "0x00512500",
+  "cls": "CCBSystem",
+  "name": "CCBSystem",
+  "form": "ctor形",
+  "asm_head": [
+   "512500 mov edx, ecx",
+   "512502 push ebx",
+   "512503 push esi",
+   "512504 push edi",
+   "512505 lea esi, [edx+0C0h]",
+   "51250b mov ebx, 400h",
+   "512510 mov edi, esi",
+   "512512 mov ecx, 0Bh",
+   "512517 xor eax, eax",
+   "512519 add esi, 58h ; 'X'",
+   "51251c dec ebx",
+   "51251d rep stosd",
+   "51251f jnz short loc_512510",
+   "512521 lea esi, [edx+16098h]",
+   "512527 mov ebx, 0Bh",
+   "51252c mov edi, esi",
+   "51252e mov ecx, 0Bh",
+   "512533 xor eax, eax",
+   "512535 add esi, 34h ; '4'",
+   "512538 dec ebx",
+   "512539 rep stosd",
+   "51253b jnz short loc_51252C",
+   "51253d mov ecx, 58B6h",
+   "512542 mov edi, edx",
+   "512544 rep stosd",
+   "512546 mov ecx, 1",
+   "51254b pop edi",
+   "51254c mov [edx+7Ch], eax"
+  ],
+  "asm_name": "??0CCBSystem@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x00512500",
+    "xrefs": [
+     {
+      "addr": "0x404a2d",
+      "type": "code",
+      "fn": {
+       "addr": "0x404800",
+       "name": "sub_404800",
+       "size": "0x533"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CCBSystem::CCBSystem(CCBSystem *this)"
+ },
+ {
+  "addr": "0x00517650",
+  "cls": "CCBUI",
+  "name": "~CCBUI",
+  "form": "dtor形",
+  "asm_head": [
+   "517650 push 0FFFFFFFFh",
+   "517652 push offset SEH_517650",
+   "517657 mov eax, large fs:0",
+   "51765d push eax",
+   "51765e mov large fs:0, esp",
+   "517665 sub esp, 14h",
+   "517668 push ebp",
+   "517669 push esi",
+   "51766a push edi",
+   "51766b mov ebp, ecx",
+   "51766d push 98h; Size",
+   "517672 call ??2@YAPAXI@Z; operator new(uint)",
+   "517677 add esp, 4",
+   "51767a mov [esp+2Ch+var_20], eax",
+   "51767e test eax, eax",
+   "517680 mov [esp+2Ch+var_4], 0",
+   "517688 jz short loc_517693",
+   "51768a mov ecx, eax; this",
+   "51768c call sub_4422E0",
+   "517691 jmp short loc_517695",
+   "517693 xor eax, eax",
+   "517695 test eax, eax",
+   "517697 mov [esp+2Ch+var_4], 0FFFFFFFFh",
+   "51769f mov [ebp+48h], eax",
+   "5176a2 jnz short loc_5176B8",
+   "5176a4 pop edi",
+   "5176a5 pop esi",
+   "5176a6 xor al, al"
+  ],
+  "asm_name": "??1CCBUI@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x00517650",
+    "xrefs": [
+     {
+      "addr": "0x516420",
+      "type": "code",
+      "fn": {
+       "addr": "0x5163d0",
+       "name": "sub_5163D0",
+       "size": "0xf4"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CCBUI::~CCBUI(CCBUI *this)"
+ },
+ {
+  "addr": "0x0051A700",
+  "cls": "CCBControlWindow",
+  "name": "CCBControlWindow",
+  "form": "ctor形",
+  "asm_head": [
+   "51a700 sub esp, 10h",
+   "51a703 mov eax, ds:g_nUnkDataTable+28h",
+   "51a708 push ebx",
+   "51a709 push ebp",
+   "51a70a push esi",
+   "51a70b mov esi, ecx",
+   "51a70d push edi",
+   "51a70e lea ecx, [esp+20h+rc]",
+   "51a712 push eax; nDataIdx",
+   "51a713 lea edi, [esi+64h]",
+   "51a716 push ecx; rc",
+   "51a717 mov ebp, 1Bh",
+   "51a71c mov ebx, 3Bh ; ';'",
+   "51a721 push 0C0h; nCtrlID",
+   "51a726 push edi; ppChild",
+   "51a727 mov ecx, esi; this",
+   "51a729 mov [esp+30h+rc.left], 28h ; '('",
+   "51a731 mov [esp+30h+rc.right], 48h ; 'H'",
+   "51a739 mov [esp+30h+rc.top], ebp",
+   "51a73d mov [esp+30h+rc.bottom], ebx",
+   "51a741 call ?Create@CCBControlWindow@@QAE_NPAPAVUIWnd@@HPAVtagRECT@@H@Z; CCBControlWindow::Create(UIWnd * *,int,tagRECT *,int)",
+   "51a746 mov ecx, [edi]",
+   "51a748 push 1",
+   "51a74a mov edx, [ecx]",
+   "51a74c call dword ptr [edx]",
+   "51a74e mov eax, ds:g_nUnkDataTable+2Ch",
+   "51a753 lea ecx, [esp+20h+rc]",
+   "51a757 push eax; nDataIdx"
+  ],
+  "asm_name": "??0CCBControlWindow@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x0051A700",
+    "xrefs": [
+     {
+      "addr": "0x51a698",
+      "type": "code",
+      "fn": {
+       "addr": "0x51a430",
+       "name": "?AddTask@CCBUI@@QAEIPAVtagUITask@@H@Z",
+       "size": "0x2ca"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CCBControlWindow::CCBControlWindow(CCBControlWindow *this)"
+ },
+ {
+  "addr": "0x0051B710",
+  "cls": "CCBParabolaWindow",
+  "name": "CCBParabolaWindow",
+  "form": "ctor形",
+  "asm_head": [
+   "51b710 push ebx",
+   "51b711 push ebp",
+   "51b712 push esi",
+   "51b713 mov esi, [esp+0Ch+this]",
+   "51b717 push edi",
+   "51b718 mov edi, [esp+10h+pnVal]",
+   "51b71c push edi; parent",
+   "51b71d push esi; pRect",
+   "51b71e mov ebp, ecx",
+   "51b720 push 70000005h; id",
+   "51b725 call ?Create@UIWnd@@QAEHHPAVtagRECT@@H@Z; UIWnd::Create(int,tagRECT *,int)",
+   "51b72a mov [ebp+78h], edi",
+   "51b72d lea edi, [ebp+5Ch]",
+   "51b730 push edi",
+   "51b731 call ?Destroy@CCBLineupWindow@@QAEXXZ; CCBLineupWindow::Destroy(void)",
+   "51b736 add esp, 4",
+   "51b739 cmp al, 1",
+   "51b73b jnz short loc_51B780",
+   "51b73d mov dword ptr [esi], 0",
+   "51b743 mov dword ptr [esi+8], 0E6h",
+   "51b74a mov dword ptr [esi+4], 0",
+   "51b751 mov dword ptr [esi+0Ch], 0FAh",
+   "51b758 mov ecx, [edi]",
+   "51b75a push ebp",
+   "51b75b push esi",
+   "51b75c push 0F0h",
+   "51b761 mov eax, [ecx]",
+   "51b763 call dword ptr [eax+10h]"
+  ],
+  "asm_name": "??0CCBParabolaWindow@@QAE@PAPAVCCBParabolaWindow@@PAHH@Z",
+  "xrefs": [
+   {
+    "addr": "0x0051B710",
+    "xrefs": [
+     {
+      "addr": "0x517cd3",
+      "type": "code",
+      "fn": {
+       "addr": "0x517c80",
+       "name": "?CreateBattleFieldAttr@CCBUI@@QAE_NXZ",
+       "size": "0x68"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CCBParabolaWindow::CCBParabolaWindow("
+ },
+ {
+  "addr": "0x0051B810",
+  "cls": "CCBParabolaWindow",
+  "name": "~CCBParabolaWindow",
+  "form": "dtor形",
+  "asm_head": [
+   "51b810 push esi",
+   "51b811 push edi",
+   "51b812 mov esi, ecx",
+   "51b814 call Destroy",
+   "51b819 mov ecx, [esi+5Ch]",
+   "51b81c test ecx, ecx",
+   "51b81e jz short loc_51B82E",
+   "51b820 mov eax, [ecx]",
+   "51b822 push 1",
+   "51b824 call dword ptr [eax+14h]",
+   "51b827 mov dword ptr [esi+5Ch], 0",
+   "51b82e add esi, 60h ; '`'",
+   "51b831 mov edi, 5",
+   "51b836 mov ecx, [esi]",
+   "51b838 test ecx, ecx",
+   "51b83a jz short loc_51B849",
+   "51b83c mov edx, [ecx]",
+   "51b83e push 1",
+   "51b840 call dword ptr [edx+14h]",
+   "51b843 mov dword ptr [esi], 0",
+   "51b849 add esi, 4",
+   "51b84c dec edi",
+   "51b84d jnz short loc_51B836",
+   "51b84f pop edi",
+   "51b850 pop esi",
+   "51b851 retn"
+  ],
+  "asm_name": "??1CCBParabolaWindow@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x0051B810",
+    "xrefs": [
+     {
+      "addr": "0x570560",
+      "type": "data",
+      "fn": null
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CCBParabolaWindow::~CCBParabolaWindow(CCBParabolaWindow *this)"
+ },
+ {
+  "addr": "0x0051B9F0",
+  "cls": "CCBMagicWindow",
+  "name": "CCBMagicWindow",
+  "form": "ctor形",
+  "asm_head": [
+   "51b9f0 mov edx, [esp+nVal]",
+   "51b9f4 sub esp, 20h",
+   "51b9f7 mov eax, ds:g_nUnkTable_24C[edx*4]",
+   "51b9fe push ebx",
+   "51b9ff push esi",
+   "51ba00 mov edx, ds:g_nUnkTable_268[edx*4]",
+   "51ba07 lea ebx, [esp+28h+var_20]",
+   "51ba0b push edi",
+   "51ba0c push ebx; p_DWORD",
+   "51ba0d add eax, 9",
+   "51ba10 sub esp, 10h",
+   "51ba13 add edx, 0E8h",
+   "51ba19 mov ebx, esp",
+   "51ba1b lea esi, [eax+28h]",
+   "51ba1e lea edi, [edx+26h]",
+   "51ba21 mov [ebx], eax",
+   "51ba23 lea eax, [esp+40h+a2]",
+   "51ba27 push eax; nVal2",
+   "51ba28 mov [ebx+4], edx",
+   "51ba2b mov edx, [esp+44h+nVal2]",
+   "51ba2f mov ecx, [ecx+edx*4+60h]",
+   "51ba33 mov [ebx+8], esi",
+   "51ba36 mov [ebx+0Ch], edi",
+   "51ba39 call sub_445FE0",
+   "51ba3e mov edx, [eax]",
+   "51ba40 sub esp, 10h",
+   "51ba43 mov ecx, esp",
+   "51ba45 mov [ecx], edx"
+  ],
+  "asm_name": "??0CCBMagicWindow@@QAE@HHPAH@Z",
+  "xrefs": [
+   {
+    "addr": "0x0051B9F0",
+    "xrefs": [
+     {
+      "addr": "0x51bad2",
+      "type": "code",
+      "fn": {
+       "addr": "0x51bab0",
+       "name": "?_todo_0051BAB0@CCBMagicWindow@@QAEXH@Z",
+       "size": "0x47"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CCBMagicWindow::CCBMagicWindow(CCBMagicWindow *this, int nVal, int nVal2, int *p_DWORD)"
+ },
+ {
+  "addr": "0x0051CFB0",
+  "cls": "CCBLineupWindow",
+  "name": "CCBLineupWindow",
+  "form": "ctor形",
+  "asm_head": [
+   "51cfb0 push 0FFFFFFFFh",
+   "51cfb2 push offset SEH_51CFB0",
+   "51cfb7 mov eax, large fs:0",
+   "51cfbd push eax",
+   "51cfbe mov large fs:0, esp",
+   "51cfc5 sub esp, 804h",
+   "51cfcb push 80h; Size",
+   "51cfd0 call ??2@YAPAXI@Z; operator new(uint)",
+   "51cfd5 add esp, 4",
+   "51cfd8 mov [esp+810h+var_810], eax",
+   "51cfdc test eax, eax",
+   "51cfde mov [esp+810h+var_4], 0",
+   "51cfe9 jz short loc_51CFF4",
+   "51cfeb mov ecx, eax; this",
+   "51cfed call ?CreateButton@CCBControlWindow@@QAEPAVUIListBox@@XZ; CCBControlWindow::CreateButton(void)",
+   "51cff2 jmp short loc_51CFF6",
+   "51cff4 xor eax, eax",
+   "51cff6 mov ecx, [esp+810h+a2]",
+   "51cffd mov [esp+810h+var_4], 0FFFFFFFFh",
+   "51d008 test eax, eax",
+   "51d00a mov [ecx], eax",
+   "51d00c jnz short loc_51D049",
+   "51d00e push esi",
+   "51d00f push edi",
+   "51d010 push 67Ch; line",
+   "51d015 push offset aDProjectPal3Co_7; \"D:\\\\Project\\\\PAL3\\\\Combat\\\\CBUI.cpp\"",
+   "51d01a push (offset path+0A4h); msg",
+   "51d01f lea ecx, [esp+824h+ArgList]; this"
+  ],
+  "asm_name": "??0CCBLineupWindow@@QAE@PAPAVCCBControlWindow@@@Z",
+  "xrefs": [
+   {
+    "addr": "0x0051CFB0",
+    "xrefs": [
+     {
+      "addr": "0x517c1e",
+      "type": "code",
+      "fn": {
+       "addr": "0x517c10",
+       "name": "?CreateAttackSequen@CCBUI@@QAE_NXZ",
+       "size": "0x68"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CCBLineupWindow::CCBLineupWindow(CCBLineupWindow *this, CCBControlWindow **a2)"
+ },
+ {
+  "addr": "0x0051D6E0",
+  "cls": "CCBProtectWindow",
+  "name": "CCBProtectWindow",
+  "form": "ctor形",
+  "asm_head": [
+   "51d6e0 mov eax, ds:dword_5705B0",
+   "51d6e5 mov dword_17AD59C, eax",
+   "51d6ea retn"
+  ],
+  "asm_name": "??0CCBProtectWindow@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x0051D6E0",
+    "xrefs": [
+     {
+      "addr": "0x51d6d0",
+      "type": "code",
+      "fn": {
+       "addr": "0x51d6d0",
+       "name": "?RefreshFacePos@CCBLineupWindow@@QAEPAVCCBProtectWindow@@XZ",
+       "size": "0x5"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall CCBProtectWindow::CCBProtectWindow(CCBProtectWindow *this)"
+ },
+ {
+  "addr": "0x00541640",
+  "cls": "UIRenderObj",
+  "name": "UIRenderObj",
+  "form": "ctor形",
+  "asm_head": [
+   "541640 mov eax, large fs:0",
+   "541646 push 0FFFFFFFFh",
+   "541648 push offset SEH_541640",
+   "54164d push eax",
+   "54164e mov large fs:0, esp",
+   "541655 sub esp, 64h",
+   "541658 push esi",
+   "541659 mov esi, ecx",
+   "54165b mov al, [esi+1Dh]",
+   "54165e test al, al",
+   "541660 jz loc_5416FB",
+   "541666 mov al, [esi+1Ch]",
+   "541669 test al, al",
+   "54166b jz loc_5416FB",
+   "541671 lea ecx, [esp+74h+var_6C]",
+   "541675 call PushMatrixStacks",
+   "54167a lea eax, [esp+74h+Point]",
+   "54167e mov ecx, offset g_Input; this",
+   "541683 push eax; lpPoint",
+   "541684 mov [esp+78h+var_4], 0",
+   "54168c call ?GetCursorPos@GRPinput@@QAEIH@Z; GRPinput::GetCursorPos(int)",
+   "541691 mov ecx, [esp+74h+Point.y]",
+   "541695 mov eax, [esp+74h+Point.x]",
+   "541699 mov [esp+74h+var_5C], ecx",
+   "54169d add ecx, 20h ; ' '",
+   "5416a0 mov dword ptr [esp+74h+pszFolder], eax",
+   "5416a4 mov [esp+74h+var_54], ecx",
+   "5416a8 mov ecx, [esi+0Ch]"
+  ],
+  "asm_name": "??0UIRenderObj@@QAE@XZ",
+  "xrefs": [
+   {
+    "addr": "0x00541640",
+    "xrefs": [
+     {
+      "addr": "0x4061d2",
+      "type": "code",
+      "fn": {
+       "addr": "0x405c00",
+       "name": "?Render@PAL3@@QAEXXZ",
+       "size": "0x606"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 1
+   }
+  ],
+  "decomp_first": "void __thiscall UIRenderObj::UIRenderObj(UIRenderObj *this)"
+ },
+ {
+  "addr": "0x00541710",
+  "cls": "UIRenderObj",
+  "name": "~UIRenderObj",
+  "form": "dtor形",
+  "asm_head": [
+   "541710 push esi",
+   "541711 mov esi, ecx",
+   "541713 call ?GetInstance@UIQuadManager@@QAEPAV1@XZ; UIQuadManager::GetInstance(void)",
+   "541718 mov cl, [eax+1Dh]",
+   "54171b test cl, cl",
+   "54171d jz short loc_54172A",
+   "54171f mov al, byte ptr [esp+4+nVal1]",
+   "541723 mov [esi+1Ch], al",
+   "541726 pop esi",
+   "541727 retn 4",
+   "54172a mov ecx, gfxMgr",
+   "541730 mov eax, [esp+4+nVal1]",
+   "541734 and eax, 0FFh",
+   "541739 mov edx, [ecx]",
+   "54173b push eax",
+   "54173c call dword ptr [edx+68h]",
+   "54173f pop esi",
+   "541740 retn 4"
+  ],
+  "asm_name": "??1UIRenderObj@@QAE@H@Z",
+  "xrefs": [
+   {
+    "addr": "0x00541710",
+    "xrefs": [
+     {
+      "addr": "0x404e11",
+      "type": "code",
+      "fn": {
+       "addr": "0x404d60",
+       "name": "?WinProc@@YGJPAUHWND__@@IIJ@Z",
+       "size": "0x256"
+      }
+     },
+     {
+      "addr": "0x5297c4",
+      "type": "code",
+      "fn": {
+       "addr": "0x529790",
+       "name": "??1UIRoleSelectDialog@@QAE@XZ",
+       "size": "0xd5"
+      }
+     },
+     {
+      "addr": "0x529bc5",
+      "type": "code",
+      "fn": {
+       "addr": "0x529870",
+       "name": "?Render@UIEmote@@QAEXXZ",
+       "size": "0x369"
+      }
+     },
+     {
+      "addr": "0x52a8d4",
+      "type": "code",
+      "fn": {
+       "addr": "0x529e40",
+       "name": "?HandleInput@UIRoleSelectDialog@@QAENNNHH@Z",
+       "size": "0xc09"
+      }
+     },
+     {
+      "addr": "0x53c619",
+      "type": "code",
+      "fn": {
+       "addr": "0x53c5a0",
+       "name": "?PlayVideo@CScreenMode@@QAEHH@Z",
+       "size": "0x142"
+      }
+     },
+     {
+      "addr": "0x53c6a8",
+      "type": "code",
+      "fn": {
+       "addr": "0x53c5a0",
+       "name": "?PlayVideo@CScreenMode@@QAEHH@Z",
+       "size": "0x142"
+      }
+     },
+     {
+      "addr": "0x53c6ce",
+      "type": "code",
+      "fn": {
+       "addr": "0x53c5a0",
+       "name": "?PlayVideo@CScreenMode@@QAEHH@Z",
+       "size": "0x142"
+      }
+     }
+    ],
+    "more": false,
+    "xref_count": 7
+   }
+  ],
+  "decomp_first": "void __thiscall UIRenderObj::~UIRenderObj(UIRenderObj *this, int nVal1)"
+ }
+]

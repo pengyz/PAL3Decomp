@@ -485,3 +485,83 @@
 | `EquipUI::NavigateSlots` | inline | `EquipUI` | 24 | self_arg_mismatch | `(*(int ( **)(EquipUI *, int, _DWORD, _DWORD))(*(_DWORD *)&this->UIWnd + 24))(this, 1010, 0, 0)` |
 | `RoleStatePanel::RenderThrottled` | inline | `UITitle_XJTM` | 4 | self_arg_mismatch | `(*(int ( **)(UITitle_XJTM *))(*(_DWORD *)&this->m_pSubTab1->UIWnd + 4))(this->m_pSubTab1)` |
 | `RoleStatePanel::UpdateCaptions` | inline | `UITitle_XJTM` | 8 | self_arg_mismatch | `(*(void ( **)(UITitle_XJTM *, int, int))(*(_DWORD *)&this->m_pSubTab1->UIWnd + 8))( this->m_pSubTab1, nVal, a3)` |
+| `Actor::_todo_004B7980` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))(gfxMgr, Buffer)` |
+| `Actor::_todo_004B7D30` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, aEffectSaveTga)` |
+| `C2DSpark::C2DSpark` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, aEffectFlare3Bm)` |
+| `C3DSpark::C3DSpark` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, aEffectFlare3Bm)` |
+| `CCBParabolaWindow::LoadResourceEx` | vftable_local | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, CHAR *))(v6 + 8))(gfxMgr, v7)` |
+| `CCBParabolaWindow::LoadResourceEx` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, Buffer)` |
+| `CCBStageScene::CCBStageScene` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, asc_5DBFD0)` |
+| `CCBStageShadow::CCBStageShadow` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, asc_5DC254)` |
+| `CEffCylinder::LoadTexture` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)this->m_pEM->m_pDisplay + 8))( this->m_pEM->m_pDisplay, pFileName)` |
+| `CEffExplosive::LoadTexture` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)this->m_pEM->m_pDisplay + 8))( this->m_pEM->m_pDisplay, pFileName)` |
+| `CEffQuad::ToNextFrame` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, int))(*(_DWORD *)this->m_pEM->m_pDisplay + 8))( this->m_pEM->m_pDisplay, nQuad)` |
+| `CEffectSystem::IsVisible` | inline | `gbGfxManager` | 84 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, _DWORD *, int))(*(_DWORD *)gfxMgr->_tail_000 + 84))(gfxMgr, v6, 1)` |
+| `CEffectSystem::IsVisible` | inline | `gbGfxManager` | 88 | no_vtables_declaration | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)gfxMgr->_tail_000 + 88))(gfxMgr)` |
+| `CEffectSystem::IsVisible` | inline | `gbGfxManager` | 92 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, float *))(*(_DWORD *)gfxMgr->_tail_000 + 92))(gfxMgr, p_eu)` |
+| `CEffectSystem::HandleViewMove` | inline | `gbGfxManager` | 92 | no_vtables_declaration | `(*(void ( **)(gbGfxManager *, int))(*(_DWORD *)gfxMgr->_tail_000 + 92))(gfxMgr, 96 * v4 + v2 + 60)` |
+| `CScreenMode::IsSceneReady` | inline | `gbGfxManager` | 88 | no_vtables_declaration | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)gfxMgr->_tail_000 + 88))(gfxMgr)` |
+| `PAL3::Render` | inline | `gbGfxManager` | 48 | no_vtables_declaration | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)gfxMgr->_tail_000 + 48))(gfxMgr)` |
+| `PAL3::Render` | inline | `gbGfxManager` | 52 | no_vtables_declaration | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)gfxMgr->_tail_000 + 52))(gfxMgr)` |
+| `PAL3::Render` | inline | `gbGfxManager` | 112 | no_vtables_declaration | `(*(void ( **)(gbGfxManager *, int *))(*(_DWORD *)gfxMgr->_tail_000 + 112))(gfxMgr, &g_nPAL3_D8E488)` |
+| `PAL3::PrintScreen` | inline | `gbGfxManager` | 84 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, int *, int))(*(_DWORD *)gfxMgr->_tail_000 + 84))(gfxMgr, &v24, 1)` |
+| `PAL3::PrintScreen` | inline | `gbGfxManager` | 88 | no_vtables_declaration | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)gfxMgr->_tail_000 + 88))(gfxMgr)` |
+| `PalScript::OpenScript` | vftable_local | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, CHAR *))(v5 + 8))(gfxMgr, v6)` |
+| `PalScript::OpenScript` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, Buffer)` |
+| `PalScriptWaitObj::ReleaseObject` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))(gfxMgr, pszBuf)` |
+| `RenderTarget::LoadTexture` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, m_szTexPath)` |
+| `RenderTarget::RenderToTexture` | inline | `gbGfxManager` | 60 | no_vtables_declaration | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)gfxMgr->_tail_000 + 60))(gfxMgr)` |
+| `RenderTarget::Create` | inline | `gbGfxManager` | 84 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, int *, int))(*(_DWORD *)gfxMgr->_tail_000 + 84))(gfxMgr, &v2, 1)` |
+| `RenderTarget::Create` | inline | `gbGfxManager` | 88 | no_vtables_declaration | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)gfxMgr->_tail_000 + 88))(gfxMgr)` |
+| `RenderTarget::OnResetDevice` | inline | `gbGfxManager` | 92 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, gbTexture_D3D **))(*(_DWORD *)gfxMgr->_tail_000 + 92))( gfxMgr, &this->m_ScreenPlane)` |
+| `RenderTarget::OnResetDevice` | inline | `gbGfxManager` | 48 | no_vtables_declaration | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)gfxMgr->_tail_000 + 48))(gfxMgr)` |
+| `RenderTarget::OnResetDevice` | inline | `gbGfxManager` | 52 | no_vtables_declaration | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)gfxMgr->_tail_000 + 52))(gfxMgr)` |
+| `RenderTarget::RenderToScreen` | inline | `gbGfxManager` | 92 | no_vtables_declaration | `(*(void ( **)(gbGfxManager *, _DWORD))(*(_DWORD *)gfxMgr->_tail_000 + 92))(gfxMgr, 0)` |
+| `RenderTarget2::Resolve` | vftable_local | `gbGfxManager` | 60 | no_vtables_declaration | `(*(void ( **)(gbGfxManager *))(v4 + 60))(v3)` |
+| `RoleSystem::LoadRoleImage` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, _DWORD))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, 0)` |
+| `ScreenEffectMgr::LoadResources` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, aEffectRayTga)` |
+| `UI3DCtrl::CreateWithTexture` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, int))(*(_DWORD *)gfxMgr->_tail_000 + 8))(gfxMgr, nVal)` |
+| `UIDialog::Create` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))(gfxMgr, tex)` |
+| `UIFrameWnd::SetTextureByID` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, int))(*(_DWORD *)gfxMgr->_tail_000 + 8))(gfxMgr, nTexID)` |
+| `UIFrameWnd::SetTextureByName` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, const CHAR *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, v3)` |
+| `UIFrameWnd::SetTextureByName` | vftable_local | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, CHAR *))(v7 + 8))(gfxMgr, v8)` |
+| `UIFrameWnd::LoadFrameResources` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, Buffer)` |
+| `UIListBox::SetSelTexture` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, gbVFileSystem *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, m_plastsys)` |
+| `UIListBox::CalScrollBarRange` | vftable_local | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, CHAR *))(v9 + 8))(gfxMgr, v10)` |
+| `UIListBox::CalScrollBarRange` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, const CHAR *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, v7)` |
+| `UIListBox::GetSel` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, int))(*(_DWORD *)gfxMgr->_tail_000 + 8))(gfxMgr, v3)` |
+| `UIListBox::LoadListItems` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))(gfxMgr, Source)` |
+| `UIListBox::SetMouseMoveSel` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))(gfxMgr, Source)` |
+| `UIManager::LoadShadowTexture` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, aShadowTga)` |
+| `UIPushButton::CreateWithTextures` | vftable_local | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, CHAR *))(v10 + 8))(gfxMgr, v11)` |
+| `UIPushButton::CreateWithTextures` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, Buffer)` |
+| `UIPushButton::FormatText` | vftable_local | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, CHAR *))(v5 + 8))(gfxMgr, v6)` |
+| `UIPushButton::FormatText` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, const char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, pszName)` |
+| `UIPushButton::LoadResource` | vftable_local | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, CHAR *))(v5 + 8))(gfxMgr, v6)` |
+| `UIPushButton::LoadResource` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, LPCSTR))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, lpString)` |
+| `UIPushButton::LoadTexture` | vftable_local | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, CHAR *))(v5 + 8))(gfxMgr, v6)` |
+| `UIPushButton::LoadTexture` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, const char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, pszName)` |
+| `UIPushButton::SetText` | vftable_local | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, CHAR *))(v3 + 8))(gfxMgr, v4)` |
+| `UIPushButton::SetText` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, Buffer)` |
+| `UIPushButton::LoadTextureByName` | vftable_local | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, CHAR *))(v6 + 8))(gfxMgr, v7)` |
+| `UIPushButton::LoadTextureByName` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, const CHAR *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, v3)` |
+| `UIPushButton::CreateFromTemplate` | vftable_local | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, CHAR *))(v7 + 8))(gfxMgr, v8)` |
+| `UIPushButton::CreateFromTemplate` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, const CHAR *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, v3)` |
+| `UIRenderObj::~UIRenderObj` | inline | `gbGfxManager` | 104 | no_vtables_declaration | `(*(void (**)(gbGfxManager *, _DWORD))(*(_DWORD *)gfxMgr->_tail_000 + 104))( gfxMgr, (unsigned __int8)nVal1)` |
+| `UIScene::SetTexture` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, const CHAR *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, v3)` |
+| `UIScene::SetTexture` | vftable_local | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, CHAR *))(v7 + 8))(gfxMgr, v8)` |
+| `UIScene::CreateScrollWidget` | vftable_local | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, CHAR *))(v18 + 8))(gfxMgr, v19)` |
+| `UIScene::CreateScrollWidget` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, Buffer)` |
+| `UIScene::GetChildCount` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, const CHAR *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, v1)` |
+| `UIScene::GetChildCount` | vftable_local | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, CHAR *))(v5 + 8))(gfxMgr, v6)` |
+| `UIScene::GetChildAt` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, const CHAR *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, v1)` |
+| `UIScene::GetChildAt` | vftable_local | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, CHAR *))(v5 + 8))(gfxMgr, v6)` |
+| `UIScene::SetTextParam` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, const CHAR *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, v1)` |
+| `UIScene::SetTextParam` | vftable_local | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, CHAR *))(v5 + 8))(gfxMgr, v6)` |
+| `::PalScriptIdleObj_LoadScriptTexture` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, int))(*(_DWORD *)gfxMgr->_tail_000 + 8))(gfxMgr, nVal)` |
+| `::ParticleEffect_LoadTextures` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, Buffer)` |
+| `::crt_sub_00541590` | inline | `gbGfxManager` | 100 | no_vtables_declaration | `(*(int ( **)(gbGfxManager *, _DWORD))(*(_DWORD *)gfxMgr->_tail_000 + 100))( gfxMgr, *(_DWORD *)(result + 4 * v3))` |
+| `MXTransport::UpdateFrontEffect` | inline | `int` | 16 | non_class_hint | `(*(void ( **)(int))(*(_DWORD *)v2 + 16))(v2)` |
+| `MXTransport::Create` | inline | `MXTransport` | 12 | self_arg_mismatch | `(*(void ( **)(MXTransport *, _DWORD))(*(_DWORD *)&this->gbChain1DNode + 12))(this, 0)` |
+| `MXTransport::IsFadeActive` | inline | `int` | 4 | non_class_hint | `(*(int ( **)(int))(*(_DWORD *)m_numNode + 4))(m_numNode)` |
+| `UICoverFrm::RenderWithSceneMap` | inline | `int` | 4 | non_class_hint | `(*(int ( **)(int))(*(_DWORD *)this[1].m_column[0].width + 4))(this[1].m_column[0].width)` |

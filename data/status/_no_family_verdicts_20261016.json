@@ -1,0 +1,862 @@
+[
+ {
+  "addr": "0x00401000",
+  "cls": "AStarPathFinder",
+  "name": "~AStarPathFinder",
+  "form": "dtor形",
+  "verdict": "真析构",
+  "target": null,
+  "note": "objdump 窗内释放族调用 ['AStarPathFinder::ReleaseAll(void)']",
+  "vptr": [
+   "56A600"
+  ],
+  "rel": [],
+  "asm_name": "??1AStarPathFinder@@QAE@XZ"
+ },
+ {
+  "addr": "0x00420290",
+  "cls": "RoleSystem",
+  "name": "RoleSystem",
+  "form": "ctor形",
+  "verdict": "真ctor",
+  "target": "RoleSystem",
+  "note": "",
+  "vptr": [
+   "56AAD8"
+  ],
+  "rel": [],
+  "asm_name": "??0RoleSystem@@QAE@XZ_0"
+ },
+ {
+  "addr": "0x00431870",
+  "cls": "TxtFile",
+  "name": "TxtFile",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0TxtFile@@QAE@XZ"
+ },
+ {
+  "addr": "0x00431E60",
+  "cls": "PalScriptMgr",
+  "name": "PalScriptMgr",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0PalScriptMgr@@QAE@XZ"
+ },
+ {
+  "addr": "0x00434130",
+  "cls": "PtrArray",
+  "name": "PtrArray",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0PtrArray@@QAE@HHD@Z"
+ },
+ {
+  "addr": "0x004341E0",
+  "cls": "PtrArray",
+  "name": "~PtrArray",
+  "form": "dtor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "判据不足",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??1PtrArray@@QAE@XZ"
+ },
+ {
+  "addr": "0x00438EB0",
+  "cls": "filebuf",
+  "name": "~filebuf",
+  "form": "dtor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "dtor形+vptr写 0x56A9C0/0x56AC08 但窗内无释放族调用",
+  "vptr": [
+   "56A9BC",
+   "56AC08",
+   "574978"
+  ],
+  "rel": [],
+  "asm_name": "??1filebuf@@QAE@XZ"
+ },
+ {
+  "addr": "0x0043A160",
+  "cls": "PalScript",
+  "name": "PalScript",
+  "form": "ctor形",
+  "verdict": "真ctor",
+  "target": "PalScript",
+  "note": "",
+  "vptr": [
+   "56AC4C"
+  ],
+  "rel": [],
+  "asm_name": "??0PalScript@@QAE@XZ"
+ },
+ {
+  "addr": "0x0043BB70",
+  "cls": "UIFrameWnd",
+  "name": "UIFrameWnd",
+  "form": "ctor形",
+  "verdict": "真ctor",
+  "target": null,
+  "note": "objdump 0x80 窗 vptr 写 0x56ACB8 + 初始化无释放族",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0UIFrameWnd@@QAE@XZ"
+ },
+ {
+  "addr": "0x0043BE30",
+  "cls": "CCBResultWindow",
+  "name": "~CCBResultWindow",
+  "form": "dtor形",
+  "verdict": "真析构",
+  "target": "CCBResultWindow",
+  "note": "",
+  "vptr": [
+   "56ACD8",
+   "574C00"
+  ],
+  "rel": [
+   "ReleaseTexture"
+  ],
+  "asm_name": "??1CCBResultWindow@@QAE@XZ"
+ },
+ {
+  "addr": "0x0043D830",
+  "cls": "UI3DCtrl",
+  "name": "UI3DCtrl",
+  "form": "ctor形",
+  "verdict": "真ctor",
+  "target": "UI3DCtrl",
+  "note": "",
+  "vptr": [
+   "56ACFC"
+  ],
+  "rel": [],
+  "asm_name": "??0UI3DCtrl@@QAE@XZ"
+ },
+ {
+  "addr": "0x0043DCD0",
+  "cls": "UIListBox",
+  "name": "UIListBox",
+  "form": "ctor形",
+  "verdict": "真ctor",
+  "target": "UIListBox",
+  "note": "",
+  "vptr": [
+   "56AD20"
+  ],
+  "rel": [],
+  "asm_name": "??0UIListBox@@QAE@XZ"
+ },
+ {
+  "addr": "0x0043DD10",
+  "cls": "UIListBox",
+  "name": "~UIListBox",
+  "form": "dtor形",
+  "verdict": "真析构",
+  "target": "UIListBox",
+  "note": "",
+  "vptr": [
+   "56AD20",
+   "574CA0"
+  ],
+  "rel": [
+   "Destroy"
+  ],
+  "asm_name": "??1UIListBox@@QAE@XZ"
+ },
+ {
+  "addr": "0x0043F970",
+  "cls": "UIButton",
+  "name": "~UIButton",
+  "form": "dtor形",
+  "verdict": "真析构",
+  "target": "UIButton",
+  "note": "",
+  "vptr": [
+   "56AD64",
+   "574E28"
+  ],
+  "rel": [
+   "?Destroy@UIButton@@QAEXXZ"
+  ],
+  "asm_name": "??1UIButton@@QAE@XZ"
+ },
+ {
+  "addr": "0x00440740",
+  "cls": "UIPushButton",
+  "name": "UIPushButton",
+  "form": "ctor形",
+  "verdict": "真ctor",
+  "target": "UIPushButton",
+  "note": "",
+  "vptr": [
+   "56AD88"
+  ],
+  "rel": [],
+  "asm_name": "??0UIPushButton@@QAE@XZ"
+ },
+ {
+  "addr": "0x004407C0",
+  "cls": "UIPushButton",
+  "name": "~UIPushButton",
+  "form": "dtor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "dtor形+vptr写 0x56AD88 但窗内无释放族调用",
+  "vptr": [
+   "56AD88",
+   "574EC8"
+  ],
+  "rel": [],
+  "asm_name": "??1UIPushButton@@QAE@XZ"
+ },
+ {
+  "addr": "0x004411D0",
+  "cls": "UIMap",
+  "name": "UIMap",
+  "form": "ctor形(无 decomp)",
+  "verdict": "真ctor",
+  "target": null,
+  "note": "objdump 0x80 窗 vptr 写 0x56ADAC + 初始化无释放族",
+  "vptr": [
+   "56ADAC"
+  ],
+  "rel": [
+   "?Destroy@UIMap@@QAEXXZ;"
+  ],
+  "asm_name": "??0UIMap@@QAE@XZ_0"
+ },
+ {
+  "addr": "0x00444A20",
+  "cls": "CCBResultWindow",
+  "name": "CCBResultWindow",
+  "form": "ctor形",
+  "verdict": "真ctor",
+  "target": null,
+  "note": "objdump 0x80 窗 vptr 写 0x56AE84 + 初始化无释放族",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CCBResultWindow@@QAE@XZ"
+ },
+ {
+  "addr": "0x004461B0",
+  "cls": "CCBItemWindow",
+  "name": "CCBItemWindow",
+  "form": "ctor形",
+  "verdict": "真ctor",
+  "target": null,
+  "note": "objdump 0x80 窗 vptr 写 0x56AF80 + 初始化无释放族",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CCBItemWindow@@QAE@XZ"
+ },
+ {
+  "addr": "0x0044BD60",
+  "cls": "PtrArray",
+  "name": "PtrArray",
+  "form": "ctor形",
+  "verdict": "真ctor",
+  "target": null,
+  "note": "objdump 0x80 窗 vptr 写 0x56B018 + 初始化无释放族",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0PtrArray@@QAE@XZ"
+ },
+ {
+  "addr": "0x0044E530",
+  "cls": "UIEmote",
+  "name": "UIEmote",
+  "form": "ctor形",
+  "verdict": "真ctor",
+  "target": "UIEmote",
+  "note": "",
+  "vptr": [
+   "56A9BC",
+   "56B050"
+  ],
+  "rel": [],
+  "asm_name": "??0UIEmote@@QAE@XZ"
+ },
+ {
+  "addr": "0x0044E5E0",
+  "cls": "scScriptInstance",
+  "name": "~scScriptInstance",
+  "form": "dtor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "dtor形+vptr写 0x56A9C0/0x56B044/0x56B050 但窗内无释放族调用",
+  "vptr": [
+   "56A9BC",
+   "56B050"
+  ],
+  "rel": [],
+  "asm_name": "??1scScriptInstance@@QAE@XZ"
+ },
+ {
+  "addr": "0x00450A25",
+  "cls": "RoleCameraCtrl",
+  "name": "~RoleCameraCtrl",
+  "form": "dtor形",
+  "verdict": "真析构",
+  "target": null,
+  "note": "objdump 窗内释放族调用 ['UITextArea::InitAfterClear(void)']",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??1RoleCameraCtrl@@QAE@XZ"
+ },
+ {
+  "addr": "0x00451CC0",
+  "cls": "UITitle_BBTY",
+  "name": "UITitle_BBTY",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0UITitle_BBTY@@QAE@XZ"
+ },
+ {
+  "addr": "0x00452790",
+  "cls": "UIAnimateCtrlEX",
+  "name": "UIAnimateCtrlEX",
+  "form": "ctor形",
+  "verdict": "真ctor",
+  "target": null,
+  "note": "objdump 0x80 窗 vptr 写 0x56B1DC + 初始化无释放族",
+  "vptr": [
+   "56B1DC"
+  ],
+  "rel": [
+   "?InitAfterClear@UITextArea@@QAEHXZ;"
+  ],
+  "asm_name": "UIAnimateCtrlEX_UIAnimateCtrlEX"
+ },
+ {
+  "addr": "0x0047C580",
+  "cls": "ObjectCamera",
+  "name": "~ObjectCamera",
+  "form": "dtor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "判据不足",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??1ObjectCamera@@QAE@XZ"
+ },
+ {
+  "addr": "0x0047CB70",
+  "cls": "Object3D",
+  "name": "Object3D",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0Object3D@@QAE@XZ"
+ },
+ {
+  "addr": "0x00490E90",
+  "cls": "UIBigMap",
+  "name": "UIBigMap",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0UIBigMap@@QAE@XZ"
+ },
+ {
+  "addr": "0x004B7510",
+  "cls": "UI3DModelNode",
+  "name": "~UI3DModelNode",
+  "form": "dtor形",
+  "verdict": "真析构",
+  "target": "UI3DModelNode",
+  "note": "",
+  "vptr": [
+   "578F08"
+  ],
+  "rel": [
+   "ReleaseAllTextures"
+  ],
+  "asm_name": "??1UI3DModelNode@@QAE@XZ"
+ },
+ {
+  "addr": "0x004B7CE0",
+  "cls": "ScreenEffectNode",
+  "name": "~ScreenEffectNode",
+  "form": "dtor形",
+  "verdict": "真析构",
+  "target": "ScreenEffectNode",
+  "note": "",
+  "vptr": [
+   "578F80"
+  ],
+  "rel": [
+   "UINote_ReleaseResources"
+  ],
+  "asm_name": "??1ScreenEffectNode@@QAE@XZ"
+ },
+ {
+  "addr": "0x004BDFB0",
+  "cls": "ScreenEffect",
+  "name": "ScreenEffect",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0ScreenEffect@@QAE@XZ"
+ },
+ {
+  "addr": "0x004BEF50",
+  "cls": "UIRoleDialog",
+  "name": "~UIWnd",
+  "form": "dtor形",
+  "verdict": "真析构",
+  "target": "UIRoleDialog",
+  "note": "",
+  "vptr": [
+   "56F580"
+  ],
+  "rel": [
+   "?CleanupTextures@ScreenEffectMgr@@QAEXXZ"
+  ],
+  "asm_name": "_UIWnd"
+ },
+ {
+  "addr": "0x004C3C80",
+  "cls": "RenderTarget2",
+  "name": "_sdtor_35",
+  "form": "dtor形",
+  "verdict": "均非",
+  "target": null,
+  "note": "adjustor thunk（`sub ecx,N; jmp` 形）",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??_GRenderTarget2@@UAEPAXI@Z"
+ },
+ {
+  "addr": "0x004C3EB0",
+  "cls": "CEffCylinder",
+  "name": "~CEffCylinder",
+  "form": "dtor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "dtor形+vptr写 0x56F62C 但窗内无释放族调用",
+  "vptr": [
+   "56F5D8"
+  ],
+  "rel": [],
+  "asm_name": "??1CEffCylinder@@QAE@XZ"
+ },
+ {
+  "addr": "0x004C5810",
+  "cls": "RenderTarget2",
+  "name": "_sdtor",
+  "form": "dtor形",
+  "verdict": "均非",
+  "target": null,
+  "note": "adjustor thunk（`sub ecx,N; jmp` 形）",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??_GCEffCylinder@@UAEPAXI@Z"
+ },
+ {
+  "addr": "0x004C61A0",
+  "cls": "CEffectSystem",
+  "name": "CEffectSystem",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "CEffectSystem_CEffectSystem"
+ },
+ {
+  "addr": "0x004C6940",
+  "cls": "CEffect",
+  "name": "CEffect",
+  "form": "ctor形",
+  "verdict": "真ctor",
+  "target": null,
+  "note": "objdump 0x80 窗 vptr 写 0x56F86C/0x56F878 + 初始化无释放族",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CEffect@@QAE@XZ"
+ },
+ {
+  "addr": "0x004C9540",
+  "cls": "CEffgbParticle",
+  "name": "~CEffgbParticle",
+  "form": "dtor形",
+  "verdict": "均非",
+  "target": null,
+  "note": "adjustor thunk（`sub ecx,N; jmp` 形）",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??1CEffgbParticle@@QAE@D@Z"
+ },
+ {
+  "addr": "0x004C9610",
+  "cls": "CEffGrid",
+  "name": "CEffGrid",
+  "form": "ctor形",
+  "verdict": "真ctor",
+  "target": null,
+  "note": "objdump 0x80 窗 vptr 写 0x56F914/0x56F920 + 初始化无释放族",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CEffGrid@@QAE@XZ"
+ },
+ {
+  "addr": "0x004CB480",
+  "cls": "CEffMeteor",
+  "name": "CEffMeteor",
+  "form": "ctor形",
+  "verdict": "真ctor",
+  "target": null,
+  "note": "objdump 0x80 窗 vptr 写 0x56F96C/0x56F978 + 初始化无释放族",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CEffMeteor@@QAE@XZ"
+ },
+ {
+  "addr": "0x004CE2A0",
+  "cls": "CEffMgr",
+  "name": "~CEffMgr",
+  "form": "dtor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "判据不足",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??1CEffMgr@@QAE@XZ"
+ },
+ {
+  "addr": "0x004CFC70",
+  "cls": "CEffModel",
+  "name": "CEffModel",
+  "form": "ctor形",
+  "verdict": "真ctor",
+  "target": "CEffModel",
+  "note": "",
+  "vptr": [
+   "56F9DC"
+  ],
+  "rel": [],
+  "asm_name": "??0CEffModel@@QAE@XZ"
+ },
+ {
+  "addr": "0x004D3860",
+  "cls": "CEffQuake",
+  "name": "_sdtor",
+  "form": "dtor形",
+  "verdict": "均非",
+  "target": null,
+  "note": "adjustor thunk（`sub ecx,N; jmp` 形）",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??_GCEffQuake@@UAEPAXI@Z"
+ },
+ {
+  "addr": "0x004D3910",
+  "cls": "CEffShock",
+  "name": "CEffShock",
+  "form": "ctor形",
+  "verdict": "真ctor",
+  "target": null,
+  "note": "objdump 0x80 窗 vptr 写 0x56FAD0/0x56FADC + 初始化无释放族",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CEffShock@@QAE@XZ"
+ },
+ {
+  "addr": "0x004D4EE0",
+  "cls": "CEffSParticle",
+  "name": "CEffSParticle",
+  "form": "ctor形",
+  "verdict": "真ctor",
+  "target": null,
+  "note": "objdump 0x80 窗 vptr 写 0x56FB28/0x56FB34/0x56FB70 + 初始化无释放族",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CEffSParticle@@QAE@XZ"
+ },
+ {
+  "addr": "0x004D5AB0",
+  "cls": "C2DSpark",
+  "name": "C2DSpark",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0C2DSpark@@QAE@HH@Z"
+ },
+ {
+  "addr": "0x004D6670",
+  "cls": "C3DSpark",
+  "name": "C3DSpark",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0C3DSpark@@QAE@XZ"
+ },
+ {
+  "addr": "0x004D6FF0",
+  "cls": "CCBAI",
+  "name": "CCBAI",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CCBAI@@QAE@XZ"
+ },
+ {
+  "addr": "0x004EDD60",
+  "cls": "CCBRoleState",
+  "name": "CCBRoleState",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CCBRoleState@@QAE@XZ"
+ },
+ {
+  "addr": "0x004FB9A0",
+  "cls": "CCBStage",
+  "name": "CCBStage",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CCBStage@@QAE@H@Z"
+ },
+ {
+  "addr": "0x00504E70",
+  "cls": "CCBStageCam",
+  "name": "CCBStageCam",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CCBStageCam@@QAE@PAVCCBStageCam@@@Z"
+ },
+ {
+  "addr": "0x005058F0",
+  "cls": "CCCTData",
+  "name": "CCCTData",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CCCTData@@QAE@PAHPAH@Z"
+ },
+ {
+  "addr": "0x005081E0",
+  "cls": "CCBCamControl",
+  "name": "~CCBCamControl",
+  "form": "dtor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "判据不足",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??1CCBCamControl@@QAE@XZ"
+ },
+ {
+  "addr": "0x0050FD00",
+  "cls": "CCBStageScene",
+  "name": "CCBStageScene",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CCBStageScene@@QAE@PAVCCBStage@@@Z"
+ },
+ {
+  "addr": "0x0050FEE0",
+  "cls": "CCBStageScene",
+  "name": "CCBStageScene",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CCBStageScene@@QAE@XZ"
+ },
+ {
+  "addr": "0x00511EE0",
+  "cls": "CCBStageShadow",
+  "name": "CCBStageShadow",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CCBStageShadow@@QAE@XZ"
+ },
+ {
+  "addr": "0x00512500",
+  "cls": "CCBSystem",
+  "name": "CCBSystem",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CCBSystem@@QAE@XZ"
+ },
+ {
+  "addr": "0x00517650",
+  "cls": "CCBUI",
+  "name": "~CCBUI",
+  "form": "dtor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "判据不足",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??1CCBUI@@QAE@XZ"
+ },
+ {
+  "addr": "0x0051A700",
+  "cls": "CCBControlWindow",
+  "name": "CCBControlWindow",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CCBControlWindow@@QAE@XZ"
+ },
+ {
+  "addr": "0x0051B710",
+  "cls": "CCBParabolaWindow",
+  "name": "CCBParabolaWindow",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [
+   "?Destroy@CCBLineupWindow@@QAEXXZ;"
+  ],
+  "asm_name": "??0CCBParabolaWindow@@QAE@PAPAVCCBParabolaWindow@@PAHH@Z"
+ },
+ {
+  "addr": "0x0051B810",
+  "cls": "CCBParabolaWindow",
+  "name": "~CCBParabolaWindow",
+  "form": "dtor形",
+  "verdict": "真析构",
+  "target": "CCBParabolaWindow",
+  "note": "",
+  "vptr": [],
+  "rel": [
+   "Destroy"
+  ],
+  "asm_name": "??1CCBParabolaWindow@@QAE@XZ"
+ },
+ {
+  "addr": "0x0051B9F0",
+  "cls": "CCBMagicWindow",
+  "name": "CCBMagicWindow",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CCBMagicWindow@@QAE@HHPAH@Z"
+ },
+ {
+  "addr": "0x0051CFB0",
+  "cls": "CCBLineupWindow",
+  "name": "CCBLineupWindow",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CCBLineupWindow@@QAE@PAPAVCCBControlWindow@@@Z"
+ },
+ {
+  "addr": "0x0051D6E0",
+  "cls": "CCBProtectWindow",
+  "name": "CCBProtectWindow",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0CCBProtectWindow@@QAE@XZ"
+ },
+ {
+  "addr": "0x00541640",
+  "cls": "UIRenderObj",
+  "name": "UIRenderObj",
+  "form": "ctor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "ctor形但 0x80 窗无 vptr 写",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??0UIRenderObj@@QAE@XZ"
+ },
+ {
+  "addr": "0x00541710",
+  "cls": "UIRenderObj",
+  "name": "~UIRenderObj",
+  "form": "dtor形",
+  "verdict": "待查",
+  "target": null,
+  "note": "判据不足",
+  "vptr": [],
+  "rel": [],
+  "asm_name": "??1UIRenderObj@@QAE@H@Z"
+ }
+]
