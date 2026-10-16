@@ -249,7 +249,24 @@
     }
   },
   "binary_size": 544,
+  "vtables": [
+    {
+      "addr": "0x0056AA84",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x0041BFC0",
+          "from": null
+        }
+      ]
+    }
+  ],
   "methods": {
+    "0x0041BFC0": {
+      "name": "_scalar_dtor",
+      "signature": "void *__thiscall(char a2)",
+      "source": " | 认领第一批 2026-10-16（analyzer）：表 0x56AA84→Camera 主表认领。A 级证据：①ctor Camera::Camera(0x41BE80)@+224 写 `c7 06 84 aa 56 00`（[esi]=0x56AA84，disp0=主表）；②0x41C090@+3 复写同值（reinit 形）；③槽0 0x41BFC0 删际析构形 `56 8b f1 e8 c8 00 00 00 f6 44 24 08 01 74 09 56 e8`（call 完整析构+delete）——与 0x402BD0 同形制"
+    },
     "0x004125D0": {
       "name": "InitFromScene",
       "signature": "void __thiscall(const char *pszSceneName)"
@@ -279,7 +296,8 @@
     },
     "0x0041BE80": {
       "name": "Camera",
-      "signature": "Camera *__thiscall(struct gbGfxManager *p)"
+      "signature": "void __thiscall(struct gbGfxManager *p)",
+      "source": " | [签名层正交治理 2026-10-16] E真参保留：Camera *__thiscall(struct gbGfxManager *p) ⇒ void __thiscall(struct gbGfxManager *p)（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：idapro 26177ab7: 基类gbCamera::gbCamera(..,p)透传真参+return this"
     },
     "0x0052BEB0": {
       "name": "InitUIElements",

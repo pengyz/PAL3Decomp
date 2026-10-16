@@ -520,8 +520,8 @@
     },
     "0x00522030": {
       "name": "CCBStageRole",
-      "signature": "CCBStageRole *__thiscall(CCBStageRole *this)",
-      "source": " | 批1 归属迁移 2026-10-07：0x522030=ctor 形（SEH+成员 ctor TxtFile@+4+5 元素初始化）——CCBStageRole 类 ctor 非 CCBStage 方法（名遮蔽 ~56 错根因·复核簇 A）"
+      "signature": "void __thiscall()",
+      "source": " | 批1 归属迁移 2026-10-07：0x522030=ctor 形（SEH+成员 ctor TxtFile@+4+5 元素初始化）——CCBStageRole 类 ctor 非 CCBStage 方法（名遮蔽 ~56 错根因·复核簇 A） | [签名层正交治理 2026-10-16] C假this参+返回型Cls*：CCBStageRole *__thiscall(CCBStageRole *this) ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：idapro 26177ab7: 零真参+return this ⇒ (Cls*)this=假参"
     }
   }
 }
