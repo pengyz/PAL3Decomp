@@ -22,91 +22,6 @@
       "type": "int",
       "source": "binary:stru_D8B318_gap"
     },
-    "1656": {
-      "name": "m_nArrData_58",
-      "type": "int",
-      "source": "binary:stru_D8B318_gap"
-    },
-    "1660": {
-      "name": "m_nArrData_5C",
-      "type": "int",
-      "source": "binary:stru_D8B318_gap"
-    },
-    "1664": {
-      "name": "m_nArrData_60",
-      "type": "int",
-      "source": "binary:stru_D8B318_gap"
-    },
-    "1668": {
-      "name": "m_nArrData_64",
-      "type": "int",
-      "source": "binary:stru_D8B318_gap"
-    },
-    "1676": {
-      "name": "m_nArrData_6C",
-      "type": "int",
-      "source": "binary:stru_D8B318_gap"
-    },
-    "1680": {
-      "name": "m_nArrData_70",
-      "type": "int",
-      "source": "binary:stru_D8B318_gap"
-    },
-    "1684": {
-      "name": "m_nArrData_74",
-      "type": "int",
-      "source": "binary:stru_D8B318_gap"
-    },
-    "1692": {
-      "name": "m_nArrData_7C",
-      "type": "int",
-      "source": "binary:stru_D8B318_gap"
-    },
-    "1696": {
-      "name": "m_nArrData_80",
-      "type": "int",
-      "source": "binary:stru_D8B318_gap"
-    },
-    "1700": {
-      "name": "m_nArrData_84",
-      "type": "int",
-      "source": "binary:stru_D8B318_gap"
-    },
-    "1708": {
-      "name": "m_nArrData_8C",
-      "type": "int",
-      "source": "binary:stru_D8B318_gap"
-    },
-    "1712": {
-      "name": "m_nArrData_90",
-      "type": "int",
-      "source": "binary:stru_D8B318_gap"
-    },
-    "1716": {
-      "name": "m_nArrData_94",
-      "type": "int",
-      "source": "binary:stru_D8B318_gap"
-    },
-    "1720": {
-      "name": "m_nArrData_98",
-      "type": "int",
-      "source": "binary:stru_D8B318_gap"
-    },
-    "1724": {
-      "name": "m_nArrData_9C",
-      "type": "int",
-      "source": "binary:stru_D8B318_gap"
-    },
-    "1728": {
-      "name": "m_nArrData_A0",
-      "type": "int",
-      "source": "binary:stru_D8B318_gap"
-    },
-    "1732": {
-      "name": "m_nArrData_A4",
-      "type": "int",
-      "source": "binary:stru_D8B318_gap"
-    },
     "2216": {
       "name": "m_fTimerA",
       "type": "float",
@@ -1165,6 +1080,11 @@
       "name": "m_D8DAF4",
       "type": "unsigned short",
       "source": "region-audit: interior extern @0xD8DAF4"
+    },
+    "1656": {
+      "name": "m_nArrData",
+      "type": "int[20]",
+      "source": "[伪语义批 1 折叠 2026-10-16] 17 散名 m_nArrData_58..A4 → int[20]@1656（跨 80B 含 3 空槽 0x688/0x698/0x6A8）。证据等级（诚实标注）：**数组语义=命名来历推断**（同前缀 m_nArrData + 步距 4 连跑 + 空槽形=gap-fill 导入拆散原数组）；**无索引访问证据**（全图 9607 disp 谱 0 命中 `[reg+N*i+M]` 形）⇒ 字节等价性靠**常量下标折叠**（arr[i]≡[base+4i] ✓ 四道门①布局等价成立）。lead 裁决 A（2026-10-16）：命名来历+布局等价为据。"
     }
   },
   "methods": {},

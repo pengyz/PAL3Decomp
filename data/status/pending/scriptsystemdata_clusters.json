@@ -1,0 +1,775 @@
+{
+ "_meta": {
+  "purpose": "[伪语义批 1] ScriptSystemData 簇谱（折叠原料）——232 员 37 簇；≥3 员簇 23 个覆盖 212 员；每簇待 idapro `[reg+N*i+M]` 访问点步距证后折叠"
+ },
+ "clusters": [
+  {
+   "start": 0,
+   "end": 0,
+   "count": 1,
+   "strides": [],
+   "types": [
+    "SceneMapPlayer[4]"
+   ],
+   "names": [
+    "m_mapPlayer"
+   ]
+  },
+  {
+   "start": 1568,
+   "end": 1568,
+   "count": 1,
+   "strides": [],
+   "types": [
+    "PtrArray"
+   ],
+   "names": [
+    "m_scriptArray"
+   ]
+  },
+  {
+   "start": 1612,
+   "end": 1616,
+   "count": 2,
+   "strides": [
+    4
+   ],
+   "types": [
+    "float",
+    "int"
+   ],
+   "names": [
+    "m_nArrData_2C",
+    "m_nArrData_30"
+   ]
+  },
+  {
+   "start": 1656,
+   "end": 1732,
+   "count": 17,
+   "strides": [
+    4,
+    8
+   ],
+   "types": [
+    "int"
+   ],
+   "names": [
+    "m_nArrData_58",
+    "m_nArrData_5C",
+    "m_nArrData_60",
+    "m_nArrData_64",
+    "m_nArrData_6C",
+    "m_nArrData_70",
+    "m_nArrData_74",
+    "m_nArrData_7C",
+    "m_nArrData_80",
+    "m_nArrData_84",
+    "m_nArrData_8C",
+    "m_nArrData_90",
+    "m_nArrData_94",
+    "m_nArrData_98",
+    "m_nArrData_9C",
+    "m_nArrData_A0",
+    "m_nArrData_A4"
+   ]
+  },
+  {
+   "start": 2216,
+   "end": 2216,
+   "count": 1,
+   "strides": [],
+   "types": [
+    "float"
+   ],
+   "names": [
+    "m_fTimerA"
+   ]
+  },
+  {
+   "start": 2260,
+   "end": 2312,
+   "count": 13,
+   "strides": [
+    4,
+    8
+   ],
+   "types": [
+    "gbVec3D",
+    "int"
+   ],
+   "names": [
+    "m_nGameMode",
+    "m_nTodo_8D8",
+    "m_nTodo_8DC",
+    "m_nTodo_8E0",
+    "m_nTodo_8E4",
+    "m_nTodo_8E8",
+    "m_nTodo_8EC",
+    "m_nTodo_8F0",
+    "m_nTodo_8F4",
+    "m_nTodo_8F8",
+    "m_nTodo_8FC",
+    "m_nTodo_900",
+    "g_vRotateAxis"
+   ]
+  },
+  {
+   "start": 2324,
+   "end": 2336,
+   "count": 4,
+   "strides": [
+    4
+   ],
+   "types": [
+    "int",
+    "unsigned char"
+   ],
+   "names": [
+    "m_bMapRenderFlags",
+    "m_nScriptCounter0",
+    "m_nScriptCounter1",
+    "m_nScriptFlag"
+   ]
+  },
+  {
+   "start": 2380,
+   "end": 2384,
+   "count": 2,
+   "strides": [
+    4
+   ],
+   "types": [
+    "float"
+   ],
+   "names": [
+    "m_fScriptTimer1",
+    "m_fScriptTimer2"
+   ]
+  },
+  {
+   "start": 2424,
+   "end": 2428,
+   "count": 2,
+   "strides": [
+    4
+   ],
+   "types": [
+    "float",
+    "int"
+   ],
+   "names": [
+    "m_nScriptDelay",
+    "m_fScriptSpeed"
+   ]
+  },
+  {
+   "start": 2988,
+   "end": 2988,
+   "count": 1,
+   "strides": [],
+   "types": [
+    "float"
+   ],
+   "names": [
+    "m_g_fTimeDelta"
+   ]
+  },
+  {
+   "start": 3028,
+   "end": 3032,
+   "count": 2,
+   "strides": [
+    4
+   ],
+   "types": [
+    "RoleSystem *",
+    "float"
+   ],
+   "names": [
+    "m_D8BEEC",
+    "m_fTimerB"
+   ]
+  },
+  {
+   "start": 3076,
+   "end": 3080,
+   "count": 2,
+   "strides": [
+    4
+   ],
+   "types": [
+    "int"
+   ],
+   "names": [
+    "m_nVarPoolSize",
+    "m_nVarCount"
+   ]
+  },
+  {
+   "start": 3128,
+   "end": 3128,
+   "count": 1,
+   "strides": [],
+   "types": [
+    "int"
+   ],
+   "names": [
+    "m_nVarFlags"
+   ]
+  },
+  {
+   "start": 3384,
+   "end": 3512,
+   "count": 30,
+   "strides": [
+    4,
+    8
+   ],
+   "types": [
+    "int",
+    "short"
+   ],
+   "names": [
+    "m_nArgDef_0",
+    "m_nArgDef_1",
+    "m_nArgDef_2",
+    "m_nArgDef_3",
+    "m_nArgDef_4",
+    "m_nArgDef_5",
+    "m_nArgDef_6",
+    "m_nArgDef_7",
+    "m_nArgDef_8",
+    "m_nArgDef_9",
+    "m_nArgDef_10",
+    "m_nField_D68",
+    "m_nArgDef_11",
+    "m_nArgDef_12",
+    "m_nArgDef_13",
+    "m_nArgDef_14",
+    "m_nArgDef_15",
+    "m_nArgDef_16",
+    "m_nField_D88",
+    "m_nArgDef_17",
+    "m_nArgDef_18",
+    "m_nArgDef_19",
+    "m_nArgDef_20",
+    "m_nArgDef_21",
+    "m_nArgDef_22",
+    "m_nField_DA8",
+    "m_nArgDef_23",
+    "m_nArgDef_24",
+    "m_nArgDef_25",
+    "m_nArgDef_26"
+   ]
+  },
+  {
+   "start": 3524,
+   "end": 3544,
+   "count": 4,
+   "strides": [
+    4,
+    8
+   ],
+   "types": [
+    "int",
+    "unsigned char"
+   ],
+   "names": [
+    "m_nArgDef_27",
+    "m_nArgDef_28",
+    "m_nArgDef_29",
+    "m_nArgDef_30"
+   ]
+  },
+  {
+   "start": 3556,
+   "end": 3568,
+   "count": 3,
+   "strides": [
+    4,
+    8
+   ],
+   "types": [
+    "int"
+   ],
+   "names": [
+    "m_nArgDef_31",
+    "m_nArgDef_32",
+    "m_nArgDef_33"
+   ]
+  },
+  {
+   "start": 3684,
+   "end": 3684,
+   "count": 1,
+   "strides": [],
+   "types": [
+    "float"
+   ],
+   "names": [
+    "m_fScriptTileSize2"
+   ]
+  },
+  {
+   "start": 3732,
+   "end": 3732,
+   "count": 1,
+   "strides": [],
+   "types": [
+    "char[96]"
+   ],
+   "names": [
+    "m_String"
+   ]
+  },
+  {
+   "start": 3828,
+   "end": 3892,
+   "count": 11,
+   "strides": [
+    4,
+    8,
+    16
+   ],
+   "types": [
+    "int",
+    "short"
+   ],
+   "names": [
+    "m_nCmdParamCount",
+    "m_nCmdIndex",
+    "m_nCmdType",
+    "m_nCmdSubType",
+    "m_nCmdParam1",
+    "m_nCmdParam2",
+    "m_nCmdParam3",
+    "m_nCmdParam4",
+    "m_nCmdParam5",
+    "m_nCmdParam6",
+    "m_nCmdParam7"
+   ]
+  },
+  {
+   "start": 3904,
+   "end": 3912,
+   "count": 3,
+   "strides": [
+    4
+   ],
+   "types": [
+    "int",
+    "short"
+   ],
+   "names": [
+    "m_nCmdParam8",
+    "m_nCmdParam9",
+    "m_nCmdParam10"
+   ]
+  },
+  {
+   "start": 3952,
+   "end": 4084,
+   "count": 21,
+   "strides": [
+    4,
+    8,
+    32
+   ],
+   "types": [
+    "char *",
+    "char[32]",
+    "int",
+    "short",
+    "unsigned char"
+   ],
+   "names": [
+    "m_nCmdParam11",
+    "m_bCmdFlag1",
+    "m_nCmdParam12",
+    "m_nCmdParam13",
+    "m_bCmdFlag2",
+    "m_nCmdParam14",
+    "m_nScriptBlockCount",
+    "m_pCurrentBlock",
+    "m_nCmdFA0",
+    "m_nScriptState",
+    "m_nCmdFA8",
+    "m_pScriptData",
+    "m_nTodo_FB0",
+    "m_nCmdFD0",
+    "m_nCmdParam19",
+    "m_bCmdFlag4",
+    "m_nCmdParam20",
+    "m_nCmdParam21",
+    "m_bCmdFlag5",
+    "m_pCmdTableFF0",
+    "m_nCmdParam22"
+   ]
+  },
+  {
+   "start": 4096,
+   "end": 4137,
+   "count": 9,
+   "strides": [
+    1,
+    4,
+    16
+   ],
+   "types": [
+    "PtrArray",
+    "int",
+    "short",
+    "unsigned char"
+   ],
+   "names": [
+    "m_nCmdParam23",
+    "m_nCmd1004",
+    "m_nCmd1008",
+    "m_bScriptFlag",
+    "m_CmdObjArray0",
+    "m_nCmdParam24",
+    "m_nCmdParam25",
+    "m_nCmd1028",
+    "m_bCmdFlag6"
+   ]
+  },
+  {
+   "start": 4144,
+   "end": 4154,
+   "count": 5,
+   "strides": [
+    1,
+    4
+   ],
+   "types": [
+    "int",
+    "unsigned char"
+   ],
+   "names": [
+    "m_nScriptMode",
+    "m_nCmd1034",
+    "m_bCmdFlag7",
+    "m_bCmdFlag8",
+    "m_bCmdFlag9"
+   ]
+  },
+  {
+   "start": 4160,
+   "end": 4185,
+   "count": 8,
+   "strides": [
+    1,
+    4
+   ],
+   "types": [
+    "char *",
+    "int",
+    "short",
+    "unsigned char"
+   ],
+   "names": [
+    "m_nCmdParam26",
+    "m_nCmdParam27",
+    "m_nScriptResult",
+    "m_pCmdArray104C",
+    "m_nCmd1050",
+    "m_nCmdResult",
+    "m_bCmdSuccess",
+    "m_bCmdError"
+   ]
+  },
+  {
+   "start": 4192,
+   "end": 4228,
+   "count": 8,
+   "strides": [
+    4,
+    8
+   ],
+   "types": [
+    "int",
+    "short",
+    "unsigned char"
+   ],
+   "names": [
+    "m_nCmdExtra1",
+    "m_nCmdExtra2",
+    "m_bCmdExtraFlag",
+    "m_nCmdExtra3",
+    "m_nCmdExtra4",
+    "m_bCmdExtraFlag2",
+    "m_nField_1080",
+    "m_nField_1084"
+   ]
+  },
+  {
+   "start": 4240,
+   "end": 4244,
+   "count": 2,
+   "strides": [
+    4
+   ],
+   "types": [
+    "int",
+    "short"
+   ],
+   "names": [
+    "m_nField_1090",
+    "m_nField_1094"
+   ]
+  },
+  {
+   "start": 4256,
+   "end": 4329,
+   "count": 16,
+   "strides": [
+    1,
+    4,
+    8
+   ],
+   "types": [
+    "int",
+    "short",
+    "unsigned char"
+   ],
+   "names": [
+    "m_nField_10A0",
+    "m_nField_10A4",
+    "m_nField_10A8",
+    "m_nField_10B0",
+    "m_nField_10B4",
+    "m_nField_10B8",
+    "m_nField_10C0",
+    "m_nField_10C4",
+    "m_nField_10C8",
+    "m_nField_10D0",
+    "m_nField_10D4",
+    "m_nField_10D8",
+    "m_nField_10E0",
+    "m_nField_10E4",
+    "m_nField_10E8",
+    "m_nField_10E9"
+   ]
+  },
+  {
+   "start": 4336,
+   "end": 4345,
+   "count": 4,
+   "strides": [
+    1,
+    4
+   ],
+   "types": [
+    "int",
+    "short",
+    "unsigned char"
+   ],
+   "names": [
+    "m_nField_10F0",
+    "m_nField_10F4",
+    "m_nField_10F8",
+    "m_nField_10F9"
+   ]
+  },
+  {
+   "start": 4352,
+   "end": 4362,
+   "count": 5,
+   "strides": [
+    1,
+    4
+   ],
+   "types": [
+    "int",
+    "short",
+    "unsigned char"
+   ],
+   "names": [
+    "m_nField_1100",
+    "m_nField_1104",
+    "m_nField_1108",
+    "m_nField_1109",
+    "m_nField_110A"
+   ]
+  },
+  {
+   "start": 4368,
+   "end": 4394,
+   "count": 12,
+   "strides": [
+    1,
+    4
+   ],
+   "types": [
+    "int",
+    "short",
+    "unsigned char"
+   ],
+   "names": [
+    "m_nField_1110",
+    "m_nField_1114",
+    "m_nField_1118",
+    "m_nField_1119",
+    "m_nField_111A",
+    "m_nField_111B",
+    "m_nField_111C",
+    "m_nField_1120",
+    "m_nField_1124",
+    "m_nField_1128",
+    "m_nField_1129",
+    "m_nField_112A"
+   ]
+  },
+  {
+   "start": 4408,
+   "end": 4432,
+   "count": 10,
+   "strides": [
+    1,
+    3,
+    4,
+    8
+   ],
+   "types": [
+    "int",
+    "int[852]",
+    "short",
+    "unsigned char"
+   ],
+   "names": [
+    "m_nField_1138",
+    "m_nField_1139",
+    "m_nField_113A",
+    "m_nField_113B",
+    "m_nField_113C",
+    "m_nField_113D",
+    "m_nField_1140",
+    "m_nField_1144",
+    "m_nField_1148",
+    "m_CmdTable"
+   ]
+  },
+  {
+   "start": 7840,
+   "end": 7847,
+   "count": 5,
+   "strides": [
+    1,
+    4
+   ],
+   "types": [
+    "int",
+    "unsigned char"
+   ],
+   "names": [
+    "m_D8D1B8",
+    "m_D8D1BC",
+    "m_D8D1BD",
+    "m_D8D1BE",
+    "m_D8D1BF"
+   ]
+  },
+  {
+   "start": 7852,
+   "end": 7863,
+   "count": 6,
+   "strides": [
+    1,
+    4
+   ],
+   "types": [
+    "int",
+    "unsigned char",
+    "unsigned short"
+   ],
+   "names": [
+    "m_D8D1C4",
+    "m_D8D1C8",
+    "m_D8D1CC",
+    "m_D8D1CD",
+    "m_D8D1CE",
+    "m_D8D1CF"
+   ]
+  },
+  {
+   "start": 7868,
+   "end": 7868,
+   "count": 1,
+   "strides": [],
+   "types": [
+    "unsigned short"
+   ],
+   "names": [
+    "m_D8D1D4"
+   ]
+  },
+  {
+   "start": 7968,
+   "end": 7980,
+   "count": 3,
+   "strides": [
+    4,
+    8
+   ],
+   "types": [
+    "int",
+    "unsigned char",
+    "unsigned short"
+   ],
+   "names": [
+    "m_D8D238",
+    "m_D8D23C",
+    "m_D8D244"
+   ]
+  },
+  {
+   "start": 8432,
+   "end": 8460,
+   "count": 6,
+   "strides": [
+    4,
+    8
+   ],
+   "types": [
+    "int",
+    "unsigned char",
+    "unsigned short"
+   ],
+   "names": [
+    "m_D8D408",
+    "m_D8D40C",
+    "m_D8D414",
+    "m_D8D418",
+    "m_D8D41C",
+    "m_D8D424"
+   ]
+  },
+  {
+   "start": 10192,
+   "end": 10204,
+   "count": 9,
+   "strides": [
+    1,
+    2,
+    4
+   ],
+   "types": [
+    "int",
+    "unsigned char",
+    "unsigned short"
+   ],
+   "names": [
+    "m_D8DAE8",
+    "m_D8DAEC",
+    "m_D8DAED",
+    "m_D8DAEE",
+    "m_D8DAEF",
+    "m_D8DAF0",
+    "m_D8DAF1",
+    "m_D8DAF2",
+    "m_D8DAF4"
+   ]
+  }
+ ]
+}
