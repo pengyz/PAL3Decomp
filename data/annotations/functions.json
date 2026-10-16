@@ -262,16 +262,18 @@
   "signature": "BOOL __cdecl(const char *szSubKey, const char *szValueName, char *szOutBuf)"
  },
  "0x00459F80": {
-  "name": "_sub_459F80",
+  "name": "IsStateFlagSet",
   "signature": "int __thiscall(_BYTE *this)",
   "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件·CCBStage sub 域",
-  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）"
+  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
+  "source_note": "[17 挂账补面 2026-10-17·五面满卡] IsStateFlagSet（五面满卡：①调用者 5 站 CCBStage::sub_00459fa0/a020/a0a0 族 ✓ ②本体=flag 判 ✓ ③this[i+153] 索引形（成员偏移 ✓ thiscall 面）④类=CCBStage ✓ ⑤交互=Stage 内部状态查询 ✓）——face3_rule 降级判据执行（thiscall=this[+N] 形）· 证据账目：A 级（decompile+xref）conf 92"
  },
  "0x0046ADF0": {
-  "name": "sub_46ADF0",
+  "name": "GetCellStateByte",
   "signature": "char __thiscall(_BYTE *this)",
   "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体双胞1·ProcessCellAnimations 域",
-  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）"
+  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
+  "source_note": "[17 挂账补面 2026-10-17·五面满卡] GetCellStateByte（五面满卡：①调用者 SaleUI::ProcessCellAnimations ✓ ②本体=字节读 ✓ ③this[95265] 偏移读 （_BYTE* this 形）④类=SaleUI ✓ ⑤交互=动画处理状态查询 ✓）——face3_rule 降级判据执行（thiscall=this[+N] 形）· 证据账目：A 级（decompile+xref）conf 92"
  },
  "0x0046F3D0": {
   "name": "sub_46F3D0",
@@ -428,7 +430,8 @@
   "name": "_nearby_4ec480",
   "signature": "int __cdecl()",
   "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件对·vtable 槽 getter/123B",
-  "face3_rule": "cdecl 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）"
+  "face3_rule": "cdecl 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）",
+  "source_note": " | [17 挂账补面 2026-10-17] 0x4EC480 ①调用者未具名 ③面未见 ⇒ **五面未满挂账**（不达五面不赋名 ✓）"
  },
  "0x004EC490": {
   "name": "_nearby_4ec490",
