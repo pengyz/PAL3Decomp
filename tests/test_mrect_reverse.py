@@ -1,0 +1,70 @@
+#!/usr/bin/env python3
+"""[型名替换缺陷签名逆转 2026-10-16] reverse_mrect_typelie 单测（R15）。
+
+机制：IDB m_rect@16 全库唯一属 UIWnd ⇒ Hex-Rays 型名替换把 `*((T**)X+4)`（X+16
+指针槽读）渲染成 `X->m_rect.left`（N×4==16 数字巧合）⇒ 位等价但型谎言。
+只动签名命中形（铸包裹/算术位）；真成员访问零触碰（禁全量逆转）。
+"""
+import sys
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO))
+sys.path.insert(0, str(REPO / 'pipeline' / 'gen'))
+
+from data import store  # noqa: E402,F401
+import ast_transform as at  # noqa: E402
+
+
+# ── 签名 1：指针铸包裹（值即刻指针化）──────────────────────────────
+def test_sig1_simple_pointer_cast():
+    out = at.reverse_mrect_typelie('v = (RoleSystem *)X->m_rect.left;')
+    assert out == 'v = *((RoleSystem **)X + 4);', out
+
+
+def test_sig1_field_n_mapping():
+    assert at.reverse_mrect_typelie('p = (T *)X->m_rect.top;') == 'p = *((T **)X + 5);'
+    assert at.reverse_mrect_typelie('p = (T *)X->m_rect.right;') == 'p = *((T **)X + 6);'
+    assert at.reverse_mrect_typelie('p = (T *)X->m_rect.bottom;') == 'p = *((T **)X + 7);'
+
+
+def test_sig1_fnptr_cast_access_only():
+    # CGameData:266 病灶形：fnptr 铸包裹 ⇒ 访问本身逆转为整数槽读（外铸重解释）
+    src = '((void ( *)(UIScene **, _DWORD, tagRECT *, CGameData *))(*p)->m_rect.left)(a, b);'
+    out = at.reverse_mrect_typelie(src)
+    assert '*((_DWORD *)(*p) + 4)' in out, out
+    assert 'm_rect' not in out
+
+
+# ── 签名 2：下标/乘除/地址算术位（无浮点铸前缀）────────────────────
+def test_sig2_subscript_arithmetic():
+    src = 'x = arr[9344 * this[28].E.m_rect.right + 148 + 584 * i];'
+    out = at.reverse_mrect_typelie(src)
+    assert 'this[28].E.m_rect.right' not in out, out
+    assert '*((_DWORD *)this[28].E + 6)' in out, out
+
+
+def test_sig2_address_of_in_arithmetic():
+    # `&` 取址形进算术 ⇒ 槽址逆转；裸加的第二操作数**非签名形**不入（精确判据）
+    src = 'b = *((_BYTE *)&X.m_rect.left + X.m_rect.right);'
+    out = at.reverse_mrect_typelie(src)
+    assert '&X.m_rect.left' not in out, out
+    assert '((_DWORD *)X + 4)' in out, out
+    assert 'X.m_rect.right' in out, out   # 裸加形不入签名（乘/除/下标才算）
+
+
+# ── 真成员访问零触碰（禁全量逆转的关键负向锁）──────────────────────
+def test_real_member_accesses_untouched():
+    for src in ('top = (double)this->m_rect.top;',                        # 浮点铸
+                'v = (float)this->m_rect.bottom - f;',                    # 浮点铸
+                'this->m_rect.left = 0;',                                 # 赋值
+                'if ( this->m_rect.right > 10 )',                         # 比较
+                'SetRect(&this->m_rect);',                                # 传参
+                'a = this->m_rect.left + this->m_rect.right;',            # 普通整数加（非签名形）
+                'Flags, &i->m_rect.top);'):                               # 取址传参
+        assert at.reverse_mrect_typelie(src) == src, src
+
+
+if __name__ == '__main__':
+    import pytest
+    raise SystemExit(pytest.main([__file__, '-v']))

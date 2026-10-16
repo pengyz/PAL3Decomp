@@ -886,6 +886,133 @@ _WINQAPI_CAST_RE = re.compile(
     + '|'.join(_WINQAPI_FN_NAMES) + r')\b')
 
 
+# ═══ [型名替换缺陷签名逆转 2026-10-16] ═══════════════════════════════
+# 机制（analyzer 病灶层纠正，T66-F1 措辞精确）：IDB 里 m_rect@16 全库唯一属 UIWnd
+# ⇒ Hex-Rays 把 `*((T**)X+4)`（X+16 指针槽读）按**型名替换**渲染成 `X->m_rect.left`
+# （数字巧合：N×4 == UIWnd.m_rect.left 偏移 16）。**位等价但型谎言**（S2/L1 无感）；
+# decomp 原文已带此形 ⇒ codegen 转写无辜 ⇒ 修点=codegen **后处理签名逆转**。
+# 签名 1（28 处）：`<铸>`包裹坐标值（值即刻指针化）→ *((T**)X+N)
+# 签名 2（9 处）：坐标值进乘/除/下标/地址算术（无浮点铸前缀）→ 同式槽读
+# ⚠️ **禁全量逆转**：1410 处里 1373 处是真成员访问（`(double)X->m_rect.right * v8`
+# 这类浮点缩放/比较/赋值/传参）⇒ 判据只吃签名命中形，真访问零触碰。
+_MRECT_SLOT_N = {'left': 4, 'top': 5, 'right': 6, 'bottom': 7}
+_MRECT_FIND_RE = re.compile(r'(->|\.)\s*m_rect\s*\.\s*(left|top|right|bottom)\b')
+_MRECT_REAL_CAST_RE = re.compile(
+    r'\(\s*(?:double|float|int|LONG|UINT|DWORD|unsigned[ ]\w+|signed[ ]\w+|short|char|__int\d+)\s*\)\s*$')
+
+
+def _scan_mrect_base(code, pos):
+    """pos = `->`/`.m_rect` 前；向左扫出基表达式 X 的起始下标（标识符/下标/箭头/成员链）。"""
+    i = pos
+    while i > 0:
+        ch = code[i - 1]
+        if ch.isalnum() or ch == '_':
+            j = i - 1
+            while j > 0 and (code[j - 1].isalnum() or code[j - 1] == '_'):
+                j -= 1
+            i = j
+        elif ch == ']':
+            depth, j = 1, i - 1
+            while j > 0 and depth:
+                j -= 1
+                if code[j] == ']':
+                    depth += 1
+                elif code[j] == '[':
+                    depth -= 1
+            i = j
+        elif ch == ')':
+            depth, j = 1, i - 1
+            while j > 0 and depth:
+                j -= 1
+                if code[j] == ')':
+                    depth += 1
+                elif code[j] == '(':
+                    depth -= 1
+            # 括组内容形如「型名+星」或含 fnptr 织别 `(*` ⇒ 是**铸**不是基表达式
+            _inner = code[j + 1:i - 1]
+            if (re.match(r'^\s*[\w\s:]*\*+\s*$', _inner)
+                    or re.match(r'^\s*[\w\s:]+\s*\([^()]*\)\s*\*+\s*$', _inner)
+                    or re.search(r'\(\s*\*', _inner)):
+                break
+            i = j
+        elif ch == '>':
+            if i >= 2 and code[i - 2] == '-':
+                i -= 2
+            else:
+                break
+        elif ch == '.':
+            j = i - 1
+            while j > 0 and (code[j - 1].isalnum() or code[j - 1] == '_'):
+                j -= 1
+            i = j
+        elif ch.isspace():
+            j = i - 1
+            while j > 0 and code[j - 1].isspace():
+                j -= 1
+            if j > 0 and (code[j - 1].isalnum() or code[j - 1] in '_)]>.'):
+                i = j
+                continue
+            break
+        else:
+            break
+    return i
+
+
+def reverse_mrect_typelie(code):
+    """[型名替换缺陷签名逆转] 只动签名 1/2 命中形（等价变换，位保持逐字节）。"""
+    out = []
+    pos = 0
+    while True:
+        m = _MRECT_FIND_RE.search(code, pos)
+        if not m:
+            out.append(code[pos:])
+            break
+        b_start = _scan_mrect_base(code, m.start())
+        base = code[b_start:m.start()]
+        field = m.group(2)
+        n = _MRECT_SLOT_N[field]
+        tail = m.end()
+        after = code[tail:tail + 24]
+        before = code[:b_start].rstrip()
+
+        replaced = None
+        # ── 签名 1：简单指针铸直接包裹 `(<T> *)<base>` ──
+        cm = re.search(r'\(\s*([\w\s:]+?)\s*(\*+)\s*\)$', before)
+        if cm:
+            ty = cm.group(1).strip()
+            start = b_start - (len(before) - cm.start())
+            out.append(code[pos:start])
+            out.append('*((%s **)%s + %d)' % (ty, base.strip(), n))
+            pos = tail
+            continue
+        # ── 签名 1'：复杂铸（fnptr 形）包裹 ⇒ 仅逆转访问本身为整数槽读 ──
+        if before.endswith(')'):
+            out.append(code[pos:b_start])
+            out.append('*((_DWORD *)%s + %d)' % (base.strip(), n))
+            pos = tail
+            continue
+        # ── 签名 2：乘/除/下标/地址算术位（无浮点铸前缀）──
+        preceded_amp = code[:b_start].rstrip().endswith('&')
+        arith_next = bool(re.match(r'\s*[\*/]', after))
+        # 左邻乘/除（`9344 * X.m_rect.right` 形——值作右操作数）
+        arith_prev = bool(re.search(r'[\*/]\s*$', code[:b_start]))
+        amp_arith = bool(re.match(r'\s*[+\-]', after))
+        real_cast = bool(_MRECT_REAL_CAST_RE.search(code[:m.start()].rstrip()))
+        if (arith_next or arith_prev or (preceded_amp and amp_arith)) and not real_cast:
+            out.append(code[pos:b_start])
+            if preceded_amp:
+                # `&X.m_rect.<f>` 在算术位 ⇒ 取槽址：(_DWORD *)X + N
+                out.append('((_DWORD *)%s + %d)' % (base.strip(), n))
+            else:
+                out.append('*((_DWORD *)%s + %d)' % (base.strip(), n))
+            pos = tail
+            continue
+        # 真成员访问：零触碰
+        out.append(code[pos:tail])
+        pos = tail
+    return ''.join(out)
+
+
 def fix_winqapi_fnptr_casts(code):
     """[F-CG#23] Win32 import 族 fnptr cast 补 `__stdcall`（幂等：已带约定的不动）。"""
     def _sub(m):
