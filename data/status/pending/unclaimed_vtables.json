@@ -248,7 +248,8 @@
    ],
    "mechanism_family": "与 UIListBox 4 表「表≠类边界」同族（MI 子对象表被最派生名渲染）",
    "fix_pattern": "迁表到真实基类（如 4 表裁决制式）+ 认领主表给派生类 ⇒ 1637 站渲染解锁",
-   "status": "机制定谳（objdump 降级证 · idapro 复核待补）"
+   "status": "机制定谳（objdump 降级证 · idapro 复核待补）",
+   "correction_20261016": "⚠️ T56 自查修正：早期批次 4 表 VA=手填误配（行配对漏）——正确 worklist 邻行配对后 UIProgressBar=0x56AC20（off=0 **主表形**）非 0x56B0D4。**机制声明收窄**：+0x48 子对象形**真实存在**于 0x56B0D4/0x56B140/0x56B16C/0x56B898（objdump 实证 ✓）但**非全 IMPOSSIBLE 族**——23 条中 off=0 主表形亦有（req>size 成因另有：方法集成员访问跨度过大/尺寸低估）。逐表形制已正档 impossible_install_forms.json（23 条配对正确）"
   }
  }
 }
