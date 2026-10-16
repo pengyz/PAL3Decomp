@@ -811,6 +811,18 @@ def _expected_pushed_member_count(struct_info, base_class, base_size):
     return expected
 
 
+def _should_authoritative_fallback(reason_codes, binary_size):
+    """FATAL 路径权威回退判据（纯函数，R15 单测点）。
+
+    [方案 A 2026-10-16] 两级继承 UDT 读回失败族（41/41 base_class=['UIFrameWnd']）
+    ——`get_udt_details()==False` **单因**且 binary_size>0 ⇒ 沿用 [i] 组
+    `binary_size` 权威回退（工具已实现该回退，41 只是没走到 FATAL 前）。
+    多因/几何越界/计数错 ⇒ 保持 FATAL（不掩盖真几何问题）。
+    """
+    return (list(reason_codes) == ["get_udt_details()==False (incomplete UDT shell)"]
+            and int(binary_size or 0) > 0)
+
+
 def _layout_end_of_members(result_tinfo, binary_size):
     """按「末端口径」核对已创建 UDT 里每个成员的末端是否越出 binary_size。
 
@@ -1262,6 +1274,16 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             "-1" if _size_is_dash_one else str(_pre_size),
             "   (NOTE: -1 is NOT the failure cause here — see the ordering comment above)"
             if _size_is_dash_one else ""))
+
+        # [方案 A 2026-10-16] FATAL 路径沿用权威回退：get_udt_details==False **单因**
+        # （空壳形=两级继承 UDT 读回失败族）⇒ 沿用 [i] 组 binary_size 权威回退，
+        # 并**保留 last-mile 核**（_verify_named_udt——SceneObj 事故收口处不跳过）。
+        if _should_authoritative_fallback(_reason_codes, binary_size):
+            log("  [i] %s: get_udt_details()==False (empty-shell / two-level-inheritance "
+                "readback family) — FATAL 路径沿用权威回退: using binary_size=%d as "
+                "authoritative size; 保留 last-mile _verify_named_udt" % (name, binary_size))
+            return _verify_named_udt(result_tinfo, name, til, binary_size=binary_size,
+                                     has_methods=bool(len(method_udms) > 0))
 
         # 逐 struct 留痕覆盖开关（默认拒绝）。覆盖面必须显式登记，见
         # data/annotations/_incomplete_udt_overrides.json。
@@ -2731,8 +2753,9 @@ def apply_annotations():
     # --- 3c. detached nested types（2026-09-15 新增，方案 E3） ---
     #
     # 有些**限定名**必须在 TIL 里可解析，但它们的父类**没有也不应有** struct 注解文件：
-    #   - 已解散的幻影类（`PlayerMgr`，提交 6a8d71924 并入 SaleUI；`tools/_migrate_playermgr.py`
-    #     只搬了 methods/members，**完全没搬 nested_types**，导致 `PoisonState` 被丢弃）
+    #   - 已解散的幻影类（`PlayerMgr`，提交 6a8d71924 并入 SaleUI；当时的临时迁移
+    #     脚本只搬了 methods/members，**完全没搬 nested_types**，导致 `PoisonState`
+    #     被丢弃——该脚本已随 2026-10-16 归档定谳删除，史实留档于此）
     #   - 只被引用而无成员数据的类型
     #
     # 症状：`data/annotations/structs/ArcLocale.json` 的 `+336 pstate: PlayerMgr::PoisonState *`
