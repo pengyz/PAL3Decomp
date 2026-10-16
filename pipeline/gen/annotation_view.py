@@ -43,11 +43,25 @@ def iter_struct_files(directory):
         return []
 
 
+SKIPPED_ANNOTATIONS = []
+
+
 def load_struct(path):
-    """读一个 struct JSON；坏文件返回 None（调用方可自行决定是否 continue）。"""
+    """读一个 struct JSON；坏文件返回 None（调用方可自行决定是否 continue）。
+
+    [坏 JSON 盲区治理 2026-10-16] 坏文件**记账 + 响亮告警**（SKIPPED_ANNOTATIONS）
+    ——原静默跳过是盲区（并发写半成品/控制字符会被下游静默吞掉；实测
+    TaskMgr_SceneObjParam_SceneObj.json 竞态半写：check_annotations 能抓到、
+    codegen 侧 iter_structs 无声跳过 ✗）。不改跳过语义（不破 codegen），但
+    记账面可查（fail-visible）——`SKIPPED_ANNOTATIONS` 非空即下游应处置。
+    """
     try:
         return json.loads(open(path, encoding='utf-8').read())
-    except Exception:
+    except Exception as e:
+        SKIPPED_ANNOTATIONS.append((path, str(e)[:120]))
+        import sys
+        print('[annotation_view] WARN: 坏 JSON 被跳过（记账 fail-visible）: %s -> %s'
+              % (os.path.basename(path), str(e)[:80]), file=sys.stderr)
         return None
 
 
@@ -101,7 +115,12 @@ def load_annotation_json(name, store=None):
         path = os.path.join(os.path.dirname(base), name)
         try:
             _ANNOTATION_JSON_CACHE[name] = json.loads(open(path, encoding='utf-8').read())
-        except Exception:
+        except Exception as e:
+            # [坏 JSON 盲区治理 2026-10-16] 同 load_struct：记账 + 响亮告警
+            SKIPPED_ANNOTATIONS.append((path, str(e)[:120]))
+            import sys
+            print('[annotation_view] WARN: 坏 JSON 被跳过（记账 fail-visible）: %s -> %s'
+                  % (name, str(e)[:80]), file=sys.stderr)
             _ANNOTATION_JSON_CACHE[name] = None
     return _ANNOTATION_JSON_CACHE[name]
 
