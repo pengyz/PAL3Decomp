@@ -1,0 +1,257 @@
+{
+ "_meta": {
+  "name": "type_leak_qualifier_allowlist",
+  "purpose": "[型名泄漏并案] C2653 ×N 毒名剥离（渲染层缺口族，与 COERCE_INT 并案）",
+  "evidence": "编译器自证「X 非类名/命名空间」= 泄漏铁证（19 名 35 站）；形=`X.TypeName::member` 限定名泄漏 ⇒ 剥 `TypeName::`",
+  "warning": "⚠️ 限定直调形（X->T::f() 抑制虚分派=剥限定变字节）已剔除 25 站——那些需 include/声明修复非剥离（变字节红线）"
+ },
+ "sites": [
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 353,
+   "current": "  this->_SaveTaskInfo.SceneObj::mTouchCounter = 0;",
+   "target": "  this->_SaveTaskInfo.mTouchCounter = 0;",
+   "leak_name": "SceneObj"
+  },
+  {
+   "file": "pal3/src/Combat/CCBRoleState.cpp",
+   "line": 383,
+   "current": "  (((UIListBox *)this))->UIListBox::SetSelTexture(0, *((_DWORD *)&this->m_fTimerLimit + 1), this->_SaveTaskInfo.SceneObj::mTouchCounter, this->_SaveTaskInfo.m_iState, *(_DWORD *)&this->_SaveTaskInfo.m_bCVDOver) /* [ROWTABLE] */;",
+   "target": "  (((UIListBox *)this))->UIListBox::SetSelTexture(0, *((_DWORD *)&this->m_fTimerLimit + 1), this->_SaveTaskInfo.mTouchCounter, this->_SaveTaskInfo.m_iState, *(_DWORD *)&this->_SaveTaskInfo.m_bCVDOver) /* [ROWTABLE] */;",
+   "leak_name": "SceneObj"
+  },
+  {
+   "file": "pal3/src/Combat/CCBStage.cpp",
+   "line": 6175,
+   "current": "  j_InputSystem::ProcessKeyboard(LODWORD(v6), LODWORD(v7), LODWORD(v8), LODWORD(v9), LODWORD(v10), LODWORD(v11));",
+   "target": "  ProcessKeyboard(LODWORD(v6), LODWORD(v7), LODWORD(v8), LODWORD(v9), LODWORD(v10), LODWORD(v11));",
+   "leak_name": "j_InputSystem"
+  },
+  {
+   "file": "pal3/src/Data/PAL_GDB.cpp",
+   "line": 1391,
+   "current": "  _inline_RoleAtt_Remark::$101B5358F90B67F92EE483560EB2675D *v2; // ecx",
+   "target": "  $101B5358F90B67F92EE483560EB2675D *v2; // ecx",
+   "leak_name": "_inline_RoleAtt_Remark"
+  },
+  {
+   "file": "pal3/src/Data/PAL_GDB.cpp",
+   "line": 1406,
+   "current": "  v2 = (_inline_RoleAtt_Remark::$101B5358F90B67F92EE483560EB2675D *)((char *)&this->m_RoleData[9].Remark.skillCount + 194);",
+   "target": "  v2 = ($101B5358F90B67F92EE483560EB2675D *)((char *)&this->m_RoleData[9].Remark.skillCount + 194);",
+   "leak_name": "_inline_RoleAtt_Remark"
+  },
+  {
+   "file": "pal3/src/Data/PAL_GDB.cpp",
+   "line": 1411,
+   "current": "    v2 = (_inline_RoleAtt_Remark::$101B5358F90B67F92EE483560EB2675D *)((char *)v2 + 4);",
+   "target": "    v2 = ($101B5358F90B67F92EE483560EB2675D *)((char *)v2 + 4);",
+   "leak_name": "_inline_RoleAtt_Remark"
+  },
+  {
+   "file": "pal3/src/Data/PAL_GDB.cpp",
+   "line": 2011,
+   "current": "  _inline_RoleAtt_Remark::$101B5358F90B67F92EE483560EB2675D *v14; // ebp",
+   "target": "  $101B5358F90B67F92EE483560EB2675D *v14; // ebp",
+   "leak_name": "_inline_RoleAtt_Remark"
+  },
+  {
+   "file": "pal3/src/Data/PAL_GDB.cpp",
+   "line": 2131,
+   "current": "  v14 = (_inline_RoleAtt_Remark::$101B5358F90B67F92EE483560EB2675D *)((char *)&this->m_RoleData[2].Remark.skillCount",
+   "target": "  v14 = ($101B5358F90B67F92EE483560EB2675D *)((char *)&this->m_RoleData[2].Remark.skillCount",
+   "leak_name": "_inline_RoleAtt_Remark"
+  },
+  {
+   "file": "pal3/src/Data/PAL_GDB.cpp",
+   "line": 2143,
+   "current": "    v14 = (_inline_RoleAtt_Remark::$101B5358F90B67F92EE483560EB2675D *)((char *)v14 + 32);",
+   "target": "    v14 = ($101B5358F90B67F92EE483560EB2675D *)((char *)v14 + 32);",
+   "leak_name": "_inline_RoleAtt_Remark"
+  },
+  {
+   "file": "pal3/src/Script/PalScript.cpp",
+   "line": 2901,
+   "current": "        j_InputSystem::ProcessKeyboard_2(LODWORD(v7));",
+   "target": "        ProcessKeyboard_2(LODWORD(v7));",
+   "leak_name": "j_InputSystem"
+  }
+ ],
+ "deferred_callsites": [
+  {
+   "file": "pal3/src/Combat/CCBStage.cpp",
+   "line": 1570,
+   "current": "              (((j_j_codecvt_base *)this->m_pCamControl))->j_j_codecvt_base::do_always_noconv();",
+   "target": "              (((j_j_codecvt_base *)this->m_pCamControl))->do_always_noconv();",
+   "leak_name": "j_j_codecvt_base"
+  },
+  {
+   "file": "pal3/src/Combat/CCBStage.cpp",
+   "line": 1872,
+   "current": "  (((CEffectSystem *)v22))->CEffectSystem::HandleViewMove(v2);",
+   "target": "  (((CEffectSystem *)v22))->HandleViewMove(v2);",
+   "leak_name": "CEffectSystem"
+  },
+  {
+   "file": "pal3/src/Combat/CCBSystem.cpp",
+   "line": 1515,
+   "current": "    (((CCBStage *)v3))->CCBStage::EditorUpdate();",
+   "target": "    (((CCBStage *)v3))->EditorUpdate();",
+   "leak_name": "CCBStage"
+  },
+  {
+   "file": "pal3/src/Combat/CCCTData.cpp",
+   "line": 174,
+   "current": "    (((UIWnd *)&p_yaw[-42]))->UIWnd::sub_445FA0(&p_yaw[-4]);",
+   "target": "    (((UIWnd *)&p_yaw[-42]))->sub_445FA0(&p_yaw[-4]);",
+   "leak_name": "UIWnd"
+  },
+  {
+   "file": "pal3/src/Combat/CCCTData.cpp",
+   "line": 196,
+   "current": "    (((NPC *)&p_yaw[-42]))->NPC::UpdateAnim(*v22);",
+   "target": "    (((NPC *)&p_yaw[-42]))->UpdateAnim(*v22);",
+   "leak_name": "NPC"
+  },
+  {
+   "file": "pal3/src/Data/PAL_GDB.cpp",
+   "line": 2139,
+   "current": "    (((PalScript *)&v14[-1].nSkillCount2))->PalScript::LoadModel(&this->m_head.str[96], 0);",
+   "target": "    (((PalScript *)&v14[-1].nSkillCount2))->LoadModel(&this->m_head.str[96], 0);",
+   "leak_name": "PalScript"
+  },
+  {
+   "file": "pal3/src/Data/PAL_GDB.cpp",
+   "line": 2203,
+   "current": "    (((PalScript *)&v20[-1].skillCount.nSkillCount2))->PalScript::LoadModel(&this->m_head.str[96], 0);",
+   "target": "    (((PalScript *)&v20[-1].skillCount.nSkillCount2))->LoadModel(&this->m_head.str[96], 0);",
+   "leak_name": "PalScript"
+  },
+  {
+   "file": "pal3/src/MiniGame/MiniGame1.cpp",
+   "line": 36,
+   "current": "    (((Object3D *)v7))->Object3D::RenderObjectScene(v8);",
+   "target": "    (((Object3D *)v7))->RenderObjectScene(v8);",
+   "leak_name": "Object3D"
+  },
+  {
+   "file": "pal3/src/MiniGame/MiniGame1.cpp",
+   "line": 42,
+   "current": "  (((Object3D *)v7))->Object3D::RenderObjectScene(v8);",
+   "target": "  (((Object3D *)v7))->RenderObjectScene(v8);",
+   "leak_name": "Object3D"
+  },
+  {
+   "file": "pal3/src/Misc/Array.cpp",
+   "line": 1161,
+   "current": "                    (((RoleSystem *)((char *)&v111[-1].m_nSubObjBase + 6538)))->RoleSystem::RecalcAggregatedStats(0);",
+   "target": "                    (((RoleSystem *)((char *)&v111[-1].m_nSubObjBase + 6538)))->RecalcAggregatedStats(0);",
+   "leak_name": "RoleSystem"
+  },
+  {
+   "file": "pal3/src/Misc/ScriptVM.cpp",
+   "line": 349,
+   "current": "        RolePtr = (((RoleSystem *)this->m_pCmdList->m_rect.left))->RoleSystem::GetRolePtr(*(&this->m_nTodo_0F4 + 2));",
+   "target": "        RolePtr = (((RoleSystem *)this->m_pCmdList->m_rect.left))->GetRolePtr(*(&this->m_nTodo_0F4 + 2));",
+   "leak_name": "RoleSystem"
+  },
+  {
+   "file": "pal3/src/Misc/ScriptVM.cpp",
+   "line": 1865,
+   "current": "      reg_EDI = (_DWORD *)(((RoleSystem *)this->m_pCmdList->m_rect.left))->RoleSystem::GetRolePtr(*(&this->m_nTodo_0F4 + 2));",
+   "target": "      reg_EDI = (_DWORD *)(((RoleSystem *)this->m_pCmdList->m_rect.left))->GetRolePtr(*(&this->m_nTodo_0F4 + 2));",
+   "leak_name": "RoleSystem"
+  },
+  {
+   "file": "pal3/src/Misc/ScriptVM.cpp",
+   "line": 1910,
+   "current": "      (((RoleSystem *)this->m_pCmdList->m_rect.left))->RoleSystem::SetRoleParam(v182, &pfVal2.x, 0, 0);",
+   "target": "      (((RoleSystem *)this->m_pCmdList->m_rect.left))->SetRoleParam(v182, &pfVal2.x, 0, 0);",
+   "leak_name": "RoleSystem"
+  },
+  {
+   "file": "pal3/src/Misc/gbLightObj.cpp",
+   "line": 19,
+   "current": "  (((Object3D *)&this[-1].m_SysLight.phi))->Object3D::SetTransform(&pMatrix.trans);",
+   "target": "  (((Object3D *)&this[-1].m_SysLight.phi))->SetTransform(&pMatrix.trans);",
+   "leak_name": "Object3D"
+  },
+  {
+   "file": "pal3/src/Misc/gbLightObj.cpp",
+   "line": 28,
+   "current": "  (((UIBigMap *)&this[-1].m_SysLight.phi))->UIBigMap::RenderRole(gfxMgr->pMatrixStack[1], nVal1);",
+   "target": "  (((UIBigMap *)&this[-1].m_SysLight.phi))->RenderRole(gfxMgr->pMatrixStack[1], nVal1);",
+   "leak_name": "UIBigMap"
+  },
+  {
+   "file": "pal3/src/Misc/gbLightObj.cpp",
+   "line": 38,
+   "current": "  (((ScriptVM *)&this[-1].m_SysLight.phi))->ScriptVM::ProcessFrame();",
+   "target": "  (((ScriptVM *)&this[-1].m_SysLight.phi))->ProcessFrame();",
+   "leak_name": "ScriptVM"
+  },
+  {
+   "file": "pal3/src/Render/CScreenMode.cpp",
+   "line": 800,
+   "current": "  (((Object3D *)v8))->Object3D::RenderObjectScene(v10);",
+   "target": "  (((Object3D *)v8))->RenderObjectScene(v10);",
+   "leak_name": "Object3D"
+  },
+  {
+   "file": "pal3/src/Render/CScreenMode.cpp",
+   "line": 808,
+   "current": "      (((Object3D *)v9))->Object3D::RenderObjectScene(v11);",
+   "target": "      (((Object3D *)v9))->RenderObjectScene(v11);",
+   "leak_name": "Object3D"
+  },
+  {
+   "file": "pal3/src/Render/CScreenMode.cpp",
+   "line": 819,
+   "current": "    (((Object3D *)v9))->Object3D::RenderObjectScene(v11);",
+   "target": "    (((Object3D *)v9))->RenderObjectScene(v11);",
+   "leak_name": "Object3D"
+  },
+  {
+   "file": "pal3/src/UI/EquipUI.cpp",
+   "line": 1693,
+   "current": "      (((int *)this))->Array::HandleItemPage(*(_DWORD *)&this->buf[16], *(_DWORD *)&this->buf[16]);",
+   "target": "      (((int *)this))->HandleItemPage(*(_DWORD *)&this->buf[16], *(_DWORD *)&this->buf[16]);",
+   "leak_name": "Array"
+  },
+  {
+   "file": "pal3/src/UI/UIScene.cpp",
+   "line": 2226,
+   "current": "        (((TaskBookUI *)v35))->TaskBookUI::_todo_456200();",
+   "target": "        (((TaskBookUI *)v35))->_todo_456200();",
+   "leak_name": "TaskBookUI"
+  },
+  {
+   "file": "pal3/src/free_functions.cpp",
+   "line": 2262,
+   "current": "  (((VFileSystem *)&g_RoleSystemInstance))->VFileSystem::_auto_4221d0((char *)LODWORD(sceneNames), (char *)HIDWORD(sceneNames));",
+   "target": "  (((VFileSystem *)&g_RoleSystemInstance))->_auto_4221d0((char *)LODWORD(sceneNames), (char *)HIDWORD(sceneNames));",
+   "leak_name": "VFileSystem"
+  },
+  {
+   "file": "pal3/src/free_functions.cpp",
+   "line": 2325,
+   "current": "      (((_Console *)g_pCameraCtrl))->_Console::SetActive((int)g_pRoleSystem);",
+   "target": "      (((_Console *)g_pCameraCtrl))->SetActive((int)g_pRoleSystem);",
+   "leak_name": "_Console"
+  },
+  {
+   "file": "pal3/src/free_functions.cpp",
+   "line": 2329,
+   "current": "    (((scAsmDecoder *)v14))->scAsmDecoder::Execute(0, 1);",
+   "target": "    (((scAsmDecoder *)v14))->Execute(0, 1);",
+   "leak_name": "scAsmDecoder"
+  },
+  {
+   "file": "pal3/src/free_functions.cpp",
+   "line": 3967,
+   "current": "    v7 = (((_Texture_Info *)&stru_1894B78))->_Texture_Info::_CalculateUV(String1);",
+   "target": "    v7 = (((_Texture_Info *)&stru_1894B78))->_CalculateUV(String1);",
+   "leak_name": "_Texture_Info"
+  }
+ ]
+}

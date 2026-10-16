@@ -2457,6 +2457,27 @@ def run(code, ctx):
                 result, _entries2, unit_name=getattr(ctx, 'cls_name', None))
         except Exception:
             pass
+        # [A/C 族强转 24 站接线 2026-10-16 verifier] 44a62490b 清单落库但**未装
+        # 载**（同款应用器第三处缺接线 ⇒ 24 站零生效，RoleAtt 实文未变实证）——补接。
+        # 三态：行锚定+current 串校验+顺序消费回退（apply_mrect_allowlist 本体）。
+        try:
+            _al4 = _os.path.join(_os.path.dirname(_al_path), 'ac_family_cast_allowlist.json')
+            with open(_al4, encoding='utf-8') as _fh:
+                _entries4 = _json.load(_fh)['sites']
+            result, _a4, _s4 = apply_mrect_allowlist(
+                result, _entries4, unit_name=getattr(ctx, 'cls_name', None))
+        except Exception:
+            pass
+        # [型名泄漏并案 2026-10-16] C2653 毒名剥离（渲染层缺口族，与 COERCE_INT 并案）
+        # ⚠️ 仅安全集（成员访问冗余限定）；限定直调形 25 站挂账（剥=变字节红线）
+        try:
+            _al5 = _os.path.join(_os.path.dirname(_al_path), 'type_leak_allowlist.json')
+            with open(_al5, encoding='utf-8') as _fh:
+                _entries5 = _json.load(_fh)['sites']
+            result, _a5, _s5 = apply_mrect_allowlist(
+                result, _entries5, unit_name=getattr(ctx, 'cls_name', None))
+        except Exception:
+            pass
         # [型名替换第三形 2026-10-16] ⚠️ **接线暂回退**（三态对照定谳中）：
         # int** 形位等价误伤（L1 202→190）已修为 int* 槽读形；但复测 L1 读数 128
         # 伴总体崩（1356→898）——与树竞态/基线交织叠加，须「无 sig-3」基线对照才能
