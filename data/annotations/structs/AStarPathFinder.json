@@ -124,9 +124,9 @@
       "source": " | [ctor/dtor 二次改名 2026-10-16 an alyzer 66 条无家族取证] ~AStarPathFinder ⇒ AStarPathFinder（**真 ctor**，A 级 40 字节体铁证）：`401000 push esi; mov esi,ecx; push 8; push 1; 401007 mov [esi],stru_56A600(vptr 自写); 40100d call 0x552ED8; mov [esi+10h],eax; mov [esi+4/8/0Ch],0; mov eax,esi; ret`——①calloc(1,8) 结果存成员 +②成员三清零 +③返回 this = 初始化语义；**前版『call 0x552ed8 析构链』定性错误**：0x552ED8 本体 A 级实为 calloc（`mov esi,[esp+0Ch]; imul esi,[esp+14h]` count×size + 对齐 + HeapAlloc 形 `push 8; push [heap]; call [IAT]`）——分配器非释放链 ⇒ 401000 为 ctor（dtor 归 0x4013B0 族）。前版 source 保留可溯 | [隔离 A/B 2026-10-16] name 回退 ~AStarPathFinder（ctor 真身判据保留于前段 source；改名渲染联动嫌疑致 C2084 双体族 ⇒ 隔离实验回退）"
     },
     "0x00401030": {
-      "name": "_scalar_dtor",
+      "name": "_scalar_dtor_1030",
       "signature": "void *__thiscall(char a2)",
-      "source": " | 挂账③ F 案 2026-10-06：deleting-dtor 形（void* 回值+char 标志参+operator delete 体）→_scalar_dtor 族名（~名+参=C2631）"
+      "source": " | 挂账③ F 案 2026-10-06：deleting-dtor 形（void* 回值+char 标志参+operator delete 体）→_scalar_dtor 族名（~名+参=C2631） | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x401050 写 vptr 0x56A600（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56A600→AStarPathFinder（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名"
     },
     "0x00401050": {
       "name": "ReleaseAll",

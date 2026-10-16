@@ -83,14 +83,19 @@
       "signature": "gbVFileSystem *__thiscall UIScene::CreateChildWidget(int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData, char pData2)"
     },
     "0x00450370": {
-      "name": "_todo_0370",
+      "name": "~UICaption",
       "signature": "void __thiscall()",
-      "source": " | [method 27 余量批 2026-10-16 analyzer] 表 0x0056B0E0 认领连带注册"
+      "source": " | [method 27 余量批 2026-10-16 analyzer] 表 0x0056B0E0 认领连带注册 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x450390 写 vptr 0x56B0E0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56B0E0→UICaption（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名"
     },
     "0x00450670": {
       "name": "_todo_0670",
       "signature": "void __thiscall()",
       "source": " | [method 27 余量批 2026-10-16 analyzer] 表 0x0056B0E0 认领连带注册"
+    },
+    "0x004506C0": {
+      "name": "~UICaption_adjthunk",
+      "signature": "void __thiscall()",
+      "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x00450370）⇒ 目标名 ~UICaption 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）"
     }
   },
   "vtables": [

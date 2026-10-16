@@ -338,7 +338,8 @@
     },
     "0x00526A40": {
       "name": "OnMessage",
-      "signature": "int __thiscall(int this, UIWnd *a2, char *nMsg, int wParam)"
+      "signature": "int __thiscall(UIWnd *a2, char *nMsg, int wParam)",
+      "source": " | [撞名 28 组四分账裁决 2026-10-16 analyzer] int this 假参残留清除（首参 `int this`=伪 this 机械残留；OnMessage 合法重载账）"
     },
     "0x0045A7B0": {
       "name": "SaleUI",

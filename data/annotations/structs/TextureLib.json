@@ -245,9 +245,9 @@
       "signature": "gbTexture *__thiscall(_BYTE *pData, int nSize, char nFormat)"
     },
     "0x0053F5C0": {
-      "name": "FreeAllTextures",
+      "name": "~TextureLib",
       "signature": "int __thiscall(void *Block, char)",
-      "source": "vtable_migrated",
+      "source": "vtable_migrated | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x53F5E0 写 vptr 0x570A60（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x570A60→TextureLib（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名",
       "ordinal": 1
     },
     "0x0053F550": {

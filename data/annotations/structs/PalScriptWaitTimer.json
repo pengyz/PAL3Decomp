@@ -1,0 +1,48 @@
+{
+  "name": "PalScriptWaitTimer",
+  "known_members": {
+    "8": {
+      "name": "m_fElapsed",
+      "type": "float",
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x4382A0 decompile `m_waitobj(=+8) += fVal` 累加域"
+    },
+    "12": {
+      "name": "m_bDone",
+      "type": "char",
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438100 `this[12]==0` 判 + 0x4382A0 `>=5.0 置 done`"
+    }
+  },
+  "methods": {
+    "0x00434D50": {
+      "name": "_scalar_dtor",
+      "signature": "void __thiscall()",
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 仅表内 data 引用（虚调用）+ctor 写点 PalScript::Op_Trigger+103（Op 域组装）；方法语义面:Updat | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=Array::_nearby_411ba0 | 体 199B] 交互面[删际链（三类共槽）] 判定 ✅制式名对（_scalar_dtor）"
+    },
+    "0x00438100": {
+      "name": "IsWaitDone",
+      "signature": "void __thiscall(float)",
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 仅表内 data 引用（虚调用）+ctor 写点 PalScript::Op_Trigger+103（Op 域组装）；方法语义面:Updat | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 80B 谓词 ret] 交互面[完成谓词] 判定 ✅名实相符（Is*Done 三名共址=合法共槽谓词）"
+    },
+    "0x004382A0": {
+      "name": "UpdateIdleTimer",
+      "signature": "void __thiscall(float)",
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 仅表内 data 引用（虚调用）+ctor 写点 PalScript::Op_Trigger+103（Op 域组装）；方法语义面:Updat | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=UpdateIdleTimer 域 | store×2] 交互面[空闲计时推进] 判定 ✅名实相符（UpdateIdleTimer）"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056ABCC",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00434D40",
+          "from": null
+        }
+      ],
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 认领+再创作命名（功能驱动，字节等价唯一判据）A 级三证：调用者面:xref 仅表内 data 引用（虚调用）+ctor 写点 PalScript::Op_Trigger+103（Op 域组装）；方法语义面:UpdateIdleTimer(float) decompile=`m_waitobj += fVal; if(>=5.0) done=1` 5 秒 idle 累加器 + flag(this+0xC)==0 判；交互模式面:脚本等待语义（Op 域构造+虚轮询）"
+    }
+  ],
+  "_naming": "[caller 三证法 2026-10-16 analyzer 再创作命名] 再创作命名（原名不可达）：功能反推；名字不入编译字节（字节等价保持）",
+  "binary_size": 16,
+  "_size_note": "[批 3 阶段 2 补形 2026-10-17 analyzer] bs=成员几何最小界（A 级 this+N 访问上确界）；真身锚（new/memset 跨度）挂账"
+}

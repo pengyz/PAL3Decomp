@@ -1,0 +1,120 @@
+{
+  "name": "EffObjectPool",
+  "binary_size": 40,
+  "known_members": {
+    "12": {
+      "name": "m_pObjects",
+      "type": "void *",
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x4C1490 `this[12]=数组基`（152B 步长释放循环）"
+    },
+    "28": {
+      "name": "m_nCount",
+      "type": "int",
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x4C1490 `this[28]` 计数"
+    },
+    "32": {
+      "name": "m_nCount2",
+      "type": "int",
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x4C1490 `this[32]` 计数2"
+    }
+  },
+  "methods": {
+    "0x004C2600": {
+      "name": "CalcDeltaTime",
+      "signature": "void __thiscall(float)",
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref CalcDeltaTime×12 表内共享 + 删际析构 0x4C0620 decompile 写 vptr 回 str | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=Delta 计算域（self-display）| 体 356B ret] 交互面[周期计算步] 判定 ✅名实相符"
+    },
+    "0x0055434F": {
+      "name": "_amsg_exit_stub",
+      "signature": "void __thiscall()",
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref CalcDeltaTime×12 表内共享 + 删际析构 0x4C0620 decompile 写 vptr 回 str | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=FatalExit] 交互面[CRT abort 桩生命周期] 判定 ✅制式名对（_amsg_exit_stub）",
+      "type": "skip",
+      "reason": "external/CRT or empty stub"
+    },
+    "0x004C1490": {
+      "name": "ReleaseObjects152",
+      "signature": "void __thiscall()",
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref CalcDeltaTime×12 表内共享 + 删际析构 0x4C0620 decompile 写 vptr 回 str | [上下文语义强化 2026-10-17 analyzer] 全文语义更正：152B 步长对象数组释放循环（非 BeginRenderPass）；调用者=0x56F620 槽 + 成员访问 +28/+32 计数 +12 数组基 | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=BeginRenderPass 域 | 体 1054B] 交互面[152B 步长数组释放循环] 判定 ✅名实相符（ReleaseObjects152）"
+    },
+    "0x004C0620": {
+      "name": "_scalar_dtor",
+      "signature": "void __thiscall()",
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref CalcDeltaTime×12 表内共享 + 删际析构 0x4C0620 decompile 写 vptr 回 str | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 284B dtor 形] 交互面[析构生命周期] 判定 ✅制式名对（_scalar_dtor）"
+    },
+    "0x004C0600": {
+      "name": "StubReturn0",
+      "signature": "int __thiscall()",
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref CalcDeltaTime×12 表内共享 + 删际析构 0x4C0620 decompile 写 vptr 回 str | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 102B ret] 交互面[空实现桩] 判定 ✅制式名对（StubReturn0）"
+    },
+    "0x004C0610": {
+      "name": "nullsub_75_override",
+      "signature": "void __thiscall()",
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref CalcDeltaTime×12 表内共享 + 删际析构 0x4C0620 decompile 写 vptr 回 str | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 158B] 交互面[空实现覆盖] 判定 ✅制式名对（nullsub_75_override）",
+      "type": "skip",
+      "reason": "external/CRT or empty stub"
+    },
+    "0x00401800": {
+      "name": "nullsub",
+      "signature": "void __thiscall()",
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref CalcDeltaTime×12 表内共享 + 删际析构 0x4C0620 decompile 写 vptr 回 str",
+      "type": "skip",
+      "reason": "external/CRT or empty stub"
+    },
+    "0x004AF760": {
+      "name": "Object_Update",
+      "signature": "void __thiscall(int)",
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref CalcDeltaTime×12 表内共享 + 删际析构 0x4C0620 decompile 写 vptr 回 str | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 76B 无 store] 交互面[虚槽共享 Update 空实现（10 类共槽）] 判定 ✅名实相符（Object_Update）"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056F620",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004C2600",
+          "from": null
+        },
+        {
+          "addr": "0x0055434F",
+          "from": null
+        },
+        {
+          "addr": "0x004C1490",
+          "from": null
+        },
+        {
+          "addr": "0x004C0620",
+          "from": null
+        },
+        {
+          "addr": "0x004C0600",
+          "from": null
+        },
+        {
+          "addr": "0x004C0610",
+          "from": null
+        },
+        {
+          "addr": "0x00401800",
+          "from": null
+        },
+        {
+          "addr": "0x00401800",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x00401800",
+          "from": null
+        }
+      ],
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 认领+再创作命名（功能驱动；字节等价唯一判据）A 级三证：调用者面:xref CalcDeltaTime×12 表内共享 + 删际析构 0x4C0620 decompile 写 vptr 回 stru_56F5D8 主表（本类=0x56F5D8 家族视图）；方法语义面:CalcDeltaTime=`m_fTime 推进+delta 步` + BeginRenderPass=`通道状态检查` + StubReturn0/nullsub 生命周期桩；交互模式面:ctor 写点 RenderTarget2::ClearTarget+37/ExecutePasses+31/BeginRenderPass+6（渲染负载内构造）"
+    }
+  ],
+  "_naming": "[上下文语义强化 2026-10-17 analyzer] 名精化：0x4C1490 全文体=释放循环 `operator delete(ptr); v6+=152`（152B 步长对象数组释放）——IDB 名 BeginRenderPass=误名；上下文语义=**对象池管理**（时间步 CalcDeltaTime + 数组释放 + 删际析构归 0x56F5D8 主表）⇒ EffRenderPassNode→EffObjectPool",
+  "_size_note": "[批 3 阶段 2 补形 2026-10-17 analyzer] bs=成员几何最小界（A 级 this+N 访问上确界）；真身锚（new/memset 跨度）挂账"
+}

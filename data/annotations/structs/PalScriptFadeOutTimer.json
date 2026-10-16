@@ -1,0 +1,60 @@
+{
+  "name": "PalScriptFadeOutTimer",
+  "known_members": {
+    "8": {
+      "name": "m_fElapsed",
+      "type": "float",
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438540 累加域"
+    },
+    "16": {
+      "name": "m_bDone",
+      "type": "char",
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438530 `this[16]==0` 判"
+    }
+  },
+  "methods": {
+    "0x00434D50": {
+      "name": "_scalar_dtor",
+      "signature": "void __thiscall()",
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 Op_CombatNotGameOve+44；方法语义面:UpdateFadeOut(float)=累加器 | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=Array::_nearby_411ba0 | 体 199B] 交互面[删际链（三类共槽）] 判定 ✅制式名对（_scalar_dtor）"
+    },
+    "0x00438530": {
+      "name": "IsFadeDone",
+      "signature": "void __thiscall(float)",
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 Op_CombatNotGameOve+44；方法语义面:UpdateFadeOut(float)=累加器 | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 80B 谓词] 交互面[淡变完成谓词] 判定 ✅名实相符（IsFadeDone）"
+    },
+    "0x00438540": {
+      "name": "UpdateFadeOut",
+      "signature": "void __thiscall(float)",
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 Op_CombatNotGameOve+44；方法语义面:UpdateFadeOut(float)=累加器 | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=SetBlendMode+UpdateFadeOut 域 | store×2] 交互面[淡出混合更新] 判定 ✅名实相符（UpdateFadeOut）"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056ABEC",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00434D50",
+          "from": null
+        },
+        {
+          "addr": "0x00438530",
+          "from": null
+        },
+        {
+          "addr": "0x00438540",
+          "from": null
+        },
+        {
+          "addr": "0x00434D50",
+          "from": null
+        }
+      ],
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 认领+再创作命名（功能驱动，字节等价唯一判据）A 级三证：调用者面:xref 表内 data +ctor 写点 Op_CombatNotGameOve+44；方法语义面:UpdateFadeOut(float)=累加器 +flag(this+0x10)==0 判；交互模式面:淡出过渡等待"
+    }
+  ],
+  "_naming": "[caller 三证法 2026-10-16 analyzer 再创作命名] 再创作命名（原名不可达）：功能反推；名字不入编译字节（字节等价保持）",
+  "binary_size": 20,
+  "_size_note": "[批 3 阶段 2 补形 2026-10-17 analyzer] bs=成员几何最小界（A 级 this+N 访问上确界）；真身锚（new/memset 跨度）挂账"
+}

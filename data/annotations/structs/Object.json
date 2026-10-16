@@ -55,14 +55,14 @@
       "source": "vtable_owner_fix(Object 多态化, 二进制表直读) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x0041be20": {
-      "name": "~ScriptObj_adjthunk1",
+      "name": "_ScriptObj_adjthunk1",
       "signature": "void __thiscall()",
-      "source": "[thunk 命名落地 2026-10-16·裁决 A] adjustor thunk（sub ecx,0x38 ; jmp 0x411bd0）⇒ 目标名 ~ScriptObj + _adjthunk ⇒ ~ScriptObj_adjthunk1（零语义发明 ✓ 目标名继承；A 级=指令形 + idapro decompile 目标名）"
+      "source": "[thunk 命名落地 2026-10-16·裁决 A] adjustor thunk（sub ecx,0x38 ; jmp 0x411bd0）⇒ 目标名 ~ScriptObj + _adjthunk ⇒ ~ScriptObj_adjthunk1（零语义发明 ✓ 目标名继承；A 级=指令形 + idapro decompile 目标名） | thunk 形统一 2026-10-17（verifier A 级）：disasm 0x41BE20=`sub ecx,38h; jmp ScriptObj::~ScriptObj(int)`、0x41BE30=`sub ecx,40h; jmp 同` = 析构 adjustor thunk 实锤；原名 `~ScriptObj_adjthunkN` 语义对但**制式非法**（`~` 前缀非合法标识符 ⇒ 注解 `~`/生成 `_` 三源分叉）⇒ 统一制式 `_ScriptObj_adjthunkN`（与生成侧对齐）"
     },
     "0x0041be30": {
-      "name": "~ScriptObj_adjthunk2",
+      "name": "_ScriptObj_adjthunk2",
       "signature": "void __thiscall()",
-      "source": "[thunk 命名落地 2026-10-16·裁决 A] adjustor thunk（sub ecx,0x40 ; jmp 0x411bd0）⇒ 目标名 ~ScriptObj + _adjthunk ⇒ ~ScriptObj_adjthunk2（零语义发明 ✓ 目标名继承；A 级=指令形 + idapro decompile 目标名）"
+      "source": "[thunk 命名落地 2026-10-16·裁决 A] adjustor thunk（sub ecx,0x40 ; jmp 0x411bd0）⇒ 目标名 ~ScriptObj + _adjthunk ⇒ ~ScriptObj_adjthunk2（零语义发明 ✓ 目标名继承；A 级=指令形 + idapro decompile 目标名） | thunk 形统一 2026-10-17（verifier A 级）：disasm 0x41BE20=`sub ecx,38h; jmp ScriptObj::~ScriptObj(int)`、0x41BE30=`sub ecx,40h; jmp 同` = 析构 adjustor thunk 实锤；原名 `~ScriptObj_adjthunkN` 语义对但**制式非法**（`~` 前缀非合法标识符 ⇒ 注解 `~`/生成 `_` 三源分叉）⇒ 统一制式 `_ScriptObj_adjthunkN`（与生成侧对齐）"
     }
   },
   "vtables": [

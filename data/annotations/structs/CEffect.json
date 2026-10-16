@@ -216,6 +216,16 @@
       "name": "~CEffect",
       "signature": "void __fastcall(CEffect *this)",
       "source": " | [rsite 根治 2026-10-16] 归属迁移 CEffect⇒CEffShock + 名 DestroyCallback⇒~CEffShock：A级 idapro 2f27f612：删析构 vtable 槽 xref（0x4518E0@0x56B178 from=UILoadingFrm / 0x4D3930@0x56FADC from=CEffShock / 0x43E100@0x56AD40 from=None=UIListBox）+ call 完整dtor(this)+flags 条件 delete ABI 配对 ⇒ 目标=同类完整析构 | [退化修复 2026-10-16 回改+正名] A级：C2039 成员面反证（m_bActive/m_Partical=CEffect 成员，CEffShock 无）+ decompile 本体 CEffect *this + dtor 写自身表 0x56FADC@0x4d3973 + 删析构 0x4D3930 ABI 配对 ⇒ 0x4D3950=CEffect 完整析构；上轮 ~CEffShock 误迁回改"
+    },
+    "0x004C88B0": {
+      "name": "CreateOnePartical_adjthunk",
+      "signature": "void __thiscall()",
+      "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x004C7150）⇒ 目标名 CreateOnePartical 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）"
+    },
+    "0x004D0C90": {
+      "name": "_nearby_4cffb0_adjthunk",
+      "signature": "void __thiscall()",
+      "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x004CFFB0）⇒ 目标名 _nearby_4cffb0 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）"
     }
   },
   "vtables": [

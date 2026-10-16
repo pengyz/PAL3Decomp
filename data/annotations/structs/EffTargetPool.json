@@ -1,0 +1,111 @@
+{
+  "name": "EffTargetPool",
+  "binary_size": 32,
+  "known_members": {
+    "24": {
+      "name": "m_pPool",
+      "type": "void *",
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x4C2170 `this[24]=new(0x4C0) 池头指针`"
+    },
+    "28": {
+      "name": "m_nCount",
+      "type": "int",
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x4C2170 `this[28]` 计数"
+    }
+  },
+  "methods": {
+    "0x004C2030": {
+      "name": "_adjustor_c",
+      "signature": "void __thiscall()",
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref AllocTargets 仅表内 + DestroyEffBase-del 被 `?DestroyEffWithBase | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=UpdateInternalAdj+CEffAudio::UpdateInternal] 交互面[this 调整转发（adjustor）] 判定 ✅制式名对（_adjustor_c）"
+    },
+    "0x004C2850": {
+      "name": "AdjustThisCall",
+      "signature": "void __thiscall()",
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref AllocTargets 仅表内 + DestroyEffBase-del 被 `?DestroyEffWithBase | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 177B ret] 交互面[thiscall 调整步] 判定 ✅制式名对（AdjustThisCall）"
+    },
+    "0x004C2040": {
+      "name": "_scalar_dtor_EffTargetNode",
+      "signature": "void __thiscall()",
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref AllocTargets 仅表内 + DestroyEffBase-del 被 `?DestroyEffWithBase | 挂账19续 2026-10-17（verifier A 级·DestroyEff 族四分账）：0x4C2040 decompile=`return DestroyEffBase((RenderTarget2*)((char*)this-12), a2)` = **−12 基调整删除壳**（真身非 DestroyEffWithBase 实体；判定=名实错+**注册面重复**（EffTargetPool+RenderTarget2 同址双注册））⇒ 消歧 `_scalar_dtor_EffTargetNode` 制式；归属挂账（真属=基类析构链，槽反查待收） | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[（批1 已证 −12 基调整删除壳）] 交互面[删际生命周期] 判定 ✅已消歧（_scalar_dtor_EffTargetNode）"
+    },
+    "0x004C1640": {
+      "name": "_scalar_dtor",
+      "signature": "void __thiscall()",
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref AllocTargets 仅表内 + DestroyEffBase-del 被 `?DestroyEffWithBase | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[（批1 已证删际壳调 0x4C1660）] 交互面[删际生命周期] 判定 ✅已消歧（_scalar_dtor_DestroyEffBase）"
+    },
+    "0x004C2170": {
+      "name": "AllocTargets",
+      "signature": "char __thiscall(int)",
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref AllocTargets 仅表内 + DestroyEffBase-del 被 `?DestroyEffWithBase | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=分配域 | 体 2207B] 交互面[目标分配循环] 判定 ✅名实相符（AllocTargets）"
+    },
+    "0x004D33A0": {
+      "name": "ResetIdle",
+      "signature": "void __thiscall()",
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref AllocTargets 仅表内 + DestroyEffBase-del 被 `?DestroyEffWithBase | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 113B store×1] 交互面[状态置位] 判定 ✅名实相符（ResetIdle）"
+    },
+    "0x00408BD0": {
+      "name": "nullsub",
+      "signature": "void __thiscall()",
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref AllocTargets 仅表内 + DestroyEffBase-del 被 `?DestroyEffWithBase | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 59B] 交互面[nullsub 桩] 判定 ✅制式名对（nullsub）",
+      "type": "skip",
+      "reason": "external/CRT or empty stub"
+    },
+    "0x004C29A0": {
+      "name": "UpdateAudioTargets",
+      "signature": "void __thiscall()",
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref AllocTargets 仅表内 + DestroyEffBase-del 被 `?DestroyEffWithBase | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：伪名 _todo_4c29a0 ⇒ 再创作命名 UpdateAudioTargets（五面：①调用者=三证法面 ②被调=CEffAudio::UpdateInternal ③体 5361B+store ④EffTargetPool 音频目标池 ⑤update 周期处理）"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056F668",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004C2030",
+          "from": null
+        },
+        {
+          "addr": "0x004C2850",
+          "from": null
+        },
+        {
+          "addr": "0x004C2040",
+          "from": null
+        },
+        {
+          "addr": "0x004C1640",
+          "from": null
+        },
+        {
+          "addr": "0x004C2170",
+          "from": null
+        },
+        {
+          "addr": "0x004D33A0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C29A0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        }
+      ],
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 认领+再创作命名（功能驱动；字节等价唯一判据）A 级三证：调用者面:xref AllocTargets 仅表内 + DestroyEffBase-del 被 `?DestroyEffWithBase@RenderTarget2@@QAEPADD@Z`（mangled 域）代码引用 + m_bIdle-reset 被 4 表共享；方法语义面:AllocTargets=目标分配（`char __thiscall(int)` 本体分配循环）+ DestroyEffWithBase/DestroyEffBase 销毁族 + adjustor `sub ecx,0xc`（MI base@-0xC）；交互模式面:ctor 写点 RenderTarget2::Reset+50/DestroyEffBase+22"
+    }
+  ],
+  "_naming": "[上下文语义强化 2026-10-17 analyzer] 名精化：0x4C2170 全文体=分配循环 `operator new(0x4C0)` 头 + `operator new(0x2D0)`×N 元素（720B 目标元素池）+ 成员 +24 池指针/+28 计数 ⇒ 对象池语义铁证",
+  "_size_note": "[批 3 阶段 2 补形 2026-10-17 analyzer] bs=成员几何最小界（A 级 this+N 访问上确界）；真身锚（new/memset 跨度）挂账"
+}

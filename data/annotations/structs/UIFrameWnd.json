@@ -13,9 +13,9 @@
   ],
   "methods": {
     "0x00442390": {
-      "name": "UIFrameWnd",
+      "name": "_todo_442390",
       "signature": "void __thiscall()",
-      "source": " | [ctor/dtor 错位改名 2026-10-16] 名 _UIFrameWnd 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UIFrameWnd。refs: ?Destroy@UIFrameWnd@@QAEXXZ ??3@YAXPAX@Z ?_UIWnd@UIWnd@@QAEXXZ | [T56 自抓#3 2026-10-16] 名 ~UIFrameWnd -> UIFrameWnd：new-ctor 三元组 26 站（new(152) 后即 call 本函数）=> post-new 调用=真 ctor ✓ 原 dtor 名错（C2084 消歧件方向反）"
+      "source": " | [ctor/dtor 错位改名 2026-10-16] 名 _UIFrameWnd 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UIFrameWnd。refs: ?Destroy@UIFrameWnd@@QAEXXZ ??3@YAXPAX@Z ?_UIWnd@UIWnd@@QAEXXZ | [T56 自抓#3 2026-10-16] 名 ~UIFrameWnd -> UIFrameWnd：new-ctor 三元组 26 站（new(152) 后即 call 本函数）=> post-new 调用=真 ctor ✓ 原 dtor 名错（C2084 消歧件方向反） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 非法重载（同名双址）消歧：0x43BB70=UIFrameWnd ctor（+8 写表 0x56ACB8）保留；0x442390 实为 **0x56ADD0 类 ctor**（+29 写表 0x56ADD0 ≠0x56ACB8 跨类撞名）改名，0x56ADD0 认领后正名"
     },
     "0x00442420": {
       "name": "Destroy",
@@ -81,11 +81,12 @@
       "signature": "gbVFileSystem *__thiscall UIFrameWnd::SetTextureByID(int nTexID)"
     },
     "0x00442E60": {
-      "name": "_scalar_dtor",
+      "name": "_scalar_dtor_2E60",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "ordinal": 5
+      "ordinal": 5,
+      "source": " | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x442E80 写 vptr 0x56AE10（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AE10→UIFrameWnd（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名"
     },
     "0x00442FF0": {
       "name": "Update_2ff0",

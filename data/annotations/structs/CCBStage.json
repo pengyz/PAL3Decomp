@@ -1204,13 +1204,14 @@
       "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
     },
     "0x005099A0": {
-      "name": "IsTaskFinished",
+      "name": "ApplyTaskTimeScale",
       "signature": "bool __thiscall(CCBStage *this, int nVal, BOOL fpTask)",
-      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族 | 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 IsTaskFinished（0x509xxx 簇错挂）⇒ ApplyTaskTimeScale：五面：①调用者=CCBStage::Update() 帧链 ②被调=Actor::SetTimeScale+gbGeomNode::SetBladeTimeScale（时间/刀光缩放语义确凿）③成员 m_nActiveIdx/m_RoleSlots/m_nTodo_124 ④CCBStage ⑤Update 帧内 ⇒ 任务帧时间缩放处理（原名 IsTaskFinished 错挂）"
     },
     "0x00509B90": {
-      "name": "IsDoTask",
-      "signature": "void __thiscall(CCBStage *this, gbMatrixStack *fpTask)"
+      "name": "RunActiveTask",
+      "signature": "void __thiscall(CCBStage *this, gbMatrixStack *fpTask)",
+      "source": " | 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 IsDoTask（0x509xxx 簇错挂）⇒ RunActiveTask：五面：①调用者=0x4FC480 update 域单链 ②被调=CCBRoleState::InitUI×6+gbMatrixStack Push/Pop+Actor::DispatchAction+子步 0x50A9B0 ③成员 m_nActiveIdx×14/m_pCBSystem×10/m_pRoleState×10/m_CamParams ④CCBStage 战斗舞台 ⑤主更新入口链 ⇒ 战斗任务主执行体（原名 IsDoTask 错挂——0x4FC980 才是真 IsDoTask 包装）"
     },
     "0x0050A180": {
       "name": "Grab",
@@ -1275,13 +1276,14 @@
       "signature": "bool __thiscall(CCBStage *this)"
     },
     "0x0050A770": {
-      "name": "EndTask",
-      "signature": "bool __thiscall(CCBStage *this, int fp, int dwTaskID)"
+      "name": "MoveToAbsolute",
+      "signature": "bool __thiscall(CCBStage *this, int fp, int dwTaskID)",
+      "source": " | 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 EndTask（0x509xxx 簇错挂）⇒ MoveToAbsolute：五面：①调用者=0x4EEEDC（状态域）②被调=gbVec3D::Normalize/Length+EndTask 转发 ③成员 m_fCurPosX/m_fCurPosY/m_pCBSystem ④CCBStage ⑤移动语义体 ⇒ 绝对位移处理（原名 EndTask 错挂）"
     },
     "0x0050A8E0": {
       "name": "DelTask",
       "signature": "bool __thiscall(CCBStage *this, int nIndex)",
-      "source": "pdb_ret"
+      "source": "pdb_ret | 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：⚠️ 五面未满（调用者 CCBSystem::GetSameThreadNum 名可疑域）⇒ 挂账不赋名；体证=m_TurnBuffer+DelTask 转发（回合缓冲推进候选形）"
     },
     "0x0050A8F0": {
       "name": "DelAllTask",
@@ -1301,8 +1303,9 @@
       "signature": "bool __thiscall(CCBStage *this, int idx)"
     },
     "0x0050A9B0": {
-      "name": "DoTask",
-      "signature": "tagRoleState *__thiscall(CCBStage *this, gbVec3D *dwMsg)"
+      "name": "CalcTaskWorldMatrix",
+      "signature": "tagRoleState *__thiscall(CCBStage *this, gbVec3D *dwMsg)",
+      "source": " | 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 DoTask（0x509xxx 簇错挂）⇒ CalcTaskWorldMatrix：五面：①调用者=0x509B90 主执行体内部步骤（语义明确）+EditorUpdate ②被调=CCBStage::GetWorldPos+gbMatrix4 ctor ③成员 m_CamParams/m_pRoleState ④CCBStage ⑤主执行体内坐标计算步 ⇒ 任务世界矩阵计算（原名 DoTask 错挂）"
     },
     "0x0050AA60": {
       "name": "ClearBadPushTask",
@@ -1553,9 +1556,9 @@
       "signature": "unsigned int __thiscall(CCBStage *this)"
     },
     "0x0050B530": {
-      "name": "GetTaskState",
+      "name": "RefreshTaskTargetPos",
       "signature": "void __thiscall(CCBStage *this)",
-      "source": "pdb_ret"
+      "source": "pdb_ret | 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 GetTaskState（0x509xxx 簇错挂）⇒ RefreshTaskTargetPos：五面：①调用者=CCBStage::GetProperCurAction+ProcTransportRun（动作选取/传送链）②被调=GetTaskState 转发 ③成员 m_CamParams×2/m_TargetPos×2 ④CCBStage ⑤动作处理链 ⇒ 目标位置/相机参数刷新（原名 GetTaskState 错挂）"
     },
     "0x0050B330": {
       "name": "GetCurrentState",

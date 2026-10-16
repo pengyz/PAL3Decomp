@@ -29,8 +29,9 @@
       "signature": "int *__thiscall()"
     },
     "0x00434130": {
-      "name": "PtrArray",
-      "signature": "void __thiscall(int nInitSize, int nGrowBy, char bOwned)"
+      "name": "_todo_434130",
+      "signature": "void __thiscall(int nInitSize, int nGrowBy, char bOwned)",
+      "source": " | [撞名 28 组四分账裁决 2026-10-16 analyzer] 消歧：0x44BD60=ctor（零初始化 `mov [eax],ecx;[eax+4];[eax+8]`）保留；0x434130=静态函数形（参数全栈取，无 ecx=this）改名"
     },
     "0x004341E0": {
       "name": "~PtrArray",
@@ -147,9 +148,9 @@
       "source": " | [名账正名 2026-10-16] idapro decompile（session 753ed139）：体=`PtrArray::SetSize(this)` 单行包装——**无 vptr 写 ⇒ 非 ctor 本体**（构造闭包/尺寸重置形候选）· xref 零命中 ⇒ **禁猜挂账**（保留现名 ResizeOpcodeParams，ctor 真名待调用面取证）"
     },
     "0x00432960": {
-      "name": "_todo_2960",
+      "name": "_scalar_dtor_2960",
       "signature": "void __thiscall()",
-      "source": " | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB9C 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AB9C）：本体 56 8b f1 e8 18 00 00 00"
+      "source": " | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB9C 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AB9C）：本体 56 8b f1 e8 18 00 00 00 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x432980 写 vptr 0x56AB9C（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AB9C→PtrArray（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名"
     }
   },
   "vtables": [

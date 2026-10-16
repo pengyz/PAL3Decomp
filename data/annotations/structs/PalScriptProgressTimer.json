@@ -1,0 +1,60 @@
+{
+  "name": "PalScriptProgressTimer",
+  "known_members": {
+    "8": {
+      "name": "m_fElapsed",
+      "type": "float",
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438110 `m_time(=+8) *= rate` 缩放累加域"
+    },
+    "12": {
+      "name": "m_bDone",
+      "type": "char",
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438100 判"
+    }
+  },
+  "methods": {
+    "0x00438190": {
+      "name": "_scalar_dtor",
+      "signature": "void __thiscall()",
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data（0x4382A0 xref@0x56abd4=本族）；方法语义面:0x438110=`m_time += fVal*rate | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=PalScript::ClearFloatParams] 交互面[浮点参数清理] 判定 ✅名实相符（_scalar_dtor 伴生清理）"
+    },
+    "0x00438100": {
+      "name": "IsProgressDone",
+      "signature": "void __thiscall(float)",
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data（0x4382A0 xref@0x56abd4=本族）；方法语义面:0x438110=`m_time += fVal*rate | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 80B 谓词 ret] 交互面[完成谓词] 判定 ✅名实相符（Is*Done 三名共址=合法共槽谓词）"
+    },
+    "0x00438110": {
+      "name": "UpdateProgress",
+      "signature": "void __thiscall(float)",
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data（0x4382A0 xref@0x56abd4=本族）；方法语义面:0x438110=`m_time += fVal*rate | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=UpdateWaitTimer 域 | store×2 | 体 695B] 交互面[进度推进（链 wait 计时）] 判定 ✅名实相符（UpdateProgress）"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056ABD4",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00438190",
+          "from": null
+        },
+        {
+          "addr": "0x00438100",
+          "from": null
+        },
+        {
+          "addr": "0x00438110",
+          "from": null
+        },
+        {
+          "addr": "0x00434D50",
+          "from": null
+        }
+      ],
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 认领+再创作命名（功能驱动，字节等价唯一判据）A 级三证：调用者面:xref 表内 data（0x4382A0 xref@0x56abd4=本族）；方法语义面:0x438110=`m_time += fVal*rate; fmul [0x56A744] 全局速率缩放` 累加器 +flag(this+0xC) 判 + 删际析构 0x438190；交互模式面:进度/速率计时"
+    }
+  ],
+  "_naming": "[caller 三证法 2026-10-16 analyzer 再创作命名] 再创作命名（原名不可达）：功能反推；名字不入编译字节（字节等价保持）",
+  "binary_size": 16,
+  "_size_note": "[批 3 阶段 2 补形 2026-10-17 analyzer] bs=成员几何最小界（A 级 this+N 访问上确界）；真身锚（new/memset 跨度）挂账"
+}

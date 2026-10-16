@@ -197,7 +197,12 @@
     {
       "addr": "0x0056A620",
       "base": null,
-      "slots": [{"addr": "0x00402BD0", "from": null}],
+      "slots": [
+        {
+          "addr": "0x00402BD0",
+          "from": null
+        }
+      ],
       "source": "[100 表认领 2026-10-16 analyzer 重落] A 级：删际析构 0x402BD0@+35 + 真析构 0x402BF0@+3 双自证 `mov [esi],0x56A620`（disp0=主表）+ 安装点 GRPinput::SetMousePos（member access GRPinput×8）"
     }
   ],
@@ -417,6 +422,11 @@
     "0x0046AEA0": {
       "name": "ProcessButtonHold",
       "signature": "void __thiscall(GRPinput *this, float fDelta)"
+    },
+    "0x00402BD0": {
+      "name": "_scalar_dtor_2BD0",
+      "signature": "void __thiscall()",
+      "source": " | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x402BF0 写 vptr 0x56A620（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56A620→GRPinput（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名"
     }
   }
 }

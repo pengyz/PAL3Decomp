@@ -300,9 +300,9 @@
       "signature": "void __thiscall Camera::InitUIElements()"
     },
     "0x0041BFC0": {
-      "name": "_todo_BFC0",
+      "name": "~Camera",
       "signature": "void __thiscall()",
-      "source": " | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AA84）：本体 56 8b f1 e8 c8 00 00 00"
+      "source": " | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AA84）：本体 56 8b f1 e8 c8 00 00 00 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x41C090 写 vptr 0x56AA84（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AA84→Camera（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名"
     }
   },
   "binary_size_source": "P1 复核（12f09f9e）第三判据 + 编排者独立复验：① operator new(544) + call 0x41BE80（alloc_sizeof，exhibits 经复核者逐字节校验 28/28 OK）；② 0x41BE80 是 name==Camera 的真构造函数并写 off_56AA84；③ 该类 ctor ±0x2000 邻域 [reg+imm] 最大位移 = 544 = alloc（两个独立读数一致）；④ 47 个成员的 max offset=404 ⇒ 末端 408 < 544；⑤ cascade_scan：0 派生/0 按值/0 数组/0 union；⑥ base_class=None。原 12956 的膨胀来自错挂方法 0x52BEB0 InitUIElements（0x52Bxxx 区）。"

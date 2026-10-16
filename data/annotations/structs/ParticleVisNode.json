@@ -1,0 +1,70 @@
+{
+  "name": "ParticleVisNode",
+  "binary_size": 8,
+  "known_members": {
+    "0": {
+      "name": "vfptr",
+      "type": "void *",
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：vptr 槽位（0x56A784）；成员面待五面补（IAT 转发体零成员访问）"
+    }
+  },
+  "methods": {
+    "0x00410900": {
+      "name": "ForwardToImport",
+      "signature": "void __thiscall()",
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref 0x410900 仅表内（转发包装）+ 7 槽 `ff 25 [IAT]` 全导入转发；方法语义面:0x410900=I"
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056A784",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00410900",
+          "from": null
+        },
+        {
+          "addr": "0x00542108",
+          "from": null
+        },
+        {
+          "addr": "0x00542102",
+          "from": null
+        },
+        {
+          "addr": "0x005420FC",
+          "from": null
+        },
+        {
+          "addr": "0x005420F6",
+          "from": null
+        },
+        {
+          "addr": "0x005420F0",
+          "from": null
+        },
+        {
+          "addr": "0x005420EA",
+          "from": null
+        },
+        {
+          "addr": "0x005420E4",
+          "from": null
+        },
+        {
+          "addr": "0x005420DE",
+          "from": null
+        },
+        {
+          "addr": "0x005420D8",
+          "from": null
+        }
+      ],
+      "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 认领+再创作命名（功能驱动；字节等价唯一判据）A 级三证：调用者面:xref 0x410900 仅表内（转发包装）+ 7 槽 `ff 25 [IAT]` 全导入转发；方法语义面:0x410900=IAT 调用包装（`56 8b f1 ff 15 [IAT]`）+ 0x5420xx-0x5421xx gb 转发跳板族（EnableShadow/GetAABBox/RenderShadowVolume/GetBoundSphere/Reset/Update）；交互模式面:ctor 写点 PalScript::InitParticleSlht+69/RenderTarget::CreateParticleEffect+63（粒子构造域）"
+    }
+  ],
+  "_naming": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 再创作命名（原名不可达）：ParticleVisNode 由交互反推",
+  "_context_note": "[上下文语义强化 2026-10-17 analyzer] 上下文语义分析记录：槽名 `?EnableShadow@ScreenEffectMgr@@QAEXH@Z` 等=ScreenEffectMgr 域 gap-fill/双注册名账（已知）；**caller 侧 ctor 域=粒子构造（InitParticleSlht/CreateParticleEffect）为身份主证** ⇒ 名 ParticleVisNode 维持；槽名账待 258 双注册清理后复核",
+  "_size_note": "[批 3 阶段 2 补形 2026-10-17 analyzer] bs=成员几何最小界（A 级 this+N 访问上确界）；真身锚（new/memset 跨度）挂账"
+}

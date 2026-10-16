@@ -228,19 +228,19 @@
       "source": "vtable_gap_fill_v1(from gbVisNode.json) | [真型补全 2026-10-16] (空) ⇒ void __thiscall(gbSphere *pSphere)：idapro decompile：thunk 转发 gbVisNode::GetBoundSphere(gbVisNode*, gbSphere *p0) ⇒ 1 参指针"
     },
     "0x004BEA80": {
-      "name": "_scalar_dtor",
+      "name": "~ScreenEffectMgr",
       "signature": "void __thiscall()",
-      "source": " | [残余 14 条裁决 2026-10-16 analyzer] 本体 A 级：删际析构形 `56 8b f1 e8 18 00 00 00 f6 44 24 08 01`（包装真 dtor）"
+      "source": " | [残余 14 条裁决 2026-10-16 analyzer] 本体 A 级：删际析构形 `56 8b f1 e8 18 00 00 00 f6 44 24 08 01`（包装真 dtor） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4BEAA0 写 vptr 0x56F52C（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56F52C→ScreenEffectMgr（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名"
     },
     "0x004BEBD0": {
-      "name": "_scalar_dtor",
+      "name": "_scalar_dtor_EBD0",
       "signature": "void __thiscall()",
-      "source": " | [残余 14 条裁决 2026-10-16 analyzer] 本体 A 级：删际析构形 `56 8b f1 e8 18 00 00 00 f6 44 24 08 01`（包装真 dtor）"
+      "source": " | [残余 14 条裁决 2026-10-16 analyzer] 本体 A 级：删际析构形 `56 8b f1 e8 18 00 00 00 f6 44 24 08 01`（包装真 dtor） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4BEBF0 写 vptr 0x56F548（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56F548→ScreenEffectMgr（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名"
     },
     "0x004BED20": {
-      "name": "_scalar_dtor",
+      "name": "_scalar_dtor_ED20",
       "signature": "void __thiscall()",
-      "source": " | [残余 14 条裁决 2026-10-16 analyzer] 本体 A 级：删际析构形 `56 8b f1 e8 18 00 00 00 f6 44 24 08 01`（包装真 dtor）"
+      "source": " | [残余 14 条裁决 2026-10-16 analyzer] 本体 A 级：删际析构形 `56 8b f1 e8 18 00 00 00 f6 44 24 08 01`（包装真 dtor） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4BED40 写 vptr 0x56F564（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56F564→ScreenEffectMgr（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名"
     },
     "0x004BDF30": {
       "name": "_todo_4BDF30",

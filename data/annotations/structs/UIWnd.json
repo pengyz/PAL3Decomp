@@ -122,10 +122,11 @@
       "signature": "int __thiscall(float fVal, int nVal)"
     },
     "0x0044A7D0": {
-      "name": "_sdtor_14",
+      "name": "_scalar_dtor_A7D0",
       "signature": "void *__thiscall(void *Block, char a2)",
       "type": "skip",
-      "reason": "compiler-generated scalar deleting destructor for UIWnd"
+      "reason": "compiler-generated scalar deleting destructor for UIWnd",
+      "source": " | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x44A7F0 写 vptr 0x56AFB0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AFB0→UIWnd（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名"
     },
     "0x00451730": {
       "name": "_todo_451730",
@@ -183,6 +184,11 @@
       "name": "sub_44E980",
       "signature": "void __thiscall(int, int)",
       "source": "vtable_gap_fill_v1(IDB:sub_44E980) | vtable_sig_arity_fill(ret-N=8) | vtable_sig_arity_fill(ret-N=8)"
+    },
+    "0x004431B0": {
+      "name": "~UIWnd",
+      "signature": "void __thiscall()",
+      "source": " | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4431D0 写 vptr 0x56AE2C（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AE2C→UIWnd（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名"
     }
   },
   "vtables": [

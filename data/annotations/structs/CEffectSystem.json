@@ -109,7 +109,8 @@
     },
     "0x004C6360": {
       "name": "DestroyEffect",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "source": " | 挂账19续批2b 2026-10-17（verifier·DestroyEffect/散组四分账·五面语义卡）：✅ 名对保留：①调用者=0x4C6350（名 GetEffect 可疑=另账）②被调=自身转发 ③成员无 ④CEffectSystem 效果系统 ⑤系统级销毁 ⇒ 名 DestroyEffect 语义对"
     },
     "0x004C6410": {
       "name": "DestroyAllEffect",
@@ -156,9 +157,9 @@
       "_misattrib_evidence": "max_offset=245796>class_size=344"
     },
     "0x004C5D50": {
-      "name": "slot_0",
+      "name": "~CEffectSystem",
       "signature": "int __thiscall(void *Block, char)",
-      "source": "vtable_migrated",
+      "source": "vtable_migrated | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4C5D70 写 vptr 0x56F824（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56F824→CEffectSystem（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名",
       "ordinal": 0
     },
     "0x004C5D80": {

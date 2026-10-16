@@ -178,12 +178,12 @@
       "signature": "UIListBox *__thiscall()"
     },
     "0x0043E100": {
-      "name": "_scalar_dtor",
+      "name": "_scalar_dtor_43e100",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": "|fixed_ios_base"
+      "source": "|fixed_ios_base | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例）"
     },
     "0x0043E1C0": {
       "name": "CalScrollBarRange",
@@ -324,12 +324,12 @@
       "_misattrib_evidence": "max_offset=1196>class_size=308"
     },
     "0x004525E0": {
-      "name": "_scalar_dtor",
+      "name": "_scalar_dtor_4525e0",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": " | 错挂修正 2026-10-16（verifier A 级）：真身=0x56B1BC 复合体的 scalar deleting destructor（vtable 槽 0x56b1bc→0x4525E0 xref 实证）——错挂 UIListBox，复合体真名挂账中"
+      "source": " | 错挂修正 2026-10-16（verifier A 级）：真身=0x56B1BC 复合体的 scalar deleting destructor（vtable 槽 0x56b1bc→0x4525E0 xref 实证）——错挂 UIListBox，复合体真名挂账中 | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例）"
     },
     "0x004526C0": {
       "name": "ShouldProcessInput",
@@ -500,6 +500,11 @@
       "name": "_sdtor_28",
       "signature": "void *__thiscall(char a2)",
       "source": "[0x4518xx 收口 2026-10-16] registry 归属裁决：删析构与完整析构=ABI 配对体（decomp 体 `UIListBox::DestroyContent((UIListBox *)this); if (Block & 1) operator delete; return` 铁证）⇒ 配对归同单元 UIListBox；签名正名 flags 真型 char+this 隐式（弃显式 this 旧建模）；三源统一：注解 _sdtor_28 / decomp DestroyContent / 编译后同单元渲染名"
+    },
+    "0x00451C70": {
+      "name": "_sdtor_28_adjthunk",
+      "signature": "void __thiscall()",
+      "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x004518E0）⇒ 目标名 _sdtor_28 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）"
     }
   },
   "vtables": [
