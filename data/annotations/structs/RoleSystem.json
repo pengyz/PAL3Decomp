@@ -76,9 +76,9 @@
       "source": "A:decomp_set_to_0_path_waypoint_flag_17refs"
     },
     "124": {
-      "name": "m_nPathField7C",
+      "name": "m_nTodo_7C",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "source": "B:naming_m_n+FPU_misattrib | [批4 诚实化 2026-10-16] A偏移形：m_nPathField7C⇒m_nTodo_7C（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "128": {
       "name": "m_fMoveX",
@@ -117,9 +117,9 @@
       "source": "B:decomp this->_todo_098 = this->m_wndcolor.Color"
     },
     "156": {
-      "name": "m_nField9C",
+      "name": "m_nTodo_9C",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "source": "B:naming_m_n+FPU_misattrib | [批4 诚实化 2026-10-16] A偏移形：m_nField9C⇒m_nTodo_9C（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "160": {
       "name": "m_fPosX",
@@ -651,9 +651,9 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "1572": {
-      "name": "_embed_UIWnd_624",
+      "name": "m_nTodo_624",
       "type": "UIWnd",
-      "source": "A+:decomp_UIWnd::GetRect((UIWnd*)&field)_cast_confirm_embed,span=88,no_overlap"
+      "source": "A+:decomp_UIWnd::GetRect((UIWnd*)&field)_cast_confirm_embed,span=88,no_overlap | [批4 诚实化 2026-10-16] A偏移形：_embed_UIWnd_624⇒m_nTodo_624（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     },
     "2960": {
       "name": "m_nTodo_B90",
@@ -837,7 +837,7 @@
       "source": "binary_scan:5refs|FullInit: array access indices 94-190"
     }
   },
-  "binary_size": 4868,
+  "binary_size": 7600,
   "base_size": 68,
   "base_class": "UIWnd",
   "note": " | binary_size set to 8704 (stride from binary, was 8908)",
@@ -925,7 +925,8 @@
     },
     "0x0042A010": {
       "name": "ProcessAction",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall(RoleSystem *this)",
+      "source": " | ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 `void __thiscall()`；A 级：0x42A010 gbVec3D 局部 + RoleSystem 成员访问"
     },
     "0x004122C0": {
       "name": "UpdatePosition",
@@ -1530,6 +1531,11 @@
       "name": "SetColor",
       "signature": "void __thiscall(int nColor)",
       "source": "重定谳 2026-10-07：偏移 672/884-887（台账 rework 族）=RoleSystem 归属（非 Actor）·SetColor 语义名（RGBA 字节写 0x374-377 证）·unskip 同批"
+    },
+    "0x00420430": {
+      "name": "_sdtor_2",
+      "signature": "void *__thiscall(char a2)",
+      "source": "[5表重落收尾 2026-10-16] 补登记（槽名债清毕后重落缺口）：A 级 decomp 快照 RoleSystem_sdtor_2_00420430.json——体 `sub_420450(Block); if (a2 & 1) operator delete(Block); return Block` = 删析构形（flags 条件 delete+return Block），flags 真型 char、this 隐式（弃 (void *Block, char a2) 显式 this 旧建模）"
     }
   },
   "vtables": [
@@ -1608,8 +1614,59 @@
           "from": null
         }
       ]
+    },
+    {
+      "addr": "0x0056AAE4",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004208A0",
+          "from": null
+        },
+        {
+          "addr": "0x004202A0",
+          "from": null
+        },
+        {
+          "addr": "0x00420430",
+          "from": null
+        },
+        {
+          "addr": "0x004209E0",
+          "from": null
+        },
+        {
+          "addr": "0x004202A0",
+          "from": null
+        },
+        {
+          "addr": "0x00420910",
+          "from": null
+        }
+      ],
+      "source": "[100 表认领 2026-10-16 重落] RoleSystem 表 A 级：写入点 0x420408/0x42046D 双自证 + 6 槽全 RoleSystem 方法名；槽名债清毕：无毒槽 | 槽名债清毕 2026-10-16：0x55434F 双注册摘除（CRT amsg_exit(0x19) T145 族）/UNREG 槽天然 slot_<i>/共享名 verified"
+    },
+    {
+      "addr": "0x0056AAF0",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004209E0",
+          "from": null
+        },
+        {
+          "addr": "0x004202A0",
+          "from": null
+        },
+        {
+          "addr": "0x00420910",
+          "from": null
+        }
+      ],
+      "source": "[100 表认领 2026-10-16 重落] 尾并合视图 A 级：3 槽==0x56AAE4[3:6] 精确相等 + 写入点 Reset+88/InitInternal+0；槽名债清毕：无毒槽 | 槽名债清毕 2026-10-16：0x55434F 双注册摘除（CRT amsg_exit(0x19) T145 族）/UNREG 槽天然 slot_<i>/共享名 verified"
     }
   ],
   "_change_log": [],
-  "size_note": "Type/size under re-adjudication (round 6b/7): the global g_RoleSlotBuf @0xC043A0 shows a 5-slot x 1408B structure (raw decomp &::Buffer+1408*elem; slot-boundary instance starts at 2x/4x/5x1408). RoleSystem size 4868 does not tile 5 slots - either the global type is wrong or RoleSystem layout needs the slot-row model. Access-radius census: data/status/_buffer_zone_census.json"
+  "size_note": "Type/size under re-adjudication (round 6b/7): the global g_RoleSlotBuf @0xC043A0 shows a 5-slot x 1408B structure (raw decomp &::Buffer+1408*elem; slot-boundary instance starts at 2x/4x/5x1408). RoleSystem size 4868 does not tile 5 slots - either the global type is wrong or RoleSystem layout needs the slot-row model. Access-radius census: data/status/_buffer_zone_census.json",
+  "size_evidence": "[IMPOSSIBLE 尺寸修正 2026-10-16] 4868 → 7600（A 级 new-ctor 三元组：new@0x52eda7 push $0x1db0(7600) → call 0x531D20（_todo_531D20=SEH ctor 候选 ✓ C2084 消歧件的 ctor 真值证））· req=7600 吻合 ✓ 原尺寸低估（IMPOSSIBLE 成因）"
 }

@@ -1,6 +1,6 @@
 {
   "name": "MainEquipUI",
-  "binary_size": 204620,
+  "binary_size": 209008,
   "known_members": {
     "72": {
       "name": "rc",
@@ -561,5 +561,6 @@
       ]
     }
   ],
-  "base_size": 72
+  "base_size": 72,
+  "size_evidence": "[IMPOSSIBLE 尺寸修正 2026-10-16] 204620 → 209008（A 级 new-ctor 三元组：new@0x47c16d push $0x33010(209008) → call MainEquipUI::MainEquipUI@0x479300 ✓ 真 ctor）· req=209004 吻合 ✓ 原尺寸低估（IMPOSSIBLE 成因）"
 }
