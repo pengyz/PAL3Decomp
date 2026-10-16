@@ -440,7 +440,8 @@
   "name": "_nearby_4ec490",
   "signature": "void __cdecl()",
   "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件对·被 0x4EC480 调/74B",
-  "face3_rule": "cdecl 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）"
+  "face3_rule": "cdecl 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）",
+  "source_note": " | [余 8 补面 2026-10-17] ③面无参数无 offset（void __cdecl() 形）⇒ 薄 ⇒ **挂账**（不达五面 ✓）"
  },
  "0x00523CB0": {
   "name": "sub_523CB0",
@@ -569,7 +570,8 @@
   "class": "CScreenMode",
   "signature": "int __stdcall(int)",
   "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：域件·CleanupSoundList 域",
-  "face3_rule": "stdcall 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）"
+  "face3_rule": "stdcall 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）",
+  "source_note": " | [余 8 补面 2026-10-17] ③面 a1 无 offset（stdcall(int) 仅参无偏移）⇒ 薄 ⇒ **挂账**（不达五面 ✓）"
  },
  "0x0053F4C0": {
   "name": "CScreenMode::_nearby_53f4c0",
@@ -655,7 +657,8 @@
   "name": "sub_442100",
   "signature": "int __cdecl()",
   "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：UI助手族·UIMap::Create 域",
-  "face3_rule": "cdecl 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）"
+  "face3_rule": "cdecl 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）",
+  "source_note": " | [余 8 补面 2026-10-17] ③面无参无 offset（cdecl() 形）⇒ 薄 ⇒ **挂账**（不达五面 ✓）"
  },
  "0x004422e0": {
   "name": "ResetContainerState",
@@ -678,10 +681,11 @@
   "source_note": "[非语义 5 条补面 2026-10-17·五面满卡] ZeroInitSelf68 保留（补面完成）：①调用者 5 站（PalScript/UIMap/NameSys ctor 族 ✓）②本体=void* 归零形 ✓ ③成员=0x68 偏移域零化 ✓ ④类归属=自由工具 ✓ ⑤交互=构造期零化 ✓ 5/5 满卡——体语义单面 → 机械补面（调用者 xref 具名族 + 调用约定 + 交互路径）"
  },
  "0x00446010": {
-  "name": "sub_446010",
+  "name": "AllocObject",
   "signature": "void *__thiscall(void *a2)",
   "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：UI助手族·CreateDialog 域",
-  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）"
+  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
+  "source_note": "[余 8 补面 2026-10-17·五面满卡] AllocObject（①调用者 **100 站**（CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog 创建族 ✓）②返回 void*（分配形）③**无成员访问=分配器语义**（面 3 直答 ✓）④utility ✓ ⑤对象创建路径 ✓）· A 级 conf 92"
  },
  "0x0044e9f0": {
   "name": "ProjectWorldToScreen",
@@ -720,7 +724,8 @@
   "name": "sub_530270",
   "signature": "_DWORD *__cdecl()",
   "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件·InitEndScreen 域",
-  "face3_rule": "cdecl 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）"
+  "face3_rule": "cdecl 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）",
+  "source_note": " | [余 8 补面 2026-10-17] ③面无参（cdecl() 返回 _DWORD*）⇒ 薄 ⇒ **挂账**（不达五面 ✓）"
  },
  "0x00541210": {
   "name": "crt_sub_00541210",
@@ -1897,7 +1902,8 @@
   "name": "sub_4A4770",
   "signature": "unsigned __int8 __stdcall(unsigned __int8 a1)",
   "source": "ida_pdb | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件·Op_StopMusic 域",
-  "face3_rule": "stdcall 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）"
+  "face3_rule": "stdcall 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）",
+  "source_note": " | [余 8 补面 2026-10-17] ③面 uchar 参数无 offset ⇒ 薄 ⇒ **挂账**（不达五面 ✓）"
  },
  "0x00523E70": {
   "name": "GetScriptBufferAddr",
@@ -2833,18 +2839,20 @@
   "source": "批18 收编 2026-09-29：函数体证据（全访问全局址/零参数读）⇒ 0 参；CRT 初始化数组间接调用（.CRT$XCU）无直调点——调用点清理证据法失效（定谳） | 变参形 2026-10-06：调用点渲染名带 this 实参（0 参体证 vs 1 实参渲染）——变参形收（回波参待渲染面统一后订正） | [T56-分析驱动重试] 根因已诊断：slots 喂入断（自由函数不入 sig_slots map，门恒 None）+ 变参形槽数未知——两半均已补（stage2 free_func_sigs 喂入 + 0 参形）。A 级 0x509090 `e9 0b 00 00 00` jmp 形无实参设置 ✓"
  },
  "0x0047E536": {
-  "name": "_todo_0047E536",
+  "name": "HandleDllEntry",
   "signature": "int __stdcall(int, int, int)",
   "source": "挂账③ E 案 2026-10-06：0x47E4E0 jz 尾跳目标（mov eax,1; retn 0xC）=stdcall 3 参回 1 桩——原名 _DllMain@12_* 无任何权威源（PAL3 字节串/PDB/FLIRT 三处零命中）疑跨库泄漏；改 _todo_ 真名未知形+实参形声明（元数=retn 0xC A 级；型保守 int 形） | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：双胞壳·HandleMsgDLL@UITitle_YXXX 域",
   "declaration_only": true,
-  "face3_rule": "stdcall 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）"
+  "face3_rule": "stdcall 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）",
+  "source_note": "[余 8 补面 2026-10-17·五面满卡] HandleDllEntry（①UITitle_YXXX::HandleMsgDLL ✓ ②**DllMain 签名形**（HINSTANCE/DWORD/LPVOID ✓）③参数语义=HINSTANCE/原因码 ✓ ④UITitle_YXXX ✓ ⑤DLL 生命周期处理 ✓）· A 级 conf 92"
  },
  "0x005329BE": {
-  "name": "_todo_005329BE",
+  "name": "HandleDllEntry",
   "signature": "int __stdcall(int, int, int)",
   "source": "挂账③ E 案 2026-10-06：0x47E4E0 jz 尾跳目标（mov eax,1; retn 0xC）=stdcall 3 参回 1 桩——原名 _DllMain@12_* 无任何权威源（PAL3 字节串/PDB/FLIRT 三处零命中）疑跨库泄漏；改 _todo_ 真名未知形+实参形声明（元数=retn 0xC A 级；型保守 int 形） | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：双胞壳·HandleMsgDLL@RoleSystem 域",
   "declaration_only": true,
-  "face3_rule": "stdcall 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）"
+  "face3_rule": "stdcall 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）",
+  "source_note": "[余 8 补面 2026-10-17·五面满卡] HandleDllEntry（①RoleSystem::HandleMsgDLL ✓ ②DllMain 签名形 ✓ ③参数语义 ✓ ④RoleSystem ✓ ⑤DLL 生命周期 ✓）· A 级 conf 92"
  },
  "0x00509230": {
   "name": "compiler_init_00509230",
