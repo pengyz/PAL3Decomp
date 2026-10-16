@@ -328,7 +328,8 @@
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "ordinal": 5
+      "ordinal": 5,
+      "source": " | 错挂修正 2026-10-16（verifier A 级）：真身=0x56B1BC 复合体的 scalar deleting destructor（vtable 槽 0x56b1bc→0x4525E0 xref 实证）——错挂 UIListBox，复合体真名挂账中"
     },
     "0x004526C0": {
       "name": "ShouldProcessInput",
@@ -486,9 +487,9 @@
       "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x46b4b0 `mov 0x4(%esp),%eax; sub $0x110,%esp; add $0xfffffc18,%eax`（参1 运算）+ 尾 `ret $0xc`（3 栈参）；语义未定 ⇒ _todo_ 占位。SaleUI 继承槽 slot[6] 的基类侧缺失（from=UIListBox）"
     },
     "0x0043E120": {
-      "name": "~UIListBox",
+      "name": "DeleteRow",
       "signature": "void __thiscall()",
-      "source": " | [rsite 根治 2026-10-16] 名 DeleteRow⇒~UIListBox（真析构，vtable 0x56AD40 slot None=本类）：A级 idapro 2f27f612：删析构 vtable 槽 xref（0x4518E0@0x56B178 from=UILoadingFrm / 0x4D3930@0x56FADC from=CEffShock / 0x43E100@0x56AD40 from=None=UIListBox）+ call 完整dtor(this)+flags 条件 delete ABI 配对 ⇒ 目标=同类完整析构"
+      "source": " | [rsite 根治 2026-10-16] 名 DeleteRow⇒~UIListBox（真析构，vtable 0x56AD40 slot None=本类）：A级 idapro 2f27f612：删析构 vtable 槽 xref（0x4518E0@0x56B178 from=UILoadingFrm / 0x4D3930@0x56FADC from=CEffShock / 0x43E100@0x56AD40 from=None=UIListBox）+ call 完整dtor(this)+flags 条件 delete ABI 配对 ⇒ 目标=同类完整析构 | [退化修复 2026-10-16 回退] ~UIListBox 与 0x43DD10 同签名双析构=C2084 误伤实锤（析构不可重载）；真身 0x43E0xx=UIListBox 本体（m_rowenable 面）但与 0x43DCxx 簇双簇裁决未完 ⇒ 名形暂缓，待裁决后正名"
     },
     "0x00451900": {
       "name": "DestroyContent",
@@ -603,7 +604,8 @@
           "from": null
         }
       ],
-      "source": "[停车场清理 2026-10-16 证据注记] 写入点 0x4525c6/0x45261d（0x4525xx 簇）；ctor 0x4525A0=UIListBox ctor(0:0x43DCD0)+UIAnimateCtrlEX ctor+UITitle_BBTY ctor(+1084) ⇒ 含 UIListBox+UIAnimateCtrlEX+UITitle_BBTY 成员的复合类，真名待裁 | [4 表裁决落地 2026-10-16] ⚠️ **挂账**：三子对象复合体（PDB 无派生类名源，禁猜）⇒ 真名待语义考；暂留 UIListBox 名下"
+      "source": "[停车场清理 2026-10-16 证据注记] 写入点 0x4525c6/0x45261d（0x4525xx 簇）；ctor 0x4525A0=UIListBox ctor(0:0x43DCD0)+UIAnimateCtrlEX ctor+UITitle_BBTY ctor(+1084) ⇒ 含 UIListBox+UIAnimateCtrlEX+UITitle_BBTY 成员的复合类，真名待裁 | [4 表裁决落地 2026-10-16] ⚠️ **挂账**：三子对象复合体（PDB 无派生类名源，禁猜）⇒ 真名待语义考；暂留 UIListBox 名下",
+      "note": "真名挂账（2026-10-16 verifier A 级裁决）：三子对象复合体（UIListBox名@0·UIAnimateCtrlEX@72·UITitle_BBTY@1084）· 自表 vtable（ctor 0x452590 域末位 `mov [esi],offset stru_56B1BC` 实证）· 真名待语义考（无 PDB 源/无调用面）——禁猜，维持挂账；⚠️ 本表错挂 UIListBox（真属未命名复合体）；关联矛盾：UIListBox 标注 1208 vs 子区 72 待重审"
     }
   ],
   "base_size": 68,
@@ -618,5 +620,6 @@
       "from": "UIListBox",
       "to": "SaleUI"
     }
-  ]
+  ],
+  "size_evidence": "[UIListBox binary_size 重审 2026-10-16] ✅ **1208 确认**（二选一裁决：真尺寸=1208，非 72；调用目标名 `??0UIListBox@@QAE@XZ` **正确**非错位）——A 级三面：① new 算子：`push $0x4b8` ×2+（0x4e11a9/0x4e9d20 等）= operator new(1208)；② 成员面：最大成员 m_rowenable@1192 末端 1192+16=**1208 精确吻合**；③ ctor 面（idapro decompile 0x452597 域 session 12b52719）：`??0UIListBox@@QAE@XZ` 主 ctor + 子对象 `??0UITitle_BBTY@@QAE@XZ` @**v1+1084**（1208-1084=124=子对象尺寸 ✓ 闭合）。⚠️ 「子对象②起点 72」= **MI 基类子对象边界**（UIWnd=68→72 对齐）非类末端——verifier「差 1136」系把子对象起点误读为类尾；布局/步长推断不受影响 ✓"
 }
