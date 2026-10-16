@@ -39,33 +39,33 @@
     },
     "368": {
       "type": "UIItem",
-      "name": "m_nTodo_368",
-      "source": "A:LEA_ECX+CALL_UIItem::ctor | [批4 诚实化 2026-10-16] A偏移形：_embed_UIItem_368⇒m_nTodo_368（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
+      "name": "m_uiItemSlot",
+      "source": "A:LEA_ECX+CALL_UIItem::ctor | [批4 诚实化 2026-10-16] A偏移形：_embed_UIItem_368⇒m_nTodo_368（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动） | [成员用法语义 2026-10-17 analyzer 证据账目制] 正名（原 m_nTodo_368）：A 级用途：`UIItem::SetData(&m, 18)` 嵌入 UIItem 初始化 + `Create__ovl_1` 构造域（CUtil::InitGameSystems）；五面：①调用者=InitGameSystems ②被调用者=UIItem::SetData/Create ③成员访问=UIItem 嵌入域 ④类归属=CUtil ⑤交互=游戏系统初始化嵌入槽；confidence=82"
     },
     "352": {
       "name": "m_nTodo_160",
       "type": "int[2]",
-      "source": "binary_scan:1refs;batch_fix:int_to_v*_LEA_embed | inline-union治理 2026-10-16（idapro A 级）：CUtil@0x523130 ctor：`m_nTodo_160=0` + `*(&+4)=0` ⇒ 8B 双 dword 区（暂无指针/浮点视）"
+      "source": "binary_scan:1refs;batch_fix:int_to_v*_LEA_embed | inline-union治理 2026-10-16（idapro A 级）：CUtil@0x523130 ctor：`m_nTodo_160=0` + `*(&+4)=0` ⇒ 8B 双 dword 区（暂无指针/浮点视） | [成员用法语义 2026-10-17 analyzer 证据账目制] 挂账：用途形=ctor 清零/取址走查基（`&m+91` 缓冲走查）——五面不闭合不赋名"
     },
     "360": {
-      "name": "m_nTodo_168",
+      "name": "m_nListIndex",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | [成员用法语义 2026-10-17 analyzer 证据账目制] 正名（原 m_nTodo_168）：A 级用途：PropUI::ShowCategory1 `=0`/`++` 索引步进 + `head[16*m_nTodo_164+20] = m` 列表写索引；五面：①ShowCategory1 扫描循环 ②列表列头写 ③+360 计数域 ④CUtil ⑤UI 分类展示交互；confidence=78"
     },
     "364": {
-      "name": "m_nTodo_16C",
+      "name": "m_nUpdateCounter",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | [成员用法语义 2026-10-17 analyzer 证据账目制] 正名（原 m_nTodo_16C）：A 级用途：CUtil::OnMessage `=updated`/`=0`/`if(>0)` 计数递减判；五面：①OnMessage 分派 ②计数检查 ③+364 域 ④CUtil ⑤消息驱动更新交互；confidence=72"
     },
     "1344": {
       "name": "m_nTodo_540",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | [成员用法语义 2026-10-17 analyzer 证据账目制] 挂账：用途形=ctor 清零/取址走查基（`&m+91` 缓冲走查）——五面不闭合不赋名"
     },
     "1348": {
       "name": "m_nTodo_544",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | [成员用法语义 2026-10-17 analyzer 证据账目制] 挂账：用途形=ctor 清零/取址走查基（`&m+91` 缓冲走查）——五面不闭合不赋名"
     },
     "1736": {
       "name": "m_pScreenMode",

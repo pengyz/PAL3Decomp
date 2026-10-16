@@ -260,7 +260,7 @@
     "216": {
       "name": "m_fScale",
       "type": "unsigned char",
-      "source": "transfer_from_RoleSystem_off_640|A:binary_mov_byte_[eax+0D8h]_1"
+      "source": "transfer_from_RoleSystem_off_640|A:binary_mov_byte_[eax+0D8h]_1 | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x4E3445 `*(DWORD*)(&m_fScale+v13)+=...` 取址 DWORD 算术（判据②/③）⇒ 位面复用；名 m_fScale 矛盾挂账"
     },
     "220": {
       "name": "m_fMatrixA",
@@ -270,7 +270,7 @@
     "224": {
       "name": "m_fMatrixB",
       "type": "unsigned char",
-      "source": "transfer_from_RoleSystem_off_648|A:binary_mov_byte_[eax+0E0h]_0"
+      "source": "transfer_from_RoleSystem_off_648|A:binary_mov_byte_[eax+0E0h]_0 | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x4E365D 同形取址 DWORD 算术 ⇒ 位面复用；名 m_fMatrixB 挂账"
     },
     "228": {
       "name": "m_fMatrixC",
@@ -1146,6 +1146,11 @@
       "signature": "void __thiscall()",
       "source": " | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056A6D0 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56A6D0）：本体 8b 54 24 04 8b 41 18 85 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
       "declaration_only": true
+    },
+    "0x00538260": {
+      "name": "ClearModelFlag",
+      "signature": "int __thiscall()",
+      "source": "[函数归属 2026-10-17·主攻点 2 终] Actor——面卡④类=Actor（LoadActorModel/DoSceneTransition ✓）（五面卡类归属面 ✓ decomp member access 证）"
     }
   },
   "vtables": [

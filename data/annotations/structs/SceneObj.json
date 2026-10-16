@@ -229,8 +229,8 @@
     },
     "68": {
       "name": "m_fTimerLimit",
-      "type": "gbRefObject *",
-      "source": "binary:Destroy_12 reads [esi+44h] as gbRefObject*;A:decomp_batch_rename_usage_pattern | normalize_key: 0x44 -> 68"
+      "type": "int",
+      "source": "binary:Destroy_12 reads [esi+44h] as gbRefObject*;A:decomp_batch_rename_usage_pattern | normalize_key: 0x44 -> 68 | 主攻点2续 2026-10-17（verifier·A 级逐条）：型 gbRefObject * ⇒ int | A 级：0x4DDC23 `m_fTimerLimit = (gbRefObject*)-1`（**哨兵 -1 位搬**）+ `*(&+4)=0`——D 族 gbRefObject 误挂同源撤除 | confidence: high"
     }
   },
   "base_class": [

@@ -180,8 +180,8 @@
     },
     "20064": {
       "name": "m_pScene",
-      "type": "UIScene",
-      "source": "ctor:UIScene::_UIScene"
+      "type": "UIScene *",
+      "source": "ctor:UIScene::_UIScene | 主攻点2续 2026-10-17（verifier·A 级逐条）：型 UIScene ⇒ UIScene * | A 级：0x4FF452 `&this->m_pScene->m_vecInitFiveLineup[v9]`——**`->` 指针解引用实证** ⇒ 值型错挂 | confidence: high"
     },
     "20408": {
       "name": "m_Static_20408",

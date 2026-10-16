@@ -5,12 +5,12 @@
     "68": {
       "name": "m_fTimerLimit",
       "type": "int",
-      "source": "decomp:this->0+N access pattern;A:decomp_batch_rename_usage_pattern"
+      "source": "decomp:this->0+N access pattern;A:decomp_batch_rename_usage_pattern | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x4DDC23 `=(gbRefObject*)-1` 哨兵位搬（与 SceneObj 同址镜像布局）⇒ 位面复用；名 m_fTimerLimit 挂账"
     },
     "72": {
       "name": "m_fTimerAccum",
       "type": "int",
-      "source": "decomp:this->0+N access pattern;A:decomp_batch_rename_usage_pattern"
+      "source": "decomp:this->0+N access pattern;A:decomp_batch_rename_usage_pattern | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | ⚠️ 跨视污染自守：`=0.0` 行在 PalScript ctor 域（同名跨类）⇒ 无类视直接证不改"
     },
     "76": {
       "name": "m_nTodo_04C",

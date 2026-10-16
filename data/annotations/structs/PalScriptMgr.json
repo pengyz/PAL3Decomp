@@ -73,9 +73,9 @@
       "source": "B:naming_m_n+FPU_misattrib"
     },
     "92": {
-      "name": "m_nTodo_058",
-      "type": "int",
-      "source": "binary:raw_5votes"
+      "name": "m_pRoleVisNode",
+      "type": "gbVisNode *",
+      "source": "binary:raw_5votes | [主攻点2续 2026-10-17] 五面满卡 5/5 正名：①调用者=PalScriptMgr::UpdateScriptRoles 脚本角色更新帧（31 站）②被调=gbVisNode::SetTimeScale(node,0.0) 时间缩放 + slot24 虚调用（Update 族）③成员访问=+92 读为 gbVisNode* 指针 ④类归属=PalScriptMgr 脚本管理 ⑤交互=脚本角色更新帧内时间缩放/状态更新生命周期；A 级=idapro decomp 用法 31 站（SetTimeScale 实参 cast 形）；原名 m_nTodo_058 ⇒ 再创作命名 m_pRoleVisNode（功能驱动：脚本角色可视节点指针）；类型正名 int→gbVisNode *（同宽 4B 布局等价）"
     },
     "96": {
       "name": "m_pExecSystem",
@@ -443,7 +443,7 @@
     "212": {
       "name": "m_pTodo_84",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
+      "source": "raw_decomp:Hex-Rays_type_cast | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化 | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x42B75B `*(DWORD*)&m_pTodo_84=*(DWORD*)(x+40)`+`m_nTodo_024=*(DWORD*)&` **DWORD 位搬双视**（判据③）；伪名挂账",
       "note": "原名 m_pSavedIndex 降级(未证语义名,CLAUDE.md 禁伪语义)"
     },
     "249": {
@@ -539,7 +539,7 @@
     "168": {
       "name": "m_pVarContext",
       "type": "int",
-      "source": "A:0_fpu_in_14+_refs_all_mov_load_store"
+      "source": "A:0_fpu_in_14+_refs_all_mov_load_store | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x42B9xx `*((char*)&m_pVarContext+strlen+3)-48` **取址字节走查+ASCII 转数**（判据②）"
     },
     "172": {
       "name": "m_szScriptFile",
@@ -661,7 +661,7 @@
     "40": {
       "name": "m_nTodo_024",
       "type": "int",
-      "source": "reverted_auto_semantic:1x_access"
+      "source": "reverted_auto_semantic:1x_access | [主攻点2续 2026-10-17] 五面 4/5 挂账（不达五面不赋名）：①调用者=UpdateScriptRoles case 分支族 ②被调=目标值流入 ProcessAction 族（值型未定）③成员=+40 读写·与 m_pTodo_84 表 3×idx 联动·与 m_fCamX/m_fCamY 同流 ④类归属=PalScriptMgr ✓ ⑤交互=脚本命令 case 重置/赋值；**③值型面未定**（int vs 指针）⇒ 挂账；功能定性=脚本命令目标槽"
     },
     "100": {
       "name": "m_nTodo_060",

@@ -78,7 +78,7 @@
     "124": {
       "name": "m_nTodo_7C",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib | [批4 诚实化 2026-10-16] A偏移形：m_nPathField7C⇒m_nTodo_7C（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
+      "source": "B:naming_m_n+FPU_misattrib | [批4 诚实化 2026-10-16] A偏移形：m_nPathField7C⇒m_nTodo_7C（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动） | [主攻点2续 2026-10-17] 五面 4/5 挂账：①调用者=RoleSystem::ProcessWaypoint+AllocPathPage（45 站）②被调=**slot0 接口虚调用目标未知**（经其 vptr 派发）③成员=+124 读为指针·写 [0..2] 三槽（[0]=1 标志）·+16 链步（m_nTodo_7C+4）④类归属=RoleSystem 寻路 ✓ ⑤交互=路径页分配生命周期（Alloc 写 flag=1）；**②被调用者语义未满**（slot0 方法名未解析）⇒ 挂账；功能定性=路径页链表/分配游标"
     },
     "128": {
       "name": "m_fMoveX",
@@ -623,7 +623,7 @@
     "1484": {
       "name": "m_fMoveTargetY",
       "type": "int",
-      "source": "gen_headers_9.2 | type_fix:float鈫抜nt_raw_decomp"
+      "source": "gen_headers_9.2 | type_fix:float鈫抜nt_raw_decomp | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x412F79 `m_fMoveTargetY = m_wndcolor.Color` DWORD 位搬（判据③）；名 m_f 挂账"
     },
     "1488": {
       "name": "m_fMoveTargetZ",
