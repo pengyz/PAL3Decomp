@@ -130,7 +130,9 @@
  "0x00430180": {
   "name": "InitSceneScriptLoader",
   "signature": "_BYTE *__thiscall(_BYTE *this)",
-  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：原名 sub_430180 ⇒ InitSceneScriptLoader | evidence: 五面①调用者=SingletonThunk_00404630 ②被调=无（init 体）③**成员 m_bLoadSceneScript/m_pinst/m_nTodo_02C** ④场景脚本加载域 ⑤单例加载生命周期——evidence: 成员语义+调用者+体形 | confidence: high"
+  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：原名 sub_430180 ⇒ InitSceneScriptLoader | evidence: 五面①调用者=SingletonThunk_00404630 ②被调=无（init 体）③**成员 m_bLoadSceneScript/m_pinst/m_nTodo_02C** ④场景脚本加载域 ⑤单例加载生命周期——evidence: 成员语义+调用者+体形 | confidence: high | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only",
+  "declaration_only": true,
+  "source_note": " | [归属 2026-10-17·余 3] ④类归属薄（SingletonThunk 注册点 ✓ 但无类限定名/谱唯一匹配）⇒ **五面 4/5 挂账** ✓"
  },
  "0x00430C10": {
   "name": "PalScript::sub_430C10",
@@ -270,16 +272,18 @@
  "0x00459F80": {
   "name": "IsStateFlagSet",
   "signature": "int __thiscall(_BYTE *this)",
-  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件·CCBStage sub 域",
+  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件·CCBStage sub 域 | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only",
   "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
-  "source_note": "[17 挂账补面 2026-10-17·五面满卡] IsStateFlagSet（五面满卡：①调用者 5 站 CCBStage::sub_00459fa0/a020/a0a0 族 ✓ ②本体=flag 判 ✓ ③this[i+153] 索引形（成员偏移 ✓ thiscall 面）④类=CCBStage ✓ ⑤交互=Stage 内部状态查询 ✓）——face3_rule 降级判据执行（thiscall=this[+N] 形）· 证据账目：A 级（decompile+xref）conf 92"
+  "source_note": "[17 挂账补面 2026-10-17·五面满卡] IsStateFlagSet（五面满卡：①调用者 5 站 CCBStage::sub_00459fa0/a020/a0a0 族 ✓ ②本体=flag 判 ✓ ③this[i+153] 索引形（成员偏移 ✓ thiscall 面）④类=CCBStage ✓ ⑤交互=Stage 内部状态查询 ✓）——face3_rule 降级判据执行（thiscall=this[+N] 形）· 证据账目：A 级（decompile+xref）conf 92",
+  "declaration_only": true
  },
  "0x0046ADF0": {
   "name": "GetCellStateByte",
   "signature": "char __thiscall(_BYTE *this)",
-  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体双胞1·ProcessCellAnimations 域",
+  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体双胞1·ProcessCellAnimations 域 | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only",
   "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
-  "source_note": "[17 挂账补面 2026-10-17·五面满卡] GetCellStateByte（五面满卡：①调用者 SaleUI::ProcessCellAnimations ✓ ②本体=字节读 ✓ ③this[95265] 偏移读 （_BYTE* this 形）④类=SaleUI ✓ ⑤交互=动画处理状态查询 ✓）——face3_rule 降级判据执行（thiscall=this[+N] 形）· 证据账目：A 级（decompile+xref）conf 92"
+  "source_note": "[17 挂账补面 2026-10-17·五面满卡] GetCellStateByte（五面满卡：①调用者 SaleUI::ProcessCellAnimations ✓ ②本体=字节读 ✓ ③this[95265] 偏移读 （_BYTE* this 形）④类=SaleUI ✓ ⑤交互=动画处理状态查询 ✓）——face3_rule 降级判据执行（thiscall=this[+N] 形）· 证据账目：A 级（decompile+xref）conf 92",
+  "declaration_only": true
  },
  "0x0046F3D0": {
   "name": "GetInputFlag",
@@ -455,7 +459,7 @@
   "signature": "int __thiscall(_BYTE *this)",
   "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件·邻接簇 sub_523CD0/D20 域",
   "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
-  "source_note": " | [余 14 补面 2026-10-17] ①调用者 sub_523CD0/523D20 未具名 ⇒ **①面未满挂账**（不达五面 ✓）"
+  "source_note": " | [余 14 补面 2026-10-17] ①调用者 sub_523CD0/523D20 未具名 ⇒ **①面未满挂账**（不达五面 ✓） | [归属 2026-10-17·余 3] ①调用者 sub_523CD0/523D20/523D70 未具名 ⇒ **4/5 挂账** ✓"
  },
  "0x00525090": {
   "name": "CCBStage::sub_525090",
@@ -673,8 +677,9 @@
  "0x004422e0": {
   "name": "ResetContainerState",
   "signature": "void __thiscall(void *this)",
-  "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_4422E0（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：容器重置：调 `PtrArray::Clear` 系（sub_445AA0）+ 清零 this+96/+100/+104 三字段（0x4422E0 decompile）",
-  "source_note": "[非语义 5 条补面 2026-10-17·五面满卡] ResetContainerState 保留（补面完成）：①调用者 100 站（PalScript::Op_WaterMagic/UIPushButton::CtorWithFlag 广布 ✓）②本体=thiscall(this) 重置形 ✓ ③成员=this+N 触面 ✓ ④类归属=广泛基类 utility ✓ ⑤交互=构造/操作重置 ✓ 5/5 满卡——体语义单面 → 机械补面（调用者 xref 具名族 + 调用约定 + 交互路径）"
+  "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_4422E0（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：容器重置：调 `PtrArray::Clear` 系（sub_445AA0）+ 清零 this+96/+100/+104 三字段（0x4422E0 decompile） | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only",
+  "source_note": "[非语义 5 条补面 2026-10-17·五面满卡] ResetContainerState 保留（补面完成）：①调用者 100 站（PalScript::Op_WaterMagic/UIPushButton::CtorWithFlag 广布 ✓）②本体=thiscall(this) 重置形 ✓ ③成员=this+N 触面 ✓ ④类归属=广泛基类 utility ✓ ⑤交互=构造/操作重置 ✓ 5/5 满卡——体语义单面 → 机械补面（调用者 xref 具名族 + 调用约定 + 交互路径）",
+  "declaration_only": true
  },
  "0x00445db0": {
   "name": "sub_445DB0",
@@ -695,9 +700,9 @@
  "0x00446010": {
   "name": "AllocObject",
   "signature": "void *__thiscall(void *a2)",
-  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：UI助手族·CreateDialog 域",
+  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：UI助手族·CreateDialog 域 | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：⚠️ 类限定挂账：调用者 CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog 双域、成员面 a2 指针形弱 ⇒ 归属不达五面不赋类",
   "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
-  "source_note": "[余 8 补面 2026-10-17·五面满卡] AllocObject（①调用者 **100 站**（CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog 创建族 ✓）②返回 void*（分配形）③**无成员访问=分配器语义**（面 3 直答 ✓）④utility ✓ ⑤对象创建路径 ✓）· A 级 conf 92"
+  "source_note": "[余 8 补面 2026-10-17·五面满卡] AllocObject（①调用者 **100 站**（CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog 创建族 ✓）②返回 void*（分配形）③**无成员访问=分配器语义**（面 3 直答 ✓）④utility ✓ ⑤对象创建路径 ✓）· A 级 conf 92 | [归属 2026-10-17·余 3] 归属=**自由工具**（100 站跨类：CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog/TaskBookUI::RefreshTaskList 等 ✓ 非单类成员=归属已答 ✓ 无迁移目标）"
  },
  "0x0044e9f0": {
   "name": "ProjectWorldToScreen",
@@ -1908,8 +1913,9 @@
  "0x00445D20": {
   "name": "MoveToAbsolute",
   "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
-  "source": "ida_pdb",
-  "source_note": "[再创作命名 2026-10-16·五维上下文] **MoveToAbsolute**（绝对坐标→增量换算+累加）——A 级上下文语义五维证：①调用者 `CameraCtrl::UpdateInternal`+`PalScript::Op_LK_Ghost`（相机更新/脚本位移操作域 ✓）②被调用者 0x445D40=this[4..7] 累加器（`this[4]=a2+v4` 增量累积形）③成员访问 this[4]/this[5]=x/y 当前位（视口/相机位）④类归属=视口控制族 ⑤交互模式=绝对定位入口（MoveTo(a2,a3)=OffsetBy(a2-curX,a3-curY)）· 用户指令（2026-10-17）：命名须上下文语义+IDA 优先 ✓ 本条为强化工作流示范"
+  "source": "ida_pdb | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only",
+  "source_note": "[再创作命名 2026-10-16·五维上下文] **MoveToAbsolute**（绝对坐标→增量换算+累加）——A 级上下文语义五维证：①调用者 `CameraCtrl::UpdateInternal`+`PalScript::Op_LK_Ghost`（相机更新/脚本位移操作域 ✓）②被调用者 0x445D40=this[4..7] 累加器（`this[4]=a2+v4` 增量累积形）③成员访问 this[4]/this[5]=x/y 当前位（视口/相机位）④类归属=视口控制族 ⑤交互模式=绝对定位入口（MoveTo(a2,a3)=OffsetBy(a2-curX,a3-curY)）· 用户指令（2026-10-17）：命名须上下文语义+IDA 优先 ✓ 本条为强化工作流示范",
+  "declaration_only": true
  },
  "0x004A4770": {
   "name": "SetUIWndFlag",
