@@ -1787,6 +1787,20 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # mislabels a base type). Only accept valid C++ identifiers that name a
     # known emitted class — anything else came from IDB type pollution and
     # would produce unresolvable includes.
+    def _classify_base_kind(b):
+        """基类名 kind 分派（纯函数，R15 单测点）——2026-10-17 codegen 结构生成修复。
+
+        病灶：`_inline_*` 型（内联 union/struct）被误渲染为基类 `: public _inline_X`
+        （_known_base_name 护不住——_inline_X.h 生成头存在 ✓ 蒙混过检）。
+        kind 分派：`_inline_` 前缀 ⇒ **overlay 成员形**（`union {...} name;` 包装）
+        非基类 ⇒ 其余 ⇒ base 继承形 ✓ 等价变换（同布局）。
+        """
+        if not b:
+            return 'invalid'
+        if b.startswith('_inline_'):
+            return 'inline-overlay'
+        return 'base'
+
     def _known_base_name(b):
         # Deterministic: consult the in-memory class universe (export +
         # annotations), never disk state. The old file-existence check made
@@ -1806,16 +1820,19 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         if isinstance(_ann_base, list):
             resolved = []
             for b in _ann_base:
+                if _classify_base_kind(b) == 'inline-overlay':
+                    continue  # [kind 分派 2026-10-17] _inline_* 走 overlay 成员形（非基类）
                 if b in template_map:
                     resolved.append(template_map[b])
                 elif _known_base_name(b):
                     resolved.append(b)
             base_names.extend(resolved)
         else:
-            if _ann_base in template_map:
-                base_names.append(template_map[_ann_base])
-            elif _known_base_name(_ann_base):
-                base_names.append(_ann_base)
+            if _classify_base_kind(_ann_base) != 'inline-overlay':
+                if _ann_base in template_map:
+                    base_names.append(template_map[_ann_base])
+                elif _known_base_name(_ann_base):
+                    base_names.append(_ann_base)
                 gb_path = _gbengine_type_to_header.get(_ann_base)
                 if gb_path:
                     inc_line = '#include "%s"' % gb_path
@@ -1836,6 +1853,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             if isinstance(_ann_json_base, str):
                 _ann_json_base = [_ann_json_base]
             for _b in _ann_json_base:
+                if _classify_base_kind(_b) == 'inline-overlay':
+                    continue  # [kind 分派 2026-10-17·第三路补] _inline_* 走 overlay 成员形
                 if _b in template_map:
                     _b = template_map[_b]
                 if _b in base_names:
