@@ -1747,7 +1747,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         lines.append('#include <d3dx9.h>')
 
     # Emit forward declarations for class types
-    fwd_types = {t for t in fwd_types}
+    # [C2143 修 2026-10-19] **嵌套型排除**：类内嵌套定义（如 AStarPathFinder::NODE）
+    # 不得全局前向声明——MSVC6 不允许同名 class/struct 前向声明与嵌套定义混用
+    # （`class NODE;` 全局 vs `struct NODE` 嵌套 ⇒ NODE* 解析失败 C2143 · 213 文件 L7）。
+    _nested_names = {n.split('::')[-1] for n in (nested_types or [])}
+    fwd_types = {t for t in fwd_types if t.split('::')[-1] not in _nested_names}
     for t in sorted(fwd_types):
         lines.append("class %s;" % t)
     if fwd_types:
