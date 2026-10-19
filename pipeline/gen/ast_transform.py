@@ -1622,12 +1622,14 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 new_text = '%s.%s(%s)' % (
                                     _obj, _short_cls, _ctor_rest)
                             elif first_arg_text == 'this':
-                                new_text = 'this->%s(%s)' % (
-                                    _short_cls, _ctor_rest)
+                                # [C2273 修 2026-10-19] 限定形 `this->Cls::Cls()`
+                                # （`this->Cls()` = MSVC 函数式 cast ✗ C2273 ×919）
+                                new_text = 'this->%s::%s(%s)' % (
+                                    _short_cls, _short_cls, _ctor_rest)
                             else:
-                                # Class::Class(ptr) -> ptr->Class()
-                                new_text = '%s->%s(%s)' % (
-                                    first_arg_text, _short_cls, _ctor_rest)
+                                # Class::Class(ptr) -> ptr->Cls::Cls()（同限定形 ✓）
+                                new_text = '%s->%s::%s(%s)' % (
+                                    first_arg_text, _short_cls, _short_cls, _ctor_rest)
                             replacements.append((
                                 node.start_byte, node.end_byte, new_text))
                             return
@@ -1643,7 +1645,11 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                             if method_name == '_' + class_name.split('::')[-1]:
                                 _method_out = '~' + class_name.split('::')[-1]
 
-                            # Constructor call: Class::Class(this) -> this->Class()
+                            # Constructor call: Class::Class(this) -> this->Class::Class()
+                            # [C2273 修 2026-10-19] `this->Cls()` = MSVC 函数式 cast
+                            # （C2273 'function-style cast' illegal as right of '->' ×919）——
+                            # **限定形** `this->Cls::Cls()`（既有制式 ✓ PAL_GDB 先例）：
+                            # 限定直调抑制虚分派/名称歧义 ✓ 等价变换。
                             _short_cls = class_name.split('::')[-1]
                             if method_name == _short_cls:
                                 _ensure_bases()
@@ -1651,7 +1657,7 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 if _is_base and class_name != cls_name:
                                     new_text = '%s::%s(%s)' % (class_name, _method_out, rest_str)
                                 else:
-                                    new_text = 'this->%s(%s)' % (_method_out, rest_str)
+                                    new_text = 'this->%s::%s(%s)' % (_short_cls, _method_out, rest_str)
                                 replacements.append((
                                     node.start_byte, node.end_byte, new_text))
                                 return
