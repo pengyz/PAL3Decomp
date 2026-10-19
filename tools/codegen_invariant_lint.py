@@ -167,6 +167,14 @@ def find_type_in_member_position(src, type_names):
     hits = []
     for m in _RE_ARROW_TYPE.finditer(masked):
         nm = m.group(1)
+        end = m.end(1)
+        # [误报修 2026-10-19·当场读抓获] 贪婪回溯会产生**前缀匹配**：
+        #   `->RenderTarget3::X()` 中 `([A-Z]\w*)` 可回溯成 `RenderTarget`，
+        #   于是 `(?!::)` 落在 `3::` 上而“通过”，误判为「型名进成员位」。
+        #   实测 37 处全为此类误报（真实行均为合法限定调用
+        #   `->RenderTarget2::Update()` 形）。判据：捕获名后必须是词边界。
+        if end < len(masked) and (masked[end].isalnum() or masked[end] == '_'):
+            continue
         if nm not in type_names:
             continue
         # dtor：`->~Cls`

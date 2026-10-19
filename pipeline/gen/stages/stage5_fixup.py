@@ -1817,6 +1817,7 @@ def _run_inner(code, ctx):
     #     ⇒ `(EXPR).M`）—— 消除「同一 reg_ 变量既作整数又作指针」的矛盾。
     #     必须在 F83 之后（reg_ 名与声明此时才存在）、在 cast 之前（保持 & 形可匹配）。
     code = forward_addr_reg_uses(code)
+    code = fix_reg_deref_forms(code)
     code = cast_reg_ptr_rhs(code)
 
     return code
@@ -1921,6 +1922,36 @@ def forward_addr_reg_uses(code):
         seg = out[endpos:win_end]
         seg_new = pat.sub('(%s).' % expr, seg)
         out = out[:endpos] + seg_new + out[win_end:]
+    return out
+
+
+# [I1 残修 2026-10-19] reg_ 解引用形：区分「真读」与「占位宏镜像」
+#
+# 病灶（门禁 I1 残 13 处 · 全链实读）：
+#   A) 真读：`pfVal2.x = *reg_EDI;` —— reg_EDI 是 unsigned long 声明（F83 标量），
+#      但此处按指针取值。目标 `.x/.y/.z` 是 float ⇒ pointee 必为 float。
+#      修：`pfVal2.x = *(float *)reg_EDI;`（读 4 字节 → float，位等价 ✓）
+#   B) 占位宏镜像：`*reg_EDI = _ET1;` —— `_ET1` 是 ida_defs.h 的**只读占位宏**
+#      （`#define _ET1 0`，注释明写「只读约定」），把它当**右值**赋值无任何可表达
+#      语义；且前邻 `__asm { fstp dword ptr [edi] }` 已包含真实存储指令。
+#      若强行铸成 `*(float *)reg_EDI = (float)_ET1;` 会多出一条 `mov [reg],0`
+#      ⇒ 字节不匹配。故降为注释：零代码产出、信息不丢、可回溯。
+_RE_REG_DEREF_READ = re.compile(
+    r'(\.\s*(?:x|y|z|w)\s*=\s*)\*\s*(reg_[A-Z]\w*)\s*;')
+_RE_REG_DEREF_ET = re.compile(
+    r'^([ \t]*)\*\s*(reg_[A-Z]\w*)\s*=\s*(_ET\d+)\s*;[ \t]*$', re.M)
+
+
+def fix_reg_deref_forms(code):
+    """A) 真读补 `*(float *)` 铸；B) `_ETn` 占位镜像降为注释。"""
+    if not code or 'reg_' not in code or '*reg_' not in code.replace(' ', ''):
+        # 兼容 `* reg_` 写法
+        if not code or 'reg_' not in code:
+            return code
+    out = _RE_REG_DEREF_READ.sub(r'\1*(float *)\2;', code)
+    out = _RE_REG_DEREF_ET.sub(
+        r'\1// [I1] \3 占位宏右值（_ETn 只读约定·无可表达语义）——'
+        r'原 `*\2 = \3;` 已由上方 asm 存储覆盖\n', out)
     return out
 
 

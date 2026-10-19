@@ -119,3 +119,27 @@ def test_baseline_ratchet_no_regression(tmp_path, monkeypatch):
     # 直接走子进程不方便（argparse），此处仅验证基线文件语义与扫描器
     res = L.scan_files(str(src_dir), set())
     assert res['reg_ptr_use'] == [] and res['type_in_member'] == []
+
+
+def test_i2_prefix_backtrack_not_false_positive():
+    """[误报修 2026-10-19] `->RenderTarget3::X()` 不得回溯成 `RenderTarget` 误报。
+
+    实测 37 处 I2 全属此类：真实行均为合法限定调用
+        (((RenderTarget2 *)Instance_fd20))->RenderTarget2::Update(dt);
+    根因：`([A-Z]\\w*)\\s*(?!::)` 在 `RenderTarget3::` 上回溯成前缀 `RenderTarget`，
+    使 `(?!::)` 落在 `3::` 上而“通过”。修法：捕获名后必须是词边界。
+    """
+    types = {'RenderTarget'}
+    for line in (
+        '  (((RenderTarget3 *)(v2 + 64)))->RenderTarget3::ClearEffects();\n',
+        '  (((RenderTarget2 *)Instance_fd20))->RenderTarget2::Update(dt);\n',
+        '  (((RenderTarget *)Instance_db10))->RenderTarget::OnDeviceLost(1);\n',
+    ):
+        assert L.find_type_in_member_position(line, types) == [], line
+
+
+def test_i2_real_violation_still_caught():
+    """误报修不得放过真违规：`x->RoleSystem`（型名后直接非标识符字符）"""
+    src = 'void f() {\n    v = a->RoleSystem;\n}\n'
+    hits = L.find_type_in_member_position(src, {'RoleSystem'})
+    assert len(hits) == 1 and hits[0][1] == 'RoleSystem'
