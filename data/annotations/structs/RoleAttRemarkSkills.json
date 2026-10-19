@@ -3,14 +3,22 @@
   "binary_size": 298,
   "known_members": {
     "290": {
-      "name": "nSkillCount1",
-      "type": "int",
-      "source": "[annotation 去 inline 化 2026-10-17] 布局从 _inline_ 合成型搬移（ida_structs _inline_RoleAtt_Remark::$101B5358F90B67F size=298）；位面/嵌入复用语义见名"
-    },
-    "294": {
-      "name": "nSkillCount2",
-      "type": "int",
-      "source": "[annotation 去 inline 化 2026-10-17] 布局从 _inline_ 合成型搬移（ida_structs _inline_RoleAtt_Remark::$101B5358F90B67F size=298）；位面/嵌入复用语义见名"
+      "name": "skillCount",
+      "type": {
+        "struct": [
+          {
+            "offset": 0,
+            "name": "nSkillCount1",
+            "type": "int"
+          },
+          {
+            "offset": 4,
+            "name": "nSkillCount2",
+            "type": "int"
+          }
+        ]
+      },
+      "source": "[P3 变体层复原 2026-10-19] 具名顶替把 union 变体展平为散员 ✗✗（引用侧 `X.skillCount` 找不到 ⇒ C2039 ×400）⇒ **复原变体层**（CLAUDE.md inline struct 语法 ✓ 变体名保留）· 等价变换（同布局 ✓ 变体层是名非位）"
     }
   },
   "methods": {},
