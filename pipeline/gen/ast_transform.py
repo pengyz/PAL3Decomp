@@ -1622,17 +1622,20 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 new_text = '%s.%s(%s)' % (
                                     _obj, _short_cls, _ctor_rest)
                             elif first_arg_text == 'this':
-                                # [P0 修 2026-10-19·T56 #16] **静态成员式**（verifier 对抗
-                                # 复核：`this->Cls::Cls()` 语法非法 ✗✗——ctor 不可经 -> 调）：
-                                # `Cls::Cls(this)` ✓ 合法静态调用形（等价变换——同 ctor 语义）。
-                                new_text = '%s::%s(this%s)' % (
-                                    _short_cls, _short_cls,
-                                    (', ' + _ctor_rest) if _ctor_rest else '')
+                                # [终裁实证 2026-10-19·MSVC6 编译器裁判] `this->Cls::Cls()`
+                                # **编译过** ✓✓✓（test7 实证）——verifier「仍非法」系测了
+                                # 无括号接收者形（`(T*)&x->Cls::Cls()` ✗✗ 他们错）。
+                                # **限定箭头形=正确形**（P0 静态形回退——C2665 真凶 ✓）。
+                                new_text = 'this->%s::%s(%s)' % (
+                                    _short_cls, _short_cls, _ctor_rest)
                             else:
-                                # Class::Class(ptr) -> Cls::Cls(ptr, ...)（静态形 ✓）
-                                new_text = '%s::%s(%s%s)' % (
-                                    _short_cls, _short_cls, first_arg_text,
-                                    (', ' + _ctor_rest) if _ctor_rest else '')
+                                # Class::Class(ptr) -> **括号化 cast 接收者** + 限定形 ✓
+                                # （`(T*)x->Cls::Cls()` 非法（cast 优先级）⇒ `((T*)x)->Cls::Cls()` ✓
+                                _recv = first_arg_text
+                                if _recv.startswith('(') and '*' in _recv[:20] and not _recv.startswith('(('):
+                                    _recv = '(%s)' % _recv  # cast 接收者括号化
+                                new_text = '%s->%s::%s(%s)' % (
+                                    _recv, _short_cls, _short_cls, _ctor_rest)
                             replacements.append((
                                 node.start_byte, node.end_byte, new_text))
                             return
@@ -1660,10 +1663,9 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 if _is_base and class_name != cls_name:
                                     new_text = '%s::%s(%s)' % (class_name, _method_out, rest_str)
                                 else:
-                                    # [P0 修·T56 #16] 静态成员式（ctor 不可经 -> 调）
-                                    new_text = '%s::%s(this%s)' % (
-                                        _short_cls, _method_out,
-                                        (', ' + rest_str) if rest_str else '')
+                                    # [终裁实证] 限定箭头形（MSVC6 编译过 ✓）
+                                    new_text = 'this->%s::%s(%s)' % (
+                                        _short_cls, _method_out, rest_str)
                                 replacements.append((
                                     node.start_byte, node.end_byte, new_text))
                                 return

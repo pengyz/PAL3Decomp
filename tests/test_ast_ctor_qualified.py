@@ -21,8 +21,9 @@ def test_ctor_this_call_renders_qualified_form():
     out = at.transform_oop_calls('void Foo::Foo() { Foo::Foo(this); }',
                                  static_methods=set(), cls_name='Foo')
     # [T56 #16 修正] 静态成员式（verifier：this->Cls::Cls() 非法 ✗）
-    assert 'Foo::Foo(this)' in out, out
-    assert '->Foo(' not in out, 'ctor 经 -> 调（非法形）✗'
+    # [终裁实证 2026-10-19] 限定箭头形（MSVC6 test7 编译过 ✓✓）
+    assert 'this->Foo::Foo()' in out, out
+    assert '->Foo()' not in out.replace('->Foo::Foo()', ''), '非限定形复现（C2273）✗'
 
 
 def test_base_ctor_still_qualified_direct():
