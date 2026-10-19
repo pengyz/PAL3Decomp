@@ -1789,8 +1789,72 @@ def _run_inner(code, ctx):
                 # 仅对 dtor：该形参名已从签名删除、函数体内无声明，**不可能是合法标识符**，
                 # 故替换不可能覆盖真实的局部变量/参数。且该析构体自身负责 `operator delete`、
                 # 只能由 `delete` 路径进入 ⇒ flag 恒为 1（否则 double-free）。
-                code = re.sub(r'\b' + re.escape(_flag_name) + r'\b', '1', code)
+                # [LINT 修 2026-10-19] 仅当形参**确已被从签名删除**时才做替换：
+                #   实测 `_sdtor_call_dtor(int 1)` —— 形参仍在签名里，全串 sub 把
+                #   签名中的形参名也换成 `1` ⇒ 生成源「数值形参名」（义腐化，
+                #   tools/codegen_param_lint.py 硬门禁）。判据：形参名若仍出现在
+                #   首个 `{` 之前的签名区 ⇒ 未删除 ⇒ 无需替换（body 可正常引用）。
+                _brace_h = code.find('{')
+                _sig_region = code[:_brace_h] if _brace_h != -1 else code
+                if not re.search(r'\b' + re.escape(_flag_name) + r'\b', _sig_region):
+                    if _brace_h != -1:
+                        code = (code[:_brace_h + 1]
+                                + re.sub(r'\b' + re.escape(_flag_name) + r'\b', '1',
+                                         code[_brace_h + 1:]))
+                    else:
+                        code = re.sub(r'\b' + re.escape(_flag_name) + r'\b', '1', code)
 
+    # [C2440 修 2026-10-19·型判别铸] reg_ 伪名 ← **显式指针铸表达式** 补整型铸
+    # 病灶：F83 把寄存器伪名提升为 `unsigned long reg_EDI`（本批上方 _decls 区），
+    #   而 RHS 常为显式指针铸表达式（`reg_EDI = (float *)(&this->m_nTodo_20 + 9);`）
+    #   ⇒ 指针→整型标量的隐式转换在 C++ 非法 ⇒ C2440 ✗✗（本仓 10 站同形）
+    # 与 2026-09-29 回退的 `cast_reg_assignments` 的**关键区别**：那次是**无条件**铸，
+    #   把类值 RHS / 指针链成员访问 RHS 也铸了 ⇒ 改变重载决议与成员访问语法
+    #   （UIScene +13 C2227/C2228 · PAL3 +2 C2679 · ScriptVM 60→102 级联）⇒ 回退。
+    #   本次**型判别**：仅 RHS 顶层为 `(<Type> *)`（显式指针铸）才补 —— 该形是标量
+    #   位值表达式，包 `(unsigned long)` 为恒等变换（32-bit 同宽 4B）✓
+    code = cast_reg_ptr_rhs(code)
+
+    return code
+
+
+# [C2440 修 2026-10-19] 型判别铸纯函数（R15：先测后用；测见
+# tests/test_cast_reg_ptr_rhs.py）。仅匹配 `reg_X = (<T> *)...;` 的顶层显式指针铸。
+_RE_REG_PTR_RHS = re.compile(
+    r'(?<![A-Za-z0-9_])'                 # 词边界
+    r'(?P<lhs>\breg_[A-Z]\w*\s*=\s*)'    # reg_X =
+    r'(?!\s*\(unsigned long\))'          # 已补铸则跳过（防双重）
+    r'(?P<cast>\(\s*(?:const\s+)?'       # ( 可带 const
+    r'[A-Za-z_]\w*(?:::\w+)*'            #   型名（含 :: 限定）
+    r'\s*\*\s*\))'                       #   * )
+)
+
+
+def cast_reg_ptr_rhs(code):
+    """`reg_X = (T *)expr;` ⇒ `reg_X = (unsigned long)(T *)expr;`
+
+    等价变换：指针值→整型标量，32-bit 下同宽 4 字节，位不变。
+    只认**顶层显式指针铸**形态；类值 / 裸指针变量 / 指针链成员 RHS 不匹配 ⇒ 豁免
+    （2026-09-29 无条件铸回退教训：那类 RHS 的显式铸会改变重载决议）。
+    """
+    if not code or 'reg_' not in code:
+        return code
+    try:
+        from ast_transform import _mask_strings_comments as _msc
+        masked = _msc(code)
+    except Exception:
+        masked = code
+    spans = []
+    for m in _RE_REG_PTR_RHS.finditer(masked):
+        pre = masked[max(0, m.start() - 2):m.start()]
+        # 语句边界：行首或 `;{}` 之后（非边界保守不动）
+        if pre.strip() and not pre.rstrip().endswith((';', '{', '}')):
+            continue
+        spans.append(m.start('cast'))
+    if not spans:
+        return code
+    for pos in reversed(spans):
+        code = code[:pos] + '(unsigned long)' + code[pos:]
     return code
 
 
