@@ -1813,6 +1813,10 @@ def _run_inner(code, ctx):
     #   （UIScene +13 C2227/C2228 · PAL3 +2 C2679 · ScriptVM 60→102 级联）⇒ 回退。
     #   本次**型判别**：仅 RHS 顶层为 `(<Type> *)`（显式指针铸）才补 —— 该形是标量
     #   位值表达式，包 `(unsigned long)` 为恒等变换（32-bit 同宽 4B）✓
+    # I1：地址寄存器前向替换（`reg_X = (unsigned long)&EXPR;` + `reg_X->M`
+    #     ⇒ `(EXPR).M`）—— 消除「同一 reg_ 变量既作整数又作指针」的矛盾。
+    #     必须在 F83 之后（reg_ 名与声明此时才存在）、在 cast 之前（保持 & 形可匹配）。
+    code = forward_addr_reg_uses(code)
     code = cast_reg_ptr_rhs(code)
 
     return code
@@ -1828,6 +1832,96 @@ _RE_REG_PTR_RHS = re.compile(
     r'[A-Za-z_]\w*(?:::\w+)*'            #   型名（含 :: 限定）
     r'\s*\*\s*\))'                       #   * )
 )
+
+
+# [I1 不变量修 2026-10-19] 地址寄存器**前向替换**（address forwarding）
+# 病灶：两个变换对 reg_XXX 的类型假设互相矛盾——
+#   · asm 提升变换把它当**指针**用：`reg_EAX->x = x`（成员写）
+#   · F83 寄存器提升把它声明成**标量**：`unsigned long reg_EAX = 0;`
+#   ⇒ 同一变量既作整数又作指针 ⇒ C2227 left of '->x' must point to class（实测 33 站）
+# 修法（**可证明等价**，且无需类型推断）：
+#   若块内存在 `reg_X = (unsigned long)&EXPR;`（或 `reg_X = &EXPR;`），
+#   则在 reg_X 下次被赋值之前，把 `reg_X->M` 改写为 `(EXPR).M`。
+#   恒等式：p = &e 时 p->m ≡ (*p).m ≡ e.m  ✓（位/语义完全一致）
+#   改写后 reg_X 不再有指针用法 ⇒ I1 消除；赋值本身是合法的整型铸，保留无害。
+_RE_REG_ADDR_ASSIGN = re.compile(
+    r'\b(reg_[A-Z]\w*)\s*=\s*(?:\(\s*unsigned\s+long\s*\)\s*)?&')
+_RE_REG_REASSIGN = re.compile(r'\b(reg_[A-Z]\w*)\s*=[^=]')
+
+
+def _match_paren(src, i):
+    """src[i] == '(' ⇒ 返回匹配的 ')' 之后的位置；失败返回 -1。"""
+    d = 0
+    n = len(src)
+    while i < n:
+        c = src[i]
+        if c == '(':
+            d += 1
+        elif c == ')':
+            d -= 1
+            if d == 0:
+                return i + 1
+        i += 1
+    return -1
+
+
+def forward_addr_reg_uses(code):
+    """`reg_X = (unsigned long)&EXPR;` ... `reg_X->M` ⇒ `(EXPR).M`（可证明等价）。"""
+    if not code or 'reg_' not in code or '->' not in code:
+        return code
+    try:
+        from ast_transform import _mask_strings_comments as _msc
+        masked = _msc(code)
+    except Exception:
+        masked = code
+
+    # 收集 (reg 名 -> [(赋值结束位置, EXPR 原文)])
+    assigns = []
+    for m in _RE_REG_ADDR_ASSIGN.finditer(masked):
+        rn = m.group(1)
+        amp = m.end() - 1                      # '&' 位置
+        j = amp + 1
+        n = len(masked)
+        depth = 0
+        while j < n:
+            c = masked[j]
+            if c == '(':
+                depth += 1
+            elif c == ')':
+                if depth == 0:
+                    break
+                depth -= 1
+            elif c == ';' and depth == 0:
+                break
+            j += 1
+        expr = code[amp + 1:j].strip()
+        if not expr:
+            continue
+        # 只接受"简单左值链"（标识符/点/箭头/下标/括号），避免误改复杂表达式
+        if not re.fullmatch(r'[\w\s\.\[\]\->\(\):&\*,]+', expr):
+            continue
+        assigns.append((rn, amp, j, expr))
+
+    if not assigns:
+        return code
+
+    out = code
+    for rn, amp, endpos, expr in reversed(assigns):
+        # 该 reg 的下一次赋值位置（限制改写窗口）
+        nxt = None
+        for m2 in _RE_REG_REASSIGN.finditer(masked, endpos):
+            if m2.group(1) == rn:
+                nxt = m2.start()
+                break
+        win_end = nxt if nxt is not None else len(masked)
+        seg_m = masked[endpos:win_end]
+        pat = re.compile(r'\b' + re.escape(rn) + r'\s*->')
+        if not pat.search(seg_m):
+            continue
+        seg = out[endpos:win_end]
+        seg_new = pat.sub('(%s).' % expr, seg)
+        out = out[:endpos] + seg_new + out[win_end:]
+    return out
 
 
 def cast_reg_ptr_rhs(code):
