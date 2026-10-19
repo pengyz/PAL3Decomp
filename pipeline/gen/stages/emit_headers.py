@@ -2049,6 +2049,47 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             "public %s" % _sanitize_template_base(b, cls_name) for b in base_names
         )
 
+    # [ALIGN 修 2026-10-19] 类级 pack(1) 自动判定
+    # 病灶：注解忠实于 IDA 字节级布局（实测 tagCmdDataDestRoleView：binary_size=11，
+    #   成员 `_pad_7 _BYTE[7]` @0 后紧跟 `void * pDestRoleOverlay` @+7），但生成器默认
+    #   按 MSVC 自然对齐发射 ⇒ 指针被推到 +8 ⇒ 实际 sizeof=12 ≠ 注解/二进制 11 ✗✗
+    #   （该 struct 由 `_inline_` 合成型「去 inline 化」搬移而来，原有 pack(1) 上下文丢失）。
+    # 修法：判定存在「非自然对齐成员」时，在类定义外层发 #pragma pack(push,1)/pop
+    #   ⇒ 发射偏移与注解字节偏移一致（等价变换：仅恢复原打包语义，不改任何成员/偏移）。
+    _need_pack = False
+    try:
+        _pk_ann = _annview.struct_by_class(cls_name) or {}
+        # 显式声明优先（与 check_annotations 同源判据，避免两处分叉）
+        _decl_pack = _pk_ann.get('pack')
+        if isinstance(_decl_pack, int) and _decl_pack <= 1:
+            _need_pack = True
+        for _off_s, _m in (_pk_ann.get('known_members') or {}).items():
+            if _need_pack:
+                break
+            if not str(_off_s).isdigit() or not isinstance(_m, dict):
+                continue
+            _o = int(_off_s)
+            if _o == 0:
+                continue
+            _nm = str(_m.get('name') or '')
+            if _nm.startswith('_pad_') or _nm.startswith('_gap_'):
+                continue
+            _ty = _m.get('type')
+            if isinstance(_ty, dict):
+                continue  # type=object：对齐由内层自带 pack 处理
+            if 'overlap' in str(_m.get('source', '')).lower():
+                continue
+            _ts = str(_ty)
+            if ('*' in _ts and _o % 4 != 0) or (
+                    any(_ts.startswith(_p) for _p in
+                        ('short', 'unsigned short', 'WORD', '_WORD'))
+                    and _o % 2 != 0):
+                _need_pack = True
+                break
+    except Exception:
+        _need_pack = False
+    _pk_open_idx = len(lines)
+
     # Determine keyword: union only if ANNOTATION explicitly marks is_union
     # (IDA TIL may misdetect some PDB types as union)
     _ann_is_union = False
@@ -3018,6 +3059,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     lines.append("};")
     lines.append("")
 
+    # [ALIGN 修 2026-10-19] 类级 pack(1) 收口（判定见本函数上方 _need_pack）
+    if _need_pack:
+        lines.insert(_pk_open_idx, '#pragma pack(push,1)')
+        lines.append('#pragma pack(pop)')
+
     # Emit typedef for underscore-prefixed types that had a bare-name alias
     # in the original project (e.g. typedef _Texture_Info Texture_Info;).
     _aliases = _get_underscore_aliases()
@@ -3435,30 +3481,73 @@ def main():
     # [C2011 修 2026-10-19·P0-A] 共享 ns-decl 头写出（声明层唯一化收口）
     try:
         if _NS_DECL_REGISTRY:
-            _ns_hdr = PROJECT_ROOT / 'include' / 'pal3' / 'gen' / '_ns_udts.h'
-            _ns_hdr.parent.mkdir(parents=True, exist_ok=True)
-            with open(_ns_hdr, 'w', encoding='utf-8') as _f:
-                _f.write('#pragma once\n')
-                _f.write('// Auto-generated: shared ns-scope UDT declarations (C2011 dedup)\n')
-                # [P0-A 修 2026-10-19] 写入去重：同一 _ns_lines 块只写一次
-                # （registry 同块多键 ⇒ 重复写 ⇒ C2011 潜伏 ✗✗——写入侧 _written 块哈希锁）
-                _written = set()
-                for _k in sorted(_NS_DECL_REGISTRY):
-                    _block = tuple(_NS_DECL_REGISTRY[_k])
-                    if _block in _written:
-                        continue
-                    _written.add(_block)
-                    for _dl in _NS_DECL_REGISTRY[_k]:
-                        _f.write(_dl + '\n')
-            # 镜像 pal3/src（双址制式 ✓ C2143 根治同法）
-            _ns_m = OUTPUT_DIR / '_ns_udts.h'
-            with open(_ns_m, 'w', encoding='utf-8') as _f:
-                _f.write('#pragma once\n')
-                _f.write('// Auto-generated: shared ns-scope UDT declarations (C2011 dedup)\n')
-                for _dl in [x for _b in sorted({tuple(v) for v in _NS_DECL_REGISTRY.values()})
-                            for x in _b]:
-                    _f.write(_dl + '\n')
-            print("[C2011] ns-decls: %d unique -> _ns_udts.h (shared)" % len(_NS_DECL_REGISTRY))
+            # [C2501/C2143 修 2026-10-19] 前向声明补齐
+            # 病灶：ns-UDT 块内指针引用外部类（RoleSystem/CEffMgr…）而本头无前向声明
+            #   ⇒ 全局作用域解析失败 ⇒ C2501 missing type specifiers ×214 +
+            #      C2143 missing ';' before '*' ×214（全 214 TU 同点 L100）。
+            # 修法：序列化块文本 → 扫描 `Type *` 引用 → 排除本文件已定义型/builtin
+            #   ⇒ 头首写 `class X;`（声明层补全，不改任何布局/语义 · 等价变换 ✓）
+            _written = set()
+            _ordered_blocks = []
+            for _k in sorted(_NS_DECL_REGISTRY):
+                _block = tuple(_NS_DECL_REGISTRY[_k])
+                if _block in _written:
+                    continue
+                _written.add(_block)
+                _ordered_blocks.append(_NS_DECL_REGISTRY[_k])
+            _all_lines = [x for _b in _ordered_blocks for x in _b]
+
+            import re as _re_fwd
+            _defined_here = set(_re_fwd.findall(
+                r'^\s*(?:struct|union)\s+(\w+)\s*\{', '\n'.join(_all_lines), _re_fwd.M))
+            _ptr_types = set(_re_fwd.findall(r'\b(\w+)\s*\*', '\n'.join(_all_lines)))
+            _builtin = {
+                'void', 'char', 'int', 'float', 'double', 'short', 'long',
+                'unsigned', 'signed', 'bool', '_BYTE', '_WORD', '_DWORD',
+                '_QWORD', '__int8', '__int16', '__int32', '__int64', 'wchar_t',
+            }
+            _fwd_needed = sorted(
+                t for t in ((_ptr_types - _defined_here) - _builtin)
+                if not should_skip_class(t))   # SDK 型来自 ida_types.h，勿再声明
+            _fwd_lines = ['class %s;' % _t for _t in _fwd_needed]
+
+            # [C2146 修 2026-10-19] 按值引用类型须**完整定义**（前向声明不够）
+            # 病灶：块内 `tagTeamSlotsBOverlay combat;`（按值 union 员）而本头无其定义
+            #   ⇒ C2146 missing ';' before identifier 'combat' ×218 + 后续 C2501 级联。
+            # 修法：扫描 `Type name;`（无 `*`）→ 排除本文件已定义型/builtin
+            #   ⇒ 头首 `#include "<sub>/<Type>.h"`（含 #pragma once 防重 ✓）。
+            _byval_types = set(_re_fwd.findall(
+                r'^\s*([A-Za-z_]\w*)\s+[A-Za-z_]\w*\s*;', '\n'.join(_all_lines), _re_fwd.M))
+            # SDK/系统型（tagRECT 等）定义在 ida_types.h 链上 ⇒ 无需生成头 include
+            _byval_needed = sorted(
+                t for t in (((_byval_types - _defined_here) - _builtin) - set(_fwd_needed))
+                if not should_skip_class(t))
+            _byval_inc = []
+            for _t in _byval_needed:
+                _sub = get_class_dir(_t)
+                if _sub:
+                    _byval_inc.append('#include "%s/%s.h"' % (_sub, _t))
+                else:
+                    _byval_inc.append('#include "%s.h"' % _t)
+
+            _head = ['#pragma once',
+                     '// Auto-generated: shared ns-scope UDT declarations (C2011 dedup)']
+            if _byval_inc:
+                _head.append('// Full definitions required by by-value members below')
+                _head.extend(_byval_inc)
+            if _fwd_lines:
+                _head.append('// Forward declarations for types referenced by pointer below')
+                _head.extend(_fwd_lines)
+            _payload = _head + _all_lines
+
+            # 双址写出（主子 include/pal3/gen + 镜像 pal3/src，C2143 根治同法 ✓）
+            for _target in (PROJECT_ROOT / 'include' / 'pal3' / 'gen' / '_ns_udts.h',
+                            OUTPUT_DIR / '_ns_udts.h'):
+                _target.parent.mkdir(parents=True, exist_ok=True)
+                with open(_target, 'w', encoding='utf-8') as _f:
+                    _f.write('\n'.join(_payload) + '\n')
+            print("[C2011] ns-decls: %d unique blocks, %d byval-inc, %d fwd-decls -> _ns_udts.h"
+                  % (len(_ordered_blocks), len(_byval_inc), len(_fwd_lines)))
     except Exception as _e:
         print("[C2011] ns-decl shared header write failed: %s" % _e)
     print("Generated %d header files in %s" % (generated, OUTPUT_DIR))

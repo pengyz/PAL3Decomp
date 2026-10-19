@@ -624,7 +624,15 @@ def check(struct_dir=None):
                 if end1 > max_extent:
                     max_extent = end1
             # Check member alignment: pointers must be 4-aligned, shorts 2-aligned
+            # [PACK 修 2026-10-19] 显式 packed 结构（"pack": 1）跳过自然对齐检查
+            #  —— 二进制结构确为字节级打包（IDA 尺寸即证：tagCmdDataDestRoleView
+            #     size=11 且 void* 在 +7），成员按声明偏移排布才是正确语义；
+            #     codegen 为其发射 #pragma pack(push,1) 复现同一布局。
+            _decl_pack = sinfo.get('pack')
+            _is_decl_packed = isinstance(_decl_pack, int) and _decl_pack <= 1
             for off_str, m in members.items():
+                if _is_decl_packed:
+                    break
                 off = _base_off(off_str)
                 mtype = m.get('type', '')
                 name = m.get('name', '')
