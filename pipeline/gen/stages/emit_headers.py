@@ -2114,6 +2114,13 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         lines.append("class %s%s {" % (cls_name, bases_str))
     else:
         lines.append("class %s%s {" % (cls_name, bases_str))
+    # [C2143 修·T56 #14 收口 2026-10-19] **类内嵌套前向**（全局排除+类内补发双满足 ✓）
+    # ——C2143 禁的是**全局** class X; 与嵌套 struct X 混用 ✗；类内 `struct X;` 前向合法 ✓
+    # （test_emit_nested 规格 ✓ 代码回归修复）。
+    for _nt in (nested_types or []):
+        lines.append("    struct %s;" % _nt.split('::')[-1])
+    if nested_types:
+        lines.append("")
     lines.append("public:")
 
     # Virtual methods from vtable (must be first, order matches vtable layout)
@@ -4156,12 +4163,10 @@ def generate_globals_cpp():
             return False  # referenced by decomp bodies: must be defined
         if ann_info.get('type') == 'skip':
             return True
-        if addr < DATA_VA and not (typ.startswith('char') or re.match(r'^a[A-Z]', name)):
-            # .rdata scalars are compiler-generated except strings the code
-            # actually references (those are forced above; keep other chars)
-            return True
-        if addr < DATA_VA:
-            return True
+        # [task-9 2026-10-19·确保生成] **DATA_VA 启发跳撤除**：.rdata 标量（flt_/dword_
+        # 等）被代码引用者必声明——原启发跳致 flt_D90060 等被跳 ✗✗ C2065 面
+        # （超集安全 ✓ 码内既有原则「Extra forward declarations are legal」）。
+        # 仅保留：ann_info type=='skip'（导出层跳 ✓）· 强制名（引用 ✓ 必发）。
         return False
     
     lines = [

@@ -79,7 +79,11 @@ def test_nullcallback_in_free_functions():
 
 def test_flt_d90060_in_globals():
     """Verify: flt_D90060 is declared in globals.h."""
-    gh_path = PROJECT_ROOT / "pal3" / "src" / "globals.h"
+    # [task-9 2026-10-19] 单副本原则：真相源=include/pal3/gen/globals.h（被 include ✓）
+    # 旧址已垫片化（redirect）⇒ 测据随权威件 ✓
+    gh_path = PROJECT_ROOT / "include" / "pal3" / "gen" / "globals.h"
+    if not gh_path.exists():
+        gh_path = PROJECT_ROOT / "pal3" / "src" / "globals.h"
     if not gh_path.exists():
         return
     content = gh_path.read_text()
