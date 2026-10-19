@@ -3226,6 +3226,17 @@ def main():
         output_path = _subdir_path / ("%s.h" % _sanitize_filename(cls_name))
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(content)
+        # [C2143 根治 2026-10-19] **双址镜像**：include/pal3/gen/ 副本同步生成
+        # （原只生成 pal3/src/ ⇒ include/pal3/gen/ 陈旧副本被 globals.h include
+        # ⇒ C2143 NODE 未定义 213 文件 L7 系统性 ✗——陈旧副本即病灶源 ✓ 根治）。
+        _mirror_dir = PROJECT_ROOT / 'include' / 'pal3' / 'gen'
+        try:
+            _mirror_dir.mkdir(parents=True, exist_ok=True)
+            _mirror_path = _mirror_dir / ("%s.h" % _sanitize_filename(cls_name))
+            with open(_mirror_path, 'w', encoding='utf-8') as f:
+                f.write(content)
+        except Exception:
+            pass  # 镜像失败不阻主产物（主产物=pal3/src/ 权威 ✓）
         generated += 1
 
     # Generate enum headers from ida_structs.json._enums
