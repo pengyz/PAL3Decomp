@@ -2185,6 +2185,9 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             _enum_data = _get_ida_structs().get('_enums', {}).get(_nt_full, {})
             if _enum_data.get('values'):
                 continue  # can't forward-declare enums in VC6
+            # [C1001 修] 去重：nested_types 已生成的不再重复
+            if _child.short_name in _nested_names:
+                continue
             lines.append("    struct %s;" % _child.short_name)
         lines.append("")
 
@@ -2270,9 +2273,30 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             sorted_offsets = sorted(ann_members, key=lambda x: int(x))
 
             def _emit_member(m, off, mname, mtype):
+                # [P1 dict 分派 2026-10-19] **变体层发射**（C2039 ×54 根因 ✓）：
+                # `type: {"struct": [...]}`/`{"union": [...]}` dict 形须展开为 inline
+                # 结构体发射——原走字符串路（dict 当型名 ✗✗ 变体层丢 ⇒ C2039）。
+                # 参考 L2362（同偏移多员 union 发射 pack(1)）+ L2422（kind 分派）。
+                if isinstance(mtype, dict):
+                    _vk = 'union' if 'union' in mtype else 'struct'
+                    _variants = mtype.get(_vk) or []
+                    _out = []
+                    _out.append("    %s {" % _vk)
+                    for _v in _variants:
+                        _vn = _v.get('name', '')
+                        _vt = _v.get('type', 'int')
+                        if isinstance(_vt, dict):
+                            # 嵌套（R15 例三）：递归展开
+                            _nk = 'union' if 'union' in _vt else 'struct'
+                            _out.append("        %s {" % _nk)
+                            for _nv in _vt.get(_nk) or []:
+                                _out.append("            %s %s;" % (_nv.get('type', 'int'), _nv.get('name', '')))
+                            _out.append("        } %s;" % _vn)
+                        else:
+                            _out.append("        %s %s;" % (_vt, _vn))
+                    _out.append("    } %s; // +0x%X" % (mname, off))
+                    return '\n'.join(_out)
                 # [C2501 修 2026-10-19·P2] 员型合成名→具名顶替（单点覆盖 ✓）
-                # `_inline_PalScript_m_RoleSlotArray m_x;` ⇒ `PalScriptRoleSlotOverlay m_x;`
-                # （C2501 'missing storage-class' ×1534 根因=顶替半闭环 ✗ 本点收口）
                 mtype = _supersede_type_name(mtype)
                 """Emit a single member line (with type remap + function pointer fix)."""
                 # Remap IDA internal types to C types
