@@ -3,54 +3,62 @@
   "binary_size": 873,
   "known_members": {
     "4": {
-      "name": "m_fCBTimer",
-      "type": "float",
-      "source": "[annotation 去 inline 化 2026-10-17] 布局从 _inline_ 合成型搬移（ida_structs _inline_RoleSystem_m_teamSlotOverlay::$2 size=873）；位面/嵌入复用语义见名"
-    },
-    "8": {
-      "name": "m_nTodo_69C",
-      "type": "int",
-      "source": "[annotation 去 inline 化 2026-10-17] 布局从 _inline_ 合成型搬移（ida_structs _inline_RoleSystem_m_teamSlotOverlay::$2 size=873）；位面/嵌入复用语义见名 | 成员用法语义302 2026-10-17（verifier·usage 形逐条）：usage 命中0 形[] evidence: 无语料 | 判定：零语料（无访问形）⇒ 挂账（无证据不赋名） | confidence: n/a（不赋名） | family: zero-corpus | confidence: n/a"
-    },
-    "84": {
-      "name": "m_nTodo_6E8",
-      "type": "float",
-      "source": "[annotation 去 inline 化 2026-10-17] 布局从 _inline_ 合成型搬移（ida_structs _inline_RoleSystem_m_teamSlotOverlay::$2 size=873）；位面/嵌入复用语义见名 | 成员用法语义302 2026-10-17（verifier·usage 形逐条）：usage 命中0 形[] evidence: 无语料 | 判定：零语料（无访问形）⇒ 挂账（无证据不赋名） | confidence: n/a（不赋名） | family: zero-corpus | confidence: n/a"
-    },
-    "88": {
-      "name": "m_nTodo_6EC",
-      "type": "float",
-      "source": "[annotation 去 inline 化 2026-10-17] 布局从 _inline_ 合成型搬移（ida_structs _inline_RoleSystem_m_teamSlotOverlay::$2 size=873）；位面/嵌入复用语义见名 | 成员用法语义302 2026-10-17（verifier·usage 形逐条）：usage 命中0 形[] evidence: 无语料 | 判定：零语料（无访问形）⇒ 挂账（无证据不赋名） | confidence: n/a（不赋名） | family: zero-corpus | confidence: n/a"
-    },
-    "92": {
-      "name": "m_nTodo_6F0",
-      "type": "float",
-      "source": "[annotation 去 inline 化 2026-10-17] 布局从 _inline_ 合成型搬移（ida_structs _inline_RoleSystem_m_teamSlotOverlay::$2 size=873）；位面/嵌入复用语义见名 | 成员用法语义302 2026-10-17（verifier·usage 形逐条）：usage 命中0 形[] evidence: 无语料 | 判定：零语料（无访问形）⇒ 挂账（无证据不赋名） | confidence: n/a（不赋名） | family: zero-corpus | confidence: n/a"
-    },
-    "104": {
-      "name": "m_nTodo_6FC",
-      "type": "float",
-      "source": "[annotation 去 inline 化 2026-10-17] 布局从 _inline_ 合成型搬移（ida_structs _inline_RoleSystem_m_teamSlotOverlay::$2 size=873）；位面/嵌入复用语义见名 | 成员用法语义302 2026-10-17（verifier·usage 形逐条）：usage 命中0 形[] evidence: 无语料 | 判定：零语料（无访问形）⇒ 挂账（无证据不赋名） | confidence: n/a（不赋名） | family: zero-corpus | confidence: n/a"
-    },
-    "108": {
-      "name": "m_nTodo_700",
-      "type": "float",
-      "source": "[annotation 去 inline 化 2026-10-17] 布局从 _inline_ 合成型搬移（ida_structs _inline_RoleSystem_m_teamSlotOverlay::$2 size=873）；位面/嵌入复用语义见名 | 成员用法语义302 2026-10-17（verifier·usage 形逐条）：usage 命中0 形[] evidence: 无语料 | 判定：零语料（无访问形）⇒ 挂账（无证据不赋名） | confidence: n/a（不赋名） | family: zero-corpus | confidence: n/a"
-    },
-    "112": {
-      "name": "m_nTodo_704",
-      "type": "float",
-      "source": "[annotation 去 inline 化 2026-10-17] 布局从 _inline_ 合成型搬移（ida_structs _inline_RoleSystem_m_teamSlotOverlay::$2 size=873）；位面/嵌入复用语义见名 | 成员用法语义302 2026-10-17（verifier·usage 形逐条）：usage 命中0 形[] evidence: 无语料 | 判定：零语料（无访问形）⇒ 挂账（无证据不赋名） | confidence: n/a（不赋名） | family: zero-corpus | confidence: n/a"
-    },
-    "868": {
-      "name": "pfVal",
-      "type": "float",
-      "source": "[annotation 去 inline 化 2026-10-17] 布局从 _inline_ 合成型搬移（ida_structs _inline_RoleSystem_m_teamSlotOverlay::$2 size=873）；位面/嵌入复用语义见名"
-    },
-    "872": {
-      "name": "m_CCBStageCamBuffer",
-      "type": "char",
-      "source": "[annotation 去 inline 化 2026-10-17] 布局从 _inline_ 合成型搬移（ida_structs _inline_RoleSystem_m_teamSlotOverlay::$2 size=873）；位面/嵌入复用语义见名"
+      "name": "m_teamSlots",
+      "type": {
+        "struct": [
+          {
+            "offset": 0,
+            "name": "m_fCBTimer",
+            "type": "float"
+          },
+          {
+            "offset": 4,
+            "name": "m_nTodo_69C",
+            "type": "int"
+          },
+          {
+            "offset": 80,
+            "name": "m_nTodo_6E8",
+            "type": "float"
+          },
+          {
+            "offset": 84,
+            "name": "m_nTodo_6EC",
+            "type": "float"
+          },
+          {
+            "offset": 88,
+            "name": "m_nTodo_6F0",
+            "type": "float"
+          },
+          {
+            "offset": 100,
+            "name": "m_nTodo_6FC",
+            "type": "float"
+          },
+          {
+            "offset": 104,
+            "name": "m_nTodo_700",
+            "type": "float"
+          },
+          {
+            "offset": 108,
+            "name": "m_nTodo_704",
+            "type": "float"
+          },
+          {
+            "offset": 864,
+            "name": "pfVal",
+            "type": "float"
+          },
+          {
+            "offset": 868,
+            "name": "m_CCBStageCamBuffer",
+            "type": "char"
+          }
+        ]
+      },
+      "source": "[P1 变体层复原 2026-10-19·m_teamSlots 族] 引用形 `X.m_teamSlots.m_fCBTimer` ⇒ 变体名保留（inline struct ✓ 内层相对偏移 T56 #17 ✓）· 等价变换（变体层=名非位）"
     }
   },
   "methods": {},

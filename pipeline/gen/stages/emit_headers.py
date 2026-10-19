@@ -1598,22 +1598,6 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             if not _k.startswith('_'):
                 _template_map[_k] = _v['template']
 
-    # [C2059 修 2026-10-19·P1 真根因] **函数体 cast 型扫描**：`(T *)`/`(T)` 形的型名
-    # 须入 include/fwd 面——原扫描只覆成员/基类 ✗✗ 体 cast 型未声明 ⇒
-    # `(UIListBox *)this` 语法错 C2059 ')' ×496（型未声明致 cast 解析崩 ✗ C2501 族伴生）。
-    for _m in methods or []:
-        _mc = _m.get('code', '') if isinstance(_m, dict) else ''
-        for _ct in re.findall(r'\(\s*((?:[A-Za-z_]\w*::)*[A-Za-z_]\w*)\s*\*+\s*\)', _mc):
-            if _ct in ('int', 'char', 'void', 'float', 'double', 'long', 'short',
-                       'unsigned', 'signed', 'DWORD', 'BYTE', 'WORD', 'BOOL', 'UINT',
-                       'HWND', 'HINSTANCE', 'HANDLE', 'LPVOID', 'LPSTR', 'LPCSTR'):
-                continue
-            if _ct == cls_name:
-                continue
-            if _ct in include_types or _ct in fwd_types:
-                continue
-            fwd_types.add(_ct)  # cast 形指针 ⇐ 前向声明足（无需全定义 ✓）
-
     # Scan annotation data_members for type references (includes/forward-decls)
     needs_stl = False
     try:
