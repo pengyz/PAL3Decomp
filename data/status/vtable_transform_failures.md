@@ -605,3 +605,12 @@
 | `::WinProc` | inline | `_DWORD` | 44 | non_class_hint | `(*(void ( **)(_DWORD, int, int, int))(*(_DWORD *)LODWORD(v7[1].InvViewMatrix.xy) + 44))( LODWORD(v7[1].InvViewMatrix.xy), Point.x, Point.y, 1)` |
 | `RenderTarget2::UpdatePost` | inline | `float` | 4 | non_class_hint | `(*(void ( **)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2 + 4))( v2, *(_DWORD *)(*v4 + v6), *(_DWORD *)(*v4 + v6 + 4), 0)` |
 | `CCBStage::RunActiveTask` | inline | `unsigned int` | 16 | non_class_hint | `(*(void ( **)(unsigned int, _DWORD))(*(_DWORD *)inited[1].dwMagicID[1][3] + 16))( inited[1].dwMagicID[1][3], 0)` |
+| `PalScriptMgr::BuildCmdTransform` | inline | `gbVisNode` | 56 | self_arg_mismatch | `(*(void ( **)(gbVisNode *, gbMatrix4 *))(*(_DWORD *)&this->m_pScriptObjMain->gbChain1DNode + 56))( this->m_pScriptObjMain, pMatrix)` |
+| `PalScriptMgr::UpdateScriptRoles` | inline | `gbVisNode` | 24 | self_arg_mismatch | `(*(void ( **)(gbVisNode *, int))(*(_DWORD *)&this->m_pScriptObjMain->gbChain1DNode + 24))( this->m_pScriptObjMain, -1082130432)` |
+| `PalScriptMgr::OnAnimFinish` | inline | `gbVisNode` | 24 | self_arg_mismatch | `(*(void ( **)(gbVisNode *, _DWORD))(*(_DWORD *)&this->m_pScriptObjMain->gbChain1DNode + 24))( this->m_pScriptObjMain, 0)` |
+| `PalScriptMgr::ExecuteOpcode` | inline | `gbVisNode` | 24 | self_arg_mismatch | `(*(void ( **)(gbVisNode *, _DWORD))(*(_DWORD *)&this->m_pScriptObjMain->gbChain1DNode + 24))( this->m_pScriptObjMain, 0)` |
+| `PalScriptMgr::ExecuteFrame` | inline | `gbVisNode` | 24 | self_arg_mismatch | `(*(void ( **)(gbVisNode *, int))(*(_DWORD *)&this->m_pScriptObjMain->gbChain1DNode + 24))( this->m_pScriptObjMain, -1082130432)` |
+| `UIListBox::UIListBox_IsVisible` | inline | `int` | 4 | non_class_hint | `(*(int ( **)(int))(*(_DWORD *)(v1 + 1296) + 4))(v1 + 1296)` |
+| `::GetCellStateByte` | inline | `_BYTE` | 24 | non_class_hint | `(*(int ( **)(_BYTE *, int, int, _DWORD))(*(_DWORD *)_this + 24))(_this, 1001, 262, 0)` |
+| `::GetInputFlag` | inline | `_BYTE` | 24 | non_class_hint | `(*(int ( **)(_BYTE *, int, int, _DWORD))(*(_DWORD *)_this + 24))(_this, 1001, 518, 0)` |
+| `::GetUpdateFlag` | inline | `_BYTE` | 24 | non_class_hint | `(*(int ( **)(_BYTE *, int, int, _DWORD))(*(_DWORD *)_this + 24))(_this, 1001, 788, 0)` |

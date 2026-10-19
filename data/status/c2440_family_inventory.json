@@ -1,0 +1,40 @@
+{
+  "_meta": {
+    "name": "c2440_family_inventory",
+    "generated": "2026-10-19",
+    "purpose": "C2440 248 条按 from->to 归类，区分 annotation 真型缺失 / codegen 渲染缺陷，供分工修复",
+    "context": "HEAD f0ec02b4a · S2 121/214 · 总错误 1369"
+  },
+  "families": {
+    "F1_int_to_misattached_struct": {
+      "count": 26,
+      "verdict": "annotation 误挂型（gbVolumeModifier 匈牙利变量名被误收为类·IDA size=4·mangled 零命中）",
+      "fix_layer": "emit 层：空壳 4B 型按标量 typedef 发射",
+      "status": "已分派 fixer P1"
+    },
+    "F2_pointer_to_unsigned_long": {
+      "count": 48,
+      "verdict": "codegen：inline-asm 寄存器变量（reg_EDI 等）与整型槽被赋指针 ⇒ C++ 要求显式强转，生成侧未补",
+      "fix_layer": "codegen：指针→整数隐式赋值处补 (unsigned long) 强转（4B 位槽等价变换）",
+      "status": "待修（最大一致 codegen 族）"
+    },
+    "F3_annotation_missing_star": {
+      "count": 19,
+      "verdict": "annotation 成员/参数漏 `*`（gbTexture*->int ×9 · RoleAtt*->SaleUI_SortData ×10）",
+      "fix_layer": "annotation 补指针型（须 A 级证据）",
+      "status": "已分派 fixer P2"
+    },
+    "F4_wndproc_fnptr": {
+      "count": 9,
+      "verdict": "空实参赋给 WndProc 函数指针（int(__stdcall*)(HWND,...)）",
+      "fix_layer": "签名/初始化渲染待核",
+      "status": "待分析"
+    },
+    "F5_misc": {
+      "count": "余量",
+      "verdict": "void->char* · ulong[3]->int* · unsigned char*->unsigned __int8* 等逐站",
+      "fix_layer": "逐条",
+      "status": "待分析"
+    }
+  }
+}
