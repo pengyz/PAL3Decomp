@@ -20,8 +20,9 @@ def test_ctor_this_call_renders_qualified_form():
     """核心锁：Cls::Cls(this) ⇒ this->Cls::Cls()（非 this->Cls() ✗ C2273 形）。"""
     out = at.transform_oop_calls('void Foo::Foo() { Foo::Foo(this); }',
                                  static_methods=set(), cls_name='Foo')
-    assert 'this->Foo::Foo()' in out, out  # 限定形 ✓（C2273 修锁）
-    assert '->Foo()' not in out.replace('->Foo::Foo()', ''), 'C2273 形复现 ✗'
+    # [T56 #16 修正] 静态成员式（verifier：this->Cls::Cls() 非法 ✗）
+    assert 'Foo::Foo(this)' in out, out
+    assert '->Foo(' not in out, 'ctor 经 -> 调（非法形）✗'
 
 
 def test_base_ctor_still_qualified_direct():

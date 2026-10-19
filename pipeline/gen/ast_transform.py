@@ -1622,14 +1622,17 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 new_text = '%s.%s(%s)' % (
                                     _obj, _short_cls, _ctor_rest)
                             elif first_arg_text == 'this':
-                                # [C2273 修 2026-10-19] 限定形 `this->Cls::Cls()`
-                                # （`this->Cls()` = MSVC 函数式 cast ✗ C2273 ×919）
-                                new_text = 'this->%s::%s(%s)' % (
-                                    _short_cls, _short_cls, _ctor_rest)
+                                # [P0 修 2026-10-19·T56 #16] **静态成员式**（verifier 对抗
+                                # 复核：`this->Cls::Cls()` 语法非法 ✗✗——ctor 不可经 -> 调）：
+                                # `Cls::Cls(this)` ✓ 合法静态调用形（等价变换——同 ctor 语义）。
+                                new_text = '%s::%s(this%s)' % (
+                                    _short_cls, _short_cls,
+                                    (', ' + _ctor_rest) if _ctor_rest else '')
                             else:
-                                # Class::Class(ptr) -> ptr->Cls::Cls()（同限定形 ✓）
-                                new_text = '%s->%s::%s(%s)' % (
-                                    first_arg_text, _short_cls, _short_cls, _ctor_rest)
+                                # Class::Class(ptr) -> Cls::Cls(ptr, ...)（静态形 ✓）
+                                new_text = '%s::%s(%s%s)' % (
+                                    _short_cls, _short_cls, first_arg_text,
+                                    (', ' + _ctor_rest) if _ctor_rest else '')
                             replacements.append((
                                 node.start_byte, node.end_byte, new_text))
                             return
@@ -1657,7 +1660,10 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 if _is_base and class_name != cls_name:
                                     new_text = '%s::%s(%s)' % (class_name, _method_out, rest_str)
                                 else:
-                                    new_text = 'this->%s::%s(%s)' % (_short_cls, _method_out, rest_str)
+                                    # [P0 修·T56 #16] 静态成员式（ctor 不可经 -> 调）
+                                    new_text = '%s::%s(this%s)' % (
+                                        _short_cls, _method_out,
+                                        (', ' + rest_str) if rest_str else '')
                                 replacements.append((
                                     node.start_byte, node.end_byte, new_text))
                                 return
