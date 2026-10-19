@@ -571,6 +571,26 @@ def cmd_codegen(args):
                       % lint.returncode)
                 sys.exit(lint.returncode if lint.returncode > 0 else 1)
 
+        # [不变量门禁 2026-10-19] 生成源「跨变换不变量」检查（棘轮制）
+        # 缘起（2026-10-19 复盘）：本仓 codegen 缺陷同构 —— 每个变换把构造搬进新
+        # 上下文，只保局部正确、不保旧上下文不变量（本次亲历 4 例连环：hoist 丢声明
+        # 依赖、限定 this 丢 C++ 合法性、union 包裹丢可索引性、reg 提升丢值种类）。
+        # 只靠 MSVC 在下游报错再逐形态打补丁 ⇒ 打地鼠。
+        # 本门禁把不变量显式化：I1 reg_ 标量声明被当指针用；I2 类型名进成员位。
+        # 棘轮：不追溯存量（基线 data/status/codegen_invariant_baseline.json），
+        # 只禁止新增；确属视野扩大请显式 --baseline 重锚并写明理由。
+        inv_script = os.path.join(tools_dir, 'codegen_invariant_lint.py')
+        if os.path.exists(inv_script):
+            print("\n[Invariant] Checking generated source for cross-transform "
+                  "invariant breaks...")
+            inv = subprocess.run([sys.executable, inv_script, '--quiet'])
+            if inv.returncode != 0:
+                print("[ERROR] codegen_invariant_lint.py exited %d — 生成源出现"
+                      "新的不变量破坏（变换搬动构造时丢失上下文）。" % inv.returncode)
+                print("        诊断：python tools/codegen_invariant_lint.py "
+                      "（不带 --quiet 看明细）")
+                sys.exit(inv.returncode if inv.returncode > 0 else 1)
+
         regression_script = os.path.join(tools_dir, 'compile_regression.py')
         if os.path.exists(regression_script):
             print("\n[Regression] Checking for compile regressions...")
