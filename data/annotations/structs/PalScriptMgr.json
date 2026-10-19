@@ -8,9 +8,9 @@
       "source": "annotation"
     },
     "8": {
-      "name": "m_script",
+      "name": "m_scriptMain",
       "type": "PtrArray",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2 | [P2 成员消歧 2026-10-19] m_script→m_scriptMain（消歧（C2371 同名双偏移双型）：@8=PtrArray（型证 ✓ 主容器形）⇒ Main 后缀（lead 制式）· 同名 @88=int 另立 · ⚠️ Main 语义=lead 制式占位（真语义待五面——型证=容器/标量分野 ✓））"
     },
     "24": {
       "name": "m_scefile",
@@ -68,14 +68,14 @@
       "source": "binary:raw_18votes | decomp:used_as_Z_coord_in_ExecuteBlock"
     },
     "88": {
-      "name": "m_script",
+      "name": "m_scriptAux",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_054）：UpdateScript `PalScript::GetCount((PalScript*)&m,0)`（嵌入 PalScript 子对象起始位）+ `m==3` 状态首域视图；①UpdateScript ②PalScript 方法 ③+88 嵌入域 ④PalScriptMgr ⑤脚本更新；confidence=72"
+      "source": "B:naming_m_n+FPU_misattrib | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_054）：UpdateScript `PalScript::GetCount((PalScript*)&m,0)`（嵌入 PalScript 子对象起始位）+ `m==3` 状态首域视图；①UpdateScript ②PalScript 方法 ③+88 嵌入域 ④PalScriptMgr ⑤脚本更新；confidence=72 | [P2 成员消歧 2026-10-19] m_script→m_scriptAux（消歧：@88=int（型证 ✓ 标量）⇒ Aux（对偶消歧）· 与 @8 主容器分立 ✓）"
     },
     "92": {
-      "name": "m_pScriptObj",
+      "name": "m_pScriptObjMain",
       "type": "gbVisNode *",
-      "source": "binary:raw_5votes | [主攻点2续 2026-10-17] 五面满卡 5/5 正名：①调用者=PalScriptMgr::UpdateScriptRoles 脚本角色更新帧（31 站）②被调=gbVisNode::SetTimeScale(node,0.0) 时间缩放 + slot24 虚调用（Update 族）③成员访问=+92 读为 gbVisNode* 指针 ④类归属=PalScriptMgr 脚本管理 ⑤交互=脚本角色更新帧内时间缩放/状态更新生命周期；A 级=idapro decomp 用法 31 站（SetTimeScale 实参 cast 形）；原名 m_nTodo_058 ⇒ 再创作命名 m_pRoleVisNode（功能驱动：脚本角色可视节点指针）；类型正名 int→gbVisNode *（同宽 4B 布局等价） | evidence: 详前文 A 级形证 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_pRoleVisNode）：UpdateScript 虚调用 `(*(fn)(m+24))(...)`（对象指针+虚表偏移）；①UpdateScript ②虚分派 ③+92 指针域 ④PalScriptMgr ⑤脚本对象驱动；confidence=72"
+      "source": "binary:raw_5votes | [主攻点2续 2026-10-17] 五面满卡 5/5 正名：①调用者=PalScriptMgr::UpdateScriptRoles 脚本角色更新帧（31 站）②被调=gbVisNode::SetTimeScale(node,0.0) 时间缩放 + slot24 虚调用（Update 族）③成员访问=+92 读为 gbVisNode* 指针 ④类归属=PalScriptMgr 脚本管理 ⑤交互=脚本角色更新帧内时间缩放/状态更新生命周期；A 级=idapro decomp 用法 31 站（SetTimeScale 实参 cast 形）；原名 m_nTodo_058 ⇒ 再创作命名 m_pRoleVisNode（功能驱动：脚本角色可视节点指针）；类型正名 int→gbVisNode *（同宽 4B 布局等价） | evidence: 详前文 A 级形证 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_pRoleVisNode）：UpdateScript 虚调用 `(*(fn)(m+24))(...)`（对象指针+虚表偏移）；①UpdateScript ②虚分派 ③+92 指针域 ④PalScriptMgr ⑤脚本对象驱动；confidence=72 | [P2 成员消歧 2026-10-19] m_pScriptObj→m_pScriptObjMain（消歧（C2371）：@92=gbVisNode*（型证 ✓ 可视节点指针）⇒ Main · @304=PalScriptMgr* 另立）"
     },
     "96": {
       "name": "m_pExecSystem",
@@ -134,9 +134,9 @@
       "source": "B:naming_m_n+FPU_misattrib"
     },
     "304": {
-      "name": "m_pScriptObj",
+      "name": "m_pScriptObjAux",
       "type": "PalScriptMgr *",
-      "source": "ida_decomp:ExecuteBlock Destroy(this), if(this), 10 refs+codegen_infer"
+      "source": "ida_decomp:ExecuteBlock Destroy(this), if(this), 10 refs+codegen_infer | [P2 成员消歧 2026-10-19] m_pScriptObj→m_pScriptObjAux（消歧：@304=PalScriptMgr*（型证 ✓ 自指针/管理器域）⇒ Aux · 与 @92 分立 ✓）"
     },
     "308": {
       "name": "m_nScriptDepth",
