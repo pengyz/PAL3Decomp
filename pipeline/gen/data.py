@@ -86,7 +86,14 @@ class DataStore:
         ])
 
     def _load_globals_h(self):
-        globals_h = self.project_root / "pal3" / "src" / "globals.h"
+        # [C2065 修 2026-10-19·双副本分叉根治] **单副本原则**：只读**被 include** 的
+        # include/pal3/gen/globals.h（cpp `#include "pal3/gen/globals.h"` 实际指向 ✓）
+        # ——原读 pal3/src/globals.h ✗✗ 读错文件 ⇒ unk_* 被误标"已声明" ⇒ undef
+        # 误清空 ⇒ 就地 extern 不生成 ⇒ 但 include 件无声明 ⇒ C2065 ×1114
+        # （gotcha_dual_copy_table_divergence 同族 ✓）。
+        globals_h = self.project_root / "include" / "pal3" / "gen" / "globals.h"
+        if not globals_h.exists():
+            globals_h = self.project_root / "pal3" / "src" / "globals.h"  # 回退（旧址）
         if globals_h.exists():
             for line in open(globals_h, encoding='utf-8', errors='replace'):
                 m = re.search(r'extern\s+\S.*?\b(\w+)\s*(?:\[|;)', line)
