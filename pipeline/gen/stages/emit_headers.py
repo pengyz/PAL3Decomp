@@ -4353,7 +4353,13 @@ def generate_globals_cpp():
             arr_t = m.group(2)
             tp_out = f'{base_t} {nm}{arr_t}'
             if iv:
-                lines.append(f'{tp_out} = {iv};')
+                # [C2440 修 2026-10-19] 数组型全局的标量初值必须**花括号包裹**
+                # 病灶：`float g_fHeuristicScale[8] = 1.0f;`（数组 + 标量）
+                #   ⇒ C2440 'initializing' cannot convert from 'const float' to 'float [8]' ✗✗
+                # 实测 globals.cpp 19 条同族（另 int[] = 0xAC0CAB00 等）。
+                # 修法：`{v}`（元素0=已知初值；其余按 C 规则零填充，
+                #   与未初始化数据段语义一致 —— 不编造未知元素值 ✓）
+                lines.append(f'{tp_out} = {{{iv}}};')
             else:
                 lines.append(f'{tp_out} = {{0}};')
         else:
