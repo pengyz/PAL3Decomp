@@ -29,6 +29,13 @@ from pipeline.gen.stages.collect import get_class_dir
 _scalar_dtor_classes = None
 
 
+# [C2011 修 2026-10-19·P0-A] ns-decl 声明唯一化登记表（跨头共享）
+# 机理：hoist 每头各插同型 decl ⇒ 双头同 TU include ⇒ 'union _inline_X' C2011
+# type redefinition ×2081 ✗✗ —— 声明层去重：登记表+共享头（_ns_udts.h）。
+_NS_DECL_REGISTRY = {}   # type_name -> (decl_lines, member_line_form)
+_NS_REGISTERED_BLOCKS = set()  # [P0-A 修 2026-10-19·更优案] 注册侧块去重（纵深防御）
+
+
 def named_udt_scope_form(type_name, kind, member_name, body_lines):
     """命名内联 UDT 的命名空间作用域提升形（纯函数，R15 单测点）→ (ns_lines, member_line)。
 
@@ -2427,10 +2434,23 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                             if _ns_lines:
                                 del lines[_blk_start:]
                                 lines.append(_mem_line)
-                                for _j in range(len(lines) - 1, -1, -1):
-                                    if re.match(r'^(?:class|union|struct)\s+%s\b' % re.escape(cls_name), lines[_j]):
-                                        lines[_j:_j] = _ns_lines
-                                        break
+                                # [C2011 修·P0-A] **登记不插入**：decl 入登记表（跨头共享
+                                # _ns_udts.h）——原每头各插 ⇒ C2011 type redefinition ✗
+                                # [P0-A 注册侧去重] 同块只注册一次（第一键持块 ✓）
+                                _blk_key = tuple(_ns_lines)
+                                if _blk_key not in _NS_REGISTERED_BLOCKS:
+                                    _NS_REGISTERED_BLOCKS.add(_blk_key)
+                                    for _dl in _ns_lines:
+                                        _dm = re.match(r'^(?:class|union|struct)\s+(\w+)', _dl)
+                                        if _dm and _dm.group(1) not in _NS_DECL_REGISTRY:
+                                            _NS_DECL_REGISTRY[_dm.group(1)] = _ns_lines
+                                # 本头改 include 共享头（decl 唯一 ✓ #pragma once 防重）
+                                if '#include "pal3/gen/_ns_udts.h"' not in lines:
+                                    _ins_at = 0
+                                    for _j2, _l2 in enumerate(lines):
+                                        if _l2.startswith('#include'):
+                                            _ins_at = _j2 + 1
+                                    lines.insert(_ins_at, '#include "pal3/gen/_ns_udts.h"')
                         lines.append("#pragma pack(pop)")
                         member_size = _packed_inline_size(_inline_data) \
                             or _inline_data.get('size', 4)   # W4-C0b：打包尺寸（402 非 404）
@@ -3226,17 +3246,20 @@ def main():
         output_path = _subdir_path / ("%s.h" % _sanitize_filename(cls_name))
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(content)
-        # [C2143 根治 2026-10-19] **双址镜像**：include/pal3/gen/ 副本同步生成
-        # （原只生成 pal3/src/ ⇒ include/pal3/gen/ 陈旧副本被 globals.h include
-        # ⇒ C2143 NODE 未定义 213 文件 L7 系统性 ✗——陈旧副本即病灶源 ✓ 根治）。
+        # [C2143 根治·T56 #13 修 2026-10-19] **include 垫片**（非全副本！）
+        # 全副本镜像=C2011 新源（双定义 ×213 TU ×20 类 ✗✗ 我的 C2143 修引入）——
+        # 垫片形：include/pal3/gen/X.h = `#include` 指向 pal3/src/ 权威件（单定义 ✓）。
         _mirror_dir = PROJECT_ROOT / 'include' / 'pal3' / 'gen'
         try:
             _mirror_dir.mkdir(parents=True, exist_ok=True)
             _mirror_path = _mirror_dir / ("%s.h" % _sanitize_filename(cls_name))
+            _rel = os.path.relpath(output_path, _mirror_dir).replace(os.sep, '/')
             with open(_mirror_path, 'w', encoding='utf-8') as f:
-                f.write(content)
+                f.write('#pragma once\n')
+                f.write('// C2143 shim: canonical = pal3/src (single-definition guard)\n')
+                f.write('#include "%s"\n' % _rel)
         except Exception:
-            pass  # 镜像失败不阻主产物（主产物=pal3/src/ 权威 ✓）
+            pass  # 垫片失败不阻主产物（pal3/src/ 权威 ✓）
         generated += 1
 
     # Generate enum headers from ida_structs.json._enums
@@ -3320,6 +3343,35 @@ def main():
             hf.unlink()
             stale_removed += 1
 
+    # [C2011 修 2026-10-19·P0-A] 共享 ns-decl 头写出（声明层唯一化收口）
+    try:
+        if _NS_DECL_REGISTRY:
+            _ns_hdr = PROJECT_ROOT / 'include' / 'pal3' / 'gen' / '_ns_udts.h'
+            _ns_hdr.parent.mkdir(parents=True, exist_ok=True)
+            with open(_ns_hdr, 'w', encoding='utf-8') as _f:
+                _f.write('#pragma once\n')
+                _f.write('// Auto-generated: shared ns-scope UDT declarations (C2011 dedup)\n')
+                # [P0-A 修 2026-10-19] 写入去重：同一 _ns_lines 块只写一次
+                # （registry 同块多键 ⇒ 重复写 ⇒ C2011 潜伏 ✗✗——写入侧 _written 块哈希锁）
+                _written = set()
+                for _k in sorted(_NS_DECL_REGISTRY):
+                    _block = tuple(_NS_DECL_REGISTRY[_k])
+                    if _block in _written:
+                        continue
+                    _written.add(_block)
+                    for _dl in _NS_DECL_REGISTRY[_k]:
+                        _f.write(_dl + '\n')
+            # 镜像 pal3/src（双址制式 ✓ C2143 根治同法）
+            _ns_m = OUTPUT_DIR / '_ns_udts.h'
+            with open(_ns_m, 'w', encoding='utf-8') as _f:
+                _f.write('#pragma once\n')
+                _f.write('// Auto-generated: shared ns-scope UDT declarations (C2011 dedup)\n')
+                for _dl in [x for _b in sorted({tuple(v) for v in _NS_DECL_REGISTRY.values()})
+                            for x in _b]:
+                    _f.write(_dl + '\n')
+            print("[C2011] ns-decls: %d unique -> _ns_udts.h (shared)" % len(_NS_DECL_REGISTRY))
+    except Exception as _e:
+        print("[C2011] ns-decl shared header write failed: %s" % _e)
     print("Generated %d header files in %s" % (generated, OUTPUT_DIR))
     print("  With annotation layout: %d" % len(all_classes))
     print("  With methods: %d" % sum(1 for c in all_classes if c in methods_by_class and methods_by_class[c]))

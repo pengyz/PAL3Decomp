@@ -728,8 +728,21 @@ def _named_supersede_decision(type_name, named_types, substitutes):
     if not type_name:
         return (False, 'empty name')
     subst = substitutes or {}
-    if type_name in subst:
-        return (True, 'synthetic %s superseded by named %s' % (type_name, subst[type_name]))
+    # [P0-B 修 2026-10-19] 分隔符归一：映射键 `::<$hash>` 形 vs 实名 `__<$hash>` 形
+    # **分隔符不匹配致查表永不命中**（C2011 双产根因 ✓ _inline_PalScript_m_RoleSlotArray
+    # ×214）——归一双向（::\$ ↔ __\$）后查表。
+    def _norm_sep(nm):
+        return (nm or '').replace('::$', '__$')
+    _tn = _norm_sep(type_name)
+    _lookup = { _norm_sep(k): v for k, v in subst.items() }
+    # 精确 + **前缀容错**（_origin 键=截断 hash vs 实名全 hash ✗✗ 第三重不匹配——
+    # prefix 匹配覆盖截断形 ✓ P0-B 根治）
+    if _tn in _lookup:
+        return (True, 'synthetic %s superseded by named %s' % (type_name, _lookup[_tn]))
+    for _k, _v in _lookup.items():
+        if _tn.startswith(_k) or _k.startswith(_tn):
+            return (True, 'synthetic %s superseded by named %s (prefix-tolerant)'
+                    % (type_name, _v))
     # [task-8 修·名形推导内置] `_inline_<Name>_` / `_inline_<Name>__\$<hash>` 形
     # ⇒ 候选 <Name>（双形试配 rstrip）——**具名确认判据**（候选在 named_types 才立）。
     # （源实证：_inline_SceneMgr_ 只存于 IDB 非注解 ⇒ 推导须在决策点（IDB 侧名）非注解扫描 ✗）
@@ -743,24 +756,39 @@ def _named_supersede_decision(type_name, named_types, substitutes):
     return (False, 'export (named-or-unrelated)')
 
 
-def _annotation_named_types():
+def _idb_named_types():
+    """IDB TIL 具名类型集（**红线归位**：export 不读 annotation ✓ task-8 修 2026-10-19）。
+
+    名源=IDB TIL named-types 枚举（ida_typeinf.get_named_types）——原
+    _annotation_named_types 直读 data/annotations/structs/ ✗ 违 CLAUDE.md
+    「export 不读 annotation」绝对禁令（reviewer 对抗复核问题 1）。非 IDA 环境
+    （单测）⇒ 返回空集（决策走名形推导+具名确认降级 ✓）。
+    """
     global _ANNOT_NAMED_CACHE
     if _ANNOT_NAMED_CACHE is None:
         names = set()
-        st_dir = os.path.join(PROJECT_ROOT, 'data', 'annotations', 'structs')
-        if os.path.isdir(st_dir):
-            for fn in os.listdir(st_dir):
-                if not fn.endswith('.json'):
-                    continue
-                try:
-                    with open(os.path.join(st_dir, fn), encoding='utf-8') as fh:
-                        j = json.load(fh)
-                    if j.get('name'):
-                        names.add(j['name'])
-                except Exception:
-                    continue
+        try:
+            import ida_typeinf
+            til = ida_typeinf.get_idati()
+            # named-types 全枚举（含 struct/union/typedef 等具名体）
+            _idx = 0
+            while True:
+                _n = ida_typeinf.get_named_type_name(til, _idx) if hasattr(ida_typeinf, 'get_named_type_name') else None
+                if _n is None:
+                    break
+                names.add(_n)
+                _idx += 1
+                if _idx > 200000:
+                    break
+        except Exception:
+            names = set()
         _ANNOT_NAMED_CACHE = names
     return _ANNOT_NAMED_CACHE
+
+
+def _annotation_named_types():
+    """[task-8 修 2026-10-19·红线归位] 兼容别名 → _idb_named_types（不再读 annotation）。"""
+    return _idb_named_types()
 
 def _synthetic_named_substitutes():
     """合成名 -> 具名替身（annotation _origin 字段记录的去 inline 化映射）。"""
