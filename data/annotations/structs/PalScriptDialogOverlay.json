@@ -3,24 +3,32 @@
   "binary_size": 164,
   "known_members": {
     "140": {
-      "name": "pScriptVtable",
-      "type": "void *",
-      "source": "[annotation 去 inline 化 2026-10-17] 布局从 _inline_ 合成型搬移（ida_structs _inline_PalScript_m_szDialog1::$91EC9EFF size=164）；位面/嵌入复用语义见名"
-    },
-    "148": {
-      "name": "pScriptPtrA",
-      "type": "void *",
-      "source": "[annotation 去 inline 化 2026-10-17] 布局从 _inline_ 合成型搬移（ida_structs _inline_PalScript_m_szDialog1::$91EC9EFF size=164）；位面/嵌入复用语义见名"
-    },
-    "152": {
-      "name": "pScriptPtrB",
-      "type": "void *",
-      "source": "[annotation 去 inline 化 2026-10-17] 布局从 _inline_ 合成型搬移（ida_structs _inline_PalScript_m_szDialog1::$91EC9EFF size=164）；位面/嵌入复用语义见名"
-    },
-    "160": {
-      "name": "pScriptPtrC",
-      "type": "void *",
-      "source": "[annotation 去 inline 化 2026-10-17] 布局从 _inline_ 合成型搬移（ida_structs _inline_PalScript_m_szDialog1::$91EC9EFF size=164）；位面/嵌入复用语义见名"
+      "name": "overlay",
+      "type": {
+        "struct": [
+          {
+            "offset": 0,
+            "name": "pScriptVtable",
+            "type": "void *"
+          },
+          {
+            "offset": 8,
+            "name": "pScriptPtrA",
+            "type": "void *"
+          },
+          {
+            "offset": 12,
+            "name": "pScriptPtrB",
+            "type": "void *"
+          },
+          {
+            "offset": 20,
+            "name": "pScriptPtrC",
+            "type": "void *"
+          }
+        ]
+      },
+      "source": "[P3 变体层复原 2026-10-19·overlay 族] 引用形 `X.overlay.pScriptVtable` ⇒ 变体名 `overlay` 保留（inline struct 语法 ✓ 内层相对偏移 T56 #17 ✓）· 等价变换（同布局·变体层是名非位）"
     }
   },
   "methods": {},
