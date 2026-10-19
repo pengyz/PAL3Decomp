@@ -2105,6 +2105,21 @@ def _is_coerce_lvalue(n):
     return False
 
 
+def supersede_inline_type_names(code, mapping):
+    """合成型名→具名顶替（纯函数，R15 单测点）——[C2501 修 2026-10-19·P2 cpp 面]。
+
+    病灶：cpp 渲染 cast/声明用合成名（\`(_inline_X *)\`/\`_inline_X *p;\`）——
+    export 跳过合成名（task-8）⇒ 型未定义 ⇒ C2501 'missing storage-class' ×1534。
+    修：按 mapping 置换型名（词边界形 ✓ 等价变换——型名重指不改布局）。
+    """
+    if not code or not mapping:
+        return code
+    out = code
+    for synth, named in mapping.items():
+        out = re.sub(r'\b%s\b' % re.escape(synth), named, out)
+    return out
+
+
 def transform_coerce_calls(code):
     """把 `COERCE_FLOAT(<rvalue>)` / `COERCE_DOUBLE(<rvalue>)` 改为辅助函数调用。
 

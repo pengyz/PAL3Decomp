@@ -29,6 +29,49 @@ from pipeline.gen.stages.collect import get_class_dir
 _scalar_dtor_classes = None
 
 
+# [C2501 修 2026-10-19·P2] 合成名→具名顶替映射（渲染层型名置换）
+# 机理：export 跳过合成名（task-8 ✓）但成员型仍引旧名 ⇒ C2501 'missing storage-class'
+# ×1534 ✗✗ 顶替半闭环——渲染层置换：_inline_X → 具名替身（_origin 源 ✓ 前缀容错）。
+_SUPERSEDE_MAP = None
+
+
+def _get_supersede_map():
+    """合成名→具名替身映射（annotation _origin 注记源 ✓ codegen 读注解=已声明例外）。"""
+    global _SUPERSEDE_MAP
+    if _SUPERSEDE_MAP is None:
+        _SUPERSEDE_MAP = {}
+        try:
+            for _p, _d in _annview.iter_structs(None):
+                _orig = str(_d.get('_origin') or '')
+                _m = re.search(r'原合成名 ((?:_inline_\S+?|\S+?::\$\S+?))(?=[\s。；;，、）)]|$)', _orig)
+                if _m and _d.get('name'):
+                    _SUPERSEDE_MAP[_m.group(1)] = _d['name']
+                    _SUPERSEDE_MAP[_m.group(1).replace('::$', '__$')] = _d['name']
+                    # [C2501 修·基名坍缩] `_inline_X::$hash` 键 ⇒ 亦立 `_inline_X` 基名键
+                    # （_origin 只记 hash 形 ✗ 基名形（无 hash）引用于成员型 ⇒ 须坍缩映射 ✓）
+                    _base = re.sub(r'::\$[0-9A-Fa-f]+$', '', _m.group(1))
+                    _base = re.sub(r'__\$[0-9A-Fa-f]+$', '', _base)
+                    if _base and _base not in _SUPERSEDE_MAP:
+                        _SUPERSEDE_MAP[_base] = _d['name']
+        except Exception:
+            pass
+    return _SUPERSEDE_MAP
+
+
+def _supersede_type_name(t):
+    """型名顶替（纯函数形）：合成名 → 具名替身（精确+前缀容错）。"""
+    if not t:
+        return t
+    _m = _get_supersede_map()
+    _tn = t.replace('::$', '__$')
+    if _tn in _m:
+        return _m[_tn]
+    for _k, _v in _m.items():
+        if _tn.startswith(_k.replace('::$', '__$')):
+            return _v
+    return t
+
+
 # [C2011 修 2026-10-19·P0-A] ns-decl 声明唯一化登记表（跨头共享）
 # 机理：hoist 每头各插同型 decl ⇒ 双头同 TU include ⇒ 'union _inline_X' C2011
 # type redefinition ×2081 ✗✗ —— 声明层去重：登记表+共享头（_ns_udts.h）。
@@ -1128,6 +1171,8 @@ def simplify_stl_type(t, cls_name=None):
     # Strip own class prefix for nested types inside class body
     if cls_name:
         t = re.sub(r'\b%s::' % re.escape(cls_name), '', t)
+    # [C2501 修 2026-10-19·P2] 合成名→具名顶替（渲染层置换 ✓ 闭环收口）
+    t = _supersede_type_name(t)
     # Clean up extra spaces
     t = re.sub(r'\s+', ' ', t).strip()
     # Remove trailing space before >
@@ -1589,6 +1634,10 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 continue
             base = re.sub(r'\[(?:0x[0-9a-fA-F]+|\d+)\]', '', mtype).replace('*', '').strip()
             base = _resolve_ordinal_type(base)
+            # [C2501 修 2026-10-19·include 面] 顶替前置：合成名→具名后再分类
+            # （原按合成名分类 ⇒ 顶替后名**未入 include 面** ✗ C2501 missing
+            # storage-class ×1534——值员需全定义非前向 ✓ include_types 走）
+            base = _supersede_type_name(base)
             if not base or base == cls_name or base in PRIMITIVES or base in SYSTEM_TYPES:
                 continue
             # 2026-09-26：嵌套限定类型（如 CParticleSystem::EmitterAttribute、
@@ -2214,6 +2263,10 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             sorted_offsets = sorted(ann_members, key=lambda x: int(x))
 
             def _emit_member(m, off, mname, mtype):
+                # [C2501 修 2026-10-19·P2] 员型合成名→具名顶替（单点覆盖 ✓）
+                # `_inline_PalScript_m_RoleSlotArray m_x;` ⇒ `PalScriptRoleSlotOverlay m_x;`
+                # （C2501 'missing storage-class' ×1534 根因=顶替半闭环 ✗ 本点收口）
+                mtype = _supersede_type_name(mtype)
                 """Emit a single member line (with type remap + function pointer fix)."""
                 # Remap IDA internal types to C types
                 for ida_type, c_type in TYPE_REMAP.items():
@@ -2431,6 +2484,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         # （C2228×15）；布局不变等价变换（pack(1) 语义随行）。
                         if _tn:
                             _ns_lines, _mem_line = hoist_udt_block(lines[_blk_start:], mname, cls_name=cls_name)
+                            # [C2501 修·P2 hoist 面] 合成名→具名顶替（ns decl+员行双置换 ✓
+                            # 纯函数保持净——顶替在调用点应用）
+                            if _ns_lines:
+                                _ns_lines = [_supersede_type_name(_l) for _l in _ns_lines]
+                                _mem_line = _supersede_type_name(_mem_line)
                             if _ns_lines:
                                 del lines[_blk_start:]
                                 lines.append(_mem_line)
