@@ -2128,6 +2128,45 @@ def supersede_inline_type_names(code, mapping):
     return out
 
 
+def cast_ptr_int_assignments(code, int_types=None):
+    """指针/浮点→整型标量赋值补显式强转（纯函数，R15 单测点）——[P2b 2026-10-19]。
+
+    病灶：reg_EDI 等内联汇编寄存器模拟变量=整型标量（4B 位槽 ✓），
+    其值可为指针/浮点 ⇒ C++ 隐式赋值非法 ⇒ C2440 ×48。
+    修：LHS 整标量 + RHS 指针/浮点（或反向）⇒ 补显式强转（4B 位槽不变
+    等价变换 ✓ 字节等价）。已带显式 cast 的站点不动（防双重强转）。
+    """
+    if not code:
+        return code
+    _ints = int_types or ('unsigned long', 'int', 'DWORD', 'unsigned int')
+    out = code
+    # 形 1：`intLHS = <ptr-or-float RHS>;`（RHS 含 * 地址形/& 取址/浮点字面/浮点型标识）
+    _already = re.compile(r'^\(\s*(?:unsigned\s+long|unsigned\s+int|DWORD|int)\s*\)')
+    def _needs_cast(rhs):
+        r = rhs.strip()
+        if _already.match(r):
+            return False  # 已补 LHS 型 cast ✓ 不动（防双铸）——
+            # ⚠️ RHS 自身 cast（如 `(float *)`）≠ 已补 ✗ 仍须包（T56 精化）
+        if '&' in r or '*' in r or re.search(r'\d+\.\d+f?\b', r) or 'float' in r:
+            return True
+        return False
+    # 整型标量 LHS 赋值（含初始化形）
+    for _it in _ints:
+        # 声明初始化：`unsigned long x = RHS;`
+        out = re.sub(
+            r'(\b%s\s+\w+\s*=\s*)(?!\()([^;]+);' % re.escape(_it),
+            lambda m: m.group(1) + ('(%s)(%s);' % (_it, m.group(2).strip())
+                                     if _needs_cast(m.group(2)) else m.group(2) + ';'),
+            out)
+        # 赋值：`x = RHS;`（LHS 为该型变量——保守：仅 reg_ 前缀族（内联汇编模拟 ✓）
+        out = re.sub(
+            r'(\breg_\w+\s*=\s*)([^;]+);',
+            lambda m: m.group(1) + ('(unsigned long)(%s);' % m.group(2).strip()
+                                     if _needs_cast(m.group(2)) else m.group(2) + ';'),
+            out)
+    return out
+
+
 def transform_coerce_calls(code):
     """把 `COERCE_FLOAT(<rvalue>)` / `COERCE_DOUBLE(<rvalue>)` 改为辅助函数调用。
 
