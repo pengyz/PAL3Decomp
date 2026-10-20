@@ -18,3 +18,46 @@ def keys(f):
 k3=keys('pipeline/gen/stages/stage3_cleanup.py'); k5=keys('pipeline/gen/stages/stage5_fixup.py')
 print(len(k3), len(k5), len(k3&k5), sorted(k3-k5), sorted(k5-k3))"
 ```
+
+---
+
+## 实例二（2026-10-20）：annotation `methods` vs `known_methods` —— 语义相近、命名相近的双注册表
+
+**实证案**：`data/annotations/structs/*.json` 里方法信息存于**两个**表：
+
+| 字段 | 来源 | 形 | 覆盖 | 用途 |
+|---|---|---|---|---|
+| **`methods`** | IDB 导出 | `{地址: {name, signature, source}}` | CCBStage **231 条**（含 MoveToAbsolute）| **主表**（codegen 经 ida_structs 生成头）|
+| **`known_methods`** | **手工补录** | `{slot: {name}}` | 全仓仅 **6 个**注解文件有 | vtable 程序名补充 |
+
+`pipeline/gen/stages/emit_headers.py:1120` 注释自证："annotation known_methods are **manually** [added]"。
+
+**事故**：2026-10-20 实现 `qualify_shadowed_free_calls` 时读 `known_methods` ⇒
+CCBStage 恒为空集 ⇒ 变换**从不命中但不报错** ⇒ I3 门禁计数不变才暴露。
+后续一版改从**生成头解析**成员名（能用），但属 codegen 读自己产物的**循环依赖**，
+最终改读 `annotation_view.struct_by_class(cls).get('methods')`（单一读点）。
+
+**与实例一同构**：两表**语义相近、命名相近、一个稀疏一个完整** ⇒ 修者自然去读名字更"对"
+的那个，而它恰好是稀疏的。`methods`/`known_methods` 与 `_GB_REF_PARAM_FUNCS` 双副本
+一样：**编译指标不报警，只有"业务量计数"（I3=19 不动）才暴露**。
+
+**防复发约定**（本仓通用）：
+1. 注解方法信息的**唯一权威源是 `methods`**；`known_methods` 仅作 vtable 名字补充，
+   **不得**用它判「某类是否有某方法」。
+2. 任何「按类查方法名/成员名」的代码，一律走 `annotation_view` 单一读点取 `methods`。
+3. 读到**空集**时不得静默继续 —— 必须与 ida_structs 的 `methods` 数量对照；
+   两侧都为空才接受（否则是读错表）。
+4. 引入 `except Exception: … = set()` 吞异常时，须在旁边写**门禁校验点**
+   （本次靠 `codegen_invariant_lint.py` 的 I3 计数不变才暴露 NameError 被吞）。
+
+**核对命令**：
+```bash
+python3 -c "
+import json
+for f in ('CCBStage',):
+    a=json.load(open('data/annotations/structs/%s.json'%f))
+    i=json.load(open('asm/pal3/ida_structs.json'))[f]
+    print('annotation.methods  =', len(a.get('methods') or {}))
+    print('annotation.known_methods =', len(a.get('known_methods') or {}))
+    print('ida_structs.methods =', len(i.get('methods') or []))"
+```
