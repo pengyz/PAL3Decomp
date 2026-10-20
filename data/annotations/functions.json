@@ -3164,5 +3164,35 @@
     "name": "LoadActorVisual",
     "signature": "virtual void __thiscall(Actor *this, int nVisualId)",
     "source_note": "[五面] ①调用者=待补 ②被调用者=LoadFromFile/LoadTexture/NewRenderEffect/gbGeomNode/new（资源加载族）③成员访问=m_fMatrixE/m_fMatrixParamA/m_fMatrixParamB/m_szText/m_bUIFlagA（矩阵+文本域）④类归属=Actor（5 命中 0 未解析）⑤交互模式=文件/纹理加载 + 渲染效果创建。ret=void。**virtual**。名 LoadActorVisual 与资源加载族相符（conf 64）。"
+  },
+  "0x004B7650": {
+    "name": "_todo_004B7650",
+    "signature": "virtual void __thiscall(Actor *this, int nFlag)",
+    "source_note": "[五面·conf<60 冻结] ①调用者=待补 ②被调用者=GetDynVertBuf/GetTop/LoadIdentity/LoadMatrix（渲染矩阵族）+ BYTE1/BYTE2/LOBYTE/LODWORD（位操作）③成员访问=m_fMatrixE/m_fMatrixParamA/m_szText/m_vecTargetPos（矩阵+文本+目标位）④类归属=Actor（4 命中 0 未解析）⑤交互模式=矩阵栈LoadIdentity+LoadMatrix。ret=void。**virtual**。**不正名**：矩阵设置与位操作混合，无单一主导（conf 55）。"
+  },
+  "0x00536AC0": {
+    "name": "SetMaterialName",
+    "signature": "int __thiscall(Actor *this, void *pszName, int nFlag)",
+    "source_note": "[五面·conf<60 保留原名未证实] ①调用者=RoleSystem::SetActorTexture（传 `role\\\\%s\\\\%s.tga` 完整路径）②被调用者=_strlwr（小写化）/gbCrc32Compute（CRC 校验）/ValidateInput/GotoAction/PopMessage/OpenBaseFile ③成员访问=m_actarray_begin/end/m_dwMatMsg/m_pact/m_szTexture ④类归属=Actor（5 命中 0 未解析）⑤交互模式=字符串小写+CRC+校验。ret=int（return 1/0 ⇒ 实为 bool 语义）。**原名 SetMaterialName 与用法存疑**（实为按名查找/校验动作），但证据不足以正名（conf 55）⇒ 保留标未证实。⚠️ 调用方传完整路径 strcpy 进 m_szTexture（表标 char[28]）⇒ **尺寸存疑**，需单独核。"
+  },
+  "0x00530C00": {
+    "name": "UpdateAnimState",
+    "signature": "bool __thiscall(Actor *this, char bForce)",
+    "source_note": "[五面] ①调用者=待补 ②被调用者=ProcessInstance/SetMaterialName/StopBlinkUI/UIAnimateCtrlEX_SwapBuffer（动画+UI 缓冲交换族）③成员访问=m_actarray_type/m_bDirFlag/m_dwMatMsg/m_nAnimCounter（动画计数+方向标志）④类归属=Actor（4 命中 0 未解析）⑤交互模式=动画状态机推进。ret=bool（result）。名 UpdateAnimState 与 m_nAnimCounter/动画族相符。"
+  },
+  "0x00536FF0": {
+    "name": "UpdateAllActions",
+    "signature": "int __thiscall(Actor *this)",
+    "source_note": "[五面] ①调用者=待补 ②被调用者=DestroyActor（销毁族）③成员访问=m_actarray_begin/end/m_dwMatMsg/m_pact（动作数组域）④类归属=Actor（4 命中 0 未解析）⑤交互模式=遍历动作数组 + 销毁。ret=int（result）。名 UpdateAllActions 与遍历 actarray 相符。"
+  },
+  "0x005394D0": {
+    "name": "ClearActionArrays",
+    "signature": "int *__thiscall(Actor *this)",
+    "source_note": "[五面] ①调用者=待补 ②被调用者=仅自身递归（清空逻辑）③成员访问=m_actarray_begin/end/capacity_end/m_name/m_pact（动作数组三元组 + 名）④类归属=Actor（5 命中 0 未解析）⑤交互模式=三元组 reset。ret=int*（result）。名 ClearActionArrays 与 actarray 三元组清空相符。"
+  },
+  "0x004B7590": {
+    "name": "RenderActorTransform2",
+    "signature": "virtual void __thiscall(Actor *this, int nFlag)",
+    "source_note": "[五面] ①调用者=待补 ②被调用者=GetTop/NewOneRenderObj/Transform（渲染对象变换族）③成员访问=m_bUIFlagA/m_nMatrixParam/m_szText/m_vecTargetPos（矩阵参数+目标位）④类归属=Actor（4 命中 0 未解析）⑤交互模式=新建渲染对象+Transform。ret=void。**virtual**。名 RenderActorTransform2 与渲染变换相符（conf 60：与 0x004B80C0 同族，序号区分）。"
   }
 }
