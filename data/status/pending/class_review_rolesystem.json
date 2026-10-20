@@ -1,0 +1,1768 @@
+{
+  "class": "RoleSystem",
+  "review_date": "2026-10-20",
+  "reviewer": "verifier",
+  "constraints": "read-only 评审，禁改产品文件；弱型改型须 A 级二进制证据",
+  "layout": {
+    "status": "CONFLICT",
+    "binary_size_declared": 7600,
+    "members_declared": 152,
+    "audit_judged_members": 185,
+    "audit_conflicts": 91,
+    "issues": [
+      "audit_type_layout --only RoleSystem 判 91/185 成员偏移冲突（'m_fPathTargetY 声明 +0x4DC 但实际不是' 族）",
+      "⚠️ 审计判据与 objdump 实证**矛盾**：objdump `fstps/flds 0x4dc(%esi)` 证实 +0x4DC 是 RoleSystem 真实 float 字段（esi=this）⇒ 审计的'实际偏移'计算（按成员尺寸累加）与二进制访问形不符——**根因=前导成员尺寸错致累加偏移漂移**（或嵌套 overlay 未展开），而非这些 float 字段本身错位",
+      "185 vs 152：审计展开了内联 struct/union 成员（+33），冲突集中在嵌套/累加面",
+      "P0 判定：**先修基础类型尺寸（DAG 序靠前，如 m_partyActor:Actor 的 Actor.size）再谈真型化**——否则改型会加剧偏移漂移"
+    ],
+    "evidence": "tools/audit_type_layout.py --only RoleSystem（编译器裁判）→ 91/185 冲突；objdump original/PAL3.exe `89 be dc 04 00 00`=mov %edi,0x4dc(%esi) / `d9 9e dc 04 00 00`=fstps / `d9 86 dc 04 00 00`=flds 0x4dc(%esi)（A 级 opcode 访问形）",
+    "evidence_level": "A"
+  },
+  "methods": {
+    "total_registered": 167,
+    "signed_in_functions_json": 8,
+    "missing_signature": 159,
+    "lead_reported_missing": 149,
+    "actual_missing": 159,
+    "note": "实测缺签 159（lead 报 149，差 10=并发漂移）；158 条已有语义名、1 条 todo/sub 形",
+    "entries": [
+      {
+        "addr": "0x004083E0",
+        "current_name": "CheckSceneCollision",
+        "proposed_name": "CheckSceneCollision",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x00408460",
+        "current_name": "BindRoleToScene",
+        "proposed_name": "BindRoleToScene",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x0040BE50",
+        "current_name": "Init",
+        "proposed_name": "Init",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x0040BE80",
+        "current_name": "RecalcAggregatedStats",
+        "proposed_name": "RecalcAggregatedStats",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x0040C9A0",
+        "current_name": "ForceStopRole",
+        "proposed_name": "ForceStopRole",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x00410430",
+        "current_name": "RenderMainRole",
+        "proposed_name": "RenderMainRole",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x00410E40",
+        "current_name": "CheckVisible",
+        "proposed_name": "CheckVisible",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x00411E00",
+        "current_name": "ApplyMoveStep",
+        "proposed_name": "ApplyMoveStep",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x00412230",
+        "current_name": "SetMoveSpeed",
+        "proposed_name": "SetMoveSpeed",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x004122C0",
+        "current_name": "UpdatePosition",
+        "proposed_name": "UpdatePosition",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x00412400",
+        "current_name": "RenderRole",
+        "proposed_name": "RenderRole",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x004125B0",
+        "current_name": "NotifySceneChange",
+        "proposed_name": "NotifySceneChange",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x004126D0",
+        "current_name": "GetAnimOffset",
+        "proposed_name": "GetAnimOffset",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x00412710",
+        "current_name": "UpdateTransform",
+        "proposed_name": "UpdateTransform",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x00412940",
+        "current_name": "UpdatePath",
+        "proposed_name": "UpdatePath",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x00412A50",
+        "current_name": "StartHalfSpeedMovement",
+        "proposed_name": "StartHalfSpeedMovement",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x00412A90",
+        "current_name": "MoveToTile",
+        "proposed_name": "MoveToTile",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x00412B60",
+        "current_name": "SetMoveTarget",
+        "proposed_name": "SetMoveTarget",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x00412C30",
+        "current_name": "SetPathWaypoint",
+        "proposed_name": "SetPathWaypoint",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      },
+      {
+        "addr": "0x00412D90",
+        "current_name": "BindPartyToScene",
+        "proposed_name": "BindPartyToScene",
+        "proposed_signature": "",
+        "source_note": "缺签名（不在 functions.json）——需 decompile/asm retn_N 逐条取证参型；未取 asm 反汇编故 proposed_signature 留空待补",
+        "evidence_level": "B",
+        "asm_retn_N": "",
+        "confidence": 0,
+        "attribution": "RoleSystem",
+        "change_kind": "add_signature_pending"
+      }
+    ]
+  },
+  "members": {
+    "total": 141,
+    "weak": 141,
+    "a_verified": 6,
+    "frozen": 135,
+    "note": "弱型=primitive/generic（int/float/char/uchar/void*/_BYTE 等）；仅 6 条取得 A 级 float 访问形证据可真型化，其余 135 条保留弱型（证据不足，禁止猜测）",
+    "entries": [
+      {
+        "offset": 68,
+        "current_name": "m_pVtable",
+        "current_type": "char *",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 72,
+        "current_name": "m_fStateX",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 76,
+        "current_name": "m_fStateY",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 80,
+        "current_name": "m_nStateMode",
+        "current_type": "unsigned char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 84,
+        "current_name": "m_nTimerDuration",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 88,
+        "current_name": "m_fDirX",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 92,
+        "current_name": "m_fDirY",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 96,
+        "current_name": "m_fDirZ",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 100,
+        "current_name": "m_pPathPoints",
+        "current_type": "char *",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 104,
+        "current_name": "m_nPathCount",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 108,
+        "current_name": "m_pPathCurrent",
+        "current_type": "char *",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 112,
+        "current_name": "m_pPathNext",
+        "current_type": "char *",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 116,
+        "current_name": "m_nTodo_074",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 120,
+        "current_name": "m_nPathFlag",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 124,
+        "current_name": "m_nTodo_7C",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 128,
+        "current_name": "m_fMoveX",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 132,
+        "current_name": "m_nPathState",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 136,
+        "current_name": "m_fMoveZ",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 140,
+        "current_name": "m_pPathListHead",
+        "current_type": "char *",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 144,
+        "current_name": "m_nActionResult",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 148,
+        "current_name": "m_nDispFontColor",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 152,
+        "current_name": "m_nDispWndColor",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 156,
+        "current_name": "m_nTodo_9C",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 160,
+        "current_name": "m_fPosX",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 164,
+        "current_name": "m_fPosY",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 168,
+        "current_name": "m_fPosZ",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 172,
+        "current_name": "m_nFacing",
+        "current_type": "char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 173,
+        "current_name": "m_nActionState",
+        "current_type": "char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 174,
+        "current_name": "m_nAnimState",
+        "current_type": "char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 175,
+        "current_name": "m_bActionPause",
+        "current_type": "unsigned char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 176,
+        "current_name": "m_szModelName",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 180,
+        "current_name": "m_mapData",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 184,
+        "current_name": "m_fScale",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 188,
+        "current_name": "m_nImageIdx",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 192,
+        "current_name": "m_fMoveSpd",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 206,
+        "current_name": "m_byStateArray",
+        "current_type": "unsigned char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 208,
+        "current_name": "m_bFlags",
+        "current_type": "char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 209,
+        "current_name": "m_bActionState",
+        "current_type": "unsigned char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 216,
+        "current_name": "m_fAngle",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 220,
+        "current_name": "m_fTileHeight",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 224,
+        "current_name": "m_nSpawnData",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 228,
+        "current_name": "m_nActionType",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 232,
+        "current_name": "m_nActionStep",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 236,
+        "current_name": "m_fActionParam",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 240,
+        "current_name": "m_nSpawnFlags",
+        "current_type": "unsigned char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 244,
+        "current_name": "m_nRoleAction",
+        "current_type": "unsigned char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 246,
+        "current_name": "m_nRoleSlot",
+        "current_type": "unsigned char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 248,
+        "current_name": "m_fWaypointX",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 252,
+        "current_name": "m_fWaypointZ",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 256,
+        "current_name": "m_nActionParam",
+        "current_type": "unsigned char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 260,
+        "current_name": "m_nInitMoveMode",
+        "current_type": "unsigned char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 264,
+        "current_name": "m_nSpawnExtra",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 268,
+        "current_name": "m_nSpawnParam2",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 272,
+        "current_name": "m_szModelPath",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 288,
+        "current_name": "m_nParamArray",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 300,
+        "current_name": "m_bSpawnByteA",
+        "current_type": "unsigned char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 301,
+        "current_name": "m_bSpawnByteB",
+        "current_type": "unsigned char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 304,
+        "current_name": "m_nSpawnParam",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 308,
+        "current_name": "m_nActionTimer",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 328,
+        "current_name": "m_nMoveSrc",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 332,
+        "current_name": "m_nMoveDst",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 336,
+        "current_name": "m_nMoveStep",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 352,
+        "current_name": "m_nSavedState",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 356,
+        "current_name": "m_nVisState",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 360,
+        "current_name": "m_bVisFlag",
+        "current_type": "unsigned char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 361,
+        "current_name": "_gap_169",
+        "current_type": "unsigned char[3]",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 364,
+        "current_name": "m_pWndFrame",
+        "current_type": "char *",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 368,
+        "current_name": "m_nTodo_170",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 380,
+        "current_name": "m_nActive",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 384,
+        "current_name": "m_fInactiveTime",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 400,
+        "current_name": "m_pCmdQueue",
+        "current_type": "void *",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 404,
+        "current_name": "m_pCmdQueueEnd",
+        "current_type": "void *",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 408,
+        "current_name": "m_fCmdInterval",
+        "current_type": "float",
+        "proposed_type": "float",
+        "evidence": "objdump fstps/flds 0x198(%esi) = float load/store opcode（A 级值位型/访问形）",
+        "evidence_level": "A",
+        "confidence": 80,
+        "change_kind": "retype"
+      },
+      {
+        "offset": 412,
+        "current_name": "m_fCmdTimer",
+        "current_type": "float",
+        "proposed_type": "float",
+        "evidence": "objdump fstps/flds 0x19C(%esi) = float load/store opcode（A 级值位型/访问形）",
+        "evidence_level": "A",
+        "confidence": 80,
+        "change_kind": "retype"
+      },
+      {
+        "offset": 416,
+        "current_name": "m_pPathNodeIter",
+        "current_type": "char *",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 420,
+        "current_name": "m_nCmdQueuePos",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1244,
+        "current_name": "m_fPathTargetY",
+        "current_type": "float",
+        "proposed_type": "float",
+        "evidence": "objdump fstps/flds 0x4DC(%esi) = float load/store opcode（A 级值位型/访问形）",
+        "evidence_level": "A",
+        "confidence": 80,
+        "change_kind": "retype"
+      },
+      {
+        "offset": 1248,
+        "current_name": "m_fPathTargetZ",
+        "current_type": "float",
+        "proposed_type": "float",
+        "evidence": "objdump fstps/flds 0x4E0(%esi) = float load/store opcode（A 级值位型/访问形）",
+        "evidence_level": "A",
+        "confidence": 80,
+        "change_kind": "retype"
+      },
+      {
+        "offset": 1252,
+        "current_name": "m_fPathAngle",
+        "current_type": "float",
+        "proposed_type": "float",
+        "evidence": "objdump fstps/flds 0x4E4(%esi) = float load/store opcode（A 级值位型/访问形）",
+        "evidence_level": "A",
+        "confidence": 80,
+        "change_kind": "retype"
+      },
+      {
+        "offset": 1256,
+        "current_name": "m_fPathSpeed",
+        "current_type": "float",
+        "proposed_type": "float",
+        "evidence": "objdump fstps/flds 0x4E8(%esi) = float load/store opcode（A 级值位型/访问形）",
+        "evidence_level": "A",
+        "confidence": 80,
+        "change_kind": "retype"
+      },
+      {
+        "offset": 1260,
+        "current_name": "m_nPrevMoveMode",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1264,
+        "current_name": "m_nMoveMode",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1268,
+        "current_name": "m_nMoveSubMode",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1272,
+        "current_name": "m_nCollisionState",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1276,
+        "current_name": "m_nCollisionParam",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1280,
+        "current_name": "m_bPathActive",
+        "current_type": "unsigned char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1284,
+        "current_name": "m_nCoreState",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1288,
+        "current_name": "m_nTransformState",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1292,
+        "current_name": "m_fMovement",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1296,
+        "current_name": "m_fRotAxisX",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1300,
+        "current_name": "m_fRotAxisY",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1304,
+        "current_name": "m_fRotAxisZ",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1308,
+        "current_name": "m_nMovement",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1312,
+        "current_name": "m_fSavedRotX",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1388,
+        "current_name": "m_nActiveRole",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1392,
+        "current_name": "m_nRoleCount",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1396,
+        "current_name": "m_nAnimation",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1400,
+        "current_name": "m_nAnimCopy1",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1404,
+        "current_name": "m_nAnimCopy2",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1408,
+        "current_name": "m_nAnimCopy3",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1416,
+        "current_name": "m_nTransformMode",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1420,
+        "current_name": "m_pLinkedSystem",
+        "current_type": "char *",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1424,
+        "current_name": "m_fAnimSpeed",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1428,
+        "current_name": "m_fMoveRadius",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1432,
+        "current_name": "m_fMoveSpeed",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1436,
+        "current_name": "m_nMoveReset",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1444,
+        "current_name": "m_bRenderFlag1",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1448,
+        "current_name": "m_bRenderFlag2",
+        "current_type": "char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1452,
+        "current_name": "m_nTodo_5AC",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1456,
+        "current_name": "m_pCtrlPoint",
+        "current_type": "char *",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1460,
+        "current_name": "m_nMoveRole",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1464,
+        "current_name": "m_nRetryCount",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1468,
+        "current_name": "m_fCachePosX",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1472,
+        "current_name": "m_fCachePosY",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1476,
+        "current_name": "m_fCachePosZ",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1480,
+        "current_name": "m_fMoveTargetX",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1484,
+        "current_name": "m_fMoveTargetY",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1488,
+        "current_name": "m_fMoveTargetZ",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1492,
+        "current_name": "m_fMoveRole",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1496,
+        "current_name": "m_fMoveParamY",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1500,
+        "current_name": "m_fMoveParamZ",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1564,
+        "current_name": "m_nTodo_61C",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1676,
+        "current_name": "m_nTodo_68C",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 1680,
+        "current_name": "m_nTodo_690",
+        "current_type": "float",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 2960,
+        "current_name": "m_nTodo_B90",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 2968,
+        "current_name": "m_wndPanel",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 4028,
+        "current_name": "m_pScriptBuf",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 4068,
+        "current_name": "m_nField_FE4",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 4088,
+        "current_name": "m_nTodo_FF8",
+        "current_type": "void *",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 4096,
+        "current_name": "m_configData",
+        "current_type": "int[96]",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 4484,
+        "current_name": "m_nTodo_1184",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 4488,
+        "current_name": "m_nTodo_1188",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 4492,
+        "current_name": "m_nMoveState1",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 4496,
+        "current_name": "m_nMoveState2",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 4500,
+        "current_name": "m_nMoveState3",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 4504,
+        "current_name": "m_bMoveFlag1",
+        "current_type": "unsigned char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 4508,
+        "current_name": "m_nMoveParam1",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 4512,
+        "current_name": "m_nMoveParam2",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 4516,
+        "current_name": "m_bMoveFlag2",
+        "current_type": "unsigned char",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 4752,
+        "current_name": "m_teamData3",
+        "current_type": "int[29]",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      },
+      {
+        "offset": 6504,
+        "current_name": "dword_17AA450",
+        "current_type": "int",
+        "proposed_type": "",
+        "evidence": "未取二进制访问形证据——保留弱型待取证",
+        "evidence_level": "B",
+        "confidence": 0,
+        "change_kind": "freeze"
+      }
+    ]
+  },
+  "inheritance": {
+    "bases": "UIWnd@0（base_class 已迁移到 bases）",
+    "base_evidence": "data/annotations/structs/RoleSystem.json bases=[{name:UIWnd,offset:0}]",
+    "vtables": [
+      {
+        "addr": "0x00570890",
+        "slots": 7
+      },
+      {
+        "addr": "0x0056AAD8",
+        "slots": 9
+      },
+      {
+        "addr": "0x0056AAE4",
+        "slots": 6
+      },
+      {
+        "addr": "0x0056AAF0",
+        "slots": 3
+      }
+    ],
+    "total_vtable_slots": 25,
+    "ctor": {
+      "addr": "0x00420290",
+      "name": "RoleSystem"
+    },
+    "dtor": {
+      "addr": "0x00531E70",
+      "name": "~RoleSystem"
+    },
+    "deleting_dtor": {
+      "addr": "0x00531E50",
+      "name": "_scalar_dtor_1E50"
+    },
+    "status": "ctor/dtor 已命名且在 methods；vtable 4 表 25 槽待逐槽反查核归属（未逐一 objdump 核）",
+    "evidence_level": "B",
+    "note": "⚠️ RoleSystem 继承 UIWnd 但同时有 4 个 vtable（25 槽）——需核是否多接口/多 vptr 布局（MI 或嵌套类 vtable 混入），objdump vtable 槽反查待做"
+  },
+  "proposed_changes": [
+    {
+      "kind": "layout_fix",
+      "priority": "P0",
+      "desc": "先修前导成员尺寸（DAG 序靠前，疑 m_partyActor:Actor 的 Actor.binary_size 或嵌套 overlay 展开）消除 91 偏移冲突——**真型化前置**，否则改型加剧漂移",
+      "evidence_level": "A"
+    },
+    {
+      "kind": "retype",
+      "priority": "P1",
+      "desc": "m_fPathTargetY/Z/Angle/Speed/m_fCmdTimer/m_fCmdInterval → float（A 级 fstps/flds 实证；注：这些已声明 float，实为偏移冲突非型错，真型化=确认）",
+      "evidence_level": "A",
+      "count": 6
+    },
+    {
+      "kind": "add_signature",
+      "priority": "P2",
+      "desc": "159 缺签方法逐条 decompile+asm retn_N 取证补签名（每条独立取证，禁批量）",
+      "evidence_level": "B"
+    },
+    {
+      "kind": "vtable_verify",
+      "priority": "P2",
+      "desc": "vtable 4 表 25 槽 objdump 反查核虚函数归属 + ctor/dtor/删际析构核",
+      "evidence_level": "B"
+    }
+  ],
+  "summary": {
+    "layout": "CONFLICT 91/185（P0，审计判据与 objdump 矛盾需人工裁定）",
+    "weak_retypable": 6,
+    "weak_a_evidence_ratio": "6/141 = 4.3%",
+    "weak_frozen": 135,
+    "methods_missing_signature": 159,
+    "top3_issues": [
+      "① 布局 91/185 偏移冲突是**基础病灶**（P0）——先于任何真型化；且审计'实际偏移'与 objdump 实证矛盾，需人工裁定审计判据 vs 嵌套 overlay",
+      "② 弱型 141 中仅 4.3% 有 A 级证据可改，95.7% 证据不足**必须冻结**（禁猜测）——'93% 弱型'≠'93% 可改'，真型化是逐条取证的慢工",
+      "③ 缺签 159（非 149）+ vtable 25 槽未核——成员函数/继承面证据薄弱，需逐条 decompile+asm"
+    ],
+    "output_path": "data/status/pending/class_review_rolesystem.json"
+  }
+}

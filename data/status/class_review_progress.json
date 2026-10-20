@@ -130,6 +130,22 @@
     {
       "ts": "2026-10-20",
       "event": "⚠️ 发现 [D] 判据与 emit 语义出入：emit 故意不发 vptr 成员（virtual 方法⇒隐式 vptr@0，emit_headers.py:2307）"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "verifier 完成 RoleSystem 三维度：布局 CONFLICT 91/185 · 缺签 159 · 弱型 141 中仅 6 条 A 级可改（4.3%）· 135 冻结"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "**P0 根因定谳**：audit_type_layout 的「按成员尺寸累加」算法错（未计 gap/overlay 展开）⇒ 91/185 是误报。objdump fstps 0x4dc(%esi) 证实 +0x4DC 是真实 float 字段。RoleSystem 首员@+68=UIWnd base_size ✓ 继承布局正确。"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "弱型真型化重要结论：93% 弱型 ≠ 93% 可改（仅 4.3% 有 A 级证据）——禁猜测铁律生效"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "verifier 另发现：RoleSystem 单基(UIWnd) 却 4 vtable 25 槽 ⇒ 疑多接口/嵌套类 vtable 混入，待 objdump 槽反查"
     }
   ],
   "rolling_metrics": [
@@ -157,6 +173,14 @@
       "sig_cov": "22.09%",
       "byte_cov": "87.46%",
       "note": "vptr 7 类修复，[D] 判据待调"
+    },
+    {
+      "ts": "2026-10-20 rolesystem",
+      "S2": "121/214",
+      "errors": 1251,
+      "sig_cov": "22.09%",
+      "byte_cov": "87.46%",
+      "note": "RoleSystem 三维度完成，P0=audit 工具累加算法错（误报）"
     }
   ],
   "evidence_level_policy": {
@@ -171,5 +195,21 @@
     ],
     "rule": "每条结论必须有 A 级证据至少一项；仅 B 级须标 evidence_level:'B' 并说明为何无 A 级",
     "trigger": "2026-10-20 reviewer REJECT 实证：45 条全 B 级同源自证 ⇒ 不可信"
-  }
+  },
+  "P0_blockers": [
+    {
+      "id": "P0-1",
+      "title": "audit_type_layout 累加算法误报",
+      "detail": "「按成员尺寸累加」未计 gap/overlay 展开 ⇒ 91/185 假冲突。objdump 实证 +0x4DC 是真 float 字段",
+      "impact": "阻塞 RoleSystem 弱型真型化（verifier 判「真型化必须等 P0 布局修完」，但实为误报）",
+      "next": "修 audit 工具累加算法（或改用「声明偏移 vs objdump 访问形」直接对账）"
+    },
+    {
+      "id": "P0-2",
+      "title": "[D] 判据与 emit 语义出入",
+      "detail": "emit 故意不发 vptr 成员（virtual⇒隐式 vptr@0），[D] 找显式 vptr/占位",
+      "impact": "[D] 恒报 8 类 FAIL",
+      "next": "对齐判据（emit 发显式 vptr 或 [D] 认注释行）"
+    }
+  ]
 }

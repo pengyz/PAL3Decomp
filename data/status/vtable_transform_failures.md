@@ -614,3 +614,13 @@
 | `::GetCellStateByte` | inline | `_BYTE` | 24 | non_class_hint | `(*(int ( **)(_BYTE *, int, int, _DWORD))(*(_DWORD *)_this + 24))(_this, 1001, 262, 0)` |
 | `::GetInputFlag` | inline | `_BYTE` | 24 | non_class_hint | `(*(int ( **)(_BYTE *, int, int, _DWORD))(*(_DWORD *)_this + 24))(_this, 1001, 518, 0)` |
 | `::GetUpdateFlag` | inline | `_BYTE` | 24 | non_class_hint | `(*(int ( **)(_BYTE *, int, int, _DWORD))(*(_DWORD *)_this + 24))(_this, 1001, 788, 0)` |
+| `::CreateSceneEntities` | vftable_local | `char` | 16 | non_class_hint | `(*(void ( **)(char *, int, int *, Actor *))(v11 + 16))(&_this[5].m_curact[27], 161, &v73, _this)` |
+| `::CreateSceneEntities` | inline | `int` | 28 | non_class_hint | `(*(void ( **)(int, char *, int *, Actor *, const char *, int, _DWORD))(*(_DWORD *)v64 + 28))( v64, (char *)*v59, nVal2, _this, v14, 1, 0)` |
+| `::_todo_0051DFD0` | vftable_local | `char` | 16 | non_class_hint | `(*(int ( **)(char *, char *, int *, Actor *))(v29 + 16))( &_this[1].m_curact[19], &byte_A01B00, &v117, _this)` |
+| `CCBStage::GetReadyCount` | inline | `int` | 24 | non_class_hint | `(*(void ( **)(int))(*(_DWORD *)*p_gap_16 + 24))(*p_gap_16)` |
+| `::_todo_004B7560` | inline | `float` | 16 | self_arg_mismatch | `(*(void ( **)(float, _DWORD))(*(_DWORD *)LODWORD(m_fMatrixParamB) + 16))( _pal3_coerce_f32(LODWORD(m_fMatrixParamB)), 0)` |
+| `::_todo_004B7560` | inline | `Actor` | 12 | self_arg_mismatch | `(*(void ( **)(Actor *, _DWORD))(*(_DWORD *)&_this->m_actarray_type + 12))(_this, 0)` |
+| `::SetTextureName` | inline | `gbActorDef` | 60 | self_arg_mismatch | `(*(void ( **)(gbActorDef *, char *))(*(_DWORD *)&_this->m_pact->pBody->gbRefObject + 60))( _this->m_pact->pBody, _this->m_szTexture)` |
+| `::SetActionByName` | inline | `gbActorDef` | 60 | self_arg_mismatch | `(*(void ( **)(gbActorDef *, char *))(*(_DWORD *)&v9->pBody->gbRefObject + 60))(v9->pBody, m_szTexture)` |
+| `::SetParam` | inline | `Actor` | 20 | self_arg_mismatch | `(*(int ( **)(Actor *))(*(_DWORD *)&m_actarray_begin->m_actarray_type + 20))(m_actarray_begin)` |
+| `::SetMaterialName` | inline | `gbActorDef` | 60 | self_arg_mismatch | `(*(void ( **)(gbActorDef *, char *))(*(_DWORD *)&v16->pBody->gbRefObject + 60))(v16->pBody, m_szTexture)` |
