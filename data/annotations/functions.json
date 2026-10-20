@@ -3024,5 +3024,110 @@
     "name": "ClearActionFlags",
     "signature": "int __thiscall(Actor *this)",
     "source_note": "[试点 2026-10-20·签名核验] ③成员访问=m_actarray_begin/end/capacity_end/m_pact/m_name/m_fScale ②被调用者=memset（清零）④Actor（7 命中 0 未解析）；返回 result:int ✓；名与 memset 清动作域相符。"
+  },
+  "0x004D37A0": {
+    "name": "_todo_004D37A0",
+    "signature": "virtual void __thiscall(Actor *this, unsigned int nDelFlags)",
+    "source_note": "[归属存疑 2026-10-20·块2 自查] **疑非 Actor 成员**：[五面证据] ①调用者=asm 全图 0 个直接 call（仅经 .rdata:0056FACC vtable 槽间接调用）②被调用者=operator delete(void*)（逐元素释放 arr[i][0] 的堆指针 + 最后释放数组基）③成员访问=+0x0C 数组基 / +0x1C 计数 / +0x20 容量，命中 Actor 表 m_actarray_capacity_end/m_fMoveSpeed/m_fMoveRange（3 命中 0 未解析）④类归属=**存疑**：A 级 asm `mov dword [esi], offset off_56FAC4`（写 vptr）+ `DATA XREF: .rdata:0056FACC` ⇒ 形态是 vtable 0x56FAC4 之**删除析构**（尾部 `if (nDelFlags & 1) operator delete(th ⇒ 按 CLAUDE.md「禁仅凭 signature this 判归属」暂不归属，冻结待 IDA vtable/xref 复核。"
+  },
+  "0x004D4CA0": {
+    "name": "_todo_004D4CA0",
+    "signature": "virtual void __thiscall(Actor *this, unsigned int nDelFlags)",
+    "source_note": "[归属存疑 2026-10-20·块2 自查] **疑非 Actor 成员**：[五面证据] ①调用者=asm 全图 0 个直接 call（仅经 .rdata:0056FB20 vtable 槽间接调用）②被调用者=operator delete(void*)（同 0x004D37A0）③成员访问=+0x0C / +0x1C / +0x20（3 命中 0 未解析）④类归属=**存疑**：A 级 asm `mov dword [esi], offset off_56FB18`（写 vptr）+ `DATA XREF: .rdata:0056FB20` ⇒ vtable 0x56FB18 之删除析构，与 0x004D37A0（vptr 0x56FAC4）**分属不同类**；反编译文本与 0x004D37A0 逐字同形（code_len 788 / size 129 全同）⇒ 是两个不同类的同形删除析构，**不是** COMDAT 折叠副本；同 0x004D37A0 的 + ⇒ 按 CLAUDE.md「禁仅凭 signature this 判归属」暂不归属，冻结待 IDA vtable/xref 复核。"
+  },
+  "0x00530F70": {
+    "name": "BlendAnimation",
+    "signature": "void __thiscall(Actor *this, float fFrameDt)",
+    "source_note": "[五面证据] ①调用者=Actor::UpdateFrame 的 `switch (this->m_nUpdateMode) case 1` ②被调用者=Actor::SetMaterialName(child, off_5F50B4, 0)、UIAnimateCtrlEX_SwapBuffer(0)（两者均只在到达终值时触发）③成员访问=m_actarray_type(+0，作子对象指针解引用)、m_fSpeed(+0x290=660，标量累加)、m_nUpdateMode(+0x310=784，字节 +12/+13/+15 作标志、+8 作 float 速率)（3 命中 0 未解析）④类归属=Actor（3 命中 0 未解析），但 +0 被当**子对象指针**用（既非 vptr 也非 unsigned char）⇒ 型别存疑 ⑤交互模式=off_5F50B4（材质名指针）、0.0 边界比较。返回值=void（asm `retn 4`=1 个栈参 float）。语义=按 fFrameDt 以速率(+792) 把 m_fSpeed 向 +668 目标爬升/回落（+796 方向标志），到限后置 +797 完成标志并换材质/交换动画缓冲 —— 是「标量缓动 + 完成回调」。原名 BlendAnimation 既未证实也未证伪（<60）⇒ 按铁律保留原名但**不计入正名**。"
+  },
+  "0x005363A0": {
+    "name": "ResetDefaultState",
+    "signature": "int __thiscall(Actor *this)",
+    "source_note": "[五面证据] ①调用者=SceneObj::CreateUI（初始化点）、SceneObj::CleanupInternal（清理点，且 `return Actor::ResetDefaultState((Actor*)this);` ⇒ 返回值被上抛）②被调用者=无 ③成员访问=m_nActionState(+0x154=340)/m_nActionType(+0x14C=332)/m_bActionFlag1(+0x14D=333) 三个动作域字段全部清零（3 命中 0 未解析；A 级 asm 逐条核对 `mov [ecx+154h],eax` / `mov [ecx+14Ch],al` / `mov [ecx+14Dh],al`）④类归属=Actor（3 命中 0 未解析）⑤交互模式=无字面量，纯清零。返回值=int（asm `xor eax,eax` 后 `retn`，0 个栈参；调用方 CleanupInternal 将其返回值上抛，故保留 int 而非 void）。名 ResetDefaultState 与「创建 + 清理两个生命周期点把动作三元组归零」相符。"
+  },
+  "0x005371B0": {
+    "name": "SetActionByName",
+    "signature": "void __thiscall(Actor *this, const char *pszAction, const char *pszOpt1, const char *pszOpt2)",
+    "source_note": "[五面证据] ①调用者=RoleSystem::PlayAction(char *pszAction,int) 传 `pszAction`（动作名串）、RoleSystem::GetCount 传 `aC08` 字面量、RoleSystem::StopAndResetPath 传 0（走 NULL 分支）、CCBStage::SetParam 传 `byte_17AB818`、CCBStage::GetPointerPos 传按索引取出的串 ⇒ ①面直接证明参 1 = **动作名字符串**（原签名标 `int bVisible` 与 strcpy/strlwr 用法矛盾）②被调用者=gbCrc32Compute(名字) → Actor::ValidateInput(this, crc, m_pact)（合法性校验）→ gbActor::GotoAction(m_pact, 名字, pszOpt1, pszOpt2)（切换动作）→ gbVisNode::PopMessage 循环排空消息 → 若 m_szTexture[0] 非空则 vcall(m_pact->pBody, m_szTexture, vtable+0x3C) ③成员访问=m_dwMatMsg(+0x21C=540，strcpy + _strlwr 小写化的名字缓冲)、m_pact(+0x10=16)、m_szTexture(+0x118=280)（3 命中 0 未解析）④类归属=Actor（3 命中 0 未解析）⑤交互模式=动作名字面量 aC08 / byte_17AB818、_strlwr 小写化、gbCrc32Compute 哈希。返回值=void（asm `retn 0Ch` = **3 个栈参**）。⚠️ 原名 `SetVisible` 被证伪：函数体无任何可见性开关。参 2/3 原样转发给 gbActor::GotoAction(char*,char*,char*) 第 2/3 参，语义未定 ⇒ 取中性名 pszOpt1/pszOpt2。"
+  },
+  "0x005372D0": {
+    "name": "PtrVec_Insert_dword",
+    "signature": "int *__thiscall(Actor *this, int *pPos, unsigned int nCount, const int *pVal)",
+    "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActVec_Insert_dword。[五面证据] ①调用者=PtrArray::InsertAt（传 `(Actor*)&this->capacity` 作容器）、UIListBox::LoadListItems（传 `this->m_rowenable` 作容器）、LoadActionSequences（传 `this` 作容器、`this->m_actarray_end` 作插入位）⇒ 容器**非 Actor 专属** ②被调用者=operator new / operator delete ③成员访问=m_actarray_begin(+4)/m_actarray_end(+8)/m_actarray_capacity_e"
+  },
+  "0x00539700": {
+    "name": "VecEntry_Write",
+    "signature": "void __thiscall(Actor *this, FILE *fp)",
+    "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActionEntry_Write。[五面证据] ①调用者=sub_569320：外层按 164 步长遍历动作数组、逐条调用本函数 ⇒ `this` = 单个 164B ActionEntry ②被调用者=fwrite ×4 ③成员访问=m_vecBonePos(+0x88/+0x8C = 136/140，作 656B 元素向量的 begin/end)、m_nAnimBuffer/m_nParticleBuffer(+0x98/+0x9C = 152/156，作 2B 元素向量的 begin/end)（3 命中 0 未解析）④类归属=形式 Actor（3 命中 0 未解析），但①面证明 `this` = 164B ActionE"
+  },
+  "0x00539D60": {
+    "name": "ClearAllActions",
+    "signature": "Actor *__thiscall(Actor *this)",
+    "source_note": "[五面证据] ①调用者=asm/反编译全图 0 个直接调用点 ②被调用者=Actor::ClearAllocBuffers（逐元素析构，步长 164）③成员访问=m_name(+0x14/+0x18=20/24，`*(this+24)=*(this+20)` = 向量2 的 end=begin 清空)、m_actarray_begin/m_actarray_end(+4/+8，向量1，逐个 164B 元素析构后 end=begin)、m_pAllocBuf/m_fTransitionSpeed(+0x24/+0x28=36/40，向量3 的 end=begin)（3 命中 0 未解析）④类归属=Actor（3 命中 0 未解析）⑤交互模式=三组 begin/end 同时归位 + 164B ActionEntry 逐个析构 ⇒ 「清空动作数组族」。返回值=this（asm 尾 `mov eax,[esp+20h+var_8]` 取回保存的 this 后 `retn`，0 个栈参）。名 ClearAllActions 与「逐个析构 ActionEntry 并清空三个数组」相符。"
+  },
+  "0x0053A0C0": {
+    "name": "Vec_InsertEntry",
+    "signature": "int *__thiscall(Actor *this, int *pPos, const int *pEntry)",
+    "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=InsertAction。[五面证据] ①调用者=Actor::BuildCollisionMesh：`Actor::InsertAction(this, (int*)this->m_actarray_end, (char**)&v30.m_pact)`（在动作数组末尾插一条 ActionEntry）②被调用者=Actor::FindMatchingEntry / Actor::SetVideoRegions / ActVecUninitFill / ActVecUninitCopy2 / VideoPlayer::SetRegion / Actor::DestroyActionRange / Actor::GetAc"
+  },
+  "0x0053A340": {
+    "name": "PtrVec_InsertN",
+    "signature": "char *__thiscall(Actor *this, char *pPos, unsigned int nCount, const char *pVal)",
+    "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActArray_InsertN。[五面证据] ①调用者=Actor::BuildCollisionMesh、UIBigMap::SetElementVisible（`Actor::ActVec_Insert_char(v5, &v5->m_actarray_end->m_actarray_type, 1u, pszBuf2)` = 在容器末尾插 1 份）②被调用者=Actor::CopyConstruct_290（0x290 = 656B 元素的拷贝构造包装）、SetCurrentAction、Actor::CopyActionData、qmemcpy(0x290)、operator new/delete ③成员访问=m_a"
+  },
+  "0x0053A6C0": {
+    "name": "PtrVec_Insert_word",
+    "signature": "_WORD *__thiscall(Actor *this, _WORD *pPos, unsigned int nCount, const _WORD *pVal)",
+    "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActVec_Insert_word。[五面证据] ①调用者=Actor::BuildCollisionMesh（`Actor::ActVec_Insert_word((Actor*)p_m_nPathBuffer, (_WORD*)p_m_nPathBuffer[2], 1u, &p_WORD2)` ⇒ 容器是 Actor+0x94=148 的 BoneIndexVec）、UIBigMap::SetElementVisible ②被调用者=operator new / operator delete ③成员访问=m_actarray_begin(+4)/m_actarray_end(+8)/m_actarray_capacity"
+  },
+  "0x0053A8D0": {
+    "name": "PtrVec_InsertN_elem",
+    "signature": "char *__thiscall(Actor *this, char *pPos, unsigned int nCount, const char *pEntry)",
+    "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActVec_InsertN。[五面证据] ①调用者=Actor::LoadActions：`Actor::ActVec_InsertN(this, &m_actarray_end->m_actarray_type, 1u, nY)`（容器 = Actor 的动作数组）②被调用者=VideoPlayer::SetRegion（拷贝构造包装）、Actor::ActArray_Assign(元素+132)、Actor::BoneIndexVec_Assign(元素+148)、Actor::ClearAllocBuffers（析构）、qmemcpy(dst,src,0x84)、operator new/delete ⇒ 元素 ="
+  },
+  "0x0053ACA0": {
+    "name": "PtrVec_InsertN_64",
+    "signature": "char *__thiscall(Actor *this, char *pPos, unsigned int nCount, const void *pVal)",
+    "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActVec_InsertN_64。[五面证据] ①调用者=Actor::LoadActions：`Actor::ActVec_InsertRange(p_m_pact, &p_m_pact->m_actarray_end->m_actarray_type, 1u, pData, v14)`，其中 `pData` 是本地 `_BYTE pData[64]` 缓冲 ⇒ 一次插 1 份 64B 值 ②被调用者=operator new / operator delete / qmemcpy(dst, src, 0x40) ③成员访问=m_actarray_begin(+4)/m_actarray_end(+8)/m_actarray"
+  },
+  "0x0053BD30": {
+    "name": "WordVec_Assign",
+    "signature": "int *__thiscall(Actor *this, const int *pSrcVec)",
+    "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=BoneIndexVec_Assign。[五面证据] ①调用者=Actor::ActVec_InsertN（传 `(Actor*)(elem+148)`，即 ActionEntry 内嵌 BoneIndexVec）、ActVecUninitCopy / ActVecUninitCopy2 / ActVecUninitFill（同样传元素 +148 子对象）⇒ `this` = word 向量子对象，非 Actor ②被调用者=operator new / operator delete ③成员访问=m_actarray_begin(+4)/m_actarray_end(+8)/m_actarray_capacity_end(+0x0"
+  },
+  "0x00419690": {
+    "name": "_todo_00419690",
+    "signature": "void __thiscall(Actor *this, float fFrameDt)",
+    "source_note": "[五面证据] ①调用者=ScriptUpdate ②被调用者=Actor::QueryState(&m_InnerActor)、cos、Actor::CompareActionName(&m_InnerActor, 0, 0)（完成分支）③成员访问=m_InnerActor(+0x2A8=680，取址后当 `Actor*` 传)、m_vecTargetPos(+0xA0=160，写入插值结果)（2 命中 0 未解析）④类归属=**存疑**：`this[1].m_pEquipAtt0` / `this[1].m_nRoleState1` / `this[1].m_dwMatMsg[1..3]` / `this[1].m_pParticleData` / `this[1].m_pEquipAtt1` 等访问落在 `this + sizeof(Actor) = this+820` 之上（远超 Actor 的 binary_size 820）⇒ 型别/归属不可信；且 `&this->m_InnerActor` 被当 `Actor*` 使用 ⇒ m_InnerActor 应是内嵌对象而非 `void*` ⑤交互模式=`(1.0 - cos(t/period*3.1415927))*0.5` 余弦缓动、`(1-k)*A + k*B` 三分量 lerp、终值吸附。返回值=void（asm `retn 4`=1 个栈参 float）。⚠️ 原名 `UpdatePhysics` 被证伪：函数体无任何物理运算（无重力/碰撞/速度积分），只有计时累加 + 余弦缓动 + 位置插值 + 完成回调。候选语义名 `InterpTargetPos` **未采纳**（④面布局/归属存疑）⇒ 按铁律冻结为 `_todo_00419690`。"
+  },
+  "0x0044CB30": {
+    "name": "InitParticles",
+    "signature": "int __thiscall(Actor *this)",
+    "source_note": "[五面证据] ①调用者=UIScenePanel::CreateSettingsUI（**调用面存疑**：与粒子初始化语境不符，疑为该调用者自身命名失真）②被调用者=RoleSystem_InitDefaultPositions、UIPushButton::CreateFromTemplate（逐元素创建）、rand（`%0x12`=18 取纹理索引 / `%255` / `%10+10` 再 `*0.1`）、RoleCamera::InitParticles(this)（尾部 `return` 上抛）③成员访问=m_pParticleData(+0x200=512，取址作 208B 步长数组基)、m_bDirFlag(+0x2AC=684，取址作另一 208B 步长数组基)（2 命中 0 未解析）④类归属=**存疑**：数组基 +512 起以 208B 步长迭代 22 个元素（off_59DD18..off_59DD70 边界），512 + 22*208 ≫ 820（Actor binary_size）⇒ 不是单个 Actor；且 +684 处又一个 208B 数组与之重叠 ⑤交互模式=off_59DD18 / 59DD60 / 59DD70（.data BSS 数组边界，运行期填充，非静态字符串表）、128×128 RECT、rand() 随机化。返回值=int（`return RoleCamera::InitParticles((RoleCamera*)this)`，asm `retn` = 0 个栈参）。名 InitParticles 与「m_pParticleData 域 + 随机参数逐元素初始化 + 尾部 RoleCamera::InitParticles」相符，但调用面/布局面存疑 ⇒ 未达 60，按铁律**不升为正名**（保留原名、conf<60）。"
+  },
+  "0x004B7560": {
+    "name": "_todo_004B7560",
+    "signature": "virtual int __thiscall(Actor *this, int nArg)",
+    "source_note": "[归属存疑 2026-10-20·块2 自查] **疑非 Actor 成员**：[五面证据] ①调用者=asm 全图 0 个直接 call（仅 vtable 槽）②被调用者=两处虚调用：`child->vtable[4](child, 0)`（child 取自 +0xF0=240）与 `this->vtable[3](this, 0)`（vptr 取自 +0）③成员访问=m_actarray_type(+0，作 vptr 解引用 `*(this)+12`)、m_fMatrixParamB(+0xF0=240，作子对象指针)（2 命中 0 未解析）④类归属=**存疑**：A 级 `DATA XREF: .rdata:0056F414` ⇒ vtable 0x56F404 槽 4；该 vtable 槽 0 = UI3DModelNode::_scalar_dtor_74F0、槽 10 = ReleaseAllTextures ⇒ 该 vtable 属 UI3DModelN ⇒ 按 CLAUDE.md「禁仅凭 signature this 判归属」暂不归属，冻结待 IDA vtable/xref 复核。"
+  },
+  "0x004BA230": {
+    "name": "_todo_004BA230",
+    "signature": "void __thiscall(Actor *this)",
+    "source_note": "[五面证据] ①调用者=sub_4BA150+18（该调用者未反编译）②被调用者=sub_4B9E50（asm 尾 `jmp sub_4B9E50` 尾调；已核 sub_4B9E50 亦为 `retn` = 0 个栈参，与本函数 0 参一致）③成员访问=m_nRoleState0(+0x58=88，存 float 差值)、m_nCachedA(+0x4C=76，比较阈值)（2 命中 0 未解析）④类归属=**存疑**：`this+0x9050`(36944) 取指针、`this+0x9020`(36896) 写 0 ⇒ 对象远大于 Actor 的 binary_size 820 ⇒ 型别/归属不可信 ⑤交互模式=`p[0x9C] - p[0xA0]` 差值写入 `this+0x58`、与 `this+0x4C` 阈值比较、`p[0xA4]` 非零则尾调 sub_4B9E50 否则清 `this+0x9020`。返回值=void。⚠️ 签名修正（A 级）：asm `retn`（无操作数）⇒ **0 个栈参**，原签名 a2..a6 五参全为**幽灵参**（Hex-Rays 由尾调 sub_4B9E50 反推，但该函数同样 0 参），已删除。语义（阈值判定 + 分支派发）不足以 ≥60 ⇒ 按铁律冻结。"
+  },
+  "0x004C5B50": {
+    "name": "_todo_004C5B50",
+    "signature": "bool __thiscall(Actor *this, int nKey)",
+    "source_note": "[五面证据] ①调用者=sub_4C5940+9（该调用者未反编译；位于 CEffectSystem / CEffect 版块 0x4C58C0(PAL3::CreateRenderEffects) .. 0x4C5B90 之间）②被调用者=无 ③成员访问=m_pActor(+0x114=276，用作数组计数)、m_szTexture(+0x118=280，用作指针数组基)（2 命中 0 未解析）④类归属=**存疑**：函数体按 4B 步长线性扫描 `*(ptr+8) == nKey`，而 m_szTexture 在 Actor 表是 `char[28]` ⇒ 型别冲突；所在版块是 CEffectSystem 族（邻居 PAL3::CreateRenderEffects / CEffectSystem::Create）⑤交互模式=无字面量，纯线性查找（找到即 break）。返回值=**bool**（A 级 asm：未命中 `xor al,al` / 命中 `mov al,1`，两路均 `retn 4` ⇒ 1 个栈参）。⚠️ 原签名标 void 有误，已改 bool；原名 `_todo_004C5B50`。语义（按 id 在元素数组中查是否存在）可信，但类归属存疑 ⇒ 按铁律冻结（conf<60，不伪语义命名）。"
+  },
+  "0x00530F20": {
+    "name": "IsWithinBoundRadius",
+    "signature": "bool __thiscall(Actor *this)",
+    "source_note": "[五面证据] ①调用者=Actor::UpdateFrame：`if ( Actor::GetBoundRadius(this) && this->m_bDirFlag ) { this->m_bStateFlag = 1; Actor::UpdateAnimState(this, 1); ... }` ⇒ 返回值被当**布尔门**使用 ②被调用者=sub_52FBD0（MiniGame2Scene::GetOBBox，取 p 的 OBBox）、gbOBBox::GetRadius、fabs ③成员访问=m_pRoleState(+0x308=776，作大对象指针 p)、m_fDistAccum(+0x290=656，作 float 参与差值)（2 命中 0 未解析）④类归属=Actor（2 命中 0 未解析）⑤交互模式=无路径/字面量。返回值=**bool**（A 级 asm：`fcomp` + `fnstsw ax; test ah,41h`，两路 `mov al,1` / `xor al,al` 后 `retn`，0 个栈参）。⚠️ 原名 `GetBoundRadius` 被证伪：函数不返回任何半径，返回的是 `gbOBBox::GetRadius(OBBox) > fabs(this->m_fDistAccum - p[0xE90])` 的**比较结果** ⇒ 改 `IsWithinBoundRadius`（判定自身是否落在包围半径内）。"
+  },
+  "0x00537120": {
+    "name": "SetTextureName",
+    "signature": "void __thiscall(Actor *this, const char *pszTexName)",
+    "source_note": "[五面证据] ①调用者=RoleSystem::SetActorTexture：`sprintf(Buffer, \"role\\\\%s\\\\%s.tga\", &this->m_nAnimState, pszName); Actor::SetTextureName((Actor*)&this->m_partyActor.m_Actor, Buffer)` ⇒ 传入的是 .tga 路径串 ②被调用者=strcpy（写入 m_szTexture）→ vcall(m_pact->pBody, m_szTexture, vtable+0x3C)（下发到渲染体）→ OpenBaseFile::OpenBaseFile / OpenNULLFile::OpenNULLFile（文件作用域对）③成员访问=m_szTexture(+0x118=280，strcpy 目标 + 首字节判空)、m_pact(+0x10=16，取 pBody)（2 命中 0 未解析）④类归属=Actor（2 命中 0 未解析）⑤交互模式=pszTexName 判空分支、strcpy 串处理、vtable+0x3C 下发。返回值=void（asm `retn 4`=1 个栈参）。名 SetTextureName 与「把纹理名写入 m_szTexture 并下发到 gbActor 体」相符 ⇒ 保留。⚠️ 可疑点：调用方传入完整 `role\\%s\\%s.tga` 路径，而 m_szTexture 在 Actor 表标 `char[28]`，strcpy 会溢出 ⇒ 该成员尺寸/类型存疑（本任务不改 Actor.json，仅记录）。"
   }
 }
