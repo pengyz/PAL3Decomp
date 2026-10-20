@@ -3478,24 +3478,14 @@ def main():
     # 冲突，2026-10-20 实测引发 S2 121→0 的级联。
     # 正判据：**本次未产出的 .h 一律清掉**（产出地址由 codegen 全权拥有）。
     # 基础设施头（手写、非产出）须排除。
-    _INFRA_HEADERS = {'ida_defs.h', 'ida_types.h', 'pal3_constants.h',
-                      'pal3_stl.h', 'globals.h', '_ns_udts.h'}
-    _produced = {_sanitize_filename(_nm) for _nm in (all_classes or [])}
-    _produced |= {e for e in (enum_names or [])}
+    # [保守回退 2026-10-20·当场读] 用「本次未产出」判据会误删**模板实例化头**
+    #   （CTaskTpl_tagEffTaskParam__unsigned_long_… 由 tmpl 路径产出、不在 all_classes）
+    #   ⇒ C1083 ×214 全线打不开头文件。判据回退为保守的 SKIP_CLASSES 形；
+    #   旧地址孤儿问题已用**手动清理 include/pal3/*.h 791 个**解决。
     stale_removed = 0
-    if not _produced:
-        # 安全阀：产出集为空（异常路径）时**不得**全删 ⇒ 退化为只清 SKIP_CLASSES
-        print('  [cleanup] WARNING: produced set empty — falling back to '
-              'SKIP_CLASSES-only cleanup')
     for hf in OUTPUT_DIR.rglob("*.h"):
         stem = hf.stem
-        if hf.name in _INFRA_HEADERS:
-            continue
-        if not _produced:
-            if should_skip_class(stem) and stem not in (enum_names or ()):
-                hf.unlink(); stale_removed += 1
-            continue
-        if should_skip_class(stem) or stem not in _produced:
+        if should_skip_class(stem) and stem not in (enum_names or ()):
             hf.unlink()
             stale_removed += 1
 
