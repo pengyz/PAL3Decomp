@@ -209,8 +209,10 @@ def collect(ann_dir=ANN_DIR):
     def rate(n, d):
         return round(n / d, 4) if d else 0.0
 
+    bc = byte_coverage()
     return {
         'completeness': {
+            'byte_coverage_rate': bc['coverage_rate'],
             'weak_type_rate': rate(weak_mem, tot_mem),
             'placeholder_name_rate': rate(ph_mem, tot_mem),
             'signature_coverage': rate(n_sig, max(tot_fn, 1)),
@@ -233,11 +235,131 @@ def collect(ann_dir=ANN_DIR):
     }
 
 
+
+
+# ---------------------------------------------------------------- 字节覆盖度量
+# [度量修正 2026-10-20] 原「成员条数」是坏指标：`RoleAtt[200]` 算 1 条却覆盖 170KB
+# ⇒ 42% 薄标的结论是误判。改按**字节覆盖**，且必须含：
+#   ① 继承基类字节（ParticleEffect 的成员在 +362836，基类 sg_particle_scene 覆盖前段）
+#   ② inline union/struct 型（原 tsz() 对 dict 型返回 0）
+# 三轮实测：①成员条数=误导 ②简单字节=偏低 ③含继承+inline=**87% 覆盖 / 12% 缺口**
+_IDA_SIZE = None
+_SC = {}
+
+
+def _type_size(t, depth=0):
+    """型尺寸（含 inline union/struct、数组、指针、已知标量、递归查 ida_structs）。"""
+    if depth > 6:
+        return 0
+    if isinstance(t, dict):
+        if 'union' in t:
+            return max((_type_size(x.get('type'), depth + 1) for x in t['union']), default=0)
+        if 'struct' in t:
+            return sum(_type_size(x.get('type'), depth + 1) for x in t['struct'])
+        return 0
+    t = str(t or '').strip()
+    m = re.match(r'^(.+?)\s*\[(\d+)\]$', t)
+    if m:
+        return _type_size(m.group(1), depth + 1) * int(m.group(2))
+    if t.endswith('*') or t.endswith('[]'):
+        return 4
+    b = re.sub(r'\s*\*$', '', t).strip()
+    if b in ('int', 'float', 'long', 'unsigned long', 'unsigned int', '_DWORD',
+             'BOOL', 'DWORD', 'UINT', 'HWND', 'HINSTANCE'):
+        return 4
+    if b in ('short', 'WORD', 'unsigned short', '_WORD'):
+        return 2
+    if b in ('char', 'BYTE', 'bool', 'unsigned char', '_BYTE'):
+        return 1
+    if b in ('double', '__int64', '_QWORD'):
+        return 8
+    if b in _SC:
+        return _SC[b]
+    v = None
+    global _IDA_SIZE
+    if _IDA_SIZE is None:
+        try:
+            with open(os.path.join(PROJECT_ROOT, 'asm', 'pal3', 'ida_structs.json'),
+                      encoding='utf-8') as fh:
+                _IDA_SIZE = json.load(fh)
+        except (OSError, ValueError):
+            _IDA_SIZE = {}
+    v = (_IDA_SIZE.get(b) or {}).get('size')
+    if not v:
+        try:
+            with open(os.path.join(ANN_DIR, 'structs', '%s.json' % b), encoding='utf-8') as fh:
+                v = int((json.load(fh) or {}).get('binary_size') or 0)
+        except (OSError, ValueError):
+            v = 0
+    _SC[b] = v
+    return v
+
+
+def base_bytes(name, seen=None, depth=0):
+    """继承链字节（含自身成员）—— 防循环。"""
+    seen = seen if seen is not None else set()
+    if name in seen or depth > 8:
+        return 0
+    seen.add(name)
+    tot = 0
+    try:
+        with open(os.path.join(ANN_DIR, 'structs', '%s.json' % name), encoding='utf-8') as fh:
+            d = json.load(fh) or {}
+    except (OSError, ValueError):
+        d = {}
+    if d:
+        for x in (d.get('bases') or []):
+            if isinstance(x, dict) and x.get('name'):
+                tot += base_bytes(str(x['name']), seen, depth + 1)
+        for m in (d.get('known_members') or {}).values():
+            if isinstance(m, dict):
+                tot += _type_size(m.get('type'))
+    if not tot:
+        tot = (_IDA_SIZE.get(name) or {}).get('size') or 0
+    return tot
+
+
+def byte_coverage(ann_dir=ANN_DIR):
+    """字节级覆盖：{total, covered, rate, top_gaps}。"""
+    global _IDA_SIZE
+    if _IDA_SIZE is None:
+        try:
+            with open(os.path.join(PROJECT_ROOT, 'asm', 'pal3', 'ida_structs.json'),
+                      encoding='utf-8') as fh:
+                _IDA_SIZE = json.load(fh)
+        except (OSError, ValueError):
+            _IDA_SIZE = {}
+    tot = cov = 0
+    gaps = []
+    for fp in glob.glob(os.path.join(ann_dir, 'structs', '*.json')):
+        try:
+            with open(fp, encoding='utf-8') as fh:
+                d = json.load(fh) or {}
+        except (OSError, ValueError):
+            continue
+        nm = str(d.get('name') or os.path.basename(fp)[:-5])
+        sz = int(d.get('binary_size') or 0)
+        if sz == 0:
+            continue
+        own = sum(_type_size(m.get('type')) for m in (d.get('known_members') or {}).values()
+                  if isinstance(m, dict))
+        inh = sum(base_bytes(str(x.get('name'))) for x in (d.get('bases') or [])
+                  if isinstance(x, dict) and x.get('name'))
+        c = min(own + inh, sz)
+        tot += sz
+        cov += c
+        if sz - c > 4096:
+            gaps.append({'name': nm, 'size': sz, 'covered': c, 'gap': sz - c})
+    gaps.sort(key=lambda x: -x['gap'])
+    return {'total_bytes': tot, 'covered_bytes': cov,
+            'coverage_rate': round(cov / tot, 4) if tot else 0.0,
+            'top_gaps': gaps[:15]}
+
 # 棘轮方向：这些指标**越高越差**，故用「不得超过基线」判据
 _HIGHER_IS_WORSE = ('weak_type_rate', 'placeholder_name_rate',
                     'weak_signature_rate', 'shell_class_rate',
                     'pending_verdict_rate')
-_LOWER_IS_WORSE = ('signature_coverage',)
+_LOWER_IS_WORSE = ('signature_coverage', 'byte_coverage_rate')
 
 
 def main():
@@ -265,8 +387,16 @@ def main():
         print(json.dumps(res, ensure_ascii=False, indent=2))
         return 0
 
+    bc = byte_coverage()
+
     if not args.quiet:
         print('=== A. annotation 完整度 ===')
+        print(f'  **字节覆盖率**    {bc["coverage_rate"]:.2%}'
+              f'  ({bc["covered_bytes"]:,}/{bc["total_bytes"]:,})  ← 主指标（含继承+inline）')
+        if bc['top_gaps']:
+            g = bc['top_gaps'][0]
+            print(f'    最大缺口: {g["name"]} {g["gap"]:,} 字节'
+                  f'  · >4KB 缺口类 {len(bc["top_gaps"])} 个')
         print(f'  弱型成员率        {comp["weak_type_rate"]:.2%}'
               f'  ({counts["weak_members"]}/{counts["members"]})')
         print(f'  占位名成员率      {comp["placeholder_name_rate"]:.2%}'

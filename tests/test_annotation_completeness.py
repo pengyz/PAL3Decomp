@@ -84,3 +84,40 @@ def test_ratchet_direction_semantics():
     """棘轮方向：弱型率越高越差；签名覆盖率越低越差。"""
     assert 'weak_type_rate' in A._HIGHER_IS_WORSE
     assert 'signature_coverage' in A._LOWER_IS_WORSE
+
+
+# ---------------------------------------------------------------- 字节覆盖（2026-10-20 度量修正）
+
+def test_type_size_handles_inline():
+    """inline union/struct 不得返回 0（原坏指标的根因）。"""
+    assert A._type_size({'union': [{'type': 'int'}, {'type': 'float'}]}) == 4
+    assert A._type_size({'struct': [{'type': 'int'}, {'type': 'char[8]'}]}) == 12
+
+
+def test_type_size_arrays_and_ptrs():
+    assert A._type_size('int[10]') == 40
+    assert A._type_size('void *') == 4
+    assert A._type_size('char[256]') == 256
+    assert A._type_size('RoleAtt[200]') > 1000   # 数组必须展开（不是 1 条）
+
+
+def test_byte_coverage_real():
+    """实测：含继承+inline 后应达 80%+（三轮度量修正定谳 87%）。"""
+    bc = A.byte_coverage()
+    assert bc['total_bytes'] > 10_000_000
+    assert bc['coverage_rate'] > 0.80, bc
+    assert bc['covered_bytes'] <= bc['total_bytes']
+
+
+def test_byte_coverage_top_gaps_sorted():
+    bc = A.byte_coverage()
+    gaps = bc['top_gaps']
+    assert gaps, '应报出 >4KB 缺口类'
+    g = gaps[0]['gap']
+    assert all(x['gap'] <= g for x in gaps)
+    assert gaps[0]['name'] == 'CCBStage', '实测最大缺口是 CCBStage（671KB）'
+
+
+def test_base_bytes_no_infinite_loop():
+    assert A.base_bytes('Nonexistent', set()) == 0
+    assert A.base_bytes('Actor', set()) > 0
