@@ -1,6 +1,5 @@
 {
   "name": "UIScenePanel",
-  "base_class": "UIScene",
   "base_size": 344,
   "known_members": {
     "13832": {
@@ -561,6 +560,12 @@
         }
       ],
       "source": "[vtable 100 认领续 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor `UIScenePanel::UIScenePanel` +306/+365/+424 三写（MI 子对象组装）②被调用者面=UICaption impl（Render/Destroy/删际 0x44BE00）③成员访问面=UICaption 子对象布局 ④类归属面=UIScenePanel:base(UICaption) ⑤交互模式面=MI 构造序；evidence=[ctor 三写偏移,槽行 UICaption 族,删际 0x44BE00] confidence=90"
+    }
+  ],
+  "bases": [
+    {
+      "name": "UIScene",
+      "offset": 0
     }
   ]
 }

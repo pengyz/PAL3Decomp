@@ -33,9 +33,6 @@
       "source": "A:toggle_0_1_byte_flag | ida_xref2"
     }
   },
-  "base_class": [
-    "UIAnimateCtrl"
-  ],
   "methods": {
     "0x00452790": {
       "name": "UIAnimateCtrlEX",
@@ -139,5 +136,11 @@
       ]
     }
   ],
-  "base_size": 164
+  "base_size": 164,
+  "bases": [
+    {
+      "name": "UIAnimateCtrl",
+      "offset": 0
+    }
+  ]
 }

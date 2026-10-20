@@ -1,7 +1,6 @@
 {
   "name": "CCBUIPanel",
   "binary_size": 22112,
-  "base_class": "UIWnd",
   "base_size": 1208,
   "known_members": {
     "21556": {
@@ -492,5 +491,11 @@
       ]
     }
   ],
-  "_base_fix": "2026-09-25: base_class UIListBox→UIWnd。证据：CCBUIPanel vtable@0x56AF80 仅 7 槽，slot[7]=0x41400000(12.0f 数据非函数) ⇒ 非 UIListBox(8槽) 派生；槽[0]/[4] from=UIWnd ✓"
+  "_base_fix": "2026-09-25: base_class UIListBox→UIWnd。证据：CCBUIPanel vtable@0x56AF80 仅 7 槽，slot[7]=0x41400000(12.0f 数据非函数) ⇒ 非 UIListBox(8槽) 派生；槽[0]/[4] from=UIWnd ✓",
+  "bases": [
+    {
+      "name": "UIWnd",
+      "offset": 0
+    }
+  ]
 }

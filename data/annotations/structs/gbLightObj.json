@@ -95,9 +95,6 @@
       "source": "annotation"
     }
   },
-  "base_class": [
-    "gbVolumeModifier"
-  ],
   "methods": {
     "0x0042C6A0": {
       "name": "GetAABBox",
@@ -222,5 +219,11 @@
     }
   ],
   "base_size": 4,
-  "source": " | [vtable 治理 2026-10-15] 移除编造认领：认领 0x0056AB28 实为**游戏类 MI 第二 vptr**：A 级 objdump 0x4237f1/0x4237f7 `movl $0x56ab34,(%esi); movl $0x56ab28,0x8(%esi)` = 主 vptr 0x56AB34@+0 + 子对象 vptr 0x56AB28@+8 的 MI 构造器（类体 ≥0x36C，未归属区 0x4237xx）；gb* 外部库类不拥有映像内 vtable ⇒ 误挂。真主=该 MI 游戏类（构造器未归属，挂账）"
+  "source": " | [vtable 治理 2026-10-15] 移除编造认领：认领 0x0056AB28 实为**游戏类 MI 第二 vptr**：A 级 objdump 0x4237f1/0x4237f7 `movl $0x56ab34,(%esi); movl $0x56ab28,0x8(%esi)` = 主 vptr 0x56AB34@+0 + 子对象 vptr 0x56AB28@+8 的 MI 构造器（类体 ≥0x36C，未归属区 0x4237xx）；gb* 外部库类不拥有映像内 vtable ⇒ 误挂。真主=该 MI 游戏类（构造器未归属，挂账）",
+  "bases": [
+    {
+      "name": "gbVolumeModifier",
+      "offset": 0
+    }
+  ]
 }

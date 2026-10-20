@@ -182,3 +182,34 @@ def reset_caches():
     _ANNOTATION_JSON_CACHE.clear()
     global _TEMPLATE_BASES_CACHE
     _TEMPLATE_BASES_CACHE = None
+
+
+def base_names(info):
+    """基类名列表 —— **唯一真相源读点**（读 `bases`，不读已废弃的 `base_class`）。
+
+    [真相源迁移 2026-10-20] `base_class`（早期单继承·纯名字）与 `bases`
+    （后期 MI 专项·{name,offset}）两字段**名字信息完全冗余**（15/15 重叠一致），
+    `bases` 是超集（含 MI 偏移）⇒ 统一到 `bases`，`base_class` 已删除。
+
+    消费方一律经本函数取基类名，禁止直读字段（防双副本分叉复发）。
+    """
+    if not isinstance(info, dict):
+        return []
+    bs = info.get('bases')
+    out = []
+    if isinstance(bs, list):
+        for x in bs:
+            if isinstance(x, dict):
+                n = x.get('name')
+                if n:
+                    out.append(str(n))
+            elif x:
+                out.append(str(x))
+    return out
+
+def base_entries(info):
+    """基类（含 MI 偏移）—— 需要偏移的场景用这个。"""
+    if not isinstance(info, dict):
+        return []
+    bs = info.get('bases')
+    return [x for x in bs if isinstance(x, dict) and x.get('name')] if isinstance(bs, list) else []

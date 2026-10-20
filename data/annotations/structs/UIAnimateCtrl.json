@@ -43,14 +43,17 @@
       "source": "annotation"
     }
   },
-  "base_class": [
-    "UIWnd"
-  ],
   "methods": {
     "0x00479260": {
       "name": "GetRoleBySlot",
       "signature": "int __thiscall UIAnimateCtrl::GetRoleBySlot(unsigned int dwVal)"
     }
   },
-  "base_size": 68
+  "base_size": 68,
+  "bases": [
+    {
+      "name": "UIWnd",
+      "offset": 0
+    }
+  ]
 }

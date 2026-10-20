@@ -13,6 +13,7 @@ Does NOT do text-level substitutions — those belong in Stage5.
 Every replacement is scoped to a single AST node (identifier, type_identifier,
 field_identifier, number_literal). No blind text replace.
 """
+from annotation_view import base_names as _base_names, base_entries as _base_entries
 import re
 import struct as _struct
 
@@ -2551,7 +2552,7 @@ def run(code, ctx):
             for _p in _g.glob(_o.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'data', 'annotations', 'structs', '*.json')):
                 try:
                     _d = _j.load(open(_p, encoding='utf-8'))
-                    for _b in (_d.get('base_class') or []):
+                    for _b in (_base_names(_d)):
                         if isinstance(_b, str) and len(_b) >= 3:
                             _bn.add(_b)      # 短/泛名拒（B 型污染教训 2026-10-07）
                             _bs[_b] = 4
@@ -2585,7 +2586,7 @@ def run(code, ctx):
                 try:
                     _d = _json.load(open(_f, encoding='utf-8'))
                     _c = _d.get('name') or _os.path.basename(_f)[:-5]
-                    for _b in (_d.get('base_class') or []):
+                    for _b in (_base_names(_d)):
                         if isinstance(_b, dict):
                             _b = _b.get('baseName') or _b.get('name')
                         if _b:

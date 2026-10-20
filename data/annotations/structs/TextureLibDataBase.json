@@ -37,9 +37,6 @@
       "type": "float"
     }
   },
-  "base_class": [
-    "Parent_Data"
-  ],
   "methods": {
     "0x0053FDD0": {
       "name": "CreateParentData",
@@ -89,5 +86,11 @@
       "signature": "_Texture_Info *__thiscall(int nIndex)"
     }
   },
-  "base_size": 4
+  "base_size": 4,
+  "bases": [
+    {
+      "name": "Parent_Data",
+      "offset": 0
+    }
+  ]
 }

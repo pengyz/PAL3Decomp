@@ -28,10 +28,6 @@
       "source": "annotation"
     }
   },
-  "base_class": [
-    "UIWnd",
-    "PalScriptWaitObj"
-  ],
   "methods": {
     "0x004427C0": {
       "name": "SetEnable",
@@ -221,5 +217,15 @@
     }
   ],
   "base_size": 76,
-  "size_evidence": "[IMPOSSIBLE 尺寸修正 2026-10-16] 96 → 344（A 级 new-ctor 三元组：new@0x4a7a05 push $0x158(344) → call 0x43a810（注解名 Destroy2=疑 ctor 误名族））· req=344 吻合 ✓ 原尺寸低估（IMPOSSIBLE 成因）"
+  "size_evidence": "[IMPOSSIBLE 尺寸修正 2026-10-16] 96 → 344（A 级 new-ctor 三元组：new@0x4a7a05 push $0x158(344) → call 0x43a810（注解名 Destroy2=疑 ctor 误名族））· req=344 吻合 ✓ 原尺寸低估（IMPOSSIBLE 成因）",
+  "bases": [
+    {
+      "name": "UIWnd",
+      "offset": 0
+    },
+    {
+      "name": "PalScriptWaitObj",
+      "offset": 68
+    }
+  ]
 }

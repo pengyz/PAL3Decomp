@@ -844,7 +844,6 @@
   },
   "binary_size": 7600,
   "base_size": 68,
-  "base_class": "UIWnd",
   "note": " | binary_size set to 8704 (stride from binary, was 8908)",
   "methods": {
     "0x0040BE50": {
@@ -1684,5 +1683,11 @@
   ],
   "_change_log": [],
   "size_note": "Type/size under re-adjudication (round 6b/7): the global g_RoleSlotBuf @0xC043A0 shows a 5-slot x 1408B structure (raw decomp &::Buffer+1408*elem; slot-boundary instance starts at 2x/4x/5x1408). RoleSystem size 4868 does not tile 5 slots - either the global type is wrong or RoleSystem layout needs the slot-row model. Access-radius census: data/status/_buffer_zone_census.json",
-  "size_evidence": "[IMPOSSIBLE 尺寸修正 2026-10-16] 4868 → 7600（A 级 new-ctor 三元组：new@0x52eda7 push $0x1db0(7600) → call 0x531D20（_todo_531D20=SEH ctor 候选 ✓ C2084 消歧件的 ctor 真值证））· req=7600 吻合 ✓ 原尺寸低估（IMPOSSIBLE 成因）"
+  "size_evidence": "[IMPOSSIBLE 尺寸修正 2026-10-16] 4868 → 7600（A 级 new-ctor 三元组：new@0x52eda7 push $0x1db0(7600) → call 0x531D20（_todo_531D20=SEH ctor 候选 ✓ C2084 消歧件的 ctor 真值证））· req=7600 吻合 ✓ 原尺寸低估（IMPOSSIBLE 成因）",
+  "bases": [
+    {
+      "name": "UIWnd",
+      "offset": 0
+    }
+  ]
 }

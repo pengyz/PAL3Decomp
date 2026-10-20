@@ -287,8 +287,9 @@ def check(struct_dir=None):
     # --- 2d. Inheritance/vtable consistency check ---
     structs = ann.get('structs', {})
     for _sn, _sd in structs.items():
-        _bc = _sd.get('base_class', '')
+        # [真相源迁移 2026-10-20] 只读 `bases`（base_class 已废弃删除）
         _bases = [b.get('name','') for b in (_sd.get('bases') or [])]
+        _bc = _bases or ''
         if isinstance(_bc, list):
             _bases = _bc + _bases
         elif _bc:
@@ -542,10 +543,10 @@ def check(struct_dir=None):
                 msz = _estimate_member_size(m.get('type', 'int'), structs)
                 if msz > binary_sz:
                     errors.append(f"union[{sname}]: member '{m.get('name')}' size {msz} > binary_size {binary_sz}")
-            # Unions cannot have base_class
-            base = sinfo.get('base_class')
+            # Unions cannot have inheritance
+            base = [b.get('name') for b in (sinfo.get('bases') or []) if isinstance(b, dict)]
             if base:
-                errors.append(f"union[{sname}]: unions cannot have base_class")
+                errors.append(f"union[{sname}]: unions cannot have bases")
         else:
             # Check _variants union references
             for off_str, m in members.items():
@@ -668,12 +669,10 @@ def check(struct_dir=None):
 
         # Check base_class exists (structs only - unions checked above)
         if not is_union:
-            base = sinfo.get('base_class')
-            if base:
-                bases = [base] if isinstance(base, str) else base
-                for b in bases:
-                    if b not in all_struct_names:
-                        warnings.append(f"structs[{sname}]: base_class '{b}' not in structs (may be in PDB)")
+            bases = [b.get('name') for b in (sinfo.get('bases') or []) if isinstance(b, dict) and b.get('name')]
+            for b in bases:
+                if b not in all_struct_names:
+                    warnings.append(f"structs[{sname}]: bases '{b}' not in structs (may be in PDB)")
 
         # Check struct has size
         size = max((sinfo.get('binary_size') or 0), (sinfo.get('pdb_size') or 0))  # null 防御 2026-10-17

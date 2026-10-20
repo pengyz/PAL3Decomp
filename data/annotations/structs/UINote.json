@@ -13,9 +13,6 @@
       "source": "annotation"
     }
   },
-  "base_class": [
-    "UIDialog"
-  ],
   "methods": {
     "0x004450A0": {
       "name": "Create",
@@ -50,5 +47,11 @@
       "source": "vtable_gap_fill_v1(from RoleCameraCtrl.json)"
     }
   },
-  "base_size": 72
+  "base_size": 72,
+  "bases": [
+    {
+      "name": "UIDialog",
+      "offset": 0
+    }
+  ]
 }

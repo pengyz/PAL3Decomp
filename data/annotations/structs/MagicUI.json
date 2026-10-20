@@ -383,9 +383,6 @@
       "source": "pdb_fill_incomplete"
     }
   },
-  "base_class": [
-    "UIFrameWnd"
-  ],
   "methods": {
     "0x0055CCE4": {
       "name": "NextRole",
@@ -450,5 +447,11 @@
       "signature": "int __thiscall MagicUI::SelectXJTMTab4(unsigned __int8 nTab)"
     }
   },
-  "base_size": 72
+  "base_size": 72,
+  "bases": [
+    {
+      "name": "UIFrameWnd",
+      "offset": 0
+    }
+  ]
 }

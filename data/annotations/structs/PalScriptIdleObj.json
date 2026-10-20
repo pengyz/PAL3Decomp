@@ -13,9 +13,6 @@
       "source": "annotation"
     }
   },
-  "base_class": [
-    "PalScriptWaitObj"
-  ],
   "methods": {
     "0x00453C00": {
       "name": "UpdateWait",
@@ -31,5 +28,11 @@
       "_misattrib_evidence": "max_offset=92>class_size=16"
     }
   },
-  "base_size": 8
+  "base_size": 8,
+  "bases": [
+    {
+      "name": "PalScriptWaitObj",
+      "offset": 0
+    }
+  ]
 }

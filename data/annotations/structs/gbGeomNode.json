@@ -93,9 +93,6 @@
       "source": "annotation"
     }
   },
-  "base_class": [
-    "gbVisNode"
-  ],
   "base_size": 88,
   "methods": {
     "0x00404D40": {
@@ -103,5 +100,11 @@
       "signature": "void *__thiscall(gbGeomNode *Block, char pFlag)",
       "source": " | 38条注册 2026-10-17（verifier·删际析构类自证·证据账目制）：删际析构形（A 级 disasm）：call ??1gbGeomNode@@UAE@XZ + delete + test[esp+8],1 ⇒ 类自证 gbGeomNode；制式名 _scalar_dtor（制式即语义免五面）| confidence: high"
     }
-  }
+  },
+  "bases": [
+    {
+      "name": "gbVisNode",
+      "offset": 0
+    }
+  ]
 }

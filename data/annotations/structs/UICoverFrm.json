@@ -258,9 +258,6 @@
       "source": "ida_gap_1refs"
     }
   },
-  "base_class": [
-    "UIFrameWnd"
-  ],
   "methods": {
     "0x0052BA10": {
       "name": "UICoverFrm",
@@ -428,5 +425,11 @@
       "source": "[4 表裁决落地 2026-10-16] ✅ UICoverFrm **域子对象表**（A 级：deleting ?_scalar_dtor_79d0@UICoverFrm@@ 修饰名 + ctor 嵌 UIRoleDialog 子对象）——自 UIListBox 误挂迁入；⚠️ 派生 UIListBox 注记**待考**（不预设）"
     }
   ],
-  "base_size": 72
+  "base_size": 72,
+  "bases": [
+    {
+      "name": "UIFrameWnd",
+      "offset": 0
+    }
+  ]
 }

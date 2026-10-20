@@ -163,10 +163,6 @@
       "source": "annotation"
     }
   },
-  "base_class": [
-    "CEffObj",
-    "CTaskTpl_tagEffTaskParam_CEffExplosive"
-  ],
   "methods": {
     "0x004C7C00": {
       "name": "InitDefaultUVSet",
@@ -187,5 +183,15 @@
       "source": "pdb_ret"
     }
   },
-  "base_size": 16
+  "base_size": 16,
+  "bases": [
+    {
+      "name": "CEffObj",
+      "offset": 0
+    },
+    {
+      "name": "CTaskTpl_tagEffTaskParam_CEffExplosive",
+      "offset": 12
+    }
+  ]
 }

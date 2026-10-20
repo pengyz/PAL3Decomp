@@ -28,9 +28,6 @@
       "source": "annotation"
     }
   },
-  "base_class": [
-    "UIFrameWnd"
-  ],
   "methods": {
     "0x00450710": {
       "name": "UILoadingFrm",
@@ -193,5 +190,11 @@
       "source": "[4 表裁决落地 2026-10-16] ✅ UILoadingFrm 的 **UIFrameWnd 基类子对象表**（A 级：deleting `??_GUILoadingFrm@@…_0` 副本后缀修饰名 + ctor 显式调 UIFrameWnd 基 ctor）——自 UIListBox 误挂迁入"
     }
   ],
-  "base_size": 72
+  "base_size": 72,
+  "bases": [
+    {
+      "name": "UIFrameWnd",
+      "offset": 0
+    }
+  ]
 }

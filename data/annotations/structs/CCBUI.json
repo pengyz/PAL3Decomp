@@ -289,9 +289,6 @@
       "source": "+fix:overlap_correct_count | adjudicated:2026-10-15 A:19x72(tagUITask binary_size=72)=1368⇒1208..2576,next@2608 gap32B 无重叠,overlap_correct_count修正正确"
     }
   },
-  "base_class": [
-    "UIFrameWnd"
-  ],
   "methods": {
     "0x004E0740": {
       "name": "UpdateDisplay",
@@ -1146,6 +1143,12 @@
         }
       ],
       "source": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] 认领五面卡：①ctor SaleUI::InitUI+795/CCBUI::InitShopUI+29 对；槽=CCBUI_Render(0x526660)/CCBUI::Update/删际 0x525520 域 ⇒ CCBUI ShopUI 子对象表②被调用者面=域共享 impl③成员访问面=池/库节点布局④类归属面=ctor/dtor 域双自证⑤交互模式面=管理生命周期；confidence=80"
+    }
+  ],
+  "bases": [
+    {
+      "name": "UIFrameWnd",
+      "offset": 0
     }
   ]
 }

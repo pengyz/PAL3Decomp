@@ -49,9 +49,6 @@
       "offset": 4736
     }
   },
-  "base_class": [
-    "RoleCamera"
-  ],
   "methods": {
     "0x00504080": {
       "name": "_scalar_dtor",
@@ -208,6 +205,12 @@
         }
       ],
       "source": "[vtable 合并批 2026-10-16 analyzer] 认领 A 级：删除析构 CCBStageCam@0x504080+29 写表（ctor 域 0x503FA0）"
+    }
+  ],
+  "bases": [
+    {
+      "name": "RoleCamera",
+      "offset": 0
     }
   ]
 }

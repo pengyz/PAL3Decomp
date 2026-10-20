@@ -63,9 +63,6 @@
       "source": "binary_scan:3refs | ida_xref2"
     }
   },
-  "base_class": [
-    "UIFrameWnd"
-  ],
   "methods": {
     "0x0051B690": {
       "name": "_scalar_dtor",
@@ -117,7 +114,7 @@
     "0x004B0520": {
       "name": "`scalar deleting destructor'",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
-      "source": "vtable_gap_fill_v1(from UITitle_JDHY.json) | [T142R] \u8de8\u7c7b\u91cd\u590d\u6761\u76ee\u540c\u540d\u540c\u6b65\uff08\u540c UITitle_JDHY.json 0x004B0520\uff09\uff1aT138 \u5f62 objdump A \u7ea7=call 0x4B0540(~UITitle_JDHY,vptr 0x56F33C)+test flag+operator delete+ret 4 \u21d2 \u771f\u6807\u91cf\u5220\u9664\u6790\u6784\uff08T142 \u66fe\u5224\u300e\u8bef\u540d\u300f\u2014\u2014 \u8bef\uff1a\u9996\u6b65\u88ab\u8c03\u5373\u771f\u6790\u6784\uff09"
+      "source": "vtable_gap_fill_v1(from UITitle_JDHY.json) | [T142R] 跨类重复条目同名同步（同 UITitle_JDHY.json 0x004B0520）：T138 形 objdump A 级=call 0x4B0540(~UITitle_JDHY,vptr 0x56F33C)+test flag+operator delete+ret 4 ⇒ 真标量删除析构（T142 曾判『误名』—— 误：首步被调即真析构）"
     },
     "0x0051B860": {
       "name": "OnMessage",
@@ -135,5 +132,11 @@
       "source": "vtable_gap_fill_v1(from CCBSkillWindow.json)"
     }
   },
-  "base_size": 72
+  "base_size": 72,
+  "bases": [
+    {
+      "name": "UIFrameWnd",
+      "offset": 0
+    }
+  ]
 }

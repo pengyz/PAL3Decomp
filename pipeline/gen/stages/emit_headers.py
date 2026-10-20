@@ -15,6 +15,7 @@ Sources:
 NO raw PDB data is read. The IDB export is the single source of truth.
 """
 
+from annotation_view import base_names as _base_names, base_entries as _base_entries
 import json
 import os
 import re
@@ -1576,9 +1577,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     try:
         _ann_base_ref = _get_ida_structs()
         _ann_base_info = _ann_base_ref.get(cls_name, {})
-        _base_list = _ann_base_info.get('base_class', [])
-        if isinstance(_base_list, str):
-            _base_list = [_base_list]
+        # [真相源迁移 2026-10-20] 只读 `bases`（base_class 已废弃删除）
+        _base_list = _base_names(_ann_base_info)
         for b in _base_list:
             bname = b.split('<')[0] if '<' in b else b
             if '::' not in bname:
@@ -1908,10 +1908,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         # P1-5（第八批）：收敛到 _annview.struct_by_class（exists 由原语内部处理）
         _cls_ann = _annview.struct_by_class(cls_name)
         if _cls_ann:
-            _ann_json_base = _cls_ann.get('base_class')
+            _ann_json_base = _base_names(_cls_ann) or None
         if _ann_json_base and not base_names:
-            if isinstance(_ann_json_base, str):
-                _ann_json_base = [_ann_json_base]
             for _b in _ann_json_base:
                 if _classify_base_kind(_b) == 'inline-overlay':
                     continue  # [kind 分派 2026-10-17·第三路补] _inline_* 走 overlay 成员形
@@ -2176,15 +2174,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             names = set(re.sub(r'[^a-zA-Z0-9_]', '_', n) for n in class_vtable_slots(class_name))
             # Get base_class from ida_structs (primary) or annotation (fallback)
             _is_entry = _get_ida_structs().get(class_name, {})
-            base = _is_entry.get('base_class') or []
+            # [真相源迁移 2026-10-20] 只读 `bases`
+            base = _base_names(_is_entry)
             if not base:
-                # Fallback to annotation for classes not in export
                 try:
-                    _ad = _get_ida_structs()
-                    _ab = _ad.get(class_name, {}).get('base_class')
-                    if _ab:
-                        base = [_ab] if isinstance(_ab, str) else _ab
-                except:
+                    base = _base_names(_get_ida_structs().get(class_name, {}))
+                except Exception:
                     pass
             if base:
                 for b in base:

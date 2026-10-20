@@ -33,10 +33,16 @@
       "source": "PAL3patch:multi_inheritance_as_embed"
     }
   },
-  "base_class": [
-    "UIDialog",
-    "PalScriptWaitObj"
-  ],
   "methods": {},
-  "base_size": 80
+  "base_size": 80,
+  "bases": [
+    {
+      "name": "UIDialog",
+      "offset": 0
+    },
+    {
+      "name": "PalScriptWaitObj",
+      "offset": 72
+    }
+  ]
 }

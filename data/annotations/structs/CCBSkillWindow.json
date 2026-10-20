@@ -18,9 +18,6 @@
       "offset": 80
     }
   },
-  "base_class": [
-    "UIFrameWnd"
-  ],
   "methods": {
     "0x0051BBE0": {
       "name": "Destroy",
@@ -51,7 +48,7 @@
     "0x0051C260": {
       "name": "`scalar deleting destructor'",
       "signature": "UIWnd *__thiscall(CCBSkillWindow *Block, char pData)",
-      "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json) | [T142R] \u540c CCBParabolaWindow.json 0x0051C260\uff08\u8de8\u7c7b\u91cd\u590d\u6761\u76ee\u540c\u540d\u540c\u6b65\uff09\uff1aT138 \u5f62 objdump A \u7ea7=call 0x51C280(\u5b8c\u6574\u6790\u6784,vptr 0x57058C)+test flag+operator delete+ret 4 \u21d2 \u771f\u6807\u91cf\u5220\u9664\u6790\u6784"
+      "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json) | [T142R] 同 CCBParabolaWindow.json 0x0051C260（跨类重复条目同名同步）：T138 形 objdump A 级=call 0x51C280(完整析构,vptr 0x57058C)+test flag+operator delete+ret 4 ⇒ 真标量删除析构"
     },
     "0x0051C880": {
       "name": "Destroy_c880",
@@ -153,6 +150,12 @@
       },
       "from": "CCBSkillWindow",
       "to": "CCBMagicWindow"
+    }
+  ],
+  "bases": [
+    {
+      "name": "UIFrameWnd",
+      "offset": 0
     }
   ]
 }

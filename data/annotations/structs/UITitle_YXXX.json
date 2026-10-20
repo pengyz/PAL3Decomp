@@ -58,9 +58,6 @@
       "source": "annotation"
     }
   },
-  "base_class": [
-    "UIFrameWnd"
-  ],
   "methods": {
     "0x0047DCA0": {
       "name": "Create",
@@ -200,5 +197,11 @@
     }
   ],
   "base_size": 72,
-  "size_evidence": "[IMPOSSIBLE 尺寸修正 2026-10-16] 2472 → 3832（A 级 new-ctor 三元组：new@0x44f264 push $0xef8(3832) → call UITitle_YXXX::Create@0x47dca0 ✓）· req=3834 吻合 ✓ 原尺寸低估（IMPOSSIBLE 成因）"
+  "size_evidence": "[IMPOSSIBLE 尺寸修正 2026-10-16] 2472 → 3832（A 级 new-ctor 三元组：new@0x44f264 push $0xef8(3832) → call UITitle_YXXX::Create@0x47dca0 ✓）· req=3834 吻合 ✓ 原尺寸低估（IMPOSSIBLE 成因）",
+  "bases": [
+    {
+      "name": "UIFrameWnd",
+      "offset": 0
+    }
+  ]
 }

@@ -123,9 +123,6 @@
       "source": "PDB+PAL3_offset_adjusted | [批1-5#1 A 级重定型 2026-10-15] std::vector<int>→unsigned char[16]：① UIListBox=1208 定案（objdump `68 b8 04 00 00/push 0x4b8; call new` ×2 @519d05/51a558）⇒ +0x4A8 尾块 16B（0x4A8+16=0x4B8 恰好到类尾）⇒ 不可能是 Actor(820B) 整体；② 访问形=字节/双字下标（43e748 `lea 0x4a8(%esi)` 取址 + 解引用 [edi+4]/[edi+8]；decomp 渲染 `&this->m_rowenable[8]`/`&this->m_rowenable[4]` = +0x4B0/+0x4AC）⇒ 16B 字节簇；③ 被 call 0x5372d0 以 this=&成员 调用（体读 +4/+8/+0xC begin/end/cap 三元组=actarray 增长形，匹配 Actor.m_actarray_* 但该簇独立 16B；簇的语义类未定 ⇒ 按 workaround 规则用 char 簇表不透明区）。修 3 错：C2440(vector→Actor*) 单根 + C2227/C2653 级联（Actor.h 实际已 include，见 UIListBox.cpp L5）。⚠️ 原 source=PDB 单证违规（PDB+PAL3_offset_adjusted）已由 A 级证据替换"
     }
   },
-  "base_class": [
-    "UIWnd"
-  ],
   "methods": {
     "0x0043DCD0": {
       "name": "UIListBox",
@@ -678,5 +675,11 @@
       "to": "SaleUI"
     }
   ],
-  "size_evidence": "[UIListBox binary_size 重审 2026-10-16] ✅ **1208 确认**（二选一裁决：真尺寸=1208，非 72；调用目标名 `??0UIListBox@@QAE@XZ` **正确**非错位）——A 级三面：① new 算子：`push $0x4b8` ×2+（0x4e11a9/0x4e9d20 等）= operator new(1208)；② 成员面：最大成员 m_rowenable@1192 末端 1192+16=**1208 精确吻合**；③ ctor 面（idapro decompile 0x452597 域 session 12b52719）：`??0UIListBox@@QAE@XZ` 主 ctor + 子对象 `??0UITitle_BBTY@@QAE@XZ` @**v1+1084**（1208-1084=124=子对象尺寸 ✓ 闭合）。⚠️ 「子对象②起点 72」= **MI 基类子对象边界**（UIWnd=68→72 对齐）非类末端——verifier「差 1136」系把子对象起点误读为类尾；布局/步长推断不受影响 ✓"
+  "size_evidence": "[UIListBox binary_size 重审 2026-10-16] ✅ **1208 确认**（二选一裁决：真尺寸=1208，非 72；调用目标名 `??0UIListBox@@QAE@XZ` **正确**非错位）——A 级三面：① new 算子：`push $0x4b8` ×2+（0x4e11a9/0x4e9d20 等）= operator new(1208)；② 成员面：最大成员 m_rowenable@1192 末端 1192+16=**1208 精确吻合**；③ ctor 面（idapro decompile 0x452597 域 session 12b52719）：`??0UIListBox@@QAE@XZ` 主 ctor + 子对象 `??0UITitle_BBTY@@QAE@XZ` @**v1+1084**（1208-1084=124=子对象尺寸 ✓ 闭合）。⚠️ 「子对象②起点 72」= **MI 基类子对象边界**（UIWnd=68→72 对齐）非类末端——verifier「差 1136」系把子对象起点误读为类尾；布局/步长推断不受影响 ✓",
+  "bases": [
+    {
+      "name": "UIWnd",
+      "offset": 0
+    }
+  ]
 }

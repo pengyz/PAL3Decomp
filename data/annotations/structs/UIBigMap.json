@@ -128,9 +128,6 @@
       "source": "annotation"
     }
   },
-  "base_class": [
-    "UIFrameWnd"
-  ],
   "methods": {
     "0x00414E50": {
       "name": "UpdateActions",
@@ -242,5 +239,11 @@
       "source": "vtable_gap_fill_v1(from SaleUI.json)"
     }
   },
-  "base_size": 72
+  "base_size": 72,
+  "bases": [
+    {
+      "name": "UIFrameWnd",
+      "offset": 0
+    }
+  ]
 }

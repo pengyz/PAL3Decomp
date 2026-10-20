@@ -914,7 +914,12 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
 
     members = struct_info.get("known_members", {})
     is_union = struct_info.get("is_union", False)
-    base_class_raw = struct_info.get("base_class")
+    # [真相源迁移 2026-10-20] 只读 `bases`（含 MI 偏移）——
+    # `base_class` 已废弃删除（与 bases 名字信息完全冗余，bases 是超集）。
+    # 此处只取名字列表，后续 list/str 形处理逻辑不变。
+    _bs_entries = struct_info.get("bases") or []
+    base_class_raw = [str(b.get('name')) for b in _bs_entries
+                      if isinstance(b, dict) and b.get('name')] or None
     # Unions don't support inheritance
     if is_union:
         base_class = None

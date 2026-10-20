@@ -63,10 +63,6 @@
       "source": "annotation"
     }
   },
-  "base_class": [
-    "UIFrameWnd",
-    "PalScriptWaitObj"
-  ],
   "methods": {
     "0x0044C970": {
       "name": "Init",
@@ -98,5 +94,15 @@
       "signature": "void __thiscall ChoseCompose::DestroyScene()"
     }
   },
-  "base_size": 80
+  "base_size": 80,
+  "bases": [
+    {
+      "name": "UIFrameWnd",
+      "offset": 0
+    },
+    {
+      "name": "PalScriptWaitObj",
+      "offset": 72
+    }
+  ]
 }

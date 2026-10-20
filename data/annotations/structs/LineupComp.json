@@ -73,9 +73,6 @@
       "source": "pdb_fill_incomplete"
     }
   },
-  "base_class": [
-    "UIWnd"
-  ],
   "methods": {
     "0x004543C0": {
       "name": "SetVisible",
@@ -111,5 +108,11 @@
       "class": "UIWnd"
     }
   },
-  "base_size": 68
+  "base_size": 68,
+  "bases": [
+    {
+      "name": "UIWnd",
+      "offset": 0
+    }
+  ]
 }

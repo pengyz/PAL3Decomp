@@ -2,6 +2,7 @@
 
 Loaded once at startup, accessed by transforms via `from .data import store`.
 """
+from annotation_view import base_names as _base_names, base_entries as _base_entries
 import json
 import os
 import re
@@ -316,7 +317,7 @@ class DataStore:
                     if 'name' in _b and 'offset' in _b:
                         m[_b['name']] = _b['offset']
             else:
-                _bc = _ann.get('base_class')
+                _bc = _base_names(_ann)
                 _names = _bc if isinstance(_bc, list) else ([_bc] if _bc else [])
                 if _names:
                     m[_names[0]] = 0        # ABI: 主基类子对象在偏移 0
@@ -324,7 +325,7 @@ class DataStore:
                 self.struct_bases[_name] = m
             # 直接基类名单（含无 offset 的）—— 供"某名字到底是不是基类"的判定，
             # 该判定**不需要偏移**，故名单本身即可用。
-            _bc2 = _ann.get('base_class')
+            _bc2 = _base_names(_ann)
             _n2 = _bc2 if isinstance(_bc2, list) else ([_bc2] if _bc2 else [])
             if _n2:
                 self.struct_base_names[_name] = [x for x in _n2 if x]

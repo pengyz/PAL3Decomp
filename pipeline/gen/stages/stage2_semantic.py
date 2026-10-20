@@ -3,6 +3,7 @@
 Converts Class::Method(obj, ...) -> obj->Method(...).
 This is the only stage that produces NEW patterns (->ClassName(), ->__vftable->).
 """
+from annotation_view import base_names as _base_names, base_entries as _base_entries
 import sys
 import os
 
@@ -76,7 +77,7 @@ def run(code, ctx):
                                 _off = _b.get('offset', 0 if _bi == 0 else None)
                                 if _off == 0 and _b.get('name'):
                                     _base_names.add(str(_b['name']))
-                    _bc = _ann.get('base_class')
+                    _bc = _base_names(_ann)
                     if _bc:
                         # N-F1 修（复核）：list 形（159/179）取 [0]——str.split 产垃圾名
                         if isinstance(_bc, list):

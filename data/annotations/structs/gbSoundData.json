@@ -9,8 +9,11 @@
       "note": "replaced void* with char* (IDB struct compat)"
     }
   },
-  "base_class": [
-    "gbResource"
-  ],
-  "base_size": 24
+  "base_size": 24,
+  "bases": [
+    {
+      "name": "gbResource",
+      "offset": 0
+    }
+  ]
 }

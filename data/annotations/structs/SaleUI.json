@@ -328,9 +328,6 @@
       "source": "gen_headers_9.2"
     }
   },
-  "base_class": [
-    "UIFrameWnd"
-  ],
   "methods": {
     "0x00525120": {
       "name": "InitUI",
@@ -521,5 +518,11 @@
   ],
   "base_size": 72,
   "size_evidence": "operator new(0x19DB8)=105,912 at CScreenMode::InitGameUI+0x459724 followed by ctor 0x45A7B0; cross-check: ~SaleUI teardown touches +0x19DB4 (=size-4 last dword). NOTE: an earlier session recorded 105,656 - decimal conversion error, fixed 2026-09-14. 2026-09-15 round6 cleanup: deleted 32 out-of-bounds known_members (offset>=105912, max was m_SaleAtt@111276) plus 2 member-overlap intruders (pNGHVarianceParticle@88408, m_nDataPoolBase@88540) — all were unverified gen_headers_9.2/PlayerMgr-import debris (see CHANGE_LOG 2026-09-15 entry, data/status/_cleanup_fix_saleui.json). Ctor 0x45A7B0 last write is [esi+19DB4h] (byte, =105908); dtor 0x45AE60 descending teardown starts at [esi+19AECh]=105196 then jumps straight to vtable-install/base-dtor — neither function ever touches an offset >=105912. binary_size is NOT changed; it remains the hard ctor/alloc-anchored 105912.",
-  "_naming_note": "类名标签 \"SaleUI\" 源自非权威 PDB 导出（data/pdb 版本与二进制不符），仅作标识符使用。类身份由二进制证据钉死：分配 0x19DB8（CScreenMode::InitGameUI）、ctor 升序初始化、~dtor 降序拆除（0x45AE60，scalar_dtor 调用链）、vtable 0x56B5CC 同表安装。幻影 \"PlayerMgr\" 注解已于 2026-09-14 解散并入（_round5_verdict.json）。2026-09-15 round6：round5 合并 PlayerMgr 时把其 20 个 known_members 整批带入，其中 10 个落在 105912 界外、2 个落在 m_ani/m_Role 内造成 overlap，均未逐条验证 this-offset 是否真被 SaleUI 的 ctor/dtor 访问——本轮复核确认 ctor(0x45A7B0)/dtor(0x45AE60) 均止步于 <105912，故予以删除（保留另外 8 个界内但落在 m_data/m_TempData 数组间隙、checker 未标记为 overlap 的同源字段，标为待查，未删除，见 _cleanup_fix_saleui.json）。"
+  "_naming_note": "类名标签 \"SaleUI\" 源自非权威 PDB 导出（data/pdb 版本与二进制不符），仅作标识符使用。类身份由二进制证据钉死：分配 0x19DB8（CScreenMode::InitGameUI）、ctor 升序初始化、~dtor 降序拆除（0x45AE60，scalar_dtor 调用链）、vtable 0x56B5CC 同表安装。幻影 \"PlayerMgr\" 注解已于 2026-09-14 解散并入（_round5_verdict.json）。2026-09-15 round6：round5 合并 PlayerMgr 时把其 20 个 known_members 整批带入，其中 10 个落在 105912 界外、2 个落在 m_ani/m_Role 内造成 overlap，均未逐条验证 this-offset 是否真被 SaleUI 的 ctor/dtor 访问——本轮复核确认 ctor(0x45A7B0)/dtor(0x45AE60) 均止步于 <105912，故予以删除（保留另外 8 个界内但落在 m_data/m_TempData 数组间隙、checker 未标记为 overlap 的同源字段，标为待查，未删除，见 _cleanup_fix_saleui.json）。",
+  "bases": [
+    {
+      "name": "UIFrameWnd",
+      "offset": 0
+    }
+  ]
 }

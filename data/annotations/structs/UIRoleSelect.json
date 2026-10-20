@@ -28,10 +28,6 @@
       "source": "PAL3patch_verified"
     }
   },
-  "base_class": [
-    "UIDialog",
-    "PalScriptWaitObj"
-  ],
   "methods": {
     "0x004A1530": {
       "name": "SetByte",
@@ -43,5 +39,15 @@
       "_misattrib_evidence": "max_offset=5252>class_size=1488"
     }
   },
-  "base_size": 80
+  "base_size": 80,
+  "bases": [
+    {
+      "name": "UIDialog",
+      "offset": 0
+    },
+    {
+      "name": "PalScriptWaitObj",
+      "offset": 72
+    }
+  ]
 }

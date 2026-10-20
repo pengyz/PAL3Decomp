@@ -69,9 +69,6 @@
       "source": " | normalize_key: 0x3D0 -> 976 | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：内嵌删槽形——`(*(...)&slot,0)( &slot, 0)`（InvokeCallback@0x4A1620）&slot 作自身 this 传入（COM/删槽族）"
     }
   },
-  "base_class": [
-    "UIDialog"
-  ],
   "methods": {
     "0x0049CEC0": {
       "name": "GetPlayerAttField",
@@ -94,5 +91,11 @@
       "_misattrib_evidence": "max_offset=15032>class_size=1288"
     }
   },
-  "base_size": 72
+  "base_size": 72,
+  "bases": [
+    {
+      "name": "UIDialog",
+      "offset": 0
+    }
+  ]
 }

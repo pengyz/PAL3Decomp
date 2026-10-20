@@ -18,9 +18,6 @@
       "source": "PAL3patch_verified"
     }
   },
-  "base_class": [
-    "UIFrameWnd"
-  ],
   "methods": {
     "0x004500F0": {
       "name": "Create",
@@ -53,5 +50,11 @@
       "_misattrib_evidence": "max_offset=724>class_size=184"
     }
   },
-  "base_size": 72
+  "base_size": 72,
+  "bases": [
+    {
+      "name": "UIFrameWnd",
+      "offset": 0
+    }
+  ]
 }

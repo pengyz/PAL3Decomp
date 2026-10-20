@@ -5,6 +5,7 @@ Replaces regex-based OOP conversion with correct AST analysis.
 Only transforms calls where first argument is safe to convert.
 """
 
+from annotation_view import base_names as _base_names, base_entries as _base_entries
 import tree_sitter_cpp as tscpp
 import tree_sitter
 import re
@@ -341,7 +342,7 @@ def _ensure_bases():
             continue
         _sd = json.load(open(os.path.join(_structs_dir, _f), encoding='utf-8'))
         _c = _sd.get('name', '')
-        _b = _sd.get('base_class')
+        _b = _base_names(_sd)
         if _b:
             if isinstance(_b, str):
                 _b = [_b]

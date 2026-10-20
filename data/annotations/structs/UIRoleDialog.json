@@ -73,10 +73,6 @@
       "source": "binary:binary_size=1368 尾部填充 | [批4 诚实化 2026-10-16] A偏移形：_tail_556⇒m_nTodo_556（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
     }
   },
-  "base_class": [
-    "UIDialog",
-    "PalScriptWaitObj"
-  ],
   "methods": {
     "0x004A1410": {
       "name": "~UIRoleDialog",
@@ -190,5 +186,15 @@
   "base_size": 80,
   "_cascade_note": "2026-09-22 级联平移 +0x58：内嵌 UITextArea 的真实尺寸为 0xC0（旧注解 0x68 ✗）⇒ 其后成员整体后移（emit 报 start_off 由 0x310 起 ✓）。证据：UITextArea 尺寸三线独立证明 ✓",
   "_note": "binary_size 808：内部注解⇄编译头自洽 ✓；但 ctor(0x4A12F0) 证据表明子对象真布局在 0x70/0x130/0x1C8/0x278/0x3D0 ⇒ 全类重建挂起（r21 判定），binary_size 待重建后复核",
-  "_rebuild_note": "2026-09-24 全类重建（ctor 0x4A12F0 序列为纲）：旧注解 0x50-0x310 子对象布局与 ctor 矛盾已废弃（m_bk/m_ani/m_face/旧 m_static@0x250/timeclose 待 PDB 对账）；0x328..0x558 未建模区已按 ctor/Create 写集填充"
+  "_rebuild_note": "2026-09-24 全类重建（ctor 0x4A12F0 序列为纲）：旧注解 0x50-0x310 子对象布局与 ctor 矛盾已废弃（m_bk/m_ani/m_face/旧 m_static@0x250/timeclose 待 PDB 对账）；0x328..0x558 未建模区已按 ctor/Create 写集填充",
+  "bases": [
+    {
+      "name": "UIDialog",
+      "offset": 0
+    },
+    {
+      "name": "PalScriptWaitObj",
+      "offset": 72
+    }
+  ]
 }

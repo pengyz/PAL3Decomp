@@ -53,9 +53,6 @@
       "offset": 124
     }
   },
-  "base_class": [
-    "UIFrameWnd"
-  ],
   "methods": {
     "0x0051CB60": {
       "name": "Reset",
@@ -80,5 +77,11 @@
       "signature": "char __thiscall(CCBControlWindow **show)"
     }
   },
-  "base_size": 72
+  "base_size": 72,
+  "bases": [
+    {
+      "name": "UIFrameWnd",
+      "offset": 0
+    }
+  ]
 }

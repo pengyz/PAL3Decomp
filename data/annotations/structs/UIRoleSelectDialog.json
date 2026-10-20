@@ -58,9 +58,6 @@
       "source": "annotation"
     }
   },
-  "base_class": [
-    "UIDialog"
-  ],
   "methods": {
     "0x00451980": {
       "name": "CreateDialog",
@@ -161,5 +158,11 @@
     }
   ],
   "base_size": 72,
-  "_cascade_note": "2026-09-22 级联平移 +0x58：内嵌 UITextArea 的真实尺寸为 0xC0（旧注解 0x68 ✗）⇒ 其后成员整体后移（emit 报 start_off 由 0x314 起 ✓）。证据：UITextArea 尺寸三线独立证明 ✓"
+  "_cascade_note": "2026-09-22 级联平移 +0x58：内嵌 UITextArea 的真实尺寸为 0xC0（旧注解 0x68 ✗）⇒ 其后成员整体后移（emit 报 start_off 由 0x314 起 ✓）。证据：UITextArea 尺寸三线独立证明 ✓",
+  "bases": [
+    {
+      "name": "UIDialog",
+      "offset": 0
+    }
+  ]
 }

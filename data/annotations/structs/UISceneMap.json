@@ -33,9 +33,6 @@
       "source": "PAL3patch_verified"
     }
   },
-  "base_class": [
-    "UIWnd"
-  ],
   "methods": {
     "0x0044FFE0": {
       "name": "UISceneMap",
@@ -218,5 +215,11 @@
       "source": "[vtable 余 49 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor 域 `UISceneMap::_todo_450DC0+159` 写表 + `RoleAtt::~RoleAtt+39`（析构族共享写）②被调用者面=槽 0x450F80 RoleAtt::IsValid(误名域)+Object::Update ③成员访问面=域布局 ④类归属面=UISceneMap 域（0x450Dxx ctor 域）⑤交互模式面=构造/析构对；⚠️ 槽 0x451800 UNREG 待补；evidence=[写点 ctor/dtor 对,槽行域名] confidence=75"
     }
   ],
-  "base_size": 68
+  "base_size": 68,
+  "bases": [
+    {
+      "name": "UIWnd",
+      "offset": 0
+    }
+  ]
 }

@@ -78,9 +78,6 @@
       "source": "binary:disasm@0x445201 (ProcessInput cmp)"
     }
   },
-  "base_class": [
-    "UIWnd"
-  ],
   "methods": {
     "0x00445920": {
       "name": "Destroy",
@@ -160,5 +157,11 @@
     }
   ],
   "base_size": 68,
-  "_rebuild_note": "2026-09-22 按二进制重建：原注解 m_buf(string)@0x44 ✗（实为 float 0.5）· m_bInvalidate(BYTE)@0x50 ✗（实为 dword）· binary_size 104 ✗（实为 192）；size 由三条独立证据定：UIAnimateCtrlEX.m_TextArea 步长 0xC0 · UISceneMap ctor 链 0xC0 · 真实方法最大自有字段 0xBC+4=0xC0 ✓；高偏移 0xA0/0xEC/0xF0 来自 ReleaseAllTextures@0x4B7AF0（疑误归属 ✗）"
+  "_rebuild_note": "2026-09-22 按二进制重建：原注解 m_buf(string)@0x44 ✗（实为 float 0.5）· m_bInvalidate(BYTE)@0x50 ✗（实为 dword）· binary_size 104 ✗（实为 192）；size 由三条独立证据定：UIAnimateCtrlEX.m_TextArea 步长 0xC0 · UISceneMap ctor 链 0xC0 · 真实方法最大自有字段 0xBC+4=0xC0 ✓；高偏移 0xA0/0xEC/0xF0 来自 ReleaseAllTextures@0x4B7AF0（疑误归属 ✗）",
+  "bases": [
+    {
+      "name": "UIWnd",
+      "offset": 0
+    }
+  ]
 }

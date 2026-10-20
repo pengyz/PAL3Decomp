@@ -103,14 +103,17 @@
       "source": "PDB_PAL3_adjusted(-16_after_172)"
     }
   },
-  "base_class": [
-    "UIWnd"
-  ],
   "methods": {
     "0x0043FCA0": {
       "name": "SetRange",
       "signature": "void __thiscall(float fValue)"
     }
   },
-  "base_size": 68
+  "base_size": 68,
+  "bases": [
+    {
+      "name": "UIWnd",
+      "offset": 0
+    }
+  ]
 }

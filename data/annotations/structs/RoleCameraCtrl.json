@@ -81,9 +81,6 @@
       "source": "int 位面（`LODWORD(v7.fVal)=m_pVtable` RHS 标量实证；C2679 站） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）："
     }
   },
-  "base_class": [
-    "PalScriptWaitObj"
-  ],
   "methods": {
     "0x00450A25": {
       "name": "~RoleCameraCtrl",
@@ -180,5 +177,11 @@
       ]
     }
   ],
-  "base_size": 8
+  "base_size": 8,
+  "bases": [
+    {
+      "name": "PalScriptWaitObj",
+      "offset": 0
+    }
+  ]
 }

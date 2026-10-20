@@ -73,9 +73,6 @@
       "source": "pdb+asm(rep stosd 0x20 自 0x78 = 128 字节)"
     }
   },
-  "base_class": [
-    "UIWnd"
-  ],
   "methods": {
     "0x004407C0": {
       "name": "~UIPushButton",
@@ -292,5 +289,11 @@
     }
   ],
   "binary_size_source": "钉死复核 f314ccac：原生锚 push 0F8h + call sub_440740（3 处真 new）⇒ 248；且 PDB UIPushButton size=252 ⇒ PAL3 = 252−4 = 248（与 UIStatic 152=160−8 同属\"PAL3 少尾部字段\"模式）✓。⚠️ 本文件的 known_members 仍待重排（m_caption 记在 100 而真值 0x78=120；缺 0x4C/0x50/0x54/0x5C）—— 需独立取证，未在本批混入 ✗。",
-  "known_members_source": "2026-09-21 重排（钉死复核 f314ccac 的 #3 项 ✓）：依据 PAL3A PDB `UIPushButton`(252) 字段表 + **PAL3 asm 的 ctor 写域逐项吻合**（两字节写@0x44/0x45 ✓、dword 1@0x4C=m_fonttype ✓、清 0x54/0x58/0x5C/0x60 = gbTexture*[2]+_PlugInfo*[2] ✓、**rep stosd 0x20 自 0x78 = char[128] m_caption** ✓）⇒ 末端 0xF8 = **248** ✓✓ （PAL3 无尾部 m_TextTopOffset ⇒ 248 = PDB 252 − 4 ✓）。原表的名字整体错位 ✗（如 72 记作 m_texarrayInfo，应 m_fontcolor@0x48 ✓）。"
+  "known_members_source": "2026-09-21 重排（钉死复核 f314ccac 的 #3 项 ✓）：依据 PAL3A PDB `UIPushButton`(252) 字段表 + **PAL3 asm 的 ctor 写域逐项吻合**（两字节写@0x44/0x45 ✓、dword 1@0x4C=m_fonttype ✓、清 0x54/0x58/0x5C/0x60 = gbTexture*[2]+_PlugInfo*[2] ✓、**rep stosd 0x20 自 0x78 = char[128] m_caption** ✓）⇒ 末端 0xF8 = **248** ✓✓ （PAL3 无尾部 m_TextTopOffset ⇒ 248 = PDB 252 − 4 ✓）。原表的名字整体错位 ✗（如 72 记作 m_texarrayInfo，应 m_fontcolor@0x48 ✓）。",
+  "bases": [
+    {
+      "name": "UIWnd",
+      "offset": 0
+    }
+  ]
 }

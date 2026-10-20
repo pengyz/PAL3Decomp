@@ -96,10 +96,13 @@
       "source": "annotation"
     }
   },
-  "base_class": [
-    "UIWnd"
-  ],
   "base_size": 68,
   "size_note": "alloc says 248 (3 sites, vtable-proven ctor 0x440740) but 152->248 destabilizes UIStaticFlip/EX/RM family emission (headers vanish); deferred pending family member alignment",
-  "_strip_note": "2026-09-21 拆名：原 vtables=[0x56AD88] 与全部 20 个 0x440xxx 方法属 **UIPushButton**（钉死复核 f314ccac：A=sub_440740/vtable off_56AD88/248 与该 ctor 写域 11/11 命中 PDB UIPushButton + 全库唯一 char[128]@0x78；而 UIStatic 是 vtable 0x56ADD0 的类、PAL3 尺寸 152，字段 19/19 命中 + 全库唯一 std::string@0x60）⇒ 已迁出 ✓。"
+  "_strip_note": "2026-09-21 拆名：原 vtables=[0x56AD88] 与全部 20 个 0x440xxx 方法属 **UIPushButton**（钉死复核 f314ccac：A=sub_440740/vtable off_56AD88/248 与该 ctor 写域 11/11 命中 PDB UIPushButton + 全库唯一 char[128]@0x78；而 UIStatic 是 vtable 0x56ADD0 的类、PAL3 尺寸 152，字段 19/19 命中 + 全库唯一 std::string@0x60）⇒ 已迁出 ✓。",
+  "bases": [
+    {
+      "name": "UIWnd",
+      "offset": 0
+    }
+  ]
 }

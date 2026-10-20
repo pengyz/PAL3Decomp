@@ -48,9 +48,6 @@
       "source": "annotation"
     }
   },
-  "base_class": [
-    "UIFrameWnd"
-  ],
   "methods": {
     "0x0047E190": {
       "name": "ProcessFrame",
@@ -66,5 +63,11 @@
       "signature": "int __thiscall ComposeUI::ProcessChildItem(int arg0, int *p_DWORD)"
     }
   },
-  "base_size": 72
+  "base_size": 72,
+  "bases": [
+    {
+      "name": "UIFrameWnd",
+      "offset": 0
+    }
+  ]
 }

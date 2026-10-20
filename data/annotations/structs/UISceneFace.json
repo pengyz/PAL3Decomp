@@ -38,9 +38,6 @@
       "source": "PAL3patch_verified"
     }
   },
-  "base_class": [
-    "UIWnd"
-  ],
   "methods": {
     "0x0052D0D0": {
       "name": "ResetAllSlots",
@@ -58,5 +55,11 @@
       "source": "batch:sub_fix_from_decomp_this_type"
     }
   },
-  "base_size": 68
+  "base_size": 68,
+  "bases": [
+    {
+      "name": "UIWnd",
+      "offset": 0
+    }
+  ]
 }
