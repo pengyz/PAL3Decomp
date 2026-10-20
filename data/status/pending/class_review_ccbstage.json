@@ -32,5 +32,53 @@
   "注解 ctor 地址 0x4FB9A0 疑误（实测=memset 无 vptr 写）——proposed 另案：ctor 地址订正到 0x51DCxx 区（含 call+vptr 写）",
   "base_size 闭合核验待做（UIRoleDialog bs=1368 vs CCBStage 首自有成员偏移）",
   "仅读只查：CCBStage.json + objdump .rdata/文本段 + 已知注册信息；未遍历全目录 ✓"
- ]
+ ],
+ "ctor_dtor_verified": {
+  "ctor": {
+   "addr": "0x51DC86-0x51DD45 区（vptr 写点 0x51DD43；精确入口待 prologue 括定）",
+   "name": "CCBStage ctor 区域",
+   "evidence": "objdump 0x51DD22: `lea 0xa3678(%esi),%ecx` ; 0x51DD2E: `call 0x4A12F0`（UIRoleDialog ctor @嵌入位+0xA3678）; 0x51DD33: `lea 0xa3bd0(%esi),%ecx` ; 0x51DD3E: `call 0x4A12F0`（@嵌入位+0xA3BD0）; 0x51DD43: `c7 06 d0 05 57 00` movl $0x5705D0,(%esi)=自有 vptr@0",
+   "evidence_level": "A"
+  },
+  "dtor": {
+   "addr": "0x51DD80",
+   "evidence": "objdump 0x51DDBD: `c7 06 d0 05 57 00` 写 vptr 0x5705D0（%esi=类头）; 0x51DDC3: `lea 0xa3bd0(%esi),%ecx` ; 0x51DDD8: `call 0x4A1410`（析构嵌入 @+0xA3BD0）——与 ctor 对称",
+   "evidence_level": "A"
+  },
+  "old_ctor_wrong": {
+   "addr": "0x4FB9A0",
+   "reason": "实测纯 rep stos 批清零、0 处 vptr 写",
+   "evidence": "objdump 0x4FB9A0-0x4FB9D5: push ebx/mov ecx,ebx/lea 0xac0/rep stos 循环×2/mov 0x10(%esp),eax/pop——无 c7 06 vptr 写、无 call 基类"
+  },
+  "base_size_check": {
+   "annotation": null,
+   "first_own_member": 0,
+   "verdict": "不吻合（前提翻转：非继承）",
+   "evidence": "⚠️ **上轮 inheritance_v2 verdict 撤回**：0x51DD2E/0x51DD3E 两次 UIRoleDialog ctor 调用的 ecx=lea 0xa3678(%esi)/lea 0xa3bd0(%esi) = **嵌入子对象地址**（非基类 this=%esi）⇒ CCBStage **含 2 个嵌入 UIRoleDialog 成员**@+0xA3678(669,304B)/+0xA3BD0(671,184B)，**不是继承 UIRoleDialog**；vptr@0=自有（0x5705D0 七槽 UIWnd 接口形=自实现接口）；注解 m_pCBSystem@0 与 vptr@0 冲突=缺 vptr 位（首员应 +4）；UIRoleDialog bs=1368 与继承说本就不吻合（若继承，首自有员应 ≥1368）"
+  },
+  "proposed_changes": [
+   {
+    "file": "data/annotations/structs/CCBStage.json",
+    "kind": "add_member",
+    "detail": "+0x0 vptr（__vftable *）；m_pCBSystem 等首组成员偏移核 +4 位（与 vptr 共存）",
+    "evidence": "0x51DD43 movl $0x5705D0,(%esi)",
+    "confidence": 85
+   },
+   {
+    "file": "data/annotations/structs/CCBStage.json",
+    "kind": "add_member",
+    "detail": "嵌入 UIRoleDialog 成员 2 处：+0xA3678 与 +0xA3BD0（type: UIRoleDialog）",
+    "evidence": "ctor 双 lea+call 0x4A12F0；dtor lea 0xa3bd0+call 0x4A1410",
+    "confidence": 88
+   },
+   {
+    "file": "data/annotations/structs/CCBStage.json",
+    "kind": "fix_ctor_addr",
+    "detail": "ctor 地址 0x4FB9A0 → 0x51DCxx 区（含 0x51DD43 vptr 写；精确入口待括定）",
+    "evidence": "0x4FB9A0 无 vptr 写 vs 0x51DD43 有",
+    "confidence": 80
+   }
+  ],
+  "verdict_revision": "inheritance_v2 的『继承 UIRoleDialog』**撤回**→『嵌入 2×UIRoleDialog 成员 + 自有 vptr@0』（call 的 ecx=嵌入位 A 级铁证）"
+ }
 }

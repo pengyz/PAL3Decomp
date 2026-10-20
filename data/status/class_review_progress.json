@@ -174,6 +174,22 @@
     {
       "ts": "2026-10-20",
       "event": "派 3 团队任务（analyzer=Actor retn 逐条核 · fixer=CCBRoleState · verifier=PalScript）"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "🔴 analyzer 翻案：CCBStage **非继承 UIRoleDialog**，实为**嵌入 2×UIRoleDialog 成员**（+0xA3678/+0xA3BD0）。objdump lea 0xa3678(%esi) 实录：ecx=嵌入位非基类 this。上轮未核 ecx 即判基类调用，教训记 verdict_revision。"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "reviewer PASS_WITH_CHANGES(blocking 1)：报 PalScript 移除伪员 13 处 decomp 残留引用"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "✅ lead 核实 **reviewer blocking 是误报**：13 处在 UIItem/UIScene（同名不同类），PalScript 自身零残留 ✓"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "P0-1 实验否定：RoleSystem pack=1 未消除 91 冲突 ⇒ 对齐假设错，根因另寻"
     }
   ],
   "rolling_metrics": [
@@ -242,13 +258,6 @@
   },
   "P0_blockers": [
     {
-      "id": "P0-1",
-      "title": "生成头 _gap_* 尺寸推断错 => 编译器布局漂移",
-      "detail": "lead 初判「audit 累加算法错」错了，当场纠正。audit_type_layout 用编译器 offsetof（A 级裁判，非累加）。实测：注解 m_fPathTargetY @ +1244=0x4DC 与 objdump 一致，但生成头含大量 _gap_* => 编译器 offsetof 漂移 => audit 报 91/185 冲突。病灶在 codegen 的 gap 尺寸推断（emit_headers 的 _gap_ 自动推断），不在 audit、不在注解。",
-      "impact": "阻塞 RoleSystem/CCBRoleState/PalScript 布局验证 + 弱型真型化",
-      "next": "修 codegen 的 _gap_ 尺寸推断（或改为从 objdump 访问形直接填 gap 尺寸）"
-    },
-    {
       "id": "P0-2",
       "title": "[D] 判据与 emit 语义出入",
       "detail": "emit 故意不发 vptr 成员（virtual⇒隐式 vptr@0），[D] 找显式 vptr/占位",
@@ -261,6 +270,13 @@
       "detail": "54 条 proposed_signature 套用后 S2 121→0 · 错误 1252→4187。疑参数类型/调用约定错",
       "impact": "阻塞 Actor 签名补全",
       "next": "逐条核 proposed_signature（参数类型须调用点证据）后再用，禁批量"
+    },
+    {
+      "id": "P0-1",
+      "title": "生成头布局 vs 注解偏移漂移（根因未定）",
+      "detail": "audit_type_layout 用编译器 offsetof（A 级）报 91/185 冲突。已排除：①累加算法（lead 初判错）②对齐自插 padding（pack=1 实验否定）。注解偏移与 objdump 一致（+0x4DC=0x4DC ✓）⇒ 病灶在生成头 emit 侧。",
+      "impact": "阻塞 RoleSystem/CCBRoleState/PalScript 布局验证",
+      "next": "emit 侧逐成员对账（PAL3_EMIT_TRACE 开关已备）"
     }
   ]
 }

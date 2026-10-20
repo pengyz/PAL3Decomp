@@ -1,0 +1,27 @@
+{
+  "review_of": [
+    "PalScript.json 3 条 A 级",
+    "functions.json Actor 5 条"
+  ],
+  "verdict": "PASS_WITH_CHANGES",
+  "blocking_issues": [
+    {
+      "target": "PalScript.json 移除 6 伪成员（m_nTodo_050/m_nTodo_054）",
+      "issue": "角度6 违：移除成员仍有 decomp 残留引用 13 处（050×12+054×1）——现树 codegen 消费含旧名的 decomp 快照 ⇒ 此刻编译将 C2039 崩；即便重导后引用重渲 raw-offset 形=13 站渲染质量回退",
+      "evidence": "grep 全 decomp 语料：m_nTodo_050 残留 12 处·m_nTodo_054 残留 1 处（脚本计数实录）；050/054∈0x4C..0x90 子对象域=重叠定性 ✓ 但引用面未清",
+      "fix_required": "apply→export→codegen 全链重导后验证 13 站渲染收敛（或暂留 2 员标 deprecated 待引用清零再删）；禁在未重导前跑 codegen"
+    }
+  ],
+  "stats": {
+    "reviewed": 8,
+    "approved": 7,
+    "blocked": 1
+  },
+  "non_blocking_notes": [
+    "PalScript 3 条 A 级全过：①vptr 订正 objdump 43a1a4 `movl $0x56ac4c,(%esi)` ✓ ②_BYTE[68] 子对象 43a185 `lea 0x4c(%esi),%ecx; call 0x445ea0` ctor 形 ✓ ③10.0f 43a1aa `movl $0x41200000,0x44(%esi)` ✓——三条均独立 objdump 实录核对",
+    "Actor 5 条纪律面 ✓：_todo_ 诚实形（伪语义 0）· 逐条核+5/56 落盘（39 缺调用点不落·12 tail-jmp 待 follow）=防批量推断 ✓ · retn N A 级+调用点 B 级双源异源（非同源自证）✓",
+    "口径瑕疵：「四要素齐」之③返回寄存器标 `eax?` 疑问形=3.5/4，措辞应收「四要素带 1 存疑」；存疑标注诚实 ✓ 非伪断言",
+    "完整性：ctor/dtor 面不在本批范围（P0-3 签名补全批），余 51 条挂账（39+12）已记=完整性账目开立 ✓",
+    "移除 4 员（m_RoleArray/m_nTaskIndex/m_pTaskData/m_pDialogData）零引用 ✓ 安全"
+  ]
+}
