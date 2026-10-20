@@ -1818,6 +1818,33 @@ def _run_inner(code, ctx):
     #     必须在 F83 之后（reg_ 名与声明此时才存在）、在 cast 之前（保持 & 形可匹配）。
     code = forward_addr_reg_uses(code)
     code = fix_reg_deref_forms(code)
+    # [C2660 修 2026-10-20] 自由函数被当前类成员遮蔽 ⇒ 加 `::` 解除遮蔽
+    # （实测 I3 命中的 19 站全部是这一类；详见 qualify_shadowed_free_calls docstring）
+    _cls_nm = getattr(ctx, 'cls_name', None) if ctx is not None else None
+    if _cls_nm:
+        try:
+            # [层次修正 2026-10-20] 从 annotation 的 **methods**（IDB 导出·地址键）
+            # 取成员名 —— 这才是 codegen 自己的数据源。此前误读 `known_methods`
+            # （那是**手工补录**的 vtable 程序表，全仓仅 6 个注解文件有）⇒ 空集 ⇒ 从不命中；
+            # 中间一版改从**生成头解析**虽可用，但属 codegen 读自己产物的**循环依赖** ✗。
+            # 实测：CCBStage.methods = 231 条，含 MoveToAbsolute ✓
+            try:
+                # [import 修 2026-10-20] stage5 此前未 import annotation_view
+                # ⇒ NameError 被 except 吞掉 ⇒ _mem_names 恒为空 ⇒ 变换从不命中
+                try:
+                    from pipeline.gen import annotation_view as _annview
+                except Exception:
+                    import annotation_view as _annview
+                _ann_cls = _annview.struct_by_class(_cls_nm) or {}
+                _me = _ann_cls.get('methods') or {}
+                _mem_names = ({v.get('name') for v in _me.values()
+                               if isinstance(v, dict) and v.get('name')}
+                              if isinstance(_me, dict) else set())
+            except Exception:
+                _mem_names = set()
+        except Exception:
+            _mem_names = set()
+        code = qualify_shadowed_free_calls(code, _load_free_func_names(), _mem_names)
     code = cast_reg_ptr_rhs(code)
 
     return code
@@ -1953,6 +1980,133 @@ def fix_reg_deref_forms(code):
         r'\1// [I1] \3 占位宏右值（_ETn 只读约定·无可表达语义）——'
         r'原 `*\2 = \3;` 已由上方 asm 存储覆盖\n', out)
     return out
+
+
+# [C2660 修 2026-10-20] 自由函数被类成员遮蔽 ⇒ 无限定调用加 `::` 解除遮蔽
+#
+# 病灶（当场读定谳，纠正了「receiver 未解析」的初判）：
+#   pal3/src/free_functions.h:225
+#       int MoveToAbsolute(_DWORD *_this, int a2, int a3);      // 自由函数 3 参
+#   pal3/src/Combat/CCBStage.h:356
+#       bool MoveToAbsolute(int fp, int dwTaskID);              // 类成员 2 参（遮蔽）
+#   调用（CCBStage 成员函数体内）：
+#       MoveToAbsolute(recv, formal, nVal);                     // 3 实参 ✓ 匹配自由函数
+#   ⇒ 但 C++ 名字查找先搜类作用域 ⇒ 绑到 `CCBStage::MoveToAbsolute(int,int)`
+#     ⇒ C2660 "does not take 3 parameters"
+# 实测：I3 命中的 19 站**全部**是这类遮蔽（19/19，零例外）。
+#
+# 修法（等价变换）：无限定调用名既属自由函数又属当前类成员 ⇒ 前缀 `::`
+#   → `::MoveToAbsolute(recv, formal, nVal);`  绑到全局自由函数 ✓
+# 只在 ctx.cls_name 已知且该类确实有同名成员时才改（保守）。
+_RE_FREE_DECL = re.compile(
+    r'^\s*[\w:<>,\s\*&]+?\b([A-Za-z_]\w*)\s*\([^;]*\)\s*;', re.M)
+_RE_UNQUAL_NAME_CALL = re.compile(
+    r'(?:(?<=^)|(?<=[;{}\n=]))[ \t]*([A-Za-z_]\w*)[ \t]*\(')
+_NO_QUAL_KEYWORDS = {
+    'if', 'for', 'while', 'switch', 'return', 'sizeof', 'catch', 'else',
+    'do', 'new', 'delete', 'goto', 'case', 'typeof', '__asm', 'defined',
+}
+
+
+def _load_free_func_names():
+    """从 free_functions.h 收集自由函数名（延迟加载，模块级缓存）。"""
+    global _FREE_FUNC_NAMES
+    if _FREE_FUNC_NAMES is not None:
+        return _FREE_FUNC_NAMES
+    names = set()
+    try:
+        import os as _os
+        # pipeline/gen/stages/x.py => 需 4 层 dirname 才到仓库根
+        _root = _os.path.dirname(_os.path.dirname(_os.path.dirname(
+            _os.path.dirname(_os.path.abspath(__file__)))))
+        _fp = _os.path.join(_root, 'pal3', 'src', 'free_functions.h')
+        with open(_fp, encoding='utf-8', errors='replace') as fh:
+            names = set(_RE_FREE_DECL.findall(fh.read()))
+    except Exception:
+        names = set()
+    _FREE_FUNC_NAMES = names
+    return names
+
+
+_FREE_FUNC_NAMES = None
+_MEMBER_NAMES_BY_CLASS = None
+
+
+def _load_member_names_by_class():
+    """从生成头收集 {类名: 成员函数名集合}（延迟加载缓存）。
+
+    annotation 的 `known_methods` 为空（实测 CCBStage 0 条），故改从生成头解析
+    `class X { ... Name(params); ... }` —— 与 tools/codegen_invariant_lint.py 同法。
+    """
+    global _MEMBER_NAMES_BY_CLASS
+    if _MEMBER_NAMES_BY_CLASS is not None:
+        return _MEMBER_NAMES_BY_CLASS
+    import os as _os, re as _re
+    _root = _os.path.dirname(_os.path.dirname(_os.path.dirname(
+        _os.path.dirname(_os.path.abspath(__file__)))))
+    _decl = _re.compile(r'^\s*[\w:<>,\s\*&]+?\b([A-Za-z_]\w*)\s*\([^;]*\)\s*;')
+    _open = _re.compile(r'^\s*(?:class|struct|union)\s+([A-Za-z_]\w*)[^;{]*\{\s*$')
+    out = {}
+    for sub in ('pal3/src', 'include/pal3'):
+        base = _os.path.join(_root, sub)
+        for _r, _d, fs in _os.walk(base):
+            for f in fs:
+                if not f.endswith('.h'):
+                    continue
+                try:
+                    with open(_os.path.join(_r, f), encoding='utf-8',
+                              errors='replace') as fh:
+                        txt = fh.read()
+                except Exception:
+                    continue
+                cur, depth = None, 0
+                for ln in txt.split('\n'):
+                    om = _open.match(ln)
+                    if om and depth == 0:
+                        cur = om.group(1); depth = 1
+                        continue
+                    if cur is not None:
+                        depth += ln.count('{') - ln.count('}')
+                        if depth <= 0:
+                            cur = None; depth = 0
+                            continue
+                    dm = _decl.match(ln)
+                    if cur and dm and dm.group(1) not in (
+                            'if', 'for', 'while', 'switch', 'return', 'sizeof'):
+                        out.setdefault(cur, set()).add(dm.group(1))
+    _MEMBER_NAMES_BY_CLASS = out
+    return out
+
+
+
+
+def qualify_shadowed_free_calls(code, free_names, member_names):
+    """若名 N 同时是自由函数与当前类成员 ⇒ 无限定调用加 `::`。
+
+    等价变换：仅改名字查找路径（绑定到全局自由函数），不改实参与语义。
+    已限定调用（`x->N(` `Class::N(` `::N(`）不受影响。
+    """
+    if not code or not free_names:
+        return code
+    try:
+        from ast_transform import _mask_strings_comments as _msc
+        masked = _msc(code)
+    except Exception:
+        masked = code
+    both = free_names & set(member_names or ())
+    if not both:
+        return code
+    edits = []
+    for m in _RE_UNQUAL_NAME_CALL.finditer(masked):
+        nm = m.group(1)
+        if nm in _NO_QUAL_KEYWORDS or nm not in both:
+            continue
+        edits.append(m.start(1))
+    if not edits:
+        return code
+    for pos in reversed(edits):
+        code = code[:pos] + '::' + code[pos:]
+    return code
 
 
 def cast_reg_ptr_rhs(code):
