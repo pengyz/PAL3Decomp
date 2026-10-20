@@ -1,0 +1,107 @@
+{
+  "name": "CCBTaskSlot",
+  "binary_size": 80,
+  "known_members": {
+    "0": {
+      "name": "_todo_0",
+      "type": "int",
+      "source": "v13[0] = nVal（CCBStage.cpp:2050）；伪成员 m_nCurTask@elem0+0 / m_CmdQueue@elem5+0"
+    },
+    "4": {
+      "name": "_todo_4",
+      "type": "int",
+      "source": "+4 = 2（CCBStage.cpp:2046）"
+    },
+    "8": {
+      "name": "_gap_8",
+      "type": "int",
+      "source": "未见直接访问，按布局补"
+    },
+    "12": {
+      "name": "_todo_12",
+      "type": "int",
+      "source": "伪成员 m_RoleSlots@elem0+12（CCBStage.cpp:2050 nVal4 写位）"
+    },
+    "16": {
+      "name": "_gap_16",
+      "type": "int",
+      "source": "未见直接访问"
+    },
+    "20": {
+      "name": "_ovl_20",
+      "type": {
+        "union": [
+          {
+            "type": "int",
+            "name": "v5_int"
+          },
+          {
+            "type": {
+              "struct": [
+                {
+                  "offset": 0,
+                  "name": "b20",
+                  "type": "char"
+                },
+                {
+                  "offset": 1,
+                  "name": "b21",
+                  "type": "char"
+                },
+                {
+                  "offset": 2,
+                  "name": "_todo_22",
+                  "type": "short"
+                }
+              ]
+            },
+            "name": "v5_bytes"
+          }
+        ]
+      },
+      "source": "位面复用：v13[5]=ProcProtect()（:2051）· +21 字面量访问 · +22 = 伪成员 m_TurnFlags@elem5+22（short）"
+    },
+    "24": {
+      "name": "_gap_24",
+      "type": "int",
+      "source": "未见直接访问"
+    },
+    "28": {
+      "name": "_ovl_28",
+      "type": {
+        "union": [
+          {
+            "type": "int",
+            "name": "v7_int"
+          },
+          {
+            "type": {
+              "struct": [
+                {
+                  "offset": 0,
+                  "name": "b28",
+                  "type": "char"
+                },
+                {
+                  "offset": 1,
+                  "name": "b29",
+                  "type": "char"
+                }
+              ]
+            },
+            "name": "v7_bytes"
+          }
+        ]
+      },
+      "source": "位面复用：v13[7]=nVal5（:2052）· *((_BYTE*)&m_RoleSlots + .. +28)=1 / +29=0（:2044-2045）"
+    },
+    "32": {
+      "name": "_gap_32",
+      "type": "_BYTE[48]",
+      "source": "元素尾部，未见访问"
+    }
+  },
+  "_verdicts": {
+    "b1b_refactor_20261020": "由 CCBStage 4 伪成员合并而成（objdump 80 步进 30 次 + 生成源取证）；结构体数组 m_TaskSlots[32]@+184"
+  }
+}
