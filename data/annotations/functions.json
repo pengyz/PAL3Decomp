@@ -2984,5 +2984,45 @@
     "signature": "void __cdecl(int nVal)",
     "declaration_only": true,
     "source": "[函数19登记批 2026-10-16] declaration_only 兜底（j_ 跳板 VA 机械搜未果挂账）：调用站 PalScript.cpp:2902 渲染自由函数形 ProcessKeyboard_2(LODWORD(v7))；A 级=idapro 0x4074C0 本体+0x436190 调用面；跳板 j_InputSystem::ProcessKeyboard_2 VA 待查"
+  },
+  "0x00536D20": {
+    "name": "LoadActionSequences",
+    "signature": "void __thiscall(Actor *this, const char *pszRoleDir, int nSeqIdx)",
+    "source_note": "[试点 2026-10-20·五面证据] ①调用者=待补 ②被调用者=LoadActionSequence/LoadActorFile/UpdateAllActions/GetArrayCount/StoreParam（动作序列加载族 ✓）③成员访问=m_actarray_begin/end/capacity_end/m_pact/m_name（动作数组域 ✓）④类归属=Actor（5 成员命中，0 未解析）⑤交互模式=路径模板 `role\\%s\\%s.ini`/`role\\%s\\%02d.ini`（按角色目录加载）；返回值=void"
+  },
+  "0x0053D5D0": {
+    "name": "RenderActorGeometry",
+    "signature": "virtual void __thiscall(Actor *this, int nRenderFlag)",
+    "source_note": "[试点 2026-10-20·五面证据] ②被调用者=RenderGeomQuad/GetDynVertBuf（渲染族 ✓）+ Push/Pop/LoadMatrix/IdentityWorldMatrix（矩阵栈 ✓）③成员访问=m_nModelId/m_pResource/m_fAnimParam/m_szText ④类归属=Actor（6 命中 0 未解析）⑤交互模式=矩阵栈包装渲染；**virtual**（生命周期钩子）；返回值=void"
+  },
+  "0x00496190": {
+    "name": "CreateSceneEntities",
+    "signature": "void __thiscall(Actor *this, int nSceneId)",
+    "source_note": "[试点 2026-10-20·五面证据] ②被调用者=CreateMonsterUI/CreateScriptAndCamera/CreateFromTemplate/LoadModel/AllocObject（场景实体创建族 ✓）③成员访问=m_vecPos/m_vecRot/m_nRoleState0/m_szText/m_nTransform（位姿+状态 ✓）④类归属=Actor（11 命中 0 未解析）⑤交互模式=字面量 `UI\\GameMainUI\\Equip\\SelRole0` / `Item\\%s\\%s.pol`（UI+模型资源路径）；返回值=void"
+  },
+  "0x004B7D30": {
+    "name": "_todo_004B7D30",
+    "signature": "virtual void __thiscall(Actor *this, int nParam)",
+    "source_note": "[试点 2026-10-20·证据记录·conf<60 冻结] ②被调用者=LoadTexture/LoadFromFile/NewRenderEffect/GenerateRingMesh/OpenBaseFile（资源加载族）+ m_fInterpStart/End/Speed（插值域）③22 成员命中 ④Actor。**不正名**：操作并列（资源加载+插值+几何生成）无单一主导 ⇒ 五面不足以定语义名。待补 ①调用者面。"
+  },
+  "0x0051DFD0": {
+    "name": "_todo_0051DFD0",
+    "signature": "void __thiscall(Actor *this, int nPanelId)",
+    "source_note": "[试点 2026-10-20·证据记录·conf<60 冻结] ②被调用者=OpenScript/FormatText/SetRect/SetData/LoadTexture（脚本+UI 混合）③10 成员命中（m_pParticleData/m_nUpdateMode/m_nHandleEvent）④Actor。**不正名**：脚本与 UI 操作混合，主导不明。待补 ①调用者面。"
+  },
+  "0x0053B890": {
+    "name": "SetCurrentAction",
+    "signature": "char *__thiscall(Actor *this, int nActionId)",
+    "source_note": "[试点 2026-10-20·签名核验] ③成员访问=m_curact/m_actarray_begin/type/m_fActionAssignParam（动作数组域 ✓）④Actor（33 命中 0 未解析，**最强证据面**）；返回 `&this->m_actarray_type` ⇒ char* ✓ 与签名一致；名 SetCurrentAction 与访问域相符。"
+  },
+  "0x005309A0": {
+    "name": "ResetTransformState",
+    "signature": "int __thiscall(Actor *this)",
+    "source_note": "[试点 2026-10-20·签名核验] ③成员访问=m_InnerActor/m_dwMatMsg/m_fAngleDeg/m_fBlendWeight/m_bChangedMat（变换/材质域 ✓）②被调用者=CheckDistance/SetMaterialName/lstrcpyA ④Actor（21 命中 0 未解析）；返回 result:int ✓；名与访问域相符。"
+  },
+  "0x00538CE0": {
+    "name": "ClearActionFlags",
+    "signature": "int __thiscall(Actor *this)",
+    "source_note": "[试点 2026-10-20·签名核验] ③成员访问=m_actarray_begin/end/capacity_end/m_pact/m_name/m_fScale ②被调用者=memset（清零）④Actor（7 命中 0 未解析）；返回 result:int ✓；名与 memset 清动作域相符。"
   }
 }
