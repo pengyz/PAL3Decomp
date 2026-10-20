@@ -3036,9 +3036,9 @@
     "source_note": "[归属存疑 2026-10-20·块2 自查] **疑非 Actor 成员**：[五面证据] ①调用者=asm 全图 0 个直接 call（仅经 .rdata:0056FB20 vtable 槽间接调用）②被调用者=operator delete(void*)（同 0x004D37A0）③成员访问=+0x0C / +0x1C / +0x20（3 命中 0 未解析）④类归属=**存疑**：A 级 asm `mov dword [esi], offset off_56FB18`（写 vptr）+ `DATA XREF: .rdata:0056FB20` ⇒ vtable 0x56FB18 之删除析构，与 0x004D37A0（vptr 0x56FAC4）**分属不同类**；反编译文本与 0x004D37A0 逐字同形（code_len 788 / size 129 全同）⇒ 是两个不同类的同形删除析构，**不是** COMDAT 折叠副本；同 0x004D37A0 的 + ⇒ 按 CLAUDE.md「禁仅凭 signature this 判归属」暂不归属，冻结待 IDA vtable/xref 复核。"
   },
   "0x00530F70": {
-    "name": "BlendAnimation",
-    "signature": "void __thiscall(Actor *this, float fFrameDt)",
-    "source_note": "[五面证据] ①调用者=Actor::UpdateFrame 的 `switch (this->m_nUpdateMode) case 1` ②被调用者=Actor::SetMaterialName(child, off_5F50B4, 0)、UIAnimateCtrlEX_SwapBuffer(0)（两者均只在到达终值时触发）③成员访问=m_actarray_type(+0，作子对象指针解引用)、m_fSpeed(+0x290=660，标量累加)、m_nUpdateMode(+0x310=784，字节 +12/+13/+15 作标志、+8 作 float 速率)（3 命中 0 未解析）④类归属=Actor（3 命中 0 未解析），但 +0 被当**子对象指针**用（既非 vptr 也非 unsigned char）⇒ 型别存疑 ⑤交互模式=off_5F50B4（材质名指针）、0.0 边界比较。返回值=void（asm `retn 4`=1 个栈参 float）。语义=按 fFrameDt 以速率(+792) 把 m_fSpeed 向 +668 目标爬升/回落（+796 方向标志），到限后置 +797 完成标志并换材质/交换动画缓冲 —— 是「标量缓动 + 完成回调」。原名 BlendAnimation 既未证实也未证伪（<60）⇒ 按铁律保留原名但**不计入正名**。"
+    "name": "_todo_00530F70",
+    "signature": "int __thiscall(Actor *this, int a1)",
+    "source_note": "[A+B 级四要素齐 2026-10-20·逐条核] asm `retn 4` ⇒ 1 参（A 级）· 调用点证据（B 级）：a1:int[B]=调用点 Actor::UpdateFrame(float: BlendAnimation(this, arg0); · 返回 eax?（asm 尾部寄存器扫（eax 族））· 约定 __thiscall。P0-3 纪律：仅四要素齐者落盘（本轮 5/56），39 条缺调用点证据不落盘、12 条 tail-jmp 待 tail-follow。"
   },
   "0x005363A0": {
     "name": "ResetDefaultState",
@@ -3091,9 +3091,9 @@
     "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActVec_InsertN_64。[五面证据] ①调用者=Actor::LoadActions：`Actor::ActVec_InsertRange(p_m_pact, &p_m_pact->m_actarray_end->m_actarray_type, 1u, pData, v14)`，其中 `pData` 是本地 `_BYTE pData[64]` 缓冲 ⇒ 一次插 1 份 64B 值 ②被调用者=operator new / operator delete / qmemcpy(dst, src, 0x40) ③成员访问=m_actarray_begin(+4)/m_actarray_end(+8)/m_actarray"
   },
   "0x0053BD30": {
-    "name": "WordVec_Assign",
-    "signature": "int *__thiscall(Actor *this, const int *pSrcVec)",
-    "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=BoneIndexVec_Assign。[五面证据] ①调用者=Actor::ActVec_InsertN（传 `(Actor*)(elem+148)`，即 ActionEntry 内嵌 BoneIndexVec）、ActVecUninitCopy / ActVecUninitCopy2 / ActVecUninitFill（同样传元素 +148 子对象）⇒ `this` = word 向量子对象，非 Actor ②被调用者=operator new / operator delete ③成员访问=m_actarray_begin(+4)/m_actarray_end(+8)/m_actarray_capacity_end(+0x0"
+    "name": "_todo_0053BD30",
+    "signature": "int __thiscall(Actor *this, int a1)",
+    "source_note": "[A+B 级四要素齐 2026-10-20·逐条核] asm `retn 4` ⇒ 1 参（A 级）· 调用点证据（B 级）：a1:int[B]=调用点 ActVecUninitCopy2: WordVec_Assign((Actor *)(v9 + 3), p_D · 返回 eax?（asm 尾部寄存器扫）· 约定 __thiscall。P0-3 纪律：仅四要素齐者落盘（本轮 5/56），39 条缺调用点证据不落盘、12 条 tail-jmp 待 tail-follow。"
   },
   "0x00419690": {
     "name": "_todo_00419690",
@@ -3126,9 +3126,9 @@
     "source_note": "[五面证据] ①调用者=Actor::UpdateFrame：`if ( Actor::GetBoundRadius(this) && this->m_bDirFlag ) { this->m_bStateFlag = 1; Actor::UpdateAnimState(this, 1); ... }` ⇒ 返回值被当**布尔门**使用 ②被调用者=sub_52FBD0（MiniGame2Scene::GetOBBox，取 p 的 OBBox）、gbOBBox::GetRadius、fabs ③成员访问=m_pRoleState(+0x308=776，作大对象指针 p)、m_fDistAccum(+0x290=656，作 float 参与差值)（2 命中 0 未解析）④类归属=Actor（2 命中 0 未解析）⑤交互模式=无路径/字面量。返回值=**bool**（A 级 asm：`fcomp` + `fnstsw ax; test ah,41h`，两路 `mov al,1` / `xor al,al` 后 `retn`，0 个栈参）。⚠️ 原名 `GetBoundRadius` 被证伪：函数不返回任何半径，返回的是 `gbOBBox::GetRadius(OBBox) > fabs(this->m_fDistAccum - p[0xE90])` 的**比较结果** ⇒ 改 `IsWithinBoundRadius`（判定自身是否落在包围半径内）。"
   },
   "0x00537120": {
-    "name": "SetTextureName",
-    "signature": "void __thiscall(Actor *this, const char *pszTexName)",
-    "source_note": "[五面证据] ①调用者=RoleSystem::SetActorTexture：`sprintf(Buffer, \"role\\\\%s\\\\%s.tga\", &this->m_nAnimState, pszName); Actor::SetTextureName((Actor*)&this->m_partyActor.m_Actor, Buffer)` ⇒ 传入的是 .tga 路径串 ②被调用者=strcpy（写入 m_szTexture）→ vcall(m_pact->pBody, m_szTexture, vtable+0x3C)（下发到渲染体）→ OpenBaseFile::OpenBaseFile / OpenNULLFile::OpenNULLFile（文件作用域对）③成员访问=m_szTexture(+0x118=280，strcpy 目标 + 首字节判空)、m_pact(+0x10=16，取 pBody)（2 命中 0 未解析）④类归属=Actor（2 命中 0 未解析）⑤交互模式=pszTexName 判空分支、strcpy 串处理、vtable+0x3C 下发。返回值=void（asm `retn 4`=1 个栈参）。名 SetTextureName 与「把纹理名写入 m_szTexture 并下发到 gbActor 体」相符 ⇒ 保留。⚠️ 可疑点：调用方传入完整 `role\\%s\\%s.tga` 路径，而 m_szTexture 在 Actor 表标 `char[28]`，strcpy 会溢出 ⇒ 该成员尺寸/类型存疑（本任务不改 Actor.json，仅记录）。"
+    "name": "_todo_00537120",
+    "signature": "int __thiscall(Actor *this, int a1)",
+    "source_note": "[A+B 级四要素齐 2026-10-20·逐条核] asm `retn 4` ⇒ 1 参（A 级）· 调用点证据（B 级）：a1:int[B]=调用点 RoleSystem::SetActorText: SetTextureName((Actor *)&this- · 返回 eax?（asm 尾部寄存器扫）· 约定 __thiscall。P0-3 纪律：仅四要素齐者落盘（本轮 5/56），39 条缺调用点证据不落盘、12 条 tail-jmp 待 tail-follow。"
   },
   "0x00536A80": {
     "name": "FastInit",
@@ -3141,9 +3141,9 @@
     "source_note": "[五面] ①调用者=待补 ②被调用者=memset（清零）③成员访问=m_actarray_begin/end/capacity_end/type/m_fRoleParam2/m_fScale/m_name/m_pact（动作序列域）④类归属=Actor（8 命中 0 未解析）⑤交互模式=memset + ret=&m_actarray_type。ret=**char***（`return &this->m_actarray_type`，:实证）。名 InitAnimSequence 与动作序列域相符。"
   },
   "0x0053A670": {
-    "name": "CopyActionData",
-    "signature": "int *__thiscall(Actor *this, int nActionIdx)",
-    "source_note": "[五面] ①调用者=待补 ②被调用者=BYTE1/LOBYTE（位操作）③成员访问=m_actarray_begin/end/capacity_end/type/m_fMoveRange/m_fMoveSpeed/m_name/m_pact（动作数组+移动参数域）④类归属=Actor（8 命中 0 未解析）⑤交互模式=位拆解操作。ret=result（int*）。名 CopyActionData 与动作数据域相符（conf 62：位拆解语义未完全确认）。"
+    "name": "_todo_0053A670",
+    "signature": "int __thiscall(Actor *this, int a1)",
+    "source_note": "[A+B 级四要素齐 2026-10-20·逐条核] asm `retn 4` ⇒ 1 参（A 级）· 调用点证据（B 级）：a1:int[B]=调用点 PtrVec_InsertN: CopyActionData((Actor *)&v28->m_curact[3 · 返回 eax?（asm 尾部寄存器扫）· 约定 __thiscall。P0-3 纪律：仅四要素齐者落盘（本轮 5/56），39 条缺调用点证据不落盘、12 条 tail-jmp 待 tail-follow。"
   },
   "0x005375F0": {
     "name": "ClearPathBuffer",
@@ -3156,9 +3156,9 @@
     "source_note": "[五面] ①调用者=待补 ②被调用者=RenderGeomQuad/GetDynVertBuf（渲染族）+ Push/Pop/LoadMatrix/Rotate/Translate（矩阵栈）③成员访问=m_fInterpStart/m_fMatrixParamB/m_vecTargetPos/m_fAnimParam/m_bUIFlagA（变换+插值域）④类归属=Actor（5 命中 0 未解析）⑤交互模式=矩阵栈包装渲染。ret=void。**virtual**（生命周期钩子）。名 RenderActorTransform 与矩阵栈+渲染相符（conf 64：无字面量，五面⑤弱）。"
   },
   "0x00536160": {
-    "name": "SetParam",
-    "signature": "int __thiscall(Actor *this, int nActionIdx, int nParam)",
-    "source_note": "[五面·conf<60 保留原名未证实] ①调用者=待补 ②被调用者=Actor_SetActorAction/ArcLocaleRole_TransformPoint/GetTotalOBBox/rand（动作设置+空间变换）③成员访问=m_actarray_begin/end/capacity_end/type/m_bParamFlag/m_fScale（动作数组+参数标志）④类归属=Actor（6 命中 0 未解析）⑤交互模式=vtable 间接调用 `(*(int(__thiscall**)(Actor*))(*(_DWORD*)this)...)`。ret=int。**原名 SetParam 过泛**，但证据不足以正名（conf 55）⇒ 保留原名标未证实。"
+    "name": "_todo_00536160",
+    "signature": "int __thiscall(Actor *this, int a1, int a2)",
+    "source_note": "[A+B 级四要素齐 2026-10-20·逐条核] asm `retn 8` ⇒ 2 参（A 级）· 调用点证据（B 级）：a1:int[B]=调用点 CCBParabolaWindow::Updat: CCBControl::SetParam(*(CCBCont · 返回 eax?（asm 尾部寄存器扫（eax 族））· 约定 __thiscall。P0-3 纪律：仅四要素齐者落盘（本轮 5/56），39 条缺调用点证据不落盘、12 条 tail-jmp 待 tail-follow。"
   },
   "0x004B7980": {
     "name": "LoadActorVisual",

@@ -3,9 +3,9 @@
   "binary_size": 2176,
   "known_members": {
     "0": {
-      "name": "m_bLoadSceneScript",
-      "type": "int",
-      "source": "annotation"
+      "name": "__vftable",
+      "type": "void *",
+      "source": "[vptr 正名 2026-10-20·A 级] 原 m_bLoadSceneScript 误挂 +0x0（占 vptr 位）。objdump ctor `movl $0x56ac4c,(%esi)` = vptr 初始化（0x56AC4C=PalScript vtable）⇒ +0x0 是 vptr。audit 判 2/90 伪冲突却漏此 ⇒ objdump 优先于 audit。"
     },
     "4": {
       "name": "m_pinst",
@@ -441,12 +441,7 @@
     "68": {
       "name": "m_fTimerLimit",
       "type": "float",
-      "source": "reverted_auto_semantic:18x_access;A:decomp_batch_rename_usage_pattern"
-    },
-    "88": {
-      "name": "m_RoleArray",
-      "type": "int",
-      "source": "decomp:8byte_stride_loop_in_CheckRayHitRole"
+      "source": "reverted_auto_semantic:18x_access;A:decomp_batch_rename_usage_pattern | [型确认 2026-10-20·A 级] objdump `movl $0x41200000` = 10.0f 位型常量 ⇒ float 确认。"
     },
     "72": {
       "name": "m_fTimerAccum",
@@ -462,20 +457,8 @@
     },
     "76": {
       "name": "m_nTodo_04C",
-      "type": "float",
-      "source": "reverted_auto_semantic:5x_access|reverted:pseudo_semantic",
-      "note": "Discovered by member_scan after disp8 fix."
-    },
-    "80": {
-      "name": "m_nTodo_050",
-      "type": "float",
-      "source": "binary_scan:8_accesses(store:1, store_byte:1, load:1, fld_float:5)",
-      "note": "Discovered by member_scan after disp8 fix."
-    },
-    "84": {
-      "name": "m_nTodo_054",
-      "type": "float",
-      "source": "reverted_auto_semantic_r2:1x",
+      "type": "_BYTE[68]",
+      "source": "[型订正 2026-10-20·A 级] 原 float ✗。objdump `lea 0x4c(%esi),%ecx; call 0x445ea0`（ZeroInitSelf68）⇒ 68 字节内嵌子对象基址。子对象真型待补，暂 _BYTE[68]（诚实占位）。",
       "note": "Discovered by member_scan after disp8 fix."
     },
     "40": {
@@ -501,21 +484,6 @@
       "type": "gbRenderEffect *",
       "source": "decomp:passed_to_Actor_method | [F-HDR#1 2026-10-15] unsigned char→gbRenderEffect*：A 级 import 修饰名铁证 GBENGINE.DLL `?RenderUIQuad@gbDynVertBuf@@QAEXPAUgbUIQuad@@HPAVgbRenderEffect@@PAUgbTextureArray@@@Z`（IAT 0x17d930 hint 797）参数3=PAVgbRenderEffect@@⇒gbRenderEffect* 无歧义，与手写头 gbMesh.h:426/gbengine_api.h:483 一致；实参 dword_C11760=unk_C11720+0x40=本成员。名字泄漏核查：全 decomp 仅 1 使用点且为取址形 `&v2->m_pActorData`（ScriptObj_ScriptObj@0x411ca0）⇒ 类型无关、改型安全 ✓。同根连带 L127（同全局被赋 gbRenderEffect* 值）",
       "note": "Discovered by member_scan after disp8 fix."
-    },
-    "128": {
-      "name": "m_nTaskIndex",
-      "type": "int",
-      "source": "binary_scan:3refs"
-    },
-    "136": {
-      "name": "m_pTaskData",
-      "type": "void *",
-      "source": "binary_scan:2refs"
-    },
-    "140": {
-      "name": "m_pDialogData",
-      "type": "void *",
-      "source": "binary_scan:3refs | [void* 语义化 2026-10-16 analyzer 30 条跨类取证] A级：decomp 6 处 `m_pDialogData = (char *)v2->m_pDialogData; … m_pDialogData = m_pDialogData - 1; v2->m_pDialogData = v6`（char* 递减遍历）⇒ 指针位+字节步长=char* | [void* 语义化回退 2026-10-16 analyzer] 四道门判负实证：CCBStage _BYTE[N] 型改使 `&field + N` 指针算术步长从 4B 变 N B ⇒ C2039/C2228 族爆发；PalScript char* 引 C2679 operator= 不匹配（L5942）⇒ 类型语义化候选保留 source，落地待渲染层（指针算术缩放）修妥后复议"
     },
     "148": {
       "name": "m_pTaskPtr",

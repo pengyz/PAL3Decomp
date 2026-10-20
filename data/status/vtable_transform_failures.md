@@ -627,3 +627,5 @@
 | `::ActVec_Fn_6160` | inline | `Actor` | 20 | self_arg_mismatch | `(*(int ( **)(Actor *))(*(_DWORD *)&m_actarray_begin->m_actarray_type + 20))(m_actarray_begin)` |
 | `CCBStage::IsIdle` | vftable_local | `_DWORD` | 1072 | self_arg_mismatch | `(***(void ( ****)(_DWORD, _DWORD))(v9 + 1072))(*(_DWORD *)(v9 + 1072), 0)` |
 | `CCBStage::IsIdle` | vftable_local | `_DWORD` | 1076 | self_arg_mismatch | `(***(void ( ****)(_DWORD, _DWORD))(v9 + 1076))(*(_DWORD *)(v9 + 1076), 0)` |
+| `::_todo_00536160` | inline | `Actor` | 20 | self_arg_mismatch | `(*(int ( **)(Actor *))(*(_DWORD *)&m_actarray_begin->m_actarray_type + 20))(m_actarray_begin)` |
+| `::_todo_00537120` | inline | `gbActorDef` | 60 | self_arg_mismatch | `(*(void ( **)(gbActorDef *, char *))(*(_DWORD *)&_this->m_pact->pBody->gbRefObject + 60))( _this->m_pact->pBody, _this->m_szTexture)` |
