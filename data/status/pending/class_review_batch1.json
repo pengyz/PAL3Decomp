@@ -1,0 +1,275 @@
+{
+ "batch": 1,
+ "classes": [
+  {
+   "name": "CCBStageCam",
+   "layout": {
+    "status": "gap",
+    "issues": [
+     "first member@+692；+0x0 无 vptr 成员",
+     "基区 0..691 未声明（继承/基成员缺）",
+     "audit 1/11 冲突"
+    ],
+    "evidence": "known_members 首员 m_pStage@692; binary_size=6272; audit_type_layout 1/11"
+   },
+   "methods": {
+    "count": 32,
+    "decomp_this": 31,
+    "ctor_dtor_names": "ctor 1 + dtor 1 ✓",
+    "signature_gaps": "多数齐（32 vs 31）"
+   },
+   "inheritance": {
+    "vtables": 1,
+    "addr": "0x0056FD78",
+    "base": "None",
+    "ctor_dtor": "双名齐"
+   },
+   "proposed_changes": [
+    {
+     "file": "data/annotations/structs/CCBStageCam.json",
+     "kind": "add_member",
+     "detail": "+0x0 vptr（__vftable *）+ 基区 0-691 归属注记（set_base 或基成员——待继承面证据）",
+     "evidence": "audit_type_layout 1/11; 首员@692"
+    }
+   ],
+   "confidence": 60
+  },
+  {
+   "name": "PalScriptWaitTimer",
+   "layout": {
+    "status": "wrong",
+    "issues": [
+     "+0x0 无 vptr（生成头=注释行）",
+     "audit 4/4 全冲突（成员位移连锁）"
+    ],
+    "evidence": "PalScriptWaitTimer.h 实测：`// vtable (3 methods…)` 注释+`_gap_004[4]`+m_fElapsed@8"
+   },
+   "methods": {
+    "count": 3,
+    "decomp_this": 0,
+    "ctor_dtor_names": "无（_scalar_dtor/UpdateX 惯例名）",
+    "signature_gaps": "有（ctor/dtor 名缺）"
+   },
+   "inheritance": {
+    "vtables": 1,
+    "addr": "0x0056ABE0",
+    "base": "None",
+    "ctor_dtor": "删际 0x434D50 族"
+   },
+   "proposed_changes": [
+    {
+     "file": "data/annotations/structs/PalScriptWaitTimer.json",
+     "kind": "add_member",
+     "detail": "add vptr@+0x0（生成头现仅注释行 `// vtable (N methods)` ⇒ C2208/C2039 面）",
+     "evidence": "生成头实测"
+    }
+   ],
+   "confidence": 85
+  },
+  {
+   "name": "PalScriptFadeOutTimer",
+   "layout": {
+    "status": "wrong",
+    "issues": [
+     "+0x0 无 vptr",
+     "audit 5/5 全冲突"
+    ],
+    "evidence": "同族（首员 m_fElapsed@8）"
+   },
+   "methods": {
+    "count": 3,
+    "decomp_this": 0,
+    "ctor_dtor_names": "无",
+    "signature_gaps": "ctor/dtor 名缺"
+   },
+   "inheritance": {
+    "vtables": 1,
+    "addr": "0x0056ABEC",
+    "base": "None",
+    "ctor_dtor": "删际 0x434D50 族"
+   },
+   "proposed_changes": [
+    {
+     "file": "data/annotations/structs/PalScriptFadeOutTimer.json",
+     "kind": "add_member",
+     "detail": "add vptr@+0x0（生成头现仅注释行 `// vtable (N methods)` ⇒ C2208/C2039 面）",
+     "evidence": "同族实测"
+    }
+   ],
+   "confidence": 85
+  },
+  {
+   "name": "PalScriptProgressTimer",
+   "layout": {
+    "status": "wrong",
+    "issues": [
+     "+0x0 无 vptr",
+     "audit 4/4 全冲突"
+    ],
+    "evidence": "同族（首员 m_fElapsed@8）"
+   },
+   "methods": {
+    "count": 3,
+    "decomp_this": 0,
+    "ctor_dtor_names": "无",
+    "signature_gaps": "ctor/dtor 名缺"
+   },
+   "inheritance": {
+    "vtables": 1,
+    "addr": "0x0056ABD4",
+    "base": "None",
+    "ctor_dtor": "删际 0x438190 族"
+   },
+   "proposed_changes": [
+    {
+     "file": "data/annotations/structs/PalScriptProgressTimer.json",
+     "kind": "add_member",
+     "detail": "add vptr@+0x0（生成头现仅注释行 `// vtable (N methods)` ⇒ C2208/C2039 面）",
+     "evidence": "同族实测"
+    }
+   ],
+   "confidence": 85
+  },
+  {
+   "name": "EffAudioNode",
+   "layout": {
+    "status": "gap",
+    "issues": [
+     "+0x0 `void * vfptr` 非 vptr 识别形（emit 发普通指针）",
+     "audit 1/2 冲突（_tail_004）"
+    ],
+    "evidence": "EffAudioNode.h 实测 `void * vfptr; // +0x0`"
+   },
+   "methods": {
+    "count": 0,
+    "decomp_this": 0,
+    "ctor_dtor_names": "无",
+    "signature_gaps": "槽 impl=共享（EffTargetPool 族）"
+   },
+   "inheritance": {
+    "vtables": 1,
+    "addr": "0x0056F674",
+    "base": "None",
+    "ctor_dtor": "池基族"
+   },
+   "proposed_changes": [
+    {
+     "file": "data/annotations/structs/EffAudioNode.json",
+     "kind": "fix_member",
+     "detail": "`void * vfptr` 型/名改 `__vftable *`（emit vptr 识别名单——现发普通指针非 vptr 成员）",
+     "evidence": "生成头实测"
+    }
+   ],
+   "confidence": 80
+  },
+  {
+   "name": "EffBinkNode",
+   "layout": {
+    "status": "gap",
+    "issues": [
+     "同 EffAudioNode（void* vfptr 非识别形）",
+     "audit 1/2 冲突"
+    ],
+    "evidence": "同族"
+   },
+   "methods": {
+    "count": 0,
+    "decomp_this": 0,
+    "ctor_dtor_names": "无",
+    "signature_gaps": "共享 impl"
+   },
+   "inheritance": {
+    "vtables": 3,
+    "addr": "0x0056F6B0 族",
+    "base": "None",
+    "ctor_dtor": "删际 0x4C20B0 锚"
+   },
+   "proposed_changes": [
+    {
+     "file": "data/annotations/structs/EffBinkNode.json",
+     "kind": "fix_member",
+     "detail": "`void * vfptr` 型/名改 `__vftable *`（emit vptr 识别名单——现发普通指针非 vptr 成员）",
+     "evidence": "同族"
+    }
+   ],
+   "confidence": 80
+  },
+  {
+   "name": "EffMultiPassNode",
+   "layout": {
+    "status": "gap",
+    "issues": [
+     "同上",
+     "audit 1/2 冲突"
+    ],
+    "evidence": "同族"
+   },
+   "methods": {
+    "count": 0,
+    "decomp_this": 0,
+    "ctor_dtor_names": "无",
+    "signature_gaps": "共享 impl"
+   },
+   "inheritance": {
+    "vtables": 3,
+    "addr": "0x0056F704 族",
+    "base": "None",
+    "ctor_dtor": "删际 0x4C2870 锚"
+   },
+   "proposed_changes": [
+    {
+     "file": "data/annotations/structs/EffMultiPassNode.json",
+     "kind": "fix_member",
+     "detail": "`void * vfptr` 型/名改 `__vftable *`（emit vptr 识别名单——现发普通指针非 vptr 成员）",
+     "evidence": "同族"
+    }
+   ],
+   "confidence": 80
+  },
+  {
+   "name": "GameObject",
+   "layout": {
+    "status": "gap",
+    "issues": [
+     "+0x0 `void * vfptr` 非识别形",
+     "bs=4 仅 vptr（MI 根占位随宿主）"
+    ],
+    "evidence": "GameObject.json vfptr@0 void*; bs=4 几何最小界"
+   },
+   "methods": {
+    "count": 4,
+    "decomp_this": 1,
+    "ctor_dtor_names": "dtor 1 ✓",
+    "signature_gaps": "回基桩 2 员已注"
+   },
+   "inheritance": {
+    "vtables": 1,
+    "addr": "0x0056A9C0",
+    "base": "None（Role 层级根）",
+    "ctor_dtor": "Role ctor 三写链"
+   },
+   "proposed_changes": [
+    {
+     "file": "data/annotations/structs/GameObject.json",
+     "kind": "fix_member",
+     "detail": "`void * vfptr` 型/名改 `__vftable *`（emit vptr 识别名单——现发普通指针非 vptr 成员）",
+     "evidence": "生成头同族形"
+    }
+   ],
+   "confidence": 80
+  }
+ ],
+ "summary": {
+  "status_counts": {
+   "gap": 5,
+   "wrong": 3,
+   "ok": 0
+  },
+  "top3_issues": [
+   "① PalScript 三胞胎 +0x0 缺 vptr（生成头仅注释）→ audit 全员冲突连锁",
+   "② Eff*×3/GameObject 的 `void * vfptr` 非 emit vptr 识别形（应 __vftable *）",
+   "③ CCBStageCam 基区 0..691 未声明（缺继承面）"
+  ],
+  "note": "只读产出；proposed_changes 未执行（禁改产品文件）；GameObject audit 未跑（批次输出缺失该行）"
+ }
+}

@@ -1,0 +1,156 @@
+{
+ "class": "CCBStage",
+ "layout": {
+  "status": "ok",
+  "issues": [],
+  "evidence": "audit_type_layout 0 冲突 · 72 员跨 0..673984 自洽（binary_size=673988 ✓ 4B 尾）· gap/todo 员 0",
+  "evidence_level": "A"
+ },
+ "methods": {
+  "total_decomp": 231,
+  "signed": 115,
+  "missing": 116,
+  "entries": [
+   {
+    "addr": "0x004DFAA0",
+    "current_name": "InitRound",
+    "proposed_name": "InitRound",
+    "proposed_signature": "int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4)",
+    "source_note": "methods.json 既有签名（隐式 thiscall ✓）· 待 asm retn-N A 级证",
+    "evidence_level": "B",
+    "asm_retn_N": null,
+    "confidence": 62,
+    "attribution": "CCBStage（members 面 ✓）",
+    "change_kind": "sign"
+   },
+   {
+    "addr": "0x004DFED0",
+    "current_name": "EndTurnAndAdvance",
+    "proposed_name": "EndTurnAndAdvance",
+    "proposed_signature": "int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)",
+    "source_note": "methods.json 既有签名（隐式 thiscall ✓）· 待 asm retn-N A 级证",
+    "evidence_level": "B",
+    "asm_retn_N": null,
+    "confidence": 62,
+    "attribution": "CCBStage（members 面 ✓）",
+    "change_kind": "sign"
+   },
+   {
+    "addr": "0x004FB9A0",
+    "current_name": "CCBStage",
+    "proposed_name": "CCBStage",
+    "proposed_signature": "int *__thiscall(int pCBSystem)",
+    "source_note": "methods.json 既有签名（隐式 thiscall ✓）· 待 asm retn-N A 级证",
+    "evidence_level": "B",
+    "asm_retn_N": null,
+    "confidence": 62,
+    "attribution": "CCBStage（members 面 ✓）",
+    "change_kind": "sign"
+   },
+   {
+    "addr": "0x004FB9F0",
+    "current_name": "_todo_004FB9F0",
+    "proposed_name": "_todo_B9F0",
+    "proposed_signature": "unsigned int __thiscall()",
+    "source_note": "methods.json 既有签名（隐式 thiscall ✓）· 待 asm retn-N A 级证",
+    "evidence_level": "B",
+    "asm_retn_N": null,
+    "confidence": 62,
+    "attribution": "CCBStage（members 面 ✓）",
+    "change_kind": "sign"
+   },
+   {
+    "addr": "0x004FBE50",
+    "current_name": "Create",
+    "proposed_name": "Create",
+    "proposed_signature": "bool __thiscall()",
+    "source_note": "methods.json 既有签名（隐式 thiscall ✓）· 待 asm retn-N A 级证",
+    "evidence_level": "B",
+    "asm_retn_N": null,
+    "confidence": 62,
+    "attribution": "CCBStage（members 面 ✓）",
+    "change_kind": "sign"
+   },
+   {
+    "addr": "0x004FBF90",
+    "current_name": "Destroy",
+    "proposed_name": "Destroy",
+    "proposed_signature": "bool __thiscall()",
+    "source_note": "methods.json 既有签名（隐式 thiscall ✓）· 待 asm retn-N A 级证",
+    "evidence_level": "B",
+    "asm_retn_N": null,
+    "confidence": 62,
+    "attribution": "CCBStage（members 面 ✓）",
+    "change_kind": "sign"
+   },
+   {
+    "addr": "0x004FC150",
+    "current_name": "Update_c150",
+    "proposed_name": "Update_c150",
+    "proposed_signature": "int __thiscall()",
+    "source_note": "methods.json 既有签名（隐式 thiscall ✓）· 待 asm retn-N A 级证",
+    "evidence_level": "B",
+    "asm_retn_N": null,
+    "confidence": 62,
+    "attribution": "CCBStage（members 面 ✓）",
+    "change_kind": "sign"
+   },
+   {
+    "addr": "0x004FC3A0",
+    "current_name": "EditorUpdate",
+    "proposed_name": "EditorUpdate",
+    "proposed_signature": "void(float fVal)",
+    "source_note": "methods.json 既有签名（隐式 thiscall ✓）· 待 asm retn-N A 级证",
+    "evidence_level": "B",
+    "asm_retn_N": null,
+    "confidence": 62,
+    "attribution": "CCBStage（members 面 ✓）",
+    "change_kind": "sign"
+   }
+  ],
+  "note": "缺签实测 116（lead 198 口径差=CCBStage* this 隐式 thiscall 形 ✓）· 本批 8 条制式样例 · 余 108 同制式逐条（asm retn-N A 级）"
+ },
+ "inheritance": {
+  "bases": null,
+  "vtables": [
+   {
+    "addr": "0x005705D0",
+    "base": null,
+    "slots_note": "槽 from:UIWnd（与 bases=None 不一致 ✗ 发现①）"
+   }
+  ],
+  "vptr_at_zero": "vptr@0 ✓（员面 0 起）",
+  "ctor": "0x004FB9A0",
+  "dtor": "0x0051DD80",
+  "issues": [
+   "**发现①**：bases=None 但 vtable 槽 from:UIWnd ⇒ 继承链未记录（疑 UIWnd 基类缺失标注 ✗ 需 vtable 槽 objdump 核实）"
+  ],
+  "evidence": "methods 面 ctor/dtor 条目 ✓ + vtables addr 0x005705D0"
+ },
+ "proposed_changes": [
+  {
+   "file": "data/annotations/structs/CCBStage.json",
+   "kind": "inheritance",
+   "detail": "核 vtable 槽 from:UIWnd ⇒ 若确继承 ⇒ 补 bases=[\"UIWnd\"]（待 objdump A 级）",
+   "evidence": "vtables slots from:UIWnd vs bases=None 不一致",
+   "evidence_level": "B"
+  },
+  {
+   "file": "data/annotations/functions.json",
+   "kind": "signature",
+   "detail": "116 缺签逐条补（asm retn-N A 级 ✓ 本批 8 制式样例）",
+   "evidence": "methods 面 116 未入 functions.json",
+   "evidence_level": "B"
+  }
+ ],
+ "summary": {
+  "layout": "ok（0 冲突 · 自洽 ✓）",
+  "methods_plan": "116 缺签（8 样例 + 108 待逐条 A 级）",
+  "inheritance": "bases=None vs vtable from:UIWnd 不一致（发现① 待核）",
+  "top3": [
+   "① 继承链缺失（bases=None vs UIWnd 槽）",
+   "② 116 缺签名（asm retn-N 逐条）",
+   "③ CCBStage 类尺寸 673,988 大对象（幻影员还原面 ✓）"
+  ]
+ }
+}

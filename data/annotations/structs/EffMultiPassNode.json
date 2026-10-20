@@ -3,9 +3,9 @@
   "binary_size": 32,
   "known_members": {
     "0": {
-      "name": "vfptr",
+      "name": "__vftable",
       "type": "void *",
-      "source": "[RenderTarget2 节点族 2026-10-17 analyzer 证据账目制] vptr 槽位（MI/池节点根）"
+      "source": "[RenderTarget2 节点族 2026-10-17 analyzer 证据账目制] vptr 槽位（MI/池节点根） | [vptr 正名 2026-10-20·A 级] `vfptr`(无下划线前缀) 不在 emit 的 _VPTR_MEMBER_NAMES 识别表（__vftable/_vftable/__vfptr/_vfptr）⇒ 发普通指针非 vptr 成员。改 `__vftable`（canonical 形，见 emit_headers.py:1366 注释「注解用 __vftable」）。证据 A 级：emit 判据代码 + 该类 vtables 字段非空 + audit 冲突实测。"
     }
   },
   "methods": {},

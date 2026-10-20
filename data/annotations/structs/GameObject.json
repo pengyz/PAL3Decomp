@@ -3,9 +3,9 @@
   "binary_size": 4,
   "known_members": {
     "0": {
-      "name": "vfptr",
+      "name": "__vftable",
       "type": "void *",
-      "source": "[vtable 100 认领续 2026-10-17] A 级：vptr 槽位 0x56A9C0；根接口仅虚表位，成员面随 MI 链（Role/ScriptObj 域）另账"
+      "source": "[vtable 100 认领续 2026-10-17] A 级：vptr 槽位 0x56A9C0；根接口仅虚表位，成员面随 MI 链（Role/ScriptObj 域）另账 | [vptr 正名 2026-10-20·A 级] `vfptr`(无下划线前缀) 不在 emit 的 _VPTR_MEMBER_NAMES 识别表（__vftable/_vftable/__vfptr/_vfptr）⇒ 发普通指针非 vptr 成员。改 `__vftable`（canonical 形，见 emit_headers.py:1366 注释「注解用 __vftable」）。证据 A 级：emit 判据代码 + 该类 vtables 字段非空 + audit 冲突实测。"
     }
   },
   "methods": {

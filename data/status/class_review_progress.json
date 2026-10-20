@@ -1,0 +1,175 @@
+{
+  "discipline": "类维度标注质量闭环·团队协调（goal-c1b8c66d revision 3）",
+  "roles": {
+    "subagent": "只出结论和修改方案（禁改产品文件）",
+    "main_agent": "汇总→修改→管线校验（apply→export→codegen→probe）→5门→提交push"
+  },
+  "per_class_gates": [
+    "①布局完备/正确/语义",
+    "②成员函数正确/完备",
+    "③继承/vtable/ctor/dtor"
+  ],
+  "global_baseline_at_goal_start": {
+    "S2": "121/214",
+    "total_errors": 1252,
+    "signature_coverage": "22.09%",
+    "byte_coverage": "87.46%",
+    "weak_type_rate": "57.32%",
+    "check": "PASS"
+  },
+  "classes": [
+    {
+      "name": "[D] 8 类 vtable 无 vptr",
+      "priority": 1,
+      "subagent": "analyzer",
+      "status": "analyzing",
+      "plan_received": false,
+      "changes_applied": false,
+      "pipeline_run": false,
+      "pipeline_qualified": null,
+      "rollback_needed": null,
+      "committed": false
+    },
+    {
+      "name": "Actor（剩 61）",
+      "priority": 2,
+      "subagent": "analyzer",
+      "status": "analyzing",
+      "plan_received": false,
+      "changes_applied": false,
+      "pipeline_run": false,
+      "notes": "⚠️ 已做的 43 条被 reviewer 判 B 级证据，需补 A 级（retn N/objdump）"
+    },
+    {
+      "name": "CCBStage",
+      "priority": 3,
+      "subagent": "fixer",
+      "status": "analyzing",
+      "plan_received": false,
+      "changes_applied": false,
+      "pipeline_run": false,
+      "notes": "缺签 198 · B1b-2 已做 m_TaskSlots[32] 结构改造"
+    },
+    {
+      "name": "RoleSystem",
+      "priority": 4,
+      "subagent": "verifier",
+      "status": "analyzing",
+      "plan_received": false,
+      "changes_applied": false,
+      "pipeline_run": false,
+      "notes": "缺签 149 · 弱型 93%（141/152）← 弱型真型化主战场"
+    },
+    {
+      "name": "CCBRoleState",
+      "priority": 5,
+      "status": "pending",
+      "subagent": null,
+      "notes": "缺签 205 · 弱型 88%"
+    },
+    {
+      "name": "PalScript",
+      "priority": 6,
+      "status": "pending",
+      "subagent": null,
+      "notes": "缺签 221"
+    },
+    {
+      "name": "PalScriptMgr",
+      "priority": 7,
+      "status": "pending",
+      "subagent": null,
+      "notes": "缺签 45 · 弱型 90%"
+    }
+  ],
+  "session_log": [
+    {
+      "ts": "2026-10-20",
+      "event": "goal 更新为类维度标注质量闭环（revision 3）"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "派 2 个子 agent（[D] 8 类 vtable · Actor 剩 61）"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "子 agent 委派可靠性实证：11 派 1 成（91% 失败，疑读 decomp 超时）"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "Actor 已做 43/110（含容器模板实例归属修正 8 条）"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "reviewer REJECT（blocking 5）：①复核对象双缺失（8 类零产出）②证据全线 B 级同源自证（45 条全 decomp 派生，零 A 级）③ctor/dtor 0 覆盖 ④方案无处置动作 ⑤批量推断风险未排除"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "派满 4/4：analyzer(8 类 vtable+Actor 61) · fixer(CCBStage 198) · verifier(RoleSystem 149+93% 弱型) · reviewer(待下轮复核)"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "reviewer 指出我先前 Actor 43 条全是 B 级证据（decomp 派生），需补 A 级（asm retn N / objdump）"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "analyzer 完成：8 类 gap 5/wrong 3 · Actor 56 条（正名18/冻结6/归属存疑18/retn 校正31）"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "fixer 完成 CCBStage 三维度：布局 ok（0 冲突）· 缺签 116（口径差）· **继承链缺失**（bases=None vs vtable from:UIWnd）"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "verifier 完成归因机制对抗评审：PASS-WITH-CHANGES，6 项必改（1 阻断级=638 gold 集未落盘不可复现）"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "lead 执行 vptr 修复 7 类（4 改名 vfptr→__vftable + 3 补 __vftable@+0）· A 级证据：emit _VPTR_MEMBER_NAMES 判据 + vtables 字段 + audit 冲突"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "⚠️ 发现 [D] 判据与 emit 语义出入：emit 故意不发 vptr 成员（virtual 方法⇒隐式 vptr@0，emit_headers.py:2307）"
+    }
+  ],
+  "rolling_metrics": [
+    {
+      "ts": "2026-10-20 goal_start",
+      "S2": "121/214",
+      "errors": 1252,
+      "sig_cov": "22.09%",
+      "byte_cov": "87.46%",
+      "weak": "57.32%"
+    },
+    {
+      "ts": "2026-10-20 team_dispatch",
+      "S2": "121/214",
+      "errors": 1252,
+      "sig_cov": "22.09%",
+      "byte_cov": "87.46%",
+      "weak": "57.32%",
+      "note": "派满 4/4，reviewer REJECT 待处理"
+    },
+    {
+      "ts": "2026-10-20 vptr_fix",
+      "S2": "121/214",
+      "errors": 1251,
+      "sig_cov": "22.09%",
+      "byte_cov": "87.46%",
+      "note": "vptr 7 类修复，[D] 判据待调"
+    }
+  ],
+  "evidence_level_policy": {
+    "A_level": [
+      "asm retn N（参数个数）",
+      "objdump 指令引用（成员偏移/数组步进）",
+      "vtable 槽位（虚函数归属）",
+      "值位型常量（1065353216=1.0f）"
+    ],
+    "B_level": [
+      "decomp 文本（Hex-Rays 输出）"
+    ],
+    "rule": "每条结论必须有 A 级证据至少一项；仅 B 级须标 evidence_level:'B' 并说明为何无 A 级",
+    "trigger": "2026-10-20 reviewer REJECT 实证：45 条全 B 级同源自证 ⇒ 不可信"
+  }
+}

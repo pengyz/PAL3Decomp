@@ -1,0 +1,51 @@
+{
+  "review_of": [
+    "class_review_batch1.json",
+    "actor_remaining_plan.json"
+  ],
+  "verdict": "REJECT",
+  "blocking_issues": [
+    {
+      "target": "class_review_batch1.json",
+      "issue": "复核对象不存在——8 个 vtable 类分析零产出",
+      "evidence": "ls: 无法访问 data/status/pending/class_review_batch1.json: 没有那个文件或目录（2026-10-20 实录）",
+      "fix_required": "analyzer 补产 8 类分析文件后再审"
+    },
+    {
+      "target": "actor_remaining_plan.json",
+      "issue": "指定文件不存在；别形 actor_v3_block_*.json(45 条)+actor_v2_block_*.json(85 条) 与「剩 61 条」口径不符",
+      "evidence": "ls 同上实录；v3 functions 合计 45·v2 合计 85（脚本计数）",
+      "fix_required": "产出统一为 actor_remaining_plan.json 并钉 61 条口径（或说明 45/85/61 三分账关系）"
+    },
+    {
+      "target": "actor_v3_block_*（全 45 条）",
+      "issue": "角度1 违：证据 B 级同源双证——criterion『signature+member-access』两者皆 decomp 同一产物派生（acc_sample=decomp 成员名·sig=decomp 形），无 objdump disp/vtable 槽位/asm retn N 任一 A 级",
+      "evidence": "block1.functions[0] 样例：sig=void __thiscall(Actor *this,float) + acc_sample=[m_InnerActor,…] 全无指令级引证",
+      "fix_required": "补 A 级（reg+disp32 指令行或 retn N 栈参证）后方可作归属/改名依据"
+    },
+    {
+      "target": "actor_v3_block_*（全 45 条）",
+      "issue": "角度2 部分违：归属判据=signature this 形 + 成员访问，**缺调用点核对**（CLAUDE.md 铁律=成员访问+调用点双核，禁仅凭 signature this）",
+      "evidence": "函数条目字段仅 {addr,name,sig,n_ok,n_miss,acc_sample,code_len}——无 caller/xref 字段（键表实录）",
+      "fix_required": "每条补调用点核对（xref 站点 ≥1 的成员访问交叉）"
+    },
+    {
+      "target": "actor_v3_block_*（全 45 条）",
+      "issue": "角度5 违：ctor/dtor 覆盖 0/45——完整性三维度（布局/成员函数/继承）的构造/析构面缺失",
+      "evidence": "45 条名称全为普通方法形（UpdateFrame/ClearPathBuffer/InitAnimSequence/CopyActionData… 无 ~ / dtor / ctor 尾）",
+      "fix_required": "补 Actor ctor/dtor 簇逐条（含 deleting 形 ABI 配对核）"
+    }
+  ],
+  "non_blocking_notes": [
+    "角度3 ✓：acc_sample 成员名全为语义形（m_bChangedMat/m_curact 等），无 m_bFlag96 型后缀伪装；conf 冻结口径未在 v3 条目出现（无 confidence 字段）",
+    "角度6 ✓（低风险）：0 改性词条（无 rename/remove 提案）=纯证据卡，不会破坏 codegen；但『方案』不含处置动作=方案完备性弱（61 条方案应含每条处置：正名/挂账/迁移）",
+    "角度4 风险：blocks 按 code_len budget 8000 切分+criterion 全局一致，n_ok/n_miss 为批量统计——无逐条独立取证指纹，『同批相似⇒逐条成立』风险未排除",
+    "v3 样例条 n_ok=21 n_miss=0（0x531260 UpdateFrame）——成员访问面较富但均为 B 级同源"
+  ],
+  "stats": {
+    "reviewed": 130,
+    "approved": 0,
+    "blocked": 2,
+    "needs_evidence": 130
+  }
+}
