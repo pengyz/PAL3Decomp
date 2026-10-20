@@ -1,0 +1,943 @@
+{
+ "class": "Actor",
+ "verified": [
+  {
+   "addr": "0x004083B0",
+   "asm_retn": "retn 4",
+   "param_count": 1,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00408410",
+   "asm_retn": "retn 8",
+   "param_count": 2,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00419690",
+   "asm_retn": "retn 4",
+   "param_count": 1,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x0041F340",
+   "asm_retn": "retn 4",
+   "param_count": 1,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x0044CB30",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [
+    {
+     "name": "a1",
+     "type": "int",
+     "evidence": "调用点 InitParticles: return RoleCamera::InitParticles((RoleCamera *)this);",
+     "evidence_level": "B"
+    }
+   ],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 75,
+   "needs_caller_evidence": false
+  },
+  {
+   "addr": "0x00496190",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [
+    {
+     "name": "a1",
+     "type": "int",
+     "evidence": "调用点 EquipUI::Init(void): CreateSceneEntities((Actor *)this[1].m_Arrow[6][1][1].m_childs.m_nSize, ",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a2",
+     "type": "int",
+     "evidence": "调用点 EquipUI::Init(void): CreateSceneEntities((Actor *)this[1].m_Arrow[6][1][1].m_childs.m_nSize, ",
+     "evidence_level": "B"
+    }
+   ],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 75,
+   "needs_caller_evidence": false
+  },
+  {
+   "addr": "0x004B7560",
+   "asm_retn": "retn 4",
+   "param_count": 1,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x004B7980",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x004B7D30",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x004B80C0",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x004BA230",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x004C5B50",
+   "asm_retn": "retn 4",
+   "param_count": 1,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x004D37A0",
+   "asm_retn": "retn 4",
+   "param_count": 1,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x004D4CA0",
+   "asm_retn": "retn 4",
+   "param_count": 1,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x0051DFD0",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x005309A0",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [
+    {
+     "name": "a1",
+     "type": "int",
+     "evidence": "调用点 RoleAtt::LoadModelAndIni: ResetTransformState((Actor *)this);",
+     "evidence_level": "B"
+    }
+   ],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 75,
+   "needs_caller_evidence": false
+  },
+  {
+   "addr": "0x00530F20",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00530F70",
+   "asm_retn": "retn 4",
+   "param_count": 1,
+   "params": [
+    {
+     "name": "a1",
+     "type": "int",
+     "evidence": "调用点 Actor::UpdateFrame(float: BlendAnimation(this, arg0);",
+     "evidence_level": "B"
+    }
+   ],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__thiscall",
+   "proposed_signature": "int __thiscall(Actor *this, int a1)",
+   "confidence": 75,
+   "needs_caller_evidence": false,
+   "source_note": "调用约定修正：this 在 ecx=成员（Actor 域）⇒ __thiscall（ret N 形核对）"
+  },
+  {
+   "addr": "0x00536160",
+   "asm_retn": "retn 8",
+   "param_count": 2,
+   "params": [
+    {
+     "name": "a1",
+     "type": "int",
+     "evidence": "调用点 CCBParabolaWindow::Updat: CCBControl::SetParam(*(CCBControl **)(this->m_pfather[17].m_fontcolor.Co",
+     "evidence_level": "B"
+    }
+   ],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__thiscall",
+   "proposed_signature": "int __thiscall(Actor *this, int a1, int a2)",
+   "confidence": 75,
+   "needs_caller_evidence": false,
+   "source_note": "调用约定修正：this 在 ecx=成员（Actor 域）⇒ __thiscall（ret N 形核对）"
+  },
+  {
+   "addr": "0x00536220",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫（eax 族）",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00536230",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00536240",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00536250",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00536310",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x005363A0",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x005364B0",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00536A40",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00536A50",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00536A60",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00536A70",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00536A80",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00536D20",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [
+    {
+     "name": "a1",
+     "type": "int",
+     "evidence": "调用点 sub_5306A0: LoadActionSequences(v4, a2, 0);",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a2",
+     "type": "int",
+     "evidence": "调用点 sub_5306A0: LoadActionSequences(v4, a2, 0);",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a3",
+     "type": "int",
+     "evidence": "调用点 sub_5306A0: LoadActionSequences(v4, a2, 0);",
+     "evidence_level": "B"
+    }
+   ],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 75,
+   "needs_caller_evidence": false
+  },
+  {
+   "addr": "0x00536FF0",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00537120",
+   "asm_retn": "retn 4",
+   "param_count": 1,
+   "params": [
+    {
+     "name": "a1",
+     "type": "int",
+     "evidence": "调用点 RoleSystem::SetActorText: SetTextureName((Actor *)&this->m_partyActor.m_Actor, Buffer);",
+     "evidence_level": "B"
+    }
+   ],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__thiscall",
+   "proposed_signature": "int __thiscall(Actor *this, int a1)",
+   "confidence": 75,
+   "needs_caller_evidence": false,
+   "source_note": "调用约定修正：this 在 ecx=成员（Actor 域）⇒ __thiscall（ret N 形核对）"
+  },
+  {
+   "addr": "0x005371B0",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [
+    {
+     "name": "a1",
+     "type": "int",
+     "evidence": "调用点 RoleSystem::PlayAction(c: SetActionByName((Actor *)&this->m_partyActor.m_Actor, pszAction, 0, pszO",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a2",
+     "type": "int",
+     "evidence": "调用点 RoleSystem::PlayAction(c: SetActionByName((Actor *)&this->m_partyActor.m_Actor, pszAction, 0, pszO",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a3",
+     "type": "int",
+     "evidence": "调用点 RoleSystem::PlayAction(c: SetActionByName((Actor *)&this->m_partyActor.m_Actor, pszAction, 0, pszO",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a4",
+     "type": "int",
+     "evidence": "调用点 RoleSystem::PlayAction(c: SetActionByName((Actor *)&this->m_partyActor.m_Actor, pszAction, 0, pszO",
+     "evidence_level": "B"
+    }
+   ],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 75,
+   "needs_caller_evidence": false
+  },
+  {
+   "addr": "0x005372D0",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [
+    {
+     "name": "a1",
+     "type": "int",
+     "evidence": "调用点 PtrArray::InsertAt(char : PtrVec_Insert_dword((Actor *)&this->capacity, (int *)this->m_needscriptd",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a2",
+     "type": "int",
+     "evidence": "调用点 PtrArray::InsertAt(char : PtrVec_Insert_dword((Actor *)&this->capacity, (int *)this->m_needscriptd",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a3",
+     "type": "int",
+     "evidence": "调用点 PtrArray::InsertAt(char : PtrVec_Insert_dword((Actor *)&this->capacity, (int *)this->m_needscriptd",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a4",
+     "type": "int",
+     "evidence": "调用点 PtrArray::InsertAt(char : PtrVec_Insert_dword((Actor *)&this->capacity, (int *)this->m_needscriptd",
+     "evidence_level": "B"
+    }
+   ],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 75,
+   "needs_caller_evidence": false
+  },
+  {
+   "addr": "0x005375F0",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00537A30",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x005381D0",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00538260",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00538CE0",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00539700",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [
+    {
+     "name": "a1",
+     "type": "int",
+     "evidence": "调用点 CScreenMode::LoadAudioFr: VecEntry_Write((Actor *)(p_DWORD[1] + v15), v3);",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a2",
+     "type": "int",
+     "evidence": "调用点 CScreenMode::LoadAudioFr: VecEntry_Write((Actor *)(p_DWORD[1] + v15), v3);",
+     "evidence_level": "B"
+    }
+   ],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 75,
+   "needs_caller_evidence": false
+  },
+  {
+   "addr": "0x005399E0",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x00539D60",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x0053A0C0",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [
+    {
+     "name": "a1",
+     "type": "int",
+     "evidence": "调用点 Actor::BuildCollisionMes: Vec_InsertEntry(this, v5, (const int *)&v30.m_pact);",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a2",
+     "type": "int",
+     "evidence": "调用点 Actor::BuildCollisionMes: Vec_InsertEntry(this, v5, (const int *)&v30.m_pact);",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a3",
+     "type": "int",
+     "evidence": "调用点 Actor::BuildCollisionMes: Vec_InsertEntry(this, v5, (const int *)&v30.m_pact);",
+     "evidence_level": "B"
+    }
+   ],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 75,
+   "needs_caller_evidence": false
+  },
+  {
+   "addr": "0x0053A2E0",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x0053A340",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x0053A670",
+   "asm_retn": "retn 4",
+   "param_count": 1,
+   "params": [
+    {
+     "name": "a1",
+     "type": "int",
+     "evidence": "调用点 PtrVec_InsertN: CopyActionData((Actor *)&v28->m_curact[35], (int)(pVal + 620));",
+     "evidence_level": "B"
+    }
+   ],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__thiscall",
+   "proposed_signature": "int __thiscall(Actor *this, int a1)",
+   "confidence": 75,
+   "needs_caller_evidence": false,
+   "source_note": "调用约定修正：this 在 ecx=成员（Actor 域）⇒ __thiscall（ret N 形核对）"
+  },
+  {
+   "addr": "0x0053A6C0",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [
+    {
+     "name": "a1",
+     "type": "int",
+     "evidence": "调用点 Actor::BuildCollisionMes: PtrVec_Insert_word((Actor *)p_m_nPathBuffer, (_WORD *)p_m_nPathBuffer[2]",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a2",
+     "type": "int",
+     "evidence": "调用点 Actor::BuildCollisionMes: PtrVec_Insert_word((Actor *)p_m_nPathBuffer, (_WORD *)p_m_nPathBuffer[2]",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a3",
+     "type": "int",
+     "evidence": "调用点 Actor::BuildCollisionMes: PtrVec_Insert_word((Actor *)p_m_nPathBuffer, (_WORD *)p_m_nPathBuffer[2]",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a4",
+     "type": "int",
+     "evidence": "调用点 Actor::BuildCollisionMes: PtrVec_Insert_word((Actor *)p_m_nPathBuffer, (_WORD *)p_m_nPathBuffer[2]",
+     "evidence_level": "B"
+    }
+   ],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 75,
+   "needs_caller_evidence": false
+  },
+  {
+   "addr": "0x0053A8D0",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [
+    {
+     "name": "a1",
+     "type": "int",
+     "evidence": "调用点 LoadActions: PtrVec_InsertN_elem(this, &m_actarray_end->m_actarray_type, 1u, nY);",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a2",
+     "type": "int",
+     "evidence": "调用点 LoadActions: PtrVec_InsertN_elem(this, &m_actarray_end->m_actarray_type, 1u, nY);",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a3",
+     "type": "int",
+     "evidence": "调用点 LoadActions: PtrVec_InsertN_elem(this, &m_actarray_end->m_actarray_type, 1u, nY);",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a4",
+     "type": "int",
+     "evidence": "调用点 LoadActions: PtrVec_InsertN_elem(this, &m_actarray_end->m_actarray_type, 1u, nY);",
+     "evidence_level": "B"
+    }
+   ],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 75,
+   "needs_caller_evidence": false
+  },
+  {
+   "addr": "0x0053ACA0",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [
+    {
+     "name": "a1",
+     "type": "int",
+     "evidence": "调用点 LoadActions: PtrVec_InsertN_64(p_m_pact, &p_m_pact->m_actarray_end->m_actarray_type, ",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a2",
+     "type": "int",
+     "evidence": "调用点 LoadActions: PtrVec_InsertN_64(p_m_pact, &p_m_pact->m_actarray_end->m_actarray_type, ",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a3",
+     "type": "int",
+     "evidence": "调用点 LoadActions: PtrVec_InsertN_64(p_m_pact, &p_m_pact->m_actarray_end->m_actarray_type, ",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a4",
+     "type": "int",
+     "evidence": "调用点 LoadActions: PtrVec_InsertN_64(p_m_pact, &p_m_pact->m_actarray_end->m_actarray_type, ",
+     "evidence_level": "B"
+    }
+   ],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 75,
+   "needs_caller_evidence": false
+  },
+  {
+   "addr": "0x0053B230",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x0053B890",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [
+    {
+     "name": "a1",
+     "type": "int",
+     "evidence": "调用点 ActVecUninitCopy2: SetCurrentAction(v12, v10);",
+     "evidence_level": "B"
+    },
+    {
+     "name": "a2",
+     "type": "int",
+     "evidence": "调用点 ActVecUninitCopy2: SetCurrentAction(v12, v10);",
+     "evidence_level": "B"
+    }
+   ],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 75,
+   "needs_caller_evidence": false
+  },
+  {
+   "addr": "0x0053BD30",
+   "asm_retn": "retn 4",
+   "param_count": 1,
+   "params": [
+    {
+     "name": "a1",
+     "type": "int",
+     "evidence": "调用点 ActVecUninitCopy2: WordVec_Assign((Actor *)(v9 + 3), p_DWORD2 + 37);",
+     "evidence_level": "B"
+    }
+   ],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__thiscall",
+   "proposed_signature": "int __thiscall(Actor *this, int a1)",
+   "confidence": 75,
+   "needs_caller_evidence": false,
+   "source_note": "调用约定修正：this 在 ecx=成员（Actor 域）⇒ __thiscall（ret N 形核对）"
+  },
+  {
+   "addr": "0x0053BEB0",
+   "asm_retn": "retn 0",
+   "param_count": 0,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  },
+  {
+   "addr": "0x0053D5D0",
+   "asm_retn": "未测(无 ret 窗口)",
+   "param_count": null,
+   "params": [],
+   "return_type": "eax?",
+   "return_evidence": "asm 尾部寄存器扫",
+   "calling_convention": "__stdcall",
+   "proposed_signature": null,
+   "confidence": 55,
+   "needs_caller_evidence": true
+  }
+ ],
+ "summary_v3": {
+  "verified": 17,
+  "needs_caller_evidence": 39,
+  "avg_conf": 61.1,
+  "retn_measured": 36,
+  "note": "P0-3 教训落实：无调用点证据者一律 needs_caller_evidence=true 不给 proposed_signature；上轮 54 条批量套用回归根因=缺调用点证据",
+  "with_proposed_signature": 5,
+  "caller_ok_but_retn_missing": 12
+ },
+ "batch_note": "批1 20 条 + 批2 36 条逐条独立取证（asm retn A 级 + 调用点 B 级 + 返回寄存器 + 调用约定 ret 形）"
+}

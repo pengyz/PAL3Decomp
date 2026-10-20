@@ -162,6 +162,18 @@
     {
       "ts": "2026-10-20",
       "event": "回归根因待查：fixer 的 proposed_signature 直接套用有害（疑参数类型/调用约定错）——需逐条核后再用，禁批量套用"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "P0-1 重定性（lead 初判错，当场纠正）：audit 用编译器 offsetof（A 级）非累加。注解 m_fPathTargetY@+1244=0x4DC 与 objdump 一致 => 病灶是 codegen 的 _gap_ 尺寸推断错"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "fixer 交付 CCBRoleState：+0 char[4]/float 位面复用实锤（fstps/fmuls A 级）=> union 语法正解 · 缺签 207 · 弱型批1 2/8 可改（25%）"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "派 3 团队任务（analyzer=Actor retn 逐条核 · fixer=CCBRoleState · verifier=PalScript）"
     }
   ],
   "rolling_metrics": [
@@ -205,6 +217,14 @@
       "sig_cov": "22.09%",
       "byte_cov": "87.46%",
       "note": "回退 retn 批量套用，恢复基线"
+    },
+    {
+      "ts": "2026-10-20 P0-1-reclass",
+      "S2": "121/214",
+      "errors": 1252,
+      "sig_cov": "22.09%",
+      "byte_cov": "87.46%",
+      "note": "P0-1 重定性为 codegen gap 推断错；CCBRoleState 位面复用发现"
     }
   ],
   "evidence_level_policy": {
@@ -223,10 +243,10 @@
   "P0_blockers": [
     {
       "id": "P0-1",
-      "title": "audit_type_layout 累加算法误报",
-      "detail": "「按成员尺寸累加」未计 gap/overlay 展开 ⇒ 91/185 假冲突。objdump 实证 +0x4DC 是真 float 字段",
-      "impact": "阻塞 RoleSystem 弱型真型化（verifier 判「真型化必须等 P0 布局修完」，但实为误报）",
-      "next": "修 audit 工具累加算法（或改用「声明偏移 vs objdump 访问形」直接对账）"
+      "title": "生成头 _gap_* 尺寸推断错 => 编译器布局漂移",
+      "detail": "lead 初判「audit 累加算法错」错了，当场纠正。audit_type_layout 用编译器 offsetof（A 级裁判，非累加）。实测：注解 m_fPathTargetY @ +1244=0x4DC 与 objdump 一致，但生成头含大量 _gap_* => 编译器 offsetof 漂移 => audit 报 91/185 冲突。病灶在 codegen 的 gap 尺寸推断（emit_headers 的 _gap_ 自动推断），不在 audit、不在注解。",
+      "impact": "阻塞 RoleSystem/CCBRoleState/PalScript 布局验证 + 弱型真型化",
+      "next": "修 codegen 的 _gap_ 尺寸推断（或改为从 objdump 访问形直接填 gap 尺寸）"
     },
     {
       "id": "P0-2",

@@ -1,0 +1,259 @@
+{
+ "class": "CCBRoleState",
+ "layout": {
+  "status": "gap",
+  "issues": [
+   "+0 m_sCombatDialog char[4] 访问形=浮点（fstps/fmuls ✓ A 级）⇒ 位面复用（char[4]/float 双视图 ✓ CLAUDE.md union 语法）",
+   "audit_type_layout 有已知 bug（P0-1 教训 ✓ 误报 91/185）⇒ **objdump 直对账为准** ✓"
+  ],
+  "evidence": "objdump 0x0(%ebp) fstps/fmuls ×2（+0 站）· size=22224/员 100 自洽待全量",
+  "evidence_level": "A"
+ },
+ "methods": {
+  "total_decomp": 212,
+  "signed": 5,
+  "missing": 207,
+  "entries": [],
+  "note": "207 缺签待逐条（asm retn-N A 级 + 调用点 B 级 ✓ Actor 前例 54/56 可测）"
+ },
+ "members": {
+  "total": 100,
+  "weak_est": 70,
+  "batch1_verdicts": [
+   {
+    "offset": 0,
+    "current_type": "char[4]",
+    "name": "m_sCombatDialog",
+    "access_ops": [
+     "float"
+    ],
+    "sites_sampled": 4,
+    "proposed_type": "float",
+    "evidence_level": "A",
+    "evidence": "objdump 0x0( x4",
+    "confidence": 78,
+    "change_kind": "type",
+    "source_note": "访问形实证（objdump 直对账 ✓ 不信 audit）"
+   },
+   {
+    "offset": 4,
+    "current_type": "int",
+    "name": "m_nRoundCounter",
+    "access_ops": [
+     "float",
+     "int"
+    ],
+    "sites_sampled": 4,
+    "proposed_type": "float",
+    "evidence_level": "A",
+    "evidence": "objdump 0x4( x4",
+    "confidence": 78,
+    "change_kind": "type",
+    "source_note": "访问形实证（objdump 直对账 ✓ 不信 audit）"
+   },
+   {
+    "offset": 8,
+    "current_type": "int",
+    "name": "m_nCurrentRound",
+    "access_ops": [
+     "int"
+    ],
+    "sites_sampled": 4,
+    "proposed_type": null,
+    "evidence_level": "A",
+    "evidence": "objdump 0x8( x4",
+    "confidence": 78,
+    "change_kind": "keep_weak",
+    "source_note": "访问形实证（objdump 直对账 ✓ 不信 audit）"
+   },
+   {
+    "offset": 12,
+    "current_type": "int",
+    "name": "m_nActiveRoleIdx",
+    "access_ops": [
+     "int"
+    ],
+    "sites_sampled": 4,
+    "proposed_type": null,
+    "evidence_level": "A",
+    "evidence": "objdump 0xc( x4",
+    "confidence": 78,
+    "change_kind": "keep_weak",
+    "source_note": "访问形实证（objdump 直对账 ✓ 不信 audit）"
+   },
+   {
+    "offset": 16,
+    "current_type": "int",
+    "name": "m_nPhase",
+    "access_ops": [
+     "int"
+    ],
+    "sites_sampled": 4,
+    "proposed_type": null,
+    "evidence_level": "A",
+    "evidence": "objdump 0x10( x4",
+    "confidence": 78,
+    "change_kind": "keep_weak",
+    "source_note": "访问形实证（objdump 直对账 ✓ 不信 audit）"
+   },
+   {
+    "offset": 20,
+    "current_type": "int",
+    "name": "m_nState_014",
+    "access_ops": [
+     "int"
+    ],
+    "sites_sampled": 4,
+    "proposed_type": null,
+    "evidence_level": "A",
+    "evidence": "objdump 0x14( x4",
+    "confidence": 78,
+    "change_kind": "keep_weak",
+    "source_note": "访问形实证（objdump 直对账 ✓ 不信 audit）"
+   },
+   {
+    "offset": 24,
+    "current_type": "int",
+    "name": "m_nState_018",
+    "access_ops": [
+     "int"
+    ],
+    "sites_sampled": 4,
+    "proposed_type": null,
+    "evidence_level": "A",
+    "evidence": "objdump 0x18( x4",
+    "confidence": 78,
+    "change_kind": "keep_weak",
+    "source_note": "访问形实证（objdump 直对账 ✓ 不信 audit）"
+   },
+   {
+    "offset": 32,
+    "current_type": "int",
+    "name": "m_nState_020",
+    "access_ops": [
+     "int"
+    ],
+    "sites_sampled": 4,
+    "proposed_type": null,
+    "evidence_level": "A",
+    "evidence": "objdump 0x20( x4",
+    "confidence": 78,
+    "change_kind": "keep_weak",
+    "source_note": "访问形实证（objdump 直对账 ✓ 不信 audit）"
+   }
+  ],
+  "policy": "88% 弱型 ≠ 88% 可改（RoleSystem 教训 4.3% ✓）——逐条 objdump 访问形判 · 证据不足保留弱型+注 ✓"
+ },
+ "inheritance": {
+  "bases": [
+   {
+    "name": "SceneObj",
+    "offset": 0
+   }
+  ],
+  "vtables": [
+   {
+    "addr": "0x0056B364",
+    "base": null,
+    "slots": [
+     {
+      "addr": "0x00445E70",
+      "from": "CCBPanelSlot"
+     },
+     {
+      "addr": "0x00524970",
+      "from": "CCBResultWindow"
+     },
+     {
+      "addr": "0x00457020",
+      "from": null
+     },
+     {
+      "addr": "0x0043DE40",
+      "from": null
+     },
+     {
+      "addr": "0x00445B90",
+      "from": "UIWnd"
+     },
+     {
+      "addr": "0x00456B60",
+      "from": null
+     },
+     {
+      "addr": "0x00457070",
+      "from": null
+     }
+    ],
+    "source": "[vtable 余 49 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor `CCBRoleState::_todo_456A+134` 写表 + `_scalar_dtor+29` 析构复写（ctor/dtor 对）②被调用者面=槽 0x524970 CCBRoleState 域 Render impl + 0x457020 ③成员访问面=CCBRoleState 布局 ④类归属面=CCBRoleState（ctor 域双自证）⑤交互模式面=构造/析构对；evidence=[写点 ctor/dtor 对,槽行域名] confidence=92"
+   },
+   {
+    "addr": "0x005708E8",
+    "base": null,
+    "slots": [
+     {
+      "addr": "0x00445E70",
+      "from": "CCBPanelSlot"
+     },
+     {
+      "addr": "0x00524970",
+      "from": "CCBResultWindow"
+     },
+     {
+      "addr": "0x005368A0",
+      "from": "SceneObj"
+     },
+     {
+      "addr": "0x005363C0",
+      "from": "SceneObj"
+     },
+     {
+      "addr": "0x00445B90",
+      "from": "UIWnd"
+     },
+     {
+      "addr": "0x005362F0",
+      "from": "SceneObj"
+     },
+     {
+      "addr": "0x00445D10",
+      "from": "UIWnd"
+     }
+    ],
+    "source": "[余量 33 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor SceneObj::CreateUI+108 / Actor::DestroyInternal+29 对 ②被调用者面=池基共享 impl（EffTargetPool/EffObjectPool 既有命名）+ 类域槽 ③成员访问面=池节点布局 ④类归属面=ctor/dtor 域双自证 ⑤交互模式面=RenderTarget2 效果生命周期；evidence=[写点对,槽行,删际锚] confidence=80"
+   }
+  ],
+  "ctor": null,
+  "dtor": null,
+  "issues": [
+   "ctor/dtor 待 objdump vptr 写点核（CCBStage 前例：注解地址可能错 ✓）"
+  ],
+  "evidence_level": "B"
+ },
+ "proposed_changes": [
+  {
+   "file": "data/annotations/structs/CCBRoleState.json",
+   "kind": "type",
+   "detail": "+0 m_sCombatDialog char[4] → **union{char[4]; float;}**（位面复用 ✓ fstps/fmuls A 级）",
+   "evidence": "objdump 0x0(%ebp) fstps ×2",
+   "evidence_level": "A"
+  },
+  {
+   "file": "data/annotations/structs/CCBRoleState.json",
+   "kind": "type",
+   "detail": "+4 m_nRoundCounter int → float（A 级访问形）",
+   "evidence": "objdump 0x4 浮点 op",
+   "evidence_level": "A"
+  }
+ ],
+ "summary": {
+  "layout": "gap（+0 位面复用实锤 ✓ audit bug 已知 ⇒ objdump 直对账）",
+  "weak_types": "批 1: 8 判（2 可改 A 级 ✓ 6 保留）· 余 62 待逐条 · A 级占比 25%（批 1）",
+  "methods": "207 缺签待逐条（Actor 前例制式 ✓）",
+  "top3": [
+   "① +0 char[4]/float 位面复用（union 语法正解）",
+   "② 207 缺签（retn-N 逐条）",
+   "③ 弱型真型化保守推进（4.3% 教训 ✓ 证据不足保留）"
+  ]
+ }
+}
