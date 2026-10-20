@@ -3470,11 +3470,32 @@ def main():
             f.write('\n'.join(lines))
         tmpl_count += 1
 
-    # Clean stale headers: remove .h files for classes now in SKIP_CLASSES
+    # Clean stale headers.
+    # [清理判据修正 2026-10-20] 原判据「类名在 SKIP_CLASSES」只清「类被跳过」的文件，
+    # 不清「已不在产出地址/已不产出」的文件 ⇒ 旧版双址镜像残留的
+    # `include/pal3/*.h`（791 个同类陈旧副本）永不清理 ⇒ 三副本分叉：
+    # 同一类在 `include/pal3/X.h`（旧·class）与 `pal3/src/Misc/X.h`（新·typedef）
+    # 冲突，2026-10-20 实测引发 S2 121→0 的级联。
+    # 正判据：**本次未产出的 .h 一律清掉**（产出地址由 codegen 全权拥有）。
+    # 基础设施头（手写、非产出）须排除。
+    _INFRA_HEADERS = {'ida_defs.h', 'ida_types.h', 'pal3_constants.h',
+                      'pal3_stl.h', 'globals.h', '_ns_udts.h'}
+    _produced = {_sanitize_filename(_nm) for _nm in (all_classes or [])}
+    _produced |= {e for e in (enum_names or [])}
     stale_removed = 0
+    if not _produced:
+        # 安全阀：产出集为空（异常路径）时**不得**全删 ⇒ 退化为只清 SKIP_CLASSES
+        print('  [cleanup] WARNING: produced set empty — falling back to '
+              'SKIP_CLASSES-only cleanup')
     for hf in OUTPUT_DIR.rglob("*.h"):
         stem = hf.stem
-        if should_skip_class(stem) and stem not in enum_names:
+        if hf.name in _INFRA_HEADERS:
+            continue
+        if not _produced:
+            if should_skip_class(stem) and stem not in (enum_names or ()):
+                hf.unlink(); stale_removed += 1
+            continue
+        if should_skip_class(stem) or stem not in _produced:
             hf.unlink()
             stale_removed += 1
 
