@@ -71,6 +71,25 @@ print('引用但缺失:', sorted({r for r in refs if os.path.basename(r) not in 
 
 - 同型风险：[gotcha_dual_copy_table_divergence.md](gotcha_dual_copy_table_divergence.md)
   （逻辑表双副本分叉）—— 本条是**文件副本**维度的同构问题。
-- 本次实测：`include/pal3/gen/` 的 shim 用**裸名 include** 指向 `pal3/src/Misc/` 的模板桩，
-  相对 shim 目录解析不到，原先靠 `include/pal3/` 的同名副本兜住 ⇒ 删除后断链。
-  **隐性依赖**，待查（见下一条）。
+
+## 【2026-10-20 查证更正】"隐性依赖"假说是**测量错误**，撤回
+
+初判：删除 `include/pal3/*.h` 791 个副本后，`include/pal3/gen/` 的 shim 裸名 include
+（`#include "tagEffTaskParam.h"`）会断链，说明那 791 个副本在"承担 include 解析兜底"。
+
+**查证结果：假说不成立，撤回**：
+1. 我的计数用了 `os.walk` **递归**，把 `include/pal3/gen/`（835 个）算进了
+   `include/pal3/`（看起来 839）⇒ 误以为"删了又长回来"。精确顶层计数：
+   `include/pal3/*.h` = **4**（仅 ida_defs/ida_types/pal3_constants/pal3_stl）⇒
+   删除 791 个类头**正确且完整**。
+2. shim 的裸名 include 实际解析到**同目录** `include/pal3/gen/<name>.h`（shim 侧同名件），
+   不依赖 `include/pal3/` 顶层 ⇒ 无隐性依赖。
+3. S2=121→0 的真因是**清理判据**删了 `pal3/src/Misc/` 的模板桩，与 `include/pal3/`
+   删除无关（两件事被我混为一谈）。
+
+**教训（计数口径）**：统计某目录的产出规模时，**必须区分顶层 vs 递归**；
+`os.walk` 会把子目录（如 `gen/`）算进来，导致"删了又长回来"的假象。
+
+残留的真实观察（非缺陷）：`include/pal3/gen/` shim 用**裸名 include**
+（`#include "tagEffTaskParam.h"`）依赖同目录同名件 —— 目前可用，但若未来清理
+`include/pal3/gen/` 会连锁断链。清理该地址时需一并检查。
