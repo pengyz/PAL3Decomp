@@ -146,6 +146,22 @@
     {
       "ts": "2026-10-20",
       "event": "verifier 另发现：RoleSystem 单基(UIWnd) 却 4 vtable 25 槽 ⇒ 疑多接口/嵌套类 vtable 混入，待 objdump 槽反查"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "analyzer A 级定谳 CCBStage 继承链：继承 UIRoleDialog（UIWnd 祖基）· ctor 0x51DD3E call 0x4A12F0=UIRoleDialog ctor · 注解 ctor 0x4FB9A0 疑误（纯 memset 无 vptr 写）"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "fixer Actor retn 校正 54/56 可测（52 条 decomp 签名错，decomp 系统性高估参数，avg 0.80 参）"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "⚠️ **回归+回退**：应用 54 条 retn proposed_signature 后 S2 121→0 · 总错误 1252→4187 · 门禁 FAIL ⇒ 按纪律回退（CCBStage 继承改动先退未修复，退 functions.json 后恢复 121/214·1252）"
+    },
+    {
+      "ts": "2026-10-20",
+      "event": "回归根因待查：fixer 的 proposed_signature 直接套用有害（疑参数类型/调用约定错）——需逐条核后再用，禁批量套用"
     }
   ],
   "rolling_metrics": [
@@ -181,6 +197,14 @@
       "sig_cov": "22.09%",
       "byte_cov": "87.46%",
       "note": "RoleSystem 三维度完成，P0=audit 工具累加算法错（误报）"
+    },
+    {
+      "ts": "2026-10-20 rollback",
+      "S2": "121/214",
+      "errors": 1252,
+      "sig_cov": "22.09%",
+      "byte_cov": "87.46%",
+      "note": "回退 retn 批量套用，恢复基线"
     }
   ],
   "evidence_level_policy": {
@@ -210,6 +234,13 @@
       "detail": "emit 故意不发 vptr 成员（virtual⇒隐式 vptr@0），[D] 找显式 vptr/占位",
       "impact": "[D] 恒报 8 类 FAIL",
       "next": "对齐判据（emit 发显式 vptr 或 [D] 认注释行）"
+    },
+    {
+      "id": "P0-3",
+      "title": "retn proposed_signature 批量套用有害",
+      "detail": "54 条 proposed_signature 套用后 S2 121→0 · 错误 1252→4187。疑参数类型/调用约定错",
+      "impact": "阻塞 Actor 签名补全",
+      "next": "逐条核 proposed_signature（参数类型须调用点证据）后再用，禁批量"
     }
   ]
 }

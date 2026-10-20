@@ -624,3 +624,6 @@
 | `::SetActionByName` | inline | `gbActorDef` | 60 | self_arg_mismatch | `(*(void ( **)(gbActorDef *, char *))(*(_DWORD *)&v9->pBody->gbRefObject + 60))(v9->pBody, m_szTexture)` |
 | `::SetParam` | inline | `Actor` | 20 | self_arg_mismatch | `(*(int ( **)(Actor *))(*(_DWORD *)&m_actarray_begin->m_actarray_type + 20))(m_actarray_begin)` |
 | `::SetMaterialName` | inline | `gbActorDef` | 60 | self_arg_mismatch | `(*(void ( **)(gbActorDef *, char *))(*(_DWORD *)&v16->pBody->gbRefObject + 60))(v16->pBody, m_szTexture)` |
+| `::ActVec_Fn_6160` | inline | `Actor` | 20 | self_arg_mismatch | `(*(int ( **)(Actor *))(*(_DWORD *)&m_actarray_begin->m_actarray_type + 20))(m_actarray_begin)` |
+| `CCBStage::IsIdle` | vftable_local | `_DWORD` | 1072 | self_arg_mismatch | `(***(void ( ****)(_DWORD, _DWORD))(v9 + 1072))(*(_DWORD *)(v9 + 1072), 0)` |
+| `CCBStage::IsIdle` | vftable_local | `_DWORD` | 1076 | self_arg_mismatch | `(***(void ( ****)(_DWORD, _DWORD))(v9 + 1076))(*(_DWORD *)(v9 + 1076), 0)` |

@@ -570,5 +570,560 @@
   "retn_measurable": 31,
   "caliber_note": "lead 口径 61 vs 实测并集 56（Actor.methods 缺签 25 ∪ decomp 占位名 36 − 交集 5）——口径差如实记",
   "avg_conf": 65.2
+ },
+ "retn_corrections": [
+  {
+   "addr": "0x004083B0",
+   "asm_retn": "ret    $0x4",
+   "param_count": 1,
+   "decomp_sig_params": 0,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x004083B0 original/PAL3.exe : ret    $0x4",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00408410",
+   "asm_retn": "ret    $0x8",
+   "param_count": 2,
+   "decomp_sig_params": 0,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1, T2 a2)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00408410 original/PAL3.exe : ret    $0x8",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00419690",
+   "asm_retn": "ret    $0x4",
+   "param_count": 1,
+   "decomp_sig_params": 2,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00419690 original/PAL3.exe : ret    $0x4",
+   "confidence": 85
+  },
+  {
+   "addr": "0x0041F340",
+   "asm_retn": "ret    $0x4",
+   "param_count": 1,
+   "decomp_sig_params": 0,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x0041F340 original/PAL3.exe : ret    $0x4",
+   "confidence": 85
+  },
+  {
+   "addr": "0x0044CB30",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x0044CB30 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x004B7560",
+   "asm_retn": "ret    $0x4",
+   "param_count": 1,
+   "decomp_sig_params": 2,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x004B7560 original/PAL3.exe : ret    $0x4",
+   "confidence": 85
+  },
+  {
+   "addr": "0x004B7980",
+   "asm_retn": "ret    $0x4",
+   "param_count": 1,
+   "decomp_sig_params": null,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x004B7980 original/PAL3.exe : ret    $0x4",
+   "confidence": 85
+  },
+  {
+   "addr": "0x004B7D30",
+   "asm_retn": "ret    $0x4",
+   "param_count": 1,
+   "decomp_sig_params": 2,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x004B7D30 original/PAL3.exe : ret    $0x4",
+   "confidence": 85
+  },
+  {
+   "addr": "0x004B80C0",
+   "asm_retn": "ret    $0x4",
+   "param_count": 1,
+   "decomp_sig_params": null,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x004B80C0 original/PAL3.exe : ret    $0x4",
+   "confidence": 85
+  },
+  {
+   "addr": "0x004BA230",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x004BA230 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x004C5B50",
+   "asm_retn": "ret    $0x4",
+   "param_count": 1,
+   "decomp_sig_params": 2,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x004C5B50 original/PAL3.exe : ret    $0x4",
+   "confidence": 85
+  },
+  {
+   "addr": "0x004D37A0",
+   "asm_retn": "ret    $0x4",
+   "param_count": 1,
+   "decomp_sig_params": null,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x004D37A0 original/PAL3.exe : ret    $0x4",
+   "confidence": 85
+  },
+  {
+   "addr": "0x004D4CA0",
+   "asm_retn": "ret    $0x4",
+   "param_count": 1,
+   "decomp_sig_params": null,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x004D4CA0 original/PAL3.exe : ret    $0x4",
+   "confidence": 85
+  },
+  {
+   "addr": "0x005309A0",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x005309A0 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00530F20",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00530F20 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00530F70",
+   "asm_retn": "ret    $0x4",
+   "param_count": 1,
+   "decomp_sig_params": 2,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00530F70 original/PAL3.exe : ret    $0x4",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00536160",
+   "asm_retn": "ret    $0x8",
+   "param_count": 2,
+   "decomp_sig_params": null,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1, T2 a2)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00536160 original/PAL3.exe : ret    $0x8",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00536220",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00536220 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00536230",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00536230 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00536240",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00536240 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00536250",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00536250 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00536310",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00536310 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x005363A0",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x005363A0 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x005364B0",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 0,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x005364B0 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00536A40",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00536A40 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00536A50",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00536A50 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00536A60",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00536A60 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00536A70",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00536A70 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00536A80",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00536A80 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00536D20",
+   "asm_retn": "ret    $0x8",
+   "param_count": 2,
+   "decomp_sig_params": null,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1, T2 a2)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00536D20 original/PAL3.exe : ret    $0x8",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00536FF0",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00536FF0 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00537120",
+   "asm_retn": "ret    $0x4",
+   "param_count": 1,
+   "decomp_sig_params": null,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00537120 original/PAL3.exe : ret    $0x4",
+   "confidence": 85
+  },
+  {
+   "addr": "0x005371B0",
+   "asm_retn": "ret    $0xc",
+   "param_count": 3,
+   "decomp_sig_params": null,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1, T2 a2, T3 a3)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x005371B0 original/PAL3.exe : ret    $0xc",
+   "confidence": 85
+  },
+  {
+   "addr": "0x005372D0",
+   "asm_retn": "ret    $0xc",
+   "param_count": 3,
+   "decomp_sig_params": null,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1, T2 a2, T3 a3)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x005372D0 original/PAL3.exe : ret    $0xc",
+   "confidence": 85
+  },
+  {
+   "addr": "0x005375F0",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x005375F0 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00537A30",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00537A30 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x005381D0",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x005381D0 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00538260",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 0,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00538260 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00538CE0",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00538CE0 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00539700",
+   "asm_retn": "ret    $0x4",
+   "param_count": 1,
+   "decomp_sig_params": 2,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00539700 original/PAL3.exe : ret    $0x4",
+   "confidence": 85
+  },
+  {
+   "addr": "0x005399E0",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x005399E0 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x00539D60",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x00539D60 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x0053A0C0",
+   "asm_retn": "ret    $0x8",
+   "param_count": 2,
+   "decomp_sig_params": null,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1, T2 a2)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x0053A0C0 original/PAL3.exe : ret    $0x8",
+   "confidence": 85
+  },
+  {
+   "addr": "0x0053A2E0",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x0053A2E0 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x0053A340",
+   "asm_retn": "ret    $0xc",
+   "param_count": 3,
+   "decomp_sig_params": null,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1, T2 a2, T3 a3)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x0053A340 original/PAL3.exe : ret    $0xc",
+   "confidence": 85
+  },
+  {
+   "addr": "0x0053A670",
+   "asm_retn": "ret    $0x4",
+   "param_count": 1,
+   "decomp_sig_params": 2,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x0053A670 original/PAL3.exe : ret    $0x4",
+   "confidence": 85
+  },
+  {
+   "addr": "0x0053A6C0",
+   "asm_retn": "ret    $0xc",
+   "param_count": 3,
+   "decomp_sig_params": null,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1, T2 a2, T3 a3)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x0053A6C0 original/PAL3.exe : ret    $0xc",
+   "confidence": 85
+  },
+  {
+   "addr": "0x0053A8D0",
+   "asm_retn": "ret    $0xc",
+   "param_count": 3,
+   "decomp_sig_params": null,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1, T2 a2, T3 a3)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x0053A8D0 original/PAL3.exe : ret    $0xc",
+   "confidence": 85
+  },
+  {
+   "addr": "0x0053ACA0",
+   "asm_retn": "ret    $0xc",
+   "param_count": 3,
+   "decomp_sig_params": null,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1, T2 a2, T3 a3)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x0053ACA0 original/PAL3.exe : ret    $0xc",
+   "confidence": 85
+  },
+  {
+   "addr": "0x0053B230",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x0053B230 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x0053B890",
+   "asm_retn": "ret    $0x4",
+   "param_count": 1,
+   "decomp_sig_params": 2,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x0053B890 original/PAL3.exe : ret    $0x4",
+   "confidence": 85
+  },
+  {
+   "addr": "0x0053BD30",
+   "asm_retn": "ret    $0x4",
+   "param_count": 1,
+   "decomp_sig_params": 2,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x0053BD30 original/PAL3.exe : ret    $0x4",
+   "confidence": 85
+  },
+  {
+   "addr": "0x0053BEB0",
+   "asm_retn": "ret",
+   "param_count": 0,
+   "decomp_sig_params": 1,
+   "proposed_signature": "void __thiscall(Actor *this)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x0053BEB0 original/PAL3.exe : ret",
+   "confidence": 85
+  },
+  {
+   "addr": "0x0053D5D0",
+   "asm_retn": "ret    $0x4",
+   "param_count": 1,
+   "decomp_sig_params": null,
+   "proposed_signature": "int __thiscall(Actor *this, T1 a1)",
+   "evidence_level": "A",
+   "evidence": "objdump -d --start-address=0x0053D5D0 original/PAL3.exe : ret    $0x4",
+   "confidence": 85
+  }
+ ],
+ "summary_v2": {
+  "total": 56,
+  "measured": 54,
+  "signature_wrong": 52,
+  "corrections": 54,
+  "param_dist": {
+   "0": 27,
+   "1": 17,
+   "2": 4,
+   "3": 6
+  },
+  "note": "A 级（asm retn N ✓ 比 Hex-Rays 反推可靠）· 参**类型**仍需调用点证据（B 级）标注 ✓"
  }
 }
