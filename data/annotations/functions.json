@@ -3194,5 +3194,35 @@
     "name": "RenderActorTransform2",
     "signature": "virtual void __thiscall(Actor *this, int nFlag)",
     "source_note": "[五面] ①调用者=待补 ②被调用者=GetTop/NewOneRenderObj/Transform（渲染对象变换族）③成员访问=m_bUIFlagA/m_nMatrixParam/m_szText/m_vecTargetPos（矩阵参数+目标位）④类归属=Actor（4 命中 0 未解析）⑤交互模式=新建渲染对象+Transform。ret=void。**virtual**。名 RenderActorTransform2 与渲染变换相符（conf 60：与 0x004B80C0 同族，序号区分）。"
+  },
+  "0x00537A30": {
+    "name": "ClearAllocBuffers",
+    "signature": "void __thiscall(Actor *this)",
+    "source_note": "[五面] ①调用者=待补 ②被调用者=delete（释放族）③成员访问=m_nAnimBuffer/m_nParticleBuffer/m_vecBonePos/m_vecTargetPos（分配缓冲+骨骼/目标位向量）④类归属=Actor（4 命中 0 未解析）⑤交互模式=逐个 delete 释放缓冲。ret=void。名 ClearAllocBuffers 与 delete 释放 m_*Buffer/m_vec* 相符。"
+  },
+  "0x00537770": {
+    "name": "LoadActions",
+    "signature": "int __thiscall(Actor *this, FILE *Stream, int *pnCount)",
+    "source_note": "[五面] ①调用者=待补 ②被调用者=ActVecUninitCopy/DestroyActionRange/Free/InitAction/**PtrVec_InsertN_64**（动作加载族；注意 PtrVec_* 是容器模板实例——本仓 2026-10-20 归属修正定谳）③成员访问=m_actarray_begin/end/m_name/m_pact（动作数组域）④类归属=Actor（4 命中 0 未解析）⑤交互模式=FILE 流读取动作序列。ret=int（result）。名 LoadActions 与 LoadActions(FILE*,int*) 签名相符。"
+  },
+  "0x0053A060": {
+    "name": "InitAction",
+    "signature": "int *__thiscall(Actor *this, _BYTE *pActionType)",
+    "source_note": "[五面] ①调用者=待补 ②被调用者=仅自身递归 ③成员访问=m_actarray_begin/end/capacity_end/type（动作数组三元组）④类归属=Actor（4 命中 0 未解析）⑤交互模式=动作数组初始化。ret=int*（result）。名 InitAction 与 actarray 三元组初始化相符。"
+  },
+  "0x00539E70": {
+    "name": "InsertAnimFrame",
+    "signature": "char *__thiscall(Actor *this, float fTime)",
+    "source_note": "[五面] ①调用者=待补 ②被调用者=AssignInt/StoreParam/Vec3CopyStruct/new/delete（参数存储+向量拷贝族）③成员访问=m_pAllocBuf/m_fTransitionPos/m_fTransitionSpeed/m_fMoveRange（分配缓冲+过渡/移动参数）④类归属=Actor（4 命中 0 未解析）⑤交互模式=new 分配 + Vec3 拷贝 + 参数存储。ret=char*（result）。名 InsertAnimFrame 与帧插入相符（conf 65：无字面量，五面⑤弱）。"
+  },
+  "0x004CB280": {
+    "name": "_todo_004CB280",
+    "signature": "virtual void __thiscall(Actor *this, int nFlags)",
+    "source_note": "[五面·conf<60 冻结] ①调用者=待补 ②被调用者=LODWORD/SLODWORD/delete（位操作+释放）③成员访问=m_actarray_capacity_end/m_fMoveRange/m_fMoveSpeed（容量+移动参数）④类归属=Actor（3 命中 0 未解析）⑤交互模式=delete + 位重解释。ret=void。**virtual**。**不正名**：与 0x004C9470 逐字同形（疑同族析构/清理钩子），但证据不足以区分语义（conf 55）。"
+  },
+  "0x004C9470": {
+    "name": "_todo_004C9470",
+    "signature": "virtual void __thiscall(Actor *this, int nFlags)",
+    "source_note": "[五面·conf<60 冻结] 与 0x004CB280 逐字同形（acc/call 完全相同）。②被调用者=LODWORD/SLODWORD/delete ③成员访问=m_actarray_capacity_end/m_fMoveRange/m_fMoveSpeed ④类归属=Actor。ret=void。**virtual**。**不正名**：同形双钩子，语义未分（conf 55）。⚠️ 同形双份可能是 COMDAT 副本或不同类同形 dtor（参照 2026-10-20 块2 发现 0x004D37A0/0x004D4CA0 案），待 IDA vtable 复核。"
   }
 }
