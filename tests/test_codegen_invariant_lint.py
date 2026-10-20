@@ -143,3 +143,50 @@ def test_i2_real_violation_still_caught():
     src = 'void f() {\n    v = a->RoleSystem;\n}\n'
     hits = L.find_type_in_member_position(src, {'RoleSystem'})
     assert len(hits) == 1 and hits[0][1] == 'RoleSystem'
+
+
+# ---------------------------------------------------------------- I3
+
+def _arities_for(cls, name, *arities):
+    return {cls: {name: set(arities)}}
+
+
+def test_i3_receiver_unresolved_detected():
+    """真阳性：当前类 2 参成员被以 3 实参无限定调用（MoveToAbsolute 实证）"""
+    src = ('void CCBStage::SomeFn(int x)\n{\n'
+           '  MoveToAbsolute(this->m_pCBSystem->m_pUI->m_pRoleStateMP[0],\n'
+           '                 LODWORD(v11) - 168, v19 - 128);\n}\n')
+    hits = L.find_receiver_unresolved_calls(src, _arities_for('CCBStage', 'MoveToAbsolute', 2))
+    assert len(hits) == 1 and hits[0][1] == 'MoveToAbsolute' and hits[0][2] == 3
+
+
+def test_i3_arity_match_is_legal():
+    """负例：实参个数匹配当前类某重载 ⇒ 合法，不报（Create__ovl_1 实证）"""
+    src = 'void CGameData::Other(int y)\n{\n  Create__ovl_1(somePtr);\n}\n'
+    hits = L.find_receiver_unresolved_calls(
+        src, _arities_for('CGameData', 'Create__ovl_1', 0, 1))
+    assert hits == []
+
+
+def test_i3_not_member_of_enclosing_class_ignored():
+    """非当前类成员名（无声明）⇒ 不判（避免误报自由函数）"""
+    src = 'void CCBStage::F(int x)\n{\n  freeHelper(a, b);\n}\n'
+    assert L.find_receiver_unresolved_calls(src, _arities_for('CCBStage', 'MoveToAbsolute', 2)) == []
+
+
+def test_i3_other_class_scope_not_flagged():
+    """同名成员在别的类里有匹配声明 ⇒ 合法（class-aware 的意义）"""
+    src = 'void UIScene::G(int x)\n{\n  MoveToAbsolute(recv, a, b);\n}\n'
+    ar = {'UIScene': {'MoveToAbsolute': {2, 3}}, 'CCBStage': {'MoveToAbsolute': {2}}}
+    assert L.find_receiver_unresolved_calls(src, ar) == []
+
+
+def test_i3_no_class_context_skipped():
+    """无 `Class::` 上下文的自由函数体内 ⇒ 不判（保守）"""
+    src = 'void helper()\n{\n  MoveToAbsolute(recv, a, b);\n}\n'
+    assert L.find_receiver_unresolved_calls(src, _arities_for('CCBStage', 'MoveToAbsolute', 2)) == []
+
+
+def test_i3_keywords_not_calls():
+    src = 'void CCBStage::F(int x)\n{\n  if (a) { return; }\n}\n'
+    assert L.find_receiver_unresolved_calls(src, _arities_for('CCBStage', 'F', 2)) == []

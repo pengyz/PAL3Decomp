@@ -188,6 +188,205 @@ def find_type_in_member_position(src, type_names):
     return hits
 
 
+# I3: 成员函数被「无限定名」调用，且实参 = 声明实参 + 1 ⇒ receiver 未解析
+# 病灶（2026-10-20 定层实证）：
+#   `MoveToAbsolute(this->m_pCBSystem->m_pUI->m_pRoleStateMP[0], LODWORD(v11)-168, v19-128);`
+#   —— 第一个实参是**收件人**（UIScene*），但调用名无限定 ⇒ MSVC 把它绑到当前类的
+#   2 参同名成员 `CCBStage::MoveToAbsolute(int,int)` ⇒ C2660 "does not take 3 parameters"。
+#   实测该族 87 条（C2660 全部）。decomp 原文是 `Name(recv, a, b)`（自由函数形），
+#   codegen 的 oop 变换**未解析出 receiver**。
+# 判据：调用名 = 某类成员名，且实参个数 = 该成员声明实参个数 + 1。
+# 保守面：只报「实参恰好多 1」这一形态（若多 2/3 则可能是真实歧义，不判）。
+# 允许行尾 `// ...` 注释（生成头常带 `// 0xADDR`）——否则 MoveToAbsolute 等全漏
+_RE_MEMBER_DECL = re.compile(
+    r'^\s*(?:[A-Za-z_][\w:<>,\s\*&]*?)\s+([A-Za-z_]\w*)\s*\(([^)]*)\)\s*;'
+    r'(?:\s*//[^\n]*)?\s*$',
+    re.M)
+_CLASS_OPEN = re.compile(r'^\s*(?:class|struct|union)\s+([A-Za-z_]\w*)[^;{]*\{\s*$', re.M)
+
+
+def _match_paren(src, i):
+    """src[i] == '(' ⇒ 返回配对 ')' 之后的位置；失败返回 -1。"""
+    d = 0
+    n = len(src)
+    while i < n:
+        c = src[i]
+        if c == '(':
+            d += 1
+        elif c == ')':
+            d -= 1
+            if d == 0:
+                return i + 1
+        i += 1
+    return -1
+
+
+def _count_top_level_commas(text):
+    """顶层逗号计数（跳过 ()/<>/[] 内部）。空串返回 0 个实参。"""
+    if not text.strip():
+        return 0
+    d_p = d_a = d_t = 0
+    commas = 0
+    for ch in text:
+        if ch == '(':
+            d_p += 1
+        elif ch == ')':
+            d_p -= 1
+        elif ch == '[':
+            d_a += 1
+        elif ch == ']':
+            d_a -= 1
+        elif ch == '<':
+            d_t += 1
+        elif ch == '>':
+            # [bug修 2026-10-20] `->` 里的 `>` 会使 d_t 下穿负数 ⇒ 之后顶层逗号全被吞
+            # （实测 `a->b[0], c, d` 只数出 1 个实参）。模板深度不得为负。
+            d_t = d_t - 1 if d_t > 0 else 0
+        elif ch == ',' and d_p == 0 and d_a == 0 and d_t == 0:
+            commas += 1
+    return commas + 1
+
+
+def collect_member_arities(hdr_dirs):
+    """从生成头收集成员函数：返回 {类名: {函数名: set(实参个数)}}。"""
+    arities = {}
+    for d in hdr_dirs:
+        for root, _dirs, files in os.walk(d):
+            for f in files:
+                if not f.endswith('.h'):
+                    continue
+                try:
+                    with open(os.path.join(root, f), encoding='utf-8',
+                              errors='replace') as fh:
+                        txt = fh.read()
+                except OSError:
+                    continue
+                masked = mask_strings_comments(txt)
+                # 类作用域：`class X {` / `struct X {` 起，到 `};` 止
+                cur_cls = None
+                depth = 0
+                for ln in masked.split('\n'):
+                    om = _CLASS_OPEN.match(ln)
+                    if om and depth == 0:
+                        cur_cls = om.group(1); depth = 1
+                        continue
+                    if cur_cls is not None:
+                        depth += ln.count('{') - ln.count('}')
+                        if depth <= 0:
+                            cur_cls = None; depth = 0
+                            continue
+                    dm = _RE_MEMBER_DECL.match(ln)
+                    if not (cur_cls and dm):
+                        continue
+                    nm, params = dm.group(1), dm.group(2)
+                    if nm in ('if', 'for', 'while', 'switch', 'return',
+                              'sizeof', 'catch'):
+                        continue
+                    if '(' in params:      # 函数指针型声明
+                        continue
+                    n = _count_top_level_commas(params)
+                    if re.search(r'\bthis\b', params):
+                        n -= 1
+                    arities.setdefault(cur_cls, {}).setdefault(
+                        nm, set()).add(max(n, 0))
+    return arities
+
+
+# 调用站：行首/`=`/`;`/`{`/`}`/`return` 之后的**无限定**名字 + `(`
+# 行首也要命中：原 `(?:...|(?<=[;{}=]))` 里的 `^` 无 re.M ⇒ 跨行语句全漏。
+# 用 `\n` 加入 lookbehind 字符类，语句起点即可命中。
+_RE_UNQUAL_CALL = re.compile(
+    r'(?:(?<=^)|(?<=[;{}\n=]))[ \t]*([A-Za-z_]\w*)[ \t]*\(')
+_NON_CALL_KEYWORDS = {
+    'if', 'for', 'while', 'switch', 'return', 'sizeof', 'catch', 'else',
+    'do', 'new', 'delete', 'goto', 'case', 'typeof', '__asm', 'defined',
+}
+
+
+def _split_top_level_args(text):
+    """按顶层逗号切分实参（用于计数与首参提取）。"""
+    args, cur, d_p, d_a, d_t = [], [], 0, 0, 0
+    for ch in text:
+        if ch == '(':
+            d_p += 1
+        elif ch == ')':
+            d_p -= 1
+        elif ch == '[':
+            d_a += 1
+        elif ch == ']':
+            d_a -= 1
+        elif ch == '<':
+            d_t += 1
+        elif ch == '>':
+            d_t = d_t - 1 if d_t > 0 else 0   # 同上：`->` 不得让深度下穿
+        if ch == ',' and d_p == 0 and d_a == 0 and d_t == 0:
+            args.append(''.join(cur)); cur = []
+            continue
+        cur.append(ch)
+    if cur:
+        args.append(''.join(cur))
+    return args
+
+
+def detect_enclosing_classes(src):
+    """逐行推断当前函数所属类（形如 `Type Class::Name(...)` 的定义行）。"""
+    masked = mask_strings_comments(src)
+    out = []
+    pat = re.compile(r'^\s*[\w:<>,\s\*&]*?\b([A-Za-z_]\w*)::[A-Za-z_]\w*\s*\(')
+    for k, ln in enumerate(masked.split('\n')):
+        m = pat.match(ln)
+        out.append((k + 1, m.group(1) if m else None))
+    return out
+
+
+def find_receiver_unresolved_calls(src, member_arities):
+    """I3（class-aware）：返回 [(line, name, call_arity, enclosing_decl)]。
+
+    判据（三层，逐层排除误报）：
+      (1) 调用名是**当前类**的成员；
+      (2) 实参个数**不匹配**当前类任何声明（否则是合法无限定调用，如
+          `Create__ovl_1(x)` 匹配 1 参重载 ⇒ 不报）；
+      (3) 实参 - 1 **匹配**当前类某声明 ⇒ receiver 被当首实参传入，未被解析。
+    病灶实证：`MoveToAbsolute(recv, a, b)` 在 CCBStage 内，CCBStage::MoveToAbsolute
+    是 2 参 ⇒ 3 参绑不上 ⇒ C2660 "does not take 3 parameters"（实测 87 条）。
+    """
+    if not member_arities:
+        return []
+    masked = mask_strings_comments(src)
+    # 逐行类作用域
+    line_cls = detect_enclosing_classes(src)
+    cls_at = {}
+    cur = None
+    for ln, c in line_cls:
+        if c:
+            cur = c
+        cls_at[ln] = cur
+    out = []
+    for m in _RE_UNQUAL_CALL.finditer(masked):
+        nm = m.group(1)
+        if nm in _NON_CALL_KEYWORDS:
+            continue
+        line_no = masked.count('\n', 0, m.start(1)) + 1
+        cls = cls_at.get(line_no)
+        if not cls:
+            continue
+        decl = (member_arities.get(cls) or {}).get(nm)
+        if not decl:
+            continue
+        start = m.end() - 1
+        end = _match_paren(masked, start)
+        if end == -1:
+            continue
+        args_text = masked[m.end():end - 1]
+        n_args = _count_top_level_commas(args_text)
+        if n_args in decl:
+            continue                      # (2) 合法：匹配当前类某声明
+        if (n_args - 1) not in decl:
+            continue                      # (3) 也不是 receiver 形
+        out.append((line_no, nm, n_args, sorted(decl)))
+    return out
+
+
 def collect_type_names(hdr_dirs):
     """从生成头收集类/结构/联合/typedef 名（供 I2 判定）。"""
     names = set()
@@ -209,11 +408,9 @@ def collect_type_names(hdr_dirs):
     return names
 
 
-# ---------------------------------------------------------------- 扫描部分
-
-def scan_files(src_dir, type_names):
-    """返回 {'reg_ptr_use': [...], 'type_in_member': [...]}（每条含 file/line）。"""
-    out = {'reg_ptr_use': [], 'type_in_member': []}
+def scan_files(src_dir, type_names, member_arities=None):
+    """返回 {'reg_ptr_use': [...], 'type_in_member': [...], 'receiver_unresolved': [...]}"""
+    out = {'reg_ptr_use': [], 'type_in_member': [], 'receiver_unresolved': []}
     for root, _dirs, files in os.walk(src_dir):
         for f in files:
             if not f.endswith('.cpp'):
@@ -231,6 +428,12 @@ def scan_files(src_dir, type_names):
             for line, nm in find_type_in_member_position(src, type_names):
                 out['type_in_member'].append(
                     {'file': rel, 'line': line, 'type': nm})
+            if member_arities:
+                for line, nm, ar, decl in find_receiver_unresolved_calls(
+                        src, member_arities):
+                    out['receiver_unresolved'].append(
+                        {'file': rel, 'line': line, 'name': nm,
+                         'call_arity': ar, 'decl_arities': decl})
     return out
 
 
@@ -244,17 +447,20 @@ def main():
     ap.add_argument('--json', action='store_true')
     args = ap.parse_args()
 
-    type_names = collect_type_names([
+    hdr_dirs = [
         os.path.join(PROJECT_ROOT, 'pal3', 'src'),
         os.path.join(PROJECT_ROOT, 'include', 'pal3'),
-    ])
-    res = scan_files(SRC_DIR, type_names)
+    ]
+    type_names = collect_type_names(hdr_dirs)
+    member_arities = collect_member_arities(hdr_dirs)
+    res = scan_files(SRC_DIR, type_names, member_arities)
 
     cur = {
         'reg_ptr_use': len(res['reg_ptr_use']),
         'type_in_member': len(res['type_in_member']),
+        'receiver_unresolved': len(res['receiver_unresolved']),
     }
-    cur['total'] = cur['reg_ptr_use'] + cur['type_in_member']
+    cur['total'] = sum(cur.values())
 
     base = {}
     if os.path.exists(BASELINE):
@@ -286,10 +492,16 @@ def main():
             print('[I2] 类型名出现在成员位: %d' % cur['type_in_member'])
             for it in res['type_in_member'][:10]:
                 print('     %s:%d  ->%s' % (it['file'], it['line'], it['type']))
+            print('[I3] 成员名无限定调用（实参=声明+1，receiver 疑未解析）: %d'
+                  % cur['receiver_unresolved'])
+            for it in res['receiver_unresolved'][:10]:
+                print('     %s:%d  %s(call=%d decl=%s)'
+                      % (it['file'], it['line'], it['name'],
+                         it['call_arity'], it['decl_arities']))
 
     # 棘轮判定：任一不变量计数超过基线 ⇒ 新增（fail）
     regressed = []
-    for k in ('reg_ptr_use', 'type_in_member', 'total'):
+    for k in ('reg_ptr_use', 'type_in_member', 'receiver_unresolved', 'total'):
         old = base.get(k)
         if old is None:
             continue

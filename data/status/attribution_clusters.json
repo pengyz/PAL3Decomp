@@ -1,0 +1,160 @@
+{
+  "_meta": {
+    "name": "attribution_clusters",
+    "purpose": "编译错误簇级分层归因（DATA=annotation标注层 / MECHANISM=codegen层）——人工逐簇实证，供后续门禁与修复决策作基线",
+    "method": "decomp 原始输出 vs 生成代码逐簇对比（唯一能分层的硬判据）",
+    "date": "2026-10-20",
+    "coverage": "已分类 638/1290 = 49%；余 652 未分类（按簇抽样人工）",
+    "review": "经对抗评审 PASS-WITH-CHANGES（见 data/status/_review_attribution_design.md）",
+    "known_limits": [
+      "簇级而非逐条；未分类 652 条需新数据",
+      "双重根因 6%（BOTH 标签未建）",
+      "头文件错误 3%（file!=unit）无函数上下文，禁判 MECHANISM",
+      "codegen 自造名（_tail_/reg_/_inline_/_field_ 共 1846 处）不在 annotation，若用『token 不在 annotation => DATA』会误判"
+    ]
+  },
+  "DATA": {
+    "subtotal": 434,
+    "clusters": [
+      {
+        "code": "C2039",
+        "n": 154,
+        "shape": "占位/缺失成员",
+        "proven": "tagRoleTaskSlotsView 仅3员但代码访问 .v.z；gbVolModNode 无 m_pModObj"
+      },
+      {
+        "code": "C2664",
+        "n": 65,
+        "shape": "uchar* -> char*",
+        "proven": "&g_PlayerAttBuffer._todo_074[140] 占位缓冲区（_todo_ 未知区，型 _BYTE[]）被当 char* 传"
+      },
+      {
+        "code": "C2664",
+        "n": 33,
+        "shape": "void* -> const char*",
+        "proven": "UIStatic.m_textx/m_texty 声明 void*，实际 char*（strcpy 消费位）"
+      },
+      {
+        "code": "C2440",
+        "n": 26,
+        "shape": "const int -> gbVolumeModifier",
+        "proven": "假类型（匈牙利变量名误收为类；_verdicts 自证『误挂』，IDA size=4）"
+      },
+      {
+        "code": "C2440",
+        "n": 10,
+        "shape": "RoleAtt* -> SaleUI_SortData",
+        "proven": "假类型（_verdicts『待终审』，size=4 空壳）"
+      },
+      {
+        "code": "C2440",
+        "n": 9,
+        "shape": "'' -> fnptr",
+        "proven": "(DLGPROC)CCBUI::DlgProcMain —— 非静态成员函数当自由 __stdcall 用，应 static"
+      },
+      {
+        "code": "C2440",
+        "n": 9,
+        "shape": "gbTexture* -> int",
+        "proven": "成员/参型漏 *"
+      },
+      {
+        "code": "C2440",
+        "n": 5,
+        "shape": "char* -> String",
+        "proven": "值类型 vs 指针"
+      },
+      {
+        "code": "C2664",
+        "n": 5,
+        "shape": "enum LIGHT_TYPE",
+        "proven": "enum 型缺"
+      },
+      {
+        "code": "C2664",
+        "n": 7,
+        "shape": "int* -> CCBUI**",
+        "proven": "输出槽参型"
+      },
+      {
+        "code": "C2664",
+        "n": 5,
+        "shape": "uchar -> char",
+        "proven": "字节符号性"
+      },
+      {
+        "code": "C2664",
+        "n": 3,
+        "shape": "UIButton** -> UIWnd**",
+        "proven": "继承/型不符"
+      },
+      {
+        "code": "C2228",
+        "n": 103,
+        "shape": "父成员型错族",
+        "proven": "m_state/m_cmd 等非类类型（成员未标注为类）"
+      }
+    ]
+  },
+  "MECHANISM": {
+    "subtotal": 204,
+    "clusters": [
+      {
+        "code": "C2660",
+        "n": 87,
+        "shape": "receiver 未解析",
+        "proven": "MoveToAbsolute(recv,a,b) 被渲染成无限定名，绑到当前类的 2 参同名成员（实为 UIScene 方法）"
+      },
+      {
+        "code": "C2227",
+        "n": 73,
+        "shape": "指针语义丢失残余",
+        "proven": "与 C2228 同源（变换丢地址性/指针性）"
+      },
+      {
+        "code": "C2664",
+        "n": 14,
+        "shape": "fnptr -> unsigned long",
+        "proven": "指针->整型缺显式铸"
+      },
+      {
+        "code": "C2440",
+        "n": 10,
+        "shape": "void* -> unsigned long*",
+        "proven": "C++ 隐式转换非法，codegen 未补铸"
+      },
+      {
+        "code": "C2440",
+        "n": 6,
+        "shape": "RoleSystem* -> unsigned long",
+        "proven": "同上（指针->整型）"
+      },
+      {
+        "code": "C2440",
+        "n": 5,
+        "shape": "gbVec3D -> Object3D*",
+        "proven": "decomp 原文 (Object3D *)(v6-80)，codegen 把整数表达式换成带类型变量后丢 &"
+      },
+      {
+        "code": "C2664",
+        "n": 5,
+        "shape": "int* -> unsigned long*",
+        "proven": "指针->指针（同宽）缺铸"
+      },
+      {
+        "code": "C2664",
+        "n": 4,
+        "shape": "unsigned long* -> unsigned int*",
+        "proven": "同宽不同型，缺铸"
+      }
+    ]
+  },
+  "BOTH_double_root_cause": {
+    "count": 80,
+    "note": "占位型 + 参数转换同现（如 void* -> unsigned long*）——二元标签必错，需 BOTH"
+  },
+  "UNCLASSIFIED": {
+    "count": 652,
+    "note": "按簇抽样未覆盖；需新数据或自动分类"
+  }
+}
