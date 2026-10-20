@@ -1,0 +1,25 @@
+{
+  "class": "Actor",
+  "block": 1,
+  "criterion": "signature+member-access, code_len budget 8000",
+  "count": 1,
+  "total_code_len": 13376,
+  "functions": [
+    {
+      "addr": "0x00531260",
+      "name": "Actor::UpdateFrame(float)",
+      "sig": "void __thiscall(Actor *this, float arg0)",
+      "n_ok": 21,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_InnerActor",
+        "m_actarray_type",
+        "m_bChangedMat",
+        "m_bDirFlag",
+        "m_bStateFlag",
+        "m_curact"
+      ],
+      "code_len": 13376
+    }
+  ]
+}

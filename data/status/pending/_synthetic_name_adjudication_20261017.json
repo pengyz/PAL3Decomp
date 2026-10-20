@@ -1,0 +1,82 @@
+{
+ "_meta": {
+  "kind": "合成名标注账目（方案 A 治本）",
+  "ts": "2026-10-17 verifier",
+  "note": "$ 合成名 12 条=编译非法源优先标注；_inline_ 形 18 条合法标识符可缓",
+  "updated": "2026-10-17 verifier：11 实体落+1 归并（双建自纠）+ BYTE 型别自纠"
+ },
+ "names": [
+  {
+   "synthetic": "_inline_FightItem_desc::$5E952BEC5AAD902C6AB0DF68D4D",
+   "annotated_name": "tagFightScriptData",
+   "evidence": "成员 bLoaded/pScriptData 直证=脚本数据装载块 | conf high",
+   "confidence": "high"
+  },
+  {
+   "synthetic": "_inline_PalScript_m_RoleSlotArray::$C73B8B6F2FC6F73B",
+   "annotated_name": "tagFormationSceneState",
+   "evidence": "成员 m_pCurrentScript/m_bFormationReady/m_nSceneTransitionParam 直证=编成/场景过渡状态 | conf high",
+   "confidence": "high"
+  },
+  {
+   "synthetic": "_inline_PalScript_m_RoleSlotArray::$D01C856963946331",
+   "annotated_name": "tagRoleActionState",
+   "evidence": "成员 m_bRoleAction/m_RoleActionType（38 员）直证=角色动作状态 | conf high",
+   "confidence": "high"
+  },
+  {
+   "synthetic": "_inline_PalScript_m_szDialog1::$91EC9EFF208071E74590",
+   "annotated_name": "tagScriptPtrQuad",
+   "evidence": "成员 pScriptVtable/pScriptPtrA/B/C 直证=脚本四指针块 | conf high",
+   "confidence": "high"
+  },
+  {
+   "synthetic": "_inline_RoleAtt_Remark::$101B5358F90B67F92EE483560EB",
+   "annotated_name": "tagSkillCountBlock",
+   "evidence": "成员 nSkillCount1/2 直证=技能计数块 | conf high",
+   "confidence": "high"
+  },
+  {
+   "synthetic": "_inline_RoleSystem_m_teamSlotOverlay::$2DFC61BE4FFBE",
+   "annotated_name": "tagCombatTimerState",
+   "evidence": "成员 m_fCBTimer 直证=战斗计时状态（余 _todo_ 伪名挂账）| conf medium-high",
+   "confidence": "medium-high"
+  },
+  {
+   "synthetic": "_inline_tagCmdData_::$80FB47060A74C8239E60177C3BBEB5",
+   "annotated_name": "tagCmdDataDestRoleView(他线已落·归并)",
+   "evidence": "成员 pDestRoleOverlay/_pad 直证=目标角色覆盖位面 | conf high | 归并：他线同义名 tagCmdDataDestRoleView 先落 ⇒ 撤我双建（ALIGN +7 packed 位面归其处置）",
+   "confidence": "high"
+  },
+  {
+   "synthetic": "_inline_tagRoleTask_vec1::$3F2E61F82ECEB0A0F590A053F",
+   "annotated_name": "tagTaskVecXYZ",
+   "evidence": "成员 x/y/z 直证=矢量三分量视图 | conf high",
+   "confidence": "high"
+  },
+  {
+   "synthetic": "_inline_tagRoleTask_vec1::$82EAC46EEB1E6124BDD2FBC7E",
+   "annotated_name": "tagTaskLayoutPtrs",
+   "evidence": "成员 pLayout/pToggle 直证=布局/开关指针视图 | conf high",
+   "confidence": "high"
+  },
+  {
+   "synthetic": "gbColorQuad::$::$606BDE80A499A25317C0EEB3DA34DC48",
+   "annotated_name": "gbColorQuadChannels",
+   "evidence": "成员 Blue/Green/Red/Alpha 直证=颜色通道视图 | conf high",
+   "confidence": "high"
+  },
+  {
+   "synthetic": "gbMatrix4::$::$481F9A111B7A2D88D5B1BED46110A2AA",
+   "annotated_name": "gbMatrix4Flat",
+   "evidence": "成员 xx..tw 16 员直证=矩阵平铺视图 | conf high",
+   "confidence": "high"
+  },
+  {
+   "synthetic": "gbNodeMsgObj::$::$7BBBFFF090128DA75790BFCF6B2B1497",
+   "annotated_name": "gbNodeMsgPayload",
+   "evidence": "成员 msgid/param 直证=节点消息载荷 | conf high",
+   "confidence": "high"
+  }
+ ]
+}

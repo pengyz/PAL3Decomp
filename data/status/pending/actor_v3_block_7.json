@@ -1,0 +1,53 @@
+{
+  "class": "Actor",
+  "block": 7,
+  "criterion": "signature+member-access, code_len budget 8000",
+  "count": 4,
+  "total_code_len": 7566,
+  "functions": [
+    {
+      "addr": "0x005392C0",
+      "name": "Actor::ActionEntry_Assign(int)",
+      "sig": "char *__thiscall(Actor *this, int nVal)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_type"
+      ],
+      "code_len": 3190
+    },
+    {
+      "addr": "0x00539A90",
+      "name": "Actor::SearchAnimByIndex(char *,char *)",
+      "sig": "char __thiscall(Actor *this, char *String1, char *pszBuf)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_name"
+      ],
+      "code_len": 475
+    },
+    {
+      "addr": "0x00539AF0",
+      "name": "Actor::RegisterAnim(char *,char *)",
+      "sig": "void __thiscall(Actor *this, char *pszName, char *pszBuf)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_pact"
+      ],
+      "code_len": 3339
+    },
+    {
+      "addr": "0x0053A080",
+      "name": "Actor::GetActionArrayEnd(_WORD *,short *)",
+      "sig": "_WORD *__thiscall(Actor *this, _WORD *p_WORD, __int16 *pnVal)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_end"
+      ],
+      "code_len": 562
+    }
+  ]
+}

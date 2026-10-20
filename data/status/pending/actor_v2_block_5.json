@@ -1,0 +1,328 @@
+{
+  "class": "Actor",
+  "block": 5,
+  "criterion": "member-access evidence (not signature-this)",
+  "count": 40,
+  "functions": [
+    {
+      "addr": "0x0050F200",
+      "name": "CCBStage::OnMagicHit(int)",
+      "sig": "int __thiscall(CCBStage *this, int nVal)",
+      "n_ok": 1,
+      "n_miss": 6,
+      "code_len": 1429
+    },
+    {
+      "addr": "0x0050F310",
+      "name": "CCBStage::AnimCallback_Throw(int,int)",
+      "sig": "int __thiscall(CCBStage *this, int nVal, int nVal2)",
+      "n_ok": 1,
+      "n_miss": 4,
+      "code_len": 1268
+    },
+    {
+      "addr": "0x0050F410",
+      "name": "CCBStage::AnimCallback_CastMagic(int)",
+      "sig": "int __thiscall(CCBStage *this, int nVal)",
+      "n_ok": 1,
+      "n_miss": 5,
+      "code_len": 932
+    },
+    {
+      "addr": "0x0050F4C0",
+      "name": "CCBStage::AnimCallback_WaitCmd(int)",
+      "sig": "int __thiscall(CCBStage *this, int nVal)",
+      "n_ok": 1,
+      "n_miss": 3,
+      "code_len": 1094
+    },
+    {
+      "addr": "0x0050F590",
+      "name": "CCBStage::AnimCallback_MoveTo(int)",
+      "sig": "int __thiscall(CCBStage *this, int nVal)",
+      "n_ok": 1,
+      "n_miss": 13,
+      "code_len": 4709
+    },
+    {
+      "addr": "0x005125E0",
+      "name": "CCBSystem::ProcNormalAttack(void)",
+      "sig": "char __thiscall(CCBSystem *this)",
+      "n_ok": 1,
+      "n_miss": 13,
+      "code_len": 7555
+    },
+    {
+      "addr": "0x00512BA0",
+      "name": "CCBSystem::ProcFling(void)",
+      "sig": "char __thiscall(CCBSystem *this)",
+      "n_ok": 1,
+      "n_miss": 11,
+      "code_len": 3345
+    },
+    {
+      "addr": "0x00512D60",
+      "name": "CCBSystem::ProcWeaponSkill(void)",
+      "sig": "char __thiscall(CCBSystem *this)",
+      "n_ok": 1,
+      "n_miss": 13,
+      "code_len": 2825
+    },
+    {
+      "addr": "0x00512F40",
+      "name": "CCBSystem::ProcMagicWait(uint,char)",
+      "sig": "char __thiscall(CCBSystem *this, unsigned int formal, char pData)",
+      "n_ok": 1,
+      "n_miss": 6,
+      "code_len": 1269
+    },
+    {
+      "addr": "0x00513060",
+      "name": "CCBSystem::CombatUpdate(double)",
+      "sig": "int __thiscall(CCBSystem *this, double dt)",
+      "n_ok": 1,
+      "n_miss": 15,
+      "code_len": 1186
+    },
+    {
+      "addr": "0x00513150",
+      "name": "CCBSystem::ProcMagic(void)",
+      "sig": "char __thiscall(CCBSystem *this)",
+      "n_ok": 1,
+      "n_miss": 1,
+      "code_len": 2898
+    },
+    {
+      "addr": "0x00513390",
+      "name": "CCBSystem::SetRenderFlag(char)",
+      "sig": "int __thiscall(CCBSystem *this, char flag)",
+      "n_ok": 1,
+      "n_miss": 1,
+      "code_len": 738
+    },
+    {
+      "addr": "0x00513600",
+      "name": "CCBSystem::ProcAI(float)",
+      "sig": "void __thiscall(CCBSystem *this, float formal)",
+      "n_ok": 1,
+      "n_miss": 6,
+      "code_len": 975
+    },
+    {
+      "addr": "0x005136D0",
+      "name": "CCBSystem::ProcMessage(int)",
+      "sig": "char __thiscall(CCBSystem *this, int idx)",
+      "n_ok": 1,
+      "n_miss": 3,
+      "code_len": 1784
+    },
+    {
+      "addr": "0x00513840",
+      "name": "CCBSystem::CheckBattleEnd(void)",
+      "sig": "int __thiscall(CCBSystem *this)",
+      "n_ok": 1,
+      "n_miss": 7,
+      "code_len": 7633
+    },
+    {
+      "addr": "0x00513FD0",
+      "name": "CCBSystem::IsRoleWaitForFlee(int)",
+      "sig": "bool __thiscall(CCBSystem *this, int nRoleIndex)",
+      "n_ok": 1,
+      "n_miss": 4,
+      "code_len": 2849
+    },
+    {
+      "addr": "0x00514220",
+      "name": "CCBSystem::AddThread(int)",
+      "sig": "unsigned int __thiscall(CCBSystem *this, int fp)",
+      "n_ok": 1,
+      "n_miss": 4,
+      "code_len": 3773
+    },
+    {
+      "addr": "0x00514610",
+      "name": "CCBSystem::DelThread(int)",
+      "sig": "bool __thiscall(CCBSystem *this, int nIndex)",
+      "n_ok": 1,
+      "n_miss": 4,
+      "code_len": 2685
+    },
+    {
+      "addr": "0x00514870",
+      "name": "CCBSystem::GetSameThreadNum(int)",
+      "sig": "int __thiscall(CCBSystem *this, int fp)",
+      "n_ok": 1,
+      "n_miss": 5,
+      "code_len": 3314
+    },
+    {
+      "addr": "0x00514D60",
+      "name": "CCBSystem::GetThreadIndex(uint)",
+      "sig": "int __thiscall(CCBSystem *this, unsigned int dwThreadID)",
+      "n_ok": 1,
+      "n_miss": 4,
+      "code_len": 2713
+    },
+    {
+      "addr": "0x00514FE0",
+      "name": "CCBSystem::PassCmdToThread(int)",
+      "sig": "int __thiscall(CCBSystem *this, int 34)",
+      "n_ok": 1,
+      "n_miss": 4,
+      "code_len": 2536
+    },
+    {
+      "addr": "0x00515760",
+      "name": "CCBSystem::PassCmdViaThread(int,int)",
+      "sig": "bool __thiscall(CCBSystem *this, int nDestThread, int nSrcThread)",
+      "n_ok": 1,
+      "n_miss": 5,
+      "code_len": 1825
+    },
+    {
+      "addr": "0x00522030",
+      "name": "CCBStageRole::CCBStageRole(void)",
+      "sig": "void __thiscall(CCBStageRole *this)",
+      "n_ok": 1,
+      "n_miss": 3,
+      "code_len": 953
+    },
+    {
+      "addr": "0x005220E0",
+      "name": "CCBStage::ClearRoleState(void)",
+      "sig": "int *__thiscall(CCBStage *this)",
+      "n_ok": 1,
+      "n_miss": 3,
+      "code_len": 466
+    },
+    {
+      "addr": "0x00532360",
+      "name": "RoleSystem::ApplyRotationAxis(int,char)",
+      "sig": "int __thiscall(RoleSystem *this, int nVal, char pData)",
+      "n_ok": 1,
+      "n_miss": 4,
+      "code_len": 1221
+    },
+    {
+      "addr": "0x00532410",
+      "name": "RoleSystem::ShowHideUI(char)",
+      "sig": "int __thiscall(RoleSystem *this, char pData)",
+      "n_ok": 1,
+      "n_miss": 9,
+      "code_len": 3652
+    },
+    {
+      "addr": "0x00535010",
+      "name": "PalScript::ResetAll(void)",
+      "sig": "int __thiscall(PalScript *this)",
+      "n_ok": 1,
+      "n_miss": 6,
+      "code_len": 355
+    },
+    {
+      "addr": "0x00536310",
+      "name": "Actor::DestroyInternalData(void)",
+      "sig": "void __thiscall(Actor *this)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "code_len": 381
+    },
+    {
+      "addr": "0x00536C50",
+      "name": "Actor::CompareActionName(int,int)",
+      "sig": "int __thiscall(Actor *this, int actionIdx, int nVal)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "code_len": 259
+    },
+    {
+      "addr": "0x00536CC0",
+      "name": "Actor::GetAnimDuration(int)",
+      "sig": "unsigned int __thiscall(Actor *this, int animId)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "code_len": 143
+    },
+    {
+      "addr": "0x00536CE0",
+      "name": "Actor::EnableTransition(int,int)",
+      "sig": "void __thiscall(Actor *this, int nVal, int nVal2)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "code_len": 146
+    },
+    {
+      "addr": "0x00536D00",
+      "name": "Actor::SetTimeScale(float)",
+      "sig": "void __thiscall(Actor *this, float scale)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "code_len": 114
+    },
+    {
+      "addr": "0x00536FB0",
+      "name": "Actor::QueryState(int)",
+      "sig": "int __thiscall(Actor *this, int nVal1)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "code_len": 167
+    },
+    {
+      "addr": "0x00536FC0",
+      "name": "Actor::DispatchAction(int)",
+      "sig": "int __thiscall(Actor *this, int actionId)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "code_len": 189
+    },
+    {
+      "addr": "0x00536FD0",
+      "name": "Actor::PlayAction(int)",
+      "sig": "int __thiscall(Actor *this, int actionId)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "code_len": 259
+    },
+    {
+      "addr": "0x005392C0",
+      "name": "Actor::ActionEntry_Assign(int)",
+      "sig": "char *__thiscall(Actor *this, int nVal)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "code_len": 3190
+    },
+    {
+      "addr": "0x00539A90",
+      "name": "Actor::SearchAnimByIndex(char *,char *)",
+      "sig": "char __thiscall(Actor *this, char *String1, char *pszBuf)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "code_len": 475
+    },
+    {
+      "addr": "0x00539AF0",
+      "name": "Actor::RegisterAnim(char *,char *)",
+      "sig": "void __thiscall(Actor *this, char *pszName, char *pszBuf)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "code_len": 3339
+    },
+    {
+      "addr": "0x0053A080",
+      "name": "Actor::GetActionArrayEnd(_WORD *,short *)",
+      "sig": "_WORD *__thiscall(Actor *this, _WORD *p_WORD, __int16 *pnVal)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "code_len": 562
+    },
+    {
+      "addr": "0x0053F680",
+      "name": "TextureLib::AddEntryFromConfig(char *,char *)",
+      "sig": "virtual char __thiscall(TextureLib *this, char *lpString2, char *Delimiter)",
+      "n_ok": 1,
+      "n_miss": 2,
+      "code_len": 2071
+    }
+  ]
+}

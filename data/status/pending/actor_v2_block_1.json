@@ -1,0 +1,192 @@
+{
+  "class": "Actor",
+  "block": 1,
+  "criterion": "signature Actor*this AND member-access hit>0",
+  "count": 12,
+  "functions": [
+    {
+      "addr": "0x00531260",
+      "name": "Actor::UpdateFrame(float)",
+      "sig": "void __thiscall(Actor *this, float arg0)",
+      "n_ok": 21,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_InnerActor",
+        "m_actarray_type",
+        "m_bChangedMat",
+        "m_bDirFlag",
+        "m_bStateFlag",
+        "m_curact"
+      ],
+      "code_len": 13376
+    },
+    {
+      "addr": "0x005375F0",
+      "name": "Actor::ClearPathBuffer(void)",
+      "sig": "void __thiscall(Actor *this)",
+      "n_ok": 8,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_capacity_end",
+        "m_actarray_end",
+        "m_fMoveSpeed",
+        "m_fTransitionPos",
+        "m_fTransitionSpeed"
+      ],
+      "code_len": 1042
+    },
+    {
+      "addr": "0x005381D0",
+      "name": "Actor::InitAnimSequence(void)",
+      "sig": "char *__thiscall(Actor *this)",
+      "n_ok": 8,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_capacity_end",
+        "m_actarray_end",
+        "m_actarray_type",
+        "m_fRoleParam2",
+        "m_fScale"
+      ],
+      "code_len": 1179
+    },
+    {
+      "addr": "0x0053A670",
+      "name": "Actor::CopyActionData(int)",
+      "sig": "int *__thiscall(Actor *this, int nVal)",
+      "n_ok": 8,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_capacity_end",
+        "m_actarray_end",
+        "m_actarray_type",
+        "m_fMoveRange",
+        "m_fMoveSpeed"
+      ],
+      "code_len": 588
+    },
+    {
+      "addr": "0x00536A80",
+      "name": "Actor::FastInit(void)",
+      "sig": "void __thiscall(Actor *this)",
+      "n_ok": 7,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_capacity_end",
+        "m_actarray_end",
+        "m_actarray_type",
+        "m_dwMatMsg",
+        "m_name"
+      ],
+      "code_len": 313
+    },
+    {
+      "addr": "0x00536160",
+      "name": "Actor::SetParam(int,int)",
+      "sig": "int __thiscall(Actor *this, int nVal1, int nVal2)",
+      "n_ok": 6,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_capacity_end",
+        "m_actarray_end",
+        "m_actarray_type",
+        "m_bParamFlag",
+        "m_fScale"
+      ],
+      "code_len": 1000
+    },
+    {
+      "addr": "0x004B7980",
+      "name": "Actor::_todo_004B7980(int)",
+      "sig": "virtual void __thiscall(Actor *this, int a2)",
+      "n_ok": 5,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_bUIFlagA",
+        "m_fMatrixE",
+        "m_fMatrixParamA",
+        "m_fMatrixParamB",
+        "m_szText"
+      ],
+      "code_len": 1816
+    },
+    {
+      "addr": "0x004B80C0",
+      "name": "Actor::_todo_004B80C0(int)",
+      "sig": "virtual void __thiscall(Actor *this, int a2)",
+      "n_ok": 5,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_bUIFlagA",
+        "m_fAnimParam",
+        "m_fInterpStart",
+        "m_fMatrixParamB",
+        "m_vecTargetPos"
+      ],
+      "code_len": 1196
+    },
+    {
+      "addr": "0x00536AC0",
+      "name": "Actor::SetMaterialName(void *,int)",
+      "sig": "int __thiscall(Actor *this, void *name, int a2)",
+      "n_ok": 5,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_end",
+        "m_dwMatMsg",
+        "m_pact",
+        "m_szTexture"
+      ],
+      "code_len": 2112
+    },
+    {
+      "addr": "0x005394D0",
+      "name": "Actor::ClearActionArrays(void)",
+      "sig": "int *__thiscall(Actor *this)",
+      "n_ok": 5,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_capacity_end",
+        "m_actarray_end",
+        "m_name",
+        "m_pact"
+      ],
+      "code_len": 303
+    },
+    {
+      "addr": "0x004B7590",
+      "name": "Actor::_todo_004B7590(int)",
+      "sig": "virtual void __thiscall(Actor *this, int a2)",
+      "n_ok": 4,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_bUIFlagA",
+        "m_nMatrixParam",
+        "m_szText",
+        "m_vecTargetPos"
+      ],
+      "code_len": 802
+    },
+    {
+      "addr": "0x004B7650",
+      "name": "Actor::_todo_004B7650(int)",
+      "sig": "virtual void __thiscall(Actor *this, int a2)",
+      "n_ok": 4,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_fMatrixE",
+        "m_fMatrixParamA",
+        "m_szText",
+        "m_vecTargetPos"
+      ],
+      "code_len": 3458
+    }
+  ]
+}

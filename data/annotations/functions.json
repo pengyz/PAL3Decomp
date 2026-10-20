@@ -3129,5 +3129,40 @@
     "name": "SetTextureName",
     "signature": "void __thiscall(Actor *this, const char *pszTexName)",
     "source_note": "[五面证据] ①调用者=RoleSystem::SetActorTexture：`sprintf(Buffer, \"role\\\\%s\\\\%s.tga\", &this->m_nAnimState, pszName); Actor::SetTextureName((Actor*)&this->m_partyActor.m_Actor, Buffer)` ⇒ 传入的是 .tga 路径串 ②被调用者=strcpy（写入 m_szTexture）→ vcall(m_pact->pBody, m_szTexture, vtable+0x3C)（下发到渲染体）→ OpenBaseFile::OpenBaseFile / OpenNULLFile::OpenNULLFile（文件作用域对）③成员访问=m_szTexture(+0x118=280，strcpy 目标 + 首字节判空)、m_pact(+0x10=16，取 pBody)（2 命中 0 未解析）④类归属=Actor（2 命中 0 未解析）⑤交互模式=pszTexName 判空分支、strcpy 串处理、vtable+0x3C 下发。返回值=void（asm `retn 4`=1 个栈参）。名 SetTextureName 与「把纹理名写入 m_szTexture 并下发到 gbActor 体」相符 ⇒ 保留。⚠️ 可疑点：调用方传入完整 `role\\%s\\%s.tga` 路径，而 m_szTexture 在 Actor 表标 `char[28]`，strcpy 会溢出 ⇒ 该成员尺寸/类型存疑（本任务不改 Actor.json，仅记录）。"
+  },
+  "0x00536A80": {
+    "name": "FastInit",
+    "signature": "void __thiscall(Actor *this)",
+    "source_note": "[五面] ①调用者=待补 ②被调用者=memset（清零族）③成员访问=m_actarray_begin/end/capacity_end/type/m_name/m_szTexture/m_dwMatMsg（动作数组+名+纹理域全清）④类归属=Actor（7 命中 0 未解析）⑤交互模式=单次 memset 批量初始化。ret=void。名 FastInit 与 memset 全清域相符。"
+  },
+  "0x005381D0": {
+    "name": "InitAnimSequence",
+    "signature": "char *__thiscall(Actor *this)",
+    "source_note": "[五面] ①调用者=待补 ②被调用者=memset（清零）③成员访问=m_actarray_begin/end/capacity_end/type/m_fRoleParam2/m_fScale/m_name/m_pact（动作序列域）④类归属=Actor（8 命中 0 未解析）⑤交互模式=memset + ret=&m_actarray_type。ret=**char***（`return &this->m_actarray_type`，:实证）。名 InitAnimSequence 与动作序列域相符。"
+  },
+  "0x0053A670": {
+    "name": "CopyActionData",
+    "signature": "int *__thiscall(Actor *this, int nActionIdx)",
+    "source_note": "[五面] ①调用者=待补 ②被调用者=BYTE1/LOBYTE（位操作）③成员访问=m_actarray_begin/end/capacity_end/type/m_fMoveRange/m_fMoveSpeed/m_name/m_pact（动作数组+移动参数域）④类归属=Actor（8 命中 0 未解析）⑤交互模式=位拆解操作。ret=result（int*）。名 CopyActionData 与动作数据域相符（conf 62：位拆解语义未完全确认）。"
+  },
+  "0x005375F0": {
+    "name": "ClearPathBuffer",
+    "signature": "void __thiscall(Actor *this)",
+    "source_note": "[五面] ①调用者=待补 ②被调用者=Free/delete/nullsub_2（释放族）③成员访问=m_pAllocBuf/m_fTransitionPos/m_fTransitionSpeed/m_fMoveSpeed/m_actarray_begin/end/capacity_end/m_name（路径缓冲+过渡参数域）④类归属=Actor（8 命中 0 未解析）⑤交互模式=Free/delete 释放缓冲。ret=void。名 ClearPathBuffer 与释放 m_pAllocBuf 相符。"
+  },
+  "0x004B80C0": {
+    "name": "RenderActorTransform",
+    "signature": "virtual void __thiscall(Actor *this, int nRenderFlag)",
+    "source_note": "[五面] ①调用者=待补 ②被调用者=RenderGeomQuad/GetDynVertBuf（渲染族）+ Push/Pop/LoadMatrix/Rotate/Translate（矩阵栈）③成员访问=m_fInterpStart/m_fMatrixParamB/m_vecTargetPos/m_fAnimParam/m_bUIFlagA（变换+插值域）④类归属=Actor（5 命中 0 未解析）⑤交互模式=矩阵栈包装渲染。ret=void。**virtual**（生命周期钩子）。名 RenderActorTransform 与矩阵栈+渲染相符（conf 64：无字面量，五面⑤弱）。"
+  },
+  "0x00536160": {
+    "name": "SetParam",
+    "signature": "int __thiscall(Actor *this, int nActionIdx, int nParam)",
+    "source_note": "[五面·conf<60 保留原名未证实] ①调用者=待补 ②被调用者=Actor_SetActorAction/ArcLocaleRole_TransformPoint/GetTotalOBBox/rand（动作设置+空间变换）③成员访问=m_actarray_begin/end/capacity_end/type/m_bParamFlag/m_fScale（动作数组+参数标志）④类归属=Actor（6 命中 0 未解析）⑤交互模式=vtable 间接调用 `(*(int(__thiscall**)(Actor*))(*(_DWORD*)this)...)`。ret=int。**原名 SetParam 过泛**，但证据不足以正名（conf 55）⇒ 保留原名标未证实。"
+  },
+  "0x004B7980": {
+    "name": "LoadActorVisual",
+    "signature": "virtual void __thiscall(Actor *this, int nVisualId)",
+    "source_note": "[五面] ①调用者=待补 ②被调用者=LoadFromFile/LoadTexture/NewRenderEffect/gbGeomNode/new（资源加载族）③成员访问=m_fMatrixE/m_fMatrixParamA/m_fMatrixParamB/m_szText/m_bUIFlagA（矩阵+文本域）④类归属=Actor（5 命中 0 未解析）⑤交互模式=文件/纹理加载 + 渲染效果创建。ret=void。**virtual**。名 LoadActorVisual 与资源加载族相符（conf 64）。"
   }
 }

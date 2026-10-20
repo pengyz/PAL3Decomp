@@ -1,0 +1,178 @@
+{
+  "class": "Actor",
+  "block": 6,
+  "criterion": "signature+member-access, code_len budget 8000",
+  "count": 15,
+  "total_code_len": 6182,
+  "functions": [
+    {
+      "addr": "0x0053A2E0",
+      "name": "Actor::GetActionCount(void)",
+      "sig": "int __thiscall(Actor *this)",
+      "n_ok": 2,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_end"
+      ],
+      "code_len": 204
+    },
+    {
+      "addr": "0x0053B230",
+      "name": "Actor::GetCount(void)",
+      "sig": "int __thiscall(Actor *this)",
+      "n_ok": 2,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_end"
+      ],
+      "code_len": 198
+    },
+    {
+      "addr": "0x0053BAE0",
+      "name": "Actor::ActArray_Assign(int *)",
+      "sig": "int *__thiscall(Actor *this, int *p_DWORD)",
+      "n_ok": 2,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_end"
+      ],
+      "code_len": 3047
+    },
+    {
+      "addr": "0x0053BEB0",
+      "name": "Actor::GetActionCountEx(void)",
+      "sig": "int __thiscall(Actor *this)",
+      "n_ok": 2,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_capacity_end"
+      ],
+      "code_len": 215
+    },
+    {
+      "addr": "0x0041B9F0",
+      "name": "Actor::GetInnerAnimDuration(int)",
+      "sig": "unsigned int __thiscall(Actor *this, int animId)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_InnerActor"
+      ],
+      "code_len": 152
+    },
+    {
+      "addr": "0x00456EE0",
+      "name": "Actor::ApplyStateArray(void)",
+      "sig": "int __thiscall(Actor *this)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_pParticleData"
+      ],
+      "code_len": 405
+    },
+    {
+      "addr": "0x0050ACF0",
+      "name": "Actor::GetAnimDurationByIndex(int)",
+      "sig": "unsigned int __thiscall(Actor *this, int nVal)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_szTexture"
+      ],
+      "code_len": 303
+    },
+    {
+      "addr": "0x00536310",
+      "name": "Actor::DestroyInternalData(void)",
+      "sig": "void __thiscall(Actor *this)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_nHandleEvent"
+      ],
+      "code_len": 381
+    },
+    {
+      "addr": "0x00536C50",
+      "name": "Actor::CompareActionName(int,int)",
+      "sig": "int __thiscall(Actor *this, int actionIdx, int nVal)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_dwMatMsg"
+      ],
+      "code_len": 259
+    },
+    {
+      "addr": "0x00536CC0",
+      "name": "Actor::GetAnimDuration(int)",
+      "sig": "unsigned int __thiscall(Actor *this, int animId)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_pact"
+      ],
+      "code_len": 143
+    },
+    {
+      "addr": "0x00536CE0",
+      "name": "Actor::EnableTransition(int,int)",
+      "sig": "void __thiscall(Actor *this, int nVal, int nVal2)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_pact"
+      ],
+      "code_len": 146
+    },
+    {
+      "addr": "0x00536D00",
+      "name": "Actor::SetTimeScale(float)",
+      "sig": "void __thiscall(Actor *this, float scale)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_pact"
+      ],
+      "code_len": 114
+    },
+    {
+      "addr": "0x00536FB0",
+      "name": "Actor::QueryState(int)",
+      "sig": "int __thiscall(Actor *this, int nVal1)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_pact"
+      ],
+      "code_len": 167
+    },
+    {
+      "addr": "0x00536FC0",
+      "name": "Actor::DispatchAction(int)",
+      "sig": "int __thiscall(Actor *this, int actionId)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_pact"
+      ],
+      "code_len": 189
+    },
+    {
+      "addr": "0x00536FD0",
+      "name": "Actor::PlayAction(int)",
+      "sig": "int __thiscall(Actor *this, int actionId)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_pact"
+      ],
+      "code_len": 259
+    }
+  ]
+}

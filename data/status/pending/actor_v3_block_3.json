@@ -1,0 +1,95 @@
+{
+  "class": "Actor",
+  "block": 3,
+  "criterion": "signature+member-access, code_len budget 8000",
+  "count": 6,
+  "total_code_len": 7995,
+  "functions": [
+    {
+      "addr": "0x00536AC0",
+      "name": "Actor::SetMaterialName(void *,int)",
+      "sig": "int __thiscall(Actor *this, void *name, int a2)",
+      "n_ok": 5,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_end",
+        "m_dwMatMsg",
+        "m_pact",
+        "m_szTexture"
+      ],
+      "code_len": 2112
+    },
+    {
+      "addr": "0x005394D0",
+      "name": "Actor::ClearActionArrays(void)",
+      "sig": "int *__thiscall(Actor *this)",
+      "n_ok": 5,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_capacity_end",
+        "m_actarray_end",
+        "m_name",
+        "m_pact"
+      ],
+      "code_len": 303
+    },
+    {
+      "addr": "0x004B7590",
+      "name": "Actor::_todo_004B7590(int)",
+      "sig": "virtual void __thiscall(Actor *this, int a2)",
+      "n_ok": 4,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_bUIFlagA",
+        "m_nMatrixParam",
+        "m_szText",
+        "m_vecTargetPos"
+      ],
+      "code_len": 802
+    },
+    {
+      "addr": "0x004B7650",
+      "name": "Actor::_todo_004B7650(int)",
+      "sig": "virtual void __thiscall(Actor *this, int a2)",
+      "n_ok": 4,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_fMatrixE",
+        "m_fMatrixParamA",
+        "m_szText",
+        "m_vecTargetPos"
+      ],
+      "code_len": 3458
+    },
+    {
+      "addr": "0x00530C00",
+      "name": "Actor::UpdateAnimState(char)",
+      "sig": "bool __thiscall(Actor *this, char pData)",
+      "n_ok": 4,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_type",
+        "m_bDirFlag",
+        "m_dwMatMsg",
+        "m_nAnimCounter"
+      ],
+      "code_len": 655
+    },
+    {
+      "addr": "0x00536FF0",
+      "name": "Actor::UpdateAllActions(void)",
+      "sig": "int __thiscall(Actor *this)",
+      "n_ok": 4,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_end",
+        "m_dwMatMsg",
+        "m_pact"
+      ],
+      "code_len": 665
+    }
+  ]
+}

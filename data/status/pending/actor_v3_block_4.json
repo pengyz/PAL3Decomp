@@ -1,0 +1,91 @@
+{
+  "class": "Actor",
+  "block": 4,
+  "criterion": "signature+member-access, code_len budget 8000",
+  "count": 6,
+  "total_code_len": 7843,
+  "functions": [
+    {
+      "addr": "0x00537770",
+      "name": "Actor::LoadActions(FILE *,int *)",
+      "sig": "int __thiscall(Actor *this, FILE *Stream, int *pnVal)",
+      "n_ok": 4,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_end",
+        "m_name",
+        "m_pact"
+      ],
+      "code_len": 2958
+    },
+    {
+      "addr": "0x00537A30",
+      "name": "Actor::ClearAllocBuffers(void)",
+      "sig": "void __thiscall(Actor *this)",
+      "n_ok": 4,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_nAnimBuffer",
+        "m_nParticleBuffer",
+        "m_vecBonePos",
+        "m_vecTargetPos"
+      ],
+      "code_len": 344
+    },
+    {
+      "addr": "0x00539E70",
+      "name": "Actor::InsertAnimFrame(float)",
+      "sig": "char *__thiscall(Actor *this, float fVal)",
+      "n_ok": 4,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_fMoveRange",
+        "m_fTransitionPos",
+        "m_fTransitionSpeed",
+        "m_pAllocBuf"
+      ],
+      "code_len": 2695
+    },
+    {
+      "addr": "0x0053A060",
+      "name": "Actor::InitAction(_BYTE *)",
+      "sig": "int *__thiscall(Actor *this, _BYTE *pActionType)",
+      "n_ok": 4,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_capacity_end",
+        "m_actarray_end",
+        "m_actarray_type"
+      ],
+      "code_len": 270
+    },
+    {
+      "addr": "0x004C9470",
+      "name": "Actor::_todo_004C9470(int)",
+      "sig": "virtual void __thiscall(Actor *this, int a2)",
+      "n_ok": 3,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_capacity_end",
+        "m_fMoveRange",
+        "m_fMoveSpeed"
+      ],
+      "code_len": 788
+    },
+    {
+      "addr": "0x004CB280",
+      "name": "Actor::_todo_004CB280(int)",
+      "sig": "virtual void __thiscall(Actor *this, int a2)",
+      "n_ok": 3,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_capacity_end",
+        "m_fMoveRange",
+        "m_fMoveSpeed"
+      ],
+      "code_len": 788
+    }
+  ]
+}

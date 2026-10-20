@@ -1,0 +1,82 @@
+{
+  "class": "Actor",
+  "block": 5,
+  "criterion": "signature+member-access, code_len budget 8000",
+  "count": 6,
+  "total_code_len": 7910,
+  "functions": [
+    {
+      "addr": "0x004D3160",
+      "name": "Actor::_todo_004D3160(int)",
+      "sig": "virtual void __thiscall(Actor *this, int a2)",
+      "n_ok": 3,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_capacity_end",
+        "m_fMoveRange",
+        "m_fMoveSpeed"
+      ],
+      "code_len": 788
+    },
+    {
+      "addr": "0x005372B0",
+      "name": "Actor::GetArrayCount(void)",
+      "sig": "int __thiscall(Actor *this)",
+      "n_ok": 2,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_end"
+      ],
+      "code_len": 255
+    },
+    {
+      "addr": "0x00538FA0",
+      "name": "Actor::BuildCollisionMesh(int *)",
+      "sig": "void __thiscall(Actor *this, int *pOut)",
+      "n_ok": 2,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_end"
+      ],
+      "code_len": 4496
+    },
+    {
+      "addr": "0x00539540",
+      "name": "Actor::AddActionByName(char const *,char const *,int)",
+      "sig": "int __thiscall(Actor *this, const char *pszName, const char *pszName2, int nVal)",
+      "n_ok": 2,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_end"
+      ],
+      "code_len": 1628
+    },
+    {
+      "addr": "0x005399E0",
+      "name": "Actor::IterateActiveActors(void)",
+      "sig": "void __thiscall(Actor *this)",
+      "n_ok": 2,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_begin",
+        "m_actarray_end"
+      ],
+      "code_len": 392
+    },
+    {
+      "addr": "0x0053A020",
+      "name": "Actor::IterateAllocBuffer(int)",
+      "sig": "char __thiscall(Actor *this, int nVal)",
+      "n_ok": 2,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_fTransitionSpeed",
+        "m_pAllocBuf"
+      ],
+      "code_len": 351
+    }
+  ]
+}

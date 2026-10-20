@@ -1,0 +1,107 @@
+{
+  "class": "Actor",
+  "block": 4,
+  "criterion": "signature Actor*this AND member-access hit>0",
+  "count": 9,
+  "functions": [
+    {
+      "addr": "0x00536CE0",
+      "name": "Actor::EnableTransition(int,int)",
+      "sig": "void __thiscall(Actor *this, int nVal, int nVal2)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_pact"
+      ],
+      "code_len": 146
+    },
+    {
+      "addr": "0x00536D00",
+      "name": "Actor::SetTimeScale(float)",
+      "sig": "void __thiscall(Actor *this, float scale)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_pact"
+      ],
+      "code_len": 114
+    },
+    {
+      "addr": "0x00536FB0",
+      "name": "Actor::QueryState(int)",
+      "sig": "int __thiscall(Actor *this, int nVal1)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_pact"
+      ],
+      "code_len": 167
+    },
+    {
+      "addr": "0x00536FC0",
+      "name": "Actor::DispatchAction(int)",
+      "sig": "int __thiscall(Actor *this, int actionId)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_pact"
+      ],
+      "code_len": 189
+    },
+    {
+      "addr": "0x00536FD0",
+      "name": "Actor::PlayAction(int)",
+      "sig": "int __thiscall(Actor *this, int actionId)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_pact"
+      ],
+      "code_len": 259
+    },
+    {
+      "addr": "0x005392C0",
+      "name": "Actor::ActionEntry_Assign(int)",
+      "sig": "char *__thiscall(Actor *this, int nVal)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_type"
+      ],
+      "code_len": 3190
+    },
+    {
+      "addr": "0x00539A90",
+      "name": "Actor::SearchAnimByIndex(char *,char *)",
+      "sig": "char __thiscall(Actor *this, char *String1, char *pszBuf)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_name"
+      ],
+      "code_len": 475
+    },
+    {
+      "addr": "0x00539AF0",
+      "name": "Actor::RegisterAnim(char *,char *)",
+      "sig": "void __thiscall(Actor *this, char *pszName, char *pszBuf)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_pact"
+      ],
+      "code_len": 3339
+    },
+    {
+      "addr": "0x0053A080",
+      "name": "Actor::GetActionArrayEnd(_WORD *,short *)",
+      "sig": "_WORD *__thiscall(Actor *this, _WORD *p_WORD, __int16 *pnVal)",
+      "n_ok": 1,
+      "n_miss": 0,
+      "acc_sample": [
+        "m_actarray_end"
+      ],
+      "code_len": 562
+    }
+  ]
+}

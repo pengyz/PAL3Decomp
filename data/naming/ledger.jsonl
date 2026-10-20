@@ -527,3 +527,10 @@
 {"ts": "2026-10-20", "addr": "0x0053B890", "name": "SetCurrentAction", "confidence": 85, "note": "Actor 试点·五面证据", "evidence": "[试点 2026-10-20·签名核验] ③成员访问=m_curact/m_actarray_begin/type/m_fActionAssignParam（动作数组域 ✓）④Actor（33 命中 0 未解析，**最强证据面**）；返回 `&this->m_actarray_type` ⇒ char* ✓ 与签名一致；名 SetCurrentAction "}
 {"ts": "2026-10-20", "addr": "0x005309A0", "name": "ResetTransformState", "confidence": 85, "note": "Actor 试点·五面证据", "evidence": "[试点 2026-10-20·签名核验] ③成员访问=m_InnerActor/m_dwMatMsg/m_fAngleDeg/m_fBlendWeight/m_bChangedMat（变换/材质域 ✓）②被调用者=CheckDistance/SetMaterialName/lstrcpyA ④Actor（21 命中 0 未解析）；返回 result:int "}
 {"ts": "2026-10-20", "addr": "0x00538CE0", "name": "ClearActionFlags", "confidence": 85, "note": "Actor 试点·五面证据", "evidence": "[试点 2026-10-20·签名核验] ③成员访问=m_actarray_begin/end/capacity_end/m_pact/m_name/m_fScale ②被调用者=memset（清零）④Actor（7 命中 0 未解析）；返回 result:int ✓；名与 memset 清动作域相符。"}
+{"ts": "2026-10-20", "addr": "0x00536A80", "name": "FastInit", "confidence": 85, "attribution": "confirmed", "note": "Actor v3-block2 自做（子 agent 委派 91% 失败转自做）"}
+{"ts": "2026-10-20", "addr": "0x005381D0", "name": "InitAnimSequence", "confidence": 85, "attribution": "confirmed", "note": "Actor v3-block2 自做（子 agent 委派 91% 失败转自做）"}
+{"ts": "2026-10-20", "addr": "0x0053A670", "name": "CopyActionData", "confidence": 62, "attribution": "confirmed", "note": "Actor v3-block2 自做（子 agent 委派 91% 失败转自做）"}
+{"ts": "2026-10-20", "addr": "0x005375F0", "name": "ClearPathBuffer", "confidence": 80, "attribution": "confirmed", "note": "Actor v3-block2 自做（子 agent 委派 91% 失败转自做）"}
+{"ts": "2026-10-20", "addr": "0x004B80C0", "name": "RenderActorTransform", "confidence": 64, "attribution": "confirmed", "note": "Actor v3-block2 自做（子 agent 委派 91% 失败转自做）"}
+{"ts": "2026-10-20", "addr": "0x00536160", "name": "SetParam", "confidence": 55, "attribution": "confirmed", "note": "Actor v3-block2 自做（子 agent 委派 91% 失败转自做）"}
+{"ts": "2026-10-20", "addr": "0x004B7980", "name": "LoadActorVisual", "confidence": 64, "attribution": "confirmed", "note": "Actor v3-block2 自做（子 agent 委派 91% 失败转自做）"}
