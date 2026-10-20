@@ -61,3 +61,36 @@ for f in ('CCBStage',):
     print('annotation.known_methods =', len(a.get('known_methods') or {}))
     print('ida_structs.methods =', len(i.get('methods') or []))"
 ```
+
+---
+
+## 实例三（2026-10-20）：annotation `base_class` vs `bases` —— 演进未统一的双字段
+
+**实证案**：`data/annotations/structs/*.json` 里继承信息存于**两个**字段：
+
+| 字段 | 引入 | 目的 | 值形态 | 覆盖 |
+|---|---|---|---|---|
+| **`base_class`** | 早期 | **单继承**（ctor 证据判定）| 纯名字：list 160 + **str 20** | 180 类 |
+| **`bases`** | 后期（MI 专项）| **多继承**（`tools(mi)` 基类偏移纯二进制推导）| `{name, offset}` | 15 类 |
+
+关键提交：`774f77206`（UIScene base_class=UIWnd）· `fbde8f52e`（MI 基类偏移工具 + 反证）·
+`34f7f435f`（Role 多继承核实 + 尺寸格门 MI 约定）· `17d1bc0cf`（收窄 CEff 族 bases 偏移）。
+
+**判定：是重复，且 `bases` 是超集**
+- 15/15 重叠案例名字**完全一致**（0 矛盾）；`bases` 额外带 MI 偏移
+- 只有 `bases` 的 = **0** 个（`bases` 从不单独存在）
+- codegen **双源都读**：`stage2_semantic` / `stage4_substitution` / `emit_headers` /
+  `data.py` / `ast_transform` / `apply_annotations` 全有 `base_class` 读点 ⇒ 修一漏一
+
+**处置（2026-10-20 真相源迁移）**：
+- 180 类 `base_class` → `bases`（MI 偏移取 ida_structs.bases）
+- 名字等价核验：180 类 · 0 丢失 · 0 变化
+- `base_class` 字段 annotation 层**彻底清零**；消费面收敛到单一读点
+  `annotation_view.base_names()/base_entries()`
+
+**与前两实例同构**：语义相近、命名相近、一个早期一个后期 ⇒ 修者自然读"名字更对"
+的那个。差别在于：前两例是**数据表**双副本，本例是**数据字段**双副本，
+且代码侧有 ~30 个读点。
+
+**防复发**（前三例通用）：任何「同义字段」并存时，**必须在引入第二字段的那一刻
+废弃第一个**，或建立单一读点 + 契约锁。
