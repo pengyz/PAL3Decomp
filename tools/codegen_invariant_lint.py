@@ -328,6 +328,54 @@ def _split_top_level_args(text):
     return args
 
 
+# I4: 占位型 token 进入指针/字符串消费位（DATA 主族的直接检测）
+# 病灶（2026-10-20 归因实证，DATA 类）：
+#   `strcpy(dst, &g_PlayerAttBuffer._todo_074[140]);`  —— `_todo_074` 是未知区占位成员
+#   （型 `_BYTE[]`），却被当 `char*` 消费 ⇒ C2664 uchar*->char* ×65
+#   `UIStatic.m_textx/m_texty` 声明 `void*` 而实为 `char*` ⇒ C2664 void*->const char* ×33
+# 判据：已知字符串/缓冲区消费函数的实参里出现占位名 token ⇒ 违反。
+# 占位名（codegen/annotation 的"不知道"标记）：
+#   `_todo_*` `m_nTodo_*` `_tail_*` `_gap_*` `_unk_*` `_field_*` `reg_*`
+#   及 IDA 地址名 `byte_/dword_/word_/unk_/flt_/dbl_/asc_/off_ + 十六进制`
+#   及「误挂/待终审」假类型（gbVolumeModifier 等，见 attribution_clusters.json）
+# [信噪比收窄 2026-10-20] 只报**字符串消费者**（要求 char* 形参）：
+# memset/memcpy/memmove 接受 void* ⇒ 任何指针型都能过 ⇒ 不构成类型不匹配，
+# 计入只会污染度量（实测 576 处里大部分是这类）。
+_STR_CONSUMER = re.compile(
+    r'\b(strcpy|strcat|strcmp|strncmp|stricmp|strlen|sprintf|snprintf|'
+    r'wsprintf|_stricmp|_strnicmp|strncpy|_strdup)\s*\(')
+_RE_PLACEHOLDER = re.compile(
+    r'\b(?:_todo_[A-Za-z0-9_]*|m_nTodo_[A-Za-z0-9_]*|_tail_[A-Za-z0-9_]*|'
+    r'_gap_[A-Za-z0-9_]*|_unk_[A-Za-z0-9_]*|_field_[A-Fa-f0-9]+|reg_[A-Z]\w*|'
+    r'(?:byte|dword|word|unk|flt|dbl|asc|off|str|a)_[0-9A-Fa-f]{5,})\b')
+# 已知「误挂/待终审」假类型（size≤4 空壳，_verdicts 自证）
+_FAKE_TYPES = {
+    'gbVolumeModifier', 'gbMeshData', 'gbSingleton_gbGfxManager_', 'gbSceneNode',
+    'collision', 'gbFileStream', 'tagEffClass', 'gbRenderEffect_D3D',
+    'SaleUI_SortData', 'MvcController', 'CEffTime', 'CFadeOutAlphaPolicy',
+    'UIButton_UIBUTTON_STATE', 'CSimplePosPolicy',
+}
+
+
+def find_placeholder_in_str_pos(src):
+    """I4：返回 [(line, consumer, placeholder)]。"""
+    masked = mask_strings_comments(src)
+    out = []
+    for m in _STR_CONSUMER.finditer(masked):
+        start = m.end() - 1
+        end = _match_paren(masked, start)
+        if end == -1:
+            continue
+        args_text = masked[m.end():end - 1]
+        line_no = masked.count('\n', 0, m.start()) + 1
+        for ph in _RE_PLACEHOLDER.findall(args_text):
+            out.append((line_no, m.group(1), ph))
+        for ft in _FAKE_TYPES:
+            if re.search(r'\b' + re.escape(ft) + r'\b', args_text):
+                out.append((line_no, m.group(1), ft))
+    return out
+
+
 def detect_enclosing_classes(src):
     """逐行推断当前函数所属类（形如 `Type Class::Name(...)` 的定义行）。"""
     masked = mask_strings_comments(src)
@@ -410,7 +458,7 @@ def collect_type_names(hdr_dirs):
 
 def scan_files(src_dir, type_names, member_arities=None):
     """返回 {'reg_ptr_use': [...], 'type_in_member': [...], 'receiver_unresolved': [...]}"""
-    out = {'reg_ptr_use': [], 'type_in_member': [], 'receiver_unresolved': []}
+    out = {'reg_ptr_use': [], 'type_in_member': [], 'receiver_unresolved': [], 'placeholder_in_str_pos': []}
     for root, _dirs, files in os.walk(src_dir):
         for f in files:
             if not f.endswith('.cpp'):
@@ -434,6 +482,10 @@ def scan_files(src_dir, type_names, member_arities=None):
                     out['receiver_unresolved'].append(
                         {'file': rel, 'line': line, 'name': nm,
                          'call_arity': ar, 'decl_arities': decl})
+            for line, consumer, ph in find_placeholder_in_str_pos(src):
+                out['placeholder_in_str_pos'].append(
+                    {'file': rel, 'line': line, 'consumer': consumer,
+                     'placeholder': ph})
     return out
 
 
@@ -459,6 +511,7 @@ def main():
         'reg_ptr_use': len(res['reg_ptr_use']),
         'type_in_member': len(res['type_in_member']),
         'receiver_unresolved': len(res['receiver_unresolved']),
+        'placeholder_in_str_pos': len(res['placeholder_in_str_pos']),
     }
     cur['total'] = sum(cur.values())
 
@@ -494,6 +547,11 @@ def main():
                 print('     %s:%d  ->%s' % (it['file'], it['line'], it['type']))
             print('[I3] 成员名无限定调用（实参=声明+1，receiver 疑未解析）: %d'
                   % cur['receiver_unresolved'])
+            print('[I4] 占位型进入字符串/缓冲区消费位: %d'
+                  % cur['placeholder_in_str_pos'])
+            for it in res['placeholder_in_str_pos'][:10]:
+                print('     %s:%d  %s(%s)'
+                      % (it['file'], it['line'], it['consumer'], it['placeholder']))
             for it in res['receiver_unresolved'][:10]:
                 print('     %s:%d  %s(call=%d decl=%s)'
                       % (it['file'], it['line'], it['name'],
@@ -501,7 +559,7 @@ def main():
 
     # 棘轮判定：任一不变量计数超过基线 ⇒ 新增（fail）
     regressed = []
-    for k in ('reg_ptr_use', 'type_in_member', 'receiver_unresolved', 'total'):
+    for k in ('reg_ptr_use', 'type_in_member', 'receiver_unresolved', 'placeholder_in_str_pos', 'total'):
         old = base.get(k)
         if old is None:
             continue

@@ -190,3 +190,43 @@ def test_i3_no_class_context_skipped():
 def test_i3_keywords_not_calls():
     src = 'void CCBStage::F(int x)\n{\n  if (a) { return; }\n}\n'
     assert L.find_receiver_unresolved_calls(src, _arities_for('CCBStage', 'F', 2)) == []
+
+
+# ---------------------------------------------------------------- I4
+
+def test_i4_placeholder_in_string_consumer():
+    """真阳性：占位名进 strcpy/sprintf 的字符串消费位"""
+    src = '  strcpy(dst, &g_PlayerAttBuffer._todo_074[140]);\n'
+    hits = L.find_placeholder_in_str_pos(src)
+    assert len(hits) == 1 and hits[0][1] == 'strcpy' and '_todo_074' in hits[0][2]
+
+
+def test_i4_addr_name_as_sprintf_dst():
+    """真阳性：IDA 地址名全局当 sprintf 目标（应为 char[]）"""
+    src = '  sprintf(dword_DD4E3C, "%d", v);\n'
+    hits = L.find_placeholder_in_str_pos(src)
+    assert any('dword_DD4E3C' in h[2] for h in hits)
+
+
+def test_i4_memset_not_flagged():
+    """负例：memset/memcpy 接受 void* ⇒ 不构成类型不匹配，不报（信噪比收窄）"""
+    src = '  memset(byte_D8EBBC, 0, 32);\n  memcpy(a, b, n);\n'
+    assert L.find_placeholder_in_str_pos(src) == []
+
+
+def test_i4_fake_type_flagged():
+    """真阳性：误挂假类型进字符串消费位"""
+    src = '  strcpy(dst, (char *)gbVolumeModifier);\n'
+    hits = L.find_placeholder_in_str_pos(src)
+    assert any('gbVolumeModifier' in h[2] for h in hits)
+
+
+def test_i4_plain_names_not_flagged():
+    """负例：正常命名不报"""
+    src = '  strcpy(pszName, pszSrc);\n'
+    assert L.find_placeholder_in_str_pos(src) == []
+
+
+def test_i4_in_string_literal_ignored():
+    src = '  strcpy(a, "reg_X->x");\n'
+    assert L.find_placeholder_in_str_pos(src) == []
