@@ -226,6 +226,22 @@
     {
       "ts": "2026-10-21",
       "event": "P0-4 升级：调用点核对需 **IDA MCP 栈帧分析**（解析栈帧/参数），objdump push 计数不可靠"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "复盘：4 轮 goal 零指标推进（签名覆盖 22% 不动）· P0 阻塞累积 4 条"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "P0-1/P0-4 共性=**IDA MCP 集成缺件**（栈帧分析/偏移真值）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "REA_IDA_MCP_CONFIG 需 DSH 启动时设（会话内改不了）—— 环境待办，已写 /tmp/ida_mcp_config.json 形"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "转向：不等 IDA，推进不依赖它的（unregistered_85 的 body_head hex = A 级 objdump 形可直接分析）"
     }
   ],
   "rolling_metrics": [
@@ -320,6 +336,15 @@
       "detail": "objdump push 计数实测不可靠：SetParam claim=2/push=4 · InitRound/ctor/Destroy 调用点间 push 数不一致。push 可能是序言保存寄存器非参数。正解=IDA MCP 栈帧分析（解析栈帧/参数）。",
       "impact": "阻塞参数个数修正落盘",
       "next": "配 REA_IDA_MCP_CONFIG 接 IDA MCP，用其栈帧/参数解析核对；落盘前逐条核调用点实参数"
+    }
+  ],
+  "env_todo": [
+    {
+      "id": "ENV-1",
+      "title": "REA_IDA_MCP_CONFIG 未配（DSH 启动时设）",
+      "detail": "IDA MCP HTTP 在线（127.0.0.1:13337），resources 可读（ida://databases 等 8 项），但 rea 的 IDA provider 未配 ⇒ xrefs/栈帧分析不可用",
+      "impact": "阻塞 P0-4（调用点核对）· 影响 P0-1（布局对账）",
+      "next": "DSH 重启时 export REA_IDA_MCP_CONFIG=/tmp/ida_mcp_config.json（mcpServers.idapro.url=http://127.0.0.1:13337/mcp）"
     }
   ]
 }
