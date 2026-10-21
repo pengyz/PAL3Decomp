@@ -210,6 +210,22 @@
     {
       "ts": "2026-10-21",
       "event": "本批回退（S2 硬门禁）· 立落盘前置：asm retn N + **调用点核对** 双证据"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "IDA MCP HTTP 服务在线（13337）但 DSH 侧需 REA_IDA_MCP_CONFIG；mcp__idapro__* 不在可调列表"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "调用点核对实测（objdump push 计数法）：**不可靠** —— SetParam claim=2 但 push=4 · InitRound/ctor/Destroy 调用点间不一致"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "根因：push 可能是序言保存寄存器非参数；也可能 sub esp+mov 写栈无 push；8 行窗口含无关指令"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "P0-4 升级：调用点核对需 **IDA MCP 栈帧分析**（解析栈帧/参数），objdump push 计数不可靠"
     }
   ],
   "rolling_metrics": [
@@ -300,10 +316,10 @@
     },
     {
       "id": "P0-4",
-      "title": "asm retn N 与调用点一致性未核",
-      "detail": "ret $0x8=2 栈参但 decomp 签 1 参，加第 2 参后 S2 -4。疑部分调用点按 1 参传 ⇒ 加参致不匹配",
+      "title": "asm retn N 与调用点一致性未核（push 计数法不可靠，需 IDA MCP 栈帧分析）",
+      "detail": "objdump push 计数实测不可靠：SetParam claim=2/push=4 · InitRound/ctor/Destroy 调用点间 push 数不一致。push 可能是序言保存寄存器非参数。正解=IDA MCP 栈帧分析（解析栈帧/参数）。",
       "impact": "阻塞参数个数修正落盘",
-      "next": "落盘前逐条核调用点实参数（objdump call site 的栈操作）"
+      "next": "配 REA_IDA_MCP_CONFIG 接 IDA MCP，用其栈帧/参数解析核对；落盘前逐条核调用点实参数"
     }
   ]
 }
