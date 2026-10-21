@@ -629,3 +629,13 @@
 | `CCBStage::IsIdle` | vftable_local | `_DWORD` | 1076 | self_arg_mismatch | `(***(void ( ****)(_DWORD, _DWORD))(v9 + 1076))(*(_DWORD *)(v9 + 1076), 0)` |
 | `::_todo_00536160` | inline | `Actor` | 20 | self_arg_mismatch | `(*(int ( **)(Actor *))(*(_DWORD *)&m_actarray_begin->m_actarray_type + 20))(m_actarray_begin)` |
 | `::_todo_00537120` | inline | `gbActorDef` | 60 | self_arg_mismatch | `(*(void ( **)(gbActorDef *, char *))(*(_DWORD *)&_this->m_pact->pBody->gbRefObject + 60))( _this->m_pact->pBody, _this->m_szTexture)` |
+| `::InitCombatUI` | inline | `SaleUI_SortData` | 16 | self_arg_mismatch | `(*(void ( **)(SaleUI_SortData *, int, _DWORD *, SaleUI *))(*(_DWORD *)&v6 + 16))( &_this->m_sort[353][4], 257, v165, _this)` |
+| `::InitCombatUI` | inline | `SaleUI_SortData` | 28 | self_arg_mismatch | `(*(void ( **)(SaleUI_SortData *, int, _DWORD *, char *, _DWORD, SaleUI *))(*(_DWORD *)&v8 + 28))( &_this->m_sort[349][3], 257, v162, aUiFlexFramebar, 0, _this)` |
+| `::InitCombatUI` | vftable_local | `char` | 16 | non_class_hint | `(*(void ( **)(char *, int, int *, SaleUI *))(v28 + 16))( &_this->ml_ResumeList.m_column[0].head[16], 161, &v150, _this)` |
+| `::InitCombatUI` | inline | `char` | 16 | non_class_hint | `(*(void ( **)(char *, int, UILBColumn *, SaleUI *))(*(_DWORD *)&_this->ml_ResumeList.m_column[4].head[16] + 16))( &_this->ml_ResumeList.m_column[4].head[16], 272, &_this->ml_Resume` |
+| `::InitCombatUI` | inline | `SaleUI_SortData` | 16 | no_vtables_declaration | `(*(void ( **)(SaleUI_SortData *, _DWORD, _DWORD *, SaleUI *))(*(_DWORD *)&_this->m_sort[369][38 * v36 + 3] + 16))( &_this->m_sort[369][38 * v36 + 3], *(&dword_56B3C8 + v36), v147, ` |
+| `::InitCombatUI` | inline | `_BYTE` | 16 | non_class_hint | `(*(void ( **)(_BYTE *, _DWORD, _DWORD *, SaleUI *))(*(_DWORD *)&_this->m_IsEquip[216 * *(_DWORD *)&_this->remarkbuf[20] + 23][1] + 16))( &_this->m_IsEquip[216 * *(_DWORD *)&_this->` |
+| `::InitCombatUI` | inline | `char` | 28 | non_class_hint | `(*(void ( **)(char *, int, char *, SaleUI *, char *, _DWORD, int))(*(_DWORD *)&_this->ml_TreasureList.m_column[1].head[36] + 28))( &_this->ml_TreasureList.m_column[1].head[36], 264` |
+| `::InitCombatUI` | inline | `int` | 28 | self_arg_mismatch | `(*(void ( **)(int, char *, SaleUI *, char *, _DWORD, int))(*(_DWORD *)&_this->m_Icon[2][4].m_mouseoff + 28))( 304, _this->m_Icon[3][2].m_text, _this, aUiAssistantEqu_18, 0, v142)` |
+| `::SwitchEditorCamPos` | inline | `gbGeomNode` | 20 | self_arg_mismatch | `(*(int ( **)(gbGeomNode *))(*(_DWORD *)&_this->m_pPointer->gbChain1DNode + 20))(_this->m_pPointer)` |
+| `::SetParam` | inline | `int` | 20 | non_class_hint | `(*(int ( **)(int))(*(_DWORD *)v5 + 20))(v5)` |

@@ -190,6 +190,26 @@
     {
       "ts": "2026-10-20",
       "event": "P0-1 实验否定：RoleSystem pack=1 未消除 91 冲突 ⇒ 对齐假设错，根因另寻"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "立证据分级规则：禁用本质不可得判据硬拦截（结构性 A 级 / 语义性 B 级 / 编译消融验证）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "发现 pending/ 420+ 条可按新分档落盘（placeholder_retN 176 · unregistered 85 · shard_propui 159）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "⚠️ 衰退分析（不立即回退）：9 条参数个数修正致 S2 121→117。三轮隔离：①非 _todo_pN 类型 ②非缺 this ③**是参数个数本身**"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "衰退定性=**没做好**非方向错：asm ret $0x8=2 栈参，decomp 签 1 参，差 1 参——但**调用点未必都传 N**，缺「调用点一致性核对」"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "本批回退（S2 硬门禁）· 立落盘前置：asm retn N + **调用点核对** 双证据"
     }
   ],
   "rolling_metrics": [
@@ -277,6 +297,13 @@
       "detail": "audit_type_layout 用编译器 offsetof（A 级）报 91/185 冲突。已排除：①累加算法（lead 初判错）②对齐自插 padding（pack=1 实验否定）。注解偏移与 objdump 一致（+0x4DC=0x4DC ✓）⇒ 病灶在生成头 emit 侧。",
       "impact": "阻塞 RoleSystem/CCBRoleState/PalScript 布局验证",
       "next": "emit 侧逐成员对账（PAL3_EMIT_TRACE 开关已备）"
+    },
+    {
+      "id": "P0-4",
+      "title": "asm retn N 与调用点一致性未核",
+      "detail": "ret $0x8=2 栈参但 decomp 签 1 参，加第 2 参后 S2 -4。疑部分调用点按 1 参传 ⇒ 加参致不匹配",
+      "impact": "阻塞参数个数修正落盘",
+      "next": "落盘前逐条核调用点实参数（objdump call site 的栈操作）"
     }
   ]
 }
