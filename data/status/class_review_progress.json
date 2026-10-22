@@ -1010,6 +1010,18 @@
     {
       "ts": "2026-10-22",
       "event": "根因涉及数据流多层：读取注解 -> ??? 转换 -> _emit_member（中间有转换逻辑）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "修尝试 4：ann_members 优先 known_members（dict-union）=> 成员全丢（known_members 只含 dict-union 成员）=> 撤回"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "根因定谳：L2316 ann_members 从 IDA data_members 构造（字符串类型）=> dict-union 丢失"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "正确修法：MERGE known_members（dict-union）与 data_members（其他成员），非替换"
     }
   ],
   "rolling_metrics": [
