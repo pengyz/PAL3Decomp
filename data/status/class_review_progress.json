@@ -798,6 +798,22 @@
     {
       "ts": "2026-10-22",
       "event": "C ROI 排序：codegen 增量 / 并行 / export 缓存 / 轻量预检 => 360s->60-100s · 540 轮省 40h+"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "CRITICAL data correction: hexrays_limit 42.5 pct is STALE - current is 14.9 pct (14/94 files)"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "Current error classification: annotation_fix 42.6 pct / codegen_fix 11.7 pct / hexrays_limit 14.9 pct / unknown 30.9 pct"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "Path A ceiling is MUCH higher than B claimed: 54.3 pct fixable + 30.9 pct unknown (vs 42.5 pct limit)"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "asm-first conclusion PARTIALLY overturned: ceiling argument wrong, but verification 53x and L1 tiering stand"
     }
   ],
   "rolling_metrics": [
@@ -986,5 +1002,12 @@
       "T2-Frame screenshot diff",
       "T2-IO save byte (keep T1)"
     ]
+  },
+  "data_correction": {
+    "hexrays_limit_claimed": "42.5 pct (stale, 62/146)",
+    "hexrays_limit_actual": "14.9 pct (14/94)",
+    "path_a_ceiling_claimed": "58 pct",
+    "path_a_ceiling_actual": "85 pct (54.3 fixable + 30.9 unknown)",
+    "asm_first_impact": "ceiling argument weakened; verification and tiering stand"
   }
 }
