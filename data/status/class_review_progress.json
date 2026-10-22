@@ -986,6 +986,18 @@
     {
       "ts": "2026-10-22",
       "event": "修法：substitutes 不替换 union 类型（保持 _inline_ 合成名）或替换时保持 union 结构"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "修尝试 2：export_full.py _synthetic_named_substitutes 跳过 dict-union => 未生效（substitution 仍在）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "修在文件（L809-818）但未生效 => substitution 在别处（非 _synthetic_named_substitutes）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "根因仍未完全定位：需查其他 substitution 路径（疑 _supersede_type_name 或类型解析）"
     }
   ],
   "rolling_metrics": [
