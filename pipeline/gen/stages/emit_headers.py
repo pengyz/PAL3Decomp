@@ -769,6 +769,24 @@ SDK_PLATFORM_TYPES = {
 }
 
 
+def _nested_kind(cls_name, nested_name):
+    """[R76 修 2026-10-22] 查嵌套类型 kind（enum/struct/union）。
+
+    用于嵌套前向声明按 kind 分派（enum 发 enum，struct/union 发 struct）。
+    数据源：data/annotations/structs/<cls>.json 的 nested_types.<name>.kind
+    """
+    try:
+        import json as _json
+        _p = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))),
+                          'data', 'annotations', 'structs', cls_name + '.json')
+        with open(_p) as _f:
+            _d = _json.load(_f)
+        _nt = (_d.get('nested_types') or {}).get(nested_name) or {}
+        return _nt.get('kind') or 'struct'
+    except Exception:
+        return 'struct'
+
+
 def should_skip_class(name):
     """Check if a class name should be skipped (system/library type).
 
@@ -2156,8 +2174,13 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # [C2143 修·T56 #14 收口 2026-10-19] **类内嵌套前向**（全局排除+类内补发双满足 ✓）
     # ——C2143 禁的是**全局** class X; 与嵌套 struct X 混用 ✗；类内 `struct X;` 前向合法 ✓
     # （test_emit_nested 规格 ✓ 代码回归修复）。
+    # [R76 修 2026-10-22·C2079 根因] 嵌套前向声明按 kind 分派
+    # 原恒发 struct %s; => enum CDState 定义与 struct CDState 前向冲突（C2011/C2079）
+    # 修：enum kind 发 enum %s;，其余发 struct %s;
     for _nt in (nested_types or []):
-        lines.append("    struct %s;" % _nt.split('::')[-1])
+        _nt_name = _nt.split('::')[-1]
+        _nt_kind = _nested_kind(cls_name, _nt_name) or 'struct'
+        lines.append("    %s %s;" % (_nt_kind, _nt_name))
     if nested_types:
         lines.append("")
     lines.append("public:")
@@ -2224,7 +2247,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             # [C1001 修] 去重：nested_types 已生成的不再重复
             if _child.short_name in _nested_names:
                 continue
-            lines.append("    struct %s;" % _child.short_name)
+            _ck = _nested_kind(cls_name, _child.short_name) or 'struct'
+            lines.append("    %s %s;" % (_ck, _child.short_name))
         lines.append("")
 
     # Nested type definitions (before data members so types are known)
