@@ -862,6 +862,22 @@
     {
       "ts": "2026-10-22",
       "event": "残留 5 条反向 C4099（gbengine 真 struct 被 emit 成 class）· 结构修②（合并双写点）必修"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "双写点合并完成（emit_cpp.py 单一 _emit_free_functions_header）· 嵌套 enum 前向声明按 kind 分派（C2079 根因）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "S2 126->128 · unknown 13->11（C2079 消除）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "C2653 F1 根因：Hex-Rays 类型混淆（m_pEM 是 CEffMgr* 但按 CEffObj:: 访问，_tail_000 不存在）=> C2039 级联"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "C2653 F2 根因：嵌套 enum 前向声明恒发 struct（emit_headers.py:2160）=> 已修"
     }
   ],
   "rolling_metrics": [
