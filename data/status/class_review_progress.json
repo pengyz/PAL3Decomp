@@ -938,6 +938,18 @@
     {
       "ts": "2026-10-22",
       "event": "非 hexrays_limit（用户质疑成立）—— 是 codegen union 发射 bug"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "复核：方案 A 正确（union 等价变换）· 修法可行（_emit_member L2335 已支持 dict-union）· 影响面 C2039 -36"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "根因深挖：注解 m_RoleSlotArray.type 是 dict-union（3 变体）· _emit_member 支持 · 但 PalScript.h:91 输出单类型 => 有其他逻辑覆盖"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "待查：哪个逻辑把 dict-union 替换为 PalScriptRoleSlotOverlay 单类型？（疑 _supersede_type_name 或类型解析）"
     }
   ],
   "rolling_metrics": [
