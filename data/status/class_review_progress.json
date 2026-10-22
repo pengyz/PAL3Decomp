@@ -878,6 +878,18 @@
     {
       "ts": "2026-10-22",
       "event": "C2653 F2 根因：嵌套 enum 前向声明恒发 struct（emit_headers.py:2160）=> 已修"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "Path A 深化：C2039 高频分析 => CEffMgr.CEffObj(26) 类型混淆 · PalScriptRoleSlotOverlay.script_state(19) 归属错"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "script_state 归属错：PalScript.cpp:153 this->m_RoleSlotArray.script_state 但 IDA 无该成员（仅 overlay）=> Hex-Rays 提升子成员为顶层访问"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "annotation_fix 44 文件错误码：C2440(219) C2039(166) C2228(96) C2664(80) C2227(62)"
     }
   ],
   "rolling_metrics": [
@@ -1021,6 +1033,13 @@
       "detail": "free_functions.h 双写点：预生成（emit_cpp.py:779-796 零前向声明）+ 全量（825-855） => 任何 filter_classes 跑即留编译破坏态（102 error）。结构修②：合并双写点为单一 _emit_free_functions_header()。",
       "impact": "filter_classes 模式下编译破坏",
       "next": "合并双写点 + 回归验证"
+    },
+    {
+      "id": "P0-14",
+      "title": "Hex-Rays 类型混淆/归属错（C2039 高频族）",
+      "detail": "CEffMgr.CEffObj(26) · PalScriptRoleSlotOverlay.script_state(19) · RoleSystemTeamSlotOverlay.m_state(17) => Hex-Rays 把子成员提升为顶层访问，或类型混淆（m_pEM 是 CEffMgr* 但按 CEffObj:: 访问）",
+      "impact": "C2039 级联 => C2653",
+      "next": "需 IDA 层修（annotation 修正成员归属）或归 hexrays_limit"
     }
   ],
   "env_todo": [
