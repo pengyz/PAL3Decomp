@@ -758,6 +758,14 @@
     {
       "ts": "2026-10-22",
       "event": "✅ P0-5 关闭：evidence_level 标注完成（A 级 637 · B 级 56 · unverified 12835）—— 按 source 推断 + 诚实标注待补"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "🎯 **P0-1 修复成功**：emit post-processing 删冗余 gap（_gap_001[3]）⇒ **sizeof(Actor) 824→820** ✓ wine cl 实证"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "✅ P0 清理完成 7/8：P0-1/3/5/6/7/10/11 已关闭 · 剩 P0-2（[D] 判据对齐）"
     }
   ],
   "rolling_metrics": [
@@ -882,10 +890,11 @@
     },
     {
       "id": "P0-1",
-      "title": "🎯 机理定案：下游 +4（隐式 vptr 膨胀，方向非 −4）",
+      "title": "✅ P0-1 修复：去冗余 gap（sizeof Actor 824→820 ✓）",
       "detail": "wine cl 隔离 5 结构：static=0 · 隐式 vptr=+4 · gap=+3 → 7 vs 4。「static 排除⇒−4」方向错，膨胀主导=隐式 vptr(+4)。修法：承认隐式 vptr 4 字节，去掉重复 gap/占位。",
       "impact": "14 类下游 +4 漂移",
-      "next": "注解 vptr 区表示与编译器一致（去重复 gap/占位）"
+      "next": "注解 vptr 区表示与编译器一致（去重复 gap/占位）",
+      "status": "closed"
     }
   ],
   "env_todo": [

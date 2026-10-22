@@ -3119,11 +3119,21 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         if any('// vtable (' in _l for _l in lines):
             _m0 = re.compile(r'^(\s+)([A-Za-z_][\w:<>,\*&\s]*?[\w\]\*&])\s*(;\s*// \+0x0\s*)$')
             _rewritten = []
+            _static_rewritten = False
             for _l in lines:
                 _m = _m0.match(_l)
                 if _m and not _l.lstrip().startswith('static '):
                     _l = '%sstatic %s; // +0x0 (vfptr slot; 布局由编译器隐式 vfptr 提供)' % (
                         _m.group(1), _m.group(2))
+                    _static_rewritten = True
+                # [R71 P0-1 修法 2026-10-22] 删冗余 gap（隐式 vptr 已覆盖 +0..+3）
+                # 机理（verifier R69 wine cl 隔离 5 结构）：
+                #   static 占位=0 · 隐式 vptr=+4 · gap_001[3]=+3 ⇒ 编译前区 7 vs 声明 4
+                # 修法：只要类有 static vptr 行，就删 +0x1..+0x3 的 gap
+                if any('vfptr slot' in _x for _x in _rewritten):
+                    _gap_re = re.compile(r'^\s+char _gap_00[123]\[\d+\];\s*// \+0x[123]\s*$')
+                    if _gap_re.match(_l):
+                        continue  # 删冗余 gap
                 _rewritten.append(_l)
             lines = _rewritten
 
