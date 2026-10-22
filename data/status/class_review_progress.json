@@ -1022,6 +1022,18 @@
     {
       "ts": "2026-10-22",
       "event": "正确修法：MERGE known_members（dict-union）与 data_members（其他成员），非替换"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "修尝试 5：ann_members MERGE known_members(dict-union) + data_members => 成员仍全丢（疑变量错 ann_struct vs ann_struct_fb）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "数据实证：IDA data_members 62 个 · 注解 known_members 63 个（2 dict-union）=> MERGE 修应生效"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "根因已定谳（L2316 数据源错）· 修法明确（MERGE）· 但实施遇变量作用域问题"
     }
   ],
   "rolling_metrics": [
