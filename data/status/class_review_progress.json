@@ -950,6 +950,18 @@
     {
       "ts": "2026-10-22",
       "event": "待查：哪个逻辑把 dict-union 替换为 PalScriptRoleSlotOverlay 单类型？（疑 _supersede_type_name 或类型解析）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "修尝试：L2475 _variants 覆盖 dict-union => 加 not isinstance(mtype,dict) 守卫，但未生效"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "根因未完全定位：另有覆盖点把 dict-union 替换为单类型（L2475 修复后仍单类型）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "待深查：可能是 _inline_ 处理路径（L2480+）或其他类型解析"
     }
   ],
   "rolling_metrics": [
