@@ -35,21 +35,27 @@ STATE = os.path.join(ROOT, 'data', 'status', 'incremental_state.json')
 
 
 def _hash_dir(path, pattern='.json'):
-    """目录下指定后缀文件的 hash（mtime+size 简化）。"""
+    """目录下指定后缀文件的 **内容级 hash**。
+
+    [R73 修 2026-10-22·TDD 复核 must-fix ②] 原 mtime+size 可伪造
+    （同 size 改内容 + mtime 还原 = 漏检）⇒ 改内容级 hash。
+    """
     h = hashlib.sha256()
     items = []
     for dirpath, _, filenames in os.walk(path):
         for fn in sorted(filenames):
-            if not fn.endswith(pattern):
+            if pattern != '*' and not fn.endswith(pattern):
                 continue
             fp = os.path.join(dirpath, fn)
             try:
-                st = os.stat(fp)
-                items.append(f'{fp}:{st.st_mtime_ns}:{st.st_size}')
+                with open(fp, 'rb') as fh:
+                    content = fh.read()
+                items.append((fp, content))
             except OSError:
                 pass
-    for it in sorted(items):
-        h.update(it.encode())
+    for fp, content in sorted(items):
+        h.update(fp.encode())
+        h.update(content)
     return h.hexdigest()
 
 
@@ -57,8 +63,9 @@ def _hash_file(path):
     if not os.path.exists(path):
         return 'missing'
     try:
-        st = os.stat(path)
-        return hashlib.sha256(f'{path}:{st.st_mtime_ns}:{st.st_size}'.encode()).hexdigest()
+        with open(path, 'rb') as fh:
+            content = fh.read()
+        return hashlib.sha256(path.encode() + content).hexdigest()
     except OSError:
         return 'error'
 
@@ -66,15 +73,25 @@ def _hash_file(path):
 def compute_inputs():
     # [R60 用户纪律] **管线脚本改动必须强制重生成**
     # 否则增量会用旧逻辑（改了 stage1-5/emit_headers 等但 hash 未含 ⇒ 跳过 codegen = 错）
+    # [R73 修 2026-10-22·TDD 复核 must-fix ①] hash 覆盖 13 项漏项
+    # 漏掉 pipeline/cli.py / phase2/overlay / cmake/toolchain 等 ⇒ 改这些文件不会强制全跑
     return {
-        'annotations': _hash_dir(os.path.join(ROOT, 'data', 'annotations')),
+        # 数据输入
+        'annotations': _hash_dir(os.path.join(ROOT, 'data', 'annotations'), pattern='.json'),
         'ida_structs': _hash_file(os.path.join(ROOT, 'asm', 'pal3', 'ida_structs.json')),
-        'decomp': _hash_dir(os.path.join(ROOT, 'asm', 'pal3', 'decomp')),
+        'decomp': _hash_dir(os.path.join(ROOT, 'asm', 'pal3', 'decomp'), pattern='.json'),
         'pal3_src': _hash_dir(os.path.join(ROOT, 'pal3', 'src'), pattern='.cpp'),
         # 管线脚本（改动 ⇒ 全阶段强制重生成）
         'pipeline_gen': _hash_dir(os.path.join(ROOT, 'pipeline', 'gen'), pattern='.py'),
         'pipeline_ida': _hash_dir(os.path.join(ROOT, 'pipeline', 'ida'), pattern='.py'),
+        'pipeline_cli': _hash_file(os.path.join(ROOT, 'pipeline', 'cli.py')),
+        'pipeline_other': _hash_dir(os.path.join(ROOT, 'pipeline'), pattern='.py'),
         'tools': _hash_dir(os.path.join(ROOT, 'tools'), pattern='.py'),
+        # phase2 overlay（手工 fix ⇒ 影响 codegen 输出）
+        'phase2_overlay': _hash_dir(os.path.join(ROOT, 'phase2'), pattern='*'),
+        # 构建配置（影响编译）
+        'cmake_toolchain': _hash_file(os.path.join(ROOT, 'cmake', 'toolchain-vc6.cmake')),
+        'pal3_cmake': _hash_file(os.path.join(ROOT, 'pal3', 'CMakeLists.txt')),
     }
 
 
