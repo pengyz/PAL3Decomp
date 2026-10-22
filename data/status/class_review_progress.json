@@ -766,6 +766,30 @@
     {
       "ts": "2026-10-22",
       "event": "✅ P0 清理完成 7/8：P0-1/3/5/6/7/10/11 已关闭 · 剩 P0-2（[D] 判据对齐）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "4-way adversarial review done (B asm-first / C verification / D goal-tiering / A counter)"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "hexrays_limit 42.5 pct self-evidences ceiling (B strongest): 62 files marked do-not-fix"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "verification ~53x generation (C strongest): 596s vs 11.3s, misdiagnosis 30 pct"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "L1 3-qualifications already tiered (D strongest): truncation/length/reloc don-t-care"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "D gives Tier2 criteria: T2-F function diff / T2-VM opcode trace / T2-Frame screenshot / T2-IO save bytes"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "citation fix: path_b_asm_first.md R51+617 source to class_review_progress.json:356"
     }
   ],
   "rolling_metrics": [
@@ -939,5 +963,20 @@
     "shell_class_rate": "9.45%",
     "probe_units": 214,
     "cpp_files": 214
+  },
+  "strategic_decision": {
+    "core_shift": "T2 semantic-equivalence primary + T1 boundary pinning",
+    "4_tracks": [
+      "1. reduce verification cost (incremental + parallel + cache) 596s to <60s (10x)",
+      "2. asm-first baseline (byte reference not source)",
+      "3. goal tiering T2 criteria (T2-F/VM/Frame/IO)",
+      "4. misdiagnosis governance (stale timestamp gate + C1003/L1 auto-print)"
+    ],
+    "tier2_criteria": [
+      "T2-F function diff",
+      "T2-VM opcode trace",
+      "T2-Frame screenshot diff",
+      "T2-IO save byte (keep T1)"
+    ]
   }
 }
