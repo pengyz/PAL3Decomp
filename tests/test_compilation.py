@@ -13,7 +13,20 @@ import os
 import sys
 import pytest
 import shutil
-pytestmark = pytest.mark.skipif(shutil.which("cmake") is None, reason="env: cmake missing")
+# [R70 修 2026-10-22] 本模块依赖 Visual Studio 17 2022 CMake generator（Windows-only）
+# Linux 上 cmake 存在但无法生成 VS 工程 ⇒ 跳过
+def _vs_available():
+    if sys.platform != "win32":
+        return False
+    if shutil.which("cmake") is None:
+        return False
+    try:
+        r = subprocess.run(["cmake", "--help"], capture_output=True, text=True, timeout=10)
+        return "Visual Studio 17 2022" in r.stdout
+    except Exception:
+        return False
+
+pytestmark = pytest.mark.skipif(not _vs_available(), reason="需要 Visual Studio 17 2022 CMake generator（Windows-only）")
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BUILD_DIR = os.path.join(PROJECT_ROOT, 'build', 'pal3_test')
