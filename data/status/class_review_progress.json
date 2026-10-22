@@ -1034,6 +1034,18 @@
     {
       "ts": "2026-10-22",
       "event": "根因已定谳（L2316 数据源错）· 修法明确（MERGE）· 但实施遇变量作用域问题"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "ROOT CAUSE 最终定位：L2266 ann_data=_get_ida_structs()（IDA 数据非注解）=> ann_struct 是 IDA struct（data_members）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "注解 known_members 在 L2217（_annview.struct_by_class）但未用于成员构造"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "修法明确：成员构造改用 _annview.struct_by_class(cls_name) 的 known_members（含 dict-union）"
     }
   ],
   "rolling_metrics": [
@@ -1180,10 +1192,10 @@
     },
     {
       "id": "P0-14",
-      "title": "🎯 ROOT CAUSE：export_full.py substitutes 替换 union 为单类型",
-      "detail": "export_full.py:732 substitutes 映射把合成 union (_inline_PalScript_m_RoleSlotArray) 替换为具名单类型 (PalScriptRoleSlotOverlay) => union 丢失 => C2039 (36 条)",
+      "title": "🎯 ROOT CAUSE：ann_data 用 IDA 数据非注解（L2266）",
+      "detail": "L2266 ann_data=_get_ida_structs()（IDA data_members） => 注解 known_members 的 dict-union 丢失 => C2039 (36 条) 注解在 L2217（_annview.struct_by_class）但未用",
       "impact": "C2039 级联 · union 变体丢失",
-      "next": "修 substitutes 不替换 union 类型（或保持 union 结构）"
+      "next": "成员构造改用 _annview.struct_by_class(cls_name).known_members"
     }
   ],
   "env_todo": [
