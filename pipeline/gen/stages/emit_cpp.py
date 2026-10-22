@@ -845,7 +845,7 @@ def run_cpp_generation(filter_classes=None):
                     fwd_types.add(t)
         if fwd_types:
             for t in sorted(fwd_types):
-                h_lines.append('struct %s;' % t)
+                h_lines.append('class %s;' % t)
             h_lines.append('')
         for fname, decl in sorted(store.free_func_sigs.items()):
             h_lines.append('%s;' % decl)
