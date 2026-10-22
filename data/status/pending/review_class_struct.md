@@ -17,7 +17,7 @@
 | 方案 | 裁决 | 依据 |
 |---|---|---|
 | A 改 free_functions.h | ✗ | 治标且不可留存：该头 auto-generated + untracked（三重灭失），codegen 覆盖；`phase2_retain.py` 禁直改 `pal3/src` |
-| B 改 emit 逻辑 | ✓ 但只清 warning | 键确实在此决定（正确定层）。已落 `emit_cpp.py:848`（未提交）。实测同 TU **C4099 50→5 / error 0 / C2653 0**。⚠️ 收益 = 0 error；且"全 class"非一致解，残留 5 条**反向** C4099：gbengine 真 struct 型 `gbVec3D/gbColorQuad/gbTextureArray/gbVFile/gbGfxManager` 被 emit 成 class |
+| B 改 emit 逻辑 | ✓ 但只清 warning | 键确实在此决定（正确定层）。已落 `emit_cpp.py:848`（commit 694203cea）。实测同 TU **C4099 50→5 / error 0 / C2653 0**。⚠️ 收益 = 0 error；且"全 class"非一致解，残留 5 条**反向** C4099：gbengine 真 struct 型 `gbVec3D/gbColorQuad/gbTextureArray/gbVFile/gbGfxManager` 被 emit 成 class |
 | C 改 CCBStage.h | ✗ | 反向制造新分叉（定义侧 776 头恒 `class`，`emit_headers.py:2143-2155` 硬编码），且只救 35 个名字中的 1 个 |
 
 ## 全仓扫描结果
@@ -41,5 +41,7 @@
 ## verdict
 
 **根因定性 REJECT**：C2653 不由 class/struct 键引起；A/B/C 三案**都修不掉任何 C2653**。B 可保留为 1 行 warning 清理（零风险），但**不得宣称修复 C2653**；真 C2653 需按族修（F1 转型级联 9 条 = codegen 浮点垃圾局部量；F2 不完整型 4 条 = 缺 include/前向声明）。
+
+对 commit `694203cea` 逐条裁决：「`=> MSVC6 class/struct 键不一致（C4099/C2653）`」**证伪**（同 TU 实测 C2653=0）；待复核项「C2653/C4099 消除」——**C4099 消除 50→5 ✓（残留 5 条反向），C2653 与本修无关、58 条原样留存**（其自身记录的「S2 126/207 不变」与我方 0 error 收益一致）。
 
 ⚠️ **并案实证（emit 双写点漏洞，live 抓获）**：`free_functions.h` 有两写点，17:19:56 快照为"预生成"**零前向声明**版（单独 include ⇒ 102 error 至 C1003 截断），17:27:07 全量重写后归 0。`emit_cpp.py:825-855` 全量写在 `if free_funcs and not filter_classes` 内，`filter_classes` 跑即留编译破坏态 ⇒ lead 结构修②（合并双写点）**必须做**，否则本次 1 行修随时被污染。
