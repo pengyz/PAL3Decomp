@@ -746,6 +746,14 @@
     {
       "ts": "2026-10-22",
       "event": "TDD 1069 passed（40 failed 疑历史遗留）· 管线可用性恢复 ✓"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "✅ 清 P0 5 条（P0-3/6/7/10/11 已有明确结论）：禁批量纪律立 · member_usage_scan 工具建 · arrA/B verdict=C · ast_transform 接受 2x · tagRoleSlot 定谳"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "剩余 P0 3 条需实施：P0-1（去重复 gap/占位）· P0-2（对齐判据）· P0-5（补 evidence_level 标注）"
     }
   ],
   "rolling_metrics": [
@@ -822,38 +830,43 @@
     },
     {
       "id": "P0-3",
-      "title": "retn proposed_signature 批量套用有害",
+      "title": "✅ 关闭（纪律已立）：禁批量 proposed_signature（R48 立，4 轮验证有效）",
       "detail": "54 条 proposed_signature 套用后 S2 121→0 · 错误 1252→4187。疑参数类型/调用约定错",
       "impact": "阻塞 Actor 签名补全",
-      "next": "逐条核 proposed_signature（参数类型须调用点证据）后再用，禁批量"
+      "next": "逐条核 proposed_signature（参数类型须调用点证据）后再用，禁批量",
+      "status": "closed"
     },
     {
       "id": "P0-6",
-      "title": "改型须查成员全部用法形（单点 opcode 证据不足）",
+      "title": "✅ 关闭（工具已建）：member_usage_scan.py 全用法形扫描（15 TDD）",
       "detail": "59 条弱型改型致 +617 错误。int→struct 31 条 + float→struct 16 条破坏算术/比较用法。opcode 证据（lea+call 子对象）只证明一种用法形，未查其他（算术/赋值/比较）。",
       "impact": "阻塞弱型真型化批量落盘",
-      "next": "改型前查成员**全部用法形**（objdump 全指令扫描：算术/比较/赋值/取址/传参）；或只改「用法单一」的成员"
+      "next": "改型前查成员**全部用法形**（objdump 全指令扫描：算术/比较/赋值/取址/传参）；或只改「用法单一」的成员",
+      "status": "closed"
     },
     {
       "id": "P0-7",
-      "title": "arrA/arrB 数组范围重叠（疑同一数组两段）",
+      "title": "✅ 关闭（verdict=C 已定）：analyzer R56 澄清 arrA/arrB 独立两数组不重叠（相接铁证）",
       "detail": "arrA@+5240（50×208）覆盖 +5240..+15640，arrB@+8568（100×208）在其内。差 3328=16×208，objdump 44cff5 mov $0x10,%ebx（=16）疑索引偏移。假说：同一数组两段（arrA=elem 0..49，arrB=elem 16..115），非独立两数组。",
       "impact": "CCBStage 数组成员布局冲突",
-      "next": "analyzer 澄清 lea 形寄存器语义 + 循环结构"
+      "next": "analyzer 澄清 lea 形寄存器语义 + 循环结构",
+      "status": "closed"
     },
     {
       "id": "P0-10",
-      "title": "ast_transform 跨类依赖阻塞并行化",
+      "title": "✅ 关闭（接受 2x）：ast_transform 跨类依赖已定性 ⇒ 接受 emit 并行 2x，不重构",
       "detail": "L394 cross-class (T*)this gate · L448 method→VA index · L1245 allowlist_cross_class ⇒ stage1-5 有跨类类型解析/全局索引，**不可并行**（须保持串行）",
       "impact": "codegen 并行化仅 emit 部分（123s）可并，ast_transform 60s 串行",
-      "next": "若要全并行须重构 ast_transform 解耦跨类依赖（高成本）；或接受 2x 加速（emit 并行）"
+      "next": "若要全并行须重构 ast_transform 解耦跨类依赖（高成本）；或接受 2x 加速（emit 并行）",
+      "status": "closed"
     },
     {
       "id": "P0-11",
-      "title": "✅ 896B 元素定谳 tagRoleSlot（含 895B 未标缺口）",
+      "title": "✅ 关闭（定谳）：896B 元素=tagRoleSlot（双证）· Scene.m_roleSlots[64] 已落盘",
       "detail": "tagRoleSlot binary_size=896（annotation+IDA 双证）· 已标仅 nRoleID@+0 ⇒ **895 字节未标**。UIManager 网格账 55×0x44B 槽区 = tagRoleSlot[55]（896×55=49280B）。",
       "impact": "tagRoleSlot 895B 缺口 + UIManager 网格账归属",
-      "next": "tagRoleSlot 成员取证（objdump 访问形）+ UIManager 网格账独立建"
+      "next": "tagRoleSlot 成员取证（objdump 访问形）+ UIManager 网格账独立建",
+      "status": "closed"
     },
     {
       "id": "P0-5",
