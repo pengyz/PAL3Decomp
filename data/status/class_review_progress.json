@@ -962,6 +962,30 @@
     {
       "ts": "2026-10-22",
       "event": "待深查：可能是 _inline_ 处理路径（L2480+）或其他类型解析"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "根因深挖：DEBUG_MTYPE 实证 mtype=_inline_PalScript_m_RoleSlotArray（str）非 dict-union"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "_variants[396] 确实有 dict-union（3 变体）=> 有转换逻辑把 dict-union -> _inline_* 字符串"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "待查：转换点在哪？（疑数据加载/export 阶段把 dict 序列化为 _inline_ 合成名）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "ROOT CAUSE 定位：export_full.py:732 的 substitutes 映射把合成 union (_inline_PalScript_m_RoleSlotArray) 替换为具名单类型 (PalScriptRoleSlotOverlay)"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "流转：IDA 合成 union -> export_full.py substitutes 替换 -> 单类型 -> _emit_member 发射单类型 -> union 丢失"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "修法：substitutes 不替换 union 类型（保持 _inline_ 合成名）或替换时保持 union 结构"
     }
   ],
   "rolling_metrics": [
@@ -1108,10 +1132,10 @@
     },
     {
       "id": "P0-14",
-      "title": "🎯 codegen union 坍缩 bug（丢失 union 变体）",
-      "detail": "PalScript.m_RoleSlotArray 是 union（3 变体：slot/overlay/script_state）但 PalScript.h:91 坍缩为 PalScriptRoleSlotOverlay 单类型 => script_state 变体丢失 => C2039 (19 条)",
-      "impact": "C2039 级联（script_state 19 + m_state 17）",
-      "next": "修 emit 让 union 发射为真 union（含所有变体）"
+      "title": "🎯 ROOT CAUSE：export_full.py substitutes 替换 union 为单类型",
+      "detail": "export_full.py:732 substitutes 映射把合成 union (_inline_PalScript_m_RoleSlotArray) 替换为具名单类型 (PalScriptRoleSlotOverlay) => union 丢失 => C2039 (36 条)",
+      "impact": "C2039 级联 · union 变体丢失",
+      "next": "修 substitutes 不替换 union 类型（或保持 union 结构）"
     }
   ],
   "env_todo": [
