@@ -96,8 +96,10 @@ def main():
 
     print(f'\n=== 总耗时 {total:.1f}s ===')
     if args.save:
-        save_state(inputs)
-        print('✅ 已保存增量基线')
+        # [R72 修 2026-10-22] 保存**运行后**的 hash（非运行前）
+        # 否则下次 check 会因输出变化而误判需重跑
+        save_state(compute_inputs())
+        print('✅ 已保存增量基线（运行后状态）')
     return 0
 
 
