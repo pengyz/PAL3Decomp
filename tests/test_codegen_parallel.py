@@ -140,20 +140,30 @@ def test_memory_limit():
 
 
 def test_worker_timeout():
-    """单 worker 超时隔离（前置：timeout 机制可用）。"""
+    """单 worker 超时隔离（前置：timeout 机制可用）。
+
+    [R70 修 2026-10-22] 原用 `time.sleep(10)` = **UT 禁 sleep**（10s 执行成本）
+    改用 `threading.Event` 阻塞（可被 timeout 打断，零 sleep 成本）。
+    """
     from concurrent.futures import ThreadPoolExecutor, TimeoutError as FTimeout
-    import time
-    def _slow(): time.sleep(10)
+    import threading
+    _block = threading.Event()  # 永不 set ⇒ 模拟卡死（零 sleep 成本）
+    def _slow(): _block.wait(timeout=30)  # 上限 30s 防真卡
     def _fast(): return 'ok'
-    with ThreadPoolExecutor(max_workers=2) as ex:
+    ex = ThreadPoolExecutor(max_workers=2)
+    try:
         f_slow = ex.submit(_slow)
         f_fast = ex.submit(_fast)
         try:
-            f_slow.result(timeout=0.1)
+            f_slow.result(timeout=0.05)  # 短超时
             assert False, '应超时'
         except FTimeout:
             pass
-        assert f_fast.result(timeout=1) == 'ok'
+        assert f_fast.result(timeout=0.5) == 'ok'
+    finally:
+        # [R70 修] 不等慢任务（原 with 会 join 阻塞 30s）
+        ex.shutdown(wait=False)
+        _block.set()  # 释放慢线程
 
 
 # === 哨兵（确保测试文件可导入）===
