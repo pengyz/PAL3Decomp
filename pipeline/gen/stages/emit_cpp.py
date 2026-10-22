@@ -756,6 +756,41 @@ def generate_free_funcs_cpp(funcs):
     return content
 
 
+def _emit_free_functions_header(store, header_dir):
+    """[R75 修 2026-10-22·对抗复核 must-fix] 单一 free_functions.h 生成函数。
+
+    合并原双写点（预生成无前向声明 + 全量有前向声明）
+    => 前向声明恒生成，filter_classes 跑不再留编译破坏态。
+    """
+    h_lines = ['#pragma once',
+               '// Auto-generated: free function forward declarations',
+               '#include "pal3/ida_defs.h"', '']
+    # Forward declare game struct types used as pointers in signatures
+    _SYSTEM_TYPES = {'int', 'void', 'char', 'float', 'double', 'short', 'long',
+                     'unsigned', 'const', 'BYTE', 'WORD', 'DWORD', 'UINT', 'BOOL',
+                     'LPCSTR', 'LPSTR', 'CHAR', 'HRESULT', 'HANDLE', 'HWND', 'RECT',
+                     'FILE', '_DWORD', '_BYTE', '_WORD', 'POINT', 'SIZE',
+                     'WPARAM', 'LPARAM', 'LRESULT', 'LCID',
+                     'INT_PTR', 'UINT_PTR', 'LONG_PTR', 'ULONG_PTR', 'DWORD_PTR',
+                     '__int8', '__int16', '__int32', '__int64',
+                     'unsigned __int8', 'unsigned __int16', 'unsigned __int32', 'unsigned __int64'}
+    fwd_types = set()
+    for fname, decl in store.free_func_sigs.items():
+        for m in re.finditer(r'\b(\w+)\s*\*', decl):
+            t = m.group(1)
+            if t not in _SYSTEM_TYPES:
+                fwd_types.add(t)
+    if fwd_types:
+        for t in sorted(fwd_types):
+            h_lines.append('class %s;' % t)
+        h_lines.append('')
+    for fname, decl in sorted(store.free_func_sigs.items()):
+        h_lines.append('%s;' % decl)
+    h_lines.append('')
+    with open(header_dir / 'free_functions.h', 'w', encoding='utf-8') as f:
+        f.write('\n'.join(h_lines))
+
+
 def run_cpp_generation(filter_classes=None):
     """Main entry point: generate .cpp files from decomp JSONs.
 
@@ -776,24 +811,15 @@ def run_cpp_generation(filter_classes=None):
     generated = 0
     total_funcs = 0
 
-    # Pre-generate free_functions.h so .cpp files can include it (needed for include check)
+    # [R75 修 2026-10-22·对抗复核 must-fix] 合并 free_functions.h 双写点
+    # 原双写点：预生成（无前向声明）+ 全量（有前向声明）=> filter_classes 跑即留编译破坏态（102 error）
+    # 修：单一 _emit_free_functions_header()，前向声明恒生成
     _header_dir = store.header_dir
-    _h_lines = ['#pragma once',
-                '// Auto-generated: free function forward declarations',
-                '#include "pal3/ida_defs.h"', '']
-    for _fname, _decl in sorted(store.free_func_sigs.items()):
-        _h_lines.append('%s;' % _decl)
-    _h_lines.append('')
-    # S3 修 N 违规（2026-10-10）：free_functions.h 从 store.free_func_sigs 全量生成，
-    # 但射程 export 只导目标函数 => free_func_sigs 变少 => 该头被射程产物**污染共享树**
-    # （S3 实测 N 判据唯一违规项，正是 C 路反例 C「跨世代拼接」的活证）。
-    # 修：射程模式下**跳过重生成**，保留全量版 —— 与 .h 全量的设计一致。
     if os.environ.get('EXPORT_FUNC') or os.environ.get('EXPORT_CLASS') or \
        os.environ.get('CODEGEN_CLASS') or os.environ.get('PROBE_ONLY'):
         print('[S3] scoped mode: skip free_functions.h regeneration (keep full)')
     else:
-        with open(_header_dir / "free_functions.h", 'w', encoding='utf-8') as _f:
-            _f.write('\n'.join(_h_lines))
+        _emit_free_functions_header(store, _header_dir)
 
     for cls_name, methods in sorted(by_class.items()):
         if filter_classes and cls_name not in filter_classes:
@@ -823,36 +849,7 @@ def run_cpp_generation(filter_classes=None):
         generated += 1
         total_funcs += len(free_funcs)
 
-        # Generate free_functions.h from free_func_sigs
-        header_dir = store.header_dir
-        h_lines = ['#pragma once',
-                   '// Auto-generated: free function forward declarations',
-                   '#include "pal3/ida_defs.h"', '']
-        # Forward declare game struct types used as pointers in signatures
-        _SYSTEM_TYPES = {'int', 'void', 'char', 'float', 'double', 'short', 'long',
-                         'unsigned', 'const', 'BYTE', 'WORD', 'DWORD', 'UINT', 'BOOL',
-                         'LPCSTR', 'LPSTR', 'CHAR', 'HRESULT', 'HANDLE', 'HWND', 'RECT',
-                         'FILE', '_DWORD', '_BYTE', '_WORD', 'POINT', 'SIZE',
-                         'WPARAM', 'LPARAM', 'LRESULT', 'LCID',
-                         'INT_PTR', 'UINT_PTR', 'LONG_PTR', 'ULONG_PTR', 'DWORD_PTR',
-                         '__int8', '__int16', '__int32', '__int64',
-                         'unsigned __int8', 'unsigned __int16', 'unsigned __int32', 'unsigned __int64'}
-        fwd_types = set()
-        for fname, decl in store.free_func_sigs.items():
-            for m in re.finditer(r'\b(\w+)\s*\*', decl):
-                t = m.group(1)
-                if t not in _SYSTEM_TYPES:
-                    fwd_types.add(t)
-        if fwd_types:
-            for t in sorted(fwd_types):
-                h_lines.append('class %s;' % t)
-            h_lines.append('')
-        for fname, decl in sorted(store.free_func_sigs.items()):
-            h_lines.append('%s;' % decl)
-        h_lines.append('')
-        h_path = header_dir / "free_functions.h"
-        with open(h_path, 'w', encoding='utf-8') as f:
-            f.write('\n'.join(h_lines))
+
 
 
     print("\nGenerated %d .cpp files (%d functions) in %s" % (
