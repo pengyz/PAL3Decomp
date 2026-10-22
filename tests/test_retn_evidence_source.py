@@ -12,6 +12,7 @@
 `PAL3.exe.asm` 做独立指令级读取的结果"这一**不变量**，以及几个属于二进制事实
 （retn 立即数）的取值。
 """
+import pytest
 import re
 import sys
 from pathlib import Path
@@ -50,6 +51,7 @@ def test_evidence_is_asm_dominant_and_reported():
     assert stats["asm"] + stats["byte"] + stats["none"] > 3000, stats
 
 
+@pytest.mark.slow(reason="asm 读取 — 集成测试非 UT")
 def test_cached_values_agree_with_independent_asm_read():
     """不变量：缓存值 == **另一套独立实现**（tools/sig_evidence.rets_of_asm）
     对同一份 asm 做指令级读取的结果/4。暴露两套读取实现的分歧。"""

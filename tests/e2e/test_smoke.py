@@ -1,4 +1,5 @@
 """e2e smoke 测试（重写清版 2026-10-07——GBK 编码顽修·架构治理 P0-1）。"""
+import pytest
 import os
 import subprocess
 import sys
@@ -10,6 +11,7 @@ PY = sys.executable
 
 
 class TestSmoke(unittest.TestCase):
+    @pytest.mark.slow(reason="e2e 编译 — 集成测试非 UT")
     def test_layout_audit_runs(self):
         if not os.path.exists(LAYOUT_TOOL):
             self.skipTest('layout tool missing')

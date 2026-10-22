@@ -12,6 +12,7 @@
 修法：物化成独立缓存（随全量 export 刷新），emit_headers 改读缓存，
      **缓存缺失时报错退出，不静默回退到目录扫描**。
 """
+import pytest
 import json
 import sys
 from pathlib import Path
@@ -136,6 +137,7 @@ def test_underscore_aliases_idempotent_and_nonempty():
     assert a1 == a2, '多次调用结果不一致 —— 模块级缓存自毁'
 
 
+@pytest.mark.slow(reason="cache I/O — 集成测试非 UT")
 def test_header_facts_consumers_match_cache_contents():
     """决策点 1/2/4 的返回值必须与缓存内容一致（不是空集/空 dict）。"""
     from pipeline.gen.stages.emit_headers import (

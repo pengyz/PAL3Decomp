@@ -152,6 +152,7 @@ def test_dag_order_detects_cycle():
 
 # ===================== B. 测量语义（需编译器） =====================
 
+@pytest.mark.slow(reason="需 MSVC6/wine 编译（集成测试非 UT）")
 def test_correct_class_reports_no_conflict():
     """**防假阳性**：布局正确的类必须零冲突且校准通过。"""
     if not HAVE_CL:
@@ -164,6 +165,7 @@ def test_correct_class_reports_no_conflict():
     assert conf == {}, conf
 
 
+@pytest.mark.slow(reason="需 MSVC6/wine 编译（集成测试非 UT）")
 def test_p1_vptr_fix_and_tail_drift_detected():
     """两条**当前契约**：
     ① **P1 已修**：`m_pGfxMgr` 声明 +0x0 ⇒ 编译器实际也在 +0x0（不再因注入虚析构而 +0x4）⇒ **不得**报冲突 ✓
@@ -183,6 +185,7 @@ def test_p1_vptr_fix_and_tail_drift_detected():
 
 # ===================== C. CLI 端到端 =====================
 
+@pytest.mark.slow(reason="需 MSVC6/wine 编译（集成测试非 UT）")
 def test_cli_exit0_for_clean_class():
     if not HAVE_CL:
         raise unittest.SkipTest('本机无 MSVC6/wine，跳过编译器测试')
@@ -192,6 +195,7 @@ def test_cli_exit0_for_clean_class():
     assert '✓ 一致' in r.stdout
 
 
+@pytest.mark.slow(reason="需 MSVC6/wine 编译（集成测试非 UT）")
 def test_cli_exit1_and_reports_conflicts():
     if not HAVE_CL:
         raise unittest.SkipTest('本机无 MSVC6/wine，跳过编译器测试')
