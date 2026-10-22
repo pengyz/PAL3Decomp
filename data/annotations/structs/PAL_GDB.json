@@ -5,244 +5,300 @@
     "0": {
       "name": "m_head",
       "type": "OutFile",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "160": {
       "name": "m_RoleData",
       "type": "RoleAtt[200]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "170560": {
       "name": "m_SkillData",
       "type": "FightSkill[300]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "398560": {
       "name": "m_ItemData",
       "type": "FightItem[512]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "808160": {
       "name": "m_ComboData",
       "type": "ComboAttack[10]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "814520": {
       "name": "i",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x00457410": {
       "name": "LoadLanguage",
-      "signature": "char __thiscall(char *path)"
+      "signature": "char __thiscall(char *path)",
+      "evidence_level": "unverified"
     },
     "0x00478E00": {
       "name": "PAL_GDB",
       "signature": "void __thiscall()",
-      "source": "| [签名层正交治理 2026-10-16] A返回型Cls*：PAL_GDB *__thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0OpenBaseFile"
+      "source": "| [签名层正交治理 2026-10-16] A返回型Cls*：PAL_GDB *__thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0OpenBaseFile",
+      "evidence_level": "unverified"
     },
     "0x00478FD0": {
       "name": "_todo_00478FD0",
       "signature": "void __thiscall(int nVal)",
-      "source": "| 析构名误挂改名 2026-09-29：~PAL_GDB→_todo_00478FD0（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）"
+      "source": "| 析构名误挂改名 2026-09-29：~PAL_GDB→_todo_00478FD0（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）",
+      "evidence_level": "unverified"
     },
     "0x00479040": {
       "name": "GDB_LoadFile",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x00479050": {
       "name": "GDB_GetRole",
-      "signature": "int __thiscall(unsigned int ID)"
+      "signature": "int __thiscall(unsigned int ID)",
+      "evidence_level": "unverified"
     },
     "0x00479080": {
       "name": "GDB_GetRoleNum",
-      "signature": "int __thiscall(int nVal)"
+      "signature": "int __thiscall(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x00479130": {
       "name": "GDB_GetSkillNum",
-      "signature": "int __thiscall(PAL_GDB *this, int nVal)"
+      "signature": "int __thiscall(PAL_GDB *this, int nVal)",
+      "evidence_level": "unverified"
     },
     "0x004791A0": {
       "name": "GDB_GetSkillID",
       "signature": "unsigned long __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004791E0": {
       "name": "GDB_GetItemNum",
-      "signature": "int __thiscall(int nVal)"
+      "signature": "int __thiscall(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x004792C0": {
       "name": "GDB_GetComboID",
       "signature": "unsigned long __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x0049CA70": {
       "name": "IsValidItem",
       "signature": "BOOL __thiscall(int nItemID, int a2)",
-      "sig_note": "ret-N adjudication (round 10): callee cleans 8 bytes; caller args = 2; prev 1 params"
+      "sig_note": "ret-N adjudication (round 10): callee cleans 8 bytes; caller args = 2; prev 1 params",
+      "evidence_level": "unverified"
     },
     "0x0049C2C0": {
       "name": "LoadByType",
-      "signature": "char __thiscall PAL_GDB::LoadByType(unsigned int dwVal, char pData)"
+      "signature": "char __thiscall PAL_GDB::LoadByType(unsigned int dwVal, char pData)",
+      "evidence_level": "unverified"
     },
     "0x0049C660": {
       "name": "SelectBestTarget",
-      "signature": "int __thiscall PAL_GDB::SelectBestTarget(int nVal)"
+      "signature": "int __thiscall PAL_GDB::SelectBestTarget(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x00457F00": {
       "name": "RefreshSkillNumbers",
-      "signature": "void __thiscall PAL_GDB::RefreshSkillNumbers()"
+      "signature": "void __thiscall PAL_GDB::RefreshSkillNumbers()",
+      "evidence_level": "unverified"
     },
     "0x004E50B0": {
       "name": "SetupSkillConfig",
-      "signature": "char * __thiscall()"
+      "signature": "char * __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00526300": {
       "name": "RefreshPartyStats",
-      "signature": "gbGeomNode *__thiscall PAL_GDB::RefreshPartyStats()"
+      "signature": "gbGeomNode *__thiscall PAL_GDB::RefreshPartyStats()",
+      "evidence_level": "unverified"
     },
     "0x005294C0": {
       "name": "SetDefaultEquipment",
-      "signature": "char *__thiscall PAL_GDB::SetDefaultEquipment()"
+      "signature": "char *__thiscall PAL_GDB::SetDefaultEquipment()",
+      "evidence_level": "unverified"
     },
     "0x00478C00": {
       "name": "ResetAllData",
       "signature": "MainEquipUI *__thiscall PAL_GDB::ResetAllData()",
-      "_misattrib_evidence": "max_offset=804880>class_size=204620"
+      "_misattrib_evidence": "max_offset=804880>class_size=204620",
+      "evidence_level": "unverified"
     },
     "0x004791B0": {
       "name": "GetItemID",
-      "signature": "int __thiscall PAL_GDB::GetItemID(unsigned int index)"
+      "signature": "int __thiscall PAL_GDB::GetItemID(unsigned int index)",
+      "evidence_level": "unverified"
     },
     "0x004E5500": {
       "name": "LoadConfigFromINI",
-      "signature": "int __thiscall PAL_GDB::LoadConfigFromINI()"
+      "signature": "int __thiscall PAL_GDB::LoadConfigFromINI()",
+      "evidence_level": "unverified"
     },
     "0x004E56E0": {
       "name": "FindItemByID",
-      "signature": "char __thiscall(int nVal, int *p_DWORD)"
+      "signature": "char __thiscall(int nVal, int *p_DWORD)",
+      "evidence_level": "unverified"
     },
     "0x004E5710": {
       "name": "GetItemPrice",
-      "signature": "int __thiscall(int nVal)"
+      "signature": "int __thiscall(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x004E5760": {
       "name": "GetItemWeight",
-      "signature": "int __thiscall(int nVal)"
+      "signature": "int __thiscall(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x004E57B0": {
       "name": "GetItemData",
-      "signature": "int __thiscall(int nVal)"
+      "signature": "int __thiscall(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x004E5800": {
       "name": "PartySetupDialogProc",
-      "signature": "int __thiscall PAL_GDB::PartySetupDialogProc(HWND hDlg, UINT pData, WPARAM a4, LPARAM a5)"
+      "signature": "int __thiscall PAL_GDB::PartySetupDialogProc(HWND hDlg, UINT pData, WPARAM a4, LPARAM a5)",
+      "evidence_level": "unverified"
     },
     "0x004E5B20": {
       "name": "RefreshPartyDialog",
-      "signature": "LRESULT __thiscall PAL_GDB::RefreshPartyDialog()"
+      "signature": "LRESULT __thiscall PAL_GDB::RefreshPartyDialog()",
+      "evidence_level": "unverified"
     },
     "0x004E5E00": {
       "name": "PopulateAvailableRoles",
-      "signature": "int __thiscall PAL_GDB::PopulateAvailableRoles()"
+      "signature": "int __thiscall PAL_GDB::PopulateAvailableRoles()",
+      "evidence_level": "unverified"
     },
     "0x004E5F60": {
       "name": "UpdateInventorySlots",
-      "signature": "int *__thiscall()"
+      "signature": "int *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004E5FF0": {
       "name": "DlgProcCamera",
-      "signature": "int __thiscall PAL_GDB::DlgProcCamera(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)"
+      "signature": "int __thiscall PAL_GDB::DlgProcCamera(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)",
+      "evidence_level": "unverified"
     },
     "0x004EC1F0": {
       "name": "ShowDetailPanel",
-      "signature": "LRESULT __thiscall PAL_GDB::ShowDetailPanel(HWND hDlg)"
+      "signature": "LRESULT __thiscall PAL_GDB::ShowDetailPanel(HWND hDlg)",
+      "evidence_level": "unverified"
     },
     "0x004ED8C0": {
       "name": "LoadSkillData",
-      "signature": "int __thiscall PAL_GDB::LoadSkillData()"
+      "signature": "int __thiscall PAL_GDB::LoadSkillData()",
+      "evidence_level": "unverified"
     },
     "0x004F69F0": {
       "name": "IsItemConsumable",
-      "signature": "bool __thiscall PAL_GDB::IsItemConsumable(int nItemId)"
+      "signature": "bool __thiscall PAL_GDB::IsItemConsumable(int nItemId)",
+      "evidence_level": "unverified"
     },
     "0x004F6A20": {
       "name": "IsItemEquipment",
-      "signature": "bool __thiscall PAL_GDB::IsItemEquipment(int nItemId)"
+      "signature": "bool __thiscall PAL_GDB::IsItemEquipment(int nItemId)",
+      "evidence_level": "unverified"
     },
     "0x004F6A40": {
       "name": "IsRoleAlive",
-      "signature": "bool __thiscall PAL_GDB::IsRoleAlive(int nRoleId)"
+      "signature": "bool __thiscall PAL_GDB::IsRoleAlive(int nRoleId)",
+      "evidence_level": "unverified"
     },
     "0x004F6A60": {
       "name": "IsRoleDead",
-      "signature": "bool __thiscall PAL_GDB::IsRoleDead(int nRoleId)"
+      "signature": "bool __thiscall PAL_GDB::IsRoleDead(int nRoleId)",
+      "evidence_level": "unverified"
     },
     "0x004F6AB0": {
       "name": "IsItemConsumed",
-      "signature": "bool __thiscall PAL_GDB::IsItemConsumed(int nItemId)"
+      "signature": "bool __thiscall PAL_GDB::IsItemConsumed(int nItemId)",
+      "evidence_level": "unverified"
     },
     "0x004F6AD0": {
       "name": "GetSkillLevel",
-      "signature": "bool __thiscall(int nVal)"
+      "signature": "bool __thiscall(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x004F6B20": {
       "name": "GetSkillType",
-      "signature": "bool __thiscall(int nVal)"
+      "signature": "bool __thiscall(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x004F6B70": {
       "name": "IsSkillUsable",
-      "signature": "bool __thiscall(int nVal)"
+      "signature": "bool __thiscall(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x004F6BB0": {
       "name": "IsSkillEmpty",
-      "signature": "bool __thiscall(int nVal)"
+      "signature": "bool __thiscall(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x004F6BE0": {
       "name": "SearchAllItems",
-      "signature": "char __thiscall(int nVal, int *p_DWORD, int *pnVal, int *p_DWORD2)"
+      "signature": "char __thiscall(int nVal, int *p_DWORD, int *pnVal, int *p_DWORD2)",
+      "evidence_level": "unverified"
     },
     "0x004F6C60": {
       "name": "SearchItemLoop",
-      "signature": "char __thiscall(int nVal, int nVal2, int *p_DWORD, int *pnVal)"
+      "signature": "char __thiscall(int nVal, int nVal2, int *p_DWORD, int *pnVal)",
+      "evidence_level": "unverified"
     },
     "0x004F6D30": {
       "name": "IsRoleSkillValid",
-      "signature": "char __thiscall(unsigned int *pdwVal, int nVal)"
+      "signature": "char __thiscall(unsigned int *pdwVal, int nVal)",
+      "evidence_level": "unverified"
     },
     "0x004F6E80": {
       "name": "IterateInventory",
-      "signature": "char __thiscall(int *p_DWORD)"
+      "signature": "char __thiscall(int *p_DWORD)",
+      "evidence_level": "unverified"
     },
     "0x004F6FB0": {
       "name": "BuildItemArray",
-      "signature": "char __thiscall(int nVal)"
+      "signature": "char __thiscall(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x00528650": {
       "name": "InitSkillDisplay",
       "signature": "int __thiscall(PAL_GDB *this)",
-      "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：占位垃圾签名 `int __thiscall(int nVal)`（MXTransport 教训同族）；A 级：0x528650 访问 v14[-1].nSkillCount2 别名形（PAL_GDB 成员）"
+      "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：占位垃圾签名 `int __thiscall(int nVal)`（MXTransport 教训同族）；A 级：0x528650 访问 v14[-1].nSkillCount2 别名形（PAL_GDB 成员）",
+      "evidence_level": "A"
     },
     "0x0052ECE0": {
       "name": "SetupSkillData",
-      "signature": "BOOL __thiscall(int nVal)"
+      "signature": "BOOL __thiscall(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x004F6A80": {
       "name": "IsRoleAlive2",
-      "signature": "bool __thiscall(int nVal)"
+      "signature": "bool __thiscall(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x004790F0": {
       "name": "GDB_GetRoleNum",
       "signature": "int __thiscall PAL_GDB::GDB_GetRoleNum(PAL_GDB *this)",
-      "source": "[函数归属 2026-10-17·余 8] PAL_GDB——②`GDB_GetRoleNum(PAL_GDB *this)` 类名直证 ✓ + ①NPC::Create/Init ③return m_head.SkillNum ✓（**decompile 类名直证**（非 signature this ✗ 铁律）=decomp 产出的类限定 ✓）"
+      "source": "[函数归属 2026-10-17·余 8] PAL_GDB——②`GDB_GetRoleNum(PAL_GDB *this)` 类名直证 ✓ + ①NPC::Create/Init ③return m_head.SkillNum ✓（**decompile 类名直证**（非 signature this ✗ 铁律）=decomp 产出的类限定 ✓）",
+      "evidence_level": "unverified"
     },
     "0x00479250": {
       "name": "GDB_GetItemNum",
       "signature": "int __thiscall PAL_GDB::GDB_GetItemNum(PAL_GDB *this)",
-      "source": "[函数归属 2026-10-17·余 8] PAL_GDB——②`GDB_GetItemNum(PAL_GDB *this)` 类名直证 ✓ + ①CCBCamControl/CCBRoleState ③return m_head.ComboNum ✓（**decompile 类名直证**（非 signature this ✗ 铁律）=decomp 产出的类限定 ✓）"
+      "source": "[函数归属 2026-10-17·余 8] PAL_GDB——②`GDB_GetItemNum(PAL_GDB *this)` 类名直证 ✓ + ①CCBCamControl/CCBRoleState ③return m_head.ComboNum ✓（**decompile 类名直证**（非 signature this ✗ 铁律）=decomp 产出的类限定 ✓）",
+      "evidence_level": "unverified"
     }
   }
 }

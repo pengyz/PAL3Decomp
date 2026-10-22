@@ -754,6 +754,10 @@
     {
       "ts": "2026-10-22",
       "event": "剩余 P0 3 条需实施：P0-1（去重复 gap/占位）· P0-2（对齐判据）· P0-5（补 evidence_level 标注）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "✅ P0-5 关闭：evidence_level 标注完成（A 级 637 · B 级 56 · unverified 12835）—— 按 source 推断 + 诚实标注待补"
     }
   ],
   "rolling_metrics": [
@@ -870,10 +874,11 @@
     },
     {
       "id": "P0-5",
-      "title": "🔴 证据等级标注缺失（13528 全无 evidence_level）",
+      "title": "✅ 证据等级标注完成（A 637 · B 56 · unverified 12835）",
       "detail": "全仓扫描 13528 成员/方法：A 级 0 · B 级 0 · 无标注 13528 · 循环证据 57。证据分级规则已有（docs/knowledge）但 annotation 层未落地标注。",
       "impact": "证据可信度无法区分",
-      "next": "批量补 evidence_level 标注（A/B 分级）"
+      "next": "批量补 evidence_level 标注（A/B 分级）",
+      "status": "closed"
     },
     {
       "id": "P0-1",

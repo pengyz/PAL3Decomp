@@ -5,60 +5,80 @@
     "0": {
       "name": "dwCmdKind",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "dwItemID",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "nSrcRole",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "nDestRole",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "bMultiSrcRole",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "17": {
       "name": "bMultiDestRole",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "18": {
       "name": "bSrcRole",
       "type": "unsigned char[11]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "29": {
       "name": "",
       "type": {
         "union": [
-          { "type": "unsigned char[11]", "name": "bDestRole" },
+          {
+            "type": "unsigned char[11]",
+            "name": "bDestRole"
+          },
           {
             "type": {
               "struct": [
-                { "offset": 0,  "name": "_pad_7",    "type": "unsigned char[7]" },
-                { "offset": 7,  "name": "pDestRoleOverlay", "type": "void *" }
+                {
+                  "offset": 0,
+                  "name": "_pad_7",
+                  "type": "unsigned char[7]"
+                },
+                {
+                  "offset": 7,
+                  "name": "pDestRoleOverlay",
+                  "type": "void *"
+                }
               ]
             },
             "name": ""
           }
         ]
       },
-      "source": "overlap:bDestRole+7_pointer_slot_slots_2_48_63"
+      "source": "overlap:bDestRole+7_pointer_slot_slots_2_48_63",
+      "evidence_level": "unverified"
     },
     "40": {
       "name": "bValid",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {}

@@ -5,146 +5,174 @@
     "72": {
       "name": "baseclass2",
       "type": "PalScriptWaitObj",
-      "source": "PAL3patch_verified"
+      "source": "PAL3patch_verified",
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "_todo_050",
       "type": "char[32]",
-      "source": "binary:ctor 0x4A12F0 无此区构造，0x50..0x70 未建模区（PalScriptWaitObj 之后、UITextArea 之前）"
+      "source": "binary:ctor 0x4A12F0 无此区构造，0x50..0x70 未建模区（PalScriptWaitObj 之后、UITextArea 之前）",
+      "evidence_level": "unverified"
     },
     "112": {
       "name": "m_static",
       "type": "UITextArea",
-      "source": "binary:ctor 0x4A12F0 lea 0x70(%esi),%ecx; call 0x444F60（UITextArea ctor，arg=1）⇒ 内嵌 UITextArea@0x70（192B，与 UITextArea 重建尺寸互证 ✓）"
+      "source": "binary:ctor 0x4A12F0 lea 0x70(%esi),%ecx; call 0x444F60（UITextArea ctor，arg=1）⇒ 内嵌 UITextArea@0x70（192B，与 UITextArea 重建尺寸互证 ✓）",
+      "evidence_level": "unverified"
     },
     "304": {
       "name": "_todo_130",
       "type": "char[152]",
-      "source": "binary:ctor lea 0x130(%esi),%ecx; call 0x4422E0（arg=2，无名 ctor，存 vtable 0x56ADD0=UIFrameWnd 系折叠槽）"
+      "source": "binary:ctor lea 0x130(%esi),%ecx; call 0x4422E0（arg=2，无名 ctor，存 vtable 0x56ADD0=UIFrameWnd 系折叠槽）",
+      "evidence_level": "unverified"
     },
     "456": {
       "name": "_todo_1c8",
       "type": "char[176]",
-      "source": "binary:ctor lea 0x1c8(%esi),%ecx; call 0x4422E0（arg=3）"
+      "source": "binary:ctor lea 0x1c8(%esi),%ecx; call 0x4422E0（arg=3）",
+      "evidence_level": "unverified"
     },
     "632": {
       "name": "_todo_278",
       "type": "char[344]",
-      "source": "binary:ctor lea 0x278(%esi),%ecx; call 0x43A770（arg=4；0x43A770 存 vtable 0x56AC70=UICaption）"
+      "source": "binary:ctor lea 0x278(%esi),%ecx; call 0x43A770（arg=4；0x43A770 存 vtable 0x56AC70=UICaption）",
+      "evidence_level": "unverified"
     },
     "976": {
       "name": "_todo_3d0",
       "type": "char[328]",
-      "source": "binary:ctor lea 0x3d0(%esi),%ecx; call 0x43A770（arg=5；Create 读 [0x3D0] dword）；X4=0x3D0..0x518（328B，byMagicUseTime@0x518 紧随）"
+      "source": "binary:ctor lea 0x3d0(%esi),%ecx; call 0x43A770（arg=5；Create 读 [0x3D0] dword）；X4=0x3D0..0x518（328B，byMagicUseTime@0x518 紧随）",
+      "evidence_level": "unverified"
     },
     "1304": {
       "name": "byMagicUseTime",
       "type": "unsigned char[8][6]",
-      "source": "保留：ctor 写 0x528/0x530/0x534/0x538 全落在 [0x518..0x548) ✓ 与 Hex-Rays byMagicUseTime[4][0]=-1/[4][4]=208 等精确吻合"
+      "source": "保留：ctor 写 0x528/0x530/0x534/0x538 全落在 [0x518..0x548) ✓ 与 Hex-Rays byMagicUseTime[4][0]=-1/[4][4]=208 等精确吻合",
+      "evidence_level": "B"
     },
     "1352": {
       "name": "_todo_548",
       "type": "int",
-      "source": "binary:ctor mov %eax,0x548(%esi)=0"
+      "source": "binary:ctor mov %eax,0x548(%esi)=0",
+      "evidence_level": "unverified"
     },
     "1356": {
       "name": "_todo_54c",
       "type": "int",
-      "source": "binary:ctor mov %eax,0x54c(%esi)=0"
+      "source": "binary:ctor mov %eax,0x54c(%esi)=0",
+      "evidence_level": "unverified"
     },
     "1360": {
       "name": "_todo_550",
       "type": "unsigned char",
-      "source": "binary:ctor mov %al,0x550(%esi)=0"
+      "source": "binary:ctor mov %al,0x550(%esi)=0",
+      "evidence_level": "unverified"
     },
     "1361": {
       "name": "_gap_551",
       "type": "char[4]",
-      "source": "binary:0x551..0x555 未访问区"
+      "source": "binary:0x551..0x555 未访问区",
+      "evidence_level": "unverified"
     },
     "1365": {
       "name": "_todo_555",
       "type": "unsigned char",
-      "source": "binary:Create movb $1,0x555(%esi)"
+      "source": "binary:Create movb $1,0x555(%esi)",
+      "evidence_level": "unverified"
     },
     "1366": {
       "name": "m_nTodo_556",
       "type": "char[2]",
-      "source": "binary:binary_size=1368 尾部填充 | [批4 诚实化 2026-10-16] A偏移形：_tail_556⇒m_nTodo_556（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
+      "source": "binary:binary_size=1368 尾部填充 | [批4 诚实化 2026-10-16] A偏移形：_tail_556⇒m_nTodo_556（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x004A1410": {
       "name": "~UIRoleDialog",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004BEF50": {
       "name": "~UIWnd",
       "signature": "void __thiscall()",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "evidence_level": "unverified"
     },
     "0x004A1A80": {
       "name": "RemoveChild",
       "signature": "void *__thiscall UIRoleDialog::RemoveChild(void *pChild, char bDelete)",
-      "ordinal": 1
+      "ordinal": 1,
+      "evidence_level": "unverified"
     },
     "0x004A1AA0": {
       "name": "ProcessFrame",
       "signature": "BOOL __thiscall UIRoleDialog::ProcessFrame(int nVal, int nVal2)",
-      "ordinal": 2
+      "ordinal": 2,
+      "evidence_level": "unverified"
     },
     "0x004A13F0": {
       "name": "_scalar_dtor_13F0",
       "signature": "UIItem * __thiscall(void *Block, char pData)",
       "ordinal": 5,
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIRoleDialog（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56E190）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIRoleDialog（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56E190）",
+      "evidence_level": "A"
     },
     "0x004A1D10": {
       "name": "OnCommand",
       "signature": "int __thiscall UIRoleDialog::OnCommand(int nVal, int nVal2, int nVal3)",
-      "ordinal": 6
+      "ordinal": 6,
+      "evidence_level": "unverified"
     },
     "0x004BF1C0": {
       "name": "Create",
       "signature": "void __thiscall(int nVal)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004BF1D0": {
       "name": "Destroy",
-      "signature": "int __thiscall(int nVal)"
+      "signature": "int __thiscall(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x004BF260": {
       "name": "Render",
-      "signature": "void __thiscall(int nVal)"
+      "signature": "void __thiscall(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x004A12F0": {
       "name": "UIRoleDialog",
       "signature": "void __thiscall UIRoleDialog::UIRoleDialog()",
-      "_attribution_evidence": "ctor stores own vtable 0x56E190 at this+0 (0x4a13c1); vtable slots = UIRoleDialog::RemoveChild/_sdtor/OnCommand/ProcessFrame (func_bounds); PDB 名 Refresh@ARC_PlayerAtt 为误归属 ✗"
+      "_attribution_evidence": "ctor stores own vtable 0x56E190 at this+0 (0x4a13c1); vtable slots = UIRoleDialog::RemoveChild/_sdtor/OnCommand/ProcessFrame (func_bounds); PDB 名 Refresh@ARC_PlayerAtt 为误归属 ✗",
+      "evidence_level": "unverified"
     },
     "0x004BEF30": {
       "name": "sub_4BEF30",
       "signature": "void __thiscall(int)",
-      "source": "vtable_gap_fill_v1(IDB:sub_4BEF30) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
+      "source": "vtable_gap_fill_v1(IDB:sub_4BEF30) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
+      "evidence_level": "unverified"
     },
     "0x00542102": {
       "name": "RenderShadowVolume",
       "signature": "void __thiscall(gbRenderInfoObj *)",
       "source": "vtable_gap_fill_v1(IDB:?RenderShadowVolume@gbVisNode@@UAEXPAUgbRenderInfoObj@@@Z) | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-      "declaration_only": true
+      "declaration_only": true,
+      "evidence_level": "unverified"
     },
     "0x00542114": {
       "name": "Reset",
       "signature": "void __thiscall(float)",
       "source": "vtable_gap_fill_v1(IDB:?Reset@gbVisNode@@UAEXM@Z) | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-      "declaration_only": true
+      "declaration_only": true,
+      "evidence_level": "unverified"
     },
     "0x0054211A": {
       "name": "Update",
       "signature": "void __thiscall(int nVal1, int nVal2)",
       "source": "vtable_gap_fill_v1(IDB:?Update@gbVisNode@@UAEXXZ) | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 void __thiscall(int nVal1) ⇒ void __thiscall(int nVal1, int nVal2)（A 级 ret-N 证据：ret $0x8 ⇒ 2 栈参；int 占位·nVal 序号惯例）",
-      "declaration_only": true
+      "declaration_only": true,
+      "evidence_level": "A"
     }
   },
   "vtables": [

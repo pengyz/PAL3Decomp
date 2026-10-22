@@ -5,7 +5,8 @@
     "48": {
       "name": "m_nController",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
@@ -13,73 +14,86 @@
       "name": "UpdateFrame",
       "signature": "void __thiscall(float fVal)",
       "ordinal": 5,
-      "source": "manual_fix_vtable"
+      "source": "manual_fix_vtable",
+      "evidence_level": "unverified"
     },
     "0x004C0640": {
       "name": "ResetState",
       "signature": "void __thiscall CEffAction::ResetState(int nVal1, int nVal2, int nVal3, int nVal4)",
       "ordinal": 2,
-      "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [T44] 复补 4 参（2026-10-06 回滚复议）：A 级 objdump 0x4c064b `c2 10 00` = `ret 0x10`（弹 16 字节=4 个 DWORD 实参，thiscall 的 this 在 ECX 不占栈）⇒ 定义侧 ABI 实参 4 无疑；旧回滚「渲染丢参族」论据不覆盖定义侧 ret。L1 目标：n_diff=1（byte 12=ret 立即数 0x04→0x10）"
+      "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [T44] 复补 4 参（2026-10-06 回滚复议）：A 级 objdump 0x4c064b `c2 10 00` = `ret 0x10`（弹 16 字节=4 个 DWORD 实参，thiscall 的 this 在 ECX 不占栈）⇒ 定义侧 ABI 实参 4 无疑；旧回滚「渲染丢参族」论据不覆盖定义侧 ret。L1 目标：n_diff=1（byte 12=ret 立即数 0x04→0x10）",
+      "evidence_level": "A"
     },
     "0x00408BD0": {
       "name": "NullCallback",
       "signature": "void __thiscall (void *pData)",
       "source": "vtable_migrated",
-      "ordinal": 3
+      "ordinal": 3,
+      "evidence_level": "unverified"
     },
     "0x004C0520": {
       "name": "AllocRenderTarget",
       "signature": "void __thiscall()",
       "source": "manual_fix_vtable+manual_ida_body",
-      "ordinal": 7
+      "ordinal": 7,
+      "evidence_level": "unverified"
     },
     "0x004C0500": {
       "name": "OnTest",
       "signature": "bool()",
       "source": "vtable_migrated | [T47] 返型 int→bool：A 级 objdump 0x4c0500 `32 c0 c3`（xor al,al+ret 仅清 AL ⇒ **1 字节返型**）——bool/char 对编译字节等价（同 xor al,al），按谓词语义（OnTest）取 bool；L1 目标 n_diff=3（[0,1,2]=整函数）",
-      "ordinal": 8
+      "ordinal": 8,
+      "evidence_level": "A"
     },
     "0x004C0920": {
       "name": "PrepareEffect",
       "signature": "void __thiscall(int)",
       "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
-      "ordinal": 9
+      "ordinal": 9,
+      "evidence_level": "unverified"
     },
     "0x004C09E0": {
       "name": "RenderScene",
       "signature": "void __thiscall(int)",
       "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
-      "ordinal": 12
+      "ordinal": 12,
+      "evidence_level": "unverified"
     },
     "0x004C0540": {
       "name": "~CEffAction",
       "signature": "char *__thiscall(char a2)",
-      "source": "| [T140] 语义偏离名修正：@0x4C0540 全函数体（202 字符）= ExecutePasses 调用+flag+operator delete（标量删除析构经典形）⇒ `scalar deleting destructor`（T138 模式，~<Cls> 撞名规避）；@0x4C0560 ExecutePasses 保留（m_nMaxPasses/m_nMaxTargets 实体） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffAction（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F5E4,0x56F5D8）"
+      "source": "| [T140] 语义偏离名修正：@0x4C0540 全函数体（202 字符）= ExecutePasses 调用+flag+operator delete（标量删除析构经典形）⇒ `scalar deleting destructor`（T138 模式，~<Cls> 撞名规避）；@0x4C0560 ExecutePasses 保留（m_nMaxPasses/m_nMaxTargets 实体） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffAction（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F5E4,0x56F5D8）",
+      "evidence_level": "A"
     },
     "0x004AF760": {
       "name": "Update",
       "signature": "int __thiscall(int)",
-      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+      "source": "vtable_gap_fill_v1(from CEffCylinder.json)",
+      "evidence_level": "unverified"
     },
     "0x004C0650": {
       "name": "AllocSegments",
       "signature": "char __thiscall CEffAction::AllocSegments(int nVal)",
-      "source": "vtable_gap_fill_v1(from CEffQuake.json)"
+      "source": "vtable_gap_fill_v1(from CEffQuake.json)",
+      "evidence_level": "unverified"
     },
     "0x004C15D0": {
       "name": "UpdateParticles",
       "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+      "source": "vtable_gap_fill_v1(from CEffCylinder.json)",
+      "evidence_level": "unverified"
     },
     "0x004C0510": {
       "name": "sub_4C0510",
       "signature": "int __thiscall(int)",
-      "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
+      "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
+      "evidence_level": "unverified"
     },
     "0x004C1270": {
       "name": "sub_4C1270",
       "signature": "int __thiscall(int)",
-      "source": "vtable_gap_fill_v1(IDB:?sub_4C1270@CEffAction@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
+      "source": "vtable_gap_fill_v1(IDB:?sub_4C1270@CEffAction@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
+      "evidence_level": "unverified"
     }
   },
   "vtables": [

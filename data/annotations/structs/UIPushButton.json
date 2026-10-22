@@ -5,178 +5,215 @@
     "68": {
       "name": "m_isDown",
       "type": "unsigned char",
-      "source": "pdb+asm写域"
+      "source": "pdb+asm写域",
+      "evidence_level": "unverified"
     },
     "69": {
       "name": "m_isCtrl",
       "type": "unsigned char",
-      "source": "pdb+asm写域"
+      "source": "pdb+asm写域",
+      "evidence_level": "unverified"
     },
     "70": {
       "name": "m_mouseoff",
       "type": "unsigned char",
-      "source": "pdb"
+      "source": "pdb",
+      "evidence_level": "unverified"
     },
     "72": {
       "name": "m_fontcolor",
       "type": "gbColorQuad",
-      "source": "pdb"
+      "source": "pdb",
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_fonttype",
       "type": "gbFontType",
-      "source": "pdb+asm(写整数1@0x4C)"
+      "source": "pdb+asm(写整数1@0x4C)",
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "m_state",
       "type": "UIPUSHBUTTON_STATE",
-      "source": "pdb+asm(清0@0x50)"
+      "source": "pdb+asm(清0@0x50)",
+      "evidence_level": "unverified"
     },
     "84": {
       "name": "m_texarray",
       "type": "gbTexture *[2]",
-      "source": "pdb+asm(清2个dword@0x54/0x58)"
+      "source": "pdb+asm(清2个dword@0x54/0x58)",
+      "evidence_level": "unverified"
     },
     "92": {
       "name": "m_texarrayInfo",
       "type": "_PlugInfo *[2]",
-      "source": "pdb+asm(清2个dword@0x5C/0x60)"
+      "source": "pdb+asm(清2个dword@0x5C/0x60)",
+      "evidence_level": "unverified"
     },
     "100": {
       "name": "m_bOn",
       "type": "unsigned char",
-      "source": "pdb"
+      "source": "pdb",
+      "evidence_level": "unverified"
     },
     "104": {
       "name": "m_pOnpic",
       "type": "gbTexture *",
-      "source": "pdb(四指针之一)"
+      "source": "pdb(四指针之一)",
+      "evidence_level": "unverified"
     },
     "108": {
       "name": "m_pOnpicInfo",
       "type": "_PlugInfo *",
-      "source": "pdb"
+      "source": "pdb",
+      "evidence_level": "unverified"
     },
     "112": {
       "name": "m_pDownpic",
       "type": "gbTexture *",
-      "source": "pdb"
+      "source": "pdb",
+      "evidence_level": "unverified"
     },
     "116": {
       "name": "m_pDownpicInfo",
       "type": "_PlugInfo *",
-      "source": "pdb"
+      "source": "pdb",
+      "evidence_level": "unverified"
     },
     "120": {
       "name": "m_caption",
       "type": "char[128]",
-      "source": "pdb+asm(rep stosd 0x20 自 0x78 = 128 字节)"
+      "source": "pdb+asm(rep stosd 0x20 自 0x78 = 128 字节)",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x004407C0": {
       "name": "~UIPushButton",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00440BA0": {
       "name": "OnMessage",
       "signature": "int __thiscall()",
-      "ordinal": 3
+      "ordinal": 3,
+      "evidence_level": "unverified"
     },
     "0x004426B0": {
       "name": "CreateFromTemplate",
       "signature": "void __thiscall(UIPushButton *this, void *pTemplate, int nFlag)",
-      "source": "fix:C2660:retn 8 unanimous + caller push x2 (table ptr then flag; fresh-IDB re-verified); param types provisional"
+      "source": "fix:C2660:retn 8 unanimous + caller push x2 (table ptr then flag; fresh-IDB re-verified); param types provisional",
+      "evidence_level": "A"
     },
     "0x00440DD0": {
       "name": "Update",
       "signature": "BOOL __thiscall(float deltatime, int haveinput)",
-      "ordinal": 2
+      "ordinal": 2,
+      "evidence_level": "unverified"
     },
     "0x00440F30": {
       "name": "Render",
       "signature": "void __thiscall()",
-      "ordinal": 1
+      "ordinal": 1,
+      "evidence_level": "unverified"
     },
     "0x00440740": {
       "name": "UIPushButton",
-      "signature": "void __thiscall UIPushButton::UIPushButton()"
+      "signature": "void __thiscall UIPushButton::UIPushButton()",
+      "evidence_level": "unverified"
     },
     "0x0044BE60": {
       "name": "DestroyChainToBase",
-      "signature": "void __thiscall UIPushButton::DestroyChainToBase()"
+      "signature": "void __thiscall UIPushButton::DestroyChainToBase()",
+      "evidence_level": "unverified"
     },
     "0x00440AE0": {
       "name": "LoadTexture",
       "signature": "void __thiscall UIPushButton::LoadTexture(const char *pszName, char nVal2)",
-      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | 签名定谳 2026-10-09（复做 10-06 已回滚项，但本次有 A 级方向判据）：二进制实证 2026-10-09：ret 0x8=2 栈参（0x440a18 c2 08 00）| local_vars 双栈槽 36/40 | arg1 被 _CalculateUV/CreateParentData 当 LPCSTR（0x53fd5f push ebp 入 0x608cbc \"Not Found %s In UI_opt.tli\" 的 %s 位）| 调用点 2 push 且实参为字符串字面量（0x4b0b2f push 0x5d37f8=\"UI\\GameMainUI\\System\\Saveon.tga\"，生成码被强转 (int)）| arg2 宽度 A 级=mov al,[esp+0x1c]+test al,al（1 字节），char/bool/单字节枚举不可分⇒取最小假设 char，语义未定 | 方向判据：调用点发 2 参⇒非'渲染丢参族'⇒签名侧（对照 _completeness_convergence_ledger.md:95） | P0-2 类型定谳收窄 2026-10-09：arg2 只保留**宽度**结论（A 级：0x440997 mov al,[esp+0x1c]+test al,al = 1 字节读取），**语义未定**——char/bool/单字节枚举不可分。取 `char` 而非 bool/unsigned char 的唯一理由是：三者在本仓 VC6 下均为 1 字节、生成指令同为 test al,al ⇒ **选择本身不影响 L1 字节**（宽度才是字节约束，具体 1 字节类型名不是）。⚠️ 该点与 codex 复核意见相左（其判'类型定谳违规'），已提交独立复核裁决；若裁决不接受，撤销 arg2 的显式类型、改回未定占位。 | 独立复核补证 2026-10-09：LoadTexture 的 ret 8 在 **0x440B93**（非 FormatText 的 0x440A18）、arg2 读点在 **0x440B17**（`8A 44 24 1C 84 C0` 同形）——上一 commit 把两方法共用一条证据，此处补齐。字节等价受控实证（项目同款 /O2 /Ob2 /Oi /Ot /Oy /Gd + VC6）：char/signed char/unsigned char/bool 四者编译 `if(a)` 字节全同 `8A 44 24 04 84 C0 74 05`，与原版 `8A 44 24 1C 84 C0 74 37` 同形；int 为 `8B 44 24 04 85 C0`（不同）⇒ **宽度才是字节约束，1 字节类型名不是**。⚠️ 约束：若日后 arg2 被外传给其他函数，须重新取证（届时 movsx/movzx 使类型名字节相关）。"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | 签名定谳 2026-10-09（复做 10-06 已回滚项，但本次有 A 级方向判据）：二进制实证 2026-10-09：ret 0x8=2 栈参（0x440a18 c2 08 00）| local_vars 双栈槽 36/40 | arg1 被 _CalculateUV/CreateParentData 当 LPCSTR（0x53fd5f push ebp 入 0x608cbc \"Not Found %s In UI_opt.tli\" 的 %s 位）| 调用点 2 push 且实参为字符串字面量（0x4b0b2f push 0x5d37f8=\"UI\\GameMainUI\\System\\Saveon.tga\"，生成码被强转 (int)）| arg2 宽度 A 级=mov al,[esp+0x1c]+test al,al（1 字节），char/bool/单字节枚举不可分⇒取最小假设 char，语义未定 | 方向判据：调用点发 2 参⇒非'渲染丢参族'⇒签名侧（对照 _completeness_convergence_ledger.md:95） | P0-2 类型定谳收窄 2026-10-09：arg2 只保留**宽度**结论（A 级：0x440997 mov al,[esp+0x1c]+test al,al = 1 字节读取），**语义未定**——char/bool/单字节枚举不可分。取 `char` 而非 bool/unsigned char 的唯一理由是：三者在本仓 VC6 下均为 1 字节、生成指令同为 test al,al ⇒ **选择本身不影响 L1 字节**（宽度才是字节约束，具体 1 字节类型名不是）。⚠️ 该点与 codex 复核意见相左（其判'类型定谳违规'），已提交独立复核裁决；若裁决不接受，撤销 arg2 的显式类型、改回未定占位。 | 独立复核补证 2026-10-09：LoadTexture 的 ret 8 在 **0x440B93**（非 FormatText 的 0x440A18）、arg2 读点在 **0x440B17**（`8A 44 24 1C 84 C0` 同形）——上一 commit 把两方法共用一条证据，此处补齐。字节等价受控实证（项目同款 /O2 /Ob2 /Oi /Ot /Oy /Gd + VC6）：char/signed char/unsigned char/bool 四者编译 `if(a)` 字节全同 `8A 44 24 04 84 C0 74 05`，与原版 `8A 44 24 1C 84 C0 74 37` 同形；int 为 `8B 44 24 04 85 C0`（不同）⇒ **宽度才是字节约束，1 字节类型名不是**。⚠️ 约束：若日后 arg2 被外传给其他函数，须重新取证（届时 movsx/movzx 使类型名字节相关）。",
+      "evidence_level": "A"
     },
     "0x00440810": {
       "name": "CreateWithTextures",
       "signature": "gbVFileSystem *__thiscall UIPushButton::CreateWithTextures(int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData)",
-      "ordinal": 7
+      "ordinal": 7,
+      "evidence_level": "unverified"
     },
     "0x00440960": {
       "name": "FormatText",
       "signature": "void __thiscall UIPushButton::FormatText(const char *pszName, char nVal2)",
-      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | 签名定谳 2026-10-09（复做 10-06 已回滚项，但本次有 A 级方向判据）：二进制实证 2026-10-09：ret 0x8=2 栈参（0x440a18 c2 08 00）| local_vars 双栈槽 36/40 | arg1 被 _CalculateUV/CreateParentData 当 LPCSTR（0x53fd5f push ebp 入 0x608cbc \"Not Found %s In UI_opt.tli\" 的 %s 位）| 调用点 2 push 且实参为字符串字面量（0x4b0b2f push 0x5d37f8=\"UI\\GameMainUI\\System\\Saveon.tga\"，生成码被强转 (int)）| arg2 宽度 A 级=mov al,[esp+0x1c]+test al,al（1 字节），char/bool/单字节枚举不可分⇒取最小假设 char，语义未定 | 方向判据：调用点发 2 参⇒非'渲染丢参族'⇒签名侧（对照 _completeness_convergence_ledger.md:95） | P0-2 类型定谳收窄 2026-10-09：arg2 只保留**宽度**结论（A 级：0x440997 mov al,[esp+0x1c]+test al,al = 1 字节读取），**语义未定**——char/bool/单字节枚举不可分。取 `char` 而非 bool/unsigned char 的唯一理由是：三者在本仓 VC6 下均为 1 字节、生成指令同为 test al,al ⇒ **选择本身不影响 L1 字节**（宽度才是字节约束，具体 1 字节类型名不是）。⚠️ 该点与 codex 复核意见相左（其判'类型定谳违规'），已提交独立复核裁决；若裁决不接受，撤销 arg2 的显式类型、改回未定占位。 | 独立复核补证 2026-10-09：LoadTexture 的 ret 8 在 **0x440B93**（非 FormatText 的 0x440A18）、arg2 读点在 **0x440B17**（`8A 44 24 1C 84 C0` 同形）——上一 commit 把两方法共用一条证据，此处补齐。字节等价受控实证（项目同款 /O2 /Ob2 /Oi /Ot /Oy /Gd + VC6）：char/signed char/unsigned char/bool 四者编译 `if(a)` 字节全同 `8A 44 24 04 84 C0 74 05`，与原版 `8A 44 24 1C 84 C0 74 37` 同形；int 为 `8B 44 24 04 85 C0`（不同）⇒ **宽度才是字节约束，1 字节类型名不是**。⚠️ 约束：若日后 arg2 被外传给其他函数，须重新取证（届时 movsx/movzx 使类型名字节相关）。"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | 签名定谳 2026-10-09（复做 10-06 已回滚项，但本次有 A 级方向判据）：二进制实证 2026-10-09：ret 0x8=2 栈参（0x440a18 c2 08 00）| local_vars 双栈槽 36/40 | arg1 被 _CalculateUV/CreateParentData 当 LPCSTR（0x53fd5f push ebp 入 0x608cbc \"Not Found %s In UI_opt.tli\" 的 %s 位）| 调用点 2 push 且实参为字符串字面量（0x4b0b2f push 0x5d37f8=\"UI\\GameMainUI\\System\\Saveon.tga\"，生成码被强转 (int)）| arg2 宽度 A 级=mov al,[esp+0x1c]+test al,al（1 字节），char/bool/单字节枚举不可分⇒取最小假设 char，语义未定 | 方向判据：调用点发 2 参⇒非'渲染丢参族'⇒签名侧（对照 _completeness_convergence_ledger.md:95） | P0-2 类型定谳收窄 2026-10-09：arg2 只保留**宽度**结论（A 级：0x440997 mov al,[esp+0x1c]+test al,al = 1 字节读取），**语义未定**——char/bool/单字节枚举不可分。取 `char` 而非 bool/unsigned char 的唯一理由是：三者在本仓 VC6 下均为 1 字节、生成指令同为 test al,al ⇒ **选择本身不影响 L1 字节**（宽度才是字节约束，具体 1 字节类型名不是）。⚠️ 该点与 codex 复核意见相左（其判'类型定谳违规'），已提交独立复核裁决；若裁决不接受，撤销 arg2 的显式类型、改回未定占位。 | 独立复核补证 2026-10-09：LoadTexture 的 ret 8 在 **0x440B93**（非 FormatText 的 0x440A18）、arg2 读点在 **0x440B17**（`8A 44 24 1C 84 C0` 同形）——上一 commit 把两方法共用一条证据，此处补齐。字节等价受控实证（项目同款 /O2 /Ob2 /Oi /Ot /Oy /Gd + VC6）：char/signed char/unsigned char/bool 四者编译 `if(a)` 字节全同 `8A 44 24 04 84 C0 74 05`，与原版 `8A 44 24 1C 84 C0 74 37` 同形；int 为 `8B 44 24 04 85 C0`（不同）⇒ **宽度才是字节约束，1 字节类型名不是**。⚠️ 约束：若日后 arg2 被外传给其他函数，须重新取证（届时 movsx/movzx 使类型名字节相关）。",
+      "evidence_level": "A"
     },
     "0x00440A20": {
       "name": "LoadResource",
-      "signature": "gbVFileSystem *__thiscall UIPushButton::LoadResource(LPCSTR lpString, char nFlags)"
+      "signature": "gbVFileSystem *__thiscall UIPushButton::LoadResource(LPCSTR lpString, char nFlags)",
+      "evidence_level": "unverified"
     },
     "0x00440CE0": {
       "name": "SetText",
-      "signature": "void __thiscall UIPushButton::SetText()"
+      "signature": "void __thiscall UIPushButton::SetText()",
+      "evidence_level": "unverified"
     },
     "0x00442D00": {
       "name": "CtorWithFlag",
-      "signature": "UIPushButton *__thiscall()"
+      "signature": "UIPushButton *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00443380": {
       "name": "UIPushButton_Base",
-      "signature": "UIPushButton *__thiscall UIPushButton::UIPushButton_Base()"
+      "signature": "UIPushButton *__thiscall UIPushButton::UIPushButton_Base()",
+      "evidence_level": "unverified"
     },
     "0x0043D920": {
       "name": "Destroy",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043DAB0": {
       "name": "RenderQuadSlice",
-      "signature": "void __thiscall(int *pnVal, int nVal)"
+      "signature": "void __thiscall(int *pnVal, int nVal)",
+      "evidence_level": "unverified"
     },
     "0x00442480": {
       "name": "LoadTextureByName",
-      "signature": "void __thiscall(LPCSTR lpString, char pData)"
+      "signature": "void __thiscall(LPCSTR lpString, char pData)",
+      "evidence_level": "unverified"
     },
     "0x0044AA20": {
       "name": "RenderTile",
-      "signature": "void __thiscall(int nVal, char pData)"
+      "signature": "void __thiscall(int nVal, char pData)",
+      "evidence_level": "unverified"
     },
     "0x004538D0": {
       "name": "IsHidden",
-      "signature": "BOOL __thiscall UIPushButton::IsHidden()"
+      "signature": "BOOL __thiscall UIPushButton::IsHidden()",
+      "evidence_level": "unverified"
     },
     "0x004407A0": {
       "name": "_scalar_dtor_07A0",
       "signature": "int __thiscall(void *Block, char)",
       "source": "vtable_migrated | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIPushButton（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AD88）",
-      "ordinal": 5
+      "ordinal": 5,
+      "evidence_level": "A"
     },
     "0x00442D50": {
       "name": "_todo_",
       "signature": "void __thiscall(int nVal)",
-      "source": "| [表认领+槽注册合并批 2026-10-16 analyzer] 槽注册：A 级 `8b 54 24 04`（mov edx,[esp+4]; …）取参桩"
+      "source": "| [表认领+槽注册合并批 2026-10-16 analyzer] 槽注册：A 级 `8b 54 24 04`（mov edx,[esp+4]; …）取参桩",
+      "evidence_level": "A"
     },
     "0x00442D20": {
       "name": "_scalar_dtor_2D20",
       "signature": "void __thiscall()",
-      "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x442D40 写 vptr 0x56ADF0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56ADF0→UIPushButton（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIPushButton（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x442D40 写 vptr 0x56ADF0"
+      "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x442D40 写 vptr 0x56ADF0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56ADF0→UIPushButton（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIPushButton（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x442D40 写 vptr 0x56ADF0",
+      "evidence_level": "A"
     },
     "0x004433A0": {
       "name": "_scalar_dtor_33A0",
       "signature": "void __thiscall()",
-      "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4433C0 写 vptr 0x56AE48（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AE48→UIPushButton（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIPushButton（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4433C0 写 vptr 0x56AE48"
+      "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4433C0 写 vptr 0x56AE48（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AE48→UIPushButton（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIPushButton（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4433C0 写 vptr 0x56AE48",
+      "evidence_level": "A"
     }
   },
   "base_size": 68,

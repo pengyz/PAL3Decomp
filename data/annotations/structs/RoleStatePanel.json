@@ -13,145 +13,172 @@
     "0x004a1e40": {
       "name": "InitUI",
       "signature": "int __thiscall EquipUI::InitUI()",
-      "_misattrib_evidence": "rolestatepanel: installs vtable 0x56F040 at this+0 (was EquipUI.InitUI)"
+      "_misattrib_evidence": "rolestatepanel: installs vtable 0x56F040 at this+0 (was EquipUI.InitUI)",
+      "evidence_level": "unverified"
     },
     "0x004a2450": {
       "name": "~RoleStatePanel",
       "signature": "void __thiscall()",
       "_misattrib_evidence": "rolestatepanel: dtor; xref to vtable 0x56F040 at 0x4a246d (was MainEquipUI.~MainEquipUI)",
-      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | 挂账③ F 案改名 2026-10-06：~RoleStatePanel→_scalar_dtor（deleting-dtor 形（void* 回值+标志参）非纯析构——~名+参=C2631；UIListBox 先例） | 挂账③ 返工重定谳 2026-10-06：纯析构误伤回滚（体=成员析构逆序级联+基类析构） | 订正 2026-10-06：体证=纯析构（成员析构逆序级联+基类析构收尾）——原 sig int __thiscall MainEquipUI::~MainEquipUI() 串类脏数据→void __thiscall() 纯析构形"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | 挂账③ F 案改名 2026-10-06：~RoleStatePanel→_scalar_dtor（deleting-dtor 形（void* 回值+标志参）非纯析构——~名+参=C2631；UIListBox 先例） | 挂账③ 返工重定谳 2026-10-06：纯析构误伤回滚（体=成员析构逆序级联+基类析构） | 订正 2026-10-06：体证=纯析构（成员析构逆序级联+基类析构收尾）——原 sig int __thiscall MainEquipUI::~MainEquipUI() 串类脏数据→void __thiscall() 纯析构形",
+      "evidence_level": "unverified"
     },
     "0x004a3900": {
       "name": "SetItemData",
       "signature": "int __thiscall(int id, unsigned int data)",
-      "_misattrib_evidence": "rolestatepanel: stride this+id*3788 = s_RoleState; fields +0x25E04.. (was UIBase.SetItemData)"
+      "_misattrib_evidence": "rolestatepanel: stride this+id*3788 = s_RoleState; fields +0x25E04.. (was UIBase.SetItemData)",
+      "evidence_level": "unverified"
     },
     "0x004a4780": {
       "name": "HandleDeviceLostB",
       "signature": "int __thiscall MainEquipUI::HandleDeviceLostB()",
-      "_misattrib_evidence": "rolestatepanel: writes +0x2B07C/+0x2B078 (last fields, size 0x2B080) (was MainEquipUI.HandleDeviceLostB)"
+      "_misattrib_evidence": "rolestatepanel: writes +0x2B07C/+0x2B078 (last fields, size 0x2B080) (was MainEquipUI.HandleDeviceLostB)",
+      "evidence_level": "unverified"
     },
     "0x004a4820": {
       "name": "Render",
       "signature": "int __thiscall()",
-      "_misattrib_evidence": "rolestatepanel: max_offset 176252 = size-4 (was MainEquipUI.Render_4a4820)"
+      "_misattrib_evidence": "rolestatepanel: max_offset 176252 = size-4 (was MainEquipUI.Render_4a4820)",
+      "evidence_level": "unverified"
     },
     "0x004a4890": {
       "name": "GetSelected",
       "signature": "int __thiscall()",
-      "_misattrib_evidence": "rolestatepanel: scans +0x169[5] slot flags (was EquipUI.GetSelected)"
+      "_misattrib_evidence": "rolestatepanel: scans +0x169[5] slot flags (was EquipUI.GetSelected)",
+      "evidence_level": "unverified"
     },
     "0x004a48b0": {
       "name": "InitSlots",
       "signature": "void __thiscall(int nVal1)",
       "_misattrib_evidence": "rolestatepanel: 0xa1 family; ecx=[parent+0x6E14] call chain (was EquipUI.InitSlots)",
-      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x004a4960": {
       "name": "InitLayout",
       "signature": "int __thiscall(int nVal1)",
       "_misattrib_evidence": "rolestatepanel: 0xa1 family (byte-identical variant) (was StateUI.InitLayout)",
-      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x004a4a10": {
       "name": "CreateWidgets",
       "signature": "void __thiscall(int nVal1)",
       "_misattrib_evidence": "rolestatepanel: 0xa1 family (was StateUI.CreateWidgets)",
-      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x004a4ac0": {
       "name": "SetSelectedData",
       "signature": "int __thiscall MagicUI::SetSelectedData(int nVal1)",
       "_misattrib_evidence": "rolestatepanel: 0xa1 family (was MagicUI.SetSelectedData)",
-      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x004a4b70": {
       "name": "Init",
       "signature": "void __thiscall(int nVal1)",
       "_misattrib_evidence": "rolestatepanel: 0xa1 family (was MagicUI.Init)",
-      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x004a4c20": {
       "name": "Create",
       "signature": "int __thiscall EquipUI::Create()",
-      "_misattrib_evidence": "rolestatepanel: calls 0xa1 family on this (was EquipUI.Create)"
+      "_misattrib_evidence": "rolestatepanel: calls 0xa1 family on this (was EquipUI.Create)",
+      "evidence_level": "unverified"
     },
     "0x004a4fc0": {
       "name": "SetEquipSlotData",
       "signature": "BOOL __thiscall()",
-      "_misattrib_evidence": "rolestatepanel: writes +0x2AFD4..0x2AFD9 (was MainEquipUI.SetEquipSlotData)"
+      "_misattrib_evidence": "rolestatepanel: writes +0x2AFD4..0x2AFD9 (was MainEquipUI.SetEquipSlotData)",
+      "evidence_level": "unverified"
     },
     "0x004a5930": {
       "name": "RenderThrottled",
       "signature": "int __thiscall MainEquipUI::RenderThrottled()",
-      "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.RenderThrottled)"
+      "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.RenderThrottled)",
+      "evidence_level": "unverified"
     },
     "0x004a5a80": {
       "name": "LayoutHandleNav",
       "signature": "int __thiscall MainEquipUI::LayoutHandleNav()",
-      "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.LayoutHandleNav)"
+      "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.LayoutHandleNav)",
+      "evidence_level": "unverified"
     },
     "0x004a5b30": {
       "name": "UpdateCaptions",
       "signature": "int __thiscall MainEquipUI::UpdateCaptions()",
-      "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.UpdateCaptions)"
+      "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.UpdateCaptions)",
+      "evidence_level": "unverified"
     },
     "0x004A2150": {
       "name": "_scalar_dtor_2150",
       "signature": "void __thiscall()",
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleStatePanel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F040）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleStatePanel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F040）",
+      "evidence_level": "A"
     }
   },
   "known_members": {
     "96": {
       "name": "m_nScanIndex",
       "type": "int",
-      "source": "GetSelected loop counter | normalize_key: 0x60 -> 96"
+      "source": "GetSelected loop counter | normalize_key: 0x60 -> 96",
+      "evidence_level": "unverified"
     },
     "361": {
       "name": "m_bSlotFlags",
       "type": "unsigned char[5]",
-      "source": "GetSelected 5-slot scan | normalize_key: 0x169 -> 361"
+      "source": "GetSelected 5-slot scan | normalize_key: 0x169 -> 361",
+      "evidence_level": "unverified"
     },
     "155140": {
       "name": "m_roles",
       "type": "s_RoleState[5]",
-      "source": "SetItemData stride 3788 x5 | normalize_key: 0x25e04 -> 155140"
+      "source": "SetItemData stride 3788 x5 | normalize_key: 0x25e04 -> 155140",
+      "evidence_level": "unverified"
     },
     "176060": {
       "name": "m_pSubTab1",
       "type": "UITitle_XJTM *",
-      "source": "0xa1 family sub-control (has vtable) | normalize_key: 0x2afbc -> 176060 | void*语义化 2026-10-15：A 级=SetMonsterState(0x00488C70)签名 int __thiscall UITitle_XJTM::SetMonsterState(int, unsigned int)（UITitle_XJTM 方法）+ 调用形把 m_pSubTab1 绑为 this ⇒ 目标=UITitle_XJTM 对象；辅证 vtable 槽+4 间接调（多态）"
+      "source": "0xa1 family sub-control (has vtable) | normalize_key: 0x2afbc -> 176060 | void*语义化 2026-10-15：A 级=SetMonsterState(0x00488C70)签名 int __thiscall UITitle_XJTM::SetMonsterState(int, unsigned int)（UITitle_XJTM 方法）+ 调用形把 m_pSubTab1 绑为 this ⇒ 目标=UITitle_XJTM 对象；辅证 vtable 槽+4 间接调（多态）",
+      "evidence_level": "A"
     },
     "176064": {
       "name": "m_pSubTab2",
       "type": "void *",
-      "source": "0xa1 family sub-control (has vtable) | normalize_key: 0x2afc0 -> 176064 | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：指针槽数组（子 tab 组）——5 槽清零（+0..+4 dwords）+ 槽值作 EquipUI*/StateUI* 调用 this + `(&field+1)` 元素（InitUI@0x4A1E40/SetItemData 族）"
+      "source": "0xa1 family sub-control (has vtable) | normalize_key: 0x2afc0 -> 176064 | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：指针槽数组（子 tab 组）——5 槽清零（+0..+4 dwords）+ 槽值作 EquipUI*/StateUI* 调用 this + `(&field+1)` 元素（InitUI@0x4A1E40/SetItemData 族）",
+      "evidence_level": "A"
     },
     "176084": {
       "name": "m_nEquipSlot",
       "type": "int",
-      "source": "SetEquipSlotData | normalize_key: 0x2afd4 -> 176084"
+      "source": "SetEquipSlotData | normalize_key: 0x2afd4 -> 176084",
+      "evidence_level": "unverified"
     },
     "176088": {
       "name": "m_nTodo_2afd8",
       "type": "unsigned char",
-      "source": "SetEquipSlotData | normalize_key: 0x2afd8 -> 176088 | [批4 诚实化 2026-10-16] A偏移形：m_bFlag2afd8⇒m_nTodo_2afd8（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
+      "source": "SetEquipSlotData | normalize_key: 0x2afd8 -> 176088 | [批4 诚实化 2026-10-16] A偏移形：m_bFlag2afd8⇒m_nTodo_2afd8（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+      "evidence_level": "unverified"
     },
     "176089": {
       "name": "m_nTodo_2afd9",
       "type": "unsigned char",
-      "source": "SetEquipSlotData | normalize_key: 0x2afd9 -> 176089 | [批4 诚实化 2026-10-16] A偏移形：m_bFlag2afd9⇒m_nTodo_2afd9（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
+      "source": "SetEquipSlotData | normalize_key: 0x2afd9 -> 176089 | [批4 诚实化 2026-10-16] A偏移形：m_bFlag2afd9⇒m_nTodo_2afd9（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+      "evidence_level": "unverified"
     },
     "176248": {
       "name": "m_nDevLost1",
       "type": "int",
-      "source": "HandleDeviceLostB (last fields) | normalize_key: 0x2b078 -> 176248"
+      "source": "HandleDeviceLostB (last fields) | normalize_key: 0x2b078 -> 176248",
+      "evidence_level": "unverified"
     },
     "176252": {
       "name": "m_nDevLost2",
       "type": "int",
-      "source": "HandleDeviceLostB (size-4 anchor) | normalize_key: 0x2b07c -> 176252"
+      "source": "HandleDeviceLostB (size-4 anchor) | normalize_key: 0x2b07c -> 176252",
+      "evidence_level": "unverified"
     }
   },
   "_naming_note": "descriptive name (5-role state panel, equip/magic/state tabs); original source name unrecoverable — see _rolestatepanel_verdict.json"

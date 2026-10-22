@@ -5,77 +5,92 @@
     "68": {
       "name": "m_nTodo_44",
       "type": "float",
-      "source": "binary:disasm@0x444FD4 (movl $0x3f000000 = float 0.5) | [批4 诚实化 2026-10-16] A偏移形：m_fTodo_44⇒m_nTodo_44（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
+      "source": "binary:disasm@0x444FD4 (movl $0x3f000000 = float 0.5) | [批4 诚实化 2026-10-16] A偏移形：m_fTodo_44⇒m_nTodo_44（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+      "evidence_level": "A"
     },
     "72": {
       "name": "m_nTodo_48",
       "type": "BYTE",
-      "source": "binary:disasm@0x444F8F (mov %al,0x48(%esi)) | [批4 诚实化 2026-10-16] A偏移形：m_bTodo_48⇒m_nTodo_48（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
+      "source": "binary:disasm@0x444F8F (mov %al,0x48(%esi)) | [批4 诚实化 2026-10-16] A偏移形：m_bTodo_48⇒m_nTodo_48（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_nTodo_4C",
       "type": "int",
-      "source": "binary:disasm@0x444F92 (dword 写（xor edi,edi 归零）)"
+      "source": "binary:disasm@0x444F92 (dword 写（xor edi,edi 归零）)",
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "m_nTodo_50",
       "type": "int",
-      "source": "binary:disasm@0x444F95 (dword 写)"
+      "source": "binary:disasm@0x444F95 (dword 写)",
+      "evidence_level": "unverified"
     },
     "84": {
       "name": "m_nTodo_54",
       "type": "int",
-      "source": "binary:disasm@0x444F98 (dword 写)"
+      "source": "binary:disasm@0x444F98 (dword 写)",
+      "evidence_level": "unverified"
     },
     "88": {
       "name": "m_nTodo_58",
       "type": "int",
-      "source": "binary:disasm@0x445500 (Render 高频读)"
+      "source": "binary:disasm@0x445500 (Render 高频读)",
+      "evidence_level": "unverified"
     },
     "92": {
       "name": "m_nTodo_5C",
       "type": "int",
-      "source": "binary:disasm@0x445135 (_sdtor 内有 incl（计数器）)"
+      "source": "binary:disasm@0x445135 (_sdtor 内有 incl（计数器）)",
+      "evidence_level": "unverified"
     },
     "96": {
       "name": "m_nTodo_60",
       "type": "int",
-      "source": "binary:disasm@0x445500 (写/读)"
+      "source": "binary:disasm@0x445500 (写/读)",
+      "evidence_level": "unverified"
     },
     "100": {
       "name": "m_nTodo_64",
       "type": "int",
-      "source": "binary:disasm@0x445500 (读写最多)"
+      "source": "binary:disasm@0x445500 (读写最多)",
+      "evidence_level": "unverified"
     },
     "104": {
       "name": "m_todo_68",
       "type": "char[68]",
-      "source": "binary:disasm@0x444F9B (lea 0x68(%esi)->call 0x445EA0 ⇒ 取址传参的子对象；内部布局未知 ⇒ 占位)"
+      "source": "binary:disasm@0x444F9B (lea 0x68(%esi)->call 0x445EA0 ⇒ 取址传参的子对象；内部布局未知 ⇒ 占位)",
+      "evidence_level": "unverified"
     },
     "172": {
       "name": "m_nTodo_AC",
       "type": "int",
-      "source": "binary:disasm@0x445194 (ProcessInput 读写)"
+      "source": "binary:disasm@0x445194 (ProcessInput 读写)",
+      "evidence_level": "unverified"
     },
     "176": {
       "name": "m_nTodo_B0",
       "type": "float",
-      "source": "binary:disasm@0x4451AE (fadds/fsts ⇒ 浮点) | [批4 诚实化 2026-10-16] A偏移形：m_fTodo_B0⇒m_nTodo_B0（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
+      "source": "binary:disasm@0x4451AE (fadds/fsts ⇒ 浮点) | [批4 诚实化 2026-10-16] A偏移形：m_fTodo_B0⇒m_nTodo_B0（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+      "evidence_level": "unverified"
     },
     "180": {
       "name": "m_nTodo_B4",
       "type": "int",
-      "source": "binary:disasm@0x4456F9 (Render 读)"
+      "source": "binary:disasm@0x4456F9 (Render 读)",
+      "evidence_level": "unverified"
     },
     "184": {
       "name": "m_nTodo_B8",
       "type": "int",
-      "source": "binary:disasm@0x445519 (Render 写)"
+      "source": "binary:disasm@0x445519 (Render 写)",
+      "evidence_level": "unverified"
     },
     "188": {
       "name": "m_nTodo_BC",
       "type": "int",
-      "source": "binary:disasm@0x445201 (ProcessInput cmp)"
+      "source": "binary:disasm@0x445201 (ProcessInput cmp)",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
@@ -83,41 +98,49 @@
       "name": "Destroy",
       "signature": "int __thiscall(int nVal1)",
       "ordinal": 3,
-      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x00444F60": {
       "name": "InitAfterClear",
-      "signature": "int __thiscall UITextArea::InitAfterClear()"
+      "signature": "int __thiscall UITextArea::InitAfterClear()",
+      "evidence_level": "unverified"
     },
     "0x00445760": {
       "name": "UpdateChildLayout",
-      "signature": "void __thiscall(RECT *pRect, unsigned int nFlags)"
+      "signature": "void __thiscall(RECT *pRect, unsigned int nFlags)",
+      "evidence_level": "unverified"
     },
     "0x00445170": {
       "name": "ProcessInput",
       "signature": "int __thiscall UITextArea::ProcessInput(int nVal1)",
       "ordinal": 2,
-      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x00445500": {
       "name": "Render",
       "signature": "void __thiscall()",
-      "ordinal": 1
+      "ordinal": 1,
+      "evidence_level": "unverified"
     },
     "0x00445720": {
       "name": "ShowWindow",
       "signature": "void __thiscall(int)",
       "ordinal": 0,
-      "source": "vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
+      "source": "vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
+      "evidence_level": "unverified"
     },
     "0x004B7AF0": {
       "name": "ReleaseAllTextures",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00444FF0": {
       "name": "~UITextArea",
       "signature": "UITextArea *__thiscall(UITextArea *Block, char a2)",
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UITextArea（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AEA4）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UITextArea（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AEA4）",
+      "evidence_level": "A"
     }
   },
   "vtables": [

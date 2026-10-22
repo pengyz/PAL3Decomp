@@ -5,94 +5,114 @@
     "76": {
       "name": "m_tex",
       "type": "gbTexture *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "m_numline",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "84": {
       "name": "m_lineheight",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "88": {
       "name": "m_curline",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "92": {
       "name": "m_linetime",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x004427C0": {
       "name": "SetEnable",
-      "signature": "void __thiscall(UICaption *this, int szName, int bEnable)"
+      "signature": "void __thiscall(UICaption *this, int szName, int bEnable)",
+      "evidence_level": "unverified"
     },
     "0x004461F0": {
       "name": "DestroyPanel",
-      "signature": "void __thiscall UICaption::DestroyPanel()"
+      "signature": "void __thiscall UICaption::DestroyPanel()",
+      "evidence_level": "unverified"
     },
     "0x00450320": {
       "name": "LayoutDefault",
-      "signature": "void __thiscall UICaption::LayoutDefault()"
+      "signature": "void __thiscall UICaption::LayoutDefault()",
+      "evidence_level": "unverified"
     },
     "0x0043A810": {
       "name": "Destroy2",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0044BDA0": {
       "name": "DestroyAll",
       "signature": "void __thiscall()",
-      "source": "batch:sub_fix_from_decomp_this_type"
+      "source": "batch:sub_fix_from_decomp_this_type",
+      "evidence_level": "unverified"
     },
     "0x0043B4B0": {
       "name": "_sdtor_5",
-      "signature": "UICaption *__thiscall(UICaption *Block, char a2)"
+      "signature": "UICaption *__thiscall(UICaption *Block, char a2)",
+      "evidence_level": "unverified"
     },
     "0x0044BE00": {
       "name": "_sdtor_24",
-      "signature": "UICaption *__thiscall(UICaption *Block, char a2)"
+      "signature": "UICaption *__thiscall(UICaption *Block, char a2)",
+      "evidence_level": "unverified"
     },
     "0x0043AD40": {
       "name": "Render",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043AB20": {
       "name": "Update2",
-      "signature": "BOOL __thiscall(int nVal, int nVal2)"
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
+      "evidence_level": "unverified"
     },
     "0x0043AB00": {
       "name": "Destroy",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043A7F0": {
       "name": "_scalar_dtor_A7F0",
       "signature": "UIScene *__thiscall(UIScene *Block, char pData)",
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UICaption（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AC70）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UICaption（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AC70）",
+      "evidence_level": "A"
     },
     "0x0043A870": {
       "name": "CreateChildWidget",
-      "signature": "gbVFileSystem *__thiscall UIScene::CreateChildWidget(int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData, char pData2)"
+      "signature": "gbVFileSystem *__thiscall UIScene::CreateChildWidget(int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData, char pData2)",
+      "evidence_level": "unverified"
     },
     "0x00450370": {
       "name": "_scalar_dtor_0370",
       "signature": "void __thiscall()",
-      "source": "| [method 27 余量批 2026-10-16 analyzer] 表 0x0056B0E0 认领连带注册 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x450390 写 vptr 0x56B0E0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56B0E0→UICaption（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UICaption（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x450390 写 vptr 0x56B0E0"
+      "source": "| [method 27 余量批 2026-10-16 analyzer] 表 0x0056B0E0 认领连带注册 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x450390 写 vptr 0x56B0E0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56B0E0→UICaption（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UICaption（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x450390 写 vptr 0x56B0E0",
+      "evidence_level": "A"
     },
     "0x00450670": {
       "name": "_todo_0670",
       "signature": "void __thiscall()",
-      "source": "| [method 27 余量批 2026-10-16 analyzer] 表 0x0056B0E0 认领连带注册"
+      "source": "| [method 27 余量批 2026-10-16 analyzer] 表 0x0056B0E0 认领连带注册",
+      "evidence_level": "unverified"
     },
     "0x004506C0": {
       "name": "~UICaption_adjthunk",
       "signature": "void __thiscall()",
-      "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x00450370）⇒ 目标名 ~UICaption 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）"
+      "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x00450370）⇒ 目标名 ~UICaption 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
+      "evidence_level": "A"
     }
   },
   "vtables": [

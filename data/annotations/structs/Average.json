@@ -5,42 +5,50 @@
     "0": {
       "name": "_size",
       "type": "UINT",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "_data",
       "type": "float *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "ret",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "_cur",
       "type": "UINT",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "_real",
       "type": "UINT",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "20": {
       "name": "_initialize",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "21": {
       "name": "_invalid",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "22": {
       "name": "_full",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
@@ -49,7 +57,8 @@
       "signature": "void (uint)",
       "source": "pdb",
       "type": "skip",
-      "reason": "misattributed: 0x004E5410 is GetEditBoxText (char * __cdecl(HWND)) — SendMessageA WM_GETTEXT into g_RoleSystemCombat buffer; 3 direct callers in CCBUI cluster (0x4EAE4B/0x4EB053/0x4EB086). Setsize not found at this address"
+      "reason": "misattributed: 0x004E5410 is GetEditBoxText (char * __cdecl(HWND)) — SendMessageA WM_GETTEXT into g_RoleSystemCombat buffer; 3 direct callers in CCBUI cluster (0x4EAE4B/0x4EB053/0x4EB086). Setsize not found at this address",
+      "evidence_level": "unverified"
     }
   }
 }

@@ -5,82 +5,98 @@
     "68": {
       "name": "m_mapwidth",
       "type": "int",
-      "source": "pdb_merge"
+      "source": "pdb_merge",
+      "evidence_level": "unverified"
     },
     "72": {
       "name": "m_screenWidth",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_screenHeight",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "m_xMapNum",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "84": {
       "name": "m_yMapNum",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "88": {
       "name": "m_MapNum",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "92": {
       "name": "m_pSubMap",
       "type": "_SUBMAP *",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "96": {
       "name": "m_moveSpeed",
       "type": "float",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "100": {
       "name": "m_isMoving",
       "type": "BYTE",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "104": {
       "name": "m_offsetx",
       "type": "float",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "108": {
       "name": "m_offsety",
       "type": "float",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "112": {
       "name": "m_moveoffsetx",
       "type": "float",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "116": {
       "name": "m_moveoffsety",
       "type": "float",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "120": {
       "name": "m_bCreate",
       "type": "BYTE",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "124": {
       "name": "timescale",
       "type": "float",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "128": {
       "name": "m_bLock",
       "type": "BYTE",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
@@ -89,11 +105,13 @@
       "signature": "void __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ UIMap（ctor 名形=类名）：A 级 refs ??0UI3DCtrl@@QAE@XZ + sub_445AA0(UIWnd ctor)；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int *__thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UI3DCtrl+sub_445AA0(UIWnd ctor) | [撞名 28 组四分账裁决 2026-10-16 analyzer] 硬撞（同 sig 双址 C2084）消歧：0x4411D0 保留 ctor（+29 写表 0x56ADAC 紧序言）；0x4410F0 大函数（+79 中途写表=reinit 负载）改名；本体 SEH 形真身待语义取证"
+      "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ UIMap（ctor 名形=类名）：A 级 refs ??0UI3DCtrl@@QAE@XZ + sub_445AA0(UIWnd ctor)；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int *__thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UI3DCtrl+sub_445AA0(UIWnd ctor) | [撞名 28 组四分账裁决 2026-10-16 analyzer] 硬撞（同 sig 双址 C2084）消歧：0x4411D0 保留 ctor（+29 写表 0x56ADAC 紧序言）；0x4410F0 大函数（+79 中途写表=reinit 负载）改名；本体 SEH 形真身待语义取证",
+      "evidence_level": "A"
     },
     "0x004411D0": {
       "name": "UIMap",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004411B0": {
       "name": "~UIMap",
@@ -101,32 +119,38 @@
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIMap（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56ADAC）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIMap（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56ADAC）",
+      "evidence_level": "A"
     },
     "0x004412C0": {
       "name": "Create",
       "signature": "char *__thiscall UIMap::Create(int id, void *pRect, int parent, char *pszTexPath, int nVal, char bAtlas)",
-      "ordinal": 7
+      "ordinal": 7,
+      "evidence_level": "unverified"
     },
     "0x004414D0": {
       "name": "Destroy",
       "signature": "void __thiscall()",
-      "ordinal": 3
+      "ordinal": 3,
+      "evidence_level": "unverified"
     },
     "0x004414F0": {
       "name": "Render",
       "signature": "void __thiscall()",
-      "ordinal": 1
+      "ordinal": 1,
+      "evidence_level": "unverified"
     },
     "0x00441730": {
       "name": "ProcessHitTest",
       "signature": "BOOL __thiscall UIMap::ProcessHitTest(int nVal, int nVal2)",
-      "ordinal": 2
+      "ordinal": 2,
+      "evidence_level": "unverified"
     },
     "0x004420C0": {
       "name": "OnMessage",
       "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
-      "ordinal": 6
+      "ordinal": 6,
+      "evidence_level": "unverified"
     }
   },
   "vtables": [

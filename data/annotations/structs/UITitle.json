@@ -4,42 +4,50 @@
     "3288": {
       "name": "m_hEffect",
       "type": "int",
-      "source": "binary:UITitle::RunFrame"
+      "source": "binary:UITitle::RunFrame",
+      "evidence_level": "unverified"
     },
     "3292": {
       "name": "m_dwEffectTick",
       "type": "int",
-      "source": "binary:UITitle::RunFrame"
+      "source": "binary:UITitle::RunFrame",
+      "evidence_level": "unverified"
     },
     "3296": {
       "name": "m_dwTimerTick",
       "type": "int",
-      "source": "binary:UITitle::RunFrame"
+      "source": "binary:UITitle::RunFrame",
+      "evidence_level": "unverified"
     },
     "3300": {
       "name": "m_bTimerActive",
       "type": "unsigned char",
-      "source": "binary:UITitle::RunFrame"
+      "source": "binary:UITitle::RunFrame",
+      "evidence_level": "unverified"
     },
     "3304": {
       "name": "m_bTimerDone",
       "type": "unsigned char",
-      "source": "binary:UITitle::RunFrame"
+      "source": "binary:UITitle::RunFrame",
+      "evidence_level": "unverified"
     },
     "3305": {
       "name": "m_bTimerProcessed",
       "type": "unsigned char",
-      "source": "binary:UITitle::RunFrame"
+      "source": "binary:UITitle::RunFrame",
+      "evidence_level": "unverified"
     },
     "7412": {
       "name": "m_nTitleStage",
       "type": "int",
-      "source": "binary:UITitle::RunFrame"
+      "source": "binary:UITitle::RunFrame",
+      "evidence_level": "unverified"
     },
     "8460": {
       "name": "m_nTitleScript",
       "type": "int",
-      "source": "binary:UITitle::RunFrame"
+      "source": "binary:UITitle::RunFrame",
+      "evidence_level": "unverified"
     }
   },
   "binary_size": 9236,
@@ -47,17 +55,20 @@
   "methods": {
     "0x0044ACE0": {
       "name": "~UITitle",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0044AB90": {
       "name": "UITitle",
       "signature": "void __thiscall()",
-      "_misattrib_evidence": "max_offset=3296>class_size=68"
+      "_misattrib_evidence": "max_offset=3296>class_size=68",
+      "evidence_level": "unverified"
     },
     "0x0044B0F0": {
       "name": "RunFrame",
       "signature": "int __thiscall UITitle::RunFrame(struct PalScript *p, int nVal)",
-      "ordinal": 2
+      "ordinal": 2,
+      "evidence_level": "unverified"
     },
     "0x0044ACC0": {
       "name": "_scalar_dtor_ACC0",
@@ -65,24 +76,28 @@
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UITitle（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AFD4）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UITitle（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AFD4）",
+      "evidence_level": "A"
     },
     "0x0044B710": {
       "name": "OnCommand",
       "signature": "int __thiscall UITitle::OnCommand(int nVal, char *pszBuf, int nVal2)",
-      "ordinal": 6
+      "ordinal": 6,
+      "evidence_level": "unverified"
     },
     "0x0044B460": {
       "name": "Render",
       "signature": "void __thiscall()",
       "source": "vtable_migrated | ret int->void: VA=0x44B460 body is exactly jmp ?Render@UITitle_BBTY@@QAEXXZ (fold/thunk to void Render; EAX never set)",
-      "ordinal": 1
+      "ordinal": 1,
+      "evidence_level": "unverified"
     },
     "0x004A14C0": {
       "name": "HideAll",
       "signature": "void __thiscall __thiscall()",
       "source": "vtable_migrated | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
-      "ordinal": 3
+      "ordinal": 3,
+      "evidence_level": "A"
     }
   },
   "vtables": [

@@ -4,15 +4,18 @@
   "known_members": {
     "0": {
       "name": "msgid",
-      "type": "int"
+      "type": "int",
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "param",
-      "type": "unsigned int[2]"
+      "type": "unsigned int[2]",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "_pad0C",
-      "type": "int"
+      "type": "int",
+      "evidence_level": "unverified"
     }
   },
   "source": " | 合成名标注 2026-10-17（verifier·方案 A 治本·布局照搬 ida_structs 幂等命名）：合成名 ⇒ 标注名 gbNodeMsgPayload | evidence: 成员名直证（msgid/param 直证 | conf high）| confidence: high"

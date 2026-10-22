@@ -6,35 +6,41 @@
   "methods": {
     "0x0041BE30": {
       "name": "_sdtor_22",
-      "signature": "ScriptObj *__thiscall(char a2)"
+      "signature": "ScriptObj *__thiscall(char a2)",
+      "evidence_level": "unverified"
     },
     "0x004AF760": {
       "name": "Update",
       "signature": "int __thiscall(int)",
-      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+      "source": "vtable_gap_fill_v1(from CEffCylinder.json)",
+      "evidence_level": "unverified"
     },
     "0x00411B80": {
       "name": "_scalar_dtor_1b80",
       "signature": "void __thiscall(int nVal1)",
       "source": "vtable_gap_fill_v1(IDB:ScriptObj::scalar_deleting_dtor) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only | 修复 2026-10-17: 同址多类注册补标 declaration_only",
-      "declaration_only": true
+      "declaration_only": true,
+      "evidence_level": "unverified"
     },
     "0x00411BB0": {
       "name": "_scalar_dtor_1bb0",
       "signature": "void __thiscall(int nVal1)",
       "source": "vtable_gap_fill_v1(IDB:ScriptObj::scalar_deleting_dtor_0) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only | 修复 2026-10-17: 同址多类注册补标 declaration_only",
-      "declaration_only": true
+      "declaration_only": true,
+      "evidence_level": "unverified"
     },
     "0x00411BD0": {
       "name": "_scalar_dtor_1BD0",
       "signature": "virtual void __thiscall(int nVal1)",
-      "source": "vtable_owner_fix(ScriptObj 主 vtable 0x56A9BC 槽位0 = scalar deleting dtor; 语义名=虚析构; PalScriptWaitObj 调用点 C2039 修复) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=ScriptObj（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56A9BC,0x56A9B0,0x56A9A4）"
+      "source": "vtable_owner_fix(ScriptObj 主 vtable 0x56A9BC 槽位0 = scalar deleting dtor; 语义名=虚析构; PalScriptWaitObj 调用点 C2039 修复) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=ScriptObj（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56A9BC,0x56A9B0,0x56A9A4）",
+      "evidence_level": "A"
     },
     "0x0055434F": {
       "name": "ScriptObj_adjthunk_434F",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only"
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
+      "evidence_level": "unverified"
     }
   },
   "vtables": [

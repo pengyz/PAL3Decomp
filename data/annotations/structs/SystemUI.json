@@ -5,418 +5,502 @@
     "72": {
       "name": "rc",
       "type": "tagRECT",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "88": {
       "name": "bkWndX",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "92": {
       "name": "bkWndY",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "96": {
       "name": "i",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "100": {
       "name": "j",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "104": {
       "name": "buf",
       "type": "char[68]",
       "source": "annotation",
-      "note": "shrunk from char[256] to char[68] to eliminate overlap"
+      "note": "shrunk from char[256] to char[68] to eliminate overlap",
+      "evidence_level": "unverified"
     },
     "172": {
       "name": "m_nField_0AC",
       "type": "int",
-      "source": "decomp ref C2039"
+      "source": "decomp ref C2039",
+      "evidence_level": "unverified"
     },
     "176": {
       "name": "m_nField_0B0",
       "type": "int",
-      "source": "decomp ref C2039"
+      "source": "decomp ref C2039",
+      "evidence_level": "unverified"
     },
     "180": {
       "name": "m_nTodo_0B4",
       "type": "void *",
-      "source": "decomp ref C2039;batch_fix:int_or_float_to_v*_LEA | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：内嵌块——`(&field+10)`=计数槽@220、`(&field+11)` 作 UIBigMap*@224（Render@0x4200A0/UIUpdate@0x420150） | [批4 诚实化 2026-10-16] A偏移形：m_pSysUI_0B4⇒m_nTodo_0B4（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
+      "source": "decomp ref C2039;batch_fix:int_or_float_to_v*_LEA | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：内嵌块——`(&field+10)`=计数槽@220、`(&field+11)` 作 UIBigMap*@224（Render@0x4200A0/UIUpdate@0x420150） | [批4 诚实化 2026-10-16] A偏移形：m_pSysUI_0B4⇒m_nTodo_0B4（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+      "evidence_level": "A"
     },
     "360": {
       "name": "m_IsMsg",
       "type": "unsigned char",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "364": {
       "name": "pStateUI",
       "type": "StateUI *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "368": {
       "name": "m_Frame",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "528": {
       "name": "m_TimeMoney",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "688": {
       "name": "m_OutFrameT",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "848": {
       "name": "m_OutFrameR",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "1008": {
       "name": "m_OutFrameL",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "1168": {
       "name": "m_OutFrameB",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "1328": {
       "name": "stp_BarL",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "1488": {
       "name": "stp_BarM",
       "type": "UIFlexBar",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "1572": {
       "name": "stp_BarR",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "1732": {
       "name": "stp_State",
       "type": "UIButton",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "2076": {
       "name": "stp_Magic",
       "type": "UIButton",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "2420": {
       "name": "stp_Equip",
       "type": "UIButton",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "2764": {
       "name": "stp_Prop",
       "type": "UIButton",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "3108": {
       "name": "stp_BattleArray",
       "type": "UIButton",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "3452": {
       "name": "stp_TaskBook",
       "type": "UIButton",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "3796": {
       "name": "stp_System",
       "type": "UIButton",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "4140": {
       "name": "stp_Exit",
       "type": "UIButton",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "4484": {
       "name": "stp_Effect",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "4644": {
       "name": "stp_Rect",
       "type": "tagRECT",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "4660": {
       "name": "m_GameTime",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "4820": {
       "name": "m_GameMoney",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "4980": {
       "name": "m_par",
       "type": "UIParticle[16][7]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "71284": {
       "name": "m_par2",
       "type": "UIParticle[16][7]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "137588": {
       "name": "m_parRc",
       "type": "tagRECT[7]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "137700": {
       "name": "_isParBtn",
       "type": "unsigned char[7]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "137708": {
       "name": "_curParEffect",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "137712": {
       "name": "m_TopBar",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "137872": {
       "name": "m_BottomBar",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "138032": {
       "name": "m_ExitGame",
       "type": "UIButton",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "138376": {
       "name": "m_SaveBtn",
       "type": "UIButton",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "138720": {
       "name": "m_LoadBtn",
       "type": "UIButton",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "139064": {
       "name": "m_DeleteBtn",
       "type": "UIButton",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "139408": {
       "name": "m_pbPage",
       "type": "UIPushButton[10]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "141928": {
       "name": "m_isItemShow",
       "type": "unsigned char[99]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "142028": {
       "name": "m_NoteItem",
       "type": "Note_Item[99]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "511100": {
       "name": "m_Scroll",
       "type": "UIScrollBar",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "511468": {
       "name": "m_CurScrollPos",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "511472": {
       "name": "m_BackBar",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "511632": {
       "name": "m_BackBar2",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "511792": {
       "name": "m_MusicBar",
       "type": "UIDragBar",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "512064": {
       "name": "m_MusicEffectBar",
       "type": "UIDragBar",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "512336": {
       "name": "m_MusicText",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "512496": {
       "name": "m_MusicEffectText",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "512656": {
       "name": "m_ItemH",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "512660": {
       "name": "m_ItemW",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "512664": {
       "name": "m_firstItem",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "512668": {
       "name": "m_selItem",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "512672": {
       "name": "m_getNote",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "512676": {
       "name": "m_noteState",
       "type": "NOTE_STATE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "512680": {
       "name": "m_loading",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "512684": {
       "name": "m_passtime",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "512688": {
       "name": "m_isExit",
       "type": "unsigned char",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "512692": {
       "name": "m_MsgBox",
       "type": "MUIDialog",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x004200A0": {
       "name": "Render",
-      "signature": "int __thiscall(int nVal)"
+      "signature": "int __thiscall(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x00420110": {
       "name": "RenderWithStack",
       "signature": "int __thiscall(void *pStack)",
-      "_misattrib_evidence": "max_offset=57572>class_size=204"
+      "_misattrib_evidence": "max_offset=57572>class_size=204",
+      "evidence_level": "unverified"
     },
     "0x004A7690": {
       "name": "~SystemUI",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00420150": {
       "name": "UIUpdate",
-      "signature": "double __thiscall(double result, double pData)"
+      "signature": "double __thiscall(double result, double pData)",
+      "evidence_level": "unverified"
     },
     "0x004AD540": {
       "name": "UpdateSwordDisplay",
       "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "ordinal": 2
+      "ordinal": 2,
+      "evidence_level": "unverified"
     },
     "0x0041F6F0": {
       "name": "Reset",
-      "signature": "void __thiscall SystemUI::Reset()"
+      "signature": "void __thiscall SystemUI::Reset()",
+      "evidence_level": "unverified"
     },
     "0x004A8150": {
       "name": "ShowPage",
       "signature": "int __thiscall SystemUI::ShowPage()",
-      "_misattrib_evidence": "max_offset=26968>class_size=1816"
+      "_misattrib_evidence": "max_offset=26968>class_size=1816",
+      "evidence_level": "unverified"
     },
     "0x004ACDE0": {
       "name": "UpdateNoteScroll",
       "signature": "int __thiscall SystemUI::UpdateNoteScroll()",
-      "_misattrib_evidence": "max_offset=283700>class_size=200"
+      "_misattrib_evidence": "max_offset=283700>class_size=200",
+      "evidence_level": "unverified"
     },
     "0x004ACF90": {
       "name": "UpdateNoteScrollAlt",
       "signature": "int __thiscall SystemUI::UpdateNoteScrollAlt()",
-      "_misattrib_evidence": "max_offset=283704>class_size=200"
+      "_misattrib_evidence": "max_offset=283704>class_size=200",
+      "evidence_level": "unverified"
     },
     "0x004AD140": {
       "name": "ProcessFrame",
       "signature": "void __thiscall SystemUI::ProcessFrame()",
-      "ordinal": 1
+      "ordinal": 1,
+      "evidence_level": "unverified"
     },
     "0x004ADC30": {
       "name": "InitScreenUI",
       "signature": "int __thiscall(int nVal, UIWnd *pWnd, int nVal2, char *pszBuf, int nVal3)",
-      "ordinal": 6
+      "ordinal": 6,
+      "evidence_level": "unverified"
     },
     "0x00421A40": {
       "name": "GetNoteItemData",
-      "signature": "int __thiscall SystemUI::GetNoteItemData(int *item)"
+      "signature": "int __thiscall SystemUI::GetNoteItemData(int *item)",
+      "evidence_level": "unverified"
     },
     "0x004A7C40": {
       "name": "LayoutWidgets",
       "signature": "int __thiscall SystemUI::LayoutWidgets()",
-      "_misattrib_evidence": "max_offset=177412>class_size=33228"
+      "_misattrib_evidence": "max_offset=177412>class_size=33228",
+      "evidence_level": "unverified"
     },
     "0x004A8260": {
       "name": "CreateNoteEntry",
-      "signature": "char __thiscall SystemUI::CreateNoteEntry(int nVal, int nVal2, int nVal3, char pData, int nVal4, int nVal5, unsigned __int8 a8)"
+      "signature": "char __thiscall SystemUI::CreateNoteEntry(int nVal, int nVal2, int nVal3, char pData, int nVal4, int nVal5, unsigned __int8 a8)",
+      "evidence_level": "unverified"
     },
     "0x004ACC10": {
       "name": "InitSlotEffects",
       "signature": "int __thiscall SystemUI::InitSlotEffects(int nVal)",
-      "_misattrib_evidence": "max_offset=177420>class_size=200"
+      "_misattrib_evidence": "max_offset=177420>class_size=200",
+      "evidence_level": "unverified"
     },
     "0x0051F130": {
       "name": "UpdateParticles",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004AC8B0": {
       "name": "ReplaceTextures",
       "signature": "void __thiscall()",
-      "_misattrib_evidence": "max_offset=382744>class_size=4280"
+      "_misattrib_evidence": "max_offset=382744>class_size=4280",
+      "evidence_level": "unverified"
     },
     "0x004A7670": {
       "name": "_scalar_dtor_7670",
       "signature": "int __thiscall(void *Block, char)",
       "source": "vtable_migrated | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=SystemUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F29C）",
-      "ordinal": 5
+      "ordinal": 5,
+      "evidence_level": "A"
     },
     "0x0041F800": {
       "name": "Close",
-      "signature": "void __thiscall SystemUI::Close()"
+      "signature": "void __thiscall SystemUI::Close()",
+      "evidence_level": "unverified"
     },
     "0x0043DE40": {
       "name": "CCBRoleState::Destroy",
       "signature": "int __thiscall Destroy(int nMode)",
-      "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+      "source": "vtable_gap_fill_v1(from CCBRoleState.json)",
+      "evidence_level": "unverified"
     }
   },
   "vtables": [

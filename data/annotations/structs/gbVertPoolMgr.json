@@ -5,69 +5,82 @@
     "0": {
       "name": "StaticPool",
       "type": "gbChain1D[32]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "512": {
       "name": "StaticPoolFVF",
       "type": "unsigned int[32]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "640": {
       "name": "StaticIndex",
       "type": "gbChain1D",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "656": {
       "name": "pDynPool",
       "type": "gbDynVertBuf *[32]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "784": {
       "name": "DynPoolFVF",
       "type": "unsigned int[32]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "912": {
       "name": "ReadOnlyPool",
       "type": "gbChain1D[32]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "1424": {
       "name": "ReadOnlyPoolFVF",
       "type": "unsigned int[32]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "1552": {
       "name": "VertPoolSize",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "1556": {
       "name": "IndexPoolSize",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "1560": {
       "name": "DynVertPoolSize",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "1564": {
       "name": "ReadOnlyPoolSize",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "1568": {
       "name": "pGfxMgr",
       "type": "gbGfxManager *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x10021680": {
       "name": "GetDynVertBuf",
       "signature": "gbDynVertBuf *__thiscall(unsigned int nVal)",
-      "source": "gbengine.import 签名补录 2026-10-14：A 级三方一致——gbengine.def mangled `?GetDynVertBuf@gbVertPoolMgr@@QAEPAVgbDynVertBuf@@I@Z`（QAE=public __thiscall / PAVgbDynVertBuf@@=返回 gbDynVertBuf* / I=unsigned int）+ gbengine_registry.jsonl @0x10021680（size=121）+ include/gbengine/gbMesh.h:194 `gbDynVertBuf* GetDynVertBuf(unsigned int fvf)`。键=gbengine.dll 注册表地址（gbTexture.json 0x1001BD30 同式，apply 地址越界跳过改名）。修 CEffectSystem.cpp:90 C2440：method_sigs 缺该返回型 ⇒ _expr_is_pointer 限定调用支回 False ⇒ DWORD 槽 fixer 不插 (unsigned long) 铸"
+      "source": "gbengine.import 签名补录 2026-10-14：A 级三方一致——gbengine.def mangled `?GetDynVertBuf@gbVertPoolMgr@@QAEPAVgbDynVertBuf@@I@Z`（QAE=public __thiscall / PAVgbDynVertBuf@@=返回 gbDynVertBuf* / I=unsigned int）+ gbengine_registry.jsonl @0x10021680（size=121）+ include/gbengine/gbMesh.h:194 `gbDynVertBuf* GetDynVertBuf(unsigned int fvf)`。键=gbengine.dll 注册表地址（gbTexture.json 0x1001BD30 同式，apply 地址越界跳过改名）。修 CEffectSystem.cpp:90 C2440：method_sigs 缺该返回型 ⇒ _expr_is_pointer 限定调用支回 False ⇒ DWORD 槽 fixer 不插 (unsigned long) 铸",
+      "evidence_level": "A"
     }
   }
 }

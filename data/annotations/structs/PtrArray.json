@@ -5,152 +5,185 @@
     "0": {
       "name": "m_pData",
       "type": "char *",
-      "source": "annotation|fix:pointer_level:char **"
+      "source": "annotation|fix:pointer_level:char **",
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "capacity",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "m_nSize",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "m_needscriptdel",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x00432660": {
       "name": "Clear",
-      "signature": "int *__thiscall()"
+      "signature": "int *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00434130": {
       "name": "_todo_434130",
       "signature": "void __thiscall(int nInitSize, int nGrowBy, char bOwned)",
-      "source": "| [撞名 28 组四分账裁决 2026-10-16 analyzer] 消歧：0x44BD60=ctor（零初始化 `mov [eax],ecx;[eax+4];[eax+8]`）保留；0x434130=静态函数形（参数全栈取，无 ecx=this）改名"
+      "source": "| [撞名 28 组四分账裁决 2026-10-16 analyzer] 消歧：0x44BD60=ctor（零初始化 `mov [eax],ecx;[eax+4];[eax+8]`）保留；0x434130=静态函数形（参数全栈取，无 ecx=this）改名",
+      "evidence_level": "unverified"
     },
     "0x004341E0": {
       "name": "~PtrArray",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00434240": {
       "name": "SetSize",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004343B0": {
       "name": "SetAtGrow",
       "signature": "char *__cdecl(unsigned short pData, int *nIndex)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x004343F0": {
       "name": "FindByName",
       "signature": "void __thiscall(const char *pszName)",
-      "source": "| sig-type-fix 2026-09-28: const char *→int（参数名 nIndex+调用点全 int 实参（UIListBox:1221 等）+sibling RemoveAt(int nIndex,int nCount) 同名同义——PDB 残留型订正；证据: 多调用点 B 级） | 返工 2026-09-28（d0643565 反证）：撤 int 订正——被调体 strcmp((const char*)nIndex,v3) 证明实参是名字串；nIndex 更名 pszName；调用点 (int) 铸形系签名渲染产物（循环论证）另解 | [T141] 同名消歧（语义偏离名修正）：@0x4343F0 全函数体=inlined strcmp 逐条比对名字串（24字节项@+8）→ 命中返 &entry[匹配]（0x434450 lea eax,[edx+ecx*8]）否则 0，**纯查表非删除** ⇒ 语义名 FindByName（区别于 sibling RemoveAt(int,int)@0x4327B0 索引删除 this->m_pData/capacity + 既有 Find/FindFirst）；objdump 辅证（strcmp 展开 + 无 memmove/delete）"
+      "source": "| sig-type-fix 2026-09-28: const char *→int（参数名 nIndex+调用点全 int 实参（UIListBox:1221 等）+sibling RemoveAt(int nIndex,int nCount) 同名同义——PDB 残留型订正；证据: 多调用点 B 级） | 返工 2026-09-28（d0643565 反证）：撤 int 订正——被调体 strcmp((const char*)nIndex,v3) 证明实参是名字串；nIndex 更名 pszName；调用点 (int) 铸形系签名渲染产物（循环论证）另解 | [T141] 同名消歧（语义偏离名修正）：@0x4343F0 全函数体=inlined strcmp 逐条比对名字串（24字节项@+8）→ 命中返 &entry[匹配]（0x434450 lea eax,[edx+ecx*8]）否则 0，**纯查表非删除** ⇒ 语义名 FindByName（区别于 sibling RemoveAt(int,int)@0x4327B0 索引删除 this->m_pData/capacity + 既有 Find/FindFirst）；objdump 辅证（strcmp 展开 + 无 memmove/delete）",
+      "evidence_level": "A"
     },
     "0x00434490": {
       "name": "Remove",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004344F0": {
       "name": "InsertAt",
       "signature": "void __thiscall(const char *pszName)",
-      "source": "| E-3 2026-09-28：nIndex→pszName（RemoveAt 同证据类 strcmp 系改名一致性）"
+      "source": "| E-3 2026-09-28：nIndex→pszName（RemoveAt 同证据类 strcmp 系改名一致性）",
+      "evidence_level": "unverified"
     },
     "0x0044BD60": {
       "name": "PtrArray",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0053D1A0": {
       "name": "SetResolution",
-      "signature": "void __thiscall(int nVal, int arg4)"
+      "signature": "void __thiscall(int nVal, int arg4)",
+      "evidence_level": "unverified"
     },
     "0x004327B0": {
       "name": "RemoveAt",
-      "signature": "int __thiscall PtrArray::RemoveAt(int nIndex, int nCount)"
+      "signature": "int __thiscall PtrArray::RemoveAt(int nIndex, int nCount)",
+      "evidence_level": "unverified"
     },
     "0x00432770": {
       "name": "SetAt",
-      "signature": "void __thiscall(int nIndex, int newElement)"
+      "signature": "void __thiscall(int nIndex, int newElement)",
+      "evidence_level": "unverified"
     },
     "0x0040D640": {
       "name": "GetAt",
-      "signature": "void *__thiscall(void *pOut, unsigned int nIndex)"
+      "signature": "void *__thiscall(void *pOut, unsigned int nIndex)",
+      "evidence_level": "unverified"
     },
     "0x0040D620": {
       "name": "GetSize",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0040D6B0": {
       "name": "Insert",
-      "signature": "void *__thiscall(void *pItem)"
+      "signature": "void *__thiscall(void *pItem)",
+      "evidence_level": "unverified"
     },
     "0x0040DBD0": {
       "name": "Find",
-      "signature": "BOOL __thiscall(void *pKey, void *pResult)"
+      "signature": "BOOL __thiscall(void *pKey, void *pResult)",
+      "evidence_level": "unverified"
     },
     "0x00411290": {
       "name": "ParseStringPair",
       "signature": "unsigned int __cdecl PtrArray::ParseStringPair(char *pszBuf, char *pszBuf2, void **a3)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x004327F0": {
       "name": "FindFirst",
-      "signature": "int __thiscall(void *pData)"
+      "signature": "int __thiscall(void *pData)",
+      "evidence_level": "unverified"
     },
     "0x00433DC0": {
       "name": "CopyRange",
       "signature": "int *__cdecl PtrArray::CopyRange(int *p_DWORD, int nVal, int nVal2)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x0053D0B0": {
       "name": "ClearBoth",
-      "signature": "PtrArray *__thiscall()"
+      "signature": "PtrArray *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0040DCD0": {
       "name": "CompareValues",
       "signature": "BOOL __cdecl(int *p_DWORD, int *p_DWORD2)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x00431CB0": {
       "name": "Reset",
-      "signature": "int *__thiscall PtrArray::Reset()"
+      "signature": "int *__thiscall PtrArray::Reset()",
+      "evidence_level": "unverified"
     },
     "0x004325A0": {
       "name": "IsArrayReady",
       "signature": "int __cdecl()",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x00434670": {
       "name": "DestroyAll",
-      "signature": "int __thiscall PtrArray::DestroyAll()"
+      "signature": "int __thiscall PtrArray::DestroyAll()",
+      "evidence_level": "unverified"
     },
     "0x004348E0": {
       "name": "ReadFileSection",
-      "signature": "struct gbVFile *__thiscall(int nSection)"
+      "signature": "struct gbVFile *__thiscall(int nSection)",
+      "evidence_level": "unverified"
     },
     "0x00433C50": {
       "name": "ReadFromVFile",
       "signature": "void __cdecl(unsigned short *pBuf, struct gbVFile *pFile)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x004019B0": {
       "name": "ReleasePtrArray",
       "signature": "void *__thiscall()",
-      "_misattrib_evidence": "max_offset=64>class_size=16"
+      "_misattrib_evidence": "max_offset=64>class_size=16",
+      "evidence_level": "unverified"
     },
     "0x00432980": {
       "name": "ResizeOpcodeParams",
       "signature": "void __thiscall(PtrArray *this)",
-      "source": "| [名账正名 2026-10-16] idapro decompile（session 753ed139）：体=`PtrArray::SetSize(this)` 单行包装——**无 vptr 写 ⇒ 非 ctor 本体**（构造闭包/尺寸重置形候选）· xref 零命中 ⇒ **禁猜挂账**（保留现名 ResizeOpcodeParams，ctor 真名待调用面取证）"
+      "source": "| [名账正名 2026-10-16] idapro decompile（session 753ed139）：体=`PtrArray::SetSize(this)` 单行包装——**无 vptr 写 ⇒ 非 ctor 本体**（构造闭包/尺寸重置形候选）· xref 零命中 ⇒ **禁猜挂账**（保留现名 ResizeOpcodeParams，ctor 真名待调用面取证）",
+      "evidence_level": "unverified"
     },
     "0x00432960": {
       "name": "_scalar_dtor_2960",
       "signature": "void __thiscall()",
-      "source": "| [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB9C 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AB9C）：本体 56 8b f1 e8 18 00 00 00 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x432980 写 vptr 0x56AB9C（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AB9C→PtrArray（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=PtrArray（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x432980 写 vptr 0x56AB9C"
+      "source": "| [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB9C 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AB9C）：本体 56 8b f1 e8 18 00 00 00 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x432980 写 vptr 0x56AB9C（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AB9C→PtrArray（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=PtrArray（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x432980 写 vptr 0x56AB9C",
+      "evidence_level": "A"
     }
   },
   "vtables": [

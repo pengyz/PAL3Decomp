@@ -6,7 +6,8 @@
       "name": "m_nTodo_000",
       "type": "void *",
       "source": "usage_evidence | [void* 语义化 2026-10-16 analyzer 30 条跨类取证] A级：33 处 `= (gbRefObject *)1` / `= 0` / `if (!…m_nTodo_000)`（1/0 flag 存取）⇒ 布尔槽 | [void* 语义化撤销 2026-10-16 analyzer] ⚠️ 名字串扰反证：m_nTodo_000 通用偏移名多类同名，33 命中散在他类字段；且既有 note 判对象指针槽与 flag 形矛盾 ⇒ 保留 void *",
-      "note": "usage-evidence: offset0 是**对象指针**而非 vfptr —— (1) `GlowObj::__vftable` 全库被强转为 CCBStage* 38 次 / char* 17 / _DWORD* 5 / CCBSystem* 2，**从未被当 vtable 调用**；(2) Actor_DoSceneTransition 往里存的是对象指针（v17=(Actor*)strlen(v66)）；(3) 整库无任何指令把 vtable 装到该偏移（带 lea/寄存器装载形态复核：位移 8、0x28 不存在）；(4) IDA 从未在 offset0 建模成员。⇒ 按惯例命名 m_nTodo_000（含义未知、类型为指针），原 `__vftable` 是 source=annotation 的自造名。"
+      "note": "usage-evidence: offset0 是**对象指针**而非 vfptr —— (1) `GlowObj::__vftable` 全库被强转为 CCBStage* 38 次 / char* 17 / _DWORD* 5 / CCBSystem* 2，**从未被当 vtable 调用**；(2) Actor_DoSceneTransition 往里存的是对象指针（v17=(Actor*)strlen(v66)）；(3) 整库无任何指令把 vtable 装到该偏移（带 lea/寄存器装载形态复核：位移 8、0x28 不存在）；(4) IDA 从未在 offset0 建模成员。⇒ 按惯例命名 m_nTodo_000（含义未知、类型为指针），原 `__vftable` 是 source=annotation 的自造名。",
+      "evidence_level": "unverified"
     }
   }
 }

@@ -5,101 +5,121 @@
     "0": {
       "name": "m_pCBSystem",
       "type": "CCBSystem *",
-      "offset": 0
+      "offset": 0,
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "m_pUI",
       "type": "CCBUI *",
-      "offset": 4
+      "offset": 4,
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "m_pRole",
       "type": "CCBRoleState *",
-      "offset": 8
+      "offset": 8,
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "m_Sequen",
       "type": "tagAttackSequen[11]",
-      "offset": 12
+      "offset": 12,
+      "evidence_level": "unverified"
     },
     "452": {
       "name": "m_bEnable",
       "type": "unsigned char",
-      "offset": 452
+      "offset": 452,
+      "evidence_level": "unverified"
     },
     "453": {
       "name": "m_bPause",
       "type": "unsigned char",
-      "offset": 453
+      "offset": 453,
+      "evidence_level": "unverified"
     },
     "454": {
       "name": "m_bVisible",
       "type": "unsigned char",
-      "offset": 454
+      "offset": 454,
+      "evidence_level": "unverified"
     },
     "455": {
       "name": "m_bLocked",
       "type": "unsigned char",
-      "offset": 455
+      "offset": 455,
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x004DBA60": {
       "name": "ProcessQueue",
-      "signature": "char __thiscall()"
+      "signature": "char __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004DBB20": {
       "name": "CheckComplete",
-      "signature": "char __thiscall()"
+      "signature": "char __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004DBD40": {
       "name": "AdvanceStep",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004DB910": {
       "name": "SetPause",
-      "signature": "double __thiscall(char bPause)"
+      "signature": "double __thiscall(char bPause)",
+      "evidence_level": "unverified"
     },
     "0x004DB5C0": {
       "name": "ResetTimers",
-      "signature": "int __thiscall CCBAttackSequen::ResetTimers()"
+      "signature": "int __thiscall CCBAttackSequen::ResetTimers()",
+      "evidence_level": "unverified"
     },
     "0x004DBB80": {
       "name": "CalcTurnOrder",
-      "signature": "int __thiscall CCBAttackSequen::CalcTurnOrder()"
+      "signature": "int __thiscall CCBAttackSequen::CalcTurnOrder()",
+      "evidence_level": "unverified"
     },
     "0x005270C0": {
       "name": "FindSequenceSlot",
-      "signature": "int __thiscall(int nVal)"
+      "signature": "int __thiscall(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x00527510": {
       "name": "AdvanceToNextSlot",
       "signature": "void __thiscall CCBAttackSequen::AdvanceToNextSlot()",
-      "_misattrib_evidence": "max_offset=15008>class_size=4280"
+      "_misattrib_evidence": "max_offset=15008>class_size=4280",
+      "evidence_level": "unverified"
     },
     "0x004DB640": {
       "name": "CalcSpeed",
       "signature": "int __thiscall(int roleIdx, int nVal)",
       "_migrated_from": "CCBSystem",
-      "_evidence": "A级: 0x4DB640 用 this+8 作 CCBRoleState* 调 0x4F3920(GetSpeedBonus, 访问 +0x481+idx*892 ⇒ 需>=1154B)，而 CCBSystem::m_pControl 是 CCBControl*(368B) 物理不可能；CCBAttackSequen::m_pRole 即 CCBRoleState*(+0x8) 类型精确吻合；0x4DB660 以 (char*)this+40*idx 后 +44/+45 写元素，与 m_Sequen 数组形态一致"
+      "_evidence": "A级: 0x4DB640 用 this+8 作 CCBRoleState* 调 0x4F3920(GetSpeedBonus, 访问 +0x481+idx*892 ⇒ 需>=1154B)，而 CCBSystem::m_pControl 是 CCBControl*(368B) 物理不可能；CCBAttackSequen::m_pRole 即 CCBRoleState*(+0x8) 类型精确吻合；0x4DB660 以 (char*)this+40*idx 后 +44/+45 写元素，与 m_Sequen 数组形态一致",
+      "evidence_level": "unverified"
     },
     "0x004DB660": {
       "name": "GetCmdSlot",
       "signature": "int __thiscall(int idx)",
       "_migrated_from": "CCBSystem",
-      "_evidence": "A级: 0x4DB640 用 this+8 作 CCBRoleState* 调 0x4F3920(GetSpeedBonus, 访问 +0x481+idx*892 ⇒ 需>=1154B)，而 CCBSystem::m_pControl 是 CCBControl*(368B) 物理不可能；CCBAttackSequen::m_pRole 即 CCBRoleState*(+0x8) 类型精确吻合；0x4DB660 以 (char*)this+40*idx 后 +44/+45 写元素，与 m_Sequen 数组形态一致"
+      "_evidence": "A级: 0x4DB640 用 this+8 作 CCBRoleState* 调 0x4F3920(GetSpeedBonus, 访问 +0x481+idx*892 ⇒ 需>=1154B)，而 CCBSystem::m_pControl 是 CCBControl*(368B) 物理不可能；CCBAttackSequen::m_pRole 即 CCBRoleState*(+0x8) 类型精确吻合；0x4DB660 以 (char*)this+40*idx 后 +44/+45 写元素，与 m_Sequen 数组形态一致",
+      "evidence_level": "unverified"
     },
     "0x004DBE60": {
       "name": "InitCombatSlot",
       "signature": "void __thiscall CCBSystem::InitCombatSlot(int roleIdx)",
       "_migrated_from": "CCBSystem",
-      "_evidence": "A级: 0x4DB640 用 this+8 作 CCBRoleState* 调 0x4F3920(GetSpeedBonus, 访问 +0x481+idx*892 ⇒ 需>=1154B)，而 CCBSystem::m_pControl 是 CCBControl*(368B) 物理不可能；CCBAttackSequen::m_pRole 即 CCBRoleState*(+0x8) 类型精确吻合；0x4DB660 以 (char*)this+40*idx 后 +44/+45 写元素，与 m_Sequen 数组形态一致"
+      "_evidence": "A级: 0x4DB640 用 this+8 作 CCBRoleState* 调 0x4F3920(GetSpeedBonus, 访问 +0x481+idx*892 ⇒ 需>=1154B)，而 CCBSystem::m_pControl 是 CCBControl*(368B) 物理不可能；CCBAttackSequen::m_pRole 即 CCBRoleState*(+0x8) 类型精确吻合；0x4DB660 以 (char*)this+40*idx 后 +44/+45 写元素，与 m_Sequen 数组形态一致",
+      "evidence_level": "unverified"
     },
     "0x004DB7A0": {
       "name": "ProcessAllCmds",
       "signature": "int __thiscall()",
       "_migrated_from": "CCBSystem",
-      "_evidence": "A级: 0x4DB7A0 把 this+8(=m_pControl, 声明 CCBControl*) 当 CCBRoleState* 传给 CCBRoleState::IsActive(0x4ED052: mov 0x243(%ecx,%edx,4),%al)、InitUI(0x4EE882: lea 0x228(%ecx,%edx,4))、SetRoleField(0x4F2BCA: mov 0x250(%ecx,%edx,4),%eax)，edx=idx*28 ⇒ 对象需>=0x250+28*idx=592B+；CCBControl binary_size=368 ⇒ 物理不可能；CCBAttackSequen::m_pRole 即 CCBRoleState*(+0x8) 吻合"
+      "_evidence": "A级: 0x4DB7A0 把 this+8(=m_pControl, 声明 CCBControl*) 当 CCBRoleState* 传给 CCBRoleState::IsActive(0x4ED052: mov 0x243(%ecx,%edx,4),%al)、InitUI(0x4EE882: lea 0x228(%ecx,%edx,4))、SetRoleField(0x4F2BCA: mov 0x250(%ecx,%edx,4),%eax)，edx=idx*28 ⇒ 对象需>=0x250+28*idx=592B+；CCBControl binary_size=368 ⇒ 物理不可能；CCBAttackSequen::m_pRole 即 CCBRoleState*(+0x8) 吻合",
+      "evidence_level": "unverified"
     }
   }
 }

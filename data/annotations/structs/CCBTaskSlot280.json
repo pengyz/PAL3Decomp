@@ -5,42 +5,50 @@
     "0": {
       "name": "m_pHead",
       "type": "void *",
-      "source": "[A 级 opcode 2026-10-21·analyzer] +0x00 头指针（拷自 this+8）· `mov 0x8(%ecx)→mov %eax,(%ecx,%edx,8)` ×2 形"
+      "source": "[A 级 opcode 2026-10-21·analyzer] +0x00 头指针（拷自 this+8）· `mov 0x8(%ecx)→mov %eax,(%ecx,%edx,8)` ×2 形",
+      "evidence_level": "A"
     },
     "3": {
       "name": "m_bFlag",
       "type": "char",
-      "source": "[A 级 opcode] +0x03 标志（第 5 参）· `mov 0x14(%esp),%al → mov %al,0x11b(...)`"
+      "source": "[A 级 opcode] +0x03 标志（第 5 参）· `mov 0x14(%esp),%al → mov %al,0x11b(...)`",
+      "evidence_level": "A"
     },
     "4": {
       "name": "m_fSlot0",
       "type": "float",
-      "source": "[A 级 opcode] +0x04 float · `fstps 0x11c(...)` 4 连写之一"
+      "source": "[A 级 opcode] +0x04 float · `fstps 0x11c(...)` 4 连写之一",
+      "evidence_level": "A"
     },
     "8": {
       "name": "m_fSlot1",
       "type": "float",
-      "source": "[A 级 opcode] +0x08 float · `fstps 0x120(...)`"
+      "source": "[A 级 opcode] +0x08 float · `fstps 0x120(...)`",
+      "evidence_level": "A"
     },
     "12": {
       "name": "m_fSlot2",
       "type": "float",
-      "source": "[A 级 opcode] +0x0C float · `fstps 0x124(...)`"
+      "source": "[A 级 opcode] +0x0C float · `fstps 0x124(...)`",
+      "evidence_level": "A"
     },
     "16": {
       "name": "m_fSlot3",
       "type": "float",
-      "source": "[A 级 opcode] +0x10 float · `fstps 0x128(...)` 4 连写之末"
+      "source": "[A 级 opcode] +0x10 float · `fstps 0x128(...)` 4 连写之末",
+      "evidence_level": "A"
     },
     "20": {
       "name": "m_nState",
       "type": "int",
-      "source": "[A 级 opcode] +0x14 **int 状态码=6** · `movl $0x6,0x14(...)` @0x4dff9f —— 与 208B 族同偏移 0x14 的 int 对**两义铁证**"
+      "source": "[A 级 opcode] +0x14 **int 状态码=6** · `movl $0x6,0x14(...)` @0x4dff9f —— 与 208B 族同偏移 0x14 的 int 对**两义铁证**",
+      "evidence_level": "A"
     },
     "24": {
       "name": "_todo_018",
       "type": "_BYTE[232]",
-      "source": "[反证占位 2026-10-21·P0-6 纪律] +0x18..0x117 尾部 scaled disp 全扫仅现 f∈{0,3,4,8,0xC,0x10,0x14} ⇒ **零访问** · 不改型（单点 opcode 不足）· 待补证"
+      "source": "[反证占位 2026-10-21·P0-6 纪律] +0x18..0x117 尾部 scaled disp 全扫仅现 f∈{0,3,4,8,0xC,0x10,0x14} ⇒ **零访问** · 不改型（单点 opcode 不足）· 待补证",
+      "evidence_level": "A"
     }
   },
   "_verdicts": {

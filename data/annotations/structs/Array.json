@@ -5,23 +5,27 @@
     "0": {
       "name": "m_pDataStart",
       "type": "int",
-      "source": "binary: first field in Array struct, not vfptr (non-virtual class) | iter2_field_rename | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x4A69B0 `LOBYTE(m_pDataStart)=0` 字节位面（判据③） | evidence: 详前文 A 级形证"
+      "source": "binary: first field in Array struct, not vfptr (non-virtual class) | iter2_field_rename | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x4A69B0 `LOBYTE(m_pDataStart)=0` 字节位面（判据③） | evidence: 详前文 A 级形证",
+      "evidence_level": "A"
     },
     "4": {
       "name": "m_nSize",
       "type": "int",
-      "source": "decomp:9x_direct_read(size_or_count)"
+      "source": "decomp:9x_direct_read(size_or_count)",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "m_pData",
       "type": "char *",
       "source": "decomp:13x_char*_cast(data_buffer_ptr)",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "m_nCapacity",
       "type": "int",
-      "source": "reverted_auto_semantic:3x | iter2_field_rename"
+      "source": "reverted_auto_semantic:3x | iter2_field_rename",
+      "evidence_level": "unverified"
     }
   },
   "binary_size": 16,
@@ -29,46 +33,56 @@
     "0x00411170": {
       "name": "Insert",
       "signature": "void *__thiscall(void *pElem, void *pEnd)",
-      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x004111C0": {
       "name": "Size",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004111E0": {
       "name": "Erase",
       "signature": "void *__thiscall(int nIndex, int nCount)",
-      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x00411240": {
       "name": "Copy",
       "signature": "void *__cdecl(void *dst)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x0049CF80": {
       "name": "HandleItemPage",
-      "signature": "double __fastcall(int *pnVal, int nVal, int elem)"
+      "signature": "double __fastcall(int *pnVal, int nVal, int elem)",
+      "evidence_level": "unverified"
     },
     "0x00410960": {
       "name": "Free",
-      "signature": "void __thiscall Array::Free()"
+      "signature": "void __thiscall Array::Free()",
+      "evidence_level": "unverified"
     },
     "0x00410DF0": {
       "name": "CopyRange",
-      "signature": "int *__thiscall(int *p_DWORD, int *p_DWORD2)"
+      "signature": "int *__thiscall(int *p_DWORD, int *p_DWORD2)",
+      "evidence_level": "unverified"
     },
     "0x004115C0": {
       "name": "PartialSort",
       "signature": "unsigned int *__cdecl Array::PartialSort(unsigned int *pdwVal, unsigned int *pdwVal2, unsigned int dwVal, int nVal, int nVal2, int nVal3)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x004AF450": {
       "name": "InsertBlocks",
-      "signature": "char *__thiscall Array::InsertBlocks(char *pszBuf, unsigned int dwVal, int *p_DWORD)"
+      "signature": "char *__thiscall Array::InsertBlocks(char *pszBuf, unsigned int dwVal, int *p_DWORD)",
+      "evidence_level": "unverified"
     },
     "0x00410BD0": {
       "name": "InsertAt",
-      "signature": "int __thiscall Array::InsertAt(char *pPos, int *pSrc)"
+      "signature": "int __thiscall Array::InsertAt(char *pPos, int *pSrc)",
+      "evidence_level": "unverified"
     }
   }
 }

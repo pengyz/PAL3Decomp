@@ -5,59 +5,70 @@
     "0": {
       "name": "m_numcmd",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "m_cmd",
       "type": "_Console__ConCmd[64]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8708": {
       "name": "m_rect",
       "type": "tagRECT",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8724": {
       "name": "m_bactive",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8728": {
       "name": "m_bEnable",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8732": {
       "name": "m_color",
       "type": "gbColorQuad",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8736": {
       "name": "m_inputbuf",
       "type": "char[100]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8836": {
       "name": "m_showbuf",
       "type": "char[100][17]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "10536": {
       "name": "m_fontcolor",
       "type": "gbColorQuad",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x0041C170": {
       "name": "SetActive",
       "signature": "void __thiscall(int nVal)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x0041C1E0": {
       "name": "ScriptPoolPage_Alloc",
       "signature": "void __thiscall(_Console *this)",
-      "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：迁归（A 级：this->m_cmd@4/_tail_000 访问证据= _Console）；A/B 隔离实验证 vtable 影响 ∅（38=他线并发）"
+      "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：迁归（A 级：this->m_cmd@4/_tail_000 访问证据= _Console）；A/B 隔离实验证 vtable 影响 ∅（38=他线并发）",
+      "evidence_level": "A"
     }
   }
 }

@@ -5,27 +5,32 @@
     "8": {
       "name": "m_nTodo_008",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "m_passedtime",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x00453C00": {
       "name": "UpdateWait",
-      "signature": "int __thiscall PalScriptIdleObj::UpdateWait(const void *pData, unsigned int dwVal)"
+      "signature": "int __thiscall PalScriptIdleObj::UpdateWait(const void *pData, unsigned int dwVal)",
+      "evidence_level": "unverified"
     },
     "0x00535600": {
       "name": "ResetTimers",
-      "signature": "UISceneFrm * __thiscall()"
+      "signature": "UISceneFrm * __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0044A970": {
       "name": "LoadScriptTexture",
       "signature": "gbVFileSystem *__thiscall PalScriptIdleObj::LoadTexture(int nTexID, int nParam)",
-      "_misattrib_evidence": "max_offset=92>class_size=16"
+      "_misattrib_evidence": "max_offset=92>class_size=16",
+      "evidence_level": "unverified"
     }
   },
   "base_size": 8,

@@ -5,48 +5,57 @@
     "692": {
       "name": "m_pStage",
       "type": "CCBStage *",
-      "offset": 692
+      "offset": 692,
+      "evidence_level": "unverified"
     },
     "696": {
       "name": "m_pUtil",
       "type": "CUtil *",
-      "offset": 696
+      "offset": 696,
+      "evidence_level": "unverified"
     },
     "700": {
       "name": "m_fLastMouseX",
       "type": "float",
-      "offset": 700
+      "offset": 700,
+      "evidence_level": "unverified"
     },
     "704": {
       "name": "m_fLastMouseY",
       "type": "float",
-      "offset": 704
+      "offset": 704,
+      "evidence_level": "unverified"
     },
     "712": {
       "name": "m_fp",
       "type": "char *",
       "offset": 712,
-      "source": "|fix:pointer_level:char **"
+      "source": "|fix:pointer_level:char **",
+      "evidence_level": "unverified"
     },
     "728": {
       "name": "m_nTask",
       "type": "int",
-      "offset": 728
+      "offset": 728,
+      "evidence_level": "unverified"
     },
     "732": {
       "name": "m_nCurTask",
       "type": "int",
-      "offset": 732
+      "offset": 732,
+      "evidence_level": "unverified"
     },
     "736": {
       "name": "m_Task",
       "type": "tagCamTask[50]",
-      "offset": 736
+      "offset": 736,
+      "evidence_level": "unverified"
     },
     "4736": {
       "name": "m_EditorCam",
       "type": "tagCam[64]",
-      "offset": 4736
+      "offset": 4736,
+      "evidence_level": "unverified"
     }
   },
   "methods": {
@@ -54,143 +63,175 @@
       "name": "_scalar_dtor",
       "signature": "void *__thiscall(char flags)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "evidence_level": "unverified"
     },
     "0x00504E70": {
       "name": "CCBStageCam",
-      "signature": "void __thiscall(CCBStageCam *Buffer)"
+      "signature": "void __thiscall(CCBStageCam *Buffer)",
+      "evidence_level": "unverified"
     },
     "0x00505060": {
       "name": "Reset",
       "signature": "void __thiscall(int nVal, const void *pData)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x005050D0": {
       "name": "LoadEditorCam",
       "signature": "void __thiscall(int nVal, int nVal2, const void *pData)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x00505180": {
       "name": "SaveEditorCam",
       "signature": "void __thiscall(int nVal, int nVal2, int nVal3)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x005051E0": {
       "name": "AddCurCamToEditor",
-      "signature": "char __thiscall(int nVal, int nVal2)"
+      "signature": "char __thiscall(int nVal, int nVal2)",
+      "evidence_level": "unverified"
     },
     "0x00505250": {
       "name": "DelEditorCam",
       "signature": "void __thiscall(int nCamIndex)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x00505290": {
       "name": "IsEditorCamValid",
       "signature": "bool __thiscall(int nCamIndex)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x005052C0": {
       "name": "IsCamValid",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x00505410": {
       "name": "Create",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x00505490": {
       "name": "Destroy",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x005054E0": {
       "name": "Update",
       "signature": "void __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004E7350": {
       "name": "PopulateCameraListView",
-      "signature": "int __thiscall CCBStageCam::PopulateCameraListView()"
+      "signature": "int __thiscall CCBStageCam::PopulateCameraListView()",
+      "evidence_level": "unverified"
     },
     "0x004E6020": {
       "name": "UpdateEditorState",
-      "signature": "int __thiscall CCBStageCam::UpdateEditorState()"
+      "signature": "int __thiscall CCBStageCam::UpdateEditorState()",
+      "evidence_level": "unverified"
     },
     "0x004E7060": {
       "name": "ApplyShake",
-      "signature": "LRESULT __thiscall(HWND hDlg)"
+      "signature": "LRESULT __thiscall(HWND hDlg)",
+      "evidence_level": "unverified"
     },
     "0x004E7280": {
       "name": "UpdateSmooth",
-      "signature": "LRESULT __thiscall()"
+      "signature": "LRESULT __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004E74E0": {
       "name": "UpdateOrbit",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004E75E0": {
       "name": "ClampViewAngle",
-      "signature": "char __thiscall()"
+      "signature": "char __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004E8480": {
       "name": "UpdateStageCamera",
-      "signature": "int __thiscall(float *pfVal, HWND hDlg, int nVal, int nVal2, int nVal3)"
+      "signature": "int __thiscall(float *pfVal, HWND hDlg, int nVal, int nVal2, int nVal3)",
+      "evidence_level": "unverified"
     },
     "0x00504DD0": {
       "name": "ResetViewport",
-      "signature": "CCBStage * __thiscall()"
+      "signature": "CCBStage * __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00504E60": {
       "name": "_todo_00504E60",
       "signature": "char __thiscall CCBStageCam::~CCBStageCam()",
-      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | 挂账③ F 案改名 2026-10-06：~CCBStageCam→_scalar_dtor（deleting-dtor 形（void* 回值+标志参）非纯析构——~名+参=C2631；UIListBox 先例） | 挂账③ 返工重定谳 2026-10-06：非析构（体=sub_504F40+return 1）——真名未知留 _todo_"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | 挂账③ F 案改名 2026-10-06：~CCBStageCam→_scalar_dtor（deleting-dtor 形（void* 回值+标志参）非纯析构——~名+参=C2631；UIListBox 先例） | 挂账③ 返工重定谳 2026-10-06：非析构（体=sub_504F40+return 1）——真名未知留 _todo_",
+      "evidence_level": "unverified"
     },
     "0x004E7B50": {
       "name": "LerpToTarget",
-      "signature": "char __thiscall()"
+      "signature": "char __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004E8450": {
       "name": "StoreCurrentView",
-      "signature": "int __thiscall CCBStageCam::StoreCurrentView(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
+      "signature": "int __thiscall CCBStageCam::StoreCurrentView(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)",
+      "evidence_level": "unverified"
     },
     "0x004E9890": {
       "name": "SetBlendWeight",
-      "signature": "LRESULT __thiscall(HWND hDlg)"
+      "signature": "LRESULT __thiscall(HWND hDlg)",
+      "evidence_level": "unverified"
     },
     "0x004E9950": {
       "name": "InterpolateAngle",
-      "signature": "LRESULT __thiscall(HWND hDlg)"
+      "signature": "LRESULT __thiscall(HWND hDlg)",
+      "evidence_level": "unverified"
     },
     "0x004E9A70": {
       "name": "UpdateFollowTarget",
-      "signature": "LRESULT __thiscall(HWND hDlg)"
+      "signature": "LRESULT __thiscall(HWND hDlg)",
+      "evidence_level": "unverified"
     },
     "0x004E9C50": {
       "name": "SetViewDistance",
-      "signature": "char __thiscall(HWND hDlg)"
+      "signature": "char __thiscall(HWND hDlg)",
+      "evidence_level": "unverified"
     },
     "0x004E9F70": {
       "name": "CalculateFOV",
-      "signature": "void __thiscall(HWND hDlg)"
+      "signature": "void __thiscall(HWND hDlg)",
+      "evidence_level": "unverified"
     },
     "0x004EA2E0": {
       "name": "UpdateTransition",
-      "signature": "LRESULT __thiscall(HWND hDlg)"
+      "signature": "LRESULT __thiscall(HWND hDlg)",
+      "evidence_level": "unverified"
     },
     "0x004E95A0": {
       "name": "sub_4E95A0",
-      "signature": "int __thiscall(CCBStageCam *this, HWND hDlg)"
+      "signature": "int __thiscall(CCBStageCam *this, HWND hDlg)",
+      "evidence_level": "unverified"
     },
     "0x004EA590": {
       "name": "DlgProc",
       "signature": "BOOL __stdcall(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x00504060": {
       "name": "~CCBStageCam",
       "signature": "void __thiscall()",
-      "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x0056FD78 认领（删除析构 CCBStageCam@0x504080+29 写表（ctor 域 0）连带 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBStageCam（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56FD78）"
+      "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x0056FD78 认领（删除析构 CCBStageCam@0x504080+29 写表（ctor 域 0）连带 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBStageCam（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56FD78）",
+      "evidence_level": "A"
     }
   },
   "base_size": 692,

@@ -5,263 +5,314 @@
     "4": {
       "name": "m_fadeIn",
       "type": "ScreenFadeIn",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "32": {
       "name": "m_fadeOut",
       "type": "ScreenFadeOut",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "56": {
       "name": "m_fadeWhite",
       "type": "ScreenFadeWhite",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "m_fadeWhite2",
       "type": "ScreenFadeWhite2",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "104": {
       "name": "m_activeQueue",
       "type": "char[4]",
-      "source": "annotation|fix:pointer_level:std::queue<ScreenEffect *,std::deque<ScreenEffect *,std::allocator<ScreenEffect *> > >"
+      "source": "annotation|fix:pointer_level:std::queue<ScreenEffect *,std::deque<ScreenEffect *,std::allocator<ScreenEffect *> > >",
+      "evidence_level": "unverified"
     },
     "108": {
       "name": "m_pAllocBlock",
       "type": "void *",
-      "source": "A:decomp ScreenEffectMgr::UpdateFrontEffect/ProcessEffect/ClearAllEffects — allocator block start ptr, used as p_field_06C[0] with 0x1000 block size | 主攻点2 成员类型修复 2026-10-17（verifier·A 级·stash 冲失后幂等重放）：型 int ⇒ void * | evidence: 0x4BE080 `m_pAllocBlock = *v6`（指针位搬）| confidence: high"
+      "source": "A:decomp ScreenEffectMgr::UpdateFrontEffect/ProcessEffect/ClearAllEffects — allocator block start ptr, used as p_field_06C[0] with 0x1000 block size | 主攻点2 成员类型修复 2026-10-17（verifier·A 级·stash 冲失后幂等重放）：型 int ⇒ void * | evidence: 0x4BE080 `m_pAllocBlock = *v6`（指针位搬）| confidence: high",
+      "evidence_level": "A"
     },
     "112": {
       "name": "m_pAllocBlockEnd",
       "type": "void *",
-      "source": "A:decomp — allocator block end (= block_start + 0x1000), used as p_field_06C[1] | 主攻点2 成员类型修复 2026-10-17（verifier·A 级·stash 冲失后幂等重放）：型 int ⇒ void * | evidence: `m_pAllocBlockEnd = v7 + 4096`（指针算术 +4096）| confidence: high"
+      "source": "A:decomp — allocator block end (= block_start + 0x1000), used as p_field_06C[1] | 主攻点2 成员类型修复 2026-10-17（verifier·A 级·stash 冲失后幂等重放）：型 int ⇒ void * | evidence: `m_pAllocBlockEnd = v7 + 4096`（指针算术 +4096）| confidence: high",
+      "evidence_level": "A"
     },
     "116": {
       "name": "m_pAllocPos",
       "type": "void *",
-      "source": "A:decomp — allocator cursor within current block, used as p_field_06C[2], advanced by 4 per allocation | 主攻点2 成员类型修复 2026-10-17（verifier·A 级·stash 冲失后幂等重放）：型 int ⇒ void * | evidence: `v3 = m_pAllocPos + 4; = v3`（指针步进 +4）| confidence: high"
+      "source": "A:decomp — allocator cursor within current block, used as p_field_06C[2], advanced by 4 per allocation | 主攻点2 成员类型修复 2026-10-17（verifier·A 级·stash 冲失后幂等重放）：型 int ⇒ void * | evidence: `v3 = m_pAllocPos + 4; = v3`（指针步进 +4）| confidence: high",
+      "evidence_level": "A"
     },
     "120": {
       "name": "m_pAllocSlot",
       "type": "void *",
-      "source": "A:decomp — ptr to current entry in block-pointer table, used as p_field_06C[3] | 主攻点2 成员类型修复 2026-10-17（verifier·A 级·stash 冲失后幂等重放）：型 int ⇒ void * | evidence: 分配链簇同构（Block/End/Pos 三点实证）| confidence: medium-high"
+      "source": "A:decomp — ptr to current entry in block-pointer table, used as p_field_06C[3] | 主攻点2 成员类型修复 2026-10-17（verifier·A 级·stash 冲失后幂等重放）：型 int ⇒ void * | evidence: 分配链簇同构（Block/End/Pos 三点实证）| confidence: medium-high",
+      "evidence_level": "A"
     },
     "124": {
       "name": "m_pAllocRest",
       "type": "void *",
-      "source": "A:decomp — secondary allocator ptr, zeroed on all-effects-cleared | 主攻点2 成员类型修复 2026-10-17（verifier·A 级·stash 冲失后幂等重放）：型 int ⇒ void * | evidence: 分配链簇同构（AllocRest 同链）| confidence: medium-high"
+      "source": "A:decomp — secondary allocator ptr, zeroed on all-effects-cleared | 主攻点2 成员类型修复 2026-10-17（verifier·A 级·stash 冲失后幂等重放）：型 int ⇒ void * | evidence: 分配链簇同构（AllocRest 同链）| confidence: medium-high",
+      "evidence_level": "A"
     },
     "128": {
       "name": "m_nAllocFlag1",
       "type": "int",
-      "source": "A:decomp — allocator flag, zeroed on all-effects-cleared"
+      "source": "A:decomp — allocator flag, zeroed on all-effects-cleared",
+      "evidence_level": "unverified"
     },
     "132": {
       "name": "m_nAllocFlag2",
       "type": "int",
-      "source": "A:decomp — allocator flag, zeroed on all-effects-cleared"
+      "source": "A:decomp — allocator flag, zeroed on all-effects-cleared",
+      "evidence_level": "unverified"
     },
     "136": {
       "name": "m_fAllocFactor",
       "type": "int",
-      "source": "A:decomp — allocator factor, zeroed on reset; set to 1065353216(1.0f) in LoadResources | 主攻点2 成员类型修复 2026-10-17（verifier·A 级·stash 冲失后幂等重放）：型保留 | `=0` 位面中性判据不足 ⇒ 名挂账 | evidence: 详前文 A 级形证"
+      "source": "A:decomp — allocator factor, zeroed on reset; set to 1065353216(1.0f) in LoadResources | 主攻点2 成员类型修复 2026-10-17（verifier·A 级·stash 冲失后幂等重放）：型保留 | `=0` 位面中性判据不足 ⇒ 名挂账 | evidence: 详前文 A 级形证",
+      "evidence_level": "A"
     },
     "148": {
       "name": "m_nEffectCount",
       "type": "int",
-      "source": "ida_decomp:_unverified_4BE4A0 if(this), --1, 20 refs"
+      "source": "ida_decomp:_unverified_4BE4A0 if(this), --1, 20 refs",
+      "evidence_level": "unverified"
     },
     "0": {
       "name": "m_pVtable",
       "type": "void*",
-      "source": "binary:gap_r2; type_fix:m_p*_int_to_void*"
+      "source": "binary:gap_r2; type_fix:m_p*_int_to_void*",
+      "evidence_level": "unverified"
     },
     "140": {
       "name": "m_pEffect",
       "type": "char *",
       "source": "ida_decomp:_unverified_4BE4A0 deref as void**, 4 refs | type_fix:int→void*(deref+ptr semantics)",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x004BE4A0": {
       "name": "UpdateFrontEffect",
       "signature": "void __thiscall()",
-      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0",
+      "evidence_level": "unverified"
     },
     "0x004BE590": {
       "name": "GetInstance",
       "signature": "ScreenEffect * __thiscall()",
-      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0",
+      "evidence_level": "unverified"
     },
     "0x004BE1A0": {
       "name": "ProcessEffect",
       "signature": "int __thiscall(int nVal1)",
-      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=4；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1"
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=4；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1",
+      "evidence_level": "unverified"
     },
     "0x004BE080": {
       "name": "ClearAllEffects",
       "signature": "void __thiscall()",
-      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0",
+      "evidence_level": "unverified"
     },
     "0x004BE810": {
       "name": "GetFadeFlags",
       "signature": "int * __thiscall()",
-      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0",
+      "evidence_level": "unverified"
     },
     "0x004BE920": {
       "name": "RenderFadeOut",
       "signature": "void __thiscall()",
-      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0",
+      "evidence_level": "unverified"
     },
     "0x004BEAB0": {
       "name": "RenderFadeIn",
       "signature": "void __thiscall()",
-      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0",
+      "evidence_level": "unverified"
     },
     "0x004BEE60": {
       "name": "ScreenEffectMgr",
       "signature": "void __thiscall()",
       "_misattrib_evidence": "max_offset=1108>class_size=152",
-      "source": "| [签名层正交治理 2026-10-16] B限定冗余+返回型Cls*：ScreenEffectMgr *__thiscall ScreenEffectMgr::ScreenEffectMgr() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0PAL3VisNode(基类)"
+      "source": "| [签名层正交治理 2026-10-16] B限定冗余+返回型Cls*：ScreenEffectMgr *__thiscall ScreenEffectMgr::ScreenEffectMgr() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0PAL3VisNode(基类)",
+      "evidence_level": "unverified"
     },
     "0x004BEFB0": {
       "name": "LoadResources",
       "signature": "gbVFileSystem * __thiscall(int nVal)",
       "source": "[36 条真型按单执行 2026-10-16] ret-N A级=4；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1",
-      "ordinal": 10
+      "ordinal": 10,
+      "evidence_level": "unverified"
     },
     "0x004BDF60": {
       "name": "IsScriptDelNeeded",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004BDF70": {
       "name": "StartFade",
       "signature": "void __thiscall()",
-      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0",
+      "evidence_level": "unverified"
     },
     "0x004BE5E0": {
       "name": "IsFadeWhiteHolding",
-      "signature": "bool __thiscall()"
+      "signature": "bool __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004BE5F0": {
       "name": "DrainQueue",
       "signature": "int __thiscall()",
-      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0",
+      "evidence_level": "unverified"
     },
     "0x004BE6B0": {
       "name": "AllocEffectBlock",
       "signature": "char * __thiscall()",
-      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0",
+      "evidence_level": "unverified"
     },
     "0x004BE9C0": {
       "name": "ToggleFade",
       "signature": "void __thiscall(float fVal)",
-      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=4；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1"
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=4；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1",
+      "evidence_level": "unverified"
     },
     "0x004BE9E0": {
       "name": "StartFadeIn",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004BEC00": {
       "name": "RenderFadeWhiteOut",
       "signature": "void __thiscall()",
-      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0",
+      "evidence_level": "unverified"
     },
     "0x004BED50": {
       "name": "RenderFadeWhiteIn",
       "signature": "void __thiscall()",
-      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0",
+      "evidence_level": "unverified"
     },
     "0x004BF4F0": {
       "name": "UpdateAnimation",
       "signature": "void __thiscall(float fVal)",
       "source": "[36 条真型按单执行 2026-10-16] ret-N A级=4；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1",
-      "ordinal": 12
+      "ordinal": 12,
+      "evidence_level": "unverified"
     },
     "0x004BF680": {
       "name": "GetPageIndex",
       "signature": "int __thiscall(int nType)",
       "ordinal": 13,
-      "source": "| [真型补全 2026-10-16] int __thiscall(int nVal) ⇒ int __thiscall(int nType)：idapro decompile：`this->m_fadeWhite2.m_nType = nVal` ⇒ 参数语义=nType（型 int ✓ 仅正名）"
+      "source": "| [真型补全 2026-10-16] int __thiscall(int nVal) ⇒ int __thiscall(int nType)：idapro decompile：`this->m_fadeWhite2.m_nType = nVal` ⇒ 参数语义=nType（型 int ✓ 仅正名）",
+      "evidence_level": "unverified"
     },
     "0x004BF6C0": {
       "name": "SetFadeParams",
       "signature": "int __thiscall(gbMatrix4 *pMat)",
       "ordinal": 14,
-      "source": "| [真型补全 2026-10-16] int __thiscall(int nVal) ⇒ int __thiscall(gbMatrix4 *pMat)：idapro decompile（session 1af5c89c）铁证：`gbMatrix4::LoadIdentity((gbMatrix4 *)nVal)` + `*(_DWORD *)(nVal + 68/72)` 偏移写 ⇒ **nVal 实为 gbMatrix4***（占位 int 错型）"
+      "source": "| [真型补全 2026-10-16] int __thiscall(int nVal) ⇒ int __thiscall(gbMatrix4 *pMat)：idapro decompile（session 1af5c89c）铁证：`gbMatrix4::LoadIdentity((gbMatrix4 *)nVal)` + `*(_DWORD *)(nVal + 68/72)` 偏移写 ⇒ **nVal 实为 gbMatrix4***（占位 int 错型）",
+      "evidence_level": "unverified"
     },
     "0x004BF760": {
       "name": "ResetFadeState",
       "signature": "int * __thiscall()",
-      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0",
+      "evidence_level": "unverified"
     },
     "0x0052F310": {
       "name": "ProcessInstance",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0052F330": {
       "name": "IsFadeActive",
       "signature": "BOOL __thiscall()",
-      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0"
+      "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0",
+      "evidence_level": "unverified"
     },
     "0x004BF170": {
       "name": "CleanupTextures",
       "signature": "void __thiscall()",
       "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0",
-      "ordinal": 11
+      "ordinal": 11,
+      "evidence_level": "unverified"
     },
     "0x005420D8": {
       "name": "EnableShadow",
       "signature": "void __thiscall(int nEnable)",
-      "source": "vtable_gap_fill_v1(from gbVisNode.json) | [真型补全 2026-10-16] (空) ⇒ void __thiscall(int nEnable)：idapro decompile：thunk 转发 gbVisNode::EnableShadow(gbVisNode*, int enable) ⇒ 1 参 int"
+      "source": "vtable_gap_fill_v1(from gbVisNode.json) | [真型补全 2026-10-16] (空) ⇒ void __thiscall(int nEnable)：idapro decompile：thunk 转发 gbVisNode::EnableShadow(gbVisNode*, int enable) ⇒ 1 参 int",
+      "evidence_level": "unverified"
     },
     "0x005420DE": {
       "name": "GetAABBox",
       "signature": "void __thiscall(gbAABBox *pBox)",
-      "source": "vtable_gap_fill_v1(from gbVisNode.json) | [真型补全 2026-10-16] (空) ⇒ void __thiscall(gbAABBox *pBox)：idapro decompile：thunk 转发 gbVisNode::GetAABBox(gbVisNode*, gbAABBox *p0) ⇒ 1 参指针"
+      "source": "vtable_gap_fill_v1(from gbVisNode.json) | [真型补全 2026-10-16] (空) ⇒ void __thiscall(gbAABBox *pBox)：idapro decompile：thunk 转发 gbVisNode::GetAABBox(gbVisNode*, gbAABBox *p0) ⇒ 1 参指针",
+      "evidence_level": "unverified"
     },
     "0x0054210E": {
       "name": "GetBoundSphere",
       "signature": "void __thiscall(gbSphere *pSphere)",
-      "source": "vtable_gap_fill_v1(from gbVisNode.json) | [真型补全 2026-10-16] (空) ⇒ void __thiscall(gbSphere *pSphere)：idapro decompile：thunk 转发 gbVisNode::GetBoundSphere(gbVisNode*, gbSphere *p0) ⇒ 1 参指针"
+      "source": "vtable_gap_fill_v1(from gbVisNode.json) | [真型补全 2026-10-16] (空) ⇒ void __thiscall(gbSphere *pSphere)：idapro decompile：thunk 转发 gbVisNode::GetBoundSphere(gbVisNode*, gbSphere *p0) ⇒ 1 参指针",
+      "evidence_level": "unverified"
     },
     "0x004BEA80": {
       "name": "_scalar_dtor_EA80",
       "signature": "void __thiscall()",
-      "source": "| [残余 14 条裁决 2026-10-16 analyzer] 本体 A 级：删际析构形 `56 8b f1 e8 18 00 00 00 f6 44 24 08 01`（包装真 dtor） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4BEAA0 写 vptr 0x56F52C（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56F52C→ScreenEffectMgr（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=ScreenEffectMgr（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4BEAA0 写 vptr 0x56F52C"
+      "source": "| [残余 14 条裁决 2026-10-16 analyzer] 本体 A 级：删际析构形 `56 8b f1 e8 18 00 00 00 f6 44 24 08 01`（包装真 dtor） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4BEAA0 写 vptr 0x56F52C（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56F52C→ScreenEffectMgr（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=ScreenEffectMgr（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4BEAA0 写 vptr 0x56F52C",
+      "evidence_level": "A"
     },
     "0x004BEBD0": {
       "name": "_scalar_dtor_EBD0",
       "signature": "void __thiscall()",
-      "source": "| [残余 14 条裁决 2026-10-16 analyzer] 本体 A 级：删际析构形 `56 8b f1 e8 18 00 00 00 f6 44 24 08 01`（包装真 dtor） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4BEBF0 写 vptr 0x56F548（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56F548→ScreenEffectMgr（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=ScreenEffectMgr（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4BEBF0 写 vptr 0x56F548"
+      "source": "| [残余 14 条裁决 2026-10-16 analyzer] 本体 A 级：删际析构形 `56 8b f1 e8 18 00 00 00 f6 44 24 08 01`（包装真 dtor） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4BEBF0 写 vptr 0x56F548（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56F548→ScreenEffectMgr（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=ScreenEffectMgr（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4BEBF0 写 vptr 0x56F548",
+      "evidence_level": "A"
     },
     "0x004BED20": {
       "name": "_scalar_dtor_ED20",
       "signature": "void __thiscall()",
-      "source": "| [残余 14 条裁决 2026-10-16 analyzer] 本体 A 级：删际析构形 `56 8b f1 e8 18 00 00 00 f6 44 24 08 01`（包装真 dtor） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4BED40 写 vptr 0x56F564（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56F564→ScreenEffectMgr（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=ScreenEffectMgr（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4BED40 写 vptr 0x56F564"
+      "source": "| [残余 14 条裁决 2026-10-16 analyzer] 本体 A 级：删际析构形 `56 8b f1 e8 18 00 00 00 f6 44 24 08 01`（包装真 dtor） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4BED40 写 vptr 0x56F564（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56F564→ScreenEffectMgr（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=ScreenEffectMgr（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4BED40 写 vptr 0x56F564",
+      "evidence_level": "A"
     },
     "0x004BDF30": {
       "name": "_todo_4BDF30",
       "signature": "void __thiscall(float)",
       "source": "| [残余 14 条裁决 2026-10-16 analyzer] 本体 A 级：计时累加器 `+16 float 累加 >+12 阈值处理`（0x4BDF30 decompile 实证） | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
-      "declaration_only": true
+      "declaration_only": true,
+      "evidence_level": "A"
     },
     "0x004BE060": {
       "name": "_scalar_dtor_E060",
       "signature": "void __thiscall()",
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=ScreenEffectMgr（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F4F0,0x56F508）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=ScreenEffectMgr（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F4F0,0x56F508）",
+      "evidence_level": "A"
     },
     "0x004BE8F0": {
       "name": "_scalar_dtor_E8F0",
       "signature": "void __thiscall()",
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=ScreenEffectMgr（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4BE910 写 vptr 0x56F510"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=ScreenEffectMgr（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4BE910 写 vptr 0x56F510",
+      "evidence_level": "A"
     },
     "0x004BEF30": {
       "name": "_scalar_dtor_EF30",
       "signature": "void __thiscall()",
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=ScreenEffectMgr（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F580）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=ScreenEffectMgr（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F580）",
+      "evidence_level": "A"
     }
   },
   "vtables": [

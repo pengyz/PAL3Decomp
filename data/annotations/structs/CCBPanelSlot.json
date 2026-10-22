@@ -5,102 +5,122 @@
     "4": {
       "name": "m_nDimH",
       "type": "int",
-      "source": "InitPanel"
+      "source": "InitPanel",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "m_nEdgeR",
       "type": "int",
-      "source": "InitPanel:computed"
+      "source": "InitPanel:computed",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "m_nEdgeB",
       "type": "int",
-      "source": "InitPanel:computed"
+      "source": "InitPanel:computed",
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "m_nMarginX2",
       "type": "int",
-      "source": "InitPanel:copy"
+      "source": "InitPanel:copy",
+      "evidence_level": "unverified"
     },
     "20": {
       "name": "m_nDimH2",
       "type": "int",
-      "source": "InitPanel:copy"
+      "source": "InitPanel:copy",
+      "evidence_level": "unverified"
     },
     "24": {
       "name": "m_nEdgeR2",
       "type": "int",
-      "source": "InitPanel:copy"
+      "source": "InitPanel:copy",
+      "evidence_level": "unverified"
     },
     "28": {
       "name": "m_nEdgeB2",
       "type": "int",
-      "source": "InitPanel:copy"
+      "source": "InitPanel:copy",
+      "evidence_level": "unverified"
     },
     "32": {
       "name": "m_fMarginX",
       "type": "float",
-      "source": "InitPanel:IEEE754"
+      "source": "InitPanel:IEEE754",
+      "evidence_level": "unverified"
     },
     "36": {
       "name": "m_fDimH",
       "type": "float",
-      "source": "InitPanel:IEEE754"
+      "source": "InitPanel:IEEE754",
+      "evidence_level": "unverified"
     },
     "40": {
       "name": "m_nClipL",
       "type": "int",
-      "source": "InitPanel:clip"
+      "source": "InitPanel:clip",
+      "evidence_level": "unverified"
     },
     "44": {
       "name": "m_nClipT",
       "type": "int",
-      "source": "InitPanel:clip"
+      "source": "InitPanel:clip",
+      "evidence_level": "unverified"
     },
     "48": {
       "name": "m_nClipR",
       "type": "int",
-      "source": "InitPanel:clip"
+      "source": "InitPanel:clip",
+      "evidence_level": "unverified"
     },
     "52": {
       "name": "m_nClipB",
       "type": "int",
-      "source": "InitPanel:clip"
+      "source": "InitPanel:clip",
+      "evidence_level": "unverified"
     },
     "56": {
       "name": "m_nClipL2",
       "type": "int",
-      "source": "InitPanel:copy"
+      "source": "InitPanel:copy",
+      "evidence_level": "unverified"
     },
     "60": {
       "name": "m_nClipT2",
       "type": "int",
-      "source": "InitPanel:copy"
+      "source": "InitPanel:copy",
+      "evidence_level": "unverified"
     },
     "64": {
       "name": "m_nClipR2",
       "type": "int",
-      "source": "InitPanel:copy"
+      "source": "InitPanel:copy",
+      "evidence_level": "unverified"
     },
     "68": {
       "name": "m_nClipB2",
       "type": "int",
-      "source": "InitPanel:copy"
+      "source": "InitPanel:copy",
+      "evidence_level": "unverified"
     },
     "72": {
       "name": "m_nPosX",
       "type": "int",
-      "source": "InitPanel:position"
+      "source": "InitPanel:position",
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_nPosY",
       "type": "int",
-      "source": "InitPanel:position"
+      "source": "InitPanel:position",
+      "evidence_level": "unverified"
     },
     "92": {
       "name": "m_Widget",
       "type": "char[384]",
-      "source": "vtable+32_called_UIWnd_compatible"
+      "source": "vtable+32_called_UIWnd_compatible",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
@@ -108,17 +128,20 @@
       "name": "CCBPanelSlot::Render",
       "ordinal": 1,
       "owner": "CCBPanelSlot",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00442FF0": {
       "name": "Update_2ff0",
       "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "source": "vtable_gap_fill_v1(from UIFrameWnd.json)"
+      "source": "vtable_gap_fill_v1(from UIFrameWnd.json)",
+      "evidence_level": "unverified"
     },
     "0x00445E70": {
       "name": "ShowClipped",
       "signature": "int __thiscall(int nFlags)",
-      "source": "vtable_gap_fill_v1(from UIWnd.json) | [T115] 同名消歧：@0x445E70 全函数体（395 字符）成员簇=m_nClipB/m_nClipL2（裁剪态）+ vtable+24 调用 ⇒ 语义名 ShowClipped（禁伪语义 ✓ 成员证据）"
+      "source": "vtable_gap_fill_v1(from UIWnd.json) | [T115] 同名消歧：@0x445E70 全函数体（395 字符）成员簇=m_nClipB/m_nClipL2（裁剪态）+ vtable+24 调用 ⇒ 语义名 ShowClipped（禁伪语义 ✓ 成员证据）",
+      "evidence_level": "unverified"
     }
   },
   "vtables": [

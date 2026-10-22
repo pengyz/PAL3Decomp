@@ -5,77 +5,92 @@
     "128": {
       "name": "m_nCamState",
       "type": "int",
-      "source": "binary_scan:1refs | ida_xref2"
+      "source": "binary_scan:1refs | ida_xref2",
+      "evidence_level": "unverified"
     },
     "152": {
       "name": "m_nViewMode",
       "type": "int",
-      "source": "binary_scan:2refs | ida_xref2"
+      "source": "binary_scan:2refs | ida_xref2",
+      "evidence_level": "unverified"
     },
     "160": {
       "name": "m_fCamAngle",
       "type": "float",
-      "source": "binary_scan:5refs | ida_xref2"
+      "source": "binary_scan:5refs | ida_xref2",
+      "evidence_level": "unverified"
     },
     "164": {
       "name": "m_fCoordU",
       "type": "float",
-      "source": "A:FPU_fld_2x_[eax+0A4h/0A8h]_pair_pattern"
+      "source": "A:FPU_fld_2x_[eax+0A4h/0A8h]_pair_pattern",
+      "evidence_level": "unverified"
     },
     "168": {
       "name": "m_fCoordV",
       "type": "float",
-      "source": "A:FPU_fld_2x_[eax+0A4h/0A8h]_pair_pattern"
+      "source": "A:FPU_fld_2x_[eax+0A4h/0A8h]_pair_pattern",
+      "evidence_level": "unverified"
     },
     "220": {
       "name": "m_nBuffer",
       "type": "int",
-      "source": "A:4x_mov_[ebp+0DCh]_load_pattern"
+      "source": "A:4x_mov_[ebp+0DCh]_load_pattern",
+      "evidence_level": "unverified"
     },
     "224": {
       "name": "m_hTarget",
       "type": "int",
-      "source": "binary_scan:1refs | ida_xref2"
+      "source": "binary_scan:1refs | ida_xref2",
+      "evidence_level": "unverified"
     },
     "272": {
       "name": "m_pCameraData",
       "type": "int",
-      "source": "binary_scan:2refs | ida_xref2"
+      "source": "binary_scan:2refs | ida_xref2",
+      "evidence_level": "unverified"
     },
     "460": {
       "name": "m_nStateFlags",
       "type": "int",
-      "source": "binary_scan:1refs | ida_xref2"
+      "source": "binary_scan:1refs | ida_xref2",
+      "evidence_level": "unverified"
     },
     "464": {
       "name": "m_nParam",
       "type": "int",
-      "source": "A:4x_mov_[esi+1D0h]_load_pattern"
+      "source": "A:4x_mov_[esi+1D0h]_load_pattern",
+      "evidence_level": "unverified"
     },
     "492": {
       "name": "m_fVecX",
       "type": "float",
-      "source": "A:FPU_fld_3x_[eax+1ECh/1F0h/1F4h]_vector_pattern"
+      "source": "A:FPU_fld_3x_[eax+1ECh/1F0h/1F4h]_vector_pattern",
+      "evidence_level": "unverified"
     },
     "496": {
       "name": "m_fVecY",
       "type": "float",
-      "source": "A:FPU_fld_3x_[eax+1ECh/1F0h/1F4h]_vector_pattern"
+      "source": "A:FPU_fld_3x_[eax+1ECh/1F0h/1F4h]_vector_pattern",
+      "evidence_level": "unverified"
     },
     "500": {
       "name": "m_fVecZ",
       "type": "float",
-      "source": "A:FPU_fld_3x_[eax+1ECh/1F0h/1F4h]_vector_pattern"
+      "source": "A:FPU_fld_3x_[eax+1ECh/1F0h/1F4h]_vector_pattern",
+      "evidence_level": "unverified"
     },
     "628": {
       "name": "m_hCameraHandle",
       "type": "int",
-      "source": "binary_scan:2refs | ida_xref2"
+      "source": "binary_scan:2refs | ida_xref2",
+      "evidence_level": "unverified"
     },
     "632": {
       "name": "m_nTodo_278",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     }
   },
   "binary_size": 636,
@@ -83,26 +98,31 @@
     "0x00420CD0": {
       "name": "GetViewMode",
       "signature": "int __cdecl(int nVal)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x00420E50": {
       "name": "CalcPosition",
       "signature": "float *__cdecl(float *pMat)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x004232D0": {
       "name": "GetTarget",
       "signature": "int __cdecl()",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x0041A070": {
       "name": "IsPointVisible",
-      "signature": "BOOL __thiscall UICamera::IsPointVisible(float *pfTargetPos, char bNearVisible)"
+      "signature": "BOOL __thiscall UICamera::IsPointVisible(float *pfTargetPos, char bNearVisible)",
+      "evidence_level": "unverified"
     },
     "0x004230D0": {
       "name": "GetState",
       "signature": "int __thiscall()",
-      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
+      "evidence_level": "unverified"
     }
   }
 }

@@ -6,367 +6,441 @@
     "0": {
       "name": "m_nSlotID",
       "type": "int",
-      "source": "type_fix:float->int(naming_convention:prefix m_n indicates integer (number))"
+      "source": "type_fix:float->int(naming_convention:prefix m_n indicates integer (number))",
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "m_vPos_x",
       "type": "float",
-      "source": "binary:Execute dword_C05F64=v2[1], v2=g_pRoleSystem"
+      "source": "binary:Execute dword_C05F64=v2[1], v2=g_pRoleSystem",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "m_vPos_y",
       "type": "float",
-      "source": "binary:Execute dword_C05F68=v2[2]"
+      "source": "binary:Execute dword_C05F68=v2[2]",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "m_vPos_z",
       "type": "float",
-      "source": "binary:Execute dword_C05F6C=v2[3]"
+      "source": "binary:Execute dword_C05F6C=v2[3]",
+      "evidence_level": "unverified"
     },
     "20": {
       "name": "m_nTodo_014",
       "type": "float",
-      "source": "A:FPU_disp8_in_class_method"
+      "source": "A:FPU_disp8_in_class_method",
+      "evidence_level": "unverified"
     },
     "24": {
       "name": "m_nTodo_018",
       "type": "float",
-      "source": "A:FPU_disp8_in_class_method"
+      "source": "A:FPU_disp8_in_class_method",
+      "evidence_level": "unverified"
     },
     "28": {
       "name": "m_nTodo_01C",
       "type": "int",
-      "source": "binary:Execute dword_C05F7C=v2[7]"
+      "source": "binary:Execute dword_C05F7C=v2[7]",
+      "evidence_level": "unverified"
     },
     "32": {
       "name": "m_nTodo_020",
       "type": "int",
-      "source": "binary:Execute dword_C05F80=v2[8]"
+      "source": "binary:Execute dword_C05F80=v2[8]",
+      "evidence_level": "unverified"
     },
     "36": {
       "name": "m_nSerialFlag",
       "type": "int",
-      "source": "A:decomp_fread_fwrite_serialized_field"
+      "source": "A:decomp_fread_fwrite_serialized_field",
+      "evidence_level": "unverified"
     },
     "40": {
       "name": "m_nTodo_28",
       "type": "int",
-      "source": "binary:Execute dword_C05F88=v2[10];A:decomp_batch_rename_usage_pattern | [批4 诚实化 2026-10-16] A偏移形：m_bFlag_28⇒m_nTodo_28（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
+      "source": "binary:Execute dword_C05F88=v2[10];A:decomp_batch_rename_usage_pattern | [批4 诚实化 2026-10-16] A偏移形：m_bFlag_28⇒m_nTodo_28（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+      "evidence_level": "unverified"
     },
     "148": {
       "name": "m_vRot_x",
       "type": "float",
-      "source": "binary:Execute dword_C05FF4=v2[37], from RoleSystem+0x94"
+      "source": "binary:Execute dword_C05FF4=v2[37], from RoleSystem+0x94",
+      "evidence_level": "unverified"
     },
     "152": {
       "name": "m_vRot_y",
       "type": "float",
-      "source": "binary:Execute dword_C05FF8=v2[38]"
+      "source": "binary:Execute dword_C05FF8=v2[38]",
+      "evidence_level": "unverified"
     },
     "156": {
       "name": "m_vRot_z",
       "type": "float",
-      "source": "binary:Execute dword_C05FFC=v2[39]"
+      "source": "binary:Execute dword_C05FFC=v2[39]",
+      "evidence_level": "unverified"
     },
     "160": {
       "name": "m_vDir_x",
       "type": "float",
-      "source": "binary:Execute dword_C06000=v2[40], from RoleSystem+0xA0"
+      "source": "binary:Execute dword_C06000=v2[40], from RoleSystem+0xA0",
+      "evidence_level": "unverified"
     },
     "164": {
       "name": "m_vDir_y",
       "type": "float",
-      "source": "binary:Execute dword_C06004=v2[41]"
+      "source": "binary:Execute dword_C06004=v2[41]",
+      "evidence_level": "unverified"
     },
     "168": {
       "name": "m_vDir_z",
       "type": "float",
-      "source": "binary:Execute dword_C06008=v2[42]"
+      "source": "binary:Execute dword_C06008=v2[42]",
+      "evidence_level": "unverified"
     },
     "628": {
       "name": "m_nActionID",
       "type": "int",
-      "source": "binary:Execute dword_C061D4=v2[157], from RoleSystem+0x274"
+      "source": "binary:Execute dword_C061D4=v2[157], from RoleSystem+0x274",
+      "evidence_level": "unverified"
     },
     "632": {
       "name": "m_bActive",
       "type": "int",
-      "source": "binary:Execute dword_C061D8=0/1"
+      "source": "binary:Execute dword_C061D8=0/1",
+      "evidence_level": "unverified"
     },
     "8688": {
       "name": "m_nSaveRot_x",
       "type": "float",
-      "source": "binary:Execute dword_C08150=v2[2172], from RoleSystem+0x21F0"
+      "source": "binary:Execute dword_C08150=v2[2172], from RoleSystem+0x21F0",
+      "evidence_level": "unverified"
     },
     "8692": {
       "name": "m_nSaveRot_y",
       "type": "float",
-      "source": "binary:Execute dword_C08154=v2[2173]"
+      "source": "binary:Execute dword_C08154=v2[2173]",
+      "evidence_level": "unverified"
     },
     "8696": {
       "name": "m_nSaveRot_z",
       "type": "float",
-      "source": "binary:Execute dword_C08158=v2[2174]"
+      "source": "binary:Execute dword_C08158=v2[2174]",
+      "evidence_level": "unverified"
     },
     "8700": {
       "name": "m_nSaveDir",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "source": "B:naming_m_n+FPU_misattrib",
+      "evidence_level": "unverified"
     },
     "144": {
       "name": "m_nMoveState",
       "type": "int",
-      "source": "binary:UpdateTimers this+144, checked != 0"
+      "source": "binary:UpdateTimers this+144, checked != 0",
+      "evidence_level": "unverified"
     },
     "680": {
       "name": "m_Object3D",
       "type": "int",
-      "source": "binary:UpdateTimers sub_536FB0(this+680), Object3D method"
+      "source": "binary:UpdateTimers sub_536FB0(this+680), Object3D method",
+      "evidence_level": "unverified"
     },
     "1264": {
       "name": "m_nActionState",
       "type": "int",
-      "source": "binary:UpdateTimers this+1264 ==4 check"
+      "source": "binary:UpdateTimers this+1264 ==4 check",
+      "evidence_level": "unverified"
     },
     "1268": {
       "name": "m_nMoveMode",
       "type": "int",
-      "source": "binary:UpdateTimers this+1268 ==12 check"
+      "source": "binary:UpdateTimers this+1268 ==12 check",
+      "evidence_level": "unverified"
     },
     "1284": {
       "name": "m_nSceneState",
       "type": "int",
-      "source": "binary:UpdateObjects this+1284 = dword_C08664"
+      "source": "binary:UpdateObjects this+1284 = dword_C08664",
+      "evidence_level": "unverified"
     },
     "1296": {
       "name": "m_vSavePos1_x",
       "type": "float",
-      "source": "binary:UpdateTimers this+1296 = this+1308"
+      "source": "binary:UpdateTimers this+1296 = this+1308",
+      "evidence_level": "unverified"
     },
     "1300": {
       "name": "m_vSavePos1_y",
       "type": "float",
-      "source": "binary:UpdateTimers this+1300 = this+1312"
+      "source": "binary:UpdateTimers this+1300 = this+1312",
+      "evidence_level": "unverified"
     },
     "1304": {
       "name": "m_vSavePos1_z",
       "type": "float",
-      "source": "binary:UpdateTimers this+1304 = this+1316"
+      "source": "binary:UpdateTimers this+1304 = this+1316",
+      "evidence_level": "unverified"
     },
     "1308": {
       "name": "m_vSrcPos_x",
       "type": "float",
-      "source": "binary:UpdateTimers copied to +1296"
+      "source": "binary:UpdateTimers copied to +1296",
+      "evidence_level": "unverified"
     },
     "1312": {
       "name": "m_vSrcPos_y",
       "type": "float",
-      "source": "binary:UpdateTimers copied to +1300"
+      "source": "binary:UpdateTimers copied to +1300",
+      "evidence_level": "unverified"
     },
     "1316": {
       "name": "m_vSrcPos_z",
       "type": "float",
-      "source": "binary:UpdateTimers copied to +1304"
+      "source": "binary:UpdateTimers copied to +1304",
+      "evidence_level": "unverified"
     },
     "1344": {
       "name": "m_vTargetPos",
       "type": "float",
-      "source": "binary:UpdateObjects sub_419090(this+1344)"
+      "source": "binary:UpdateObjects sub_419090(this+1344)",
+      "evidence_level": "unverified"
     },
     "104": {
       "name": "m_szFmtBuf",
       "type": "char[40]",
-      "source": "binary:gap_r2 | type_fix:int→char[40](sprintf(&this->_field_068,\"%d\",...))"
+      "source": "binary:gap_r2 | type_fix:int→char[40](sprintf(&this->_field_068,\"%d\",...))",
+      "evidence_level": "unverified"
     },
     "904": {
       "name": "m_nEventParam",
       "type": "int",
-      "source": "A:decomp ScriptSystem::ProcessScriptEvent <0 check, paired with m_pScriptEvent(900) as event validity guard"
+      "source": "A:decomp ScriptSystem::ProcessScriptEvent <0 check, paired with m_pScriptEvent(900) as event validity guard",
+      "evidence_level": "unverified"
     },
     "900": {
       "name": "m_pScriptEvent",
       "type": "int",
-      "source": "binary:7x [reg+0x384] in ScriptSystem::_init_4890a0, reg=this(ebp/ebx/esi) | ida_xref2"
+      "source": "binary:7x [reg+0x384] in ScriptSystem::_init_4890a0, reg=this(ebp/ebx/esi) | ida_xref2",
+      "evidence_level": "unverified"
     },
     "909": {
       "name": "m_bOpcodeFlag",
       "type": "unsigned char",
-      "source": "ida_decomp:_init_4890a0 = 0, = v25, 5 refs"
+      "source": "ida_decomp:_init_4890a0 = 0, = v25, 5 refs",
+      "evidence_level": "unverified"
     },
     "910": {
       "name": "m_bExecFlag",
       "type": "unsigned char",
-      "source": "ida_decomp:_init_4890a0 = 0, 4 refs"
+      "source": "ida_decomp:_init_4890a0 = 0, 4 refs",
+      "evidence_level": "unverified"
     },
     "911": {
       "name": "m_bBlockFlag",
       "type": "unsigned char",
-      "source": "ida_decomp:_init_4890a0 = 0, 3 refs"
+      "source": "ida_decomp:_init_4890a0 = 0, 3 refs",
+      "evidence_level": "unverified"
     },
     "1348": {
       "name": "m_fObjects",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast",
+      "evidence_level": "B"
     },
     "1352": {
       "name": "m_fTargetDir",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast",
+      "evidence_level": "B"
     },
     "1468": {
       "name": "m_nTodo_5BC",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast",
+      "evidence_level": "B"
     },
     "1472": {
       "name": "m_nTodo_5C0",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast",
+      "evidence_level": "B"
     },
     "1476": {
       "name": "m_nTodo_5C4",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast",
+      "evidence_level": "B"
     },
     "877": {
       "name": "m_nTodo_36D",
       "type": "unsigned char",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access",
+      "evidence_level": "unverified"
     },
     "1320": {
       "name": "m_vMoveDir_x",
       "type": "float",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→float(*(float*)&, gbVec3D::Length)"
+      "source": "gap_fill:ida_decomp_access | type_fix:int→float(*(float*)&, gbVec3D::Length)",
+      "evidence_level": "unverified"
     },
     "1324": {
       "name": "m_vMoveDir_y",
       "type": "float",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→float(*(float*)&, /fVal, *v16)"
+      "source": "gap_fill:ida_decomp_access | type_fix:int→float(*(float*)&, /fVal, *v16)",
+      "evidence_level": "unverified"
     },
     "1328": {
       "name": "m_vMoveDir_z",
       "type": "float",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→float(*(float*)&, /fVal, *v16)"
+      "source": "gap_fill:ida_decomp_access | type_fix:int→float(*(float*)&, /fVal, *v16)",
+      "evidence_level": "unverified"
     },
     "1480": {
       "name": "m_nSubObjBase",
       "type": "int",
-      "source": "A:decomp_ptr_arithmetic_base_and_UIStatic_ctor_77refs"
+      "source": "A:decomp_ptr_arithmetic_base_and_UIStatic_ctor_77refs",
+      "evidence_level": "unverified"
     },
     "176": {
       "name": "m_nTodo_0B0",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs",
+      "evidence_level": "unverified"
     },
     "200": {
       "name": "m_nTodo_0C8",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "208": {
       "name": "m_nTodo_0D0",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "268": {
       "name": "m_nTodo_10C",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "448": {
       "name": "m_nTodo_1C0",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "636": {
       "name": "m_nTodo_27C",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "1084": {
       "name": "m_nTodo_43C",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "1388": {
       "name": "m_nTodo_56C",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x0040C630": {
       "name": "Render",
-      "signature": "void __thiscall(gbMatrixStack *pMatrixStack)"
+      "signature": "void __thiscall(gbMatrixStack *pMatrixStack)",
+      "evidence_level": "unverified"
     },
     "0x0040C790": {
       "name": "Cleanup",
       "signature": "int __thiscall()",
-      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
+      "evidence_level": "unverified"
     },
     "0x0040C960": {
       "name": "Destroy",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004101F0": {
       "name": "RunWithDelay",
       "signature": "int __cdecl(float delay, int nVal, int nVal2)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x00410470": {
       "name": "RunEvent",
-      "signature": "int __thiscall(int eventId, int nVal)"
+      "signature": "int __thiscall(int eventId, int nVal)",
+      "evidence_level": "unverified"
     },
     "0x00411F60": {
       "name": "UpdateTimers",
       "signature": "int __cdecl(float dt)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x004194C0": {
       "name": "UpdateObjects",
       "signature": "int __cdecl(float dt)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x0041EFA0": {
       "name": "Init",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0040CB80": {
       "name": "GetMainRoleSystem",
       "signature": "RoleSystem *__cdecl(unsigned short pData)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x0040CBB0": {
       "name": "GetScriptContext",
       "signature": "int __cdecl(unsigned short pData, int nVal)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x0040CBD0": {
       "name": "PassThrough",
       "signature": "int __cdecl(unsigned short pData, int nVal, int nVal2)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x0040CC00": {
       "name": "CheckEventType",
       "signature": "int __cdecl(unsigned short pData, int nVal)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x0040CC60": {
       "name": "ClearTimerSlot",
-      "signature": "int __fastcall()"
+      "signature": "int __fastcall()",
+      "evidence_level": "unverified"
     },
     "0x00419090": {
       "name": "UpdatePositions",
-      "signature": "void __thiscall ScriptSystem::UpdatePositions()"
+      "signature": "void __thiscall ScriptSystem::UpdatePositions()",
+      "evidence_level": "unverified"
     },
     "0x00419200": {
       "name": "SmoothTrackTarget",
-      "signature": "int __thiscall ScriptSystem::SmoothTrackTarget(float fDeltaTime, float fMaxAccel, float fVal3, float fVal4)"
+      "signature": "int __thiscall ScriptSystem::SmoothTrackTarget(float fDeltaTime, float fMaxAccel, float fVal3, float fVal4)",
+      "evidence_level": "unverified"
     },
     "0x004890A0": {
       "name": "ProcessScriptEvent",
       "signature": "char __thiscall(int nVal, int nVal2, int nParam)",
-      "_misattrib_evidence": "max_offset=217324>class_size=8704"
+      "_misattrib_evidence": "max_offset=217324>class_size=8704",
+      "evidence_level": "unverified"
     }
   }
 }

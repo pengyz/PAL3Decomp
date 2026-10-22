@@ -5,102 +5,123 @@
     "4628": {
       "name": "m_nRenderX",
       "type": "int",
-      "source": "decomp:Render_access_pattern"
+      "source": "decomp:Render_access_pattern",
+      "evidence_level": "unverified"
     },
     "4632": {
       "name": "m_nRenderY",
       "type": "int",
-      "source": "decomp:Render_access_pattern"
+      "source": "decomp:Render_access_pattern",
+      "evidence_level": "unverified"
     },
     "4636": {
       "name": "m_bRenderEnabled",
       "type": "int",
-      "source": "decomp:Render_access_pattern"
+      "source": "decomp:Render_access_pattern",
+      "evidence_level": "unverified"
     },
     "4640": {
       "name": "m_pRenderTarget",
       "type": "void *",
-      "source": "decomp:Render_access_pattern"
+      "source": "decomp:Render_access_pattern",
+      "evidence_level": "unverified"
     },
     "4644": {
       "name": "m_nRenderMode",
       "type": "int",
-      "source": "decomp:Render_access_pattern"
+      "source": "decomp:Render_access_pattern",
+      "evidence_level": "unverified"
     },
     "4648": {
       "name": "m_nRenderCount",
       "type": "int",
-      "source": "decomp:Render_access_pattern"
+      "source": "decomp:Render_access_pattern",
+      "evidence_level": "unverified"
     },
     "4756": {
       "name": "m_nRenderState",
       "type": "int",
-      "source": "decomp:Render_access_pattern"
+      "source": "decomp:Render_access_pattern",
+      "evidence_level": "unverified"
     },
     "4652": {
       "name": "m_szCmdBuf2",
       "type": "char[104]",
-      "source": "| inline-union治理 2026-10-16（idapro A 级）：WinProc_HWND_InputLine@0x53CB10 字节写 *(buf2+n+3) 至 n≈100 ⇒ 真跨度 104B；**overlap**：与 m_szCmdBuf@4656 同区别名（buf2[n+3]≡buf[n-1]，cursor 形字节写）"
+      "source": "| inline-union治理 2026-10-16（idapro A 级）：WinProc_HWND_InputLine@0x53CB10 字节写 *(buf2+n+3) 至 n≈100 ⇒ 真跨度 104B；**overlap**：与 m_szCmdBuf@4656 同区别名（buf2[n+3]≡buf[n-1]，cursor 形字节写）",
+      "evidence_level": "A"
     },
     "4656": {
       "name": "m_szCmdBuf",
       "type": "char[100]",
-      "source": "| inline-union治理 2026-10-16（idapro A 级）：memset(&m_szCmdBuf,0,0x64)+strlen((char*)&m_szCmdBuf) ⇒ 100B 缓冲窗口；**overlap**：m_szCmdBuf2@4652 起 104B 区内 +4 窗口（别名）"
+      "source": "| inline-union治理 2026-10-16（idapro A 级）：memset(&m_szCmdBuf,0,0x64)+strlen((char*)&m_szCmdBuf) ⇒ 100B 缓冲窗口；**overlap**：m_szCmdBuf2@4652 起 104B 区内 +4 窗口（别名）",
+      "evidence_level": "A"
     },
     "4856": {
       "name": "m_nTodo_12F8",
       "type": "void *",
-      "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
+      "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA",
+      "evidence_level": "unverified"
     },
     "0": {
       "name": "m_nCallbackCount",
       "type": "int",
-      "source": "A:decomp Logger::RegisterCallback *(DWORD*)this >= 34 — callback registration count"
+      "source": "A:decomp Logger::RegisterCallback *(DWORD*)this >= 34 — callback registration count",
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "m_callbacks",
       "type": "tagLoggerCallback[34]",
-      "source": "A:decomp Logger::RegisterCallback v6=&this->m_nCallbackCount + 34*count + 1 — callback array at +4, each 136 bytes, max 34 entries"
+      "source": "A:decomp Logger::RegisterCallback v6=&this->m_nCallbackCount + 34*count + 1 — callback array at +4, each 136 bytes, max 34 entries",
+      "evidence_level": "unverified"
     }
   },
   "binary_size": 6360,
   "methods": {
     "0x0053C990": {
       "name": "Render",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0053CEF0": {
       "name": "FormatException",
-      "signature": "char *__thiscall(Logger *this, char *msg, char *file, int line)"
+      "signature": "char *__thiscall(Logger *this, char *msg, char *file, int line)",
+      "evidence_level": "unverified"
     },
     "0x0053CC70": {
       "name": "Write",
-      "signature": "char *(char *fmt)"
+      "signature": "char *(char *fmt)",
+      "evidence_level": "unverified"
     },
     "0x0053CC10": {
       "name": "RegisterCallback",
-      "signature": "int __thiscall(void (*f)(), char *name, char *desc)"
+      "signature": "int __thiscall(void (*f)(), char *name, char *desc)",
+      "evidence_level": "unverified"
     },
     "0x0053CE90": {
       "name": "RegisterCallbacks",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0053CE20": {
       "name": "WriteRoleNames",
       "signature": "char *__cdecl(char *pszBuf)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x0053CB10": {
       "name": "WinProc_HWND_InputLine",
-      "signature": "int __thiscall(Logger *this, char pData)"
+      "signature": "int __thiscall(Logger *this, char pData)",
+      "evidence_level": "unverified"
     },
     "0x0053CCF0": {
       "name": "WinProc_HWND_ExecCommand",
-      "signature": "char *__thiscall(Logger *this)"
+      "signature": "char *__thiscall(Logger *this)",
+      "evidence_level": "unverified"
     },
     "0x0053CDE0": {
       "name": "WinProc_HWND_SetAndExec",
-      "signature": "int __thiscall(Logger *this, char *Source)"
+      "signature": "int __thiscall(Logger *this, char *Source)",
+      "evidence_level": "unverified"
     }
   }
 }

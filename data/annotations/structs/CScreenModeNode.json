@@ -5,24 +5,28 @@
   "methods": {
     "0x0053D3A0": {
       "name": "CScreenModeNode",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0053D3D0": {
       "name": "~CScreenModeNode",
       "signature": "void __thiscall()",
-      "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x00570A24 认领（ctor CScreenModeNode@0x53D3A0+29/+109 双写）连带 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CScreenModeNode（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x570A24）"
+      "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x00570A24 认领（ctor CScreenModeNode@0x53D3A0+29/+109 双写）连带 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CScreenModeNode（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x570A24）",
+      "evidence_level": "A"
     },
     "0x005420FC": {
       "name": "CScreenModeNode_adjthunk_20FC",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only"
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
+      "evidence_level": "unverified"
     },
     "0x00542120": {
       "name": "CScreenModeNode_adjthunk_2120",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only"
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
+      "evidence_level": "unverified"
     }
   },
   "base_size": 88,

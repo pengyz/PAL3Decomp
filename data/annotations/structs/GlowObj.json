@@ -5,39 +5,46 @@
     "4": {
       "name": "m_bEnable",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "m_nStepSize",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "m_nPass",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "m_GeomColor",
       "type": "gbColorFlt",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x41b640": {
       "name": "UpdateBoundingBox",
       "signature": "virtual void __thiscall(gbAABBox *pBox)",
-      "source": "vtable_owner_fix(Glow 层虚函数, Role ctor [esi+40h] 存储证据)"
+      "source": "vtable_owner_fix(Glow 层虚函数, Role ctor [esi+40h] 存储证据)",
+      "evidence_level": "unverified"
     },
     "0x41b6a0": {
       "name": "GetGfxManager",
       "signature": "virtual gbGfxManager *__thiscall(int nVal1)",
-      "source": "vtable_owner_fix(Glow 层虚函数) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "vtable_owner_fix(Glow 层虚函数) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x41be30": {
       "name": "_sdtor_22",
       "signature": "virtual ScriptObj *__thiscall(char a2)",
-      "source": "vtable_owner_fix(Glow 层虚函数)"
+      "source": "vtable_owner_fix(Glow 层虚函数)",
+      "evidence_level": "unverified"
     }
   },
   "source_note": "清账③定谳 2026-10-07：Role ctor 0x453030 实证 mov [esi],0x56B200=this+0（Role 自身 vfptr）·无 [esi+40h] 存储——GlowObj +0=对象指针成员 ✓（note 正确）·vtables 条目=证据误引撤"

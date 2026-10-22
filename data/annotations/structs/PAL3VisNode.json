@@ -5,23 +5,27 @@
   "methods": {
     "0x004B6F70": {
       "name": "PAL3VisNode",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004B6F90": {
       "name": "~PAL3VisNode",
       "signature": "void __thiscall()",
-      "source": "| [表认领+槽注册合并批 2026-10-16 analyzer] 槽注册：本体 real-method（表主 ctor 写点域 0x4B6F70 域） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=PAL3VisNode（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F37C）"
+      "source": "| [表认领+槽注册合并批 2026-10-16 analyzer] 槽注册：本体 real-method（表主 ctor 写点域 0x4B6F70 域） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=PAL3VisNode（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F37C）",
+      "evidence_level": "A"
     },
     "0x004B7030": {
       "name": "_todo_4b7030",
       "signature": "void __thiscall()",
       "source": "| [表认领+槽注册合并批 2026-10-16 analyzer] 槽注册：同上 | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
-      "declaration_only": true
+      "declaration_only": true,
+      "evidence_level": "unverified"
     },
     "0x004B7090": {
       "name": "_todo_4b7090",
       "signature": "void __thiscall()",
-      "source": "| [表认领+槽注册合并批 2026-10-16 analyzer] 槽注册：同上（0x56F3B8 尾并合视图共享槽） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例）"
+      "source": "| [表认领+槽注册合并批 2026-10-16 analyzer] 槽注册：同上（0x56F3B8 尾并合视图共享槽） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例）",
+      "evidence_level": "unverified"
     }
   },
   "base_size": 88,

@@ -5,190 +5,228 @@
     "4": {
       "name": "m_fontcolor",
       "type": "gbColorQuad",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "m_wndcolor",
       "type": "gbColorQuad",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "m_id",
       "type": "unsigned int",
-      "source": "annotation|fix:void_star_to_unsigned_int:s_RoleState L141/144 双证（m_id 存取均为 DWORD 容器：`(void*)*(v3+1)` 入/`*(_DWORD*)` 出）2026-09-29"
+      "source": "annotation|fix:void_star_to_unsigned_int:s_RoleState L141/144 双证（m_id 存取均为 DWORD 容器：`(void*)*(v3+1)` 入/`*(_DWORD*)` 出）2026-09-29",
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "m_rect",
       "type": "tagRECT",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "32": {
       "name": "m_pfather",
       "type": "UIWnd *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "36": {
       "name": "m_childs",
       "type": "PtrArray",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "52": {
       "name": "m_bcreateok",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "56": {
       "name": "m_bvisible",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "60": {
       "name": "m_benable",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "64": {
       "name": "m_bfocus",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x00445FA0": {
       "name": "sub_445FA0",
-      "signature": "int __thiscall(void *a2)"
+      "signature": "int __thiscall(void *a2)",
+      "evidence_level": "unverified"
     },
     "0x0043BB90": {
-      "name": "_scalar_dtor"
+      "name": "_scalar_dtor",
+      "evidence_level": "unverified"
     },
     "0x00445B40": {
       "name": "_UIWnd",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004D589C": {
       "name": "SetRect",
       "signature": "void (tagRECT *)",
-      "source": "pdb"
+      "source": "pdb",
+      "evidence_level": "unverified"
     },
     "0x004D5950": {
       "name": "BringWindowToTop",
       "signature": "void (int nVal1)",
-      "source": "pdb | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "pdb | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x004433D0": {
       "name": "LayoutAndRender",
       "signature": "int __thiscall()",
       "source": "vtable_migrated+manual_ida_body",
-      "ordinal": 15
+      "ordinal": 15,
+      "evidence_level": "unverified"
     },
     "0x00457340": {
       "name": "CleanupScript",
       "signature": "void __thiscall()",
-      "_misattrib_evidence": "max_offset=805416>class_size=68"
+      "_misattrib_evidence": "max_offset=805416>class_size=68",
+      "evidence_level": "unverified"
     },
     "0x00445F20": {
       "name": "MoveWindow",
-      "signature": "int __thiscall(void)"
+      "signature": "int __thiscall(void)",
+      "evidence_level": "unverified"
     },
     "0x00450440": {
       "name": "RenderContent",
       "signature": "void __thiscall()",
-      "source": "ida_xref:sub_fix_from_decomp_this_type"
+      "source": "ida_xref:sub_fix_from_decomp_this_type",
+      "evidence_level": "unverified"
     },
     "0x0043BBB0": {
       "name": "Destroy",
       "signature": "void __thiscall(int nVal1, int nVal2)",
-      "source": "batch:sub_fix_from_decomp_this_type | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 void __thiscall(int nVal1) ⇒ void __thiscall(int nVal1, int nVal2)（A 级 ret-N 证据：ret $0x8 ⇒ 2 栈参；int 占位·nVal 序号惯例）"
+      "source": "batch:sub_fix_from_decomp_this_type | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 void __thiscall(int nVal1) ⇒ void __thiscall(int nVal1, int nVal2)（A 级 ret-N 证据：ret $0x8 ⇒ 2 栈参；int 占位·nVal 序号惯例）",
+      "evidence_level": "A"
     },
     "0x00450390": {
       "name": "DelegateRender",
       "signature": "void __thiscall()",
-      "source": "batch:sub_fix_from_decomp_this_type"
+      "source": "batch:sub_fix_from_decomp_this_type",
+      "evidence_level": "unverified"
     },
     "0x00450E90": {
       "name": "_sdtor_27",
-      "signature": "UIWnd *__thiscall(UIWnd *Block, char a2)"
+      "signature": "UIWnd *__thiscall(UIWnd *Block, char a2)",
+      "evidence_level": "unverified"
     },
     "0x00445E70": {
       "name": "ShowWindow",
-      "signature": "int __thiscall(int nFlags)"
+      "signature": "int __thiscall(int nFlags)",
+      "evidence_level": "unverified"
     },
     "0x0044A870": {
       "name": "RenderText",
-      "signature": "virtual void __thiscall()"
+      "signature": "virtual void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0044A820": {
       "name": "GetUIElements",
-      "signature": "int __thiscall(float fVal, int nVal)"
+      "signature": "int __thiscall(float fVal, int nVal)",
+      "evidence_level": "unverified"
     },
     "0x0044A7D0": {
       "name": "_scalar_dtor_A7D0",
       "signature": "void *__thiscall(void *Block, char a2)",
       "type": "skip",
       "reason": "compiler-generated scalar deleting destructor for UIWnd",
-      "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x44A7F0 写 vptr 0x56AFB0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AFB0→UIWnd（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x44A7F0 写 vptr 0x56AFB0"
+      "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x44A7F0 写 vptr 0x56AFB0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AFB0→UIWnd（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x44A7F0 写 vptr 0x56AFB0",
+      "evidence_level": "A"
     },
     "0x00451730": {
       "name": "_todo_451730",
-      "signature": "int __thiscall(UIWnd *this)"
+      "signature": "int __thiscall(UIWnd *this)",
+      "evidence_level": "unverified"
     },
     "0x00445B90": {
       "name": "Create",
       "signature": "int __thiscall(int id, tagRECT *pRect, int parent)",
       "source": "vtable_gap_fill_v1(from CCBItemWindow.json)",
-      "owner": "UIWnd"
+      "owner": "UIWnd",
+      "evidence_level": "unverified"
     },
     "0x00445C10": {
       "name": "HideAll",
       "signature": "void __thiscall UIWnd::HideAll()",
-      "source": "vtable_gap_fill_v1(from SceneObj.json)"
+      "source": "vtable_gap_fill_v1(from SceneObj.json)",
+      "evidence_level": "unverified"
     },
     "0x00445C60": {
       "name": "Update",
       "signature": "int __thiscall(int a2, int a3)",
-      "source": "vtable_gap_fill_v1(from SceneObj.json)"
+      "source": "vtable_gap_fill_v1(from SceneObj.json)",
+      "evidence_level": "unverified"
     },
     "0x00445CD0": {
       "name": "Render",
       "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(from UITitle_BBTY.json)"
+      "source": "vtable_gap_fill_v1(from UITitle_BBTY.json)",
+      "evidence_level": "unverified"
     },
     "0x00445D10": {
       "name": "OnMessage",
       "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
       "source": "vtable_gap_fill_v1(from CGameData.json)",
-      "owner": "UIWnd"
+      "owner": "UIWnd",
+      "evidence_level": "unverified"
     },
     "0x0044E5C0": {
       "name": "_sdtor_25",
       "signature": "scScriptInstance *__thiscall(scScriptInstance *Block, char a2)",
-      "source": "vtable_gap_fill_v1(from scScriptInstance.json)"
+      "source": "vtable_gap_fill_v1(from scScriptInstance.json)",
+      "evidence_level": "unverified"
     },
     "0x004A14C0": {
       "name": "HideAll_14C0",
       "signature": "void __thiscall __thiscall()",
-      "source": "vtable_gap_fill_v1(from UITitle.json) | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）"
+      "source": "vtable_gap_fill_v1(from UITitle.json) | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
+      "evidence_level": "A"
     },
     "0x00439110": {
       "name": "sub_439110",
       "signature": "void* __thiscall(int)",
-      "source": "vtable_gap_fill_v1(IDB:sub_439110) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4) | 回型 void→void* 2026-10-15（T146）：A 级=原函数尾部 8b c6（mov eax,esi=回 this）+ 5e c2 04 00 形=标量删除析构体（call dtor/test [esp+8],1/push esi/call delete/add esp,4/mov eax,esi/ret 4）；我方缺 8b c6（n_diff=5 尾部族）。vtable 间接调用（0 直接调用点）⇒ 影响面=本函数"
+      "source": "vtable_gap_fill_v1(IDB:sub_439110) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4) | 回型 void→void* 2026-10-15（T146）：A 级=原函数尾部 8b c6（mov eax,esi=回 this）+ 5e c2 04 00 形=标量删除析构体（call dtor/test [esp+8],1/push esi/call delete/add esp,4/mov eax,esi/ret 4）；我方缺 8b c6（n_diff=5 尾部族）。vtable 间接调用（0 直接调用点）⇒ 影响面=本函数",
+      "evidence_level": "A"
     },
     "0x00445B20": {
       "name": "_scalar_dtor_5B20",
       "signature": "void __thiscall(int nVal1)",
       "source": "vtable_gap_fill_v1(IDB:UIWnd::scalar_deleting_dtor_ovl_5b20) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AEC8）",
-      "declaration_only": true
+      "declaration_only": true,
+      "evidence_level": "A"
     },
     "0x0044E980": {
       "name": "sub_44E980",
       "signature": "void __thiscall(int, int)",
-      "source": "vtable_gap_fill_v1(IDB:sub_44E980) | vtable_sig_arity_fill(ret-N=8) | vtable_sig_arity_fill(ret-N=8)"
+      "source": "vtable_gap_fill_v1(IDB:sub_44E980) | vtable_sig_arity_fill(ret-N=8) | vtable_sig_arity_fill(ret-N=8)",
+      "evidence_level": "unverified"
     },
     "0x004431B0": {
       "name": "_scalar_dtor_31B0",
       "signature": "void __thiscall()",
-      "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4431D0 写 vptr 0x56AE2C（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AE2C→UIWnd（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4431D0 写 vptr 0x56AE2C"
+      "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4431D0 写 vptr 0x56AE2C（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AE2C→UIWnd（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4431D0 写 vptr 0x56AE2C",
+      "evidence_level": "A"
     }
   },
   "vtables": [

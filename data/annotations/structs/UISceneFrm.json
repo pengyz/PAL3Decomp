@@ -5,12 +5,14 @@
     "72": {
       "name": "m_map",
       "type": "UISceneMap",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "1084": {
       "name": "m_face",
       "type": "UISceneFace",
-      "source": "PAL3patch_verified"
+      "source": "PAL3patch_verified",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
@@ -19,18 +21,21 @@
       "signature": "void __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ UISceneFrm（ctor 名形=类名）：A 级 refs ??0UIListBox（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox"
+      "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ UISceneFrm（ctor 名形=类名）：A 级 refs ??0UIListBox（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox",
+      "evidence_level": "A"
     },
     "0x00459260": {
       "name": "~UISceneFrm",
       "signature": "void __thiscall()",
-      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 UISceneFrm 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UISceneFrm。refs: ?Destroy@UISceneFrm@@QAEXXZ ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ?Destroy2@UICaption@@QAEXXZ ??"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 UISceneFrm 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UISceneFrm。refs: ?Destroy@UISceneFrm@@QAEXXZ ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ?Destroy2@UICaption@@QAEXXZ ??",
+      "evidence_level": "A"
     },
     "0x0045A4F0": {
       "name": "fill",
       "signature": "void __thiscall(RoleTask *a1, RoleTask *a2, RoleTask *a3)",
       "ordinal": 2,
-      "source": "manual_fix_vtable+canonical_rename"
+      "source": "manual_fix_vtable+canonical_rename",
+      "evidence_level": "unverified"
     },
     "0x00459240": {
       "name": "_scalar_dtor_9240",
@@ -38,80 +43,98 @@
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UISceneFrm（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B394）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UISceneFrm（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B394）",
+      "evidence_level": "A"
     },
     "0x00459360": {
       "name": "Destroy",
       "signature": "void __thiscall()",
-      "ordinal": 3
+      "ordinal": 3,
+      "evidence_level": "unverified"
     },
     "0x0045A600": {
       "name": "_Construct_2",
       "signature": "void __thiscall(RoleTaskLine *a1, RoleTaskLine *a2)",
       "ordinal": 6,
-      "source": "manual_fix_vtable+canonical_rename | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "manual_fix_vtable+canonical_rename | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x0045A490": {
       "name": "Render",
       "signature": "void __thiscall()",
-      "ordinal": 1
+      "ordinal": 1,
+      "evidence_level": "unverified"
     },
     "0x004BB330": {
       "name": "InitGraph_Base",
-      "signature": "int __thiscall UISceneFrm::InitGraph_Base()"
+      "signature": "int __thiscall UISceneFrm::InitGraph_Base()",
+      "evidence_level": "unverified"
     },
     "0x004BB4E0": {
       "name": "InitGraph_Rotation",
-      "signature": "int __thiscall UISceneFrm::InitGraph_Rotation()"
+      "signature": "int __thiscall UISceneFrm::InitGraph_Rotation()",
+      "evidence_level": "unverified"
     },
     "0x004BB690": {
       "name": "InitGraph_VertexAlpha",
-      "signature": "int __thiscall UISceneFrm::InitGraph_VertexAlpha()"
+      "signature": "int __thiscall UISceneFrm::InitGraph_VertexAlpha()",
+      "evidence_level": "unverified"
     },
     "0x004BB830": {
       "name": "InitGraph_RGBColor",
-      "signature": "int __thiscall UISceneFrm::InitGraph_RGBColor()"
+      "signature": "int __thiscall UISceneFrm::InitGraph_RGBColor()",
+      "evidence_level": "unverified"
     },
     "0x004BBA50": {
       "name": "InitGraph_Direction",
-      "signature": "int __thiscall UISceneFrm::InitGraph_Direction()"
+      "signature": "int __thiscall UISceneFrm::InitGraph_Direction()",
+      "evidence_level": "unverified"
     },
     "0x004BBCA0": {
       "name": "InitGraph_RandomVelocity",
-      "signature": "int __thiscall UISceneFrm::InitGraph_RandomVelocity()"
+      "signature": "int __thiscall UISceneFrm::InitGraph_RandomVelocity()",
+      "evidence_level": "unverified"
     },
     "0x004BBEB0": {
       "name": "InitGraph_EmissionRate",
-      "signature": "int __thiscall UISceneFrm::InitGraph_EmissionRate()"
+      "signature": "int __thiscall UISceneFrm::InitGraph_EmissionRate()",
+      "evidence_level": "unverified"
     },
     "0x004BC0C0": {
       "name": "InitGraph_Lifetime",
-      "signature": "int __thiscall UISceneFrm::InitGraph_Lifetime()"
+      "signature": "int __thiscall UISceneFrm::InitGraph_Lifetime()",
+      "evidence_level": "unverified"
     },
     "0x004BC2D0": {
       "name": "InitGraph_SizeMultiplier",
-      "signature": "int __thiscall UISceneFrm::InitGraph_SizeMultiplier()"
+      "signature": "int __thiscall UISceneFrm::InitGraph_SizeMultiplier()",
+      "evidence_level": "unverified"
     },
     "0x004BC4E0": {
       "name": "InitGraph_RotationMultiplier",
-      "signature": "int __thiscall UISceneFrm::InitGraph_RotationMultiplier()"
+      "signature": "int __thiscall UISceneFrm::InitGraph_RotationMultiplier()",
+      "evidence_level": "unverified"
     },
     "0x00528CD0": {
       "name": "CallFaceMethod",
-      "signature": "int __thiscall(int nVal, unsigned char pData)"
+      "signature": "int __thiscall(int nVal, unsigned char pData)",
+      "evidence_level": "unverified"
     },
     "0x00535630": {
       "name": "ShowAndRelease",
       "signature": "int __thiscall UISceneFrm::ShowAndRelease()",
-      "_misattrib_evidence": "max_offset=3216>class_size=1012"
+      "_misattrib_evidence": "max_offset=3216>class_size=1012",
+      "evidence_level": "unverified"
     },
     "0x00535650": {
       "name": "InitTemplateStrings",
-      "signature": "LPSTR __thiscall UISceneFrm::InitTemplateStrings()"
+      "signature": "LPSTR __thiscall UISceneFrm::InitTemplateStrings()",
+      "evidence_level": "unverified"
     },
     "0x004BB200": {
       "name": "ScreenToLocal",
-      "signature": "void __thiscall(UISceneFrm *this, float *pOutX, float *pInX, float *pInY)"
+      "signature": "void __thiscall(UISceneFrm *this, float *pOutX, float *pInX, float *pInY)",
+      "evidence_level": "unverified"
     }
   },
   "vtables": [

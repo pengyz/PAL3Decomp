@@ -1,100 +1,119 @@
 {
- "name": "CCBControl",
- "binary_size": 368,
- "known_members": {
-  "0": {
-   "name": "m_pCBSystem",
-   "type": "CCBSystem *",
-   "offset": 0
+  "name": "CCBControl",
+  "binary_size": 368,
+  "known_members": {
+    "0": {
+      "name": "m_pCBSystem",
+      "type": "CCBSystem *",
+      "offset": 0,
+      "evidence_level": "unverified"
+    },
+    "4": {
+      "name": "m_pAttackSequen",
+      "type": "CCBAttackSequen *",
+      "offset": 4,
+      "evidence_level": "unverified"
+    },
+    "8": {
+      "name": "m_pStage",
+      "type": "CCBStage *",
+      "offset": 8,
+      "evidence_level": "unverified"
+    },
+    "12": {
+      "name": "m_pRoleState",
+      "type": "CCBRoleState *",
+      "offset": 12,
+      "evidence_level": "unverified"
+    },
+    "16": {
+      "name": "m_pUI",
+      "type": "CCBUI *",
+      "offset": 16,
+      "evidence_level": "unverified"
+    },
+    "24": {
+      "name": "m_DeltaTime",
+      "type": "double",
+      "offset": 24,
+      "evidence_level": "unverified"
+    },
+    "32": {
+      "name": "m_nController",
+      "type": "int",
+      "offset": 32,
+      "evidence_level": "unverified"
+    },
+    "36": {
+      "name": "m_bActive",
+      "type": "unsigned char",
+      "offset": 36,
+      "evidence_level": "unverified"
+    },
+    "37": {
+      "name": "m_bForceRelease",
+      "type": "unsigned char",
+      "offset": 37,
+      "evidence_level": "unverified"
+    },
+    "40": {
+      "name": "m_InputData",
+      "type": "tagControlData",
+      "offset": 40,
+      "evidence_level": "unverified"
+    },
+    "56": {
+      "name": "m_CmdData",
+      "type": "tagCmdData",
+      "offset": 56,
+      "evidence_level": "unverified"
+    },
+    "100": {
+      "name": "m_bShowRightPanel",
+      "type": "unsigned char",
+      "offset": 100,
+      "evidence_level": "unverified"
+    },
+    "104": {
+      "name": "m_nCurThread",
+      "type": "int",
+      "offset": 104,
+      "evidence_level": "unverified"
+    },
+    "108": {
+      "name": "m_nThread",
+      "type": "int",
+      "offset": 108,
+      "evidence_level": "unverified"
+    },
+    "112": {
+      "name": "m_Thread",
+      "type": "tagControlThread[4]",
+      "offset": 112,
+      "evidence_level": "unverified"
+    }
   },
-  "4": {
-   "name": "m_pAttackSequen",
-   "type": "CCBAttackSequen *",
-   "offset": 4
-  },
-  "8": {
-   "name": "m_pStage",
-   "type": "CCBStage *",
-   "offset": 8
-  },
-  "12": {
-   "name": "m_pRoleState",
-   "type": "CCBRoleState *",
-   "offset": 12
-  },
-  "16": {
-   "name": "m_pUI",
-   "type": "CCBUI *",
-   "offset": 16
-  },
-  "24": {
-   "name": "m_DeltaTime",
-   "type": "double",
-   "offset": 24
-  },
-  "32": {
-   "name": "m_nController",
-   "type": "int",
-   "offset": 32
-  },
-  "36": {
-   "name": "m_bActive",
-   "type": "unsigned char",
-   "offset": 36
-  },
-  "37": {
-   "name": "m_bForceRelease",
-   "type": "unsigned char",
-   "offset": 37
-  },
-  "40": {
-   "name": "m_InputData",
-   "type": "tagControlData",
-   "offset": 40
-  },
-  "56": {
-   "name": "m_CmdData",
-   "type": "tagCmdData",
-   "offset": 56
-  },
-  "100": {
-   "name": "m_bShowRightPanel",
-   "type": "unsigned char",
-   "offset": 100
-  },
-  "104": {
-   "name": "m_nCurThread",
-   "type": "int",
-   "offset": 104
-  },
-  "108": {
-   "name": "m_nThread",
-   "type": "int",
-   "offset": 108
-  },
-  "112": {
-   "name": "m_Thread",
-   "type": "tagControlThread[4]",
-   "offset": 112
+  "methods": {
+    "0x004DC5C0": {
+      "name": "SetParam",
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
+      "source": "sig_evidence_A(ret-N arity)",
+      "evidence_level": "unverified"
+    },
+    "0x004DC240": {
+      "name": "GetActiveAttackCount",
+      "signature": "int __thiscall CCBControl::GetActiveAttackCount()",
+      "evidence_level": "unverified"
+    },
+    "0x004DC560": {
+      "name": "GetState",
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
+    },
+    "0x004DC5B0": {
+      "name": "GetControl",
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
+    }
   }
- },
- "methods": {
-  "0x004DC5C0": {
-   "name": "SetParam",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
-   "source": "sig_evidence_A(ret-N arity)"
-  },
-  "0x004DC240": {
-   "name": "GetActiveAttackCount",
-   "signature": "int __thiscall CCBControl::GetActiveAttackCount()"
-  },
-  "0x004DC560": {
-   "name": "GetState",
-   "signature": "int __thiscall()"
-  },
-  "0x004DC5B0": {
-   "name": "GetControl",
-   "signature": "int __thiscall()"
-  }
- }
 }

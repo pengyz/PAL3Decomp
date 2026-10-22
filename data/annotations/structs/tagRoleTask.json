@@ -5,65 +5,109 @@
     "0": {
       "name": "fp",
       "type": "char *[4]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "vec1",
       "type": {
         "union": [
-          { "type": { "struct": [
-            { "offset": 0, "name": "x", "type": "float" },
-            { "offset": 4, "name": "y", "type": "float" },
-            { "offset": 8, "name": "z", "type": "float" }
-          ]}, "name": "v" },
-          { "type": { "struct": [
-            { "offset": 0, "name": "pLayout", "type": "CCBRoleState *" },
-            { "offset": 4, "name": "pToggle", "type": "PlayerMgr *" },
-            { "offset": 8, "name": "_pad", "type": "float" }
-          ]}, "name": "slots" }
+          {
+            "type": {
+              "struct": [
+                {
+                  "offset": 0,
+                  "name": "x",
+                  "type": "float"
+                },
+                {
+                  "offset": 4,
+                  "name": "y",
+                  "type": "float"
+                },
+                {
+                  "offset": 8,
+                  "name": "z",
+                  "type": "float"
+                }
+              ]
+            },
+            "name": "v"
+          },
+          {
+            "type": {
+              "struct": [
+                {
+                  "offset": 0,
+                  "name": "pLayout",
+                  "type": "CCBRoleState *"
+                },
+                {
+                  "offset": 4,
+                  "name": "pToggle",
+                  "type": "PlayerMgr *"
+                },
+                {
+                  "offset": 8,
+                  "name": "_pad",
+                  "type": "float"
+                }
+              ]
+            },
+            "name": "slots"
+          }
         ]
       },
-      "source": "overlay:LODWORD(vec1.x)->LayoutSlotPanelA, LODWORD(vec1.y)->ToggleSlot0 in CCBStageRole"
+      "source": "overlay:LODWORD(vec1.x)->LayoutSlotPanelA, LODWORD(vec1.y)->ToggleSlot0 in CCBStageRole",
+      "evidence_level": "unverified"
     },
     "28": {
       "name": "cmd",
       "type": "tagCmdData",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "72": {
       "name": "fTemp",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "fTemp2",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "dwID",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "84": {
       "name": "eMode",
       "type": "ECBRoleTaskMode",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "88": {
       "name": "bValid",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "89": {
       "name": "bFinished",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "90": {
       "name": "bExecuted",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {}

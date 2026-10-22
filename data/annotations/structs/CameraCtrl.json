@@ -7,691 +7,829 @@
       "name": "m_pCamera",
       "comment": "underlying gbCamera object for rendering",
       "type": "gbCamera *",
-      "source": "binary:inferred from CameraCtrl context"
+      "source": "binary:inferred from CameraCtrl context",
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "m_fMinDist",
       "type": "float",
       "source": "ida_decomp:_nearby_41cbd0 this+5<this+4 compare",
-      "comment": "minimum camera distance from target (clamp)"
+      "comment": "minimum camera distance from target (clamp)",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "m_pTarget",
       "type": "InputSystem *",
       "source": "A:binary VA=0x41CFC0 stored as InputSystem* from script param; float data at +468+ accessed as float* | void*语义化 2026-10-16（idapro A 级）：UpdateTransition@0x41CC50 `ProcessKeyboard((InputSystem *)this->m_pTarget, 1)` —— ProcessKeyboard@0x41C710 签名 `void __thiscall(InputSystem *this, int)` this-绑定 ⇒ 目标=InputSystem；辅证 GetLerpPos 处 `(float*)m_pTarget+113..117` 字段访问形",
-      "comment": "camera target object (received from scripts, typed as void*; cast to InputSystem* for ProcessKeyboard, to float* for lerp data)"
+      "comment": "camera target object (received from scripts, typed as void*; cast to InputSystem* for ProcessKeyboard, to float* for lerp data)",
+      "evidence_level": "A"
     },
     "12": {
       "name": "m_nFlags",
       "type": "int",
       "source": "A:decomp switch(LODWORD(m_nFlags)) values 1-7 in 0x0041CFC0; stores int* in 0x0041D7C0",
-      "comment": "transition mode: 1=follow,2=orbit,3=lerp-pos,4=track,6=combined,7=shake"
+      "comment": "transition mode: 1=follow,2=orbit,3=lerp-pos,4=track,6=combined,7=shake",
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "m_fTargetAngle",
       "type": "float",
       "source": "ida_decomp:_nearby_41cc50 v3>=this clamp, 8 refs",
-      "comment": "transition duration target (accumulated toward this value)"
+      "comment": "transition duration target (accumulated toward this value)",
+      "evidence_level": "unverified"
     },
     "20": {
       "name": "m_fCurAngle",
       "type": "float",
       "source": "ida_decomp:_nearby_41cc50 a2+this accumulate, 8 refs",
-      "comment": "current transition progress (delta-accumulated from 0.0)"
+      "comment": "current transition progress (delta-accumulated from 0.0)",
+      "evidence_level": "unverified"
     },
     "24": {
       "name": "m_nCamState",
       "type": "int",
       "source": "ida_decomp:_nearby_48b370 =0, counter/state, 10 refs",
-      "comment": "current camera operational state/sub-state"
+      "comment": "current camera operational state/sub-state",
+      "evidence_level": "unverified"
     },
     "28": {
       "name": "m_fAngleDest",
       "type": "float",
       "source": "binary:5x access | type_fix | rename:used as fTarget in GetLerpPos",
-      "comment": "angle interpolation destination (for orbit/follow transitions)"
+      "comment": "angle interpolation destination (for orbit/follow transitions)",
+      "evidence_level": "unverified"
     },
     "32": {
       "name": "m_fAngleSrc",
       "type": "float",
       "source": "binary:11x access | type_fix | rename:used as fCurrent in GetLerpPos",
-      "comment": "angle interpolation source (for orbit/follow transitions)"
+      "comment": "angle interpolation source (for orbit/follow transitions)",
+      "evidence_level": "unverified"
     },
     "36": {
       "name": "m_fFOV",
       "type": "float",
       "source": "binary:13x access",
-      "comment": "current field of view angle"
+      "comment": "current field of view angle",
+      "evidence_level": "unverified"
     },
     "40": {
       "name": "m_fFOVLerp",
       "type": "float",
       "source": "binary:8x access | type_fix | name:m_fFOVLerp(A+:decomp GetLerpPos(target+456, THIS, m_fFOV, factor) = current interpolated FOV)",
-      "comment": "interpolated FOV during transition (lerp source)"
+      "comment": "interpolated FOV during transition (lerp source)",
+      "evidence_level": "unverified"
     },
     "44": {
       "name": "m_bCamFlag",
       "type": "int",
       "source": "B:naming_m_b+alignment+FPU_misattrib",
-      "comment": "flags for camera behavior (bitfield, actually stored as int)"
+      "comment": "flags for camera behavior (bitfield, actually stored as int)",
+      "evidence_level": "unverified"
     },
     "48": {
       "name": "m_fParamF",
       "type": "float",
       "source": "binary:5x access | type_fix | rename:used as fCurrent in GetLerpPos(target+113, THIS, m_bCamFlag, fFactor)",
-      "comment": "generic float parameter for camera transitions"
+      "comment": "generic float parameter for camera transitions",
+      "evidence_level": "unverified"
     },
     "52": {
       "name": "m_fLerpPosX",
       "comment": "lerp source position X (current camera position before transition)",
       "type": "float",
-      "source": "binary:6x access | type_fix | name:m_fLerpPosX(A+:decomp GetLerpPos(target+492, _field_040, THIS, factor); assigned from p_DWORD[123])"
+      "source": "binary:6x access | type_fix | name:m_fLerpPosX(A+:decomp GetLerpPos(target+492, _field_040, THIS, factor); assigned from p_DWORD[123])",
+      "evidence_level": "unverified"
     },
     "56": {
       "name": "m_fLerpPosY",
       "type": "float",
       "source": "binary:5x access | type_fix | name:m_fLerpPosY(A+:decomp GetLerpPos(target+496, _field_044, THIS, factor); assigned from p_DWORD[124])",
-      "comment": "lerp source position Y"
+      "comment": "lerp source position Y",
+      "evidence_level": "unverified"
     },
     "60": {
       "name": "m_fLerpPosZ",
       "type": "float",
       "source": "A:0x41D010 stores gbVec3D.z from [eax+8] where eax=param2(gbVec3D*) | name:m_fLerpPosZ(A+:decomp GetLerpPos(target+500, _field_048, THIS, factor); assigned from p_DWORD[125])",
-      "comment": "lerp source position Z"
+      "comment": "lerp source position Z",
+      "evidence_level": "unverified"
     },
     "64": {
       "name": "m_fLerpTargetX",
       "type": "float",
       "source": "A:0x41D010 stores target->492(gbVec3D.x); SetupLerp v5[0]",
-      "comment": "lerp target position X (destination camera position)"
+      "comment": "lerp target position X (destination camera position)",
+      "evidence_level": "unverified"
     },
     "68": {
       "name": "m_fLerpTargetY",
       "type": "float",
       "source": "A:0x41D010 stores target->496(gbVec3D.y); SetupLerp v5[1]",
-      "comment": "lerp target position Y"
+      "comment": "lerp target position Y",
+      "evidence_level": "unverified"
     },
     "72": {
       "name": "m_fLerpTargetZ",
       "type": "float",
       "source": "A:0x41D010 stores target->500(gbVec3D.z); SetupLerp v5[2]",
-      "comment": "lerp target position Z"
+      "comment": "lerp target position Z",
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_nUIPosX",
       "type": "int",
-      "source": "A:decomp CameraCtrl::CreateCameraUI =0, then used as base+18 pixel stride for SetSelTexture UI element X positioning"
+      "source": "A:decomp CameraCtrl::CreateCameraUI =0, then used as base+18 pixel stride for SetSelTexture UI element X positioning",
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "m_nUIWidgetW",
       "type": "int",
-      "source": "A:decomp CameraCtrl::CreateCameraUI SetSelTexture param2; copied from m_nUIWidgetSavedW(88); UI widget width"
+      "source": "A:decomp CameraCtrl::CreateCameraUI SetSelTexture param2; copied from m_nUIWidgetSavedW(88); UI widget width",
+      "evidence_level": "unverified"
     },
     "84": {
       "name": "m_nUIWidgetH",
       "type": "int",
-      "source": "A:decomp CameraCtrl::CreateCameraUI SetSelTexture param3; bitcast from m_fUIWidgetSavedH(92); UI widget height"
+      "source": "A:decomp CameraCtrl::CreateCameraUI SetSelTexture param3; bitcast from m_fUIWidgetSavedH(92); UI widget height",
+      "evidence_level": "unverified"
     },
     "88": {
       "name": "m_nUIWidgetSavedW",
       "type": "int",
-      "source": "A:decomp CameraCtrl::CreateCameraUI source for m_nUIWidgetW(80); stored widget width"
+      "source": "A:decomp CameraCtrl::CreateCameraUI source for m_nUIWidgetW(80); stored widget width",
+      "evidence_level": "unverified"
     },
     "92": {
       "name": "m_fUIWidgetSavedH",
       "type": "float",
-      "source": "A:decomp CameraCtrl::CreateCameraUI float source for m_nUIWidgetH(84); stored widget height as float"
+      "source": "A:decomp CameraCtrl::CreateCameraUI float source for m_nUIWidgetH(84); stored widget height as float",
+      "evidence_level": "unverified"
     },
     "96": {
       "name": "m_nViewMode",
       "type": "int",
       "source": "binary:30x access",
-      "comment": "view mode (first/third person, etc.)"
+      "comment": "view mode (first/third person, etc.)",
+      "evidence_level": "unverified"
     },
     "100": {
       "name": "m_nViewFlags",
       "type": "int",
       "source": "binary:14x access",
-      "comment": "view mode flags"
+      "comment": "view mode flags",
+      "evidence_level": "unverified"
     },
     "104": {
       "name": "m_szCamPath",
       "type": "char[260]",
       "source": "gap_fill:ida_decomp_access | annotate_todo",
-      "comment": "camera path file name (.cam or similar)"
+      "comment": "camera path file name (.cam or similar)",
+      "evidence_level": "unverified"
     },
     "364": {
       "name": "m_nBlendWeightIdx",
       "type": "int",
-      "source": "binary_scan:1refs | ida_xref2"
+      "source": "binary_scan:1refs | ida_xref2",
+      "evidence_level": "unverified"
     },
     "380": {
       "name": "m_nInitParams",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "binary:1x access",
+      "evidence_level": "unverified"
     },
     "384": {
       "name": "m_nParamState",
       "type": "int",
-      "source": "binary:1x access | annotate_todo"
+      "source": "binary:1x access | annotate_todo",
+      "evidence_level": "unverified"
     },
     "388": {
       "name": "m_nParamA",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "source": "B:naming_m_n+FPU_misattrib",
+      "evidence_level": "unverified"
     },
     "392": {
       "name": "m_nParamB",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "source": "B:naming_m_n+FPU_misattrib",
+      "evidence_level": "unverified"
     },
     "396": {
       "name": "m_nParamC",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "source": "B:naming_m_n+FPU_misattrib",
+      "evidence_level": "unverified"
     },
     "452": {
       "name": "m_fAngle",
       "type": "float",
       "source": "binary:2x access",
-      "comment": "camera yaw/horizontal rotation angle"
+      "comment": "camera yaw/horizontal rotation angle",
+      "evidence_level": "unverified"
     },
     "456": {
       "name": "m_fOrbitAngle",
       "type": "float",
       "source": "ida_decomp:_nearby_41c670 sin(this)*v5, cos(this)*v7, 5 refs",
-      "comment": "orbit pitch/vertical angle (used with sin/cos)"
+      "comment": "orbit pitch/vertical angle (used with sin/cos)",
+      "evidence_level": "unverified"
     },
     "460": {
       "name": "m_mode",
       "type": "float",
       "source": "A:FPU_in_class_method_0x41C4AC: D8 8E",
-      "comment": "camera operating mode selector"
+      "comment": "camera operating mode selector",
+      "evidence_level": "unverified"
     },
     "468": {
       "name": "m_fCamDist",
       "type": "float",
       "source": "ida_decomp:_sub_504540 = 50.0f, used as multiplier, 6 refs",
-      "comment": "camera distance from target (zoom level)"
+      "comment": "camera distance from target (zoom level)",
+      "evidence_level": "unverified"
     },
     "472": {
       "name": "m_nWidth",
       "type": "int",
       "source": "B:naming_m_n+FPU_misattrib",
-      "comment": "viewport width in pixels"
+      "comment": "viewport width in pixels",
+      "evidence_level": "unverified"
     },
     "476": {
       "name": "m_nHeight",
       "type": "int",
       "source": "binary:SetDimention(0x41CA90) mov [ecx+0x1DC],edx (param2=h)",
-      "comment": "viewport height in pixels"
+      "comment": "viewport height in pixels",
+      "evidence_level": "unverified"
     },
     "480": {
       "name": "m_nAsCurrent",
       "type": "int",
       "source": "B:naming_m_n+FPU_misattrib",
-      "comment": "flag: SetAsCurrent has been called"
+      "comment": "flag: SetAsCurrent has been called",
+      "evidence_level": "unverified"
     },
     "492": {
       "name": "m_vecLookAt",
       "type": "gbVec3D",
       "source": "binary:disp32_1hits_1funcs | verified:2026-10-15 A:disp32_0x1EC(24hits)+CameraCtrl::SetAsCurrent(&m_vecLookAt)传参gbVec3D*+UpdateInternal向量差运算",
       "comment": "camera look-at target world position",
-      "note": " | verified:2026-10-15"
+      "note": " | verified:2026-10-15",
+      "evidence_level": "unverified"
     },
     "516": {
       "name": "m_vecUpDir",
       "type": "gbVec3D",
       "source": "binary:disp32_1hits_1funcs | verified:2026-10-15 A:disp32_0x204(51hits)+CameraCtrl::SetAsCurrent(&m_vecUpDir)传参gbVec3D*+UpdateInternal分量运算",
       "comment": "camera up direction vector",
-      "note": " | verified:2026-10-15"
+      "note": " | verified:2026-10-15",
+      "evidence_level": "unverified"
     },
     "556": {
       "name": "m_fViewDistance",
       "type": "float",
-      "source": "A:InitDefaultView: mov [esi+22Ch], 43960000h (300.0f)"
+      "source": "A:InitDefaultView: mov [esi+22Ch], 43960000h (300.0f)",
+      "evidence_level": "unverified"
     },
     "564": {
       "name": "m_fViewPitch",
       "type": "float",
-      "source": "A:InitDefaultView: mov [esi+234h], 0C21E4092h (-39.56f)"
+      "source": "A:InitDefaultView: mov [esi+234h], 0C21E4092h (-39.56f)",
+      "evidence_level": "unverified"
     },
     "568": {
       "name": "m_fViewYaw",
       "type": "float",
-      "source": "A:InitDefaultView: mov [esi+238h], 4397468Ch (302.55f)"
+      "source": "A:InitDefaultView: mov [esi+238h], 4397468Ch (302.55f)",
+      "evidence_level": "unverified"
     },
     "572": {
       "name": "m_fDefaultPosX",
       "type": "float",
-      "source": "A:InitDefaultView: mov [esi+23Ch], 0C3DBD0FEh (-439.63f)"
+      "source": "A:InitDefaultView: mov [esi+23Ch], 0C3DBD0FEh (-439.63f)",
+      "evidence_level": "unverified"
     },
     "576": {
       "name": "m_fDefaultPosY",
       "type": "float",
-      "source": "A:InitDefaultView: mov [esi+240h], 0 (0.0f)"
+      "source": "A:InitDefaultView: mov [esi+240h], 0 (0.0f)",
+      "evidence_level": "unverified"
     },
     "580": {
       "name": "m_fDefaultPosZ",
       "type": "float",
-      "source": "A:InitDefaultView: mov [esi+244h], 0C3480000h (-200.0f)"
+      "source": "A:InitDefaultView: mov [esi+244h], 0C3480000h (-200.0f)",
+      "evidence_level": "unverified"
     },
     "584": {
       "name": "m_fDefaultOffset",
       "type": "float",
-      "source": "A:InitDefaultView: mov [esi+248h], 0 (0.0f)"
+      "source": "A:InitDefaultView: mov [esi+248h], 0 (0.0f)",
+      "evidence_level": "unverified"
     },
     "592": {
       "name": "m_pCameraEvent",
       "type": "int",
-      "source": "binary_scan:1refs | ida_xref2"
+      "source": "binary_scan:1refs | ida_xref2",
+      "evidence_level": "unverified"
     },
     "616": {
       "name": "m_szText",
       "type": "float",
-      "source": "A:FPU_disp32_0x533f64"
+      "source": "A:FPU_disp32_0x533f64",
+      "evidence_level": "unverified"
     },
     "620": {
       "name": "m_wParamA",
       "type": "WORD",
-      "source": "A:binary_cmp_word_26Ch | ida_xref"
+      "source": "A:binary_cmp_word_26Ch | ida_xref",
+      "evidence_level": "unverified"
     },
     "624": {
       "name": "m_wParamB",
       "type": "WORD",
-      "source": "A:binary_cmp_word_270h | ida_xref"
+      "source": "A:binary_cmp_word_270h | ida_xref",
+      "evidence_level": "unverified"
     },
     "688": {
       "name": "m_nEventViewX",
       "type": "int",
-      "source": "binary:1x access | ida_xref"
+      "source": "binary:1x access | ida_xref",
+      "evidence_level": "unverified"
     },
     "692": {
       "name": "m_nEventViewY",
       "type": "int",
-      "source": "binary:1x access | ida_xref"
+      "source": "binary:1x access | ida_xref",
+      "evidence_level": "unverified"
     },
     "696": {
       "name": "m_nEventHandle",
       "type": "int",
-      "source": "binary:1x access | ida_xref"
+      "source": "binary:1x access | ida_xref",
+      "evidence_level": "unverified"
     },
     "700": {
       "name": "m_nTodo_2BC",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access",
+      "evidence_level": "unverified"
     },
     "877": {
       "name": "m_bCamEventFlag",
       "type": "unsigned char",
-      "source": "gap_fill:ida_decomp_access | ida_xref | fix:rename"
+      "source": "gap_fill:ida_decomp_access | ida_xref | fix:rename",
+      "evidence_level": "unverified"
     },
     "888": {
       "name": "m_bPageMode",
       "type": "unsigned char",
-      "source": "ida_decomp:_nearby_48ef80 if(byte this), 1 ref"
+      "source": "ida_decomp:_nearby_48ef80 if(byte this), 1 ref",
+      "evidence_level": "unverified"
     },
     "889": {
       "name": "m_bCamDirty",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast | annotate_todo"
+      "source": "raw_decomp:Hex-Rays_type_cast | annotate_todo",
+      "evidence_level": "B"
     },
     "892": {
       "name": "m_nPageParam",
       "type": "int",
-      "source": "ida_decomp:_nearby_48a390 = a2, 1 ref"
+      "source": "ida_decomp:_nearby_48a390 = a2, 1 ref",
+      "evidence_level": "unverified"
     },
     "896": {
       "name": "m_bBlendUpdate",
       "type": "unsigned char",
-      "source": "A:decomp CameraCtrl::ValidateDevice passes to UpdateBlendWeight as byte flag 0/1"
+      "source": "A:decomp CameraCtrl::ValidateDevice passes to UpdateBlendWeight as byte flag 0/1",
+      "evidence_level": "unverified"
     },
     "900": {
       "name": "m_nBlendWeight",
       "type": "int",
-      "source": "binary:9x access"
+      "source": "binary:9x access",
+      "evidence_level": "unverified"
     },
     "910": {
       "name": "m_bBlendWeight",
       "type": "unsigned char",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "binary:disp32_1hits_1funcs",
+      "evidence_level": "unverified"
     },
     "911": {
       "name": "m_bHandleEvent",
       "type": "unsigned char",
-      "source": "binary:disp32_6hits_3funcs"
+      "source": "binary:disp32_6hits_3funcs",
+      "evidence_level": "unverified"
     },
     "912": {
       "name": "m_bAutoRotate",
       "type": "unsigned char",
-      "source": "ida_decomp:_nearby_48c9a0 toggle 0/1, 2 refs"
+      "source": "ida_decomp:_nearby_48c9a0 toggle 0/1, 2 refs",
+      "evidence_level": "unverified"
     },
     "916": {
       "name": "m_nBlendTimer",
       "type": "int",
-      "source": "ida_decomp:UpdateBlendWeight <=0 check, set 0, 15 refs"
+      "source": "ida_decomp:UpdateBlendWeight <=0 check, set 0, 15 refs",
+      "evidence_level": "unverified"
     },
     "924": {
       "name": "m_nBlendState",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs | ida_xref"
+      "source": "binary:disp32_1hits_1funcs | ida_xref",
+      "evidence_level": "unverified"
     },
     "928": {
       "name": "m_nSlotParam",
       "type": "int",
-      "source": "A:store_imm183Ah+array_idx_[esi+eax*4+3A0h]|naming:slot_state_param"
+      "source": "A:store_imm183Ah+array_idx_[esi+eax*4+3A0h]|naming:slot_state_param",
+      "evidence_level": "unverified"
     },
     "1188": {
       "name": "m_nBlendWeightA",
       "type": "int",
-      "source": "binary:disp32_3hits_2funcs | ida_xref"
+      "source": "binary:disp32_3hits_2funcs | ida_xref",
+      "evidence_level": "unverified"
     },
     "1192": {
       "name": "m_nBlendWeightB",
       "type": "int",
-      "source": "binary:1x access | ida_xref"
+      "source": "binary:1x access | ida_xref",
+      "evidence_level": "unverified"
     },
     "1196": {
       "name": "m_nBlendWeightC",
       "type": "int",
-      "source": "binary:1x access | ida_xref"
+      "source": "binary:1x access | ida_xref",
+      "evidence_level": "unverified"
     },
     "1200": {
       "name": "m_roleParams",
       "type": "float",
-      "source": "gap_fill:ida_decomp_access | annotate_todo"
+      "source": "gap_fill:ida_decomp_access | annotate_todo",
+      "evidence_level": "unverified"
     },
     "1264": {
       "name": "m_nViewState",
       "type": "int",
-      "source": "A:cmp_[esi+4F0h]_edi_cmp7_cmp3|naming:camera_state_mode"
+      "source": "A:cmp_[esi+4F0h]_edi_cmp7_cmp3|naming:camera_state_mode",
+      "evidence_level": "unverified"
     },
     "2044": {
       "name": "m_nViewBase",
       "type": "void *",
-      "source": "A:decomp_subarray_base_ptr_arithmetic_21refs | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：多实例内嵌视图块——`&this[1]/this[2].m_nViewBase` 跨对象 + 2384×m_nViewMode 步长索引 + `12*n+288/800` 子块（BuildRenderLists@0x48B370）"
+      "source": "A:decomp_subarray_base_ptr_arithmetic_21refs | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：多实例内嵌视图块——`&this[1]/this[2].m_nViewBase` 跨对象 + 2384×m_nViewMode 步长索引 + `12*n+288/800` 子块（BuildRenderLists@0x48B370）",
+      "evidence_level": "A"
     },
     "3336": {
       "name": "m_bBlendActive",
       "type": "unsigned char",
-      "source": "ida_decomp:UpdateBlendWeight set 1, 5 refs"
+      "source": "ida_decomp:UpdateBlendWeight set 1, 5 refs",
+      "evidence_level": "unverified"
     },
     "3337": {
       "name": "m_bBlendPause",
       "type": "unsigned char",
-      "source": "ida_decomp:UpdateBlendWeight set 0, 5 refs"
+      "source": "ida_decomp:UpdateBlendWeight set 0, 5 refs",
+      "evidence_level": "unverified"
     },
     "3340": {
       "name": "m_nTickCount",
       "type": "int",
-      "source": "ida_decomp:_nearby_48ef80 = TickCount, 2 refs"
+      "source": "ida_decomp:_nearby_48ef80 = TickCount, 2 refs",
+      "evidence_level": "unverified"
     },
     "3344": {
       "name": "m_nTickStamp",
       "type": "int",
-      "source": "ida_decomp:_nearby_48ef80 = TickCount, delta = now-this, 3 refs"
+      "source": "ida_decomp:_nearby_48ef80 = TickCount, delta = now-this, 3 refs",
+      "evidence_level": "unverified"
     },
     "3348": {
       "name": "m_bTickInit",
       "type": "unsigned char",
-      "source": "ida_decomp:_nearby_48ef80 if(!this) set 1, 3 refs"
+      "source": "ida_decomp:_nearby_48ef80 if(!this) set 1, 3 refs",
+      "evidence_level": "unverified"
     },
     "3352": {
       "name": "m_CamBlocks",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "binary:disp32_1hits_1funcs",
+      "evidence_level": "unverified"
     },
     "412": {
       "name": "m_fromVec",
       "type": "gbVec3D",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "424": {
       "name": "m_yaw",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "428": {
       "name": "m_fCtrlYaw",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "432": {
       "name": "m_dist",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "444": {
       "name": "m_nextYAW",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "400": {
       "name": "m_lastFrom",
       "type": "gbVec3D",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "464": {
       "name": "m_nTodo_1D0",
       "type": "float",
-      "source": "binary:disasm@0x534000 (0x1D0 有 fadds/fstps ⇒ 浮点 ✓；原注解此处 std::stack 系编造 ✗) | [批4 诚实化 2026-10-16] A偏移形：m_fTodo_1D0⇒m_nTodo_1D0（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
+      "source": "binary:disasm@0x534000 (0x1D0 有 fadds/fstps ⇒ 浮点 ✓；原注解此处 std::stack 系编造 ✗) | [批4 诚实化 2026-10-16] A偏移形：m_fTodo_1D0⇒m_nTodo_1D0（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+      "evidence_level": "A"
     }
   },
   "binary_size": 4088,
   "methods": {
     "0x0041C1B0": {
       "name": "InitParams",
-      "signature": "int __thiscall(void *pParams)"
+      "signature": "int __thiscall(void *pParams)",
+      "evidence_level": "unverified"
     },
     "0x0041C630": {
       "name": "SetAsCurrent",
-      "signature": "void __thiscall(int flags)"
+      "signature": "void __thiscall(int flags)",
+      "evidence_level": "unverified"
     },
     "0x0041C670": {
       "name": "CalcOrbitalPos",
-      "signature": "float *__thiscall CameraCtrl::CalcOrbitalPos(float *pfOut, float fTargetX, float fTargetY, float fTargetZ)"
+      "signature": "float *__thiscall CameraCtrl::CalcOrbitalPos(float *pfOut, float fTargetX, float fTargetY, float fTargetZ)",
+      "evidence_level": "unverified"
     },
     "0x0041CA90": {
       "name": "SetDimention",
-      "signature": "void __thiscall(int w, int h)"
+      "signature": "void __thiscall(int w, int h)",
+      "evidence_level": "unverified"
     },
     "0x0041CAC0": {
       "name": "GetViewTarget",
-      "signature": "void *__thiscall(void *pTarget, float *pPos)"
+      "signature": "void *__thiscall(void *pTarget, float *pPos)",
+      "evidence_level": "unverified"
     },
     "0x0041CBA0": {
-      "name": "_scalar_dtor"
+      "name": "_scalar_dtor",
+      "evidence_level": "unverified"
     },
     "0x0041CBD0": {
       "name": "IsAngleBelowTarget",
       "signature": "BOOL __thiscall()",
-      "ordinal": 1
+      "ordinal": 1,
+      "evidence_level": "unverified"
     },
     "0x0041CBF0": {
       "name": "GetLerpPos",
-      "signature": "float *__thiscall(CameraCtrl *this, float *pResult, float fCurrent, float fTarget, float fFactor)"
+      "signature": "float *__thiscall(CameraCtrl *this, float *pResult, float fCurrent, float fTarget, float fFactor)",
+      "evidence_level": "unverified"
     },
     "0x0041CC50": {
       "name": "UpdateTransition",
       "signature": "int __thiscall CameraCtrl::UpdateTransition(float fDelta)",
-      "ordinal": 2
+      "ordinal": 2,
+      "evidence_level": "unverified"
     },
     "0x0041CEE0": {
       "name": "SetupFollow",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4)"
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4)",
+      "evidence_level": "unverified"
     },
     "0x0041CF20": {
       "name": "SetupOrbit",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5)"
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5)",
+      "evidence_level": "unverified"
     },
     "0x0041CF70": {
       "name": "SetupTrack",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5)"
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5)",
+      "evidence_level": "unverified"
     },
     "0x0041CFC0": {
       "name": "SetupDirect",
-      "signature": "int __thiscall(int *p_DWORD, int nVal, int nVal2)"
+      "signature": "int __thiscall(int *p_DWORD, int nVal, int nVal2)",
+      "evidence_level": "unverified"
     },
     "0x0041D010": {
       "name": "SetupLerp",
-      "signature": "int __thiscall(int nVal, int *p_DWORD, int nVal2, int nVal3)"
+      "signature": "int __thiscall(int nVal, int *p_DWORD, int nVal2, int nVal3)",
+      "evidence_level": "unverified"
     },
     "0x0041D070": {
       "name": "SmoothTransition",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int *p_DWORD, int nVal5)"
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int *p_DWORD, int nVal5)",
+      "evidence_level": "unverified"
     },
     "0x0041D5B0": {
       "name": "SetCamMode",
-      "signature": "int __thiscall(int mode)"
+      "signature": "int __thiscall(int mode)",
+      "evidence_level": "unverified"
     },
     "0x0041D5C0": {
       "name": "SetCamDist",
-      "signature": "int __thiscall CameraCtrl::SetCamDist(int nVal)"
+      "signature": "int __thiscall CameraCtrl::SetCamDist(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x0041D5D0": {
       "name": "UpdateFOVLerp",
-      "signature": "char *__thiscall()"
+      "signature": "char *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0041D7C0": {
       "name": "SetCameraSource",
-      "signature": "int *__thiscall(int nVal, int *p_DWORD)"
+      "signature": "int *__thiscall(int nVal, int *p_DWORD)",
+      "evidence_level": "unverified"
     },
     "0x0041D7F0": {
       "name": "SetupCameraArray",
       "signature": "unsigned int __thiscall(int nVal)",
-      "source": "| param a typed: VA=0x41D7F0 prologue mov eax,[esp+arg_0] (single int stack arg; decomp int a2)"
+      "source": "| param a typed: VA=0x41D7F0 prologue mov eax,[esp+arg_0] (single int stack arg; decomp int a2)",
+      "evidence_level": "unverified"
     },
     "0x0041D960": {
       "name": "ResetSceneMgrParams",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0041D9A0": {
       "name": "UpdateInternal",
-      "signature": "void __thiscall(float fDelta)"
+      "signature": "void __thiscall(float fDelta)",
+      "evidence_level": "unverified"
     },
     "0x0041E720": {
       "name": "AttachToRole",
       "signature": "void __cdecl(int nVal)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x0041EB50": {
       "name": "GetModeByIndex",
       "signature": "int __cdecl(int nVal)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x0041EF30": {
       "name": "InitPathState",
       "signature": "int __cdecl CameraCtrl::InitPathState()",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x00487480": {
       "name": "ResetToDefaults",
       "signature": "int __thiscall CameraCtrl::ResetToDefaults()",
-      "_misattrib_evidence": "max_offset=3296>class_size=200"
+      "_misattrib_evidence": "max_offset=3296>class_size=200",
+      "evidence_level": "unverified"
     },
     "0x00487610": {
       "name": "LoadRoleParams",
-      "signature": "int *__thiscall()"
+      "signature": "int *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0048B370": {
       "name": "BuildRenderLists",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0048C520": {
       "name": "CalcStatPower",
-      "signature": "void __thiscall CameraCtrl::CalcStatPower(int nVal)"
+      "signature": "void __thiscall CameraCtrl::CalcStatPower(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x0048D040": {
       "name": "UpdateBlendWeight",
-      "signature": "void __thiscall(int arg0, int nVal)"
+      "signature": "void __thiscall(int arg0, int nVal)",
+      "evidence_level": "unverified"
     },
     "0x0048EE00": {
       "name": "FindNextValidSlot",
-      "signature": "int __thiscall(int *pCounter)"
+      "signature": "int __thiscall(int *pCounter)",
+      "evidence_level": "unverified"
     },
     "0x0048EE30": {
       "name": "FindPrevValidSlot",
-      "signature": "int __thiscall(int *pCounter)"
+      "signature": "int __thiscall(int *pCounter)",
+      "evidence_level": "unverified"
     },
     "0x004BE910": {
       "name": "OnIdle",
-      "signature": "void __thiscall CameraCtrl::OnIdle()"
+      "signature": "void __thiscall CameraCtrl::OnIdle()",
+      "evidence_level": "unverified"
     },
     "0x004BEAA0": {
       "name": "OnIdleB",
-      "signature": "void __thiscall CameraCtrl::OnIdleB()"
+      "signature": "void __thiscall CameraCtrl::OnIdleB()",
+      "evidence_level": "unverified"
     },
     "0x004BEBF0": {
       "name": "RenderFadeEffect",
-      "signature": "void __thiscall CameraCtrl::RenderFadeEffect()"
+      "signature": "void __thiscall CameraCtrl::RenderFadeEffect()",
+      "evidence_level": "unverified"
     },
     "0x004BED40": {
       "name": "RenderFadeEffectB",
-      "signature": "void __thiscall CameraCtrl::RenderFadeEffectB()"
+      "signature": "void __thiscall CameraCtrl::RenderFadeEffectB()",
+      "evidence_level": "unverified"
     },
     "0x00504510": {
       "name": "InitFromConfig",
-      "signature": "char __thiscall()"
+      "signature": "char __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00504540": {
       "name": "InitFromScreen",
-      "signature": "char __thiscall()"
+      "signature": "char __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0052EBE0": {
       "name": "SetViewport",
-      "signature": "void __thiscall(int nFlags)"
+      "signature": "void __thiscall(int nFlags)",
+      "evidence_level": "unverified"
     },
     "0x00533EA0": {
       "name": "InitDefaultView",
-      "signature": "char __thiscall CameraCtrl::InitDefaultView()"
+      "signature": "char __thiscall CameraCtrl::InitDefaultView()",
+      "evidence_level": "unverified"
     },
     "0x00534DC0": {
       "name": "SetFOVIfValid",
-      "signature": "int __thiscall CameraCtrl::SetFOVIfValid(int nVal)"
+      "signature": "int __thiscall CameraCtrl::SetFOVIfValid(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x0041D730": {
       "name": "PopState",
-      "signature": "void __thiscall CameraCtrl::PopState()"
+      "signature": "void __thiscall CameraCtrl::PopState()",
+      "evidence_level": "unverified"
     },
     "0x0048C610": {
       "name": "HandleCameraEvent",
       "signature": "BOOL __thiscall(int nParam, BOOL bFlag)",
-      "_misattrib_evidence": "max_offset=207612>class_size=4088"
+      "_misattrib_evidence": "max_offset=207612>class_size=4088",
+      "evidence_level": "unverified"
     },
     "0x0048D5D0": {
       "name": "CreateCameraUI",
       "signature": "void *__thiscall(int nVal)",
-      "_misattrib_evidence": "max_offset=307028>class_size=4088"
+      "_misattrib_evidence": "max_offset=307028>class_size=4088",
+      "evidence_level": "unverified"
     },
     "0x0048EE60": {
       "name": "ProcessSaveSlotNav",
       "signature": "char __thiscall CameraCtrl::ProcessSaveSlotNav()",
-      "_misattrib_evidence": "max_offset=205784>class_size=4088"
+      "_misattrib_evidence": "max_offset=205784>class_size=4088",
+      "evidence_level": "unverified"
     },
     "0x0048C9A0": {
       "name": "ProcessCameraTask",
       "signature": "int __thiscall (int nVal, int nVal2)",
-      "_misattrib_evidence": "max_offset=217324>class_size=4088"
+      "_misattrib_evidence": "max_offset=217324>class_size=4088",
+      "evidence_level": "unverified"
     },
     "0x0048CCE0": {
       "name": "InitBlendState",
       "signature": "char __thiscall (int arg0, int nVal)",
-      "_misattrib_evidence": "max_offset=205788>class_size=4088"
+      "_misattrib_evidence": "max_offset=205788>class_size=4088",
+      "evidence_level": "unverified"
     },
     "0x0048EF80": {
       "name": "ValidateDevice",
       "signature": "BOOL __thiscall ()",
-      "_misattrib_evidence": "max_offset=209892>class_size=200"
+      "_misattrib_evidence": "max_offset=209892>class_size=200",
+      "evidence_level": "unverified"
     },
     "0x004BE8F0": {
       "name": "_sdtor_17",
-      "signature": "CameraCtrl *__thiscall(CameraCtrl *Block, char a2)"
+      "signature": "CameraCtrl *__thiscall(CameraCtrl *Block, char a2)",
+      "evidence_level": "unverified"
     },
     "0x0041CBC0": {
       "name": "_nearby_41cbc0",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "| [①渲染错族治理 2026-10-16 analyzer] A 级本体判读+声明性注册（declaration_only 消渲染 C2039，非归属认定）：本体 `c7 01 c0 a9 56 00 c3`=写表桩（[ecx]=0x56A9C0 Object 族基表重置）——共享桩非 CameraCtrl 专属"
+      "source": "| [①渲染错族治理 2026-10-16 analyzer] A 级本体判读+声明性注册（declaration_only 消渲染 C2039，非归属认定）：本体 `c7 01 c0 a9 56 00 c3`=写表桩（[ecx]=0x56A9C0 Object 族基表重置）——共享桩非 CameraCtrl 专属",
+      "evidence_level": "A"
     }
   },
   "vtables": [

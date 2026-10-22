@@ -5,27 +5,32 @@
     "72": {
       "name": "m_nInitRoleFaceLineup",
       "type": "int[5]",
-      "offset": 72
+      "offset": 72,
+      "evidence_level": "unverified"
     },
     "92": {
       "name": "m_pBack",
       "type": "UIStatic *",
-      "offset": 92
+      "offset": 92,
+      "evidence_level": "unverified"
     },
     "96": {
       "name": "m_pFace",
       "type": "UIStatic *[5]",
-      "offset": 96
+      "offset": 96,
+      "evidence_level": "unverified"
     },
     "116": {
       "name": "m_nSelected",
       "type": "int",
-      "offset": 116
+      "offset": 116,
+      "evidence_level": "unverified"
     },
     "120": {
       "name": "m_pUI",
       "type": "CCBUI *",
-      "offset": 120
+      "offset": 120,
+      "evidence_level": "unverified"
     }
   },
   "methods": {
@@ -33,86 +38,105 @@
       "name": "_scalar_dtor",
       "signature": "void __thiscall()",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "evidence_level": "unverified"
     },
     "0x0051CFB0": {
       "name": "CCBLineupWindow",
-      "signature": "void __thiscall(CCBControlWindow **a2)"
+      "signature": "void __thiscall(CCBControlWindow **a2)",
+      "evidence_level": "unverified"
     },
     "0x0051D070": {
       "name": "_todo_0051D070",
       "signature": "void __thiscall(CCBItemWindow **a2)",
-      "source": "| 析构名误挂改名 2026-09-29：~CCBLineupWindow→_todo_0051D070（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）"
+      "source": "| 析构名误挂改名 2026-09-29：~CCBLineupWindow→_todo_0051D070（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）",
+      "evidence_level": "unverified"
     },
     "0x0051D120": {
       "name": "Reset",
       "signature": "void __thiscall(CCBMagicWindow **a2)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x0051D1D0": {
       "name": "Create",
       "signature": "bool(tagRECT *rc, UIWnd *pFather)",
-      "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
+      "evidence_level": "unverified"
     },
     "0x0051D290": {
       "name": "Destroy",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051D340": {
       "name": "OnMessage",
-      "signature": "char __thiscall(int *msg)"
+      "signature": "char __thiscall(int *msg)",
+      "evidence_level": "unverified"
     },
     "0x0051D3F0": {
       "name": "Update",
-      "signature": "char __thiscall(int *deltatime)"
+      "signature": "char __thiscall(int *deltatime)",
+      "evidence_level": "unverified"
     },
     "0x0051D4A0": {
       "name": "Render",
-      "signature": "char __thiscall(int *p_DWORD)"
+      "signature": "char __thiscall(int *p_DWORD)",
+      "evidence_level": "unverified"
     },
     "0x0051D580": {
       "name": "IsPtOnFace",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051D590": {
       "name": "IsPtOnFace_d590",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051D5A0": {
       "name": "IsPtOnInitPos",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051D5B0": {
       "name": "IsPtOnInitPos_d5b0",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051D5F0": {
       "name": "IsFaceOnInitPos",
-      "signature": "char __thiscall()"
+      "signature": "char __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051D610": {
       "name": "SetFaceLineup",
       "signature": "char __cdecl(int nVal, int nFaceIndex, int nPosIndex, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6, int *p_DWORD)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x0051D6D0": {
       "name": "RefreshFacePos",
-      "signature": "CCBProtectWindow *__thiscall()"
+      "signature": "CCBProtectWindow *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051B570": {
       "name": "HandleInput",
       "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "source": "vtable_gap_fill_v1(from CCBItemWindow.json)"
+      "source": "vtable_gap_fill_v1(from CCBItemWindow.json)",
+      "evidence_level": "unverified"
     },
     "0x0043DDF0": {
       "name": "CCBControlWindow::Render",
       "signature": "virtual void __thiscall(CCBMagicWindow *this)",
-      "source": "vtable_decl_only_fill(copied from CCBControlWindow.json)"
+      "source": "vtable_decl_only_fill(copied from CCBControlWindow.json)",
+      "evidence_level": "unverified"
     },
     "0x0051B940": {
       "name": "ForwardShowClipped",
       "signature": "void __thiscall(CCBLineupWindow *this, int nFlags)",
-      "source": "| 97族注册续 2026-10-17（verifier·证据账目制 symbol+addr）：注册 evidence：体 `push nFlags; call CCBPanelSlot::ShowClipped(this); ret 4`（转发形）| 五面：①调用者=五窗 UI 域 ②被调=CCBPanelSlot::ShowClipped ③转发体无成员 ④五窗共享槽 ⑤UI 显隐转发 | confidence: high | 原 IDB 名 _todo_B940（伪语义）⇒ 再创作命名 ForwardShowClipped"
+      "source": "| 97族注册续 2026-10-17（verifier·证据账目制 symbol+addr）：注册 evidence：体 `push nFlags; call CCBPanelSlot::ShowClipped(this); ret 4`（转发形）| 五面：①调用者=五窗 UI 域 ②被调=CCBPanelSlot::ShowClipped ③转发体无成员 ④五窗共享槽 ⑤UI 显隐转发 | confidence: high | 原 IDB 名 _todo_B940（伪语义）⇒ 再创作命名 ForwardShowClipped",
+      "evidence_level": "A"
     }
   },
   "vtables": [

@@ -5,1270 +5,1527 @@
     "4": {
       "name": "m_bGetSceneScript",
       "type": "unsigned char",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "m_scriptMain",
       "type": "PtrArray",
-      "source": "gen_headers_9.2 | [P2 成员消歧 2026-10-19] m_script→m_scriptMain（消歧（C2371 同名双偏移双型）：@8=PtrArray（型证 ✓ 主容器形）⇒ Main 后缀（lead 制式）· 同名 @88=int 另立 · ⚠️ Main 语义=lead 制式占位（真语义待五面——型证=容器/标量分野 ✓））"
+      "source": "gen_headers_9.2 | [P2 成员消歧 2026-10-19] m_script→m_scriptMain（消歧（C2371 同名双偏移双型）：@8=PtrArray（型证 ✓ 主容器形）⇒ Main 后缀（lead 制式）· 同名 @88=int 另立 · ⚠️ Main 语义=lead 制式占位（真语义待五面——型证=容器/标量分野 ✓））",
+      "evidence_level": "unverified"
     },
     "24": {
       "name": "m_scefile",
       "type": "scSCEFile *",
-      "source": "fix:span=4_next_hits=22_ptr"
+      "source": "fix:span=4_next_hits=22_ptr",
+      "evidence_level": "unverified"
     },
     "52": {
       "name": "m_fCamZ",
       "type": "float",
-      "source": "A:decomp PalScriptMgr::ExecuteFrame (0x42F460) used as float camera Z along m_fCamX/m_fCamY — 5 accesses: lerp, LODWORD copy, float addition"
+      "source": "A:decomp PalScriptMgr::ExecuteFrame (0x42F460) used as float camera Z along m_fCamX/m_fCamY — 5 accesses: lerp, LODWORD copy, float addition",
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "m_scepath",
       "type": "scSCEFile *",
-      "source": "A:decomp LODWORD(this->m_scepath)=this->m_scesys where m_scesys is scSCEFile*"
+      "source": "A:decomp LODWORD(this->m_scepath)=this->m_scesys where m_scesys is scSCEFile*",
+      "evidence_level": "unverified"
     },
     "84": {
       "name": "m_bBigMapState",
       "type": "unsigned char",
-      "source": "A:decomp PalScriptMgr::ExecuteFrame LOBYTE(this->m_bigMapState) compare to 0/1 + SetBigMapState LOBYTE assignment — byte-only access"
+      "source": "A:decomp PalScriptMgr::ExecuteFrame LOBYTE(this->m_bigMapState) compare to 0/1 + SetBigMapState LOBYTE assignment — byte-only access",
+      "evidence_level": "unverified"
     },
     "44": {
       "name": "m_fCamX",
       "type": "float",
-      "source": "binary:raw_31votes"
+      "source": "binary:raw_31votes",
+      "evidence_level": "unverified"
     },
     "48": {
       "name": "m_fCamY",
       "type": "float",
-      "source": "binary:raw_29votes"
+      "source": "binary:raw_29votes",
+      "evidence_level": "unverified"
     },
     "60": {
       "name": "m_nFrameCounter",
       "type": "int",
-      "source": "binary:raw_14votes | decomp:counter_in_SetPauseState_ExecuteBlock"
+      "source": "binary:raw_14votes | decomp:counter_in_SetPauseState_ExecuteBlock",
+      "evidence_level": "unverified"
     },
     "64": {
       "name": "m_fPauseCamY",
       "type": "float",
-      "source": "binary:raw_12votes | [97挂账裁决 2026-10-16] m_fField3C ⇒ m_nTodo_3C（泛化词 Field+偏移尾（PalScriptMgr 对实证 PDB 漂移 0x3C→0x40 差+4）=禁令形；零表达式/零布局改动） | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_3C）：SetPauseState `m = m_fCamY`（保存相机 Y）；五面：①SetPauseState ②m_fCamY 赋值源 ③float 域 ④PalScriptMgr ⑤暂停/恢复交互；confidence=75"
+      "source": "binary:raw_12votes | [97挂账裁决 2026-10-16] m_fField3C ⇒ m_nTodo_3C（泛化词 Field+偏移尾（PalScriptMgr 对实证 PDB 漂移 0x3C→0x40 差+4）=禁令形；零表达式/零布局改动） | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_3C）：SetPauseState `m = m_fCamY`（保存相机 Y）；五面：①SetPauseState ②m_fCamY 赋值源 ③float 域 ④PalScriptMgr ⑤暂停/恢复交互；confidence=75",
+      "evidence_level": "unverified"
     },
     "68": {
       "name": "m_pBigMapSce",
       "type": "scSCEFile *",
-      "source": "A:decomp LODWORD(this->m_fField40)=this->m_scesys where m_scesys is scSCEFile* | decomp:assigned_from_m_scesys_and_m_nSavedDataB"
+      "source": "A:decomp LODWORD(this->m_fField40)=this->m_scesys where m_scesys is scSCEFile* | decomp:assigned_from_m_scesys_and_m_nSavedDataB",
+      "evidence_level": "unverified"
     },
     "72": {
       "name": "m_wndTextBox",
       "type": "float",
-      "source": "binary:raw_14votes | decomp:Normalize_called_on_this_field | [97挂账裁决 2026-10-16] m_fField44 ⇒ m_nTodo_44（泛化词 Field+偏移尾（PalScriptMgr 对实证 PDB 漂移 0x3C→0x40 差+4）=禁令形；零表达式/零布局改动） | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_44）：ShowTextBox `UIWnd::sub_445FA0((UIWnd*)&m,a2)` + SetName(pszText)（嵌入 UI 对象文本设置）；①ShowTextBox ②UIWnd 子对象方法 ③+72 嵌入域 ④PalScriptMgr ⑤文本框展示；confidence=72"
+      "source": "binary:raw_14votes | decomp:Normalize_called_on_this_field | [97挂账裁决 2026-10-16] m_fField44 ⇒ m_nTodo_44（泛化词 Field+偏移尾（PalScriptMgr 对实证 PDB 漂移 0x3C→0x40 差+4）=禁令形；零表达式/零布局改动） | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_44）：ShowTextBox `UIWnd::sub_445FA0((UIWnd*)&m,a2)` + SetName(pszText)（嵌入 UI 对象文本设置）；①ShowTextBox ②UIWnd 子对象方法 ③+72 嵌入域 ④PalScriptMgr ⑤文本框展示；confidence=72",
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_fPosZ",
       "type": "float",
-      "source": "binary:raw_18votes | decomp:used_as_Z_coord_in_ExecuteBlock"
+      "source": "binary:raw_18votes | decomp:used_as_Z_coord_in_ExecuteBlock",
+      "evidence_level": "unverified"
     },
     "88": {
       "name": "m_scriptAux",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_054）：UpdateScript `PalScript::GetCount((PalScript*)&m,0)`（嵌入 PalScript 子对象起始位）+ `m==3` 状态首域视图；①UpdateScript ②PalScript 方法 ③+88 嵌入域 ④PalScriptMgr ⑤脚本更新；confidence=72 | [P2 成员消歧 2026-10-19] m_script→m_scriptAux（消歧：@88=int（型证 ✓ 标量）⇒ Aux（对偶消歧）· 与 @8 主容器分立 ✓）"
+      "source": "B:naming_m_n+FPU_misattrib | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_054）：UpdateScript `PalScript::GetCount((PalScript*)&m,0)`（嵌入 PalScript 子对象起始位）+ `m==3` 状态首域视图；①UpdateScript ②PalScript 方法 ③+88 嵌入域 ④PalScriptMgr ⑤脚本更新；confidence=72 | [P2 成员消歧 2026-10-19] m_script→m_scriptAux（消歧：@88=int（型证 ✓ 标量）⇒ Aux（对偶消歧）· 与 @8 主容器分立 ✓）",
+      "evidence_level": "unverified"
     },
     "92": {
       "name": "m_pScriptObjMain",
       "type": "gbVisNode *",
-      "source": "binary:raw_5votes | [主攻点2续 2026-10-17] 五面满卡 5/5 正名：①调用者=PalScriptMgr::UpdateScriptRoles 脚本角色更新帧（31 站）②被调=gbVisNode::SetTimeScale(node,0.0) 时间缩放 + slot24 虚调用（Update 族）③成员访问=+92 读为 gbVisNode* 指针 ④类归属=PalScriptMgr 脚本管理 ⑤交互=脚本角色更新帧内时间缩放/状态更新生命周期；A 级=idapro decomp 用法 31 站（SetTimeScale 实参 cast 形）；原名 m_nTodo_058 ⇒ 再创作命名 m_pRoleVisNode（功能驱动：脚本角色可视节点指针）；类型正名 int→gbVisNode *（同宽 4B 布局等价） | evidence: 详前文 A 级形证 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_pRoleVisNode）：UpdateScript 虚调用 `(*(fn)(m+24))(...)`（对象指针+虚表偏移）；①UpdateScript ②虚分派 ③+92 指针域 ④PalScriptMgr ⑤脚本对象驱动；confidence=72 | [P2 成员消歧 2026-10-19] m_pScriptObj→m_pScriptObjMain（消歧（C2371）：@92=gbVisNode*（型证 ✓ 可视节点指针）⇒ Main · @304=PalScriptMgr* 另立）"
+      "source": "binary:raw_5votes | [主攻点2续 2026-10-17] 五面满卡 5/5 正名：①调用者=PalScriptMgr::UpdateScriptRoles 脚本角色更新帧（31 站）②被调=gbVisNode::SetTimeScale(node,0.0) 时间缩放 + slot24 虚调用（Update 族）③成员访问=+92 读为 gbVisNode* 指针 ④类归属=PalScriptMgr 脚本管理 ⑤交互=脚本角色更新帧内时间缩放/状态更新生命周期；A 级=idapro decomp 用法 31 站（SetTimeScale 实参 cast 形）；原名 m_nTodo_058 ⇒ 再创作命名 m_pRoleVisNode（功能驱动：脚本角色可视节点指针）；类型正名 int→gbVisNode *（同宽 4B 布局等价） | evidence: 详前文 A 级形证 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_pRoleVisNode）：UpdateScript 虚调用 `(*(fn)(m+24))(...)`（对象指针+虚表偏移）；①UpdateScript ②虚分派 ③+92 指针域 ④PalScriptMgr ⑤脚本对象驱动；confidence=72 | [P2 成员消歧 2026-10-19] m_pScriptObj→m_pScriptObjMain（消歧（C2371）：@92=gbVisNode*（型证 ✓ 可视节点指针）⇒ Main · @304=PalScriptMgr* 另立）",
+      "evidence_level": "A"
     },
     "96": {
       "name": "m_pExecSystem",
       "type": "char *",
       "source": "binary:raw_7votes | fix:int_to_ptr",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     },
     "56": {
       "name": "m_nTodo_0034",
       "type": "int",
-      "source": "binary:raw_final | [97挂账裁决 2026-10-16] m_Sub_0034 ⇒ m_nTodo_0034（泛化词 Sub+偏移尾 0034（现偏移 0x38，PDB 漂移 -4 同族）=禁令形；零表达式/零布局改动） | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "binary:raw_final | [97挂账裁决 2026-10-16] m_Sub_0034 ⇒ m_nTodo_0034（泛化词 Sub+偏移尾 0034（现偏移 0x38，PDB 漂移 -4 同族）=禁令形；零表达式/零布局改动） | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "216": {
       "name": "m_nExecuteBlock",
       "type": "int",
-      "source": "binary:6x access"
+      "source": "binary:6x access",
+      "evidence_level": "unverified"
     },
     "220": {
       "name": "m_nSavedDataA",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "source": "B:naming_m_n+FPU_misattrib",
+      "evidence_level": "unverified"
     },
     "224": {
       "name": "m_nSavedDataB",
       "type": "int",
-      "source": "ida_decomp:ExecuteBlock *64 = *220, 16 refs"
+      "source": "ida_decomp:ExecuteBlock *64 = *220, 16 refs",
+      "evidence_level": "unverified"
     },
     "228": {
       "name": "m_fAngle",
       "type": "float",
-      "source": "binary:3x access"
+      "source": "binary:3x access",
+      "evidence_level": "unverified"
     },
     "248": {
       "name": "m_nCmdType",
       "type": "unsigned char",
-      "source": "ida_decomp:RunCommand/ExecuteBlock switch(this), 11 refs"
+      "source": "ida_decomp:RunCommand/ExecuteBlock switch(this), 11 refs",
+      "evidence_level": "unverified"
     },
     "252": {
       "name": "m_nCmdValue",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "source": "B:naming_m_n+FPU_misattrib",
+      "evidence_level": "unverified"
     },
     "256": {
       "name": "m_nCmdParam0",
       "type": "short",
-      "source": "A:66_prefix_word_access_in_class_method"
+      "source": "A:66_prefix_word_access_in_class_method",
+      "evidence_level": "unverified"
     },
     "260": {
       "name": "m_nCmdParam1",
       "type": "short",
-      "source": "A:66_prefix_word_access_in_class_method"
+      "source": "A:66_prefix_word_access_in_class_method",
+      "evidence_level": "unverified"
     },
     "268": {
       "name": "m_nExecCounter",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "source": "B:naming_m_n+FPU_misattrib",
+      "evidence_level": "unverified"
     },
     "304": {
       "name": "m_pScriptObjAux",
       "type": "PalScriptMgr *",
-      "source": "ida_decomp:ExecuteBlock Destroy(this), if(this), 10 refs+codegen_infer | [P2 成员消歧 2026-10-19] m_pScriptObj→m_pScriptObjAux（消歧：@304=PalScriptMgr*（型证 ✓ 自指针/管理器域）⇒ Aux · 与 @92 分立 ✓）"
+      "source": "ida_decomp:ExecuteBlock Destroy(this), if(this), 10 refs+codegen_infer | [P2 成员消歧 2026-10-19] m_pScriptObj→m_pScriptObjAux（消歧：@304=PalScriptMgr*（型证 ✓ 自指针/管理器域）⇒ Aux · 与 @92 分立 ✓）",
+      "evidence_level": "unverified"
     },
     "308": {
       "name": "m_nScriptDepth",
       "type": "int",
-      "source": "ida_decomp:ExecuteOpcode +1, >0 check, 4 refs"
+      "source": "ida_decomp:ExecuteOpcode +1, >0 check, 4 refs",
+      "evidence_level": "unverified"
     },
     "324": {
       "name": "m_fExecuteBlock",
       "type": "float",
-      "source": "binary:1x access"
+      "source": "binary:1x access",
+      "evidence_level": "unverified"
     },
     "328": {
       "name": "m_fCurPosY",
       "type": "float",
-      "source": "ida_decomp:ExecuteBlock this - +312"
+      "source": "ida_decomp:ExecuteBlock this - +312",
+      "evidence_level": "unverified"
     },
     "332": {
       "name": "m_fAnimSpeed",
       "type": "float",
-      "source": "binary:1x access"
+      "source": "binary:1x access",
+      "evidence_level": "unverified"
     },
     "504": {
       "name": "m_nScriptID",
       "type": "short",
-      "source": "ida_decomp:ExecScript_42bf90 ==0xFFFF sentinel"
+      "source": "ida_decomp:ExecScript_42bf90 ==0xFFFF sentinel",
+      "evidence_level": "unverified"
     },
     "540": {
       "name": "m_fPosAX",
       "type": "float",
-      "source": "ida_decomp:ExecuteBlock = this+548 + this, 3 refs"
+      "source": "ida_decomp:ExecuteBlock = this+548 + this, 3 refs",
+      "evidence_level": "unverified"
     },
     "552": {
       "name": "m_fPosBX",
       "type": "float",
-      "source": "ida_decomp:ExecuteBlock added to posA, 3 refs"
+      "source": "ida_decomp:ExecuteBlock added to posA, 3 refs",
+      "evidence_level": "unverified"
     },
     "556": {
       "name": "m_fPosBY",
       "type": "float",
-      "source": "ida_decomp:ExecuteBlock added to posA, 3 refs"
+      "source": "ida_decomp:ExecuteBlock added to posA, 3 refs",
+      "evidence_level": "unverified"
     },
     "560": {
       "name": "m_fPosBZ",
       "type": "float",
-      "source": "ida_decomp:ExecuteBlock added to posA, 3 refs"
+      "source": "ida_decomp:ExecuteBlock added to posA, 3 refs",
+      "evidence_level": "unverified"
     },
     "564": {
       "name": "m_nMatrixData",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "binary:1x access",
+      "evidence_level": "unverified"
     },
     "796": {
       "name": "m_nBlockHandle",
       "type": "int",
-      "source": "ida_decomp:loaded in ExecuteOpcode"
+      "source": "ida_decomp:loaded in ExecuteOpcode",
+      "evidence_level": "unverified"
     },
     "800": {
       "name": "m_pSceneMgr",
       "type": "RoleSystem *",
-      "source": "ida_decomp:ExecuteOpcode GetRolePtr(*(this+16)), 33 refs+codegen_infer"
+      "source": "ida_decomp:ExecuteOpcode GetRolePtr(*(this+16)), 33 refs+codegen_infer",
+      "evidence_level": "unverified"
     },
     "804": {
       "name": "m_bRoleCmd",
       "type": "unsigned char",
-      "source": "binary:3x access"
+      "source": "binary:3x access",
+      "evidence_level": "unverified"
     },
     "808": {
       "name": "m_nExecState",
       "type": "int",
-      "source": "ida_decomp:ExecuteBlock = 1/2, 8 refs"
+      "source": "ida_decomp:ExecuteBlock = 1/2, 8 refs",
+      "evidence_level": "unverified"
     },
     "816": {
       "name": "m_nLoopCountA",
       "type": "int",
-      "source": "ida_decomp:this-1, decrement"
+      "source": "ida_decomp:this-1, decrement",
+      "evidence_level": "unverified"
     },
     "820": {
       "name": "m_nLoopCountB",
       "type": "int",
-      "source": "ida_decomp:this+1, increment"
+      "source": "ida_decomp:this+1, increment",
+      "evidence_level": "unverified"
     },
     "824": {
       "name": "m_nLoopCountC",
       "type": "int",
-      "source": "ida_decomp:this+1, increment"
+      "source": "ida_decomp:this+1, increment",
+      "evidence_level": "unverified"
     },
     "828": {
       "name": "m_nSavedPosX",
       "type": "int",
-      "source": "binary:2x access | annotate_todo"
+      "source": "binary:2x access | annotate_todo",
+      "evidence_level": "unverified"
     },
     "836": {
       "name": "m_nScriptCamX",
       "type": "int",
-      "source": "fix:decomp_LODWORD_only_no_fpu"
+      "source": "fix:decomp_LODWORD_only_no_fpu",
+      "evidence_level": "unverified"
     },
     "844": {
       "name": "m_pScriptBlock",
       "type": "char *",
       "source": "ida_decomp:ExecuteOpcode = this+76, 11 refs | type_fix:int→void*(decomp ptr usage)",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     },
     "848": {
       "name": "m_pExecObj",
       "type": "char *",
       "source": "ida_decomp:ExecuteOpcode deref as void***, 12 refs | type_fix:int→void*(triple deref)",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     },
     "852": {
       "name": "m_fExecParam",
       "type": "float",
-      "source": "ida_decomp:ExecuteOpcode = v52/v39, 8 refs"
+      "source": "ida_decomp:ExecuteOpcode = v52/v39, 8 refs",
+      "evidence_level": "unverified"
     },
     "868": {
       "name": "m_pWaitObj",
       "type": "char *",
       "source": "ida_decomp:ExecuteOpcode deref as void**, 4 refs | type_fix:int→void*(double deref)",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     },
     "876": {
       "name": "m_nWaitCount",
       "type": "int",
-      "source": "ida_decomp:ExecuteOpcode if(this), this-1, 21 refs"
+      "source": "ida_decomp:ExecuteOpcode if(this), this-1, 21 refs",
+      "evidence_level": "unverified"
     },
     "888": {
       "name": "m_pClearResult",
       "type": "char *",
       "source": "ida_decomp:ExecuteOpcode = Destroy(v2+64), 12 refs | fix:int_to_ptr",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     },
     "3288": {
       "name": "m_nField_CD4",
       "type": "unsigned char",
-      "source": "binary:3x access"
+      "source": "binary:3x access",
+      "evidence_level": "unverified"
     },
     "3292": {
       "name": "m_nScreenEffect",
       "type": "int",
-      "source": "ida_decomp:_init_44b0f0 = ProcessEffect(2), 4 refs"
+      "source": "ida_decomp:_init_44b0f0 = ProcessEffect(2), 4 refs",
+      "evidence_level": "unverified"
     },
     "3296": {
       "name": "m_nEffectTick",
       "type": "int",
-      "source": "ida_decomp:_init_44b0f0 = TickCount, 2 refs"
+      "source": "ida_decomp:_init_44b0f0 = TickCount, 2 refs",
+      "evidence_level": "unverified"
     },
     "3300": {
       "name": "m_nTickStamp",
       "type": "int",
-      "source": "ida_decomp:_init_44b0f0 = TickCount, 3 refs"
+      "source": "ida_decomp:_init_44b0f0 = TickCount, 3 refs",
+      "evidence_level": "unverified"
     },
     "3304": {
       "name": "m_bEffectInit",
       "type": "unsigned char",
-      "source": "ida_decomp:_init_44b0f0 if(!this) set 1, 3 refs"
+      "source": "ida_decomp:_init_44b0f0 if(!this) set 1, 3 refs",
+      "evidence_level": "unverified"
     },
     "3308": {
       "name": "m_bEffectActive",
       "type": "unsigned char",
-      "source": "ida_decomp:_init_44b0f0 set 0, if(this), 8 refs"
+      "source": "ida_decomp:_init_44b0f0 set 0, if(this), 8 refs",
+      "evidence_level": "unverified"
     },
     "160": {
       "name": "m_nBlockEndAddr",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "binary:disp32_1hits_1funcs",
+      "evidence_level": "unverified"
     },
     "178": {
       "name": "m_bExecuteBlock",
       "type": "unsigned char",
-      "source": "binary:disp32_23hits_1funcs"
+      "source": "binary:disp32_23hits_1funcs",
+      "evidence_level": "unverified"
     },
     "179": {
       "name": "m_bScriptPause",
       "type": "unsigned char",
-      "source": "ida_decomp:ExecuteBlock if(!this) + toggle, 13 refs"
+      "source": "ida_decomp:ExecuteBlock if(!this) + toggle, 13 refs",
+      "evidence_level": "unverified"
     },
     "213": {
       "name": "m_bOpcodeFlag",
       "type": "unsigned char",
-      "source": "ida_decomp:ExecuteOpcode = v2+60, ExecuteBlock = _bScriptPause, 9 refs"
+      "source": "ida_decomp:ExecuteOpcode = v2+60, ExecuteBlock = _bScriptPause, 9 refs",
+      "evidence_level": "unverified"
     },
     "232": {
       "name": "m_nExecRangeA",
       "type": "int",
-      "source": "ida_decomp:ExecuteBlock this+228+this+236"
+      "source": "ida_decomp:ExecuteBlock this+228+this+236",
+      "evidence_level": "unverified"
     },
     "236": {
       "name": "m_nExecRangeB",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "source": "B:naming_m_n+FPU_misattrib",
+      "evidence_level": "unverified"
     },
     "240": {
       "name": "m_nExecRangeC",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "source": "B:naming_m_n+FPU_misattrib",
+      "evidence_level": "unverified"
     },
     "244": {
       "name": "m_nExecRangeD",
       "type": "int",
-      "source": "ida_decomp:ExecuteBlock LODWORD(v129)=this"
+      "source": "ida_decomp:ExecuteBlock LODWORD(v129)=this",
+      "evidence_level": "unverified"
     },
     "264": {
       "name": "m_nCmdParam2",
       "type": "int",
-      "source": "ida_decomp:ExecuteBlock param, also as float, 3 refs"
+      "source": "ida_decomp:ExecuteBlock param, also as float, 3 refs",
+      "evidence_level": "unverified"
     },
     "312": {
       "name": "m_fPrevPosX",
       "type": "float",
-      "source": "ida_decomp:ExecuteBlock +320-this = deltaX"
+      "source": "ida_decomp:ExecuteBlock +320-this = deltaX",
+      "evidence_level": "unverified"
     },
     "316": {
       "name": "m_fPrevPosY",
       "type": "float",
-      "source": "ida_decomp:ExecuteBlock +324-this = deltaY"
+      "source": "ida_decomp:ExecuteBlock +324-this = deltaY",
+      "evidence_level": "unverified"
     },
     "320": {
       "name": "m_nExecuteOpcode",
       "type": "int",
-      "source": "binary:disp32_2hits_2funcs"
+      "source": "binary:disp32_2hits_2funcs",
+      "evidence_level": "unverified"
     },
     "538": {
       "name": "m_bScriptByte",
       "type": "unsigned char",
-      "source": "ida_decomp:if(this!=0xFF), 2 refs"
+      "source": "ida_decomp:if(this!=0xFF), 2 refs",
+      "evidence_level": "unverified"
     },
     "544": {
       "name": "m_fPosAY",
       "type": "float",
-      "source": "ida_decomp:ExecuteBlock = this+552 + this, 3 refs"
+      "source": "ida_decomp:ExecuteBlock = this+552 + this, 3 refs",
+      "evidence_level": "unverified"
     },
     "548": {
       "name": "m_fPosAZ",
       "type": "float",
-      "source": "ida_decomp:ExecuteBlock = this+556 + this, 3 refs"
+      "source": "ida_decomp:ExecuteBlock = this+556 + this, 3 refs",
+      "evidence_level": "unverified"
     },
     "812": {
       "name": "m_pCmdBuffer",
       "type": "char *",
       "source": "ida_decomp:PAL3_Helper_426E80(this,&a2) | type_fix:int→void*(naming+decomp)",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     },
     "832": {
       "name": "m_pSubScriptB",
       "type": "PalScriptMgr *",
-      "source": "ida_decomp:ExecuteOpcode _sub_42FCC0(this), 12 refs+codegen_infer"
+      "source": "ida_decomp:ExecuteOpcode _sub_42FCC0(this), 12 refs+codegen_infer",
+      "evidence_level": "unverified"
     },
     "840": {
       "name": "m_nScriptCamY",
       "type": "int",
-      "source": "fix:decomp_LODWORD_only_no_fpu"
+      "source": "fix:decomp_LODWORD_only_no_fpu",
+      "evidence_level": "unverified"
     },
     "884": {
       "name": "m_fDirNeg",
       "type": "float",
-      "source": "ida_decomp:ExecuteBlock -this(negated)"
+      "source": "ida_decomp:ExecuteBlock -this(negated)",
+      "evidence_level": "unverified"
     },
     "1920": {
       "name": "m_ctrlParabola",
       "type": "int",
-      "source": "ida_decomp:UIParabolaCtrl::GetState(this)"
+      "source": "ida_decomp:UIParabolaCtrl::GetState(this)",
+      "evidence_level": "unverified"
     },
     "2376": {
       "name": "m_wndTextDisplay",
       "type": "UIWnd *",
-      "source": "ida_decomp:UIWnd::SetEnable(this,Buffer,0)+codegen_infer"
+      "source": "ida_decomp:UIWnd::SetEnable(this,Buffer,0)+codegen_infer",
+      "evidence_level": "unverified"
     },
     "8464": {
       "name": "m_nCapacity",
       "type": "int",
-      "source": "ida_decomp:_init_44b0f0 loaded, >= compare, 3 refs"
+      "source": "ida_decomp:_init_44b0f0 loaded, >= compare, 3 refs",
+      "evidence_level": "unverified"
     },
     "9492": {
       "name": "m_pScriptInstA",
       "type": "char *",
       "source": "ida_decomp:Destroy(this)→+9500, 2 refs | type_fix:int→void*(destroy pattern)",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     },
     "9496": {
       "name": "m_pScriptInstD",
       "type": "PalScriptMgr *",
-      "source": "ida_decomp:Destroy(this)→+9504, 2 refs+codegen_infer"
+      "source": "ida_decomp:Destroy(this)→+9504, 2 refs+codegen_infer",
+      "evidence_level": "unverified"
     },
     "9500": {
       "name": "m_pScriptInstE",
       "type": "char *",
       "source": "ida_decomp:Destroy(this), 2 refs | type_fix:int→void*(destroy pattern)",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     },
     "9504": {
       "name": "m_nScriptResultA",
       "type": "int",
-      "source": "ida_decomp:= Destroy(+9488), if+ClearAllScript, 3 refs"
+      "source": "ida_decomp:= Destroy(+9488), if+ClearAllScript, 3 refs",
+      "evidence_level": "unverified"
     },
     "9508": {
       "name": "m_nScriptResultB",
       "type": "int",
-      "source": "ida_decomp:= Destroy(+9492), 2 refs"
+      "source": "ida_decomp:= Destroy(+9492), 2 refs",
+      "evidence_level": "unverified"
     },
     "9512": {
       "name": "m_nScriptResultC",
       "type": "int",
-      "source": "ida_decomp:= 0, if+ClearAllScript, 2 refs"
+      "source": "ida_decomp:= 0, if+ClearAllScript, 2 refs",
+      "evidence_level": "unverified"
     },
     "212": {
       "name": "m_pTodo_84",
       "type": "unsigned char",
       "source": "raw_decomp:Hex-Rays_type_cast | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化 | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x42B75B `*(DWORD*)&m_pTodo_84=*(DWORD*)(x+40)`+`m_nTodo_024=*(DWORD*)&` **DWORD 位搬双视**（判据③）；伪名挂账 | evidence: 详前文 A 级形证",
-      "note": "原名 m_pSavedIndex 降级(未证语义名,CLAUDE.md 禁伪语义)"
+      "note": "原名 m_pSavedIndex 降级(未证语义名,CLAUDE.md 禁伪语义)",
+      "evidence_level": "A"
     },
     "249": {
       "name": "m_nTodo_0F5",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "B"
     },
     "250": {
       "name": "m_bExecuteOpcode",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast",
+      "evidence_level": "B"
     },
     "251": {
       "name": "m_nTodo_0F7",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "B"
     },
     "276": {
       "name": "m_nTodo_110",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "B"
     },
     "278": {
       "name": "m_nTodo_112",
       "type": "short",
-      "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "B"
     },
     "280": {
       "name": "m_Actor",
       "type": "short",
-      "source": "raw_decomp:Hex-Rays_type_cast | name_from_Camera"
+      "source": "raw_decomp:Hex-Rays_type_cast | name_from_Camera",
+      "evidence_level": "B"
     },
     "282": {
       "name": "m_nTodo_116",
       "type": "short",
-      "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "B"
     },
     "284": {
       "name": "m_nField_0118",
       "type": "short",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast",
+      "evidence_level": "B"
     },
     "286": {
       "name": "m_nTodo_11A",
       "type": "unsigned char",
-      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "568": {
       "name": "m_bRunCommand",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast",
+      "evidence_level": "B"
     },
     "576": {
       "name": "m_bScriptInputBlock",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_23C）：IsInputBlocked `if (m || m_bInputBlock)` 阻断或逻辑 + UpdateScript `= *(DWORD*)(src+404)` 参数拷贝；①IsInputBlocked ②阻断判 ③+576 标志 ④PalScriptMgr ⑤输入阻断交互；confidence=80"
+      "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_23C）：IsInputBlocked `if (m || m_bInputBlock)` 阻断或逻辑 + UpdateScript `= *(DWORD*)(src+404)` 参数拷贝；①IsInputBlocked ②阻断判 ③+576 标志 ④PalScriptMgr ⑤输入阻断交互；confidence=80",
+      "evidence_level": "B"
     },
     "580": {
       "name": "m_bInputBlock",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast",
+      "evidence_level": "B"
     },
     "584": {
       "name": "m_bRoleLock",
       "type": "int",
-      "source": "reverted_auto_semantic:3x_access|reverted:pseudo_semantic"
+      "source": "reverted_auto_semantic:3x_access|reverted:pseudo_semantic",
+      "evidence_level": "unverified"
     },
     "856": {
       "name": "m_fExecPosY",
       "type": "float",
-      "source": "ida_decomp:ExecuteOpcode = y, 4 refs"
+      "source": "ida_decomp:ExecuteOpcode = y, 4 refs",
+      "evidence_level": "unverified"
     },
     "860": {
       "name": "m_fExecPosZ",
       "type": "float",
-      "source": "ida_decomp:ExecuteOpcode = v53, 4 refs"
+      "source": "ida_decomp:ExecuteOpcode = v53, 4 refs",
+      "evidence_level": "unverified"
     },
     "864": {
       "name": "m_nExecState2",
       "type": "int",
-      "source": "ida_decomp:ExecuteOpcode = v55, 4 refs"
+      "source": "ida_decomp:ExecuteOpcode = v55, 4 refs",
+      "evidence_level": "unverified"
     },
     "892": {
       "name": "m_nExecHandle",
       "type": "int",
-      "source": "ida_decomp:*(this+222) loaded"
+      "source": "ida_decomp:*(this+222) loaded",
+      "evidence_level": "unverified"
     },
     "164": {
       "name": "m_pExecState",
       "type": "void *",
-      "source": "A:0_fpu_in_14+_refs_all_mov_load_store"
+      "source": "A:0_fpu_in_14+_refs_all_mov_load_store",
+      "evidence_level": "unverified"
     },
     "168": {
       "name": "m_pVarContext",
       "type": "int",
-      "source": "A:0_fpu_in_14+_refs_all_mov_load_store | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x42B9xx `*((char*)&m_pVarContext+strlen+3)-48` **取址字节走查+ASCII 转数**（判据②） | evidence: 详前文 A 级形证"
+      "source": "A:0_fpu_in_14+_refs_all_mov_load_store | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x42B9xx `*((char*)&m_pVarContext+strlen+3)-48` **取址字节走查+ASCII 转数**（判据②） | evidence: 详前文 A 级形证",
+      "evidence_level": "A"
     },
     "172": {
       "name": "m_szScriptFile",
       "type": "char[6]",
-      "source": "fix:span=6_next_hits=4"
+      "source": "fix:span=6_next_hits=4",
+      "evidence_level": "unverified"
     },
     "204": {
       "name": "m_nTodo_0C8",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "208": {
       "name": "m_nSavedBlockNum",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access | annotate_todo"
+      "source": "gap_fill:ida_decomp_access | annotate_todo",
+      "evidence_level": "unverified"
     },
     "272": {
       "name": "m_pRoleSystemCache",
       "type": "RoleSystem *",
-      "source": "A+:decomp_assigned_from_m_pRoleSystem_in_UpdateScriptRoles"
+      "source": "A+:decomp_assigned_from_m_pRoleSystem_in_UpdateScriptRoles",
+      "evidence_level": "unverified"
     },
     "296": {
       "name": "m_pTodo_128",
       "type": "char *",
       "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
-      "note": "replaced void* with char* (IDB struct compat) | 原名 m_pSubScript 降级(未证语义名,CLAUDE.md 禁伪语义)"
+      "note": "replaced void* with char* (IDB struct compat) | 原名 m_pSubScript 降级(未证语义名,CLAUDE.md 禁伪语义)",
+      "evidence_level": "unverified"
     },
     "300": {
       "name": "m_nScriptCount",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access | annotate_todo"
+      "source": "gap_fill:ida_decomp_access | annotate_todo",
+      "evidence_level": "unverified"
     },
     "496": {
       "name": "m_fSpeed1",
       "type": "float",
-      "source": "A:FPU_binary_evidence"
+      "source": "A:FPU_binary_evidence",
+      "evidence_level": "unverified"
     },
     "530": {
       "name": "m_nRoleIndex",
       "type": "short",
-      "source": "gap_fill:ida_decomp_access | annotate_todo"
+      "source": "gap_fill:ida_decomp_access | annotate_todo",
+      "evidence_level": "unverified"
     },
     "532": {
       "name": "m_nTodo_214",
       "type": "float",
       "source": "gap_fill:ida_decomp_access | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化 | [批4 诚实化 2026-10-16] A偏移形：m_fTodo_214⇒m_nTodo_214（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动） | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
-      "note": "原名 m_fPosAYTarget 降级(未证语义名,CLAUDE.md 禁伪语义)"
+      "note": "原名 m_fPosAYTarget 降级(未证语义名,CLAUDE.md 禁伪语义)",
+      "evidence_level": "unverified"
     },
     "572": {
       "name": "m_nTodo_238",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "792": {
       "name": "m_pTodo_318",
       "type": "char *",
       "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
-      "note": "replaced void* with char* (IDB struct compat) | 原名 m_pRoleSystem 降级(未证语义名,CLAUDE.md 禁伪语义)"
+      "note": "replaced void* with char* (IDB struct compat) | 原名 m_pRoleSystem 降级(未证语义名,CLAUDE.md 禁伪语义)",
+      "evidence_level": "unverified"
     },
     "880": {
       "name": "m_pTodo_370",
       "type": "char *",
       "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
-      "note": "replaced void* with char* (IDB struct compat) | 原名 m_pScriptInst 降级(未证语义名,CLAUDE.md 禁伪语义)"
+      "note": "replaced void* with char* (IDB struct compat) | 原名 m_pScriptInst 降级(未证语义名,CLAUDE.md 禁伪语义)",
+      "evidence_level": "unverified"
     },
     "1912": {
       "name": "m_nTodo_774",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "2368": {
       "name": "m_nTodo_93C",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "3280": {
       "name": "m_bDeviceResetFlag",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_CCC）：PAL3::HandleDeviceReset `m = v4`（设备复位处理器置值）；①HandleDeviceReset ②设备复位流程 ③+3280 域 ④PalScriptMgr ⑤设备复位交互；confidence=65"
+      "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_CCC）：PAL3::HandleDeviceReset `m = v4`（设备复位处理器置值）；①HandleDeviceReset ②设备复位流程 ③+3280 域 ④PalScriptMgr ⑤设备复位交互；confidence=65",
+      "evidence_level": "unverified"
     },
     "3284": {
       "name": "m_pTodo_CD4",
       "type": "char *",
       "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
-      "note": "replaced void* with char* (IDB struct compat) | 原名 m_pScreenEffect 降级(未证语义名,CLAUDE.md 禁伪语义)"
+      "note": "replaced void* with char* (IDB struct compat) | 原名 m_pScreenEffect 降级(未证语义名,CLAUDE.md 禁伪语义)",
+      "evidence_level": "unverified"
     },
     "8456": {
       "name": "m_nCost",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access | annotate_todo"
+      "source": "gap_fill:ida_decomp_access | annotate_todo",
+      "evidence_level": "unverified"
     },
     "9484": {
       "name": "m_pTodo_250C",
       "type": "char *",
       "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
-      "note": "replaced void* with char* (IDB struct compat) | 原名 m_pScriptInstB 降级(未证语义名,CLAUDE.md 禁伪语义)"
+      "note": "replaced void* with char* (IDB struct compat) | 原名 m_pScriptInstB 降级(未证语义名,CLAUDE.md 禁伪语义)",
+      "evidence_level": "unverified"
     },
     "9488": {
       "name": "m_pTodo_2510",
       "type": "char *",
       "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
-      "note": "replaced void* with char* (IDB struct compat) | 原名 m_pScriptInstC 降级(未证语义名,CLAUDE.md 禁伪语义)"
+      "note": "replaced void* with char* (IDB struct compat) | 原名 m_pScriptInstC 降级(未证语义名,CLAUDE.md 禁伪语义)",
+      "evidence_level": "unverified"
     },
     "28": {
       "name": "m_nTodo_018",
       "type": "float",
-      "source": "reverted_auto_semantic:1x | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "reverted_auto_semantic:1x | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "32": {
       "name": "m_nTodo_01C",
       "type": "float",
-      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "36": {
       "name": "m_nTodo_020",
       "type": "float",
-      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "40": {
       "name": "m_nTodo_024",
       "type": "int",
-      "source": "reverted_auto_semantic:1x_access | [主攻点2续 2026-10-17] 五面 4/5 挂账（不达五面不赋名）：①调用者=UpdateScriptRoles case 分支族 ②被调=目标值流入 ProcessAction 族（值型未定）③成员=+40 读写·与 m_pTodo_84 表 3×idx 联动·与 m_fCamX/m_fCamY 同流 ④类归属=PalScriptMgr ✓ ⑤交互=脚本命令 case 重置/赋值；**③值型面未定**（int vs 指针）⇒ 挂账；功能定性=脚本命令目标槽 | evidence: 详前文 A 级形证 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "reverted_auto_semantic:1x_access | [主攻点2续 2026-10-17] 五面 4/5 挂账（不达五面不赋名）：①调用者=UpdateScriptRoles case 分支族 ②被调=目标值流入 ProcessAction 族（值型未定）③成员=+40 读写·与 m_pTodo_84 表 3×idx 联动·与 m_fCamX/m_fCamY 同流 ④类归属=PalScriptMgr ✓ ⑤交互=脚本命令 case 重置/赋值；**③值型面未定**（int vs 指针）⇒ 挂账；功能定性=脚本命令目标槽 | evidence: 详前文 A 级形证 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "A"
     },
     "100": {
       "name": "m_nTodo_060",
       "type": "int",
-      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "104": {
       "name": "m_nTodo_064",
       "type": "int",
-      "source": "transfer_from_Camera_off_504 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "transfer_from_Camera_off_504 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "108": {
       "name": "m_nTodo_068",
       "type": "short",
-      "source": "A:66_prefix_word_access_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "A:66_prefix_word_access_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "112": {
       "name": "m_nTodo_06C",
       "type": "short",
-      "source": "A:66_prefix_word_access_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "A:66_prefix_word_access_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "116": {
       "name": "m_nTodo_070",
       "type": "int",
-      "source": "transfer_from_Camera_off_516 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "transfer_from_Camera_off_516 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "120": {
       "name": "m_nTodo_074",
       "type": "float",
-      "source": "A:FPU_disp8_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "A:FPU_disp8_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "124": {
       "name": "m_nTodo_078",
       "type": "int",
-      "source": "transfer_from_Camera_off_524 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "transfer_from_Camera_off_524 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "128": {
       "name": "m_nTodo_07C",
       "type": "float",
-      "source": "A:FPU_disp8_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "A:FPU_disp8_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "132": {
       "name": "m_nExecParam",
       "type": "int",
-      "source": "A:0_fpu_in_14+_refs_all_mov_load_store"
+      "source": "A:0_fpu_in_14+_refs_all_mov_load_store",
+      "evidence_level": "unverified"
     },
     "136": {
       "name": "m_vRolePos",
       "type": "int",
-      "source": "transfer_from_Camera_off_536"
+      "source": "transfer_from_Camera_off_536",
+      "evidence_level": "unverified"
     },
     "140": {
       "name": "m_fDefaultFOV",
       "type": "float",
-      "source": "transfer_from_Camera_off_540"
+      "source": "transfer_from_Camera_off_540",
+      "evidence_level": "unverified"
     },
     "288": {
       "name": "m_nTodo_11C",
       "type": "int",
-      "source": "transfer_from_Camera_off_688 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "transfer_from_Camera_off_688 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "956": {
       "name": "m_nState",
       "type": "int",
-      "source": "transfer_from_Camera_off_1356"
+      "source": "transfer_from_Camera_off_1356",
+      "evidence_level": "unverified"
     },
     "1056": {
       "name": "m_bDirty",
       "type": "int",
-      "source": "transfer_from_Camera_off_1456"
+      "source": "transfer_from_Camera_off_1456",
+      "evidence_level": "unverified"
     },
     "152": {
       "name": "m_nScriptIdx",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs",
+      "evidence_level": "unverified"
     },
     "156": {
       "name": "m_pCurScriptBlock",
       "type": "void *",
-      "source": "binary_scan:8refs"
+      "source": "binary_scan:8refs",
+      "evidence_level": "unverified"
     },
     "180": {
       "name": "m_RoleAnimData",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs",
+      "evidence_level": "unverified"
     },
     "188": {
       "name": "m_bRunning",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "192": {
       "name": "m_bBlockActive",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "196": {
       "name": "m_bBlockFlag",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "364": {
       "name": "m_nField_0168",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "368": {
       "name": "m_RolePos",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs",
+      "evidence_level": "unverified"
     },
     "380": {
       "name": "m_RoleDir",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs",
+      "evidence_level": "unverified"
     },
     "392": {
       "name": "m_nRoleState",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs",
+      "evidence_level": "unverified"
     },
     "396": {
       "name": "m_RoleSubData",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "404": {
       "name": "m_nRoleParam1",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs",
+      "evidence_level": "unverified"
     },
     "408": {
       "name": "m_nRoleParam2",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs",
+      "evidence_level": "unverified"
     },
     "412": {
       "name": "m_nRoleParam3",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs",
+      "evidence_level": "unverified"
     },
     "416": {
       "name": "m_pRoleScript",
       "type": "void *",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "424": {
       "name": "m_nField_01A4",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "452": {
       "name": "m_pOpResult",
       "type": "void *",
-      "source": "binary_scan:4refs"
+      "source": "binary_scan:4refs",
+      "evidence_level": "unverified"
     },
     "472": {
       "name": "m_bTileType",
       "type": "unsigned char",
-      "source": "binary:ida_refs"
+      "source": "binary:ida_refs",
+      "evidence_level": "unverified"
     },
     "500": {
       "name": "m_fSpeed2",
       "type": "float",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "632": {
       "name": "m_pCaseTable",
       "type": "void *",
-      "source": "binary_scan:8refs"
+      "source": "binary_scan:8refs",
+      "evidence_level": "unverified"
     },
     "636": {
       "name": "m_nTodo_278",
       "type": "int",
-      "source": "binary_scan:1refs | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "binary_scan:1refs | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "1148": {
       "name": "m_nFrameState",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "1272": {
       "name": "m_nOpType",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs",
+      "evidence_level": "unverified"
     },
     "1288": {
       "name": "m_nCmdData",
       "type": "int",
-      "source": "binary_scan:4refs"
+      "source": "binary_scan:4refs",
+      "evidence_level": "unverified"
     },
     "1300": {
       "name": "m_fFramePosX",
       "type": "int",
-      "source": "binary_scan:3refs"
+      "source": "binary_scan:3refs",
+      "evidence_level": "unverified"
     },
     "1304": {
       "name": "m_fFramePosY",
       "type": "int",
-      "source": "binary_scan:4refs"
+      "source": "binary_scan:4refs",
+      "evidence_level": "unverified"
     },
     "1308": {
       "name": "m_fFramePosZ",
       "type": "int",
-      "source": "binary_scan:3refs"
+      "source": "binary_scan:3refs",
+      "evidence_level": "unverified"
     },
     "1312": {
       "name": "m_fFrameScale",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "1316": {
       "name": "m_fFrameRot",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "1320": {
       "name": "m_nFrameParam",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "1484": {
       "name": "m_OpSubObj",
       "type": "int",
-      "source": "binary_scan:3refs"
+      "source": "binary_scan:3refs",
+      "evidence_level": "unverified"
     },
     "1488": {
       "name": "m_OpParam",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "1492": {
       "name": "m_OpData",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "1504": {
       "name": "m_OpBuffer",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "2004": {
       "name": "m_nField_07D0",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "2416": {
       "name": "m_nField_096C",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "2880": {
       "name": "m_nField_0B3C",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "2936": {
       "name": "m_nField_0B74",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "3080": {
       "name": "m_nField_0C04",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "3176": {
       "name": "m_nField_0C64",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "3188": {
       "name": "m_nField_0C70",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "3309": {
       "name": "m_nTodo_CE9",
       "type": "unsigned char",
-      "source": "binary_scan:3refs | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名"
+      "source": "binary_scan:3refs | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+      "evidence_level": "unverified"
     },
     "3700": {
       "name": "m_nField_0E70",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "4032": {
       "name": "m_RoleCmdCtx",
       "type": "int",
-      "source": "binary_scan:11refs"
+      "source": "binary_scan:11refs",
+      "evidence_level": "unverified"
     },
     "4556": {
       "name": "m_nTileFlags",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "4560": {
       "name": "m_fTileHeight",
       "type": "float",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs",
+      "evidence_level": "unverified"
     },
     "5040": {
       "name": "m_nField_13AC",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "5228": {
       "name": "m_nField_1468",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "5268": {
       "name": "m_nField_1490",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "5480": {
       "name": "m_nField_1564",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "5632": {
       "name": "m_nField_15FC",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "5676": {
       "name": "m_nField_1628",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "6932": {
       "name": "m_nField_1B10",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "7012": {
       "name": "m_nField_1B60",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "7184": {
       "name": "m_nField_1C0C",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "7576": {
       "name": "m_nField_1D94",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "8696": {
       "name": "m_fFrameTime",
       "type": "float",
-      "source": "binary_scan:7refs"
+      "source": "binary_scan:7refs",
+      "evidence_level": "unverified"
     },
     "8700": {
       "name": "m_fFrameDelta",
       "type": "float",
-      "source": "binary_scan:5refs"
+      "source": "binary_scan:5refs",
+      "evidence_level": "unverified"
     },
     "8704": {
       "name": "m_fFrameTotal",
       "type": "float",
-      "source": "binary_scan:7refs"
+      "source": "binary_scan:7refs",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x00431E60": {
       "name": "PalScriptMgr",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00431EB0": {
       "name": "OpenSCE",
       "signature": "void __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004320A0": {
       "name": "Update",
       "signature": "void __cdecl(const char *pszName)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x00432170": {
       "name": "Destroy",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00432260": {
       "name": "_CON_State",
       "signature": "const char **__cdecl(const char *pszName)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x004322A0": {
       "name": "IfAnyScriptRunning",
       "signature": "bool __thiscall(int nVal)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004322C0": {
       "name": "IsScriptRuning",
-      "signature": "int __thiscall(int pal)"
+      "signature": "int __thiscall(int pal)",
+      "evidence_level": "unverified"
     },
     "0x00432480": {
       "name": "_CON_ReLoadScript",
       "signature": "void __thiscall()",
-      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
+      "evidence_level": "unverified"
     },
     "0x004324A0": {
       "name": "_CON_CloseScript",
-      "signature": "BOOL __thiscall()"
+      "signature": "BOOL __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004324B0": {
       "name": "ClearAllScript",
       "signature": "void __cdecl()",
       "source": "pdb_ret",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x00432500": {
       "name": "FindScriptByDesc",
       "signature": "int *__cdecl(const char *pszName, const char *desc)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x00432550": {
       "name": "IfHaveScript",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00434C40": {
       "name": "NotifyEvent",
       "signature": "void __cdecl()",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x0042EBE0": {
       "name": "ExecuteOpcode",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00434CA0": {
       "name": "InitVtable",
       "signature": "void __thiscall(int nVal1)",
-      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x0041BDE0": {
       "name": "Get_result",
-      "signature": "int *__thiscall()"
+      "signature": "int *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0042AF80": {
       "name": "GetScriptState",
-      "signature": "char __thiscall()"
+      "signature": "char __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0042B350": {
       "name": "ProcessRoleLoading",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0042BF90": {
       "name": "ExecuteScriptByID",
-      "signature": "PalScriptMgr *__thiscall PalScriptMgr::ExecuteScriptByID()"
+      "signature": "PalScriptMgr *__thiscall PalScriptMgr::ExecuteScriptByID()",
+      "evidence_level": "unverified"
     },
     "0x0042BFE0": {
       "name": "IsScriptReady",
-      "signature": "bool __thiscall()"
+      "signature": "bool __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0042E6C0": {
       "name": "CmdRoleMoveDirect",
-      "signature": "int __thiscall PalScriptMgr::CmdRoleMoveDirect(unsigned __int8 pData)"
+      "signature": "int __thiscall PalScriptMgr::CmdRoleMoveDirect(unsigned __int8 pData)",
+      "evidence_level": "unverified"
     },
     "0x0042FCC0": {
       "name": "PopScript",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00420B40": {
       "name": "CheckTileScript",
-      "signature": "void __thiscall PalScriptMgr::CheckTileScript(RoleSystem *pRole, float fVal, char bExecute)"
+      "signature": "void __thiscall PalScriptMgr::CheckTileScript(RoleSystem *pRole, float fVal, char bExecute)",
+      "evidence_level": "unverified"
     },
     "0x00429DB0": {
       "name": "BuildCmdTransform",
-      "signature": "void __thiscall PalScriptMgr::BuildCmdTransform(gbMatrix4 *pMatrix)"
+      "signature": "void __thiscall PalScriptMgr::BuildCmdTransform(gbMatrix4 *pMatrix)",
+      "evidence_level": "unverified"
     },
     "0x0042B5B0": {
       "name": "UpdateScriptRoles",
-      "signature": "double __thiscall(double thisa, int nVal, int nVal2)"
+      "signature": "double __thiscall(double thisa, int nVal, int nVal2)",
+      "evidence_level": "unverified"
     },
     "0x0042BEF0": {
       "name": "HandleGetItem",
       "signature": "void __cdecl PalScriptMgr::HandleGetItem(int nSkillGDBID)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x0042C280": {
       "name": "LoadSceneGeometry",
-      "signature": "struct gbVFileSystem *__thiscall PalScriptMgr::LoadSceneGeometry(char bNoPol)"
+      "signature": "struct gbVFileSystem *__thiscall PalScriptMgr::LoadSceneGeometry(char bNoPol)",
+      "evidence_level": "unverified"
     },
     "0x0042CF60": {
       "name": "CmdPushCmd04",
-      "signature": "int __thiscall PalScriptMgr::CmdPushCmd04(int nVal, unsigned __int8 pData)"
+      "signature": "int __thiscall PalScriptMgr::CmdPushCmd04(int nVal, unsigned __int8 pData)",
+      "evidence_level": "unverified"
     },
     "0x0042D130": {
       "name": "CmdPushCmd05",
-      "signature": "int __thiscall PalScriptMgr::CmdPushCmd05(unsigned __int8 pData)"
+      "signature": "int __thiscall PalScriptMgr::CmdPushCmd05(unsigned __int8 pData)",
+      "evidence_level": "unverified"
     },
     "0x0042D2F0": {
       "name": "CmdPushCmd07",
-      "signature": "int __thiscall PalScriptMgr::CmdPushCmd07(unsigned __int8 pData)"
+      "signature": "int __thiscall PalScriptMgr::CmdPushCmd07(unsigned __int8 pData)",
+      "evidence_level": "unverified"
     },
     "0x0042D830": {
       "name": "CmdPushCmd10",
-      "signature": "int __thiscall PalScriptMgr::CmdPushCmd10(unsigned __int8 pData)"
+      "signature": "int __thiscall PalScriptMgr::CmdPushCmd10(unsigned __int8 pData)",
+      "evidence_level": "unverified"
     },
     "0x0042F460": {
       "name": "ExecuteFrame",
-      "signature": "void __thiscall(float fVal)"
+      "signature": "void __thiscall(float fVal)",
+      "evidence_level": "unverified"
     },
     "0x0042FB40": {
       "name": "SetBigMapState",
-      "signature": "char __thiscall PalScriptMgr::SetBigMapState(char nState)"
+      "signature": "char __thiscall PalScriptMgr::SetBigMapState(char nState)",
+      "evidence_level": "unverified"
     },
     "0x00450BC0": {
       "name": "ShowTextBox",
-      "signature": "int __thiscall PalScriptMgr::ShowTextBox(const char *pszText)"
+      "signature": "int __thiscall PalScriptMgr::ShowTextBox(const char *pszText)",
+      "evidence_level": "unverified"
     },
     "0x00410920": {
       "name": "LoadYlfScript",
-      "signature": "int *__thiscall PalScriptMgr::LoadYlfScript()"
+      "signature": "int *__thiscall PalScriptMgr::LoadYlfScript()",
+      "evidence_level": "unverified"
     },
     "0x0042AAE0": {
       "name": "CheckTileCollision",
-      "signature": "BOOL __thiscall PalScriptMgr::CheckTileCollision(int *pnVal, int nVal, struct gbVec3D *p)"
+      "signature": "BOOL __thiscall PalScriptMgr::CheckTileCollision(int *pnVal, int nVal, struct gbVec3D *p)",
+      "evidence_level": "unverified"
     },
     "0x0042BEA0": {
       "name": "OnAnimFinish",
-      "signature": "void __thiscall PalScriptMgr::OnAnimFinish()"
+      "signature": "void __thiscall PalScriptMgr::OnAnimFinish()",
+      "evidence_level": "unverified"
     },
     "0x0042C030": {
       "name": "SetPauseState",
-      "signature": "void __thiscall PalScriptMgr::SetPauseState(int bPause)"
+      "signature": "void __thiscall PalScriptMgr::SetPauseState(int bPause)",
+      "evidence_level": "unverified"
     },
     "0x0042DF30": {
       "name": "CmdPushCmd14",
-      "signature": "int __thiscall PalScriptMgr::CmdPushCmd14(int nVal, unsigned __int8 pData)"
+      "signature": "int __thiscall PalScriptMgr::CmdPushCmd14(int nVal, unsigned __int8 pData)",
+      "evidence_level": "unverified"
     },
     "0x0042E100": {
       "name": "CmdPushCmd15",
-      "signature": "int __thiscall PalScriptMgr::CmdPushCmd15(unsigned __int8 pData)"
+      "signature": "int __thiscall PalScriptMgr::CmdPushCmd15(unsigned __int8 pData)",
+      "evidence_level": "unverified"
     },
     "0x0042E2C0": {
       "name": "CmdCameraOrbitPos",
-      "signature": "char *__thiscall PalScriptMgr::CmdCameraOrbitPos(int nVal, float fVal, float fVal2, unsigned __int8 pData)"
+      "signature": "char *__thiscall PalScriptMgr::CmdCameraOrbitPos(int nVal, float fVal, float fVal2, unsigned __int8 pData)",
+      "evidence_level": "unverified"
     },
     "0x0042E4D0": {
       "name": "CmdRoleMoveSmooth",
-      "signature": "int __thiscall PalScriptMgr::CmdRoleMoveSmooth(int nVal, unsigned __int8 pData)"
+      "signature": "int __thiscall PalScriptMgr::CmdRoleMoveSmooth(int nVal, unsigned __int8 pData)",
+      "evidence_level": "unverified"
     },
     "0x00429D80": {
       "name": "InitControlBlock",
-      "signature": "int __thiscall PalScriptMgr::InitControlBlock()"
+      "signature": "int __thiscall PalScriptMgr::InitControlBlock()",
+      "evidence_level": "unverified"
     },
     "0x00429F90": {
       "name": "BuildFullTransform",
-      "signature": "void __thiscall PalScriptMgr::BuildFullTransform(gbMatrix4 *pMatrix, struct gbVec3D *pPos)"
+      "signature": "void __thiscall PalScriptMgr::BuildFullTransform(gbMatrix4 *pMatrix, struct gbVec3D *pPos)",
+      "evidence_level": "unverified"
     },
     "0x0042AC80": {
       "name": "CmdUpdateRolePath",
-      "signature": "int __thiscall PalScriptMgr::CmdUpdateRolePath(float *pfVal, float *pfVal2)"
+      "signature": "int __thiscall PalScriptMgr::CmdUpdateRolePath(float *pfVal, float *pfVal2)",
+      "evidence_level": "unverified"
     },
     "0x0042AFA0": {
       "name": "SaveExecutionState",
-      "signature": "int __thiscall PalScriptMgr::SaveExecutionState()"
+      "signature": "int __thiscall PalScriptMgr::SaveExecutionState()",
+      "evidence_level": "unverified"
     },
     "0x0042B450": {
       "name": "IsPosInBounds",
-      "signature": "BOOL __thiscall PalScriptMgr::IsPosInBounds(float *pfPos)"
+      "signature": "BOOL __thiscall PalScriptMgr::IsPosInBounds(float *pfPos)",
+      "evidence_level": "unverified"
     },
     "0x0042C3A0": {
       "name": "IsInputBlocked",
-      "signature": "bool __thiscall PalScriptMgr::IsInputBlocked()"
+      "signature": "bool __thiscall PalScriptMgr::IsInputBlocked()",
+      "evidence_level": "unverified"
     },
     "0x00434CC0": {
       "name": "IsWaitComplete",
       "signature": "BOOL __thiscall PalScriptMgr::IsWaitComplete()",
-      "ordinal": 1
+      "ordinal": 1,
+      "evidence_level": "unverified"
     },
     "0x00434D20": {
       "name": "IsBlendComplete",
       "signature": "BOOL __thiscall()",
-      "ordinal": 4
+      "ordinal": 4,
+      "evidence_level": "unverified"
     },
     "0x00434D40": {
       "name": "AccumulateTime",
       "signature": "void __thiscall PalScriptMgr::AccumulateTime(float fDelta)",
-      "ordinal": 5
+      "ordinal": 5,
+      "evidence_level": "unverified"
     },
     "0x00434C80": {
       "name": "UpdateLoadProgress",
       "signature": "void * __cdecl PalScriptMgr::UpdateLoadProgress()",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x004100A0": {
       "name": "RunScript",
       "signature": "int __cdecl(int nVal, int nVal2, int nVal3)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x0042C440": {
       "name": "RunCommand",
       "signature": "void __thiscall(int a1)",
-      "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params"
+      "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params",
+      "evidence_level": "unverified"
     },
     "0x00525080": {
       "name": "Get_m_nField_1490",
       "signature": "int __thiscall PalScriptMgr::Get_m_nField_1490()",
       "note": "reattribute: asm 行 441430-441432 本体只有两条指令：`mov eax, [ecx+1490h] ; retn` —— 即 `return this->[0x1490]`（4 字节读）。原类 UIWnd 的 size=68（成员止于 +0x44），不可能有 +0x1490 ⇒ 归属错。全部 894 个注解类里**唯一**在 +0x1490 上有成员的是 PalScriptMgr（size=9512）：known_members['5264'] = m_nField_1490，类型 int —— 与 4 字节读、与 `[ecx+1490h]` 精确吻合。这是一元访问器，单个偏移即函数全部行为，故证据完整。",
       "name_evidence": "该函数就是成员 m_nField_1490 的取值器，直接以所取成员命名（Get_m_nField_1490），不做语义臆造；成员名本身仍是占位（m_nField_1490），含义未定，等有证据再改。",
-      "signature_note": "set_signature: asm 行 441430-441432：`mov eax,[ecx+1490h] ; retn` ⇒ 无栈参数（retn 无立即数）、返回 4 字节成员值。搬移时该条残留原类签名 `int __thiscall(UIWnd *this)`（含原类名 UIWnd），会让生成头把 this 当作 UIWnd ⇒ 与本条的宿主 PalScriptMgr 矛盾，已证伪。 (was: int __thiscall(UIWnd *this))"
+      "signature_note": "set_signature: asm 行 441430-441432：`mov eax,[ecx+1490h] ; retn` ⇒ 无栈参数（retn 无立即数）、返回 4 字节成员值。搬移时该条残留原类签名 `int __thiscall(UIWnd *this)`（含原类名 UIWnd），会让生成头把 this 当作 UIWnd ⇒ 与本条的宿主 PalScriptMgr 矛盾，已证伪。 (was: int __thiscall(UIWnd *this))",
+      "evidence_level": "unverified"
     }
   },
   "vtables": [

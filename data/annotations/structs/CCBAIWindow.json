@@ -5,76 +5,91 @@
     "72": {
       "name": "m_pBack",
       "type": "UIStatic *",
-      "offset": 72
+      "offset": 72,
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_pName",
       "type": "UIStatic *[5]",
-      "offset": 76
+      "offset": 76,
+      "evidence_level": "unverified"
     },
     "96": {
       "name": "m_pAttack",
       "type": "UIPushButton *",
-      "offset": 96
+      "offset": 96,
+      "evidence_level": "unverified"
     },
     "100": {
       "name": "m_pItem",
       "type": "UIPushButton *",
-      "offset": 100
+      "offset": 100,
+      "evidence_level": "unverified"
     },
     "104": {
       "name": "m_pSkill",
       "type": "UIPushButton *",
-      "offset": 104
+      "offset": 104,
+      "evidence_level": "unverified"
     },
     "108": {
       "name": "m_pMagic",
       "type": "UIPushButton *",
-      "offset": 108
+      "offset": 108,
+      "evidence_level": "unverified"
     },
     "112": {
       "name": "m_pAffirmative",
       "type": "UIPushButton *",
-      "offset": 112
+      "offset": 112,
+      "evidence_level": "unverified"
     },
     "116": {
       "name": "m_pAI",
       "type": "UIPushButton *",
-      "offset": 116
+      "offset": 116,
+      "evidence_level": "unverified"
     },
     "120": {
       "name": "m_pOk",
       "type": "UIButton *",
-      "offset": 120
+      "offset": 120,
+      "evidence_level": "unverified"
     },
     "124": {
       "name": "m_nIndex",
       "type": "int",
-      "offset": 124
+      "offset": 124,
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x0051CB60": {
       "name": "Reset",
       "signature": "void __thiscall(int *p_DWORD)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x0051CCE0": {
       "name": "Destroy",
       "signature": "void __thiscall(int nVal1)",
-      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x0051CD90": {
       "name": "OnMessage",
-      "signature": "char __thiscall(UIListBox **msg)"
+      "signature": "char __thiscall(UIListBox **msg)",
+      "evidence_level": "unverified"
     },
     "0x0051CE40": {
       "name": "Update",
-      "signature": "char __thiscall(CCBUI **deltatime)"
+      "signature": "char __thiscall(CCBUI **deltatime)",
+      "evidence_level": "unverified"
     },
     "0x0051CF00": {
       "name": "ShowWindow",
-      "signature": "char __thiscall(CCBControlWindow **show)"
+      "signature": "char __thiscall(CCBControlWindow **show)",
+      "evidence_level": "unverified"
     }
   },
   "base_size": 72,

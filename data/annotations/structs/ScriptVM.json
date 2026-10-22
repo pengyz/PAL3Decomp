@@ -5,191 +5,229 @@
     "856": {
       "name": "m_nTodo_358",
       "type": "char *",
-      "source": "codegen_offset_infer | [批4 诚实化 2026-10-16] A偏移形：m_ptr_358⇒m_nTodo_358（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
+      "source": "codegen_offset_infer | [批4 诚实化 2026-10-16] A偏移形：m_ptr_358⇒m_nTodo_358（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+      "evidence_level": "unverified"
     },
     "32": {
       "name": "m_nTodo_20",
       "type": "int *",
-      "source": "codegen_offset_infer | [批4 诚实化 2026-10-16] A偏移形：m_ptr_20⇒m_nTodo_20（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
+      "source": "codegen_offset_infer | [批4 诚实化 2026-10-16] A偏移形：m_ptr_20⇒m_nTodo_20（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "m_bufHead",
       "type": "int",
-      "source": "decomp:GetString ring buffer head pointer (pair: {block_ptr, block_end})"
+      "source": "decomp:GetString ring buffer head pointer (pair: {block_ptr, block_end})",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "m_bufTail",
       "type": "int",
-      "source": "decomp:GetString ring buffer tail (+4 = block_end = block_ptr+0xFBC)"
+      "source": "decomp:GetString ring buffer tail (+4 = block_end = block_ptr+0xFBC)",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "m_bufCapacity",
       "type": "int",
-      "source": "decomp:GetString ring buffer capacity/count"
+      "source": "decomp:GetString ring buffer capacity/count",
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "m_bufReadPtr",
       "type": "int",
-      "source": "decomp:GetString ring buffer read position (iterator)"
+      "source": "decomp:GetString ring buffer read position (iterator)",
+      "evidence_level": "unverified"
     },
     "20": {
       "name": "m_bufWritePtr",
       "type": "int",
-      "source": "decomp:GetString ring buffer write position (iterator)"
+      "source": "decomp:GetString ring buffer write position (iterator)",
+      "evidence_level": "unverified"
     },
     "160": {
       "name": "m_nTodo_0A0",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "164": {
       "name": "m_nTodo_0A4",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "168": {
       "name": "m_nTodo_0A8",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "220": {
       "name": "m_nTodo_0DC",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs",
+      "evidence_level": "unverified"
     },
     "224": {
       "name": "m_nTodo_0E0",
       "type": "void *",
-      "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
+      "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA",
+      "evidence_level": "unverified"
     },
     "244": {
       "name": "m_nTodo_0F4",
       "type": "unsigned char",
-      "source": "A:cmp_byte_ptr_25h_confirms_byte|binary_scan:1refs"
+      "source": "A:cmp_byte_ptr_25h_confirms_byte|binary_scan:1refs",
+      "evidence_level": "unverified"
     },
     "256": {
       "name": "m_nPauseState",
       "type": "int",
-      "source": "decomp:UpdatePauseState compared to 1"
+      "source": "decomp:UpdatePauseState compared to 1",
+      "evidence_level": "unverified"
     },
     "796": {
       "name": "m_pCmdList",
       "type": "RoleSystem **",
-      "source": "decomp:UpdatePauseState *(m_pCmdList + 16) accessed as array base | void*语义化 2026-10-15：A 级=GetRolePtr(0x00420F30) int __thiscall(int index)（RoleSystem 方法）+ 调用形把元素绑为 this ⇒ RoleSystem**；编译净效果实测 58→58=0（ScriptVM.cpp 的 ->m_rect/->RoleSystem 替换族由 decomp cast 驱动、与本型无关，归 codegen 渲染专项）"
+      "source": "decomp:UpdatePauseState *(m_pCmdList + 16) accessed as array base | void*语义化 2026-10-15：A 级=GetRolePtr(0x00420F30) int __thiscall(int index)（RoleSystem 方法）+ 调用形把元素绑为 this ⇒ RoleSystem**；编译净效果实测 58→58=0（ScriptVM.cpp 的 ->m_rect/->RoleSystem 替换族由 decomp cast 驱动、与本型无关，归 codegen 渲染专项）",
+      "evidence_level": "A"
     },
     "828": {
       "name": "m_nPathMode",
       "type": "int",
-      "source": "decomp:ExecuteOpcode_base_used_as_ScriptVM_self"
+      "source": "decomp:ExecuteOpcode_base_used_as_ScriptVM_self",
+      "evidence_level": "unverified"
     },
     "832": {
       "name": "m_fPathStartX",
       "type": "float",
-      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot1"
+      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot1",
+      "evidence_level": "unverified"
     },
     "836": {
       "name": "m_fPathStartY",
       "type": "float",
-      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot2"
+      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot2",
+      "evidence_level": "unverified"
     },
     "840": {
       "name": "m_fPathStartZ",
       "type": "float",
-      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot3"
+      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot3",
+      "evidence_level": "unverified"
     },
     "844": {
       "name": "m_nPathParam",
       "type": "int",
-      "source": "decomp:ExecuteOpcode_slot4_arithmetic"
+      "source": "decomp:ExecuteOpcode_slot4_arithmetic",
+      "evidence_level": "unverified"
     },
     "848": {
       "name": "m_fPathEndX",
       "type": "float",
-      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot5"
+      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot5",
+      "evidence_level": "unverified"
     },
     "852": {
       "name": "m_fPathEndY",
       "type": "float",
-      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot6"
+      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot6",
+      "evidence_level": "unverified"
     },
     "860": {
       "name": "m_pPathCurrent",
       "type": "char *",
       "source": "decomp:ExecuteOpcode_slot8_ptr_arithmetic",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     },
     "864": {
       "name": "m_pPathKeys",
       "type": "char *",
       "source": "decomp:ExecuteOpcode_slot9_key_array_base",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     },
     "868": {
       "name": "m_nPathKeyCount",
       "type": "int",
-      "source": "decomp:ExecuteOpcode_slot10_set_2"
+      "source": "decomp:ExecuteOpcode_slot10_set_2",
+      "evidence_level": "unverified"
     },
     "872": {
       "name": "m_nPathStep",
       "type": "int",
-      "source": "decomp:ExecuteOpcode_slot11_incremented"
+      "source": "decomp:ExecuteOpcode_slot11_incremented",
+      "evidence_level": "unverified"
     }
   },
   "binary_size": 888,
   "methods": {
     "0x0042CD90": {
       "name": "CallFunction",
-      "signature": "int __thiscall(unsigned char nFuncID, int nArgCount)"
+      "signature": "int __thiscall(unsigned char nFuncID, int nArgCount)",
+      "evidence_level": "unverified"
     },
     "0x004366C0": {
       "name": "GetObjectByID",
       "signature": "int __cdecl(int nObjID)",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x0042C730": {
       "name": "OpenSceneScript",
-      "signature": "struct gbVFileSystem *__thiscall()"
+      "signature": "struct gbVFileSystem *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0042C810": {
       "name": "UpdatePauseState",
-      "signature": "char __thiscall()"
+      "signature": "char __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0042C950": {
       "name": "ExecuteOpcode",
       "signature": "int __thiscall(void *pData, unsigned char nType, int nCount, int)",
-      "source": "sig_evidence_A(ret-N arity)"
+      "source": "sig_evidence_A(ret-N arity)",
+      "evidence_level": "unverified"
     },
     "0x0042D670": {
       "name": "GetRolePosition",
-      "signature": "int __thiscall(unsigned char pData)"
+      "signature": "int __thiscall(unsigned char pData)",
+      "evidence_level": "unverified"
     },
     "0x00423880": {
       "name": "ProcessFrame",
       "signature": "void __thiscall ScriptVM::ProcessFrame()",
-      "source": "| [名账正名 2026-10-16] idapro decompile：体=`BINK::Destroy(this)` + m_nPathStep 循环 + operator delete（??3）——**清理/析构形 ⇒ 非 ctor**（lead 疑「gbLightObj ctor」证否）· xref 零命中 ⇒ **禁猜挂账**（保留现名 ProcessFrame；清理语义明但真名待全形核）"
+      "source": "| [名账正名 2026-10-16] idapro decompile：体=`BINK::Destroy(this)` + m_nPathStep 循环 + operator delete（??3）——**清理/析构形 ⇒ 非 ctor**（lead 疑「gbLightObj ctor」证否）· xref 零命中 ⇒ **禁猜挂账**（保留现名 ProcessFrame；清理语义明但真名待全形核）",
+      "evidence_level": "unverified"
     },
     "0x0042D4B0": {
       "name": "SetRolePosition",
-      "signature": "int __thiscall(unsigned char pData)"
+      "signature": "int __thiscall(unsigned char pData)",
+      "evidence_level": "unverified"
     },
     "0x0042C1A0": {
       "name": "IsRunning",
-      "signature": "BOOL __thiscall()"
+      "signature": "BOOL __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0042FB60": {
       "name": "GetString",
-      "signature": "char *__thiscall()"
+      "signature": "char *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00424c20": {
       "name": "ExecuteBlock",
       "signature": "void __thiscall(ScriptVM *this)",
       "_misattrib_evidence": "round3: interpreter loop; ScriptVM::CallFunction/SetRolePosition on own this (mov ecx,esi); IsRunning(0x42C1A0) callers all inside this function",
-      "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 `void __thiscall()`；A 级：0x424C20 ScriptVM 成员访问"
+      "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 `void __thiscall()`；A 级：0x424C20 ScriptVM 成员访问",
+      "evidence_level": "A"
     },
     "0x0042CB70": {
       "name": "FightInfo",
       "signature": "void __thiscall(int nVal1, int nVal2, int nVal3)",
-      "source": "[批1-5#3 归属修正 2026-10-15] A 级：① 调用侧 0x424fe7-0x424fed `push %ebx; push $0x0; push %edi; mov %esi,%ecx; call 0x42cb70` = 3 栈参 + thiscall（接收者 _ESI=ScriptVM self，同段前后是 ScriptVM::GetRolePosition/ScriptVM::CallFunction(_ESI,…) ✓）；② 本体 0x42cb70 `mov %ecx,%esi` + `lea 0x33c(%esi),%ebp` + 尾 `ret $0xc`（0x42cc29/0x42cd8d）= 3 栈参 thiscall；③ 归属证据（decomp member access）：+0x33C 成员存在于 ScriptVM（m_nPathMode@828）且不在原类（FightInfo binary_size=96 越界 8 倍；functions.json 自由函数无成员）；④ 同址双挂根因=functions.json 的 void __cdecl() 与 FightInfo.json 的 ctor 名双认领⇒ 生成 void FightInfo() 自由函数与 class FightInfo 名撞（C2501/C2065 族 6 错）"
+      "source": "[批1-5#3 归属修正 2026-10-15] A 级：① 调用侧 0x424fe7-0x424fed `push %ebx; push $0x0; push %edi; mov %esi,%ecx; call 0x42cb70` = 3 栈参 + thiscall（接收者 _ESI=ScriptVM self，同段前后是 ScriptVM::GetRolePosition/ScriptVM::CallFunction(_ESI,…) ✓）；② 本体 0x42cb70 `mov %ecx,%esi` + `lea 0x33c(%esi),%ebp` + 尾 `ret $0xc`（0x42cc29/0x42cd8d）= 3 栈参 thiscall；③ 归属证据（decomp member access）：+0x33C 成员存在于 ScriptVM（m_nPathMode@828）且不在原类（FightInfo binary_size=96 越界 8 倍；functions.json 自由函数无成员）；④ 同址双挂根因=functions.json 的 void __cdecl() 与 FightInfo.json 的 ctor 名双认领⇒ 生成 void FightInfo() 自由函数与 class FightInfo 名撞（C2501/C2065 族 6 错）",
+      "evidence_level": "A"
     }
   },
   "size_evidence": "ExecuteBlock(0x424C20, this-proven ScriptVM method) accesses this+0x370/+0x374 (first-party member access, round-6 profile); old 876(0x36C) contradicted. No heap alloc site exists - objects are embedded/members. Lower bound 0x378=888."

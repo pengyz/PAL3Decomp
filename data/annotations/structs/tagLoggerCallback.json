@@ -5,18 +5,21 @@
     "0": {
       "name": "szName",
       "type": "char[32]",
-      "source": "A:decomp Logger::RegisterCallback strncpy(v6, name, 0x20)"
+      "source": "A:decomp Logger::RegisterCallback strncpy(v6, name, 0x20)",
+      "evidence_level": "unverified"
     },
     "32": {
       "name": "szDesc",
       "type": "char[100]",
-      "source": "A:decomp Logger::RegisterCallback strncpy(v6+32, desc, 0x64)"
+      "source": "A:decomp Logger::RegisterCallback strncpy(v6+32, desc, 0x64)",
+      "evidence_level": "unverified"
     },
     "132": {
       "name": "pfn",
       "type": "int *",
       "source": "A:decomp Logger::RegisterCallback v6[33] = f — function pointer type",
-      "note": "was int (*)() - explicit calling convention"
+      "note": "was int (*)() - explicit calling convention",
+      "evidence_level": "unverified"
     }
   },
   "known_methods": {

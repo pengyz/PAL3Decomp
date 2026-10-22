@@ -4,72 +4,86 @@
     "0": {
       "name": "_gap_000",
       "type": "char[84]",
-      "source": "binary:IDA structs export (PDB-derived layout)"
+      "source": "binary:IDA structs export (PDB-derived layout)",
+      "evidence_level": "unverified"
     },
     "84": {
       "name": "m_pScriptArrayEnd",
       "type": "PalScript *",
-      "source": "binary:IDA structs export (PDB-derived layout) | PDB-derived (PAL3A); not verified for PAL3: +92 region hosts embedded PalScript instance (ctor 0x43a160, vtable stru_56AC4C, EH unwind UIWnd::_UIWnd) — pointer type disproven"
+      "source": "binary:IDA structs export (PDB-derived layout) | PDB-derived (PAL3A); not verified for PAL3: +92 region hosts embedded PalScript instance (ctor 0x43a160, vtable stru_56AC4C, EH unwind UIWnd::_UIWnd) — pointer type disproven",
+      "evidence_level": "unverified"
     },
     "88": {
       "name": "m_nTodo_058",
       "type": "PalScript *",
-      "source": "binary:IDA structs export (PDB-derived layout) | PDB-derived (PAL3A); not verified for PAL3: +92 region hosts embedded PalScript instance (ctor 0x43a160, vtable stru_56AC4C, EH unwind UIWnd::_UIWnd) — pointer type disproven"
+      "source": "binary:IDA structs export (PDB-derived layout) | PDB-derived (PAL3A); not verified for PAL3: +92 region hosts embedded PalScript instance (ctor 0x43a160, vtable stru_56AC4C, EH unwind UIWnd::_UIWnd) — pointer type disproven",
+      "evidence_level": "unverified"
     },
     "92": {
       "name": "m_pUIScript",
       "type": "PalScript *",
-      "source": "binary:IDA structs export (PDB-derived layout) | PDB-derived (PAL3A); not verified for PAL3: +92 region hosts embedded PalScript instance (ctor 0x43a160, vtable stru_56AC4C, EH unwind UIWnd::_UIWnd) — pointer type disproven"
+      "source": "binary:IDA structs export (PDB-derived layout) | PDB-derived (PAL3A); not verified for PAL3: +92 region hosts embedded PalScript instance (ctor 0x43a160, vtable stru_56AC4C, EH unwind UIWnd::_UIWnd) — pointer type disproven",
+      "evidence_level": "unverified"
     },
     "96": {
       "name": "m_pScriptArrayEndSub",
       "type": "PalScript *",
-      "source": "binary:IDA structs export (PDB-derived layout) | PDB-derived (PAL3A); not verified for PAL3: +92 region hosts embedded PalScript instance (ctor 0x43a160, vtable stru_56AC4C, EH unwind UIWnd::_UIWnd) — pointer type disproven"
+      "source": "binary:IDA structs export (PDB-derived layout) | PDB-derived (PAL3A); not verified for PAL3: +92 region hosts embedded PalScript instance (ctor 0x43a160, vtable stru_56AC4C, EH unwind UIWnd::_UIWnd) — pointer type disproven",
+      "evidence_level": "unverified"
     },
     "100": {
       "name": "m_nUnlockDataOffset",
       "type": "int",
-      "source": "A:PDB-derived layout before m_RoleUnlockData[100] at 108; role unlock data array header/offset"
+      "source": "A:PDB-derived layout before m_RoleUnlockData[100] at 108; role unlock data array header/offset",
+      "evidence_level": "unverified"
     },
     "104": {
       "name": "m_nUnlockDataLen",
       "type": "int",
-      "source": "A:PDB-derived layout before m_RoleUnlockData[100] at 108; role unlock data array length"
+      "source": "A:PDB-derived layout before m_RoleUnlockData[100] at 108; role unlock data array length",
+      "evidence_level": "unverified"
     },
     "108": {
       "name": "m_RoleUnlockData",
       "type": "int[100]",
-      "source": "binary:IDA structs export (PDB-derived layout)"
+      "source": "binary:IDA structs export (PDB-derived layout)",
+      "evidence_level": "unverified"
     },
     "508": {
       "name": "m_nUnlockDataEndFlag",
       "type": "int",
-      "source": "A:PDB-derived after m_RoleUnlockData[100](108-507) before m_nUnlockDataCount(512); role unlock terminator/flag"
+      "source": "A:PDB-derived after m_RoleUnlockData[100](108-507) before m_nUnlockDataCount(512); role unlock terminator/flag",
+      "evidence_level": "unverified"
     },
     "512": {
       "name": "m_nUnlockDataCount",
       "type": "int",
-      "source": "binary:IDA structs export (PDB-derived layout)"
+      "source": "binary:IDA structs export (PDB-derived layout)",
+      "evidence_level": "unverified"
     },
     "516": {
       "name": "m_MonsterUnlockTable",
       "type": "int[60]",
-      "source": "binary:IDA structs export (PDB-derived layout)"
+      "source": "binary:IDA structs export (PDB-derived layout)",
+      "evidence_level": "unverified"
     },
     "756": {
       "name": "m_nMonsterUnlockEndFlag",
       "type": "int",
-      "source": "A:PDB-derived after m_MonsterUnlockTable[60](516-755) before m_nCurrentScene(760); monster unlock terminator/flag"
+      "source": "A:PDB-derived after m_MonsterUnlockTable[60](516-755) before m_nCurrentScene(760); monster unlock terminator/flag",
+      "evidence_level": "unverified"
     },
     "760": {
       "name": "m_nCurrentScene",
       "type": "int",
-      "source": "binary:IDA structs export (PDB-derived layout)"
+      "source": "binary:IDA structs export (PDB-derived layout)",
+      "evidence_level": "unverified"
     },
     "764": {
       "name": "m_pCameraScript",
       "type": "PalScript *",
-      "source": "binary:IDA structs export (PDB-derived layout)"
+      "source": "binary:IDA structs export (PDB-derived layout)",
+      "evidence_level": "unverified"
     }
   },
   "pdb_size": 856,

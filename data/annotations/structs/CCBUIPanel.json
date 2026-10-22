@@ -7,289 +7,347 @@
       "name": "m_Data",
       "type": "char[512]",
       "size": 512,
-      "source": "ctor: sub_431870(this+5394), memset 0x200"
+      "source": "ctor: sub_431870(this+5394), memset 0x200",
+      "evidence_level": "unverified"
     },
     "1344": {
       "name": "m_nPanelOffsetX",
       "type": "int",
-      "source": "binary_discovery:1refs | ida_xref | fix:rename"
+      "source": "binary_discovery:1refs | ida_xref | fix:rename",
+      "evidence_level": "unverified"
     },
     "1348": {
       "name": "m_nPanelOffsetY",
       "type": "int",
-      "source": "binary_discovery:1refs | ida_xref | fix:rename"
+      "source": "binary_discovery:1refs | ida_xref | fix:rename",
+      "evidence_level": "unverified"
     },
     "1468": {
       "name": "m_nPanelX",
       "type": "int",
-      "source": "A:InitPanel: mov [esi+5BCh], 354h (852)"
+      "source": "A:InitPanel: mov [esi+5BCh], 354h (852)",
+      "evidence_level": "unverified"
     },
     "1472": {
       "name": "m_nPanelY",
       "type": "int",
-      "source": "A:InitPanel: mov [esi+5C0h], 239h (569)"
+      "source": "A:InitPanel: mov [esi+5C0h], 239h (569)",
+      "evidence_level": "unverified"
     },
     "1476": {
       "name": "m_nChildX",
       "type": "int",
-      "source": "binary_discovery:1refs | ida_xref"
+      "source": "binary_discovery:1refs | ida_xref",
+      "evidence_level": "unverified"
     },
     "1480": {
       "name": "m_nChildY",
       "type": "int",
-      "source": "binary_discovery:1refs | ida_xref"
+      "source": "binary_discovery:1refs | ida_xref",
+      "evidence_level": "unverified"
     },
     "1484": {
       "name": "m_nChildW",
       "type": "int",
-      "source": "binary_discovery:1refs | ida_xref"
+      "source": "binary_discovery:1refs | ida_xref",
+      "evidence_level": "unverified"
     },
     "1488": {
       "name": "m_nChildH",
       "type": "int",
-      "source": "binary_discovery:1refs | ida_xref"
+      "source": "binary_discovery:1refs | ida_xref",
+      "evidence_level": "unverified"
     },
     "1492": {
       "name": "m_nBorderL",
       "type": "int",
-      "source": "binary_discovery:1refs | ida_xref"
+      "source": "binary_discovery:1refs | ida_xref",
+      "evidence_level": "unverified"
     },
     "1496": {
       "name": "m_nBorderR",
       "type": "int",
-      "source": "binary_discovery:1refs | ida_xref"
+      "source": "binary_discovery:1refs | ida_xref",
+      "evidence_level": "unverified"
     },
     "1500": {
       "name": "m_fPanelW",
       "type": "float",
-      "source": "A:InitPanel: mov [esi+5DCh], 44550000h (852.0f)"
+      "source": "A:InitPanel: mov [esi+5DCh], 44550000h (852.0f)",
+      "evidence_level": "unverified"
     },
     "1504": {
       "name": "m_fPanelH",
       "type": "float",
-      "source": "A:InitPanel: mov [esi+5E0h], 440E4000h (568.5f)"
+      "source": "A:InitPanel: mov [esi+5E0h], 440E4000h (568.5f)",
+      "evidence_level": "unverified"
     },
     "1508": {
       "name": "m_nGridX",
       "type": "int",
-      "source": "binary_discovery:1refs | ida_xref"
+      "source": "binary_discovery:1refs | ida_xref",
+      "evidence_level": "unverified"
     },
     "1512": {
       "name": "m_nGridY",
       "type": "int",
-      "source": "binary_discovery:1refs | ida_xref"
+      "source": "binary_discovery:1refs | ida_xref",
+      "evidence_level": "unverified"
     },
     "1516": {
       "name": "m_nGridW",
       "type": "int",
-      "source": "binary_discovery:1refs | ida_xref"
+      "source": "binary_discovery:1refs | ida_xref",
+      "evidence_level": "unverified"
     },
     "1520": {
       "name": "m_nGridH",
       "type": "int",
-      "source": "binary_discovery:1refs | ida_xref"
+      "source": "binary_discovery:1refs | ida_xref",
+      "evidence_level": "unverified"
     },
     "1524": {
       "name": "m_nItemW",
       "type": "int",
-      "source": "binary_discovery:1refs | ida_xref"
+      "source": "binary_discovery:1refs | ida_xref",
+      "evidence_level": "unverified"
     },
     "1528": {
       "name": "m_nItemH",
       "type": "int",
-      "source": "binary_discovery:1refs | ida_xref"
+      "source": "binary_discovery:1refs | ida_xref",
+      "evidence_level": "unverified"
     },
     "1532": {
       "name": "m_nSpacingX",
       "type": "int",
-      "source": "binary_discovery:1refs | ida_xref"
+      "source": "binary_discovery:1refs | ida_xref",
+      "evidence_level": "unverified"
     },
     "1536": {
       "name": "m_nSpacingY",
       "type": "int",
-      "source": "binary_discovery:1refs | ida_xref"
+      "source": "binary_discovery:1refs | ida_xref",
+      "evidence_level": "unverified"
     },
     "1540": {
       "name": "m_nItemNum",
-      "type": "int"
+      "type": "int",
+      "evidence_level": "unverified"
     },
     "1544": {
       "name": "m_nMaxItemNum",
-      "type": "int"
+      "type": "int",
+      "evidence_level": "unverified"
     },
     "1560": {
       "name": "m_pVfTable",
       "type": "char *",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     },
     "1792": {
       "name": "m_nTodo_1792",
       "type": "UIScene",
-      "source": "dtor:ctor_3E70 | [批4 诚实化 2026-10-16] A偏移形：m_Scene_1792⇒m_nTodo_1792（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
+      "source": "dtor:ctor_3E70 | [批4 诚实化 2026-10-16] A偏移形：m_Scene_1792⇒m_nTodo_1792（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+      "evidence_level": "unverified"
     },
     "2136": {
       "name": "m_Static_2136",
       "type": "UIStatic",
-      "source": "dtor:ctor_3E70"
+      "source": "dtor:ctor_3E70",
+      "evidence_level": "unverified"
     },
     "2288": {
       "name": "m_Static_2288",
       "type": "UIStatic",
-      "source": "dtor:ctor_3E70"
+      "source": "dtor:ctor_3E70",
+      "evidence_level": "unverified"
     },
     "2440": {
       "name": "m_Static_2440",
       "type": "UIStatic",
-      "source": "dtor:ctor_3E70"
+      "source": "dtor:ctor_3E70",
+      "evidence_level": "unverified"
     },
     "2592": {
       "name": "m_Static_2592",
       "type": "UIStatic",
-      "source": "dtor:ctor_3E70"
+      "source": "dtor:ctor_3E70",
+      "evidence_level": "unverified"
     },
     "2744": {
       "name": "m_Static_2744",
       "type": "UIStatic",
-      "source": "dtor:ctor_3E70"
+      "source": "dtor:ctor_3E70",
+      "evidence_level": "unverified"
     },
     "2896": {
       "name": "m_nTodo_2896",
       "type": "UIScene",
-      "source": "dtor:ctor_3E70 | [批4 诚实化 2026-10-16] A偏移形：m_Scene_2896⇒m_nTodo_2896（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
+      "source": "dtor:ctor_3E70 | [批4 诚实化 2026-10-16] A偏移形：m_Scene_2896⇒m_nTodo_2896（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+      "evidence_level": "unverified"
     },
     "3240": {
       "name": "m_nTodo_3240",
       "type": "UIScene",
-      "source": "dtor:ctor_3E70 | [批4 诚实化 2026-10-16] A偏移形：m_Scene_3240⇒m_nTodo_3240（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
+      "source": "dtor:ctor_3E70 | [批4 诚实化 2026-10-16] A偏移形：m_Scene_3240⇒m_nTodo_3240（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+      "evidence_level": "unverified"
     },
     "3584": {
       "name": "m_nTodo_3584",
       "type": "UIScene",
-      "source": "dtor:ctor_3E70 | [批4 诚实化 2026-10-16] A偏移形：m_Scene_3584⇒m_nTodo_3584（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
+      "source": "dtor:ctor_3E70 | [批4 诚实化 2026-10-16] A偏移形：m_Scene_3584⇒m_nTodo_3584（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+      "evidence_level": "unverified"
     },
     "3928": {
       "name": "m_nTodo_3928",
       "type": "UIItem",
-      "source": "ctor:ARC_PlayerAtt::Refresh(UIItem*) | [批4 诚实化 2026-10-16] A偏移形：m_Item_3928⇒m_nTodo_3928（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）"
+      "source": "ctor:ARC_PlayerAtt::Refresh(UIItem*) | [批4 诚实化 2026-10-16] A偏移形：m_Item_3928⇒m_nTodo_3928（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+      "evidence_level": "unverified"
     },
     "4316": {
       "name": "m_bActive",
-      "type": "unsigned char"
+      "type": "unsigned char",
+      "evidence_level": "unverified"
     },
     "20560": {
       "name": "m_nTodo_5050",
       "type": "int",
-      "source": "binary_discovery:2refs"
+      "source": "binary_discovery:2refs",
+      "evidence_level": "unverified"
     },
     "20564": {
       "name": "m_nTodo_5054",
       "type": "int",
-      "source": "binary_discovery:1refs"
+      "source": "binary_discovery:1refs",
+      "evidence_level": "unverified"
     },
     "20664": {
       "name": "m_EmbedCaption",
       "type": "void *",
-      "source": "binary_discovery:1refs;batch_fix:int_to_v*_LEA_embed;A:decomp_batch_rename_usage_pattern | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：内嵌 UICaption 子对象——`SetEnable((UICaption *)&this->m_EmbedCaption)`（OnMessage_a540@0x44A540）&field 即对象地址"
+      "source": "binary_discovery:1refs;batch_fix:int_to_v*_LEA_embed;A:decomp_batch_rename_usage_pattern | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：内嵌 UICaption 子对象——`SetEnable((UICaption *)&this->m_EmbedCaption)`（OnMessage_a540@0x44A540）&field 即对象地址",
+      "evidence_level": "A"
     },
     "4324": {
       "name": "m_Slots",
       "type": "CCBPanelSlot[30]",
-      "source": "InitPanel:stride476_vtable+92_30pure_slots"
+      "source": "InitPanel:stride476_vtable+92_30pure_slots",
+      "evidence_level": "unverified"
     },
     "18604": {
       "name": "m_nTodo_48AC",
       "type": "int",
-      "source": "ida_gap_5refs"
+      "source": "ida_gap_5refs",
+      "evidence_level": "unverified"
     },
     "18608": {
       "name": "m_nTodo_48B0",
       "type": "int",
-      "source": "ida_gap_3refs"
+      "source": "ida_gap_3refs",
+      "evidence_level": "unverified"
     },
     "18612": {
       "name": "m_nTodo_48B4",
       "type": "int",
-      "source": "ida_gap_3refs"
+      "source": "ida_gap_3refs",
+      "evidence_level": "unverified"
     },
     "18616": {
       "name": "m_EmbedPalScript",
       "type": "int",
-      "source": "ida_gap_8refs;A:decomp_batch_rename_usage_pattern"
+      "source": "ida_gap_8refs;A:decomp_batch_rename_usage_pattern",
+      "evidence_level": "unverified"
     },
     "18780": {
       "name": "m_nTodo_495C",
       "type": "int",
-      "source": "ida_gap_7refs"
+      "source": "ida_gap_7refs",
+      "evidence_level": "unverified"
     },
     "18784": {
       "name": "m_nTodo_4960",
       "type": "int",
-      "source": "ida_gap_7refs"
+      "source": "ida_gap_7refs",
+      "evidence_level": "unverified"
     },
     "18788": {
       "name": "m_nTodo_4964",
       "type": "int",
-      "source": "ida_gap_5refs"
+      "source": "ida_gap_5refs",
+      "evidence_level": "unverified"
     },
     "18792": {
       "name": "m_nTodo_4968",
       "type": "int",
-      "source": "ida_gap_7refs"
+      "source": "ida_gap_7refs",
+      "evidence_level": "unverified"
     },
     "18796": {
       "name": "m_nTodo_496C",
       "type": "int",
-      "source": "ida_gap_1refs"
+      "source": "ida_gap_1refs",
+      "evidence_level": "unverified"
     },
     "18800": {
       "name": "m_nTodo_4970",
       "type": "int",
-      "source": "ida_gap_1refs"
+      "source": "ida_gap_1refs",
+      "evidence_level": "unverified"
     },
     "18804": {
       "name": "m_nTodo_4974",
       "type": "int",
-      "source": "ida_gap_3refs"
+      "source": "ida_gap_3refs",
+      "evidence_level": "unverified"
     },
     "18808": {
       "name": "m_nTodo_4978",
       "type": "int",
-      "source": "ida_gap_3refs"
+      "source": "ida_gap_3refs",
+      "evidence_level": "unverified"
     },
     "18824": {
       "name": "m_nTodo_4988",
       "type": "int",
-      "source": "ida_gap_6refs"
+      "source": "ida_gap_6refs",
+      "evidence_level": "unverified"
     },
     "18828": {
       "name": "m_nTodo_498C",
       "type": "int",
-      "source": "ida_gap_1refs"
+      "source": "ida_gap_1refs",
+      "evidence_level": "unverified"
     },
     "18832": {
       "name": "m_nTodo_4990",
       "type": "int",
-      "source": "ida_gap_3refs"
+      "source": "ida_gap_3refs",
+      "evidence_level": "unverified"
     },
     "18836": {
       "name": "m_nTodo_4994",
       "type": "int",
-      "source": "ida_gap_6refs"
+      "source": "ida_gap_6refs",
+      "evidence_level": "unverified"
     },
     "18840": {
       "name": "m_EmbedPlayerAtt",
       "type": "int",
-      "source": "ida_gap_5refs;A:decomp_batch_rename_usage_pattern"
+      "source": "ida_gap_5refs;A:decomp_batch_rename_usage_pattern",
+      "evidence_level": "unverified"
     },
     "19296": {
       "name": "m_nTodo_4B60",
       "type": "int",
-      "source": "ida_gap_1refs"
+      "source": "ida_gap_1refs",
+      "evidence_level": "unverified"
     },
     "20208": {
       "name": "m_nPlayerAttOverlay",
       "type": "int",
-      "source": "A:decomp_ARC_PlayerAtt_refresh_create_cast_embed_subobj"
+      "source": "A:decomp_ARC_PlayerAtt_refresh_create_cast_embed_subobj",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
@@ -298,37 +356,44 @@
       "signature": "void __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_3E70。refs: ??1UIRoleDialog@@QAE@XZ ?Destroy2@UICaption@@QAEXXZ ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ??1UIL"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_3E70。refs: ??1UIRoleDialog@@QAE@XZ ?Destroy2@UICaption@@QAEXXZ ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ??1UIL",
+      "evidence_level": "A"
     },
     "0x00454590": {
       "name": "OnMessage",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
+      "evidence_level": "unverified"
     },
     "0x004460D0": {
       "name": "CCBUIPanel",
       "signature": "void __thiscall()",
-      "source": "| [签名层正交治理 2026-10-16] A返回型int*：int *__thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0PalScript/??0UIRoleDialog/??0TxtFile"
+      "source": "| [签名层正交治理 2026-10-16] A返回型int*：int *__thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0PalScript/??0UIRoleDialog/??0TxtFile",
+      "evidence_level": "unverified"
     },
     "0x0044A540": {
       "name": "OnMessage_a540",
       "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
-      "ordinal": 6
+      "ordinal": 6,
+      "evidence_level": "unverified"
     },
     "0x00453D10": {
       "name": "_todo_453D10",
       "signature": "void __thiscall()",
-      "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ CCBUIPanel（ctor 名形=类名）：A 级 refs ??0UIListBox/??0UIRoleDialog（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0UIRoleDialog | [C2084 归因消解 2026-10-16] 名 CCBUIPanel 与 _todo_453D10@0x004460D0 撞名（ctor/dtor 双体 C2084）：双 SEH 序言体同名 ⇒ 保留既有名，73108e3f2 改名侧降 _todo_ 待细分"
+      "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ CCBUIPanel（ctor 名形=类名）：A 级 refs ??0UIListBox/??0UIRoleDialog（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0UIRoleDialog | [C2084 归因消解 2026-10-16] 名 CCBUIPanel 与 _todo_453D10@0x004460D0 撞名（ctor/dtor 双体 C2084）：双 SEH 序言体同名 ⇒ 保留既有名，73108e3f2 改名侧降 _todo_ 待细分",
+      "evidence_level": "A"
     },
     "0x00446200": {
       "name": "~CCBUIPanel",
       "signature": "void __thiscall()",
-      "source": "| [T119] decomp 命名形态定位+正名：ctor_6200（@0x446200）decomp 体=成员销毁序列（Destroy/PalScript::Cleanup/UIRoleDialog dtor 簇/UIListBox dtor）⇒ **真析构**（拷贝构造族假设证伪——T117 判据修正：ctor_* 名≠ctor 语义，须本体判读）⇒ 语义名 ~CCBUIPanel（禁伪语义 ✓ 全函数体证据）"
+      "source": "| [T119] decomp 命名形态定位+正名：ctor_6200（@0x446200）decomp 体=成员销毁序列（Destroy/PalScript::Cleanup/UIRoleDialog dtor 簇/UIListBox dtor）⇒ **真析构**（拷贝构造族假设证伪——T117 判据修正：ctor_* 名≠ctor 语义，须本体判读）⇒ 语义名 ~CCBUIPanel（禁伪语义 ✓ 全函数体证据）",
+      "evidence_level": "unverified"
     },
     "0x00449980": {
       "name": "SetUserData",
       "signature": "void __thiscall(int nVal1)",
       "_misattrib_evidence": "max_offset=364>class_size=96",
-      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x004461D0": {
       "name": "_scalar_dtor_61D0",
@@ -336,89 +401,107 @@
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUIPanel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AF80）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUIPanel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AF80）",
+      "evidence_level": "A"
     },
     "0x004462C0": {
       "name": "InitPanel",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00449B90": {
       "name": "FocusCurrentRole",
-      "signature": "char __thiscall CCBUIPanel::FocusCurrentRole()"
+      "signature": "char __thiscall CCBUIPanel::FocusCurrentRole()",
+      "evidence_level": "unverified"
     },
     "0x0044A1B0": {
       "name": "ProcessInput",
       "signature": "BOOL __thiscall CCBUIPanel::ProcessInput(double st7_0)",
       "ordinal": 2,
-      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x00453E50": {
       "name": "_scalar_dtor_3E50",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUIPanel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B22C）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUIPanel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B22C）",
+      "evidence_level": "A"
     },
     "0x00454550": {
       "name": "RenderIfUnlocked",
-      "signature": "char __thiscall CCBUIPanel::RenderIfUnlocked()"
+      "signature": "char __thiscall CCBUIPanel::RenderIfUnlocked()",
+      "evidence_level": "unverified"
     },
     "0x00454560": {
       "name": "ProcessInputIfUnlocked",
-      "signature": "BOOL __thiscall CCBUIPanel::ProcessInputIfUnlocked(int nVal, int nVal2)"
+      "signature": "BOOL __thiscall CCBUIPanel::ProcessInputIfUnlocked(int nVal, int nVal2)",
+      "evidence_level": "unverified"
     },
     "0x00449AB0": {
       "name": "CenterSlot",
       "signature": "int __thiscall CCBUIPanel::CenterSlot(unsigned int nSlotIdx)",
-      "_misattrib_evidence": "max_offset=18792>class_size=456"
+      "_misattrib_evidence": "max_offset=18792>class_size=456",
+      "evidence_level": "unverified"
     },
     "0x00449C50": {
       "name": "UpdateSlotClipping",
       "signature": "int __thiscall CCBUIPanel::UpdateSlotClipping()",
-      "_misattrib_evidence": "max_offset=608>class_size=160"
+      "_misattrib_evidence": "max_offset=608>class_size=160",
+      "evidence_level": "unverified"
     },
     "0x00449CF0": {
       "name": "UpdateSlotPositions",
       "signature": "char __thiscall CCBUIPanel::UpdateSlotPositions(int nVal)",
-      "_misattrib_evidence": "max_offset=18800>class_size=584"
+      "_misattrib_evidence": "max_offset=18800>class_size=584",
+      "evidence_level": "unverified"
     },
     "0x00449E60": {
       "name": "EnsureSize",
       "signature": "void __thiscall CCBUIPanel::EnsureSize(int nVal, int nVal2)",
-      "_misattrib_evidence": "max_offset=18832>class_size=204"
+      "_misattrib_evidence": "max_offset=18832>class_size=204",
+      "evidence_level": "unverified"
     },
     "0x0044A180": {
       "name": "SetAllSlotsVisible",
       "signature": "int __thiscall CCBUIPanel::SetAllSlotsVisible(unsigned __int8 bVisible)",
-      "_misattrib_evidence": "max_offset=608>class_size=160"
+      "_misattrib_evidence": "max_offset=608>class_size=160",
+      "evidence_level": "unverified"
     },
     "0x0044A4F0": {
       "name": "ActivateSlot",
-      "signature": "void __thiscall CCBUIPanel::ActivateSlot(unsigned int nSlotIdx)"
+      "signature": "void __thiscall CCBUIPanel::ActivateSlot(unsigned int nSlotIdx)",
+      "evidence_level": "unverified"
     },
     "0x004544F0": {
       "name": "UpdateButtonVisibility",
       "signature": "int __thiscall CCBUIPanel::UpdateButtonVisibility()",
-      "_misattrib_evidence": "max_offset=1416>class_size=352"
+      "_misattrib_evidence": "max_offset=1416>class_size=352",
+      "evidence_level": "unverified"
     },
     "0x0048A170": {
       "name": "InitSlots",
-      "signature": "int __thiscall CCBUIPanel::InitSlots()"
+      "signature": "int __thiscall CCBUIPanel::InitSlots()",
+      "evidence_level": "unverified"
     },
     "0x004A3EC0": {
       "name": "InitScrollState",
-      "signature": "int __thiscall CCBUIPanel::InitScrollState()"
+      "signature": "int __thiscall CCBUIPanel::InitScrollState()",
+      "evidence_level": "unverified"
     },
     "0x00449990": {
       "name": "Destroy",
       "signature": "void __thiscall(UIListBox **this, int)",
       "source": "vtable_migrated",
-      "ordinal": 3
+      "ordinal": 3,
+      "evidence_level": "unverified"
     },
     "0x00449C20": {
       "name": "sub_449C20",
       "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(IDB:sub_449C20)"
+      "source": "vtable_gap_fill_v1(IDB:sub_449C20)",
+      "evidence_level": "unverified"
     }
   },
   "vtables": [

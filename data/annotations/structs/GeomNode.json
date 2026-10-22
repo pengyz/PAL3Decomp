@@ -6,57 +6,67 @@
       "name": "pNext",
       "type": "GeomNode *",
       "size": 4,
-      "source": "gbChain1DNode::pNext at +0"
+      "source": "gbChain1DNode::pNext at +0",
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "pParent",
       "type": "GeomNode *",
       "size": 4,
-      "source": "gbNBTreeNode::pParent at +4"
+      "source": "gbNBTreeNode::pParent at +4",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "children",
       "type": "char[16]",
       "size": 16,
-      "source": "gbNBTreeNode::children (gbChain1D) at +8"
+      "source": "gbNBTreeNode::children (gbChain1D) at +8",
+      "evidence_level": "unverified"
     },
     "92": {
       "name": "worldTransform",
       "type": "Matrix4",
       "size": 64,
-      "source": "gbGeomNode::worldTransform at +0x5C"
+      "source": "gbGeomNode::worldTransform at +0x5C",
+      "evidence_level": "unverified"
     },
     "156": {
       "name": "staticTransform",
       "type": "Matrix4",
       "size": 64,
-      "source": "gbGeomNode::staticTransform at +0x9C"
+      "source": "gbGeomNode::staticTransform at +0x9C",
+      "evidence_level": "unverified"
     },
     "272": {
       "name": "mesh",
       "type": "int",
       "size": 4,
-      "source": "gbGeomNode::mesh (gbStaticMesh*) at +0x108"
+      "source": "gbGeomNode::mesh (gbStaticMesh*) at +0x108",
+      "evidence_level": "unverified"
     },
     "256": {
       "name": "m_nTodo_100",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x00429AF0": {
       "name": "InitFromFile",
-      "signature": "void __thiscall GeomNode::InitFromFile(const gbGeomNode *pGeomNode, int nVal)"
+      "signature": "void __thiscall GeomNode::InitFromFile(const gbGeomNode *pGeomNode, int nVal)",
+      "evidence_level": "unverified"
     },
     "0x004D0950": {
       "name": "LoadFromNode",
-      "signature": "bool __thiscall GeomNode::LoadFromNode(const gbGeomNode *pNode)"
+      "signature": "bool __thiscall GeomNode::LoadFromNode(const gbGeomNode *pNode)",
+      "evidence_level": "unverified"
     },
     "0x004D0A80": {
       "name": "DestroyChildren",
       "signature": "void __thiscall GeomNode::DestroyChildren(int nVal1)",
-      "source": "| 签名缺参批量 2026-10-06：ret 24/4=6 参 vs 签名 0——补 6 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 24/4=6 参 vs 签名 0——补 6 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     }
   }
 }

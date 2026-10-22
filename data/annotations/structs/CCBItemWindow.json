@@ -5,117 +5,140 @@
     "72": {
       "name": "m_pBack",
       "type": "UIStatic *",
-      "offset": 72
+      "offset": 72,
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_pDescription",
       "type": "UIStatic *",
-      "offset": 76
+      "offset": 76,
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "m_pItemList",
       "type": "UIListBox *[3]",
-      "offset": 80
+      "offset": 80,
+      "evidence_level": "unverified"
     },
     "92": {
       "name": "m_pButtonRecover",
       "type": "UIPushButton *",
-      "offset": 92
+      "offset": 92,
+      "evidence_level": "unverified"
     },
     "96": {
       "name": "m_pButtonAttack",
       "type": "UIPushButton *",
-      "offset": 96
+      "offset": 96,
+      "evidence_level": "unverified"
     },
     "100": {
       "name": "m_pButtonTreasure",
       "type": "UIPushButton *",
-      "offset": 100
+      "offset": 100,
+      "evidence_level": "unverified"
     },
     "104": {
       "name": "m_nActivePage",
       "type": "int",
-      "offset": 104
+      "offset": 104,
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x0051A3B0": {
       "name": "~CCBItemWindow",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051B160": {
       "name": "_scalar_dtor",
       "signature": "UIWnd *__thiscall(CCBItemWindow *Block, char pData)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "ordinal": 19
+      "ordinal": 19,
+      "evidence_level": "unverified"
     },
     "0x0051B1D0": {
       "name": "Reset",
       "signature": "void __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x0051B210": {
       "name": "Create",
       "signature": "bool __thiscall(int *pRect, int parent)",
-      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
+      "evidence_level": "A"
     },
     "0x0051B4B0": {
       "name": "Destroy",
       "signature": "void __thiscall(CCBItemWindow *__hidden this)",
       "source": "vtable_migrated",
-      "ordinal": 24
+      "ordinal": 24,
+      "evidence_level": "unverified"
     },
     "0x0051B570": {
       "name": "HandleInput",
       "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "ordinal": 16
+      "ordinal": 16,
+      "evidence_level": "unverified"
     },
     "0x0051B620": {
       "name": "Update",
-      "signature": "UIListBox * __thiscall()"
+      "signature": "UIListBox * __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051B670": {
       "name": "CreateButtons",
-      "signature": "UIWnd *__thiscall(CCBItemWindow *Block, char pData)"
+      "signature": "UIWnd *__thiscall(CCBItemWindow *Block, char pData)",
+      "evidence_level": "unverified"
     },
     "0x004461B0": {
       "name": "CCBItemWindow",
-      "signature": "void __thiscall CCBItemWindow::CCBItemWindow()"
+      "signature": "void __thiscall CCBItemWindow::CCBItemWindow()",
+      "evidence_level": "unverified"
     },
     "0x00450650": {
       "name": "SetItemName",
-      "signature": "char *__thiscall CCBItemWindow::SetItemName(char *pszName)"
+      "signature": "char *__thiscall CCBItemWindow::SetItemName(char *pszName)",
+      "evidence_level": "unverified"
     },
     "0x0051C9B0": {
       "name": "CCBFiveNimbusWindow::OnMessage",
       "signature": "int __thiscall(CCBSkillWindow *__hidden this, unsigned int, unsigned int a2, unsigned int)",
       "source": "vtable_migrated",
-      "ordinal": 20
+      "ordinal": 20,
+      "evidence_level": "unverified"
     },
     "0x0051A880": {
       "name": "CCBItemWindow_Destroy",
       "owner": "CCBItemWindow",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051A390": {
       "name": "DoTask",
       "signature": "void __thiscall(int)",
-      "source": "vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
+      "source": "vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
+      "evidence_level": "unverified"
     },
     "0x0051A930": {
       "name": "HandleMessage",
-      "signature": "int __thiscall(int nVal, unsigned int nMsg, int wParam)"
+      "signature": "int __thiscall(int nVal, unsigned int nMsg, int wParam)",
+      "evidence_level": "unverified"
     },
     "0x0051B5D0": {
       "name": "OnMessage",
       "signature": "int __thiscall(CCBItemWindow *__hidden this, unsigned int a2, unsigned int, unsigned int)",
-      "source": "vtable_gap_fill_v1(from CCBControlWindow.json)"
+      "source": "vtable_gap_fill_v1(from CCBControlWindow.json)",
+      "evidence_level": "unverified"
     },
     "0x0051B940": {
       "name": "ForwardShowClipped",
       "signature": "void __thiscall(CCBItemWindow *this, int nFlags)",
-      "source": "| 97族注册续 2026-10-17（verifier·证据账目制 symbol+addr）：注册 evidence：体 `push nFlags; call CCBPanelSlot::ShowClipped(this); ret 4`（转发形）| 五面：①调用者=五窗 UI 域 ②被调=CCBPanelSlot::ShowClipped ③转发体无成员 ④五窗共享槽 ⑤UI 显隐转发 | confidence: high | 原 IDB 名 _todo_B940（伪语义）⇒ 再创作命名 ForwardShowClipped"
+      "source": "| 97族注册续 2026-10-17（verifier·证据账目制 symbol+addr）：注册 evidence：体 `push nFlags; call CCBPanelSlot::ShowClipped(this); ret 4`（转发形）| 五面：①调用者=五窗 UI 域 ②被调=CCBPanelSlot::ShowClipped ③转发体无成员 ④五窗共享槽 ⑤UI 显隐转发 | confidence: high | 原 IDB 名 _todo_B940（伪语义）⇒ 再创作命名 ForwardShowClipped",
+      "evidence_level": "A"
     }
   },
   "vtables": [

@@ -5,84 +5,100 @@
     "72": {
       "name": "m_state",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_bk",
       "type": "UIStaticFlex",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "268": {
       "name": "m_ani",
       "type": "UIAnimateCtrl",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "432": {
       "name": "m_face",
       "type": "UIStaticFlip",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "596": {
       "name": "m_static",
       "type": "UITextArea",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "788": {
       "name": "m_texth",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "792": {
       "name": "m_list",
       "type": "UIListBox",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "2080": {
       "name": "m_maxlen",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "2084": {
       "name": "m_last",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "2088": {
       "name": "m_sel",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "2092": {
       "name": "m_mode",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x00451980": {
       "name": "CreateDialog",
-      "signature": "int __thiscall(int id, void *pRect, int parent, char *tex)"
+      "signature": "int __thiscall(int id, void *pRect, int parent, char *tex)",
+      "evidence_level": "unverified"
     },
     "0x00529790": {
       "name": "~UIRoleSelectDialog",
       "signature": "void __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UIRoleSelectDialog。refs: ?GetInstance@UIQuadManager@@QAEPAV1@XZ ??1UIRenderObj@@QAE@H@Z UITextArea_Destroy ?_UIFram"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UIRoleSelectDialog。refs: ?GetInstance@UIQuadManager@@QAEPAV1@XZ ??1UIRenderObj@@QAE@H@Z UITextArea_Destroy ?_UIFram",
+      "evidence_level": "A"
     },
     "0x005295F0": {
       "name": "UIRoleSelectDialog",
       "signature": "void __thiscall()",
-      "source": "| [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0CCBResultWindow"
+      "source": "| [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0CCBResultWindow",
+      "evidence_level": "unverified"
     },
     "0x0052AA50": {
       "name": "SubtractFromStats",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00529E40": {
       "name": "HandleInput",
       "signature": "double __thiscall(double st6_0, double result, int arg0, int arg0a)",
-      "ordinal": 2
+      "ordinal": 2,
+      "evidence_level": "unverified"
     },
     "0x00529770": {
       "name": "_scalar_dtor_9770",
@@ -90,35 +106,42 @@
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIRoleSelectDialog（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x57076C）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIRoleSelectDialog（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x57076C）",
+      "evidence_level": "A"
     },
     "0x00529CF0": {
       "name": "Render",
       "signature": "void __thiscall()",
-      "ordinal": 1
+      "ordinal": 1,
+      "evidence_level": "unverified"
     },
     "0x0052BBD0": {
       "name": "DestroyStatics",
-      "signature": "void __thiscall UIRoleSelectDialog::DestroyStatics()"
+      "signature": "void __thiscall UIRoleSelectDialog::DestroyStatics()",
+      "evidence_level": "unverified"
     },
     "0x0052BC90": {
       "name": "DestroyFrames",
-      "signature": "void __thiscall UIRoleSelectDialog::DestroyFrames()"
+      "signature": "void __thiscall UIRoleSelectDialog::DestroyFrames()",
+      "evidence_level": "unverified"
     },
     "0x0052AAB0": {
       "name": "ProcessDialog",
       "signature": "int __thiscall UIRoleSelectDialog::ProcessDialog(int nVal1)",
       "ordinal": 6,
-      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x0052D200": {
       "name": "IsRoleSelectable",
-      "signature": "char __thiscall UIRoleSelectDialog::IsRoleSelectable(int nVal)"
+      "signature": "char __thiscall UIRoleSelectDialog::IsRoleSelectable(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x0043DE40": {
       "name": "CCBRoleState::Destroy",
       "signature": "int __thiscall Destroy(int nMode)",
-      "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+      "source": "vtable_gap_fill_v1(from CCBRoleState.json)",
+      "evidence_level": "unverified"
     }
   },
   "vtables": [

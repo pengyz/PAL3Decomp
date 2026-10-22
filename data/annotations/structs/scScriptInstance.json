@@ -5,49 +5,58 @@
     "0": {
       "name": "pblock",
       "type": "scScriptBlock *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "runmode",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "5": {
       "name": "pause",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "pcaller",
       "type": "scScriptInstance *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "codeptr",
       "type": "BYTE *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "reg",
       "type": "scVARIANT[8]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "uservar",
       "type": "scVARIANT *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x0044E5E0": {
       "name": "~scScriptInstance",
       "signature": "void __thiscall scScriptInstance::~scScriptInstance()",
-      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
+      "evidence_level": "unverified"
     },
     "0x0044E5C0": {
       "name": "_scalar_dtor_E5C0",
       "signature": "scScriptInstance *__thiscall(scScriptInstance *Block, char a2)",
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=scScriptInstance（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B050,0x56B044）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=scScriptInstance（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B050,0x56B044）",
+      "evidence_level": "A"
     }
   },
   "vtables": [

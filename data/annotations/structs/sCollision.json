@@ -1,28 +1,32 @@
 {
- "name": "sCollision",
- "binary_size": 64,
- "known_members": {
-  "0": {
-   "name": "collider",
-   "type": "char[4]",
-   "source": "annotation|fix:pointer_level:primitive<3,float> *"
+  "name": "sCollision",
+  "binary_size": 64,
+  "known_members": {
+    "0": {
+      "name": "collider",
+      "type": "char[4]",
+      "source": "annotation|fix:pointer_level:primitive<3,float> *",
+      "evidence_level": "unverified"
+    },
+    "4": {
+      "name": "collisionPlane",
+      "type": "char[52]",
+      "source": "annotation",
+      "note": "annotation previously 'Collide_Ray<3,float>' (speculative, apply never propagated it); export/IDA TIL ground truth 'char[52]'; template types unemittable in MSVC6 headers",
+      "evidence_level": "unverified"
+    },
+    "56": {
+      "name": "collisionDistance",
+      "type": "float",
+      "source": "annotation",
+      "evidence_level": "unverified"
+    },
+    "60": {
+      "name": "collisionType",
+      "type": "CollisionType",
+      "source": "annotation",
+      "evidence_level": "unverified"
+    }
   },
-  "4": {
-   "name": "collisionPlane",
-   "type": "char[52]",
-   "source": "annotation",
-   "note": "annotation previously 'Collide_Ray<3,float>' (speculative, apply never propagated it); export/IDA TIL ground truth 'char[52]'; template types unemittable in MSVC6 headers"
-  },
-  "56": {
-   "name": "collisionDistance",
-   "type": "float",
-   "source": "annotation"
-  },
-  "60": {
-   "name": "collisionType",
-   "type": "CollisionType",
-   "source": "annotation"
-  }
- },
- "methods": {}
+  "methods": {}
 }

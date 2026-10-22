@@ -5,83 +5,99 @@
     "0": {
       "name": "m_fpThis",
       "type": "CCBEditor *",
-      "offset": 0
+      "offset": 0,
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "m_pRoleState",
       "type": "CCBRoleState *",
-      "offset": 4
+      "offset": 4,
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "m_NewItem",
       "type": "tagNewItem[500]",
       "offset": 8,
-      "note": "binary_size=8000, covers +8..+8008. Elements [7],[16],[26],[54],[76],[97] hold function ptrs in editor mode."
+      "note": "binary_size=8000, covers +8..+8008. Elements [7],[16],[26],[54],[76],[97] hold function ptrs in editor mode.",
+      "evidence_level": "unverified"
     },
     "8008": {
       "name": "m_dwSelectFighter",
       "type": "int[11]",
-      "offset": 8008
+      "offset": 8008,
+      "evidence_level": "unverified"
     },
     "8052": {
       "name": "m_nCurCCTList",
       "type": "int",
-      "offset": 8052
+      "offset": 8052,
+      "evidence_level": "unverified"
     },
     "8056": {
       "name": "m_nCurCCT",
       "type": "int",
-      "offset": 8056
+      "offset": 8056,
+      "evidence_level": "unverified"
     },
     "8060": {
       "name": "m_nCurEffClass",
       "type": "int",
-      "offset": 8060
+      "offset": 8060,
+      "evidence_level": "unverified"
     },
     "8064": {
       "name": "m_nCurEffObjType",
       "type": "int",
-      "offset": 8064
+      "offset": 8064,
+      "evidence_level": "unverified"
     },
     "8068": {
       "name": "m_nCurEffGroup",
       "type": "int",
-      "offset": 8068
+      "offset": 8068,
+      "evidence_level": "unverified"
     },
     "8072": {
       "name": "m_nCurEffObjInGroup",
       "type": "int",
-      "offset": 8072
+      "offset": 8072,
+      "evidence_level": "unverified"
     },
     "8076": {
       "name": "m_nCurEffObjTask",
       "type": "int",
-      "offset": 8076
+      "offset": 8076,
+      "evidence_level": "unverified"
     },
     "8080": {
       "name": "m_dwTrickID",
       "type": "unsigned long[384]",
-      "offset": 8080
+      "offset": 8080,
+      "evidence_level": "unverified"
     },
     "9616": {
       "name": "m_nCurSelectedEffGroup",
       "type": "int",
-      "offset": 9616
+      "offset": 9616,
+      "evidence_level": "unverified"
     },
     "9620": {
       "name": "m_nCurSelectedTrick",
       "type": "int",
-      "offset": 9620
+      "offset": 9620,
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x0044B630": {
       "name": "UpdateItemScript",
-      "signature": "int __thiscall(CHAR *lpString2, int nVal, int nVal2, int nVal3)"
+      "signature": "int __thiscall(CHAR *lpString2, int nVal, int nVal2, int nVal3)",
+      "evidence_level": "unverified"
     },
     "0x0044B690": {
       "name": "InvokeItemMethod",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     }
   }
 }

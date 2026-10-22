@@ -5,238 +5,288 @@
     "72": {
       "name": "screenrect",
       "type": "tagRECT",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "88": {
       "name": "bkWndX",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "92": {
       "name": "bkWndY",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "96": {
       "name": "i",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "100": {
       "name": "j",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "104": {
       "name": "buf",
       "type": "char[256]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "360": {
       "name": "ms_BigMap",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "520": {
       "name": "m_Element",
       "type": "_MapElement[16]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "6792": {
       "name": "m_spiritRect",
       "type": "tagRECT",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "6808": {
       "name": "m_spirit",
       "type": "UIAnimateCtrl",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "6972": {
       "name": "m_spiritPosX",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "6976": {
       "name": "m_spiritPosY",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "6980": {
       "name": "m_spiritPos",
       "type": "tagPOINT",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "6988": {
       "name": "m_movetopos",
       "type": "tagPOINT",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "6996": {
       "name": "m_movetoX",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "7000": {
       "name": "m_movetoY",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "7004": {
       "name": "m_spiritspeed",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "7008": {
       "name": "m_speedFX",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "7012": {
       "name": "m_speedFY",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "7016": {
       "name": "m_bSpiritCanMove",
       "type": "unsigned char",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "7017": {
       "name": "m_isSpiritMoveTo",
       "type": "unsigned char",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "7020": {
       "name": "m_timescale",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "7024": {
       "name": "m_stopdir",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "7028": {
       "name": "m_curElement",
       "type": "_BIGMAP_ELEMENT",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "7032": {
       "name": "m_Answer",
       "type": "MUIDialog",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x00414E50": {
       "name": "UpdateActions",
       "signature": "int __thiscall(int *deltatime, int haveinput)",
-      "source": "| [T131] Update 族命名约定确立（Update<Aspect>——T120 Render<Scope> 模式对应）+ 正名：0x00414E50 调用簇=Actor::CompareActionName/RoleSystem::Notify（行动更新）（调用簇/成员簇证据）⇒ 语义名 UpdateActions（禁伪语义 ✓）"
+      "source": "| [T131] Update 族命名约定确立（Update<Aspect>——T120 Render<Scope> 模式对应）+ 正名：0x00414E50 调用簇=Actor::CompareActionName/RoleSystem::Notify（行动更新）（调用簇/成员簇证据）⇒ 语义名 UpdateActions（禁伪语义 ✓）",
+      "evidence_level": "unverified"
     },
     "0x00489BA0": {
       "name": "UpdateElement",
-      "signature": "void __thiscall UIBigMap::UpdateElement(int element, int visible)"
+      "signature": "void __thiscall UIBigMap::UpdateElement(int element, int visible)",
+      "evidence_level": "unverified"
     },
     "0x00490E70": {
       "name": "_scalar_dtor",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "evidence_level": "unverified"
     },
     "0x00490E90": {
       "name": "UIBigMap",
-      "signature": "void __thiscall UIBigMap::UIBigMap()"
+      "signature": "void __thiscall UIBigMap::UIBigMap()",
+      "evidence_level": "unverified"
     },
     "0x004910B0": {
       "name": "~UIBigMap",
       "signature": "void __thiscall UIBigMap::~UIBigMap()",
-      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
+      "evidence_level": "unverified"
     },
     "0x00496FA0": {
       "name": "Render",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00418260": {
       "name": "UpdateTransform",
       "signature": "int __thiscall UIBigMap::Update__ovl_8260(int deltatime, float *haveinput)",
-      "source": "| [T131] Update 族命名约定确立（Update<Aspect>——T120 Render<Scope> 模式对应）+ 正名：0x00418260 调用簇=RoleSystem::AddVec3ToTarget + 子窗/矩形簇（变换更新）（调用簇/成员簇证据）⇒ 语义名 UpdateTransform（禁伪语义 ✓）"
+      "source": "| [T131] Update 族命名约定确立（Update<Aspect>——T120 Render<Scope> 模式对应）+ 正名：0x00418260 调用簇=RoleSystem::AddVec3ToTarget + 子窗/矩形簇（变换更新）（调用簇/成员簇证据）⇒ 语义名 UpdateTransform（禁伪语义 ✓）",
+      "evidence_level": "unverified"
     },
     "0x00423A70": {
       "name": "LoadScene",
-      "signature": "void __thiscall UIBigMap::LoadScene(int element, const char *visible)"
+      "signature": "void __thiscall UIBigMap::LoadScene(int element, const char *visible)",
+      "evidence_level": "unverified"
     },
     "0x00424570": {
       "name": "RenderRole",
-      "signature": "void __thiscall UIBigMap::RenderRole(gbMatrixStack *pStack, int visible)"
+      "signature": "void __thiscall UIBigMap::RenderRole(gbMatrixStack *pStack, int visible)",
+      "evidence_level": "unverified"
     },
     "0x0043BF90": {
       "name": "UpdateWindowPos",
       "signature": "int __thiscall(int deltatime, int haveinput)",
-      "source": "| [T131] Update 族命名约定确立（Update<Aspect>——T120 Render<Scope> 模式对应）+ 正名：0x0043BF90 成员簇=bkWndY（窗位更新）（调用簇/成员簇证据）⇒ 语义名 UpdateWindowPos（禁伪语义 ✓）"
+      "source": "| [T131] Update 族命名约定确立（Update<Aspect>——T120 Render<Scope> 模式对应）+ 正名：0x0043BF90 成员簇=bkWndY（窗位更新）（调用簇/成员簇证据）⇒ 语义名 UpdateWindowPos（禁伪语义 ✓）",
+      "evidence_level": "unverified"
     },
     "0x00441240": {
       "name": "SetScrollRange",
-      "signature": "int __thiscall UIBigMap::SetScrollRange(int nMin, int nMax)"
+      "signature": "int __thiscall UIBigMap::SetScrollRange(int nMin, int nMax)",
+      "evidence_level": "unverified"
     },
     "0x004431E0": {
       "name": "SetViewParams",
-      "signature": "int __thiscall UIBigMap::SetViewParams(int deltatime, int haveinput)"
+      "signature": "int __thiscall UIBigMap::SetViewParams(int deltatime, int haveinput)",
+      "evidence_level": "unverified"
     },
     "0x00451360": {
       "name": "LayoutBinkVideo",
-      "signature": "int __thiscall(LPCSTR lpString1, int haveinput)"
+      "signature": "int __thiscall(LPCSTR lpString1, int haveinput)",
+      "evidence_level": "unverified"
     },
     "0x004528F0": {
       "name": "InitUI",
-      "signature": "int __thiscall(int id, int parent)"
+      "signature": "int __thiscall(int id, int parent)",
+      "evidence_level": "unverified"
     },
     "0x00491C30": {
       "name": "GetChildCount",
-      "signature": "int __thiscall UIBigMap::GetChildCount(int nVal, int nVal2)"
+      "signature": "int __thiscall UIBigMap::GetChildCount(int nVal, int nVal2)",
+      "evidence_level": "unverified"
     },
     "0x004929E0": {
       "name": "ProcessChildItem",
-      "signature": "int __thiscall UIBigMap::ProcessChildItem(int arg0, int *p_DWORD)"
+      "signature": "int __thiscall UIBigMap::ProcessChildItem(int arg0, int *p_DWORD)",
+      "evidence_level": "unverified"
     },
     "0x004971E0": {
       "name": "ProcessInput",
-      "signature": "BOOL __thiscall UIBigMap::ProcessInput(int nVal, int nVal2)"
+      "signature": "BOOL __thiscall UIBigMap::ProcessInput(int nVal, int nVal2)",
+      "evidence_level": "unverified"
     },
     "0x00497450": {
       "name": "UpdateNPCAnimations",
-      "signature": "int __thiscall(int nVal, int nVal2)"
+      "signature": "int __thiscall(int nVal, int nVal2)",
+      "evidence_level": "unverified"
     },
     "0x0052C8A0": {
       "name": "DestroyFrames",
-      "signature": "void __thiscall UIBigMap::DestroyFrames()"
+      "signature": "void __thiscall UIBigMap::DestroyFrames()",
+      "evidence_level": "unverified"
     },
     "0x0052E0F0": {
       "name": "SetBounds",
-      "signature": "int __thiscall UIBigMap::SetBounds(int msg, int wparam, int lparam)"
+      "signature": "int __thiscall UIBigMap::SetBounds(int msg, int wparam, int lparam)",
+      "evidence_level": "unverified"
     },
     "0x00539810": {
       "name": "SetElementVisible",
-      "signature": "void __thiscall(FILE *Buffer, FILE *Stream)"
+      "signature": "void __thiscall(FILE *Buffer, FILE *Stream)",
+      "evidence_level": "unverified"
     },
     "0x00492E10": {
       "name": "SetEntryVisible",
       "signature": "int __thiscall UIBigMap::SetEntryVisible(int nIndex, unsigned __int8 bParam)",
-      "class": "UIWnd"
+      "class": "UIWnd",
+      "evidence_level": "unverified"
     },
     "0x004974A0": {
       "name": "OnMessage",
-      "signature": "int __thiscall(UIBigMap *this, int nVal, char *pszBuf, int nItemID)"
+      "signature": "int __thiscall(UIBigMap *this, int nVal, char *pszBuf, int nItemID)",
+      "evidence_level": "unverified"
     },
     "0x0043DE40": {
       "name": "CCBRoleState::Destroy",
       "signature": "int __thiscall Destroy(int nMode)",
-      "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+      "source": "vtable_gap_fill_v1(from CCBRoleState.json)",
+      "evidence_level": "unverified"
     },
     "0x0045AE40": {
       "name": "_scalar_dtor_AE40",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
-      "source": "vtable_gap_fill_v1(from SaleUI.json)"
+      "source": "vtable_gap_fill_v1(from SaleUI.json)",
+      "evidence_level": "unverified"
     }
   },
   "base_size": 72,

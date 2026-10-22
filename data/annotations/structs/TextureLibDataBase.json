@@ -5,85 +5,103 @@
     "4": {
       "name": "Seps",
       "type": "char *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "tok",
       "type": "char *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "_libfolder",
       "type": "char[512]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "524": {
       "name": "_realNum",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "528": {
       "name": "m_pData",
       "type": "_Texture_Info *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "532": {
       "name": "_isLoadTLI",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "580": {
       "name": "m_fScrollSpeed",
-      "type": "float"
+      "type": "float",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x0053FDD0": {
       "name": "CreateParentData",
-      "signature": "Parent_Data *__thiscall(LPCSTR lpString)"
+      "signature": "Parent_Data *__thiscall(LPCSTR lpString)",
+      "evidence_level": "unverified"
     },
     "0x0053FFA0": {
       "name": "_TextureLib_Data",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00443A00": {
       "name": "CountEntries",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00443A90": {
       "name": "SearchByIndex",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00540440": {
       "name": "SetLibFolder",
       "signature": "void __thiscall(const char *pszFolder, int nIdx)",
-      "source": "| 批19 2026-10-07：&this->m... 指针参证（C2664 根因——unsigned 误型） | 批20 2026-10-07：2 栈参读证（[esp+0x38]/[esp+0x50]）——签名 1 参证伪补 2 参"
+      "source": "| 批19 2026-10-07：&this->m... 指针参证（C2664 根因——unsigned 误型） | 批20 2026-10-07：2 栈参读证（[esp+0x38]/[esp+0x50]）——签名 1 参证伪补 2 参",
+      "evidence_level": "unverified"
     },
     "0x00540210": {
       "name": "_CheckItem",
-      "signature": "int __thiscall(char *pszName, char *pszBuf)"
+      "signature": "int __thiscall(char *pszName, char *pszBuf)",
+      "evidence_level": "unverified"
     },
     "0x005400E0": {
       "name": "_GetItemNum",
-      "signature": "unsigned int __thiscall(void *pData)"
+      "signature": "unsigned int __thiscall(void *pData)",
+      "evidence_level": "unverified"
     },
     "0x00540650": {
       "name": "GetLibInfo",
       "signature": "bool __thiscall(char *pszName)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x005407A0": {
       "name": "GetLib",
       "signature": "char *__thiscall(TextureLibDataBase *this)",
-      "source": "fix:C2660:inflation: decl 1 vs ret-N slots 0, pszName was double-counted this"
+      "source": "fix:C2660:inflation: decl 1 vs ret-N slots 0, pszName was double-counted this",
+      "evidence_level": "unverified"
     },
     "0x005408E0": {
       "name": "GetTextureInfo",
-      "signature": "_Texture_Info *__thiscall(char *pszName)"
+      "signature": "_Texture_Info *__thiscall(char *pszName)",
+      "evidence_level": "unverified"
     },
     "0x00540A20": {
       "name": "GetTextureInfoByIndex",
-      "signature": "_Texture_Info *__thiscall(int nIndex)"
+      "signature": "_Texture_Info *__thiscall(int nIndex)",
+      "evidence_level": "unverified"
     }
   },
   "base_size": 4,

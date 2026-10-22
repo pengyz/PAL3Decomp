@@ -5,84 +5,100 @@
     "0": {
       "name": "m_pEM",
       "type": "CEffMgr *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "m_pGeomQuad",
       "type": "gbGeomQuad *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "m_bHaveTexture",
       "type": "unsigned char",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "m_pTextureArray",
       "type": "gbTextureArray *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "m_nNumOfNode",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "20": {
       "name": "m_pFirstNode",
       "type": "tagMeteorNode *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24": {
       "name": "m_pLastNode",
       "type": "tagMeteorNode *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "28": {
       "name": "m_fCurTime",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "32": {
       "name": "m_fLastTime",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "36": {
       "name": "m_dwColor",
       "type": "unsigned int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "40": {
       "name": "m_fMaxLum",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "44": {
       "name": "m_fLumDecSpeed",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "48": {
       "name": "m_fMaxWidth",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "52": {
       "name": "m_fWidthDecSpeed",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x004CD0A0": {
       "name": "~CMeteorChain",
       "signature": "void __thiscall()",
-      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 CMeteorChain 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~CMeteorChain。refs: ??3@YAXPAX@Z"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 CMeteorChain 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~CMeteorChain。refs: ??3@YAXPAX@Z",
+      "evidence_level": "A"
     },
     "0x004CD7E0": {
       "name": "Update",
       "signature": "void __thiscall(int fCurTime, int nVal, int nVal2, int *p_DWORD, int nVal3, int nVal4)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     }
   }
 }

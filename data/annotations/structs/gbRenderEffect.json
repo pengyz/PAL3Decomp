@@ -5,22 +5,26 @@
     "24": {
       "name": "m_pEffect",
       "type": "ID3DXEffect *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "28": {
       "name": "m_Flags",
       "type": "unsigned int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "32": {
       "name": "m_DeclHandle",
       "type": "IDirect3DVertexDeclaration9 *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "36": {
       "name": "m_ParamHandle",
       "type": "unsigned int[8]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "base_size": 24,
@@ -28,33 +32,39 @@
     "0x004202A0": {
       "name": "AllocSlotData",
       "signature": "void *__thiscall(int nVal)",
-      "source": "vtable_gap_fill_v1(from RoleSystem.json)"
+      "source": "vtable_gap_fill_v1(from RoleSystem.json)",
+      "evidence_level": "unverified"
     },
     "0x00420430": {
       "name": "_sdtor_2",
       "signature": "void __thiscall(int nVal1)",
-      "source": "vtable_gap_fill_v1(from functions.json) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "vtable_gap_fill_v1(from functions.json) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x004208A0": {
       "name": "Reset",
       "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(from RoleSystem.json)"
+      "source": "vtable_gap_fill_v1(from RoleSystem.json)",
+      "evidence_level": "unverified"
     },
     "0x004209E0": {
       "name": "ResetState",
       "signature": "void __thiscall RoleSystem::ResetState(int nVal1)",
-      "source": "vtable_gap_fill_v1(from RoleSystem.json) | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "vtable_gap_fill_v1(from RoleSystem.json) | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x00420270": {
       "name": "sub_420270",
       "signature": "void __thiscall(int)",
-      "source": "vtable_gap_fill_v1(IDB:sub_420270) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
+      "source": "vtable_gap_fill_v1(IDB:sub_420270) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
+      "evidence_level": "unverified"
     },
     "0x004202F0": {
       "name": "sub_4202F0",
       "signature": "int __thiscall()",
       "source": "vtable_gap_fill_v1(IDB:?sub_4202F0@RoleSystem@@QAEHXZ) | [①渲染错族治理 2026-10-16 analyzer] A 级本体判读+声明性注册（declaration_only 消渲染 C2039，非归属认定）：gb* 方法补 declaration_only 标记",
-      "declaration_only": true
+      "declaration_only": true,
+      "evidence_level": "A"
     }
   },
   "bases": [

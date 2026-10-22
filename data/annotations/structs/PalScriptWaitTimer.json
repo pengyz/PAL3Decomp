@@ -4,34 +4,40 @@
     "8": {
       "name": "m_fElapsed",
       "type": "float",
-      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x4382A0 decompile `m_waitobj(=+8) += fVal` 累加域"
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x4382A0 decompile `m_waitobj(=+8) += fVal` 累加域",
+      "evidence_level": "A"
     },
     "12": {
       "name": "m_bDone",
       "type": "char",
-      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438100 `this[12]==0` 判 + 0x4382A0 `>=5.0 置 done`"
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438100 `this[12]==0` 判 + 0x4382A0 `>=5.0 置 done`",
+      "evidence_level": "A"
     },
     "0": {
       "name": "__vftable",
       "type": "void *",
-      "source": "[vptr 补 2026-10-20·A 级] +0x0 此前未声明（首员@+8）+ vtables=1 + audit 全员冲突（成员位移连锁）⇒ 缺 vptr。证据 A 级：vtable 存在（vtables 字段）+ 偏移自洽 + audit_type_layout 实测。"
+      "source": "[vptr 补 2026-10-20·A 级] +0x0 此前未声明（首员@+8）+ vtables=1 + audit 全员冲突（成员位移连锁）⇒ 缺 vptr。证据 A 级：vtable 存在（vtables 字段）+ 偏移自洽 + audit_type_layout 实测。",
+      "evidence_level": "A"
     }
   },
   "methods": {
     "0x00434D50": {
       "name": "_scalar_dtor",
       "signature": "void __thiscall()",
-      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 仅表内 data 引用（虚调用）+ctor 写点 PalScript::Op_Trigger+103（Op 域组装）；方法语义面:Updat | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=Array::_nearby_411ba0 | 体 199B] 交互面[删际链（三类共槽）] 判定 ✅制式名对（_scalar_dtor）"
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 仅表内 data 引用（虚调用）+ctor 写点 PalScript::Op_Trigger+103（Op 域组装）；方法语义面:Updat | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=Array::_nearby_411ba0 | 体 199B] 交互面[删际链（三类共槽）] 判定 ✅制式名对（_scalar_dtor）",
+      "evidence_level": "unverified"
     },
     "0x00438100": {
       "name": "IsWaitDone",
       "signature": "void __thiscall(float)",
-      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 仅表内 data 引用（虚调用）+ctor 写点 PalScript::Op_Trigger+103（Op 域组装）；方法语义面:Updat | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 80B 谓词 ret] 交互面[完成谓词] 判定 ✅名实相符（Is*Done 三名共址=合法共槽谓词）"
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 仅表内 data 引用（虚调用）+ctor 写点 PalScript::Op_Trigger+103（Op 域组装）；方法语义面:Updat | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 80B 谓词 ret] 交互面[完成谓词] 判定 ✅名实相符（Is*Done 三名共址=合法共槽谓词）",
+      "evidence_level": "unverified"
     },
     "0x004382A0": {
       "name": "UpdateIdleTimer",
       "signature": "void __thiscall(float)",
-      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 仅表内 data 引用（虚调用）+ctor 写点 PalScript::Op_Trigger+103（Op 域组装）；方法语义面:Updat | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=UpdateIdleTimer 域 | store×2] 交互面[空闲计时推进] 判定 ✅名实相符（UpdateIdleTimer）"
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 仅表内 data 引用（虚调用）+ctor 写点 PalScript::Op_Trigger+103（Op 域组装）；方法语义面:Updat | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=UpdateIdleTimer 域 | store×2] 交互面[空闲计时推进] 判定 ✅名实相符（UpdateIdleTimer）",
+      "evidence_level": "unverified"
     }
   },
   "vtables": [

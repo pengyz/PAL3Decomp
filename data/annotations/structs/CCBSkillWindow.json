@@ -5,75 +5,90 @@
     "72": {
       "name": "m_pBack",
       "type": "UIStatic *",
-      "offset": 72
+      "offset": 72,
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_pDescription",
       "type": "UIStatic *",
-      "offset": 76
+      "offset": 76,
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "m_pSkillList",
       "type": "UIListBox *[1]",
-      "offset": 80
+      "offset": 80,
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x0051BBE0": {
       "name": "Destroy",
-      "ordinal": 5
+      "ordinal": 5,
+      "evidence_level": "unverified"
     },
     "0x0051BC00": {
       "name": "~CCBSkillWindow",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051C2D0": {
       "name": "Reset",
       "signature": "void __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x0051C330": {
       "name": "Create",
       "signature": "bool __thiscall(int *pRect, int parent)",
-      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族"
+      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
+      "evidence_level": "A"
     },
     "0x0051C1B0": {
       "name": "SetActivePage",
-      "signature": "BOOL __thiscall(int n, int nVal)"
+      "signature": "BOOL __thiscall(int n, int nVal)",
+      "evidence_level": "unverified"
     },
     "0x0051B860": {
       "name": "OnMessage",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
+      "evidence_level": "unverified"
     },
     "0x0051C260": {
       "name": "`scalar deleting destructor'",
       "signature": "UIWnd *__thiscall(CCBSkillWindow *Block, char pData)",
-      "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json) | [T142R] 同 CCBParabolaWindow.json 0x0051C260（跨类重复条目同名同步）：T138 形 objdump A 级=call 0x51C280(完整析构,vptr 0x57058C)+test flag+operator delete+ret 4 ⇒ 真标量删除析构"
+      "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json) | [T142R] 同 CCBParabolaWindow.json 0x0051C260（跨类重复条目同名同步）：T138 形 objdump A 级=call 0x51C280(完整析构,vptr 0x57058C)+test flag+operator delete+ret 4 ⇒ 真标量删除析构",
+      "evidence_level": "A"
     },
     "0x0051C880": {
       "name": "Destroy_c880",
       "signature": "int __thiscall()",
-      "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)"
+      "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
+      "evidence_level": "unverified"
     },
     "0x0051C9B0": {
       "name": "CCBFiveNimbusWindow::OnMessage",
       "signature": "int __thiscall(CCBSkillWindow *__hidden this, unsigned int, unsigned int a2, unsigned int)",
-      "source": "vtable_gap_fill_v1(from CCBItemWindow.json)"
+      "source": "vtable_gap_fill_v1(from CCBItemWindow.json)",
+      "evidence_level": "unverified"
     },
     "0x0051C9F0": {
       "name": "Update",
       "signature": "BOOL __thiscall(int deltatime, int haveinput)",
-      "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)"
+      "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
+      "evidence_level": "unverified"
     },
     "0x0051CA50": {
       "name": "ToggleSlots",
       "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots(int nVal)",
-      "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)"
+      "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
+      "evidence_level": "unverified"
     },
     "0x0051CAA0": {
       "name": "Render",
       "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)"
+      "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
+      "evidence_level": "unverified"
     }
   },
   "vtables": [

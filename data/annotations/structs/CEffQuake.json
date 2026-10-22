@@ -7,80 +7,95 @@
     "0x004D32C0": {
       "name": "Destroy",
       "signature": "int *__thiscall()",
-      "ordinal": 7
+      "ordinal": 7,
+      "evidence_level": "unverified"
     },
     "0x004D3300": {
       "name": "Update",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004D3860": {
       "name": "_sdtor",
       "signature": "CEffQuake *__thiscall(char pData)",
-      "source": "[非 ctor/dtor 实证 2026-10-16 analyzer 66 条] A 级形判：删际析构/adjustor 跳板形（`sub ecx,N; jmp`/flag-test+delete），非普通 ctor/dtor —— 名保留 `_sdtor` 系"
+      "source": "[非 ctor/dtor 实证 2026-10-16 analyzer 66 条] A 级形判：删际析构/adjustor 跳板形（`sub ecx,N; jmp`/flag-test+delete），非普通 ctor/dtor —— 名保留 `_sdtor` 系",
+      "evidence_level": "A"
     },
     "0x004D33A0": {
       "name": "ResetFlags",
       "signature": "int __thiscall(int, int, int, int)",
       "source": "vtable_migrated",
-      "ordinal": 2
+      "ordinal": 2,
+      "evidence_level": "unverified"
     },
     "0x004D33B0": {
       "name": "RenderEffectPass",
       "signature": "int __thiscall(int a2)",
       "source": "vtable_migrated",
-      "ordinal": 12
+      "ordinal": 12,
+      "evidence_level": "unverified"
     },
     "0x004D3660": {
       "name": "GetQuakeType",
       "signature": "int __thiscall(int)",
       "source": "vtable_migrated",
-      "ordinal": 14
+      "ordinal": 14,
+      "evidence_level": "unverified"
     },
     "0x004C0650": {
       "name": "AllocSegments",
-      "signature": "char __thiscall CEffAction::AllocSegments(int nVal)"
+      "signature": "char __thiscall CEffAction::AllocSegments(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x004C29A0": {
       "name": "UpdateInternal",
-      "signature": "void __thiscall(float fVal)"
+      "signature": "void __thiscall(float fVal)",
+      "evidence_level": "unverified"
     },
     "0x004C0500": {
       "name": "OnTest",
       "signature": "int()",
-      "source": "vtable_gap_fill_v1(from CEffAction.json)"
+      "source": "vtable_gap_fill_v1(from CEffAction.json)",
+      "evidence_level": "unverified"
     },
     "0x004C15D0": {
       "name": "UpdateParticles",
       "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+      "source": "vtable_gap_fill_v1(from CEffCylinder.json)",
+      "evidence_level": "unverified"
     },
     "0x004C0510": {
       "name": "sub_4C0510",
       "signature": "int __thiscall(int)",
-      "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
+      "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
+      "evidence_level": "unverified"
     },
     "0x004D32E0": {
       "name": "~CEffQuake",
       "signature": "void __thiscall(int nVal1)",
-      "source": "vtable_gap_fill_v1(IDB:??_GCEffQuake@@UAEPAXI@Z) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffQuake（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56FA88,0x56FA7C）"
+      "source": "vtable_gap_fill_v1(IDB:??_GCEffQuake@@UAEPAXI@Z) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffQuake（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56FA88,0x56FA7C）",
+      "evidence_level": "A"
     },
     "0x004AF760": {
       "name": "_todo_004AF760",
       "signature": "void __thiscall(int nVal1)",
-      "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x4AF760 单指令 `c2 04 00`（ret $0x4）= 零体 thiscall 1 栈参（空桩，13 槽 COMDAT 折叠形）；语义未定 ⇒ _todo_ 占位（禁伪语义命名）。vtable_mapper 口径：21 槽/3 唯一地址/5 类×地址条目（per-class methods 查找）"
+      "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x4AF760 单指令 `c2 04 00`（ret $0x4）= 零体 thiscall 1 栈参（空桩，13 槽 COMDAT 折叠形）；语义未定 ⇒ _todo_ 占位（禁伪语义命名）。vtable_mapper 口径：21 槽/3 唯一地址/5 类×地址条目（per-class methods 查找）",
+      "evidence_level": "A"
     },
     "0x004D4DE0": {
       "name": "_sdtor_adj",
       "signature": "void __thiscall()",
       "type": "skip",
       "reason": "compiler-generated",
-      "source": "| [vtable 治理·未注册族 2026-10-16 analyzer] A 级本体判读：adjustor 跳板 compiler-generated"
+      "source": "| [vtable 治理·未注册族 2026-10-16 analyzer] A 级本体判读：adjustor 跳板 compiler-generated",
+      "evidence_level": "A"
     },
     "0x004D4DF0": {
       "name": "_todo_4D4DF0",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only"
+      "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
+      "evidence_level": "unverified"
     }
   },
   "vtables": [

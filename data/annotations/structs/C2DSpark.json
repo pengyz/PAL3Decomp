@@ -5,146 +5,175 @@
     "0": {
       "name": "m_Spark",
       "type": "C2DSpark_tagSpark[512]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24576": {
       "name": "m_fDisplayWidth",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24580": {
       "name": "m_fDisplayHeight",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24584": {
       "name": "m_nCurrentSpark",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24588": {
       "name": "m_fBigLum",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24592": {
       "name": "m_nBigLumX",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24596": {
       "name": "m_nBigLumY",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24600": {
       "name": "m_bMouseTrack",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24604": {
       "name": "m_pAdditiveBlend",
       "type": "gbRenderEffect *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24608": {
       "name": "m_pRedBig",
       "type": "gbTexture *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24612": {
       "name": "m_pRedBigArray",
       "type": "gbTextureArray *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24616": {
       "name": "m_pBlue16",
       "type": "gbTexture *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24620": {
       "name": "m_pBlue16Array",
       "type": "gbTextureArray *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24624": {
       "name": "m_pGreen16",
       "type": "gbTexture *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24628": {
       "name": "m_pGreen16Array",
       "type": "gbTextureArray *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24632": {
       "name": "m_pRed16",
       "type": "gbTexture *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24636": {
       "name": "m_pRed16Array",
       "type": "gbTextureArray *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24640": {
       "name": "m_pYellow16",
       "type": "gbTexture *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24644": {
       "name": "m_pYellow16Array",
       "type": "gbTextureArray *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24648": {
       "name": "m_Quad",
       "type": "gbUIQuad",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x004D5AB0": {
       "name": "C2DSpark",
-      "signature": "void __thiscall(int nClientWidth, int nClientHeight)"
+      "signature": "void __thiscall(int nClientWidth, int nClientHeight)",
+      "evidence_level": "unverified"
     },
     "0x004D5DC0": {
       "name": "~C2DSpark",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004D5EC0": {
       "name": "CreateSingle",
       "signature": "bool __thiscall(const void *pSpark)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D5F20": {
       "name": "CreateTrack",
       "signature": "void(char nx, int ny, gbColorQuad color)",
-      "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
+      "evidence_level": "unverified"
     },
     "0x004D5F40": {
       "name": "SetEnableMouseTrack",
       "signature": "void __thiscall(int bEnable, int nVal)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D6050": {
       "name": "CreateMore",
       "signature": "void __thiscall(int x, int y, int color, int nVal)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D61A0": {
       "name": "CreateStars",
-      "signature": "_BYTE *__thiscall()"
+      "signature": "_BYTE *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004D61C0": {
       "name": "DestroyAll",
       "signature": "void __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D6380": {
       "name": "Render",
       "signature": "void __thiscall(float fVal)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     }
   }
 }

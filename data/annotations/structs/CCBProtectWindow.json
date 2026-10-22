@@ -5,32 +5,38 @@
     "72": {
       "name": "m_pBack",
       "type": "UIStatic *",
-      "offset": 72
+      "offset": 72,
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_pWHFace",
       "type": "UIPushButton *",
-      "offset": 76
+      "offset": 76,
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "m_pWPXFace",
       "type": "UIPushButton *",
-      "offset": 80
+      "offset": 80,
+      "evidence_level": "unverified"
     },
     "84": {
       "name": "m_pWHLove",
       "type": "UIProgressBar *",
-      "offset": 84
+      "offset": 84,
+      "evidence_level": "unverified"
     },
     "88": {
       "name": "m_pWPXLove",
       "type": "UIProgressBar *",
-      "offset": 88
+      "offset": 88,
+      "evidence_level": "unverified"
     },
     "92": {
       "name": "m_pOk",
       "type": "UIButton *",
-      "offset": 92
+      "offset": 92,
+      "evidence_level": "unverified"
     }
   },
   "methods": {
@@ -38,66 +44,80 @@
       "name": "_scalar_dtor",
       "signature": "void __thiscall()",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "evidence_level": "unverified"
     },
     "0x0051D6E0": {
       "name": "CCBProtectWindow",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051D6F0": {
       "name": "~CCBProtectWindow",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051D700": {
       "name": "Reset",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051F0A0": {
       "name": "OnCommand",
-      "signature": "int __thiscall(int nVal, int nVal2)"
+      "signature": "int __thiscall(int nVal, int nVal2)",
+      "evidence_level": "unverified"
     },
     "0x00518E30": {
       "name": "ShowAndNotify",
       "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "ordinal": 2
+      "ordinal": 2,
+      "evidence_level": "unverified"
     },
     "0x00449BE0": {
       "name": "ValidateSlot",
-      "signature": "char __thiscall(unsigned int dwVal)"
+      "signature": "char __thiscall(unsigned int dwVal)",
+      "evidence_level": "unverified"
     },
     "0x00516100": {
       "name": "_scalar_dtor_6100",
       "signature": "CCBProtectWindow *__thiscall(CCBProtectWindow *Block, char a2)",
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBProtectWindow（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x5704A8）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBProtectWindow（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x5704A8）",
+      "evidence_level": "A"
     },
     "0x005164D0": {
       "name": "Destroy",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043D920": {
       "name": "Destroy_D920",
       "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(from UIPushButton.json)"
+      "source": "vtable_gap_fill_v1(from UIPushButton.json)",
+      "evidence_level": "unverified"
     },
     "0x0044A7D0": {
       "name": "_sdtor_14",
       "signature": "void *__thiscall(void *Block, char a2)",
-      "source": "vtable_gap_fill_v1(from UIWnd.json)"
+      "source": "vtable_gap_fill_v1(from UIWnd.json)",
+      "evidence_level": "unverified"
     },
     "0x0044A820": {
       "name": "GetUIElements",
       "signature": "int __thiscall(float fVal, int nVal)",
-      "source": "vtable_gap_fill_v1(from UIWnd.json)"
+      "source": "vtable_gap_fill_v1(from UIWnd.json)",
+      "evidence_level": "unverified"
     },
     "0x0044A870": {
       "name": "RenderText",
       "signature": "virtual void __thiscall()",
-      "source": "vtable_gap_fill_v1(from UIWnd.json)"
+      "source": "vtable_gap_fill_v1(from UIWnd.json)",
+      "evidence_level": "unverified"
     },
     "0x0044AB40": {
       "name": "_sdtor_14_adjthunk",
       "signature": "void __thiscall()",
-      "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x0044A7D0）⇒ 目标名 _sdtor_14 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）"
+      "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x0044A7D0）⇒ 目标名 _sdtor_14 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
+      "evidence_level": "A"
     }
   },
   "vtables": [

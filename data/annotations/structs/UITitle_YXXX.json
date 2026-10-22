@@ -5,112 +5,134 @@
     "72": {
       "name": "rc",
       "type": "tagRECT",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "88": {
       "name": "m_OutFrameT",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "248": {
       "name": "m_OutFrameR",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "408": {
       "name": "m_OutFrameL",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "568": {
       "name": "m_OutFrameB",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "728": {
       "name": "m_background",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "888": {
       "name": "m_title",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "1048": {
       "name": "m_exit",
       "type": "UIButton",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "1392": {
       "name": "m_ZZRY",
       "type": "UIButton",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "1736": {
       "name": "m_XGWZ",
       "type": "UIButton",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "2080": {
       "name": "m_WordBk",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x0047DCA0": {
       "name": "Create",
       "signature": "void __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x0047DE40": {
       "name": "Init",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004AF770": {
       "name": "CreateTitle",
-      "signature": "int *__thiscall UITitle_YXXX::CreateTitle(char *pszBuf, unsigned int dwVal, int nVal)"
+      "signature": "int *__thiscall UITitle_YXXX::CreateTitle(char *pszBuf, unsigned int dwVal, int nVal)",
+      "evidence_level": "unverified"
     },
     "0x00459970": {
       "name": "LayoutWidgets",
-      "signature": "int __thiscall UITitle_YXXX::LayoutWidgets()"
+      "signature": "int __thiscall UITitle_YXXX::LayoutWidgets()",
+      "evidence_level": "unverified"
     },
     "0x0047DD90": {
       "name": "~UITitle_YXXX",
       "signature": "void __thiscall UITitle_YXXX::~UITitle_YXXX()",
-      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
+      "evidence_level": "unverified"
     },
     "0x0047E3E0": {
       "name": "Update",
       "signature": "int __thiscall(int nVal, int nVal2)",
-      "ordinal": 2
+      "ordinal": 2,
+      "evidence_level": "unverified"
     },
     "0x0047E4E0": {
       "name": "HandleMsgDLL",
       "signature": "int __thiscall UITitle_YXXX::HandleMsgDLL(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)",
-      "ordinal": 6
+      "ordinal": 6,
+      "evidence_level": "unverified"
     },
     "0x0047DD70": {
       "name": "_scalar_dtor_DD70",
       "signature": "int __thiscall(void *Block, char)",
       "source": "vtable_migrated | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UITitle_YXXX（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B8A4,0x56B898）",
-      "ordinal": 5
+      "ordinal": 5,
+      "evidence_level": "A"
     },
     "0x0043DE40": {
       "name": "CCBRoleState::Destroy",
       "signature": "int __thiscall Destroy(int nMode)",
-      "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+      "source": "vtable_gap_fill_v1(from CCBRoleState.json)",
+      "evidence_level": "unverified"
     },
     "0x00524970": {
       "name": "CCBRoleState::Render",
       "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
-      "source": "vtable_gap_fill_v1(from CCBStage.json)"
+      "source": "vtable_gap_fill_v1(from CCBStage.json)",
+      "evidence_level": "unverified"
     },
     "0x0047E570": {
       "name": "_scalar_dtor_adjthunk",
       "signature": "void __thiscall()",
-      "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x0047DD70）⇒ 目标名 _scalar_dtor 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）"
+      "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x0047DD70）⇒ 目标名 _scalar_dtor 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
+      "evidence_level": "A"
     }
   },
   "vtables": [

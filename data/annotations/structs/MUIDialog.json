@@ -5,47 +5,56 @@
     "72": {
       "name": "ptr_Dlg",
       "type": "UIWnd *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_DlgId",
       "type": "unsigned int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "m_rect",
       "type": "tagRECT",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "96": {
       "name": "m_textRc",
       "type": "tagRECT",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "112": {
       "name": "m_bk",
       "type": "UIStaticFlex",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "304": {
       "name": "m_static",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "464": {
       "name": "m_text",
       "type": "UIStatic",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "624": {
       "name": "m_btnW",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "628": {
       "name": "m_btnH",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "632": {
       "name": "m_btRc",
@@ -61,18 +70,21 @@
           }
         ]
       },
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "976": {
       "name": "pCallbackVtable2",
       "type": "void *",
-      "source": "| normalize_key: 0x3D0 -> 976 | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：内嵌删槽形——`(*(...)&slot,0)( &slot, 0)`（InvokeCallback@0x4A1620）&slot 作自身 this 传入（COM/删槽族）"
+      "source": "| normalize_key: 0x3D0 -> 976 | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：内嵌删槽形——`(*(...)&slot,0)( &slot, 0)`（InvokeCallback@0x4A1620）&slot 作自身 this 传入（COM/删槽族）",
+      "evidence_level": "A"
     }
   },
   "methods": {
     "0x0049CEC0": {
       "name": "GetPlayerAttField",
-      "signature": "int __thiscall(int nVal, int nVal2)"
+      "signature": "int __thiscall(int nVal, int nVal2)",
+      "evidence_level": "unverified"
     },
     "0x004A1620": {
       "name": "InvokeCallback",
@@ -83,12 +95,14 @@
           "name": "nCallbackMode",
           "type": "int"
         }
-      ]
+      ],
+      "evidence_level": "unverified"
     },
     "0x00527130": {
       "name": "SetSlotCaption",
       "signature": "void __thiscall (int nVal)",
-      "_misattrib_evidence": "max_offset=15032>class_size=1288"
+      "_misattrib_evidence": "max_offset=15032>class_size=1288",
+      "evidence_level": "unverified"
     }
   },
   "base_size": 72,

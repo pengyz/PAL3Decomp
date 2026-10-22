@@ -4,34 +4,40 @@
     "8": {
       "name": "m_fElapsed",
       "type": "float",
-      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438540 累加域"
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438540 累加域",
+      "evidence_level": "A"
     },
     "16": {
       "name": "m_bDone",
       "type": "char",
-      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438530 `this[16]==0` 判"
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438530 `this[16]==0` 判",
+      "evidence_level": "A"
     },
     "0": {
       "name": "__vftable",
       "type": "void *",
-      "source": "[vptr 补 2026-10-20·A 级] +0x0 此前未声明（首员@+8）+ vtables=1 + audit 全员冲突（成员位移连锁）⇒ 缺 vptr。证据 A 级：vtable 存在（vtables 字段）+ 偏移自洽 + audit_type_layout 实测。"
+      "source": "[vptr 补 2026-10-20·A 级] +0x0 此前未声明（首员@+8）+ vtables=1 + audit 全员冲突（成员位移连锁）⇒ 缺 vptr。证据 A 级：vtable 存在（vtables 字段）+ 偏移自洽 + audit_type_layout 实测。",
+      "evidence_level": "A"
     }
   },
   "methods": {
     "0x00434D50": {
       "name": "_scalar_dtor",
       "signature": "void __thiscall()",
-      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 Op_CombatNotGameOve+44；方法语义面:UpdateFadeOut(float)=累加器 | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=Array::_nearby_411ba0 | 体 199B] 交互面[删际链（三类共槽）] 判定 ✅制式名对（_scalar_dtor）"
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 Op_CombatNotGameOve+44；方法语义面:UpdateFadeOut(float)=累加器 | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=Array::_nearby_411ba0 | 体 199B] 交互面[删际链（三类共槽）] 判定 ✅制式名对（_scalar_dtor）",
+      "evidence_level": "unverified"
     },
     "0x00438530": {
       "name": "IsFadeDone",
       "signature": "void __thiscall(float)",
-      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 Op_CombatNotGameOve+44；方法语义面:UpdateFadeOut(float)=累加器 | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 80B 谓词] 交互面[淡变完成谓词] 判定 ✅名实相符（IsFadeDone） | [4 条补面 2026-10-17·五面满卡] ③面 return this[16]==0（淡出完成判 ✓）⇒ 5/5 ——保留命名 ✓"
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 Op_CombatNotGameOve+44；方法语义面:UpdateFadeOut(float)=累加器 | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 80B 谓词] 交互面[淡变完成谓词] 判定 ✅名实相符（IsFadeDone） | [4 条补面 2026-10-17·五面满卡] ③面 return this[16]==0（淡出完成判 ✓）⇒ 5/5 ——保留命名 ✓",
+      "evidence_level": "unverified"
     },
     "0x00438540": {
       "name": "UpdateFadeOut",
       "signature": "void __thiscall(float)",
-      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 Op_CombatNotGameOve+44；方法语义面:UpdateFadeOut(float)=累加器 | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=SetBlendMode+UpdateFadeOut 域 | store×2] 交互面[淡出混合更新] 判定 ✅名实相符（UpdateFadeOut）"
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 Op_CombatNotGameOve+44；方法语义面:UpdateFadeOut(float)=累加器 | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=SetBlendMode+UpdateFadeOut 域 | store×2] 交互面[淡出混合更新] 判定 ✅名实相符（UpdateFadeOut）",
+      "evidence_level": "unverified"
     }
   },
   "vtables": [

@@ -4,29 +4,34 @@
     "8": {
       "name": "m_fTime",
       "type": "float",
-      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438E30 `+8 float 累加 >=4.0 clamp`（filebuf 案定谳）"
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438E30 `+8 float 累加 >=4.0 clamp`（filebuf 案定谳）",
+      "evidence_level": "A"
     },
     "12": {
       "name": "m_bDone",
       "type": "char",
-      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438100 判 + 0x438E30 done 置位"
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438100 判 + 0x438E30 done 置位",
+      "evidence_level": "A"
     }
   },
   "methods": {
     "0x00438E90": {
       "name": "~PalScriptAnimTimer",
       "signature": "void __thiscall()",
-      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 PalScript::Op_WaterMagic+66（Op 域）；方法语义面:0x438E30 Accu | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 256B dtor 形] 交互面[析构生命周期] 判定 ✅制式名对（_scalar_dtor） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=PalScriptAnimTimer（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AC08）"
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 PalScript::Op_WaterMagic+66（Op 域）；方法语义面:0x438E30 Accu | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 256B dtor 形] 交互面[析构生命周期] 判定 ✅制式名对（_scalar_dtor） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=PalScriptAnimTimer（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AC08）",
+      "evidence_level": "A"
     },
     "0x00438100": {
       "name": "IsAnimDone",
       "signature": "void __thiscall(float)",
-      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 PalScript::Op_WaterMagic+66（Op 域）；方法语义面:0x438E30 Accu | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 80B 谓词 ret] 交互面[完成谓词] 判定 ✅名实相符（Is*Done 三名共址=合法共槽谓词） | [4 条补面 2026-10-17·五面满卡] ③面 return this[12]==0（完成判 ✓）+ 三证法 3 面 ⇒ 5/5 ——保留命名 ✓"
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 PalScript::Op_WaterMagic+66（Op 域）；方法语义面:0x438E30 Accu | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 80B 谓词 ret] 交互面[完成谓词] 判定 ✅名实相符（Is*Done 三名共址=合法共槽谓词） | [4 条补面 2026-10-17·五面满卡] ③面 return this[12]==0（完成判 ✓）+ 三证法 3 面 ⇒ 5/5 ——保留命名 ✓",
+      "evidence_level": "unverified"
     },
     "0x00438E30": {
       "name": "UpdateAnimTimer",
       "signature": "void __thiscall(float)",
-      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 PalScript::Op_WaterMagic+66（Op 域）；方法语义面:0x438E30 Accu | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=filebuf::AccumulateTime+NPC::UpdateAnim] 交互面[计时累积+动画推进] 判定 ✅名实相符（UpdateAnimTimer）"
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 PalScript::Op_WaterMagic+66（Op 域）；方法语义面:0x438E30 Accu | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=filebuf::AccumulateTime+NPC::UpdateAnim] 交互面[计时累积+动画推进] 判定 ✅名实相符（UpdateAnimTimer）",
+      "evidence_level": "unverified"
     }
   },
   "vtables": [

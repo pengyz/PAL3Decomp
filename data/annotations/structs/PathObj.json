@@ -5,82 +5,98 @@
     "0": {
       "name": "points",
       "type": "gbVec3D[256]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "3072": {
       "name": "numpoint",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "3076": {
       "name": "totallength",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "3080": {
       "name": "length",
       "type": "float[256]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "4104": {
       "name": "normal",
       "type": "gbVec3D *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "7176": {
       "name": "segmentprojection",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "7180": {
       "name": "segmentlength",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "7184": {
       "name": "segmentnormal",
       "type": "gbVec3D",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "7196": {
       "name": "chosen",
       "type": "gbVec3D",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "4108": {
       "name": "m_nCurPathLen",
       "type": "int",
-      "source": "A:decomp PathObj::CalcLength stores copy of m_nPathLen as return result"
+      "source": "A:decomp PathObj::CalcLength stores copy of m_nPathLen as return result",
+      "evidence_level": "unverified"
     },
     "4120": {
       "name": "m_nPathLen",
       "type": "int",
-      "source": "decomp_offset | ida_xref2"
+      "source": "decomp_offset | ida_xref2",
+      "evidence_level": "unverified"
     },
     "4112": {
       "name": "m_nTodo_1010",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access",
+      "evidence_level": "unverified"
     },
     "4116": {
       "name": "m_pPathDir",
       "type": "gbVec3D *",
-      "source": "A:decomp PathObj::CalcLength assigned to this->normal; PathObj::GetPosition loaded as gbVec3D*; path direction vector"
+      "source": "A:decomp PathObj::CalcLength assigned to this->normal; PathObj::GetPosition loaded as gbVec3D*; path direction vector",
+      "evidence_level": "unverified"
     },
     "4124": {
       "name": "m_nTodo_101C",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x00407DC0": {
       "name": "CalcLength",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0041F120": {
       "name": "GetPosition",
-      "signature": "int *__thiscall(float pPos, float *pfVal, int *p_DWORD)"
+      "signature": "int *__thiscall(float pPos, float *pfVal, int *p_DWORD)",
+      "evidence_level": "unverified"
     }
   }
 }

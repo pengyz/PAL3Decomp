@@ -5,347 +5,415 @@
     "0": {
       "name": "tag",
       "type": "char[4]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "backgroundtimer",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "quiet",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "n_active_samples",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "master_volume",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "20": {
       "name": "DMA_rate",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24": {
       "name": "hw_format",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "28": {
       "name": "hw_mode_flags",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "32": {
       "name": "channels_per_sample",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "36": {
       "name": "bytes_per_channel",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "40": {
       "name": "channels_per_buffer",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "44": {
       "name": "samples_per_buffer",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "48": {
       "name": "playing",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "52": {
       "name": "samples",
       "type": "_SAMPLE *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "56": {
       "name": "n_samples",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "60": {
       "name": "build_size",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "64": {
       "name": "build_buffer",
       "type": "int *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "68": {
       "name": "system_data",
       "type": "long[8]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "100": {
       "name": "buffer_size",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "104": {
       "name": "hWaveOut",
       "type": "HWAVEOUT__ *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "108": {
       "name": "reset_works",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "112": {
       "name": "request_reset",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "116": {
       "name": "first",
       "type": "wavehdr_tag *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "120": {
       "name": "n_buffers",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "124": {
       "name": "return_list",
       "type": "wavehdr_tag * *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "128": {
       "name": "return_head",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "132": {
       "name": "return_tail",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "136": {
       "name": "deviceid",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "140": {
       "name": "wformat",
       "type": "pcmwaveformat_tag",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "156": {
       "name": "guid",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "160": {
       "name": "pDS",
       "type": "char *",
       "source": "annotation",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     },
     "164": {
       "name": "ds_priority",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "168": {
       "name": "emulated_ds",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "172": {
       "name": "lppdsb",
       "type": "char *",
       "source": "annotation",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     },
     "176": {
       "name": "dsHwnd",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "180": {
       "name": "lpbufflist",
       "type": "char *",
-      "source": "annotation|fix:pointer_level:char **"
+      "source": "annotation|fix:pointer_level:char **",
+      "evidence_level": "unverified"
     },
     "184": {
       "name": "samp_list",
       "type": "_SAMPLE * *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "188": {
       "name": "sec_format",
       "type": "int *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "192": {
       "name": "max_buffs",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "196": {
       "name": "released",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "200": {
       "name": "foreground_timer",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "204": {
       "name": "next",
       "type": "_DIG_DRIVER *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "208": {
       "name": "callingCT",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "212": {
       "name": "callingDS",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "216": {
       "name": "DS_initialized",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "220": {
       "name": "DS_sec_buff",
       "type": "char *",
       "source": "annotation",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     },
     "224": {
       "name": "DS_out_buff",
       "type": "char *",
       "source": "annotation",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     },
     "228": {
       "name": "DS_buffer_size",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "232": {
       "name": "DS_frag_cnt",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "236": {
       "name": "DS_frag_size",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "240": {
       "name": "DS_last_frag",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "244": {
       "name": "DS_last_write",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "248": {
       "name": "DS_last_timer",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "252": {
       "name": "DS_skip_time",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "256": {
       "name": "DS_use_default_format",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "260": {
       "name": "use_MMX",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "264": {
       "name": "decode_buffer",
       "type": "char *",
       "source": "annotation",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     },
     "268": {
       "name": "decode_buffer_size",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "272": {
       "name": "us_count",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "276": {
       "name": "ms_count",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "280": {
       "name": "last_ms_polled",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "284": {
       "name": "last_percent",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "288": {
       "name": "pipeline",
       "type": "DPINFO[4]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "704": {
       "name": "reverb_buffer",
       "type": "int *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "708": {
       "name": "reverb_buffer_size",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "712": {
       "name": "reverb_buffer_position",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "716": {
       "name": "no_wom_done",
       "type": "long",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "720": {
       "name": "wom_done_buffers",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   }
 }

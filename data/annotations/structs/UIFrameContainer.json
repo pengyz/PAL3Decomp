@@ -5,29 +5,34 @@
     "96": {
       "name": "m_bFlag96",
       "type": "char",
-      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级：0x4422E0 `this+96` 状态字节"
+      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级：0x4422E0 `this+96` 状态字节",
+      "evidence_level": "A"
     },
     "100": {
       "name": "m_aSlots",
       "type": "int[6]",
-      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级：0x4422E0 `+100..+128 清零区`"
+      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级：0x4422E0 `+100..+128 清零区`",
+      "evidence_level": "A"
     }
   },
   "methods": {
     "0x004422E0": {
       "name": "ResetContainerState",
       "signature": "void __thiscall()",
-      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级 decompile：ClearSubArraySlot();+96 状态;+100-128 清零"
+      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级 decompile：ClearSubArraySlot();+96 状态;+100-128 清零",
+      "evidence_level": "A"
     },
     "0x00442370": {
       "name": "_scalar_dtor_2370",
       "signature": "void __thiscall()",
-      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] deleting 三段式（包装 0x442390） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIFrameContainer（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56ADD0）"
+      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] deleting 三段式（包装 0x442390） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIFrameContainer（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56ADD0）",
+      "evidence_level": "A"
     },
     "0x00442390": {
       "name": "~UIFrameContainer",
       "signature": "void __thiscall()",
-      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级 decompile：UIFrameWnd::Destroy 链 + m_rect.bottom 检查"
+      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级 decompile：UIFrameWnd::Destroy 链 + m_rect.bottom 检查",
+      "evidence_level": "A"
     }
   },
   "vtables": [

@@ -5,18 +5,21 @@
     "4": {
       "name": "m_needscriptdel",
       "type": "gbImage2D *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "0": {
       "name": "m_nTodo_000",
       "type": "void *",
-      "source": "binary:SceneObj ctor 0x453030 存 SceneObj vtable(0x56B200) 于 this+0（provenance ✓）⇒ PalScriptWaitObj offset0 = vfptr 槽（派生类复用）；ReleaseObject 系派生实例独立生命周期 | void*语义化 2026-10-16（idapro A 级）：ReleaseObject@0x4A68D0 cast `(gbRefObject*)this->m_nTodo_000` + **`gbRefObject::Release(m)` this-绑定调用** ⇒ 目标=gbRefObject 对象 | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）：RoleCameraCtrl L151 `m_nTodo_000[3]` fnptr 槽调用 + ReleaseObject@0x4A68D0 gbRefObject::Release this-绑定 ⇒ **双视图**（前轮单视语义化过窄，本轮记全）⇒ 回退 void*"
+      "source": "binary:SceneObj ctor 0x453030 存 SceneObj vtable(0x56B200) 于 this+0（provenance ✓）⇒ PalScriptWaitObj offset0 = vfptr 槽（派生类复用）；ReleaseObject 系派生实例独立生命周期 | void*语义化 2026-10-16（idapro A 级）：ReleaseObject@0x4A68D0 cast `(gbRefObject*)this->m_nTodo_000` + **`gbRefObject::Release(m)` this-绑定调用** ⇒ 目标=gbRefObject 对象 | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）：RoleCameraCtrl L151 `m_nTodo_000[3]` fnptr 槽调用 + ReleaseObject@0x4A68D0 gbRefObject::Release this-绑定 ⇒ **双视图**（前轮单视语义化过窄，本轮记全）⇒ 回退 void*",
+      "evidence_level": "A"
     }
   },
   "methods": {
     "0x004A68D0": {
       "name": "ReleaseObject",
-      "signature": "char __thiscall(char *pszBuf)"
+      "signature": "char __thiscall(char *pszBuf)",
+      "evidence_level": "unverified"
     }
   }
 }

@@ -5,66 +5,80 @@
     "72": {
       "name": "m_pBack",
       "type": "UIStatic *",
-      "offset": 72
+      "offset": 72,
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_pDescription",
       "type": "UIStatic *",
-      "offset": 76
+      "offset": 76,
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "m_pItemList",
       "type": "UIListBox *",
-      "offset": 80
+      "offset": 80,
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x0051B710": {
       "name": "CCBParabolaWindow",
-      "signature": "void __thiscall(CCBParabolaWindow **this, int *pnVal, int nVal)"
+      "signature": "void __thiscall(CCBParabolaWindow **this, int *pnVal, int nVal)",
+      "evidence_level": "unverified"
     },
     "0x0051B810": {
       "name": "~CCBParabolaWindow",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051B920": {
       "name": "Destroy",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051B950": {
       "name": "OnMessage",
-      "signature": "bool __thiscall(int msg, unsigned int wparam, unsigned int lparam)"
+      "signature": "bool __thiscall(int msg, unsigned int wparam, unsigned int lparam)",
+      "evidence_level": "unverified"
     },
     "0x0051C280": {
       "name": "_scalar_dtor",
       "signature": "void __thiscall()",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "evidence_level": "unverified"
     },
     "0x00440BE0": {
       "name": "LoadResourceEx",
-      "signature": "gbVFileSystem *__thiscall(const char *pszName, char pData)"
+      "signature": "gbVFileSystem *__thiscall(const char *pszName, char pData)",
+      "evidence_level": "unverified"
     },
     "0x0051CA50": {
       "name": "ToggleSlots",
-      "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots(int nVal)"
+      "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x0051CAA0": {
       "name": "Render",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051C9F0": {
       "name": "Update",
-      "signature": "BOOL __thiscall(int deltatime, int haveinput)"
+      "signature": "BOOL __thiscall(int deltatime, int haveinput)",
+      "evidence_level": "unverified"
     },
     "0x0051C880": {
       "name": "Destroy_c880",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051C260": {
       "name": "`scalar deleting destructor'",
       "signature": "UIWnd *__thiscall(CCBSkillWindow *Block, char pData)",
-      "source": "| [T142R] 删除析构族机械判定（T138 形，逐形 objdump A 级）：全形=call 0x51C280 + testb $0x1,0x8(%esp) + call 0x541d10(operator delete) + mov eax,esi + ret $4；被调 0x51C280 本体=SEH + vptr store 0x57058C + try-level 递减 + 成员清理 + call 0x43dd10 基类析构 ⇒ 完整析构 ⇒ 本体=真标量删除析构；自洽核：vtable 0x57058C(base CCBSkillWindow) slot5=0x51C260 ⇒ 归属 CCBParabolaWindow ✓。T135 撞名核=0 ✓ 禁地址后缀 ✓"
+      "source": "| [T142R] 删除析构族机械判定（T138 形，逐形 objdump A 级）：全形=call 0x51C280 + testb $0x1,0x8(%esp) + call 0x541d10(operator delete) + mov eax,esi + ret $4；被调 0x51C280 本体=SEH + vptr store 0x57058C + try-level 递减 + 成员清理 + call 0x43dd10 基类析构 ⇒ 完整析构 ⇒ 本体=真标量删除析构；自洽核：vtable 0x57058C(base CCBSkillWindow) slot5=0x51C260 ⇒ 归属 CCBParabolaWindow ✓。T135 撞名核=0 ✓ 禁地址后缀 ✓",
+      "evidence_level": "A"
     }
   },
   "vtables": [

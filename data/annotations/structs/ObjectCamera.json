@@ -5,153 +5,184 @@
     "0": {
       "name": "m_pCamera",
       "type": "gbCamera *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "m_camFrom",
       "type": "gbVec3D",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "m_camTo",
       "type": "gbVec3D",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "28": {
       "name": "m_camUp",
       "type": "gbVec3D",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "40": {
       "name": "m_camDirect",
       "type": "gbVec3D",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "52": {
       "name": "m_yaw",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "56": {
       "name": "m_pitch",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "60": {
       "name": "m_roll",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "64": {
       "name": "m_dist",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "68": {
       "name": "m_nyaw",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "72": {
       "name": "m_npitch",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_nroll",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "m_forward",
       "type": "gbVec3D",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "92": {
       "name": "m_side",
       "type": "gbVec3D",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "104": {
       "name": "m_stepRotSpeed",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "108": {
       "name": "m_stepRot",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "112": {
       "name": "m_stepRotMode",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "116": {
       "name": "m_stepRotAxis",
       "type": "short",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "120": {
       "name": "m_bStepRot",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x0047C570": {
       "name": "_scalar_dtor_C570",
       "signature": "void __thiscall()",
-      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ObjectCamera 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_C570。refs: ??1ObjectCamera@@QAE@XZ"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ObjectCamera 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_C570。refs: ??1ObjectCamera@@QAE@XZ",
+      "evidence_level": "A"
     },
     "0x0047C580": {
       "name": "~ObjectCamera",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0047C590": {
       "name": "Create",
-      "signature": "float *__thiscall()"
+      "signature": "float *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0047C630": {
       "name": "GetCameraDirect",
       "signature": "void __thiscall __thiscall()",
-      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
+      "evidence_level": "A"
     },
     "0x0047C640": {
       "name": "SetCameraEyePosition",
-      "signature": "void __thiscall(gbGfxManager *position)"
+      "signature": "void __thiscall(gbGfxManager *position)",
+      "evidence_level": "unverified"
     },
     "0x0047C6E0": {
       "name": "SetCameraAtPosition",
       "signature": "void __thiscall(gbVec3D position, char pData)",
-      "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 2——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 2——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x0047C770": {
       "name": "SetCameraRotate",
       "signature": "void __thiscall(float yaw, float pitch, float roll)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x0047C7E0": {
       "name": "SetCameraDist",
       "signature": "void __thiscall(int dist, int nVal, int nVal2)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x0047C810": {
       "name": "Destroy",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0047C830": {
       "name": "ComputeInfo",
       "signature": "void __thiscall(int from)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x0047C9B0": {
       "name": "SetStepRotate",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0047CAD0": {
       "name": "Update",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     }
   }
 }

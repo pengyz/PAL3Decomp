@@ -5,124 +5,148 @@
     "68": {
       "name": "m_hasDBclk",
       "type": "unsigned char",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "72": {
       "name": "m_ratiow",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_state",
       "type": "UIButton_UIBUTTON_STATE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "m_canctrl",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "81": {
       "name": "m_bLockUpdate",
       "type": "BYTE",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "84": {
       "name": "m_offsetx",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "88": {
       "name": "m_offsety",
       "type": "float",
-      "source": "A:FPU_disp8_in_class_method"
+      "source": "A:FPU_disp8_in_class_method",
+      "evidence_level": "unverified"
     },
     "92": {
       "name": "m_bBigFont",
       "type": "BYTE",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "96": {
       "name": "m_texarray",
       "type": "UITextureArray",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "164": {
       "name": "m_texarrayInfo",
       "type": "_PlugInfo *[3]",
-      "source": "pdb_fill_incomplete"
+      "source": "pdb_fill_incomplete",
+      "evidence_level": "unverified"
     },
     "176": {
       "name": "m_disablepic",
       "type": "gbTexture *",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "180": {
       "name": "m_disablepicInfo",
       "type": "_PlugInfo *",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "184": {
       "name": "m_mouseoff",
       "type": "BYTE",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "185": {
       "name": "m_mouseon",
       "type": "BYTE",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "188": {
       "name": "m_alignmode",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     },
     "192": {
       "name": "m_caption",
       "type": "char[128]",
-      "source": "pdb_fill_incomplete"
+      "source": "pdb_fill_incomplete",
+      "evidence_level": "unverified"
     },
     "320": {
       "name": "m_benable_snd",
       "type": "BYTE",
-      "source": "gen_headers_9.2"
+      "source": "gen_headers_9.2",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x0043F970": {
       "name": "~UIButton",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043F7F0": {
       "name": "ctor_17",
-      "signature": "int *__thiscall(UIButton *this)"
+      "signature": "int *__thiscall(UIButton *this)",
+      "evidence_level": "unverified"
     },
     "0x00440560": {
       "name": "Update",
       "signature": "BOOL __thiscall UIButton::Update(int nDelta, int nVal2)",
-      "ordinal": 2
+      "ordinal": 2,
+      "evidence_level": "unverified"
     },
     "0x0043F9C0": {
       "name": "Destroy",
       "signature": "void __thiscall()",
-      "ordinal": 3
+      "ordinal": 3,
+      "evidence_level": "unverified"
     },
     "0x0043FF00": {
       "name": "Create",
       "signature": "int __thiscall UIButton::Create(int id, int *pRect, int parent)",
-      "ordinal": 4
+      "ordinal": 4,
+      "evidence_level": "unverified"
     },
     "0x0043FF70": {
       "name": "Render",
       "signature": "void __thiscall()",
       "ordinal": 1,
-      "source": "+fix:sig_match_base"
+      "source": "+fix:sig_match_base",
+      "evidence_level": "unverified"
     },
     "0x0043F950": {
       "name": "_scalar_dtor_F950",
       "signature": "int __thiscall(void *Block, char)",
       "source": "vtable_migrated | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIButton（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AD64）",
-      "ordinal": 5
+      "ordinal": 5,
+      "evidence_level": "A"
     }
   },
   "vtables": [

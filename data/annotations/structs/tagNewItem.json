@@ -6,29 +6,34 @@
     "0": {
       "name": "dwItemID",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "fnHP",
       "type": "int (__thiscall *)(void *, unsigned int)",
-      "source": "annotation | [F-HDR#7 2026-10-15] unsigned long→unsigned int（型别文本对齐，非二进制取证出真型——Win32 同宽同 ABI 二进制不可判，精确措辞）：Hex-Rays 原文 CCBEditor_InvokeItemMethod@0x44b690 `int (__thiscall **p_fnHP)(void *, unsigned int);` + 调用形 `(*p_fnHP)(p_fnHP, 0)`= (this=slot, flags) deleting-dtor 语义形 + MSVC `??_G` scalar-deleting-dtor 惯例 I=unsigned int。fnGP/fnMP 同文未改：decomp 仅见取址形（fnGP+1649 族）无实参型证据 ⇒ 禁批量未验证字段"
+      "source": "annotation | [F-HDR#7 2026-10-15] unsigned long→unsigned int（型别文本对齐，非二进制取证出真型——Win32 同宽同 ABI 二进制不可判，精确措辞）：Hex-Rays 原文 CCBEditor_InvokeItemMethod@0x44b690 `int (__thiscall **p_fnHP)(void *, unsigned int);` + 调用形 `(*p_fnHP)(p_fnHP, 0)`= (this=slot, flags) deleting-dtor 语义形 + MSVC `??_G` scalar-deleting-dtor 惯例 I=unsigned int。fnGP/fnMP 同文未改：decomp 仅见取址形（fnGP+1649 族）无实参型证据 ⇒ 禁批量未验证字段",
+      "evidence_level": "B"
     },
     "8": {
       "name": "fnGP",
       "type": "int (__thiscall *)(void *, unsigned long)",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "fnMP",
       "type": "float",
       "union": true,
-      "source": "annotation|fix:pointer_level:int (__thiscall *)(void *, unsigned long)"
+      "source": "annotation|fix:pointer_level:int (__thiscall *)(void *, unsigned long)",
+      "evidence_level": "unverified"
     },
     "12_1": {
       "name": "fMP",
       "type": "float",
       "union": true,
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   }
 }

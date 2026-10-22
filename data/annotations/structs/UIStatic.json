@@ -5,95 +5,113 @@
     "68": {
       "name": "pDebugTex",
       "type": "gbTexture *",
-      "source": "pdb_merge"
+      "source": "pdb_merge",
+      "evidence_level": "unverified"
     },
     "72": {
       "name": "m_align",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_ratiow",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "m_ratioh",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "84": {
       "name": "m_textx",
       "type": "void *",
       "source": "vtable_fix: type corrected int -> gbRefObject * (binary evidence 0x00440A20) | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）：SaleUI@0x45B990 双维索引 fnptr 槽调用（`(&m_textx...)[38n][2]`）+ gbRefObject 值位面 ⇒ 双位面，回退 void*",
-      "_evidence": "decomp 0x00440A20 UIStatic::LoadResource 明文 `gbRefObject *m_textx; // ecx`，并 `m_textx = (gbRefObject *)this->m_textx; gbRefObject::Release(m_textx);` 以及 `v7 = (gbTexture *)this->m_textx;` —— 三处均按指针使用，原注解 `int` 与之矛盾，致 C2440 'gbGfxManager *' -> 'int'（L258/L292）。"
+      "_evidence": "decomp 0x00440A20 UIStatic::LoadResource 明文 `gbRefObject *m_textx; // ecx`，并 `m_textx = (gbRefObject *)this->m_textx; gbRefObject::Release(m_textx);` 以及 `v7 = (gbTexture *)this->m_textx;` —— 三处均按指针使用，原注解 `int` 与之矛盾，致 C2440 'gbGfxManager *' -> 'int'（L258/L292）。",
+      "evidence_level": "A"
     },
     "88": {
       "name": "m_texty",
       "type": "void *",
       "source": "vtable_fix: type corrected int -> gbRefObject * (binary evidence 0x00440A20) | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）：UITitle_JDHY L454 gbRefObject*→ulong 位面失配站 ⇒ 同族双位面，回退 void*",
-      "_evidence": "decomp 0x00440A20 UIStatic::LoadResource 明文 `gbRefObject *m_textx; // ecx`，并 `m_textx = (gbRefObject *)this->m_textx; gbRefObject::Release(m_textx);` 以及 `v7 = (gbTexture *)this->m_textx;` —— 三处均按指针使用，原注解 `int` 与之矛盾，致 C2440 'gbGfxManager *' -> 'int'（L258/L292）。"
+      "_evidence": "decomp 0x00440A20 UIStatic::LoadResource 明文 `gbRefObject *m_textx; // ecx`，并 `m_textx = (gbRefObject *)this->m_textx; gbRefObject::Release(m_textx);` 以及 `v7 = (gbTexture *)this->m_textx;` —— 三处均按指针使用，原注解 `int` 与之矛盾，致 C2440 'gbGfxManager *' -> 'int'（L258/L292）。",
+      "evidence_level": "A"
     },
     "92": {
       "name": "m_fonttype",
       "type": "Parent_Data *",
-      "source": "binary:C2440 assignment from CreateParentData returns Parent_Data*"
+      "source": "binary:C2440 assignment from CreateParentData returns Parent_Data*",
+      "evidence_level": "unverified"
     },
     "96": {
       "name": "m_text",
       "type": "char[16]",
       "source": "annotation",
-      "note": "annotation previously std::basic_string<...> (16-byte layout contradicts it); IDA TIL/export ground truth char[16]"
+      "note": "annotation previously std::basic_string<...> (16-byte layout contradicts it); IDA TIL/export ground truth char[16]",
+      "evidence_level": "unverified"
     },
     "112": {
       "name": "m_pbk",
       "type": "gbTexture *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "116": {
       "name": "m_pbkInfo",
       "type": "_PlugInfo *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "120": {
       "name": "m_ppic",
       "type": "gbTexture *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "124": {
       "name": "m_ppicInfo",
       "type": "_PlugInfo *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "128": {
       "name": "m_disablepic",
       "type": "gbTexture *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "132": {
       "name": "m_disablepicInfo",
       "type": "_PlugInfo *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "136": {
       "name": "m_pbk2",
       "type": "gbTexture *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "140": {
       "name": "m_mouseoff",
       "type": "unsigned char",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "144": {
       "name": "m_FVF",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "148": {
       "name": "m_nTextW",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "base_size": 68,

@@ -5,33 +5,39 @@
     "0": {
       "name": "ExceptionCode",
       "type": "unsigned int",
-      "source": "annotation|fix:unsigned_long_to_int"
+      "source": "annotation|fix:unsigned_long_to_int",
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "ExceptionFlags",
       "type": "unsigned int",
-      "source": "annotation|fix:unsigned_long_to_int"
+      "source": "annotation|fix:unsigned_long_to_int",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "ExceptionRecord",
       "type": "_EXCEPTION_RECORD *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "ExceptionAddress",
       "type": "char *",
       "source": "annotation",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "note": "replaced void* with char* (IDB struct compat)",
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "NumberParameters",
       "type": "unsigned int",
-      "source": "annotation|fix:unsigned_long_to_int"
+      "source": "annotation|fix:unsigned_long_to_int",
+      "evidence_level": "unverified"
     },
     "20": {
       "name": "ExceptionInformation",
       "type": "unsigned long[15]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   }
 }

@@ -5,37 +5,49 @@
     "0": {
       "name": "x",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "y",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "z",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "yaw",
       "type": {
         "union": [
-          { "type": "float", "name": "f" },
-          { "type": "CEffMgr *", "name": "p" }
+          {
+            "type": "float",
+            "name": "f"
+          },
+          {
+            "type": "CEffMgr *",
+            "name": "p"
+          }
         ]
       },
-      "source": "overlay:LODWORD(yaw)->FindEffByID in CCBCamControl"
+      "source": "overlay:LODWORD(yaw)->FindEffByID in CCBCamControl",
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "pit",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "20": {
       "name": "rol",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {}

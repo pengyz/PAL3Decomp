@@ -5,29 +5,34 @@
     "8": {
       "name": "m_fElapsed",
       "type": "float",
-      "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] A 级：0x434D40 `capacity(+8) += fDelta` 累加域"
+      "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] A 级：0x434D40 `capacity(+8) += fDelta` 累加域",
+      "evidence_level": "A"
     },
     "12": {
       "name": "m_fDuration",
       "type": "float",
-      "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] A 级：0x434D20 `m_pData(+12)` 比较域（elapsed<duration 判）"
+      "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] A 级：0x434D20 `m_pData(+12)` 比较域（elapsed<duration 判）",
+      "evidence_level": "A"
     }
   },
   "methods": {
     "0x00434D50": {
       "name": "_scalar_dtor",
       "signature": "void __thiscall()",
-      "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] deleting 三段式体形证"
+      "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] deleting 三段式体形证",
+      "evidence_level": "unverified"
     },
     "0x00434D20": {
       "name": "IsBlendComplete",
       "signature": "int __thiscall()",
-      "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] A 级 decompile：`return m_fElapsed(+8) < m_fDuration(+12)` 混合完成判"
+      "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] A 级 decompile：`return m_fElapsed(+8) < m_fDuration(+12)` 混合完成判",
+      "evidence_level": "A"
     },
     "0x00434D40": {
       "name": "AccumulateTime",
       "signature": "void __thiscall(float)",
-      "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] A 级 decompile：`m_fElapsed(+8) += fDelta` 累加"
+      "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] A 级 decompile：`m_fElapsed(+8) += fDelta` 累加",
+      "evidence_level": "A"
     }
   },
   "vtables": [

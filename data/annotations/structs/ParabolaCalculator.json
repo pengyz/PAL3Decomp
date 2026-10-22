@@ -1,48 +1,56 @@
 {
- "name": "ParabolaCalculator",
- "binary_size": 48,
- "known_members": {
-  "0": {
-   "name": "velocity",
-   "type": "gbVec3D",
-   "source": "annotation"
+  "name": "ParabolaCalculator",
+  "binary_size": 48,
+  "known_members": {
+    "0": {
+      "name": "velocity",
+      "type": "gbVec3D",
+      "source": "annotation",
+      "evidence_level": "unverified"
+    },
+    "12": {
+      "name": "A",
+      "type": "gbVec3D",
+      "source": "annotation",
+      "evidence_level": "unverified"
+    },
+    "24": {
+      "name": "B",
+      "type": "gbVec3D",
+      "source": "annotation",
+      "evidence_level": "unverified"
+    },
+    "36": {
+      "name": "H",
+      "type": "float",
+      "source": "annotation",
+      "evidence_level": "unverified"
+    },
+    "40": {
+      "name": "G",
+      "type": "float",
+      "source": "annotation",
+      "evidence_level": "unverified"
+    },
+    "44": {
+      "name": "m_state",
+      "type": "int",
+      "source": "annotation",
+      "evidence_level": "unverified"
+    }
   },
-  "12": {
-   "name": "A",
-   "type": "gbVec3D",
-   "source": "annotation"
-  },
-  "24": {
-   "name": "B",
-   "type": "gbVec3D",
-   "source": "annotation"
-  },
-  "36": {
-   "name": "H",
-   "type": "float",
-   "source": "annotation"
-  },
-  "40": {
-   "name": "G",
-   "type": "float",
-   "source": "annotation"
-  },
-  "44": {
-   "name": "m_state",
-   "type": "int",
-   "source": "annotation"
+  "methods": {
+    "0x0043DE40": {
+      "name": "CCBRoleState::Destroy",
+      "signature": "int __thiscall Destroy(int nMode)",
+      "source": "vtable_gap_fill_v1(from CCBRoleState.json)",
+      "evidence_level": "unverified"
+    },
+    "0x00523B90": {
+      "name": "sub_523B90",
+      "signature": "int __thiscall(int, int, int)",
+      "source": "vtable_gap_fill_v1(IDB:?sub_523B90@CUtil@@QAEHXZ) | vtable_sig_arity_fill(ret-N=12) | vtable_sig_arity_fill(ret-N=12)",
+      "evidence_level": "unverified"
+    }
   }
- },
- "methods": {
-  "0x0043DE40": {
-   "name": "CCBRoleState::Destroy",
-   "signature": "int __thiscall Destroy(int nMode)",
-   "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
-  },
-  "0x00523B90": {
-   "name": "sub_523B90",
-   "signature": "int __thiscall(int, int, int)",
-   "source": "vtable_gap_fill_v1(IDB:?sub_523B90@CUtil@@QAEHXZ) | vtable_sig_arity_fill(ret-N=12) | vtable_sig_arity_fill(ret-N=12)"
-  }
- }
 }

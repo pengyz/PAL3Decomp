@@ -5,78 +5,93 @@
     "4": {
       "name": "m_bScriptMusic",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "m_szScriptMusic",
       "type": "std::basic_string<char,std::char_traits<char>,std::allocator<char> >",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24": {
       "name": "m_nScriptLoop",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "28": {
       "name": "m_szSceneMusic",
       "type": "char[256]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "284": {
       "name": "m_MusicTable",
       "type": "TxtFile",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "808": {
       "name": "m_audiodrv",
       "type": "gbAudioManager *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "812": {
       "name": "DEF3DMasterVol",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "816": {
       "name": "DEF2DMasterVol",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "820": {
       "name": "DEFMusicMasterVol",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "824": {
       "name": "m_bValidDetectSceneMusic",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "828": {
       "name": "m_cbbuf",
       "type": "std::vector<SoundItem,std::allocator<SoundItem> >",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "844": {
       "name": "m_cbcursor",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "848": {
       "name": "m_Cpk",
       "type": "CPK",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x0053C340": {
       "name": "InitCPK",
-      "signature": "char __thiscall(int nVal, int nVal2)"
+      "signature": "char __thiscall(int nVal, int nVal2)",
+      "evidence_level": "unverified"
     },
     "0x0053EA80": {
       "name": "PlayCPKStream",
       "signature": "int __thiscall SoundMgr::PlayCPKStream(int nVal1)",
-      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     }
   }
 }

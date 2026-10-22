@@ -5,62 +5,74 @@
     "72": {
       "name": "m_pBack",
       "type": "UIStatic *",
-      "offset": 72
+      "offset": 72,
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_pMagicList",
       "type": "UIListBox *[6]",
-      "offset": 76
+      "offset": 76,
+      "evidence_level": "unverified"
     },
     "100": {
       "name": "m_pButtonWater",
       "type": "UIPushButton *",
-      "offset": 100
+      "offset": 100,
+      "evidence_level": "unverified"
     },
     "104": {
       "name": "m_pButtonFire",
       "type": "UIPushButton *",
-      "offset": 104
+      "offset": 104,
+      "evidence_level": "unverified"
     },
     "108": {
       "name": "m_pButtonThunder",
       "type": "UIPushButton *",
-      "offset": 108
+      "offset": 108,
+      "evidence_level": "unverified"
     },
     "112": {
       "name": "m_pButtonWind",
       "type": "UIPushButton *",
-      "offset": 112
+      "offset": 112,
+      "evidence_level": "unverified"
     },
     "116": {
       "name": "m_pButtonEarth",
       "type": "UIPushButton *",
-      "offset": 116
+      "offset": 116,
+      "evidence_level": "unverified"
     },
     "120": {
       "name": "m_pButtonDouble",
       "type": "UIPushButton *",
-      "offset": 120
+      "offset": 120,
+      "evidence_level": "unverified"
     },
     "124": {
       "name": "m_nActivePage",
       "type": "int",
-      "offset": 124
+      "offset": 124,
+      "evidence_level": "unverified"
     },
     "184": {
       "name": "m_nBtnX",
       "type": "int",
-      "source": "binary_scan:3refs | ida_xref2"
+      "source": "binary_scan:3refs | ida_xref2",
+      "evidence_level": "unverified"
     },
     "196": {
       "name": "m_nBtnY",
       "type": "int",
-      "source": "binary_scan:3refs | ida_xref2"
+      "source": "binary_scan:3refs | ida_xref2",
+      "evidence_level": "unverified"
     },
     "200": {
       "name": "m_nBtnState",
       "type": "int",
-      "source": "binary_scan:3refs | ida_xref2"
+      "source": "binary_scan:3refs | ida_xref2",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
@@ -68,68 +80,82 @@
       "name": "_scalar_dtor",
       "signature": "void __thiscall()",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "evidence_level": "unverified"
     },
     "0x0051B9F0": {
       "name": "CCBMagicWindow",
-      "signature": "void __thiscall(int nVal, int nVal2, int *p_DWORD)"
+      "signature": "void __thiscall(int nVal, int nVal2, int *p_DWORD)",
+      "evidence_level": "unverified"
     },
     "0x0051BAB0": {
       "name": "_todo_0051BAB0",
       "signature": "void __thiscall(int nVal)",
-      "source": "| 析构名误挂改名 2026-09-29：~CCBMagicWindow→_todo_0051BAB0（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）"
+      "source": "| 析构名误挂改名 2026-09-29：~CCBMagicWindow→_todo_0051BAB0（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）",
+      "evidence_level": "unverified"
     },
     "0x0051BB00": {
       "name": "Reset",
       "signature": "void __thiscall(int nVal, int nVal2)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x0051BB40": {
       "name": "Create",
       "signature": "int __thiscall(int rc)",
-      "source": "pdb_ret | [T94] 返型 bool→int：A 级 objdump 0x51bb40 `8b 44 24 04/89 41 74/c2 04 00`——EAX=arg 直回（无 setne 形）⇒ 非 bool；原 bool 来自 pdb_ret（PDB 仅参考级——A 级优先）。int/void 编译字节等价（passthrough），按语义取 int。L1 目标：n_diff=5 [4-9] run"
+      "source": "pdb_ret | [T94] 返型 bool→int：A 级 objdump 0x51bb40 `8b 44 24 04/89 41 74/c2 04 00`——EAX=arg 直回（无 setne 形）⇒ 非 bool；原 bool 来自 pdb_ret（PDB 仅参考级——A 级优先）。int/void 编译字节等价（passthrough），按语义取 int。L1 目标：n_diff=5 [4-9] run",
+      "evidence_level": "A"
     },
     "0x0051BB90": {
       "name": "ForbidPage",
-      "signature": "UIListBox * __thiscall()"
+      "signature": "UIListBox * __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051BC50": {
       "name": "ClearMagicData",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0051BC70": {
       "name": "CreateButton",
       "signature": "bool __thiscall(int *ppButton, int id)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x0051C210": {
       "name": "GetActivePage",
-      "signature": "UIListBox * __thiscall()"
+      "signature": "UIListBox * __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043DDF0": {
       "name": "CCBControlWindow::Render",
       "signature": "virtual void __thiscall(CCBMagicWindow *this)",
-      "source": "vtable_gap_fill_v1(from CCBControlWindow.json)"
+      "source": "vtable_gap_fill_v1(from CCBControlWindow.json)",
+      "evidence_level": "unverified"
     },
     "0x004B0520": {
       "name": "`scalar deleting destructor'",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
-      "source": "vtable_gap_fill_v1(from UITitle_JDHY.json) | [T142R] 跨类重复条目同名同步（同 UITitle_JDHY.json 0x004B0520）：T138 形 objdump A 级=call 0x4B0540(~UITitle_JDHY,vptr 0x56F33C)+test flag+operator delete+ret 4 ⇒ 真标量删除析构（T142 曾判『误名』—— 误：首步被调即真析构）"
+      "source": "vtable_gap_fill_v1(from UITitle_JDHY.json) | [T142R] 跨类重复条目同名同步（同 UITitle_JDHY.json 0x004B0520）：T138 形 objdump A 级=call 0x4B0540(~UITitle_JDHY,vptr 0x56F33C)+test flag+operator delete+ret 4 ⇒ 真标量删除析构（T142 曾判『误名』—— 误：首步被调即真析构）",
+      "evidence_level": "A"
     },
     "0x0051B860": {
       "name": "OnMessage",
       "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
-      "source": "vtable_gap_fill_v1(from CCBSkillWindow.json)"
+      "source": "vtable_gap_fill_v1(from CCBSkillWindow.json)",
+      "evidence_level": "unverified"
     },
     "0x0051C110": {
       "name": "Destroy",
       "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(from CCBSkillWindow.json)"
+      "source": "vtable_gap_fill_v1(from CCBSkillWindow.json)",
+      "evidence_level": "unverified"
     },
     "0x0051C1B0": {
       "name": "SetActivePage",
       "signature": "BOOL __thiscall(int n, int nVal)",
-      "source": "vtable_gap_fill_v1(from CCBSkillWindow.json)"
+      "source": "vtable_gap_fill_v1(from CCBSkillWindow.json)",
+      "evidence_level": "unverified"
     }
   },
   "base_size": 72,

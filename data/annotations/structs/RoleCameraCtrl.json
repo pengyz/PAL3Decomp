@@ -5,140 +5,168 @@
     "12": {
       "name": "m_type",
       "type": "RCC_TYPE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "m_time",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "20": {
       "name": "m_passtime",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "24": {
       "name": "m_itype",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "28": {
       "name": "m_targetdist",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "32": {
       "name": "m_startdist",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "36": {
       "name": "m_targetyaw",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "40": {
       "name": "m_startyaw",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "44": {
       "name": "m_targetpitch",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "48": {
       "name": "m_startpitch",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "52": {
       "name": "m_targetfrom",
       "type": "gbVec3D",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "64": {
       "name": "m_startfrom",
       "type": "gbVec3D",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "m_pVtable",
       "type": "void *",
       "union": true,
-      "source": "原 void* 位面（SetViewPosition@0x52DFF0 `=(void*)nVal2` 裸搬实证） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）："
+      "source": "原 void* 位面（SetViewPosition@0x52DFF0 `=(void*)nVal2` 裸搬实证） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）：",
+      "evidence_level": "A"
     },
     "8_1": {
       "name": "m_pVtable_f",
       "type": "float",
       "union": true,
-      "source": "float 别名视图（ComputeViewVector@0x52E080 `*(float*)&m_pVtable` 实证） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）："
+      "source": "float 别名视图（ComputeViewVector@0x52E080 `*(float*)&m_pVtable` 实证） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）：",
+      "evidence_level": "A"
     },
     "8_2": {
       "name": "m_pVtable_i",
       "type": "int",
       "union": true,
-      "source": "int 位面（`LODWORD(v7.fVal)=m_pVtable` RHS 标量实证；C2679 站） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）："
+      "source": "int 位面（`LODWORD(v7.fVal)=m_pVtable` RHS 标量实证；C2679 站） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）：",
+      "evidence_level": "A"
     }
   },
   "methods": {
     "0x00450A25": {
       "name": "~RoleCameraCtrl",
       "signature": "void ()",
-      "source": "pdb"
+      "source": "pdb",
+      "evidence_level": "unverified"
     },
     "0x00445860": {
       "name": "SetName",
-      "signature": "void __thiscall RoleCameraCtrl::SetName(const char *pszName)"
+      "signature": "void __thiscall RoleCameraCtrl::SetName(const char *pszName)",
+      "evidence_level": "unverified"
     },
     "0x00450A60": {
       "name": "InitFrameUI",
-      "signature": "RoleCameraCtrl * __thiscall()"
+      "signature": "RoleCameraCtrl * __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00450C90": {
       "name": "UpdatePosition",
       "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "ordinal": 2
+      "ordinal": 2,
+      "evidence_level": "unverified"
     },
     "0x00445910": {
       "name": "SetTargetDistance",
-      "signature": "int __thiscall RoleCameraCtrl::SetTargetDistance(int nVal)"
+      "signature": "int __thiscall RoleCameraCtrl::SetTargetDistance(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x00450AD0": {
       "name": "InitBaseWidget",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00450C60": {
       "name": "OnMessage",
       "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
-      "ordinal": 6
+      "ordinal": 6,
+      "evidence_level": "unverified"
     },
     "0x00450D00": {
       "name": "ShowWindow",
       "signature": "void __thiscall(int a1)",
       "ordinal": 0,
-      "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params"
+      "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params",
+      "evidence_level": "unverified"
     },
     "0x0051BB50": {
       "name": "InitViewSlots",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0052DFF0": {
       "name": "SetViewPosition",
-      "signature": "int __thiscall RoleCameraCtrl::SetViewPosition(int nVal, int nVal2, int nVal3, char pData)"
+      "signature": "int __thiscall RoleCameraCtrl::SetViewPosition(int nVal, int nVal2, int nVal3, char pData)",
+      "evidence_level": "unverified"
     },
     "0x0052E080": {
       "name": "ComputeViewVector",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
+      "evidence_level": "unverified"
     },
     "0x00450AB0": {
       "name": "_scalar_dtor_0AB0",
       "signature": "RoleCameraCtrl *__thiscall(RoleCameraCtrl *Block, char a2)",
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleCameraCtrl（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B120）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleCameraCtrl（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B120）",
+      "evidence_level": "A"
     },
     "0x0043D7A0": {
       "name": "ForwardOnMessage",
-      "signature": "int __thiscall(int nVal, int nMsg, int wParam)"
+      "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
+      "evidence_level": "unverified"
     }
   },
   "vtables": [

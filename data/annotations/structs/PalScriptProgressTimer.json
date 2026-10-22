@@ -4,34 +4,40 @@
     "8": {
       "name": "m_fElapsed",
       "type": "float",
-      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438110 `m_time(=+8) *= rate` 缩放累加域"
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438110 `m_time(=+8) *= rate` 缩放累加域",
+      "evidence_level": "A"
     },
     "12": {
       "name": "m_bDone",
       "type": "char",
-      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438100 判"
+      "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438100 判",
+      "evidence_level": "A"
     },
     "0": {
       "name": "__vftable",
       "type": "void *",
-      "source": "[vptr 补 2026-10-20·A 级] +0x0 此前未声明（首员@+8）+ vtables=1 + audit 全员冲突（成员位移连锁）⇒ 缺 vptr。证据 A 级：vtable 存在（vtables 字段）+ 偏移自洽 + audit_type_layout 实测。"
+      "source": "[vptr 补 2026-10-20·A 级] +0x0 此前未声明（首员@+8）+ vtables=1 + audit 全员冲突（成员位移连锁）⇒ 缺 vptr。证据 A 级：vtable 存在（vtables 字段）+ 偏移自洽 + audit_type_layout 实测。",
+      "evidence_level": "A"
     }
   },
   "methods": {
     "0x00438190": {
       "name": "_scalar_dtor",
       "signature": "void __thiscall()",
-      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data（0x4382A0 xref@0x56abd4=本族）；方法语义面:0x438110=`m_time += fVal*rate | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=PalScript::ClearFloatParams] 交互面[浮点参数清理] 判定 ✅名实相符（_scalar_dtor 伴生清理）"
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data（0x4382A0 xref@0x56abd4=本族）；方法语义面:0x438110=`m_time += fVal*rate | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=PalScript::ClearFloatParams] 交互面[浮点参数清理] 判定 ✅名实相符（_scalar_dtor 伴生清理）",
+      "evidence_level": "unverified"
     },
     "0x00438100": {
       "name": "IsProgressDone",
       "signature": "void __thiscall(float)",
-      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data（0x4382A0 xref@0x56abd4=本族）；方法语义面:0x438110=`m_time += fVal*rate | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 80B 谓词 ret] 交互面[完成谓词] 判定 ✅名实相符（Is*Done 三名共址=合法共槽谓词）"
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data（0x4382A0 xref@0x56abd4=本族）；方法语义面:0x438110=`m_time += fVal*rate | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 80B 谓词 ret] 交互面[完成谓词] 判定 ✅名实相符（Is*Done 三名共址=合法共槽谓词）",
+      "evidence_level": "unverified"
     },
     "0x00438110": {
       "name": "UpdateProgress",
       "signature": "void __thiscall(float)",
-      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data（0x4382A0 xref@0x56abd4=本族）；方法语义面:0x438110=`m_time += fVal*rate | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=UpdateWaitTimer 域 | store×2 | 体 695B] 交互面[进度推进（链 wait 计时）] 判定 ✅名实相符（UpdateProgress）"
+      "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data（0x4382A0 xref@0x56abd4=本族）；方法语义面:0x438110=`m_time += fVal*rate | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=UpdateWaitTimer 域 | store×2 | 体 695B] 交互面[进度推进（链 wait 计时）] 判定 ✅名实相符（UpdateProgress）",
+      "evidence_level": "unverified"
     }
   },
   "vtables": [

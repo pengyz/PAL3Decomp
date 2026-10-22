@@ -5,22 +5,26 @@
     "0": {
       "name": "pAudioMgr",
       "type": "gbAudioManager *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "4": {
       "name": "hSample",
       "type": "_SAMPLE *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "nLoop",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "Volume",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
@@ -28,7 +32,8 @@
       "name": "UIPostUpdate",
       "signature": "void __thiscall(gbSound2DNode *this)",
       "declaration_only": true,
-      "source": "| [①渲染错族治理 2026-10-16 analyzer] A 级本体判读+声明性注册（declaration_only 消渲染 C2039，非归属认定）：gb* 方法补 declaration_only 标记（注册已有但声明未发）"
+      "source": "| [①渲染错族治理 2026-10-16 analyzer] A 级本体判读+声明性注册（declaration_only 消渲染 C2039，非归属认定）：gb* 方法补 declaration_only 标记（注册已有但声明未发）",
+      "evidence_level": "A"
     }
   }
 }

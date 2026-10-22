@@ -5,77 +5,92 @@
     "68": {
       "name": "m_pbktex",
       "type": "gbTexture *",
-      "source": "annotation | [apply 41-failure 修 2026-10-16 analyzer] bs 152→72：A 级成员几何=base UIWnd(68)+m_pbktex@68(gbTexture*=4B)=72 精确；41 派生类 base_size=72 一致互证；T-130 尾差 +80 挂账（152=几何值+80 tail drift）精确吻合——add_udt 几何矛盾（base 152B vs 派生首员@72）=41 空壳 UDT 根因"
+      "source": "annotation | [apply 41-failure 修 2026-10-16 analyzer] bs 152→72：A 级成员几何=base UIWnd(68)+m_pbktex@68(gbTexture*=4B)=72 精确；41 派生类 base_size=72 一致互证；T-130 尾差 +80 挂账（152=几何值+80 tail drift）精确吻合——add_udt 几何矛盾（base 152B vs 派生首员@72）=41 空壳 UDT 根因",
+      "evidence_level": "A"
     }
   },
   "methods": {
     "0x00442390": {
       "name": "_todo_442390",
       "signature": "void __thiscall()",
-      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 _UIFrameWnd 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UIFrameWnd。refs: ?Destroy@UIFrameWnd@@QAEXXZ ??3@YAXPAX@Z ?_UIWnd@UIWnd@@QAEXXZ | [T56 自抓#3 2026-10-16] 名 ~UIFrameWnd -> UIFrameWnd：new-ctor 三元组 26 站（new(152) 后即 call 本函数）=> post-new 调用=真 ctor ✓ 原 dtor 名错（C2084 消歧件方向反） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 非法重载（同名双址）消歧：0x43BB70=UIFrameWnd ctor（+8 写表 0x56ACB8）保留；0x442390 实为 **0x56ADD0 类 ctor**（+29 写表 0x56ADD0 ≠0x56ACB8 跨类撞名）改名，0x56ADD0 认领后正名"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 _UIFrameWnd 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UIFrameWnd。refs: ?Destroy@UIFrameWnd@@QAEXXZ ??3@YAXPAX@Z ?_UIWnd@UIWnd@@QAEXXZ | [T56 自抓#3 2026-10-16] 名 ~UIFrameWnd -> UIFrameWnd：new-ctor 三元组 26 站（new(152) 后即 call 本函数）=> post-new 调用=真 ctor ✓ 原 dtor 名错（C2084 消歧件方向反） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 非法重载（同名双址）消歧：0x43BB70=UIFrameWnd ctor（+8 写表 0x56ACB8）保留；0x442390 实为 **0x56ADD0 类 ctor**（+29 写表 0x56ADD0 ≠0x56ACB8 跨类撞名）改名，0x56ADD0 认领后正名",
+      "evidence_level": "A"
     },
     "0x00442420": {
       "name": "Destroy",
       "signature": "void __thiscall()",
-      "ordinal": 3
+      "ordinal": 3,
+      "evidence_level": "unverified"
     },
     "0x00442AD0": {
       "name": "Update",
       "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "ordinal": 16
+      "ordinal": 16,
+      "evidence_level": "unverified"
     },
     "0x00443550": {
       "name": "_UIFrameWnd_ovl_00443550",
       "signature": "void __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "source": "+strip_suffix"
+      "source": "+strip_suffix",
+      "evidence_level": "unverified"
     },
     "0x00442E80": {
       "name": "~UIFrameWnd",
       "signature": "void __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "source": "| [ctor/dtor 错位改名 2026-10-16] ctor ⇒ ~UIFrameWnd：idapro 交叉复核（lead 确认）：ctor 名语义实为**真析构**（叶析构无 ??1/??3 家族调用=机械判据盲区，人工裁决补） | [C2084 归因消解 2026-10-16] 名 ~UIFrameWnd 与 _todo_442E80@0x00442390 撞名（ctor/dtor 双体 C2084）：A 级：0x442E80 movl $0x56ae10,(%ecx);jmp = vptr 写+尾跳（删除析构 thunk 形）；0x442390 SEH 全体析构保留；真析构已 idapro 确认待细分 | [T56 自抓#3 2026-10-16] 名 _todo_442E80 -> ~UIFrameWnd：0x442E80 = movl vptr->ecx + jmp 尾跳= 析构委托 thunk 形 ✓（与 ctor 0x442390 名对调——消歧对修正）"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] ctor ⇒ ~UIFrameWnd：idapro 交叉复核（lead 确认）：ctor 名语义实为**真析构**（叶析构无 ??1/??3 家族调用=机械判据盲区，人工裁决补） | [C2084 归因消解 2026-10-16] 名 ~UIFrameWnd 与 _todo_442E80@0x00442390 撞名（ctor/dtor 双体 C2084）：A 级：0x442E80 movl $0x56ae10,(%ecx);jmp = vptr 写+尾跳（删除析构 thunk 形）；0x442390 SEH 全体析构保留；真析构已 idapro 确认待细分 | [T56 自抓#3 2026-10-16] 名 _todo_442E80 -> ~UIFrameWnd：0x442E80 = movl vptr->ecx + jmp 尾跳= 析构委托 thunk 形 ✓（与 ctor 0x442390 名对调——消歧对修正）",
+      "evidence_level": "A"
     },
     "0x004431D0": {
       "name": "DestroyCallingCtor",
       "signature": "void __thiscall UIFrameWnd::DestroyCallingCtor(int nVal1)",
-      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x00442890": {
       "name": "CalculateLayout",
-      "signature": "int __thiscall UIFrameWnd::CalculateLayout()"
+      "signature": "int __thiscall UIFrameWnd::CalculateLayout()",
+      "evidence_level": "unverified"
     },
     "0x00444AC0": {
       "name": "~UIFrameWnd_Full",
       "signature": "void __thiscall UIFrameWnd::~UIFrameWnd_Full()",
-      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
+      "evidence_level": "unverified"
     },
     "0x0043BB70": {
       "name": "UIFrameWnd",
-      "signature": "int *__thiscall()"
+      "signature": "int *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0045A220": {
       "name": "OnPaintUpdate",
       "signature": "int __thiscall UIFrameWnd::OnPaintUpdate()",
-      "_misattrib_evidence": "max_offset=3268>class_size=1012"
+      "_misattrib_evidence": "max_offset=3268>class_size=1012",
+      "evidence_level": "unverified"
     },
     "0x00478880": {
       "name": "ProcessTimer",
-      "signature": "BOOL __thiscall(BOOL bEnable, BOOL bReset, int nInterval, int nParam)"
+      "signature": "BOOL __thiscall(BOOL bEnable, BOOL bReset, int nInterval, int nParam)",
+      "evidence_level": "unverified"
     },
     "0x0043BBC0": {
       "name": "Update_bbc0",
-      "signature": "BOOL __thiscall(int nVal, int nVal2)"
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
+      "evidence_level": "unverified"
     },
     "0x00442370": {
       "name": "_sdtor",
-      "signature": "UIFrameWnd *__thiscall(UIFrameWnd *Block, char pData)"
+      "signature": "UIFrameWnd *__thiscall(UIFrameWnd *Block, char pData)",
+      "evidence_level": "unverified"
     },
     "0x00442540": {
       "name": "SetTextureByID",
-      "signature": "gbVFileSystem *__thiscall UIFrameWnd::SetTextureByID(int nTexID)"
+      "signature": "gbVFileSystem *__thiscall UIFrameWnd::SetTextureByID(int nTexID)",
+      "evidence_level": "unverified"
     },
     "0x00442E60": {
       "name": "_scalar_dtor_2E60",
@@ -83,126 +98,151 @@
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x442E80 写 vptr 0x56AE10（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AE10→UIFrameWnd（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIFrameWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x442E80 写 vptr 0x56AE10"
+      "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x442E80 写 vptr 0x56AE10（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AE10→UIFrameWnd（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIFrameWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x442E80 写 vptr 0x56AE10",
+      "evidence_level": "A"
     },
     "0x00442FF0": {
       "name": "Update_2ff0",
       "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "ordinal": 2
+      "ordinal": 2,
+      "evidence_level": "unverified"
     },
     "0x004434C0": {
       "name": "InitSharedPanel",
-      "signature": "void *__thiscall UIFrameWnd::InitSharedPanel()"
+      "signature": "void *__thiscall UIFrameWnd::InitSharedPanel()",
+      "evidence_level": "unverified"
     },
     "0x004435A0": {
       "name": "LoadFrameResources",
       "signature": "gbVFileSystem *__thiscall UIFrameWnd::LoadFrameResources()",
-      "ordinal": 28
+      "ordinal": 28,
+      "evidence_level": "unverified"
     },
     "0x004438F0": {
       "name": "Destroy_38f0",
       "signature": "void __thiscall()",
-      "ordinal": 24
+      "ordinal": 24,
+      "evidence_level": "unverified"
     },
     "0x00443950": {
       "name": "Render",
       "signature": "void __thiscall()",
       "ordinal": 22,
-      "source": "+canonical_rename"
+      "source": "+canonical_rename",
+      "evidence_level": "unverified"
     },
     "0x00443970": {
       "name": "UpdateIfVisible",
       "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "ordinal": 23
+      "ordinal": 23,
+      "evidence_level": "unverified"
     },
     "0x00444D30": {
       "name": "ProcessInput",
       "signature": "BOOL __thiscall UIFrameWnd::ProcessInput(int nVal, int nVal2)",
-      "ordinal": 31
+      "ordinal": 31,
+      "evidence_level": "unverified"
     },
     "0x004425D0": {
       "name": "SetTextureByName",
-      "signature": "void __thiscall UIFrameWnd::SetTextureByName(LPCSTR lpTexName, char bCalcUV)"
+      "signature": "void __thiscall UIFrameWnd::SetTextureByName(LPCSTR lpTexName, char bCalcUV)",
+      "evidence_level": "unverified"
     },
     "0x00442C80": {
       "name": "SetFrameParam",
-      "signature": "int __thiscall UIFrameWnd::SetFrameParam(int nVal)"
+      "signature": "int __thiscall UIFrameWnd::SetFrameParam(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x00442D40": {
       "name": "_UIFrameWnd_ovl_00442d40",
       "signature": "void __thiscall UIFrameWnd::~UIFrameWnd(int nVal1)",
-      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x00442E90": {
       "name": "RenderWithTexture",
       "signature": "void __thiscall UIFrameWnd::RenderWithTexture()",
-      "ordinal": 1
+      "ordinal": 1,
+      "evidence_level": "unverified"
     },
     "0x00444AD0": {
       "name": "RenderAll",
       "signature": "int __thiscall UIFrameWnd::RenderAll()",
-      "ordinal": 30
+      "ordinal": 30,
+      "evidence_level": "unverified"
     },
     "0x0048CFB0": {
       "name": "RollProbability",
-      "signature": "bool __thiscall UIFrameWnd::RollProbability(float fProb)"
+      "signature": "bool __thiscall UIFrameWnd::RollProbability(float fProb)",
+      "evidence_level": "unverified"
     },
     "0x004431B0": {
       "name": "_sdtor_call_dtor",
       "signature": "int __thiscall(void *Block, char)",
       "source": "vtable_migrated",
-      "ordinal": 12
+      "ordinal": 12,
+      "evidence_level": "unverified"
     },
     "0x004433A0": {
       "name": "_sdtor_thunk",
       "signature": "int __thiscall(void *Block, char)",
       "source": "vtable_migrated",
-      "ordinal": 19
+      "ordinal": 19,
+      "evidence_level": "unverified"
     },
     "0x00443530": {
       "name": "_scalar_dtor_3530",
       "signature": "int __thiscall(void *Block, char)",
       "source": "vtable_migrated | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIFrameWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AE10,0x56AE2C,0x56AE48,0x56AE64）",
-      "ordinal": 26
+      "ordinal": 26,
+      "evidence_level": "A"
     },
     "0x00444AA0": {
       "name": "_sdtor_full",
       "signature": "int __thiscall(void *Block, char)",
       "source": "vtable_migrated",
-      "ordinal": 34
+      "ordinal": 34,
+      "evidence_level": "unverified"
     },
     "0x00442C60": {
       "name": "SetPosition",
       "signature": "void __thiscall(int nVal, int nVal2)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x00450560": {
       "name": "IsOnScreen",
       "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "source": "ida_xref:sub_fix_from_decomp_this_type"
+      "source": "ida_xref:sub_fix_from_decomp_this_type",
+      "evidence_level": "unverified"
     },
     "0x004433C0": {
       "name": "_dtor_thunk",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00442D20": {
       "name": "_sdtor_8",
-      "signature": "UIFrameWnd *__thiscall(UIFrameWnd *Block, char a2)"
+      "signature": "UIFrameWnd *__thiscall(UIFrameWnd *Block, char a2)",
+      "evidence_level": "unverified"
     },
     "0x00443200": {
       "name": "Render_3200",
       "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(from CCBPanelSlot.json)"
+      "source": "vtable_gap_fill_v1(from CCBPanelSlot.json)",
+      "evidence_level": "unverified"
     },
     "0x004433D0": {
       "name": "LayoutAndRender",
       "signature": "int __thiscall()",
-      "source": "vtable_gap_fill_v1(from UIWnd.json)"
+      "source": "vtable_gap_fill_v1(from UIWnd.json)",
+      "evidence_level": "unverified"
     },
     "0x0043BB90": {
       "name": "_scalar_dtor_BB90",
       "signature": "void __thiscall()",
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIFrameWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x43BBB0 写 vptr 0x56ACB8"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIFrameWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x43BBB0 写 vptr 0x56ACB8",
+      "evidence_level": "A"
     }
   },
   "vtables": [

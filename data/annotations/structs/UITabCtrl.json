@@ -5,22 +5,26 @@
     "68": {
       "name": "m_itemwidth",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "72": {
       "name": "m_texarray",
       "type": "UITextureArray",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "140": {
       "name": "m_numpage",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "144": {
       "name": "m_onpage",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
@@ -28,17 +32,20 @@
       "name": "SetItemParam",
       "signature": "int __thiscall UITabCtrl::SetItemParam(int nIndex)",
       "_misattrib_evidence": "max_offset=504>class_size=148",
-      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x00532B40": {
       "name": "Render",
       "signature": "void __thiscall UITabCtrl::Render()",
-      "_misattrib_evidence": "max_offset=140>class_size=32"
+      "_misattrib_evidence": "max_offset=140>class_size=32",
+      "evidence_level": "unverified"
     },
     "0x00532A80": {
       "name": "InitAnimParams",
       "signature": "int __thiscall UITabCtrl::InitAnimParams()",
-      "class": "UIWnd"
+      "class": "UIWnd",
+      "evidence_level": "unverified"
     }
   },
   "base_size": 68,

@@ -5,84 +5,100 @@
     "0": {
       "name": "name",
       "type": "char[64]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "64": {
       "name": "particle_pointer",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "68": {
       "name": "emitter_pointer",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "72": {
       "name": "elapsetime",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "total_elatime",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "maxparticle",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "84": {
       "name": "first_time",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "88": {
       "name": "cyclelength",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "92": {
       "name": "replacestyle",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "96": {
       "name": "particle_array",
       "type": "sg_particle_data[400]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "36896": {
       "name": "emitter",
       "type": "sg_emitter_data",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "36940": {
       "name": "pparticle",
       "type": "sg_particle *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "36944": {
       "name": "pemitter",
       "type": "sg_emitter *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "36948": {
       "name": "scene_pointer",
       "type": "sg_particle_scene *",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x004BA800": {
       "name": "_todo_004BA800",
       "signature": "void __thiscall(int, int, int, int)",
-      "source": "挂账④ 试点 2026-10-06：双 A 级（thiscall 序言+调用点 4 push 元数+[edi+0x9050] pemitter 布局）——类路由（functions.json 裸名会进 free_functions 黑洞）"
+      "source": "挂账④ 试点 2026-10-06：双 A 级（thiscall 序言+调用点 4 push 元数+[edi+0x9050] pemitter 布局）——类路由（functions.json 裸名会进 free_functions 黑洞）",
+      "evidence_level": "A"
     },
     "0x004B8890": {
       "name": "_todo_004B8890",
       "signature": "void __thiscall(int, int)",
-      "source": "挂账④ 试点 2026-10-06：双 A 级（thiscall 序言+调用点 2 push 元数+[ebx+0x9050] pemitter 同族）"
+      "source": "挂账④ 试点 2026-10-06：双 A 级（thiscall 序言+调用点 2 push 元数+[ebx+0x9050] pemitter 同族）",
+      "evidence_level": "A"
     }
   }
 }

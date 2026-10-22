@@ -6,57 +6,68 @@
     "4": {
       "name": "m_pEffectSystem",
       "type": "CEffectSystem *",
-      "source": "binary:CEffObj+0x4"
+      "source": "binary:CEffObj+0x4",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "m_eKind",
       "type": "int",
-      "source": "inferred:EEffect enum"
+      "source": "inferred:EEffect enum",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "m_nTaskIndex",
       "type": "int",
-      "source": "decomp:CEffCylinder_array_base_for_task_indexing"
+      "source": "decomp:CEffCylinder_array_base_for_task_indexing",
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "m_fPrevTime",
       "type": "float",
-      "source": "decomp:CEffCylinder_p-this_field=deltaTime"
+      "source": "decomp:CEffCylinder_p-this_field=deltaTime",
+      "evidence_level": "unverified"
     },
     "20": {
       "name": "m_fDeltaTime",
       "type": "float",
-      "source": "decomp:CEffCylinder_calculated_delta"
+      "source": "decomp:CEffCylinder_calculated_delta",
+      "evidence_level": "unverified"
     },
     "24": {
       "name": "m_pSegData",
       "type": "char *",
-      "source": "decomp:CEffCylinder_operator_new(0x4C0)_8x152byte_entries|fix:pointer_level:char **"
+      "source": "decomp:CEffCylinder_operator_new(0x4C0)_8x152byte_entries|fix:pointer_level:char **",
+      "evidence_level": "unverified"
     },
     "28": {
       "name": "m_fDuration",
       "type": "float",
-      "source": "decomp:float_comparison"
+      "source": "decomp:float_comparison",
+      "evidence_level": "unverified"
     },
     "32": {
       "name": "m_fTimeScale",
       "type": "float",
-      "source": "decomp:float_param"
+      "source": "decomp:float_param",
+      "evidence_level": "unverified"
     },
     "36": {
       "name": "m_nMaxTask",
       "type": "int",
-      "source": "decomp:CEffCylinder_<=0_check(limit)"
+      "source": "decomp:CEffCylinder_<=0_check(limit)",
+      "evidence_level": "unverified"
     },
     "40": {
       "name": "m_nSegments",
       "type": "int",
-      "source": "decomp:CEffCylinder_set_8,loop_bound"
+      "source": "decomp:CEffCylinder_set_8,loop_bound",
+      "evidence_level": "unverified"
     },
     "44": {
       "name": "m_nVertPerSeg",
       "type": "int",
-      "source": "decomp:CEffCylinder_set_10,inner_loop_bound"
+      "source": "decomp:CEffCylinder_set_10,inner_loop_bound",
+      "evidence_level": "unverified"
     }
   },
   "base_size": 12,

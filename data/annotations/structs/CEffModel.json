@@ -5,158 +5,188 @@
     "64": {
       "name": "m_vecOffsetPos",
       "type": "gbVec3D",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_vecRot",
       "type": "gbVec3D",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "88": {
       "name": "m_bVisible",
       "type": "unsigned char",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "89": {
       "name": "m_bAdditiveBlend",
       "type": "unsigned char",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "90": {
       "name": "m_bNoZTest",
       "type": "unsigned char",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "92": {
       "name": "m_fSizeX",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "96": {
       "name": "m_fSizeY",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "100": {
       "name": "m_fSizeZ",
       "type": "float",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "48": {
       "name": "m_pGeomNode",
       "type": "gbGeomNode *",
-      "source": "template_base_fix"
+      "source": "template_base_fix",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x004CFFA0": {
       "name": "DestroyEffect",
       "signature": "void __thiscall()",
-      "source": "| 挂账19续批2b 2026-10-17（verifier·DestroyEffect/散组四分账·五面语义卡）：⚠️ 注册面重复挂账：0x4CFFA0 真身=CEffCustomShape::DestroyEffect（兄弟类平级，非继承共用槽）⇒ 本条为镜像注册，待槽反查收口（不赋名）"
+      "source": "| 挂账19续批2b 2026-10-17（verifier·DestroyEffect/散组四分账·五面语义卡）：⚠️ 注册面重复挂账：0x4CFFA0 真身=CEffCustomShape::DestroyEffect（兄弟类平级，非继承共用槽）⇒ 本条为镜像注册，待槽反查收口（不赋名）",
+      "evidence_level": "unverified"
     },
     "0x004D0CE0": {
       "name": "Reset",
       "signature": "int *__thiscall CEffModel::Reset()",
-      "_misattrib_evidence": "max_offset=4268>class_size=104"
+      "_misattrib_evidence": "max_offset=4268>class_size=104",
+      "evidence_level": "unverified"
     },
     "0x004CEC80": {
       "name": "CreateInstance",
-      "signature": "int __thiscall CEffModel::CreateInstance(CEffModel *pSrc, int nVal, CEffModel *pParam)"
+      "signature": "int __thiscall CEffModel::CreateInstance(CEffModel *pSrc, int nVal, CEffModel *pParam)",
+      "evidence_level": "unverified"
     },
     "0x004CFEB0": {
       "name": "LoadFromNode",
       "signature": "bool __thiscall CEffModel::LoadFromNode(int nVal)",
-      "ordinal": 1
+      "ordinal": 1,
+      "evidence_level": "unverified"
     },
     "0x004D01C0": {
       "name": "RenderScenePass",
       "signature": "void __thiscall()",
-      "ordinal": 4
+      "ordinal": 4,
+      "evidence_level": "unverified"
     },
     "0x004CFC70": {
       "name": "CEffModel",
-      "signature": "CEffModel *__thiscall()"
+      "signature": "CEffModel *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004D0BD0": {
       "name": "UpdateDuration",
       "signature": "void __thiscall(int nVal1)",
-      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x004CFD00": {
       "name": "CreateEffModel",
       "signature": "CEffModel * __cdecl()",
       "source": "vtable_migrated | [T19] return-type retype int->CEffModel *: A 级 objdump 0x40CFD00 内 4cfd00 push 0x68/call new、4cfd0a test eax,eax、4cfd0e mov ecx,eax 跳 ctor —— 返回值=operator new 分配体（EAX 直通）；体 `return v0;` 指针语义实证",
-      "static": true
+      "static": true,
+      "evidence_level": "A"
     },
     "0x004D0390": {
       "name": "GetRenderNode",
       "signature": "void __thiscall(int)",
       "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
-      "ordinal": 11
+      "ordinal": 11,
+      "evidence_level": "unverified"
     },
     "0x004D03B0": {
       "name": "RenderModel",
       "signature": "void __thiscall(int)",
       "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
-      "ordinal": 12
+      "ordinal": 12,
+      "evidence_level": "unverified"
     },
     "0x004D0850": {
       "name": "GetModelType",
       "signature": "int __thiscall(int nVal)",
       "source": "vtable_migrated",
-      "ordinal": 14
+      "ordinal": 14,
+      "evidence_level": "unverified"
     },
     "0x004AF760": {
       "name": "Update",
       "signature": "int __thiscall(int)",
-      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+      "source": "vtable_gap_fill_v1(from CEffCylinder.json)",
+      "evidence_level": "unverified"
     },
     "0x004C0500": {
       "name": "OnTest",
       "signature": "int()",
-      "source": "vtable_gap_fill_v1(from CEffAction.json)"
+      "source": "vtable_gap_fill_v1(from CEffAction.json)",
+      "evidence_level": "unverified"
     },
     "0x004C15D0": {
       "name": "UpdateParticles",
       "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+      "source": "vtable_gap_fill_v1(from CEffCylinder.json)",
+      "evidence_level": "unverified"
     },
     "0x004C0510": {
       "name": "sub_4C0510",
       "signature": "int __thiscall(int)",
-      "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)"
+      "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
+      "evidence_level": "unverified"
     },
     "0x004D3220": {
       "name": "_sdtor_adj",
       "signature": "void __thiscall()",
       "type": "skip",
       "reason": "compiler-generated",
-      "source": "| [vtable 治理·未注册族 2026-10-16 analyzer] A 级本体判读：adjustor 跳板 compiler-generated"
+      "source": "| [vtable 治理·未注册族 2026-10-16 analyzer] A 级本体判读：adjustor 跳板 compiler-generated",
+      "evidence_level": "A"
     },
     "0x004D0CA0": {
       "name": "_scalar_dtor1",
       "signature": "char *__thiscall(char a2)",
-      "source": "[余 47 路径 2026-10-17·CEffModel 注册] _scalar_dtor1（①虚分派槽（表域 ✓）②删析构形证（sdtor_N 名 + `(this, char a2)` 删除标志形 ✓ A 级）③析构少触 ✓ ④类=CEffModel（表主归属 ✓）⑤虚析构删除路径 ✓ **5/5 满卡**）——删析构制式 `_scalar_dtor`+序号· 证据账目 A 级 conf 92"
+      "source": "[余 47 路径 2026-10-17·CEffModel 注册] _scalar_dtor1（①虚分派槽（表域 ✓）②删析构形证（sdtor_N 名 + `(this, char a2)` 删除标志形 ✓ A 级）③析构少触 ✓ ④类=CEffModel（表主归属 ✓）⑤虚析构删除路径 ✓ **5/5 满卡**）——删析构制式 `_scalar_dtor`+序号· 证据账目 A 级 conf 92",
+      "evidence_level": "A"
     },
     "0x004D3230": {
       "name": "_scalar_dtor2",
       "signature": "char *__thiscall(char a2)",
-      "source": "[余 47 路径 2026-10-17·CEffModel 注册] _scalar_dtor2（同 0x4D0CA0 形（sdtor_39 删除标志形 ✓）——同类双删析构 ⇒ 序号消歧（5c 制式）✓ **5/5**）——删析构制式 `_scalar_dtor`+序号· 证据账目 A 级 conf 92"
+      "source": "[余 47 路径 2026-10-17·CEffModel 注册] _scalar_dtor2（同 0x4D0CA0 形（sdtor_39 删除标志形 ✓）——同类双删析构 ⇒ 序号消歧（5c 制式）✓ **5/5**）——删析构制式 `_scalar_dtor`+序号· 证据账目 A 级 conf 92",
+      "evidence_level": "A"
     },
     "0x004CFD20": {
       "name": "~CEffModel",
       "signature": "void __thiscall()",
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffModel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F9DC,0x56F9D0）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffModel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F9DC,0x56F9D0）",
+      "evidence_level": "A"
     },
     "0x004D0D90": {
       "name": "_scalar_dtor_0D90",
       "signature": "void __thiscall()",
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffModel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56FA18,0x56F9DC,0x56F9D0,0x56FA30,0x56FA24）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffModel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56FA18,0x56F9DC,0x56F9D0,0x56FA30,0x56FA24）",
+      "evidence_level": "A"
     },
     "0x004D0C90": {
       "name": "_todo_004D0C90",
       "signature": "",
-      "source": "[vtable 归属 2026-10-21·A 级] vtable ['0x0056F9D0'] 槽指向本函数 ⇒ 归属 CEffModel。shape=adjustor · body_head=83 e9 0c e9 18 f3 ff ff cc cc cc cc。**命名冻结 _todo_**（conf<60 禁伪语义命名，需五面证据才正名）"
+      "source": "[vtable 归属 2026-10-21·A 级] vtable ['0x0056F9D0'] 槽指向本函数 ⇒ 归属 CEffModel。shape=adjustor · body_head=83 e9 0c e9 18 f3 ff ff cc cc cc cc。**命名冻结 _todo_**（conf<60 禁伪语义命名，需五面证据才正名）",
+      "evidence_level": "A"
     }
   },
   "vtables": [

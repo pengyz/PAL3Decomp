@@ -5,22 +5,26 @@
     "0": {
       "name": "nStatus",
       "type": "int",
-      "source": "A:binary_SetTaskState_*i==4_loop_check"
+      "source": "A:binary_SetTaskState_*i==4_loop_check",
+      "evidence_level": "unverified"
     },
     "8": {
       "name": "nActionType",
       "type": "int",
-      "source": "A:binary_GetTaskParam_write_[esi+edx+8]=3"
+      "source": "A:binary_GetTaskParam_write_[esi+edx+8]=3",
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "pRoleState",
       "type": "void *",
-      "source": "A:binary_GetTaskParam_write_[eax+edx+10h]=m_pRoleState"
+      "source": "A:binary_GetTaskParam_write_[eax+edx+10h]=m_pRoleState",
+      "evidence_level": "unverified"
     },
     "24": {
       "name": "_gap_18",
       "type": "char[48]",
-      "source": "gap:72-24"
+      "source": "gap:72-24",
+      "evidence_level": "unverified"
     }
   },
   "methods": {}

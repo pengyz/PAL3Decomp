@@ -5,174 +5,210 @@
     "68": {
       "name": "m_selcolor",
       "type": "gbColorQuad",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "72": {
       "name": "m_showGrayBk",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "76": {
       "name": "m_hasKeyCtrl",
       "type": "unsigned char",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "80": {
       "name": "m_scrollbar",
       "type": "UIScrollBar",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "432": {
       "name": "m_numcol",
       "type": "int",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "436": {
       "name": "m_column",
       "type": "UILBColumn[8]",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "1108": {
       "name": "m_itemheight",
       "type": "int",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "1112": {
       "name": "m_fontsize",
       "type": "int",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "1116": {
       "name": "m_firstshow",
       "type": "int",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "1120": {
       "name": "m_onsel",
       "type": "int",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "1124": {
       "name": "m_locksel",
       "type": "int",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "1128": {
       "name": "m_scrollRc",
       "type": "tagRECT",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "1144": {
       "name": "m_pbkpic",
       "type": "gbTexture *",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "1148": {
       "name": "m_pbkpicInfo",
       "type": "_PlugInfo *",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "1152": {
       "name": "m_selpic",
       "type": "gbTexture *",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "1156": {
       "name": "m_selpicInfo",
       "type": "_PlugInfo *",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "1160": {
       "name": "m_seloffset",
       "type": "int",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "1164": {
       "name": "m_seloffsetL",
       "type": "int",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "1168": {
       "name": "m_seloffsetR",
       "type": "int",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "1172": {
       "name": "m_scrollW",
       "type": "int",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "1176": {
       "name": "m_seltexcolor",
       "type": "gbColorQuad",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "1180": {
       "name": "m_itemoffset",
       "type": "tagPOINT",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "1188": {
       "name": "m_movesel",
       "type": "int",
-      "source": "PDB+PAL3_offset_adjusted"
+      "source": "PDB+PAL3_offset_adjusted",
+      "evidence_level": "unverified"
     },
     "1192": {
       "name": "m_rowenable",
       "type": "unsigned char[16]",
-      "source": "PDB+PAL3_offset_adjusted | [批1-5#1 A 级重定型 2026-10-15] std::vector<int>→unsigned char[16]：① UIListBox=1208 定案（objdump `68 b8 04 00 00/push 0x4b8; call new` ×2 @519d05/51a558）⇒ +0x4A8 尾块 16B（0x4A8+16=0x4B8 恰好到类尾）⇒ 不可能是 Actor(820B) 整体；② 访问形=字节/双字下标（43e748 `lea 0x4a8(%esi)` 取址 + 解引用 [edi+4]/[edi+8]；decomp 渲染 `&this->m_rowenable[8]`/`&this->m_rowenable[4]` = +0x4B0/+0x4AC）⇒ 16B 字节簇；③ 被 call 0x5372d0 以 this=&成员 调用（体读 +4/+8/+0xC begin/end/cap 三元组=actarray 增长形，匹配 Actor.m_actarray_* 但该簇独立 16B；簇的语义类未定 ⇒ 按 workaround 规则用 char 簇表不透明区）。修 3 错：C2440(vector→Actor*) 单根 + C2227/C2653 级联（Actor.h 实际已 include，见 UIListBox.cpp L5）。⚠️ 原 source=PDB 单证违规（PDB+PAL3_offset_adjusted）已由 A 级证据替换"
+      "source": "PDB+PAL3_offset_adjusted | [批1-5#1 A 级重定型 2026-10-15] std::vector<int>→unsigned char[16]：① UIListBox=1208 定案（objdump `68 b8 04 00 00/push 0x4b8; call new` ×2 @519d05/51a558）⇒ +0x4A8 尾块 16B（0x4A8+16=0x4B8 恰好到类尾）⇒ 不可能是 Actor(820B) 整体；② 访问形=字节/双字下标（43e748 `lea 0x4a8(%esi)` 取址 + 解引用 [edi+4]/[edi+8]；decomp 渲染 `&this->m_rowenable[8]`/`&this->m_rowenable[4]` = +0x4B0/+0x4AC）⇒ 16B 字节簇；③ 被 call 0x5372d0 以 this=&成员 调用（体读 +4/+8/+0xC begin/end/cap 三元组=actarray 增长形，匹配 Actor.m_actarray_* 但该簇独立 16B；簇的语义类未定 ⇒ 按 workaround 规则用 char 簇表不透明区）。修 3 错：C2440(vector→Actor*) 单根 + C2227/C2653 级联（Actor.h 实际已 include，见 UIListBox.cpp L5）。⚠️ 原 source=PDB 单证违规（PDB+PAL3_offset_adjusted）已由 A 级证据替换",
+      "evidence_level": "A"
     }
   },
   "methods": {
     "0x0043DCD0": {
       "name": "UIListBox",
-      "signature": "int *__thiscall()"
+      "signature": "int *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043DD10": {
       "name": "~UIListBox",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043DD60": {
       "name": "SetSelTexture",
-      "signature": "void __thiscall(UIListBox *this, int id, int pRect, int nVal, int nVal2, int nVal3)"
+      "signature": "void __thiscall(UIListBox *this, int id, int pRect, int nVal, int nVal2, int nVal3)",
+      "evidence_level": "unverified"
     },
     "0x0043DE90": {
       "name": "Destroy",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043DEA0": {
       "name": "AddColumn",
       "signature": "void __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x0043DEB0": {
       "name": "AddRow",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043DEC0": {
       "name": "SetSubItem",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043DED0": {
       "name": "GetSubItemInfo",
-      "signature": "UIListBox *__thiscall()"
+      "signature": "UIListBox *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043DEF0": {
       "name": "Render",
       "signature": "void __thiscall()",
-      "source": "+fix:sig_match_base"
+      "source": "+fix:sig_match_base",
+      "evidence_level": "unverified"
     },
     "0x0043DF10": {
       "name": "CalHeightCount",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043DF20": {
       "name": "GetItemPos",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043DFC0": {
       "name": "UpdateKeyCtrl",
-      "signature": "UIListBox *__thiscall()"
+      "signature": "UIListBox *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043E100": {
       "name": "_scalar_dtor_E100",
@@ -180,145 +216,176 @@
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": "|fixed_ios_base | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIListBox（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AD40）"
+      "source": "|fixed_ios_base | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIListBox（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AD40）",
+      "evidence_level": "A"
     },
     "0x0043E1C0": {
       "name": "CalScrollBarRange",
       "signature": "void __thiscall(int id, int *p_DWORD, int parent, LPCSTR lpString, int nVal, char pData)",
       "source": "pdb_ret",
-      "ordinal": 7
+      "ordinal": 7,
+      "evidence_level": "unverified"
     },
     "0x0043E330": {
       "name": "GetSel",
-      "signature": "void __thiscall(int nVal, int nVal2)"
+      "signature": "void __thiscall(int nVal, int nVal2)",
+      "evidence_level": "unverified"
     },
     "0x0043E3B0": {
       "name": "GetLockSel",
-      "signature": "int __thiscall(int nVal, int *p_DWORD, int nVal2, int nVal3, char pData)"
+      "signature": "int __thiscall(int nVal, int *p_DWORD, int nVal2, int nVal3, char pData)",
+      "evidence_level": "unverified"
     },
     "0x0043E440": {
       "name": "SetSel",
       "signature": "void __thiscall(int sel)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x0043E480": {
       "name": "OnMessage",
       "signature": "int __thiscall(int height, int nVal, int nVal2)",
-      "ordinal": 6
+      "ordinal": 6,
+      "evidence_level": "unverified"
     },
     "0x0043E520": {
       "name": "Destroy_e520",
       "signature": "void __thiscall()",
-      "ordinal": 3
+      "ordinal": 3,
+      "evidence_level": "unverified"
     },
     "0x0043E560": {
       "name": "SetColumnHead",
       "signature": "int __thiscall(int nVal, int nOffset)",
-      "source": "| [T103] 同名消歧：@0x43E560 体=strncpy(m_column[m_numcol].head,src,0x40)（decomp 成员访问证据）⇒ 语义名 SetColumnHead（禁伪语义 ✓）；@0x43F670 族 SetItemOffset 保留（m_itemoffset.x/y 直存）"
+      "source": "| [T103] 同名消歧：@0x43E560 体=strncpy(m_column[m_numcol].head,src,0x40)（decomp 成员访问证据）⇒ 语义名 SetColumnHead（禁伪语义 ✓）；@0x43F670 族 SetItemOffset 保留（m_itemoffset.x/y 直存）",
+      "evidence_level": "unverified"
     },
     "0x0043E5C0": {
       "name": "LoadListItems",
       "signature": "int __thiscall(char *Source, int y)",
-      "source": "| [T114] 同名消歧：@0x43E5C0 全函数体（2976 字符）调用簇=gbTexture::LoadTexture/UIListBox::CreateChild/GetSubItemInfo/PtrArray::SetAt/InitScrollbar（列循环+子项构造+纹理加载+滚动条初始化）⇒ 语义名 LoadListItems（禁伪语义 ✓ 调用簇证据）；@0x43F670 SetItemOffset 保留（m_itemoffset 直存）"
+      "source": "| [T114] 同名消歧：@0x43E5C0 全函数体（2976 字符）调用簇=gbTexture::LoadTexture/UIListBox::CreateChild/GetSubItemInfo/PtrArray::SetAt/InitScrollbar（列循环+子项构造+纹理加载+滚动条初始化）⇒ 语义名 LoadListItems（禁伪语义 ✓ 调用簇证据）；@0x43F670 SetItemOffset 保留（m_itemoffset 直存）",
+      "evidence_level": "unverified"
     },
     "0x0043E7D0": {
       "name": "SetMouseMoveSel",
-      "signature": "gbVFileSystem *__thiscall(UIListBox *this, int movesel, int nVal, char *Source, int nVal2)"
+      "signature": "gbVFileSystem *__thiscall(UIListBox *this, int movesel, int nVal, char *Source, int nVal2)",
+      "evidence_level": "unverified"
     },
     "0x0043E8A0": {
       "name": "Render_e8a0",
       "signature": "int __thiscall()",
-      "ordinal": 1
+      "ordinal": 1,
+      "evidence_level": "unverified"
     },
     "0x0043EBA0": {
       "name": "SetDefaultSel",
       "signature": "void __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x00527950": {
       "name": "ctor",
       "signature": "int __thiscall()",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "evidence_level": "unverified"
     },
     "0x00470A60": {
       "name": "InitWithPalScript",
       "signature": "int __thiscall UIListBox::InitWithPalScript(int nVal, int nVal2)",
-      "_misattrib_evidence": "max_offset=124248>class_size=1208"
+      "_misattrib_evidence": "max_offset=124248>class_size=1208",
+      "evidence_level": "unverified"
     },
     "0x005279F0": {
       "name": "_scalar_dtor_79F0",
       "signature": "void __thiscall()",
-      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor_79F0 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_79F0。refs: ??1UIRoleDialog@@QAE@XZ ??1UIListBox@@QAE@XZ"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor_79F0 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_79F0。refs: ??1UIRoleDialog@@QAE@XZ ??1UIListBox@@QAE@XZ",
+      "evidence_level": "A"
     },
     "0x004B4690": {
       "name": "Reset",
-      "signature": "void __thiscall UIListBox::Reset()"
+      "signature": "void __thiscall UIListBox::Reset()",
+      "evidence_level": "unverified"
     },
     "0x00452600": {
       "name": "_scalar_dtor_2600",
       "signature": "void __thiscall()",
-      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor_2600 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_2600。refs: ?ctor@UITitle_BBTY@@QAEXXZ UIAnimateCtrlEX__UIAnimateCtrlEX ??1UIListBox@@QAE@XZ"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor_2600 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_2600。refs: ?ctor@UITitle_BBTY@@QAEXXZ UIAnimateCtrlEX__UIAnimateCtrlEX ??1UIListBox@@QAE@XZ",
+      "evidence_level": "A"
     },
     "0x0043F5B0": {
       "name": "GetItem",
-      "signature": "int __thiscall(UIListBox *this)"
+      "signature": "int __thiscall(UIListBox *this)",
+      "evidence_level": "unverified"
     },
     "0x0043F360": {
       "name": "ClearAll",
-      "signature": "int __thiscall UIListBox::ClearAll()"
+      "signature": "int __thiscall UIListBox::ClearAll()",
+      "evidence_level": "unverified"
     },
     "0x0043F650": {
       "name": "GetItemData",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043F640": {
       "name": "SetLockSel",
       "signature": "void __thiscall(int nVal1)",
-      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+      "evidence_level": "unverified"
     },
     "0x0043FE90": {
       "name": "GetCurSel",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00432680": {
       "name": "ReleaseVtable",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004A9870": {
       "name": "_todo",
       "signature": "int __thiscall()",
-      "_misattrib_evidence": "max_offset=400040>class_size=1208"
+      "_misattrib_evidence": "max_offset=400040>class_size=1208",
+      "evidence_level": "unverified"
     },
     "0x00451AD0": {
       "name": "ReinitScrollbar",
-      "signature": "int __thiscall UIListBox::ReinitScrollbar()"
+      "signature": "int __thiscall UIListBox::ReinitScrollbar()",
+      "evidence_level": "unverified"
     },
     "0x00451AF0": {
       "name": "CalcVisibleRange",
-      "signature": "int __thiscall(char *Source, int nVal)"
+      "signature": "int __thiscall(char *Source, int nVal)",
+      "evidence_level": "unverified"
     },
     "0x00431CD0": {
       "name": "RefreshSelection",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043EBE0": {
       "name": "Update",
       "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "ordinal": 2
+      "ordinal": 2,
+      "evidence_level": "unverified"
     },
     "0x0043F080": {
       "name": "ProcessSelection",
-      "signature": "int __thiscall UIListBox::ProcessSelection()"
+      "signature": "int __thiscall UIListBox::ProcessSelection()",
+      "evidence_level": "unverified"
     },
     "0x0043F520": {
       "name": "InitScrollbar",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043F6A0": {
       "name": "SetChildParam",
       "signature": "unsigned int __thiscall(unsigned int dwVal, int nVal)",
-      "_misattrib_evidence": "max_offset=1196>class_size=308"
+      "_misattrib_evidence": "max_offset=1196>class_size=308",
+      "evidence_level": "unverified"
     },
     "0x004525E0": {
       "name": "_scalar_dtor_25E0",
@@ -326,182 +393,220 @@
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": "| 错挂修正 2026-10-16（verifier A 级）：真身=0x56B1BC 复合体的 scalar deleting destructor（vtable 槽 0x56b1bc→0x4525E0 xref 实证）——错挂 UIListBox，复合体真名挂账中 | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIListBox（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B1BC）"
+      "source": "| 错挂修正 2026-10-16（verifier A 级）：真身=0x56B1BC 复合体的 scalar deleting destructor（vtable 槽 0x56b1bc→0x4525E0 xref 实证）——错挂 UIListBox，复合体真名挂账中 | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIListBox（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B1BC）",
+      "evidence_level": "A"
     },
     "0x004526C0": {
       "name": "ShouldProcessInput",
       "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "ordinal": 2
+      "ordinal": 2,
+      "evidence_level": "unverified"
     },
     "0x004526F0": {
       "name": "RenderMagic",
       "signature": "int __thiscall()",
-      "ordinal": 1
+      "ordinal": 1,
+      "evidence_level": "unverified"
     },
     "0x00470F20": {
       "name": "_scalar_dtor_0f20",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "evidence_level": "unverified"
     },
     "0x00519AF0": {
       "name": "InitAndRender",
-      "signature": "CCBUI * __thiscall()"
+      "signature": "CCBUI * __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x00527DC0": {
       "name": "ProcessInput",
-      "signature": "int __thiscall UIListBox::ProcessInput(int nVal, int nVal2)"
+      "signature": "int __thiscall UIListBox::ProcessInput(int nVal, int nVal2)",
+      "evidence_level": "unverified"
     },
     "0x0043DF70": {
       "name": "GetItemAt",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0043F410": {
       "name": "AdjustScroll",
-      "signature": "int __thiscall UIListBox::AdjustScroll(int nVal)"
+      "signature": "int __thiscall UIListBox::AdjustScroll(int nVal)",
+      "evidence_level": "unverified"
     },
     "0x0043F590": {
       "name": "GetLockedSel",
-      "signature": "int __thiscall UIListBox::GetLockedSel()"
+      "signature": "int __thiscall UIListBox::GetLockedSel()",
+      "evidence_level": "unverified"
     },
     "0x0043F670": {
       "name": "SetItemOffset",
-      "signature": "int __thiscall(int nVal, int nVal2)"
+      "signature": "int __thiscall(int nVal, int nVal2)",
+      "evidence_level": "unverified"
     },
     "0x0043F690": {
       "name": "SetItemData",
       "signature": "int __thiscall(int nData)",
-      "_misattrib_evidence": "max_offset=1188>class_size=308"
+      "_misattrib_evidence": "max_offset=1188>class_size=308",
+      "evidence_level": "unverified"
     },
     "0x00451850": {
       "name": "UIListBox_Init",
-      "signature": "int __thiscall UIListBox::UIListBox_Init()"
+      "signature": "int __thiscall UIListBox::UIListBox_Init()",
+      "evidence_level": "unverified"
     },
     "0x00451B40": {
       "name": "ResizeToContent",
       "signature": "int __thiscall UIListBox::ResizeToContent(int bResize)",
-      "_misattrib_evidence": "max_offset=1296>class_size=332"
+      "_misattrib_evidence": "max_offset=1296>class_size=332",
+      "evidence_level": "unverified"
     },
     "0x00451C10": {
       "name": "IsVisible",
       "signature": "int __thiscall UIListBox::IsVisible()",
-      "_misattrib_evidence": "max_offset=1468>class_size=332"
+      "_misattrib_evidence": "max_offset=1468>class_size=332",
+      "evidence_level": "unverified"
     },
     "0x0049CF20": {
       "name": "GetSkillSlotLevel",
-      "signature": "int __thiscall UIListBox::GetSkillSlotLevel(int nVal, int nVal2)"
+      "signature": "int __thiscall UIListBox::GetSkillSlotLevel(int nVal, int nVal2)",
+      "evidence_level": "unverified"
     },
     "0x00532A40": {
       "name": "ResetRect",
-      "signature": "int *__thiscall()"
+      "signature": "int *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x0053D100": {
       "name": "RefreshList",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x005279D0": {
       "name": "_scalar_dtor_79d0",
-      "signature": "UIListBox *__thiscall(UIListBox *Block, char a2)"
+      "signature": "UIListBox *__thiscall(UIListBox *Block, char a2)",
+      "evidence_level": "unverified"
     },
     "0x0043DCF0": {
       "name": "_scalar_dtor_DCF0",
       "signature": "void __thiscall(UIListBox *__hidden this)",
       "source": "vtable_evidence | [T142R] 删除析构族机械判定（T138 形，逐形 objdump A 级）：全形=call 0x43DD10 + testb $0x1,0x8(%esp) + call 0x541d10(operator delete) + mov eax,esi + ret $4；被调 0x43DD10 本体=SEH + vptr store 0x56AD20 + try-level 递减 + call 0x43DE40/0x445B40 ⇒ 完整析构 ⇒ 本体=真标量删除析构。⚠️ 归属挂账：vtable 0x56AD20(base None) slot5=0x43DCF0，类标识待定（非 UIListBox 本体 vtable 0x56AD40）；名描述函数语义 ✓ T135 撞名核=0 ✓ | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIListBox（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AD20）",
-      "ordinal": 5
+      "ordinal": 5,
+      "evidence_level": "A"
     },
     "0x0043F6D0": {
       "name": "SetFirstShow",
       "signature": "int __thiscall(unsigned int dwVal)",
-      "_misattrib_evidence": "max_offset=1200>class_size=308"
+      "_misattrib_evidence": "max_offset=1200>class_size=308",
+      "evidence_level": "unverified"
     },
     "0x004AA1B0": {
       "name": "ResetAllListBoxes",
       "signature": "int __thiscall ()",
-      "_misattrib_evidence": "max_offset=394816>class_size=1208"
+      "_misattrib_evidence": "max_offset=394816>class_size=1208",
+      "evidence_level": "unverified"
     },
     "0x004AA230": {
       "name": "ShowSlotUI",
       "signature": "int __thiscall ()",
-      "_misattrib_evidence": "max_offset=397552>class_size=1208"
+      "_misattrib_evidence": "max_offset=397552>class_size=1208",
+      "evidence_level": "unverified"
     },
     "0x004AA320": {
       "name": "InsertUIListBox",
       "signature": "void __thiscall (int nVal)",
-      "_misattrib_evidence": "max_offset=400536>class_size=1208"
+      "_misattrib_evidence": "max_offset=400536>class_size=1208",
+      "evidence_level": "unverified"
     },
     "0x004AA680": {
       "name": "ProcessListInput",
       "signature": "void __thiscall (int nVal)",
-      "_misattrib_evidence": "max_offset=397552>class_size=1208"
+      "_misattrib_evidence": "max_offset=397552>class_size=1208",
+      "evidence_level": "unverified"
     },
     "0x0043EBB0": {
       "name": "GetGridOffset",
-      "signature": "void __thiscall(UIListBox *this, int *pOut, int index)"
+      "signature": "void __thiscall(UIListBox *this, int *pOut, int index)",
+      "evidence_level": "unverified"
     },
     "0x0043f560": {
       "name": "CreateChild",
       "signature": "int __thiscall()",
-      "_misattrib_evidence": "round4: 33 xrefs all UIListBox block (physically adjacent); offsets +0x1B0/+0x45C/+0x460 fit UIListBox(1208B) not NPC(1152B) usage zone"
+      "_misattrib_evidence": "round4: 33 xrefs all UIListBox block (physically adjacent); offsets +0x1B0/+0x45C/+0x460 fit UIListBox(1208B) not NPC(1152B) usage zone",
+      "evidence_level": "unverified"
     },
     "0x0043D7A0": {
       "name": "ForwardOnMessage",
       "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
-      "source": "vtable_gap_fill_v1(from RoleCameraCtrl.json)"
+      "source": "vtable_gap_fill_v1(from RoleCameraCtrl.json)",
+      "evidence_level": "unverified"
     },
     "0x0043DE40": {
       "name": "CCBRoleState::Destroy",
       "signature": "int __thiscall Destroy(int nMode)",
-      "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+      "source": "vtable_gap_fill_v1(from CCBRoleState.json)",
+      "evidence_level": "unverified"
     },
     "0x00445C60": {
       "name": "Update_5C60",
       "signature": "int __thiscall(int a2, int a3)",
-      "source": "vtable_gap_fill_v1(from SceneObj.json)"
+      "source": "vtable_gap_fill_v1(from SceneObj.json)",
+      "evidence_level": "unverified"
     },
     "0x00453E50": {
       "name": "_scalar_dtor_3E50",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
-      "source": "vtable_gap_fill_v1(from CCBUIPanel.json)"
+      "source": "vtable_gap_fill_v1(from CCBUIPanel.json)",
+      "evidence_level": "unverified"
     },
     "0x00454550": {
       "name": "RenderIfUnlocked",
       "signature": "char __thiscall CCBUIPanel::RenderIfUnlocked()",
-      "source": "vtable_gap_fill_v1(from CCBUIPanel.json)"
+      "source": "vtable_gap_fill_v1(from CCBUIPanel.json)",
+      "evidence_level": "unverified"
     },
     "0x00454560": {
       "name": "ProcessInputIfUnlocked",
       "signature": "BOOL __thiscall CCBUIPanel::ProcessInputIfUnlocked(int nVal, int nVal2)",
-      "source": "vtable_gap_fill_v1(from CCBUIPanel.json)"
+      "source": "vtable_gap_fill_v1(from CCBUIPanel.json)",
+      "evidence_level": "unverified"
     },
     "0x00454590": {
       "name": "OnMessage_4590",
       "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
-      "source": "vtable_gap_fill_v1(from CCBUIPanel.json)"
+      "source": "vtable_gap_fill_v1(from CCBUIPanel.json)",
+      "evidence_level": "unverified"
     },
     "0x0046B4B0": {
       "name": "_todo_0046B4B0",
       "signature": "void __thiscall(int nVal1, int nVal2, int nVal3)",
-      "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x46b4b0 `mov 0x4(%esp),%eax; sub $0x110,%esp; add $0xfffffc18,%eax`（参1 运算）+ 尾 `ret $0xc`（3 栈参）；语义未定 ⇒ _todo_ 占位。SaleUI 继承槽 slot[6] 的基类侧缺失（from=UIListBox）"
+      "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x46b4b0 `mov 0x4(%esp),%eax; sub $0x110,%esp; add $0xfffffc18,%eax`（参1 运算）+ 尾 `ret $0xc`（3 栈参）；语义未定 ⇒ _todo_ 占位。SaleUI 继承槽 slot[6] 的基类侧缺失（from=UIListBox）",
+      "evidence_level": "A"
     },
     "0x0043E120": {
       "name": "DeleteRow",
       "signature": "void __thiscall()",
-      "source": "| [rsite 根治 2026-10-16] 名 DeleteRow⇒~UIListBox（真析构，vtable 0x56AD40 slot None=本类）：A级 idapro 2f27f612：删析构 vtable 槽 xref（0x4518E0@0x56B178 from=UILoadingFrm / 0x4D3930@0x56FADC from=CEffShock / 0x43E100@0x56AD40 from=None=UIListBox）+ call 完整dtor(this)+flags 条件 delete ABI 配对 ⇒ 目标=同类完整析构 | [退化修复 2026-10-16 回退] ~UIListBox 与 0x43DD10 同签名双析构=C2084 误伤实锤（析构不可重载）；真身 0x43E0xx=UIListBox 本体（m_rowenable 面）但与 0x43DCxx 簇双簇裁决未完 ⇒ 名形暂缓，待裁决后正名"
+      "source": "| [rsite 根治 2026-10-16] 名 DeleteRow⇒~UIListBox（真析构，vtable 0x56AD40 slot None=本类）：A级 idapro 2f27f612：删析构 vtable 槽 xref（0x4518E0@0x56B178 from=UILoadingFrm / 0x4D3930@0x56FADC from=CEffShock / 0x43E100@0x56AD40 from=None=UIListBox）+ call 完整dtor(this)+flags 条件 delete ABI 配对 ⇒ 目标=同类完整析构 | [退化修复 2026-10-16 回退] ~UIListBox 与 0x43DD10 同签名双析构=C2084 误伤实锤（析构不可重载）；真身 0x43E0xx=UIListBox 本体（m_rowenable 面）但与 0x43DCxx 簇双簇裁决未完 ⇒ 名形暂缓，待裁决后正名",
+      "evidence_level": "A"
     },
     "0x00451900": {
       "name": "DestroyContent",
       "signature": "void __thiscall()",
-      "source": "sig_evidence_A(ret-N arity) | [rsite 根治 2026-10-16] 归属迁移 UIListBox⇒UILoadingFrm + 名 DestroyContent⇒~UILoadingFrm：A级 idapro 2f27f612：删析构 vtable 槽 xref（0x4518E0@0x56B178 from=UILoadingFrm / 0x4D3930@0x56FADC from=CEffShock / 0x43E100@0x56AD40 from=None=UIListBox）+ call 完整dtor(this)+flags 条件 delete ABI 配对 ⇒ 目标=同类完整析构 | [停车场清理 2026-10-16 回改] A级 idapro d9a0f50c+objdump：0x451850 基类 call 0x43bb70（≠UIListBox 簇 0x445AA0）+ call 0x43dfc0(UIListBox ctor) 于子对象 + UITextArea::InitAfterClear ⇒ 0x4518xx=独立类（UIFrameWnd 系+UIListBox/UITextArea 成员）；UILoadingFrm=0x4507xx 簇（m_LoadProgress+m_MaxValue=100 语义吻合）⇒ 上轮 ~UILoadingFrm 误迁回改，真名待 0x4518xx 簇裁决"
+      "source": "sig_evidence_A(ret-N arity) | [rsite 根治 2026-10-16] 归属迁移 UIListBox⇒UILoadingFrm + 名 DestroyContent⇒~UILoadingFrm：A级 idapro 2f27f612：删析构 vtable 槽 xref（0x4518E0@0x56B178 from=UILoadingFrm / 0x4D3930@0x56FADC from=CEffShock / 0x43E100@0x56AD40 from=None=UIListBox）+ call 完整dtor(this)+flags 条件 delete ABI 配对 ⇒ 目标=同类完整析构 | [停车场清理 2026-10-16 回改] A级 idapro d9a0f50c+objdump：0x451850 基类 call 0x43bb70（≠UIListBox 簇 0x445AA0）+ call 0x43dfc0(UIListBox ctor) 于子对象 + UITextArea::InitAfterClear ⇒ 0x4518xx=独立类（UIFrameWnd 系+UIListBox/UITextArea 成员）；UILoadingFrm=0x4507xx 簇（m_LoadProgress+m_MaxValue=100 语义吻合）⇒ 上轮 ~UILoadingFrm 误迁回改，真名待 0x4518xx 簇裁决",
+      "evidence_level": "A"
     },
     "0x004518E0": {
       "name": "_sdtor_28",
       "signature": "void *__thiscall(char a2)",
-      "source": "[0x4518xx 收口 2026-10-16] registry 归属裁决：删析构与完整析构=ABI 配对体（decomp 体 `UIListBox::DestroyContent((UIListBox *)this); if (Block & 1) operator delete; return` 铁证）⇒ 配对归同单元 UIListBox；签名正名 flags 真型 char+this 隐式（弃显式 this 旧建模）；三源统一：注解 _sdtor_28 / decomp DestroyContent / 编译后同单元渲染名"
+      "source": "[0x4518xx 收口 2026-10-16] registry 归属裁决：删析构与完整析构=ABI 配对体（decomp 体 `UIListBox::DestroyContent((UIListBox *)this); if (Block & 1) operator delete; return` 铁证）⇒ 配对归同单元 UIListBox；签名正名 flags 真型 char+this 隐式（弃显式 this 旧建模）；三源统一：注解 _sdtor_28 / decomp DestroyContent / 编译后同单元渲染名",
+      "evidence_level": "unverified"
     },
     "0x00451C70": {
       "name": "_sdtor_28_adjthunk",
       "signature": "void __thiscall()",
-      "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x004518E0）⇒ 目标名 _sdtor_28 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）"
+      "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x004518E0）⇒ 目标名 _sdtor_28 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
+      "evidence_level": "A"
     }
   },
   "vtables": [

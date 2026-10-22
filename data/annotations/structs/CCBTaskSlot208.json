@@ -5,62 +5,74 @@
     "0": {
       "name": "m_nBase",
       "type": "int",
-      "source": "[A 级 opcode 2026-10-21·analyzer R54] +0x00 **int**（=0x2F6=758 常量）· ⚠️ R52「_BYTE[20] 子对象」**撤回**（mov imm 值形实录）· | [R55 撤位面标 2026-10-21·reviewer] +0 与 +0x10 差 16B = 不同存储 ⇒ 三判据①「同存储多解释」不成立。「同值双写 758/758.0f」= 值镜像字段对（非 overlap）。758.0f 立即数零实录（0x44470000 全图空命中）⇒ 浮点侧仅槽形无值证=半证。"
+      "source": "[A 级 opcode 2026-10-21·analyzer R54] +0x00 **int**（=0x2F6=758 常量）· ⚠️ R52「_BYTE[20] 子对象」**撤回**（mov imm 值形实录）· | [R55 撤位面标 2026-10-21·reviewer] +0 与 +0x10 差 16B = 不同存储 ⇒ 三判据①「同存储多解释」不成立。「同值双写 758/758.0f」= 值镜像字段对（非 overlap）。758.0f 立即数零实录（0x44470000 全图空命中）⇒ 浮点侧仅槽形无值证=半证。",
+      "evidence_level": "A"
     },
     "20": {
       "name": "m_nSize",
       "type": "int",
-      "source": "[A 级 opcode] +0x14 **int**（=256/512/128/64 尺寸形）· ⚠️ R52「void * int 对」**撤回**（R54 mov imm/reg 值形实录，无指针性）"
+      "source": "[A 级 opcode] +0x14 **int**（=256/512/128/64 尺寸形）· ⚠️ R52「void * int 对」**撤回**（R54 mov imm/reg 值形实录，无指针性）",
+      "evidence_level": "A"
     },
     "24": {
       "name": "m_nId",
       "type": "int",
-      "source": "[A 级 opcode] +0x18 **int**（=64/128/64 ID 形）· ⚠️ R52「void *」撤回"
+      "source": "[A 级 opcode] +0x18 **int**（=64/128/64 ID 形）· ⚠️ R52「void *」撤回",
+      "evidence_level": "A"
     },
     "80": {
       "name": "m_nCounter",
       "type": "int",
-      "source": "[A 级 opcode] +0x50 mov×25/c7×20 高频 = 计数器/标志"
+      "source": "[A 级 opcode] +0x50 mov×25/c7×20 高频 = 计数器/标志",
+      "evidence_level": "A"
     },
     "96": {
       "name": "m_fVal0",
       "type": "float",
-      "source": "[A 级 opcode] +0x60 x87 d8/d9 浮点 opcode（fstps/flds） · **具体地址实录**：41b664 fadds 0x60(%esi)（x87 d8 opcode）"
+      "source": "[A 级 opcode] +0x60 x87 d8/d9 浮点 opcode（fstps/flds） · **具体地址实录**：41b664 fadds 0x60(%esi)（x87 d8 opcode）",
+      "evidence_level": "A"
     },
     "100": {
       "name": "m_fVal1",
       "type": "float",
-      "source": "[A 级 opcode] +0x64 x87 浮点 · **具体地址实录**：41b678 fadds 0x64(%esi)（x87 d8 opcode）"
+      "source": "[A 级 opcode] +0x64 x87 浮点 · **具体地址实录**：41b678 fadds 0x64(%esi)（x87 d8 opcode）",
+      "evidence_level": "A"
     },
     "104": {
       "name": "m_fVal2",
       "type": "float",
-      "source": "[A 级 opcode] +0x68 x87 浮点 · **具体地址实录**：41b683 fadds 0x68(%esi)（x87 d8 opcode）"
+      "source": "[A 级 opcode] +0x68 x87 浮点 · **具体地址实录**：41b683 fadds 0x68(%esi)（x87 d8 opcode）",
+      "evidence_level": "A"
     },
     "108": {
       "name": "m_fVal3",
       "type": "float",
-      "source": "[A 级 opcode] +0x6C x87 浮点 · **具体地址实录**：440006 fadds 0x6C(%esi)（x87 d8 opcode）"
+      "source": "[A 级 opcode] +0x6C x87 浮点 · **具体地址实录**：440006 fadds 0x6C(%esi)（x87 d8 opcode）",
+      "evidence_level": "A"
     },
     "112": {
       "name": "m_fVal4",
       "type": "float",
-      "source": "[A 级 opcode] +0x70 x87 浮点 · **具体地址实录**：440595 fmuls 0x70(%esi)（x87 d8 opcode）"
+      "source": "[A 级 opcode] +0x70 x87 浮点 · **具体地址实录**：440595 fmuls 0x70(%esi)（x87 d8 opcode）",
+      "evidence_level": "A"
     },
     "116": {
       "name": "m_fVal5",
       "type": "float",
-      "source": "[A 级 opcode] +0x74 x87 浮点（+0x60-0x74 float ×6 配对） · **具体地址实录**：440581 fcomps 0x74(%esi)（x87 d8 opcode）"
+      "source": "[A 级 opcode] +0x74 x87 浮点（+0x60-0x74 float ×6 配对） · **具体地址实录**：440581 fcomps 0x74(%esi)（x87 d8 opcode）",
+      "evidence_level": "A"
     },
     "144": {
       "name": "m_ptrC",
       "type": "void *",
-      "source": "[A 级 opcode] +0x90 mov×16 存形"
+      "source": "[A 级 opcode] +0x90 mov×16 存形",
+      "evidence_level": "A"
     },
     "184": {
       "name": "_ovl_0B8",
       "type": "_BYTE[24]",
-      "source": "[A 级 opcode] +0xB8 子对象（lea×5 取址形）· 208-0xB8=0x18=24B"
+      "source": "[A 级 opcode] +0xB8 子对象（lea×5 取址形）· 208-0xB8=0x18=24B",
+      "evidence_level": "A"
     }
   },
   "_verdicts": {

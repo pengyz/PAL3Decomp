@@ -5,91 +5,107 @@
     "0": {
       "name": "m_dwID",
       "type": "unsigned int[3]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "m_active",
       "type": "CameraCtrl *",
-      "source": "binary:C2440 assignment from CameraCtrl*"
+      "source": "binary:C2440 assignment from CameraCtrl*",
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "m_tex",
       "type": "gbTexture *[3]",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "28": {
       "name": "m_bShow",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "29": {
       "name": "m_bSoftMode",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "annotation",
+      "evidence_level": "unverified"
     },
     "44": {
       "name": "m_pData",
       "type": "unsigned long",
-      "source": "2026-09-14: decomp writes at this+0x2C*4 (44 bytes) | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x4323E7 `*(UIListBox**)&m_pData[4*v3]`/`*(DWORD*)&...=0` **数组基走查+槽位搬**（判据②）⇒ 位面复用 | evidence: 详前文 A 级形证"
+      "source": "2026-09-14: decomp writes at this+0x2C*4 (44 bytes) | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x4323E7 `*(UIListBox**)&m_pData[4*v3]`/`*(DWORD*)&...=0` **数组基走查+槽位搬**（判据②）⇒ 位面复用 | evidence: 详前文 A 级形证",
+      "evidence_level": "A"
     }
   },
   "methods": {
     "0x00535120": {
       "name": "Update",
-      "signature": "void __thiscall UICursor::Update(double fDelta)"
+      "signature": "void __thiscall UICursor::Update(double fDelta)",
+      "evidence_level": "unverified"
     },
     "0x00541CC0": {
       "name": "_todo_541CC0",
       "signature": "void __thiscall()",
-      "source": "| [重名消解 2026-10-16 analyzer] 0x541CC0 A 级本体=6 次 vptr 写（0x541CC0+168/+259/+340/+635/+724/+867 三子对象组装）=**ctor 形**非 IRender（0x541160 才是 IRender(int,int,int,int,...) 真渲染）⇒ 改名 UICursor（ctor）消类内重名（C2065 暴露源） | [改名修正 2026-10-16 analyzer] 「UICursor(ctor)」判据不足收回——0x541CC0 头部 A 级=`ff 15 [IAT]` 调用+浮点操作非 ctor 头（6 写表是工作负载非组装序）⇒ 语义未考诚实保留 _todo_541CC0（重名消解仍达成）"
+      "source": "| [重名消解 2026-10-16 analyzer] 0x541CC0 A 级本体=6 次 vptr 写（0x541CC0+168/+259/+340/+635/+724/+867 三子对象组装）=**ctor 形**非 IRender（0x541160 才是 IRender(int,int,int,int,...) 真渲染）⇒ 改名 UICursor（ctor）消类内重名（C2065 暴露源） | [改名修正 2026-10-16 analyzer] 「UICursor(ctor)」判据不足收回——0x541CC0 头部 A 级=`ff 15 [IAT]` 调用+浮点操作非 ctor 头（6 写表是工作负载非组装序）⇒ 语义未考诚实保留 _todo_541CC0（重名消解仍达成）",
+      "evidence_level": "A"
     },
     "0x00541160": {
       "name": "IRender",
       "signature": "int __cdecl(int nX, int nY, int nW, int nH, gbColorQuad *pColor, gbTextureArray *pTex, _PlugInfo *pInfo)",
       "source": "fix:header_missing_method",
-      "static": true
+      "static": true,
+      "evidence_level": "unverified"
     },
     "0x00541DD9": {
       "name": "_todo_1DD9",
       "signature": "void __thiscall()",
       "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=other:8b 41 10 85；表 0x00570A78 认领（UICursor::IRender@0x541CC0+168/+635（同函数 ）连带 | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=other:8b 41 10 85；表 0x00570A98 认领（UICursor::IRender@0x541CC0+259/+340（3 子对）连带 | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=other:8b 41 10 85；表 0x00570AA8 认领（UICursor::IRender@0x541CC0+724/+867（3 子对）连带 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
-      "declaration_only": true
+      "declaration_only": true,
+      "evidence_level": "A"
     },
     "0x00541EF6": {
       "name": "_todo_1EF6",
       "signature": "void __thiscall()",
       "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x00570A78 认领（UICursor::IRender@0x541CC0+168/+635（同函数 ）连带 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
-      "declaration_only": true
+      "declaration_only": true,
+      "evidence_level": "A"
     },
     "0x00541F13": {
       "name": "_scalar_dtor_1F13",
       "signature": "void __thiscall()",
       "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x00570A78 认领（UICursor::IRender@0x541CC0+168/+635（同函数 ）连带 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x541EB9 写 vptr 0x570A98（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x570A98→UICursor（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UICursor（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x541EB9 写 vptr 0x570A98",
-      "declaration_only": true
+      "declaration_only": true,
+      "evidence_level": "A"
     },
     "0x00541DE6": {
       "name": "_todo_1DE6",
       "signature": "void __thiscall()",
       "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x00570A98 认领（UICursor::IRender@0x541CC0+259/+340（3 子对）连带 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
-      "declaration_only": true
+      "declaration_only": true,
+      "evidence_level": "A"
     },
     "0x00541E40": {
       "name": "_scalar_dtor_1E40",
       "signature": "void __thiscall()",
       "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x00570A98 认领（UICursor::IRender@0x541CC0+259/+340（3 子对）连带 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x541E03 写 vptr 0x570A98（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x570A98→UICursor（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UICursor（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x541E03 写 vptr 0x570A98",
-      "declaration_only": true
+      "declaration_only": true,
+      "evidence_level": "A"
     },
     "0x00541FDE": {
       "name": "_todo_1FDE",
       "signature": "void __thiscall()",
       "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x00570AA8 认领（UICursor::IRender@0x541CC0+724/+867（3 子对）连带 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
-      "declaration_only": true
+      "declaration_only": true,
+      "evidence_level": "A"
     },
     "0x00541FFB": {
       "name": "_scalar_dtor_1FFB",
       "signature": "void __thiscall()",
       "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x00570AA8 认领（UICursor::IRender@0x541CC0+724/+867（3 子对）连带 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x541FA1 写 vptr 0x570A98（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x570A98→UICursor（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UICursor（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x541FA1 写 vptr 0x570A98",
-      "declaration_only": true
+      "declaration_only": true,
+      "evidence_level": "A"
     }
   },
   "vtables": [

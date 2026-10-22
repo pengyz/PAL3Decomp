@@ -5,113 +5,135 @@
     "0": {
       "name": "m_bNewRole",
       "type": "unsigned char[11]",
-      "offset": 0
+      "offset": 0,
+      "evidence_level": "unverified"
     },
     "12": {
       "name": "m_pCBSystem",
       "type": "CCBSystem *",
-      "offset": 12
+      "offset": 12,
+      "evidence_level": "unverified"
     },
     "16": {
       "name": "m_pRoleState",
       "type": "CCBRoleState *",
-      "offset": 16
+      "offset": 16,
+      "evidence_level": "unverified"
     },
     "20": {
       "name": "m_pUtil",
       "type": "CUtil *",
-      "offset": 20
+      "offset": 20,
+      "evidence_level": "unverified"
     },
     "24": {
       "name": "m_VA",
       "type": "tagVA",
-      "offset": 24
+      "offset": 24,
+      "evidence_level": "unverified"
     },
     "48": {
       "name": "m_VAO",
       "type": "tagVAO[32]",
-      "offset": 48
+      "offset": 48,
+      "evidence_level": "unverified"
     },
     "560": {
       "name": "m_VAF",
       "type": "tagVAF[32]",
-      "offset": 560
+      "offset": 560,
+      "evidence_level": "unverified"
     },
     "1584": {
       "name": "m_Demand",
       "type": "tagDemand[10][11]",
-      "offset": 1584
+      "offset": 1584,
+      "evidence_level": "unverified"
     },
     "3344": {
       "name": "m_EnemyDemand",
       "type": "tagDemand[5]",
       "offset": 3344,
-      "source": "+fix:overlap_correct_count | verified:2026-10-15 A:间距算术 gap80=5x16(tagDemand编译器裁判✓5成员一致)恰好相邻无重叠,overlap_correct_count修正正确"
+      "source": "+fix:overlap_correct_count | verified:2026-10-15 A:间距算术 gap80=5x16(tagDemand编译器裁判✓5成员一致)恰好相邻无重叠,overlap_correct_count修正正确",
+      "evidence_level": "unverified"
     },
     "3504": {
       "name": "m_FriendDemand",
       "type": "tagDemand[5]",
       "offset": 3504,
-      "source": "+fix:overlap_correct_count | verified:2026-10-15 A:同上 gap80=5x16 相邻无重叠"
+      "source": "+fix:overlap_correct_count | verified:2026-10-15 A:同上 gap80=5x16 相邻无重叠",
+      "evidence_level": "unverified"
     },
     "3424": {
       "name": "m_nDemandThreadTracer",
       "type": "int",
-      "source": "binary:disp32_3hits_2funcs"
+      "source": "binary:disp32_3hits_2funcs",
+      "evidence_level": "unverified"
     },
     "3432": {
       "name": "m_bDemandThreadTracer",
       "type": "unsigned char",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "binary:disp32_1hits_1funcs",
+      "evidence_level": "unverified"
     },
     "3584": {
       "name": "m_nHandleEnemyWell",
       "type": "int",
-      "source": "binary:disp32_7hits_4funcs"
+      "source": "binary:disp32_7hits_4funcs",
+      "evidence_level": "unverified"
     },
     "3592": {
       "name": "m_nTodo_E08",
       "type": "unsigned char",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "binary:disp32_1hits_1funcs",
+      "evidence_level": "unverified"
     }
   },
   "methods": {
     "0x0040CFE0": {
       "name": "GetTargetRole",
       "signature": "void *__thiscall(void *pOut)",
-      "source": "| 阶2批1 2026-10-06：ret 8（2 栈参 A 级）+[esp+8] 读=第 2 参 nIndex（v4 误名局部）——签名补参（字节 diff first=3 序言帧差根因） | 回滚 2026-10-06：ret 8 证真 2 参但调用 1 参=渲染丢参族（SetVisible 同型）——签名侧不动（字节面待渲染修）"
+      "source": "| 阶2批1 2026-10-06：ret 8（2 栈参 A 级）+[esp+8] 读=第 2 参 nIndex（v4 误名局部）——签名补参（字节 diff first=3 序言帧差根因） | 回滚 2026-10-06：ret 8 证真 2 参但调用 1 参=渲染丢参族（SetVisible 同型）——签名侧不动（字节面待渲染修）",
+      "evidence_level": "A"
     },
     "0x004D6FF0": {
       "name": "CCBAI",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004D7030": {
       "name": "~CCBAI",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004D7040": {
       "name": "Reset",
       "signature": "void __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D7080": {
       "name": "Create",
-      "signature": "CCBAI * __thiscall(int *p_DWORD)"
+      "signature": "CCBAI * __thiscall(int *p_DWORD)",
+      "evidence_level": "unverified"
     },
     "0x004D70C0": {
       "name": "Init",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D7100": {
       "name": "Update",
       "signature": "void __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D7120": {
       "name": "Render",
       "signature": "void __thiscall(int nVal)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D71E0": {
       "name": "HandleEnemyAction",
@@ -154,214 +176,258 @@
           "from_name": "nVal",
           "name": "pDemand"
         }
-      ]
+      ],
+      "evidence_level": "unverified"
     },
     "0x004D7820": {
       "name": "HandleEnemyWell",
       "signature": "bool __thiscall(int nRoleIndex)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D7EF0": {
       "name": "HandleEnemyWeak",
       "signature": "bool __thiscall(int nRoleIndex)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D86D0": {
       "name": "HandleEnemyChaos",
       "signature": "bool __thiscall(int nRoleIndex)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D8760": {
       "name": "HandleFriendAction",
       "signature": "bool __thiscall(int nRoleIndex)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D8AF0": {
       "name": "HandleFriendNegative",
       "signature": "bool __thiscall(int nRoleIndex)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D8F20": {
       "name": "HandleFriendAffirmative",
       "signature": "bool __thiscall(int nRoleIndex, char pData)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D9130": {
       "name": "HandlePlayerNormalAttack",
       "signature": "bool __thiscall(int nRoleIndex, int bPlayerCmd)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D9360": {
       "name": "RepeatPlayerLastOperation",
-      "signature": "void *__thiscall()"
+      "signature": "void *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004D9380": {
       "name": "SetNewRole",
-      "signature": "int *__thiscall()"
+      "signature": "int *__thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004D93D0": {
       "name": "FillAllDemandSatisfy",
       "signature": "void __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D94F0": {
       "name": "DemandThreadTracer",
       "signature": "void __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D9740": {
       "name": "DemandChecker",
-      "signature": "void __thiscall(CCBAI *this, unsigned int dwVal, int nVal, int nVal2)"
+      "signature": "void __thiscall(CCBAI *this, unsigned int dwVal, int nVal, int nVal2)",
+      "evidence_level": "unverified"
     },
     "0x004D9920": {
       "name": "CastNormalAttack",
       "signature": "bool __thiscall(int nRoleIndex, int nDestRole, int pDemand)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D9A70": {
       "name": "CastRecoverMagic",
       "signature": "bool __thiscall(int nRoleIndex, int nDestRole)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D9BA0": {
       "name": "CastRecoverBigMagic",
-      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int pDemand, int nVal)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int pDemand, int nVal)",
+      "evidence_level": "unverified"
     },
     "0x004D9D00": {
       "name": "CastAttackMagic",
       "signature": "bool __thiscall(int nRoleIndex, int nDestRole)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D9E20": {
       "name": "CastAttackBigMagic",
       "signature": "bool __thiscall(int nRoleIndex, int pDemand)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D9F50": {
       "name": "CastSpecifyMagic",
       "signature": "bool __thiscall(int nRoleIndex, int nDestRole, int dwID)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DA0A0": {
       "name": "CastBFAMagic",
       "signature": "bool __thiscall(int nRoleIndex, int nDestRole)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DA1D0": {
       "name": "CastBFAAttackMagic",
       "signature": "bool __thiscall(int nRoleIndex, int pDemand, int nVal)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DA350": {
       "name": "CastRandEnemyMagic",
       "signature": "bool __thiscall(int nRoleIndex, int nDestRole)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DA4F0": {
       "name": "CastRecoverSkill",
       "signature": "bool __thiscall(int nRoleIndex, int nDestRole, int pDemand)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DA640": {
       "name": "CastRecoverBigSkill",
       "signature": "bool __thiscall(int nRoleIndex, int pDemand)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DA770": {
       "name": "CastAttackSkill",
       "signature": "bool __thiscall(int nRoleIndex, int nDestRole, int pDemand)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DA900": {
       "name": "CastAttackBigSkill",
       "signature": "bool __thiscall(int nRoleIndex, int pDemand)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DAA40": {
       "name": "CastRecoverItem",
       "signature": "bool __thiscall(int nRoleIndex, int nDestRole, int pDemand)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DAB70": {
       "name": "CastRecoverBigItem",
       "signature": "bool __thiscall(int nRoleIndex, int pDemand, int nVal)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DACA0": {
       "name": "CastAttackItem",
       "signature": "bool __thiscall(int nRoleIndex, int nDestRole, int pDemand)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DADD0": {
       "name": "CastAttackBigItem",
       "signature": "bool __thiscall(int nRoleIndex, int pDemand, int nVal)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DAF00": {
       "name": "CastBossPhysicalAttack",
       "signature": "bool __thiscall(int nRoleIndex, int pDemand, int nVal)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DB030": {
       "name": "CastReviveMagic",
       "signature": "bool __thiscall(int nRoleIndex, int nDestRole, int pDemand)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DB160": {
       "name": "CastReviveSkill",
       "signature": "bool __thiscall(int nRoleIndex)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DB270": {
       "name": "CastCureSpecStateMagic",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DB280": {
       "name": "CastCureSpecStateSkill",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DB290": {
       "name": "CastCureSpecStateItem",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004DB2A0": {
       "name": "HasVeryPunyFiveMagicRole",
-      "signature": "void __thiscall()"
+      "signature": "void __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004DB2B0": {
       "name": "CreateValueAutomation",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DB2C0": {
       "name": "AddValueFunction",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DB300": {
       "name": "AddValueItem",
       "signature": "bool __thiscall()",
-      "source": "| D 案契约正名 2026-10-06：二进制 jmp→retn=0 栈参契约（A 级）——原签名 bool __thiscall(int nData, unsigned 无据证伪"
+      "source": "| D 案契约正名 2026-10-06：二进制 jmp→retn=0 栈参契约（A 级）——原签名 bool __thiscall(int nData, unsigned 无据证伪",
+      "evidence_level": "A"
     },
     "0x004DB310": {
       "name": "DestroyValueAutomation",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004DB350": {
       "name": "RunValueAutomation",
-      "signature": "int __thiscall()"
+      "signature": "int __thiscall()",
+      "evidence_level": "unverified"
     },
     "0x004DB360": {
       "name": "SpecAI",
       "signature": "bool __thiscall()",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "evidence_level": "unverified"
     },
     "0x004D8580": {
       "name": "ChooseRandomAction",
-      "signature": "void __thiscall CCBAI::ChooseRandomAction(int nSelfIdx)"
+      "signature": "void __thiscall CCBAI::ChooseRandomAction(int nSelfIdx)",
+      "evidence_level": "unverified"
     }
   },
   "vtables": []

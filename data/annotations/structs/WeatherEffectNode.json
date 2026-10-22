@@ -5,131 +5,153 @@
     "0": {
       "name": "vfptr",
       "type": "void *",
-      "source": "[IMPOSSIBLE 族 2026-10-17] A 级：主 vptr 槽位 0x56A66C；MI 多 vptr 区（+0/C/…随宿主）真身锚挂账"
+      "source": "[IMPOSSIBLE 族 2026-10-17] A 级：主 vptr 槽位 0x56A66C；MI 多 vptr 区（+0/C/…随宿主）真身锚挂账",
+      "evidence_level": "A"
     }
   },
   "methods": {
     "0x00404D40": {
       "name": "_scalar_dtor_full",
       "signature": "void __thiscall()",
-      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构三段式（包装 IAT 基 dtor）；21 槽全类视图"
+      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构三段式（包装 IAT 基 dtor）；21 槽全类视图",
+      "evidence_level": "A"
     },
     "0x00405310": {
       "name": "_scalar_dtor_light",
       "signature": "void __thiscall()",
-      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构（11 槽尾视图=gbLightObj+weather 基）"
+      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构（11 槽尾视图=gbLightObj+weather 基）",
+      "evidence_level": "A"
     },
     "0x00405580": {
       "name": "_scalar_dtor_weather",
       "signature": "void __thiscall()",
-      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构（6 槽尾视图）"
+      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构（6 槽尾视图）",
+      "evidence_level": "A"
     },
     "0x00405560": {
       "name": "_scalar_dtor_rain",
       "signature": "void __thiscall()",
-      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构（3 槽尾视图=gbRain/gbSnow 基）"
+      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构（3 槽尾视图=gbRain/gbSnow 基）",
+      "evidence_level": "A"
     },
     "0x005420C0": {
       "name": "SnowDraw",
       "signature": "void __thiscall()",
       "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级 IDA：`gbSnow::Draw` thunk（__imp_?Draw@gbSnow@@EAEXXZ 转发） | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
-      "declaration_only": true
+      "declaration_only": true,
+      "evidence_level": "A"
     },
     "0x005420D2": {
       "name": "RainUpdate",
       "signature": "void __thiscall(float)",
       "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级 IDA：`gbRain::Update` thunk | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
-      "declaration_only": true
+      "declaration_only": true,
+      "evidence_level": "A"
     },
     "0x00542072": {
       "name": "WeatherEffectNode_adjthunk1",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）"
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+      "evidence_level": "unverified"
     },
     "0x00542078": {
       "name": "WeatherEffectNode_adjthunk2",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）"
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+      "evidence_level": "unverified"
     },
     "0x0054207E": {
       "name": "WeatherEffectNode_adjthunk3",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）"
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+      "evidence_level": "unverified"
     },
     "0x00542084": {
       "name": "WeatherEffectNode_adjthunk4",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）"
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+      "evidence_level": "unverified"
     },
     "0x0054208A": {
       "name": "WeatherEffectNode_adjthunk5",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）"
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+      "evidence_level": "unverified"
     },
     "0x00542090": {
       "name": "WeatherEffectNode_adjthunk6",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）"
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+      "evidence_level": "unverified"
     },
     "0x00542096": {
       "name": "WeatherEffectNode_adjthunk7",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）"
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+      "evidence_level": "unverified"
     },
     "0x0054209C": {
       "name": "WeatherEffectNode_adjthunk8",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）"
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+      "evidence_level": "unverified"
     },
     "0x005420A2": {
       "name": "WeatherEffectNode_adjthunk9",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）"
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+      "evidence_level": "unverified"
     },
     "0x005420A8": {
       "name": "WeatherEffectNode_adjthunk10",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）"
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+      "evidence_level": "unverified"
     },
     "0x005420AE": {
       "name": "WeatherEffectNode_adjthunk11",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）"
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+      "evidence_level": "unverified"
     },
     "0x005420B4": {
       "name": "WeatherEffectNode_adjthunk12",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）"
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+      "evidence_level": "unverified"
     },
     "0x005420BA": {
       "name": "WeatherEffectNode_adjthunk13",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）"
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+      "evidence_level": "unverified"
     },
     "0x005420C6": {
       "name": "WeatherEffectNode_adjthunk14",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）"
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+      "evidence_level": "unverified"
     },
     "0x005420CC": {
       "name": "WeatherEffectNode_adjthunk15",
       "signature": "void __thiscall()",
       "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）"
+      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+      "evidence_level": "unverified"
     }
   },
   "vtables": [
