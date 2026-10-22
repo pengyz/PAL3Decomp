@@ -639,3 +639,4 @@
 | `::InitCombatUI` | inline | `int` | 28 | self_arg_mismatch | `(*(void ( **)(int, char *, SaleUI *, char *, _DWORD, int))(*(_DWORD *)&_this->m_Icon[2][4].m_mouseoff + 28))( 304, _this->m_Icon[3][2].m_text, _this, aUiAssistantEqu_18, 0, v142)` |
 | `::SwitchEditorCamPos` | inline | `gbGeomNode` | 20 | self_arg_mismatch | `(*(int ( **)(gbGeomNode *))(*(_DWORD *)&_this->m_pPointer->gbChain1DNode + 20))(_this->m_pPointer)` |
 | `::SetParam` | inline | `int` | 20 | non_class_hint | `(*(int ( **)(int))(*(_DWORD *)v5 + 20))(v5)` |
+| `::CCBUI_SetupAIWindow` | inline | `UIScene` | 16 | self_arg_mismatch | `(*(void ( **)(UIScene *, int, int *, int))(*(_DWORD *)&v21->UIWnd + 16))( v21, g_nMagicTabIDs[v16], &v47, v2)` |

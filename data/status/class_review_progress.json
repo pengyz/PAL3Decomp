@@ -918,6 +918,26 @@
     {
       "ts": "2026-10-22",
       "event": "C2039 top 3 归因：CEffMgr.CEffObj(26) 类型混淆 / script_state(19)+m_state(17) 不在 IDA => 均归 hexrays_limit"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "force init 验证（cli.py init --force）：script_state/m_state before/after 均无 => 非脏数据"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "FORCE INIT 后 decomp 仍引用 script_state => 非陈旧 decomp"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "ROOT CAUSE: script_state 是 PalScript.m_RoleSlotArray union 的第 3 变体（9 成员）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "CODEGEN BUG: PalScript.h:91 把 union 坍缩为 PalScriptRoleSlotOverlay 单类型 => script_state 变体丢失"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "非 hexrays_limit（用户质疑成立）—— 是 codegen union 发射 bug"
     }
   ],
   "rolling_metrics": [
@@ -1064,10 +1084,10 @@
     },
     {
       "id": "P0-14",
-      "title": "✅ C2039 top 3 归因定谳（均归 hexrays_limit）",
-      "detail": "CEffMgr.CEffObj(26) 类型混淆（m_pEM 是 CEffMgr* 但按 CEffObj:: 访问） · script_state(19)/m_state(17) 不在 IDA（inline 子结构 38/10 成员均无） => 均为 Hex-Rays 产物，不可修",
-      "impact": "C2039 级联",
-      "next": "归 hexrays_limit（不修）"
+      "title": "🎯 codegen union 坍缩 bug（丢失 union 变体）",
+      "detail": "PalScript.m_RoleSlotArray 是 union（3 变体：slot/overlay/script_state）但 PalScript.h:91 坍缩为 PalScriptRoleSlotOverlay 单类型 => script_state 变体丢失 => C2039 (19 条)",
+      "impact": "C2039 级联（script_state 19 + m_state 17）",
+      "next": "修 emit 让 union 发射为真 union（含所有变体）"
     }
   ],
   "env_todo": [
