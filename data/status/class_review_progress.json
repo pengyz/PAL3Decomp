@@ -890,6 +890,22 @@
     {
       "ts": "2026-10-22",
       "event": "annotation_fix 44 文件错误码：C2440(219) C2039(166) C2228(96) C2664(80) C2227(62)"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "第一性质疑成立：T2-F regex 统计根本不可行（语法!=语义 · 同语义多语法 · 噪声三义 · 需解析）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "实测 2 次方向失败：归一 *ptr->m 不变（36.0%）· deref 只计 *X 反降（1190->629）=> 36.0% 不可信"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "用户定谳：L1（字节比对）为唯一真相源 · T2-F regex 弃用 · T2 延后（需 oracle）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "教训：regex 统计对语法敏感，语义归一须 AST（Hex-Rays 输出非标准 C++）=> 不如不做"
     }
   ],
   "rolling_metrics": [
@@ -1086,18 +1102,11 @@
     "cpp_files": 214
   },
   "strategic_decision": {
-    "core_shift": "T2 semantic-equivalence primary + T1 boundary pinning",
-    "4_tracks": [
-      "1. reduce verification cost (incremental + parallel + cache) 596s to <60s (10x)",
-      "2. asm-first baseline (byte reference not source)",
-      "3. goal tiering T2 criteria (T2-F/VM/Frame/IO)",
-      "4. misdiagnosis governance (stale timestamp gate + C1003/L1 auto-print)"
-    ],
-    "tier2_criteria": [
-      "T2-F function diff",
-      "T2-VM opcode trace",
-      "T2-Frame screenshot diff",
-      "T2-IO save byte (keep T1)"
+    "core_shift": "L1 as sole ground truth (T2-F regex rejected)",
+    "reason": "regex stats fundamentally flawed (syntax != semantics)",
+    "next": [
+      "Path A deepening (annotation batch debt)",
+      "T2 deferred (needs oracle)"
     ]
   },
   "data_correction": {
