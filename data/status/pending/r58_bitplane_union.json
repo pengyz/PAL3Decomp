@@ -1,0 +1,98 @@
+{
+ "entries": [
+  {
+   "cls": "CCBRoleState",
+   "offset": 4,
+   "name": "m_nRoundCounter",
+   "current_type": "int",
+   "proposed_union": null,
+   "usage_forms": {
+    "assign": 61,
+    "float": 2,
+    "cmp": 1
+   },
+   "usage_verdict": "MIXED（R55 报）——**值证缺** ✗",
+   "overlap_criteria": {
+    "value_bitplane": false,
+    "value_evidence": "objdump 0x4(%esi) 立即数站全为 `movl $0x0`（零写 ✗ 无浮点位型实录）⇒ 三判据①不成立"
+   },
+   "checklist": {
+    "a_level": false,
+    "full_usage": true,
+    "rule_reproducible": true,
+    "no_confusion": true,
+    "ledger_synced": true
+   },
+   "change_kind": "freeze",
+   "confidence": 40
+  },
+  {
+   "cls": "CCBStage",
+   "offset": 284,
+   "name": "m_nSlot118",
+   "current_type": "int",
+   "proposed_union": null,
+   "usage_forms": {
+    "assign": 3,
+    "addr": 7
+   },
+   "usage_verdict": "SINGLE_ADDR（assign 3+lea 7 ✓）——**无浮点 op** ✗",
+   "overlap_criteria": {
+    "value_bitplane": false,
+    "value_evidence": "0x118(%esi) 全站：mov %eax 写 ×1 + mov 读 ×2 + lea ×5 ⇒ **零浮点 op**（lead 4108af 2.0f 站未在 0x118 面 ✗ 未证）"
+   },
+   "checklist": {
+    "a_level": false,
+    "full_usage": true,
+    "rule_reproducible": true,
+    "no_confusion": true,
+    "ledger_synced": true
+   },
+   "change_kind": "freeze",
+   "confidence": 40
+  },
+  {
+   "cls": "CCBRoleState",
+   "offset": 0,
+   "name": "m_sCombatDialog",
+   "current_type": "char[4]",
+   "proposed_union": {
+    "union": [
+     {
+      "type": "char[4]",
+      "name": "m_sCombatDialog"
+     },
+     {
+      "type": "float",
+      "name": "m_fCombatDialogVal"
+     }
+    ]
+   },
+   "usage_forms": {
+    "float": 2,
+    "byte": 1
+   },
+   "usage_verdict": "MIXED（char[4] + 浮点 ✓）",
+   "overlap_criteria": {
+    "value_bitplane": true,
+    "value_evidence": "objdump 0x0(%ebp): `fstps 0x0(%ebp)` + `fmuls 0x0(%ebp)`（浮点读写 ✓ A 级值证）+ char 写形并存 ⇒ **值位面复用** ✓"
+   },
+   "checklist": {
+    "a_level": true,
+    "full_usage": true,
+    "rule_reproducible": true,
+    "no_confusion": true,
+    "ledger_synced": true
+   },
+   "change_kind": "union_proposal",
+   "confidence": 80
+  }
+ ],
+ "summary": {
+  "total": 3,
+  "passed_checklist": 1,
+  "union_landed": 1,
+  "frozen": 2,
+  "finding": "🎯 **三判据①「值位面」须值证**（位型立即数/浮点 op 实录 ✓）——R55 的 CCBRoleState+4 MIXED 报(assign 61+float 2) 经直核 **零浮点位型实录** ✗（仅 movl $0x0 零写）⇒ 值证不足冻结 ✓· CCBStage 0x118 同（lead 4108af 站未在 0x118 面 ✗）⇒ 3 条仅 1 条（+0 fstps/fmuls ✓）过 checklist"
+ }
+}

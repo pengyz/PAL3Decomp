@@ -1,0 +1,19 @@
+{
+ "arrc_280": {
+  "base_offset": "0x0000（元素 i=280i 相对 this；disp=纯字段偏移无基折入——A/B 段 0x14/0x11c 实录反推：280i+284=elem[i+1]+4 ⇒ base=0 自洽）",
+  "evidence": "objdump 0x4dff71 区缩放链 `lea(,%i,8); sub i; lea(,5×)`=35i → `(%ecx,%eax,8)`=280i+disp（ecx=this）；实用 i≥1（B 段 inc 形）⇒ 首元素=+0x118(280)",
+  "count_field": "+0x114（276）=紧贴首元素前 4B（与 arrA/arrB「count 紧贴基址前」同构）",
+  "count_write_evidence": "5 处混形：439097/4c5a69/4c5ae2/52eca6（reg 写）+ 52af99 `mov [esi+0x114],0xc36d0000`（float 位型≈-233.0f 写）",
+  "static_upper_bound": null,
+  "static_bound_note": "不给定值（P0-6）：写入值混形且含 float 位型 ⇒ +0x114 语义位面疑（计数 vs 浮点复用/跨类同偏移）；几何共存约束推：元素≤18（elem[17] 尾 5040 < arrA 基 5240）⇒ 若 arrC 与 arrA/arrB 同宿主共存则元素上界 ≤18，此为几何推非实证",
+  "element_size": 280,
+  "relation_to_arrB": "runtime-conditional（不冒进）：元素 i=280i ⇒ i≥19 时落入 arrA 区（0x1478..0x2178=elem[19..30]）——共存要求 count≤18（几何约束）；若实证 count>18 ⇒ arrA/arrB 与 arrC 非同宿主或基址再议",
+  "conflict_note": "⚠️ 0x118 与 0x4C5C20「指针数组」读法冲突：该循环=mov (%esi),%ecx; add esi,4 连续 4B 指针表+对象虚调用——与 280B 元素（elem[1]@0x118）同址不相容 ⇒ 0x4C5C20 类归属/结构归属待核（两形不能同 this 同布局）"
+ },
+ "evidence_level": "A",
+ "confidence": 70,
+ "key_findings": [
+  "① base=0 自洽反推（280i+284=elem[i+1]+4 折叠验证）+ count 紧贴首元素（同构 arrA/B）",
+  "② 共存几何约束元素≤18 + 0x118 指针表读法冲突 ⇒ 0x4C5C20 归属待核（不冒进定案）"
+ ]
+}

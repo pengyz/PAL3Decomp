@@ -1,0 +1,54 @@
+{
+  "review_of": "weak_type_promotion_batch2.json（RoleSystem 90 条）——实存文件 weak_type_promotion.json 24 条（114 弱型采样）=口径差 90/24/114 三账待钉",
+  "verdict": "PASS_WITH_CHANGES",
+  "per_entry": [
+    {
+      "offset": "0x54",
+      "name": "m_nTimerDuration",
+      "proposed_type": "float",
+      "evidence_register": "esp",
+      "register_verdict": "INVALID_STACK",
+      "opcode_evidence": "flds 0x54(%esp) @4032ad（objdump 实录）",
+      "verdict": "WRONG_REGISTER",
+      "blocking": true
+    },
+    {
+      "offset": "0xb0",
+      "name": "m_szModelName",
+      "proposed_type": "float",
+      "evidence_register": "esp",
+      "register_verdict": "INVALID_STACK",
+      "opcode_evidence": "flds 0xb0(%esp) @42736a（objdump 实录）",
+      "verdict": "WRONG_REGISTER",
+      "blocking": true
+    },
+    {
+      "offset": "0x94",
+      "name": "m_nDispFontColor",
+      "proposed_type": "float",
+      "evidence_register": "esi",
+      "register_verdict": "valid",
+      "opcode_evidence": "fstps 0x94(%esi) @40e540（objdump 独立实录 ✓）",
+      "verdict": "OK",
+      "blocking": false
+    },
+    {
+      "offset": "0xa4",
+      "name": "m_fPosY",
+      "proposed_type": "float",
+      "evidence_register": "esi",
+      "register_verdict": "valid",
+      "opcode_evidence": "flds 0xa4(%esi) @412170（objdump 独立实录 ✓）",
+      "verdict": "OK",
+      "blocking": false
+    }
+  ],
+  "frozen_note": "20 条 freeze（无特征 op ⇒ 保留弱型 ✓ 禁猜测纪律兑现）——逐条抽样未见 esp 形/循环引用",
+  "summary": {
+    "reviewed": 24,
+    "ok": 2,
+    "wrong_register": 2,
+    "no_opcode": 20,
+    "circular": 0
+  }
+}

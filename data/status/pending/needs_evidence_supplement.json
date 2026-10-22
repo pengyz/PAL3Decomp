@@ -1,0 +1,155 @@
+{
+  "task": "R55 reviewer needs_evidence 3 项补证",
+  "date": "2026-10-21",
+  "reviewer": "verifier",
+  "discipline": "A 级=objdump 指令实录；剔 %esp/%ebp 栈 + 剔负位移（R55 纪律）；禁 IDA/stack_frame/反编译",
+  "funnel_layers": [
+    {
+      "layer": "weak_total",
+      "count": 404,
+      "filter": "lead 口径（RoleSystem 114+PalScriptMgr 146+Actor 76+CCBRoleState 68）",
+      "evidence": "⚠️ **复现差**：verifier 含 int/float 口径=486（RoleSystem 129+PalScriptMgr 176+Actor 98+CCBRoleState 83）· 排除 int/float 口径=99——**404 介于二者之间，过滤规则定义缺失**",
+      "evidence_level": "A",
+      "status": "needs_filter_definition"
+    },
+    {
+      "layer": "single_opcode_A",
+      "count": 43,
+      "filter": "单点 A 级 opcode（R51）",
+      "evidence": "⚠️ 计数依赖过滤规则（同上 404 复现差）；单点=A 级 opcode 仅一处访问",
+      "status": "needs_filter_definition"
+    },
+    {
+      "layer": "full_usage_safe",
+      "count": 3,
+      "filter": "全用法安全（R52）",
+      "evidence": "⚠️ **证伪**：见 retype_7forms——3 条实测为 2 assign-only（非 float）+ 1 混形 ⇒ **'全用法安全 SINGLE_FLOAT 零混入'不成立**",
+      "status": "FALSIFIED"
+    }
+  ],
+  "fields_280b": [
+    {
+      "offset": 0,
+      "name": "m_pHead",
+      "type": "void *",
+      "opcode": "(空)",
+      "evidence": "严格扫 CCBStage+Actor 231 方法：**0 处访问**——证据缺口（该字段未在已扫方法用到，或需扫其他类）",
+      "level": "A",
+      "note": "no-access gap"
+    },
+    {
+      "offset": 3,
+      "name": "m_bFlag",
+      "type": "unsigned char",
+      "opcode": "objdump `mov` ×2",
+      "evidence": "assign 2（存/载字节）",
+      "level": "A"
+    },
+    {
+      "offset": 4,
+      "name": "m_fSlot0",
+      "type": "float",
+      "opcode": "objdump `flds/fadds` + `mov`×301",
+      "evidence": "float 19（flds/fadds x87）+ assign 301 + addr 8 + cmp 4 ⇒ **float 确证**（x87 opcode）",
+      "level": "A"
+    },
+    {
+      "offset": 8,
+      "name": "m_fSlot1",
+      "type": "float",
+      "opcode": "objdump `flds/fcomps`",
+      "evidence": "float 9 + assign 212 ⇒ float 确证",
+      "level": "A"
+    },
+    {
+      "offset": 12,
+      "name": "m_fSlot2",
+      "type": "float",
+      "opcode": "objdump `fcomps`",
+      "evidence": "float 6 + assign 120 ⇒ float 确证",
+      "level": "A"
+    },
+    {
+      "offset": 16,
+      "name": "m_fSlot3",
+      "type": "float",
+      "opcode": "objdump `flds`",
+      "evidence": "float 3 + assign 144 + indirect 9 ⇒ float 倾向",
+      "level": "A"
+    },
+    {
+      "offset": 20,
+      "name": "m_nState",
+      "type": "int",
+      "opcode": "objdump `mov`",
+      "evidence": "assign 43 + float 4 + cmp 1 + addr 10 ⇒ **混形**（含 fcomps）——命名 m_nState(int) 与 float 用法矛盾待查",
+      "level": "A"
+    }
+  ],
+  "retype_7forms": [
+    {
+      "name": "m_nRoleParam0",
+      "offset": "Actor+0x30",
+      "forms": {
+        "arith": 0,
+        "cmp": 0,
+        "assign": 9,
+        "addr": 0,
+        "float": 0,
+        "bitop": 0,
+        "indirect": 0
+      },
+      "verdict": "SINGLE_ASSIGN（非 SINGLE_FLOAT）",
+      "mix": "零混入 ✓ 但**是 int/ptr assign 非 float**",
+      "evidence": "objdump `mov %eax,0x30(%esi)`@0x532a20 + `mov %esi,0x30(%ecx)`（assign 9）",
+      "level": "A",
+      "issue": "⚠️ SINGLE_FLOAT 命名错——实为 SINGLE_ASSIGN（int/ptr），改型应为 int/ptr 非 float"
+    },
+    {
+      "name": "m_fDirZ",
+      "offset": "Actor+0x280",
+      "forms": {
+        "arith": 0,
+        "cmp": 0,
+        "assign": 1,
+        "addr": 0,
+        "float": 0,
+        "bitop": 0,
+        "indirect": 0
+      },
+      "verdict": "SINGLE_ASSIGN（非 SINGLE_FLOAT）",
+      "mix": "零混入 ✓ 但**是 `mov %eax` int 存非 float**",
+      "evidence": "objdump `mov %eax,0x280(%esi)`@0x5309a0（assign 1，仅 1 处）",
+      "level": "A",
+      "issue": "⚠️ SINGLE_FLOAT 命名错 + 仅 1 处访问（证据极弱）——改型应 int 非 float"
+    },
+    {
+      "name": "m_nRoundCounter",
+      "offset": "CCBRoleState+0x4",
+      "forms": {
+        "arith": 0,
+        "cmp": 1,
+        "assign": 61,
+        "addr": 0,
+        "float": 2,
+        "bitop": 0,
+        "indirect": 0
+      },
+      "verdict": "MIXED（非 SINGLE）",
+      "mix": "❌ **有混入**：assign 61 + float 2 + cmp 1",
+      "evidence": "objdump `mov 0x4(%ecx),%edx`@0x44a3d0 + `flds/fstps 0x4(%...)`（float 2）",
+      "level": "A",
+      "issue": "🔴 **'零混入'证伪**——int/float 位面复用（assign+float 混）=CLAUDE.md 三判据位面复用，改型会破坏 int 用法"
+    }
+  ],
+  "summary": {
+    "item1_funnel": "⚠️ 部分完成——404/43 计数**复现差**（我的 486/99 口径 vs lead 404），过滤规则定义缺失待补",
+    "item2_280b": "✅ 完成（7 字段 opcode 实录，m_pHead no-access gap + m_nState 混形待查）",
+    "item3_retype_7forms": "✅ 完成但**结论证伪**——'SINGLE_FLOAT 零混入'不成立",
+    "top2_findings": [
+      "🔴 **3 改型 'SINGLE_FLOAT 零混入' 被严格 opcode 证据证伪**：CCBRoleState+4 是混形（assign 61+float 2+cmp 1=位面复用非单形）· Actor+0x30/+0x280 是 assign（int mov）非 float——**2 条 SINGLE_FLOAT 命名错 + 1 条零混入证伪**",
+      "⚠️ **漏斗计数 404 不可复现**（我 486/99 两口径 vs lead 404）——过滤规则定义缺失本身就是 reviewer needs_evidence 的核心缺口"
+    ],
+    "output_path": "data/status/pending/needs_evidence_supplement.json"
+  }
+}

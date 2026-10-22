@@ -1,0 +1,60 @@
+{
+  "review_of": [
+    "撤位面标清理（R56 9 处残文本）",
+    "CCBStage+280 m_TaskArrC 落盘（首元素@+280·N 待定）",
+    "arrC_280 基址 this+0 折叠说",
+    "0x4C5C20=GetReadyCount 三证",
+    "checklist 5 问执行"
+  ],
+  "verdict": "PASS_WITH_CHANGES",
+  "blocking_issues": [
+    {
+      "target": "CCBTaskSlot208 残标（angle1）",
+      "issue": "**连续两轮未清**——R56 抓 9 处后本轮实扫仍有旧说 5 处（「值位面复用铁证/三判据①」）+新说 2+总 8 处位面/overlap 文本=删旧说指令未执行（或只删部分）",
+      "evidence": "实扫 CCBTaskSlot208.json：旧说正则命中 5 · 位面|overlap 总 8",
+      "fix_required": "文本级删净旧说（单一裁定）；建议 check_annotations 加「同 member source 两说并存」检测"
+    },
+    {
+      "target": "m_TaskArrC 落盘形（angle2/3/6）",
+      "issue": "**两说不一致未收敛**：落盘『首元素@+280』=基址 280 说 vs analyzer『this+0 折叠自洽』=基址 0 说（0x118=280=elem[1] 张力即由此生）；且 type `CCBTaskSlot280[N]`=**非法 C++ 数组界**（N 非数）⇒ codegen 渲染即编译崩",
+      "evidence": "实读 CCBStage+280 type=CCBTaskSlot280[N] · arrA[16]/arrB[10] 数字形对照",
+      "fix_required": "基址二说择一收敛（或标 unclear 双记）；[N] 改 [1] 占位+source 记 N 待定（保编译）"
+    }
+  ],
+  "checklist_compliance": {
+    "fixer": false,
+    "analyzer": false,
+    "issues": [
+      "5 问文本（病灶层/消费者/缺什么/边界/回归）未见于本轮产出的 source/账面——产出为结论形非问答形；判 false 以实见为准（若产出在别处请指路径复核）",
+      "小批量面 ✓（本轮落盘 ≤5 条）但撤标清理未完=批量质不算过"
+    ]
+  },
+  "per_item": [
+    {
+      "item": "撤位面标彻底性",
+      "verdict": "BLOCKING（5 残）",
+      "evidence_check": "旧说正则 5 命中实录——R56 指令=删旧说，现状=未删净"
+    },
+    {
+      "item": "arrC 基址二义（angle3/4）",
+      "verdict": "PARTIAL",
+      "evidence_check": "0x118 访问形 4 站实录：栈形 2 站（0x118(%esp) 非成员）· **float 2.0f 写**（4108af movl $0x41000000,0x118(%eax)）· **指针写**（439091 mov %eax,0x118(%esi)）——『不可解』表述过强：同槽双用法已实录（float/指针），但 %eax/%esi 不同基=是否同存储待析 ⇒ 二义性保留但证据面已扩 4 形"
+    },
+    {
+      "item": "0x4C5C20=GetReadyCount 三证",
+      "verdict": "NEEDS_EVIDENCE",
+      "evidence_check": "三证内容本轮未抽（body/callers/名形）——收口声明待证"
+    },
+    {
+      "item": "小批量纪律 ≤5/批",
+      "verdict": "OK（面）",
+      "evidence_check": "本轮落盘面 ≤5 ✓（m_TaskArrC 1+清理 1+命名 1）"
+    }
+  ],
+  "summary": {
+    "reviewed": 5,
+    "ok": 1,
+    "blocked": 2,
+    "needs_evidence": 2
+  }
+}

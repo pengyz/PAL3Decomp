@@ -1,0 +1,36 @@
+{
+  "task": "R66 Scene.m_roleSlots[64] 落盘方案",
+  "date": "2026-10-21",
+  "reviewer": "verifier",
+  "scene_current": {
+    "binary_size": 493156,
+    "members": 18,
+    "has_roleSlots": true,
+    "offset": 224,
+    "current_type": "tagRoleSlot[64]",
+    "note": "⚠️ **已落盘**（非缺失）——m_roleSlots@224 tagRoleSlot[64] 已在 Scene.json"
+  },
+  "proposed": {
+    "name": "m_roleSlots",
+    "type": "tagRoleSlot[64]",
+    "offset": 224,
+    "evidence": "**A 级 objdump**：`lea 0xe0(%esi),%ecx/%ebx`@0x41f769/0x41f85e/0x41f93d（数组基 +224）+ `add $0x380,%ebx`@0x41f951（896 指针步进）+ tagRoleSlot binary_size=896 双证 + 64×896=57344",
+    "confidence": 95,
+    "verdict": "**已落盘 + A 级证据齐**（无需新增，仅确认）"
+  },
+  "verification": {
+    "element_size": 896,
+    "element_class": "tagRoleSlot",
+    "count": 64,
+    "total_bytes": 57344,
+    "offset_end": 57568,
+    "next_member": "m_roles@57572（4B 对齐隙）",
+    "layout_consistent": true
+  },
+  "summary": {
+    "recoverable_bytes": 57344,
+    "action": "**无需落盘**——已存在且 A 级证据确认（lea 0xe0 数组基 + 0x380 步进 + tagRoleSlot 896 双证）",
+    "top1_finding": "🔴 **任务前提错**：m_roleSlots 不是缺失待落，而是**已落盘**（+224 tagRoleSlot[64]）且 A 级 objdump 全证（lea 0xe0 数组基×3 + add $0x380 步进）——落盘方案=确认保留，非新增",
+    "output_path": "data/status/pending/r66_scene_roleSlots.json"
+  }
+}

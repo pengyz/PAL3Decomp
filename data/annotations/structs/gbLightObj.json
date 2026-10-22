@@ -100,7 +100,7 @@
       "name": "GetAABBox",
       "signature": "void __thiscall(gbLightObj *this, struct gbAABBox *p)",
       "ordinal": 0,
-      "source": " | ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 ⇒ `this[-1].m_SysLight.phi` 别名形弱型；A 级：0x42C6A0 访问 this->m_SysLight（gbLightObj@108 成员 ✓ 归属不变）"
+      "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 ⇒ `this[-1].m_SysLight.phi` 别名形弱型；A 级：0x42C6A0 访问 this->m_SysLight（gbLightObj@108 成员 ✓ 归属不变）"
     },
     "0x0042BEE0": {
       "name": "IsIdle",
@@ -127,12 +127,12 @@
     "0x00423860": {
       "name": "~gbLightObj",
       "signature": "void __thiscall()",
-      "source": " | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB28 认领连带 | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB34 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AB28/34）：本体 56 8b f1 e8 18 00 00 00 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=gbLightObj（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AB34,0x56AB28）"
+      "source": "| [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB28 认领连带 | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB34 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AB28/34）：本体 56 8b f1 e8 18 00 00 00 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=gbLightObj（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AB34,0x56AB28）"
     },
     "0x00405310": {
       "name": "_scalar_dtor",
       "signature": "void *__thiscall(gbLightObj *Block, char pFlag)",
-      "source": " | 38条注册 2026-10-17（verifier·删际析构类自证·证据账目制）：删际析构形（A 级 disasm）：call ??1gbLightObj@@UAE@XZ + delete ⇒ 类自证 gbLightObj；制式名 _scalar_dtor（制式即语义免五面）| confidence: high"
+      "source": "| 38条注册 2026-10-17（verifier·删际析构类自证·证据账目制）：删际析构形（A 级 disasm）：call ??1gbLightObj@@UAE@XZ + delete ⇒ 类自证 gbLightObj；制式名 _scalar_dtor（制式即语义免五面）| confidence: high"
     }
   },
   "vtables": [

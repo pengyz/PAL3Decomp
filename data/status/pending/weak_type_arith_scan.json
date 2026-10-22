@@ -1,0 +1,284 @@
+{
+ "entries": [
+  {
+   "cls": "RoleSystem",
+   "offset": "0xac",
+   "name": "m_nFacing",
+   "current_type": "char",
+   "usage_forms": {
+    "assign": 109,
+    "addr": 9,
+    "cmp": 2,
+    "float": 15
+   },
+   "usage_verdict": "MIXED",
+   "proposed_type": null,
+   "change_kind": "freeze",
+   "evidence_level": "A",
+   "confidence": 40
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": "0xad",
+   "name": "m_nActionState",
+   "current_type": "char",
+   "usage_forms": {
+    "assign": 21,
+    "cmp": 1
+   },
+   "usage_verdict": "MIXED",
+   "proposed_type": null,
+   "change_kind": "freeze",
+   "evidence_level": "A",
+   "confidence": 40
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": "0xae",
+   "name": "m_nAnimState",
+   "current_type": "char",
+   "usage_forms": {
+    "addr": 6,
+    "assign": 31
+   },
+   "usage_verdict": "SINGLE_ADDR",
+   "proposed_type": null,
+   "change_kind": "freeze",
+   "evidence_level": "A",
+   "confidence": 40
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": "0xd0",
+   "name": "m_bFlags",
+   "current_type": "char",
+   "usage_forms": {
+    "assign": 19,
+    "float": 2
+   },
+   "usage_verdict": "MIXED",
+   "proposed_type": null,
+   "change_kind": "freeze",
+   "evidence_level": "A",
+   "confidence": 40
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": "0x190",
+   "name": "m_pCmdQueue",
+   "current_type": "void *",
+   "usage_forms": {
+    "assign": 2,
+    "addr": 1
+   },
+   "usage_verdict": "SINGLE_ADDR",
+   "proposed_type": null,
+   "change_kind": "freeze",
+   "evidence_level": "A",
+   "confidence": 40
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": "0x194",
+   "name": "m_pCmdQueueEnd",
+   "current_type": "void *",
+   "usage_forms": {
+    "addr": 3,
+    "assign": 5
+   },
+   "usage_verdict": "SINGLE_ADDR",
+   "proposed_type": null,
+   "change_kind": "freeze",
+   "evidence_level": "A",
+   "confidence": 40
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": "0x5a8",
+   "name": "m_bRenderFlag2",
+   "current_type": "char",
+   "usage_forms": {
+    "addr": 1,
+    "assign": 1
+   },
+   "usage_verdict": "SINGLE_ADDR",
+   "proposed_type": null,
+   "change_kind": "freeze",
+   "evidence_level": "A",
+   "confidence": 40
+  },
+  {
+   "cls": "RoleSystem",
+   "offset": "0xff8",
+   "name": "m_nTodo_FF8",
+   "current_type": "void *",
+   "usage_forms": {},
+   "usage_verdict": "NONE",
+   "proposed_type": null,
+   "change_kind": "freeze",
+   "evidence_level": "A",
+   "confidence": 40
+  },
+  {
+   "cls": "PalScriptMgr",
+   "offset": "0x9c",
+   "name": "m_pCurScriptBlock",
+   "current_type": "void *",
+   "usage_forms": {
+    "assign": 109,
+    "float": 27,
+    "cmp": 3,
+    "addr": 2
+   },
+   "usage_verdict": "MIXED",
+   "proposed_type": null,
+   "change_kind": "freeze",
+   "evidence_level": "A",
+   "confidence": 40
+  },
+  {
+   "cls": "PalScriptMgr",
+   "offset": "0xa4",
+   "name": "m_pExecState",
+   "current_type": "void *",
+   "usage_forms": {
+    "assign": 114,
+    "float": 45,
+    "addr": 9
+   },
+   "usage_verdict": "MIXED",
+   "proposed_type": null,
+   "change_kind": "freeze",
+   "evidence_level": "A",
+   "confidence": 40
+  },
+  {
+   "cls": "PalScriptMgr",
+   "offset": "0x1a0",
+   "name": "m_pRoleScript",
+   "current_type": "void *",
+   "usage_forms": {
+    "assign": 21
+   },
+   "usage_verdict": "SINGLE_ASSIGN",
+   "proposed_type": null,
+   "change_kind": "freeze",
+   "evidence_level": "A",
+   "confidence": 40
+  },
+  {
+   "cls": "PalScriptMgr",
+   "offset": "0x1c4",
+   "name": "m_pOpResult",
+   "current_type": "void *",
+   "usage_forms": {
+    "assign": 6,
+    "addr": 1,
+    "cmp": 2,
+    "float": 2
+   },
+   "usage_verdict": "MIXED",
+   "proposed_type": null,
+   "change_kind": "freeze",
+   "evidence_level": "A",
+   "confidence": 40
+  },
+  {
+   "cls": "PalScriptMgr",
+   "offset": "0x278",
+   "name": "m_pCaseTable",
+   "current_type": "void *",
+   "usage_forms": {
+    "assign": 25,
+    "cmp": 2,
+    "addr": 10
+   },
+   "usage_verdict": "MIXED",
+   "proposed_type": null,
+   "change_kind": "freeze",
+   "evidence_level": "A",
+   "confidence": 40
+  },
+  {
+   "cls": "Actor",
+   "offset": "0x64",
+   "name": "m_szText",
+   "current_type": "char",
+   "usage_forms": {
+    "addr": 12,
+    "float": 20,
+    "assign": 117,
+    "cmp": 1,
+    "arith": 1
+   },
+   "usage_verdict": "MIXED",
+   "proposed_type": null,
+   "change_kind": "freeze",
+   "evidence_level": "A",
+   "confidence": 40
+  },
+  {
+   "cls": "Actor",
+   "offset": "0x70",
+   "name": "m_pResource",
+   "current_type": "void *",
+   "usage_forms": {
+    "assign": 207,
+    "float": 29,
+    "addr": 11,
+    "cmp": 5,
+    "arith": 1
+   },
+   "usage_verdict": "MIXED",
+   "proposed_type": null,
+   "change_kind": "freeze",
+   "evidence_level": "A",
+   "confidence": 40
+  },
+  {
+   "cls": "Actor",
+   "offset": "0x200",
+   "name": "m_pParticleData",
+   "current_type": "void *",
+   "usage_forms": {
+    "assign": 11,
+    "addr": 32,
+    "float": 1
+   },
+   "usage_verdict": "MIXED",
+   "proposed_type": null,
+   "change_kind": "freeze",
+   "evidence_level": "A",
+   "confidence": 40
+  },
+  {
+   "cls": "Actor",
+   "offset": "0x2a8",
+   "name": "m_InnerActor",
+   "current_type": "void *",
+   "usage_forms": {
+    "addr": 38,
+    "float": 5,
+    "assign": 5
+   },
+   "usage_verdict": "MIXED",
+   "proposed_type": null,
+   "change_kind": "freeze",
+   "evidence_level": "A",
+   "confidence": 40
+  }
+ ],
+ "summary": {
+  "total": 17,
+  "single_arith": 0,
+  "retype_safe": 0,
+  "frozen": 17,
+  "tool": "tools/member_usage_scan.py（制式 ✓ 未手扫）",
+  "verdict_dist": {
+   "MIXED": 11,
+   "SINGLE_ADDR": 4,
+   "NONE": 1,
+   "SINGLE_ASSIGN": 1
+  }
+ }
+}

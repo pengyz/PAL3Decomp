@@ -1,0 +1,39 @@
+{
+  "review_of": [
+    "preflight 修 2 blocking（span+驳斥文语境）",
+    "TDD 11 测试",
+    "check_incremental 管线脚本 hash",
+    "codegen 并行化方案"
+  ],
+  "verdict": "PASS_WITH_CHANGES",
+  "blocking_issues": [],
+  "span_check_correctness": {
+    "basic": "✓ 修生效（CaseA' 实测：overlap_span 报 m_Big[+0..+100) 与 m_Small[+50..) 跨距相交）——R59 blocking① 基本形已解",
+    "gap_dict": "❌ **dict 型 span=0 漏报**（CaseB' 实测：type={'struct':[int[6]]}（真 span 24B）算 0 ⇒ +0..+1 与 +8 不相交=漏报）——_tsize 不识 dict 形",
+    "self_correction": "reviewer 首轮探针滤名 bug（kind='overlap' vs 实名 'overlap_span'）误报『修未生效』——已自纠，修实为生效 ✓"
+  },
+  "negate_regex_coverage": {
+    "covered": "撤回|误判|改判|修正|撤位面标|retract|wrong|falsif（8 标）",
+    "bypass": "❌ **子串绕过实证**（CaseC'）：『非误判』含『误判』子串 ⇒ 反向豁免（真正两说并存被漏报）——同病面：『未修正/慎改判/难撤回』等否定前缀皆可绕",
+    "fix_advice": "改为词边界+否定前缀排除（(?<![非未不])误判|...）或句式级判定"
+  },
+  "tdd_test_correctness": {
+    "run": "11 passed 独立实跑 ✓",
+    "gap": "CaseB'（dict span）与 CaseC'（否定前缀绕过）两风险面 0 测试覆盖——夹具未含负向边界"
+  },
+  "incremental_completeness": {
+    "status": "NEEDS_EVIDENCE",
+    "note": "check_incremental 7 输入面本轮未抽（工具面优先）"
+  },
+  "parallel_plan_review": {
+    "status": "NEEDS_EVIDENCE",
+    "note": "verifier 并行化方案未抽（风险评估/确定性保证面）"
+  },
+  "summary": {
+    "reviewed": 4,
+    "ok": 2,
+    "blocked": 0,
+    "needs_evidence": 2,
+    "risks": 2
+  }
+}

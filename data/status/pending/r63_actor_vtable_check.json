@@ -1,0 +1,11 @@
+{
+  "vtable_0x56AAC4": {
+    "is_actor_table": false,
+    "slots": 1,
+    "evidence": ".rdata 实录：56aac4 槽=0x41F340（函数指针）· 56aac8=0x41400000（12.0f 位型）=**单槽后接 float 数据**（连续槽表形不成立但单虚函数类=合法 1 槽表）；vptr 装点 2 站（41f32f movl $0x56aac4,(%ebx)·41f360 movl $0x56aac4,(%ecx)）+ 槽值 0x41F340=**scalar deleting destructor 形**（call 0x41f360→testb $1,0x8(%esp)→call 0x541d10 operator delete）⇒ 表真实存在但**Actor 归属不成立**：注解 Actor binary_size=**820** ≠ 定谳 896B（76B 差未解）+ 单槽形与 Actor 大类不称 ⇒ is_actor_table=false（倾向判）；896B 宿主类归属待他证，建议以 deleting-dtor 簇反查真类名"
+  },
+  "case_0x41f360": {
+    "form": "dtor",
+    "evidence": "objdump 实录：`41f360 movl $0x56aac4,(%ecx); 41f366 ret` 仅 vptr 重写+ret=**complete dtor 本体**（trivial dtor 形）；call 链铁证=41f340（scalar deleting dtor：push esi/mov ecx,esi/call 0x41f360/testb $0x1,0x8(%esp)/call 0x541d10 delete/mov esi,eax）调用之 ⇒ deleting 调 complete = dtor 对 ✓（ctor 形不被 deleting-dtor 调用）"
+  }
+}

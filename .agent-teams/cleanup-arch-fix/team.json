@@ -1,0 +1,619 @@
+{
+  "name": "cleanup-arch-fix",
+  "id": "cleanup-arch-fix",
+  "description": "执行阶段：把 t5 已裁决的清理批次落地并验证。扫描阶段已结束且产物已落盘（`data/status/_cleanup_scan_triage.json` = 268 条目/31 缺口；`docs/specs/2026-09-15-cleanup-scan-triage.md`）。本队伍只做修复与落地，不再重新扫描：B1 注解/布局修复（4 条，A/B 级证据齐备）→ 导入器显式失败 → export 红线 → 门禁与基建 → codegen 双轨/破坏性注释/死门禁，随后独立验证（L1 ≥ 5、ok ≥ 53/198 不回退）、两路独立复核、整合落地与清理总账。全部共享产物操作按串行窗口排队（t6→t7→t14→t8→t13→t15→t16），修复必须逐条附二进制证据。",
+  "captainSessionId": "session-65935418-0be1-4fc2-b4b4-12f1a7b68af8",
+  "createdAt": 1789450067741,
+  "members": [
+    {
+      "id": "",
+      "name": "eng-annotation",
+      "role": "注解/布局修复（B1 批次）",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4.1-flash",
+      "executionPrompt": "你是注解/布局修复工程师。项目：PAL3 匹配反编译（MSVC 6.0 SP0，目标是编译出字节匹配的源码），工作目录即仓库根 /home/peng/workspace/PAL3Decomp。\n\n【先读这些（新队伍，你没有历史上下文）】\n- `data/status/_cleanup_scan_triage.json`（t5 裁决：268 条目/31 缺口，含 B1 批次与规则）\n- `docs/specs/2026-09-15-cleanup-scan-triage.md`（摘要）\n- `docs/specs/2026-09-15-cleanup-scan-taxonomy.md`（分类学与证据门槛）\n- `docs/knowledge/` 下的 gotcha/decision 页（尤其 apply 假成功、伪语义命名、批量无证据改名）\n\n【你的批次 B1（4 条，逐条）】\n1. **SceneObj 删除越界成员 18804/18808**（`m_nSpringTargetX/Y`）：证据 P1 `check_annotations` 自报 `members extend to +18812 but binary_size=1784`；P2 `source` 自证来自 `CCBRoleState::UpdateEffects`；P3 `CCBRoleState` 已有同名同偏移且在界内；P4 A 级 `fst dword ptr [esi+4974h]`（`CCBRoleState::CalcSpringForce` 0x449F00，`mov esi,ecx`=this）。→ **delete-only，禁止放大 binary_size**（CHANGE_LOG:3169 载 3496→1784 有独立证据）。\n2. **UICursor binary_size 32→64**：A 级（`UICursor::Update` 中 esi=this 访问到 +0x3E）。\n3. **SaleUI 33 项逐条裁定**：32 项位移在整份 asm 出现 0 次；第 33 项 `ml_SmeltList@104752` 的 0x19930 位移属 124268 字节类（`operator new(0x1E56C)`）。**禁止整批删除**；须逐条证据，并**显式回应\"binary_size 偏小\"竞争假设**（EquipUI/PropUI 中同类成员位于各自尾部且相对尾偏移一致）。另有 1 条 globals 重叠 `g_RoleSlotBuf ⊂ g_SceneMgr` 需 `overlaps_with`。\n4. **SaleUI 两条 member overlap**：`m_ani@88320 ends88484 > pNGHVarianceParticle@88408`；`m_Role@88484 ends89244 > m_nDataPoolBase@88540`。\n\n【项目强约束】每处注解修改必须有二进制直接证据（A 级=指令级 reg+disp32/绝对地址）；禁止猜测、禁止批量未验证修改、禁止伪语义命名、禁止破坏性 workaround（不用 void*/int 掩盖真实类型）；归属修正需 decomp member access evidence。\n\n【验收口径（以任务合同为准，注意旧文字已作废）】① `check` 无新增错误；② **apply 的导入计数允许下降**（移除静默降级后此前被掩盖的失败会显形），下降须逐条解释；**t6+t7 联合落地时 apply 应达 881/881 且诚实**；③ apply 后 `original/PAL3.exe.i64` **与边车 `.til/.nam/.id0/.id1/.id2`** mtime 必须刷新；④ **L1 ≥ 5、ok ≥ 53/198 不回退**（分母 198 变化即判不可比）；⑤ SceneObj `get_size()==1784` 且 `get_udt_details()==true`、成员偏移全部 ≤1784、两条 `m_OBJ`/`m_obj` FAILED 消失；⑥ 逐条写 `CHANGE_LOG.md`；⑦ 开工前后记录三个注解文件 mtime+sha256。\n\n【窗口与纪律】你是**队列首位/窗口开启者**：开工与结束都发消息通报全员；链为 `check→audit_layout→apply→export→codegen all→probe all→error_classifier --summary→match`；**退出码一律用 `PIPESTATUS[0]`**（`cmd | tail` 会让 `$?` 变成 tail 的）；**不得**对受管文件执行 `checkout --`/`restore`/`stash`（须先经 captain 批准）；不得开 IDA 会话以外的 IDB 写入；结束时通报\"IDB 已释放 + 语料已完整重建\"供下一位接力。工作方式：取证→改注解→跑全链→写 CHANGE_LOG，逐条闭环，不越界改 `pipeline/`。",
+      "joinedAt": 1789450099025,
+      "status": "idle"
+    },
+    {
+      "id": "",
+      "name": "eng-pipeline",
+      "role": "管线/IDA 层与基建修复",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4.1-flash",
+      "executionPrompt": "你是管线/IDA 层与基建修复工程师。项目：PAL3 匹配反编译（MSVC 6.0 SP0，字节匹配优先），工作目录即仓库根。\n\n【先读】`data/status/_cleanup_scan_triage.json`（t5 裁决，B2/B4 批次与规则）、`docs/specs/2026-09-15-cleanup-scan-triage.md`、`docs/specs/2026-09-15-cleanup-scan-architecture-rulings.md`。\n\n【你的三条任务】\n**任务A（导入器，队列第 2 位）**：`pipeline/ida/apply_annotations.py` —— 把\"`create_udt` 产出不完整类型\"从**静默假成功**改为**显式失败**。判据必须用 **`get_udt_details()` 成功 + 实际落入成员数 == 期望推入成员数**（**不要**\"见 `get_size()==-1` 即 fail\"，会误杀代码 867-868 行注释所述的合法 union）；保留独立前置检查 **`member_end = 声明偏移 + 成员解析尺寸` > `binary_size`**（**末端口径**）；**统一两条路径**：`:654-656`(diff-mode) 会正确拒绝 -1，`:866-877`(TAUDT_FIXED) 无条件降级 → 让后者与前者一致；输出可操作不完整清单（struct + 成员 + `offset/member_end/binary_size` 三元组）；提供**逐 struct 留痕覆盖**开关（默认拒绝 apply），每次覆盖都要列明\"该 struct 已登记为已知待修\"。**期望读数**：只改导入器 → `879→876`、fail 2→5（诚实）；与注解修复同时落地 → 881/881 且诚实。\n**任务B（export 红线，第 3 位）**：`pipeline/ida/export_full.py` —— 实测 **9 处**直接读 `data/annotations/`（150/159/200/213/216/281/485/688/718，`:148` 注释自称\"authoritative source for signatures\"），违反 CLAUDE.md 红线\"export 不读 annotation\"且 `docs/knowledge` Decisions 段为空。出口二选一：**(a) 等价重构**（只从 IDB/apply 产物取数）并证明导出结果等价（计数对照/diff）+ 全链不回退；**(b) 证据支持的\"有意取舍\"** → 必须写 `docs/knowledge/` decision 页（含证据、生效条件）。\n**任务C（门禁与基建，第 4 位）**：12 条（`data/status/_cleanup_scan_triage.json` 中 owner=t8 的 B2 条目）+ 14 条 B4 删除项中属你的部分：`tools/audit_layout.py` 缺 `ida_structs.json` 时**假通过**改显式失败、`:200-205` 循环性修复；`tools/compile_regression.py` 基线冻结（204/58 vs 198/53）致**恒定假报警** → 刷新/加棘轮；`pipeline/decomp_quality.py:110` 的 `max(offsets) > cls_size * 2` 收紧到 `> cls_size`（7→17 属**恢复探测能力、不算回退**，须给\"修复前静默通过/修复后被标记\"对照）；`pipeline/cli.py` apply 失败**非零退出**、`iterate` 指向不存在模块、后置钩子不检查 returncode；`tools/annotation_diff.py` 区分\"无变更\"与\"读不到 git\"（现全报 898 新增且 exit 0）；`pipeline/compare_pal3.py` census 守卫；`pipeline.toml` 缺失给可操作提示；**`data/status/baselines/latest.json` 改 100644 真正文**（判据合取式：①`git ls-files -s`=100644 ②`-c core.symlinks=true checkout-index` exit 0 ③`-c core.symlinks=true clone` exit 0 ∧ 落成普通文件 ∧ 可 `json.load`），并消除产生路径（`tools/regression_detector.py:120-128` 的符号链接分支）；`git archive HEAD | tar -x` 必须无错解出；**85MB `original/PAL3.exe.i64.polluted.bak` 仅 `git rm --cached` + 补 .gitignore（工作区文件保留、不重写历史、提交留整合阶段）**；仓库根空文件 `__vftable` 删除；`tools/vc6` 小写 shim 的存在性前置检查（AR-013）。\n\n【纪律】先理解再改，禁止试错式修改与破坏性 workaround；**不得弱化任何门禁**（宁严勿松）；退出码一律 `PIPESTATUS[0]`；**不得**对受管文件执行 `checkout --`/`restore`/`stash`（须先经 captain 批准）；IDB 单写者：操作前探测 `idat` 进程、操作后核对 `.i64` 与边车 mtime。串行窗口队列：注解(第1) → **你(第2/3/4)** → codegen 三条（第5/6/7）；只有轮到你时才跑会写共享产物的命令，开始与结束都要通报全员。",
+      "joinedAt": 1789450099034,
+      "status": "idle"
+    },
+    {
+      "id": "",
+      "name": "eng-codegen",
+      "role": "codegen 双轨/破坏性注释/死门禁修复",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4.1-flash",
+      "executionPrompt": "你是 codegen 策略/清理工程师。项目：PAL3 匹配反编译（MSVC 6.0 SP0，**字节匹配 > 代码优雅**），工作目录即仓库根。\n\n【先读】`data/status/_cleanup_scan_triage.json`（t5 裁决：owner=t13/t15/t16 的条目）、`docs/specs/2026-09-15-cleanup-scan-triage.md`、`docs/specs/2026-09-15-cleanup-scan-taxonomy.md`。\n\n【你的三条任务】\n**任务A（codegen 双轨，队列第 5 位）** `pipeline/gen/ast_transform.py`：\n- **轨道 1 仅 3 站点**：`pal3/src/Combat/CCBAI.cpp:246/444/646` 调用 `AStarPathFinder::GetHeuristicIdx`（VA **0x4014F0**，AStarPathFinder vtable slot2，callee 是 3 字节桩 `32 C0 C2 08 00` = `xor al,al; retn 8`）。实现口径必须是 **(ret-N 闸门通过) ∧ (callee 占 vtable 槽)** —— 实测只加 ret-N 闸门会放行 **234 站点**（违反\"其余不动\"），加该条件后恰 **3 站点**（MISATTRIBUTED 355→352、ROWTABLE 588 不变）。无新标记，改为在产出逐条列证 + 补 `test_pipeline.py` 断言。\n- **判定顺序翻转**：逐站点证据门控（口径：`ida_structs.json` 的 `vtables[*].slots[*].addr` 反查该 VA 被多少类的虚表持有 ≥2 才走行表形态；实测 6 有支撑/3 无 → 后者保持现状记 `GAP-ROWTABLE-PRECEDENCE-01`）；**必须显式排除 ctor/dtor**，否则凭空造 17 个假 `[ROWTABLE]`。\n- **AR-002 只声明不迁移**：`:52`(ret-N 证据源)、`:148`(类层次) 加显式声明注释 + 修正 `data.py:226` 之外的失实表述（`data.py` 归任务C）；用 harness（驱动真实 `transform_oop_calls` 跑全部 3594 个 decomp JSON，纯内存）证明**零输出差异**；迁移被实测否决（换源 15/3594 文件漂移、含\"静默放行\"方向）。\n- **CG-023**：`_rowtable_family()` 读不到 `data/status/_rowtable_family.json` 时返回空集 → **588 站点静默改判**为 MISATTRIBUTED（328 文件）→ 改 `RuntimeError`（两处 status 产物已核实 git tracked，硬失败不误伤）。\n- 该文件内 5 个**带类型** except 的处置（`:58/:83/:90` 保留 + stderr 告警；`:117` 不删、记 C3b 冗余 + 告警）；测试断言同步（`:353`↔`:99`+`:98`、补 `:421` ROWTABLE 断言、`:322/333`↔`:589-596`、`:260`↔`:562-563`、`__main__` L543-603）。\n**任务B（破坏性注释，第 6 位）** `pipeline/gen/stages/stage3_cleanup.py`：`[VFTABLE]` 站点**仅约 2.5% 是编译器自管 vptr 存根**，其余把真实语句注释掉（控制流头、**float 写入**、整条 `if(v.__vftable){Release();}`）；`[AUTO-COMMENTED]` 中 **89 处丢弃被使用赋值**；`[IDA_MISID]` 用 6 个硬编码模式表绕开 IDA 层（含真实语义 `std::_Xlen();`、`ExceptionList = NtCurrentTeb()->NtTib.ExceptionList;`）→ 只允许真 vptr 存根走注释路径，其余恢复或等价改写；死分支 `:287-290` 清理；该文件裸 except 处置。**captain 特别裁决：本条不以 S2 ok 为判据**（恢复真实代码必然暴露新错误）→ ① **L1 ≥ 5 不回退** ② 不得再有真实语义被注释 ③ 若 ok 下降须逐条证明新错误来自恢复的真实代码。\n**任务C（死门禁/吞错，第 7 位）** `pipeline/gen/stages/emit_headers.py` + `pipeline/gen/data.py`（+ 授权含 `pipeline/gen/stages/stage5_fixup.py`）：恒假门禁 `[IDA_USERPURGE]`/`[IDA_REGPARAM]`（因 `:1882-1884` 先行剥离而不可达）删除或修正；`[IDA_VFTABLE]` 死发射分支；`data.py:218` thunk 静默丢弃（一条坏条目丢全部 139 条映射）改不静默；`data.py:226` \"ONLY place\" 失实断言改为如实例外清单；`stage5_fixup.py:71/:101/:98` dead-on-arrival 删除；范围内裸 except 逐处处置（A 级必须可见：`data.py:105/218`、`emit_headers.py:77`、`data.py:76`；B 级逐对象吞 + 计数上报；C 级收窄异常类型；`:2993` 保留+理由；`:3050` 非吞错仅收窄）。**主证据法**：monkeypatch `emit_headers.OUTPUT_DIR` 到 /tmp 并预置当前头文件做前后 diff 证明逐字节中性（已审计：所有写/删路径均派生自 OUTPUT_DIR）——不写 `pal3/src`、不跑 probe。\n\n【纪律】codegen 只能做**等价变换**、不能编造信息；**禁止破坏性 workaround**；**禁止整体静默诊断信号**（轨道 2 站点保持现状）；退出码 `PIPESTATUS[0]`；不得对受管文件 `checkout --/restore/stash`。串行窗口：你排第 5/6/7 位，轮到前**不要**跑 `codegen/probe/apply/export/match`；中性改动用 diff 自证即可，只有真正改变输出的部分才进窗口跑全链。判据：任务A/C = **L1 ≥ 5、ok ≥ 53/198**；任务B 用上面的豁免。",
+      "joinedAt": 1789450099047,
+      "status": "idle"
+    },
+    {
+      "id": "",
+      "name": "verifier",
+      "role": "独立验证",
+      "provider": "zai-coding-cn",
+      "model": "glm-5.3-flash",
+      "executionPrompt": "你是独立验证方，不做修复。项目：PAL3 匹配反编译，工作目录即仓库根。\n\n【先读】`data/status/_cleanup_scan_triage.json`、`docs/specs/2026-09-15-cleanup-scan-triage.md`、各修复任务的产出 JSON 与 `data/annotations/CHANGE_LOG.md`。\n\n【核心判据（不得回退）】**L1 ≥ 5、ok ≥ 53/198**（分母 198 变化即判不可比）；`data/status/s4_baseline.json` 的 `stats.match_L1`、`data/status/baselines/latest.json` 的 ok/fail 是权威来源。\n【apply 的诚实读数（两种情形并列）】只改导入器 → `879→876`、fail 2→5（876/881 诚实）；注解+导入器同时落地 → **881/881 且诚实**。**盘上任何 881/881 若来自已不存在的文件状态，不得当作当前环境状态**；你必须在净态自行重跑 apply 取数。\n【必做】① 逐条核验各修复任务声明的二进制证据 ↔ 最终代码/decomp 实际现象是否一致（不一致即不通过，给反例）；② `git status` 变更必须全部落在任务声明的 inScope 内，出现声明外变更点名；③ **退出码一律用 `PIPESTATUS[0]`**（`cmd | tail` 会让 `$?` 变成 tail 的，本会话已因此误判两次）；④ apply 前后核对 `original/PAL3.exe.i64` **与边车 `.til/.nam/.id0/.id1/.id2`** mtime（只核 `.i64` 不够）；⑤ 开工前记录被改文件 mtime+sha256（**本会话已发生 4 次\"改→还原\"循环**）；⑥ 门禁\"变严导致指标下降\"**不算回退**（如 `decomp_quality` 的 `×2` 收紧到 `×1`：7→17），按\"恢复探测能力\"判，但要求\"修复前静默通过/修复后被标记\"的正向对照。\n【另核】发行判据合取式：①`git ls-files -s data/status/baselines/latest.json`=**100644** ②`git -c core.symlinks=true checkout-index` **exit 0** ③`git -c core.symlinks=true clone --no-hardlinks . /tmp/x` **exit 0 ∧ 该路径落成普通文件 ∧ 可 `json.load`**（修复前实测 exit **128**、路径不存在）。`git archive HEAD | tar -x` 须无错解出。\n【环境 caveat（读数前必读）】当前三层不一致：工作区注解=未修复态 / IDB=修复态 / `pal3/src`+`asm/pal3/decomp`=由修复态 IDB 生成（时间戳 10:37-10:39）。**权威语料必须在修复链跑完后重建**；旧标记计数（`[VFTABLE]` 1643、`[AUTO-COMMENTED]` 229）基于旧树，当前树是 1935/233 —— 两组不可混用，标记普查基线须重取。\n【窗口纪律】你必须在**独占声明窗口**内跑（不得与其他成员的 export/codegen/probe 并发）；只在所有修复任务落地后、由 captain 或修复者通报\"窗口空闲\"时开始。产出机器可读验证记录（每条命令/退出码/关键数字/判定）+ 通过/不通过 + 反例清单。",
+      "joinedAt": 1789450099057,
+      "status": "idle"
+    },
+    {
+      "id": "",
+      "name": "reviewer",
+      "role": "独立复核",
+      "provider": "kiro",
+      "model": "claude-opus-5",
+      "executionPrompt": "你是独立复核方，不参与实现。项目：PAL3 匹配反编译，工作目录即仓库根。\n\n【复核准则】\n- 逐条判定证据充分性（A 级=指令级 reg+disp32/绝对地址；归属需 decomp member access evidence）；无证据或证据不足一律记 findings。\n- 检查是否引入新矛盾：`check_annotations` 新增错误、struct 布局越界、成员 overlap、伪语义命名、破坏性 workaround（用 void*/int 掩盖真实类型）、**把信号标记静默抹掉而未修根因**。\n- 检查架构红线：codegen 读 `data/annotations`（`ast_transform.py:52/:148`、`data.py` 多处、`emit_headers.py` 多处）、export 读 annotation（`export_full.py` 9 处）、后处理编造信息、在 codegen 打补丁替代 IDA 层修复。\n- 检查门禁是否被弱化（以跳过/吞错/放宽阈值方式\"通过\"）；`decomp_quality` 的 `×2`→`×1` 收紧、`audit_layout` 假通过改显式失败、`compile_regression` 基线刷新，都属**加强**，不得判为回退。\n- **AR-016（不许单方面翻转 policy）**：`[MISATTRIBUTED]` 的文件级 blanket 反转**未经用户授权**不得实施；只有\"证据放行的 3 个站点\"（`CCBAI.cpp:246/444/646` → 0x4014F0，callee 是 vtable 槽 + 桩）可以改，且必须有逐站点二进制证据 + harness 证明只有这 3 处变化 + L1/ok 不回退。\n- 裁决必须针对**最新实现状态**；通过时给可复核依据；不通过时给结构化 findings（id/severity/problem/file/line/requiredFix）。\n【可用的独立核验手段】只读 git、读文件、python 只读脚本、在 /tmp 做副本实验；**不得**启动 IDA、不得跑会写共享产物的命令（`apply/export/codegen/probe/match`）——需要这些读数的结论请标注\"待 verifier 窗口\"。退出码一律 `PIPESTATUS[0]`。",
+      "joinedAt": 1789450099066,
+      "status": "idle",
+      "reasoningEffort": "high"
+    },
+    {
+      "id": "",
+      "name": "integrator",
+      "role": "整合落地与清理总账",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4.1-flash",
+      "executionPrompt": "你是整合落地负责人（integration）。项目：PAL3 匹配反编译，工作目录即仓库根。\n\n【职责】在所有修复通过验证与复核后，把清理结果落地并出总账：\n1. **基线更新**：把 `data/status/baselines/*`、`data/status/s4_baseline.json`、`data/status/pal3_registry.jsonl`、`data/status/error_classification.json` 与**权威窗口后的实况**对齐并纳入版本控制；写清 **apply 的两种诚实读数**（只改导入器 → 876/881；注解+导入器同时落地 → 881/881 且诚实）。\n2. **冻结/证据类入版本控制**（当前多为 untracked，`git clean -fd` 会清掉）：`data/status/baselines/verifier_prefix_s2.json`、`_cleanup_scan_{codegen,attribution,architecture}.json`、`_cleanup_scan_triage.json`、`_cleanup_verify_scan_claims.json`、`_cleanup_evidence_stub_call_4014F0.json`、`docs/specs/2026-09-15-*.md`。总账必须**分区段列示**：「冻结/基线类」vs「修复类」，不得合并成一个数字。\n3. **执行删除批次（B4，14 条）**：死路径、裸 except、`__vftable`、`build_output.txt`+一次性 `.obj`（未跟踪、删除不产生 git 改动 → **不计入\"已修复\"计数**）；**85MB `PAL3.exe.i64.polluted.bak` 只做 `git rm --cached` + 补 .gitignore**（工作区文件保留、**不重写历史**、如实写\"去跟踪 ≠ 体积下降\"）；产出**已跟踪 >10MB blob 清单**（只报告）。\n4. **prohibited**：`backup/local-line-20260904` 分支与 10 条 stash **禁止删除**（唯一保存点/不可逆，须用户显式决策）——它们是\"有意保留\"条目。\n5. **知识沉淀**：把本轮确认的通用规律写入 `docs/knowledge/`（按该目录 README 的 type 与格式，并更新 `MEMORY.md` 索引）：候选主题＝\"单写者共享 IDB 的并发纪律\"、\"`cmd | tail` 吞掉 `$?` 的退出码陷阱\"、\"union variant 成员无 offset 字段（`int('12_1')`=121 的 Python 下划线解析伪影）\"、\"生成物重生成会让全队计数基线作废\"、\"`binary_size` 撑大（A 族）与越界（B 族）是两种反向缺陷\"。\n6. **提交纪律**：提交前核对 `git status` 无声明外改动；**不得**对受管文件执行 `checkout --`/`restore`/`stash`（须先经 captain 批准）。\n【禁止】不新增功能性代码改动、不修改已复核通过的修复内容；不删除任何冻结证据。",
+      "joinedAt": 1789450099075,
+      "status": "idle"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "t1",
+      "subject": "固化执行合同：接受 t5 裁决为验收依据并作废陈旧口径",
+      "description": "把上一阶段（已归档的 `cleanup-arch-scan` 队）产出的**裁决结果**固化为本队的执行合同，作为所有修复任务的验收依据。背景：扫描阶段已全部完成并落盘——分类学 `docs/specs/2026-09-15-cleanup-scan-taxonomy.md`、三份扫描清单 `data/status/_cleanup_scan_{codegen,attribution,architecture}.json`、汇总裁决 `data/status/_cleanup_scan_triage.json`（268 条目/31 缺口，四批次：B1 可立即修注解 4 条 / B2 可立即修管线-codegen 23 条 / B3 需补证 200 条 / B4 应删除 14 条 / B5 有意保留 27 条）、以及 `docs/specs/2026-09-15-cleanup-scan-triage.md` 摘要。\n\n要求：把「谁在什么口径下算通过」写成可被逐条引用的合同，尤其是上一队任务合同里**已被 captain 修正**的陈旧文字（例如\"apply 计数不下降\"\"`get_size()==-1` 即判失败\"\"881/881\"），必须在新合同里明确作废并给出替代口径。不需要重新取证或重新扫描。",
+      "status": "pending",
+      "assignee": "integrator",
+      "dependencies": [],
+      "attempt": 12,
+      "createdAt": 1789450114593,
+      "updatedAt": 1789450449415,
+      "kind": "requirements",
+      "round": 1,
+      "objective": "把已归档扫描阶段的裁决结果固化为本队的执行合同：明确唯一输入、每条修复的验收口径（含 captain 修正后的诚实读数与豁免）、串行窗口协议、两条硬纪律、环境 caveat 与冻结证据保护规则，使所有修复任务可被独立复核。",
+      "acceptance": [
+        "执行合同文档成文：明确「执行阶段的唯一输入 = `data/status/_cleanup_scan_triage.json`（268 条目/31 缺口）+ `docs/specs/2026-09-15-cleanup-scan-taxonomy.md` + 各扫描清单」，**本轮不再重新扫描**",
+        "逐条列出所有修复任务的验收口径：① apply 导入计数**允许下降**（只改导入器 → 879→876、fail 2→5 为诚实读数；注解+导入器同时落地 → 881/881 且诚实）② **L1 ≥ 5、ok ≥ 53/198 不回退**（分母 198 变化即判不可比）③ 门禁「变严导致指标下降」**不算回退**（按恢复探测能力判，须给正向对照）④ t15 类「恢复被注释的真实代码」**不以 S2 ok 为判据**（改为 L1 不回退 + 无真实语义被注释 + ok 下降须逐条归因）",
+        "列出串行窗口协议（队列 t6→t7→t14→t8→t13→t15→t16；开始/结束通报；读者窗口内先快照）与两条硬纪律（**退出码一律 `PIPESTATUS[0]`**；**受管文件的 `checkout --`/`restore`/`stash` 须先经 captain 批准**）",
+        "列出环境 caveat（三层不一致：工作区注解未修复/IDB 修复态/`pal3/src`+decomp 由修复态 IDB 生成；旧标记计数 1643/229 vs 现树 1935/233 不可混用；权威语料须在修复链后重建）与「冻结证据须入版本控制、禁止 `git clean -fd`、备份分支与 stash 禁止删除」",
+        "文档格式可被后续任务直接引用（含文件路径与章节号），并声明它**取代**上一队各任务合同里的陈旧验收文字"
+      ],
+      "deliverables": [
+        "docs/specs/2026-09-15-cleanup-execution-contract.md"
+      ],
+      "nonGoals": [
+        "不重新扫描或重新取证",
+        "不修改任何注解、代码或既有产物"
+      ],
+      "reassigning": false
+    },
+    {
+      "id": "t2",
+      "subject": "B1 注解/布局修复：三个 UDT 不完整 + SaleUI 重叠（队列第 1）",
+      "description": "执行 t5 裁决的 **B1 批次（4 条，A/B 级证据齐备）**，逐条闭环。\n\n**T6-01（A 级）`SceneObj` 删除越界成员 18804/18808**（`m_nSpringTargetX`/`m_nSpringTargetY`）：P1 `check_annotations` 自报 `members extend to +18812 but binary_size=1784 (gap=-17028)`；P2 两条 `source` 自证来自 `CCBRoleState::UpdateEffects`（却挂在基类 SceneObj 上）；P3 `CCBRoleState` 自有同名同偏移且在界内（全仓仅此两文件含这两个名字）→ 零信息损失；P4 A 级指令证据 `fst dword ptr [esi+4974h]` / `fstp [esi+4978h]`（`CCBRoleState::CalcSpringForce` 0x00449F00，`:115018 mov esi,ecx` 即 this）→ **delete-only**。**严禁为容纳这两个成员而放大 `binary_size`**（`CHANGE_LOG:3169` 载 `3496 → 1784` 有 2 处嵌入 span 独立证据）。\n**T6-02（A 级）`UICursor` binary_size 32→64**：`UICursor::Update` 中 `esi=this` 访问到 +0x3E（A 级）。旁证：`binary_size=64` 时 `size=64/udt_ok=true`，32 时不完整。\n**T6-03（B 级）`SaleUI` 33 项逐条裁定**：32 项位移在整份 asm 出现 0 次（其中 10 项源自旧 `PlayerMgr.json`(107056)，round5 解散幻影时遗留）；第 33 项 `ml_SmeltList@104752` 类型 `UIListBox(1208)` 末端 105960 > 105912，而其 0x19930 位移出现在 124268 字节类（`sub_471590`/`sub_477BB0`）→ SaleUI 放不下。**禁止整批删除**，须逐条给证据，并**显式回应\"binary_size 偏小\"这一竞争假设**（EquipUI/PropUI 中同类成员位于各自尾部且相对尾偏移一致：EquipUI 尾 −2948/−208/−204/−203；PropUI 尾 −2036/−1296/−1292/−1291）。\n**T6-04（B 级）`SaleUI` 两条 member overlap**：`m_ani(UIAnimateCtrl,164)@88320 ends88484 > pNGHVarianceParticle@88408`；`m_Role(UIStatic[5],760)@88484 ends89244 > m_nDataPoolBase@88540`；另 globals 重叠 `g_RoleSlotBuf  g_SceneMgr` 需 `overlaps_with` 声明。\n\n**你是串行窗口队列首位/开启者**：开工与结束都要发消息通报全员；链为 `check → audit_layout → apply → export → codegen all → probe all → error_classifier --summary → match`；结束时通报\"IDB 已释放 + 语料已完整重建\"供导入器任务接力。\n\n已独立验证的前置事实：上一阶段曾在注解修复生效的窗口内用真实 `create_fixed_struct` 实测 5/5 完整（SceneObj 1784/47、`create_array(SceneObj,256)`=**456704**=1784×256、UICursor 64、SaleUI 105912/65、CG_Scene/Scene 正常）→ 本批次端到端可行，本次要在净态上复现并留下可复核记录。",
+      "status": "pending",
+      "assignee": "eng-annotation",
+      "dependencies": [
+        "t1"
+      ],
+      "attempt": 0,
+      "createdAt": 1789450129089,
+      "updatedAt": 1789450129089,
+      "kind": "implementation",
+      "objective": "按 t5 裁决的 B1 批次逐条修正注解布局：消除 3 个 UDT 不完整（SceneObj 18808>1784、SaleUI 111276>105912、UICursor 44>32）与 SaleUI 布局重叠，使 SceneObj 成为完整 UDT（size=1784、udt_details=true）并让 CG_Scene/Scene 的 SceneObj[256] 数组导入恢复正常，同时 L1 与 ok 文件数不回退。",
+      "inScope": [
+        "data/annotations/",
+        "docs/knowledge/"
+      ],
+      "outOfScope": [
+        "pipeline/",
+        "tools/"
+      ],
+      "acceptance": [
+        "4 条 B1 逐条处理完毕：T6-01 SceneObj 删 18804/18808 / T6-02 UICursor 32→64 / T6-03 SaleUI 33 项逐条裁定 / T6-04 SaleUI 两条 overlap + globals overlaps_with",
+        "每条修改附二进制直接证据（`check_annotations` 自报 + `source` 自证 + A 级指令级 reg+disp32）与来源，**禁止猜测、禁止批量未验证修改**",
+        "`python3 pipeline/cli.py check` 无新增错误；SceneObj 成员偏移全部 ≤1784",
+        "apply 后 `original/PAL3.exe.i64` **与边车 `.til/.nam/.id0/.id1/.id2`** mtime 全部刷新（只核 .i64 不够）；**导入计数允许下降**，每个新显形失败逐条解释；**与导入器任务联合落地时 apply 应达 881/881 且诚实**",
+        "SceneObj `get_size()==1784` 且 `get_udt_details()==true`；两条 `m_OBJ`/`m_obj` FAILED 消失",
+        "**L1 ≥ 5、ok ≥ 53/198 不回退**（分母 198 变化即判不可比）",
+        "开工前后各记录三个注解文件的 mtime+sha256（开工前基线：SceneObj 49/1784 sha256 1474e36e…、SaleUI 101/105912 75b64025…、UICursor 6/32 0850dae3…）",
+        "逐条写 `data/annotations/CHANGE_LOG.md`（证据+改动+验证）并产出 `data/status/_cleanup_fix_attribution.json`"
+      ],
+      "verify": [
+        "python3 pipeline/cli.py check",
+        "python3 tools/audit_layout.py",
+        "python3 pipeline/cli.py apply",
+        "python3 pipeline/cli.py export",
+        "python3 pipeline/cli.py codegen all",
+        "python3 pipeline/cli.py probe all",
+        "python3 tools/error_classifier.py --summary",
+        "python3 pipeline/cli.py match"
+      ],
+      "deliverables": [
+        "data/annotations/CHANGE_LOG.md",
+        "data/status/_cleanup_fix_attribution.json"
+      ],
+      "nonGoals": [
+        "不修改 pipeline/ 与 tools/（属其他任务）",
+        "不放大 binary_size 以容纳越界成员",
+        "不做无二进制证据的修改"
+      ]
+    },
+    {
+      "id": "t3",
+      "subject": "导入器显式失败：不完整 UDT 不再计为成功（队列第 2）",
+      "description": "在 IDA 导入器层修复\"struct 导入静默假成功\"。**根因已定**：注解成员末端越界（如 `SceneObj` 成员 18808 > `binary_size` 1784）→ `create_udt()` 仍返回 true 但产出**不完整 UDT**（`get_size()==-1`、`get_udt_details()==false`）→ `apply_annotations.py:866-877` 把 -1 **无条件降级**成 `actual_size=binary_size` → 空壳写入 TIL → `SceneObj[256]` 取元素尺寸得 -1 → `CG_Scene`/`Scene` 两条 FATAL。**`879/881` 因此是虚高计数，真实失败 3 个**（SceneObj 根 + CG_Scene/Scene 两个下游）。\n\n**实现要点**：\n1. 判据改为 **`get_udt_details()` 成功 + 实际成员数 == 期望成员数**（已批准，比\"见 -1 即 fail\"更精确，避免误杀 867-868 行注释所述合法 union）；\n2. 保留独立前置检查 **`member_end = 声明偏移 + 成员解析尺寸` > `binary_size`**（**末端口径**；偏移口径会漏掉 SaleUI 这类\"末成员尺寸撑破边界\"形态），报错同时打印 `offset / member_end / binary_size`；\n3. **统一 `:654-656`(diff-mode，正确拒绝 -1) 与 `:866-877`(TAUDT_FIXED，无条件降级)** 两条路径行为；\n4. 输出**可操作不完整清单**（struct + 成员 + 三元组）；\n5. 提供**逐 struct 留痕覆盖**开关（默认拒绝 apply），每次覆盖都记录\"该 struct 已登记为已知待修\"。\n\n**期望读数**：只改导入器 + 注解未修 → `879→876`、fail 2→5（**876/881 是诚实读数**）；与 t2 注解修复同时落地 → **881/881 且诚实**。\n\n**窗口位置：队列第 2 位**——先做代码改动与 `/tmp` 副本自证（不碰共享产物），**等 t2（注解）通报\"IDB 已释放 + 语料已重建\"后**再跑自己的链；开始与结束都要通报全员。已用隔离 IDB 副本验证过因果链（变体 B 仅删两个越界成员即 5/5 完整），可按此为对照。",
+      "status": "pending",
+      "assignee": "eng-pipeline",
+      "dependencies": [
+        "t1",
+        "t2"
+      ],
+      "attempt": 0,
+      "createdAt": 1789450141534,
+      "updatedAt": 1789450141534,
+      "kind": "implementation",
+      "objective": "让导入器不再把\"不完整 UDT\"计为成功：以 `get_udt_details()` + 成员数一致判定完整性、以末端口径独立检查越界、统一两条代码路径行为、输出可操作不完整清单，并提供默认拒绝的逐 struct 留痕覆盖。",
+      "inScope": [
+        "pipeline/ida/apply_annotations.py"
+      ],
+      "outOfScope": [
+        "data/annotations/",
+        "pipeline/gen/",
+        "tools/"
+      ],
+      "acceptance": [
+        "判据用 **`get_udt_details()` 是否成功 + 实际落入成员数 == 期望推入成员数** 判定 UDT 完整性；**不得**用『见 `get_size()==-1` 即 fail』（会误杀代码 867-868 行注释所述的合法 union 情形）",
+        "保留独立前置检查 **`member_end = 声明偏移 + 成员解析尺寸` > `binary_size`**（**末端口径**）；报错必须同时打印 `offset / member_end / binary_size` 三元组",
+        "**统一两条路径行为**：`:654-656`（diff-mode）会正确拒绝 -1，`:866-877`（TAUDT_FIXED）无条件降级成 `binary_size` → 让后者与前者一致",
+        "输出**可操作不完整清单**（struct 名 + 哪个成员 + 三元组），而不是只报总数",
+        "**apply 的导入计数允许下降**：只改导入器时预期 `879 → 876`、fail 名单 2 → 5；每个新显形失败逐条归因；**不允许未解释的计数变化**",
+        "提供**逐 struct 留痕覆盖**开关（默认拒绝 apply），任何一次覆盖都要在产出里列明『该 struct 已登记为已知待修』",
+        "apply 后 `original/PAL3.exe.i64` **与边车 `.til/.nam/.id0/.id1/.id2`** mtime 全部刷新",
+        "**L1 ≥ 5、ok ≥ 53/198 不回退**",
+        "产出 `data/status/_cleanup_fix_struct_import.json`，并在其中给出『修复前/后』两组读数与不完整清单对照"
+      ],
+      "verify": [
+        "python3 pipeline/cli.py apply",
+        "python3 pipeline/cli.py export",
+        "python3 pipeline/cli.py codegen all",
+        "python3 pipeline/cli.py probe all",
+        "python3 pipeline/cli.py match"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_fix_struct_import.json"
+      ],
+      "nonGoals": [
+        "不改注解 JSON（属 t2）",
+        "不为通过而删除或弱化任何尺寸校验（本任务是加强校验）",
+        "不在 codegen 层打补丁绕过"
+      ]
+    },
+    {
+      "id": "t4",
+      "subject": "export 红线：消除对 annotations 的 9 处直接依赖（队列第 3）",
+      "description": "处理架构红线 C1：`pipeline/ida/export_full.py` **9 处**直接读 `data/annotations/`，违反 CLAUDE.md「**export 不读 annotation**：`export_full.py` 只能从 IDB 读取数据，不能直接读 `data/annotations/` JSON 文件」；且 `docs/knowledge/MEMORY.md` 的 `## Decisions` 段**为空**（无取舍记载），不能默认它是经论证的设计。\n\n**两个允许的出口（都必须有证据）**：\n- **(a) 重构**：让 export 只从 IDB / apply 产物取数，消除\"第二事实源\"；风险是签名与归属导出可能变化 → 必须证明**等价**（计数对照或 diff）并跑全链确认不回退；\n- **(b) 有意取舍**：若证据表明红线不可行，给出完整证据与生效条件，**决策页由 integrator 落盘**（其作用域含 `docs/knowledge/`；本任务不写该目录以免与 t2 冲突）。**\"没有记载\"本身是缺陷**，不接受只做口头结论。\n\n**边界**：不得改注解内容，也不得做与红线无关的 export 重构；若修复必然连带其它模块（apply/归属表），先回报 captain 再决定是否扩范围。\n\n**队列第 3 位**：等 t3 通报\"IDB 已释放 + 语料已重建\"后再跑自己的链（`export` 写 `asm/pal3/decomp`，属共享产物）；开始与结束都要通报全员；退出码一律 `PIPESTATUS[0]`。",
+      "status": "pending",
+      "assignee": "eng-pipeline",
+      "dependencies": [
+        "t1",
+        "t3"
+      ],
+      "attempt": 0,
+      "createdAt": 1789450176322,
+      "updatedAt": 1789450176322,
+      "kind": "implementation",
+      "objective": "消除或正式豁免 `pipeline/ida/export_full.py` 对 `data/annotations/` 的 9 处直接依赖：实施等价重构并全链验证，或给出证据充分的有意取舍结论并交由 integrator 落盘决策记录。",
+      "inScope": [
+        "pipeline/ida/export_full.py"
+      ],
+      "outOfScope": [
+        "data/annotations/",
+        "pipeline/gen/",
+        "tools/",
+        "docs/knowledge/"
+      ],
+      "acceptance": [
+        "C1 结论有可复核证据：`pipeline/ida/export_full.py` 中**每一处**直接读 `data/annotations/` 的位置逐条列出（实测 9 处：150/159/200/213/216/281/485/688/718，含 `:148` 自称 'authoritative source for signatures' 的注释），并引用 CLAUDE.md 管线规则原文",
+        "二选一并给证据：**(a) 等价重构** —— `export` → `codegen all` → `probe all` → `match` 全链通过，且导出结果与重构前**等价**（签名/归属导出的计数对照或 diff），**L1 ≥ 5、ok ≥ 53/198 不回退**；**(b) 判定为有意取舍** —— 给出决定该取舍的完整证据与生效条件，并把决策页内容交给 integrator（其任务拥有 `docs/knowledge/` 作用域）落盘，因为 `docs/knowledge/MEMORY.md` 的 Decisions 段当前为空",
+        "不得以跳过/吞错/降低校验强度方式达成\"合规\"",
+        "若选 (a)，说明消除第二事实源后『签名/归属』的新来源（apply 产物 / IDB）并给出其可验证性论证"
+      ],
+      "verify": [
+        "python3 pipeline/cli.py export",
+        "python3 pipeline/cli.py codegen all",
+        "python3 pipeline/cli.py probe all",
+        "python3 pipeline/cli.py match"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_fix_export_redline.json"
+      ],
+      "nonGoals": [
+        "不修改注解内容",
+        "不写 docs/knowledge/（决策页交 integrator）",
+        "不做与红线无关的 export 重构",
+        "不降低任何既有校验强度"
+      ]
+    },
+    {
+      "id": "t5",
+      "subject": "门禁与基建：坏链接/假通过/假报警/退出码/85MB（队列第 4）",
+      "description": "执行 t5 裁决中 owner=t8 的 12 条 B2 与相关 B4 条目。核心问题与实测证据：\n\n1. **坏符号链接（发行阻断级）**：`data/status/baselines/latest.json` 在索引中是 mode **120000** 但其 blob 是 **462044 字节的完整 JSON**（非路径串）→ `git -c core.symlinks=true clone` 修复前 **exit 128**（`文件名过长`）、克隆后**该路径不存在**。同时它指向的 `20260915_100946.json` **未入库** → 干净检出下是 **dangling**。**修法**：改为 **100644 普通文件**，正文写真实 baseline JSON（现坏 blob 与已跟踪的 `20260915_075701.json` **逐字节相同**，sha256 `37c360fc…`，零信息损失），并消除产生路径（`tools/regression_detector.py:120-128` 的符号链接分支 → 一律写普通文件）；消费者只用普通文件读（`tools/sig_evidence.py:39`、`pipeline/cli.py:511`），全库仅 `regression_detector.py:122` 有 `is_symlink` 判断。\n2. **门禁失效（比合同描述更严重）**：见验收项 2，逐条实测过：`audit_layout.py:59-63` 缺前置产物时 `WARN`+`return {}` → 比对分支静默跳过 → exit 0；`:200-205` 与同源 TIL 比对属循环；`compile_regression.py` 基线冻结 2026-09-01（**204/58**）vs 当前 **198/53** → 恒定 REGRESSIONS/exit 1；`decomp_quality.py:110` 的 `×2` 与注释语义不一致；`cli.py:315-320` apply 失败无 `sys.exit`。\n3. **干净检出失败族**：`pipeline.toml` 缺失致所有命令早死（`config.py` 已有合格 ConfigError，但 `cli.py:57` 顶层 import 未捕获）；codegen 后置钩子缺 `probe_census.json` 时抛栈；`compare_pal3.py` 未守卫 census；`annotation_diff.py` 假新增+退出码不可区分；`cli.py` iterate 指向不存在模块。\n4. **仓库卫生**：85MB `original/PAL3.exe.i64.polluted.bak`（**已跟踪**，`git cat-file -s`=85833047，来自 `0d1294b0e`）→ 仅去跟踪 + 补 ignore；仓库根 `__vftable`（tracked/0B/无活跃产生路径）删除；`build_output.txt` 与一次性 `.obj`（untracked/ignored，删除不产生 git 改动 → **不计入\"已修复\"计数**）。\n5. **IDB 不可复现性固化**：work IDB 为单写者共享文件且脚本无锁探测（AR-008）→ 把\"从 raw IDB 重建再 apply\"的最小可复现路径 + \"apply 真成功\"的判定观测点（`.i64` **与边车 `.til/.nam/.id0/.id1/.id2`** mtime 刷新）写入 `docs/decompilation_workflow.md`。\n\n**队列第 4 位**：等 t4 通报\"IDB 已释放\"后再跑 `probe`/`match` 等共享产物命令；开始与结束都要通报全员；退出码一律 `PIPESTATUS[0]`；**不得**对受管文件执行 `checkout --/restore/stash`（须先经 captain 批准）。",
+      "status": "pending",
+      "assignee": "eng-pipeline",
+      "dependencies": [
+        "t1",
+        "t4"
+      ],
+      "attempt": 0,
+      "createdAt": 1789450192918,
+      "updatedAt": 1789450192918,
+      "kind": "implementation",
+      "objective": "修掉发行级基建缺陷与已失效门禁：坏符号链接改 100644 真正文并消除产生路径（使干净克隆与 git archive 均无错）、门禁假通过/循环/恒定假报警全部修复、apply 失败非零退出、干净检出失败给出可操作提示、85MB 去跟踪、并把 IDB 可复现重建路径写入文档。",
+      "inScope": [
+        "tools/",
+        "pipeline/cli.py",
+        "pipeline/decomp_quality.py",
+        "pipeline/compare_pal3.py",
+        "data/status/baselines/",
+        ".gitignore",
+        "__vftable",
+        "docs/decompilation_workflow.md"
+      ],
+      "outOfScope": [
+        "data/annotations/",
+        "pipeline/ida/",
+        "pipeline/gen/",
+        "docs/knowledge/"
+      ],
+      "acceptance": [
+        "**发行判据（合取式，三项全过）**：① `git ls-files -s data/status/baselines/latest.json` = **100644** ② `git -c core.symlinks=true checkout-index -f --prefix=/tmp/x/ -- <path>` **exit 0** ③ `git -c core.symlinks=true clone -q --no-hardlinks . /tmp/c` **exit 0 ∧ 该路径落成普通文件（`stat -c %F` 非 symbolic link）∧ 可 `json.load` 成功**（修复前实测 exit **128**、路径不存在 → 三项全 FAIL）；④ `git archive HEAD | tar -x` 无错解出",
+        "**门禁完整性（宁严勿松）**：`tools/audit_layout.py` 缺 `asm/pal3/ida_structs.json` 时**显式失败**（当前 WARN + 空 dict → 比对静默跳过、exit 0 假通过）；`:200-205` 的 `binary_size != ida_size` 与同源 TIL 比对属**循环**须修；`tools/compile_regression.py` 基线（204/58 vs 198/53）刷新或加棘轮，消除恒定假报警；`pipeline/decomp_quality.py` 判据由 `max(offsets) > cls_size * 2` 收紧到 `> cls_size`（**7→17 属恢复探测能力、不算回退**，须给『修复前静默通过 / 修复后被标记』对照，至少覆盖 gbVFileSystem、SoundMgr）；`pipeline/cli.py` apply 失败**非零退出**、`iterate` 指向不存在模块、后置钩子检查 returncode 并传出（不吞错）",
+        "`tools/annotation_diff.py` 区分『无变更』与『读不到 git』（当前 git 不可用时把 898 个结构体全报为新增且 exit 0）；`pipeline/compare_pal3.py` census 读取加守卫；`pipeline.toml` 缺失给可操作提示而非裸 traceback；`tools/vc6` 小写 shim 存在性加前置检查（明确指向 `tools/setup_wine_vc6.sh`，响亮失败、不静默兜底）",
+        "**85MB 处置**：`original/PAL3.exe.i64.polluted.bak` 仅 `git rm --cached` + `.gitignore` 补规则，**工作区文件保留**、**不重写历史**、如实写『去跟踪 ≠ 体积下降』；产出**已跟踪 >10MB blob 清单**（只报告）。仓库根空文件 `__vftable`（tracked、0 字节、无活跃产生路径）删除",
+        "**防复发**：修完 `latest.json` 后跑一次 `probe s2` 再确认 `git ls-files -s` 仍为 100644；收尾时**撤销本检出为绕过该缺陷所设的 `git config core.symlinks false`**，用默认配置复验 ①②③④（**靠本地配置兜住的\"通过\"不算通过**）",
+        "`intentional_keep` 项不被误删：`tools/vc6` 的 1258 条 shim（刻意的 Linux 大小写适配）、IDB 历史备份、`backup/local-line-20260904` 分支与 10 条 stash（**唯一保存点，禁止删除**）",
+        "**L1 ≥ 5、ok ≥ 53/198 不回退**（分母 198 变化即判不可比）；产出 `data/status/_cleanup_fix_infra.json` 逐条附实测输出"
+      ],
+      "verify": [
+        "git ls-files -s data/status/baselines/latest.json",
+        "git -c core.symlinks=true clone -q --no-hardlinks . /tmp/cleanclone; echo clone_exit=$?",
+        "git archive HEAD -o /tmp/head.tar && tar -xf /tmp/head.tar -C /tmp/headcheck && echo tar_ok",
+        "python3 pipeline/cli.py probe all",
+        "python3 tools/compile_regression.py"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_fix_infra.json",
+        "docs/decompilation_workflow.md"
+      ],
+      "nonGoals": [
+        "不弱化任何既有门禁（只准加强）",
+        "不删除工作区的 85MB 恢复副本、不重写 git 历史",
+        "不删除 backup 分支与 stash",
+        "不改注解内容"
+      ]
+    },
+    {
+      "id": "t6",
+      "subject": "codegen 双轨（3 站点）+ 判定顺序 + AR-002 声明 + CG-023（队列第 5）",
+      "description": "实施用户已裁决的**证据门控双轨** codegen 策略，并修复同文件的三处架构/健壮性问题。\n\n**轨道 1（合法直呼，仅 3 站点）**：`CCBAI.cpp:246/444/646` 直呼 `AStarPathFinder::GetHeuristicIdx`（VA **0x4014F0**，AStarPathFinder vtable slot2）是**合法直呼**——`0x004014F0` 原字节 `32 C0 C2 08 00` = `xor al,al; retn 8`（3 字节桩）；真实指令序列**恰 2 个参数**（`push edi / push ebx / mov ecx,esi / call sub_4014F0 / test al,al / jnz`）与 callee `retn 8` 一致，而生成源码渲染成 3 参 → **C2660 是 decomp/IDB 侧渲染产物，不是调用点问题**；`CCBAI.bases=[]` 且 `CCBAI.vtables=[]`（无继承、无 vtable），caller 归属有成员访问强证据。**实现口径**：**(ret-N 闸门通过) ∧ (callee 占 vtable 槽)** —— 实测只加 ret-N 闸门会放行 234 站点（直接违反裁决），加该条件后恰 3 站点。**根因是分支覆盖缺口**：`_ret_param_slots()` 只在 `pointer_expression` 分支被调用（`:477-487`），`(T*)this` 走 Branch B **从不查阅逐被调方证据**。\n**轨道 2**：其余 335 站点**一律不动**（证据未放行）；文件级 blanket 反转**未获用户授权**，AR-016 保持 DOCUMENT。3 站点改为可编译形式后标记消失属**已声明变化**（MIS 355→352）。\n\n**同时修**：判定顺序翻转（逐站点证据门控 + **排除 ctor/dtor**）、AR-002 声明式例外 + 零差异证明、CG-023 静默降级改 `RuntimeError`、该文件 except 处置、测试断言同步（含补 ROWTABLE 断言与 3 站点断言）。\n\n**队列第 5 位**：等 t5 通报\"IDB 已释放\"后再跑链；**中性改动用 monkeypatch/快照 diff 自证即可**（不写 `pal3/src`），只有真正改变输出的部分（3 站点 + 6 站点翻转）才进窗口跑 `codegen all → probe all → error_classifier → match`。注意：权威语料须在 t5 之后重建，本任务的三组基线数字（588/355、3 站点、6 站点）**须在稳定语料上重新基线化**后再下结论。开始与结束都要通报全员；退出码 `PIPESTATUS[0]`。",
+      "status": "pending",
+      "assignee": "eng-codegen",
+      "dependencies": [
+        "t1",
+        "t5"
+      ],
+      "attempt": 0,
+      "createdAt": 1789450210504,
+      "updatedAt": 1789450210504,
+      "kind": "implementation",
+      "objective": "在 ast_transform.py 实现证据门控双轨：仅对 t5 放行的 3 个站点改发可编译成员调用形式（虚 callee 保留 Cls:: 限定符），其余站点保持现状；同时按裁决修正判定顺序（逐站点证据门控 + 排除 ctor/dtor）、加 AR-002 声明式例外、把 CG-023 静默降级改为显式失败，并同步测试断言。",
+      "inScope": [
+        "pipeline/gen/ast_transform.py",
+        "pipeline/gen/test_pipeline.py"
+      ],
+      "outOfScope": [
+        "data/annotations/",
+        "pipeline/ida/",
+        "pipeline/gen/stages/",
+        "pipeline/gen/data.py",
+        "tools/"
+      ],
+      "acceptance": [
+        "**轨道 1 足迹严格 = 3 站点**：`pal3/src/Combat/CCBAI.cpp:246/444/646` → `AStarFinder::GetHeuristicIdx`（VA **0x4014F0**）。实现口径必须是 **(ret-N 闸门通过) ∧ (callee 占 vtable 槽)**：实测只加 ret-N 闸门会放行 **234 站点**（违反『其余不动』），加该条件后恰 **3 站点**（MISATTRIBUTED 355→**352**、ROWTABLE 588 不变）",
+        "**虚 callee 必须保留 `Cls::` 限定符**（保证直调；否则变 vtable 间接派发、与二进制不一致）；非虚 callee 可去限定符（两者编译为同一直接 call）",
+        "**轨道 2（其余站点）保持现状**：文件级 blanket 反转**未经用户授权不得实施**；产出中逐条列出 3 个站点的二进制证据（指令序列恰 2 参 `push edi/push ebx/mov ecx,esi/call sub_4014F0/test al,al/jnz` 与 callee `retn 8` 一致、vtable 槽归属、`ida_structs.json` 槽证据）",
+        "**判定顺序翻转**采用逐站点证据门控（口径：该 VA 被 ≥2 个类的虚表 slots 持有才走行表形态；实测 6 有支撑 / 3 无 → 后者保持现状并记 `GAP-ROWTABLE-PRECEDENCE-01`）；**必须显式排除 ctor/dtor**，否则凭空造 17 个假 `[ROWTABLE]`",
+        "**AR-002 只声明不迁移**：`:52`(ret-N 证据源)、`:148`(类层次) 加显式声明注释（写明读什么/为何必须读/**为何当前不可迁移**，引用实测：换 export 源 15/3594 文件漂移、含『静默放行』方向、pack-only 丢 89.8% 证据、类层次 172/179 且 7 条为空）；用 harness（驱动真实 `transform_oop_calls` 跑全部 **3594** 个 decomp JSON，纯内存）证明**零输出差异**",
+        "**CG-023 改显式失败**：`_rowtable_family()` 读不到 `data/status/_rowtable_family.json` 时返回空集 → **588 站点静默改判**为 MISATTRIBUTED（328 文件）→ 改 `RuntimeError`（消息含路径/原因/后果）；两处 status 产物已核实 git tracked，硬失败不误伤",
+        "该文件内 5 个**带类型** except 逐处处置（`:58` OSError / `:83` Exception / `:90` ValueError 保留并加 stderr 告警，`:83` 报出文件名；`:117` **不删**、记为 C3b 冗余并写实测证据（335 条全一致、0 文件输出变化）+ 告警）",
+        "**测试断言同步**：`:353`(MISATTRIBUTED 发射) ↔ `test_pipeline.py:99` + 场景 `:98`；**补** `:421` ROWTABLE 断言（现无覆盖）；`:322/333` ↔ `:589-596`；`:260` ↔ `:562-563`；模块 `__main__` 自检 L543-603；并**新增**这 3 个站点的期望形态断言（不新增标记拼写）",
+        "**L1 ≥ 5、ok ≥ 53/198 不回退**（分母 198 变化即判不可比）；产出 `data/status/_cleanup_fix_codegen_policy.json` 含『改动点 ↔ 测试断言 ↔ 影响站点』对照"
+      ],
+      "verify": [
+        "python3 pipeline/cli.py codegen all",
+        "python3 pipeline/cli.py probe all",
+        "python3 tools/error_classifier.py --summary",
+        "python3 pipeline/cli.py match"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_fix_codegen_policy.json"
+      ],
+      "nonGoals": [
+        "不做文件级 blanket 反转（未获用户授权）",
+        "不修改注解或 IDB 导入器",
+        "不新增第 4 种标记拼写"
+      ]
+    },
+    {
+      "id": "t7",
+      "subject": "消除破坏性注释与硬编码模式表（[VFTABLE]/[AUTO-COMMENTED]/[IDA_MISID]）（队列第 6）",
+      "description": "修复 codegen 的**破坏性注释**与**硬编码模式表**——这是本轮扫描最重要的发现：`[VFTABLE]` 有一千余处标记，其中**只有约 2.5% 是编译器自管的 vptr 存根**，其余把真实语句整段注释掉。\n\n**事实（站点级实测，均带 file:line）**：\n1. `[VFTABLE]`：产生代码在 `stage3_cleanup.py:722-749`（`:722-743` 按括号深度把含 `__vftable` 的多行语句整段注释为 `// [VFTABLE]`；`:745-749` 正则把残留单行注释化）。形状分布：**控制流头（if/while）约 168**、真实数据访问约 546、`__vftable` 当数据值 163、cast 44、续行片段等；**真 vptr 存根仅约 41 处**。\n2. 铁证反例：`CCBCamControl.cpp:972-975`（未注释的 float 写入 `0xBE800000` / `1.0f`）与 `:983-986`（同模式经 `__vftable` 后被注释）；`CCBParabolaWindow.cpp:45-46` 整条 `if(v5->__vftable){Release();}` 被注释。\n3. `[AUTO-COMMENTED]` 中 **89 处丢弃了被使用的赋值**（例 `CCBStage.cpp:868`）。\n4. `[IDA_MISID]` 84 处靠**6 个硬编码模式表**（`:752-759`）绕开 IDA 层修复，抽到的是真实代码（`std::_Xlen();`、`ExceptionList = NtCurrentTeb()->NtTib.ExceptionList;`）；子类 (i) 15 处（NtTib/ExceptionList，注释后留**悬垂引用**）、子类 (ii) 69 处（`_Xlen`/`_Xran`/Concurrency，decomp 无对应函数记录）。\n5. 死分支：`:287-290` 的 `'insert'`/`'comment_vft'` 无产生者（`[IDA_VFTABLE]` 实测 0 处）。\n\n**判据豁免（captain 特别裁决）**：见验收项 6——恢复真实代码会暴露新错误，**不以 S2 ok 为判据**，改以 L1 不回退 + 无真实语义被注释 + ok 下降逐条归因。\n\n**队列第 6 位**：等 t6 通报\"IDB 已释放\"后再跑链；开始与结束都要通报全员；退出码 `PIPESTATUS[0]`；不得对受管文件执行 `checkout --/restore/stash`（须先经 captain 批准）。",
+      "status": "pending",
+      "assignee": "eng-codegen",
+      "dependencies": [
+        "t1",
+        "t6"
+      ],
+      "attempt": 0,
+      "createdAt": 1789450224941,
+      "updatedAt": 1789450224941,
+      "kind": "implementation",
+      "objective": "消除 stage3_cleanup.py 中破坏真实语义的注释路径与硬编码模式表：只允许编译器自管的 vptr 存根走注释路径，恢复被误注释的真实代码（控制流头、float 写入、被使用的赋值、Release 调用等），并把 [IDA_MISID] 改为不丢语义的处置，同时清理死分支与该文件吞错。",
+      "inScope": [
+        "pipeline/gen/stages/stage3_cleanup.py"
+      ],
+      "outOfScope": [
+        "pipeline/gen/ast_transform.py",
+        "pipeline/gen/stages/emit_headers.py",
+        "pipeline/gen/data.py",
+        "data/annotations/"
+      ],
+      "acceptance": [
+        "被注释掉的**真实语义**必须恢复或给出证据支持的不恢复理由：至少逐条处置硬证据锚点——`CCBCamControl.cpp:972-975` 是**未注释**的 float 写入（`-1098907648`=0xBE800000、`1065353216`=0x3F800000=1.0f），而 `:983-986` **同类模式**经 `__vftable` 字段访问后被注释；`CCBParabolaWindow.cpp:45-46` 整条 `if (v5->__vftable) { Release(); }` 被注释",
+        "`[VFTABLE]` 站点的形状分类必须复查：**只允许编译器自管的 vptr 存根**（实测仅约 2.5%）走注释路径；真实数据访问 / **控制流头（if/while）** / 数据值 / cast / 续行片段一律不得被整体注释",
+        "`[AUTO-COMMENTED]` 中**丢弃被使用赋值**的站点（例：`CCBStage.cpp:868` 的 `Color = v22.gbColorQuad(...)->Color;`，其后 `v7->curColor.Color = Color;` 仍在使用该值）必须恢复或等价改写",
+        "`[IDA_MISID]` 的硬编码模式表（`stage3_cleanup.py:752-759`，6 个模式串）改为**不丢语义**的处置：抽到的内容是真实代码（`std::_Xlen();`、`ExceptionList = NtCurrentTeb()->NtTib.ExceptionList;`），**禁止整行删除**；子类 (i) NtTib/ExceptionList 15 处（注释后留下**悬垂引用**）与子类 (ii) 69 处（`_Xlen`/`_Xran`/Concurrency，decomp 无对应函数记录 → 是 Hex-Rays 贴的库名）分别处置",
+        "死分支与吞错：`stage3_cleanup.py:287-290` 的 `'insert'`/`'comment_vft'` 分支**无产生者**（实测 `[IDA_VFTABLE]`=0 处）→ 删除或标注死代码；该文件内裸 `except:` 逐处处置",
+        "**captain 特别裁决（判据豁免）**：本任务**不以 S2 ok 文件数为判据**（恢复被误注释的真实代码必然暴露新错误）→ ① **L1 ≥ 5 不回退** ② 不得再有真实语义被注释 ③ 若 ok 下降，须逐条列出每个新显形错误并证明它来自**恢复的真实代码**（而非新引入缺陷）",
+        "产出 `data/status/_cleanup_fix_vftable_comment.md`：量化前后对照（被注释站点数、恢复站点数、`[VFTABLE]` 形状分类计数、该文件裸 except 处置表）"
+      ],
+      "verify": [
+        "python3 pipeline/cli.py codegen all",
+        "python3 pipeline/cli.py probe all",
+        "python3 tools/error_classifier.py --summary",
+        "python3 pipeline/cli.py match"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_fix_vftable_comment.md"
+      ],
+      "nonGoals": [
+        "不为维持 S2 绿而继续注释真实代码",
+        "不改注解或 IDB",
+        "不动 ast_transform.py（属 t6）"
+      ]
+    },
+    {
+      "id": "t8",
+      "subject": "清理死门禁、死发射分支与吞错（emit_headers/data.py）（队列第 7）",
+      "description": "清理 codegen 层的**死代码、失效门禁与吞错**。事实（实测，均带 file:line）：\n\n1. **恒假门禁**：`emit_headers.py:1948-1950`（`[IDA_USERPURGE]`）与 `:1951-1953`（`[IDA_REGPARAM]`）**永远不会触发**——`:1882-1884` 已先剥离 `@<\\w+>`/`__userpurge`/`__usercall`，`:1901` 还重复剥离一次（实测计数 0/0）。溯源：这两条检查是随提交 `c37802092`（目录整合）从旧 `gen_headers.py` 搬来的，**无理由提交可查** → 处置：保留剥离（它才是让产物可编译的机制）、删除恒假检查，并把原意保留为“若剥离后仍残留不可拼写 token，则**可见报错**而不是静默注释掉声明”。\n2. **`[IDA_VFTABLE]` 死分支**：`stage3_cleanup.py:289-290` 的 `comment_vft` 发射，实测 **0 处**（全仓只有消费端、无产生者）；而 `emit_headers.py:1945-1946` 的 `[IDA_VTABLE]` 是活的（.h 中 1 处，由 `vtbl_` signature 恰好 1 个 1:1 触发）。两者**拼写与语义都不同**（前者想注释函数体内语句、后者注释方法声明），不得合并计数。该分支属 t7 的文件 → 本任务**只报判定与举证**。\n3. **`data.py:218` 静默丢弃 thunk 映射**：`skip_functions.json` 1955 条中 thunk 139 条（14 个 target），其中 **10 个 thunk 名真的出现在生成 .cpp**（如 `j_InputSystem::ProcessKeyboard`）；该 `except` 包住 `json.load` **加整个 for 循环**（`:193-218`）→ **一条坏条目即丢全部 139 条映射**（后果是编译期可见的 `j_` 未改名，不是静默字节漂移；S4 matched 命中 0/175）。\n4. **失实断言**：`data.py:226` 称 vtable slot 解析是 codegen 读 annotations 的**唯一**位置，而 `:191/:262/:374` 也在读；`data.py:94` docstring 自称 \"NOT from annotations\" 却与自身方法体矛盾。改为**如实的例外清单**。\n5. **死代码**：`stage5_fixup.py:71/:101/:98` 三件套 dead-on-arrival（自引入提交无引用；真正在用的是 `:108`）；`emit_headers.py:110 OVERRIDES_DIR` 过期常量；4 个无引用 import。\n6. **裸 except**：`emit_headers.py` 20 处 + `data.py` 8 处，按 A/B/C/D 分级处置（A 级必须变可见、B 级逐对象吞+计数上报、C 级收窄异常类型、D 级保留+理由）。**注意 `ast_transform.py` 与 `stage3_cleanup.py` 的 except 不属本任务**（分别归 t6/t7）。\n\n**主证据法**：monkeypatch `emit_headers.OUTPUT_DIR` 指向 /tmp 并预置当前头文件做前后 diff，证明**逐字节中性**（已审计：所有写/删路径均派生自 `OUTPUT_DIR`；`data.py` 零写操作）→ 不写 `pal3/src`、不跑 probe 即可证明。\n\n**队列第 7 位（最后）**：等 t7 通报\"IDB 已释放\"后再跑链（如中性证明成立，probe 只需一次）；开始与结束都要通报全员；退出码 `PIPESTATUS[0]`；不得对受管文件执行 `checkout --/restore/stash`（须先经 captain 批准）。",
+      "status": "pending",
+      "assignee": "eng-codegen",
+      "dependencies": [
+        "t1",
+        "t7"
+      ],
+      "attempt": 0,
+      "createdAt": 1789450255688,
+      "updatedAt": 1789450255688,
+      "kind": "implementation",
+      "objective": "清理 codegen 死代码与失效门禁：处置恒假的 [IDA_USERPURGE]/[IDA_REGPARAM] 检查、判定 [IDA_VFTABLE] 死发射分支（只报不越界）、消除 data.py 的 thunk 静默丢弃与失实断言、删除 dead-on-arrival 三件套与过期常量、逐处处置范围内裸 except，并用 monkeypatch diff 证明逐字节中性。",
+      "inScope": [
+        "pipeline/gen/stages/emit_headers.py",
+        "pipeline/gen/data.py",
+        "pipeline/gen/stages/stage5_fixup.py"
+      ],
+      "outOfScope": [
+        "pipeline/gen/ast_transform.py",
+        "pipeline/gen/stages/stage3_cleanup.py",
+        "data/annotations/",
+        "tools/"
+      ],
+      "acceptance": [
+        "恒假门禁消除或可达：`emit_headers.py:1948-1950`（`[IDA_USERPURGE]`）与 `:1951-1953`（`[IDA_REGPARAM]`）因 `:1882-1884` 先行剥离 `@<\\w+>`/`__userpurge`/`__usercall`（`:1901` 还重复剥离）而**恒假**（实测 0/0）→ 删除死分支**或**修正判据使检查真正可达，并说明该检查**原本想防什么**（推定：Hex-Rays 寄存器调用约定在 VC6 拼不出来，原意是“签名无法表达时不发射声明、改注释留痕”）；**不得以放宽检查的方式“修好”**",
+        "`[IDA_VFTABLE]` 死发射分支判定：`stage3_cleanup.py:289-290` 发射、实测 **0 处**（该文件属 t7 作用域 → **只报判定与举证，不越界修改**）；`emit_headers.py:1945-1946` 的 `[IDA_VTABLE]` 是**活**的（.h 中 1 处、由 `vtbl_` signature 恰好 1 个 1:1 触发）→ 二者拼写不同、语义不同类，**不得合并计数**（该结论已用于关闭分类学缺口）",
+        "`data.py:218` thunk 静默丢弃改为不静默：该 `except` 包住 `json.load` **加整个 for 循环**（`:193-218`），**一条坏条目即丢全部 139 条 thunk 映射**（其中 10 个 thunk 名真的出现在生成 .cpp）→ 改为带上下文的失败或计数上报，并给出影响面（受影响函数数、是否影响 S4 matched；实测 S4 matched 命中 0/175）",
+        "`data.py:226` 的 **'ONLY place codegen reads from annotations'** 失实断言改为**如实的例外清单**（同文件 `:191 skip_functions.json`、`:262 globals.json`、`:374 functions.json` 均为额外读点；`data.py:94` docstring 自称 'NOT from annotations' 也与自身方法体矛盾）；`emit_headers.py` 的读点同样如实声明",
+        "`stage5_fixup.py:71/:101/:98` **dead-on-arrival** 三件套（引入提交 `28c00559` 起无引用；该章节真正在用的是 `:108 _decompose_raw_pointer_arithmetic`）删除，并写明『若将来要做代数分解，应按该提交的设计意图重建而非复活死码』；`emit_headers.py:110 OVERRIDES_DIR` 过期常量（指向不存在的 `include/pal3/overrides`、无引用）删除；4 个无引用 import 清理",
+        "裸 except 按 A/B/C/D 分级处置（**不放宽、不删检查**，只把『静默』变成『可见或计数』）：A 级必须可见=`data.py:105`（吞 `ida_structs.json` 失败 → 整个 data store 静默退化为空）、`data.py:218`、`emit_headers.py:77`（别名表静默为空）、`data.py:76`；B 级逐对象吞+计数上报=`data.py:235/267/295/309/378`、`emit_headers.py:43/547/651/1518/1532/2125`；C 级收窄异常类型=`emit_headers.py:743/985/1068/1080/1222/1419/1500/1559/1570`；D 级=`emit_headers.py:2993`（gb2312 解码 best-effort，保留+理由注释）、`:3050`（**非吞错**，是有意义回退：十六进制键解析失败就用原键 → 保留但收窄类型）",
+        "**L1 ≥ 5、ok ≥ 53/198 不回退**（本任务不恢复被注释代码，故沿用标准判据）；**主证据法**：monkeypatch `emit_headers.OUTPUT_DIR` 指向 /tmp 并预置当前头文件做前后 diff，证明**逐字节中性**（已审计：全部写/删路径均派生自 `OUTPUT_DIR`，`data.py` 零写操作）——不写 `pal3/src`、不跑 probe 即可证明",
+        "产出 `data/status/_cleanup_fix_dead_gates.md`：逐条列出处置方式（删除/修正/收窄）、理由、以及中性证明的命令与输出"
+      ],
+      "verify": [
+        "python3 pipeline/cli.py codegen all",
+        "python3 pipeline/cli.py probe all",
+        "python3 pipeline/cli.py match"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_fix_dead_gates.md"
+      ],
+      "nonGoals": [
+        "不放宽任何门禁判据",
+        "不恢复被注释的代码（属 t7）",
+        "不动 ast_transform.py 与 stage3_cleanup.py（属 t6/t7）"
+      ]
+    },
+    {
+      "id": "t9",
+      "subject": "独立验证 7 条修复：门禁重跑、逐条证据核验与不回退判定",
+      "description": "独立验证 7 条修复（t2–t8），不做修复。核心判据与纪律：\n\n**判据（不得回退）**：`L1 ≥ 5`、`ok ≥ 53/198`（分母 198 变化即判不可比）。权威来源：`data/status/s4_baseline.json` 的 `stats.match_L1`、`data/status/baselines/latest.json` 的 ok/fail。\n\n**apply 诚实读数（两种情形并列，勿混）**：只改导入器 → `879→876`、fail 2→5（**876/881 诚实**）；注解+导入器同时落地 → **881/881 且诚实**。盘上 10:34:43 那份 `apply_status.json`（881/881）来自**已不存在的文件状态**，只能作\"修复有效性证据\"，**不是当前环境状态**——你必须在净态自行重跑 apply 取数。\n\n**必做**：① 逐条核验 t2–t8 声明的二进制证据 ↔ 最终代码/decomp 现象（不一致即不通过 + 反例）；② `git status` 变更须全部落在声明 inScope 内，声明外变更点名；③ **退出码一律 `PIPESTATUS[0]`**（`cmd | tail` 会让 `$?` 变成 tail 的退出码，本会话已因此误判两次）；④ apply 前后核对 `.i64` **与边车 `.til/.nam/.id0/.id1/.id2`** mtime（只核 `.i64` 不够——已验证存在\"开过库但 `.i64` 未变\"的情况）；⑤ 开工前记录被改文件 mtime+sha256；⑥ 门禁**变严导致指标下降不算回退**（`decomp_quality` 的 `×2`→`×1`：7→17；`audit_layout` 假通过改显式失败；`compile_regression` 基线刷新），但要求\"修复前静默通过 / 修复后被标记\"的正向对照；⑦ **t7 恢复被注释代码**适用豁免：只判 L1 不回退 + 无真实语义被注释 + ok 下降逐条归因。\n\n**发行判据合取式**（修复前实测 exit **128**、路径不存在）：① `ls-files -s`=**100644** ② `checkout-index`（`-c core.symlinks=true`）**exit 0** ③ `clone`（同配置）**exit 0 ∧ 落成普通文件 ∧ 可 `json.load`** ④ `git archive HEAD | tar -x` 无错解出。\n\n**环境 caveat**：当前三层不一致（工作区注解未修复 / IDB 修复态 / `pal3/src`+`asm/pal3/decomp` 由修复态 IDB 生成）；旧标记计数（`[VFTABLE]` 1643、`[AUTO-COMMENTED]` 229）基于旧树，当前树为 1935/233，**两组不可混用**；权威语料须在修复链跑完后重建，标记普查基线须重取。\n\n**窗口纪律**：必须在**独占声明窗口**内跑（不得与其他成员的 export/codegen/probe 并发）；等 t8 通报\"IDB 已释放 + 语料已重建\"后再开始；开始与结束都要通报全员。",
+      "status": "pending",
+      "assignee": "verifier",
+      "dependencies": [
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8"
+      ],
+      "attempt": 0,
+      "createdAt": 1789450270569,
+      "updatedAt": 1789450270570,
+      "kind": "verification",
+      "objective": "独立重跑全部强制门禁与逐条修复证据核验：确认 7 条修复真实生效、无声明外变更、L1 与 ok 文件数不回退、发行判据合取式三项全过，并产出可复核的机器可读验证记录（含反例清单）。",
+      "acceptance": [
+        "独立重跑并记录实测数字：`apply`（核对 `original/PAL3.exe.i64` **与边车 `.til/.nam/.id0/.id1/.id2`** mtime 是否刷新）→ `export` → `codegen all` → `probe all` → `error_classifier --summary` → `match`；每条命令附退出码（**一律 `PIPESTATUS[0]`**）与关键输出",
+        "**不回归判定**：`data/status/s4_baseline.json` 的 `match_L1` ≥ **5**、`data/status/baselines/latest.json` 的 ok ≥ **53**/198（分母 198 变化即判不可比）；出现回退须给出定性结论与反例",
+        "**apply 诚实读数核验（两种情形并列）**：只改导入器 → `879→876`、fail 2→5（876/881 诚实）；注解+导入器同时落地 → **881/881 且诚实**；**盘上旧日志（如 10:34:43 的 881/881）来自已不存在的文件状态，不得当作当前环境状态**",
+        "逐条核验 t2–t8 声明修复的条目：核对『声明的二进制证据 ↔ 最终代码/decomp 实际现象』是否一致；不一致即判不通过并给反例；对 `t7`（恢复被注释代码）**不以 S2 ok 为判据**（豁免：只判 L1 不回退 + 无真实语义被注释 + ok 下降逐条归因）",
+        "**发行判据合取式**：① `git ls-files -s data/status/baselines/latest.json`=**100644** ② `git -c core.symlinks=true checkout-index -f --prefix=/tmp/x/ -- <path>` **exit 0** ③ `git -c core.symlinks=true clone -q --no-hardlinks . /tmp/c` **exit 0 ∧ 该路径落成普通文件 ∧ 可 `json.load`**（修复前 exit **128**）④ `git archive HEAD | tar -x` 无错解出",
+        "**门禁变严不算回退**：`decomp_quality` 的 `×2`→`×1`（7→17）按『恢复探测能力』判，但要求『修复前静默通过 / 修复后被标记』的正向对照（至少覆盖 gbVFileSystem、SoundMgr）；`audit_layout` 假通过改显式失败、`compile_regression` 基线刷新同此口径；既有违规数量作**独立数字**记录、不算缺陷",
+        "`git status` 变更全部落在各任务声明 inScope 内；出现声明外变更须点名（文件 + 变更性质）",
+        "开工前记录被改文件 mtime+sha256（本会话已发生 4 次“改→还原”循环），并在记录中标注判据依据的是哪一次快照",
+        "产出机器可读验证记录 `data/status/_cleanup_verify_fixes.json`：每条命令/退出码/关键数字/判定（passed/failed）+ 通过或不通过结论 + 反例清单"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_verify_fixes.json"
+      ],
+      "nonGoals": [
+        "不修 bug（发现问题回报给对应修复任务）",
+        "不修改注解、代码或数据文件",
+        "不启动 IDA 做类型层强证（除非确认 IDB 空闲且经 captain 同意）"
+      ]
+    },
+    {
+      "id": "t10",
+      "subject": "复核注解/布局修复的证据充分性与零信息损失（复核 t2）",
+      "description": "独立复核 **t2（B1 注解/布局修复）** 的正确性与证据充分性，给出裁决。\n\n**复核要点**：\n- 逐条判定二进制证据是否成立：`SceneObj` 18804/18808（P1 `check_annotations` 自报越界、P2 `source` 自证来自 `CCBRoleState::UpdateEffects`、P3 CCBRoleState 自有同名同偏移、P4 A 级 `fst dword ptr [esi+4974h]` 于 `CCBRoleState::CalcSpringForce` 0x449F00）；`UICursor` 32→64（A 级 +0x3E 访问）；`SaleUI` 33 项（32 项位移在整份 asm 出现 0 次、第 33 项属 124268 字节类）与两条 overlap。\n- **重点检查是否违反项目强约束**：是否用放大 `binary_size` 来\"容纳\"越界成员（严禁）；删除的成员是否**在仓库其它结构体/decomp 中确实无处可考**（SaleUI 有 19 个名字全仓唯一 → 删除须有充分证据，且须显式回应\"binary_size 偏小\"竞争假设：EquipUI/PropUI 中同类成员位于各自尾部且相对尾偏移一致）；是否引入伪语义命名或破坏性 workaround。\n- 是否满足 taxonomy 的\"已修复\"口径；未修条目是否被诚实标为\"需补证\"而非忽略。\n- 门禁是否被弱化（以跳过/吞错方式\"通过\"）。\n- 裁决必须针对**最新实现状态**；`needs_revision` 时给可执行、可验证的结构化 findings（含 file/line 与 requiredFix）。\n\n**手段限制**：只读 git/文件、python 只读脚本、/tmp 副本实验；**不得**启动 IDA、**不得**跑 `apply/export/codegen/probe/match`（需要这些读数的结论标注\"待 verifier 窗口\"）；退出码一律 `PIPESTATUS[0]`。",
+      "status": "pending",
+      "assignee": "reviewer",
+      "dependencies": [
+        "t2",
+        "t9"
+      ],
+      "attempt": 0,
+      "createdAt": 1789450288515,
+      "updatedAt": 1789450288515,
+      "kind": "review",
+      "round": 1,
+      "objective": "Review whether the latest implementation satisfies the user goal",
+      "acceptance": [
+        "逐条判定证据充分性（A 级=指令级 reg+disp32/绝对地址；归属需 decomp member access evidence）；无证据或证据不足一律记 findings",
+        "检查是否引入新矛盾：`check_annotations` 新增错误、struct 布局越界、成员 overlap、伪语义命名、破坏性 workaround（用 void*/int 掩盖真实类型）",
+        "检查是否满足『零信息损失』：SaleUI 33 项删除是否逐条有证据、是否显式回应了『binary_size 偏小』竞争假设；`SceneObj` 是否**未**通过放大 `binary_size` 来容纳越界成员；`UICursor` 是否走的是改尺寸而非删成员",
+        "裁决针对**最新实现状态**（非历史版本）；通过时给可复核依据；不通过时给结构化 findings（id/severity/problem/file/line/requiredFix）",
+        "核对 `data/annotations/CHANGE_LOG.md` 与 `data/status/_cleanup_fix_attribution.json` 是否逐条具备『证据 + 改动 + 验证』三要素"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_review_attribution.json"
+      ],
+      "nonGoals": [
+        "不参与修复",
+        "不扩大到 t2 未声明的条目",
+        "不启动 IDA、不跑会写共享产物的命令"
+      ],
+      "reviewedTaskId": "t2"
+    },
+    {
+      "id": "t11",
+      "subject": "复核管线/基建/codegen 修复的根因正确性与回归风险（复核 t3–t8）",
+      "description": "独立复核**管线/基建/codegen 六条修复（t3–t8）**的根因正确性、修复层级恰当性与回归风险，给出裁决。\n\n**复核要点**：\n- **t3 导入器**：判据是否用 `get_udt_details()`+成员数一致（而非\"见 `get_size()==-1` 即 fail\"，后者会误杀合法 union）；末端口径检查（`member_end = 偏移 + 成员解析尺寸`）；`:654-656`(diff-mode 正确拒绝 -1) 与 `:866-877`(TAUDT_FIXED 无条件降级) 是否**真正统一**；可操作不完整清单；逐 struct 留痕覆盖开关（默认拒绝）。\n- **t4 export 红线**：9 处读取（150/159/200/213/216/281/485/688/718）逐条处置；若重构，等价性证据与全链结果；若有意取舍，证据/生效条件是否完整（**决策页由 integrator 落盘**，不属 t4）。\n- **t5 门禁与基建**：发行判据**合取式**三项全过（① `ls-files -s`=100644 ② `checkout-index`（`-c core.symlinks=true`）exit 0 ③ `clone`（同配置）exit 0 ∧ 落成普通文件 ∧ 可 `json.load`）+ `git archive HEAD | tar -x` 无错；门禁**只加强未放宽**；85MB **仅去跟踪**（未删工作区文件、未重写历史，如实写\"去跟踪 ≠ 体积下降\"）；`tools/vc6` shim、IDB 备份、`backup/local-line-20260904` 与 10 条 stash **未被删除**。\n- **t6 codegen 双轨**：轨道 1 严格只有 **3 站点**变化（仅加 ret-N 闸门会放行 234 站点 = 违规）；虚 callee 保留 `Cls::`；判定顺序翻转是否排除 ctor/dtor（否则凭空造 17 个假 `[ROWTABLE]`）；`data.py:226` 失实断言是否改为如实例外清单。\n- **t7 破坏性注释**：是否只允许真 vptr 存根（约 2.5%）走注释路径；被误注释的真实语义是否恢复且**无新增静默丢失**；其**判据豁免**（不以 S2 ok 为判据）是否被正确适用（若判据被误用为\"ok 下降即失败\"或反之\"忽略 ok 下降而不逐条归因\"，均为 findings）。\n- **t8 死门禁/吞错**：恒假门禁是否**删除或修正为可达**（**严禁以放宽检查方式\"修好\"**）；`data.py:226`/`:94` 断言是否如实；`data.py:218` thunk 是否不再静默；dead-on-arrival 三件套与过期常量是否清除；裸 except 是否按 A/B/C/D 分级且**未放宽任何检查**。\n- **AR-016 检查**：是否存在未经用户授权的文件级 blanket 反转（只有 t5 放行的 3 个站点可改，且须有逐站点证据 + harness 证明仅 3 处变化 + L1/ok 不回退）。\n\n**手段限制**：只读 git/文件、python 只读脚本、/tmp 副本实验；**不得**启动 IDA、**不得**跑 `apply/export/codegen/probe/match`（需要这些读数的结论标注\"待 verifier 窗口\"）；退出码一律 `PIPESTATUS[0]`。",
+      "status": "pending",
+      "assignee": "reviewer",
+      "dependencies": [
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9"
+      ],
+      "attempt": 0,
+      "createdAt": 1789450288544,
+      "updatedAt": 1789450288544,
+      "kind": "review",
+      "round": 1,
+      "objective": "Review whether the latest implementation satisfies the user goal",
+      "acceptance": [
+        "**导入器（t3）**：判据是否为 `get_udt_details()`+成员数一致（而非\"见 -1 即 fail\"）、末端口径越界检查是否存在、`:654-656` 与 `:866-877` 两条路径是否**真正统一**、是否输出可操作不完整清单、留痕覆盖开关是否默认拒绝且每次覆盖有记录",
+        "**export 红线（t4）**：9 处读取是否逐条处置；若选重构，等价性证据（计数对照/diff）是否成立、是否跑过全链；若判为有意取舍，证据与生效条件是否完整（决策页由 integrator 落盘）",
+        "**门禁与基建（t5）**：发行判据合取式三项是否全过（`ls-files -s`=100644 / `checkout-index` exit 0 / `clone` exit 0 ∧ 普通文件 ∧ 可 json.load）与 `git archive | tar -x` 是否无错；门禁是否**只加强未放宽**（`audit_layout` 假通过→显式失败、`compile_regression` 基线刷新、`decomp_quality` `×2`→`×1`）；85MB 是否**仅去跟踪**（未删工作区文件、未重写历史）；`backup` 分支与 stash 是否未被删除",
+        "**codegen 三任务（t6/t7/t8）**：t6 轨道 1 是否严格只有 **3 站点**变化（不得泛化到其余 335）、虚 callee 是否保留 `Cls::` 限定符、是否排除 ctor/dtor、`data.py` 失实断言是否改为如实例外清单；t7 是否只允许真 vptr 存根走注释路径（其判据豁免是否被正确适用）；t8 恒假门禁是否被删除或修正为可达（**不得以放宽检查方式修好**）",
+        "裁决针对**最新实现状态**；通过时给可复核依据；不通过时给结构化 findings（id/severity/problem/file/line/requiredFix）",
+        "**AR-016 检查**：是否存在未经用户授权的『文件级 blanket 反转』（`[MISATTRIBUTED]` policy）；只有 t5 放行的 3 个站点可改，且必须有逐站点二进制证据 + harness 证明只有这 3 处变化 + L1/ok 不回退"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_review_pipeline_codegen.json"
+      ],
+      "nonGoals": [
+        "不参与修复",
+        "不扩大到 t3–t8 未声明的条目",
+        "不启动 IDA、不跑会写共享产物的命令"
+      ],
+      "reviewedTaskId": "t3"
+    },
+    {
+      "id": "t12",
+      "subject": "整合落地：基线更新、冻结证据入库、B4 删除批次与清理总账",
+      "description": "把本队清理结果落地并出总账。前置：t2–t8 全部落地、t9 验证通过、t10/t11 两路复核通过。\n\n**落地内容**：\n1. **基线更新**：把 `data/status/baselines/*`、`s4_baseline.json`、`pal3_registry.jsonl`、`error_classification.json` 与权威窗口后的实况对齐并纳入版本控制；写清 **apply 两种诚实读数**（只改导入器 → `876/881`；注解+导入器同时落地 → `881/881` 且诚实）；标注**旧树计数作废**（`[VFTABLE]` 1643→现树 1935、`[AUTO-COMMENTED]` 229→233）与权威计数已重取。\n2. **冻结/证据类入版本控制**（当前多 untracked，`git clean -fd` 会清掉）：`verifier_prefix_s2.json`、三份扫描清单、`_cleanup_scan_triage.json`、`_cleanup_verify_scan_claims.json`、`_cleanup_evidence_stub_call_4014F0.json`、`_cleanup_fix_*`、`docs/specs/2026-09-15-*.md`。总账**分区段列示**「冻结/基线类」vs「修复类」。\n3. **B4 删除批次（14 条）**：死路径、裸 except、`__vftable`、`build_output.txt`+一次性 `.obj`（untracked，不产生 git 改动 → **不计入\"已修复\"**）；**85MB 仅 `git rm --cached`** + 补 `.gitignore`（工作区保留、不重写历史）；产出 >10MB 已跟踪 blob 清单（只报告）。\n4. **禁止删除**：`backup/local-line-20260904` 与 10 条 stash（唯一保存点，删除须用户决策）→ 列「有意保留」。\n5. **知识沉淀**（5 条）：单写者共享 IDB 并发纪律（含 `.i64` 与边车 mtime 指纹）；`cmd | tail` 吞 `$?` 的退出码陷阱；union variant 无 `offset` 字段与 `int('12_1')`=121 伪影；生成物重生成致全队计数基线作废；`binary_size` 撑大（A 族）vs 越界（B 族）。\n6. **export 红线决策页**（若 t4 判\"有意取舍\"）落盘到 `docs/knowledge/`（含证据、生效条件、替代控制）。\n7. 产出 `data/status/_cleanup_scan_ledger.json`：条目按 已修/已删/有意保留/需补证 四类计数，且与 `_cleanup_scan_triage.json` 的 268 条目/31 缺口**自洽**。\n\n**纪律**：不新增功能性代码改动、不改已复核通过的修复内容、不删除任何冻结证据；提交前核对 `git status` 无声明外改动；不得对受管文件执行 `checkout --`/`restore`/`stash`。",
+      "status": "pending",
+      "assignee": "integrator",
+      "dependencies": [
+        "t2",
+        "t10",
+        "t11"
+      ],
+      "attempt": 0,
+      "createdAt": 1789450338942,
+      "updatedAt": 1789450338942,
+      "kind": "integration",
+      "objective": "把本队清理结果落地：更新并纳入 S2/L1/错误分类基线与权威计数、把冻结证据纳入版本控制并分区段列示总账、执行 B4 删除批次（含 85MB 去跟踪）、把 5 条通用规律写入 docs/knowledge 并更新索引、产出与 triage 计数自洽的清理总账。",
+      "inScope": [
+        "data/status/",
+        "docs/knowledge/",
+        "data/annotations/CHANGE_LOG.md"
+      ],
+      "outOfScope": [
+        "pipeline/",
+        "tools/",
+        "data/annotations/ 下除 CHANGE_LOG.md 外的文件"
+      ],
+      "acceptance": [
+        "**基线更新**：把 `data/status/baselines/*`、`data/status/s4_baseline.json`、`data/status/pal3_registry.jsonl`、`data/status/error_classification.json` 与**权威窗口后的实况**对齐并纳入版本控制；写清 **apply 的两种诚实读数**（只改导入器 → 876/881；注解+导入器同时落地 → 881/881 且诚实），并标注旧树计数（`[VFTABLE]` 1643 等）作废、权威计数已重取",
+        "**冻结/证据类入版本控制**（当前多为 untracked，`git clean -fd` 会清掉）：`data/status/baselines/verifier_prefix_s2.json`、`_cleanup_scan_{codegen,attribution,architecture}.json`、`_cleanup_scan_triage.json`、`_cleanup_verify_scan_claims.json`、`_cleanup_evidence_stub_call_4014F0.json`、`_cleanup_fix_*.json/md`、`docs/specs/2026-09-15-*.md`；总账**分区段列示**「冻结/基线类」vs「修复类」，**不得合并成一个数字**",
+        "**B4 删除批次执行**（14 条）：死路径、裸 except、仓库根 `__vftable`、`build_output.txt` 与一次性 `.obj`（untracked/ignored，删除不产生 git 改动 → **不计入\"已修复\"计数**）；**85MB 只做 `git rm --cached` + 补 .gitignore**（工作区文件保留、**不重写历史**、如实写\"去跟踪 ≠ 体积下降\"）；产出**已跟踪 >10MB blob 清单**（只报告）",
+        "**禁止删除**：`backup/local-line-20260904` 分支与 10 条 stash（同步前本地线的**唯一保存点**，远端任何分支都不含它；stash drop 不可逆）→ 在总账中列为「有意保留」，删除须用户显式决策",
+        "**知识沉淀**：写入 `docs/knowledge/`（按该目录 README 的 type 与格式并更新 `MEMORY.md` 索引）至少 5 条本会话确认的通用规律：① 单写者共享 IDB 的并发纪律（含 `.i64` 与边车 mtime 指纹）② `cmd | tail` 吞掉 `$?` 的退出码陷阱（须用 `PIPESTATUS[0]`）③ union variant 成员无 `offset` 字段（`int('12_1')`=121 的 Python 下划线解析伪影）④ 生成物重生成会让全队计数基线作废 ⑤ `binary_size` 撑大（A 族）与越界（B 族）是两种方向相反的缺陷",
+        "**export 红线的决策页**（若 t4 判为\"有意取舍\"）由本任务落盘到 `docs/knowledge/`（含证据、生效条件、替代控制手段）——该目录 Decisions 段此前为空",
+        "提交前核对 `git status` **无声明外改动**；**不得**对受管文件执行 `checkout --`/`restore`/`stash`（须先经 captain 批准）；产出 `data/status/_cleanup_scan_ledger.json` 清理总账（条目数按 已修/已删/有意保留/需补证 四类，且与 `_cleanup_scan_triage.json` 计数自洽）"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_scan_ledger.json",
+        "docs/knowledge/",
+        "data/annotations/CHANGE_LOG.md"
+      ],
+      "nonGoals": [
+        "不新增功能性代码改动",
+        "不修改已复核通过的修复内容",
+        "不删除冻结证据、backup 分支或 stash",
+        "不重写 git 历史"
+      ]
+    }
+  ],
+  "taskSeq": 12,
+  "phase": "running",
+  "approvedAt": 1789450145931
+}

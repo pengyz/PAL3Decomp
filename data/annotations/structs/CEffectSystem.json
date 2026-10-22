@@ -77,7 +77,7 @@
     "0x004C6240": {
       "name": "_todo_004C6240",
       "signature": "int *__thiscall(int nVal)",
-      "source": " | 析构名误挂改名 2026-09-29：~CEffectSystem→_todo_004C6240（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）"
+      "source": "| 析构名误挂改名 2026-09-29：~CEffectSystem→_todo_004C6240（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）"
     },
     "0x004C6260": {
       "name": "_scalar_dtor_6260",
@@ -93,7 +93,7 @@
     "0x004C6290": {
       "name": "Destroy",
       "signature": "void __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)",
-      "source": " | 签名缺参批量 2026-10-06：ret 20/4=5 参 vs 签名 0——补 5 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 void __thiscall(int nVal1) ⇒ void __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)（A 级 ret-N 证据：ret $0x14 ⇒ 5 栈参；int 占位·nVal 序号惯例）"
+      "source": "| 签名缺参批量 2026-10-06：ret 20/4=5 参 vs 签名 0——补 5 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 void __thiscall(int nVal1) ⇒ void __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)（A 级 ret-N 证据：ret $0x14 ⇒ 5 栈参；int 占位·nVal 序号惯例）"
     },
     "0x004C6330": {
       "name": "GetEffectIndex",
@@ -110,7 +110,7 @@
     "0x004C6360": {
       "name": "DestroyEffect",
       "signature": "void __thiscall()",
-      "source": " | 挂账19续批2b 2026-10-17（verifier·DestroyEffect/散组四分账·五面语义卡）：✅ 名对保留：①调用者=0x4C6350（名 GetEffect 可疑=另账）②被调=自身转发 ③成员无 ④CEffectSystem 效果系统 ⑤系统级销毁 ⇒ 名 DestroyEffect 语义对"
+      "source": "| 挂账19续批2b 2026-10-17（verifier·DestroyEffect/散组四分账·五面语义卡）：✅ 名对保留：①调用者=0x4C6350（名 GetEffect 可疑=另账）②被调=自身转发 ③成员无 ④CEffectSystem 效果系统 ⑤系统级销毁 ⇒ 名 DestroyEffect 语义对"
     },
     "0x004C6410": {
       "name": "DestroyAllEffect",
@@ -128,7 +128,7 @@
     "0x004C65F0": {
       "name": "HandleViewMove",
       "signature": "void(float x, float y)",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x004C6670": {
       "name": "Update",

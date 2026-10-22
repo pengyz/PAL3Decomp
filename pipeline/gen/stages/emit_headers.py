@@ -2374,6 +2374,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             #（实测：RoleSystem 的按值 `UIWnd` 之后未补 pad ⇒ 其后全部成员 −16；SceneMgr 继承 −16 且尾部再 −24）
             # 现改为**在循环顶部统一补白**（任何分支之前）⇒ 三类分支都不再绕过 ✓
             # 并**不再跳过**任何成员（估算偏大只告警，不丢成员）✓
+            _skip_vptr_gap = False
             for off_str in sorted_offsets:
                 group = ann_members[off_str]
                 off = int(off_str)
@@ -2387,7 +2388,18 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     lines.append("    static %s %s; // +0x0 (vfptr slot; 布局由编译器隐式 vfptr 提供)"
                                  % (group[0].get('type', 'void *'), group[0].get('name')))
                     start_off = max(start_off, 4)
+                    # [R70 P0-1 修法 2026-10-21] 承认隐式 vptr 4 字节，**跳过冗余 gap**
+                    # 机理（verifier R69 wine cl 隔离 5 结构）：
+                    #   static 占位=0 · 隐式 vptr=+4 · gap_001[3]=+3 ⇒ 编译前区 7 vs 声明 4
+                    #   「static 排除⇒−4」方向错，膨胀主导=隐式 vptr(+4)
+                    # 修法：static 占位后，跳过 off<4 的 gap 成员（隐式 vptr 已覆盖 +0..+3）
+                    _skip_vptr_gap = True
                     continue
+                # [R70 P0-1 修法] 跳过隐式 vptr 区的冗余 gap
+                if _skip_vptr_gap and off < 4 and (
+                        str(group[0].get('name', '')).startswith(('_gap_', '_pad_'))):
+                    continue  # 隐式 vptr 已覆盖 +0..+3，gap 冗余
+                _skip_vptr_gap = False
                 if off > start_off:
                     _gap = off - start_off
                     lines.append("    char _gap_%03X[%d]; // +0x%X" % (start_off, _gap, start_off))

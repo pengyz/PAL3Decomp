@@ -1,0 +1,41 @@
+{
+  "review_of": "tools/check_annotation_preflight.py + tests/test_check_annotation_preflight.py",
+  "verdict": "PASS_WITH_CHANGES",
+  "logic_correctness": {
+    "overlap": "⚠️ 仅查**同起点**偏移（源码自注『简化』）——名『内存重叠』但跨距重叠不报（CaseA 实测零报）；union 豁免 ✓ 正确（CaseC 实测）",
+    "illegal_array_bound": "✓ 数字≤0 与标识符界双查（逻辑对）",
+    "dual_claim": "⚠️ DUAL_PAIRS 硬编码 8 对——新两说对不进表=漏报；且两词共现不分语境=驳斥文误报（CaseB 实测）",
+    "offset_out_of_range": "✓ off≥binary_size 查（逻辑对）",
+    "duplicate_method_name": "✓ __ovl_ 豁免形正确",
+    "functions_checks": "✓ 实测输出有货（duplicate_signature 抓到 CombatEffectUpdate/MiniGame1Update 同签名对+33 项）"
+  },
+  "tdd_coverage": {
+    "tests_run": "10 passed（独立 pytest 实跑 ✓）",
+    "gap": "10 测试 vs 8 检查逐项映射未验全文（数量面够）；**CaseA/CaseB 两风险面 0 测试覆盖**（跨距重叠+驳斥文误报）"
+  },
+  "false_positive_risks": [
+    "驳斥/考据文同时引旧说+新说名=dual_claim 误报（CaseB 实证——reviewer 自己的驳斥文形态即触发）"
+  ],
+  "false_negative_risks": [
+    "跨距重叠（不同起点 span 相交）不报（CaseA 实证）",
+    "嵌套 struct/union 内部偏移重叠不查",
+    "新两说对（不在 DUAL_PAIRS 8 对内）漏报",
+    "[0x..] 十六进制数组界不识别（仅十进制正则）"
+  ],
+  "performance": "全仓实测 **0.108s**（real）——秒级要求远超 ✓✓ 940 类面无压力",
+  "integration_advice": "接入 `cli.py check` 自动前置（0.1s 成本零负担）+ apply 前软闸（复用 check_annotations 同入口）；dual_claim 建议降 severity=advisory 或加语境判定（『已改/驳斥』词邻）；overlap 补 span 计算（tsz 可得时）",
+  "blocking_issues": [
+    {
+      "target": "overlap 检查名实不符",
+      "issue": "称『内存重叠（非 union）』实为『同起点冲突』——跨距重叠漏报（CaseA 实测）",
+      "evidence": "CaseA 合成件 +0 int[25]（span 100）与 +50 int 跨距相交 ⇒ 工具零报（实测输出）",
+      "fix_required": "补 span 算（type 尺寸表）或改名为 same_offset_check 以免使用者误信覆盖"
+    }
+  ],
+  "summary": {
+    "reviewed": 6,
+    "ok": 4,
+    "blocked": 1,
+    "risks": 6
+  }
+}

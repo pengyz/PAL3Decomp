@@ -161,10 +161,21 @@ def collect(ann_dir=ANN_DIR):
     except (OSError, ValueError):
         pass
 
-    # [分子口径修正 2026-10-20] 分子也要剔除 skip/CRT —— 库函数的签名
-    # 不算游戏逻辑覆盖（用户明确：库函数不属游戏逻辑、我们不映射）。
-    # 实测：functions.json 559 有签名 · 其中 skip/CRT 214 · 游戏逻辑签名 345
-    #      ⇒ 真实覆盖率 345/1779 = 19%（而非 559/1779 = 31%）
+    # [口径修正 2026-10-21·重大] **签名有两个注册表**：
+    #   ① functions.json（自由函数 + 部分方法）② structs/*.json 的 methods 字段（类方法）
+    # 原指标只算 ① ⇒ 报 22%；**真实覆盖 97%**（3609/3692）。
+    # 4 轮 goal 零推进的根因 = 指标测错了对象！
+    _me_signed = set()
+    for _fp in glob.glob(os.path.join(ANN_DIR, 'structs', '*.json')):
+        try:
+            with open(_fp, encoding='utf-8') as _fh:
+                _d = json.load(_fh) or {}
+        except (OSError, ValueError):
+            continue
+        for _a, _v in (_d.get('methods') or {}).items():
+            if isinstance(_v, dict) and _v.get('signature'):
+                _me_signed.add(str(_a))
+    ann_names.update(_me_signed)
     skip_names = set()
     try:
         with open(fp_skip, encoding='utf-8') as fh:
@@ -190,7 +201,37 @@ def collect(ann_dir=ANN_DIR):
                 n_skip_sig += 1
     except (OSError, ValueError):
         pass
-    n_sig = max(n_sig - n_skip_sig, 0)   # 分子 = 游戏逻辑签名
+    # [口径修正 2026-10-21·重大] **签名有两个注册表**：
+    #   ① functions.json（自由函数 + 部分方法）② structs/*.json 的 methods 字段（类方法）
+    # 原指标只算 ① ⇒ 报 22%；**真实覆盖 97%**（3609/3692）。
+    # 4 轮 goal 零推进的根因 = 指标测错了对象！
+    # 正确分子 = decomp 地址 ∩ (① ∪ ②)；正确分母 = decomp 全量 − skip
+    _fn_addrs = set()
+    try:
+        with open(fp_fn, encoding='utf-8') as _fh:
+            _fj = json.load(_fh) or {}
+        _it = _fj.values() if isinstance(_fj, dict) else (_fj.get('functions') or _fj)
+        _it = _it.values() if isinstance(_it, dict) else _it
+        for _f in _it:
+            if isinstance(_f, dict) and (_f.get('signature') or _f.get('sig')):
+                _fn_addrs.add(str(_f.get('addr') or _f.get('address') or ''))
+    except (OSError, ValueError):
+        pass
+    _decomp_addrs = set()
+    _dd = os.path.join(PROJECT_ROOT, 'asm', 'pal3', 'decomp')
+    if os.path.isdir(_dd):
+        for _f in os.listdir(_dd):
+            if _f.endswith('.json'):
+                try:
+                    with open(os.path.join(_dd, _f), encoding='utf-8') as _fh:
+                        _j = json.load(_fh) or {}
+                    if _j.get('address'):
+                        _decomp_addrs.add(str(_j['address']))
+                except (OSError, ValueError):
+                    pass
+    _signed_all = _fn_addrs | _me_signed
+    n_sig = len(_decomp_addrs & _signed_all)   # 真实分子
+    tot_fn = max(len(_decomp_addrs), 1)         # 真实分母
 
     # 游戏逻辑函数总数 = decomp 全量 − skip（CRT/库）
     n_decomp = n_skip = n_game = 0
@@ -204,7 +245,7 @@ def collect(ann_dir=ANN_DIR):
     except (OSError, ValueError):
         pass
     n_game = max(n_decomp - n_skip, 1)
-    tot_fn = n_game
+    # tot_fn 已在上面按 decomp 全量设定（口径修正 2026-10-21）
 
     def rate(n, d):
         return round(n / d, 4) if d else 0.0

@@ -1,508 +1,508 @@
 {
- "name": "PAL3",
- "binary_size": 4936,
- "known_members": {
-  "0": {
-   "name": "m_snaph",
-   "type": "float",
-   "source": "annotation"
-  },
-  "32": {
-   "name": "m_Image2D",
-   "type": "gbImage2D",
-   "source": "CRT:IAT_0x56A520=gbengine.dll!gbImage2D::gbImage2D()|verified:ctor_this=PAL3+0x20"
-  },
-  "320": {
-   "name": "m_nTodo_140",
-   "type": "_DWORD[4]",
-   "source": "CRT:ctor_0x434470_confirmed_gap_0xE8-0x19C"
-  },
-  "336": {
-   "name": "m_nTodo_150",
-   "type": "_DWORD[4]",
-   "source": "CRT:ctor_0x434470_confirmed_gap_0xE8-0x19C"
-  },
-  "412": {
-   "name": "s_gamestate",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "416": {
-   "name": "m_pCmdLine",
-   "type": "char *",
-   "source": "gen_headers_9.2"
-  },
-  "420": {
-   "name": "m_bTestCombat",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "424": {
-   "name": "m_bCombatWin",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "428": {
-   "name": "m_bLoadMainUI",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "432": {
-   "name": "m_bShowRenderInfo",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "436": {
-   "name": "m_bSoftCursor",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "440": {
-   "name": "m_bNGHVariance",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "444": {
-   "name": "m_bWPXVariance",
-   "type": "int",
-   "source": "gen_headers_9.2"
-  },
-  "448": {
-   "name": "m_gametime",
-   "type": "double",
-   "source": "gen_headers_9.2"
-  },
-  "1736": {
-   "name": "m_nTodo_6C8",
-   "type": "int",
-   "source": "binary:disp32_1hits_1funcs"
-  },
-  "1744": {
-   "name": "m_nTodo_6D0",
-   "type": "int",
-   "source": "reverted_auto_semantic:2x|reverted:pseudo_semantic"
-  },
-  "1748": {
-   "name": "m_nTodo_6D4",
-   "type": "int",
-   "source": "binary:disp32_1hits_1funcs"
-  },
-  "1752": {
-   "name": "m_nTodo_6D8",
-   "type": "int",
-   "source": "binary:disp32_1hits_1funcs"
-  },
-  "2188": {
-   "name": "m_nTodo_88C",
-   "type": "gbTexture *",
-   "source": "A+:decomp_assign_RenderTarget::GetActiveTexture_ret(gbTexture*)"
-  },
-  "2192": {
-   "name": "m_nTodo_890",
-   "type": "int",
-   "source": "binary:disp32_1hits_1funcs"
-  },
-  "2196": {
-   "name": "m_nTodo_894",
-   "type": "int",
-   "source": "binary:disp32_1hits_1funcs"
-  },
-  "3272": {
-   "name": "m_pDeviceTex",
-   "type": "gbTexture *",
-   "source": "A+:decomp_assign_RenderTarget::GetActiveTexture_ret(gbTexture*) | ida_xref2"
-  },
-  "3276": {
-   "name": "m_nTodo_CCC",
-   "type": "int",
-   "source": "binary:disp32_1hits_1funcs"
-  },
-  "3280": {
-   "name": "m_nTodo_CD0",
-   "type": "int",
-   "source": "binary:disp32_1hits_1funcs"
-  },
-  "3988": {
-   "name": "m_nTodo_F94",
-   "type": "gbTexture *",
-   "source": "A+:decomp_assign_RenderTarget::GetActiveTexture_ret(gbTexture*)"
-  },
-  "3992": {
-   "name": "m_nTodo_F98",
-   "type": "int",
-   "source": "binary:disp32_1hits_1funcs"
-  },
-  "3996": {
-   "name": "m_nTodo_F9C",
-   "type": "int",
-   "source": "binary:disp32_1hits_1funcs"
-  },
-  "4": {
-   "name": "m_pScnFrameTex",
-   "type": "gbTexture *",
-   "source": "A:decomp *(_DWORD*)&field=v2,vtable_call(+8=Release),=0 in PAL3.cpp:4112-4174"
-  },
-  "8": {
-   "name": "m_pAdditiveEffect",
-   "type": "gbRenderEffect *",
-   "source": "A:decomp LODWORD=gbEffectMgr::NewRenderEffect() ret(gbRenderEffect*) in 0x004C58C0; Release()+set_0 in 0x004C0400"
-  },
-  "12": {
-   "name": "m_pAdditiveEffect2",
-   "type": "gbRenderEffect *",
-   "source": "A:decomp LODWORD=gbEffectMgr::NewRenderEffect() ret(gbRenderEffect*) in 0x004C58C0; Release()+set_0 in 0x004C0400"
-  },
-  "1696": {
-   "name": "m_nTodo_6A0",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access"
-  },
-  "1704": {
-   "name": "m_nTodo_6A8",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access"
-  },
-  "1708": {
-   "name": "m_nTodo_6AC",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access"
-  },
-  "1712": {
-   "name": "m_nTodo_6B0",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access"
-  },
-  "2148": {
-   "name": "m_nTodo_864",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access"
-  },
-  "2152": {
-   "name": "m_nTodo_868",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access"
-  },
-  "2156": {
-   "name": "m_nTodo_86C",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access"
-  },
-  "3232": {
-   "name": "m_nTodo_CA0",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access"
-  },
-  "3236": {
-   "name": "m_nTodo_CA4",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access"
-  },
-  "3240": {
-   "name": "m_nTodo_CA8",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access"
-  },
-  "3948": {
-   "name": "m_nTodo_F6C",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access"
-  },
-  "3952": {
-   "name": "m_nTodo_F70",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access"
-  },
-  "3956": {
-   "name": "m_nTodo_F74",
-   "type": "int",
-   "source": "gap_fill:ida_decomp_access"
-  }
- },
- "methods": {
-  "0x00404760": {
-   "name": "PAL3",
-   "signature": "void __thiscall()"
-  },
-  "0x004047F0": {
-   "name": "~PAL3",
-   "signature": "void __thiscall()"
-  },
-  "0x00404FF0": {
-   "name": "InitGFX",
-   "signature": "void __thiscall()"
-  },
-  "0x00405330": {
-   "name": "CreateEffectSystem",
-   "signature": "bool __thiscall()",
-   "source": "pdb_ret"
-  },
-  "0x004055A0": {
-   "name": "DestroyEffectSystem",
-   "signature": "bool __thiscall()",
-   "source": "pdb_ret"
-  },
-  "0x004055D0": {
-   "name": "Update",
-   "signature": "void __thiscall(float dt)"
-  },
-  "0x00405C00": {
-   "name": "Render",
-   "signature": "void __thiscall()"
-  },
-  "0x00406230": {
-   "name": "Destroy",
-   "signature": "void __thiscall()"
-  },
-  "0x00406310": {
-   "name": "CheckSystemRequire",
-   "signature": "void __thiscall(HINSTANCE hinst)"
-  },
-  "0x004065F0": {
-   "name": "CreateGfxWindow",
-   "signature": "void __thiscall()"
-  },
-  "0x004066F0": {
-   "name": "ParseCmdLine",
-   "signature": "void __thiscall(const char *lpCmdLine)",
-   "source": "pdb_ret"
-  },
-  "0x004068C0": {
-   "name": "HasCommandLineParam",
-   "signature": "BOOL __cdecl()",
-   "source": "pdb_ret",
-   "static": true
-  },
-  "0x00406980": {
-   "name": "GetCommandLineParam",
-   "signature": "int __thiscall()"
-  },
-  "0x00406A10": {
-   "name": "TestCombat",
-   "signature": "void __thiscall()",
-   "source": "pdb_ret"
-  },
-  "0x00406B80": {
-   "name": "DefaultKeyMap",
-   "signature": "void __thiscall(int nVal, int nVal2)"
-  },
-  "0x00406D70": {
-   "name": "PrintScreen",
-   "signature": "void __thiscall()"
-  },
-  "0x00406FF0": {
-   "name": "SnapScreen",
-   "signature": "void __cdecl()",
-   "source": "pdb_ret",
-   "static": true
-  },
-  "0x00407180": {
-   "name": "StartWolf",
-   "signature": "void __cdecl(HKEY hKey, CHAR *lpSubKey)",
-   "source": "pdb_ret",
-   "static": true
-  },
-  "0x004071C0": {
-   "name": "EndWolf",
-   "signature": "void __cdecl()",
-   "static": true
-  },
-  "0x004072D0": {
-   "name": "StartHideFight",
-   "signature": "void __thiscall()",
-   "source": "pdb_ret"
-  },
-  "0x00407300": {
-   "name": "EndHideFight",
-   "signature": "void __thiscall()",
-   "source": "pdb_ret"
-  },
-  "0x00407320": {
-   "name": "StartCombat",
-   "signature": "void __cdecl(unsigned int *const pdwVal, int monsterid, Role *side, char pMonster)",
-   "source": "pdb_ret",
-   "static": true
-  },
-  "0x00407560": {
-   "name": "StartCombatFromNPC",
-   "signature": "char __cdecl PAL3::StartCombatFromNPC(const NPCInfo *pNPCInfo, int tmp, Role *side)",
-   "static": true
-  },
-  "0x00407640": {
-   "name": "EntryCatchGhost",
-   "signature": "void __thiscall()",
-   "source": "pdb_ret"
-  },
-  "0x00407740": {
-   "name": "IfHideFightSucceed",
-   "signature": "int __cdecl()",
-   "source": "pdb_ret",
-   "static": true
-  },
-  "0x00408BE0": {
-   "name": "InitSubsystems",
-   "signature": "int __thiscall()"
-  },
-  "0x00408FD0": {
-   "name": "FullInit",
-   "signature": "int __thiscall()",
-   "local_vars": [
-    {
-     "name": "nSlotIndex",
-     "type": "int",
-     "stack_offset": 40
+  "name": "PAL3",
+  "binary_size": 4936,
+  "known_members": {
+    "0": {
+      "name": "m_snaph",
+      "type": "float",
+      "source": "annotation"
     },
-    {
-     "name": "pNewBuffer",
-     "type": "void *",
-     "stack_offset": 56
+    "32": {
+      "name": "m_Image2D",
+      "type": "gbImage2D",
+      "source": "CRT:IAT_0x56A520=gbengine.dll!gbImage2D::gbImage2D()|verified:ctor_this=PAL3+0x20"
     },
-    {
-     "name": "pSceneName",
-     "type": "char *",
-     "stack_offset": 60
+    "320": {
+      "name": "m_nTodo_140",
+      "type": "_DWORD[4]",
+      "source": "CRT:ctor_0x434470_confirmed_gap_0xE8-0x19C"
     },
-    {
-     "name": "aSceneData",
-     "type": "_DWORD[5]",
-     "stack_offset": 76
+    "336": {
+      "name": "m_nTodo_150",
+      "type": "_DWORD[4]",
+      "source": "CRT:ctor_0x434470_confirmed_gap_0xE8-0x19C"
+    },
+    "412": {
+      "name": "s_gamestate",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "416": {
+      "name": "m_pCmdLine",
+      "type": "char *",
+      "source": "gen_headers_9.2"
+    },
+    "420": {
+      "name": "m_bTestCombat",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "424": {
+      "name": "m_bCombatWin",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "428": {
+      "name": "m_bLoadMainUI",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "432": {
+      "name": "m_bShowRenderInfo",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "436": {
+      "name": "m_bSoftCursor",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "440": {
+      "name": "m_bNGHVariance",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "444": {
+      "name": "m_bWPXVariance",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "448": {
+      "name": "m_gametime",
+      "type": "double",
+      "source": "gen_headers_9.2"
+    },
+    "1736": {
+      "name": "m_nTodo_6C8",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "1744": {
+      "name": "m_nTodo_6D0",
+      "type": "int",
+      "source": "reverted_auto_semantic:2x|reverted:pseudo_semantic"
+    },
+    "1748": {
+      "name": "m_nTodo_6D4",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "1752": {
+      "name": "m_nTodo_6D8",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "2188": {
+      "name": "m_nTodo_88C",
+      "type": "gbTexture *",
+      "source": "A+:decomp_assign_RenderTarget::GetActiveTexture_ret(gbTexture*)"
+    },
+    "2192": {
+      "name": "m_nTodo_890",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "2196": {
+      "name": "m_nTodo_894",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "3272": {
+      "name": "m_pDeviceTex",
+      "type": "gbTexture *",
+      "source": "A+:decomp_assign_RenderTarget::GetActiveTexture_ret(gbTexture*) | ida_xref2"
+    },
+    "3276": {
+      "name": "m_nTodo_CCC",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "3280": {
+      "name": "m_nTodo_CD0",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "3988": {
+      "name": "m_nTodo_F94",
+      "type": "gbTexture *",
+      "source": "A+:decomp_assign_RenderTarget::GetActiveTexture_ret(gbTexture*)"
+    },
+    "3992": {
+      "name": "m_nTodo_F98",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "3996": {
+      "name": "m_nTodo_F9C",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "4": {
+      "name": "m_pScnFrameTex",
+      "type": "gbTexture *",
+      "source": "A:decomp *(_DWORD*)&field=v2,vtable_call(+8=Release),=0 in PAL3.cpp:4112-4174"
+    },
+    "8": {
+      "name": "m_pAdditiveEffect",
+      "type": "gbRenderEffect *",
+      "source": "A:decomp LODWORD=gbEffectMgr::NewRenderEffect() ret(gbRenderEffect*) in 0x004C58C0; Release()+set_0 in 0x004C0400"
+    },
+    "12": {
+      "name": "m_pAdditiveEffect2",
+      "type": "gbRenderEffect *",
+      "source": "A:decomp LODWORD=gbEffectMgr::NewRenderEffect() ret(gbRenderEffect*) in 0x004C58C0; Release()+set_0 in 0x004C0400"
+    },
+    "1696": {
+      "name": "m_nTodo_6A0",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "1704": {
+      "name": "m_nTodo_6A8",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "1708": {
+      "name": "m_nTodo_6AC",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "1712": {
+      "name": "m_nTodo_6B0",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "2148": {
+      "name": "m_nTodo_864",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "2152": {
+      "name": "m_nTodo_868",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "2156": {
+      "name": "m_nTodo_86C",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "3232": {
+      "name": "m_nTodo_CA0",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "3236": {
+      "name": "m_nTodo_CA4",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "3240": {
+      "name": "m_nTodo_CA8",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "3948": {
+      "name": "m_nTodo_F6C",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "3952": {
+      "name": "m_nTodo_F70",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "3956": {
+      "name": "m_nTodo_F74",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
     }
-   ],
-   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
   },
-  "0x004118D0": {
-   "name": "UpdateSubsystems",
-   "signature": "int __thiscall()",
-   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-  },
-  "0x0041EE40": {
-   "name": "UIPostProcess",
-   "signature": "int __thiscall()",
-   "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
-  },
-  "0x004C0400": {
-   "name": "ClearAdditiveEffects",
-   "signature": "void __thiscall PAL3::ClearAdditiveEffects()"
-  },
-  "0x004BDB10": {
-   "name": "GetInstance_db10",
-   "signature": "PAL3 * __cdecl()",
-   "owner": "PAL3",
-   "static": true
-  },
-  "0x004BFD20": {
-   "name": "GetInstance_fd20",
-   "signature": "ScreenEffectMgr * __thiscall()"
-  },
-  "0x004B6D30": {
-   "name": "GetInstance",
-   "signature": "RenderTarget3 * __thiscall()"
-  },
-  "0x004BDED0": {
-   "name": "InvalidateSnapH",
-   "signature": "void __thiscall PAL3::InvalidateSnapH()"
-  },
-  "0x00461BF0": {
-   "name": "EnterGameMode",
-   "signature": "int __thiscall PAL3::EnterGameMode(int nVal)"
-  },
-  "0x004070A0": {
-   "name": "ReadRegistryValue",
-   "signature": "bool __cdecl(const CHAR *szSubKey, const CHAR *szValueName, ...)",
-   "static": true
-  },
-  "0x0041F9F0": {
-   "name": "LoadingTimerCallback",
-   "signature": "void __thiscall()"
-  },
-  "0x00437E60": {
-   "name": "WriteRegistryValue",
-   "signature": "bool __cdecl PAL3::WriteRegistryValue(CHAR *lpSubKey, DWORD dwDisposition, ...)",
-   "static": true
-  },
-  "0x0044E2B0": {
-   "name": "WriteRegistryDword",
-   "signature": "bool __cdecl(CHAR *lpSubKey, const CHAR *szValueName, ...)",
-   "static": true
-  },
-  "0x00456590": {
-   "name": "WriteRegistryKey",
-   "signature": "bool __cdecl PAL3::WriteRegistryKey(CHAR *lpSubKey, DWORD dwDisposition, ...)",
-   "static": true
-  },
-  "0x00459860": {
-   "name": "HandleDeviceReset",
-   "signature": "char __thiscall PAL3::HandleDeviceReset()"
-  },
-  "0x0047C260": {
-   "name": "Render_47c260",
-   "signature": "void __thiscall()",
-   "_misattrib_evidence": "max_offset=3996>class_size=1012"
-  },
-  "0x004B2840": {
-   "name": "WriteRegistry",
-   "signature": "bool __cdecl PAL3::WriteRegistry(CHAR *lpSubKey, DWORD dwDisposition, ...)",
-   "static": true
-  },
-  "0x0052F570": {
-   "name": "WriteRegistryDwordEx",
-   "signature": "bool __cdecl PAL3::WriteRegistryDwordEx(CHAR *lpSubKey, DWORD dwDisposition, ...)",
-   "static": true
-  },
-  "0x0044E390": {
-   "name": "LoadRoleByIndex",
-   "signature": "void __cdecl(int nVal)",
-   "static": true
-  },
-  "0x0044E410": {
-   "name": "LoadUnlockFlags",
-   "signature": "char *__thiscall PAL3::LoadUnlockFlags()"
-  },
-  "0x00462030": {
-   "name": "SetPanelStates",
-   "signature": "int __thiscall(unsigned char pData)"
-  },
-  "0x0047C2D0": {
-   "name": "DispatchModeCommand",
-   "signature": "void __thiscall PAL3::DispatchModeCommand(int nVal)",
-   "_misattrib_evidence": "max_offset=124>class_size=28"
-  },
-  "0x00527C30": {
-   "name": "HandleDeviceLost",
-   "signature": "int *__thiscall PAL3::HandleDeviceLost()"
-  },
-  "0x00532F60": {
-   "name": "CheckViewCollision",
-   "signature": "char __thiscall PAL3::CheckViewCollision()"
-  },
-  "0x00569110": {
-   "name": "ResetForNewScene",
-   "signature": "void __cdecl()",
-   "static": true
-  },
-  "0x004BDA60": {
-   "name": "CreateTextures",
-   "signature": "int *__thiscall()"
-  },
-  "0x004C58C0": {
-   "name": "CreateRenderEffects",
-   "signature": "char __thiscall()"
-  },
-  "0x00401BC0": {
-   "name": "InitVFileSystem",
-   "signature": "void * __thiscall()"
-  },
-  "0x00401C00": {
-   "name": "InitVFileSystem2",
-   "signature": "void * __thiscall()"
-  },
-  "0x00404530": {
-   "name": "InitVolModNode",
-   "signature": "void __thiscall()"
-  },
-  "0x00569020": {
-   "name": "RandomPickValues",
-   "signature": "int __cdecl RandomPickValues(int nVal, int nVal2, int nVal3)",
-   "static": true
+  "methods": {
+    "0x00404760": {
+      "name": "PAL3",
+      "signature": "void __thiscall()"
+    },
+    "0x004047F0": {
+      "name": "~PAL3",
+      "signature": "void __thiscall()"
+    },
+    "0x00404FF0": {
+      "name": "InitGFX",
+      "signature": "void __thiscall()"
+    },
+    "0x00405330": {
+      "name": "CreateEffectSystem",
+      "signature": "bool __thiscall()",
+      "source": "pdb_ret"
+    },
+    "0x004055A0": {
+      "name": "DestroyEffectSystem",
+      "signature": "bool __thiscall()",
+      "source": "pdb_ret"
+    },
+    "0x004055D0": {
+      "name": "Update",
+      "signature": "void __thiscall(float dt)"
+    },
+    "0x00405C00": {
+      "name": "Render",
+      "signature": "void __thiscall()"
+    },
+    "0x00406230": {
+      "name": "Destroy",
+      "signature": "void __thiscall()"
+    },
+    "0x00406310": {
+      "name": "CheckSystemRequire",
+      "signature": "void __thiscall(HINSTANCE hinst)"
+    },
+    "0x004065F0": {
+      "name": "CreateGfxWindow",
+      "signature": "void __thiscall()"
+    },
+    "0x004066F0": {
+      "name": "ParseCmdLine",
+      "signature": "void __thiscall(const char *lpCmdLine)",
+      "source": "pdb_ret"
+    },
+    "0x004068C0": {
+      "name": "HasCommandLineParam",
+      "signature": "BOOL __cdecl()",
+      "source": "pdb_ret",
+      "static": true
+    },
+    "0x00406980": {
+      "name": "GetCommandLineParam",
+      "signature": "int __thiscall()"
+    },
+    "0x00406A10": {
+      "name": "TestCombat",
+      "signature": "void __thiscall()",
+      "source": "pdb_ret"
+    },
+    "0x00406B80": {
+      "name": "DefaultKeyMap",
+      "signature": "void __thiscall(int nVal, int nVal2)"
+    },
+    "0x00406D70": {
+      "name": "PrintScreen",
+      "signature": "void __thiscall()"
+    },
+    "0x00406FF0": {
+      "name": "SnapScreen",
+      "signature": "void __cdecl()",
+      "source": "pdb_ret",
+      "static": true
+    },
+    "0x00407180": {
+      "name": "StartWolf",
+      "signature": "void __cdecl(HKEY hKey, CHAR *lpSubKey)",
+      "source": "pdb_ret",
+      "static": true
+    },
+    "0x004071C0": {
+      "name": "EndWolf",
+      "signature": "void __cdecl()",
+      "static": true
+    },
+    "0x004072D0": {
+      "name": "StartHideFight",
+      "signature": "void __thiscall()",
+      "source": "pdb_ret"
+    },
+    "0x00407300": {
+      "name": "EndHideFight",
+      "signature": "void __thiscall()",
+      "source": "pdb_ret"
+    },
+    "0x00407320": {
+      "name": "StartCombat",
+      "signature": "void __cdecl(unsigned int *const pdwVal, int monsterid, Role *side, char pMonster)",
+      "source": "pdb_ret",
+      "static": true
+    },
+    "0x00407560": {
+      "name": "StartCombatFromNPC",
+      "signature": "char __cdecl PAL3::StartCombatFromNPC(const NPCInfo *pNPCInfo, int tmp, Role *side)",
+      "static": true
+    },
+    "0x00407640": {
+      "name": "EntryCatchGhost",
+      "signature": "void __thiscall()",
+      "source": "pdb_ret"
+    },
+    "0x00407740": {
+      "name": "IfHideFightSucceed",
+      "signature": "int __cdecl()",
+      "source": "pdb_ret",
+      "static": true
+    },
+    "0x00408BE0": {
+      "name": "InitSubsystems",
+      "signature": "int __thiscall()"
+    },
+    "0x00408FD0": {
+      "name": "FullInit",
+      "signature": "int __thiscall()",
+      "local_vars": [
+        {
+          "name": "nSlotIndex",
+          "type": "int",
+          "stack_offset": 40
+        },
+        {
+          "name": "pNewBuffer",
+          "type": "void *",
+          "stack_offset": 56
+        },
+        {
+          "name": "pSceneName",
+          "type": "char *",
+          "stack_offset": 60
+        },
+        {
+          "name": "aSceneData",
+          "type": "_DWORD[5]",
+          "stack_offset": 76
+        }
+      ],
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+    },
+    "0x004118D0": {
+      "name": "UpdateSubsystems",
+      "signature": "int __thiscall()",
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+    },
+    "0x0041EE40": {
+      "name": "UIPostProcess",
+      "signature": "int __thiscall()",
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+    },
+    "0x004C0400": {
+      "name": "ClearAdditiveEffects",
+      "signature": "void __thiscall PAL3::ClearAdditiveEffects()"
+    },
+    "0x004BDB10": {
+      "name": "GetInstance_db10",
+      "signature": "PAL3 * __cdecl()",
+      "owner": "PAL3",
+      "static": true
+    },
+    "0x004BFD20": {
+      "name": "GetInstance_fd20",
+      "signature": "ScreenEffectMgr * __thiscall()"
+    },
+    "0x004B6D30": {
+      "name": "GetInstance",
+      "signature": "RenderTarget3 * __thiscall()"
+    },
+    "0x004BDED0": {
+      "name": "InvalidateSnapH",
+      "signature": "void __thiscall PAL3::InvalidateSnapH()"
+    },
+    "0x00461BF0": {
+      "name": "EnterGameMode",
+      "signature": "int __thiscall PAL3::EnterGameMode(int nVal)"
+    },
+    "0x004070A0": {
+      "name": "ReadRegistryValue",
+      "signature": "bool __cdecl(const CHAR *szSubKey, const CHAR *szValueName, ...)",
+      "static": true
+    },
+    "0x0041F9F0": {
+      "name": "LoadingTimerCallback",
+      "signature": "void __thiscall()"
+    },
+    "0x00437E60": {
+      "name": "WriteRegistryValue",
+      "signature": "bool __cdecl PAL3::WriteRegistryValue(CHAR *lpSubKey, DWORD dwDisposition, ...)",
+      "static": true
+    },
+    "0x0044E2B0": {
+      "name": "WriteRegistryDword",
+      "signature": "bool __cdecl(CHAR *lpSubKey, const CHAR *szValueName, ...)",
+      "static": true
+    },
+    "0x00456590": {
+      "name": "WriteRegistryKey",
+      "signature": "bool __cdecl PAL3::WriteRegistryKey(CHAR *lpSubKey, DWORD dwDisposition, ...)",
+      "static": true
+    },
+    "0x00459860": {
+      "name": "HandleDeviceReset",
+      "signature": "char __thiscall PAL3::HandleDeviceReset()"
+    },
+    "0x0047C260": {
+      "name": "Render_47c260",
+      "signature": "void __thiscall()",
+      "_misattrib_evidence": "max_offset=3996>class_size=1012"
+    },
+    "0x004B2840": {
+      "name": "WriteRegistry",
+      "signature": "bool __cdecl PAL3::WriteRegistry(CHAR *lpSubKey, DWORD dwDisposition, ...)",
+      "static": true
+    },
+    "0x0052F570": {
+      "name": "WriteRegistryDwordEx",
+      "signature": "bool __cdecl PAL3::WriteRegistryDwordEx(CHAR *lpSubKey, DWORD dwDisposition, ...)",
+      "static": true
+    },
+    "0x0044E390": {
+      "name": "LoadRoleByIndex",
+      "signature": "void __cdecl(int nVal)",
+      "static": true
+    },
+    "0x0044E410": {
+      "name": "LoadUnlockFlags",
+      "signature": "char *__thiscall PAL3::LoadUnlockFlags()"
+    },
+    "0x00462030": {
+      "name": "SetPanelStates",
+      "signature": "int __thiscall(unsigned char pData)"
+    },
+    "0x0047C2D0": {
+      "name": "DispatchModeCommand",
+      "signature": "void __thiscall PAL3::DispatchModeCommand(int nVal)",
+      "_misattrib_evidence": "max_offset=124>class_size=28"
+    },
+    "0x00527C30": {
+      "name": "HandleDeviceLost",
+      "signature": "int *__thiscall PAL3::HandleDeviceLost()"
+    },
+    "0x00532F60": {
+      "name": "CheckViewCollision",
+      "signature": "char __thiscall PAL3::CheckViewCollision()"
+    },
+    "0x00569110": {
+      "name": "ResetForNewScene",
+      "signature": "void __cdecl()",
+      "static": true
+    },
+    "0x004BDA60": {
+      "name": "CreateTextures",
+      "signature": "int *__thiscall()"
+    },
+    "0x004C58C0": {
+      "name": "CreateRenderEffects",
+      "signature": "char __thiscall()"
+    },
+    "0x00401BC0": {
+      "name": "InitVFileSystem",
+      "signature": "void * __thiscall()"
+    },
+    "0x00401C00": {
+      "name": "InitVFileSystem2",
+      "signature": "void * __thiscall()"
+    },
+    "0x00404530": {
+      "name": "InitVolModNode",
+      "signature": "void __thiscall()"
+    },
+    "0x00569020": {
+      "name": "RandomPickValues",
+      "signature": "int __cdecl RandomPickValues(int nVal, int nVal2, int nVal3)",
+      "static": true
+    }
   }
- }
 }

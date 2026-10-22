@@ -1,0 +1,83 @@
+{
+ "gap_regions": [
+  {
+   "start": 3260,
+   "end": 3268,
+   "access_count": 35,
+   "span_bytes": 264,
+   "evidence": "objdump 采样站 0xcbc..（3 偏移）"
+  },
+  {
+   "start": 512,
+   "end": 664,
+   "access_count": 22,
+   "span_bytes": 408,
+   "evidence": "objdump 采样站 0x200..（10 偏移）"
+  },
+  {
+   "start": 808,
+   "end": 832,
+   "access_count": 14,
+   "span_bytes": 280,
+   "evidence": "objdump 采样站 0x328..（4 偏移）"
+  },
+  {
+   "start": 328020,
+   "end": 328044,
+   "access_count": 12,
+   "span_bytes": 280,
+   "evidence": "objdump 采样站 0x50154..（7 偏移）"
+  },
+  {
+   "start": 2680,
+   "end": 2797,
+   "access_count": 11,
+   "span_bytes": 373,
+   "evidence": "objdump 采样站 0xa78..（7 偏移）"
+  },
+  {
+   "start": 1736,
+   "end": 1776,
+   "access_count": 9,
+   "span_bytes": 296,
+   "evidence": "objdump 采样站 0x6c8..（8 偏移）"
+  },
+  {
+   "start": 4224,
+   "end": 4268,
+   "access_count": 8,
+   "span_bytes": 300,
+   "evidence": "objdump 采样站 0x1080..（3 偏移）"
+  },
+  {
+   "start": 4584,
+   "end": 4604,
+   "access_count": 7,
+   "span_bytes": 276,
+   "evidence": "objdump 采样站 0x11e8..（6 偏移）"
+  }
+ ],
+ "top_fields": [
+  {
+   "offset": 6568,
+   "count": 29,
+   "evidence": "objdump 0x5099D4,0x50A22D"
+  },
+  {
+   "offset": 3260,
+   "count": 13,
+   "evidence": "objdump 0x459FAD,0x459FE2"
+  },
+  {
+   "offset": 3264,
+   "count": 12,
+   "evidence": "objdump 0x459FBA,0x459FF3"
+  }
+ ],
+ "summary": {
+  "non_abc_offsets": 80,
+  "total_gap_bytes": "663KB（lead 口径）",
+  "recoverable_bytes": "80 偏移定型后核算；热点 0xCBC-0xCC4 块（R48 已记）+ 0x19A8-0x19F4 簇（×29 最高频=新主热点）",
+  "top_finding": "**+0x19A8 ×29 = 新最高频字段**（0x19A8-0x19F4 簇 7+ 偏移 · 0x5093xx/0x50Axxx 站点族）——非 arrA/B/C 覆盖的**第一热点区段**（0x19A8..0x1A00 跨度），类型/语义待 opcode 括定"
+ }
+}

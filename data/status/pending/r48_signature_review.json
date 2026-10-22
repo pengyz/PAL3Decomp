@@ -1,0 +1,102 @@
+{
+  "review_of": "functions.json 6 条（IDA 参数名型=循环）",
+  "verdict": "REJECT",
+  "per_entry": [
+    {
+      "addr": "0x536160",
+      "name": "SetParam",
+      "current_signature": "int __thiscall(Actor *this, int nVal, int nVal2)",
+      "assembly_evidence": {
+        "retn": "retn 8（5361ed c2 08 00）=2 dword 槽/1 double",
+        "call_site_pushes": "push %edi; push %ebx（53555f/535560）双 dword 分解形；另 535451/535456 push $0x3fcccccd;$0x41100000 = double 位型常量对",
+        "opcode_form": "调用点 fld/fstp qword 分解 edi+ebx（lead 实证）+ 我方独立核：体 536160-5361ed 零参数读（8B 清栈未引用）",
+        "this": "mov %ecx,%esi（536164）✓"
+      },
+      "verdict": "WRONG_TYPE（实为 double）",
+      "circular_evidence_used": true,
+      "proposed_signature": "double __thiscall(Actor *this, double fVal)（返回型未核：体无 eax 显置）",
+      "fix_required": "按 double 重落签名；source_note 弃 stack_frame 引用改 asm 双证"
+    },
+    {
+      "addr": "0x4DFAA0",
+      "name": "InitRound",
+      "current_signature": "int __thiscall(CCBStage *this, int nVal1, int nVal2, int nVal3, int nVal4)",
+      "assembly_evidence": {
+        "retn": "retn 16（4dfb5f c2 10 00）=4 槽 ✓ 个数一致",
+        "call_site_pushes": "未核（源注同文模板声称 MiniGame3Update 单站）",
+        "opcode_form": "flds 0x14(%esp)/flds 0xc(%esp) 参数槽浮点读 + fstps 0x11c(%edx,%ecx,8) 写表",
+        "this": "mov %ecx,%edx（4dfaa0）✓"
+      },
+      "verdict": "WRONG_TYPE（nVal1/nVal3 槽实为 float）",
+      "circular_evidence_used": true,
+      "proposed_signature": "int __thiscall(CCBStage *this, float fVal1, int nVal2, float fVal3, int nVal4)（0x10/0x18 槽待核）",
+      "fix_required": "按 flds 槽位逐参正型；slot 2/4 补 opcode 核"
+    },
+    {
+      "addr": "0x4DFED0",
+      "name": "EndTurnAndAdvance",
+      "current_signature": "int __thiscall(CCBStage *this, int nVal1, int nVal2, int nVal3, int nVal4, char arg_10)",
+      "assembly_evidence": {
+        "retn": "双出口 ret $0x14=5 槽（4dff86）+ ret $0x4=1 槽（4dffde）=拼段/双路径形",
+        "call_site_pushes": "未核",
+        "opcode_form": "flds 0x4(%esp)/flds 0x8(%esp) = 首两参 float 实证",
+        "this": "ecx 直接用（4dfed0 mov 0x10(%ecx)）✓"
+      },
+      "verdict": "WRONG_TYPE（前两参 float）+ 双 ret 出口形待拆",
+      "circular_evidence_used": true,
+      "proposed_signature": "int __thiscall(CCBStage *this, float fVal1, float fVal2, …)（双出口须先拆段再定参）",
+      "fix_required": "双 ret 形先拆（疑两函数拼段）再逐参正型"
+    },
+    {
+      "addr": "0x4C6290",
+      "name": "Destroy__ovl_02",
+      "current_signature": "void __thiscall(CEffectSystem *this, int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)",
+      "assembly_evidence": {
+        "retn": "ret $0x14=5 槽（4c62fd）✓ 个数一致",
+        "call_site_pushes": "未核",
+        "opcode_form": "xor %al,%al（FP 约定标记形）+ mov 0x34(%esp) 读第 5 参；浮点 opcode 区间未定界",
+        "this": "mov %ecx,%ebx（4c6464）✓"
+      },
+      "verdict": "NEEDS_EVIDENCE（5 参个数 ✓ 但类型零 opcode 实证；xor al 形提示 FP 面）",
+      "circular_evidence_used": true,
+      "proposed_signature": "void __thiscall(CEffectSystem *this, …)（类型待 opcode 逐参核）",
+      "fix_required": "逐参 opcode 核（xor al 形优先查 FP 参数面）"
+    },
+    {
+      "addr": "0x43D880",
+      "name": "ctor",
+      "current_signature": "void __thiscall(UI3DCtrl *this, int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)",
+      "assembly_evidence": {
+        "retn": "**体无 ret**——movl $0x56acfc,(%ecx)（43d880 vptr install）+ jmp 0x445b40（43d886）tail-jmp 形；源注引用的 ret $0x14@43d917 属**邻函数**",
+        "call_site_pushes": "未核",
+        "opcode_form": "vptr 写=ctor 证据 ✓",
+        "this": "(%ecx) 直接 ✓"
+      },
+      "verdict": "UNVERIFIABLE（5 参无 A 级支撑：tail-jmp 体不可定参；须 tail-follow 0x445b40）",
+      "circular_evidence_used": true,
+      "proposed_signature": "void __thiscall(UI3DCtrl *this, …)（参形待 tail-follow）",
+      "fix_required": "tail-follow 0x445b40 取 retn N；禁以邻函数 ret 充本体证"
+    },
+    {
+      "addr": "0x43BBB0",
+      "name": "Destroy",
+      "current_signature": "void __thiscall(UIWnd *this, int nVal1, int nVal2)",
+      "assembly_evidence": {
+        "retn": "**体无 ret**——movl $0x56acb8,(%ecx)（43bbb0 vptr install）+ jmp 0x445b40（43bbb6）tail-jmp",
+        "call_site_pushes": "未核",
+        "opcode_form": "vptr 写=ctor/dtor 恢复双解（0x445b40 尾随前不判）",
+        "this": "(%ecx) 直接 ✓"
+      },
+      "verdict": "UNVERIFIABLE + 名实存疑（名 Destroy vs vptr install 形；ctor/dtor 双解待 0x445b40 判）",
+      "circular_evidence_used": true,
+      "proposed_signature": "待 tail-follow 后定（名 Destroy 或 ctor/dtor 正名）",
+      "fix_required": "tail-follow 0x445b40 判 ctor/dtor 形再定名"
+    }
+  ],
+  "summary": {
+    "reviewed": 6,
+    "correct": 0,
+    "wrong": 3,
+    "circular": 6
+  }
+}

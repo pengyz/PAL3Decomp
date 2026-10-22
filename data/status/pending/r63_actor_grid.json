@@ -1,0 +1,21 @@
+{
+ "array_164": {
+  "base_offset": 492776,
+  "base_hex": "0x784E8",
+  "element_size": 164,
+  "element_count": "未界（索引 i 来自参数 1，本函数不界 i——不冒进）",
+  "evidence": "IsTileInBounds 0x420a24 `lea edi,[esi+edx*4+0x784e8]`（esi=this·edx=41i）· 元素结构新证：**+0x98=count_Y（cmp 界）· +0x9c=count_X（mov ebx 界）**=嵌套网格层（grid[i] 内含 Y×X 尺寸）· 参数形=(i,y,x) 三参（`ret 0xc` 实证）",
+  "bonus": "同函数另现 **20-stride 数组 @+0xB4**（0x420a49 `lea eax,[eax+eax*4+0x2d]`→`lea ecx,[esi+eax*4]`=this+20i+0xB4）——第三族（待记账）"
+ },
+ "array_896": {
+  "base_offset": 224,
+  "base_hex": "0xE0",
+  "element_count": "this+0xDC 计数字段（运行时）",
+  "count_evidence": "0x420a57 `mov ecx,[esi+0xdc]` + 0x420a6a `cmp eax,ecx; jge fail`（结果 byte 值 r < [this+0xDC]）——**元素数=@+0xDC 运行时计数**",
+  "evidence": "0x420a7b `lea eax,[ecx+esi*1+0xe0]`（esi=this·ecx=896r）= **&tiles[r] 返回址形**——函数实为查址器（失败 `xor eax,eax` 返回 NULL；IDA 名 IsTileInBounds 误名不采信）· stride 896=7r×shl7 · 索引 r=byte（&0xff）"
+ },
+ "summary": {
+  "top_finding": "**896B 数组基址=Actor+0xE0 定案**（返回址 lea 实录）+ 元素数=this+0xDC 计数（cmp 界实录）——两账全闭合；顺带 164 元素内 +0x98/+0x9c=嵌套 Y/X 网格界 + 20-stride @+0xB4 第三族入账",
+  "confidence": 85
+ }
+}

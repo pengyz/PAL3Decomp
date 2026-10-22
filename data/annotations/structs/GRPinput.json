@@ -226,7 +226,7 @@
     "0x004024F0": {
       "name": "_todo_004024F0",
       "signature": "void __thiscall(int nVal, int nVal2)",
-      "source": " | 析构名误挂改名 2026-09-29：~GRPinput→_todo_004024F0（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）"
+      "source": "| 析构名误挂改名 2026-09-29：~GRPinput→_todo_004024F0（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）"
     },
     "0x00402570": {
       "name": "InitKeyMappings",
@@ -245,7 +245,7 @@
     "0x00402B60": {
       "name": "RunJoystickControlPanel",
       "signature": "void __thiscall __thiscall()",
-      "source": " | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）"
+      "source": "| D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）"
     },
     "0x00402B70": {
       "name": "ClearKeyBuffer",
@@ -263,7 +263,7 @@
     "0x00402BF0": {
       "name": "~GRPinput",
       "signature": "void __thiscall()",
-      "source": " | [ctor/dtor 错位改名 2026-10-16] SetMouseFreePos ⇒ ~GRPinput：idapro 交叉复核（lead 确认）：名=Setter 语义实为**真析构**；objdump 402bf3 movl $0x56a620,(%esi) vptr 写 + 402bfc test %eax,%eax 删 flag = **scalar deleting destructor 形**"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] SetMouseFreePos ⇒ ~GRPinput：idapro 交叉复核（lead 确认）：名=Setter 语义实为**真析构**；objdump 402bf3 movl $0x56a620,(%esi) vptr 写 + 402bfc test %eax,%eax 删 flag = **scalar deleting destructor 形**"
     },
     "0x00402C40": {
       "name": "SetJoystickPos",
@@ -358,7 +358,7 @@
     "0x00404150": {
       "name": "DecideKeyStatus",
       "signature": "unsigned int __thiscall(gbRay *pRay, unsigned int cKey)",
-      "source": " | param Time->gbRay*: decomp-inferred param type gbRay* a2; Time type not in til"
+      "source": "| param Time->gbRay*: decomp-inferred param type gbRay* a2; Time type not in til"
     },
     "0x004042D0": {
       "name": "IsAnyKeyPressed",
@@ -426,7 +426,7 @@
     "0x00402BD0": {
       "name": "_scalar_dtor_2BD0",
       "signature": "void __thiscall()",
-      "source": " | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x402BF0 写 vptr 0x56A620（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56A620→GRPinput（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=GRPinput（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x402BF0 写 vptr 0x56A620"
+      "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x402BF0 写 vptr 0x56A620（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56A620→GRPinput（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=GRPinput（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x402BF0 写 vptr 0x56A620"
     }
   }
 }

@@ -1,0 +1,83 @@
+{
+ "entries": [
+  {
+   "cls": "CCBStage",
+   "element": "CCBTaskSlot208",
+   "offset": 80,
+   "name": "m_nCounter",
+   "current_type": "int",
+   "proposed_type": null,
+   "usage_forms": {
+    "note": "R48「mov×25/c7×20」的函数址未随数据给出——本批 scale-8 全扫含大量他阵列噪声（disp 0x14834/0x25ce0/0x6394 各为不同数组）无法定位该字段站点",
+    "verified_sites": "0（本轮）"
+   },
+   "usage_verdict": "unverified（缺函数址无法全用法形）",
+   "checklist": {
+    "a_level": true,
+    "full_usage_forms": false,
+    "rule_reproducible": true,
+    "name_offset_confusion_checked": true,
+    "ledger_dual_sync": false
+   },
+   "change_kind": "freeze",
+   "evidence": "反证：208B 已验函数（44cff0/44d0b0）字段仅现 +0/+4/+0x10/+0x14/+0x18——+0x50 站点需 R48 原函数址补证",
+   "confidence": 55
+  },
+  {
+   "cls": "CCBStage",
+   "element": "CCBTaskSlot280",
+   "offset": 20,
+   "name": "m_nState",
+   "current_type": "int",
+   "proposed_type": null,
+   "usage_forms": {
+    "int_write": "0x4dff9f `movl $0x6,0x14(%ecx,%eax,8)`（B 段）",
+    "int_read": "`mov edx,[esi+ecx*8+0x14834]`（0x14834 mod 280=0x14 ✓ elem[k]+0x14 读形）",
+    "float": "verifier R55 报 fcomps×4（站点址待补）"
+   },
+   "usage_verdict": "**MIXED 疑**（int 写/读实录 + float 比较待补址）⇒ 值位面判据①候选（758/758.0f 同值族同源）",
+   "checklist": {
+    "a_level": true,
+    "full_usage_forms": "部分（int 形全,float 形待址）",
+    "rule_reproducible": true,
+    "name_offset_confusion_checked": true,
+    "ledger_dual_sync": true
+   },
+   "change_kind": "freeze",
+   "evidence": "int 形 A 级双站；fcomp 待 verifier 补函数址——P0-6 不改型",
+   "confidence": 65
+  },
+  {
+   "cls": "CCBStage",
+   "element": "CCBTaskSlot280",
+   "offset": 4,
+   "name": "m_fSlot0..3",
+   "current_type": "float",
+   "proposed_type": "float",
+   "usage_forms": {
+    "fstp_write": "0x4dfee3/0x4dfefd/0x4dff17/0x4dff31 `fstps 0x11c/120/124/128(...)`（=elem[i+1]+4/8/C/10 四连写）",
+    "flds_source": "`flds 0x4/0x8/0xC/0x10(%esp)` 参数源",
+    "float_conf": "fcomps 比较族（verifier 确证）"
+   },
+   "usage_verdict": "**SINGLE=float 确证**（fstp/fld 双形）",
+   "checklist": {
+    "a_level": true,
+    "full_usage_forms": true,
+    "rule_reproducible": true,
+    "name_offset_confusion_checked": true,
+    "ledger_dual_sync": true
+   },
+   "change_kind": "freeze-confirm",
+   "evidence": "A 级四连写实录（具体地址如上）",
+   "confidence": 85
+  }
+ ],
+ "summary": {
+  "batch": "R57 小批量 3 条",
+  "retype": 0,
+  "freeze": 2,
+  "freeze_confirm": 1,
+  "top_finding": "35i 幂等式（idx*7*5）为**通用索引算式**——全量字节形扫描现身 0x41D7F7/0x420A6E 族大量站点（0x41D-0x421 大函数族）⇒ arrC_280 用户面远超 A/B 段两函数，缺口主体的访问网比此前估计大得多",
+  "checklist_note": "Q2 member_usage_scan.py 存在但接口面向 cls+offset 成员——数组元素字段不适用（标注 N/A+改用 objdump 用法形全扫）"
+ }
+}

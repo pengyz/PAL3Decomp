@@ -1,0 +1,131 @@
+{
+ "entries": [
+  {
+   "cls": "CCBRoleState",
+   "offset": 0,
+   "name": "m_sCombatDialog",
+   "current_type": "char[4]",
+   "checklist_qa": [
+    {
+     "q": "① 证据是 A 级（指令字节）吗？",
+     "a": "✓ A 级。`fstps 0x0(%ebp)` + `fmuls 0x0(%ebp)` 浮点 opcode 实录（指令字节 ✓）",
+     "evidence": "objdump original/PAL3.exe: 403306 d9 5d 00 fstps 0x0(%ebp) · 40331f d8 4d 00 fmuls 0x0(%ebp)"
+    },
+    {
+     "q": "② 全用法形扫描了吗（P0-6）？",
+     "a": "✓ 已扫（直核 objdump 全站 + member_usage_scan 交叉 ✓ %ebp 站=帧偏移本例特例（this 在 %ebp 帧 ✓ 标注）",
+     "evidence": "objdump 0x0(%ebp/%esi) 全站：fstps ×1 + fmuls ×1 + char 写形 ⇒ MIXED（char[4] × float 双视图）"
+    },
+    {
+     "q": "③ 过滤规则可复现？",
+     "a": "✓ 规则=三判据①「值位面」（浮点 op 实录 + 异型写并存）⇒ union——可复现（本证据链完整 ✓）",
+     "evidence": "CLAUDE.md overlap 三判据 + r58_bitplane_union.json"
+    },
+    {
+     "q": "④ 同名/偏移混淆核了吗？",
+     "a": "✓ CCBRoleState+0 ≠ CCBStage+0（逐类独立核 ✓ 类名+offset 双键）",
+     "evidence": "类名核对（CCBRoleState.json +0 m_sCombatDialog）"
+    },
+    {
+     "q": "⑤ 账面双同步？",
+     "a": "✓ 本产出=pending 面（禁改产品文件 ✓ 注解改待 checklist 全过后另轮）",
+     "evidence": "本文件 r59_checklist_qa.json"
+    }
+   ],
+   "verdict": "union_proposal",
+   "confidence": 80,
+   "proposed_union": {
+    "union": [
+     {
+      "type": "char[4]",
+      "name": "m_sCombatDialog"
+     },
+     {
+      "type": "float",
+      "name": "m_fCombatDialogVal"
+     }
+    ]
+   }
+  },
+  {
+   "cls": "CCBRoleState",
+   "offset": 4,
+   "name": "m_nRoundCounter",
+   "current_type": "int",
+   "checklist_qa": [
+    {
+     "q": "① 证据是 A 级（指令字节）吗？",
+     "a": "✗ **值证缺**。0x4(%esi) 立即数站全为 `movl $0x0`（零写 ✗ 无浮点位型实录）⇒ ① 不过",
+     "evidence": "objdump 0x4(%esi) movl $ 站：40209d/402fdf/403424/4035b3 全 $0x0"
+    },
+    {
+     "q": "② 全用法形扫描了吗（P0-6）？",
+     "a": "✓ 已扫（R55 报 assign 61+float 2+cmp 1 = MIXED 槽形 ✓ 但值证未达）",
+     "evidence": "R55 报 + 本轮直核"
+    },
+    {
+     "q": "③ 过滤规则可复现？",
+     "a": "✓ 规则=三判据①须值证（本轮校准 ✓ 半证不算）",
+     "evidence": "CLAUDE.md 三判据①原文"
+    },
+    {
+     "q": "④ 同名/偏移混淆核了吗？",
+     "a": "✓ 类名+offset 双键核 ✓",
+     "evidence": "CCBRoleState.json +4"
+    },
+    {
+     "q": "⑤ 账面双同步？",
+     "a": "✓ 本产出=pending 面（禁改产品文件 ✓ 注解改待 checklist 全过后另轮）",
+     "evidence": "本文件 r59_checklist_qa.json"
+    }
+   ],
+   "verdict": "freeze",
+   "confidence": 40,
+   "proposed_union": null
+  },
+  {
+   "cls": "PalScriptMgr",
+   "offset": 288,
+   "name": "m_RoleSlotArray",
+   "current_type": "PalScriptRoleSlotOverlay",
+   "checklist_qa": [
+    {
+     "q": "① 证据是 A 级（指令字节）吗？",
+     "a": "✗ **值证缺**。变体层已复原（m_RoleSlotArray overlay ✓ R58 前轮）但本员本体无浮点 op 实录（型已具名 ✓ 非弱型）⇒ ① 适用性注",
+     "evidence": "PalScriptMgr.json +288（型=PalScriptRoleSlotOverlay ✓ 已具名）"
+    },
+    {
+     "q": "② 全用法形扫描了吗（P0-6）？",
+     "a": "✓ 已扫（变体层复原轮 ✓ overlay 变体含 float 成员（m_fSceneCfg 等）——本员=容器型 ✓ 非位面复用体）",
+     "evidence": "PalScriptRoleSlotOverlay.json overlay 变体 38 员（含 m_fSceneCfg float 族）"
+    },
+    {
+     "q": "③ 过滤规则可复现？",
+     "a": "✓ 规则=变体层复原（R58 前轮 ✓ inline struct 语法）",
+     "evidence": "r58 前轮变体复原 ✓"
+    },
+    {
+     "q": "④ 同名/偏移混淆核了吗？",
+     "a": "✓ 类名+offset 双键 ✓",
+     "evidence": "PalScriptMgr.json +288"
+    },
+    {
+     "q": "⑤ 账面双同步？",
+     "a": "✓ 本产出=pending 面（禁改产品文件 ✓ 注解改待 checklist 全过后另轮）",
+     "evidence": "本文件 r59_checklist_qa.json"
+    }
+   ],
+   "verdict": "freeze",
+   "confidence": 40,
+   "proposed_union": null,
+   "note": "本员=容器型（变体层已收 ✓）非弱型位面复用候选——选入本批作对照 ✓（非目标族）"
+  }
+ ],
+ "summary": {
+  "total": 3,
+  "qa_complete": 3,
+  "union_proposal": 1,
+  "frozen": 2,
+  "finding": "🎯 **问答形=过程留痕** ✓（reviewer 抓「结论形」正中——checklist 的价值在**逐问证据链**非结论布尔 ✓ 本轮 3 条全问答形产出）· ①「值证」两轮校准（R58 半证不算 ✓ R59 落实到问答）"
+ }
+}

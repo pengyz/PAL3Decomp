@@ -11,7 +11,7 @@
     "0x004BFD70": {
       "name": "Begin",
       "signature": "void *__thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x004BFDD0": {
       "name": "Resolve",
@@ -230,7 +230,7 @@
     "0x004C5810": {
       "name": "_sdtor",
       "signature": "char *__thiscall(char pData)",
-      "source": " | [非 ctor/dtor 实证 2026-10-16 analyzer 66 条] A 级形判：删际析构/adjustor 跳板形，非普通 ctor/dtor —— 名保留 _sdtor 系"
+      "source": "| [非 ctor/dtor 实证 2026-10-16 analyzer 66 条] A 级形判：删际析构/adjustor 跳板形，非普通 ctor/dtor —— 名保留 _sdtor 系"
     },
     "0x004D05E0": {
       "name": "CameraInterpCallback",
@@ -298,17 +298,17 @@
     "0x004C1640": {
       "name": "_scalar_dtor_DestroyEffBase",
       "signature": "char *__thiscall(char a2)",
-      "source": " | 挂账19续 2026-10-17（verifier A 级·DestroyEff 族四分账）：原名 DestroyEffBase ⇒ _scalar_dtor_DestroyEffBase：0x4C1640 decompile=调 0x4C1660 真体 + `if(a2&1) operator delete(this)` = **删际析构壳**（编译器生成形）；与真体 0x4C1660 同名 ⇒ 命名面未区分（判定：非法重载）⇒ 消歧 `_scalar_dtor_<真体名>` 制式"
+      "source": "| 挂账19续 2026-10-17（verifier A 级·DestroyEff 族四分账）：原名 DestroyEffBase ⇒ _scalar_dtor_DestroyEffBase：0x4C1640 decompile=调 0x4C1660 真体 + `if(a2&1) operator delete(this)` = **删际析构壳**（编译器生成形）；与真体 0x4C1660 同名 ⇒ 命名面未区分（判定：非法重载）⇒ 消歧 `_scalar_dtor_<真体名>` 制式"
     },
     "0x004C20B0": {
       "name": "_scalar_dtor_DestroyEffBink",
       "signature": "char *__thiscall(char a2)",
-      "source": " | 挂账19续 2026-10-17（verifier A 级·DestroyEff 族四分账）：原名 DestroyEffBink ⇒ _scalar_dtor_DestroyEffBink：0x4C20B0 decompile=调 0x4C20D0 真体 + delete = 删际壳同形（判定：非法重载）⇒ 消歧"
+      "source": "| 挂账19续 2026-10-17（verifier A 级·DestroyEff 族四分账）：原名 DestroyEffBink ⇒ _scalar_dtor_DestroyEffBink：0x4C20B0 decompile=调 0x4C20D0 真体 + delete = 删际壳同形（判定：非法重载）⇒ 消歧"
     },
     "0x004C2870": {
       "name": "~RenderTarget2",
       "signature": "char *__thiscall(char a2)",
-      "source": " | [T111] 语义偏离名修正：@0x4C2870 全函数体（193 字符）= BeginMultiPass(this)+if(a2&1) operator delete(this)+return this（**标量删除析构经典形**）⇒ 语义名 ~RenderTarget2（T23 _sdtor_call_dtor 通道对齐 ✓ 禁伪语义）；@0x4C2890 BeginMultiPass 保留（多趟渲染实体）"
+      "source": "| [T111] 语义偏离名修正：@0x4C2870 全函数体（193 字符）= BeginMultiPass(this)+if(a2&1) operator delete(this)+return this（**标量删除析构经典形**）⇒ 语义名 ~RenderTarget2（T23 _sdtor_call_dtor 通道对齐 ✓ 禁伪语义）；@0x4C2890 BeginMultiPass 保留（多趟渲染实体）"
     },
     "0x004C2030": {
       "name": "UpdateInternalAdj",
@@ -319,7 +319,7 @@
       "signature": "char *__thiscall(char pData)",
       "type": "skip",
       "reason": "compiler-generated scalar deleting destructor for RenderTarget2 (adjustor -12)",
-      "source": " | 2-param form -> 1-param: 8-byte jmp-thunk to 0x4C34B0 deleting-dtor body which tests (arg & 1) for operator delete and returns this; mangle QAEPADD = ret char*, args(char) | [非 ctor/dtor 实证 2026-10-16 analyzer] A 级：adjustor thunk `sub ecx,0Ch; jmp _scalar_dtor_34b0`（MI this 调整跳板）"
+      "source": "| 2-param form -> 1-param: 8-byte jmp-thunk to 0x4C34B0 deleting-dtor body which tests (arg & 1) for operator delete and returns this; mangle QAEPADD = ret char*, args(char) | [非 ctor/dtor 实证 2026-10-16 analyzer] A 级：adjustor thunk `sub ecx,0Ch; jmp _scalar_dtor_34b0`（MI this 调整跳板）"
     },
     "0x00408BD0": {
       "name": "NullCallback",

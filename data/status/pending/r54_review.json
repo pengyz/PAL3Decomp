@@ -1,0 +1,57 @@
+{
+  "review_of": [
+    "漏斗终态 404→43→3（SINGLE_ARITH=0）",
+    "三数组定案 arrA 50/arrB 100/arrC runtime",
+    "P0-7 布局冲突 arrA/arrB",
+    "CCBTaskSlot280 7 字段+尾占位",
+    "3 条 SINGLE_FLOAT 改型（Actor+48/CCBRoleState+4）"
+  ],
+  "verdict": "PASS_WITH_CHANGES",
+  "blocking_issues": [
+    {
+      "target": "三数组定案 arrA=50",
+      "issue": "元素数推断=循环计数陷阱——arrA=50 ⇒ 5240+50×208=0x3D18 **越过 arrB@8568 34 元素**（P0-7 冲突在该读法下成立）；但 3328=16×208 整除**恰接** ⇒ 真值 arrA=16（或单 116 元素数组两视图）；同基 0x2178 实录 bound=0xa(10)@44d0ba 证：**同一数组不同站点不同上界 ⇒ 循环常量≠元素数**",
+      "evidence": "算术：0x2178-0x1478=3328=16×208 精确；objdump 44d0ba `lea 0x2178(%esi),%edi` + 44d0b5 `mov $0xa,%ebx`（arrB 基+bound 10）",
+      "fix_required": "arrA 定 16（或 unclear 标），arrB=100 亦须独立计数证（0x64 站点未实录）；禁循环常量直接当元素数"
+    },
+    {
+      "target": "P0-7 处置（angle6）",
+      "issue": "元素数澄清前 arrA/arrB 数组成员不应按 50/100 落盘（当前定案=算术不自洽）",
+      "evidence": "同上算术",
+      "fix_required": "暂标 unclear 或按 16 重估后落（lead 处置建议正确 ✓）"
+    }
+  ],
+  "per_item": [
+    {
+      "item": "offset 换算 0x1478=5240/0x2178=8568",
+      "verdict": "OK",
+      "evidence_check": "换算实测 ✓ 双值正确（前轮 3192/4424 误算已修 ✓）"
+    },
+    {
+      "item": "漏斗终态 404→43→3（SINGLE_ARITH=0 空集）",
+      "verdict": "NEEDS_EVIDENCE",
+      "evidence_check": "空集结论可信度依赖全类扫描覆盖（PalScriptMgr/RoleSystem/Actor/CCBRoleState 覆盖证明未附）——0.7% 漏斗形本身合理，但 SINGLE_ARITH=0 应附漏斗逐层计数表为证"
+    },
+    {
+      "item": "arrA/arrB 重叠假说裁决（angle3）",
+      "verdict": "OK（裁决=连续两段非重叠）",
+      "evidence_check": "3328=16×208 整除恰接=**同一数组两段或 arrA=16+arrB=100 连续**；独立两数组随机错位概率低；重叠假说仅在 50 读法成立=元素数误估的假冲突（lead 警觉方向对、定位应移元素数层）"
+    },
+    {
+      "item": "CCBTaskSlot280 7 字段+尾 _BYTE[232] 占位",
+      "verdict": "NEEDS_EVIDENCE",
+      "evidence_check": "7 字段逐 opcode 证本轮未抽验；尾部占位=保守合理形 ✓（280-7×7≈? 需逐字段尺寸和核）"
+    },
+    {
+      "item": "3 条 SINGLE_FLOAT 改型（Actor+48/CCBRoleState+4）",
+      "verdict": "NEEDS_EVIDENCE",
+      "evidence_check": "全用法形单一性证明依赖 tools/member_usage_scan.py 产出——本轮未抽（P0-6 纪律下须附 7 形扫描零混入表）"
+    }
+  ],
+  "summary": {
+    "reviewed": 5,
+    "ok": 2,
+    "blocked": 2,
+    "needs_evidence": 3
+  }
+}

@@ -1,0 +1,21 @@
+{
+ "fn_0x420a6e": {
+  "owner_class": "Actor",
+  "vtable": "0x56AAC4",
+  "evidence": "IDA 边界：IsTileInBounds @0x420A10 size=0x7D（含 0x420A6E 站）· xref 调用者 0x41eebd IsTransitioning（Actor/场景域）· **vptr 写点三证（movl 形）**：0x41f360 `movl $0x56AAC4,(%ecx); ret`（Actor 主表）· 0x420290 `movl $0x56AAD8,(%ecx); ret`（邻表）· 0x420930 `movl $0x56AAF0,(%ecx); jmp 0x420290`（第三表+尾并共享体）——三表 0x56AAC4/AAD8/AAF0 邻接族（账面已有 0x56AAC4=Actor 认领 ✓交叉自证）",
+  "method_semantics": "IsTileInBounds/SetRoleGridPosition/CheckTileScript = Actor 网格定位/脚本检查域（语义自洽）",
+  "confidence": 82
+ },
+ "ccbstage_relation": "unrelated（896B/164-stride 数组=Actor 网格结构，this+0x784E8 大偏移——CCBStage 缺口账与 Actor 网格账分账 ✓）",
+ "grid_account_separate": true,
+ "checklist": {
+  "a_level": true,
+  "full_usage": true,
+  "rule_reproducible": true,
+  "name_offset_confusion_checked": true,
+  "ledger_dual_sync": true
+ },
+ "summary": {
+  "top_finding": "宿主类=**Actor**（三 vptr 写点 movl 实录 0x56AAC4/AAD8/AAF0 邻接表族）——896B 数组账并入 Actor 网格结构；0x420930 尾并形（写表→jmp 0x420290）与 CCBStage/UIFrameWnd 案同构（删除 dtor 尾并惯例再现）"
+ }
+}

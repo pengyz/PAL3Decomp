@@ -1,0 +1,52 @@
+{
+  "review_of": [
+    "2 条改型回退（Actor+48/CCBRoleState+4）",
+    "CCBTaskSlot208 撤位面标",
+    "文件集变更 214→186/总错误 1268→1047",
+    "compile_baseline --update-baseline",
+    "漏斗 404 计数规则"
+  ],
+  "verdict": "PASS_WITH_CHANGES",
+  "blocking_issues": [
+    {
+      "target": "CCBTaskSlot208 撤位面标（angle2 执行）",
+      "issue": "**撤标不彻底=新旧说并存**——+0 m_nBase 的 source 同时含旧说「值位面复用铁证（overlap 三判据①）」与新说「值镜像字段对（非 overlap）」（文件内 9 处位面/overlap 残文本）；撤标=追加新说未删旧说 ⇒ 同一账面自相矛盾，下游判读歧义",
+      "evidence": "实读 +0 m_nBase source 尾段两说并存；9 处残标上下文实录（含两处「值位面复用铁证」旧文）",
+      "fix_required": "删旧说文本（保留单一裁定）；撤标=文本级移除非追加"
+    },
+    {
+      "target": "compile_baseline --update-baseline（angle5）",
+      "issue": "**棘轮前提未满足**——基线更新须「确认无退化」（CLAUDE.md 检查点表），但 214→186 文件集收缩与 1268→1047 未分账（28 文件×均 7.9 错=221 drop 可被集合缩小全额解释）⇒ 尚未确认真改善即固化=假改善锚定风险",
+      "evidence": "census 实读 186 文件/1047 错 ✓（@16:23:14）；1268/214=5.93 vs 1047/186=5.63 人均错仅微降——集合变量未剥离",
+      "fix_required": "先做 dropped-28-files 错误贡献分账（--before/--after 对账），证实真改善后再 update；棘轮决策须 lead 显式确认"
+    }
+  ],
+  "per_item": [
+    {
+      "item": "2 条改型回退双同步（angle1）",
+      "verdict": "OK",
+      "evidence_check": "Actor+48 m_nRoleParam0=int（还原）+revert 标 ✓ · CCBRoleState+4 m_nRoundCounter=int+revert 标 ✓——注解+账面双同步 ✓ 实读"
+    },
+    {
+      "item": "撤位面恰当性（16B 算术）",
+      "verdict": "OK（裁决对、执行见 blocking）",
+      "evidence_check": "+0 与 +0x10 差 16B=不同存储 ✓ 三判据①不满足 ⇒ 撤标方向正确（R55 review 一致）"
+    },
+    {
+      "item": "文件集 214→186 归因（angle3/4）",
+      "verdict": "NEEDS_EVIDENCE",
+      "evidence_check": "codegen 层 or 注解层归因未附；错误 -221 与文件 -28 未分账（人均 5.93→5.63 微降）⇒「真改善」未证"
+    },
+    {
+      "item": "漏斗 404 独立复现（angle6）",
+      "verdict": "口径未钉=复现不可比",
+      "evidence_check": "我方全 structs 口径复现=**4123**（弱型无 opcode 证成员）vs 声称 404=**10 倍口径差**——404 的类集/类型集/排除项边界未公开，verifier 钉规则时须附口径定义表"
+    }
+  ],
+  "summary": {
+    "reviewed": 5,
+    "ok": 2,
+    "blocked": 2,
+    "needs_evidence": 2
+  }
+}

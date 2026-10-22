@@ -203,7 +203,7 @@
     "0x00450EB0": {
       "name": "~RoleAtt",
       "signature": "void __fastcall RoleAtt::~RoleAtt(UIWnd *pWnd)",
-      "source": " | 析构名误挂改名 2026-09-29：~RoleAtt→_todo_00450EB0（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形） | 撤误改名 2026-09-29：`UIWnd *pWnd`=this 形参（名非字面 this 但为此call this 槽）⇒ 真析构形（判别器只剥字面 this 名的漏洞——挂账修）"
+      "source": "| 析构名误挂改名 2026-09-29：~RoleAtt→_todo_00450EB0（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形） | 撤误改名 2026-09-29：`UIWnd *pWnd`=this 形参（名非字面 this 但为此call this 槽）⇒ 真析构形（判别器只剥字面 this 名的漏洞——挂账修）"
     },
     "0x00450F80": {
       "name": "IsValid",
@@ -299,7 +299,7 @@
     "0x00450E90": {
       "name": "_scalar_dtor_0E90",
       "signature": "void __thiscall()",
-      "source": " | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleAtt（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B14C,0x56B140）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleAtt（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B14C,0x56B140）"
     },
     "0x004531F0": {
       "name": "_sub_4531F0",

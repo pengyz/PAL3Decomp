@@ -64,7 +64,7 @@
     "0x0051C260": {
       "name": "`scalar deleting destructor'",
       "signature": "UIWnd *__thiscall(CCBSkillWindow *Block, char pData)",
-      "source": " | [T142R] 删除析构族机械判定（T138 形，逐形 objdump A 级）：全形=call 0x51C280 + testb $0x1,0x8(%esp) + call 0x541d10(operator delete) + mov eax,esi + ret $4；被调 0x51C280 本体=SEH + vptr store 0x57058C + try-level 递减 + 成员清理 + call 0x43dd10 基类析构 ⇒ 完整析构 ⇒ 本体=真标量删除析构；自洽核：vtable 0x57058C(base CCBSkillWindow) slot5=0x51C260 ⇒ 归属 CCBParabolaWindow ✓。T135 撞名核=0 ✓ 禁地址后缀 ✓"
+      "source": "| [T142R] 删除析构族机械判定（T138 形，逐形 objdump A 级）：全形=call 0x51C280 + testb $0x1,0x8(%esp) + call 0x541d10(operator delete) + mov eax,esi + ret $4；被调 0x51C280 本体=SEH + vptr store 0x57058C + try-level 递减 + 成员清理 + call 0x43dd10 基类析构 ⇒ 完整析构 ⇒ 本体=真标量删除析构；自洽核：vtable 0x57058C(base CCBSkillWindow) slot5=0x51C260 ⇒ 归属 CCBParabolaWindow ✓。T135 撞名核=0 ✓ 禁地址后缀 ✓"
     }
   },
   "vtables": [

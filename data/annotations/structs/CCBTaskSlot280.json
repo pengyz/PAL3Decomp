@@ -1,0 +1,49 @@
+{
+  "name": "CCBTaskSlot280",
+  "binary_size": 280,
+  "known_members": {
+    "0": {
+      "name": "m_pHead",
+      "type": "void *",
+      "source": "[A 级 opcode 2026-10-21·analyzer] +0x00 头指针（拷自 this+8）· `mov 0x8(%ecx)→mov %eax,(%ecx,%edx,8)` ×2 形"
+    },
+    "3": {
+      "name": "m_bFlag",
+      "type": "char",
+      "source": "[A 级 opcode] +0x03 标志（第 5 参）· `mov 0x14(%esp),%al → mov %al,0x11b(...)`"
+    },
+    "4": {
+      "name": "m_fSlot0",
+      "type": "float",
+      "source": "[A 级 opcode] +0x04 float · `fstps 0x11c(...)` 4 连写之一"
+    },
+    "8": {
+      "name": "m_fSlot1",
+      "type": "float",
+      "source": "[A 级 opcode] +0x08 float · `fstps 0x120(...)`"
+    },
+    "12": {
+      "name": "m_fSlot2",
+      "type": "float",
+      "source": "[A 级 opcode] +0x0C float · `fstps 0x124(...)`"
+    },
+    "16": {
+      "name": "m_fSlot3",
+      "type": "float",
+      "source": "[A 级 opcode] +0x10 float · `fstps 0x128(...)` 4 连写之末"
+    },
+    "20": {
+      "name": "m_nState",
+      "type": "int",
+      "source": "[A 级 opcode] +0x14 **int 状态码=6** · `movl $0x6,0x14(...)` @0x4dff9f —— 与 208B 族同偏移 0x14 的 int 对**两义铁证**"
+    },
+    "24": {
+      "name": "_todo_018",
+      "type": "_BYTE[232]",
+      "source": "[反证占位 2026-10-21·P0-6 纪律] +0x18..0x117 尾部 scaled disp 全扫仅现 f∈{0,3,4,8,0xC,0x10,0x14} ⇒ **零访问** · 不改型（单点 opcode 不足）· 待补证"
+    }
+  },
+  "_verdicts": {
+    "r53_280b_struct_20261021": "CCBStage 第三族 280B 数组元素（35i 缩放链 · disp 相对 this）。与 208B 族**独立**：+0x14 两义（208B=ptr 对 mov 形 vs 280B=int 状态码 movl $6）· float 域位置全异（208B=+0x60-0x74 vs 280B=+0x04-0x10）· 基址/步进全异。⚠️ R51「数组基=this+0x118」已撤回（张冠李戴：0x4C5C20 lea 0x118(%ebx) 后 add $0x4 是指针数组）。尾部 _BYTE[232] 占位（P0-6 反证：零访问不改型）"
+  }
+}

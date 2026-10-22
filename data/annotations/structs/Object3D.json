@@ -181,7 +181,7 @@
     "0x0047CB90": {
       "name": "_todo_0047CB90",
       "signature": "OpenNULLFile *__thiscall(const char *pszName, int actionIdx)",
-      "source": " | 析构名误挂改名 2026-09-29：~Object3D→_todo_0047CB90（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）"
+      "source": "| 析构名误挂改名 2026-09-29：~Object3D→_todo_0047CB90（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）"
     },
     "0x0047CD70": {
       "name": "LoadObject",
@@ -219,7 +219,7 @@
     "0x0047D440": {
       "name": "RenderObjectScene",
       "signature": "void(gbVec3D scrVec, gbMatrixStack *pMatrixStack)",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [T120] 渲染管线命名约定确立（Render<Scope>——T109 RenderEffectTexture 模式）+ 正名：@0x47D440 全函数体（2703 字符）= gbSceneGraph::Begin/End 括号 + gbCamera::SetAsCurrent + Matrix Push/Rotate/Translate + DispatchAction + GetScreenDegree 自调用（场景通路渲染+度计算）⇒ 语义名 RenderObjectScene（禁伪语义 ✓ 全函数体+调用簇证据）；@0x47D320 GetScreenDegree 保留（纯度计算）"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [T120] 渲染管线命名约定确立（Render<Scope>——T109 RenderEffectTexture 模式）+ 正名：@0x47D440 全函数体（2703 字符）= gbSceneGraph::Begin/End 括号 + gbCamera::SetAsCurrent + Matrix Push/Rotate/Translate + DispatchAction + GetScreenDegree 自调用（场景通路渲染+度计算）⇒ 语义名 RenderObjectScene（禁伪语义 ✓ 全函数体+调用簇证据）；@0x47D320 GetScreenDegree 保留（纯度计算）"
     },
     "0x0047D690": {
       "name": "CaculateRelative",
@@ -228,7 +228,7 @@
     "0x0047D9D0": {
       "name": "SetupCamera",
       "signature": "void *__thiscall(int nVal1)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x0047DA60": {
       "name": "Update",
@@ -237,7 +237,7 @@
     "0x0047DB40": {
       "name": "GetMouseRay",
       "signature": "bool(gbRay *retstr, tagPOINT *pPOINT)",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x0047DC60": {
       "name": "CheckMouseLPressed",
@@ -272,7 +272,7 @@
     "0x0047DD60": {
       "name": "SetBlendMode",
       "signature": "int __thiscall(unsigned __int8 *thisa)",
-      "source": " | rename:_todo_→fn_"
+      "source": "| rename:_todo_→fn_"
     },
     "0x004B7F80": {
       "name": "RenderTransformed",
@@ -283,7 +283,7 @@
       "name": "LoadActorModel",
       "signature": "void *__thiscall(int nParam)",
       "_misattrib_evidence": "max_offset=162708>class_size=152",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     }
   }
 }

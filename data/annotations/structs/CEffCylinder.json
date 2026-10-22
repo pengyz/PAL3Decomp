@@ -182,7 +182,7 @@
     "0x004C3C90": {
       "name": "Init",
       "signature": "CEffCylinder **__thiscall CEffCylinder::Init()",
-      "source": " | 挂账19续批2b 2026-10-17（verifier·DestroyEffect/散组四分账·五面语义卡）：✅ 合法重载保留：①调用者=AllocEffect+IsAllEffGroupStop（分配后初始化链）②被调=自身 ③成员 _tail_000×8/m_vecPos/m_vecRot ④CEffCylinder ⑤几何初始化 ⇒ 与 0x4C3EC0 参数异（几何 vs 参数化）=**合法重载**"
+      "source": "| 挂账19续批2b 2026-10-17（verifier·DestroyEffect/散组四分账·五面语义卡）：✅ 合法重载保留：①调用者=AllocEffect+IsAllEffGroupStop（分配后初始化链）②被调=自身 ③成员 _tail_000×8/m_vecPos/m_vecRot ④CEffCylinder ⑤几何初始化 ⇒ 与 0x4C3EC0 参数异（几何 vs 参数化）=**合法重载**"
     },
     "0x004C3D90": {
       "name": "AllocEffect",
@@ -193,7 +193,7 @@
     "0x004C3DD0": {
       "name": "_scalar_dtor_3DD0",
       "signature": "void __fastcall(CEffCylinder *this)",
-      "source": " | [ctor/dtor 错位改名 2026-10-16] 名 CEffCylinder 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_3DD0。refs: ??3@YAXPAX@Z ?Release@gbRefObject@@QAEXXZ"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 CEffCylinder 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_3DD0。refs: ??3@YAXPAX@Z ?Release@gbRefObject@@QAEXXZ"
     },
     "0x004C3EB0": {
       "name": "~CEffCylinder",
@@ -203,7 +203,7 @@
       "name": "Init",
       "signature": "int __thiscall(float *pType, float fx, float fy, float fz)",
       "ordinal": 2,
-      "source": " | 挂账19续批2b 2026-10-17（verifier·DestroyEffect/散组四分账·五面语义卡）：✅ 合法重载保留：①调用者=vtable 槽 0x56F768 ②被调=CEffMgr::Reset×4 ③成员 m_dwStartColor×5/m_vecPos/m_vecRot ④CEffCylinder ⑤参数化效果初始化（颜色/位置/旋转）⇒ 合法重载（与 0x4C3C90 同名异参）"
+      "source": "| 挂账19续批2b 2026-10-17（verifier·DestroyEffect/散组四分账·五面语义卡）：✅ 合法重载保留：①调用者=vtable 槽 0x56F768 ②被调=CEffMgr::Reset×4 ③成员 m_dwStartColor×5/m_vecPos/m_vecRot ④CEffCylinder ⑤参数化效果初始化（颜色/位置/旋转）⇒ 合法重载（与 0x4C3C90 同名异参）"
     },
     "0x004C4060": {
       "name": "Create",

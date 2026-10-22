@@ -31,7 +31,7 @@
     "0x00434130": {
       "name": "_todo_434130",
       "signature": "void __thiscall(int nInitSize, int nGrowBy, char bOwned)",
-      "source": " | [撞名 28 组四分账裁决 2026-10-16 analyzer] 消歧：0x44BD60=ctor（零初始化 `mov [eax],ecx;[eax+4];[eax+8]`）保留；0x434130=静态函数形（参数全栈取，无 ecx=this）改名"
+      "source": "| [撞名 28 组四分账裁决 2026-10-16 analyzer] 消歧：0x44BD60=ctor（零初始化 `mov [eax],ecx;[eax+4];[eax+8]`）保留；0x434130=静态函数形（参数全栈取，无 ecx=this）改名"
     },
     "0x004341E0": {
       "name": "~PtrArray",
@@ -49,7 +49,7 @@
     "0x004343F0": {
       "name": "FindByName",
       "signature": "void __thiscall(const char *pszName)",
-      "source": " | sig-type-fix 2026-09-28: const char *→int（参数名 nIndex+调用点全 int 实参（UIListBox:1221 等）+sibling RemoveAt(int nIndex,int nCount) 同名同义——PDB 残留型订正；证据: 多调用点 B 级） | 返工 2026-09-28（d0643565 反证）：撤 int 订正——被调体 strcmp((const char*)nIndex,v3) 证明实参是名字串；nIndex 更名 pszName；调用点 (int) 铸形系签名渲染产物（循环论证）另解 | [T141] 同名消歧（语义偏离名修正）：@0x4343F0 全函数体=inlined strcmp 逐条比对名字串（24字节项@+8）→ 命中返 &entry[匹配]（0x434450 lea eax,[edx+ecx*8]）否则 0，**纯查表非删除** ⇒ 语义名 FindByName（区别于 sibling RemoveAt(int,int)@0x4327B0 索引删除 this->m_pData/capacity + 既有 Find/FindFirst）；objdump 辅证（strcmp 展开 + 无 memmove/delete）"
+      "source": "| sig-type-fix 2026-09-28: const char *→int（参数名 nIndex+调用点全 int 实参（UIListBox:1221 等）+sibling RemoveAt(int nIndex,int nCount) 同名同义——PDB 残留型订正；证据: 多调用点 B 级） | 返工 2026-09-28（d0643565 反证）：撤 int 订正——被调体 strcmp((const char*)nIndex,v3) 证明实参是名字串；nIndex 更名 pszName；调用点 (int) 铸形系签名渲染产物（循环论证）另解 | [T141] 同名消歧（语义偏离名修正）：@0x4343F0 全函数体=inlined strcmp 逐条比对名字串（24字节项@+8）→ 命中返 &entry[匹配]（0x434450 lea eax,[edx+ecx*8]）否则 0，**纯查表非删除** ⇒ 语义名 FindByName（区别于 sibling RemoveAt(int,int)@0x4327B0 索引删除 this->m_pData/capacity + 既有 Find/FindFirst）；objdump 辅证（strcmp 展开 + 无 memmove/delete）"
     },
     "0x00434490": {
       "name": "Remove",
@@ -58,7 +58,7 @@
     "0x004344F0": {
       "name": "InsertAt",
       "signature": "void __thiscall(const char *pszName)",
-      "source": " | E-3 2026-09-28：nIndex→pszName（RemoveAt 同证据类 strcmp 系改名一致性）"
+      "source": "| E-3 2026-09-28：nIndex→pszName（RemoveAt 同证据类 strcmp 系改名一致性）"
     },
     "0x0044BD60": {
       "name": "PtrArray",
@@ -145,12 +145,12 @@
     "0x00432980": {
       "name": "ResizeOpcodeParams",
       "signature": "void __thiscall(PtrArray *this)",
-      "source": " | [名账正名 2026-10-16] idapro decompile（session 753ed139）：体=`PtrArray::SetSize(this)` 单行包装——**无 vptr 写 ⇒ 非 ctor 本体**（构造闭包/尺寸重置形候选）· xref 零命中 ⇒ **禁猜挂账**（保留现名 ResizeOpcodeParams，ctor 真名待调用面取证）"
+      "source": "| [名账正名 2026-10-16] idapro decompile（session 753ed139）：体=`PtrArray::SetSize(this)` 单行包装——**无 vptr 写 ⇒ 非 ctor 本体**（构造闭包/尺寸重置形候选）· xref 零命中 ⇒ **禁猜挂账**（保留现名 ResizeOpcodeParams，ctor 真名待调用面取证）"
     },
     "0x00432960": {
       "name": "_scalar_dtor_2960",
       "signature": "void __thiscall()",
-      "source": " | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB9C 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AB9C）：本体 56 8b f1 e8 18 00 00 00 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x432980 写 vptr 0x56AB9C（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AB9C→PtrArray（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=PtrArray（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x432980 写 vptr 0x56AB9C"
+      "source": "| [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB9C 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AB9C）：本体 56 8b f1 e8 18 00 00 00 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x432980 写 vptr 0x56AB9C（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AB9C→PtrArray（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=PtrArray（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x432980 写 vptr 0x56AB9C"
     }
   },
   "vtables": [

@@ -461,7 +461,7 @@
     "1288": {
       "name": "m_nTransformState",
       "type": "float",
-      "source": "B:naming_m_n+FPU_misattrib | type_change: type-evidence T1:  | T1b: 0x00412740 this+0x508(store); 0x00412A69 this+0x508(store); 0x00412A75 this+0x508(store); 0x004133D8 this+0x508(store)"
+      "source": "B:naming_m_n+FPU_misattrib | type_change: type-evidence T1: | T1b: 0x00412740 this+0x508(store); 0x00412A69 this+0x508(store); 0x00412A75 this+0x508(store); 0x004133D8 this+0x508(store)"
     },
     "1292": {
       "name": "m_fMovement",
@@ -486,7 +486,7 @@
     "1308": {
       "name": "m_nMovement",
       "type": "float",
-      "source": "B:naming_m_n+FPU_misattrib | type_change: type-evidence T1:  | T1b: 0x00412760 this+0x51C(store); 0x00412D69 this+0x51C(store); 0x004133A9 this+0x51C(load); 0x004133CB this+0x51C(store)"
+      "source": "B:naming_m_n+FPU_misattrib | type_change: type-evidence T1: | T1b: 0x00412760 this+0x51C(store); 0x00412D69 this+0x51C(store); 0x004133A9 this+0x51C(load); 0x004133CB this+0x51C(store)"
     },
     "1312": {
       "name": "m_fSavedRotX",
@@ -908,7 +908,7 @@
       "signature": "void __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "source": " | [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~RoleSystem。refs: ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ??1UIRoleDialog@@QAE@XZ ??1UIListBox@@QAE@XZ"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~RoleSystem。refs: ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ??1UIRoleDialog@@QAE@XZ ??1UIListBox@@QAE@XZ"
     },
     "0x00416220": {
       "name": "CheckMoveCollisionDist",
@@ -925,12 +925,12 @@
     "0x00531D20": {
       "name": "_todo_531D20",
       "signature": "void __thiscall()",
-      "source": " | [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ RoleSystem（ctor 名形=类名）：A 级 refs ??0UIListBox/??0UIRoleDialog（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0UIRoleDialog | [C2084 归因消解 2026-10-16] 名 RoleSystem 与 _todo_531D20@0x00420290 撞名（ctor/dtor 双体 C2084）：A 级：0x420290 movl $0x56aad8,(%ecx);ret = vptr 写+空体 = 真 ctor 保留；0x531D20 SEH 序言体语义未细分"
+      "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ RoleSystem（ctor 名形=类名）：A 级 refs ??0UIListBox/??0UIRoleDialog（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0UIRoleDialog | [C2084 归因消解 2026-10-16] 名 RoleSystem 与 _todo_531D20@0x00420290 撞名（ctor/dtor 双体 C2084）：A 级：0x420290 movl $0x56aad8,(%ecx);ret = vptr 写+空体 = 真 ctor 保留；0x531D20 SEH 序言体语义未细分"
     },
     "0x0042A010": {
       "name": "ProcessAction",
       "signature": "void __thiscall(RoleSystem *this)",
-      "source": " | ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 `void __thiscall()`；A 级：0x42A010 gbVec3D 局部 + RoleSystem 成员访问"
+      "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 `void __thiscall()`；A 级：0x42A010 gbVec3D 局部 + RoleSystem 成员访问"
     },
     "0x004122C0": {
       "name": "UpdatePosition",
@@ -943,12 +943,12 @@
     "0x00418130": {
       "name": "GetMoveState",
       "signature": "int __thiscall(int nVal1)",
-      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00421020": {
       "name": "CheckCollision",
       "signature": "BOOL __thiscall(int *pResult, int nFlag)",
-      "source": " | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 2——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 2——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00412B60": {
       "name": "SetMoveTarget",
@@ -973,12 +973,12 @@
     "0x004125B0": {
       "name": "NotifySceneChange",
       "signature": "int __thiscall(int nVal1)",
-      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00414E30": {
       "name": "GetActionByIndex",
       "signature": "int __thiscall(int nParam)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00412A50": {
       "name": "StartHalfSpeedMovement",
@@ -1148,7 +1148,7 @@
     "0x00420930": {
       "name": "InitInternal",
       "signature": "void __thiscall RoleSystem::InitInternal(int nVal1)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00420940": {
       "name": "CopyRoleToSlot",
@@ -1204,7 +1204,7 @@
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": " | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x570890）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x570890）"
     },
     "0x00408460": {
       "name": "BindRoleToScene",
@@ -1344,7 +1344,7 @@
       "name": "ResetState",
       "signature": "void __thiscall RoleSystem::ResetState(int nVal1)",
       "ordinal": 3,
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00420F50": {
       "name": "GetMapNodePtr",
@@ -1456,7 +1456,7 @@
     "0x00532E10": {
       "name": "ResetPathState",
       "signature": "char __thiscall RoleSystem::ResetPathState(int nVal1)",
-      "source": " | 签名缺参批量 2026-10-06：ret 68/4=17 参 vs 签名 0——补 17 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 68/4=17 参 vs 签名 0——补 17 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00414250": {
       "name": "NormalizeDirection",
@@ -1545,7 +1545,7 @@
     "0x00420270": {
       "name": "_scalar_dtor_0270",
       "signature": "void __thiscall()",
-      "source": " | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x420290 写 vptr 0x56AAD8（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AAD8→RoleSystem（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x420290 写 vptr 0x56AAD8"
+      "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x420290 写 vptr 0x56AAD8（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AAD8→RoleSystem（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x420290 写 vptr 0x56AAD8"
     },
     "0x00532D50": {
       "name": "ClearStateMode",

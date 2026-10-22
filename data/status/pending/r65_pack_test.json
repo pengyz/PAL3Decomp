@@ -1,0 +1,36 @@
+{
+  "task": "R65 pack(1) 效果验证",
+  "date": "2026-10-21",
+  "reviewer": "verifier",
+  "method": "wine cl (MSVC6) + `#pragma pack(push,1)` 包裹 include + `K<sizeof(T)>` 模板报错打印",
+  "pack1_effect": {
+    "sizeof_Actor_before": 824,
+    "sizeof_Actor_after": 824,
+    "verdict": "824（非 820）",
+    "finding": "**pack(1) 无效**——Actor 仍 824，`#pragma pack(1)` 不降低 ⇒ 4 字节差**非对齐填充**"
+  },
+  "side_effects": {
+    "sizeof_RoleSystem_before": 7604,
+    "sizeof_RoleSystem_after": 7604,
+    "changed": false,
+    "finding": "pack(1) 对 RoleSystem 亦无影响（7604→7604）"
+  },
+  "hypothesis_test": {
+    "lead_hypothesis": "Actor.h 缺 #pragma pack(1) ⇒ sizeof=824（应 820）",
+    "verdict": "🔴 证伪",
+    "evidence": "① Actor.h grep 无任何 `#pragma pack` 指令 ② 外裹 pack(push,1) 后 sizeof(Actor) 仍 824 ③ RoleSystem 亦不变",
+    "real_cause": "4 字节差非对齐——Actor.h 声明的成员/型合计 824（pack(1) 去对齐后仍 824），而 IDA 真值 820 ⇒ **是成员/型差 4 字节**（某成员大 4 或多 4 字节成员），不是 pack 问题"
+  },
+  "actor_layout_note": {
+    "actor_json_binary_size": 820,
+    "known_members_end": 788,
+    "last_member": "m_nUpdateMode@784(int)",
+    "note": "成员末端 788 < binary_size 820（32B 尾隙）· MSVC 编译 824——生成头含 gap/nested 展开超出 known_members 的 118 项，4 字节差在生成头的成员/型解析"
+  },
+  "summary": {
+    "pack1_effect": "Actor 824→824（无效）",
+    "side_effects": "RoleSystem 7604→7604（无变化）",
+    "verdict": "pack(1) 假设证伪——非对齐问题",
+    "output_path": "data/status/pending/r65_pack_test.json"
+  }
+}

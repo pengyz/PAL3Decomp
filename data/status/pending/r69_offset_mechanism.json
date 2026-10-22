@@ -1,0 +1,29 @@
+{
+  "task": "R69 「下游 −4」复议定案（三重叠加机理）",
+  "date": "2026-10-21",
+  "reviewer": "verifier",
+  "method": "wine cl 隔离实验 5 结构（各控一变量）+ CUtil 实测",
+  "isolation_experiments": {
+    "E_implicit_vptr(gap3+m+virtual)": "m@8 = vptr(4)+gap(3)=7→align8",
+    "E_no_vptr(gap3+m)": "m@4 = gap(3)→align4",
+    "E_vptr_nogap(m+virtual)": "m@4 = vptr(4)+m@4",
+    "E_static_only(static s+m+virtual)": "m@4 = vptr(4)+static(0)+m@4",
+    "E_real_only(real s1+m+virtual)": "m@6 = vptr(4)+s(1)→align6"
+  },
+  "mechanism": {
+    "vptr_placeholder": "0 字节（static 排除；E_static m@4 == E_vptr_nogap m@4 ⇒ static 贡献 0）",
+    "implicit_vptr": "4 字节（虚拟函数⇒编译器隐式 vptr；E_vptr_nogap m@4 直证）",
+    "gap_account": "3 字节（_gap_001[3]；E_no_vptr vs E_vptr_nogap 差异）",
+    "net": "CUtil 编译前区 = vptr(4)+static(0)+gap(3) = **7 字节** vs 声明 4（m_bCanWarp(1)+gap(3)）→ **+3 raw → align short → +4**"
+  },
+  "downstream_offset": "+4",
+  "evidence": "CUtil m_nRandHolder declared@4 → wine cl 编译@**8**（+4）· sizeof=1776；合成隔离 5 结构直证三贡献",
+  "verdict": "🔴 **「下游 −4」前提证伪——实际是 +4**。机理=隐式 vptr(4,编译器加,虚拟函数)+gap(3)填满 7 字节，而注解的 static 占位模型只算 4（m_bCanWarp(1)+gap(3),IDA 无独立 vptr 概念）⇒ 下游 +3→align +4。**非「static 排除⇒−4」**，是「**static 占位没能填 vptr 槽，但编译器又加了隐式 vptr，gap 又填 3**」三重叠加导致编译区比声明区大。",
+  "key_finding": "**方向反了**：R67 的「static 排除⇒下游 −4」错——static 贡献 0（不是 −4），真正的膨胀项是**隐式 vptr(+4)**（注解 IDA 模型没有独立 vptr，用 static 占位+gap 表示 vptr 区，但编译器因虚拟函数另加 4 字节 vptr）+gap(3) 使编译区 7 vs 声明 4。修法应是**让注解的 vptr 区表示与编译器一致**（承认隐式 vptr 4 字节，去掉重复的 gap/占位），非「去 static」。",
+  "summary": {
+    "triple": "vptr_placeholder=0(static) · implicit_vptr=4 · gap=3 → 编译前区 7 vs 声明 4",
+    "downstream": "+4（非 −4）",
+    "verdict": "「下游 −4」证伪，实为 +4（隐式 vptr 膨胀主导）",
+    "output_path": "data/status/pending/r69_offset_mechanism.json"
+  }
+}

@@ -108,7 +108,7 @@
     "0x0051AD10": {
       "name": "CreateControls",
       "signature": "char __thiscall(int *pRect, int parent)",
-      "source": " | [T112] 语义偏离名修正：@0x51AD10 全函数体（3859 字符）= UIStatic/UIButton/UIListBox 创建 + SetLockSel/GetSel/SetItemData 条目循环（控件构建+条目设置）+ 形参 (pRect,parent)=创建形 ⇒ 语义名 CreateControls（禁伪语义 ✓ 全函数体证据）；@0x51B030 OnMessage 保留（1006/1007 消息分发）"
+      "source": "| [T112] 语义偏离名修正：@0x51AD10 全函数体（3859 字符）= UIStatic/UIButton/UIListBox 创建 + SetLockSel/GetSel/SetItemData 条目循环（控件构建+条目设置）+ 形参 (pRect,parent)=创建形 ⇒ 语义名 CreateControls（禁伪语义 ✓ 全函数体证据）；@0x51B030 OnMessage 保留（1006/1007 消息分发）"
     },
     "0x0051AFE0": {
       "name": "Update",
@@ -133,7 +133,7 @@
     "0x0051B5D0": {
       "name": "UpdateDescriptionPage",
       "signature": "int __thiscall(CCBItemWindow *__hidden this, unsigned int a2, unsigned int, unsigned int)",
-      "source": " | [T115] 同名消歧：@0x51B5D0 全函数体（654 字符）成员簇=m_nActivePage/m_pDescription + 调用 CCBPanelSlot::ShowWindow（活动页+描述更新）⇒ 语义名 UpdateDescriptionPage（禁伪语义 ✓ 成员/调用簇证据）；@0x51B030 OnMessage 保留"
+      "source": "| [T115] 同名消歧：@0x51B5D0 全函数体（654 字符）成员簇=m_nActivePage/m_pDescription + 调用 CCBPanelSlot::ShowWindow（活动页+描述更新）⇒ 语义名 UpdateDescriptionPage（禁伪语义 ✓ 成员/调用簇证据）；@0x51B030 OnMessage 保留"
     },
     "0x0051B030": {
       "name": "OnMessage",
@@ -143,7 +143,7 @@
     "0x0051B940": {
       "name": "ForwardShowClipped",
       "signature": "void __thiscall(CCBControlWindow *this, int nFlags)",
-      "source": " | 97族注册续 2026-10-17（verifier·证据账目制 symbol+addr）：注册 evidence：体 `push nFlags; call CCBPanelSlot::ShowClipped(this); ret 4`（转发形）| 五面：①调用者=五窗 UI 域 ②被调=CCBPanelSlot::ShowClipped ③转发体无成员 ④五窗共享槽 ⑤UI 显隐转发 | confidence: high | 原 IDB 名 _todo_B940（伪语义）⇒ 再创作命名 ForwardShowClipped"
+      "source": "| 97族注册续 2026-10-17（verifier·证据账目制 symbol+addr）：注册 evidence：体 `push nFlags; call CCBPanelSlot::ShowClipped(this); ret 4`（转发形）| 五面：①调用者=五窗 UI 域 ②被调=CCBPanelSlot::ShowClipped ③转发体无成员 ④五窗共享槽 ⑤UI 显隐转发 | confidence: high | 原 IDB 名 _todo_B940（伪语义）⇒ 再创作命名 ForwardShowClipped"
     }
   },
   "vtables": [

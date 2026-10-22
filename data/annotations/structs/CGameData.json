@@ -215,7 +215,7 @@
     "2220": {
       "name": "m_pItemArray",
       "type": "int[13]",
-      "source": " | inline-union治理 2026-10-16（idapro A 级）：InitItems@0x44E660 memset32(&field, val=3, count=13)（ida_defs.h:137 (dst,val,count) 语义已核）⇒ 52B 区 2220..2272 填 3；**overlap**：m_nInitItems@2228/m_nItemCount2@2232/m_nEquipCount@2248/m_nConsumableCount@2260 为数组槽的命名视图（同区）"
+      "source": "| inline-union治理 2026-10-16（idapro A 级）：InitItems@0x44E660 memset32(&field, val=3, count=13)（ida_defs.h:137 (dst,val,count) 语义已核）⇒ 52B 区 2220..2272 填 3；**overlap**：m_nInitItems@2228/m_nItemCount2@2232/m_nEquipCount@2248/m_nConsumableCount@2260 为数组槽的命名视图（同区）"
     },
     "3308": {
       "name": "m_ItemSlotB",
@@ -520,62 +520,62 @@
     "76": {
       "name": "m_rcWindow",
       "type": "tagRECT",
-      "source": " | normalize_key: 0x4C -> 76"
+      "source": "| normalize_key: 0x4C -> 76"
     },
     "92": {
       "name": "m_rcWidgetRect",
       "type": "tagRECT",
-      "source": " | normalize_key: 0x5C -> 92"
+      "source": "| normalize_key: 0x5C -> 92"
     },
     "108": {
       "name": "m_nTodo_06C",
       "type": "int",
-      "source": " | normalize_key: 0x6C -> 108"
+      "source": "| normalize_key: 0x6C -> 108"
     },
     "112": {
       "name": "m_nTodo_070",
       "type": "int",
-      "source": " | normalize_key: 0x70 -> 112"
+      "source": "| normalize_key: 0x70 -> 112"
     },
     "124": {
       "name": "m_nTodo_07C",
       "type": "UIWnd *",
-      "source": " | normalize_key: 0x7C -> 124"
+      "source": "| normalize_key: 0x7C -> 124"
     },
     "988": {
       "name": "m_nTodo_3DC",
       "type": "int",
-      "source": " | normalize_key: 0x3DC -> 988"
+      "source": "| normalize_key: 0x3DC -> 988"
     },
     "992": {
       "name": "m_nTodo_3E0",
       "type": "int",
-      "source": " | normalize_key: 0x3E0 -> 992"
+      "source": "| normalize_key: 0x3E0 -> 992"
     },
     "1332": {
       "name": "m_nTodo_534",
       "type": "int",
-      "source": " | normalize_key: 0x534 -> 1332"
+      "source": "| normalize_key: 0x534 -> 1332"
     },
     "1336": {
       "name": "m_nTodo_538",
       "type": "int",
-      "source": " | normalize_key: 0x538 -> 1336"
+      "source": "| normalize_key: 0x538 -> 1336"
     },
     "1676": {
       "name": "m_nTodo_68C",
       "type": "int",
-      "source": " | normalize_key: 0x68C -> 1676"
+      "source": "| normalize_key: 0x68C -> 1676"
     },
     "1680": {
       "name": "m_nTodo_690",
       "type": "int",
-      "source": " | normalize_key: 0x690 -> 1680"
+      "source": "| normalize_key: 0x690 -> 1680"
     },
     "428": {
       "name": "m_subObjA",
       "type": "UIStatic",
-      "source": " | normalize_key: 0x1AC -> 428"
+      "source": "| normalize_key: 0x1AC -> 428"
     },
     "220": {
       "name": "g_pSceneTransitionEnd",
@@ -616,7 +616,7 @@
       "signature": "void __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "source": " | [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~CGameData。refs: ?Cleanup@CGameData@@QAEXXZ ??1UITitle@@QAE@XZ ??1RoleAtt@@QAE@PAVUIWnd@@@Z ?DestroyContent"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~CGameData。refs: ?Cleanup@CGameData@@QAEXXZ ??1UITitle@@QAE@XZ ??1RoleAtt@@QAE@PAVUIWnd@@@Z ?DestroyContent"
     },
     "0x0044FF60": {
       "name": "GetMode",
@@ -628,7 +628,7 @@
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CGameData（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B094）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CGameData（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B094）"
     },
     "0x00445A60": {
       "name": "SetDefaultColors",

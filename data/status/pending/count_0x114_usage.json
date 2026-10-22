@@ -1,0 +1,40 @@
+{
+ "cls": "CCBStage",
+ "offset": 280,
+ "name": "m_nCount",
+ "current_type": "int",
+ "usage_forms": {
+  "assign": 29,
+  "addr": 5,
+  "float_imm": 1
+ },
+ "usage_verdict": "MIXED",
+ "usage_verdict_note": "工具 member_usage_scan.py 报 SINGLE_ADDR（assign 作背底 ✗ 方法论差）——lead 三判据「值位面」以 **立即数 float 位型写** 实证 ⇒ MIXED ✓",
+ "proposed_type": null,
+ "proposed_union": {
+  "union": [
+   {
+    "type": "int",
+    "name": "m_nCount"
+   },
+   {
+    "type": "float",
+    "name": "m_fCountVal"
+   }
+  ]
+ },
+ "change_kind": "union_proposal",
+ "evidence": "objdump 0x52af99: movl $0xc36d0000, 0x114(%esi)（float 位型 ≈-233.0f 立即数写 ✓ A 级） + reg 写 ×4（439097/4c5a69/4c5ae2/52eca6 mov %eax,0x114(%esi)）= **值位面复用**（overlap 三判据① ✓ 同存储 int/float 双解释）",
+ "evidence_level": "A",
+ "confidence": 80,
+ "criterion": "①值位面（int reg 写 + float 位型立即数写 同偏移 ✓）",
+ "proposed_change": {
+  "file": "data/annotations/structs/CCBStage.json",
+  "kind": "set_member_type",
+  "detail": "type={\"union\":[{\"type\":\"int\",\"name\":\"m_nCount\"},{\"type\":\"float\",\"name\":\"m_fCountVal\"}]}"
+ },
+ "findings": [
+  "① 工具 verdict(SINGLE_ADDR) vs 三判据(MIXED) 方法论差 ✓——assign 被工具作背底 ✗ 立即数位型写是关键证据（工具 samples 截断未显 ✗ 直核抓获）",
+  "② 0xc36d0000 = float ≈-233.0f 位型（0xC3 6D 00 00 = 符号位+指数 ✓ 真浮点常量 ✓ 值位面实锤）"
+ ]
+}

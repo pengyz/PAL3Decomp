@@ -1,0 +1,24 @@
+{
+ "dtor_0x41f340": {
+  "caller": "vtable 0x56AAC4 槽（data xref 实录）",
+  "this_source": "虚分派接收者（&g_UIManager 域）",
+  "body_evidence": "deleting 三段式教科书形：`call 0x41f360`（scalar 尾写表）→ `test [esp+8],1` → `call 0x541d10`（operator delete）→ `ret 0x4`",
+  "class_name": "UIManager",
+  "confidence": 88
+ },
+ "dtor_0x41f360": {
+  "caller": "0x41f2f5（_todo_0041F2D0 区真 dtor 体）+ 0x41f343（deleting 内）",
+  "this_source": "ecx（thiscall 传递；真 dtor 体实为 **全局 this=0xC11758** `mov ecx,0xc11758`）",
+  "body_evidence": "`movl $0x56AAC4,(%ecx); ret`（scalar 尾）",
+  "class_name": "UIManager",
+  "confidence": 88
+ },
+ "class_identity_evidence": "**globals.json 0x00C11758 = `g_UIManager`（type: UIManager）**——源注记自证「ctor thunk 0x41F2D0→0x41F300（**55×0x44B 槽循环初始化** + vtable 0x56AAC4）」；dtor 体 0x41F300 实录：`lea esi,[ebx+0x10]; mov edi,0x37; push 0xc; push 4; call 0x401810`（55 槽×12B/4B 初始化循环）+ `mov [ebx+0x8],eax`",
+ "corrections": {
+  "R62": "「896B 宿主=Actor」**撤回**——真宿主=**UIManager**（g_UIManager 全局 + vtable 0x56AAC4 + 55×0x44B 槽初始化自证）；账面「0x56AAC4=Actor 主表」注记疑误挂待清",
+  "R63": "三尺寸矛盾消解：896B 元素/164-stride 网格 = **UIManager 内结构**（55×0x44B=55 个 ~1099B 槽区与 896B 族相邻域）"
+ },
+ "summary": {
+  "top_finding": "**类名定谳 UIManager**（globals 注解源注记+dtor 体全局 this=0xC11758 双证）——R62 Actor 说撤回；顺带揭穿 0x41F2D0=**atexit 注册形**（`push 0x41f2f0; call 0x553041`）=全局对象 CRT 构造/析构族惯例"
+ }
+}

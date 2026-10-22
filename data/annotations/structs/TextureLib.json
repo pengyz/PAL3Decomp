@@ -238,7 +238,7 @@
     "0x004A6960": {
       "name": "CreateFromFile",
       "signature": "gbTexture *__thiscall(int nVal1)",
-      "source": " | 签名缺参批量 2026-10-06：ret 36/4=9 参 vs 签名 0——补 9 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 36/4=9 参 vs 签名 0——补 9 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004A6CA0": {
       "name": "CreateFromMemory",
@@ -257,12 +257,12 @@
     "0x0053DC30": {
       "name": "_scalar_dtor_DC30",
       "signature": "void __thiscall()",
-      "source": " | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=TextureLib（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x570A54）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=TextureLib（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x570A54）"
     },
     "0x0053F4D0": {
       "name": "_scalar_dtor_F4D0",
       "signature": "void __thiscall()",
-      "source": " | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=TextureLib（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x53F4F0 写 vptr 0x570A58"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=TextureLib（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x53F4F0 写 vptr 0x570A58"
     },
     "0x005420E4": {
       "name": "TextureLib_adjthunk_20E4",

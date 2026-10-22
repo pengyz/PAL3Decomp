@@ -214,12 +214,12 @@
     "0x0043E560": {
       "name": "SetColumnHead",
       "signature": "int __thiscall(int nVal, int nOffset)",
-      "source": " | [T103] 同名消歧：@0x43E560 体=strncpy(m_column[m_numcol].head,src,0x40)（decomp 成员访问证据）⇒ 语义名 SetColumnHead（禁伪语义 ✓）；@0x43F670 族 SetItemOffset 保留（m_itemoffset.x/y 直存）"
+      "source": "| [T103] 同名消歧：@0x43E560 体=strncpy(m_column[m_numcol].head,src,0x40)（decomp 成员访问证据）⇒ 语义名 SetColumnHead（禁伪语义 ✓）；@0x43F670 族 SetItemOffset 保留（m_itemoffset.x/y 直存）"
     },
     "0x0043E5C0": {
       "name": "LoadListItems",
       "signature": "int __thiscall(char *Source, int y)",
-      "source": " | [T114] 同名消歧：@0x43E5C0 全函数体（2976 字符）调用簇=gbTexture::LoadTexture/UIListBox::CreateChild/GetSubItemInfo/PtrArray::SetAt/InitScrollbar（列循环+子项构造+纹理加载+滚动条初始化）⇒ 语义名 LoadListItems（禁伪语义 ✓ 调用簇证据）；@0x43F670 SetItemOffset 保留（m_itemoffset 直存）"
+      "source": "| [T114] 同名消歧：@0x43E5C0 全函数体（2976 字符）调用簇=gbTexture::LoadTexture/UIListBox::CreateChild/GetSubItemInfo/PtrArray::SetAt/InitScrollbar（列循环+子项构造+纹理加载+滚动条初始化）⇒ 语义名 LoadListItems（禁伪语义 ✓ 调用簇证据）；@0x43F670 SetItemOffset 保留（m_itemoffset 直存）"
     },
     "0x0043E7D0": {
       "name": "SetMouseMoveSel",
@@ -249,7 +249,7 @@
     "0x005279F0": {
       "name": "_scalar_dtor_79F0",
       "signature": "void __thiscall()",
-      "source": " | [ctor/dtor 错位改名 2026-10-16] 名 ctor_79F0 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_79F0。refs: ??1UIRoleDialog@@QAE@XZ ??1UIListBox@@QAE@XZ"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor_79F0 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_79F0。refs: ??1UIRoleDialog@@QAE@XZ ??1UIListBox@@QAE@XZ"
     },
     "0x004B4690": {
       "name": "Reset",
@@ -258,7 +258,7 @@
     "0x00452600": {
       "name": "_scalar_dtor_2600",
       "signature": "void __thiscall()",
-      "source": " | [ctor/dtor 错位改名 2026-10-16] 名 ctor_2600 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_2600。refs: ?ctor@UITitle_BBTY@@QAEXXZ UIAnimateCtrlEX__UIAnimateCtrlEX ??1UIListBox@@QAE@XZ"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor_2600 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_2600。refs: ?ctor@UITitle_BBTY@@QAEXXZ UIAnimateCtrlEX__UIAnimateCtrlEX ??1UIListBox@@QAE@XZ"
     },
     "0x0043F5B0": {
       "name": "GetItem",
@@ -275,7 +275,7 @@
     "0x0043F640": {
       "name": "SetLockSel",
       "signature": "void __thiscall(int nVal1)",
-      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x0043FE90": {
       "name": "GetCurSel",
@@ -326,7 +326,7 @@
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": " | 错挂修正 2026-10-16（verifier A 级）：真身=0x56B1BC 复合体的 scalar deleting destructor（vtable 槽 0x56b1bc→0x4525E0 xref 实证）——错挂 UIListBox，复合体真名挂账中 | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIListBox（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B1BC）"
+      "source": "| 错挂修正 2026-10-16（verifier A 级）：真身=0x56B1BC 复合体的 scalar deleting destructor（vtable 槽 0x56b1bc→0x4525E0 xref 实证）——错挂 UIListBox，复合体真名挂账中 | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIListBox（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B1BC）"
     },
     "0x004526C0": {
       "name": "ShouldProcessInput",
@@ -486,7 +486,7 @@
     "0x0043E120": {
       "name": "DeleteRow",
       "signature": "void __thiscall()",
-      "source": " | [rsite 根治 2026-10-16] 名 DeleteRow⇒~UIListBox（真析构，vtable 0x56AD40 slot None=本类）：A级 idapro 2f27f612：删析构 vtable 槽 xref（0x4518E0@0x56B178 from=UILoadingFrm / 0x4D3930@0x56FADC from=CEffShock / 0x43E100@0x56AD40 from=None=UIListBox）+ call 完整dtor(this)+flags 条件 delete ABI 配对 ⇒ 目标=同类完整析构 | [退化修复 2026-10-16 回退] ~UIListBox 与 0x43DD10 同签名双析构=C2084 误伤实锤（析构不可重载）；真身 0x43E0xx=UIListBox 本体（m_rowenable 面）但与 0x43DCxx 簇双簇裁决未完 ⇒ 名形暂缓，待裁决后正名"
+      "source": "| [rsite 根治 2026-10-16] 名 DeleteRow⇒~UIListBox（真析构，vtable 0x56AD40 slot None=本类）：A级 idapro 2f27f612：删析构 vtable 槽 xref（0x4518E0@0x56B178 from=UILoadingFrm / 0x4D3930@0x56FADC from=CEffShock / 0x43E100@0x56AD40 from=None=UIListBox）+ call 完整dtor(this)+flags 条件 delete ABI 配对 ⇒ 目标=同类完整析构 | [退化修复 2026-10-16 回退] ~UIListBox 与 0x43DD10 同签名双析构=C2084 误伤实锤（析构不可重载）；真身 0x43E0xx=UIListBox 本体（m_rowenable 面）但与 0x43DCxx 簇双簇裁决未完 ⇒ 名形暂缓，待裁决后正名"
     },
     "0x00451900": {
       "name": "DestroyContent",

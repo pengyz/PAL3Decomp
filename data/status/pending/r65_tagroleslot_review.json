@@ -1,0 +1,15 @@
+{
+  "verify_896": {
+    "annotation": 896,
+    "ida": 896,
+    "verdict": "OK",
+    "evidence": "annotation tagRoleSlot binary_size=896 ✓ · ida_structs.json size=896（kind=struct）✓ 双证一致铁实"
+  },
+  "case_55_slots": {
+    "computed": 49280,
+    "expected": 49280,
+    "verdict": "BUG",
+    "evidence": "896×55=49280 算术 ✓ 但归属双误：①UIManager binary_size=**4** 且无 RoleSlot 成员=『UIManager 槽区』不存在（实读）②[55] 无据——真数组=**Scene.json +224 m_roleSlots tagRoleSlot[64]**（64 员=57344B，实读）；PalScript +396 为单元素 union 视图（P/T 族）"
+  },
+  "most_important": "896 定谳族连环误归属：R63「896B=Actor」→ R64「896B=UIManager 槽区」→ 真身=**tagRoleSlot 元素尺寸**（数组宿主 Scene.m_roleSlots[64]=57344B）——**元素尺寸≠容器/宿主类尺寸**机制教训（896 被两次当宿主类大小裁归属）"
+}

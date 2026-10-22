@@ -1,0 +1,488 @@
+{
+  "scan_scope": "data/annotations + data/status + docs/knowledge",
+  "scan_date": "2026-10-21",
+  "reviewer": "verifier",
+  "circular_refs": [
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00459F80",
+      "name": "IsStateFlagSet",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x0046ADF0",
+      "name": "GetCellStateByte",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004E0A30",
+      "name": "DialogFunc",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x0053B010",
+      "name": "ActVecUninitCopy",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x0053B2D0",
+      "name": "ActVecUninitCopy2",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x0053B4D0",
+      "name": "ActVecUninitFill",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00530270",
+      "name": "ZeroInitPair",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004A4770",
+      "name": "SetUIWndFlag",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004A16C0",
+      "name": "Create__ovl_1",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00532D50",
+      "name": "ClearStateMode",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004B4830",
+      "name": "IsVisible",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004790F0",
+      "name": "GDB_GetRoleNum",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00479250",
+      "name": "GDB_GetItemNum",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00540B20",
+      "name": "UIInitSystem",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00540C60",
+      "name": "UIDestorySystem",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00431D90",
+      "name": "SingletonThunk_00431D90",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00431DB0",
+      "name": "SingletonThunk_00431DB0",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00431E70",
+      "name": "SingletonThunk_00431E70",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00431EC0",
+      "name": "SingletonThunk_00431EC0",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004B6D70",
+      "name": "SingletonThunk_004B6D70",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004BFD60",
+      "name": "SingletonThunk_004BFD60",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00450A30",
+      "name": "accessor_00450A30",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00452550",
+      "name": "accessor_00452550",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004792D0",
+      "name": "accessor_004792D0",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00511CA0",
+      "name": "compiler_init_00511CA0",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00512420",
+      "name": "compiler_init_00512420",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x005415C0",
+      "name": "crt_sub_005415C0",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004D4CA0",
+      "name": "_todo_004D4CA0",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00539D60",
+      "name": "ClearAllActions",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004BA230",
+      "name": "_todo_004BA230",
+      "claim": "decomp 反编译文本作证据",
+      "evidence_cited": "decomp/Hex-Rays 文本",
+      "why_circular": "decomp 依赖 IDB 类型=我们写入的投影，decomp 文本非独立字节证据",
+      "mislabel": "evidence_level 未明示循环",
+      "fix_required": "补 objdump opcode/访问形实证，否则降 B"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00536160",
+      "name": "SetParam",
+      "claim": "参数名/型（如 nVal:int）",
+      "evidence_cited": "IDA stack_frame",
+      "why_circular": "apply_annotations SetType/名字 写入 IDB 后 stack_frame 读回=读自己的投影（docs/knowledge/method_function_signature_inference.md:16 已明文 ❌）",
+      "mislabel": "标为 [A 级 IDA 栈帧] 实为循环 B 级",
+      "fix_required": "参数名/型改用调用点 push opcode（A 级）或 needs_caller_evidence；retn N 部分可保留（真 A 级）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004DFAA0",
+      "name": "InitRound",
+      "claim": "参数名/型（如 nVal:int）",
+      "evidence_cited": "IDA stack_frame",
+      "why_circular": "apply_annotations SetType/名字 写入 IDB 后 stack_frame 读回=读自己的投影（docs/knowledge/method_function_signature_inference.md:16 已明文 ❌）",
+      "mislabel": "标为 [A 级 IDA 栈帧] 实为循环 B 级",
+      "fix_required": "参数名/型改用调用点 push opcode（A 级）或 needs_caller_evidence；retn N 部分可保留（真 A 级）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004DFED0",
+      "name": "EndTurnAndAdvance",
+      "claim": "参数名/型（如 nVal:int）",
+      "evidence_cited": "IDA stack_frame",
+      "why_circular": "apply_annotations SetType/名字 写入 IDB 后 stack_frame 读回=读自己的投影（docs/knowledge/method_function_signature_inference.md:16 已明文 ❌）",
+      "mislabel": "标为 [A 级 IDA 栈帧] 实为循环 B 级",
+      "fix_required": "参数名/型改用调用点 push opcode（A 级）或 needs_caller_evidence；retn N 部分可保留（真 A 级）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004C6290",
+      "name": "Destroy__ovl_02",
+      "claim": "参数名/型（如 nVal:int）",
+      "evidence_cited": "IDA stack_frame",
+      "why_circular": "apply_annotations SetType/名字 写入 IDB 后 stack_frame 读回=读自己的投影（docs/knowledge/method_function_signature_inference.md:16 已明文 ❌）",
+      "mislabel": "标为 [A 级 IDA 栈帧] 实为循环 B 级",
+      "fix_required": "参数名/型改用调用点 push opcode（A 级）或 needs_caller_evidence；retn N 部分可保留（真 A 级）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x0043D880",
+      "name": "ctor",
+      "claim": "参数名/型（如 nVal:int）",
+      "evidence_cited": "IDA stack_frame",
+      "why_circular": "apply_annotations SetType/名字 写入 IDB 后 stack_frame 读回=读自己的投影（docs/knowledge/method_function_signature_inference.md:16 已明文 ❌）",
+      "mislabel": "标为 [A 级 IDA 栈帧] 实为循环 B 级",
+      "fix_required": "参数名/型改用调用点 push opcode（A 级）或 needs_caller_evidence；retn N 部分可保留（真 A 级）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x0043BBB0",
+      "name": "Destroy",
+      "claim": "参数名/型（如 nVal:int）",
+      "evidence_cited": "IDA stack_frame",
+      "why_circular": "apply_annotations SetType/名字 写入 IDB 后 stack_frame 读回=读自己的投影（docs/knowledge/method_function_signature_inference.md:16 已明文 ❌）",
+      "mislabel": "标为 [A 级 IDA 栈帧] 实为循环 B 级",
+      "fix_required": "参数名/型改用调用点 push opcode（A 级）或 needs_caller_evidence；retn N 部分可保留（真 A 级）"
+    }
+  ],
+  "a_level_refs": [
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004D37A0",
+      "name": "_todo_004D37A0",
+      "evidence": "asm opcode/retn/访问形/值位型（独立字节证据）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004D4CA0",
+      "name": "_todo_004D4CA0",
+      "evidence": "asm opcode/retn/访问形/值位型（独立字节证据）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00530F70",
+      "name": "_todo_00530F70",
+      "evidence": "asm opcode/retn/访问形/值位型（独立字节证据）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x005371B0",
+      "name": "SetActionByName",
+      "evidence": "asm opcode/retn/访问形/值位型（独立字节证据）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x0053BD30",
+      "name": "_todo_0053BD30",
+      "evidence": "asm opcode/retn/访问形/值位型（独立字节证据）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00419690",
+      "name": "_todo_00419690",
+      "evidence": "asm opcode/retn/访问形/值位型（独立字节证据）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x0044CB30",
+      "name": "InitParticles",
+      "evidence": "asm opcode/retn/访问形/值位型（独立字节证据）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004B7560",
+      "name": "_todo_004B7560",
+      "evidence": "asm opcode/retn/访问形/值位型（独立字节证据）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004BA230",
+      "name": "_todo_004BA230",
+      "evidence": "asm opcode/retn/访问形/值位型（独立字节证据）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004C5B50",
+      "name": "_todo_004C5B50",
+      "evidence": "asm opcode/retn/访问形/值位型（独立字节证据）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00537120",
+      "name": "_todo_00537120",
+      "evidence": "asm opcode/retn/访问形/值位型（独立字节证据）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x0053A670",
+      "name": "_todo_0053A670",
+      "evidence": "asm opcode/retn/访问形/值位型（独立字节证据）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x00536160",
+      "name": "SetParam",
+      "evidence": "asm opcode/retn/访问形/值位型（独立字节证据）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004DFAA0",
+      "name": "InitRound",
+      "evidence": "asm opcode/retn/访问形/值位型（独立字节证据）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004DFED0",
+      "name": "EndTurnAndAdvance",
+      "evidence": "asm opcode/retn/访问形/值位型（独立字节证据）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x004C6290",
+      "name": "Destroy__ovl_02",
+      "evidence": "asm opcode/retn/访问形/值位型（独立字节证据）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x0043D880",
+      "name": "ctor",
+      "evidence": "asm opcode/retn/访问形/值位型（独立字节证据）"
+    },
+    {
+      "file": "data/annotations/functions.json",
+      "addr": "0x0043BBB0",
+      "name": "Destroy",
+      "evidence": "asm opcode/retn/访问形/值位型（独立字节证据）"
+    }
+  ],
+  "summary": {
+    "circular": 36,
+    "circular_ida_stackframe": 6,
+    "circular_decomp": 30,
+    "a_level": 18,
+    "unclear": 0,
+    "pending_a_claims_circular": 0,
+    "docs_knowledge_status": "CLEAN（method_function_signature_inference.md:16/21/46 已正确记录循环 gotcha，无 IDA-says-X 断言）",
+    "highest_risk": "functions.json 6 条标 [A 级 IDA 栈帧 2026-10-21]（SetParam/InitRound/EndTurnAndAdvance/Destroy__ovl_02/ctor/Destroy @0x536160/0x4DFAA0/0x4DFED0/0x4C6290/0x43D880/0x43BBB0）用 stack_frame 参数名/型（nVal:int）作验证=循环证据**且误标 A 级**，直接违反 docs/knowledge 已记录的 P0-5 规则——这批签名若流入 apply 会把循环投影固化进 IDB",
+    "fix_recommendation": "① 6 条栈帧参数名/型改调用点 push opcode（A）或 needs_caller_evidence ② 27 条 decomp 文本证据补 opcode/降 B ③ 证据标注纪律：IDA/decomp/stack_frame/修饰名 一律禁作 verification，只允许 objdump opcode/ret N/访问形/值位型/vtable 槽"
+  }
+}

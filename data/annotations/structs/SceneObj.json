@@ -241,7 +241,7 @@
     "0x005362F0": {
       "name": "Destructor",
       "signature": "SceneObj * __thiscall(int nVal1)",
-      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x005363C0": {
       "name": "CleanupInternal",
@@ -261,7 +261,7 @@
     "0x00453030": {
       "name": "~SceneObj",
       "signature": "void __thiscall()",
-      "source": " | [ctor/dtor 错位改名 2026-10-16] 名 SceneObj 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~SceneObj。refs: ??3@YAXPAX@Z ?_UIWnd@UIWnd@@QAEXXZ"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 SceneObj 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~SceneObj。refs: ??3@YAXPAX@Z ?_UIWnd@UIWnd@@QAEXXZ"
     },
     "0x00407B50": {
       "name": "UpdateAutoDelete",
@@ -273,7 +273,7 @@
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": " | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x453030 写 vptr 0x56B200（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56B200→SceneObj（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=SceneObj（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x453030 写 vptr 0x56B200"
+      "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x453030 写 vptr 0x56B200（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56B200→SceneObj（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=SceneObj（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x453030 写 vptr 0x56B200"
     },
     "0x004530C0": {
       "name": "_init_4530c0",
@@ -321,7 +321,7 @@
     "0x00527D60": {
       "name": "GetCommonData",
       "signature": "int __thiscall()",
-      "source": " | rename:_todo_→fn_"
+      "source": "| rename:_todo_→fn_"
     },
     "0x00530340": {
       "name": "SetScriptDel",

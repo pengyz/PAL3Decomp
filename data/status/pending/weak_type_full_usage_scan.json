@@ -1,0 +1,1061 @@
+{
+  "entries": [
+    {
+      "cls": "Actor",
+      "offset": "0x30",
+      "name": "m_nRoleParam0",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "assign",
+          "count": 2,
+          "evidence": "4024a1:\t8b 5e 30             \tmov    0x30(%esi),%ebx"
+        },
+        {
+          "form": "float",
+          "count": 2,
+          "evidence": "402d88:\td9 5f 30             \tfstps  0x30(%edi)"
+        }
+      ],
+      "usage_verdict": "SINGLE_FLOAT",
+      "proposed_type": "int",
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 80,
+      "verdict": "REVERTED_R55",
+      "revert_note": "R55 回退（verifier 严格 opcode 证伪 SINGLE_FLOAT）"
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x4c",
+      "name": "m_nCachedA",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "assign",
+          "count": 2,
+          "evidence": "401900:\t89 56 4c             \tmov    %edx,0x4c(%esi)"
+        },
+        {
+          "form": "addr",
+          "count": 1,
+          "evidence": "401a26:\t8d 57 4c             \tlea    0x4c(%edi),%edx"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40,
+      "policy_note": "P0-6 保守：SINGLE_ADDR→struct=R51 回归因（+617）✗ 冻结待尺寸/ctor 证"
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x74",
+      "name": "m_nModelId",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "addr",
+          "count": 1,
+          "evidence": "411d6f:\t8d 6e 74             \tlea    0x74(%esi),%ebp"
+        },
+        {
+          "form": "assign",
+          "count": 1,
+          "evidence": "411d72:\t89 46 74             \tmov    %eax,0x74(%esi)"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40,
+      "policy_note": "P0-6 保守：SINGLE_ADDR→struct=R51 回归因（+617）✗ 冻结待尺寸/ctor 证"
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x84",
+      "name": "m_nAnimParam1",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "assign",
+          "count": 8,
+          "evidence": "411d75:\t8b 86 84 00 00 00    \tmov    0x84(%esi),%eax"
+        },
+        {
+          "form": "addr",
+          "count": 1,
+          "evidence": "4170f7:\t8d b3 84 00 00 00    \tlea    0x84(%ebx),%esi"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40,
+      "policy_note": "P0-6 保守：SINGLE_ADDR→struct=R51 回归因（+617）✗ 冻结待尺寸/ctor 证"
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x94",
+      "name": "m_nPathBuffer",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "float",
+          "count": 1,
+          "evidence": "40e540:\td9 9e 94 00 00 00    \tfstps  0x94(%esi)"
+        },
+        {
+          "form": "assign",
+          "count": 6,
+          "evidence": "41199a:\t89 be 94 00 00 00    \tmov    %edi,0x94(%esi)"
+        },
+        {
+          "form": "addr",
+          "count": 1,
+          "evidence": "412114:\t8d 9e 94 00 00 00    \tlea    0x94(%esi),%ebx"
+        },
+        {
+          "form": "arith",
+          "count": 2,
+          "evidence": "418418:\td8 86 94 00 00 00    \tfadds  0x94(%esi)"
+        }
+      ],
+      "usage_verdict": "MIXED",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "Actor",
+      "offset": "0xac",
+      "name": "m_fInterpStart",
+      "current_type": "float",
+      "usage_forms": [
+        {
+          "form": "addr",
+          "count": 1,
+          "evidence": "405204:\t8d 8e ac 00 00 00    \tlea    0xac(%esi),%ecx"
+        },
+        {
+          "form": "assign",
+          "count": 8,
+          "evidence": "412dfa:\t8a 86 ac 00 00 00    \tmov    0xac(%esi),%al"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40,
+      "policy_note": "P0-6 保守：SINGLE_ADDR→struct=R51 回归因（+617）✗ 冻结待尺寸/ctor 证"
+    },
+    {
+      "cls": "Actor",
+      "offset": "0xb0",
+      "name": "m_fInterpEnd",
+      "current_type": "float",
+      "usage_forms": [
+        {
+          "form": "addr",
+          "count": 5,
+          "evidence": "428d33:\t8d be b0 00 00 00    \tlea    0xb0(%esi),%edi"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40,
+      "policy_note": "P0-6 保守：SINGLE_ADDR→struct=R51 回归因（+617）✗ 冻结待尺寸/ctor 证"
+    },
+    {
+      "cls": "Actor",
+      "offset": "0xb4",
+      "name": "m_nInterpFrames",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "addr",
+          "count": 5,
+          "evidence": "41f74b:\t8d 86 b4 00 00 00    \tlea    0xb4(%esi),%eax"
+        },
+        {
+          "form": "assign",
+          "count": 1,
+          "evidence": "43bd5e:\t89 8e b4 00 00 00    \tmov    %ecx,0xb4(%esi)"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40,
+      "policy_note": "P0-6 保守：SINGLE_ADDR→struct=R51 回归因（+617）✗ 冻结待尺寸/ctor 证"
+    },
+    {
+      "cls": "Actor",
+      "offset": "0xc0",
+      "name": "m_nInterpState",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "addr",
+          "count": 2,
+          "evidence": "40d9b3:\t8d 86 c0 00 00 00    \tlea    0xc0(%esi),%eax"
+        },
+        {
+          "form": "assign",
+          "count": 4,
+          "evidence": "43bdf6:\t89 86 c0 00 00 00    \tmov    %eax,0xc0(%esi)"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "Actor",
+      "offset": "0xe4",
+      "name": "m_fMatrixC",
+      "current_type": "float",
+      "usage_forms": [
+        {
+          "form": "assign",
+          "count": 4,
+          "evidence": "417af4:\t8b b3 e4 00 00 00    \tmov    0xe4(%ebx),%esi"
+        },
+        {
+          "form": "addr",
+          "count": 4,
+          "evidence": "4209b4:\t8d 8f e4 00 00 00    \tlea    0xe4(%edi),%ecx"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "Actor",
+      "offset": "0xf8",
+      "name": "m_fMatrixF",
+      "current_type": "float",
+      "usage_forms": [
+        {
+          "form": "arith",
+          "count": 3,
+          "evidence": "41751c:\td8 a6 f8 00 00 00    \tfsubs  0xf8(%esi)"
+        },
+        {
+          "form": "float",
+          "count": 7,
+          "evidence": "417559:\td9 86 f8 00 00 00    \tflds   0xf8(%esi)"
+        },
+        {
+          "form": "addr",
+          "count": 1,
+          "evidence": "42217d:\t8d 96 08 ff ff ff    \tlea    -0xf8(%esi),%edx"
+        }
+      ],
+      "usage_verdict": "MIXED",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "Actor",
+      "offset": "0xfc",
+      "name": "m_fMatrixParamC",
+      "current_type": "float",
+      "usage_forms": [
+        {
+          "form": "arith",
+          "count": 3,
+          "evidence": "41753c:\td8 a6 fc 00 00 00    \tfsubs  0xfc(%esi)"
+        },
+        {
+          "form": "float",
+          "count": 7,
+          "evidence": "417563:\td9 86 fc 00 00 00    \tflds   0xfc(%esi)"
+        },
+        {
+          "form": "cmp",
+          "count": 1,
+          "evidence": "41deea:\t83 be fc 00 00 00 01 \tcmpl   $0x1,0xfc(%esi)"
+        }
+      ],
+      "usage_verdict": "MIXED",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x15c",
+      "name": "m_nHP",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "addr",
+          "count": 1,
+          "evidence": "41e878:\t8d 8b 5c 01 00 00    \tlea    0x15c(%ebx),%ecx"
+        },
+        {
+          "form": "assign",
+          "count": 5,
+          "evidence": "43b3fb:\t89 86 5c 01 00 00    \tmov    %eax,0x15c(%esi)"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x168",
+      "name": "m_nHandleEvent",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "assign",
+          "count": 2,
+          "evidence": "43b76b:\t8b 86 68 01 00 00    \tmov    0x168(%esi),%eax"
+        },
+        {
+          "form": "addr",
+          "count": 8,
+          "evidence": "4460f2:\t8d 8e 68 01 00 00    \tlea    0x168(%esi),%ecx"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x190",
+      "name": "m_nCloneState",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "assign",
+          "count": 4,
+          "evidence": "41bec4:\t88 8e 90 01 00 00    \tmov    %cl,0x190(%esi)"
+        },
+        {
+          "form": "addr",
+          "count": 1,
+          "evidence": "41d45f:\t8d b3 90 01 00 00    \tlea    0x190(%ebx),%esi"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x194",
+      "name": "m_nCloneFlag1",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "addr",
+          "count": 3,
+          "evidence": "41beca:\t8d 8e 94 01 00 00    \tlea    0x194(%esi),%ecx"
+        },
+        {
+          "form": "assign",
+          "count": 4,
+          "evidence": "423c58:\t8b 8f 94 01 00 00    \tmov    0x194(%edi),%ecx"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x19c",
+      "name": "m_fFacingAngle",
+      "current_type": "float",
+      "usage_forms": [
+        {
+          "form": "assign",
+          "count": 4,
+          "evidence": "41c0a9:\t8b be 9c 01 00 00    \tmov    0x19c(%esi),%edi"
+        },
+        {
+          "form": "addr",
+          "count": 4,
+          "evidence": "42b8fc:\t8d 87 9c 01 00 00    \tlea    0x19c(%edi),%eax"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x1a4",
+      "name": "m_nModelParamA",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "assign",
+          "count": 4,
+          "evidence": "41bed5:\t89 be a4 01 00 00    \tmov    %edi,0x1a4(%esi)"
+        },
+        {
+          "form": "addr",
+          "count": 3,
+          "evidence": "41c10f:\t8d ae a4 01 00 00    \tlea    0x1a4(%esi),%ebp"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x1ac",
+      "name": "m_nModelParamB",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "assign",
+          "count": 2,
+          "evidence": "41bee1:\t89 be ac 01 00 00    \tmov    %edi,0x1ac(%esi)"
+        },
+        {
+          "form": "addr",
+          "count": 5,
+          "evidence": "44abeb:\t8d 86 ac 01 00 00    \tlea    0x1ac(%esi),%eax"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x1e4",
+      "name": "m_fBlendWeight",
+      "current_type": "float",
+      "usage_forms": [
+        {
+          "form": "assign",
+          "count": 4,
+          "evidence": "41bf05:\t89 be e4 01 00 00    \tmov    %edi,0x1e4(%esi)"
+        },
+        {
+          "form": "float",
+          "count": 3,
+          "evidence": "41c322:\td9 86 e4 01 00 00    \tflds   0x1e4(%esi)"
+        },
+        {
+          "form": "arith",
+          "count": 1,
+          "evidence": "41c3e9:\td8 86 e4 01 00 00    \tfadds  0x1e4(%esi)"
+        }
+      ],
+      "usage_verdict": "MIXED",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x1e8",
+      "name": "m_obbox",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "assign",
+          "count": 4,
+          "evidence": "40c88a:\t8b 86 18 fe ff ff    \tmov    -0x1e8(%esi),%eax"
+        },
+        {
+          "form": "float",
+          "count": 5,
+          "evidence": "41c332:\td9 86 e8 01 00 00    \tflds   0x1e8(%esi)"
+        },
+        {
+          "form": "arith",
+          "count": 1,
+          "evidence": "41c3f9:\td8 86 e8 01 00 00    \tfadds  0x1e8(%esi)"
+        }
+      ],
+      "usage_verdict": "MIXED",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x278",
+      "name": "m_fDirX",
+      "current_type": "float",
+      "usage_forms": [
+        {
+          "form": "addr",
+          "count": 4,
+          "evidence": "40c8b2:\t8d 8e 88 fd ff ff    \tlea    -0x278(%esi),%ecx"
+        },
+        {
+          "form": "assign",
+          "count": 3,
+          "evidence": "40e0c6:\t8b 86 78 02 00 00    \tmov    0x278(%esi),%eax"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x280",
+      "name": "m_fDirZ",
+      "current_type": "float",
+      "usage_forms": [
+        {
+          "form": "assign",
+          "count": 5,
+          "evidence": "4124af:\t8b 8e 80 02 00 00    \tmov    0x280(%esi),%ecx"
+        },
+        {
+          "form": "float",
+          "count": 4,
+          "evidence": "415231:\td9 9e 80 02 00 00    \tfstps  0x280(%esi)"
+        }
+      ],
+      "usage_verdict": "SINGLE_FLOAT",
+      "proposed_type": "float",
+      "change_kind": "retype",
+      "evidence_level": "A",
+      "confidence": 80
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x290",
+      "name": "m_fDistAccum",
+      "current_type": "float",
+      "usage_forms": [
+        {
+          "form": "addr",
+          "count": 3,
+          "evidence": "44ef74:\t8d 8e 90 02 00 00    \tlea    0x290(%esi),%ecx"
+        },
+        {
+          "form": "assign",
+          "count": 1,
+          "evidence": "458396:\t66 8b 86 90 02 00 00 \tmov    0x290(%esi),%ax"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x294",
+      "name": "m_fSpeed",
+      "current_type": "float",
+      "usage_forms": [
+        {
+          "form": "assign",
+          "count": 3,
+          "evidence": "4824e3:\t8b 93 94 02 00 00    \tmov    0x294(%ebx),%edx"
+        },
+        {
+          "form": "addr",
+          "count": 3,
+          "evidence": "498845:\t8d 8e 94 02 00 00    \tlea    0x294(%esi),%ecx"
+        },
+        {
+          "form": "float",
+          "count": 1,
+          "evidence": "4f321f:\td8 8e 94 02 00 00    \tfmuls  0x294(%esi)"
+        }
+      ],
+      "usage_verdict": "MIXED",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x2a8",
+      "name": "m_InnerActor",
+      "current_type": "void *",
+      "usage_forms": [
+        {
+          "form": "addr",
+          "count": 12,
+          "evidence": "411a10:\t8d 8e a8 02 00 00    \tlea    0x2a8(%esi),%ecx"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "Actor",
+      "offset": "0x2d4",
+      "name": "m_nAnimCounter",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "float",
+          "count": 1,
+          "evidence": "452d73:\td9 9e d4 02 00 00    \tfstps  0x2d4(%esi)"
+        },
+        {
+          "form": "cmp",
+          "count": 1,
+          "evidence": "4585be:\t66 39 9e d4 02 00 00 \tcmp    %bx,0x2d4(%esi)"
+        },
+        {
+          "form": "assign",
+          "count": 4,
+          "evidence": "45bef2:\t8b 8f d4 02 00 00    \tmov    0x2d4(%edi),%ecx"
+        }
+      ],
+      "usage_verdict": "MIXED",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "CCBRoleState",
+      "offset": "0x4",
+      "name": "m_nRoundCounter",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "assign",
+          "count": 4,
+          "evidence": "40101a:\t89 46 04             \tmov    %eax,0x4(%esi)"
+        },
+        {
+          "form": "float",
+          "count": 3,
+          "evidence": "40111d:\td9 57 04             \tfsts   0x4(%edi)"
+        }
+      ],
+      "usage_verdict": "SINGLE_FLOAT",
+      "proposed_type": "int",
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 80,
+      "verdict": "REVERTED_R55",
+      "revert_note": "R55 回退（MIXED 非 SINGLE_FLOAT）"
+    },
+    {
+      "cls": "CCBRoleState",
+      "offset": "0x4c",
+      "name": "m_nState_04C",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "assign",
+          "count": 2,
+          "evidence": "401900:\t89 56 4c             \tmov    %edx,0x4c(%esi)"
+        },
+        {
+          "form": "addr",
+          "count": 1,
+          "evidence": "401a26:\t8d 57 4c             \tlea    0x4c(%edi),%edx"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "CCBRoleState",
+      "offset": "0x94",
+      "name": "m_nTargetRoleIdx",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "float",
+          "count": 1,
+          "evidence": "40e540:\td9 9e 94 00 00 00    \tfstps  0x94(%esi)"
+        },
+        {
+          "form": "assign",
+          "count": 6,
+          "evidence": "41199a:\t89 be 94 00 00 00    \tmov    %edi,0x94(%esi)"
+        },
+        {
+          "form": "addr",
+          "count": 1,
+          "evidence": "412114:\t8d 9e 94 00 00 00    \tlea    0x94(%esi),%ebx"
+        },
+        {
+          "form": "arith",
+          "count": 2,
+          "evidence": "418418:\td8 86 94 00 00 00    \tfadds  0x94(%esi)"
+        }
+      ],
+      "usage_verdict": "MIXED",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "CCBRoleState",
+      "offset": "0xa0",
+      "name": "m_nSelectedTarget",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "assign",
+          "count": 6,
+          "evidence": "4034b3:\t8b 87 a0 00 00 00    \tmov    0xa0(%edi),%eax"
+        },
+        {
+          "form": "addr",
+          "count": 3,
+          "evidence": "40359b:\t8d bb 60 ff ff ff    \tlea    -0xa0(%ebx),%edi"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "CCBRoleState",
+      "offset": "0xa4",
+      "name": "m_nSelectedItem",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "assign",
+          "count": 5,
+          "evidence": "405218:\t89 9e a4 00 00 00    \tmov    %ebx,0xa4(%esi)"
+        },
+        {
+          "form": "float",
+          "count": 3,
+          "evidence": "412170:\td9 86 a4 00 00 00    \tflds   0xa4(%esi)"
+        },
+        {
+          "form": "arith",
+          "count": 2,
+          "evidence": "414ca8:\td8 a6 a4 00 00 00    \tfsubs  0xa4(%esi)"
+        }
+      ],
+      "usage_verdict": "MIXED",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "CCBRoleState",
+      "offset": "0x21c",
+      "name": "m_nMaxRound",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "float",
+          "count": 1,
+          "evidence": "41c304:\td9 86 1c 02 00 00    \tflds   0x21c(%esi)"
+        },
+        {
+          "form": "arith",
+          "count": 1,
+          "evidence": "426160:\td8 86 1c 02 00 00    \tfadds  0x21c(%esi)"
+        },
+        {
+          "form": "assign",
+          "count": 1,
+          "evidence": "447afd:\t89 86 1c 02 00 00    \tmov    %eax,0x21c(%esi)"
+        },
+        {
+          "form": "addr",
+          "count": 1,
+          "evidence": "4622b8:\t8d 8b e4 fd ff ff    \tlea    -0x21c(%ebx),%ecx"
+        }
+      ],
+      "usage_verdict": "MIXED",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "CCBRoleState",
+      "offset": "0x493c",
+      "name": "m_fLerpSpeed",
+      "current_type": "float",
+      "usage_forms": [
+        {
+          "form": "addr",
+          "count": 1,
+          "evidence": "46160e:\t8d 86 3c 49 00 00    \tlea    0x493c(%esi),%eax"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "CCBRoleState",
+      "offset": "0x495c",
+      "name": "m_fSpringPosX",
+      "current_type": "float",
+      "usage_forms": [
+        {
+          "form": "float",
+          "count": 7,
+          "evidence": "449804:\td9 9e 5c 49 00 00    \tfstps  0x495c(%esi)"
+        },
+        {
+          "form": "arith",
+          "count": 4,
+          "evidence": "449b20:\td8 86 5c 49 00 00    \tfadds  0x495c(%esi)"
+        },
+        {
+          "form": "assign",
+          "count": 1,
+          "evidence": "44a032:\t89 86 5c 49 00 00    \tmov    %eax,0x495c(%esi)"
+        }
+      ],
+      "usage_verdict": "MIXED",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "CCBRoleState",
+      "offset": "0x4960",
+      "name": "m_fSpringPosY",
+      "current_type": "float",
+      "usage_forms": [
+        {
+          "form": "float",
+          "count": 7,
+          "evidence": "449810:\td9 9e 60 49 00 00    \tfstps  0x4960(%esi)"
+        },
+        {
+          "form": "arith",
+          "count": 4,
+          "evidence": "449b30:\td8 86 60 49 00 00    \tfadds  0x4960(%esi)"
+        },
+        {
+          "form": "assign",
+          "count": 1,
+          "evidence": "44a0bc:\t89 96 60 49 00 00    \tmov    %edx,0x4960(%esi)"
+        }
+      ],
+      "usage_verdict": "MIXED",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "CCBRoleState",
+      "offset": "0x4974",
+      "name": "m_nSpringTargetX",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "arith",
+          "count": 1,
+          "evidence": "449e12:\td8 87 74 49 00 00    \tfadds  0x4974(%edi)"
+        },
+        {
+          "form": "float",
+          "count": 3,
+          "evidence": "449e18:\td9 9f 74 49 00 00    \tfstps  0x4974(%edi)"
+        }
+      ],
+      "usage_verdict": "MIXED",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "CCBRoleState",
+      "offset": "0x4978",
+      "name": "m_nSpringTargetY",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "arith",
+          "count": 1,
+          "evidence": "449e24:\td8 87 78 49 00 00    \tfadds  0x4978(%edi)"
+        },
+        {
+          "form": "float",
+          "count": 3,
+          "evidence": "449e2a:\td9 9f 78 49 00 00    \tfstps  0x4978(%edi)"
+        }
+      ],
+      "usage_verdict": "MIXED",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "CCBRoleState",
+      "offset": "0x4cd0",
+      "name": "m_SlotRects",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "assign",
+          "count": 1,
+          "evidence": "46dbf8:\t8b 96 d0 4c 00 00    \tmov    0x4cd0(%esi),%edx"
+        },
+        {
+          "form": "addr",
+          "count": 1,
+          "evidence": "46dbfe:\t8d 8e d0 4c 00 00    \tlea    0x4cd0(%esi),%ecx"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "CCBRoleState",
+      "offset": "0x5064",
+      "name": "m_nEffCurA",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "addr",
+          "count": 1,
+          "evidence": "4efe22:\t8d 83 64 50 00 00    \tlea    0x5064(%ebx),%eax"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "CCBRoleState",
+      "offset": "0x5088",
+      "name": "m_nEffCurC",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "addr",
+          "count": 1,
+          "evidence": "4eff55:\t8d 83 88 50 00 00    \tlea    0x5088(%ebx),%eax"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "CCBRoleState",
+      "offset": "0x50a0",
+      "name": "m_fTimeFund",
+      "current_type": "float",
+      "usage_forms": [
+        {
+          "form": "float",
+          "count": 2,
+          "evidence": "4ec8f9:\td9 9e a0 50 00 00    \tfstps  0x50a0(%esi)"
+        },
+        {
+          "form": "arith",
+          "count": 1,
+          "evidence": "4f85cd:\td8 a6 a0 50 00 00    \tfsubs  0x50a0(%esi)"
+        }
+      ],
+      "usage_verdict": "MIXED",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    },
+    {
+      "cls": "CCBRoleState",
+      "offset": "0x56cc",
+      "name": "m_BattleFlags",
+      "current_type": "int",
+      "usage_forms": [
+        {
+          "form": "addr",
+          "count": 8,
+          "evidence": "46d2be:\t8d 8e cc 56 00 00    \tlea    0x56cc(%esi),%ecx"
+        },
+        {
+          "form": "assign",
+          "count": 4,
+          "evidence": "46e874:\t8b 96 cc 56 00 00    \tmov    0x56cc(%esi),%edx"
+        }
+      ],
+      "usage_verdict": "SINGLE_ADDR",
+      "proposed_type": null,
+      "change_kind": "freeze",
+      "evidence_level": "A",
+      "confidence": 40
+    }
+  ],
+  "summary": {
+    "total": 43,
+    "single_usage": 28,
+    "mixed": 15,
+    "none": 0,
+    "retype_safe": 3,
+    "policy": "P0-6 保守：仅 SINGLE_FLOAT/SINGLE_ARITH 标量可改 ✓ ADDR/INDIRECT/结构体假说全冻结（+617 回归教训 ✓）"
+  }
+}

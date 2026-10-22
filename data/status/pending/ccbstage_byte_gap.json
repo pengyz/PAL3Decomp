@@ -1,0 +1,260 @@
+{
+ "class": "CCBStage",
+ "binary_size": 673988,
+ "annotated_bytes": "≈5KB（72 员计数形；lead 口径）",
+ "gap_bytes": 668988,
+ "gap_regions": [
+  {
+   "start": 5240,
+   "end": 6720,
+   "access_count": 17,
+   "stride": 208,
+   "proposed_member": {
+    "name": "_todo_structArr208",
+    "type": "_todo_struct208[8]",
+    "evidence": "lea 0x1478 数组基 + `add $0xd0` 208B 指针步进 + 8 元素 span + 字段 opcode（mov=ptr/8d=子对象/d8d9=float）",
+    "level": "A"
+   },
+   "confidence": 75,
+   "scanned_full": true,
+   "scan_progress": "231/231 methods objdump 扫大位移（剔 %esp/%ebp）",
+   "stride_evidence": "objdump `add $0xd0,%esi`@0x44d00b + `add $0xd0,%edi`@0x44d0cb = 指针步进 208B/迭代（A 级 opcode）",
+   "element_count_estimate": 8,
+   "element_count_evidence": "区段 0x1478-0x1A40 = 1480B / 208 = 7.12 ⇒ ~8 元素（span/stride）；未见更大下标 lea ⇒ 上界 ~8",
+   "element_fields": [
+    {
+     "offset": 0,
+     "type": "sub-object",
+     "evidence": "objdump `8d` lea 0x1478 取址=子对象/数组基",
+     "level": "A"
+    },
+    {
+     "offset": 20,
+     "type": "void *",
+     "evidence": "objdump `89` mov 存×8 + `8b` 载×3（R48 ptr@+0x14 实证）",
+     "level": "A"
+    },
+    {
+     "offset": 24,
+     "type": "void *",
+     "evidence": "objdump `89` mov 存×7（R48 ptr@+0x18 实证）",
+     "level": "A"
+    },
+    {
+     "offset": 80,
+     "type": "int",
+     "evidence": "objdump `8b`×25 `c7`×20 高频读写=计数器/标志",
+     "level": "A"
+    },
+    {
+     "offset": 96,
+     "type": "float",
+     "evidence": "objdump `d8`/`d9` x87 浮点 opcode（fld/fst）",
+     "level": "A"
+    },
+    {
+     "offset": 100,
+     "type": "float",
+     "evidence": "objdump `d8`/`d9` x87",
+     "level": "A"
+    },
+    {
+     "offset": 104,
+     "type": "float",
+     "evidence": "objdump `d8`/`d9` x87",
+     "level": "A"
+    },
+    {
+     "offset": 108,
+     "type": "float",
+     "evidence": "objdump `d8`×3 x87",
+     "level": "A"
+    },
+    {
+     "offset": 112,
+     "type": "float",
+     "evidence": "objdump `d8`×3 x87",
+     "level": "A"
+    },
+    {
+     "offset": 116,
+     "type": "float",
+     "evidence": "objdump `d8`×2 x87",
+     "level": "A"
+    },
+    {
+     "offset": 144,
+     "type": "int/ptr",
+     "evidence": "objdump `89`×16 存",
+     "level": "A"
+    },
+    {
+     "offset": 184,
+     "type": "sub-object",
+     "evidence": "objdump `8d`×5 lea 取址",
+     "level": "A"
+    }
+   ]
+  },
+  {
+   "start": 8568,
+   "end": 10048,
+   "access_count": 23,
+   "stride": 208,
+   "proposed_member": {
+    "name": "_todo_arr2178",
+    "type": "Struct[?]（元素≈192-208B，ptr 族 + lea 基）",
+    "evidence": "objdump 19 位移点：步进实测 {4,8,20,192,204}· lea 1 + ptr 22",
+    "evidence_level": "A"
+   },
+   "confidence": 70,
+   "scanned_full": true,
+   "element_count_estimate": 8,
+   "element_count_evidence": "区段 0x2178-0x2740 = 1480B / 208 = 7.12 ⇒ ~8 元素（同步进同 span）",
+   "note": "步进 {4,8,20,192,204}=元素内字段偏移（非独立步进）；208B 元素结构同区段1待字段级复核"
+  },
+  {
+   "start": 3260,
+   "end": 3268,
+   "access_count": 85,
+   "stride": 4,
+   "proposed_member": {
+    "name": "_todo_hotptr_CBC",
+    "type": "int* / 指针对（3 位移点 85 次访问=热指针域）",
+    "evidence": "objdump 0xCBC/0xCC0/0xCC4 · mov 形 ×85（批1+2 累计）",
+    "evidence_level": "A"
+   },
+   "confidence": 68
+  },
+  {
+   "start": 8052,
+   "end": 8076,
+   "access_count": 21,
+   "stride": 4,
+   "proposed_member": {
+    "name": "_todo_ptrblock_1F74",
+    "type": "void *[7]（连续 4 步进指针块）",
+    "evidence": "objdump 7 位移点 ×21 mov· 全 4 步进连续",
+    "evidence_level": "A"
+   },
+   "confidence": 70
+  },
+  {
+   "start": 98332,
+   "end": 98336,
+   "access_count": 4,
+   "stride": 4,
+   "proposed_member": {
+    "name": "_todo_1801C",
+    "type": "ptr+subobj 对（lea+mov）",
+    "evidence": "objdump 0x1801C subobj-lea + 0x18020 ptr",
+    "evidence_level": "A"
+   },
+   "confidence": 62
+  },
+  {
+   "start": 1044,
+   "end": 1044,
+   "access_count": 1,
+   "stride": 0,
+   "proposed_member": {
+    "name": "_todo_sub414",
+    "type": "子对象（lea 形）",
+    "evidence": "objdump lea 0x414(%esi)",
+    "evidence_level": "A"
+   },
+   "confidence": 58
+  },
+  {
+   "start": 2056,
+   "end": 2056,
+   "access_count": 1,
+   "stride": 0,
+   "proposed_member": {
+    "name": "_todo_808",
+    "type": "ptr",
+    "evidence": "objdump mov 0x808(%esi)",
+    "evidence_level": "A"
+   },
+   "confidence": 55
+  },
+  {
+   "start": 17940,
+   "end": 17940,
+   "access_count": 1,
+   "stride": 0,
+   "proposed_member": {
+    "name": "_todo_4614",
+    "type": "ptr",
+    "evidence": "objdump mov 0x4614(%esi)",
+    "evidence_level": "A"
+   },
+   "confidence": 55
+  }
+ ],
+ "summary": {
+  "total_gap_bytes": 668988,
+  "recoverable_bytes": 5044,
+  "a_level_regions": 8,
+  "excluded": "0xC05F58（12.6MB≫bs=0xA48F4）非 this 相对——盲扫假阳（寄存器未追踪）已剔除",
+  "methods_scanned": 32,
+  "unique_offsets": 54,
+  "note": "批1(8)+批2(24) 分批完成；元素类型=访问形推断（mov=ptr/int · lea=子对象 · fstps/flds 本批未出现 float 点）；IDA 签名未用 ✓",
+  "scanned_methods": 231,
+  "scan_progress": "231/231（前 32 + 本轮 199 全量 objdump）",
+  "recoverable_estimate": "~8+8=16 个 208B 元素（约 3328B 可恢复结构）+ 热指针域 3 ptr + 散点",
+  "new_regions_found": 0,
+  "new_region_note": "全量扫 231 方法大位移（0x100-0x100000 剔 esp/ebp）：除已知 8 区段外无新数组区段；0x1400-0x2800 72 点全落入 2 个 208B 数组；0xCBC-0xCC4 热指针域复现（批1 85→全量一致）",
+  "top_findings": [
+   "`add $0xd0,%esi/edi`@0x44d00b/cb = 208B 指针步进循环（A 级实锤 stride，非推测）",
+   "208B 元素含 **6 个 float 字段 @+0x60-0x74**（d8/d9 x87 opcode）+ ptr 对 @+0x14/+0x18 + 计数器 @+0x50"
+  ]
+ },
+ "element_fields_semantics": [
+  {
+   "offset": 0,
+   "type": "ptr（子对象头/指针写）",
+   "semantic": "元素头：写 this+8 读出的指针（B 段实录 `mov %eax,(%ecx,%edx,8)`）/ lea 子对象基",
+   "evidence": "objdump 0x4dffba mov %eax,(%ecx,%edx,8)（280B 族）· R49 lea 0x1478(%esi)（208B 族基）",
+   "evidence_level": "A",
+   "confidence": 72
+  },
+  {
+   "offset": 20,
+   "type": "int（208B 族=ptr 对；280B 族=int6 状态码）",
+   "semantic": "两族不同义：208B 族 +0x14/+0x18=ptr 对（R49）；280B 族 +0x14=movl $0x6 槽状态码（B 段实录）",
+   "evidence": "objdump 0x4dff9f movl $0x6,0x14(%ecx,%eax,8)",
+   "evidence_level": "A",
+   "confidence": 74
+  },
+  {
+   "offset": 24,
+   "type": "ptr",
+   "semantic": "ptr 对第二员（R49 mov 形 16 点）",
+   "evidence": "R49 采集",
+   "evidence_level": "A",
+   "confidence": 70
+  },
+  {
+   "offset": 96,
+   "type": "float?（未复现）",
+   "semantic": "lead 数据「+0x60-0x74 float ×6（x87 d8/d9）」——**本轮 32/231 方法窗 fld/fstp 零命中**（元素相对寄存器与类相对两口径皆扫）⇒ 待方法定位补证，暂不立语义",
+   "evidence": "反证：objdump 32 方法 fld/fstp 扫描 0 命中（两口径）",
+   "evidence_level": "A（反证）",
+   "confidence": 50
+  },
+  {
+   "offset": 184,
+   "type": "子对象（lea 形）",
+   "semantic": "+0xB8 子对象（R49 lea）——ctor 参数/sizeof 待 call 邻接括定",
+   "evidence": "R49 lea 采集",
+   "evidence_level": "A",
+   "confidence": 62
+  }
+ ],
+ "new_finding_280": {
+  "region": "this+0 起 280B 步进数组（B 段 AssignSlotData 体内）",
+  "fields": "+0 头指针写 · +0x14 状态码=6 · 索引@this+0x10",
+  "note": "**第三族数组（stride 280=35×8）**——与 208B 两区不同族；缺口结构面新增一类"
+ }
+}

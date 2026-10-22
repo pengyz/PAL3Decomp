@@ -1,0 +1,154 @@
+{
+ "access_offsets": [
+  {
+   "offset": 224,
+   "count": 5,
+   "type": "lea",
+   "evidence": "objdump 0x420A7B,0x420B26"
+  },
+  {
+   "offset": 28,
+   "count": 5,
+   "type": "float/int",
+   "evidence": "objdump 0x420A93,0x420ABD"
+  },
+  {
+   "offset": 24,
+   "count": 5,
+   "type": "int/lea",
+   "evidence": "objdump 0x420BE2,0x420C45"
+  },
+  {
+   "offset": 16,
+   "count": 3,
+   "type": "float/int",
+   "evidence": "objdump 0x420A1E,0x420A97"
+  },
+  {
+   "offset": 152,
+   "count": 2,
+   "type": "int",
+   "evidence": "objdump 0x420A2D,0x420AD8"
+  },
+  {
+   "offset": 20,
+   "count": 2,
+   "type": "int",
+   "evidence": "objdump 0x420A35,0x420CE3"
+  },
+  {
+   "offset": 156,
+   "count": 2,
+   "type": "int",
+   "evidence": "objdump 0x420A3E,0x420AE4"
+  },
+  {
+   "offset": 220,
+   "count": 2,
+   "type": "int",
+   "evidence": "objdump 0x420A57,0x420CDD"
+  },
+  {
+   "offset": 12,
+   "count": 2,
+   "type": "byte/int",
+   "evidence": "objdump 0x420A5D,0x420A61"
+  },
+  {
+   "offset": 397,
+   "count": 2,
+   "type": "byte",
+   "evidence": "objdump 0x420BFA,0x420C5A"
+  },
+  {
+   "offset": 4,
+   "count": 1,
+   "type": "int",
+   "evidence": "objdump 0x420A10"
+  },
+  {
+   "offset": 136,
+   "count": 1,
+   "type": "int",
+   "evidence": "objdump 0x420AC1"
+  },
+  {
+   "offset": 32,
+   "count": 1,
+   "type": "byte",
+   "evidence": "objdump 0x420AFC"
+  },
+  {
+   "offset": 48,
+   "count": 1,
+   "type": "int",
+   "evidence": "objdump 0x420B11"
+  },
+  {
+   "offset": 468,
+   "count": 1,
+   "type": "byte",
+   "evidence": "objdump 0x420C09"
+  },
+  {
+   "offset": 272,
+   "count": 1,
+   "type": "lea",
+   "evidence": "objdump 0x420D12"
+  },
+  {
+   "offset": 125,
+   "count": 1,
+   "type": "byte",
+   "evidence": "objdump 0x420D18"
+  },
+  {
+   "offset": 160,
+   "count": 1,
+   "type": "int",
+   "evidence": "objdump 0x420D23"
+  },
+  {
+   "offset": 126,
+   "count": 1,
+   "type": "byte",
+   "evidence": "objdump 0x420D30"
+  },
+  {
+   "offset": 628,
+   "count": 1,
+   "type": "int",
+   "evidence": "objdump 0x420D3B"
+  },
+  {
+   "offset": 198,
+   "count": 1,
+   "type": "byte",
+   "evidence": "objdump 0x420D43"
+  },
+  {
+   "offset": 40,
+   "count": 1,
+   "type": "int",
+   "evidence": "objdump 0x420D61"
+  },
+  {
+   "offset": 36,
+   "count": 1,
+   "type": "int",
+   "evidence": "objdump 0x420D65"
+  }
+ ],
+ "top_fields": [
+  "+0xE0 ×5（lea 形=子对象基，896 元素内锚定 ✓）",
+  "+0x1C ×5（**float+int 混形**=位面复用候选）",
+  "+0x18 ×5（int+lea）"
+ ],
+ "register_caveat": "⚠️ 三函数窗内寄存器未追踪——偏移含三种锚定混杂：896 元素（+0xE0/+0x18D/+0x1D4 ✓ R59 定）· 164 元素（+0x98/+0x9c grid[i] 界）· host this（+0xDC 计数）——其余（+0x1C/+0x18/+0x10/+0x14/+0xC）锚定待逐站括定",
+ "summary": {
+  "total_offsets": 23,
+  "recoverable_bytes": "23 偏移×定型后核算",
+  "a_level_sites": true,
+  "top_finding": "+0x1C float+int 混形（fstps/fld 与 mov 共存同偏移）= **值位面判据①候选**（与 CCBTaskSlot280 的 758/758.0f 族同构）——P0-6 改型前须全用法形"
+ }
+}

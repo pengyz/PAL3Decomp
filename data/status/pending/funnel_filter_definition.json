@@ -1,0 +1,94 @@
+{
+  "task": "R56 钉漏斗过滤规则定义（404 复现）",
+  "date": "2026-10-21",
+  "reviewer": "verifier",
+  "filter_definition": {
+    "weak_types_base": "数值基元：int/float/double/char/short/long/unsigned */_BYTE/_DWORD/void *（含 int+float，weak_type_promotion.json 实证 m_fStateX:float 在弱型列）",
+    "excluded_from_weak": "具名类类型（UIWnd/gbVec3D/Actor 等）· 指针 char */Typed* · 数组 int[N]",
+    "scope": "known_members",
+    "class_scope": "RoleSystem+PalScriptMgr+Actor+CCBRoleState（4 类）",
+    "denominator": "total_members（known_members 计数：152/202/118/100）"
+  },
+  "counts_by_rule": {
+    "lead_404": {
+      "filter": "⚠️ **非单一规则**——逐类异质排除（见下）",
+      "count": 404,
+      "per_class": {
+        "RoleSystem": 114,
+        "PalScriptMgr": 146,
+        "Actor": 76,
+        "CCBRoleState": 68
+      },
+      "reproducible": "部分（2/4 类可统一规则命中，2/4 需额外排除）"
+    },
+    "reconstructed_per_class": {
+      "RoleSystem": "114 = is_num(129) − unsigned char(15)｜排除：uchar",
+      "PalScriptMgr": "146 = is_num(176) − unsigned char(20) − short(10)｜排除：uchar+short",
+      "Actor": "76 = is_num(98) − unsigned char(19) − short(2) − char(1)｜排除：uchar+short+char",
+      "CCBRoleState": "68 = is_num(83) − unsigned char(15)｜排除：uchar"
+    },
+    "uniform_filter_A_exclude_uchar": {
+      "filter": "is_num − unsigned char",
+      "per_class": [
+        114,
+        156,
+        79,
+        68
+      ],
+      "count": 417,
+      "match": "2/4（RoleSystem/CCBRoleState ✓）"
+    },
+    "uniform_filter_B_exclude_uchar_short_char": {
+      "filter": "is_num − uchar − short − char",
+      "per_class": [
+        109,
+        146,
+        76,
+        68
+      ],
+      "count": 399,
+      "match": "3/4（PalScriptMgr/Actor/CCBRoleState ✓，RoleSystem 差 5）"
+    },
+    "uniform_filter_C_exclude_uchar_short": {
+      "filter": "is_num − uchar − short",
+      "per_class": [
+        114,
+        146,
+        77,
+        68
+      ],
+      "count": 405,
+      "match": "3/4（RoleSystem/PalScriptMgr/CCBRoleState ✓，Actor 差 1）"
+    },
+    "verifier_486": {
+      "filter": "is_num（含 int/float/uchar 全数值基元）",
+      "count": 486
+    },
+    "verifier_99": {
+      "filter": "is_num − int − float（仅泛型）",
+      "count": 99
+    }
+  },
+  "recommended_rule": {
+    "rule": "weak = 数值基元（int/float/char/short/long/unsigned */_BYTE/_DWORD/void *）EXCLUDE `unsigned char` + `short`",
+    "rationale": "统一过滤器 C（排 uchar+short）最接近（405，3/4 命中，仅 Actor 差 1）且跨类一致——可被另一 agent 复现；逐类异质排除（404 原口径）不可复现",
+    "per_class": [
+      114,
+      146,
+      77,
+      68
+    ],
+    "total": 405,
+    "note": "若需精确 404 须用逐类异质口径（RoleSystem/PalScriptMgr/Actor/CCBRoleState 各不同排除）——但那不是可复现规则，是判定和"
+  },
+  "summary": {
+    "filter_defined": "✅ 弱型=数值基元含 int/float，排除 uchar（+short 最优）",
+    "reproduce_404": "❌ **不可统一复现**——404 = 逐类异质排除的判定和（4 类各不同：排 uchar / uchar+short / uchar+short+char / uchar）",
+    "recommended": "统一规则 C（排 uchar+short）= 405，可复现，3/4 精确",
+    "top2_findings": [
+      "🔴 **404 不是单一过滤器**：逐类反推显示 RoleSystem 排 uchar(114) · PalScriptMgr 排 uchar+short(146) · Actor 排 uchar+short+char(76) · CCBRoleState 排 uchar(68)——**每类排除集不同** ⇒ 是 R51/R52 逐类判定的和，非规则产出",
+      "⚠️ **统一过滤器最接近 405（排 uchar+short）**，仅 Actor 差 1——建议改用统一规则 C（可复现），或明示 404=判定和非规则数"
+    ],
+    "output_path": "data/status/pending/funnel_filter_definition.json"
+  }
+}

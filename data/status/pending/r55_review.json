@@ -1,0 +1,51 @@
+{
+  "review_of": [
+    "P0-7 verdict=C（arrA=16/arrB=10 独立两数组）",
+    "字段修正 5 条（+0x00 int 758/+0x04 rand/+0x10 float/+0x14/+0x18 int 对）",
+    "值位面复用铁证（+0 int 758/+0x10 float 758.0f 同值双写）",
+    "S2 改善 117→119",
+    "覆盖字节 5.3KB"
+  ],
+  "verdict": "PASS_WITH_CHANGES",
+  "blocking_issues": [
+    {
+      "target": "值位面复用判定（+0 int 758 / +0x10 float 758.0f）",
+      "issue": "angle4 判定不成立——三判据①=**同一存储**被不同标量型解释；+0 与 +0x10 **差 16B=不同存储** ⇒ 同值双写=值相关字段对（int 整数版+float 浮点版双存）**不构成位面复用/overlap 标记**；且「758.0f」**立即数零实录**（0x44470000 全图空命中）=半证",
+      "evidence": "objdump：int 758 三站 ✓（44ced8 movl $0x2f6,(%eax)·44d020/44d0e0 movl $0x2f6,-0xd0(...)）· +0x10 float 槽 ✓（412647 fsts 0x10(%esi)）但 758.0f 位型常量 0x44470000 **grep 0 命中**",
+      "fix_required": "撤销位面复用标（改标值镜像字段对）或补同存储证据（同偏移 int/float 双写形）；758.0f 值须补 fild/转换链证据否则改待证"
+    }
+  ],
+  "per_item": [
+    {
+      "item": "arrA=16/arrB=10 元素数",
+      "verdict": "OK（arrB 实证·arrA 推导）",
+      "evidence_check": "arrB=10 ✓ 实录（44d0b5 mov $0xa,%ebx + 44d0ba lea 0x2178(%esi)）；arrA=16=算术推导（3328÷208=16 自洽 ✓ 基址 lea 0x1478 实录 44cffa/44d5b3 但**计数常量未见**）=derived 非实证，标注应分层；50/100 撤回面（现落盘态含旧值否）本轮未抽"
+    },
+    {
+      "item": "arrA 终点=arrB 起点无缝",
+      "verdict": "OK",
+      "evidence_check": "0x1478+16×208=0x2178 ✓ 算术无缝 + 双基址 lea 实录——「独立两数组」vs「一数组两段」语义同布局（皆不重叠）；P0-7 verdict=C 与算术一致 ✓"
+    },
+    {
+      "item": "字段修正 5 条 opcode 证",
+      "verdict": "PARTIAL",
+      "evidence_check": "+0x00 int 758 ✓ 实录 · +0x10 float ✓ 实录（fsts/flds 0x10(%esi)）· **+0x14/+0x18 ptr→int 未实录**（ptr→int 须 mov 立即/算术形非 deref 形证据）· +0x04 rand 未抽 ⇒ 2/5 待证"
+    },
+    {
+      "item": "S2 改善 117→119 归因",
+      "verdict": "NEEDS_EVIDENCE",
+      "evidence_check": "+2 归因须 census 前后 (code,msg) 分布 delta——数组尺寸修正与 S2 增的因果链未附（衰退纪律：归因须病灶层三问）"
+    },
+    {
+      "item": "覆盖字节 5.3KB（arrA 3328+arrB 2080）",
+      "verdict": "OK",
+      "evidence_check": "16×208=3328 ✓ + 10×208=2080 ✓ = 5408B=5.3KB ✓ 算术自洽；R53 31.2KB=150×208 旧错值确已修"
+    }
+  ],
+  "summary": {
+    "reviewed": 5,
+    "ok": 3,
+    "blocked": 1,
+    "needs_evidence": 3
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "task": "R63 audit 编译上下文复核（P0-1 根因）",
+  "date": "2026-10-21",
+  "reviewer": "verifier",
+  "include_dirs": [
+    "include/",
+    "pal3/src",
+    "tools/compilers/msvc6.0/Include",
+    "tools/vc6/Include"
+  ],
+  "include_order": "audit 编译 wrapper=`#include pal3/ida_defs.h` + `#include globals.h` + `#include RoleSystem.h`（audit_type_layout.py:221）；RoleSystem.h 再 include Actor.h/UIWnd.h/gbengine_* 依赖链",
+  "include_order_matches_header": "partial——wrapper 头序固定（ida_defs+globals+X.h），RoleSystem.h 自身依赖链一致；但**编译上下文（wrapper vs 真实 TU）使 Actor 尺寸不同**（见 case）",
+  "case": {
+    "compiler": "wine cl (MSVC6 = audit 同编译器) + INCLUDE_DIRS",
+    "method": "`K<(int)&((RoleSystem*)0)->member>` 模板报错打印偏移 + `K<sizeof(T)>` 打印尺寸",
+    "offsetof_m_fPathTargetY": 1248,
+    "expected_m_fPathTargetY": 1244,
+    "offsetof_m_partyActor": 424,
+    "sizeof_Actor": 824,
+    "sizeof_Actor_expected": 820,
+    "sizeof_RoleSystem": 7604,
+    "sizeof_RoleSystem_declared": 7600,
+    "verdict": "BUG（audit 编译上下文）"
+  },
+  "root_cause": {
+    "finding": "**Actor 尺寸差 4 字节**：audit 编译上下文 sizeof(Actor)=824 vs 生成头真值 820（0x334）",
+    "chain": "m_partyActor@424 ✓（正确）→ Actor 跨 424..424+824=1248（audit）vs 424..424+820=1244（真）→ m_fPathTargetY@1248（audit）vs 1244（真）⇒ **全下游成员 +4 漂移** → RoleSystem 7604 vs 7600",
+    "why_824_vs_820": "Actor 依赖的某类型在 wrapper（ida_defs.h+globals.h）上下文 vs 真实 TU 链下尺寸差 4（尾对齐/嵌套型/依赖解析不同）——P0-1『audit 编译上下文与生成头不同源』实锤",
+    "note": "m_partyActor@424 两侧一致 ⇒ Actor 之前的成员尺寸正确；漂移全在 Actor 及其后 ⇒ audit 的 91 冲突=Actor 尺寸差 4 的下游假象"
+  },
+  "conclusion": "**audit 假阳性**——生成头正确（m_fPathTargetY=1244/m_partyActor+820），audit 编译上下文使 Actor=824（+4）⇒ 全下游偏移+4 ⇒ 91 冲突是编译上下文差异非真偏移错",
+  "fix_direction": "① audit 的 wrapper 编译上下文须与真实 TU 同源（或先校准 Actor 等基础类型尺寸=生成头真值）② 或 audit 分块自校准时用生成头真尺寸锚定基础类型 ③ P0-1 复核必要性实证（objdump 访问形 vs audit 计算偏移矛盾时，audit 上下文是嫌疑）",
+  "summary": {
+    "include_dirs": "[include, pal3/src, msvc6.0/Include, vc6/Include]",
+    "case_offof_fPathTargetY": "1248（wine cl）vs 1244（期望）= 差 4",
+    "root": "Actor sizeof 824（audit）vs 820（真）= 差 4",
+    "conclusion": "audit 假阳性（编译上下文差异）",
+    "output_path": "data/status/pending/r63_audit_context.json"
+  }
+}

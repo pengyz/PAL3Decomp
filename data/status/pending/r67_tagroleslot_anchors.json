@@ -1,0 +1,68 @@
+{
+ "anchored_offsets": [
+  {
+   "offset": 224,
+   "anchor": "896_elem",
+   "evidence": "4 站 lea/读形：0x420A7B `lea eax,[ecx+esi+0xE0]`（=this+896r+0xE0 返回址）· 0x420B26 同形 · 0x420C2C/0x420C77 `[eax+0xE0]`（eax=tile 址）· 0x420CAF"
+  },
+  {
+   "offset": 397,
+   "anchor": "896_elem",
+   "evidence": "0x420BFA/0x420C5A `[ecx/edx+edi+0x18D]` byte（896i 链基）"
+  },
+  {
+   "offset": 468,
+   "anchor": "896_elem",
+   "evidence": "0x420C09 `cmp BYTE [eax+0x1D4],0x26`（eax=tile 址）"
+  },
+  {
+   "offset": 152,
+   "anchor": "164_elem",
+   "evidence": "0x420A2D/0x420AD8 `[edi+0x98]`（edi=this+0x784E8+164i grid 员）=count_Y"
+  },
+  {
+   "offset": 156,
+   "anchor": "164_elem",
+   "evidence": "0x420A3E/0x420AE4 `[edi+0x9C]` =count_X"
+  },
+  {
+   "offset": 136,
+   "anchor": "164_elem",
+   "evidence": "0x420AC1 `[edi+0x88]`（新字段）"
+  },
+  {
+   "offset": 220,
+   "anchor": "host_this",
+   "evidence": "0x420A57 `[esi+0xDC]`·0x420CDD `[ebp+0xDC]`（esi/ebp=this）=计数字段"
+  },
+  {
+   "offset": 272,
+   "anchor": "host_this",
+   "evidence": "0x420D12 `[ebp+0x110]`（ebp=this）"
+  },
+  {
+   "offset": 28,
+   "anchor": "**stack（esp+0x1C）**",
+   "evidence": "0x420A93/0x420ABD/0x420C16/0x420C68/0x420CF5 全为 `[esp+0x1C]`——**栈槽非成员**"
+  },
+  {
+   "offset": 24,
+   "anchor": "**stack（esp+0x18）**",
+   "evidence": "0x420BE2/0x420C45/0x420D56 等 `[esp+0x18]`"
+  },
+  {
+   "offset": 125,
+   "anchor": "other_obj（esi 域）",
+   "evidence": "0x420D18/0x420D30/0x420D23/0x420D43 byte（esi=他对象指针，待源括定）"
+  }
+ ],
+ "offset_0x1c": {
+  "verdict": "freeze-n/a（**撤销值位面候选**）",
+  "evidence": "R65「float+int 混形」实为 **esp+0x1C 栈槽**的两种用法（局部变量）——寄存器括定前误并入成员；+0x18 同误并（esp 形）"
+ },
+ "r65_correction": "R65 23 偏移中 **[esp+disp] 族全为栈槽**（参数/局部）非对象成员——真成员面=+0xE0/+0x18D/+0x1D4（896）· +0x88/+0x98/+0x9c（164）· +0xDC/+0x110（host）· +0x7D 族（他对象）",
+ "summary": {
+  "top_finding": "**栈槽误并撤销**——R65 top3 的 +0x1C/+0x18 位面候选不成立（esp 基）；真成员 top=+0xE0（896 基址合成）；寄存器锚定括定=成员取证的必要前置（R58 方法论再次实证）",
+  "confidence": 85
+ }
+}

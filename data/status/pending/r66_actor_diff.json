@@ -1,0 +1,26 @@
+{
+ "diffs": [
+  {
+   "member": "m_actarray_type",
+   "header_type": "static BYTE",
+   "header_size": "0（static 排除出实例布局）",
+   "ida_type": "unsigned char",
+   "ida_size": 1,
+   "diff": "源头缺陷：**实例成员被渲染为 static**",
+   "evidence": "pal3/src/Role/Actor.h 首成员行 `static BYTE m_actarray_type; // +0x0`（A 级渲染实录）"
+  }
+ ],
+ "root_cause": "**非单成员大 4**（lead 假设证伪）——`static BYTE` 渲染缺陷 + 全类偏移失真：audit_type_layout（编译器裁判）实测 **146/145 全成员冲突**（每员 offsetof≠注释）⇒ 全类布局整体失真；净差 4 = static 排除 + gap/对齐重排的组合结果（精确逐站偏移需 audit verbose 逐员表）",
+ "evidence": {
+  "audit": "`python tools/audit_type_layout.py --only Actor`：成员=145 · ✗ 冲突 146/145（_gap_001/m_actarray_begin/m_actarray_end/... 全员）",
+  "header_first_member": "static BYTE m_actarray_type（渲染缺陷 A 级）",
+  "ida_face": "ida_structs Actor size=820 · 118 员 · 末员 m_nUpdateMode@784",
+  "comment_math": "注释账推算末端=820（_tail_314 char[32]@788）vs MSVC 824"
+ },
+ "proposed_fix": "①去掉 `static`（BYTE 实例成员）②重跑 audit 逐员 offsetof 得平移表 ③按实测重推 gap ——（方案，未执行）",
+ "summary": {
+  "total_diffs": "全 145 员冲突（非 1 员）",
+  "sum_diff": 4,
+  "top_finding": "**static 渲染缺陷** = Actor 布局账的源头病灶（实例成员渲成 static ⇒ 编译布局全类失真）——「找大 4 成员」的单点假设不成立，病灶在渲染规则（emit_headers 成员 static 修饰误加）"
+ }
+}

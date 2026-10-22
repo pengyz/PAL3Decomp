@@ -1,0 +1,45 @@
+{
+  "task": "R61 codegen 并行化 TDD 测试名设计（≤5）",
+  "date": "2026-10-21",
+  "reviewer": "verifier",
+  "tests": [
+    {
+      "name": "test_parallel_determinism",
+      "assertion": "hash(串行全产物 783 h + 186 cpp) == hash(8-worker 并行全产物)——逐字节相同（golden hash，非'大概一样'）",
+      "priority": "critical"
+    },
+    {
+      "name": "test_error_isolation",
+      "assertion": "注入 1 类 emit 失败 ⇒ 其余 968 成功 + 失败数记账正确（return_exceptions=True，单失败不中断全局）",
+      "priority": "critical"
+    },
+    {
+      "name": "test_sorted_order_preserved",
+      "assertion": "聚合输出（free_functions.h/manifest）顺序 == 串行顺序（sorted() 喂 worker + 聚合串行 sorted）",
+      "priority": "high"
+    },
+    {
+      "name": "test_global_facts_reduce_serial",
+      "assertion": "scalar_dtor_classes/vptr_inject/free_func_sigs 在 fork 前算完；worker 只读无写竞态（并行后 facts 与串行相同）",
+      "priority": "high"
+    },
+    {
+      "name": "test_speedup",
+      "assertion": "time(1 worker) / time(8 worker) >= 2x（诚实预期，非 5-6x 理论值）",
+      "priority": "medium"
+    }
+  ],
+  "fixtures_needed": [
+    "golden_hash_manifest.json（串行全产物 hash 基线，逐文件 SHA-256）",
+    "注入失败的 mock 类（emit 抛异常的 fixture class）",
+    "串行/并行双跑 harness（同输入跑 2 遍比对）",
+    "计时 harness（1 vs 8 worker 计时，warmup 排除）"
+  ],
+  "implementation_notes": "测试先于实现（TDD）；确定性测试是 critical——golden hash 逐字节比对是并行正确性的唯一判据；性能测试用 ≥2x 诚实门槛（防过度承诺 5-6x）",
+  "summary": {
+    "tests": 5,
+    "critical": 2,
+    "key_assertion": "test_parallel_determinism：hash(串行)==hash(并行) 逐字节——并行正确性唯一判据",
+    "output_path": "data/status/pending/r61_tdd_names.json"
+  }
+}

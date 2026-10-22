@@ -1,0 +1,112 @@
+{
+ "entries": [
+  {
+   "cls": "CCBTaskSlot208",
+   "offset": 0,
+   "name": "m_nBase",
+   "current_type": "int",
+   "proposed_type": null,
+   "usage_forms": {},
+   "usage_verdict": "NONE",
+   "checklist": {
+    "a_level": false,
+    "full_usage": true,
+    "rule_reproducible": true,
+    "no_confusion": true,
+    "ledger_synced": true
+   },
+   "change_kind": "freeze",
+   "evidence": "member_usage_scan.py --cls %s --offset 0x%x : 零命中（NONE）——数组元字段经 基址+步进 访问 ✗ 固定偏移扫描盲区",
+   "confidence": 40,
+   "checklist_note": "①A 级 ✗（零命中）⇒ **freeze**（任一问 ✗ 即冻结 ✓ 纪律）"
+  },
+  {
+   "cls": "CCBTaskSlot208",
+   "offset": 4,
+   "name": "m_nRand",
+   "current_type": "int",
+   "proposed_type": null,
+   "usage_forms": {},
+   "usage_verdict": "NONE",
+   "checklist": {
+    "a_level": false,
+    "full_usage": true,
+    "rule_reproducible": true,
+    "no_confusion": true,
+    "ledger_synced": true
+   },
+   "change_kind": "freeze",
+   "evidence": "member_usage_scan.py --cls %s --offset 0x%x : 零命中（NONE）——数组元字段经 基址+步进 访问 ✗ 固定偏移扫描盲区",
+   "confidence": 40,
+   "checklist_note": "①A 级 ✗（零命中）⇒ **freeze**（任一问 ✗ 即冻结 ✓ 纪律）"
+  },
+  {
+   "cls": "CCBTaskSlot208",
+   "offset": 16,
+   "name": "m_fVal",
+   "current_type": "float",
+   "proposed_type": null,
+   "usage_forms": {},
+   "usage_verdict": "NONE",
+   "checklist": {
+    "a_level": false,
+    "full_usage": true,
+    "rule_reproducible": true,
+    "no_confusion": true,
+    "ledger_synced": true
+   },
+   "change_kind": "freeze",
+   "evidence": "member_usage_scan.py --cls %s --offset 0x%x : 零命中（NONE）——数组元字段经 基址+步进 访问 ✗ 固定偏移扫描盲区",
+   "confidence": 40,
+   "checklist_note": "①A 级 ✗（零命中）⇒ **freeze**（任一问 ✗ 即冻结 ✓ 纪律）"
+  },
+  {
+   "cls": "CCBTaskSlot208",
+   "offset": 20,
+   "name": "m_nSize",
+   "current_type": "int",
+   "proposed_type": null,
+   "usage_forms": {},
+   "usage_verdict": "NONE",
+   "checklist": {
+    "a_level": false,
+    "full_usage": true,
+    "rule_reproducible": true,
+    "no_confusion": true,
+    "ledger_synced": true
+   },
+   "change_kind": "freeze",
+   "evidence": "member_usage_scan.py --cls %s --offset 0x%x : 零命中（NONE）——数组元字段经 基址+步进 访问 ✗ 固定偏移扫描盲区",
+   "confidence": 40,
+   "checklist_note": "①A 级 ✗（零命中）⇒ **freeze**（任一问 ✗ 即冻结 ✓ 纪律）"
+  },
+  {
+   "cls": "CCBTaskSlot280",
+   "offset": 20,
+   "name": "m_nState",
+   "current_type": "int",
+   "proposed_type": null,
+   "usage_forms": {},
+   "usage_verdict": "NONE",
+   "checklist": {
+    "a_level": false,
+    "full_usage": true,
+    "rule_reproducible": true,
+    "no_confusion": true,
+    "ledger_synced": true
+   },
+   "change_kind": "freeze",
+   "evidence": "member_usage_scan.py --cls %s --offset 0x%x : 零命中（NONE）——数组元字段经 基址+步进 访问 ✗ 固定偏移扫描盲区",
+   "confidence": 40,
+   "checklist_note": "①A 级 ✗（零命中）⇒ **freeze**（任一问 ✗ 即冻结 ✓ 纪律）"
+  }
+ ],
+ "summary": {
+  "total": 5,
+  "passed_checklist": 0,
+  "retype_safe": 0,
+  "frozen": 5,
+  "finding": "🎯 **方法论缺口**：CCBTaskSlot208/280=**数组元素型**（m_TaskSlots[32] 的元 ✗）——访问形=基址+index*步进+字段偏移（如 `0x114(%esi)`+比例变址）✗ **固定偏移扫描盲区** ⇒ member_usage_scan.py 全 NONE ✗ 5/5 冻结（证据不足 ✓ 禁猜测）· **下轮**：需比例变址形扫描（`(%esi,%eax,4)`-ish）或基址成员的步进分解 ✓",
+  "discipline": "≤5 小批 ✓ checklist 5 问 ✓ 任一 ✗ 即冻结 ✓ R57 新纪律兑现"
+ }
+}

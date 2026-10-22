@@ -1,0 +1,38 @@
+{
+  "task": "R70 P0-1 修法方案设计（不动代码）",
+  "date": "2026-10-21",
+  "reviewer": "verifier",
+  "root_cause": "R69 定案：下游 +4（非 −4）· 膨胀主导=隐式 vptr(+4)——注解用 `static 占位+gap[N]` 表示 vptr 区，编译器因虚拟函数另加隐式 vptr(4) ⇒ 编译前区 7 vs 声明 4",
+  "fix_plan": {
+    "approach": "**承认隐式 vptr 4 字节，去掉 vptr 区的重复占位+gap**（非「去 static」）——让注解 vptr 区表示与编译器一致",
+    "steps": [
+      "① emit 识别 vptr 区（`static X ... // +0x0 (vfptr slot)` 占位 + 其后 `_gap[N]` 填充至 4 字节）——**仅对有虚拟函数的类**（有隐式 vptr）",
+      "② 对有隐式 vptr 的类：**跳过 vptr 占位 + vptr 区 gap 的发射**（编译器隐式 vptr 已填 +0..+4）",
+      "③ 成员从隐式 vptr 后开始声明（首位真成员落在 IDA 的 +4 偏移）⇒ 下游偏移自动对齐 IDA",
+      "④ 对**无虚拟函数**的类：vptr 占位须为**真实 4 字节成员**（非 static）或保留 gap——不可跳过（否则丢 4 字节）",
+      "⑤ 校准：改后 wine cl sizeof/offsetof 逐类 == IDA 真值（Actor 820/m_fPathTargetY 1244 等）"
+    ],
+    "risk": "⚠️ ①须精确区分「vptr 区 gap」vs「真实对齐 gap」（误删真实 gap 反而错位）②无虚拟函数类不可跳过 ③改 emit 影响全类，须限定 vptr 区判定条件"
+  },
+  "impact": {
+    "affected_classes": 16,
+    "class_list": "CCBStage/CUtil/ScreenEffectMgr/GRPinput/CEffObj/GlowObj/PtrArray/RoleAtt/scScriptInstance/CScreenMode/RenderTarget/TextureLib/Actor/Camera/CameraCtrl/PalScriptMgr（含 Actor——R65 实证）",
+    "downstream_effect": "16 类 vptr 区后全部成员偏移 −4（修后对齐 IDA）；嵌套/继承这些类的下游类 sizeof/偏移连锁修正",
+    "s2_risk": "**应改善**（布局对齐 IDA ⇒ 少类型失配错误）；风险=若 vptr 区判定错删真实 gap ⇒ 反而错位/编译崩（须逐类校准）",
+    "byte_match_risk": "**应改善**（偏移对齐 IDA ⇒ sizeof/成员址正确，字节匹配前提）；风险=若某类偏移偶然原本正确，改后反偏——但 R65/R69 实证 Actor/CUtil 均偏 +4，修正是对症",
+    "note": "⚠️ 改 emit 是 codegen 层（R60 并行化同层）——与「注解层解」不同；但 vptr 区表示是**渲染规则**，非注解数据，故 emit 层修合理"
+  },
+  "tdd_needed": [
+    "test_vptr_region_offsets_match_ida：16 类逐类 wine cl sizeof/offsetof == IDA 真值（修前 +4 偏差，修后 0）",
+    "test_vptr_gap_vs_real_gap：vptr 区 gap 被跳过，真实对齐 gap 保留（反例：非 vptr 区 gap 不误删）",
+    "test_no_virtual_keeps_placeholder：无虚拟函数类占位为真实 4 字节成员（不跳过，防丢 4 字节）",
+    "test_s2_no_regression：修后 S2 不降（期望上升）",
+    "test_byte_match_no_regression：修后 L1/partial 不降（期望改善）"
+  ],
+  "summary": {
+    "fix": "承认隐式 vptr(4)，去 vptr 区重复占位+gap（非去 static）",
+    "impact": "16 类下游 −4 修正 · 嵌套/继承连锁 · S2/字节匹配应改善（须校准防误删真实 gap）",
+    "tdd": "5 测试（偏移对齐/gap 区分/无虚函数保留/双回归门）",
+    "output_path": "data/status/pending/r70_p01_fix_plan.json"
+  }
+}

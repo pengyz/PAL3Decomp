@@ -1,0 +1,45 @@
+{
+  "review_of": [
+    "2 条 dtor 落盘（~UIFrameWnd__deleting_view/~UIFrameWnd）",
+    "36 条循环降 B 级（decomp 30+stack_frame 6）",
+    "2 条 %esp 误判账面同步",
+    "CCBStage 208B 数组方案"
+  ],
+  "verdict": "PASS_WITH_CHANGES",
+  "blocking_issues": [
+    {
+      "target": "RoleSystem +84 m_nTimerDuration / +176 m_szModelName",
+      "issue": "angle5 违：%esp 误判回退**半同步**——账面已改 change_kind=freeze·proposed=None ✓ 但注解 type 仍=float（R49 账面原 proposed=int→float 现落盘型=float）=产品面未还原；m_szModelName 名形字符串 vs float=名实矛盾实存",
+      "evidence": "账面 weak_type_promotion.json 两员 freeze ✓ · 注解 RoleSystem.json +84/+176 type=float 实读；R49 证据 flds 0x54(%esp)@4032ad / 0xb0(%esp)@42736a=栈局部（R49 已录）",
+      "fix_required": "注解 type 还原（m_szModelName 须名实核后定型；m_nTimerDuration 回 int 或按 %esi 站证据重核）"
+    }
+  ],
+  "per_item": [
+    {
+      "item": "0x43D880/0x43BBB0 2 条 dtor 落盘（tail-follow A 级）",
+      "verdict": "OK（命名归属待核注）",
+      "evidence_check": "tail-follow 0x445b40 实录=真析构体 ✓：SEH 序（push -1; push 0x56016b; fs:0）+ **`445b5d movl $0x56aec8,(%esi)` 基 vptr 覆写**+成员析构链（call 0x445c10/0x432680(+0x24 子对象)）——vptr 序=派生表写（0x56acfc/0x56acb8）→入体→基表写（0x56aec8）=**dtor 序成立 ✓**（ctor 序反向）；⚠️ 非 bare ret 但体=共享析构 COMDAT 形 ✓ 非借邻证（R48 旧疑解消）；注：两 vptr 表归属（0x56acfc/0x56acb8↔类名）证据未附，~UIFrameWnd 前缀名属推断面"
+    },
+    {
+      "item": "36 条循环降 B 级（decomp 30+IDA stack_frame 6）",
+      "verdict": "OK（抽样限注）",
+      "evidence_check": "evidence_circularity_audit.json 账文件在案 ✓；decomp/stack_frame 归 B 级=新方法论一致 ✓ 诚实降级；36 条全量 A 级残留抽验未做（预算限）——记 non-blocking"
+    },
+    {
+      "item": "2 条 %esp 误判账面同步",
+      "verdict": "BLOCKING（半同步）",
+      "evidence_check": "账面 freeze ✓ 但注解 type=float 未还原（见 blocking_issues）"
+    },
+    {
+      "item": "CCBStage 208B 数组方案（~16 元素×12 字段）",
+      "verdict": "NEEDS_EVIDENCE",
+      "evidence_check": "账文件 ccbstage_byte_gap.json 在案；+0x60-0x74 float ×6 的 x87 d8/d9 opcode 证据本轮未抽验（预算限）——12 字段逐 opcode 证据待补后方可落"
+    }
+  ],
+  "summary": {
+    "reviewed": 4,
+    "ok": 2,
+    "blocked": 1,
+    "needs_evidence": 1
+  }
+}

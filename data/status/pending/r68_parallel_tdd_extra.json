@@ -1,0 +1,46 @@
+{
+  "task": "R68 codegen 并行化 TDD 夹具补充",
+  "date": "2026-10-21",
+  "reviewer": "verifier",
+  "extra_tests": [
+    {
+      "name": "test_worker_memory_limit",
+      "assertion": "8 worker 并行时峰值 RSS ≤ 8×单 worker 基线 + fork CoW 共享（只读数据不复制）；单 worker 超上限 ⇒ 该 worker 失败被回收，其余完成",
+      "priority": "high",
+      "fixture": "内存监控 harness（/proc/self/status VmPeak/VmRSS 采样）+ 大 DataStore fixture（触发 CoW 共享验证）"
+    },
+    {
+      "name": "test_worker_timeout_isolation",
+      "assertion": "单 worker 卡死（注入 sleep/死循环）⇒ 该 worker 超时被 kill + 记账，**其余 7 worker 正常完成**（无全局阻塞）；超时 worker 的产物缺失不污染其他",
+      "priority": "high",
+      "fixture": "注入卡死的 mock 类（emit 抛 timeout）+ per-worker 超时 watchdog（concurrent.futures timeout）"
+    }
+  ],
+  "golden_hash_manifest_format": {
+    "schema": "v1",
+    "algorithm": "sha256",
+    "description": "串行跑一遍生成全产物 → 逐文件 SHA-256 + 聚合 hash → 落 manifest；并行跑一遍比对（逐字节 = 逐文件 hash 全等 + 聚合等）",
+    "example": {
+      "schema_version": 1,
+      "algorithm": "sha256",
+      "run_mode": "serial|parallel",
+      "worker_count": 1,
+      "file_count": 969,
+      "files": {
+        "pal3/src/Role/Actor.h": "<sha256>",
+        "pal3/src/Role/Actor.cpp": "<sha256>"
+      },
+      "aggregate_hash": "<sha256 of sorted 'path:hash' lines>",
+      "generated_at": "<ts>"
+    },
+    "compare_rule": "test_parallel_determinism 断言 serial.manifest.aggregate_hash == parallel.manifest.aggregate_hash 且逐文件 hash 全等（非'大概一样'）"
+  },
+  "summary": {
+    "extra_tests": 2,
+    "memory_test": "8 worker RSS ≤ 基线×8 + CoW 共享（只读不复制）",
+    "timeout_test": "单 worker 卡死隔离（kill+记账，其余完成）",
+    "manifest_format": "v1 = 逐文件 sha256 + aggregate_hash（sorted path:hash）",
+    "top1_finding": "2 个边界测试补的是 R61 5 测试的**故障域**（内存/超时），但都不如 test_parallel_determinism 核心——它们验'并行不崩'，只有 determinism 验'并行结果==串行结果'；且 manifest 的 compare_rule 必须**逐文件 hash 全等**（aggregate 等但文件级 diff 会漏）",
+    "output_path": "data/status/pending/r68_parallel_tdd_extra.json"
+  }
+}

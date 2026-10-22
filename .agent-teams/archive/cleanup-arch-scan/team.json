@@ -1,0 +1,760 @@
+{
+  "name": "cleanup-arch-scan",
+  "id": "cleanup-arch-scan",
+  "description": "整体性扫描架构问题与现存待清理项（含明确标记的 misattribute 历史残留），逐条明确、分级并修复。范围：codegen 五类信号标记（[VFTABLE]/[ROWTABLE]/[MISATTRIBUTED]/[IDA_MISID]/[IDA_VTABLE]）、attribution 降级与冲突记录、架构红线合规、work IDB 不可复现性、仓库与门禁基建卫生。修复必须逐条附二进制证据，验收以 L1 字节全同函数数与 ok 文件数不回退为准。",
+  "captainSessionId": "session-65935418-0be1-4fc2-b4b4-12f1a7b68af8",
+  "createdAt": 1789437662456,
+  "members": [
+    {
+      "id": "aa8b2f6b-5960-4f07-a169-9baecc9137ea",
+      "name": "architect",
+      "role": "架构/分类学与总账",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4.1-flash",
+      "executionPrompt": "你是本项目的架构与分类学负责人。项目是 PAL3 匹配反编译（MSVC 6.0 SP0，目标字节匹配），仓库根为工作目录。\n\n职责顺序：① 定义本轮清理扫描的分类学与证据门槛（requirements 任务）；② 扫描架构层问题（红线合规、IDB 不可复现、基建卫生）；③ 汇总三份扫描清单做分级裁决（triage）；④ 落地整合（基线更新、提交、知识沉淀、清理总账）。\n\n必须遵守的项目强约束（违反即返工）：\n- 每一处 annotation 修改必须有二进制直接证据；A 级证据（指令中 reg+disp32、绝对地址）是偏移修改的最低门槛；禁止猜测性修改与批量未验证修改。\n- 禁止伪语义命名（用地址后缀伪装的名字等同 _todo_）。\n- 架构红线：codegen 不读 data/annotations；export 不读 data/annotations；后处理只做等价变换不编造信息；IDA 层能解决的问题不在 codegen 打补丁。\n- 禁止仅凭 Hex-Rays 反编译文本推断偏移；禁止仅凭 signature this 修正归属。\n\n工作方式：先读你的任务合同（objective/acceptance/deliverables/nonGoals）并逐条满足；用 read/grep/glob 查证，用 bash 跑复现命令；结论必须有文件:行号或命令输出支撑。汇报时给出：结论、证据、以及\"未能确认的缺口\"三类内容，不要用未经验证的推断填充。",
+      "joinedAt": 1789437682512,
+      "status": "removed"
+    },
+    {
+      "id": "88e6625f-8234-430e-9f38-b96b7395fb2d",
+      "name": "scanner-codegen",
+      "role": "codegen/管线残渣扫描",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4.1-flash",
+      "executionPrompt": "你负责扫描 codegen 与管线层的残留标记、死路径与待清理项。仓库是 PAL3 匹配反编译项目（MSVC 6.0 SP0），工作目录即仓库根。\n\n扫描对象：\n- 生成代码里的五类标记：从 pal3/src 全量提取 [VFTABLE]/[ROWTABLE]/[MISATTRIBUTED]/[IDA_MISID]/[IDA_VTABLE]，定位每个标记的产生代码（pipeline/gen 下），说明语义、触发条件、当前规模（按文件/函数聚类）。\n- pipeline/gen 各 stage（stage1_structural..stage5_fixup、collect、emit_*、data.py、ast_transform.py）：列出无引用、被取代、或已失效的代码路径，附文件:行号。\n- 强制门禁在干净检出下的失败点（例：codegen all 的后置 snapshot/regression 钩子依赖 data/status/probe_census.json，缺失时堆栈报错），给出复现命令。\n- 现状基线（本轮实测）：198 个 .cpp、S2 ok=53/198、错误 3090、L1=5；标记规模 [VFTABLE]=1643、[ROWTABLE]=576、[MISATTRIBUTED]=344(74文件)、[IDA_MISID]=84。\n\n纪律：只读扫描，禁止修改任何文件；区分\"有意保留的信号\"与\"历史残留应清理\"，判定必须给依据（代码位置或注释）；不确定的写进缺口而不是猜。输出按 tasks 约定的 taxonomy 字段写入 JSON，条目要能被 triage 直接消费。",
+      "joinedAt": 1789437682527,
+      "status": "removed"
+    },
+    {
+      "id": "5d4fcbc8-b2ac-4912-a6f9-326eb40838fa",
+      "name": "scanner-attribution",
+      "role": "misattribution 历史残留扫描",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4.1-flash",
+      "executionPrompt": "你负责穷举 misattribution（归属错误）相关的历史残留，并逐条标出证据等级与可否修复。仓库是 PAL3 匹配反编译项目，工作目录即仓库根。\n\n扫描对象：\n- 生成代码中的 [MISATTRIBUTED]（本轮实测 344 处 / 74 文件，形态如 `/* [MISATTRIBUTED] AStarPathFinder on CCBAI::this -> fix IDB name of callee */ AStarPathFinder::GetHeuristicIdx((AStarPathFinder *)this, ...)`）与 [IDA_MISID]（84 处）。\n- data/annotations/_generated/attribution.json 中的 demoted/conflict 记录、attribution_demotion_audit.json、attribution_conflicts.json、attribution.meta.json。\n- 结构体注解里的 _misattrib_evidence 标记（注意 docs/knowledge/pattern_misattrib_evidence_unreliable.md 已证明该证据不可整体信任——必须逐条比对 class_size 与当前 binary_size）。\n- 与远端既有分析产物对齐核对：data/status/_c2660_join.json（DECL-OK/NO-ANNOTATION/DEEPER/AUTO-FIX/ODD-N/NO-RET）与 data/status/_c2660_adjudication_worklist.json（inflation/deficit/noevidence/okshape/other）、_ret_n_census.json。\n\n纪律（项目强约束）：每一处归属修改必须有二进制直接证据；禁止仅凭 signature this 修正归属（需 decomp member access evidence）；禁止批量未验证修改；无证据的条目必须判为\"需补证\"，不得判为可修。只读扫描，禁止修改任何文件。\n\n输出：每条含 类/方法、站点数、位置（文件:行号或注解路径）、当前证据（是否达到 A 级）、建议动作（改归属/补注解/删除标记/有意保留）、与既有分桶的一致性核对结果。按 tasks 约定的字段写入 JSON。",
+      "joinedAt": 1789437682539,
+      "status": "removed"
+    },
+    {
+      "id": "349e0ddb-c5af-45d1-b073-c6f8b6f1bd0c",
+      "name": "engineer-pipeline",
+      "role": "管线/IDA 层与基建修复",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4.1-flash",
+      "executionPrompt": "你负责管线、IDA 层与基建类修复，按 triage 分派的批次执行。仓库是 PAL3 匹配反编译项目（MSVC 6.0 SP0），工作目录即仓库根。\n\n已知待修项（以 triage 输出为准）：\n1. struct 导入失败：apply 日志显示 `CG_Scene → add member +104 'm_OBJ' type 'SceneObj[256]' FAILED: invalid member_size=18446744073709551615` 与 `Scene → add member +224 'm_obj'` 同因，致 879/881。依赖边已建（apply_annotations.py 的 get_deps 会剥 [..] 加依赖），故根因在 SceneObj（binary_size=1784，3 个 MI 基类）自身定义未落地成可定尺寸类型——需先用 TIL 查询证据确认（前向声明未被真实定义替换 / MI 基类解析不完整），再修。\n2. 仓库卫生：data/status/baselines/latest.json 以 mode 120000（symlink）入库但内容是 462KB JSON，导致 Linux 检出 ENAMETOOLONG（git reset --hard 失败）。产生路径在 tools/regression_detector.py 的 Windows 回退分支（symlink_to 失败后 copyfile 写进被 git 记为 symlink 的路径）；tools/sig_evidence.py、pipeline/cli.py 也读该路径。\n3. 门禁：codegen all 的后置 snapshot/regression 钩子在无 data/status/probe_census.json 的干净检出下抛栈报错，应给明确提示。\n4. IDB 可复现性固化：work IDB 是增量有状态的，跨机基线不可比（实证：Scene::m_obj 本次导入失败，但导出后 decomp 仍渲染 this->m_obj[0].m_enable，说明旧定义残留掩盖失败）。需固化\"从 raw IDB 重建再 apply\"的可复现路径并写入文档。\n\n纪律：先理解再改，禁止试错式修改；禁止破坏性 workaround（不为通过而丢类型信息）；后处理只做等价变换；每项修复附验证命令与实测输出；诚实报告未修复项。按任务合同的 verify 命令逐条执行并附证据。",
+      "joinedAt": 1789437682549,
+      "status": "removed"
+    },
+    {
+      "id": "1610d104-d412-4a0e-9cd2-af35e4f6be5a",
+      "name": "engineer-annotation",
+      "role": "归属/注解修复",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4.1-flash",
+      "executionPrompt": "你负责按 triage 的可立即修批次，修正具有 A/B 级二进制证据的归属（misattribution）与注解残留。仓库是 PAL3 匹配反编译项目（MSVC 6.0 SP0），工作目录即仓库根。\n\n项目强约束（违反即返工）：\n- 每一处 annotation 修改必须有二进制直接证据。A 级证据（指令中的 reg+disp32、绝对地址）是偏移修改的最低门槛。\n- 禁止猜测性修改；禁止批量修改未验证字段（每个偏移/类型变更逐一验证）。\n- 禁止仅凭 Hex-Rays 反编译文本推断偏移（除非 IDB 已 apply 且结构体正确）。\n- 禁止仅凭 signature this 修正函数归属——必须有 decomp member access evidence（函数内 this->member 引用的成员在目标类存在、且不在原类存在）。\n- 禁止伪语义命名；不确定含义保留 _todo_。\n- 禁止破坏性 workaround（不用 void*/int/char[] 掩盖真实类型）。\n\n工作方式：逐条处理 triage 分派的条目；每条先取证（IDA/decomp/指令级证据）→ 再改注解 → 再按 verify 命令跑全链；每条必须能在 CHANGE_LOG.md 里写出\"证据 + 改动 + 验证\"。annotation 改动后必须跑 apply→export→codegen→probe→error_classifier→match，确认 ok 文件数（当前 53/198）与 L1（当前 5）均不回退。证据不足的条目明确标注\"需补证\"，不做修改。",
+      "joinedAt": 1789437682559,
+      "status": "removed"
+    },
+    {
+      "id": "195f338d-1040-433a-ac88-69112a485e6b",
+      "name": "verifier",
+      "role": "独立验证",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4.1-flash",
+      "executionPrompt": "你是独立验证方，负责客观重跑门禁并核验每条修复声明，不做修复。仓库是 PAL3 匹配反编译项目（MSVC 6.0 SP0），工作目录即仓库根。\n\n本轮基线（修复前实测，作为不回退判据）：198 个 .cpp、probe S2 ok=53/198、错误总数 3090、S4 match matched 123/175 且 L1=5（棘轮前值 4）、apply struct 导入 879/881。\n\n验证要求：\n- 独立重跑并记录实测数字：python3 pipeline/cli.py apply（须核对 original/PAL3.exe.i64 mtime 真实更新与日志导入计数，防\"apply 假成功\"——见 docs/knowledge/gotcha_apply_silent_fail_idb_lock.md）→ export → codegen all → probe all → python3 tools/error_classifier.py --summary → python3 pipeline/cli.py match。\n- 逐条核验修复声明：抽样或全量核对\"声明的二进制证据 ↔ 最终代码/decomp 实际现象\"是否一致；不一致即为不通过。\n- 核对 git status 变更是否全部落在任务声明范围内，出现声明外变更要点名。\n- 结论必须基于命令输出原文，不得采信他人总结；发现恶化或未生效要明确指出并给出反例。\n\n输出机器可读验证记录（含每条命令、退出码、关键数字、判定），以及\"通过/不通过 + 反例清单\"。",
+      "joinedAt": 1789437682569,
+      "status": "removed"
+    },
+    {
+      "id": "b3ae8efb-3574-4eec-89f2-4024871c0947",
+      "name": "reviewer",
+      "role": "独立复核",
+      "provider": "kiro",
+      "model": "claude-opus-5",
+      "executionPrompt": "你是独立复核方，对修复批次做技术与证据层面的裁决，不参与实现。仓库是 PAL3 匹配反编译项目（MSVC 6.0 SP0），工作目录即仓库根。\n\n复核准则：\n- 判定每条修改的证据充分性（A/B 级门槛：指令级 reg+disp32 / 绝对地址 / ret-N / mangled 名等），无证据或证据不足一律记 findings。\n- 检查是否引入新矛盾：check_annotations 新增错误、struct 布局越界、伪语义命名、破坏性 workaround、把信号标记静默抹掉而未修根因。\n- 检查是否违反架构红线：codegen 读 annotation、export 读 annotation、后处理编造信息、在 codegen 打补丁替代 IDA 层修复。\n- 检查门禁是否被弱化（以跳过/吞错方式\"通过\"）。\n- 裁决必须针对最新实现状态，不得对历史版本裁决；通过时也要给出可复核依据。\n\n输出：verdict（pass / needs_revision），needs_revision 时必须给出结构化 findings（id、severity、problem、file/line、requiredFix），每条可执行、可验证。",
+      "joinedAt": 1789437682578,
+      "status": "removed",
+      "reasoningEffort": "high"
+    },
+    {
+      "id": "646c1b46-0cd8-40aa-aee9-c88da10db0e9",
+      "name": "engineer-codegen",
+      "role": "codegen 策略实现",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4.1-flash",
+      "executionPrompt": "你负责 codegen 层的策略实现。仓库是 PAL3 匹配反编译项目（MSVC 6.0 SP0），工作目录即仓库根。\n\n你的范围是 `pipeline/gen/ast_transform.py`（跨类 this 直呼的发射策略），**不要**碰注解、IDA 导入器、tools/。\n\n项目强约束（违反即返工）：\n- codegen 只能做**等价变换**，不能编造信息；禁止破坏性 workaround。\n- codegen 不读 data/annotations（唯一声明的例外是 vtable slot 解析，见 `pipeline/gen/data.py` 的 `_load_vtable_data` 注释）。\n- 字节匹配是第一优先级：任何策略变更必须论证\"编译产物与二进制一致\"，而不只是\"能编译过\"。\n- 判据：非虚 callee 的 `obj->M()` 与 `obj->Cls::M(...)` 编译为同一个直接 call；**虚 callee 必须保留 `Cls::` 限定符**，否则会变成 vtable 间接派发而与二进制的直接 call 不一致（MSVC6 不去虚化）。\n\n用户已裁决的策略（背景，你的任务合同里有完整定义）：**证据门控双轨** —— 仅在二进制证据表明\"合法直呼\"的站点改为可编译形式，仍对\"证据表明是归属错误\"的站点保留现有静态形态 + `[MISATTRIBUTED]` 标记。**绝不允许把诊断信号整体静默掉**：那正是用户否掉的选项 C。\n\n工作方式：先读任务合同的 objective/acceptance/inScope/verify 并逐条满足；实现前先跑一次基线（`python3 pipeline/gen/codegen.py all` 与既有门禁）留底；改后按 verify 命令跑全链并附实测输出。诚实报告未达成的部分。",
+      "joinedAt": 1789438821410,
+      "status": "removed"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "t1",
+      "subject": "定义清理扫描的分类学、证据门槛与验收口径",
+      "description": "定义本轮整体清理扫描的分类学、证据门槛与验收口径，作为三份扫描清单与 triage 的共同依据。\n\n背景（本轮实测事实，可作锚点素材）：\n- 管线链路：apply(879/881 struct, 3655/3656 签名) → export(3594 JSON) → codegen(198 cpp) → probe(ok 53/198, 3090 错误) → error_classifier(annotation_fix 32 / codegen_fix 33 / hexrays_limit 73 / manual_idb 2 / unknown 5) → match(matched 123/175, L1=5, 棘轮 4→5)\n- codegen 信号标记规模：[VFTABLE]=1643、[ROWTABLE]=576、[MISATTRIBUTED]=344(74 文件)、[IDA_MISID]=84、[IDA_VTABLE]=1\n- 已确认的架构/基建问题实例：work IDB 增量有状态导致跨机基线不可比；data/status/baselines/latest.json 以 symlink(120000) 入库但内容为 462KB JSON，导致 Linux 检出 ENAMETOOLONG；codegen all 后置钩子在无 probe_census.json 的干净检出下堆栈报错；CG_Scene::m_OBJ / Scene::m_obj 的 SceneObj[256] 导入失败\n\n\"历史残留\"需给出可操作子类（已打标记但未修根的 misattribution、已被取代的旧代码路径、tracked 生成物、一次性/作废脚本、过期引用），并明确区分\"有意保留的信号\"（如 evidence-gated 故意保留并打标）与\"应清理的残渣\"。",
+      "status": "completed",
+      "assignee": "architect",
+      "dependencies": [],
+      "attempt": 1,
+      "createdAt": 1789437708924,
+      "updatedAt": 1789438301792,
+      "kind": "requirements",
+      "round": 1,
+      "objective": "为本轮整体清理扫描定义统一且可判定的分类学（架构违规 / 历史残留 / 有意保留的信号 / 僵尸资产与一次性脚本），给出每类的证据分级门槛与\"已明确/已修复\"的验收口径，使后续三份扫描清单与修复结果可被独立复核。",
+      "acceptance": [
+        "四类分类学（架构违规 / 历史残留 / 有意保留信号 / 僵尸资产）定义互斥且可判定：清单中任一条目都能唯一归入一类",
+        "证据分级门槛与 CLAUDE.md 及 pal3-pipeline skill 的既有等级表一致（A 级=指令级 reg+disp32/绝对地址为偏移修改最低门槛）",
+        "每类至少给出一个本仓真实锚点实例（含文件路径或命令）",
+        "明确\"不得回退\"门禁项（L1 字节全同函数数、S2 ok 文件数）与本轮基线值（L1=5、ok=53/198），以及\"修复完成\"的判定条件",
+        "给出扫描清单的字段级约定（id / 类别 / 证据等级 / 位置 / 建议动作 / 一致性核对），使 T2/T3/T4 三份清单可直接被 triage 消费"
+      ],
+      "deliverables": [
+        "docs/specs/2026-09-15-cleanup-scan-taxonomy.md"
+      ],
+      "nonGoals": [
+        "不修改任何注解、代码或数据文件",
+        "不对具体条目做裁决（条目裁决在 triage 任务）"
+      ],
+      "attemptId": "2ef01d4f-fac5-44dc-9404-e07b169658fb",
+      "reassigning": false,
+      "output": "交付物：`docs/specs/2026-09-15-cleanup-scan-taxonomy.md`（353 行，仓库内真实锚点全部实测取证）。\n\n## 结论\n统一分类学与门槛已定稿，t2/t3/t4 可直接据此产出可被 t5 消费的清单。\n\n**四类 + G1–G4 判定闸门**（命中即停，互斥）：C1 架构违规 → C2 有意保留的信号 → C3 历史残留（C3a 标记未修根 / C3b 死路径 / C3c tracked 生成物+过期引用 / C3d 一次性脚本+stash+备份分支）→ C4 僵尸资产（坏形态入库 / 本地堆积 / 一次性脚本）。C3c 与 C4 的分界写明：内容是\"过期生成物\"→C3c，\"入库形态已坏/本不该跟踪\"→C4。\n\n**证据门槛**：沿用 skill 的 A–D（`SKILL.md:79-84`，已 diff 核验一致），新增 **E=无证据** 以消除\"待定\"态。硬门槛：偏移修改必须 A；归属修正必须 decomp member access，禁止仅凭 signature this；`evidence_grade ∈ {C,D,E}` 的条目禁止 `FIX_ATTRIBUTION`/`FIX_ANNOTATION`，必须降为 `NEED_EVIDENCE`。\n\n**验收口径**：条目级\"已修复\"需同时满足 5 条（证据对应/修根因/层次正确/不回退/留痕三要素）；不落 unknown，`E + NEED_EVIDENCE + proof_needed` 是合法终态。\n\n## 关键证据（部分为对本轮简报的实测修正）\n1. **不回退门禁项基线已独立复算**：L1=5、S2 ok=53/198（分母 198）、错误 3090、S4 matched 123/175。判定规则含\"分母变化即判不可比\"。\n2. **`[IDA_VTABLE]` 简报称 1，实测生成物为 0**（产生点在 `stage3_cleanup.py:290` 的 `comment_vft` 分支）。\n3. **简报引用的知识页 `docs/knowledge/pattern_misattrib_evidence_unreliable.md` 不存在**（`find -iname '*misattrib*'` 仅命中 ledger JSON 与工具）；该页是\"证据不可整体信任\"结论的唯一引用来源。替代锚点：实测 **222** 处 `methods[addr]._misattrib_evidence`，其中 182 处可解析 `class_size`，**141 处 ≠ 当前 `binary_size`（77.5%）** —— 故该类历史串一律降级重取证。\n4. **misattribution ledger 197 条全部 bucket `C`、`rename_to` 全为 null**（`tools/misattribution_ledger.py:115-126` 为分桶语义）→ t6 的\"可立即修\"批次**不能**从 ledger 直接取用，必须全部新取证。\n5. **C1 候选：`pipeline/gen/data.py:226` 注释断言\"vtable slot 解析是 codegen 读 annotations 的唯一位置\"，与实况矛盾** —— 同文件另有 `:191 skip_functions.json`、`:262 globals.json`、`:374 functions.json`，且 `pipeline/gen/ast_transform.py:52`/`:148` 直接读 `data/annotations/structs`。是否属声明例外内需 t4 定性（我只记录，不裁决）。\n6. **C4 锚点已定性**：`__vftable` 为 **tracked 且 0 字节**（→ 入库残留）；`build_output.txt` 与 7 个 `.obj` 均 **untracked 且已被 .gitignore 忽略**（→ 本地堆积，清理不产生 git 改动，不可计为\"修复\"）。\n\n## 未能确认的缺口\n- `class_size` 的语义未定：与 `binary_size` 不等时无法判定属\"旧注解尺寸\"还是\"method 的 oracle/PDB 尺寸\"（存在两者相等的情形，如 `CUtil` 一处 48 vs 1772）。本轮只量化分歧率，未定性语义。\n- `[MISATTRIBUTED]` 344 站点中分别有多少条根因已修（决定 C2/C3 归属）——需 t3 逐条取证。\n- `[IDA_VTABLE]` 与 `[VFTABLE]` 在 `comment_vft` 触发条件下的语义差别——需 t2 从 stage3_cleanup 上游逻辑确认。\n\n## 范围声明\n只新增 1 个文件（`docs/specs/2026-09-15-cleanup-scan-taxonomy.md`），未修改任何注解/代码/数据文件（`git status --short docs/` 仅此一个 `??`；其余 `M` 状态数据文件 mtime 为 09:57/10:09，由其他成员写入，非本任务所致）。",
+      "verdict": "pass"
+    },
+    {
+      "id": "t2",
+      "subject": "扫描 codegen 与管线层的残留标记、死路径与待清理项",
+      "description": "穷举并分级 codegen 与管线层的残留标记、死路径与待清理项。\n\n扫描范围：\n1. 五类标记：从 pal3/src 全量提取 [VFTABLE]、[ROWTABLE]、[MISATTRIBUTED]、[IDA_MISID]、[IDA_VTABLE]，定位产生代码（pipeline/gen/**），给出语义、触发条件、按文件/函数的规模聚类。参考规模（本轮实测）：[VFTABLE]=1643、[ROWTABLE]=576、[MISATTRIBUTED]=344（74 文件）、[IDA_MISID]=84、[IDA_VTABLE]=1。\n2. 各 stage 死路径与已作废逻辑：stage1_structural、stage2_semantic、stage3_cleanup、stage4_substitution、stage5_fixup、collect、emit_cpp、emit_headers、data.py、ast_transform.py、codegen.py，列出无引用/被取代/失效路径（附文件:行号）。\n3. 强制检查点工具的跑通性：compile_regression.py、error_classifier.py、audit_layout.py、annotation_diff.py、pipeline/cli.py match，指出在干净检出或缺失前置产物时的失败点与复现命令。\n4. 已知实例（需纳入清单并定性）：codegen all 的后置 snapshot/regression 钩子依赖 data/status/probe_census.json，缺失时抛 FileNotFoundError 堆栈（复现：guarded codegen 后直接 observe）。\n\n纪律：只读扫描，禁止修改任何文件；每个判定给出依据；无法判定的写入缺口清单而不是猜测。",
+      "status": "completed",
+      "assignee": "scanner-codegen",
+      "dependencies": [
+        "t1"
+      ],
+      "attempt": 1,
+      "createdAt": 1789437722818,
+      "updatedAt": 1789438989251,
+      "kind": "work",
+      "objective": "穷举并分级 codegen 与管线层的残留标记与待清理项：五类标记的真实语义与规模、各 stage 的死路径与已作废逻辑、强制门禁在干净检出下的失败点，产出可被 triage 直接消费的清单。",
+      "acceptance": [
+        "五类标记逐条给出：产生代码位置（文件:行号）、语义、触发条件、当前规模（按文件与函数聚类）",
+        "每条明确判定为\"有意保留的信号\"或\"历史残留应清理\"，判定依据（代码/注释/提交）写明",
+        "pipeline/gen 各模块（stage1..stage5、collect、emit_*、data.py、ast_transform.py、codegen.py）列出无引用/被取代/失效的代码路径，附文件:行号",
+        "强制门禁在干净检出下的失败点给出复现命令与堆栈首行（含 codegen all 后置钩子依赖 probe_census.json 一例）",
+        "输出符合 taxonomy 字段约定的 JSON，条目可被 triage 直接消费"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_scan_codegen.json"
+      ],
+      "nonGoals": [
+        "不修改任何文件（只读扫描）",
+        "不执行修复（修复在 implementation 任务）"
+      ],
+      "attemptId": "04e98421-b757-42dc-80aa-c1aa412ace27",
+      "reassigning": false,
+      "output": "交付物：`data/status/_cleanup_scan_codegen.json`（711 行 / 50553 B，23 条目 + 7 缺口，`taxonomy_version/baseline/items/gaps` 与 t1 §5 字段契约逐字段自检通过，字段完整性用脚本断言后才落盘）。\n\n## 计数（自洽）\nitems=23 = C1:8 + C2:5 + C3:10（C3b×9、C3c×1）；actions = DELETE:10 / FIX_PIPELINE:5 / KEEP_AS_SIGNAL:5 / FIX_INFRA:3；grades = A:16 / B:7；gaps=7。\n\n## 1. 五类标记：产生位置 / 语义 / 触发条件 / 规模\n| 标记 | 产生位置 | 语义 | 触发条件 | 实测规模（站点/文件/外层函数） |\n|---|---|---|---|---|\n| `[VFTABLE]` | `stage3_cleanup.py:722-743`（多行含 `__vftable` 整段注释化，:729/:735）+ `:745-749`（残留单行正则） | **注释化真实语句** | 行含 `__vftable`（含括号深度续行） | 1643 / 82 / 276 |\n| `[VFTABLE-STUB]` | `stage3_cleanup.py:505,508` | 不可解码 dispatch 的**签名精确存根**（非破坏） | `_resolve_vftable_calls_ast` 解码失败 | 612 / 51 / 104 |\n| `[ROWTABLE]` | `ast_transform.py:421` | gbUI 7 槽家族的表分发保真形式 | 被调类 ∈ `_rowtable_family()` | 576 / 88 / 314 |\n| `[MISATTRIBUTED]` | `ast_transform.py:353`、`:436` | 跨类调用落本类 this：保留静态形式令 MSVC6 报 C2352 | 被调类 ≠ 当前类且非基类 | 344（343 行，`PAL_GDB.cpp:1972` 一行 2 处）/ 74 / 204 |\n| `[IDA_MISID]` | `stage3_cleanup.py:756-759`（模式表 `:752-755`） | FLIRT/TIL 误识别行注释化 | 命中 6 个硬编码模式 | 84 / 29 / 37 |\n| **额外第 6 类** `[AUTO-COMMENTED]` | `stage3_cleanup.py:243,245-246` → `:291-292` | ctor 调用注释化 | 非自由函数且行含 `=`（或非 return/if/while 开头） | 229 / 55 / 114 |\n| `[IDA_VTABLE]` | **`emit_headers.py:1945-1946`** | 头文件中**注释掉方法声明** | sig 含 `vtbl_`/`__vftable` | **1**（`pal3/src/Render/RenderTarget3.h:31`） |\n| `[IDA_VFTABLE]` | `stage3_cleanup.py:289-290` | —（死分支） | 无产生者 | **0** |\n| `[IDA_USERPURGE]` / `[IDA_REGPARAM]` | `emit_headers.py:1948-1950` / `:1951-1953` | —（**不可达**：sig 在 `:1882-1884` 已剥离） | 恒假 | 0 / 0 |\n\n**对 t1 与简报的实测更正（3 条）**：\n1. `[IDA_VTABLE]` **规模 1 是对的**（简报对、t1 的 0 是 `--include=*.cpp` 口径所致——该标记只落在 .h）。\n2. `[IDA_VTABLE]` **产生位置是 `emit_headers.py:1946`，不是 `stage3_cleanup.py:290`**。290 发射的是另一个只差一字母的 `[IDA_VFTABLE]`（0 处、死分支）。root cause 已定位 → GAP 关闭。\n3. 抽样聚类复核了 t1 的规模表；`[VFTABLE-STUB]` 的发射点是 `:505/:508`（`:350-352` 只是常量定义）。\n\n## 2. 判定：\"有意保留\" vs \"应清理\"（均附依据）\n**有意保留（C2，KEEP_AS_SIGNAL，5 条）**：`[VFTABLE-STUB]`(CG-003)、`[ROWTABLE]`(CG-004)、`[MISATTRIBUTED]`(CG-005)、`[IDA_VTABLE]`(CG-006)、以及 `[VFTABLE]` 中**真正 vptr 存根的 41 处子集**(CG-002)。依据含代码注释原文 + 提交原文（6d9bca4b5 / bb62deb95 / 2010eb3ad）+ 知识页；每条都写了**解除条件**。\n**应清理（3 条关键）**：\n- **CG-001 `[VFTABLE]` 1643**：非等价变换。形状实测只有 **41 处(2.5%)** 是编译器自管的 vptr 存根，其余是 `offset_arith_on_&vftable` 546、`CONTROL_HEADER(if/while/for)` **168**、`__vftable` 当数据值 163、cast 44、其他 418、续行 263。铁证：`CCBCamControl.cpp:983-986` 被注释的 4 行是 float 写入（`-1098907648`=0xBE800000、`1065353216`=1.0f），而同函数 `:978-981` 同类写法未被注释；`CCBParabolaWindow.cpp:45-46` 是 `if (v5->__vftable) { Release(); }` 整个条件释放被注释。**提交 6d9bca4b5 自认**该路径 \"silently destroying enclosing expressions … including in S2-green files\"，只把 dispatch 部分换成 AST 存根 → 属**半完成迁移**。\n- **CG-007 `[IDA_MISID]` 84**：codegen 层硬编码模式表绕开 IDA 层修复，违反 CLAUDE.md 两条红线（非等价变换 + IDA 层问题在 IDA 层解决）。\n- **CG-008 `[AUTO-COMMENTED]` 229**：其中 **89 处丢弃了被使用的赋值**（`CCBStage.cpp:867 'Color = v22.gbColorQuad(...)->Color;'`、`CCBRoleState.cpp:427`），注释后变量变未初始化。\n\n## 3. 死路径 / 已作废逻辑（10 条 C3，全部附 文件:行号 + 命令级举证）\n生产者缺失的分支：`stage3_cleanup.py:287-290`（`'insert'` 与 `'comment_vft'` 永不产生，`:218/235/243/246/265/267/269` 是全部赋值点）。\n无引用函数：`stage3_cleanup.py:23`、`:58`、`:67`（被 `_resolve_vftable_calls_ast`(:448, 调用点 :601) 取代）；`stage5_fixup.py:71/:101/:98` 三件套**从未接线**（调用图 126 函数 / 21 外部根下不可达，引入提交 28c005c59 即无引用）。\n**可证不可达**：`emit_headers.py:1948-1950`（`:1883-1884` 先剥离 `__userpurge/__usercall`）、`:1951-1953`（`:1882` 先剥离 `@<\\w+>`，`:1901` 又剥一次）。→ 三条 IDA_* 跳过分支持只有 `:1945` 可达，与\"实测 0/0/1\"完全吻合。\n过期引用：`emit_headers.py:110 OVERRIDES_DIR` → `include/pal3/overrides` 不存在、全仓 0 引用、CMake 0 引用（已被 `template_bases.json`，`:993/:1206` 取代）。\n入口声明但实现不存在：`cli.py:607-610 iterate` → 实跑 `ModuleNotFoundError: No module named 'pipeline.iterate'`。\n未引用 import ×4 模块（`data.py:6,9`、`stage4:17`、`stage5:20`、`emit_headers:21`）。\n吞异常：`pipeline/gen` **29 处裸 `except:` + 4 处 `except Exception: pass`**（CG-019），其中 `data.py:218` 静默丢弃 thunk 映射；`ast_transform.py:154` 连 try 都没有。\n静默降级：**CG-023** `_rowtable_family()` 读不到 `data/status/_rowtable_family.json` 时返回空集 → 576 个 ROWTABLE 站点会**整体静默降级为 MISATTRIBUTED**（`:136-137` → `:417` else → `:424-439`）。\n\n## 4. 门禁在干净检出下的失败点（真实隔离复现，`git archive HEAD` 解到 /tmp，未动仓库）\n```\n# 解出干净树（注意：必须排除 data/status/baselines/latest.json，否则 tar 直接 ENAMETOOLONG——\n#  独立复核了 t4/AR-202 的坏符号链接结论）\ngit archive HEAD pipeline tools data/status docs/specs > /tmp/clean.tar\ntar -x -C /tmp/clean -f /tmp/clean.tar --exclude='data/status/baselines/latest.json'\n```\n| 门禁 | 复现命令 | 退出码 | 堆栈首行 / 输出 |\n|---|---|---|---|\n| 后置 snapshot 钩子 | `cd /tmp/clean && python3 pipeline/snapshots/snapshot.py capture` | 1 | `Traceback (most recent call last):` → `snapshot.py:266 <module>` → `:135 capture` → `:44 _census_and_collect` → **`FileNotFoundError: probe_census.json not found — run \\`python pipeline/cli.py probe\\` first`** |\n| compile_regression | `cd /tmp/clean && python3 tools/compile_regression.py` | 1 | `Error: /tmp/clean/data/status/probe_census.json not found. Run probe_compile.py first.` |\n| error_classifier | `cd /tmp/clean && python3 tools/error_classifier.py --summary` | 1 | 同上 |\n| S4 裁判（cli.py match） | `cd /tmp/clean && python3 pipeline/compare_pal3.py --limit 1` | 1 | `compare_pal3.py:287 main` → **`:242 census = json.loads(Path(args.census).read_text())`** → `FileNotFoundError: [Errno 2] ... '/tmp/clean/data/status/probe_census.json'` |\n| **任何 cli.py 命令**（更早一层） | `cd /tmp/clean && python3 pipeline/cli.py config`（config/match/iterate 同） | 1 | `PIPELINE CONFIG ERROR / pipeline.toml not found at: /tmp/clean/pipeline.toml`（`pipeline.toml` 被 `.gitignore:160` 排除，模板是 `pipeline.toml.example`）|\n| `codegen all` 后置钩子**是否算失败** | 读 `pipeline/cli.py:375-386` | — | **不算**：`:379`/`:386` 的 `subprocess.run` 不取 returncode、无 `check=True`，`cmd_codegen` 无返回值 → 两个门禁都失败时命令**仍 exit 0**（CG-020）；这是 AR-007 缺失的互补一半 |\n| **额外**：`annotation_diff` 无法区分\"无变更\"与\"读不到 git\" | `python3 tools/annotation_diff.py --commit 0000000000000000000000000000000000000000` | **0** | `变更结构体数量: 898`（898 条 New struct）——而正常调用是 `变更结构体数量: 0`，**两者退出码相同** |\n| **额外**：`audit_layout` 当前常红（属 t6/t7 目标，未另立条目） | `python3 tools/audit_layout.py` | 1 | `❌ FAILED: 70 errors detected`（SaleUI 64、SceneObj 4、UICursor 2）/881 structs |\n\n## 5. 与另一份扫描的冲突（已写入 gaps，交 t5 裁决）\n**AR-101 断言\"五类标记均是有意保留的信号，非缺陷\"，与 CG-001/CG-007/CG-008 的站点级实测相反**（见 GAP-CG-01，已给反例锚点）。CG-020↔AR-007、以及我发现的额外 C1 读点锚点（`emit_headers.py:185-189` 存在只用于抛 \"called from codegen — forbidden\" 的哨兵函数，而同文件 `:646/:869/:993/:1206` 仍直读 annotations；另 `ast_transform.py:148`、`stage4_substitution.py:334`）都写成\"待 t5 合并/去重\"的 gap，未重复计类。\n\n## 缺口 7 条（未猜）\nGAP-CG-01 AR-101 冲突裁决；02 `[VFTABLE]` 逐站点行为丢失未验证（建议优先 168 个控制流头）；03 `[IDA_MISID]` 84 站点逐站定性（SEH 重渲染 vs 真实调用）；04 89 处丢值站点是否导致读取未初始化；05 额外 C1 锚点归并；06 `[IDA_VTABLE]` 的 G3 弱成立需 t5 裁决子类；07 CG-020 与 AR-007 是否合并。\n\n## 范围声明\n只新增 1 个文件 `data/status/_cleanup_scan_codegen.json`，未修改任何既有文件（`git status` 中 `M` 的三个 data/status 文件由其他成员写入，非本任务所致；仓库内未创建临时物，隔离复现全部落在 /tmp）。全程只读：未运行会写盘的 `cli.py match`/`probe`/`codegen`/`apply`。",
+      "acceptanceResults": [
+        {
+          "criterion": "五类标记逐条给出：产生代码位置（文件:行号）、语义、触发条件、当前规模（按文件与函数聚类）",
+          "status": "passed",
+          "evidence": "items CG-001..CG-008 覆盖 [VFTABLE]/[VFTABLE-STUB]/[ROWTABLE]/[MISATTRIBUTED]/[IDA_MISID]/[IDA_VTABLE] 及额外发现的 [AUTO-COMMENTED]/[IDA_VFTABLE]/[IDA_USERPURGE]/[IDA_REGPARAM]；每条含 evidence.location 的 文件:行号、detail 中的触发条件与语义原文，sites/files 字段 + 用 tree-sitter 对 198 个 .cpp 做外层函数归属聚类（如 [MISATTRIBUTED] 344 处/74 文件/204 外层函数；(callee,caller) 头部 PAL_GDB on CCBRoleState::this×13）。产出文件 data/status/_cleanup_scan_codegen.json 策略：五类标记全部覆盖，另补第 6 类 [AUTO-COMMENTED]=229（简报漏列）。"
+        },
+        {
+          "criterion": "每条明确判定为\"有意保留的信号\"或\"历史残留应清理\"，判定依据（代码/注释/提交）写明",
+          "status": "passed",
+          "evidence": "C2 KEEP_AS_SIGNAL 5 条均写明代码注释原文（ast_transform.py:343-349/:408-416、stage3_cleanup.py:339-352）+ 提交原文（2010eb3ad / bb62deb95 / 6d9bca4b5）+ 解除条件；C1/C3 13 条均写明代码位置与提交级依据（如 CG-001 引 6d9bca4b5 自认 'silently destroying enclosing expressions ... including in S2-green files'）；反例锚点 CCBCamControl.cpp:983-986、CCBParabolaWindow.cpp:45-46、CCBStage.cpp:867。"
+        },
+        {
+          "criterion": "pipeline/gen 各模块（stage1..stage5、collect、emit_*、data.py、ast_transform.py、codegen.py）列出无引用/被取代/失效的代码路径，附文件:行号",
+          "status": "passed",
+          "evidence": "CG-009..CG-018 共 10 条 C3：stage3_cleanup.py:287-290（无产生者的 'insert'/'comment_vft' 分支）、:23、:58、:67（被 :448 取代）、stage5_fixup.py:71/:101/:98（调用图实测不可达，126 函数/21 外部根）、emit_headers.py:1948-1950 与 :1951-1953（因 :1882-1884 先行剥离而恒假）、:110 OVERRIDES_DIR（目标目录不存在/0 引用）、4 模块无引用 import、cli.py:607-610 iterate（模块不存在）。stage1/2/4、collect、emit_cpp、codegen、data.py 经模块限定调用图与 AST import 分析未发现其他无引用顶层定义（data.py 无顶层函数即为无死函数）。"
+        },
+        {
+          "criterion": "强制门禁在干净检出下的失败点给出复现命令与堆栈首行（含 codegen all 后置钩子依赖 probe_census.json 一例）",
+          "status": "passed",
+          "evidence": "在 git archive HEAD 解出的隔离树（/tmp/clean，排除坏符号链接）实测：snapshot.py capture → exit 1，堆栈首行 'Traceback (most recent call last):'，栈底 'FileNotFoundError: probe_census.json not found — run `python pipeline/cli.py probe` first'（snapshot.py:266→:135→:44）；compile_regression.py / error_classifier.py → exit 1 'Error: .../probe_census.json not found.'；compare_pal3.py（cli.py match）→ exit 1 裸 FileNotFoundError（:242 未守卫）；任何 cli.py 命令更早一层即因 pipeline.toml 缺失（.gitignore:160）报 PIPELINE CONFIG ERROR；另发现 cli.py:375-386 后置钩子不检查 returncode → 门禁失败仍 exit 0（CG-020）；annotation_diff 在 git 不可用时报 898 条假新增且 exit 0（CG-022）。"
+        },
+        {
+          "criterion": "输出符合 taxonomy 字段约定的 JSON，条目可被 triage 直接消费",
+          "status": "passed",
+          "evidence": "data/status/_cleanup_scan_codegen.json：顶层 taxonomy_version/baseline/items/gaps；23 条 items 逐字段断言（13 个必填字段齐全、evidence 四键、consistency 三键、class 恰好一个、C3 必有子类、C2 只能 KEEP_AS_SIGNAL、grades∈{A,B} 不触发 §5.1 的 {C,D,E} 禁令）后落盘；自洽 23=8+5+10；baseline 含 l1/s2_ok/s2_total/s4_matched/captured_at + 实测标记计数与复现命令。偏差已显式声明：新增 evidence_grade_convention 键说明"
+        }
+      ]
+    },
+    {
+      "id": "t3",
+      "subject": "扫描 misattribution 历史残留：标记、降级与冲突记录",
+      "description": "穷举 misattribution 相关的历史残留，逐条标出证据等级与可否修复。\n\n扫描范围：\n1. 生成代码中的 [MISATTRIBUTED] 站点（本轮实测 344 处 / 74 文件，形态如 `/* [MISATTRIBUTED] AStarPathFinder on CCBAI::this -> fix IDB name of callee */ AStarPathFinder::GetHeuristicIdx((AStarPathFinder *)this, ...)`）与 [IDA_MISID]（84 处）。\n2. data/annotations/_generated/attribution.json 的 demoted/conflict 记录、attribution_demotion_audit.json、attribution_conflicts.json、attribution.meta.json。\n3. 结构体注解中的 _misattrib_evidence 标记 —— 注意 docs/knowledge/pattern_misattrib_evidence_unreliable.md 已证明该证据不可整体信任，必须逐条比对 class_size 与当前 binary_size。\n4. 与既有分析产物对齐核对：data/status/_c2660_join.json（DECL-OK 171/294、NO-ANNOTATION 94/308、DEEPER 52/174、AUTO-FIX 32/81、ODD-N 7/24、NO-RET 1/1）、_c2660_adjudication_worklist.json（noevidence 205/598、okshape 137/220、deficit 7/48、inflation 5/31、other 4/7）、_ret_n_census.json。\n\n纪律（项目强约束）：每一处归属修改必须有二进制直接证据；禁止仅凭 signature this 修正归属（需 decomp member access evidence）；禁止批量未验证修改；无证据必须判\"需补证\"。只读扫描，不修改文件。",
+      "status": "completed",
+      "assignee": "scanner-attribution",
+      "dependencies": [
+        "t1"
+      ],
+      "attempt": 1,
+      "createdAt": 1789437722830,
+      "updatedAt": 1789438833448,
+      "kind": "work",
+      "objective": "穷举 misattribution 历史残留（生成代码标记、attribution 降级/冲突记录、_misattrib_evidence 标记、既有 C2660 分桶），逐条给出证据等级、与既有分桶的一致性核对结果、以及建议动作。",
+      "acceptance": [
+        "每条残留给出：类/方法、站点数、位置（文件:行号 或 注解路径）、当前证据（是否达到 A 级）、建议动作（改归属/补注解/删除标记/有意保留）",
+        "与 data/status/_c2660_join.json 和 _c2660_adjudication_worklist.json 的分桶做逐桶一致性核对，列出差异条目",
+        "无二进制证据的条目一律判为\"需补证\"，不得判为可修（符合 CLAUDE.md 禁止猜测性修改）",
+        "_misattrib_evidence 标记逐条比对 class_size 与当前 binary_size，给出不可信任比例（对齐 docs/knowledge/pattern_misattrib_evidence_unreliable.md）",
+        "输出符合 taxonomy 字段约定的 JSON"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_scan_attribution.json"
+      ],
+      "nonGoals": [
+        "不修改任何注解或代码（只读扫描）",
+        "不执行归属修正（修复在 implementation 任务）"
+      ],
+      "attemptId": "eb3d7dec-437d-4955-b744-442c091e950b",
+      "reassigning": false,
+      "output": "t3 完成。产出：`data/status/_cleanup_scan_attribution.json`（402KB，201 items + 5 gaps，顶层 taxonomy_version/baseline/items/gaps，id 前缀 AT-，spec §5 必填字段全满足，无空值，FIX_ATTRIBUTION×C/D/E 违规=0，agrees=false 全部带 discrepancy）。只读扫描：除该产出外未改动任何仓库文件。\n\n## 结论（供 t5 直接分批）\n- 规模实测：live `[MISATTRIBUTED]` **196 cluster / 336 站点 / 74 文件**（任务书 344 为含空格的 grep 计数）。ledger 197 条中 1 条已失效（`PalScriptMgr::RunSceneScript`，源码 0 站点）。\n- **可立即改归属批次 = 空集**。不是保守，是可证伪的：spec §2 严格判据（成员在目标类存在且**不在**原类）在全部 196 cluster 上命中 **0**。把 fallback 放宽到\"成员同时出现在 caller 类\"只剩 4 个近失例，逐条核对**全部失败**（`PalScript::OpenScript` m_pTexture 在 PalScript +196 已声明、`CCBAttackSequen::SetPause` m_bPause 在 +453、`CCBMagicWindow::ClearMagicData` m_pBack 在 +72、`SwordUI::RenderSword` buf 在 +104）——caller 侧命中是同偏移**同名碰撞**（共享基类布局），不是归属证据。**任何 [MISATTRIBUTED] 站点此刻都不允许改名**，t6 不能拿到 FIX_ATTRIBUTION 条目。\n- 分桶（与上游四产物核对）：C1=1 / C2=1 / C3=199（C3a 195、C3c 3、C3b 1）；grade A=1 B=113 C=74 E=13；action NEED_EVIDENCE 196 / KEEP_AS_SIGNAL 1 / DOCUMENT 3 / DELETE 1。consistency.agrees=false 30 条（全部写明 discrepancy）。\n- **108 cluster / 159 站点**（最大单条 7 站点）的 callee 归属被成员访问证据**反向确认为正确**：函数体 `this->member` 全部是 callee 类自己声明的成员，无一个越界成员。这些不是\"待改名\"，是\"标记方向错了\"。\n- **唯一可确证项（AT-022）**：`AStarPathFinder::GetHeuristicIdx` x3（CCBAI 调用）。三重证据：vtable 槽归属 = AStarPathFinder（ida_structs.json）；`original/PAL3.exe` 原字节 `32 C0 C2 08`（xor al,al; retn 8）为 5 字节 return-0 桩，零成员访问；调用方 `CCBAI::HandleEnemyWell` 传的是 CCBAI 的 `this` 与 `&this->m_nHandleEnemyWell`（+3584，CCBAI 已声明）。→ callee 名字正确，**根因是调用方 this 类型缺失**，判 **C2 KEEP_AS_SIGNAL**（C2 不是 C1，因为该 false-positive 形态没有接受者、解除条件已写明：ast_transform.py 对该形态改发 `((Callee*)this)->Callee::M(...)` 即可撤销）。注意 spec §2 硬门槛不满足 A 级（无 decomp member access），故 grade=B 而非 A。\n- `_misattrib_evidence` 逐条核实（不沿用\"整体不可信\"）：**222 条 / 74 文件**，182 可解析，**41 等于当前 binary_size、141 不等（与 t1 的 77.5% 一致）**，40 条不可解析（round3/round5/rolestatepanel/saleui-slider 等人工串）。**新发现（补上 t1 留下的语义缺口）**：该字段**无任何活消费者**，写入者只有 4 个一次性迁移脚本；且 `class_size` 有**第三种来源**——等于当前 **PDB** 尺寸的 26 条、以及来自**荒谬 PDB 尺寸**的 2 条（`CUtil` 在 pdb_export.json 里是 `kind:union, size:1`）。`CUtil` 的 class_size=48 在 git 全历史中都不存在任何注解尺寸，故它不是\"旧注解尺寸\"。→ 该串只能作\"需重取证\"的索引，不能作归属证据。\n- 3 条走 struct 度规的降级（0x4867F0 InitChildPanels / 0x525540 InitShopUI / 0x5257B0 InitSkillUI）：用当前 binary_size 复核**降级本身仍成立**（307036>200、100572>2648），不是误降级，但其依据串已失效（同批 struct 已被撑大到把原 offset 吸收）。\n- **架构级发现（C1，AT-200，grade A）**：`binary_size` 已被\"撑大/占位\"值污染 —— **52 个 struct 的 binary_size > 3× 最大声明成员偏移**，极端 gbVFileSystem 917972/24(×38248)、SoundMgr 918796/848(×1083)、CCBCamControl 430256 而成员被 planted 到 +430000。产生方式原文在 `tools/ida/archive/pal3_fix_oversized_structs.py:18`（\"safe_size = max_offset * 2\"）。**这使 `pipeline/decomp_quality.py:102-112` 的 `max(this+off) > cls_size*2` misattribution 判据与 `attribution_accuracy` 指标系统性失效**（门禁被弱化的实际形态：不是删校验，是把分母做大），`tools/audit_layout.py`、`check_annotations.py:583` 同受影响。这一条是 t4/t7 需要优先处理的，也是 t6 判定归属的前置。\n\n## 与上游产物的一致/不一致\n- ledger：bucket 全 C、rename_to 全 null，与 196 cluster 吻合；**ledger 新鲜度实测 196/197 完全一致**（仅 1 条失效）。\n- `_c2660_join.json`：DECL-OK 140 / DEEPER 15 / AUTO-FIX 8 / ODD-N 4 / NO-RET 1 / NO-ANNOTATION 1 / **ABSENT 28**（28 cluster 无 C2660 记录，例 PalScript::LoadResource、CIniFile::LoadStructuredConfig、PtrArray::RemoveAt、SoundMgr::PlayCPKStream —— 已立 AT-GAP-04）。\n- `_sig_evidence_pack.json`：AStarPathFinder::GetHeuristicIdx 被该包标 `A-V2`，但**与归属无关**（该包 grade 的是 ret-slot/caller-arg 一致，不是归属），已在 consistency.discrepancy 点名，防 t5/t6 误用。\n- `_ret_n_census.json`：仅 1 cluster 有记录（ArcSceneMonster::CreateStatusPanel = NO-RET），已并入 consistency。\n- `[IDA_MISID]` 84 处构成：Concurrency 49 / std::_Xlen 11 / ExceptionList 10 / std::_Xran 9 / NtTib 5（AT-199，C3c）。49 处 Concurrency 全是 IDA FLIRT 把 `Concurrency::details::VirtualProcessor::IsThrottled` 套在游戏对象上；当前处置是**整行注释**，把真实语义一并抹掉，正确处置是只去误名。\n- 死标记路径（AT-201，C3b，DELETE）：`pipeline/gen/stages/collect.py:200-208` 的 `// [MISATTRIB] attribution unconfirmed` 与 `[MISATTRIBUTED]` 同名不同义，且生成产物 **0 处**、annotations 中已无 `_misattrib_` 前缀类。\n- 任务书事实错误已固化进产出：`data/annotations/_generated/` 目录与 attribution.json / attribution_demotion_audit.json / attribution_conflicts.json / attribution.meta.json **全部不存在**；知识页 `pattern_misattrib_evidence_unreliable.md` 不存在（t1 §2.1 已确认）。\n\n## 证据等级口径说明\ngrade 按 spec §2 从严：B 只给\"函数体 `this->member` 与 callee 类声明一致（108 条）\"、\"vtable 槽 + 原字节桩（1 条）\"；`this+N` 裸偏移提取器会误吸循环/数组下标（如 UIGameOver 的 [1310..1315]），故**裸偏移类一律降为 C 并注明仅方向性**。E 级 13 条为多 caller 类\"mixed\"或无任何可核数据，全部 NEED_EVIDENCE + proof_needed。\n\n## 给 t6 的直接结论\nt6 当前**没有任何可执行的归属改名条目**；可执行的是 AT-201（DELETE 死路径）与 AT-197/198/199（DOCUMENT）。其余 196 条的下一步是 live IDB 取证（AT-GAP-01/05），不是修改。"
+    },
+    {
+      "id": "t4",
+      "subject": "扫描架构层问题：红线合规、可复现性与基建卫生",
+      "description": "扫描架构与基建层问题。\n\n扫描范围：\n1. 架构红线合规（CLAUDE.md 明列）：codegen 是否直接读 data/annotations（只有 vtable slot 解析是声明的例外，见 pipeline/gen/data.py 的 _load_vtable_data 注释）；export 是否读 data/annotations；各 stage 是否只做等价变换；是否存在\"在 codegen 打补丁替代 IDA 层修复\"的路径。\n2. work IDB 增量有状态导致的不可复现：实证是本次 apply 日志报 `Scene::m_obj` 导入失败（879/881），但 export 后 decomp 仍正常渲染 `this->m_obj[0].m_enable`，说明上一次 apply 的旧定义残留掩盖了失败 —— 跨机基线因此不可直接比较。给出最小可复现重建路径（从 raw IDB 重建再 apply）建议与预期观测。\n3. 仓库卫生：git 跟踪的生成物、坏符号链接条目（data/status/baselines/latest.json：mode 120000 但 blob 为 462KB JSON，git reset --hard 时报 ENAMETOOLONG）、一次性/作废脚本（参考远端提交 \"chore: remove one-shot MCP extraction script\" 的处理原则）、过期路径引用、本地堆积的 stash/备份分支。\n4. 门禁体系：pipeline/cli.py 各命令（apply/export/codegen/compile/probe/match/iterate）与其强制检查点的可跑通性与强弱（是否存在需要前置产物才不报错的顺序依赖）。\n\n纪律：只读扫描，禁止修改任何文件；判定给依据。注意区分\"架构缺陷\"与\"已知并已文档化的取舍\"（后者若已在 docs/knowledge 记录且仍成立，应判为有意保留而非缺陷）。",
+      "status": "completed",
+      "assignee": "architect",
+      "dependencies": [
+        "t1"
+      ],
+      "attempt": 1,
+      "createdAt": 1789437722843,
+      "updatedAt": 1789438883930,
+      "kind": "work",
+      "objective": "扫描架构与基建层问题：管线各层红线是否被违反、work IDB 增量有状态导致的基线不可复现、仓库与门禁的基建卫生缺陷，并给出可执行的修复建议与最小复现证据。",
+      "acceptance": [
+        "逐条架构红线给出合规判定与证据：codegen 不读 data/annotations、export 不读 data/annotations、后处理只做等价变换、IDA 层能解决的不在 codegen 打补丁；违规点附文件:行号，合规项附校验命令",
+        "IDB 可复现性问题给出实测证据（apply 报告 SceneObj 导入失败但导出后 decomp 仍渲染 this->m_obj[0].m_enable）与最小重建路径建议",
+        "仓库卫生清单：坏符号链接（data/status/baselines/latest.json 为 120000 symlink 但内容是 462KB JSON）、tracked 生成物、一次性/作废脚本、过期路径引用",
+        "强制门禁逐项跑通性评估（哪些在干净检出会失败、复现命令、失败严重度）",
+        "输出符合 taxonomy 字段约定的 JSON"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_scan_architecture.json"
+      ],
+      "nonGoals": [
+        "不修改任何文件（只读扫描）",
+        "不执行基建修复（修复在 implementation 任务）"
+      ],
+      "attemptId": "5c23dbd0-cc1c-4930-ab88-d50c22fd0d0e",
+      "reassigning": false,
+      "output": "交付物：`data/status/_cleanup_scan_architecture.json`（26KB，19 条，schema 校验通过）。分类计数：C1=8、C2=2、C3=5、C4=4；证据等级 A=13/B=6；gaps=4。\n\n## 结论\n\n### 一、架构红线（4 条，逐条判定）\n| 红线 | 判定 | 关键证据 |\n|---|---|---|\n| codegen 不读 data/annotations | **违规** | `pipeline/gen/ast_transform.py:52,:148` 未声明即读 `structs/`；`emit_headers.py` 10 处；`collect.py:97`、`stage3_cleanup.py:96`、`stage4_substitution.py:334`。`data.py:226` 注释断言\"vtable slot 解析是**唯一**位置\"**失实**（同文件另有 :191/:262/:374） |\n| export 不读 data/annotations | **违规** | `export_full.py` 共 10 处，:148 明写 \"Load annotations (authoritative source for signatures)\"；`docs/knowledge` 的 Decisions 段为空，无\"有意取舍\"记载 |\n| 后处理只做等价变换不编造信息 | **合规**（未发现反例） | grep `workaround/HACK/XXX` in `pipeline/gen/**` 无命中 |\n| IDA 层能解决的不在 codegen 打补丁 | **合规**（未发现反例） | 同上；`data.py` 自声明例外（vtable slot） |\n\n### 二、IDB 不可复现性 —— 已定位到根因并验证（**强证据，可直接支撑 t7**）\n1. **实测链条**：apply 日志 `[3] Structs: 879/881 (fail=2)`，失败项正是 `CG_Scene::m_OBJ` 与 `Scene::m_obj` 的 `SceneObj[256]`（`member_size=18446744073709551615`）。\n2. **TIL 直查（在 IDB 副本上，退出码 0）**：`SceneObj` 存在但 **`get_size()=-1`、`get_udt_details()=False`（UDT 不完整）**；而 3 个 MI 基类**全部完整**（PalScriptWaitObj=8 / GlowObj=32 / TaskMgr_SceneObjParam_SceneObj=40）。`create_array(SceneObj,256)` 返回 ok 但 size=-1 → 数组元素尺寸未知 → 成员导入必失败。\n3. **根因（1:1 相关，898 个结构全扫）**：**恰好 3 个结构的 known_members 偏移超过自身 binary_size**（SceneObj 1784 vs 18808、SaleUI 105912 vs 111276、UICursor 32 vs 44），而 **898 个结构中恰好也只有这 3 个 UDT 不完整** —— 相关率 3/3 与 3/898 完全重合，无第五例。\n   机制：`apply_annotations.py:714-715` 设 `udt.taudt_bits=1024 (TAUDT_FIXED)` + `udt.total_size=binary_size`，但成员偏移超出该 total_size；:865-869 的守卫把 `get_size()==-1` **替换成 binary_size 后继续**（注释称\"union 同偏移导致，属正常\"），于是 `create_fixed_struct` **返回成功**（故不计入 fail 名单），而 :888 `set_named_type(NTF_REPLACE)` 对无效 UDT **静默失败**，TIL 里留下旧的**前向声明桩**。\n4. **旧定义掩盖失败的实证（正向证据）**：`SceneObj` 在 TIL 中不完整，但 `asm/pal3/decomp/` 中 `m_obj[0].m_enable/.m_mouseoff/.m_needdel`、`m_Obj[0].m_pos.z` 等**以成员名正常渲染**——类型名可解析依赖 IDB 里的前向声明，成员渲染依赖历史残留定义。**跨机 baseline 因此不可比**（干净 IDB 会退化为偏移形式渲染）。\n5. **修复方向（属 t7，勿越界）**：① 导入时把 OOB 成员裁到 binary_size 内或钳制 total_size；② 在 :888 后**验证** `get_udt_details()`，失败即判 fail（不得只信 :865 的替换）；③ 清理阻断性前向声明桩（现仅对 gbengine 类型做，见 :1024-1035）。\n\n### 三、基建卫生\n- **坏符号链接且有双重病态**：`data/status/baselines/latest.json` 是唯一 tracked symlink（120000），blob 462044 字节却是 JSON；且它指向 `20260915_100946.json`，**该目标未入库** → 干净检出后是 **dangling link**（tracked 最新仅到 20260915_075701）。t8 修 100644 时须同时解决 dangling。\n- **门禁强弱分级**（好坏分明）：`compile_regression.py:22-24`、`error_classifier.py:235-237` 有明确提示 + `sys.exit(1)`（**好**）；`snapshot.py:44` 抛未捕获 `FileNotFoundError`（**坏**，且被 `cli.py:376` 后钩子无条件触发；已在隔离目录复现，退出码 1）；`audit_layout.py:59-63` 缺 `ida_structs.json` 时**仅告警并以空 dict 继续** → IDA 侧校验静默跳过、形成\"零问题\"**假通过**（**最危险**）。\n- **两套失配基线**：`compile_regression.py:17` 用 `data/status/compile_baseline.json`（**2026-09-01，58/204**），probe 快照用 `baselines/latest.json`（**53/198**）。实测跑该门禁输出 \"Baseline S2: 58/204 / Current S2: 53/198 → 12 REGRESSIONS, Net -5, exit 1\" —— **门禁每次恒定报警，已失去回归探测能力**。\n- **apply 失败退出码 0**：`cli.py:315-320` 失败仅 WARN 不 `sys.exit`，破坏 `apply && export` 链（gotcha 文档已标为\"未做\"）。\n- **验收产物未入库**：`pal3/src/`(198 .cpp) 与 `include/pal3/gen/` 被 `.gitignore:125-127` 排除，`asm/` 亦被排除；而**基线数字却 tracked** → 跨机无法直接比对 ok/L1（tracked 的 66 个 .cpp 全在 gbengine/src、topo/src，pal3/src 一个没有）。\n- **僵尸资产**：`__vftable`（tracked 且 0 字节，无任何代码以路径引用）；`original/PAL3.exe.i64.polluted.bak`（85MB）**不被 .gitignore 覆盖**（`.i64`/`.i64.bak` 均不匹配）→ 误提交风险；`build_output.txt`+7 个 `.obj`、10 条 stash、1 个 backup 分支为本地残留（删除不产生 git 改动，**不可计入\"已修复\"**）。\n\n### 四、有意保留（C2，非缺陷）\n五类信号标记本身：`ast_transform.py:345-352` 注释原文 \"Do NOT launder it into legal syntax... MSVC6 reports C2352, which is the honest 'fix the IDB attribution' signal\" → 判 **KEEP_AS_SIGNAL**，并写明解除条件。规模实测：MISATTRIBUTED=344/74、ROWTABLE=576/88、[VFTABLE]=1643/82、IDA_MISID=84/29、VFTABLE-STUB=612/51、**[IDA_VTABLE]=0**。IDB 历史备份（.bak/.91/.92/polluted）同为有意保留。\n\n## 未能确认的缺口（4 条已写入 JSON `gaps`）\n1. UICursor（binary_size=32 / max_off=44）同属\"注解已坏\"，但未被 `T*[256]` 式数组引用故未外显，其下游影响面未逐条追踪。\n2. 344 个 [MISATTRIBUTED] 站点的**根因修复率未测** → 无法完成站点级 C2/C3 判定（属 t3 范围）。\n3. **无法在\"干净检出\"意义上做 do/don't 对照**：`init --force` 会改动共享 work IDB 并与其他成员竞争，故我改用 TIL 直查 + 渲染实证的正向证据链，未做 fresh-rebuild 对照实验。\n4. 管线各命令的干净检出可跑通性未逐个实测（跑 apply/export/codegen 会写共享 IDB 与 pal3/src），只做了输入静态分析 + snapshot 的隔离复现。\n\n## 环境限制（需 captain 知晓）\n我以 `idat -A -S<script> original/PAL3.exe.i64` 直查 work IDB 时**实测中止并核心转储**（exit 134，`TVision error: TTY-read failed`）；改用 **IDB 副本**后全部查询成功（exit 0）。故无法区分该失败源于 IDB 锁竞争还是我的调用方式——**这是 t9 验证 apply 时的真实风险**：本团队 7 个成员共享同一个单写者 work IDB 且脚本无锁探测（已记为 AR-008）。\n\n## 范围声明\n仅新增 1 个文件 `data/status/_cleanup_scan_architecture.json`，未修改任何注解/代码/数据文件。所有 IDA 查询均在 `/tmp/idb_probe.i64` 副本上执行，work IDB mtime 保持 09:51:14 未变（未被污染）。"
+    },
+    {
+      "id": "t5",
+      "subject": "汇总分级：产出待清理清单与修复批次",
+      "description": "合并 t2/t3/t4 三份扫描清单，按 t1 的分类学裁决每条条目的类别与证据等级，产出四个批次并分派给修复任务：\n\n- 可立即修批次：具备 A/B 级二进制证据，拆为\"注解/归属类\"（→ engineer-annotation）与\"管线/基建类\"（→ engineer-pipeline）\n- 需补证据批次：写明缺什么证据、如何取证（IDA 查询 / 指令级取证 / ret-N）\n- 应删除批次：僵尸资产、tracked 生成物、一次性脚本、坏符号链接入库条目等\n- 有意保留批次：证据门控下故意保留并打标的信号，写明保留理由与解除条件\n\n要求：不做修复、不修改扫描清单；对三份清单之间的冲突（例如同一标记在两份清单里被判不同类）必须显式裁决并给出依据。计数必须自洽（JSON 与摘要一致）。\n\n基线参考（用于判定\"修复完成\"与不回退）：S2 ok=53/198、错误 3090、L1=5、matched 123/175、apply struct 879/881。",
+      "status": "completed",
+      "assignee": "captain",
+      "dependencies": [
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "attempt": 1,
+      "createdAt": 1789437736982,
+      "updatedAt": 1789449718280,
+      "kind": "work",
+      "objective": "把三份扫描清单裁决为四个可执行批次（可立即修 / 需补证据 / 应删除 / 有意保留），每条附唯一类别、证据等级、具体修改内容与验证命令，并明确本轮不做哪些及理由。",
+      "acceptance": [
+        "每条清单项给出唯一类别与证据等级，不留 unknown/待定；确不可判定者须写明缺口与补证手段",
+        "四批次划分完成（可立即修 / 需补证据 / 应删除 / 有意保留），每批次条目数与覆盖文件数明确",
+        "可立即修批次中每条给出具体修改内容、责任任务（注解类或管线类）与验证命令",
+        "\"本批次不修\"的条目逐条写明理由（避免范围蔓延），并说明其后续触发条件",
+        "输出 JSON + 人类可读摘要，且摘要与 JSON 计数一致（自洽校验）"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_scan_triage.json",
+        "docs/specs/2026-09-15-cleanup-scan-triage.md"
+      ],
+      "nonGoals": [
+        "不执行任何修复",
+        "不修改 t2/t3/t4 的扫描产物"
+      ],
+      "reassigning": false,
+      "attemptId": "b2ef2d29-3dd9-42c6-b922-99a38dc44ba4",
+      "output": "t5 由 captain 接管并完成（architect 连续多轮未交付，7 个实现任务被阻塞）。\n\n## 交付物\n- `data/status/_cleanup_scan_triage.json` — 268 条目 + 31 缺口，规则化裁决（规则逐条记录在 `rules` 字段，非手工拍脑袋）\n- `docs/specs/2026-09-15-cleanup-scan-triage.md` — 人类可读摘要（129 行）\n\n## 四批次\n| 批次 | 条数 | 说明 |\n|---|---|---|\n| **B1 可立即修（注解/布局）** | **4** | 全部归 t6：SceneObj 删 18804/18808（A 级）、UICursor 32→64（A 级）、SaleUI 33 项逐条裁定（B）、SaleUI 两条 overlap + globals 重叠（B） |\n| **B2 可立即修（管线/codegen）** | **23** | t8:12、t15:6、t13:2、t16:2、t14:1（含 AR-003 export 红线、CG-001 [VFTABLE] 破坏性注释、AR-002 codegen 读点、AR-004 apply 退出码等） |\n| **B3 需补证** | **200** | 逐条单独取证、禁止批量修改；200 条全部带 proof_needed |\n| **B4 应删除** | **14** | 死路径/裸 except/坏形态入库（含 AT-201 死 [MISATTRIB] 路径、CG-009..018、AR-301 `__vftable`、AR-302 85MB 去跟踪、AR-303 本地堆积） |\n| **B5 有意保留** | **27** | 信号类（CG-002..006）、N1_STUB_CALL_NO_FIX、AR-012 shim、AR-101/102、AR-304（captain 覆盖：备份分支/stash 为唯一保存点，禁止删除） |\n\n## 自洽校验（全过）\nC3 类计数 226 == C3x 子类和 226；C4 4==4；**FIX_* 落在 C/D/E 级 = 0**；NEED_EVIDENCE 缺 proof_needed = 0。\n\n## 裁决中的偏差修正（captain 归一化，逐条记录在 notes）\n- `AR-304`（stash/备份分支）：inventory 判 DELETE → **captain 改判 B5 有意保留**（`backup/local-line-20260904` 是同步前本地线唯一保存点，远端无；stash drop 不可逆）。\n- `AR-302`（85MB blob）：明确为**仅 `git rm --cached` 去跟踪 + 补 .gitignore，工作区文件保留**。\n- `AT-203..209`（桩体检测负面结论 7 条）：从 C3 改为 **C2**（非缺陷、记录归档、判死），消除 class/subclass 矛盾与\"永远补不上的待办\"。\n- `CG-021`（compare_pal3 census）与 `AR-006`（compile_regression 基线）：从 t12 改归 **t8**（门禁完整性）。\n\n## 全局 caveat（已写入产物，读数前必读）\n1. **计数基于 10:39 之前的 `pal3/src`**；该树已被一次未授权链（apply→export→codegen all）重生成，当前树不同（`[VFTABLE]` 1643→**1935**、`[AUTO-COMMENTED]` 229→**233**）→ **权威计数须在权威窗口后重取**。\n2. **环境三层不一致**：工作区注解=未修复态 / IDB=修复态 / `pal3/src`+`asm/pal3/decomp`=由修复态 IDB 生成 → 权威窗口前所有读数不可比。\n3. t9 必须在净态自行重跑 apply 取数；退出码一律用 `PIPESTATUS[0]`。\n4. 口径更正：export 直读 annotations = **9 处**（非 10）；B6 类结论只独立复核了 callee 侧；`audit_layout` 假通过是条件性缺陷；\"10:34:43=apply\" 为 mtime 推断。\n\n## 阻塞解除\nt5 完成 → t6/t7/t8/t13/t14/t15/t16 的依赖（t1+t5）**全部满足**，可 claim。执行顺序按已下发的串行窗口队列：**t6 → t7 → t14 → t8 → t13 → t15 → t16**。"
+    },
+    {
+      "id": "t6",
+      "subject": "修复 A/B 级证据的 misattribution 与归属残留",
+      "description": "按 triage 的可立即修批次，逐条修正具有 A/B 级二进制证据的归属（misattribution）与注解残留。\n\n方法要求：\n- 逐条处理，不做批量推断：每个偏移/类型/归属变更必须单独取证。\n- 归属修正必须有 decomp member access evidence（函数内 this->member 引用的成员在目标类存在、且不在原类存在），禁止仅凭 signature this。\n- 禁止伪语义命名，不确定含义保留 _todo_。\n- 禁止破坏性 workaround（用 void*/int/char[] 掩盖真实类型）。\n\n每条的闭环：取证 → 改注解 → 跑全链验证（check → audit_layout → apply → export → codegen → probe → error_classifier → match）→ 写 CHANGE_LOG。\n\n证据不足的条目：明确标注\"需补证\"并放入产出 JSON，不做修改。产出 JSON 记录每条：id、类别、证据、动作、验证结果。",
+      "status": "pending",
+      "dependencies": [
+        "t1",
+        "t5"
+      ],
+      "attempt": 1,
+      "createdAt": 1789437775082,
+      "updatedAt": 1789450059812,
+      "kind": "implementation",
+      "objective": "按 triage 分派的可立即修批次，逐条修正具备 A/B 级二进制证据的 misattribution 与注解残留，每条附证据与验证，并使 S2 ok 文件数与 L1 均不回退。",
+      "inScope": [
+        "data/annotations/",
+        "docs/knowledge/"
+      ],
+      "outOfScope": [
+        "pipeline/gen/",
+        "pipeline/ida/apply_annotations.py",
+        "tools/"
+      ],
+      "acceptance": [
+        "triage 可立即修批次中分派给注解/归属的条目全部处理完毕：要么修好并给出证据，要么给出\"不可修\"的证据说明",
+        "每条修改附二进制直接证据（指令级 reg+disp32 / 绝对地址 / ret-N / decomp member access）与来源，禁止无证据修改",
+        "python3 pipeline/cli.py check 无新增错误（相对本轮起点）",
+        "apply 后 original/PAL3.exe.i64 mtime 真实更新，且 struct 导入计数不下降（起点 879/881）",
+        "probe 的 ok 文件数（起点 53/198）与 match 的 L1（起点 5）均不回退",
+        "data/annotations/CHANGE_LOG.md 逐条记录\"证据 + 改动 + 验证\"三要素"
+      ],
+      "verify": [
+        "python3 pipeline/cli.py check",
+        "python3 tools/audit_layout.py",
+        "python3 pipeline/cli.py apply",
+        "python3 pipeline/cli.py export",
+        "python3 pipeline/cli.py codegen all",
+        "python3 pipeline/cli.py probe all",
+        "python3 tools/error_classifier.py --summary",
+        "python3 pipeline/cli.py match"
+      ],
+      "deliverables": [
+        "data/annotations/CHANGE_LOG.md",
+        "data/status/_cleanup_fix_attribution.json"
+      ],
+      "nonGoals": [
+        "不修无 A/B 级二进制证据的条目",
+        "不修改 pipeline/gen/（codegen 层）",
+        "不修改 pipeline/ida/apply_annotations.py（属管线修复任务）"
+      ],
+      "reassigning": false,
+      "handoffId": "28f9c535-cbac-47f1-9a87-7b96d535398e"
+    },
+    {
+      "id": "t7",
+      "subject": "修复 SceneObj[256] 导致的 struct 导入失败",
+      "description": "定位并修复 CG_Scene::m_OBJ（+104）与 Scene::m_obj（+224）类型 `SceneObj[256]` 导入失败（member_size=18446744073709551615，即 -1）的根因。修复面在 IDA 导入器侧（pipeline/ida/apply_annotations.py）。\n\n已知事实：\n- apply 日志：`[FATAL] Struct import failed: CG_Scene → add member +104 'm_OBJ' type 'SceneObj[256]' FAILED: invalid member_size=...` 与 Scene::m_obj 同因；`[3] Structs: 879/881 imported successfully (fail=2)`；另有 `[6b2] Array creation failures: 1`。\n- SceneObj 注解存在：binary_size=1784、known_members=49、base_class=['PalScriptWaitObj','GlowObj','TaskMgr_SceneObjParam_SceneObj']（三者分别 8B/32B/40B，均存在）。\n- 依赖边已建模：get_deps 会剥离 `[..]` 并把成员类型加入依赖，故不是排序缺失问题。\n- 尺寸校验点：apply_annotations.py:797-800（member_size = tinfo.get_size()；为 0 或 0xFFFFFFFFFFFFFFFF 即判失败）。\n- 嫌疑点：SceneObj 是否被\"前向声明\"机制（apply_annotations.py:1682+ \"Pre-create forward declarations for ALL nested types\"）先占位而真实定义未替换；或 MI 基类未全部落地导致 udt.total_size 不完整。\n\n方法要求：先用 TIL/IDB 查询取证（SceneObj 在 TIL 中的真实类型完整性、CG_Scene/Scene 是否存在、成员是否存在），再改；改后重跑 apply→export 并核对 decomp 渲染。\n\n作用域说明：本任务只改导入器。若取证表明根因必须改注解 JSON（SceneObj/CG_Scene/Scene），不要越界修改——用消息把结论与证据交给 t6 的 owner（engineer-annotation），并在产出 JSON 中记录该交接。禁止以删除/弱化尺寸校验的方式\"通过\"。",
+      "status": "pending",
+      "dependencies": [
+        "t1",
+        "t5"
+      ],
+      "attempt": 2,
+      "createdAt": 1789437796613,
+      "updatedAt": 1789450059811,
+      "kind": "implementation",
+      "objective": "在 IDA 导入器层定位并修复 SceneObj[256] 导致的 struct 导入失败，使 apply 不再丢失 CG_Scene::m_OBJ 与 Scene::m_obj 这两个 456KB 的类型化成员，并以 TIL/decomp 证据闭环。",
+      "inScope": [
+        "pipeline/ida/apply_annotations.py"
+      ],
+      "outOfScope": [
+        "data/annotations/",
+        "pipeline/gen/",
+        "tools/"
+      ],
+      "acceptance": [
+        "根因成立且附证据链：TIL 查询证明 SceneObj 是否为完整 UDT、是否只落地为前向声明、3 个 MI 基类（PalScriptWaitObj 8B / GlowObj 32B / TaskMgr_SceneObjParam_SceneObj 40B）解析是否完整",
+        "apply 日志 struct 导入达到 881/881（若仍有失败，须对每条剩余失败给出独立归因与证据）",
+        "导出后 decomp 对 CG_Scene::m_OBJ 与 Scene::m_obj 的访问以成员名渲染（非 +104/+224 偏移形式）",
+        "probe 的 ok 文件数（起始 53/198）与 match 的 L1（起始 5）均不回退",
+        "修复手段符合\"IDA 层能解决的在 IDA 层解决\"原则，不引入 codegen 侧 workaround"
+      ],
+      "verify": [
+        "python3 pipeline/cli.py apply",
+        "python3 pipeline/cli.py export",
+        "python3 pipeline/cli.py codegen all",
+        "python3 pipeline/cli.py probe all",
+        "python3 pipeline/cli.py match"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_fix_struct_import.json"
+      ],
+      "nonGoals": [
+        "不为通过而删除或弱化尺寸校验",
+        "不改动任何注解 JSON（如需改动，交接给 t6 owner）",
+        "不在 codegen 层打补丁绕过"
+      ],
+      "reassigning": false,
+      "handoffId": "017323a9-991e-4bd9-a50b-7f0a1ce0fb8e"
+    },
+    {
+      "id": "t8",
+      "subject": "修复仓库与门禁基建卫生：坏符号链接、门禁干净检出失败",
+      "description": "修复已确认的仓库与门禁基建问题。\n\n问题清单：\n1. 坏符号链接入库：data/status/baselines/latest.json 在 git 中为 mode 120000（symlink）但 blob 内容是 462KB JSON，任何 Linux 检出会因目标串超长报 ENAMETOOLONG（实测 git reset --hard 失败）。产生机制在 tools/regression_detector.py:120-128：Windows 无符号链接权限时 symlink_to 抛 OSError，回退 copyfile 把 JSON 写进该路径，而在 core.symlinks=false 的检出里该路径仍以 120000 记录 → 提交后即坏。tools/sig_evidence.py 与 pipeline/cli.py 也读该路径。\n2. 门禁顺序依赖：codegen all 的后置 snapshot/regression 钩子在缺 data/status/probe_census.json 时抛 FileNotFoundError 堆栈（干净检出必踩）；应给明确提示（如\"请先运行 probe\"）且不吞掉真实失败。\n3. IDB 可复现性固化：work IDB 增量有状态，跨机基线不可比（实证：本次 apply 报 Scene::m_obj 导入失败，但 export 后 decomp 仍渲染 this->m_obj[0].m_enable —— 旧定义残留掩盖失败）。需把\"从 raw IDB 重建再 apply\"的路径写入 docs/decompilation_workflow.md，并给出判定 apply 真成功的观测点（IDB mtime + 日志导入计数，参考 docs/knowledge/gotcha_apply_silent_fail_idb_lock.md）。\n\n方法要求：修 latest.json 时注意当前本地 core.symlinks=false（为绕过检出失败所设），修复目标是让仓库条目本身正确（100644），不依赖本地配置；改后做一次独立检出验证。禁止以\"跳过/吞错\"方式让门禁通过。文档只改 docs/decompilation_workflow.md（docs/knowledge/ 由 t6 owner 负责）。",
+      "status": "pending",
+      "dependencies": [
+        "t1",
+        "t5"
+      ],
+      "attempt": 0,
+      "createdAt": 1789437796624,
+      "updatedAt": 1789450059811,
+      "kind": "implementation",
+      "objective": "修复坏符号链接入库（latest.json 记作 120000 但内容是 462KB JSON，破坏 Linux 检出）、消除该产物的产生路径缺陷、修复 codegen all 后置钩子在缺 probe_census.json 时的堆栈失败，并把 IDB 可复现重建流程写入文档。",
+      "inScope": [
+        "data/status/baselines/",
+        "tools/regression_detector.py",
+        "tools/sig_evidence.py",
+        "pipeline/cli.py",
+        "pipeline/gen/codegen.py",
+        "docs/decompilation_workflow.md"
+      ],
+      "outOfScope": [
+        "data/annotations/",
+        "pipeline/ida/apply_annotations.py",
+        "docs/knowledge/"
+      ],
+      "acceptance": [
+        "git ls-files -s 显示 data/status/baselines/latest.json 为 100644（不再是 120000）",
+        "在临时目录做 git checkout-index 或 clone 验证不再出现 symlink/ENAMETOOLONG 失败",
+        "三个涉及该路径的工具（tools/regression_detector.py、tools/sig_evidence.py、pipeline/cli.py）不再把 JSON 内容写进被 git 记为 symlink 的路径（给出改动位置）",
+        "python3 pipeline/cli.py codegen all 在无 data/status/probe_census.json 时给出明确可操作提示而非堆栈报错",
+        "IDB 可复现重建流程写入 docs/decompilation_workflow.md（含命令、预期观测、如何判定 apply 真成功）",
+        "probe 的 ok 文件数（起始 53/198）与 compile_regression 均不回退"
+      ],
+      "verify": [
+        "git ls-files -s data/status/baselines/latest.json",
+        "python3 pipeline/cli.py probe all",
+        "python3 tools/compile_regression.py",
+        "git status --short"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_fix_infra.json",
+        "docs/decompilation_workflow.md"
+      ],
+      "nonGoals": [
+        "不弱化任何既有门禁强度",
+        "不改动注解内容",
+        "不修改 docs/knowledge/（属 t6 owner）"
+      ],
+      "handoffId": "34892669-01aa-4bc2-a1cd-3696621ca59e",
+      "reassigning": false
+    },
+    {
+      "id": "t9",
+      "subject": "独立验证清理修复：门禁重跑、逐条证据核验与不回退判定",
+      "description": "独立验证本轮全部修复：客观重跑强制门禁、核验每条修复声明、确认无声明外变更与无回退。不做修复。\n\n本轮起点基线（作为不回退判据，来自修复前实测）：\n- 198 个 .cpp；probe S2 ok=53/198；错误总数 3090\n- S4 match：matched 123/175、L1=5（棘轮前值 4）、partial 118、oob 0、unmatched 52\n- apply：struct 879/881、签名 3655/3656、vtable 91/93；codegen 标记 [VFTABLE]=1643、[ROWTABLE]=576、[MISATTRIBUTED]=344、[IDA_MISID]=84\n\n验证纪律：\n- 只采信命令输出原文，不采信他人总结；发现恶化或未生效必须给出可复现反例。\n- apply 步骤必须核对 IDB mtime 与日志计数（参考 docs/knowledge/gotcha_apply_silent_fail_idb_lock.md 的\"假成功\"坑）。\n- 对 t8 的符号链接修复，独立做一次临时目录检出验证（如 git checkout-index 或 clone）。\n- 对 t7 的 struct 导入修复，独立核对 apply 日志导入计数与 decomp 中 CG_Scene::m_OBJ / Scene::m_obj 的渲染形态。",
+      "status": "pending",
+      "dependencies": [
+        "t6",
+        "t7",
+        "t8"
+      ],
+      "attempt": 0,
+      "createdAt": 1789437824365,
+      "updatedAt": 1789450059812,
+      "kind": "verification",
+      "objective": "独立重跑本轮全部强制门禁与逐条修复证据核验，确认修复真实生效、无声明外变更、S2 ok 文件数与 L1 均不回退，产出可复核的验证记录。",
+      "acceptance": [
+        "独立重跑并记录实测数字：apply（核对 original/PAL3.exe.i64 mtime 真实更新与日志导入计数，防 apply 假成功）→ export → codegen all → probe all → error_classifier --summary → match；每条命令附退出码与关键输出",
+        "不回归判定：S2 ok 文件数与 match 的 L1 对比本轮起点（ok=53/198、L1=5、matched 123/175）；出现回退须给出定性结论与反例",
+        "逐条核验 t6/t7/t8 声明修复的条目：核对\"声明的二进制证据 ↔ 最终代码/decomp 实际现象\"是否一致；不一致即判不通过并给出反例",
+        "git status 中的变更全部落在任务声明 inScope 内；出现声明外变更须点名（文件 + 变更性质）",
+        "输出机器可读验证记录：每条命令、退出码、关键数字、判定（passed/failed）"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_scan_verification.json"
+      ],
+      "nonGoals": [
+        "不修 bug（发现问题回报给对应修复任务）",
+        "不修改注解、代码或数据文件"
+      ],
+      "handoffId": "eb7f25bc-c2cd-4fda-9b34-714f6b6c8f6d",
+      "reassigning": false
+    },
+    {
+      "id": "t10",
+      "subject": "复核归属/注解修复的正确性与证据充分性",
+      "description": "独立复核 t6（归属/注解修复批次）的正确性与证据充分性，并给出裁决。\n\n复核要点：\n- 每条修改的二进制证据是否成立（A 级：指令中 reg+disp32 / 绝对地址；B 级：ret-N、mangled 名、decomp member access 等），证据与改动是否一一对应。\n- 是否存在\"仅凭 signature this 修正归属\"（CLAUDE.md 明令禁止，需 decomp member access evidence）。\n- 是否引入伪语义命名、破坏性 workaround（void*/int/char[] 掩盖真实类型）、或未验证的批量修改。\n- 是否满足 taxonomy 的\"已修复\"口径；未修条目是否被诚实地标为\"需补证\"而非忽略。\n- 门禁是否被弱化（以跳过/吞错方式通过）。\n\n裁决：pass 或 needs_revision。needs_revision 必须给出结构化 findings，每条可执行、可验证（含 file/line 与 requiredFix）。裁决必须针对最新实现状态。",
+      "status": "pending",
+      "dependencies": [
+        "t6",
+        "t9"
+      ],
+      "attempt": 0,
+      "createdAt": 1789437833863,
+      "updatedAt": 1789450059813,
+      "kind": "review",
+      "round": 1,
+      "objective": "Review whether the latest implementation satisfies the user goal",
+      "acceptance": [
+        "逐条判定证据充分性（A/B 级门槛：指令级 reg+disp32 / 绝对地址 / ret-N / decomp member access）；无证据或证据不足一律记 findings",
+        "检查是否引入新矛盾：check_annotations 新增错误、struct 布局越界、伪语义命名、破坏性 workaround、静默抹掉信号标记而未修根因",
+        "检查是否违反架构红线：codegen 读 annotation、export 读 annotation、后处理编造信息、用 codegen 打补丁替代 IDA 层修复",
+        "裁决针对最新实现状态（非历史版本）；通过时给出可复核依据，不通过时给出结构化 findings（id/severity/problem/file/line/requiredFix）"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_review_attribution.json"
+      ],
+      "nonGoals": [
+        "不参与实现或修复",
+        "不扩大范围到 t6 未声明的条目"
+      ],
+      "reviewedTaskId": "t6",
+      "handoffId": "18de0578-f484-4e25-af5b-e542b53967b2",
+      "reassigning": false
+    },
+    {
+      "id": "t11",
+      "subject": "复核管线/基建修复的根因正确性与回归风险",
+      "description": "独立复核管线与基建修复（t7 的 struct 导入失败修复、t8 的仓库与门禁卫生修复），给出裁决。\n\n复核要点：\n- t7：根因链是否成立（SceneObj 在 TIL 中是完整 UDT 还是仅前向声明；MI 基类解析是否完整），修复是否在正确的层（IDA 导入器 vs codegen 补丁）；若根因实际在注解层而修复打了导入器补丁，属违规要记 findings。\n- t8：latest.json 是否真正以 100644 入库；独立检出（clone / checkout-index 到临时目录）是否不再报 symlink/ENAMETOOLONG；三个工具的产生路径缺陷是否真正消除（而非只改一处文件内容）；门禁提示是否替代了堆栈且未吞掉真实失败。\n- 是否引入回归风险：probe ok 文件数、compile_regression、既有 baseline 历史是否被误删。\n\n裁决：pass 或 needs_revision，针对最新实现状态。",
+      "status": "pending",
+      "dependencies": [
+        "t7",
+        "t8",
+        "t9"
+      ],
+      "attempt": 0,
+      "createdAt": 1789437833873,
+      "updatedAt": 1789450059813,
+      "kind": "review",
+      "round": 1,
+      "objective": "Review whether the latest implementation satisfies the user goal",
+      "acceptance": [
+        "t7 根因有可复核证据链（TIL 查询结果与结论一致），修复手段不违反\"IDA 层能解决的在 IDA 层解决\"原则",
+        "t8 的坏符号链接修复经独立检出测试验证（不得依赖本地 core.symlinks=false 配置才能通过）",
+        "门禁修复未弱化既有检查强度（不得以跳过/吞错方式通过）",
+        "裁决针对最新实现状态；通过时给出可复核依据，不通过时给出结构化 findings（id/severity/problem/file/line/requiredFix）"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_review_infra.json"
+      ],
+      "nonGoals": [
+        "不参与实现或修复",
+        "不扩大到 t7/t8 未声明的范围"
+      ],
+      "reviewedTaskId": "t7",
+      "handoffId": "b70f8c85-0f53-47f3-9221-a2fecbe88191",
+      "reassigning": false
+    },
+    {
+      "id": "t12",
+      "subject": "落地清理结果：基线更新、知识沉淀与清理总账",
+      "description": "将本轮清理结果落地，并输出清理总账。\n\n落地内容：\n1. 基线更新：把本轮的 probe 基线（data/status/baselines/<ts>.json 与 latest.json）、s4_baseline.json、pal3_registry.jsonl、error_classification.json 与实况对齐并纳入版本控制；确认 data/status/baselines/latest.json 以 100644 入库（t8 修复后）。\n2. 知识沉淀：把本轮确认的通用规律与坑写入 docs/knowledge（按该目录 README 的 type 约定与格式，六个 type：architecture/gotcha/pattern/debug/decision/reference），并更新 MEMORY.md 索引。候选主题举例：work IDB 增量有状态导致跨机基线不可比（含最小重建路径）；codegen 信号标记的语义与\"有意保留 vs 应清理\"判定；清理扫描分类学的可复用性。\n3. CHANGE_LOG：确保逐条字段级修改都有\"证据 + 改动 + 验证\"。\n4. 执行 triage 的\"应删除\"批次（僵尸资产/一次性脚本/tracked 生成物等），未执行者写明理由。\n5. 输出清理总账 JSON 与人类可读摘要，并做自洽校验（与 triage 计数一致）。\n\n纪律：提交前核对 git status，确保无声明外改动；不把未验证的结论写入知识页（引用前验证）。",
+      "status": "pending",
+      "dependencies": [
+        "t10",
+        "t11"
+      ],
+      "attempt": 0,
+      "createdAt": 1789437841860,
+      "updatedAt": 1789450059809,
+      "kind": "integration",
+      "objective": "把本轮清理结果落地：更新并纳入 S2/L1/错误分类基线、把确认的规律与坑沉淀到 docs/knowledge 并更新索引、补齐 CHANGE_LOG 证据、执行 triage 的应删除批次，并输出自洽的清理总账。",
+      "inScope": [
+        "data/status/",
+        "docs/knowledge/",
+        "data/annotations/CHANGE_LOG.md"
+      ],
+      "acceptance": [
+        "probe / s4 / error_classification 基线与本轮实况一致，且新基线文件纳入版本控制",
+        "docs/knowledge 新增或更新页符合该目录 README 的 type 与格式约定，并同步更新 MEMORY.md 索引；引用前按 README 要求验证所指文件/字段仍存在",
+        "data/annotations/CHANGE_LOG.md 含本轮全部字段级修改的逐条证据（证据 + 改动 + 验证）",
+        "triage 的\"应删除\"批次条目已执行删除并记录；未执行者逐条写明理由",
+        "输出清理总账：条目数按 已修 / 已删 / 有意保留 / 需补证 四类计数，且与 triage JSON 计数自洽",
+        "提交范围不含声明外改动（与 git status 核对）"
+      ],
+      "deliverables": [
+        "docs/knowledge/",
+        "data/status/_cleanup_scan_ledger.json",
+        "data/annotations/CHANGE_LOG.md"
+      ],
+      "nonGoals": [
+        "不新增功能性代码改动",
+        "不修改本轮已复核通过的修复内容"
+      ],
+      "handoffId": "51112c77-7108-489d-968c-eb14ab87767f",
+      "reassigning": false
+    },
+    {
+      "id": "t13",
+      "subject": "实施证据门控双轨的 codegen 策略（跨类 this 直呼）",
+      "description": "实施用户已裁决的**证据门控双轨** codegen 策略（选项 A）。\n\n背景（用户裁决原文）：团队用字节级证据证伪了远端一条刻意设计的策略前提——`pipeline/gen/ast_transform.py` 对\"跨类 this 直呼\"一律产出不可编译的静态形态 + `[MISATTRIBUTED] -> fix IDB name of callee` 标签，理由是\"跨类 this 调用是归属错误，不是合法形式\"（远端提交 2010eb3ad）。但至少有一族被证伪：CCBAI 的三个方法直呼 `0x004014F0`（`32 C0 C2 08 00` = `xor al,al; retn 8`，3 字节桩）是**合法直呼**——无继承关系（`CCBAI.bases=[]` 且 `CCBAI.vtables=[]`）、caller 归属有大量成员访问强证据、callee 名字仅来自 vtable slot 位置。该族约占 713 个 C2660 中的 110 个。\n\n双轨定义（实现要求）：\n- **轨道 1（合法直呼）**：证据表明是合法直呼的站点 → 改为可编译形式 `((Cls*)recv)->M(args)`；**若 callee 是虚函数（占 vtable slot）必须写 `((Cls*)recv)->Cls::M(args)`**，否则会 vtable 间接派发、与二进制的直接 call 不一致（MSVC6 不去虚化）。非虚 callee 两种写法编译产物相同。\n- **轨道 2（归属错误疑似）**：证据表明是归属错误的站点 → **保持现状**（静态形态 + `[MISATTRIBUTED]` 标记）。这是保留诊断信号的关键，用户明确否决了\"全部编译通过、抹掉信号\"的方案。\n- 判据来源：**t5 的裁决清单**（含每条的 A 级证据引用）。不得自行放宽判据、不得把未被 t5 判定的站点一股脑转成轨道 1。\n\n参考先例（不要照搬，仅供设计参考）：captain 在同步前的本地线上实现过\"非虚无限定符、虚保留 `Cls::`\"的规则，当时 L1/ok 有明显改善；但该线与远端的刻意策略相反，因此本任务必须严格按上面双轨与 t5 证据执行。\n\n证据样例（可作 t13 的判据模板）：`data/status/_cleanup_evidence_stub_call_4014F0.json`（engineer-annotation 落盘，含四项 A 级证据、repro 命令、二进制 sha256/md5 与 asm 头一致性校验）。",
+      "status": "pending",
+      "dependencies": [
+        "t1",
+        "t5"
+      ],
+      "attempt": 0,
+      "createdAt": 1789438836163,
+      "updatedAt": 1789450059813,
+      "kind": "implementation",
+      "objective": "在 pipeline/gen/ast_transform.py 实现证据门控双轨策略：合法直呼站点改为可编译的成员调用形式（虚 callee 保留 Cls:: 限定符以保证直调），归属错误站点保持静态形态与 MISATTRIBUTED 标记，判据严格来自 t5 的证据裁决，且 L1 与 ok 文件数不回退。",
+      "inScope": [
+        "pipeline/gen/ast_transform.py"
+      ],
+      "outOfScope": [
+        "data/annotations/",
+        "pipeline/ida/",
+        "tools/",
+        "pipeline/gen/codegen.py"
+      ],
+      "acceptance": [
+        "双轨判据必须由 t5 的证据裁决驱动（逐站点或经验证的族级判据），产出中逐条列出被判为\"合法直呼\"的族/站点与其证据引用；不得做无证据的 blanket 放宽",
+        "合法直呼站点改为可编译形式后：**虚 callee 必须保留 `Cls::` 限定符**（保证直调；否则会变成 vtable 间接派发，与二进制不一致），非虚 callee 可去限定符（两者编译为同一直接 call）",
+        "归属错误站点（M1/M4 疑似）**必须仍然保留**静态形态与 `[MISATTRIBUTED]` 标记：诊断信号不得被整体静默（用户明确否决了唯一方案 C）",
+        "该类 C2660 的实测前后计数给出，且下降量与被判为\"合法直呼\"的站点数一致（差异需解释）",
+        "python3 pipeline/cli.py codegen all 后：L1 ≥ 5、ok ≥ 53/198（分母 198 变化即判不可比），任一项回退即判该任务失败",
+        "改动仅限 pipeline/gen/ast_transform.py，且每条判据在产出中附二进制/字节级证据引用（如 0x4014F0 = 32 C0 C2 08 00 桩本体、vtable 直读、caller 成员访问证据）"
+      ],
+      "verify": [
+        "python3 pipeline/cli.py codegen all",
+        "python3 pipeline/cli.py probe all",
+        "python3 tools/error_classifier.py --summary",
+        "python3 pipeline/cli.py match"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_fix_codegen_policy.json"
+      ],
+      "nonGoals": [
+        "不修改注解或 IDB 导入器（属 t6/t7）",
+        "不整体放宽判据（不得把所有跨类 this 直呼都改成可编译形式）",
+        "不删除或弱化归属错误站点的诊断标记"
+      ],
+      "handoffId": "0da5e5b2-f5be-4d73-8201-affbcbaf7b26",
+      "reassigning": false
+    },
+    {
+      "id": "t14",
+      "subject": "消除 export 对 annotations 的直接依赖（export 红线 C1）",
+      "description": "处理 t4 报出的 C1 架构红线违规（AR 条目）：`pipeline/ida/export_full.py` 有 **10 处**直接读 `data/annotations/`（`:148` 明写 \"Load annotations (authoritative source for signatures)\"），违反 CLAUDE.md 管线规则\"**export 不读 annotation**：export_full.py 只能从 IDB 读取数据，不能直接读 data/annotations/ JSON 文件\"。同时 `docs/knowledge/` 的 Decisions 段为空——没有任何\"有意取舍\"记载，故不能默认它是经过论证的设计。\n\n两个允许的出口（都必须有证据）：\n(a) **重构**：让 export 只从 IDB / apply 产物取数据，消除\"第二事实源\"。风险是签名与归属导出可能变化，因此必须证明**等价**（计数对照或 diff），并跑全链确认 L1/ok 不回退。\n(b) **判定为有意取舍**：若证据表明红线不可行（例如 IDB 无法承载必要信息），则必须写入 `docs/knowledge/` 的 decision 页（含证据、生效条件、替代控制手段）。**\"没有记载\"本身也是缺陷**，不能只做口头结论。\n\n注意：本任务不得改注解内容，也不得做与红线无关的 export 重构；若发现修复必然连带其它模块（如 apply/归属表），先回报 captain 再决定是否扩范围。",
+      "status": "pending",
+      "dependencies": [
+        "t1",
+        "t5"
+      ],
+      "attempt": 0,
+      "createdAt": 1789438938825,
+      "updatedAt": 1789450059811,
+      "kind": "implementation",
+      "objective": "消除或正式豁免 `pipeline/ida/export_full.py` 对 `data/annotations/` 的 10 处直接依赖（红线 C1）：实施等价重构并全链验证，或给出证据支持并写入 docs/knowledge 的\"有意取舍\"决策记录。",
+      "inScope": [
+        "pipeline/ida/export_full.py"
+      ],
+      "outOfScope": [
+        "data/annotations/",
+        "pipeline/gen/",
+        "tools/"
+      ],
+      "acceptance": [
+        "C1 结论有可复核证据：`pipeline/ida/export_full.py` 中每一处直接读 `data/annotations/` 的位置逐条列出（file:line + 读取内容），并引用 CLAUDE.md 管线规则原文",
+        "二选一并给证据：**(a) 实施重构**——apply→export→codegen all→probe all→match 全链通过，且导出结果与重构前**等价**（给出签名/归属导出的计数对照或 diff），L1 ≥ 5、ok ≥ 53/198 不回退；**(b) 判定为有意取舍**——必须在 `docs/knowledge/` 写 decision 页（含证据、生效条件、为何红线不可行），因为该目录 Decisions 段当前为空",
+        "不得以跳过/吞错/降低校验强度方式达成\"合规\"",
+        "若选择 (a)，必须说明消除第二事实源后\"签名/归属\"的新来源是什么（apply 产物 / IDB），并给出该来源的可验证性论证"
+      ],
+      "verify": [
+        "python3 pipeline/cli.py export",
+        "python3 pipeline/cli.py codegen all",
+        "python3 pipeline/cli.py probe all",
+        "python3 pipeline/cli.py match"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_fix_export_redline.json"
+      ],
+      "nonGoals": [
+        "不修改注解内容",
+        "不做与红线无关的 export 重构",
+        "不降低任何既有校验强度"
+      ],
+      "handoffId": "af9e0c1c-822d-4954-bc67-a0df48402af5",
+      "reassigning": false
+    },
+    {
+      "id": "t15",
+      "subject": "消除 codegen 破坏性注释与硬编码模式表（[VFTABLE]/[AUTO-COMMENTED]/[IDA_MISID]）",
+      "description": "修复 codegen 的**破坏性注释**与**硬编码模式表**（t2 的 CG-001 / CG-007 / CG-008 / CG-019 部分）。\n\n事实（t2 站点级实测，全部有 file:line 证据）：\n1. `[VFTABLE]` **1643** 站点的真实形状：仅 **41 处（2.5%）** 是编译器自管的 vptr 存根；其余为真实数据访问 546、**控制流头（if/while）168**、`__vftable` 当数据值 163、cast 44、其他 418、续行 263。\n2. 铁证反例：`CCBCamControl.cpp:983-986` 被注释的 4 行是 **float 写入**（0xBE800000 / 1.0f），而同函数 `:978-981` 的同类写法**未被**注释；`CCBParabolaWindow.cpp:45-46` 整个 `if (v5->__vftable) { Release(); }` 被注释。\n3. 提交 `6d9bca4b5` **自认**该路径 \"silently destroying enclosing expressions … including in S2-green files\"，但只替换了 dispatch 部分 → **半完成迁移**，残留路径仍在发射。\n4. `[AUTO-COMMENTED]` **229** 处（简报漏列的第 6 类标记）中 **89 处丢弃了被使用的赋值**（例：`CCBStage.cpp:867 'Color = v22.gbColorQuad(...)->Color;'`）。\n5. `[IDA_MISID]` 84 处是 codegen 层用 **6 个硬编码模式表**绕开 IDA 层修复；抽到内容为真实代码 `std::_Xlen();`、`ExceptionList = NtCurrentTeb()->NtTib.ExceptionList;`。\n6. 死分支：`stage3_cleanup.py:287-290` 的 `'insert'` / `'comment_vft'` 分支**无产生者**（实测 0 处）。\n\n这与 AR-101（\"五类标记均是有意保留的信号\"）不矛盾：**设计意图是 C2（保留信号），但当前实现含 C1 缺陷**（破坏真实语义）。本任务修实现，不动设计意图。\n\n**captain 特别裁决（重要）**：本任务**不以 S2 ok 文件数不回退为判据**——恢复被误注释的真实代码必然暴露新错误。判据改为：① **L1 ≥ 5 不回退**（字节匹配优先，CLAUDE.md 第一优先级）；② 不得有任何真实语义仍被注释；③ 若 ok 下降，逐条列出新显形错误并证明其来自恢复的真实代码。若要偏离此裁决，先回报 captain。",
+      "status": "pending",
+      "dependencies": [
+        "t1",
+        "t5"
+      ],
+      "attempt": 0,
+      "createdAt": 1789439040435,
+      "updatedAt": 1789450059813,
+      "kind": "implementation",
+      "objective": "消除 pipeline/gen/stages/stage3_cleanup.py 中破坏真实语义的注释路径与硬编码模式表：恢复被误注释的真实代码（浮点写入、控制流头、被使用的赋值、Release 调用等），只允许编译器自管的 vptr 存根走注释路径，并清理死分支与该文件的吞错。",
+      "inScope": [
+        "pipeline/gen/stages/stage3_cleanup.py"
+      ],
+      "outOfScope": [
+        "pipeline/gen/ast_transform.py（属 t13）",
+        "pipeline/gen/stages/emit_headers.py（属 t16）",
+        "data/annotations/"
+      ],
+      "acceptance": [
+        "被注释掉的**真实语义**必须恢复或给出证据支持的不恢复理由：至少逐条处置 CG-001 给出的硬证据锚点（`CCBCamControl.cpp:983-986` 的 float 写入 0xBE800000/1.0f、`CCBParabolaWindow.cpp:45-46` 的 `if (v5->__vftable) { Release(); }`）与 [AUTO-COMMENTED] 中 89 处丢弃被使用赋值的站点",
+        "`[VFTABLE]` 1643 站点的形状分类必须复查：只允许**编译器自管的 vptr 存根**（实测仅 41 处 2.5%）走注释路径；真实数据访问(546)/控制流头(168)/数据值(163)/cast(44)/其他(418) 一律不得被整体注释",
+        "[IDA_MISID] 的 6 个硬编码模式表必须改为不丢语义的处置：证据显示被注释内容含真实代码（`std::_Xlen();`、`ExceptionList = NtCurrentTeb()->NtTib.ExceptionList;`），禁止整行删除（改为等价改写或保留真实语义）",
+        "死分支与失效门禁清理：`stage3_cleanup.py:287-290` 的 `'insert'`/`'comment_vft'` 分支无产生者（实测 0 处），须删除或标注为死代码；该文件内的裸 `except:` 必须逐处消除或注明必须吞的理由",
+        "**判据改用（captain 特别裁决）**：本任务**不以 S2 ok 文件数不回退为判据**——恢复被误注释的真实代码必然暴露新错误。改为：① L1 ≥ 5 不回退；② 不得有任何真实语义仍被注释掉；③ 若 ok 下降，须逐条列出每个新显形错误并证明它来自恢复的真实代码（而非新引入缺陷）",
+        "产出中给出量化前后对照：被注释站点数、恢复站点数、`[VFTABLE]` 形状分类计数、该文件裸 except 处置表"
+      ],
+      "verify": [
+        "python3 pipeline/cli.py codegen all",
+        "python3 pipeline/cli.py probe all",
+        "python3 tools/error_classifier.py --summary",
+        "python3 pipeline/cli.py match"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_fix_vftable_comment.md"
+      ],
+      "nonGoals": [
+        "不修改注解或 IDB",
+        "不动 ast_transform.py 的双轨策略（属 t13）",
+        "不为了维持 S2 绿而继续注释真实代码"
+      ],
+      "handoffId": "b36f80f2-2f19-4fe9-a987-98c11417e0db",
+      "reassigning": false
+    },
+    {
+      "id": "t16",
+      "subject": "清理 codegen 死门禁、死发射分支与吞错（emit_headers/data.py）",
+      "description": "清理 codegen 层的**死代码、失效门禁与吞错**（t2 的相应条目 + CG-019 的一部分）。\n\n事实（t2 实测）：\n1. `emit_headers.py:1948-1950`（`[IDA_USERPURGE]`）与 `:1951-1953`（`[IDA_REGPARAM]`）**恒假**：`:1882-1884` 已先剥离 `@<\\w+>`/`__userpurge`/`__usercall`，`:1901` 还重复剥离一次 → 与\"实测 0/0\"吻合。即这两个门禁**永远不会触发**。\n2. `[IDA_VTABLE]` 产生位置是 **`emit_headers.py:1945-1946`**（只落在 .h，1 处）；而 `stage3_cleanup.py:290` 发射的是拼写不同的 `[IDA_VFTABLE]`（**0 处 = 死分支**）。t1 记录的\"规模矛盾\"根因即此。\n3. `pipeline/gen/data.py:218` **静默丢弃 thunk 映射**。\n4. `pipeline/gen` 有 **29 处裸 `except:` + 4 处 `except Exception: pass`**（CG-019）——其中属于本任务 inScope 两个文件的必须逐处处置。\n\n注意：本任务**不恢复被注释代码**（那属 t15），因此沿用标准判据（L1 ≥ 5、ok ≥ 53/198）。处置死门禁时**不得以放宽检查的方式\"修好\"**——要么删除（并说明原本想防什么、为何现在不需要），要么让判据真正可达。",
+      "status": "pending",
+      "dependencies": [
+        "t1",
+        "t5"
+      ],
+      "attempt": 2,
+      "createdAt": 1789439040453,
+      "updatedAt": 1789450059810,
+      "kind": "implementation",
+      "objective": "清理 pipeline/gen 的死代码与失效门禁：处置恒假的 [IDA_USERPURGE]/[IDA_REGPARAM] 检查、判定 [IDA_VFTABLE] 死发射分支、消除 data.py 的 thunk 静默丢弃，并逐处处置本任务范围内文件的裸 except。",
+      "inScope": [
+        "pipeline/gen/stages/emit_headers.py",
+        "pipeline/gen/data.py"
+      ],
+      "outOfScope": [
+        "pipeline/gen/ast_transform.py",
+        "pipeline/gen/stages/stage3_cleanup.py",
+        "data/annotations/"
+      ],
+      "acceptance": [
+        "恒假门禁必须消除或改为可达：`emit_headers.py:1948-1950`（`[IDA_USERPURGE]`）与 `:1951-1953`（`[IDA_REGPARAM]`）恒假的原因已定位（`:1882-1884` 先剥离 `@<\\w+>`/`__userpurge`/`__usercall`，`:1901` 重复剥离），须给出处置（删除死分支或修正判据使检查真正生效），并说明该检查原本想防什么",
+        "`[IDA_VFTABLE]`（多个 E，`stage3_cleanup.py:290` 发射、实测 0 处）判定为死发射分支后，须明确它是否与 `emit_headers.py:1945-1946` 的 `[IDA_VTABLE]`（.h 中 1 处）为同一意图；两者拼写不同不得合并计数",
+        "`data.py:218` 静默丢弃 thunk 映射必须改为不静默（记录或抛出，并说明影响面：受影响的函数数与是否影响 S4 匹配）",
+        "本任务涉及文件内的裸 `except:` / `except Exception: pass` 逐处处置：消除或注明必须吞的理由（禁止无理由吞错）",
+        "L1 ≥ 5 与 ok ≥ 53/198 不因本任务回退（本任务不恢复被注释代码，故沿用标准判据）"
+      ],
+      "verify": [
+        "python3 pipeline/cli.py codegen all",
+        "python3 pipeline/cli.py probe all",
+        "python3 pipeline/cli.py match"
+      ],
+      "deliverables": [
+        "data/status/_cleanup_fix_dead_gates.md"
+      ],
+      "nonGoals": [
+        "不改 ast_transform.py 或 stage3_cleanup.py（属 t13/t15）",
+        "不恢复被注释的代码（属 t15）",
+        "不放宽任何门禁判据"
+      ],
+      "reassigning": false,
+      "handoffId": "d062b13e-526e-4087-9567-00bc5b059f4d"
+    }
+  ],
+  "taskSeq": 16,
+  "phase": "running",
+  "approvedAt": 1789438080890
+}

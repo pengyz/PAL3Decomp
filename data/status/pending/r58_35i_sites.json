@@ -1,0 +1,87 @@
+{
+ "sites": [
+  {
+   "addr": "0x41D7F7",
+   "fn": "SetupCameraArray（IDA size=0xAE）",
+   "element": "非 arrC（7i×4+idx 变体：`lea edx,[eax*8]; sub edx,eax`=7i → `lea ebx,[eax+edx*4]`=29i 收口）",
+   "field_offset": null,
+   "access_form": "idx29 缩放（非 280 族）",
+   "value_evidence": "0x41d7f7-0x41d803 三指令链实录",
+   "checklist": {
+    "a_level": true,
+    "full_usage": true,
+    "rule_reproducible": true,
+    "name_offset_confusion_checked": true,
+    "ledger_dual_sync": true
+   }
+  },
+  {
+   "addr": "0x420A6E",
+   "fn": "IsTileInBounds（size=0x7D）",
+   "element": "**896B 网格数组**（7i×shl7=896i）",
+   "field_offset": null,
+   "access_form": "idx896 缩放 + `and eax,0xff`（**元素数≤256**）",
+   "value_evidence": "0x420a6e/76/78：lea[8i]→sub→shl 7 链实录",
+   "checklist": {
+    "a_level": true,
+    "full_usage": true,
+    "rule_reproducible": true,
+    "name_offset_confusion_checked": true,
+    "ledger_dual_sync": true
+   }
+  },
+  {
+   "addr": "0x420B1A",
+   "fn": "SetRoleGridPosition（size=0xA9）",
+   "element": "896B 网格数组（同族）",
+   "field_offset": 224,
+   "access_form": "`lea ecx,[ecx+ebx*1+0xe0]`（elem+0xE0 字段基）",
+   "value_evidence": "0x420b1a-0x420b26 链实录",
+   "checklist": {
+    "a_level": true,
+    "full_usage": true,
+    "rule_reproducible": true,
+    "name_offset_confusion_checked": true,
+    "ledger_dual_sync": true
+   }
+  },
+  {
+   "addr": "0x420BEB",
+   "fn": "CheckTileScript（size=0x18A）",
+   "element": "896B 网格数组（同族）",
+   "field_offset": null,
+   "access_form": "同链 + lea [ecx+edi]（基合成）",
+   "value_evidence": "0x420beb-0x420bf7",
+   "checklist": {
+    "a_level": true,
+    "full_usage": true,
+    "rule_reproducible": true,
+    "name_offset_confusion_checked": true,
+    "ledger_dual_sync": true
+   }
+  },
+  {
+   "addr": "0x420C4E",
+   "fn": "CheckTileScript（第二站）",
+   "element": "896B 网格数组（同族）",
+   "field_offset": 397,
+   "access_form": "`mov cl,[edx+edi*1+0x18d]`（elem+0x18D 字节读）",
+   "value_evidence": "0x420c4e-0x420c5a",
+   "checklist": {
+    "a_level": true,
+    "full_usage": true,
+    "rule_reproducible": true,
+    "name_offset_confusion_checked": true,
+    "ledger_dual_sync": true
+   }
+  }
+ ],
+ "arrc_base_verdict": "0",
+ "arrc_base_reason": "B 段 elem[i]+0x14（状态码，无 inc）+ A 段 elem[i+1]+4..16（inc 后写=Advance 语义）两段映射自洽 ⇒ base=0；「@+280 首元素」说**撤回**（280i+284 若 base=280 则 f=4 可容但 B 段 280i+20 需 f=-260 矛盾 ⇒ base=0 唯一自洽）",
+ "offset_0x118_verdict": "bitplane_reuse",
+ "offset_0x118_reason": "reviewer 4 站实证：float 2.0f 位型写 @4108af（0x40000000）+ 指针写 @439091 ⇒ **同槽双用法**（值位面判据①+重解释判据③）——「不可解」表述过强修正：冲突消解为**同一存储的两视图**（elem[1].m_pHead 与指针表[0] 重合=位面复用候选）",
+ "r57_correction": "R57 推论修正：35i/7i 幂等式前缀（lea[8i];sub）为通用索引算式，但**缩放收口分族**（×8=280 · ×128=896 · ×4+idx=29）——0x41D-0x421 族全为 **896B 网格数组**（tile/role 域：IsTileInBounds/SetRoleGridPosition/CheckTileScript + and 0xff 元素界≤256）非 arrC 同族；arrC_280 用户=A/B 段两函数（本批 5 站 0 同族）",
+ "new_family_finding": "**第五族结构：896B 网格数组**（元素≤256 · 字段 +0xE0/+0x18D 实录）——CCBStage/网格域缺口新主体",
+ "evidence_level": "A",
+ "confidence": 78
+}

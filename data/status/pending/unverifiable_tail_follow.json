@@ -1,0 +1,74 @@
+{
+ "entries": [
+  {
+   "addr": "0x43D880",
+   "former_name": "ctor",
+   "tail_target": "0x445b40",
+   "retn_at_target": "ret（bare c3 @0x445B8F）⇒ 0 栈参",
+   "param_count": 0,
+   "ctor_dtor_verdict": "dtor（删际表视图）",
+   "vptr_install_evidence": "0x43D880: `c7 01 fc ac 56 00` movl $0x56ACFC,(%ecx) → jmp 0x445b40；目标 0x445B40=~UIWnd 体（0x445B5D 写基 vptr 0x56AEC8 + lea 0x24(%esi) call 0x432680 成员析构 + 0x445B8F bare ret）；**先写派生 vptr 再入基 dtor 体=dtor 序铁证**；0x56ACFC=UIFrameWnd 主表 0x56ACB8+0x44=删际表 ⇒ 删际析构视图",
+   "proposed_name": "~UIFrameWnd_deleting_view",
+   "proposed_signature": "void __thiscall(UIFrameWnd *this)",
+   "evidence_level": "A",
+   "confidence": 80
+  },
+  {
+   "addr": "0x43BBB0",
+   "former_name": "Destroy",
+   "tail_target": "0x445b40",
+   "retn_at_target": "ret（bare @0x445B8F）⇒ 0 栈参",
+   "param_count": 0,
+   "ctor_dtor_verdict": "dtor（scalar/主表形）",
+   "vptr_install_evidence": "0x43BBB0: `c7 01 b8 ac 56 00` movl $0x56ACB8,(%ecx)=UIFrameWnd 主表 → jmp 0x445b40（~UIWnd 体）；dtor 序同上",
+   "proposed_name": "~UIFrameWnd",
+   "proposed_signature": "void __thiscall(UIFrameWnd *this)",
+   "evidence_level": "A",
+   "confidence": 82
+  },
+  {
+   "addr": "0x4DFED0",
+   "former_name": "EndTurnAndAdvance",
+   "tail_target": null,
+   "retn_at_target": null,
+   "param_count": 5,
+   "ctor_dtor_verdict": "unclear（业务函数）",
+   "vptr_install_evidence": "**双 ret 拆段定谳**：0x4dff86 `c2 14 00` ret $0x14（5 参）后 **NOP 对齐填充 4dff89-4dff8f=函数边界 A 级形**；0x4dffde `c2 04 00` ret $0x4（1 参）+NOP 尾=第二函数终点 ⇒ **拼段实锤：函数A=…0x4dff86（5 参）· 函数B=0x4dff90 区..0x4dffde（1 参）**",
+   "proposed_name": "（A 段保原名 EndTurnAndAdvance；B 段 _todo_4dff90 区待 IDA 边界括定）",
+   "proposed_signature": "A: ? __thiscall(Cls *this, int,int,int,int,int)（5 参 ret $0x14）；B: ? __thiscall(Cls *this, int)（1 参 ret $0x4）",
+   "evidence_level": "A",
+   "confidence": 78
+  },
+  {
+   "addr": "0x4C6290",
+   "former_name": "Destroy__ovl_02",
+   "tail_target": null,
+   "retn_at_target": null,
+   "param_count": 5,
+   "ctor_dtor_verdict": "unclear（5 参业务形）",
+   "vptr_install_evidence": "0x4c6293 `mov 0x34(%esp),%edx`=第 5 参读形 + 0x4c62fd `c2 14 00` ret $0x14（5 参主出口）；**FP 面：fld/fstps/fild 零命中**（0x4C6290-0x4C6340 窗）——`xor %al,%al` @0x4c6297=MSVC6 vararg 调用 FP 标记形（非本函数 FP 参数）；第二 bare ret @0x4c632b 疑邻接小函数/早退（待 prologue 括定，未作本体证）",
+   "proposed_name": "（Destroy__ovl_02 名待定性——5 参无 FP）",
+   "proposed_signature": "? __thiscall(Cls *this, int,int,int,int,int)（5 参 ret $0x14 A 级）",
+   "evidence_level": "A",
+   "confidence": 72
+  }
+ ],
+ "summary": {
+  "tail_follow_retn": "bare ret ⇒ 0 参（推翻前次 ret $0x14 假设）",
+  "ctor_dtor": "2 条 dtor 定谳（0x43D880 删际表视图 / 0x43BBB0 主表形）",
+  "dual_ret_split": "0x4DFED0 拆段实锤（NOP 边界）：A=5 参 B=1 参",
+  "fp_face": "0x4C6290 FP opcode 零命中——FP 参数不立（xor %al=vararg 标记）",
+  "fabrication_check": "本次 4 条全 objdump 本体字节；未借邻函数 ret ✓",
+  "b_segment": "0x4dff90 AssignSlotData@CCBStage size=0x51（IDA 边界 A 级）·1 参 ret $0x4 · 体内 280B 步进数组（与 208B 区不同族）"
+ },
+ "b_segment": {
+  "addr": "0x4dff90",
+  "name": "?AssignSlotData@CCBStage@@QAEHD@Z（IDA 边界形；名=PDB 形 B 级语义）",
+  "size": "0x51（IDA 实录）",
+  "signature": "int __thiscall CCBStage::AssignSlotData(char)（H=ret int · D=char 参=mangling 形 B 级；A 级=ret $0x4⇒1 栈参）",
+  "proposed_name": "AssignSlotData",
+  "boundary_evidence": "IDA lookup_funcs：0x4dff90 size=0x51（终止 0x4dffe1 含 ret $0x4@4dffde ✓）+ 0x4dfed0 size=0xB9（终止 0x4dff89 含 ret $0x14@4dff86 ✓）——两函数边界与 NOP 对齐位完全吻合（A 级）",
+  "body_evidence": "objdump 0x4dff90：mov 0x10(%ecx) 索引 + lea(8i)-sub(i)-lea(5×)=35i ⇒ 步进 280i（`0x14(%ecx,%eax,8)`）；movl $0x6, elem+0x14（槽状态码写）；mov this+8 → elem[i+1]+0（指针拷贝）= AssignSlotData 语义自证",
+  "confidence": 78
+ }
+}

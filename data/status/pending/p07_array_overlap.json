@@ -1,0 +1,35 @@
+{
+ "verdict": "C",
+ "evidence": {
+  "lea_context": "44cff3 `mov edi,ecx`（edi=this）· 44cff5 `mov ebx,0x10`（**ebx=16=循环计数**）· 44cffa `lea esi,[edi+0x1478]`（arrA 基）",
+  "loop1": "0x44d000-0x44d034：`call 0x5541f8`（rand）→ `idiv ecx`（**ecx=0x32=50 是除数 rand%50，非循环计数**——R53 误读更正）→ `dec ebx; jne`（**16 次**）→ 写 elem[k]+0/+4/+0x10",
+  "loop2": "0x44d0c0-0x44d0f4 同形：`mov ebx,0xa`（**10 次**）· `lea edi,[esi+0x2178]`（arrB 基）· idiv ecx=0x64（**100=除数**）",
+  "ebx_semantics": "**循环计数（元素个数）**：dec ebx; jne 形 + 首值 0x10/0xa",
+  "adjacency_proof": "arrA span=0x1478+16×0xD0=**0x2178=arrB 基**（精确相接）· arrB span=0x2178+10×0xD0=0x29A8 ⇒ **两数组相邻不重叠**",
+  "loop2_body": "同写形 elem+0/+4/+0x10（0x2f6 / rand%100+300 / 0x443D8000=758.0f）"
+ },
+ "proposed_layout": {
+  "arrA": {
+   "base": 5240,
+   "elements": 16,
+   "span": "0x1478-0x2178"
+  },
+  "arrB": {
+   "base": 8568,
+   "elements": 10,
+   "span": "0x2178-0x29A8"
+  },
+  "CCBTaskSlot208_fields": {
+   "0": "int（常量 0x2F6=758）",
+   "4": "int（rand%N+300 生成值）",
+   "16": "float 位面（0x443D8000=758.0f——与 +0 同值 ⇒ **overlap 值位面判据①实证**）",
+   "20": "int（256/512/128/64 等）",
+   "24": "int（64/128 等——与 +20 成对=尺寸/ID 对）"
+  },
+  "loop_tail_init": "循环外逐元写 +0x14/+0x18 对（0x100/0x40,0x200/0x80,0x80/0x40×4,0x40/0x20,0x80/0x80 = elem[0..7]）"
+ },
+ "evidence_level": "A",
+ "confidence": 88,
+ "r53_correction": "R53 元素数 50/100 **撤回**：50/100 = idiv 除数（rand%50 / rand%100）；真元素数 = ebx 初值 **16/10**；两区关系从「独立数组（基/界全异）」精确化为「**相邻不重叠的独立两数组**」",
+ "bitplane_note": "+0 int 758 与 +0x10 float 758.0f 同值双写 = 值位面复用（CLAUDE.md overlap 三判据①）——改型前 P0-6 全用法形核"
+}

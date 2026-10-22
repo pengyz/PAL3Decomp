@@ -242,6 +242,490 @@
     {
       "ts": "2026-10-21",
       "event": "转向：不等 IDA，推进不依赖它的（unregistered_85 的 body_head hex = A 级 objdump 形可直接分析）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 IDA MCP 配置根因：DSH 从 **Ghostty+zsh** 启动 ⇒ 前两轮配的 .bashrc/.profile（bash）完全无效"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "补齐 zsh 配置（.zshrc + .zprofile）+ wrapper ~/.local/bin/dsh-ida · zsh 交互/login 均验证生效"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "另发现 .bashrc 非交互 return 守卫（L11/17）⇒ export 须放文件开头（已修）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "✅ REA_IDA_MCP_CONFIG 格式定谳：envelope 键必须是 **ida-pro-mcp**（非 idapro），rea schema 硬编码（IdaConfiguration.js:44）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "配置经 rea 实际 schema 验证 ok:true（mode=attached, type=http, url=http://127.0.0.1:13337/mcp）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "⚠️ rea 进程缓存启动时的旧 parse 态 ⇒ 需重启 DSH 生效（配置已就绪）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "IDA MCP JSON-RPC 打通（69 工具）· IDB session 6c9093a6（idle TTL 3600s）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "placeholder_retN 176 批量核：167 一致 · 9 不一致 · 6 条 IDA stack_frame 实证已落盘"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 重要发现：**IDA 修饰名编码参数个数**（?VisUpdate@SceneVisNode@@QAEXXZ 的 XXZ=void()⇒0 参）—— 比 asm retn N 更可靠"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "⚠️ placeholder_retN.json 的 nparams 数据不可靠（0x54211A 读 retn=2 但 IDA 修饰名=0 参）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "3 条不符待查：SwitchEditorCamPos/InitCombatUI/Update（stack_frame vars=[] 疑 thunk/叶子）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 用户质疑实锤：**IDA 修饰名/stack_frame 是循环论证** —— apply_annotations 做 set_name+SetType 写进 IDB；nVal 命名是我们的；二进制 strings 0 命中 VisUpdate@SceneVisNode"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "撤回「IDA 修饰名 A 级权威」结论。真正 A 级=指令字节（asm ret N / objdump 访问形 / 值位型 / vtable 槽）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "⚠️ 已落盘 6 条签名用了 IDA 参数名/型 ⇒ 需用非循环证据重核"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "✅ 用户定性：IDA 只可信**函数边界+xref**；签名（参数个数/类型/名）须**从汇编推断**（IDA 签名是我们注入的）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "方法论定谳：IDA 边界/xref → 汇编 ret N（参数个数）· fld/fstp/mov 形（类型）· 调用点 push（交叉验证）→ 语义推名字"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 SetParam 实证：2 栈参实为 **double**（fld/fstp qword 分解成 edi+ebx），非注解的 int nVal,int nVal2"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "P0-5 修正：证据循环性规则确认 —— IDA 修饰名/stack_frame/反编译全是我们写入的投影；二进制事实=指令字节"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "字节覆盖全景：缺口 2.28MB（15%），**top5 类占 72%**（CCBStage 669K/CCBCamControl 422K/ParticleEffect 363K/RoleStatePanel 157K/SceneMgr 50K）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 ParticleEffect 363KB 缺口根因：在**基类 sg_particle_scene**（27 成员 vs 363 个被访问偏移）—— 已访问但未标注"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "sg_particle_scene 访问集中：+0x19A8..19E8 密集簇（fstps/mov 混合）· +0x1F48 ×58 · +0x3AA0 ×33 · 步进 4 ×212（int/float 数组）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "4/4 团队派满（analyzer=CCBStage 缺口 · fixer=弱型真型化 · verifier=P0-5 循环性扫描 · reviewer=6 条签名重核）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "✅ float ×6 证据确认（190 命中）：fadds/flds/fcomps 0x60-0x74(%esi) x87 d8 opcode · 具体地址 41b664/41b678/41b683/440006/440581/440595 —— analyzer 质疑已回答（他们扫 32/231 窗口未覆盖）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 analyzer 曝光第三族数组（stride 280=35×8）：B 段 0x4DFF90 AssignSlotData 体内 this+0 起 280B 步进 · 与 208B 两区不同族 ⇒ CCBStage 缺口 ≥3 类数组"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "B 段定谳：0x4DFF90 AssignSlotData@CCBStage（size 0x51）= int __thiscall(char)（ret $0x4=1 参 A 级）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "CCBStage 208B 数组落盘：m_TaskArrA@+5240（0x1478）/ m_TaskArrB@+8568（0x2178）各 8 元素 · 字节覆盖 87.46→87.48% · CCBStage 缺口 669→665KB"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "fixer R50：204 条（RoleSystem 58 + PalScriptMgr 146）· A 级 74（36%）· %esp/%ebp 剔除 191 站（累计 260 站误判避免）· PalScriptMgr 可改率 36%（远超 RoleSystem 4%）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 R51 59 条弱型改型致严重回归（S2 117→111 · 总错误 1268→**1885 +617**）⇒ 已回退（真衰退非遮蔽释放）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "根因定谳：**改型破坏成员用法** —— int→struct 31 条 + float→struct 16 条破坏算术/比较；opcode 证据只查一种用法形（lea+call 子对象）未查其他（算术/赋值）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 **教训：改型须查成员全部用法形**（不只一个 opcode）—— opcode 证据=单点证据，非全用法证据"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "fixer R51：Actor 76 + CCBRoleState 68 = 144 条 · A 级 43（30%）· 403 站误判避免累计 · 可改率三类均 24-36%（RoleSystem 4% 是特例）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "analyzer R51：280B 数组 7 字段全 A 级（基址 this+0x118 · count@+0x114 · 与 208B 族同偏移 0x14 两义铁证）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "R53 漏斗终态：404 弱型 → 43 单点 A 级 → 3 全用法安全（float）+ 0 arith（空集）= **3 条真可改（0.7%）** · 401 冻结"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "analyzer R53 三数组定案：arrA_208@+0x1478 **50 元素**（mov ecx,0x32）· arrB_208@+0x2178 **100 元素**（mov ecx,0x64）· 可恢复 31.2KB（R48 估 ~8/区大幅低估）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 **布局冲突发现**：arrA 覆盖 +5240..+15640，arrB@+8568 在其内 ⇒ 重叠。差 3328=16×208，objdump 44cff5 `mov $0x10,%ebx`（=16）疑索引偏移 ⇒ 假说：同一数组两段（arrA=elem 0..49，arrB=elem 16..115）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "count@+0x114 位面疑：写入点 5 处混形（reg 写 ×4 + 立即数 `mov [esi+0x114],0xc36d0000` = float 位型 ≈-233.0f）⇒ 计数字段可能被浮点复用"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 reviewer R56 抓到 2 blocking：①撤位面标不彻底（新旧说并存 9 处残文本）②--update-baseline 前提未满足（214→186/1268→1047 未分账 = 假改善锚定风险）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "✅ 已清理撤位面标残文本（删旧说非追加）· update-baseline 风险记账待分账"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "verifier R56 钉漏斗规则：**404 = 逐类异质判定和**（RoleSystem 排 uchar · PalScriptMgr 排 uchar+short · Actor 排 uchar+short+char · CCBRoleState 排 uchar）非单一过滤器 ⇒ 建议统一规则 C（排 uchar+short）= 405"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "analyzer R56：0x4C5C20 归属=**CCBStage::GetReadyCount**（三证收口）· 0x118=**指针表**（conf 85）· 280B elem[1] 二义待解"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "账面\"不同步\" 99 条 = **误报**（pending=提案 vs 注解=实况，两者本就不同）· 真不同步仅 R55 回退的 2 条（已修）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 fixer R57 发现**方法论缺口**：CCBTaskSlot208/280 = **数组元素型**，访问形=比例变址（%esi,%eax,4）⇒ member_usage_scan.py 固定偏移扫描**盲区**（扫不到=NONE ≠ 无访问）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "fixer R57 小批 5 条 checklist：retype_safe=0/5（任一问 ✗ 即冻结 ✓ 纪律兑现）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 reviewer R57 blocking 2：①残标连续两轮未清（R56 抓 9 处，实扫仍剩 5 处旧说）②arrC `[N]` 非法数组界=codegen 即崩"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "✅ 已修 `[N]`→`[1]` 占位（N 待定 ≤18 几何约束）· 清残（删旧说非追加）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "⚠️ arrC 两说并存未收敛：「@+280 首元素」vs 折叠说「this+0」· 0x118 二义「不可解」表述过强（4 站访问形实录含 float 2.0f 写 + 指针写 = 同槽双用法已证）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "checklist 5 问产出=结论形非问答形 ⇒ fixer/analyzer 双 false（reviewer 抓）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "analyzer R57：3 条小批 0 retype（checklist 严判据兑现）· 🔴 **35i 幂等式=通用索引算式**发现：0x41D7F7/0x420A6E 族大量站点 ⇒ arrC_280 用户面远超 A/B 段两函数"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "⚠️ 280B +0x14 m_nState = **MIXED 疑**（int 形双站 + fcomps 待补址）⇒ 值位面判据①候选（758/758.0f 同源族）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "✅ 280B +0x04..0x10 m_fSlot0..3 = **SINGLE float 确证**（fstps 四连写 0x4dfee3/4dfefd/4dff17/4dff31）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "✅ CCBStage+280 `[N]` → `[1]` 占位（codegen 崩风险修）· 清悬挂片段"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "analyzer R58 定案：arrC base=**0**（@+280 撤回）· 0x118=**bitplane_reuse**（float 2.0f 位型写+指针写同槽）· **第五族 896B 网格数组**曝光（tile/role 域）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 方法论修正：**幂等式前缀 ≠ 同族**（7i 缩放前缀通用但收口分族 ×4/×8/×128）⇒ 同族判定须看完整缩放链"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "fixer R58：位面 union 3 条 = 1 落盘（m_sCombatDialog 值证实录）+ 2 冻结（值证缺/零浮点 op）⇒ **「槽形 MIXED ≠ 值位面复用」**（半证不算）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "✅ 脚本化清残 480 处（reviewer R58 抓三连轮未净 ⇒ 正则全删）· P0-8 scanner 比例变址扩展 · P0-9 check_dual_claims.py 落地"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 只读审计定谳：**ast_transform 有跨类依赖**（L394 cross-class (T*)this gate · L448 method→VA index · L1245 allowlist_cross_class）⇒ **须串行**"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "verifier R60 并行化方案：multiprocessing + fork CoW（非 threading，CPU-bound GIL）· emit_headers/emit_cpp 可并行 · ast_transform 串行"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "修正加速比：emit 123s→~20s（8 核）+ ast_transform 60s 串行 ⇒ **端到端 199.5s→~100s（2x）**（非 5-6x）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "analyzer R60：896B 归属 **Unclear（倾向场景/网格宿主类，非 CCBStage）**· **164-stride = this+0x784E8 独立结构**（第六族=宿主类大偏移数组非嵌套字段）· CCBStage 缺口账与网格账应**分账**"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 P0-1 进展：**生成头偏移全对**（m_partyActor@+0x1A8 + Actor 820B = +0x4DC ✓ · Actor.h total size 0x334 ✓）⇒ audit「实际不是」疑**误报**（audit 编译环境/期望值算法问题，非 emit 漂移）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "verifier R61 TDD 5 测试设计：**test_parallel_determinism（golden hash 逐字节）= 并行正确性唯一判据**（其余只验边界）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "TDD 夹具累计 **35+ 用例全通过**（preflight 14 · incremental 6 · member_usage_scan 15）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "✅ analyzer R62 定谳：**896B 宿主类 = Actor**（vtable 0x56AAC4 主表 + 0x56AAD8/0x56AAF0 邻表族）· **CCBStage unrelated** ✓ 分账确认"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 **0x420930 尾并形**（movl 表; jmp 0x420290）= 删除 dtor 尾并惯例在 Actor 表族再现 ⇒ 三表=scalar/deleting 视图族 · **表邻接 +0/+0x14/+0x2C 形可作全仓「表族判据」模板**"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "verifier R62：dict span 2 case OK（嵌套 struct sum 递归 ✓ · union max ✓）· ⚠️ _tsize depth>5 降级 4 = 已知保守边界（极深 dict 树可能低估 span）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 P0-1 进一步：**两 header 尺寸全对**（Actor 0x334=820 ✓ · RoleSystem 0x1DB0=7600 ✓）⇒ **生成头正确，audit 编译上下文疑有问题**"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "audit 比较逻辑（L227）：`char c[offsetof(Cls,m) == 0x<declared> ? 1 : -1]` ⇒ 报 C2118 = 编译器实际 offsetof ≠ 注释偏移"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "疑点：audit 用 MSVC(wine cl) + pc.INCLUDE_DIRS，编译上下文可能与生成头不同源（include 顺序/宏定义）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🎯 **P0-1 根因定谳**：`sizeof(Actor) = 824`（MSVC6 实际）vs 生成头注释 `0x334=820` ⇒ **差异 4 字节 = MSVC6 对齐 padding**"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "IDA struct 视图 820B（无 padding）vs MSVC6 编译 824B（有 padding）⇒ 生成头注释与编译器实际尺寸不符 ⇒ **下游成员偏移全漂移**"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "二分探真值：816✗ 820✗ **824✓** 828✗ 832✗ 836✗ 840✗"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "analyzer R63：Actor 网格账两账闭合（896B 基址=Actor+0xE0 · 计数字段=+0xDC）· 164-stride=Actor+0x784E8 · **20-stride @+0xB4 第三族** · **IsTileInBounds 误名不采信**（实为查址器）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 reviewer R63 质疑成立：**896B=Actor 定谳错** —— 三尺寸矛盾（IDA 820 / MSVC6 824 / 896B 数组 896）⇒ 896B 元素**非 Actor**"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "reviewer 双证：①820≠896 尺寸差 76B 未解 ②单槽形与大类不称（56aac8=12.0f 位型=float 数据区）· 但 **0x41f360=dtor ✓**（call 链铁证）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 **三尺寸矛盾**：IDA 820 / MSVC6 824 / 896B 数组 896 ⇒ P0-1 padding 问题（820→824）+ 896B 归属问题（≠Actor）**两件事**"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "✅ verifier R63 定谳 **audit 假阳性**：audit wrapper 使 sizeof(Actor)=824（+4）vs 生成头真值 820 ⇒ 91 冲突=Actor 尺寸差 4 的下游假象"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "漂移链：m_partyActor@424 ✓（两侧一致）→ Actor 跨 424..1248（audit）vs 424..1244（真）→ 全下游 +4 → RoleSystem 7604 vs 7600"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 **生成头 820 是对的**（匹配二进制 IDA 视图）· **audit wrapper 使 Actor 膨胀 +4**（假阳性）—— 与 lead 直测互补（lead 测的是 wrapper 外 context）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "修复方向：① audit wrapper 须与真实 TU 同源 ② 或先校准基础类型尺寸=生成头真值 ③ 后续 audit 冲突须 objdump 复核"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🎯 **P0-1 根因定谳（最终）**：`Actor.h` **缺 `#pragma pack(1)`** ⇒ MSVC6 默认对齐 sizeof=824 ≠ 二进制 IDA 视图 820"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "RoleSystem.h:181 有 `#pragma pack(push,1)` 但 Actor.h **无** ⇒ 基类 Actor 膨胀 +4 ⇒ 全下游成员偏移 +4"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "audit wrapper 无 pack ⇒ 91 冲突=Actor 尺寸差 4 的下游假象（verifier R63 定谳）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "修复方向：① Actor.h（及同类）补 `#pragma pack(1)` ② 或 emit 逻辑按需加 pack ③ audit wrapper 与真实 TU 同源"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🎯 **三尺寸矛盾消解**：896B 宿主=**UIManager**（conf 88 · R62「Actor」撤回）· 铁证=globals.json 0xC11758=g_UIManager + ctor thunk 55×0x44B 槽循环"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "896B/164-stride 网格=**UIManager 内结构**（55×0x44B 槽区）⇒ R63 三尺寸矛盾（820/824/896）**消解**（不同类不同尺寸）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 0x41F2D0=**atexit 注册形**（push 0x41f2f0; call 0x553041）= 全局对象 CRT 构造/析构族惯例 ⇒ **「全局对象类」判据模板**"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "账面「0x56AAC4=Actor 主表」注记**疑误挂待清**（R62 遗留）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🎯 **896B 元素定谳 = tagRoleSlot**（binary_size 896 双证：annotation + IDA）· 已标成员仅 1 个（nRoleID@+0）⇒ **895 字节未标**"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "verifier 抓到（前次失败但有 closing message）：tagRoleSlot=896 精确匹配 ⇒ 896B 元素=另一类非 Actor"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 **UIManager 网格账 55×0x44B 槽区 = tagRoleSlot[55]**（896×55=49280B）· tagRoleSlot 895 字节未标 = 新缺口"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🎯 **P0-1 机理定谳**：`_need_pack` 只查「非自然对齐成员」（指针%4≠0·short%2≠0），**未查尾部 padding**"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "Actor 尾部 padding 来自 **8 字节对齐成员**（double/__int64）⇒ 820%8=4≠0 ⇒ MSVC6 补到 824"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "修法：补「binary_size % max_align ≠ 0」判据（max_align=成员最大对齐）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "analyzer R65：tagRoleSlot 23 访问偏移 · top3 +0xE0(lea)/+0x1C(**float+int 混形值位面候选**)/+0x18 · P0-6 freeze 不改型 ✓"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 **连环误归属定谳**：896B=tagRoleSlot **元素尺寸**（非宿主类）· 真数组=**Scene.m_roleSlots tagRoleSlot[64]**（57344B 实读）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "R62=Actor ❌ → R64=UIManager ❌（binary_size=4）→ R65=**tagRoleSlot 元素尺寸** ✓ · **元素尺寸≠宿主类尺寸**机制教训"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "已入 docs/knowledge/gotcha_element_size_vs_host_class_size.md"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 **pack(1) 假设证伪**（verifier wine cl 实测）：sizeof(Actor) before=824 after pack(1)=**824**（不变）⇒ 4 字节差**非对齐填充**"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "**真因**：Actor.h 成员/型合计 824 而 IDA 真值 820（某成员大 4 或多 4 字节成员）—— **型解析差**非 pack"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "lead P0-1「pack 缺失」假设**错**（已证伪）⇒ 真因需查「Actor.h 哪个成员大 4 / 多 4 字节」"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "Actor 布局面：binary_size=820 · 成员末端 788（m_nUpdateMode@784）· MSVC 824 · 生成头含 gap/nested 展开超 known_members 118 项"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🎯 **P0-1 真因定谳**：**14 个类的 vptr 占位被渲成 static**（`static <type> m_xxx; // +0x0 (vfptr slot; 布局由编译器隐式 vfptr 提供)`）⇒ 排除出实例布局 ⇒ 下游偏移全 −4"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "14 处同型：Actor/CCBStage/Camera/CameraCtrl/RenderTarget/TextureLib/CScreenMode/ScreenEffectMgr/CUtil/GRPinput 等"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "修法：vptr 占位**不发 static**（注释已说「布局由编译器隐式 vfptr 提供」⇒ 应排除出 emission，非 static）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "analyzer R66：「单成员大 4」假设证伪 · root_cause=**static 渲染缺陷 + 全类偏移失真**（audit 146/145 全员冲突）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "verifier R66：Scene.m_roleSlots **已落盘**（+224 tagRoleSlot[64]）· A 级 objdump 全证（lea 0xe0 + add $0x380）· 任务前提错"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 **更正**：`static` vptr 占位是**故意设计（F59）非 bug** —— L3085-3120 设计链实读"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "F59（108 轮）：vptr 占位改 static（不占字节）⇒ 编译器隐式 vfptr 独占 +0 ⇒ 偏移归位 ✓"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "F62（110 轮）：放宽到「类声明 virtual」**实测更差**（SceneMgr m_nRoleCount −4→−24）⇒ 回退 F59 窄门"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "**F63 待做**：修 gap 记账才能真正放宽 ⇒ sizeof=824 是**已知边界**非「static 缺陷」"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "lead「P0-1 真因=static 缺陷」判断**错**（未读 emit 注释就定性）—— 教训：动前必读设计意图"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "✅ 教训入 knowledge：**动前必读设计意图**（R66/R67 两次 lead 误判）—— gotcha_read_design_intent_before_patching.md"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "实证：emit_headers.py L3085-3120 注释写明 F59 设计 · F62 试过并回退 · F63 待做 —— lead 未读就定性 = 重复 F62 错误路径"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "P0-5 全仓扫描：13528 成员/方法 · **循环证据 57** · **A/B 级全 0**（无 evidence_level 标注）—— 证据等级标注缺失是大缺口"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "analyzer R69：CCBStage 缺口 8 区（非 arrA/B/C）· **+0x19A8 新最高频（×29）** · 0xCBC-0xCC4 热指针块（×35）· top3=+0x19A8/+0xCBC/+0xCC0"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 **13528 全部无 evidence_level 标注** ⇒ 证据分级规则未落地到 annotation（规则有但标注缺）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🎯 **P0-1 机理最终定案：下游 +4（方向反了）** —— wine cl 隔离 5 结构实证"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "三重叠加：vptr 占位(static)=**0** · 隐式 vptr=**+4** · gap=**+3** → 编译前区 7 vs 声明 4"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "🔴 **「static 排除⇒−4」方向错**：static 贡献 0，膨胀主导项=**隐式 vptr(+4)**（注解无独立 vptr 概念，用 static+gap 表示 vptr 区，编译器另加 4 真 vptr）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "修法：**承认隐式 vptr 4 字节，去掉重复 gap/占位**（非「去 static」）"
+    },
+    {
+      "ts": "2026-10-21",
+      "event": "reviewer R69 抓「TDD 形式伪」（8 用例空壳）⇒ 已改真实可测（10.09s）"
     }
   ],
   "rolling_metrics": [
@@ -324,27 +808,74 @@
       "next": "逐条核 proposed_signature（参数类型须调用点证据）后再用，禁批量"
     },
     {
-      "id": "P0-1",
-      "title": "生成头布局 vs 注解偏移漂移（根因未定）",
-      "detail": "audit_type_layout 用编译器 offsetof（A 级）报 91/185 冲突。已排除：①累加算法（lead 初判错）②对齐自插 padding（pack=1 实验否定）。注解偏移与 objdump 一致（+0x4DC=0x4DC ✓）⇒ 病灶在生成头 emit 侧。",
-      "impact": "阻塞 RoleSystem/CCBRoleState/PalScript 布局验证",
-      "next": "emit 侧逐成员对账（PAL3_EMIT_TRACE 开关已备）"
+      "id": "P0-6",
+      "title": "改型须查成员全部用法形（单点 opcode 证据不足）",
+      "detail": "59 条弱型改型致 +617 错误。int→struct 31 条 + float→struct 16 条破坏算术/比较用法。opcode 证据（lea+call 子对象）只证明一种用法形，未查其他（算术/赋值/比较）。",
+      "impact": "阻塞弱型真型化批量落盘",
+      "next": "改型前查成员**全部用法形**（objdump 全指令扫描：算术/比较/赋值/取址/传参）；或只改「用法单一」的成员"
     },
     {
-      "id": "P0-4",
-      "title": "asm retn N 与调用点一致性未核（push 计数法不可靠，需 IDA MCP 栈帧分析）",
-      "detail": "objdump push 计数实测不可靠：SetParam claim=2/push=4 · InitRound/ctor/Destroy 调用点间 push 数不一致。push 可能是序言保存寄存器非参数。正解=IDA MCP 栈帧分析（解析栈帧/参数）。",
-      "impact": "阻塞参数个数修正落盘",
-      "next": "配 REA_IDA_MCP_CONFIG 接 IDA MCP，用其栈帧/参数解析核对；落盘前逐条核调用点实参数"
+      "id": "P0-7",
+      "title": "arrA/arrB 数组范围重叠（疑同一数组两段）",
+      "detail": "arrA@+5240（50×208）覆盖 +5240..+15640，arrB@+8568（100×208）在其内。差 3328=16×208，objdump 44cff5 mov $0x10,%ebx（=16）疑索引偏移。假说：同一数组两段（arrA=elem 0..49，arrB=elem 16..115），非独立两数组。",
+      "impact": "CCBStage 数组成员布局冲突",
+      "next": "analyzer 澄清 lea 形寄存器语义 + 循环结构"
+    },
+    {
+      "id": "P0-10",
+      "title": "ast_transform 跨类依赖阻塞并行化",
+      "detail": "L394 cross-class (T*)this gate · L448 method→VA index · L1245 allowlist_cross_class ⇒ stage1-5 有跨类类型解析/全局索引，**不可并行**（须保持串行）",
+      "impact": "codegen 并行化仅 emit 部分（123s）可并，ast_transform 60s 串行",
+      "next": "若要全并行须重构 ast_transform 解耦跨类依赖（高成本）；或接受 2x 加速（emit 并行）"
+    },
+    {
+      "id": "P0-11",
+      "title": "✅ 896B 元素定谳 tagRoleSlot（含 895B 未标缺口）",
+      "detail": "tagRoleSlot binary_size=896（annotation+IDA 双证）· 已标仅 nRoleID@+0 ⇒ **895 字节未标**。UIManager 网格账 55×0x44B 槽区 = tagRoleSlot[55]（896×55=49280B）。",
+      "impact": "tagRoleSlot 895B 缺口 + UIManager 网格账归属",
+      "next": "tagRoleSlot 成员取证（objdump 访问形）+ UIManager 网格账独立建"
+    },
+    {
+      "id": "P0-5",
+      "title": "🔴 证据等级标注缺失（13528 全无 evidence_level）",
+      "detail": "全仓扫描 13528 成员/方法：A 级 0 · B 级 0 · 无标注 13528 · 循环证据 57。证据分级规则已有（docs/knowledge）但 annotation 层未落地标注。",
+      "impact": "证据可信度无法区分",
+      "next": "批量补 evidence_level 标注（A/B 分级）"
+    },
+    {
+      "id": "P0-1",
+      "title": "🎯 机理定案：下游 +4（隐式 vptr 膨胀，方向非 −4）",
+      "detail": "wine cl 隔离 5 结构：static=0 · 隐式 vptr=+4 · gap=+3 → 7 vs 4。「static 排除⇒−4」方向错，膨胀主导=隐式 vptr(+4)。修法：承认隐式 vptr 4 字节，去掉重复 gap/占位。",
+      "impact": "14 类下游 +4 漂移",
+      "next": "注解 vptr 区表示与编译器一致（去重复 gap/占位）"
     }
   ],
   "env_todo": [
     {
       "id": "ENV-1",
       "title": "REA_IDA_MCP_CONFIG 未配（DSH 启动时设）",
-      "detail": "IDA MCP HTTP 在线（127.0.0.1:13337），resources 可读（ida://databases 等 8 项），但 rea 的 IDA provider 未配 ⇒ xrefs/栈帧分析不可用",
+      "detail": "IDA MCP HTTP 在线（127.0.0.1:13337），resources 可读（ida://databases 等 8 项），但 rea 的 IDA provider 未配 ⇒ xrefs/栈帧分析不可用 | 已配 ~/.config/rea/ida-mcp.json + .bashrc(守卫前)/.profile/.zshrc/.zprofile + wrapper dsh-ida。根因：DSH 从 zsh 启动，前两轮 bash 配置无效。 | 格式定谳：envelope 键 ida-pro-mcp（schema 硬编码）。经 readIdaConfiguration 实测 ok:true。",
       "impact": "阻塞 P0-4（调用点核对）· 影响 P0-1（布局对账）",
-      "next": "DSH 重启时 export REA_IDA_MCP_CONFIG=/tmp/ida_mcp_config.json（mcpServers.idapro.url=http://127.0.0.1:13337/mcp）"
+      "next": "DSH 重启时 export REA_IDA_MCP_CONFIG=/tmp/ida_mcp_config.json（mcpServers.idapro.url=http://127.0.0.1:13337/mcp）",
+      "status": "config_validated_awaiting_restart"
     }
-  ]
+  ],
+  "evidence_model": {
+    "trusted": [
+      "IDA 函数边界",
+      "IDA xref 调用关系",
+      "asm ret N",
+      "objdump 访问形",
+      "fld/fstp/mov opcode",
+      "值位型常量",
+      "vtable 槽位"
+    ],
+    "circular_ours": [
+      "IDA 修饰名",
+      "IDA stack_frame 参数名/型",
+      "IDA/decomp 反编译",
+      "apply_annotations 写入的任何\"验证\""
+    ],
+    "workflow": "IDA 边界/xref → 汇编推断签名（ret N + opcode 形 + 调用点 push）→ 语义推名字（B 级）"
+  }
 }

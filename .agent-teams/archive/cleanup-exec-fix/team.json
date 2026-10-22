@@ -1,0 +1,215 @@
+{
+  "name": "cleanup-exec-fix",
+  "id": "cleanup-exec-fix",
+  "description": "PAL3 匹配反编译「清理工作」执行阶段。按 docs/specs/2026-09-15-cleanup-handoff.md 的 TODO 队列串行推进 t3→t12。验收硬线 L1>=5、ok>=53/198（分母 198 变化即判不可比）。用户指令：说中文。仓库 /home/peng/workspace/PAL3Decomp，HEAD 9cb436305。",
+  "captainSessionId": "session-14b3e63a-d732-4258-b1da-29c820f7df06",
+  "createdAt": 1789457226679,
+  "members": [
+    {
+      "id": "",
+      "name": "eng-pipeline",
+      "role": "管线/IDA 层与基建工程师（t3 导入器显式失败、t4 export 红线、t5 门禁与基建）",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4.1-flash",
+      "joinedAt": 1789457226679,
+      "status": "removed"
+    },
+    {
+      "id": "",
+      "name": "eng-codegen",
+      "role": "codegen 工程师（t6 证据门控双轨、t7 破坏性注释、t8 死门禁与吞错）",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4.1-flash",
+      "joinedAt": 1789457226679,
+      "status": "removed"
+    },
+    {
+      "id": "",
+      "name": "verifier",
+      "role": "独立验证（t9，唯一允许独占共享窗口的执行单元）",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4.1-flash",
+      "joinedAt": 1789457226679,
+      "status": "removed"
+    },
+    {
+      "id": "",
+      "name": "reviewer-annotation",
+      "role": "独立复核：注解/归属路（t10）",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4.1-flash",
+      "joinedAt": 1789457226679,
+      "status": "removed"
+    },
+    {
+      "id": "",
+      "name": "reviewer-pipeline",
+      "role": "独立复核：管线/codegen 路 t3–t8（t11）",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4.1-flash",
+      "joinedAt": 1789457226679,
+      "status": "removed"
+    },
+    {
+      "id": "",
+      "name": "integrator",
+      "role": "整合落地与清理总账（t12）",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4.1-flash",
+      "joinedAt": 1789457226679,
+      "status": "removed"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "t1",
+      "profileSeedId": "t3",
+      "subject": "t3 导入器显式失败：apply_annotations.py 不再静默产出不完整 UDT",
+      "description": "仓库 /home/peng/workspace/PAL3Decomp。全程中文。先读 docs/specs/2026-09-15-cleanup-handoff.md §4 t3 与 §5 硬纪律。\n\n【根因链（已定谳，勿重新调研）】成员偏移/末端越界 → create_udt() 仍返回 true 但产出不完整 UDT（get_size()==-1、get_udt_details()==false）→ pipeline/ida/apply_annotations.py:866-877（TAUDT_FIXED）无条件把 -1 降级成 actual_size=binary_size → :888 set_named_type 静默失败留下空壳 → SceneObj[256] 取元素尺寸得 -1 → :797-800 报 invalid member_size FATAL。\n\n【要求】\n1. 判据用 get_udt_details() 成功 + 实际落入成员数 == 期望推入成员数。不要用「见 get_size()==-1 即 fail」——:867-868 注释承认 union 同偏移变体时 -1 属正常现象。\n2. 保留独立前置检查 member_end = 声明偏移 + 成员解析尺寸 > binary_size（末端口径；偏移口径会漏掉 SaleUI 那类「末成员尺寸撑破边界」）。\n3. 统一 :654-656（diff-mode，正确拒绝 -1）与 :866-877（无条件降级）的行为。\n4. 报错同时打印 offset / member_end / binary_size 三元组 + 输出可操作的不完整清单。\n5. 提供逐 struct 留痕覆盖开关（默认拒绝 apply），每次覆盖都要记录「该 struct 已登记为已知待修」。\n\n【判据】现在 3 个 UDT 都已完整 → 本改动不应改变任何计数（881/881 保持）；L1 >= 5、ok >= 53/198；.i64 mtime 必须刷新。\n\n【硬纪律】退出码一律 `cmd; echo \"$?\"` 或 ${PIPESTATUS[0]}，cmd | tail 会让 $? 变成 tail 的退出码。禁止 git checkout -- / git restore / git stash / git clean -fd（本会话已因此两次销毁未提交工作）；需要干净基线用 git show HEAD:<path> 或 /tmp 副本。IDB original/PAL3.exe.i64 单写者。跑 apply/export/codegen/probe/match 必须独占共享窗口，开始与结束都 send_message 给 captain 通报。注意 pipeline/ida/_logs/apply_status.json 不是 apply 写的，由独立脚本 pipeline/ida/check_apply_status.py 生成（用完确认无残留 idat）；判断 apply 真生效看 .i64 mtime + apply_annotations_log.txt 的 [3] Structs 行。\n\n【交付】data/status/_cleanup_fix_struct_import.json + 向 captain 汇报实测数字（贴命令与输出）。",
+      "status": "pending",
+      "dependencies": [],
+      "attempt": 4,
+      "createdAt": 1789457226679,
+      "updatedAt": 1789457277897,
+      "reassigning": false,
+      "handoffId": "be15d572-5832-430d-b353-a93c9721f722"
+    },
+    {
+      "id": "t2",
+      "profileSeedId": "t4",
+      "subject": "t4 export 红线：export_full.py 直读 data/annotations（等价重构或有意取舍决策页）",
+      "description": "先读 docs/specs/2026-09-15-cleanup-handoff.md §4 t4 与 docs/specs/2026-09-15-cleanup-scan-architecture-rulings.md 裁决 (a)。\n\n【问题】pipeline/ida/export_full.py 有 9 处直接读 data/annotations/（:150/:159/:200/:213/:216/:281/:485/:688/:718；:148 注释自称 authoritative source for signatures），违反 CLAUDE.md「export 不读 annotation」；且 docs/knowledge/MEMORY.md 的 ## Decisions 段为空（无取舍记载）。\n\n【出口二选一】\n(a) 等价重构（只从 IDB/apply 产物取数）+ 导出结果等价性证明（计数对照/diff）+ 全链不回退；\n(b) 证据充分的「有意取舍」→ 决策页交 integrator 落盘到 docs/knowledge/。\n\n【边界】不改注解；不做与红线无关的重构；若必然连带其它模块，先回报 captain。判据 L1 >= 5、ok >= 53/198。\n\n【硬纪律】退出码一律 $? / PIPESTATUS[0]；禁止 git checkout -- / git restore / git stash / git clean -fd；共享窗口独占并通报。\n\n【交付】data/status/_cleanup_fix_export_redline.json。",
+      "status": "pending",
+      "dependencies": [
+        "t1"
+      ],
+      "attempt": 0,
+      "createdAt": 1789457226679,
+      "updatedAt": 1789457277897,
+      "handoffId": "fd7237c7-5e25-46c6-9238-812c0e29f083",
+      "reassigning": false
+    },
+    {
+      "id": "t3",
+      "profileSeedId": "t5",
+      "subject": "t5 门禁与基建：坏符号链接（发行阻断）+ 假通过门禁 + 棘轮基线 + 吞错",
+      "description": "先读 docs/specs/2026-09-15-cleanup-handoff.md §4 t5 与 docs/specs/2026-09-15-cleanup-scan-architecture-rulings.md 裁决 (c)。共 9 项：\n\n1. 【发行阻断】data/status/baselines/latest.json 索引 mode 120000 但其 blob 是 462044 字节完整 JSON（非路径串）→ git -c core.symlinks=true clone exit 128（文件名过长）、克隆后该路径不存在；它指向的 20260915_100946.json 未入库（dangling）。修法：改成 100644 普通文件，正文用真实 baseline JSON（坏 blob 与已跟踪的 20260915_075701.json 逐字节相同，sha256 37c360fc38647c9574f79891338b9952cbf75a22a0bfe23371dd8f5bacad5894，已由 captain 实测，零信息损失）；并修产生路径 tools/regression_detector.py:120-128（符号链接分支改为一律写普通文件）。\n   判据（合取式四项全过）：① git ls-files -s = 100644 ② git -c core.symlinks=true checkout-index -f --prefix=/tmp/x/ -- <path> exit 0 ③ git -c core.symlinks=true clone -q --no-hardlinks . /tmp/c exit 0 且该路径落成普通文件（stat -c %F 非 symbolic link）且 json.load 成功 ④ git archive HEAD | tar -x 无错解出。防复发：修完跑一次 probe s2 再确认仍为 100644。收尾【撤销本检出为绕过该缺陷所设的 git config core.symlinks false】，用默认配置复验——靠本地配置兜住的「通过」不算通过。当前实测 core.symlinks=false，git archive HEAD 成功但 tar -x exit 2。\n2. tools/audit_layout.py:59-63 缺 asm/pal3/ida_structs.json 时 WARN+return {} → 比对静默跳过 → exit 0 假通过（改为显式失败，区分「缺前置产物」与「真零问题」）；:200-205 的 binary_size != ida_size 与同源 TIL 比对属循环（恒等通过）→ 修其循环性。\n3. tools/compile_regression.py 棘轮基线 data/status/compile_baseline.json 冻结在 2026-09-01（204 文件/58 ok）vs 当前 198/53 → 恒定 REGRESSIONS/exit 1（已失去探测能力）→ 刷新或加棘轮。\n4. pipeline/decomp_quality.py:110 判据 max(offsets) > cls_size * 2 与注释语义不一致 → 收紧到 > cls_size（实测 7→17 个函数；属恢复探测能力、不算回退，须给「修复前静默通过/修复后被标记」对照，至少覆盖 gbVFileSystem、SoundMgr）。\n5. pipeline/cli.py: :315-320 apply 失败无 sys.exit（破坏 && 链）→ 非零退出；:375-386 后置钩子不检查 returncode → 检查并传出（不吞错）；:607-610 iterate 指向不存在的模块 → 修或标注不可用。\n6. pipeline.toml 缺失时（设计上 gitignored）顶层 import 未捕获 → 裸 traceback（config.py 已有合格 ConfigError）；pipeline/compare_pal3.py:243 census 读取无守卫；tools/annotation_diff.py 无法区分「无变更」与「读不到 git」（git 不可用时把 898 个结构体全报为新增且 exit 0）。\n7. 85MB original/PAL3.exe.i64.polluted.bak：已跟踪（git cat-file -s=85833047，来自提交 0d1294b0e）→ 仅 git rm --cached + 补 .gitignore（工作区文件保留、不重写历史、提交留 t12），并产出已跟踪 >10MB blob 清单（只报告）。仓库根空文件 __vftable（tracked/0B/无活跃产生路径）删除。\n8. tools/vc6 的 1258 条小写 shim 是刻意的 Linux 大小写适配（保留），但无存在性门禁 → 加前置检查（指向 tools/setup_wine_vc6.sh，响亮失败、不静默兜底）。\n9. IDB 可复现性：写入 docs/decompilation_workflow.md（从 raw IDB 重建的最小路径 + 「apply 真成功」的观测点）。\n\n【判据】L1 >= 5、ok >= 53/198（门禁变严导致的指标下降不算回退，但须给正向对照）。\n\n【硬纪律】退出码一律 $? / PIPESTATUS[0]；禁止 git checkout -- / git restore / git stash / git clean -fd；禁止删除 backup/local-line-20260904 分支与 10 条 stash；共享窗口独占并通报。\n\n【交付】data/status/_cleanup_fix_infra.json + docs/decompilation_workflow.md。",
+      "status": "pending",
+      "dependencies": [
+        "t2"
+      ],
+      "attempt": 0,
+      "createdAt": 1789457226679,
+      "updatedAt": 1789457277897,
+      "handoffId": "944c0777-f6d6-444b-995e-844fca62f9a1",
+      "reassigning": false
+    },
+    {
+      "id": "t4",
+      "profileSeedId": "t6",
+      "subject": "t6 codegen 证据门控双轨：严格 3 站点 + AR-002 只声明不迁移",
+      "description": "先读 docs/specs/2026-09-15-cleanup-handoff.md §4 t6 与 docs/specs/2026-09-15-cleanup-scan-architecture-rulings.md 裁决 (a)/(e)。目标文件 pipeline/gen/ast_transform.py。\n\n【轨道 1 = 严格 3 个站点】pal3/src/Combat/CCBAI.cpp:246/444/646 → AStarPathFinder::GetHeuristicIdx（VA 0x4014F0）。实现口径必须是 (ret-N 闸门通过) ∧ (callee 占 vtable 槽)。实测只加 ret-N 闸门会放行 234 个站点（违反「其余不动」），加该条件后恰 3 个（预期 [MISATTRIBUTED] -3，[ROWTABLE] 不变）。\n根因是分支覆盖缺口：_ret_param_slots() 只在 pointer_expression 分支被调用（:477-487），(T*)this 走 Branch B 从不查阅逐被调方二进制证据。\n3 站点证据：0x4014F0 原字节 32 C0 C2 08 00（xor al,al; retn 8，3 字节桩）；真实指令序列恰 2 个参数（push edi / push ebx / mov ecx,esi / call sub_4014F0 / test al,al / jnz）与 retn 8 一致，生成源码渲染成 3 参 → C2660 是 decomp/IDB 侧渲染产物；C2352 = 0（该形态自称的「精确信号」从不出现）；CCBAI.bases=[] 且 CCBAI.vtables=[]（无继承）；vtable 0x56A600 = [0x401030, 0x4014E0, 0x4014F0]。\n\n【轨道 2】其余约 335 个站点一律不动；文件级 blanket 反转未经用户授权不得实施（AR-016 保持 DOCUMENT）。\n\n【同任务内还要做】\n① 判定顺序翻转：逐站点证据门控（口径：该 VA 被 >= 2 个类的虚表 slots 持有才走行表形态；实测 6 支持/3 不支持 → 后者保持现状记 GAP-ROWTABLE-PRECEDENCE-01），必须显式排除 ctor/dtor（否则凭空造 17 个假 [ROWTABLE]）。\n② AR-002 只声明不迁移：:52（ret-N 证据源）、:148（类层次）加显式声明注释（写明读什么/为何必须读/为何当前不可迁移）+ 用 harness（驱动真实 transform_oop_calls 跑全部 3594 个 decomp JSON，纯内存）证明零输出差异。\n③ CG-023：_rowtable_family() 读不到文件时返回空集 → 588 站点 / 328 文件静默改判 → 改 RuntimeError。\n④ 该文件 5 个带类型 except（:58/:83/:90 保留+stderr 告警；:117 不删、记 C3b 冗余）。\n⑤ 测试断言同步（test_pipeline.py:99↔:353+场景:98；补 :421 ROWTABLE 断言；:322/333↔:589-596；:260↔:562-563；__main__ L543-603；新增 3 站点断言）。\n\n【AR-002 不可迁移的实测依据（写进注释）】换 export 源 → 15/3594 文件漂移（含「静默放行」危险方向）；pack-only → 169；类层次源 → 1；两者都换 → 16；84 个 (cls,method) 闸门判据变化；pack-only 丢 89.8% 证据；ida_structs.json.bases 仅 172/179 且 7 条为空。\n\n【判据】L1 >= 5、ok >= 53/198。\n【硬纪律】退出码一律 $? / PIPESTATUS[0]；禁止 git checkout -- / git restore / git stash / git clean -fd；共享窗口独占并通报。\n【交付】data/status/_cleanup_fix_codegen_policy.json。",
+      "status": "pending",
+      "dependencies": [
+        "t3"
+      ],
+      "attempt": 0,
+      "createdAt": 1789457226679,
+      "updatedAt": 1789457277897,
+      "handoffId": "24d2c94d-875a-4fa0-80ae-3e992c302398",
+      "reassigning": false
+    },
+    {
+      "id": "t5",
+      "profileSeedId": "t7",
+      "subject": "t7 破坏性注释与硬编码模式表：stage3_cleanup.py 边界（判据豁免）",
+      "description": "先读 docs/specs/2026-09-15-cleanup-handoff.md §4 t7。目标文件 pipeline/gen/stages/stage3_cleanup.py。\n\n- [VFTABLE] 发射在 :722-749（:722-743 按括号深度整段注释、:745-749 正则注释残留单行）；仅约 2.5% 是真 vptr 存根；其余形状：控制流头（if/while）约 168、真实数据访问约 546、__vftable 当数据值 163、cast 44。\n- 铁证锚点：CCBCamControl.cpp:972-975 是未注释的 float 写入（-1098907648=0xBE800000、1065353216=0x3F800000=1.0f），而 :983-986 同类模式经 __vftable 访问后被注释；CCBParabolaWindow.cpp:45-46 整条 if (v5->__vftable) { Release(); } 被注释。\n- [AUTO-COMMENTED]（233）中 89 处丢弃被使用的赋值（例 CCBStage.cpp:868 的 Color = v22.gbColorQuad(...)->Color;，其后仍在用该值）。\n- [IDA_MISID] 84 处靠 6 个硬编码模式表（:752-759）绕开 IDA 层，抽到的是真实代码（std::_Xlen();、ExceptionList = NtCurrentTeb()->NtTib.ExceptionList;）；子类 (i) 15 处（NtTib/ExceptionList，注释后留悬垂引用）、子类 (ii) 69 处（_Xlen/_Xran/Concurrency，decomp 无对应函数记录）。\n- 死分支：:287-290 的 'insert'/'comment_vft' 无产生者（[IDA_VFTABLE] 实测 0）→ 删除或标注；该文件裸 except 逐处处置。\n\n【判据豁免（captain 特别裁决）】本任务不以 S2 ok 为判据（恢复被误注释的真实代码必然暴露新错误）→ ① L1 >= 5 不回退 ② 不得再有真实语义被注释 ③ 若 ok 下降，须逐条证明新错误来自恢复的真实代码。\n\n【硬纪律】退出码一律 $? / PIPESTATUS[0]；禁止 git checkout -- / git restore / git stash / git clean -fd；共享窗口独占并通报；越界（t8 的 emit_headers.py/data.py/stage5_fixup.py）不碰。\n【交付】data/status/_cleanup_fix_vftable_comment.md。",
+      "status": "pending",
+      "dependencies": [
+        "t4"
+      ],
+      "attempt": 0,
+      "createdAt": 1789457226679,
+      "updatedAt": 1789457277897,
+      "handoffId": "8480e6d8-6ac7-4980-bcf5-f0bec8f84aa3",
+      "reassigning": false
+    },
+    {
+      "id": "t6",
+      "profileSeedId": "t8",
+      "subject": "t8 死门禁/死发射分支/吞错：emit_headers.py + data.py + stage5_fixup.py",
+      "description": "先读 docs/specs/2026-09-15-cleanup-handoff.md §4 t8。\n\n- 恒假门禁：emit_headers.py:1948-1950（[IDA_USERPURGE]）与 :1951-1953（[IDA_REGPARAM]）因 :1882-1884 先行剥离 @<\\w+>/__userpurge/__usercall（:1901 还重复剥离）而永不触发（实测 0/0；溯源提交 c37802092）→ 删除死分支或修正判据使可达，并说明原意（「签名无法表达时不发射声明」）→ 不得以放宽检查方式「修好」。\n- [IDA_VFTABLE] 死发射在 stage3_cleanup.py:289-290（属 t7 文件 → 只报判定，不越界改）；emit_headers.py:1945-1946 的 [IDA_VTABLE] 是活的（.h 中 1 处，由 vtbl_ signature 恰好 1 个 1:1 触发）。两者拼写/语义不同，不得合并计数。\n- data.py:218：except 包住 json.load 加整个 for 循环（:193-218）→ 一条坏条目即丢全部 139 条 thunk 映射（10 个 thunk 名真的出现在生成 .cpp；S4 matched 命中 0/175）→ 改不静默。\n- 失实断言：data.py:226 的 \"ONLY place codegen reads from annotations\"（另有 :191 skip_functions.json、:262 globals.json、:374 functions.json）与 data.py:94 的 \"NOT from annotations\" → 改为如实的例外清单。\n- 死代码：stage5_fixup.py:71/:101/:98（dead-on-arrival，自引入提交 28c00559 起无引用；真正在用的是 :108）删除并写明重建理由；emit_headers.py:110 OVERRIDES_DIR 过期常量；4 个无引用 import。\n- 裸 except 分级处置（不放宽、不删检查）：A 级必须可见=data.py:105（吞 ida_structs.json 失败 → 整个 data store 静默退化为空）、data.py:218、emit_headers.py:77、data.py:76；B 级逐对象吞+计数上报=data.py:235/267/295/309/378、emit_headers.py:43/547/651/1518/1532/2125；C 级收窄异常类型=emit_headers.py:743/985/1068/1080/1222/1419/1500/1559/1570；D 级=emit_headers.py:2993（gb2312 best-effort，保留+理由注释）、:3050（非吞错，是有意义回退，保留但收窄）。\n- 主证据法（已批准）：monkeypatch emit_headers.OUTPUT_DIR → /tmp 并预置当前头文件做前后 diff，证明逐字节中性（已审计：全部写/删路径均派生自 OUTPUT_DIR；data.py 零写操作）→ 不写 pal3/src、不跑 probe。\n\n【判据】L1 >= 5、ok >= 53/198。\n【硬纪律】退出码一律 $? / PIPESTATUS[0]；禁止 git checkout -- / git restore / git stash / git clean -fd；共享窗口独占并通报。完成后必须 send_message 给 verifier 通报「IDB 已释放 + 语料已重建」。\n【交付】data/status/_cleanup_fix_dead_gates.md。",
+      "status": "pending",
+      "dependencies": [
+        "t5"
+      ],
+      "attempt": 0,
+      "createdAt": 1789457226679,
+      "updatedAt": 1789457277897,
+      "handoffId": "2c1ca845-81a0-4fa9-a6ad-fc329e504eb6",
+      "reassigning": false
+    },
+    {
+      "id": "t7",
+      "profileSeedId": "t9",
+      "subject": "t9 独立验证：逐条核验修复声明 + 发行判据 + 基线硬线",
+      "description": "先读 docs/specs/2026-09-15-cleanup-handoff.md §4 t9、§5、§7。你是唯一允许独占共享窗口的执行单元。\n\n【判据】L1 >= 5、ok >= 53/198（分母 198 变化即判不可比）。\n\n【apply 诚实读数】现阶段 3 个 UDT 已完整 → t3 落地不应改变计数（881/881）。历史口径备查：只改导入器（注解未修）时期望 879→876/fail 2→5（876/881 诚实），注解+导入器同时落地 → 881/881 且诚实。盘上任何来自已不存在文件状态的 apply_status 不得当当前状态；apply_status.json 不是 apply 写的，由 pipeline/ida/check_apply_status.py 生成。\n\n【必做】\n- 逐条核验各修复声明的二进制证据 ↔ 最终代码/decomp 现象（不一致即失败+反例）。\n- git status 变更须全在声明 inScope 内（声明外点名）。\n- 退出码一律 ${PIPESTATUS[0]} / $?；cmd | tail 会让 $? 变成 tail 的退出码（本会话已因此误判两次，一次把 clone 128 读成 0）。\n- apply 前后核对 .i64 mtime（注意：.til/.nam/.id0-2 边车只在 IDA 非正常退出时残留，「边车存在=上次崩过」，不是常规指纹）。\n- 开工前记录被改文件 mtime+sha256。\n- 门禁变严不算回退（decomp_quality ×2→×1：7→17；audit_layout 假通过→显式失败；compile_regression 基线刷新）但须给正向对照；t7 适用其判据豁免。\n\n【发行判据合取式】同 t5 四项：① git ls-files -s=100644 ② git -c core.symlinks=true checkout-index -f --prefix=/tmp/x/ -- <path> exit 0 ③ git -c core.symlinks=true clone -q --no-hardlinks . /tmp/c exit 0 且该路径落成普通文件（stat -c %F 非 symbolic link）且 json.load 成功 ④ git archive HEAD | tar -x 无错解出。必须撤销本地 core.symlinks=false 后用默认配置复验（修复前实测 clone exit 128、路径不存在）。\n\n【窗口】必须独占（不得与其他 export/codegen/probe 并发）；等 eng-codegen 通报「IDB 已释放 + 语料已重建」后开始；开始与结束都 send_message 给 captain 通报。读者在窗口内先 cp -r 快照到 /tmp 再分析。\n\n【硬纪律】禁止 git checkout -- / git restore / git stash / git clean -fd；禁止删除 backup/local-line-20260904 分支与 10 条 stash。\n【交付】data/status/_cleanup_verify_fixes.json。",
+      "status": "pending",
+      "dependencies": [
+        "t6"
+      ],
+      "attempt": 0,
+      "createdAt": 1789457226679,
+      "updatedAt": 1789457277897,
+      "handoffId": "96f8149e-e1f7-4670-b215-e0eddf746b98",
+      "reassigning": false
+    },
+    {
+      "id": "t8",
+      "profileSeedId": "t10",
+      "subject": "t10 独立复核（注解/归属路）：SceneObj / UICursor / SaleUI + t3",
+      "description": "先读 docs/specs/2026-09-15-cleanup-handoff.md §4 t10、§2.2/§2.3/§3.2、§5；docs/specs/2026-09-15-cleanup-scan-t5-rules.md；docs/specs/2026-09-15-cleanup-scan-architecture-rulings.md 裁决 (b)（binary_size 无真实尺寸来源）与裁决 (d)（M1/M4 分列）。\n\n【复核对象】SceneObj / UICursor / SaleUI 三个 struct 的注解修复（data/annotations/structs/*.json 与 data/annotations/CHANGE_LOG.md），以及 t3 导入器改动是否掩盖了注解缺陷。\n\n【必须回答】\n1. 证据充分性是否达 A 级门槛（指令级 reg+disp32 / 绝对地址）。\n2. 是否引入新矛盾：pipeline/check_annotations.py 新增错误 / 布局越界 / overlap / 伪语义命名 / 破坏性 workaround。\n3. 零信息损失：SaleUI 删除的 35 个成员是否逐条有据；是否显式回应了「binary_size 偏小」竞争假设；SceneObj 是否未放大尺寸；UICursor 是否走改尺寸而非删成员。\n4. 针对最新实现状态裁决，不是针对历史描述。\n\n【手段限制】只读 + /tmp 副本。不得启动 IDA；不得跑会写共享产物的命令（apply/export/codegen/probe/match）。需要这些读数的结论标注「待 verifier 窗口」。\n\n【硬纪律】禁止 git checkout -- / git restore / git stash / git clean -fd；禁止删除 backup/local-line-20260904 分支与 10 条 stash；退出码一律 $? / PIPESTATUS[0]。\n\n【交付】data/status/_cleanup_review_attribution.json。verdict=pass 或 needs_revision；needs_revision 必须给结构化 findings（id/severity/file/line/problem/requiredFix）。",
+      "status": "pending",
+      "dependencies": [
+        "t7"
+      ],
+      "attempt": 0,
+      "createdAt": 1789457226679,
+      "updatedAt": 1789457277897,
+      "handoffId": "6c44e1bf-69e7-46a7-839d-11f1b324e39d",
+      "reassigning": false
+    },
+    {
+      "id": "t9",
+      "profileSeedId": "t11",
+      "subject": "t11 独立复核（管线/codegen 路）：t3–t8 逐项核验 + AR-016 授权检查",
+      "description": "先读 docs/specs/2026-09-15-cleanup-handoff.md §4 t11、§5、§7；docs/specs/2026-09-15-cleanup-scan-architecture-rulings.md（裁决 (a) export 红线、(b) 尺寸证据、(c) 符号链接）。\n\n【必须逐项核验】\n- t3：是否用 get_udt_details() 成功 + 实际落入成员数 == 期望推入成员数（不是「见 get_size()==-1 即 fail」）；末端口径 member_end > binary_size；:654-656 与 :866-877 两条路径真正统一；逐 struct 留痕覆盖默认拒绝。\n- t4：等价重构 + 等价性证明，或证据充分的「有意取舍」决策页。\n- t5：发行判据合取式四项 + git archive；门禁只加强未放宽；85MB 仅去跟踪（未删工作区文件、未重写历史）；backup 分支与 10 条 stash 未被删除。\n- t6：轨道 1 严格只有 3 个站点；虚 callee 保留 Cls::；显式排除 ctor/dtor（否则凭空造 17 个假 [ROWTABLE]）；data.py 断言已改。\n- t7：只允许真 vptr 存根走注释路径，且判据豁免被正确适用。\n- t8：恒假门禁删除或修正为可达，严禁以放宽检查方式「修好」。\n- AR-016 检查：是否有未授权的文件级 blanket 反转。\n\n【手段限制】只读 + /tmp 副本。不得启动 IDA；不得跑会写共享产物的命令（apply/export/codegen/probe/match）。需要这些读数的结论标注「待 verifier 窗口」。\n\n【硬纪律】禁止 git checkout -- / git restore / git stash / git clean -fd；禁止删除 backup/local-line-20260904 分支与 10 条 stash；退出码一律 $? / PIPESTATUS[0]。\n\n【交付】data/status/_cleanup_review_pipeline_codegen.json。verdict=pass 或 needs_revision；needs_revision 必须给结构化 findings。",
+      "status": "pending",
+      "dependencies": [
+        "t7"
+      ],
+      "attempt": 0,
+      "createdAt": 1789457226679,
+      "updatedAt": 1789457277897,
+      "handoffId": "859f8da8-e2d0-45dd-9a76-624e187f0ad6",
+      "reassigning": false
+    },
+    {
+      "id": "t10",
+      "profileSeedId": "t12",
+      "subject": "t12 整合落地与总账：基线入版本控制 + B4 删除批次 + 知识沉淀 + 四类计数自洽",
+      "description": "先读 docs/specs/2026-09-15-cleanup-handoff.md §4 t12、§5、§6；docs/specs/2026-09-15-cleanup-scan-t5-rules.md §4；docs/specs/2026-09-15-cleanup-scan-triage.md（268 条目/14 删除批次/27 有意保留）。\n\n1. 【基线更新】data/status/baselines/*、s4_baseline.json、pal3_registry.jsonl、error_classification.json 与权威实况对齐并纳入版本控制；写清 apply 两种诚实读数；标注旧树计数作废（[VFTABLE] 1643 等）与权威计数已重取。\n2. 【冻结/证据类入版本控制】（当前多 untracked，git clean -fd 会清掉）：data/status/baselines/verifier_prefix_s2.json、三份 _cleanup_scan_*.json、_cleanup_scan_triage.json、_cleanup_verify_scan_claims.json、_cleanup_evidence_stub_call_4014F0.json、_cleanup_fix_*、_cleanup_verify_fixes.json、_cleanup_review_*.json、docs/specs/2026-09-15-*.md。总账分区段列示「冻结/基线类」vs「修复类」。\n3. 【执行 B4 删除批次（14 条）】死路径/裸 except/仓库根 __vftable/build_output.txt+一次性 .obj（untracked，删除不产生 git 改动 → 不计入「已修复」计数）；85MB 仅 git rm --cached + 补 .gitignore（不重写历史）+ 产出 >10MB 已跟踪 blob 清单。\n4. 【禁止删除】backup/local-line-20260904 分支与 10 条 stash（同步前本地线 29 提交 + 会话工作的唯一保存点，远端任何分支都不含它；stash drop 不可逆）→ 列「有意保留」，删除须用户显式决策。\n5. 【知识沉淀】>= 5 条，写 docs/knowledge/ 并更新 docs/knowledge/MEMORY.md 索引。建议规律：① 负证据（位移在 asm 出现 0 次）判别力弱（界内成员 50/67 也为 0，基础发生率≈75%）→ 决定性依据是几何不可能 + 出处可追；② union variant 成员键 12_1 = 偏移_变体，绝不要 int(key)（Python3 把 _ 当千位分隔符，int('12_1')=121）；③ binary_size 两个方向相反的缺陷族（A 族撑大 52 个 / B 族越界 3 个）不可混谈；④ apply_status.json 不是 apply 写的；⑤ 恒假门禁与死发射分支的形态。\n6. 【export 红线决策页】若 t4 判「有意取舍」→ 落盘到 docs/knowledge/。\n7. 【总账】data/status/_cleanup_scan_ledger.json：按 已修/已删/有意保留/需补证 四类计数，且与 _cleanup_scan_triage.json（268 条目/31 缺口）自洽。\n\n【硬纪律】禁止 git clean -fd；禁止删除 backup 分支与 stash；85MB 严禁删工作区文件、严禁重写历史；退出码一律 $? / PIPESTATUS[0]；若需跑 apply/export/codegen/probe/match 必须独占共享窗口并开始/结束都通报 captain。\n【交付】data/status/_cleanup_scan_ledger.json + docs/knowledge/ 新页 >= 5 + MEMORY.md 索引更新。",
+      "status": "pending",
+      "dependencies": [
+        "t8",
+        "t9"
+      ],
+      "attempt": 0,
+      "createdAt": 1789457226679,
+      "updatedAt": 1789457277897,
+      "handoffId": "147f7024-a0c1-41cc-9b89-9432b32cae69",
+      "reassigning": false
+    }
+  ],
+  "taskSeq": 10
+}

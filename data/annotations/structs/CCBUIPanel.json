@@ -298,7 +298,7 @@
       "signature": "void __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "source": " | [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_3E70。refs: ??1UIRoleDialog@@QAE@XZ ?Destroy2@UICaption@@QAEXXZ ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ??1UIL"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_3E70。refs: ??1UIRoleDialog@@QAE@XZ ?Destroy2@UICaption@@QAEXXZ ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ??1UIL"
     },
     "0x00454590": {
       "name": "OnMessage",
@@ -307,7 +307,7 @@
     "0x004460D0": {
       "name": "CCBUIPanel",
       "signature": "void __thiscall()",
-      "source": " | [签名层正交治理 2026-10-16] A返回型int*：int *__thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0PalScript/??0UIRoleDialog/??0TxtFile"
+      "source": "| [签名层正交治理 2026-10-16] A返回型int*：int *__thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0PalScript/??0UIRoleDialog/??0TxtFile"
     },
     "0x0044A540": {
       "name": "OnMessage_a540",
@@ -317,18 +317,18 @@
     "0x00453D10": {
       "name": "_todo_453D10",
       "signature": "void __thiscall()",
-      "source": " | [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ CCBUIPanel（ctor 名形=类名）：A 级 refs ??0UIListBox/??0UIRoleDialog（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0UIRoleDialog | [C2084 归因消解 2026-10-16] 名 CCBUIPanel 与 _todo_453D10@0x004460D0 撞名（ctor/dtor 双体 C2084）：双 SEH 序言体同名 ⇒ 保留既有名，73108e3f2 改名侧降 _todo_ 待细分"
+      "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ CCBUIPanel（ctor 名形=类名）：A 级 refs ??0UIListBox/??0UIRoleDialog（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0UIRoleDialog | [C2084 归因消解 2026-10-16] 名 CCBUIPanel 与 _todo_453D10@0x004460D0 撞名（ctor/dtor 双体 C2084）：双 SEH 序言体同名 ⇒ 保留既有名，73108e3f2 改名侧降 _todo_ 待细分"
     },
     "0x00446200": {
       "name": "~CCBUIPanel",
       "signature": "void __thiscall()",
-      "source": " | [T119] decomp 命名形态定位+正名：ctor_6200（@0x446200）decomp 体=成员销毁序列（Destroy/PalScript::Cleanup/UIRoleDialog dtor 簇/UIListBox dtor）⇒ **真析构**（拷贝构造族假设证伪——T117 判据修正：ctor_* 名≠ctor 语义，须本体判读）⇒ 语义名 ~CCBUIPanel（禁伪语义 ✓ 全函数体证据）"
+      "source": "| [T119] decomp 命名形态定位+正名：ctor_6200（@0x446200）decomp 体=成员销毁序列（Destroy/PalScript::Cleanup/UIRoleDialog dtor 簇/UIListBox dtor）⇒ **真析构**（拷贝构造族假设证伪——T117 判据修正：ctor_* 名≠ctor 语义，须本体判读）⇒ 语义名 ~CCBUIPanel（禁伪语义 ✓ 全函数体证据）"
     },
     "0x00449980": {
       "name": "SetUserData",
       "signature": "void __thiscall(int nVal1)",
       "_misattrib_evidence": "max_offset=364>class_size=96",
-      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004461D0": {
       "name": "_scalar_dtor_61D0",
@@ -336,7 +336,7 @@
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUIPanel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AF80）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUIPanel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AF80）"
     },
     "0x004462C0": {
       "name": "InitPanel",
@@ -350,14 +350,14 @@
       "name": "ProcessInput",
       "signature": "BOOL __thiscall CCBUIPanel::ProcessInput(double st7_0)",
       "ordinal": 2,
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00453E50": {
       "name": "_scalar_dtor_3E50",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "source": " | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUIPanel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B22C）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUIPanel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B22C）"
     },
     "0x00454550": {
       "name": "RenderIfUnlocked",

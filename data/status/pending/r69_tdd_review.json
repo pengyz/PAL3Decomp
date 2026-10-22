@@ -1,0 +1,19 @@
+{
+  "verify_8_tests": {
+    "count": 8,
+    "all_correct": false,
+    "issues": [
+      "7/8=空壳 assert True「待并行化实施后激活」=零实测覆盖",
+      "test_fixture_sanity=恒真元断言（_hash_dir.__name__==自名）",
+      "8 passed 形式绿=0 真断言（TDD 形式伪）",
+      "覆盖：并行 5 性质（确定性/隔离/有序/串行归约/加速比）+超时+内存=全部未实施"
+    ]
+  },
+  "case_hash_dir": {
+    "input": "同 size 同 mtime 改内容 / 仅 touch 无改",
+    "expected": "内容变→hash 变；touch→hash 不变",
+    "actual": "case1 hash 不变（内容变漏检）· case2 hash 变（虚警）",
+    "verdict": "BUG",
+    "note": "_hash_dir=快照形（path+mtime+size）非 content-hash ⇒ 双盲区实锤；含绝对路径=路径依赖；R60「脚本改动强制重生成」契约需 content 级"
+  }
+}

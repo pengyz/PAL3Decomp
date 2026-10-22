@@ -1,0 +1,1426 @@
+{
+  "_meta": {
+    "created": "2026-10-16 analyzer",
+    "count": 85,
+    "note": "vtable 治理·未注册族执行单（当场核实 85 条＝97 族当前态；IAT 外部 22 条应从 L1 universe 排除⇒上限校正后 ~97-22=75 可注册面）"
+  },
+  "entries": [
+    {
+      "addr": "0x00404D40",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C"
+      ],
+      "body_head": "56 8b f1 ff 15 bc a5 56 00 f6 44 24",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056A66C 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "verdict2": "删际析构形（IAT 转发 dtor+flag delete）；表 0x56A66C 族无 ctor 形写点=IMPOSSIBLE 维持，类归属挂账",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x00405310",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C",
+        "0x0056A694"
+      ],
+      "body_head": "56 8b f1 ff 15 00 a2 56 00 f6 44 24",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056A66C,0x0056A694 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "verdict2": "删际析构形（IAT 转发 dtor+flag delete）；表 0x56A66C 族无 ctor 形写点=IMPOSSIBLE 维持，类归属挂账",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x00405560",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C",
+        "0x0056A694",
+        "0x0056A6A8",
+        "0x0056A6B4"
+      ],
+      "body_head": "56 8b f1 ff 15 1c a2 56 00 f6 44 24",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056A66C,0x0056A694,0x0056A6A8,0x0056A6B4 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "verdict2": "删际析构形（IAT 转发 dtor+flag delete）；表 0x56A66C 族无 ctor 形写点=IMPOSSIBLE 维持，类归属挂账",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x00405580",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C",
+        "0x0056A694",
+        "0x0056A6A8"
+      ],
+      "body_head": "56 8b f1 ff 15 20 a2 56 00 f6 44 24",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056A66C,0x0056A694,0x0056A6A8 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "verdict2": "删际析构形（IAT 转发 dtor+flag delete）；表 0x56A66C 族无 ctor 形写点=IMPOSSIBLE 维持，类归属挂账",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x004083B0",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A6D0"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056A6D0 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "Actor"
+    },
+    {
+      "addr": "0x00408410",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A6D0"
+      ],
+      "body_head": "8b 54 24 04 8b 41 18 85 d2 56 7c 18",
+      "shape": "other:8b 54 24 04",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 other:8b 54 24 04；表 0x0056A6D0 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "Actor"
+    },
+    {
+      "addr": "0x00410900",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A784"
+      ],
+      "body_head": "56 8b f1 ff 15 98 a2 56 00 f6 44 24",
+      "shape": "real-method",
+      "verdict": "DONE-registered",
+      "evidence": "本体 real-method；表 0x0056A784 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "ParticleVisNode"
+    },
+    {
+      "addr": "0x0041F340",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056AAC4"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056AAC4 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "Actor"
+    },
+    {
+      "addr": "0x00423860",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056AB28",
+        "0x0056AB34"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056AB28,0x0056AB34 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "gbLightObj"
+    },
+    {
+      "addr": "0x00432960",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056AB9C"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056AB9C 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "PtrArray"
+    },
+    {
+      "addr": "0x00442D50",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056ADF0"
+      ],
+      "body_head": "8b 54 24 04 33 c0 3b d0 8b 91 98 00",
+      "shape": "other:8b 54 24 04",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 other:8b 54 24 04；表 0x0056ADF0 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "UIPushButton"
+    },
+    {
+      "addr": "0x0044AB00",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [
+        "UIEmote"
+      ],
+      "unclaimed_tables": [
+        "0x0056AFA4"
+      ],
+      "body_head": "8b 41 f4 c3 90 90 90 90 90 90 90 90",
+      "shape": "other:8b 41 f4 c3",
+      "verdict": "OWNER-REGISTERABLE",
+      "evidence": "表主已认领 UIEmote + 本体 other:8b 41 f4 c3——可注册（名待语义取证 or _todo_ 诚实名）",
+      "resolved": {
+        "note": "OWNER-REGISTERABLE ✓ 五面待补（owner 类在 entry.owner_classes）"
+      },
+      "_resolved_class": "ArraySlots"
+    },
+    {
+      "addr": "0x0044AB40",
+      "kind": "adjustor",
+      "thunk_target": "0x0044A7D0",
+      "tgt_registered": true,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056AFA4"
+      ],
+      "body_head": "83 e9 44 e9 88 fc ff ff cc cc cc cc",
+      "shape": "adjustor",
+      "verdict": "SKIP-compiler",
+      "evidence": "A 级 `sub ecx,N; jmp target`（target 已注册 0x0044A7D0）——编译器生成 MI 调整跳板，注册形=type:skip reason:compiler-generated（0x4C3C80 先例）",
+      "resolved": {
+        "target_cls": "CCBProtectWindow",
+        "target_name": "_sdtor_14",
+        "new_name": "_sdtor_14_adjthunk"
+      },
+      "_resolved_class": "ArraySlots"
+    },
+    {
+      "addr": "0x004506C0",
+      "kind": "adjustor",
+      "thunk_target": "0x00450370",
+      "tgt_registered": true,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056B0D4"
+      ],
+      "body_head": "83 e9 48 e9 a8 fc ff ff cc cc cc cc",
+      "shape": "adjustor",
+      "verdict": "SKIP-compiler",
+      "evidence": "A 级 `sub ecx,N; jmp target`（target 已注册 0x00450370）——编译器生成 MI 调整跳板，注册形=type:skip reason:compiler-generated（0x4C3C80 先例）",
+      "resolved": {
+        "target_cls": "UICaption",
+        "target_name": "~UICaption",
+        "new_name": "~UICaption_adjthunk"
+      },
+      "_resolved_class": "UICaption"
+    },
+    {
+      "addr": "0x00451800",
+      "kind": "adjustor",
+      "thunk_target": "0x00450E90",
+      "tgt_registered": true,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056B140"
+      ],
+      "body_head": "83 e9 48 e9 88 f6 ff ff cc cc cc cc",
+      "shape": "adjustor",
+      "verdict": "SKIP-compiler",
+      "evidence": "A 级 `sub ecx,N; jmp target`（target 已注册 0x00450E90）——编译器生成 MI 调整跳板，注册形=type:skip reason:compiler-generated（0x4C3C80 先例）",
+      "resolved": {
+        "target_cls": "CCBFiveNimbusWindow",
+        "target_name": "_sdtor_27",
+        "new_name": "_sdtor_27_adjthunk"
+      },
+      "_resolved_class": "UISceneMap"
+    },
+    {
+      "addr": "0x00451C70",
+      "kind": "adjustor",
+      "thunk_target": "0x004518E0",
+      "tgt_registered": true,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056B16C"
+      ],
+      "body_head": "83 e9 48 e9 68 fc ff ff cc cc cc cc",
+      "shape": "adjustor",
+      "verdict": "SKIP-compiler",
+      "evidence": "A 级 `sub ecx,N; jmp target`（target 已注册 0x004518E0）——编译器生成 MI 调整跳板，注册形=type:skip reason:compiler-generated（0x4C3C80 先例）",
+      "resolved": {
+        "target_cls": "UIListBox",
+        "target_name": "_sdtor_28",
+        "new_name": "_sdtor_28_adjthunk"
+      },
+      "_resolved_class": "UIListBox"
+    },
+    {
+      "addr": "0x0047E570",
+      "kind": "adjustor",
+      "thunk_target": "0x0047DD70",
+      "tgt_registered": true,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056B898"
+      ],
+      "body_head": "83 e9 48 e9 f8 f7 ff ff cc cc cc cc",
+      "shape": "adjustor",
+      "verdict": "SKIP-compiler",
+      "evidence": "A 级 `sub ecx,N; jmp target`（target 已注册 0x0047DD70）——编译器生成 MI 调整跳板，注册形=type:skip reason:compiler-generated（0x4C3C80 先例）",
+      "resolved": {
+        "target_cls": "UITitle_YXXX",
+        "target_name": "_scalar_dtor",
+        "new_name": "_scalar_dtor_adjthunk"
+      },
+      "_resolved_class": "UITitle_YXXX"
+    },
+    {
+      "addr": "0x004B6F90",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F37C"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056F37C 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "PAL3VisNode"
+    },
+    {
+      "addr": "0x004B7030",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F37C"
+      ],
+      "body_head": "56 8b 74 24 08 8b ce ff 15 10 a3 56",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056F37C 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "PAL3VisNode"
+    },
+    {
+      "addr": "0x004B7090",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F37C",
+        "0x0056F3B8"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056F37C,0x0056F3B8 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "PAL3VisNode"
+    },
+    {
+      "addr": "0x004B7310",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F3C0"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056F3C0 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "CEffGroupNode"
+    },
+    {
+      "addr": "0x004B74F0",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F404"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056F404 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "UI3DModelNode"
+    },
+    {
+      "addr": "0x004B7B60",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F404"
+      ],
+      "body_head": "d9 44 24 04 d8 41 60 d8 15 24 a6 56",
+      "shape": "other:d9 44 24 04",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 other:d9 44 24 04；表 0x0056F404 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "UI3DModelNode"
+    },
+    {
+      "addr": "0x004B7BA0",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F3C0",
+        "0x0056F404"
+      ],
+      "body_head": "57 8b 7c 24 08 b9 13 00 00 00 33 c0",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056F3C0,0x0056F404 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "CEffGroupNode"
+    },
+    {
+      "addr": "0x004B7CC0",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F450"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056F450 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "ScreenEffectNode"
+    },
+    {
+      "addr": "0x004B7F60",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F450"
+      ],
+      "body_head": "d9 44 24 04 d8 41 5c d9 59 5c c2 04",
+      "shape": "other:d9 44 24 04",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 other:d9 44 24 04；表 0x0056F450 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "ScreenEffectNode"
+    },
+    {
+      "addr": "0x004B7F70",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F3C0",
+        "0x0056F3C0",
+        "0x0056F3C0",
+        "0x0056F404",
+        "0x0056F450",
+        "0x0056F4B0",
+        "0x0056F4B0"
+      ],
+      "body_head": "c2 04 00 90 90 90 90 90 90 90 90 90",
+      "shape": "nullsub-retN",
+      "verdict": "NULLSUB",
+      "evidence": "A 级 nullsub-retN 空实现桩——注册名 nullsub 族（_sdtor_35/nullsub_75_override 先例）或 skip",
+      "_resolved_class": "CEffGroupNode"
+    },
+    {
+      "addr": "0x004B81A0",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F450"
+      ],
+      "body_head": "56 8b 74 24 08 8b ce ff 15 10 a3 56",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056F450 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "ScreenEffectNode"
+    },
+    {
+      "addr": "0x004BC790",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F4A0"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056F4A0 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "ParticleEffect"
+    },
+    {
+      "addr": "0x004BD850",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F4B0"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056F4B0 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "RenderTargetNode"
+    },
+    {
+      "addr": "0x004BDF30",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F4F0",
+        "0x0056F52C",
+        "0x0056F548",
+        "0x0056F564"
+      ],
+      "body_head": "d9 44 24 04 d8 41 10 d9 51 10 d8 59",
+      "shape": "other:d9 44 24 04",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 other:d9 44 24 04；表 0x0056F4F0,0x0056F52C,0x0056F548,0x0056F564 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "ScreenEffectMgr"
+    },
+    {
+      "addr": "0x004BE060",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F4F0",
+        "0x0056F508"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056F4F0,0x0056F508 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "ScreenEffectMgr"
+    },
+    {
+      "addr": "0x004BEA80",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F52C"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056F52C 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "ScreenEffectMgr"
+    },
+    {
+      "addr": "0x004BEBD0",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F548"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056F548 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "ScreenEffectMgr"
+    },
+    {
+      "addr": "0x004BED20",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F564"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056F564 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "ScreenEffectMgr"
+    },
+    {
+      "addr": "0x004C6960",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F86C",
+        "0x0056F878"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056F86C,0x0056F878 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "CEffgbParticle"
+    },
+    {
+      "addr": "0x004C88B0",
+      "kind": "adjustor",
+      "thunk_target": "0x004C7150",
+      "tgt_registered": true,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F86C"
+      ],
+      "body_head": "83 e9 0c e9 98 e8 ff ff cc cc cc cc",
+      "shape": "adjustor",
+      "verdict": "SKIP-compiler",
+      "evidence": "A 级 `sub ecx,N; jmp target`（target 已注册 0x004C7150）——编译器生成 MI 调整跳板，注册形=type:skip reason:compiler-generated（0x4C3C80 先例）",
+      "resolved": {
+        "target_cls": "CEffect",
+        "target_name": "CreateOnePartical",
+        "new_name": "CreateOnePartical_adjthunk"
+      },
+      "_resolved_class": "CEffgbParticle"
+    },
+    {
+      "addr": "0x004C9530",
+      "kind": "adjustor",
+      "thunk_target": "0x004C8BF0",
+      "tgt_registered": true,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F86C",
+        "0x0056F878",
+        "0x0056F8B4",
+        "0x0056F8C0"
+      ],
+      "body_head": "83 e9 0c e9 b8 f6 ff ff cc cc cc cc",
+      "shape": "adjustor",
+      "verdict": "SKIP-compiler",
+      "evidence": "A 级 `sub ecx,N; jmp target`（target 已注册 0x004C8BF0）——编译器生成 MI 调整跳板，注册形=type:skip reason:compiler-generated（0x4C3C80 先例）",
+      "resolved": {
+        "target_cls": "CEffgbParticle",
+        "target_name": "ProcCommonTask",
+        "new_name": "ProcCommonTask_adjthunk"
+      },
+      "_resolved_class": "CEffgbParticle"
+    },
+    {
+      "addr": "0x004CB340",
+      "kind": "adjustor",
+      "thunk_target": "0x004C9ED0",
+      "tgt_registered": true,
+      "owner_classes": [
+        "CEffgbParticle"
+      ],
+      "unclaimed_tables": [
+        "0x0056F86C",
+        "0x0056F878",
+        "0x0056F8B4",
+        "0x0056F8C0",
+        "0x0056F908",
+        "0x0056F914"
+      ],
+      "body_head": "83 e9 0c e9 88 eb ff ff cc cc cc cc",
+      "shape": "adjustor",
+      "verdict": "SKIP-compiler",
+      "evidence": "A 级 `sub ecx,N; jmp target`（target 已注册 0x004C9ED0）——编译器生成 MI 调整跳板，注册形=type:skip reason:compiler-generated（0x4C3C80 先例）",
+      "resolved": {
+        "target_cls": "CEffGrid",
+        "target_name": "slot_5",
+        "new_name": "slot_5_adjthunk"
+      },
+      "_resolved_class": "CEffgbParticle"
+    },
+    {
+      "addr": "0x004CD9F0",
+      "kind": "adjustor",
+      "thunk_target": "0x004CBFC0",
+      "tgt_registered": true,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F96C"
+      ],
+      "body_head": "83 e9 0c e9 c8 e5 ff ff cc cc cc cc",
+      "shape": "adjustor",
+      "verdict": "SKIP-compiler",
+      "evidence": "A 级 `sub ecx,N; jmp target`（target 已注册 0x004CBFC0）——编译器生成 MI 调整跳板，注册形=type:skip reason:compiler-generated（0x4C3C80 先例）",
+      "resolved": {
+        "target_cls": "CEffMeteor",
+        "target_name": "CreateTask",
+        "new_name": "CreateTask_adjthunk"
+      },
+      "_resolved_class": "CEffMeteor"
+    },
+    {
+      "addr": "0x004D0C90",
+      "kind": "adjustor",
+      "thunk_target": "0x004CFFB0",
+      "tgt_registered": true,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056F9D0"
+      ],
+      "body_head": "83 e9 0c e9 18 f3 ff ff cc cc cc cc",
+      "shape": "adjustor",
+      "verdict": "SKIP-compiler",
+      "evidence": "A 级 `sub ecx,N; jmp target`（target 已注册 0x004CFFB0）——编译器生成 MI 调整跳板，注册形=type:skip reason:compiler-generated（0x4C3C80 先例）",
+      "resolved": {
+        "target_cls": "CEffect",
+        "target_name": "_nearby_4cffb0",
+        "new_name": "_nearby_4cffb0_adjthunk"
+      },
+      "_resolved_class": "CEffModel"
+    },
+    {
+      "addr": "0x004D3220",
+      "kind": "adjustor",
+      "thunk_target": "0x004D17D0",
+      "tgt_registered": true,
+      "owner_classes": [
+        "CEffModel"
+      ],
+      "unclaimed_tables": [
+        "0x0056F9D0",
+        "0x0056FA18",
+        "0x0056FA24"
+      ],
+      "body_head": "83 e9 0c e9 a8 e5 ff ff cc cc cc cc",
+      "shape": "adjustor",
+      "verdict": "SKIP-compiler",
+      "evidence": "A 级 `sub ecx,N; jmp target`（target 已注册 0x004D17D0）——编译器生成 MI 调整跳板，注册形=type:skip reason:compiler-generated（0x4C3C80 先例）",
+      "resolved": {
+        "target_cls": "CEffQuad",
+        "target_name": "sub_4D17D0",
+        "new_name": "sub_4D17D0_adjthunk"
+      },
+      "_resolved_class": "CEffModel"
+    },
+    {
+      "addr": "0x004D4DE0",
+      "kind": "adjustor",
+      "thunk_target": "0x004D3DC0",
+      "tgt_registered": true,
+      "owner_classes": [
+        "CEffQuake"
+      ],
+      "unclaimed_tables": [
+        "0x0056FA7C",
+        "0x0056FAC4",
+        "0x0056FAD0"
+      ],
+      "body_head": "83 e9 0c e9 d8 ef ff ff cc cc cc cc",
+      "shape": "adjustor",
+      "verdict": "SKIP-compiler",
+      "evidence": "A 级 `sub ecx,N; jmp target`（target 已注册 0x004D3DC0）——编译器生成 MI 调整跳板，注册形=type:skip reason:compiler-generated（0x4C3C80 先例）",
+      "resolved": {
+        "target_cls": "CEffShock",
+        "target_name": "sub_4D3DC0",
+        "new_name": "sub_4D3DC0_adjthunk"
+      },
+      "_resolved_class": "CEffShock"
+    },
+    {
+      "addr": "0x004D5850",
+      "kind": "adjustor",
+      "thunk_target": "0x004D4FC0",
+      "tgt_registered": true,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056FB28"
+      ],
+      "body_head": "83 e9 0c e9 68 f7 ff ff cc cc cc cc",
+      "shape": "adjustor",
+      "verdict": "SKIP-compiler",
+      "evidence": "A 级 `sub ecx,N; jmp target`（target 已注册 0x004D4FC0）——编译器生成 MI 调整跳板，注册形=type:skip reason:compiler-generated（0x4C3C80 先例）",
+      "resolved": {
+        "target_cls": "CEffSParticle",
+        "target_name": "Create",
+        "new_name": "Create_adjthunk"
+      },
+      "_resolved_class": "CEffSParticle"
+    },
+    {
+      "addr": "0x00504060",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056FD78"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x0056FD78 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "CCBStageCam"
+    },
+    {
+      "addr": "0x0051B940",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [
+        "CCBControlWindow",
+        "CCBFiveNimbusWindow",
+        "CCBItemWindow",
+        "CCBLineupWindow",
+        "CCBResultWindow"
+      ],
+      "unclaimed_tables": [
+        "0x00570554"
+      ],
+      "body_head": "8b 44 24 04 50 e8 26 a5 f2 ff c2 04",
+      "shape": "real-method",
+      "verdict": "OWNER-REGISTERABLE",
+      "evidence": "表主已认领 CCBControlWindow/CCBFiveNimbusWindow/CCBItemWindow/CCBLineupWindow/CCBResultWindow + 本体 real-method——可注册（名待语义取证 or _todo_ 诚实名）",
+      "resolved": {
+        "note": "OWNER-REGISTERABLE ✓ 五面待补（owner 类在 entry.owner_classes）"
+      },
+      "_resolved_class": "CCBUI"
+    },
+    {
+      "addr": "0x0052B980",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x00570794"
+      ],
+      "body_head": "56 8b f1 ff 15 88 a4 56 00 f6 44 24",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x00570794 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "verdict2": "decompile 未分析（空）+ 深偏移写点 ⇒ 挂账（禁猜）",
+      "_resolved_class": "SceneVisNode"
+    },
+    {
+      "addr": "0x00533D80",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x005708CC"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x005708CC 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "SceneObjParam"
+    },
+    {
+      "addr": "0x0053D3D0",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x00570A24"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x00570A24 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "CScreenModeNode"
+    },
+    {
+      "addr": "0x0053DC30",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x00570A54"
+      ],
+      "body_head": "56 8b f1 e8 18 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x00570A54 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "verdict2": "decompile 未分析（空）+ 深偏移写点 ⇒ 挂账（禁猜）",
+      "_resolved_class": "TextureLib"
+    },
+    {
+      "addr": "0x00541DD9",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x00570A78",
+        "0x00570A98",
+        "0x00570AA8"
+      ],
+      "body_head": "8b 41 10 85 c0 75 05 b8 34 a6 56 00",
+      "shape": "other:8b 41 10 85",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 other:8b 41 10 85；表 0x00570A78,0x00570A98,0x00570AA8 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "UICursor"
+    },
+    {
+      "addr": "0x00541DE6",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x00570A98"
+      ],
+      "body_head": "55 8b ec 83 ec 1c 51 8d 4d e4 e8 67",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x00570A98 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "UICursor"
+    },
+    {
+      "addr": "0x00541E40",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x00570A98"
+      ],
+      "body_head": "56 8b f1 e8 bb ff ff ff f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x00570A98 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "UICursor"
+    },
+    {
+      "addr": "0x00541EF6",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x00570A78"
+      ],
+      "body_head": "55 8b ec 83 ec 1c 51 8d 4d e4 e8 2a",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x00570A78 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "UICursor"
+    },
+    {
+      "addr": "0x00541F13",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x00570A78"
+      ],
+      "body_head": "56 8b f1 e8 9e ff ff ff f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x00570A78 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "UICursor"
+    },
+    {
+      "addr": "0x00541FDE",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x00570AA8"
+      ],
+      "body_head": "55 8b ec 83 ec 1c 51 8d 4d e4 e8 2a",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x00570AA8 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "UICursor"
+    },
+    {
+      "addr": "0x00541FFB",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x00570AA8"
+      ],
+      "body_head": "56 8b f1 e8 9e ff ff ff f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x00570AA8 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "_resolved_class": "UICursor"
+    },
+    {
+      "addr": "0x00542072",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C"
+      ],
+      "body_head": "ff 25 18 a5 56 00 ff 25 14 a5 56 00",
+      "shape": "other:ff 25 18 a5",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x00542078",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C"
+      ],
+      "body_head": "ff 25 14 a5 56 00 ff 25 10 a5 56 00",
+      "shape": "other:ff 25 14 a5",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x0054207E",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C"
+      ],
+      "body_head": "ff 25 10 a5 56 00 ff 25 0c a5 56 00",
+      "shape": "other:ff 25 10 a5",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x00542084",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C"
+      ],
+      "body_head": "ff 25 0c a5 56 00 ff 25 1c a3 56 00",
+      "shape": "other:ff 25 0c a5",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x0054208A",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C"
+      ],
+      "body_head": "ff 25 1c a3 56 00 ff 25 e8 a2 56 00",
+      "shape": "other:ff 25 1c a3",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x00542090",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C"
+      ],
+      "body_head": "ff 25 e8 a2 56 00 ff 25 e4 a2 56 00",
+      "shape": "other:ff 25 e8 a2",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x00542096",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C"
+      ],
+      "body_head": "ff 25 e4 a2 56 00 ff 25 c8 a5 56 00",
+      "shape": "other:ff 25 e4 a2",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x0054209C",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C"
+      ],
+      "body_head": "ff 25 c8 a5 56 00 ff 25 08 a5 56 00",
+      "shape": "other:ff 25 c8 a5",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x005420A2",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C"
+      ],
+      "body_head": "ff 25 08 a5 56 00 ff 25 b8 a5 56 00",
+      "shape": "other:ff 25 08 a5",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x005420A8",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C",
+        "0x0056A694"
+      ],
+      "body_head": "ff 25 b8 a5 56 00 ff 25 b4 a5 56 00",
+      "shape": "other:ff 25 b8 a5",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x005420AE",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C",
+        "0x0056A694"
+      ],
+      "body_head": "ff 25 b4 a5 56 00 ff 25 b0 a5 56 00",
+      "shape": "other:ff 25 b4 a5",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x005420B4",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C",
+        "0x0056A694"
+      ],
+      "body_head": "ff 25 b0 a5 56 00 ff 25 ac a5 56 00",
+      "shape": "other:ff 25 b0 a5",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x005420BA",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C",
+        "0x0056A694"
+      ],
+      "body_head": "ff 25 ac a5 56 00 ff 25 04 a2 56 00",
+      "shape": "other:ff 25 ac a5",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x005420C0",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C",
+        "0x0056A694",
+        "0x0056A6A8",
+        "0x0056A6B4"
+      ],
+      "body_head": "ff 25 04 a2 56 00 ff 25 08 a2 56 00",
+      "shape": "other:ff 25 04 a2",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x005420C6",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C",
+        "0x0056A694",
+        "0x0056A6A8",
+        "0x0056A6B4"
+      ],
+      "body_head": "ff 25 08 a2 56 00 ff 25 0c a2 56 00",
+      "shape": "other:ff 25 08 a2",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x005420CC",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C",
+        "0x0056A694",
+        "0x0056A6A8"
+      ],
+      "body_head": "ff 25 0c a2 56 00 ff 25 10 a2 56 00",
+      "shape": "other:ff 25 0c a2",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x005420D2",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A66C",
+        "0x0056A694",
+        "0x0056A6A8"
+      ],
+      "body_head": "ff 25 10 a2 56 00 ff 25 6c a2 56 00",
+      "shape": "other:ff 25 10 a2",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "WeatherEffectNode"
+    },
+    {
+      "addr": "0x005420E4",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A784"
+      ],
+      "body_head": "ff 25 74 a2 56 00 ff 25 78 a2 56 00",
+      "shape": "other:ff 25 74 a2",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import | 2026-10-17 verifier 修正：ff 25 IAT 跳转桩非注册面",
+      "_resolved_class": "ParticleVisNode"
+    },
+    {
+      "addr": "0x005420EA",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A784"
+      ],
+      "body_head": "ff 25 78 a2 56 00 ff 25 7c a2 56 00",
+      "shape": "other:ff 25 78 a2",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import | 2026-10-17 verifier 修正：ff 25 IAT 跳转桩非注册面",
+      "_resolved_class": "ParticleVisNode"
+    },
+    {
+      "addr": "0x005420F0",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A784"
+      ],
+      "body_head": "ff 25 7c a2 56 00 ff 25 80 a2 56 00",
+      "shape": "other:ff 25 7c a2",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import | 2026-10-17 verifier 修正：ff 25 IAT 跳转桩非注册面",
+      "_resolved_class": "ParticleVisNode"
+    },
+    {
+      "addr": "0x005420F6",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A784"
+      ],
+      "body_head": "ff 25 80 a2 56 00 ff 25 84 a2 56 00",
+      "shape": "other:ff 25 80 a2",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import | 2026-10-17 verifier 修正：ff 25 IAT 跳转桩非注册面",
+      "_resolved_class": "ParticleVisNode"
+    },
+    {
+      "addr": "0x005420FC",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A784",
+        "0x00570794",
+        "0x00570A24"
+      ],
+      "body_head": "ff 25 84 a2 56 00 ff 25 88 a2 56 00",
+      "shape": "other:ff 25 84 a2",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import | 2026-10-17 verifier 修正：ff 25 IAT 跳转桩非注册面",
+      "_resolved_class": "ParticleVisNode"
+    },
+    {
+      "addr": "0x00542108",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x0056A784"
+      ],
+      "body_head": "ff 25 8c a2 56 00 ff 25 a4 a3 56 00",
+      "shape": "other:ff 25 8c a2",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import | 2026-10-17 verifier 修正：ff 25 IAT 跳转桩非注册面",
+      "_resolved_class": "ParticleVisNode"
+    },
+    {
+      "addr": "0x00542120",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x00570794",
+        "0x00570A24"
+      ],
+      "body_head": "ff 25 80 a4 56 00 ff 25 84 a4 56 00",
+      "shape": "other:ff 25 80 a4",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "SceneVisNode"
+    },
+    {
+      "addr": "0x00542126",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x00570794"
+      ],
+      "body_head": "ff 25 84 a4 56 00 d9 44 24 04 d8 64",
+      "shape": "other:ff 25 84 a4",
+      "verdict": "SKIP-external",
+      "evidence": "A 级 `ff 25 [IAT]`=gb*/Win32 导入跳板——非游戏本体，L1 universe 应排除（上限校正）；注册形=type:skip reason:external import",
+      "_resolved_class": "SceneVisNode"
+    },
+    {
+      "addr": "0x005534BB",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x005731D4"
+      ],
+      "body_head": "56 8b f1 e8 e3 ff ff ff f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x005731D4 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "verdict2": "CRT-domain：type_info::scalar deleting destructor（decompile 实证）⇒ 0x5731D4=RTTI type_info 表（非游戏类）skip-external 挂账"
+    },
+    {
+      "addr": "0x005551BB",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x00573238"
+      ],
+      "body_head": "56 8b f1 e8 9b 00 00 00 f6 44 24 08",
+      "shape": "real-method",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 real-method；表 0x00573238 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "verdict2": "CRT-domain：exception 类 deleting/what（decompile 实证 `exception::what`）⇒ 0x573238=CRT exception 表 skip-external 挂账"
+    },
+    {
+      "addr": "0x00555274",
+      "kind": "method",
+      "thunk_target": null,
+      "tgt_registered": null,
+      "owner_classes": [],
+      "unclaimed_tables": [
+        "0x00573238"
+      ],
+      "body_head": "8b 41 04 85 c0 75 05 b8 40 32 57 00",
+      "shape": "other:8b 41 04 85",
+      "verdict": "PENDING-table-claim",
+      "evidence": "本体 other:8b 41 04 85；表 0x00573238 无认领 ⇒ 注册前置=表认领（认领表→类→方法链）",
+      "verdict2": "CRT-domain：exception 类 deleting/what（decompile 实证 `exception::what`）⇒ 0x573238=CRT exception 表 skip-external 挂账"
+    }
+  ]
+}

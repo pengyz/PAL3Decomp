@@ -1,0 +1,34 @@
+{
+  "name": "spawn-probe",
+  "id": "spawn-probe",
+  "description": "最小探针：验证 AgentTeams 是否能真正 spawn 成员会话。只建 1 名成员 + 1 个无依赖任务，创建后立即检查该成员是否获得 id/sessionId。用完即归档。",
+  "captainSessionId": "session-14b3e63a-d732-4258-b1da-29c820f7df06",
+  "createdAt": 1789458629326,
+  "members": [
+    {
+      "id": "",
+      "name": "probe-worker",
+      "role": "探针成员：只需报告自己是否被 spawn",
+      "provider": "xiaomi",
+      "model": "tongyi/deepseek-v4.1-flash",
+      "joinedAt": 1789458629326,
+      "status": "removed"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "t1",
+      "profileSeedId": "p1",
+      "subject": "探针任务：确认探针成员是否被 spawn",
+      "description": "若你被成功 spawn，请立刻回复一行「PROBE: spawned」。若你无法 spawn，无需回复。这是 captain 验证 AgentTeams 派发链路的最小实验。",
+      "status": "pending",
+      "dependencies": [],
+      "attempt": 2,
+      "createdAt": 1789458629326,
+      "updatedAt": 1789458655737,
+      "reassigning": false,
+      "handoffId": "8f5d19a1-557d-4746-901e-5cf3c625944c"
+    }
+  ],
+  "taskSeq": 1
+}

@@ -1,0 +1,51 @@
+{
+ "array": {
+  "base_offset": "edi/ebx 寄存器合成（基装载 lea 在函数前部，本窗未括定——不冒进）",
+  "element_size": 896,
+  "stride_evidence": "7i×shl7=896i（`lea [eax*8]; sub; shl 7` 三指令链 ×2 形）",
+  "element_count": "≤256（`and eax,0xff` byte 索引掩码实录——访问器索引上界非数组 count）；实数待 IsTileInBounds 界比较实录（本窗未取得）",
+  "count_evidence": "and 0xff @0x420a65/0x420b15/0x420be6/0x420c49（四站同形）"
+ },
+ "element_fields": [
+  {
+   "offset": 224,
+   "type": "子结构基（lea 合成址）",
+   "semantic": "二级索引基址（后接 164-stride 内层数组 @+0x784E8 族）",
+   "evidence": "0x420b26 `lea ecx,[ecx+ebx*1+0xe0]`+`mov edi,ecx`（SetRoleGridPosition）· 0x420c2c/0x420c77 `lea ecx,[eax+0xe0]`（CheckTileScript ×2）——三现 lea 形",
+   "level": "A",
+   "confidence": 72
+  },
+  {
+   "offset": 397,
+   "type": "byte",
+   "semantic": "字节字段（读形）",
+   "evidence": "0x420c5a `mov cl,[edx+edi*1+0x18d]`（CheckTileScript）",
+   "level": "A",
+   "confidence": 70
+  },
+  {
+   "offset": 468,
+   "type": "byte（比较形）",
+   "semantic": "脚本/类型标签字节（cmp imm 0x26=38）",
+   "evidence": "0x420c09 `cmp BYTE PTR [eax+0x1d4],0x26`（CheckTileScript）",
+   "level": "A",
+   "confidence": 72
+  }
+ ],
+ "relation_to_other_arrays": "unclear（类归属待定：IsTileInBounds/SetRoleGridPosition/CheckTileScript=tile/role 域——若 this≠CCBStage 则 896B 数组非 CCBStage 结构，与 arrA/B/C 关系不成立）",
+ "checklist": {
+  "a_level": true,
+  "full_usage": "部分（基装载/界比较未括）",
+  "rule_reproducible": true,
+  "name_offset_confusion_checked": true,
+  "ledger_dual_sync": true
+ },
+ "summary": {
+  "fields_evidenced": 3,
+  "batch": "R59 小批量 3 条",
+  "key_notes": [
+   "+0xE0=二级索引基（内层 164-stride 数组 @+0x784E8 新线索）",
+   "+0x1D4 标签字节 cmp 0x26——脚本类型判据（CheckTileScript 语义自洽）"
+  ]
+ }
+}

@@ -4,8 +4,19 @@
   "known_members": {
     "0": {
       "name": "m_sCombatDialog",
-      "type": "char[4]",
-      "offset": 0
+      "type": {
+        "union": [
+          {
+            "type": "char[4]",
+            "name": "m_sCombatDialog"
+          },
+          {
+            "type": "float",
+            "name": "m_fCombatDialogVal"
+          }
+        ]
+      },
+      "source": "[A 级值位面 union 2026-10-21·fixer] m_sCombatDialog = **union**（三判据①值位面 ✓ 值证实录）· **fstps/fmuls 0x0(%ebp)** 值证 ✓ A 级实录 · MIXED（char[4]+float 同存储多解释）· checklist 5 问全过 ✓ · 原 type=char[4]"
     },
     "360": {
       "name": "m_nTodo_168",
@@ -390,7 +401,7 @@
     "4": {
       "name": "m_nRoundCounter",
       "type": "int",
-      "source": "ida_gap_13refs",
+      "source": "ida_gap_13refs | [P0-6 全用法形 2026-10-21· 安全] int → float · 全用法形扫描：[{'form': 'assign', 'count': 4, 'evidence': '40101a:\\t89 46 04 \\tmov %eax,0x4(%esi)'}, {'form': 'float', 'count': 3, 'evidence': '40111d:\\td9 57 04 \\tfsts 0x4(%edi)'}]（仅 float 用法，无 arith/addr 混合）· None | [R55 回退 2026-10-21·verifier 严格 opcode 证伪] 前次改 float 的 verdict= **错**。严格 7 形扫描实证 = MIXED（assign 61 + float 2 + cmp 1）= **位面复用**非单形 ⇒ 改型破坏 int 用法 · 首扫误中栈/负位移假阳（0x4(%esp) / -0x4(%esi)），严格剔除后才现真相 ⇒ 剔除纪律必要。 · 原 type=float",
       "_rename_evidence": "decomp:ProcessRound/VarianceRoundCounter 递增/比较 ⇒ 回合计数"
     },
     "8": {
@@ -562,7 +573,7 @@
     "0x004EE890": {
       "name": "UpdateRoleMP",
       "signature": "int __thiscall(int roleIdx)",
-      "source": " | [T100] 同名消歧：@0x4EE890 体=GetRoleMP(this,roleIdx); return 0（decomp 证据）⇒ 语义名 UpdateRoleMP（与类内 GetRoleMP 命名族一致）；@0x4ECB00 保留 Update（全周期：CheckStatus/ProcessActions/UpdateEffects）——禁伪语义命名 ✓"
+      "source": "| [T100] 同名消歧：@0x4EE890 体=GetRoleMP(this,roleIdx); return 0（decomp 证据）⇒ 语义名 UpdateRoleMP（与类内 GetRoleMP 命名族一致）；@0x4ECB00 保留 Update（全周期：CheckStatus/ProcessActions/UpdateEffects）——禁伪语义命名 ✓"
     },
     "0x004EE990": {
       "name": "VarianceRoundCounter",
@@ -658,13 +669,13 @@
     "0x004F0750": {
       "name": "SetVisible",
       "signature": "bool(int nPanelIndex)",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
       "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 2 params"
     },
     "0x004F07D0": {
       "name": "IsRoleIndexEqual",
       "signature": "char __thiscall(int nIndex, int nVal)",
-      "source": " | [T109] 同名消歧：@0x4F07D0 全函数体=switch(nIndex) 各 case `nVal==nIndex` return 1（跳表形相等判定）⇒ 语义名 IsRoleIndexEqual（禁伪语义 ✓ 全函数体证据）；@0x4F2C30 GetRole 保留（对象 getter）"
+      "source": "| [T109] 同名消歧：@0x4F07D0 全函数体=switch(nIndex) 各 case `nVal==nIndex` return 1（跳表形相等判定）⇒ 语义名 IsRoleIndexEqual（禁伪语义 ✓ 全函数体证据）；@0x4F2C30 GetRole 保留（对象 getter）"
     },
     "0x004F0830": {
       "name": "GetRoleNum",
@@ -714,7 +725,7 @@
     "0x004F2910": {
       "name": "SetRoleHP",
       "signature": "int __thiscall(int roleIdx, int value)",
-      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004F2BB0": {
       "name": "SetRoleField",
@@ -731,12 +742,12 @@
     "0x004F3380": {
       "name": "GetMaxHP",
       "signature": "int __thiscall(int roleIdx)",
-      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004F33D0": {
       "name": "GetMaxMP",
       "signature": "int __thiscall(int roleIdx)",
-      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004F3420": {
       "name": "GetTotalRounds",
@@ -745,27 +756,27 @@
     "0x004F3430": {
       "name": "CheckBuff",
       "signature": "char __thiscall(int roleIdx)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004F34E0": {
       "name": "CanUseSkill",
       "signature": "char __thiscall(int roleIdx)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004F3570": {
       "name": "CalcMagicAttack",
       "signature": "int __thiscall(int roleIdx)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004F3620": {
       "name": "CalcMPRegen",
       "signature": "int __thiscall(int roleIdx)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004F36D0": {
       "name": "CalcMagicDefense",
       "signature": "int __thiscall(int roleIdx)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004F37A0": {
       "name": "GetAttackBonus",
@@ -786,12 +797,12 @@
     "0x004F39A0": {
       "name": "GetRoleLevel",
       "signature": "int __thiscall(int roleIdx)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004F39F0": {
       "name": "GetRoleExp",
       "signature": "int __thiscall(int roleIdx)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004F3A30": {
       "name": "SetRoleFlag",
@@ -808,7 +819,7 @@
     "0x004F3B90": {
       "name": "GetRoleMP",
       "signature": "int __thiscall(int roleIdx)",
-      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004F3C00": {
       "name": "IsForce1",
@@ -838,32 +849,32 @@
     "0x004F4DA0": {
       "name": "ProcessAttackResult",
       "signature": "int __thiscall(int roleIdx)",
-      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004F5070": {
       "name": "ProcessMagicResult",
       "signature": "int __thiscall(int roleIdx)",
-      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004F55D0": {
       "name": "CalcPhysicalDamage",
       "signature": "int __thiscall(int roleIdx)",
-      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004F57A0": {
       "name": "CalcMagicDamage",
       "signature": "int __thiscall(int roleIdx)",
-      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004F5970": {
       "name": "ProcessSkillEffect",
       "signature": "int __thiscall(int roleIdx)",
-      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004F5B70": {
       "name": "ProcessItemEffect",
       "signature": "int __thiscall(int roleIdx)",
-      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004F7500": {
       "name": "GetRoleAI",
@@ -888,7 +899,7 @@
     "0x004FA540": {
       "name": "CheckRoleStatus",
       "signature": "int __thiscall(int roleIdx)",
-      "source": " | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 1——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 1——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004FA6A0": {
       "name": "CheckDeath",
@@ -915,7 +926,7 @@
       "signature": "void __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "source": " | [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ CCBRoleState（ctor 名形=类名）：A 级 refs ??0UIListBox（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox | [C2084 归因消解 2026-10-16] 名 CCBRoleState 与 _todo_456AB0@0x004EDD60 撞名（ctor/dtor 双体 C2084）：双 SEH 序言体同名 ⇒ 保留既有名，73108e3f2 改名侧降 _todo_ 待细分"
+      "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ CCBRoleState（ctor 名形=类名）：A 级 refs ??0UIListBox（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox | [C2084 归因消解 2026-10-16] 名 CCBRoleState 与 _todo_456AB0@0x004EDD60 撞名（ctor/dtor 双体 C2084）：双 SEH 序言体同名 ⇒ 保留既有名，73108e3f2 改名侧降 _todo_ 待细分"
     },
     "0x005020D0": {
       "name": "CalcTurnDelay",
@@ -945,17 +956,17 @@
     "0x00456B80": {
       "name": "_scalar_dtor_6B80",
       "signature": "void __thiscall()",
-      "source": " | [ctor/dtor 错位改名 2026-10-16] 名 ctor_6B80 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_6B80。refs: ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ?Destroy2@UICaption@@QAEXXZ ??1UIListBox@@QAE@XZ"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor_6B80 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_6B80。refs: ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ?Destroy2@UICaption@@QAEXXZ ??1UIListBox@@QAE@XZ"
     },
     "0x004F2C30": {
       "name": "GetRole",
       "signature": "void *__thiscall(int index)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004DC720": {
       "name": "IsRoleShelved",
       "signature": "BOOL __thiscall(int nVal1)",
-      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [T104] 同名消歧：@0x4DC720 体=sCGSHELF[64*nVal1+43] 槽检查（decomp 成员访问证据：sCGSHELF 架子数组）⇒ 语义名 IsRoleShelved（禁伪语义 ✓）；@0x4EEE60 IsAlive 保留（m_pObjMsgBuffer 活性检查形）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [T104] 同名消歧：@0x4DC720 体=sCGSHELF[64*nVal1+43] 槽检查（decomp 成员访问证据：sCGSHELF 架子数组）⇒ 语义名 IsRoleShelved（禁伪语义 ✓）；@0x4EEE60 IsAlive 保留（m_pObjMsgBuffer 活性检查形）"
     },
     "0x004DC7A0": {
       "name": "InitCombatDialog",
@@ -979,7 +990,7 @@
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": " | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBRoleState（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B364）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBRoleState（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B364）"
     },
     "0x004DCF80": {
       "name": "HandleMagicMenu",
@@ -992,7 +1003,7 @@
     "0x004DF3D0": {
       "name": "CheckSelfMP",
       "signature": "char __thiscall()",
-      "source": " | [T106] 同名消歧：0x004DF3D0 体=GetRoleMP(this->m_id,1)（m_id=自身角色槽）⇒ 自身 MP 检查（decomp 调用实参证据）⇒ 语义名 CheckSelfMP（禁伪语义 ✓）"
+      "source": "| [T106] 同名消歧：0x004DF3D0 体=GetRoleMP(this->m_id,1)（m_id=自身角色槽）⇒ 自身 MP 检查（decomp 调用实参证据）⇒ 语义名 CheckSelfMP（禁伪语义 ✓）"
     },
     "0x004E1A40": {
       "name": "CombatDialogProc",
@@ -1025,7 +1036,7 @@
     "0x004EE910": {
       "name": "CheckRoleMP",
       "signature": "int __thiscall(int roleIdx)",
-      "source": " | [T106] 同名消歧：0x004EE910 体=GetRoleMP(this,roleIdx)（显式 roleIdx）⇒ 按角色 MP 检查（decomp 调用实参证据）⇒ 语义名 CheckRoleMP（禁伪语义 ✓）"
+      "source": "| [T106] 同名消歧：0x004EE910 体=GetRoleMP(this,roleIdx)（显式 roleIdx）⇒ 按角色 MP 检查（decomp 调用实参证据）⇒ 语义名 CheckRoleMP（禁伪语义 ✓）"
     },
     "0x004F0A10": {
       "name": "CalcCombatDamage",
@@ -1062,7 +1073,7 @@
     "0x004F4B90": {
       "name": "CalcSpellDamage",
       "signature": "unsigned int __thiscall CCBRoleState::CalcMagicDamage(int roleIdx, int nMagicID)",
-      "source": " | [T107] 同名消歧：0x004F4B90 体带 nMagicID 形参（法术 ID）⇒ 按法术伤害计算（调用实参/形参证据） ⇒ 语义名 CalcSpellDamage（禁伪语义 ✓）；@0x4F57A0 CalcMagicDamage 保留（无 nMagicID 形=通用魔法伤害）"
+      "source": "| [T107] 同名消歧：0x004F4B90 体带 nMagicID 形参（法术 ID）⇒ 按法术伤害计算（调用实参/形参证据） ⇒ 语义名 CalcSpellDamage（禁伪语义 ✓）；@0x4F57A0 CalcMagicDamage 保留（无 nMagicID 形=通用魔法伤害）"
     },
     "0x004F4C80": {
       "name": "CalcSkillDamage",
@@ -1147,7 +1158,7 @@
     "0x00456C20": {
       "name": "~CCBRoleState",
       "signature": "void __thiscall CCBRoleState::~CCBRoleState()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x00457020": {
       "name": "PlayVideoIfReady",
@@ -1321,7 +1332,7 @@
     "0x004FA4E0": {
       "name": "FindSlotByHP",
       "signature": "int __thiscall(unsigned int nVal, unsigned int dwVal)",
-      "source": " | param a typed: decomp shows two unsigned int stack args (userpurge a2,a3)"
+      "source": "| param a typed: decomp shows two unsigned int stack args (userpurge a2,a3)"
     },
     "0x004FA510": {
       "name": "GetRoleCount",
@@ -1411,12 +1422,12 @@
       "name": "AddCommand",
       "signature": "int __thiscall(int nCmdType, BOOL bImmediate, int nParam)",
       "_misattrib_evidence": "round3: this=CCBRoleState: GetRoleField/GetTotalRounds/CheckBuff all on own this; CCBSystem only reached via other objects; sole caller x12",
-      "source": " | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 3——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 3——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x005362F0": {
       "name": "_scalar_dtor_62F0",
       "signature": "void __thiscall()",
-      "source": " | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBRoleState（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x5708E8）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBRoleState（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x5708E8）"
     },
     "0x004499A0": {
       "name": "sub_4499A0",

@@ -1,0 +1,81 @@
+{
+ "class": "CCBStage",
+ "arrays": [
+  {
+   "id": "arrA_208",
+   "element_size": 208,
+   "base_offset": "0x1478",
+   "count": 50,
+   "stride_evidence": "objdump 0x44d00b: `add esi,0xd0`（208 步进）",
+   "element_count_evidence": "objdump 0x44d006: `mov ecx,0x32`=50 循环计数 + 0x44cffa `lea esi,[edi+0x1478]`（基装载）+ 0x44d034 jne 循环形",
+   "recoverable_bytes": 10400
+  },
+  {
+   "id": "arrB_208",
+   "element_size": 208,
+   "base_offset": "0x2178",
+   "count": 100,
+   "stride_evidence": "objdump 0x44d0cb: `add edi,0xd0`",
+   "element_count_evidence": "objdump 0x44d0c6: `mov ecx,0x64`=100 + 0x44d0ba `lea edi,[esi+0x2178]` + 0x44d0f4 jne",
+   "recoverable_bytes": 20800
+  },
+  {
+   "id": "arrC_280",
+   "element_size": 280,
+   "base_offset": "this+0（35i 缩放链 disp 相对 this；元素 i 疑≥1）",
+   "count": "runtime @+0x114（读取形 `mov eax,[esi+0x114]; test; jle`）",
+   "stride_evidence": "35i 缩放链（lea(8i)-sub(i)-lea(5×)×8=280i）0x4dff71 区",
+   "element_count_evidence": "读取形 jle 循环界；**写入点混形不定案**（439097/4c5a69/4c5ae2/52eca6 reg 写 + 52af99 `mov [esi+0x114],0xc36d0000` float 位型写 ⇒ +0x114 语义有位面疑，静态上界**不给定值**（P0-6 不冒进））",
+   "recoverable_bytes": "280×runtime count"
+  },
+  {
+   "id": "arrD_ptr",
+   "element_size": 4,
+   "base_offset": "(0x4C5C20 类域 0x118 指针数组——类归属待核）",
+   "count": "runtime @+0x114（同形读取）",
+   "stride_evidence": "objdump 0x4c5c4c: `add esi,0x4`（4B 指针步进）",
+   "element_count_evidence": "`inc edi; cmp; jl` 循环 + 对象虚调用体（vptr slot6）",
+   "note": "第四结构（指针数组+对象遍历）——R52 已辨明非 280B 族"
+  }
+ ],
+ "element_structs": {
+  "CCBTaskSlot208": {
+   "binary_size": 208,
+   "fields": {
+    "0": "m_pObj?（子对象 lea）",
+    "20": "ptr0",
+    "24": "ptr1",
+    "184": "m_pObj2?（+0xB8 子对象）",
+    "96": "float 区 +0x60-0x74（lead 数据，待复核）"
+   },
+   "note": "字段名不冒进——+0x14/+0x18 ptr 对 R49 mov 形实证；+0x60-0x74 float 仍标待证"
+  },
+  "CCBTaskSlot280": {
+   "binary_size": 280,
+   "fields": {
+    "0": "m_pHead: void *",
+    "3": "m_bFlag: char",
+    "4": "m_fSlot0: float",
+    "8": "m_fSlot1: float",
+    "12": "m_fSlot2: float",
+    "16": "m_fSlot3: float",
+    "20": "m_nState: int",
+    "24": "_todo_018: _BYTE[232]"
+   },
+   "evidence_ref": "ccbstage_280b_array.json（7 员 A 级）"
+  }
+ },
+ "vs_distinction_final": {
+  "arrA/arrB vs arrC": "stride 208 vs 280 · count 50/100 常量 vs runtime · +0x14 ptr 对 vs int6 状态码 · 基址装载 lea+常量循环 vs 35i 缩放链 —— **全异四维**",
+  "arrA vs arrB": "同元素型（208）不同数组：基 0x1478 vs 0x2178 · 界 50 vs 100（`mov ecx,0x32`/`0x64` 实录）⇒ **独立两数组**（非同一数组两段）"
+ },
+ "summary": {
+  "total_arrays": 4,
+  "total_recoverable_bytes": "10,400+20,800+280×runtime+4×runtime",
+  "a_level": 8,
+  "key_findings": [
+   "① 208B 两区元素数定案 50/100（循环计数常量实录）——R48「~8/区」估计大幅低估，可恢复 31.2KB+",
+   "② count@+0x114 写入混形（含 float 位型 0xC36D0000）⇒ 语义有位面疑，静态上界不冒进；arrD 指针数组第四结构入账"
+  ]
+ }
+}

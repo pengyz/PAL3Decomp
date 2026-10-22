@@ -202,7 +202,7 @@
     "0x004BDAC0": {
       "name": "~RenderTarget",
       "signature": "void __thiscall()",
-      "source": " | [ctor/dtor 错位改名 2026-10-16] 名 RenderTarget 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~RenderTarget。refs: ??1gbTexture_D3D@@UAE@XZ"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 RenderTarget 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~RenderTarget。refs: ??1gbTexture_D3D@@UAE@XZ"
     },
     "0x004BDB60": {
       "name": "Create",
@@ -236,7 +236,7 @@
     "0x004B4840": {
       "name": "SetField084",
       "signature": "void __thiscall RenderTarget::SetField084(int nVal1)",
-      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004B49C0": {
       "name": "UpdateTransform",
@@ -245,7 +245,7 @@
     "0x004B4D80": {
       "name": "SetOffset",
       "signature": "void __thiscall(float fVal1, float fVal2)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | task-6 案例B 2026-10-15 补 2 参 float：A 级定义侧 0x4B4D80 `8b 44 24 04/8b 54 24 08/89 81 90 00 00 00/89 91 94 00 00 00/c2 08 00`（读 [esp+4]/[esp+8] 双槽+ret 8=2 参，裸 mov 位拷贝无 FPU 转换）；调用侧 4 处全核（0x482E12/0x47A507/0x48EDCE/0x47A54E）实参 float 位型（push 0x40000000=2.0f、0x41200000=10.0f 常量、fild/fstp int→float 转换）；受控实验 float,float+float 成员编出与原 23 字节逐字节全同"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | task-6 案例B 2026-10-15 补 2 参 float：A 级定义侧 0x4B4D80 `8b 44 24 04/8b 54 24 08/89 81 90 00 00 00/89 91 94 00 00 00/c2 08 00`（读 [esp+4]/[esp+8] 双槽+ret 8=2 参，裸 mov 位拷贝无 FPU 转换）；调用侧 4 处全核（0x482E12/0x47A507/0x48EDCE/0x47A54E）实参 float 位型（push 0x40000000=2.0f、0x41200000=10.0f 常量、fild/fstp int→float 转换）；受控实验 float,float+float 成员编出与原 23 字节逐字节全同"
     },
     "0x004B4820": {
       "name": "SetVisible",
@@ -266,7 +266,7 @@
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": " | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RenderTarget（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56C590）"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RenderTarget（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56C590）"
     },
     "0x004BC7B0": {
       "name": "UpdateTimeStep",
@@ -300,7 +300,7 @@
       "name": "OnRender",
       "signature": "int __thiscall RenderTarget::OnRender(int nVal1)",
       "ordinal": 6,
-      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004B4B10": {
       "name": "CalcRenderDimensions",
@@ -317,7 +317,7 @@
     "0x004BB180": {
       "name": "SetRenderState",
       "signature": "int __thiscall(int nVal)",
-      "source": " | rename:_todo_→fn_"
+      "source": "| rename:_todo_→fn_"
     },
     "0x004BD6C0": {
       "name": "LoadParticleTextures",
@@ -326,7 +326,7 @@
     "0x004BD870": {
       "name": "GetManagedTexture",
       "signature": "void __thiscall(int nVal1)",
-      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004BD880": {
       "name": "CreateParticleEffect",
@@ -367,17 +367,17 @@
     "0x004B4910": {
       "name": "SetState",
       "signature": "void __thiscall(int nVal1)",
-      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004B48E0": {
       "name": "SetSize",
       "signature": "void __thiscall(int nHeight)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004B4DA0": {
       "name": "SetScale",
       "signature": "void __thiscall(int nVal1, int nVal2)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | task-6 案例B 2026-10-15 补第 2 参：A 级定义侧 0x4B4DA0 `8b 44 24 04/8b 54 24 08/89 81 98/89 91 9c/c2 08 00`（ret 8=2 参）；⚠️ 型刻意留 int 不改 float：152/156 被名字泄漏进 int 语境（SetRenderState `this[1].m_nScaleY=nVal` int 存=L1 函数 13B、OnRender `this[1247].m_nScaleX=1`、RenderToTexture `m_nScaleX>0`）⇒ float 化必插转换破 L1；调用侧实参 float 位型证据留档（0x47A54E fild/fstp 双槽），待名字泄漏治理后复议 float 化"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | task-6 案例B 2026-10-15 补第 2 参：A 级定义侧 0x4B4DA0 `8b 44 24 04/8b 54 24 08/89 81 98/89 91 9c/c2 08 00`（ret 8=2 参）；⚠️ 型刻意留 int 不改 float：152/156 被名字泄漏进 int 语境（SetRenderState `this[1].m_nScaleY=nVal` int 存=L1 函数 13B、OnRender `this[1247].m_nScaleX=1`、RenderToTexture `m_nScaleX>0`）⇒ float 化必插转换破 L1；调用侧实参 float 位型证据留档（0x47A54E fild/fstp 双槽），待名字泄漏治理后复议 float 化"
     },
     "0x004867F0": {
       "name": "InitChildPanels",

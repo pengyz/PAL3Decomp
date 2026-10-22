@@ -1,0 +1,33 @@
+{
+ "this_attribution": {
+  "register": "esi/edi（`mov esi,ecx` @420a15 thiscall 标准形）",
+  "source": "ecx（thiscall 首参）",
+  "owner_class": "Unclear（倾向场景/网格宿主类非 CCBStage）",
+  "evidence": "IDA xref：IsTileInBounds 调用者=0x41eebd `IsTransitioning` · SetRoleGridPosition 调用者=0x533831 `LoadScreenScene`（场景/角色域 B 级名）；objdump `mov esi,ecx` prologue 形",
+  "member_offset_range": "this+0x784E8（164 数组）+ 896i 形（base 折叠候选）——与 CCBStage 成员区（0..673988 内已知簇）无交叉证据"
+ },
+ "array_base": "register_synthesized（`lea eax,[ecx+edi*1]`=this+896i 折叠候选——同 arrC 同余问题：f 内偏移 vs base 二义不冒进）",
+ "relation_to_ccbstage": "unrelated/unclear（调用者域=IsTransitioning/LoadScreenScene 非 CCBStage；偏移面无交叉）——896B 数组疑属**网格宿主类**（待宿主类定名）",
+ "inner_164_array": {
+  "base": "+0x784E8",
+  "stride": 164,
+  "independent": true,
+  "evidence": "IsTileInBounds 0x420a24 `lea edi,[esi+edx*4+0x784e8]`（**esi=this** ⇒ 数组 this+0x784E8 起 164i=41i×4）——**R59「896B 元素内字段」表述修正：独立数组**（this 相对）",
+  "anchor_ambiguity": "⚠️ SetRoleGridPosition 0x420b6e `lea ebx,[edi+ecx*4+0x784e8]` 的 edi=elem+0xE0 址（`lea [..+0xe0]; mov edi,ecx`）⇒ 锚定二义（this vs elem+0xE0 址）——待 prologue 全括"
+ },
+ "checklist": {
+  "a_level": true,
+  "full_usage": "部分（164 锚定二义/896 base 同余）",
+  "rule_reproducible": true,
+  "name_offset_confusion_checked": true,
+  "ledger_dual_sync": true,
+  "checked": true
+ },
+ "summary": {
+  "items": 3,
+  "top_findings": [
+   "① 164-stride 数组=this+0x784E8 **独立数组**（IsTileInBounds this 形实录）——R59 内层表述修正",
+   "② 896B 数组疑非 CCBStage 结构（调用者域=场景/角色，偏移面无交叉）——类归属 Unclear 不冒进；宿主类待定名"
+  ]
+ }
+}

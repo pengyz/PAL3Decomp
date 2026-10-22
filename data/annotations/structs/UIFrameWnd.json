@@ -12,7 +12,7 @@
     "0x00442390": {
       "name": "_todo_442390",
       "signature": "void __thiscall()",
-      "source": " | [ctor/dtor 错位改名 2026-10-16] 名 _UIFrameWnd 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UIFrameWnd。refs: ?Destroy@UIFrameWnd@@QAEXXZ ??3@YAXPAX@Z ?_UIWnd@UIWnd@@QAEXXZ | [T56 自抓#3 2026-10-16] 名 ~UIFrameWnd -> UIFrameWnd：new-ctor 三元组 26 站（new(152) 后即 call 本函数）=> post-new 调用=真 ctor ✓ 原 dtor 名错（C2084 消歧件方向反） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 非法重载（同名双址）消歧：0x43BB70=UIFrameWnd ctor（+8 写表 0x56ACB8）保留；0x442390 实为 **0x56ADD0 类 ctor**（+29 写表 0x56ADD0 ≠0x56ACB8 跨类撞名）改名，0x56ADD0 认领后正名"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 _UIFrameWnd 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UIFrameWnd。refs: ?Destroy@UIFrameWnd@@QAEXXZ ??3@YAXPAX@Z ?_UIWnd@UIWnd@@QAEXXZ | [T56 自抓#3 2026-10-16] 名 ~UIFrameWnd -> UIFrameWnd：new-ctor 三元组 26 站（new(152) 后即 call 本函数）=> post-new 调用=真 ctor ✓ 原 dtor 名错（C2084 消歧件方向反） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 非法重载（同名双址）消歧：0x43BB70=UIFrameWnd ctor（+8 写表 0x56ACB8）保留；0x442390 实为 **0x56ADD0 类 ctor**（+29 写表 0x56ADD0 ≠0x56ACB8 跨类撞名）改名，0x56ADD0 认领后正名"
     },
     "0x00442420": {
       "name": "Destroy",
@@ -36,12 +36,12 @@
       "signature": "void __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "source": " | [ctor/dtor 错位改名 2026-10-16] ctor ⇒ ~UIFrameWnd：idapro 交叉复核（lead 确认）：ctor 名语义实为**真析构**（叶析构无 ??1/??3 家族调用=机械判据盲区，人工裁决补） | [C2084 归因消解 2026-10-16] 名 ~UIFrameWnd 与 _todo_442E80@0x00442390 撞名（ctor/dtor 双体 C2084）：A 级：0x442E80 movl $0x56ae10,(%ecx);jmp = vptr 写+尾跳（删除析构 thunk 形）；0x442390 SEH 全体析构保留；真析构已 idapro 确认待细分 | [T56 自抓#3 2026-10-16] 名 _todo_442E80 -> ~UIFrameWnd：0x442E80 = movl vptr->ecx + jmp 尾跳= 析构委托 thunk 形 ✓（与 ctor 0x442390 名对调——消歧对修正）"
+      "source": "| [ctor/dtor 错位改名 2026-10-16] ctor ⇒ ~UIFrameWnd：idapro 交叉复核（lead 确认）：ctor 名语义实为**真析构**（叶析构无 ??1/??3 家族调用=机械判据盲区，人工裁决补） | [C2084 归因消解 2026-10-16] 名 ~UIFrameWnd 与 _todo_442E80@0x00442390 撞名（ctor/dtor 双体 C2084）：A 级：0x442E80 movl $0x56ae10,(%ecx);jmp = vptr 写+尾跳（删除析构 thunk 形）；0x442390 SEH 全体析构保留；真析构已 idapro 确认待细分 | [T56 自抓#3 2026-10-16] 名 _todo_442E80 -> ~UIFrameWnd：0x442E80 = movl vptr->ecx + jmp 尾跳= 析构委托 thunk 形 ✓（与 ctor 0x442390 名对调——消歧对修正）"
     },
     "0x004431D0": {
       "name": "DestroyCallingCtor",
       "signature": "void __thiscall UIFrameWnd::DestroyCallingCtor(int nVal1)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00442890": {
       "name": "CalculateLayout",
@@ -50,7 +50,7 @@
     "0x00444AC0": {
       "name": "~UIFrameWnd_Full",
       "signature": "void __thiscall UIFrameWnd::~UIFrameWnd_Full()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x0043BB70": {
       "name": "UIFrameWnd",
@@ -83,7 +83,7 @@
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5,
-      "source": " | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x442E80 写 vptr 0x56AE10（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AE10→UIFrameWnd（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIFrameWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x442E80 写 vptr 0x56AE10"
+      "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x442E80 写 vptr 0x56AE10（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AE10→UIFrameWnd（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIFrameWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x442E80 写 vptr 0x56AE10"
     },
     "0x00442FF0": {
       "name": "Update_2ff0",
@@ -131,7 +131,7 @@
     "0x00442D40": {
       "name": "_UIFrameWnd_ovl_00442d40",
       "signature": "void __thiscall UIFrameWnd::~UIFrameWnd(int nVal1)",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00442E90": {
       "name": "RenderWithTexture",
@@ -202,7 +202,7 @@
     "0x0043BB90": {
       "name": "_scalar_dtor_BB90",
       "signature": "void __thiscall()",
-      "source": " | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIFrameWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x43BBB0 写 vptr 0x56ACB8"
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIFrameWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x43BBB0 写 vptr 0x56ACB8"
     }
   },
   "vtables": [

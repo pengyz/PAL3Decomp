@@ -363,13 +363,28 @@
       "name": "m_TaskSlots",
       "type": "CCBTaskSlot[32]",
       "source": "[B1b 结构改造 2026-10-20] +184..+2744 区段原有 46 个伪成员（m_nCurTask/m_RoleSlots/m_CmdQueue/m_TurnFlags/m_nCurSubTask/m_Task/m_CamParams/m_ActionCmds/m_TargetPos …）实为同一 80B 结构体数组的字段。数组基 +184 · 步进 80 · 索引 m_nRoleSlot(+164) · 元素数 32（184+32×80=2744 ≈ m_TaskQueue@2752）。证据：objdump 指令级 80 步进 30 次 · memset(v13,0,0x50) 确认元素 80 字节 · 生成源 CCBStage.cpp:2044-2052/3428 位面复用实证。"
+    },
+    "5240": {
+      "name": "m_TaskArrA",
+      "type": "CCBTaskSlot208[16]",
+      "source": "[A 级 opcode 2026-10-21·verifier 全量 231 方法] 区段 **+0x1478=+5240** 至 +0x1A40=+6720（1480B/208=7.12⇒**~8 元素**）· stride 208 = `add $0xd0,%esi/edi`@0x44d00b/0x44d0cb 指针步进实锤 · 元素内字段：+0x14/+0x18 int 对 · +0x60-0x74 float ×6（x87 d8/d9）· +0x50 计数器 · +0x00/+0xB8 子对象 | [R53 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[8] → **16 元素** · arrA_208 @ +0x1478 · **16 元素**（`mov ecx,0x32`@44d006 循环计数实录）· `add esi,0xd0`@44d00b 步进 · `lea esi,[edi+0x1478]`@44cffa 数组基 · ⚠️ R48 估 ~8/区大幅低估（span/stride 粗估），R53 用循环计数常量实录修正 | [R54 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[50] → CCBTaskSlot208[16] · arrA @ +0x1478 · **16 元素**（`mov ebx,0x10` + `dec ebx; jne` 循环计数形实录）· ⚠️ R53「16 元素」**撤回**（`mov ecx,0x32` 是 **idiv 除数** rand%50 非数组大小）· span 0x1478..0x2178（16×0xD0 精确）· **相接铁证**：arrA 终点=arrB 起点"
+    },
+    "8568": {
+      "name": "m_TaskArrB",
+      "type": "CCBTaskSlot208[10]",
+      "source": "[A 级 opcode 2026-10-21·verifier] 区段 **+0x2178=+8568** 至 +0x2740=+10048（同 span/stride）· ~8 元素 | [R53 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[8] → **10 元素** · arrB_208 @ +0x2178 · **10 元素**（`mov ecx,0x64`@44d0c6 循环计数实录）· `add edi,0xd0`@44d0cb 步进 · `lea edi,[esi+0x2178]`@44d0ba 数组基 · ⚠️ R48 估 ~8/区大幅低估（span/stride 粗估），R53 用循环计数常量实录修正 | [R54 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[100] → CCBTaskSlot208[10] · arrB @ +0x2178 · **10 元素**（`mov ebx,0xa` + `dec ebx; jne`）· span 0x2178..0x29A8（10×0xD0）· ⚠️ R53「10 元素」**撤回**（同 idiv 除数误读）"
+    },
+    "280": {
+      "name": "m_TaskArrC",
+      "type": "CCBTaskSlot280[1]",
+      "source": "[A 级 2026-10-21·analyzer R58 定案] arrC_280 **base=0**（@+280 说**撤回**）· B 段 elem[i]+0x14（无 inc）+ A 段 elem[i+1]+4..16（inc=Advance）自洽 ⇒ **base=0 唯一解**（base=280 使 B 段 f=-260 矛盾）· count@+0x114（紧贴首元素前 4B）· 元素数待 count@+0x114 实证（几何约束 ≤18）· ⚠️ 0x118 = **bitplane_reuse**（R58 判定：float 2.0f 位型写 @4108af + 指针写 @439091 = 同槽双用法，三判据①值位面 + ③重解释）· ⚠️ 数组元素型访问形=比例变址（P0-8 scanner 已扩展支持）"
     }
   },
   "methods": {
     "0x004DFAA0": {
       "name": "InitRound",
       "signature": "int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4)",
-      "source": " | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 int __thiscall(int nVal1) ⇒ int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4)（A 级 ret-N 证据：ret $0x10 ⇒ 4 栈参；int 占位·nVal 序号惯例）"
+      "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 int __thiscall(int nVal1) ⇒ int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4)（A 级 ret-N 证据：ret $0x10 ⇒ 4 栈参；int 占位·nVal 序号惯例）"
     },
     "0x004DFE00": {
       "name": "AddTextLabel",
@@ -379,7 +394,7 @@
     "0x004DFED0": {
       "name": "EndTurnAndAdvance",
       "signature": "int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)",
-      "source": " | 签名缺参批量 2026-10-06：ret 20/4=5 参 vs 签名 0——补 5 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 int __thiscall(int nVal1) ⇒ int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)（A 级 ret-N 证据：ret $0x14 ⇒ 5 栈参；int 占位·nVal 序号惯例）"
+      "source": "| 签名缺参批量 2026-10-06：ret 20/4=5 参 vs 签名 0——补 5 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 int __thiscall(int nVal1) ⇒ int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)（A 级 ret-N 证据：ret $0x14 ⇒ 5 栈参；int 占位·nVal 序号惯例）"
     },
     "0x004FB9A0": {
       "name": "CCBStage",
@@ -388,7 +403,7 @@
     "0x004FB9F0": {
       "name": "_todo_004FB9F0",
       "signature": "unsigned int __thiscall()",
-      "source": " | 挂账③ F 案改名 2026-10-06：~CCBStage→_scalar_dtor（deleting-dtor 形（void* 回值+标志参）非纯析构——~名+参=C2631；UIListBox 先例） | 挂账③ 返工重定谳 2026-10-06：非析构（体=初始化/Reset 语义）——真名未知留 _todo_"
+      "source": "| 挂账③ F 案改名 2026-10-06：~CCBStage→_scalar_dtor（deleting-dtor 形（void* 回值+标志参）非纯析构——~名+参=C2631；UIListBox 先例） | 挂账③ 返工重定谳 2026-10-06：非析构（体=初始化/Reset 语义）——真名未知留 _todo_"
     },
     "0x004FBE50": {
       "name": "Create",
@@ -407,12 +422,12 @@
     "0x004FC3A0": {
       "name": "EditorUpdate",
       "signature": "void(float fVal)",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x004FC6F0": {
       "name": "Render",
       "signature": "void __thiscall __thiscall()",
-      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）"
+      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）"
     },
     "0x004FC700": {
       "name": "GetRoleIndex",
@@ -465,12 +480,12 @@
     "0x004FCC10": {
       "name": "GetTaskState",
       "signature": "char(int nIndex, bool *bFinished, unsigned int *dwReturn)",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x004FCC50": {
       "name": "GetTaskState",
       "signature": "char(int nIndex, ECBStageTaskState *State)",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | drop enum keyword: generated header fwd-declares class ECBStageTaskState (line 21) and the elaborate enum specifier in the member decl caused MSVC C2011 class-type-redefinition; pointer width identical"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | drop enum keyword: generated header fwd-declares class ECBStageTaskState (line 21) and the elaborate enum specifier in the member decl caused MSVC C2011 class-type-redefinition; pointer width identical"
     },
     "0x004FCD00": {
       "name": "IsTaskFinished",
@@ -626,7 +641,7 @@
     "0x0050E0D0": {
       "name": "ProcessCommand",
       "signature": "int __thiscall(int nVal1)",
-      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004FC0A0": {
       "name": "Update",
@@ -636,7 +651,7 @@
     "0x004F4AA0": {
       "name": "GetRole",
       "signature": "CCBStageRole *__thiscall(int index)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x004FF560": {
       "name": "ProcTaskSlot",
@@ -657,7 +672,7 @@
     "0x004E0010": {
       "name": "SetupCamControl",
       "signature": "void __thiscall()",
-      "source": " | param a dropped: decomp void __thiscall(CCBStage *this) shows zero stack args"
+      "source": "| param a dropped: decomp void __thiscall(CCBStage *this) shows zero stack args"
     },
     "0x004E0430": {
       "name": "CreatePreviewDialog",
@@ -750,7 +765,7 @@
     "0x004E0330": {
       "name": "ClearAll",
       "signature": "int __thiscall CCBStage::Reset()",
-      "source": " | [T99] 同名消歧：@0x4E0330 体=memset(this,0,0x2598)全对象清零（decomp 证据）⇒ 语义名 ClearAll；@0x40DD80 保留 Reset（成员级部分复位——m_pCamControl=-1/m_pRole[] 形）——禁伪语义命名（地址后缀禁用）✓"
+      "source": "| [T99] 同名消歧：@0x4E0330 体=memset(this,0,0x2598)全对象清零（decomp 证据）⇒ 语义名 ClearAll；@0x40DD80 保留 Reset（成员级部分复位——m_pCamControl=-1/m_pRole[] 形）——禁伪语义命名（地址后缀禁用）✓"
     },
     "0x004E0340": {
       "name": "ResetTurnSlots",
@@ -832,7 +847,7 @@
     "0x00504E30": {
       "name": "ResetAllData",
       "signature": "int __thiscall()",
-      "source": " | [T142] 同名消歧（真-clash：与 0x4E0330 同名同签名 ⇒ C2084 already has a body，本条为生成侧第二定义）：A 级 objdump 全函数体 sub_504E30 = rep stosd 清零 [this,+0x639C0) + 清零 m_EditDescBuf(char[2000]@0x639C0) + 填 m_nTodo_64190(int[5000]@0x64190) 为 -1（标志表初始化），调用点 sub_504DD0（清 2000 条 role/task 项后的整体重置例程）⇒ 语义名 ResetAllData（全量数据重置+标志初始化）；与 0x4E0330(memset 0x2598 头部清零，销毁路径 sub_515DF0 标量删除析构调用) 行为可分。禁地址后缀 ✓ ResetAllData 不与本类 215 名冲突（T135 撞名规避核）"
+      "source": "| [T142] 同名消歧（真-clash：与 0x4E0330 同名同签名 ⇒ C2084 already has a body，本条为生成侧第二定义）：A 级 objdump 全函数体 sub_504E30 = rep stosd 清零 [this,+0x639C0) + 清零 m_EditDescBuf(char[2000]@0x639C0) + 填 m_nTodo_64190(int[5000]@0x64190) 为 -1（标志表初始化），调用点 sub_504DD0（清 2000 条 role/task 项后的整体重置例程）⇒ 语义名 ResetAllData（全量数据重置+标志初始化）；与 0x4E0330(memset 0x2598 头部清零，销毁路径 sub_515DF0 标量删除析构调用) 行为可分。禁地址后缀 ✓ ResetAllData 不与本类 215 名冲突（T135 撞名规避核）"
     },
     "0x0050E550": {
       "name": "ResolveActionEffect",
@@ -881,7 +896,7 @@
     "0x00508930": {
       "name": "_todo_00508930",
       "signature": "void __thiscall(CCBStage *this, int nVal, int nVal2, int *p_DWORD)",
-      "source": " | 析构名误挂改名 2026-09-29：~CCBStageRole→_todo_00508930（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）"
+      "source": "| 析构名误挂改名 2026-09-29：~CCBStageRole→_todo_00508930（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）"
     },
     "0x005090F0": {
       "name": "Proceed",
@@ -969,7 +984,7 @@
     "0x00509B90": {
       "name": "RunActiveTask",
       "signature": "void __thiscall(CCBStage *this, gbMatrixStack *fpTask)",
-      "source": " | 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 IsDoTask（0x509xxx 簇错挂）⇒ RunActiveTask：五面：①调用者=0x4FC480 update 域单链 ②被调=CCBRoleState::InitUI×6+gbMatrixStack Push/Pop+Actor::DispatchAction+子步 0x50A9B0 ③成员 m_nActiveIdx×14/m_pCBSystem×10/m_pRoleState×10/m_CamParams ④CCBStage 战斗舞台 ⑤主更新入口链 ⇒ 战斗任务主执行体（原名 IsDoTask 错挂——0x4FC980 才是真 IsDoTask 包装）"
+      "source": "| 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 IsDoTask（0x509xxx 簇错挂）⇒ RunActiveTask：五面：①调用者=0x4FC480 update 域单链 ②被调=CCBRoleState::InitUI×6+gbMatrixStack Push/Pop+Actor::DispatchAction+子步 0x50A9B0 ③成员 m_nActiveIdx×14/m_pCBSystem×10/m_pRoleState×10/m_CamParams ④CCBStage 战斗舞台 ⑤主更新入口链 ⇒ 战斗任务主执行体（原名 IsDoTask 错挂——0x4FC980 才是真 IsDoTask 包装）"
     },
     "0x0050A180": {
       "name": "Grab",
@@ -1011,7 +1026,7 @@
     "0x0050A500": {
       "name": "LoadAction",
       "signature": "bool __thiscall(CCBStage *this, gbRay nActIndex)",
-      "source": " | 签名缺参批量 2026-10-06：ret 24/4=6 参 vs 签名 2——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 24/4=6 参 vs 签名 2——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x0050A520": {
       "name": "GetStatus",
@@ -1036,7 +1051,7 @@
     "0x0050A770": {
       "name": "MoveToAbsolute",
       "signature": "bool __thiscall(CCBStage *this, int fp, int dwTaskID)",
-      "source": " | 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 EndTask（0x509xxx 簇错挂）⇒ MoveToAbsolute：五面：①调用者=0x4EEEDC（状态域）②被调=gbVec3D::Normalize/Length+EndTask 转发 ③成员 m_fCurPosX/m_fCurPosY/m_pCBSystem ④CCBStage ⑤移动语义体 ⇒ 绝对位移处理（原名 EndTask 错挂）"
+      "source": "| 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 EndTask（0x509xxx 簇错挂）⇒ MoveToAbsolute：五面：①调用者=0x4EEEDC（状态域）②被调=gbVec3D::Normalize/Length+EndTask 转发 ③成员 m_fCurPosX/m_fCurPosY/m_pCBSystem ④CCBStage ⑤移动语义体 ⇒ 绝对位移处理（原名 EndTask 错挂）"
     },
     "0x0050A8E0": {
       "name": "DelTask",
@@ -1063,7 +1078,7 @@
     "0x0050A9B0": {
       "name": "CalcTaskWorldMatrix",
       "signature": "tagRoleState *__thiscall(CCBStage *this, gbVec3D *dwMsg)",
-      "source": " | 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 DoTask（0x509xxx 簇错挂）⇒ CalcTaskWorldMatrix：五面：①调用者=0x509B90 主执行体内部步骤（语义明确）+EditorUpdate ②被调=CCBStage::GetWorldPos+gbMatrix4 ctor ③成员 m_CamParams/m_pRoleState ④CCBStage ⑤主执行体内坐标计算步 ⇒ 任务世界矩阵计算（原名 DoTask 错挂）"
+      "source": "| 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 DoTask（0x509xxx 簇错挂）⇒ CalcTaskWorldMatrix：五面：①调用者=0x509B90 主执行体内部步骤（语义明确）+EditorUpdate ②被调=CCBStage::GetWorldPos+gbMatrix4 ctor ③成员 m_CamParams/m_pRoleState ④CCBStage ⑤主执行体内坐标计算步 ⇒ 任务世界矩阵计算（原名 DoTask 错挂）"
     },
     "0x0050AA60": {
       "name": "ClearBadPushTask",
@@ -1206,7 +1221,7 @@
     "0x0050B430": {
       "name": "FindFreeSlot",
       "signature": "char __thiscall(CCBStage *this, int a2)",
-      "source": " | fn-ptr return form was unparseable ([6] permanent fail); adopted decomp projection char(int). Return width needs caller confirmation — indirect dispatch tail call eax"
+      "source": "| fn-ptr return form was unparseable ([6] permanent fail); adopted decomp projection char(int). Return width needs caller confirmation — indirect dispatch tail call eax"
     },
     "0x0050B4C0": {
       "name": "CountValidTasks",
@@ -1422,5 +1437,6 @@
       ]
     }
   ],
-  "_flexible": true
+  "_flexible": true,
+  "note": "[R50 第三族曝光 2026-10-21·analyzer] B 段（0x4DFF90 AssignSlotData@CCBStage）体内实证this+0 起 **280B 步进数组**（35i 缩放 · +0 头指针 · +0x14 状态码=6 · 索引@+0x10）⇒ CCBStage 缺口结构面 **≥3 类数组**（208B×2 + 280B×1）。⚠️ 与 208B 两区**不同族**（+0x14 在 208B 族=ptr 对 · 在 280B 族=状态码）⇒ 须独立结构体。 | [R58 第五族曝光 2026-10-21·analyzer] **896B 网格数组**（7i×shl7 缩放）· 元素≤256（`and 0xff` 实录）· +0xE0/+0x18D 字段 · 用户=IsTileInBounds/SetRoleGridPosition/CheckTileScript 域（tile/role 网格）· ⚠️ **幂等式前缀 ≠ 同族**（7i 缩放前缀通用但收口分族：×8=280 · ×128=896 · ×4=29）"
 }

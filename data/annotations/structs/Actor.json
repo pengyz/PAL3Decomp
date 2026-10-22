@@ -81,7 +81,7 @@
     "48": {
       "name": "m_nRoleParam0",
       "type": "int",
-      "source": "decomp:transfer_from_nVal+48"
+      "source": "decomp:transfer_from_nVal+48 | [P0-6 全用法形 2026-10-21· 安全] int → float · 全用法形扫描：[{'form': 'assign', 'count': 2, 'evidence': '4024a1:\\t8b 5e 30 \\tmov 0x30(%esi),%ebx'}, {'form': 'float', 'count': 2, 'evidence': '402d88:\\td9 5f 30 \\tfstps 0x30(%edi)'}]（仅 float 用法，无 arith/addr 混合）· None | [R55 回退 2026-10-21·verifier 严格 opcode 证伪] 前次改 float 的 verdict= **错**。严格 7 形扫描实证 = SINGLE_ASSIGN 9 站（mov reg int 存）非 FLOAT ⇒ 命名错 · 首扫误中栈/负位移假阳（0x4(%esp) / -0x4(%esi)），严格剔除后才现真相 ⇒ 剔除纪律必要。 · 原 type=float"
     },
     "52": {
       "name": "m_fRoleParam1",
@@ -606,27 +606,27 @@
     "0x00536160": {
       "name": "SetParam",
       "signature": "int __thiscall(int nVal1, int nVal2)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 int __thiscall(int nVal) ⇒ int __thiscall(int nVal1, int nVal2)（A 级 ret-N 证据：ret $0x8 ⇒ 2 栈参；int 占位·nVal 序号惯例）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 int __thiscall(int nVal) ⇒ int __thiscall(int nVal1, int nVal2)（A 级 ret-N 证据：ret $0x8 ⇒ 2 栈参；int 占位·nVal 序号惯例）"
     },
     "0x00536220": {
       "name": "GetDefaultFOV_thunk",
       "signature": "int __thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x00536230": {
       "name": "SetDefaultFOV",
       "signature": "int __thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x00536240": {
       "name": "GetDefaultDist_thunk",
       "signature": "int __thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x00536250": {
       "name": "SetDefaultDist",
       "signature": "void __thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x00536310": {
       "name": "DestroyInternalData",
@@ -639,22 +639,22 @@
     "0x00536A40": {
       "name": "GetDefaultFOV2_thunk",
       "signature": "int __thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x00536A50": {
       "name": "SetDefaultFOV2",
       "signature": "int __thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x00536A60": {
       "name": "GetDefaultDist2_thunk",
       "signature": "int __thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x00536A70": {
       "name": "SetDefaultDist2",
       "signature": "void __thiscall()",
-      "source": " | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
+      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)"
     },
     "0x00536A80": {
       "name": "FastInit",
@@ -679,7 +679,7 @@
     "0x00536FB0": {
       "name": "QueryState",
       "signature": "int __thiscall(int nVal1)",
-      "source": " | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00536FC0": {
       "name": "DispatchAction",
@@ -790,7 +790,7 @@
     "0x00537510": {
       "name": "StoreParam",
       "signature": "int __thiscall(int nVal, int nVal2)",
-      "source": " | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x005375B0": {
       "name": "ClearArrayEntry",
@@ -803,7 +803,7 @@
     "0x005376E0": {
       "name": "LoadSaveData",
       "signature": "int __thiscall Actor::LoadSaveData(char *pszSlotIdx)",
-      "source": " | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
+      "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）"
     },
     "0x00537770": {
       "name": "LoadActions",
@@ -1133,18 +1133,18 @@
     "0x0041F340": {
       "name": "_scalar_dtor_F340",
       "signature": "void __thiscall()",
-      "source": " | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AAC4 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AAC4）：本体 56 8b f1 e8 18 00 00 00 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x41F360 写 vptr 0x56AAC4（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AAC4→Actor（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=Actor（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x41F360 写 vptr 0x56AAC4"
+      "source": "| [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AAC4 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AAC4）：本体 56 8b f1 e8 18 00 00 00 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x41F360 写 vptr 0x56AAC4（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AAC4→Actor（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=Actor（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x41F360 写 vptr 0x56AAC4"
     },
     "0x004083B0": {
       "name": "_scalar_dtor_83B0",
       "signature": "void __thiscall()",
-      "source": " | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056A6D0 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56A6D0 已认领）：本体 56 8b f1 e8 18 00 00 00 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4083D0 写 vptr 0x56A6D0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56A6D0→Actor（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=Actor（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4083D0 写 vptr 0x56A6D0",
+      "source": "| [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056A6D0 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56A6D0 已认领）：本体 56 8b f1 e8 18 00 00 00 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4083D0 写 vptr 0x56A6D0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56A6D0→Actor（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=Actor（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4083D0 写 vptr 0x56A6D0",
       "declaration_only": true
     },
     "0x00408410": {
       "name": "_todo_8410",
       "signature": "void __thiscall()",
-      "source": " | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056A6D0 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56A6D0）：本体 8b 54 24 04 8b 41 18 85 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
+      "source": "| [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056A6D0 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56A6D0）：本体 8b 54 24 04 8b 41 18 85 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
       "declaration_only": true
     },
     "0x00538260": {

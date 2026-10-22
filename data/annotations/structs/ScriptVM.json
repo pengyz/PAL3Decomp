@@ -166,7 +166,7 @@
     "0x00423880": {
       "name": "ProcessFrame",
       "signature": "void __thiscall ScriptVM::ProcessFrame()",
-      "source": " | [名账正名 2026-10-16] idapro decompile：体=`BINK::Destroy(this)` + m_nPathStep 循环 + operator delete（??3）——**清理/析构形 ⇒ 非 ctor**（lead 疑「gbLightObj ctor」证否）· xref 零命中 ⇒ **禁猜挂账**（保留现名 ProcessFrame；清理语义明但真名待全形核）"
+      "source": "| [名账正名 2026-10-16] idapro decompile：体=`BINK::Destroy(this)` + m_nPathStep 循环 + operator delete（??3）——**清理/析构形 ⇒ 非 ctor**（lead 疑「gbLightObj ctor」证否）· xref 零命中 ⇒ **禁猜挂账**（保留现名 ProcessFrame；清理语义明但真名待全形核）"
     },
     "0x0042D4B0": {
       "name": "SetRolePosition",
@@ -184,7 +184,7 @@
       "name": "ExecuteBlock",
       "signature": "void __thiscall(ScriptVM *this)",
       "_misattrib_evidence": "round3: interpreter loop; ScriptVM::CallFunction/SetRolePosition on own this (mov ecx,esi); IsRunning(0x42C1A0) callers all inside this function",
-      "source": " | ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 `void __thiscall()`；A 级：0x424C20 ScriptVM 成员访问"
+      "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 `void __thiscall()`；A 级：0x424C20 ScriptVM 成员访问"
     },
     "0x0042CB70": {
       "name": "FightInfo",

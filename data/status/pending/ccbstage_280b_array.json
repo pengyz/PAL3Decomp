@@ -1,0 +1,109 @@
+{
+ "class": "CCBStage",
+ "array_region": {
+  "start": 280,
+  "end": "运行时 count 限定（静态上界 (bs-0x118)/280≈2406）",
+  "stride": 280,
+  "element_count_estimate": "运行时值 @this+0x114（mov 0x114(%ebx),%eax; test; jle 循环界实录）",
+  "evidence": "objdump 0x4C5C31: `lea 0x118(%ebx),%esi`（数组基=+0x118）+ 0x4C5C26: `mov 0x114(%ebx),%eax; test; jle`（count@+0x114）· B 段 35i 缩放=`lea(8i)-sub(i)-lea(5×)`=35i×8=280i 步进实录",
+  "note": "⚠️ 数组基=+0x118（首元素）——修正 R50「this+0 起」表述：+0 区为对象头（成员区），索引 i 对应 elem[i]=this+0x118+280i（A 段 disp 折叠 0x11C=280+4 ⇒ 实写 elem[i+1] 形=Advance 语义）"
+ },
+ "element_fields": [
+  {
+   "offset": 0,
+   "type": "void *",
+   "semantic": "头指针（拷自 this+8）",
+   "evidence": "objdump 0x4dff5c: mov 0x8(%ecx),%eax → 0x4dff62: mov %eax,(%ecx,%edx,8)（elem[i+1]+0）· B 段 0x4dffba 同形",
+   "level": "A"
+  },
+  {
+   "offset": 3,
+   "type": "char",
+   "semantic": "标志（EndTurnAndAdvance 第 5 参）",
+   "evidence": "objdump 0x4dff74: mov 0x14(%esp),%al → 0x4dff78: mov %al,0x11b(...)=elem[i+1]+3",
+   "level": "A"
+  },
+  {
+   "offset": 4,
+   "type": "float",
+   "semantic": "槽数据 f0（参数1）",
+   "evidence": "0x4dfee3: fstps 0x11c(...)=elem[i+1]+4 · flds 0x4(%esp) 源",
+   "level": "A"
+  },
+  {
+   "offset": 8,
+   "type": "float",
+   "semantic": "槽数据 f1（参数2）",
+   "evidence": "0x4dfefd: fstps 0x120(...)=elem[i+1]+8 · flds 0x8(%esp)",
+   "level": "A"
+  },
+  {
+   "offset": 12,
+   "type": "float",
+   "semantic": "槽数据 f2（参数3）",
+   "evidence": "0x4dff17: fstps 0x124(...)=elem[i+1]+0x0C · flds 0xC(%esp)",
+   "level": "A"
+  },
+  {
+   "offset": 16,
+   "type": "float",
+   "semantic": "槽数据 f3（参数4）",
+   "evidence": "0x4dff31: fstps 0x128(...)=elem[i+1]+0x10 · flds 0x10(%esp)",
+   "level": "A"
+  },
+  {
+   "offset": 20,
+   "type": "int",
+   "semantic": "状态码（AssignSlotData 写 6）",
+   "evidence": "objdump 0x4dff9f: movl $0x6,0x14(%ecx,%eax,8)=elem[i]+0x14",
+   "level": "A"
+  },
+  {
+   "offset": 24,
+   "type": "_BYTE[232]（尾块）",
+   "semantic": "未见访问（32 方法窗+两函数体扫零命中）——P0-6：单点 opcode 不足不改型，保持尾块占位",
+   "evidence": "反证 A 级：scaled disp 280i+f 仅现 f∈{0,3,4,8,0xC,0x10,0x14}；元素相对寄存器形未现 +0x18..0x117",
+   "evidence_level": "A（反证）",
+   "confidence": 55
+  }
+ ],
+ "proposed_struct": {
+  "name": "CCBTaskSlot280",
+  "binary_size": 280,
+  "fields": {
+   "0": "m_pHead: void *",
+   "3": "m_bFlag: char",
+   "4": "m_fSlot0: float",
+   "8": "m_fSlot1: float",
+   "12": "m_fSlot2: float",
+   "16": "m_fSlot3: float",
+   "20": "m_nState: int",
+   "24": "_todo_018: _BYTE[232]"
+  },
+  "tail_note": "+0x18..0x117 未见访问（本轮 4 函数窗）——尾部字段待补证"
+ },
+ "distinction_from_208b": {
+  "铁证": "同偏移 0x14 两义：208B 族=ptr 对（R49 mov 形 16 点）vs 280B 族=**movl $0x6 int 状态码**（0x4dff9f 实录）；280B 族 float 在 +4..+0x10（fstps 形 4 连写）vs 208B 族 float 在 +0x60-0x74（lead 数据）；两族基址/步进/字段全异 ⇒ **独立结构体成立**"
+ },
+ "summary": {
+  "total_fields": 8,
+  "a_level": 7,
+  "tail_pending": "0x18-0x117 反证零访问（P0-6 不改型）",
+  "correction": "R51 基址 0x118 撤回（指针数组张冠李戴）"
+ },
+ "array_meta": {
+  "base_offset": "280i（相对 this，B/A 段 35i 缩放实录；元素 i 疑≥1）",
+  "count_offset": 284,
+  "index_offset": 16,
+  "static_upper_bound": "待定（几何上界 (bs-0)/280≈2406；count@+0x114 写入点 32 方法窗未见 movl 形）",
+  "runtime_count_evidence": "mov 0x114(%ebx),%eax; test; jle（0x4C5C26/0x4c5c45 读取形）",
+  "correction_r51": "⚠️ **撤回 R51「数组基=this+0x118」**：0x4C5C20 循环体实录=`lea 0x118(%ebx),%esi` 后 **`add $0x4,%esi`（4B 步进）**+`mov (%esi),%ecx`（指针解引用）+`call *0x18(%eax)`（对象虚调用）⇒ 0x118 处是**指针数组（4B×count）+ 对象遍历**，与 280B 元素遍历**不同形**（张冠李戴修正）；280B 数组保持 35i 缩放证据（disp 相对 this：0x14=状态码·0x11C=280+4 折叠形）",
+  "0x118_real": "指针数组基（4B 步进）——待独立归属（0x4C5C20 方法的类域核验）"
+ },
+ "vs_208b_distinction": {
+  "0x14_semantics": "208B=ptr 对（mov 形 16 点）vs 280B=int 状态码（movl $0x6 @0x4dff9f）",
+  "float_domain": "208B=+0x60-0x74（lead 数据）vs 280B=+0x04-0x10（fstps 0x11c/120/124/128 四连写）",
+  "base_stride": "208B=+0x1478/+0x2178 区·0xD0 步进 vs 280B=280i·35i 缩放链",
+  "evidence": "0x4dff9f movl $0x6,0x14(...) vs R49 mov 0x14(%ecx),%eax（ptr 对）；fstps 形 vs mov 形"
+ }
+}

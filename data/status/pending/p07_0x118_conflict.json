@@ -1,0 +1,27 @@
+{
+ "function_0x4c5c20": {
+  "owner_class": "CCBStage",
+  "ida_boundary": "0x4c5c20 size=0x37（IDA lookup_funcs）· 名 GetReadyCount（PDB 形 B 级语义）",
+  "xref_callers": [
+   "0x4fc690 EditorUpdate（IDA xref 实录）"
+  ],
+  "this_offsets_accessed": [
+   "+0x114（count 读×2：mov eax,[ebx+0x114]; test; jle 循环界）",
+   "+0x118（指针表基：lea esi,[ebx+0x118]）"
+  ],
+  "verdict": "CCBStage（注册面 CCBStage.methods 含此条 + xref 域 EditorUpdate + IDA 边界三证）"
+ },
+ "offset_0x118_reading": "ptr_table",
+ "evidence": {
+  "lea_context": "0x4c5c31 `lea esi,[ebx+0x118]`（表基装载）",
+  "mov_context": "0x4c5c37 `mov ecx,[esi]`（指针解引用）→ 0x4c5c39 `mov al,[ecx+0xd]`（对象+0xD 标志）→ 0x4c5c42 `call [eax+0x18]`（对象 vptr slot6 虚调用）→ 0x4c5c4c `add esi,0x4`（4B 连续步进）",
+  "register_semantics": "esi=指针表游标（4B 步进）· ebx=this · edi=循环计数 · [ebx+0x114]=表计数——**GetReadyCount 语义自洽**（遍历指针表数「就绪」对象：obj+0xD 标志测试）",
+  "collision_note": "⚠️ 与 280B elem[1]@0x118（base=0 折叠解）**物理重叠二义未解**：指针表 0x118..0x158（16×4B）与 elem[1] 0x118..0x228 同址。二解待证：(i) 280B 索引实际不取 1（i≥2 起：elem[2]=0x230 越过表区 ✓ 无撞）；(ii) 280B base≠0（B=280k 其它倍数，A 段折叠约束 B≡0 mod 280 与 j=i+1 形共容）——**不冒进定案**"
+ },
+ "evidence_level": "A",
+ "confidence": 85,
+ "key_findings": [
+  "① 0x4C5C20=CCBStage::GetReadyCount 归属实锤（三证）——R55「类归属待核」收口",
+  "② 0x118=指针表确证（GetReadyCount 语义自洽：表计数+对象就绪测试+虚调用）；280B elem[1] 重叠二义保留（i≥2 起假说与 B≡0 mod 280 折叠约束并存）"
+ ]
+}

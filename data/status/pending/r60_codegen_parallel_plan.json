@@ -1,0 +1,125 @@
+{
+  "task": "R60 codegen 并行化方案（只出方案禁改代码）",
+  "date": "2026-10-21",
+  "reviewer": "verifier",
+  "baseline": {
+    "total": "199.5s",
+    "gen": "~170s（emit_headers 783 h + emit_cpp 186 cpp）",
+    "probe": "21s",
+    "post": "phase2 retain apply"
+  },
+  "stages": [
+    {
+      "name": "load_shared_data",
+      "desc": "读 annotation/decomp/ida_structs 进 DataStore",
+      "parallelizable": false,
+      "granularity": "once",
+      "current_time": "~5s",
+      "note": "全局只读，一次性；fork 后 CoW 共享给 worker"
+    },
+    {
+      "name": "global_facts_reduce",
+      "desc": "scalar_dtor_classes/vptr_inject/forced_global_names/free_func_sigs 归约（emit_headers:286 + emit_cpp:784）",
+      "parallelizable": false,
+      "granularity": "once",
+      "current_time": "~10s",
+      "note": "⚠️ 全局归约（跨类聚合）须串行先算，再并行发射"
+    },
+    {
+      "name": "ast_transform_stages",
+      "desc": "stage1_structural→stage5_fixup + ast_transform（每类 AST 变换）",
+      "parallelizable": true,
+      "granularity": "per_class",
+      "current_time": "~60s",
+      "note": "若 stage 各自只碰本类 AST 则并行安全；⚠️ 若有跨类类型解析须先剥离串行"
+    },
+    {
+      "name": "emit_headers",
+      "desc": "run_header_generation 每类写 .h（emit_headers.py per-class loop）",
+      "parallelizable": true,
+      "granularity": "per_class（783 文件）",
+      "current_time": "~78s",
+      "expected_parallel_time": "~12s"
+    },
+    {
+      "name": "emit_cpp",
+      "desc": "run_cpp_generation 每单元写 .cpp（emit_cpp.py:798 for cls_name,methods → write）",
+      "parallelizable": true,
+      "granularity": "per_unit（186 cpp）",
+      "current_time": "~45s",
+      "expected_parallel_time": "~8s"
+    },
+    {
+      "name": "aggregate_manifest",
+      "desc": "free_functions.h/manifest/汇总（emit_cpp:795 共享写）",
+      "parallelizable": false,
+      "granularity": "once",
+      "current_time": "~2s",
+      "note": "⚠️ 聚合输出须串行+保持 sorted 顺序（确定性）"
+    },
+    {
+      "name": "phase2_retain_apply",
+      "desc": "_retain_apply 后处理套用 overlay",
+      "parallelizable": false,
+      "granularity": "once",
+      "current_time": "~3s",
+      "note": "须在全部写完后串行（防竞态）"
+    }
+  ],
+  "recommendation": {
+    "strategy": "multiprocessing（ProcessPoolExecutor）",
+    "why_not_threading": "emit_headers/emit_cpp 主体是 AST 渲染+字符串构建=CPU-bound ⇒ Python GIL 串行化 ⇒ threading 几乎无加速；multiprocessing 绕 GIL",
+    "start_method": "fork（Linux）——共享 DataStore/decomp/ida_structs 经 CoW 零拷贝传 worker，避免 pickle 大对象 IPC 吃掉收益",
+    "workers": 8,
+    "granularity": "per_class（headers）/per_unit（cpp）——783/8≈98 头每 worker，粒度足够细",
+    "expected_speedup": "5-6x（170s 生成 → ~30-35s；Amdahl：串行部分 ~20s 不可并，8 核并行 150s/8≈19s ⇒ ~25s 端到端）",
+    "implementation_effort": "medium",
+    "phase": "先并行 emit_cpp（186 单元最粗粒度最易），再 emit_headers，最后 ast_transform（若有跨类依赖须剥离）"
+  },
+  "risks": [
+    {
+      "risk": "确定性：输出顺序/内容随并行变",
+      "mitigation": "全程保持 sorted() 迭代喂 worker（任务序稳定）；每个 worker 写**不同文件**故内容独立；任何聚合输出（free_functions.h/manifest）串行+sorted；单元测试比对串行/并行产物逐字节相同"
+    },
+    {
+      "risk": "一个 emit 失败是否影响其他",
+      "mitigation": "ProcessPool 收集 per-worker 异常（return_exceptions=True）；单类失败→记账不中断其他；末尾汇总失败数（对齐现有 exit 语义）"
+    },
+    {
+      "risk": "全局归约竞态（scalar_dtor_classes 等）",
+      "mitigation": "归约阶段强制串行（fork 前算完），worker 只读不写共享事实"
+    },
+    {
+      "risk": "内存（8 worker × DataStore/decomp）",
+      "mitigation": "fork CoW 共享只读数据（无复制）；worker 不持有写副本；监控 RSS"
+    },
+    {
+      "risk": "文件句柄（969 文件并发写）",
+      "mitigation": "8 worker 每 worker 串行写自己的文件（<8 并发句柄）；非 969 全开"
+    },
+    {
+      "risk": "ast_transform 跨类依赖（若存在）",
+      "mitigation": "⚠️ 先审计 stage1-5 是否有跨类类型解析/共享 AST；若有则 ast_transform 保持串行，只并行 emit（emit 是纯 per-class 渲染）"
+    }
+  ],
+  "tdd_fixtures_needed": [
+    "test_codegen_parallel_determinism：串行 vs 8-worker 并行产物逐字节相同（golden hash 比对 783 h + 186 cpp）",
+    "test_codegen_parallel_error_isolation：注入单类 emit 失败 ⇒ 其他类成功 + 失败数正确记账",
+    "test_emit_sorted_order_preserved：free_functions.h/manifest 聚合输出顺序与串行一致",
+    "test_global_facts_reduce_serial：scalar_dtor_classes 等归约在 fork 前完成（无 worker 竞态）",
+    "test_ast_transform_no_cross_class（若并行 ast_transform）：单类 AST 变换不依赖他类"
+  ],
+  "independent_review": {
+    "determinism": "✅ 方案保 sorted + per-file 独立写 + 聚合串行——可测（golden hash）",
+    "risk": "⚠️ ast_transform 跨类依赖是最大不确定点——**必须先只读审计 stage1-5**（R60 纪律：动前答三问），否则并行可能改语义",
+    "note": "probe(21s) 也可并行（每单元独立编译）但属 compile 阶段非 codegen，另案"
+  },
+  "summary": {
+    "stage_breakdown": "✅ 7 阶段（3 可并行：ast_transform/emit_headers/emit_cpp · 4 须串行：load/reduce/manifest/retain）",
+    "parallel_plan": "✅ multiprocessing+fork CoW · per_class/per_unit · 8 worker · 5-6x",
+    "expected_speedup": "生成 170s → ~30-35s（端到端 199.5s → ~55-60s）",
+    "risks": "6 项（确定性/错误隔离/归约竞态/内存/句柄/跨类依赖）均有缓解",
+    "tdd": "5 测试（确定性/错误隔离/顺序/归约/跨类）",
+    "output_path": "data/status/pending/r60_codegen_parallel_plan.json"
+  }
+}
