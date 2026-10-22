@@ -998,6 +998,18 @@
     {
       "ts": "2026-10-22",
       "event": "根因仍未完全定位：需查其他 substitution 路径（疑 _supersede_type_name 或类型解析）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "修尝试 3：_inline_ 路径优先 dict-union => 未生效（mtype 是字符串非 dict）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "矛盾：注解和 _variants 都有 dict-union，但 _emit_member 收到 _inline_* 字符串"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "根因涉及数据流多层：读取注解 -> ??? 转换 -> _emit_member（中间有转换逻辑）"
     }
   ],
   "rolling_metrics": [
