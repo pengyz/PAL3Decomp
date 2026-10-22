@@ -830,6 +830,26 @@
     {
       "ts": "2026-10-22",
       "event": "T2 基础架构设计交付（oracle + T2-F + 6 TDD）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "对抗复核 REJECT：C2653 归因错误（class/struct 只产 warning 零 error）· 真因=float->指针转型失败级联（CCBSystem.cpp:1513 v3 是 Hex-Rays 垃圾 float 局部量）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "方案 B（emit_cpp.py:848 struct->class）只清 warning 0 error 收益 · 残留 5 条反向 C4099（gbengine 真 struct 被 emit 成 class）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "发射点实为 11 处（非 9）：顶层 class x8 + 嵌套 struct x2 + 嵌套定义 struct{ · 嵌套侧恒 struct/顶层恒 class 是两个自洽约定"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "并案实证：emit 双写点漏洞（free_functions.h 预生成版=102 error）· 任何 filter_classes 跑即留编译破坏态 · 结构修②必须做"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "C2653 (4) 真因分族：F1 转型级联 9 条（codegen 浮点垃圾局部量）· F2 不完整型 4 条（缺 include/前向声明）"
     }
   ],
   "rolling_metrics": [
@@ -966,6 +986,13 @@
       "detail": "① 核心用例 stub（assert True）② hash 13 项漏项（pipeline/cli.py、phase2/overlay、cmake/toolchain 不在 hash）③ hash 非内容级（mtime+size 可伪造）",
       "impact": "增量生成正确性未证（差分实证断裂）",
       "next": "① 补 hash 键（13 项）② 改内容级 hash ③ 实现真 golden hash 测试"
+    },
+    {
+      "id": "P0-13",
+      "title": "emit 双写点漏洞（free_functions.h 预生成版=102 error）",
+      "detail": "free_functions.h 双写点：预生成（emit_cpp.py:779-796 零前向声明）+ 全量（825-855） => 任何 filter_classes 跑即留编译破坏态（102 error）。结构修②：合并双写点为单一 _emit_free_functions_header()。",
+      "impact": "filter_classes 模式下编译破坏",
+      "next": "合并双写点 + 回归验证"
     }
   ],
   "env_todo": [
