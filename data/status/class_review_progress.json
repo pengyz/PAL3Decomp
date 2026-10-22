@@ -814,6 +814,22 @@
     {
       "ts": "2026-10-22",
       "event": "asm-first conclusion PARTIALLY overturned: ceiling argument wrong, but verification 53x and L1 tiering stand"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "TDD 复核 REJECT（3 must-fix）：核心用例空转 / hash 13 项漏项 / hash 非内容级（mtime+size 漏检）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "tagCmdData +29 name=\" => \"m_destRoleView\" 修复 => C2208 消除（18->0）· S2 120/214 -> 126/207"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "Path A 深化：unknown 本质=annotation 欠账（79%）· C2208 单点共享根因已修"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "T2 基础架构设计交付（oracle + T2-F + 6 TDD）"
     }
   ],
   "rolling_metrics": [
@@ -943,6 +959,13 @@
       "impact": "14 类下游 +4 漂移",
       "next": "注解 vptr 区表示与编译器一致（去重复 gap/占位）",
       "status": "closed"
+    },
+    {
+      "id": "P0-12",
+      "title": "incremental correctness 3 must-fix（TDD 复核 REJECT）",
+      "detail": "① 核心用例 stub（assert True）② hash 13 项漏项（pipeline/cli.py、phase2/overlay、cmake/toolchain 不在 hash）③ hash 非内容级（mtime+size 可伪造）",
+      "impact": "增量生成正确性未证（差分实证断裂）",
+      "next": "① 补 hash 键（13 项）② 改内容级 hash ③ 实现真 golden hash 测试"
     }
   ],
   "env_todo": [
