@@ -906,6 +906,18 @@
     {
       "ts": "2026-10-22",
       "event": "教训：regex 统计对语法敏感，语义归一须 AST（Hex-Rays 输出非标准 C++）=> 不如不做"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "IDA JSON 取证定谳：script_state/m_state 不在 IDA（inline 子结构 38/10 成员均无）=> 归 hexrays_limit"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "CEffMgr.CEffObj 类型混淆确认：m_pEM 是 CEffMgr* 但 decomp 按 CEffObj:: 访问（CEffMgr 全是 _tail_000，无真成员）"
+    },
+    {
+      "ts": "2026-10-22",
+      "event": "C2039 top 3 归因：CEffMgr.CEffObj(26) 类型混淆 / script_state(19)+m_state(17) 不在 IDA => 均归 hexrays_limit"
     }
   ],
   "rolling_metrics": [
@@ -1052,10 +1064,10 @@
     },
     {
       "id": "P0-14",
-      "title": "Hex-Rays 类型混淆/归属错（C2039 高频族）",
-      "detail": "CEffMgr.CEffObj(26) · PalScriptRoleSlotOverlay.script_state(19) · RoleSystemTeamSlotOverlay.m_state(17) => Hex-Rays 把子成员提升为顶层访问，或类型混淆（m_pEM 是 CEffMgr* 但按 CEffObj:: 访问）",
-      "impact": "C2039 级联 => C2653",
-      "next": "需 IDA 层修（annotation 修正成员归属）或归 hexrays_limit"
+      "title": "✅ C2039 top 3 归因定谳（均归 hexrays_limit）",
+      "detail": "CEffMgr.CEffObj(26) 类型混淆（m_pEM 是 CEffMgr* 但按 CEffObj:: 访问） · script_state(19)/m_state(17) 不在 IDA（inline 子结构 38/10 成员均无） => 均为 Hex-Rays 产物，不可修",
+      "impact": "C2039 级联",
+      "next": "归 hexrays_limit（不修）"
     }
   ],
   "env_todo": [
