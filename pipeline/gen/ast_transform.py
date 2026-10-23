@@ -332,6 +332,14 @@ def _ensure_bases():
     if _CLASS_BASES is not None:
         return
     _CLASS_BASES = {}
+    # P1-5（阶段 1，Task 2）：注解读取收敛到单一读点 annotation_view
+    # （CLAUDE.md 红线；原为 3 处漏网直读之一：listdir structs/*.json）
+    # 语义逐字等价：struct_by_class 遍历所有类，内部做 exists 守卫
+    try:
+        import annotation_view as _annview
+    except ImportError:  # pragma: no cover - 脚本/包双入口
+        from pipeline.gen import annotation_view as _annview
+    # 遍历所有类（struct_by_class 是单类查询，需枚举）
     _gen_dir = os.path.dirname(os.path.abspath(__file__))
     _proj = os.path.dirname(os.path.dirname(_gen_dir))
     _structs_dir = os.path.join(_proj, 'data', 'annotations', 'structs')
@@ -340,8 +348,10 @@ def _ensure_bases():
     for _f in sorted(os.listdir(_structs_dir)):
         if not _f.endswith('.json'):
             continue
-        _sd = json.load(open(os.path.join(_structs_dir, _f), encoding='utf-8'))
-        _c = _sd.get('name', '')
+        _c = _f[:-5]  # 类名 = 文件名去 .json
+        _sd = _annview.struct_by_class(_c)
+        if _sd is None:
+            continue
         _b = _base_names(_sd)
         if _b:
             if isinstance(_b, str):
