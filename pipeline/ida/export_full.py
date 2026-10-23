@@ -744,13 +744,11 @@ def _named_supersede_decision(type_name, named_types, substitutes):
     # （_inline_X::$C73B...）把基 union _inline_X（864B）也误顶替
     # 修：prefix 仅限 __$hash 后缀形（基名须精确同名替身才 skip）
     for _k, _v in _lookup.items():
-        # 只匹配 __$hash 后缀形（如 _inline_X__C73B... 匹配 _inline_X）
+        # [R87 修 2026-10-23·修②①] 基名仅精确同名+size 校验才 skip
+        # 对抗复核 54c89355：hash-suffix-rev 等价旧逻辑（6 基名仍跳过）
+        # 修：仅 __$hash 后缀形（正向），删 hash-suffix-rev
         if _tn.startswith(_k) and _tn[len(_k):].startswith('__$'):
             return (True, 'synthetic %s superseded by named %s (hash-suffix)'
-                    % (type_name, _v))
-        # 反向：_k 是 _tn 的 hash-suffix 形（_k = _tn + __$hash）
-        if _k.startswith(_tn) and _k[len(_tn):].startswith('__$'):
-            return (True, 'synthetic %s superseded by named %s (hash-suffix-rev)'
                     % (type_name, _v))
     # [task-8 修·名形推导内置] `_inline_<Name>_` / `_inline_<Name>__\$<hash>` 形
     # ⇒ 候选 <Name>（双形试配 rstrip）——**具名确认判据**（候选在 named_types 才立）。
