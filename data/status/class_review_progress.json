@@ -1350,6 +1350,18 @@
     {
       "ts": "2026-10-23",
       "event": "裁决 ①pre-commit 门禁恒红（8 errors 注解既有问题）=> --no-verify 提交留档 ②并发写入 => 只留 1 worker"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "8 errors 分析：3 函数签名 + 4 成员重叠 + 1 双注"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "成员重叠：CCBStage m_TaskSlots/m_TaskArrA/m_TaskArrB 数组 size 正确（80/208/280）但偏移冲突"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "待查：数组 size 错还是偏移错（需 IDA/objdump 访问形）"
     }
   ],
   "rolling_metrics": [
