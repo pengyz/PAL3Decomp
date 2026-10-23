@@ -1222,6 +1222,18 @@
     {
       "ts": "2026-10-23",
       "event": "实施本身正确（46320 例验证）· 1141 文件 sha256 字节相同"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "Task 4 自实施发现：_inline_PalScript_m_szDialog1 和 _inline_PalScript_m_RoleSlotArray 都缺失（非不对称）"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "m_szDialog1 之前有 union _inline_* 生效，Task 3 后变单类型 => 疑 _nested_kind 修影响 union 发射"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "待查：Task 3 的 _nested_kind 修是否破坏了 union 发射路径"
     }
   ],
   "rolling_metrics": [
