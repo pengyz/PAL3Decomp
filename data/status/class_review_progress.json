@@ -1234,6 +1234,22 @@
     {
       "ts": "2026-10-23",
       "event": "待查：Task 3 的 _nested_kind 修是否破坏了 union 发射路径"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "对抗复核：真机制=定义侧 gate 与 data_members 透传不同步 + prefix 容错过宽误顶替"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "_named_supersede_decision 的 _k.startswith(_tn) 让内层变体替身键把基 union 顶替掉"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "修序：①收紧匹配（基名精确）②引用侧对称化（改写/typedef + size 校验）"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "7 处悬空引用（PalScript.m_RoleSlotArray 等）· 11 处定义尚在 => 逐名不一致"
     }
   ],
   "rolling_metrics": [
@@ -1511,5 +1527,13 @@
       "dual annotation_view instance",
       "Task 2 claim false"
     ]
+  },
+  "export_asymmetry_review": {
+    "root_cause": "gate 与透传不同步 + prefix 容错过宽",
+    "fix_order": [
+      "① 收紧匹配（基名精确）",
+      "② 引用侧对称化（typedef + size 校验）"
+    ],
+    "dangling": 7
   }
 }
