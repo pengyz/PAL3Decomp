@@ -739,9 +739,18 @@ def _named_supersede_decision(type_name, named_types, substitutes):
     # prefix 匹配覆盖截断形 ✓ P0-B 根治）
     if _tn in _lookup:
         return (True, 'synthetic %s superseded by named %s' % (type_name, _lookup[_tn]))
+    # [R85 修 2026-10-23·export 不对称根因] 收紧 prefix 匹配
+    # 真机制（对抗复核 17495e5f）：_k.startswith(_tn) 让内层变体替身键
+    # （_inline_X::$C73B...）把基 union _inline_X（864B）也误顶替
+    # 修：prefix 仅限 __$hash 后缀形（基名须精确同名替身才 skip）
     for _k, _v in _lookup.items():
-        if _tn.startswith(_k) or _k.startswith(_tn):
-            return (True, 'synthetic %s superseded by named %s (prefix-tolerant)'
+        # 只匹配 __$hash 后缀形（如 _inline_X__C73B... 匹配 _inline_X）
+        if _tn.startswith(_k) and _tn[len(_k):].startswith('__$'):
+            return (True, 'synthetic %s superseded by named %s (hash-suffix)'
+                    % (type_name, _v))
+        # 反向：_k 是 _tn 的 hash-suffix 形（_k = _tn + __$hash）
+        if _k.startswith(_tn) and _k[len(_tn):].startswith('__$'):
+            return (True, 'synthetic %s superseded by named %s (hash-suffix-rev)'
                     % (type_name, _v))
     # [task-8 修·名形推导内置] `_inline_<Name>_` / `_inline_<Name>__\$<hash>` 形
     # ⇒ 候选 <Name>（双形试配 rstrip）——**具名确认判据**（候选在 named_types 才立）。
