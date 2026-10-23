@@ -476,8 +476,9 @@
     },
     "0x004FB9A0": {
       "name": "CCBStage",
-      "signature": "int *__thiscall(int pCBSystem)",
-      "evidence_level": "unverified"
+      "signature": "CCBStage *__thiscall(CCBStage *this, int pCBSystem)",
+      "evidence_level": "unverified",
+      "source": "[R95 修 2026-10-23·A 级] objdump mov %ebx,%eax 返回 this（指针）"
     },
     "0x004FB9F0": {
       "name": "_todo_004FB9F0",
