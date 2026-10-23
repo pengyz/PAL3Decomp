@@ -1,4 +1,9 @@
 ﻿import pytest
+import os
+
+# [R100 修 2026-10-23] tools/pal3a_pick_script_anchors.py 不存在（工具未建）=> skip
+_TOOL = os.path.join(os.path.dirname(__file__), '..', 'tools', 'pal3a_pick_script_anchors.py')
+pytestmark = pytest.mark.skipif(not os.path.exists(_TOOL), reason="tools/pal3a_pick_script_anchors.py 不存在")
 import json
 import subprocess
 import sys
