@@ -1150,6 +1150,22 @@
     {
       "ts": "2026-10-23",
       "event": "风险：静默变异（_av 遮蔽 195 头无声变化）· 撞 generate_header 1720 行 · 度量盲区吞回归 · L1 不升已发生两次（T58-T67 冻结）"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "重构方案复核：有条件通过（4 must-fix）—— 漏 8 处直读 · 真因不闭合 · 阶段 4 前置 · 成本 3.5-4.5 人月"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "must-fix ①直读清单 ≥11 处/5 文件（方案只列 3）· ②_inline_* 落地 apply/IDA 层 · ③阶段 4 前置 step 0 · ④成本 3.5-4.5 人月"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "真因重申：_inline_PalScript_m_RoleSlotArray 在 ida_structs.json 缺失（导出不对称）非双数据源本身"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "CLAUDE.md 引的 emit_headers:3259 已收敛（现 template_bases->_annview）=> 清单本身陈旧"
     }
   ],
   "rolling_metrics": [
@@ -1403,5 +1419,15 @@
       "verify speedup first + T2 oracle narrow budget"
     ],
     "review_verdict": "conditional pass"
+  },
+  "refactor_plan_review": {
+    "verdict": "conditional pass",
+    "must_fix": [
+      "① 直读清单重建 + pipeline/gen 扩闸（≥11 处/5 文件）",
+      "② apply/IDA 层 _inline_* 落地（真因）",
+      "③ 阶段 4 前置 step 0（口径对齐是裁判）",
+      "④ 成本改 3.5-4.5 人月 + 验证提速先行"
+    ],
+    "better_plan": "step 0（1-2 天）只读双源 diff + 扩闸 + 口径对齐（零风险）→ 阶段 2 逐类 kill-switch"
   }
 }
