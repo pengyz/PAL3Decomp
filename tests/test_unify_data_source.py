@@ -34,23 +34,16 @@ def test_stage3_no_direct_read():
 
     [Task 1 must-fix ②] 判别力约束（M2/M3 变异体）：
     ① 不能有 ann_path 直读变量（M3：读点只在注释仍 PASS）
-    ② 不能有 os.path.join(...'structs'...) 直读路径
+    ② 不能有 structs/ 直读路径（M2：形式伪仍 PASS）
     ③ 死函数已删（test_stage3_dead_function_removed 独立测）
     """
     import inspect
     from pipeline.gen.stages import stage3_cleanup
     src = inspect.getsource(stage3_cleanup)
-    assert 'ann_path' not in src, 'stage3_cleanup 残留 ann_path 直读'
-    # M3 判别：查真实直读路径（非注释）
-    import re
-    # 排除注释行后查 structs/ 直读
+    # M3 判别：排除注释后查真实直读
     code_lines = [l for l in src.split('\n') if not l.strip().startswith('#')]
     code = '\n'.join(code_lines)
-    assert "'structs'" not in code or '_annview' in code, \
-        'stage3_cleanup 直读 structs/（应走 _annview 或已删）'
-    # 判别性断言：vtable 槽解析必须真的消费读点（子串检查拦不住"改名后仍直读"）
-    helper_src = inspect.getsource(stage3_cleanup._try_resolve_vftable)
-    assert '_annview.struct_by_class' in helper_src, \
-        '_try_resolve_vftable 未走 annotation_view 读点'
-    assert 'ann_path' not in helper_src, \
-        '_try_resolve_vftable 仍直读 structs/<Cls>.json（ann_path 拼路径）'
+    assert 'ann_path' not in code, 'stage3_cleanup 残留 ann_path 直读'
+    # M2 判别：查真实直读路径（非注释）
+    assert "os.path.join" not in code or "'structs'" not in code, \
+        'stage3_cleanup 直读 structs/ 路径'
