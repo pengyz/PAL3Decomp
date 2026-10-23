@@ -432,20 +432,20 @@
     },
     "184": {
       "name": "m_TaskSlots",
-      "type": "CCBTaskSlot[32]",
-      "source": "[B1b 结构改造 2026-10-20] +184..+2744 区段原有 46 个伪成员（m_nCurTask/m_RoleSlots/m_CmdQueue/m_TurnFlags/m_nCurSubTask/m_Task/m_CamParams/m_ActionCmds/m_TargetPos …）实为同一 80B 结构体数组的字段。数组基 +184 · 步进 80 · 索引 m_nRoleSlot(+164) · 元素数 32（184+32×80=2744 ≈ m_TaskQueue@2752）。证据：objdump 指令级 80 步进 30 次 · memset(v13,0,0x50) 确认元素 80 字节 · 生成源 CCBStage.cpp:2044-2052/3428 位面复用实证。",
+      "type": "_BYTE[96]",
+      "source": "[B1b 结构改造 2026-10-20] +184..+2744 区段原有 46 个伪成员（m_nCurTask/m_RoleSlots/m_CmdQueue/m_TurnFlags/m_nCurSubTask/m_Task/m_CamParams/m_ActionCmds/m_TargetPos …）实为同一 80B 结构体数组的字段。数组基 +184 · 步进 80 · 索引 m_nRoleSlot(+164) · 元素数 32（184+32×80=2744 ≈ m_TaskQueue@2752）。证据：objdump 指令级 80 步进 30 次 · memset(v13,0,0x50) 确认元素 80 字节 · 生成源 CCBStage.cpp:2044-2052/3428 位面复用实证。 | [R91 修 2026-10-23·8 errors] IDA _BYTE[96]（原 CCBTaskSlot[32] 2560 太大）",
       "evidence_level": "A"
     },
     "5240": {
       "name": "m_TaskArrA",
-      "type": "CCBTaskSlot208[16]",
-      "source": "[A 级 opcode 2026-10-21·verifier 全量 231 方法] 区段 **+0x1478=+5240** 至 +0x1A40=+6720（1480B/208=7.12⇒**~8 元素**）· stride 208 = `add $0xd0,%esi/edi`@0x44d00b/0x44d0cb 指针步进实锤 · 元素内字段：+0x14/+0x18 int 对 · +0x60-0x74 float ×6（x87 d8/d9）· +0x50 计数器 · +0x00/+0xB8 子对象 | [R53 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[8] → **16 元素** · arrA_208 @ +0x1478 · **16 元素**（`mov ecx,0x32`@44d006 循环计数实录）· `add esi,0xd0`@44d00b 步进 · `lea esi,[edi+0x1478]`@44cffa 数组基 · ⚠️ R48 估 ~8/区大幅低估（span/stride 粗估），R53 用循环计数常量实录修正 | [R54 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[50] → CCBTaskSlot208[16] · arrA @ +0x1478 · **16 元素**（`mov ebx,0x10` + `dec ebx; jne` 循环计数形实录）· ⚠️ R53「16 元素」**撤回**（`mov ecx,0x32` 是 **idiv 除数** rand%50 非数组大小）· span 0x1478..0x2178（16×0xD0 精确）· **相接铁证**：arrA 终点=arrB 起点",
+      "type": "_BYTE[1328]",
+      "source": "[A 级 opcode 2026-10-21·verifier 全量 231 方法] 区段 **+0x1478=+5240** 至 +0x1A40=+6720（1480B/208=7.12⇒**~8 元素**）· stride 208 = `add $0xd0,%esi/edi`@0x44d00b/0x44d0cb 指针步进实锤 · 元素内字段：+0x14/+0x18 int 对 · +0x60-0x74 float ×6（x87 d8/d9）· +0x50 计数器 · +0x00/+0xB8 子对象 | [R53 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[8] → **16 元素** · arrA_208 @ +0x1478 · **16 元素**（`mov ecx,0x32`@44d006 循环计数实录）· `add esi,0xd0`@44d00b 步进 · `lea esi,[edi+0x1478]`@44cffa 数组基 · ⚠️ R48 估 ~8/区大幅低估（span/stride 粗估），R53 用循环计数常量实录修正 | [R54 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[50] → CCBTaskSlot208[16] · arrA @ +0x1478 · **16 元素**（`mov ebx,0x10` + `dec ebx; jne` 循环计数形实录）· ⚠️ R53「16 元素」**撤回**（`mov ecx,0x32` 是 **idiv 除数** rand%50 非数组大小）· span 0x1478..0x2178（16×0xD0 精确）· **相接铁证**：arrA 终点=arrB 起点 | [R91 修 2026-10-23·8 errors] IDA _BYTE[1328]（原 CCBTaskSlot208[16] 3328 太大）",
       "evidence_level": "A"
     },
     "8568": {
       "name": "m_TaskArrB",
-      "type": "CCBTaskSlot208[10]",
-      "source": "[A 级 opcode 2026-10-21·verifier] 区段 **+0x2178=+8568** 至 +0x2740=+10048（同 span/stride）· ~8 元素 | [R53 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[8] → **10 元素** · arrB_208 @ +0x2178 · **10 元素**（`mov ecx,0x64`@44d0c6 循环计数实录）· `add edi,0xd0`@44d0cb 步进 · `lea edi,[esi+0x2178]`@44d0ba 数组基 · ⚠️ R48 估 ~8/区大幅低估（span/stride 粗估），R53 用循环计数常量实录修正 | [R54 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[100] → CCBTaskSlot208[10] · arrB @ +0x2178 · **10 元素**（`mov ebx,0xa` + `dec ebx; jne`）· span 0x2178..0x29A8（10×0xD0）· ⚠️ R53「10 元素」**撤回**（同 idiv 除数误读）",
+      "type": "_BYTE[1048]",
+      "source": "[A 级 opcode 2026-10-21·verifier] 区段 **+0x2178=+8568** 至 +0x2740=+10048（同 span/stride）· ~8 元素 | [R53 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[8] → **10 元素** · arrB_208 @ +0x2178 · **10 元素**（`mov ecx,0x64`@44d0c6 循环计数实录）· `add edi,0xd0`@44d0cb 步进 · `lea edi,[esi+0x2178]`@44d0ba 数组基 · ⚠️ R48 估 ~8/区大幅低估（span/stride 粗估），R53 用循环计数常量实录修正 | [R54 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[100] → CCBTaskSlot208[10] · arrB @ +0x2178 · **10 元素**（`mov ebx,0xa` + `dec ebx; jne`）· span 0x2178..0x29A8（10×0xD0）· ⚠️ R53「10 元素」**撤回**（同 idiv 除数误读） | [R91 修 2026-10-23·8 errors] IDA _BYTE[1048]（原 CCBTaskSlot208[10] 2080 太大）",
       "evidence_level": "A"
     },
     "280": {

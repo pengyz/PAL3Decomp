@@ -1949,8 +1949,9 @@
     "source": " | cc __thiscall->__cdecl: free-function callback, not a member; __thiscall caused codegen to skip declaration in free_functions.h (9 C2065 undeclared hits)"
   },
   "0x0043DE40": {
-    "name": "Destroy",
-    "signature": "int __thiscall Destroy(int nMode)"
+    "name": "Destroy__ovl_03",
+    "signature": "int __thiscall Destroy(int nMode)",
+    "source": " | [R93 修 2026-10-23·8 errors] 命名碰撞 => __ovl_03"
   },
   "0x0051A880": {
     "name": "CCBItemWindow::CCBItemWindow_Destroy",
@@ -3284,15 +3285,17 @@
   },
   "0x004DFED0": {
     "name": "EndTurnAndAdvance",
-    "signature": "",
+    "signature": "int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)",
     "source_note": "[UNVERIFIABLE 2026-10-21] **双 ret 出口**（4dff86 ret $0x14=5 槽 + 4dffde ret $0x4=1 槽）疑两函数拼段 ⇒ **须先拆段**再定参。暂不落签名。原 5 参 int 型无 A 级支撑。 | [evidence:B 2026-10-21·降级] 原证据引用 IDA stack_frame 参数名/型 = **循环**（apply_annotations SetType 写 IDB 后 stack_frame 读回）。降 **B 级**。**待补 A 级**：调用点 push opcode / flds/fstps / 位型常量。",
-    "evidence_level": "B"
+    "evidence_level": "B",
+    "source": " | [R93 修 2026-10-23·8 errors] IDA 签名"
   },
   "0x004C6290": {
     "name": "Destroy__ovl_02",
-    "signature": "",
+    "signature": "int __thiscall(int nMode)",
     "source_note": "[NEEDS_EVIDENCE 2026-10-21] retn=5 槽 ✓ 个数一致，但**类型零 opcode 实证**。xor %al,%al 形提示 FP 约定面 ⇒ 逐参 opcode 核（优先查 FP 参数）。暂标 needs_caller_evidence。 | [evidence:B 2026-10-21·降级] 原证据引用 IDA stack_frame 参数名/型 = **循环**（apply_annotations SetType 写 IDB 后 stack_frame 读回）。降 **B 级**。**待补 A 级**：调用点 push opcode / flds/fstps / 位型常量。",
-    "evidence_level": "B"
+    "evidence_level": "B",
+    "source": " | [R94 修 2026-10-23·8 errors] 补签名（Destroy 同族）"
   },
   "0x0043D880": {
     "name": "~UIFrameWnd__deleting_view",
