@@ -1182,6 +1182,26 @@
     {
       "ts": "2026-10-23",
       "event": "lead 暂停管线 6 分钟（避免 census 污染子 agent before/after 腿）"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "Task 1 严格同树 A/B 验证：before/after 树哈希字节级相同 a42e5940 · S2 130/214 · 总错误 1230（完全中性）"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "CRITICAL 更正：lead commit「128/207->129/214」是分母漂移（207->214 单元集变化）非同树对比 => 真读数完全中性"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "静态旁证：942/942 struct JSON 双路解析全同（0 不一致）=> 语义逐字等价"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "先前存在红测试 test_qualified_vftable_tristate（与 Task 1 无关）· 并发污染 >=4 次（结论不受影响）"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "must-fix ① 提示：直读 >=11 处/5 文件（Task 1-3 只清 3 处）=> 扩闸 lint 排后续"
     }
   ],
   "rolling_metrics": [
