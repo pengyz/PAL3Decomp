@@ -12,9 +12,9 @@
 |---|---|
 | 导出产物 | `asm/pal3/ida_structs.json` |
 | 注解目录 | `data/annotations/structs`（942 个 JSON） |
-| export 时间戳 | 2026-10-23 15:21:45 +0800（epoch 1792740105.995405） |
-| 注解最新改动 | 2026-10-22 15:45:24 +0800（epoch 1792655124.752256） |
-| 注解最新改动文件 | `data/annotations/structs/tagCmdData.json` |
+| export 时间戳 | 2026-10-23 20:08:16 +0800（epoch 1792757296.852603） |
+| 注解最新改动 | 2026-10-23 17:25:09 +0800（epoch 1792747509.578609） |
+| 注解最新改动文件 | `data/annotations/structs/CCBStage.json` |
 | 陈旧判定 | FRESH（export 不早于注解最新改动） |
 
 ## 1. 量化统计
@@ -22,9 +22,9 @@
 | 指标 | 值 |
 |---|---|
 | 结构：双侧共有 / 仅导出 / 仅注解 | 861 / 310 / 64 |
-| 成员全同（type 串全同） | 7744 |
+| 成员全同（type 串全同） | 7748 |
 | 成员拼写归一（语义等价，不计差异） | 1083 |
-| **类型差异（语义不等）** | **38** |
+| **类型差异（语义不等）** | **34** |
 | **成员缺失（注解有 · 导出缺，真缺口）** | **0** |
 | **成员新增（导出有 · 注解缺）** | **109** |
 | └ 其中 export 合成补尾 `_tail_*` | 109 |
@@ -34,7 +34,7 @@
 | 结构 sizeof 不一致 | 0 |
 | `_inline_*` 引用 / 定义 / 引用无定义 / 定义未引用 | 27 / 27 / 0 / 0 |
 
-**多少类不一致？** 400 个结构存在任一差异（成员数/偏移/类型），见 §8；**多少成员缺失？** 真缺口 0 个，见 §2（另 82 个已解释不计缺口）。
+**多少类不一致？** 399 个结构存在任一差异（成员数/偏移/类型），见 §8；**多少成员缺失？** 真缺口 0 个，见 §2（另 82 个已解释不计缺口）。
 
 ## 2. 成员缺失（注解有 · 导出缺）
 
@@ -281,10 +281,6 @@ export 侧合成补尾 `_tail_*`（109 个，合成填充非注解声明）：
 | Archive | 0 | m_scene | `std::vector<ArcScene,std::allocator<ArcScene> >` | `char[16]` |
 | Archive | 16 | m_past | `std::vector<ArcPastScene,std::allocator<ArcPastScene> >` | `char[16]` |
 | Archive | 32 | m_objNotLoad | `std::vector<unsigned int,std::allocator<unsigned int> >` | `char[16]` |
-| CCBStage | 184 | m_TaskSlots | `CCBTaskSlot[32]` | `_BYTE[96]` |
-| CCBStage | 5240 | m_TaskArrA | `CCBTaskSlot208[16]` | `_BYTE[1328]` |
-| CCBStage | 8568 | m_TaskArrB | `CCBTaskSlot208[10]` | `_BYTE[1048]` |
-| CCBTaskSlot280 | 0 | m_pHead | `void *` | `_BYTE[3]` |
 | CCBUIPanel | 1560 | m_pVfTable | `char *` | `vtbl_0056B22C *` |
 | CEffCustomShape | 156 | m_UVData | `std::vector<gbVec2D,std::allocator<gbVec2D> >` | `char[16]` |
 | CParticleSystem | 16 | _strParticleName | `std::basic_string<char,std::char_traits<char>,std::allocator<char> >` | `char[16]` |
@@ -722,11 +718,10 @@ export 侧合成补尾 `_tail_*`（109 个，合成填充非注解声明）：
 | CCBAI | 14/14 | 1 | 0 | 2 | 0 | 0 |
 | CCBCamControl | 37/37 | 0 | 0 | 1 | 0 | 0 |
 | CCBEditor | 14/14 | 1 | 0 | 0 | 0 | 0 |
-| CCBStage | 75/75 | 1 | 3 | 2 | 0 | 0 |
+| CCBStage | 75/75 | 1 | 0 | 2 | 0 | 0 |
 | CCBStageScene | 109/109 | 0 | 0 | 1 | 0 | 0 |
 | CCBTaskSlot | 9/9 | 0 | 0 | 2 | 0 | 0 |
 | CCBTaskSlot208 | 12/12 | 0 | 0 | 1 | 0 | 0 |
-| CCBTaskSlot280 | 8/8 | 0 | 1 | 0 | 0 | 0 |
 | CCBUI | 57/57 | 0 | 0 | 1 | 0 | 0 |
 | CCBUIPanel | 58/58 | 0 | 1 | 1 | 0 | 0 |
 | CCBUI_funcptr_t | 2/2 | 1 | 0 | 0 | 0 | 0 |
