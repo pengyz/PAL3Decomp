@@ -1306,6 +1306,18 @@
     {
       "ts": "2026-10-23",
       "event": "更正：commit 132944759「7->6」是口径假进展 · symmetry 测试漏 ::$/struct 异形"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "测试债清理：8 failed（多历史遗留）· test_macro_coerce_int 新增（COERCE_INT 引用面消失）"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "COERCE_INT 定义在 ida_defs.h 但 pal3/src 无引用（COERCE_FLOAT 仍在）=> 疑 codegen 回归"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "管线健康度 5.4/10（中等偏下）· S2 62% · 分支 16% · 例外 71 · 调试摩擦 44%"
     }
   ],
   "rolling_metrics": [
