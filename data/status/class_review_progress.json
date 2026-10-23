@@ -1130,6 +1130,26 @@
     {
       "ts": "2026-10-23",
       "event": "lead 错误：commit message 描述 diff 不存在的改动（违 R13）=> 教训 commit 前 git diff 核实"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "架构决策复核：**通过（有条件）**（1277f92b）—— L1 保持 + A 定向重构对，3 条件为文书/排程修正"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "3 条件：①决策数字统一口径 ②再评估触发器加独立时间盒 ③验证提速先行 + T2 oracle 窄预算"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "4 处数字口径不齐：_GB_REF_PARAM_FUNCS 分叉 4 组数字 · 名特判 300 vs 272 · C1003 2 vs 1 · S2 三口径并存"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "挑战：①n=1 活证据宜降格 ②验证提速 10x 缺成本估算（是②的经济前提非并列）③L1 考古性价比最差（建议换 oracle 窄投入）④去分支收窄为三项具体债"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "风险：静默变异（_av 遮蔽 195 头无声变化）· 撞 generate_header 1720 行 · 度量盲区吞回归 · L1 不升已发生两次（T58-T67 冻结）"
     }
   ],
   "rolling_metrics": [
@@ -1376,6 +1396,12 @@
       "fragility": "1086 if / 300 名特判 / 3 结构债",
       "L1": "函数 20% / 字节 3.1%",
       "refactor_cost": "A 2-3 人月 / B 6-12 人月"
-    }
+    },
+    "conditions": [
+      "unify numeric口径（4 处不齐）",
+      "re-eval trigger add independent timebox（自今日 6 周）",
+      "verify speedup first + T2 oracle narrow budget"
+    ],
+    "review_verdict": "conditional pass"
   }
 }
