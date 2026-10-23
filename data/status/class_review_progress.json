@@ -1114,6 +1114,22 @@
     {
       "ts": "2026-10-23",
       "event": "派对抗复核确认架构决策（L1 保持 + A 重构）"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "对抗复核 REJECT：修尝试 6 证据断裂（diff 只有 DEBUG_MERGE 钩子无数据源改动）· 「部分生效」是既有路径分叉"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "真因定谳：两员 _inline_* 类型在导出一有一无（m_szDialog1 有 _inline_* · m_RoleSlotArray 无）"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "修向推荐②：导出补 _inline_PalScript_m_RoleSlotArray（union 3 变体）走已 work 的 hoist 路"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "lead 错误：commit message 描述 diff 不存在的改动（违 R13）=> 教训 commit 前 git diff 核实"
     }
   ],
   "rolling_metrics": [
@@ -1260,10 +1276,10 @@
     },
     {
       "id": "P0-14",
-      "title": "🎯 ROOT CAUSE：ann_data 用 IDA 数据非注解（L2266）",
-      "detail": "L2266 ann_data=_get_ida_structs()（IDA data_members） => 注解 known_members 的 dict-union 丢失 => C2039 (36 条) 注解在 L2217（_annview.struct_by_class）但未用",
-      "impact": "C2039 级联 · union 变体丢失",
-      "next": "成员构造改用 _annview.struct_by_class(cls_name).known_members"
+      "title": "🎯 真因：_inline_* 类型导出一有一无（非 type:str）",
+      "detail": "m_szDialog1 有 _inline_PalScript_m_szDialog1（hoist 路生效）· m_RoleSlotArray 无 _inline_PalScript_m_RoleSlotArray（supersede 单型） => 修向②：导出补 _inline_*（union 3 变体）",
+      "impact": "C2039 (36 条) · union 变体丢失",
+      "next": "修向②导出补 _inline_*（与 m_szDialog1 对称）"
     }
   ],
   "env_todo": [
