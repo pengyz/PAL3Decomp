@@ -1070,6 +1070,18 @@
     {
       "ts": "2026-10-23",
       "event": "派对抗复核确认根因链（1->2->3->4->5）有效性"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "目标重评估启动（用户：架构性结论须充分调研+对抗复核）· 3 路调研派出"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "自采数据：管线 7626 行 · 1226 if · 71 例外标记（0.93% 密度）· gotcha 79"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "核心脆弱性：emit_headers 4454 行 769 if 52 例外 => 每 108 行 1 例外"
     }
   ],
   "rolling_metrics": [
@@ -1279,5 +1291,29 @@
     "path_a_ceiling_claimed": "58 pct",
     "path_a_ceiling_actual": "85 pct (54.3 fixable + 30.9 unknown)",
     "asm_first_impact": "ceiling argument weakened; verification and tiering stand"
+  },
+  "goal_reevaluation": {
+    "current": {
+      "L1": "17.2%",
+      "S2": "56%",
+      "byte_coverage": "87.5%",
+      "pipeline_branches": 1226,
+      "exceptions": 71
+    },
+    "fragility": {
+      "emit_headers": "4454 lines / 769 if / 52 exceptions",
+      "density": "0.93% exceptions"
+    },
+    "options": [
+      "A. keep L1 target + patch pipeline (worsens fragility)",
+      "B. refactor to single data source (fixes root)",
+      "C. switch to T2 semantic equivalence (different architecture)",
+      "D. accept fragility + document"
+    ],
+    "pending_research": [
+      "fragility",
+      "goal_reeval",
+      "refactor"
+    ]
   }
 }
