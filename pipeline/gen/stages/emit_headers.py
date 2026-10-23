@@ -3583,29 +3583,57 @@ def main():
             #   ⇒ C2146 missing ';' before identifier 'combat' ×218 + 后续 C2501 级联。
             # 修法：扫描 `Type name;`（无 `*`）→ 排除本文件已定义型/builtin
             #   ⇒ 头首 `#include "<sub>/<Type>.h"`（含 #pragma once 防重 ✓）。
-            _byval_types = set(_re_fwd.findall(
+            # [C1083 修 2026-10-23·Task4 实测] 前向声明行 `class X;` 被本扫描误读为
+            #   **型名 class** ⇒ 生成 `#include "Misc/class.h"` ⇒ C1083 ×214（全 TU）。
+            #   修：剔除声明关键字（class/struct/union/enum）。
+            _byval_types = (set(_re_fwd.findall(
                 r'^\s*([A-Za-z_]\w*)\s+[A-Za-z_]\w*\s*;', '\n'.join(_all_lines), _re_fwd.M))
+                - {'class', 'struct', 'union', 'enum'})
             # SDK/系统型（tagRECT 等）定义在 ida_types.h 链上 ⇒ 无需生成头 include
             _byval_needed = sorted(
                 t for t in (((_byval_types - _defined_here) - _builtin) - set(_fwd_needed))
                 if not should_skip_class(t))
             _byval_inc = []
             for _t in _byval_needed:
-                _sub = get_class_dir(_t)
+                # [R88 修 2026-10-23·修②②] member 型去 struct/class 前缀
+                # 对抗复核 54c89355：struct gbNodeMsgObj::$X 等异形产生假 include
+                _t_clean = _t
+                for _p in ('struct ', 'class ', 'union ', 'enum '):
+                    if _t_clean.startswith(_p):
+                        _t_clean = _t_clean[len(_p):]
+                        break
+                _sub = get_class_dir(_t_clean)
                 if _sub:
-                    _byval_inc.append('#include "%s/%s.h"' % (_sub, _t))
+                    _byval_inc.append('#include "%s/%s.h"' % (_sub, _t_clean))
                 else:
-                    _byval_inc.append('#include "%s.h"' % _t)
+                    _byval_inc.append('#include "%s.h"' % _t_clean)
 
+            # [C2079 修 2026-10-23·Task4 实测] include↔hoist 循环序。
+            # 病灶：byval include（Misc/RoleAttRemarkSkills.h）置头，而被 include 的类头
+            #   自身引用**后置** hoist 块型（RoleAttRemarkSkills.skillCount →
+            #   `_inline_RoleAttRemarkSkills_skillCount`）⇒ include 先于块体 ⇒
+            #   C2079 'skillCount' uses undefined struct ×214（全 TU）。
+            # 修法：分层发射——自含块（byval 依赖 ∉ include 集）→ byval includes → 依赖块。
+            #   约束：include 目标只可依赖自含块（现语料唯一环 RoleAttRemarkSkills ✓ 实测
+            #   清零）；更深环（include 目标依赖非自含块）不在本层覆盖，由 probe C2079 门禁暴露。
+            def _block_byval_deps(_blk):
+                return {
+                    _m.group(1)
+                    for _bl in _blk
+                    for _m in [_re_fwd.match(r'^\s*([A-Za-z_]\w*)\s+[A-Za-z_]\w*\s*;', _bl)]
+                    if _m and _m.group(1) in set(_byval_needed)}
+            _leaf_blocks = [b for b in _ordered_blocks if not _block_byval_deps(b)]
+            _dep_blocks = [b for b in _ordered_blocks if _block_byval_deps(b)]
             _head = ['#pragma once',
                      '// Auto-generated: shared ns-scope UDT declarations (C2011 dedup)']
-            if _byval_inc:
-                _head.append('// Full definitions required by by-value members below')
-                _head.extend(_byval_inc)
             if _fwd_lines:
                 _head.append('// Forward declarations for types referenced by pointer below')
                 _head.extend(_fwd_lines)
-            _payload = _head + _all_lines
+            _payload = _head + [x for _b in _leaf_blocks for x in _b]
+            if _byval_inc:
+                _payload.append('// Full definitions required by by-value members below')
+                _payload.extend(_byval_inc)
+            _payload += [x for _b in _dep_blocks for x in _b]
 
             # 双址写出（主子 include/pal3/gen + 镜像 pal3/src，C2143 根治同法 ✓）
             for _target in (PROJECT_ROOT / 'include' / 'pal3' / 'gen' / '_ns_udts.h',
