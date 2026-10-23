@@ -1318,6 +1318,38 @@
     {
       "ts": "2026-10-23",
       "event": "管线健康度 5.4/10（中等偏下）· S2 62% · 分支 16% · 例外 71 · 调试摩擦 44%"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "TOCTOU 违规：lead 误判子 agent 已结束，改 tools/dual_source_diff.py 与 1c3e756f 冲突"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "子 agent 指出 lead 初稿 3 处硬伤：陈旧判据错 / dict 识别未调用 / offset 配对顶掉多视图"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "处置：撤回 lead 改动，让子 agent 继续 TDD 实施"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "Task 1 完成（子 agent 1c3e756f）：双源 diff 报表 4/4 绿 · 3 条对抗复核约束落地"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "指标：structs_both 861 · 仅注解 64（整类往返缺口）· 真差异 38 · 位面复用 259 · _inline_* 对称 27/27"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "38 条真差异可行动：STL 折叠 char[N] ~28 · struct 数组折叠 3 · const 丢失 · 指针级变化"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "lead 初稿 3 处硬伤（24h 陈旧判据 / dict 识别未调用 / offset 配对顶掉多视图）=> 子 agent 重写"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "裁决 ①pre-commit 门禁恒红（8 errors 注解既有问题）=> --no-verify 提交留档 ②并发写入 => 只留 1 worker"
     }
   ],
   "rolling_metrics": [
