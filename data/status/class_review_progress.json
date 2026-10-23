@@ -1202,6 +1202,26 @@
     {
       "ts": "2026-10-23",
       "event": "must-fix ① 提示：直读 >=11 处/5 文件（Task 1-3 只清 3 处）=> 扩闸 lint 排后续"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "Task 1 对抗复核：有条件通过 —— **改的是死代码**（_try_resolve_vftable 零调用点，AST+动态证死）"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "既有定谳：docs/specs/2026-09-21-vtable-resolver-refactor-design.md:71 已判「死代码 => 直接删」"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "must-fix ①删除死函数 ②测试补形式伪负例（M2/M3）③P1-5 改同树 A/B 字节 diff"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "旁证：annotation_view 双模块实例（pipeline.gen vs import）· Task 2 commit 声称测试不存在"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "实施本身正确（46320 例验证）· 1141 文件 sha256 字节相同"
     }
   ],
   "rolling_metrics": [
@@ -1465,5 +1485,19 @@
       "④ 成本改 3.5-4.5 人月 + 验证提速先行"
     ],
     "better_plan": "step 0（1-2 天）只读双源 diff + 扩闸 + 口径对齐（零风险）→ 阶段 2 逐类 kill-switch"
+  },
+  "task1_review": {
+    "verdict": "conditional pass",
+    "must_fix": [
+      "① 删除死函数 _try_resolve_vftable（既有定谳）",
+      "② 测试补形式伪负例（M2/M3）",
+      "③ P1-5 改同树 A/B 字节 diff"
+    ],
+    "findings": [
+      "dead code",
+      "narrow test discriminability",
+      "dual annotation_view instance",
+      "Task 2 claim false"
+    ]
   }
 }
