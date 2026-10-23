@@ -170,14 +170,21 @@ def _try_resolve_vftable(expr):
     args = m.group(4)
     slot_index = offset // 4
 
+    # P1-5（阶段 1，Task 1）：注解读取收敛到单一读点 annotation_view
+    # （CLAUDE.md 红线「新增注解直读必须走 annotation_view」；本处原为 3 处漏网
+    # 直读之一：`os.path.join(..., 'data','annotations','structs','%s.json')`）。
+    # 语义逐字等价：struct_by_class 内部做 exists 守卫（缺失返回 None），坏 JSON
+    # 抛 ValueError 仍落进下方 except 元组；文件同为
+    # <root>/data/annotations/structs/<Cls>.json（structs_dir 无 store 时逐字如此）。
     try:
-        import json, os
-        _d = os.path.dirname
-        ann_path = os.path.join(_d(_d(_d(_d(os.path.abspath(__file__))))),
-                                'data', 'annotations', 'structs', '%s.json' % class_type)
-        if not os.path.exists(ann_path):
+        import annotation_view as _annview
+    except ImportError:  # pragma: no cover - 脚本/包双入口
+        from pipeline.gen import annotation_view as _annview
+
+    try:
+        ann = _annview.struct_by_class(class_type)
+        if ann is None:
             return None
-        ann = json.load(open(ann_path))
         vtables = ann.get('vtables', [])
         if not vtables:
             return None
