@@ -1046,6 +1046,18 @@
     {
       "ts": "2026-10-22",
       "event": "修法明确：成员构造改用 _annview.struct_by_class(cls_name) 的 known_members（含 dict-union）"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "修尝试 6（改数据源 _annview.struct_by_class）：union 发射部分生效（m_szDialog1 +0x514 union ✓）但 m_RoleSlotArray 仍单类型"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "差异抓到：m_RoleSlotArray 有 type:str 变体（tagRoleSlot）· m_szDialog1 全 dict 变体（生效）"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "疑 _emit_member dict 分支处理 type:str 变体失败（tagRoleSlot 是字符串类型）"
     }
   ],
   "rolling_metrics": [

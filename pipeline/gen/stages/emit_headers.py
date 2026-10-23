@@ -2313,6 +2313,13 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         # Convert data_members list to offset-keyed dict of lists for member iteration
         # (same-offset members = union variants)
         ann_members = {}
+        if os.environ.get('PAL3_DEBUG_MERGE'):
+            sys.stderr.write('DEBUG_MERGE %s ann_struct=%s ann_struct_fb=%s\n' % (
+                cls_name, str(ann_struct)[:80] if ann_struct else 'None',
+                str(ann_struct_fb)[:80] if ann_struct_fb else 'None'))
+            sys.stderr.write('DEBUG_MERGE known_members=%s data_members=%s\n' % (
+                len(ann_struct.get('known_members') or {}) if ann_struct else 0,
+                len(ann_struct_fb.get('data_members') or []) if ann_struct_fb else 0))
         for _dm in ann_struct_fb.get('data_members', []):
             _off = str(_dm.get('offset', 0))
             ann_members.setdefault(_off, []).append(_dm)
