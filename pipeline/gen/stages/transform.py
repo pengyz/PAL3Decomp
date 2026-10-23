@@ -64,8 +64,13 @@ def make_context(cls_name, method_name, sig='', is_free=False, stub_registry=Non
         member_index = None
     try:
         import json as _json
-        _fp = _os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'data', 'annotations', 'functions.json')
-        _fd = _json.load(open(_fp, encoding='utf-8'))
+        # [R98 修 2026-10-23·阶段 1] annotation 直读走 annotation_view
+        # 对抗复核 3 路一致：统一数据源（禁跨层读）
+        try:
+            import annotation_view as _annview
+        except ImportError:
+            from pipeline.gen import annotation_view as _annview
+        _fd = _annview.load_annotation_json('functions.json') or {}
         classless_names = set()
         for _k, _v in _fd.items():
             if isinstance(_v, dict) and not _v.get('class') and _v.get('name'):
