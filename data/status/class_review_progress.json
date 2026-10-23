@@ -1286,6 +1286,26 @@
     {
       "ts": "2026-10-23",
       "event": "建议撤回 Task 4 修法（副作用太大）+ 重新设计（需处理 include 问题）"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "修①对抗复核：**不通过（应重做）**—— hash-suffix-rev 等价旧逻辑（6 基名仍跳过）"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "真实改动=P0-B 截断容错回归（_origin 截断 hash => 6 内层 old-skip->export）"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "悬空 7->6 是口径假进展（真实 0，现归零是修② supplement 之功）"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "修②建议：①基名精确同名+size 校验才 skip ②member 型去前缀 ③size 校验（RoleSlotArray 896!=864 禁 rewrite）"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "更正：commit 132944759「7->6」是口径假进展 · symmetry 测试漏 ::$/struct 异形"
     }
   ],
   "rolling_metrics": [
@@ -1571,5 +1591,18 @@
       "② 引用侧对称化（typedef + size 校验）"
     ],
     "dangling": 7
+  },
+  "fix1_review": {
+    "verdict": "reject (redo)",
+    "findings": [
+      "hash-suffix-rev equivalent to old",
+      "P0-B truncation regression",
+      "7->6 is fake progress"
+    ],
+    "fix2_recommendations": [
+      "① base name exact + size check to skip",
+      "② member type strip struct/class prefix",
+      "③ size check (RoleSlotArray 896!=864 => no rewrite)"
+    ]
   }
 }
