@@ -47,3 +47,57 @@ def test_stage3_no_direct_read():
     # M2 判别：查真实直读路径（非注释）
     assert "os.path.join" not in code or "'structs'" not in code, \
         'stage3_cleanup 直读 structs/ 路径'
+
+
+def test_inline_export_symmetry():
+    """[Task 4·修向②] 导出补 `_inline_*`——`_inline_PalScript_m_RoleSlotArray` 对称在场。
+
+    病灶（对抗复核 3dbf35d2 定谳）：`PalScript.m_RoleSlotArray` 成员型引用合成名
+    `_inline_PalScript_m_RoleSlotArray`，但 export 的 named-supersede 把它整类跳过
+    （导出不对称）⇒ emit 只能走 `_emit_member` 字符串路（supersede 坍成
+    `PalScriptRoleSlotOverlay` 单型）⇒ union 变体层丢 ⇒ C2039 'script_state'
+    not a member ×19（外加 C2065 合成名未声明）。
+    修向②：export 补 `_inline_PalScript_m_RoleSlotArray`（union，含
+    slot/overlay/script_state 3 变体），走已 work 的 hoist 路（与
+    `_inline_RoleSystem_m_teamSlotsB`/`_inline_MUIDialog_m_btRc` 同型对称）。
+
+    判别力（M2/M3 变异体）：
+    ① 只查名存在会被"空壳类型"伪满足 ⇒ 还须 kind=union + 3 变体名在场；
+    ② `PalScript.h` 成员行必须是 **union 合成名**（回退 supersede 单型即 FAIL）；
+    ③ `script_state` 变体须在 union 定义块内（hoist 后体在共享 ns decl
+       `_ns_udts.h`——`PalScript.h` 发射面 = 本体 + hoisted decl；体若内联在
+       `PalScript.h` 同样命中）。
+    """
+    import json
+    import re
+    structs_path = os.path.join(REPO, 'asm', 'pal3', 'ida_structs.json')
+    with open(structs_path, encoding='utf-8') as f:
+        ida_structs = json.load(f)
+    u = ida_structs.get('_inline_PalScript_m_RoleSlotArray')
+    assert u is not None, \
+        'ida_structs.json 缺 _inline_PalScript_m_RoleSlotArray（导出不对称）'
+    assert u.get('kind') == 'union', \
+        '_inline_PalScript_m_RoleSlotArray 应为 union（实为 %r）' % u.get('kind')
+    names = {m.get('name') for m in u.get('data_members', [])}
+    missing = {'slot', 'overlay', 'script_state'} - names
+    assert not missing, 'union 变体缺失: %s（实际 %s）' % (sorted(missing), sorted(names))
+
+    h_path = os.path.join(REPO, 'pal3', 'src', 'Script', 'PalScript.h')
+    with open(h_path, encoding='utf-8') as f:
+        h = f.read()
+    # ② 成员行=union 合成名（hoist 路成员行；回退 supersede 单型 ⇒ FAIL）
+    assert re.search(r'union\s+_inline_PalScript_m_RoleSlotArray\s+m_RoleSlotArray\s*;', h), \
+        'PalScript.h 未以 union 合成名发射 m_RoleSlotArray（hoist 路失效/回退单型）'
+    # ③ script_state 变体在 union 定义块内（PalScript.h 本体 ∪ hoisted 共享 ns decl）
+    surface = h
+    for rel in ('pal3/src/_ns_udts.h', 'include/pal3/gen/_ns_udts.h'):
+        try:
+            with open(os.path.join(REPO, rel), encoding='utf-8') as f:
+                surface += f.read()
+        except OSError:
+            pass
+    m = re.search(
+        r'union\s+_inline_PalScript_m_RoleSlotArray\s*\{(.*?)\}\s*;',
+        surface, re.S)
+    assert m, '发射面缺 union _inline_PalScript_m_RoleSlotArray 定义体'
+    assert 'script_state' in m.group(1), 'union 体丢 script_state 变体'

@@ -834,6 +834,9 @@ def export_structs(log):
     struct_count = 0
     enum_count = 0
     skipped_count = 0
+    # [Task4 导出补 _inline_·修向② 2026-10-23] 被 named-supersede 跳过的 `_inline_*`
+    # 合成名留存池（IDB 权威形状）；被成员型实际引用者由 post-pass 复出（见下）。
+    _retained_synth = {}
 
     # Load annotation struct data for vtables/methods pass-through
     # [t4-DECLARED-EXCEPTION] structs/*.json → ida_structs.json 的
@@ -1000,16 +1003,7 @@ def export_structs(log):
 
         bases, filtered = udt_classify.classify_bases_and_members(_udt_members_raw, members, type_name)
 
-        # [named 顶替 synthetic·task-8 修 2026-10-19] 正置：synthetic 被具名替身
-        # 顶替才跳过；named 实体=权威名 ⇒ 导出（原 named 分支 continue 写反 ✗ 已修）。
-        # ⚠️ 边界注记：_annotation_named_types 读 annotation（export 不读 annotation
-        # 边界待评估——本修仅正置跳过逻辑，读源迁移另册）。
-        _skip, _reason = _named_supersede_decision(
-            type_name, _annotation_named_types(), _synthetic_named_substitutes())
-        if _skip:
-            log('  [named-supersede] %s: %s' % (type_name, _reason))
-            continue
-        result[type_name] = {
+        _entry = {
             'size': size,
             'kind': kind,
             'data_members': filtered,
@@ -1020,7 +1014,63 @@ def export_structs(log):
             # Pass through _variants (union views) for codegen
             '_variants': _ann_structs.get(type_name, {}).get('known_members', {}),
         }
+        # [named 顶替 synthetic·task-8 修 2026-10-19] 正置：synthetic 被具名替身
+        # 顶替才跳过；named 实体=权威名 ⇒ 导出（原 named 分支 continue 写反 ✗ 已修）。
+        # ⚠️ 边界注记：_annotation_named_types 读 annotation（export 不读 annotation
+        # 边界待评估——本修仅正置跳过逻辑，读源迁移另册）。
+        _skip, _reason = _named_supersede_decision(
+            type_name, _annotation_named_types(), _synthetic_named_substitutes())
+        if _skip:
+            log('  [named-supersede] %s: %s' % (type_name, _reason))
+            # [Task4 导出补 _inline_·修向② 2026-10-23] 合成名被顶替跳过 ⇒ 先留存
+            # （不进 result）；被成员型**实际引用**时由循环后 [inline-supplement]
+            # 复出。仅 `_inline_*` 形留存（含 `::$hash` 嵌套合成名，其键同样以
+            # _inline_ 起）。未被引用者维持跳过（最小 churn，C2011 发射面不扩）。
+            if type_name.startswith('_inline_'):
+                _retained_synth[type_name] = _entry
+            continue
+        result[type_name] = _entry
         struct_count += 1
+
+    # [Task4 导出补 _inline_·修向② 2026-10-23·对抗复核 3dbf35d2 定谳] 合成名对称复出。
+    # 病灶：成员型引用 `_inline_<Cls>_<member>`（如 PalScript.m_RoleSlotArray →
+    # `_inline_PalScript_m_RoleSlotArray`），named-supersede 把整类跳过 ⇒ ida_structs
+    # 缺该键 ⇒ emit 走 `_emit_member` 字符串路（supersede 坍成具名单型）⇒ union
+    # 变体层丢 ⇒ C2039（script_state ×19 + m_state ×17）。
+    # 修法：被成员型**实际引用**的留存合成名复出（union/struct 全形状，IDB 权威），
+    # 递归含其成员引用的 `::$hash` 嵌套合成名 ⇒ emit 走已 work 的 inline-UDT +
+    # hoist 路（与 `_inline_RoleSystem_m_teamSlotsB`/`_inline_MUIDialog_m_btRc` 对称）。
+    # 未被引用的合成名维持跳过（最小 churn）。纯 IDB 留存数据回填，不读 annotation ✓。
+    def _collect_synth_refs(_t, _out):
+        if isinstance(_t, str):
+            for _nm in re.findall(r'_inline_[A-Za-z0-9_]+(?:::\$[0-9A-Fa-f]+)?', _t):
+                _out.add(_nm)
+    _referenced = set()
+    for _e in result.values():
+        if not isinstance(_e, dict):
+            continue
+        for _m in (_e.get('data_members') or []):
+            if isinstance(_m, dict):
+                _collect_synth_refs(_m.get('type', ''), _referenced)
+    _queue = sorted(_referenced & set(_retained_synth))
+    _supplemented = []
+    while _queue:
+        _nm = _queue.pop(0)
+        if _nm in result:
+            continue
+        result[_nm] = _retained_synth[_nm]
+        struct_count += 1
+        _supplemented.append(_nm)
+        for _m in (result[_nm].get('data_members') or []):
+            if isinstance(_m, dict):
+                _sub = set()
+                _collect_synth_refs(_m.get('type', ''), _sub)
+                for _r in sorted(_sub):
+                    if _r not in result and _r in _retained_synth and _r not in _queue:
+                        _queue.append(_r)
+    if _supplemented:
+        log('[inline-supplement] %d 个被引用合成名复出（修向② hoist 路）: %s'
+            % (len(_supplemented), ', '.join(_supplemented)))
 
     # Attach enums as a special section
     if enums:
