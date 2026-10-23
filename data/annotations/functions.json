@@ -9,8 +9,8 @@
   },
   "0x00401DA0": {
     "name": "FileSysDestory",
-    "signature": "gbVFileSystem * __cdecl()",
-    "source": " | 批12 改名 2026-09-29：?FileSysDestory@@YAXXZ→FileSysDestory（mangled 名不匹渲染调用形——自由函数纯名正确） | [函数19登记批 2026-10-16] 补 __cdecl 前缀（C2065 前缀缺口）"
+    "signature": "gbVFileSystem * __thiscall()",
+    "source": " | 批12 改名 2026-09-29：?FileSysDestory@@YAXXZ→FileSysDestory（mangled 名不匹渲染调用形——自由函数纯名正确） | [函数19登记批 2026-10-16] 补 __cdecl 前缀（C2065 前缀缺口） | [R96 修 2026-10-23·A 级] ret $0x4（callee 清 4B = __thiscall）"
   },
   "0x004023D0": {
     "name": "EnumJoystick",
@@ -99,7 +99,8 @@
   },
   "0x00422950": {
     "name": "LoadScene",
-    "signature": "struct gbVFileSystem *__cdecl LoadScene(double sceneNames, char *arg8, char *pszBuf, char pData, char pData2)"
+    "signature": "struct gbVFileSystem *__thiscall LoadScene(double sceneNames, char *arg8, char *pszBuf, char pData, char pData2)",
+    "source": " | [R96 修 2026-10-23·A 级] ret $0x4（callee 清 4B = __thiscall）"
   },
   "0x00422E40": {
     "name": "EffectUpdate",
