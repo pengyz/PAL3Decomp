@@ -776,11 +776,11 @@ def _nested_kind(cls_name, nested_name):
     数据源：data/annotations/structs/<cls>.json 的 nested_types.<name>.kind
     """
     try:
-        import json as _json
-        _p = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))),
-                          'data', 'annotations', 'structs', cls_name + '.json')
-        with open(_p) as _f:
-            _d = _json.load(_f)
+        import annotation_view as _annview
+    except ImportError:
+        from pipeline.gen import annotation_view as _annview
+    try:
+        _d = _annview.struct_by_class(cls_name) or {}
         _nt = (_d.get('nested_types') or {}).get(nested_name) or {}
         return _nt.get('kind') or 'struct'
     except Exception:
@@ -2347,6 +2347,14 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 if isinstance(mtype, dict):
                     _vk = 'union' if 'union' in mtype else 'struct'
                     _variants = mtype.get(_vk) or []
+                    if os.environ.get('PAL3_DEBUG_UNION'):
+                        sys.stderr.write('DEBUG_UNION %s off=0x%X name=%s vk=%s variants=%d\n' % (
+                            cls_name, off, mname, _vk, len(_variants)))
+                        for _vi, _vv in enumerate(_variants):
+                            sys.stderr.write('  [%d] name=%s type=%s=%s\n' % (
+                                _vi, _vv.get('name') if isinstance(_vv,dict) else '?',
+                                type(_vv.get('type')).__name__ if isinstance(_vv,dict) else '?',
+                                str(_vv.get('type'))[:60] if isinstance(_vv,dict) else '?'))
                     _out = []
                     _out.append("    %s {" % _vk)
                     for _v in _variants:
