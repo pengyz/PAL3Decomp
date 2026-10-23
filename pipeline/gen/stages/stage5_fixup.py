@@ -561,41 +561,7 @@ def _fix_register_this_alias(code):
 # Reference parameter restoration (gbengine &param fix)
 # ============================================================
 
-_GB_REF_PARAM_FUNCS = {
-    'Translate': {0}, 'Scale': {0},
-    'LeftTranslate': {0}, 'RightTranslate': {0},
-    'MakeMatrix': {0, 1, 2}, 'IntersectPlane': {0, 1},
-    'IsColAABB': {0}, 'IsColOBB_H': {0},
-    'IsColPoint': {0}, 'IsColQuad': {0, 1, 2},
-    'IsColSphere': {0}, 'IsColTriangle': {0, 1, 2, 3},
-    'GetSphere': {0}, 'GetCollideOBB': {0},  # 'GetAABBox' 裸键拆限定键（B 修补条 2026-10-14，见下）
-    'SetPosition': {0}, 'SetVelocity': {0},
-    # [挂账3 修 2/3 2026-10-16] GetPosition 裸键删除（限定化无目标——已知全形无 ref）：mangled A 级：?GetPosition@PathObj@@QAEPAHMPAMPAH@Z(float,float*,int*)=指针形 · ?GetPosition@RoleSystem(float*,int)=指针形 · ?GetPosition@UIProgressBar@@QAEXH@Z(int)=值形 · ?GetPosition@Object3D@@QAE?AUgbVec3D@@XZ=无参 —— 无 AAU/AAV ref 形 ⇒ 裸键剥& 会打断 RoleSystem::GetPosition(&pOut[0].x,…) 指针实参（reviewer B 组 float*/GetPosition 实症）
-    'SetOrientation': {0}, 'SetListenerPosition': {0},
-    'SetListenerOrientation': {0, 1}, 'GetListenerPosition': {0},
-    'PushMessage': {0}, 'PopMessage': {0},
-    'GetViewport': {0}, 'GetViewSizeOnNearPlane': {0, 1},
-    'GetViewPort': {0, 1, 2, 3},
-    'PointWorldToScr': {1, 2},  # (gbVec3D*, float&, float&)
-    'GetBlend': {0},  # F3: 'SetBlend': {0} deleted — value params (NOTE (F3) below)
-    'RightMultiply': {0},
-    # 【B 修（方案复核判须修订）】PAU/AAU 分流（gbengine_registry 签名 A 级证）：
-    # 指针形出表（gbMatrix4::Rotate(gbVec3D const*,gbVec3D*)=PAU 出；gbOBBox::IsColOBB
-    # (gbOBBox*)=PAU 出）——裸名键拆限定键（同名跨类形参形态相反：指针/引用混同=病灶根因）
-    'gbMatrixStack::Rotate': {2: {1}, 1: {0}},  # (float,gbVec3D&) 2 元 ref@1；
-    #   (gbQuaternion&) 1 元 ref@0 ——元数感知（_ref_positions 按实参数选位）
-    'gbRay::IsColOBB': {0}, 'gbPlane::IsColOBB': {0},   # (gbOBBox&) 引用形留表
-    # 【B 修补条 2026-10-14】GetAABBox 跨类形参形态相反（gbengine.def mangled 名 A 级）：
-    #   ?GetAABBox@gbOBBox@@QAEXAAUgbAABBox@@@Z    = AAU 引用形 ⇒ 限定键留表
-    #   ?GetAABBox@gbVisNode@@UAEHPAUgbAABBox@@@Z  = PAU 指针形 ⇒ 出表（裸键曾误解引用
-    #   ?GetAABBox@gbGeomNode@@UAEHPAUgbAABBox@@@Z = PAU 指针形 ⇒ 出表     实参 ⇒
-    #   ScreenEffectMgr.cpp:851 C2664 `from 'struct gbAABBox' to 'struct gbAABBox *'`）
-    #   ?GetAABBox@gbBaseMesh@@QAEPAUgbAABBox@@XZ  = 0 参 ⇒ 不涉。
-    # 生产实效面（grep 核实 2026-10-14）：gbOBBox::GetAABBox 调用 4 处（Role.cpp:180 /
-    # RoleSystem.cpp:8095 / gbLightObj.cpp:21 / UIBigMap.cpp:1019）限定形全中保持；
-    # gbVisNode::GetAABBox 1 处（ScreenEffectMgr.cpp:850）出表不改 ⇒ C2664 消。
-    'gbOBBox::GetAABBox': {0},   # (gbAABBox&) 引用形留表（PAU 指针形出表——同 B 修分流）
-}
+from pipeline.gen.tables import _GB_REF_PARAM_FUNCS  # [R99 阶段 3] 共享表
 
 # F81（2026-09-25）：引用参数的**实参类型**（SDK 头权威，include/gbengine）。
 # 供 Case 2b 把 `*stru_XXXX`（无型数据全局被解引用作引用实参）重写为
