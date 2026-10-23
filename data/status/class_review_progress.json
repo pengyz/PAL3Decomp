@@ -1422,6 +1422,22 @@
     {
       "ts": "2026-10-23",
       "event": "自主收敛：签名验证完成（A 级），C2440 真因待更深查"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "C2664/C2660 调研交付（a49de30c）：根因六族（A 级证据）· 可修 ≈55 · 真限制 ≈9"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "六族：类型占位 18 · 双声明 15 · 原型缺参 9 · ptr→ref 9 · 回调占位 3 · 待裁决 10"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "⚠️ CCBStage.cpp 独占 27 条是 C1003 截断单元 => 修后总错误可能不变，须按「最大行号前进」判进展"
+    },
+    {
+      "ts": "2026-10-23",
+      "event": "C2228/C2227 调研（自己做）：this 值 vs 指针（57 条类型混淆）"
     }
   ],
   "rolling_metrics": [
@@ -1720,5 +1736,23 @@
       "② member type strip struct/class prefix",
       "③ size check (RoleSlotArray 896!=864 => no rewrite)"
     ]
+  },
+  "annotation_fix_research": {
+    "C2664_C2660": {
+      "fixable": 55,
+      "true_limit": 9,
+      "six_families": [
+        "type_placeholder 18",
+        "dual_decl 15",
+        "missing_param 9",
+        "ptr_ref 9",
+        "callback 3",
+        "pending 10"
+      ]
+    },
+    "C2228_C2227": {
+      "root_cause": "this value vs pointer",
+      "count": 57
+    }
   }
 }
