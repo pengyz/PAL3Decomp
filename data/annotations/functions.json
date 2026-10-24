@@ -1928,10 +1928,10 @@
   },
   "0x00445D20": {
     "name": "MoveToAbsolute",
-    "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
-    "source": "ida_pdb | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only",
+    "signature": "int __thiscall UIWnd::MoveToAbsolute(UIWnd *this, int a2, int a3)",
+    "source": "ida_pdb | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only| [归属定谳 2026-10-25·布局+调用者双面] 体读 this+16/+20 = UIWnd m_rect.left/top（known_members @16 m_rect:tagRECT 逐偏移吻合，绝对坐标→增量换算语义自洽）；调用者面：5 站全为 UIWnd 派生指针（CCBUI m_pRoleStateMP[4]=UIProgressBar*、m_pRoleStateFace/AttackInc=UIStatic* 等）调同一函数 ⇒ 基类方法；尾调 sub_445D40（UIWnd::MoveBy，m_rect 四字段 ±delta 布局铁证）",
     "source_note": "[再创作命名 2026-10-16·五维上下文] **MoveToAbsolute**（绝对坐标→增量换算+累加）——A 级上下文语义五维证：①调用者 `CameraCtrl::UpdateInternal`+`PalScript::Op_LK_Ghost`（相机更新/脚本位移操作域 ✓）②被调用者 0x445D40=this[4..7] 累加器（`this[4]=a2+v4` 增量累积形）③成员访问 this[4]/this[5]=x/y 当前位（视口/相机位）④类归属=视口控制族 ⑤交互模式=绝对定位入口（MoveTo(a2,a3)=OffsetBy(a2-curX,a3-curY)）· 用户指令（2026-10-17）：命名须上下文语义+IDA 优先 ✓ 本条为强化工作流示范",
-    "declaration_only": true
+    "class": "UIWnd"
   },
   "0x004A4770": {
     "name": "SetUIWndFlag",
@@ -3313,5 +3313,11 @@
     "name": "~UIFrameWnd",
     "signature": "void __thiscall(UIFrameWnd *this)",
     "source_note": "[A 级 tail-follow 2026-10-21] 同上形。bare ret ⇒ 0 栈参。vptr 写 0x56ACB8 = **UIFrameWnd 主表** ⇒ scalar dtor。dtor 序铁证（先写派生 vptr 再入基 dtor）。"
+  },
+  "0x00445D40": {
+    "name": "sub_445D40",
+    "signature": "int __thiscall UIWnd::sub_445D40(UIWnd *this, int a2, int a3)",
+    "class": "UIWnd",
+    "source": "| [归属定谳 2026-10-25·布局面] 体调 this+16/20/24/28 四 DWORD ±delta = UIWnd m_rect(tagRECT@16) 四字段——布局铁证；被 UIWnd::MoveToAbsolute 尾调（this 直传）⇒ 同类方法"
   }
 }
