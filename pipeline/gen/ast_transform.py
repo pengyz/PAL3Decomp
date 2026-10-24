@@ -1499,6 +1499,91 @@ def rewrite_unqualified_member_call(code, methods_by_cls, exclude=None, slots_by
     return pat.sub(_sub, code)
 
 
+def rewrite_routed_free_calls(code, routed_by_name):
+    """[R91 2026-10-24·重归属战役 Phase 1a] 路由名调用形转写（成对闭合的调用侧）。
+
+    背景：地址已归属某类方法的自由函数（spec v2：89 条地址级）路由进类后，
+    其自由声明从 free_func_sigs 移除（1c）⇒ 裸调用 `Name(recv, args)` 失去
+    声明源 ⇒ 必须**同批**转写为成员调用 `(((Cls *)recv))->Cls::Name(args)`，
+    否则 N1 复发（2026-09-29 C2065 洪泛实证）。
+
+    与 rewrite_unqualified_member_call 的分工：
+      - 旧器：非路由名、(name,元数)-in-method_sigs 门、this/_this 接收者（T27 语义门）
+      - 本器：**仅路由名**（判定谓词=裸名→地址→归属唯一，spec v2 换轴），
+        接收者放宽到任意标识符/成员链表达式（归属唯一 ⇒ 语义确定），
+        覆盖裸形态 + cast 形态（`Name((T *)recv, ...)` 主导形态，free_functions.cpp:5746+ 一片）
+
+    门：name ∈ routed_by_name（自由声明已移除的同批集合）且实参数 == nparams+1
+    （recv 之外）；元数不符/名字不在集 ⇒ 原样返回（禁猜测）。
+    括号平衡扫描（gotcha_context_blind_text_substitution：上下文无关替换会破坏
+    已改写的调用——rest 用平衡扫描而非贪心 [^;]*）。
+    """
+    if not routed_by_name:
+        return code
+    out = []
+    i = 0
+    n = len(code)
+    # 头匹配：非限定名 + '('；名字前不得是 word/.->: & （取址/成员/限定形态不动）
+    head = re.compile(r'(?<![\w>.:&])(?P<name>[A-Za-z_]\w*)\s*\(')
+    while i < n:
+        m = head.search(code, i)
+        if not m:
+            out.append(code[i:])
+            break
+        name = m.group('name')
+        hit = routed_by_name.get(name)
+        if hit is None:
+            out.append(code[i:m.end()])
+            i = m.end()
+            continue
+        cls, method, nparams = hit
+        # 平衡扫描实参表
+        j = m.end()
+        depth = 1
+        while j < n and depth:
+            c = code[j]
+            if c in '([':
+                depth += 1
+            elif c in ')]':
+                depth -= 1
+            j += 1
+        if depth:                                   # 未闭合 ⇒ 原样
+            out.append(code[i:m.end()])
+            i = m.end()
+            continue
+        inner = code[m.end():j - 1]                 # '(' 与平衡 ')' 之间
+        # 顶层逗号切分（括号感知；**不含 <>**——`->` 箭头 ubiquitous，
+        # 尖括号跟踪会把深度打成负数永不分割（实测 SetParam((Actor *)this->m_pActor,…)）
+        parts, cur, d2 = [], '', 0
+        for c in inner:
+            if c in '([':
+                d2 += 1
+            elif c in ')]':
+                d2 -= 1
+            if c == ',' and d2 == 0:
+                parts.append(cur)
+                cur = ''
+            else:
+                cur += c
+        if cur.strip():
+            parts.append(cur)
+        args = [p.strip() for p in parts if p.strip()]
+        if len(args) != nparams + 1 or not args:    # 元数门（recv + nparams）
+            out.append(code[i:j])
+            i = j
+            continue
+        recv, rest = args[0], args[1:]
+        # recv 已带 cast（cast 形态）⇒ 剥掉旧 cast 再统一包裹，避免 (Cls*)(Cls*) 双重
+        _rc = re.match(r'^\(\s*\w+\s*\*\s*\)\s*(.+)$', recv, re.S)
+        if _rc:
+            recv = _rc.group(1).strip()
+        out.append(code[i:m.start()])
+        out.append('(((%s *)%s))->%s::%s(%s)' % (
+            cls, recv, cls, method, ', '.join(rest)))
+        i = j
+    return ''.join(out)
+
+
 def transform_oop_calls(code, static_methods=None, cls_name=None):
     """
     Transform Class::Method(obj, args) -> obj->Method(args)

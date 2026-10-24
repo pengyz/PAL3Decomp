@@ -1055,6 +1055,17 @@ def collect_methods():
                     if _result:
                         _, method = _result
 
+        if (not cls or not method) and addr:
+            # [R91 2026-10-24·重归属战役 1b-头侧] 裸名收编：地址已路由（reattrib 门
+            # 通过）⇒ 按归属类发头声明，**sig 用 decomp 形**；ida_structs 补充经下方
+            # seen_addrs 让位 ⇒ 消除复核 A 实证的 ~30/59 头-体签名冲突（C2371/C2556 根）。
+            try:
+                from data import store as _store_r91
+                _r91 = (getattr(_store_r91, 'routed_free', None) or {}).get(int(str(addr), 16))
+            except (ValueError, ImportError, AttributeError):
+                _r91 = None
+            if _r91:
+                cls, method = _r91
         if not cls or not method:
             continue
         # [T23-F1] 标量删除析构（dtor 名 + sig 含 this 外形参）⇒ _sdtor_call_dtor

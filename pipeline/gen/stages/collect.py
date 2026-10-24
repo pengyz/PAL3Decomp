@@ -283,12 +283,32 @@ def collect_functions(decomp_dir=None):
                 '_source_file': str(f),
             })
         else:
-            free_funcs.append({
-                'name': name,
-                'code': code,
-                'addr': addr,
-                'sig': sig,
-            })
+            # [R91 2026-10-24·重归属战役 1b] 地址已归属且过门（reattrib.decide_routing）
+            # ⇒ 路由进类发射（体变 Cls::Method，stage1 重建签名剥 this 形参——复核已验链路）。
+            # 按地址不按名：`_` 前缀漂移族（_todo_* vs todo_*，复核 B 实证 20 条）地址可靠。
+            _routed = getattr(store, 'routed_free', None) or {}
+            _r = None
+            try:
+                _r = _routed.get(int(str(addr), 16)) if addr else None
+            except ValueError:
+                _r = None
+            if _r:
+                _rc, _rm = _r
+                by_class[_rc].append({
+                    'name': '%s::%s' % (_rc, _rm),
+                    'method': _rm,
+                    'code': code,
+                    'addr': addr,
+                    'sig': sig,
+                    '_source_file': str(f),
+                })
+            else:
+                free_funcs.append({
+                    'name': name,
+                    'code': code,
+                    'addr': addr,
+                    'sig': sig,
+                })
 
     return by_class, free_funcs
 

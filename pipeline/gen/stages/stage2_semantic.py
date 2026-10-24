@@ -131,6 +131,17 @@ def run(code, ctx):
             sig_map=dict(getattr(store, 'method_sigs', None) or {}))
     except Exception:
         pass
+    # [R91 2026-10-24·重归属战役 1a] 路由名调用形转写（裸形 + cast 形）。
+    # 仅路由名（裸名→地址→归属唯一谓词，spec v2 换轴）——自由声明已移除的同批集合，
+    # 与 data.py 的 free_func_sigs pop 成对（N1 教训：单侧拆拐杖 ⇒ C2065 洪泛）。
+    # 时序保证：本器先于 stage5 的 `::` 加前缀；路由名不再在 free_func_sigs ⇒
+    # stage5 自然跳过 ⇒ 不产生 ::Name( 形态（复核 B 顾虑的 16 站由此消解）。
+    try:
+        from ast_transform import rewrite_routed_free_calls
+        code = rewrite_routed_free_calls(
+            code, dict(getattr(store, 'routed_free_by_name', None) or {}))
+    except Exception:
+        pass
     # 【批 E C2660 族】echo 形剔除（(int)this 回波首参 + ret-N/签名槽数证据门）
     try:
         from ast_transform import drop_call_echo_arg

@@ -40,6 +40,13 @@ class DataStore:
         self.method_sigs = {}       # "ClassName::Method" -> decomp signature (ret-type lookup)
         self.declared_globals = set()  # already in globals.h
         self.free_func_sigs = {}    # "FuncName" -> "ret FuncName(params)" declaration
+        # [R91 2026-10-24·重归属战役] 地址归属索引 + 路由判定结果（reattrib.py 判定）
+        self._free_candidates = []       # [(name, addr, sig)] decomp 无 :: 且 __thiscall
+        self.method_addr_index = {}      # int addr -> (cls, method)
+        self.method_addr_multi = {}      # (cls, method) -> [addr, ...]（撞名检测）
+        self.routed_free = {}            # int addr -> (cls, method)  本批路由进类
+        self.routed_free_by_name = {}    # name -> (cls, method, nparams) 转写器消费
+        self._decomp_text_parts = []     # G6 值引用扫描语料（load 期临时，决策后清空）
         self.exe_data = b''         # raw exe for .rdata string lookup
         self.skip_classes = set()   # classes to not generate
         self.global_addrs = {}      # name -> base_address (from ida_structs.json _globals)
@@ -386,6 +393,8 @@ class DataStore:
                 except Exception as _e:
                     print("  [data-ERR] %s: %s" % (_df.name, _e))
                     continue
+                # [R91] G6 值引用扫描语料（reattrib 决策用，load 末清空）
+                self._decomp_text_parts.append(_dd.get('decompiled_c') or '')
                 _name = _dd.get('name', '')
                 _sig = _dd.get('signature', '')
                 # N1 注记（回退教训 2026-09-29）：曾加"成员地址不进 free_func_sigs"排除——
@@ -447,6 +456,11 @@ class DataStore:
                         continue
                     if 'unknown_libname' in _name or 'nullsub' in _name:
                         continue
+                    # [R91 2026-10-24·重归属战役] 收集自由候选（无 :: 且 __thiscall）
+                    # —— 交 reattrib.decide_routing 做"裸名→地址→归属唯一"判定（spec v2 §3）
+                    if '__thiscall' in _sig:
+                        self._free_candidates.append(
+                            (_name.split('(')[0], _dd.get('address', ''), _sig))
                     if not _re2.match(r'^[A-Za-z_]\w*$', _name):
                         continue
                     if _name in _IDA_MACROS:
@@ -492,13 +506,22 @@ class DataStore:
                 _cls_t27 = _sd.get('name') or ''
                 if not _cls_t27:
                     continue
-                for _mv in (_sd.get('methods') or {}).values():
+                # [R91 2026-10-24·重归属战役] 地址归属索引（addr→(cls,method)）
+                # + 类内同名multi表（撞名拒绝 G2：PAL_GDB 0x479080/0x4791E0 实证）
+                for _addr_k, _mv in (_sd.get('methods') or {}).items():
                     if not isinstance(_mv, dict):
                         continue
                     _mn = str(_mv.get('name') or '').split('(')[0]
                     _ms = _mv.get('signature') or ''
                     if _mn and _ms and '::' not in _mn:
                         self.method_sigs.setdefault('%s::%s' % (_cls_t27, _mn), _ms)
+                    try:
+                        _a = int(str(_addr_k), 16)
+                    except ValueError:
+                        continue
+                    if _mn:
+                        self.method_addr_index[_a] = (_cls_t27, _mn)
+                        self.method_addr_multi.setdefault((_cls_t27, _mn), []).append(_a)
         except Exception:
             pass
 
@@ -547,6 +570,33 @@ class DataStore:
                             self.free_func_sigs[_name] = '%s %s(%s)' % (ret, _name, params)
                         else:
                             self.free_func_sigs[_name] = '%s %s %s(%s)' % (ret, cc, _name, params)
+
+        # [R91 2026-10-24·重归属战役 1b/1c] 路由决策（裸名→地址→归属唯一，spec v2 §3）
+        # 命中集 = 本批路由进类（collect/emit_headers 消费 routed_free）+ 自由声明移除
+        # （此处 pop free_func_sigs）。**必须与调用形转写（stage2 rewrite_routed_free_calls）
+        # 同批** —— N1 教训：单侧拆声明拐杖 ⇒ C2065 洪泛（2026-09-29 S2 100→91）。
+        # 默认 scope=batch0（复核核实的 28 条零裸调用名单）；REATTRIB_SCOPE=all/off 可调。
+        try:
+            try:
+                import reattrib as _reattrib
+            except ImportError:
+                from pipeline.gen import reattrib as _reattrib
+            (self.routed_free,
+             self.routed_free_by_name) = _reattrib.decide_routing(
+                self._free_candidates, self.method_addr_index, self.method_addr_multi,
+                corpus_text='\n'.join(self._decomp_text_parts))
+            self._decomp_text_parts = []   # 55MB 级临时语料，决策后即弃
+            for _rn in self.routed_free_by_name:
+                self.free_func_sigs.pop(_rn, None)
+            if self.routed_free_by_name:
+                print('  [R91] 重归属路由 %d 条（scope=%s）: %s%s'
+                      % (len(self.routed_free_by_name),
+                         os.environ.get('REATTRIB_SCOPE', 'batch0'),
+                         ', '.join(sorted(self.routed_free_by_name)[:6]),
+                         ' ...' if len(self.routed_free_by_name) > 6 else ''))
+        except Exception as _e:
+            print('  [R91] 路由决策失败（保守回退全自由形态）: %s' % _e)
+            self.routed_free, self.routed_free_by_name = {}, {}
 
     def _load_binary(self):
         exe_path = self.project_root / "original" / "PAL3.exe"
