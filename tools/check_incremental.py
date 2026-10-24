@@ -12,8 +12,14 @@ IDA 管线耗时：apply 11s → export **151s** → codegen **200s** → probe
 |---|---|---|
 | apply | `data/annotations/` | annotations hash 未变 |
 | export | `data/annotations/` + `asm/pal3/ida_structs.json` | 上游 hash 未变 |
-| codegen | `asm/pal3/decomp/` | decomp hash 未变 |
-| probe | `pal3/src/` | codegen 输出未变 |
+| codegen | `asm/pal3/decomp/` + `include/pal3/gen/` | decomp 未变 **且** 头文件树 == 上次生成态 |
+| probe | `pal3/src/` + `include/pal3/gen/` | codegen 输出未变 **且** 头文件树 == 上次生成态 |
+
+[R89 修 2026-10-24·崩塌复盘] `include/pal3/gen`（free_functions.h/_ns_udts.h/全部
+类头）原不在任何 hash 里 ⇒ 头文件被删/空壳/陈旧时 codegen/probe 照常跳过 ⇒
+2026-10-23 实证：init --force 后头文件树退化，增量判定全绿，崩塌（S2 0/213）掩盖
+到全量 probe 才暴露。修：头文件树纳入 codegen+probe 跳过判据（变 ⇒ 重生成自愈 +
+强制 probe 验证）。
 
 ## 实现
 
@@ -81,6 +87,9 @@ def compute_inputs():
         'ida_structs': _hash_file(os.path.join(ROOT, 'asm', 'pal3', 'ida_structs.json')),
         'decomp': _hash_dir(os.path.join(ROOT, 'asm', 'pal3', 'decomp'), pattern='.json'),
         'pal3_src': _hash_dir(os.path.join(ROOT, 'pal3', 'src'), pattern='.cpp'),
+        # [R89 修 2026-10-24·崩塌复盘] 头文件树 = codegen 产物的一半（共享头层面），
+        # 不 hash 则"只加不减"的生成 + 残留旧头会掩盖崩塌（实证见模块 docstring）
+        'gen_headers': _hash_dir(os.path.join(ROOT, 'include', 'pal3', 'gen'), pattern='*'),
         # 管线脚本（改动 ⇒ 全阶段强制重生成）
         'pipeline_gen': _hash_dir(os.path.join(ROOT, 'pipeline', 'gen'), pattern='.py'),
         'pipeline_ida': _hash_dir(os.path.join(ROOT, 'pipeline', 'ida'), pattern='.py'),
@@ -129,11 +138,15 @@ def decide(inputs, prev):
         # export: apply 可跳过 + ida_structs 未变
         if prev_in.get('ida_structs') == inputs.get('ida_structs'):
             skip.append('export')
-            # codegen: export 可跳过 + decomp 未变
-            if prev_in.get('decomp') == inputs.get('decomp'):
+            # codegen: export 可跳过 + decomp 未变 + 头文件树 == 上次生成态
+            # [R89] gen_headers 变 ⇒ codegen 重跑自愈（重生成被删/空壳/陈旧的共享头）
+            if prev_in.get('decomp') == inputs.get('decomp') and \
+               prev_in.get('gen_headers') == inputs.get('gen_headers'):
                 skip.append('codegen')
-                # probe: codegen 可跳过 + src 未变
-                if prev_in.get('pal3_src') == inputs.get('pal3_src'):
+                # probe: codegen 可跳过 + src 未变 + 头文件树未变
+                # [R89] probe 的编译输入含共享头 ⇒ 头文件树变必须重新验证
+                if prev_in.get('pal3_src') == inputs.get('pal3_src') and \
+                   prev_in.get('gen_headers') == inputs.get('gen_headers'):
                     skip.append('probe')
     return skip
 

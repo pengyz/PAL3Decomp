@@ -640,3 +640,6 @@
 | `::SwitchEditorCamPos` | inline | `gbGeomNode` | 20 | self_arg_mismatch | `(*(int ( **)(gbGeomNode *))(*(_DWORD *)&_this->m_pPointer->gbChain1DNode + 20))(_this->m_pPointer)` |
 | `::SetParam` | inline | `int` | 20 | non_class_hint | `(*(int ( **)(int))(*(_DWORD *)v5 + 20))(v5)` |
 | `::CCBUI_SetupAIWindow` | inline | `UIScene` | 16 | self_arg_mismatch | `(*(void ( **)(UIScene *, int, int *, int))(*(_DWORD *)&v21->UIWnd + 16))( v21, g_nMagicTabIDs[v16], &v47, v2)` |
+| `MiniGame1::Render` | inline | `int` | 16 | non_class_hint | `(*(void ( **)(int, _DWORD))(*(_DWORD *)v4 + 16))(v4, 0)` |
+| `MiniGame3::RenderWithTransform` | inline | `int` | 16 | non_class_hint | `(*(void ( **)(int, _DWORD))(*(_DWORD *)v4 + 16))(v4, 0)` |
+| `::SceneMgrUpdate` | inline | `_DWORD` | 20 | non_class_hint | `(*(int ( **)(_DWORD, _DWORD))(*(_DWORD *)*v4 + 20))(*v4, LODWORD(fVal))` |

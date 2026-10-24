@@ -56,6 +56,7 @@
 - [**裸字节扫描不能当证据源**](gotcha_bare_byte_scan_as_evidence_source.md) — 在字节里搜 `0xC2/0xC3` 找函数尾会把**指令操作数**当函数尾；与指令级真值**分歧 367/3178（11.6%）**，幅度可达 105 个假 slots（`LoadActorModel` 真 1）；改用 `PAL3.exe.asm` 指令级为主源、裸扫描降为回退并上报
 - [**globals.cpp 行序不确定**](gotcha_globals_cpp_nondeterministic_order.md) — 同输入两次生成，2703 行多重集完全相同、顺序不同 ⇒ 它的 md5 永远在变，不能当 A-B-A 字节锚点，也不能用 md5 判「该文件是否被改动」
 - [**codegen 输出路径未锚定 PROJECT_ROOT**](gotcha_codegen_output_path_not_anchored_to_project_root.md) — `emit_cpp` 用 `store.project_root`、`emit_headers` 用 `PIPELINE_ROOT.parent`，而 `pipeline.toml` 的输入路径是绝对的 ⇒ 在 `git worktree` 里跑 codegen 会**先 rmtree 再重建主仓库的 pal3/src**；不要用 worktree 做 A-B-A
+- [**落后 checkout + init --force = 全线崩塌且增量全绿**](gotcha_stale_checkout_fresh_idb_regeneration_collapse.md) — Windows 侧 master 落后 3 天（ddb29a290），init --force 在**无修复代码**上全量重生成 ⇒ C2079 循环序 ×213（修复 2183b71bd 只在 origin 上）；增量 12 项 hash 不含 `include/pal3/gen` ⇒ 崩塌被掩盖；修=gen_headers 纳入 hash（R89）+ 跑重管线前必对齐 origin/master；S2=0/全 fail_imported_only 形态先读 census `root_blame` 找公共头单点
 
 ## Patterns
 - [字段"类型与名字"的证据分级（disp32 全二进制扫描）](pattern_member_evidence_grading_by_disp32_scan.md) — 对每个偏移扫 disp32 小端模式：**0 命中 ⇒ 无直接访问 ⇒ 不得给类型/语义名**（应作 padding/未知）；命中须回 disasm 确认承载指令（假阳性常见：栈偏移/立即数）；类型可证到"宽度+int/float/指针+有/无符号"，名字仅在字符串/RTTI/API/PDB 等**语义把手**存在时可给 ✓

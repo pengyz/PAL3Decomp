@@ -135,3 +135,35 @@ def test_pipeline_script_change_forces_all():
                            'pal3_src': 's', 'pipeline_gen': 'pg', 'pipeline_ida': 'pi', 'tools': 't'}}
         skip = decide(inputs, prev)
         assert not skip, f'{key} 变应强制全跑'
+
+
+# [R89 修 2026-10-24·崩塌复盘] 头文件树完整性纳入增量判据
+# 实证：include/pal3/gen（free_functions.h/_ns_udts.h/类头）原不在任何 hash 里
+#   ⇒ 头文件被删/空壳/陈旧时 codegen/probe 照常跳过 ⇒ 崩塌被掩盖（0/213 当晚不可见）
+_BASE_INPUTS = {'annotations': 'a', 'ida_structs': 'i', 'decomp': 'd',
+                'pal3_src': 's', 'gen_headers': 'gh',
+                'pipeline_gen': 'pg', 'pipeline_ida': 'pi', 'tools': 't'}
+
+
+def test_header_tree_corruption_forces_codegen_and_probe():
+    """头文件树变(decomp 未变) => codegen+probe 必须跑(自愈重生成+验证).
+
+    场景即 2026-10-23 崩塌: free_functions.h 空壳/_ns_udts.h 顺序坏,
+    decomp 未变 ⇒ 原 decide 照样跳过 codegen ⇒ 坏树不重建、不被 probe 抓.
+    """
+    inputs = dict(_BASE_INPUTS)
+    inputs['gen_headers'] = 'CORRUPTED'
+    prev = {'inputs': dict(_BASE_INPUTS)}
+    skip = decide(inputs, prev)
+    assert 'apply' in skip, 'annotations 未变应跳 apply'
+    assert 'export' in skip, 'ida_structs 未变应跳 export'
+    assert 'codegen' not in skip, f'头文件树变必须重跑 codegen 自愈,实得跳过 {skip}'
+    assert 'probe' not in skip, f'头文件树变必须跑 probe 验证,实得跳过 {skip}'
+
+
+def test_header_tree_unchanged_still_skips():
+    """头文件树未变(含 gen_headers 键) => 全跳过(不误伤正常增量)."""
+    inputs = dict(_BASE_INPUTS)
+    prev = {'inputs': dict(_BASE_INPUTS)}
+    skip = decide(inputs, prev)
+    assert set(skip) == {'apply', 'export', 'codegen', 'probe'}, f'未变应全跳过,实得 {skip}'
