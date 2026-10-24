@@ -3998,6 +3998,19 @@ def generate_globals():
             # Override name from globals.json if available (but not type - too risky)
             if _ann_entry.get('name'):
                 _ginfo['name'] = _ann_entry['name']
+            # [R93 2026-10-25] ptr_table 类目放开类型覆盖（scoped opt-in）：
+            # off_* 表全局被兜成 void* 标量 ⇒ off_X[0] 取 void 元素 ⇒ C2440
+            # 'void'→'char*' ×12（8 表，2026-10-25 普查）。skip 型走 orig_type
+            # 复活路径（W3，无需此处）；仅非 skip 且 category=ptr_table 且
+            # 注解显式 type 时覆盖（0x005707D0 const char * 策展形场景）。
+            if _ann_entry.get('category') == 'ptr_table':
+                # 统一取型：orig_type（墓碑）优先；非 skip 的策展 type 次之；
+                # 注解 skip 但 export 非 skip（兜底 void* 形）也用 orig_type 覆盖
+                # （两域 skip 不同源：export 的 void* ≠ 注解 skip 语义，0x0056C548 实证）
+                _t93 = _ann_entry.get('orig_type') or (
+                    _ann_entry.get('type') if _ann_entry.get('type') != 'skip' else None)
+                if _t93:
+                    _ginfo['type'] = _t93
             # G1 分区：category 字段随注解流入（发射分区用；globals.cpp 不消费）
             if _ann_entry.get('category'):
                 _ginfo['category'] = _ann_entry['category']
