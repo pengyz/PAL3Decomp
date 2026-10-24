@@ -79,8 +79,8 @@
     "0x00430180": {
       "name": "InitSceneScriptLoader",
       "signature": "_BYTE *__thiscall CG_Entry::InitSceneScriptLoader()",
-      "source": "| A 级归属（2026-10-24 对抗复核员手工核实，asm 72625 起）：ESI=ECX 后不复位；实际访问偏移 {0,1,4,8,0xC}（引擎漏记 [esi] 无位移形态）；写两字节标志 + 三指针槽（new 0x30 对象挂 [esi+4]，自链表化），与 CG_Entry 的 bOpt/m_bUIActive/m_pScene/m_pUI/m_pEdit 完全吻合。附注：CG_Entry 成员 evidence_level 均 unverified，UNAMBIGUOUS 为相对唯一覆盖",
-      "evidence_level": "A"
+      "source": "| A 级归属（2026-10-24 对抗复核员手工核实，asm 72625 起）：ESI=ECX 后不复位；实际访问偏移 {0,1,4,8,0xC}（引擎漏记 [esi] 无位移形态）；写两字节标志 + 三指针槽（new 0x30 对象挂 [esi+4]，自链表化），与 CG_Entry 的 bOpt/m_bUIActive/m_pScene/m_pUI/m_pEdit 完全吻合。附注：CG_Entry 成员 evidence_level 均 unverified，UNAMBIGUOUS 为相对唯一覆盖 | ⚠️ 冲突并录（2026-10-24）：functions.json 同地址条目有 10-17 五面台账——彼时结论'类归属待定·PalScriptMgr 候选最强但谱撞 200+ 唯一性不足'，且体读出 PalScript* 构造/使用。本条 A 级偏移证据（this 偏移 {0,1,4,8,0xC} 唯一精确命中 CG_Entry 成员起始）与其不矛盾（体调 PalScript* 与挂 CG_Entry 状态可并存），但定谳需仲裁：两证据类型不同（偏移匹配 vs 调用图/体形），挂 reattribution 队列",
+      "evidence_level": "A(偏移)/待仲裁(归属)"
     }
   }
 }
