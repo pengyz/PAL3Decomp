@@ -290,17 +290,19 @@
   },
   "0x0046F3D0": {
     "name": "GetInputFlag",
-    "signature": "char __thiscall(_BYTE *this)",
-    "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体双胞2·HandleInput 域",
+    "signature": "char __thiscall PropUI::GetInputFlag(PropUI *this)",
+    "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体双胞2·HandleInput 域 | [IDB 重定型 2026-10-24·G7 队列] structs/PropUI.json methods 同地址归属已在；补 class+类化签名供 apply 函数级定型，非新归属",
     "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
-    "source_note": "[余 14 补面 2026-10-17·五面满卡] GetInputFlag（①PropUI::HandleInput ✓ ③this[21261] 字节读 ✓ ④PropUI ✓ ⑤输入处理状态查询 ✓）——face3 规则执行 · A 级 conf 92 | [归属 2026-10-17] 类=PropUI（成员访问谱比对）"
+    "source_note": "[余 14 补面 2026-10-17·五面满卡] GetInputFlag（①PropUI::HandleInput ✓ ③this[21261] 字节读 ✓ ④PropUI ✓ ⑤输入处理状态查询 ✓）——face3 规则执行 · A 级 conf 92 | [归属 2026-10-17] 类=PropUI（成员访问谱比对）",
+    "class": "PropUI"
   },
   "0x00474990": {
     "name": "GetUpdateFlag",
-    "signature": "char __thiscall(_BYTE *this)",
-    "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体·UpdateAndForward 域（lits 0/5）",
+    "signature": "char __thiscall LineupUI::GetUpdateFlag(LineupUI *this)",
+    "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体·UpdateAndForward 域（lits 0/5） | [IDB 重定型 2026-10-24·G7 队列试点] structs/LineupUI.json methods 同地址归属已在（10-17 五面满卡 ④LineupUI ✓）；本条补 class+类化签名供 apply 函数级定型，非新归属",
     "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
-    "source_note": "[余 14 补面 2026-10-17·五面满卡] GetUpdateFlag（①LineupUI::UpdateAndForward ✓ ③this[103789] 字节读 ✓ ④LineupUI ✓ ⑤更新状态查询 ✓）——face3 规则执行 · A 级 conf 92 | [归属 2026-10-17] 类=LineupUI（成员访问谱比对）"
+    "source_note": "[余 14 补面 2026-10-17·五面满卡] GetUpdateFlag（①LineupUI::UpdateAndForward ✓ ③this[103789] 字节读 ✓ ④LineupUI ✓ ⑤更新状态查询 ✓）——face3 规则执行 · A 级 conf 92 | [归属 2026-10-17] 类=LineupUI（成员访问谱比对）",
+    "class": "LineupUI"
   },
   "0x004A13E0": {
     "name": "SyncUIRoleDialogMembers",
@@ -389,10 +391,11 @@
   },
   "0x004DB940": {
     "name": "StoreThreadFlag",
-    "signature": "int __thiscall(_BYTE *this, char a2)",
-    "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体·线程旗/动作处理域（lits 0/76/892）",
+    "signature": "int __thiscall CCBSystem::StoreThreadFlag(CCBSystem *this)",
+    "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体·线程旗/动作处理域（lits 0/76/892） | [IDB 重定型 2026-10-24·G7 队列] structs/CCBSystem.json methods 同地址归属已在；补 class+类化签名供 apply 函数级定型，非新归属",
     "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
-    "source_note": "[余 14 补面 2026-10-17·五面满卡] StoreThreadFlag（①CCBSystem::SetThreadFlag + CCBRoleState::ProcessActions ✓ ③this[454]=a2 写 ✓ ④CCBSystem ✓ ⑤线程标志存储 ✓）——face3 规则执行 · A 级 conf 92 | [归属 2026-10-17] 类=CCBSystem（五面卡面证）"
+    "source_note": "[余 14 补面 2026-10-17·五面满卡] StoreThreadFlag（①CCBSystem::SetThreadFlag + CCBRoleState::ProcessActions ✓ ③this[454]=a2 写 ✓ ④CCBSystem ✓ ⑤线程标志存储 ✓）——face3 规则执行 · A 级 conf 92 | [归属 2026-10-17] 类=CCBSystem（五面卡面证）",
+    "class": "CCBSystem"
   },
   "0x004E0A30": {
     "name": "DialogFunc",
@@ -1939,10 +1942,11 @@
   },
   "0x00523E70": {
     "name": "GetScriptBufferAddr",
-    "signature": "int __thiscall(_DWORD *this)",
-    "source": "ida_pdb | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件·脚本算子 Op_HY_FLY/Op_SetRoleTexture 域",
+    "signature": "int __thiscall PalScript::GetScriptBufferAddr(PalScript *this)",
+    "source": "ida_pdb | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件·脚本算子 Op_HY_FLY/Op_SetRoleTexture 域 | [IDB 重定型 2026-10-24·G7 队列] structs/PalScript.json methods 同地址归属已在；补 class+类化签名供 apply 函数级定型，非新归属",
     "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
-    "source_note": "[余 14 补面 2026-10-17·五面满卡] GetScriptBufferAddr（①PalScript::Op_HY_FLY + Op_SetRoleTexture ✓ ③return this[435]+345572 计算址 ✓ ④PalScript ✓ ⑤脚本缓冲取址 ✓）——face3 规则执行 · A 级 conf 92 | [归属 2026-10-17] 类=PalScript（五面卡面证）"
+    "source_note": "[余 14 补面 2026-10-17·五面满卡] GetScriptBufferAddr（①PalScript::Op_HY_FLY + Op_SetRoleTexture ✓ ③return this[435]+345572 计算址 ✓ ④PalScript ✓ ⑤脚本缓冲取址 ✓）——face3 规则执行 · A 级 conf 92 | [归属 2026-10-17] 类=PalScript（五面卡面证）",
+    "class": "PalScript"
   },
   "0x00408BD0": {
     "name": "NullCallback",
@@ -2865,12 +2869,13 @@
   "0x00445E10": {
     "name": "OffsetRect",
     "signature": "int *__thiscall PalScript::OffsetRect(long *p_DWORD)",
-    "source": "N1 条目复置（S2-100 实证形：无 class、有类限定签名——喂 method_sigs 窄 map 供重写触发）"
+    "source": "N1 条目复置（S2-100 实证形：无 class、有类限定签名——喂 method_sigs 窄 map 供重写触发） | [G7 队列搁置 2026-10-25] 加 class 触发 apply 函数级定型，但 apply 对 long* 形参解析产出 int*（decomp 重渲染 int*，压过 ida_structs 9-28 long* 修 ⇒ UIWnd C2664 翻转）——待 apply_annotations 参数类型 bug 修复后重走 G7"
   },
   "0x004343F0": {
     "name": "FindByName",
-    "signature": "void __thiscall PtrArray::FindByName(const char *pszName)",
-    "source": "同上（体证据 strcmp） | [T141] 声明侧同步：与 structs/PtrArray.json:0x004343F0 名一致化（RemoveAt→FindByName，消歧语义名——体证据 strcmp 查表非删除）；functions.json 无 owner 且 merge 时 wins ⇒ 此处为有效名源头，须与 struct 侧一致"
+    "signature": "void __thiscall PtrArray::FindByName(PtrArray *this, const char *pszName)",
+    "source": "同上（体证据 strcmp） | [T141] 声明侧同步：与 structs/PtrArray.json:0x004343F0 名一致化（RemoveAt→FindByName，消歧语义名——体证据 strcmp 查表非删除）；functions.json 无 owner 且 merge 时 wins ⇒ 此处为有效名源头，须与 struct 侧一致 | [IDB 重定型 2026-10-24·G7 队列] structs/PtrArray.json methods 同地址归属已在；补 class+类化签名供 apply 函数级定型，非新归属",
+    "class": "PtrArray"
   },
   "0x00540B20": {
     "name": "UIInitSystem",
@@ -3286,10 +3291,11 @@
   },
   "0x004DFED0": {
     "name": "EndTurnAndAdvance",
-    "signature": "int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)",
+    "signature": "int __thiscall CCBStage::EndTurnAndAdvance(CCBStage *this, int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)",
     "source_note": "[UNVERIFIABLE 2026-10-21] **双 ret 出口**（4dff86 ret $0x14=5 槽 + 4dffde ret $0x4=1 槽）疑两函数拼段 ⇒ **须先拆段**再定参。暂不落签名。原 5 参 int 型无 A 级支撑。 | [evidence:B 2026-10-21·降级] 原证据引用 IDA stack_frame 参数名/型 = **循环**（apply_annotations SetType 写 IDB 后 stack_frame 读回）。降 **B 级**。**待补 A 级**：调用点 push opcode / flds/fstps / 位型常量。",
     "evidence_level": "B",
-    "source": " | [R93 修 2026-10-23·8 errors] IDA 签名"
+    "source": " | [R93 修 2026-10-23·8 errors] IDA 签名 | [IDB 重定型 2026-10-24·G7 队列] structs/CCBStage.json methods 同地址归属已在；补 class+类化签名供 apply 函数级定型，非新归属",
+    "class": "CCBStage"
   },
   "0x004C6290": {
     "name": "Destroy__ovl_02",
