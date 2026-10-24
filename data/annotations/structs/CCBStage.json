@@ -1706,6 +1706,12 @@
       "signature": "int __thiscall(CCBStage *this, void *thisa)",
       "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 CCBStage::sub_4FEEF0（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 CCBStage 方法面",
       "evidence_level": "A"
+    },
+    "0x00459F80": {
+      "name": "IsStateFlagSet",
+      "signature": "int __thiscall CCBStage::IsStateFlagSet()",
+      "source": "| [归属定谳 2026-10-25] 体读 this+153..156=m_nTodo_99/9A/9B+TaskCount 低字节（与 known_members 逐偏移吻合）+ 5 调用者共置 CCBStage 域（0x459FA0-0x45A1A0）+ 调用者传 this ×5",
+      "evidence_level": "A"
     }
   },
   "vtables": [

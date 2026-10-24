@@ -272,12 +272,12 @@
   },
   "0x00459F80": {
     "name": "IsStateFlagSet",
-    "signature": "int __thiscall(_BYTE *this)",
-    "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件·CCBStage sub 域 | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only",
+    "signature": "int __thiscall CCBStage::IsStateFlagSet(CCBStage *this)",
+    "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件·CCBStage sub 域 | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only | [归属定谳 2026-10-25·五面补全] 10-17 阻塞面（成员面不可达）已解除：decomp 体读 this+153..156 四字节 = CCBStage known_members m_nTodo_99/9A/9B（A偏移旗标）+ m_nTaskCount 低字节（逐偏移吻合）；共置面：5 调用者 0x459FA0-0x45A1A0 全为 CCBStage 方法（生成代码 CCBStage::sub_00459fa0 族）且传 this；调用者面 5 ✓ ⇒ 归属 CCBStage",
     "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
     "source_note": "[17 挂账补面 2026-10-17·五面满卡] IsStateFlagSet（五面满卡：①调用者 5 站 CCBStage::sub_00459fa0/a020/a0a0 族 ✓ ②本体=flag 判 ✓ ③this[i+153] 索引形（成员偏移 ✓ thiscall 面）④类=CCBStage ✓ ⑤交互=Stage 内部状态查询 ✓）——face3_rule 降级判据执行（thiscall=this[+N] 形）· 证据账目：A 级（decompile+xref）conf 92 | [evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-    "declaration_only": true,
-    "evidence_level": "B"
+    "evidence_level": "B",
+    "class": "CCBStage"
   },
   "0x0046ADF0": {
     "name": "GetCellStateByte",
