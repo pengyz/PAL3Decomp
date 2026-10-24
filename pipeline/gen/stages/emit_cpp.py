@@ -699,11 +699,27 @@ def generate_free_funcs_cpp(funcs):
     import re
     all_code_text = '\n'.join(f.get('code', '') for f in funcs)
     referenced_classes = set(re.findall(r'\b([A-Z][A-Za-z0-9_]+)::', all_code_text))
+    referenced_classes |= set(re.findall(r'\b(_[A-Z][A-Za-z0-9_]*)::', all_code_text))
     # Also detect (ClassName *) casts — casting to a class pointer requires full definition
+    def _is_class_name(c):
+        # [R92 2026-10-24] 允许下划线前缀类（_Console/_Texture_Info——此前
+        # c[0].isupper() 恒拒 ⇒ ScriptPoolPage_Alloc 的 _Console 定义不可见
+        # ⇒ C2027+C2227+C2228 ×48，占 free_functions.cpp 截断单元错误 47%）
+        return bool(c) and (c[0].isupper() or (c[0] == '_' and len(c) > 1 and c[1].isupper()))
     for m in re.finditer(r'\((\w+)\s*\*+\s*\)', all_code_text):
         c = m.group(1)
-        if c[0].isupper():
+        if _is_class_name(c):
             referenced_classes.add(c)
+    # [R92 2026-10-24] 签名指针参数类型 + 体内解引用 ⇒ 需完整定义。
+    # 仅 cast 扫描抓不到 `(_Console *_this)` 参数声明形（括号内带参数名）——
+    # 而体里 `_this->m_cmd` 恰恰需要 _Console 完整定义（前向声明不够）。
+    for f in funcs:
+        _sig, _body = f.get('sig', '') or '', f.get('code', '') or ''
+        for m in re.finditer(r'\b([A-Za-z_]\w*)\s*\*+\s*(\w+)\s*[,)]', _sig):
+            _t, _p = m.group(1), m.group(2)
+            if _p in ('this', '_this', 'a1', 'a2') or \
+                    re.search(r'\b%s\s*(->|\.)' % re.escape(_p), _body):
+                referenced_classes.add(_t)
     header_dir = store.project_root / "pal3" / "src"
     for cls in sorted(referenced_classes):
         _subdir = get_class_dir(cls)

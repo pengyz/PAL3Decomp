@@ -61,6 +61,32 @@ def rename_this_identifier(code, new='_this'):
     return ''.join(out)
 
 
+def _ensure_stdcall_def(code, ctx):
+    """[R92 2026-10-24] __stdcall 自由函数定义侧 cc 回填（幂等）。
+
+    stage1 无条件剥定义行 cc（:105 树解析预剥 + :379 重建剥）——对成员无害
+    （__thiscall 隐式、__cdecl 默认），但 **__stdcall 自由函数**的声明侧
+    （data.py free_func_sigs）保留 cc ⇒ 定义侧缺修饰符 ⇒ MSVC6
+    `C2373 redefinition; different type modifiers`（实测 ArraySort/EnumJoystick/
+    WinProc/StrCopyRange/InputUpdate 5 处，free_functions.cpp）。
+    判据：ctx.is_free_function 且 sig 明写 __stdcall ⇒ 定义行名字前回填。
+    """
+    if not getattr(ctx, 'is_free_function', False):
+        return code
+    if '__stdcall' not in (ctx.sig or ''):
+        return code
+    _fn = re.escape(getattr(ctx, 'method_name', '') or '')
+    if not _fn:
+        return code
+    out = code.split('\n')
+    for i, l in enumerate(out):
+        if re.match(r'^\s*[A-Za-z_][\w \t\*&]*?\b%s\s*\(' % _fn, l) \
+                and '__stdcall' not in l:
+            out[i] = re.sub(r'(\b%s\s*\()' % _fn, r'__stdcall \1', l, count=1)
+            break
+    return '\n'.join(out)
+
+
 def _rename_param_refs_to_this(func_def, first_param, pname, edits):
     """[T20/T21] 被剥 this 槽首参的体内引用改名 → this（AST 标识符逐个）。
 
@@ -154,7 +180,7 @@ def run(code, ctx):
 
     if not func_def:
         # Fallback: try regex approach for unusual formats
-        return _regex_fallback(code, ctx)
+        return _ensure_stdcall_def(_regex_fallback(code, ctx), ctx)
 
     # Collect byte-range edits
     edits = []  # [(start_byte, end_byte, replacement)]
@@ -329,7 +355,7 @@ def run(code, ctx):
             lines[i] = re.sub(r'^\s*return\s+(.+);', r'  \1;', lines[i])
         code = '\n'.join(lines)
 
-    return code
+    return _ensure_stdcall_def(code, ctx)
 
 
 def _regex_fallback(code, ctx):
