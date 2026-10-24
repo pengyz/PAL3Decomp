@@ -70,7 +70,7 @@ class Config:
                 'pdb = "data/pdb"\n'
                 'decomp = "asm/pal3/decomp"\n'
                 'output_src = "src/pal3"\n'
-                'output_headers = "include/pal3/gen"\n'
+                'output_headers = "pal3/src"\n'
                 % _TOML_PATH)
 
         # Parse

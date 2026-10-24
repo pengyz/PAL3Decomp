@@ -82,7 +82,7 @@ def _config_set(args):
                 'idb_raw = "original/PAL3.exe.raw.i64"\nidb_work = "original/PAL3.exe.i64"\n\n'
                 '[paths]\nannotations = "data/annotations"\npdb = "data/pdb"\n'
                 'decomp = "asm/pal3/decomp"\noutput_src = "src/pal3"\n'
-                'output_headers = "include/pal3/gen"\n', encoding='utf-8')
+                'output_headers = "pal3/src"\n', encoding='utf-8')
             print("Created pipeline.toml with defaults")
 
     if not args:

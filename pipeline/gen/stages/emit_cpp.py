@@ -761,6 +761,14 @@ def _emit_free_functions_header(store, header_dir):
 
     合并原双写点（预生成无前向声明 + 全量有前向声明）
     => 前向声明恒生成，filter_classes 跑不再留编译破坏态。
+
+    [R90 修 2026-10-24·恢复会话] 双址写出（_ns_udts.h C2143 同法）：
+    本文件是唯一跟随 cfg.output_headers（机器本地 gitignored toml）漂移的产物，
+    而全部消费者只认 pal3/src（probe /I 无 include/pal3/gen；
+    stage5_fixup._load_free_func_names 硬编码 pal3/src；include 是裸名）。
+    2026-10-24 实测：toml 漂到 include/pal3/gen ⇒ 头写进无人引用的地址
+    ⇒ C1083 ×152、S2 122→11。修：canonical pal3/src 恒写，
+    header_dir 异址补写，同址去重（健康配置 output_headers=pal3/src 行为不变）。
     """
     h_lines = ['#pragma once',
                '// Auto-generated: free function forward declarations',
@@ -787,8 +795,16 @@ def _emit_free_functions_header(store, header_dir):
     for fname, decl in sorted(store.free_func_sigs.items()):
         h_lines.append('%s;' % decl)
     h_lines.append('')
-    with open(header_dir / 'free_functions.h', 'w', encoding='utf-8') as f:
-        f.write('\n'.join(h_lines))
+    content = '\n'.join(h_lines)
+    canonical = store.project_root / 'pal3' / 'src' / 'free_functions.h'
+    targets = [canonical]
+    mirror = Path(header_dir) / 'free_functions.h'
+    if mirror != canonical:
+        targets.append(mirror)
+    for t in targets:
+        t.parent.mkdir(parents=True, exist_ok=True)
+        with open(t, 'w', encoding='utf-8') as f:
+            f.write(content)
 
 
 def run_cpp_generation(filter_classes=None):
