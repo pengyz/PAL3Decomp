@@ -64,17 +64,25 @@ def test_route_hit_and_gates():
     assert 'ReleaseAllTextures' not in by_name
 
 
-def test_scope_batch0_filters_nonlist_names():
+def test_scope_all_default_and_batch0_explicit():
+    """默认 scope=all（44 条验证后翻转）；batch0 保守集仍可显式选用."""
     idx, multi = _mk_index()
-    # SetParam 在批 0 名单内；造一个不在名单内的命中（用 Actor 的 SetParam 地址 +
-    # 同名 ⇒ 唯一通过 G1-G4，被 G5 过滤）
     cands = [('SetParam', '0x00536160', 'int __thiscall(Actor *this, int a, int b)')]
-    by_addr, by_name = decide_routing(cands, idx, multi)  # 默认 batch0
-    assert by_name.get('SetParam') == ('Actor', 'SetParam', 2)  # 在名单 ⇒ 路由
-
-    cands2 = [('FlushCommandQueue', '0x0041C090', 'int __thiscall(RoleSystem *this)')]
-    by_addr2, _ = decide_routing(cands2, idx, multi)
-    assert 0x41C090 in by_addr2
+    # 默认 all：SetParam（类一致、在名单）路由
+    by_addr, by_name = decide_routing(cands, idx, multi)
+    assert by_name.get('SetParam') == ('Actor', 'SetParam', 2)
+    # 显式 batch0：同样路由（SetParam 在名单）
+    by_addr2, _ = decide_routing(cands, idx, multi, scope='batch0')
+    assert 0x00536160 in by_addr2
+    # 显式 batch0 拒绝非名单名
+    idx3, multi3 = _mk_index()
+    structs = [('RoleSystem.json', {'name': 'RoleSystem', 'methods': {
+        '0x0041C091': {'name': 'SomeOtherMethod',
+                       'signature': 'int __thiscall(RoleSystem *this)'}}})]
+    idx3, multi3 = build_attribution_index(iter(structs))
+    cands3 = [('SomeOtherMethod', '0x0041C091', 'int __thiscall(RoleSystem *this)')]
+    by_addr3, _ = decide_routing(cands3, idx3, multi3, scope='batch0')
+    assert not by_addr3
 
 
 def test_scope_off_disables():
@@ -126,6 +134,19 @@ def test_this_type_gate_g7():
     by_addr, by_name = decide_routing(cands, idx, multi)
     assert 0x41C090 in by_addr
     assert 'SetParam' not in by_name
+
+
+def test_ovl_suffix_gate_g8():
+    """G8：__ovl_ 后缀自由名 ⇒ 不路由（Create__ovl_1 头体 ovl 失配 C2039 ×3 实证）."""
+    idx, multi = _mk_index()
+    structs = [('ARC_PlayerAtt.json', {'name': 'ARC_PlayerAtt', 'methods': {
+        '0x0048A2B0': {'name': 'Create__ovl_1',
+                       'signature': 'int __thiscall(ARC_PlayerAtt *this)'}}})]
+    idx2, multi2 = build_attribution_index(iter(structs))
+    cands = [('Create__ovl_1', '0x0048A2B0',
+              'int __thiscall(ARC_PlayerAtt *this)')]
+    by_addr, by_name = decide_routing(cands, idx2, multi2)
+    assert not by_addr and not by_name
 
 
 # ---------------------------------------------------------------- 调用形转写

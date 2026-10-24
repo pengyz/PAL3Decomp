@@ -123,5 +123,12 @@
       "evidence_level": "unverified"
     }
   },
-  "methods": {}
+  "methods": {
+    "0x004BAE60": {
+      "name": "sub_4BAE60",
+      "signature": "int __thiscall sg_emitter::sub_4BAE60(struct gbVFile *nVal)",
+      "source": "| A 级归属（2026-10-24 对抗复核员手工逐指令核实，tools/attribution_offset_match.py 18/18 精确命中）：EBX=ECX 后全程不复位（无 this 重装）；18 个 this 偏移全部为 sg_emitter known_members 成员起始且读尺寸与成员类型逐字段吻合（0x40→cs_name char[64]、0xC→relative_position D3DXVECTOR3、0x18→square、8→sphere、0x14B4 等距 ×6 = direction/elerandvec/emissionrate/elelife/sizemulti/rotmulti_graph，尾调 sub_4B8300(this+0x7D0C=m_pCS)）；语义=文件逐字段反序列化 emitter。第二大候选 PalScriptMgr 仅 11/18（0x2A1C..0x7D0C 七偏移非其成员起始）",
+      "evidence_level": "A"
+    }
+  }
 }

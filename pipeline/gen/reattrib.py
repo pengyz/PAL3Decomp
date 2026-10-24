@@ -17,8 +17,10 @@
                               留给 Phase 2 逐条裁）
   G4 待裁排除              —— ReleaseAllTextures（归属类 vs 自由声明接收者类型矛盾，
                               复核裁决单列）
-  G5 范围                  —— REATTRIB_SCOPE: batch0（默认，复核核实的 28 条零裸调用
-                              名单）/ all / off
+  G5 范围                  —— REATTRIB_SCOPE: all（默认，2026-10-24 44 条四门验证通过：
+                              S2 123/213 零翻转 · L1 107=107 · link ✓ · +41 净增已归因
+                              = 路由体自带的 Hex-Rays 泛型类型病从截断阴影显形）/
+                              batch0（28 条零裸调用保守集）/ off
   G6 值引用拒绝            —— 名字在 decomp 语料中存在**非调用形态**引用（`(int)Name`
                               回调传值 / `&Name` 取址）⇒ 不路由（实证
                               ProcCommonTask__ovl 于 CEffect.cpp:560 作回调传值，
@@ -29,6 +31,11 @@
                               this 变 `Cls *const` ⇒ 体内部 vtable 调用/转型 C2664 浮出
                               （实测 GetUpdateFlag/GetInputFlag +14）。泛型 this = IDB
                               未重定型 ⇒ 留 Phase 2（IDB 重定型+重导出后自然过门）
+  G8 ovl 后缀拒绝          —— 自由名带 `__ovl_` ⇒ 不路由。定义/头两侧的 ovl-strip
+                              协调未在路由路径复刻（实测 Create__ovl_1：定义
+                              `ARC_PlayerAtt::Create__ovl_1` vs 头声明剥成 `Create`
+                              ⇒ C2039 ×3 单元，2026-10-24 scope=all 当场抓获）；
+                              ovl 族路由属 Phase 2（走既有 ovl 冲突协调机制）
 """
 import os
 import re
@@ -133,7 +140,7 @@ def decide_routing(free_candidates, addr_index, multi, scope=None, corpus_text=N
 
     → (routed_by_addr {int: (cls, method)}, routed_by_name {name: (cls, method, nparams)})
     """
-    scope = scope or os.environ.get('REATTRIB_SCOPE', 'batch0')
+    scope = scope or os.environ.get('REATTRIB_SCOPE', 'all')
     if scope == 'off':
         return {}, {}
     by_addr, by_name = {}, {}
@@ -153,6 +160,8 @@ def decide_routing(free_candidates, addr_index, multi, scope=None, corpus_text=N
             continue
         if corpus_text is not None and re.search(                # G6
                 r'\b%s\b(?!\s*\()' % re.escape(name), corpus_text):
+            continue
+        if '__ovl_' in name:                                     # G8
             continue
         if _decomp_this_type(sig) != cls:                        # G7
             continue
