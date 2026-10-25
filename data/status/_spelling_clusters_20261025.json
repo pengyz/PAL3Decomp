@@ -673,6 +673,14 @@
      "CEffQuake 现在有了 ctor 证据（sub_4D3870）+ 尺寸 0x10B0 双铁证"
     ],
     "open": "CEffect +8 平移的真实来源待查（CEffect 自己的 ctor 写点 + vptr 证据链重建）"
+   },
+   "final_resolution": {
+    "verdict": "2026-10-25 终局：CEffect 原版布局无 vptr 前缀，+8 病灶=发射头 6 virtual 插入的 vptr",
+    "decisive_math": "原版 lea 0x39444 = m_QuadBuffer@98336(十进制键) + 2003×68 + 24 —— 注解十进制数学精确吻合",
+    "ctor_evidence": "CEffect 真实 ctor = sub_4C6240（operator new(0x3C028) 唯一调用）：写 [esi]=0x56F844（CEffect 自己的表！）+ [esi+8]=1 —— 单 vptr@0 但表是 56F844 不是 56FADC",
+    "cascade": "56FADC/56FAD0 双表全归 CEffQuake（4272B）⇒ CEffect 现注解的 vtable 0x56FADC 归属也须重验！",
+    "fix_chain": "① CEffect vtable 注解 0x56FADC→0x56F844 重验 ② 发射头 6 virtual 的来源槽是 CEffQuake 的表 ⇒ 移除后类非多态 ⇒ m_QuadBuffer 回 98336 ⇒ SetQuadParam L1+1",
+    "side_finding": "m_Partical@40+2048×48=98344 > m_nQuad@98332 ⇒ m_Partical 尺寸/数量注解差 12 字节（独立小病）"
    }
   }
  }
