@@ -696,6 +696,12 @@
     "root": "发射器把 virtual 方法声明排在数据成员之后（CEffect.h: virtual 在 L33，成员在 L18-30）",
     "fix": "emit_headers：virtual 方法声明块移到数据成员之前（一行排序修复，全类受益）",
     "chain_close": "CEffect 案七轮：撤注解(×1错)→vptr2注入(×2不足)→门禁拦截(×3正确)→CEffQuake定谳(×4解耦)→数学闭合(×5十进制)→__vftable质疑(×6用户，注解错误定谳)→文法位置终局(×7)"
+   },
+   "vfptr_slot_attempt": {
+    "status": "未触发（本轮）——_has_dtor 短路",
+    "finding": "CEffect methods 含 ~CEffect@0x004D3950 ⇒ _will_inject_vptr=(not _has_dtor)and... =False ⇒ vfptr_slot static 占位不触发，_gap_004 照发，+4 依旧",
+    "next": "两条路：① _will_inject_vptr 门放宽（dtor 存在但 vfptr_slot 标记优先——需 TDD + CEff* 家族回归验证）② 直接修 m_Partical 尺寸（2048×48 → 注解差 12）让整体数学闭合后再看",
+    "current_state": "S2 125/214 零翻转 · CEffect.cpp ok · L1 109 · SetQuadParam n_diff=1（+4 残余）"
    }
   }
  }
