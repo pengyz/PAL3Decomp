@@ -803,6 +803,17 @@
    },
    "conclusion": "match rate 正确识别了系统性问题区域。剩余 542 partial 中，~200 个是 transform 层可修的（signed/unsigned + 比较形态），~200 个是 VC6 codegen 差异（需精确复刻编译环境），~140 个是 Hex-Rays 信息损失（根本性限制）。",
    "metric_value": "match rate 的价值不在于预测能否修，而在于【看到进步】——一个函数从 5% → 15% → 30% 的爬升是真实进展，当前二进制指标无法表达"
+  },
+  "uicamera_analysis": {
+   "verdict": "2026-10-25 三重根因",
+   "causes": [
+    "① bases 缺失：UICamera 应继承 UIWnd（同域 UI3DCtrl 继承 UIWnd 佐证），缺 bases ⇒ 继承链断裂 ⇒ vtable 布局/基类偏移全错",
+    "② vtables 缺失：UIWnd 有虚方法 ⇒ UICamera 必有 vptr ⇒ 缺注解 ⇒ 编译器不确定布局",
+    "③ 方法归属可疑：5 方法中 3 个 __cdecl 无 this（GetViewMode/CalcPosition/GetTarget），且 asm 序言全不用 ECX ⇒ 可能是 static/free 函数被错误归属"
+   ],
+   "fix_chain": "先补 bases:[UIWnd] → 再验 vtable（从 ctor 写点取表地址） → 再逐方法核调用约定 → 全链",
+   "impact": "5 函数全部 <30% match 率（系统性）",
+   "evidence": "known_members 15 条 + binary_size 636 + 同域 UI3DCtrl 继承 UIWnd 佐证"
   }
  }
 }
