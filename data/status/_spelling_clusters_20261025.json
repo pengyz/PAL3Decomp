@@ -648,7 +648,18 @@
    ],
    "fix": "移除 CEffect 的 vtable 注解（或证伪其 10-method 证据）⇒ 发射类非多态 ⇒ 布局回注解形 ⇒ SetQuadParam 进 L1（n_diff=1）",
    "evidence": "offsetof 探针 data/status/_layout_probe.cpp · 原版字节 lea [ecx+0x39444] · audit_type_layout CEffect 13/13 冲突",
-   "lesson": "vtable 注解（10-method 族）若为偏移相似性证据，同样须过体证据复核——vptr 插入会全类平移"
+   "lesson": "vtable 注解（10-method 族）若为偏移相似性证据，同样须过体证据复核——vptr 插入会全类平移",
+   "final_verdict": "2026-10-25 深夜定谳：CEffect=双 vptr 多继承形态",
+   "asm_evidence": "ctor sub_4D3870: [edx+0]=56FADC（vptr1）+ [edx+0xC]=56FAD0（vptr2）+ [edx+4]/+8 数据——中间夹数据 = 多继承双子对象",
+   "attempt1_rejected": "移除 vtable 注解（错——A 级写入点簇证据，vtable 真实存在）",
+   "attempt2_insufficient": "注入 vptr2@12 注解（对但不够——发射器把三表 27 槽全提升 virtual，只合成单 vptr ⇒ m_pES 落 +8，探针不变）",
+   "real_fix": "codegen 层：多继承双基类子对象发射（IA/IB 各带 vptr），独立 TDD 项目",
+   "m_bActive_displaced": "原 @12/@13 注解与 vptr2 冲突已移除（写入 0x69 旗标语义仍在，真位置待 0x10 区重定位）",
+   "attempt3_rejected": "2026-10-25 注解落地被 pre-commit 门禁拦下（vtable 0x56FAD0 槽未解析）——门禁是对的：",
+   "slot_identity": "0x4D4DE0 = CEffQuake::_sdtor_adj —— 第二张表 0x56FAD0 是 CEffQuake 侧的调整 thunk 表！",
+   "deeper_verdict": "ctor sub_4D3870 写 [+0xC]=56FAD0 的 this 归属未证（CEffect? CEffQuake 基类子对象? 复合对象?）——与 CreateSceneEntities 撤裁（体证据 vs 偏移簇证）同源：0x4D3870/0x4D3930 族的 this 归属先于一切头部布局修正",
+   "annotation_state": "CEffect.json 已恢复原状（staged 改动撤回）；asm 发现与双 vptr 假设链完整保留在 tangle_map",
+   "prereq_chain": "sub_4D3870 this 归属裁决 → CEffect/CEffQuake 基类关系 → 头部布局修正 → SetQuadParam L1"
   }
  }
 }
