@@ -94,35 +94,6 @@
     }
   },
   "binary_size": 636,
-  "methods": {
-    "0x00420CD0": {
-      "name": "GetViewMode",
-      "signature": "int __cdecl(int nVal)",
-      "static": true,
-      "evidence_level": "unverified"
-    },
-    "0x00420E50": {
-      "name": "CalcPosition",
-      "signature": "float *__cdecl(float *pMat)",
-      "static": true,
-      "evidence_level": "unverified"
-    },
-    "0x004232D0": {
-      "name": "GetTarget",
-      "signature": "int __cdecl()",
-      "static": true,
-      "evidence_level": "unverified"
-    },
-    "0x0041A070": {
-      "name": "IsPointVisible",
-      "signature": "BOOL __thiscall UICamera::IsPointVisible(float *pfTargetPos, char bNearVisible)",
-      "evidence_level": "unverified"
-    },
-    "0x004230D0": {
-      "name": "GetState",
-      "signature": "int __thiscall()",
-      "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
-      "evidence_level": "unverified"
-    }
-  }
+  "methods": {},
+  "_analysis_20261025": "Phantom class：原始二进制无 UICamera 符号。5 方法序言全不用 ECX（非 __thiscall），全为自由函数被 Hex-Rays 错误归属。methods 已清空；free_functions.cpp 的对应函数将按自由函数发射（正确形态）。known_members 保留（布局可能有独立参考价值）。asm 取证 2026-10-25：5/5 prologue 无 ECX。"
 }
