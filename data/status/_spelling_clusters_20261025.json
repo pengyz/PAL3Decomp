@@ -721,6 +721,17 @@
     ],
     "as_data_rehabilitation": "v1 否决理由（语义造假）被推翻——ctor 手工 store 不等于 C++ virtual 隐式；v1 实测失败根因是垃圾名+坐标前提错，均已修。v2 经 offsetof 验证布局正确",
     "next": "SetQuadParam stride 4 差异：对账 decomp 2003×68 与原版 0x39444 的计算路径（若 stride=72 则注解 gbGeomQuad 68 需重验）"
+   },
+   "FIRST_PRINCIPLES_FINAL": {
+    "verdict": "2026-10-25 用户两次否决 + 第一性复核终局：as_data 永不落。CEffect 正确形态=无 vptr 普通结构体",
+    "ground_truth_chain": [
+     "原版 ctor: mov [esi]=0x56F844（手工表指针@0）+ mov [esi+8]=1（@8 直写）",
+     "revert 后 offsetof 探针: sizeof=245800（=binary_size）m_nQuad=98332 m_QuadBuffer=98336 — 与原版 lea 0x39444 精确吻合",
+     "结论: 无 vptr 普通结构体 + 手工表指针 = 原版布局"
+    ],
+    "as_data_first_principles_rejection": "vtable 注解的语义=请求编译器生成虚机制；as_data=声明 A 又拒绝 A 的后果=自相矛盾补丁。注解坐标含 vptr 时正解=不标 vtable（vptr 已在坐标里）",
+    "user_rulings": "用户 2026-10-25 两次否决（永远不能落），已 revert f0cdf663（045ee69f7）",
+    "remaining": "m_eKind off=4 (decl 8) —— 4 字节级占位对齐微调，与机制无关"
    }
   }
  }
