@@ -510,6 +510,25 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                                    verbose=False, relocs=relocs,
                                    reloc_type_map=reloc_type_map, va=e['va'])
             status = 'match_L1' if res['perfect'] else 'partial'
+            # [R94d] 寄存器归一化分类（分析指标，不改 status）：
+            # partial 的 diff 字节按 XOR 分类为 reg_diff（<0x3F）vs real_diff
+            _sem_reg = 0; _sem_real = 0
+            if not res['perfect']:
+                _orig_b = text[idx0:idx0 + size]
+                for _do in res.get('diffs', []):
+                    _do = int(_do)
+                    if _do in relocs: continue
+                    for _r4 in range(4):
+                        if (_do + _r4) in relocs: continue
+                    if _do < min(len(_orig_b), len(compiled)):
+                        _xor = _orig_b[_do] ^ compiled[_do]
+                        if _xor < 0x3F:
+                            _sem_reg += 1
+                        else:
+                            _sem_real += 1
+                res['sem_reg'] = _sem_reg
+                res['sem_real'] = _sem_real
+                res['semantic_match'] = (_sem_real == 0 and _sem_reg > 0)
             # ---- [T146/P2 度量校正] 重定位核对（纯计量，不影响完美性判据）-----
             # ①站点级值核对（compare_bytes 内部已按站点聚合）——按 L1/全体分账；
             # ②**目标核对（符号法）**：我方 reloc 符号 ↔ 原函数该站点目标 VA 的
@@ -573,6 +592,8 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                     'symbol': sym[:80], 'name': e['name'], 'va': '0x%08X' % e['va'],
                     'size': size, 'obj': obj, 'compiled_len': res['compiled_size'],
                     'n_diff': len(res['diffs']), 'first_diff': res['first_diff'],
+                    'sem_reg': res.get('sem_reg',0), 'sem_real': res.get('sem_real',0),
+                    'semantic_match': res.get('semantic_match',False),
                     'reloc_skipped': res['reloc_diffs'], 'diffs': res['diffs'][:64]})
         stats['match_L1'] += p1
         stats['partial'] += pp
