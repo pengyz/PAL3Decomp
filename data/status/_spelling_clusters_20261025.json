@@ -733,6 +733,43 @@
     "user_rulings": "用户 2026-10-25 两次否决（永远不能落），已 revert f0cdf663（045ee69f7）",
     "remaining": "m_eKind off=4 (decl 8) —— 4 字节级占位对齐微调，与机制无关"
    }
+  },
+  "l1_near_miss_mechanisms": {
+   "generated": "2026-10-25 · L1=112 基线",
+   "near_miss_counts": {
+    "nd1": 2,
+    "nd2": 4,
+    "nd3-4": 11,
+    "nd5-8": 26
+   },
+   "mechanisms": {
+    "signed_unsigned_jl_jb": {
+     "count": "至少 2 站（SetRenderParam @51/@94）",
+     "root": "decomp 渲染 *(DWORD*) 强制无符号 ⇒ 编译 jb；原版 jl（有符号）",
+     "fix": "注解层改成员类型 _DWORD → int（tagPartical 内部字段）"
+    },
+    "tail_call_jmp_vs_call_ret": {
+     "count": "至少 1 站（UITextArea::Destroy @3）",
+     "root": "原版编译器尾调优化 jmp；我方生成 call+ret",
+     "fix": "需确认原版函数原型与调用方——可能缺 /Oy 尾调优化条件"
+    },
+    "icf_thunk": {
+     "count": "2 站（RunValueAutomation/RefreshFacePos）",
+     "root": "原版链接器 ICF 合并同码函数为 jmp thunk；我方生成完整体",
+     "fix": "需要识别 ICF 对并发射 thunk 形——mechanism 级工作"
+    },
+    "vtable_slot_offset": {
+     "count": "至少 2 站（UIWnd::sub_445FA0 @34/@48）",
+     "root": "jz 偏移差（0E vs 11）+ vtable 槽偏移差（18 vs 48）—— 中间多了/少了字节",
+     "fix": "UIWnd 布局微调或调用约定匹配"
+    },
+    "test_al_vs_cmp_al_bl": {
+     "count": "至少 1 站（Combat::HandleControlCmd @122）",
+     "root": "test al,al（零测试）vs cmp al,bl（比较）—— 源码形态差异",
+     "fix": "decomp 层 if(x) vs if(x==y) 的区分"
+    }
+   },
+   "priority": "signed_unsigned 是最可批量的（改注解类型）· ICF thunk 是最值差的（一簇多站）"
   }
  }
 }
