@@ -1533,6 +1533,15 @@ def rewrite_routed_free_calls(code, routed_by_name):
         name = m.group('name')
         hit = routed_by_name.get(name)
         if hit is None:
+            # [R93b 2026-10-25·CUtil 实证] export 命名不一致容错：同一函数在
+            # 调用方渲染用 IDB 名（todo_X）、被调方文件用注解名（_todo_X）——
+            # 路由键取自被调方 ⇒ 裸名查找脱靶 ⇒ C2660。`_` 前缀变体归一查找。
+            for _v in ('_' + name, name[1:] if name.startswith('_') else name):
+                if _v != name:
+                    hit = routed_by_name.get(_v)
+                    if hit is not None:
+                        break
+        if hit is None:
             out.append(code[i:m.end()])
             i = m.end()
             continue

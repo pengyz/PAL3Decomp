@@ -191,3 +191,18 @@ def test_rewrite_recv_grammar_exclusions():
     )
     out = rewrite_routed_free_calls(code, routed)
     assert 'FlushCommandQueue(v)' in out
+
+
+def test_underscore_variant_lookup():
+    """[R93b·CUtil 实证] export 命名不一致：调用方渲染 IDB 名（todo_X 无下划线）、
+    被调方文件用注解名（_todo_X 有下划线）⇒ 路由键在被调方 ⇒ 转写查找须做
+    `_` 前缀变体归一，否则 C2660（CUtil.cpp:193 实测）。"""
+    from ast_transform import rewrite_routed_free_calls
+    routed = {'_todo_0051DFD0': ('Actor', '_todo_0051DFD0', 1)}   # 键=被调方文件名（带 _）
+    code = 'todo_0051DFD0((Actor *)this->m_pBattleSystem, (int)this);\n'  # 调用方无 _
+    out = rewrite_routed_free_calls(code, routed)
+    assert 'Actor::_todo_0051DFD0((int)this)' in out, out
+    # 反向：键无 _、调用方带 _
+    routed2 = {'todo_X': ('Cls', 'todo_X', 0)}
+    out2 = rewrite_routed_free_calls('_todo_X(obj);\n', routed2)
+    assert '(((Cls *)obj))->Cls::todo_X()' in out2, out2
