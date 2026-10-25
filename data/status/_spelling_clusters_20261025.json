@@ -710,6 +710,17 @@
     "double_count": "我的编译 0x3944C = 98344+2003×68+24 ⇒ 我的 m_QuadBuffer@98344 = 注解 98336+8 = vptr+pad 被算了两次（注解含一次 + 编译器插一次）",
     "final_fix": "两选一：A) 注解全偏移 −8（去 vptr+pad）⇒ 编译器 vptr+pad 补回 ⇒ 总量吻合；B) 发射头去 virtual（vtable-as-data）⇒ 编译器不插 ⇒ 注解原值吻合。B 曾被 vcall 否决 ⇒ **选 A：CEffect 全部 known_members 偏移 −8 批量变换**",
     "prior_rounds_explained": "为何八轮都失败：都假设注解偏移是\"类头相对偏移\"，实际是\"含 vptr+pad 的绝对偏移\"——任何只动 vtable/vptr 的方案都注定重复计算"
+   },
+   "resolved": {
+    "verdict": "2026-10-25 深夜终局（用户二次质疑触发）：布局已回正，剩余 +4 是 stride 级问题",
+    "key_facts": [
+     "as_data v2 后 offsetof 全对齐：m_eKind=8 ✓ m_QuadBuffer=98336 ✓ sizeof=245808（=原版 245800+8 待查但不影响成员相对偏移）",
+     "VC6 ABI 实证：virtual+double 类 ⇒ vptr@0+pad@4，成员从 @8 起（最小复现 + 字节 dump）",
+     "原版 ctor mov [esi+8],1 = m_eKind@8 直写 ⇒ 与 VC6 ABI 一致 ⇒ 原版也是 virtual+double 形态",
+     "SetQuadParam 剩余 +4：非布局问题——是 m_QuadBuffer[2003] 的 stride/下标计算问题（68B stride 若实际 72B 或下标非 2003）"
+    ],
+    "as_data_rehabilitation": "v1 否决理由（语义造假）被推翻——ctor 手工 store 不等于 C++ virtual 隐式；v1 实测失败根因是垃圾名+坐标前提错，均已修。v2 经 offsetof 验证布局正确",
+    "next": "SetQuadParam stride 4 差异：对账 decomp 2003×68 与原版 0x39444 的计算路径（若 stride=72 则注解 gbGeomQuad 68 需重验）"
    }
   }
  }

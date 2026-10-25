@@ -67,6 +67,16 @@
       "type": "gbTextureArray *",
       "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
       "evidence_level": "unverified"
+    },
+    "0": {
+      "name": "m_pDispatchTable",
+      "type": "void *",
+      "source": "| [R94c-v3 2026-10-25·手工表指针定性] ctor sub_4C6240 mov [esi]=0x56F844：表 7 槽全 CEffect/CEffectSystem 方法但**零 vcall 引用**（全二进制无 [x+0] 间接调用指向该表的证据）⇒ 非 C++ virtual 机制，按普通数据成员发射；as_data v2 已使编译器不插 vptr，本成员占 @0（不占额外字节）"
+    },
+    "4": {
+      "name": "_field_004",
+      "type": "int",
+      "source": "| [gap 字段 2026-10-25] 原版 @4 有 4 字节（ctor mov [esi+8],1 直写证明 @8=m_eKind，@0 表+@8 eKind 之间必有 4B）——语义未知，占位保证 m_eKind@8 落位"
     }
   },
   "methods": {
