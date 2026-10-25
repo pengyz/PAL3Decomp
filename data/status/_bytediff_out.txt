@@ -1,0 +1,32 @@
+目标数: 6
+image_base=0x400000 text_rva=0x1000
+compile CCBAI.cpp                            hard=None obj=False
+compile CCBLineupWindow.cpp                  hard=None obj=False
+compile CEffect.cpp                          hard=None obj=False
+compile Combat.cpp                           hard=None obj=False
+compile UITextArea.cpp                       hard=None obj=False
+compile UIWnd.cpp                            hard=None obj=False
+
+==== CEffect::SetQuadParam(int) | CEffect.cpp | va=0x4BD7A0 size=28 diffs=[6]
+  原版: 8b 54 24 04 8d 81 44 94 03 00 b9 04 00 00 00 89 10 05 58 7d 00 00 49 75 f6 c2 04 00
+  (obj 缺失，跳过编译侧)
+
+==== UITextArea::Destroy(int) | UITextArea.cpp | va=0x445920 size=8 diffs=[3]
+  原版: 83 c1 68 e9 f8 05 00 00
+  (obj 缺失，跳过编译侧)
+
+==== CCBAI::RunValueAutomation(void) | CCBAI.cpp | va=0x4DB350 size=5 diffs=[0, 1]
+  原版: e9 0b 00 00 00
+  (obj 缺失，跳过编译侧)
+
+==== CCBLineupWindow::RefreshFacePos(void) | CCBLineupWindow.cpp | va=0x51D6D0 size=5 diffs=[0, 1]
+  原版: e9 0b 00 00 00
+  (obj 缺失，跳过编译侧)
+
+==== Combat::HandleControlCmd(int) | Combat.cpp | va=0x4F4820 size=155 diffs=[122, 123]
+  原版: 53 56 8b f1 32 db 57 8b 7c 24 10 8b 86 08 02 00 00 8b 48 08 38 59 24 74 52 e8 72 7d fe ff 3b c7 75 49 8b 8e 08 02 00 00 8b 49 08 e8 10 7d fe ff b8 18 00 00 00 8d 8e 41 02 00 00 38 19 74 1e 8b 96 0c 02 00 00 8b 14 02 88 9a 18 01 00 00 8b 96 0c 02 00 00 8b 14 02 88 9a 12 01 00 00 83 c0 04 81 c1 7c 03 00 00 83 f8 44 7c d0 8b 86 08 02 00 00 57 8b 48 0c e8 46 6e fe ff 84 c0 75 17 38 9e 25 02 00 00 75 0f 8b 8e 08 02 00 00 57 8b 49 0c e8 5b 6e fe ff 5f 5e 5b c2 04 00
+  (obj 缺失，跳过编译侧)
+
+==== UIWnd::sub_445FA0(void *) | UIWnd.cpp | va=0x445FA0 size=52 diffs=[34, 48]
+  原版: 8b 54 24 04 56 8d 41 10 8b 32 89 30 8b 72 04 89 70 04 8b 72 08 89 70 08 5e 8b 52 0c 85 c9 89 50 0c 74 0e 8b 01 6a 00 6a 00 68 fe 03 00 00 ff 50 18 c2 04 00
+  (obj 缺失，跳过编译侧)
