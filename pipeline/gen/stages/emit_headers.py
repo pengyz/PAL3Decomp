@@ -2313,6 +2313,9 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         or (_offset0_is_vptr_member(cls_name) and (
             cls_name in _get_scalar_dtor_classes()
             or _offset0_vptr_placeholder(cls_name))))
+    # [R94c 2026-10-25·门拆分] _vfptr_reserved：static 占位 + 尾部预留用；
+    # 与 dtor 注入正交——_has_dtor 本意管虚析构注入（防 C2535），
+    # 不该连带否决占位/预留（CEffect 实证：~CEffect 短路 vfptr_slot 标记）。
     # Generate members from annotation known_members (sole source of truth)
     try:
         ann_data_fb = _get_ida_structs()
@@ -2424,6 +2427,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             #（实测：RoleSystem 的按值 `UIWnd` 之后未补 pad ⇒ 其后全部成员 −16；SceneMgr 继承 −16 且尾部再 −24）
             # 现改为**在循环顶部统一补白**（任何分支之前）⇒ 三类分支都不再绕过 ✓
             # 并**不再跳过**任何成员（估算偏大只告警，不丢成员）✓
+            _vfptr_reserved = _will_inject_vptr or (
+                _vfptr_slot_marked(cls_name) and not template_expr)
             _skip_vptr_gap = False
             for off_str in sorted_offsets:
                 group = ann_members[off_str]
@@ -2431,7 +2436,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 # ★ static 槽位形式（2026-09-23，CEff* 家族）：注入虚析构的类，其 +0 的
                 # vptr 占位成员改为 static（不占对象字节）⇒ 编译器隐式 vptr 独占 +0，
                 # 既有 `X->__vftable` 引用仍可编译（F59 同型先例 ✓）
-                if _will_inject_vptr and off == 0 and len(group) == 1 and (
+                if _vfptr_reserved and off == 0 and len(group) == 1 and (
                         str(group[0].get('name')) in _VPTR_MEMBER_NAMES
                         or str(group[0].get('name')).startswith(('m_nTodo_', '_todo_'))
                         or _vfptr_slot_marked(cls_name)):
@@ -2755,7 +2760,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             if ann_size and ann_size != '?' and int(ann_size) > start_off:
                 # ★ vptr 预留（2026-09-23）：注入虚析构的类，编译器隐式 vptr 独占 +0
                 # ⇒ 尾部从 4 起算（total−4），否则类尺寸 +4 ✗（CEff* 家族实测）
-                if _will_inject_vptr:
+                if _vfptr_reserved:
                     start_off = max(start_off, 4)
                 if template_expr and _offset0_vptr_placeholder(cls_name):
                     lines.append("    static void * __vftable; // +0x0 (vfptr slot; 引用兼容，无存储)")
