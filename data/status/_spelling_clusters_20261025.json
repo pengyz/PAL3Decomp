@@ -786,6 +786,23 @@
    "count": "1 站（Combat::HandleControlCmd n_diff=2@122）",
    "root": "原版 test al,al + jz（零测试）；我方 cmp al,bl + jz（比较）—— decomp 层 if 条件形态差异",
    "fix": "decomp 渲染路径区分 if(x) 与 if(x==y) —— 需 transform 层修"
+  },
+  "systemic_low_match_analysis": {
+   "date": "2026-10-25",
+   "finding": "32 个 cpp 系统性低匹配（avg<30%），283 个函数受影响",
+   "root_causes_identified": [
+    "A. 指令选择差：VC6 同一源码可选不同指令（lea vs mov+add）—— 不可注解修",
+    "B. 优化差异：原版编译器的优化决策与我们不完全一致 —— 需精确复刻编译条件",
+    "C. Hex-Rays 去编译信息损失：decomp C 代码不含足够信息重现原始汇编",
+    "D. include 链 / 前置声明差：影响编译器可见类型信息"
+   ],
+   "categories": {
+    "fix_by_annotation": "成员类型/偏移/归属修正（已完成大部分）",
+    "fix_by_transform": "signed/unsigned（18站）· 比较形态 · 尾调形态",
+    "not_fixable_by_annotation": "指令选择差（VC6 内部决策）· ICF（链接器行为）· 寄存器分配"
+   },
+   "conclusion": "match rate 正确识别了系统性问题区域。剩余 542 partial 中，~200 个是 transform 层可修的（signed/unsigned + 比较形态），~200 个是 VC6 codegen 差异（需精确复刻编译环境），~140 个是 Hex-Rays 信息损失（根本性限制）。",
+   "metric_value": "match rate 的价值不在于预测能否修，而在于【看到进步】——一个函数从 5% → 15% → 30% 的爬升是真实进展，当前二进制指标无法表达"
   }
  }
 }
