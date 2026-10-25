@@ -702,6 +702,14 @@
     "finding": "CEffect methods 含 ~CEffect@0x004D3950 ⇒ _will_inject_vptr=(not _has_dtor)and... =False ⇒ vfptr_slot static 占位不触发，_gap_004 照发，+4 依旧",
     "next": "两条路：① _will_inject_vptr 门放宽（dtor 存在但 vfptr_slot 标记优先——需 TDD + CEff* 家族回归验证）② 直接修 m_Partical 尺寸（2048×48 → 注解差 12）让整体数学闭合后再看",
     "current_state": "S2 125/214 零翻转 · CEffect.cpp ok · L1 109 · SetQuadParam n_diff=1（+4 残余）"
+   },
+   "GRAND_FINAL": {
+    "verdict": "2026-10-25 深夜终局（字节级探针）：VC6 对 virtual+double 类自动产生 vptr@0+pad@4（成员从 @8 起）",
+    "probe_bytes": "vptr=xxx bytes: 40 20 40 00 | 60 C0 61 00 | ... gapoff=8 ekind=12 —— _gap_004 实际落 @8（声明写 +0x4）",
+    "reconciliation": "原版构造 mov [esi],56F844（vptr@0）+ mov [esi+8],1（@8=m_eKind 直写 1）与探针形态一致 ⇒ 原版也有 vptr+pad ⇒ 注解偏移 98332/98336 是【含 vptr+pad 的绝对偏移】",
+    "double_count": "我的编译 0x3944C = 98344+2003×68+24 ⇒ 我的 m_QuadBuffer@98344 = 注解 98336+8 = vptr+pad 被算了两次（注解含一次 + 编译器插一次）",
+    "final_fix": "两选一：A) 注解全偏移 −8（去 vptr+pad）⇒ 编译器 vptr+pad 补回 ⇒ 总量吻合；B) 发射头去 virtual（vtable-as-data）⇒ 编译器不插 ⇒ 注解原值吻合。B 曾被 vcall 否决 ⇒ **选 A：CEffect 全部 known_members 偏移 −8 批量变换**",
+    "prior_rounds_explained": "为何八轮都失败：都假设注解偏移是\"类头相对偏移\"，实际是\"含 vptr+pad 的绝对偏移\"——任何只动 vtable/vptr 的方案都注定重复计算"
    }
   }
  }
