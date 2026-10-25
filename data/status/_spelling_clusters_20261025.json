@@ -770,6 +770,22 @@
     }
    },
    "priority": "signed_unsigned 是最可批量的（改注解类型）· ICF thunk 是最值差的（一簇多站）"
+  },
+  "l1_signed_unsigned": {
+   "count": "18 站（CEffect.cpp 17 + 其他 1）",
+   "root": "Hex-Rays 渲染 *(DWORD *)&BYTE_field 为无符号读 ⇒ VC6 混合比较生成 jb；原版有符号 jl",
+   "fix_type": "transform 层机制（比较上下文 *(DWORD*)→*(int*) 有符号化）——需 TDD，非注解修",
+   "sites_sample": "CEffect.cpp:124（while 比较）、:365/:892（memset 写入不受影响）"
+  },
+  "uitextarea_tailcall": {
+   "count": "1 站（UITextArea::Destroy n_diff=1@3）",
+   "root": "原版 e9 jmp（尾调优化到另一个 Destroy）；我方 e8 call+c2 04 00（call+ret）",
+   "fix": "需查被调方是否同函数（ICF 产物）或编译器尾调条件差异"
+  },
+  "handlecontrol_test_cmp": {
+   "count": "1 站（Combat::HandleControlCmd n_diff=2@122）",
+   "root": "原版 test al,al + jz（零测试）；我方 cmp al,bl + jz（比较）—— decomp 层 if 条件形态差异",
+   "fix": "decomp 渲染路径区分 if(x) 与 if(x==y) —— 需 transform 层修"
   }
  }
 }
