@@ -272,75 +272,61 @@
       "signature": "void __thiscall()",
       "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x004CFFB0）⇒ 目标名 _nearby_4cffb0 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
       "evidence_level": "A"
+    },
+    "0x004C5D80": {
+      "name": "slot_1(void)",
+      "signature": "virtual int()",
+      "source": "| [vtable 0x56F844 重验 2026-10-25] 槽实名（decomp 名）；归属=CEffect ctor sub_4C6240 唯一写点 + 7 槽全 CEffect 系方法",
+      "evidence_level": "A"
+    },
+    "0x004C5E80": {
+      "name": "ProcessEffects(double)",
+      "signature": "virtual int __thiscall(CEffectSystem *this, double time)",
+      "source": "| [vtable 0x56F844 重验 2026-10-25] 槽实名（decomp 名）；归属=CEffect ctor sub_4C6240 唯一写点 + 7 槽全 CEffect 系方法",
+      "evidence_level": "A"
+    },
+    "0x004C5E20": {
+      "name": "slot_6(void)",
+      "signature": "virtual int()",
+      "source": "| [vtable 0x56F844 重验 2026-10-25] 槽实名（decomp 名）；归属=CEffect ctor sub_4C6240 唯一写点 + 7 槽全 CEffect 系方法",
+      "evidence_level": "A"
+    },
+    "0x004C6030": {
+      "name": "UpdateEffectState(int)",
+      "signature": "virtual int __thiscall(CEffectSystem *this, int nVal)",
+      "source": "| [vtable 0x56F844 重验 2026-10-25] 槽实名（decomp 名）；归属=CEffect ctor sub_4C6240 唯一写点 + 7 槽全 CEffect 系方法",
+      "evidence_level": "A"
     }
   },
   "vtables": [
     {
-      "addr": "0x0056FADC",
-      "base": null,
+      "addr": "0x0056F844",
+      "source": "| [vtable 归属重验 2026-10-25·三重铁证] ①唯一写入点=CEffect 真实 ctor sub_4C6240（operator new(0x3C028)=245800 唯一调用）：mov [esi],56F844 + [esi+8]=1（@8 直写=非 vptr 位） ②7 槽全为 CEffect/CEffectSystem 方法（Activate/ReleaseTextures decomp 实名） ③旧注解 0x56FADC 经 sub_4D3870=CEffQuake ctor（new 0x10B0=4272 尺寸铁证）+ 槽 CEffQuake::_sdtor_adj 定谳归 CEffQuake —— 0x56FADC→0x56F844 修正；CEffect 原版布局无 vptr 前缀（lea 0x39444 十进制数学吻合）",
       "slots": [
         {
-          "addr": "0x004D3930",
-          "from": "CEffShock"
+          "addr": "0x004C5D80",
+          "from": "CEffectSystem",
+          "name": "_scalar_dtor"
         },
         {
-          "addr": "0x004D3AD0",
-          "from": null
+          "addr": "0x004C5DB0"
         },
         {
-          "addr": "0x004D3A50",
-          "from": null
+          "addr": "0x004C5DE0"
         },
         {
-          "addr": "0x00408BD0",
-          "from": "UISceneMap"
+          "addr": "0x004C5E80",
+          "name": "ProcessEffects(double)"
         },
         {
-          "addr": "0x00408BD0",
-          "from": "UISceneMap"
+          "addr": "0x004C5E20",
+          "name": "slot_6(void)"
         },
         {
-          "addr": "0x004D3DC0",
-          "from": "CEffShock"
-        },
-        {
-          "addr": "0x004D4110",
-          "from": "CEffShock"
-        },
-        {
-          "addr": "0x004D3910",
-          "from": null
-        },
-        {
-          "addr": "0x004C0500",
-          "from": null
-        },
-        {
-          "addr": "0x004AF760",
-          "from": null
-        },
-        {
-          "addr": "0x004D4840",
-          "from": null
-        },
-        {
-          "addr": "0x004AF760",
-          "from": null
-        },
-        {
-          "addr": "0x004D4340",
-          "from": null
-        },
-        {
-          "addr": "0x004C15D0",
-          "from": null
-        },
-        {
-          "addr": "0x004D4700",
-          "from": null
+          "addr": "0x004C6030",
+          "name": "UpdateEffectState(int)"
         }
-      ],
-      "source": "[退化修复 2026-10-16 回迁] 归属=写入点簇（0x4D3950 dtor 本体写入 0x4d3973）=CEffect 的表；from=槽注册位置查找提示（非继承义）；A级：C2039 成员面反证（m_bActive/m_Partical=CEffect 成员，CEffShock 无）+ decompile 本体 CEffect *this + dtor 写自身表 0x56FADC@0x4d3973 + 删析构 0x4D3930 ABI 配对 ⇒ 0x4D3950=CEffect 完整析构；上轮 ~CEffShock 误迁回改"
+      ]
     }
   ]
 }
