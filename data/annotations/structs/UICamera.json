@@ -95,5 +95,12 @@
   },
   "binary_size": 636,
   "methods": {},
-  "_analysis_20261025": "Phantom class：原始二进制无 UICamera 符号。5 方法序言全不用 ECX（非 __thiscall），全为自由函数被 Hex-Rays 错误归属。methods 已清空；free_functions.cpp 的对应函数将按自由函数发射（正确形态）。known_members 保留（布局可能有独立参考价值）。asm 取证 2026-10-25：5/5 prologue 无 ECX。"
+  "_analysis_20261025": "Phantom class：原始二进制无 UICamera 符号。5 方法序言全不用 ECX（非 __thiscall），全为自由函数被 Hex-Rays 错误归属。methods 已清空；free_functions.cpp 的对应函数将按自由函数发射（正确形态）。known_members 保留（布局可能有独立参考价值）。asm 取证 2026-10-25：5/5 prologue 无 ECX。",
+  "bases": [
+    {
+      "name": "UIWnd",
+      "offset": 0
+    }
+  ],
+  "_analysis_20261026": "非 phantom：体访问 UICamera known_members 偏移（m_nBuffer@220 m_pCameraData@272），类真实存在；__cdecl 是 Hex-Rays 对 unnamed class 的默认渲染"
 }
