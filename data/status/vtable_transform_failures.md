@@ -643,3 +643,11 @@
 | `MiniGame1::Render` | inline | `int` | 16 | non_class_hint | `(*(void ( **)(int, _DWORD))(*(_DWORD *)v4 + 16))(v4, 0)` |
 | `MiniGame3::RenderWithTransform` | inline | `int` | 16 | non_class_hint | `(*(void ( **)(int, _DWORD))(*(_DWORD *)v4 + 16))(v4, 0)` |
 | `::SceneMgrUpdate` | inline | `_DWORD` | 20 | non_class_hint | `(*(int ( **)(_DWORD, _DWORD))(*(_DWORD *)*v4 + 20))(*v4, LODWORD(fVal))` |
+| `LineupUI::GetUpdateFlag` | inline | `_BYTE` | 24 | non_class_hint | `(*(int ( **)(_BYTE *, int, int, _DWORD))(*(_DWORD *)this + 24))(this, 1001, 788, 0)` |
+| `PropUI::GetInputFlag` | inline | `_BYTE` | 24 | non_class_hint | `(*(int ( **)(_BYTE *, int, int, _DWORD))(*(_DWORD *)this + 24))(this, 1001, 518, 0)` |
+| `ARC_PlayerAtt::Create__ovl_1` | inline | `char` | 16 | non_class_hint | `(*(void ( **)(char *, int, char *, ARC_PlayerAtt *))(*(_DWORD *)this->_todo_130 + 16))( this->_todo_130, 655360, this->_todo_050, this)` |
+| `ARC_PlayerAtt::Create__ovl_1` | vftable_local | `char` | 28 | non_class_hint | `(*(void ( **)(char *, int, char *, ARC_PlayerAtt *, char *, _DWORD, int))(v25 + 28))( &this->_todo_224[84], 655362, &this->_todo_224[68], this, v31, 0, v41)` |
+| `ARC_PlayerAtt::Create__ovl_1` | vftable_local | `char` | 16 | non_class_hint | `(*(void ( **)(char *, int, char *, ARC_PlayerAtt *))(v10 + 16))( this->_todo_130, 655360, this->_todo_050, this)` |
+| `LineupUI::GetUpdateFlag` | inline | `LineupUI` | 24 | self_arg_mismatch | `(*(int ( **)(LineupUI *, int, int, _DWORD))(*(_DWORD *)&this->UIWnd + 24))(this, 1001, 788, 0)` |
+| `PropUI::GetInputFlag` | inline | `PropUI` | 24 | self_arg_mismatch | `(*(int ( **)(PropUI *, int, int, _DWORD))(*(_DWORD *)&this->UIWnd + 24))(this, 1001, 518, 0)` |
+| `Actor::CreateSceneEntities` | inline | `int` | 28 | non_class_hint | `(*(void ( **)(int, char *, int *, Actor *, const char *, int, _DWORD))(*(_DWORD *)v64 + 28))( v64, (char *)*v59, nVal2, this, v14, 1, 0)` |

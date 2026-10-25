@@ -18,27 +18,27 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 915,
-  "matched": 695,
-  "unmatched": 220,
-  "match_L1": 107,
-  "partial": 530,
+  "symbols": 940,
+  "matched": 710,
+  "unmatched": 230,
+  "match_L1": 109,
+  "partial": 541,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 58,
-  "reloc_total": 5411,
-  "reloc_ok": 1275,
+  "unresolved_synth": 60,
+  "reloc_total": 5535,
+  "reloc_ok": 1305,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 4136,
-  "rsite_total": 5411,
-  "rsite_unaligned": 5069,
-  "l1_bytes": 4498,
-  "l1_hidden_reloc_bytes": 983,
-  "l1_reloc_covered_bytes": 1368,
-  "rsite_ok": 52,
-  "rsite_unresolved": 289,
+  "reloc_unresolved": 4230,
+  "rsite_total": 5535,
+  "rsite_unaligned": 5190,
+  "l1_bytes": 4533,
+  "l1_hidden_reloc_bytes": 988,
+  "l1_reloc_covered_bytes": 1380,
+  "rsite_ok": 54,
+  "rsite_unresolved": 290,
   "rsite_mismatch": 1,
   "rsite_mismatch_samples": [
    {
@@ -570,7 +570,7 @@
    "name": "CCBControl::GetState(void)",
    "va": "0x004DC560",
    "status": "partial",
-   "match_pct": 6.8,
+   "match_pct": 5.4,
    "size": 74
   },
   {
@@ -669,7 +669,7 @@
    "name": "CCBLineupWindow::Render(int *)",
    "va": "0x0051D4A0",
    "status": "partial",
-   "match_pct": 22.2,
+   "match_pct": 19.3,
    "size": 176
   },
   {
@@ -905,6 +905,114 @@
    "status": "match_L1",
    "match_pct": 100.0,
    "size": 5
+  },
+  {
+   "file": "pal3/src/Combat/CUtil.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x0044E5C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Combat/CUtil.cpp",
+   "symbol": "?Create@CUtil@@QAE_NXZ",
+   "name": "CUtil::Create(void)",
+   "va": "0x00523100",
+   "status": "partial",
+   "match_pct": 36.4,
+   "size": 11
+  },
+  {
+   "file": "pal3/src/Combat/CUtil.cpp",
+   "symbol": "?Destroy@CUtil@@QAEXXZ",
+   "name": "CUtil::Destroy(void)",
+   "va": "0x00523110",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 5
+  },
+  {
+   "file": "pal3/src/Combat/CUtil.cpp",
+   "symbol": "?Init@CUtil@@QAEXXZ",
+   "name": "CUtil::Init(void)",
+   "va": "0x00523120",
+   "status": "partial",
+   "match_pct": 33.3,
+   "size": 15
+  },
+  {
+   "file": "pal3/src/Combat/CUtil.cpp",
+   "symbol": "??0CUtil@@QAE@XZ",
+   "name": "CUtil::CUtil(void)",
+   "va": "0x00523130",
+   "status": "partial",
+   "match_pct": 34.0,
+   "size": 159
+  },
+  {
+   "file": "pal3/src/Combat/CUtil.cpp",
+   "symbol": "?_CUtil_31f0@CUtil@@QAEXXZ",
+   "name": "CUtil::_CUtil_31f0(void)",
+   "va": "0x005231F0",
+   "status": "partial",
+   "match_pct": 13.0,
+   "size": 185
+  },
+  {
+   "file": "pal3/src/Combat/CUtil.cpp",
+   "symbol": "?InitGameSystems@CUtil@@QAEHXZ",
+   "name": "CUtil::InitGameSystems(void)",
+   "va": "0x005232B0",
+   "status": "partial",
+   "match_pct": 22.6,
+   "size": 680
+  },
+  {
+   "file": "pal3/src/Combat/CUtil.cpp",
+   "symbol": "?RectIntersection@CUtil@@QAE_NXZ",
+   "name": "CUtil::RectIntersection(void)",
+   "va": "0x00523560",
+   "status": "partial",
+   "match_pct": 40.3,
+   "size": 159
+  },
+  {
+   "file": "pal3/src/Combat/CUtil.cpp",
+   "symbol": "?RenderFrame@CUtil@@UAEHXZ",
+   "name": "CUtil::RenderFrame(void)",
+   "va": "0x00523670",
+   "status": "partial",
+   "match_pct": 24.1,
+   "size": 87
+  },
+  {
+   "file": "pal3/src/Combat/CUtil.cpp",
+   "symbol": "?RenderFrameY@CUtil@@UAEHPAVPalScript@@H@Z",
+   "name": "CUtil::RenderFrameY(PalScript *,int)",
+   "va": "0x005236E0",
+   "status": "partial",
+   "match_pct": 34.1,
+   "size": 287
+  },
+  {
+   "file": "pal3/src/Combat/CUtil.cpp",
+   "symbol": "?OnMessage@CUtil@@UAEHHHH@Z",
+   "name": "CUtil::OnMessage(int,int,int)",
+   "va": "0x00523B90",
+   "status": "partial",
+   "match_pct": 48.1,
+   "size": 283
+  },
+  {
+   "file": "pal3/src/Combat/CUtil.cpp",
+   "symbol": "?DispatchCommand@CUtil@@QAEHPAH@Z",
+   "name": "CUtil::DispatchCommand(int *)",
+   "va": "0x00523E80",
+   "status": "partial",
+   "match_pct": 39.3,
+   "size": 61
   },
   {
    "file": "pal3/src/Combat/Combat.cpp",
@@ -2280,7 +2388,7 @@
    "name": "CJ_FindFile::Create(int,void *,int,char *)",
    "va": "0x00450F90",
    "status": "partial",
-   "match_pct": 16.9,
+   "match_pct": 16.6,
    "size": 610
   },
   {
@@ -2334,7 +2442,7 @@
    "name": "ChoseCompose::InitCompose(void)",
    "va": "0x004A2170",
    "status": "partial",
-   "match_pct": 21.9,
+   "match_pct": 23.3,
    "size": 361
   },
   {
@@ -2379,7 +2487,7 @@
    "name": "ComposeUI::RefreshRecipeList(int)",
    "va": "0x0047E030",
    "status": "partial",
-   "match_pct": 21.3,
+   "match_pct": 23.6,
    "size": 348
   },
   {
@@ -2478,7 +2586,7 @@
    "name": "ExternalStatistics::UpdateFromRole(int,int)",
    "va": "0x00534E60",
    "status": "partial",
-   "match_pct": 33.6,
+   "match_pct": 32.8,
    "size": 122
   },
   {
@@ -2523,7 +2631,7 @@
    "name": "JusticeBookUI::ProcessInput(int,int)",
    "va": "0x00528F50",
    "status": "partial",
-   "match_pct": 37.2,
+   "match_pct": 37.0,
    "size": 449
   },
   {
@@ -2532,7 +2640,7 @@
    "name": "JusticeBookUI::OnMessage(int,char *,int)",
    "va": "0x00529120",
    "status": "partial",
-   "match_pct": 24.1,
+   "match_pct": 24.9,
    "size": 688
   },
   {
@@ -2586,7 +2694,7 @@
    "name": "LineupComp::PositionAt(int,int,int)",
    "va": "0x004841B0",
    "status": "partial",
-   "match_pct": 12.2,
+   "match_pct": 11.0,
    "size": 417
   },
   {
@@ -2631,7 +2739,7 @@
    "name": "MainPropUI::DisplayCaption(int)",
    "va": "0x00488660",
    "status": "partial",
-   "match_pct": 31.5,
+   "match_pct": 30.0,
    "size": 887
   },
   {
@@ -2676,7 +2784,7 @@
    "name": "MainPropUI::SetCaption(int,int,int)",
    "va": "0x0048CF10",
    "status": "partial",
-   "match_pct": 33.1,
+   "match_pct": 31.8,
    "size": 154
   },
   {
@@ -2991,7 +3099,7 @@
    "name": "RoleShadow::InitFromTemplate(int)",
    "va": "0x00453FA0",
    "status": "partial",
-   "match_pct": 19.5,
+   "match_pct": 21.3,
    "size": 1047
   },
   {
@@ -3018,7 +3126,7 @@
    "name": "RoleShadow::UpdateShadow(void)",
    "va": "0x00524F90",
    "status": "partial",
-   "match_pct": 44.9,
+   "match_pct": 47.1,
    "size": 227
   },
   {
@@ -3162,7 +3270,7 @@
    "name": "RoleStatePanel::UpdateCaptions(void)",
    "va": "0x004A5B30",
    "status": "partial",
-   "match_pct": 23.5,
+   "match_pct": 23.0,
    "size": 1229
   },
   {
@@ -3189,7 +3297,7 @@
    "name": "SceneInfo::CheckHitLeft(float)",
    "va": "0x004441E0",
    "status": "partial",
-   "match_pct": 13.9,
+   "match_pct": 10.0,
    "size": 201
   },
   {
@@ -3225,7 +3333,7 @@
    "name": "SceneInfo::CheckBoundsHorizontal(float)",
    "va": "0x00444520",
    "status": "partial",
-   "match_pct": 8.4,
+   "match_pct": 8.1,
    "size": 308
   },
   {
@@ -3234,7 +3342,7 @@
    "name": "SceneInfo::CheckBoundsLeftCombo(float)",
    "va": "0x00444660",
    "status": "partial",
-   "match_pct": 8.4,
+   "match_pct": 8.1,
    "size": 310
   },
   {
@@ -3288,7 +3396,7 @@
    "name": "SceneProp::CalculateWorldPos(float)",
    "va": "0x005330F0",
    "status": "partial",
-   "match_pct": 5.5,
+   "match_pct": 5.2,
    "size": 343
   },
   {
@@ -3342,7 +3450,7 @@
    "name": "SwordUI::RenderSword(void)",
    "va": "0x004AAD90",
    "status": "partial",
-   "match_pct": 19.6,
+   "match_pct": 19.1,
    "size": 1290
   },
   {
@@ -3369,7 +3477,7 @@
    "name": "TaskBookUI::RefreshTaskList(void)",
    "va": "0x004551A0",
    "status": "partial",
-   "match_pct": 16.0,
+   "match_pct": 15.8,
    "size": 810
   },
   {
@@ -3396,7 +3504,7 @@
    "name": "TaskBookUI::SetEntryCaption(int,int)",
    "va": "0x00477A90",
    "status": "partial",
-   "match_pct": 60.0,
+   "match_pct": 62.0,
    "size": 245
   },
   {
@@ -3765,7 +3873,7 @@
    "name": "UICoverFrm::UpdateClouds(int,int)",
    "va": "0x00527230",
    "status": "partial",
-   "match_pct": 26.3,
+   "match_pct": 25.0,
    "size": 308
   },
   {
@@ -3801,7 +3909,7 @@
    "name": "UICoverFrm::OnMessageEx(int,int,int)",
    "va": "0x00527EA0",
    "status": "partial",
-   "match_pct": 70.5,
+   "match_pct": 73.5,
    "size": 166
   },
   {
@@ -3837,7 +3945,7 @@
    "name": "UICoverFrm::UpdateStarAnimation(int,double,int,int)",
    "va": "0x0052C480",
    "status": "partial",
-   "match_pct": 23.2,
+   "match_pct": 23.5,
    "size": 1043
   },
   {
@@ -4274,8 +4382,8 @@
   },
   {
    "file": "pal3/src/Misc/UIPushButton.cpp",
-   "symbol": "?CreateWithTextures@UIPushButton@@UAEPAVgbVFileSystem@@HPAXPAV2@PBDD@Z",
-   "name": "UIPushButton::CreateWithTextures(int,void *,gbVFileSystem *,char const *,char)",
+   "symbol": "?CreateWithTextures@UIPushButton@@UAEPAVgbVFileSystem@@HPAXPAVUIWnd@@PBDD@Z",
+   "name": "UIPushButton::CreateWithTextures(int,void *,UIWnd *,char const *,char)",
    "va": "0x00440810",
    "status": "partial",
    "match_pct": 29.4,
@@ -4449,7 +4557,7 @@
    "name": "UISceneFace::UpdateFacePosition(void)",
    "va": "0x0052D0F0",
    "status": "partial",
-   "match_pct": 23.5,
+   "match_pct": 26.2,
    "size": 260
   },
   {
@@ -4521,7 +4629,7 @@
    "name": "UISceneMap::_todo_450DC0(void)",
    "va": "0x00450DC0",
    "status": "partial",
-   "match_pct": 16.8,
+   "match_pct": 17.8,
    "size": 197
   },
   {
@@ -4692,7 +4800,7 @@
    "name": "UITitle::RunFrame(PalScript *,int)",
    "va": "0x0044B0F0",
    "status": "partial",
-   "match_pct": 27.8,
+   "match_pct": 23.0,
    "size": 878
   },
   {
@@ -4791,7 +4899,7 @@
    "name": "UITitle_XJTM::DestroyStatics(void)",
    "va": "0x00486D20",
    "status": "partial",
-   "match_pct": 23.2,
+   "match_pct": 23.4,
    "size": 457
   },
   {
@@ -4845,7 +4953,7 @@
    "name": "UITitle_XJTM::DestroyStaticsEx(void)",
    "va": "0x00498C90",
    "status": "partial",
-   "match_pct": 23.0,
+   "match_pct": 23.4,
    "size": 457
   },
   {
@@ -4926,7 +5034,7 @@
    "name": "s_RoleState::LoadAndSetupRole(void)",
    "va": "0x004A3A90",
    "status": "partial",
-   "match_pct": 21.3,
+   "match_pct": 20.5,
    "size": 1071
   },
   {
@@ -4946,6 +5054,15 @@
    "status": "partial",
    "match_pct": 81.8,
    "size": 99
+  },
+  {
+   "file": "pal3/src/Misc/sg_emitter.cpp",
+   "symbol": "?sub_4BAE60@sg_emitter@@QAEHPAVgbVFile@@@Z",
+   "name": "sg_emitter::sub_4BAE60(gbVFile *)",
+   "va": "0x004BAE60",
+   "status": "partial",
+   "match_pct": 61.6,
+   "size": 495
   },
   {
    "file": "pal3/src/Render/TextureLib.cpp",
@@ -5376,7 +5493,7 @@
    "name": "Camera::InitFromScene(char const *)",
    "va": "0x004125D0",
    "status": "partial",
-   "match_pct": 25.8,
+   "match_pct": 27.6,
    "size": 163
   },
   {
@@ -5439,7 +5556,7 @@
    "name": "Camera::InitUIElements(void)",
    "va": "0x0052BEB0",
    "status": "partial",
-   "match_pct": 15.6,
+   "match_pct": 14.3,
    "size": 1435
   },
   {
@@ -5705,8 +5822,8 @@
   },
   {
    "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "?Create@UIWnd@@UAEHHPAUtagRECT@@H@Z",
-   "name": "UIWnd::Create(int,tagRECT *,int)",
+   "symbol": "?Create@UIWnd@@UAEHHPAUtagRECT@@PAV1@@Z",
+   "name": "UIWnd::Create(int,tagRECT *,UIWnd *)",
    "va": "0x00445B90",
    "status": "partial",
    "match_pct": 14.9,
@@ -5784,19 +5901,5 @@
    "match_pct": 62.7,
    "size": 166
   }
- ],
- "rebaseline": {
-  "reason": "fresh-IDB 重建后总体结构变化：matched 1045/1303→695/915（10-23 init --force 全量重建，历史 IDB 数月命名/注解累积不可即时复现）；字节质量无回归（L1 率 16.8% vs 历史 17.2%）；交替收敛实测仅 +10/轮 ⇒ 缺口结构性。显式重对齐棘轮至 107，恢复门禁判别力（2026-10-23 崩塌教训：恒红门禁不分信号噪声）。",
-  "at": "2026-10-24T19:36:16",
-  "prev_match_L1": 194,
-  "cur_match_L1": 107,
-  "prev_population": {
-   "matched": 1045,
-   "symbols": 1303
-  },
-  "cur_population": {
-   "matched": 695,
-   "symbols": 915
-  }
- }
+ ]
 }
