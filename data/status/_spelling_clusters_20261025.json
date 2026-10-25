@@ -689,6 +689,13 @@
     "correct_direction": "注解修正方向正确（@0=__vftable 铁证、旧 m_pES 无证据已撤），残余 +4 = 发射器对 __vftable 成员的双重处理（virtual 隐式 vptr + 注解成员双重计入）—— emission 层 \"__vftable 成员 vs virtual 隐式\" 去重，单点修复",
     "also_fixed": "CEffect methods 4 条垃圾名（slot_1(void)/ProcessEffects(double)/slot_6(void)/UpdateEffectState(int)）归一为纯名（?slot_6 非法 token 病根）",
     "state": "CEffect.cpp ok 0 错误 · S2 125/214 · L1 109 · 全链 g3c 后又两轮全绿"
+   },
+   "true_root": {
+    "verdict": "2026-10-25 深夜终局（最小复现探针）：VC6 vptr 位置跟随第一个 virtual 声明的文法位置",
+    "evidence": "最小复现：成员在前/virtual 在后 ⇒ m_eKind=12、nQuad=8228（vptr 被推到尾部对齐点）；CGameData 等健康类 virtual 在前 ⇒ vptr@0",
+    "root": "发射器把 virtual 方法声明排在数据成员之后（CEffect.h: virtual 在 L33，成员在 L18-30）",
+    "fix": "emit_headers：virtual 方法声明块移到数据成员之前（一行排序修复，全类受益）",
+    "chain_close": "CEffect 案七轮：撤注解(×1错)→vptr2注入(×2不足)→门禁拦截(×3正确)→CEffQuake定谳(×4解耦)→数学闭合(×5十进制)→__vftable质疑(×6用户，注解错误定谳)→文法位置终局(×7)"
    }
   }
  }
