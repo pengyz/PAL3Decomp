@@ -3,10 +3,10 @@
   "binary_size": 245800,
   "known_members": {
     "0": {
-      "name": "m_pES",
-      "type": "CEffectSystem *[2]",
-      "source": "annotation",
-      "evidence_level": "unverified"
+      "name": "__vftable",
+      "type": "void *",
+      "source": "| [vptr@0 定谳 2026-10-25·对抗复核修正] 原 m_pES[2]@0 注解无证据（全语料零引用——CCBSystem 6 处为跨类撞名）；vptr@0 铁证=ctor sub_4C6240 写 [esi]=0x56F844（vptr 标准初始化）+ vcall 实证 call [eax+0xC]（asm 292046，真分发）+ decomp CEffect *this；取代 as_data 方案（该方案被 vcall 证据+实测 S2-1/fail×15 双重否决）",
+      "evidence_level": "A"
     },
     "8": {
       "name": "m_eKind",
@@ -274,34 +274,34 @@
       "evidence_level": "A"
     },
     "0x004C5D80": {
-      "name": "slot_1(void)",
+      "name": "slot_1",
       "signature": "virtual int()",
-      "source": "| [vtable 0x56F844 重验 2026-10-25] 槽实名（decomp 名）；归属=CEffect ctor sub_4C6240 唯一写点 + 7 槽全 CEffect 系方法",
+      "source": "| [vtable 0x56F844 重验 2026-10-25] 槽实名（decomp 名）；归属=CEffect ctor sub_4C6240 唯一写点 + 7 槽全 CEffect 系方法 | [名归一 2026-10-25] 剥参数表后缀（decomp 文件名残留，非法标识符）",
       "evidence_level": "A"
     },
     "0x004C5E80": {
-      "name": "ProcessEffects(double)",
+      "name": "ProcessEffects",
       "signature": "virtual int __thiscall(CEffectSystem *this, double time)",
-      "source": "| [vtable 0x56F844 重验 2026-10-25] 槽实名（decomp 名）；归属=CEffect ctor sub_4C6240 唯一写点 + 7 槽全 CEffect 系方法",
+      "source": "| [vtable 0x56F844 重验 2026-10-25] 槽实名（decomp 名）；归属=CEffect ctor sub_4C6240 唯一写点 + 7 槽全 CEffect 系方法 | [名归一 2026-10-25] 剥参数表后缀（decomp 文件名残留，非法标识符）",
       "evidence_level": "A"
     },
     "0x004C5E20": {
-      "name": "slot_6(void)",
+      "name": "slot_6",
       "signature": "virtual int()",
-      "source": "| [vtable 0x56F844 重验 2026-10-25] 槽实名（decomp 名）；归属=CEffect ctor sub_4C6240 唯一写点 + 7 槽全 CEffect 系方法",
+      "source": "| [vtable 0x56F844 重验 2026-10-25] 槽实名（decomp 名）；归属=CEffect ctor sub_4C6240 唯一写点 + 7 槽全 CEffect 系方法 | [名归一 2026-10-25] 剥参数表后缀（decomp 文件名残留，非法标识符）",
       "evidence_level": "A"
     },
     "0x004C6030": {
-      "name": "UpdateEffectState(int)",
+      "name": "UpdateEffectState",
       "signature": "virtual int __thiscall(CEffectSystem *this, int nVal)",
-      "source": "| [vtable 0x56F844 重验 2026-10-25] 槽实名（decomp 名）；归属=CEffect ctor sub_4C6240 唯一写点 + 7 槽全 CEffect 系方法",
+      "source": "| [vtable 0x56F844 重验 2026-10-25] 槽实名（decomp 名）；归属=CEffect ctor sub_4C6240 唯一写点 + 7 槽全 CEffect 系方法 | [名归一 2026-10-25] 剥参数表后缀（decomp 文件名残留，非法标识符）",
       "evidence_level": "A"
     }
   },
   "vtables": [
     {
       "addr": "0x0056F844",
-      "source": "| [vtable 归属重验 2026-10-25·三重铁证] ①唯一写入点=CEffect 真实 ctor sub_4C6240（operator new(0x3C028)=245800 唯一调用）：mov [esi],56F844 + [esi+8]=1（@8 直写=非 vptr 位） ②7 槽全为 CEffect/CEffectSystem 方法（Activate/ReleaseTextures decomp 实名） ③旧注解 0x56FADC 经 sub_4D3870=CEffQuake ctor（new 0x10B0=4272 尺寸铁证）+ 槽 CEffQuake::_sdtor_adj 定谳归 CEffQuake —— 0x56FADC→0x56F844 修正；CEffect 原版布局无 vptr 前缀（lea 0x39444 十进制数学吻合）",
+      "source": "| [vtable 归属重验 2026-10-25·三重铁证] ①唯一写入点=CEffect 真实 ctor sub_4C6240（operator new(0x3C028)=245800 唯一调用）：mov [esi],56F844 + [esi+8]=1（@8 直写=非 vptr 位） ②7 槽全为 CEffect/CEffectSystem 方法（Activate/ReleaseTextures decomp 实名） ③旧注解 0x56FADC 经 sub_4D3870=CEffQuake ctor（new 0x10B0=4272 尺寸铁证）+ 槽 CEffQuake::_sdtor_adj 定谳归 CEffQuake —— 0x56FADC→0x56F844 修正；CEffect 原版布局无 vptr 前缀（lea 0x39444 十进制数学吻合） | [R94b 2026-10-25 复核修正] as_data 方案被否决（vcall 实证 [eax+0Ch] 真分发 + as_data 链实测 S2 -1/CEffect fail×15 垃圾名）——CEffect 真多态，vptr@0 真实存在；真问题=旧注解 m_pES[2]@0 占了 vptr 位",
       "slots": [
         {
           "addr": "0x004C5D80",

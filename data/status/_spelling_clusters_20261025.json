@@ -681,6 +681,14 @@
     "cascade": "56FADC/56FAD0 双表全归 CEffQuake（4272B）⇒ CEffect 现注解的 vtable 0x56FADC 归属也须重验！",
     "fix_chain": "① CEffect vtable 注解 0x56FADC→0x56F844 重验 ② 发射头 6 virtual 的来源槽是 CEffQuake 的表 ⇒ 移除后类非多态 ⇒ m_QuadBuffer 回 98336 ⇒ SetQuadParam L1+1",
     "side_finding": "m_Partical@40+2048×48=98344 > m_nQuad@98332 ⇒ m_Partical 尺寸/数量注解差 12 字节（独立小病）"
+   },
+   "probe_final": {
+    "verdict": "2026-10-25 修正探针（剥 m_pES 陈旧引用后）：m_eKind off=12（decl 8）· 全类 +4 而非 +8",
+    "composition": "编译布局 = vptr@0(4) + _gap_004@4(4) + m_eKind@12 —— _gap_004 是发射器对\"注解 @0 __vftable 与 @8 m_eKind 之间的空隙\"的中央补白",
+    "as_data_verdict": "方案否决坐实：vcall [eax+0xC]（asm 292046）证明真 virtual 分发；as_data 链实测 S2 -1/CEffect fail×15/垃圾名 ?slot_6",
+    "correct_direction": "注解修正方向正确（@0=__vftable 铁证、旧 m_pES 无证据已撤），残余 +4 = 发射器对 __vftable 成员的双重处理（virtual 隐式 vptr + 注解成员双重计入）—— emission 层 \"__vftable 成员 vs virtual 隐式\" 去重，单点修复",
+    "also_fixed": "CEffect methods 4 条垃圾名（slot_1(void)/ProcessEffects(double)/slot_6(void)/UpdateEffectState(int)）归一为纯名（?slot_6 非法 token 病根）",
+    "state": "CEffect.cpp ok 0 错误 · S2 125/214 · L1 109 · 全链 g3c 后又两轮全绿"
    }
   }
  }
