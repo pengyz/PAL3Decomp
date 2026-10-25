@@ -659,7 +659,21 @@
    "slot_identity": "0x4D4DE0 = CEffQuake::_sdtor_adj —— 第二张表 0x56FAD0 是 CEffQuake 侧的调整 thunk 表！",
    "deeper_verdict": "ctor sub_4D3870 写 [+0xC]=56FAD0 的 this 归属未证（CEffect? CEffQuake 基类子对象? 复合对象?）——与 CreateSceneEntities 撤裁（体证据 vs 偏移簇证）同源：0x4D3870/0x4D3930 族的 this 归属先于一切头部布局修正",
    "annotation_state": "CEffect.json 已恢复原状（staged 改动撤回）；asm 发现与双 vptr 假设链完整保留在 tangle_map",
-   "prereq_chain": "sub_4D3870 this 归属裁决 → CEffect/CEffQuake 基类关系 → 头部布局修正 → SetQuadParam L1"
+   "prereq_chain": "sub_4D3870 this 归属裁决 → CEffect/CEffQuake 基类关系 → 头部布局修正 → SetQuadParam L1",
+   "root_resolved": {
+    "verdict": "2026-10-25 定谳：sub_4D3870 = CEffQuake ctor（与 CEffect 无关）",
+    "evidence": [
+     "唯一调用点 sub_4CF8E0（asm 307628）：operator new(0x10B0) → call sub_4D3870",
+     "0x10B0 = 4272 = CEffQuake.binary_size 精确吻合（CEffect 245800 差 57 倍）",
+     "其写的双 vptr 56FADC/56FAD0 + 槽 CEffQuake::_sdtor_adj 全部落入 CEffQuake 尺寸语义"
+    ],
+    "implication": [
+     "CEffect 的 +8 平移病灶与本案解耦——CEffect 自己的 ctor/vptr 证据链需独立重查",
+     "CEffect 注解维持原状（vtable 0x56FADC 单表）——之前的撤回决定依然正确",
+     "CEffQuake 现在有了 ctor 证据（sub_4D3870）+ 尺寸 0x10B0 双铁证"
+    ],
+    "open": "CEffect +8 平移的真实来源待查（CEffect 自己的 ctor 写点 + vptr 证据链重建）"
+   }
   }
  }
 }
