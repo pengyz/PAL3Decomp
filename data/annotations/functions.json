@@ -3057,8 +3057,7 @@
     "name": "CreateSceneEntities",
     "signature": "void __thiscall Actor::CreateSceneEntities(Actor *this, int nSceneId)",
     "source_note": "[试点 2026-10-20·五面证据] ②被调用者=CreateMonsterUI/CreateScriptAndCamera/CreateFromTemplate/LoadModel/AllocObject（场景实体创建族 ✓）③成员访问=m_vecPos/m_vecRot/m_nRoleState0/m_szText/m_nTransform（位姿+状态 ✓）④类归属=Actor（11 命中 0 未解析）⑤交互模式=字面量 `UI\\GameMainUI\\Equip\\SelRole0` / `Item\\%s\\%s.pol`（UI+模型资源路径）；返回值=void",
-    "class": "Actor",
-    "source": " | [G3 C1 2026-10-25] IDB 重定型：以 decomp 现名 CreateSceneEntities 为准（注解名 _todo_00496190 对齐）；类化签名供 apply 定型"
+    "source": " | [G3 C1 2026-10-25] IDB 重定型：以 decomp 现名 CreateSceneEntities 为准（注解名 _todo_00496190 对齐）；类化签名供 apply 定型 | [归属撤销 2026-10-25·体证据否决] offset-match 实测：38 偏移中 26 个越 Actor 边界 820（最大 0x35A68），仅 7 命中且伴大量越界 ⇒ this 非 820 字节 Actor；原\"六连簇证\"为偏移相似性（弱形态）被体证据压制。撤 Actor 归属挂队列重裁"
   },
   "0x004B7D30": {
     "name": "_todo_004B7D30",
